@@ -1,13 +1,13 @@
 ---
-title: 調整 Web 服務 | Microsoft Docs
-description: 了解如何藉由增加並行要求和新增新端點的方式調整 Web 服務。
+title: "調整 Web 服務 | Microsoft Docs"
+description: "了解如何藉由增加並行要求和新增新端點的方式調整 Web 服務。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: neerajkh
 manager: srikants
 editor: cgronlun
-keywords: azure 機器學習服務, web 服務, 作業化, 調整, 端點, 並行要求
-
+keywords: "azure 機器學習服務, web 服務, 作業化, 調整, 端點, 並行要求"
+ms.assetid: c2c51d7f-fd2d-4f03-bc51-bf47e6969296
 ms.service: machine-learning
 ms.devlang: NA
 ms.workload: data-services
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.topic: article
 ms.date: 10/05/2016
 ms.author: neerajkh
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 559db01d2c9f44af17b86f99031a8827dfeb5ab3
+
 
 ---
 # <a name="scaling-a-web-service"></a>調整 Web 服務
@@ -42,6 +46,6 @@ ms.author: neerajkh
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

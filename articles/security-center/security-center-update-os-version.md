@@ -1,34 +1,39 @@
 ---
-title: Azure 資訊安全中心的更新作業系統版本 | Microsoft Docs
-description: 本文說明了如何實作 Azure 資訊安全中心建議的「更新作業系統版本」。
+title: "Azure 資訊安全中心的更新作業系統版本 | Microsoft Docs"
+description: "本文說明了如何實作 Azure 資訊安全中心建議的「更新作業系統版本」。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: ''
-
+editor: 
+ms.assetid: aa372492-ecdb-4368-8fdd-d8ed31e216ee
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/29/2016
+ms.date: 11/01/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ce0d178914907750e5da59f223a4b1e04b9bb6fb
+
 
 ---
-# Azure 資訊安全中心的更新作業系統版本
-對於雲端服務中的虛擬機器 (VM)，如果有更新的版本可用，則 Azure 資訊安全中心會建議更新作業系統 (OS)。只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。
+# <a name="update-os-version-in-azure-security-center"></a>Azure 資訊安全中心的更新作業系統版本
+對於雲端服務中的虛擬機器 (VM)，如果有更新的版本可用，則 Azure 資訊安全中心會建議更新作業系統 (OS)。  只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。
 
 > [!NOTE]
-> 本文件將使用範例部署來介紹服務。這不是逐步指南。
+> 本文件將使用範例部署來介紹服務。  這不是逐步指南。
 > 
 > 
 
-## 實作建議
-1. 在 [建議] 刀鋒視窗中，選取 [更新作業系統版本]。![更新作業系統版本][1]
-2. [更新作業系統版本] 刀鋒視窗隨即開啟。遵循此刀鋒視窗中的步驟來更新作業系統版本。
+## <a name="implement-the-recommendation"></a>實作建議
+1. 在 [建議] 刀鋒視窗中，選取 [更新作業系統版本]。
+   ![更新作業系統版本][1]
+2. [更新作業系統版本] 刀鋒視窗隨即開啟。 遵循此刀鋒視窗中的步驟來更新作業系統版本。
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 本文說明了如何實作資訊安全中心建議的「更新作業系統版本」。 若要深入了解雲端服務和更新雲端服務的作業系統版本，請參閱：
 
 * [雲端服務概觀](../cloud-services/cloud-services-choose-me.md)
@@ -48,4 +53,8 @@ ms.author: terrylan
 <!--Image references-->
 [1]: ./media/security-center-update-os-version/update-os-version.png
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

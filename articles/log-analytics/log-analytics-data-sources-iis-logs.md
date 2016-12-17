@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 中的 IIS 記錄檔 | Microsoft Docs
-description: Internet Information Services (IIS) 會將使用者活動儲存在記錄檔中，並可由 Log Analytics 進行收集。  本文說明如何設定收集 IIS 記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。
+title: "Log Analytics 中的 IIS 記錄檔 | Microsoft Docs"
+description: "Internet Information Services (IIS) 會將使用者活動儲存在記錄檔中，並可由 Log Analytics 進行收集。  本文說明如何設定收集 IIS 記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: cec5ff0a-01f5-4262-b2e8-e3db7b7467d2
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 920b5feee8e94af5b98e8dffc127da4085bac597
+
 
 ---
 # <a name="iis-logs-in-log-analytics"></a>Log Analytics 中的 IIS 記錄檔
@@ -27,7 +31,7 @@ Log Analytics 會從 IIS 建立的記錄檔收集項目，因此您必須[設定
 Log Analytics 只支援以 W3C 格式儲存的 IIS 記錄檔，不支援自訂欄位或 IIS 進階記錄。  
 Log Analytics 不會收集 NCSA 或 IIS 原生格式的記錄。
 
-從 [Log Analytics [設定] 中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)來設定 Log Analytics 中的 IIS 記錄檔。  您只需選取 [Collect W3C format IIS log files](收集 W3C 格式的 IIS 記錄檔.md) 即可完成設定。
+從 [Log Analytics [設定] 中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)來設定 Log Analytics 中的 IIS 記錄檔。  您只需選取 [Collect W3C format IIS log files] (收集 W3C 格式的 IIS 記錄檔) 即可完成設定。
 
 當您啟用 IIS 記錄檔收集時，建議您在每部伺服器上設定 IIS 記錄檔換用設定。
 
@@ -77,6 +81,9 @@ IIS 記錄檔記錄都具有 **W3CIISLog** 類型以及下表中的屬性：
 * 了解 [記錄檔搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。
 * 設定 Log Analytics 中的警示，以主動通知您在 IIS 記錄檔中找到的重要狀況。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

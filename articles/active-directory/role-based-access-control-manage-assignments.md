@@ -1,12 +1,12 @@
 ---
-title: 檢視 Azure 資源存取權指派 | Microsoft Docs
-description: 檢視及管理 Azure 入口網站中任何使用者或群組的所有角色型存取控制指派
+title: "檢視 Azure 資源存取權指派 | Microsoft Docs"
+description: "檢視及管理 Azure 入口網站中任何使用者或群組的所有角色型存取控制指派"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: kgremban
 manager: femila
 editor: jeffsta
-
+ms.assetid: e6f9e657-8ee3-4eec-a21c-78fe1b52a005
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/10/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 87fa4373e5496a91d4e808ceb45095a6aea9e884
+
 
 ---
 # <a name="view-access-assignments-for-users-and-groups-in-the-azure-portal---public-preview"></a>在 Azure 入口網站 - 公開預覽中檢視存取使用者和群組的工作分派
@@ -57,6 +61,9 @@ ms.author: kgremban
 * 取得 [使用角色指派來管理 Azure 訂用帳戶資源的存取權](role-based-access-control-configure.md)
 * 參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

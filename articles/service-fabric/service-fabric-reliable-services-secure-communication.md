@@ -1,28 +1,32 @@
 ---
-title: 協助保護 Service Fabric 中服務的通訊安全 | Microsoft Docs
-description: 如何協助保護於 Azure Service Fabric 叢集中所執行之可靠服務的通訊安全概觀。
+title: "協助保護 Service Fabric 中服務的通訊安全 | Microsoft Docs"
+description: "如何協助保護於 Azure Service Fabric 叢集中所執行之可靠服務的通訊安全概觀。"
 services: service-fabric
 documentationcenter: .net
 author: suchiagicha
 manager: timlt
 editor: vturecek
-
+ms.assetid: fc129c1a-fbe4-4339-83ae-0e69a41654e0
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 07/06/2016
-ms.author: suchiagicha
+ms.author: suchia
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f13ccbb5ac1eff7ea8924c9d7b5ea9d9ef09a7ad
+
 
 ---
-# 協助保護 Azure Service Fabric 中服務的通訊安全
-安全性是通訊最為重視的其中一個部分。Reliable Services 應用程式架構會提供可用來改善安全性的一些預先建置通訊堆疊和工具。本文將討論如何在使用服務遠端處理和 Windows Communication Foundation (WCF) 通訊堆疊時改善安全性。
+# <a name="help-secure-communication-for-services-in-azure-service-fabric"></a>協助保護 Azure Service Fabric 中服務的通訊安全
+安全性是通訊最為重視的其中一個部分。 Reliable Services 應用程式架構會提供可用來改善安全性的一些預先建置通訊堆疊和工具。 本文將討論如何在使用服務遠端處理和 Windows Communication Foundation (WCF) 通訊堆疊時改善安全性。
 
-## 協助保護使用服務遠端處理時的服務安全
-我們將使用現有[範例](service-fabric-reliable-services-communication-remoting.md)以說明如何設定可靠服務的遠端處理功能。若要協助保護使用服務遠端處理時的服務安全，請遵循下列步驟︰
+## <a name="help-secure-a-service-when-youre-using-service-remoting"></a>協助保護使用服務遠端處理時的服務安全
+我們將使用現有 [範例](service-fabric-reliable-services-communication-remoting.md) 以說明如何設定可靠服務的遠端處理功能。 若要協助保護使用服務遠端處理時的服務安全，請遵循下列步驟︰
 
-1. 建立 `IHelloWorldStateful` 介面，這個介面會定義將在您的服務上用於遠端程序呼叫的方法。您的服務將使用 `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` 命名空間中宣告的 `FabricTransportServiceRemotingListener`。這是提供遠端功能的 `ICommunicationListener` 實作。
+1. 建立 `IHelloWorldStateful`介面，這個介面會定義將在您的服務上用於遠端程序呼叫的方法。 您的服務將使用在 `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` 命名空間中宣告的 `FabricTransportServiceRemotingListener`。 這是提供遠端功能的 `ICommunicationListener` 實作。
    
     ```csharp
     public interface IHelloWorldStateful : IService
@@ -47,7 +51,7 @@ ms.author: suchiagicha
     ```
 2. 新增接聽程式設定和安全性認證。
    
-    確定您想要用來協助保護服務通訊安全的憑證已安裝在叢集的所有節點上。有兩種方式可提供接聽程式設定和安全性認證：
+    確定您想要用來協助保護服務通訊安全的憑證已安裝在叢集的所有節點上。 有兩種方式可提供接聽程式設定和安全性認證：
    
    1. 直接在服務程式碼中提供它們：
       
@@ -81,7 +85,7 @@ ms.author: suchiagicha
            return x509Credentials;
        }
        ```
-   2. 使用[組態封裝](service-fabric-application-model.md)提供它們：
+   2. 使用 [組態封裝](service-fabric-application-model.md)提供它們：
       
        在 settings.xml 檔案中新增 `TransportSettings` 區段。
       
@@ -100,7 +104,7 @@ ms.author: suchiagicha
        </Section>
        ```
       
-       在此情況下，`CreateServiceReplicaListeners` 方法看起來像這樣：
+       在此情況下， `CreateServiceReplicaListeners` 方法看起來像這樣：
       
        ```csharp
        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -114,7 +118,7 @@ ms.author: suchiagicha
        }
        ```
       
-        如果您將在 settings.xml 檔案中新增 `TransportSettings` 區段，而沒有任何前置詞，則 `FabricTransportListenerSettings` 預設會載入此區段中的所有設定。
+        如果您在 settings.xml 檔案中新增 `TransportSettings` 區段，而沒有任何前置詞，則 `FabricTransportListenerSettings` 預設會載入此區段中的所有設定。
       
         ```xml
         <!--"TransportSettings" section without any prefix.-->
@@ -122,7 +126,7 @@ ms.author: suchiagicha
             ...
         </Section>
         ```
-        在此情況下，`CreateServiceReplicaListeners` 方法看起來像這樣：
+        在此情況下， `CreateServiceReplicaListeners` 方法看起來像這樣：
       
         ```csharp
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -135,7 +139,7 @@ ms.author: suchiagicha
             };
         }
         ```
-3. 如果在安全服務上使用遠端堆疊來呼叫方法，而不是使用 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` 類別來建立服務 Proxy，請使用 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`。傳入包含 `SecurityCredentials` 的 `FabricTransportSettings`。
+3. 如果在安全服務上使用遠端堆疊來呼叫方法，而不是使用 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` 類別來建立服務 Proxy，請使用 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`。 傳入包含 `SecurityCredentials` 的 `FabricTransportSettings`。
    
     ```csharp
    
@@ -164,7 +168,7 @@ ms.author: suchiagicha
    
     ```
    
-    如果用戶端程式碼正在當作服務一部分執行，則可以從 settings.xml 檔案中載入 `FabricTransportSettings`。建立與服務程式碼類似的 TransportSettings 區段，如前所示。對用戶端程式碼進行下列變更：
+    如果用戶端程式碼正在當作服務一部分執行，則可以從 settings.xml 檔案中載入 `FabricTransportSettings` 。 建立與服務程式碼類似的 TransportSettings 區段，如前所示。 對用戶端程式碼進行下列變更：
    
     ```csharp
    
@@ -178,11 +182,11 @@ ms.author: suchiagicha
    
     ```
    
-    如果用戶端未當作服務一部分執行，則您可以在 client\_name.exe 所在的同一位置中建立 client\_name.settings.xml 檔案。然後在該檔案中建立 TransportSettings 區段。
+    如果用戶端未當作服務一部分執行，則您可以在 client_name.exe 所在的同一位置中建立 client_name.settings.xml 檔案。 然後在該檔案中建立 TransportSettings 區段。
    
-    與此服務類似，如果您在用戶端 settings.xml/client\_name.settings.xml 中新增 `TransportSettings` 區段，而沒有任何前置詞，則 `FabricTransportSettings` 預設會載入此區段中的所有設定。
+    與此服務類似，如果您在用戶端 settings.xml/client_name.settings.xml 中新增 `TransportSettings` 區段，而沒有任何前置詞，則 `FabricTransportSettings` 預設會載入此區段中的所有設定。
    
-    在該情況下，先前的程式碼甚至會更進一步地簡化：
+    在該情況下，先前的程式碼甚至會更進一步地簡化：  
    
     ```csharp
    
@@ -193,10 +197,10 @@ ms.author: suchiagicha
    
     ```
 
-## 協助保護使用 WCF 通訊堆疊時的服務安全
-我們將使用現有[範例](service-fabric-reliable-services-communication-wcf.md)以說明如何設定可靠服務的 WCF 通訊堆疊。若要協助保護使用 WCF 通訊堆疊時的服務安全，請遵循下列步驟 ︰
+## <a name="help-secure-a-service-when-youre-using-a-wcf-based-communication-stack"></a>協助保護使用 WCF 通訊堆疊時的服務安全
+我們將使用現有 [範例](service-fabric-reliable-services-communication-wcf.md) 以說明如何設定可靠服務的 WCF 通訊堆疊。 若要協助保護使用 WCF 通訊堆疊時的服務安全，請遵循下列步驟 ︰
 
-1. 對於此服務，您需要協助保護所建立之 WCF 通訊接聽程式的安全 (`WcfCommunicationListener`)。若要這樣做，請修改 `CreateServiceReplicaListeners` 方法。
+1. 對於此服務，您需要協助保護所建立之 WCF 通訊接聽程式的安全 (`WcfCommunicationListener`)。 若要這樣做，請修改 `CreateServiceReplicaListeners` 方法。
    
     ```csharp
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -233,7 +237,7 @@ ms.author: suchiagicha
         return b;
     }
     ```
-2. 在用戶端中，於先前的[範例](service-fabric-reliable-services-communication-wcf.md)中建立的 `WcfCommunicationClient` 類別會保持不變。但是，您需要覆寫 `WcfCommunicationClientFactory` 的 `CreateClientAsync` 方法：
+2. 在用戶端，於先前[範例](service-fabric-reliable-services-communication-wcf.md)中建立的 `WcfCommunicationClient` 類別會保持不變。 但是，您需要覆寫 `WcfCommunicationClientFactory` 的 `CreateClientAsync` 方法：
    
     ```csharp
     public class SecureWcfCommunicationClientFactory<TServiceContract> : WcfCommunicationClientFactory<TServiceContract> where TServiceContract : class
@@ -283,7 +287,7 @@ ms.author: suchiagicha
     }
     ```
    
-    使用 `SecureWcfCommunicationClientFactory` 來建立 WCF 通訊用戶端 (`WcfCommunicationClient`)。使用用戶端來叫用服務方法。
+    使用 `SecureWcfCommunicationClientFactory` 來建立 WCF 通訊用戶端 (`WcfCommunicationClient`)。 使用用戶端來叫用服務方法。
    
     ```csharp
     IServicePartitionResolver partitionResolver = ServicePartitionResolver.GetDefault();
@@ -299,7 +303,12 @@ ms.author: suchiagicha
         client => client.Channel.Add(2, 3)).Result;
     ```
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

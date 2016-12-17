@@ -1,20 +1,24 @@
 ---
-title: 管理雙步驟驗證設定 | Microsoft Docs
-description: 管理您使用 Azure Multi-Factor Authentication 的方式，包括變更您的連絡資訊或是設定您的裝置。
+title: "管理雙步驟驗證設定 | Microsoft Docs"
+description: "管理您使用 Azure Multi-Factor Authentication 的方式，包括變更您的連絡資訊或是設定您的裝置。"
 services: multi-factor-authentication
-keywords: 多重要素驗證用戶端, 驗證的問題, 相互關聯識別碼
-documentationcenter: ''
+keywords: "多重要素驗證用戶端, 驗證的問題, 相互關聯識別碼"
+documentationcenter: 
 author: kgremban
 manager: femila
 editor: yossib
-
+ms.assetid: d3372d9a-9ad1-4609-bdcf-2c4ca9679a3b
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 11/23/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 830eb6627cae71f358b9790791b1d86f7c82c566
+ms.openlocfilehash: 8156a7e9d9cbe1631c2e777454d04519b413d551
+
 
 ---
 # <a name="manage-your-settings-for-two-step-verification"></a>管理您的雙步驟驗證設定
@@ -28,19 +32,19 @@ ms.author: kgremban
 1. 登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)  
 2. 在頂端，選取 [設定檔]。  
 3. 選取 [其他安全性驗證]。  
-   
+
     ![Myapps](./media/multi-factor-authentication-end-user-manage/myapps1.png)
 4. [其他安全性驗證] 頁面會載入您的設定。
-   
-    ![Proofup](./media/multi-factor-authentication-end-user-manage-myapps/proofup.png)
 
-## <a name="i-want-to-change-my-phone-number,-or-add-a-secondary-number"></a>我想要變更我的電話號碼，或新增次要號碼
+    ![Proofup](./media/multi-factor-authentication-end-user-manage/proofup.png)
+
+## <a name="i-want-to-change-my-phone-number-or-add-a-secondary-number"></a>我想要變更我的電話號碼，或新增次要號碼
 請務必設定次要驗證電話號碼。  由於您的主要電話號碼與行動應用程式可能在同一個手機上，因此如果您的手機遺失或遭竊，您只能依靠次要電話號碼恢復使用您的帳戶。
 
 > [!NOTE]
 > 如果您不能存取您的主要電話號碼，並需要協助進入您的帳戶，請參閱我們 [雙步驟驗證遇到困難](multi-factor-authentication-end-user-troubleshoot.md)中的說明主題。
-> 
-> 
+>
+>
 
 **若要變更您的主要電話號碼︰**  
 
@@ -54,13 +58,15 @@ ms.author: kgremban
 2. 在文字方塊中輸入您的次要電話號碼。  
 3. 選取 [儲存] 您的變更即完成。  
 
-## <a name="how-do-i-clean-up-microsoft-authenticator-from-my-old-device-and-move-to-a-new-one?"></a>如何清除舊裝置的 Microsoft驗證器並移到新裝置？
-無論您是從裝置解除安裝應用程式或是重設裝置，都不會移除後端的啟動功能。 您應該使用[移至新裝置](multi-factor-authentication-microsoft-authenticator.md#how-to-move-to-the-new-microsoft-authenticator-app)中所述的步驟。
+## <a name="how-do-i-clean-up-microsoft-authenticator-from-my-old-device-and-move-to-a-new-one"></a>如何清除舊裝置的 Microsoft驗證器並移到新裝置？
+無論您是從裝置解除安裝應用程式或是重設裝置，都不會移除後端的啟動功能。 如需詳細資訊，請參閱 [Microsoft Authenticator](multi-factor-authentication-microsoft-authenticator.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * 取得疑難排解提示以及[使用雙步驟驗證遇到困難](multi-factor-authentication-end-user-troubleshoot.md)的說明。
 * 針對不支援雙步驟驗證的任何應用程式，設定[應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

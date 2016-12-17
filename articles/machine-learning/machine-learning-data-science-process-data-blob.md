@@ -1,12 +1,12 @@
 ---
-title: 處理使用進階分析的 Azure Blob 資料 | Microsoft Docs
-description: 處理 Azure Blob 儲存體中的資料。
+title: "處理使用進階分析的 Azure Blob 資料 | Microsoft Docs"
+description: "處理 Azure Blob 儲存體中的資料。"
 services: machine-learning,storage
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: d8a59078-91d3-4440-b85c-430363c3f4d1
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,15 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/19/2016
 ms.author: fashah;garye;bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3a8bf79ca39effaa19518ade7ff392530ef29475
+
 
 ---
-# <a name="heading"></a>處理使用進階分析的 Azure Blob 資料
-本文件涵蓋探索資料以及從 Azure Blob 儲存體中儲存的資料產生功能的說明。
+# <a name="a-nameheadingaprocess-azure-blob-data-with-advanced-analytics"></a><a name="heading"></a>處理使用進階分析的 Azure Blob 資料
+本文件涵蓋探索資料以及從 Azure Blob 儲存體中儲存的資料產生功能的說明。 
 
-## 將資料載入至 Pandas 資料框架
-若要探索和操作資料集，必須從 Blob 來源將資料集下載至本機檔案，然後將其載入 Pandas 資料框架中。以下是此程序的遵循步驟：
+## <a name="load-the-data-into-a-pandas-data-frame"></a>將資料載入至 Pandas 資料框架
+若要探索和操作資料集，必須從 Blob 來源將資料集下載至本機檔案，然後將其載入 Pandas 資料框架中。 以下是此程序的遵循步驟：
 
-1. 使用 Blob 服務，透過下列 Python 程式碼範例，從 Azure Blob 下載資料。使用您的特定值來取代下列程式碼中的變數：
+1. 使用 Blob 服務，透過下列 Python 程式碼範例，從 Azure Blob 下載資料。 使用您的特定值來取代下列程式碼中的變數： 
    
         from azure.storage.blob import BlobService
         import tables
@@ -46,10 +50,10 @@ ms.author: fashah;garye;bradsev
 
 現在您已經準備好探索資料並在此資料集上產生功能。
 
-## <a name="blob-dataexploration"></a>資料探索
+## <a name="a-nameblob-dataexplorationadata-exploration"></a><a name="blob-dataexploration"></a>資料探索
 以下是數個可使用 Pandas 探索資料的範例方式：
 
-1. 檢查資料列和資料行的數目
+1. 檢查資料列和資料行的數目 
    
         print 'the size of the data is: %d rows and  %d columns' % dataframe_blobdata.shape
 2. 檢查資料集中的前幾個或最後幾個資料列，如下所示：
@@ -73,13 +77,12 @@ ms.author: fashah;garye;bradsev
         print miss_num
 7. 如果您在資料的特定資料行中有遺漏值，則可卸除它們，如下所示：
    
-     dataframe_blobdata_noNA = dataframe_blobdata.dropna()
-     dataframe_blobdata_noNA.shape
+     dataframe_blobdata_noNA = dataframe_blobdata.dropna()   dataframe_blobdata_noNA.shape
    
    取代遺漏值的另一種方式是使用模式函式：
    
      dataframe_blobdata_mode = dataframe_blobdata.fillna({'<column_name>':dataframe_blobdata['<column_name>'].mode()[0]})        
-8. 使用變動數目的分類收納組來建立長條圖，以繪製變數的分佈
+8. 使用變動數目的分類收納組來建立長條圖，以繪製變數的分佈    
    
         dataframe_blobdata['<column_name>'].value_counts().plot(kind='bar')
    
@@ -92,10 +95,10 @@ ms.author: fashah;garye;bradsev
         #correlation between column_a and column_b
         dataframe_blobdata[['<column_a>', '<column_b>']].corr()
 
-## <a name="blob-featuregen"></a>功能產生
+## <a name="a-nameblob-featuregenafeature-generation"></a><a name="blob-featuregen"></a>功能產生
 我們可以使用 Python 來產生功能，如下所示：
 
-### <a name="blob-countfeature"></a>以指標值為基礎的功能產生
+### <a name="a-nameblob-countfeatureaindicator-value-based-feature-generation"></a><a name="blob-countfeature"></a>以指標值為基礎的功能產生
 類別功能可使用如下的方式來建立：
 
 1. 檢查類別資料行的分佈：
@@ -105,7 +108,7 @@ ms.author: fashah;garye;bradsev
    
         #generate the indicator column
         dataframe_blobdata_identity = pd.get_dummies(dataframe_blobdata['<categorical_column>'], prefix='<categorical_column>_identity')
-3. 將指標資料行與原始資料框架聯結在一起
+3. 將指標資料行與原始資料框架聯結在一起 
    
             #Join the dummy variables back to the original data frame
             dataframe_blobdata_with_identity = dataframe_blobdata.join(dataframe_blobdata_identity)
@@ -114,7 +117,7 @@ ms.author: fashah;garye;bradsev
         #Remove the original column rate_code in df1_with_dummy
         dataframe_blobdata_with_identity.drop('<categorical_column>', axis=1, inplace=True)
 
-### <a name="blob-binningfeature"></a>分類收納功能產生
+### <a name="a-nameblob-binningfeatureabinning-feature-generation"></a><a name="blob-binningfeature"></a>分類收納功能產生
 若要產生分類收納功能，我們可使用如下的方式繼續進行：
 
 1. 新增一系列的資料行，以分類收納數值資料行
@@ -128,8 +131,8 @@ ms.author: fashah;garye;bradsev
    
         dataframe_blobdata_with_bin_bool = dataframe_blobdata.join(dataframe_blobdata_bin_bool)    
 
-## <a name="sql-featuregen"></a>將資料寫回 Azure Blob 並在 AzureMachine Learning 中取用
-在您探索資料和建立必要功能後，可以上傳資料 (取樣性或功能性) 至 Azure Blob，並在 Azure Machine Learning 中透過下列步驟取用資料：請注意，您也可以在 Azure Machine Learning Studio 中建立其他功能。
+## <a name="a-namesql-featuregenawriting-data-back-to-azure-blob-and-consuming-in-azure-machine-learning"></a><a name="sql-featuregen"></a>將資料寫回 Azure Blob 並在 AzureMachine Learning 中取用
+在您探索資料和建立必要功能後，可以上傳資料 (取樣性或功能性) 至 Azure Blob，並在 Azure Machine Learning 中透過下列步驟取用資料：請注意，您也可以在 Azure Machine Learning Studio 中建立其他功能。 
 
 1. 將資料框架寫入本機檔案中
    
@@ -166,4 +169,8 @@ ms.author: fashah;garye;bradsev
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

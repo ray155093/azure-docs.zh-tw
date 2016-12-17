@@ -1,19 +1,23 @@
 ---
-title: 使用 Log Analytics 監視 Surface Hub | Microsoft Docs
-description: 使用 Surface Hub 解決方案來追蹤您的 Surface Hub 健康狀態，並了解其使用狀況。
+title: "使用 Log Analytics 監視 Surface Hub | Microsoft Docs"
+description: "使用 Surface Hub 解決方案來追蹤您的 Surface Hub 健康狀態，並了解其使用狀況。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 8b4e56bc-2d4f-4648-a236-16e9e732ebef
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/09/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
+ms.openlocfilehash: 9ba6b1b3fcdaf090eee696ba3cb33be5d94be039
+
 
 ---
 # <a name="monitor-surface-hubs-with-log-analytics"></a>使用 Log Analytics 監視 Surface Hub
@@ -46,7 +50,7 @@ InTune 是一項 Microsoft 產品，可讓您集中管理套用到一或多個�
 4. 瀏覽至原則的 OMS (Azure Operational Insights) 區段，將 [工作區識別碼] 和 [工作區金鑰] 新增至原則。
 5. 儲存原則。
 6. 將原則與適當的裝置群組關聯。
-   
+
    ![InTune 原則](./media/log-analytics-surface-hubs/intune.png)
 
 InTune 接著將 OMS 設定與目標群組中的裝置同步處理，將它們註冊到 OMS 工作區。
@@ -72,7 +76,7 @@ InTune 接著將 OMS 設定與目標群組中的裝置同步處理，將它們�
 1. 登入 OMS 入口網站。
 2. 瀏覽至 Surface Hub 解決方案組件的儀表板。
 3. 會顯示裝置的健康狀態。
-   
+
    ![Surface Hub 的儀表板](./media/log-analytics-surface-hubs/surface-hub-dashboard.png)
 
 您可以根據現有或自訂的記錄檔搜尋來建立[警示](log-analytics-alerts.md)。 使用 OMS 從 existing or custom log searches 收集來的資料，您可以依您為裝置定義的條件搜尋問題和警示。
@@ -81,6 +85,8 @@ InTune 接著將 OMS 設定與目標群組中的裝置同步處理，將它們�
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)來檢視詳細的 VMware 資料。
 * 建立[警示](log-analytics-alerts.md)在 Surface Hub 發生問題時通知您。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

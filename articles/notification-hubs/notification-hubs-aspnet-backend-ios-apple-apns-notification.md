@@ -1,12 +1,12 @@
 ---
-title: Azure Notification Hubs Notify Users for iOS with .NET backend
-description: Learn how to send push notifications to users in Azure. Code samples written in Objective-C and the .NET API for the backend.
+title: "Azure 通知中樞透過 .NET 後端通知 iOS 使用者"
+description: "了解如何在 Azure 中將推播通知傳送給使用者。 程式碼範例是以 Objective-C 撰寫並以 .NET API 作為後端。"
 documentationcenter: ios
 author: ysxu
 manager: erikre
-editor: ''
+editor: 
 services: notification-hubs
-
+ms.assetid: 1f7d1410-ef93-4c4b-813b-f075eed20082
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: ios
@@ -14,44 +14,48 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0fa7a886e1ecb0a90b6aebc1dbf9ef0c6ce1acf1
+
 
 ---
-# <a name="azure-notification-hubs-notify-users-for-ios-with-.net-backend"></a>Azure Notification Hubs Notify Users for iOS with .NET backend
+# <a name="azure-notification-hubs-notify-users-for-ios-with-net-backend"></a>Azure 通知中樞透過 .NET 後端通知 iOS 使用者
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
-## <a name="overview"></a>Overview
-Push notification support in Azure enables you to access an easy-to-use, multiplatform, and scaled-out push infrastructure, which greatly simplifies the implementation of push notifications for both consumer and enterprise applications for mobile platforms. This tutorial shows you how to use Azure Notification Hubs to send push notifications to a specific app user on a specific device. An ASP.NET WebAPI backend is used to authenticate clients and to generate notifications, as shown in the guidance topic [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend).
+## <a name="overview"></a>概觀
+Azure 中的推播通知支援可讓您存取易於使用、多重平台的大規模推播基礎結構，而大幅簡化消費者和企業應用程式在行動平台上的推播通知實作。 本教學課程將示範如何使用 Azure 通知中心，來將推播通知傳送到特定裝置上的特定應用程式使用者。 ASP.NET WebAPI 後端可用來驗證用戶端並產生通知，如指引主題[從您的應用程式後端註冊](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)中所示。
 
 > [!NOTE]
-> This tutorial assumes that you have created and configured your notification hub as described in [Getting Started with Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md). This tutorial is also the prerequisite to the [Secure Push (iOS)](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md) tutorial.
-> If you want to use Mobile Apps as your backend service, see the [Mobile Apps Get Started with Push](../app-service-mobile/app-service-mobile-ios-get-started-push.md).
+> 本教學課程假設您已建立並設定通知中樞，如 [開始使用通知中樞 (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md)中所述。 本教學課程還是 [安全推播 (iOS)](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md) 教學課程的必要條件。
+> 如果您想要使用 Mobile Apps 作為您的後端服務，請參閱 [開始使用 Mobile Apps 推播](../app-service-mobile/app-service-mobile-ios-get-started-push.md)。
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="modify-your-ios-app"></a>Modify your iOS app
-1. Open the Single Page view app you created in the [Getting Started with Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) tutorial.
+## <a name="modify-your-ios-app"></a>修改您的 iOS 應用程式
+1. 開啟您在 [開始使用通知中心 (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) 教學課程中建立的 [單頁] 檢視應用程式。
    
    > [!NOTE]
-   > In this section we assume that your project is configured with an empty organization name. If not, you will need to prepend your organization name to all class names.
+   > 在本節中，我們假設您已使用空白組織名稱設定您的專案。 否則，您需要針對所有類別名稱預先考量您的組織名稱。
    > 
    > 
-2. In your Main.storyboard add the components shown in the screenshot below from the object library.
+2. 在您的 Main.storyboard 中從物件程式庫新增下面的螢幕擷取畫面中顯示的元件。
    
     ![][1]
    
-   * **Username**: A UITextField with placeholder text, *Enter Username*, immediately beneath the send results label and constrained to the left and right margins and beneath the send results label.
-   * **Password**: A UITextField with placeholder text, *Enter Password*, immediately beneath the username text field and constrained to the left and right margins and beneath the username text field. Check the **Secure Text Entry** option in the Attribute Inspector, under *Return Key*.
-   * **Log in**: A UIButton labeled immediately beneath the password text field and uncheck the **Enabled** option in the Attributes Inspector, under *Control-Content*
-   * **WNS**: Label and switch to enable sending the notification Windows Notification Service if it has been setup on the hub. See the [Windows Getting Started](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) tutorial.
-   * **GCM**: Label and switch to enable sending the notification to Google Cloud Messaging if it has been setup on the hub. See [Android Getting Started](notification-hubs-android-push-notification-google-gcm-get-started.md) tutorial.
-   * **APNS**: Label and switch to enable sending the notification to the Apple Platform Notification Service.
-   * **Recipent Username**:A UITextField with placeholder text, *Recipient username tag*, immediately beneath the GCM label and constrained to the left and right margins and beneath the GCM label.
+   * **使用者名稱**：含有預留位置文字 ( *輸入使用者名稱*) 的 UITextField，位於傳送結果標籤正下方且受到左右邊界限制並位於傳送結果標籤正下方。
+   * **密碼**：含有預留位置文字 ( *輸入密碼*) 的 UITextField，位於使用者名稱文字欄位正下方且受到左右邊界限制並位於使用者文字欄位正下方。 勾選 [ **傳回金鑰** ] 底下屬性偵測器中的 [ *安全文字輸入*] 選項。
+   * **登入**：密碼文字欄位正下方標記的 UIButton，並取消勾選 [控制項內容] 底下屬性偵測器中的 [啟用] 選項。
+   * **WNS**：當中樞中已設定 Windows 通知服務時，用來啟用傳送通知功能的標籤與開關。 請參閱 [Windows 入門](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)教學課程。
+   * **GCM**：當中樞中已設定 Google Cloud Messaging 時，用來啟用傳送通知功能的標籤與開關。 請參閱 [Android 入門](notification-hubs-android-push-notification-google-gcm-get-started.md) 教學課程。
+   * **APNS**：啟用傳送通知給 Apple 平台通知服務之功能的標籤與開關。
+   * **收件者使用者名稱**：含有預留位置文字 ( *收件者使用者名稱標記*) 的 UITextField，位於 GCM 標籤正下方且受到左右邊界限制並位於 GCM 正下方。
 
-    Some components were added in the [Getting Started with Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) tutorial.
+    在 [開始使用通知中心 (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md) 教學課程中已經新增一些元件。
 
-1. **Ctrl** drag from the components in the view to ViewController.h and add these new outlets.
+1. **Ctrl** 可拖曳檢視中的元件到 ViewController.h，並新增這些新的輸出。
    
         @property (weak, nonatomic) IBOutlet UITextField *UsernameField;
         @property (weak, nonatomic) IBOutlet UITextField *PasswordField;
@@ -68,10 +72,10 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
         @property (weak, nonatomic) IBOutlet UISwitch *APNSSwitch;
    
         - (IBAction)LogInAction:(id)sender;
-2. In ViewController.h, add the following `#define` just below your import statements. Substitute the *<Enter Your Backend Endpoint\>* placeholder with the Destination URL you used to deploy your app backend in the previous section. For example, *http://you_backend.azurewebsites.net*.
+2. 請在 ViewController.h 中，在您的匯入陳述式正下方新增以下的 `#define` 。 將 *<輸入您的後端端點\>* 預留位置替換成上一節中用來部署應用程式後端的目的地 URL。 例如，*http://you_backend.azurewebsites.net*。
    
         #define BACKEND_ENDPOINT @"<Enter Your Backend Endpoint>"
-3. In your project, create a new **Cocoa Touch class** named **RegisterClient** to interface with the ASP.NET back-end you created. Create the class inheriting from `NSObject`. Then add the following code in the RegisterClient.h.
+3. 在您的專案中，建立一個名為 **RegisterClient** 的新 **Cocoa Touch class** 作為與您建立之 ASP.NET 後端互動的介面。 建立繼承自 `NSObject`的類別。 然後在 RegisterClient.h 中新增下列程式碼。
    
         @interface RegisterClient : NSObject
    
@@ -83,7 +87,7 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
         -(instancetype) initWithEndpoint:(NSString*)Endpoint;
    
         @end
-4. In the RegisterClient.m update the `@interface` section:
+4. 在 RegisterClient.m 中，更新 `@interface` 區段：
    
         @interface RegisterClient ()
    
@@ -98,7 +102,7 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
                     tags:(NSSet*)tags andCompletion:(void(^)(NSURLResponse*, NSError*))completion;
    
         @end
-5. Replace the `@implementation` section in the RegisterClient.m with the following code.
+5. 使用以下程式碼取代 RegisterClient.m 中的 `@implementation` 區段。
 
         @implementation RegisterClient
 
@@ -257,17 +261,17 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
 
         @end
 
-    The code above implements the logic explained in the guidance article [Registering from your app backend](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) using NSURLSession to perform REST calls to your app backend, and NSUserDefaults to locally store the registrationId returned by the notification hub.
+    上面的程式碼會實作指引文章 [從您的應用程式後端註冊](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend) 中所說明的邏輯，方法是使用 NSURLSession 來對您的應用程式後端執行 REST 呼叫，然後使用 NSUserDefaults 來本機儲存通知中心傳回的 registrationId。
 
-    Note that this class requires its property **authorizationHeader** to be set in order to work properly. This property is set by the **ViewController** class after the log in.
+    請注意，此類別需要設定 **authorizationHeader** 屬性，才能正常運作。 您可以在登入後，透過 **ViewController** 類別設定此屬性。
 
-1. In ViewController.h, add a `#import` statement for RegisterClient.h. Then add a declaration for the device token and reference to a `RegisterClient` instance in the `@interface` section:
+1. 在 ViewController.h 中，為 RegisterClient.h 新增 `#import` 陳述式。 然後為裝置權杖新增宣告，並參照 `@interface` 區段中的 `RegisterClient` 執行個體：
    
         #import "RegisterClient.h"
    
         @property (strong, nonatomic) NSData* deviceToken;
         @property (strong, nonatomic) RegisterClient* registerClient;
-2. In ViewController.m, add a private method declaration in the `@interface` section:
+2. 在 ViewController.m 中，於 `@interface` 區段中新增私用方法宣告：
    
         @interface ViewController () <UITextFieldDelegate, NSURLConnectionDataDelegate, NSXMLParserDelegate>
    
@@ -278,11 +282,11 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
         @end
 
 > [!NOTE]
-> The following snippet is not a secure authentication scheme, you should substitute the implementation of the **createAndSetAuthenticationHeaderWithUsername:AndPassword:** with your specific authentication mechanism that generates an authentication token to be consumed by the register client class, e.g. OAuth, Active Directory.
+> 下列片段不是安全驗證結構描述，您應將 **createAndSetAuthenticationHeaderWithUsername:AndPassword:** 的實作替代成特定的驗證機制，使該機制產生註冊用戶端類別所利用的驗證權杖，例如 OAuth、Active Directory。
 > 
 > 
 
-1. Then in the `@implementation` section of ViewController.m add the following code which adds the implementation for setting the device token and authentication header.
+1. 然後在 ViewController.m 的 `@implementation` 區段中新增以下程式碼，這會新增實作以設定裝置權杖與驗證標頭。
    
         -(void) setDeviceToken: (NSData*) deviceToken
         {
@@ -307,8 +311,8 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
             return YES;
         }
    
-    Note how setting the device token enables the log in button. This is becasue as a part of the login action, the view controller registers for push notifications with the app backend. Hence, we do not want Log In action to be accessible till the device token has been properly set up. You can decouple the log in from the push registration as long as the former happens before the latter.
-2. In ViewController.m, use the following snippets to implement the action method for your **Log In** button and a method to send the notification message using the ASP.NET backend.
+    請留意設定裝置權杖如何啟用登入按鈕。 這是因為檢視控制器會向應用程式後端註冊推播通知 (作為登入動作的一部分)。 因此，在裝置權杖已正確設定之前，我們不希望有人能夠存取登入動作。 只要登入在推播註冊之前發生，您可能就會想要將前者與後者分開。
+2. 在 ViewController.m 中，使用以下程式碼片段為您的 [ **登入** ] 按鈕實作動作方法，以及實作一個方法來使用 ASP.NET 後端傳送通知訊息。
    
        - (IBAction)LogInAction:(id)sender {   // create authentication header and set it in register client   NSString* username = self.UsernameField.text;   NSString* password = self.PasswordField.text;
    
@@ -316,46 +320,17 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
    
            __weak ViewController* selfie = self;   [self.registerClient registerWithDeviceToken:self.deviceToken tags:nil       andCompletion:^(NSError* error) {       if (!error) {           dispatch_async(dispatch_get_main_queue(),           ^{               selfie.SendNotificationButton.enabled = YES;               [self MessageBox:@"Success" message:@"Registered successfully!"];           });       }   }]; }
 
-        - (void)SendNotificationASPNETBackend:(NSString*)pns UsernameTag:(NSString*)usernameTag
-                    Message:(NSString*)message
-        {
-            NSURLSession* session = [NSURLSession
-                sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil
-                delegateQueue:nil];
+        - (void)SendNotificationASPNETBackend:(NSString*)pns UsernameTag:(NSString*)usernameTag            Message:(NSString*)message {    NSURLSession* session = [NSURLSession        sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil        delegateQueue:nil];
 
-            // Pass the pns and username tag as parameters with the REST URL to the ASP.NET backend
-            NSURL* requestURL = [NSURL URLWithString:[NSString
-                stringWithFormat:@"%@/api/notifications?pns=%@&to_tag=%@", BACKEND_ENDPOINT, pns,
-                usernameTag]];
+            // Pass the pns and username tag as parameters with the REST URL to the ASP.NET backend    NSURL* requestURL = [NSURL URLWithString:[NSString        stringWithFormat:@"%@/api/notifications?pns=%@&to_tag=%@", BACKEND_ENDPOINT, pns,        usernameTag]];
 
-            NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestURL];
-            [request setHTTPMethod:@"POST"];
+            NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestURL];    [request setHTTPMethod:@"POST"];
 
-            // Get the mock authenticationheader from the register client
-            NSString* authorizationHeaderValue = [NSString stringWithFormat:@"Basic %@",
-                self.registerClient.authenticationHeader];
-            [request setValue:authorizationHeaderValue forHTTPHeaderField:@"Authorization"];
+            // Get the mock authenticationheader from the register client    NSString* authorizationHeaderValue = [NSString stringWithFormat:@"Basic %@",        self.registerClient.authenticationHeader];    [request setValue:authorizationHeaderValue forHTTPHeaderField:@"Authorization"];
 
-            //Add the notification message body
-            [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-            [request setHTTPBody:[message dataUsingEncoding:NSUTF8StringEncoding]];
+            //Add the notification message body    [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];    [request setHTTPBody:[message dataUsingEncoding:NSUTF8StringEncoding]];
 
-            // Execute the send notification REST API on the ASP.NET Backend
-            NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
-                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-            {
-                NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) response;
-                if (error || httpResponse.statusCode != 200)
-                {
-                    NSString* status = [NSString stringWithFormat:@"Error Status for %@: %d\nError: %@\n",
-                                        pns, httpResponse.statusCode, error];
-                    dispatch_async(dispatch_get_main_queue(),
-                    ^{
-                        // Append text because all 3 PNS calls may also have information to view
-                        [self.sendResults setText:[self.sendResults.text stringByAppendingString:status]];
-                    });
-                    NSLog(status);
-                }
+            // Execute the send notification REST API on the ASP.NET Backend    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)    {        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) response;        if (error || httpResponse.statusCode != 200)        {            NSString* status = [NSString stringWithFormat:@"Error Status for %@: %d\nError: %@\n",                                pns, httpResponse.statusCode, error];            dispatch_async(dispatch_get_main_queue(),            ^{                // Append text because all 3 PNS calls may also have information to view                [self.sendResults setText:[self.sendResults.text stringByAppendingString:status]];            });            NSLog(status);        }
 
                 if (data != NULL)
                 {
@@ -363,14 +338,16 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
                     [xmlParser setDelegate:self];
                     [xmlParser parse];
                 }
-            }];
-            [dataTask resume];
+            }];    [dataTask resume]; }
+
+
+1. 更新 [ **傳送通知** ] 按鈕的動作來使用 ASP.NET 後端，並傳送至由任何開關啟用的任何 PNS。
+
+        - (IBAction)SendNotificationMessage:(id)sender
+        {
+            //[self SendNotificationRESTAPI];
+            [self SendToEnabledPlatforms];
         }
-
-
-1. Update the action for the **Send Notification** button to use the ASP.NET backend and send to any PNS enabled by a switch.
-
-        - (IBAction)SendNotificationMessage:(id)sender {   //[self SendNotificationRESTAPI];   [self SendToEnabledPlatforms]; }
 
 
         -(void)SendToEnabledPlatforms
@@ -391,13 +368,13 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
 
 
 
-1. In function **ViewDidLoad**, add the following to instantiate the RegisterClient instance and set the delegate for your text fields.
+1. 在 **ViewDidLoad**函數中，新增下列內容以具現化 RegisterClient 執行個體，並設定文字欄位的委派。
    
        self.UsernameField.delegate = self;
        self.PasswordField.delegate = self;
        self.RecipientField.delegate = self;
        self.registerClient = [[RegisterClient alloc] initWithEndpoint:BACKEND_ENDPOINT];
-2. Now in **AppDelegate.m**, remove all the content of the method **application:didRegisterForPushNotificationWithDeviceToken:** and replace it with the following to make sure that the view controller contains the latest device token retrieved from APNs:
+2. 現在於 **AppDelegate.m** 中，移除 **application:didRegisterForPushNotificationWithDeviceToken:** 方法的所有內容，並使用下列內容取代它，確定檢視控制器包含從 APN 擷取的最新裝置權杖：
    
        // Add import to the top of the file
        #import "ViewController.h"
@@ -408,23 +385,23 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
            ViewController* rvc = (ViewController*) self.window.rootViewController;
            rvc.deviceToken = deviceToken;
        }
-3. Finally in **AppDelegate.m**, make sure you have the following method:
+3. 最後，在 **AppDelegate.m**中，確定您有下列方法：
    
        - (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
            NSLog(@"%@", userInfo);
            [self MessageBox:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"]];
        }
 
-## <a name="test-the-application"></a>Test the Application
-1. In XCode, run the app on a physical iOS device (push notifications will not work in the simulator).
-2. In the iOS app UI, enter a username and password. These can be any string, but they must both be the same string value. Then click **Log In**.
+## <a name="test-the-application"></a>測試應用程式
+1. 在 XCode 中，在實體 iOS 裝置上執行應用程式 (推播通知無法在模擬器中運作)。
+2. 在 iOS 應用程式 UI 中，輸入使用者名稱和密碼。 這些可以是任何字串，但兩個必須是相同的字串值。 然後按一下 [ **登入**]。
    
     ![][2]
-3. You should see a pop-up informing you of registration success. Click **OK**.
+3. 您應該會看到註冊成功的快顯通知。 按一下 [確定] 。
    
     ![][3]
-4. In the **Recipient username tag* text field, enter the user name tag used with the registration from another device.
-5. Enter a notification message and click **Send Notification**.  Only the devices that have a registration with the recipient user name tag receive the notification message.  It is only sent to those users.
+4. 在 **收件者使用者名稱標記* 文字欄位中，輸入從其他裝置註冊時搭配使用的使用者名稱標記。
+5. 輸入通知訊息並按一下 [ **傳送通知**]。  只有已經使用收件者使用者名稱標記註冊的裝置才會收到通知訊息。  通知訊息只會傳送給那些使用者。
    
     ![][4]
 
@@ -435,6 +412,6 @@ Push notification support in Azure enables you to access an easy-to-use, multipl
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

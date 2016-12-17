@@ -1,22 +1,26 @@
 ---
-title: Operations Management Suite (OMS) 中的警示管理解決方案 | Microsoft Docs
-description: Log Analytics 中的警示管理方案可協助您分析環境中的所有警示。  除了合併 OMS 內產生的警示，此方案還會將連接的 System Center Operations Manager (SCOM) 管理群組中的警示匯入到 Log Analytics。
+title: "Operations Management Suite (OMS) 中的警示管理解決方案 | Microsoft Docs"
+description: "Log Analytics 中的警示管理方案可協助您分析環境中的所有警示。  除了合併 OMS 內產生的警示，此方案還會將連接的 System Center Operations Manager (SCOM) 管理群組中的警示匯入到 Log Analytics。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: fe5d534e-0418-4e2f-9073-8025e13271a8
 ms.service: operations-management-suite
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/06/2016
+ms.date: 12/09/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2caa3118785fab6919dd088e440bf3483a77bd69
+
 
 ---
-# <a name="alert-management-solution-in-operations-management-suite-(oms)"></a>Operations Management Suite (OMS) 中的警示管理解決方案
+# <a name="alert-management-solution-in-operations-management-suite-oms"></a>Operations Management Suite (OMS) 中的警示管理解決方案
 ![Alert Management icon](media/log-analytics-solution-alert-management/icon.png) 警示管理方案可協助您分析環境中的所有警示。  除了合併 OMS 內產生的警示，此方案還會將連接的 System Center Operations Manager (SCOM) 管理群組中的警示匯入到 Log Analytics。  在具有多個管理群組的環境中，警示管理方案提供所有管理群組的警示合併檢視。
 
 ## <a name="prerequisites"></a>必要條件
@@ -114,6 +118,9 @@ OMS 內產生的警示立即可供方案使用。  警示資料每 3 分鐘從 S
 ## <a name="next-steps"></a>後續步驟
 * 如需有關從 Log Analytics 產生的警示的詳細資料，請深入了解 [Log Analytics 中的警示](log-analytics-alerts.md) 。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

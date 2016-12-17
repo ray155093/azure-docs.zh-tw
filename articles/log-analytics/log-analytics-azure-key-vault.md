@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 中的 Azure 金鑰保存庫解決方案 | Microsoft Docs
-description: 您可以使用 Log Analytics 中的 Azure 金鑰保存庫解決方案來檢閱 Azure 金鑰保存庫記錄檔。
+title: "Log Analytics 中的 Azure 金鑰保存庫解決方案 | Microsoft Docs"
+description: "您可以使用 Log Analytics 中的 Azure 金鑰保存庫解決方案來檢閱 Azure 金鑰保存庫記錄檔。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: richrundmsft
 manager: jochan
-editor: ''
-
+editor: 
+ms.assetid: 5e25e6d6-dd20-4528-9820-6e2958a40dae
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2016
 ms.author: richrund
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 90ef2d32a00744decdb5a50ae1f707820e87f513
+
 
 ---
-# <a name="azure-key-vault-(preview)-solution-in-log-analytics"></a>Log Analytics 中的 Azure 金鑰保存庫 (預覽) 解決方案
+# <a name="azure-key-vault-preview-solution-in-log-analytics"></a>Log Analytics 中的 Azure 金鑰保存庫 (預覽) 解決方案
 > [!NOTE]
 > 這是[預覽解決方案](log-analytics-add-solutions.md#log-analytics-preview-solutions-and-features)。
 > 
@@ -96,6 +100,9 @@ Azure 金鑰保存庫解決方案會分析從 Azure 診斷的 [AuditEvent 記錄
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md)來檢視詳細的 Azure 金鑰保存庫資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,33 +1,37 @@
 ---
-title: 服務匯流排和 .NET 與 AMQP 1.0 | Microsoft Docs
-description: 搭配使用 .NET 的服務匯流排與 AMQP
-services: service-bus
+title: "服務匯流排和 .NET 與 AMQP 1.0 |Microsoft Docs"
+description: "搭配使用 .NET 的服務匯流排與 AMQP"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 332bcb13-e287-4715-99ee-3d7d97396487
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/03/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0cf8282d40c60fe9887dcbf43e2a526ffe34cc22
+
 
 ---
-# <a name="using-service-bus-from-.net-with-amqp-1.0"></a>搭配使用 .NET 的服務匯流排與 AMQP 1.0
+# <a name="using-service-bus-from-net-with-amqp-10"></a>搭配使用 .NET 的服務匯流排與 AMQP 1.0
 [!INCLUDE [service-bus-selector-amqp](../../includes/service-bus-selector-amqp.md)]
 
 ## <a name="downloading-the-service-bus-sdk"></a>下載服務匯流排 SDK
 服務匯流排 SDK 2.1 版或更新版本提供 AMQP 1.0 支援。 您可以從 [NuGet][NuGet] 下載服務匯流排軟體，以確保您擁有最新版本。
 
-## <a name="configuring-.net-applications-to-use-amqp-1.0"></a>設定 .NET 應用程式以使用 AMQP 1.0
+## <a name="configuring-net-applications-to-use-amqp-10"></a>設定 .NET 應用程式以使用 AMQP 1.0
 依預設，服務匯流排 .NET 用戶端程式庫能使用專屬的 SOAP 型通訊協定與服務匯流排服務通訊。 若要使用 AMQP 1.0 (而非預設的通訊協定)，您需要明確地設定服務匯流排連接字串，如下節內容所述。 除了這項變更之外，在使用 AMQP 1.0 時，應用程式程式碼會維持不變。
 
 目前的版本中有幾項在使用 AMQP 時不支援的 API 功能。 這些不支援的功能稍後會在[不支援的功能、限制與行為差異](#unsupported-features-restrictions-and-behavioral-differences)一節中列示。 在使用 AMQP 時，某些進階組態設定亦有不同的意義。
 
-### <a name="configuration-using-app.config"></a>使用 App.config 進行設定
+### <a name="configuration-using-appconfig"></a>使用 App.config 進行設定
 讓應用程式使用 App.config 組態檔案來儲存設定是不錯的作法。 對於服務匯流排應用程式，您可以使用 App.config 來儲存服務匯流排 **ConnectionString** 值的設定。 範例 App.config 檔案如下所示：
 
     <?xml version="1.0" encoding="utf-8" ?>
@@ -87,7 +91,7 @@ ms.author: sethm
 | Datetimeoffset |`<type name=”datetime-offset” class=restricted source=”long”> <descriptor name=”com.microsoft:datetime-offset” /></type>` |DateTimeOffset.UtcTicks |
 | TimeSpan |`<type name=”timespan” class=restricted source=”long”> <descriptor name=”com.microsoft:timespan” /></type> ` |TimeSpan.Ticks |
 
-## <a name="unsupported-features,-restrictions,-and-behavioral-differences"></a>不支援的功能、限制和行為差異
+## <a name="unsupported-features-restrictions-and-behavioral-differences"></a>不支援的功能、限制和行為差異
 使用 AMQP 時，目前不支援服務匯流排 .NET API 的以下功能：
 
 * 交易
@@ -97,6 +101,7 @@ ms.author: sethm
 
 * [OperationTimeout][OperationTimeout] 屬性會被忽略。
 * `MessageReceiver.Receive(TimeSpan.Zero)` 會實作為 `MessageReceiver.Receive(TimeSpan.FromSeconds(10))`。
+* 只有最初收到訊息的訊息接收者能夠以鎖定權杖完成訊息。
 
 ## <a name="controlling-amqp-protocol-settings"></a>控制 AMQP 通訊協定設定
 .NET API 會公開數個設定，以控制 AMQP 通訊協定的行為：
@@ -126,6 +131,7 @@ ms.author: sethm
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,22 +1,26 @@
 ---
-title: 還原 Azure SQL 資料倉儲 (概觀) | Microsoft Docs
-description: 復原 Azure SQL 資料倉儲中資料庫之資料庫還原選項的概觀。
+title: "SQL 資料倉儲還原 | Microsoft Docs"
+description: "復原 Azure SQL 資料倉儲中資料庫之資料庫還原選項的概觀。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: Lakshmi1812
-manager: barbkess
-editor: ''
-
+manager: jhubbard
+editor: 
+ms.assetid: 3e01c65c-6708-4fd7-82f5-4e1b5f61d304
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 06/28/2016
-ms.author: lakshmir;barbkess;sonyama
+ms.date: 10/31/2016
+ms.author: lakshmir;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2147967edc1dadcc8bda5e5a33bbdedd62a22b4f
+
 
 ---
-# 還原 Azure SQL 資料倉儲 (概觀)
+# <a name="sql-data-warehouse-restore"></a>SQL 資料倉儲還原
 > [!div class="op_single_selector"]
 > * [概觀][概觀]
 > * [入口網站][入口網站]
@@ -25,39 +29,68 @@ ms.author: lakshmir;barbkess;sonyama
 > 
 > 
 
-Azure SQL 資料倉儲可使用本地備援儲存體和自動備份，保護您的資料。自動備份提供免管理的方式，以避免資料庫遭到意外損毀或刪除。如果使用者不小心或偶然修改或刪除資料，您可以將資料庫還原到較早的時間點，以確保商務持續性。SQL 資料倉儲使用 Azure 儲存體快照無縫地備份您的資料庫，而不需要任何停機時間。
+「SQL 資料倉儲」提供本機和異地還原作為其資料倉儲災害復原功能的一部分。 使用資料倉儲備份將您的資料倉儲還原至主要區域中的某個還原點，或使用異地備援備份來還原至不同的地理區域。 本文說明還原資料倉儲的詳細資訊。
 
-## 自動備份
-**作用中**資料庫至少每隔 8 小時自動備份一次並保留 7 天。這可讓您將作用中資料庫還原至過去 7 天內數個還原點的其中一個。
+## <a name="what-is-a-data-warehouse-restore"></a>什麼是資料倉儲還原？
+資料倉儲還原係指從現有或已刪除之資料倉儲的備份建立的新資料倉儲。 還原的資料倉儲會重新建立特定時間的已備份資料倉儲。 由於「SQL 資料倉儲」是一個分散式系統，因此會從儲存在 Azure Blob 中的許多備份檔案建立一個資料倉儲還原。 
 
-若資料庫已暫停，則新的備份將會停止，而先前的備份會在存留達到 7 天時卸除。如果資料庫已暫停超過 7 天，將會儲存最新的備份，確保您一律至少會有一個備份。
+資料庫還原是所有商務持續性和災害復原策略中不可或缺的一部分，因為它可在您的資料發生意外損毀或刪除之後重新建立該資料。
 
-卸除資料庫時，最後一次備份會儲存 7 天。
+如需詳細資訊，請參閱：
 
-在您作用中的 SQL 資料倉儲上執行此查詢，以查看取得最後一次備份的時間：
+* [SQL 資料倉儲備份](sql-data-warehouse-backups.md)
+* [商務持續性概觀](../sql-database/sql-database-business-continuity.md)
 
-```sql
-select top 1 *
-from sys.pdw_loader_backup_runs 
-order by run_id desc;
-```
+## <a name="data-warehouse-restore-points"></a>資料倉儲還原點
+使用「Azure 進階儲存體」的一項優點是，「SQL 資料倉儲」會使用「Azure 儲存體」Blob 快照集來備份主要資料倉儲。 每個快照都有一個代表快照開始時間的還原點。 若要還原資料倉儲，您需選擇一個還原點並發出還原命令。  
 
-如果您需要將備份保留超過 7 天，您只要將其中一個還原點還原到新的資料庫，然後選擇性地暫停該資料庫，所以您僅需支付該備份的儲存空間。
+「SQL 資料倉儲」一律是將備份還原到新的資料倉儲。 您可以保留已還原的資料倉儲和目前的資料倉儲，或是刪除它們其中之一。 如果您想要以已還原的資料倉儲取代目前的資料倉儲，您可以將它重新命名。
 
-## 資料備援
-除了備份，SQL 資料倉儲也會利用[本地備援 (LRS)][本地備援 (LRS)] Azure 進階儲存體來保護您的資料。並在當地的資料中心維護多份資料的同步複本，確保當地語系化失敗時能夠提供透明的資料保護。資料備援可確保您的資料在基礎結構問題 (例如磁碟故障等) 中存留。資料備援可利用容錯和高可用性基礎結構來確保商務持續性。
+如果您需要還原已刪除或暫停的資料倉儲，您可以[建立支援票證](sql-data-warehouse-get-started-create-support-ticket.md)。 
 
-## 還原資料庫
-還原 SQL 資料倉儲是可以在 Azure 入口網站中完成簡單的作業，也可以使用 PowerShell 或 REST API 自動執行。
+<!-- 
+### Can I restore a deleted data warehouse?
 
-## 後續步驟
-若要深入了解 Azure SQL Database 版本的商務持續性功能，請閱讀 [Azure SQL Database 商務持續性概觀][Azure SQL Database 商務持續性概觀]。
+Yes, you can restore the last available restore point.
+
+Yes, for the next seven calendar days. When you delete a data warehouse, SQL Data Warehouse actually keeps the data warehouse and its snapshots for seven days just in case you need the data. After seven days, you won't be able to restore to any of the restore points. -->
+
+## <a name="geo-redundant-restore"></a>異地備援還原
+如果您使用的是異地備援儲存體，您可以將資料倉儲還原到位於不同地理區域中的[配對的資料中心](../best-practices-availability-paired-regions.md)。 資料倉儲已經從上次每日備份還原。 
+
+## <a name="restore-timeline"></a>還原時間軸
+您可以將資料庫還原到過去七天內的任何可用還原點。 快照集每四到八個小時會啟動，並且可供使用七天。 當快照集存在時間超過七天，它就會過期，而且無法再使用其還原點。
+
+## <a name="restore-costs"></a>還原成本
+所還原資料倉儲的儲存體收費方式是以「Azure 進階儲存體」費率計費。 
+
+如果您將已還原的資料倉儲暫停，會依據 Azure 進階儲存體費率向您收取儲存體費用。 暫停的好處是不會向您收取 DWU 計算資源的費用。
+
+如需 SQL 資料倉儲價格的相關詳細資訊，請參閱 [SQL 資料倉儲價格](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)。
+
+## <a name="uses-for-restore"></a>還原的用途
+資料倉儲還原的主要用途是在發生意外資料遺失或損毀之後復原資料。
+
+您也可以使用資料倉儲還原來保留超過七天的備份。 還原備份之後，資料倉儲會上線，而您可以無限期地暫停它來節省計算成本。 暫停的資料庫會產生儲存體費用，以「Azure 進階儲存體」費率計費。 
+
+## <a name="related-topics"></a>相關主題
+### <a name="scenarios"></a>案例
+* 如需商務持續性概觀，請參閱[商務持續性概觀](../sql-database/sql-database-business-continuity.md)
+
+<!-- ### Tasks -->
+
+若要執行資料倉儲還原，請使用下列方式來進行還原：
+
+* Azure 入口網站 - 請參閱[使用 Azure 入口網站來還原資料倉儲](sql-data-warehouse-restore-database-portal.md)
+* PowerShell Cmdlet - 請參閱[使用 PowerShell Cmdlet 來還原資料倉儲](sql-data-warehouse-restore-database-powershell.md)
+* REST API - 請參閱[使用 REST API 來還原資料倉儲](sql-data-warehouse-restore-database-rest-api.md)
+
+<!-- ### Tutorials -->
 
 <!--Image references-->
 
 <!--Article references-->
-[Azure SQL Database 商務持續性概觀]: ./sql-database-business-continuity.md
-[本地備援 (LRS)]: ../storage/storage-redundancy.md
+[Azure SQL Database 商務持續性概觀]: ../sql-database/sql-database-business-continuity.md
 [概觀]: ./sql-data-warehouse-restore-database-overview.md
 [入口網站]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md
@@ -68,4 +101,8 @@ order by run_id desc;
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

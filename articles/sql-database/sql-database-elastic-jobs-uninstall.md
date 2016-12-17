@@ -1,39 +1,43 @@
 ---
-title: 如何解除安裝彈性資料庫工作工具
-description: 如何解除安裝彈性資料庫工作工具
+title: "如何解除安裝彈性資料庫工作工具"
+description: "如何解除安裝彈性資料庫工作工具"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 manager: jhubbard
 author: ddove
-editor: ''
-
+editor: 
+ms.assetid: bfc9d820-edbd-4fca-bfbf-1f339cfcc448
 ms.service: sql-database
 ms.workload: sql-database
+ms.custom: multiple databases
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/27/2016
+ms.date: 10/24/2016
 ms.author: ddove
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: aa438680348748a771f9016ecdcc68372c6c5e86
+
 
 ---
-# 解除安裝彈性資料庫工作元件
-**彈性資料庫工作**元件可以使用入口網站或 PowerShell 解除安裝。
+# <a name="uninstall-elastic-database-jobs-components"></a>解除安裝彈性資料庫工作元件
+**彈性資料庫工作** 元件可以使用入口網站或 PowerShell 解除安裝。
 
-## 使用 Azure 入口網站解除安裝彈性資料庫工作元件
+## <a name="uninstall-elastic-database-jobs-components-using-the-azure-portal"></a>使用 Azure 入口網站解除安裝彈性資料庫工作元件
 1. 開啟 [Azure 入口網站](https://portal.azure.com/)。
-2. 瀏覽至包含**彈性資料庫工作**元件的訂用帳戶，也就是彈性資料庫工作元件安裝所在的訂用帳戶。
+2. 瀏覽至包含 **彈性資料庫工作** 元件的訂用帳戶，也就是彈性資料庫工作元件安裝所在的訂用帳戶。
 3. 按一下 [瀏覽]，然後按一下 [資源群組]。
-4. 選取名為 "\_\_ElasticDatabaseJob" 的資源群組。
+4. 選取名為 "__ElasticDatabaseJob" 的資源群組。
 5. 刪除資源群組。
 
-## 使用 PowerShell 解除安裝彈性資料庫工作元件
+## <a name="uninstall-elastic-database-jobs-components-using-powershell"></a>使用 PowerShell 解除安裝彈性資料庫作業元件
 1. 啟動 Microsoft Azure PowerShell 命令視窗，並且瀏覽至 Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x 資料夾底下的工具子目錄：輸入 **cd tools**。
    
-     PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
-2. 執行 .\\UninstallElasticDatabaseJobs.ps1 PowerShell 指令碼。
+     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
+2. 執行 .\UninstallElasticDatabaseJobs.ps1 PowerShell 指令碼。
    
-     PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\UninstallElasticDatabaseJobs.ps1
-     PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\UninstallElasticDatabaseJobs.ps1
+     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\UninstallElasticDatabaseJobs.ps1   PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\UninstallElasticDatabaseJobs.ps1
 
 或者，假設安裝元件時使用預設值，則直接執行下列指令碼：
 
@@ -51,13 +55,17 @@ ms.author: ddove
         Remove-AzureResourceGroup -Name $ResourceGroupName -Force
         Write-Host "Completed removing the Azure Resource Group: $ResourceGroupName.  Elastic database job compoennts are now uninstalled."
 
-## 後續步驟
-若要重新安裝彈性資料庫工作，請參閱[安裝彈性資料庫工作服務](sql-database-elastic-jobs-service-installation.md)
+## <a name="next-steps"></a>後續步驟
+若要重新安裝彈性資料庫工作，請參閱 [安裝彈性資料庫工作服務](sql-database-elastic-jobs-service-installation.md)
 
-如需彈性資料庫工作的概觀，請參閱[彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。
+如需彈性資料庫工作的概觀，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。
 
 <!--Image references-->
 
 
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+
