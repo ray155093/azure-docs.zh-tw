@@ -1,12 +1,12 @@
 ---
-title: v2.0 端點概觀 | Microsoft Docs
-description: 建置具備 Microsoft 帳戶和 Azure Active Directory 登入之應用程式的簡介。
+title: "v2.0 端點概觀 | Microsoft Docs"
+description: "建置具備 Microsoft 帳戶和 Azure Active Directory 登入之應用程式的簡介。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: dstrockis
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 2dee579f-fdf6-474b-bc2c-016c931eaa27
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: dastrock
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e98ec55dbe5ff0411af124b45bd7ef6177aa957e
+
 
 ---
-# <a name="sign-in-microsoft-account-&-azure-ad-users-in-a-single-app"></a>以單一應用程式登入 Microsoft 帳戶和 Azure AD 使用者
+# <a name="sign-in-microsoft-account-azure-ad-users-in-a-single-app"></a>以單一應用程式登入 Microsoft 帳戶和 Azure AD 使用者
 在過去，想要同時支援 Microsoft 帳戶和 Azure Active Directory 的應用程式開發人員必須整合這兩個不同的系統。  我們現在將介紹新的驗證 API 版本，可讓您透過 Azure AD 系統，使用這兩種帳戶類型登入使用者。  這個聚合式驗證系統稱為 **v2.0 端點**。  利用 v2.0 端點，一個簡單的整合便可讓您觸達橫跨個人和工作/學校帳戶的數百萬名使用者對象。
 
 使用 v2.0 端點的應用程式也可以利用這其中一種帳戶，從 [Microsoft Graph](https://graph.microsoft.io) 和 [Office 365](https://msdn.microsoft.com/office/office365/howto/authenticate-Office-365-APIs-using-v2) 取用 REST API。
@@ -32,7 +36,7 @@ ms.author: dastrock
 <!-- TODO: Finalize this table  -->
 [!INCLUDE [active-directory-v2-quickstart-table](../../includes/active-directory-v2-quickstart-table.md)]
 
-## <a name="what's-new"></a>新功能
+## <a name="whats-new"></a>新功能
 當您想要了解 v2.0 端點可執行哪些動作以及不可執行哪些動作時，此處提供的概念性資訊非常實用。
 
 * 了解 [您可以使用 v2.0 端點建置的應用程式類型](active-directory-v2-flows.md)。
@@ -48,10 +52,13 @@ ms.author: dastrock
 * [v2.0 權杖參考](active-directory-v2-tokens.md)
 * [v2.0 程式庫參考](active-directory-v2-libraries.md)
 * [v2.0 端點的範圍和同意](active-directory-v2-scopes.md)
-* [Microsoft App 註冊入口網站](https://apps.dev.microsoft.com)
+* [Microsoft App 註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)
 * [Office 365 REST API 參考](https://msdn.microsoft.com/office/office365/howto/authenticate-Office-365-APIs-using-v2)
 * [Microsoft Graph](https://graph.microsoft.io)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

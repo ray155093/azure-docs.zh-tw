@@ -1,12 +1,12 @@
 ---
-title: 自動向 Azure Active Directory 註冊加入網域的 Windows 裝置 | Microsoft Docs
-description: IT 管理員可以選擇以自動和無訊息方式向 Azure Active Directory (Azure AD) 註冊加入網域的 Windows 裝置。
+title: "自動向 Azure Active Directory 註冊加入網域的 Windows 裝置 | Microsoft Docs"
+description: "IT 管理員可以選擇以自動和無訊息方式向 Azure Active Directory (Azure AD) 註冊加入網域的 Windows 裝置。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: cdc25576-37f2-4afb-a786-f59ba4c284c2
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/30/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2d717f906bd4aad35cb46852baf84c4e088b953e
+
 
 ---
-# <a name="automatic-device-registration-with-azure-active-directory-for-windows-domainjoined-devices"></a>自動向 Azure Active Directory 註冊加入網域的 Windows 裝置
+# <a name="automatic-device-registration-with-azure-active-directory-for-windows-domain-joined-devices"></a>自動向 Azure Active Directory 註冊加入網域的 Windows 裝置
 身為 IT 管理員，您可以選擇以自動和無訊息方式向 Azure Active Directory (Azure AD) 註冊加入網域的 Windows 裝置。 如果您已經設定裝置型條件式存取原則給 Office365 應用程式或由 AD FS 在內部部署管理的應用程式，這非常有用。 您可以閱讀 [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)，進一步了解裝置註冊案例。
 
 > AZURE.NOTE 如需有關如何設定自動裝置註冊的最新指示，請參閱 [如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
@@ -93,6 +97,9 @@ Windows 7 和 Windows 8.1 裝置會藉由結合使用者帳戶名稱與知名裝
 * [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
 * [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

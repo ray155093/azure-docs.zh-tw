@@ -1,13 +1,13 @@
 ---
-title: 如何探索資料來源 | Microsoft Docs
-description: 操作說明文章著重在說明如何探索已註冊 Azure 資料目錄的資料資產，包括搜尋、篩選及使用 Azure 資料目錄入口網站的結果醒目顯示功能。
+title: "如何探索資料來源 | Microsoft Docs"
+description: "操作說明文章著重在說明如何探索已註冊 Azure 資料目錄的資料資產，包括搜尋、篩選及使用 Azure 資料目錄入口網站的結果醒目顯示功能。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: steelanddata
 manager: NA
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: f72ae3a3-6573-4710-89a7-f13555e1968c
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 10/04/2016
 ms.author: maroche
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0c90aff38ebe33e8c26f9e46db7e61786ea9a7dd
+
 
 ---
 # <a name="how-to-discover-data-sources"></a>如何探索資料來源
@@ -63,6 +67,9 @@ ms.author: maroche
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何探索資料來源的逐步詳細資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 eDigitalResearch 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 eDigitalResearch 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 eDigitalResearch 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 eDigitalResearch 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: c6b66ea0-16ba-45b4-b550-e81c56262b1f
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: ce449d6a64b4ef9022939f0487a30157f7014673
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-edigitalresearch"></a>教學課程：Azure Active Directory 與 eDigitalResearch 整合
+# <a name="tutorial-azure-active-directory-integration-with-edigitalresearch"></a>教學課程：Azure Active Directory 與 eDigitalResearch 整合
 本教學課程旨在說明如何整合 eDigitalResearch 與 Azure Active Directory (Azure AD)。
 
 eDigitalResearch 與 Azure AD 整合提供下列優點：
@@ -63,7 +67,7 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -125,11 +129,11 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
     b. 按 [下一步]。
 5. 若要為您的應用程式設定 SSO，請連絡您的 eDigitalResearch 支援小組，並提供下列資訊： 
    
-   * **下載的憑證** 檔案
-     
-     - **實體識別碼**
-     
-     - **單一登出服務 URL**
+      - **下載的憑證** 檔案
+   
+      - **實體識別碼**
+   
+      - **單一登出服務 URL**
 6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
@@ -242,6 +246,6 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,11 +1,11 @@
 ---
-title: 教學課程：Azure Active Directory 與 PolicyStat 整合 | Microsoft Docs
-description: 了解如何使用 PolicyStat 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 PolicyStat 整合 | Microsoft Docs"
+description: "了解如何使用 PolicyStat 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: af5eb0f1-1c8e-4809-b0c4-8ccfb915ca42
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 738184f4a253201a9aa7581e03d269a06d7cf48a
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-policystat"></a>教學課程：Azure Active Directory 與 PolicyStat 整合
+# <a name="tutorial-azure-active-directory-integration-with-policystat"></a>教學課程：Azure Active Directory 與 PolicyStat 整合
 本教學課程的目的是要示範 Azure 與 PolicyStat 的整合。  
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -36,7 +40,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-policystat"></a>啟用 PolicyStat 的應用程式整合
 本節的目的是要說明如何啟用 PolicyStat 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-policystat,-perform-the-following-steps:"></a>若要啟用 PolicyStat 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-policystat-perform-the-following-steps"></a>若要啟用 PolicyStat 的應用程式整合，請執行下列步驟：
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-policystat-tutorial/IC700993.png "Active Directory")
@@ -65,7 +69,7 @@ PolicyStat 應用程式需要特定格式的 SAML 判斷提示，需要您加入
 
 ![屬性](./media/active-directory-saas-policystat-tutorial/IC808628.png "Attributes")
 
-### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
+### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [PolicyStat] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-policystat-tutorial/IC808629.png "Configure Single Sign-On")
@@ -114,7 +118,7 @@ PolicyStat 應用程式需要特定格式的 SAML 判斷提示，需要您加入
     2. 在 [屬性名稱] 文字方塊中，輸入 **uid**。
     3. 在 [屬性值] 文字方塊中，選取 [ExtractMailPrefix()]。
     4. 從 [郵件] 清單選取 [User.mail]。
-    5. 按一下頁面底部的 [新增] ****。
+    5. 按一下頁面底部的 [新增] 。
        ##<a name="configuring-user-provisioning"></a>設定使用者佈建
 
 為了讓 Azure AD 使用者能夠登入 PolicyStat，必須將他們佈建到 PolicyStat。  
@@ -129,7 +133,7 @@ PolicyStat 支援即時使用者佈建。 這表示您不需要手動將使用�
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-policystat,-perform-the-following-steps:"></a>若要指派使用者給 PolicyStat，請執行下列步驟：
+### <a name="to-assign-users-to-policystat-perform-the-following-steps"></a>若要指派使用者給 PolicyStat，請執行下列步驟：
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [PolicyStat] 應用程式整合頁面中，按一下 [指派使用者]。
    
@@ -140,6 +144,9 @@ PolicyStat 支援即時使用者佈建。 這表示您不需要手動將使用�
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
