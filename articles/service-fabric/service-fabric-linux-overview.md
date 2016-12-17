@@ -1,12 +1,12 @@
 ---
-title: Linux 上的 Azure Service Fabric | Microsoft Docs
-description: Service Fabric 叢集支援 Linux 和 Java，這表示您能夠在 Linux 上部署和裝載以 Java 和 C# 撰寫的 Service Fabric 應用程式。
+title: "Linux 上的 Azure Service Fabric | Microsoft Docs"
+description: "Service Fabric 叢集支援 Linux 和 Java，這表示您能夠在 Linux 上部署和裝載以 Java 和 C# 撰寫的 Service Fabric 應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 459afade-145d-4ee6-b72b-ddf380ccd1bf
 ms.service: service-fabric
 ms.devlang: Java
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/26/2016
 ms.author: SubramaR
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f52903801c53a50d149fe8732bf514194aae0478
+
 
 ---
 # <a name="service-fabric-on-linux"></a>Linux 上的 Service Fabric
@@ -21,7 +25,7 @@ Linux 上的 Service Fabric 預覽版可讓您如同在 Windows 上一樣，在 
 
 Linux 上的 Service Fabric 在概念上相當於 Windows 上的 Service Fabric (除了作業系統細節和程式設計語言支援)。 因此，我們大部分的 [現有文件](http://aka.ms/servicefabricdocs) 都可協助您熟悉這項技術。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Service-Fabric-Linux-Preview/player]
+> [!影片 https://channel9.msdn.com/Blogs/Windows-Azure/Service-Fabric-Linux-Preview/player]
 > 
 > 
 
@@ -42,6 +46,9 @@ Linux 上的 Service Fabric 在概念上相當於 Windows 上的 Service Fabric 
 3. [在 OSX 上準備您的開發環境](service-fabric-get-started-mac.md)
 4. [在 Linux 上建立第一個 Service Fabric Java 應用程式](service-fabric-create-your-first-linux-application-with-java.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

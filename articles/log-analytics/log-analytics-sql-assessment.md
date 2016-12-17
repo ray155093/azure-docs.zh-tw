@@ -1,19 +1,23 @@
 ---
-title: 在 Log Analytics 中使用 SQL 評估方案進行環境最佳化 | Microsoft Docs
-description: 您可以使用 SQL 評估方案定期評估伺服器環境的風險和健全狀況。
+title: "在 Log Analytics 中使用 SQL 評估方案進行環境最佳化 | Microsoft Docs"
+description: "您可以使用 SQL 評估方案定期評估伺服器環境的風險和健全狀況。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: e297eb57-1718-4cfe-a241-b9e84b2c42ac
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/09/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
+ms.openlocfilehash: 0b0c739f1d89b83c43314d8ace794d26abf10054
+
 
 ---
 # <a name="optimize-your-environment-with-the-sql-assessment-solution-in-log-analytics"></a>在 Log Analytics 中使用 SQL 評估方案進行環境最佳化
@@ -39,17 +43,17 @@ SQL 評估適用於 Standard、Developer 和 Enterprise 版本之 SQL Server 目
 * 代理程式必須安裝於已安裝 SQL Server 的伺服器上。
 * SQL 評估方案需要具有 OMS 代理程式的電腦上都安裝 .NET Framework 4。
 * 搭配使用 Operations Manager 代理程式和 SQL 評估時，您必須使用 Operations Manager 執行身分帳戶。 如需詳細資訊，請參閱底下的 [OMS 的 Operations Manager 執行身分帳戶](#operations-manager-run-as-accounts-for-oms) 。
-  
+
   > [!NOTE]
   > MMA 代理程式不支援 Operations Manager 執行身分帳戶。
-  > 
-  > 
+  >
+  >
 * 使用 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)中的程序，將 SQL 評估方案加入您的 OMS 工作區中。 不需要進一步的組態。
 
 > [!NOTE]
 > 您加入方案之後，AdvisorAssessment.exe 檔案會以代理程式加入伺服器中。 組態資料會先讀取後再傳送至雲端中的 OMS 服務，以便進行處理。 會將邏輯套用至接收的資料，且雲端服務會記錄資料。
-> 
-> 
+>
+>
 
 ## <a name="sql-assessment-data-collection-details"></a>SQL 評估資料收集詳細資料
 SQL 評估會使用您已啟用的代理程式，來收集 WMI 資料、登錄資料、效能資料和 SQL Server 動態管理檢視結果。
@@ -71,18 +75,18 @@ OMS 中的 Log Analytics 會使用 Operations Manager 代理程式及管理群�
 #### <a name="to-configure-the-sql-run-as-account-in-the-operations-console"></a>在 Operations 主控台中設定 SQL 執行身分帳戶
 > [!NOTE]
 > 如果您使用 OMS 直接代理程式，而不是 SCOM 代理程式，則管理組件一律會在本機系統帳戶的安全性內容中執行。 略過下列的步驟 1-5，並執行 T-SQL 或 Powershell 範例，指定 NT AUTHORITY\SYSTEM 做為使用者名稱。
-> 
-> 
+>
+>
 
 1. 在 Operations Manager 中開啟 Operations 主控台，然後按一下 [管理] 。
 2. 在 [執行身分組態] 下方，按一下 [設定檔]，並開啟 [OMS SQL 評估執行身分設定檔]。
 3. 在 [執行身分帳戶] 頁面上，按一下 [新增]。
 4. 選取包含 SQL Server 所需認證的 Windows 執行身分帳戶，或按一下 [新增]  建立一個。
-   
+
    > [!NOTE]
    > 執行身分帳戶類型必須是 Windows。 執行身分帳戶也必須屬於裝載 SQL Server 執行個體的所有 Windows 伺服器上的本機系統管理員群組。
-   > 
-   > 
+   >
+   >
 5. 按一下 [儲存] 。
 6. 修改，然後在每個 SQL Server 執行個體上執行下列 T-SQL 範例，授與執行身分帳戶所需的最小權限授以執行 SQL 評估。 不過，如果執行身分帳戶已是 SQL Server 執行個體上 sysadmin 伺服器角色的一部分，您就不需要這樣做。
 
@@ -142,7 +146,7 @@ OMS 中的 Log Analytics 會使用 Operations Manager 代理程式及管理群�
 
 **變更和組態管理** - 這個重點區域會顯示建議來協助保護每日作業，確保變更不會對您的基礎結構造成負面影響，同時建立變更控管程序，並追蹤及審核系統組態。
 
-### <a name="should-you-aim-to-score-100%-in-every-focus-area?"></a>我應該為每個焦點區域訂定 100% 的分數嗎？
+### <a name="should-you-aim-to-score-100-in-every-focus-area"></a>我應該為每個焦點區域訂定 100% 的分數嗎？
 不一定。 建議乃源自 Microsoft 工程師上千次客戶拜訪所得到的知識和經驗。 然而，世界上沒有兩個一模一樣的伺服器基礎結構，因此特定建議與您的關聯性可能會有所增減。 例如，如果您的虛擬機器並未暴露在網際網路中，某些安全性建議的關聯性就會降低。 對於提供低優先順序臨機操作資料收集和報告的服務來說，某些可用性建議的關聯性就會降低。 會對成熟企業造成重大影響的問題，不見得會對新公司造成同等嚴重的影響。 因此，建議您先找出自己的優先焦點區域，然後觀察一段時間內的分數變化。
 
 每項建議都包含其重要性的指引。 在已知 IT 服務之本質和組織之商務需求的情況下，您應使用該指引來評估實作建議的適當性。
@@ -164,15 +168,15 @@ OMS 中的 Log Analytics 會使用 Operations Manager 代理程式及管理群�
 
 ### <a name="to-identify-recommendations-that-you-will-ignore"></a>識別您將忽略的建議
 1. 登入您的工作區，並開啟記錄檔搜尋。 使用下列查詢來列出您環境中電腦的失敗建議。
-   
+
    ```
    Type=SQLAssessmentRecommendation RecommendationResult=Failed | select  Computer, RecommendationId, Recommendation | sort  Computer
    ```
-   
+
    以下是顯示記錄檔搜尋查詢的螢幕擷取畫面︰![失敗的建議](./media/log-analytics-sql-assessment/sql-assess-failed-recommendations.png)
 2. 選擇您想要忽略的建議。 您將使用下一個程序中的 RecommendationId 值。
 
-### <a name="to-create-and-use-an-ignorerecommendations.txt-text-file"></a>建立及使用 IgnoreRecommendations.txt 文字檔案
+### <a name="to-create-and-use-an-ignorerecommendationstxt-text-file"></a>建立及使用 IgnoreRecommendations.txt 文字檔案
 1. 建立名為 IgnoreRecommendations.txt 的檔案。
 2. 在個別行上貼上或輸入您想要 OMS 忽略之每個建議的各個 RecommendationId，然後儲存並關閉檔案。
 3. 將檔案放在您想要 OMS 忽略建議之每一部電腦的下列資料夾中。
@@ -182,7 +186,7 @@ OMS 中的 Log Analytics 會使用 Operations Manager 代理程式及管理群�
 ### <a name="to-verify-that-recommendations-are-ignored"></a>驗證已忽略建議
 1. 在執行下一個排定的評估之後，依預設是每隔 7 天執行一次，指定的建議會標示為忽略，且不會出現在評估儀表板。
 2. 您可以使用下列記錄搜尋查詢列出所有已忽略的建議。
-   
+
    ```
    Type=SQLAssessmentRecommendation RecommendationResult=Ignored | select  Computer, RecommendationId, Recommendation | sort  Computer
    ```
@@ -240,6 +244,8 @@ OMS 中的 Log Analytics 會使用 Operations Manager 代理程式及管理群�
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄檔](log-analytics-log-searches.md) 以檢視詳細的 SQL 評估資料和建議。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

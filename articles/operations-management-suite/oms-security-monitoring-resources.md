@@ -1,25 +1,30 @@
 ---
-title: 在 Operations Management Suite 安全性和稽核解決方案內監視資源 | Microsoft Docs
-description: 本文件可協助您使用 OMS 安全性和稽核的功能來監視您的資源及識別安全性問題。
+title: "在 Operations Management Suite 安全性和稽核解決方案內監視資源 | Microsoft Docs"
+description: "本文件可協助您使用 OMS 安全性和稽核的功能來監視您的資源及識別安全性問題。"
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
 manager: swadhwa
-editor: ''
-
+editor: 
+ms.assetid: d6752120-821f-4aa7-a049-25bf5a653b95
 ms.service: operations-management-suite
+ms.custom: oms-security
 ms.topic: article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/18/2016
+ms.date: 12/01/2016
 ms.author: yurid
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 81d7d09f48d08943623b24e7e7a26847a0d129fe
+
 
 ---
 # <a name="monitoring-resources-in-operations-management-suite-security-and-audit-solution"></a>在 Operations Management Suite 安全性和稽核內監視資源
 本文件可協助您使用 OMS 安全性和稽核的功能來監視您的資源及識別安全性問題。
 
-## <a name="what-is-oms?"></a>何謂 OMS？
+## <a name="what-is-oms"></a>何謂 OMS？
 Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。 如需 OMS 的詳細資訊，請閱讀 [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx)一文。
 
 ## <a name="monitoring-resources"></a>監視資源
@@ -107,6 +112,9 @@ OMS 安全性和稽核方案可讓 IT 人員主動監視所有資源，此舉有
 * [開始使用 Operations Management Suite 安全性和稽核解決方案](oms-security-getting-started.md)
 * [在 Operations Management Suite 安全性和稽核內監視及回應安全性警示](oms-security-responding-alerts.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

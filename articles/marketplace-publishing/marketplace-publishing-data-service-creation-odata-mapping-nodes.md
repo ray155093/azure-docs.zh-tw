@@ -1,12 +1,12 @@
 ---
-title: Guide to creating a Data Service for the  Marketplace | Microsoft Docs
-description: Detailed instructions of how to create, certify and deploy a Data Service for purchase on the Azure Marketplace.
+title: "建立 Marketplace 資料服務的指南 | Microsoft Docs"
+description: "如何建立、認證和部署資料服務供他人在 Azure Marketplace 上購買的詳細指示。"
 services: marketplace-publishing
-documentationcenter: ''
+documentationcenter: 
 author: HannibalSII
 manager: hascipio
-editor: ''
-
+editor: 
+ms.assetid: 107baab2-5828-4158-abdf-59a580c80d37
 ms.service: marketplace
 ms.devlang: na
 ms.topic: article
@@ -14,82 +14,84 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
+translationtype: Human Translation
+ms.sourcegitcommit: f8b0917b6eb0295641360c4e0a80e81100809f6e
+ms.openlocfilehash: e3ce01d20f6b47c6fe68fdbfe31679cc2c92f2e7
+
 
 ---
-# <a name="understanding-the-nodes-schema-for-mapping-an-existing-web-service-to-odata-through-csdl"></a>Understanding the nodes schema for mapping an existing web service to OData through CSDL
+# <a name="understanding-the-nodes-schema-for-mapping-an-existing-web-service-to-odata-through-csdl"></a>了解透過 CSDL 將現有的 Web 服務對應至 OData 的節點結構描述
 > [!IMPORTANT]
-> **At this time we are no longer onboarding any new Data Service publishers. New dataservices will not get approved for listing.** If you have a SaaS business application you would like to publish on AppSource you can find more information [here](https://appsource.microsoft.com/partners). If you have an IaaS applications or developer service you would like to publish on Azure Marketplace you can find more information [here](https://azure.microsoft.com/marketplace/programs/certified/).
-> 
-> 
+> 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。 如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
+>
+>
 
-This document will help clarify the node structure for mapping an OData protocol to CSDL. It is important to note that the node structure is well formed XML. So root, parent, and child schema is applicable when designing your OData mapping.
+本文件將協助釐清將 OData 通訊協定對應至 CSDL 的節點結構。 請務必注意，節點結構是格式正確的 XML。 因此，設計 OData 對應時，根、父和子結構描述皆適用。
 
-## <a name="ignored-elements"></a>Ignored elements
-The following are the high level CSDL elements (XML nodes) that are not going to be used by the Azure Marketplace backend during the import of the web service’s metadata. They can be present but will be ignored.
+## <a name="ignored-elements"></a>忽略的元素
+以下是 Azure Marketplace 後端將不會在匯入 Web 服務的中繼資料期間使用的高階 CSDL 元素 (XML 節點)。 它們可以存在，但會被忽略。
 
-| Element | Scope |
+| 元素 | Scope |
 | --- | --- |
-| Using Element |The node, sub nodes and all attributes |
-| Documentation Element |The node, sub nodes and all attributes |
-| ComplexType |The node, sub nodes and all attributes |
-| Association Element |The node, sub nodes and all attributes |
-| Extended Property |The node, sub nodes and all attributes |
-| EntityContainer |Only the following attributes are ignored: *extends* and *AssociationSet* |
-| Schema |Only the following attributes are ignored: *Namespace* |
-| FunctionImport |Only the following attributes are ignored: *Mode* (default value of ln is assumed) |
-| EntityType |Only the following sub nodes are ignored: *Key* and *PropertyRef* |
+| 使用元素 |節點、子節點和所有屬性 |
+| 文件元素 |節點、子節點和所有屬性 |
+| ComplexType |節點、子節點和所有屬性 |
+| 關聯元素 |節點、子節點和所有屬性 |
+| 擴充的屬性 |節點、子節點和所有屬性 |
+| EntityContainer |只會忽略下列屬性：*extends* 和 *AssociationSet* |
+| 結構描述 |只會忽略下列屬性： *Namespace* |
+| FunctionImport |只會忽略下列屬性： *Mode* (採用預設值 ln) |
+| EntityType |只會忽略下列子節點：*Key* 和 *PropertyRef* |
 
-The following describes the changes (added and ignored elements) to the various CSDL XML nodes in detail.
+以下詳細說明各種 CSDL XML 節點的變更 (新增和忽略的元素)。
 
-## <a name="functionimport-node"></a>FunctionImport node
-A FunctionImport node represents one URL (entry point) that exposes a service to the end-user. The node allows describing how the URL is addressed, which parameters are available to the end-user and how these parameters are provided.
+## <a name="functionimport-node"></a>FunctionImport 節點
+FunctionImport 節點代表一個將服務公開給使用者的 URL (進入點) 此節點允許描述 URL 的定址方式、使用者可用的參數，以及如何提供這些參數。
 
-Details about this node are found at [here][MSDNFunctionImportLink]
+這個節點的詳細資料可在 [這裡][MSDNFunctionImportLink](https://msdn.microsoft.com/library/cc716710.aspx) 找到
 
-[MSDNFunctionImportLink]:(https://msdn.microsoft.com/library/cc716710(v=vs.100).aspx)
-
-The following are the additional attributes (or additions to attributes) that are exposed by the FunctionImport node:
+以下是 FunctionImport 節點所公開的其他屬性 (或屬性的新增項目)：
 
 **d:BaseUri** -
-The URI template for the REST resource that is exposed to Marketplace. Marketplace uses the template to construct queries against the REST web service. The URI template contains placeholders for the parameters in the form of {parameterName}, where parameterName is the name of the parameter. Ex. apiVersion={apiVersion}.
-Parameters are allowed to appear as URI parameters or as part of the URI path. In the case of the appearance in the path they are always mandatory (can’t be marked as nullable). *Example:* `d:BaseUri="http://api.MyWeb.com/Site/{url}/v1/visits?start={start}&amp;end={end}&amp;ApiKey=3fadcaa&amp;Format=XML"`
+公開至 Marketplace 之 REST 資源的 URI 範本。 Marketplace 使用範本，針對 REST Web 服務建構查詢。 URI 範本包含 {parameterName} 格式中參數的預留位置，其中 parameterName 是參數的名稱。 例如 apiVersion={apiVersion}.
+允許參數以 URI 參數出現，或做為 URI 路徑的一部分。 如果出現在路徑中，它們永遠都是必要參數 (不能標示為可為 Null)。 *範例：* `d:BaseUri="http://api.MyWeb.com/Site/{url}/v1/visits?start={start}&amp;end={end}&amp;ApiKey=3fadcaa&amp;Format=XML"`
 
-**Name** - The name of the imported function.  Cannot be the same as other defined names in the CSDL.  Ex. Name="GetModelUsageFile"
+**Name** - 已匯入函式的名稱。  不能與 CSDL 中其他定義的名稱相同。  例如 Name="GetModelUsageFile"
 
-**EntitySet** *(optional)* - If the function returns a collection of entity types, the value of the **EntitySet** must be the entity set to which the collection belongs. Otherwise, the **EntitySet** attribute must not be used. *Example:* `EntitySet="GetUsageStatisticsEntitySet"`
+**EntitySet** *(選用)* - 如果函式傳回實體類型的集合，則 **EntitySet** 的值必須是集合所屬的實體集。 否則，不得使用 **EntitySet** 屬性。 *範例：* `EntitySet="GetUsageStatisticsEntitySet"`
 
-**ReturnType** *(Optional)* - Specifies the type of elements returned by the URI.  Do not use this attribute if the function does not return a value. The following are the supported types:
+**ReturnType** *(選用)* - 指定 URI 所傳回的元素類型。  如果函數沒有傳回值，請勿使用這個屬性。 以下是支援的類型：
 
-* **Collection (<Entity type name>)**: specifies a collection of defined entity types. The name is present in the Name attribute of the EntityType node. An example is Collection(WXC.HourlyResult).
-* **Raw (<mime type>)**: specifies a raw document/blob that is returned to the user. An example is Raw(image/jpeg) Other examples:
-  
+* **Collection (<Entity type name>)**：指定已定義之實體類型的集合。 名稱存在於 EntityType 節點的 Name 屬性中。 範例為 Collection(WXC.HourlyResult)。
+* **Raw (<mime type>)**：指定傳回給使用者的原始文件/blob。 範例為 Raw(image/jpeg)。其他範例：
+
   * ReturnType="Raw(text/plain)"
   * ReturnType="Collection(sage.DeleteAllUsageFilesEntity)"*
 
-**d:Paging** - Specifies how paging is handled by the REST resource. The parameter values are used within curly braches, e.g. page={$page}&itemsperpage={$size} The options available are:
+**d:Paging** - 指定 REST 資源如何處理分頁。 參數值是以大括弧括住，例如 page={$page}&itemsperpage={$size}。可用的選項如下：
 
-* **None:** no paging is available
-* **Skip:** paging is expressed through a logical “skip” and “take” (top). Skip jumps over M elements and take then returns the next N elements. Parameter value: $skip
-* **Take:** Take returns the next N elements. Parameter value: $take
-* **PageSize:** paging is expressed through a logical page and size (items per page). Page represents the current page that is returned. Parameter value: $page
-* **Size:** size represents the number of items returned for each page. Parameter value: $size
+* **None：** 沒有分頁可用
+* **Skip：** 分頁透過邏輯 “skip” 和 “take” (上方) 表示。 Skip 跳過 M 個元素，然後 Take 傳回下 N 個元素。 參數值：$skip
+* **Take：** Take 傳回下 N 個元素。 參數值：$take
+* **PageSize：** 分頁透過邏輯頁面和大小 (每頁項目數) 表示。 Page 代表目前傳回的頁面。 參數值：$page
+* **Size：** Size 代表針對每個頁面傳回的項目數。 參數值：$size
 
-**d:AllowedHttpMethods** *(Optional)* - Specifies which verb is handled by the REST resource. Also, restricts accepted verb to the specified value.  Default = POST.  *Example:* `d:AllowedHttpMethods="GET"` The options available are:
+**d:AllowedHttpMethods** *(選用)* - 指定 REST 資源處理哪個動詞。 此外，將接受的動詞限制為指定的值。  預設值 = POST。  *範例：*`d:AllowedHttpMethods="GET"`。可用的選項如下：
 
-* **GET:** usually used to return data
-* **POST:** usually used to insert new data
-* **PUT:** usually used to update data
-* **DELETE:** used to delete data
+* **GET：** 通常用來傳回資料
+* **POST：** 通常用來插入新資料
+* **PUT：** 通常用來更新資料
+* **DELETE：** 用來刪除資料
 
-Additional child nodes (not covered by the CSDL documentation) within the FunctionImport node are:
+FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 
-**d:RequestBody** *(Optional)* - The request body is used to indicate that the request expects a body to be sent. Parameters can be given within the request body. They are expressed within curly brackets, e.g. {parameterName}. These parameters are mapped from the user input into the body that is transferred to the content provider’s service. The requestBody element has an attribute with name httpMethod. The attribute allows two values:
+**d:RequestBody** *(選用)* - 要求本文用來指出要求預期傳送本文。 可在要求本文內提供參數。 它們是以大括號括住，例如 {parameterName}。 這些參數從使用者輸入對應至傳送至內容提供者服務的本文。 RequestBody 元素具有名稱為 httpMethod 的屬性。 屬性允許兩個值：
 
-* **POST:** Used if the request is a HTTP POST
-* **GET:** Used if the request is a HTTP GET
-  
-    Example:
-  
+* **POST：** 要求為 HTTP POST 時使用
+* **GET：** 要求為 HTTP GET 時使用
+
+    範例：
+
         `<d:RequestBody d:httpMethod="POST">
         <![CDATA[
         <req1:Request xmlns:r1="http://schemas.mysite.com//generic/requests/1" Version="1.0">
@@ -100,90 +102,88 @@ Additional child nodes (not covered by the CSDL documentation) within the Functi
         ]]>
         </d:RequestBody>`
 
-**d:Namespaces** and **d:Namespace** - This node describes the namespaces that are defined in the XML that is returned by the function import (URI endpoint). The XML that is returned by the backend service might contain any number of namespaces to differentiate the content that is returned. **All of these namespaces, if used in d:Map or d:Match XPath queries need to be listed.** The d:Namespaces node contains a set/list of d:Namespace nodes. Each of them lists one namespace used in the backend service response. The following are the attribute of the d:Namespace node:
+**d:Namespaces** 和 **d:Namespace** - 此節點描述函式匯入 (URI 端點) 所傳回之 XML 中定義的命名空間。 後端服務所傳回的 XML 可能包含任意數目的命名空間，以區別所傳回的內容。 **所有這些命名空間，若用於 d:Map 或 d:Match XPath 查詢中，則需要列出。**  d:Namespaces 節點包含 d:Namespace 節點集/清單。 其中每一個列出一個用於後端服務回應的命名空間。 以下是 d:Namespace 節點的屬性：
 
-* **d:Prefix:** The prefix for the namespace, as seen in the XML results returned by the service, e.g. f:FirstName, f:LastName, where f is the prefix.
-* **d:Uri:** The full URI of the namespace used in the result document. It represents the value that the prefix is resolved to at runtime.
+* **d:Prefix：** 命名空間的前置詞，如服務所傳回的 XML 結果中看到的，例如 f:FirstName、f:LastName，其中 f 是前置詞。
+* **d:Uri：** 用於結果文件之命名空間的完整 URI。 前置詞會在執行階段解析為其代表的值。
 
-**d:ErrorHandling** *(Optional)* - This node contains conditions for error handling. Each of the conditions is validated against the result that is returned by the content provider’s service. If a condition matches the proposed HTTP error code an error message is returned to the end-user.
+**d:ErrorHandling** *(選用)* - 此節點包含錯誤處理的條件。 針對內容提供者服務所傳回的結果驗證每個條件。 如果條件符合建議的 HTTP 錯誤碼，則錯誤訊息會傳回給使用者。
 
-**d:ErrorHandling** *(Optional)* and **d:Condition** *(Optional)* - A condition node holds one condition that is checked in the result returned by the content provider’s service. The following are the **required** attributes:
+**d:ErrorHandling** *(選用)* 和 **d:Condition** *(選用)* - 條件節點保留一個要在內容提供者服務所傳回的結果中檢查的條件。 以下是 **必要** 屬性：
 
-* **d:Match:** An XPath expression that validates whether a given node/value is present in the content provider’s output XML. The XPath is run against the output and should return true if the condition is a match or false otherwise.
-* **d:HttpStatusCode:** The HTTP status code that should be returned by Marketplace in the case the condition matches. Marketplace signalizes errors to the user through HTTP status codes. A list of HTTP status codes are available at http://en.wikipedia.org/wiki/HTTP_status_code
-* **d:ErrorMessage:** The error message that is returned – with the HTTP status code – to the end-user. This should be a friendly error message that doesn’t contain any secrets.
+* **d:Match：** 驗證指定的節點/值是否存在於內容提供者之輸出 XML 中的 XPath 運算式。 XPath 是針對輸出執行，因此如果符合條件，應該傳回 true，否則傳回 false。
+* **d:HttpStatusCode：** 如果條件符合，Marketplace 應該傳回的 HTTP 狀態碼。 Marketplace 透過 HTTP 狀態碼向使用者發出錯誤信號。 可在 http://en.wikipedia.org/wiki/HTTP_status_code 取得 HTTP 狀態碼清單
+* **d:ErrorMessage：** 連同 HTTP 狀態碼一同傳回給使用者的錯誤訊息。 這應該是易懂的錯誤訊息，其中沒有包含任何機密資料。
 
-**d:Title** *(Optional)* - Allows describing the title of the function. The value for the title is coming from
+**d:Title** *(選用)* - 允許描述函數的標題。 標題的值來自
 
-* The optional map attribute (an xpath) which specifies where to find the title in the response returned from the service request.
-* -Or - The title specified as value of the node.
+* 選用的對應屬性 (xpath)，其會指定是否要在服務要求傳回的回應中尋找標題。
+* - 或者 - 指定為節點值的標題。
 
-**d:Rights** *(Optional)* - The rights (e.g. copyright) associated with the function. The value for the rights is coming from:
+**d:Rights** *(選用)* - 與函數相關聯的權限 (例如著作權)。 權限的值來自
 
-* The optional map attribute (an xpath) which specifies where to find the rights in the response returned from the service request.
-* -Or - The rights specified as value of the node.
+* 選用的對應屬性 (xpath)，其會指定是否要在服務要求傳回的回應中尋找權限。
+* - 或者 - 指定為節點值的權限。
 
-**d:Description** *(Optional)* - A short description for the function. The value for the description is coming from
+**d:Description** *(選用)* - 函數的簡短說明。 說明的值來自
 
-* The optional map attribute (an xpath) which specifies where to find the description in the response returned from the service request.
-* -Or – The description specified as value of the node.
+* 選用的對應屬性 (xpath)，其會指定是否要在服務要求傳回的回應中尋找說明。
+* - 或者 - 指定為節點值的說明。
 
-**d:EmitSelfLink** - *See above example "FunctionImport for 'Paging' through returned data"*
+**d:EmitSelfLink** - *請參閱上述範例「透過傳回之資料「分頁」的 FunctionImport」*
 
-**d:EncodeParameterValue** - Optional extension to OData
+**d:EncodeParameterValue** - OData 的選用擴充屬性
 
-**d:QueryResourceCost** - Optional extension to OData
+**d:QueryResourceCost** - OData 的選用擴充屬性
 
-**d:Map** - Optional extension to OData
+**d:Map** - OData 的選用擴充屬性
 
-**d:Headers** - Optional extension to OData
+**d:Headers** - OData 的選用擴充屬性
 
-**d:Headers** - Optional extension to OData
+**d:Headers** - OData 的選用擴充屬性
 
-**d:Value** - Optional extension to OData
+**d:Value** - OData 的選用擴充屬性
 
-**d:HttpStatusCode** - Optional extension to OData
+**d:HttpStatusCode** - OData 的選用擴充屬性
 
-**d:ErrorMessage** - Optional Extension to OData
+**d:ErrorMessage** - OData 的選用擴充屬性
 
-## <a name="parameter-node"></a>Parameter node
-This node represents one parameter that is exposed as part of the URI template / request body that has been specified in the FunctionImport node.
+## <a name="parameter-node"></a>參數節點
+此節點代表一個公開為 URI 範本 / 要求本文 (已在 FunctionImport 節點中指定) 一部分的參數。
 
-A very helpful details document page about the “Parameter Element” node is found at [here](http://msdn.microsoft.com/library/ee473431.aspx)  (Use the **Other Version** dropdown to select a different version if necessary to view the documentation). *Example:* `<Parameter Name="Query" Nullable="false" Mode="In" Type="String" d:Description="Query" d:SampleValues="Rudy Duck" d:EncodeParameterValue="true" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Identity"/>`
+有關「參數元素」節點的有用詳細文件頁面位於[這裡](http://msdn.microsoft.com/library/ee473431.aspx) (請使用 [其他版本] 下拉式清單，以視需要選取不同版本來檢視文件)。 *範例：* `<Parameter Name="Query" Nullable="false" Mode="In" Type="String" d:Description="Query" d:SampleValues="Rudy Duck" d:EncodeParameterValue="true" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Identity"/>`
 
-| Parameter Attribute | Is Required | Value |
+| 參數屬性 | 必要 | 值 |
 | --- | --- | --- |
-| Name |Yes |The name of the parameter. Case sensitive!  Match the BaseUri case. **Example:** `<Property Name="IsDormant" Type="Byte" />` |
-| Type |Yes |The parameter type. The value must be an **EDMSimpleType** or a complex type that is within the scope of the model. For more information, see “6 Supported Parameter/Property types”.  (Case Sensitive! First char is uppercase, rest are lower case.)  Also see,  [Conceptual Model Types (CSDL)][MSDNParameterLink]. **Example:** `<Property Name="LimitedPartnershipID " Type="Int32" />` |
-| Mode |No |**In**, Out, or InOut depending on whether the parameter is an input, output, or input/output parameter. (Only “IN” is available in Azure Marketplace.) **Example:** `<Parameter Name="StudentID" Mode="In" Type="Int32" />` |
-| MaxLength |No |The maximum allowed length of the parameter. **Example:** `<Property Name="URI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />` |
-| Precision |No |The precision of the parameter. **Example:** `<Property Name="PreviousDate" Type="DateTime" Precision="0" />` |
-| Scale |No |The scale of the parameter. **Example:** `<Property Name="SICCode" Type="Decimal" Precision="10" Scale="0" />` |
+| 名稱 |是 |參數名稱。 區分大小寫！  BaseUri 大小寫須相符。 **範例：** `<Property Name="IsDormant" Type="Byte" />` |
+| 類型 |是 |參數類型。 此值必須是 **EDMSimpleType** 或是模型範圍內的複雜類型。 如需詳細資訊，請參閱「6 種支援的參數/屬性類型」。  (區分大小寫！ 第一個字元是大寫，其他都是小寫)。另請參閱 [概念模型型別 (CSDL)][MSDNParameterLink](http://msdn.microsoft.com/library/bb399548.aspx)。 **範例：** `<Property Name="LimitedPartnershipID " Type="Int32" />` |
+| Mode |否 |**In**、Out 或 InOut，取決於參數是輸入、輸出或輸入/輸出參數。 (只有 “IN” 適用於 Azure Marketplace)。**範例：**`<Parameter Name="StudentID" Mode="In" Type="Int32" />` |
+| MaxLength |否 |允許的參數長度上限。 **範例：** `<Property Name="URI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />` |
+| Precision |否 |參數的精確度。 **範例：** `<Property Name="PreviousDate" Type="DateTime" Precision="0" />` |
+| 調整 |否 |參數的小數位數。 **範例：** `<Property Name="SICCode" Type="Decimal" Precision="10" Scale="0" />` |
 
-[MSDNParameterLink]:(http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx)
+以下是已加入至 CSDL 規格的屬性：
 
-The following are the attributes that have been added to the CSDL specification:
-
-| Parameter Attribute | Description |
+| 參數屬性 | 說明 |
 | --- | --- |
-| **d:Regex** *(Optional)* |A regex statement used to validate the input value for the parameter. If the input value doesn’t match the statement the value is rejected. This allows to specify also a set of possible values, e.g. ^[0-9]+?$ to only allow numbers. **Example:** `<Parameter Name="name" Mode="In" Type="String" d:Nullable="false" d:Regex="^[a-zA-Z]*$" d:Description="A name that cannot contain any spaces or non-alpha non-English characters" d:SampleValues="George |
-| **d:Enum** *(Optional)* |A pipe separated list of values valid for the parameter. The type of the values needs to match the defined type of the parameter. Example: `english |
-| **d:Nullable** *(Optional)* |Allows defining whether a parameter can be null. The default is: true. However, parameters that are exposed as part of the path in the URI template can’t be null. When the attribute is set to false for these parameters – the user input is overridden. **Example:** `<Parameter Name="BikeType" Type="String" Mode="In" Nullable="false"/>` |
-| **d:SampleValue** *(Optional)* |A sample value to display as a note to the Client in the UI.  It is possible to add several values by using a pipe separated list, i.e. `a |
+| **d:Regex** *(選用)* |用來驗證輸入參數值的 regex 陳述式。 如果輸入值不符合陳述式，則會拒絕此值。 這允許也可指定一組可能值，例如 ^[0-9]+?$，以僅允許數字。 **範例︰**`<Parameter Name="name" Mode="In" Type="String" d:Nullable="false" d:Regex="^[a-zA-Z]*$" d:Description="A name that cannot contain any spaces or non-alpha non-English characters" d:SampleValues="George |
+| **d:Enum** *(選用)* |以直立線區隔的有效參數值清單。 這些值的類型必須符合已定義的參數類型。 範例：`english |
+| **d:Nullable** *(選用)* |允許定義參數是否可為 null。 預設值為：true。 不過，公開為 URI 範本中路徑一部分的參數不可為 null。 當這些參數的屬性設為 false 時，使用者輸入會被覆寫。 **範例：** `<Parameter Name="BikeType" Type="String" Mode="In" Nullable="false"/>` |
+| **d:SampleValue** *(選用)* |要在 UI 中顯示為用戶端之附註的範例值。  例如，可以使用管線分隔清單來新增數個值，即 |
 
-## <a name="entitytype-node"></a>EntityType node
-This node represents one of the types that are returned from Marketplace to the end user. It also contains the mapping from the output that is returned by the content provider’s service to the values that are returned to the end-user.
+## <a name="entitytype-node"></a>EntityType 節點
+這個節點代表從 Marketplace 傳回給使用者的其中一個類型。 它也包含從內容提供者服務所傳回之輸出到傳回給使用者之值的對應。
 
-Details about this node are found at [here](http://msdn.microsoft.com/library/bb399206.aspx) (Use the **Other Version** dropdown to select a different version if necessary to view the documentation.)
+這個節點的詳細資料位於[這裡](http://msdn.microsoft.com/library/bb399206.aspx) (請使用 [其他版本] 下拉式清單，以視需要選取不同版本來檢視文件)。
 
-| Attribute Name | Is Required | Value |
+| 屬性名稱 | 必要 | 值 |
 | --- | --- | --- |
-| Name |Yes |The name of the entity type. **Example:** `<EntityType Name="ListOfAllEntities" d:Map="//EntityModel">` |
-| BaseType |No |The name of another entity type that is the base type of the entity type that is being defined. **Example:** `<EntityType Name="PhoneRecord" BaseType="dqs:RequestRecord">` |
+| 名稱 |是 |實體類型的名稱。 **範例：** `<EntityType Name="ListOfAllEntities" d:Map="//EntityModel">` |
+| BaseType |否 |另一個實體類型的名稱，而此實體類型是要定義之實體類型的基底類型。 **範例：** `<EntityType Name="PhoneRecord" BaseType="dqs:RequestRecord">` |
 
-The following are the attributes that have been added to the CSDL specification:
+以下是已加入至 CSDL 規格的屬性：
 
-**d:Map** - An XPath expression executed against the service output. The assumption here is that the service output contains a set of elements that repeat, like an ATOM feed where there is a set of entry nodes that repeat. Each of these repeating nodes contains one record. The XPath is then specified to point at the individual repeating node in the content provider’s service result that holds the values for an individual record. Example output from the service:
+**d:Map** - 針對服務輸出執行的 XPath 運算式。 這裡的假設，就是服務輸出包含一組重複的項目，例如 ATOM 摘要，其中有一組重複的項目。 其中每一個重複節點都包含一筆記錄。 然後，指定 XPath，以指向提供者服務結果中保留個別記錄值的個別重複節點。 來自服務的範例輸出：
 
         `<foo>
           <bar> … content … </bar>
@@ -191,36 +191,36 @@ The following are the attributes that have been added to the CSDL specification:
           <bar> … content … </bar>
         </foo>`
 
-The XPath expression would be /foo/bar because each of the bar node is the repeating node in the output and it contains the actual content that is returned to the end-user.
+XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重複節點，並包含傳回給使用者的實際內容。
 
-**Key** - This attribute is ignored by Marketplace. REST based web services, in general don’t expose a primary key.
+**Key** - Marketplace 會忽略此屬性。 REST 型 Web 服務通常不會公開主要金鑰。
 
-## <a name="property-node"></a>Property node
-This node contains one property of the record.
+## <a name="property-node"></a>屬性節點
+這個節點包含記錄的屬性。
 
-Details about this node are found at [http://msdn.microsoft.com/library/bb399546.aspx](http://msdn.microsoft.com/library/bb399546.aspx) (Use the **Other Version** dropdown to select a different version if necessary to view the documentation.) *Example:*
+這個節點的詳細資料位於 [http://msdn.microsoft.com/library/bb399546.aspx](http://msdn.microsoft.com/library/bb399546.aspx) (請使用 [其他版本]**** 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。*範例：*
         `<EntityType Name="MetaDataEntityType" d:Map="/MyXMLPath">
-        <Property Name="Name"   Type="String" Nullable="true" d:Map="./Service/Name" d:IsPrimaryKey="true" DefaultValue=”Joe Doh” MaxLength="25" FixedLength="true" />
+        <Property Name="Name"     Type="String" Nullable="true" d:Map="./Service/Name" d:IsPrimaryKey="true" DefaultValue=”Joe Doh” MaxLength="25" FixedLength="true" />
         ...
         </EntityType>`
 
-| AttributeName | Required | Value |
+| AttributeName | 必要 | 值 |
 | --- | --- | --- |
-| Name |Yes |The name of the property. |
-| Type |Yes |The type of the property value. The property value type must be an **EDMSimpleType** or a complex type (indicated by a fully-qualified name) that is within scope of the model. For more information, see Conceptual Model Types (CSDL). |
-| Nullable |No |**True** (the default value) or **False** depending on whether the property can have a null value. Note: In the version of CSDL indicated by the [http://schemas.microsoft.com/ado/2006/04/edm](http://schemas.microsoft.com/ado/2006/04/edm) namespace, a complex type property must have Nullable="False". |
-| DefaultValue |No |The default value of the property. |
-| MaxLength |No |The maximum length of the property value. |
-| FixedLength |No |**True** or **False** depending on whether the property value will be stored as a fiexed length string. |
-| Precision |No |Refers to the maximum number of digits to retain in the numeric value. |
-| Scale |No |Maximum number of decimal places to retain in the numeric value. |
-| Unicode |No |**True** or **False** depending on whether the property value be stored as a Unicode string. |
-| Collation |No |A string that specifies the collating sequence to be used in the data source. |
-| ConcurrencyMode |No |**None** (the default value) or **Fixed**. If the value is set to **Fixed**, the property value will be used in optimistic concurrency checks. |
+| 名稱 |是 |屬性的名稱。 |
+| 類型 |是 |屬性值的類型。 屬性值類型必須是 **EDMSimpleType** ，或是模型範圍內的複雜類型 (以完整名稱表示)。 如需詳細資訊，請參閱概念模型類型 (CSDL)。 |
+| Nullable |否 |**True** (預設值) 或 **False**，取決於屬性是否可以具有 null 值。 注意：在 [http://schemas.microsoft.com/ado/2006/04/edm](http://schemas.microsoft.com/ado/2006/04/edm) 命名空間指出的 CSDL 版本中，複雜類型屬性必須具有 Nullable="False"。 |
+| DefaultValue |否 |屬性的預設值。 |
+| MaxLength |否 |屬性值的長度上限 |
+| FixedLength |否 |**True** 或 **False**，取決於屬性值是否將儲存為固定長度字串。 |
+| Precision |否 |指的是要在數值中保留的位數上限。 |
+| 調整 |否 |要在數值中保留的小數位數上限。 |
+| Unicode |否 |**True** 或 **False**，取決於屬性值是否儲存為 Unicode 字串。 |
+| Collation |否 |指定要在資料來源使用之定序的字串。 |
+| ConcurrencyMode |否 |**None** (預設值) 或 **Fixed**。 如果值設為 **Fixed**，則屬性值將用於開放式並行存取檢查中。 |
 
-The following are the additional attributes that have been added to the CSDL specification:
+以下是已加入至 CSDL 規格的其他屬性：
 
-**d:Map** - XPath expression executed against the service output and extracts one property of the output. The XPath specified is relative to the repeating node that has been selected in the EntityType node’s XPath. It is also possible to specify an absolute XPath to allow including a static resource in each of the output nodes, like for example a copyright statement that is only found once in the original service output but should be present in each of the rows in the OData output. Example from the service:
+**d:Map** - 針對服務輸出執行，並擷取輸出屬性的 XPath 運算式。 指定的 XPath 相對於已在 EntityType 節點的 XPath 中選取的重複節點。 此外，也可以指定絕對 XPath，以允許在每一個輸出節點中包括靜態資源，例如只在原始服務輸出中找到一次，但應該出現在 OData 輸出中每一個資料列的著作權陳述式。 來自服務的輸出：
 
         `<foo>
           <bar>
@@ -230,51 +230,53 @@ The following are the additional attributes that have been added to the CSDL spe
           </bar>
         </foo>`
 
-The XPath expression here would be ./bar/baz0 to get the baz0 node from the content provider’s service.
+這裡的 XPath 運算式將是./bar/baz0，可從內容提供者服務取得 baz0 節點。
 
-**d:CharMaxLength** - For string type, you can specify the max length. See DataService CSDL Example
+**d:CharMaxLength** - 若為字串類型，您可以指定長度上限。 請參閱 DataService CSDL 範例
 
-**d:IsPrimaryKey** - Indicates if the column is the Primary key in the table/view. See DataService CSDL Example.
+**d:IsPrimaryKey** - 指出資料行是否為資料表/檢視中的主要索引鍵。 請參閱 DataService CSDL 範例。
 
-**d:isExposed** - Determines if the table schema is exposed (generally true). See DataService CSDL Example
+**d:isExposed** -決定是否要公開資料表的結構描述 (通常為 true)。 請參閱 DataService CSDL 範例
 
-**d:IsView** *(Optional)* - true if this is based on a view rather than a table.  See DataService CSDL Example
+**d:IsView** *(選用)* - 如果這是根據檢視，而不是資料表，則為 true。  請參閱 DataService CSDL 範例
 
-**d:Tableschema** - See DataService CSDL Example
+**d:Tableschema** - 請參閱 DataService CSDL 範例
 
-**d:ColumnName** - Is the name of the column in the table/view.  See DataService CSDL Example
+**d:ColumnName** - 這是資料表/檢視中資料行的名稱。  請參閱 DataService CSDL 範例
 
-**d:IsReturned** - Is the Boolean that determines if the Service exposes this value to the client.  See DataService CSDL Example
+**d:IsReturned** - 這是布林值，決定服務是否會將此值公開給用戶端。  請參閱 DataService CSDL 範例
 
-**d:IsQueryable** - Is the Boolean that determines if the column can be used in a database query.   See DataService CSDL Example
+**d:IsQueryable** - 這是布林值，決定是否可在資料庫查詢中使用資料行。   請參閱 DataService CSDL 範例
 
-**d:OrdinalPosition** - Is the column’s numerical position of appearance, x, in the table or the view, where x is from 1 to the number of columns in the table.  See DataService CSDL Example
+**d:OrdinalPosition** - 這是資料表或檢視中外觀的資料行數值位置 x，其中 x 是從 1 到資料表中的資料行數目。  請參閱 DataService CSDL 範例
 
-**d:DatabaseDataType** - Is the data type of the column in the database, i.e. SQL data type. See DataService CSDL Example
+**d:DatabaseDataType** -這是資料庫中資料行的資料類型，亦即 SQL 資料類型。 請參閱 DataService CSDL 範例
 
-## <a name="supported-parameters/property-types"></a>Supported Parameters/Property Types
-The following are the supported types for parameters and properties. (Case sensitive)
+## <a name="supported-parametersproperty-types"></a>支援的參數/屬性類型
+以下是支援的參數和屬性類型。 (區分大小寫)
 
-| Primitive Types | Description |
+| 基本類型 | 說明 |
 | --- | --- |
-| Null |Represents the absence of a value |
-| Boolean |Represents the mathematical concept of binary-valued logic |
-| Byte |Unsigned 8-bit integer value |
-| DateTime |Represents date and time with values ranging from 12:00:00 midnight, January 1, 1753 A.D. through 11:59:59 P.M, December 9999 A.D. |
-| Decimal |Represents numeric values with fixed precision and scale. This type can describe a numeric value ranging from negative 10^255 + 1 to positive 10^255 -1 |
-| Double |Represents a floating point number with 15 digits precision that can represent values with approximate range of ± 2.23e -308 through ± 1.79e +308. **Use Decimal due to Exel export issue** |
-| Single |Represents a floating point number with 7 digits precision that can represent values with approximate range of ± 1.18e -38 through ± 3.40e +38 |
-| Guid |Represents a 16-byte (128-bit) unique identifier value |
-| Int16 |Represents a signed 16-bit integer value |
-| Int32 |Represents a signed 32-bit integer value |
-| Int64 |Represents a signed 64-bit integer value |
-| String |Represents fixed- or variable-length character data |
+| Null |表示缺少值 |
+| Boolean |代表二進位值邏輯的數學概念 |
+| 位元組 |不帶正負號的 8 位元整數值 |
+| DateTime |代表範圍從西元 1753 年 1 月 1 日午夜 12:00:00 到西元 9999 年 12 月 31 日下午 11:59:59 的日期和時間 |
+| 十進位 |代表精確度和小數位數固定的數值。 此類型可以描述範圍從負 10 ^255 + 1 到正 10 ^255 - 1 的數值 |
+| Double |代表具有 15 位數精確度的浮點數，可以代表近似範圍從 ± 2.23e -308 到 ± 1.79e +308 的值。 **由於 Exel 匯出問題使用小數** |
+| 單一 |代表具有 7 位數精確度的浮點數，可以代表近似範圍從 ± 1.18e -38 到 ± 3.40e +38 的值。 |
+| Guid |代表 16 位元組 (128 位元) 的唯一識別碼值 |
+| Int16 |代表帶正負號的 16 位元整數值 |
+| Int32 |代表帶正負號的 32 位元整數值 |
+| Int64 |代表帶正負號的 64 位元整數值 |
+| String |代表固定或可變長度的字元資料 |
 
-## <a name="see-also"></a>See Also
-* If you are interested in understanding the overall OData mapping process and purpose, read this article [Data Service OData Mapping](marketplace-publishing-data-service-creation-odata-mapping.md) to review definitions, structures, and instructions.
-* If you are interested in reviewing examples, read this article [Data Service OData Mapping Examples](marketplace-publishing-data-service-creation-odata-mapping-examples.md) to see sample code and understand code syntax and context.
-* To return to the prescribed path for publishing a Data Service to the Azure Marketplace, read this article [Data Service Publishing Guide](marketplace-publishing-data-service-creation.md).
+## <a name="see-also"></a>另請參閱
+* 如果您有興趣全面了解 OData 對應程序和用途，請閱讀 [資料服務 OData 對應](marketplace-publishing-data-service-creation-odata-mapping.md) 一文來檢閱定義、結構和指示。
+* 如果您有興趣檢閱範例，請閱讀 [資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md) 一文，來查看範例程式碼，並了解程式碼語法與內容。
+* 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀 [資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: Azure 搜尋服務中的影片、範例與教學課程 | Microsoft Docs
-description: 針對 Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 所建立之所有影片、範例、示範和教學課程的集中清單。
+title: "Azure 搜尋的影片、範例和教學課程 | Microsoft Docs"
+description: "針對 Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 所建立之所有影片、範例、示範和教學課程的集中清單。"
 services: search
-documentationcenter: ''
+documentationcenter: 
 author: HeidiSteen
 manager: jhubbard
-editor: ''
+editor: 
 tags: azure-portal
-
+ms.assetid: 4ffa17a3-9e2b-4172-ad77-30c6a1354b24
 ms.service: search
 ms.devlang: NA
 ms.workload: search
@@ -15,9 +15,13 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 09/22/2016
 ms.author: heidist
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1011a19ae7ffae0fedee1d6202d1b00d35d948f9
+
 
 ---
-# <a name="azure-search:-code-samples,-demos,-videos-and-tutorials"></a>Azure 搜尋服務：程式碼範例、示範、影片和教學課程
+# <a name="azure-search-code-samples-demos-videos-and-tutorials"></a>Azure 搜尋服務：程式碼範例、示範、影片和教學課程
 透過下列影片、示範、教學課程和範例應用程式更快上手。
 
 ## <a name="code-samples"></a>程式碼範例
@@ -81,6 +85,9 @@ ms.author: heidist
 | [評分設定檔教學課程](search-get-started-scoring-profiles.md) |使用主控台應用程式來試用評分設定檔。 |
 | [Azure 搜尋管理 REST API 教學課程](search-get-started-management-api.md) |如何使用管理 REST API 來佈建服務和管理系統管理員或查詢 API 金鑰。 |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

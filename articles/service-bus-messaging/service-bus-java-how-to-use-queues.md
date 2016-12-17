@@ -1,18 +1,22 @@
 ---
-title: 如何搭配使用服務匯流排佇列與 Java | Microsoft Docs
-description: 了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 Java 撰寫。
-services: service-bus
+title: "如何搭配使用服務匯流排佇列與 Java | Microsoft Docs"
+description: "了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 Java 撰寫。"
+services: service-bus-messaging
 documentationcenter: java
 author: sethmanheim
 manager: timlt
-
-ms.service: service-bus
+ms.assetid: f701439c-553e-402c-94a7-64400f997d59
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 29cab1dff7ffc0f42ee8c605e3817b855967eb53
+
 
 ---
 # <a name="how-to-use-service-bus-queues"></a>如何使用服務匯流排佇列
@@ -20,7 +24,7 @@ ms.author: sethm
 
 本文說明如何使用服務匯流排佇列。 相關範例是以 Java 撰寫並使用 [Azure SDK for Java][Azure SDK for Java]。 本文說明的案例包括**建立佇列**、**傳送並接收訊息**，以及**刪除佇列**。
 
-## <a name="what-are-service-bus-queues?"></a>什麼是服務匯流排佇列？
+## <a name="what-are-service-bus-queues"></a>什麼是服務匯流排佇列？
 服務匯流排佇列支援 **代理傳訊** 通訊模型。 使用佇列時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色 (代理人) 的佇列來交換訊息。 訊息產生者 (傳送者) 會將訊息遞交給佇列，然後繼續其處理工作。
 訊息取用者 (接收者) 非同步地從佇列中提取訊息並處理。 產生者不必等待取用者的回覆，即可繼續處理及傳送其他訊息。 如果有一或多個競爭取用者，佇列會採取 **先進先出 (FIFO)** 訊息傳遞機制。 亦即，通常由接收者依訊息加入佇列的順序來接收和處理訊息，而且每則訊息只能由一個訊息取用者接收和處理。
 
@@ -42,7 +46,7 @@ ms.author: sethm
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
-先確定已安裝 [Azure SDK for Java][Azure SDK for Java] 再建置此範例。 如果使用 Eclipse，您可以安裝包含 Azure SDK for Java 的 [Azure Toolkit for Eclipse][]。 然後您可以將 **Microsoft Azure Libraries for Java** 新增至您的專案：
+先確定已安裝 [Azure SDK for Java][Azure SDK for Java] 再建置此範例。 如果使用 Eclipse，您可以安裝包含 Azure SDK for Java 的 [適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]。 然後您可以將 **Microsoft Azure Libraries for Java** 新增至您的專案：
 
 ![](./media/service-bus-java-how-to-use-queues/eclipselibs.png)
 
@@ -112,7 +116,7 @@ catch (ServiceException e)
 }
 ```
 
-傳送至 (和擷取自) 服務匯流排佇列的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage] 物件具有一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存自訂應用程式特定屬性的字典，以及任意應用程式資料的主體。 應用程式可設定訊息主體，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統便會使用適當的序列化程式來序列化物件。 此外，您也可以提供 **java.IO.InputStream** 物件。
+傳送至 (和擷取自) 服務匯流排佇列的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage] 物件具有一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。 應用程式可設定訊息主體，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統便會使用適當的序列化程式來序列化物件。 此外，您也可以提供 **java.IO.InputStream** 物件。
 
 下列範例示範如何將五則測試訊息傳送至上述程式碼片段中所取得的 `TestQueue` **MessageSender**：
 
@@ -148,7 +152,7 @@ try
 
     while(true)  {
          ReceiveQueueMessageResult resultQM =
-                service.receiveQueueMessage("TestQueue", opts);
+                 service.receiveQueueMessage("TestQueue", opts);
         BrokeredMessage message = resultQM.getValue();
         if (message != null && message.getMessageId() != null)
         {
@@ -213,6 +217,6 @@ catch (Exception e) {
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

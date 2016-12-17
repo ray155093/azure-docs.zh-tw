@@ -1,35 +1,41 @@
 ---
-title: Log Analytics 中的 Windows 事件記錄檔 | Microsoft Docs
-description: Windows 事件記錄檔是 Log Analytics 所使用的最常見資料來源之一。  本文說明如何設定收集 Windows 事件記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。
+title: "Log Analytics 中的 Windows 事件記錄檔 | Microsoft Docs"
+description: "Windows 事件記錄檔是 Log Analytics 所使用的最常見資料來源之一。  本文說明如何設定收集 Windows 事件記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: ee52f564-995b-450f-a6ba-0d7b1dac3f32
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/18/2016
+ms.date: 11/15/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 055a60c174c280ba56ea40cb47779e233b54fe8e
+ms.openlocfilehash: 867dc9fd84793debc8c8dcd2a27dfc0b0ccf69c4
+
 
 ---
 # <a name="windows-event-log-data-sources-in-log-analytics"></a>Log Analytics 中的 Windows 事件記錄檔資料來源
-Windows 事件記錄檔是用於 Windows 代理程式的最常見 [資料來源](log-analytics-data-sources.md) 之一，因為這是大部分應用程式用來記錄資訊和錯誤的方法。  除了指定您要監視之應用程式所建立的任何自訂記錄檔之外，您也可以透過標準記錄檔 (例如系統和應用程式) 來收集事件。
+Windows 事件記錄檔是使用 Windows 代理程式收集資料的常見[資料來源](log-analytics-data-sources.md)之一，因為許多應用程式會寫入 Windows 事件記錄檔。  除了指定您要監視之應用程式所建立的任何自訂記錄檔之外，您也可以透過標準記錄檔 (例如系統和應用程式) 來收集事件。
 
 ![Windows 事件](media/log-analytics-data-sources-windows-events/overview.png)     
 
 ## <a name="configuring-windows-event-logs"></a>設定 Windows 事件記錄檔
 從 [Log Analytics [設定] 中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)來設定 Windows 事件記錄檔。
 
-Log Analytics 只會從設定中指定的 Windows 事件記錄檔收集事件。  您可以輸入記錄檔的名稱，然後按一下 **+**，來設定 Windows 事件記錄檔。  針對每個記錄檔，僅會收集包含所選嚴重性的事件。  請檢查您想要收集之特定記錄檔的嚴重性。  您無法提供任何其他準則來篩選事件。
+Log Analytics 只會從設定中指定的 Windows 事件記錄檔收集事件。  您可以輸入記錄檔的名稱，然後按一下 **+**，來新增事件記錄檔。  針對每個記錄檔，僅會收集包含所選嚴重性的事件。  請檢查您想要收集之特定記錄檔的嚴重性。  您無法提供任何其他準則來篩選事件。
+
+輸入事件記錄檔的名稱時，Log Analytics 提供常見的事件記錄檔名稱的建議。 如果您想要新增的記錄檔未出現在清單中，您仍然可以透過輸入記錄檔的完整名稱來新增它。 您可以使用事件檢視器來尋找記錄檔的完整名稱。 在事件檢視器中，開啟記錄檔的 [內容] 頁面，並從 [完整名稱] 欄位複製字串。
 
 ![設定 Windows 事件](media/log-analytics-data-sources-windows-events/configure.png)
 
 ## <a name="data-collection"></a>資料收集
-在建立事件時，Log Analytics 會從受監視的事件記錄檔收集符合所選嚴重性的每個事件。  代理程式會將它收集到的每個事件記錄檔的位置記錄下來。  如果代理程式離線一段時間，Log Analytics 即會從上次停止的地方收集事件，即使這些事件是在代理程式離線時所建立亦同。
+在建立事件時，Log Analytics 會從受監視的事件記錄檔收集符合所選嚴重性的每個事件。  代理程式會在它收集的每個事件記錄檔中記錄它的位置。  如果代理程式離線一段時間，Log Analytics 即會從上次停止的地方收集事件，即使這些事件是在代理程式離線時所建立亦同。
 
 ## <a name="windows-event-records-properties"></a>Windows 事件記錄屬性
 Windows 事件記錄都具有 **Event** 類型以及下表中的屬性。
@@ -44,10 +50,10 @@ Windows 事件記錄都具有 **Event** 類型以及下表中的屬性。
 | EventLevelName |文字格式的事件嚴重性。 |
 | EventLog |收集事件的來源事件記錄檔名稱。 |
 | ParameterXml |XML 格式的事件參數值。 |
-| ManagementGroupName |SCOM 代理程式的管理群組名稱。  若為其他代理程式，此為 AOI-<workspace ID> |
+| ManagementGroupName |System Center Operations Manager 代理程式的管理群組名稱。  若為其他代理程式，此值為 AOI-<workspace ID>。 |
 | RenderedDescription |含參數值的事件描述 |
 | 來源 |事件的來源。 |
-| SourceSystem |收集事件的來源代理程式類型。 <br> OpsManager – Windows 代理程式，直接連接或 SCOM <br>  Linux – 所有的 Linux 代理程式  <br>  AzureStorage – Azure 診斷 |
+| SourceSystem |收集事件的來源代理程式類型。 <br> OpsManager - Windows 代理程式，直接連接或由 Operations Manager 管理 <br>  Linux – 所有的 Linux 代理程式  <br>  AzureStorage – Azure 診斷 |
 | TimeGenerated |在 Windows 中建立事件的日期和時間。 |
 | UserName |記錄此事件之帳戶的使用者名稱。 |
 
@@ -67,6 +73,9 @@ Windows 事件記錄都具有 **Event** 類型以及下表中的屬性。
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將事件記錄剖析至個別欄位。
 * 設定從您的 Windows 代理程式進行 [效能計數器收集](log-analytics-data-sources-performance-counters.md) 。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

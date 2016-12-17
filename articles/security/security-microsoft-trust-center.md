@@ -1,27 +1,31 @@
 ---
-title: Microsoft 信任中心 | Microsoft Docs
-description: Microsoft 信任中心提供確信您執行服務之 Azure 平台安全所需的資訊。
+title: "Microsoft 信任中心 | Microsoft Docs"
+description: "Microsoft 信任中心提供確信您執行服務之 Azure 平台安全所需的資訊。"
 services: security
 documentationcenter: na
 author: TomShinder
 manager: MBaldwin
 editor: TomSh
-
+ms.assetid: 0b94f9a3-8648-4860-812c-be689b0b327b
 ms.service: security
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/09/2016
+ms.date: 11/18/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8da0e117c206bfcec2f343c6d250de74fd886b02
+
 
 ---
-# Microsoft 信任中心
-Azure.com 上的 Azure 安全性資訊網站可提供所需資訊，以供您規劃、設計、部署、設定及安全地管理您的雲端解決方案。透過 Microsoft 信任中心，您也可以獲得所需資訊，以確信您的服務執行所在之 Azure 平台是安全的。
+# <a name="microsoft-trust-center"></a>Microsoft 信任中心
+Azure.com 上的 Azure 安全性資訊網站可提供所需資訊，以供您規劃、設計、部署、設定及安全地管理您的雲端解決方案。 透過 Microsoft 信任中心，您也可以獲得所需資訊，以確信您的服務執行所在之 Azure 平台是安全的。
 
-我們知道您將應用程式和資料委託給 Azure 時，會有一些疑問。它在哪裡？ 誰可以進行存取？ Microsoft 會採取哪些措施來保護它？ 如何確認 Microsoft 確實做到它所說的？
+我們知道您將應用程式和資料委託給 Azure 時，會有一些疑問。 它在哪裡？ 誰可以進行存取？ Microsoft 會採取哪些措施來保護它？ 如何確認 Microsoft 確實做到它所說的？
 
-而我們有答案。因為它是您的資料，所以您可以決定誰可以存取，並與我們一起決定它的位置。為了保護您的資料，我們使用最新型安全性技術和世界級加密。我們的相容性是獨立進行稽核，而且在許多層面都是透明的，範圍從如何處理客戶資料的法律需求到程式碼的安全性。
+而我們有答案。 因為它是您的資料，所以您可以決定誰可以存取，並與我們一起決定它的位置。 為了保護您的資料，我們使用最新型安全性技術和世界級加密。 我們的相容性是獨立進行稽核，而且在許多層面都是透明的，範圍從如何處理客戶資料的法律需求到程式碼的安全性。
 
 以下是您可在 Microsoft 信任中心找到的資訊：
 
@@ -34,6 +38,10 @@ Azure.com 上的 Azure 安全性資訊網站可提供所需資訊，以供您規
 * [新增功能](https://aka.ms/tcwhatsnew) – 了解 Microsoft Cloud 信任
 * [資源](https://aka.ms/tcresources) – 調查 Microsoft 信任雲端上的白皮書、影片和案例研究
 
-[Microsoft 信任中心](https://www.microsoft.com/trustcenter)具有了解我們對保護 Microsoft Cloud 所做的處理所需的資訊。
+[Microsoft 信任中心](https://www.microsoft.com/trustcenter) 具有了解我們對保護 Microsoft Cloud 所做的處理所需的資訊。
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Nov16_HO3-->
+
+

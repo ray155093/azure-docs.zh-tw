@@ -1,19 +1,23 @@
 ---
-title: Azure 佇列和服務匯流排佇列 - 異同比較 | Microsoft Docs
-description: 分析 Azure 所提供之兩種佇列類型之間的差異和相似性。
-services: service-bus
+title: "Azure 佇列和服務匯流排佇列 - 異同比較 | Microsoft Docs"
+description: "分析 Azure 所提供之兩種佇列類型之間的差異和相似性。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
 editor: tysonn
-
-ms.service: service-bus
+ms.assetid: f07301dc-ca9b-465c-bd5b-a0f99bab606b
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 09/23/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0740427b1cd990fb94e82f1f045cc9e7f11468cd
+
 
 ---
 # <a name="azure-queues-and-service-bus-queues---compared-and-contrasted"></a>Azure 佇列和服務匯流排佇列 - 異同比較
@@ -129,7 +133,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 * 服務匯流排佇列所支援的重複偵測功能會根據 [MessageID](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx) 屬性的值，自動移除傳送至佇列或主題的重複訊息。
 
 ## <a name="capacity-and-quotas"></a>容量和配額
-本節將從可能適用之[容量和配額](../service-bus/service-bus-quotas.md)的觀點來比較 Azure 佇列和服務匯流排佇列。
+本節將從可能適用之[容量和配額](service-bus-quotas.md)的觀點來比較 Azure 佇列和服務匯流排佇列。
 
 | 比較準則 | Azure 佇列 | 服務匯流排佇列 |
 | --- | --- | --- |
@@ -140,7 +144,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 | 並行用戶端數目上限 |**無限制** |**無限制**<br/><br/>(100 個並行連接限制只適用於以 TCP 通訊協定為基礎的通訊) |
 
 ### <a name="additional-information"></a>其他資訊
-* 服務匯流排會強制執行佇列大小限制。 佇列大小上限是在建立佇列時指定的，而且可以具有 1 到 80 GB 之間的值。 如果達到在建立佇列時所設定的佇列大小值，其他內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 如需服務匯流排中配額的詳細資訊，請參閱[服務匯流排配額](../service-bus/service-bus-quotas.md)。
+* 服務匯流排會強制執行佇列大小限制。 佇列大小上限是在建立佇列時指定的，而且可以具有 1 到 80 GB 之間的值。 如果達到在建立佇列時所設定的佇列大小值，其他內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 如需服務匯流排中配額的詳細資訊，請參閱[服務匯流排配額](service-bus-quotas.md)。
 * 您可以建立 1、2、3、4 或 5 GB 大小的服務匯流排佇列 (預設值為 1 GB)。 啟用分割時 (這是預設值)，服務匯流排會為您指定的每 GB 建立 16 個資料分割。 因此，如果您建立 5 GB 大小的佇列，每 GB 有 16 個資料分割，則佇列大小上限會變成 (5 * 16) = 80 GB。 您可以在 [Azure 入口網站][Azure 入口網站]上檢視分割的佇列或主題項目，藉此查看其大小上限。
 * 使用 Azure 佇列時，如果訊息內容不是 XML 安全內容，則必須經過 **Base64** 編碼。 如果您對訊息進行 **Base64** 編碼，使用者承載最多可為 48 KB，而非 64 KB。
 * 使用服務匯流排佇列時，儲存在佇列中的每個訊息都包含兩個部分：標頭和主體。 訊息大小總計不能超過服務層所支援的訊息大小上限。
@@ -181,8 +185,8 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 | 識別提供者同盟 |**否** |**是** |
 
 ### <a name="additional-information"></a>其他資訊
-* 對這兩種佇列技術提出的每項要求都必須經過驗證。 不支援具有匿名存取的公用佇列。 使用 [SAS](../service-bus/service-bus-sas-overview.md) 時，您可以發佈唯寫 SAS、唯讀 SAS 或甚至是完整存取 SAS 來解決這種情況。
-* Azure 佇列所提供的驗證配置需要使用對稱金鑰，這個金鑰是雜湊式訊息驗證碼 (HMAC)、使用 SHA-256 演算法所計算並且編碼為 **Base64** 字串。 如需個別通訊協定的詳細資訊，請參閱 [Azure 儲存體服務的驗證](https://msdn.microsoft.com/library/azure/dd179428.aspx)。 服務匯流排佇列支援使用對稱金鑰的類似模型。 如需詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus/service-bus-shared-access-signature-authentication.md)。
+* 對這兩種佇列技術提出的每項要求都必須經過驗證。 不支援具有匿名存取的公用佇列。 使用 [SAS](service-bus-sas-overview.md) 時，您可以發佈唯寫 SAS、唯讀 SAS 或甚至是完整存取 SAS 來解決這種情況。
+* Azure 佇列所提供的驗證配置需要使用對稱金鑰，這個金鑰是雜湊式訊息驗證碼 (HMAC)、使用 SHA-256 演算法所計算並且編碼為 **Base64** 字串。 如需個別通訊協定的詳細資訊，請參閱 [Azure 儲存體服務的驗證](https://msdn.microsoft.com/library/azure/dd179428.aspx)。 服務匯流排佇列支援使用對稱金鑰的類似模型。 如需詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](service-bus-shared-access-signature-authentication.md)。
 
 ## <a name="cost"></a>成本
 本節將從成本的觀點來比較 Azure 佇列和服務匯流排佇列。
@@ -227,6 +231,6 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

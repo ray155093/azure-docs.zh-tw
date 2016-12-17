@@ -1,12 +1,12 @@
 ---
-title: 使用 Machine Learning Web 服務 | Microsoft Docs
-description: 部署機器學習服務之後，就可以使用 RESTFul Web 服務做為要求-回應服務或批次執行服務。
+title: "使用 Machine Learning Web 服務 | Microsoft Docs"
+description: "部署機器學習服務之後，就可以使用 RESTFul Web 服務做為要求-回應服務或批次執行服務。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 804f8211-9437-4982-98e9-ca841b7edf56
 ms.service: machine-learning
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 10/04/2016
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 369b7c8775388f641727cb889b406ac60be13d16
+
 
 ---
 # <a name="how-to-consume-an-azure-machine-learning-web-service-that-has-been-deployed-from-a-machine-learning-experiment"></a>如何使用已從機器學習實驗部署的 Azure Machine Learning Web 服務
@@ -41,14 +45,14 @@ For more information on how to manage Azure Machine Learning Web service endpoin
 
 如需如何建立及部署 Azure Machine Learning Web 服務的相關資訊，請參閱[部署 Azure Machine Learning Web 服務][publish]。 如需建立機器學習實驗和部署實驗的逐步解說，請參閱[使用 Azure Machine Learning 開發預測解決方案][walkthrough]。
 
-## <a name="request-response-service-(rrs)"></a>要求回應服務 (RRS)
+## <a name="request-response-service-rrs"></a>要求回應服務 (RRS)
 「要求回應服務 (RRS)」是一種低延遲、高度可調整的 Web 服務，可用來為從 Azure Machine Learning Studio 實驗建立並部署的無狀態模型提供介面。 此服務能讓消費端應用程式要求即時回應。
 
 RRS 可接受輸入參數的單一資料列或多個資料列，且可產生單一資料列或多個資料列做為輸出。 輸出資料列可包含多個資料行。
 
 RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式安裝為此種狀況。 當應用程式啟動時，它會使用相關輸入呼叫 RRS 服務。 然後應用程式會接收來自服務的驗證回應，允許或封鎖應用程式執行。
 
-## <a name="batch-execution-service-(bes)"></a>批次執行服務 (BES)
+## <a name="batch-execution-service-bes"></a>批次執行服務 (BES)
 「批次執行服務 (BES)」是一種可為大量的一批資料記錄進行非同步計分的服務。 BES 的輸入包含來自各種來源 (例如 blob、Azure 中的表格、SQL Azure、HDInsight (例如 Hive 查詢的結果) 和 HTTP 來源) 的一批記錄。 BES 的輸出則包含計分的結果。 結果會輸出至位於 Azure blob 儲存體中的檔案，並在回應中傳回儲存體端點的資料。
 
 當您不需要立即收到回應時 (例如為個人或物聯網 (IOT) 裝置定期排程計分)，BES 就很有用。
@@ -79,7 +83,7 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 * **要求 URI** 可在 [取用] 頁面取得 
 * 預期的 API **要求標頭**、**回應標頭**和**主體** 可在 [Swagger API] 頁面取得
 
-### <a name="information-locations-in-machine-learning-studio-(classic-web-service-only)"></a>Machine Learning Studio 中的資訊位置 (僅限傳統 Web 服務)
+### <a name="information-locations-in-machine-learning-studio-classic-web-service-only"></a>Machine Learning Studio 中的資訊位置 (僅限傳統 Web 服務)
 您可以從兩個位置找到所需的資訊︰Machine Learning Studio 或 Azure Machine Learning Web 服務入口網站。
 
 若要在 Machine Learning Studio 中尋找所需的資訊︰
@@ -244,11 +248,11 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 
     /**
      * Download full code from github - [https://github.com/nk773/AzureML_RRSApp](https://github.com/nk773/AzureML_RRSApp)
-     */
+      */
         /**
-          * Call REST API for retrieving prediction from Azure ML 
-          * @return response from the REST API
-          */    
+           * Call REST API for retrieving prediction from Azure ML 
+           * @return response from the REST API
+           */    
         public static String rrsHttpPost() {
 
             HttpPost post;
@@ -396,7 +400,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 
 下列程式碼範例示範如何使用 BES SDK，針對 Azure Machine Learning 服務提交和監視批次作業。 註解包含設定和呼叫的詳細資訊。
 
-#### <a name="**sample-code**"></a>**範例程式碼**
+#### <a name="sample-code"></a>**範例程式碼**
     // This code requires the Nuget package Microsoft.Azure.MachineLearning to be installed.
     // Instructions for doing this in Visual Studio:
     // Tools -> Nuget Package Manager -> Package Manager Console
@@ -415,7 +419,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
         class Program
         {
             static void Main(string[] args)
-            {               
+            {                
                 InvokeBatchExecutionService().Wait();
             }
 
@@ -530,7 +534,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
         "Inputs": { "input1": { "ConnectionString":     "DefaultEndpointsProtocol=https;
             AccountName=myAcctName; AccountKey=Q8kkieg==", 
             "RelativeLocation": "myContainer/sampleinput.csv" } }, 
-        "Outputs": { "output1": { "ConnectionString":   "DefaultEndpointsProtocol=https;
+        "Outputs": { "output1": { "ConnectionString":     "DefaultEndpointsProtocol=https;
             AccountName=myAcctName; AccountKey=kjC12xQ8kkieg==", 
             "RelativeLocation": "myContainer/sampleoutput.csv" } } 
     } 
@@ -541,7 +545,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
          * Call REST API to create a job to Azure ML 
          * for batch predictions
          * @return response from the REST API
-         */ 
+         */    
         public static String besCreateJob() {
 
             HttpPost post;
@@ -590,7 +594,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
          * 
          * @param job job to be started 
          * @return response from the REST API
-         */ 
+         */    
         public static String besStartJob(String job){
             HttpPost post;
             HttpClient client;
@@ -630,7 +634,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
          * 
          * @param job job to be started 
          * @return response from the REST API
-         */ 
+         */    
         public static String besCancelJob(String job) {
             HttpDelete post;
             HttpClient client;
@@ -733,6 +737,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 [mlstudio]: https://studio.azureml.net
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

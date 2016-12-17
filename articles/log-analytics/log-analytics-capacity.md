@@ -1,32 +1,36 @@
 ---
-title: Log Analytics 中的容量管理方案 | Microsoft Docs
-description: 您可以使用 Log Analytics 中的容量規劃方案，協助您瞭解 System Center Virtual Machine Manager 所管理的 Hyper-V 伺服器的容量
+title: "Log Analytics 中的容量管理解決方案 | Microsoft Docs"
+description: "您可以使用 Log Analytics 中的容量規劃方案，協助您瞭解 System Center Virtual Machine Manager 所管理的 Hyper-V 伺服器的容量"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 51617a6f-ffdd-4ed2-8b74-1257149ce3d4
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 11/15/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 57e7fbdaa393e078b62a6d6a0b181b67d532523d
+ms.openlocfilehash: c34cda0da164c711c8effc78d2af38ad8df581aa
+
 
 ---
 # <a name="capacity-management-solution-in-log-analytics"></a>Log Analytics 中的容量管理方案
-您可以使用 Log Analytics 中的容量規劃方案，協助您瞭解 System Center Virtual Machine Manager 所管理的 Hyper-V 伺服器的容量。 此方案需要 System Center Operations Manager 和 System Center Virtual Machine Manager。 如果您只使用直接連接的代理程式，則無法使用容量規劃。 您需要安裝此方案以更新 Operations Manager 代理程式。 此方案會讀取受監視伺服器上的效能計數器，並將使用量資料傳送至雲端中的 OMS 服務進行處理。 會將邏輯套用至使用量資料，且雲端服務會記錄資料。 經過一段時間，會根據目前的耗用量識別使用模式和規劃容量。
+您可以使用 Log Analytics 中的容量管理解決方案，協助您瞭解 Hyper-V 伺服器的容量。 此方案需要 System Center Operations Manager 和 System Center Virtual Machine Manager。 如果您直接使用連接的代理程式，則容量規劃解決方案未作用。 此方案會讀取受監視伺服器上的效能計數器，並將使用量資料傳送至雲端中的 OMS 服務進行處理。 會將邏輯套用至使用量資料，且雲端服務會記錄資料。 經過一段時間，會根據目前的耗用量識別使用模式和規劃容量。
 
-比方說，當個別伺服器會需要額外的處理器核心或額外的記憶體時，可能會識別投影。 在此範例中，投影可能表示在 30 天內，伺服器將需要額外的記憶體。 這可協助您規劃在伺服器的下一段維護期間升級記憶體，這可能會每隔兩週發生一次。
+例如，當個別伺服器會需要額外的處理器核心或額外的記憶體時，可能會識別預測。 在此範例中，預測可能表示在 30 天內，伺服器將需要額外的記憶體。 這個預測可協助您規劃在伺服器的下一段維護期間升級記憶體。
 
 > [!NOTE]
 > 容量管理方案無法加入至工作區。 已安裝容量管理方案的客戶可以繼續使用該解決方案。  
 > 
 > 
 
-正在更新容量規劃方案來解決下列客戶回報的挑戰︰
+取代容量和效能解決方案目前為私人預覽版本。 這個取代解決方案是要解決原始容量管理解決方案的下列客戶回報的挑戰：
 
 * 使用 Virtual Machine Manager 和 Operations Manager 的需求
 * 無法根據群組來自訂/篩選
@@ -38,15 +42,18 @@ ms.author: banders
 
 * 支援更精細的資料集合及更高的可靠性和正確性
 * 支援 Hyper-V 而不需要 VMM
-* PowerBI 中的度量視覺效果
 * VM 層級使用率的深入資訊
+
+新的解決方案目前需要 Hyper-V Server 2012 或更新版本。 這個解決方案深入了解 Hyper-V 環境，並查看在這些 Hyper-V 伺服器上執行的主機和 VM 的整體使用率 (CPU、記憶體和磁碟)。 會跨您的所有主機和在其上執行的 VM 來收集 CPU、記憶體和磁碟的度量。
+
+這個頁面上的其餘文件指的是舊的容量管理解決方案。 新解決方案目前為公開預覽版本時，將會更新這份文件。
 
 ## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
 請使用下列資訊來安裝和設定方案。
 
 * 容量管理方案需要 Operations Manager。
 * 容量管理方案需要 Virtual Machine Manager。
-* Operations Manager 與 Virtual Machine Manager (VMM) 之間的連線是必要的。 如需連接系統的詳細資訊，請參閱 [如何連接 VMM 與 Operations Manager](http://technet.microsoft.com/library/hh882396.aspx)。
+* Operations Manager 與 Virtual Machine Manager (VMM) 之間的連線是必要的。 如需連接系統的詳細資訊，請參閱[如何連接 VMM 與 Operations Manager](http://technet.microsoft.com/library/hh882396.aspx)。
 * Operations Manager 必須連接到 Log Analytics。
 * 使用 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)所述的程序，將容量管理方案加入您的 OMS 工作區。  不需要進一步的組態。
 
@@ -55,7 +62,7 @@ ms.author: banders
 
 下表顯示容量管理的資料收集方法及如何收集資料的其他詳細資料。
 
-| 平台 | 直接代理程式 | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
+| 平台 | 直接代理程式 | Operations Manager 代理程式 | Azure 儲存體 | 是否需要 Operations Manager？ | 透過管理群組傳送的 Operations Manager 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |![否](./media/log-analytics-capacity/oms-bullet-red.png) |![是](./media/log-analytics-capacity/oms-bullet-green.png) |![否](./media/log-analytics-capacity/oms-bullet-red.png) |![是](./media/log-analytics-capacity/oms-bullet-green.png) |![是](./media/log-analytics-capacity/oms-bullet-green.png) |每小時 |
 
@@ -68,7 +75,7 @@ ms.author: banders
 | 狀況 |StateChangeEventId、StateId、NewHealthState、OldHealthState、Context、TimeGenerated、TimeAdded、StateId2、BaseManagedEntityId、MonitorId、HealthState、LastModified、LastGreenAlertGenerated、DatabaseTimeModified |
 
 ## <a name="capacity-management-page"></a>容量管理頁面
- 安裝容量規劃方案後，您可以在 OMS 中使用 [概觀] 頁面上的 [容量規劃] 圖格，檢視受監視伺服器的容量。
+安裝容量規劃方案後，您可以在 OMS 中使用 [概觀] 頁面上的 [容量規劃] 圖格，檢視受監視伺服器的容量。
 
 ![image of Capacity Planning tile](./media/log-analytics-capacity/oms-capacity01.png)
 
@@ -152,11 +159,11 @@ ms.author: banders
 
 **磁碟效能**
 
-透過 OMS，您可以檢視磁碟空間使用率的歷史趨勢。 預測功能會使用演算法來預測未來使用率。 針對空間使用率，預測功能可讓您預測磁碟空間何時會耗盡。 這將有助於您規劃適當的存放裝置，以及得知何時該添購更多存放裝置。
+透過 OMS，您可以檢視磁碟空間使用率的歷史趨勢。 預測功能會使用演算法來預測未來使用率。 針對空間使用率，預測功能可讓您預測磁碟空間何時會耗盡。 這項預測有助於您規劃適當的儲存體，以及得知何時該添購更多儲存體。
 
 **預測工具**
 
-透過預測工具，您可以檢視磁碟空間使用率的歷史趨勢。 預測功能也能讓您預測磁碟空間何時耗盡。 這將有助於您規劃適當的容量，以及得知何時該添購更多儲存容量。
+透過預測工具，您可以檢視磁碟空間使用率的歷史趨勢。 預測功能也能讓您預測磁碟空間何時耗盡。 這項預測有助於您規劃適當的容量，以及得知何時該添購更多儲存體容量。
 
 ### <a name="to-work-with-items-on-the-direct-attached-storage-page"></a>操作直接連結存放裝置頁面中的項目
 1. 在 [使用率] 區域的 [直接連結存放裝置] 儀表板中，您可以檢視磁碟使用率資訊。
@@ -167,6 +174,9 @@ ms.author: banders
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md) ，檢視詳細的容量管理資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

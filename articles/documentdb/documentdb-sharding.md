@@ -1,12 +1,12 @@
 ---
-title: How to implement client side partitioning with the SDKs | Microsoft Docs
-description: Learn how to use the Azure DocumentDB SDKs to partition (shard) data and route requests across multiple collections
+title: "如何使用 SDK 實作用戶端分割 | Microsoft Docs"
+description: "了解如何使用 Azure DocumentDB SDK 在多個集合中分割 (分區) 資料和路由要求"
 services: documentdb
 author: arramac
 manager: jhubbard
 editor: cgronlun
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: ab2a63f0-4601-42d8-b5e5-ba943319c1c8
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,33 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/27/2016
 ms.author: arramac
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: c31763a9676ec45e493cdecc76997db8fe64c38a
+
 
 ---
-# <a name="how-to-partition-data-using-client-side-support-in-documentdb"></a>How to partition data using client-side support in DocumentDB
-Azure DocumentDB supports [automatic partitioning of collections](documentdb-partition-data.md). However, there are use cases where it is beneficial to have fine grained control over partitioning behavior. In order to reduce the boiler-plate code required for partitioning tasks, we have added functionality in the .NET, Node.js, and Java SDKs that makes it easier to build applications that are scaled out across multiple collections.
+# <a name="how-to-partition-data-using-client-side-support-in-documentdb"></a>如何在 DocumentDB 中使用用戶端支援分割資料
+Azure DocumentDB 支援 [自動分割集合](documentdb-partition-data.md)。 不過，還有使用案例很有幫助，對於分割行為有細微的控制。 為了減少分割工作所需的樣板程式碼數量，我們已在 .NET、Node.js 和 Java SDK 中加入功能，讓您可以輕鬆地建立跨多個集合相應放大的應用程式。
 
-In this article, we'll take a look at the classes and interfaces in the .NET SDK and how you can use them to develop partitioned applications. Other SDKs like Java, Node.js and Python support similar methods and interfaces for client-side partitioning.
+在本文中，我們將探討在 .NET SDK 中的類別和介面，以及如何使用它們來開發資料分割應用程式。 Java、Node.js 和 Python 等其他 SDK 可支援支援類似的用戶端資料分割方法和介面。
 
-## <a name="client-side-partitioning-with-the-documentdb-sdk"></a>Client-side Partitioning with the DocumentDB SDK
-Before we dig deeper into partitioning, let's recap some basic DocumentDB concepts that relate to partitioning. Every Azure DocumentDB database account consists of a set of databases, each containing multiple collections, each of which can contain stored procedures, triggers, UDFs, documents, and related attachments. Collections can be single-partition or partitioned themselves and have the following properties:
+## <a name="client-side-partitioning-with-the-documentdb-sdk"></a>使用 DocumentDB SDK 進行用戶端資料分割
+在深入探討資料分割之前，讓我們複習一下一些與資料分割相關的基本 DocumentDB 概念。 每個 Azure DocumentDB 資料庫帳戶是由一組資料庫所組成，每個資料庫都包含多個集合，而集合可包含預存程序、觸發程序、UDF、文件和相關附件。 集合可以是單一分割區或本身進行分割，並具有下列屬性：
 
-* Collections offer performance isolation. Hence there is a performance benefit in collating similar documents within the same collection. For example, for time series data, you might want to place data for the last month, that is frequently queried, within a collection with higher provisioned throughput whereas older data is placed within collections with low provisioned throughput.
-* ACID transactions i.e. stored procedures and triggers cannot span a collection. Transactions are scoped within a single partition key value within a collection.
-* Collections do not enforce a schema, so they can be used for JSON documents of the same type or different types.
+* 集合會提供效能隔離。 因此，在排序相同集合內的類似文件時具有效能優勢。 例如，對於時間序列資料，您可能想要將過去一個月經常查詢的資料，放在具有較高佈建輸送量的集合內，而將較舊的資料放在具有較低佈建輸送量的集合內。
+* ACID 交易，也就是預存程序和觸發無法跨越集合。 交易的範圍侷限在集合內的單一分割索引鍵值。
+* 集合不會強制執行結構描述，因此可以用於相同或不同類型的 JSON 文件。
 
-Starting with version [1.5.x of the Azure DocumentDB SDKs](documentdb-sdk-dotnet.md), you can perform document operations directly against a database. Internally the [DocumentClient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) uses the PartitionResolver that you have specified for the database to route requests to the appropriate collection.
+從 [Azure DocumentDB SDK 1.5.x](documentdb-sdk-dotnet.md) 版起，您可以直接在資料庫中執行文件作業。 在內部， [DocumentClient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) 會使用您已為資料庫指定的 PartitionResolver，將要求路由至適當的集合。
 
 > [!NOTE]
-> [Server-side partitioning](documentdb-partition-data.md) introduced in REST API 2015-12-16 and SDKs 1.6.0+ deprecates the client-side partition resolver approach for simple use cases. Client-side partitioning however is more flexible and lets you control performance isolation across partition keys, control degree of parallelism while reading results from multiple partitions, and use range/spatial partitioning approaches vs. hash.
+> REST API 2015-12-16 和 SDK 1.6.0+ 中引進的[伺服器端資料分割](documentdb-partition-data.md)取代簡單使用案例的用戶端磁碟分割解析程式方法。 不過，用戶端資料分割更有彈性，可讓您控制跨分割區索引鍵的效能隔離、控制從多個分割區讀取結果時的平行處理程度，以及使用範圍/空間分割方法和雜湊分割方法。
 > 
 > 
 
-For example, in .NET, each PartitionResolver class is a concrete implementation of an [IPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.aspx) interface that has three methods - [GetPartitionKey](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.getpartitionkey.aspx), [ResolveForCreate](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.resolveforcreate.aspx) and [ResolveForRead](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.resolveforread.aspx). LINQ queries and ReadFeed iterators use the ResolveForRead method internally to iterate over all the collections that match the partition key for the request. Similarly, create operations use the ResolveForCreate method to route creates to the right partition. There are no changes required for Replace, Delete and Read since they use documents, which already contain the reference to the corresponding collection.
+例如在 .NET 中，每個 PartitionResolver 類別是 [IPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.aspx) 介面的具體實作，方法共有三種 - [GetPartitionKey](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.getpartitionkey.aspx)、[ResolveForCreate](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.resolveforcreate.aspx) 和 [ResolveForRead](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.ipartitionresolver.resolveforread.aspx)。 LINQ 查詢和 ReadFeed 迭代器會在內部使用 ResolveForRead 方法，來逐一查看所有符合要求之資料分割索引鍵的集合。 同樣地，建立作業會使用 ResolveForCreate 方法，將建立項目路由到正確的資料分割。 變更、刪除和讀取等作業不需要變更，因為它們會使用已經包含對應集合參考的文件。
 
-The SDKs also includes two classes that support the two canonical partitioning techniques, hashing and range lookups, via a [HashPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) and a [RangePartitionResolver](https://msdn.microsoft.com/library/azure/mt126047.aspx). You can use these classes to easily add partitioning logic to your application.  
+SDK 還包含兩種透過 [HashPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) 和 [RangePartitionResolver](https://msdn.microsoft.com/library/azure/mt126047.aspx) 支援兩種標準資料分割技術 (雜湊和範圍查閱) 的類別。 您可以使用這些類別輕鬆地在您的應用程式中加入資料分割邏輯。  
 
-## <a name="add-partitioning-logic-and-register-the-partitionresolver"></a>Add partitioning logic and register the PartitionResolver
-Here's a snippet showing how to create a [HashPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) and register with the DocumentClient for a database.
+## <a name="add-partitioning-logic-and-register-the-partitionresolver"></a>加入資料分割邏輯，並註冊 PartitionResolver
+以下的程式碼片段將說明如何建立 [HashPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) ，並向資料庫註冊 DocumentClient。
 
 ```cs
 // Create some collections to partition data.
@@ -57,8 +61,8 @@ this.client.PartitionResolvers[database.SelfLink] = hashResolver;
 
 ```
 
-## <a name="create-documents-in-a-partition"></a>Create documents in a partition
-Once the PartitionResolver is registered, you can perform creates and queries directly against the database as shown below. In this example, the SDK uses the PartitionResolver to extract the UserId, hash it, and then use that value to route the create operation to the correct collection.
+## <a name="create-documents-in-a-partition"></a>建立資料分割中的文件
+註冊 PartitionResolver 之後，您可以直接針對資料庫執行建立和查詢作業，如下所示。 在此範例中，SDK 會使用 PartitionResolver 來擷取 UserId、將它雜湊化，並接著使用該值來將建立作業路由至正確的集合。
 
 ```cs
 Document johnDocument = await this.client.CreateDocumentAsync(
@@ -67,8 +71,8 @@ Document ryanDocument = await this.client.CreateDocumentAsync(
     database.SelfLink, new UserProfile("U4", "@Ryan", Region.AsiaPacific, UserStatus.AppearAway));
 ```
 
-## <a name="create-queries-against-partitions"></a>Create queries against partitions
-You can query using the [CreateDocumentQuery](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.linq.documentqueryable.createdocumentquery.aspx) method by passing in the database and a partition key. The query returns a single result-set over all the collections within the database that map to the partition key.  
+## <a name="create-queries-against-partitions"></a>針對資料分割建立查詢
+您可以透過在資料庫和資料分割索引鍵中傳遞，使用 [CreateDocumentQuery](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.linq.documentqueryable.createdocumentquery.aspx) 方法進行查詢。 查詢會傳回資料庫內對應至資料分割索引鍵的所有集合的單一結果集。  
 
 ```cs
 // Query for John's document by ID - uses PartitionResolver to restrict the query to the partitions 
@@ -80,8 +84,8 @@ var query = this.client.CreateDocumentQuery<UserProfile>(
 johnProfile = query.AsEnumerable().FirstOrDefault();
 ```
 
-## <a name="create-queries-against-all-collections-in-the-database"></a>Create queries against all collections in the database
-You can also query all collections within the database and enumerate the results as show below, by skipping the partition key argument.
+## <a name="create-queries-against-all-collections-in-the-database"></a>在資料庫中針對所有集合建立查詢
+您也可以查詢資料庫內的所有集合，並藉由略過資料分割索引鍵引數來列舉結果，如下所示。
 
 ```cs
 // Query for all "Available" users. Here since there is no partition key, the query is serially executed 
@@ -94,76 +98,79 @@ foreach (UserProfile activeUser in query)
 }
 ```
 
-## <a name="hash-partition-resolver"></a>Hash Partition Resolver
-With hash partitioning, partitions are assigned based on the value of a hash function, allowing you to evenly distribute requests and data across a number of partitions. This approach is commonly used to partition data produced or consumed from a large number of distinct clients, and is useful for storing user profiles, catalog items, and IoT ("Internet of Things") telemetry data. Hash partitioning is also used by DocumentDB's server-side partitioning support within a collection.
+## <a name="hash-partition-resolver"></a>雜湊分割解析程式
+有了雜湊分割，分割是根據雜湊函式的值來指派，讓您在一些分割上平均分配要求和資料。 這個方法通常用於分割從大量不同用戶端產生或取用的資料，適合用來儲存使用者設定檔、類別目錄項目，以及 IoT ("Internet of Things") 遙測資料。 集合內的 DocumentDB 伺服器端資料分割支援也會使用雜湊分割。
 
-**Hash Partitioning:**
-![Diagram illustrating how hash partitioning evenly distributes requests across partitions](media/documentdb-sharding/partition-hash.png)
+**雜湊分割：**
+![說明雜湊分割如何在資料分割中平均分配要求的圖表](media/documentdb-sharding/partition-hash.png)
 
-A simple hash partitioning scheme across *N* collections would be to take any document, compute *hash(d) mod N* to determine which collection it's placed in. But a problem with this simple technique is that it does not work well when you add new collections, or remove collections as this would require almost all the data to get reshuffled. [Consistent hashing](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.23.3738) is a well-known algorithm that addresses this by implementing a hashing scheme that minimizes the amount of data movement required during adding or removing collections.
+跨 *N* 集合的簡易雜湊資料分割配置就是對任何文件計算 *hash(d) mod N* 來判斷它會放置在哪一個集合內。 但這個簡單的技術有一個問題，那就是在新增集合或移除集合時無法正常運作，因為這會需要將幾乎所有的資料重新編組。 [一致的雜湊](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.23.3738) 是一種已知的演算法，可透過實作雜湊配置，在新增或移除集合期間將所需的資料移動降至最低加以解說。
 
-The [HashPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) class implements logic to build a consistent hash ring over the hash function specified in the [IHashGenerator](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.ihashgenerator.aspx) interface. By default, the HashPartitionResolver uses an MD5 hash function, but you can swap this out with your own hashing implementation. The HashPartitionResolver internally creates 16 hashes or "virtual nodes" within the hash ring for each collection in order to achieve a more uniform distribution of documents across the collections, but you can vary this number to trade off data skewness with the amount of client side computation.
+[HashPartitionResolver](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.hashpartitionresolver.aspx) 類別會實作邏輯，在 [IHashGenerator](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.partitioning.ihashgenerator.aspx) 介面中指定的雜湊函式上建立一致的雜湊環。 根據預設，HashPartitionResolver 會使用 MD5 雜湊函式，但是您可以在自己的雜湊實作中更換函式。 為達到在不同集合中平均分配文件的目的，HashPartitionResolver 會在內部的雜湊環中為每個集合建立 16 個雜湊或「虛擬節點」，但是您可以變更這個數字，以與用戶端計算數量的資料偏態加以權衡。
 
-**Consistent hashing with HashPartitionResolver:**
-![Diagram illustrating how HashPartitionResolver creates a hash ring](media/documentdb-sharding/HashPartitionResolver.JPG)
+**HashPartitionResolver 一致的雜湊：**
+![說明 HashPartitionResolver 如何建立雜湊環的圖表](media/documentdb-sharding/HashPartitionResolver.JPG)
 
-## <a name="range-partition-resolver"></a>Range Partition Resolver
-In range partitioning, partitions are assigned based on whether the partition key is within a certain range. This is commonly used for partitioning with time stamp properties (e.g., eventTime between Apr 1, 2015 and Apr 14, 2015). The [RangePartitionResolver](https://msdn.microsoft.com/library/azure/mt126047.aspx) class helps you maintain a mapping between a Range\<T\> and collection self-link. 
+## <a name="range-partition-resolver"></a>範圍分割解析程式
+在定界分割中，分割是根據分割索引鍵是否在特定範圍內所指派。 這常用於分割時間戳記屬性 (例如 eventTime 介於 2015 年 4 月 1 日與 2015 年 4 月 14 日之間)。 [RangePartitionResolver](https://msdn.microsoft.com/library/azure/mt126047.aspx) 類別可協助您維護 Range\<T\> 與集合自我連結之間的對應。 
 
-[Range\<T\>](https://msdn.microsoft.com/library/azure/mt126048.aspx) is a simple class that manages ranges of any types that implement IComparable\<T\> and IEquatable\<T\> like strings or numbers. For reads and creates, you can pass in any arbitrary range, and the resolver identifies all the candidate collections by identifying the ranges of the partitions that intersect with the requested range. This functionality can be useful when performing range queries against time series data.
+[Range\<T\>](https://msdn.microsoft.com/library/azure/mt126048.aspx) 是個簡單的類別，可針對實作 IComparable\<T\> 和 IEquatable\<T\> 的任何類型範圍進行管理，如字串或數字。 在讀取和建立作業中，您可以傳入任何任意範圍，解析程式會透過找出與要求範圍交集的資料分割範圍，來找到所有候選集合。 在針對時間序列資料執行範圍查詢時，這個功能會很有用。
 
-**Range Partitioning:**  
+**定界分割：**  
 
-![ Diagram illustrating how range partitioning evenly distributes requests across partitions](media/documentdb-sharding/partition-range.png)  
+![ 說明定界分割如何在資料分割中平均分配要求的圖表](media/documentdb-sharding/partition-range.png)  
 
-A special case of range partitioning is when the range is just a single discrete value, sometimes called "lookup partitioning". This is commonly used for partitioning by region (e.g. the partition for Scandinavia contains Norway, Denmark, and Sweden) or for partitioning tenants in a multi-tenant application.
+一個有關定界分割的特殊案例是，當範圍只是單一離散值時，有時也稱為「查閱分割」。 這常用於依區域分割 (例如：斯堪地那維亞的分割包含挪威、丹麥和瑞典)，或用於在多租用戶應用程式中分割租用戶。
 
-## <a name="samples"></a>Samples
-Take a look at the  [DocumentDB Partitioning Samples Github project](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning) containing code snippets on how to use these PartitionResolvers and extend them to implement your own resolvers to fit specific use cases, like the following: 
+## <a name="samples"></a>範例
+看看 [DocumentDB 分割範例 Github 專案](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)，其中的程式碼片段包括如何使用這些 PartitionResolvers，並將它們延伸到實作自己的解析程式以符合特定使用案例，如下所示： 
 
-* How to specify an arbitrary lambda expression for GetPartitionKey and use it to implement compound partitioning keys or to partition different types of objects differently.
-* How to create a simple [LookupPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/LookupPartitionResolver.cs) that uses a manual lookup table to perform partitioning. This pattern is commonly used for partitioning based on discrete values like region, tenant ID or application name.
-* How to create a [ManagedPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/ManagedHashPartitionResolver.cs) that creates collections automatically based on a template that defines a naming scheme, IndexingPolicy and stored procedures that need to be registered against new collections.
-* How to create a scheme-less [SpilloverPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/SpilloverPartitionResolver.cs) that simply creates new collections as the old collections fill up.
-* How to serialize and deserialize your PartitionResolver state as JSON, so that you can share between processes and across shutdowns. You can persist these in config files, or even in a DocumentDB collection.
-* A [DocumentClientHashPartitioningManager](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Util/DocumentClientHashPartitioningManager.cs) class for dynamically adding and removing partitions to a database partitioned based on consistent hashing. Internally it uses a [TransitionHashPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/TransitionHashPartitionResolver.cs) to route reads and writes during migration using one of four modes - read from the old partitioning scheme (ReadCurrent), the new one (ReadNext), merge results from both (ReadBoth) or be unavailable during migration (None).
+* 如何為 GetPartitionKey 指定任意的 lambda 運算式，並用它來實作複合資料分割索引鍵，或用它來以不同的方式分割不同類型的物件。
+* 如何建立簡單的 [LookupPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/LookupPartitionResolver.cs) ，以便使用手動查閱資料表來執行資料分割。 此模式通常用於以離散值 (例如區域、租用戶識別碼或應用程式名稱) 為基礎的資料分割。
+* 如何建立 [ManagedPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/ManagedHashPartitionResolver.cs) ，以定義命名配置、IndexingPolicy 和必須向新集合註冊之預存程序的範本為基礎來自動建立集合。
+* 如何建立無配置的 [SpilloverPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/SpilloverPartitionResolver.cs) ，可在舊的集合用完之後直接建立新的集合。
+* 如何將 PartitionResolver 狀態序列化和還原序列化為 JSON，這樣您便可以在處理之間及在關閉期間共用。 您可以在組態檔中 (或甚至在 DocumentDB 集合中) 加以保存。
+* [DocumentClientHashPartitioningManager](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Util/DocumentClientHashPartitioningManager.cs) 類別可用於將分割動態新增及移除至已根據一致的雜湊進行資料分割的資料庫。 在內部，它會使用 [TransitionHashPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/TransitionHashPartitionResolver.cs) ，使用下列四種的其中一種模式，在移轉期間路由讀取和寫入作業：從舊的分割配置中讀取 (ReadCurrent)、讀取新的項目 (ReadNext)、合併兩者的結果 (ReadBoth)，或移轉期間無法使用 (無)。
 
-The samples are open source and we encourage you to submit pull requests with contributions that could benefit other DocumentDB developers. Please refer to the [Contribution guidelines](https://github.com/Azure/azure-documentdb-net/blob/master/Contributing.md) for guidance on how to contribute.  
+這些範例是開放原始碼，我們鼓勵您提交提取要求，並附上可幫助其他 DocumentDB 開發人員的貢獻。 請參閱 [貢獻指導方針](https://github.com/Azure/azure-documentdb-net/blob/master/Contributing.md) ，以取得有關如何貢獻的指引。  
 
 > [!NOTE]
-> Collection creates are rate-limited by DocumentDB, so some of the sample methods shown here might take a few minutes to complete.
+> DocumentDB 會限制建立集合的速率，因此此處顯示的部分範例方法可能需要幾分鐘才能完成。
 > 
 > 
 
-## <a name="faq"></a>FAQ
-**Does DocumentDB support server-side partitioning?**
+## <a name="faq"></a>常見問題集
+**DocumentDB 是否支援伺服器端分割？**
 
-Yes, DocumentDB supports [server-side partitioning](documentdb-partition-data.md). DocumentDB also supports client-side partitioning via client-side partition resolvers for more advanced use cases.
+是，DocumentDB 支援 [伺服器端分割](documentdb-partition-data.md)。 DocumentDB 也針對更進階的使用案例，透過用戶端分割解析程式支援用戶端分割。
 
-**When should I use server-side vs. client-side partitioning?**
-For the majority of use cases, we recommend the use of server-side partitioning since it handles the administrative tasks of partitioning data and routing requests. However, if you need range partitioning or have a specialized use case for performance isolation between different values of partition keys, then client-side partitioning might be the best approach.
+**何時應該使用伺服器端與用戶端分割？**
+ 對於大多數的使用案例而言，我們建議使用伺服器端分割，因為它會處理分割資料和路由傳送要求的系統管理工作。 不過，如果您需要範圍分割或特殊的使用案例來取得不同的分割索引鍵值之間的效能隔離，則用戶端分割可能是最好的方法。
 
-**How do I add or remove a collection to my partitioning scheme?**
+**如何將集合新增或移除至我的資料分割配置？**
 
-Take a look at the implementation of DocumentClientHashPartitioningManager in the samples project for an example of how you can implement repartitioning.
+如需如何實作重新分割的範例，請查看範例專案中的 DocumentClientHashPartitioningManager 實作。
 
-**How do I persist or share my partitioning configuration with other clients?**
+**如何保存或與其他用戶端共用我的資料分割組態？**
 
-You can serialize the partitioner state as JSON and store in configuration files, or even within DocumentDB collections. Take a look at the RunSerializeDeserializeSample method in the samples project for an example.
+您可以將分割器的狀態序列化為 JSON，並儲存在組態檔中，或甚至 DocumentDB 集合內。 如需範例，請查看範例專案中的 RunSerializeDeserializeSample 方法。
 
-**How do I chain various partitioning techniques?**
+**如何鏈結各種不同的資料分割技術？**
 
-You can chain PartitionResolvers by implementing your own IPartitionResolver that internally uses one or more existing resolvers. Take a look at TransitionHashPartitionResolver in the samples project for an example.
+您可以藉由實作自己的 IPartitionResolver，在內部使用一或多個現有的解析程式來鏈結 PartitionResolvers。 如需範例，請查看範例專案中的 TransitionHashPartitionResolver。
 
-## <a name="references"></a>References
-* [Server-side Partitioning in DocumentDB](documentdb-partition-data.md)
-* [DocumentDB collections and performance levels](documentdb-performance-levels.md)
-* [Partitioning code samples on Github](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)
-* [DocumentDB .NET SDK Documentation at MSDN](https://msdn.microsoft.com/library/azure/dn948556.aspx)
-* [DocumentDB .NET samples](https://github.com/Azure/azure-documentdb-net)
-* [DocumentDB Limits](documentdb-limits.md)
-* [DocumentDB Blog on Performance Tips](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
+## <a name="references"></a>參考
+* [DocumentDB 中的伺服器端分割](documentdb-partition-data.md)
+* [DocumentDB 集合和效能等級](documentdb-performance-levels.md)
+* [Github 上的資料分割程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)
+* [在 MSDN 的 DocumentDB .NET SDK 文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)
+* [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
+* [DocumentDB 限制](documentdb-limits.md)
+* [有關效能秘訣的 DocumentDB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

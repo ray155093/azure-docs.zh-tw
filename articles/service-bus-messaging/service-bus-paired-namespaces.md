@@ -1,19 +1,23 @@
 ---
-title: 服務匯流排配對的命名空間 | Microsoft Docs
-description: 配對的命名空間實作詳細資料和成本
-services: service-bus
+title: "服務匯流排配對的命名空間 |Microsoft Docs"
+description: "配對的命名空間實作詳細資料和成本"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 2440c8d3-ed2e-47e0-93cf-ab7fbb855d2e
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3e384611b598f4e5256f2957227927ffd7c4e5ff
+
 
 ---
 # <a name="paired-namespace-implementation-details-and-cost-implications"></a>配對命名空間實作詳細資料和成本影響
@@ -47,7 +51,7 @@ ms.author: sethm
 本主題的其餘部分將討論這些片段運作方式的具體詳細資料。
 
 ## <a name="creation-of-backlog-queues"></a>建立待處理項目佇列
-傳遞至 [PairNamespaceAsync][PairNamespaceAsync] 方法的 [SendAvailabilityPairedNamespaceOptions][SendAvailabilityPairedNamespaceOptions] 物件會指出您要使用的積存佇列的數目。 然後會建立已明確設定下列屬性的每個積存佇列 (所有其他值都會設為 [QueueDescription][QueueDescription] 預設值)︰
+傳遞至 [PairNamespaceAsync][PairNamespaceAsync] 方法的 [SendAvailabilityPairedNamespaceOptions][SendAvailabilityPairedNamespaceOptions]物件會指出您要使用的積存佇列的數目。 然後會建立已明確設定下列屬性的每個積存佇列 (所有其他值都會設為 [QueueDescription][QueueDescription] 預設值)︰
 
 | 路徑 | [primary namespace]/x-servicebus-transfer/[index]，其中 [index] 是 [0, BacklogQueueCount) 中的值 |
 | --- | --- |
@@ -90,7 +94,7 @@ Ping 訊息是空的 [BrokeredMessage][BrokeredMessage]，其 [ContentType][Cont
 3. 傳送至主要佇列。
 4. 從主要佇列接收。
 
-## <a name="close/fault-behavior"></a>關閉/錯誤行為
+## <a name="closefault-behavior"></a>關閉/錯誤行為
 在裝載 Syphon 的應用程式內，一旦主要或次要 [MessagingFactory][MessagingFactory] 發生錯誤或已關閉，但其夥伴並未同時發生錯誤/關閉且 Syphon 偵測到此狀態，Syphon 就會採取行動。 如果其他 [MessagingFactory][MessagingFactory] 未在 5 秒內關閉，則虹吸會發生錯誤但仍開啟 [MessagingFactory][MessagingFactory]。
 
 ## <a name="next-steps"></a>後續步驟
@@ -118,6 +122,6 @@ Ping 訊息是空的 [BrokeredMessage][BrokeredMessage]，其 [ContentType][Cont
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

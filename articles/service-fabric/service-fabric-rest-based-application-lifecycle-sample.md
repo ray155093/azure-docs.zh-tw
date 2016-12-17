@@ -1,23 +1,27 @@
 ---
-title: REST 應用程式生命週期範例 | Microsoft Docs
-description: Microsoft Azure Service Fabric 範例，其中示範使用 Service Fabric REST 介面顯示應用程式生命週期。
+title: "REST 應用程式生命週期範例 | Microsoft Docs"
+description: "Microsoft Azure Service Fabric 範例，其中示範使用 Service Fabric REST 介面顯示應用程式生命週期。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 0a374e53-ff23-4ee8-8cc6-259d41e118e7
 ms.service: service-fabric
 ms.devlang: rest-api
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/25/2016
+ms.date: 12/2/2016
 ms.author: ryanwi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 5e328a26ade36e154a0abac9cf3fa7fe9c7f8245
+
 
 ---
-# REST 架構應用程式生命週期範例
-這個範例會透過 REST API 呼叫示範 Service Fabric 應用程式生命週期。如需 Service Fabric 應用程式生命週期的詳細資訊，請參閱 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)。
+# <a name="rest-based-application-lifecycle-sample"></a>REST 架構應用程式生命週期範例
+這個範例會透過 REST API 呼叫示範 Service Fabric 應用程式生命週期。 如需 Service Fabric 應用程式生命週期的詳細資訊，請參閱 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)。
 
 這個範例會執行下列作業：
 
@@ -26,7 +30,7 @@ ms.author: ryanwi
 * 將 WordCount 應用程式建立為 **fabric:/WordCount**。
 * 顯示包含 fabric:/WordCount 1.0.0 版的應用程式清單。
 * 佈建映像存放區中之 **WordCountUpgrade** 應用程式封裝的 1.1.0 版 WordCount 範例。
-* 顯示包含 WordCount 1.0.0 與 **WordCount 1.1.0** 的應用程式類型清單。
+* 顯示包含 WordCount 1.0.0 與 **WordCount 1.1.0**的應用程式類型清單。
 * 將 WordCount 應用程式升級為 1.1.0 版。
 * 顯示包含 WordCount 1.1.0 版，但不再包含 WordCount 1.0.0 版的應用程式清單。
 * 刪除 WordCount 應用程式。
@@ -36,20 +40,20 @@ ms.author: ryanwi
 * 解除佈建 WordCount 1.0.0 版範例。
 * 顯示不再包含 WordCount 的應用程式類型清單。
 
-## 必要條件
-此範例使用 [WordCount 範本](http://aka.ms/servicefabricsamples) (可在**入門**範本中找到)。必須先建置 WordCount 範例，再兩個應用程式封裝複製到映像存放區。
+## <a name="prerequisites"></a>必要條件
+此範例使用 [WordCount 範本](http://aka.ms/servicefabricsamples) (可在 **入門** 範本中找到)。 必須先建置 WordCount 範例，再兩個應用程式封裝複製到映像存放區。
 
 | 資料夾 | 說明 |
 | --- | --- |
-| WordCount |WordCount 範例應用程式。**ApplicationManifest.xml** 包含 **ApplicationTypeVersion ="1.0.0"**。 |
-| WordCountUpgrade |WordCount 範例應用程式。ApplicationManifest.xml 檔案必須變更為 **ApplicationTypeVersion ="1.1.0"**，應用程式才能升級。 |
+| WordCount |WordCount 範例應用程式。 **ApplicationManifest.xml** 檔案中有 **ApplicationTypeVersion ="1.0.0"**。 |
+| WordCountUpgrade |WordCount 範例應用程式。 ApplicationManifest.xml 檔案必須變更為 **ApplicationTypeVersion ="1.1.0"** ，應用程式才能升級。 |
 
 若要建立應用程式封裝，並將其複製到映像存放區，請執行下列步驟：
 
-1. 將 **C:\\ServiceFabricSamples\\Services\\WordCount\\WordCount\\pkg\\Debug** 複製到 **C:\\Temp\\WordCount**。即會建立 WordCount 應用程式封裝。
-2. 將 C:\\Temp\\WordCount 複製到 **C:\\Temp\\WordCountUpgrade**。這會建立 **WordCountUpgrade** 應用程式封裝。
-3. 在文字編輯器中，開啟 **C:\\Temp\\WordCountUpgrade\\ApplicationManifest.xml**。
-4. 在 **ApplicationManifest** 項目中，將 **ApplicationTypeVersion** 屬性變更為 **"1.1.0"**。即會更新應用程式的版本號碼。
+1. 將 **C:\ServiceFabricSamples\Services\WordCount\WordCount\pkg\Debug** 複製到 **C:\Temp\WordCount**。 即會建立 WordCount 應用程式封裝。
+2. 將 C:\Temp\WordCount 複製到 **C:\Temp\WordCountUpgrade**。 這會建立 **WordCountUpgrade** 應用程式封裝。
+3. 在文字編輯器中，開啟 **C:\Temp\WordCountUpgrade\ApplicationManifest.xml**。
+4. 在 **ApplicationManifest** 項目中，將 **ApplicationTypeVersion** 屬性變更為 **"1.1.0"**。  即會更新應用程式的版本號碼。
 5. 儲存已變更的 ApplicationManifest.xml 檔案。
 6. 以系統管理員身分執行下列 PowerShell 指令碼，將應用程式複製到映像存放區：
 
@@ -70,7 +74,7 @@ Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $applicationPathUpg
 
 當 PowerShell 指令碼完成時，應用程式也已就緒，可以開始執行的。
 
-## 範例
+## <a name="example"></a>範例
 下列範例示範 Service Fabric 應用程式生命週期。
 
 ```csharp
@@ -310,7 +314,7 @@ namespace ServiceFabricRestCaller
             request.ContentType = "application/json; charset=utf-8";
 
             // Create the byte array that will become the request body.
-            string requestBody = "{"ApplicationTypeBuildPath":"" + applicationTypeBuildPath + ""}";
+            string requestBody = "{\"ApplicationTypeBuildPath\":\"" + applicationTypeBuildPath + "\"}";
             byte[] requestBodyBytes = Encoding.UTF8.GetBytes(requestBody);
             request.ContentLength = requestBodyBytes.Length;
 
@@ -375,7 +379,7 @@ namespace ServiceFabricRestCaller
             HttpStatusCode statusCode;
 
             // Create the byte array that will become the request body.
-            string requestBody = "{"ApplicationTypeVersion":"" + versionToUnprovision + ""}";
+            string requestBody = "{\"ApplicationTypeVersion\":\"" + versionToUnprovision + "\"}";
             byte[] requestBodyBytes = Encoding.UTF8.GetBytes(requestBody);
             request.ContentLength = requestBodyBytes.Length;
 
@@ -517,10 +521,10 @@ namespace ServiceFabricRestCaller
             request.Method = "POST";
 
             // Create the byte array that will become the request body.
-            string requestBody = "{"Name":"fabric:/WordCount"," +
-                                    ""TypeName":"WordCount"," +
-                                    ""TypeVersion":"1.0.0"," +
-                                    ""ParameterList":[]}";
+            string requestBody = "{\"Name\":\"fabric:/WordCount\"," +
+                                    "\"TypeName\":\"WordCount\"," +
+                                    "\"TypeVersion\":\"1.0.0\"," +
+                                    "\"ParameterList\":[]}";
             byte[] requestBodyBytes = Encoding.UTF8.GetBytes(requestBody);
             request.ContentLength = requestBodyBytes.Length;
 
@@ -640,20 +644,20 @@ namespace ServiceFabricRestCaller
 
 
             // Create the Health Policy.
-            string requestBody = "{"Name":"fabric:/WordCount"," +
-                                    ""TargetApplicationTypeVersion":"1.1.0"," +
-                                    ""Parameters":[]," +
-                                    ""UpgradeKind":1," +
-                                    ""RollingUpgradeMode":1," +
-                                    ""UpgradeReplicaSetCheckTimeoutInSeconds":5," +
-                                    ""ForceRestart":true," +
-                                    ""MonitoringPolicy":" +
-                                    "{"FailureAction":1," +
-                                    ""HealthCheckWaitDurationInMilliseconds":"5000"," +
-                                    ""HealthCheckStableDurationInMilliseconds":"10000"," +
-                                    ""HealthCheckRetryTimeoutInMilliseconds":"20000"," +
-                                    ""UpgradeTimeoutInMilliseconds":"60000"," +
-                                    ""UpgradeDomainTimeoutInMilliseconds":"30000"}}";
+            string requestBody = "{\"Name\":\"fabric:/WordCount\"," +
+                                    "\"TargetApplicationTypeVersion\":\"1.1.0\"," +
+                                    "\"Parameters\":[]," +
+                                    "\"UpgradeKind\":1," +
+                                    "\"RollingUpgradeMode\":1," +
+                                    "\"UpgradeReplicaSetCheckTimeoutInSeconds\":5," +
+                                    "\"ForceRestart\":true," +
+                                    "\"MonitoringPolicy\":" +
+                                    "{\"FailureAction\":1," +
+                                    "\"HealthCheckWaitDurationInMilliseconds\":\"5000\"," +
+                                    "\"HealthCheckStableDurationInMilliseconds\":\"10000\"," +
+                                    "\"HealthCheckRetryTimeoutInMilliseconds\":\"20000\"," +
+                                    "\"UpgradeTimeoutInMilliseconds\":\"60000\"," +
+                                    "\"UpgradeDomainTimeoutInMilliseconds\":\"30000\"}}";
 
             // Create the byte array that will become the request body.
             byte[] requestBodyBytes = Encoding.UTF8.GetBytes(requestBody);
@@ -701,7 +705,12 @@ namespace ServiceFabricRestCaller
 
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,19 +1,23 @@
 ---
-title: 了解 Azure Marketplace 基於使用量的報告和賣方 Insights 報告 | Microsoft Docs
-description: 身為 Azure Marketplace 賣方，請了解您的使用量報告 (也稱為賣方 Insights 報告)
+title: "了解 Azure Marketplace 使用量報告和賣方 Insights 報告 | Microsoft Docs"
+description: "身為 Azure Marketplace 賣方，請了解您的使用量報告 (也稱為賣方 Insights 報告)"
 services: Azure Marketplace
 documentationcenter: na
 author: v-jeana
 manager: lakoch
-editor: ''
-
+editor: 
+ms.assetid: f1ffde66-98f0-4c3e-ad94-fee1f97cae03
 ms.service: marketplace
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/05/2016
-ms.author: v-jeana; hascipio
+ms.date: 10/03/2016
+ms.author: v-jeana; hascipio; v-dabosl
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 51452ce98a02f3bcea9914b741c611b00f862cc6
+
 
 ---
 # <a name="understand-your-seller-insights-report"></a>了解賣方 Insights 報告
@@ -26,7 +30,7 @@ ms.author: v-jeana; hascipio
 * **歡迎電子郵件：** 如果是新的發行者，您會收到一封歡迎電子郵件，通知您將會開始收到賣方 Insights 每月報告。
 * **每月銷售報告：**如果您有使用量，您會收到第二封電子郵件，當中含有報告並指示如何存取您的密碼：
   
-  * 如果您有 VM 或基於使用量計費的開發人員服務 SKU 產生使用量，您的每月報告將會顯示有關訂單、使用量、市場的詳細資料，以及非 BYOL (自備授權) 供應項目的客戶詳細資料。
+  * 如果您的 VM 或使用量計費開發人員服務 SKU 產生使用量，您的每月報告將會顯示有關訂單、使用量和市場的詳細資料，以及您優惠的客戶詳細資料。
   * 為了保護您的客戶資料，報告會使用密碼鎖住，只有您和 Microsoft 才知道密碼。
   * 如果您的供應項目在當月份沒有產生使用量，Microsoft 就不會傳送報告。
 
@@ -113,6 +117,6 @@ ms.author: v-jeana; hascipio
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

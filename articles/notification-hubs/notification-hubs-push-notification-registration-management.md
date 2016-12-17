@@ -1,12 +1,12 @@
 ---
-title: Registration Management
-description: This topic explains how to register devices with notification hubs in order to receive push notifications.
+title: "註冊管理"
+description: "本主題說明如何向通知中樞註冊裝置以接收推播通知。"
 services: notification-hubs
 documentationcenter: .net
 author: ysxu
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: fd0ee230-132c-4143-b4f9-65cef7f463a1
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
@@ -14,28 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4d1f02951bf93d59f16173bd021ab9340a425071
+
 
 ---
-# <a name="registration-management"></a>Registration management
-## <a name="overview"></a>Overview
-This topic explains how to register devices with notification hubs in order to receive push notifications. The topic describes registrations at a high level, then introduces the two main patterns for registering devices: registering from the device directly to the notification hub, and registering through an application backend. 
+# <a name="registration-management"></a>註冊管理
+## <a name="overview"></a>概觀
+本主題說明如何向通知中樞註冊裝置以接收推播通知。 本主題會概要說明註冊，然後介紹註冊裝置的兩個主要模式：直接從裝置向通知中樞註冊，以及透過應用程式後端註冊。 
 
-## <a name="what-is-device-registration"></a>What is device registration
-Device registration with a Notification Hub is accomplished using a **Registration** or **Installation**.
+## <a name="what-is-device-registration"></a>什麼是裝置註冊
+向「通知中樞」註冊裝置是藉由使用 [註冊] 或 [安裝] 來完成。
 
-#### <a name="registrations"></a>Registrations
-A registration associates the Platform Notification Service (PNS) handle for a device with tags and possibly a template. The PNS handle could be a ChannelURI, device token, or GCM registration id. Tags are used to route notifications to the correct set of device handles. For more information, see [Routing and Tag Expressions](notification-hubs-tags-segment-push-message.md). Templates are used to implement per-registration transformation. For more information, see [Templates](notification-hubs-templates-cross-platform-push-messages.md).
+#### <a name="registrations"></a>註冊
+註冊會將裝置的「平台通知服務」(PNS) 控制代碼與標記 (以及也可能與範本) 建立關聯。 PNS 控制代碼可能是 ChannelURI、裝置權杖或 GCM 註冊識別碼。 標記是用來將通知路由至一組正確的裝置控制代碼。 如需詳細資訊，請參閱 [路由與標記運算式](notification-hubs-tags-segment-push-message.md)。 範本是用來實作每一註冊的轉換。 如需詳細資訊，請參閱 [範本](notification-hubs-templates-cross-platform-push-messages.md)。
 
-#### <a name="installations"></a>Installations
-An Installation is an enhanced registration that includes a bag of push related properties. It is the latest and best approach to registering your devices. However, it is not supported by client side .NET SDK ([Notification Hub SDK for backend operations](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)) as of yet.  This means if you are registering from the client device itself, you would have to use the [Notification Hubs REST API](https://msdn.microsoft.com/library/mt621153.aspx) approach to support installations. If you are using a backend service, you should be able to use [Notification Hub SDK for backend operations](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+#### <a name="installations"></a>安裝
+安裝是增強型的註冊，包含一組推播相關的屬性。 它是註冊您的裝置最新最好的方法。 不過，目前用戶端 .NET SDK([適用於後端作業的通知中樞 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)) 不支援此種安裝。  這表示如果您要從用戶端裝置本身註冊，您必須使用 [通知中樞 REST API](https://msdn.microsoft.com/library/mt621153.aspx) 方法來支援安裝。 如果您使用後端服務，您應該能夠使用 [適用於後端作業的通知中樞 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)。
 
-The following are some key advantages to using installations:
+以下是使用安裝的一些主要優點：
 
-* Creating or updating an installation is fully idempotent. So you can retry it without any concerns about duplicate registrations.
-* The installation model makes it easy to do individual pushes - targeting specific device. A system tag **"$InstallationId:[installationId]"** is automatically added with each installation based registration. So you can call a send to this tag to target a specific device without having to do any additional coding.
-* Using installations also enables you to do partial registration updates. The partial update of an installation is requested with a PATCH method using the [JSON-Patch standard](https://tools.ietf.org/html/rfc6902). This is particularly useful when you want to update tags on the registration. You don't have to pull down the entire registration and then resend all the previous tags again.
+* 建立或更新安裝是完全等冪的。 因此您可以重試它，而不需顧慮重複註冊的情況。
+* 安裝模型可讓您更容易進行個別推播 (以特定裝置為目標)。 在每個安裝型註冊，都會自動新增一個系統標記 **"$InstallationId:[installationId]"** 。 因此，您不需編寫任何額外的程式碼，即可對此標記進行傳送呼叫來以特定裝置做為目標。
+* 使用安裝也可讓您進行部分註冊更新。 要求部分安裝更新時，是使用 [JSON-Patch 標準](https://tools.ietf.org/html/rfc6902)以 PATCH 方法來要求。 當您想要更新註冊的相關標記時，這會特別有用。 您不需要移除整個註冊，然後再次重新傳送所有先前的標記。
 
-An installation can contain the the following properties. For a complete listing of the installation properties see, [Create or Overwrite an Installation with REST API](https://msdn.microsoft.com/library/azure/mt621153.aspx) or [Installation Properties](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.installation_properties.aspx) for the .
+安裝可以包含下列屬性。 如需完整的安裝屬性清單，請參閱[使用 REST API 建立或覆寫安裝](https://msdn.microsoft.com/library/azure/mt621153.aspx)或[安裝屬性](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.installation_properties.aspx)。
 
     // Example installation format to show some supported properties
     {
@@ -73,37 +77,37 @@ An installation can contain the the following properties. For a complete listing
 
 
 
-It is important to note that registrations and installations by default no longer expire.
+請務必注意，註冊與安裝預設不會到期。
 
-Registrations and installations must contain a valid PNS handle for each device/channel. Because PNS handles can only be obtained in a client app on the device, one pattern is to register directly on that device with the client app. On the other hand, security considerations and business logic related to tags might require you to manage device registration in the app back-end. 
+註冊與安裝必須包含每個裝置/通道的有效 PNS 控制代碼。 由於 PNS 控制代碼只能在裝置上的用戶端 app 中取得，因此有一種模式是直接在該裝置上使用用戶端 app 進行註冊。 另一方面，與標記相關的安全性考量和商務邏輯可能會需要您在 app 後端管理裝置註冊。 
 
-#### <a name="templates"></a>Templates
-If you want to use [Templates](notification-hubs-templates-cross-platform-push-messages.md), the device installation also hold all templates associated with that device in a JSON format (see sample above). The template names help target different templates for the same device.
+#### <a name="templates"></a>範本
+如果您想要使用 [範本](notification-hubs-templates-cross-platform-push-messages.md)，裝置安裝也保有與該裝置關聯且採用 JSON 格式的所有範本 (請參閱上面的範例)。 範本名稱可協助將目標指向相同裝置的不同範本。
 
-Note that each template name maps to a template body and an optional set of tags. Moreover, each platform can have additional template properties. For Windows Store (using WNS) and Windows Phone 8 (using MPNS), an additional set of headers can be part of the template. In the case of APNs, you can set an expiry property to either a constant or to a template expression. For a complete listing of the installation properties see, [Create or Overwrite an Installation with REST](https://msdn.microsoft.com/library/azure/mt621153.aspx) topic.
+請注意，每個範本名稱皆對應到一個範本主體和一組選擇性的標記。 此外，每個平台可以有額外的範本屬性。 就 Windows 市集 (使用 WNS) 和 Windows Phone 8 (使用 MPNS) 而言，一組額外的標頭可以是範本的一部分。 如果是 APN，您可以將到期屬性設定為常數或範本運算式。 如需完整的安裝屬性清單，請參閱 [使用 REST 來建立或覆寫安裝](https://msdn.microsoft.com/library/azure/mt621153.aspx) 主題。
 
-#### <a name="secondary-tiles-for-windows-store-apps"></a>Secondary Tiles for Windows Store Apps
-For Windows Store client applications, sending notifications to secondary tiles is the same as sending them to the primary one. This is also supported in installations. Note that secondary tiles have a different ChannelUri, which the SDK on your client app handles transparently.
+#### <a name="secondary-tiles-for-windows-store-apps"></a>Windows 市集應用程式的次要磚
+就「Windows 市集」用戶端應用程式而言，將通知傳送給次要磚與將通知傳送給主要磚一樣。 在安裝中也支援此行為。 請注意，次要磚具有不同的 ChannelUri，您用戶端 app 上的 SDK 會在背景處理此 ChannelUri。
 
-The SecondaryTiles dictionary uses the same TileId that is used to create the SecondaryTiles object in your Windows Store app.
-As with the primary ChannelUri, ChannelUris of secondary tiles can change at any moment. In order to keep the installations in the notification hub updated, the device must refresh them with the current ChannelUris of the secondary tiles.
+SecondaryTiles 字典使用的 TileId 會與在「Windows 市集」應用程式中建立 SecondaryTiles 時使用的 TileId 相同。
+如同主要 ChannelUri，次要磚的 ChannelUri 也會隨時變更。 為了讓通知中樞內的安裝保持更新，裝置必須以次要磚的 ChannelUri 來重新整理它們。
 
-## <a name="registration-management-from-the-device"></a>Registration management from the device
-When managing device registration from client apps, the backend is only responsible for sending notifications. Client apps keep PNS handles up to date, and register tags. The following picture illustrates this pattern.
+## <a name="registration-management-from-the-device"></a>從裝置管理註冊
+從用戶端 app 管理裝置註冊時，後端只負責傳送通知。 用戶端 app 會讓 PNS 控制代碼保持在最新狀態，並且會註冊標記。 下圖說明這個模式。
 
 ![](./media/notification-hubs-registration-management/notification-hubs-registering-on-device.png)
 
-The device first retrieves the PNS handle from the PNS, then registers with the notification hub directly. After the registration is successful, the app backend can send a notification targeting that registration. For more information about how to send notifications, see [Routing and Tag Expressions](notification-hubs-tags-segment-push-message.md).
-Note that in this case, you will use only Listen rights to access your notification hubs from the device. For more information, see [Security](notification-hubs-push-notification-security.md).
+裝置會先從 PNS 抓取 PNS 控制代碼，然後直接向通知中心進行註冊。 註冊成功之後，app 後端即可傳送以該註冊為目標的通知。 如需有關如何傳送通知的詳細資訊，請參閱 [路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
+請注意，在此情況下，您將只使用「接聽」權限從裝置存取通知中樞。 如需詳細資訊，請參閱 [安全性](notification-hubs-push-notification-security.md)。
 
-Registering from the device is the simplest method, but it has some drawbacks.
-The first drawback is that a client app can only update its tags when the app is active. For example, if a user has two devices that register tags related to sport teams, when the first device registers for an additional tag (for example, Seahawks), the second device will not receive the notifications about the Seahawks until the app on the second device is executed a second time. More generally, when tags are affected by multiple devices, managing tags from the backend is a desirable option.
-The second drawback of registration management from the client app is that, since apps can be hacked, securing the registration to specific tags requires extra care, as explained in the section “Tag-level security.”
+從裝置註冊是最簡單的方法，但有一些缺點。
+第一個缺點是用戶端 app 只有在 app 處於使用中時，才能更新其標記。 舉例來說，如果使用者有兩個註冊球隊相關標記的裝置，當第一個裝置註冊另一個標記 (例如 Seahawks) 時，第二個裝置必須等到第二次執行時，才會收到有關 Seahawks 的通知。 更普遍來說，當標記受多個裝置影響時，從後端管理標記是一個較理想的選項。
+從用戶端 app 管理註冊的第二個缺點是，由於 app 可能被入侵，因此如＜標記層級安全性＞一節所述，保護特定標記的註冊必須特別小心。
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-an-installation"></a>Example code to register with a notification hub from a device using an installation
-At this time, this is only supported using the [Notification Hubs REST API](https://msdn.microsoft.com/library/mt621153.aspx).
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-an-installation"></a>使用安裝從裝置向通知中樞註冊的範例程式碼
+此時，只有使用 [通知中樞 REST API](https://msdn.microsoft.com/library/mt621153.aspx)才支援這種做法。
 
-You can also use the PATCH method using the [JSON-Patch standard](https://tools.ietf.org/html/rfc6902) for updating the installation.
+您也可以使用 [JSON-Patch 標準](https://tools.ietf.org/html/rfc6902) 以 PATCH 方法更新安裝。
 
     class DeviceInstallation
     {
@@ -182,8 +186,8 @@ You can also use the PATCH method using the [JSON-Patch standard](https://tools.
 
 
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration"></a>Example code to register with a notification hub from a device using a registration
-These methods create or update a registration for the device on which they are called. This means that in order to update the handle or the tags, you must overwrite the entire registration. Remember that registrations are transient, so you should always have a reliable store with the current tags that a specific device needs.
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration"></a>使用註冊從裝置向通知中樞註冊的範例程式碼
+這些方法會建立或更新其所在呼叫位置的裝置註冊。 這表示為了更新控制代碼或標記，您必須覆寫整個註冊。 請記住，註冊是暫時性的，因此您應該一律要有一個可靠的存放區，內含特定裝置所需的目前標記。
 
     // Initialize the Notification Hub
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(listenConnString, hubName);
@@ -235,17 +239,17 @@ These methods create or update a registration for the device on which they are c
     }
 
 
-## <a name="registration-management-from-a-backend"></a>Registration management from a backend
-Managing registrations from the backend requires writing additional code. The app from the device must provide the updated PNS handle to the backend every time the app starts (along with tags and templates), and the backend must update this handle on the notification hub. The following picture illustrates this design.
+## <a name="registration-management-from-a-backend"></a>從後端管理註冊
+從後端管理註冊需要撰寫額外的程式碼。 來自裝置的 app 必須在每次 app 啟動時，提供已更新的 PNS 控制代碼給後端 (連同標記和範本)，而後端必須在通知中樞上更新此控制代碼。 下圖說明這個設計。
 
 ![](./media/notification-hubs-registration-management/notification-hubs-registering-on-backend.png)
 
-The advantages of managing registrations from the backend include the ability to modify tags to registrations even when the corresponding app on the device is inactive, and to authenticate the client app before adding a tag to its registration.
+從後端管理註冊的優點包括：即使裝置上對應的 app 不是處於使用中，也能夠修改註冊的標記；以及能夠在將標記新增到用戶端 app 的註冊之前，先驗證該 app。
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-backend-using-an-installation"></a>Example code to register with a notification hub from a backend using an installation
-The client device still gets its PNS handle and relevant installation properties as before and calls a custom API on the backend that can perform the registration and authorize tags etc. The backend can leverage the [Notification Hub SDK for backend operations](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-backend-using-an-installation"></a>使用安裝從後端向通知中樞註冊的範例程式碼
+用戶端裝置仍會如先前一樣取得其 PNS 控制代碼及相關的安裝屬性，然後在可以執行註冊及授權標記等的後端上呼叫自訂 API。後端可以利用[適用於後端作業的通知中樞 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)。
 
-You can also use the PATCH method using the [JSON-Patch standard](https://tools.ietf.org/html/rfc6902) for updating the installation.
+您也可以使用 [JSON-Patch 標準](https://tools.ietf.org/html/rfc6902) 以 PATCH 方法更新安裝。
 
     // Initialize the Notification Hub
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(listenConnString, hubName);
@@ -288,8 +292,8 @@ You can also use the PATCH method using the [JSON-Patch standard](https://tools.
     }
 
 
-#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration-id"></a>Example code to register with a notification hub from a device using a registration id
-From your app backend, you can perform basic CRUDS operations on registrations. For example:
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration-id"></a>使用註冊識別碼從裝置向通知中樞註冊的範例程式碼
+您可以從 app 後端，對註冊執行基本 CRUD 作業。 例如：
 
     var hub = NotificationHubClient.CreateClientFromConnectionString("{connectionString}", "hubName");
 
@@ -312,8 +316,11 @@ From your app backend, you can perform basic CRUDS operations on registrations. 
     await hub.DeleteRegistrationAsync(r);
 
 
-The backend must handle concurrency between registration updates. Service Bus offers optimistic concurrency control for registration management. At the HTTP level, this is implemented with the use of ETag on registration management operations. This feature is transparently used by Microsoft SDKs, which throw an exception if an update is rejected for concurrency reasons. The app backend is responsible for handling these exceptions and retrying the update if required.
+後端必須處理註冊更新之間的並行存取。 「服務匯流排」可提供開放式並行存取控制來管理註冊。 在 HTTP 層級，這是藉由在註冊管理作業上使用 ETag 來進行實作。 Microsoft SDK 會在背景使用這項功能，如果因並行存取而導致更新被拒，將會擲回例外狀況。 App 後端會負責處理這些例外狀況，並視需要重試更新。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

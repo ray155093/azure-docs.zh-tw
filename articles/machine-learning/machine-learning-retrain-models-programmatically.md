@@ -1,12 +1,12 @@
 ---
-title: 以程式設計方式重新定型機器學習服務模型 | Microsoft Docs
-description: 了解如何在 Azure Machine Learning 中以程式設計方式重新定型模型，以及使用新定型的模型來更新 Web 服務。
+title: "以程式設計方式重新訓練機器學習服務模型 | Microsoft Docs"
+description: "了解如何在 Azure Machine Learning 中以程式設計方式重新定型模型，以及使用新定型的模型來更新 Web 服務。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: raymondlaghaeian
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 7ae4f977-e6bf-4d04-9dde-28a66ce7b664
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,19 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: raymondl;garye;v-donglo
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 70004ff5c59427dfd5c58e5633cae95a08a18a3a
+
 
 ---
 # <a name="retrain-machine-learning-models-programmatically"></a>以程式設計方式重新定型機器學習服務模型
 在此逐步解說中，您將學習如何以程式設計方式使用 C# 和 Machine Learning 批次執行服務來重新訓練 Azure Machine Learning Web 服務。
 
-重新訓練模型之後，下列逐步解說會說明如何更新預測 Web 服務中的模型︰
+重新訓練模型之後，下列逐步解說會說明如何更新預測性 Web 服務中的模型︰
 
 * 如果您是在 Machine Learning Web 服務入口網站中部署傳統 Web 服務，請參閱[重新訓練傳統 Web 服務](machine-learning-retrain-a-classic-web-service.md)。 
-* 如果您是部署新式 Web 服務，請參閱[使用 Machine Learning Management Cmdlet 重新訓練新式 Web 服務](machine-learning-retrain-new-web-service-using-powershell.md)。
+* 如果您是部署新式 Web 服務，請參閱[使用 Machine Learning Management PowerShell Cmdlet 重新訓練新的 Web 服務](machine-learning-retrain-new-web-service-using-powershell.md)。
 
 如需重新訓練程序的概觀，請參閱[重新訓練 Machine Learning 模型](machine-learning-retrain-machine-learning-model.md)。
 
-如果您要開始使用現有新的 Azure Resource Manager 型 Web 服務，請參閱[重新訓練現有預測 Web 服務](machine-learning-retrain-existing-resource-manager-based-web-service.md)。
+如果您要開始使用現有新的 Azure Resource Manager 型 Web 服務，請參閱 [Retrain an existing Predictive web service (重新訓練現有預測性 Web 服務)](machine-learning-retrain-existing-resource-manager-based-web-service.md)。
 
 ## <a name="create-a-training-experiment"></a>建立訓練實驗
 針對這個範例，您將使用Microsoft Azure Machine Learning 範例當中的「範例 5：定型、測試、評估二進位分類：成人資料集」。 
@@ -45,20 +49,20 @@ ms.author: raymondl;garye;v-donglo
 
 圖 2︰初始實驗。
 
-## <a name="create-a-predictive-experiment-and-publish-as-a-web-service"></a>建立預測實驗並發佈為 Web 服務
+## <a name="create-a-predictive-experiment-and-publish-as-a-web-service"></a>建立預測性實驗並發佈為 Web 服務
 接下來，您要建立預測性實驗。
 
-1. 在實驗畫布底端，按一下 [設定 Web 服務]，然後選取 [預測性 Web 服務]。 這樣會將模型儲存為定型模型，並新增 Web 服務輸入與輸出模型。 
+1. 在實驗畫布底端，按一下 [設定 Web 服務]，然後選取 [預測性 Web 服務]。 這樣會將模型儲存為訓練模型，並新增 Web 服務輸入與輸出模組。 
 2. 按一下 **[執行]**。 
 3. 實驗完成執行之後，按一下 [部署 Web 服務 [傳統]] 或 [部署 Web 服務[新式]]。
 
-## <a name="deploy-the-training-experiment-as-a-training-web-service"></a>將訓練實驗部署為定型 Web 服務
-若要重新定型已定型的模型，您必須將您建立的訓練實驗部署為重新定型 Web 服務。 這個 Web 服務需要有連接到[訓練模型][train-model]模組的「Web 服務輸出」模組，才能產生新的訓練模組。
+## <a name="deploy-the-training-experiment-as-a-training-web-service"></a>將訓練實驗部署為訓練 Web 服務
+若要重新訓練已訓練的模型，您必須將您建立的訓練實驗部署為重新訓練 Web 服務。 這個 Web 服務需要已連接到[訓練模型][train-model]模組的「Web 服務輸出」模組，才能產生新的訓練模型。
 
 1. 若要回到訓練實驗，按一下左窗格中的 [實驗] 圖示，然後按一下名為 [普查模型] 的實驗。  
 2. 在 [搜尋實驗項目] 方塊中，輸入「Web 服務」。 
 3. 將 [Web 服務輸入] 模組拖曳到實驗畫布，然後將其連接到 [清除遺漏資料] 模組。  這可確保您的訓練資料與原始的訓練資料以相同方式處理。
-4. 將兩個 [Web 服務輸出]  模組拖曳到實驗畫布。 將 [訓練模組] 模組的輸出連接到其中一個，將 [評估模型] 模組的輸出連接到另一個。 定型模型  的 Web 服務輸出將會提供新的已定型模型。 連接到**評估模型**的輸出會傳回該模組的輸出，即執行結果。
+4. 將兩個 [Web 服務輸出] 模組拖曳到實驗畫布。 將 [訓練模組] 模組的輸出連接到其中一個，將 [評估模型] 模組的輸出連接到另一個。 [訓練模型] 的 Web 服務輸出將會提供新的已訓練模型。 連接到**評估模型**的輸出會傳回該模組的輸出，即執行結果。
 5. 按一下 **[執行]**。 
 
 接下來您必須將訓練實驗部署為可產生訓練模型與模型評估結果的 Web 服務。 若要這麼做，您的下一組動作取決於您使用傳統 Web 服務或新式 Web 服務。  
@@ -69,7 +73,7 @@ ms.author: raymondl;garye;v-donglo
 
 **新式 Web 服務**
 
-在實驗畫布底端，按一下 [設定 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 Web 服務的 Azure Machine Learning Web Services 入口網站會開啟 [部署 Web 服務] 頁面。 輸入您的 Web 服務名稱，選擇付款方案，然後按一下 [部署] 。 只有批次執行方法能夠用來建立定型模型
+在實驗畫布底端，按一下 [設定 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 Web 服務的 Azure Machine Learning Web 服務入口網站會開啟 [部署 Web 服務] 頁面。 輸入您 Web 服務的名稱，選擇付款方案，然後按一下 [部署]。 只有批次執行方法能夠用來建立定型模型
 
 不論傳統或新式，在實驗完成執行後，產生的工作流程應該看起來像這樣：
 
@@ -84,13 +88,13 @@ ms.author: raymondl;garye;v-donglo
 
 1. 在 Visual Studio 中建立 C# 主控台應用程式 ([新增]->[專案]->[Windows 桌面]->[主控台應用程式])。
 2. 登入 Machine Learning Web 服務入口網站。
-3. 如果您使用傳統 Web 服務，按一下 [傳統 Web 服務] 。
+3. 如果您使用傳統 Web 服務，按一下 [傳統 Web 服務]。
    1. 按一下您要使用的 Web 服務。
    2. 按一下預設端點。
    3. 按一下 [取用] 。
    4. 在 [取用] 頁面底部的 [範例程式碼] 區段，按一下 [批次]。
    5. 繼續執行此程序的步驟 5。
-4. 如果您使用新式 Web 服務，按一下 [Web 服務] 。
+4. 如果您是使用新式 Web 服務，請按一下 [Web 服務]。
    1. 按一下您要使用的 Web 服務。
    2. 按一下 [取用] 。
    3. 在 [取用] 頁面底部的 [範例程式碼] 區段，按一下 [批次]。
@@ -142,7 +146,7 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如 C:\temp\CensusIpnput.c
         },
 
 > [!NOTE]
-> 輸出位置的名稱可能不同於此逐步解說中的名稱，取決於您新增 Web 服務輸出模組的順序。 因為您設定這個訓練實驗有兩個輸出時，結果會包含這兩者的儲存位置資訊。  
+> 輸出位置的名稱可能不同於此逐步解說中的名稱，取決於您新增 Web 服務輸出模組的順序。 因為您設定這個訓練實驗有兩個輸出，結果會包含這兩者的儲存位置資訊。  
 > 
 > 
 
@@ -160,11 +164,11 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如 C:\temp\CensusIpnput.c
 複製輸出結果中的 *BaseLocation*、*RelativeLocation*、*SasBlobToken*，您在重新訓練程序中將用到它們。
 
 ## <a name="next-steps"></a>後續步驟
-[重新定型傳統 Web 服務](machine-learning-retrain-a-classic-web-service.md)
+如果您透過按一下 [部署 Web 服務 [傳統]] 部署預測性 Web 服務，請參閱[重新訓練傳統 Web 服務](machine-learning-retrain-a-classic-web-service.md)。
 
-[使用 Machine Learning 的管理 Cmdlet 重新定型新式 Web 服務](machine-learning-retrain-new-web-service-using-powershell.md)
+如果您透過按一下 [部署 Web 服務 [新式]] 部署預測性 Web 服務，請參閱[使用 Machine Learning Management PowerShell Cmdlet 重新訓練新的 Web 服務](machine-learning-retrain-new-web-service-using-powershell.md)。
 
-<!-- Retrain a New Web service using the Machine Learning Management REST API -->
+<!-- Retrain a New web service using the Machine Learning Management REST API -->
 
 
 [1]: ./media/machine-learning-retrain-models-programmatically/machine-learning-retrain-models-programmatically-IMAGE01.png
@@ -180,6 +184,7 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如 C:\temp\CensusIpnput.c
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

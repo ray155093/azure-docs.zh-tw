@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Origami 整合 | Microsoft Docs
-description: 了解如何在 Azure Active Directory 與 Origami 之間設定單一登入。
+title: "教學課程：Azure Active Directory 與 Origami 整合 | Microsoft Docs"
+description: "了解如何在 Azure Active Directory 與 Origami 之間設定單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: a28bb0ba-b564-46ba-accc-e587699295d4
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d5499636ff1c560dd5a50924f0fd67d8dac50203
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-origami"></a>教學課程：Azure Active Directory 與 Origami 整合
+# <a name="tutorial-azure-active-directory-integration-with-origami"></a>教學課程：Azure Active Directory 與 Origami 整合
 在本教學課程中，您會了解如何整合 Origami 與 Azure Active Directory (Azure AD)。
 
 Origami 與 Azure AD 整合提供下列優點：
@@ -115,7 +119,7 @@ Origami 與 Azure AD 整合提供下列優點：
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] ****。
+    b. 按一下頁面底部的 [新增] 。
 5. 以系統管理員權限登入 Origami 帳戶。
 6. 在頂端的功能表中，按一下 [系統管理員] 。
    
@@ -126,9 +130,9 @@ Origami 與 Azure AD 整合提供下列優點：
    
     a. 選取 [啟用單一登入] 。
    
-    b. 在 Azure 傳統入口網站中，複製 [SAML SSO URL]，然後將其貼到 [Identity Provider's Sign-in Page URL](識別提供者登入頁面 URL.md) 文字方塊中。
+    b. 在 Azure 傳統入口網站中，複製 [SAML SSO URL]，然後將其貼到 [Identity Provider's Sign-in Page URL] (識別提供者登入頁面 URL) 文字方塊中。
    
-    c. 在 Azure 傳統入口網站中，複製 [SINGLE SIGN OUT SERVICE URL]，然後將其貼到 [Identity Provider's Sign-out Page URL](識別提供者登出頁面 URL.md) 文字方塊中。
+    c. 在 Azure 傳統入口網站中，複製 [SINGLE SIGN OUT SERVICE URL]，然後將其貼到 [Identity Provider's Sign-out Page URL] (識別提供者登出頁面 URL) 文字方塊中。
    
     d. 按一下 [瀏覽] 上傳您從 Azure 傳統入口網站下載的憑證。
    
@@ -163,7 +167,7 @@ Origami 與 Azure AD 整合提供下列優點：
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    c. 按 [下一步] 。
 6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-origami-tutorial/create_aaduser_06.png) 
    
    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
@@ -174,7 +178,7 @@ Origami 與 Azure AD 整合提供下列優點：
    
    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-origami-tutorial/create_aaduser_07.png) 
@@ -184,7 +188,7 @@ Origami 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-an-origami-test-user"></a>建立 Origami 測試使用者
 在本節中，您要在 Origami 中建立名為 Britta Simon 的使用者。 
@@ -270,6 +274,6 @@ Origami 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,19 +1,23 @@
 ---
-title: 撰寫使用服務匯流排佇列的應用程式 | Microsoft Docs
-description: 如何撰寫使用服務匯流排，且以佇列為基礎的簡單應用程式。
-services: service-bus
+title: "撰寫使用服務匯流排佇列的應用程式 | Microsoft Docs"
+description: "如何撰寫使用服務匯流排，且以佇列為基礎的簡單應用程式。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 754d91b3-1426-405e-84b4-fd36d65b114a
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/03/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2350c3e222277b6d8e837472f55a7b79346d3d21
+
 
 ---
 # <a name="create-applications-that-use-service-bus-queues"></a>建立使用服務匯流排佇列的應用程式
@@ -25,7 +29,7 @@ ms.author: sethm
 
 每個 POS 終端機會將訊息傳送至 **DataCollectionQueue**，以回報其銷售資料。 這些訊息會保留在此佇列中，直到庫存管理系統擷取為止。 此模式通常稱為「非同步傳訊」，因為 POS 終端機不需要等候庫存管理系統的回覆，即可繼續處理。
 
-## <a name="why-queuing?"></a>為何使用佇列？
+## <a name="why-queuing"></a>為何使用佇列？
 在我們查看建立此應用程式所需的程式碼之前，請考慮在此案例中使用佇列的優點，而不是讓 POS 終端機直接 (同步) 和庫存管理系統通訊。
 
 ### <a name="temporal-decoupling"></a>暫時分離
@@ -51,13 +55,13 @@ ms.author: sethm
 您需要 Azure 帳戶，才能開始使用服務匯流排。 如果您沒有此帳戶，可以在[這裡](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF)註冊免費帳戶。
 
 ### <a name="create-a-namespace"></a>建立命名空間
-當您有訂用帳戶後，便可[建立新的命名空間](../service-bus/service-bus-create-namespace-portal.md)。 每個命名空間會作為一組服務匯流排實體的範圍容器。 請為所有服務匯流排帳戶的新命名空間指定唯一名稱。 
+當您有訂用帳戶後，便可[建立新的命名空間](service-bus-create-namespace-portal.md)。 每個命名空間會作為一組服務匯流排實體的範圍容器。 請為所有服務匯流排帳戶的新命名空間指定唯一名稱。 
 
 ### <a name="install-the-nuget-package"></a>安裝 NuGet 封裝
 若要使用服務匯流排命名空間，應用程式必須參考服務匯流排組件，也就是 Microsoft.ServiceBus.dll。 您可以在 Microsoft Azure SDK 中找到此組件，並可在 [Azure SDK 下載頁面](https://azure.microsoft.com/downloads/)中下載。 但要取得服務匯流排 API，並對應用程式進行設定，以使用所有服務匯流排相依性的最簡單方法，便是使用[服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)。
 
 ### <a name="create-the-queue"></a>建立佇列
-服務匯流排傳訊實體的管理作業 (佇列和發佈/訂閱主題) 是透過 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別來執行。 服務匯流排會使用以[共用存取簽章 (SAS)](../service-bus/service-bus-sas-overview.md) 為基礎的安全性模型。 [TokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.aspx) 類別代表安全性權杖提供者，其具有內建 Factory 方法，可傳回部分已知的權杖提供者。 我們將使用 [CreateSharedAccessSignatureTokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.createsharedaccesssignaturetokenprovider.aspx) 方法來保存 SAS 認證。 接著使用服務匯流排命名空間和權杖提供者的基底位址建構 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 執行個體。
+服務匯流排傳訊實體的管理作業 (佇列和發佈/訂閱主題) 是透過 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別來執行。 服務匯流排會使用以[共用存取簽章 (SAS)](service-bus-sas-overview.md) 為基礎的安全性模型。 [TokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.aspx) 類別代表安全性權杖提供者，其具有內建 Factory 方法，可傳回部分已知的權杖提供者。 我們將使用 [CreateSharedAccessSignatureTokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.createsharedaccesssignaturetokenprovider.aspx) 方法來保存 SAS 認證。 接著使用服務匯流排命名空間和權杖提供者的基底位址建構 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 執行個體。
 
 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別提供用以建立、列舉及刪除傳訊實體的方法。 此處的程式碼會示範如何建立 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 執行個體，並用來建立 **DataCollectionQueue** 佇列。
 
@@ -145,6 +149,9 @@ catch (Exception e)
 ## <a name="next-steps"></a>後續步驟
 既然您了解佇列的基本概念，請參閱[建立使用服務匯流排主題和訂用帳戶的應用程式](service-bus-create-topics-subscriptions.md)，透過服務匯流排主題和訂用帳戶的發佈/訂閱功能，繼續進行本文的討論。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

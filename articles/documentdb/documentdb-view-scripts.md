@@ -1,34 +1,38 @@
 ---
-title: DocumentDB 指令碼總管，JavaScript 編輯器 | Microsoft Docs
-description: 了解 DocumentDB 指令碼總管，它是 Azure 入口網站工具，可讓您管理 DocumentDB 伺服器端程式設計成品 (包括預存程序、觸發程序和使用者定義的函式)。
-keywords: javascript 編輯器
+title: "DocumentDB 指令碼總管，JavaScript 編輯器 | Microsoft Docs"
+description: "了解 DocumentDB 指令碼總管，它是 Azure 入口網站工具，可讓您管理 DocumentDB 伺服器端程式設計成品 (包括預存程序、觸發程序和使用者定義的函式)。"
+keywords: "javascript 編輯器"
 services: documentdb
-author: AndrewHoh
+author: kirillg
 manager: jhubbard
 editor: monicar
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 9d0620da-2449-4c17-82a4-24aaa46e9b3e
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
-ms.author: anhoh
+ms.author: kirillg
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 70d08de5e7ba775578ea1765ea1c0dda9b04e427
+
 
 ---
-# 使用 DocumentDB 指令碼總管建立和執行預存程序、觸發程序和使用者定義函式
-本文提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 指令碼總管的概述，它是 Azure 入口網站中的 JavaScript 編輯器，可讓您檢視並執行 DocumentDB 伺服器端程式設計成品 (包括預存程序、觸發程序和使用者定義的函式)。請閱讀[預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中更多有關 DocumentDB 伺服器端程式設計的資訊。
+# <a name="create-and-run-stored-procedures-triggers-and-user-defined-functions-using-the-documentdb-script-explorer"></a>使用 DocumentDB 指令碼總管建立和執行預存程序、觸發程序和使用者定義函式
+本文提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 指令碼總管的概述，它是 Azure 入口網站中的 JavaScript 編輯器，可讓您檢視並執行 DocumentDB 伺服器端程式設計成品 (包括預存程序、觸發程序和使用者定義的函式)。 請閱讀 [預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中更多有關 DocumentDB 伺服器端程式設計的資訊。
 
-## 啟動指令碼總管
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)]。如果看不到 [DocumentDB 帳戶]，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
-2. 在資源功能表中，按一下 [指令碼總管]。
+## <a name="launch-script-explorer"></a>啟動指令碼總管
+1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)] 。 如果看不到 **DocumentDB 帳戶**，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
+2. 在資源功能表中，按一下 [指令碼總管] 。
    
     ![[指令碼總管] 命令的螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorercommand.png)
    
-    [資料庫] 和 [集合] 下拉式清單方塊會根據您要啟動 [指令碼總管] 的內容預先填入。例如，如果您要從資料庫刀鋒視窗啟動，則系統會預先填入目前資料庫。如果您要從集合刀鋒視窗啟動，則系統會預先填入目前集合。
-3. 使用 [資料庫] 和 [集合] 下拉式清單方塊，輕鬆地變更目前正在檢視文件的集合，而無需關閉並重新啟動 [指令碼總管]。
-4. [指令碼總管] 還支援根據 id 屬性篩選目前載入的指令碼集。只需在篩選方塊中輸入，即會根據您提供的準則篩選 [指令碼總管] 清單中的結果。
+    [資料庫] 和 [集合] 下拉式清單方塊會根據您要啟動 [指令碼總管] 的內容預先填入。  例如，如果您要從資料庫刀鋒視窗啟動，則系統會預先填入目前資料庫。  如果您要從集合刀鋒視窗啟動，則系統會預先填入目前集合。
+3. 使用 [資料庫] 和 [集合] 下拉式清單方塊，輕鬆地變更目前正在檢視文件的集合，而無需關閉並重新啟動 [指令碼總管]。  
+4. [指令碼總管] 還支援根據 id 屬性篩選目前載入的指令碼集。  只需在篩選方塊中輸入，即會根據您提供的準則篩選 [指令碼總管] 清單中的結果。
    
     ![[指令碼總管] 的螢幕擷取畫面和篩選結果](./media/documentdb-view-scripts/scriptexplorerfilterresults.png)
 
@@ -38,8 +42,8 @@ ms.author: anhoh
    
     ![[指令碼總管] 重新整理命令螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorerrefresh.png)
 
-## 建立、監視及編輯預存程序、觸發程序和使用者定義的函式
-[指令碼總管] 可讓您輕鬆地在 DocumentDB 伺服器端程式設計成品上執行 CRUD 作業。
+## <a name="create-view-and-edit-stored-procedures-triggers-and-user-defined-functions"></a>建立、監視及編輯預存程序、觸發程序和使用者定義的函式
+[指令碼總管] 可讓您輕鬆地在 DocumentDB 伺服器端程式設計成品上執行 CRUD 作業。  
 
 * 若要建立指令碼，只要在 [指令碼總管] 內按一下適用的建立命令、提供識別碼、輸入指令碼的內容，然後按一下 [儲存] 即可。
   
@@ -53,7 +57,7 @@ ms.author: anhoh
 * 若要編輯指令碼，只要在 JavaScript 編輯器中進行所需的變更，然後按一下 [儲存] 即可。
   
     ![[指令碼總管] 檢視指令碼體驗螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorereditscript.png)
-* 若要捨棄任何指令碼的暫止變更，只要按一下 [捨棄] 命令即可。
+* 若要捨棄任何指令碼的暫止變更，只要按一下 [捨棄]  命令即可。
   
     ![[指令碼總管] 捨棄變更體驗螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorerdiscardchanges.png)
 * [指令碼總管] 還可讓您輕鬆地檢視目前已載入指令碼的系統屬性，您只需按一下 **[屬性]** 命令即可。
@@ -61,25 +65,25 @@ ms.author: anhoh
     ![[指令碼總管] 指令碼屬性檢視螢幕擷取畫面](./media/documentdb-view-scripts/scriptproperties.png)
   
   > [!NOTE]
-  > 時間戳記 (\_ts) 屬性在內部會以 Epoch 時間表示，但是 [指令碼總管] 會以一般人可判讀的 GMT 格式顯示此值。
+  > 時間戳記 (_ts) 屬性在內部會以 Epoch 時間表示，但是 [指令碼總管] 會以一般人可判讀的 GMT 格式顯示此值。
   > 
   > 
-* 若要刪除指令碼，請在 [指令碼總管] 中選取，然後按一下 [刪除] 命令。
+* 若要刪除指令碼，請在 [指令碼總管] 中選取，然後按一下 [刪除]  命令。
   
     ![[指令碼總管] 刪除命令螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorerdeletescript1.png)
 * 按一下 [是] 以確認刪除動作，或按一下 [否] 以取消刪除動作。
   
     ![[指令碼總管] 刪除命令螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorerdeletescript2.png)
 
-## 執行預存程序
+## <a name="execute-a-stored-procedure"></a>執行預存程序
 > [!WARNING]
-> 伺服器端分割集合尚未支援在 [指令碼總管] 中執行預存程序。如需詳細資訊，請造訪 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
+> 伺服器端分割集合尚未支援在 [指令碼總管] 中執行預存程序。 如需詳細資訊，請造訪 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
 > 
 > 
 
 [指令碼總管] 可讓您從 Azure 入口網站執行伺服器端預存程序。
 
-* 開啟新建立的預存程序刀鋒視窗時，就已經提供了預設的指令碼 (prefix)。若要執行 prefix 指令碼或您自己的指令碼，請加入 id 和 inputs。如果是接受多個參數的預存程序，所有的輸入都必須位於陣列內 (例如 ["foo", "bar"])。
+* 開啟新建立的預存程序刀鋒視窗時，就已經提供了預設的指令碼 (prefix)。 若要執行 *prefix* 指令碼或您自己的指令碼，請新增 *id* 和 *inputs*。 如果是接受多個參數的預存程序，所有的輸入都必須位於陣列內 (例如 ["foo", "bar"] )。
   
     ![[指令碼總管預存程序] 刀鋒視窗的螢幕擷取畫面，可加入輸入並執行預存程序](./media/documentdb-view-scripts/documentdb-execute-a-stored-procedure-input.png)
 * 若要執行預存程序，只要在指令碼編輯器窗格內按一下 [儲存並執行] 命令即可。
@@ -91,16 +95,21 @@ ms.author: anhoh
 * 成功的預存程序執行必須具備 [已成功儲存並執行預存程序] 狀態，並且會將傳回的結果填入 [結果] 窗格中。
   
     ![[指令碼總管預存程序] 刀鋒視窗的螢幕擷取畫面，可執行預存程序](./media/documentdb-view-scripts/documentdb-execute-a-stored-procedure.png)
-* 如果執行時發生錯誤，即會將錯誤填入 [結果] 窗格中。
+* 如果執行時發生錯誤，即會將錯誤填入 [結果]  窗格中。
   
-    ![[指令碼總管] 指令碼屬性檢視的螢幕擷取畫面執行預存程序時產生錯誤](./media/documentdb-view-scripts/documentdb-execute-a-stored-procedure-error.png)
+    ![[指令碼總管] 指令碼屬性檢視的螢幕擷取畫面 執行預存程序時產生錯誤](./media/documentdb-view-scripts/documentdb-execute-a-stored-procedure-error.png)
 
-## 使用入口網站外部的指令碼
-Azure 入口網站中的 [指令碼總管] 只是在 DocumentDB 中使用預存程序、觸發程序和 使用者定義函式的一種方式。您也可以使用 REST API 或[用戶端 SDK](documentdb-sdk-dotnet.md) 處理指令碼。REST API 文件包含處理[使用 REST 的預存程序](https://msdn.microsoft.com/library/azure/mt489092.aspx)、[使用 REST 的使用者函式](https://msdn.microsoft.com/library/azure/dn781481.aspx)及[使用 REST 的觸發程序](https://msdn.microsoft.com/library/azure/mt489116.aspx)的範例。範例也可用來顯示如何[使用 C# 處理指令碼](documentdb-dotnet-samples.md#server-side-programming-examples)和[使用 Node.js 處理指令碼](documentdb-nodejs-samples.md#server-side-programming-examples)。
+## <a name="work-with-scripts-outside-the-portal"></a>使用入口網站外部的指令碼
+Azure 入口網站中的 [指令碼總管] 只是在 DocumentDB 中使用預存程序、觸發程序和 使用者定義函式的一種方式。 您也可以使用 REST API 或 [用戶端 SDK](documentdb-sdk-dotnet.md)處理指令碼。 REST API 文件包含處理[使用 REST 的預存程序](https://msdn.microsoft.com/library/azure/mt489092.aspx)、[使用 REST 的使用者函式](https://msdn.microsoft.com/library/azure/dn781481.aspx)及[使用 REST 的觸發程序](https://msdn.microsoft.com/library/azure/mt489116.aspx)的範例。 範例也可用來顯示如何[使用 C# 處理指令碼](documentdb-dotnet-samples.md#server-side-programming-examples)和[使用 Node.js 處理指令碼](documentdb-nodejs-samples.md#server-side-programming-examples)。
 
-## 後續步驟
-深入了解[預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中有關 DocumentDB 伺服器端程式設計的資訊。
+## <a name="next-steps"></a>後續步驟
+深入了解 [預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中有關 DocumentDB 伺服器端程式設計的資訊。
 
-[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)也是很實用的資源，可引導您深入了解 DocumentDB。
+[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/) 也是很實用的資源，可引導您深入了解 DocumentDB。  
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+
