@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect：自動升級 | Microsoft Docs
-description: 本主題說明 Azure AD Connect 同步處理中內建的自動升級功能。
+title: "Azure AD Connect：自動升級 | Microsoft Docs"
+description: "本主題說明 Azure AD Connect 同步處理中內建的自動升級功能。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: AndKjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 6b395e8f-fa3c-4e55-be54-392dd303c472
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/24/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: bcf0d318f747d359229d1dc8161a952ad3e8ff47
+
 
 ---
-# <a name="azure-ad-connect:-automatic-upgrade"></a>Azure AD Connect：自動升級
+# <a name="azure-ad-connect-automatic-upgrade"></a>Azure AD Connect：自動升級
 此功能是隨組建 1.1.105.0 (於 2016 年 2 月發行) 一起導入。
 
 ## <a name="overview"></a>Overview
@@ -89,13 +93,16 @@ ms.author: billmath
 | UpgradeNotSupportedMetaverseSizeExceeeded |Metaverse 中的物件超過 100,000 個。 |
 | UpgradeNotSupportedMultiForestSetup |您正連接到多個樹系。 快速安裝只會連接到一個樹系。 |
 | UpgradeNotSupportedNonLocalDbInstall |您不是使用 SQL Server Express LocalDB 資料庫。 |
-| UpgradeNotSupportedNonMsolAccount |[AD 連接器帳戶](active-directory-aadconnect-accounts-permissions.md#active-directory-account)已不再是預設的 MSOL_ 帳戶。 |
+| UpgradeNotSupportedNonMsolAccount |[AD 連接器帳戶](connect/active-directory-aadconnect-accounts-permissions.md#active-directory-account)已不再是預設的 MSOL_ 帳戶。 |
 | UpgradeNotSupportedStagingModeEnabled |伺服器設定為 [預備模式](active-directory-aadconnectsync-operations.md#staging-mode)。 |
 | UpgradeNotSupportedUserWritebackEnabled |您已啟用 [使用者回寫](active-directory-aadconnect-feature-preview.md#user-writeback) 功能。 |
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 通知使用者從感應器或其他系統接收到的資料 | Microsoft Docs
-description: 說明如何使用事件中樞通知使用者有感應器資料。
+title: "通知使用者從感應器或其他系統接收到的資料 | Microsoft Docs"
+description: "說明如何使用事件中樞通知使用者有感應器資料。"
 services: event-hubs
 documentationcenter: na
 author: spyrossak
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: a4c0d679-2cac-4ac6-ad48-26cf9a6d8627
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2016
 ms.author: spyros;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8de8710d3de16c9b239af6c07c4f73e60e5a182b
+
 
 ---
 # <a name="notify-users-of-data-received-from-sensors-or-other-systems"></a>通知使用者從感應器或其他系統接收到的資料
@@ -25,7 +29,7 @@ ms.author: spyros;sethm
 
 ![][2]
 
-問題在於，如何在符合特定條件時獲得重要資訊，而不是抽出時間查看靜態報告。 如果您使用 [Azure 事件中樞][Azure 事件中樞]或 [Azure IoT 中樞][]，從裝置或企業應用程式 (例如 [Dynamics AX][Dynamics AX]) 接收資料，您可以透過數個選項來處理這些資料。 您可以在網站上檢視資料、您可以分析資料、您可以儲存資料，且您可以使用資料觸發命令，以執行某些動作。 若要這麼做，您可以使用功能強大的工具，例如 [Azure 網站][Azure 網站]、[SQL Azure][SQL Azure]、[HDInsight][HDInsight]、[Cortana Intelligence Suite][Cortana Intelligence Suite]、[IoT 套件][IoT 套件]、[Logic Apps][Logic Apps] 或 [Azure 通知中樞][Azure 通知中樞]。 但有時您只是想以最低的額外負荷將該資料傳送給其他人。 為了說明如何以些許程式碼進行此作業，我們提供了新的範例 [AppToNotifyUsers][AppToNotifyUsers]。 包含的選項為電子郵件 (SMTP)、SMS 和電話。
+問題在於，如何在符合特定條件時獲得重要資訊，而不是抽出時間查看靜態報告。 如果您使用 [Azure 事件中樞][Azure 事件中樞]或 [Azure IoT 中樞][Azure IoT 中心]，從裝置或企業應用程式 (例如 [Dynamics AX][Dynamics AX]) 接收資料，您可以透過數個選項來處理這些資料。 您可以在網站上檢視資料、您可以分析資料、您可以儲存資料，且您可以使用資料觸發命令，以執行某些動作。 若要這樣做，您可以使用功能強大的工具例如 [Azure 網站][Azure 網站]、[SQL Azure][SQL Azure]、[HDInsight][HDInsight]、[Cortana Intelligence Suite][Cortana Intelligence Suite], [IoT 套件][IoT 套件], [邏輯應用程式][Logic Apps]或 [Azure 通知中樞][Azure 通知中樞]。 但有時您只是想以最低的額外負荷將該資料傳送給其他人。 為了說明如何以些許程式碼進行此作業，我們提供了新的範例 [AppToNotifyUsers][AppToNotifyUsers]。 包含的選項為電子郵件 (SMTP)、SMS 和電話。
 
 ## <a name="application-structure"></a>應用程式結構
 應用程式以 C# 撰寫，範例中的 Readme 檔案則包含您要修改、建置及發佈應用程式所需的所有資訊。 下列各節提供應用程式之用途的高階概觀。
@@ -78,6 +82,7 @@ ms.author: spyros;sethm
 [2]: ./media/event-hubs-sensors-notify-users/event-hubs-erp-alert.png
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

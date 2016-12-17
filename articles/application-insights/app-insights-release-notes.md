@@ -1,11 +1,11 @@
 ---
-title: Application Insights 的版本資訊
-description: 最新的更新。
+title: "Application Insights 的版本資訊"
+description: "最新的更新。"
 services: application-insights
-documentationcenter: ''
+documentationcenter: 
 author: alancameronwills
 manager: douge
-
+ms.assetid: 9cd2ecdb-c2b9-4e4a-b6aa-beb0c2ca4ffc
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
@@ -13,9 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/28/2016
 ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1add923868a3d187401d33f6d4e38cbf028f92dc
+
 
 ---
-# SDK 版本資訊 - Application Insights
+# <a name="sdk-release-notes---application-insights"></a>SDK 版本資訊 - Application Insights
 以下是 SDK 的詳細版本資訊與更新指示：
 
 * [ASP.NET Web Server SDK](https://github.com/Microsoft/ApplicationInsights-server-dotnet/releases)
@@ -31,6 +35,11 @@ ms.author: awills
 * [Visual Studio 工具](app-insights-release-notes-vsix.md)
 * [其他平台](https://github.com/Microsoft/ApplicationInsights-Home)
 
-另請閱讀[服務更新](https://azure.microsoft.com/updates/?service=application-insights)，其總結了 Application Insights 服務整體的主要改進。
+另請閱讀 [服務更新](https://azure.microsoft.com/updates/?service=application-insights) ，其總結了 Application Insights 服務整體的主要改進。
 
-<!---HONumber=AcomDC_0224_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

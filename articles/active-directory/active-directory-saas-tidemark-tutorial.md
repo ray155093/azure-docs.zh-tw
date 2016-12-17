@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Tidemark 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Tidemark 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Tidemark 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Tidemark 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 5cf80d4e-6e8b-48ec-81c8-27872af5e5d5
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 6436ad4fb14728457bb80cc79dad4b35985b6676
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-tidemark"></a>教學課程：Azure Active Directory 與 Tidemark 整合
+# <a name="tutorial-azure-active-directory-integration-with-tidemark"></a>教學課程：Azure Active Directory 與 Tidemark 整合
 本教學課程旨在說明如何整合 Tidemark 與 Azure Active Directory (Azure AD)。
 
 Tidemark 與 Azure AD 整合提供下列優點：
@@ -149,7 +153,7 @@ Tidemark 與 Azure AD 整合提供下列優點：
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-tidemark-tutorial/create_aaduser_06.png) 
@@ -172,7 +176,7 @@ Tidemark 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-tidemark-test-user"></a>建立 Tidemark 測試使用者
 本節的目標是在 Tidemark 中建立名為 Britta Simon 的使用者。 請與 Tidemark 支援小組合作，在 Tidemark 帳戶中新增使用者。 
@@ -232,6 +236,6 @@ Tidemark 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

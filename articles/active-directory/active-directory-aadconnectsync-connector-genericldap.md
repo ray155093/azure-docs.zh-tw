@@ -1,12 +1,12 @@
 ---
-title: 一般 LDAP 連接器 | Microsoft Docs
-description: 本文說明如何設定 Microsoft 的一般 LDAP 連接器。
+title: "一般 LDAP 連接器 | Microsoft Docs"
+description: "本文說明如何設定 Microsoft 的一般 LDAP 連接器。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: AndKjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 984beeb0-4d91-4908-ad81-c19797c4891b
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 783952ef1a19d18c3dd5d25c9ccf25cf3b29af45
+
 
 ---
 # <a name="generic-ldap-connector-technical-reference"></a>一般 LDAP 連接器技術參考
@@ -258,6 +262,9 @@ Open LDAP 中的差異浮水印是 UTC 日期/時間。 基於這個理由，FIM
 ## <a name="troubleshooting"></a>疑難排解
 * 如需如何啟用記錄來疑難排解連接器的資訊，請參閱 [如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

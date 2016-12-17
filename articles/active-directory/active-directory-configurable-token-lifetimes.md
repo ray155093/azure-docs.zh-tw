@@ -1,12 +1,12 @@
 ---
-title: Configurable Token Lifetimes in Azure Active Directory  | Microsoft Docs
-description: This feature is used by admins and developers to specify the lifetimes of tokens issued by Azure AD.
+title: "Azure Active Directory 中可設定的權杖存留期 | Microsoft Docs"
+description: "這項功能可供系統管理員和開發人員用來指定 Azure AD 所簽發之權杖的存留期。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 06f5b317-053e-44c3-aaaa-cf07d8692735
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,189 +14,193 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/06/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f61d23fec6badb8dd53379d183b177e4c19e5711
+
 
 ---
-# <a name="configurable-token-lifetimes-in-azure-active-directory-(public-preview)"></a>Configurable Token Lifetimes in Azure Active Directory (Public Preview)
+# <a name="configurable-token-lifetimes-in-azure-active-directory-public-preview"></a>Azure Active Directory 中可設定的權杖存留期 (公開預覽版)
 > [!NOTE]
-> This capability is currently in public preview.  You should be prepared to revert or remove any changes.  We are opening up this feature for everyone to try during the public preview, however, certain aspects may require an [Azure AD Premium subscription](active-directory-get-started-premium.md) once generally available.
+> 這項功能目前為公開預覽版。  您應做好將任何變更還原或移除的準備。  我們在公開預覽版期間開放這項功能供所有人測試，不過，一旦正式運作之後，可能需要 [Azure AD Premium 訂用帳戶](active-directory-get-started-premium.md)才能使用某些層面。
 > 
 > 
 
-## <a name="introduction"></a>Introduction
-This feature is used by admins and developers to specify the lifetimes of tokens issued by Azure AD. Token lifetimes can be configured for all apps in a tenant, for a multi-tenant application, or for a specific Service Principal in a tenant.
+## <a name="introduction"></a>簡介
+這項功能可供系統管理員和開發人員用來指定 Azure AD 所簽發之權杖的存留期。 不論是針對租用戶中所有的應用程式、針對多租用戶應用程式，還是針對租用戶中特定的「服務主體」，都可以設定權杖存留期。
 
-In Azure AD, a policy object represents a set of rules enforced on individual applications or all applications in a tenant.  Each type of policy has a unique structure with a set of properties that are then applied to objects to which they are assigned.
+在 Azure AD 中，原則專案代表在租用戶中個別應用程式或所有應用程式上強制執行的一組規則。  每個類型的原則都具有包含一組屬性的獨特結構，這些屬性會接著套用至它們已被指派的物件。
 
-A policy can be designated as the default for a tenant. This policy then takes effect on any application that resides within that tenant as long as it is not overridden by a policy with a higher priority. Policies can also be assigned to specific applications. The order of priority varies by policy type.
+您可以將原則指定為租用戶的預設原則。 接著，只要此原則不被優先順序更高的原則覆寫，就會對該租用戶內的所有應用程式生效。 您也可以將原則指派給特定的應用程式。 優先順序會因原則類型而異。
 
-Token lifetime policies can be configured for refresh tokens, access tokens, session tokens, and ID tokens.
+您可以針對重新整理權杖、存取權杖及識別碼權杖設定權杖存留期。
 
-### <a name="access-tokens"></a>Access tokens
-An access token is used by a client to access a protected resource. An access token can only be used for a specific combination of user, client, and resource. Access tokens cannot be revoked and are valid until their expiry. A malicious actor that has obtained an access token can use it for extent of its lifetime.  Adjusting access token lifetime is a trade-off between improving system performance and increasing the amount of time that the client retains access after the user’s account is disabled.  Improved system performance is achieved by reducing the number of times a client needs to acquire a fresh access token. 
+### <a name="access-tokens"></a>存取權杖
+存取權杖可供用戶端用來存取受保護的資源。 存取權杖僅可用於特定的使用者、用戶端及資源的組合。 存取權杖是不可撤銷的，在到期之前都會一直有效。 惡意執行者若已取得存取權杖，便可在權杖的存留期範圍內使用該權杖。  調整存取權杖存留期是在改進系統效能與增加用戶端在使用者帳戶停用後保留存取權的時間，這兩者之間所做的一項權衡取捨。  系統效能的改進是藉由減少用戶端需要取得新存取權杖的次數來達成。 
 
-### <a name="refresh-tokens"></a>Refresh tokens
-When a client acquires an access token to access a protected resource, it receives both a refresh token and an access token. The refresh token is used to obtain new access/refresh token pairs when the current access token expires. Refresh tokens are bound to combinations of user and client. They can be revoked and their validity is checked every time they are used.
+### <a name="refresh-tokens"></a>重新整理權杖
+當用戶端取得存取權杖來存取受保護的資源時，會同時收到重新整理權杖和存取權杖。 當存取權杖到期時，可以使用重新整理權杖來取得一組新的存取/重新整理權杖。 重新整理權杖會繫結至使用者與用戶端的組合。 這些權杖是可撤銷的，而每次使用這些權杖時，系統都會檢查其有效性。
 
-It is important to make a distinction between confidential and public clients. Confidential clients are applications that are able to securely store a client password, allowing them to prove that requests are coming from the client application and not a malicious actor. As these flows are more secure, the default lifetimes of refresh tokens issued to these flows are higher and cannot be changed using policy.
+區別機密用戶端與公開用戶端相當重要。 機密用戶端是能夠安全地儲存用戶端密碼的應用程式，它們能夠證明要求來自用戶端應用程式而不是惡意執行者。 因為這些流程較安全，所以簽發給這些流程的重新整理權杖預設存留期會較長，並且無法使用原則來變更。
 
-Due to limitations of the environment that the applications run in, public clients are unable to securely store a client password. Policies can be set on resources to prevent refresh tokens from public clients older than a specified period from obtaining a new access/refresh token pair (Refresh Token Max Inactive Time).  Additionally, policies can be used to set a period of time beyond which the refresh tokens are no longer accepted (Refresh Token Max Age).  Adjusting refresh token lifetime allows you to control when and how often the user is required to reenter credentials instead of being silently re-authenticated when using a public client application.
+由於受到應用程式執行環境的限制，因此公開用戶端無法安全地儲存用戶端密碼。 您可以在資源上設定原則，讓來自公開用戶端的重新整理權杖只要超過指定的期間 (重新整理權杖最大閒置時間)，便無法取得一組新的存取/重新整理權杖。  此外，原則也可用來設定可接受重新整理權杖的期間 (重新整理權杖最大壽命)。  調整重新整理權杖存留期將可讓您控制當使用者使用公開用戶端應用程式時，必須在何時及隔多久重新輸入一次認證，而不是以無訊息方式重新驗證。
 
-### <a name="id-tokens"></a>ID tokens
-ID tokens are passed to web sites and native clients and contain profile information about a user. An ID token is bound to a specific combination of user and client. ID tokens are considered valid until expiry.  Normally, a web application matches a user’s session lifetime in the application to the lifetime of the ID token issued for the user.  Adjusting ID token lifetime allows you to control how often the web application will expire the application session and require the user to be re-authenticated with Azure AD (either silently or interactively).
+### <a name="id-tokens"></a>ID 權杖
+識別碼權杖會傳遞給網站和原生用戶端，且權杖中包含了使用者的相關設定檔資訊。 識別碼權杖會繫結至特定的使用者與用戶端組合。 識別碼權杖在到期前都會被視為有效。  通常，Web 應用程式會將應用程式中的使用者工作階段存留期，與針對該使用者簽發之識別碼權杖的存留期做比對。  調整識別碼權杖存留期可讓您控制 Web 應用程式讓應用程式工作階段到期並要求使用者重新向 Azure AD 進行驗證 (以無訊息方式或以互動方式) 的頻率。
 
-### <a name="single-sign-on-session-token"></a>Single sign-on session token
-When a user authenticates with Azure AD, a single sign-on session is established with the user’s browser and Azure AD.  The Single Sign-On Session Token, in the form of a cookie, represents this session. It is important to note that the SSO session token is not bound to a specific resource/client application. SSO session tokens can be revoked and their validity is checked every time they are used.
+### <a name="single-sign-on-session-token"></a>單一登入工作階段權杖
+當使用者向 Azure AD 進行驗證並勾選 [讓我保持登入] 方塊時，系統會在使用者的瀏覽器和 Azure AD 建立單一登入工作階段。  「單一登入工作階段權杖」(採用 Cookie 的形式) 即代表此工作階段。 請特別注意，SSO 工作階段權杖不會繫結至特定的資源/用戶端應用程式。 SSO 工作階段權杖是可撤銷的，而每次使用這些權杖時，系統都會檢查其有效性。
 
-There are two kinds of SSO session tokens. Persistent session tokens are stored as persistent cookies by the browser and non-persistent session tokens are stored as session cookies (these are destroyed when the browser is closed).
+SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲存為持續性 Cookie，非持續性工作階段權杖則會儲存為工作階段 Cookie (這些 Cookie 會在瀏覽器關閉時銷毀)。
 
-Non-persistent session tokens have a lifetime of 24 hours whereas persistent tokens have a lifetime of 180 days. Any time the SSO session token is used within its validity period, the validity period is extended another 24 hours or 180 days. If the SSO session token is not used within its validity period, it is considered expired and will no longer be accepted. 
+非持續性工作階段權杖的存留期為 24 小時，持續性權杖的存留期則為 180 天。 只要在 SSO 工作階段權杖的有效期內使用此權杖，有效期就會再延長 24 小時或 180 天。 如果未在 SSO 工作階段權杖的有效期內使用此權杖，系統就會將其視為過期而不再接受它。 
 
-Policies can be used to set a period of time after the first session token was issued beyond which the session tokens are no longer accepted (Session Token Max Age).  Adjusting session token lifetime allows you to control when and how often the user is required to re-enter credentials instead of being silently authenticated when using a web application.
+您可以使用原則來設定簽發第一個工作階段權杖之後可接受工作階段權杖的期間 (工作階段權杖最大壽命)。  調整工作階段權杖存留期將可讓您控制當使用者使用 Web 應用程式時，必須在何時及隔多久重新輸入一次認證，而不是以無訊息方式重新驗證。
 
-### <a name="token-lifetime-policy-properties"></a>Token lifetime policy properties
-A token lifetime policy is a type of policy object that contains token lifetime rules.  The properties of the policy are used to control specified token lifetimes.  If no policy is set, the system enforces the default lifetime value.
+### <a name="token-lifetime-policy-properties"></a>權杖存留期原則屬性
+權杖存留期原則是一種包含權杖存留期規則的原則物件。  原則的屬性可用來控制指定的權杖存留期。  如果未設定任何原則，系統就會強制執行預設存留期值。
 
-### <a name="configurable-token-lifetime-properties"></a>Configurable token lifetime properties
-| Property | Policy property string | Affects | Default | Minimum | Maximum |
+### <a name="configurable-token-lifetime-properties"></a>可設定的權杖存留期屬性
+| 屬性 | 原則屬性字串 | 影響 | 預設值 | 最小值 | 最大值 |
 | --- | --- | --- | --- | --- | --- |
-| Access Token Lifetime |AccessTokenLifetime |Access tokens, ID tokens, SAML2 tokens |1 hour |10 minutes |1 day |
-| Refresh Token Max Inactive Time |MaxInactiveTime |Refresh tokens |14 days |10 minutes |90 days |
-| Single-Factor Refresh Token Max Age |MaxAgeSingleFactor |Refresh tokens (for any users) |90 days |10 minutes |Until-revoked* |
-| Multi-Factor Refresh Token Max Age |MaxAgeMultiFactor |Refresh tokens (for any users) |90 days |10 minutes |Until-revoked* |
-| Single-Factor Session Token Max Age |MaxAgeSessionSingleFactor** |Session tokens(persistent and non-persistent) |Until-revoked |10 minutes |Until-revoked* |
-| Multi-Factor Session Token Max Age |MaxAgeSessionMultiFactor*** |Session tokens (persistent and non-persistent) |Until-revoked |10 minutes |Until-revoked* |
+| 存取權杖存留期 |AccessTokenLifetime |存取權杖、識別碼權杖、SAML2 權杖 |1 小時 |10 分鐘 |1 天 |
+| 重新整理權杖最大閒置時間 |MaxInactiveTime |重新整理權杖 |14 天 |10 分鐘 |90 天 |
+| 單一要素重新整理權杖最大壽命 |MaxAgeSingleFactor |重新整理權杖 (適用於任何使用者) |90 天 |10 分鐘 |直到撤銷為止* |
+| 多重要素重新整理權杖最大壽命 |MaxAgeMultiFactor |重新整理權杖 (適用於任何使用者) |90 天 |10 分鐘 |直到撤銷為止* |
+| 單一要素工作階段權杖最大壽命 |MaxAgeSessionSingleFactor** |工作階段權杖 (持續性和非持續性) |直到撤銷為止 |10 分鐘 |直到撤銷為止* |
+| 多重要素工作階段權杖最大壽命 |MaxAgeSessionMultiFactor*** |工作階段權杖 (持續性和非持續性) |直到撤銷為止 |10 分鐘 |直到撤銷為止* |
 
-* *365 days is the maximum explicit length that can be set for these attributes.
-* **If MaxAgeSessionSingleFactor is not set then this value takes the MaxAgeSingleFactor value. If neither parameter is set, the property takes on the default value (Until-revoked).
-* ***If MaxAgeSessionMultiFactor is not set then this value takes the MaxAgeMultiFactor value. If neither parameter is set, the property takes on the default value (Until-revoked).
+* *針對這些屬性，可設定的明確時間長度上限為 365 天。
+* **如果未設定 MaxAgeSessionSingleFactor，則此值會採用 MaxAgeSingleFactor 值。 如果兩個參數都未設定，此屬性就會接受預設值 (即直到撤銷為止)。
+* **如果未設定 MaxAgeSessionMultiFactor，則此值會採用 MaxAgeMultiFactor 值。 如果兩個參數都未設定，此屬性就會接受預設值 (即直到撤銷為止)。
 
-### <a name="exceptions"></a>Exceptions
-| Property | Affects | Default |
+### <a name="exceptions"></a>例外狀況
+| 屬性 | 影響 | 預設值 |
 | --- | --- | --- |
-| Refresh Token Max Inactive Time (federated users with insufficient revocation information) |Refresh tokens (Issued for federated users with insufficient revocation information) |12 hours |
-| Refresh Token Max Inactive Time (Confidential Clients) |Refresh tokens (Issued for Confidential Clients) |90 days |
-| Refresh token Max Age (Issued for Confidential Clients) |Refresh tokens (Issued for Confidential Clients) |Until-revoked |
+| 重新整理權杖最大閒置時間 (沒有足夠撤銷資訊的同盟使用者) |重新整理權杖 (針對沒有足夠撤銷資訊的同盟使用者簽發) |12 小時 |
+| 重新整理權杖最大閒置時間 (機密用戶端) |重新整理權杖 (針對機密用戶端簽發) |90 天 |
+| 重新整理權杖最大壽命 (針對機密用戶端簽發) |重新整理權杖 (針對機密用戶端簽發) |直到撤銷為止 |
 
-### <a name="priority-and-evaluation-of-policies"></a>Priority and evaluation of policies
-Token Lifetime policies can be created and assigned to specific applications, tenants and service principals. This means that it is possible for multiple policies to apply to a specific application. The Token Lifetime policy that takes effect follows these rules:
+### <a name="priority-and-evaluation-of-policies"></a>原則的優先順序和評估
+您可以建立「權杖存留期」原則，並將其指派給特定的應用程式、租用戶及服務主體。 這意謂著可以將多個原則套用至某個特定的應用程式。 生效的「權杖存留期」原則會遵循下列規則：
 
-* If a policy is explicitly assigned to the service principal, it will be enforced. 
-* If no policy is explicitly assigned to the service principal, a policy explicitly assigned to the parent tenant of the service principal will be enforced. 
-* If no policy is explicitly assigned to the service principal or the tenant, the policy assigned to the application will be enforced. 
-* If no policy has been assigned to the service principal, the tenant, or the application object, the default values will be enforced (see table above).
+* 如果已將原則明確指派給服務主體，就會強制執行該原則。 
+* 如果未將任何原則明確指派給服務主體，則會強制執行指派給該服務主體之父租用戶的原則。 
+* 如果未將任何原則明確指派給服務主體或租用戶，則會強制執行指派給應用程式的原則。 
+* 如果未將任何原則明確指派給服務主體、租用戶或應用程式物件，將會強制執行預設值 (請參閱上表)。
 
-For more information on the relationship between application objects and service principal objects in Azure AD, see [Application and service principal objects in Azure Active Directory](active-directory-application-objects.md).
+如需有關 Azure AD 中應用程式物件與服務主體物件之間關係的詳細資訊，請參閱 [Azure Active Directory 中的應用程式和服務主體物件](active-directory-application-objects.md)。
 
-A token’s validity is evaluated at the time it is used. The policy with the highest priority on the application that is being accessed takes effect.
+使用權杖時，系統便會評估權杖的有效性。 在所要存取之應用程式上優先順序最高的原則會生效。
 
 > [!NOTE]
-> Example
+> 範例
 > 
-> A user wants to access 2 web applications, A and B. 
+> 使用者想要存取 A 和 B 這兩個 Web 應用程式。 
 > 
-> * Both applications are in the same parent tenant. 
-> * Token lifetime policy 1 with a Session Token Max Age of 8 hours is set as the parent tenant’s default.
-> * Web application A is a regular use web application and isn’t linked to any policies. 
-> * Web application B is used for highly sensitive processes and its service principal is linked to token lifetime policy 2 with a Session Token Max Age of 30 minutes.
+> * 兩個應用程式都在相同的父租用戶中。 
+> * 「工作階段權杖最大壽命」為 8 小時的權杖存留期原則 1 已設定為父租用戶的預設值。
+> * Web 應用程式 A 是一個一般用途 Web 應用程式且未與任何原則連結。 
+> * Web 應用程式 B 用於高機密性程序，且其服務主體與「工作階段權杖最大壽命」為 30 分鐘的權杖存留期原則 2 連結。
 > 
-> At 12:00PM the user opens up a new browser session and tries to access web application A. the user is redirected to Azure AD and is asked to sign-in. This drops a cookie with a session token in the browser. The user is redirected back to web application A with an ID token that allows them to access the application.
+> 在下午 12:00，使用者開啟新的瀏覽器工作階段並嘗試存取 Web 應用程式 A。系統會將使用者重新導向到 Azure AD 並要求使用者登入。 這會在瀏覽器中留下一個帶有工作階段權杖的 Cookie。 系統會將使用者重新導向回 Web 應用程式 A，其中會提供一個可讓使用者存取該應用程式的識別碼權杖。
 > 
-> At 12:15PM, the user then tries to access web application B. The browser redirects to Azure AD which detects the session cookie. Web application B’s service principal is linked to a policy 1, but is also part of the parent tenant with default policy 2. Policy 2 takes effect since policies linked to service principals have a higher priority than tenant default policies. The session token was originally issued within the last 30 minutes so it is considered valid. The user is redirected back to web application B with an ID token granting them access.
+> 接著，在下午 12:15，使用者嘗試存取 Web 應用程式 B。瀏覽器會重新導向到 Azure AD 來偵測工作階段 Cookie。 Web 應用程式 B 的服務主體會與原則 2 連結，但同時也是帶有預設原則 1 之父租用戶的一部分。 原則 2 會生效，因為與服務主體連結之原則的優先順序高於租用戶預設原則。 工作階段權杖原先是在過去 30 分鐘內簽發的，因此被視為有效。 系統會將使用者重新導向回 Web 應用程式 B，其中會提供一個授與使用者存取權的識別碼權杖。
 > 
-> At 1:00PM the user tries navigating to web application A. The user is redirected to Azure AD. Web application A is not linked to any policies, but since it is in a tenant with default policy 1, this policy takes effect. The session cookie is detected that was originally issued within the last 8 hours and the user is silently redirected back to web application A with a new ID token without needing to authenticate.
+> 在下午 1:00，使用者嘗試瀏覽至 Web 應用程式 A。系統會將使用者重新導向到 Azure AD。 Web 應用程式 A 並未與任何原則連結，但由於它位於帶有預設原則 1 的租用戶中，因此這個原則會生效。 系統偵測到工作階段 Cookie 原先是在過去 8 小時內簽發的，因此會以無訊息方式將使用者重新導向回 Web 應用程式 A 並提供一個新的識別碼權杖，而不需重新進行驗證。
 > 
-> The user immediately tries to access web application B. The user is redirected to Azure AD. As before, policy 2 takes effect. As the token was issued longer than 30 minutes ago, the user is then prompted to re-enter their credentials, and a brand new session and ID token are issued. The user can then access web application B.
+> 使用者立即嘗試存取 Web 應用程式 B。系統會將使用者重新導向到 Azure AD。 如同之前，原則 2 會生效。 由於權杖是在超過 30 分鐘之前簽發的，因此系統會接著提示使用者重新輸入其認證，然後簽發全新的工作階段權杖和識別碼權杖。 接著，使用者便可存取 Web 應用程式 B。
 > 
 > 
 
-## <a name="configurable-policy-properties:-in-depth"></a>Configurable policy properties: In-Depth
-### <a name="access-token-lifetime"></a>Access token lifetime
-**String:** AccessTokenLifetime
+## <a name="configurable-policy-properties-in-depth"></a>可設定的原則屬性：深入探討
+### <a name="access-token-lifetime"></a>存取權杖存留期
+**字串：**AccessTokenLifetime
 
-**Affects:** Access tokens, ID tokens
+**影像：**存取權杖、識別碼權杖
 
-**Summary:** This policy controls how long access and ID tokens for this resource are considered valid. Reducing the access token lifetime mitigates the risk of an access or ID token being used by a malicious actor for an extended period of time (as they cannot be revoked) but also adversely impacts performance as the tokens will have to be replaced more often.
+**摘要：**此原則可控制將此資源的存取權杖和識別碼權杖視為有效的期限。 縮短存取權杖存留期可降低惡意執行者持續一段長時間使用存取權杖或識別碼權杖的風險 (因為這些權杖無法被撤銷)，但同時也會為效能帶來負面影響，因為使用者將必須更頻繁地更換權杖。
 
-### <a name="refresh-token-max-inactive-time"></a>Refresh token max inactive time
-**String:** MaxInactiveTime
+### <a name="refresh-token-max-inactive-time"></a>重新整理權杖最大閒置時間
+**字串︰**MaxInactiveTime
 
-**Affects:** Refresh tokens
+**影響：**重新整理權杖
 
-**Summary:** This policy controls how old a refresh token can be before a client can no longer use it to retrieve a new access/refresh token pair when attempting to access this resource. Since a new Refresh token is usually returned a refresh token is used, the client must not have reached out to any resource using the current refresh token for the specified period of time before this policy would prevent access. 
+**摘要：**此原則可控制在簽發重新整理權杖多久之後，用戶端才不能在嘗試存取此資源時，再使用該權杖來擷取一組新的存取權杖/重新整理權杖。 由於使用重新整理權杖時通常會傳回一個新的重新整理權杖，因此用戶端不得在指定的期間內，於此原則會防止存取之前，就使用目前的重新整理權杖來存取任何資源。 
 
-This policy will force users who have not been active on their client to re-authenticate to retrieve a new refresh token. 
+此原則會強制尚未在其用戶端上變成作用中的使用者必須重新驗證，才能擷取新的重新整理權杖。 
 
-It is important to note that the Refresh Token Max Inactive Time must be set to a lower value than the Single-Factor Token Max Age and the Multi-Factor Refresh Token Max Age.
+請務必注意，「重新整理權杖最大閒置時間」必須設定成低於「單一要素權杖最大壽命」和「多重要素重新整理權杖最大壽命」的值。
 
-### <a name="single-factor-refresh-token-max-age"></a>Single-factor refresh token max age
-**String:** MaxAgeSingleFactor
+### <a name="single-factor-refresh-token-max-age"></a>單一要素重新整理權杖最大壽命
+**字串︰**MaxAgeSingleFactor
 
-**Affects:** Refresh tokens
+**影響：**重新整理權杖
 
-**Summary:** This policy controls how long a user can continue to use refresh tokens to get new access/refresh token pairs after the last time they authenticated successfully with only a single factor. Once a user authenticates and receives a new refresh token, they will be able to use the refresh token flow (as long as the current refresh token is not revoked and it is not left unused for longer than the inactive time) for the specified period of time. At that point, users will be forced to re-authenticate to receive a new refresh token. 
+**摘要︰**此原則可控制使用者在上次僅以單一要素成功驗證之後，可以持續多久繼續使用重新整理權杖來取得一組新的存取/重新整理權杖。 在使用者驗證並收到新的重新整理權杖之後，他們將能夠在指定的期間內使用重新整理權杖流程 (只要目前的重新整理權杖沒有被撤銷，且保持未使用狀態的時間未超過閒置時間即可)。 到那時，系統將會強制使用者必須重新驗證，才能收到新的重新整理權杖。 
 
-Reducing the max age will force users to authenticate more often. Since single-factor authentication is considered less secure than a multi-factor authentication, it is recommended that this policy is set to an equal or lesser value than the Multi-Factor Refresh Token Max Age Policy.
+縮短最大壽命將會強制使用者更頻繁地進行驗證。 由於單一要素驗證的安全性被視為比多重要素驗證低，因此建議將此原則設定為等於或小於「多重要素重新整理權杖最大壽命」原則的值。
 
-### <a name="multi-factor-refresh-token-max-age"></a>Multi-factor refresh token max age
-**String:** MaxAgeMultiFactor
+### <a name="multi-factor-refresh-token-max-age"></a>多重要素重新整理權杖最大壽命
+**字串︰**MaxAgeMultiFactor
 
-**Affects:** Refresh tokens
+**影響：**重新整理權杖
 
-**Summary:** This policy controls how long a user can continue to use refresh tokens to get new access/refresh token pairs after the last time they authenticated successfully with multiple factors. Once a user authenticates and receives a new refresh token, they will be able to use the refresh token flow (as long as the current refresh token is not revoked and it is not left unused for longer than the inactive time) for the specified period of time. At that point, users will be forced to re-authenticate to receive a new refresh token. 
+**摘要︰**此原則可控制使用者在上次以多重要素成功驗證之後，可以持續多久繼續使用重新整理權杖來取得一組新的存取/重新整理權杖。 在使用者驗證並收到新的重新整理權杖之後，他們將能夠在指定的期間內使用重新整理權杖流程 (只要目前的重新整理權杖沒有被撤銷，且保持未使用狀態的時間未超過閒置時間即可)。 到那時，系統將會強制使用者必須重新驗證，才能收到新的重新整理權杖。 
 
-Reducing the max age will force users to authenticate more often. Since single-factor authentication is considered less secure than a multi-factor authentication, it is recommended that this policy is set to an equal or greater value than the Single-Factor Refresh Token Max Age Policy.
+縮短最大壽命將會強制使用者更頻繁地進行驗證。 由於單一要素驗證的安全性被視為比多重要素驗證低，因此建議將此原則設定為等於或大於「單一要素重新整理權杖最大壽命」原則的值。
 
-### <a name="single-factor-session-token-max-age"></a>Single-factor session token max age
-**String:** MaxAgeSessionSingleFactor
+### <a name="single-factor-session-token-max-age"></a>單一要素工作階段權杖最大壽命
+**字串︰**MaxAgeSessionSingleFactor
 
-**Affects:** Session tokens (persistent and non-persistent)
+**影響：**工作階段權杖 (持續性和非持續性)
 
-**Summary:** This policy controls how long a user can continue to use session tokens to get new ID and session tokens after the last time they authenticated successfully with only a single factor. Once a user authenticates and receives a new session token, they will be able to use the session token flow (as long as the current session token is not revoked or expired) for the specified period of time. At that point, users will be forced to re-authenticate to receive a new session token. 
+**摘要︰**此原則可控制使用者在上次僅以單一要素成功驗證之後，可以持續多久繼續使用工作階段權杖來取得新的識別碼權杖和工作階段權杖。 在使用者驗證並收到新的工作階段權杖之後，他們將能夠在指定的期間內使用工作階段權杖流程 (只要目前的工作階段權杖沒有被撤銷或過期即可)。 到那時，系統將會強制使用者必須重新驗證，才能收到新的工作階段權杖。 
 
-Reducing the max age will force users to authenticate more often. Since single-factor authentication is considered less secure than a multi-factor authentication, it is recommended that this policy is set to an equal or lesser value than the Multi-Factor Session Token Max Age Policy.
+縮短最大壽命將會強制使用者更頻繁地進行驗證。 由於單一要素驗證的安全性被視為比多重要素驗證低，因此建議將此原則設定為等於或小於「多重要素工作階段權杖最大壽命」原則的值。
 
-### <a name="multi-factor-session-token-max-age"></a>Multi-factor session token max age
-**String:** MaxAgeSessionMultiFactor
+### <a name="multi-factor-session-token-max-age"></a>多重要素工作階段權杖最大壽命
+**字串︰**MaxAgeSessionMultiFactor
 
-**Affects:** Session tokens (persistent and non-persistent)
+**影響：**工作階段權杖 (持續性和非持續性)
 
-**Summary:** This policy controls how long a user can continue to use session tokens to get new ID and session tokens after the last time they authenticated successfully with multiple factors. Once a user authenticates and receives a new session token, they will be able to use the session token flow (as long as the current session token is not revoked or expired) for the specified period of time. At that point, users will be forced to re-authenticate to receive a new session token. 
+**摘要︰**此原則可控制使用者在上次以多重要素成功驗證之後，可以持續多久繼續使用工作階段權杖來取得新的識別碼權杖和工作階段權杖。 在使用者驗證並收到新的工作階段權杖之後，他們將能夠在指定的期間內使用工作階段權杖流程 (只要目前的工作階段權杖沒有被撤銷或過期即可)。 到那時，系統將會強制使用者必須重新驗證，才能收到新的工作階段權杖。 
 
-Reducing the max age will force users to authenticate more often. Since single-factor authentication is considered less secure than a multi-factor authentication, it is recommended that this policy is set to an equal or greater value than the Single-Factor Session Token Max Age Policy.
+縮短最大壽命將會強制使用者更頻繁地進行驗證。 由於單一要素驗證的安全性被視為比多重要素驗證低，因此建議將此原則設定為等於或大於「單一要素工作階段權杖最大壽命」原則的值。
 
-## <a name="sample-token-lifetime-policies"></a>Sample token lifetime policies
-Being able to create and manage token lifetimes for apps, service principals, and your overall tenant exposes all kinds of new scenarios possible in Azure AD.  We're going to walk through a few common policy scenarios that will help you impose new rules for:
+## <a name="sample-token-lifetime-policies"></a>範例權杖存留期原則
+能夠為應用程式、服務主體及您整體租用戶建立及管理權杖存留期，揭露了各種在 Azure AD 中可能的新案例。  我們將逐步解說一些常見的原則案例，這些案例將協助您強制實行下列各項的新規則：
 
-* Token Lifetimes
-* Token Max Inactive Times
-* Token Max Age
+* 權杖存留期
+* 權杖最大閒置時間
+* 權杖最大壽命
 
-We'll walk through a few scenarios including:
+我們將逐步解說一些案例，包括：
 
-* Managing a Tenant's Default Policy
-* Creating a Policy for Web Sign-in
-* Creating a Policy for Native Apps calling a Web API
-* Managing an Advanced Policy 
+* 管理租用戶的預設原則
+* 為 Web 登入建立原則
+* 為呼叫 Web API 的原生應用程式建立原則
+* 管理進階原則 
 
-### <a name="prerequisites"></a>Prerequisites
-In the sample scenarios we'll be creating, updating, linking, and deleting policies on apps, service principals, and your overall tenant.  If you are new to Azure AD, checkout [this article](active-directory-howto-tenant.md) to help you get started before proceeding with these samples.  
+### <a name="prerequisites"></a>必要條件
+在範例案例中，我們將在應用程式、服務主體及您的整體租用戶上建立、更新、連結及刪除原則。  如果您不熟悉 Azure AD，請先參閱[這篇文章](active-directory-howto-tenant.md)來協助您開始使用，然後再繼續進行這些範例。  
 
-1. To begin, download the latest [Azure AD PowerShell Cmdlet Preview](https://www.powershellgallery.com/packages/AzureADPreview). 
-2. Once you have the Azure AD PowerShell Cmdlets, run Connect command to sign into your Azure AD admin account. You'll need to do this whenever you start a new session.
+1. 若要開始，請下載最新的 [Azure AD PowerShell Cmdlet 預覽版](https://www.powershellgallery.com/packages/AzureADPreview)。 
+2. 有了 Azure AD PowerShell Cmdlet 之後，請執行 Connect 命令來登入您的 Azure AD 系統管理員帳戶。 每次您啟動新工作階段時，都必須執行此操作。
    
-       Connect-AzureAD -Confirm
-3. Run the following command to see all policies that have been created in your tenant.  This command should be used after most operations in the following scenarios.  It will also help you get the **Object ID** of your policies. 
+     Connect-AzureAD -Confirm
+3. 執行下列命令以查看已在您租用戶中建立的所有原則。  在下列案例中的大多數操作之後，都應該使用此命令。  它將協助您取得原則的「物件識別碼」。 
    
-       Get-AzureADPolicy
+     Get-AzureADPolicy
 
-### <a name="sample:-managing-a-tenant's-default-policy"></a>Sample: Managing a tenant's default policy
-In this sample, we will create a policy that allows your users to sign in less frequently across your entire tenant. 
+### <a name="sample-managing-a-tenants-default-policy"></a>範例：管理租用戶的預設原則
+在此範例中，我們將建立可讓使用者在您整個租用戶中降低登入頻率的原則。 
 
-To do this, we create a token lifetime policy for Single-Factor Refresh Tokens that is applied across your tenant. This policy will be applied to every application in your tenant, and each service principal that doesn’t already have a policy set to it. 
+為了這樣做，我們將為「單一要素重新整理權杖」建立一個在整個租用戶套用的權杖存留期原則。 此原則將套用至您租用戶中的每個應用程式，以及每個尚未設定原則的服務主體。 
 
-1. **Create a Token Lifetime Policy.** 
+1. **建立權杖存留期原則。** 
 
-Set the Single-Factor Refresh Token to "until-revoked" meaning it won't expire until access is revoked.  The policy definition below is what we will be creating:
+將「單一要素重新整理權杖」設定為「直到撤銷為止」，這意謂著必須等到存取權被撤銷之後，權杖才會失效。  以下的原則定義就是我們將建立的原則定義：
 
         @("{
           `"TokenLifetimePolicy`":
@@ -206,247 +210,250 @@ Set the Single-Factor Refresh Token to "until-revoked" meaning it won't expire u
               }
         }")
 
-Then run the following command to create this policy. 
+接著，執行下列命令來建立此原則。 
 
     New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1, `"MaxAgeSingleFactor`":`"until-revoked`"}}") -DisplayName TenantDefaultPolicyScenario -IsTenantDefault $true -Type TokenLifetimePolicy
 
-To see your new policy and get its ObjectID, run the following command.
+若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
     Get-AzureADPolicy
-&nbsp;&nbsp;2.  **Update the Policy**
+&nbsp;&nbsp;2.  **更新原則**
 
-You've decided that the first policy is not quite as strict as your service requires, and have decided you want your Single-Factor Refresh Tokens to expire in 2 days. Run the following command. 
+您已決定讓第一個原則不要像您服務所需的那樣嚴格，並已決定讓「單一要素重新整理權杖」在 2 天後到期。 執行下列命令。 
 
     Set-AzureADPolicy -ObjectId <ObjectID FROM GET COMMAND> -DisplayName TenantDefaultPolicyUpdatedScenario -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"2.00:00:00`"}}")
 
-&nbsp;&nbsp;3. **You're done!** 
+&nbsp;&nbsp;3.**大功告成！** 
 
-### <a name="sample:-creating-a-policy-for-web-sign-in"></a>Sample: Creating a policy for web sign-in
-In this sample, we will create a policy that will require your users to authenticate more frequently into your Web App. This policy will set the lifetime of the Access/Id Tokens and the Max Age of a Multi-Factor Session Token to the service principal of your web app.
+### <a name="sample-creating-a-policy-for-web-sign-in"></a>範例：為 Web 登入建立原則
+在此範例中，我們將建立會要求使用者提高驗證頻率來登入 Web 應用程式的原則。 此原則會為 Web 應用程式的服務主體設定「存取權杖」/「識別碼權杖」的存留期及「多重要素工作階段權杖」的「最大壽命」。
 
-1. **Create a Token Lifetime Policy.**
+1. **建立權杖存留期原則。**
 
-This policy for Web Sign-in will set the Access/Id Token lifetime and the Max Single-Factor Session Token Age to 2 hours.
+這個 Web 登入原則會將「存取權杖」/「識別碼權杖」的存留期及「單一要素工作階段權杖最大壽命」設定為 2 小時。
 
     New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"AccessTokenLifetime`":`"02:00:00`",`"MaxAgeSessionSingleFactor`":`"02:00:00`"}}") -DisplayName WebPolicyScenario -IsTenantDefault $false -Type TokenLifetimePolicy
 
-To see your new policy and get its ObjectID, run the following command.
+若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
     Get-AzureADPolicy
-&nbsp;&nbsp;2.  **Assign the policy to your service principal.**
+&nbsp;&nbsp;2.  **將原則指派給服務主體。**
 
-We're going to link this new policy with a service principal.  You'll also need a way to access the **ObjectId** of your service principal. You can query the [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) or go to our [Graph Explorer Tool](https://graphexplorer.cloudapp.net/) and sign into your Azure AD account to see all your tenant's service principals. 
+我們將把這個新原則與服務主體連結。  您也將需要一個可存取服務主體之 **ObjectId** 的方式。 您可以查詢 [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) 或移至我們的 [Graph Explorer 工具](https://graphexplorer.cloudapp.net/)並登入您的 Azure AD 帳戶，來查看您所有租用戶的服務主體。 
 
-Once you have the **ObjectId**, Run the following command.
+有了 **ObjectId** 之後，請執行下列命令。
 
     Add-AzureADServicePrincipalPolicy -ObjectId <ObjectID of the Service Principal> -RefObjectId <ObjectId of the Policy>
-&nbsp;&nbsp;3.  **You're Done!** 
+&nbsp;&nbsp;3.  **大功告成！** 
 
  
 
-### <a name="sample:-creating-a-policy-for-native-apps-calling-a-web-api"></a>Sample: Creating a policy for native apps calling a Web API
+### <a name="sample-creating-a-policy-for-native-apps-calling-a-web-api"></a>範例：為呼叫 Web API 的原生應用程式建立原則
 > [!NOTE]
-> Linking policies to applications is currently disabled.  We are working on enabling this shortly.  This page will be updated as soon as the feature is available.
+> 將原則連結至目前已停用的應用程式。  我們正努力在近期推出這項功能。  當有這項功能可用時，就會立即更新此頁面。
 > 
 > 
 
-In this sample, we will create a policy that requires users to authenticate less and will lengthen the amount of time they can be inactive without having to authenticate again. The policy will be applied to the Web API, that way when the Native App requests it as a resource this policy will be applied.
+在此範例中，我們將建立要求使用者降低驗證頻率的原則，而此原則將延長使用者可處於閒置狀態而不需再次驗證的時間。 此原則將套用至 Web API，如此一來，當原生應用程式要求它作為資源時，就會套用此原則。
 
-1. **Create a Token Lifetime Policy.** 
+1. **建立權杖存留期原則。** 
 
-This command will create a strict policy for a Web API. 
+此命令會為 Web API 建立一個嚴格的原則。 
 
     New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"30.00:00:00`",`"MaxAgeMultiFactor`":`"until-revoked`",`"MaxAgeSingleFactor`":`"180.00:00:00`"}}") -DisplayName WebApiDefaultPolicyScenario -IsTenantDefault $false -Type TokenLifetimePolicy
 
-To see your new policy and get its ObjectID, run the following command.
+若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
     Get-AzureADPolicy
 
-&nbsp;&nbsp;2.  **Assign the policy to your Web API**.
+&nbsp;&nbsp;2.  **將原則指派給 Web API**。
 
-We're going to link this new policy with an application.  You'll also need a way to access the **ObjectId** of your application. The best way to find your app's **ObjectId** is to use the [Azure Portal](https://portal.azure.com/). 
+我們將把這個新原則與應用程式連結。  您也將需要一個可存取應用程式之 **ObjectId** 的方式。 尋找您應用程式之 **ObjectId** 的最佳方式就是使用 [Azure 入口網站](https://portal.azure.com/)。 
 
-Once you have the **ObjectId**, Run the following command.
+有了 **ObjectId** 之後，請執行下列命令。
 
     Add-AzureADApplicationPolicy -ObjectId <ObjectID of the App> -RefObjectId <ObjectId of the Policy>
 
-&nbsp;&nbsp;3.  **You're Done!** 
+&nbsp;&nbsp;3.  **大功告成！** 
 
-### <a name="sample:-managing-an-advanced-policy"></a>Sample: Managing an advanced policy
-In this sample, we will create a few policies to demonstrate how the priority system works, and how you can manage multiple policies applied to several objects. This will give some insight into the priority of policies explained above, and will also help you manage more complicated scenarios. 
+### <a name="sample-managing-an-advanced-policy"></a>範例：管理進階原則
+在此範例中，我們將建立一些原則來示範優先順序系統如何運作，以及您如何管理套用至數個物件的多個原則。 這將針對上述原則的優先順序提供一些深入見解，並且還將協助您管理更複雜的案例。 
 
-1. **Create a Token Lifetime Policy**
+1. **建立權杖存留期原則**
 
-So far pretty simple. We've created a tenant default policy that sets the Single-Factor Refresh Token lifetime to 30 days. 
+到目前為止，很簡單。 我們已經建立一個將「單一要素重新整理權杖」存留期設定為 30 天的租用戶預設原則。 
 
     New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"30.00:00:00`"}}") -DisplayName ComplexPolicyScenario -IsTenantDefault $true -Type TokenLifetimePolicy
-To see your new policy and get it's ObjectID, run the following command.
+若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
     Get-AzureADPolicy
 
-&nbsp;&nbsp;2.  **Assign the Policy to a Service Principal**
+&nbsp;&nbsp;2.  **將原則指派給服務主體**
 
-Now we have a policy on the entire tenant.  Let's say we want to preserve this 30 day policy for a specific service principal, but change the tenant default policy to be the upper limit of "until-revoked". 
+現在，我們在整個租用戶上有一個原則。  假設我們想要針對特定的服務主體保留這個 30 天原則，但是將租用戶預設原則變更為上限「直到撤銷為止」。 
 
-First, We're going to link this new policy with our service principal.  You'll also need a way to access the **ObjectId** of your service principal. You can query the [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) or go to our [Graph Explorer Tool](https://graphexplorer.cloudapp.net/) and sign into your Azure AD account to see all your tenant's service principals. 
+首先，我們將把這個新原則與服務主體連結。  您也將需要一個可存取服務主體之 **ObjectId** 的方式。 您可以查詢 [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) 或移至我們的 [Graph Explorer 工具](https://graphexplorer.cloudapp.net/)並登入您的 Azure AD 帳戶，來查看您所有租用戶的服務主體。 
 
-Once you have the **ObjectId**, Run the following command.
+有了 **ObjectId** 之後，請執行下列命令。
 
     Add-AzureADServicePrincipalPolicy -ObjectId <ObjectID of the Service Principal> -RefObjectId <ObjectId of the Policy>
 
-&nbsp;&nbsp;3.  **Set the IsTenantDefault flag to false using the following command**. 
+&nbsp;&nbsp;3.  **使用下列命令將 IsTenantDefault 旗標設定為 flase**。 
 
     Set-AzureADPolicy -ObjectId <ObjectId of Policy> -DisplayName ComplexPolicyScenario -IsTenantDefault $false
-&nbsp;&nbsp;4.  **Create a new Tenant Default Policy**
+&nbsp;&nbsp;4.  **建立新的租用戶預設原則**
 
     New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"until-revoked`"}}") -DisplayName ComplexPolicyScenarioTwo -IsTenantDefault $true -Type TokenLifetimePolicy
 
-&nbsp;&nbsp;5.   **You're Done!** 
+&nbsp;&nbsp;5.   **大功告成！** 
 
-You now have the original policy linked to your service principal and the new policy set as your tenant default policy.  It's important to remember that policies applied to service principals have priority over tenant default policies. 
+現在，原始原則已連結至您的服務主體，且新原則已設定為您的租用戶預設原則。  請務必記住，套用至服務主體的原則優先順序會高於租用戶預設原則。 
 
-## <a name="cmdlet-reference"></a>Cmdlet Reference
-### <a name="manage-policies"></a>Manage policies
-The following cmdlets can be used to manage policies.</br></br>
+## <a name="cmdlet-reference"></a>Cmdlet 參考
+### <a name="manage-policies"></a>管理原則
+下列 Cmdlet 可用來管理原則。</br></br>
 
 #### <a name="new-azureadpolicy"></a>New-AzureADPolicy
-Creates a new policy.
+建立新的原則。
 
     New-AzureADPolicy -Definition <Array of Rules> -DisplayName <Name of Policy> -IsTenantDefault <boolean> -Type <Policy Type> 
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -Definition |The array of stringified JSON that contains all the rules of the policy. |-Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"20:00:00`"}}") |
-| -DisplayName |String of the policy name |-DisplayName MyTokenPolicy |
-| -IsTenantDefault |If true sets the policy as tenant's default policy, if false does nothing |-IsTenantDefault $true |
-| -Type |The type of policy, for token lifetimes always use "TokenLifetimePolicy" |-Type TokenLifetimePolicy |
-| -AlternativeIdentifier [Optional] |Sets an alternative id to the policy. |-AlternativeIdentifier myAltId |
+| -Definition |包含原則之所有規則的字串化 JSON 陣列。 |-Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"20:00:00`"}}") |
+| -DisplayName |原則名稱的字串 |-DisplayName MyTokenPolicy |
+| -IsTenantDefault |如果為 true，就會將原則設定為租用戶的預設原則，如果為 false，則不會執行任何動作 |-IsTenantDefault $true |
+| -Type |原則的類型，針對權杖存留期，請一律使用 "TokenLifetimePolicy" |-Type TokenLifetimePolicy |
+| -AlternativeIdentifier [選用] |設定原則的替代識別碼。 |-AlternativeIdentifier myAltId |
 
 </br></br>
 
 #### <a name="get-azureadpolicy"></a>Get-AzureADPolicy
-Gets all AzureAD Policies or specified policy 
+取得所有 AzureAD 原則或指定的原則 
 
     Get-AzureADPolicy 
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId [Optional] |The object Id of the Policy you would like to get. |-ObjectId &lt;ObjectID of Policy&gt; |
+| -ObjectId [選用] |您想要取得之原則的物件識別碼。 |-ObjectId &lt;原則的 ObjectID&gt; |
 
 </br></br>
 
 #### <a name="get-azureadpolicyappliedobject"></a>Get-AzureADPolicyAppliedObject
-Gets all apps and service principals linked to a policy
+取得與原則連結的所有應用程式和服務主體
 
     Get-AzureADPolicyAppliedObject -ObjectId <object id of policy> 
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Policy you would like to get. |-ObjectId &lt;ObjectID of Policy&gt; |
+| -ObjectId |您想要取得之原則的物件識別碼。 |-ObjectId &lt;原則的 ObjectID&gt; |
 
 </br></br>
 
 #### <a name="set-azureadpolicy"></a>Set-AzureADPolicy
-Updates an existing policy
+更新現有的原則
 
     Set-AzureADPolicy -ObjectId <object id of policy> -DisplayName <string> 
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Policy you would like to get. |-ObjectId &lt;ObjectID of Policy&gt; |
-| -DisplayName |String of the policy name |-DisplayName MyTokenPolicy |
-| -Definition [Optional] |The array of stringified JSON that contains all the rules of the policy. |-Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"20:00:00`"}}") |
-| -IsTenantDefault [Optional] |If true sets the policy as tenant's default policy, if false does nothing |-IsTenantDefault $true |
-| -Type [Optional] |The type of policy, for token lifetimes always use "TokenLifetimePolicy" |-Type TokenLifetimePolicy |
-| -AlternativeIdentifier [Optional] |Sets an alternative id to the policy. |-AlternativeIdentifier myAltId |
+| -ObjectId |您想要取得之原則的物件識別碼。 |-ObjectId &lt;原則的 ObjectID&gt; |
+| -DisplayName |原則名稱的字串 |-DisplayName MyTokenPolicy |
+| -Definition [選用] |包含原則之所有規則的字串化 JSON 陣列。 |-Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"20:00:00`"}}") |
+| -IsTenantDefault [選用] |如果為 true，就會將原則設定為租用戶的預設原則，如果為 false，則不會執行任何動作 |-IsTenantDefault $true |
+| -Type [選用] |原則的類型，針對權杖存留期，請一律使用 "TokenLifetimePolicy" |-Type TokenLifetimePolicy |
+| -AlternativeIdentifier [選用] |設定原則的替代識別碼。 |-AlternativeIdentifier myAltId |
 
 </br></br>
 
 #### <a name="remove-azureadpolicy"></a>Remove-AzureADPolicy
-Deletes the specified policy
+刪除指定的原則
 
      Remove-AzureADPolicy -ObjectId <object id of policy>
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Policy you would like to get. |-ObjectId &lt;ObjectID of Policy&gt; |
+| -ObjectId |您想要取得之原則的物件識別碼。 |-ObjectId &lt;原則的 ObjectID&gt; |
 
 </br></br>
 
-### <a name="application-policies"></a>Application policies
-The following cmdlets can be used for application policies.</br></br>
+### <a name="application-policies"></a>應用程式原則
+下列 Cmdlet 可用於應用程式原則。</br></br>
 
 #### <a name="add-azureadapplicationpolicy"></a>Add-AzureADApplicationPolicy
-Links the specified policy to an application
+將指定的原則連結至應用程式
 
     Add-AzureADApplicationPolicy -ObjectId <object id of application> -RefObjectId <object id of policy>
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Application. |-ObjectId &lt;ObjectID of Application&gt; |
-| -RefObjectId |The object Id of the Policy. |-RefObjectId &lt;ObjectID of Policy&gt; |
+| -ObjectId |應用程式的物件識別碼。 |-ObjectId &lt;應用程式的 ObjectID&gt; |
+| -RefObjectId |原則的物件識別碼。 |-RefObjectId &lt;原則的 ObjectID&gt; |
 
 </br></br>
 
 #### <a name="get-azureadapplicationpolicy"></a>Get-AzureADApplicationPolicy
-Gets the policy assigned to an application
+取得指派給應用程式的原則
 
     Get-AzureADApplicationPolicy -ObjectId <object id of application>
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Application. |-ObjectId &lt;ObjectID of Application&gt; |
+| -ObjectId |應用程式的物件識別碼。 |-ObjectId &lt;應用程式的 ObjectID&gt; |
 
 </br></br>
 
 #### <a name="remove-azureadapplicationpolicy"></a>Remove-AzureADApplicationPolicy
-Removes a policy from an application
+從應用程式移除原則
 
     Remove-AzureADApplicationPolicy -ObjectId <object id of application> -PolicyId <object id of policy>
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Application. |-ObjectId &lt;ObjectID of Application&gt; |
-| -PolicyId |The ObjectId of Policy. |-PolicyId &lt;ObjectID of Policy&gt; |
+| -ObjectId |應用程式的物件識別碼。 |-ObjectId &lt;應用程式的 ObjectID&gt; |
+| -PolicyId |原則的 ObjectId。 |-PolicyId &lt;原則的 ObjectID&gt; |
 
 </br></br>
 
-### <a name="service-principal-policies"></a>Service principal policies
-The following cmdlets can be used for service principal policies.</br></br>
+### <a name="service-principal-policies"></a>服務主體原則
+下列 Cmdlet 可用於服務主體原則。</br></br>
 
 #### <a name="add-azureadserviceprincipalpolicy"></a>Add-AzureADServicePrincipalPolicy
-Links the specified policy to a service principal
+將指定的原則連結至服務主體
 
     Add-AzureADServicePrincipalPolicy -ObjectId <object id of service principal> -RefObjectId <object id of policy>
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Application. |-ObjectId &lt;ObjectID of Application&gt; |
-| -RefObjectId |The object Id of the Policy. |-RefObjectId &lt;ObjectID of Policy&gt; |
+| -ObjectId |應用程式的物件識別碼。 |-ObjectId &lt;應用程式的 ObjectID&gt; |
+| -RefObjectId |原則的物件識別碼。 |-RefObjectId &lt;原則的 ObjectID&gt; |
 
 </br></br>
 
 #### <a name="get-azureadserviceprincipalpolicy"></a>Get-AzureADServicePrincipalPolicy
-Gets any policy linked to the specified service principal
+取得與指定的服務主體連結的任何原則
 
     Get-AzureADServicePrincipalPolicy -ObjectId <object id of service principal>
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Application. |-ObjectId &lt;ObjectID of Application&gt; |
+| -ObjectId |應用程式的物件識別碼。 |-ObjectId &lt;應用程式的 ObjectID&gt; |
 
 </br></br>
 
 #### <a name="remove-azureadserviceprincipalpolicy"></a>Remove-AzureADServicePrincipalPolicy
-Removes the policy from specified service principal
+從指定的服務主體移除原則
 
     Remove-AzureADServicePrincipalPolicy -ObjectId <object id of service principal>  -PolicyId <object id of policy>
 
-| Parameters | Description | Example |
+| 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| -ObjectId |The object Id of the Application. |-ObjectId &lt;ObjectID of Application&gt; |
-| -PolicyId |The ObjectId of Policy. |-PolicyId &lt;ObjectID of Policy&gt; |
+| -ObjectId |應用程式的物件識別碼。 |-ObjectId &lt;應用程式的 ObjectID&gt; |
+| -PolicyId |原則的 ObjectId。 |-PolicyId &lt;原則的 ObjectID&gt; |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
