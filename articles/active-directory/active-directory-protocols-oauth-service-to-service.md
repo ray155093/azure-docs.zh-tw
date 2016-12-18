@@ -1,12 +1,12 @@
 ---
-title: 使用 OAuth2.0 的 Azure AD 服務對服務驗證 | Microsoft Docs
-description: 本文說明如何使用 HTTP 訊息，以利用 OAuth2.0 用戶端認證授與流程實作服務對服務驗證。
+title: "使用 OAuth2.0 進行 Azure AD 服務對服務驗證 | Microsoft Docs"
+description: "本文說明如何使用 HTTP 訊息，以利用 OAuth2.0 用戶端認證授與流程實作服務對服務驗證。"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: a7f939d9-532d-4b6d-b6d3-95520207965d
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: priyamo
+translationtype: Human Translation
+ms.sourcegitcommit: 87c73981c74fc763fd1aec6c283e934c77008441
+ms.openlocfilehash: 9d9ddbddb1039f56c420cb8f10dfa9bb82788b72
+
 
 ---
 # <a name="service-to-service-calls-using-client-credentials"></a>使用用戶端認證的服務對服務呼叫
@@ -30,7 +34,7 @@ OAuth 2.0 用戶端認證授與流程可允許 Web 服務 (「機密用戶端」
 4. 來自受保護資源的資料會傳回 Web 應用程式。
 
 ## <a name="register-the-services-in-azure-ad"></a>在 Azure AD 中註冊服務
-請在 Azure Active Directory (Azure AD) 中同時註冊呼叫端服務和接收端服務。 如需詳細指示，請參閱 [新增、更新和移除應用程式](active-directory-integrating-applications.md#BKMK_Native)
+請在 Azure Active Directory (Azure AD) 中同時註冊呼叫端服務和接收端服務。 如需詳細指示，請參閱[整合應用程式與 Azure Active Directory](active-directory-integrating-applications.md)。
 
 ## <a name="request-an-access-token"></a>要求存取權杖
 若要要求存取權杖，請對租用戶特定的 Azure AD 端點使用 HTTP POST。
@@ -87,6 +91,8 @@ grant_type=client_credentials&client_id=625bc9f6-3bf6-4b6d-94ba-e97cf07a22de&cli
 ## <a name="see-also"></a>另請參閱
 * [Azure AD 中的 OAuth 2.0](active-directory-protocols-oauth-code.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

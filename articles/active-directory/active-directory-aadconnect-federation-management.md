@@ -1,13 +1,13 @@
 ---
-title: 使用 Azure AD Connect 管理和自訂 Active Directory Federation Services | Microsoft Docs
-description: 使用 Azure AD Connect 進行 AD FS 管理，以及使用 Azure AD Connect 和 PowerShell 的使用者 AD FS 登入經驗的自訂。
-keywords: AD FS,ADFS,AD FS 管理, AAD Connect, 連線, 登入, AD FS 自訂, 修復信任, O365, 同盟, 信賴憑證者
+title: "使用 Azure AD Connect 管理和自訂 Active Directory Federation Services | Microsoft Docs"
+description: "使用 Azure AD Connect 進行 AD FS 管理，以及使用 Azure AD Connect 和 PowerShell 的使用者 AD FS 登入經驗的自訂。"
+keywords: "AD FS,ADFS,AD FS 管理, AAD Connect, 連線, 登入, AD FS 自訂, 修復信任, O365, 同盟, 信賴憑證者"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: anandyadavmsft
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 2593b6c6-dc3f-46ef-8e02-a8e2dc4e9fb9
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/31/2016
 ms.author: anandy
+translationtype: Human Translation
+ms.sourcegitcommit: 87c73981c74fc763fd1aec6c283e934c77008441
+ms.openlocfilehash: 6f305ca57e6133be6af684186a8c49d9915734fb
+
 
 ---
 # <a name="active-directory-federation-services-management-and-customization-with-azure-ad-connect"></a>使用 Azure AD Connect 管理和自訂 Active Directory Federation Services
@@ -44,26 +48,26 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
    ![連接至 Azure AD](media\\active-directory-aadconnect-federation-management\\RepairADTrust2.PNG)
 3. 在 [遠端存取認證]  頁面上，輸入網域系統管理員的認證。
    ![](media\\active-directory-aadconnect-federation-management\\RepairADTrust3.PNG)
-   
+
     在按 [下一步] 之後，Azure AD Connect 會檢查憑證健康情況並顯示任何問題。
-   
+
     ![憑證的狀態](media\\active-directory-aadconnect-federation-management\\RepairADTrust4.PNG)
-   
+
     [準備設定]  頁面會顯示為了修復信任，將執行的動作清單。
-   
+
     ![準備設定](media\\active-directory-aadconnect-federation-management\\RepairADTrust5.PNG)
 4. 按一下 [安裝]  以修復信任。
 
 > [!NOTE]
 > Azure AD Connect 只可以對自我簽署的憑證進行修復或採取動作。 Azure AD Connect 無法修復協力廠商憑證。
-> 
-> 
+>
+>
 
 ### <a name="add-an-ad-fs-server-a-nameaddadfsservera"></a>新增 AD FS 伺服器 <a name=addadfsserver></a>
 > [!NOTE]
 > Azure AD Connect 需要 PFX 憑證檔案，才能新增 AD FS 伺服器。 因此，只有當您使用 Azure AD Connect 來設定 AD FS 伺服器陣列時，才可以執行這項作業。
-> 
-> 
+>
+>
 
 1. 選取 [部署其他同盟伺服器]，然後按 [下一步]。
    ![其他同盟伺服器](media\\active-directory-aadconnect-federation-management\\AddNewADFSServer1.PNG)
@@ -73,20 +77,20 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
    ![網域系統管理員認證](media\\active-directory-aadconnect-federation-management\\AddNewADFSServer3.PNG)
 4. Azure AD Connect 會要求您提供您在使用 Azure AD Connect 設定您的新 AD FS 伺服器陣列時所提供的 PFX 檔案的密碼。 按一下 [輸入密碼]  以提供 PFX 檔案的密碼。
    ![憑證密碼](media\\active-directory-aadconnect-federation-management\\AddNewADFSServer4.PNG)
-   
+
     ![指定 SSL 憑證](media\\active-directory-aadconnect-federation-management\\AddNewADFSServer5.PNG)
 5. 在 [AD FS 伺服器]  頁面上，輸入要新增到 AD FS 伺服器陣列的伺服器名稱或 IP 位址。
    ![AD FS servers](media\\active-directory-aadconnect-federation-management\\AddNewADFSServer6.PNG)
 6. 按 [下一步]，並逐步進行到最終的 [設定] 頁面。 Azure AD Connect 完成將伺服器新增至 AD FS 伺服器陣列之後，將提供您選項來驗證連線。
    ![](media\\active-directory-aadconnect-federation-management\\AddNewADFSServer7.PNG)
-   
+
     ![安裝完成](media\\active-directory-aadconnect-federation-management\\AddNewADFSServer8.PNG)
 
 ### <a name="add-an-ad-fs-web-application-proxy-server-a-nameaddwapservera"></a>新增 AD FS Web 應用程式 Proxy 伺服器 <a name=addwapserver></a>
 > [!NOTE]
 > Azure AD Connect 需要 PFX 憑證檔案，才能新增 Web 應用程式 Proxy 伺服器。 因此，只有當您使用 Azure AD Connect 來設定 AD FS 伺服器陣列時，才可以執行這項作業。
-> 
-> 
+>
+>
 
 1. 從可用的工作清單中選取 [部署 Web 應用程式 Proxy]  。
    ![Deploy web application proxy](media\\active-directory-aadconnect-federation-management\\WapServer1.PNG)
@@ -94,7 +98,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
    ![連接至 Azure AD](media\\active-directory-aadconnect-federation-management\\wapserver2.PNG)
 3. 在 [指定 SSL 憑證]  頁面上，提供您在使用 Azure AD Connect 設定 AD FS 伺服器陣列時所提供之 PFX 檔案的密碼。
    ![憑證密碼](media\\active-directory-aadconnect-federation-management\\WapServer3.PNG)
-   
+
     ![指定 SSL 憑證](media\\active-directory-aadconnect-federation-management\\WapServer4.PNG)
 4. 新增要做為 Web 應用程式 Proxy 的伺服器。 因為 Web 應用程式 Proxy 伺服器可能不會加入網域，精靈會要求要新增之伺服器的系統管理認證。
    ![管理伺服器認證](media\\active-directory-aadconnect-federation-management\\WapServer5.PNG)
@@ -116,7 +120,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
    ![](media\\active-directory-aadconnect-federation-management\\additionaldomain3.PNG)
 4. 在下一個頁面上，精靈會提供 Azure AD 網域的清單，以供您用來同盟您的內部部署目錄。 從清單選擇網域。
    ![Azure AD 網域](media\\active-directory-aadconnect-federation-management\\AdditionalDomain4.PNG)
-   
+
     選擇網域之後，精靈會提供您關於精靈將採取的進一步動作和組態影響的適當資訊。 在某些情況下，如果您選取尚未在 Azure AD 中驗證的網域，精靈將提供資訊協助您驗證網域。 如需詳細資訊，請參閱 [將您的自訂網域名稱新增至 Azure Active Directory](active-directory-add-domain.md) 。
 5. 按 [下一步]，然後 [準備設定] 頁面就會顯示 Azure AD Connect 將會執行的動作清單。 按一下 [安裝]  以完成組態。
    ![](media\\active-directory-aadconnect-federation-management\\AdditionalDomain5.PNG)
@@ -129,17 +133,17 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
 
 > [!NOTE]
 > 建議的標誌尺寸為 260x35 @ 96 dpi，檔案大小不超過 10 KB。
-> 
-> 
+>
+>
 
     Set-AdfsWebTheme -TargetName default -Logo @{path="c:\Contoso\logo.PNG"}
 
 > [!NOTE]
 > *TargetName* 是必要參數。 隨著 AD FS 釋出的預設佈景主題為指定的預設值。
-> 
-> 
+>
+>
 
-### <a name="add-a-signin-description-a-nameaddsignindescriptiona"></a>新增登入說明 <a name=addsignindescription></a>
+### <a name="add-a-sign-in-description-a-nameaddsignindescriptiona"></a>新增登入說明 <a name=addsignindescription></a>
 若要在 [登入] 頁面中新增登入頁面描述，請使用下列 Windows PowerShell Cmdlet 和語法。
 
     Set-AdfsGlobalWebContent -SignInPageDescriptionText "<p>Sign-in to Contoso requires device registration. Click <A href='http://fs1.contoso.com/deviceregistration/'>here</A> for more information.</p>"
@@ -185,11 +189,11 @@ Azure AD Connect 可在將物件同步處理至 Azure AD 時，讓您指定要�
 
 > [!NOTE]
 > 這些規則的順序很重要。
-> 
-> 
+>
+>
 
 #### <a name="sso-with-a-subdomain-upn"></a>使用子網域 UPN 的 SSO
-您可以使用 Azure AD Connect 新增多個要同盟的網域，如 [新增新的同盟網域](active-directory-aadconnect-federation-management.md#add-a-new-federated-domain)所述。 您必須修改 UPN 宣告，讓簽發者識別碼對應至根網域，而不是子網域，因為同盟根網域也涵蓋子系。
+您可以使用 Azure AD Connect 新增多個要同盟的網域，如 [新增新的同盟網域](active-directory-aadconnect-federation-management.md#addfeddomain)所述。 您必須修改 UPN 宣告，讓簽發者識別碼對應至根網域，而不是子網域，因為同盟根網域也涵蓋子系。
 
 根據預設，簽發者識別碼的宣告規則會設定為︰
 
@@ -218,6 +222,8 @@ Azure AD Connect 可在將物件同步處理至 Azure AD 時，讓您指定要�
 ## <a name="next-steps"></a>後續步驟
 深入了解 [使用者登入選項](active-directory-aadconnect-user-signin.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

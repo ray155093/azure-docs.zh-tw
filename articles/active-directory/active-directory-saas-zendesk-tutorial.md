@@ -1,11 +1,11 @@
 ---
-title: 教學課程：Azure Active Directory 與 Zendesk 整合 | Microsoft Docs
-description: 了解如何使用 Zendesk 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 Zendesk 整合 | Microsoft Docs"
+description: "了解如何使用 Zendesk 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: 9d7c91e5-78f5-4016-862f-0f3242b00680
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/09/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a2e80047f251473d7d70fc3c5a362c279fdac82d
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-zendesk"></a>教學課程：Azure Active Directory 與 Zendesk 整合
+# <a name="tutorial-azure-active-directory-integration-with-zendesk"></a>教學課程：Azure Active Directory 與 Zendesk 整合
 本教學課程的目的是要示範 Azure 與 Zendesk 的整合。  
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -36,7 +40,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-zendesk"></a>啟用 Zendesk 的應用程式整合
 本節的目的是要說明如何啟用 Zendesk 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-zendesk,-perform-the-following-steps:"></a>若要啟用 Zendesk 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-zendesk-perform-the-following-steps"></a>若要啟用 Zendesk 的應用程式整合，請執行下列步驟：
 1. 在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-zendesk-tutorial/IC700993.png "Active Directory")
@@ -44,7 +48,7 @@ ms.author: jeedes
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
    ![應用程式](./media/active-directory-saas-zendesk-tutorial/IC700994.png "Applications")
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
    ![新增應用程式](./media/active-directory-saas-zendesk-tutorial/IC749321.png "Add application")
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -62,7 +66,7 @@ ms.author: jeedes
 設定 Zendesk 的單一登入需要您從憑證抓取憑證指紋值。  
 如果您不熟悉這個程序，請參閱 [如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
+### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure AD 入口網站的 **Zendesk** 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
    ![單一登入](./media/active-directory-saas-zendesk-tutorial/IC773086.png "Single sign-on")
@@ -105,7 +109,7 @@ ms.author: jeedes
 為了讓 Azure AD 使用者登入 **Zendesk**，他們必須佈建到 **Zendesk** 中。  
 **Zendesk**需以手動的方式佈建。
 
-### <a name="to-provision-a-user-account-to-zendesk,-perform-the-following-steps:"></a>若要佈建使用者帳戶到 Zendesk，請執行下列步驟：
+### <a name="to-provision-a-user-account-to-zendesk-perform-the-following-steps"></a>若要佈建使用者帳戶到 Zendesk，請執行下列步驟：
 1. 登入您的 **Zendesk** 租用戶。
 2. 選取 [客戶清單]  索引標籤。
 3. 選取 [使用者] 索引標籤，然後按一下 [新增]。
@@ -123,7 +127,7 @@ ms.author: jeedes
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-zendesk,-perform-the-following-steps:"></a>若要指派使用者給 Zendesk，請執行下列步驟：
+### <a name="to-assign-users-to-zendesk-perform-the-following-steps"></a>若要指派使用者給 Zendesk，請執行下列步驟：
 1. 在 Azure AD 入口網站中建立測試帳戶。
 2. 在 **Zendesk** 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -134,6 +138,9 @@ ms.author: jeedes
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure 自動化中的排程 | Microsoft Docs
-description: 自動化排程是用來排程讓 Azure 自動化中的 Runbook 自動啟動。 描述如何建立和管理排程，以便以特定時間或循環排程來自動啟動 Runbook。
+title: "Azure 自動化中的排程 | Microsoft Docs"
+description: "自動化排程是用來排程讓 Azure 自動化中的 Runbook 自動啟動。 描述如何建立和管理排程，以便以特定時間或循環排程來自動啟動 Runbook。"
 services: automation
-documentationcenter: ''
+documentationcenter: 
 author: MGoedtel
 manager: jwhit
 editor: tysonn
-
+ms.assetid: 1c2da639-ad20-4848-920b-88e471b2e1d9
 ms.service: automation
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: mgoedtel
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 26cbd468e6aa1613bd5f6c9944aedaafbd865a14
+
 
 ---
 # <a name="scheduling-a-runbook-in-azure-automation"></a>在 Azure 自動化中排程 Runbook
@@ -162,6 +166,9 @@ Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Ru
 ## <a name="next-steps"></a>後續步驟
 * 若要在 Azure 自動化中開始使用 Runbook，請參閱 [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md) 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

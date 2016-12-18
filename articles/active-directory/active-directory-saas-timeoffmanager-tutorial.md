@@ -1,11 +1,11 @@
 ---
-title: 教學課程：Azure Active Directory 與 TimeOffManager 整合 | Microsoft Docs
-description: 了解如何使用 TimeOffManager 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 TimeOffManager 整合 | Microsoft Docs"
+description: "了解如何使用 TimeOffManager 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: 3685912f-d5aa-4730-ab58-35a088fc1cc3
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ef606389a71e58b671fe84d91b0dbb22a35aad7a
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-timeoffmanager"></a>教學課程：Azure Active Directory 與 TimeOffManager 整合
+# <a name="tutorial-azure-active-directory-integration-with-timeoffmanager"></a>教學課程：Azure Active Directory 與 TimeOffManager 整合
 本教學課程的目的是要示範 Azure 與 TimeOffManager 的整合。  
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -36,7 +40,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-timeoffmanager"></a>啟用 TimeOffManager 的應用程式整合
 本節的目的是要說明如何啟用 TimeOffManager 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-timeoffmanager,-perform-the-following-steps:"></a>若要啟用 TimeOffManager 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-timeoffmanager-perform-the-following-steps"></a>若要啟用 TimeOffManager 的應用程式整合，請執行下列步驟：
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-timeoffmanager-tutorial/IC700993.png "Active Directory")
@@ -62,7 +66,7 @@ ms.author: jeedes
 在此程序中，您需要上傳 base-64 編碼憑證到您的 TimeOffManager 租用戶。  
 如果您不熟悉這個程序，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
+### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [TimeOffManager] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-timeoffmanager-tutorial/IC795912.png "Configure Single Sign-On")
@@ -127,7 +131,7 @@ ms.author: jeedes
    
    c.  在 [屬性值]  文字方塊中，選取該資料列所顯示的屬性值。
    
-   d.  按一下頁面底部的 [新增] ****。
+   d.  按一下頁面底部的 [新增] 。
 4. 按一下 [套用變更] 。
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
@@ -143,7 +147,7 @@ TimeOffManager 支援即時使用者佈建。 沒有您適用的動作項目。
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-timeoffmanager,-perform-the-following-steps:"></a>若要指派使用者給 TimeOffManager，請執行下列步驟：
+### <a name="to-assign-users-to-timeoffmanager-perform-the-following-steps"></a>若要指派使用者給 TimeOffManager，請執行下列步驟：
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [TimeOffManager] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -154,6 +158,9 @@ TimeOffManager 支援即時使用者佈建。 沒有您適用的動作項目。
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory Domain Services：部署案例 | Microsoft Docs
-description: Azure AD 網域服務的部署案例
+title: "Azure Active Directory Domain Services：部署案例 | Microsoft Docs"
+description: "Azure AD 網域服務的部署案例"
 services: active-directory-ds
-documentationcenter: ''
+documentationcenter: 
 author: mahesh-unnikrishnan
 manager: stevenpo
 editor: curtand
-
+ms.assetid: c5216ec9-4c4f-4b7e-830b-9d70cf176b20
 ms.service: active-directory-ds
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,12 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/21/2016
 ms.author: maheshu
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b76a5c7dfd640e0a398845b6c8f6b0b35574b4ac
+
 
 ---
 # <a name="deployment-scenarios-and-use-cases"></a>部署案例和使用案例
 在本節中，我們會看一些受益於 Azure Active Directory (AD) 網域服務的部署案例和使用案例。
 
-## <a name="secure,-easy-administration-of-azure-virtual-machines"></a>安全、輕鬆管理 Azure 虛擬機器
+## <a name="secure-easy-administration-of-azure-virtual-machines"></a>安全、輕鬆管理 Azure 虛擬機器
 您可以使用 Azure Active Directory 網域服務有效率地管理您的 Azure 虛擬機器。 Azure 虛擬機器可以加入至受管理的網域，如此一來，您便可以使用您公司的 AD 認證來登入。 這種方法有助於避免認證管理的麻煩，例如維護每個 Azure 虛擬機器上的本機系統管理員帳戶。
 
 已加入至受管理網域的伺服器虛擬機器也可以使用群組原則來管理和保護其安全。 您可以將所需的安全性基準套用到您的 Azure 虛擬機器，並依據公司的安全性指導方針加以鎖定。 例如，您可以使用群組原則管理功能，來限制在這些虛擬機器上可以啟動的應用程式類型。
@@ -79,6 +83,9 @@ Azure RemoteApp 可讓 Contoso 的系統管理員建立加入網域的集合。 
 
 如需此部署案例的詳細資訊，請參閱標題為 [使用 Azure RemoteApp 和 Azure AD 網域服務隨即轉移您的工作負載](http://blogs.msdn.com/b/rds/archive/2016/01/19/lift-and-shift-your-workloads-with-azure-remoteapp-and-azure-ad-domain-services.aspx)的遠端桌面服務部落格文章。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
