@@ -1,79 +1,87 @@
 ---
-title: 如何將 Azure API 管理服務執行個體部署到多個 Azure 區域
-description: 瞭解如何將 Azure API 管理服務執行個體部署到多個 Azure 區域。
+title: "如何將 Azure API 管理服務執行個體部署到多個 Azure 區域"
+description: "瞭解如何將 Azure API 管理服務執行個體部署到多個 Azure 區域。"
 services: api-management
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 47389ad6-f865-4706-833f-846115e22e4d
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/09/2016
+ms.date: 10/25/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: d99e2d885d56e3752a3b1caf51e52c801acaab52
+ms.openlocfilehash: 98201867fd8b1b5f074aa6135e04b04faf384224
+
 
 ---
-# 如何將 Azure API 管理服務執行個體部署到多個 Azure 區域
-API 管理支援多區域部署，可讓 API 發行者跨所需的任意數量 Azure 區域發佈單一 API 管理服務。這有助於降低地理上分散的 API 取用者感受到的要求延遲，並且可以改善某個區域離線時服務的可用性。
+# <a name="how-to-deploy-an-azure-api-management-service-instance-to-multiple-azure-regions"></a>如何將 Azure API 管理服務執行個體部署到多個 Azure 區域
+API 管理支援多區域部署，可讓 API 發行者跨所需的任意數量 Azure 區域發佈單一 API 管理服務。 這有助於降低地理上分散的 API 取用者感受到的要求延遲，並且可以改善某個區域離線時服務的可用性。 
 
-最初建立 API 管理服務時，它只會包含一個[單位][單位]，並且位在指派做為主要區域的單一 Azure 區域中。可透過 Azure 傳統入口網站輕鬆加入其他區域。API 管理閘道伺服器會部署到每個區域，並且將呼叫流量遞送到最近的閘道。如果區域離線，流量會自動重新導向到下一個最近的閘道。
+一開始建立「API 管理」服務時，它只會包含一個 [單位][單位]，並且位於被指派為「主要區域」的單一 Azure 區域中。 您可以透過「Azure 入口網站」輕鬆新增其他區域。 「API 管理」閘道伺服器會部署到每個區域，而呼叫流量則會路由傳送到距離最近的閘道。 如果區域離線，流量會自動重新導向到下一個最近的閘道。 
 
 > [!IMPORTANT]
-> 多重區域部署僅供**[進階][進階]**層使用。
+> 多重區域部署僅適用於**[高級][高級]**層。
 > 
 > 
 
 ## <a name="add-region"> </a>部署 API 管理服務執行個體到新區域
-若要開始，請在 Azure 傳統入口網站中，針對您的 API 管理服務按一下 [管理]。這會帶您前往 API 管理發行者入口網站。
-
-![發行者入口網站][api-management-management-console]
-
-> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][開始使用 Azure API 管理]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> [!NOTE]
+> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
 > 
 > 
 
-瀏覽至 Azure 傳統入口網站中您 API 管理服務執行個體的 [調整] 索引標籤。
+在「Azure 入口網站」中，瀏覽至「API 管理」服務執行個體的 [級別與價格] 頁面。 
 
 ![調整索引標籤][api-management-scale-service]
 
-若要部署新區域，請按一下主要區域下的下拉式清單，然後從清單選擇一個區域。
+若要部署新區域，請從工具列中按一下 [+加入區域]。
 
 ![加入區域][api-management-add-region]
 
-選取區域之後，從下拉式清單選擇新區域的單位數量。
+從下拉式清單中選取位置，然後使用滑桿設定單位數量。
 
-![指定單位][api-management-select-units]
+![指定單位][api-management-select-location-units]
 
-設定需要的區域和單位之後，請按一下 [**儲存**]。
+按一下 [加入] 以將您的選項放入 [位置] 表格中。 
 
-## <a name="remove-region"> </a>從區域刪除 API 管理服務執行個體
-若要從區域移除 API 管理服務執行個體，請瀏覽至 Azure 傳統入口網站中您 API 管理服務執行個體的 [調整] 索引標籤。
+重複此程序，直到設定好所有位置為止，然後從工具列中按一下 [儲存] 來開始部署程序。
+
+## <a name="remove-region"> </a>從區域中刪除 API 管理服務執行個體
+在「Azure 入口網站」中，瀏覽至「API 管理」服務執行個體的 [級別與價格] 頁面。 
 
 ![調整索引標籤][api-management-scale-service]
 
-按一下所需區域右側的 **X** 來移除。
+針對您想要移除的位置，使用表格最右邊的 [...] 按鈕來開啟操作功能表。 選取 [刪除] 選項。
 
 ![移除區域][api-management-remove-region]
 
-移除所需區域之後，按一下 [**儲存**]。
+確認刪除，然後按一下 [儲存] 來套用變更。
 
 [api-management-management-console]: ./media/api-management-howto-deploy-multi-region/api-management-management-console.png
 
 [api-management-scale-service]: ./media/api-management-howto-deploy-multi-region/api-management-scale-service.png
 [api-management-add-region]: ./media/api-management-howto-deploy-multi-region/api-management-add-region.png
-[api-management-select-units]: ./media/api-management-howto-deploy-multi-region/api-management-select-units.png
+[api-management-select-location-units]: ./media/api-management-howto-deploy-multi-region/api-management-select-location-units.png
 [api-management-remove-region]: ./media/api-management-howto-deploy-multi-region/api-management-remove-region.png
 
-[開始使用 Azure API 管理]: api-management-get-started.md#create-service-instance
+[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
 [建立 API 管理服務執行個體]: api-management-get-started.md
 
-[Deploy an API Management service instance to a new region]: #add-region
-[Delete an API Management service instance from a region]: #remove-region
+[部署 API 管理服務執行個體到新區域]: #add-region
+[從區域刪除 API 管理服務執行個體]: #remove-region
 
 [單位]: http://azure.microsoft.com/pricing/details/api-management/
-[進階]: http://azure.microsoft.com/pricing/details/api-management/
+[高級]: http://azure.microsoft.com/pricing/details/api-management/
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

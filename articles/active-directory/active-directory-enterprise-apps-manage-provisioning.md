@@ -1,12 +1,12 @@
 ---
-title: 佈建在 Azure Active Directory 預覽版中的企業應用程式使用者佈建管理 | Microsoft Docs
-description: 了解如何使用 Azure Active Directory 預覽版管理企業應用程式的使用者帳戶佈建
+title: "Azure Active Directory 預覽版中企業應用程式的使用者佈建管理 |Microsoft Docs"
+description: "了解如何使用 Azure Active Directory 預覽版管理企業應用程式的使用者帳戶佈建"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 34ac4028-a5aa-40d9-a93b-0db4e0abd793
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/12/2016
 ms.author: asmalser
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 9cecfdee4af934e68412699ce3166514c5521bb0
+
 
 ---
-# <a name="preview:-managing-user-account-provisioning-for-enterprise-apps-in-the-new-azure-portal"></a>預覽︰在新的 Azure 入口網站中管理企業應用程式的使用者帳戶佈建
+# <a name="preview-managing-user-account-provisioning-for-enterprise-apps-in-the-new-azure-portal"></a>預覽︰在新的 Azure 入口網站中管理企業應用程式的使用者帳戶佈建
 這篇文章說明如何使用 [Azure 入口網站](https://portal.azure.com)來自動化管理使用者帳戶的佈建和解除佈建，以用於支援它的應用程式，尤其是透過 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)的「精選」類別新增的應用程式。 這個 Azure 新入口網站中的管理體驗目前處於公開預覽狀態，本文章說明新功能以及一些在預覽期間的暫時性限制。 [預覽版有何功能？](active-directory-preview-explainer.md)
 
 如需深入了解自動化使用者佈建，請參閱 [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)。
@@ -81,6 +85,6 @@ ms.author: asmalser
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

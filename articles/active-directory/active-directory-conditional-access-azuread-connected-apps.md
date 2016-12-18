@@ -1,12 +1,12 @@
 ---
-title: SaaS 應用程式的 Azure 條件式存取 | Microsoft Docs
-description: 'Azure AD 中的條件式存取可讓您設定每個應用程式的多重要素驗證存取規則，且能夠封鎖不在受信任網路上的使用者存取。 '
+title: "SaaS 應用程式的 Azure 條件式存取 | Microsoft Docs"
+description: "Azure AD 中的條件式存取可讓您設定每個應用程式的多重要素驗證存取規則，且能夠封鎖不在受信任網路上的使用者存取。 "
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 51a1ee61-3ffe-4f65-b8de-ff21903e1e74
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 6c64b76c190efb6c9298487ca6c5e7fcf3b57b52
+
 
 ---
 # <a name="getting-started-with-azure-active-directory-conditional-access"></a>開始使用 Azure Active Directory 條件式存取
@@ -28,7 +32,7 @@ ms.author: markvi
 * 同盟或受管理的 Azure Active Directory 租用戶
 * 同盟租用戶需要啟用多重要素驗證。
 
-## <a name="configure-perapplication-access-rules"></a>設定每個應用程式的存取規則
+## <a name="configure-per-application-access-rules"></a>設定每個應用程式的存取規則
 本節描述如何設定每個應用程式的存取規則。
 
 1. 使用 Azure AD 全域管理員身分的帳戶登入 Azure 傳統入口網站。
@@ -68,7 +72,7 @@ ms.author: markvi
 ### <a name="access-rule-evaluation"></a>存取規則評估
 當使用者存取使用 OAuth 2.0、OpenID Connect、SAML 或 WS-同盟的同盟應用程式時，就會評估存取規則。 此外，當 OAuth 2.0 和 OpenID Connect 使用重新整理權杖來取得存取權杖時，也會評估存取規則。 如果使用重新整理權杖時原則評估失敗，將會傳回 **invalid_grant** 錯誤，這表示使用者必須向用戶端重新進行驗證。
 
-### <a name="configure-federation-services-to-provide-multifactor-authentication"></a>設定同盟服務以提供多重要素驗證
+### <a name="configure-federation-services-to-provide-multi-factor-authentication"></a>設定同盟服務以提供多重要素驗證
 就同盟的租用戶而言，MFA 可由 Azure Active Directory 或內部部署 AD FS 伺服器執行。
 
 根據預設，MFA 會發生在 Azure Active Directory 所裝載的頁面上。 若要設定內部部署 MFA，必須使用 Windows PowerShell 的 Azure AD 模組，在 Azure Active Directory 中將 **-SupportsMFA** 屬性設定為 **true**。
@@ -83,6 +87,9 @@ ms.author: markvi
 * [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

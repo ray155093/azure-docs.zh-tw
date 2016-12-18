@@ -1,12 +1,12 @@
 ---
-title: 自訂屬性對應 | Microsoft Docs
-description: 了解 Azure Active Directory 中 SaaS 應用程式有哪些屬性對應，以及如何修改屬性對應來應付業務需求。
+title: "自訂屬性對應 | Microsoft Docs"
+description: "了解 Azure Active Directory 中 SaaS 應用程式有哪些屬性對應，以及如何修改屬性對應來應付業務需求。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 549e0b8c-87ce-4c9b-b487-b7bf0155dc77
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: markusvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f555547fb3e30b1a68387232de60395b615bfa19
+
 
 ---
 # <a name="customizing-attribute-mappings"></a>自訂屬性對應
@@ -54,7 +58,8 @@ SaaS 應用程式需要有幾個屬性對應才能正確運作。 在屬性資�
 
 * **直接** - 目標屬性會填入 Azure AD 中連結物件的屬性值。
 * **常數** - 目標屬性會填入您所指定的特定字串。
-* **運算式** - 目標屬性會根據類似指令碼的運算式結果填入。 如需詳細資訊，請參閱〈 [在 Azure Active Directory 中撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)〉。
+* **運算式** - 目標屬性會根據類似指令碼的運算式結果填入。 
+  如需詳細資訊，請參閱〈 [在 Azure Active Directory 中撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)〉。
 * **無** - 目標屬性保留未修改。 不過，如果目標屬性是空的，就會填入您所指定的預設值。
 
 除了這四個基本屬性對應類型，自訂屬性對應還支援 **預設** 值指派的概念。 預設值指派可確保當 Azure AD 中和目標物件都沒有值時，目標屬性會填入某個值。
@@ -78,6 +83,6 @@ Microsoft Azure AD 提供非常有效率的同步處理程序實作。 在初始
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

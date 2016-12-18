@@ -1,12 +1,12 @@
 ---
-title: 如何以無訊息方式安裝 Azure AD 應用程式 Proxy 連接器 | Microsoft Docs
-description: 涵蓋如何執行無訊息安裝 Azure AD 應用程式 Proxy 連接器，為內部部署的應用程式提供安全的遠端存取。
+title: "如何以無訊息方式安裝 Azure AD 應用程式 Proxy 連接器 | Microsoft Docs"
+description: "涵蓋如何執行無訊息安裝 Azure AD 應用程式 Proxy 連接器，為內部部署的應用程式提供安全的遠端存取。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: kgremban
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 3aa1c7f2-fb2a-4693-abd5-95bb53700cbb
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,15 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 01c62e1e3074d7f9addd75ba51d6131921a4ecc7
+
 
 ---
-# 如何以無訊息方式安裝 Azure AD 應用程式 Proxy 連接器
-您想要能傳送安裝指令碼至多部 Windows 伺服器，或傳送至未啟用使用者介面的 Windows Server。本主題說明如何建立 Windows PowerShell 指令碼來啟用自動安裝，以安裝並註冊您的 Azure AD 應用程式 Proxy 連接器。
+# <a name="how-to-silently-install-the-azure-ad-application-proxy-connector"></a>如何以無訊息方式安裝 Azure AD 應用程式 Proxy 連接器
+您想要能傳送安裝指令碼至多部 Windows 伺服器，或傳送至未啟用使用者介面的 Windows Server。 本主題說明如何建立 Windows PowerShell 指令碼來啟用自動安裝，以安裝並註冊您的 Azure AD 應用程式 Proxy 連接器。
 
-## 啟用存取
-應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。應用程式 Proxy 連接器必須使用全域系統管理員和密碼向 Azure AD 目錄註冊後才能運作。通常，這是在連接器安裝期間於一個快顯對話方塊中輸入的。此外，您也可以使用 Windows PowerShell 來建立認證物件以輸入您的註冊資訊，或者您可以建立自己的語彙基元並使用它來輸入註冊資訊。
+## <a name="enabling-access"></a>啟用存取
+應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。 應用程式 Proxy 連接器必須使用全域系統管理員和密碼向 Azure AD 目錄註冊後才能運作。 通常，這是在連接器安裝期間於一個快顯對話方塊中輸入的。 此外，您也可以使用 Windows PowerShell 來建立認證物件以輸入您的註冊資訊，或者您可以建立自己的語彙基元並使用它來輸入註冊資訊。
 
-## 步驟 1：安裝連接器，但不註冊
+## <a name="step-1-install-the-connector-without-registration"></a>步驟 1：安裝連接器，但不註冊
 下列是安裝連接器但不註冊連接器的方式：
 
 1. 開啟命令提示字元。
@@ -30,24 +34,24 @@ ms.author: kgremban
    
         AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 
-## 步驟 2：向 Azure Active Directory 註冊連接器
+## <a name="step-2-register-the-connector-with-azure-active-directory"></a>步驟 2：向 Azure Active Directory 註冊連接器
 這可以使用下列其中一種方法來完成：
 
 * 使用 Windows PowerShell 認證物件註冊連接器
 * 使用離線時建立的語彙基元註冊連接器
 
-### 使用 Windows PowerShell 認證物件註冊連接器
-1. 執行下列命令以建立 Windows PowerShell 認證物件，其中的 "<username>" 和 "<password>" 應取代為您的目錄的使用者名稱和密碼：
+### <a name="register-the-connector-using-a-windows-powershell-credential-object"></a>使用 Windows PowerShell 認證物件註冊連接器
+1. 執行下列命令來建立 Windows PowerShell 認證物件，其中 "<username>" 和 "<password>" 應取代成您目錄的使用者名稱和密碼：
    
         $User = "<username>"
         $PlainPassword = '<password>'
         $SecurePassword = $PlainPassword | ConvertTo-SecureString -AsPlainText -Force
         $cred = New-Object –TypeName System.Management.Automation.PSCredential –ArgumentList $User, $SecurePassword
-2. 移至 **C:\\Program Files\\Microsoft AAD App Proxy Connector**，並使用您建立的 PowerShell 認證物件執行指令碼，其中 $cred 是您所建立之 PowerShell 認證物件的名稱：
+2. 移至 **C:\Program Files\Microsoft AAD App Proxy Connector**，然後使用您建立的 PowerShell 認證物件來執行指令碼，其中 $cred 是您所建立 PowerShell 認證物件的名稱：
    
-        RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules" -moduleName "AppProxyPSModule" -Authenticationmode Credentials -Usercredentials $cred
+        RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Credentials -Usercredentials $cred
 
-### 使用離線時建立的語彙基元註冊連接器
+### <a name="register-the-connector-using-a-token-created-offline"></a>使用離線時建立的語彙基元註冊連接器
 1. 使用程式碼片段中的值，建立使用 AuthenticationContext 類別的離線語彙基元：
 
         using System;
@@ -107,15 +111,22 @@ ms.author: kgremban
 
 
 
-1. 建立語彙基元後，請使用該語彙基元建立一個 SecureString：<br> `$SecureToken = $Token | ConvertTo-SecureString -AsPlainText -Force`
-2. 執行下列 Windows PowerShell 命令，其中 SecureToken 是您在上面的步驟中所建立之語彙基元的名稱，而 tenantID 則是您租用戶的 GUID：<br> `RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules" -moduleName "AppProxyPSModule" -Authenticationmode Token -Token $SecureToken -TenantId <tenant GUID>`
+1. 建立語彙基元後，請使用該語彙基元建立一個 SecureString： <br>
+   `$SecureToken = $Token | ConvertTo-SecureString -AsPlainText -Force`
+2. 執行下列 Windows PowerShell 命令，其中 SecureToken 是您在上面的步驟中所建立之語彙基元的名稱，而 tenantID 則是您租用戶的 GUID： <br>
+   `RegisterConnector.ps1 -modulePath "C:\Program Files\Microsoft AAD App Proxy Connector\Modules\" -moduleName "AppProxyPSModule" -Authenticationmode Token -Token $SecureToken -TenantId <tenant GUID>`
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [啟用 Azure Active Directory 的應用程式 Proxy](active-directory-application-proxy-enable.md)
 * [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
 * [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
 * [使用應用程式 Proxy 疑難排解您遇到的問題](active-directory-application-proxy-troubleshoot.md)
 
-如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
+如需最新消息，請查閱 [應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

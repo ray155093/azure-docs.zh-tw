@@ -1,13 +1,13 @@
 ---
-title: 從 [設定] 使用 Azure AD 設定 Windows 10 裝置 | Microsoft Docs
-description: 說明使用者要如何透過 [設定] 功能表加入 Azure AD。
+title: "從 [設定] 使用 Azure AD 設定 Windows 10 裝置 | Microsoft Docs"
+description: "說明使用者要如何透過 [設定] 功能表加入 Azure AD。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: femila
 manager: swadhwa
-editor: ''
+editor: 
 tags: azure-classic-portal
-
+ms.assetid: b844e1d9-ad43-4e4a-a398-5c4a43bf2f5c
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 70610ec2c5a056d63ed854b33d84e29951940c2f
+
 
 ---
 # <a name="set-up-a-windows-10-device-with-azure-ad-from-settings"></a>從 [設定] 使用 Azure AD 設定 Windows 10 裝置
@@ -22,7 +26,7 @@ ms.author: femila
 
 ## <a name="to-join-to-azure-ad-from-the-settings-menu"></a>從 [設定] 功能表加入 Azure AD
 1. 從 [開始] 功能表中，按一下 [設定] 常用鍵。
-2. 從 [設定] 中選取 [系統] -> [關於] -> [加入 Azure AD]。
+2. 從 [設定] 中選取 [系統]->[關於]->[加入 Azure AD]。
    
    <center>
    ![從設定功能表加入 Azure AD](./media/active-directory-azureadjoin/active-directory-azureadjoin-settings.png) </center>
@@ -43,6 +47,9 @@ ms.author: femila
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 * [透過 Microsoft Passport 不需要密碼就能驗證身分識別](active-directory-azureadjoin-passport.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

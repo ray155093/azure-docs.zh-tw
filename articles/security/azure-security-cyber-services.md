@@ -1,23 +1,27 @@
 ---
-title: Microsoft 網路安全性服務 | Microsoft Docs
-description: 本文提供有關網路安全性相關的 Microsoft 服務簡介，以及如何取得更多有關這些服務的資訊。
+title: "Microsoft 網路安全性服務 | Microsoft Docs"
+description: "本文提供有關網路安全性相關的 Microsoft 服務簡介，以及如何取得更多有關這些服務的資訊。"
 services: security
 documentationcenter: na
 author: TomShinder
 manager: StevenPo
 editor: TomSh
-
+ms.assetid: 925ba3c6-fe35-413a-98ea-e1a1461f3022
 ms.service: security
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/09/2016
+ms.date: 10/25/2016
 ms.author: yurid
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e3502015d20b172214369b05c3ea12bd5b5c98e9
+
 
 ---
-# Microsoft 網路安全性服務
-Microsoft 服務提供安全性、身分識別和網路安全性的完整方法。Microsoft 服務提供跨策略、規劃、實作和持續性支援的一系列安全性和身分識別服務，協助企業用戶實作符合其策略性目標的整體安全性解決方案。
+# <a name="microsoft-services-in-cybersecurity"></a>Microsoft 網路安全性服務
+Microsoft 服務提供安全性、身分識別和網路安全性的完整方法。 Microsoft 服務提供跨策略、規劃、實作和持續性支援的一系列安全性和身分識別服務，協助企業用戶實作符合其策略性目標的整體安全性解決方案。
 
 直接接觸產品開發團隊，我們所建立的解決方案便可整合及增強我們產品的最新安全性和身分識別功能，進而協助保護客戶的業務及推動創新。
 
@@ -36,4 +40,9 @@ Microsoft 服務提供安全性、身分識別和網路安全性的完整方法�
 
 [深入了解](https://aka.ms/cyberserv) Microsoft 服務安全性諮詢服務。
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

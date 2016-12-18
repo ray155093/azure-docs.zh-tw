@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 8x8 Virtual Office 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 8x8 Virtual Office 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 8x8 Virtual Office 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 8x8 Virtual Office 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: b34a6edf-e745-4aec-b0b2-7337473d64c5
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2f8d126b9c2cfe5aaa6ef8f72f23ae7d66d6c524
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-8x8-virtual-office"></a>教學課程：Azure Active Directory 與 8x8 Virtual Office 整合
+# <a name="tutorial-azure-active-directory-integration-with-8x8-virtual-office"></a>教學課程：Azure Active Directory 與 8x8 Virtual Office 整合
 本教學課程旨在說明如何整合 8x8 Virtual Office 與 Azure Active Directory (Azure AD)。
 
 8x8 Virtual Office 與 Azure AD 整合提供下列優點：
@@ -63,7 +67,7 @@ ms.author: jeedes
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -256,6 +260,6 @@ ms.author: jeedes
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

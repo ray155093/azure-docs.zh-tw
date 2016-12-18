@@ -1,13 +1,13 @@
 ---
-title: Sign-in experiences with Azure AD Identity Protection| Microsoft Docs
-description: Provides an overview of the user experience when Identity Protection has mitigated or remediated a user or when multi-factor authentication is required by a policy.
+title: "使用 Azure AD Identity Protection 時的登入體驗 | Microsoft Docs"
+description: "當 Identity Protection 已降低或補救使用者時，或是原則需要 Multi-Factor Authentication 時，請提供使用者經驗的概觀。"
 services: active-directory
-keywords: azure active directory identity protection, cloud app discovery, managing applications, security, risk, risk level, vulnerability, security policy
-documentationcenter: ''
+keywords: "azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: de5bf637-75a7-4104-b6d8-03686372a319
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,98 +15,106 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/31/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d264d63aeeff584fca96595f1d2f2d5a2f7ba792
+
 
 ---
-# <a name="signin-experiences-with-azure-ad-identity-protection"></a>Sign-in experiences with Azure AD Identity Protection
-With Azure Active Directory Identity Protection, you can:
+# <a name="sign-in-experiences-with-azure-ad-identity-protection"></a>使用 Azure AD Identity Protection 時的登入體驗
+透過 Azure Active Directory Identity Protection，您可以：
 
-* require users to register for multi-factor authentication
-* handle risky sign-ins and compromised users
+* 要求使用者進行註冊，以進行 Multi-Factor Authentication
+* 處理高風險的登入和遭到入侵的使用者
 
-The response of the system to these issues has an impact on a user's sign-in experience because just directly signing-in by providing a user name and a password won't be possible anymore. Additional steps are required to get a user safely back into business.
+系統對這些問題的回應會影響使用者的登入體驗，因為只藉由提供使用者名稱和密碼直接登入已不再可行。 需要有其他步驟，才能讓使用者安全返回工作。
 
-This topic gives you an overview of a user's sign-in experience for all cases that can occur.
+本主題會針對可能發生的所有案例，為您提供使用者的登入體驗概觀。
 
-**Multi-factor authentication**
+**Multi-Factor Authentication**
 
-* Multi-factor authentication registration
+* Multi-Factor Authentication 註冊
 
-**Sign-in at risk**
+**有風險的登入**
 
-* Risky sign-in recovery
-* Risky sign-in blocked
-* Multi-factor authentication registration during a risky sign-in
+* 有風險的登入復原
+* 已封鎖有風險的登入
+* 在有風險的登入期間註冊 Multi-Factor Authentication
 
-**User at risk**
+**有風險的使用者**
 
-* Compromised account recovery
-* Compromised account blocked
+* 遭到入侵的帳戶復原
+* 已封鎖遭到入侵的帳戶
 
-## <a name="multifactor-authentication-registration"></a>Multi-factor authentication registration
-The best user experience for both, the compromised account recovery flow and the risky sign-in flow, is when the user can self-recover. If users are registered for multi-factor authentication, they already have a phone number associated with their account that can be used to pass security challenges. No help desk or administrator involvement is needed to recover from account compromise. Thus, it’s highly recommended to get your users registered for multi-factor authentication. 
+## <a name="multi-factor-authentication-registration"></a>Multi-Factor Authentication 註冊
+在遭到入侵的帳戶復原流程和有風險的登入流程中，最佳的使用者體驗皆是使用者可以自行復原。 如果使用者已註冊 Multi-Factor Authentication，他們便有與其帳戶相關聯的電話號碼可用來通過安全性挑戰。 從帳戶入侵復原時，不需要技術服務人員或系統管理員介入。 因此，強烈建議您讓使用者註冊 Multi-Factor Authentication。 
 
-Administrators can:
+系統管理員可以：
 
-* set a policy that requires users to set up their accounts for additional security verification. 
-* allow skipping multi-factor authentication registration for up to 30 days, in case they want to give users a grace period before registering.
+* 設定一個原則，要求使用者設定其帳戶進行其他安全性驗證。 
+* 允許最多略過 Multi-Factor Authentication 註冊 30 天 (如果他們想給予使用者註冊前的寬限期)。
 
-**The multi-factor authentication registration has three steps:**
+**Multi-Factor Authentication 註冊具有三個步驟：**
 
-1. In the first step, the user gets a notification about the requirement to set the account up for multi-factor authentication. 
+1. 在第一個步驟中，使用者會得到設定此帳戶進行 Multi-Factor Authentication 之需求的相關通知。 
    
-    ![Remediation](./media/active-directory-identityprotection-flows/140.png "Remediation")
-2. To set multi-factor authentication up, you need to let the system know how you want to be contacted.
+    ![補救](./media/active-directory-identityprotection-flows/140.png "Remediation")
+2. 若要設定 Multi-Factor Authentication，您需要讓系統知道您要連線的方式。
    
-    ![Remediation](./media/active-directory-identityprotection-flows/141.png "Remediation")
-3. The system submits a challenge to you and you need to respond.
+    ![補救](./media/active-directory-identityprotection-flows/141.png "Remediation")
+3. 系統會送出一項挑戰給您，而您需要回應。
    
-    ![Remediation](./media/active-directory-identityprotection-flows/142.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/142.png "Remediation")
 
-## <a name="risky-signin-recovery"></a>Risky sign-in recovery
-When an administrator has configured a policy for sign-in risks, the affected users are notified when they try to sign-in. 
+## <a name="risky-sign-in-recovery"></a>有風險的登入復原
+當系統管理員設定登入風險的原則後，受影響的使用者會在嘗試登入時收到通知。 
 
-**The risky sign-in flow has two steps:** 
+**有風險的登入流程有兩個步驟：** 
 
-1. The user is informed that something unusual was detected about their sign-in, such as signing in from a new location, device, or app. 
+1. 使用者獲知偵測到不尋常的登入，例如從新的位置、裝置或 app 登入。 
    
-    ![Remediation](./media/active-directory-identityprotection-flows/120.png "Remediation")
-2. The user is required to prove their identity by solving a security challenge. If the user is registered for multi-factor authentication they need to round-trip a security code to their phone number. Since this is a just a risky sign in and not a compromised account, the user won’t have to change the password in this flow. 
+    ![補救](./media/active-directory-identityprotection-flows/120.png "Remediation")
+2. 使用者必須解決安全性挑戰以證明其身分識別。 如果使用者已註冊 Multi-Factor Authentication，他們必須回傳送至其電話號碼的安全碼。 由於這只是有風險的登入，並不是遭到入侵的帳戶，所以使用者不必在此流程中變更密碼。 
    
-    ![Remediation](./media/active-directory-identityprotection-flows/121.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/121.png "Remediation")
 
-## <a name="risky-signin-blocked"></a>Risky sign-in blocked
-Administrators can also choose to set a Sign-In Risk policy to block users upon sign-in depending on the risk level. To get unblocked, end users must contact an administrator or help desk, or they can try signing in from a familiar location or device. Self-recovering by solving multi-factor authentication is not an option in this case.
+## <a name="risky-sign-in-blocked"></a>已封鎖有風險的登入
+系統管理員也可以選擇設定登入風險原則，以根據風險層級防止使用者登入。 若要解除封鎖，使用者必須連絡系統管理員或技術服務人員，或者嘗試從熟悉的位置或裝置登入。 藉由解決 Multi-Factor Authentication 自行復原，不是此種情況的適用選項。
 
-![Remediation](./media/active-directory-identityprotection-flows/200.png "Remediation")
+![補救](./media/active-directory-identityprotection-flows/200.png "Remediation")
 
-## <a name="compromised-account-recovery"></a>Compromised account recovery
-When a user risk security policy has been configured, users who meet the user risk level specified in the policy (and are therefore assumed compromised) must go through the user compromise recovery flow before they can sign-in. 
+## <a name="compromised-account-recovery"></a>遭到入侵的帳戶復原
+設定使用者風險安全性原則之後，符合原則中指定的使用者風險層級 (因而假定遭到入侵) 的使用者，必須先經歷使用者入侵復原流程，才可以登入。 
 
-**The user compromise recovery flow has three steps:**
+**使用者入侵復原流程有三個步驟：**
 
-1. The user is informed that their account security is at risk because of suspicious activity or leaked credentials.
+1. 使用者獲知其帳戶安全性因為可疑活動或認證外洩而有風險。
    
-    ![Remediation](./media/active-directory-identityprotection-flows/101.png "Remediation")
-2. The user is required to prove their identity by solving a security challenge. If the user is registered for multi-factor authentication they can self-recover from being compromised. They will need to round-trip a security code to their phone number. 
+    ![補救](./media/active-directory-identityprotection-flows/101.png "Remediation")
+2. 使用者必須解決安全性挑戰以證明其身分識別。 如果使用者已註冊 Multi-Factor Authentication，他們可以從損害中自行復原。 他們必須回傳送至其電話號碼的安全碼。 
    
-   ![Remediation](./media/active-directory-identityprotection-flows/110.png "Remediation")
-3. Finally, the user is forced to change their password since someone else may have had access to their account. Screenshots of this experience are below.
+   ![補救](./media/active-directory-identityprotection-flows/110.png "Remediation")
+3. 最後，使用者會被迫變更其密碼，因為其他人可能有其帳戶的存取權。 
+   這項體驗的螢幕擷取畫面如下。
    
-   ![Remediation](./media/active-directory-identityprotection-flows/111.png "Remediation")
+   ![補救](./media/active-directory-identityprotection-flows/111.png "Remediation")
 
-## <a name="compromised-account-blocked"></a>Compromised account blocked
-To get a user that was blocked by a user risk security policy unblocked, the user must contact an administrator or help desk. Self-recovering by solving multi-factor authentication is not an option in this case.
+## <a name="compromised-account-blocked"></a>已封鎖遭到入侵的帳戶
+若要讓遭到使用者風險安全性原則封鎖的使用者解除封鎖，該使用者必須連絡系統管理員或技術服務人員。 藉由解決 Multi-Factor Authentication 自行復原，不是此種情況的適用選項。
 
-![Remediation](./media/active-directory-identityprotection-flows/104.png "Remediation")
+![補救](./media/active-directory-identityprotection-flows/104.png "Remediation")
 
-## <a name="reset-password"></a>Reset password
-If compromised users are blocked from signing in, an administrator can generate a temporary password for them. The users will have to change their password during a next sign-in.
+## <a name="reset-password"></a>重設密碼
+如果遭到入侵的使用者已遭封鎖而無法登入，系統管理員可以為其產生暫時密碼。 使用者必須在下次登入期間變更密碼。
 
-![Remediation](./media/active-directory-identityprotection-flows/160.png "Remediation")
+![補救](./media/active-directory-identityprotection-flows/160.png "Remediation")
 
-## <a name="see-also"></a>See also
+## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md) 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
