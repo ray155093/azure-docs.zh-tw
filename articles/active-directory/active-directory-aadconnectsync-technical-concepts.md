@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect 同步：技術概念 | Microsoft Docs
-description: 說明 Azure AD Connect 同步的技術概念。
+title: "Azure AD Connect 同步：技術概念 | Microsoft Docs"
+description: "說明 Azure AD Connect 同步的技術概念。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 731cfeb3-beaf-4d02-aef4-b02a8f99fd11
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: markusvi;andkjell
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 74b7aae21ec81f891c73461989e641a2d7a042e8
+
 
 ---
 # <a name="azure-ad-connect-sync-technical-concepts"></a>Azure AD Connect 同步處理：技術概念
@@ -89,6 +93,6 @@ Metaverse 是鄰近連接器空間中所有聯結的身份識別的合併檢視�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

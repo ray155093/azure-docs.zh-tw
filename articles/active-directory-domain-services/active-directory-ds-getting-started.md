@@ -1,12 +1,12 @@
 ---
-title: Azure AD 網域服務：建立 AAD DC 系統管理員群組 | Microsoft Docs
-description: 開始使用 Azure Active Directory 網域服務
+title: "Azure AD Domain Services：建立 AAD DC 系統管理員群組 | Microsoft Docs"
+description: "開始使用 Azure Active Directory 網域服務"
 services: active-directory-ds
-documentationcenter: ''
+documentationcenter: 
 author: mahesh-unnikrishnan
 manager: stevenpo
 editor: curtand
-
+ms.assetid: ace1ed4a-bf7f-43c1-a64a-6b51a2202473
 ms.service: active-directory-ds
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,12 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: maheshu
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0dfc373cc65033cfb7c2b1882dca41faa7c7bcae
+
 
 ---
 # <a name="get-started-with-azure-ad-domain-services"></a>開始使用 Azure AD 網域服務
 本文將逐步解說針對 Azure AD 租用戶啟用 Azure AD 網域服務所需的組態工作。
 
-## <a name="task-1:-create-the-'aad-dc-administrators'-group"></a>工作 1：建立「AAD DC 系統管理員」群組
+## <a name="task-1-create-the-aad-dc-administrators-group"></a>工作 1：建立「AAD DC 系統管理員」群組
 第一個工作是在您的 Azure Active Directory 租用戶中建立系統管理群組。 這個特殊的系統管理群組稱為 **AAD DC 系統管理員**。 此群組的成員會被授與電腦的系統管理權限，而這類電腦已加入 Azure AD 網域服務受管理網域的網域。 在加入網域的電腦上，這個群組會新增到「系統管理員」群組。 此外，此群組的成員可以使用遠端桌面，從遠端連接到已加入網域的電腦。  
 
 > [!NOTE]
@@ -56,9 +60,12 @@ ms.author: maheshu
 
 <br>
 
-## <a name="task-2:-create-or-select-an-azure-virtual-network"></a>步驟 2：建立或選取 Azure 虛擬網路
+## <a name="task-2-create-or-select-an-azure-virtual-network"></a>步驟 2：建立或選取 Azure 虛擬網路
 下一個組態工作是 [建立或選取 Azure 虛擬網路](active-directory-ds-getting-started-vnet.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

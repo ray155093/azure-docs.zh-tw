@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Novatus 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 SECURE DELIVER 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Novatus 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 SECURE DELIVER 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: fccd5668-fe6f-4e6d-a9ce-ba4f321c33d1
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8885f776250d44419e73bcfecaa4c49359f198bf
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-secure-deliver"></a>教學課程：Azure Active Directory 與 SECURE DELIVER 整合
+# <a name="tutorial-azure-active-directory-integration-with-secure-deliver"></a>教學課程：Azure Active Directory 與 SECURE DELIVER 整合
 本教學課程旨在說明如何整合 SECURE DELIVER 與 Azure Active Directory (Azure AD)。  
 SECURE DELIVER 與 Azure AD 整合提供下列優點：
 
@@ -181,7 +185,7 @@ SECURE DELIVER 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-secure-deliver-test-user"></a>建立 SECURE DELIVER 測試使用者
 本節的目標是在 SECURE DELIVER 中建立名為 Britta Simon 的使用者。 請使用 SECURE DELIVER 支援小組在 SECURE DELIVER 帳戶中加入使用者。
@@ -240,6 +244,6 @@ SECURE DELIVER 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 
