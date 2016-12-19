@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 報告保留原則 | Microsoft Docs
-description: Azure Active Directory 中報告資料的保留原則
+title: "Azure Active Directory 報告保留原則 | Microsoft Docs"
+description: "Azure Active Directory 中報告資料的保留原則"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: dhanyahk
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 183e53b0-0647-42e7-8abe-3e9ff424de12
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 03/07/2016
 ms.author: dhanyahk
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 7e0e1ede67509de9f47293eb7257ecc56c0df93d
+
 
 ---
-# Azure Active Directory 報告保留原則
+# <a name="azure-active-directory-report-retention-policies"></a>Azure Active Directory 報告保留原則
 *這份文件是 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)的一部分。*
 
 Azure Active Directory (Azure AD) 報告會保留特定天數的資料，如此處所示。
@@ -47,4 +51,9 @@ Azure Active Directory (Azure AD) 報告會保留特定天數的資料，如此�
 | RMS 裝置使用量 |30 天 |
 | 啟用 RMS 的應用程式使用量 |30 天 |
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

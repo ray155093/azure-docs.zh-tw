@@ -1,186 +1,223 @@
 ---
-title: Configure an application gateway for SSL offload by using classic deployment| Microsoft Docs
-description: This article provides instructions to create an application gateway with SSL offload by using the Azure classic deployment model.
+title: "使用傳統部署設定適用於 SSL 卸載的應用程式閘道 | Microsoft Docs"
+description: "本文提供使用 Azure 傳統部署模型建立具有 SSL 卸載之應用程式閘道的指示。"
 documentationcenter: na
 services: application-gateway
 author: georgewallace
 manager: carmonm
 editor: tysonn
-
+ms.assetid: 63f28d96-9c47-410e-97dd-f5ca1ad1b8a4
 ms.service: application-gateway
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/09/2016
+ms.date: 11/16/2016
 ms.author: gwallace
+translationtype: Human Translation
+ms.sourcegitcommit: 1cb291817462a2af59a17693a29b8667750c877f
+ms.openlocfilehash: b4fc6b09069022967b572327647dd5d848712932
+
 
 ---
-# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-classic-deployment-model"></a>Configure an application gateway for SSL offload by using the classic deployment model
+# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-classic-deployment-model"></a>使用傳統部署模型設定適用於 SSL 卸載的應用程式閘道
+
 > [!div class="op_single_selector"]
-> -[Azure portal](application-gateway-ssl-portal.md)
-> -[Azure Resource Manager PowerShell](application-gateway-ssl-arm.md)
-> -[Azure Classic PowerShell](application-gateway-ssl.md)
+> * [Azure 入口網站](application-gateway-ssl-portal.md)
+> * [Azure Resource Manager PowerShell](application-gateway-ssl-arm.md)
+> * [Azure 傳統 PowerShell](application-gateway-ssl.md)
 > 
 > 
 
-Azure Application Gateway can be configured to terminate the Secure Sockets Layer (SSL) session at the gateway to avoid costly SSL decryption tasks to happen at the web farm. SSL offload also simplifies the front-end server setup and management of the web application.
+Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) 工作階段，以避免 Web 伺服陣列發生高成本的 SSL 解密工作。 SSL 卸載也可以簡化 Web 應用程式的前端伺服器設定和管理。
 
-## <a name="before-you-begin"></a>Before you begin
-1. Install the latest version of the Azure PowerShell cmdlets by using the Web Platform Installer. You can download and install the latest version from the **Windows PowerShell** section of the [Downloads page](https://azure.microsoft.com/downloads/).
-2. Verify that you have a working virtual network with a valid subnet. Make sure that no virtual machines or cloud deployments are using the subnet. The application gateway must be by itself in a virtual network subnet.
-3. The servers that you configure to use the application gateway must exist or have their endpoints created either in the virtual network or with a public IP/VIP assigned.
+## <a name="before-you-begin"></a>開始之前
 
-To configure SSL offload on an application gateway, do the following steps in the order listed:
+1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。 您可以從 **下載頁面** 的 [Windows PowerShell](https://azure.microsoft.com/downloads/)區段下載並安裝最新版本。
+2. 請確認您的運作中虛擬網路具有有效子網路。 請確定沒有虛擬機器或是雲端部署正在使用子網路。 應用程式閘道必須單獨位於虛擬網路子網路中。
+3. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
-1. [Create an application gateway](#create-an-application-gateway)
-2. [Upload SSL certificates](#upload-ssl-certificates)
-3. [Configure the gateway](#configure-the-gateway)
-4. [Set the gateway configuration](#set-the-gateway-configuration)
-5. [Start the gateway](#start-the-gateway)
-6. [Verify the gateway status](#verify-the-gateway-status)
+若要在應用程式閘道上設定 SSL 卸載，請依列出的順序執行下列步驟：
 
-## <a name="create-an-application-gateway"></a>Create an application gateway
-To create the gateway, use the **New-AzureApplicationGateway** cmdlet, replacing the values with your own. Billing for the gateway does not start at this point. Billing begins in a later step, when the gateway is successfully started.
+1. [建立應用程式閘道](#create-an-application-gateway)
+2. [上傳 SSL 憑證](#upload-ssl-certificates)
+3. [設定閘道](#configure-the-gateway)
+4. [設定閘道組態](#set-the-gateway-configuration)
+5. [啟動閘道](#start-the-gateway)
+6. [確認閘道狀態](#verify-the-gateway-status)
 
-    New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
+## <a name="create-an-application-gateway"></a>建立應用程式閘道
 
-To validate that the gateway was created, you can use the **Get-AzureApplicationGateway** cmdlet.
+若要建立閘道，請使用 `New-AzureApplicationGateway` Cmdlet，並以您自己的值來取代這些值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
 
-In the sample, *Description*, *InstanceCount*, and *GatewaySize* are optional parameters. The default value for *InstanceCount* is 2, with a maximum value of 10. The default value for *GatewaySize* is Medium. Small and Large are other available values. *VirtualIPs* and *DnsName* are shown as blank because the gateway has not started yet. These values are created once the gateway is in the running state.
+```powershell
+New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
+```
 
-    Get-AzureApplicationGateway AppGwTest
+若要驗證已建立閘道，您可以使用 `Get-AzureApplicationGateway` Cmdlet。
 
-## <a name="upload-ssl-certificates"></a>Upload SSL certificates
-Use **Add-AzureApplicationGatewaySslCertificate** to upload the server certificate in *pfx* format to the application gateway. The certificate name is a user-chosen name and must be unique within the application gateway. This certificate is referred to by this name in all certificate management operations on the application gateway.
+在範例中，*Description*、*InstanceCount* 及 *GatewaySize* 是選用參數。 *InstanceCount* 的預設值是 2，且最大值是 10。 *GatewaySize* 的預設值是 Medium。 Small 和 Large 也是可用的值。 因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。 閘道處於執行中狀態之後，就會建立這些值。
 
-This following sample shows the cmdlet, replace the values in the sample with your own.
+```powershell
+Get-AzureApplicationGateway AppGwTest
+```
 
-    Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path to pfx file>
+## <a name="upload-ssl-certificates"></a>上傳 SSL 憑證
 
-Next, validate the certificate upload. Use the **Get-AzureApplicationGatewayCertificate** cmdlet.
+使用 `Add-AzureApplicationGatewaySslCertificate`，將伺服器憑證 (*pfx* 格式) 上傳至應用程式閘道。 憑證名稱是使用者選擇的名稱，而且必須在應用程式閘道中是唯一的。 應用程式閘道上的所有憑證管理作業會使用此名稱參考該憑證。
 
-This sample shows the cmdlet on the first line, followed by the output.
+下列範例會顯示 Cmdlet，請將範例中的值取代為您自己的值。
 
-    Get-AzureApplicationGatewaySslCertificate AppGwTest
+```powershell
+Add-AzureApplicationGatewaySslCertificate  -Name AppGwTest -CertificateName GWCert -Password <password> -CertificateFile <full path to pfx file>
+```
 
-    VERBOSE: 5:07:54 PM - Begin Operation: Get-AzureApplicationGatewaySslCertificate
-    VERBOSE: 5:07:55 PM - Completed Operation: Get-AzureApplicationGatewaySslCertificate
-    Name           : SslCert
-    SubjectName    : CN=gwcert.app.test.contoso.com
-    Thumbprint     : AF5ADD77E160A01A6......EE48D1A
-    ThumbprintAlgo : sha1RSA
-    State..........: Provisioned
+接下來，驗證憑證上傳。 使用 `Get-AzureApplicationGatewayCertificate` Cmdlet。
+
+這個範例的第一行顯示 Cmdlet，後面接著輸出。
+
+```powershell
+Get-AzureApplicationGatewaySslCertificate AppGwTest
+```
+
+```
+VERBOSE: 5:07:54 PM - Begin Operation: Get-AzureApplicationGatewaySslCertificate
+VERBOSE: 5:07:55 PM - Completed Operation: Get-AzureApplicationGatewaySslCertificate
+Name           : SslCert
+SubjectName    : CN=gwcert.app.test.contoso.com
+Thumbprint     : AF5ADD77E160A01A6......EE48D1A
+ThumbprintAlgo : sha1RSA
+State..........: Provisioned
+```
 
 > [!NOTE]
-> The certificate password has to be between 4 to 12 characters, letters, or numbers. Special characters are not accepted.
+> 憑證密碼必須由 4 到 12 個字元、字母或數字所組成。 不接受使用特殊字元。
 > 
 > 
 
-## <a name="configure-the-gateway"></a>Configure the gateway
-An application gateway configuration consists of multiple values. The values can be tied together to construct the configuration.
+## <a name="configure-the-gateway"></a>設定閘道
 
-The values are:
+應用程式閘道組態是由多個值所組成。 可以將值繫結在一起，以建構組態。
 
-* **Back-end server pool:** The list of IP addresses of the back-end servers. The IP addresses listed should either belong to the virtual network subnet or should be a public IP/VIP.
-* **Back-end server pool settings:** Every pool has settings like port, protocol, and cookie-based affinity. These settings are tied to a pool and are applied to all servers within the pool.
-* **Front-end port:** This port is the public port that is opened on the application gateway. Traffic hits this port, and then gets redirected to one of the back-end servers.
-* **Listener:** The listener has a front-end port, a protocol (Http or Https, these values are case-sensitive), and the SSL certificate name (if configuring SSL offload).
-* **Rule:** The rule binds the listener and the back-end server pool and defines which back-end server pool the traffic should be directed to when it hits a particular listener. Currently, only the *basic* rule is supported. The *basic* rule is round-robin load distribution.
+值如下：
 
-**Additional configuration notes**
+* **後端伺服器集區：** 後端伺服器的 IP 位址清單。 列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
+* **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結至集區，並套用至集區內所有伺服器。
+* **前端連接埠：** 此連接埠是在應用程式閘道上開啟的公用連接埠。 流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
+* **接聽程式：** 接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些值都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
+* **規則：** 規則會繫結接聽程式和後端伺服器集區，並定義當流量到達特定接聽程式時，應該導向到哪個後端伺服器集區。 目前只支援 *基本* 規則。 *基本* 規則是循環配置資源的負載分配。
 
-For SSL certificates configuration, the protocol in **HttpListener** should change to *Https* (case sensitive). The **SslCert** element is added to **HttpListener** with the value set to the same name as used in the upload of preceding SSL certificates section. The front-end port should be updated to 443.
+**其他組態注意事項**
 
-**To enable cookie-based affinity**: An application gateway can be configured to ensure that a request from a client session is always directed to the same VM in the web farm. This scenario is done by injection of a session cookie that allows the gateway to direct traffic appropriately. To enable cookie-based affinity, set **CookieBasedAffinity** to *Enabled* in the **BackendHttpSettings** element.
+針對 SSL 憑證組態，**HttpListener** 中的通訊協定應該變更為 *Https* (區分大小寫)。 **SslCert** 元素會新增到 **HttpListener** 中，其值會設定為與上傳先前的 SSL 憑證一節中所使用的名稱相同。 前端連接埠應該更新為 443。
 
-You can construct your configuration either by creating a configuration object or by using a configuration XML file.
-To construct your configuration by using a configuration XML file, use the following sample:
+**啟用以 Cookie 為基礎的同質性**：您可以設定應用程式閘道，以確保來自用戶端工作階段的要求一律會導向至 Web 伺服陣列中的相同 VM。 此案例透過插入允許閘道適當導向流量的工作階段 Cookie 來完成。 若要啟用以 Cookie 為基礎的同質性，請在 **BackendHttpSettings** 元素中將 **CookieBasedAffinity** 設定為 *Enabled*。
 
-**Configuration XML sample**
+建立組態物件或使用組態 XML 檔案，即可建構組態。
+若要使用組態 XML 檔案以建構組態，請使用下列範例：
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
-        <FrontendIPConfigurations />
-        <FrontendPorts>
-            <FrontendPort>
-                <Name>FrontendPort1</Name>
-                <Port>443</Port>
-            </FrontendPort>
-        </FrontendPorts>
-        <BackendAddressPools>
-            <BackendAddressPool>
-                <Name>BackendPool1</Name>
-                <IPAddresses>
-                    <IPAddress>10.0.0.1</IPAddress>
-                    <IPAddress>10.0.0.2</IPAddress>
-                </IPAddresses>
-            </BackendAddressPool>
-        </BackendAddressPools>
-        <BackendHttpSettingsList>
-            <BackendHttpSettings>
-                <Name>BackendSetting1</Name>
-                <Port>80</Port>
-                <Protocol>Http</Protocol>
-                <CookieBasedAffinity>Enabled</CookieBasedAffinity>
-            </BackendHttpSettings>
-        </BackendHttpSettingsList>
-        <HttpListeners>
-            <HttpListener>
-                <Name>HTTPListener1</Name>
-                <FrontendPort>FrontendPort1</FrontendPort>
-                <Protocol>Https</Protocol>
-                <SslCert>GWCert</SslCert>
-            </HttpListener>
-        </HttpListeners>
-        <HttpLoadBalancingRules>
-            <HttpLoadBalancingRule>
-                <Name>HttpLBRule1</Name>
-                <Type>basic</Type>
-                <BackendHttpSettings>BackendSetting1</BackendHttpSettings>
-                <Listener>HTTPListener1</Listener>
-                <BackendAddressPool>BackendPool1</BackendAddressPool>
-            </HttpLoadBalancingRule>
-        </HttpLoadBalancingRules>
-    </ApplicationGatewayConfiguration>
+**組態 XML 範例**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
+    <FrontendIPConfigurations />
+    <FrontendPorts>
+        <FrontendPort>
+            <Name>FrontendPort1</Name>
+            <Port>443</Port>
+        </FrontendPort>
+    </FrontendPorts>
+    <BackendAddressPools>
+        <BackendAddressPool>
+            <Name>BackendPool1</Name>
+            <IPAddresses>
+                <IPAddress>10.0.0.1</IPAddress>
+                <IPAddress>10.0.0.2</IPAddress>
+            </IPAddresses>
+        </BackendAddressPool>
+    </BackendAddressPools>
+    <BackendHttpSettingsList>
+        <BackendHttpSettings>
+            <Name>BackendSetting1</Name>
+            <Port>80</Port>
+            <Protocol>Http</Protocol>
+            <CookieBasedAffinity>Enabled</CookieBasedAffinity>
+        </BackendHttpSettings>
+    </BackendHttpSettingsList>
+    <HttpListeners>
+        <HttpListener>
+            <Name>HTTPListener1</Name>
+            <FrontendPort>FrontendPort1</FrontendPort>
+            <Protocol>Https</Protocol>
+            <SslCert>GWCert</SslCert>
+        </HttpListener>
+    </HttpListeners>
+    <HttpLoadBalancingRules>
+        <HttpLoadBalancingRule>
+            <Name>HttpLBRule1</Name>
+            <Type>basic</Type>
+            <BackendHttpSettings>BackendSetting1</BackendHttpSettings>
+            <Listener>HTTPListener1</Listener>
+            <BackendAddressPool>BackendPool1</BackendAddressPool>
+        </HttpLoadBalancingRule>
+    </HttpLoadBalancingRules>
+</ApplicationGatewayConfiguration>
+```
+
+## <a name="set-the-gateway-configuration"></a>設定閘道組態
+
+接下來，您需要設定應用程式閘道。 您可以搭配組態物件或組態 XML 檔案來使用 `Set-AzureApplicationGatewayConfig` Cmdlet。
+
+```powershell
+Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
+```
+
+## <a name="start-the-gateway"></a>啟動閘道
+
+設定閘道之後，請使用 `Start-AzureApplicationGateway` Cmdlet 來啟動閘道。 成功啟動閘道之後，會開始應用程式閘道計費。
+
+> [!NOTE]
+> `Start-AzureApplicationGateway` Cmdlet 最多可能需要 15 到 20 分鐘才能完成。
+>
+>
+
+```powershell
+Start-AzureApplicationGateway AppGwTest
+```
+
+## <a name="verify-the-gateway-status"></a>確認閘道狀態
+
+使用 `Get-AzureApplicationGateway` Cmdlet 檢查閘道狀態。 如果上一個步驟中的 `Start-AzureApplicationGateway` 成功，則 *State* 應該是 Running，而且 *VirtualIPs* 和 *DnsName* 應該具備有效的輸入。
+
+這個範例所示範的應用程式閘道已啟動、執行中並準備好要接受流量。
+
+```powershell
+Get-AzureApplicationGateway AppGwTest
+```
+
+```
+Name          : AppGwTest2
+Description   :
+VnetName      : testvnet1
+Subnets       : {Subnet-1}
+InstanceCount : 2
+GatewaySize   : Medium
+State         : Running
+VirtualIPs    : {23.96.22.241}
+DnsName       : appgw-4c960426-d1e6-4aae-8670-81fd7a519a43.cloudapp.net
+```
+
+## <a name="next-steps"></a>後續步驟
+
+如果您想進一步了解一般負載平衡選項，請參閱：
+
+* [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
+* [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
 
-## <a name="set-the-gateway-configuration"></a>Set the gateway configuration
-Next, you set the application gateway. You can use the **Set-AzureApplicationGatewayConfig** cmdlet with either a configuration object or with a configuration XML file.
-
-    Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile D:\config.xml
-
-## <a name="start-the-gateway"></a>Start the gateway
-Once the gateway has been configured, use the **Start-AzureApplicationGateway** cmdlet to start the gateway. Billing for an application gateway begins after the gateway has been successfully started.
-
-**Note:** The **Start-AzureApplicationGateway** cmdlet might take up to 15-20 minutes to finish.
-
-    Start-AzureApplicationGateway AppGwTest
-
-## <a name="verify-the-gateway-status"></a>Verify the gateway status
-Use the **Get-AzureApplicationGateway** cmdlet to check the status of the gateway. If **Start-AzureApplicationGateway** succeeded in the previous step, *State* should be Running, and *VirtualIPs* and *DnsName* should have valid entries.
-
-This sample shows an application gateway that is up, running, and is ready to take traffic.
-
-    Get-AzureApplicationGateway AppGwTest
-
-    Name          : AppGwTest2
-    Description   :
-    VnetName      : testvnet1
-    Subnets       : {Subnet-1}
-    InstanceCount : 2
-    GatewaySize   : Medium
-    State         : Running
-    VirtualIPs    : {23.96.22.241}
-    DnsName       : appgw-4c960426-d1e6-4aae-8670-81fd7a519a43.cloudapp.net
 
 
-## <a name="next-steps"></a>Next steps
-If you want more information about load balancing options in general, see:
-
-* [Azure Load Balancer](https://azure.microsoft.com/documentation/services/load-balancer/)
-* [Azure Traffic Manager](https://azure.microsoft.com/documentation/services/traffic-manager/)
-
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

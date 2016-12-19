@@ -1,13 +1,13 @@
 ---
-title: Azure 資料目錄常見案例 | Microsoft Docs
-description: Azure 資料目錄常見案例的概觀，包括高價值資料來源的註冊和探索、啟用自助商業智慧，以及擷取有關資料來源和處理程序的現有內部專門知識。
+title: "Azure 資料目錄常見案例 | Microsoft Docs"
+description: "Azure 資料目錄常見案例的概觀，包括高價值資料來源的註冊和探索、啟用自助商業智慧，以及擷取有關資料來源和處理程序的現有內部專門知識。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: steelanddata
 manager: NA
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 60930d78-d2d4-4d5d-9651-bdda50b0da0e
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 10/03/2016
 ms.author: maroche
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 975084c19909b0829b6f93cab05373fb71b10cf3
+
 
 ---
 # <a name="azure-data-catalog-common-scenarios"></a>Azure 資料目錄常見案例
 本文介紹 Azure 資料目錄幫助組織從現有的資料來源獲得更多價值的常見案例。
 
-## <a name="scenario-#1---registration-of-central-data-sources"></a>案例 #1 - 註冊中央資料來源
+## <a name="scenario-1---registration-of-central-data-sources"></a>案例 #1 - 註冊中央資料來源
 組織通常有多高價值的資料來源。 這些資料來源包含各種商務 OLTP 系統、資料倉儲和商務智慧/分析資料庫。 系統數目和系統之間的重疊現象通常會隨著時間而增加，也會隨著企業本身透過合併與收購的演進而增加。
 
 使用者通常很難知道在這些資料來源內的哪裡尋找資料。 諸如以下這些問題都極為常見：
@@ -34,7 +38,7 @@ ms.author: maroche
 
 這種情況下也會提供為高價值資料來源加上註解的機會，使其易於了解及存取。 此種設計的一個重要的層面是包含使用者如何要求存取資料來源的資訊。 Azure 資料目錄可讓使用者提供使用者或團隊的的電子郵件地址，以便負責控制資料來源存取、現有工具或文件的連結，或描述存取要求程序的任意文字。 利用目錄中所包含的資訊，探索已註冊資料來源但沒有資料存取權限的使用者，可以使用資料來源擁有者所控制與定義的處理程序，輕鬆地要求存取。
 
-## <a name="scenario-#2---self-service-business-intelligence"></a>案例 #2 - 自助商業智慧
+## <a name="scenario-2---self-service-business-intelligence"></a>案例 #2 - 自助商業智慧
 雖然傳統的企業商業智慧方案在許多組織的資料型態中一直都非常寶貴，但企業的變化步調使得自助 BI 越來越重要。 自助 BI 可讓資訊工作者和分析師建立自己的報表、活頁簿和儀表板，完全不用仰賴核心的 IT 小組 – 或受制於 IT 小組的排程和可用時間。
 
 在自助 BI 案例中，使用者經常結合多個來源的資料，而其中有許多可能都未曾用於 BI 和分析。 雖然這些資料來源中有一些可能已知，但通常會有一個程序來探索必要動作，以找出並評估特定工作可能的資料來源。
@@ -47,7 +51,7 @@ Azure 資料目錄可讓使用者打破這種重複的工作循環。 一旦透�
 
 另外值得注意的是，雖然此案例特別著重於自助 BI，但相同的模式和挑戰亦適用於大型公司 BI 專案。 涉及資料來源手動探索程序的任何工作，都可以透過 Azure 資料目錄為組織創造價值。
 
-## <a name="scenario-#3---capturing-tribal-knowledge"></a>案例 #3 - 擷取部落知識
+## <a name="scenario-3---capturing-tribal-knowledge"></a>案例 #3 - 擷取部落知識
 如何知道您的工作需要什麼資料，以及到哪裡尋找這些資料？
 
 如果您已經工作一段時日，您可能早就知道。 您經過漸進的學習程序，隨著一段時間而了解日常工作真正需要的資料來源。
@@ -62,6 +66,9 @@ Azure 資料目錄可讓使用者打破這種重複的工作循環。 一旦透�
 
 Azure 資料目錄提供位置來分享此部落知識，讓人輕鬆找到這些知識。 資料專家可以直接將資料資產加註，也可以加上現有文件的連結。 這樣不但能夠擷取知識本身，還能將知識注入資料來源探索時的相同體驗中。 當某人利用目錄來探索資料來源時，他不只可找到來源本身，還能找到原本只存在專家腦海中的專家知識。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

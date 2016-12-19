@@ -1,26 +1,30 @@
 ---
-title: 如何使用範本自訂 Azure API 管理開發人員入口網站 | Microsoft Docs
-description: 了解如何使用範本自訂 Azure API 管理開發人員入口網站。
+title: "如何使用範本自訂 Azure API 管理開發人員入口網站 | Microsoft Docs"
+description: "了解如何使用範本自訂 Azure API 管理開發人員入口網站。"
 services: api-management
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a195675b-f7d0-4fc9-90bf-860e6f17ccf7
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/09/2016
+ms.date: 10/25/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 7e9b100a041934e6512a83c936effb48c2cba53b
+
 
 ---
-# 如何使用範本自訂 Azure API 管理開發人員入口網站。
-Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發人員入口網站的外觀與風格](api-management-customize-portal.md)，以及使用一組設定網頁本身內容的範本來自訂開發人員入口網站頁面的內容。使用 [DotLiquid](http://dotliquidmarkup.org/) 語法及一組提供的當地語系化字串資源、圖示和頁面控制項，您可以使用這些範本依照您的想法自由靈活地設定頁面內容。
+# <a name="how-to-customize-the-azure-api-management-developer-portal-using-templates"></a>如何使用範本自訂 Azure API 管理開發人員入口網站。
+Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發人員入口網站的外觀與風格](api-management-customize-portal.md)，以及使用一組設定網頁本身內容的範本來自訂開發人員入口網站頁面的內容。 使用 [DotLiquid](http://dotliquidmarkup.org/) 語法及一組提供的當地語系化字串資源、圖示和頁面控制項，您可以使用這些範本依照您的想法自由靈活地設定頁面內容。
 
-## 開發人員入口網站範本概觀
-開發人員入口網站的範本，都是由 API 管理服務執行個體的系統管理員，在開發人員入口網站中加以管理。若要管理開發人員範本，請瀏覽至 Azure 傳統入口網站的 API 管理服務執行個體，然後按一下 [瀏覽]。
+## <a name="developer-portal-templates-overview"></a>開發人員入口網站範本概觀
+開發人員入口網站的範本，都是由 API 管理服務執行個體的系統管理員，在開發人員入口網站中加以管理。 若要管理開發人員範本，請在「Azure 入口網站」中瀏覽至您的「API 管理」服務執行個體，然後從工具列中按一下 [開發人員入口網站]。
 
 ![開發人員入口網站][api-management-browse]
 
@@ -28,33 +32,33 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 ![開發人員入口網站功能表][api-management-developer-portal-menu]
 
-若要存取開發人員入口網站範本，請按一下左側的自訂圖示，顯示 [自訂] 功能表，然後按一下 [範本]。
+若要存取開發人員入口網站範本，請按一下左側的自訂圖示，顯示 [自訂] 功能表，然後按一下 [範本] 。
 
 ![開發人員入口網站範本][api-management-customize-menu]
 
-[範本] 清單會顯示數個範本類別，涵蓋開發人員入口網站的不同頁面。每個範本各不相同，但是編輯和發佈變更的步驟是一樣的。若要編輯範本，請按一下範本的名稱。
+[範本] 清單會顯示數個範本類別，涵蓋開發人員入口網站的不同頁面。 每個範本各不相同，但是編輯和發佈變更的步驟是一樣的。 若要編輯範本，請按一下範本的名稱。
 
 ![開發人員入口網站範本][api-management-templates-menu]
 
-按一下範本即會將您帶到可使用該範本自訂的開發人員入口網站頁面。這個範例會顯示**產品清單**範本。**產品清單**範本控制的畫面區域會以紅色矩形表示。
+按一下範本即會將您帶到可使用該範本自訂的開發人員入口網站頁面。 這個範例會顯示 **產品清單** 範本。 **產品清單** 範本控制的畫面區域會以紅色矩形表示。 
 
 ![產品清單範本][api-management-developer-portal-templates-overview]
 
-有些範本，像是**使用者設定檔**範本，自訂的是同一頁面的不同部分。
+有些範本，像是 **使用者設定檔** 範本，自訂的是同一頁面的不同部分。 
 
 ![使用者設定檔範本][api-management-user-profile-templates]
 
-每個開發人員入口網站範本的編輯器都會在頁面底部顯示兩個區段。左側顯示範本的編輯窗格，右側顯示範本的資料模型。
+每個開發人員入口網站範本的編輯器都會在頁面底部顯示兩個區段。 左側顯示範本的編輯窗格，右側顯示範本的資料模型。 
 
-範本編輯窗格包含的標記，可控制開發人員入口網站中對應頁面的外觀和行為。範本中的標記會使用 [DotLiquid](http://dotliquidmarkup.org/) 語法。常用的 DotLiquid 編輯器是 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)。在編輯期間對範本進行的任何變更都會即時顯示在瀏覽器中，但您的客戶要到您[儲存](#to-save-a-template)和[發佈](#to-publish-a-template)範本後才看得到。
+範本編輯窗格包含的標記，可控制開發人員入口網站中對應頁面的外觀和行為。 範本中的標記會使用 [DotLiquid](http://dotliquidmarkup.org/) 語法。 常用的 DotLiquid 編輯器是 [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers)。 在編輯期間對範本進行的任何變更都會即時顯示在瀏覽器中，但您的客戶要到您[儲存](#to-save-a-template)和[發佈](#to-publish-a-template)範本後才看得到。
 
 ![範本標記][api-management-template]
 
-[範本資料] 窗格可為能在特定範本中使用的實體，提供有關資料模型的指南。它提供這份指南的方法是顯示開發人員入口網站中目前顯示的即時資料。您可以按一下 [範本資料] 窗格右上角的矩形，展開範本窗格。
+[範本資料]  窗格可為能在特定範本中使用的實體，提供有關資料模型的指南。 它提供這份指南的方法是顯示開發人員入口網站中目前顯示的即時資料。 您可以按一下 [範本資料]  窗格右上角的矩形，展開範本窗格。
 
 ![範本資料模型][api-management-template-data]
 
-上述範例在開發人員入口網站中顯示了兩項產品，擷取自 [範本資料] 窗格顯示的資料，如下例所示。
+上述範例在開發人員入口網站中顯示了兩項產品，擷取自 [範本資料]  窗格顯示的資料，如下例所示。
 
     {
         "Paging": {
@@ -90,7 +94,7 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
         ]
     }
 
-**產品清單**範本中的標記會處理資料，逐一查看產品集合，顯示每項個別產品的資訊和連結，來提供所需的輸出。請注意標記中的 `<search-control>` 和 `<page-control>` 元素。這些控制項會顯示頁面的搜尋和分頁控制項。`ProductsStrings|PageTitleProducts` 是當地語系化的字串參考，包含頁面的 `h2` 頁首文字。如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
+**產品清單** 範本中的標記會處理資料，逐一查看產品集合，顯示每項個別產品的資訊和連結，來提供所需的輸出。 請注意標記中的 `<search-control>` 和 `<page-control>` 元素。 這些控制項會顯示頁面的搜尋和分頁控制項。 `ProductsStrings|PageTitleProducts` 是當地語系化的字串參考，其中包含頁面的 `h2` 標頭文字。 如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
 
     <search-control></search-control>
     <div class="row">
@@ -116,64 +120,64 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
         </div>
     </div>
 
-## 儲存範本
+## <a name="to-save-a-template"></a>儲存範本
 若要儲存範本，請按一下範本編輯器的 [儲存]。
 
 ![儲存範本][api-management-save-template]
 
 儲存的變更不會即時顯示在開發人員入口網站中，要發佈後才會顯示。
 
-## 發佈範本
-儲存的範本可以個別或一起發佈。若要發佈個別的範本，請按一下範本編輯器的 [發佈]。
+## <a name="to-publish-a-template"></a>發佈範本
+儲存的範本可以個別或一起發佈。 若要發佈個別的範本，請按一下範本編輯器的 [發佈]。
 
 ![發佈範本][api-management-publish-template]
 
-按一下 [是] 確認，並讓範本即時顯示在開發人員入口網站中。
+按一下 [是]  確認，並讓範本即時顯示在開發人員入口網站中。
 
 ![確認發佈][api-management-publish-template-confirm]
 
-若要發佈目前所有尚未發佈的範本版本，請按一下範本清單的 [發佈]。未發佈的範本會在範本名稱後面標記星號。本例中要發佈**產品清單**和**產品**範本。
+若要發佈目前所有尚未發佈的範本版本，請按一下範本清單的 [發佈]。 未發佈的範本會在範本名稱後面標記星號。 本例中要發佈**產品清單**和**產品**範本。
 
 ![發佈範本][api-management-publish-templates]
 
-請按一下 [Publish customizations]\(發佈自訂) 確認。
+請按一下 [Publish customizations] (發佈自訂)  確認。
 
 ![確認發佈][api-management-publish-customizations]
 
 新發佈的範本在開發人員入口網站中會立即生效。
 
-## 將範本還原成先前的版本
+## <a name="to-revert-a-template-to-the-previous-version"></a>將範本還原成先前的版本
 若要將範本還原為先前發佈的版本，請按一下範本編輯器的 [還原]。
 
 ![還原範本][api-management-revert-template]
 
-按一下 [**是**] 以確認。
+按一下 [ **是** ] 以確認。
 
 ![Confirm][api-management-revert-template-confirm]
 
 還原作業一完成，先前發佈的範本版本就會立即顯示在開發人員入口網站中。
 
-## 將範本還原成預設的版本
-將範本還原成預設版本的程序有兩個步驟。首先必須還原範本，然後一定要發佈還原的版本。
+## <a name="to-restore-a-template-to-the-default-version"></a>將範本還原成預設的版本
+將範本還原成預設版本的程序有兩個步驟。 首先必須還原範本，然後一定要發佈還原的版本。
 
 若要還原單一範本的預設版本，請按一下範本編輯器的 [還原]。
 
 ![還原範本][api-management-reset-template]
 
-按一下 [**是**] 以確認。
+按一下 [ **是** ] 以確認。
 
 ![Confirm][api-management-reset-template-confirm]
 
-若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates]\(還原預設範本)。
+若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates] (還原預設範本)  。
 
 ![還原範本][api-management-restore-templates]
 
-已還原的範本必須個別發佈，或依照[發佈範本](#to-publish-a-template)的步驟一次全部發佈。
+已還原的範本必須個別發佈，或依照 [發佈範本](#to-publish-a-template)的步驟一次全部發佈。
 
-## 開發人員入口網站範本參考
+## <a name="developer-portal-templates-reference"></a>開發人員入口網站範本參考
 如需開發人員入口網站範本、字串資源、圖示和頁面控制項的參考資訊，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
 
-## 觀看影片概觀
+## <a name="watch-a-video-overview"></a>觀看影片概觀
 請觀看以下影片，了解如何使用範本在開發人員入口網站的 API 和操作頁面中加入討論區和評等。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Adding-Developer-Portal-functionality-using-Templates-in-Azure-API-Management/player]
@@ -199,4 +203,15 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 [api-management-reset-template-confirm]: ./media/api-management-developer-portal-templates/api-management-reset-template-confirm.png
 [api-management-restore-templates]: ./media/api-management-developer-portal-templates/api-management-restore-templates.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+
+
+
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

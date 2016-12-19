@@ -1,13 +1,13 @@
 ---
-title: Azure Active Directory B2B 共同作業目前的預覽限制 | Microsoft Docs
-description: Azure Active Directory B2B 可讓企業合作夥伴選擇性地存取您的公司應用程式，以支援公司間的關係
+title: "Azure Active Directory B2B 共同作業目前的預覽限制 | Microsoft Docs"
+description: "Azure Active Directory B2B 可讓企業合作夥伴選擇性地存取您的公司應用程式，以支援公司間的關係"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: viv-liu
 manager: cliffdi
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 1cc8440c-b74b-4789-9401-428105e8a00c
 ms.service: active-directory
 ms.devlang: NA
 ms.topic: article
@@ -15,10 +15,14 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/09/2016
 ms.author: viviali
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 852bc6e8880525bf72e86f3a0e64e63086c0ad04
+
 
 ---
-# Azure AD B2B 共同作業預覽：目前預覽限制
-* 外部使用者無法使用 Multi-Factor Authentication (MFA)。例如，如果 Contoso 有 MFA，但合作夥伴組織沒有，則合作夥伴組織的使用者無法透過 B2B 共同作業獲得 MFA。
+# <a name="azure-ad-b2b-collaboration-preview-current-preview-limitations"></a>Azure AD B2B 共同作業預覽：目前預覽限制
+* 外部使用者無法使用 Multi-Factor Authentication (MFA)。 例如，如果 Contoso 有 MFA，但合作夥伴組織沒有，則合作夥伴組織的使用者無法透過 B2B 共同作業獲得 MFA。
 * 只能透過 CSV 邀請；不支援個別的邀請和 API 存取。
 * 只有 Azure AD 全域系統管理員可以上傳 .csv 檔案。
 * 目前不支援向消費者電子郵件地址寄送邀請 (例如，hotmail.com、Gmail.com 或 comcast.net)。
@@ -27,7 +31,7 @@ ms.author: viviali
 * 不支援向通訊群組清單寄送邀請。
 * 透過 CSV 最多可以上傳 2,000 筆記錄。
 
-## 相關文章
+## <a name="related-articles"></a>相關文章
 請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
@@ -38,4 +42,9 @@ ms.author: viviali
 * [外部使用者物件屬性變更](active-directory-b2b-references-external-user-object-attribute-changes.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

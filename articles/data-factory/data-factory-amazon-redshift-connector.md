@@ -1,19 +1,23 @@
 ---
-title: 使用 Data Factory 從 Amazon Redshift 移動資料 | Microsoft Docs
-description: 了解如何使用 Azure Data Factory 從 Amazon Redshift 移動資料。
+title: "使用 Data Factory 從 Amazon Redshift 移動資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 從 Amazon Redshift 移動資料。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: linda33wj
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 01d15078-58dc-455c-9d9d-98fbdf4ea51e
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/23/2016
+ms.date: 12/12/2016
 ms.author: jingwang
+translationtype: Human Translation
+ms.sourcegitcommit: c2350ae447ccebf1a6b85a563e7fa1d7c12b16d7
+ms.openlocfilehash: 4ca6e9a70eeba688912dd1f2c840fe0289a365c9
+
 
 ---
 # <a name="move-data-from-amazon-redshift-using-azure-data-factory"></a>使用 Azure Data Factory 從 Amazon Redshift 移動資料
@@ -22,26 +26,26 @@ ms.author: jingwang
 Data Factory 目前只支援將資料從 Amazon Redshift 移到其他資料存放區，而不支援將資料從其他資料存放區移到 Amazon Redshift。
 
 ## <a name="prerequisites"></a>必要條件
-* 如果您要移動資料到內部部署資料存放區，請將 Amazon Redshift 叢集的存取權授與資料管理閘道 (使用機器的 IP 位址)。 如需相關指示，請參閱 [授權存取叢集](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) 。 
-* 如果您要移動資料到 Azure 資料存放區，請參閱 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653) 以取得 Microsoft Azure 資料中心所使用的計算 IP 位址範圍 (包括 SQL 範圍)。 
+* 如果您要移動資料到內部部署資料存放區，請將 Amazon Redshift 叢集的存取權授與資料管理閘道 (使用機器的 IP 位址)。 如需相關指示，請參閱 [授權存取叢集](http://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html) 。
+* 如果您要移動資料到 Azure 資料存放區，請參閱 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653) 以取得 Microsoft Azure 資料中心所使用的計算 IP 位址範圍 (包括 SQL 範圍)。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
-若要建立從 Amazon Redshift 複製資料的管線，最簡單的方法就是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。 
+若要建立從 Amazon Redshift 複製資料的管線，最簡單的方法就是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-下列範例提供您使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 來建立管線時，可使用的範例 JSON 定義。 它將示範如何將資料從 Amazon Redshift 複製到「Azure Blob 儲存體」。 不過，您可以將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores)所述的任何接收器。
+下列範例提供您使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 來建立管線時，可使用的範例 JSON 定義。 它將示範如何將資料從 Amazon Redshift 複製到「Azure Blob 儲存體」。 不過，您可以將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats)所述的任何接收器。
 
-## <a name="sample:-copy-data-from-amazon-redshift-to-azure-blob"></a>範例：將資料從 Amazon Redshift 複製到 Azure Blob
-此範例示範如何將資料從 Amazon Redshift 資料庫複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動， **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores) 所說的任何接收器。  
+## <a name="sample-copy-data-from-amazon-redshift-to-azure-blob"></a>範例：將資料從 Amazon Redshift 複製到 Azure Blob
+此範例示範如何將資料從 Amazon Redshift 資料庫複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動， **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。  
 
 此範例具有下列 Data Factory 實體：
 
 * [AmazonRedshift](#linked-service-properties)類型的連結服務。
-* [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties)類型的連結服務。
+* [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service)類型的連結服務。
 * [RelationalTable](#dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 * [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 * 具有使用 [RelationalSource](#copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會每個小時將資料從 Amazon Redshift 中的查詢結果複製到 Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。 
+此範例會每個小時將資料從 Amazon Redshift 中的查詢結果複製到 Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
 **Amazon Redshift 連結服務**
 
@@ -227,7 +231,7 @@ Data Factory 目前只支援將資料從 Amazon Redshift 移到其他資料存�
 | tableName |Amazon Redshift 資料庫中連結服務所參照的資料表名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
 
 ## <a name="copy-activity-type-properties"></a>複製活動類型屬性
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。 
+如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
@@ -270,10 +274,12 @@ Data Factory 目前只支援將資料從 Amazon Redshift 移到其他資料存�
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
 ## <a name="next-steps"></a>後續步驟
-請參閱下列文章： 
+請參閱下列文章：
 
-* [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得使用「複製活動」來建立管線的逐步指示。 
+* [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得使用「複製活動」來建立管線的逐步指示。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

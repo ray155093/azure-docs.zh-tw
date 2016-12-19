@@ -1,12 +1,12 @@
 ---
-title: 存取面板簡介 | Microsoft Docs
-description: 了解如何使用各種類別的存取面板 (網頁瀏覽器、Android App、iPhone 和 iPad App) 存取已指派給您的 SaaS App。
+title: "存取面板簡介 | Microsoft Docs"
+description: "了解如何使用各種類別的存取面板 (網頁瀏覽器、Android App、iPhone 和 iPad App) 存取已指派給您的 SaaS App。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: c0252d01-7e6e-4f79-a70e-600479577dfd
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: markusvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 677515cf1336aa1638fae1be492707f1a60e38a2
+
 
 ---
 # <a name="introduction-to-the-access-panel"></a>存取面板簡介
@@ -93,12 +97,12 @@ Azure AD 可以直接驗證使用者。 <br>
 
 當使用者按一下 Office 365 應用程式的應用程式磚時，會將他們重新導向至該應用程式，並自動登入。
 
-### <a name="microsoft-and-thirdparty-applications-configured-with-federationbased-sso"></a>以同盟 SSO 設定的 Microsoft 及協力廠商應用程式
+### <a name="microsoft-and-third-party-applications-configured-with-federation-based-sso"></a>以同盟 SSO 設定的 Microsoft 及協力廠商應用程式
 這些是系統管理員在單一登入模式設定為 [Azure AD 單一登入]的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。 只有在系統管理員明確地為使用者授與應用程式的存取權時，他們才會看到這些應用程式。
 
 當使用者按一下這些其中一個應用程式的應用程式磚時，會將他們重新導向至該應用程式，並自動登入。
 
-### <a name="passwordbased-sso-without-identity-provisioning"></a>不含身分識別佈建的密碼 SSO
+### <a name="password-based-sso-without-identity-provisioning"></a>不含身分識別佈建的密碼 SSO
 這些是系統管理員在單一登入模式設定為 [密碼單一登入]的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。 <br> 目錄中的所有使用者都會看到已在此模式下設定的所有應用程式。
 
 當使用者第一次按一下這些其中一個應用程式的應用程式磚時，系統會提示他們安裝適用於 Internet Explorer 或 Chrome 的密碼 SSO 外掛程式，安裝後可能需要重新啟動網頁瀏覽器。 當使用者返回存取面板並再按一下應用程式磚時，系統將會提示他們輸入應用程式的使用者名稱和密碼。 一旦輸入使用者名稱和密碼之後，這些認證將會安全地儲存在 Azure AD 中，並連結至他們在 Azure AD 中的帳戶，且存取面板將會使用這些認證，自動將使用者登入應用程式。
@@ -107,7 +111,7 @@ Azure AD 可以直接驗證使用者。 <br>
 
 如果使用者的認證在目標協力廠商應用程式中已變更，則使用者也必須更新他們儲存在 Azure AD 中的認證。 若要更新認證，使用者必須選取應用程式磚右下方的圖示，然後選取 [更新認證] 以重新輸入該應用程式的使用者名稱與密碼。
 
-### <a name="passwordbased-sso-with-identity-provisioning"></a>含身分識別佈建的密碼 SSO
+### <a name="password-based-sso-with-identity-provisioning"></a>含身分識別佈建的密碼 SSO
 這些是系統管理員在單一登入模式設定為 [密碼單一登入]以及身分識別佈建的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。
 
 當使用者第一次按一下這些其中一個應用程式的應用程式磚時，系統會提示他們安裝適用於 Internet Explorer 或 Chrome 的密碼 SSO 外掛程式，安裝後可能需要重新啟動網頁瀏覽器。 當使用者返回存取面板並再按一下應用程式磚時，他們將會自動登入應用程式。
@@ -131,6 +135,6 @@ Azure AD 可以直接驗證使用者。 <br>
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

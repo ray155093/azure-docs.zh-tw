@@ -1,31 +1,37 @@
 ---
-title: Azure Active Directory Identity Protection 偵測到的弱點 | Microsoft Docs
-description: Azure Active Directory Identity Protection 偵測到的弱點概觀。
+title: "Azure Active Directory Identity Protection 偵測到的弱點 | Microsoft Docs"
+description: "Azure Active Directory Identity Protection 偵測到的弱點概觀。"
 services: active-directory
-keywords: azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則
-documentationcenter: ''
+keywords: "azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 92233a5b-cb34-4d28-88cc-d5d29c0f3256
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/22/2016
+ms.date: 11/11/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 2e229cab7b8a498d3015183d438e2bc2465822aa
+ms.openlocfilehash: f526af67a94ce0cab61591d9250f4742b1ede579
+
 
 ---
 # <a name="vulnerabilities-detected-by-azure-active-directory-identity-protection"></a>Azure Active Directory Identity Protection 偵測到的弱點
 弱點是您的環境中攻擊者可以利用的弱點。 我們建議您處理這些弱點，以改善組織的安全性狀態，並防止攻擊者利用這些弱點。
-<br><br>
+
+
 ![弱點](./media/active-directory-identityprotection-vulnerabilities/101.png "vulnerabilities")
-<br>
+
+
 
 下列各節概述 Identity Protection 所報告的弱點。
 
-## <a name="multifactor-authentication-registration-not-configured"></a>未設定 Multi-Factor Authentication 註冊
+## <a name="multi-factor-authentication-registration-not-configured"></a>未設定 Multi-Factor Authentication 註冊
 此弱點可協助您控制組織中部署的 Azure Multi-Factor Authentication。 
 
 Azure Multi-Factor Authentication 會為使用者驗證提供第二層安全性。 這有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。 它可以透過一些簡單的驗證選項 (例如電話、文字訊息，或行動應用程式通知或驗證代碼，以及第三方 OATH 權杖) 來提供強大的驗證功能。
@@ -55,6 +61,9 @@ Azure Multi-Factor Authentication 會為使用者驗證提供第二層安全性�
 ## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

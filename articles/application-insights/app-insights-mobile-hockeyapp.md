@@ -1,11 +1,11 @@
 ---
-title: Performance monitoring for mobile web apps with Developer Analytics | Microsoft Docs
-description: Application performance and usage monitoring for mobile app developers. , desktop, web service, and backend apps with HockeyApp and Application Insights.
+title: "使用開發人員分析來監視行動 Web 應用程式的效能 | Microsoft Docs"
+description: "行動應用程式開發人員的應用程式效能和使用情況監視。 傳統型服務、Web 服務及後端應用程式搭配 HockeyApp 和 Application Insights。"
 author: alancameronwills
 services: application-insights
-documentationcenter: ''
+documentationcenter: 
 manager: douge
-
+ms.assetid: 93e0f108-9605-4d8b-8fce-512bfe8c3f0f
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
@@ -13,50 +13,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/19/2016
 ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
+ms.openlocfilehash: 4d394ff22e57d162c5adf39c492ca76f3d1f9d3a
+
 
 ---
-# <a name="mobile-analytics-with-hockeyapp-and-application-insights"></a>Mobile Analytics with HockeyApp and Application Insights
-Monitor the performance and usage of your beta-test and deployed mobile and desktop apps with [HockeyApp](https://hockeyapp.net/). Monitor the supporting web service and backend apps with [Visual Studio Application Insights](app-insights-overview.md). Analyze data from both the client and server apps in Analytics, and display the charts alongside each other in an Azure dashboard.
+# <a name="mobile-analytics-with-hockeyapp-and-application-insights"></a>使用 Application Insights 和 HockeyApp 進行的行動分析
+使用 [HockeyApp](https://hockeyapp.net/) 來監視您測試版測試與已部署之行動及傳統型應用程式的效能和使用情況。 使用 [Azure Application Insights](app-insights-overview.md) 來監視支援 Web 服務和後端應用程式。 在「分析」中分析來自用戶端和伺服器應用程式的資料，並在 Azure 儀表板中將圖表並排顯示。
 
-Microsoft Developer Analytics offers two solutions for application performance monitoring:
+「Microsoft 開發人員分析」提供兩種應用程式效能監視解決方案：
 
-* **HockeyApp for mobile** and desktop apps.
-  * Distribute test versions to selected users.
-  * Crash analysis.
-  * Custom telemetry for usage analysis.
-* **Application Insights for web sites** and services, and backend applications.
-  * Performance and usage metrics and alerts.
-  * Exception reporting and diagnostic tracing.
-  * Diagnostic search with filtering and related telemetry links.
+* **適用於行動應用程式的 HockeyApp**：也適用於傳統型應用程式。
+  * 將測試版本散發給選取的使用者。
+  * 損毀分析。
+  * 用於使用情況分析的自訂遙測。
+* **適用於網站的 Application Insights**：也適用於服務和後端應用程式。
+  * 效能與使用情況度量及警示。
+  * 例外狀況報告和診斷追蹤。
+  * 搭配篩選的診斷搜尋和相關的遙測連結。
 
-Both solutions offer:
+兩種解決方案都提供下列功能：
 
-* Powerful **[analytic query language](app-insights-analytics.md)** for diagnostics and analysis.
-* **[Export data](app-insights-export-telemetry.md)** to your own storage.
-* **Integrated dashboard** display of analytic charts and tables.
+* 用於診斷和分析的強大**[分析查詢語言](app-insights-analytics.md)**。
+* **[將資料匯出](app-insights-export-telemetry.md)**到您自己的儲存體。
+* 分析圖表和表格的**整合式儀表板**顯示。
 
-## <a name="monitor-your-app-components"></a>Monitor your app components
-Follow the instructions in these pages to install the SDK in your code and start tracking your app.
+## <a name="monitor-your-app-components"></a>監視您的應用程式元件
+請依照這些頁面中的指示，在您的程式碼中安裝 SDK 並開始追蹤您的應用程式。
 
-### <a name="web-apps---application-insights"></a>Web apps - Application Insights
-* [ASP.NET web app](app-insights-asp-net.md) 
-* [Java web app](app-insights-java-get-started.md)
-* [Node.js web app](https://github.com/Microsoft/ApplicationInsights-node.js)
-* [Azure Cloud Services](app-insights-cloudservices.md)
+### <a name="web-apps---application-insights"></a>Web 應用程式 - Application Insights
+* [ASP.NET Web 應用程式](app-insights-asp-net.md) 
+* [Java Web 應用程式](app-insights-java-get-started.md)
+* [Node.js Web 應用程式](https://github.com/Microsoft/ApplicationInsights-node.js)
+* [Azure 雲端服務](app-insights-cloudservices.md)
 
-### <a name="mobile-apps---hockeyapp"></a>Mobile apps - HockeyApp
-* [iOS app](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-ios)
-* [Mac OS X app](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-mac-os-x)
-* [Android app](https://support.hockeyapp.net/kb/client-integration-android/hockeyapp-for-android-sdk)
-* [Universal Windows app](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/how-to-create-an-app-for-uwp)
-* [Windows Phone 8 and 8.1 app](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-phone-silverlight-apps-80-and-81)
-* [Windows Presentation Foundation app](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-wpf-apps)
+### <a name="mobile-apps---hockeyapp"></a>行動應用程式 - HockeyApp
+* [iOS App](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-ios)
+* [Mac OS X App](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-mac-os-x)
+* [Android App](https://support.hockeyapp.net/kb/client-integration-android/hockeyapp-for-android-sdk)
+* [通用 Windows App](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/how-to-create-an-app-for-uwp)
+* [Windows Phone 8 和 8.1 App](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-phone-silverlight-apps-80-and-81)
+* [Windows Presentation Foundation App](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-wpf-apps)
 
-For Windows desktop apps, we recommend HockeyApp. But you can also [send telemetry from a Windows app to Application Insights](app-insights-windows-desktop.md). You might want to do that to experiment with Application Insights.
+針對 Windows 傳統型應用程式︰建議使用 HockeyApp。 但是您也可以[將遙測從 Windows 應用程式傳送到 Application Insights](app-insights-windows-desktop.md)。 您可以這麼做來使用 Application Insights 進行實驗。
 
-## <a name="analytics-and-export-for-hockeyapp-telemetry"></a>Analytics and Export for HockeyApp telemetry
-You can investigate HockeyApp custom and log telemetry using the Analytics and Continuous Export features of Application Insights by [setting up a bridge](app-insights-hockeyapp-bridge-app.md).
+## <a name="analytics-and-export-for-hockeyapp-telemetry"></a>分析和匯出 HockeyApp 遙測
+您可以 [設定橋接器](app-insights-hockeyapp-bridge-app.md)，以使用 Application Insights 的分析和連續匯出功能來調查 HockeyApp 自訂和記錄遙測。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

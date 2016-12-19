@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 CloudPassage 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 CloudPassage 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 CloudPassage 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 CloudPassage 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: bfe1f14e-74e4-4680-ac9e-f7355e1c94cc
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 01676cbaf2b677b43a223cf33699710c77da41fa
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-cloudpassage"></a>教學課程：Azure Active Directory 與 CloudPassage 整合
+# <a name="tutorial-azure-active-directory-integration-with-cloudpassage"></a>教學課程：Azure Active Directory 與 CloudPassage 整合
 本教學課程旨在說明如何整合 CloudPassage 與 Azure Active Directory (Azure AD)。  
 CloudPassage 與 Azure AD 整合提供下列優點： 
 
@@ -52,7 +56,7 @@ CloudPassage 與 Azure AD 整合提供下列優點：
 ## <a name="adding-cloudpassage-from-the-gallery"></a>從資源庫新增 CloudPassage
 若要設定 CloudPassage 與 Azure AD 整合，您需要從資源庫將 CloudPassage 新增到受管理的 SaaS App 清單。
 
-### <a name="to-add-cloudpassage-from-the-gallery,-perform-the-following-steps:"></a>若要從資源庫新增 CloudPassage，請執行下列步驟：
+### <a name="to-add-cloudpassage-from-the-gallery-perform-the-following-steps"></a>若要從資源庫新增 CloudPassage，請執行下列步驟：
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
    
     ![Active Directory][1]
@@ -60,7 +64,7 @@ CloudPassage 與 Azure AD 整合提供下列優點：
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -225,7 +229,7 @@ CloudPassage 與 Azure AD 整合提供下列優點：
 ### <a name="creating-a-cloudpassage-test-user"></a>建立 CloudPassage 測試使用者
 本節目標是在 CloudPassage 中建立名為 Britta Simon 的使用者。
 
-#### <a name="to-create-a-user-called-britta-simon-in-cloudpassage,-perform-the-following-steps:"></a>若要在 CloudPassage 中建立名為 Britta Simon 的使用者，請執行以下步驟：
+#### <a name="to-create-a-user-called-britta-simon-in-cloudpassage-perform-the-following-steps"></a>若要在 CloudPassage 中建立名為 Britta Simon 的使用者，請執行以下步驟：
 1. 以系統管理員身分登入您的 **CloudPassage** 公司網站。 
 2. 在頂端工具列中，按一下 [設定]，然後按一下 [網站管理]。 
    
@@ -331,6 +335,6 @@ CloudPassage 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 
