@@ -12,7 +12,7 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
+ms.date: 12/13/2016
 ms.author: sdanie
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -123,7 +123,7 @@ ms.openlocfilehash: 74fd40d7cd2ce5aecf364ba8ead4e6dfcbf6ed54
 #### <a name="problem"></a>問題
 我預期 Azure Redis 快取執行個體中會有某些資料，但是裡面似乎沒有。
 
-##### <a name="resolution"></a>解決方案
+#### <a name="resolution"></a>解決方案
 如需可能的原因和解決方案，請參閱 [我在 Redis 中的資料怎麼了？](https://gist.github.com/JonCole/b6354d92a2d51c141490f10142884ea4#file-whathappenedtomydatainredis-md) 。
 
 ## <a name="server-side-troubleshooting"></a>伺服器端疑難排解
@@ -152,7 +152,7 @@ Redis 會公開兩個可協助您識別此問題的度量。 第一個是 `used_
 4. [調整](cache-how-to-scale.md) 為更大的快取大小。
 5. 如果您使用[已啟用 Redis 叢集的高階快取](cache-how-to-premium-clustering.md)，則可以[增加分區數目](cache-how-to-premium-clustering.md#change-the-cluster-size-on-a-running-premium-cache)。
 
-### <a name="high-cpu-usage-server-load"></a>高 CPU 使用率/伺服器負載
+### <a name="high-cpu-usage--server-load"></a>高 CPU 使用率/伺服器負載
 #### <a name="problem"></a>問題
 高 CPU 使用率可能表示用戶端可能無法及時處理 Redis 傳來的回應，即使 Redis 非常快速地傳送回應也是一樣。
 
@@ -194,20 +194,21 @@ StackExchange.Redis 使用名為 `synctimeout` 的組態設定來進行預設值
 ### <a name="steps-to-investigate"></a>調查步驟
 1. 最佳作法是確定您在使用 StackExchange.Redis 用戶端來連線時，使用的是下列模式。
 
-        private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
+    ```c#
+    private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
+    {
+        return ConnectionMultiplexer.Connect("cachename.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
+    
+    });
+    
+    public static ConnectionMultiplexer Connection
+    {
+        get
         {
-            return ConnectionMultiplexer.Connect("cachename.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
-
-        });
-
-        public static ConnectionMultiplexer Connection
-        {
-            get
-            {
-                return lazyConnection.Value;
-            }
+            return lazyConnection.Value;
         }
-
+    }
+    ````
 
     如需詳細資訊，請參閱 [使用 StackExchange.Redis 來連線到快取](cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-the-cache)。
 
