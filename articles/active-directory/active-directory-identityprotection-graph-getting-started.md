@@ -1,120 +1,125 @@
 ---
-title: Get started with Azure Active Directory Identity Protection and Microsoft Graph | Microsoft Docs
-description: Provides an introduction to query Microsoft Graph for a list of risk events and associated information from Azure Active Directory.
+title: "開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph | Microsoft Docs"
+description: "簡介如何查詢 Microsoft Graph，以從 Azure Active Directory 取得風險事件和關聯資訊的清單。"
 services: active-directory
-keywords: azure active directory identity protection, risk event, vulnerability, security policy, Microsoft Graph
-documentationcenter: ''
+keywords: "azure active directory identity protection, 風險事件, 弱點, 安全性原則, Microsoft Graph"
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: fa109ba7-a914-437b-821d-2bd98e681386
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/22/2016
+ms.date: 11/11/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 77031b3bbe2372bf2cac34bac45368ac40911641
+ms.openlocfilehash: 9c7c10031c068eeb02b4468ec48bf60aece2f12e
+
 
 ---
-# <a name="get-started-with-azure-active-directory-identity-protection-and-microsoft-graph"></a>Get started with Azure Active Directory Identity Protection and Microsoft Graph
-Microsoft Graph is Microsoft’s unified API endpoint and the home of [Azure Active Directory Identity Protection’s](active-directory-identityprotection.md) APIs. Our first API, **identityRiskEvents**, allows you to query Microsoft Graph for a list of [risk events](active-directory-identityprotection-risk-events-types.md) and associated information. This article gets you started querying this API. For an in depth introduction, full documentation, and access to the Graph Explorer, see the [Microsoft Graph site](https://graph.microsoft.io/).
+# <a name="get-started-with-azure-active-directory-identity-protection-and-microsoft-graph"></a>開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph
+Microsoft Graph 是 Microsoft 的統一 API 端點，也是 [Azure Active Directory Identity Protection](active-directory-identityprotection.md) API 的寄居地。 我們的第一個 API **identityRiskEvents**可讓您查詢 Microsoft Graph，以取得 [風險事件](active-directory-identityprotection-risk-events-types.md) 清單和關聯的資訊。 本文可協助您開始查詢此 API。 如需深入的簡介、完整說明文件以及圖表總管的存取權，請參閱 [Microsoft Graph 網站](https://graph.microsoft.io/)。
 
-There are three steps to accessing Identity Protection data through Microsoft Graph:
 
-1. Add an application with a client secret. 
-2. Use this secret and a few other pieces of information to authenticate to Microsoft Graph, where you receive an authentication token. 
-3. Use this token to make requests to the API endpoint and get Identity Protection data back.
+透過 Microsoft Graph 存取 Identity Protection 資料需要三個步驟︰
 
-Before you get started, you’ll need:
+1. 新增應用程式與用戶端密碼。 
+2. 使用此密碼和其他幾項資訊向 Microsoft Graph 驗證，以從中收到驗證權杖。 
+3. 使用此權杖對 API 端點發出要求，並取回 Identity Protection 資料。
 
-* Administrator privileges to create the application in Azure AD
-* The name of your tenant's domain (for example, contoso.onmicrosoft.com)
+開始之前，您需要下列項目：
 
-## <a name="add-an-application-with-a-client-secret"></a>Add an application with a client secret
-1. [Sign in](https://manage.windowsazure.com) to your Azure classic portal as an administrator. 
-2. On on the left navigation pane, click **Active Directory**. 
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_01.png)
-3. From the **Directory** list, select the directory for which you want to enable directory integration.
-4. In the menu on the top, click **Applications**.
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_02.png)
-5. Click **Add** at the bottom of the page.
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_03.png)
-6. On the **What do you want to do** dialog, click **Add an application my organization is developing**.
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_04.png)
-7. On the **Tell us about your application** dialog, perform the following steps:
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_05.png)
-   
-    a. In the **Name** textbox, type a name for your application (e.g.: AADIP Risk Event API Application).
-   
-    b. As **Type**, select **Web Application And / Or Web API**.
-   
-    c. Click **Next**.
-8. On the **App properties** dialog, perform the following steps:
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_06.png)
-   
-    a. In the **Sign-On URL** textbox, type `http://localhost`.
-   
-    b. In the **App ID URI** textbox, type `http://localhost`.
-   
-    c. Click **Complete**.
+* 系統管理員權限，以便在 Azure AD 中建立應用程式
+* 租用戶網域的名稱 (例如 contoso.onmicrosoft.com)
 
-Your can now configure your application.
+## <a name="add-an-application-with-a-client-secret"></a>新增應用程式與用戶端密碼
+1. [登入](https://manage.windowsazure.com) Azure 傳統入口網站。 
+2. 在左方的瀏覽窗格中，按一下 [Active Directory] 。 
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_01.png)
+3. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+4. 在頂端的功能表中，按一下 [應用程式] 。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_02.png)
+5. 按一下頁面底部的 [新增]  。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_03.png)
+6. 在 [欲執行動作] 對話方塊上，按一下 [加入我的組織正在開發的應用程式]。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_04.png)
+7. 在 [告訴我們您的應用程式]  對話方塊上，執行以下步驟：
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_05.png)
+   
+    a. 在 [名稱] 文字方塊中，輸入應用程式的名稱 (例如︰AADIP Risk Event API Application)。
+   
+    b. 在 [類型]，選取 [Web 應用程式和/或 Web API]。
+   
+    c. 按 [下一步] 。
+8. 在 [應用程式屬性]  對話方塊上，執行下列步驟：
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_06.png)
+   
+    a. 在 [登入 URL] 文字方塊中，輸入 `http://localhost`。
+   
+    b. 在 [應用程式識別碼 URI] 文字方塊中，輸入 `http://localhost`。
+   
+    c. 按一下頁面底部的 [新增] 。
 
-![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_07.png)
+現在您可以設定您的應用程式了。
 
-## <a name="grant-your-application-permission-to-use-the-api"></a>Grant your application permission to use the API
-1. On your application's page, in the menu on the top, click **Configure**. 
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_08.png)
-2. In the **permissions to other applications** section, click **Add application**.
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_09.png)
-3. On the **permissions to other applications** dialog, perform the following steps:
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_10.png)
-   
-    a. Select **Microsoft Graph**.
-   
-    b. Click **Complete**.
-4. Click **Application Permissions: 0**, and then select **Read all identity risk event information**.
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_11.png)
-5. Click **Save** at the bottom of the page.
-   
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
+![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_07.png)
 
-## <a name="get-an-access-key"></a>Get an access key
-1. On your application's page, in the **keys** section, select 1 year as duration.
+## <a name="grant-your-application-permission-to-use-the-api"></a>授與您的應用程式使用 API 的權限
+1. 在應用程式頁面頂端的功能表中，按一下 [設定] 。 
    
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_13.png)
-2. Click **Save** at the bottom of the page.
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_08.png)
+2. 在 [其他應用程式的權限] 區段中，按一下 [加入應用程式]。
    
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
-3. in the keys section, copy the value of your newly created key, and then paste it into a safe location.
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_09.png)
+3. 在 [其他應用程式的權限]  對話方塊中，執行下列步驟︰
    
-    ![Creating an application](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_14.png)
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_10.png)
+   
+    a. 選取 [Microsoft Graph]。
+   
+    b. 按一下頁面底部的 [新增] 。
+4. 按一下 [應用程式權限: 0]，然後選取 [讀取所有身分識別風險事件資訊]。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_11.png)
+5. 按一下頁面底部的 [儲存]  。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
+
+## <a name="get-an-access-key"></a>取得存取金鑰
+1. 在應用程式頁面的 [金鑰]  區段中，選取 1 年做為持續時間。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_13.png)
+2. 按一下頁面底部的 [儲存]  。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_12.png)
+3. 在 [金鑰] 區段中，複製新建立的金鑰值並貼到安全的位置。
+   
+    ![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_14.png)
    
    > [!NOTE]
-   > If you lose this key, you will have to return to this section and create a new key. Keep this key a secret: anyone who has it can access your data.
+   > 如果遺失此金鑰，則必須返回本區段並建立新的金鑰。 請勿將此金鑰告知他人︰任何人只要擁有此金鑰就可以存取您的資料。
    > 
    > 
-4. In the **properties** section, copy the **Client ID**, and then paste it into a safe location. 
+4. 在 [屬性] 區段中複製 [用戶端識別碼]，然後將它貼到安全的位置。 
 
-## <a name="authenticate-to-microsoft-graph-and-query-the-identity-risk-events-api"></a>Authenticate to Microsoft Graph and query the Identity Risk Events API
-At this point, you should have:
+## <a name="authenticate-to-microsoft-graph-and-query-the-identity-risk-events-api"></a>向 Microsoft Graph 驗證和查詢身分識別風險事件 API
+到目前為止，您應該已擁有︰
 
-* The client ID you copied above
-* The key you copied above
-* The name of your tenant's domain
+* 上面複製的用戶端識別碼
+* 上面複製的金鑰
+* 租用戶網域的名稱
 
-To authenticate, send a post request to `https://login.microsoft.com` with the following parameters in the body:
+若要驗證，請傳送 post 要求至 `https://login.microsoft.com` ，並在主體中加入下列參數︰
 
 * grant_type: “**client_credentials**”
 * resource: “**https://graph.microsoft.com**”
@@ -122,24 +127,24 @@ To authenticate, send a post request to `https://login.microsoft.com` with the f
 * client_secret: <your key>
 
 > [!NOTE]
-> You need to provide values for the **client_id** and the **client_secret** parameter.
+> 您必須提供 **client_id** 和 **client_secret** 參數的值。
 > 
 > 
 
-If successful, this returns an authentication token.  
-To call the API, create a header with the following parameter:
+如果成功，這會傳回驗證權杖。  
+若要呼叫 API，請建立具有下列參數的標頭︰
 
     `Authorization`=”<token_type> <access_token>"
 
 
-When authenticating, you can find the token type and access token in the returned token.
+驗證時，您可以在傳回的權杖中找到權杖類型和存取權杖。
 
-Send this header as a request to the following API URL: `https://graph.microsoft.com/beta/identityRiskEvents`
+將此標頭做為要求來傳送至下列 API URL： `https://graph.microsoft.com/beta/identityRiskEvents`
 
-The response, if successful, is a collection of identity risk events and associated data in the OData JSON format, which can be parsed and handled as see fit.
+回應 (如果成功) 是身分識別風險事件和關聯資料的集合 (格式為 OData JSON)，並可視需要加以剖析和處理。
 
-Here’s sample code for authenticating and calling the API using Powershell.  
-Just add your client ID, key, and tenant domain.
+以下是使用 Powershell 驗證並呼叫 API 的範例程式碼。  
+您只需要加入用戶端識別碼、金鑰和租用戶網域。
 
     $ClientID       = "<your client ID here>"        # Should be a ~36 hex character string; insert your info here
     $ClientSecret   = "<your client secret here>"    # Should be a ~44 character string; insert your info here
@@ -170,19 +175,22 @@ Just add your client ID, key, and tenant domain.
     } 
 
 
-## <a name="next-steps"></a>Next steps
-Congratulations, you just made your first call to Microsoft Graph!  
-Now you can query identity risk events and use the data however you see fit.
+## <a name="next-steps"></a>後續步驟
+恭喜，您剛剛完成了對 Microsoft Graph 的第一次呼叫！  
+現在，您可以查詢身分識別風險事件，並依照需要任意使用資料。
 
-To learn more about Microsoft Graph and how to build applications using the Graph API, check out the [documentation](https://graph.microsoft.io/docs) and much more on the [Microsoft Graph site](https://graph.microsoft.io/). Also, make sure to bookmark the [Azure AD Identity Protection API](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root) page that lists all of the Identity Protection APIs available in Graph. As we add new ways to work with Identity Protection via API, you’ll see them on that page.
+若要深入了解 Microsoft Graph 以及如何使用 Graph API 來建置應用程式，請查看[說明文件](https://graph.microsoft.io/docs)，而在 [Microsoft Graph 網站](https://graph.microsoft.io/)上還能找到更多資訊。 此外，請務必要將 [Azure AD Identity Protection API](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root) 頁面加入書籤，因為此頁面會列出 Graph 中提供的所有 Identity Protection API。 由於我們增加了透過 API 使用 Identity Protection 的新方法，因此您會在該頁面上看到這些方法。
 
-## <a name="additional-resources"></a>Additional resources
+## <a name="additional-resources"></a>其他資源
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
-* [Types of risk events detected by Azure Active Directory Identity Protection](active-directory-identityprotection-risk-events-types.md)
+* [Azure Active Directory Identity Protection 偵測到的風險事件類型](active-directory-identityprotection-risk-events-types.md)
 * [Microsoft Graph](https://graph.microsoft.io/)
-* [Overview of Microsoft Graph](https://graph.microsoft.io/docs)
-* [Azure AD Identity Protection Service Root](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root)
+* [Microsoft Graph 概觀](https://graph.microsoft.io/docs)
+* [Azure AD Identity Protection 服務根目錄](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

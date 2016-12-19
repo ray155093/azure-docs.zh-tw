@@ -1,14 +1,14 @@
 ---
-title: 在組織中啟用 Microsoft Windows Hello 企業版 | Microsoft Docs
-description: 在組織中啟用 Microsoft Passport 的部署指示。
+title: "在組織中啟用 Microsoft Windows Hello 企業版 | Microsoft Docs"
+description: "在組織中啟用 Microsoft Passport 的部署指示。"
 services: active-directory
-documentationcenter: ''
-keywords: 設定 Microsoft Passport、Microsoft Windows Hello 企業版部署
+documentationcenter: 
+keywords: "設定 Microsoft Passport、Microsoft Windows Hello 企業版部署"
 author: MarkusVi
 manager: femila
-editor: ''
+editor: 
 tags: azure-classic-portal
-
+ms.assetid: 7dbbe3c6-1cd7-429c-a9b2-115fcbc02416
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -16,6 +16,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 115fbee1990b20f6a7186e5f36d0b618cf2e3b7b
+
 
 ---
 # <a name="enable-microsoft-windows-hello-for-business-in-your-organization"></a>在組織中啟用 Microsoft Windows Hello 企業版
@@ -110,6 +114,9 @@ ms.author: markvi
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

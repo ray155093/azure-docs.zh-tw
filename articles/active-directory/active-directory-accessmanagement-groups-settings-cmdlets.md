@@ -1,12 +1,12 @@
 ---
-title: 設定群組設定的 Azure Active Directory Cmdlet | Microsoft Docs
-description: 如何使用 Azure Active Directory Cmdlet 管理群組的設定。
+title: "設定群組設定的 Azure Active Directory Cmdlet | Microsoft Docs"
+description: "如何使用 Azure Active Directory Cmdlet 管理群組的設定。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: curtand
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 9f2090e6-3af4-4f07-bbb2-1d18dae89b73
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/22/2016
 ms.author: curtand
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 6a8bd076830d9b639007ee0130320869d2a63746
+
 
 ---
 # <a name="azure-active-directory-cmdlets-for-configuring-group-settings"></a>設定群組設定的 Azure Active Directory Cmdlet
@@ -98,7 +102,7 @@ ms.author: curtand
 ## <a name="cmdlet-syntax-reference"></a>Cmdlet 語法參考
 您可以在 [Azure Active Directory Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=808260)中找到更多 Azure Active Directory PowerShell 文件。
 
-## <a name="settingstemplate-object-reference-(group.unified-settingstemplate-object)"></a>SettingsTemplate 物件參考 (Group.Unified SettingsTemplate 物件)
+## <a name="settingstemplate-object-reference-groupunified-settingstemplate-object"></a>SettingsTemplate 物件參考 (Group.Unified SettingsTemplate 物件)
 * 「名稱」："EnableGroupCreation"、「類型」："System.Boolean"、「defaultValue」："true"、「說明」："一個布林旗標，指出是否已開啟整合的群組建立功能。"
 * 「名稱」："GroupCreationAllowedGroupId"、「類型」："System.Guid"、「defaultValue」：""、「說明」："安全性群組的 GUID，其會在可建立整合群組的允許清單中。"
 * 「名稱」："ClassificationList"、「類型」："System.String"、「defaultValue」：""、「說明」："以逗號分隔的有效分類值清單，這些值可以套用到整合的群組。"
@@ -119,6 +123,9 @@ ms.author: curtand
 * [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
