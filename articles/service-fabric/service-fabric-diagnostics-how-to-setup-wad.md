@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure 診斷收集記錄檔 | Microsoft Docs
-description: 本文將說明如何設定 Azure 診斷從 Azure 中執行的 Service Fabric 叢集收集記錄檔
+title: "使用 Azure 診斷收集記錄檔 | Microsoft Docs"
+description: "本文將說明如何設定 Azure 診斷從 Azure 中執行的 Service Fabric 叢集收集記錄檔"
 services: service-fabric
 documentationcenter: .net
 author: ms-toddabel
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 9f7e1fa5-6543-4efd-b53f-39510f18df56
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/28/2016
 ms.author: toddabel
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 454e1379e4ec598ffd31017b413f6b15c98039a6
+
 
 ---
 # <a name="collect-logs-by-using-azure-diagnostics"></a>使用 Azure 診斷收集記錄檔
@@ -31,10 +35,10 @@ ms.author: toddabel
 您將使用這些工具來執行這份文件中的某些作業：
 
 * [Azure 診斷](../cloud-services/cloud-services-dotnet-diagnostics.md) (與 Azure 雲端服務相關，但具備有用的資訊和範例)
-* [Azure Resource Manager](../resource-group-overview.md)
+* [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
 * [Azure PowerShell](../powershell-install-configure.md)
 * [Azure Resource Manager 用戶端](https://github.com/projectkudu/ARMClient)
-* [Azure Resource Manager 範本](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)
+* [Azure Resource Manager 範本](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="log-sources-that-you-might-want-to-collect"></a>您可能想要收集的記錄來源
 * **Service Fabric 記錄檔**：由平台發出到標準 Windows 事件追蹤 (ETW) 和 EventSource 通道。 記錄檔可以是下列其中一種類型：
@@ -47,7 +51,7 @@ ms.author: toddabel
 收集記錄檔的第一個步驟是將診斷擴充功能部署在 Service Fabric 叢集的每個 WM 上。 診斷擴充功能會收集每個 VM 上的記錄檔，並將它們上傳至您指定的儲存體帳戶。 步驟視您使用 Azure 入口網站或 Azure Resource Manager 而稍微有所不同。 步驟也會視部署為叢集建立的一部分，或是針對現有的叢集而有所不同。 讓我們看看每個案例的步驟。
 
 ### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-through-the-portal"></a>透過入口網站建立叢集時部署診斷擴充功能
-為了在建立叢集時將診斷擴充功能部署至叢集中的 WM，您會使用下圖所示的診斷設定面板。 若要收集 Reliable Actors 或 Reliable Services 事件，請確定已將 [診斷] 設定為 [開啟](這是預設設定.md)。 建立叢集之後，您就無法使用入口網站變更這些設定。
+為了在建立叢集時將診斷擴充功能部署至叢集中的 WM，您會使用下圖所示的診斷設定面板。 若要收集 Reliable Actors 或 Reliable Services 事件，請確定已將 [診斷] 設定為 [開啟] (這是預設設定)。 建立叢集之後，您就無法使用入口網站變更這些設定。
 
 ![入口網站中用於建立叢集的 Azure 診斷設定](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
 
@@ -206,15 +210,18 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
         }
 ```
 
-若要收集效能計數器或事件記錄檔，請以[使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)中提供的範例來修改 Resource Manager 範本。 然後請重新發佈 Resource Manager 範本。
+若要收集效能計數器或事件記錄檔，請以[使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中提供的範例來修改 Resource Manager 範本。 然後請重新發佈 Resource Manager 範本。
 
 ## <a name="next-steps"></a>後續步驟
 若要更詳細了解進行問題移難排解時應該注意的事件，請查看針對 [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) 和 [Reliable Services](service-fabric-reliable-services-diagnostics.md) 所發出的診斷事件。
 
 ## <a name="related-articles"></a>相關文章
-* [了解如何使用診斷擴充功能收集效能計數器或記錄檔](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)
+* [了解如何使用診斷擴充功能收集效能計數器或記錄檔](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Log Analytics 中的 Service Fabric 解決方案](../log-analytics/log-analytics-service-fabric.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

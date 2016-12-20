@@ -1,13 +1,13 @@
 ---
-title: 使用傳統部署模型和 PowerShell 將虛擬網路連結到 ExpressRoute 線路 | Microsoft Docs
-description: 本文提供以下內容的概觀：如何使用傳統部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 線路。
+title: "使用傳統部署模型和 PowerShell 將虛擬網路連結到 ExpressRoute 線路 | Microsoft Docs"
+description: "本文提供以下內容的概觀：如何使用傳統部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 線路。"
 services: expressroute
 documentationcenter: na
 author: ganesr
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: 9b53fd72-9b6b-4844-80b9-4e1d54fd0c17
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr
+translationtype: Human Translation
+ms.sourcegitcommit: 99d5facce236b82ea84c708edf5e934a0d69919c
+ms.openlocfilehash: 1c0891c79081f068fd6e4a60a05a6b58ebdc9598
+
 
 ---
 # <a name="link-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連結到 ExpressRoute 電路
@@ -66,7 +70,9 @@ ms.author: ganesr
 電路擁有者能夠隨時修改及撤銷授權。 如果撤銷授權，則在存取權遭撤銷的訂用帳戶中，所有連結均會被刪除。
 
 ### <a name="circuit-owner-operations"></a>循環擁有者作業
-#### <a name="creating-an-authorization"></a>建立授權
+
+**建立授權**
+
 電路擁有者可授權其他訂用帳戶管理員使用指定的電路。 在下列範例中，線路管理員 (Contoso IT) 讓另一個訂用帳戶的管理員 (Dev-Test) 可將最多 2 個虛擬網路連結到線路。 Contoso IT 的系統管理員的做法是指定 Dev-Test Microsoft 識別碼。 此 Cmdlet 不會傳送電子郵件給指定的 Microsoft ID。 電路擁有者必須明確通知其他訂用帳戶擁有者，告知授權已完成。
 
     New-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -Description "Dev-Test Links" -Limit 2 -MicrosoftIds 'devtest@contoso.com'
@@ -77,7 +83,8 @@ ms.author: ganesr
     MicrosoftIds        : devtest@contoso.com
     Used                : 0
 
-#### <a name="reviewing-authorizations"></a>檢閱授權
+**檢閱授權**
+
 線路擁有者可以藉由執行下列 Cmdlet，來檢閱特定線路上發出的所有授權：
 
     Get-AzureDedicatedCircuitLinkAuthorization -ServiceKey: "**************************"
@@ -101,7 +108,8 @@ ms.author: ganesr
     Used                : 2
 
 
-#### <a name="updating-authorizations"></a>更新授權
+**更新授權**
+
 線路擁有者可以使用下列 Cmdlet 來修改授權：
 
     Set-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -AuthorizationId "&&&&&&&&&&&&&&&&&&&&&&&&&&&&"-Limit 5
@@ -113,14 +121,17 @@ ms.author: ganesr
     Used                : 0
 
 
-#### <a name="deleting-authorizations"></a>刪除授權
+**刪除授權**
+
 線路擁有者可以使用下列 Cmdlet 來撤銷/刪除使用者的授權：
 
     Remove-AzureDedicatedCircuitLinkAuthorization -ServiceKey "*****************************" -AuthorizationId "###############################"
 
 
 ### <a name="circuit-user-operations"></a>循環使用者作業
-#### <a name="reviewing-authorizations"></a>檢閱授權
+
+**檢閱授權**
+
 線路使用者可以使用下列 Cmdlet 來檢閱授權：
 
     Get-AzureAuthorizedDedicatedCircuit
@@ -135,7 +146,8 @@ ms.author: ganesr
     Status                           : Enabled
     UsedLinks                        : 0
 
-#### <a name="redeeming-link-authorizations"></a>兌換連結授權
+**兌換連結授權**
+
 線路使用者可以執行下列 Cmdlet 來兌換連結授權：
 
     New-AzureDedicatedCircuitLink –servicekey "&&&&&&&&&&&&&&&&&&&&&&&&&&" –VnetName 'SalesVNET1'
@@ -147,6 +159,9 @@ ms.author: ganesr
 ## <a name="next-steps"></a>後續步驟
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
 title: "服務匯流排代理傳訊 .NET 教學課程 | Microsoft Docs"
 description: "代理傳訊 .NET 教學課程。"
-services: service-bus
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
 editor: 
 ms.assetid: 964e019a-8abe-42f3-8314-867010cb2608
-ms.service: service-bus
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/27/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3127a84f4d4cd9881de56a6d199cfb1780cd8189
+ms.sourcegitcommit: 9ace119de3676bcda45d524961ebea27ab093415
+ms.openlocfilehash: d888a16d538491535aad8effed53a5e98aa01359
 
 
 ---
@@ -43,19 +43,19 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
 1. 以系統管理員身分開啟 Visual Studio：以滑鼠右鍵按一下 [開始] 功能表中的程式，然後按一下 [以系統管理員身分執行]。
 2. 這會建立新的主控台應用程式專案。 按一下 [檔案] 功能表，選取 [新增]，然後按一下 [專案]。 在 [新增專案] 對話方塊中，按一下 [Visual C#] (如果 [Visual C#] 未出現，請查看 [其他語言] 下方)，按一下 [主控台應用程式] 範本，並將它命名為 **QueueSample**。 使用預設 [位置]。 按一下 [確定]  以建立專案。
 3. 使用 NuGet 套件管理員將服務匯流排程式庫新增至您的專案︰
-   
+
    1. 在 [方案總管] 中，以滑鼠右鍵按一下 **QueueSample** 專案，然後按一下 [管理 NuGet 套件]。
    2. 在 [管理 Nuget 套件] 對話方塊中，按一下 [瀏覽] 索引標籤，搜尋 [Azure 服務匯流排]，然後按一下 [安裝]。
       <br />
 4. 在 [方案總管] 中，按兩下 Program.cs 檔案，以在 Visual Studio 編輯器中開啟它。 將命名空間名稱從 `QueueSample` 的預設名稱變更為 `Microsoft.ServiceBus.Samples`。
-   
+
     ```
     Microsoft.ServiceBus.Samples
     {
         ...
     ```
 5. 如下列程式碼所示，修改 `using` 陳述式。
-   
+
     ```
     using System;
     using System.Collections.Generic;
@@ -66,7 +66,7 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
     using Microsoft.ServiceBus.Messaging;
     ```
 6. 建立名為 Data.csv 的文字檔，並複製下列以逗號分隔的文字。
-   
+
     ```
     IssueID,IssueTitle,CustomerID,CategoryID,SupportPackage,Priority,Severity,Resolved
     1,Package lost,1,1,Basic,5,1,FALSE
@@ -85,25 +85,25 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
     14,Package damaged,6,7,Premium,5,5,FALSE
     15,Product defective,6,2,Premium,5,5,FALSE
     ```
-   
+
     儲存並關閉 Data.csv 檔案，然後記得您儲存它的位置。
 7. 在 [方案總管] 中，以滑鼠右鍵按一下您的專案名稱 (在此例中為 **QueueSample**)、按一下 [新增]，然後按一下 [現有項目]。
 8. 瀏覽至您在步驟 6 中建立的 Data.csv 檔案。 按一下該檔案，然後按一下 [新增] 按鈕。 確定已在檔案類型清單中選取 [所有檔案 (*.*)]**。
 
 ### <a name="create-a-method-that-parses-a-list-of-messages"></a>建立可剖析訊息清單的方法
-1. 在 `Main()` 方法前面的 `Program` 類別中，宣告兩個變數：其中一個變數的類型為 **DataTable**，以在 Data.csv 中包含訊息清單。 另一個變數的類型應為 List 物件，其類型強制為 [BrokeredMessage](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx)。 後者是教學課程中的後續步驟將使用的代理訊息清單。
-   
+1. 在 `Program` 方法前面的`Main()`  類別中，宣告兩個變數：其中一個變數的類型為 **DataTable**，以在 Data.csv 中包含訊息清單。 另一個變數的類型應為 List 物件，其類型強制為 [BrokeredMessage](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx)。 後者是教學課程中的後續步驟將使用的代理訊息清單。
+
     ```
     namespace Microsoft.ServiceBus.Samples
     {
         class Program
         {
-   
+
             private static DataTable issues;
             private static List<BrokeredMessage> MessageList;
     ```
 2. 在 `Main()` 之外，定義 `ParseCSV()`方法，以剖析 Data.csv 中的訊息清單，並將訊息載入 [DataTable](https://msdn.microsoft.com/library/azure/system.data.datatable.aspx) 資料表，如下所示。 此方法會傳回 **DataTable** 物件。
-   
+
     ```
     static DataTable ParseCSVFile()
     {
@@ -115,14 +115,14 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
             {
                 string line;
                 string[] row;
-   
+
                 // create the columns
                 line = readFile.ReadLine();
                 foreach (string columnTitle in line.Split(','))
                 {
                     tableIssues.Columns.Add(columnTitle);
                 }
-   
+
                 while ((line = readFile.ReadLine()) != null)
                 {
                     row = line.Split(',');
@@ -134,31 +134,31 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
         {
             Console.WriteLine("Error:" + e.ToString());
         }
-   
+
         return tableIssues;
     }
     ```
 3. 在 `Main()` 方法中，新增可呼叫 `ParseCSVFile()` 方法的陳述式︰
-   
+
     ```
     public static void Main(string[] args)
     {
-   
+
         // Populate test data
         issues = ParseCSVFile();
-   
+
     }
     ```
 
 ### <a name="create-a-method-that-loads-the-list-of-messages"></a>建立可載入訊息清單的方法
-1. 在 `Main()` 之外，定義 `GenerateMessages()` 方法，以採用 ** 所傳回的 **DataTable`ParseCSVFile()` 物件，並將此資料表載入代理訊息的強類型清單中。 此方法會接著傳回 **List** 物件，如下列範例所示。 
-   
+1. 在 `Main()` 之外，定義 `GenerateMessages()` 方法，以採用 ** 所傳回的 **DataTable`ParseCSVFile()` 物件，並將此資料表載入代理訊息的強類型清單中。 此方法會接著傳回 **List** 物件，如下列範例所示。
+
     ```
     static List<BrokeredMessage> GenerateMessages(DataTable issues)
     {
         // Instantiate the brokered list object
         List<BrokeredMessage> result = new List<BrokeredMessage>();
-   
+
         // Iterate through the table and create a brokered message for each row
         foreach (DataRow item in issues.Rows)
         {
@@ -173,11 +173,11 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
     }
     ```
 2. 在 `Main()` 中，緊接在 `ParseCSVFile()` 呼叫後面，新增可呼叫 `GenerateMessages()` 方法的陳述式 (以 `ParseCSVFile()` 的傳回值作為引數)︰
-   
+
     ```
     public static void Main(string[] args)
     {
-   
+
         // Populate test data
         issues = ParseCSVFile();
         MessageList = GenerateMessages(issues);
@@ -186,46 +186,46 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
 
 ### <a name="obtain-user-credentials"></a>取得使用者認證
 1. 首先，建立三個全域字串變數來保留這些值。 緊接在先前的變數宣告之後宣告這些變數；例如：
-   
+
     ```
     namespace Microsoft.ServiceBus.Samples
     {
         public class Program
         {
-   
+
             private static DataTable issues;
-            private static List<BrokeredMessage> MessageList; 
-   
+            private static List<BrokeredMessage> MessageList;
+
             // Add these variables
             private static string ServiceNamespace;
             private static string sasKeyName = "RootManageSharedAccessKey";
             private static string sasKeyValue;
             …
     ```
-2. 接下來，建立可接受和儲存服務命名空間和 SAS 金鑰的函式。 在 `Main()` 之外新增此方法。 例如： 
-   
+2. 接下來，建立可接受和儲存服務命名空間和 SAS 金鑰的函式。 在 `Main()` 之外新增此方法。 例如：
+
     ```
     static void CollectUserInput()
     {
         // User service namespace
         Console.Write("Please enter the namespace to use: ");
         ServiceNamespace = Console.ReadLine();
-   
+
         // Issuer key
         Console.Write("Enter the SAS key to use: ");
         sasKeyValue = Console.ReadLine();
     }
     ```
 3. 在 `Main()` 中，緊接在 `GenerateMessages()` 呼叫後面，新增可呼叫 `CollectUserInput()` 方法的陳述式︰
-   
+
     ```
     public static void Main(string[] args)
     {
-   
+
         // Populate test data
         issues = ParseCSVFile();
         MessageList = GenerateMessages(issues);
-   
+
         // Collect user input
         CollectUserInput();
     }
@@ -237,8 +237,8 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
 ## <a name="create-management-credentials"></a>建立管理認證
 在此步驟中，您可定義將用於建立共用存取簽章 (SAS) 認證的管理作業，以便授權您的應用程式。
 
-1. 為了清楚起見，本教學課程會將所有佇列作業放在不同的方法中。 在 `Program` 類別中的 `Main()` 方法後面建立非同步 `Queue()` 方法。 例如：
-   
+1. 為了清楚起見，本教學課程會將所有佇列作業放在不同的方法中。 在 `Queue()` 類別中的`Program`  方法後面建立非同步 `Main()` 方法。 例如：
+
     ```
     public static void Main(string[] args)
     {
@@ -249,7 +249,7 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
     }
     ```
 2. 下一步是使用 [TokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.aspx) 物件建立 SAS 認證。 建立方法會採用在 `CollectUserInput()` 方法中取得的 SAS 金鑰名稱和值。 將下列程式碼新增至 `Queue()` 方法：
-   
+
     ```
     static async Task Queue()
     {
@@ -258,7 +258,7 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
     }
     ```
 3. 建立新的命名空間管理物件，以包含在上一個步驟中取得之命名空間名稱和管理認證的 URI 作為引數。 將此程式碼直接加在上一個步驟中新增的程式碼之後︰ 務必以您的服務命名空間名稱取代 `<yourNamespace>`：
-   
+
     ```
     NamespaceManager namespaceClient = new NamespaceManager(ServiceBusEnvironment.CreateServiceUri("sb", "<yourNamespace>", string.Empty), credentials);
     ```
@@ -375,29 +375,29 @@ namespace Microsoft.ServiceBus.Samples
 
 ### <a name="create-queue-and-send-messages-to-the-queue"></a>建立佇列並將訊息傳送至佇列
 1. 首先，建立佇列。 例如，將它稱為 `myQueue`，並緊接在您在最後一個步驟的 `Queue()` 方法中新增的管理作業之後進行宣告：
-   
+
     ```
     QueueDescription myQueue;
-   
+
     if (namespaceClient.QueueExists("IssueTrackingQueue"))
     {
         namespaceClient.DeleteQueue("IssueTrackingQueue");
     }
-   
+
     myQueue = namespaceClient.CreateQueue("IssueTrackingQueue");
     ```
 2. 在 `Queue()` 方法中，建立傳訊 factory 物件，並以新建立的服務匯流排 URI 作為引數。 將下列程式碼直接加在最後一個步驟中新增的管理作業之後。 務必以您的服務命名空間名稱取代 `<yourNamespace>`：
-   
+
     ```
     MessagingFactory factory = MessagingFactory.Create(ServiceBusEnvironment.CreateServiceUri("sb", "<yourNamespace>", string.Empty), credentials);
     ```
 3. 接著，使用 [QueueClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx) 類別建立佇列物件。 將下列程式碼直接加在您在最後一個步驟中新增的程式碼之後︰
-   
+
     ```
     QueueClient myQueueClient = factory.CreateQueueClient("IssueTrackingQueue");
     ```
 4. 接著，新增會在您先前建立的代理訊息清單中執行迴圈的程式碼，並將每則訊息傳送至佇列。 將下列程式碼直接加在上一個步驟中的 `CreateQueueClient()` 陳述式之後︰
-   
+
     ```
     // Send messages
     Console.WriteLine("Now sending messages to the queue.");
@@ -441,7 +441,7 @@ namespaceClient.DeleteQueue("IssueTrackingQueue");
 ```
 
 ### <a name="call-the-queue-method"></a>呼叫 Queue 方法
-最後一個步驟是新增可從 `Main()` 呼叫 `Queue()` 方法的陳述式。 在 Main() 的結尾新增下列醒目提示的程式碼行：
+最後一個步驟是新增可從 `Queue()` 呼叫 `Main()` 方法的陳述式。 在 Main() 的結尾新增下列醒目提示的程式碼行：
 
 ```
 public static void Main(string[] args)
@@ -615,7 +615,7 @@ namespace Microsoft.ServiceBus.Samples
 在 Visual Studio 中，按一下 [建置] 功能表中的 [建置方案]，或按 **Ctrl+Shift+B**。 如果您遇到錯誤，請根據上一步結尾顯示的完整範例，確認您的程式碼正確無誤。
 
 ## <a name="next-steps"></a>後續步驟
-本教學課程示範了如何使用服務匯流排代理傳訊功能，建置服務匯流排用戶端應用程式和服務。 如需使用服務匯流排 [WCF 轉送](service-bus-messaging-overview.md#Relayed-messaging)的類似教學課程，請參閱[服務匯流排轉送傳訊教學課程](../service-bus-relay/service-bus-relay-tutorial.md)。
+本教學課程示範了如何使用服務匯流排代理傳訊功能，建置服務匯流排用戶端應用程式和服務。 如需使用服務匯流排 [WCF 轉送](service-bus-messaging-overview.md#service-bus-relay)的類似教學課程，請參閱[服務匯流排轉送傳訊教學課程](../service-bus-relay/service-bus-relay-tutorial.md)。
 
 若要深入了解 [服務匯流排](https://azure.microsoft.com/services/service-bus/)，請參閱下列主題。
 
@@ -625,7 +625,6 @@ namespace Microsoft.ServiceBus.Samples
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
 title: Azure Active Directory B2C | Microsoft Docs
-description: 使用 Azure Active Directory 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。
+description: "使用 Azure Active Directory 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。"
 services: active-directory-b2c
-documentationcenter: ''
+documentationcenter: 
 author: dstrockis
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 21d420c8-3c10-4319-b681-adf2e89e7ede
 ms.service: active-directory-b2c
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/22/2016
 ms.author: dastrock
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9a4ccad94520bd0d811ba9dcfd6f7cc680c89a1f
+
 
 ---
-# <a name="azure-active-directory-b2c:-web-sign-in-with-openid-connect"></a>Azure Active Directory B2C：利用 OpenID Connect 的 Web 登入
+# <a name="azure-active-directory-b2c-web-sign-in-with-openid-connect"></a>Azure Active Directory B2C：利用 OpenID Connect 的 Web 登入
 OpenID Connect 是建置在 OAuth 2.0 的驗證通訊協定之上，可用來將使用者安全地登入 Web 應用程式。  只要使用 Azure Active Directory (Azure AD) B2C 的 OpenID Connect 實作，您就可以把 Web 應用程式中的註冊、登入及其他身分識別管理工作外包給 Azure AD。 本指南將以與語言無關的方式，來示範這該如何進行。 它會說明如何傳送和接收 HTTP 訊息，但不使用我們的任何開放原始碼程式庫。
 
 [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) 擴充 OAuth 2.0 的*授權*通訊協定來做為*驗證*通訊協定。 讓您能利用 OAuth 來執行單一登入。 它引進 `id_token`的概念，這是一種安全性權杖，可讓用戶端驗證使用者的身分識別，並取得有關使用者的基本設定檔資訊。
@@ -118,7 +122,7 @@ error=access_denied
 | error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
 | state |如需完整說明，請參閱前一個表格。 如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應該確認要求和回應中的狀態值完全相同。 |
 
-## <a name="validate-the-id_token"></a>驗證 id_token
+## <a name="validate-the-idtoken"></a>驗證 id_token
 只接收 id_token 並不足以驗證使用者，您必須驗證 id_token 的簽章，並依照應用程式的需求來確認權杖中的宣告。 Azure AD B2C 使用 [JSON Web Tokens (JWT)](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) 和公開金鑰加密編譯來簽署權杖及驗證其是否有效。
 
 視您偏好的語言而定，有許多針對驗證 JWT 的開放原始碼程式庫可用。 我們建議您探索這些程式庫，而不是實作您自己的驗證邏輯。 當您在思考如何適當地運用那些程式庫時，這裡的資訊會很有用。
@@ -133,7 +137,7 @@ Azure AD B2C 具有 OpenID Connect 中繼資料端點，可讓應用程式在執
 
 若要判斷哪個原則用來簽署 id_token (以及何處可擷取中繼資料)，您有兩個選項。 首先，原則名稱包含在 id_token 的 `acr` 宣告中。 如需有關如何剖析 id_token 中的宣告的相關資訊，請參閱 [Azure AD B2C 權杖參考](active-directory-b2c-reference-tokens.md)。 另一個選項是當您發出要求時在 `state` 參數的值中將原則編碼，然後將它解碼以判斷使用了哪個原則。 任一種方法都絕對有效。
 
-當您從 OpenID Connect 中繼資料端點取得中繼資料文件之後，就可以使用 RSA 256 (位於此端點) 公用金鑰來驗證 id_token 的簽章。 此端點可能隨時會列出多個金鑰，每個金鑰由 `kid`識別。 Id_token 標頭也包含 `kid` 宣告，其指出簽署 id_token 所使用的金鑰。 如需詳細資訊，請參閱 [Azure AD B2C 權杖參考](active-directory-b2c-reference-tokens.md)，包括其中的[驗證權杖](active-directory-b2c-reference-tokens.md#validating-tokens)及[簽署金鑰變換的相關重要資訊](active-directory-b2c-reference-tokens.md#validating-tokens)的小節。
+當您從 OpenID Connect 中繼資料端點取得中繼資料文件之後，就可以使用 RSA 256 (位於此端點) 公用金鑰來驗證 id_token 的簽章。 此端點可能隨時會列出多個金鑰，每個金鑰由 `kid`識別。 Id_token 標頭也包含 `kid` 宣告，其指出簽署 id_token 所使用的金鑰。 如需詳細資訊 (包括[驗證權杖](active-directory-b2c-reference-tokens.md#token-validation))，請參閱 [Azure AD B2C 權杖參考](active-directory-b2c-reference-tokens.md)。
 <!--TODO: Improve the information on this-->
 
 當您驗證 id_token 的簽章之後，就必須驗證幾個宣告，例如：
@@ -304,6 +308,9 @@ p=b2c_1_sign_in
 * [建立應用程式](active-directory-b2c-app-registration.md)來取得應用程式識別碼和 redirect_uri。 您可以在應用程式中加入 **Web 應用程式/Web API**，並選擇性地建立**應用程式祕密**。
 * [建立您的原則](active-directory-b2c-reference-policies.md) 來取得原則名稱。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

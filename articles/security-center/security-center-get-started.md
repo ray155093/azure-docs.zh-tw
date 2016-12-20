@@ -1,107 +1,131 @@
 ---
-title: Azure 資訊安全中心快速入門指南 | Microsoft Docs
-description: 本文帶領您認識安全性監視和原則管理元件，並連結至下一個步驟，協助您快速開始使用 Azure 資訊安全中心。
+title: "Azure 資訊安全中心快速入門指南 | Microsoft Docs"
+description: "此文章帶領您認識安全性監視和原則管理元件，並連結至下一個步驟，協助您快速開始使用 Azure 資訊安全中心。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: ''
-
+editor: 
+ms.assetid: 61e95a87-39c5-48f5-aee6-6f90ddcd336e
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/21/2016
+ms.date: 12/09/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: cbc91181f2531ea5e60bb426d6b8b42e2c7684d3
+ms.openlocfilehash: 0bb6db67df25fb3c3484c819398890efef343943
+
 
 ---
-# Azure 資訊安全中心快速入門指南
-本文帶領您認識安全性監視和原則管理元件，並連結至下一個步驟，協助您快速開始使用 Azure 資訊安全中心。
+# <a name="azure-security-center-quick-start-guide"></a>Azure 資訊安全中心快速入門指南
+此文章帶領您認識資訊安全中心的安全性監視和原則管理元件，協助您快速開始使用 Azure 資訊安全中心。
 
 > [!NOTE]
-> 本文件將使用範例部署來介紹服務。這不是逐步指南。
-> 
-> 
+> 此文章將使用範例部署來介紹服務。 此文章不是逐步指南。
+>
+>
 
-## 資料收集
-資訊安全中心會收集虛擬機器的資料，以便評估其安全性狀態、提供安全性建議，並對您發出威脅警示。當您第一次存取資訊安全中心時，訂用帳戶中的所有虛擬機器都會啟用資料收集。建議啟用資料收集，但您可以在資訊安全中心原則中關閉資料收集來選擇退出。下列步驟說明如何關閉資料收集。
+## <a name="prerequisites"></a>必要條件
+若要開始使用資訊安全中心，您必須有 Microsoft Azure 訂用帳戶。 如果您沒有訂用帳戶，可以註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-## 必要條件
-若要開始使用資訊安全中心，您必須有 Microsoft Azure 訂用帳戶。資訊安全中心已經由訂用帳戶啟用。如果您沒有訂用帳戶，可以註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+資訊安全中心的免費層會在您訂用帳戶自動啟用，並提供 Azure 資源安全性狀態的可見度。 它提供基本的安全性原則管理、安全性建議並整合 Azure 合作夥伴的安全性產品和服務。
 
-資訊安全中心是從 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)存取。如需詳細資訊，請參閱[入口網站文件](https://azure.microsoft.com/documentation/services/azure-portal/)。
+您可以從 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)存取資訊安全中心。 若要深入了解 Azure 入口網站，請參閱[入口網站文件](https://azure.microsoft.com/documentation/services/azure-portal/)。
 
-## 存取資訊安全中心
+## <a name="permissions"></a>權限
+在「資訊安全中心」中，當您獲指派為資源所屬的訂用帳戶或資源群組「擁有者」、「參與者」或「讀取者」角色時，您只會看到與 Azure 資源相關的項目。 請參閱[Azure 資訊安全中心的權限](security-center-permissions.md)以深入了解角色與資訊安全中心允許的動作。
+
+## <a name="data-collection"></a>資料收集
+資訊安全中心會收集虛擬機器 (VM) 的資料，以便評估其安全性狀態、提供安全性建議，並對您發出威脅警示。 當您第一次存取資訊安全中心時，訂用帳戶中的所有 VM 都會啟用資料收集。 建議啟用資料收集，但您可以在資訊安全中心原則中關閉資料收集來選擇退出。
+
+下列步驟說明如何存取和使用安全中心的元件。 這些步驟會說明選擇退出時如何關閉資料收集。
+
+## <a name="access-security-center"></a>存取資訊安全中心
 在入口網站中，執行下列步驟來存取資訊安全中心：
 
-1. 選取 [瀏覽] 然後捲動至 [資訊安全中心] 選項。![在入口網站存取 Azure 資訊安全中心][1]
-2. 選取 [資訊安全中心]。隨即開啟 [資訊安全中心] 刀鋒視窗。
-3. 為方便日後快速存取 [資訊安全中心] 刀鋒視窗，請選取 [將刀鋒視窗釘選到儀表板] 選項 (右上方)。![將刀鋒視窗釘選到儀表板選項][2]
+1. 在 [Microsoft Azure] 功能表中，選取 [資訊安全中心]。
 
-## 使用資訊安全中心
-您可以設定 Azure 訂用帳戶和資源群組的安全性原則。一同設定您訂用帳戶的安全性原則：
+   ![Azure 功能表][1]
+2. 如果您是第一次存取資訊安全中心，[歡迎] 刀鋒視窗隨即開啟。 選取 [是！我想要啟動 Azure 資訊安全中心] 以開啟 [Azure 資訊安全中心] 刀鋒視窗，並啟用資料收集。
+   ![歡迎使用畫面][10]
+3. 從 [歡迎使用] 刀鋒視窗啟動資訊安全中心，或從 [Microsoft Azure] 功能表中選取 [資訊安全中心] 之後，[資訊安全中心] 刀鋒視窗隨即開啟。 為方便日後快速存取 [資訊安全中心] 刀鋒視窗，請選取 [將刀鋒視窗釘選到儀表板] 選項 (右上方)。
+   ![將刀鋒視窗釘選到儀表板選項][2]
 
-1. 選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。![資訊安全中心][3]
-2. 在 [安全性原則 – 定義每個訂用帳戶或資源群組的原則] 刀鋒視窗中，選取訂用帳戶。![Azure 資訊安全中心的 [安全性原則] 刀鋒視窗][4]
-3. 在 [安全性原則] 刀鋒視窗中，會啟用 [資料收集] 以自動收集記錄檔。監視擴充功能會佈建在訂用帳戶的所有目前 VM 和新 VM 上。(您可以將 [資料收集] 設定為 [關閉]，選擇退出資料收集，但這會讓資訊安全中心無法為您提供安全性警示與建議。)
-4. 選取 [選擇每個區域的儲存體帳戶]。針對每個有虛擬機器在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些虛擬機器收集到的資料。如不為每個區域選擇儲存體帳戶，系統會為您建立。基於安全性考量，收集到的資料在邏輯上會與其他客戶的資料隔離。
-   
+## <a name="use-security-center"></a>使用資訊安全中心
+您可以設定 Azure 訂用帳戶和資源群組的安全性原則。 一同設定您訂用帳戶的安全性原則：
+
+1. 選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。
+   安全性原則![][3]
+2. 在 [安全性原則 – 定義每個訂用帳戶或資源群組的原則] 刀鋒視窗上，選取訂用帳戶。
+3. 在 [安全性原則] 刀鋒視窗上，[資料收集] 已啟用以自動收集記錄檔。 監視擴充功能會佈建在訂用帳戶的所有目前 VM 和新 VM 上。 (您可以透過將 [資料收集] 設定為 [關閉] 以選擇退出資料收集，但這會讓資訊安全中心無法為您提供安全性警示與建議。)
+4. 選取 [安全性原則] 刀鋒視窗上的 [選擇每個區域的儲存體帳戶]。 針對每個有 VM 在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些 VM 收集到的資料。 如不為每個區域選擇儲存體帳戶，系統會為您建立。 基於安全性考量，收集到的資料在邏輯上會與其他客戶的資料隔離。
+
    > [!NOTE]
-   > 建議您啟用資料收集，並先在訂用帳戶層級選擇儲存體帳戶。安全性原則可以在 Azure 訂用帳戶層級和資源群組層級進行設定，但資料收集和儲存體帳戶只可在訂用帳戶層級進行設定。
-   > 
-   > 
-5. 開啟想要查看的 [建議]，當做安全性原則的一部分。範例：
-   
-   * 開啟 [系統更新] 會掃描所有支援的虛擬機器，尋找遺漏的 OS 更新。
-   * 開啟 [OS 弱點] 會掃描所有支援的虛擬機器，識別任何可能讓虛擬機器更容易受到攻擊的 OS 設定。
+   > 建議您啟用資料收集，並先在訂用帳戶層級選擇儲存體帳戶。 安全性原則可以在 Azure 訂用帳戶層級和資源群組層級進行設定，但資料收集和儲存體帳戶只可在訂用帳戶層級進行設定。
+   >
+   >
+5. 選取 [安全性原則] 刀鋒視窗上的 [預防原則]。 這會開啟 [預防原則] 刀鋒視窗。
+   ![預防原則][4]
+6. 在 [預防原則] 刀鋒視窗上，開啟您想要作為安全性原則一部分的建議。 範例：
 
-處理**建議**：
+   * 將 [系統更新] 設定為 [開啟]，會掃描所有支援的虛擬機器，尋找遺漏的 OS 更新。
+   * 將 [OS 弱點] 設定為 [開啟]，會掃描所有支援的虛擬機器，識別任何可能讓虛擬機器更容易受到攻擊的 OS 設定。
 
-1. 返回 [資訊安全中心] 刀鋒視窗，然後選取 [建議] 磚。資訊安全中心會定期分析 Azure 資源的安全性狀態。發現潛在的安全性弱點時，會在這裡顯示建議。
-2. 選取每個建議，檢視詳細資訊及/或採取行動以解決問題。![Azure 資訊安全中心的建議][5]
+### <a name="view-recommendations"></a>檢視建議
+1. 返回 [資訊安全中心] 刀鋒視窗，然後選取 [建議] 圖格。 資訊安全中心會定期分析 Azure 資源的安全性狀態。 當資訊安全中心識別潛在的安全性弱點時，它會在 [建議] 刀鋒視窗上顯示建議。
+   ![Azure 資訊安全中心的建議][5]
+2. 選取 [建議] 刀鋒視窗上的建議，檢視詳細資訊及/或採取行動以解決問題。
 
-透過 [資源安全性健康狀態] 檢視資源的健全狀況及安全性狀態：
+### <a name="view-the-health-and-security-state-of-your-resources"></a>檢視資源的健康狀態及安全性狀態
+1. 返回 [資訊安全中心]  刀鋒視窗。 [資源安全性健康狀態] 圖格包含虛擬機器、網路、資料和應用程式的安全性狀態指標。
+2. 請選取 [虛擬機器]  檢視詳細資訊。 [虛擬機器] 刀鋒視窗會開啟並顯示狀態摘要，其中顯示反惡意程式碼程式、系統更新與重新啟動的狀態，以及虛擬機器的 OS 弱點。
+   ![Azure 資訊安全中心的 [資源健康狀態] 圖格][6]
+3. 在 [虛擬機器建議] 下選取建議，檢視詳細資訊及/或採取行動以設定必要的控制項。
+4. 在 [虛擬機器] 下選取 VM，檢視其他詳細資料。
 
-1. 返回 [資訊安全中心] 刀鋒視窗。
-2. [資源安全性健康狀態] 圖格包含**虛擬機器**、**網路**、**SQL** 和**應用程式**的安全性狀態指標。
-3. 請選取 [虛擬機器] 檢視詳細資訊。
-4. [虛擬機器] 刀鋒視窗會顯示狀態摘要，其中顯示反惡意程式碼程式、系統更新與重新啟動的狀態，以及虛擬機器的基準規則。
-5. 在 [虛擬機器建議] 下選取項目，檢視詳細資訊及/或採取行動以設定必要的控制項。
-6. 向下切入以檢視特定虛擬機器的其他資訊。![Azure 資訊安全中心的 [資源健康狀態] 磚][6]
+### <a name="view-security-alerts"></a>檢視安全性警示
+1. 返回 [資訊安全中心] 刀鋒視窗，然後選取 [安全性警示] 圖格。 [安全性警示] 刀鋒視窗會開啟並顯示警示清單。 資訊安全中心透過對安全性記錄檔和網路活動的分析，產生警示。 包含來自整合式合作夥伴解決方案的警示。
+   ![Azure 資訊安全中心的安全性警示][7]
 
-處理**安全性警示**：
+   > [!NOTE]
+   > 如果已啟用資訊安全中心的標準層，才會出現安全性警示。 標準層有 90 天的免費試用可供使用。 如需有關如何取得標準層級資訊，請參閱[後續步驟](#next-steps)。
+   >
+   >
+2. 選取警示以檢視其他資訊。 在這個例子中，請選取 [探索到修改過的系統二進位檔]。 這會開啟刀鋒視窗，提供有關警示的其他詳細資料。
+   ![Azure 資訊安全中心的安全性警示詳細資料][8]
 
-1. 返回 [資訊安全中心] 刀鋒視窗，然後選取 [安全性警示] 磚。[安全性警示] 刀鋒視窗中會顯示警示清單。資訊安全中心透過對安全性記錄檔和網路活動的分析，產生警示。也包含來自整合式合作夥伴解決方案的警示。![Azure 資訊安全中心的安全性警示][7]
-2. 選取警示以檢視其他資訊。![Azure 資訊安全中心的安全性警示詳細資料][8]
+### <a name="view-the-health-of-your-partner-solutions"></a>檢視合作夥伴解決方案的健全狀況
+1. 返回 [資訊安全中心]  刀鋒視窗。 [合作夥伴解決方案] 圖格可讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健康狀態，一目了然。
+2. 選取 [合作夥伴解決方案]  圖格。 隨即開啟一個刀鋒視窗，並顯示已連接到資訊安全中心的合作夥伴解決方案清單。
+   ![][9]
+3. 選取合作夥伴解決方案。 在此範例中，請選取 [F5 WAF] 解決方案。  隨即開啟一個刀鋒視窗，並顯示合作夥伴解決方案的狀態和解決方案相關聯的資源。 選取 [解決方案主控台]  以開啟此解決方案的合作夥伴管理體驗。
 
-檢視 [合作夥伴解決方案] 的健全狀況：
+## <a name="next-steps"></a>後續步驟
+此文章介紹了資訊安全中心的安全性監視和原則管理元件。 現在，您已熟悉資訊安全中心，請嘗試下列步驟︰
 
-1. 返回 [資訊安全中心] 刀鋒視窗。[合作夥伴解決方案] 圖格可讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健全狀況，一目了然。
-2. 選取 [合作夥伴解決方案] 圖格。隨即開啟一個刀鋒視窗，其中顯示已連接到資訊安全中心的合作夥伴解決方案清單。![合作夥伴解決方案][9]
-3. 選取合作夥伴解決方案。在此範例中，選取 **F5 WAF2** 解決方案。隨即開啟一個刀鋒視窗，其中顯示合作夥伴解決方案的狀態和解決方案相關聯的資源。選取 [解決方案主控台] 以開啟此解決方案的合作夥伴管理體驗。![合作夥伴解決方案詳細資料][10]
-
-## 另請參閱
-本文介紹了資訊安全中心的安全性監視和原則管理元件。若要深入了解，請參閱下列文章：
-
-* [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) — 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-* [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) — 了解建議如何協助保護您的 Azure 資源。
-* [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) — 了解如何監視 Azure 資源的健全狀況。
-* [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示。
-* [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) — 了解如何監視合作夥伴解決方案的健全狀況。
-* [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
-* [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 取得最新的 Azure 安全性新聞和資訊。
+* 為您的 Azure 訂用帳戶設定安全性原則。 若要深入了解，請參閱[在 Azure 資訊安全中心設定安全性原則](security-center-policies.md)。
+* 使用資訊安全中心的建議來協助您保護 Azure 資源。 若要深入了解，請參閱[管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)。
+* 檢閱並管理目前的安全性警示。 若要深入了解，請參閱[管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)。
+* 深入了解 資訊安全中心[標準層](security-center-pricing.md)隨附的[進階威脅偵測功能](security-center-detection-capabilities.md)。 標準層有 90 天的免費試用可供使用。
+* 如果您對使用資訊安全中心有問題，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md)。
 
 <!--Image references-->
-[1]: ./media/security-center-get-started/security-tile.png
-[2]: ./media/security-center-get-started/pin-blade.png
-[3]: ./media/security-center-get-started/security-center.png
-[4]: ./media/security-center-get-started/security-policy.png
+[1]: ./media/security-center-get-started/azure-menu.png
+[2]: ./media/security-center-get-started/security-center-pin.png
+[3]: ./media/security-center-get-started/security-policy.png
+[4]: ./media/security-center-get-started/prevention-policy.png
 [5]: ./media/security-center-get-started/recommendations.png
 [6]: ./media/security-center-get-started/resources-health.png
 [7]: ./media/security-center-get-started/security-alert.png
 [8]: ./media/security-center-get-started/security-alert-detail.png
 [9]: ./media/security-center-get-started/partner-solutions.png
-[10]: ./media/security-center-get-started/partner-solutions-detail.png
+[10]: ./media/security-center-get-started/welcome.png
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Dec16_HO2-->
+
+

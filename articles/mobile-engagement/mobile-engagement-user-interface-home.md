@@ -1,12 +1,12 @@
 ---
-title: Azure Mobile Engagement 使用者介面 - 首頁
-description: 了解如何使用 Azure Mobile Engagement 管理現有的應用程式和專案
+title: "Azure Mobile Engagement 使用者介面 - 首頁"
+description: "了解如何使用 Azure Mobile Engagement 管理現有的應用程式和專案"
 services: mobile-engagement
-documentationcenter: ''
+documentationcenter: 
 author: piyushjo
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: aff578d2-40f6-43e4-b0ea-7d2674cb28a1
 ms.service: mobile-engagement
 ms.devlang: na
 ms.topic: article
@@ -14,21 +14,25 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a3af9aa0a7b9707203932051883f61792047558a
+
 
 ---
-# 如何管理現有的應用程式和專案
-本文說明 **Mobile Engagement** 入口網站的**首頁**。使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。
+# <a name="how-to-manage-your-existing-application-and-projects"></a>如何管理現有的應用程式和專案
+本文說明 **Mobile Engagement** 入口網站的**首頁**。 使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。 請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。 
 
-若要前往首頁，請按一下頁面左上角的**首頁**。若您的應用程式屬於所選集合，則會全部列於此處。此頁面上只會顯示您應用程式的快速概觀。
+若要前往首頁，請按一下頁面左上角的 **首頁** 。 若您的應用程式屬於所選集合，則會全部列於此處。 此頁面上只會顯示您應用程式的快速概觀。
 
-可包含您帳戶中任何應用程式的專案也會顯示在首頁。請注意，任何人都可以建立帳戶以存取 UI 的首頁，但是您必須將權限授與其他使用者，他們才能在**我的專案**中存取您自訂的應用程式。
+可包含您帳戶中任何應用程式的專案也會顯示在首頁。 請注意，任何人都可以建立帳戶以存取 UI 的首頁，但是您必須將權限授與其他使用者，他們才能在 **我的專案**中存取您自訂的應用程式。
 
-您也可以檢視所選應用程式的比較圖表。或者，您也可以選擇檢視專案中所選應用程式的比較圖表。
+您也可以檢視所選應用程式的比較圖表。 或者，您也可以選擇檢視專案中所選應用程式的比較圖表。
 
 ![Home1][0]
 
-## 我的應用程式
-這裡會大略介紹您的應用程式，讓您選取想要開啟的應用程式，以檢視詳細的功能區選項。您可以按一下應用程式的名稱，回到應用程式中最近瀏覽的功能區位置，或者按一下齒輪圖示，直接移至應用程式的 [設定] 頁面。您可以搜尋、篩選或排序應用程式表格上所顯示的資訊。您也可以拖放欄標題來變更順序。
+## <a name="my-applications"></a>我的應用程式
+這裡會大略介紹您的應用程式，讓您選取想要開啟的應用程式，以檢視詳細的功能區選項。 您可以按一下應用程式的名稱，回到應用程式中最近瀏覽的功能區位置，或者按一下齒輪圖示，直接移至應用程式的 [設定] 頁面。 您可以搜尋、篩選或排序應用程式表格上所顯示的資訊。 您也可以拖放欄標題來變更順序。
 
 此外，應用程式的概觀包括：
 
@@ -38,31 +42,31 @@ ms.author: piyushjo
 * **工作階段**：工作階段是由使用者執行的一次應用程式使用，從使用者開始使用的時間，直到使用者停止的時間為止。
 * **工作階段趨勢**：工作階段過去兩個星期的發展。
 
-按一下應用程式後，您就可以開始透過使用者介面監視和管理您的應用程式。例如：
+按一下應用程式後，您就可以開始透過使用者介面監視和管理您的應用程式。 例如：    
 
 * [監視應用程式的即時資料](mobile-engagement-user-interface-monitor.md)
 * [分析應用程式的歷史資料](mobile-engagement-user-interface-analytics.md)
 * [建立和管理使用者的使用者分佈以識別使用模式](mobile-engagement-user-interface-segments.md)
 * [透過推播通知觸及應用程式的使用者](mobile-engagement-user-interface-reach.md)
 
-## 我的專案
-您可以使用專案將您的應用程式分組，並將權限授與其他使用者以便存取您的應用程式。您可以透過提供電子郵件地址將權限授與其他使用者。使用 [**新增專案**] 按鈕，只要輸入新專案的「名稱」和「說明」，就可以建立新專案。專案建立之後，可以按一下專案名稱來編輯產品的名稱和說明，以及選取您想要在此專案中查看的所有應用程式。
+## <a name="my-projects"></a>我的專案
+您可以使用專案將您的應用程式分組，並將權限授與其他使用者以便存取您的應用程式。 您可以透過提供電子郵件地址將權限授與其他使用者。 使用 [ **新增專案** ] 按鈕，只要輸入新專案的「名稱」和「說明」，就可以建立新專案。 專案建立之後，可以按一下專案名稱來編輯產品的名稱和說明，以及選取您想要在此專案中查看的所有應用程式。
 
 ![Home6][60]
 
 角色包括：
 
-* **檢視者**：只能檢視與專案相關聯之應用程式的使用者。檢視者可以存取分析和監視資料，並查看觸達結果。檢視者無法變更任何資訊，也無法管理應用程式或使用者。檢視者無法建立或變更觸達活動狀態。
-* **開發人員**：除了具備檢視者的權限之外，還可管理應用程式的使用者。開發人員可以啟用和停用應用程式、變更應用程式的資訊 (例如封裝和簽章)，以及建立觸達活動。開發人員無法管理使用者。
-* **管理員**：除了具備開發人員的權限之外，還可管理使用者的使用者。管理員可以邀請使用者加入專案、變更使用者角色，還可以變更專案的資訊。在 [設定] 中也可以設定應用程式層級權限。
+* **檢視者**：只能檢視與專案相關聯之應用程式的使用者。 檢視者可以存取分析和監視資料，並查看觸達結果。 檢視者無法變更任何資訊，也無法管理應用程式或使用者。 檢視者無法建立或變更觸達活動狀態。
+* **開發人員**：除了具備檢視者的權限之外，還可管理應用程式的使用者。 開發人員可以啟用和停用應用程式、變更應用程式的資訊 (例如封裝和簽章)，以及建立觸達活動。 開發人員無法管理使用者。
+* **管理員**：除了具備開發人員的權限之外，還可管理使用者的使用者。 管理員可以邀請使用者加入專案、變更使用者角色，還可以變更專案的資訊。 在 [設定] 中也可以設定應用程式層級權限。
 
-按一下專案即可檢視所有屬於此專案的應用程式。下圖顯示所選應用程式的比較圖表。
+按一下專案即可檢視所有屬於此專案的應用程式。 下圖顯示所選應用程式的比較圖表。
 
 ![Home2][3]
 
-## 另請參閱
-* [概念][Link 6]
-* [疑難排解指南服務][Link 24]
+## <a name="see-also"></a>另請參閱
+* [概念][連結 6]
+* [疑難排解指南服務][連結 24]
 
 <!--Image references-->
 [0]: ./media/mobile-engagement-user-interface-home/home0.png
@@ -127,38 +131,42 @@ ms.author: piyushjo
 [58]: ./media/mobile-engagement-user-interface-settings/settings13.png
 
 <!--Link references-->
-[Link 1]: mobile-engagement-user-interface.md
-[Link 2]: mobile-engagement-troubleshooting-guide.md
-[Link 3]: mobile-engagement-how-tos.md
-[Link 4]: http://go.microsoft.com/fwlink/?LinkID=525553
-[Link 5]: http://go.microsoft.com/fwlink/?LinkID=525554
-[Link 6]: http://go.microsoft.com/fwlink/?LinkId=525555
-[Link 7]: https://account.windowsazure.com/PreviewFeatures
-[Link 8]: https://social.msdn.microsoft.com/Forums/azure/home?forum=azuremobileengagement
-[Link 9]: http://azure.microsoft.com/services/mobile-engagement/
-[Link 10]: http://azure.microsoft.com/documentation/services/mobile-engagement/
-[Link 11]: http://azure.microsoft.com/pricing/details/mobile-engagement/
-[Link 12]: mobile-engagement-user-interface-navigation.md
-[Link 13]: mobile-engagement-user-interface-home.md
-[Link 14]: mobile-engagement-user-interface-my-account.md
-[Link 15]: mobile-engagement-user-interface-analytics.md
-[Link 16]: mobile-engagement-user-interface-monitor.md
-[Link 17]: mobile-engagement-user-interface-reach.md
-[Link 18]: mobile-engagement-user-interface-segments.md
-[Link 19]: mobile-engagement-user-interface-dashboard.md
-[Link 20]: mobile-engagement-user-interface-settings.md
-[Link 21]: mobile-engagement-troubleshooting-guide-analytics.md
-[Link 22]: mobile-engagement-troubleshooting-guide-apis.md
-[Link 23]: mobile-engagement-troubleshooting-guide-push-reach.md
-[Link 24]: mobile-engagement-troubleshooting-guide-service.md
-[Link 25]: mobile-engagement-troubleshooting-guide-sdk.md
-[Link 26]: mobile-engagement-troubleshooting-guide-sr-info.md
-[Link 27]: ../mobile-engagement-how-tos-first-push.md
-[Link 28]: ../mobile-engagement-how-tos-test-campaign.md
-[Link 29]: ../mobile-engagement-how-tos-personalize-push.md
-[Link 30]: ../mobile-engagement-how-tos-differentiate-push.md
-[Link 31]: ../mobile-engagement-how-tos-schedule-campaign.md
-[Link 32]: ../mobile-engagement-how-tos-text-view.md
-[Link 33]: ../mobile-engagement-how-tos-web-view.md
+[連結 1]: mobile-engagement-user-interface.md
+[連結 2]: mobile-engagement-troubleshooting-guide.md
+[連結 3]: mobile-engagement-how-tos.md
+[連結 4]: http://go.microsoft.com/fwlink/?LinkID=525553
+[連結 5]: http://go.microsoft.com/fwlink/?LinkID=525554
+[連結 6]: http://go.microsoft.com/fwlink/?LinkId=525555
+[連結 7]: https://account.windowsazure.com/PreviewFeatures
+[連結 8]: https://social.msdn.microsoft.com/Forums/azure/home?forum=azuremobileengagement
+[連結 9]: http://azure.microsoft.com/services/mobile-engagement/
+[連結 10]: http://azure.microsoft.com/documentation/services/mobile-engagement/
+[連結 11]: http://azure.microsoft.com/pricing/details/mobile-engagement/
+[連結 12]: mobile-engagement-user-interface-navigation.md
+[連結 13]: mobile-engagement-user-interface-home.md
+[連結 14]: mobile-engagement-user-interface-my-account.md
+[連結 15]: mobile-engagement-user-interface-analytics.md
+[連結 16]: mobile-engagement-user-interface-monitor.md
+[連結 17]: mobile-engagement-user-interface-reach.md
+[連結 18]: mobile-engagement-user-interface-segments.md
+[連結 19]: mobile-engagement-user-interface-dashboard.md
+[連結 20]: mobile-engagement-user-interface-settings.md
+[連結 21]: mobile-engagement-troubleshooting-guide-analytics.md
+[連結 22]: mobile-engagement-troubleshooting-guide-apis.md
+[連結 23]: mobile-engagement-troubleshooting-guide-push-reach.md
+[連結 24]: mobile-engagement-troubleshooting-guide-service.md
+[連結 25]: mobile-engagement-troubleshooting-guide-sdk.md
+[連結 26]: mobile-engagement-troubleshooting-guide-sr-info.md
+[連結 27]: ../mobile-engagement-how-tos-first-push.md
+[連結 28]: ../mobile-engagement-how-tos-test-campaign.md
+[連結 29]: ../mobile-engagement-how-tos-personalize-push.md
+[連結 30]: ../mobile-engagement-how-tos-differentiate-push.md
+[連結 31]: ../mobile-engagement-how-tos-schedule-campaign.md
+[連結 32]: ../mobile-engagement-how-tos-text-view.md
+[連結 33]: ../mobile-engagement-how-tos-web-view.md
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

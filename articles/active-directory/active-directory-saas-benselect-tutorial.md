@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 BenSelect 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 BenSelect 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 BenSelect 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 BenSelect 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: ffa17478-3ea1-4356-a289-545b5b9a4494
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 296a7ce8f84c226dfa899788bd4e0581f0a80eae
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-benselect"></a>教學課程：Azure Active Directory 與 BenSelect 整合
+# <a name="tutorial-azure-active-directory-integration-with-benselect"></a>教學課程：Azure Active Directory 與 BenSelect 整合
 在本教學課程中，您將了解如何整合 BenSelect 與 Azure Active Directory (Azure AD)。
 
 將 BenSelect 與 Azure AD 整合可提供下列優點：
@@ -63,7 +67,7 @@ ms.author: jeedes
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -192,7 +196,7 @@ BenSelect 應用程式需要特定格式的 SAML 判斷提示。 請設定此應
    
    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步]。
+   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-benselect-tutorial/create_aaduser_07.png) 
@@ -262,6 +266,6 @@ BenSelect 應用程式需要特定格式的 SAML 判斷提示。 請設定此應
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

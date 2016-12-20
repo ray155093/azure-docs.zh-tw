@@ -1,12 +1,12 @@
 ---
-title: Azure Mobile Engagement iOS SDK Reach 整合 | Microsoft Docs
-description: Azure Mobile Engagement iOS SDK 的最新更新與程序
+title: "Azure Mobile Engagement iOS SDK Reach 整合 | Microsoft Docs"
+description: "Azure Mobile Engagement iOS SDK 的最新更新與程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 1f5f5857-867c-40c5-9d76-675a343a0296
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-ios
@@ -14,6 +14,10 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 09/14/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 090f653da4825d7953dde27740d219bf40a4bd97
+
 
 ---
 # <a name="how-to-integrate-engagement-reach-on-ios"></a>如何在 iOS 上整合 Engagement Reach
@@ -500,6 +504,6 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SD
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

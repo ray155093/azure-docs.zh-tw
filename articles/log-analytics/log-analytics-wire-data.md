@@ -1,19 +1,23 @@
 ---
-title: Log Analytics 中的連線資料方案 | Microsoft Docs
-description: 網路資料是來自具有 OMS 代理程式 (包括 Operations Manager 和 Windows 連線的代理程式) 的電腦的網路和效能彙總資料。 網路資料結合記錄資料可協助您將資料相互關聯。
+title: "Log Analytics 中的連線資料方案 | Microsoft Docs"
+description: "網路資料是來自具有 OMS 代理程式 (包括 Operations Manager 和 Windows 連線的代理程式) 的電腦的網路和效能彙總資料。 網路資料結合記錄資料可協助您將資料相互關聯。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: fc3d7127-0baa-4772-858a-5ba995d1519b
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/09/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
+ms.openlocfilehash: be00cb9b1e8ba5d9d8368695ca8d448d466e8f47
+
 
 ---
 # <a name="wire-data-solution-in-log-analytics"></a>Log Analytics 中的連線資料方案
@@ -21,8 +25,8 @@ ms.author: banders
 
 > [!NOTE]
 > 目前無法將連線資料方案加入至工作區。 已啟用連線資料方案的客戶可以繼續使用連線資料方案。
-> 
-> 
+>
+>
 
 根據預設，OMS 會從 Windows 內建的計數器收集記錄的資料，包括 CPU、記憶體、磁碟和網路效能資料。 針對每個代理程式，都是即時收集網路和其他資料，包括電腦使用的子網路和應用程式層級通訊協定。 您可以在 [設定] 頁面的 [記錄檔] 索引標籤上加入其他效能計數器。
 
@@ -76,7 +80,7 @@ ms.author: banders
 2. 在 [常用 WireData 查詢] 清單中，按一下 [依處理程序的網路流量 (位元組)]，查看傳回的處理程序清單。
     ![連線資料查詢](./media/log-analytics-wire-data/oms-wiredata-01.png)
 3. 如果處理程序清單太長而不易檢視，您可以將搜尋查詢修改成類似於︰
-   
+
     ```
     Type WireData | measure count() by ProcessName | where AggregatedValue <40
     ```
@@ -85,24 +89,26 @@ ms.author: banders
 4. 使用清單中傳回的資料，按一下具名的處理程序。 在此範例中，已按一下 DancingPigs.exe。 如下所示的結果描述各種通訊協定上的網路流量，例如輸出通訊。
     ![連線資料結果顯示有名稱的程序](./media/log-analytics-wire-data/oms-wiredata-03.png)
 5. 因為已安裝安全性和稽核方案，您可以使用 IN 和 DISTINCT 搜尋查詢運算子來修改搜尋查詢，以探查具有相同 ProcessName 欄位值的安全性事件。 當連線資料和其他方案記錄檔的值有相同格式時，您就可以這樣做。 將搜尋查詢修改成類似於︰
-   
+
     ```
     Type=SecurityEvent ProcessName IN {Type:WireData "DancingPigs.exe" | distinct ProcessName}
     ```    
-   
+
     ![wiredata results showing combined data](./media/log-analytics-wire-data/oms-wiredata-04.png)
 6. 在上述結果中，您會看到出現帳戶資訊。 現在，您可以使用類似下列的查詢，顯示安全性和稽核資料，以了解處理程序使用帳戶的頻率︰        
-   
+
     ```
     Type=SecurityEvent ProcessName IN {Type:WireData "DancingPigs.exe" | distinct ProcessName} | measure count() by Account
     ```
-   
+
     ![wiredata results showing account data](./media/log-analytics-wire-data/oms-wiredata-05.png)
 
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄檔](log-analytics-log-searches.md) 以檢視詳細的連線資料搜尋記錄。
 * 請參閱 Dan 的 [Using Wire Data in Operations Management Suite Log Search (在 Operations Management Suite 記錄檔搜尋中使用連線資料)](http://blogs.msdn.com/b/dmuscett/archive/2015/09/09/using-wire-data-in-operations-management-suite.aspx) 部落格文章，其中提供有關資料收集頻率及如何修改 Operations Manager 代理程式收集屬性的其他資訊。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

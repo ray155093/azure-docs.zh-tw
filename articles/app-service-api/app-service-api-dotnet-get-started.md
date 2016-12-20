@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 09/20/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 45e8331e0953dd646f132478741394a5b4907a9e
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: d72cf46c4a93d805ac9586696a6b41d81af733fd
 
 
 ---
@@ -56,7 +56,7 @@ ms.openlocfilehash: 45e8331e0953dd646f132478741394a5b4907a9e
 
 ## <a name="prerequisites"></a>必要條件
 * ASP.NET Web API - 本教學課程指示假設您基本上已了解如何在 Visual Studio 中使用 ASP.NET [Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) 。
-* Azure 帳戶 - 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+* Azure 帳戶 - 您可以[申請免費 Azure 帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
   
     如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)。 如此，您可以在 App Service 中立即建立短期的入門應用程式 — **不需信用卡**，不需任何承諾。
 * Visual Studio 2015 和 [Azure SDK for .NET](https://azure.microsoft.com/downloads/archive-net-downloads/) - SDK 會自動安裝 Visual Studio 2015 (如果您還沒有它)。
@@ -252,7 +252,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。 如果您要將 Swag
     
     [發佈 Web] 精靈會開啟在 [連線] 索引標籤 (如下所示)。
     
-    在 [連線] 索引標籤上，[伺服器] 和 [網站名稱] 設定會指向您的 API 應用程式。 [使用者名稱] 和 [密碼] 是 Azure 為您建立的部署認證。 在部署之後，Visual Studio 會將瀏覽器開啟到 [目的地 URL] (這是 [目的地 URL] 的唯一目的)。  
+    在 [連線] 索引標籤上，[伺服器] 和 [網站名稱] 設定會指向您的 API 應用程式。 [使用者名稱] 和 [密碼] 是 Azure 為您建立的部署認證。 在部署之後，Visual Studio 會將瀏覽器開啟到 [目的地 URL] \(這是 [目的地 URL] 的唯一目的)。  
 13. 按 [下一步] 。
     
     ![在 [發佈 Web] 的 [連線] 索引標籤中按 [下一步]](./media/app-service-api-dotnet-get-started/connnext.png)
@@ -442,6 +442,6 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

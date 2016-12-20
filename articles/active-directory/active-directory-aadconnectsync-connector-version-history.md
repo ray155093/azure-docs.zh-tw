@@ -1,12 +1,12 @@
 ---
-title: 連接器版本發行歷程記錄 | Microsoft Docs
-description: 本主題列出所有適用於 Forefront Identity Manager (FIM) 和 Microsoft Identity Manager (MIM) 的連接器版本
+title: "連接器版本發行歷程記錄 | Microsoft Docs"
+description: "本主題列出所有適用於 Forefront Identity Manager (FIM) 和 Microsoft Identity Manager (MIM) 的連接器版本"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: AndKjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 6a0c66ab-55df-4669-a0c7-1fe1a091a7f9
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/17/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 58c89833330d8dbb1147b42c086ca2c86be3e94d
+
 
 ---
 # <a name="connector-version-release-history"></a>連接器版本發行歷程記錄
@@ -35,7 +39,7 @@ ms.author: billmath
 * [PowerShell 連接器](active-directory-aadconnectsync-connector-powershell.md) 參考文件
 * [Lotus Domino 連接器](active-directory-aadconnectsync-connector-domino.md) 參考文件
 
-## <a name="1.1.117.0"></a>1.1.117.0
+## <a name="111170"></a>1.1.117.0
 發行日期：2016 年 3 月
 
 **一般 SQL 連接器**  
@@ -97,6 +101,9 @@ ms.author: billmath
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

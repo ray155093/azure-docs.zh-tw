@@ -1,19 +1,23 @@
 ---
-title: 管理 Azure Active Directory 中的密碼 | Microsoft Docs
-description: 如何在 Azure Active Directory 中管理密碼。
+title: "管理 Azure Active Directory 中的密碼 | Microsoft Docs"
+description: "如何在 Azure Active Directory 中管理密碼。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: curtand
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: a7679724-0ed5-4973-92e2-bd1285a6ef93
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/23/2016
+ms.date: 11/09/2016
 ms.author: curtand
+translationtype: Human Translation
+ms.sourcegitcommit: ba3690084439aac83c91a1b4cfb7171b74c814f8
+ms.openlocfilehash: 0006818063724e50e2febb02e5ebaa0e2f688ea1
+
 
 ---
 # <a name="manage-passwords-in-azure-active-directory"></a>在 Azure Active Directory 中管理密碼
@@ -29,8 +33,8 @@ ms.author: curtand
 
 > [!NOTE]
 > Azure AD Premium 可用於使用 Azure AD 全球執行個體的中國客戶。 由 21Vianet 在中國提供的 Microsoft Azure 服務目前不支援 Azure AD Premium。 如需詳細資訊，請透過 [Azure Active Directory 論壇](https://feedback.azure.com/forums/169401-azure-active-directory/)與我們連絡。
-> 
-> 
+>
+>
 
 使用下列連結可前往您最感興趣的文件：
 
@@ -43,11 +47,13 @@ ms.author: curtand
 * [疑難排解 Azure AD 密碼管理](active-directory-passwords-troubleshoot.md)
 * [Azure AD 密碼管理的常見問題集](active-directory-passwords-faq.md)
 
-## <a name="what's-next"></a>後續步驟
+## <a name="whats-next"></a>後續步驟
 * [管理 Azure AD](active-directory-administer.md)
 * [在 Azure AD 中建立或編輯使用者](active-directory-create-users.md)
 * [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

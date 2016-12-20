@@ -1,13 +1,13 @@
 ---
-title: 適用於 Azure SQL 資料倉儲的驗證 | Microsoft Docs
-description: 適用於 Azure SQL 資料倉儲的 Azure Active Directory (AAD) 與 SQL Server 驗證。
+title: "適用於 Azure SQL 資料倉儲的驗證 | Microsoft Docs"
+description: "適用於 Azure SQL 資料倉儲的 Azure Active Directory (AAD) 與 SQL Server 驗證。"
 services: sql-data-warehouse
-documentationcenter: ''
+documentationcenter: 
 author: byham
 manager: jhubbard
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: fefaaa75-2d0c-4e5d-aadb-410342d1ad73
 ms.service: sql-data-warehouse
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 09/24/2016
 ms.author: rickbyh;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2b08b48713e98eedfd93b290491fee59729d2dcc
+
 
 ---
 # <a name="authentication-to-azure-sql-data-warehouse"></a>適用於 Azure SQL 資料倉儲的驗證
@@ -28,7 +32,7 @@ ms.author: rickbyh;barbkess
 
 若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。 建立連線時，會設定特定的連線設定，以做為建立查詢工作階段的一部分。  
 
-如需安全性以及如何啟用您資料倉儲連線的詳細資訊，請參閱 [保護 SQL 資料倉儲中的資料庫][保護 SQL 資料倉儲中的資料庫]。
+如需安全性以及如何啟用您資料倉儲連線的詳細資訊，請參閱[保護 SQL 資料倉儲中的資料庫][保護 SQL 資料倉儲中的資料庫]。
 
 ## <a name="sql-authentication"></a>SQL 驗證
 若要連線到 SQL 資料倉儲，您必須提供下列資訊：
@@ -45,7 +49,7 @@ ms.author: rickbyh;barbkess
 * 在 SSDT 中建立工作階段之前，先反白顯示使用者資料庫。
 
 > [!NOTE]
-> 變更連線的資料庫時，Transact-SQL 陳述式 **USE MyDatabase;** 不受支援。 如需使用 SSDT 連線到 SQL 資料倉儲的指引，請參閱 [使用 Visual Studio 查詢][使用 Visual Studio 查詢] 文章。
+> 變更連線的資料庫時，Transact-SQL 陳述式 **USE MyDatabase;** 不受支援。 如需使用 SSDT 連線到 SQL 資料倉儲的指引，請參閱[使用 Visual Studio 查詢][使用 Visual Studio 查詢]文章。
 > 
 > 
 
@@ -96,6 +100,6 @@ Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。 �
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,19 +1,23 @@
 ---
-title: 服務匯流排交易 | Microsoft Docs
-description: Azure 服務匯流排不可部分完成交易和傳送方式概觀
-services: service-bus
+title: "服務匯流排交易 | Microsoft Docs"
+description: "Azure 服務匯流排不可部分完成交易和傳送方式概觀"
+services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 64449247-1026-44ba-b15a-9610f9385ed8
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/04/2016
 ms.author: clemensv;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 926eeec8186b8136f41355030e5382911bfc0322
+
 
 ---
 # <a name="overview-of-service-bus-transaction-processing"></a>服務匯流排交易處理概觀
@@ -36,7 +40,7 @@ ms.author: clemensv;sethm
 
 訊息的處置 (完成、放棄、寄不出的信件、延遲) 接著發生於整體交易結果的範圍內，並與整體交易結果相依。
 
-## <a name="transfers-and-"send-via""></a>傳輸和「傳送方式」
+## <a name="transfers-and-send-via"></a>傳輸和「傳送方式」
 若要啟用從佇列到處理器再到另一個佇列的交易式資料送交，服務匯流排支援「傳輸」。 在傳輸作業中，寄件者會先將訊息傳送至「傳輸佇列」，而傳輸佇列會使用自動轉寄功能所依賴的相同穩固傳輸實作，立即將訊息移至想要的目的地佇列。 訊息絕不會認可到傳輸佇列的記錄檔，因此，傳輸佇列的取用者可以看到它。
 
 傳輸佇列本身是寄件者輸入訊息的來源時，就能知道這個交易式功能的能力。 換句話說，服務匯流排可以「透過」傳輸佇列將訊息傳輸到目的地佇列，同時對輸入訊息執行完整 (或延遲，或寄不出信件) 作業 (全部都在一個不可部分完成作業中)。 
@@ -76,6 +80,9 @@ using (scope = new TransactionScope())
 * [比較 Azure 佇列和服務匯流排佇列](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 * [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,54 +1,50 @@
 ---
-title: 使用 Azure App Service 將推播通知新增至 Xamarin.iOS 應用程式
-description: 了解如何使用 Azure App Service 將推播通知傳送至 Xamarin.iOS 應用程式。
+title: "使用 Azure App Service 將推播通知新增至 Xamarin.iOS 應用程式"
+description: "了解如何使用 Azure App Service 將推播通知傳送至 Xamarin.iOS 應用程式。"
 services: app-service\mobile
 documentationcenter: xamarin
-author: wesmc7777
+author: ysxu
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 2921214a-49f8-45e1-a306-a85ce21defca
 ms.service: app-service-mobile
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-xamarin-ios
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/19/2016
-ms.author: wesmc
+ms.date: 10/12/2016
+ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 185a32376dd1c40fd480e16d3ac7607ac798afae
+
 
 ---
-# 將推播通知新增至 Xamarin.iOS 應用程式
+# <a name="add-push-notifications-to-your-xamarinios-app"></a>將推播通知新增至 Xamarin.iOS 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-## Overview
-本教學課程以[建立 Xamarin.iOS 應用程式](app-service-mobile-xamarin-ios-get-started.md)教學課程為基礎，您必須先完成該教學課程。您將會新增推播通知至 Xamarin.iOS 快速入門專案，以便在每次插入一筆記錄時傳送推播通知。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+## <a name="overview"></a>Overview
+在本教學課程中，您會將推播通知新增至 [Xamarin.iOS 快速入門](app-service-mobile-xamarin-ios-get-started.md)專案，以便在每次插入一筆記錄時傳送推播通知至裝置。
 
-## 必要條件
-* 完成[建立 Xamarin.iOS 應用程式](app-service-mobile-xamarin-ios-get-started.md)教學課程。
-* 實體的 iOS 裝置。iOS 模擬器不支援推播通知。
+如果您不要使用下載的快速入門伺服器專案，將需要推播通知擴充套件。 如需詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-## 在 Apple 的開發人員入口網站註冊應用程式以取得推播通知
-[!INCLUDE [通知中樞 Xamarin 會啟用 Apple 推播通知](../../includes/notification-hubs-xamarin-enable-apple-push-notifications.md)]
+## <a name="prerequisites"></a>必要條件
+* 完成 [建立 Xamarin.iOS 應用程式](app-service-mobile-xamarin-ios-get-started.md) 教學課程。
+* 實體的 iOS 裝置。 iOS 模擬器不支援推播通知。
 
-## 設定您的行動應用程式以傳送推播通知
-若要設定應用程式以傳送通知，請建立新的中樞，並針對您要使用的平台通知服務加以設定。
+## <a name="register-the-app-for-push-notifications-on-apples-developer-portal"></a>在 Apple 的開發人員入口網站註冊應用程式以取得推播通知
+[!INCLUDE [Enable Apple Push Notifications](../../includes/enable-apple-push-notifications.md)]
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [**瀏覽**] > [**行動應用程式**] > 您的行動應用程式 > [**設定**] > [**行動**] > [**推播**] > [**通知中樞**] > [**+通知中樞** ]，並為新的通知中樞提供名稱和命名空間，然後按一下 [**確定**] 按鈕。
-   
-    ![](./media/app-service-mobile-xamarin-ios-get-started-push/mobile-app-configure-notification-hub.png)
-2. 在 [建立通知中樞] 刀鋒視窗中，按一下 [**建立**]。
-3. 按一下 [**推播**] > [**Apple (APNS)**] > [**上傳憑證**]。上傳您稍早匯出的 .p12 推播憑證檔案。如果您建立開發推播憑證是為了開發和測試，請務必選取 [**沙箱**]。否則，請選擇 [**生產**]。
-   
-    ![](./media/app-service-mobile-xamarin-ios-get-started-push/mobile-app-upload-apns-cert.png)
+## <a name="configure-your-mobile-app-to-send-push-notifications"></a>設定您的行動應用程式以傳送推播通知
+[!INCLUDE [app-service-mobile-apns-configure-push](../../includes/app-service-mobile-apns-configure-push.md)]
 
-您的服務現在已設定成在 iOS 上使用推播通知。
-
-## 更新伺服器專案以傳送推播通知
+## <a name="update-the-server-project-to-send-push-notifications"></a>更新伺服器專案以傳送推播通知
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-## 設定您的 Xamarin.iOS 專案
+## <a name="configure-your-xamarinios-project"></a>設定您的 Xamarin.iOS 專案
 [!INCLUDE [app-service-mobile-xamarin-ios-configure-project](../../includes/app-service-mobile-xamarin-ios-configure-project.md)]
 
-## 將推播通知新增至應用程式
+## <a name="add-push-notifications-to-your-app"></a>將推播通知新增至應用程式
 1. 在 **QSTodoService** 中新增下列屬性，以便讓 **AppDelegate** 能夠取得行動用戶端：
    
             public MobileServiceClient GetClient {
@@ -81,15 +77,15 @@ ms.author: wesmc
    
             return true;
         }
-4. 在相同的檔案中，覆寫 **RegisteredForRemoteNotifications** 事件。透過此程式碼，您將註冊能夠在伺服器所支援的所有平台間傳送的簡單範本通知。
+4. 在相同的檔案中，覆寫 **RegisteredForRemoteNotifications** 事件。 透過此程式碼，您將註冊能夠在伺服器所支援的所有平台間傳送的簡單範本通知。
    
-    如需有關通知中樞範本的詳細資訊，請參閱[範本](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md)。
+    如需有關通知中樞範本的詳細資訊，請參閱 [範本](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md)。
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
             MobileServiceClient client = QSTodoService.DefaultService.GetClient;
 
-            const string templateBodyAPNS = "{"aps":{"alert":"$(messageParam)"}}";
+            const string templateBodyAPNS = "{\"aps\":{\"alert\":\"$(messageParam)\"}}";
 
             JObject templates = new JObject();
             templates["genericMessage"] = new JObject
@@ -123,15 +119,15 @@ ms.author: wesmc
 
 您的應用程式現在已更新為支援推播通知。
 
-## <a name="test"></a>在應用程式中測試推播通知
+## <a name="a-nametestatest-push-notifications-in-your-app"></a><a name="test"></a>在應用程式中測試推播通知
 1. 按 [執行] 按鈕以建置專案並在可執行 iOS 的裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
    
    > [!NOTE]
-   > 您必須明確地接受來自應用程式的推播通知。只有在應用程式第一次執行時，才會發生此要求。
+   > 您必須明確地接受來自應用程式的推播通知。 只有在應用程式第一次執行時，才會發生此要求。
    > 
    > 
 2. 在應用程式中輸入一項工作，然後按一下加號 (**+**) 圖示。
-3. 確認您已接收到通知，然後按一下 [確定] 以關閉通知。
+3. 確認您已接收到通知，然後按一下 [確定]  以關閉通知。
 4. 重複執行步驟 2 並立即關閉應用程式，接著確認通知已顯示。
 
 您已成功完成此教學課程。
@@ -140,4 +136,11 @@ ms.author: wesmc
 
 <!-- URLs. -->
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,19 +1,23 @@
 ---
-title: 如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰 | Microsoft Docs
-description: 使用這份文件協助您規劃、產生，並傳輸受 HSM 保護的金鑰，以搭配 Azure 金鑰保存庫使用。
+title: "如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰 | Microsoft Docs"
+description: "使用這份文件協助您規劃、產生，並傳輸受 HSM 保護的金鑰，以搭配 Azure 金鑰保存庫使用。"
 services: key-vault
-documentationcenter: ''
+documentationcenter: 
 author: cabailey
 manager: mbaldwin
 tags: azure-resource-manager
-
+ms.assetid: 51abafa1-812b-460f-a129-d714fdc391da
 ms.service: key-vault
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 10/24/2016
 ms.author: cabailey
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d410dd8b7baf852212707d0fa9bffd6e45c23eff
+
 
 ---
 # <a name="how-to-generate-and-transfer-hsm-protected-keys-for-azure-key-vault"></a>如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰
@@ -45,7 +49,7 @@ Thales e-Security 是金融服務的資料加密和網路安全性解決方案�
 
 Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容可讓您取得裝載服務的典型優勢，而且不用放棄金鑰的控制權。 具體而言，這些增強內容可讓 Microsoft 管理 HSM，如此您就不必費心管理。 做為雲端服務，Azure 金鑰保存庫無需通知就會相應增加，以符合組織的使用尖峰。 在此同時，您的金鑰也會在 Microsoft 的 HSM 內部受到保護：您可以保留金鑰生命週期的控制權，因為您會產生金鑰並將它傳輸給 Microsoft 的 HSM。
 
-## <a name="implementing-bring-your-own-key-(byok)-for-azure-key-vault"></a>實作 Azure 金鑰保存庫的自備金鑰 (BYOK)
+## <a name="implementing-bring-your-own-key-byok-for-azure-key-vault"></a>實作 Azure 金鑰保存庫的自備金鑰 (BYOK)
 如果您將產生您自己受 HSM 保護的金鑰，然後將它傳輸到 Azure 金鑰保存庫，請使用下列資訊和程序—自備金鑰 (BYOK) 案例。
 
 ## <a name="prerequisites-for-byok"></a>BYOK 的必要條件
@@ -54,7 +58,7 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容�
 | 需求 | 詳細資訊 |
 | --- | --- |
 | Azure 訂用帳戶 |若要建立 Azure 金鑰保存庫，您需要 Azure 訂用帳戶： [註冊免費試用](https://azure.microsoft.com/pricing/free-trial/) |
-| 支援 HSM 的 Azure 金鑰保存庫 |如需 Azure 金鑰保存庫的服務層和功能的詳細資訊，請參閱 [Azure 金鑰保存庫價格](https://azure.microsoft.com/pricing/details/key-vault/) 網站。 |
+| 可支援受 HSM 保護之金鑰的 Azure 金鑰保存庫進階服務層 |如需 Azure 金鑰保存庫的服務層和功能的詳細資訊，請參閱 [Azure 金鑰保存庫價格](https://azure.microsoft.com/pricing/details/key-vault/) 網站。 |
 | Thales HSM、智慧卡和支援軟體 |您必須存取 Thales 硬體安全模組和 Thales HSM 的基本操作知識。 請參閱 [Thales 硬體安全模組](https://www.thales-esecurity.com/msrms/buy) 以取得相容模型的清單，或者如果您沒有 HSM，請購買 HSM。 |
 | 下列的硬體和軟體︰<ol><li>離線 x64 工作站、至少為 Windows 7 的 Windows 作業系統，以及至少為 11.50 版的 Thales nShield 軟體。<br/><br/>如果此工作站執行 Windows 7，您必須[安裝 Microsoft .NET Framework 4.5](http://download.microsoft.com/download/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe)。</li><li>連線至網際網路且 Windows 作業系統至少為 Windows 7 的工作站。</li><li>至少有 16 MB 可用空間的 USB 磁碟機或其他可攜式儲存裝置。</li></ol> |基於安全性理由，建議第一個工作站不要連線到網路。 不過，在程式設計方面並不強迫採取這項建議。<br/><br/>請注意，在接下來的指示中，此工作站稱為中斷連線的工作站。</p></blockquote><br/>此外，如果您的租用戶金鑰適用於生產網路，建議您使用第二個另外的工作站來下載工具組和上傳租用戶金鑰。 但如果只是測試，您可以直接使用第一個工作站。<br/><br/>請注意，在接下來的指示中，此第二個工作站稱為網際網路連線的工作站。</p></blockquote><br/> |
 
@@ -67,15 +71,15 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容�
 * [步驟 4：準備要傳輸的金鑰](#step-4-prepare-your-key-for-transfer)
 * [步驟 5：將金鑰傳輸至 Azure 金鑰保存庫](#step-5-transfer-your-key-to-azure-key-vault)
 
-## <a name="step-1:-prepare-your-internet-connected-workstation"></a>步驟 1：準備網際網路連線的工作站
+## <a name="step-1-prepare-your-internet-connected-workstation"></a>步驟 1：準備網際網路連線的工作站
 在第一個步驟中，請在連線到網際網路的工作站上執行下列程序。
 
-### <a name="step-1.1:-install-azure-powershell"></a>步驟 1.1：安裝 Azure PowerShell
+### <a name="step-11-install-azure-powershell"></a>步驟 1.1：安裝 Azure PowerShell
 從網際網路連線的工作站，下載並安裝 Azure PowerShell 模組，其包含 cmdlet 以管理 Azure 金鑰保存庫。 這需要得最低版本為 0.8.13。
 
 如需安裝指示，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-### <a name="step-1.2:-get-your-azure-subscription-id"></a>步驟 1.2：取得您的 Azure 訂用帳戶識別碼
+### <a name="step-12-get-your-azure-subscription-id"></a>步驟 1.2：取得您的 Azure 訂用帳戶識別碼
 使用下列命令開始 Azure PowerShell 工作階段，並登入您的 Azure 帳戶：
 
         Add-AzureAccount
@@ -86,7 +90,7 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容�
 
 請勿關閉 Azure PowerShell 視窗。
 
-### <a name="step-1.3:-download-the-byok-toolset-for-azure-key-vault"></a>步驟 1.3：下載 Azure 金鑰保存庫的 BYOK 工具組
+### <a name="step-13-download-the-byok-toolset-for-azure-key-vault"></a>步驟 1.3：下載 Azure 金鑰保存庫的 BYOK 工具組
 移至 Microsoft 下載中心並為您的地理區域或 Azure 執行個體 [下載 Azure 金鑰保存庫 BYOK 工具組](http://www.microsoft.com/download/details.aspx?id=45345) 。 使用下列資訊來識別要下載封裝雜湊與其對應的 SHA-256 封裝雜湊︰
 
 - - -
@@ -174,10 +178,10 @@ KeyVault-BYOK-Tools-India.zip
 
 將封裝複製到 USB 磁碟機或其他可攜式儲存裝置。
 
-## <a name="step-2:-prepare-your-disconnected-workstation"></a>步驟 2：準備中斷連線的工作站
+## <a name="step-2-prepare-your-disconnected-workstation"></a>步驟 2：準備中斷連線的工作站
 在第二個步驟中，請在未連線到網路 (網際網路或內部網路) 的工作站上執行下列程序。
 
-### <a name="step-2.1:-prepare-the-disconnected-workstation-with-thales-hsm"></a>步驟 2.1：準備使用 Thales HSM 的中斷連線工作站
+### <a name="step-21-prepare-the-disconnected-workstation-with-thales-hsm"></a>步驟 2.1：準備使用 Thales HSM 的中斷連線工作站
 在 Windows 電腦上安裝 nCipher (Thales) 支援軟體，然後將 Thales HSM 附加至該電腦。
 
 確定 Thales 工具位於您的路徑 (**%nfast_home%\bin** 和 **%nfast_home%\python\bin**)。 例如，輸入下列內容：
@@ -186,17 +190,17 @@ KeyVault-BYOK-Tools-India.zip
 
 如需詳細資訊，請參閱 Thales HSM 內附的使用者指南。
 
-### <a name="step-2.2:-install-the-byok-toolset-on-the-disconnected-workstation"></a>步驟 2.2：在中斷連線的工作站上安裝 BYOK 工具組
+### <a name="step-22-install-the-byok-toolset-on-the-disconnected-workstation"></a>步驟 2.2：在中斷連線的工作站上安裝 BYOK 工具組
 從 USB 磁碟機或其他可攜式儲存裝置複製 BYOK 工具組封裝，然後執行下列動作：
 
 1. 將檔案從下載的封裝解壓縮至任何資料夾。
 2. 從該資料夾執行 vcredist_x64.exe。
 3. 遵循指示以安裝 Visual Studio 2013 的 Visual C++ 執行階段元件。
 
-## <a name="step-3:-generate-your-key"></a>步驟 3：產生您的金鑰
+## <a name="step-3-generate-your-key"></a>步驟 3：產生您的金鑰
 在第三個步驟中，請在中斷連線的工作站上執行下列程序。
 
-### <a name="step-3.1:-create-a-security-world"></a>步驟 3.1：建立安全世界
+### <a name="step-31-create-a-security-world"></a>步驟 3.1：建立安全世界
 啟動命令提示字元並執行 Thales new-world 程式。
 
     new-world.exe --initialize --cipher-suite=DLf1024s160mRijndael --module=1 --acs-quorum=2/3
@@ -207,7 +211,7 @@ KeyVault-BYOK-Tools-India.zip
 
 * 備份世界檔案。 保障和保護世界檔案、系統管理員卡及其 pin，並確定沒有一個人可存取多張卡。
 
-### <a name="step-3.2:-validate-the-downloaded-package"></a>步驟 3.2：驗證下載的封裝
+### <a name="step-32-validate-the-downloaded-package"></a>步驟 3.2：驗證下載的封裝
 此步驟為選擇性但建議使用，以便您可以驗證下列項目：
 
 * 工具組中包含的金鑰交換金鑰已從正版 Thales HSM 中產生。
@@ -225,34 +229,34 @@ KeyVault-BYOK-Tools-India.zip
    
    * 北美洲：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-NA-1 -w BYOK-SecurityWorld-pkg-NA-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-NA-1 -w BYOK-SecurityWorld-pkg-NA-1
    * 歐洲：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-EU-1 -w BYOK-SecurityWorld-pkg-EU-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-EU-1 -w BYOK-SecurityWorld-pkg-EU-1
    * 亞洲：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-AP-1 -w BYOK-SecurityWorld-pkg-AP-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-AP-1 -w BYOK-SecurityWorld-pkg-AP-1
    * 拉丁美洲：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-LATAM-1 -w BYOK-SecurityWorld-pkg-LATAM-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-LATAM-1 -w BYOK-SecurityWorld-pkg-LATAM-1
    * 日本：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-JPN-1 -w BYOK-SecurityWorld-pkg-JPN-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-JPN-1 -w BYOK-SecurityWorld-pkg-JPN-1
    * 澳大利亞：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-AUS-1 -w BYOK-SecurityWorld-pkg-AUS-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-AUS-1 -w BYOK-SecurityWorld-pkg-AUS-1
    * 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-USGOV-1 -w BYOK-SecurityWorld-pkg-USGOV-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-USGOV-1 -w BYOK-SecurityWorld-pkg-USGOV-1
    * 針對加拿大：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-CANADA-1 -w BYOK-SecurityWorld-pkg-CANADA-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-CANADA-1 -w BYOK-SecurityWorld-pkg-CANADA-1
    * 針對德國：
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-GERMANY-1 -w BYOK-SecurityWorld-pkg-GERMANY-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-GERMANY-1 -w BYOK-SecurityWorld-pkg-GERMANY-1
    * 針對印度︰
      
-           python verifykeypackage.py -k BYOK-KEK-pkg-INDIA-1 -w BYOK-SecurityWorld-pkg-INDIA-1
+         python verifykeypackage.py -k BYOK-KEK-pkg-INDIA-1 -w BYOK-SecurityWorld-pkg-INDIA-1
      > [!TIP]
      > Thales 軟體包含 %NFAST_HOME%\python\bin 中的 python
      > 
@@ -263,7 +267,7 @@ KeyVault-BYOK-Tools-India.zip
 
 您現在可以開始建立新的金鑰。
 
-### <a name="step-3.3:-create-a-new-key"></a>步驟 3.3：建立新的金鑰
+### <a name="step-33-create-a-new-key"></a>步驟 3.3：建立新的金鑰
 使用 Thales **generatekey** 程式產生金鑰。
 
 執行下列命令來產生金鑰：
@@ -287,10 +291,10 @@ KeyVault-BYOK-Tools-India.zip
 
 您現在已準備好將金鑰傳輸至 Azure 金鑰保存庫。
 
-## <a name="step-4:-prepare-your-key-for-transfer"></a>步驟 4：準備要傳輸的金鑰
+## <a name="step-4-prepare-your-key-for-transfer"></a>步驟 4：準備要傳輸的金鑰
 在第四個步驟中，請在中斷連線的工作站上執行下列程序。
 
-### <a name="step-4.1:-create-a-copy-of-your-key-with-reduced-permissions"></a>步驟 4.1：使用降低權限建立金鑰的複本
+### <a name="step-41-create-a-copy-of-your-key-with-reduced-permissions"></a>步驟 4.1：使用降低權限建立金鑰的複本
 若要減少金鑰的權限，請從命令提示字元，根據您的地理區域或 Azure 執行個體，執行下列其中一個區域：
 
 * 北美洲：
@@ -330,7 +334,7 @@ KeyVault-BYOK-Tools-India.zip
 
 此命令完成時，您會看到 **Result: SUCCESS**，而降低權限的金鑰複本會在名為 key_xferacId_<contosokey> 的檔案中。
 
-### <a name="step-4.2:-inspect-the-new-copy-of-the-key"></a>步驟 4.2：檢查金鑰的新複本
+### <a name="step-42-inspect-the-new-copy-of-the-key"></a>步驟 4.2：檢查金鑰的新複本
 (選擇性) 執行 Thales 公用程式來確認新金鑰的最低權限：
 
 * aclprint.py：
@@ -341,7 +345,7 @@ KeyVault-BYOK-Tools-India.zip
         "%nfast_home%\bin\kmfile-dump.exe" "%NFAST_KMDATA%\local\key_xferacld_contosokey"
   當您執行這些命令時，請以您從[產生您的金鑰](#step-3-generate-your-key)步驟的**步驟 3.3：建立新的金鑰**指定的相同值取代 contosokey。
 
-### <a name="step-4.3:-encrypt-your-key-by-using-microsoft’s-key-exchange-key"></a>步驟 4.3：使用 Microsoft 的金鑰交換金鑰來加密您的金鑰
+### <a name="step-43-encrypt-your-key-by-using-microsofts-key-exchange-key"></a>步驟 4.3：使用 Microsoft 的金鑰交換金鑰來加密您的金鑰
 根據您的地理區域或 Azure 執行個體，執行下列其中一個命令：
 
 * 北美洲：
@@ -383,11 +387,11 @@ KeyVault-BYOK-Tools-India.zip
 
 當此動作成功完成時，會顯示 **Result: SUCCESS** ，而且目前的資料夾中會有新的檔案，其名稱如下：TransferPackage-*ContosoFirstHSMkey*.byok
 
-### <a name="step-4.4:-copy-your-key-transfer-package-to-the-internet-connected-workstation"></a>步驟 4.4：將金鑰傳輸封裝複製到網際網路連線的工作站
+### <a name="step-44-copy-your-key-transfer-package-to-the-internet-connected-workstation"></a>步驟 4.4：將金鑰傳輸封裝複製到網際網路連線的工作站
 使用 USB 磁碟機或其他可攜式儲存裝置，將上一個步驟的輸出檔案 (KeyTransferPackage-ContosoFirstHSMkey.byok) 複製到網際網路連線的工作站。
 
-## <a name="step-5:-transfer-your-key-to-azure-key-vault"></a>步驟 5：將金鑰傳輸至 Azure 金鑰保存庫
-在最後一個步驟中，在網際網路連線的工作站上，使用 [Add-AzureKeyVaultKey](https://msdn.microsoft.com/library/azure/dn868048\(v=azure.300\).aspx).aspx) Cmdlet 來上傳您從中斷連線的工作站複製到 Azure 金鑰保存庫 HSM 的金鑰傳輸套件：
+## <a name="step-5-transfer-your-key-to-azure-key-vault"></a>步驟 5：將金鑰傳輸至 Azure 金鑰保存庫
+針對這最後一個步驟，在連線到網際網路的工作站上，使用 [Add-AzureKeyVaultKey](https://msdn.microsoft.com/library/azure/dn868048\(v=azure.300\).aspx) Cmdlet，將您從已中斷連線的工作站複製的金鑰傳輸套件上傳到「Azure 金鑰保存庫 HSM」：
 
     Add-AzureKeyVaultKey -VaultName 'ContosoKeyVaultHSM' -Name 'ContosoFirstHSMkey' -KeyFilePath 'c:\TransferPackage-ContosoFirstHSMkey.byok' -Destination 'HSM'
 
@@ -396,6 +400,9 @@ KeyVault-BYOK-Tools-India.zip
 ## <a name="next-steps"></a>後續步驟
 您現在可以在您的金鑰保存庫中使用這個受 HSM 保護的金鑰。 如需詳細資訊，請參閱 **開始使用 Azure 金鑰保存庫** 教學課程中的 [如果您想要使用硬體安全模組 (HSM)](key-vault-get-started.md) 一節。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

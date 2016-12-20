@@ -1,113 +1,117 @@
 ---
-title: 在 ASP.NET 應用程式中使用 Application Insights 的診斷失敗和例外狀況
-description: 擷取從 ASP.NET 應用程式與所要求遙測的例外狀況。
+title: "使用 Application Insights 來診斷 ASP.NET 應用程式中的失敗和例外狀況 | Microsoft Docs"
+description: "擷取從 ASP.NET 應用程式與所要求遙測的例外狀況。"
 services: application-insights
 documentationcenter: .net
 author: alancameronwills
 manager: douge
-
+ms.assetid: d1e98390-3ce4-4d04-9351-144314a42aa2
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/17/2015
+ms.date: 11/01/2016
 ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 41843c3b847fedb0531fa6b193b56cbd3d74466d
+
 
 ---
-# 設定 Application Insights：診斷例外狀況
-[!INCLUDE [app-insights-selector-get-started-dotnet](../../includes/app-insights-selector-get-started-dotnet.md)]
+# <a name="diagnose-exceptions-in-your-web-apps-with-application-insights"></a>使用 Application Insights 在 Web 應用程式中診斷例外狀況
+[Application Insights](app-insights-overview.md) 會回報您即時 Web 應用程式中的例外狀況。 您可以在用戶端和伺服器端讓失敗的要求與例外狀況及其他事件相互關聯，以便快速地診斷原因。
 
-藉由使用 [Visual Studio Application Insights][start] 監視您的應用程式，就可以在用戶端和伺服器端讓失敗的要求與例外狀況和其他事件相互關聯，如此您就可以快速地診斷原因。
+## <a name="set-up-exception-reporting"></a>設定例外狀況報告
+* 讓伺服器應用程式回報例外狀況︰
+  * 在應用程式程式碼中安裝 [Application Insights SDK](app-insights-asp-net.md)，或 
+  * IIS Web 伺服器：執行 [Application Insights 代理程式](app-insights-monitor-performance-live-website-now.md)；或
+  * Azure Web 應用程式：新增 [Application Insights 擴充功能](app-insights-azure-web-apps.md)
+* 在您的網頁中安裝 [JavaScript 程式碼片段](app-insights-javascript.md)來攔截瀏覽器例外狀況。
+* 在某些應用程式架構中或搭配某些設定時，您必須採取一些額外的步驟，才能攔截較多的例外狀況：
+  * [Web Form](#web-forms)
+  * [MVC](#mvc)
+  * [Web API 1.*](#web-api-1)
+  * [Web API 2.*](#web-api-2)
+  * [WCF](#wcf)
 
-若要監視 ASP.NET 應用程式，您必須在應用程式中[加入 Application Insights SDK][greenbrown]，或[在 IIS 伺服器上安裝狀態監視器][redfield]，或者，如果您的應用程式是 Azure Web 應用程式，加入 [Application Insights 延伸模組](app-insights-azure-web-apps.md)。
-
-## 使用 Visual Studio 診斷例外狀況
+## <a name="diagnosing-exceptions-using-visual-studio"></a>使用 Visual Studio 診斷例外狀況
 在 Visual Studio 中開啟應用程式解決方案以協助偵錯。
 
 在您的伺服器上或開發機器上使用 F5 執行應用程式。
 
-在 Visual Studio 中開啟 [Application Insights 搜尋] 視窗，並將它設定為顯示您的應用程式的事件。當您偵錯時，您只要按一下 [Application Insights] 按鈕即可執行此操作。
+在 Visual Studio 中開啟 [Application Insights 搜尋] 視窗，並將它設定為顯示您的應用程式的事件。 當您偵錯時，您只要按一下 [Application Insights] 按鈕即可執行此操作。
 
 ![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[開啟]。](./media/app-insights-asp-net-exceptions/34.png)
 
-請注意，您可以篩選報告僅顯示例外狀況。
+請注意，您可以篩選報告僅顯示例外狀況。 
 
-*未顯示例外狀況？ 請參閱[擷取例外狀況](#exceptions)。*
+*未顯示例外狀況？請參閱[擷取例外狀況](#exceptions)。*
 
 按一下例外狀況報告以顯示其堆疊追蹤。
 
 ![逐一點選例外狀況。](./media/app-insights-asp-net-exceptions/35.png)
 
-按一下堆疊追蹤中的行參考，以開啟相關檔案。
+按一下堆疊追蹤中的行參考，以開啟相關檔案。  
 
-## 使用 Azure 入口網站診斷失敗
+## <a name="diagnosing-failures-using-the-azure-portal"></a>使用 Azure 入口網站診斷失敗
 從應用程式的 [Application Insights] 概要，失敗磚會顯示例外狀況和失敗的 HTTP 要求的圖表，以及導致最頻繁失敗的要求 URL 的清單。
 
 ![選取 [設定]、[失敗]](./media/app-insights-asp-net-exceptions/012-start.png)
 
-點選清單中其中一個失敗要求類型，以取得失敗的個別發生次數。從該處按一下例外狀況或任何與其相關聯的追蹤資料：
+點選清單中其中一個失敗要求類型，以取得失敗的個別發生次數。 從該處按一下例外狀況或任何與其相關聯的追蹤資料：
 
 ![選取失敗要求的執行個體，並在例外狀況詳細資料底下，取得例外狀況的執行個體。](./media/app-insights-asp-net-exceptions/030-req-drill.png)
 
-**或者**，您可以從例外狀況清單開始，您會在該處進一步發現 [失敗] 刀鋒視窗。請按一下直到最終到達個別例外狀況。
+**或者** ，您可以從例外狀況清單開始，您會在該處進一步發現 [失敗] 刀鋒視窗。 請按一下直到最終到達個別例外狀況。
 
 ![鑽研](./media/app-insights-asp-net-exceptions/040-exception-drill.png)
 
-*未顯示例外狀況？ 請參閱[擷取例外狀況](#exceptions)。*
+*未顯示例外狀況？請參閱[擷取例外狀況](#exceptions)。*
 
 您可以從那裡查看堆疊追蹤和每個例外狀況的詳細屬性，並且找到相關的記錄追蹤或其他事件。
 
 ![鑽研](./media/app-insights-asp-net-exceptions/050-exception-properties.png)
 
-[深入了解診斷搜尋][diagnostic]。
+[深入了解診斷搜尋](app-insights-diagnostic-search.md)。
 
-## 相依性失敗
-*相依性*是您的應用程式呼叫的服務，通常透過 REST API 或資料庫連線。[Application Insights 狀態監視器][redfield]會自動監視各種類型的相依性呼叫，測量呼叫持續時間及成功或失敗。
-
-若要取得相依性資料，您必須在 IIS 伺服器上[安裝狀態監視器][redfield]，或者，如果您的應用程式是 Azure Web 應用程式，則使用 [Application Insights 延伸模組](app-insights-azure-web-apps.md)。
-
-失敗的相依性呼叫列在 [失敗] 刀鋒視窗，您也可以在要求詳細資料和例外狀況詳細資料中的 [相關項目] 底下找到它們。
-
-*沒有相依性失敗？ 非常好。但是，若要確認您取得相依性資料，請開啟 [效能] 刀鋒視窗，並查看 [相依性持續時間] 圖表。*
-
-## 自訂追蹤和記錄資料
-若要取得您的 app 的特定診斷資料，您可以插入程式碼以傳送您自己的遙測資料。這會隨著要求、頁面檢視和其他自動收集的資料顯示在診斷搜尋中。
+## <a name="custom-tracing-and-log-data"></a>自訂追蹤和記錄資料
+若要取得您的 app 的特定診斷資料，您可以插入程式碼以傳送您自己的遙測資料。 這會隨著要求、頁面檢視和其他自動收集的資料顯示在診斷搜尋中。 
 
 您有幾種選項：
 
-* [TrackEvent()](app-insights-api-custom-events-metrics.md#track-event) 通常用來監視使用模式，但它傳送的資料也會出現在診斷搜尋的 [自訂事件] 下。事件具有名稱，並且可以包含字串屬性和數值度量，您可以對其[篩選診斷搜尋][diagnostic]。
+* [TrackEvent()](app-insights-api-custom-events-metrics.md#track-event) 通常用來監視使用模式，但它傳送的資料也會出現在診斷搜尋的 [自訂事件] 下。 事件具有名稱，並且可以包含字串屬性和數值度量，您可以對其[篩選診斷搜尋](app-insights-diagnostic-search.md)。
 * [TrackTrace()](app-insights-api-custom-events-metrics.md#track-trace) 可讓您傳送較長的資料，例如 POST 資訊。
-* [TrackException()](#exceptions) 會傳送堆疊追蹤。[深入了解例外狀況](#exceptions)。
-* 如果您已經使用 Log4Net 或 NLog 等記錄架構，您可以[擷取這些記錄][netlogs]，並且在診斷搜尋中隨著要求和例外狀況資料查看記錄。
+* [TrackException()](#exceptions) 會傳送堆疊追蹤。 [深入了解例外狀況](#exceptions)。
+* 如果您已經使用 Log4Net 或 NLog 等記錄架構，您可以[擷取這些記錄](app-insights-asp-net-trace-logs.md)，然後在診斷搜尋中將它們連同要求和例外狀況資料一起檢視。
 
-若要查看這些事件，請開啟[搜尋][diagnostic]，開啟 [篩選]，然後選擇 [自訂事件]、[追蹤] 或 [例外狀況]。
+若要查看這些事件，請開啟 [搜尋][](app-insights-diagnostic-search.md)、開啟 [篩選]，然後選擇 [自訂事件]、[追蹤] 或 [例外狀況]。
 
 ![鑽研](./media/app-insights-asp-net-exceptions/viewCustomEvents.png)
 
 > [!NOTE]
-> 如果您的應用程式會產生大量遙測，調適性取樣模型會自動藉由僅傳送事件代表性片段，減少傳送到入口網站的量。為相同作業之一部分的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。[了解取樣。](app-insights-sampling.md)
+> 如果您的應用程式會產生大量遙測，調適性取樣模型會自動藉由僅傳送事件代表性片段，減少傳送到入口網站的量。 為相同作業之一部分的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。 [了解取樣。](app-insights-sampling.md)
 > 
 > 
 
-### 如何查看要求 POST 資料
-要求詳細資料不包括在 POST 呼叫中傳送至您的應用程式的資料。若要報告此資料：
+### <a name="how-to-see-request-post-data"></a>如何查看要求 POST 資料
+要求詳細資料不包括在 POST 呼叫中傳送至您的應用程式的資料。 若要報告此資料：
 
-* 在應用程式專案中[安裝 SDK][greenbrown]。
-* 將程式碼插入您的應用程式以呼叫 [Microsoft.ApplicationInsights.TrackTrace()][api]。在訊息參數中傳送 POST 資料。允許的大小有限制，所以您應該嘗試只傳送基本的資料。
-* 當您調查失敗的要求時，會發現相關聯的追蹤。
+* 在您的應用程式專案中[安裝 SDK](app-insights-asp-net.md)。
+* 在您的應用程式中插入程式碼來呼叫 [Microsoft.ApplicationInsights.TrackTrace()](app-insights-api-custom-events-metrics.md#track-trace)。 在訊息參數中傳送 POST 資料。 允許的大小有限制，所以您應該嘗試只傳送基本的資料。
+* 當您調查失敗的要求時，會發現相關聯的追蹤。  
 
 ![鑽研](./media/app-insights-asp-net-exceptions/060-req-related.png)
 
-## <a name="exceptions"></a> 擷取例外狀況和相關的診斷資料
-一開始，您不會在入口網站看到應用程式中造成失敗的所有例外狀況。您會看到任何瀏覽器例外狀況 (如果您在網頁中使用 [JavaScript SDK][client])。但是 IIS 會攔截大部分的伺服器例外狀況，而且您必須撰寫一段程式碼才能查看它們。
+## <a name="a-nameexceptionsa-capturing-exceptions-and-related-diagnostic-data"></a><a name="exceptions"></a> 擷取例外狀況和相關的診斷資料
+一開始，您不會在入口網站看到應用程式中造成失敗的所有例外狀況。 您會看到任何瀏覽器例外狀況 (如果您在網頁中使用 [JavaScript SDK](app-insights-javascript.md))。 但是 IIS 會攔截大部分的伺服器例外狀況，而且您必須撰寫一段程式碼才能查看它們。
 
 您可以：
 
-* **明確記錄例外狀況**，方法是將程式碼插入例外狀況處理常式中，以報告例外狀況。
-* **自動擷取例外狀況**，方法是設定您的 ASP.NET 架構。架構類型不同，則必要的新增項目也不同。
+* **明確記錄例外狀況** ，方法是將程式碼插入例外狀況處理常式中，以報告例外狀況。
+* **自動擷取例外狀況** ，方法是設定您的 ASP.NET 架構。 架構類型不同，則必要的新增項目也不同。
 
-## 明確報告例外狀況
+## <a name="reporting-exceptions-explicitly"></a>明確報告例外狀況
 最簡單的方法是在例外狀況處理常式中插入 TrackException() 的呼叫。
 
 JavaScript
@@ -160,17 +164,17 @@ VB
       telemetry.TrackException(ex, properties, measurements)
     End Try
 
-屬性和度量的參數是選擇性，但很適用於[篩選和加入][diagnostic]額外的資訊。比方說，如果您有一個應用程式可以執行數個遊戲，則您可以找到與特定遊戲相關的所有例外狀況報告。您可以將許多項目加入至每個字典，且項目數量不限。
+屬性和度量參數是選用的，但對於[篩選和新增](app-insights-diagnostic-search.md)額外資訊來說，相當有用。 比方說，如果您有一個應用程式可以執行數個遊戲，則您可以找到與特定遊戲相關的所有例外狀況報告。 您可以將許多項目加入至每個字典，且項目數量不限。
 
-## 瀏覽器例外狀況
+## <a name="browser-exceptions"></a>瀏覽器例外狀況
 大部分的瀏覽器例外狀況都會報告。
 
-如果您的網頁包含來自內容傳遞網路或其他網域的指令碼檔案，請確定指令碼標記具有屬性 ```crossorigin="anonymous"```，而且伺服器會傳送 [CORS 標頭](http://enable-cors.org/)。這可讓您從這些資源取得未處理 JavaScript 例外狀況的堆疊追蹤和詳細資料。
+如果您的網頁包含來自內容傳遞網路或其他網域的指令碼檔案，請確定指令碼標籤具有屬性 ```crossorigin="anonymous"```，而且伺服器會傳送 [CORS 標頭](http://enable-cors.org/)。 這可讓您從這些資源取得未處理 JavaScript 例外狀況的堆疊追蹤和詳細資料。
 
-## Web Form
+## <a name="web-forms"></a>Web Form
 對於 Web Form，HTTP 模組能夠在未使用 CustomErrors 設定重新導向時收集例外狀況。
 
-但是，如果您有使用中的重新導向，將下列程式碼新增至 Global.asax.cs 中的 Application\_Error 函式。(如果您還沒有檔案，請加入 Global.asax 檔案。)
+但是，如果您有使用中的重新導向，將下列程式碼新增至 Global.asax.cs 中的 Application_Error 函式。 (如果您還沒有檔案，請加入 Global.asax 檔案。)
 
 *C#*
 
@@ -185,8 +189,8 @@ VB
     }
 
 
-## MVC
-如果 [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx) 組態是 `Off`，則例外狀況將可供 [HTTP 模組](https://msdn.microsoft.com/library/ms178468.aspx) 收集。不過，如果它是 `RemoteOnly` (預設值) 或 `On`，則會清除例外狀況，且不適用於讓 Application Insights 自動收集。您可以藉由覆寫 [System.Web.Mvc.HandleErrorAttribute 類別](http://msdn.microsoft.com/library/system.web.mvc.handleerrorattribute.aspx)，並且針對以下不同的 MVC 版本如下所示的套用已覆寫的類別，來進行修正 ([github 來源](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs))：
+## <a name="mvc"></a>MVC
+如果 [CustomErrors](https://msdn.microsoft.com/library/h0hfz6fc.aspx) 組態是 `Off`，則例外狀況將可供 [HTTP 模組](https://msdn.microsoft.com/library/ms178468.aspx)收集。 不過，如果它是 `RemoteOnly` (預設值) 或 `On`，則會清除例外狀況，且不適用於讓 Application Insights 自動收集。 您可以藉由覆寫 [System.Web.Mvc.HandleErrorAttribute class](http://msdn.microsoft.com/library/system.web.mvc.handleerrorattribute.aspx)，並且針對以下不同的 MVC 版本如下所示的套用已覆寫的類別，來進行修正 ([github 來源](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions/blob/master/MVC2App/Controllers/AiHandleErrorAttribute.cs))：
 
     using System;
     using System.Web.Mvc;
@@ -213,7 +217,7 @@ VB
       }
     }
 
-#### MVC 2
+#### <a name="mvc-2"></a>MVC 2
 使用您的控制器中的新屬性取代 HandleError 屬性。
 
     namespace MVC2App.Controllers
@@ -225,7 +229,7 @@ VB
 
 [範例](https://github.com/AppInsightsSamples/Mvc2UnhandledExceptions)
 
-#### MVC 3
+#### <a name="mvc-3"></a>MVC 3
 註冊 `AiHandleErrorAttribute` 做為 Global.asax.cs 中的全域篩選器：
 
     public class MyMvcApplication : System.Web.HttpApplication
@@ -238,7 +242,7 @@ VB
 
 [範例](https://github.com/AppInsightsSamples/Mvc3UnhandledExceptionTelemetry)
 
-#### MVC 4、MVC5
+#### <a name="mvc-4-mvc5"></a>MVC 4、MVC5
 註冊 AiHandleErrorAttribute 做為 FilterConfig.cs 中的全域篩選器：
 
     public class FilterConfig
@@ -252,7 +256,7 @@ VB
 
 [範例](https://github.com/AppInsightsSamples/Mvc5UnhandledExceptionTelemetry)
 
-## Web API 1.x
+## <a name="web-api-1x"></a>Web API 1.x
 覆寫 System.Web.Http.Filters.ExceptionFilterAttribute：
 
     using System.Web.Http.Filters;
@@ -274,7 +278,7 @@ VB
       }
     }
 
-您可以將此覆寫的屬性加入到特定的控制器，或將它加入至 WebApiConfig 類別中的全域篩選組態：
+您可以將此覆寫的屬性加入到特定的控制器，或將它加入至 WebApiConfig 類別中的全域篩選組態： 
 
     using System.Web.Http;
     using WebApi1.x.App_Start;
@@ -298,14 +302,14 @@ VB
 
 [範例](https://github.com/AppInsightsSamples/WebApi_1.x_UnhandledExceptions)
 
-有一些無法處理的例外狀況篩選器案例。例如：
+有一些無法處理的例外狀況篩選器案例。 例如：
 
-* 從控制器建構函式擲回的例外狀況。
-* 從訊息處理常式擲回的例外狀況。
-* 在路由期間擲回的例外狀況。
-* 在回應內容序列化期間擲回的例外狀況。
+* 從控制器建構函式擲回的例外狀況。 
+* 從訊息處理常式擲回的例外狀況。 
+* 在路由期間擲回的例外狀況。 
+* 在回應內容序列化期間擲回的例外狀況。 
 
-## Web API 2.x
+## <a name="web-api-2x"></a>Web API 2.x
 新增 IExceptionLogger 的實作：
 
     using System.Web.Http.ExceptionHandling;
@@ -358,10 +362,10 @@ VB
 
 做為替代方案，您可以：
 
-1. 以 IExceptionHandler 的自訂實作取代唯一的 ExceptionHandler。這只會在架構仍然可以選擇要傳送的回應訊息時呼叫 (不會在針對執行個體中止連接時呼叫)
+1. 以 IExceptionHandler 的自訂實作取代唯一的 ExceptionHandler。 這只會在架構仍然可以選擇要傳送的回應訊息時呼叫 (不會在針對執行個體中止連接時呼叫) 
 2. 例外狀況篩選器 (如以上的 Web API 1.x 控制器章節所述) - 在所有案例中均不會呼叫。
 
-## WCF
+## <a name="wcf"></a>WCF
 新增類別，該類別會擴充屬性和實作 IErrorHandler 和 IServiceBehavior。
 
     using System;
@@ -424,25 +428,23 @@ VB
 
 [範例](https://github.com/AppInsightsSamples/WCFUnhandledExceptions)
 
-## 例外狀況效能計數器
-若您已在伺服器上[安裝狀態監視器][redfield]，則可取得由 .NET 測量的例外狀況比率圖表。這包括已處理和未處理的 .NET 例外狀況。
+## <a name="exception-performance-counters"></a>例外狀況效能計數器
+如果您已在伺服器上[安裝 Application Insights代理程式](app-insights-monitor-performance-live-website-now.md)，您便可取得由 .NET 測量的例外狀況比率圖表。 這包括已處理和未處理的 .NET 例外狀況。
 
-開啟 [計量瀏覽器] 刀鋒視窗、加入新圖表，然後選取 [效能計數器] 下方所列的 [例外狀況比率]。
+開啟 [計量瀏覽器] 刀鋒視窗、加入新圖表，然後選取 [效能計數器] 下方所列的 [例外狀況比率] 。 
 
-.NET framework 會計算間隔中的例外狀況次數並除以間隔長度，以計算得出例外狀況比率。
+.NET framework 會計算間隔中的例外狀況次數並除以間隔長度，以計算得出例外狀況比率。 
 
-請注意，其與 Application Insights 入口網站執行 TrackException 報告計數算得的「例外狀況」計數不同。取樣間隔不同，且 SDK 不會針對所有已處理與未處理的例外狀況傳送 TrackException 報告。
+請注意，其與 Application Insights 入口網站執行 TrackException 報告計數算得的「例外狀況」計數不同。 取樣間隔不同，且 SDK 不會針對所有已處理與未處理的例外狀況傳送 TrackException 報告。
 
-<!--Link references-->
-
-[api]: app-insights-api-custom-events-metrics.md
-[client]: app-insights-javascript.md
-[diagnostic]: app-insights-diagnostic-search.md
-[greenbrown]: app-insights-asp-net.md
-[netlogs]: app-insights-asp-net-trace-logs.md
-[redfield]: app-insights-monitor-performance-live-website-now.md
-[start]: app-insights-overview.md
+## <a name="next-steps"></a>後續步驟
+* [監視 REST、SQL 及其他對相依性的呼叫](app-insights-asp-net-dependencies.md)
+* [監視頁面載入時間、瀏覽器例外狀況及 AJAX 呼叫](app-insights-javascript.md)
+* [監視效能計數器](app-insights-performance-counters.md)
 
 
 
-<!---HONumber=AcomDC_0914_2016-->
+
+<!--HONumber=Nov16_HO3-->
+
+

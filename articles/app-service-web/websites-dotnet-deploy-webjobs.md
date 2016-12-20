@@ -1,12 +1,12 @@
 ---
-title: 使用 Visual Studio 部署 WebJob
-description: 了解如何使用 Visual Studio，將 Azure WebJob 部署至 Azure App Service Web Apps。
+title: "使用 Visual Studio 部署 WebJob"
+description: "了解如何使用 Visual Studio，將 Azure WebJob 部署至 Azure App Service Web Apps。"
 services: app-service
-documentationcenter: ''
+documentationcenter: 
 author: tdykstra
 manager: wpickett
 editor: jimbe
-
+ms.assetid: a3a9d320-1201-4ac8-9398-b4c9535ba755
 ms.service: app-service
 ms.devlang: dotnet
 ms.topic: article
@@ -14,16 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2016
 ms.author: tdykstra
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 606762146d159ecf5d2d94d5d51ddb319c06c8f4
+
 
 ---
-# 使用 Visual Studio 部署 WebJob
-## 概觀
-本主題說明如何使用 Visual Studio，將主控台應用程式專案部署至 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中的 Web 應用程式以做為 [Azure WebJob](http://go.microsoft.com/fwlink/?LinkId=390226)。如需如何使用 [Azure 入口網站](https://portal.azure.com)部署 WebJob 的相關資訊，請參閱[使用 WebJob 執行背景工作](web-sites-create-web-jobs.md)。
+# <a name="deploy-webjobs-using-visual-studio"></a>使用 Visual Studio 部署 WebJob
+## <a name="overview"></a>Overview
+本主題說明如何使用 Visual Studio 將主控台應用程式專案部署為 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714)中之 Web 應用程式的 [Azure WebJob](http://go.microsoft.com/fwlink/?LinkId=390226)。 如需如何使用 [Azure 入口網站](https://portal.azure.com)部署 WebJob 的相關資訊，請參閱[使用 WebJob 執行背景工作](web-sites-create-web-jobs.md)。
 
 當 Visual Studio 部署具有 WebJobs 功能的主控台應用程式專案時，它會執行兩個工作：
 
-* 將執行階段檔案複製到 Web 應用程式中的適當資料夾 (若是連續 WebJobs，則是 *App\_Data/jobs/continuous*，若是排程和隨選 WebJobs，則是 *App\_Data/jobs/triggered*)。
-* 為已排定在特定時間執行的 WebJobs 設定 [Azure 排程器工作](#scheduler)。(無需為連續 WebJobs 執行此動作。)
+* 將執行階段檔案複製到 Web 應用程式中的適當資料夾 (若是連續 WebJobs，則是 *App_Data/jobs/continuous*，若是排程和隨選 WebJobs，則是 *App_Data/jobs/triggered*)。
+* 為已排定在特定時間執行的 WebJobs 設定 [Azure 排程器工作](#scheduler)。 (無需為連續 WebJobs 執行此動作。)
 
 具有 WebJobs 功能的專案會新增下列項目：
 
@@ -32,99 +36,99 @@ ms.author: tdykstra
 
 ![Diagram showing what is added to a Console App to enable deployment as a WebJob](./media/websites-dotnet-deploy-webjobs/convert.png)
 
-您可以將這些項目新增至現有的主控台應用程式專案，或使用範本建立具有 WebJobs 功能的新主控台應用程式專案。
+您可以將這些項目新增至現有的主控台應用程式專案，或使用範本建立具有 WebJobs 功能的新主控台應用程式專案。 
 
-以 WebJob 的方式自我部署專案，或將專案連結到 Web 專案，因此每當您要部署 Web 專案時，專案便會自動部署。若要連結專案，Visual Studio 會在 Web 專案的 [webjobs-list.json](#webjobslist) 檔案中加上具有 WebJobs 功能的專案名稱。
+以 WebJob 的方式自我部署專案，或將專案連結到 Web 專案，因此每當您要部署 Web 專案時，專案便會自動部署。 若要連結專案，Visual Studio 會在 Web 專案的 [webjobs-list.json](#webjobslist) 檔案中加上具有 WebJobs 功能的專案名稱。
 
 ![Diagram showing WebJob project linking to web project](./media/websites-dotnet-deploy-webjobs/link.png)
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 安裝 Azure SDK for .NET 時，您便可在 Visual Studio 2015 中使用 WebJobs 部署功能：
 
 * [Azure SDK for .NET (Visual Studio 2015)](http://go.microsoft.com/fwlink/?linkid=518003)。
 
-## <a id="convert"></a>啟用現有主控台應用程式專案的 WebJobs 部署
+## <a name="a-idconvertaenable-webjobs-deployment-for-an-existing-console-application-project"></a><a id="convert"></a>啟用現有主控台應用程式專案的 WebJobs 部署
 您有兩個選擇：
 
 * [透過 Web 專案啟用自動部署](#convertlink)。
   
-    設定現有主控台應用程式專案，以便在您部署 Web 專案時，它會以 WebJob 的方式自動部署。當您要在與執行相關 Web 應用程式相同的 Web 應用程式中執行 WebJob 時，請使用此選項。
+    設定現有主控台應用程式專案，以便在您部署 Web 專案時，它會以 WebJob 的方式自動部署。 當您要在與執行相關 Web 應用程式相同的 Web 應用程式中執行 WebJob 時，請使用此選項。
 * [不透過 Web 專案啟用部署](#convertnolink)。
   
-    設定現有主控台應用程式專案以 WebJob 的方式自我部署，且不具 Web 專案的連結。當您要在 Web 應用程式中讓應用程式自行執行 WebJob，且 Web 應用程式中沒有正在執行的 Web 應用程式時，請使用此選項。為了調整不受 Web 應用程式資源影響的 WebJob 資源，您可能會想執行此動作。
+    設定現有主控台應用程式專案以 WebJob 的方式自我部署，且不具 Web 專案的連結。 當您要在 Web 應用程式中讓應用程式自行執行 WebJob，且 Web 應用程式中沒有正在執行的 Web 應用程式時，請使用此選項。 為了調整不受 Web 應用程式資源影響的 WebJob 資源，您可能會想執行此動作。
 
-### <a id="convertlink"></a> 透過 Web 專案啟用自動 WebJobs 部署
+### <a name="a-idconvertlinka-enable-automatic-webjobs-deployment-with-a-web-project"></a><a id="convertlink"></a> 透過 Web 專案啟用自動 WebJobs 部署
 1. 以滑鼠右鍵按一下 [方案總管] 中的 Web 專案，然後依序按一下 [新增] > [Existing Project as Azure WebJob]。
    
     ![Existing Project as Azure WebJob](./media/websites-dotnet-deploy-webjobs/eawj.png)
    
-    [Add Azure WebJob](#configure) 對話方塊隨即出現。
-2. 在 [專案名稱] 下拉式清單中，選取要新增為 WebJob 的主控台應用程式專案。
+    [Add Azure WebJob] [](#configure) 對話方塊隨即出現。
+2. 在 [專案名稱]  下拉式清單中，選取要新增為 WebJob 的主控台應用程式專案。
    
     ![Selecting project in Add Azure WebJob dialog](./media/websites-dotnet-deploy-webjobs/aaw1.png)
-3. 完成 [Add Azure WebJob](#configure) 對話方塊，然後按一下 [確定]。
+3. 完成 [Add Azure WebJob][](#configure) 對話方塊，然後按一下 [確定]。 
 
-### <a id="convertnolink"></a> 不透過 Web 專案啟用 WebJobs 部署
+### <a name="a-idconvertnolinka-enable-webjobs-deployment-without-a-web-project"></a><a id="convertnolink"></a> 不透過 Web 專案啟用 WebJobs 部署
 1. 以滑鼠右鍵按一下 [方案總管] 中的主控台應用程式專案，然後按一下 [Publish as Azure WebJob]。 
    
     ![Publish as Azure WebJob](./media/websites-dotnet-deploy-webjobs/paw.png)
    
-    [Add Azure WebJob](#configure) 對話方塊隨即出現，而且 [專案名稱] 方塊中已選取此專案。
-2. 完成 [Add Azure WebJob](#configure) 對話方塊，然後按一下 [確定]。
+    [Add Azure WebJob][](#configure) 對話方塊隨即出現，而且 [專案名稱] 方塊中已選取此專案。
+2. 完成 [Add Azure WebJob][](#configure) 對話方塊，然後按一下 [確定]。
    
-   此時會出現 [發行 Web] 精靈。如果您不打算立即發行，請關閉精靈。您所輸入的設定會被儲存下來，以供[部署專案](#deploy)時使用。
+   此時會出現 [發行 Web]  精靈。  如果您不打算立即發行，請關閉精靈。 您所輸入的設定會被儲存下來，以供 [部署專案](#deploy)時使用。
 
-## <a id="create"></a>建立具有 WebJobs 功能的新專案
-若要建立具有 WebJobs 功能的新專案，您可以使用主控台應用程式專案範本，並如[上一節](#convert)中所述來啟用 WebJobs 部署。另一種方式是，您可以使用 WebJobs 新專案範本：
+## <a name="a-idcreateacreate-a-new-webjobs-enabled-project"></a><a id="create"></a>建立具有 WebJobs 功能的新專案
+若要建立具有 WebJobs 功能的新專案，您可以使用主控台應用程式專案範本，並如 [上一節](#convert)中所述來啟用 WebJobs 部署。 另一種方式是，您可以使用 WebJobs 新專案範本：
 
 * [在獨立的 WebJob 中使用 WebJobs 新專案範本](#createnolink)
   
-    建立專案，並將專案設定為以 WebJob 的方式自我部署，且不具 Web 專案的連結。當您要在 Web 應用程式中讓應用程式自行執行 WebJob，且 Web 應用程式中沒有正在執行的 Web 應用程式時，請使用此選項。為了調整不受 Web 應用程式資源影響的 WebJob 資源，您可能會想執行此動作。
+    建立專案，並將專案設定為以 WebJob 的方式自我部署，且不具 Web 專案的連結。 當您要在 Web 應用程式中讓應用程式自行執行 WebJob，且 Web 應用程式中沒有正在執行的 Web 應用程式時，請使用此選項。 為了調整不受 Web 應用程式資源影響的 WebJob 資源，您可能會想執行此動作。
 * [在連結至 Web 專案的 WebJob 中使用 WebJobs 新專案範本](#createlink)
   
-    建立專案，並設定在針對位於相同解決方案中的 Web 專案進行部署時，會自動以 WebJob 的方式部署此專案。當您要在與執行相關 Web 應用程式相同的 Web 應用程式中執行 WebJob 時，請使用此選項。
+    建立專案，並設定在針對位於相同解決方案中的 Web 專案進行部署時，會自動以 WebJob 的方式部署此專案。 當您要在與執行相關 Web 應用程式相同的 Web 應用程式中執行 WebJob 時，請使用此選項。
 
 > [!NOTE]
-> WebJobs 新專案範本自動安裝 NuGet 套件，並包括適用於 [WebJobs SDK](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs) 的 *Program.cs* 程式碼。如果您不想要使用 WebJobs SDK，或想要使用已排程而非連續的 WebJob，請移除或變更 *Program.cs* 中的 `host.RunAndBlock` 陳述式。
+> WebJobs 新專案範本自動安裝 NuGet 套件，並包括適用於 *WebJobs SDK* 的 [Program.cs](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/getting-started-with-windows-azure-webjobs)程式碼。 如果您不想要使用 WebJobs SDK，或想要使用已排程而非連續的 WebJob，請移除或變更 *Program.cs* 中的 `host.RunAndBlock` 陳述式。
 > 
 > 
 
-### <a id="createnolink"></a> 在獨立的 WebJob 中使用 WebJobs 新專案範本
+### <a name="a-idcreatenolinka-use-the-webjobs-new-project-template-for-an-independent-webjob"></a><a id="createnolink"></a> 在獨立的 WebJob 中使用 WebJobs 新專案範本
 1. 依序按一下 [檔案] > [新增專案]，然後在 [新增專案] 對話方塊中，依序按一下 [雲端] > [Microsoft Azure WebJob]。
    
     ![New Project dialog showing WebJob template](./media/websites-dotnet-deploy-webjobs/np.png)
-2. 請依照稍早所示的指示進行，[將主控台應用程式專案設定成獨立的 WebJobs 專案](#convertnolink)。
+2. 請依照稍早所示的指示進行， [將主控台應用程式專案設定成獨立的 WebJobs 專案](#convertnolink)。
 
-### <a id="createlink"></a> 在連結至 Web 專案的 WebJob 中使用 WebJobs 新專案範本
+### <a name="a-idcreatelinka-use-the-webjobs-new-project-template-for-a-webjob-linked-to-a-web-project"></a><a id="createlink"></a> 在連結至 Web 專案的 WebJob 中使用 WebJobs 新專案範本
 1. 以滑鼠右鍵按一下 [方案總管] 中的 Web 專案，然後依序按一下 [新增] > [New Azure WebJob Project]。
    
     ![New Azure WebJob Project menu entry](./media/websites-dotnet-deploy-webjobs/nawj.png)
    
-    [Add Azure WebJob](#configure) 對話方塊隨即出現。
-2. 完成 [Add Azure WebJob](#configure) 對話方塊，然後按一下 [確定]。
+    [Add Azure WebJob] [](#configure) 對話方塊隨即出現。
+2. 完成 [Add Azure WebJob][](#configure) 對話方塊，然後按一下 [確定]。
 
-## <a id="configure"></a>[新增 Azure WebJob] 對話方塊
-[Add Azure WebJob] 對話方塊可讓您輸入 WebJob 的名稱和排程設定。
+## <a name="a-idconfigureathe-add-azure-webjob-dialog"></a><a id="configure"></a>[新增 Azure WebJob] 對話方塊
+[Add Azure WebJob]  對話方塊可讓您輸入 WebJob 的名稱和排程設定。 
 
 ![Add Azure WebJob dialog](./media/websites-dotnet-deploy-webjobs/aaw2.png)
 
-此對話方塊中的欄位會對應至 Azure 入口網站中 [新增工作] 對話方塊上的欄位。如需詳細資訊，請參閱[使用 WebJobs 執行背景工作](web-sites-create-web-jobs.md)。
+此對話方塊中的欄位會對應至 Azure 入口網站中 [新增工作]  對話方塊上的欄位。 如需詳細資訊，請參閱 [使用 WebJobs 執行背景工作](web-sites-create-web-jobs.md)。
 
-若是排程 WebJob (不適用於連續 WebJobs)，則 Visual Studio 會建立 [Azure 排程器](/services/scheduler/)工作集合 (如果尚未存在)，然後在集合中建立工作：
+若是排程 WebJob (不適用於連續 WebJobs)，則 Visual Studio 會建立 [Azure 排程器](/services/scheduler/) 工作集合 (如果尚未存在)，然後在集合中建立工作：
 
-* 排程器工作集合會被命名為 *WebJobs-{regionname}*，其中 *{regionname}* 是指託管 Web 應用程式的區域。例如：WebJobs-WestUS。
-* 排程器工作會被命名為 *{webappname}-{webjobname}*。例如：MyWebApp-MyWebJob。 
+* 排程器工作集合會被命名為 *WebJobs-{regionname}*，其中 *{regionname}* 是指託管 Web 應用程式的區域。 例如：WebJobs-WestUS。
+* 排程器工作會被命名為 *{webappname}-{webjobname}*。 例如：MyWebApp-MyWebJob。 
 
 > [!NOTE]
-> * 如需命令列部署的詳細資訊，請參閱[啟用 Azure WebJobs 的命令列或連續傳遞](/blog/2014/08/18/enabling-command-line-or-continuous-delivery-of-azure-webjobs/)。
-> * 如果設定的是 [週期性工作]，並將週期頻率設為分鐘數，則 Azure 排程器不是免費提供的服務。其他頻率 (時數、天數等) 可免費提供。
-> * 如果您部署了 WebJob，但之後決定變更 WebJob 的類型並重新部署，就必須刪除 webjobs-publish-settings.json 檔案。這樣會讓 Visual Studio 再次顯示發佈選項，您才能夠變更 WebJob 的類型。
-> * 如果部署 WebJob，並在稍後將執行模式從連續變更為非連續 (或相反情形)，則在您重新部署時，Visual Studio 會在 Azure 中建立新的 WebJob。如果您變更其他排程設定但保持執行模式不變，或在排程和隨選模式之間切換，則 Visual Studio 會更新現有的工作，而非建立新的工作。
+> * 如需命令列部署的詳細資訊，請參閱 [啟用 Azure WebJobs 的命令列或連續傳遞](/blog/2014/08/18/enabling-command-line-or-continuous-delivery-of-azure-webjobs/)。
+> * 如果設定的是 [週期性工作]  ，並將週期頻率設為分鐘數，則 Azure 排程器不是免費提供的服務。 其他頻率 (時數、天數等) 可免費提供。
+> * 如果您部署了 WebJob，但之後決定變更 WebJob 的類型並重新部署，就必須刪除 webjobs-publish-settings.json 檔案。 這樣會讓 Visual Studio 再次顯示發佈選項，您才能夠變更 WebJob 的類型。
+> * 如果部署 WebJob，並在稍後將執行模式從連續變更為非連續 (或相反情形)，則在您重新部署時，Visual Studio 會在 Azure 中建立新的 WebJob。 如果您變更其他排程設定但保持執行模式不變，或在排程和隨選模式之間切換，則 Visual Studio 會更新現有的工作，而非建立新的工作。
 > 
 > 
 
-## <a id="publishsettings"></a>webjob-publish-settings.json
-設定 WebJobs 部署的主控台應用程式時，Visual Studio 會安裝 [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) NuGet 封裝，並將排程資訊儲存在 WebJobs 專案中專案 *Properties* 資料夾的 *webjob-publish-settings.json* 檔案。以下是該檔案的範例：
+## <a name="a-idpublishsettingsawebjob-publish-settingsjson"></a><a id="publishsettings"></a>webjob-publish-settings.json
+設定 WebJobs 部署的主控台應用程式時，Visual Studio 會安裝 [Microsoft.Web.WebJobs.Publish](http://www.nuget.org/packages/Microsoft.Web.WebJobs.Publish/) NuGet 封裝，並將排程資訊儲存在 WebJobs 專案中專案 *Properties* 資料夾的 *webjob-publish-settings.json* 檔案。 以下是該檔案的範例：
 
         {
           "$schema": "http://schemastore.org/schemas/json/webjob-publish-settings.json",
@@ -136,15 +140,15 @@ ms.author: tdykstra
           "runMode": "Scheduled"
         }
 
-您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。檔案結構描述會儲存在 [http://schemastore.org](http://schemastore.org/schemas/json/webjob-publish-settings.json)，您可以在該處進行檢視。
+您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。 檔案結構描述會儲存在 [http://schemastore.org](http://schemastore.org/schemas/json/webjob-publish-settings.json) ，您可以在該處進行檢視。  
 
 > [!NOTE]
-> * 如果設定的是 [週期性工作]，並將週期頻率設為分鐘數，則 Azure 排程器不是免費提供的服務。其他頻率 (時數、天數等) 可免費提供。
+> * 如果設定的是 [週期性工作]  ，並將週期頻率設為分鐘數，則 Azure 排程器不是免費提供的服務。 其他頻率 (時數、天數等) 可免費提供。
 > 
 > 
 
-## <a id="webjobslist"></a>webjobs-list.json
-當您將具有 WebJobs 功能的專案連結到 Web 專案時，Visual Studio 會將 WebJobs 專案的名稱儲存在 Web 專案中 *Properties* 資料夾的 *webjobs-list.json* 檔案。此清單可能包含多個 WebJobs 專案，如以下範例所示：
+## <a name="a-idwebjobslistawebjobs-listjson"></a><a id="webjobslist"></a>webjobs-list.json
+當您將具有 WebJobs 功能的專案連結到 Web 專案時，Visual Studio 會將 WebJobs 專案的名稱儲存在 Web 專案中 *Properties* 資料夾的 *webjobs-list.json* 檔案。 此清單可能包含多個 WebJobs 專案，如以下範例所示：
 
         {
           "$schema": "http://schemastore.org/schemas/json/webjobs-list.json",
@@ -158,18 +162,23 @@ ms.author: tdykstra
           ]
         }
 
-您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。檔案結構描述會儲存在 [http://schemastore.org](http://schemastore.org/schemas/json/webjobs-list.json)，您可以在該處進行檢視。
+您可以編輯此檔案目錄，而 Visual Studio 會提供 IntelliSense。 檔案結構描述會儲存在 [http://schemastore.org](http://schemastore.org/schemas/json/webjobs-list.json) ，您可以在該處進行檢視。
 
-## <a id="deploy"></a>部署 WebJobs 專案
-已連結到 Web 專案的 WebJobs 專案會透過 Web 專案自動部署。如需 Web 專案部署的相關資訊，請參閱[如何部署至 Web 應用程式](web-sites-deploy.md)。
+## <a name="a-iddeployadeploy-a-webjobs-project"></a><a id="deploy"></a>部署 WebJobs 專案
+已連結到 Web 專案的 WebJobs 專案會透過 Web 專案自動部署。 如需 Web 專案部署的相關資訊，請參閱 [如何部署至 Web 應用程式](web-sites-deploy.md)。
 
-若要自我部署 WebJobs 專案，以滑鼠右鍵按一下 [方案總管] 中的專案，然後按一下 [Publish as Azure WebJob]。
+若要自我部署 WebJobs 專案，以滑鼠右鍵按一下 [方案總管] 中的專案，然後按一下 [Publish as Azure WebJob]。 
 
 ![Publish as Azure WebJob](./media/websites-dotnet-deploy-webjobs/paw.png)
 
-若是獨立的 WebJob，則 Web 專案所使用的相同 [發行 Web] 精靈隨即出現，但其中幾個設定可以變更。
+若是獨立的 WebJob，則 Web 專案所使用的相同 [發行 Web]  精靈隨即出現，但其中幾個設定可以變更。
 
-## <a id="nextsteps"></a>後續步驟
-本文說明如何使用 Visual Studio 部署 WebJobs。如需如何部署 Azure WebJobs 的詳細資訊，請參閱 [Azure WebJobs - 建議的資源 - 部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying)。
+## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>後續步驟
+本文說明如何使用 Visual Studio 部署 WebJobs。 如需如何部署 Azure WebJobs 的詳細資訊，請參閱 [Azure WebJobs - 建議的資源 - 部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying)。
 
-<!---HONumber=AcomDC_0504_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

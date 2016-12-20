@@ -1,13 +1,13 @@
 ---
-title: 在 Azure DocumentDB 中模型化資料 | Microsoft Docs
-description: 了解如何將 DocumentDB (NoSQL 文件資料庫) 的資料模型化。
-keywords: 模型化資料
+title: "在 Azure DocumentDB 中模型化資料 | Microsoft Docs"
+description: "了解如何將 DocumentDB (NoSQL 文件資料庫) 的資料模型化。"
+keywords: "模型化資料"
 services: documentdb
 author: kiratp
 manager: jhubbard
 editor: mimig1
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 69521eb9-590b-403c-9b36-98253a4c88b5
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/05/2016
 ms.author: kipandya
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: ba0dbc287964aa700cbded834e4b5da09144efe8
+
 
 ---
-# <a name="modeling-data-in-documentdb#"></a>在 DocumentDB 中模型化資料
+# <a name="modeling-data-in-documentdb"></a>在 DocumentDB 中模型化資料
 雖然無結構描述的資料庫 (像是 Azure DocumentDB)，讓您極容易運用您的資料模型變更，您仍然應該花一些時間思考您的資料。 
 
 要如何儲存資料？ 您的應用程式要如何擷取及查詢資料？ 您的應用程式是大量讀取或大量寫入？ 
@@ -30,7 +34,7 @@ ms.author: kipandya
 * 如何表達非關聯式資料庫中的資料關聯性？
 * 何時內嵌資料，以及何時連結至資料？
 
-## <a name="embedding-data##"></a>內嵌資料
+## <a name="embedding-data"></a>內嵌資料
 當您開始在文件存放區 (例如 DocumentDB) 中將資料模型化時，請嘗試將您的實體視為 JSON 中呈現的 **獨立式文件** 。
 
 在我們更進一步深入探討之前，讓我們往回幾個步驟，看看我們在關聯式資料庫中如何建立某個項目的模型，這是許多人已熟悉的主題。 下列範例示範人員可能如何儲存在關聯式資料庫中。 
@@ -182,7 +186,7 @@ ms.author: kipandya
 
 股票 *zaza* 可能在單一日交易數百次，而上千名使用者的組合上可能有 *zaza*。 有鑑於如上所示的資料模型，我們每天必須更新數千個組合文件許多次，導致系統無法妥善延展。 
 
-## <a name="<a-id="refer"></a>referencing-data##"></a><a id="Refer"></a>參考資料
+## <a name="a-idreferareferencing-data"></a><a id="Refer"></a>參考資料
 因此，內嵌資料於許多情況下可適用，但很明顯有時反正規化資料將會造成更多問題，使得適得其反。 那我們現在該怎麼辦？ 
 
 關聯式資料庫不是您可以建立實體之間的關聯性的唯一位置。 在文件資料庫中，您的文件中可以有實際上與其他文件中的資料相關的資訊。 現在，我不是要多用一分鐘來提倡我們建置的系統會更適合 DocumentDB 中的關聯式資料庫或任何其他文件資料庫，但是簡單的關聯性很好而且可以是非常有用。 
@@ -230,7 +234,7 @@ ms.author: kipandya
 > 
 > 
 
-### <a name="what-about-foreign-keys?"></a>外部索引鍵呢？
+### <a name="what-about-foreign-keys"></a>外部索引鍵呢？
 因為目前沒有條件約束、外部索引鍵之類的概念，您在文件中具有的任何文件間關聯性實際上是「弱式連結」，並且將不會由資料庫本身驗證。 如果您想要確定文件所參考的資料實際上存在，您就需要在您的應用程式中這麼做，或在 DocumentDB 上透過使用伺服器端觸發程序或預存程序。
 
 ### <a name="when-to-reference"></a>參考時機
@@ -246,7 +250,7 @@ ms.author: kipandya
 > 
 > 
 
-### <a name="where-do-i-put-the-relationship?"></a>放置關聯性的位置為何？
+### <a name="where-do-i-put-the-relationship"></a>放置關聯性的位置為何？
 關聯性的成長將有助於判斷用來儲存參考的文件。
 
 如果我們看看下面會建立發行者和書籍模型的 JSON。
@@ -288,7 +292,7 @@ ms.author: kipandya
 
 在上述範例中，我們在發行者文件上捨棄無限制的集合。 而我們在每個書籍文件上只有發行者的參考。
 
-### <a name="how-do-i-model-many:many-relationships?"></a>如何建立多對多關聯性的模型？
+### <a name="how-do-i-model-manymany-relationships"></a>如何建立多對多關聯性的模型？
 在關聯式資料庫 *多對多* 關聯性中，通常是與聯結資料表模型化，其只是將記錄從其他資料表聯結在一起。 
 
 ![聯結資料表](./media/documentdb-modeling-data/join-table.png)
@@ -329,7 +333,7 @@ ms.author: kipandya
 
 現在，如果我有作者，我立即會知道他們的書籍，而反之，如果我載入書籍文件，我就知道作者的識別碼。 這樣可以省下對聯結資料表的中繼查詢，減少您的應用程式必須進行的伺服器來回行程數目。 
 
-## <a name="<a-id="wrapup"></a>hybrid-data-models##"></a><a id="WrapUp"></a>混合式資料模型
+## <a name="a-idwrapupahybrid-data-models"></a><a id="WrapUp"></a>混合式資料模型
 我們現在已看過內嵌 (或反正規化) 和參考 (或正規化) 資料，如我們所見，各有其優缺點。 
 
 不必害怕採行不同的方式。 
@@ -342,9 +346,9 @@ ms.author: kipandya
     {
         "id": "a1",
         "firstName": "Thomas",
-        "lastName": "Andersen",     
+        "lastName": "Andersen",        
         "countOfBooks": 3,
-        "books": ["b1", "b2", "b3"],
+         "books": ["b1", "b2", "b3"],
         "images": [
             {"thumbnail": "http://....png"}
             {"profile": "http://....png"}
@@ -389,7 +393,7 @@ ms.author: kipandya
 
 有一個模型具有預先計算的欄位的能力的實現正仰賴於 DocumentDB 支援 **多文件交易**。 許多 NoSQL 存放區無法跨文件中執行交易，而因為這項限制而提倡「一律內嵌一切」的設計決策。 藉由 DocumentDB，您可以使用伺服器端觸發程序或預存程序，其會插入書籍並更新作者，全都在 ACID 交易內完成。 現在您不 **需** 在一份文件內嵌所有內容，只需要確保您的資料保持一致。
 
-## <a name="<a-name="nextsteps"></a>next-steps"></a><a name="NextSteps"></a>後續步驟
+## <a name="a-namenextstepsanext-steps"></a><a name="NextSteps"></a>後續步驟
 從這篇文章獲得的最大的心得是了解在無結構描述的環境中的資料模型化與以往一樣重要。 
 
 正如同沒有單一方法可表示螢幕上的資料片段，沒有單一方法可為您的資料建立模型。 您需要了解您的應用程式，以及它將如何產生、取用及處理資料。 然後，藉由套用一些此處所提供的指導方針，您可以設定相關的建立模型，來處理您的應用程式的立即需求。 當您的應用程式需要進行變更時，您可以利用無結構描述之資料庫的彈性來納入變更，並輕鬆進化您的資料模型。 
@@ -402,6 +406,9 @@ ms.author: kipandya
 
 最後，如需資料模型化和多租用戶應用程式分區化的指引，請參閱 [使用 Azure DocumentDB 調整多租用戶應用程式](http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

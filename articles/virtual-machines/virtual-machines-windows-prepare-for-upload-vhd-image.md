@@ -1,13 +1,13 @@
 ---
-title: 準備要上傳至 Azure 的 Windows VHD| Microsoft Docs
-description: 準備 Windows VHD 在上傳至 Azure 之前所需的建議做法
+title: "準備要上傳至 Azure 的 Windows VHD | Microsoft Docs"
+description: "準備 Windows VHD 在上傳至 Azure 之前所需的建議做法"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: genlin
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 7802489d-33ec-4302-82a4-91463d03887a
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/18/2016
 ms.author: glimoli;genli
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 98aa7935322c873a9de6414090daab2e04ea19fe
+
 
 ---
 # <a name="prepare-a-windows-vhd-to-upload-to-azure"></a>準備要上傳至 Azure 的 Windows VHD
@@ -265,8 +269,8 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
    * [KB2904100](https://support.microsoft.com/kb/2904100) 在 Windows 中，系統會在磁碟 I/O 期間凍結<a id="step23"></a>
 2. 如果您想要建立映像以便從中部署多部電腦，您需要先執行 `sysprep` 來將該映像一般化，然後將 VHD 上傳至 Azure。 您不需要執行 `sysprep` ，即可使用特製化 VHD。 如需如何建立一般化映像的詳細資訊，請參閱下列文章：
    
-   * [使用 Resource Manager 部署模型，從現有的 Azure VM 建立 VM 映像](virtual-machines-windows-capture-image.md)
-   * [使用傳統部署模型，從現有的 Azure VM 建立 VM 映像](virtual-machines-windows-classic-capture-image.md)
+   * [使用 Resource Manager 部署模型，從現有的 Azure VM 建立 VM 映像](virtual-machines-windows-create-vm-generalized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+   * [使用傳統部署模型，從現有的 Azure VM 建立 VM 映像](virtual-machines-windows-classic-capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
    * [伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
 
 ## <a name="suggested-extra-configurations"></a>建議的額外組態
@@ -293,8 +297,11 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
     ```
 
 ## <a name="next-steps"></a>後續步驟
-* [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](virtual-machines-windows-upload-image.md)
+* [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

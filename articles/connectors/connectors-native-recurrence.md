@@ -1,13 +1,13 @@
 ---
-title: 在邏輯應用程式中新增循環觸發程序 | Microsoft Docs
-description: 循環觸發程序的概觀，以及如何搭配 Azure 邏輯應用程式使用。
-services: ''
-documentationcenter: ''
+title: "在邏輯應用程式中新增循環觸發程序 | Microsoft Docs"
+description: "循環觸發程序的概觀，以及如何搭配 Azure 邏輯應用程式使用。"
+services: 
+documentationcenter: 
 author: jeffhollan
 manager: erikre
-editor: ''
+editor: 
 tags: connectors
-
+ms.assetid: 51dd4f22-7dc5-41af-a0a9-e7148378cd50
 ms.service: logic-apps
 ms.devlang: na
 ms.topic: article
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d85eb09283bc464e78bf84401eeb0ff366ef5773
+
 
 ---
-# 開始使用循環觸發程序
+# <a name="get-started-with-the-recurrence-trigger"></a>開始使用循環觸發程序
 透過循環觸發程序，您可以在雲端建立強大的工作流程。
 
 例如，您可以：
@@ -25,24 +29,25 @@ ms.author: jehollan
 * 排程讓工作流程每天執行 SQL 預存程序。
 * 以電子郵件傳送過去一週內所有關於特定雜湊標記之推文的摘要。
 
-若要使用邏輯應用程式中的循環觸發程序來開始作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要使用邏輯應用程式中的循環觸發程序來開始作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-## 使用循環觸發程序
-觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。[深入了解觸發程序](connectors-overview.md)。
+## <a name="use-a-recurrence-trigger"></a>使用循環觸發程序
+觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序](connectors-overview.md)。
 
 以下是如何在邏輯應用程式中設定循環觸發程序的範例順序：
 
-1. 將**循環**觸發程序新增為邏輯應用程式中的第一個步驟。
+1. 將 **循環** 觸發程序新增為邏輯應用程式中的第一個步驟。
 2. 填入循環間隔的參數。
 
 邏輯應用程式現在會在每個時間間隔之後啟動執行。
 
 ![HTTP 觸發程序](./media/connectors-native-recurrence/using-trigger.png)
 
-## 觸發程序詳細資料
+## <a name="trigger-details"></a>觸發程序詳細資料
 循環觸發程序具有下列可設定的屬性。
 
-它會在指定的時間間隔之後引發邏輯應用程式。標示 * 代表必要欄位。
+它會在指定的時間間隔之後引發邏輯應用程式。
+標示 * 代表必要欄位。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
@@ -53,7 +58,12 @@ ms.author: jehollan
 
 <br>
 
-## 後續步驟
-立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
+## <a name="next-steps"></a>後續步驟
+立即試用平台和 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

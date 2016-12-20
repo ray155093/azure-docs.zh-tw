@@ -1,12 +1,12 @@
-## <a name="create-client"></a>建立用戶端連接
-建立 `WindowsAzure.MobileServiceClient` 物件來建立用戶端連接。以您行動應用程式的 URL 取代 `appUrl`。
+## <a name="a-namecreate-clientacreate-a-client-connection"></a><a name="create-client"></a>建立用戶端連接
+建立 `WindowsAzure.MobileServiceClient` 物件來建立用戶端連接。  以您行動應用程式的 URL 取代 `appUrl` 。
 
 ```
 var client = WindowsAzure.MobileServiceClient(appUrl);
 ```
 
-## <a name="table-reference"></a>使用資料表
-若要存取或更新資料，請建立後端資料表的參考。以您的資料表名稱取代 `tableName`
+## <a name="a-nametable-referenceawork-with-tables"></a><a name="table-reference"></a>使用資料表
+若要存取或更新資料，請建立後端資料表的參考。 以您的資料表名稱取代 `tableName`
 
 ```
 var table = client.getTable(tableName);
@@ -22,8 +22,9 @@ var table = client.getTable(tableName);
 * [修改資料](#modifying)
 * [刪除資料](#deleting)
 
-### <a name="querying"></a>如何：查詢資料表參考
-取得資料表參考之後，您可以使用它來查詢伺服器上的資料。您可以使用「類似 LINQ」的語言來撰寫查詢。若要從資料表傳回所有資料，使用下列方法：
+### <a name="a-namequeryingahow-to-query-a-table-reference"></a><a name="querying"></a>如何：查詢資料表參考
+取得資料表參考之後，您可以使用它來查詢伺服器上的資料。  您可以使用「類似 LINQ」的語言來撰寫查詢。
+若要從資料表傳回所有資料，使用下列程式碼：
 
 ```
 /**
@@ -51,11 +52,11 @@ table
     .then(success, failure);
 ```
 
-搭配 results 呼叫 success 函式。請勿在 success 函式中使用 `for (var i in results)`，因為當使用其他查詢函式時 (例如 `.includeTotalCount()`)，這樣會反覆檢查結果中包含的資訊。
+搭配 results 呼叫 success 函式。  請勿在 success 函式中使用 `for (var i in results)`，因為當使用其他查詢函式時 (例如 `.includeTotalCount()`)，這樣會反覆檢查結果中包含的資訊。
 
-如需 Query 語法的詳細資訊，請參閱 [Query 物件文件](https://msdn.microsoft.com/library/azure/jj613353.aspx)。
+如需 Query 語法的詳細資訊，請參閱 [Query 物件文件]。
 
-#### <a name="table-filter"></a>篩選伺服器的資料
+#### <a name="a-nametable-filterafiltering-data-on-the-server"></a><a name="table-filter"></a>篩選伺服器的資料
 您可以在資料表參考上使用 `where` 子句：
 
 ```
@@ -65,7 +66,7 @@ table
     .then(success, failure);
 ```
 
-您也可以使用函式來篩選物件。在此案例中，`this` 變數會指派給目前篩選的物件。以下在功能上等同於先前的範例：
+您也可以使用函式來篩選物件。  在此案例中， `this` 變數會指派給目前篩選的物件。  以下程式碼在功能上等同於先前的範例：
 
 ```
 function filterByUserId(currentUserId) {
@@ -78,8 +79,8 @@ table
     .then(success, failure);
 ```
 
-#### <a name="table-paging"></a>逐頁查看資料
-利用 take() 和 skip() 方法。例如，如果您想要將資料表分割成 100 列的記錄：
+#### <a name="a-nametable-pagingapaging-through-data"></a><a name="table-paging"></a>逐頁查看資料
+利用 `take()` 和 `skip()` 方法。  例如，如果您想要將資料表分割成 100 列的記錄：
 
 ```
 var totalCount = 0, pages = 0;
@@ -102,12 +103,12 @@ function loadPage(pageNum) {
 }
 ```
 
-`.includeTotalCount()` 方法是用來將 totalCount 欄位加入至 results 物件。totalCount 欄位中填入未使用分頁時會傳回的記錄總數。
+`.includeTotalCount()` 方法是用來將 totalCount 欄位加入至 results 物件。  totalCount 欄位中填入未使用分頁時會傳回的記錄總數。
 
-接著，您可以使用 pages 變數和一些 UI 按鈕來提供頁面清單。您可以使用 loadPage() 載入每個頁面的新記錄。您應該實作一些快取來加速存取已載入的記錄。
+接著，您可以使用 pages 變數和一些 UI 按鈕來提供頁面清單。您可以使用 `loadPage()` 載入每個頁面的新記錄。  實作快取來加速存取已經載入的記錄。
 
-#### <a name="sorting-data"></a>如何：傳回已排序的資料
-使用 .orderBy() 或 .orderByDescending() 查詢方法：
+#### <a name="a-namesorting-dataahow-to-return-data-sorted"></a><a name="sorting-data"></a>如何：傳回已排序的資料
+使用 `.orderBy()` 或 `.orderByDescending()` 查詢方法︰
 
 ```
 table
@@ -116,12 +117,12 @@ table
     .then(success, failure);
 ```
 
-如需 Query 物件的詳細資訊，請參閱 [Query 物件文件](https://msdn.microsoft.com/library/azure/jj613353.aspx)。
+如需 Query 物件的詳細資訊，請參閱 [Query 物件文件]。
 
-### <a name="inserting"></a>作法：插入資料
-以適當的日期建立 JavaScript 物件，並以非同步方式呼叫 table.insert()：
+### <a name="a-nameinsertingahow-to-insert-data"></a><a name="inserting"></a>作法：插入資料
+以適當的日期建立 JavaScript 物件，並以非同步方式呼叫 `table.insert()`：
 
-```
+```javascript
 var newItem = {
     name: 'My Name',
     signupDate: new Date()
@@ -134,14 +135,14 @@ table
     }, failure);
 ```
 
-在成功插入時，插入的項目及同步處理作業所需的其他欄位會一起傳回。您應該以這項資訊更新您自己的快取，後續更新時才會正確。
+在成功插入時，插入的項目及同步處理作業所需的其他欄位會一起傳回。  以這項資訊更新您自己的快取，後續更新時才會正確。
 
-請注意，Azure Mobile Apps Node.js Server SDK 支援的動態結構描述適用於開發用途。就動態結構描述而言，資料表結構描述會即時更新您只要在插入或更新作業中指定資料行，就能將資料行加入至資料表。在將應用程式移至生產環境之前，我們建議您關閉動態結構描述。
+Azure Mobile Apps Node.js Server SDK 支援的動態結構描述適用於開發用途。  動態結構描述可讓您在插入或更新作業中指定資料行，以將資料行新增至資料表。  在將應用程式移至生產環境之前，我們建議您關閉動態結構描述。
 
-### <a name="modifying"></a>作法：修改資料
-類似於 .insert() 方法，您應該建立 Update 物件，然後呼叫 .update()。Update 物件必須包含要更新的記錄的識別碼 - 這是在讀取記錄或呼叫 .insert() 時取得。
+### <a name="a-namemodifyingahow-to-modify-data"></a><a name="modifying"></a>作法：修改資料
+類似於 `.insert()` 方法，您應該建立 Update 物件，然後呼叫 `.update()`。  Update 物件必須包含要更新的記錄的識別碼 - 在讀取記錄或呼叫 `.insert()` 時會取得此識別碼。
 
-```
+```javascript
 var updateItem = {
     id: '7163bc7a-70b2-4dde-98e9-8818969611bd',
     name: 'My New Name'
@@ -154,8 +155,8 @@ table
     }, failure);
 ```
 
-### <a name="deleting"></a>作法：刪除資料
-呼叫 .del() 方法來刪除記錄。將識別碼傳入物件參考中：
+### <a name="a-namedeletingahow-to-delete-data"></a><a name="deleting"></a>作法：刪除資料
+若要刪除記錄時，請呼叫 `.del()` 方法。  將識別碼傳入物件參考中：
 
 ```
 table
@@ -165,4 +166,7 @@ table
     }, failure);
 ```
 
-<!----HONumber=AcomDC_0323_2016-->
+
+<!--HONumber=Dec16_HO1-->
+
+

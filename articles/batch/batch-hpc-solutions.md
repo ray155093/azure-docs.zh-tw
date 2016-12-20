@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: big-compute
-ms.date: 07/27/2016
+ms.date: 11/17/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6a91c56d774ea81e175fa170e09b39548c6ae4d2
+ms.sourcegitcommit: 088d3d55a437165607e73ac2d6a3abe27e9b2639
+ms.openlocfilehash: 755fafcbc01e1da89d7ef3fa99b92da60c95bf8c
 
 
 ---
@@ -65,7 +65,7 @@ Big Compute 與巨量資料應用程式之間的界限不一定很清楚，而�
 * **叢集管理員** - 佈建、發行及管理計算資源 (或運算節點)。 叢集管理員可能會在計算節點上自動安裝作業系統映像和應用程式；根據需求調整計算資源；以及監視節點的效能。
 * **作業排程器** - 指定應用程式需要的資源 (例如處理器或記憶體)，以及其會執行的條件。 工作排程器會維護工作佇列，並根據指派的優先權或其他特性將資源分配給它們。
 
-以 Windows 為基礎與以 Linux 為基礎的叢集的叢集和作業排程工具，可順暢移轉至 Azure。 例如， [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029)，Microsoft 針對 Windows 和 Linux HPC 工作負載的免費計算叢集解決方案，提供數個在 Azure 中執行的選項。 您也可以建置 Linux 叢集來執行開放原始碼工具，例如 Torque 和 SLURM。 您也可以將商業格線解決方案帶入 Azure 中，例如 [TIBCO DataSynapse GridServer](http://www.tibco.com/company/news/releases/2016/tibco-to-accelerate-cloud-adoption-of-banking-and-capital-markets-customers-via-microsoft-collaboration)、[IBM Platform Symphony](http://www-01.ibm.com/support/docview.wss?uid=isg3T1023592) 和 [Univa Grid Engine](http://www.univa.com/products/grid-engine)。
+以 Windows 為基礎與以 Linux 為基礎的叢集的叢集和作業排程工具，可順暢移轉至 Azure。 例如， [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029)，Microsoft 針對 Windows 和 Linux HPC 工作負載的免費計算叢集解決方案，提供數個在 Azure 中執行的選項。 您也可以建置 Linux 叢集來執行開放原始碼工具，例如 Torque 和 SLURM。 您也可以將商業格線解決方案帶入 Azure 中，例如 [TIBCO DataSynapse GridServer](https://azure.microsoft.com/blog/tibco-datasynapse-comes-to-the-azure-marketplace/)、[IBM Spectrum Symphony 和 Symphony LSF](https://azure.microsoft.com/blog/ibm-and-microsoft-azure-support-spectrum-symphony-and-spectrum-lsf/)，以及 [Univa Grid Engine](http://www.univa.com/products/grid-engine)。
 
 如下列各節中所示，您也可以利用 Azure 服務來管理計算資源及排程作業，而不需要 (或同時使用) 傳統叢集管理工具。
 
@@ -87,10 +87,10 @@ Big Compute 與巨量資料應用程式之間的界限不一定很清楚，而�
 > 
 
 ### <a name="compute-services"></a>計算服務
-Azure 計算服務是 Big Compute 解決方案的核心，且不同的計算服務針對不同的案例提供優點。 在基本層級中，這些服務為使用 Windows Server Hyper-V 技術，由 Azure 提供的虛擬機器計算執行個體上執行的應用程式提供不同的模式。 這些執行個體可以執行標準和自訂的 Linux 和 Windows 作業系統和工具。 Azure 可以讓您選擇 [執行個體大小](../virtual-machines/virtual-machines-windows-sizes.md) ，搭配 CPU 核心、記憶體、磁碟容量和其他特性等不同組態。 您可視您的需求將執行個體擴充至數千個核心，並在需要較少的資源時相應減少。
+Azure 計算服務是 Big Compute 解決方案的核心，且不同的計算服務針對不同的案例提供優點。 在基本層級中，這些服務為使用 Windows Server Hyper-V 技術，由 Azure 提供的虛擬機器計算執行個體上執行的應用程式提供不同的模式。 這些執行個體可以執行標準和自訂的 Linux 和 Windows 作業系統和工具。 Azure 可以讓您選擇 [執行個體大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，搭配 CPU 核心、記憶體、磁碟容量和其他特性等不同組態。 您可視您的需求將執行個體擴充至數千個核心，並在需要較少的資源時相應減少。
 
 > [!NOTE]
-> 利用 Azure 計算密集型執行個體，以改善 HPC 工作負載的效能和延展性，包括需要低延遲和高輸送量應用程式網路的平行 MPI 應用程式。 請參閱 [關於 H 系列和計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。  
+> 利用 Azure [計量密集型執行個體 (例如 H 系列)](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來改善 HPC 工作負載的效能和延展性。 這些執行個體也支援需要低延遲及高輸送量應用程式網路的平行 MPI 應用程式。 另外也可使用配備 NVIDIA GPU 的 [N 系列](https://azure.microsoft.com/blog/azure-n-series-general-availability-on-december-1/) VM，以擴展 Azure 中計算和視覺化案例的範圍。  
 > 
 > 
 
@@ -124,7 +124,7 @@ Big Compute 解決方案可能需要其他 Azure 服務，才能連線至內部�
 
 ## <a name="next-steps"></a>後續步驟
 * 請參閱 [Batch 和 HPC 的技術資源](big-compute-resources.md) 來尋找建置您的解決方案的技術指導。
-* 與合作夥伴討論 Azure 選項，包括 Cycle Computing 和 UberCloud。
+* 與合作夥伴討論 Azure 選項，包括 Cycle Computing、Rescale 和 UberCloud。
 * 閱讀 [Towers Watson](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18222)、[Altair](https://azure.microsoft.com/blog/availability-of-altair-radioss-rdma-on-microsoft-azure/), [ANSYS](https://azure.microsoft.com/blog/ansys-cfd-and-microsoft-azure-perform-the-best-hpc-scalability-in-the-cloud/) 和 [d3VIEW](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=22088) 所提供的 Azure Big Compute 解決方案。
 * 如需最新公告，請參閱 [Microsoft HPC 和 Batch 小組部落格](http://blogs.technet.com/b/windowshpc/)以及[Azure 部落格](https://azure.microsoft.com/blog/tag/hpc/)。
 
@@ -137,6 +137,6 @@ Big Compute 解決方案可能需要其他 Azure 服務，才能連線至內部�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

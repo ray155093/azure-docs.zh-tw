@@ -1,12 +1,12 @@
 ---
-title: ExpressRoute 客戶路由器組態範例 | Microsoft Docs
-description: 此頁面提供適用於 Cisco 和 Juniper 路由器的路由器組態範例。
+title: "ExpressRoute 客戶路由器組態範例 | Microsoft Docs"
+description: "此頁面提供適用於 Cisco 和 Juniper 路由器的路由器組態範例。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: 564826bc-017a-4683-a385-37c9fa814948
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: b77a20274e22827aaa8aa4d354b62d086a19b206
+ms.openlocfilehash: 6fefb9cfa96b0a6b7acfe4d7fcb17cb13ec240a0
+
 
 ---
-# <a name="router-configuration-samples-to-setup-and-manage-routing"></a>設定和管理路由的路由器組態範例
+# <a name="router-configuration-samples-to-set-up-and-manage-routing"></a>設定和管理路由的路由器組態範例
 此頁面提供適用於 Cisco IOS XE 和 Juniper MX 系列路由器的介面和路由組態範例。 這些範例僅可用作指引，不能依原樣使用。 您可以和廠商合作來擬定適合您網路的組態。 
 
 > [!IMPORTANT]
@@ -29,24 +33,26 @@ ms.author: cherylmc
 ## <a name="cisco-ios-xe-based-routers"></a>Cisco IOS-XE 架構的路由器
 本節中的範例適用於任何執行 IOS-XE 作業系統系列的路由器。
 
-### <a name="1.-configuring-interfaces-and-sub-interfaces"></a>1.設定介面和子介面
+### <a name="1-configuring-interfaces-and-sub-interfaces"></a>1.設定介面和子介面
 在您連線到 Microsoft 的每個路由器中，針對每個對等互連都需要有一個子介面。 子介面可使用 VLAN ID 或一組堆疊的 VLAN ID 和 IP 位址來識別。
 
-#### <a name="dot1q-interface-definition"></a>Dot1Q 介面定義
+**Dot1Q 介面定義**
+
 此範例會針對含有單一 VLAN ID 的子介面提供子介面定義。 在每個對等互連中 VLAN ID 都是唯一的。 IPv4 位址的最後一個八位元一定是奇數。
 
     interface GigabitEthernet<Interface_Number>.<Number>
      encapsulation dot1Q <VLAN_ID>
      ip address <IPv4_Address><Subnet_Mask>
 
-#### <a name="qinq-interface-definition"></a>QinQ 介面定義
+**QinQ 介面定義**
+
 此範例會針對含有兩個 VLAN ID 的子介面提供子介面定義。 外部的 VLAN ID (s-tag)，如果使用方式在所有對等互連上維持不變。 在每個對等互連中內部的 VLAN ID (c-tag) 都是唯一的。 IPv4 位址的最後一個八位元一定是奇數。
 
     interface GigabitEthernet<Interface_Number>.<Number>
      encapsulation dot1Q <s-tag> seconddot1Q <c-tag>
      ip address <IPv4_Address><Subnet_Mask>
 
-### <a name="2.-setting-up-ebgp-sessions"></a>2.設定 eBGP 工作階段
+### <a name="2-setting-up-ebgp-sessions"></a>2.設定 eBGP 工作階段
 您必須針對每個對等互連，設定與 Microsoft 的 BGP 工作階段。 下列範例可讓您設定與 Microsoft 的 BGP 工作階段。 如果您針對子介面使用的 IPv4 位址是 a.b.c.d，則 BGP 芳鄰 (Microsoft) 的 IP 位址會是 a.b.c.d+1。 BGP 芳鄰的 IPv4 位址的最後一個八位元一定是偶數。
 
     router bgp <Customer_ASN>
@@ -58,7 +64,7 @@ ms.author: cherylmc
      exit-address-family
     !
 
-### <a name="3.-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3.將前置詞設定為要透過 BGP 工作階段進行公告
+### <a name="3-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3.將前置詞設定為要透過 BGP 工作階段進行公告
 您可以設定路由器，將選取前置詞公告給 Microsoft。 您可以使用下列範例來執行此動作。
 
     router bgp <Customer_ASN>
@@ -71,7 +77,7 @@ ms.author: cherylmc
      exit-address-family
     !
 
-### <a name="4.-route-maps"></a>4.路由對應
+### <a name="4-route-maps"></a>4.路由對應
 您可以使用路由對應和前置詞清單，來篩選要傳播到您網路中的前置詞。 您可以使用下列範例來完成此工作。 確定您已設定適當的前置詞清單。
 
     router bgp <Customer_ASN>
@@ -92,8 +98,10 @@ ms.author: cherylmc
 ## <a name="juniper-mx-series-routers"></a>Juniper MX 系列路由器
 本節中的範例適用於所有的 Juniper MX 系列路由器。
 
-### <a name="1.-configuring-interfaces-and-sub-interfaces"></a>1.設定介面和子介面
-#### <a name="dot1q-interface-definition"></a>Dot1Q 介面定義
+### <a name="1-configuring-interfaces-and-sub-interfaces"></a>1.設定介面和子介面
+
+**Dot1Q 介面定義**
+
 此範例會針對含有單一 VLAN ID 的子介面提供子介面定義。 在每個對等互連中 VLAN ID 都是唯一的。 IPv4 位址的最後一個八位元一定是奇數。
 
     interfaces {
@@ -109,7 +117,8 @@ ms.author: cherylmc
     }
 
 
-#### <a name="qinq-interface-definition"></a>QinQ 介面定義
+**QinQ 介面定義**
+
 此範例會針對含有兩個 VLAN ID 的子介面提供子介面定義。 外部的 VLAN ID (s-tag)，如果使用方式在所有對等互連上維持不變。 在每個對等互連中內部的 VLAN ID (c-tag) 都是唯一的。 IPv4 位址的最後一個八位元一定是奇數。
 
     interfaces {
@@ -124,7 +133,7 @@ ms.author: cherylmc
         }                                   
     }                           
 
-### <a name="2.-setting-up-ebgp-sessions"></a>2.設定 eBGP 工作階段
+### <a name="2-setting-up-ebgp-sessions"></a>2.設定 eBGP 工作階段
 您必須針對每個對等互連，設定與 Microsoft 的 BGP 工作階段。 下列範例可讓您設定與 Microsoft 的 BGP 工作階段。 如果您針對子介面使用的 IPv4 位址是 a.b.c.d，則 BGP 芳鄰 (Microsoft) 的 IP 位址會是 a.b.c.d+1。 BGP 芳鄰的 IPv4 位址的最後一個八位元一定是偶數。
 
     routing-options {
@@ -140,7 +149,7 @@ ms.author: cherylmc
         }                                   
     }
 
-### <a name="3.-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3.將前置詞設定為要透過 BGP 工作階段進行公告
+### <a name="3-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3.將前置詞設定為要透過 BGP 工作階段進行公告
 您可以設定路由器，將選取前置詞公告給 Microsoft。 您可以使用下列範例來執行此動作。
 
     policy-options {
@@ -165,7 +174,7 @@ ms.author: cherylmc
     }
 
 
-### <a name="4.-route-maps"></a>4.路由對應
+### <a name="4-route-maps"></a>4.路由對應
 您可以使用路由對應和前置詞清單，來篩選要傳播到您網路中的前置詞。 您可以使用下列範例來完成此工作。 確定您已設定適當的前置詞清單。
 
     policy-options {
@@ -198,6 +207,9 @@ ms.author: cherylmc
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱〈 [ExpressRoute 常見問題集](expressroute-faqs.md) 〉。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -15,12 +15,12 @@ ms.workload: mobile
 ms.date: 10/04/2016
 ms.author: wesmc;ricksal
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7be266a6f8b3e18f2f6a27908ad75b5c19d3d862
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 0cb54f6c4b84597fbc21fa691f88f6f7a37beedd
 
 
 ---
-# <a name="azure-mobile-engagement-getting-started-guide-with-best-practices"></a>Azure Mobile Engagement - 入門指南與最佳作法
+# <a name="azure-mobile-engagement---getting-started-guide-with-best-practices"></a>Azure Mobile Engagement - 入門指南與最佳作法
 ## <a name="overview"></a>概觀
 **行動裝置的螢幕是非常擁擠的空間：** 2013 年的一項研究中發現，每個行動裝置約安裝了 27 個應用程式。 使用者每個月通常會花 30 小時在他們的應用程式上。 這些時間大部分是花在社交網路和遊戲上 (大約 20 小時)。 截至 2014 年為止，Android 市場約提供了一百五十萬個應用程式供使用者選擇。 Apple Store 包含約一百二十萬個應用程式。 隨著開發人員競相投入這個成長中的市場，行動應用程式的使用還在逐漸增長中。 
 
@@ -105,7 +105,7 @@ ms.openlocfilehash: 7be266a6f8b3e18f2f6a27908ad75b5c19d3d862
 3. 這項資料在我的應用程式中會位於何處 (即螢幕、設定、系統...)？
 4. 此 KPI 是否可以顯示參與系列？
 
-您可以使用我們的[媒體腳本範本][媒體腳本連結]中的 **KPI 產生器**工作表，取得相關範例和指引。
+您可以使用我們的[媒體腳本範本][Media Playbook link]中的 **KPI 產生器**工作表，取得相關範例和指引。
 
 ## <a name="step-2-your-engagement-program"></a>步驟 2：您的業務開發計劃
 絕佳行動業務開發計劃應被視為應用程式的關鍵要素。 其中必須包含完善的歡迎使用計劃，在使用者剛開始使用應用程式的頭幾天執行。 這對於應用程式的使用程度和存續性，通常會有非常正面的影響。 研究顯示，大多數的使用者在安裝後的頭幾天就會停止使用應用程式。 要想符合或超過客戶的期望，就要趁使用者仍熱衷於您的應用程式時激發他們的興趣。 請務必讓客戶體驗到您的應用程式最重要的價值和優點。 
@@ -209,13 +209,13 @@ Azure Mobile Engagement 提供兩種方式，協助您避免讓傳送的訊息�
 #### <a name="playbook-exercise-2-create-your-engagement-program"></a>腳本練習 2：建立業務開發計劃
 花點時間摘列您的目標，並定義您預計要使用特定系列來執行的活動。 請確實對您活動中的通知套用 3W 法。 
 
-您可以使用[媒體腳本範本][媒體腳本連結]中的**業務開發計劃**工作表，取得相關範例和指引。
+您可以使用[媒體腳本範本][Media Playbook link]中的**業務開發計劃**工作表，取得相關範例和指引。
 
 ## <a name="step-3-app-integration"></a>步驟 3：應用程式整合
 #### <a name="create-a-tag-plan"></a>建立標記計劃
 若要將 Azure Mobile Engagement 整合到您的應用程式中，您必須建立標記計劃。 標記計劃是專案的基石。 它可定義行銷規格、應用程式的工作流程與實際在應用程式中收集到的標記資料之間的關聯性，以測量 KPI。 它可指出您將能夠在入口網站中看到哪些分析。 它也可協助您定義使用者區段，並傳送聚焦的推播通知給您的使用者。 定義標記計劃後，您可以使用 Azure Mobile Engagement SDK 加上程式碼，輕鬆將其整合到您的應用程式中。
 
-標記計劃不應標記應用程式中的所有項目。 它只應包含屬於行動業務開發策略的標記資料。 這可能隨著應用程式而有所不同。 Azure Mobile Engagement 所提供的[媒體腳本範本][媒體腳本連結]可協助您透過給定的方法來建置標記計劃。 請使用 **標記計劃** 工作表做為建置標記計劃的指南。
+標記計劃不應標記應用程式中的所有項目。 它只應包含屬於行動業務開發策略的標記資料。 這可能隨著應用程式而有所不同。 Azure Mobile Engagement 所提供的[媒體腳本範本][Media Playbook link]可協助您透過給定的方法來建置標記計劃。 請使用 **標記計劃** 工作表做為建置標記計劃的指南。
 
 在工作表中定義標記區段時，請盡可能明確。 為避免混淆，這是非常重要的。 請詳細說明預期將會傳送各個標記的每個案例。 對於內嵌各個標記的活動，請加上活動名稱。 這些資料應全都納入工作表的 [資訊]  部分中。 標記計劃工作表應為測試驗證的主要參考。 
 
@@ -322,10 +322,10 @@ Mobile Engagement SDK 自動收集的當機資料，會報告應用程式未處�
 
 
 <!--Link references-->
-[媒體腳本連結]: https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks
+[Media Playbook link]: https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -14,13 +14,13 @@
 ### [Marketplace 應用程式](web-sites-php-web-site-gallery.md)
 ### [PHP](app-service-web-php-get-started.md)   
 
-## API 應用程式
+## API Apps
 ### [.NET](../app-service-api/app-service-api-dotnet-get-started.md)
 ### [Java](../app-service-api/app-service-api-java-api-app.md)
 ### [Node.js](../app-service-api/app-service-api-nodejs-api-app.md)
 ### [CORS](../app-service-api/app-service-api-cors-consume-javascript.md)
 
-## 行動應用程式
+## Mobile Apps
 ### [Android](../app-service-mobile/app-service-mobile-android-get-started.md)
 ### [Cordova](../app-service-mobile/app-service-mobile-cordova-get-started.md)
 ### [iOS](../app-service-mobile/app-service-mobile-ios-get-started.md)
@@ -33,7 +33,7 @@
 # 作法
 
 ## 計劃與設計
-### [Azure App Service 的最佳作法](app-service-best-practices.md)
+### [Azure App Service 的最佳做法](app-service-best-practices.md)
 ### [Azure App Service 和現有的 Azure 服務](app-service-changes-existing-services.md)
 ### [本機快取概觀](../app-service/app-service-local-cache.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 ### [App Service 深入規劃](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
@@ -48,7 +48,7 @@
 ### [改善延展性](../guidance/guidance-web-apps-scalability.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 ### [作業系統功能](web-sites-available-operating-system-functionality.md)
 ### [有效地使用 DevOps 環境](app-service-web-staged-publishing-realworld-scenarios.md)
-### [在 Azure App Service 中使用 WebJobs](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
+### [在 Azure App Service 中使用 WebJob](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 ### [App Service 環境](app-service-app-service-environment-intro.md)
 #### [App Service 環境文件](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 
@@ -57,7 +57,7 @@
 ### [在 Linux 上建立 Web 應用程式](app-service-linux-how-to-create-a-web-app.md)
 ### [App Service 參考](app-service-changes-existing-services.md)
 ### [Azure 入口網站](app-service-web-app-azure-portal.md)
-### [WebJobs SDK](websites-dotnet-webjobs-sdk-get-started.md)
+### [WebJob SDK](websites-dotnet-webjobs-sdk-get-started.md)
 
 ### ASP.NET 應用程式
 #### [在 5 分鐘內，將您的第一個 .NET Web 應用程式部署到 Azure](app-service-web-get-started-dotnet.md)
@@ -101,13 +101,13 @@
 ### [在 5 分鐘內，將您的第一個基本 Web 應用程式部署到 Azure](app-service-web-get-started-html.md)
 ### [開始使用 Web Apps 的生產測試](app-service-web-test-in-production-get-start.md)
 
-### [Web 工作](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
-#### [什麼是 Azure WebJobs SDK](websites-dotnet-webjobs-sdk.md)
+### [Web Job](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
+#### [什麼是 Azure WebJob SDK](websites-dotnet-webjobs-sdk.md)
 #### [建立 .NET WebJob](websites-dotnet-webjobs-sdk-get-started.md)
-#### [如何透過 WebJobs SDK 使用 Azure Blob 儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
-#### [如何透過 WebJobs SDK 使用 Azure 佇列儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)
-#### [如何搭配使用 Azure 服務匯流排與 WebJobs SDK (英文)](websites-dotnet-webjobs-sdk-service-bus.md)
-#### [如何透過 WebJobs SDK 使用 Azure 資料表儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)
+#### [如何透過 WebJob SDK 使用 Azure Blob 儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
+#### [如何透過 WebJob SDK 使用 Azure 佇列儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)
+#### [如何搭配使用 Azure 服務匯流排與 WebJob SDK (英文)](websites-dotnet-webjobs-sdk-service-bus.md)
+#### [如何透過 WebJob SDK 使用 Azure 資料表儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)
 
 ### App Service 環境
 #### [如何建立 App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)
@@ -157,7 +157,7 @@
 ### [資源群組](app-service-move-resources.md)
 ### [將 WordPress 轉換成 Multisite](web-sites-php-convert-wordpress-multisite.md) 
 
-### [Web 工作](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
+### [Web Job](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 #### [使用 WebJob 執行背景工作](web-sites-create-web-jobs.md)
 
 ### [App Service 環境](../app-service/app-service-app-service-environments-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
@@ -238,18 +238,18 @@
 
 
 ## 疑難排解
-### [為 Web 應用程式啟用診斷記錄](web-sites-enable-diagnostic-log.md)
+### [為 Web Apps 啟用診斷記錄](web-sites-enable-diagnostic-log.md)
 ### [串流記錄和主控台](web-sites-streaming-logs-and-console.md)
-### [節點應用程式的最佳作法和疑難排解指南](app-service-web-nodejs-best-practices-and-troubleshoot-guide.md)
+### [節點應用程式的最佳做法和疑難排解指南](app-service-web-nodejs-best-practices-and-troubleshoot-guide.md)
 ### [如何對 Node.js Web 應用程式進行偵錯](web-sites-nodejs-debug.md)
 ### [使用 Visual Studio 針對 Web 應用程式進行疑難排解](web-sites-dotnet-troubleshoot-visual-studio.md)
 ### [針對 HTTP 502 和 503 錯誤進行疑難排解](app-service-web-troubleshoot-http-502-http-503.md)
 ### [針對 Web 應用程式效能問題進行疑難排解](app-service-web-troubleshoot-performance-degradation.md)
 
 # 參考
-## [Azure CLI](/cli/azure/)
-## [Java](/java/api/)
+## [Azure CLI 2.0 Preview](/cli/azure/appservice)
 ## [.NET](/dotnet/api)
+## [Java](/java/api/)
 ## [REST](/rest/api/appservice)
 
 # 相關參考
@@ -261,11 +261,11 @@
 ### [2.5.1 版](../app-service/app-service-release-notes.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 
 # 資源
-## [最佳作法](app-service-best-practices.md)
+## [最佳做法](app-service-best-practices.md)
 ## [WebJob 資源清單](websites-webjobs-resources.md)
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

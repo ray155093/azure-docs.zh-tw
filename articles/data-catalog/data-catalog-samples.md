@@ -1,13 +1,13 @@
 ---
-title: Data Catalog developer samples | Microsoft Docs
-description: This article provides an overview of the available developer samples for the Data Catalog REST API.
+title: "資料目錄開發人員範例 | Microsoft Docs"
+description: "本文提供資料目錄 REST API 可用之開發人員範例的概觀。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 0dc23edd-04d8-49fc-841e-d132fb109ce7
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: article
@@ -15,23 +15,30 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 09/06/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2e84eb020b46fe89426e547b389715d6190fc03c
+
 
 ---
-# <a name="data-catalog-developer-samples"></a>Data Catalog developer samples
-Get started developing Data Catalog apps using the Data Catalog REST API. The Data Catalog REST API is a REST-based API that provides programmatic access to Data Catalog resources to register, annotate, and search data assets programmatically.
+# <a name="data-catalog-developer-samples"></a>資料目錄開發人員範例
+開始使用資料目錄 REST API 開發資料目錄應用程式。 資料目錄 REST API 是REST 架構 API，能夠以程式設計方式存取資料目錄資源，藉此註冊、加上註解，及以程式設計方式搜尋資料資產。
 
-Here are the samples we have on GitHub:
+以下是 GitHub 的範例：
 
-* [Get started with Azure Data Catalog](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-get-started/)
+* [開始使用 Azure 資料目錄](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-get-started/)
   
-  A sample that shows you how to authenticate with Azure AD to Register, Search, and Delete a data asset using the Data Catalog REST API.
-* [Bulk register and annotate](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-excel-register-data-assets/)
+  本範例將示範如何向 Azure AD 驗證，以使用資料目錄 REST API 註冊、搜尋及刪除資料資產。
+* [大量註冊以及加上註解](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-excel-register-data-assets/)
   
-  A sample that shows you how to bulk register data assets from an Excel workbook using Data Catalog REST API and Open XML.
-* [Import/Export tool](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-import-export/)
+  本範例將示範如何使用資料目錄 REST API 和 Open XML 從 Excel 活頁簿大量註冊資料資產。
+* [匯入/匯出工具](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-import-export/)
   
-  A sample that shows how to use the Data Catalog REST API to fetch assets from the Azure Data Catalog and serialize them into a file. It also demonstrates how to take a set of assets serialized as JSON and push them into the catalog. It supports exporting a subset of the catalog using a search query.
+  一個範例，示範如何使用資料目錄 REST API 以從 Azure 資料目錄擷取資產，並將其序列化成檔案。 它也會示範如何取用一組已序列化為 JSON 的資產，並將其推送至目錄。 它支援使用搜尋查詢匯出目錄的子集。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

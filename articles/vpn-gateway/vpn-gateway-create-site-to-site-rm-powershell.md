@@ -16,27 +16,27 @@ ms.workload: infrastructure-services
 ms.date: 10/14/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: cdc41f9068de3e1ea796e1a3172a99dd185d9f9c
+ms.sourcegitcommit: d269d9a76ff4ccd973eee70d2d5b54a7262383ef
+ms.openlocfilehash: 1312babe3317f33c204379f3080c62ecb6297e27
 
 
 ---
-# <a name="create-a-vnet-with-a-sitetosite-connection-using-powershell"></a>使用 PowerShell 建立具有站對站連線的 VNet
+# <a name="create-a-vnet-with-a-site-to-site-connection-using-powershell"></a>使用 PowerShell 建立具有站對站連線的 VNet
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
 > * [傳統 - 傳統入口網站](vpn-gateway-site-to-site-create.md)
-> 
-> 
+>
+>
 
 本文逐步引導您使用 Azure Resource Manager 部署模型建立虛擬網路以及內部部署網路的網站間 VPN 閘道連線。 網站間連線可以用於跨單位與混合式組態。
 
-![網站間圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/s2srmps.png "site-to-site") 
+![網站間圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/s2srmps.png "site-to-site")
 
-### <a name="deployment-models-and-methods-for-sitetosite-connections"></a>網站間連接的部署模型和方法
+### <a name="deployment-models-and-methods-for-site-to-site-connections"></a>網站間連接的部署模型和方法
 [!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
 
-下表顯示網站間組態目前可用的部署模型和方法。 當包含設定的文章推出時，我們會直接從此資料表連結至該文章。 
+下表顯示網站間組態目前可用的部署模型和方法。 當包含設定的文章推出時，我們會直接從此資料表連結至該文章。
 
 [!INCLUDE [site-to-site table](../../includes/vpn-gateway-table-site-to-site-include.md)]
 
@@ -48,7 +48,7 @@ ms.openlocfilehash: cdc41f9068de3e1ea796e1a3172a99dd185d9f9c
 
 * 相容的 VPN 裝置 (以及能夠進行設定的人員)。 請參閱 [關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。 如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
 * 您的 VPN 裝置對外開放的公用 IP 位址。 此 IP 位址不能位於 NAT 後方。
-* Azure 訂用帳戶。 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+* Azure 訂用帳戶。 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial)。
 * 最新版的 Azure Resource Manager PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
 
 ## <a name="a-namelogina1-connect-to-your-subscription"></a><a name="Login"></a>1.連線至您的訂用帳戶
@@ -60,7 +60,7 @@ ms.openlocfilehash: cdc41f9068de3e1ea796e1a3172a99dd185d9f9c
 
 檢查帳戶的訂用帳戶。
 
-    Get-AzureRmSubscription 
+    Get-AzureRmSubscription
 
 指定您要使用的訂用帳戶。
 
@@ -74,7 +74,7 @@ ms.openlocfilehash: cdc41f9068de3e1ea796e1a3172a99dd185d9f9c
 [!INCLUDE [vpn-gateway-no-nsg](../../includes/vpn-gateway-no-nsg-include.md)]
 
 ### <a name="to-create-a-virtual-network-and-a-gateway-subnet"></a>建立虛擬網路和閘道器子網路
-使用下列範例來建立虛擬網路和閘道子網路。 取代為您自己的值。 
+使用下列範例來建立虛擬網路和閘道子網路。 取代為您自己的值。
 
 首先，建立資源群組：
 
@@ -82,7 +82,7 @@ ms.openlocfilehash: cdc41f9068de3e1ea796e1a3172a99dd185d9f9c
 
 接著，建立您的虛擬網路。 請確認您指定的位址空間沒有與您在內部部署網路上所擁有的任何位址空間重疊。
 
-下列範例會建立一個名為 testvnet 的虛擬網路和兩個子網路：一個名為 GatewaySubnet，另一個名為 Subnet1。 請務必建立一個特別命名為 GatewaySubnet 的子網路。 如果您將它命名為其他名稱，您的連線設定將會失敗。 
+下列範例會建立一個名為 testvnet 的虛擬網路和兩個子網路：一個名為 GatewaySubnet，另一個名為 Subnet1。 請務必建立一個特別命名為 GatewaySubnet 的子網路。 如果您將它命名為其他名稱，您的連線設定將會失敗。
 
 設定變數。
 
@@ -107,18 +107,18 @@ ms.openlocfilehash: cdc41f9068de3e1ea796e1a3172a99dd185d9f9c
 
     Add-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -AddressPrefix 10.0.3.0/28 -VirtualNetwork $vnet
 
-設定組態。 
+設定組態。
 
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 ## <a name="3-a-namelocalnetaadd-your-local-network-gateway"></a>3.<a name="localnet"></a>新增區域網路閘道
-在虛擬網路中，區域網路閘道通常是指您的內部部署位置。 您會指定該站台的名稱以供 Azure 參考，也會指定區域網路閘道的位址空間前置詞。 
+在虛擬網路中，區域網路閘道通常是指您的內部部署位置。 您會指定該站台的名稱以供 Azure 參考，也會指定區域網路閘道的位址空間前置詞。
 
-Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署位置的流量。 這表示您必須指定您要與區域網路閘道相關聯的每個位址前置詞。 如果您的內部部署網路變更，您可以輕鬆地更新這些前置詞。 
+Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署位置的流量。 這表示您必須指定您要與區域網路閘道相關聯的每個位址前置詞。 如果您的內部部署網路變更，您可以輕鬆地更新這些前置詞。
 
 使用 PowerShell 範例時，請注意下列各項：
 
-* *GatewayIPAddress* 是內部部署 VPN 裝置的 IP 位址。 VPN 裝置不能位於 NAT 後方。 
+* *GatewayIPAddress* 是內部部署 VPN 裝置的 IP 位址。 VPN 裝置不能位於 NAT 後方。
 * *AddressPrefix* 是您的內部部署位址空間。
 
 若要新增具有單一位址前置詞的區域網路閘道：
@@ -148,17 +148,17 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
     $vnet = Get-AzureRmVirtualNetwork -Name testvnet -ResourceGroupName testrg
     $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -VirtualNetwork $vnet
-    $gwipconfig = New-AzureRmVirtualNetworkGatewayIpConfig -Name gwipconfig1 -SubnetId $subnet.Id -PublicIpAddressId $gwpip.Id 
+    $gwipconfig = New-AzureRmVirtualNetworkGatewayIpConfig -Name gwipconfig1 -SubnetId $subnet.Id -PublicIpAddressId $gwpip.Id
 
 ## <a name="a-namecreategatewaya6-create-the-virtual-network-gateway"></a><a name="CreateGateway"></a>6.建立虛擬網路閘道
-在此步驟中，您會建立虛擬網路閘道。 建立閘道可能需要很長的時間才能完成。 通常 45 分鐘以上。 
+在此步驟中，您會建立虛擬網路閘道。 建立閘道可能需要很長的時間才能完成。 通常 45 分鐘以上。
 
 輸入下列值：
 
-* 網站間組態的 -GatewayType 是 Vpn。 閘道器類型永遠是您實作的組態的特定類型。 例如，其他閘道器組態可能需要 -GatewayType ExpressRoute。 
-* -VpnType 可以是 RouteBased (在某些文件中稱為動態閘道器)，或 PolicyBased (在某些文件中稱為靜態閘道器)。 如需 VPN 閘道類型的詳細資訊，請參閱 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md#vpntype)。
+* 網站間組態的 -GatewayType 是 Vpn。 閘道器類型永遠是您實作的組態的特定類型。 例如，其他閘道器組態可能需要 -GatewayType ExpressRoute。
+* -VpnType 可以是 RouteBased (在某些文件中稱為動態閘道器)，或 PolicyBased (在某些文件中稱為靜態閘道器)。 如需 VPN 閘道類型的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
 * -GatewaySku 可以是Basic、Standard 或 HighPerformance。     
-  
+
         New-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg `
         -Location 'West US' -IpConfigurations $gwipconfig -GatewayType Vpn `
         -VpnType RouteBased -GatewaySku Standard
@@ -171,7 +171,7 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
     Get-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName testrg
 
 ## <a name="a-namecreateconnectiona8-create-the-vpn-connection"></a><a name="CreateConnection"></a>8.建立 VPN 連線
-接下來，在虛擬網路閘道與 VPN 裝置之間建立網站間 VPN 連線。 請務必將值取代為您自己的值。 共用的金鑰必須符合您用於 VPN 裝置設定的值。 請注意，網站間的 `-ConnectionType` 為 IPsec。 
+接下來，在虛擬網路閘道與 VPN 裝置之間建立網站間 VPN 連線。 請務必將值取代為您自己的值。 共用的金鑰必須符合您用於 VPN 裝置設定的值。 請注意，網站間的 `-ConnectionType` 為 IPsec。
 
 設定變數。
 
@@ -184,7 +184,7 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
     -Location 'West US' -VirtualNetworkGateway1 $gateway1 -LocalNetworkGateway2 $local `
     -ConnectionType IPsec -RoutingWeight 10 -SharedKey 'abc123'
 
-過一會兒，連接將會建立。 
+過一會兒，連接將會建立。
 
 ## <a name="a-nametoverifyato-verify-a-vpn-connection"></a><a name="toverify"></a>驗證 VPN 連線
 VPN 連線有幾種不同的驗證方式。
@@ -192,7 +192,7 @@ VPN 連線有幾種不同的驗證方式。
 [!INCLUDE [vpn-gateway-verify-connection-rm](../../includes/vpn-gateway-verify-connection-rm-include.md)]
 
 ## <a name="a-namemodifyato-modify-ip-address-prefixes-for-a-local-network-gateway"></a><a name="modify"></a>修改區域網路閘道的 IP 位址首碼
-如果您需要變更區域網路閘道首碼，請使用下列指示。 所提供的指示有兩組。 要選擇哪組指示取決於您是否已建立閘道連線。 
+如果您需要變更區域網路閘道首碼，請使用下列指示。 所提供的指示有兩組。 要選擇哪組指示取決於您是否已建立閘道連線。
 
 [!INCLUDE [vpn-gateway-modify-ip-prefix-rm](../../includes/vpn-gateway-modify-ip-prefix-rm-include.md)]
 
@@ -200,12 +200,11 @@ VPN 連線有幾種不同的驗證方式。
 [!INCLUDE [vpn-gateway-modify-lng-gateway-ip-rm](../../includes/vpn-gateway-modify-lng-gateway-ip-rm-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
-* 您可以將虛擬機器加入您的虛擬網路。 請參閱 [建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md) 以取得相關步驟。
+*  一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
 * 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

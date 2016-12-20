@@ -1,12 +1,12 @@
 ---
-title: 升級 Azure Service Fabric 叢集 | Microsoft Docs
-description: 升級執行 Service Fabric 叢集的 Service Fabric 程式碼和/或組態，包括設定叢集更新模式、升級憑證、新增應用程式連接埠、修補作業系統等等。 執行升級時，您可以期待些什麼？
+title: "升級 Azure Service Fabric 叢集 | Microsoft Docs"
+description: "升級執行 Service Fabric 叢集的 Service Fabric 程式碼和/或組態，包括設定叢集更新模式、升級憑證、新增應用程式連接埠、修補作業系統等等。 執行升級時，您可以期待些什麼？"
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 15190ace-31ed-491f-a54b-b5ff61e718db
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/10/2016
 ms.author: chackdan
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9ce7911ef1d69cae1b7fd7a46dafbdee29174f4e
+
 
 ---
 # <a name="upgrade-an-azure-service-fabric-cluster"></a>升級 Azure Service Fabric 叢集
@@ -44,7 +48,7 @@ ms.author: chackdan
 
 在即時叢集上，您可以利用管理體驗將叢集設為自動或手動。 
 
-#### <a name="upgrading-to-a-new-version-on-a-cluster-that-is-set-to-manual-mode-via-portal."></a>在設定為手動模式的叢集上，透過入口網站升級至新的版本。
+#### <a name="upgrading-to-a-new-version-on-a-cluster-that-is-set-to-manual-mode-via-portal"></a>在設定為手動模式的叢集上，透過入口網站升級至新的版本。
 若要升級至新的版本，只需要從下拉式清單中選取可用的版本並儲存即可。 Fabric 升級會自動開始進行。 升級期間會遵守叢集健康狀態原則 (綜合節點健康狀態和所有在叢集中執行之應用程式的健康狀態)。
 
 如果不符合叢集健康狀態原則，則會回復升級。 請往下捲動本文，以深入了解如何設定這些自訂的健康狀態原則。 
@@ -58,7 +62,7 @@ ms.author: chackdan
 
 ![ARMUpgradeMode][ARMUpgradeMode]
 
-#### <a name="upgrading-to-a-new-version-on-a-cluster-that-is-set-to-manual-mode-via-a-resource-manager-template."></a>在設定為手動模式的叢集上，透過 Resource Manager 範本升級至新的版本。
+#### <a name="upgrading-to-a-new-version-on-a-cluster-that-is-set-to-manual-mode-via-a-resource-manager-template"></a>在設定為手動模式的叢集上，透過 Resource Manager 範本升級至新的版本。
 當叢集處於手動模式時，若要升級至新的版本，請將 “clusterCodeVersion" 變更為支援的版本並部署。 部署範本時會自動展開 Fabric 升級。 升級期間會遵守叢集健康狀態原則 (綜合節點健康狀態和所有在叢集中執行之應用程式的健康狀態)。
 
 如果不符合叢集健康狀態原則，則會回復升級。 請往下捲動本文，以深入了解如何設定這些自訂的健康狀態原則。 
@@ -115,7 +119,7 @@ Output:
 ## <a name="fabric-upgrade-behavior-when-the-cluster-upgrade-mode-is-automatic"></a>叢集升級模式為自動時的 Fabric 升級行為
 Microsoft 會維護 Azure 叢集中執行的網狀架構程式碼和組態。 視情況需要，我們會對軟體執行受監視的自動升級。 升級的項目可能是程式碼、組態或兩者。 為了確保您的應用程式不受這些升級影響或將影響降到最低，我們會分成下列階段執行升級。
 
-### <a name="phase-1:-an-upgrade-is-performed-by-using-all-cluster-health-policies"></a>階段 1：使用所有叢集健康狀態原則執行升級
+### <a name="phase-1-an-upgrade-is-performed-by-using-all-cluster-health-policies"></a>階段 1：使用所有叢集健康狀態原則執行升級
 在這個階段，升級會一次進行一個升級網域，而已在叢集中執行的應用程式會繼續執行，而不會產生任何停機時間。 升級期間會遵守叢集健康狀態原則 (綜合節點健康狀態和所有在叢集中執行之應用程式的健康狀態)。
 
 如果不符合叢集健康狀態原則，則會回復升級。 然後系統會傳送一封電子郵件給訂用帳戶的擁有者。 電子郵件中包含下列資訊：
@@ -128,7 +132,7 @@ Microsoft 會維護 Azure 叢集中執行的網狀架構程式碼和組態。 �
 
 如果符合叢集健康狀態原則，則升級會被視為成功並標示為完成。 在此階段執行初次升級或重新執行任何升級期間，可能會發生這種情形。 執行成功不會有任何電子郵件確認。 這是為了避免傳送給您太多電子郵件，如果您收到電子郵件，則應該將其視為例外狀況。 我們預期大部分的叢集升級都會成功，並不會影響您的應用程式可用性。
 
-### <a name="phase-2:-an-upgrade-is-performed-by-using-default-health-policies-only"></a>階段 2：僅使用預設健康狀態原則執行升級
+### <a name="phase-2-an-upgrade-is-performed-by-using-default-health-policies-only"></a>階段 2：僅使用預設健康狀態原則執行升級
 此階段的健康狀態原則的設定方式為，升級開始時健康狀態良好的應用程式數目在升級程序期間會維持不變。 和階段 1 一樣，階段 2 的升級會一次進行一個升級網域，而已在叢集中執行的應用程式會繼續執行，而不會產生任何停機時間。 在升級期間，會遵守叢集健康狀態原則 (節點健康狀態和所有在叢集中執行之應用程式的健康狀態的組合)。
 
 如果不符合生效的叢集健康狀態原則，則會回復升級。 然後系統會傳送一封電子郵件給訂用帳戶的擁有者。 電子郵件中包含下列資訊：
@@ -141,7 +145,7 @@ Microsoft 會維護 Azure 叢集中執行的網狀架構程式碼和組態。 �
 
 如果符合叢集健康狀態原則，則升級會被視為成功並標示為完成。 在此階段執行初次升級或重新執行任何升級期間，可能會發生這種情形。 執行成功不會有任何電子郵件確認。
 
-### <a name="phase-3:-an-upgrade-is-performed-by-using-aggressive-health-policies"></a>階段 3：使用積極的叢集健康狀態原則執行升級
+### <a name="phase-3-an-upgrade-is-performed-by-using-aggressive-health-policies"></a>階段 3：使用積極的叢集健康狀態原則執行升級
 此階段的這些健康狀態原則的目的是升級完成，而不是應用程式的健康狀態。 很少叢集升級會最後會變成這個階段。 如果您的叢集進入這個階段，表示您的應用程式很可能會變成狀況不良和 (或) 失去可用性。
 
 類似其他兩個階段，階段 3 升級會一次進行一個升級網域。
@@ -219,6 +223,7 @@ Microsoft 會維護 Azure 叢集中執行的網狀架構程式碼和組態。 �
 [Manage_Automaticmode]: ./media/service-fabric-cluster-upgrade/Manage_Automaticmode.PNG
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: c192cc88c383677abbc356242c08c7cf6f74d289
-ms.openlocfilehash: 6e74ccf90249a2397c6dbe842cf96461b02b7da3
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: c627e7f936557eb6c4b1f4125a4a5f4e9a0e0b6a
 
 ---
 # <a name="application-insights-documentation"></a>Application Insights 文件
@@ -29,7 +29,7 @@ Application Insights 是適用於 Web 開發人員的可延伸應用程式效能
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=application-insights">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=application-insights">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -57,7 +57,7 @@ Application Insights 是適用於 Web 開發人員的可延伸應用程式效能
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Application Insights 開始監視 Azure Web 應用程式</h3>
+                        <h3>使用 Application Insights 開始監視 Azure Web Apps</h3>
                     </div>
                 </div>
             </div>
@@ -121,67 +121,37 @@ Application Insights 是適用於 Web 開發人員的可延伸應用程式效能
 </ul>
 
 ---
-
-## <a name="reference"></a>參考
-
+ 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="https://docs.microsoft.com/java/api/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Java</h3>
-                        <p>Application Insights Java API 參考</p>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.applicationinsights">.NET</a></p>
+                        <p><a href="/java/api/com.microsoft.applicationinsights">Java</a></p>
+                        <p><a href="https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md">JavaScript</a></p>
+                        <p><a href="/azure/application-insights/app-insights-analytics-reference">分析參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-     <li>
-        <a href="https://docs.microsoft.com/dotnet/api/">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>Application Insights 受管理的參考 API</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-     <li>
-        <a href="https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>JavaScript</h3>
-                        <p>Application Insights JS API 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-     <li>
-        <a href="https://dev.applicationinsights.io/">
+    <li>
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Application Insights REST API 參考</p>
+                        <p><a href="https://dev.applicationinsights.io/">REST API</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-    </ul>
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/application-insights.pdf">
@@ -193,6 +163,6 @@ Application Insights 是適用於 Web 開發人員的可延伸應用程式效能
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

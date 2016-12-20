@@ -1,28 +1,32 @@
 ---
-title: 在 VM 上大量運算 Java 應用程式 | Microsoft Docs
-description: 了解如何建立可執行大量運算 Java 應用程式 (此應用程式又可由另一個 Java 應用程式監控) 的 Azure 虛擬機器。
+title: "在 VM 上大量計算 Java 應用程式 | Microsoft Docs"
+description: "了解如何建立可執行大量運算 Java 應用程式 (此應用程式又可由另一個 Java 應用程式監控) 的 Azure 虛擬機器。"
 services: virtual-machines-windows
 documentationcenter: java
 author: rmcmurray
-manager: wpickett
-editor: ''
+manager: erikre
+editor: 
 tags: azure-service-management,azure-resource-manager
-
+ms.assetid: ae6f2737-94c7-4569-9913-d871450c2827
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: Java
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/01/2016
 ms.author: robmcm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 4ce631d80b84661a61f0aaeb9d29de0b4420ecaf
+
 
 ---
-# 如何在虛擬機器上以 Java 執行大量運算工作
+# <a name="how-to-run-a-compute-intensive-task-in-java-on-a-virtual-machine"></a>如何在虛擬機器上以 Java 執行大量運算工作
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
-Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機器可以處理工作並將結果傳遞給用戶端機器或行動裝置應用程式。閱讀此文章後，您將了解如何建立一個執行大量運算之 Java 應用程式 (此應用程式又可由另一個 Java 應用程式監視) 的虛擬機器。
+Azure 可讓您利用虛擬機器處理大量運算工作。 例如，虛擬機器可以處理工作並將結果傳遞給用戶端機器或行動裝置應用程式。 閱讀此文章後，您將了解如何建立一個執行大量運算之 Java 應用程式 (此應用程式又可由另一個 Java 應用程式監視) 的虛擬機器。
 
-本教學課程是假設您知道如何建立 Java 主控台應用程式、將程式庫匯入您的 Java 應用程式，以及產生 Java 封存 (JAR)。並假設您對 Microsoft Azure 一無所知。
+本教學課程是假設您知道如何建立 Java 主控台應用程式、將程式庫匯入您的 Java 應用程式，以及產生 Java 封存 (JAR)。 並假設您對 Microsoft Azure 一無所知。
 
 您將了解：
 
@@ -34,7 +38,7 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 * 如何執行 Java 應用程式。
 * 如何停止 Java 應用程式。
 
-本教學課程將使用 Traveling Salesman Problem 進行需密集運算的工作。以下是執行大量運算工作的 Java 應用程式範例。
+本教學課程將使用 Traveling Salesman Problem 進行需密集運算的工作。 以下是執行大量運算工作的 Java 應用程式範例。
 
 ![Traveling Salesman Problem solver][solver_output]
 
@@ -44,63 +48,70 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 
 [!INCLUDE [create-account-and-vms-note](../../includes/create-account-and-vms-note.md)]
 
-## 建立虛擬機器
+## <a name="to-create-a-virtual-machine"></a>建立虛擬機器
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 依序按一下 [新增]、[運算]、[虛擬機器] 及 [從組件庫]。
-3. 在 [虛擬機器映像選取] 對話方塊中，選取 [JDK 7 Windows Server 2012]。請注意，唯有當您擁有尚未做好在 JDK 7 中運作之準備的舊版應用程式時，才能選取 [JDK 6 Windows Server 2012]。
-4. 按 [下一步]。
-5. 在 [虛擬機器組態] 對話方塊中：
+2. 依序按一下 [新增]、[計算]、[虛擬機器] 及 [從組件庫]。
+3. 在 [虛擬機器映像選取] 對話方塊中，選取 [JDK 7 Windows Server 2012]。
+   請注意，唯有當您擁有尚未做好在 JDK 7 中運作之準備的舊版應用程式時，才能選取 [JDK 6 Windows Server 2012]  。
+4. 按 [下一步] 。
+5. 在 [虛擬機器組態]  對話方塊中：
    1. 指定虛擬機器的名稱。
    2. 指定要用於虛擬機器的大小。
-   3. 在 [使用者名稱] 欄位中輸入系統管理員的名稱。請記住即將輸入的名稱和密碼，因為當您從遠端登入此虛擬機器時將需要用到它們。
-   4. 在 [新增密碼] 欄位中輸入密碼，然後在 [確認] 欄位中再輸入一次。此為系統管理員帳戶的密碼。
-   5. 按 [下一步]。
-6. 在下一個 [虛擬機器組態] 對話方塊中：
-   1. 對於 [雲端服務]，請使用預設值 [Create a new cloud service]
-   2. [Cloud service DNS name] 的值在整個 cloudapp.net 中必須是唯一的。必要時請修改此值，使 Azure 指出該值是唯一的。
-   3. 指定區域、同質群組或虛擬網路。為因應本教學課程的目的，請指定如 [美國西部] 的區域。
-   4. 對於 [儲存體帳戶]，請選取 [Use an automatically generated storage account]。
-   5. 對於 [可用性設定組]，請選取 [(無)]。
-   6. 按 [下一步]。
-7. 在最終的 [虛擬機器組態] 對話方塊中：
+   3. 在 [使用者名稱]  欄位中輸入系統管理員的名稱。 請記住即將輸入的名稱和密碼，因為當您從遠端登入此虛擬機器時將需要用到它們。
+   4. 在 [新增密碼] 欄位中輸入密碼，然後在 [確認] 欄位中再輸入一次。 此為系統管理員帳戶的密碼。
+   5. 按 [下一步] 。
+6. 在下一個 [虛擬機器組態]  對話方塊中：
+   1. 針對 [雲端服務]，使用預設值 [建立新的雲端服務]。
+   2. [Cloud service DNS name]  的值在整個 cloudapp.net 中必須是唯一的。 必要時請修改此值，使 Azure 指出該值是唯一的。
+   3. 指定區域、同質群組或虛擬網路。 為因應本教學課程的目的，請指定如 [美國西部] 的區域。
+   4. 針對 [儲存體帳戶]，選取 [使用自動產生的儲存體帳戶]。
+   5. 針對 [可用性設定組]，選取 [(無)]。
+   6. 按 [下一步] 。
+7. 在最終的 [虛擬機器組態]  對話方塊中：
    1. 接受預設的端點項目。
-   2. 按一下 [完成]。
+   2. 按一下 [完成] 。
 
-## 從遠端登入虛擬機器
+## <a name="to-remotely-log-in-to-your-virtual-machine"></a>從遠端登入虛擬機器
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 按一下 [虛擬機器]。
+2. 按一下 [虛擬機器] 。
 3. 按一下要登入的虛擬機器名稱。
-4. 按一下 [連接]。
-5. 視需要回應提示以連接虛擬機器。當要求提供系統管理員名稱和密碼的提示出現時，請使用在建立虛擬機器時提供的值。
+4. 按一下 [連接] 。
+5. 視需要回應提示以連接虛擬機器。 當要求提供系統管理員名稱和密碼的提示出現時，請使用在建立虛擬機器時提供的值。
 
-請注意，Azure 服務匯流排功能會要求安裝 Baltimore CyberTrust Root 憑證做為您 JRE 的 **cacerts** 存放區的一部分。這個憑證會自動包含在本教學課程所使用的 Java Runtime Environment (JRE) 中。如果您的 JRE **cacerts** 存放區中沒有這個憑證，請參閱[將憑證加入至 Java CA 憑證存放區][add_ca_cert]，以了解有關加入這個憑證的資訊 (以及有關檢視您 cacerts 存放區中憑證的資訊)。
+請注意，Azure 服務匯流排功能會要求安裝 Baltimore CyberTrust Root 憑證做為您 JRE 的 **cacerts** 存放區的一部分。 這個憑證會自動包含在本教學課程所使用的 Java Runtime Environment (JRE) 中。 如果您的 JRE **cacerts** 存放區中沒有這個憑證，請參閱[將憑證新增至 Java CA 憑證存放區][add_ca_cert]，以了解有關新增此憑證的資訊 (以及有關檢視您 cacerts 存放區中憑證的資訊)。
 
-## 如何建立服務匯流排命名空間
-若要開始在 Azure 中使用服務匯流排佇列，首先必須建立服務命名空間。服務命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+## <a name="how-to-create-a-service-bus-namespace"></a>如何建立服務匯流排命名空間
+若要開始在 Azure 中使用服務匯流排佇列，首先必須建立服務命名空間。 服務命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
 
 建立服務命名空間：
 
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 在 Azure 傳統入口網站左下方的瀏覽窗格中，按一下 [服務匯流排、存取控制和快取]。
-3. 在 Azure 傳統入口網站的左上方窗格中，按一下 [服務匯流排] 節點，然後按一下 [新增] 按鈕。![Service Bus Node screenshot][svc_bus_node]
-4. 在 [建立新的服務命名空間] 對話方塊中輸入一個**命名空間**，然後確認它是唯一的，再按一下 [檢查可用性] 按鈕。![Create a New Namespace screenshot][create_namespace]
-5. 確定命名空間名稱可用之後，選擇要裝載命名空間的國家或地區，然後按一下 [建立命名空間] 按鈕。
+3. 在 Azure 傳統入口網站的左上方窗格中，按一下 [服務匯流排] 節點，然後按一下 [新增] 按鈕。  
+   ![Service Bus Node screenshot][svc_bus_node]
+4. 在 [建立新的服務命名空間] 對話方塊中輸入一個**命名空間**，然後確認它是唯一的，再按一下 [檢查可用性] 按鈕。  
+   ![Create a New Namespace screenshot][create_namespace]
+5. 確定命名空間名稱可用之後，選擇要裝載命名空間的國家或地區，然後按一下 [建立命名空間]  按鈕。  
    
-   然後，您建立的命名空間就會出現在 Azure 傳統入口網站中，稍待片刻就會生效。等到狀態變成 [作用中] 之後，再繼續下一個步驟。
+   然後，您建立的命名空間就會出現在 Azure 傳統入口網站中，稍待片刻就會生效。 等到狀態變成 [作用中]  之後，再繼續下一個步驟。
 
-## 取得命名空間的預設管理認證
+## <a name="obtain-the-default-management-credentials-for-the-namespace"></a>取得命名空間的預設管理認證
 若要在新的命名空間上執行管理作業，例如建立佇列，您必須取得命名空間的管理認證。
 
-1. 在左方瀏覽窗格中，按一下 [服務匯流排] 節點，以顯示可用的命名空間清單。![Available Namespaces screenshot][avail_namespaces]
-2. 從顯示的清單中，選取您剛建立的命名空間。![Namespace List screenshot][namespace_list]
-3. 右邊的 [屬性] 窗格會列出新命名空間的屬性。![Properties Pane screenshot][properties_pane]
-4. [預設金鑰] 是隱藏的。請按一下 [檢視] 按鈕以顯示安全性認證。![Default Key screenshot][default_key]
-5. 記下 [Default Issuer] 和 [預設金鑰]，因為您將在下面使用這項資訊來執行命名空間作業。
+1. 在左方瀏覽窗格中，按一下 [服務匯流排]  節點，以顯示可用的命名空間清單。
+   ![Available Namespaces screenshot][avail_namespaces]
+2. 從顯示的清單中，選取您剛建立的命名空間。
+   ![命名空間清單螢幕擷取畫面][namespace_list]
+3. 右邊的 [屬性]  窗格會列出新命名空間的屬性。
+   ![Properties Pane screenshot][properties_pane]
+4. [預設金鑰]  是隱藏的。 請按一下 [檢視]  按鈕以顯示安全性認證。
+   ![Default Key screenshot][default_key]
+5. 記下 [預設核發者] 和 [預設金鑰]，因為您將在下面使用這項資訊來執行命名空間作業。
 
-## 如何建立執行大量運算工作的 Java 應用程式
-1. 在您的開發電腦 (不一定要是您所建立的虛擬機器) 上，下載 [Azure SDK for Java](https://azure.microsoft.com/develop/java/) (英文)。
-2. 使用本節結尾的範例程式碼建立一個 Java 主控台應用程式。在本教學課程中，我們將使用 **TSPSolver.java** 做為 Java 檔案名稱。請將 **your\_service\_bus\_namespace**、**your\_service\_bus\_owner** 及 **your\_service\_bus\_key** 預留位置，分別修改成使用您服務匯流排 [命名空間]、[Default Issuer] 及 [預設金鑰] 的值。
-3. 編碼完成之後，將應用程式匯出至可執行的 Java 存檔 (JAR)，並將所需的程式庫封裝至產生的 JAR 中。在本教學課程中，我們將使用 **TSPSolver.jar** 做為產生的 JAR 名稱。
+## <a name="how-to-create-a-java-application-that-performs-a-compute-intensive-task"></a>如何建立執行大量運算工作的 Java 應用程式
+1. 在您的開發電腦 (不一定要是您所建立的虛擬機器) 上，下載 [Azure SDK for Java](https://azure.microsoft.com/develop/java/)(英文)。
+2. 使用本節結尾的範例程式碼建立一個 Java 主控台應用程式。 在本教學課程中，我們將使用 **TSPSolver.java** 做為 Java 檔案名稱。 請將 **your\_service\_bus\_namespace**、**your\_service\_bus\_owner** 和 **your\_service\_bus\_key** 預留位置，分別修改成使用您服務匯流排 [命名空間]、[預設核發者] 及 [預設金鑰] 的值。
+3. 編碼完成之後，將應用程式匯出至可執行的 Java 存檔 (JAR)，並將所需的程式庫封裝至產生的 JAR 中。 在本教學課程中，我們將使用 **TSPSolver.jar** 做為產生的 JAR 名稱。
 
 <p/>
 
@@ -287,9 +298,9 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 
 
 
-## 如何建立監視大量運算工作進度的 Java 應用程式
-1. 在您的開發電腦上，使用本節結尾的範例程式碼建立一個 Java 主控台應用程式。在本教學課程中，我們將使用 **TSPClient.java** 做為 Java 檔案名稱。如上述，請將 **your\_service\_bus\_namespace**、**your\_service\_bus\_owner** 及 **your\_service\_bus\_key** 預留位置，分別修改成使用您服務匯流排 [命名空間]、[預設簽發者] 及 [預設金鑰] 的值。
-2. 將應用程式匯出至可執行的 JAR，並將所需的程式庫封裝至產生的 JAR 中。在本教學課程中，我們將使用 **TSPClient.jar** 做為產生的 JAR 名稱。
+## <a name="how-to-create-a-java-application-that-monitors-the-progress-of-the-compute-intensive-task"></a>如何建立監視大量運算工作進度的 Java 應用程式
+1. 在您的開發電腦上，使用本節結尾的範例程式碼建立一個 Java 主控台應用程式。 在本教學課程中，我們將使用 **TSPClient.java** 做為 Java 檔案名稱。 如上所示，請將 **your\_service\_bus\_namespace**、**your\_service\_bus\_owner** 和 **your\_service\_bus\_key** 預留位置，分別修改成使用您服務匯流排 [命名空間]、[預設核發者] 及 [預設金鑰] 的值。
+2. 將應用程式匯出至可執行的 JAR，並將所需的程式庫封裝至產生的 JAR 中。 在本教學課程中，我們將使用 **TSPClient.jar** 做為產生的 JAR 名稱。
 
 <p/>
 
@@ -403,14 +414,14 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 
     }
 
-## 如何執行 Java 應用程式
-請執行大量運算應用程式，先建立佇列，然後解決旅行業務員問題，這會將目前的最佳路徑加入至服務匯流排佇列。在大量運算應用程式執行時 (或執行後)，請執行用戶端以顯示來自服務匯流排佇列的結果。
+## <a name="how-to-run-the-java-applications"></a>如何執行 Java 應用程式
+請執行大量運算應用程式，先建立佇列，然後解決旅行業務員問題，這會將目前的最佳路徑加入至服務匯流排佇列。 在大量運算應用程式執行時 (或執行後)，請執行用戶端以顯示來自服務匯流排佇列的結果。
 
-### 若要執行大量運算應用程式
+### <a name="to-run-the-compute-intensive-application"></a>若要執行大量運算應用程式
 1. 登入虛擬機器。
-2. 建立將執行您應用程式的資料夾。例如 **c:\\TSP**。
-3. 將 **TSPSolver.jar** 複製到 **c:\\TSP**。
-4. 建立一個含有下列內容且名為 **c:\\TSP\\cities.txt** 的檔案。
+2. 建立將執行您應用程式的資料夾。 例如 **c:\TSP**。
+3. 將 **TSPSolver.jar** 複製到 **c:\TSP**。
+4. 建立一個含有下列內容且名為 **c:\TSP\cities.txt** 的檔案。
    
         City_1, 1002.81, -1841.35
         City_2, -953.55, -229.6
@@ -462,43 +473,43 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
         City_48, 363.68, 768.21
         City_49, -120.3, -463.13
         City_50, 588.51, 679.33
-5. 在命令提示字元，將目錄切換至 c:\\TSP。
+5. 在命令提示字元，將目錄切換至 c:\TSP。
 6. 確定 JRE 的 bin 資料夾在 PATH 環境變數中。
-7. 您將需要在執行 TSP 求解器排列之前，先建立服務匯流排佇列。請執行下列命令來建立服務匯流排佇列。
+7. 您將需要在執行 TSP 求解器排列之前，先建立服務匯流排佇列。 請執行下列命令來建立服務匯流排佇列。
    
         java -jar TSPSolver.jar createqueue
-8. 建立完佇列之後，您便可以執行 TSP 求解器排列。例如，執行下列命令來執行 8 個城市的求解器。
+8. 建立完佇列之後，您便可以執行 TSP 求解器排列。 例如，執行下列命令來執行 8 個城市的求解器。
    
         java -jar TSPSolver.jar 8
    
-   如果您沒有指定數目，它將會針對 10 個城市執行。當 solver 找到目前最短路由時，便會將這些路由新增至佇列。
+   如果您沒有指定數目，它將會針對 10 個城市執行。 當 solver 找到目前最短路由時，便會將這些路由新增至佇列。
 
 > [!NOTE]
-> 您指定的數目越大，求解器就會花越長的時間執行。例如，針對 14 個城市執行可能需花數分鐘，而針對 15 個城市執行可能需花數小時。增加至 16 個或更多城市可能需花數天執行 (最終可能達數周、數月及數年)。這是因為隨著城市數目增加，求解器所評估的排列數目也隨之激增的緣故。
+> 您指定的數目越大，求解器就會花越長的時間執行。 例如，針對 14 個城市執行可能需花數分鐘，而針對 15 個城市執行可能需花數小時。 增加至 16 個或更多城市可能需花數天執行 (最終可能達數周、數月及數年)。 這是因為隨著城市數目增加，求解器所評估的排列數目也隨之激增的緣故。
 > 
 > 
 
-### 如何執行監視用戶端應用程式
-1. 登入您將執行用戶端應用程式的電腦。這不一定要是執行 **TSPSolver** 應用程式的同一部電腦，但也可以是同一部電腦。
-2. 建立將執行您應用程式的資料夾。例如 **c:\\TSP**。
-3. 將 **TSPClient.jar** 複製到 **c:\\TSP**。
+### <a name="how-to-run-the-monitoring-client-application"></a>如何執行監視用戶端應用程式
+1. 登入您將執行用戶端應用程式的電腦。 這不一定要是執行 **TSPSolver** 應用程式的同一部電腦，但也可以是同一部電腦。
+2. 建立將執行您應用程式的資料夾。 例如 **c:\TSP**。
+3. 將 **TSPClient.jar** 複製到 **c:\TSP**。
 4. 確定 JRE 的 bin 資料夾在 PATH 環境變數中。
-5. 在命令提示字元，將目錄切換至 c:\\TSP。
+5. 在命令提示字元，將目錄切換至 c:\TSP。
 6. 執行下列命令。
    
         java -jar TSPClient.jar
    
-    您可以選擇是否要傳遞命令列引數來指定檢查佇列之間的睡眠分鐘數。檢查佇列的預設睡眠期間為 3 分鐘，若未將任何命令列引數傳遞至 **TSPClient**，便會使用此預設值。如果您想要使用其他值 (例如 1 分鐘) 做為睡眠間隔，請執行下列命令。
+    您可以選擇是否要傳遞命令列引數來指定檢查佇列之間的睡眠分鐘數。 檢查佇列的預設睡眠期間為 3 分鐘，若未將任何命令列引數傳遞至 **TSPClient**，便會使用此預設值。 如果您想要使用其他值 (例如 1 分鐘) 做為睡眠間隔，請執行下列命令。
    
         java -jar TSPClient.jar 1
    
-    用戶端將會執行直到看見 [完成] 佇列訊息為止。請注意，如果您在未執行用戶端的情況下執行多個求解器，您可能需要執行用戶端多次，才能完全清空佇列。或者，您也可以刪除佇列，然後重新建立它。若要刪除此佇列，請執行下列 **TSPSolver** (而非 **TSPClient**) 命令。
+    用戶端將會執行直到看見 [完成] 佇列訊息為止。 請注意，如果您在未執行用戶端的情況下執行多個求解器，您可能需要執行用戶端多次，才能完全清空佇列。 或者，您也可以刪除佇列，然後重新建立它。 若要刪除此佇列，請執行下列 **TSPSolver** (而非 **TSPClient**) 命令。
    
         java -jar TSPSolver.jar deletequeue
    
     求解器將會執行直到完成所有路徑檢查為止。
 
-## 如何停止 Java 應用程式
+## <a name="how-to-stop-the-java-applications"></a>如何停止 Java 應用程式
 如果您想要在正常完成前結束 Solver 或用戶端應用程式，都可以按 **Ctrl+C** 來結束。
 
 [solver_output]: ./media/virtual-machines-windows-classic-java-run-compute-intensive-task/WA_JavaTSPSolver.png
@@ -511,4 +522,8 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 [default_key]: ./media/virtual-machines-windows-classic-java-run-compute-intensive-task/SvcBusQueues_07_DefaultKey.jpg
 [add_ca_cert]: ../java-add-certificate-ca-store.md
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,19 +1,23 @@
 ---
-title: 分割的佇列和主題 | Microsoft Docs
-description: 說明如何使用多個訊息代理程式分割服務匯流排佇列和主題。
-services: service-bus
+title: "分割的佇列和主題 | Microsoft Docs"
+description: "說明如何使用多個訊息代理程式分割服務匯流排佇列和主題。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: a0c7d5a2-4876-42cb-8344-a1fc988746e7
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/02/2016
 ms.author: sethm;hillaryc
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 03e68436372414a25d87f50c2b057c2f8d193401
+
 
 ---
 # <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
@@ -53,7 +57,7 @@ ns.CreateTopic(td);
 
 根據這個案例，會使用不同的訊息屬性做為分割索引鍵：
 
-**SessionId**：若訊息已設定 [BrokeredMessage.SessionId][BrokeredMessage.SessionId] 屬性，則服務匯流排會使用這個屬性做為分割索引鍵。 如此一來，所有屬於相同工作階段的訊息都會由相同的訊息代理人處理。 這樣可讓服務匯流排保證訊息的排序以及工作階段狀態的一致性。
+**SessionId**：若訊息已設定 [BrokeredMessage.SessionId][BrokeredMessage.SessionId]屬性，則服務匯流排會使用這個屬性做為分割索引鍵。 如此一來，所有屬於相同工作階段的訊息都會由相同的訊息代理人處理。 這樣可讓服務匯流排保證訊息的排序以及工作階段狀態的一致性。
 
 **PartitionKey**：若訊息已設定 [BrokeredMessage.PartitionKey][BrokeredMessage.PartitionKey] 屬性而非 [BrokeredMessage.SessionId][BrokeredMessage.SessionId] 屬性，則服務匯流排會使用 [PartitionKey][PartitionKey] 屬性做為分割索引鍵。 如果訊息已設定 [SessionId][SessionId] 和 [PartitionKey][PartitionKey] 屬性，這兩個屬性必須相同。 如果 [PartitionKey][PartitionKey] 屬性設為和 [SessionId][SessionId] 屬性不同的值，服務匯流排會傳回 **InvalidOperationException** 例外狀況。 如果傳送者傳送非工作階段感知的交易訊息，應使用 [PartitionKey][PartitionKey] 屬性。 分割索引鍵可確保在交易內傳送的所有訊息都由相同的訊息代理人處理。
 
@@ -66,7 +70,7 @@ ns.CreateTopic(td);
 
 請注意，分割索引鍵會將訊息「釘選」到指定的片段。 如果保留此片段的訊息存放區無法使用，服務匯流排會傳回錯誤。 沒有分割索引鍵時，服務匯流排可以選擇不同的片段，而作業就會成功。 因此，建議您若非必要請勿提供分割索引鍵。
 
-## <a name="advanced-topics:-use-transactions-with-partitioned-entities"></a>進階主題：搭配交易使用分割的實體
+## <a name="advanced-topics-use-transactions-with-partitioned-entities"></a>進階主題：搭配交易使用分割的實體
 傳送做為交易一部分的訊息必須指定資料分割索引鍵。 這可以是下列屬性之一：[BrokeredMessage.SessionId][BrokeredMessage.SessionId]、[BrokeredMessage.PartitionKey][BrokeredMessage.PartitionKey] 或 [BrokeredMessage.MessageId][BrokeredMessage.MessageId]。 傳送做為相同交易一部分的所有訊息必須指定相同的分割索引鍵。 如果您嘗試在沒有分割索引鍵的交易內傳送一則訊息，服務匯流排會傳回 **InvalidOperationException** 例外狀況。 如果您嘗試在具有不同分割索引鍵的相同交易內傳送多則訊息，服務匯流排會傳回 **InvalidOperationException** 例外狀況。 例如：
 
 ```
@@ -142,6 +146,6 @@ Azure 服務匯流排支援從分割實體自動轉送訊息、自動轉送訊�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

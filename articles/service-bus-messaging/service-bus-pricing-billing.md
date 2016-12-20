@@ -1,153 +1,158 @@
 ---
-title: Service Bus pricing and billing | Microsoft Docs
-description: Overview of Service Bus pricing structure.
-services: service-bus
+title: "服務匯流排定價與計費 | Microsoft Docs"
+description: "服務匯流排定價結構的概觀。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 7c45b112-e911-45ab-9203-a2e5abccd6e0
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/06/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
+ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
+
 
 ---
-# <a name="service-bus-pricing-and-billing"></a>Service Bus pricing and billing
-Service Bus is offered in Basic, Standard, and [Premium](service-bus-premium-messaging.md) tiers. You can choose a service tier for each Service Bus service namespace that you create, and this tier selection applies across all entities created within that namespace.
+# <a name="service-bus-pricing-and-billing"></a>服務匯流排定價與計費
+服務匯流排提供基本、標準和[進階](service-bus-premium-messaging.md)層。 您可以針對建立的每個服務匯流排服務命名空間選擇一個服務層，此選取層會套用至該命名空間內建立的所有實體。
 
 > [!NOTE]
-> For detailed information about current Service Bus pricing, see the [Azure Service Bus pricing page](https://azure.microsoft.com/pricing/details/service-bus/), and the [Service Bus FAQ](service-bus-faq.md#service-bus-pricing).
-> 
-> 
+> 如需目前服務匯流排的價格詳細資訊，請參閱 [Azure 服務匯流排價格頁面](https://azure.microsoft.com/pricing/details/service-bus/)和[服務匯流排常見問題集](service-bus-faq.md#service-bus-pricing)。
+>
+>
 
-Service Bus uses the following two meters for queues and topics/subscriptions:
+服務匯流排會在佇列和主題/訂用帳戶中使用下列兩種計量：
 
-1. **Messaging Operations**: Defined as API calls against queue or topic/subscription service endpoints. This meter will replace messages sent or received as the primary unit of billable usage for queues and topics/subscriptions.
-2. **Brokered Connections**: Defined as the peak number of persistent connections open against queues, topics, or subscriptions during a given one-hour sampling period. This meter will only apply in the Standard tier, in which you can open additional connections (previously, connections were limited to 100 per queue/topic/subscription) for a nominal per-connection fee.
+1. **傳訊作業**：定義為針對佇列或主題/訂用帳戶服務端點的 API 呼叫。 這個計量將取代送出或收到的訊息數，成為佇列和主題/訂用帳戶中可計費使用量的主要單位。
+2. **代理連線**：定義為在指定的一小時取樣期間，針對佇列、主題或訂用帳戶開啟的持續連線尖峰數量。 這個計量只會套用至標準層，您可以在其中開啟其他連線 (之前的連線限制為每個佇列/主題/訂用帳戶 100 個)，支付每個連線的額定費用。
 
-The **Standard** tier introduces graduated pricing for operations performed with queues and topics/subscriptions, resulting in volume-based discounts of up to 80% at the highest usage levels. There is also a Standard tier base charge of $10 per month, which enables you to perform up to 12.5 million operations per month at no additional cost.
+**標準** 層為搭配佇列和主題/訂用帳戶執行的作業引進了漸進式定價，使得以量計價型折扣在最高使用量層級上可高達 80%。 另外還有每個月 $10 美元的標準層基本費用，讓您每個月執行最多 1,250 萬個作業，且不需額外費用。
 
-The **Premium** tier provides resource isolation at the CPU and memory layer so that each customer workload runs in isolation. This resource container is called a *messaging unit*. Each premium namespace is allocated at least one messaging unit. You can purchase 1, 2, or 4 messaging units for each Service Bus Premium namespace. A single workload or entity can span multiple messaging units and the number of messaging units can be changed at will, although billing is in 24-hour or daily rate charges. The result is predictable and repeatable performance for your Service Bus-based solution. Not only is this performance more predictable and available, but it is also faster. Azure Service Bus Premium messaging builds on the storage engine introduced in Azure Event Hubs. With Premium messaging, peak performance is much faster than the Standard tier.
+**高階** 層可讓您在 CPU 和記憶體層隔離資源，讓每個客戶工作負載能獨立執行。 此資源容器稱為「傳訊單位」 。 每個進階命名空間都會被配置至少一個傳訊單位。 您可以為每個服務匯流排進階命名空間購買 1、2 或 4 個傳訊單位。 單一工作負載或實體可以跨越多個傳訊單位，而傳訊單位數目可以隨意變更，雖然計費是依 24 小時或每日費率收費。 結果是您的服務匯流排方案的效能可預測並可重複。 此效能不僅更可預測並可取得，而且還更快速。 Azure 服務匯流排高階層的傳訊作業，是以 Azure 事件中樞中引進的儲存引擎為建置基礎。 使用進階訊息，尖峰效能的速度比標準層級的速度快很多。
 
-Note that the standard base charge is charged only once per month per Azure subscription. This means that after you create a single Standard or Premium tier Service Bus namespace, you will be able to create as many additional Standard or Premium tier namespaces as you want under that same Azure subscription, without incurring additional base charges.
+請注意，標準層的基本費用只會針對每個 Azure 訂用帳戶每個月收費一次。 這表示當您建立單一標準層或高階層的服務匯流排命名空間後，將能在同一 Azure 訂用帳戶下，盡情建立許多額外標準層或高階層命名空間，而且不會產生額外的基本費用。
 
-All existing Service Bus namespaces created prior to November 1, 2014 were automatically placed into the Standard tier. This ensures that you continue to have access to all features currently available with Service Bus. Subsequently, you can use the [Azure classic portal][Azure classic portal] to downgrade to the Basic tier if desired.
+所有在 2014 年 11 月 1 日之前建立的現有服務匯流排命名空間，都會自動放入標準層。 這可確保您能繼續存取服務匯流排目前提供的所有功能。 接著，您可以使用 [Azure 傳統入口網站][Azure 傳統入口網站]，視需要降級至基本層。
 
-The following table summarizes the functional differences between the Basic and Standard/Premium tiers.
+下表摘要說明基本層和標準層/高階層之間的功能差異。
 
-| Capability | Basic | Standard/Premium |
+| 功能 | 基本 | 標準/高階 |
 | --- | --- | --- |
-| Queues |Yes |Yes |
-| Scheduled messages |Yes |Yes |
-| Topics/Subscriptions |No |Yes |
-| Relays |No |Yes |
-| Transactions |No |Yes |
-| De-Duplication |No |Yes |
-| Sessions |No |Yes |
-| Large messages |No |Yes |
-| ForwardTo |No |Yes |
-| SendVia |No |Yes |
-| Brokered connections (included) |100 per Service Bus namespace |1,000 per Azure subscription |
-| Brokered connections (overage allowed) |No |Yes (billable) |
+| 佇列 |是 |是 |
+| 排定的訊息 |是 |是 |
+| 主題/訂用帳戶 |否 |是 |
+| 轉送 |否 |是 |
+| 交易 |否 |是 |
+| 刪除重複 |否 |是 |
+| 工作階段 |否 |是 |
+| 大型訊息 |否 |是 |
+| ForwardTo |否 |是 |
+| SendVia |否 |是 |
+| 代理連線 (已隨附) |每個服務匯流排命名空間 100 個 |每個 Azure 訂用帳戶 1,000 個 |
+| 代理連線 (允許超額部分) |否 |是 (可計費) |
 
-## <a name="messaging-operations"></a>Messaging operations
-As part of the new pricing model, billing for queues and topics/subscriptions is changing. These entities are transitioning from billing per message to billing per operation. An "operation" refers to any API call made against a queue or topic/subscription service endpoint. This includes management, send/receive, and session state operations.
+## <a name="messaging-operations"></a>傳訊作業
+在新定價模型中，佇列和主題/訂用帳戶的計費方式正在改變。 這些實體會從每則訊息計費轉換成每個作業計費。 「作業」指的是針對佇列或主題/訂用帳戶服務端點所建立的任何 API 呼叫。 這包括管理、傳送/接收和工作階段狀態的作業。
 
-| Operation Type | Description |
+| 作業類型 | 說明 |
 | --- | --- |
-| Management |Create, Read, Update, Delete (CRUD) against queues or topics/subscriptions. |
-| Messaging |Sending and receiving messages with queues or topics/subscriptions. |
-| Session state |Getting or setting session state on a queue or topic/subscription. |
+| 管理 |對佇列或主題/訂用帳戶執行的建立、讀取、更新、刪除 (CRUD)。 |
+| 訊息 |用佇列或主題/訂用帳戶傳送和接收訊息。 |
+| 工作階段狀態 |取得或設定佇列或主題/訂用帳戶上的工作階段狀態。 |
 
-The following prices were effective starting November 1, 2014:
+下列價格自 2014 年 11 月 1 日起生效：
 
-| Basic | Cost |
+| 基本 | 成本 |
 | --- | --- |
-| Operations |$0.05 per million operations |
+| Operations |每百萬個作業 $0.05 美元 |
 
-| Standard | Cost |
+| 標準 | 成本 |
 | --- | --- |
-| Base charge |$10/month |
-| First 12.5 million operations/month |Included |
-| 12.5-100 million operations/month |$0.80 per million operations |
-| 100 million-2,500 million operations/month |$0.50 per million operations |
-| Over 2,500 million operations/month |$0.20 per million operations |
+| 基本費用 |$10 美元/月 |
+| 前 1,250 萬個作業/月 |已包括 |
+| 1,250 萬到 1 億個作業/月 |每百萬個作業 $0.80 美元 |
+| 1 億到 25 億個作業/月 |每百萬個作業 $0.50 美元 |
+| 超過 25 億個作業/月 |每百萬個作業 $0.20 美元 |
 
-| Premium | Cost |
+| 進階 | 成本 |
 | --- | --- |
-| Daily |$11.13 fixed rate per Message Unit |
+| 每日 |每個訊息單位 $11.13 美元固定費率 |
 
-## <a name="brokered-connections"></a>Brokered connections
-*Brokered connections* accommodate customer usage patterns that involve a large number of "persistently connected" senders/receivers against queues, topics, or subscriptions. Persistently connected senders/receivers are those that connect using either AMQP or HTTP with a non-zero receive timeout (for example, HTTP long polling). HTTP senders and receivers with an immediate timeout do not generate brokered connections.
+## <a name="brokered-connections"></a>代理連線
+*Brokered connections* 內含的客戶使用量模式，牽涉到針對佇列、主題或訂用帳戶而「持續連線」的大量傳送者/接收者。 持續連線的傳送者/接收者是指使用 AMQP 或 HTTP 進行連線，且接收逾時為非零值 (例如 HTTP 長時間輪詢) 的對象。 具有立即逾時的 HTTP 傳送者和接收者並不會產生代理連線。
 
-Previously, queues and topics/subscriptions had a limit of 100 concurrent connections per URL. The current billing scheme removes the per-URL limit for queues and topics/subscriptions, and implements quotas and metering on brokered connections at the Service Bus namespace and Azure subscription levels.
+先前的佇列和主題/訂用帳戶具有每個 URL 100 個並行連線的限制。 目前的計費機制為佇列和主題/訂用帳戶移除了每個 URL 的限制，並在服務匯流排命名空間和 Azure 訂用帳戶層級上，為代理連線導入了配額和計量。
 
-The Basic tier includes, and is strictly limited to, 100 brokered connections per Service Bus namespace. Connections above this number will be rejected in the Basic tier. The Standard tier removes the per-namespace limit and counts aggregate brokered connection usage across the Azure subscription. In the Standard tier, 1,000 brokered connections per Azure subscription will be allowed at no extra cost (beyond the base charge). Using more than a total of 1,000 brokered connections across Standard-tier Service Bus namespaces in an Azure subscription will be billed on a graduated schedule, as shown in the following table.
+基本層包含 (並嚴格限制為) 每個服務匯流排命名空間 100 個代理連線。 在基本層中，超過此數字的連線將會被拒絕。 標準層會移除每個命名空間的限制，並計算 Azure 訂用帳戶上彙總的代理連線使用量。 在標準層中，每個 Azure 訂用帳戶可有 1,000 個代理連線，且不需額外費用 (除了基本費用外)。 在 Azure 訂用帳戶的標準層服務匯流排命名空間中，如果使用總數超過 1,000 個代理連線，則會依漸進方式計費，如下表所示。
 
-| Brokered connections (Standard tier) | Cost |
+| 代理連線 (標準層) | 成本 |
 | --- | --- |
-| First 1,000/month |Included with base charge |
-| 1,000-100,000/month |$0.03 per connection/month |
-| 100,000-500,000/month |$0.025 per connection/month |
-| Over 500,000/month |$0.015 per connection/month |
+| 前 1,000 個/月 |包含在基本費用內 |
+| 1,000-100,000 個/月 |每個連線 $0.03 美元/月 |
+| 100,000-500,000 個/月 |每個連線 $0.025 美元/月 |
+| 超過 500,000 個/月 |每個連線 $0.015 美元/月 |
 
 > [!NOTE]
-> 1,000 brokered connections are included with the Standard messaging tier (via the base charge) and can be shared across all queues, topics, and subscriptions within the associated Azure subscription.
-> 
-> 
+> 標準傳訊層隨附 1,000 個代理連線 (包含在基本費用內)，而且可以在相關聯的 Azure 訂用帳戶內，讓所有佇列、主題和訂用帳戶共用。
+>
+>
 
 <br />
 
 > [!NOTE]
-> Billing is based on the peak number of concurrent connections and is prorated hourly based on 744 hours per month.
-> 
-> 
+> 計費會依據並行連線的尖峰數量，並以每個月 744 小時為基礎，按照每小時的比例計算。
+>
+>
 
-| Premium Tier |
+| 高階層 |
 | --- |
-| Brokered connections are not charged in the Premium tier. |
+| 在高階層中，不對代理連線收費。 |
 
-For more information about brokered connections, see the [FAQ](#faq) section later in this topic.
+如需關於代理連線的詳細資訊，請參閱本主題稍後的 [常見問題集](#faq) 一節。
 
-## <a name="relay"></a>Relay
-Relays are available only in Standard tier namespaces. Otherwise, pricing and connection quotas for relays remain unchanged. This means that relays will continue to be charged on the number of messages (not operations), and relay hours.
+## <a name="wcf-relay"></a>WCF 轉送
+只能在標準層命名空間中使用 WCF 轉送。 否則轉送的定價和連線配額會保持不變。 這表示轉送將繼續按訊息數目 (而非作業數) 和轉送時數計費。
 
-| Relay pricing | Cost |
+| WCF 轉送的價格 | 成本 |
 | --- | --- |
-| Relay hours |$0.10 for every 100 relay hours |
-| Messages |$0.01 for every 10,000 messages |
+| WCF 轉送時數 |每 100 個轉送小時 $0.10 美元 |
+| 訊息 |每 10,000 則訊息 $0.01 美元 |
 
-## <a name="faq"></a>FAQ
-### <a name="how-is-the-relay-hours-meter-calculated?"></a>How is the Relay Hours meter calculated?
-See [this topic](service-bus-faq.md#how-is-the-relay-hours-meter-calculated).
+## <a name="faq"></a>常見問題集
+### <a name="how-is-the-wcf-relay-hours-meter-calculated"></a>如何計算 WCF 轉送時數計量？
+請參閱[此主題](service-bus-faq.md)。
 
-### <a name="what-are-brokered-connections-and-how-do-i-get-charged-for-them?"></a>What are brokered connections and how do I get charged for them?
-A brokered connection is defined as one of the following:
+### <a name="what-are-brokered-connections-and-how-do-i-get-charged-for-them"></a>什麼是代理連線，以及如何支付它們的費用？
+代理連線可定義為下列其中一個動作：
 
-1. An AMQP connection from a client to a Service Bus queue or topic/subscription.
-2. An HTTP call to receive a message from a Service Bus topic or queue that has a receive timeout value greater than zero.
+1. 從用戶端到服務匯流排佇列或主題/訂用帳戶的 AMQP 連線。
+2. 從服務匯流排主題或佇列接收訊息的 HTTP 呼叫，且接收的逾時值大於零。
 
-Service Bus charges for the peak number of concurrent brokered connections that exceed the included quantity (1,000 in the Standard tier). Peaks are measured on an hourly basis, prorated by dividing by 744 hours in a month, and added up over the monthly billing period. The included quantity (1,000 brokered connections per month) is applied at the end of the billing period against the sum of the prorated hourly peaks.
+服務匯流排的並行代理連線尖峰數量，如果超過隨附數量 (標準層中為 1,000 個)，就會收取費用。 尖峰的測量方式會以每小時為基礎，除以每個月的 744 小時來依比例計算，並依據每個月的計費期間來加總。 隨附的數量 (每個月 1,000 個代理連線) 會根據依比例計算的每小時尖峰的總和，在計費期間快結束時加以套用。
 
-For example:
+例如：
 
-1. Each of 10,000 devices connects via a single AMQP connection, and receives commands from a Service Bus topic. The devices send telemetry events to an Event Hub. If all devices connect for 12 hours each day, the following connection charges apply (in addition to any other Service Bus topic charges): 10,000 connections * 12 hours * 31 days / 744 = 5,000 brokered connections. After the monthly allowance of 1,000 brokered connections, you would be charged for 4,000 brokered connections, at the rate of $0.03 per brokered connection, for a total of $120.
-2. 10,000 devices receive messages from a Service Bus queue via HTTP, specifying a non-zero timeout. If all devices connect for 12 hours every day, you will see the following connection charges (in addition to any other Service Bus charges): 10,000 HTTP Receive connections * 12 hours per day * 31 days / 744 hours = 5,000 brokered connections.
+1. 10,000 台裝置均透過單一 AMQP 連線進行連線，並接收來自服務匯流排主題的命令。 裝置將遙測事件傳送到事件中樞。 如果所有裝置每天都連線 12 小時，則除了其他服務匯流排的任何主題費用外，還會有以下連線費用：10,000 個連線 12 小時  31 天 / 744 = 5,000 個代理連線。 超過每月 1,000 個代理連線的額度後，就會以每個代理連線 $0.03 美元的費率，對 4,000 個代理連線收費，總共 $120 美元。
+2. 10,000 台裝置透過 HTTP 從服務匯流排佇列接收訊息，並指定非零的逾時值。 如果所有裝置每天都連線 12 小時，則除了其他服務匯流排的任何費用外，您還會看到以下連線費用：10,000 個 HTTP 接收連線 每天 12 小時  31 天 / 744 = 5,000 個代理連線。
 
-### <a name="do-brokered-connection-charges-apply-to-queues-and-topics/subscriptions?"></a>Do brokered connection charges apply to queues and topics/subscriptions?
-Yes. There are no connection charges for sending events using HTTP, regardless of the number of sending systems or devices. Receiving events with HTTP using a timeout greater than zero, sometimes called "long polling," generates brokered connection charges. AMQP connections generate brokered connection charges regardless of whether the connections are being used to send or receive. Note that 100 brokered connections are allowed at no charge in a Basic namespace. This is also the maximum number of brokered connections allowed for the Azure subscription. The first 1,000 brokered connections across all Standard namespaces in an Azure subscription are included at no extra charge (beyond the base charge). Because these allowances are enough to cover many service-to-service messaging scenarios, brokered connection charges usually only become relevant if you plan to use AMQP or HTTP long-polling with a large number of clients; for example, to achieve more efficient event streaming or enable bi-directional communication with many devices or application instances.
+### <a name="do-brokered-connection-charges-apply-to-queues-and-topicssubscriptions"></a>佇列和主題/訂用帳戶需要代理連線費用嗎？
+是。 不論傳送系統或裝置的數目多寡，使用 HTTP 來傳送事件不需要支付連線費用。 使用逾時大於零的 HTTP 來接收事件，有時也稱為「長時間輪詢」，會產生代理連線的費用。 AMQP 連線均會產生代理連線費用，不論連線是用於傳送或接收皆然。 請注意，在基本層命名空間中，可以免費使用 100 個代理連線。 這也是 Azure 訂用帳戶允許的代理連線數目上限。 在 Azure 訂用帳戶中，所有標準層命名空間內的前 1,000 個代理連線，除了基本費用外，均不需額外費用。 因為這些額度便足以涵蓋許多服務對服務的傳訊案例，通常只在您打算使用 AMQP 或 HTTP 的長時間輪詢加上大量用戶端時，才可能會有相應的代理連線費用。例如，想要達到更有效率的事件資料流，或啟用與許多裝置或應用程式執行個體間的雙向通訊。
 
-## <a name="next-steps"></a>Next steps
-* For more details about Service Bus pricing, see the [Azure Service Bus pricing page](https://azure.microsoft.com/pricing/details/service-bus/).
-* See the [Service Bus FAQ](service-bus-faq.md#service-bus-pricing) for some common FAQs around Service bus pricing and billing.
+## <a name="next-steps"></a>後續步驟
+* 如需更多有關服務匯流排定價的詳細資訊，請參閱 [Azure 服務匯流排定價頁面](https://azure.microsoft.com/pricing/details/service-bus/)。
+* 請參閱[服務匯流排常見問題集](service-bus-faq.md#service-bus-pricing)，以了解關於服務匯流排價格與計費的常見問題集。
 
-[Azure classic portal]: http://manage.windowsazure.com
+[Azure 傳統入口網站]: http://manage.windowsazure.com
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

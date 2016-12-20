@@ -1,13 +1,13 @@
 ---
-title: 適用於在 Azure AD 中群組管理的 Azure Active Directory PowerShell Preview Cmdlet | Microsoft Docs
-description: 此頁面會提供 PowerShell 範例以協助您管理 Azure Active Directory 中的群組
-keywords: Azure AD, Azure Active Directory, PowerShell, 群組, 群組管理
+title: "適用於 Azure AD 中之群組管理的 Azure Active Directory PowerShell Preview Cmdlet |Microsoft Azure"
+description: "此頁面會提供 PowerShell 範例以協助您管理 Azure Active Directory 中的群組"
+keywords: "Azure AD, Azure Active Directory, PowerShell, 群組, 群組管理"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: curtand
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 7a5023dc-2727-4c25-8254-b531fc3244ac
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,13 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/29/2016
 ms.author: curtand
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: aa5199af3fabd535e929161018db0fd5fe47e474
+
 
 ---
 # <a name="azure-active-directory-preview-cmdlets-for-group-management"></a>適用於群組管理的 Azure Active Directory Preview Cmdlet
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-groups-create-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-accessmanagement-manage-groups.md)
-> * [PowerShell](active-directory-accessmanagement-groups-v2-cmdlets.md)
+> * [PowerShell](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
 > 
 > 
 
@@ -43,9 +47,9 @@ ms.author: curtand
 現在您可以開始在模組中使用 Cmdlet。 如需有關 AzureAD Preview 模組中各式 Cmdlet 的完整描述，請參閱 [線上參考文件](https://msdn.microsoft.com/library/azure/mt757216.aspx)。
 
 ## <a name="connecting-to-the-directory"></a>連線到目錄
-使用 Azure AD PowerShell Preview Cmdlet 開始管理群組之前，您必須先將PowerShell 工作階段連接至想要管理的目錄。 若要這樣做，請使用下列命令：
+使用 Azure AD PowerShell Preview Cmdlet 開始管理群組之前，您必須先將 PowerShell 工作階段連接至想要管理的目錄。 若要這樣做，請使用下列命令：
 
-    PS C:\Windows\system32> Connect-AzureAD -Force
+    PS C:\Windows\system32> Connect-AzureAD
 
 Cmdlet 會提示您輸入要用以存取目錄的認證。 在此範例中，我們會使用 karen@drumkit.onmicrosoft.com 存取示範目錄。 Cmdlet 將會傳回確認，表示工作階段已成功連接到目錄︰
 
@@ -173,8 +177,8 @@ Cmdlet 將會傳回所連接目錄中的所有群組。
 
     DeletionTimeStamp ObjectId                             ObjectType
     ----------------- --------                             ----------
-                        72cd4bbd-2594-40a2-935c-016f3cfeeeea User
-                        8120cc36-64b4-4080-a9e8-23aa98e8b34f User
+                          72cd4bbd-2594-40a2-935c-016f3cfeeeea User
+                          8120cc36-64b4-4080-a9e8-23aa98e8b34f User
 
 若要移除先前加入群組的成員，請使用Remove-AzureADGroupMember Cmdlet，如此處所示︰
 
@@ -192,8 +196,8 @@ Cmdlet 將會傳回所連接目錄中的所有群組。
 
     PS C:\Windows\system32> Select-AzureADGroupIdsUserIsMemberOf -ObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea -GroupIdsForMembershipCheck $g
 
-    OdataMetadata                                                                                               Value
-    -------------                                                                                               -----
+    OdataMetadata                                                                                                 Value
+    -------------                                                                                                  -----
     https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String)             {31f1ff6c-d48c-4f8a-b2e1-abca7fd399df}
 
 
@@ -214,7 +218,7 @@ Cmdlet 將會傳回所指定群組的擁有者清單︰
 
     DeletionTimeStamp ObjectId                             ObjectType
     ----------------- --------                             ----------
-                        e831b3fd-77c9-49c7-9fca-de43e109ef67 User
+                          e831b3fd-77c9-49c7-9fca-de43e109ef67 User
 
 如果您想要從群組中移除擁有者，請使用 Remove-AzureADGroupOwner：
 
@@ -226,6 +230,9 @@ Cmdlet 將會傳回所指定群組的擁有者清單︰
 * [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

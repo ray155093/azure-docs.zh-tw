@@ -1,13 +1,13 @@
 ---
-title: 如何使用 PowerShell 以傳統模式建立 NSG | Microsoft Docs
-description: 了解如何使用 PowerShell 以傳統模式建立和部署 NSG
+title: "如何使用 PowerShell 以傳統模式建立 NSG | Microsoft Docs"
+description: "了解如何使用 PowerShell 以傳統模式建立和部署 NSG"
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: carmonm
 editor: tysonn
 tags: azure-service-management
-
+ms.assetid: 86810b0d-0240-46a2-8548-fca22daa56f3
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,26 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: bbd1bcba9a56f4cee01101b333c11823d9bd30a0
+
 
 ---
-# 如何在 PowerShell 中建立 NSG (傳統)
+# <a name="how-to-create-nsgs-classic-in-powershell"></a>如何在 PowerShell 中建立 NSG (傳統)
 [!INCLUDE [virtual-networks-create-nsg-selectors-classic-include](../../includes/virtual-networks-create-nsg-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文涵蓋之內容包括傳統部署模型。您也可以[在資源管理員部署模型中建立 NSG](virtual-networks-create-nsg-arm-ps.md)。
+本文涵蓋之內容包括傳統部署模型。 您也可以 [在資源管理員部署模型中建立 NSG](virtual-networks-create-nsg-arm-ps.md)。
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-以下的範例 PowerShell 命令會預期已根據上述案例建立簡單的環境。如果您想要執行如本文件中所顯示的命令，請先[建立 VNet](virtual-networks-create-vnet-classic-netcfg-ps.md) 以建置測試環境。
+以下的範例 PowerShell 命令會預期已根據上述案例建立簡單的環境。 如果您想要執行如本文件中所顯示的命令，請先 [建立 VNet](virtual-networks-create-vnet-classic-netcfg-ps.md)以建置測試環境。
 
-## 如何建立前端子網路的 NSG
+## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>如何建立前端子網路的 NSG
 若要根據上述案例建立名為 **NSG-FrontEnd** 的 NSG，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
-2. 建立名為 **NSG-FrontEnd** 的網路安全性群組。
+1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
+2. 建立名為 **NSG-FrontEnd**的網路安全性群組。
    
         New-AzureNetworkSecurityGroup -Name "NSG-FrontEnd" -Location uswest `
             -Label "Front end subnet NSG"
@@ -118,8 +122,8 @@ ms.author: jdial
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *   
 
-## 如何建立後端子網路的 NSG
-1. 建立名為 **NSG-BackEnd** 的網路安全性群組。
+## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>如何建立後端子網路的 NSG
+1. 建立名為 **NSG-BackEnd**的網路安全性群組。
    
         New-AzureNetworkSecurityGroup -Name "NSG-BackEnd" -Location uswest `
             -Label "Back end subnet NSG"
@@ -202,4 +206,8 @@ ms.author: jdial
                    OUTBOUND                                                                                                      
                    DENY ALL OUTBOUND    65500     Deny     *               *             *                *              *   
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,12 +1,12 @@
 ---
-title: 開發視訊播放器應用程式
-description: 本主題會提供 Player Framework 和外掛程式的連結，可讓您開發自己的用戶端應用程式，以使用來自媒體服務的串流媒體。
+title: "開發視訊播放器應用程式"
+description: "本主題會提供 Player Framework 和外掛程式的連結，可讓您開發自己的用戶端應用程式，以使用來自媒體服務的串流媒體。"
 author: Juliako
 manager: erikre
-editor: ''
+editor: 
 services: media-services
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 55e419fc-4c39-4902-9c62-f41cfcd86c6c
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: aea38b92140f753ce13256297b4740c4391aeb25
+
 
 ---
 # <a name="develop-video-player-applications"></a>開發視訊播放器應用程式
@@ -68,6 +72,9 @@ Azure 媒體服務允許透過 Windows Media 平台插入廣告：Player Framewo
 
 [GitHub dash.js 存放庫](https://github.com/Dash-Industry-Forum/dash.js)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

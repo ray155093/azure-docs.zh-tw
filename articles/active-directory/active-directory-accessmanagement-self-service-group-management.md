@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 11/01/2016
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 255670335151443445e5ea4a87614b904915e76f
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 1fda0b3c6c3f262c0f4b2f3ad5f37c4ce44cc0e3
 
 
 ---
-# <a name="setting-up-azure-active-directory-for-selfservice-group-management"></a>設定 Azure Active Directory 進行自助服務群組管理
+# <a name="setting-up-azure-active-directory-for-self-service-group-management"></a>設定 Azure Active Directory 進行自助服務群組管理
 自助式群組管理可讓使用者在 Azure Active Directory 中建立及管理安全性群組或 Office 365 群組。 使用者也可以要求安全性群組或 Office 365 群組成員資格，然後群組擁有者可以管理或拒絕成員資格。 如此一來，可以將群組成員資格的日常控制權委派給了解該成員資格的商務內容的人員。 自助式群組管理功能僅供安全性群組和 Office 365 群組使用，但具備郵件功能的安全性群組或通訊群組清單無法使用此功能。
 
 自助式群組管理目前包含兩個重要案例：委派的群組管理和自助式群組管理。
@@ -30,7 +30,7 @@ ms.openlocfilehash: 255670335151443445e5ea4a87614b904915e76f
 * **自助式群組管理**
   ：此案例的其中一個範例是都已獨立設定 SharePoint Online 網站的兩個使用者。 他們想要賦與彼此團隊各自網站的存取權。 為了達成此目的，他們可以在 Azure AD 中建立一個群組，並各自在 SharePoint Online 中選取該群組來提供對他們網站的存取權。 當有人想要存取權時，他們會從 [存取面板] 中要求，而且在核准之後，他們就可以自動取得這兩個 SharePoint Online 網站的存取權。 之後，其中一個人會決定存取網站的所有人員也可以存取特定的 SaaS 應用程式。 SaaS 應用程式的系統管理員可以將此應用程式的存取權限新增到 SharePoint Online 網站。 從那時起，任何獲得核准的要求都可以存取兩個 SharePoint Online 網站，也可以存取此 SaaS 應用程式。
 
-## <a name="making-a-group-available-for-end-user-selfservice"></a>提供可供一般使用者自助服務的群組
+## <a name="making-a-group-available-for-end-user-self-service"></a>提供可供一般使用者自助服務的群組
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，開啟 Azure AD 目錄。
 2. 在 [設定] 索引標籤上，將 [委派的群組管理] 設定為 [已啟用]。
 3. 將 [使用者可以建立安全性群組] 或 [使用者可以建立 Office 群組] 設定為 [已啟用]。
@@ -53,6 +53,6 @@ ms.openlocfilehash: 255670335151443445e5ea4a87614b904915e76f
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

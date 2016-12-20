@@ -1,12 +1,12 @@
 ---
-title: 移除伺服器與停用保護 | Microsoft Docs
-description: 本文說明如何取消註冊 Site Recovery 保存庫中的伺服器，並停用虛擬機器和實體伺服器的保護。
+title: "移除伺服器與停用保護 | Microsoft Docs"
+description: "本文說明如何取消註冊 Site Recovery 保存庫中的伺服器，並停用虛擬機器和實體伺服器的保護。"
 services: site-recovery
-documentationcenter: ''
+documentationcenter: 
 author: rayne-wiselman
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: ef1f31d5-285b-4a0f-89b5-0123cd422d80
 ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 10/05/2016
 ms.author: raynew
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 08dcf342c122dd1ca119bcfec405bbef2171a0e1
+
 
 ---
 # <a name="remove-servers-and-disable-protection"></a>移除伺服器並停用保護
@@ -96,7 +100,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
             {
                 if (Test-Path $registrationPath)
                 {
-                    "Removing registration related registry keys."  
+                    "Removing registration related registry keys."    
                     Remove-Item -Recurse -Path $registrationPath
                 }
    
@@ -127,7 +131,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
                 $store.Remove($cert)
             }
         }catch
-        {   
+        {    
             [system.exception]
             Write-Host "Error occured" -ForegroundColor "Red"
             $error[0] 
@@ -147,7 +151,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 如果您選擇刪除虛擬機器及其硬碟，將會從目標位置移除它們。
 
-### <a name="clean-up-protection-settings-manually-(between-vmm-sites)"></a>手動清除保護設定 (VMM 網站之間的設定)
+### <a name="clean-up-protection-settings-manually-between-vmm-sites"></a>手動清除保護設定 (VMM 網站之間的設定)
 如果您選取 [停止管理虛擬機器] ，請手動清除設定：
 
 1. 在主要伺服器上，從 VMM 主控台執行這個指令碼，以清除主要虛擬機器的設定。 在 VMM 主控台中，按一下 [PowerShell] 按鈕來開啟 VMM PowerShell 主控台。 將 SQLVM1 取代成您的虛擬機器的名稱。
@@ -163,7 +167,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
    
         Remove-VMReplication –VMName “SQLVM1”
 
-### <a name="clean-up-protection-settings-manually-(between-on-premises-vmm-sites-and-azure)"></a>手動清除保護設定 (內部部署 VMM 網站與 Azure 之間的設定)
+### <a name="clean-up-protection-settings-manually-between-on-premises-vmm-sites-and-azure"></a>手動清除保護設定 (內部部署 VMM 網站與 Azure 之間的設定)
 1. 在來源 VMM 伺服器上，執行此指令碼來清除主要虛擬機器的設定：
    
         $vm = get-scvirtualmachine -Name "SQLVM1"
@@ -176,7 +180,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
         $replicationService = Get-WmiObject -Namespace "root\virtualization\v2"  -Query "Select * From Msvm_ReplicationService"  -computername $hostName
         $replicationService.RemoveReplicationRelationship($vm.__PATH)
 
-### <a name="clean-up-protection-settings-manually-(between-hyper-v-sites-and-azure)"></a>手動清除保護設定 (Hyper-V 網站與 Azure 之間的設定)
+### <a name="clean-up-protection-settings-manually-between-hyper-v-sites-and-azure"></a>手動清除保護設定 (Hyper-V 網站與 Azure 之間的設定)
 1. 在來源 Hyper-V 主機伺服器上，使用此指令碼移除虛擬機器的複寫。 將 SQLVM1 取代成您的虛擬機器的名稱。
    
         $vmName = "SQLVM1"
@@ -202,6 +206,9 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
      
        ![移除選項](./media/site-recovery-manage-registration-and-protection/remove-vm.png)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

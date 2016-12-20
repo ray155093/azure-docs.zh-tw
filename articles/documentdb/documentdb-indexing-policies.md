@@ -1,20 +1,24 @@
 ---
-title: DocumentDB 索引編製原則 | Microsoft Docs
-description: 了解 DocumentDB 中索引的運作方式，以及了解如何設定及變更編製索引原則。 設定在 DocumentDB 中的編製索引原則，以便自動編製索引和追求更高效能。
-keywords: 編製索引運作方式, 自動編製索引, 為資料庫編製索引, how indexing works, automatic indexing, indexing database, documentdb, azure, Microsoft azure
+title: "DocumentDB 索引編製原則 | Microsoft Docs"
+description: "了解 DocumentDB 中索引的運作方式，以及了解如何設定及變更編製索引原則。 設定在 DocumentDB 中的編製索引原則，以便自動編製索引和追求更高效能。"
+keywords: "編製索引運作方式, 自動編製索引, 為資料庫編製索引, how indexing works, automatic indexing, indexing database, documentdb, azure, Microsoft azure"
 services: documentdb
-documentationcenter: ''
+documentationcenter: 
 author: arramac
 manager: jhubbard
 editor: monicar
-
+ms.assetid: d5e8f338-605d-4dff-8a61-7505d5fc46d7
 ms.service: documentdb
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 08/08/2016
+ms.date: 11/11/2016
 ms.author: arramac
+translationtype: Human Translation
+ms.sourcegitcommit: 994fb8080f053ae3eb72eb1dda92bd5aa46c6988
+ms.openlocfilehash: a48cdb58dd48cc033f69de15fc19f313bc12cdfa
+
 
 ---
 # <a name="documentdb-indexing-policies"></a>DocumentDB 索引編製原則
@@ -30,7 +34,7 @@ ms.author: arramac
 * 如何變更集合的索引編製原則？
 * 如何比較不同索引編製原則的儲存空間和效能？
 
-## <a name="<a-id="customizingindexingpolicy"></a>-customizing-the-indexing-policy-of-a-collection"></a><a id="CustomizingIndexingPolicy"></a> 自訂集合的索引編製原則
+## <a name="a-idcustomizingindexingpolicya-customizing-the-indexing-policy-of-a-collection"></a><a id="CustomizingIndexingPolicy"></a> 自訂集合的索引編製原則
 開發人員可以透過覆寫 DocumentDB 集合上的預設索引編製原則，並設定下列各方面，以自訂儲存空間、寫入/查詢效能，以及查詢一致性之間的取捨。
 
 * **在索引中包含/排除文件和路徑**。 開發人員可以在集合中插入或取代文件時，選擇要在索引中排除或包含的特定文件。 開發人員也可以選擇要包含或排除特定 JSON 屬性 (亦稱為 路徑，包括萬用字元模式)，以便跨索引中包含的文件編製索引。
@@ -72,192 +76,23 @@ DocumentDB 支援三個索引編製模式，這些模式可以透過 DocumentDB 
 
 下表顯示根據針對集合設定的索引編製模式 (「一致」和「延遲」)，以及針對查詢要求指定的一致性層級，顯示查詢的一致性。 這適用於使用任何介面 (REST API、SDK)，或從預存程序和觸發程序內進行的查詢。 
 
-<table border="0" cellspacing="0" cellpadding="0">
-    <tbody>
-        <tr>
-            <td valign="top">
-                <p>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-                    <strong>一致</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-                    <strong>延遲</strong>
-                </p>
-            </td>            
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>重要事項</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-重要事項 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>            
-        </tr>       
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>限定過期</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-限定過期 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>            
-        </tr>          
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>工作階段</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-工作階段 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>            
-        </tr>      
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>最終</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>            
-        </tr>         
-    </tbody>
-</table>
+|一致性|索引模式︰一致|索引模式：緩慢|
+|---|---|---|
+|重要事項|重要事項|最終|
+|限定過期|限定過期|最終|
+|工作階段|工作階段|最終|
+|最終|最終|最終|
 
 DocumentDB 會針對在集合上所進行、且索引模式為 [無] 的查詢傳回錯誤。 透過 REST API 中的明確 `x-ms-documentdb-enable-scan` 標頭或使用 .NET SDK 的 `EnableScanInQuery` 要求選項，仍可以掃描形式執行查詢。 部分查詢功能 (例如 ORDER BY) 並不支援做為具有 `EnableScanInQuery`的掃描。
 
 下表根據索引編製模式 (「一致」、「延遲」和「無」)，顯示指定 EnableScanInQuery 時，查詢的一致性。
 
-<table border="0" cellspacing="0" cellpadding="0">
-    <tbody>
-        <tr>
-            <td valign="top">
-                <p>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-                    <strong>一致</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-                    <strong>延遲</strong>
-                </p>
-            </td>       
-            <td valign="top">
-                <p>
-                    <strong>無</strong>
-                </p>
-            </td>             
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>重要事項</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-重要事項 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>    
-            <td valign="top">
-                <p>
-重要事項 </p>
-            </td>                
-        </tr>       
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>限定過期</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-限定過期 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>      
-            <td valign="top">
-                <p>
-限定過期 </p>
-            </td> 
-        </tr>          
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>工作階段</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-工作階段 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>   
-            <td valign="top">
-                <p>
-工作階段 </p>
-            </td>             
-        </tr>      
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>最終</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>      
-            <td valign="top">
-                <p>
-最終 </p>
-            </td>              
-        </tr>         
-    </tbody>
-</table>
+|一致性|索引模式︰一致|索引模式：緩慢|索引模式：無|
+|---|---|---|---|
+|重要事項|重要事項|最終|重要事項|
+|限定過期|限定過期|最終|限定過期|
+|工作階段|工作階段|最終|工作階段|
+|最終|最終|最終|最終|
 
 下列程式碼範例示範如何搭配使用 .NET SDK 與一致的索引編製，在插入所有文件時建立 DocumentDB 集合。
 
@@ -281,116 +116,14 @@ DocumentDB 會將 JSON 文件和索引塑造為樹狀結構，並可讓您調整
 
 以下是指定索引路徑的常見模式：
 
-<table border="0" cellspacing="0" cellpadding="0">
-    <tbody>
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>路徑</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-                    <strong>描述/使用案例</strong>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-                    /*
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-集合的預設路徑。 遞迴並套用至整個文件樹狀結構。
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-/prop/?
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-為類似下列的查詢 (類型分別為雜湊或範圍) 提供服務而必要的索引路徑： </p>
-                <p>
-SELECT * FROM collection c WHERE c.prop = "value" </p>
-                <p>
-SELECT * FROM collection c WHERE c.prop &gt; 5 </p>
-                <p>
-SELECT * FROM collection c ORDER BY c.prop </p>                
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-/"prop"/* </p>
-            </td>
-            <td valign="top">
-                <p>
-指定之標籤底下所有路徑的索引路徑。 使用下列查詢 </p>
-                <p>
-SELECT * FROM collection c WHERE c.prop = "value" </p>
-                <p>
-SELECT * FROM collection c WHERE c.prop.subprop &gt; 5 </p>
-                <p>
-SELECT * FROM collection c WHERE c.prop.subprop.nextprop = "value" </p>
-                <p>
-SELECT * FROM collection c ORDER BY c.prop </p>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-/props/[]/?
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-為反覆項目及針對 ["a"、"b"、"c"] 等純量陣列進行之聯結查詢提供服務所需的索引路徑： </p>
-                <p>
-SELECT tag FROM tag IN collection.props WHERE tag = "value" </p>
-                <p>
-SELECT tag FROM collection c JOIN tag IN c.props WHERE tag > 5 </p>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-/props/[]/subprop/?
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-為反覆項目及針對 [{subprop: "a"}, {subprop: "b"}] 等物件陣列進行之聯結查詢提供服務所需的索引路徑： </p>
-                <p>
-SELECT tag FROM tag IN collection.props WHERE tag.subprop = "value" </p>
-                <p>
-SELECT tag FROM collection c JOIN tag IN c.props WHERE tag.subprop = "value" </p>
-            </td>
-        </tr>        
-        <tr>
-            <td valign="top">
-                <p>
-/prop/subprop/?
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-為查詢 (類型分別為雜湊或範圍) 提供服務而必要的索引路徑： </p>
-                <p>
-SELECT * FROM collection c WHERE c.prop.subprop = "value" </p>
-                <p>
-SELECT * FROM collection c WHERE c.prop.subprop &gt; 5 </p>
-                <p>
-SELECT * FROM collection c ORDER BY c.prop.subprop </p>                
-            </td>
-        </tr>
-    </tbody>
-</table>
+| 路徑                | 描述/使用案例                                                                                                                                                                                                                                                                                         |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| /                   | 集合的預設路徑。 遞迴並套用至整個文件樹狀結構。                                                                                                                                                                                                                                   |
+| /prop/?             | 為類似下列的查詢 (類型分別為雜湊或範圍) 提供服務而必要的索引路徑：<br><br>SELECT FROM collection c WHERE c.prop = "value"<br><br>SELECT FROM collection c WHERE c.prop > 5<br><br>SELECT FROM collection c ORDER BY c.prop                                                                       |
+| /prop/              | 指定之標籤底下所有路徑的索引路徑。 使用下列查詢<br><br>SELECT FROM collection c WHERE c.prop = "value"<br><br>SELECT FROM collection c WHERE c.prop.subprop > 5<br><br>SELECT FROM collection c WHERE c.prop.subprop.nextprop = "value"<br><br>SELECT FROM collection c ORDER BY c.prop         |
+| /props/[]/?         | 為反覆項目及針對 ["a"、"b"、"c"] 等純量陣列進行之聯結查詢提供服務所需的索引路徑：<br><br>SELECT tag FROM tag IN collection.props WHERE tag = "value"<br><br>SELECT tag FROM collection c JOIN tag IN c.props WHERE tag > 5                                                                         |
+| /props/[]/subprop/? | 為反覆項目及針對 [{subprop: "a"}, {subprop: "b"}] 等物件陣列進行之聯結查詢提供服務所需的索引路徑：<br><br>SELECT tag FROM tag IN collection.props WHERE tag.subprop = "value"<br><br>SELECT tag FROM collection c JOIN tag IN c.props WHERE tag.subprop = "value"                                  |
+| /prop/subprop/?     | 為查詢 (類型分別為雜湊或範圍) 提供服務而必要的索引路徑：<br><br>SELECT FROM collection c WHERE c.prop.subprop = "value"<br><br>SELECT FROM collection c WHERE c.prop.subprop > 5                                                                                                                    |
 
 > [!NOTE]
 > 設定自訂的索引路徑時，您必須為由特殊路徑 "/" 所表示的整份文件樹狀目錄指定預設的索引規則。 
@@ -421,76 +154,35 @@ SELECT * FROM collection c ORDER BY c.prop.subprop </p>
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), pathRange);
 
 
-### <a name="index-data-types,-kinds-and-precisions"></a>索引資料類型、類型和精確度
+### <a name="index-data-types-kinds-and-precisions"></a>索引資料類型、類型和精確度
 探討如何指定路徑之後，讓我們看看我們可以使用那些選項來設定路徑的編製索引原則。 您可以為每個路徑指定一或多個編製索引的定義：
 
-* 資料類型：**字串**、**數字** 或 **點** (每個路徑每個資料類型只能包含一個項目)。 私人預覽中支援**多邊形**和 **LineString**
+* 資料類型：**String**、**Number**、**Point**、**Polygon** 或 **LineString** (每個路徑每個資料類型只能包含一個項目)
 * 索引類型：**雜湊** (相等查詢)、**範圍** (相等、範圍或 Order By 查詢) 或**空間** (空間查詢) 
 * 精確度：數字為 1-8 或 -1 (最大精確度)；字串為 1-100 (最大精確度)
 
 #### <a name="index-kind"></a>索引類型
 DocumentDB 支援每個路徑的雜湊和範圍索引種類 (可針對字串、數字或兩者進行設定)。
 
-* **雜湊** 支援有效率的相等查詢和 JOIN 查詢。 針對大多數使用案例，雜湊索引並不需要比預設值 (3 個位元組) 更高的精確度。
-* **範圍**支援有效率的相等查詢、範圍查詢 (使用 >、<、>=、<=、!=) 和 Order By 查詢。 根據預設，Order By 查詢也需要最大索引精確度 (-1)。
+* **雜湊** 支援有效率的相等查詢和 JOIN 查詢。 針對大多數使用案例，雜湊索引並不需要比預設值 (3 個位元組) 更高的精確度。 DataType 可以是 String 或 Number。
+* **範圍**支援有效率的相等查詢、範圍查詢 (使用 >、<、>=、<=、!=) 和 Order By 查詢。 根據預設，Order By 查詢也需要最大索引精確度 (-1)。 DataType 可以是 String 或 Number。
 
-DocumentDB 也支援每個路徑的空間索引類型 (可針對點資料類型加以指定)。 位於指定路徑的值必須是有效的 GeoJSON 點，例如 `{"type": "Point", "coordinates": [0.0, 10.0]}`。
+DocumentDB 針對每個路徑也支援空間索引類型 (可針對Point、Polygon 或 LineString 資料類型做指定)。 位於指定路徑的值必須是有效的 GeoJSON 片段，例如 `{"type": "Point", "coordinates": [0.0, 10.0]}`。
 
-* **空間** 支援有效率的空間 (內部和距離) 查詢。
+* **空間** 支援有效率的空間 (內部和距離) 查詢。 DataType 可以是 Point、Polygon 或 LineString。
 
 > [!NOTE]
-> DocumentDB 支援點、多邊形 (私人預覽) 和 Linestring (私人預覽) 的自動編製索引。 若要存取預覽，請寄送電子郵件到 askdocdb@microsoft.com,，或透過 Azure 支援與我們連絡。
+> DocumentDB 支援自動編製 Point、Polygon 及 LineString 的索引。
 > 
 > 
 
 以下是支援的索引種類和可用來處理的查詢的範例：
 
-<table border="0" cellspacing="0" cellpadding="0">
-    <tbody>
-        <tr>
-            <td valign="top">
-                <p>
-                    <strong>索引類型</strong>
-                </p>
-            </td>
-            <td valign="top">
-                <p>
-                    <strong>描述/使用案例</strong>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-雜湊 </p>
-            </td>
-            <td valign="top">
-                <p>
-Hash over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FROM collection c WHERE c.prop = "value" Hash over /props/[]/? (or /* or /props/*) 可用來有效率地處理下列查詢：SELECT tag FROM collection c JOIN tag IN c.props WHERE tag = 5 </p>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-範圍 </p>
-            </td>
-            <td valign="top">
-                <p>
-Range over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FROM collection c WHERE c.prop = "value" SELECT * FROM collection c WHERE c.prop > 5 SELECT * FROM collection c ORDER BY c.prop </p>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <p>
-空間 </p>
-            </td>
-            <td valign="top">
-                <p>
-Range over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FROM collection c WHERE ST_DISTANCE(c.prop, {"type": "Point", "coordinates": [0.0, 10.0]}) < 40 SELECT * FROM collection c WHERE ST_WITHIN(c.prop, {"type": "Polygon", ... }) </p>
-            </td>
-        </tr>        
-    </tbody>
-</table>
+| 索引類型 | 描述/使用案例                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 雜湊       | Hash over /prop/? (或 /) 可用來有效率地處理下列查詢︰<br><br>SELECT FROM collection c WHERE c.prop = "value"<br><br>Hash over /props/[]/? (或 / 或 /props/) 可用來有效率地處理下列查詢︰<br><br>SELECT tag FROM collection c JOIN tag IN c.props WHERE tag = 5                                                                                                                       |
+| 範圍      | Range over /prop/? (或 /) 可用來有效率地處理下列查詢︰<br><br>SELECT FROM collection c WHERE c.prop = "value"<br><br>SELECT FROM collection c WHERE c.prop > 5<br><br>SELECT FROM collection c ORDER BY c.prop                                                                                                                                                                                                              |
+| 空間     | Range over /prop/? (或 /) 可用來有效率地處理下列查詢︰<br><br>SELECT FROM collection c<br><br>WHERE ST_DISTANCE(c.prop, {"type": "Point", "coordinates": [0.0, 10.0]}) < 40<br><br>SELECT FROM collection c WHERE ST_WITHIN(c.prop, {"type": "Polygon", ... }) --with indexing on points enabled<br><br>SELECT FROM collection c WHERE ST_WITHIN({"type": "Point", ... }, c.prop) --with indexing on polygons enabled              |
 
 根據預設，如果沒有 (任何精確度的) 範圍索引，以發出可能需要掃描才能進行查詢的訊號，則所有查詢都會傳回錯誤。 只要在 REST API 中使用 x-ms-documentdb-enable-scans 標頭，或使用 .NET SDK 利用 EnableScanInQuery 要求選項，仍然可以在沒有範圍索引的情況下執行範圍查詢。 如果在查詢中有 DocumentDB 可以使用索引據以篩選的其他任何篩選，則將不會傳回任何錯誤。
 
@@ -501,7 +193,7 @@ Range over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FR
 
 索引精準度組態對於字串範圍有更實際的應用。 因為字串可以是任意長度，索引精準度的選擇可能會影響字串範圍查詢的效能，並影響所需的索引儲存空間量。 字串範圍索引可以設定為 1-100 或 -1 (「最大值」)。 如果您想要針對字串屬性執行 Order By 查詢，則必須為對應的路徑，將精確度指定為 -1。
 
-空間索引一律使用點的預設索引精準度，且無法被覆寫。 
+空間索引針對所有類型 (Points、LineString 及 Polygon) 一律都使用預設的索引精準度，且無法被覆寫。 
 
 下列範例示範如何使用 .NET SDK 提高集合中範圍索引的精確度。 
 
@@ -520,7 +212,7 @@ Range over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FR
 > 
 > 
 
-同樣地，可以從索引編製完全排除路徑。 下一個範例示範如何使用 "*" 萬用字元將文件 (也稱為 樹狀子目錄) 的整個區段自索引編製作業中排除。
+同樣地，可以從索引編製完全排除路徑。 下一個範例示範如何將文件的整個區段 (也稱為 樹狀子目錄) 自索引編製作業中排除 (透過使用 "*" 萬用字元)。
 
     var collection = new DocumentCollection { Id = "excludedPathCollection" };
     collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/*" });
@@ -719,6 +411,9 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
 2. [DocumentDB REST API 集合作業](https://msdn.microsoft.com/library/azure/dn782195.aspx)
 3. [使用 DocumentDB SQL 進行查詢](documentdb-sql-query.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

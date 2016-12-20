@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 警示 webhook 範例
-description: 您可以執行以回應 Log Analytics 警示的動作之一是 *webhook*，它可讓您透過單一 HTTP 要求來叫用外部處理序。 本文透過一個範例練習在 Log Analytics 中利用 Slack 建立 webhook 動作。
+title: "Log Analytics 警示 webhook 範例"
+description: "您可以執行以回應 Log Analytics 警示的動作之一是 *webhook*，它可讓您透過單一 HTTP 要求來叫用外部處理序。 本文透過一個範例練習在 Log Analytics 中利用 Slack 建立 webhook 動作。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: 13c39f0f-fd3c-472d-8324-ddf7538be45e
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/27/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 001f8abfc5862aeb1914f6e93b68cadeed42eba0
+
 
 ---
 # <a name="webhooks-in-log-analytics-alerts"></a>Log Analytics 警示中的 Webhook
@@ -108,6 +112,9 @@ ms.author: bwren
 * 深入了解 [Log Analytics 中的警示](log-analytics-alerts.md) ，包括其他動作。
 * [在 Azure 自動化中建立 Runbook](../automation/automation-webhooks.md) 供 webhook 呼叫。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

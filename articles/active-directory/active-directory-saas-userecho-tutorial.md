@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 UserEcho 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 UserEcho 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 UserEcho 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 UserEcho 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: bedd916b-8f69-4b50-9b8d-56f4ee3bd3ed
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/20/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a59878b0cb6f33af27f5008faf828cd4eb0eb537
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-userecho"></a>教學課程：Azure Active Directory 與 UserEcho 整合
+# <a name="tutorial-azure-active-directory-integration-with-userecho"></a>教學課程：Azure Active Directory 與 UserEcho 整合
 本教學課程旨在說明如何將 UserEcho 與 Azure Active Directory (Azure AD) 整合。  
 將 UserEcho 與 Azure AD 整合提供下列優點： 
 
@@ -112,7 +116,7 @@ ms.author: jeedes
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
 5. 在另一個瀏覽器視窗中，以系統管理員身分登入您的 UserEcho 公司網站。
 6. 在頂端工具列中，按一下您的使用者名稱以展開功能表，然後按一下 [設定] 。
    
@@ -190,7 +194,7 @@ ms.author: jeedes
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-userecho-test-user"></a>建立 UserEcho 測試使用者
 本節的目標是要在 UserEcho 中建立一個名為 Britta Simon 的使用者。
@@ -277,6 +281,6 @@ ms.author: jeedes
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

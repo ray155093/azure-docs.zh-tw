@@ -1,12 +1,12 @@
 ---
-title: Azure SDK for .NET 2.5.1 版本資訊
-description: Azure SDK for .NET 2.5.1 版本資訊
+title: "Azure SDK for .NET 2.5.1 版本資訊"
+description: "Azure SDK for .NET 2.5.1 版本資訊"
 services: app-service
 documentationcenter: .net,nodejs,java
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 8d3d815f-bb58-447e-8ff0-f9b9603c7b00
 ms.service: app-service
 ms.devlang: multiple
 ms.topic: article
@@ -14,12 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/10/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: dc7b51cd0d015770b1100e895da633e8bde4b8da
+
 
 ---
-# <a name="azure-sdk-for-.net-2.5.1-release-notes"></a>Azure SDK for .NET 2.5.1 版本資訊
+# <a name="azure-sdk-for-net-251-release-notes"></a>Azure SDK for .NET 2.5.1 版本資訊
 本文包含 Azure SDK for .NET 2.5.1 版的版本資訊。 
 
-## <a name="azure-sdk-for-.net-2.5.1-release-notes"></a>Azure SDK for .NET 2.5.1 版本資訊
+## <a name="azure-sdk-for-net-251-release-notes"></a>Azure SDK for .NET 2.5.1 版本資訊
 以下是 Azure SDK for .NET 2.5.1 的新功能和更新。
 
 * **Web 工具延伸模組**的相關新功能/案例。 
@@ -42,7 +46,7 @@ ms.author: juliako
     
     如需詳細資訊，請參閱 [開始使用 HDInsight Hadoop Tools for Visual Studio](../hdinsight/hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
-## <a name="<a-id="known_issues_2_5_1"></a>azure-sdk-for-.net-2.5.1-known-issues-and-limitations"></a><a id="known_issues_2_5_1"></a>Azure SDK for.NET 2.5.1 的已知問題和限制
+## <a name="a-idknownissues251aazure-sdk-for-net-251-known-issues-and-limitations"></a><a id="known_issues_2_5_1"></a>Azure SDK for.NET 2.5.1 的已知問題和限制
 * Azure API 應用程式會顯示為行動應用程式的部署目標。 在下一個版本之前，Web 應用程式應是行動應用程式的唯一目的地。 
 * Azure API 應用程式佈建通常可順利完成，但偶爾會無法更新 Azure 應用程式服務活動視窗中的進度。 解決方法是在 Azure 入口網站中檢查新的 Azure API 應用程式的狀態。 
 * 在使用 [檔案] > [新增專案] > [API 應用程式] > [F5] 時，會因為沒有 default/index.html 會產生 HTTP 錯誤。 解決方法是手動瀏覽至 /api/values URL。 
@@ -59,6 +63,9 @@ ms.author: juliako
 * API 應用程式專案範本僅適用於 C# 中。
 * 只有在 C# 中，才能透過「新增 Azure API 應用程式用戶端」內容功能表來取用 API 應用程式。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

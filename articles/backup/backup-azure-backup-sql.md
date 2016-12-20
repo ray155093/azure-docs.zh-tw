@@ -1,12 +1,12 @@
 ---
-title: 使用 DPM 進行 SQL Server 工作負載的 Azure 備份 | Microsoft Docs
-description: 使用 Azure 備份服務來備份 SQL Server 資料庫的簡介
+title: "使用 DPM 進行 SQL Server 工作負載的 Azure 備份 | Microsoft Docs"
+description: "使用 Azure 備份服務來備份 SQL Server 資料庫的簡介"
 services: backup
-documentationcenter: ''
+documentationcenter: 
 author: adigan
 manager: Nkolli1
-editor: ''
-
+editor: 
+ms.assetid: 59df5bec-d959-457d-8731-7b20f7f1013e
 ms.service: backup
 ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adigan;giridham; jimpark;markgal;trinadhk
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 39dcc11dfae33fe85cfbd11dec402e23289103fc
+
 
 ---
 # <a name="azure-backup-for-sql-server-workloads-using-dpm"></a>使用 DPM 進行 SQL Server 工作負載的 Azure 備份
@@ -99,7 +103,7 @@ ms.author: adigan;giridham; jimpark;markgal;trinadhk
     
     * 每天下午 12:00 和下午 8:00 會進行一次備份 (螢幕的下半部) 並保留 180 天。
     * 星期六下午 12:00 的備份 會保留 104 週
-    * 最後一個星期六下午 12:00 的備份 會保留 60 個月
+    * 上星期六下午 12:00 的備份 會保留 60 週
     * 三月份最後一個星期六下午 12:00 的備份 會保留 10 年
 14. 按一下 [下一步]  並選取適當的選項，以便將初始備份複本傳輸至 Azure。 您可以選擇 [自動透過網路] 或 [離線備份]。
     
@@ -150,9 +154,12 @@ ms.author: adigan;giridham; jimpark;markgal;trinadhk
    
     一旦完成復原，還原的資料庫會是應用程式一致複本。
 
-### <a name="next-steps:"></a>後續步驟：
-•   [Azure 備份常見問題集](backup-azure-backup-faq.md)
+### <a name="next-steps"></a>後續步驟：
+•    [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

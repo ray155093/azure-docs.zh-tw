@@ -1,20 +1,24 @@
 ---
-title: 設定雙步驟驗證我的工作或學校帳戶
-description: '當您的公司設定 Azure Multi-Factor Authentication 時，系統會提示您註冊雙步驟驗證。 了解如何進行設定。 '
+title: "設定雙步驟驗證我的工作或學校帳戶"
+description: "當您的公司設定 Azure Multi-Factor Authentication 時，系統會提示您註冊雙步驟驗證。 了解如何進行設定。 "
 services: multi-factor-authentication
-keywords: 如何使用 Azure Directory, 雲端中的 Active Directory, Active Directory 教學課程
-documentationcenter: ''
+keywords: "如何使用 Azure Directory, 雲端中的 Active Directory, Active Directory 教學課程"
+documentationcenter: 
 author: kgremban
 manager: femila
 editor: pblachar
-
+ms.assetid: 46f83a6a-dbdd-4375-8dc4-e7ea77c16357
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 11/23/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 98869aa8c05b849e9d487838823afb04d9a89907
+
 
 ---
 # <a name="set-up-my-account-for-two-step-verification"></a>對我的帳戶進行雙步驟驗證設定
@@ -42,17 +46,17 @@ ms.author: kgremban
 
 1. 從下拉式清單中選取**行動應用程式**。
 2. 選取 [接收驗證的通知] 或 [使用驗證碼]，然後選取 [設定]。
-   
-    ![[其他安全性驗證] 畫面](./media/multi-factor-authentication-end-user-first-time-mobile-app/mobileapp.png)
+
+    ![[其他安全性驗證] 畫面](./media/multi-factor-authentication-end-user-first-time/mobileapp.png)
 3. 在您的手機或平板電腦上，開啟應用程式並選取 **+** 以新增帳戶。 (在 Android 裝置上，選取三個點，然後**新增帳戶**。)
 4. 指定您想要新增的是工作帳戶還是學校帳戶。 隨即開啟您手機上的 QR 代碼掃描器。 如果您的相機未正常運作，您可以選取手動輸入公司資訊。 如需詳細資訊，請參閱 [手動新增帳戶](#add-an-account-manually)。  
 5. 掃描隨畫面顯示的 QR 代碼圖片來設定行動裝置應用程式。  按一下 [完成]  以關閉 QR 代碼畫面。  
-   
-    ![QR 代碼畫面](./media/multi-factor-authentication-end-user-first-time-mobile-app/scan2.png)
+
+    ![QR 代碼畫面](./media/multi-factor-authentication-end-user-first-time/scan2.png)
 6. 在手機上完成啟動時，選取 [連絡我] 。  此步驟會將通知或驗證碼傳送到您的手機。 選取 [驗證] 。  
 7. 如果貴公司需要 PIN 來核准登入驗證，請輸入它。
-   
-    ![輸入 PIN 的方塊](./media/multi-factor-authentication-end-user-first-time-mobile-app/scan3.png)
+
+    ![輸入 PIN 的方塊](./media/multi-factor-authentication-end-user-first-time/scan3.png)
 8. 輸入完 PIN 之後，請選取 [關閉] 。 此時，您的驗證應會成功。
 9. 建議您輸入您的行動電話號碼，以防萬一您無法存取行動裝置應用程式。 請從下拉式清單中指定您的國家/地區，然後在國家/地區名稱旁邊的方塊中輸入您的行動電話號碼。 選取 [下一步] 。
 10. 此時，系統會提示您設定非瀏覽器應用程式的應用程式密碼，例如 Outlook 2010 或更舊版本，或是 Apple 裝置上的原生電子郵件應用程式。 這是因為某些應用程式不支援雙步驟驗證。 如果您不使用這些應用程式，按一下 [完成]，並略過其餘的步驟。
@@ -64,14 +68,14 @@ ms.author: kgremban
 
 1. 選取 [手動輸入帳戶]  按鈕。  
 2. 輸入顯示條碼的同一頁所提供的代碼和 URL。 此資料會填入行動裝置應用程式上的 [代碼] 和 [URL] 方塊中。
-   
-    ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/barcode2.png)
+
+    ![設定](./media/multi-factor-authentication-end-user-first-time/barcode2.png)
 3. 當啟用完成時，請選取 [連絡我] 。 此步驟會將通知或驗證碼傳送到您的手機。 選取 [驗證] 。
 
 ## <a name="use-your-mobile-phone-as-the-contact-method"></a>使用行動電話做為連絡方式
 1. 從下拉式清單中選取**驗證電話**。  
-   
-    ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-phone/phone.png)  
+
+    ![設定](./media/multi-factor-authentication-end-user-first-time/phone.png)  
 2. 從下拉式清單中選擇您的國家/地區，然後輸入您的行動電話號碼。
 3. 選取您想要用於行動電話的方法 - 簡訊或電話。
 4. 選取 [與我連絡] 以確認您的電話號碼。 根據您選取的模式，我們會傳送文字或撥打電話給您。 遵循螢幕上提供的指示，然後選取 [確認]。
@@ -81,8 +85,8 @@ ms.author: kgremban
 
 ## <a name="use-your-office-phone-as-the-contact-method"></a>使用辦公室電話做為連絡方式
 1. 從下拉式清單中選取**辦公室電話**  
-   
-    ![設定](./media/multi-factor-authentication-end-user-first-time-office-phone/office.png)  
+
+    ![設定](./media/multi-factor-authentication-end-user-first-time/office.png)  
 2. 會自動將您的公司連絡人資訊填入電話號碼方塊。 如果號碼錯誤或遺失，請要求系統管理員進行變更。
 3. 選取 [與我連絡] 以確認您的電話號碼，我們會撥打您的號碼。 遵循螢幕上提供的指示，然後選取 [確認]。
 4. 此時，系統會提示您設定非瀏覽器應用程式的應用程式密碼，例如 Outlook 2010 或更舊版本，或是 Apple 裝置上的原生電子郵件應用程式。 這是因為某些應用程式不支援雙步驟驗證。 如果您不使用這些應用程式，按一下 [完成]，並略過其餘的步驟。
@@ -94,6 +98,8 @@ ms.author: kgremban
 * 針對不支援雙步驟驗證的原生裝置應用程式，設定[應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)。
 * 查看 [Microsoft 驗證器應用程式](multi-factor-authentication-microsoft-authenticator.md)，即使在您沒有行動服務時也能進行快速、安全的驗證。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

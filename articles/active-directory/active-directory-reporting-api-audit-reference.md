@@ -1,19 +1,23 @@
 ---
-title: Azure Active Directory 稽核 API 參考 | Microsoft Docs
-description: 如何開始使用 Azure Active Directory 稽核 API
+title: "Azure Active Directory 稽核 API 參考 | Microsoft Docs"
+description: "如何開始使用 Azure Active Directory 稽核 API"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: dhanyahk
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 44e46be8-09e5-4981-be2b-d474aaa92792
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/24/2016
+ms.date: 11/16/2016
 ms.author: dhanyahk;markvi
+translationtype: Human Translation
+ms.sourcegitcommit: b1de516d907826d3e6ede0783649f6101b381852
+ms.openlocfilehash: 261cce0b8424f73df4c7ca86784a14e95a8336f1
+
 
 ---
 # <a name="azure-active-directory-audit-api-reference"></a>Azure Active Directory 稽核 API 參考
@@ -28,7 +32,7 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取稽
 
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
-## <a name="who-can-access-the-data?"></a>誰可以存取資料？
+## <a name="who-can-access-the-data"></a>誰可以存取資料？
 * 具有安全性系統管理員或安全性讀取器角色的使用者
 * 全域管理員
 * 任何獲得授權存取 API 的應用程式 (只可以根據全域管理員的權限來設定應用程式授權)
@@ -86,7 +90,7 @@ Azure AD 稽核 API (使用 OData 分頁) 傳回的記錄筆數沒有任何限�
 
 **範例**：
 
-    $filter=tdomain + 'activities/audit?api-version=beta&`$filter=eventTime gt ' + $7daysago    
+    $filter=tdomain + 'activities/audit?api-version=beta&`$filter=activityDate gt ' + $7daysago    
 
 **注意**：
 
@@ -98,7 +102,7 @@ datetime 應採用 UTC 格式
 
 **範例**：
 
-    $filter=activityType eq 'User'  
+    $filter=activityType eq 'User'    
 
 **注意**：
 
@@ -110,26 +114,26 @@ datetime 應採用 UTC 格式
 
 **範例**：
 
-    $filter=activity eq 'Add application' or contains(activity, 'Application') or startsWith(activity, 'Add')   
+    $filter=activity eq 'Add application' or contains(activity, 'Application') or startsWith(activity, 'Add')    
 
 **注意**：
 
 區分大小寫
 
 - - -
-### <a name="actor/name"></a>actor/name
+### <a name="actorname"></a>actor/name
 **支援的運算子**：eq、contains、startsWith
 
 **範例**：
 
-    $filter=actor/name eq 'test' or contains(actor/name, 'test') or startswith(actor/name, 'test')  
+    $filter=actor/name eq 'test' or contains(actor/name, 'test') or startswith(actor/name, 'test')    
 
 **注意**：
 
 不區分大小寫
 
 - - -
-### <a name="actor/objectid"></a>actor/objectid
+### <a name="actorobjectid"></a>actor/objectid
 **支援的運算子**：eq
 
 **範例**：
@@ -137,24 +141,24 @@ datetime 應採用 UTC 格式
     $filter=actor/objectId eq 'e8096343-86a2-4384-b43a-ebfdb17600ba'    
 
 - - -
-### <a name="target/name"></a>target/name
+### <a name="targetname"></a>target/name
 **支援的運算子**：eq、contains、startsWith
 
 **範例**：
 
-    $filter=targets/any(t: t/name eq 'some name')   
+    $filter=targets/any(t: t/name eq 'some name')    
 
 **注意**：
 
 不區分大小寫
 
 - - -
-### <a name="target/upn"></a>target/upn
+### <a name="targetupn"></a>target/upn
 **支援的運算子**：eq、startsWith
 
 **範例**：
 
-    $filter=targets/any(t: startswith(t/Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity/userPrincipalName,'abc')) 
+    $filter=targets/any(t: startswith(t/Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity/userPrincipalName,'abc'))    
 
 **注意**：
 
@@ -162,7 +166,7 @@ datetime 應採用 UTC 格式
 * 您需要時在查詢 Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity 時新增完整的命名空間
 
 - - -
-### <a name="target/objectid"></a>target/objectid
+### <a name="targetobjectid"></a>target/objectid
 **支援的運算子**：eq
 
 **範例**：
@@ -170,12 +174,12 @@ datetime 應採用 UTC 格式
     $filter=targets/any(t: t/objectId eq 'e8096343-86a2-4384-b43a-ebfdb17600ba')    
 
 - - -
-### <a name="actor/upn"></a>actor/upn
+### <a name="actorupn"></a>actor/upn
 **支援的運算子**：eq、startsWith
 
 **範例**：
 
-    $filter=startswith(actor/Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity/userPrincipalName,'abc')  
+    $filter=startswith(actor/Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity/userPrincipalName,'abc')    
 
 **注意**：
 
@@ -187,6 +191,9 @@ datetime 應採用 UTC 格式
 * 您想要查看篩選過的系統活動範例嗎？ 請查看 [Azure Active Directory 稽核 API 範例](active-directory-reporting-api-audit-samples.md)。
 * 您想要深入了解 Azure AD 報告 API 嗎？ 請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

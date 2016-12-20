@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 @Task| Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 @Task 之間的單一登入。
+title: "教學課程：整合 Azure Active Directory 與 @Task| Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 @Task 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: aab8bd2f-f9dd-42da-a18e-d707865687d7
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/01/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d729d0859a3cdd0e676507c4fa772b7b8d3ed181
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-@task"></a>教學課程：Azure Active Directory 與 @Task 整合
+# <a name="tutorial-azure-active-directory-integration-with-task"></a>教學課程：Azure Active Directory 與 @Task 整合
 本教學課程旨在說明如何整合 @Task 與 Azure Active Directory (Azure AD)。  
 @Task 與 Azure AD 整合提供下列優點： 
 
@@ -49,7 +53,7 @@ ms.author: jeedes
 1. 從資源庫新增 @Task 
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-@task-from-the-gallery"></a>從資源庫新增 @Task
+## <a name="adding-task-from-the-gallery"></a>從資源庫新增 @Task
 若要設定將 @Task 整合到 Azure AD 中，您需要從資源庫將 @Task 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 @Task，請執行下列步驟：**
@@ -61,7 +65,7 @@ ms.author: jeedes
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2] 
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3] 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -182,7 +186,7 @@ ms.author: jeedes
    
     b. 按一下 [完成]。   
 
-### <a name="creating-an-@task-test-user"></a>建立 @Task 測試使用者
+### <a name="creating-an-task-test-user"></a>建立 @Task 測試使用者
 本節目標是在 @Task 中建立名為 Britta Simon 的使用者。
 
 **若要在 @Task, 中建立名為 Britta Simon 的使用者，請執行以下步驟：**
@@ -212,7 +216,7 @@ ms.author: jeedes
 1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![指派使用者][201] 
-2. 在應用程式清單中，選取 [@Task] **@Task**。
+2. 在應用程式清單中，選取 [@Task] 。
    
     ![指派使用者][202] 
 3. 在頂端的功能表中，按一下 [使用者] 。
@@ -268,6 +272,6 @@ ms.author: jeedes
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

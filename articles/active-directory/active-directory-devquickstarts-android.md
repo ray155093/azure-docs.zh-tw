@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Azure AD Android | Microsoft Docs
-description: 如何建置 Android 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。
+title: "Azure AD Android 入門 | Microsoft Docs"
+description: "如何建置 Android 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
 services: active-directory
 documentationcenter: android
-author: brandwe
+author: xerners
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: da1ee39f-89d3-4d36-96f1-4eabbc662343
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: mobile-android
@@ -14,6 +14,10 @@ ms.devlang: java
 ms.topic: article
 ms.date: 09/16/2016
 ms.author: brandwe
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 276207411fcfd6906cb99da3d291decf7e2566d1
+
 
 ---
 # <a name="integrate-azure-ad-into-an-android-app"></a>將 Azure AD 整合至 Android 應用程式
@@ -36,14 +40,14 @@ ms.author: brandwe
 > 
 > 
 
-## <a name="step-1:-download-and-run-the-node.js-rest-api-todo-sample-server"></a>步驟 1：下載並執行 Node.js REST API TODO 範例伺服器
+## <a name="step-1-download-and-run-the-nodejs-rest-api-todo-sample-server"></a>步驟 1：下載並執行 Node.js REST API TODO 範例伺服器
 我們特別撰寫此範例，以有別於為 Microsoft Azure Active Directory 建置單一租用戶 To-Do REST API 的現有範例。 這是快速入門的必要條件。
 
 如需有關如何設定的資訊，請造訪我們現有的範例：
 
 * [適用於 Node.js 的 Microsoft Azure Active Directory 範例 REST API 服務](active-directory-devquickstarts-webapi-nodejs.md)
 
-## <a name="step-2:-register-your-web-api-with-your-microsoft-azure-ad-tenant"></a>步驟 2：向 Microsoft Azure AD 租用戶註冊 Web API
+## <a name="step-2-register-your-web-api-with-your-microsoft-azure-ad-tenant"></a>步驟 2：向 Microsoft Azure AD 租用戶註冊 Web API
 **我要做什麼？**
 
 *Microsoft Active Directory 支援加入兩種類型的應用程式。Web API 提供服務給可存取這些 Web API 的使用者和應用程式 (無論是在 Web 或在裝置上執行的應用程式)。在此步驟中，您要註冊在本機執行且用來測試此範例的 Web API。這個 Web API 通常是 REST 服務，提供您想要應用程式存取的功能。Microsoft Azure Active Directory 可以保護任何端點！*
@@ -64,7 +68,7 @@ ms.author: brandwe
 10. 在 Azure 入口網站中時，按一下您的應用程式的 [設定] 索引標籤。
 11. **找出 [用戶端識別碼] 值，將它複製到別處**，稍後設定應用程式時需要此值。
 
-## <a name="step-3:-register-the-sample-android-native-client-application"></a>步驟 3：註冊範例 Android 原生用戶端應用程式
+## <a name="step-3-register-the-sample-android-native-client-application"></a>步驟 3：註冊範例 Android 原生用戶端應用程式
 第一個步驟是註冊您的 Web 應用程式。 接下來，您也需要讓 Azure Active Directory 知道您的應用程式。 這可讓您的應用程式與剛註冊的 Web API 通訊
 
 **我要做什麼？**  
@@ -105,22 +109,22 @@ ms.author: brandwe
 
 除了 aar 封裝，也會提交 jar 封裝。
 
-### <a name="step-4:-download-the-android-adal-and-add-it-to-your-eclipse-workspace"></a>步驟 4：下載 Android ADAL，並將它加入您的 XCode 工作區
+### <a name="step-4-download-the-android-adal-and-add-it-to-your-eclipse-workspace"></a>步驟 4：下載 Android ADAL，並將它加入您的 XCode 工作區
 我們提供多個選項，讓您輕鬆地在 Android 專案中使用此程式庫：
 
 * 您可以使用原始程式碼將此程式庫匯入到 Eclipse，並連結至您的應用程式。
 * 如果是使用 Android Studio，您可以使用 *aar* 封裝格式，並參考二進位檔。
 
-#### <a name="option-1:-source-zip"></a>選項 1：原始檔 Zip
+#### <a name="option-1-source-zip"></a>選項 1：原始檔 Zip
 若要下載原始程式碼的複本，請按一下頁面右側的 [下載 ZIP]，或按一下 [這裡](https://github.com/AzureAD/azure-activedirectory-library-for-android/archive/v1.0.9.tar.gz)。
 
-#### <a name="option-2:-source-via-git"></a>選項 2：透過 Git 取得原始檔
+#### <a name="option-2-source-via-git"></a>選項 2：透過 Git 取得原始檔
 若要透過 git 取得 SDK 的原始程式碼，只要輸入：
 
     git clone git@github.com:AzureAD/azure-activedirectory-library-for-android.git
     cd ./azure-activedirectory-library-for-android/src
 
-#### <a name="option-3:-binaries-via-gradle"></a>選項 3：透過 Gradle 取得二進位檔
+#### <a name="option-3-binaries-via-gradle"></a>選項 3：透過 Gradle 取得二進位檔
 您可以從 Maven 中央儲存機制取得二進位檔。 AAR 封裝可以在 AndroidStudio 中加入您的專案中，如下所示：
 
 ```gradle
@@ -141,7 +145,7 @@ dependencies {
 }
 ```
 
-#### <a name="option-4:-aar-via-maven"></a>選項 4：透過 Maven 取得 aar
+#### <a name="option-4-aar-via-maven"></a>選項 4：透過 Maven 取得 aar
 如果您在 Eclipse 中使用 m2e 外掛程式，您可以在 pom.xml 檔案中指定相依性：
 
 ```xml
@@ -154,11 +158,11 @@ dependencies {
 ```
 
 
-#### <a name="option-5:-jar-package-inside-libs-folder"></a>選項 5：libs 資料夾內的 jar 封裝
+#### <a name="option-5-jar-package-inside-libs-folder"></a>選項 5：libs 資料夾內的 jar 封裝
 您可以從 maven 儲存機制取得 jar 檔案，並放入專案的 *libs* 資料夾中。 您也需要將必要的資源複製到專案，因為 jar 封裝不包含它們。
 
-### <a name="step-5:-add-references-to-android-adal-to-your-project"></a>步驟 5：將 Android ADAL 參考加入至您的專案
-1. 在專案中加入參考，並指定為 Android 程式庫。 如果您不確定怎麼做，[按一下這裡取得詳細資訊](http://developer.android.com/tools/projects/projects-eclipse.html)
+### <a name="step-5-add-references-to-android-adal-to-your-project"></a>步驟 5：將 Android ADAL 參考加入至您的專案
+1. 在專案中加入參考，並指定為 Android 程式庫。 如果您不確定怎麼做， [按一下這裡取得詳細資訊](http://developer.android.com/tools/projects/projects-eclipse.html)
 2. 加入專案相依性以偵錯您的專案設定
 3. 更新專案的 AndroidManifest.xml 檔案來包含：
    
@@ -426,6 +430,9 @@ Adal 1.1.0 版支援 NTLM 對話方塊，此對話方塊是透過 WebViewClient 
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!--HONumber=Oct16_HO4-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

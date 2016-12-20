@@ -1,12 +1,12 @@
 ---
-title: 使用 .NET 連線到媒體服務帳戶
-description: 本主題示範如何使用 .NET 連線到媒體服務。
+title: "使用 .NET 連線到媒體服務帳戶"
+description: "本主題示範如何使用 .NET 連線到媒體服務。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a8412a29-59dc-44a0-ace0-be79a97dab63
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 72e94aeae9e210b25b8f22dd02feb0b98a5ddfeb
+
 
 ---
-# <a name="connecting-to-media-services-account-using-media-services-sdk-for-.net"></a>使用 Media Services SDK for .NET 連線到媒體服務帳戶
+# <a name="connecting-to-media-services-account-using-media-services-sdk-for-net"></a>使用 Media Services SDK for .NET 連線到媒體服務帳戶
 > [!div class="op_single_selector"]
 > * [REST](media-services-rest-connect-programmatically.md)
 > * [.NET](media-services-dotnet-connect-programmatically.md)
@@ -182,6 +186,9 @@ CloudMediaContext 有五個建構函式多載。 建議使用採用 **MediaServi
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

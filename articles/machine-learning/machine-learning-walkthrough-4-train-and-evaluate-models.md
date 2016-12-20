@@ -1,12 +1,12 @@
 ---
-title: 步驟 4：定型和評估預測分析模型 | Microsoft Docs
-description: 開發預測解決方案逐步解說的步驟 4：在 Azure Machine Learning Studio 中定型、計分和評估多個模型。
+title: "步驟 4：訓練和評估預測分析模型 | Microsoft Docs"
+description: "開發預測解決方案逐步解說的步驟 4：在 Azure Machine Learning Studio 中定型、計分和評估多個模型。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: d905f6b3-9201-4117-b769-5f9ed5ee1cac
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 434e7e2c40f98956de44435c23642bdee6072379
+
 
 ---
-# <a name="walkthrough-step-4:-train-and-evaluate-the-predictive-analytic-models"></a>逐步解說步驟 4：定型和評估預測分析模型
+# <a name="walkthrough-step-4-train-and-evaluate-the-predictive-analytic-models"></a>逐步解說步驟 4：定型和評估預測分析模型
 此主題包含[在 Azure Machine Learning 中開發預測性分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)逐步解說的第四個步驟
 
 1. [建立機器學習服務工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
@@ -119,7 +123,8 @@ ms.author: garye
 > [!TIP]
 > 每次執行實驗，[執行歷程記錄] 中就會保留該筆逐一查看的記錄。 您可以檢視這些反覆運算，按一下畫布下方的 [檢視執行歷程記錄]  即可回到其中任何一個。 您也可以按一下 [屬性] 窗格中的 [先前執行]，回到您目前開啟的反覆運算之前的那一個反覆運算。
 > 
-> 您可以按一下畫布下方的 [另存新檔]  ，為實驗的任何反覆項目製作一個複本。 使用實驗的 [摘要] 和 [描述] 屬性，以記錄在您實驗反覆運算中已嘗試的動作。
+> 您可以按一下畫布下方的 [另存新檔]  ，為實驗的任何反覆項目製作一個複本。 
+> 使用實驗的 [摘要] 和 [描述] 屬性，以記錄在您實驗反覆運算中已嘗試的動作。
 > 
 > 如需詳細資訊，請參閱 [在 Azure Machine Learning Studio 中管理實驗逐一查看](machine-learning-manage-experiment-iterations.md)。  
 > 
@@ -146,6 +151,6 @@ ms.author: garye
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: 為網路安全性群組疑難排解 - 入口網站 | Microsoft Docs
-description: 了解如何使用 Azure 入口網站對 Azure Resource Manager 部署模型中的網路安全性群組進行疑難排解。
+title: "為網路安全性群組疑難排解 - 入口網站 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站對 Azure Resource Manager 部署模型中的網路安全性群組進行疑難排解。"
 services: virtual-network
 documentationcenter: na
 author: AnithaAdusumilli
 manager: narayan
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: a54feccf-0123-4e49-a743-eb8d0bdd1ebc
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3216868d867f4c840a610c45855d22575ded609c
+
 
 ---
 # <a name="troubleshoot-network-security-groups-using-the-azure-portal"></a>使用 Azure 入口網站為網路安全性群組疑難排解
@@ -105,7 +109,7 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
    > 
 4. 您可以直接編輯與 NIC 和子網路相關聯之 NSG 的規則。 若要了解如何進行，請閱讀＜檢視虛擬機器的有效安全性規則＞  一節的步驟 8。
 
-## <a name="view-effective-security-rules-for-a-network-security-group-(nsg)"></a>檢視網路安全性群組 (NSG) 的有效安全性規則
+## <a name="view-effective-security-rules-for-a-network-security-group-nsg"></a>檢視網路安全性群組 (NSG) 的有效安全性規則
 修改 NSG 規則時，可以檢閱特定 VM 上新增規則的影響。 您可以檢視套用指定 NSG 之所有 NIC 的完整有效安全性規則清單，而不必從指定的 NSG 刀鋒視窗切換內容。 若要對 NSG 中的有效規則進行疑難排解，請完成下列步驟︰
 
 1. 登入 Azure 入口網站，位址是 https://portal.azure.com。
@@ -123,8 +127,8 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
      > 如果只對空白子網路套用 NSG，則不會列出 VM。 如果對與 VM 無關的 NIC 套用 NSG，也不會列出這些 NIC。 
      > 
      > 
-   * **網路介面：** 一個 VM 可以有多個網路介面。 您可以選取附加至所選 VM 的網路介面。
-   * **AssociatedNSGs：** 一個 NIC 在任何時候最多可以有兩個有效的 NSG，一個套用到 NIC，一個套用到子網路。 雖然範圍選取了 VM1-nsg，但如果 NIC 有有效的子網路 NSG，輸出會顯示兩個 NSG。
+   * **網路介面：**一個 VM 可以有多個網路介面。 您可以選取附加至所選 VM 的網路介面。
+   * **AssociatedNSGs：**一個 NIC 在任何時候最多可以有兩個有效的 NSG，一個套用到 NIC，一個套用到子網路。 雖然範圍選取了 VM1-nsg，但如果 NIC 有有效的子網路 NSG，輸出會顯示兩個 NSG。
 4. 您可以直接編輯與 NIC 或子網路相關聯之 NSG 的規則。 若要了解如何進行，請閱讀＜檢視虛擬機器的有效安全性規則＞  一節的步驟 8。
 
 若要深入了解所顯示的其他資訊，請閱讀本文＜檢視虛擬機器的有效安全性規則＞  一節的步驟 6。
@@ -145,6 +149,9 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
 * 只有在有 NSG 與 VM 的 NIC 和/或子網路關聯時，才會顯示有效安全性規則。 
 * 如果沒有 NSG 與 NIC 或子網路相關聯，且您已對 VM 指派公用 IP 位址，則會開啟所有連接埠供輸入和輸出存取。 如果 VM 有公用 IP 位址，強烈建議對 NIC 或子網路套用 NSG。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -13,25 +13,23 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/14/2016
+ms.date: 11/23/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b53d8c78817e94ec30bd7cb3becf0c7d4accbd23
+ms.sourcegitcommit: 71aef298af187cd4c370edf9fedc42e75ec10c41
+ms.openlocfilehash: 57fbf532c64621ef7d171fc5092708737cd36c33
 
 
 ---
 # <a name="install-hdinsight-applications"></a>安裝 HDInsight 應用程式
 HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢集上安裝的應用程式。 Microsoft 獨立軟體廠商 (ISV) 或您可以自己開發這些應用程式。 在本文章中，您將學習到如何安裝已發佈的應用程式。 如需安裝自己的應用程式，請參閱 [安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)。 
 
-目前有一個已發佈的應用程式︰
+目前有三個已發佈的應用程式：
 
 * **Datameer**： [Datameer](http://www.datameer.com/documentation/display/DAS50/Home?ls=Partners&lsd=Microsoft&c=Partners&cd=Microsoft) 會提供互動方式，讓分析師探索、分析和視覺化巨量資料的結果。 輕鬆拉進其他資料來源，以探索新的關聯性並迅速取得您所需的答案。
+* **適用於 HDInsight 的 Streamsets 資料收集器**提供功能完整的整合式開發環境 (IDE)，可讓您設計、測試、部署和管理任意至任意內嵌管線 (它會協調資料流與批次資料)，並包括各種資料流內轉換，而完全不必撰寫自訂程式碼。 
+* **適用於 HDInsight 的 Cask CDAP 3.5** 提供第一個巨量資料統一整合平台，可減少資料應用程式與資料湖 80% 的產出時間。 此應用程式僅支援 Standard HBase 3.4 叢集。
 
-> [!NOTE]
-> 目前只有 Azure HDInsight 3.2 版叢集支援Datameer。
-> 
-> 
 
 本文提供的指示將使用 Azure 入口網站。 您也可以從入口網站匯出 Azure Resource Manager 範本或從廠商取得 Resource Manage 範本的複本，然後使用 Azure PowerShell 和 Azure CLI 來部署範本。  請參閱 [使用 Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 
@@ -46,14 +44,14 @@ HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢�
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下左側功能表中的 [HDInsight 叢集]  。  如果沒有看到該功能表，請按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
 3. 按一下 HDInsight 叢集。  如果您沒有叢集，則必須先建立一個。  請參閱 [建立叢集](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)。
-4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。 [已安裝的應用程式]  刀鋒視窗會列出所有已安裝的應用程式。 
+4. 按一下 [設定] 類別下的 [應用程式]。 您可以看見已安裝應用程式的清單 (如果有的話)。
    
     ![Hdinsight 應用程式入口網站功能表](./media/hdinsight-apps-install-applications/hdinsight-apps-portal-menu.png)
 5. 按一下刀鋒視窗功能表中的 [新增]  。 
    
     ![Hdinsight 應用程式安裝的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps.png)
    
-    您應該會看到現有的 HDInsight 應用程式清單。
+    您可以看到現有 HDInsight 應用程式的清單。
    
     ![Hdinsight 應用程式可用的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-list.png)
 6. 按一下其中一個應用程式，接受法律條款，然後按一下 [選取] 。
@@ -120,6 +118,6 @@ HTTP 端點認證是您已針對 HDInsight 叢集設定的 HTTP 使用者認證�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

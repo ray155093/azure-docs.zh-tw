@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory v2.0 Android 應用程式 | Microsoft Docs
-description: 如何建置可使用個人 Microsoft 帳戶及公司或學校帳戶登入使用者，並使用協力廠商程式庫呼叫圖形 API 的 Android 應用程式。
+title: "Azure Active Directory v2.0 Android 應用程式 | Microsoft Docs"
+description: "如何建置可使用個人 Microsoft 帳戶及公司或學校帳戶登入使用者，並使用協力廠商程式庫呼叫圖形 API 的 Android 應用程式。"
 services: active-directory
-documentationcenter: ''
-author: brandwe
+documentationcenter: 
+author: xerners
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 16294c07-f27d-45c9-833f-7dbb12083794
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/16/2016
 ms.author: brandwe
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 143d72953e84f9ffead2e3c4b0c88b350b824572
+
 
 ---
-# <a name="add-sign-in-to-an-android-app-using-a-third-party-library-with-graph-api-using-the-v2.0-endpoint"></a>使用 v2.0 端點透過圖形 API 將登入新增至使用協力廠商程式庫的 Android 應用程式
+# <a name="add-sign-in-to-an-android-app-using-a-third-party-library-with-graph-api-using-the-v20-endpoint"></a>使用 v2.0 端點透過圖形 API 將登入新增至使用協力廠商程式庫的 Android 應用程式
 Microsoft 身分識別平台會使用開放式標準，例如 OAuth2 和 OpenID Connect。 開發人員可以使用任何想要的程式庫，來與我們的服務整合。 為了協助開發人員使用我們的平台搭配其他程式庫，我們撰寫了數篇逐步解說，示範如何設定協力廠商程式庫以連接到 Microsoft 身分識別平台。 大部分實作 [RFC6749 OAuth2 規格](https://tools.ietf.org/html/rfc6749) 的程式庫都能連接到 Microsoft 身分識別平台。
 
 使用此篇逐步解說建立的應用程式，使用者可以使用圖形 API 來登入其組織，然後在組織中搜尋自己。
@@ -49,7 +53,7 @@ git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.g
 ```
 
 ## <a name="register-an-app"></a>註冊應用程式
-在[應用程式註冊入口網站](https://apps.dev.microsoft.com)建立新的應用程式，或遵循[如何註冊應用程式與 v2.0 端點](active-directory-v2-app-registration.md)的詳細步驟進行。  請確定：
+在[應用程式註冊入口網站](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList)建立新的應用程式，或遵循[如何註冊應用程式與 v2.0 端點](active-directory-v2-app-registration.md)的詳細步驟進行。  請確定：
 
 * 複製所指派給您的「應用程式識別碼」  ，因為您很快就會用到。
 * 為您的應用程式新增 **行動** 平台。
@@ -116,7 +120,7 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 ## <a name="configure-the-endpoints-of-the-sample"></a>設定範例的端點
 您現在已順利執行 `oidlib-sample`，讓我們編輯某些端點以便使用於 Azure Active Directory。
 
-### <a name="configure-your-client-by-editing-the-oidc_clientconf.xml-file"></a>編輯 oidc_clientconf.xml 檔案來設定您的用戶端
+### <a name="configure-your-client-by-editing-the-oidcclientconfxml-file"></a>編輯 oidc_clientconf.xml 檔案來設定您的用戶端
 1. 因為您目前只使用 OAuth2 流量來取得權杖及呼叫圖形 API，所以將用戶端設定成只進行 OAuth2。 後面的範例中會示範 OIDC。
    
     ```xml
@@ -148,7 +152,7 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 
 如果您想要 OpenID Connect 中有關 `openid` 或 `offline_access` 範圍的說明，請參閱 [2.0 通訊協定 - OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)。
 
-### <a name="configure-your-client-endpoints-by-editing-the-oidc_endpoints.xml-file"></a>編輯 oidc_endpoints.xml 檔案來設定用戶端端點
+### <a name="configure-your-client-endpoints-by-editing-the-oidcendpointsxml-file"></a>編輯 oidc_endpoints.xml 檔案來設定用戶端端點
 * 開啟 `oidc_endpoints.xml` 檔案並進行下列變更：
   
     ```xml
@@ -185,6 +189,9 @@ git@github.com:kalemontes/OIDCAndroidLib.git
 ## <a name="get-security-updates-for-our-product"></a>取得產品的安全性更新
 我們鼓勵您造訪 [安全性 TechCenter](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以收到有關安全性事件的通知。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

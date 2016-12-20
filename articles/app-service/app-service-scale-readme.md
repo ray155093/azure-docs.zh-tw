@@ -1,13 +1,13 @@
 ---
-title: Azure App Service：調整 App Service 應用程式
-description: 了解在 App Service 中調整應用程式的優缺點。
-keywords: App Service, Azure App Service, 級別, 可調整, App Service方案, App Service 成本
+title: "Azure App Service：調整 App Service 應用程式"
+description: "了解在 App Service 中調整應用程式的優缺點。"
+keywords: "App Service, Azure App Service, 級別, 可調整, App Service方案, App Service 成本"
 services: app-service
-documentationcenter: ''
+documentationcenter: 
 author: btardif
 manager: wpickett
-editor: ''
-
+editor: 
+ms.assetid: f403c971-4450-432b-8cea-3eeb426c0147
 ms.service: app-service
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: byvinyal
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ec043a9e01aca2e843e50cef8b90328ba1939ea5
+
 
 ---
-# <a name="azure-app-service:-scaling-app-service-applications"></a>Azure App Service：調整 App Service 應用程式
+# <a name="azure-app-service-scaling-app-service-applications"></a>Azure App Service：調整 App Service 應用程式
 在 Azure App Service 中裝載的應用程式可以達到最大規模 [Canadian Broadcasting Corporation/Radio-Canada leverage Azure for smooth election coverage (加拿大廣播公司/加拿大廣播電台運用 Azure 處理大選新聞)](https://azure.microsoft.com/blog/canadian-broadcasting-corporation-radio-canada-leverage-azure-for-smooth-election-coverage/)。
 不過，調整應用程式是很複雜的問題，沒有所謂的「一體適用」方案。 若要正確調整您的應用程式，下列 3 項要點可協助您順利進行：
 
@@ -38,6 +42,9 @@ ms.author: byvinyal
 
 [!INCLUDE [app-service-blueprint-scaling-app-service-applications](../../includes/app-service-blueprint-scaling-app-service-applications.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

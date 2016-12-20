@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 1cea7999fcb9ba3d4f0febdac5acb298ec5a489a
-ms.openlocfilehash: 76a07ecf333fec4d7e406a6c6b4dc796058e664b
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: a961c353af047f9d0bb6bdbc82cf262b78915afa
 
 ---
 # <a name="analysis-services-documentation"></a>Analysis Services 文件
@@ -67,36 +67,44 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
 </ul>
 
 ---
-## <a name="reference"></a>參考
 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/resourcemanager">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Powershell 與 Azure Resource Manager Cmdlet</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager">Azure PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/rest/api/analysisservices">
-        <div class="cardSize">
+        <div class="cardSize"><p />
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>語言</h3>
+                        <p><a href="/azure/analysis-services/analysis-services-datasource">資料來源連線</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>REST 與 Azure Analysis Services REST API 參考</p>
+                        <p><a href="/rest/api/analysisservices/">REST API</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
 </ul>
 
@@ -112,6 +120,6 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: StorSimple Virtual Array 概觀 | Microsoft Docs
-description: 說明 StorSimple Virtual Array，這是一個整合式儲存體解決方案，可管理內部部署虛擬裝置與 Microsoft Azure 雲端儲存體之間的儲存體工作。
+title: "StorSimple Virtual Array 概觀 | Microsoft Docs"
+description: "說明 StorSimple Virtual Array，這是一個整合式儲存體解決方案，可管理內部部署虛擬裝置與 Microsoft Azure 雲端儲存體之間的儲存體工作。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: dacf0aa8-6cd3-425b-993d-d93bb632157d
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 10/06/2016
 ms.author: alkohli
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 80cac87cbcabe32f8aa1e4e05e8ba0b6643f1dc5
+
 
 ---
 # <a name="introduction-to-the-storsimple-virtual-array"></a>StorSimple Virtual Array 簡介
@@ -48,7 +52,7 @@ Virtual Array 支援 iSCSI 或伺服器訊息區 (SMB) 通訊協定。 它會在
 | 快照集 |當機時保持一致 |
 | 項目層級復原 |是；使用者可以從共用還原 |
 
-## <a name="why-use-storsimple?"></a>為何要使用 StorSimple？
+## <a name="why-use-storsimple"></a>為何要使用 StorSimple？
 StorSimple 會在數分鐘內將使用者和伺服器連接到 Azure 儲存體，而不需要進行任何應用程式修改。
 
 下表說明一些 Virtual Array 解決方案所提供的主要優點。
@@ -184,6 +188,9 @@ StorSimple 資料保護功能可讓您建立隨選備份。 此外，預設備�
 ## <a name="next-steps"></a>後續步驟
 了解如何 [準備 Virtual Array 入口網站](storsimple-ova-deploy1-portal-prep.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

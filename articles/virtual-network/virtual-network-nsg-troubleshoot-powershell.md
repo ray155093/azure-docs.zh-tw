@@ -1,13 +1,13 @@
 ---
-title: 為網路安全性群組疑難排解 - PowerShell | Microsoft Docs
-description: 了解如何使用 Azure PowerShell 對 Azure Resource Manager 部署模型中的網路安全性群組進行疑難排解。
+title: "為網路安全性群組疑難排解 - PowerShell | Microsoft Docs"
+description: "了解如何使用 Azure PowerShell 對 Azure Resource Manager 部署模型中的網路安全性群組進行疑難排解。"
 services: virtual-network
 documentationcenter: na
 author: AnithaAdusumilli
 manager: narayan
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 4c732bb7-5cb1-40af-9e6d-a2a307c2a9c4
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 10a56e134f0e31e60758d6e616b771dabc0f4dad
+
 
 ---
 # <a name="troubleshoot-network-security-groups-using-azure-powershell"></a>使用 Azure PowerShell 為網路安全性群組疑難排解
@@ -194,6 +198,9 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
 * 只有在有 NSG 與 VM 的 NIC 和/或子網路關聯時，才會顯示有效安全性規則。 
 * 如果沒有 NSG 與 NIC 或子網路相關聯，且您已對 VM 指派公用 IP 位址，則會開啟所有連接埠供輸入和輸出存取。 如果 VM 有公用 IP 位址，強烈建議對 NIC 或子網路套用 NSG。  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

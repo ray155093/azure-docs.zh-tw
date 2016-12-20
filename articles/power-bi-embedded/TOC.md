@@ -1,4 +1,4 @@
-# Overview
+# 概觀
 ## [什麼是 Power BI Embedded？](power-bi-embedded-what-is-power-bi-embedded.md)
 ## [Power BI Embedded 新功能](power-bi-embedded-whats-new.md)
 
@@ -21,8 +21,8 @@
 ### [Power BI Embedded 的資料列層級安全性](power-bi-embedded-rls.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/)
-## [.NET](/dotnet/api/)
+## [PowerShell](/powershell/resourcemanager/azurerm.powerbiembedded/v2.3.0/azurerm.powerbiembedded)
+## [.NET](/dotnet/api/microsoft.azure.management.powerbiembedded)
 ## [.NET SDK 下載](https://www.nuget.org/profiles/powerbi)
 ## [JavaScript](https://github.com/Microsoft/PowerBI-JavaScript)
 ## [REST](/rest/api/powerbiembedded/)
@@ -34,6 +34,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/powerbi)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

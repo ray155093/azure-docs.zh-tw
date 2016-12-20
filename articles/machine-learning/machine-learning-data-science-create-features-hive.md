@@ -1,19 +1,23 @@
 ---
-title: 針對使用 Hive 查詢之 Hadoop 叢集中的資料建立特性 | Microsoft Docs
-description: Hive 查詢的範例，產生儲存在 Azure HDInsight Hadoop 叢集中之資料中的特性。
+title: "針對使用 Hive 查詢之 Hadoop 叢集中的資料建立特性 | Microsoft Docs"
+description: "Hive 查詢的範例，產生儲存在 Azure HDInsight Hadoop 叢集中之資料中的特性。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: e8a94c71-979b-4707-b8fd-85b47d309a30
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/09/2016
 ms.author: hangzh;bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 7f34a63acf5720ef880193b08f3a90d1f904774d
+
 
 ---
 # <a name="create-features-for-data-in-an-hadoop-cluster-using-hive-queries"></a>針對使用 Hive 查詢之 Hadoop 叢集中的資料建立特性
@@ -35,7 +39,7 @@ ms.author: hangzh;bradsev
 * 已將資料上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。 如果沒有，請遵循 [建立資料並載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md) ，先將資料上傳至 Hive 資料表。
 * 啟用叢集的遠端存取。 如需指示，請參閱 [存取 Hadoop 叢集的前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。
 
-## <a name="<a-name="hive-featureengineering"></a>feature-generation"></a><a name="hive-featureengineering"></a>功能產生
+## <a name="a-namehive-featureengineeringafeature-generation"></a><a name="hive-featureengineering"></a>功能產生
 在本節中，說明可以使用 Hive 查詢特性之數個方式的範例。 一旦產生額外功能之後，就可以將它們當成資料行新增至現有的資料表，或是建立具有其他功能和主索引鍵的新資料表 (然後與原始資料表聯結)。 以下是顯示的範例：
 
 1. [以頻率為基礎的功能產生](#hive-frequencyfeature)
@@ -44,7 +48,7 @@ ms.author: hangzh;bradsev
 4. [從文字欄位擷取功能](#hive-textfeatures)
 5. [計算 GPS 座標間的距離](#hive-gpsdistance)
 
-### <a name="<a-name="hive-frequencyfeature"></a>frequency-based-feature-generation"></a><a name="hive-frequencyfeature"></a>以頻率為基礎的功能產生
+### <a name="a-namehive-frequencyfeatureafrequency-based-feature-generation"></a><a name="hive-frequencyfeature"></a>以頻率為基礎的功能產生
 計算類別變數層級的頻率，或是來自多個類別變數之特定層級組合的頻率，通常很實用。 使用者可以使用下列指令碼來計算這些頻率：
 
         select
@@ -58,7 +62,7 @@ ms.author: hangzh;bradsev
         order by frequency desc;
 
 
-### <a name="<a-name="hive-riskfeature"></a>risks-of-categorical-variables-in-binary-classification"></a><a name="hive-riskfeature"></a>二進位分類中類別變數的風險
+### <a name="a-namehive-riskfeaturearisks-of-categorical-variables-in-binary-classification"></a><a name="hive-riskfeature"></a>二進位分類中類別變數的風險
 在二進位分類中，若使用的模型只會採用數值功能，我們就需要將非數值類別變數轉換成數值功能。 您可以使用數值風險來取代每個非數值層級，藉以完成這個動作。 在本節中，我們將說明一些計算類別變數風險值 (記錄機率) 的泛型 Hive 查詢。
 
         set smooth_param1=1;
@@ -83,7 +87,7 @@ ms.author: hangzh;bradsev
 
 計算出風險資料表之後，使用者就可以藉由將資料表聯結至風險資料表，來將風險值指派給該資料表。 Hive 聯結查詢已在上一節中提供。
 
-### <a name="<a-name="hive-datefeatures"></a>extract-features-from-datetime-fields"></a><a name="hive-datefeatures"></a>從日期時間欄位擷取功能
+### <a name="a-namehive-datefeaturesaextract-features-from-datetime-fields"></a><a name="hive-datefeatures"></a>從日期時間欄位擷取功能
 Hive 會和一組 UDF 一起出現，用來處理日期時間欄位。 在 Hive 中，預設的日期時間格式是 'yyyy-MM-dd 00:00:00' (例如 '1970-01-01 12:21:32')。 本節會顯示擷取月份日期和來自日期時間欄位的月份範例，以及其他可將預設格式以外格式的日期時間字串轉換為預設格式的日期時間字串範例。
 
         select day(<datetime field>), month(<datetime field>)
@@ -103,13 +107,13 @@ Hive 會和一組 UDF 一起出現，用來處理日期時間欄位。 在 Hive 
 
 佈建叢集時，這個查詢中的 *hivesampletable* 預設會預先安裝於所有 Azure HDInsight Hadoop 叢集中。
 
-### <a name="<a-name="hive-textfeatures"></a>extract-features-from-text-fields"></a><a name="hive-textfeatures"></a>從文字欄位擷取功能
+### <a name="a-namehive-textfeaturesaextract-features-from-text-fields"></a><a name="hive-textfeatures"></a>從文字欄位擷取功能
 當 Hive 資料表具有一個文字欄位且其中包含以空格分隔的文字字串時，下列查詢便會擷取字串長度，以及字串中的字數。
 
         select length(<text field>) as str_len, size(split(<text field>,' ')) as word_num
         from <databasename>.<tablename>;
 
-### <a name="<a-name="hive-gpsdistance"></a>calculate-distances-between-sets-of-gps-coordinates"></a><a name="hive-gpsdistance"></a>計算 GPS 座標組之間的距離
+### <a name="a-namehive-gpsdistanceacalculate-distances-between-sets-of-gps-coordinates"></a><a name="hive-gpsdistance"></a>計算 GPS 座標組之間的距離
 本節中提供的查詢可直接套用至「NYC 計程車車程資料」。 此查詢的目的是示範如何在 Hive 中套用內嵌的數學函式來產生功能。
 
 這個查詢中所使用的欄位是上車與下車位置的 GPS 座標，其名稱為 *pickup\_longitude*、*pickup\_latitude*、*dropoff\_longitude* 和 *dropoff\_latitude*。 計算上車與下車座標間直線距離的查詢如下：
@@ -136,7 +140,7 @@ Hive 會和一組 UDF 一起出現，用來處理日期時間欄位。 在 Hive 
 
 您可以在 <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-MathematicalFunctions" target="_blank">Apache Hive wiki</a> 上的**內建函式**一節中找到 Hive 內嵌 UDF 的完整清單。  
 
-## <a name="<a-name="tuning"></a>-advanced-topics:-tune-hive-parameters-to-improve-query-speed"></a><a name="tuning"></a> 進階主題：微調 Hive 參數以提升查詢速度
+## <a name="a-nametuninga-advanced-topics-tune-hive-parameters-to-improve-query-speed"></a><a name="tuning"></a> 進階主題：微調 Hive 參數以提升查詢速度
 Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處理的資料。 本節將討論一些使用者可以微調的參數，來提升 Hive 查詢的效能。 使用者需要在處理資料的查詢之前新增參數微調查詢。
 
 1. **Java 堆積空間**：對於涉及聯結大型資料集或處理長記錄的查詢，常見的一項錯誤是**堆積空間不足**。 這可藉由將參數 *mapreduce.map.java.opts* 和 *mapreduce.task.io.sort.mb* 設定為所需的值來進行微調。 下列是一個範例：
@@ -165,6 +169,9 @@ Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處
         set mapred.reduce.tasks=128;
         set mapred.tasktracker.reduce.tasks.maximum=128;
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

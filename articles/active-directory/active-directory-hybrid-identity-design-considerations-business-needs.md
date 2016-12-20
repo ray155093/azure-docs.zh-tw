@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 混合式身分識別設計考量 - 判斷身分識別需求 | Microsoft Docs
-description: 識別公司的商務需求，以引導您定義混合式身分識別設計的需求。
-documentationcenter: ''
+title: "Azure Active Directory 混合式身分識別設計考量 - 判斷身分識別需求 | Microsoft Docs"
+description: "識別公司的商務需求，以引導您定義混合式身分識別設計的需求。"
+documentationcenter: 
 services: active-directory
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: de690978-84ef-41ad-9dfe-785722d343a1
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/08/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b1e146460c5f31c5ab472260b49484f4fd62ba0a
+
 
 ---
 # <a name="determine-identity-requirements-for-your-hybrid-identity-solution"></a>判斷混合式身分識別解決方案的身分識別需求
@@ -105,6 +109,9 @@ ms.author: billmath
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

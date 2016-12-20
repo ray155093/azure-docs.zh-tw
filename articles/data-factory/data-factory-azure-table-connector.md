@@ -1,36 +1,40 @@
 ---
-title: 從 Azure 資料表來回移動資料 | Microsoft Docs
-description: 了解如何使用 Azure Data Factory 從 Azure 表格儲存體來回移動資料。
+title: "從 Azure 資料表來回移動資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 從 Azure 表格儲存體來回移動資料。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: linda33wj
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 07b046b1-7884-4e57-a613-337292416319
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 12/07/2016
 ms.author: jingwang
+translationtype: Human Translation
+ms.sourcegitcommit: 52402d5152d4eadfcb6feb313728bd09a39e6268
+ms.openlocfilehash: 87031d315f67ac49711639f238e79cdd09540b97
+
 
 ---
 # <a name="move-data-to-and-from-azure-table-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure 資料表來回移動資料
 本文概述如何使用 Azure Data Factory 中的「複製活動」，將資料從「Azure 資料表」移到另一個資料存放區，或從另一個資料存放區移到「Azure 資料表」。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動來移動資料時的一般概觀，以及所支援的資料存放區組合。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
-要建立將資料複製到 Azure 表格儲存體，或複製 Azure 表格儲存體資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。 
+要建立將資料複製到 Azure 表格儲存體，或複製 Azure 表格儲存體資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure 表格儲存體和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores) 所說的任何接收器。
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure 表格儲存體和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以將資料從任何來源**直接**複製到任何支援的接收器。 如需詳細資訊，請參閱[使用複製活動來移動資料](data-factory-data-movement-activities.md)中的＜支援的資料存放區和格式＞一節。
 
-## <a name="sample:-copy-data-from-azure-table-to-azure-blob"></a>範例：從 Azure 資料表複製資料到 Azure Blob
+## <a name="sample-copy-data-from-azure-table-to-azure-blob"></a>範例：從 Azure 資料表複製資料到 Azure Blob
 下列範例顯示︰
 
-1. [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務 (同時用於資料表和 Blob)。
+1. [AzureStorage](data-factory-azure-blob-connector.md) 類型的連結服務 (同時用於資料表和 Blob)。
 2. [AzureTable](#azure-table-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-3. [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。 
-4. 具有使用 [AzureTableSource](#azure-table-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。 
+3. [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
+4. 具有使用 [AzureTableSource](#azure-table-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 此範例會每小時將 Azure 資料表中屬於預設資料分割的資料複製到 Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
@@ -79,7 +83,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 **Azure Blob 輸出資料集：**
 
-資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。 
+資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
 
     {
       "name": "AzureBlobOutput",
@@ -151,46 +155,46 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
                     "description": "copy activity",
                     "type": "Copy",
                     "inputs": [
-                        {
+                          {
                             "name": "AzureTableInput"
                         }
                     ],
                     "outputs": [
-                        {
-                            "name": "AzureBlobOutput"
-                        }
+                          {
+                                "name": "AzureBlobOutput"
+                          }
                     ],
                     "typeProperties": {
-                        "source": {
+                          "source": {
                             "type": "AzureTableSource",
                             "AzureTableSourceQuery": "PartitionKey eq 'DefaultPartitionKey'"
-                        },
-                        "sink": {
+                          },
+                          "sink": {
                             "type": "BlobSink"
-                        }
+                          }
                     },
                     "scheduler": {
-                        "frequency": "Hour",
-                        "interval": 1
-                    },              
+                          "frequency": "Hour",
+                          "interval": 1
+                    },                
                     "policy": {
-                        "concurrency": 1,
-                        "executionPriorityOrder": "OldestFirst",
-                        "retry": 0,
-                        "timeout": "01:00:00"
+                          "concurrency": 1,
+                          "executionPriorityOrder": "OldestFirst",
+                          "retry": 0,
+                          "timeout": "01:00:00"
                     }
                 }
-             ]  
+             ]    
         }
     }
 
-## <a name="sample:-copy-data-from-azure-blob-to-azure-table"></a>範例：從 Azure Blob 複製資料到 Azure 資料表
+## <a name="sample-copy-data-from-azure-blob-to-azure-table"></a>範例：從 Azure Blob 複製資料到 Azure 資料表
 下列範例顯示︰
 
-1. [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties) 類型的連結服務 (同時用於資料表和 Blob)
+1. [AzureStorage](data-factory-azure-blob-connector.md) 類型的連結服務 (同時用於資料表和 Blob)
 2. [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-3. [AzureTable](#azure-table-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。 
-4. 具有使用 [BlobSource](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 和 [AzureTableSink](#azure-table-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。 
+3. [AzureTable](#azure-table-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
+4. 具有使用 [BlobSource](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 和 [AzureTableSink](#azure-table-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 此範例會每小時將時間序列資料從 Azure Blob 複製到 Azure 資料表。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
@@ -206,7 +210,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
       }
     }
 
-Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。 對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。 請參閱 [連結服務](#linked-services) 章節以取得詳細資料。 
+Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureStorage** 和 **AzureStorageSas**。 對於前者指定連接字串，包含帳戶金鑰，對於後者指定共用存取簽章 (SAS) Uri。 請參閱 [連結服務](#linked-services) 章節以取得詳細資料。
 
 **Azure Blob 輸入資料集：**
 
@@ -277,7 +281,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 **Azure 資料表輸出資料集：**
 
-此範例會將資料複製到 Azure 資料表中名為 "MyTable" 的資料表。 請建立資料行數目與您預期 Blob CSV 檔案要包含的數目相同的 Azure 資料表。 此資料表會每小時加入新的資料列。 
+此範例會將資料複製到 Azure 資料表中名為 "MyTable" 的資料表。 請建立資料行數目與您預期 Blob CSV 檔案要包含的數目相同的 Azure 資料表。 此資料表會每小時加入新的資料列。
 
     {
       "name": "AzureTableOutput",
@@ -296,7 +300,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 **具有複製活動的管線：**
 
-此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設定為 **BlobSource**，且 **sink** 類型設定為 **AzureTableSink**。 
+此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設定為 **BlobSource**，且 **sink** 類型設定為 **AzureTableSink**。
 
     {  
         "name":"SamplePipeline",
@@ -332,7 +336,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
             "scheduler": {
               "frequency": "Hour",
               "interval": 1
-            },                      
+            },                        
             "policy": {
               "concurrency": 1,
               "executionPriorityOrder": "OldestFirst",
@@ -367,7 +371,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 因此，對於無結構描述的資料來源來說，最佳作法是使用 **structure** 屬性來指定資料結構。
 
 ## <a name="azure-table-copy-activity-type-properties"></a>Azure 資料表複製活動類型屬性
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料集，以及原則) 適用於所有類型的活動。 
+如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料集，以及原則) 適用於所有類型的活動。
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
@@ -379,11 +383,11 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 | azureTableSourceIgnoreTableNotFound |指出是否忍受資料表不存在的例外狀況。 |TRUE<br/>FALSE |否 |
 
 ### <a name="azuretablesourcequery-examples"></a>azureTableSourceQuery 範例
-如果 Azure 資料表資料行是字串類型： 
+如果 Azure 資料表資料行是字串類型：
 
     azureTableSourceQuery": "$$Text.Format('PartitionKey ge \\'{0:yyyyMMddHH00_0000}\\' and PartitionKey le \\'{0:yyyyMMddHH00_9999}\\'', SliceStart)"
 
-如果 Azure 資料表資料行是日期時間類型： 
+如果 Azure 資料表資料行是日期時間類型：
 
     "azureTableSourceQuery": "$$Text.Format('DeploymentEndTime gt datetime\\'{0:yyyy-MM-ddTHH:mm:ssZ}\\' and DeploymentEndTime le datetime\\'{1:yyyy-MM-ddTHH:mm:ssZ}\\'', SliceStart, SliceEnd)"
 
@@ -407,9 +411,9 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
     "translator": {
         "type": "TabularTranslator",
         "columnMappings": "DivisionID: DivisionID, FirstName: FirstName, LastName: LastName"
-    } 
+    }
 
-DivisionID 被指定為分割區索引鍵。 
+DivisionID 被指定為分割區索引鍵。
 
     "sink": {
         "type": "AzureTableSink",
@@ -427,7 +431,7 @@ DivisionID 被指定為分割區索引鍵。
 1. 從原生來源類型轉換成 .NET 類型
 2. 從 .NET 類型轉換成原生接收類型
 
-將資料移入及移出 Azure 資料表時，從 Azure 資料表 OData 類型到 .NET 類型的對應會使用下列 [Azure 資料表服務定義的對應](https://msdn.microsoft.com/library/azure/dd179338.aspx)，反向對應亦適用。 
+將資料移入及移出 Azure 資料表時，從 Azure 資料表 OData 類型到 .NET 類型的對應會使用下列 [Azure 資料表服務定義的對應](https://msdn.microsoft.com/library/azure/dd179338.aspx)，反向對應亦適用。
 
 | OData 資料類型 | .NET 類型 | 詳細資料 |
 | --- | --- | --- |
@@ -441,9 +445,9 @@ DivisionID 被指定為分割區索引鍵。
 | Edm.String |String |UTF 16 編碼值。 字串值最大可達 64 KB。 |
 
 ### <a name="type-conversion-sample"></a>類型轉換範例
-下列範例適用於使用類型轉換從 Azure Blob 複製資料到 Azure 資料表。 
+下列範例適用於使用類型轉換從 Azure Blob 複製資料到 Azure 資料表。
 
-假設 Blob 資料集採用 CSV 格式而且包含三個資料行。 其中一個是含有自訂日期時間格式 (使用法文縮寫星期幾名稱) 的日期時間資料行。 
+假設 Blob 資料集採用 CSV 格式而且包含三個資料行。 其中一個是含有自訂日期時間格式 (使用法文縮寫星期幾名稱) 的日期時間資料行。
 
 請依下列方式，定義「Blob 來源」資料集及資料行的類型定義。
 
@@ -451,7 +455,7 @@ DivisionID 被指定為分割區索引鍵。
         "name": " AzureBlobInput",
         "properties":
         {
-             "structure": 
+             "structure":
               [
                     { "name": "userid", "type": "Int64"},
                     { "name": "name", "type": "String"},
@@ -484,7 +488,7 @@ DivisionID 被指定為分割區索引鍵。
         }
     }
 
-如果使用從「Azure 資料表」OData 類型到 .NET 類型的類型對應，您就會在「Azure 資料表」中定義具有下列結構描述的資料表。 
+如果使用從「Azure 資料表」OData 類型到 .NET 類型的類型對應，您就會在「Azure 資料表」中定義具有下列結構描述的資料表。
 
 **Azure 資料表結構描述：**
 
@@ -518,6 +522,8 @@ DivisionID 被指定為分割區索引鍵。
 ## <a name="performance-and-tuning"></a>效能和微調
 若要了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

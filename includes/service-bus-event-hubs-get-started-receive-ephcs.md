@@ -28,14 +28,14 @@
     ![](./media/service-bus-event-hubs-getstarted-receive-ephcs/create-receiver-csharp2.png)
 10. 在 SimpleEventProcessor.cs 檔案開頭處新增下列陳述式：
     
-     ```
+     ```csharp
      using Microsoft.ServiceBus.Messaging;
      using System.Diagnostics;
      ```
     
      接著，將該類別的主體取代為下列程式碼：
     
-     ```
+     ```csharp
      class SimpleEventProcessor : IEventProcessor
      {
          Stopwatch checkpointStopWatch;
@@ -80,13 +80,13 @@
      **EventProcessorHost** 會呼叫這個類別來處理接收自事件中樞的事件。 請注意， `SimpleEventProcessor` 類別會使用馬錶定期在 **EventProcessorHost** 內容上呼叫檢查點方法。 這可確保重新啟動接收者時，遺失的處理工作不超過五分鐘。
 11. 在 **Program** 類別檔案的頂端，新增下列 `using` 陳述式：
     
-     ```
+     ```csharp
      using Microsoft.ServiceBus.Messaging;
      ```
     
      然後，以下列程式碼取代 `Program` 類別中的 `Main` 方法，並替代您先前儲存的事件中樞名稱和命名空間層級連接字串，以及您在先前各節中複製的儲存體帳戶和金鑰。 
     
-     ```
+     ```csharp
      static void Main(string[] args)
      {
        string eventHubConnectionString = "{Event Hub connection string}";
@@ -121,6 +121,6 @@
 [EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
 [Azure 入口網站]: https://portal.azure.com
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

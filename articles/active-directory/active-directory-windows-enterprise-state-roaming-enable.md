@@ -1,13 +1,13 @@
 ---
-title: 在 Azure Active Directory 中啟用企業狀態漫遊 | Microsoft Docs
-description: Windows 裝置中企業狀態漫遊設定的常見問題集。 企業狀態漫遊提供使用者跨 Windows 裝置的一致體驗，並且減少設定新的裝置所需的時間。
+title: "在 Azure Active Directory 中啟用企業狀態漫遊 | Microsoft Docs"
+description: "Windows 裝置中企業狀態漫遊設定的常見問題集。 企業狀態漫遊提供使用者跨 Windows 裝置的一致體驗，並且減少設定新的裝置所需的時間。"
 services: active-directory
-keywords: 企業狀態漫遊, windows 雲端, 如何啟用企業狀態漫遊
-documentationcenter: ''
+keywords: "企業狀態漫遊, windows 雲端, 如何啟用企業狀態漫遊"
+documentationcenter: 
 author: femila
 manager: swadhwa
 editor: curtand
-
+ms.assetid: f71d66fd-7f9e-45eb-9cfe-5d989870f8a4
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 7b7cc0fda8ee2acb417052b501afb0e6e3d0a199
+
 
 ---
 # <a name="enable-enterprise-state-roaming-in-azure-active-directory"></a>在 Azure Active Directory 中啟用企業狀態漫遊
@@ -71,6 +75,9 @@ Azure AD 全域管理員可以在 Azure 傳統入口網站中啟用和停用企�
 * [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 * [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

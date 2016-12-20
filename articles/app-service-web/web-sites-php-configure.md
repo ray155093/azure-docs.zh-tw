@@ -1,19 +1,23 @@
 ---
-title: 在 Azure App Service Web Apps 中設定 PHP | Microsoft Docs
-description: 了解如何設定預設的 PHP 安裝，或是在 Azure App Service 中新增適用於 Web Apps 的自訂 PHP 安裝。
+title: "在 Azure App Service Web Apps 中設定 PHP | Microsoft Docs"
+description: "了解如何設定預設的 PHP 安裝，或是在 Azure App Service 中新增適用於 Web Apps 的自訂 PHP 安裝。"
 services: app-service
 documentationcenter: php
 author: rmcmurray
-manager: wpickett
-editor: ''
-
+manager: erikre
+editor: 
+ms.assetid: 95c4072b-8570-496b-9c48-ee21a223fb60
 ms.service: app-service
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/01/2016
 ms.author: robmcm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ece7ee4f0235f5677e03526cef8935809770cd93
+
 
 ---
 # <a name="configure-php-in-azure-app-service-web-apps"></a>在 Azure App Service Web Apps 中設定 PHP
@@ -22,7 +26,7 @@ ms.author: robmcm
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## <a name="how-to:-change-the-built-in-php-version"></a>作法：變更內建 PHP 版本
+## <a name="how-to-change-the-built-in-php-version"></a>作法：變更內建 PHP 版本
 當您建立 App Service Web 應用程式時，預設會安裝 PHP 5.4，而且可立即使用。 若要查看可用的修訂版、其預設組態及啟用的擴充，最好的方法是部署呼叫 [phpinfo()] 函數的指令碼。
 
 PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要更新 PHP 版本，請遵循下列方法其中之一：
@@ -38,7 +42,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
    
     ![儲存組態設定。][save-button]
 
-### <a name="azure-powershell-(windows)"></a>Azure PowerShell (Windows)
+### <a name="azure-powershell-windows"></a>Azure PowerShell (Windows)
 1. 開啟 Azure PowerShell 並登入您的帳戶。
    
         PS C:\> Login-AzureRmAccount
@@ -49,7 +53,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
    
         PS C:\> Get-AzureWebsite -Name {site-name} | findstr PhpVersion
 
-### <a name="azure-command-line-interface-(linux,-mac,-windows)"></a>Azure 命令列介面 (Linux、Mac、Windows)
+### <a name="azure-command-line-interface-linux-mac-windows"></a>Azure 命令列介面 (Linux、Mac、Windows)
 若要使用 Azure 命令列介面，您必須在電腦上安裝 **Node.js** 。
 
 1. 開啟 [終端機]，然後登入您的帳戶。
@@ -62,10 +66,10 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
    
         azure site show {site-name}
 
-## <a name="how-to:-change-the-built-in-php-configurations"></a>作法：變更內建 PHP 組態
-對於任一個內建的 PHP 執行階段，您可以遵循下列步驟，來變更任何組態選項。 (如需 php.ini 指示詞的資訊，請參閱 [php.ini 指示詞的清單](英文.md))。
+## <a name="how-to-change-the-built-in-php-configurations"></a>作法：變更內建 PHP 組態
+對於任一個內建的 PHP 執行階段，您可以遵循下列步驟，來變更任何組態選項。 (如需 php.ini 指示詞的資訊，請參閱 [php.ini 指示詞的清單](英文))。
 
-### <a name="changing-php\_ini\_user,-php\_ini\_perdir,-php\_ini\_all-configuration-settings"></a>變更 PHP\_INI\_USER、PHP\_INI\_PERDIR、PHP\_INI\_ALL 組態設定
+### <a name="changing-phpiniuser-phpiniperdir-phpiniall-configuration-settings"></a>變更 PHP\_INI\_USER、PHP\_INI\_PERDIR、PHP\_INI\_ALL 組態設定
 1. 將 [.user.ini] 檔案新增至根目錄。
 2. 使用在 `php.ini` 檔案中使用的相同語法，將組態設定新增至 `.user.ini` 檔案。 例如，如果您要啟動 `display_errors` 設定，並將 `upload_max_filesize` 設定設為 10M，則 `.user.ini` 檔案將包含下列文字：
    
@@ -80,7 +84,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
 
 除了使用 `.user.ini` 檔案之外，您也可以在指令碼中使用 [ini_set()] 函數，設定非系統層級指示詞的組態選項。
 
-### <a name="changing-php\_ini\_system-configuration-settings"></a>變更 PHP\_INI\_SYSTEM 組態設定
+### <a name="changing-phpinisystem-configuration-settings"></a>變更 PHP\_INI\_SYSTEM 組態設定
 1. 使用機碼 `PHP_INI_SCAN_DIR` 和值 `d:\home\site\ini` 將應用程式設定新增至 Web 應用程式
 2. 在 `d:\home\site\ini` 目錄中使用 Kudo 主控台 (http://&lt;site-name&gt;.scm.azurewebsite.net) 建立 `settings.ini` 檔案。
 3. 使用在 php.ini 檔案中使用的相同語法，將組態設定新增至 `settings.ini` 檔案。 例如，如果要將 `curl.cainfo` 設定指向 `*.crt` 檔案並將 'wincache.maxfilesize' 設定設定為 512K，您的 `settings.ini` 檔案應該包含以下文字：
@@ -90,7 +94,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
         wincache.maxfilesize=512
 4. 重新啟動 Web 應用程式以載入變更。
 
-## <a name="how-to:-enable-extensions-in-the-default-php-runtime"></a>作法：在預設 PHP 執行階段中啟用擴充
+## <a name="how-to-enable-extensions-in-the-default-php-runtime"></a>作法：在預設 PHP 執行階段中啟用擴充
 如同上一個小節所述，若要查看預設 PHP 版本、其預設組態及啟用的擴充，最好的方法是部署呼叫 [phpinfo()]函數的指令碼。 若要啟用擴充，請依照下列步驟執行：
 
 ### <a name="configure-via-ini-settings"></a>透過 ini 設定來設定
@@ -122,11 +126,11 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
 
 Zend 擴充功能也支援使用 **PHP_ZENDEXTENSIONS** 索引鍵。 若要啟用多個擴充功能，請針對應用程式設定值包含以逗號分隔的 `.dll` 檔案清單。
 
-## <a name="how-to:-use-a-custom-php-runtime"></a>做法：使用自訂 PHP 執行階段
+## <a name="how-to-use-a-custom-php-runtime"></a>做法：使用自訂 PHP 執行階段
 除了預設的 PHP 執行階段之外，App Service Web Apps 也可以使用您提供的 PHP 執行階段來執行 PHP 指令碼。 您提供的執行階段可以由也是您提供的 `php.ini` 檔案加以設定。 若要使用自訂 PHP 執行階段搭配 Web Apps，請依照下列步驟執行。
 
 1. 取得 PHP for Windows 的非安全執行緒 VC9 或 VC11 相容版本。 可以在下列網址找到最新版 PHP for Windows： [http://windows.php.net/download/]。 在下列封存中可以找到舊版： [http://windows.php.net/downloads/releases/archives/]。
-2. 為您的執行階段修改 `php.ini` 檔案。 請注意，Web Apps 將忽略僅系統層級指示詞的任何組態設定 (如需僅系統層級指示詞的資訊，請參閱 [php.ini 指示詞的清單](英文.md))。
+2. 為您的執行階段修改 `php.ini` 檔案。 請注意，Web Apps 將忽略僅系統層級指示詞的任何組態設定 (如需僅系統層級指示詞的資訊，請參閱 [php.ini 指示詞的清單] (英文))。
 3. 或者，將擴充功能新增至 PHP 執行階段，並且在 `php.ini` 檔案中啟用這些擴充功能。
 4. 將 `bin` 目錄新增至根目錄，並在其中放入包含 PHP 執行階段的目錄 (例如，`bin\php`)。
 5. 部署 Web 應用程式。
@@ -142,7 +146,7 @@ Zend 擴充功能也支援使用 **PHP_ZENDEXTENSIONS** 索引鍵。 若要啟�
 
 <a name="composer" />
 
-## <a name="how-to:-enable-composer-automation-in-azure"></a>做法︰在 Azure 中啟用編輯器自動化
+## <a name="how-to-enable-composer-automation-in-azure"></a>做法︰在 Azure 中啟用編輯器自動化
 App Service 預設不會對 composer.json (如果您 PHP 專案中有的話) 執行任何操作。 如果您使用 [Git 部署](app-service-web-php-get-started.md)，您可以透過啟用「編輯器」擴充功能，在 `git push` 期間啟用 composer.json 處理。
 
 > [!NOTE]
@@ -193,6 +197,6 @@ App Service 預設不會對 composer.json (如果您 PHP 專案中有的話) 執
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -72,10 +72,10 @@
 ### [在 Azure Stack 上部署 SQL Server 資源提供者配接器](azure-stack-sql-resource-provider-deploy.md)
 
 ## 規劃和部署 App Service
-### [Azure Stack Web Apps 概觀](azure-stack-app-service-overview.md)
-### [開始使用 Azure Stack Web Apps 之前](azure-stack-app-service-before-you-get-started.md)
-### [Web Apps：新增更多 Web 背景工作角色](azure-stack-webapps-add-worker-roles.md)
-### [將 Web Apps 資源提供者新增到 Azure Stack](azure-stack-app-service-deploy.md)
+### [Azure Stack 概觀上的 App Service](azure-stack-app-service-overview.md)
+### [開始之前](azure-stack-app-service-before-you-get-started.md)
+### [新增更多 Web 背景工作角色](azure-stack-app-service-add-worker-roles.md)
+### [將 App Service 資源提供者新增到 Azure Stack](azure-stack-app-service-deploy.md)
 
 # 疑難排解
 ## [針對 Azure Stack 進行移難排解](azure-stack-troubleshooting.md)
@@ -86,6 +86,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-stack)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

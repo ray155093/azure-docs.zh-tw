@@ -1,12 +1,12 @@
 ---
-title: 使用 CLI 與 Service Fabric 叢集互動 | Microsoft Docs
-description: 如何使用 Azure CLI 與 Service Fabric 叢集互動
+title: "使用 CLI 與 Service Fabric 叢集互動 | Microsoft Docs"
+description: "如何使用 Azure CLI 與 Service Fabric 叢集互動"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: c3ec8ff3-3b78-420c-a7ea-0c5e443fb10e
 ms.service: service-fabric
 ms.devlang: dotNet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/24/2016
 ms.author: subramar
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 1a73f51b182cd9ce4634deeb33153345b935b13b
+
 
 ---
 # <a name="using-the-azure-cli-to-interact-with-a-service-fabric-cluster"></a>使用 Azure CLI 與 Service Fabric 叢集互動
@@ -175,6 +179,9 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 ## <a name="next-steps"></a>後續步驟
 設定開發環境，並將 Service Fabric 應用程式部署到 Linux 叢集。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

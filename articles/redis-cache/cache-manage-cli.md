@@ -1,12 +1,12 @@
 ---
-title: 如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取 | Microsoft Docs
-description: 了解如何在任何平台上安裝 Azure CLI、如何使用它來連接到您的 Azure 帳戶，以及如何從 Azure CLI 建立和管理 Redis 快取。
+title: "如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取 | Microsoft Docs"
+description: "了解如何在任何平台上安裝 Azure CLI、如何使用它來連接到您的 Azure 帳戶，以及如何從 Azure CLI 建立和管理 Redis 快取。"
 services: redis-cache
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: douge
-editor: ''
-
+editor: 
+ms.assetid: 964ff245-859d-4bc1-bccf-62e4b3c1169f
 ms.service: cache
 ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
@@ -14,26 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 830eb6627cae71f358b9790791b1d86f7c82c566
+ms.openlocfilehash: db8095f225a6d5a954474f7014ce35800a363b55
+
 
 ---
-# 如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取
+# <a name="how-to-create-and-manage-azure-redis-cache-using-the-azure-command-line-interface-azure-cli"></a>如何使用 Azure 命令列介面 (Azure CLI) 建立並管理 Azure Redis 快取
 > [!div class="op_single_selector"]
 > * [PowerShell](cache-howto-manage-redis-cache-powershell.md)
 > * [Azure CLI](cache-manage-cli.md)
-> 
-> 
+>
+>
 
-Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文將說明如何使用 Azure CLI 建立並管理 Azure Redis 快取執行個體。
+Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。 本文將說明如何使用 Azure CLI 建立並管理 Azure Redis 快取執行個體。
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 若要使用 Azure CLI 建立並管理 Azure Redis 快取執行個體，您必須完成下列步驟：
 
-* 您必須具有 Azure 帳號。如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+* 您必須具有 Azure 帳號。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/) 。
 * [安裝 Azure CLI](../xplat-cli-install.md)。
-* 使用個人 Azure 帳戶，或是使用工作或學校的 Azure 帳戶連接 Azure CLI 安裝，並使用 `azure login` 命令從 Azure CLI 登入。若要了解其中的差異和選擇，請參閱[從 Azure 命令列介面 (Azure CLI) 連線到 Azure 訂用帳戶](../xplat-cli-connect.md)。
-* 在執行以下任何命令之前，執行 `azure config mode arm` 命令將 Azure CLI 切換至資源管理員模式。如需詳細資訊，請參閱[設定 Azure Resource Manager 模式](../xplat-cli-azure-resource-manager.md#set-the-azure-resource-manager-mode)。
+* 使用個人 Azure 帳戶，或是使用工作或學校的 Azure 帳戶連接 Azure CLI 安裝，並使用 `azure login` 命令從 Azure CLI 登入。 若要了解其中的差異和選擇，請參閱 [從 Azure 命令列介面 (Azure CLI) 連線到 Azure 訂用帳戶](../xplat-cli-connect.md)。
+* 在執行以下任何命令之前，執行 `azure config mode arm` 命令將 Azure CLI 切換至資源管理員模式。 如需詳細資訊，請參閱[使用 Azure CLI 管理 Azure 資源和資源群組](../xplat-cli-azure-resource-manager.md)。
 
-## Redis 快取屬性
+## <a name="redis-cache-properties"></a>Redis 快取屬性
 當建立並更新 Redis 快取執行個體時會使用下列屬性。
 
 | 屬性 | Switch | 說明 |
@@ -41,20 +45,20 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
 | 名稱 |-n, --name |Redis 快取的名稱。 |
 | 資源群組 |-g, --resource-group |資源群組的名稱。 |
 | location |-l, --location |要建立快取的位置。 |
-| size |-z, --size |Redis 快取的大小。有效的值：[C0, C1, C2, C3, C4, C5, C6, P1, P2, P3, P4] |
-| sku |-x, --sku |Redis SKU。應為其中一個：[Basic, Standard, Premium] |
-| EnableNonSslPort |-e, --enable-non-ssl-port |Redis 快取的 EnableNonSslPort 屬性。如果您想針對您的快取啟用非 SSL 連接埠，則加入此旗標 |
-| Redis 組態 |-c, --redis-configuration |Redis 組態。在這裡輸入組態金鑰和值的 JSON 格式字串。格式："{"":"","":""}" |
-| Redis 組態 |-f, --redis-configuration-file |Redis 組態。在這裡輸入包含組態金鑰和值的檔案路徑。檔案項目的格式：{"":"","":""} |
+| size |-z, --size |Redis 快取的大小。 有效的值：[C0, C1, C2, C3, C4, C5, C6, P1, P2, P3, P4] |
+| sku |-x, --sku |Redis SKU。 應為其中一個：[Basic, Standard, Premium] |
+| EnableNonSslPort |-e, --enable-non-ssl-port |Redis 快取的 EnableNonSslPort 屬性。 如果您想針對您的快取啟用非 SSL 連接埠，則加入此旗標 |
+| Redis 組態 |-c, --redis-configuration |Redis 組態。 在這裡輸入組態金鑰和值的 JSON 格式字串。 格式："{"":"","":""}" |
+| Redis 組態 |-f, --redis-configuration-file |Redis 組態。 在這裡輸入包含組態金鑰和值的檔案路徑。 檔案項目的格式：{"":"","":""} |
 | 分區計數 |-r, --shard-count |建立在具有叢集之進階叢集快取的分區數目。 |
-| 虛擬網路 |-v, --virtual-network |當快取是裝載在 VNET 中時，指定確切的虛擬網路 ARM 資源識別碼以將 Redis 快取部署到其中。範例格式：/subscriptions/{subid}/resourceGroups/{resourceGroupName}/Microsoft.ClassicNetwork/VirtualNetworks/vnet1 |
-| 金鑰類型 |-t, --key-type |要更新的金鑰類型。有效的值：[Primary, Secondary] |
-| StaticIP |-p, --static-ip <static-ip> |當快取是裝載在 VNET 中，為快取在子網路中指定唯一 IP 位址。如果未提供，則會從子網路中為您選擇一個。 |
+| 虛擬網路 |-v, --virtual-network |當快取是裝載在 VNET 中時，指定確切的虛擬網路 ARM 資源識別碼以將 Redis 快取部署到其中。 範例格式：/subscriptions/{subid}/resourceGroups/{resourceGroupName}/Microsoft.ClassicNetwork/VirtualNetworks/vnet1 |
+| 金鑰類型 |-t, --key-type |要更新的金鑰類型。 有效的值：[Primary, Secondary] |
+| StaticIP |-p, --static-ip <static-ip> |當快取是裝載在 VNET 中，為快取在子網路中指定唯一 IP 位址。 如果未提供，則會從子網路中為您選擇一個。 |
 | 子網路 |t, --subnet <subnet> |當快取是裝載在 VNET 中，指定要在其中部署快取的子網路。 |
-| VirtualNetwork |-v, --virtual-network <virtual-network> |當快取是裝載在 VNET 中時，指定確切的虛擬網路 ARM 資源識別碼以將 Redis 快取部署到其中。範例格式：/subscriptions/{subid}/resourceGroups/{resourceGroupName}/Microsoft.ClassicNetwork/VirtualNetworks/vnet1 |
+| VirtualNetwork |-v, --virtual-network <virtual-network> |當快取是裝載在 VNET 中時，指定確切的虛擬網路 ARM 資源識別碼以將 Redis 快取部署到其中。 範例格式：/subscriptions/{subid}/resourceGroups/{resourceGroupName}/Microsoft.ClassicNetwork/VirtualNetworks/vnet1 |
 | 訂用帳戶 |-s, --subscription |訂用帳戶識別碼。 |
 
-## 查看所有的 Redis 快取命令
+## <a name="see-all-redis-cache-commands"></a>查看所有的 Redis 快取命令
 若要查看所有的 Redis 快取命令和參數，請使用 `azure rediscache -h` 命令。
 
     C:\>azure rediscache -h
@@ -86,7 +90,7 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
     help:
     help:    Current Mode: arm (Azure Resource Management)
 
-## 建立 Redis 快取
+## <a name="create-a-redis-cache"></a>建立 Redis 快取
 若要建立 Redis 快取，請使用下列命令：
 
     azure rediscache create [--name <name> --resource-group <resource-group> --location <location> [options]]
@@ -119,7 +123,7 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
     help:
     help:    Current Mode: arm (Azure Resource Management)
 
-## 刪除現有的 Redis 快取
+## <a name="delete-an-existing-redis-cache"></a>刪除現有的 Redis 快取
 若要刪除 Redis 快取，請使用下列命令：
 
     azure rediscache delete [--name <name> --resource-group <resource-group> ]
@@ -142,7 +146,7 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
     help:
     help:    Current Mode: arm (Azure Resource Management)
 
-## 列出您的訂用帳戶或資源群組中所有的 Redis 快取
+## <a name="list-all-redis-caches-within-your-subscription-or-resource-group"></a>列出您的訂用帳戶或資源群組中所有的 Redis 快取
 若要列出您的訂用帳戶或資源群組中所有的 Redis 快取，請使用下列命令：
 
     azure rediscache list [options]
@@ -164,7 +168,7 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
     help:
     help:    Current Mode: arm (Azure Resource Management)
 
-## 顯示現有 Redis 快取的屬性
+## <a name="show-properties-of-an-existing-redis-cache"></a>顯示現有 Redis 快取的屬性
 若要顯示現有的 Redis 快取屬性，請使用下列命令：
 
     azure rediscache show [--name <name> --resource-group <resource-group>]
@@ -189,7 +193,7 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
 
 <a name="scale"></a>
 
-## 變更現有 Redis 快取的設定
+## <a name="change-settings-of-an-existing-redis-cache"></a>變更現有 Redis 快取的設定
 若要變更現有的 Redis 快取設定，請使用下列命令：
 
     azure rediscache set [--name <name> --resource-group <resource-group> --redis-configuration <redis-configuration>/--redis-configuration-file <redisConfigurationFile>]
@@ -214,7 +218,7 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
     help:
     help:    Current Mode: arm (Azure Resource Management)
 
-## 更新現有的 Redis 快取驗證金鑰
+## <a name="renew-the-authentication-key-for-an-existing-redis-cache"></a>更新現有的 Redis 快取驗證金鑰
 若要更新現有 Redis 快取的驗證金鑰，請使用下列命令：
 
     azure rediscache renew-key [--name <name> --resource-group <resource-group> --key-type <key-type>]
@@ -240,7 +244,7 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
     help:
     help:    Current Mode: arm (Azure Resource Management)
 
-## 列出現有之 Redis 快取的主要和次要金鑰
+## <a name="list-primary-and-secondary-keys-of-an-existing-redis-cache"></a>列出現有之 Redis 快取的主要和次要金鑰
 若要列出現有之 Redis 快取的主要和次要金鑰，請使用下列命令：
 
     azure rediscache list-keys [--name <name> --resource-group <resource-group>]
@@ -263,4 +267,8 @@ Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。本文
     help:
     help:    Current Mode: arm (Azure Resource Management)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,12 +1,12 @@
 ---
-title: 在 Azure App Service 中設定自訂網域名稱 (GoDaddy)
-description: 了解如何搭配使用來自 GoDaddy 的網域名稱與 Azure Web Apps
+title: "在 Azure App Service 中設定自訂網域名稱 (GoDaddy)"
+description: "了解如何搭配使用來自 GoDaddy 的網域名稱與 Azure Web Apps"
 services: app-service
-documentationcenter: ''
+documentationcenter: 
 author: erikre
 manager: wpickett
 editor: jimbe
-
+ms.assetid: 33233e30-5846-488f-83f3-b32e5c114564
 ms.service: app-service
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: dc3ee1f4d3205b40397d5f82959a78316def5f45
+
 
 ---
-# <a name="configure-a-custom-domain-name-in-azure-app-service-(purchased-directly-from-godaddy)"></a>在 Azure App Service 中設定自訂網域名稱 (直接向 GoDaddy 購買)
+# <a name="configure-a-custom-domain-name-in-azure-app-service-purchased-directly-from-godaddy"></a>在 Azure App Service 中設定自訂網域名稱 (直接向 GoDaddy 購買)
 [!INCLUDE [web-selector](../../includes/websites-custom-domain-selector.md)]
 
 [!INCLUDE [intro](../../includes/custom-dns-web-site-intro.md)]
@@ -56,7 +60,7 @@ ms.author: cephalin
    
     ![選取記錄類型](./media/web-sites-godaddy-custom-domain-name/godaddy-selectrecordtype.png)
    
-    接下來，您必須提供 [主機](自訂網域或子網域.md) 及其 [指向] 位置。
+    接下來，您必須提供 [主機] (自訂網域或子網域) 及其 [指向] 位置。
    
     ![新增區域記錄](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
    
@@ -81,9 +85,12 @@ ms.author: cephalin
 > 
 > 
 
-## <a name="what's-changed"></a>變更的項目
+## <a name="whats-changed"></a>變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

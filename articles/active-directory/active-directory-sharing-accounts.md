@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure AD 共用帳戶 | Microsoft Docs
-description: 描述 Azure Active Directory 如何讓組織安全地共用內部部署應用程式和取用者雲端服務的帳戶。
+title: "使用 Azure AD 共用帳戶 | Microsoft Docs"
+description: "描述 Azure Active Directory 如何讓組織安全地共用內部部署應用程式和取用者雲端服務的帳戶。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: msStevenPo
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: e2d77104-d978-46a3-bfea-03ffdf3b61e6
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2016
 ms.author: stevenpo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b689a0033103231d560c9ba4b349e675f304e35c
+
 
 ---
 # <a name="sharing-accounts-with-azure-ad"></a>使用 Azure AD 共用帳戶
@@ -70,6 +74,9 @@ Azure AD 支援的共用帳戶適用於任何Enterprise Mobility Suite (EMS)、�
 * [使用條件式存取來保護應用程式](active-directory-conditional-access.md)
 * [自助式群組管理/SSAA](active-directory-accessmanagement-self-service-group-management.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

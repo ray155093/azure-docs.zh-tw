@@ -1,44 +1,48 @@
 ---
-title: 使用 Azure Resource Manager 範本建立服務匯流排授權規則 | Microsoft Docs
-description: 使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則
-services: service-bus
+title: "使用 Azure Resource Manager 範本建立服務匯流排授權規則 | Microsoft Docs"
+description: "使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則"
+services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 7f1443a0-5fa8-4d90-8637-1a977ef0b1f0
+ms.service: service-bus-messaging
 ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 07/11/2016
+ms.date: 10/14/2016
 ms.author: sethm;shvija
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 178b49b74319c57bb6a948b1b364c9d2e59b2379
+
 
 ---
 # <a name="create-a-service-bus-authorization-rule-for-namespace-and-queue-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則
-本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列的[授權規則](../service-bus/service-bus-authentication-and-authorization.md#shared-access-signature-authentication)。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列的[授權規則](service-bus-authentication-and-authorization.md#shared-access-signature-authentication)。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
-如需建立範本的詳細資訊，請參閱 [編寫 Azure Resource Manager 範本][編寫 Azure Resource Manager 範本]。
+如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][編寫 Azure Resource Manager 範本]。
 
-如需完整的範本，請參閱 GitHub 上的 [服務匯流排授權規則範本][服務匯流排授權規則範本] 。
+如需完整的範本，請參閱 GitHub 上的[服務匯流排授權規則範本][服務匯流排授權規則範本]。
 
 > [!NOTE]
 > 下列 Azure Resource Manager 範本可供下載和部署。
 > 
-> * [建立事件中樞命名空間與事件中樞和取用者群組](../event-hubs/event-hubs-resource-manager-namespace-event-hub.md)
+> * [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
 > * [建立服務匯流排命名空間與佇列](service-bus-resource-manager-namespace-queue.md)
 > * [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
-> * [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
+> * [建立服務匯流排命名空間與主題、訂用帳戶和規則](service-bus-resource-manager-namespace-topic-with-rule.md)
 > 
-> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure 快速入門範本] 資源庫並搜尋服務匯流排。
+> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure 快速入門範本]資源庫並搜尋「服務匯流排」。
 > 
 > 
 
-## <a name="what-will-you-deploy?"></a>您將部署什麼？
+## <a name="what-will-you-deploy"></a>您將部署什麼？
 使用此範本，您將部署命名空間和訊息實體 (在此情況下為佇列) 的服務匯流排授權規則。
 
-此範本使用[共用存取簽章 (SAS)](../service-bus/service-bus-sas-overview.md) 進行驗證。 SAS 可讓應用程式使用在命名空間或在與特定權限相關聯的訊息實體 (佇列或主題) 上設定的存取金鑰，向服務匯流排進行驗證。 您可以接著使用此金鑰來產生 SAS 權杖，以便用戶端用來向服務匯流排進行驗證。
+此範本使用[共用存取簽章 (SAS)](service-bus-sas-overview.md) 進行驗證。 SAS 可讓應用程式使用在命名空間或在與特定權限相關聯的訊息實體 (佇列或主題) 上設定的存取金鑰，向服務匯流排進行驗證。 您可以接著使用此金鑰來產生 SAS 權杖，以便用戶端用來向服務匯流排進行驗證。
 
 若要自動執行部署，請按一下下列按鈕：
 
@@ -157,9 +161,9 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 ## <a name="next-steps"></a>後續步驟
 現在您已使用 Azure Resource Manager 建立並部署資源，請檢視這些文件，了解如何管理這些資源︰
 
-* [使用 PowerShell 管理服務匯流排](../service-bus/service-bus-powershell-how-to-provision.md)
+* [使用 PowerShell 管理服務匯流排](service-bus-powershell-how-to-provision.md)
 * [使用服務匯流排總管管理服務匯流排資源](https://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a)
-* [服務匯流排驗證和授權](../service-bus/service-bus-authentication-and-authorization.md)
+* [服務匯流排驗證和授權](service-bus-authentication-and-authorization.md)
 
 [編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
 [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
@@ -169,6 +173,6 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

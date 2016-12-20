@@ -1,59 +1,71 @@
 ---
-title: 如何在傳統部署模型中使用 PowerShell 管理服務的反向 DNS 記錄| Microsoft Docs
-description: 如何在傳統部署模型中使用 PowerShell 管理 Azure 服務的反向 DNS 記錄或 PTR 記錄。
+title: "使用 PowerShell 管理 Azure (傳統) 服務的反向 DNS 記錄 | Microsoft Docs"
+description: "如何在傳統部署模型中使用 PowerShell 管理 Azure 服務的反向 DNS 記錄或 PTR 記錄。 "
 services: DNS
 documentationcenter: na
 author: s-malone
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: 9c24d176-6bce-4277-a14c-80fe44a20a87
 ms.service: DNS
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/05/2016
+ms.date: 10/28/2016
 ms.author: smalone
+translationtype: Human Translation
+ms.sourcegitcommit: 7d640b2ffe600ce84e2ec867cd29930b26dab908
+ms.openlocfilehash: 1b5f6fa50a0a5a98d8eb5ecc7aeaa632e1183c38
+
 
 ---
-# 如何使用 PowerShell 管理服務 (傳統) 的反向 DNS 記錄
+# <a name="how-to-manage-reverse-dns-records-for-your-azure-services-classic-using-azure-powershell"></a>如何使用 Azure PowerShell 管理 Azure 服務 (傳統) 的反向 DNS 記錄
+
 [!INCLUDE [dns-reverse-dns-record-operations-arm-selectors-include.md](../../includes/dns-reverse-dns-record-operations-arm-selectors-include.md)]
 
-<BR>
-[!INCLUDE [DNS-reverse-dns-record-operations-intro-include.md](../../includes/dns-reverse-dns-record-operations-intro-include.md)]
-<BR>
-[!INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)]
-了解如何[使用 Resource Manager 模型執行這些步驟](dns-reverse-dns-record-operations-ps.md)。
 
-## 反向 DNS 記錄的驗證
+[!INCLUDE [DNS-reverse-dns-record-operations-intro-include.md](../../includes/dns-reverse-dns-record-operations-intro-include.md)]
+
+
+[!INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何 [使用 Resource Manager 模型執行這些步驟](dns-reverse-dns-record-operations-ps.md)。
+
+## <a name="validation-of-reverse-dns-records"></a>反向 DNS 記錄的驗證
 為了確保其他人無法建立對應至您 DNS 網域的反向 DNS 記錄，Azure 僅會在下列其中一種情況成立時允許建立反向 DNS 記錄：
 
 * 反向 DNS FQDN 為其所指定之「雲端服務」的名稱，或是相同訂用帳戶內的任何「雲端服務」名稱，例如，例如，反向 DNS 為 "contosoapp1.cloudapp.net."。
 * 反向 DNS FQDN 正向解析為其所指定之「雲端服務」的名稱或 IP，或是相同訂用帳戶內任何「雲端服務」的名稱或 IP，例如，反向 DNS 為 "app1.contoso.com."，這是 contosoapp1.cloudapp.net. 的 CName 別名。
 
-驗證檢查只會在設定或修改「雲端服務」的反向 DNS 屬性時才會執行。不會執行定期的重新驗證。
+驗證檢查只會在設定或修改「雲端服務」的反向 DNS 屬性時才會執行。 不會執行定期的重新驗證。
 
-## 將反向 DNS 新增至現有的雲端服務
+## <a name="add-reverse-dns-to-existing-cloud-services"></a>將反向 DNS 新增至現有的雲端服務
 您可以使用 "Set-AzureService" Cmdlet，將反向 DNS 記錄新增至現有的雲端服務：
 
     PS C:\> Set-AzureService –ServiceName “contosoapp1” –Description “App1 with Reverse DNS” –ReverseDnsFqdn “contosoapp1.cloudapp.net.”
 
-## 建立具有反向 DNS 的雲端服務
+## <a name="create-a-cloud-service-with-reverse-dns"></a>建立具有反向 DNS 的雲端服務
 您可以使用 "Set-AzureService" Cmdlet，建立指定了反向 DNS 屬性的新雲端服務：
 
     PS C:\> New-AzureService –ServiceName “contosoapp1” –Location “West US” –Description “App1 with Reverse DNS” –ReverseDnsFqdn “contosoapp1.cloudapp.net.”
 
-## 檢視現有雲端服務的反向 DNS
+## <a name="view-reverse-dns-for-existing-cloud-services"></a>檢視現有雲端服務的反向 DNS
 您可以使用 "Get-AzureService" Cmdlet，檢視現有雲端服務的設定值：
 
     PS C:\> Get-AzureService "contosoapp1"
 
-## 移除現有雲端服務的反向 DNS
-您可以使用 "Set-AzureService" Cmdlet，移除現有雲端服務的反向 DNS 屬性。這可以透過將反向 DNS 屬性值設定為空白來完成：
+## <a name="remove-reverse-dns-from-existing-cloud-services"></a>移除現有雲端服務的反向 DNS
+您可以使用 "Set-AzureService" Cmdlet，移除現有雲端服務的反向 DNS 屬性。 這可以透過將反向 DNS 屬性值設定為空白來完成：
 
     PS C:\> Set-AzureService –ServiceName “contosoapp1” –Description “App1 with Reverse DNS” –ReverseDnsFqdn “”
 
-[!INCLUDE [常見問題集](../../includes/dns-reverse-dns-record-operations-faq-asm-include.md)]
+[!INCLUDE [FAQ1](../../includes/dns-reverse-dns-record-operations-faq-host-own-arpa-zone-include.md)]
 
-<!----HONumber=AcomDC_0907_2016-->
+[!INCLUDE [FAQ2](../../includes/dns-reverse-dns-record-operations-faq-asm-include.md)]
+
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

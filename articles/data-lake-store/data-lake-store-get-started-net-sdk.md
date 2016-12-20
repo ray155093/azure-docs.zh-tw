@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/27/2016
+ms.date: 11/21/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 47f8601471c6b1f6da5d57d1f30da51af76fba85
+ms.sourcegitcommit: ad50c6c12bc3b328d776f37fc31f44d90a0915a3
+ms.openlocfilehash: 990f899681b6828edac6fccfd4509f20812edbdf
 
 
 ---
@@ -29,7 +29,8 @@ ms.openlocfilehash: 47f8601471c6b1f6da5d57d1f30da51af76fba85
 > * [REST API](data-lake-store-get-started-rest-api.md)
 > * [Azure CLI](data-lake-store-get-started-cli.md)
 > * [Node.js](data-lake-store-manage-use-nodejs.md)
-> 
+> * [Python](data-lake-store-get-started-python.md)
+>
 > 
 
 了解如何使用 [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com/library/mt581387.aspx) 來執行基本作業，例如建立資料夾、上傳和下載資料檔案等等。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
@@ -103,7 +104,7 @@ ms.openlocfilehash: 47f8601471c6b1f6da5d57d1f30da51af76fba85
 在本文的其餘章節中，您可以了解如何使用可用的 .NET 方法來執行一些作業，例如驗證、檔案上載等。
 
 ## <a name="authentication"></a>驗證
-### <a name="if-you-are-using-enduser-authentication-recommended-for-this-tutorial"></a>如果您要使用使用者驗證 (本教學課程建議的驗證方式)
+### <a name="if-you-are-using-end-user-authentication-recommended-for-this-tutorial"></a>如果您要使用使用者驗證 (本教學課程建議的驗證方式)
 請將此方法用於現有的 Azure AD「原生用戶端」應用程式；下面會提供一個範例應用程式。 為了協助您更快完成本教學課程，建議您使用此方法。
 
     // User login via interactive popup
@@ -117,14 +118,14 @@ ms.openlocfilehash: 47f8601471c6b1f6da5d57d1f30da51af76fba85
 上面這個程式碼片段有幾項須知。
 
 * 為了協助您更快完成本教學課程，此程式碼片段使用所有 Azure 訂用帳戶預設可用的 Azure AD 網域和用戶端識別碼。 因此，您可以**在應用程式中原封不動地使用此程式碼片段**。
-* 但是，如果您想要使用自己的 Azure AD 網域和應用程式用戶端識別碼，您必須建立 Azure AD 原生應用程式，然後使用您所建立之應用程式的 Azure AD 網域、用戶端識別碼和重新導向 URI。 如需相關指示，請參閱 [建立 Active Directory 應用程式](../resource-group-create-service-principal-portal.md#create-an-active-directory-application) 。
+* 但是，如果您想要使用自己的 Azure AD 網域和應用程式用戶端識別碼，您必須建立 Azure AD 原生應用程式，然後使用您所建立之應用程式的 Azure AD 網域、用戶端識別碼和重新導向 URI。 如需相關指示，請參閱 [建立 Active Directory 應用程式](data-lake-store-end-user-authenticate-using-active-directory.md) 。
 
 > [!NOTE]
 > 上述連結中的指示適用於 Azure AD Web 應用程式。 不過，即使您選擇改為建立原生用戶端應用程式，步驟也完全相同。 
 > 
 > 
 
-### <a name="if-you-are-using-servicetoservice-authentication-with-client-secret"></a>如果您要使用服務對服務驗證與用戶端密碼
+### <a name="if-you-are-using-service-to-service-authentication-with-client-secret"></a>如果您要使用服務對服務驗證與用戶端密碼
 下列程式碼片段可供使用應用程式/服務主體的用戶端密碼/金鑰，以非互動方式驗證您的應用程式。 請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../resource-group-create-service-principal-portal.md)。
 
     // Service principal / appplication authentication with client secret / key
@@ -136,7 +137,7 @@ ms.openlocfilehash: 47f8601471c6b1f6da5d57d1f30da51af76fba85
     var clientCredential = new ClientCredential(webApp_clientId, clientSecret);
     var creds = ApplicationTokenProvider.LoginSilentAsync(domain, clientCredential).Result;
 
-### <a name="if-you-are-using-servicetoservice-authentication-with-certificate"></a>如果您要使用服務對服務驗證與憑證
+### <a name="if-you-are-using-service-to-service-authentication-with-certificate"></a>如果您要使用服務對服務驗證與憑證
 第三個選項，下列程式碼片段可供使用應用程式 / 服務主體的憑證，以非互動方式驗證您的應用程式。 請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../resource-group-create-service-principal-portal.md)。
 
     // Service principal / application authentication with certificate
@@ -260,6 +261,6 @@ ms.openlocfilehash: 47f8601471c6b1f6da5d57d1f30da51af76fba85
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

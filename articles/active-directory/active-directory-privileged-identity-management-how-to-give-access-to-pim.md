@@ -1,12 +1,12 @@
 ---
-title: 如何授與 PIM 存取權 | Microsoft Docs
-description: 了解如何使用 Azure Active Directory Privileged Identity Management 擴充功能為使用者加入角色，以便他們可以管理 PIM。
+title: "如何授與對 PIM 的存取權 |Microsoft Docs"
+description: "了解如何使用 Azure Active Directory Privileged Identity Management 擴充功能為使用者加入角色，以便他們可以管理 PIM。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: kgremban
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: d4c53b53-2b37-41e6-813c-96ec08a1c897
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/22/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 42273f2e20be65cc794d078fb4c3ba4585d2aa79
+
 
 ---
 # <a name="how-to-give-access-to-manage-azure-ad-privileged-identity-management"></a>如何授與存取權以管理 Azure AD Privileged Identity Management
@@ -40,7 +44,7 @@ ms.author: kgremban
    * 每當您指派新角色給某位使用者時，系統都會自動將他們設定成符合啟用該角色的資格。 如果您想要將使用者在該角色中設為永久，請按一下清單中的該使用者。 在使用者資訊功能表中選取 [設為永久]  。
 6. 將 [開始使用 Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md)連結傳送給使用者。
 
-## <a name="remove-another-user's-access-rights-for-managing-pim"></a>移除其他使用者管理 PIM 的存取權限
+## <a name="remove-another-users-access-rights-for-managing-pim"></a>移除其他使用者管理 PIM 的存取權限
 將某人自特殊權限角色管理員角色移除之前，請確保該角色仍有兩位指派的使用者。
 
 1. 在 PIM 儀表板中，按一下 [特殊權限角色管理員] 角色。  該角色的目前使用者清單隨即出現。
@@ -59,6 +63,6 @@ ms.author: kgremban
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

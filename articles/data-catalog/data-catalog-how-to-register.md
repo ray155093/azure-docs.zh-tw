@@ -1,13 +1,13 @@
 ---
-title: 如何註冊資料來源 | Microsoft Docs
-description: 專門說明如何使用 Azure 資料目錄註冊資料來源 (包括註冊期間擷取的中繼資料欄位) 的操作說明文章。
+title: "如何註冊資料來源 | Microsoft Docs"
+description: "專門說明如何使用 Azure 資料目錄註冊資料來源 (包括註冊期間擷取的中繼資料欄位) 的操作說明文章。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: steelanddata
 manager: NA
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: bab89906-186f-4d35-9ffd-61b1d903905d
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 10/04/2016
 ms.author: maroche
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 25c2b279487f099a0e688621e63faaa4ed265e6e
+
 
 ---
 # <a name="how-to-register-data-sources"></a>如何註冊資料來源
@@ -81,6 +85,9 @@ ms.author: maroche
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何註冊資料來源的逐步詳細資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

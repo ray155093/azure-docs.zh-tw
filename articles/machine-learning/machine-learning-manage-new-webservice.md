@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure Machine Learning Web 服務入口網站管理 Web 服務 | Microsoft Docs
-description: 管理 Azure 機器學習工作區的存取權，並部署和管理 ML API Web 服務
+title: "使用 Azure Machine Learning Web 服務入口網站管理 Web 服務 | Microsoft Docs"
+description: "管理 Azure 機器學習工作區的存取權，並部署和管理 ML API Web 服務"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: vDonGlover
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: b62cf2ca-dd2a-4a83-bb54-469f948fb026
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: v-donglo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3b04aa7406f44130deb4f12c856b459369301449
+
 
 ---
 # <a name="manage-a-web-service-using-the-azure-machine-learning-web-services-portal"></a>使用 Azure Machine Learning Web 服務入口網站管理 Web 服務
@@ -22,7 +26,7 @@ ms.author: v-donglo
 在 Machine Learning Web 服務入口網站中，您可以︰
 
 * 監視 Web 服務的使用方式。
-* 設定描述、更新 Web 服務的金鑰 (僅限新式)、更新您的儲存體帳戶金鑰 (僅限新式)、啟用記錄 (僅限傳統)，以及啟用或停用範例資料。
+* 設定描述、更新 Web 服務的金鑰 (僅限新式)、更新您的儲存體帳戶金鑰 (僅限新式)、啟用記錄，以及啟用或停用範例資料。
 * 刪除 Web 服務。
 * 建立、刪除或更新計費方案 (僅限新式)。
 * 新增和刪除端點 (僅限傳統)
@@ -171,6 +175,9 @@ ms.author: v-donglo
 > 
 > 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

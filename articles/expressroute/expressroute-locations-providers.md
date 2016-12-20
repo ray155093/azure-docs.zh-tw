@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/02/2016
+ms.date: 11/28/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
+ms.sourcegitcommit: eb618aea1ee5aba24cebd4d8518e9c7f546f5f4f
+ms.openlocfilehash: ae1e750a5f97325df064a02ed156610b4576f1d3
 
 
 ---
@@ -28,7 +28,10 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 
 ![位置圖][0]
 
-如果您至少與地緣政治區域內的一個 ExpressRoute 位置連線，您將有權存取地緣政治區域內所有區域中的 Azure 服務。 下表提供地緣政治區域內 ExpressRoute 位置的 Azure 區域對應。
+如果您至少與地緣政治區域內的一個 ExpressRoute 位置連線，您將有權存取地緣政治區域內所有區域中的 Azure 服務。 
+
+### <a name="azure-regions-to-expressroute-locations-within-a-geopolitical-region"></a>地緣政治區域內 ExpressRoute 位置的 Azure 區域
+下表提供地緣政治區域內 ExpressRoute 位置的 Azure 區域對應。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- |
@@ -40,6 +43,7 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 | **澳大利亞** |澳洲東南部、澳洲東部 |墨爾本、雪梨 |
 | **印度** |印度西部、印度中部、印度南部 |辰內，孟買 |
 
+### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>國家雲端的區域和地理政治界限
 下表提供國家雲端的區域和地理政治界限等資訊。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
@@ -50,10 +54,10 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 
 標準 ExpressRoute SKU 不支援跨地緣政治區域的連線。 您必須啟用 ExpressRoute 進階附加元件，以支援全球連線。 不支援連線至國家雲端環境。 如果有需要的話，您可以聯絡您的連線提供者。
 
-## <a name="connectivity-provider-locations"></a>連線提供者位置
+## <a name="a-namelocationsaconnectivity-provider-locations"></a><a name="locations"></a>連線提供者位置
 > [!div class="op_single_selector"]
-> [依提供者顯示位置](expressroute-locations.md#connectivity-provider-locations)
-> [依位置顯示提供者](expressroute-locations-providers.md#connectivity-provider-locations)
+> * [依提供者的位置](expressroute-locations.md#locations)
+> * [依位置的提供者](expressroute-locations-providers.md#locations)
 > 
 > 
 
@@ -83,13 +87,14 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 | **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Megaport、NTT Communications、Orange、SingTel、Tata Communications、Verizon |
 | **雪梨** |AARNet、AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Orange、Telstra Corporation、Verizon |
 | **東京** |Aryaka Networks、British Telecom、Colt、Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank、Verizon |
-| **多倫多** |Cologix、Equinix、Zayo Group |
+| **多倫多** |Cologix、Equinix、Megaport、Zayo Group |
 | **華盛頓** |Aryaka Networks、AT&T NetBond、British Telecom、Comcast、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、Tata Communications、Verizon、Zayo Group |
 
  **+** 表示即將推出
 
 ### <a name="national-cloud-environments"></a>國家雲端環境
-#### <a name="us-government-cloud"></a>美國政府雲端
+
+### <a name="us-government-cloud"></a>美國政府雲端
 | **位置** | **服務提供者** |
 | --- | --- |
 | **芝加哥** |AT&T NetBond、Equinix、Level 3 Communications、Verizon |
@@ -97,7 +102,7 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 | **紐約** |Equinix、Level 3 Communications+、Verizon |
 | **華盛頓** |AT&T NetBond、Equinix、Level 3 Communications、Verizon |
 
-#### <a name="china"></a>中國
+### <a name="china"></a>中國
 | **位置** | **服務提供者** |
 | --- | --- |
 | **北京** |China Telecom |
@@ -105,7 +110,7 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 
 若要深入了解，請參閱 [ExpressRoute (中國)](http://www.windowsazure.cn/home/features/expressroute/)
 
-#### <a name="germany"></a>德國
+### <a name="germany"></a>德國
 | **位置** | **服務提供者** |
 | --- | --- |
 | **柏林** |Colt+、e-shelter |
@@ -115,13 +120,13 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
 
 * 請洽詢您的連線提供者，以了解他們是否連線到上方表格中列出的任何 Exchange 提供者。 您可以檢查下列連結，以收集 Exchange 提供者所提供之服務的相關詳細資訊。 已有數個連線提供者連線到乙太網路 Exchange。
-  
+  * [Cologix](http://www.cologix.com/)
+  * [CoreSite](http://www.coresite.com/)
   * [Equinix Cloud Exchange](http://www.equinix.com/services/interconnection-connectivity/cloud-exchange/)
-  * [TeleCity CloudIX](http://www.telecitygroup.com/colocation-services/cloud-ix.htm)
   * [InterXion](http://www.interxion.com/)
   * [NextDC](http://www.nextdc.com/)
-  * [CoreSite](http://www.coresite.com/)
-  * [Cologix](http://www.cologix.com/)
+  * [Megaport](https://www.megaport.com/services/microsoft-expressroute/)
+  * [TeleCity CloudIX](http://www.telecitygroup.com/colocation-services/cloud-ix.htm)
 * 請您的連線提供者將您的網路延伸到選擇的對等互連位置。
   * 請確保您的連線提供者以高可用性的方式延伸您的連線，因此不會有單一失敗點。
 * 排序一個 ExpressRoute 循環，將 Exchange 視為連線至 Microsoft 的連線提供者。
@@ -153,6 +158,6 @@ ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

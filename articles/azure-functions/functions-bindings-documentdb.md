@@ -1,230 +1,295 @@
 ---
-title: Azure Functions DocumentDB 繫結 | Microsoft Docs
-description: 了解如何在 Azure Functions 中使用 Azure DocumentDB 繫結。
+title: "Azure Functions DocumentDB 繫結 | Microsoft Docs"
+description: "了解如何在 Azure Functions 中使用 Azure DocumentDB 繫結。"
 services: functions
 documentationcenter: na
 author: christopheranderson
 manager: erikre
-editor: ''
-tags: ''
-keywords: azure functions, 函數, 事件處理, 動態運算, 無伺服器架構
-
+editor: 
+tags: 
+keywords: "azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"
+ms.assetid: 3d8497f0-21f3-437d-ba24-5ece8c90ac85
 ms.service: functions
 ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 08/22/2016
+ms.date: 11/10/2016
 ms.author: chrande; glenga
+translationtype: Human Translation
+ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
+ms.openlocfilehash: 3c406de579e3f09b521b60861230106c952f4357
+
 
 ---
-# Azure Functions DocumentDB 繫結
+# <a name="azure-functions-documentdb-bindings"></a>Azure Functions DocumentDB 繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure DocumentDB 繫結進行設定及撰寫程式碼。
+這篇文章說明如何在 Azure Functions 中為 Azure DocumentDB 繫結進行設定及撰寫程式碼。 Azure Functions 支援 DocumentDB 的輸入和輸出繫結。
 
-[!INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-## <a id="docdbinput"></a>Azure DocumentDB 輸入繫結
-輸入繫結可從 DocumentDB 集合載入文件，並將它直接傳遞至您的繫結。您可以根據叫用該函式的觸發程序來判斷文件識別碼。在 C# 函式中，當函式成功結束時，會將記錄所做的任何變更自動傳回集合。
+如需有關 DocumentDB 的詳細資訊，請參閱 [DocumentDB 簡介](../documentdb/documentdb-introduction.md)和[建置 DocumentDB 主控台應用程式](../documentdb/documentdb-get-started.md)。
 
-#### DocumentDB 輸入繫結的 function.json
-「function.json」檔案提供下列屬性：
+<a id="docdbinput"></a>
 
-* `name`︰函式程式碼中用於文件的變數名稱。
-* `type`︰必須設定為 "documentdb"。
-* `databaseName`︰包含文件的資料庫。
-* `collectionName`︰包含文件的集合。
-* `id`︰要擷取之文件的識別碼。此屬性支援類似於 "{queueTrigger}" 的繫結，會將佇列訊息的字串值做為文件識別碼。
-* `connection`︰此字串必須是針對您的 DocumentDB 帳戶設定為端點的「應用程式設定」。如果您是從 [整合] 索引標籤選擇您的帳戶，系統將會為您建立新的應用程式設定，其名稱會採用下列格式：yourAccount\_DOCUMENTDB。如果您需要手動建立應用程式設定，則實際的連接字串必須採用下列格式：AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;。
-* `direction︰必須設為「"in"」。
+## <a name="documentdb-input-binding"></a>DocumentDB 輸入繫結
+DocumentDB 輸入繫結會擷取 DocumentDB 文件，並將它傳遞給函式的具名輸入參數。 您可以根據叫用該函式的觸發程序來判斷文件識別碼。 
 
-範例「function.json」：
+函式的 DocumentDB 輸入會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
 
-    {
-      "bindings": [
-        {
-          "name": "document",
-          "type": "documentdb",
-          "databaseName": "MyDatabase",
-          "collectionName": "MyCollection",
-          "id" : "{queueTrigger}",
-          "connection": "MyAccount_DOCUMENTDB",     
-          "direction": "in"
-        }
-      ],
-      "disabled": false
-    }
+```json
+{
+  "name": "<Name of input parameter in function signature>",
+  "type": "documentDB",
+  "databaseName": "<Name of the DocumentDB database>",
+  "collectionName": "<Name of the DocumentDB collection>",
+  "id": "<Id of the DocumentDB document - see below>",
+  "connection": "<Name of app setting with connection string - see below>",
+  "direction": "in"
+},
+```
 
-#### C# 佇列觸發程序的 Azure DocumentDB 輸入程式碼範例
-使用上述的 function.json 範例，DocumentDB 輸入繫結會擷取文件 (包含符合佇列訊息字串的識別碼)，並將它傳遞至 'document' 參數。如果找不到該文件，則 'document' 參數是 null。當函式結束時，文件隨後會以新的文字值更新。
+請注意：
 
-    public static void Run(string myQueueItem, dynamic document)
-    {   
-        document.text = "This has changed.";
-    }
+* `id` 支援類似於 `{queueTrigger}` 的繫結，此繫結會使用佇列訊息的字串值做為文件識別碼。
+* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定的名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式]()。 
+* 如果找不到指定的文件，對函式的具名輸入參數會設定為 `null`。 
 
-#### F# 佇列觸發程序的 Azure DocumentDB 輸入程式碼範例
-使用上述的 function.json 範例，DocumentDB 輸入繫結會擷取文件 (包含符合佇列訊息字串的識別碼)，並將它傳遞至 'document' 參數。如果找不到該文件，則 'document' 參數是 null。當函式結束時，文件隨後會以新的文字值更新。
+## <a name="input-usage"></a>輸入使用方式
+本節說明如何在您的函式程式碼中使用您的 DocumentDB 輸入繫結。
 
-    open FSharp.Interop.Dynamic
-    let Run(myQueueItem: string, document: obj) =
-        document?text <- "This has changed."
+在 C# 和 F# 函式中，當函式成功結束時，會將對輸入文件 (具名輸入參數) 所做的任何變更自動傳送回集合。 在 Node.js 函式中，對輸入繫結中文件的更新不會傳送回集合。 不過，您可以使用 `context.bindings.<documentName>In` 和 `context.bindings.<documentName>Out` 對輸入文件進行更新。 請在 [Node.js 範例](#innodejs)中查看如何進行。
 
-您會需要 `project.json` 檔案，以使用 NuGet 指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` 封裝做為封裝相依性，例如︰
+<a name="inputsample"></a>
 
-    {
-      "frameworks": {
-        "net46": {
-          "dependencies": {
-            "Dynamitey": "1.0.2",
-            "FSharp.Interop.Dynamic": "3.0.0"
-          }
-        }
+## <a name="input-sample"></a>輸入範例
+假設您的 function.json `bindings` 陣列中有下列 DocumentDB 輸入繫結︰
+
+```json
+{
+  "name": "inputDocument",
+  "type": "documentDB",
+  "databaseName": "MyDatabase",
+  "collectionName": "MyCollection",
+  "id" : "{queueTrigger}",
+  "connection": "MyAccount_DOCUMENTDB",     
+  "direction": "in"
+}
+```
+
+請參閱使用此輸入繫結來更新文件的文字值的特定語言範例。
+
+* [C#](#incsharp)
+* [F#](#infsharp)
+* [Node.js](#innodejs)
+
+<a name="incsharp"></a>
+### <a name="input-sample-in-c"></a>C 中的輸入範例# #
+
+```cs
+public static void Run(string myQueueItem, dynamic inputDocument)
+{   
+  inputDocument.text = "This has changed.";
+}
+```
+<a name="infsharp"></a>
+
+### <a name="input-sample-in-f"></a>F 中的輸入範例# #
+
+```fsharp
+open FSharp.Interop.Dynamic
+let Run(myQueueItem: string, inputDocument: obj) =
+  inputDocument?text <- "This has changed."
+```
+
+您需要新增可指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
+
+```json
+{
+  "frameworks": {
+    "net46": {
+      "dependencies": {
+        "Dynamitey": "1.0.2",
+        "FSharp.Interop.Dynamic": "3.0.0"
       }
     }
+  }
+}
+```
 
-這會使用 NuGet 來擷取相依性，並會在指令碼中加以參考。
+若要新增 `project.json` 檔案，請參閱 [F# 封裝管理](functions-reference-fsharp.md#package)。
 
-#### Node.js 佇列觸發程序的 Azure DocumentDB 輸入程式碼範例
-使用上述範例 function.json 時，DocumentDB 輸入繫結會擷取識別碼與佇列訊息字串相符的文件，然後將它傳遞給 `documentIn` 繫結屬性。在 Node.js 函式中，更新的文件不會傳回至集合。不過，您可以將輸入繫結直接傳遞給名為 `documentOut` 的 DocumentDB 輸出繫結以支援更新。這個程式碼範例會更新輸入文件的 text 屬性，並將它設定為輸出文件。
+<a name="innodejs"></a>
 
-    module.exports = function (context, input) {   
-        context.bindings.documentOut = context.bindings.documentIn;
-        context.bindings.documentOut.text = "This was updated!";
-        context.done();
-    };
+### <a name="input-sample-in-nodejs"></a>Node.js 中的輸入範例
 
-## <a id="docdboutput"></a>Azure DocumentDB 輸出繫結
-您的函式可以使用 **Azure DocumentDB 文件**輸出繫結，將 JSON 文件寫入 Azure DocumentDB 資料庫中。如需有關 Azure DocumentDB 的詳細資訊，請檢閱 [DocumentDB 簡介](../documentdb/documentdb-introduction.md)和[開始使用教學課程](../documentdb/documentdb-get-started.md)。
+```javascript
+module.exports = function (context) {   
+  context.bindings.inputDocumentOut = context.bindings.inputDocumentIn;
+  context.bindings.inputDocumentOut.text = "This was updated!";
+  context.done();
+};
+```
 
-#### DocumentDB 輸出繫結的 function.json
-function.json 檔案提供下列屬性：
+## <a name="a-iddocdboutputadocumentdb-output-binding"></a><a id="docdboutput"></a>DocumentDB 輸出繫結
+DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。 
 
-* `name`︰函式程式碼中用於新文件的變數名稱。
-* `type`︰必須設為「"documentdb"」。
-* `databaseName`︰包含其中將建立新文件之集合的資料庫。
-* `collectionName`︰其中將建立新文件的集合。
-* `createIfNotExists`︰這是一個布林值，用以指出當集合不存在時是否要建立集合。預設值為 *false*。因為新集合會使用保留的輸送量建立，其具有價格含意。如需詳細資訊，請瀏覽[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
-* `connection`︰此字串必須是針對您的 DocumentDB 帳戶設定為端點的**應用程式設定**。如果您是從 [整合] 索引標籤選擇您的帳戶，系統將會為您建立新的應用程式設定，其名稱會採用下列格式：`yourAccount_DOCUMENTDB`。如果您需要手動建立應用程式設定，實際的連接字串必須採用下列格式：`AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;`。
-* `direction`：必須設為「"out"」。
+輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰ 
 
-function.json 範例：
+```json
+{
+  "name": "<Name of output parameter in function signature>",
+  "type": "documentDB",
+  "databaseName": "<Name of the DocumentDB database>",
+  "collectionName": "<Name of the DocumentDB collection>",
+  "createIfNotExists": <true or false - see below>,
+  "connection": "<Value of AccountEndpoint in Application Setting - see below>",
+  "direction": "out"
+}
+```
 
-    {
-      "bindings": [
-        {
-          "name": "document",
-          "type": "documentdb",
-          "databaseName": "MyDatabase",
-          "collectionName": "MyCollection",
-          "createIfNotExists": false,
-          "connection": "MyAccount_DOCUMENTDB",
-          "direction": "out"
-        }
-      ],
-      "disabled": false
+請注意：
+
+* 如果不存在，請將 `createIfNotExists` 設定為 `true` 來建立資料庫和集合。 預設值為 `false`。 新集合會使用保留的輸送量建立，其具有價格含意。 如需詳細資訊，請參閱 [DocumentDB 定價](https://azure.microsoft.com/pricing/details/documentdb/)。
+* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定的名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立新的應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式]()。 
+
+## <a name="output-usage"></a>輸出使用方式
+本節說明如何在您的函式程式碼中使用您的 DocumentDB 輸出繫結。
+
+在函式中寫入輸出參數時，依預設會在資料庫中產生新文件，使用自動產生的 GUID 做為文件識別碼。 您可以藉由在輸出參數中指定 `id` JSON 屬性來指定輸出文件的文件識別碼。 如果已存在具有該識別碼的文件，輸出文件會覆寫它。 
+
+<a name="outputsample"></a>
+
+## <a name="output-sample"></a>輸出範例
+假設您的 function.json `bindings` 陣列中有下列 DocumentDB 輸出繫結︰
+
+```json
+{
+  "name": "employeeDocument",
+  "type": "documentDB",
+  "databaseName": "MyDatabase",
+  "collectionName": "MyCollection",
+  "createIfNotExists": true,
+  "connection": "MyAccount_DOCUMENTDB",     
+  "direction": "out"
+}
+```
+
+而您會具有可接收 JSON 佇列的佇列輸入繫結，其格式如下︰
+
+```json
+{
+  "name": "John Henry",
+  "employeeId": "123456",
+  "address": "A town nearby"
+}
+```
+
+而且您想要針對每一個記錄以下列格式建立 DocumentDB 文件︰
+
+```json
+{
+  "id": "John Henry-123456",
+  "name": "John Henry",
+  "employeeId": "123456",
+  "address": "A town nearby"
+}
+```
+
+請參閱使用此輸出繫結將文件新增至您的資料庫的特定語言範例。
+
+* [C#](#outcsharp)
+* [F#](#outfsharp)
+* [Node.js](#outnodejs)
+
+<a name="outcsharp"></a>
+
+### <a name="output-sample-in-c"></a>C 中的輸出範例# #
+
+```cs
+#r "Newtonsoft.Json"
+
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+public static void Run(string myQueueItem, out object employeeDocument, TraceWriter log)
+{
+  log.Info($"C# Queue trigger function processed: {myQueueItem}");
+
+  dynamic employee = JObject.Parse(myQueueItem);
+
+  employeeDocument = new {
+    id = employee.name + "-" + employee.employeeId,
+    name = employee.name,
+    employeeId = employee.employeeId,
+    address = employee.address
+  };
+}
+```
+
+<a name="outfsharp"></a>
+
+### <a name="output-sample-in-f"></a>F 中的輸出範例# #
+
+```fsharp
+open FSharp.Interop.Dynamic
+open Newtonsoft.Json
+
+type Employee = {
+  id: string
+  name: string
+  employeeId: string
+  address: string
+}
+
+let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
+  log.Info(sprintf "F# Queue trigger function processed: %s" myQueueItem)
+  let employee = JObject.Parse(myQueueItem)
+  employeeDocument <-
+    { id = sprintf "%s-%s" employee?name employee?employeeId
+      name = employee?name
+      employeeId = employee?employeeId
+      address = employee?address }
+```
+
+您需要新增可指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
+
+```json
+{
+  "frameworks": {
+    "net46": {
+      "dependencies": {
+        "Dynamitey": "1.0.2",
+        "FSharp.Interop.Dynamic": "3.0.0"
+      }
     }
+  }
+}
+```
+
+若要新增 `project.json` 檔案，請參閱 [F# 封裝管理](functions-reference-fsharp.md#package)。
+
+<a name="outnodejs"></a>
+
+### <a name="output-sample-in-nodejs"></a>Node.js 中的輸出範例
+
+```javascript
+module.exports = function (context) {
+
+  context.bindings.employeeDocument = JSON.stringify({ 
+    id: context.bindings.myQueueItem.name + "-" + context.bindings.myQueueItem.employeeId,
+    name: context.bindings.myQueueItem.name,
+    employeeId: context.bindings.myQueueItem.employeeId,
+    address: context.bindings.myQueueItem.address
+  });
+
+  context.done();
+};
+```
 
 
-#### Node.js 佇列觸發程序的 Azure DocumentDB 輸出程式碼範例
-    module.exports = function (context, input) {
-
-        context.bindings.document = {
-            text : "I'm running in a Node function! Data: '" + input + "'"
-        }   
-
-        context.done();
-    };
-
-輸出文件︰
-
-    {
-      "text": "I'm running in a Node function! Data: 'example queue data'",
-      "id": "01a817fe-f582-4839-b30c-fb32574ff13f"
-    }
+<!--HONumber=Nov16_HO3-->
 
 
-#### F# 佇列觸發程序的 Azure DocumentDB 輸出程式碼範例
-    open FSharp.Interop.Dynamic
-    let Run(myQueueItem: string, document: obj) =
-        document?text <- (sprintf "I'm running in an F# function! %s" myQueueItem)
-
-#### C# 佇列觸發程序的 Azure DocumentDB 輸出程式碼範例
-    using System;
-
-    public static void Run(string myQueueItem, out object document, TraceWriter log)
-    {
-        log.Info($"C# Queue trigger function processed: {myQueueItem}");
-
-        document = new {
-            text = $"I'm running in a C# function! {myQueueItem}"
-        };
-    }
-
-
-#### Azure DocumentDB 輸出程式碼範例設定檔名稱
-如果您想要在函式中設定文件名稱，只要設定 `id` 值即可。例如，如果正在將員工的 JSON 內容排入佇列中，如下所示︰
-
-    {
-      "name" : "John Henry",
-      "employeeId" : "123456",
-      "address" : "A town nearby"
-    }
-
-您可以在佇列觸發程序函式中使用下列 C# 程式碼︰
-
-    #r "Newtonsoft.Json"
-
-    using System;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-
-    public static void Run(string myQueueItem, out object employeeDocument, TraceWriter log)
-    {
-        log.Info($"C# Queue trigger function processed: {myQueueItem}");
-
-        dynamic employee = JObject.Parse(myQueueItem);
-
-        employeeDocument = new {
-            id = employee.name + "-" + employee.employeeId,
-            name = employee.name,
-            employeeId = employee.employeeId,
-            address = employee.address
-        };
-    }
-
-或對等的 F# 程式碼︰
-
-    open FSharp.Interop.Dynamic
-    open Newtonsoft.Json
-
-    type Employee = {
-        id: string
-        name: string
-        employeeId: string
-        address: string
-    }
-
-    let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
-        log.Info(sprintf "F# Queue trigger function processed: %s" myQueueItem)
-        let employee = JObject.Parse(myQueueItem)
-        employeeDocument <-
-            { id = sprintf "%s-%s" employee?name employee?employeeId
-              name = employee?name
-              employeeId = employee?id
-              address = employee?address }
-
-範例輸出︰
-
-    {
-      "id": "John Henry-123456",
-      "name": "John Henry",
-      "employeeId": "123456",
-      "address": "A town nearby"
-    }
-
-## 後續步驟
-[!INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
-
-<!---HONumber=AcomDC_0921_2016-->

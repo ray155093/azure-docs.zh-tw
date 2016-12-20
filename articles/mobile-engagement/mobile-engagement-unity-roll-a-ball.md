@@ -1,12 +1,12 @@
 ---
-title: Unity Roll a Ball tutorial
-description: Steps to create the classic Unity Roll a Ball game which is a pre-requisite for all Mobile Engagement Unity tutorials
+title: "Unity Roll a Ball 教學課程"
+description: "建立傳統 Unity Roll a Ball 遊戲的步驟，此遊戲是所有 Mobile Engagement Unity 教學課程的必要條件"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 0afd0eca-f74a-43aa-bba8-436a0265c312
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: na
@@ -14,68 +14,72 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6392d1f780b1bc2348fee5947550b05e86ea4de2
+
 
 ---
-# <a name="<a-id="unity-roll-a-ball"></a>create-unity-roll-a-ball-game"></a><a id="unity-roll-a-ball"></a>Create Unity Roll a Ball game
-This tutorial walks through the main steps for a slightly modified [Unity Roll a Ball tutorial](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial). This sample game consists of a spherical 'player' object which is controlled by the app user and the objective of the game is to 'collect' collectible objects by colliding the player object with these collectible objects. This assumes basic familiarity with Unity editor environment. If you run into any issues then you should refer to the full tutorial. 
+# <a name="a-idunity-roll-a-ballacreate-unity-roll-a-ball-game"></a><a id="unity-roll-a-ball"></a>建立 Unity Roll a Ball 遊戲
+本教學課程逐步引導您完成稍微修改過的 [Unity Roll a Ball 教學課程](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial)的主要步驟。 此範例遊戲由 app 使用者控制的球面「玩家」物件所組成，遊戲的目標是使用這些可收集的物件碰撞玩家物件來「收集」可收集的物件。 這是假設使用者對 Unity 編輯器環境有基本的熟悉度。 如果您遇到任何問題，應該參閱完整的教學課程。 
 
-### <a name="setting-up-the-game"></a>Setting up the game
-The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)
+### <a name="setting-up-the-game"></a>設定遊戲
+下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)
 
-1. Open **Unity Editor** and click **New**. 
+1. 開啟 **Unity 編輯器**，然後按一下 [新增]。 
    
     ![][51] 
-2. Provide a **Project name** & **Location**, select **3D** and click **Create project**.
+2. 提供 [專案名稱]  &  [位置]、選取 [3D]，然後按一下 [建立專案]。
    
     ![][52]
-3. Save the default scene just created as part of the new project as with the name **MiniGame** within a new **\_Scenes** folder under **Assets** folder:
+3. 使用名稱 **MiniGame**，將剛建立的預設場景當做新專案的一部分，儲存在 **Assets**資料夾底下的新 **\_Scenes** 資料夾內︰
    
     ![][53]
-4. Create a **3D Object -> Plane** as the playing field and rename this plane object as **Ground**
+4. 建立 **3D Object -> Plane** 做為遊戲場，然後將這個平面物件重新命名為 **Ground**
    
     ![][1]
-5. Reset the transform component for this **Ground** object so that it is at the Origin. 
+5. 重設此 **Ground** 物件的轉換元件，使其位於原點。 
    
     ![][3]
-6. Uncheck **Show Grid** from **Gizmos menu** for the **Ground** object.
+6. 從 **Ground** 物件的 **Gizmos 功能表**取消核取 [顯示格線]。
    
     ![][4]
-7. Update the **Scale** component for the **Ground** object to be [X = 2,Y = 1, Z = 2]. 
+7. 將 **Ground** 物件的 **Scale** 元件更新為 [X = 2,Y = 1, Z = 2]。 
    
     ![][5]
-8. Add a new **3D Object -> Sphere** to the project and rename this sphere object as **Player**. 
+8. 將新的 **3D Object -> Sphere** 新增至專案，並將此球形物件重新命名為 **Player**。 
    
     ![][6]
-9. Select the **Player** object and click **Reset Transform** similar to the Plane object. 
-10. Update **Transform -> Position -> Y Coordinate** component for the Player Y as 0.5.  
+9. 選取 **Player** 物件，然後按一下類似於 Plane 物件的 [重設轉換]。 
+10. 將玩家 Y 的 **Transform -> Position -> Y Coordinate** 元件更新為 0.5。  
     
     ![][7]
-11. Create a new folder called **Materials** in the project where we will create the material to color the player. 
-12. Create a new **Material** called **Background** in this folder. 
+11. 在我們將建立材料以便為玩家著色所在的專案中，建立一個稱為 **Materials** 的新資料夾。 
+12. 在此資料夾中建立一個稱為 **Background** 的新 **Material**。 
     
     ![][8]
-13. Update the color of the material by updating the **Albedo** property of it. You can select the RGB values of [0,32,64]. 
+13. 更新材料的 **Albedo** 屬性，以更新材料的色彩。 您可以選取 RGB 值 [0,32,64]。 
     
     ![][9]
-14. Drag this material into the scene view to apply color to the **Ground** object. 
+14. 將此材料拖曳到場景檢視，以便將色彩套用至 **Ground** 物件。 
     
     ![][10]
-15. Finally update the **Transform -> Rotation -> Y** to 60 on the Directional Light object for clarity. 
+15. 最後，為清楚起見，將 Directional Light 物件的 **Transform -> Rotation -> Y** 更新為 60。 
     
     ![][12]
 
-### <a name="moving-the-player"></a>Moving the player
-The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)
+### <a name="moving-the-player"></a>移動玩家
+下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)
 
-1. Add a **RigidBody** component to the **Player** object. 
+1. 將 **RigidBody** 元件新增至 **Player** 物件。 
    
     ![][13]
-2. Create a new folder called **Scripts** in the Project. 
-3. Click **Add Component-> New Script -> C# Script**. Name it **PlayerController**, and click **Create and Add**. This will create and attach a script to the Player object.  
+2. 在專案中建立一個稱為 **Scripts** 的新資料夾。 
+3. 按一下 [新增元件 -> 新增指令碼 -> C# 指令碼]。 將其命名為 **PlayerController**，然後按一下 [建立及新增]。 這將會建立一個指令碼，並將其附加至 Player 物件。  
    
     ![][14]
-4. Move this script under the **Scripts** folder in the project. 
-5. Open the script for editing in your favorite script editor, update the script code with the following code and save it. 
+4. 將此指令碼移到專案的 **Scripts** 資料夾底下。 
+5. 開啟要在您最愛的指令碼編輯器中編輯的指令碼、將指令碼更新為下列程式碼並加以儲存。 
    
         using UnityEngine;
         using System.Collections;
@@ -96,22 +100,22 @@ The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorial
                 rb.AddForce (movement * speed);
             }
         }
-6. Note that the script above uses a **Speed** property. In the Unity editor, update the speed property to 10.  
+6. 請注意，上述指令碼會使用 **Speed** 屬性。 在 Unity Editor 中，將 speed 屬性更新為 10。  
    
     ![][15]
-7. Hit **Play** in the Unity Editor. Now you should be able to control the ball using the keyboard and it should rotate and move around. 
+7. 按 Unity Editor 中的 **Play** 。 現在您應該能夠使用鍵盤控制球，而且球應該會旋轉並四處移動。 
 
-### <a name="moving-the-camera"></a>Moving the camera
-The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141) and will tie the **Main Camera** to the **Player** object. 
+### <a name="moving-the-camera"></a>移動相機
+下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141)，而且會將 **Main Camera** 繫結至 **Player** 物件。 
 
-1. Update the **Transform.Position** to be X = 0,  Y = 10.5, Z=-10.  
-2. Update the **Transform.Rotation** to be X = 45, Y = 0, Z = 0.  
+1. 將 **Transform.Position** 更新為 X = 0、Y = 10.5、Z =-10。  
+2. 將 **Transform.Rotation** 更新為 X = 45、Y = 0、Z = 0。  
    
     ![][16]
-3. Add a new script called **CameraController** to the **MainCamera** and move it under the Scripts folder. 
+3. 將稱為 **CameraController** 的新指令碼加入至 **MainCamera**，並將其移動到 Scripts 資料夾底下。 
    
     ![][17]
-4. Open up the script for editing and add the following code in it:
+4. 開啟指令碼進行編輯，並在其中加入下列程式碼︰
    
         using UnityEngine;
         using System.Collections;
@@ -132,44 +136,44 @@ The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorial
                 transform.position = player.transform.position + offset;
             }
         }
-5. In Unity environment - drag the Player variable into the Player slot for the Main Camera object so that the two are associated with one another. 
+5. 在 Unity 環境中，將 Player 變數拖曳到 Main Camera 物件的 Player 位置，使兩者相互關聯。 
    
     ![][18]
-6. Now if you hit Play in the Unity editor and rotate the Player Ball object then you will see the Camera following it in the movement.  
+6. 現在如果您按 Unity Editor 中的 Play 並旋轉 Player Ball 物件，您將會看到 Camera 在該物件後面移動。  
 
-### <a name="setting-up-the-play-area"></a>Setting up the Play area
-The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141). We will create the Walls surrounding the Ground so that the Player Ball object doesn't drop off the play area in its movement. 
+### <a name="setting-up-the-play-area"></a>設定遊戲區域
+下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141)。 我們將在 Ground 周圍建立 Walls，讓 Player Ball 物件不會在移動時掉出遊戲區域。 
 
-1. Click **Create -> Create Empty -> Game Object** and name it **Walls**
+1. 按一下 [建立 -> 建立空的 -> 遊戲物件]，並將它命名 **Walls**
    
     ![][19]
-2. Under this Walls object - create a new **3D Object -> Cube** and name it "West wall". 
+2. 在此 Walls 物件底下，建立新的 **3D 物件 -> Cube**，並將它命名為 "West wall"。 
    
     ![][20]
-3. Update the **Transform -> Position** and **Transform -> Scale** for this West Wall object. 
+3. 更新此 West Wall 物件的 **轉換 -> 位置** 和 **轉換 -> 調整**。 
    
     ![][21]
-4. Duplicate the West wall to create an **East wall** with the updated transform position and scale. 
+4. 複製 West wall，以更新的轉換位置和比例建立 **East wall** 。 
    
     ![][22]
-5. Duplicate the East wall to create a **North wall** with the updated transform position & scale. 
+5. 複製 East wall，以更新的轉換位置和比例建立 **North wall**。 
    
     ![][23]
-6. Duplicate the North wall and create a **South wall** with the updated transform position & scale. 
+6. 複製 North wall，以更新的轉換位置和比例建立 **South wall**。 
    
     ![][24]
 
-### <a name="creating-collectible-objects"></a>Creating Collectible objects
-The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141). We will create some attractive looking objects which will form the set of collectible objects which the Player Ball object needs to 'collect' by colliding with them. 
+### <a name="creating-collectible-objects"></a>建立可收集的物件
+下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141)。 我們將會建立一些外觀吸引人的物件，這些物件會形成一組可收集的物件，Player Ball 物件必須透過碰撞這組可收集的物件來「收集」它們。 
 
-1. Create a new **3D Cube object** and name it Pickup. 
-2. Adjust the **Transform -> Rotation** & **Transform -> Scale** of the Pickup object. 
+1. 建立新 **3D Cube** 物件，並將它命名為 Pickup。 
+2. 調整 Pickup 物件的 **轉換 -> 旋轉**  &  **轉換 -> 調整**。 
    
     ![][25]
-3. Create and attach a **new C# Script** called **Rotator** to the Pickup object. Make sure to put the script under the Scripts folder. 
+3. 建立一個稱為 **Rotator** 的**新 C# 指令碼**，並將其附加至 Pickup 物件。 請務必將指令碼放在 Scripts 資料夾底下。 
    
     ![][26]
-4. Open this script for editing and update it to be the following: 
+4. 開啟此指令碼進行編輯，並將其更新如下： 
    
         using UnityEngine;
         using System.Collections;
@@ -181,30 +185,30 @@ The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorial
                 transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
             }
         }
-5. Now hit the Play mode in the Unity Editor and your Pickup object show be rotating on its axis.
-6. Create a new folder called **Prefabs** 
+5. 現在按 Unity Editor 中的 Play 模式，您的 Pickup 物件應該就會在其軸上旋轉。
+6. 在我們將建立材料以便為玩家著色所在的專案中，建立一個稱為 **Prefabs** 
    
     ![][27]
-7. Drag the **Pickup** object and put it in the Prefabs folder.
+7. 拖曳 **Pickup** 物件，並將其放在 Prefabs 資料夾中。
    
     ![][28]
-8. Create a new **Empty Game object** called **Pickups**. Reset its position to origin and then drag the Pickup object under this game object.  
+8. 建立一個稱為 **Pickups** 的新 **Empty Game** 物件。 將其位置重設為原點，然後將 Pickup 物件拖曳到此遊戲物件底下。  
    
     ![][29]
-9. Duplicate the **Pickup** object and spread it on the **Ground** object around the **Player** object by updating the **Transform.Position's X & Z** values appropriately. 
+9. 複製 **Pickup** 物件，並藉由適當地更新 **Transform.Position** 的 X 和 Z 值，將其散佈在 **Player** 物件周圍的 **Ground** 物件上。 
    
     ![][30]
-10. Create a **new material** called **Pickup** and update it to be Red in color by updating the **Albedo property** similar to what we did for updating the Ground object. 
+10. 建立一個稱為 **Pickup** 的**新材料**，並藉由更新 **Albedo** 屬性 (類似我們更新 Ground 物件的方式)，將其更新為紅色。 
     
     ![][31]
-11. Apply the material to all the 4 pickup objects.
+11. 將材料套用至全部 4 個 Pickup 物件。
     
     ![][32]
 
-### <a name="collecting-the-pickup-objects"></a>Collecting the Pickup objects
-The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141). We will update the Player so that it is able to 'collect' the pickup objects by colliding with them. 
+### <a name="collecting-the-pickup-objects"></a>收集 Pickup 物件
+下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141)。 我們將更新 Player，使其能夠透過碰撞的方式，「收集」Pickup 物件。 
 
-1. Open up the **PlayerController** script attached to the Player object for editing and update it to the following:  
+1. 開啟已附加至 Player 物件的 **PlayerController** 指令碼進行編輯，並將其更新為：  
    
         using UnityEngine;
         using System.Collections;
@@ -238,29 +242,29 @@ The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorial
                 }
             }
         }
-2. Create a new **Tag** called **Pick Up** (it must match what is in the script)  
+2. 建立一個稱為 **Pick Up** 的新 **Tag** (它必須符合指令碼中的內容)  
    
     ![][33]
    
     ![][34]
-3. Apply this **Tag** to the Prefab Pickup object. 
+3. 將此 **Tag** 套用至 Prefab Pickup 物件。 
    
     ![][35]
-4. Enable **IsTrigger** checkbox for the Prefab object.
+4. 為 Prefab 物件啟用 **IsTrigger** 核取方塊。
    
     ![][36]
-5. Add a Rigid body to Pickup Prefab object. For performance optimization we will update the static collider that we used to a Dynamic collider. 
+5. 將 Rigid body 新增至 Pickup Prefab 物件。 為將效能最佳化，我們將會更新我們用於 Dynamic Collider 的 Static Collider。 
    
     ![][37]
-6. Finally check the **IsKinematic** property for the prefab object. 
+6. 最後，檢查 Prefab 物件的 **IsKinematic** 屬性。 
    
     ![][38]
-7. Hit **Play** in the Unity editor and you will be able to play this **Roll a Ball** game by moving the Player object using your keyboard keys for direction input. 
+7. 按 Unity 編輯器中的 [播放]，您就能夠透過使用鍵盤按鍵當做方向輸入移動 Player 物件來玩這個 **Roll a Ball** 遊戲。 
 
-### <a name="updating-the-game-for-mobile-play"></a>Updating the game for mobile play
-The sections above concluded the basic tutorial from Unity. Now we will modify the game to make it mobile device friendly. Note that we used keyboard input for the game so far for testing. Now we will modify it so that we can control the player by using the motion of the phone i.e. using Accelerometer as the input. 
+### <a name="updating-the-game-for-mobile-play"></a>更新遊戲以便在行動裝置上玩遊戲
+以上幾節就是 Unity 的基本教學課程。 現在，我們將修改遊戲，使其成為行動裝置上的遊戲。 請注意，到目前為止我們使用鍵盤輸入來測試遊戲。 現在，我們將修改遊戲，讓我們可以使用手機的動作控制玩家，亦即， 使用加速計做為輸入。 
 
-Open up the **PlayerController** script for editing and update the **FixedUpdate** method to use the motion from the accelerometer to move the Player object. 
+開啟 **PlayerController** 指令碼進行編輯，並更新 **FixedUpdate** 方法，以使用加速計的動作移動 Player 物件。 
 
         void FixedUpdate()
         {
@@ -270,10 +274,10 @@ Open up the **PlayerController** script for editing and update the **FixedUpdate
             rb.AddForce(Input.acceleration.x * Speed, 0, -Input.acceleration.z * Speed);
         }
 
-This tutorial concludes a basic game creation with Unity and you can deploy this on a device of your choice to play the game. 
+本教學課程使用 Unity 建立基本遊戲的部分到此結束，您可以在您選擇要玩遊戲的裝置上部署此遊戲。 
 
 <!-- Images -->
-[1]: ./media/mobile-engagement-unity-roll-a-ball/1.png  
+[1]: ./media/mobile-engagement-unity-roll-a-ball/1.png    
 [2]: ./media/mobile-engagement-unity-roll-a-ball/2.png
 [3]: ./media/mobile-engagement-unity-roll-a-ball/3.png
 [4]: ./media/mobile-engagement-unity-roll-a-ball/4.png
@@ -281,7 +285,7 @@ This tutorial concludes a basic game creation with Unity and you can deploy this
 [6]: ./media/mobile-engagement-unity-roll-a-ball/6.png
 [7]: ./media/mobile-engagement-unity-roll-a-ball/7.png
 [8]: ./media/mobile-engagement-unity-roll-a-ball/8.png
-[9]: ./media/mobile-engagement-unity-roll-a-ball/9.png  
+[9]: ./media/mobile-engagement-unity-roll-a-ball/9.png    
 [10]: ./media/mobile-engagement-unity-roll-a-ball/10.png    
 [11]: ./media/mobile-engagement-unity-roll-a-ball/11.png    
 [12]: ./media/mobile-engagement-unity-roll-a-ball/12.png
@@ -330,6 +334,6 @@ This tutorial concludes a basic game creation with Unity and you can deploy this
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

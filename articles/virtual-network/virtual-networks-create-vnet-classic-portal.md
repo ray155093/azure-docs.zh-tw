@@ -1,13 +1,13 @@
 ---
-title: 使用 Azure 入口網站建立虛擬網路 | Microsoft Docs
-description: 了解如何使用 Azure 入口網站建立虛擬網路。
+title: "使用 Azure 入口網站建立虛擬網路 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站建立虛擬網路。"
 services: virtual-network
-documentationcenter: ''
+documentationcenter: 
 author: jimdial
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: 69894a0b-8050-451e-8a25-c513e1bd271e
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,16 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 22866181f9ef1d0eb38cdf6d8d1b0a20d2c3b61d
+
 
 ---
-# 使用 Azure 入口網站建立虛擬網路 (傳統)
+# <a name="create-a-virtual-network-classic-by-using-the-azure-portal"></a>使用 Azure 入口網站建立虛擬網路 (傳統)
 [!INCLUDE [virtual-networks-create-vnet-selectors-classic-include](../../includes/virtual-networks-create-vnet-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文件說明如何使用傳統部署模型建立 VNet。您也可以[使用 Azure Preview 入口網站在資源管理員部署模型中建立虛擬網路](virtual-networks-create-vnet-arm-pportal.md)。
+本文件說明如何使用傳統部署模型建立 VNet。 您也可以 [使用 Azure Preview 入口網站在資源管理員部署模型中建立虛擬網路](virtual-networks-create-vnet-arm-pportal.md)。
 
 您將了解如何透過使用 UI 及部署 Netcfg 檔從 Azure 入口網站建立 VNet。
 
@@ -34,4 +38,9 @@ ms.author: jdial
 
 [!INCLUDE [virtual-networks-create-vnet-classic-netcfg-portal-include](../../includes/virtual-networks-create-vnet-classic-netcfg-portal-include.md)]
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

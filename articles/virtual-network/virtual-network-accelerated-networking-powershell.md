@@ -1,13 +1,13 @@
 ---
-title: 虛擬機器的加速網路 - PowerShell | Microsoft Docs
-description: 了解如何使用 PowerShell 設定 Azure 虛擬機器的加速網路。
+title: "虛擬機器的加速網路 - PowerShell | Microsoft Docs"
+description: "了解如何使用 PowerShell 設定 Azure 虛擬機器的加速網路。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: a0b63599-c23b-40b5-a8ab-23af8b07dded
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: jdial
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 8ae59a99a8397676160c032b744460c0b2bcc1d7
+
 
 ---
 # <a name="accelerated-networking-for-a-virtual-machine"></a>虛擬機器的加速網路
@@ -50,7 +54,7 @@ ms.author: jdial
 * **VM 建立：** 啟用加速網路的網路介面只能在 VM 建立之後附加至 VM。 網路介面無法附加至現有的 VM。
 * **區域︰** 只在美國中西部和西歐的 Azure 區域中提供。 未來將延伸區域範圍。
 * **支援的作業系統︰** Microsoft Windows Server 2012 R2 和 Windows Server 2016 Technical Preview 5。 即將加入 Linux 和 Windows Server 2012 的支援。
-* **VM 大小︰**只支援 Standard_D15_v2 和 Standard_DS15_v2 的 VM 執行個體大小。 如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md) 文章。 未來將增加支援的 VM 執行個體大小。
+* **VM 大小︰**只支援 Standard_D15_v2 和 Standard_DS15_v2 的 VM 執行個體大小。 如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 文章。 未來將增加支援的 VM 執行個體大小。
 
 這些限制如有變更將會透過 [Azure 虛擬網路更新](https://azure.microsoft.com/updates/accelerated-networking-in-preview)頁面發佈。
 
@@ -111,7 +115,7 @@ ms.author: jdial
 10. 如果您選擇不將公用 IP 位址資源加入介面，請移除下面命令結尾的 *-PublicIPAddress $PIP1* 。 輸入下列命令建立有加速網路的網路介面︰
     
         $nic = New-AzureRmNetworkInterface -Location $locName -Name $NICName -ResourceGroupName $rgName -Subnet $Subnet -EnableAcceleratedNetworking -PublicIpAddress $PIP1 
-11. 依照 [建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md) 文章的步驟 3 和 6 中的指示建立 VM 時，對 VM 指派網路介面。 在步驟 6-2 中，將 *Standard_A1* 取代為本文[限制](#limitations)一節列出的其中一個 VM 大小。
+11. 依照 [建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 文章的步驟 3 和 6 中的指示建立 VM 時，對 VM 指派網路介面。 在步驟 6-2 中，將 *Standard_A1* 取代為本文[限制](#limitations)一節列出的其中一個 VM 大小。
     
     > [!NOTE]
     > 如果您變更了本文中 $locName、$rgName 或 $nic 變數的「名稱」，＜建立 VM＞一文中的步驟 6 將會失敗。 不過，您可以變更變數的「值」  。
@@ -122,6 +126,9 @@ ms.author: jdial
     
     ![裝置管理員](./media/virtual-network-accelerated-networking-powershell/image2.png)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

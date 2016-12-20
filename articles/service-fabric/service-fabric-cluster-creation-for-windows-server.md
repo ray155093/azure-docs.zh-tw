@@ -1,12 +1,12 @@
 ---
-title: 建立和管理獨立 Azure Service Fabric 叢集 | Microsoft Docs
-description: 在執行 Windows Server (無論是在內部部署或任何雲端) 的任何電腦 (實體或虛擬) 上建立和管理 Azure Service Fabric 叢集。
+title: "建立和管理獨立 Azure Service Fabric 叢集 | Microsoft Docs"
+description: "在執行 Windows Server (無論是在內部部署或任何雲端) 的任何電腦 (實體或虛擬) 上建立和管理 Azure Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 31349169-de19-4be6-8742-ca20ac41eb9e
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/26/2016
 ms.author: dkshir;chackdan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 913726bb57f727bd62cdee0aee16bc886b38884f
+
 
 ---
 # <a name="create-and-manage-a-cluster-running-on-windows-server"></a>建立和管理在 Windows Server 上執行的叢集
@@ -61,12 +65,12 @@ ms.author: dkshir;chackdan
 ## <a name="plan-and-prepare-your-cluster-deployment"></a>規劃及準備叢集部署
 建立叢集之前，請先執行下列步驟。
 
-### <a name="step-1:-plan-your-cluster-infrastructure"></a>步驟 1︰規劃叢集基礎結構
+### <a name="step-1-plan-your-cluster-infrastructure"></a>步驟 1︰規劃叢集基礎結構
 您即將在您所擁有的電腦上建立 Service Fabric 叢集，因此您可以決定您希望叢集不受何種失敗的影響。 例如，您是否需要提供給這些電腦的個別電源線或網際網路連線？ 此外，請考慮這些電腦的實體安全性。 電腦位於何處？哪些人需要存取這些電腦？ 您做出這些決定之後，可依據邏輯將電腦對應到多個容錯網域 (請參閱步驟 4)。 生產叢集的基礎結構規劃比起測試叢集更為複雜。
 
 <a id="preparemachines"></a>
 
-### <a name="step-2:-prepare-the-machines-to-meet-the-prerequisites"></a>步驟 2︰準備符合必要條件的電腦
+### <a name="step-2-prepare-the-machines-to-meet-the-prerequisites"></a>步驟 2︰準備符合必要條件的電腦
 您想要新增到叢集的每部電腦的必要條件︰
 
 * 建議至少 16 GB RAM。
@@ -80,11 +84,11 @@ ms.author: dkshir;chackdan
 
 部署和設定叢集的叢集系統管理員必須擁有每部電腦的 [系統管理員權限](https://social.technet.microsoft.com/wiki/contents/articles/13436.windows-server-2012-how-to-add-an-account-to-a-local-administrator-group.aspx) 。 您無法在網域控制站上安裝 Service Fabric。
 
-### <a name="step-3:-determine-the-initial-cluster-size"></a>步驟 3︰決定初始叢集大小
+### <a name="step-3-determine-the-initial-cluster-size"></a>步驟 3︰決定初始叢集大小
 獨立 Service Fabric 叢集中的每個節點都已部署 Service Fabric 執行階段，並且是叢集的成員。 在一般生產部署中，每個作業系統執行個體 (實體或虛擬) 都有一個節點。 叢集大小取決於您的業務需求。 不過，您必須有三個節點 (電腦或虛擬機器) 的最小叢集大小。
 基於開發目的，在一部指定的電腦上可以有多個節點。 在生產環境中，對於每個實體或虛擬機器，Service Fabric 只支援一個節點。
 
-### <a name="step-4:-determine-the-number-of-fault-domains-and-upgrade-domains"></a>步驟 4︰決定容錯網域和升級網域的數目
+### <a name="step-4-determine-the-number-of-fault-domains-and-upgrade-domains"></a>步驟 4︰決定容錯網域和升級網域的數目
 *容錯網域* (FD) 是故障的實體單元，而且與資料中心內的實體基礎結構直接相關。 容錯網域是由共用單一失敗點的硬體元件 (電腦、交換器、網路等) 所組成。 雖然容錯網域和機架之間沒有 1:1 對應，但是大致上來說，可以將每個機架視為一個容錯網域。 考慮叢集中的節點時，強烈建議至少在三個容錯網域之間散佈節點。
 
 當您在 ClusterConfig.json 中指定 FD 時，可以選擇每個 FD 的名稱。 Service Fabric 支援階層式 FD，因此，您可以在 FD 中反映您的基礎結構拓撲。  例如，下列 FD 有效：
@@ -106,7 +110,7 @@ ms.author: dkshir;chackdan
 
 如需升級網域和容錯網域的詳細資訊，請參閱[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)。
 
-### <a name="step-5:-download-the-service-fabric-standalone-package-for-windows-server"></a>步驟 5︰下載適用於 Windows Server 的 Service Fabric 獨立封裝
+### <a name="step-5-download-the-service-fabric-standalone-package-for-windows-server"></a>步驟 5︰下載適用於 Windows Server 的 Service Fabric 獨立封裝
 [下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690) ，並將封裝解壓縮至不屬於叢集一部分的部署電腦，或解壓縮至將屬於叢集的其中一部電腦。 您可以重新命名解壓縮的資料夾 `Microsoft.Azure.ServiceFabric.WindowsServer`。
 
 <a id="createcluster"></a>
@@ -114,16 +118,18 @@ ms.author: dkshir;chackdan
 ## <a name="create-your-cluster"></a>建立叢集
 完成規劃和準備步驟之後，您就可以開始建立您的叢集。
 
-### <a name="step-1:-modify-cluster-configuration"></a>步驟 1︰修改叢集組態
+### <a name="step-1-modify-cluster-configuration"></a>步驟 1︰修改叢集組態
 ClusterConfig.json 檔案中會描述叢集。 如需此檔案中各個區段的詳細資訊，請參閱[獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)。
 從您下載的封裝中開啟其中一個 ClusterConfig.json 檔案，然後修改下列設定︰
 
+<!--Loc Comment: Please, check that line 129 the clause has been modified to "that you use as placement constraints" instead of using "you are used as placement constraints"-->
+
 | **組態設定** | **說明** |
 | --- | --- |
-| **NodeTypes** |節點類型可讓您將叢集節點分成不同的群組。 一個叢集至少必須有一個節點類型。 群組中的所有節點都有下列共同的特性： <br> **Name**：這是節點類型名稱。 <br>**Endpoint Ports**：這些是與這個節點類型相關聯的各種具名端點 (連接埠)。 您可以使用任何連接埠號碼，只要該號碼未與此資訊清單中的其他任何號碼衝突，而且目前沒有任何其他在電腦或虛擬機器上執行的應用程式在使用該號碼即可。 <br> **Placement Properties**：此節點類型的這些屬性是用來做為系統服務或您的服務的放置條件約束。 這些屬性是使用者定義的索引鍵/值組，其可針對指定節點提供額外的中繼資料。 節點屬性的範例包括節點是否有硬碟機或圖形卡、其硬碟機的磁針數、核心，以及其他實體屬性。 <br> **Capacities**：節點容量會定義節點可以使用的特定資源名稱和數量。 例如，節點可能會定義它具有名為 "MemoryInMb" 的度量容量，而且預設有 2048 MB 的可用記憶體。 這些容量會在執行階段使用，以確保需要特定資源數量的服務會放在需要的數量中有這些資源的節點上。<br>**IsPrimary**︰如果有一個以上已定義的節點類型，請確定只有一個設為主要 (值為 *true*)，這是系統服務執行的位置。 其他所有節點類型應該設定為值 *false*。 |
+| **NodeTypes** |節點類型可讓您將叢集節點分成不同的群組。 一個叢集至少必須有一個節點類型。 群組中的所有節點都有下列共同的特性： <br> **Name** - 這是節點類型名稱。 <br>**Endpoint Ports** - 這些是與這個節點類型相關聯的各種具名端點 (連接埠)。 您可以使用任何您想要的連接埠號碼，只要該號碼未與此資訊清單中的其他任何號碼衝突，而且目前沒有任何其他在電腦/VM 上執行的應用程式在使用該號碼即可。 <br> **Placement Properties** - 此節點類型的這些屬性是用來做為系統服務或您的服務的放置條件約束。 這些屬性是使用者定義的索引鍵/值組，可針對指定節點提供額外的中繼資料。 節點屬性的範例包括節點是否有硬碟機或圖形卡、其硬碟機的磁針數、核心，以及其他實體屬性。 <br> **Capacities** - 節點容量會定義特定節點可以使用的特定資源名稱和數量。 例如，節點可能會定義它具有名為 "MemoryInMb" 的度量容量，而且預設有 2048 MB 的可用記憶體。 這些容量會在執行階段使用，以確保需要特定資源數量的服務會放在需要的數量中有這些資源的節點上。<br>**IsPrimary** - 如果有一個以上已定義的節點類型，請確定只有一個設為主要 (且值為 *true*)，這是系統服務執行的位置。 其他所有節點類型應該設定為值 *false* |
 | **Nodes** |這些是屬於叢集一部分的每個節點的詳細資料 (節點類型、節點名稱、IP 位址、節點的容錯網域和升級網域)。 您想要建立叢集所在的電腦必須與其 IP 位址一起列在這裡。 <br>  如果您為所有節點使用相同的 IP 位址，則會建立一整體叢集，您可以將此叢集用於測試之用。 不要使用一整體叢集部署生產工作負載。 |
 
-### <a name="step-2:-run-the-testconfiguration-script"></a>步驟 2︰ 執行 TestConfiguration 指令碼
+### <a name="step-2-run-the-testconfiguration-script"></a>步驟 2︰ 執行 TestConfiguration 指令碼
 TestConfiguration 指令碼會測試 cluster.json 中定義的基礎結構，以確定已指派所需的權限、電腦已彼此相連等，而且已定義其他屬性，以便成功部署。 基本上這是迷你版的「最佳做法分析程式」。 我們將持續在這項工具中加入更多驗證功能，讓它變得更健全。
 
 此指令碼可以在以系統管理員身分存取叢集組態檔中列為節點的所有電腦的任何電腦上執行。 執行此指令碼所在的電腦不一定是叢集的一部分。
@@ -150,7 +156,7 @@ Passed                     : True
 
 ```
 
-### <a name="step-3:-run-the-create-cluster-script"></a>步驟 3︰執行建立叢集指令碼
+### <a name="step-3-run-the-create-cluster-script"></a>步驟 3︰執行建立叢集指令碼
 您修改 JSON 文件中的叢集組態，並在其中加入所有節點資訊之後，請從封裝資料夾中執行叢集建立 *CreateServiceFabricCluster.ps1* PowerShell 指令碼，並傳入 JSON 組態檔的路徑。 完成這個步驟時，接受 EULA。
 
 此指令碼可以在以系統管理員身分存取叢集組態檔中列為節點的所有電腦的任何電腦上執行。 執行此指令碼所在的電腦不一定是叢集的一部分。
@@ -171,7 +177,7 @@ Passed                     : True
 > 
 > 
 
-### <a name="step-4:-connect-to-the-cluster"></a>步驟 4：連接到叢集
+### <a name="step-4-connect-to-the-cluster"></a>步驟 4：連接到叢集
 若要連接至安全的叢集，請參閱 [Service Fabric 連線到安全的叢集](service-fabric-connect-to-secure-cluster.md)。
 
 若要連線到不安全的叢集，請執行下列 PowerShell 命令：
@@ -183,7 +189,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <*IPAddressofaMachine*>:<Client
 Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.2345:19000
 
 ```
-### <a name="step-5:-bring-up-service-fabric-explorer"></a>步驟 5：啟動 Service Fabric Explorer
+### <a name="step-5-bring-up-service-fabric-explorer"></a>步驟 5：啟動 Service Fabric Explorer
 現在，您可以使用 http://localhost:19080/Explorer/index.html 直接從其中一部電腦或使用 http://<*IPAddressofaMachine*>:19080/Explorer/index.html 從遠端利用 Service Fabric Explorer 連接到叢集。
 
 ## <a name="add-and-remove-nodes"></a>新增和移除節點
@@ -252,6 +258,6 @@ Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.2345:19000
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 10/13/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9c10763c0e57295c6fc75ffc22f8127e5e943844
+ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
+ms.openlocfilehash: 4e7c77bb3f7ca4245ab3ddac58b1b1f9fe2543a4
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 9c10763c0e57295c6fc75ffc22f8127e5e943844
 ## <a name="prerequisites"></a>必要條件
 * [Git](http://www.git-scm.com/downloads)。
 * [Azure CLI](../xplat-cli-install.md)。
-* Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[註冊免費試用版](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+* Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 > [!NOTE]
 > 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
@@ -114,6 +114,6 @@ ms.openlocfilehash: 9c10763c0e57295c6fc75ffc22f8127e5e943844
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

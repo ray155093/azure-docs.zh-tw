@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 中的自訂網域名稱的概念式概觀 | Microsoft Docs
-description: 說明在 Azure Active directory 中使用自訂網域名稱的概念性架構，包括單一登入同盟
+title: "Azure Active Directory 中的自訂網域名稱的概念式概觀 | Microsoft Docs"
+description: "說明在 Azure Active directory 中使用自訂網域名稱的概念性架構，包括單一登入同盟"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeffsta
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: fd0c5def-0da2-43af-81bc-76f4cfe86afd
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: curtand;jeffsta
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 12d41a77655c4892a9dc20979ef98b1bd39f94c5
+
 
 ---
 # <a name="conceptual-overview-of-custom-domain-names-in-azure-active-directory"></a>Azure Active Directory 中的自訂網域名稱的概念式概觀
@@ -58,6 +62,9 @@ Azure Web 應用程式使用其本身的機制來驗證網域的擁有權。 網
 * [使用 PowerShell 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
 * [使用 Azure AD 圖形 API 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

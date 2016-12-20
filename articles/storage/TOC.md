@@ -43,33 +43,25 @@
 ### [C++](storage-c-plus-plus-how-to-use-files.md)
 ### [Python](storage-python-how-to-use-file-storage.md)
 
-
-
 # 作法
-
 ## [建立儲存體帳戶](storage-create-storage-account.md)
-
 ## 使用 Blob
 ### [服務概觀](https://msdn.microsoft.com/library/dd179376.aspx)
 ### [經常性存取和非經常性存取層級](storage-blob-storage-tiers.md)
 ### [自訂網域](storage-custom-domain-name.md)
 ### [匿名存取 Blob](storage-manage-access-to-resources.md)
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)
-
 ## 使用佇列
 ### [概念](https://msdn.microsoft.com/library/dd179353.aspx)
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=queue)
-
 ## 使用資料表
 ### [概觀](https://msdn.microsoft.com/library/dd179463.aspx)
 ### [資料表設計指南](storage-table-design-guide.md)
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=table)
-
 ## 使用檔案
 ### [概觀](https://msdn.microsoft.com/en-us/library/dn166972.aspx)
 ### [針對 Azure 檔案進行疑難排解](storage-troubleshoot-file-connection-problems.md)
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=file)
-
 ## 使用虛擬機器磁碟
 ### 進階儲存體
 #### [VM 工作負載適用的高效能儲存體](storage-premium-storage.md)
@@ -77,24 +69,20 @@
 #### [為高效能而設計](storage-premium-storage-performance.md)
 ### 標準儲存體
 #### [以遞增快照備份 VM 磁碟](storage-incremental-snapshots.md)
-
 ## 規劃和設計
 ### [複寫](storage-redundancy.md)
 ### [擴充和效能目標](storage-scalability-targets.md)
 ### [效能和延展性檢查清單](storage-performance-checklist.md)
 ### [並行](storage-concurrency.md)
-
 ## 開發
 ### [範例](storage-samples.md)
 ### [設定連接字串](storage-configure-connection-string.md)
 ### [使用儲存體模擬器](storage-use-emulator.md)
 ### [設定並擷取屬性和中繼資料](storage-properties-metadata.md)
-
 ## 管理
 ### [PowerShell](storage-powershell-guide-full.md)
 ### [Azure CLI](storage-azure-cli.md)
 ### [Azure 自動化](automation-manage-storage.md)
-
 ## 安全
 ### [安全性指南](storage-security-guide.md)
 ### [待用資料的加密](storage-service-encryption.md)
@@ -105,7 +93,6 @@
 #### [.NET](storage-client-side-encryption.md)
 #### [Java](storage-client-side-encryption-java.md)
 #### [Python](storage-client-side-encryption-python.md)
-
 ## 監視及疑難排解
 ### 計量與記錄
 #### [Storage Analytics](storage-analytics.md)
@@ -117,29 +104,29 @@
 #### [在傳統部署中](storage-cannot-delete-storage-account-container-vhd.md)
 ### [針對檔案儲存體進行疑難排解](storage-troubleshoot-file-connection-problems.md)
 ### [災害復原指引](storage-disaster-recovery-guidance.md)
-
 ## 傳送資料
 ### [將資料移入和移出儲存體](storage-moving-data.md)
 ### [AzCopy 命令列公用程式](storage-use-azcopy.md)
 ### [Blob 儲存體的匯入/匯出服務](storage-import-export-service.md)
 
-
-
 # 參考
-## [PowerShell](/powershell/storage/)
+## [PowerShell](/powershell/storage)
 ## [Azure CLI](/cli/azure/storage)
-## [Java](/java/api/)
-
 ## .NET
-### [Blob、佇列、資料表及檔案](https://msdn.microsoft.com/library/azure/mt347887.aspx)
-### [資源提供者](/dotnet/api/)
-### [資料移動](/dotnet/api/)
-
-## REST
-### [Blob、佇列、資料表及檔案](/rest/api/storageservices/fileservices/azure-storage-services-rest-api-reference)
-### [資源提供者](/rest/api/storagerp/)
+### [資源管理員](/dotnet/api/microsoft.azure.management.storage)
+### [資料移動)](https://msdn.microsoft.com/en-us/library/azure/mt684990.aspx)
+### [Blob、佇列、資料表和檔案](https://msdn.microsoft.com/library/azure/mt347887.aspx)
+## [Java](/java/api/)
+## [Node.js](http://azure.github.io/azure-storage-node)
+## [Ruby](http://azure.github.io/azure-storage-ruby)
+## [Python](https://azure-storage.readthedocs.io/en/latest/index.html)
+## [C++](http://azure.github.io/azure-storage-cpp)
+## [iOS](https://github.com/Azure/azure-storage-ios)
+## [Android](http://azure.github.io/azure-storage-android)
+## [REST]
+### [Blob、佇列、資料表和檔案](/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference)
+### [資源提供者](/rest/api/storagerp)
 ### [匯入/匯出](/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference)
-
 
 # 相關參考
 ## 傳統入口網站
@@ -147,8 +134,6 @@
 ### [啟用和檢視計量](storage-enable-and-view-metrics-classic-portal.md)
 ### [監控、診斷及疑難排解](storage-monitoring-diagnosing-troubleshooting-classic-portal.md)
 ### [疑難排解教學課程](storage-e2e-troubleshooting-classic-portal.md)
-
-
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/storage/blobs/)
@@ -181,6 +166,6 @@
 ### [iOS](https://github.com/Azure/azure-storage-ios)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

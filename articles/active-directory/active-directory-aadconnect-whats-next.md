@@ -1,19 +1,23 @@
 ---
-title: Azure AD Connect：接下來的步驟，以及如何管理 Azure AD Connect | Microsoft Docs
-description: 了解如何針對 Azure AD Connect 擴充預設組態和作業工作。
+title: "Azure AD Connect：後續步驟及如何管理 Azure AD Connect | Microsoft Docs"
+description: "了解如何針對 Azure AD Connect 擴充預設組態和作業工作。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: billmath
 manager: femila
 editor: curtand
-
+ms.assetid: c18bee36-aebf-4281-b8fc-3fe14116f1a5
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/08/2016
+ms.date: 11/01/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 20195cb0d653cf0b1dc87af0fedbf9e49f259737
+
 
 ---
 # <a name="next-steps-and-how-to-manage-azure-ad-connect"></a>接下來的步驟，以及如何管理 Azure AD Connect
@@ -70,6 +74,9 @@ ms.author: billmath
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

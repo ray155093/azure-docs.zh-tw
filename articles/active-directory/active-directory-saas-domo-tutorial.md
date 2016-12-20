@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Domo 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Domo 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Domo 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Domo 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 058626e4-73b3-4dc2-86ca-b060d002d70a
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0b3eea4df3728b54554014eed99a911ec8770161
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-domo"></a>教學課程：Azure Active Directory 與 Domo 整合
+# <a name="tutorial-azure-active-directory-integration-with-domo"></a>教學課程：Azure Active Directory 與 Domo 整合
 本教學課程旨在說明如何整合 Domo 與 Azure Active Directory (Azure AD)。  
 Domo 與 Azure AD 整合提供下列優點：
 
@@ -61,7 +65,7 @@ Domo 與 Azure AD 整合提供下列優點：
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -115,7 +119,7 @@ Domo 應用程式需要特定格式的 SAML 判斷提示。 請設定此應用�
    
     c. 從 [屬性值] 清單中，選取針對該資料列顯示的屬性值。
    
-    d. 按一下 [完成]。  
+    d. 按一下 [完成]。    
 3. 在 Azure 傳統入口網站的 **Domo** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入][6] 
@@ -183,7 +187,7 @@ Domo 應用程式需要特定格式的 SAML 判斷提示。 請設定此應用�
    
    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步]。
+   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-domo-tutorial/create_aaduser_07.png) 
@@ -254,6 +258,6 @@ Domo 應用程式需要特定格式的 SAML 判斷提示。 請設定此應用�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

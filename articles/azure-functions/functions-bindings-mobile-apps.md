@@ -1,162 +1,264 @@
 ---
-title: Azure Functions Mobile Apps 繫結 | Microsoft Docs
-description: 了解如何在 Azure Functions 中使用 Azure Mobile Apps 繫結。
+title: "Azure Functions Mobile Apps 繫結 | Microsoft Docs"
+description: "了解如何在 Azure Functions 中使用 Azure Mobile Apps 繫結。"
 services: functions
 documentationcenter: na
 author: ggailey777
 manager: erikre
-editor: ''
-tags: ''
-keywords: azure functions, 函數, 事件處理, 動態運算, 無伺服器架構
-
+editor: 
+tags: 
+keywords: "azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"
+ms.assetid: faad1263-0fa5-41a9-964f-aecbc0be706a
 ms.service: functions
 ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 08/30/2016
+ms.date: 10/31/2016
 ms.author: glenga
+translationtype: Human Translation
+ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
+ms.openlocfilehash: c5e1c02984f9773b263c0bee7685c7d5ff62e658
+
 
 ---
-# Azure Functions Mobile Apps 繫結
+# <a name="azure-functions-mobile-apps-bindings"></a>Azure Functions Mobile Apps 繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure Mobile Apps 繫結進行設定及撰寫程式碼。
+這篇文章說明如何在 Azure Functions 中為 [Azure Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) 繫結進行設定及撰寫程式碼。 Azure Functions 支援 Mobile Apps 的輸入和輸出繫結。
 
-[!INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+Mobile Apps 輸入和輸出繫結可讓您在行動裝置應用程式中[對資料表往返讀取和寫入資料](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations)。
 
-Azure App Service Mobile Apps 可讓您將資料表端點資料公開至行動用戶端。此相同的表格式資料可用於 Azure Functions 的輸入和輸出繫結中。因為它支援動態結構描述，因此 Node.js 後端行動應用程式非常適合用來公開表格式資料以用於您的函式。動態結構描述預設會啟用，而且應該在生產行動應用程式中停用。如需有關 Node.js 後端中資料表端點的詳細資訊，請參閱[概觀：資料表作業](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations)。在 Mobile Apps 中，Node.js 後端支援在入口網站內瀏覽和編輯資料表。如需詳細資訊，請參閱 Node.js SDK 主題中的[入口網站內編輯](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#in-portal-editing)。當您搭配使用 .NET 後端行動應用程式與 Azure Functions 時，您必須將資料模型手動更新為函式所要求的形式。如需有關 .NET 後端行動應用程式中資料表端點的詳細資訊，請參閱 .NET 後端 SDK 主題中的[做法：定義資料表控制器](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#define-table-controller)。
+[!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-## 針對您的行動應用程式後端 URL 建立環境變數
-Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用程式後端本身的 URL。您可以藉由尋找您的行動應用程式並開啟刀鋒視窗，在 [Azure 入口網站](https://portal.azure.com)中找到這個 URL。
+<a name="input"></a>
 
-![Azure 入口網站中的 Mobile Apps 刀鋒視窗](./media/functions-bindings-mobile-apps/mobile-app-blade.png)
+## <a name="mobile-apps-input-binding"></a>Mobile Apps 輸入繫結
+Mobile Apps 輸入繫結會從行動資料表端點載入記錄，並將它傳遞到您的函式。 在 C# 和 F# 函式中，當函式成功結束時，會將記錄所做的任何變更自動傳回資料表。
 
-在您的函數應用程式中設定此 URL 做為環境變數：
+函式的 Mobile Apps 輸入會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
 
-1. 在 [Azure Functions 入口網站](https://functions.azure.com/signin)的函式應用程式中，按一下 [函式應用程式設定] > [移至 App Service 設定]。
-   
-    ![函數應用程式設定刀鋒視窗](./media/functions-bindings-mobile-apps/functions-app-service-settings.png)
-2. 在函式應用程式中，按一下 [所有設定]、向下捲動至 [應用程式設定]，然後在 [應用程式設定] 下方輸入環境變數的新**名稱**、將 URL 貼至 [值]、確定使用 HTTPS 配置，然後按一下 [儲存] 並關閉函式應用程式刀鋒視窗，以返回 Functions 入口網站。
-   
-    ![新增應用程式設定環境變數](./media/functions-bindings-mobile-apps/functions-app-add-app-setting.png)
+```json
+{
+    "name": "<Name of input parameter in function signature>",
+    "type": "mobileTable",
+    "tableName": "<Name of your mobile app's data table>",
+    "id" : "<Id of the record to retrieve - see below>",
+    "connection": "<Name of app setting that has your mobile app's URL - see below>",
+    "apiKey": "<Name of app setting that has your mobile app's API key - see below>",
+    "direction": "in"
+}
+```
 
-您現在可以設定這個新的環境變數，做為您繫結中的「連接」欄位。
+請注意：
 
-## <a id="mobiletablesapikey"></a>使用 API 金鑰來保護對 Mobile Apps 資料表端點的存取。
-在 Azure Functions 中，行動資料表繫結可讓您指定 API 金鑰，也就是可用來防止您的函式以外的應用程式存取共用的密碼。Mobile Apps 並沒有內建支援的 API 金鑰驗證。不過，您可以依照[實作 API 金鑰的 Azure App Service Mobile Apps 後端](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key)中的範例，在 Node.js 後端行動應用程式中實作 API 金鑰。您也可以用同樣的方式，在 [.NET 後端行動應用程式](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key)中實作 API 金鑰。
+* `id` 可以是靜態，或基於叫用函式的觸發程序。 例如，如果您對函式使用[佇列觸發程序]()，則 `"id": "{queueTrigger}"` 會使用佇列訊息的字串值做為要擷取的記錄識別碼。
+* `connection` 應該包含函式應用程式中應用程式設定的名稱，因而包含行動裝置應用程式的 URL。 函式會使用此 URL 針對您的行動裝置應用程式建構所需的 REST 作業。 您會[在包含您的行動裝置應用程式 URL 的函式應用程式中建立應用程式設定]() (看起來類似 `http://<appname>.azurewebsites.net`)，然後在輸入繫結的 `connection` 屬性中指定應用程式設定的名稱。 
+* 如果您[在您的 Node.js 行動裝置應用程式後端中實作 API 金鑰](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key)，或[在您的 .NET 行動裝置應用程式後端中實作 API 金鑰](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key)，則必須指定 `apiKey`。 若要這樣做，您會[在包含 API 金鑰的函式應用程式中建立應用程式設定]()，然後在具有應用程式設定名稱的輸入繫結中新增 `apiKey` 屬性。 
+  
+  > [!IMPORTANT]
+  > 不能與您的行動裝置應用程式用戶端共用此 API 金鑰。 只應該安全地散佈給服務端用戶端，如 Azure Functions。 
+  > 
+  > [!NOTE]
+  > Azure Functions 將會您的連接資訊和 API 金鑰儲存為應用程式設定，使得不會將讓它們簽入至您的原始檔控制儲存機制。 這可保護您的敏感資訊。
+  > 
+  > 
 
-> [!IMPORTANT]
-> 此 API 金鑰不可與您的行動應用程式用戶端一起散佈，它應該只安全地散佈給服務端用戶端，如 Azure Functions。
-> 
-> 
+<a name="inputusage"></a>
 
-## <a id="mobiletablesinput"></a>Azure Mobile Apps 輸入繫結
-輸入繫結可從行動資料表端點載入記錄，並將它直接傳遞至繫結。您可以根據叫用該函式的觸發程序來判斷記錄識別碼。在 C# 函式中，當函式成功結束時，會將記錄所做的任何變更自動傳回資料表。
+## <a name="input-usage"></a>輸入使用方式
+本節說明如何在您的函式程式碼中使用您的 Mobile Apps 輸入繫結。 
 
-#### Mobile Apps 輸入繫結的 function.json
-「function.json」檔案支援下列屬性：
+找到具有指定的資料表和記錄識別碼的記錄時，它會傳遞到具名 [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) 參數 (或在 Node.js 中，則會傳遞到 `context.bindings.<name>` 物件)。 找不到記錄時，參數為 `null`。 
 
-* `name`︰函式程式碼中用於新記錄的變數名稱。
-* `type`︰繫結類型必須設為「mobileTable」。
-* `tableName`︰其中將建立新記錄的資料表。
-* `id`：要擷取之記錄的識別碼。此屬性支援類似於 `{queueTrigger}` 的繫結，此繫結會使用佇列訊息的字串值做為記錄識別碼。
-* `apiKey`︰字串，此字串是為行動應用程式指定選擇性 API 金鑰的應用程式設定。當您的行動應用程式使用 API 金鑰來限制用戶端存取時，這是必要的選項。
-* `connection`︰應用程式設定中環境變數名稱的字串，可指定行動應用程式後端的 URL。
-* `direction`︰繫結方向，必須設定為「in」。
+在 C# 和 F# 函式中，當函式成功結束時，會將對輸入記錄 (輸入參數) 所做的任何變更自動傳送回 Mobile Apps。 在 Node.js 函式中，使用 `context.bindings.<name>` 來存取輸入記錄。 您無法在 Node.js 中修改記錄。
 
-範例「function.json」檔案：
+<a name="inputsample"></a>
 
+## <a name="input-sample"></a>輸入範例
+假設您有下列 function.json，其擷取具有下列訊息佇列觸發程序識別碼的 Mobile App 資料表記錄︰
+
+```json
+{
+"bindings": [
     {
-      "bindings": [
-        {
-          "name": "record",
-          "type": "mobileTable",
-          "tableName": "MyTable",
-          "id" : "{queueTrigger}",
-          "connection": "My_MobileApp_Url",
-          "apiKey": "My_MobileApp_Key",
-          "direction": "in"
-        }
-      ],
-      "disabled": false
-    }
-
-#### C# 佇列觸發程序的 Azure Mobile Apps 程式碼範例
-根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給「record」參數。找不到記錄時，參數為 null。接著，當函式結束時，會以新的「Text」值更新記錄。
-
-    #r "Newtonsoft.Json"    
-    using Newtonsoft.Json.Linq;
-
-    public static void Run(string myQueueItem, JObject record)
+    "name": "myQueueItem",
+    "queueName": "myqueue-items",
+    "connection":"",
+    "type": "queueTrigger",
+    "direction": "in"
+    },
     {
-        if (record != null)
-        {
-            record["Text"] = "This has changed.";
-        }    
+        "name": "record",
+        "type": "mobileTable",
+        "tableName": "MyTable",
+        "id" : "{queueTrigger}",
+        "connection": "My_MobileApp_Url",
+        "apiKey": "My_MobileApp_Key",
+        "direction": "in"
     }
+],
+"disabled": false
+}
+```
 
-#### Node.js 佇列觸發程序的 Azure Mobile Apps 程式碼範例
-根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給「record」參數。在 Node.js 函式中，更新的記錄不會傳回至資料表。這個程式碼範例會將擷取的記錄寫入記錄檔。
+請參閱使用來自繫結之輸入記錄的特定語言範例。 C# 和 F# 範例也會修改記錄的 `text` 屬性。
 
-    module.exports = function (context, input) {    
-        context.log(context.bindings.record);
-        context.done();
+* [C#](#inputcsharp)
+* [Node.js](#inputnodejs)
+
+<a name="inputcsharp"></a>
+
+### <a name="input-sample-in-c"></a>C 中的輸入範例# #
+
+```cs
+#r "Newtonsoft.Json"    
+using Newtonsoft.Json.Linq;
+
+public static void Run(string myQueueItem, JObject record)
+{
+    if (record != null)
+    {
+        record["Text"] = "This has changed.";
+    }    
+}
+```
+
+<!--
+<a name="inputfsharp"></a>
+### Input sample in F# ## 
+
+```fsharp
+#r "Newtonsoft.Json"    
+open Newtonsoft.Json.Linq
+let Run(myQueueItem: string, record: JObject) =
+  inputDocument?text <- "This has changed."
+```
+-->
+
+<a name="inputnodejs"></a>
+
+### <a name="input-sample-in-nodejs"></a>Node.js 中的輸入範例
+
+```javascript
+module.exports = function (context, myQueueItem) {    
+    context.log(context.bindings.record);
+    context.done();
+};
+```
+
+<a name="output"></a>
+
+## <a name="mobile-apps-output-binding"></a>Mobile Apps 輸出繫結
+使用 Mobile Apps 輸出繫結將新記錄寫入至 Mobile Apps 資料表端點。  
+
+函式的 Mobile Apps 輸出會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+
+```json
+{
+    "name": "<Name of output parameter in function signature>",
+    "type": "mobileTable",
+    "tableName": "<Name of your mobile app's data table>",
+    "connection": "<Name of app setting that has your mobile app's URL - see below>",
+    "apiKey": "<Name of app setting that has your mobile app's API key - see below>",
+    "direction": "out"
+}
+```
+
+請注意：
+
+* `connection` 應該包含函式應用程式中應用程式設定的名稱，因而包含行動裝置應用程式的 URL。 函式會使用此 URL 針對您的行動裝置應用程式建構所需的 REST 作業。 您會[在包含您的行動裝置應用程式 URL 的函式應用程式中建立應用程式設定]() (看起來類似 `http://<appname>.azurewebsites.net`)，然後在輸入繫結的 `connection` 屬性中指定應用程式設定的名稱。 
+* 如果您[在您的 Node.js 行動裝置應用程式後端中實作 API 金鑰](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key)，或[在您的 .NET 行動裝置應用程式後端中實作 API 金鑰](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key)，則必須指定 `apiKey`。 若要這樣做，您會[在包含 API 金鑰的函式應用程式中建立應用程式設定]()，然後在具有應用程式設定名稱的輸入繫結中新增 `apiKey` 屬性。 
+  
+  > [!IMPORTANT]
+  > 不能與您的行動裝置應用程式用戶端共用此 API 金鑰。 只應該安全地散佈給服務端用戶端，如 Azure Functions。 
+  > 
+  > [!NOTE]
+  > Azure Functions 將會您的連接資訊和 API 金鑰儲存為應用程式設定，使得不會將讓它們簽入至您的原始檔控制儲存機制。 這可保護您的敏感資訊。
+  > 
+  > 
+
+<a name="outputusage"></a>
+
+## <a name="output-usage"></a>輸出使用方式
+本節說明如何在您的函式程式碼中使用您的 Mobile Apps 輸出繫結。 
+
+在 C# 函式中，使用類型 `out object` 的具名輸出參數來存取輸出記錄。 在 Node.js 函式中，使用 `context.bindings.<name>` 來存取輸出記錄。
+
+<a name="outputsample"></a>
+
+## <a name="output-sample"></a>輸出範例
+假設您有下列 function.json，其定義一個佇列觸發程序和一個 Mobile Apps 輸出︰
+
+```json
+{
+"bindings": [
+    {
+    "name": "myQueueItem",
+    "queueName": "myqueue-items",
+    "connection":"",
+    "type": "queueTrigger",
+    "direction": "in"
+    },
+    {
+    "name": "record",
+    "type": "mobileTable",
+    "tableName": "MyTable",
+    "connection": "My_MobileApp_Url",
+    "apiKey": "My_MobileApp_Key",
+    "direction": "out"
+    }
+],
+"disabled": false
+}
+```
+
+請參閱會在 Mobile Apps 資料表端點建立一筆記錄與佇列訊息內容的特定語言範例。
+
+* [C#](#outcsharp)
+* [Node.js](#outnodejs)
+
+<a name="outcsharp"></a>
+
+### <a name="output-sample-in-c"></a>C 中的輸出範例# #
+
+```cs
+public static void Run(string myQueueItem, out object record)
+{
+    record = new {
+        Text = $"I'm running in a C# function! {myQueueItem}"
     };
+}
+```
+
+<!--
+<a name="outfsharp"></a>
+### Output sample in F# ## 
+```fsharp
+
+```
+-->
+<a name="outnodejs"></a>
+
+### <a name="output-sample-in-nodejs"></a>Node.js 中的輸出範例
+
+```javascript
+module.exports = function (context, myQueueItem) {
+
+    context.bindings.record = {
+        text : "I'm running in a Node function! Data: '" + myQueueItem + "'"
+    }   
+
+    context.done();
+};
+```
+
+## <a name="next-steps"></a>後續步驟
+[!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 
 
-## <a id="mobiletablesoutput"></a>Azure Mobile Apps 輸出繫結
-您的函式可以使用輸出繫結，將記錄寫入 Mobile Apps 資料表端點。
 
-#### Mobile Apps 輸出繫結的 function.json
-function.json 檔案支援下列屬性：
 
-* `name`︰函式程式碼中用於新記錄的變數名稱。
-* `type` ︰必須設為「mobileTable」的繫結類型。
-* `tableName`︰其中將建立新記錄的資料表。
-* `apiKey`︰字串，此字串是為行動應用程式指定選擇性 API 金鑰的應用程式設定。當您的行動應用程式使用 API 金鑰來限制用戶端存取時，這是必要的選項。
-* `connection`︰應用程式設定中環境變數名稱的字串，可指定行動應用程式後端的 URL。
-* `direction`︰繫結方向，必須設定為「out」。
+<!--HONumber=Nov16_HO3-->
 
-function.json 範例：
 
-    {
-      "bindings": [
-        {
-          "name": "record",
-          "type": "mobileTable",
-          "tableName": "MyTable",
-          "connection": "My_MobileApp_Url",
-          "apiKey": "My_MobileApp_Key",
-          "direction": "out"
-        }
-      ],
-      "disabled": false
-    }
-
-#### C# 佇列觸發程序的 Azure Mobile Apps 程式碼範例
-這個 C# 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，並將「Text」屬性插入上述繫結中指定的資料表。
-
-    public static void Run(string myQueueItem, out object record)
-    {
-        record = new {
-            Text = $"I'm running in a C# function! {myQueueItem}"
-        };
-    }
-
-#### Node.js 佇列觸發程序的 Azure Mobile Apps 程式碼範例
-這個 Node.js 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，並將「text」屬性插入上述繫結中指定的資料表。
-
-    module.exports = function (context, input) {
-
-        context.bindings.record = {
-            text : "I'm running in a Node function! Data: '" + input + "'"
-        }   
-
-        context.done();
-    };
-
-## 後續步驟
-[!INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
-
-<!----HONumber=AcomDC_0907_2016-->

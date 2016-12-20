@@ -1,7 +1,7 @@
 # <a name="regions-and-availability-for-virtual-machines-in-azure"></a>Azure 中虛擬機器的區域和可用性
 請務必了解虛擬機器 (VM) 在 Azure 中的運作方式和位置，以及可充分發揮效能、可用性和備援功能的選項。 Azure 在世界各地多個資料中心運作。 這些資料中心會依據地理區域分組，提供您彈性來選擇要建置應用程式的位置。 本文提供 Azure 可用性和備援功能的概觀。
 
-## <a name="what-are-azure-regions?"></a>什麼是 Azure 區域？
+## <a name="what-are-azure-regions"></a>什麼是 Azure 區域？
 Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」或「東南亞」) 中建立資源 (例如 VM)。 目前全世界有 30 個 Azure 區域。 您可以檢閱 [地區及其位置的清單](https://azure.microsoft.com/regions/)。 為了提供備援和可用性，每個區域內都有多個資料中心。 此方法可為您在建置應用程式時提供彈性，以建立距離使用者最近的 VM，並滿足任何法務、法規遵循或稅務方面的目的。
 
 ## <a name="special-azure-regions"></a>特殊 Azure 區域
@@ -10,7 +10,7 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 * **美國維吉尼亞州政府**和**美國愛荷華州政府**
   * 由經篩選的美國人士所操作、適用於美國政府機構及其合作夥伴的實體與邏輯網路隔離 Azure 執行個體。 包含其他法規遵循認證，例如 [FedRAMP](https://www.microsoft.com/en-us/TrustCenter/Compliance/FedRAMP) 和 [DISA](https://www.microsoft.com/en-us/TrustCenter/Compliance/DISA)。 深入了解 [Azure Government](https://azure.microsoft.com/features/gov/)。
 * **印度中部**、**印度南部**及**印度西部**
-  * 這些區域目前可供在印度當地註冊的大量授權客戶和合作夥伴使用。 整個 2016 年均開放存取直接線上訂用帳戶。
+  * 這些區域目前可供在印度當地註冊的大量授權客戶和合作夥伴使用。 在 2016 年，如果使用者購買直接線上訂用帳戶，就能存取它們。
 * **中國東部**和**中國北部**
   * 這些區域是透過 Microsoft 與 21Vianet 之間的唯一合作關係提供，其中 Microsoft 不會直接維護資料中心。 深入了解 [位於中國的 Microsoft Azure](http://www.windowsazure.cn/)。
 * **德國中部**和**德國東北部**
@@ -70,16 +70,16 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 ## <a name="azure-images"></a>Azure 映像
 在 Azure 中，會從映像建立 VM。 映象通常來自 [Azure Marketplace](https://azure.microsoft.com/marketplace/)，合作夥伴可以在 Azure Marketplace 提供預先設定的完整作業系統或應用程式映像。
 
-當您從 Azure Marketplace 中的映像建立 VM 時，您實際上是在使用範本。 Azure Resource Manager 範本是宣告式「JavaScript 物件標記法」(JSON) 檔案，可用來建立包含 VM、儲存體、虛擬網路功能等的複雜應用程式環境。您可以進一步了解如何使用 [Azure Resource Manager 範本](../articles/resource-group-overview.md)，包括如何[建置您自己的範本](../articles/resource-group-authoring-templates.md)。
+當您從 Azure Marketplace 中的映像建立 VM 時，您實際上是在使用範本。 Azure Resource Manager 範本是宣告式「JavaScript 物件標記法」(JSON) 檔案，可用來建立包含 VM、儲存體、虛擬網路功能等的複雜應用程式環境。您可以進一步了解如何使用 [Azure Resource Manager 範本](../articles/azure-resource-manager/resource-group-overview.md)，包括如何[建置您自己的範本](../articles/resource-group-authoring-templates.md)。
 
-您也可以使用 [Azure CLI](../articles/virtual-machines/virtual-machines-linux-upload-vhd.md) 或 [Azure PowerShell](../articles/virtual-machines/virtual-machines-windows-upload-image.md) 來建立自己的自訂映像並上傳它們，以快速建立符合您特定建置需求的自訂 VM。
+您也可以使用 [Azure CLI](../articles/virtual-machines/virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure PowerShell](../articles/virtual-machines/virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來建立自己的自訂映像並上傳它們，以快速建立符合您特定建置需求的自訂 VM。
 
 ## <a name="availability-sets"></a>可用性設定組
 可用性設定組是 VM 的邏輯群組，可讓 Azure 了解您應用程式的建置方式，以提供備援和可用性。 建議您在可用性設定組內建立兩個或更多個 VM，以提供具高可用性的應用程式，以及符合 [99.95% Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 可用性設定組是由可防止硬體故障及允許安全地套用更新的兩個額外群組所組成 - 容錯網域 (FD) 和更新網域 (UD)。
 
 ![更新網域和容錯網域組態的概念圖](./media/virtual-machines-common-regions-and-availability/ud-fd-configuration.png)
 
-您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/virtual-machines-linux-manage-availability.md) 或 [Windows VM](../articles/virtual-machines/virtual-machines-linux-manage-availability.md)。
+您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Windows VM](../articles/virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ### <a name="fault-domains"></a>容錯網域
 容錯網域是共用通用電源和網路交換器的基礎硬體邏輯群組，類似於內部部署資料中心內的機架。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些容錯網域。 此方法可限制潛在實體硬體錯誤、網路中斷或電源中斷的影響。
@@ -90,6 +90,8 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 ## <a name="next-steps"></a>後續步驟
 您現在可以開始使用這些可用性和備援功能來建置 Azure 環境。 如需最佳作法資訊，請參閱 [Azure 可用性最佳作法](../articles/best-practices-availability-checklist.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO4-->
 
 

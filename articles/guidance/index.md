@@ -1,14 +1,12 @@
-
 ---
-title: Azure Guidance | Microsoft Docs
-description: Best practices and guidance for Azure
-services: ''
+title: "Azure 指引 | Microsoft Docs"
+description: "Azure 的最佳做法和指引"
+services: 
 documentationcenter: na
 author: bennage
 manager: marksou
-editor: ''
-tags: ''
-
+editor: 
+tags: 
 ms.assetid: de94c74a-fea7-4815-8484-553e421a7490
 ms.service: guidance
 ms.devlang: na
@@ -17,100 +15,104 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/17/2016
 ms.author: christb
+translationtype: Human Translation
+ms.sourcegitcommit: 5f3ced657cf3d6587a63789b3dd3ca41cd2856f0
+ms.openlocfilehash: 0061e1ff2ae2d6b8ed7b7c3bb60405e76d4cc91b
+
 
 ---
-# Azure Guidance
+# <a name="azure-guidance"></a>Azure 指導
 [!INCLUDE [pnp-header](../../includes/guidance-pnp-header-include.md)]
 
-The Microsoft patterns & practices team is part of the Azure Customer Advisory Team. Our purpose is to help developers, architects, and IT professionals be successful on the Microsoft Azure platform. We develop guidance that shows best practices for building cloud solutions on Azure.
+Microsoft 模式和做法團隊是 Azure 客戶諮詢團隊的一部分。 我們的目的是協助開發人員、架構設計人員及 IT 專業人員可以成功使用 Microsoft Azure 平台。 我們建立了一套指導程序，提供在 Azure 上建置雲端解決方案的最佳做法。
 
-## Checklists
-These lists are a quick reference for reviewing the fundamental aspects of availability and scalability. 
+## <a name="checklists"></a>檢查清單
+這些清單是檢閱可用性和調整性基本層面的快速參考。 
 
-* [Availability Checklist][AvailabilityChecklist] 
+* [可用性檢查清單][AvailabilityChecklist] 
   
-    A summary of recommended practices for ensuring availability.
-* [Scalability Checklist][ScalabilityChecklist]
+    確保可用性的建議做法摘要。
+* [延展性檢查清單][ScalabilityChecklist]
   
-    A summary of recommended practices for designing and implementing scalable services and handling data management.
+    設計和實作可調整服務和處理資料管理的建議做法摘要。
 
-## Best practices articles
-These articles provide an in-depth discussion of important concepts commonly associated with cloud computing. 
+## <a name="best-practices-articles"></a>最佳做法文章
+這些文章提供與雲端計算相關之重要通用概念的深入討論。 
 
-* [API Design][APIDesign] 
+* [API 設計][APIDesign] 
   
-    A discussion of design issues to consider when designing a web API.
-* [API Implementation][APIImplementation] 
+    設計 Web API 時需要考量的設計問題討論。
+* [API 實作][APIImplementation] 
   
-    A set of recommended practices for implementing and publishing a web API.
-* [API security guidance](https://github.com/mspnp/azure-guidance/blob/master/API-security.md) 
+    實作及發佈 Web API 的一組建議做法。
+* [API 安全性指導](https://github.com/mspnp/azure-guidance/blob/master/API-security.md) 
   
-    A discussion of authentication and authorization concerns (for example, token types, authorization protocols, authorization flows, and threat mitigation).
-* [Autoscaling guidance][AutoscalingGuidance] 
+    驗證和授權考量的討論 (例如權杖類型、授權通訊協定、授權流程及威脅風險降低)。
+* [自動調整指引][AutoscalingGuidance] 
   
-    A summary of considerations for scaling solutions without the need for manual intervention.
-* [Background Jobs guidance][BackgroundJobsGuidance] 
+    無需手動介入的調整解決方案考量摘要。
+* [背景作業指引][BackgroundJobsGuidance] 
   
-    A description of available options and recommended practices for implementing tasks that should be performed in the background, independently from any foreground or interactive operations.
-* [Content Delivery Network (CDN) guidance][CDNGuidance] 
+    實作應該在背景中執行之工作的可用選項和建議做法描述，與前景或互動作業獨立。
+* [內容傳遞網路 (CDN) 指引][CDNGuidance] 
   
-    General guidance and recommended practice for using the CDN to minimize the load on your applications, and maximize availability and performance.
-* [Caching guidance][CachingGuidance] 
+    使用 CDN 減少您應用程式中的負載，並提高可用性和效能的一般指導和建議的做法。
+* [快取指引][CachingGuidance] 
   
-    A summary of how to use caching to improve the performance and scalability of a system.
-* [Data Partitioning guidance][DataPartitioningGuidance]
+    如何使用快取來改善系統的效能和調整性。
+* [資料分割指引][DataPartitioningGuidance]
   
-    Strategies that you can use to partition data to improve scalability, reduce contention, and optimize performance.
-* [Monitoring and Diagnostics guidance][MonitoringandDiagnosticsGuidance] 
+    資料分割使用的策略可以協助改善調整性、減少爭用並最佳化效能。
+* [監視和診斷指引][MonitoringandDiagnosticsGuidance] 
   
-    Guidance on tracking how your users utilize your system, trace resource utilization, and generally monitor the health and performance of your system.
-* [Recommended naming conventions][naming-conventions] 
+    追蹤使用者利用您系統的方式、追蹤資源使用量的方式，以及通常監視您系統之健全狀況和效能的方式的指導。
+* [建議的命名慣例][naming-conventions] 
   
-    Recommended naming conventions for Azure resources.
-* [Retry General guidance][RetryGeneralGuidance] 
+    Azure 資源的建議命名慣例。
+* [一般重試方針][RetryGeneralGuidance] 
   
-    Discussion of the general concepts for handling transient faults.
-* [Retry Service-specific guidance][RetryServiceSpecificGuidance]
+    處理暫時性錯誤的一般概念討論。
+* [重試服務的特定指引][RetryServiceSpecificGuidance]
   
-    A summary of retry features for many of Azure services, including information to help you use, adapt, or extend the retry mechanism for that service.
+    大多數 Azure 服務的重試摘要，包括協助您使用、調整，或擴充該服務的重試機制之相關資訊。
 
-## Scenario guides
-* [Running Elasticsearch on Azure][elasticsearch] 
+## <a name="scenario-guides"></a>案例指南
+* [在 Azure 上執行 Elasticsearch][elasticsearch] 
   
-    Elasticsearch is a highly scalable open-source search engine and database. It is suitable for situations that require fast analysis and discovery of information held in large datasets. This guidance looks at some key aspects to consider when designing an Elasticsearch cluster.
-* [Identity management for multitenant applications][identity-multitenant] 
+    Elasticsearch 是可大幅調整的開放原始碼搜尋引擎和資料庫。 它很適用於需要對大型資料集所保存的資訊進行快速分析與探索的情況。 本指導方針探討設計 Elasticsearch 叢集時所需考量的一些重要層面。
+* [多組織用戶共享應用程式的身分識別管理][identity-multitenant] 
   
-    Multitenancy is an architecture where multiple tenants share an application but are isolated from one another. This guidance shows you how to manage user identities in a multitenant application, using [Azure Active Directory][AzureAD] to handle sign-in and authentication.
-* [Developing big data solutions](https://msdn.microsoft.com/library/dn749874.aspx)
+    多租用戶是多個租用戶共用應用程式，但會彼此隔離的架構。 此指南將向您說明如何使用 [Azure Active Directory][AzureAD] 處理登入與驗證，於多組織用戶共享應用程式中管理使用者身分識別。
+* [開發巨量資料解決方案](https://msdn.microsoft.com/library/dn749874.aspx)
   
-    This guide explores the use of HDInsight for scenarios such as iterative exploration, as a data warehouse, for ETL processes, and integration into existing BI systems. It also includes guidance on understanding the concepts of big data, planning and designing big data solutions, and implementing these solutions.
+    本指南會探討 HDInsight 的使用案例，例如互動探索、做為資料倉儲、進行 ETL 程序以及與現有的 BI 系統整合。 其中也包含了解巨量資料概念、規劃及設計巨量資料解決方案，以及實作這些解決方案的指導。
 
-## Patterns
-* [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://msdn.microsoft.com/library/dn568099.aspx)
+## <a name="patterns"></a>模式
+* [雲端設計模式：雲端應用程式的規範架構指導](https://msdn.microsoft.com/library/dn568099.aspx)
   
-    Cloud Design Patterns is a library of design patterns and related guidance topics. It articulates the benefit of applying patterns by showing how each piece can fit into cloud application architectures.
-* [Optimizing Performance for Cloud Applications](https://github.com/mspnp/performance-optimization)
+    雲端設計模式是設計模式和相關指導主題的程式庫， 它以說明每個部分如何與雲端應用程式架構相符的方式，明確表達出套用模式的優點。
+* [雲端應用程式的效能最佳化](https://github.com/mspnp/performance-optimization)
   
-    This guidance is an exploration of common anti-patterns that impede apps from scaling under load. It includes samples demonstrating eight anti-patterns and a [performance analysis primer](https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md) and a guide for [assessing performance against key metrics](https://github.com/mspnp/performance-optimization/blob/master/Assessing-System-Performance-Against-KPI.md).
+    本指導在探索會妨礙應用程式在負載之下進行調整的一般反向模式。 它包含了 8 個範例，說明反向模式和[初級效能分析](https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md)，以及[評估關鍵評量效能](https://github.com/mspnp/performance-optimization/blob/master/Assessing-System-Performance-Against-KPI.md)的指南。
 
-## Reference architectures
-Our reference architectures are arranged by scenario.
-Each individual architecture offers recommended practices and prescriptive steps, and an executable component that embodies the recommendations.
+## <a name="reference-architectures"></a>參考架構
+我們的參考架構會依案例編排。
+每個架構都提供建議的做法、規定步驟，以及讓建議具體化的可執行元件。
 
-The current library of reference architectures is available at [http://aka.ms/architecture](http://aka.ms/architecture).
+目前的參考架構程式庫位於 [http://aka.ms/architecture](http://aka.ms/architecture)。
 
-## Resiliency guidance
-These topics describe how to design applications that are resilient to failure in a distributed cloud environment.   
+## <a name="resiliency-guidance"></a>復原指導
+這些主題說明如何設計在分散式雲端環境中從失敗中恢復的應用程式。   
 
-* [Resiliency overview][ResiliencyOvervew]
+* [復原概觀][ResiliencyOvervew]
   
-     How to build applications on the Azure platform that can recover from failures and continue to function. Describes a structured approach to achieve resiliency,from design to implementation, deployment, and operations.
-* [Resiliency checklist][resiliency-checklist]
+     如何在 Azure 平台中建置可從失敗中復原並繼續運成的應用程式。 說明一種從設計到實作、部署和作業的結構化復原方式。
+* [復原檢查清單][resiliency-checklist]
   
-    A checklist of recommendations that will help you plan for a variety of failure modes that could occur.
-* [Failure mode analysis][resiliency-fma] 
+    一份包含多項建議的檢查清單，可協助您規劃可能發生的各項失敗模式。
+* [失敗模式分析][resiliency-fma] 
   
-    Failure mode analysis (FMA) is a process for building resiliency into a system, by identifying possible failure points. As a starting point for your FMA process,this article contains a catalog of potential failure modes and their mitigations. 
+    失敗模式分析 (FMA) 是一項程序，以識別可能的失敗點數在系統中建置復原功能。 做為 FMA 程序的起點，本文包含可能的失敗模式#及其補救措施。 
 
 <!-- links -->
 
@@ -151,4 +153,10 @@ These topics describe how to design applications that are resilient to failure i
 [resiliency-fma]: guidance-resiliency-failure-mode-analysis.md
 [resiliency-checklist]: guidance-resiliency-checklist.md
 [ResiliencyOvervew]: guidance-resiliency-overview.md
+
+
+
+
+<!--HONumber=Dec16_HO1-->
+
 

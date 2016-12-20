@@ -1,22 +1,27 @@
 ---
-title: Azure SQL Database Azure 案例研究 - Daxko/CSI| Microsoft Docs
-description: 了解 Daxko/CSI 如何使用 SQL Database 來加速其開發週期及提升其客戶服務和效能
+title: "Azure SQL Database Azure 案例研究 - Daxko/CSI| Microsoft Docs"
+description: "了解 Daxko/CSI 如何使用 SQL Database 來加速其開發週期及提升其客戶服務和效能"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 author: CarlRabeler
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 00c8a713-f20c-4d6b-b8b7-0c1b9ba5f05b
 ms.service: sql-database
+ms.custom: app development case study; app development
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/08/2016
 ms.author: carlrab
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 357b402955187a08a35faacdcb178af75698433d
+
 
 ---
-# <a name="daxko/csi-used-azure-to-accelerate-its-development-cycle-and-to-enhance-its-customer-services-and-performance"></a>Daxko/CSI 使用 Azure 來加速其開發週期及提升其客戶服務和效能
+# <a name="daxkocsi-used-azure-to-accelerate-its-development-cycle-and-to-enhance-its-customer-services-and-performance"></a>Daxko/CSI 使用 Azure 來加速其開發週期及提升其客戶服務和效能
 ![Daxko CSI/標誌](./media/sql-database-implementation-daxko/csidaxkologo25.png)
 
 Daxko/CSI Software 面臨挑戰︰歸功於其全方位企業軟體解決方案的成功，其體適能和娛樂中心的客戶群快速成長，但是要跟上該不斷成長的客戶群的 IT 基礎結構需求則考驗著該公司的 IT 人員。 該公司逐漸受到增加的作業額外負荷限制，特別是在管理日益成長的資料庫方面。 更糟的是，這些作業額外負荷已佔用新計畫 (例如該公司軟體的新行動功能) 的部分開發資源。
@@ -86,10 +91,13 @@ Azure SQL Database 不僅為 SpectrumNG 客戶帶來好處，讓他們享有快�
 * 若要深入了解資料庫工具和彈性調整，請參閱 [彈性資料庫工具和彈性調整](sql-database-elastic-scale-get-started.md)。
 * 若要深入了解如何移轉 SQL Server 資料庫，請參閱 [Azure SQL 移轉精靈](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)。
 * 若要深入了解主動式異地複寫，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)。
-* 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。 
+* 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
 * 若要深入了解「Azure 服務匯流排」，請參閱 [Azure 服務匯流排](https://azure.microsoft.com/services/service-bus/)。
 * 若要深入了解自動調整，請參閱 [調整雲端服務](../cloud-services/cloud-services-how-to-scale.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

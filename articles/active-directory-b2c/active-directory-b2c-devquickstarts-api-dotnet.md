@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 07/22/2016
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 370978187cffa2e5a9544bf99e6a15e13f97ac53
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 1062af9abfd167dd251621a43943dea399aed027
 
 
 ---
@@ -34,11 +34,11 @@ ms.openlocfilehash: 370978187cffa2e5a9544bf99e6a15e13f97ac53
 * 在應用程式中加入 **Web 應用程式**或 **Web API**。
 * 針對 Web 應用程式使用**重新導向的統一資源識別項**`https://localhost:44316/`。 這是適用於此程式碼範例的 Web 應用程式用戶端的預設位置。
 * 複製指派給您的應用程式的 **應用程式識別碼** 。 稍後您將會用到此資訊。
-  
+
   [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>建立您的原則
-在 Azure AD B2C 中，每個使用者經驗皆由 [原則](active-directory-b2c-reference-policies.md)所定義。 此程式碼範例中的用戶端包含三個身分識別使用體驗：註冊、登入和編輯設定檔。 您必須為每個類型建立一個原則，如 [原則參考文章](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy)中所述。 建立您的三個原則時，請務必：
+在 Azure AD B2C 中，每個使用者經驗皆由 [原則](active-directory-b2c-reference-policies.md)所定義。 此程式碼範例中的用戶端包含三個身分識別使用體驗：註冊、登入和編輯設定檔。 您必須為每個類型建立一個原則，如 [原則參考文章](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)中所述。 建立您的三個原則時，請務必：
 
 * 在識別提供者刀鋒視窗中，選擇 [使用者識別碼註冊] 或 [電子郵件註冊]。
 * 在註冊原則中，選擇 [顯示名稱]  和其他註冊屬性。
@@ -50,7 +50,7 @@ ms.openlocfilehash: 370978187cffa2e5a9544bf99e6a15e13f97ac53
 當您成功建立這三個原則之後，就可以開始建置您的 app。
 
 ## <a name="download-the-code"></a>下載程式碼
-本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet)上。 如要依照指示建置範例，請 [下載 .zip 檔案格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/skeleton.zip)。 您也可以複製基本架構：
+本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet)。 如要依照指示建置範例，請 [下載 .zip 檔案格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet/archive/skeleton.zip)。 您也可以複製基本架構：
 
 ```
 git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebAPI-DotNet.git
@@ -217,6 +217,6 @@ You can now move onto more advanced B2C topics. You may try:
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

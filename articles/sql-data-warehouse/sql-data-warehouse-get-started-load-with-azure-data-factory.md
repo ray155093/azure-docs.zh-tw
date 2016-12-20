@@ -1,4 +1,5 @@
 ---
+redirect_url: /azure/sql-data-warehouse/sql-data-warehouse-load-with-data-factory
 title: "使用 Azure Data Factory 載入資料 | Microsoft Docs"
 description: "了解如何使用 Azure Data Factory 載入資料"
 services: sql-data-warehouse
@@ -16,8 +17,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: mausher;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 960225117a1c9b0802004455353fb9015a80b07b
+ms.sourcegitcommit: 3d41671920d40335e3e0931599a434f9d5f58bba
+ms.openlocfilehash: 0fcbd492f1f26efb67dec90a5ba25ba27172065c
 
 
 ---
@@ -54,7 +55,7 @@ ms.openlocfilehash: 960225117a1c9b0802004455353fb9015a80b07b
 ## <a name="step-1-copy-sample-data-to-azure-storage-blob"></a>步驟 1：將範例資料複製到 Azure 儲存體 Blob
 一切就緒時，您就可以開始將範例資料複製到您的 Azure 儲存體 Blob。
 
-1. [下載範例資料][下載範例資料]。 這項資料會將另外三年份的銷售資料新增至 AdventureWorksDW 範例資料。
+1. [載入範例資料][載入範例資料]。 這項資料會將另外三年份的銷售資料新增至 AdventureWorksDW 範例資料。
 2. 使用此 AZCopy 命令，將三年份的資料複製到您的 Azure 儲存體 Blob。
    
     ````
@@ -196,7 +197,7 @@ ms.openlocfilehash: 960225117a1c9b0802004455353fb9015a80b07b
 ## <a name="next-steps"></a>後續步驟
 若要深入了解，首先請檢視：
 
-* [Azure Data Factory 學習路徑][Azure Data Factory 學習路徑]。
+* [Azure Data Factory 的學習路徑][Azure Data Factory 的學習路徑]。
 * [Azure SQL 資料倉儲連接器][Azure SQL 資料倉儲連接器]。 這是搭配使用 Azure Data Factory 與 Azure SQL 資料倉儲的核心參考主題。
 
 這些主題提供 Azure Data Factory 的詳細資訊。 其中討論 Azure SQL Database 或 HDInsight，但資訊也適用於 Azure SQL 資料倉儲。
@@ -224,12 +225,12 @@ ms.openlocfilehash: 960225117a1c9b0802004455353fb9015a80b07b
 <!--MSDN references-->
 
 <!--Other Web references-->
-[Azure Data Factory 學習路徑]: https://azure.microsoft.com/documentation/learning-paths/data-factory
+[Azure Data Factory 的學習路徑]: https://azure.microsoft.com/documentation/learning-paths/data-factory
 [Azure 入口網站]: https://portal.azure.com
-[下載範例資料]: https://migrhoststorage.blob.core.windows.net/adfsample/FactInternetSales.csv
+[載入範例資料]: https://migrhoststorage.blob.core.windows.net/adfsample/FactInternetSales.csv
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

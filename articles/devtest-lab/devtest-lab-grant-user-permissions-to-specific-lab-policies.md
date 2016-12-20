@@ -1,36 +1,40 @@
 ---
-title: 將特定實驗室原則的權限授與使用者 | Microsoft Docs
-description: 了解如何根據每個使用者的需求將使用者權限授與研發/測試實驗室中的特定實驗室原則
+title: "將特定實驗室原則的權限授與使用者 | Microsoft Docs"
+description: "了解如何根據每個使用者的需求將使用者權限授與研發/測試實驗室中的特定實驗室原則"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
 manager: douge
-editor: ''
-
+editor: 
+ms.assetid: 5ca829f0-eb69-40a1-ae26-03a629db1d7e
 ms.service: devtest-lab
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/25/2016
+ms.date: 11/25/2016
 ms.author: tarcher
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f1524fa83de6ce53f853ed6859de15076e20ea3b
+
 
 ---
-# 將特定實驗室原則的權限授與使用者
-## Overview
-本文說明如何使用 PowerShell 將特定實驗室原則的權限授與使用者。這樣便可根據每個使用者的需求來套用權限。例如，您可能想要將變更 VM 原則設定 (而非成本原則) 的能力授與特定的使用者。
+# <a name="grant-user-permissions-to-specific-lab-policies"></a>將特定實驗室原則的權限授與使用者
+## <a name="overview"></a>Overview
+本文說明如何使用 PowerShell 將特定實驗室原則的權限授與使用者。 這樣便可根據每個使用者的需求來套用權限。 例如，您可能想要將變更 VM 原則設定 (而非成本原則) 的能力授與特定的使用者。
 
-## 原則即資源
-如 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)中所討論，RBAC 可讓您對 Azure 的資源進行更細緻的存取管理。您可以使用 RBAC 來區隔開發小組的職責，僅授與使用者作業所需的存取權。
+## <a name="policies-as-resources"></a>原則即資源
+如 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md) 中所討論，RBAC 可讓您對 Azure 的資源進行更細緻的存取管理。 您可以使用 RBAC 來區隔開發小組的職責，僅授與使用者作業所需的存取權。
 
-在研發/測試實驗室中，原則是一種可啟用 RBAC 動作 **Microsoft.DevTestLab/labs/policySets/policies/** 的資源類型。每個實驗室原則都是「原則」資源類型中的資源，並且可被指派成某個 RBAC 角色的範圍。
+在研發/測試實驗室中，原則是一種可啟用 RBAC 動作 **Microsoft.DevTestLab/labs/policySets/policies/**的資源類型。 每個實驗室原則都是「原則」資源類型中的資源，並且可被指派成某個 RBAC 角色的範圍。
 
 例如，為了將**允許的 VM 大小**原則的讀取/寫入權限授與使用者，您會建立一個與 **Microsoft.DevTestLab/labs/policySets/policies/*** 動作搭配運作的自訂角色，然後在 **Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab** 範圍中將適當的使用者指派給這個自訂角色。
 
-若要深入了解 RBAC 中的自訂角色，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)一文中的[在 Azure RBAC 中自訂角色](../active-directory/role-based-access-control-configure.md#custom-roles-in-azure-rbac)一節。
+若要深入了解 RBAC 中的自訂角色，請參閱[自訂角色存取控制](../active-directory/role-based-access-control-custom-roles.md)。
 
-## 使用 PowerShell 建立實驗室自訂角色
-為了開始進行，您將需要閱讀下列文章，此文章將說明如何安裝和設定 Azure PowerShell Cmdlet：[https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre)。
+## <a name="creating-a-lab-custom-role-using-powershell"></a>使用 PowerShell 建立實驗室自訂角色
+為了開始進行，您將需要閱讀下列文章，此文章將說明如何安裝和設定 Azure PowerShell Cmdlet： [https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre)。
 
 設定完 Azure PowerShell Cmdlet 之後，您便可執行下列工作：
 
@@ -56,10 +60,10 @@ ms.author: tarcher
     $policyRoleDef.Actions.Add("Microsoft.DevTestLab/labs/policySets/policies/*")
     $policyRoleDef = (New-AzureRmRoleDefinition -Role $policyRoleDef)
 
-## 使用自訂角色將特定原則的權限指派給使用者
-定義自訂角色之後，您便可以將它們指派給使用者。為了將自訂角色指派給使用者，您必須先取得代表該使用者的 **ObjectId**。若要這樣做，請使用 **Get-AzureRmADUser** Cmdlet。
+## <a name="assigning-permissions-to-a-user-for-a-specific-policy-using-custom-roles"></a>使用自訂角色將特定原則的權限指派給使用者
+定義自訂角色之後，您便可以將它們指派給使用者。 為了將自訂角色指派給使用者，您必須先取得代表該使用者的 **ObjectId** 。 若要這樣做，請使用 **Get-AzureRmADUser** Cmdlet。
 
-在下列範例中，*SomeUser* 使用者的 **ObjectId** 是 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3。
+在下列範例中， **SomeUser** 使用者的 *ObjectId* 是 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3。
 
     PS C:\>Get-AzureRmADUser -SearchString "SomeUser"
 
@@ -71,7 +75,7 @@ ms.author: tarcher
 
     PS C:\>New-AzureRmRoleAssignment -ObjectId 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3 -RoleDefinitionName "Policy Contributor" -Scope /subscriptions/<SubscriptionID>/resourceGroups/<ResourceGroupName>/providers/Microsoft.DevTestLab/labs/<LabName>/policySets/policies/AllowedVmSizesInLab
 
-在先前的範例中，使用的是 **AllowedVmSizesInLab** 原則。您也可以使用下列任何原則：
+在先前的範例中，使用的是 **AllowedVmSizesInLab** 原則。 您也可以使用下列任何原則：
 
 * MaxVmsAllowedPerUser
 * MaxVmsAllowedPerLab
@@ -80,7 +84,7 @@ ms.author: tarcher
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 將特定實驗室原則的權限授與使用者之後，以下是一些需要考量的後續步驟：
 
 * [安全存取實驗室](devtest-lab-add-devtest-user.md)。
@@ -89,4 +93,9 @@ ms.author: tarcher
 * [為您的 VM 建立自訂成品](devtest-lab-artifact-author.md)。
 * [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

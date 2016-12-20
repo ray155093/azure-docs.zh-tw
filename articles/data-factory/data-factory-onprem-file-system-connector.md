@@ -1,32 +1,36 @@
 ---
-title: 將資料移進和移出檔案系統 | Microsoft Docs
-description: 了解如何使用 Azure Data Factory 將資料移進和移出內部部署檔案系統。
+title: "將資料移進和移出檔案系統 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 將資料移進和移出內部部署檔案系統。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: linda33wj
 manager: jhubbard
 editor: monicar
-
+ms.assetid: ce19f1ae-358e-4ffc-8a80-d802505c9c84
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/01/2016
+ms.date: 12/07/2016
 ms.author: jingwang
+translationtype: Human Translation
+ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
+ms.openlocfilehash: e715588edb60dbe19449474e89da841e8b375878
+
 
 ---
 # <a name="move-data-to-and-from-an-on-premises-file-system-by-using-azure-data-factory"></a>使用 Azure Data Factory 將資料移進和移出內部部署檔案系統
-本文概述如何使用 Azure Data Factory 的複製活動將資料移進和移出內部部署檔案系統。 如需可做為內部部署檔案系統之來源或接收的資料存放區清單，請參閱 [支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores) 。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
+本文概述如何使用 Azure Data Factory 的複製活動將資料移進和移出內部部署檔案系統。 如需可做為內部部署檔案系統之來源或接收的資料存放區清單，請參閱 [支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
 Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 如需有關資料管理閘道以及設定閘道的逐步指示，請參閱[利用資料管理閘道在內部部署資源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 > [!NOTE]
 > 除了資料管理閘道，不需要安裝其他二進位檔即可和內部部署檔案系統進行通訊。
-> 
-> 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)。
-> 
-> 
+>
+> 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshooting-gateway-issues)。
+>
+>
 
 ## <a name="linux-file-share"></a>Linux 檔案共用
 執行下列兩個步驟，來搭配使用 Linux 檔案共用和檔案伺服器連結服務：
@@ -37,15 +41,15 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
 ## <a name="copy-wizard"></a>複製精靈
 要建立管線來將資料複製到內部部署檔案系統或複製內部部署檔案系統中的資料，最簡單的方法是使用「複製精靈」。 如需快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到內部部署檔案系統和 Azure Blob 儲存體，以及複製其中的資料。 您可以使用 Azure Data Factory 中的複製活動，把資料「直接」複製到[支援的來源和接收器](data-factory-data-movement-activities.md#supported-data-stores)一文中所述的任何接收器。
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到內部部署檔案系統和 Azure Blob 儲存體，以及複製其中的資料。 您可以使用 Azure Data Factory 中的複製活動，把資料「直接」複製到[支援的來源和接收器](data-factory-data-movement-activities.md#supported-data-stores-and-formats)一文中所述的任何接收器。
 
-## <a name="sample:-copy-data-from-an-on-premises-file-system-to-azure-blob-storage"></a>範例：將資料從內部部署檔案系統複製到 Azure Blob 儲存體
+## <a name="sample-copy-data-from-an-on-premises-file-system-to-azure-blob-storage"></a>範例：將資料從內部部署檔案系統複製到 Azure Blob 儲存體
 此範例示範如何將資料從內部部署檔案系統複製到 Azure Blob 儲存體。
 
 範例有下列 Data Factory 實體：
 
-* [OnPremisesFileServer](data-factory-onprem-file-system-connector.md#onpremisesfileserver-linked-service-properties)類型的連結服務。
-* [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties)類型的連結服務。
+* [OnPremisesFileServer](data-factory-onprem-file-system-connector.md#on-premises-file-server-linked-service-properties)類型的連結服務。
+* [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service)類型的連結服務。
 * [FileShare](data-factory-onprem-file-system-connector.md#on-premises-file-system-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 * [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 * 具有使用 [FileSystemSource](data-factory-onprem-file-system-connector.md#file-share-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
@@ -253,7 +257,7 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
        }
     }
 
-## <a name="sample:-copy-data-from-azure-sql-database-to-an-on-premises-file-system"></a>範例：將資料從 Azure SQL 資料庫複製到內部部署檔案系統
+## <a name="sample-copy-data-from-azure-sql-database-to-an-on-premises-file-system"></a>範例：將資料從 Azure SQL 資料庫複製到內部部署檔案系統
 下列範例顯示︰
 
 * AzureSqlDatabase 類型的連結服務。
@@ -445,7 +449,7 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
 | encryptedCredential |指定可以透過執行 New-AzureRmDataFactoryEncryptValue Cmdlet 來取得的加密認證。 |否 (如果您選擇以純文字指定使用者識別碼和密碼) |
 | gatewayName |指定 Data Factory 應該用來連接到內部部署檔案伺服器的閘道器名稱。 |是 |
 
-如需為內部部署檔案系統資料來源設定認證的詳細資料，請參閱 [設定認證和安全性](data-factory-move-data-between-onprem-and-cloud.md#set-credentials-and-security) 。
+如需設定內部部署檔案系統資料來源認證的詳細資訊，請參閱[利用資料管理閘道在內部部署來源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 ### <a name="sample-linked-service-and-dataset-definitions"></a>範例連結服務和資料集定義
 | 案例 | 連結服務定義中的主機 | 資料集定義中的 folderPath |
@@ -455,13 +459,13 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
 
 **尋找閘道器的版本：**
 
-1. 在機器上啟動 [資料管理閘道組態管理員](data-factory-data-management-gateway.md#data-management-gateway-configuration-manager) 。
+1. 在機器上啟動 [資料管理閘道組態管理員](data-factory-data-management-gateway.md#configuration-manager) 。
 2. 切換至 [說明]  索引標籤。
 
 > [!NOTE]
-> 我們建議您[將閘道器升級為資料管理閘道 2.0 或更新版本](data-factory-data-management-gateway.md#update-data-management-gateway)，以利用最新功能和修正。
-> 
-> 
+> 我們建議您[將閘道器升級為資料管理閘道 2.0 或更新版本](data-factory-data-management-gateway.md#update)，以利用最新功能和修正。
+>
+>
 
 **範例：使用純文字的使用者名稱和密碼**
 
@@ -508,15 +512,15 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
 
 > [!NOTE]
 > 無法同時使用 fileName 和 fileFilter。
-> 
-> 
+>
+>
 
 ### <a name="using-partitionedby-property"></a>使用 partitionedBy 屬性
 如上一節所述，您可以利用 partitionedBy 指定時間序列資料的動態 folderPath 和 fileName。 您可以使用 Data Factory 巨集和系統變數 SliceStart、SliceEnd，來指出給定資料配量的邏輯時間週期。
 
 若要進一步了解時間序列資料集、排程和配量，請參閱[建立資料集](data-factory-create-datasets.md)、[排程和執行](data-factory-scheduling-and-execution.md)以及[建立管線](data-factory-create-pipelines.md)。
 
-#### <a name="sample-1:"></a>範例 1：
+#### <a name="sample-1"></a>範例 1：
     "folderPath": "wikidatagateway/wikisampledataout/{Slice}",
     "partitionedBy":
     [
@@ -525,7 +529,7 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
 
 在此範例中，{Slice} 會取代成 Data Factory 系統變數 SliceStart 的值，其格式為 (YYYYMMDDHH)。 SliceStart 是指配量的開始時間。 每個配量的 folderPath 都不同。 例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
 
-#### <a name="sample-2:"></a>範例 2：
+#### <a name="sample-2"></a>範例 2：
     "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
     "fileName": "{Hour}.csv",
     "partitionedBy":
@@ -574,6 +578,8 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
 ## <a name="performance-and-tuning"></a>效能和微調
  若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

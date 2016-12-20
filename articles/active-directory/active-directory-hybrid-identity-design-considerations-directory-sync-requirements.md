@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 混合式身分識別設計考量 - 判斷目錄同步處理需求| Microsoft Docs
-description: 識別哪些是企業在內部部署和雲端之間同步處理所有使用者所需的需求。
-documentationcenter: ''
+title: "Azure Active Directory 混合式身分識別設計考量 - 判斷目錄同步處理需求|Microsoft Docs"
+description: "識別哪些是企業在內部部署和雲端之間同步處理所有使用者所需的需求。"
+documentationcenter: 
 services: active-directory
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 593eaa71-17eb-4c16-8c98-43cc62987e65
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/08/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4fc6aa1baa5f558b8e706d94e3e604824f531d4a
+
 
 ---
 # <a name="determine-directory-synchronization-requirements"></a>判斷目錄同步處理需求
@@ -70,6 +74,9 @@ ms.author: billmath
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

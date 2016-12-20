@@ -1,13 +1,13 @@
 ---
 title: "混合式內部部署/雲端應用程式 (.NET) | Microsoft Docs"
-description: "了解如何使用 Azure 服務匯流排轉送建立 .NET 內部部署/雲端混合式應用程式。"
-services: service-bus
+description: "了解如何建立使用 Azure WCF 轉送的 .NET 內部部署/雲端混合式應用程式。"
+services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
 editor: 
 ms.assetid: 9ed02f7c-ebfb-4f39-9c97-b7dc15bcb4c1
-ms.service: service-bus
+ms.service: service-bus-relay
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
@@ -15,35 +15,35 @@ ms.topic: hero-article
 ms.date: 09/16/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3c9d542edf04c119f5d97f80eacdfd0521acd77d
+ms.sourcegitcommit: 29ede770e6e63a50ba398cfb0bc8035cacdea392
+ms.openlocfilehash: 2b00b8206189dbed02e03807658c53f81171b111
 
 
 ---
-# <a name="net-onpremisescloud-hybrid-application-using-azure-service-bus-wcf-relay"></a>使用 Azure 服務匯流排 WCF 轉送的 .NET 內部部署/雲端混合式應用程式
+# <a name="net-on-premisescloud-hybrid-application-using-azure-wcf-relay"></a>使用 Azure WCF 轉送的 .NET 內部部署/雲端混合式應用程式
 ## <a name="introduction"></a>簡介
 本文說明如何使用 Microsoft Azure 和 Visual Studio 建置混合式雲端應用程式。 本教學課程假設您先前沒有使用 Azure 的經驗。 不用 30 分鐘，您就會獲得一個使用多個 Azure 資源，於雲端上啟動並執行的應用程式。
 
 您將了解：
 
 * 如何建立 Web 服務或調整現有的 Web 服務，以供 Web 方案使用。
-* 如何使用 Azure 服務匯流排 WCF 轉送服務，在 Azure 應用程式與其他位置託管的 Web 服務之間共用資料。
+* 如何使用 Azure WCF 轉送服務，在 Azure 應用程式與在其他位置裝載的 Web 服務之間共用資料。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="how-the-service-bus-relay-helps-with-hybrid-solutions"></a>服務匯流排轉送如何協助混合式方案
+## <a name="how-azure-relay-helps-with-hybrid-solutions"></a>Azure 轉送如何透過混合式解決方案提供協助
 商業方案通常由下列項目組成：為了應付全新的獨特商業需求而撰寫的自訂程式碼，以及既有方案和系統提供的現有功能。
 
 眾多方案架構爭相開始使用雲端，以期能夠更輕鬆地處理擴充需求並降低操作成本。 在這麼做之後，它們發現想要運用作為其方案建置組塊的現有服務資產是在公司防火牆內，無法供雲端方案輕易存取。 許多內部服務並不是以可輕易在公司網路邊緣公開的方式建置或主控。
 
-「服務匯流排轉送」是針對採取現有 Windows Communication Foundation (WCF) Web 服務，並使那些服務可供公司週邊外之解決方案安全存取的使用案例而設計的，不需要進行會干擾公司網路基礎結構的變更。 這類服務匯流排轉送服務仍然裝載在其現有的環境，但它們會委派接聽連入工作階段和雲端裝載的服務匯流排的要求。 服務匯流排也可使用[共用存取簽章](../service-bus-messaging/service-bus-sas-overview.md) (SAS) 驗證，保護這些服務免受未經授權的存取。
+Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服務，並使那些服務可供公司周邊外之解決方案安全存取的使用案例而設計的，不需要進行會干擾公司網路基礎結構的變更。 此類轉送服務仍然裝載在其現有環境，但它們會將接聽連入工作階段和要求的工作委派給雲端裝載的轉送服務。 Azure 轉送也可使用[共用存取簽章](../service-bus-messaging/service-bus-sas-overview.md) (SAS) 驗證，保護那些服務免受未經授權的存取。
 
 ## <a name="solution-scenario"></a>解決方案案例
 在本教學課程中，您將建立 ASP.NET 網站，讓您可在產品庫存頁面上看到產品清單。
 
 ![][0]
 
-本教學課程假設您有現有內部部署系統中的產品資訊，並使用服務匯流排轉送來連接該系統。 這項模擬是由簡單主控台應用程式中執行的 Web 服務來進行，並由記憶體內的產品集支援。 您將能夠在自己的電腦上執行這個主控台應用程式，並將 Web 角色部署至 Azure。 在這麼做之後，您將看到在 Azure 資料中心執行的 Web 角色將確實呼叫至電腦，即使電腦幾乎確定會位於至少一個防火牆和網路位址轉譯 (NAT) 層後面也一樣。
+此教學課程假設您有現有內部部署系統中的產品資訊，並使用 Azure 轉送來連接該系統。 這項模擬是由簡單主控台應用程式中執行的 Web 服務來進行，並由記憶體內的產品集支援。 您將能夠在自己的電腦上執行這個主控台應用程式，並將 Web 角色部署至 Azure。 在這麼做之後，您將看到在 Azure 資料中心執行的 Web 角色將確實呼叫至電腦，即使電腦幾乎確定會位於至少一個防火牆和網路位址轉譯 (NAT) 層後面也一樣。
 
 下列是已完成之 Web 應用程式的開始頁面螢幕擷取畫面。
 
@@ -59,11 +59,11 @@ ms.openlocfilehash: 3c9d542edf04c119f5d97f80eacdfd0521acd77d
 5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。 如果您未安裝 Visual Studio，則 SDK 也會安裝免費的 Visual Studio Express。
 
 ## <a name="create-a-namespace"></a>建立命名空間
-若要開始在 Azure 中使用服務匯流排功能，首先必須建立服務命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+若要開始在 Azure 中使用轉送功能，首先必須建立服務命名空間。 命名空間提供範圍容器，可在應用程式內進行 Azure 資源定址。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="create-an-onpremises-server"></a>建立內部部署伺服器
+## <a name="create-an-on-premises-server"></a>建立內部部署伺服器
 首先，您將建置 (模擬) 內部部署產品目錄系統。 此作業相當簡單；您可將它看成是呈現實際內部部署產品目錄系統，此系統具有我們正在嘗試整合的完整服務面。
 
 此專案是 Visual Studio 主控台應用程式，會使用 [Azure 服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)來納入服務匯流排程式庫和組態設定。
@@ -434,10 +434,10 @@ ms.openlocfilehash: 3c9d542edf04c119f5d97f80eacdfd0521acd77d
     ![][38]
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解服務匯流排，請參閱下列資源：  
+若要深入了解 Azure 轉送，請參閱下列資源︰  
 
-* [Azure 服務匯流排][sbwacom]  
-* [如何使用服務匯流排佇列][sbwacomqhowto]  
+* [什麼是 Azure 轉送？](relay-what-is-it.md)  
+* [如何使用轉送](service-bus-dotnet-how-to-use-relay.md)  
 
 [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
 [1]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/App2.png
@@ -467,12 +467,8 @@ ms.openlocfilehash: 3c9d542edf04c119f5d97f80eacdfd0521acd77d
 [43]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/getting-started-hybrid-43.png
 
 
-[sbwacom]: /documentation/services/service-bus/  
-[sbwacomqhowto]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md
 
 
-
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

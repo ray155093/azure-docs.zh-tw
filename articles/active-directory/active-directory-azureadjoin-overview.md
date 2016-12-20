@@ -1,13 +1,13 @@
 ---
-title: 透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能| Microsoft Docs
-description: 提供 Windows 10 裝置如何利用 Azure AD Join 在 Azure Active Directory 上註冊的詳細概觀。
+title: "透過 Azure Active Directory Join 將雲端功能延伸至 Windows 10 裝置 | Microsoft Docs"
+description: "提供 Windows 10 裝置如何利用 Azure AD Join 在 Azure Active Directory 上註冊的詳細概觀。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: femila
 manager: swadhwa
-editor: ''
+editor: 
 tags: azure-classic-portal
-
+ms.assetid: 0cd4942f-7d54-474e-bd12-8e6764b0d42a
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,10 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b9dde0fc436cd3bcf4928b78e4c08c39876afbd7
+
 
 ---
 # <a name="extending-cloud-capabilities-to-windows-10-devices-through-azure-active-directory-join"></a>透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能
-## <a name="what-is-azure-active-directory-join?"></a>什麼是 Azure Active Directory Join？
+## <a name="what-is-azure-active-directory-join"></a>什麼是 Azure Active Directory Join？
 Azure Active Directory Join (Azure AD Join) 是一項功能，可在 Azure Active Directory 中登錄公司擁有的裝置來啟用集中式管理。 這表示使用者 (員工和學生) 可以透過 Azure Active Directory 連線到企業雲端。 這樣能夠簡化 Windows 部署，從任何 Windows 裝置 (公司擁有或個人擁有的 (BYOD)) 存取組織應用程式和資源。
 
 Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不具內部部署 Windows Server Active Directory 基礎結構的中小型企業)。 但是，Azure AD Join 能夠且也會供大型組織在無法加入傳統網域的裝置上 (例如行動裝置)，或主要需存取 Office 365 或其他 Azure AD SaaS 應用程式的使用者使用。
@@ -27,13 +31,13 @@ Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不
 
 ![公司裝置和個人裝置搭配內部部署 Active Directory 和 Azure AD 的概觀](./media/active-directory-azureadjoin/active-directory-azureadjoin-overview.png)
 
-## <a name="why-should-enterprises-adopt-azure-ad-join?"></a>為什麼企業應該採用 Azure AD Join？
+## <a name="why-should-enterprises-adopt-azure-ad-join"></a>為什麼企業應該採用 Azure AD Join？
 * **以雲端為主的企業**：如果您已經或即將移至可減少內部部署使用量的模型，並且想要在雲端進行更多操作，Azure AD Join 對您十分有用。 或許您已經手動或透過同步處理內部部署 Active Directory 的方式建立了 Azure AD 帳戶。 無論您使用哪種方法，在 Azure AD 中都已有帳戶且可用來登入 Windows 10。 您的使用者可以透過全新體驗 (OOBE) 或透過 [設定] 功能表，將他們的電腦加入 Azure AD。 加入之後，使用者在瀏覽器或 Office 應用程式中，只需經由單一登入 (SSO) 即可存取雲端資源，例如 Office 365。
 * **教育機構**：我們常聽到的其中一個案例是，教育機構包含教職員和學生兩種使用者類型。 教職成員會被視為組織中較長期的成員，因此適合為他們建立內部部署帳戶。 但學生是組織中較短期的成員，因而可放在 Azure AD 中管理。 這表示可以將目錄範圍推送至雲端，而不是儲存在內部部署 這也表示學生可以使用其 Azure AD 帳戶登入 Windows，並在瀏覽器或 Office 應用程式中存取 Office 365 資源。
 * **零售業**：客戶指出的另一個案例是他們想要更容易地管理週期性工作者。  同樣地，較長期、全職員工的帳戶通常是在已加入網域的電腦上建立為內部部署帳戶。 但週期性工作者是組織中較短期的成員，因而適合在可更輕易四處移動使用者授權的位置加以管理。 在具有 Office 365 授權的雲端中建立這些使用者，可讓使用者享受到利用 Azure AD 帳戶登入 Windows 和 Office 應用程式的好處。 同時，在他們離職之後，您也能對他們的授權保有更大的處理彈性。
 * **其他企業**：即使您在內部部署 Active Directory 中維護使用者，您仍然可以享受到將使用者加入 Azure AD 的好處。 這是因為 Azure AD 為 Azure AD 和內部部署資源提供簡化的加入經驗、有效率的裝置管理、自動的行動裝置管理註冊和單一登入功能。  
 
-## <a name="what-capabilities-does-azure-ad-join-offer?"></a>Azure AD Join 提供哪些功能？
+## <a name="what-capabilities-does-azure-ad-join-offer"></a>Azure AD Join 提供哪些功能？
 使用 Azure AD Join，您可以：
 
 * **自行佈建公司擁有的裝置**：使用 Windows 10，使用者可以在全新體驗中設定全新的拆封授權裝置。
@@ -44,7 +48,7 @@ Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不
 * **OS 狀態漫遊**：協助工具設定、網站及 Wi-Fi 密碼和其他設定都在公司擁有的裝置之間同步處理，而不需使用個人的 Microsoft 帳戶。
 * **符合企業需求的 Windows 市集**：Windows 市集支援透過 Azure AD 帳戶來取得與授權應用程式。 組織可以取得大量授權的應用程式，並讓各個組織中的使用者可以使用。
 
-## <a name="how-do-different-devices-work-with-azure-ad-join?"></a>不同的裝置如何與 Azure AD Join 搭配運作？
+## <a name="how-do-different-devices-work-with-azure-ad-join"></a>不同的裝置如何與 Azure AD Join 搭配運作？
 | 公司裝置 (已加入內部部署網域) | 公司裝置 (已加入雲端) | 個人裝置 |
 | --- | --- | --- |
 | 使用者可以使用工作認證登入 Windows (就像他們現在所做的一樣) |使用者可以使用 Azure AD 中管理的工作認證來登入 Windows。 這在三種情況下與公司裝置有關：1) 組織在內部部署沒有 Active Directory (例如，小型企業)。 2) 組織並未在 Active Directory 中建立所有使用者帳戶 (比方說，不在 Active Directory 中建立學生、顧問或週期性工作者的帳戶)。 3) 組織有無法加入 (內部部署) 網域的公司裝置，例如執行 Mobile SKU 的手機或平板電腦 (比方說，攜帶到廠區/零售店的第二個裝置)。 Azure AD Join 在受管理和同盟組織中支援加入公司裝置。 |使用者使用其個人 Microsoft 帳戶認證登入 Windows (沒有改變)。 |
@@ -60,6 +64,9 @@ Azure AD Join 的目標對象是雲端優先/僅限雲端的企業 (通常是不
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

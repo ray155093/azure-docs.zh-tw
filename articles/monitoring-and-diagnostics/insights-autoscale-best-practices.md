@@ -1,130 +1,158 @@
 ---
-title: 'Azure Insights: Best practices for Azure Insights autoscaling. | Microsoft Docs'
-description: Learn principles to effectively use autoscaling in Azure Insights.
+title: "Azure 監視器自動調整的最佳作法 | Microsoft Docs"
+description: "了解在 Azure 監視器中有效使用自動調整的原則。"
 author: kamathashwin
-manager: ''
-editor: ''
+manager: carolz
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 9fa2b94b-dfa5-4106-96ff-74fd1fba4657
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/15/2016
+ms.date: 10/20/2016
 ms.author: ashwink
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f49d9121f34cc58d1486220a93bcb102f8eba90b
+
 
 ---
-# <a name="best-practices-for-azure-insights-autoscaling"></a>Best practices for Azure Insights autoscaling
-The following sections in this document will help you understand the best practices for Autoscale in Azure Insights. After reviewing this information, you'll be better able to effectively use Autoscale in your Azure infrastructure.
+# <a name="best-practices-for-azure-monitor-autoscaling"></a>Azure 監視器自動調整的最佳作法
+此文件中的下列各節將能協助您了解 Azure 自動調整的最佳作法。 檢閱此資訊之後，您將能在 Azure 基礎結構中更有效地使用自動調整功能。
 
-## <a name="autoscale-concepts"></a>Autoscale concepts
-* A resource can have only *one* autoscale setting
-* An autoscale setting can have one or more profiles and each profile can have one or more autoscale rules.
-* An autoscale setting scales instances horizontally, which is *out* by increasing the instances and *in* by decreasing the number of instances.
-  An autoscale setting has a maximum, minimum, and default value of instances.
-* An autoscale job always reads the associated metric to scale by, checking if it has crossed the configured threshold for scale out or scale in. You can view a list of metrics that autoscale can scale by at [Azure Insights autoscaling common metrics](insights-autoscale-common-metrics.md).
-* All thresholds are calculated at an instance level. For example, "scale out by 1 instance when average CPU > 80% when instance count is 2", means scale out when the average CPU across all instances is greater than 80%.
-* You will always receive failure notifications via email. Specifically, the owner, contributor, and readers of the target resource will receive email. You will also always receive a *recovery* email when autoscale recovers from a failure and starts functioning normally.
-* You can opt-in to receive a successful scale action notification via email and webhooks.
+## <a name="autoscale-concepts"></a>自動調整的概念
+* 資源可以只有「一項」  自動調整設定。
+* 自動調整設定可有一或多個設定檔，而且每個設定檔都能有一或多項自動調整規則。
+* 自動調整設定會水平調整執行個體，其中「相應放大」為增加執行個體數量，而「相應縮小」則是減少執行個體數量。
+  自動調整設定可設定執行個體數的最大值、最小值及預設值。
+* 自動調整作業一律會讀取相關聯的度量作為調整依據，據此檢查其是否超過設定的臨界值，以執行相應放大或相應縮小。 您可以在 [Azure 監視器自動調整的常見度量](insights-autoscale-common-metrics.md)中，檢視自動調整據以調整的度量清單。
+* 所有臨界值都是在執行個體層級計算。 例如，「當執行個體計數為 2 時，若平均 CPU > 80% ，即相應放大 1 個執行個體」表示當所有執行個體的平均 CPU 大於 80% 時即相應放大。
+* 您一律會從電子郵件收到失敗通知。 具體而言，目標資源的擁有者、參與者與讀者都會收到電子郵件。 當自動調整從失敗復原並開始正常運作時，您也一律會收到「復原」電子郵件。
+* 您可以選擇從電子郵件及 Webhook 接收調整動作成功的通知。
 
-## <a name="autoscale-best-practices"></a>Autoscale best practices
-Use the following best practices as you use Autoscale.
+## <a name="autoscale-best-practices"></a>自動調整最佳做法
+使用自動調整時，請使用下列最佳作法。
 
-### <a name="ensure-the-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>Ensure the maximum and minimum values are different and have an adequate margin between them
-If you have a setting that has maximum=2, minimum=2 and the current instance count is 2, no scale action can occur. A recommended setting is to keep an adequate margin between the maximum and minimum instance counts. Autoscale will always scale between these limits, which is inclusive. However, assume that you decide to manually scale (update) the instance count to a value above the maximum. The next time an autoscale job runs, it checks if the current instance count is greater than maximum - if so, it scales in to the maximum, regardless of the threshold set on the rules. Similarly, if you manually arrive at a current instance count less than the minimum, the next time an autoscale job runs, it scales out to the minimum number of instances.
+### <a name="ensure-the-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>確定最大值與最小值不同，而且兩者之間有差距適當。
+若設定的最小值等於 2，而最大值也等於 2，且目前執行個體計數為 2，將不會有任何調整動作。 在執行個體計數的最大值與最小值之間 (含這兩個值)，需保留適當的差距。 在這些限制之間，一定律會自動調整。
 
-### <a name="always-use-a-scale-out-and-scale-in-rule-combination-that-performs-an-increase-and-decrease"></a>Always use a scale out and scale in rule combination that performs an increase and decrease
-If you use only one part of the combination, autoscale will scale in that single out, or in, until the maximum, or minimum, is reached.
+### <a name="manual-scaling-is-reset-by-autoscale-min-and-max"></a>自動調整的最小值與最大值會重設手動調整
+如果您手動將執行個體計數的值更新為高於最大值或低於最小值，自動調整引擎會自動調整回最小值 (如果低於) 或最大值 (如果高於)。 例如，您設定的範圍是 3 到 6。 如果您有一個執行執行個體正在執行，自動調整引擎會在它下次執行時調整為 3 個執行個體。 同樣地，它會將 8 個執行個體，在下次執行時相應縮小至 6 個。  手動調整是暫時的，除非您也同時重設自動調整規則。
 
-### <a name="do-not-switch-between-the-azure-portal-and-the-azure-classic-portal-when-managing-autoscale"></a>Do not switch between the Azure portal and the Azure classic portal when managing Autoscale
-For Cloud Services and App Services (Web Apps), use the Azure portal (portal.azure.com) to create and manage Autoscale settings. For Virtual Machine Scale Sets use PoSH, CLI or REST API to create and manage autoscale setting. Do not switch between the Azure classic portal (manage.windowsazure.com) and the Azure portal (portal.azure.com) when managing autoscale configurations. The Azure classic portal and its underlying backend has limitations. Move to the Azure portal to manage autoscale using a graphical user interface. The options are to use the Autoscale PowerShell, CLI or REST API (via Azure Resource Explorer).
+### <a name="always-use-a-scale-out-and-scale-in-rule-combination-that-performs-an-increase-and-decrease"></a>請一律使用相應放大和相應縮小規則的組合來執行增加與減少。
+若您只使用組合中的其中一部分，則自動調整只會相應放大或縮小該單邊，直到達到最大值或最小值為止。
 
-### <a name="choose-the-appropriate-statistic-for-your-diagnostics-metric"></a>Choose the appropriate statistic for your diagnostics metric
-For diagnostics metrics, you can choose among *Average*, *Minimum*, *Maximum* and *Total* as a metric to scale by. The most common statistic is *Average*.
+### <a name="do-not-switch-between-the-azure-portal-and-the-azure-classic-portal-when-managing-autoscale"></a>管理自動調整時，請勿切換使用 Azure 入口網站與 Azure 傳統入口網站。
+若是雲端服務及應用程式服務 (Web Apps)，請使用 Azure 入口網站 (portal.azure.com) 建立及管理自動調整設定。 若是虛擬機器擴展集，請使用 PoSH、CLI 或 REST API 建立及管理自動調整設定。 管理自動調整設定時，請勿切換使用 Azure 傳統入口網站 (manage.windowsazure.com) 與 Azure 入口網站 (portal.azure.com)。 Azure 傳統入口網站及其基礎後端有其限制。 請使用 Azure 入口網站的圖形化使用者介面來管理自動調整。 此外也可選擇使用自動調整 PowerShell、CLI 或 REST API (透過 Azure 資源總管)。
 
-### <a name="choose-the-thresholds-carefully-for-all-metric-types"></a>Choose the thresholds carefully for all metric types
-We recommend carefully choosing different thresholds for scale out and scale in based on practical situations.
+### <a name="choose-the-appropriate-statistic-for-your-diagnostics-metric"></a>為您的診斷度量選擇適當的統計資料
+針對診斷度量，您可以選擇 [平均值]、[最小值]、[最大值] 和 [總計] 作為據以調整的度量。 最常用的統計資料是 [平均值] 。
 
-We *do not recommend* autoscale settings like the examples below with the same or very similar threshold values for out and in conditions:
+### <a name="choose-the-thresholds-carefully-for-all-metric-types"></a>請小心選擇所有度量類型的臨界值
+建議您根據實際情況，小心選擇不同的相應放大與相應縮小臨界值。
 
-* Increase instances by 1 count when Thread Count <= 600
-* Decrease instances by 1 count when Thread Count >= 600
+「不建議使用」  自動調整設定，例如下列範例中，將放大及縮小的臨界值設為相同的值或極類似的值：
 
-Let's look at an example of what can lead to a behavior that may seem confusing. Assume there are 2 instances to begin with and then the average number of threads per instance grows to 625. Autoscale scales out adding a 3rd instance. Next, assume that the average thread count across instance falls to 575. Before scaling down, autoscale tries to estimate what the final state will be if it scaled in. For example, 575 x  3 (current instance count) = 1,725 / 2 (final number of instances when scaled down) = 862.5 threads. This means Autoscale will have to immediately scale out again even after it scaled in, if the average thread count remains the same or even falls only a small amount. However, if it scaled up again, the whole process would repeat, leading to an infinite loop. To avoid this *flappy* situation, Autoscale does not scale down at all. Instead, it skips and reevaluates the condition again the next time the service's job executes. This could confuse many people because autoscale wouldn't appear to work when the average thread count was 575.
+* 當執行緒計數 <= 600 時，增加 1 個執行個體
+* 當執行緒計數 >= 600 時，減少 1 個執行個體
 
-This estimation behavior during a scale in is intended to avoid a flappy situation. You should keep this behavior in mind when you choose the same thresholds for scale out and in.
+下列範例顯示可能會導致行為混淆的設定。 考量以下發生順序。
 
-We recommend choosing an adequate margin between the scale out and in thresholds. As an example, consider the following better rule combination.
+1. 假設一開始只有 2 個執行個體，之後每個執行個體的平均執行緒數成長為 625。
+2. 自動調整會隨之相應放大，加入第 3 個執行個體。
+3. 假設接下來執行個體的平均執行緒計數降至 575，
+4. 則在相應減少之前，自動調整會嘗試評估相應縮小後的最終狀態。 例如，575 x 3 (目前的執行個體計數) = 1,725 / 2 (相應減少後的最終執行個體數) = 862.5 個執行緒。 這表示即便平均執行緒計數維持不變，或甚至降至極少量，自動調整仍須在相應縮小之後立即再相應放大。 但自動調整若再相應增加，整個程序將會重複執行，進行產生無限迴圈。
+5. 為了避免這種「不穩定」的狀況，自動調整根本不會相應減少， 而會在下次執行服務的工作時略過並重新評估條件。 這可能會讓許多人困惑不已，因為當平均執行緒計數達到 575 時，自動調整完全不運作。
 
-* Increase instances by 1 count when CPU%  >= 80
-* Decrease instances by 1 count when CPU% <= 60
+在相應縮小期間執行評估的用意在避免不穩定的情況。 當您為相應放大及相應縮小選擇相同的臨界值時，應注意這項行為。
 
-Let's review how this example works. Assume there are 2 instances to start with. If the average CPU% across instances goes to 80, autoscale scales out adding a 3rd instance. Now assume that over time the CPU% falls to 60. Autoscale's scale in rule estimates the final state if it were to scale in. For example, 60 x 3 (current instance count) = 180 / 2 (final number of instances when scaled down) = 90. So Autoscale does not scale in because it would have to scale out again immediately. Instead, it skips scaling down. Next, assume that the next time it checks, the CPU continues to fall to 50, then it estimates again -  50 x 3 instance = 150 / 2 instances = 75, which is below the scale out threshold of 80, so it scales in successfully to 2 instances.
+建議您在選擇相應放大及相應縮小的臨界值時，為兩者之間保留適當的差距。 例如您可以考慮下列比較適當的規則組合。
 
-### <a name="considerations-for-scaling-threshold-values-for-special-metrics"></a>Considerations for scaling threshold values for special metrics
- For special metrics such as Storage or Service Bus Queue length metric, the threshold is the average number of messages available per current number of instances. Carefully choose the choose the threshold value for this metric.
+* 當 CPU% >= 80 時，增加 1 個執行個體
+* 當 CPU% <= 60 時，減少 1 個執行個體
 
-Let's illustrate it with an example to ensure you understand the behavior better.
+在此案例中  
 
-* Increase instances by 1 count when Storage Queue message count >= 50
-* Decrease instances by 1 count when Storage Queue message count <= 10
+1. 假設一開始只有 2 個執行個體，
+2. 當執行個體的平均 CPU% 達到 80 時，自動調整會隨之相應放大，加入第 3 個執行個體。
+3. 假設 CPU% 在經過一段時間後降至 60。
+4. 自動調整的相應縮小規會先評估相應縮小之後的最終狀態。 例如 60x3 (目前的執行個體計數) = 180/2 (相應減少時的最終執行個體數) = 90。 因為自動調整必須再於相應減少之後隨即相應放大，所以其不會相應縮小， 而會略過相應減少。
+5. 下一次自動調整檢查，CPU 會繼續歸類為 50。 再次進行評估：50 x 3 個執行個體 = 150/2 個執行個體 = 75 (低於相應放大臨界值 80)，所以會依設定相應放大到 2 個執行個體。
 
-Assume there are 2 instances to start with. Next, assume that messages keep coming and when you review the storage queue, the total count reads 50. You might assume that autoscale should start a scale out action. However, note that it is still 50/2 = 25 messages per instance. So, scale out does not occur. For the first scale out to happen, the total message count in the storage queue should be 100. Next, assume that the total message count reaches 100. A 3rd instance is added due to a scale out action. The next scale out action will not happen until the total message count in the queue reaches 150. Let's look at the scale in action. Assume that the number of instances is 3. The first scale in action happens when the total messages in the queue reaches 30, making it 30/3 = 10 messages per instance, which is the scale in threshold.
+### <a name="considerations-for-scaling-threshold-values-for-special-metrics"></a>調整特殊度量之臨界值時的注意事項
+ 對於特殊度量 (例如儲存體或服務匯流排佇列長度度量)，臨界值目前執行個體數所能使用的平均訊息數。 請謹慎選擇此度量的臨界值。
 
-### <a name="considerations-for-scaling-when-multiple-profiles-are-configured-in-an-autoscale-setting"></a>Considerations for scaling when multiple profiles are configured in an autoscale setting
-In an autoscale setting, you can choose a default profile, which is always applied without any dependency on schedule or time, or you can choose a recurring profile or a profile for a fixed period with a date and time range.
+現在讓我們利用下列範例為您說明，讓您對此行為有更深入的了解。
 
-When Autoscale service processes them, it always checks in the following order:
+* 當儲存體佇列訊息計數 >= 50 時，增加 1 個執行個體
+* 當儲存體佇列訊息計數 <= 10 時，減少 1 個執行個體
 
-1. Fixed Date profile
-2. Recurring profile
-3. Default ("Always") profile
+考量以下發生順序：
 
-If a profile condition is met, autoscale does not check the next profile condition below it. Autoscale only processes one profile at a time. This means if you want to also include a processing condition from a lower-tier profile, you must include those rules as well in the current profile.
+1. 有 2 個儲存體佇列執行個體。
+2. 隨著訊息不斷傳入，當您檢閱儲存體佇列時，訊息計數達到 50。 您可能認為自動調整應執行相應放大動作。 但請注意，自動調整仍然是每個執行個體 50/2 =  25 則訊息， 因此不會進行相應放大。 若要執行第一次相應放大，儲存體佇列中的總訊息計數應達到 100。
+3. 當總訊息計數達到 100 時，
+4. 就會執行相應放大動作而加入第 3 個儲存體執行個體。  除非佇列中的總訊息計數達到 150 (因為 150/3=50)，否則不會執行下一個相應放大動作。
+5. 現在，佇列中的估計訊息數目便會變小。 若有 3 個執行個體，當所有佇列中的總訊息數相加達到 30 時，會執行第一次相應縮小動作，意即臨界值是每個執行個體的規模為 30/3 = 10 則訊息。
 
-Let's review this using an example:
+### <a name="considerations-for-scaling-when-multiple-profiles-are-configured-in-an-autoscale-setting"></a>當自動調整設定中設有多個設定檔時的調整注意事項
+您可以在自動調整設定中選擇預設設定檔 (當沒有任何項目取決於排程或時間時套用)，也可以選擇週期性設定檔或期間固定的設定檔 (設有日期與時間範圍)。
 
-The image below shows an autoscale setting with a default profile of minimum instances = 2 and maximum instances = 10. In this example, rules are configured to scale out when the message count in the queue is greater than 10 and scale in when the message count in the queue is less than 3. So now the resource can scale between 2 and 10 instances.
+當自動調整服務在處理這些設定時，一律會依下列順序進行檢查︰
 
-In addition, there is a recurring profile set for Monday. It is set for minimum instances = 2 and maximum instances = 12. This means on Monday, the first time Autoscale checks for this condition, if the instance count was 2, it will scale it to the new minimum of 3. As long as autoscale continues to find this profile condition matched (Monday), it will only process the CPU based scale out/in rules configured for this profile. At this time, it will not check for the queue length. However, if you also want the queue length condition to be checked, you should include those rules from the default profile as well in your Monday profile. 
+1. 固定日期設定檔
+2. 週期性設定檔
+3. 預設 (一律) 設定檔
 
-Similarly, when Autoscale switches back to the default profile, it first checks if the minimum and maximum conditions are met. If the number of instances at the time is 12, it scales in to 10, the maximum allowed for the default profile.
+若符合設定檔條件，自動調整將不再檢查接下來的下一項設定檔條件。 自動調整一次只會處理一個設定檔。 這表示若您想要加入低層設定檔中的處理條件，也必須同時將這些規則加入目前的設定檔中。
 
-![autoscale settings](./media/insights-autoscale-best-practices/insights-autoscale-best-practices.png)
+請參考下列示範範例︰
 
-### <a name="considerations-for-scaling-when-multiple-rules-are-configured-in-a-profile"></a>Considerations for scaling when multiple rules are configured in a profile
-There are cases where you may have to set multiple rules in a profile. The following set of autoscale rules are used by services use when multiple rules are set.
+下圖顯示的自動調整設定中，其預設設定檔的最小執行個體數 = 2，最大執行個體數 = 10。 此範例將規則設定成當佇列中的訊息計數大於 10 時執行相應放大，當佇列中的訊息計數小於 3 時執行相應縮小。 因此我們現在可以將資源調整為 2 到 10 個執行個體。
 
-On *scale out*, Autoscale will run if any rule is met.
-On *scale in*, Autoscale require all rules to be met.
+此外，星期一設定成使用週期性設定檔， 其中最小執行個體數 = 2，最大執行個體數 = 12。 這表示在星期一時，自動調整會在第一次檢查此條件；當執行個體計數為 2 時，會將其調整為新的最小值 3。 只要自動調整持續比對此設定檔條件 (星期一)，其便只會按照此設定檔中設定的規則，依據 CPU 執行相應放大/縮小。 此時不會檢查佇列長度。 若您也想要檢查佇列長度條件，應一併將預設設定檔中的這些規則加入星期一設定檔中。
 
-To illustrate, assume that you have the following 4 autoscale rules:
+當自動調整切換回預設設定檔時，同樣也會先檢是否符合最大值與最小值條件。 若當時的執行個體數為 12，將會相應縮小為 10 (預設設定檔允許的最大值)。
 
-* If CPU < 30 %, scale in by 1
-* If Memory < 50%, scale in by 1
-* If CPU > 75%, scale out by 1
-* If Memory > 75%, scale out by 1
+![自動調整設定](./media/insights-autoscale-best-practices/insights-autoscale-best-practices.png)
 
-Then the follow will occur: 
+### <a name="considerations-for-scaling-when-multiple-rules-are-configured-in-a-profile"></a>當設定檔中設有多項規則時的調整注意事項
+有些情況可能需要您在設定檔中設定多項規則。 當設定多項規則時，服務會使用下列自動調整規則集。
 
-* If CPU is 76% and Memory is 50%, we will scale out.
-* If CPU is 50% and Memory is 76% we will scale out.
+對於「相應放大」，自動調整會在符合任何規則時執行。
+對於「相應縮小」，自動調整會要求必須符合所有規則。
 
-On the other hand, if CPU is 25% and memory is 51% autoscale will **not** scale in. In order to scale in, CPU must be 29% and Memory 49%.
+現在我們以您有下列 4 項自動調整規則加以示範說明︰
 
-### <a name="always-select-a-safe-default-instance-count"></a>Always select a safe default instance count
-The default instance count is important because it the instance count that Autoscale scales your service to when metrics are not available. Therefore, select a default instance count that's safe for your workloads.
+* 當 CPU < 30% 時相應縮小 1
+* 當記憶體 < 50% 時相應縮小 1​
+* 當 CPU > 75% 時相應放大 1
+* 當記憶體 > 75% 時相應放大 1​
 
-### <a name="configure-autoscale-notifications"></a>Configure autoscale notifications
-Autoscale notifies the administrators and contributors of the resource by email if any of the following conditions occur:
+接著會發生下列狀況：
 
-* Autoscale service fails to take an action.
-* Metrics are not available for autoscale service to make a scale decision.
-* Metrics are available (recovery) again to make a scale decision.
-  In addition to the conditions above, you can configure email or webhook notifications to get notified for successful scale actions.
+* 當 CPU 為 76%，記憶體為 50% 時，會相應放大。
+* 當 CPU 為 50%，記憶體為 76% 時，會相應放大。
 
-<!--HONumber=Oct16_HO2-->
+反之，當 CPU 為 25%，記憶體為 51% 時，自動調整「不會」相應縮小。 若要相應縮小，CPU 必須達到 29%，而記憶體必須達到 49%。
+
+### <a name="always-select-a-safe-default-instance-count"></a>請一律選取安全的預設執行個體計數
+預設執行個體計數十分重要，在沒有度量可用時，自動調整會依據其計數調整服務。 因此，請選取對您工作負載而言最安全的預設執行個體計數。
+
+### <a name="configure-autoscale-notifications"></a>設定自動調整通知
+當發生下列情況時，自動調整傳送電子郵件，通知資源的系統管理員與參與者︰
+
+* 自動調整服務無法採取動作。
+* 自動調整服務無法使用度量決定規模。
+* 度量恢復使用 (復原)，可用以決定規模。
+  除了上述條件之外，您也可以設定電子郵件或 Webhook 通知，在調整動作成功時收到通知。
+
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

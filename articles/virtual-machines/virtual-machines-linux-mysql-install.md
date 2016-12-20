@@ -1,13 +1,13 @@
 ---
-title: 設定 Linux VM 上的 MySQL | Microsoft Docs
-description: 了解如何在 Azure 中的 Linux 虛擬機器 (Ubuntu 或 RedHat 系列 OS) 上安裝 MySQL 堆疊
+title: "設定 Linux VM 上的 MySQL | Microsoft Docs"
+description: "了解如何在 Azure 中的 Linux 虛擬機器 (Ubuntu 或 RedHat 系列 OS) 上安裝 MySQL 堆疊"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: SuperScottz
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager,azure-service-management
-
+ms.assetid: 153bae7c-897b-46b3-bd86-192a6efb94fa
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
@@ -15,26 +15,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2016
 ms.author: mingzhan
+translationtype: Human Translation
+ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
+ms.openlocfilehash: d75d1541671fac02e6373ae880137b76f15ec7ae
+
 
 ---
-# 如何在 Azure 上安裝 MySQL
+# <a name="how-to-install-mysql-on-azure"></a>如何在 Azure 上安裝 MySQL
 本文將示範如何在執行 Linux 的 Azure 虛擬機器上安裝和設定 MySQL
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-## 在虛擬機器上安裝 MySQL
+## <a name="install-mysql-on-your-virtual-machine"></a>在虛擬機器上安裝 MySQL
 > [!NOTE]
-> 您必須已經具有執行 Linux 的 Microsoft Azure 虛擬機器，才能完成本教學課程。請參閱 [Azure Linux VM 教學課程](virtual-machines-linux-quick-create-cli.md)，建立並設定以 `mysqlnode` 為 VM 名稱，`azureuser` 為使用者的 Linux VM，然後再繼續進行下一步。
+> 您必須已經具有執行 Linux 的 Microsoft Azure 虛擬機器，才能完成本教學課程。 請參閱 [Azure Linux VM 教學課程](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，建立並設定以 `mysqlnode` 為 VM 名稱，`azureuser` 為使用者的 Linux VM，然後再繼續進行下一步。
 > 
 > 
 
-在此情況下，請使用連接埠 3306 作為 MySQL 連接埠。
+在此情況下，請使用連接埠 3306 作為 MySQL 連接埠。  
 
-連接到您透過 putty 建立的 Linux VM。如果這是您第一次使用 Azure Linux VM，請在[這裡](virtual-machines-linux-mac-create-ssh-keys.md)看看如何使用 putty 連接到 Linux VM。
+連接到您透過 putty 建立的 Linux VM。 如果這是您第一次使用 Azure Linux VM，請在[這裡](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)看看如何使用 putty 連接到 Linux VM。
 
-本文的範例將使用儲存機制封裝安裝 MySQL5.6。事實上，MySQL5.6 的效能改良功能比 MySQL5.5 更多。詳細資訊請參閱[這裡](http://www.mysqlperformanceblog.com/2013/02/18/is-mysql-5-6-slower-than-mysql-5-5/)。
+本文的範例將使用儲存機制封裝安裝 MySQL5.6。 事實上，MySQL5.6 的效能改良功能比 MySQL5.5 更多。  詳細資訊請參閱 [這裡](http://www.mysqlperformanceblog.com/2013/02/18/is-mysql-5-6-slower-than-mysql-5-5/)。
 
-### 如何在 Ubuntu 上安裝 MySQL5.6
+### <a name="how-to-install-mysql56-on-ubuntu"></a>如何在 Ubuntu 上安裝 MySQL5.6
 以下範例將使用 Azure 中採用 Ubuntu 的 Linux VM。
 
 * 步驟 1：將 MySQL Server 5.6 參數安裝至 `root` 使用者：
@@ -56,7 +60,8 @@ ms.author: mingzhan
 
 * 步驟 2：登入 MySQL Server
   
-    MySQL Server 安裝完成之後，MySQL 服務便會自動啟動 。您可以使用 `root` 使用者的身分登入 MySQL Server。使用下列命令以登入和輸入密碼。
+    MySQL Server 安裝完成之後，MySQL 服務便會自動啟動 。 您可以使用 `root` 使用者的身分登入 MySQL Server。
+    使用下列命令以登入和輸入密碼。
   
              #[root@mysqlnode ~]# mysql -uroot -p
 * 步驟 3：管理執行中的 MySQL 服務
@@ -77,10 +82,10 @@ ms.author: mingzhan
   
              #[root@mysqlnode ~]# service mysql restart
 
-### 如何在 Redhat OS 系列 (例如 CentOS、Oracle Linux) 上安裝 MySQL
+### <a name="how-to-install-mysql-on-red-hat-os-family-like-centos-oracle-linux"></a>如何在 Redhat OS 系列 (例如 CentOS、Oracle Linux) 上安裝 MySQL
 以下範例將使用執行 CentOS 或 Oracle Linux 的 Linux VM。
 
-* 步驟 1：將 MySQL Yum 儲存機制參數新增至 `root` 使用者：
+* 步驟 1：將 MySQL Yum 存放庫參數新增至 `root` 使用者：
   
             #[azureuser@mysqlnode:~]sudo su -
   
@@ -94,7 +99,7 @@ ms.author: mingzhan
   
     將此檔案的每個值更新為下列值：
   
-        # *Enable to use MySQL 5.6*
+        \# *Enable to use MySQL 5.6*
   
         [mysql56-community]
         name=MySQL 5.6 Community Server
@@ -106,7 +111,7 @@ ms.author: mingzhan
         gpgcheck=1
   
         gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-* 步驟 3：從 MySQL 儲存機制安裝 MySQL 安裝 MySQL：
+* 步驟 3：從 MySQL 存放庫安裝 MySQL 安裝 MySQL：
   
            #[root@mysqlnode ~]#yum install mysql-community-server
   
@@ -134,12 +139,12 @@ ms.author: mingzhan
            #[root@mysqlnode ~]#chkconfig mysqld on
 
 
-### 如何在 SUSE Linux 上安裝 MySQL
+### <a name="how-to-install-mysql-on-suse-linux"></a>如何在 SUSE Linux 上安裝 MySQL
 以下範例將使用執行 OpenSUSE 的 Linux VM。
 
 * 步驟 1：下載及安裝 MySQL Server
   
-    透過下列命令切換至 `root` 使用者：
+    透過下列命令切換至 `root` 使用者：  
   
            #sudo su -
   
@@ -170,7 +175,12 @@ ms.author: mingzhan
 
            #[root@mysqlnode ~]# insserv mysql
 
-### 下一步
-按一下[這裡](https://www.mysql.com/)，了解更多 MySQL 使用方式和相關資訊。
+### <a name="next-step"></a>下一步
+按一下 [這裡](https://www.mysql.com/)，了解更多 MySQL 使用方式和相關資訊。
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

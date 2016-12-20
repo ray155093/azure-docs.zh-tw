@@ -1,12 +1,12 @@
 ---
-title: 整合 Azure Active Directory 與應用程式入門指南 | Microsoft Docs
-description: 本文章是整合 Azure Active Directory (AD) 與在內部部署應用程式和雲端應用程式的入門指南。
+title: "整合 Azure Active Directory 與應用程式入門指南 | Microsoft Docs"
+description: "本文章是整合 Azure Active Directory (AD) 與在內部部署應用程式和雲端應用程式的入門指南。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: ihenkel
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: db6d210d-c970-49e9-bd20-36d984bcd1c3
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,13 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/09/2016
 ms.author: inhenk
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e35ac9ae791f7fa917cccbba5d06319f28b7033c
+
 
 ---
 # <a name="integrating-azure-active-directory-with-applications-getting-started-guide"></a>整合 Azure Active Directory 與應用程式入門指南
 ## <a name="overview"></a>Overview
 本主題旨在提供您一個藍圖來整合應用程式與 Azure Active Directory (AD)。 每個以下各節包含更詳細主題的簡短摘要，讓您可以識別本入門指南的哪些部分與您相關。  遵循連結來深入探索每個主題。
 
-## <a name="before-you-begin,-take-inventory"></a>在開始之前，請取得清查
+## <a name="before-you-begin-take-inventory"></a>在開始之前，請取得清查
 您在直接跳到整合應用程式與 Azure AD 之前，務必知道您所在位置與您想要前往的位置。  下列問題的用意在於幫助您思考您的 Azure AD 應用程式整合專案。
 
 ### <a name="application-inventory"></a>應用程式清查
@@ -88,6 +92,9 @@ ms.author: inhenk
 ## <a name="see-also"></a>另請參閱
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Team Data Science Process 逐步解說 | Microsoft Docs
-description: 這些逐步解說示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。
+title: "Team Data Science Process 逐步解說 | Microsoft Docs"
+description: "這些逐步解說示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: aa63d5a5-25ee-4c4b-9a4c-7553b98d7f6e
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: fde069560d53c5b5010bbb59b52d60a6971d8dac
+
 
 ---
 # <a name="team-data-science-process-walkthroughs"></a>Team Data Science Process 逐步解說
@@ -46,9 +50,12 @@ ms.author: bradsev
 ## <a name="use-t-sql-with-sql-server-r-services"></a>搭配使用 T-SQL 與 SQL Server R Services
 [適用於 SQL 開發人員的資料庫內進階分析](https://msdn.microsoft.com/library/mt683480.aspx)逐步解說會對 SQL 程式設計人員提供使用 SQL Server R Services 來建置搭配 Transact-SQL 的進階分析方案的經驗，以操作 R 方案。
 
-## <a name="what's-next?"></a>後續步驟
+## <a name="whats-next"></a>後續步驟
 如需能引導您完成在 Azure 中構成資料科學程序之工作的主題概觀，請參閱 [資料科學程序](http://aka.ms/datascienceprocess)。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 如何使用適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式
-description: 如何使用適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式
+title: "如何使用適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式"
+description: "如何使用適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式"
 services: app-service\mobile
 documentationcenter: javascript
 author: adrianhall
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a56a1ce4-de0c-4f3c-8763-66252c52aa59
 ms.service: app-service-mobile
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-html
@@ -14,6 +14,10 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: adrianha
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 31632f9c88810d5cd26ad314dde2c28a4012dc75
+
 
 ---
 # <a name="how-to-use-apache-cordova-client-library-for-azure-mobile-apps"></a>如何使用適用於 Azure Mobile Apps 的 Apache Cordova 用戶端程式庫
@@ -30,7 +34,7 @@ ms.author: adrianha
 * Windows Phone 8.1
 * 通用 Windows 平台
 
-## <a name="<a-name="setup"></a>setup-and-prerequisites"></a><a name="Setup"></a>設定和必要條件
+## <a name="a-namesetupasetup-and-prerequisites"></a><a name="Setup"></a>設定和必要條件
 本指南假設您已建立包含資料表的後端。 本指南假設資料表的結構描述與這些教學課程中的資料表相同。 本指南也假設您已將 Apache Cordova 外掛程式加入至程式碼。  如果您還沒有這樣做，您可以在命令列將 Apache Cordova 外掛程式新增至您的專案：
 
 ```
@@ -41,7 +45,7 @@ cordova plugin add cordova-plugin-ms-azure-mobile-apps
 
 [!INCLUDE [app-service-mobile-html-js-library.md](../../includes/app-service-mobile-html-js-library.md)]
 
-## <a name="<a-name="auth"></a>how-to:-authenticate-users"></a><a name="auth"></a>作法：驗證使用者
+## <a name="a-nameauthahow-to-authenticate-users"></a><a name="auth"></a>作法：驗證使用者
 Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、Microsoft 帳戶及 Twitter) 來驗證與授權應用程式使用者。 您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。 您也可以在伺服器指令碼中，使用驗證的使用者的身分識別來實作授權規則。 如需詳細資訊，請參閱 [開始使用驗證] 教學課程。
 
 在 Apache Cordova 應用程式中使用驗證時，下列 Cordova 外掛程式必須可用：
@@ -53,7 +57,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 [!INCLUDE [app-service-mobile-html-js-auth-library.md](../../includes/app-service-mobile-html-js-auth-library.md)]
 
-### <a name="<a-name="configure-external-redirect-urls"></a>how-to:-configure-your-mobile-app-service-for-external-redirect-urls."></a><a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
+### <a name="a-nameconfigure-external-redirect-urlsahow-to-configure-your-mobile-app-service-for-external-redirect-urls"></a><a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
 有數種類型的 Apache Cordova 應用程式會使用回送功能來處理 OAuth UI 流程。  驗證服務預設只知道如何使用您的服務，因此 localhost 上的 OAuth UI 流程會引發問題。  有問題的 OAuth UI 流程範例包括︰
 
 * Ripple 模擬器。
@@ -93,7 +97,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 大約需要 10-15 秒的時間，才能使新的設定生效。
 
-## <a name="<a-name="register-for-push"></a>how-to:-register-for-push-notifications"></a><a name="register-for-push"></a>做法：註冊推播通知
+## <a name="a-nameregister-for-pushahow-to-register-for-push-notifications"></a><a name="register-for-push"></a>做法：註冊推播通知
 安裝 [phonegap-plugin-push] 來處理推播通知。  在命令列中使用 `cordova plugin add` 命令，或在 Visual Studio 內透過 Git 外掛程式安裝程式，即可輕鬆新增此外掛程式。  以下在 Apache Cordova 應用程式中的程式碼會為您的裝置註冊推播通知：
 
 ```
@@ -151,6 +155,6 @@ pushHandler.on('error', function (error) {
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

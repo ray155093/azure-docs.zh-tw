@@ -1,12 +1,12 @@
 ---
-title: 搭配 C 和 Apache Storm 開始使用事件中樞 | Microsoft Docs
-description: 遵循此教學課程，開始使用 Azure 事件中樞；以 C 傳送事件並且在 Apache Storm 叢集中接收這些事件。
+title: "搭配 C 和 Apache Storm 開始使用事件中樞 | Microsoft Docs"
+description: "遵循此教學課程，開始使用 Azure 事件中樞；以 C 傳送事件並且在 Apache Storm 叢集中接收這些事件。"
 services: event-hubs
-documentationcenter: ''
+documentationcenter: 
 author: jtaubensee
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 3b15825e-c53c-471b-870c-686bff46885a
 ms.service: event-hubs
 ms.workload: na
 ms.tgt_pltfrm: c
@@ -14,6 +14,10 @@ ms.devlang: java
 ms.topic: article
 ms.date: 08/16/2016
 ms.author: jotaub;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
+ms.openlocfilehash: 1b4573db5c4e03aba8b98408765e7c2debfb9a30
+
 
 ---
 # <a name="get-started-with-event-hubs"></a>開始使用事件中心
@@ -28,9 +32,9 @@ ms.author: jotaub;sethm
 
 若要完成本教學課程，您需要下列項目：
 
-* C 開發環境。 在本教學課程中，我們假設 [Azure Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md) 上的 gcc 堆疊有 Ubuntu 14.04。 其他環境的指示將會在外部連結中提供。
+* C 開發環境。 在本教學課程中，我們假設 [Azure Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 上的 gcc 堆疊有 Ubuntu 14.04。 其他環境的指示將會在外部連結中提供。
 * 為了執行 [Maven](http://maven.apache.org/)所設定的 Java 開發環境。 在本教學課程中，我們將採用 [Eclipse](https://www.eclipse.org/)。
-* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 [!INCLUDE [event-hubs-create-event-hub](../../includes/event-hubs-create-event-hub.md)]
 
@@ -54,8 +58,8 @@ ms.author: jotaub;sethm
 ## <a name="next-steps"></a>後續步驟
 下列資源可供開發整合事件中心和 Storm 的應用程式。
 
-* [使用 Storm 和 HDInsight 分析感應器資料][使用 Storm 和 HDInsight 分析感應器資料] 是一個完整案例教學課程，該課程使用事件中心、Storm 和 HBase 擷取 Hadoop 叢集中的感應器資料。
-* [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式][在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式] 教學課程說明如何使用 C# 撰寫 Storm 管線。
+* [使用 Storm 和 HDInsight 分析感應器資料][使用 Storm 和 HDInsight 分析感應器資料]是一個完整案例教學課程，該課程使用事件中心、Storm 和 HBase 擷取 Hadoop 叢集中的感應器資料。
+* [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式][在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式]教學課程說明如何使用 C# 撰寫 Storm 管線。
 
 <!-- Images. -->
 [23]: ./media/event-hubs-c-storm-getstarted/receive-storm3.png
@@ -66,12 +70,12 @@ ms.author: jotaub;sethm
 [事件中樞概觀]: event-hubs-overview.md
 
 [Apache Storm]: https://storm.incubator.apache.org
-[HDInsight Storm 概觀]: ../hdinsight/hdinsight-storm-overview.md/
+[HDInsight Storm 概觀]: ../hdinsight/hdinsight-storm-overview.md
 [使用 Storm 和 HDInsight 分析感應器資料]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
 [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式]: ../hdinsight/hdinsight-storm-develop-csharp-visual-studio-topology.md
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

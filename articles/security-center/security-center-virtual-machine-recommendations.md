@@ -1,12 +1,12 @@
 ---
-title: 保護 Azure 資訊安全中心內的虛擬機器 | Microsoft Docs
-description: 本文件說明可協助您保護虛擬機器及遵守安全性原則的 Azure 資訊安全中心建議。
+title: "保護 Azure 資訊安全中心內的虛擬機器 | Microsoft Docs"
+description: "本文件說明可協助您保護虛擬機器及遵守安全性原則的 Azure 資訊安全中心建議。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: ''
-
+editor: 
+ms.assetid: 47fa1f76-683d-4230-b4ed-d123fef9a3e8
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/25/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: c048263ab1ae453a10f0471ae33a122e21151d94
+
 
 ---
 # <a name="protecting-your-virtual-machines-in-azure-security-center"></a>保護 Azure 資訊安全中心內的虛擬機器
@@ -49,6 +53,9 @@ ms.author: terrylan
 * [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

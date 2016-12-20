@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
-ms.openlocfilehash: 5cf17ad514127f97319130c4f3f78cdfa1eed052
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: c75352e633f069597e7bc62650205f3c389b6909
 
 ---
 #<a name="stream-analytics-documentation"></a>串流分析文件
@@ -75,7 +75,7 @@ Azure 串流分析是完全受管理的即時事件處理引擎，可協助解�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>利用串流分析開始使用 IOT 解決方案</h3>
+                        <h3>利用串流分析開始使用 IoT 解決方案</h3>
                     </div>
                 </div>
             </div>
@@ -174,7 +174,7 @@ Azure 串流分析是完全受管理的即時事件處理引擎，可協助解�
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>串流分析 REST API 參考</p>
+                        <p>串流分析 REST API</p>
                     </div>
                 </div>
             </div>
@@ -193,6 +193,6 @@ Azure 串流分析是完全受管理的即時事件處理引擎，可協助解�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

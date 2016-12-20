@@ -1,19 +1,23 @@
 ---
-title: Azure Active Directory 報告指南 | Microsoft Docs
-description: 包含所有 Azure Active Directory 報告文章的指南
+title: "Azure Active Directory 報告指南 | Microsoft Docs"
+description: "包含所有 Azure Active Directory 報告文章的指南"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: dhanyahk
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: b60d7f22-f271-4148-a3c8-b0ed0eccd106
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/30/2016
+ms.date: 10/24/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 62266be4e70f6e0fb5984dbc5435b58ece1031fc
+
 
 ---
 # <a name="azure-active-directory-reporting-guide"></a>Azure Active Directory 報告指南
@@ -27,12 +31,13 @@ ms.author: femila
 * [開始使用 Azure AD 報告 API](active-directory-reporting-api-getting-started.md)
 * [Azure Active Directory 報告稽核事件](active-directory-reporting-audit-events.md)
 * [Azure Active Directory 報告保留期](active-directory-reporting-retention.md)
-* [Azure Active Directory 報告搜尋](active-directory-reporting-search.md)
 * [Azure Active Directory 報告回填](active-directory-reporting-backfill.md)
 * [Azure Active Directory 報告延遲](active-directory-reporting-latencies.md)
-* [Azure Active Directory 報告「未知的執行者」事件](active-directory-reporting-unknown-actor.md)
 * [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

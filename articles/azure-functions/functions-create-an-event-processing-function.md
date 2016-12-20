@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 09/25/2016
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2381b04e32a6d65075dadf04f717f4946ba4d464
+ms.sourcegitcommit: ae5837b4fce52aad4c8b39434c27c450aafc1310
+ms.openlocfilehash: 466f2e03407a1633c40e96a366f782bf877c0c26
 
 
 ---
@@ -29,7 +29,7 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 ## <a name="prerequisites"></a>必要條件
 您必須先具備有效的 Azure 帳戶，才可以建立函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。
 
-## <a name="create-a-timertriggered-function-from-the-template"></a>從範本建立計時器觸發函式
+## <a name="create-a-timer-triggered-function-from-the-template"></a>從範本建立計時器觸發函式
 函式應用程式可在 Azure 中主控函式的執行。 您必須先具備有效的 Azure 帳戶，才可以建立函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。 
 
 1. 移至 [Azure Functions 入口網站](https://functions.azure.com/signin) ，然後以您的 Azure 帳戶登入。
@@ -72,13 +72,13 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 * [測試 Azure Functions](functions-test-a-function.md)  
    說明可用於測試函式的各種工具和技巧。
 * [如何調整 Azure 函式](functions-scale.md)  
-  討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。  
+  討論 Azure Functions 可用的服務方案，包括使用情況主控方案，以及如何選擇正確的方案。  
 
 [!INCLUDE [Getting Started Note](../../includes/functions-get-help.md)]
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -1,58 +1,83 @@
 ---
-title: Azure 流量管理員的效能考量 | Microsoft Docs
-description: 了解流量管理員的效能，以及如何在使用流量管理員時測試您的網站效能
+title: "Azure 流量管理員的效能考量 | Microsoft Docs"
+description: "了解流量管理員的效能，以及如何在使用流量管理員時測試您的網站效能"
 services: traffic-manager
-documentationcenter: ''
-author: sdwheeler
-manager: carmonm
-editor: joaoma
-
+documentationcenter: 
+author: kumudd
+manager: timlt
+editor: 
+ms.assetid: 3ba5dfa1-2922-43f1-9a23-d06969c4a516
 ms.service: traffic-manager
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/10/2016
-ms.author: sewhee
+ms.date: 10/11/2016
+ms.author: kumud
+translationtype: Human Translation
+ms.sourcegitcommit: 69b94c93ad3e9c9745af8485766b4237cac0062c
+ms.openlocfilehash: 680c3dd7bbc5ac86d021e119b31352cbfb3451f7
 
 ---
-# 流量管理員的效能考量
-此頁面說明使用流量管理員的效能考量。例如案例：您有在美國區域中有網站，在亞洲有一個網站，其中一個區域的流量管理員探查健全狀況檢查失敗，所有使用者會被導向至狀況良好的區域，行為會顯示為效能問題，但是根據使用者要求的距離，可能是預期的行為。
 
-## 流量管理員運作方式的重要事項
-* 流量管理員基本上只會做一件事 – DNS 解析。這表示流量管理員可以在網站造成的唯一效能影響就是初始 DNS 查閱。
-* 關於流量管理員 DNS 查閱的釐清點。流量管理員會根據您的原則和探查結果，填入並定期更新一般 Microsoft DNS 根伺服器。所以即使在初始 DNS 查閱期間，流量管理員還是沒有造成影響，因為 DNS 要求是由一般 Microsoft DNS 根伺服器處理的。如果流量管理員「故障」 (也就是說，執行原則探查和 DNS 更新的 VM 失敗)，也不會影響到您的流量管理員 DNS 名稱，因為 Microsoft DNS 伺服器中的這些項目仍然會保留 – 唯一的影響是根據原則的探查和更新將不會執行 (也就是說，如果主要網站故障，流量管理員將無法將 DNS 更新為指向您的容錯移轉網站)。
-* 流量不會透過流量管理員流動。沒有流量管理員可以做為用戶端與 Azure 裝載服務之間的中介。一旦完成 DNS 查閱，流量管理員會完全從用戶端和伺服器之間的通訊移除。
-* DNS 查閱速度非常快，而且可快取。初始 DNS 查閱將取決於用戶端及其已設定的 DNS 伺服器，用戶端通常可以在 ~50 毫秒內完成 DNS 查閱 (請參閱 http://www.solvedns.com/dns-comparison/)。完成第一次查閱之後，隨即會快取 DNS TTL 的結果，對流量管理員的預設值是 300 秒。
-* 您選擇的流量管理員原則 (效能、容錯移轉、循環配置資源) 並不會影響到 DNS 效能。您的效能原則可能會對使用者的體驗造成負面影響，例如，如果您將美國的使用者傳送至裝載於亞洲的服務時，這個效能問題並不是流量管理員所造成。
+# <a name="performance-considerations-for-traffic-manager"></a>流量管理員的效能考量
 
-## 測試流量管理員效能
-有幾個公開可用的網站，您可以用來判斷您的流量管理員效能和行為。這些網站可用來判斷 DNS 延遲，以及全世界的使用者將會被導向哪一個裝載服務。請記住，大部分的工具並不會快取 DNS 結果，所以多次執行測試可以顯示完整的 DNS 查閱，而連結到流量管理員端點的用戶端只會在 TTL 期間看到完整的 DNS 查閱效能影響一次。
+此頁面說明使用流量管理員的效能考量。 請考慮下列狀況：
 
-## 測量效能的範例工具
-其中一個最簡單的工具是 WebSitePulse。輸入 URL，您就會看到統計資料，例如 DNS 解析時間、第一個位元組、最後一個位元組，以及其他效能統計資料。您可以從三個不同的位置選擇要在其中測試您網站的位置。在本範例中，您會看到第一次執行顯示第一個 DNS 查閱所需時間為 0.204 秒。我們在相同的流量管理員端點第二次執行這項測試時，DNS 查閱所需時間為 0.002 秒，因為結果已經快取過了。
+您在美國東部和東亞區域有網站的執行個體。 其中一個執行個體在流量管理員探查中健全狀況檢查失敗。 應用程式流量會被導向健全狀況良好的區域。 此容錯移轉是預期中之事，但效能可能是個問題，因為延遲的流量現在要流動到遙遠的區域。
 
-http://www.websitepulse.com/help/tools.php
+## <a name="how-traffic-manager-works"></a>流量管理員的運作方式
 
-![pulse1](./media/traffic-manager-performance-considerations/traffic-manager-web-site-pulse.png)
+流量管理員對您的網站造成的唯一效能影響就是初始 DNS 查閱。 對流量管理員設定檔名稱的 DNS 要求是由裝載 trafficmanager.net 區域的 Microsoft DNS 根伺服器處理。 流量管理員會根據流量管理員的原則和探查結果，填入並定期更新 Microsoft 的 DNS 根伺服器。 因此即使在初始 DNS 查閱期間，也不會傳送任何 DNS 查詢給流量管理員。
 
-已快取時的 DNS 所需時間：
+流量管理員元件由幾個元件組成︰DNS 名稱伺服器、API 服務、儲存層、端點監視服務。 如果流量管理員服務元件失敗，對您的流量管理員設定檔相關聯的 DNS 名稱不會有影響。 Microsoft DNS 伺服器中的記錄保持不變。 不過，端點監視和 DNS 更新不會發生。 因此，當主要網站關閉時，流量管理員無法將 DNS 更新為指向您的容錯移轉網站。
 
-![pulse2](./media/traffic-manager-performance-considerations/traffic-manager-web-site-pulse2.png)
+系統會快速解析 DNS 名稱並快取結果。 初始 DNS 查閱的速度取決於用戶端用於名稱解析的 DNS 伺服器。 一般而言，用戶端可以在大約 50 毫秒內完成 DNS 查閱。 系統會快取查閱的結果用於 DNS 存留時間 (TTL) 的持續時間。 流量管理員的預設 TTL 為 300 秒。
 
-如果要同時從多個地理區域取得 DNS 解析時間，另一個真正實用的工具是 Watchmouse 的核取網站工具。輸入 URL，您就會看見 DNS 解析時間、連接時間，以及來自數個地理位置的速度。這樣也可以方便測試流量管理員效能原則，以查看全世界的不同使用者會傳送到哪個裝載服務。
+流量不會透過流量管理員流動。 一旦完成 DNS 查閱，用戶端會有您的網站的執行個體 IP 位址。 用戶端直接連線到該位址，不會通過流量管理員。 您選擇的流量管理員原則並不會影響到 DNS 效能。 不過，效能路由方法可能對應用程式體驗產生負面影響。 例如，如果您的原則將流量從北美重新導向裝載於亞洲的執行個體，這些工作階段的網路延遲可能是個效能問題。
 
-http://www.watchmouse.com/en/checkit.php
+## <a name="measuring-traffic-manager-performance"></a>測試流量管理員效能
 
-![pulse1](./media/traffic-manager-performance-considerations/traffic-manager-web-site-watchmouse.png)
+有幾個網站可幫助您了解效能和流量管理員設定檔的行為。 這些網站其中許多都是免費，但可能有限制。 某些網站提供付費的監視與報告增強功能。
 
-http://tools.pingdom.com/ - 這會測試網站，並在視覺圖形上提供頁面上每個項目的效能統計資料。如果您切換到 [頁面分析] 索引標籤，您就可以看到執行 DNS 查閱所花費的時間百分比。
+這些網站上的工具會測量世界各地用戶端位置的 DNS 延遲，並顯示解析的 IP 位址。 這些工具大多數不會快取 DNS 結果。 因此，每次執行測試後工具會顯示完整的 DNS 查閱。 當您從自己的用戶端進行測試時，在 TTL 期間只會發生一次完整的 DNS 查閱效能。
 
-http://www.whatsmydns.net/ – 這個網站將會從 20 個不同的地理位置執行 DNS 查閱，並將結果顯示在地圖上。這是絕佳的視覺表示法，可協助判斷您的用戶端會連結到哪個裝載服務。
+## <a name="sample-tools-to-measure-dns-performance"></a>測量 DNS 效能的範例工具
 
-http://www.digwebinterface.com – 與 watchmouse 站台類似，但此站台會顯示更多 DNS 的詳細資訊，包括 CNAME 和 A 記錄。請務必檢查選項下的 ‘Colorize output’ 與 ‘Stats’ 並選取 Nameservers 下的 'All'。
+* [SolveDNS](http://www.solvedns.com/dns-comparison/)
 
-## 後續步驟
+    SolveDNS 提供許多效能工具。 其 DNS 比較工具可以顯示 DNS 名稱解析所需的時間長度，以及與其他 DNS 服務提供者之間的比較。
+
+* [WebSitePulse](http://www.websitepulse.com/help/tools.php)
+
+    其中一個最簡單的工具是 WebSitePulse。 輸入 URL，您就會看到 DNS 解析時間、第一個位元組、最後一個位元組，以及其他效能統計資料。 您可以從三個不同的測試位置中選擇。 在本範例中，您會看到第一次執行顯示 DNS 查閱用了 0.204 秒。
+
+    ![pulse1](./media/traffic-manager-performance-considerations/traffic-manager-web-site-pulse.png)
+
+    因為結果已快取過了，對相同流量管理員端點進行第二次測試時，DNS 查閱用了 0.002 秒。
+
+    ![pulse2](./media/traffic-manager-performance-considerations/traffic-manager-web-site-pulse2.png)
+
+* [CA App Synthetic Monitor](https://asm.ca.com/en/checkit.php)
+
+    以前稱為 Watchmouse Check Website 工具，這個網站會顯示同時從多個地理區域進行 DNS 解析的時間。 輸入 URL 可以看到 DNS 解析時間、連接時間，以及數個地理位置的速度。 使用這項測試，查看在世界各地不同位置哪個裝載的服務會傳回。
+
+    ![pulse1](./media/traffic-manager-performance-considerations/traffic-manager-web-site-watchmouse.png)
+
+* [Pingdom](http://tools.pingdom.com/)
+
+    這項工具提供網頁每個項目的效能統計資料。 [頁面分析] 索引標籤顯示執行 DNS 查閱所花費的時間百分比。
+
+* [What's My DNS?](http://www.whatsmydns.net/)
+
+    這個網站將會從 20 個不同位置執行 DNS 查閱，並將結果顯示在地圖上。
+
+* [Dig Web Interface](http://www.digwebinterface.com)
+
+    這個網站會顯示更詳細的 DNS 資訊，包括 CNAME 和 A 記錄。 請務必選取選項下的 [Colorize output] 和 [Stats]，並選取 [Nameservers] 下的 [All]。
+
+## <a name="next-steps"></a>後續步驟
+
 [關於流量管理員流量路由方法](traffic-manager-routing-methods.md)
 
 [測試流量管理員設定](traffic-manager-testing-settings.md)
@@ -61,4 +86,9 @@ http://www.digwebinterface.com – 與 watchmouse 站台類似，但此站台會
 
 [Azure 流量管理員 Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=400769)
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,12 +1,12 @@
 ---
-title: 準備網路對應以使用 Azure Site Recovery 在 VMM 保護 Hyper-V 虛擬機器 | Microsoft Docs
-description: 設定網路對應以用來將 Hyper-V 虛擬機器從內部部署資料中心複寫到 Azure 或次要網站。
+title: "準備網路對應以使用 Azure Site Recovery 在 VMM 保護 Hyper-V 虛擬機器 | Microsoft Docs"
+description: "設定網路對應以用來將 Hyper-V 虛擬機器從內部部署資料中心複寫到 Azure 或次要網站。"
 services: site-recovery
-documentationcenter: ''
+documentationcenter: 
 author: rayne-wiselman
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: a798580b-b166-426b-bdca-573167b0e451
 ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 10/05/2016
 ms.author: raynew
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8023643345812a9bc18dcca43cfc0ecff31a5007
+
 
 ---
 # <a name="prepare-network-mapping-for-hyper-v-virtual-machine-protection-with-vmm-in-azure-site-recovery"></a>準備網路對應以使用 Azure Site Recovery 在 VMM 保護 Hyper-V 虛擬機器
@@ -106,6 +110,9 @@ Azure Site Recovery 可藉由協調虛擬機器與實體伺服器的複寫、容
 ## <a name="next-steps"></a>後續步驟
 既然您已經更了解網路對應， [請開始部署 Site Recovery](site-recovery-best-practices.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

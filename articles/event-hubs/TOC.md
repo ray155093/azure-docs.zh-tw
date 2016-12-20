@@ -24,14 +24,14 @@
 ### [使用 Python 啟用事件中樞封存](event-hubs-archive-python.md)
 
 # 參考
-## [配額和限制](event-hubs-quotas.md)
-## [傳訊例外狀況](event-hubs-messaging-exceptions.md)
-## [Java](/java/api)
-## [.NET](/dotnet/api)
-## [AMQP1.0 通訊協定指南](../service-bus-messaging/service-bus-amqp-protocol-guide.md)
+## [.NET](/dotnet/api/microsoft.azure.eventhubs)
+## [Java](/java/api/com.microsoft.azure.eventhubs)
 ## [REST](/rest/api/eventhub)
 
 # 資源
+## [配額和限制](event-hubs-quotas.md)
+## [傳訊例外狀況](event-hubs-messaging-exceptions.md)
+## [AMQP1.0 通訊協定指南](../service-bus-messaging/service-bus-amqp-protocol-guide.md)
 ## [價格](https://azure.microsoft.com/en-us/pricing/details/event-hubs/)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/event-hubs/)
 ## [服務匯流排總管](https://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a)
@@ -40,6 +40,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=event-hubs)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,28 +1,32 @@
 ---
-title: 在 Azure VM 中手動設定 Always On 可用性群組 - Microsoft Azure
-description: 使用 Azure 虛擬機器建立 Always On 可用性群組。 本教學課程主要是透過使用者介面作業，而非編寫指令碼。
+title: "在 Azure VM 中手動設定 Always On 可用性群組 - Microsoft Azure"
+description: "使用 Azure 虛擬機器建立 Always On 可用性群組。 本教學課程主要是透過使用者介面作業，而非編寫指令碼。"
 services: virtual-machines
 documentationcenter: na
 author: MikeRayMSFT
 manager: timlt
 editor: monicar
 tags: azure-service-management
-
+ms.assetid: 986cbc2e-553d-4eba-8acb-c34ad7fd1d8b
 ms.service: virtual-machines
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
-ms.date: 09/22/2016
+ms.date: 10/21/2016
 ms.author: MikeRayMSFT
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 6b102884c7d5aafc85acdeb52a92b630e6e99b6a
+
 
 ---
 # <a name="configure-always-on-availability-group-in-azure-vm-manually---resource-manager"></a>在 Azure VM 中手動設定 Always On 可用性群組 - Resource Manager
 > [!div class="op_single_selector"]
-> * [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-> * [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
-> * [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-> * [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+> * [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+> * [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 > 
 > 
 
@@ -36,7 +40,7 @@ ms.author: MikeRayMSFT
 * 可用性設定組中具有 Active Directory (AD) 網域的兩個網域控制站 
 * 可用性設定組中已部署至後端子網路並加入 AD 網域的兩個 SQL Server VM
 * 具有節點多數仲裁模型的 3 節點 WSFC 叢集
-* 會提供 IP 位址給可用性群組的內部負載平衡器
+* 具有一或多個 IP 位址的內部負載平衡器，以支援一或多個可用性群組接聽程式
 * 具有兩份可用性資料庫同步認可複本的可用性群組
 
 下圖將解決方案以圖形呈現。
@@ -45,14 +49,16 @@ ms.author: MikeRayMSFT
 
 這是一個可能的組態。 您可以依需求進行修改。 例如，您可以使用網域控制站作為仲裁檔案共用見證，以減少虛擬機器數目。 這會減少含兩個複本的可用性群組的 VM 數目。 此方法可以從解決方案中減少一個 VM。
 
-完成本教學課程需要幾個小時的時間，因為您必須建立並設定數個 Azure 虛擬機器。 您也可以自動建置這整個解決方案。 在 Azure 入口網站中，AlwaysOn 可用性群組有一個專用資源庫提供接聽程式。 資源庫安裝程式會自動設定可用性群組所需的一切項目。 如需詳細資訊，請參閱 [入口網站 - Resource Manager](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)。 
+本教學課程會建立單一可用性群組，具有接聽程式的一個 IP 位址。 您也可以建立多個可用性群組，具有每個接聽程式的 IP 位址。 每個 IP 位址會使用相同的負載平衡器。 若要在負載平衡器上設定多個 IP 位址，請使用 PowerShell。 如需詳細資訊，請參閱[設定一或多個 Always On 可用性群組接聽程式 - Resource Manager](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+
+完成本教學課程需要幾個小時的時間，因為您必須建立並設定數個 Azure 虛擬機器。 您也可以自動建置這整個解決方案。 在 Azure 入口網站中，AlwaysOn 可用性群組有一個專用資源庫提供接聽程式。 資源庫安裝程式會自動設定可用性群組所需的一切項目。 如需詳細資訊，請參閱 [入口網站 - Resource Manager](virtual-machines-windows-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
 [!INCLUDE [availability-group-template](../../includes/virtual-machines-windows-portal-sql-alwayson-ag-template.md)]
 
 本教學課程假設您已句備下列條件：
 
 * 您已經有 Azure 帳戶。
-* 您已經知道如何透過 GUI 佈建來自虛擬機器資源庫的 SQL Server VM。 如需詳細資訊，請參閱 [在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)
+* 您已經知道如何透過 GUI 佈建來自虛擬機器資源庫的 SQL Server VM。 如需詳細資訊，請參閱 [在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * 您已非常熟悉可用性群組的功能。 如需詳細資訊，請參閱 [AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/hh510230.aspx)。
 
 > [!NOTE]
@@ -64,10 +70,10 @@ ms.author: MikeRayMSFT
 1. 登入 [Azure 入口網站](http://portal.azure.com)。 
 2. 按一下 [+新增]，然後在 [Marketplace] 搜尋視窗中輸入**資源群組**。
    
-   ![資源群組](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/01-resourcegroupsymbol.png)
+    ![資源群組](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/01-resourcegroupsymbol.png)
 3. 按一下 [資源群組]  
    
-   ![新增資源群組](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/01-newresourcegroup.png)
+    ![新增資源群組](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/01-newresourcegroup.png)
 4. 按一下 [建立] 。 
 5. 在 [資源群組] 刀鋒視窗的 [資源群組名稱] 類型之下，輸入 **SQL-HA-RG**
 6. 如果您有多個 Azure 訂用帳戶，請確認此訂用帳戶是您要在其中建立可用性群組的 Azure 訂用帳戶。 
@@ -89,14 +95,14 @@ Azure 會建立資源群組，並在入口網站中釘選資源群組的捷徑�
    ![新增項目](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/02-newiteminrg.png)
 2. 搜尋 **虛擬網路**。
    
-   ![搜尋虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/04-findvirtualnetwork.png)
+     ![搜尋虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/04-findvirtualnetwork.png)
 3. 按一下 [虛擬網路] 。
 4. 在 [虛擬網路] 刀鋒視窗中，按一下 [Resource Manager] 部署模型，然後按一下 [建立]。
    
-   ![建立虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/05-createvirtualnetwork.png)
+     ![建立虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/05-createvirtualnetwork.png)
 5. 在 [建立虛擬網路]  刀鋒視窗上設定虛擬網路。 
    
-   下表顯示虛擬網路的設定。 
+   下表顯示虛擬網路的設定。
    
    | **欄位** | 值 |
    | --- | --- |
@@ -107,7 +113,7 @@ Azure 會建立資源群組，並在入口網站中釘選資源群組的捷徑�
    | **訂用帳戶** |指定您打算使用的訂用帳戶。 如果您只有一個訂用帳戶，則可讓此欄位留白。 |
    | **位置** |指定 Azure 位置。 |
    
-   您的位址空間和子網路位址範圍可能與此表有所不同。 視您的訂用帳戶而定，Azure 會指定可用的位址空間和對應的子網路位址範圍。 如果沒有足夠的位址空間可供使用，請使用不同的訂用帳戶。 
+    您的位址空間和子網路位址範圍可能與此表有所不同。 視您的訂用帳戶而定，Azure 會指定可用的位址空間和對應的子網路位址範圍。 如果沒有足夠的位址空間可供使用，請使用不同的訂用帳戶。 
 6. 按一下 [建立] 
    
    ![設定虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/06-configurevirtualnetwork.png)
@@ -119,20 +125,19 @@ Azure 會讓您回到入口網站儀表板，並在建立完新網路時通知�
 
 1. 在儀表板上，按一下您所建立的資源群組 [SQL-HA-RG] 。 在 [資源] 之下的資源群組中尋找此網路。
    
-   如果看不到 [SQL-HA-RG]，請按一下 [資源群組] 並依資源群組名稱進行篩選，即可找到它。
+    如果看不到 [SQL-HA-RG]，請按一下 [資源群組] 並依資源群組名稱進行篩選，即可找到它。
 2. 按一下資源清單上的 [autoHAVNET]  。 Azure 會開啟 [網路組態] 刀鋒視窗。
-3. 在 **autoHAVNET** 虛擬網路上，按一下 *[所有設定]。
-4. 在 [設定] 刀鋒視窗上，按一下 [子網路]。
+3. 在 **autoHAVNET** 虛擬網路上，按一下 [所有設定]。
+4. 在 [設定] 刀鋒視窗上，按一下 [子網路]**。
    
-   請注意您已建立的子網路。 
+    請注意您已建立的子網路。 
    
-   ![設定虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/07-addsubnet.png)
+    ![設定虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/07-addsubnet.png)
 5. 建立第二個子網路。 按一下 [+ 子網路] 。 
+6. 在 [新增子網路] 刀鋒視窗中，於 [名稱] 之下輸入 **subnet-2** 來設定子網路。 Azure 會自動指定有效的 [位址範圍] 。 確認此位址範圍中至少有 10 個位址。 在生產環境中，您可能需要更多位址。 
+7. 按一下 [確定] 。
    
-   在 [新增子網路] 刀鋒視窗中，於 [名稱] 之下輸入 **subnet-2** 來設定子網路。 Azure 會自動指定有效的 [位址範圍] 。 確認此位址範圍中至少有 10 個位址。 在生產環境中，您可能需要更多位址。 
-6. 按一下 [確定] 。
-
-![設定虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/08-configuresubnet.png)
+    ![設定虛擬網路](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/08-configuresubnet.png)
 
 以下是虛擬網路和兩個子網路的組態設定摘要。
 
@@ -149,7 +154,7 @@ Azure 會讓您回到入口網站儀表板，並在建立完新網路時通知�
 | **位置** |指定您為資源群組選擇的相同位置。 |
 
 ## <a name="create-availability-sets"></a>建立可用性設定組
-建立虛擬機器之前，您必須建立可用性設定組。 可用性設定組可縮短計劃性或非計劃性維護事件的停機時間。 Azure 可用性設定組是 Azure 置於實體容錯網域和更新網域上的邏輯資源群組。 容錯網域會確保可用性設定組的成員具有個別的電源和網路資源。 更新網域會確保可用性設定組的成員不會同時停機來進行維護。 [管理虛擬機器的可用性](virtual-machines-windows-manage-availability.md)。
+建立虛擬機器之前，您必須建立可用性設定組。 可用性設定組可縮短計劃性或非計劃性維護事件的停機時間。 Azure 可用性設定組是 Azure 置於實體容錯網域和更新網域上的邏輯資源群組。 容錯網域會確保可用性設定組的成員具有個別的電源和網路資源。 更新網域會確保可用性設定組的成員不會同時停機來進行維護。 [管理虛擬機器的可用性](virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 您需要兩個可用性設定組。 一個用於網域控制站。 第二個用於 SQL Server。
 
@@ -241,17 +246,16 @@ Azure 會建立虛擬機器。
 10. 在左側窗格中選取新的 [AD DS]  選項。
 11. 按一下黃色警告列上的 [更多]  連結。
     
-     ![在 DNS 伺服器 VM 上新增 AD DS 對話方塊](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784625.png)
+    ![在 DNS 伺服器 VM 上新增 AD DS 對話方塊](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784625.png)
 12. 在 [所有伺服器工作詳細資料] 對話方塊的 [動作] 欄中，按一下 [將此伺服器升級為網域控制站]。
 13. 在 **Active Directory 網域服務組態精靈**中，使用下列值：
-
-| **Page** | 設定 |
-| --- | --- |
-| **部署組態** |**新增樹系** = 已選取<br/>**根網域名稱** = corp.contoso.com |
-| **網域控制站選項** |**DSRM 密碼** = Contoso!0000<br/>**確認密碼** = Contoso!0000 |
-
-1. 按 [下一步]，以通過精靈中的其他頁面。 在 [檢查先決條件] 頁面上，確認是否出現下列訊息：**已順利通過所有先決條件檢查**。 請注意，務必要檢閱所有適用您情況的警告訊息，但是仍可以繼續進行安裝。
-2. 按一下 [Install] 。 **ad-primary-dc** 虛擬機器會自動重新開機。
+    
+    | **Page** | 設定 |
+    | --- | --- |
+    | **部署組態** |**新增樹系** = 已選取<br/>**根網域名稱** = corp.contoso.com |
+    | **網域控制站選項** |**DSRM 密碼** = Contoso!0000<br/>**確認密碼** = Contoso!0000 |
+14. 按 [下一步]，以通過精靈中的其他頁面。 在 [檢查先決條件] 頁面上，確認是否出現下列訊息：**已順利通過所有先決條件檢查**。 請注意，務必要檢閱所有適用您情況的警告訊息，但是仍可以繼續進行安裝。
+15. 按一下 [Install] 。 **ad-primary-dc** 虛擬機器會自動重新開機。
 
 ### <a name="configure-the-second-domain-controller"></a>設定第二個網域控制站
 在主要網域控制站重新開機之後，您可以設定第二個網域控制站。 這個選擇性步驟適用於高可用性。 若要完成此步驟，您必須知道網域控制站的私人 IP 位址。 您可以從 Azure 入口網站取得此資訊。 請依照下列步驟設定第二個網域控制站。
@@ -266,12 +270,12 @@ Azure 會建立虛擬機器。
 8. 在 [網路連接]  視窗中，選取網路圖示。
    
     ![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784629.png)
-9. 在命令列上按一下 [變更此連接的設定](視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令.md)。
+9. 在命令列上按一下 [變更此連接的設定]  (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 10. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]  ，然後按一下 [內容]。
 11. 選取 [使用下列的 DNS 伺服器位址]，並在 [慣用 DNS 伺服器] 中指定主要網域控制站的位址。
 12. 此位址是指派給 Azure 虛擬網路 subnet-1 子網路中的 VM 的位址，而該 VM 為 **ad-primary-dc**。 若要確認 **ad-primary-dc** 的 IP 位址，請如下方所示，在命令提示字元中使用 **nslookup ad-primary-dc**。
     
-     ![使用 NSLOOKUP 尋找 DC 的 IP 位址](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC664954.png)
+    ![使用 NSLOOKUP 尋找 DC 的 IP 位址](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC664954.png)
     
     > [!NOTE]
     > 設定 DNS 之後，您可能會失去對成員伺服器的 RDP 工作階段。 如果您這樣做，請從 Azure 入口網站重新啟動 VM。
@@ -294,28 +298,27 @@ Azure 會建立虛擬機器。
     ![Active Directory 管理中心](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784626.png)
 3. 在 [資源群組]  select  。
 4. 在右側的 [工作] 窗格中，選取 [新增]，然後按一下 [使用者]。 套用下列設定：
-
-| 設定 | 值 |
-| --- | --- |
-| **名字** |Install |
-| **使用者 SamAccountName** |Install |
-| **密碼** |Contoso!0000 |
-| **確認密碼** |Contoso!0000 |
-| **其他密碼選項** |已選取 |
-| **密碼永久有效** |已檢查 |
-
-1. 按一下 [確定]，以建立**安裝**使用者。 請使用此帳戶來設定容錯移轉叢集和可用性群組。
-2. 透過相同的步驟建立兩個額外的使用者：**CORP\SQLSvc1** 和 **CORP\SQLSvc2**。 SQL Server 服務會使用這些帳戶。 接著，為 **CORP\Install** 提供必要的權限，以設定「Windows 服務容錯移轉叢集」(WSFC)。
-3. 在 [Active Directory 管理中心] 中，選取左窗格中的 [企業 (本機)]。 然後在右側的 [工作] 窗格中，按一下 [內容]。
+   
+   | 設定 | 值 |
+   | --- | --- |
+   |  **名字** |Install |
+   |  **使用者 SamAccountName** |Install |
+   |  **密碼** |Contoso!0000 |
+   |  **確認密碼** |Contoso!0000 |
+   |  **其他密碼選項** |已選取 |
+   |  **密碼永久有效** |已檢查 |
+5. 按一下 [確定]，以建立**安裝**使用者。 請使用此帳戶來設定容錯移轉叢集和可用性群組。
+6. 透過相同的步驟建立兩個額外的使用者：**CORP\SQLSvc1** 和 **CORP\SQLSvc2**。 SQL Server 服務會使用這些帳戶。 接著，為 **CORP\Install** 提供必要的權限，以設定「Windows 服務容錯移轉叢集」(WSFC)。
+7. 在 [Active Directory 管理中心] 中，選取左窗格中的 [企業 (本機)]。 然後在右側的 [工作] 窗格中，按一下 [內容]。
    
     ![企業使用者內容](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784627.png)
-4. 選取 [延伸模組]，然後按一下 [安全性] 索引標籤上的 [進階] 按鈕 。
-5. 在 [企業的進階安全性設定]  對話方塊上。 按一下 [新增] 。
-6. 再按一下 [選取主體]。 然後搜尋 **CORP\Install**。 按一下 [確定] 。
-7. 選取 [讀取所有內容] 和 [建立電腦物件] 權限。
-   
-    ![企業使用者權限](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784628.png)
-8. 按一下 [確定]，再按一下 [確定]。 關閉 [企業內容] 視窗。
+8. 選取 [延伸模組]，然後按一下 [安全性] 索引標籤上的 [進階] 按鈕 。
+9. 在 [企業的進階安全性設定]  對話方塊上。 按一下 [新增] 。
+10. 再按一下 [選取主體]。 然後搜尋 **CORP\Install**。 按一下 [確定] 。
+11. 選取 [讀取所有內容] 和 [建立電腦物件] 權限。
+    
+     ![企業使用者權限](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784628.png)
+12. 按一下 [確定]，再按一下 [確定]。 關閉 [企業內容] 視窗。
 
 現在 Active Directory 和使用者物件已設定完畢，請建立兩個 SQL Server VM 及一個見證伺服器 VM。 然後，將三個 VM 都加入網域。
 
@@ -334,7 +337,7 @@ Azure 會建立虛擬機器。
 <br/>
 
 > [!NOTE]
-> 先前的設定建議標準層虛擬機器，因為基本層機器不支援可用性群組接聽程式所需的負載平衡端點。 此外，此處建議的機器大小是為了在 Azure VM 中測試可用性群組。 為獲得生產工作負載的最佳效能，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳作法](virtual-machines-windows-sql-performance.md)中關於 SQL Server 機器大小和組態的建議。
+> 先前的設定建議標準層虛擬機器，因為基本層機器不支援可用性群組接聽程式所需的負載平衡端點。 此外，此處建議的機器大小是為了在 Azure VM 中測試可用性群組。 為獲得生產工作負載的最佳效能，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳作法](virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中關於 SQL Server 機器大小和組態的建議。
 > 
 > 
 
@@ -362,12 +365,12 @@ Azure 會建立虛擬機器。
 6. 在 [網路連接]  視窗中，選取網路圖示。
    
     ![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784629.png)
-7. 在命令列上按一下 [變更此連接的設定](視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令.md)。
+7. 在命令列上按一下 [變更此連接的設定]  (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 8. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]  ，然後按一下 [內容]。
 9. 選取 [使用下列的 DNS 伺服器位址]，並在 [慣用 DNS 伺服器] 中指定主要網域控制站的位址。
 10. 此位址是指派給 Azure 虛擬網路 subnet-1 子網路中的 VM 的位址，而該 VM 為 **ad-primary-dc**。 若要確認 **ad-primary-dc** 的 IP 位址，請如下方所示，在命令提示字元中使用 **nslookup ad-primary-dc**。
     
-     ![使用 NSLOOKUP 尋找 DC 的 IP 位址](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC664954.png)
+    ![使用 NSLOOKUP 尋找 DC 的 IP 位址](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC664954.png)
     
     > [!NOTE]
     > 設定 DNS 之後，您可能會失去對成員伺服器的 RDP 工作階段。 如果您這樣做，請從 Azure 入口網站重新啟動 VM。
@@ -382,7 +385,7 @@ Azure 會建立虛擬機器。
 17. 按一下 [關閉]，然後按一下快顯對話方塊中的 [立即重新啟動]。
 18. 對檔案共用見證伺服器和每部 SQL Server 重複執行這些步驟。 
 
-### <a name="add-the-corp\install-user-as-an-administrator-on-each-cluster-vm:"></a>將 Corp\Install 使用者新增為每個叢集 VM 的系統管理員：
+### <a name="add-the-corpinstall-user-as-an-administrator-on-each-cluster-vm"></a>將 Corp\Install 使用者新增為每個叢集 VM 的系統管理員：
 1. 等候 VM 重新啟動，然後從主要網域控制站重新啟動 RDP 檔案，以使用 **BUILTIN\DomainAdmin** 帳戶登入 **sqlserver-0**。
 2. 在 [伺服器管理員] 中選取 [工具]，然後按一下 [電腦管理]。
    
@@ -395,7 +398,7 @@ Azure 會建立虛擬機器。
 8. 在 **sqlserver-1** 和 **cluster-fsw** 上重複上述步驟。
 
 ## <a name="create-the-cluster"></a>建立叢集
-### <a name="add-the-**failover-clustering**-feature-to-each-cluster-vm."></a>將 [容錯移轉叢集]  功能新增至每個叢集 VM。
+### <a name="add-the-failover-clustering-feature-to-each-cluster-vm"></a>將 [容錯移轉叢集]  功能新增至每個叢集 VM。
 1. 透過 RDP 連接到 **sqlserver-0**。
 2. 在 [伺服器管理員] 儀表板中按一下 [新增角色及功能]。
 3. 在**新增角色及功能精靈**中，連續按 [下一步] 直到到達 [功能] 頁面。
@@ -434,21 +437,18 @@ Azure 會建立虛擬機器。
    
     ![建立叢集](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784632.png)
 4. 在建立叢集精靈中，透過套用下方設定以通過精靈中的頁面，來建立單節點叢集：
+   
+   | Page | 設定 |
+   | --- | --- |
+   | 開始之前 |使用預設值 |
+   | 選取伺服器 |在 [輸入伺服器名稱] 中輸入 **sqlserver-0**，然後按一下 [新增] |
+   | 驗證警告 |選取 [**否。我不需要 Microsoft 提供此叢集的支援，也不需要執行驗證測試。請在我按 [下一步] 後，繼續建立叢集**。 |
+   | 用於管理叢集的存取點 |在 [叢集名稱] 中輸入 **Cluster1** |
+   | 確認 |除非您使用的是儲存空間，否則請使用預設值。 請詳閱此表之後的備註。 |
 
-| Page | 設定 |
-| --- | --- |
-| 開始之前 |使用預設值 |
-| 選取伺服器 |在 [輸入伺服器名稱] 中輸入 **sqlserver-0**，然後按一下 [新增] |
-| 驗證警告 |選取 [**否。我不需要 Microsoft 提供此叢集的支援，也不需要執行驗證測試。請在我按一下 [下一步] 後，繼續建立叢集**]。 |
-| 用於管理叢集的存取點 |在 [叢集名稱] 中輸入 **Cluster1** |
-| 確認 |除非您使用的是儲存空間，否則請使用預設值。 請詳閱此表之後的備註。 |
+    >[AZURE.NOTE] 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，您就必須在 [確認] 頁面上取消勾選 [新增適合的儲存裝置到叢集] 核取方塊。 如果不將此選項取消勾選，Windows 就會在進行叢集程序時將虛擬磁碟中斷連結。 因此，它們將不會顯示在「磁碟管理員」或「總管」中，直到您使用 PowerShell 將儲存空間從叢集中移除後再重新連接為止。
 
-> [!NOTE]
-> 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，您就必須在 [確認] 頁面上取消勾選 [新增適合的儲存裝置到叢集] 核取方塊。 如果不將此選項取消勾選，Windows 就會在進行叢集程序時將虛擬磁碟中斷連結。 因此，它們將不會顯示在「磁碟管理員」或「總管」中，直到您使用 PowerShell 將儲存空間從叢集中移除後再重新連接為止。
-> 
-> 
-
-您現已建立叢集，請確認組態並加入其餘節點。 
+    您現已建立叢集，請確認組態並加入其餘節點。 
 
 1. 在中央窗格中向下捲動至 [叢集核心資源] 區段，並展開 [名稱：Clutser1] 的詳細資料。 在 [失敗] 狀態中，應該會同時出現 [名稱] 和 [IP 位址] 資源 。 由於指派給叢集的 IP 位址與虛擬機器的 IP 位址相同，是個重複的位址，因此無法讓該 IP 位址資源上線。
 2. 以滑鼠右鍵按一下失敗的 [IP 位址] 資源，然後按一下 [內容]。
@@ -460,7 +460,7 @@ Azure 會建立虛擬機器。
    
     ![將節點新增至叢集](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC784634.png)
 6. 在 [新增節點精靈] 中，按 [下一步]。 在 [選取伺服器] 頁面上，於 [輸入伺服器名稱] 中輸入伺服器名稱，然後按一下 [新增]，將 **sqlserver-1** 和 **cluster-fsw** 新增至清單。 完成之後，按 [下一步]。
-7. 在 [驗證警告] 頁面上，按一下 [否](實際操作時，請執行驗證測試.md)。 然後按 [下一步] 。
+7. 在 [驗證警告] 頁面上，按一下 [否] (實際操作時，請執行驗證測試)。 然後按 [下一步] 。
 8. 在 [確認] 頁面中按 [下一步]，以新增節點。
    
    > [!WARNING]
@@ -525,7 +525,7 @@ Azure 會建立虛擬機器。
 * 透過 [NORECOVERY] 選項將完整備份和記錄備份還原至 **sqlserver-1**
 * 透過同步認可、自動容錯移轉，和可讀取的次要複本建立可用性群組 (**AG1**)
 
-### <a name="create-the-mydb1-database-on-sqlserver-0:"></a>在 sqlserver-0 上建立 MyDB1 資料庫：
+### <a name="create-the-mydb1-database-on-sqlserver-0"></a>在 sqlserver-0 上建立 MyDB1 資料庫：
 1. 如果您有您尚未將 **sqlserver-0** 和 **sqlserver-1** 登出遠端桌面工作階段，請立即登出。
 2. 啟動 **sqlserver-0** 的 RDP 檔案，並以 **CORP\Install** 的身分登入。
 3. 在 [檔案總管] 中，於 **C:\** 磁碟中，建立名為**備份**的目錄。 此目錄將用來備份和還原您的資料庫。
@@ -539,7 +539,7 @@ Azure 會建立虛擬機器。
 7. 在 [物件總管] 中，以滑鼠右鍵按一下 [資料庫]，再按一下 [新增資料庫]。
 8. 在 [資料庫名稱] 中，輸入 **MyDB1**，然後按一下 [確定]。
 
-### <a name="take-a-full-backup-of-mydb1-and-restore-it-on-sqlserver-1:"></a>建立 MyDB1 的完整備份，然後將其還原至 sqlserver-1：
+### <a name="take-a-full-backup-of-mydb1-and-restore-it-on-sqlserver-1"></a>建立 MyDB1 的完整備份，然後將其還原至 sqlserver-1：
 1. 接下來，備份資料庫的所有內容。 在 [物件總管] 中，展開 [資料庫]，以滑鼠右鍵按一下 [MyDB1]，指向 [工作]，然後按一下 [備份]。
 2. 在 [來源] 區段中，讓 [備份類型] 的設定保持為 [完整]。 在 [目的地] 區段中按一下 [移除]，移除備份檔案的預設檔案路徑。
 3. 在 [目的地] 區段中，按一下 [新增]。
@@ -554,7 +554,7 @@ Azure 會建立虛擬機器。
 12. 在 [備份檔案位置] 中，輸入 **\\\\sqlserver-0\backup**，按一下 [重新整理]，選取 [MyDB1.bak]，按一下 [確定]，然後再按一次 [確定]。 現在 [還原] 窗格的備份集，應會顯示可以在完整備份和記錄備份。
 13. 移至 [選項] 頁面中，在還原狀態中選取 [使用 NORECOVERY 還原]，然後按一下 [確定]，以還原資料庫。 還原作業完成後，按一下 [確定]。
 
-### <a name="create-the-availability-group:"></a>建立可用性群組：
+### <a name="create-the-availability-group"></a>建立可用性群組：
 1. 回到 **sqlserver-0**的遠端桌面工作階段。 如下所示，在 SSMS 的 [物件總管] 中，以滑鼠右鍵按一下 [AlwaysOn 高可用性]，再按一下 [新增可用性群組精靈]。
    
     ![啟動新增可用性群組精靈](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC665523.gif)
@@ -594,18 +594,18 @@ Azure 會建立虛擬機器。
 13. 回到 [伺服器管理員]，選取 [工具]，然後啟動 [容錯移轉叢集管理員]。
 14. 展開 [Cluster1.corp.contoso.com]，然後展開 [服務和應用程式]。 選取 [角色]。請注意，先前已建立了 **AG1** 的可用性群組角色。 請注意，由於您未設定接聽程式，所以 AG1 不具備任何資料庫用戶端可用來連接至可用性群組的 IP 位址。 直接連接至主要節點，可進行讀寫作業，連接至次要節點，則可進行唯讀查詢。
     
-     ![容錯移轉叢集管理員中的 AG](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC665534.png)
-
-> [!WARNING]
-> 請勿嘗試透過容錯移轉叢集管理員，容錯移轉可用性群組。 所有容錯移轉作業都應在 SSMS 的 **AlwaysOn 儀表板** 中執行。 如需詳細資訊，請參閱 [容錯移轉叢集和 AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/ff929171.aspx)。
-> 
-> 
+    ![容錯移轉叢集管理員中的 AG](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual/IC665534.png)
+    
+    > [!WARNING]
+    > 請勿嘗試透過容錯移轉叢集管理員，容錯移轉可用性群組。 所有容錯移轉作業都應在 SSMS 的 **AlwaysOn 儀表板** 中執行。 如需詳細資訊，請參閱 [容錯移轉叢集和 AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/ff929171.aspx)。
+    > 
+    > 
 
 ## <a name="configure-internal-load-balancer"></a>設定內部負載平衡器
 為了直接連線到可用性群組，您必須設定負載平衡器。 負載平衡器會將用戶端流量導向到繫結至接聽程式 IP 位址且在探查連接埠上的 VM。 本教學課程使用的是內部負載平衡器 (或稱 ILB)。 ILB 允許讓來自相同虛擬網路內的流量連線到 SQL Server。 應用程式如果需要透過網際網路連接到 SQL Server，就需要使用網際網路面向 (或外部) 負載平衡器。 如需詳細資訊，請參閱 [Azure Load Balancer 概觀](../load-balancer/load-balancer-overview.md)。
 
 > [!NOTE]
-> 目前「Azure 入口網站」只允許您在負載平衡器上使用一次特定前端連接埠。 若要讓所有接聽程式都使用相同的連接埠，請使用 PowerShell 將接聽程式 IP 位址連接至負載平衡器。 如需相關指示，請參閱 [建立可用性群組接聽程式和負載平衡器 |Azure](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md)。 
+> 本教學課程說明如何建立單一接聽程式 - 使用一個 ILB IP 位址。 若要使用一或多個 IP 位址建立一或多個接聽程式，請參閱[建立可用性群組接聽程式和負載平衡器 | Azure](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 > 
 > 
 
@@ -650,7 +650,7 @@ Azure 會建立虛擬機器。
 | **負載平衡規則閒置逾時** |4 |
 | **負載平衡規則浮動 IP (伺服器直接回傳)** |已啟用 |
 
-> * 1433 是預設的 SQL Server 連接埠。 用來作為預設執行個體的前端連接埠。 如果您需要多個可用性群組，您將需要為每個可用性群組建立額外的 IP 位址。 每個可用性群組將需要有自己的前端連接埠。 請參閱 [建立可用性群組接聽程式和負載平衡器 |Azure](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md)。
+> * 1433 是預設的 SQL Server 連接埠。 用來作為預設執行個體的前端連接埠。 如果您需要多個可用性群組，您將需要為每個可用性群組建立額外的 IP 位址。 每個可用性群組將需要有自己的前端連接埠。 請參閱 [建立可用性群組接聽程式和負載平衡器 |Azure](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 > 
 > [!NOTE]
 > 您必須於建立時在負載平衡規則中啟用伺服器直接回傳。
@@ -676,7 +676,7 @@ Azure 會建立虛擬機器。
     $ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
     $IPResourceName = "<IPResourceName>" # the IP Address resource name
     $ILBIP = "<X.X.X.X>" # the IP Address of the Internal Load Balancer (ILB). This is the static IP address for the load balancer you configured in the Azure portal.
-    [int]$ProbePort = <nnnnn> # In this sample we've using 59999 for the probe port. 
+   [int]$ProbePort = <nnnnn> # In this sample we've using 59999 for the probe port. 
    
     Import-Module FailoverClusters
    
@@ -693,15 +693,22 @@ Azure 會建立虛擬機器。
 1. 透過 RDP 連接到未擁有複本的 SQL Server。
 2. 使用 sqlcmd 公用程式來測試連線。 例如，下列指令碼會透過接聽程式與 Windows 驗證來建立主要複本的 sqlcmd 連線︰
    
+    ```
     sqlcmd -S "<listenerName>" -E
+    ```
    
    如果接聽程式使用的是 1433 以外的連接埠，您就需要在測試中指定該連接埠號碼。 例如，下列查詢會使用連接埠 1435 來測試對接聽程式的連線：
    
-        sqlcmd -S "<listenerName>",1435 -E
+    ```
+    sqlcmd -S "<listenerName>",1435 -E
+    ```
 
 ## <a name="next-steps"></a>後續步驟
-如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
+如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

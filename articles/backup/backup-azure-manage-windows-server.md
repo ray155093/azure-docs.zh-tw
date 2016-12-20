@@ -1,19 +1,23 @@
 ---
-title: 管理 Azure 復原服務保存庫與伺服器 | Microsoft Docs
-description: 使用本教學課程了解如何管理 Azure 復原服務保存庫與伺服器。
+title: "管理 Azure 復原服務保存庫與伺服器 | Microsoft Docs"
+description: "使用本教學課程了解如何管理 Azure 復原服務保存庫與伺服器。"
 services: backup
-documentationcenter: ''
-author: Jim-Parker
-manager: jwhit
+documentationcenter: 
+author: markgalioto
+manager: cfreeman
 editor: tysonn
-
+ms.assetid: 4eea984b-7ed6-4600-ac60-99d2e9cb6d8a
 ms.service: backup
 ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/19/2016
+ms.date: 10/19/2016
 ms.author: jimpark; markgal
+translationtype: Human Translation
+ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
+ms.openlocfilehash: 74697b634392f7fe6b747ac21a9b1efac5703788
+
 
 ---
 # <a name="monitor-and-manage-azure-recovery-services-vaults-and-servers-for-windows-machines"></a>監視和管理 Windows 電腦的 Azure 復原服務保存庫和伺服器
@@ -23,11 +27,9 @@ ms.author: jimpark; markgal
 > 
 > 
 
-在本文中，您將了解透過 Azure 管理入口網站和 Microsoft Azure 備份代理程式提供之備份管理工作的概觀。
+在本文中，您將了解透過 Azure 入口網站和 Microsoft Azure 備份代理程式提供之備份管理工作的概觀。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
-
-傳統部署模型。
 
 ## <a name="management-portal-tasks"></a>管理入口網站工作
 ### <a name="access-your-recovery-services-vaults"></a>存取復原服務保存庫
@@ -59,7 +61,7 @@ ms.author: jimpark; markgal
 
 ![備份儀表板工作](./media/backup-azure-manage-windows-server/dashboard-tasks.png)
 
-## <a name="alerts-for-backups-using-azure-backup-agent:"></a>針對使用 Azure 備份代理程式之備份的警示：
+## <a name="alerts-for-backups-using-azure-backup-agent"></a>針對使用 Azure 備份代理程式之備份的警示：
 | 警示層級 | 傳送的警示 |
 | --- | --- |
 | 重要 |備份失敗、復原失敗 |
@@ -120,7 +122,7 @@ ms.author: jimpark; markgal
 
 ![備份項目](./media/backup-azure-manage-windows-server/backup-item-list.png)
 
-如果您按一下清單中的特定備份項目，您會看到該項目的基本詳細資料。
+如果您選取清單中的特定備份項目，您會看到該項目的基本詳細資料。
 
 > [!NOTE]
 > 在 [設定] 刀鋒視窗中，您可選取 [受保護項目] > [備份項目]，然後從下拉式功能表中選取 [檔案-資料夾]，以管理檔案和資料夾。
@@ -222,13 +224,14 @@ Azure 備份代理程式提供 [節流] 索引標籤，可讓您控制在資料�
 啟用節流︰
 
 1. 在**備份代理程式**中，按一下 [變更屬性]。
-2. 選取 [啟用備份作業的網際網路頻寬使用節流功能]  核取圖格。
+2. 在 [節流] 索引標籤上，選取 [啟用備份作業的網際網路頻寬使用節流功能]。
    
     ![網路節流](./media/backup-azure-manage-windows-server/throttling-dialog.png)
-3. 一旦啟用節流之後，請指定允許在 [工作時間] 和 [非工作時間] 進行備份資料傳輸的頻寬。
+   
+    一旦啟用節流之後，請指定允許在 [工作時間] 和 [非工作時間] 進行備份資料傳輸的頻寬。
    
     頻寬值從每秒 512 KB (Kbps) 開始，並可高達每秒 1023 MB (Mbps)。 您也可以指定 [工作時間] 的開始和完成時間，以及一週中有哪幾天視為工作天。 指定工作時間以外的時間會視為非工作時間。
-4. 按一下 [確定] 。
+3. 按一下 [確定] 。
 
 ## <a name="manage-exclusion-settings"></a>管理排除設定
 1. 開啟 **Microsoft Azure 備份代理程式** (透過在電腦中搜尋「Microsoft Azure 備份」即可找到)。
@@ -276,25 +279,33 @@ A.2 在 Azure 備份失敗的 20 分鐘內就會引發警示。
 
 **Q3.是否會有已設定通知但不會傳送電子郵件的情況？**
 
-A3. 以下是不傳送通知以便減少警示雜訊的案例︰ 
+A3. 以下是不傳送通知以便減少警示雜訊的案例︰
 
 * 如果通知設為每小時，而且在一小時內引發警示並加以解決，
 * 作業便會取消。
-* 第二個備份作業會失敗，因為原始的備份作業正在進行中。 
+* 第二個備份作業會失敗，因為原始的備份作業正在進行中。
 
-## <a name="troubleshooting-monitoring-issues<br>"></a>疑難排解監視問題<br>
-#### <a name="issue:-jobs-and-alerts-from-azure-backup-agent-does-not-appear-on-the-portal."></a>問題︰來自 Azure 備份代理程式的作業與警示未出現在入口網站中。
-##### <a name="troubleshooting-steps:"></a>疑難排解步驟：
-「OBRecoveryServicesManagementAgent」可用來將作業和警示的資料傳送至 Azure 備份服務。 開啟工作管理員，然後檢視「OBRecoveryServicesManagementAgent」處理序是否正在執行。
-此處理序有時會停止或關閉。 如果處理序並未執行，請從控制台瀏覽服務清單、啟動或重新啟動「Microsoft Azure 復原服務管理代理程式」。
-如需進一步資訊，請瀏覽「Azure 備份代理程式安裝資料夾」\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider* 中的記錄。
-<b>例如：</b>C:\Program Files\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider0.errlog
+## <a name="troubleshooting-monitoring-issues"></a>疑難排解監視問題
+**問題︰**來自 Azure 備份代理程式的作業與警示未出現在入口網站中。
+
+**疑難排解步驟︰**```OBRecoveryServicesManagementAgent``` 程序會將作業和警示資料傳送至 Azure 備份服務。 此程序可能偶爾會卡住或關閉。
+
+1. 若要確認此程序不在執行中，請開啟 [工作管理員] 並檢查 ```OBRecoveryServicesManagementAgent``` 程序是否正在執行中。
+2. 假設此程序不在執行中，請開啟 [控制台] 並瀏覽服務清單。 啟動或重新啟動 **Microsoft Azure 復原服務管理代理程式**。
+   
+    如需進一步資訊，請瀏覽以下位置的記錄檔：<br/>
+   `<AzureBackup_agent_install_folder>\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider*`
+    例如：<br/>
+   `C:\Program Files\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider0.errlog`
 
 ## <a name="next-steps"></a>後續步驟
 * [從 Azure 還原 Windows Server 或 Windows 用戶端](backup-azure-restore-windows-server.md)
 * 若要深入了解 Azure 備份，請參閱 [Azure 備份概觀](backup-introduction-to-azure-backup.md)
 * 瀏覽 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

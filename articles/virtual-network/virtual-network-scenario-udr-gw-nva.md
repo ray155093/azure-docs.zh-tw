@@ -1,12 +1,12 @@
 ---
-title: 混合式連線與兩層式應用程式 | Microsoft Docs
-description: 了解如何部署虛擬設備和 UDR 以在 Azure 中建立多層式的應用程式環境
+title: "混合式連線與兩層式應用程式 | Microsoft Docs"
+description: "了解如何部署虛擬設備和 UDR 以在 Azure 中建立多層式的應用程式環境"
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: carmonm
 editor: tysonn
-
+ms.assetid: 1f509bec-bdd1-470d-8aa4-3cf2bb7f6134
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/05/2016
 ms.author: jdial
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: fb8d59469eadad51dcf269ec8ff2829b2f8ef922
+
 
 ---
 # <a name="virtual-appliance-scenario"></a>虛擬設備的案例
@@ -65,7 +69,7 @@ ms.author: jdial
   * **AZF2**。 用以控制 **azsn2** 和 **azsn3** 間流量的內部防火牆。 這也是 3-NIC 的虛擬設備。
   * **AZF3**。 內部部署資料中心系統管理員可存取的管理防火牆，且已連線到用來管理所有防火牆設備的管理子網路。 您可以在 Marketplace 中找到 2-NIC 虛擬設備的範本，或直接向您的設備廠商要求一份。
 
-## <a name="user-defined-routing-(udr)"></a>使用者定義的路由 (UDR)
+## <a name="user-defined-routing-udr"></a>使用者定義的路由 (UDR)
 Azure 中的每個子網路都可以連結至 UDR 資料表，這份資料表用以定義如何路由在該子網路中起始的流量。 如未定義任何 UDR，Azure 就會使用預設的路由允許流量在子網路之間流動。 如需進一步了解 UDR，請瀏覽 [什麼是使用者定義路由和 IP 轉送](virtual-networks-udr-overview.md#ip-forwarding)。
 
 為確保通訊經由正確的防火牆設備完成，根據上述的最後一個需求，您需要建立下列路由表，將 UDR 包含在 **azurevnet**中。
@@ -121,7 +125,7 @@ UDR 和 IP 轉送兩種功能可以組合使用，以使用虛擬設備來控制
 
 若使用 [IP 轉送]，Azure 虛擬網路邏輯會將封包轉送到 OPFW，而不會變更其原始的目的地位址。 **OPFW** 必須處理封包，並決定如何加以處理。
 
-為使上述案例得以運作，您必須對用於路由的 **OPFW**、**AZF1**、**AZF2** 和 **AZF3** 的 NIC 啟用 [IP 轉送](所有 NIC，連結到管理子網路的 NIC 除外.md)。 
+為使上述案例得以運作，您必須對用於路由的 **OPFW**、**AZF1**、**AZF2** 和 **AZF3** 的 NIC 啟用 [IP 轉送] (所有 NIC，連結到管理子網路的 NIC 除外)。 
 
 ## <a name="firewall-rules"></a>防火牆規則
 如上所述，[IP 轉送] 只確保將封包傳送到虛擬設備。 您的設備仍然需要決定如何處理這些封包。 在上述案例中，您需要在設備中建立下列規則︰
@@ -143,7 +147,7 @@ AZF2 代表包含下列規則的 Azure 虛擬設備︰
 * **路由**：10.0.0.0/16 (**onpremvnet**) 的所有流量都必須通過 **port1** 傳送至 Azure 閘道 IP 位址 (即 10.0.0.1)。
 * **原則**︰允許 **port1** 和 **port2** 之間所有的雙向流量。
 
-## <a name="network-security-groups-(nsgs)"></a>網路安全性群組 (NSG)
+## <a name="network-security-groups-nsgs"></a>網路安全性群組 (NSG)
 這個案例中不會使用 NSG。 不過，您可以將 NSG 套用到每個子網路來限制流量的出入。 例如，您可以將下列 NSG 規則套用至外部 FW 子網路。
 
 **連入**
@@ -164,6 +168,9 @@ AZF2 代表包含下列規則的 Azure 虛擬設備︰
 4. 佈建 **onpremvnet** 到 **azurevnet** 的通道。
 5. 佈建好所有資源之後，請登入 **onpremvm2** 並 ping 10.0.3.101 來測試 **onpremsn2** 和 **azsn3** 之間的連線。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/02/2016
+ms.date: 11/21/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 658671199cf3454428cc7102566093f7c2b42ae8
+ms.sourcegitcommit: 7d02b9fd741310a39aaadee0358af6c7b5990cf2
+ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
 
 
 ---
@@ -29,7 +29,8 @@ ms.openlocfilehash: 658671199cf3454428cc7102566093f7c2b42ae8
 > * [REST API](data-lake-store-get-started-rest-api.md)
 > * [Azure CLI](data-lake-store-get-started-cli.md)
 > * [Node.js](data-lake-store-manage-use-nodejs.md)
-> 
+> * [Python](data-lake-store-get-started-python.md)
+>
 > 
 
 了解如何使用 Azure 入口網站建立 Azure 資料湖存放區帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關 Data Lake Store 的詳細資訊，請參閱 [Azure Data Lake Store 概觀](data-lake-store-overview.md)。
@@ -58,8 +59,8 @@ ms.openlocfilehash: 658671199cf3454428cc7102566093f7c2b42ae8
    * **位置**：選取您要建立資料湖存放區帳戶的位置。
    * **加密設定**。 您可以選擇是否要加密 Data Lake Store 帳戶。 如果您選擇要加密，您還可以指定如何管理您要用來加密帳戶資料的主要加密金鑰。
      
-     * (預設值) 從下拉式清單選取 [不啟用加密] 以選擇不要加密。
-     * (選擇性) 如果您想要讓 Azure Data Lake Store 管理加密金鑰，請選取 [使用由 Azure Data Lake 管理的金鑰]。
+     * (選擇性) 從下拉式清單選取 [不啟用加密] 以選擇不要加密。
+     * (預設值) 如果您想要讓 Azure Data Lake Store 管理加密金鑰，請選取 [使用由 Azure Data Lake 管理的金鑰]。
        
          ![Data Lake Store 加密](./media/data-lake-store-get-started-portal/adls-encryption-1.png "Data Lake Store encryption")
      * (選擇性) 如果您想要使用 Azure 金鑰保存庫中的自有金鑰，請選取 [從 Azure 金鑰保存庫選擇金鑰]。 使用此選項時，您還可以建立金鑰保存庫帳戶和金鑰 (如果您還沒有這些項目)。
@@ -136,6 +137,6 @@ ms.openlocfilehash: 658671199cf3454428cc7102566093f7c2b42ae8
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

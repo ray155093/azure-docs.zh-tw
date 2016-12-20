@@ -9,6 +9,7 @@ manager: jhubbard
 editor: cjgronlund
 ms.assetid: 7467f422-b77d-4b60-9cb5-0f1ec17ec565
 ms.service: sql-database
+ms.custom: overview
 ms.workload: data-management
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.devlang: na
@@ -16,8 +17,8 @@ ms.topic: get-started-article
 ms.date: 09/06/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 434b14d515bd9399a4c392eaab1a1ff7b4cd6836
+ms.sourcegitcommit: 30990f0dbc6a87620fa492b46541a02d6112ee2d
+ms.openlocfilehash: d8ac6651940012d48f3afec7ce69e76543641c8a
 
 
 ---
@@ -58,20 +59,19 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 
 下表摘要說明 SQL Database 和 Azure VM 上的 SQL Server 的主要特性：
 
-|  | SQL Database | Azure 虛擬機器中的 SQL Server |
+| **最適合：** | **Azure SQL Database** | **Azure 虛擬機器中的 SQL Server** |
 | --- | --- | --- |
-| **最適合：** |開發與行銷階段有時間限制的新雲端式設計應用程式。 |需要幾乎無需進行任何變更即可快速移轉至雲端的現有應用程式。 當您不想購買內部部署 SQL Server 非生產硬體時的快速開發和測試案例。 |
-| 需要內建高可用性、災害復原及資料庫升級的團隊。 |可以設定和管理高可用性、災害復原及修補 SQL Server 的團隊。 某些所提供的自動化功能大幅簡化了這部分。 | |
-| 不想要管理基礎作業系統和組態設定的團隊。 |如果您需要包含完整系統管理權限的自訂環境。 | |
-| 高達 1 TB 的資料庫，或可使用向外延展模式 [水平或垂直分割](sql-database-elastic-scale-introduction.md#horizontal-and-vertical-scaling) 的更大型資料庫。 |具有高達 64 TB 儲存空間的 SQL Server 執行個體。 執行個體可以支援所需數量的資料庫。 | |
-| [建置軟體即服務 (SaaS) 應用程式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。 |移轉和建置企業和混合式應用程式。 | |
+|  |開發與行銷階段有時間限制的新雲端式設計應用程式。 |需要幾乎無需進行任何變更即可快速移轉至雲端的現有應用程式。 當您不想購買內部部署 SQL Server 非生產硬體時的快速開發和測試案例。 |
+|  | 需要內建高可用性、災害復原及資料庫升級的團隊。 |可以設定和管理高可用性、災害復原及修補 SQL Server 的團隊。 某些所提供的自動化功能大幅簡化了這部分。 | |
+|  | 不想要管理基礎作業系統和組態設定的團隊。 |如果您需要包含完整系統管理權限的自訂環境。 | |
+|  | 高達 1 TB 的資料庫，或可使用向外延展模式 [水平或垂直分割](sql-database-elastic-scale-introduction.md#horizontal-and-vertical-scaling) 的更大型資料庫。 |具有高達 64 TB 儲存空間的 SQL Server 執行個體。 執行個體可以支援所需數量的資料庫。 | |
+|  | [建置軟體即服務 (SaaS) 應用程式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。 |移轉和建置企業和混合式應用程式。 | |
 |  | | |
 | **資源：** |您不想要運用 IT 資源來設定和管理基礎結構，但想要專注於應用程式層級。 |您有一些設定和管理的 IT 資源。 某些所提供的自動化功能大幅簡化了這部分。 |
 | **擁有權的總成本：** |排除硬體成本，並降低管理成本。 |排除硬體成本。 |
 | **業務持續性︰** |除了內建的容錯基礎結構功能以外，Azure SQL Database 還提供可增加業務持續性的功能，例如[自動備份](sql-database-automated-backups.md)、[時間點還原](sql-database-recovery-using-backups.md#point-in-time-restore)、[異地還原](sql-database-recovery-using-backups.md#geo-restore)和[主動式異地複寫](sql-database-geo-replication-overview.md)。 如需詳細資訊，請參閱 [SQL Database 業務持續性概觀](sql-database-business-continuity.md)。 |Azure VM 上的 SQL Server 可讓您設定高可用性和災害復原解決方案，以滿足您資料庫的特定需求。 因此，您可以有已針對您的應用程式進行高度最佳化的系統。 您可以視需要自我測試並執行容錯移轉。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。 |
 | **混合式雲端：** |您的內部部署應用程式可以存取 Azure SQL Database 中的資料。 |有了 Azure VN 上的 SQL Server，您的應用程式可以部分在雲端中執行和部分在內部部署中執行。 例如，您可以透過 [ [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)] 將內部部署網路和 Active Directory 網域延伸到雲端。 此外，您可以使用 [Azure 中的 SQL Server 資料檔案](http://msdn.microsoft.com/library/dn385720.aspx)，將內部部署資料檔案儲存在 Azure 儲存體中。 如需詳細資訊，請參閱 [SQL Server 2014 混合式雲端簡介](http://msdn.microsoft.com/library/dn606154.aspx)。 |
-| 支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx) 為訂閱者以複寫資料。 |完全支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)、[AlwaysOn 可用性群組](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)、整合服務和記錄傳送以複寫資料。 此外也完全支援傳統的 SQL Server 備份 | |
-|  | | |
+|  | 支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx) 為訂閱者以複寫資料。 |完全支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)、[AlwaysOn 可用性群組](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)、整合服務和記錄傳送以複寫資料。 此外也完全支援傳統的 SQL Server 備份 | |
 |  | | |
 
 ## <a name="business-motivations-for-choosing-azure-sql-database-or-sql-server-on-azure-vms"></a>選擇 Azure VM 上的 Azure SQL Database 或 SQL Server 時的商業動機
@@ -107,7 +107,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 * [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)
 
 > [!NOTE]
-> SQL Server 上有一小部分不適用於或無法使用於 SQL Database 的功能。 如需詳細資訊，請參閱 [SQL Database 一般限制和指導方針](sql-database-general-limitations.md)和 [SQL Database Transact-SQL 資訊](sql-database-transact-sql-information.md)。 如果您要將現有的 SQL Server 解決方案移至雲端，請參閱 [將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。 當您將現有的內部部署 SQL Server 應用程式移轉至 SQL Database 時，建議更新應用程式以利用雲端服務所提供的功能。 例如，您可以考慮使用 [Azure Web App Service](https://azure.microsoft.com/services/app-service/web/) 或 [Azure 雲端服務](https://azure.microsoft.com/services/cloud-services/)來裝載您的應用程式，以增加成本利益。
+> SQL Server 上有一小部分不適用於或無法使用於 SQL Database 的功能。 如需詳細資訊，請參閱 [SQL Database 功能](sql-database-features.md)和 [SQL Database Transact-SQL 資訊](sql-database-transact-sql-information.md)。 如果您要將現有的 SQL Server 解決方案移至雲端，請參閱 [將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。 當您將現有的內部部署 SQL Server 應用程式移轉至 SQL Database 時，建議更新應用程式以利用雲端服務所提供的功能。 例如，您可以考慮使用 [Azure Web App Service](https://azure.microsoft.com/services/app-service/web/) 或 [Azure 雲端服務](https://azure.microsoft.com/services/cloud-services/)來裝載您的應用程式，以增加成本利益。
 > 
 > 
 
@@ -124,7 +124,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 對於 **Azure VM 上執行的 SQL Server**，Microsoft 提供 99.95% 的可用性 SLA (僅涵蓋虛擬機器)。 本 SLA 未涵蓋在 VM 上執行的程序 (例如 SQL Server)，而且您必須裝載一個可用性設定組中的至少兩個 VM 執行個體。 如需最新資訊，請參閱 [VM SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 如需 VM 內的資料庫高可用性 (HA)，您應在 SQL Server 中設定其中一個支援的高可用性選項，例如 [AlwaysOn 可用性群組](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。 使用支援的高可用性選項並不提供額外的 SLA，但可讓您達成 >99.99% 的資料庫可用性。
 
 ### <a name="a-namemarketatime-to-market"></a><a name="market"></a>產品上市時間
-**SQL Database** 是雲端式設計應用程式的理想解決方案。 有了程式設計 DBA 類似功能，此選項非常適合雲端架構設計人員和開發人員，因為它會降低管理基礎作業系統和資料庫的需求。 例如，您可以使用 [REST API](http://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [PowerShell Cmdlet](http://msdn.microsoft.com/library/azure/dn546726.aspx) 來自動化及管理數千個資料庫的管理作業。 [彈性資料庫集區](sql-database-elastic-pool.md) 等功能可讓您將重點放在應用程式層，並且更快速地讓解決方案上市。
+**SQL Database** 是雲端式設計應用程式的理想解決方案。 有了程式設計 DBA 類似功能，此選項非常適合雲端架構設計人員和開發人員，因為它會降低管理基礎作業系統和資料庫的需求。 例如，您可以使用 [REST API](http://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [PowerShell Cmdlet](http://msdn.microsoft.com/library/mt740629.aspx) 來自動化及管理數千個資料庫的管理作業。 [彈性資料庫集區](sql-database-elastic-pool.md) 等功能可讓您將重點放在應用程式層，並且更快速地讓解決方案上市。
 
 **在 Azure VM 上執行的 SQL Server** 會是理想選項。 這也很適合於想要依現狀將現有的內部部署應用程式和資料庫移轉至 Azure。 由於您無需變更簡報、應用程式和資料層，您會在重新架構現有解決方案時節省時間和預算。 相反地，您可以將重點放在將所有解決方案移轉至 Azure，並進行 Azure 平台可能需要的某些效能最佳化作業。 如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的效能最佳作法](../virtual-machines/virtual-machines-windows-sql-performance.md)。
 
@@ -150,6 +150,6 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

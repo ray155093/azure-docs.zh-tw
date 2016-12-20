@@ -1,12 +1,12 @@
 ---
-title: Azure Batch diagnostic logging | Microsoft Docs
-description: Record and analyze diagnostic log events for Azure Batch account resources like pools and tasks.
+title: "Azure Batch 診斷記錄 | Microsoft Docs"
+description: "記錄並分析 Azure Batch 帳戶資源 (如集區和工作) 的診斷記錄事件。"
 services: batch
-documentationcenter: ''
+documentationcenter: 
 author: mmacy
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: e14e611d-12cd-4671-91dc-bc506dc853e5
 ms.service: batch
 ms.devlang: na
 ms.topic: article
@@ -14,36 +14,40 @@ ms.tgt_pltfrm: multiple
 ms.workload: big-compute
 ms.date: 10/12/2016
 ms.author: marsma
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2c66486f9716ed8ac093685b10e9294beb43c381
+
 
 ---
-# <a name="azure-batch-diagnostic-logging"></a>Azure Batch diagnostic logging
-As with many Azure services, the Batch service emits log events for certain resources during the lifetime of the resource. You can enable Azure Batch diagnostic logs to record events for resources like pools and tasks, and then use the logs for diagnostic evaluation and monitoring. Events like pool create, pool delete, task start, task complete, and others are included in Batch diagnostic logs.
+# <a name="azure-batch-diagnostic-logging"></a>Azure Batch 診斷記錄
+和許多 Azure 服務一樣，Batch 服務會在資源存留期間發出特定資源的記錄事件。 您可以啟用 Azure Batch 診斷記錄來記錄資源 (如集區和工作) 的事件，接著使用記錄進行診斷評估和監視。 集區建立、集區刪除、工作開始、工作完成及其他事件等，都會包含在 Batch 診斷記錄中。
 
 > [!NOTE]
-> This article discusses logging events for Batch account resources themselves, not job and task output data. For details on storing the output data of your jobs and tasks, see [Persist Azure Batch job and task output](batch-task-output.md).
+> 本文討論 Batch 帳戶資源本身的記錄事件，而非作業和工作輸出資料。 如需儲存作業和工作輸出資料的詳細資訊，請參閱[保存 Azure Batch 作業和工作輸出](batch-task-output.md)。
 > 
 > 
 
-## <a name="prerequisites"></a>Prerequisites
-* [Azure Batch account](batch-account-create-portal.md)
-* [Azure Storage account](../storage/storage-create-storage-account.md#create-a-storage-account)
+## <a name="prerequisites"></a>必要條件
+* [Azure Batch 帳戶](batch-account-create-portal.md)
+* [Azure 儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)
   
-  To persist Batch diagnostic logs, you must create an Azure Storage account where Azure will store the logs. You specify this Storage account when you [enable diagnostic logging](#enable-diagnostic-logging) for your Batch account. The Storage account you specify when you enable log collection is not the same as a linked storage account referred to in the [application packages](batch-application-packages.md) and [task output persistence](batch-task-output.md) articles.
+  若要保留 Batch 診斷記錄，您必須建立 Azure 將用來儲存記錄的 Azure 儲存體帳戶。 當您為您的 Batch 帳戶[啟用診斷記錄](#enable-diagnostic-logging)時，請指定此儲存體帳戶。 您啟用記錄收集時指定的儲存體帳戶不同於[應用程式封裝](batch-application-packages.md)和[工作輸出持續性](batch-task-output.md)文件中提及的連結儲存體帳戶。
   
   > [!WARNING]
-  > You are **charged** for the data stored in your Azure Storage account. This includes the diagnostic logs discussed in this article. Keep this in mind when designing your [log retention policy](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md).
+  > 儲存在您的 Azure 儲存體帳戶中的資料需要**收費**。 這包括本文討論的診斷記錄。 在設計您的[記錄保留原則](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md)時請牢記這一點。
   > 
   > 
 
-## <a name="enable-diagnostic-logging"></a>Enable diagnostic logging
-Diagnostic logging is not enabled by default for your Batch account. You must explicitly enable diagnostic logging for each Batch account you want to monitor:
+## <a name="enable-diagnostic-logging"></a>啟用診斷記錄
+您的 Batch 帳戶預設未啟用診斷記錄。 您必須為每個您想要監視的 Batch 帳戶明確啟用診斷記錄︰
 
-[How to enable collection of Diagnostic Logs](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-diagnostic-logs)
+[如何啟用診斷記錄的收集](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-diagnostic-logs)
 
-We recommend that you read the full [Overview of Azure Diagnostic Logs](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) article to gain an understanding of not only how to enable logging, but the log categories supported by the various Azure services. For example, Azure Batch currently supports one log category: **Service Logs**.
+建議您閱讀完整的 [Azure 診斷記錄概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文件，以了解如何啟用記錄和各種 Azure 服務支援的記錄類別。 例如，Azure Batch 目前支援一種記錄類別︰**服務記錄檔**。
 
-## <a name="service-logs"></a>Service Logs
-Azure Batch Service Logs contain events emitted by the Azure Batch service during the lifetime of a Batch resource like a pool or task. Each event emitted by Batch is stored in the specified Storage account in JSON format. For example, this is the body of a sample **pool create event**:
+## <a name="service-logs"></a>服務記錄檔
+Azure Batch 服務記錄檔包含 Batch 資源 (如集區或工作) 的存留期間，由 Azure Batch 服務發出的事件。 Batch 所發出的每個事件會以 JSON 格式儲存在指定的儲存體帳戶。 例如，**集區建立事件**範例的主體為：
 
 ```json
 {
@@ -67,31 +71,31 @@ Azure Batch Service Logs contain events emitted by the Azure Batch service durin
 }
 ```
 
-Each event body resides in a .json file in the specified Azure Storage account. If you want to access the logs directly, you may wish to review the [schema of Diagnostic Logs in the storage account](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md#schema-of-diagnostic-logs-in-the-storage-account).
+每個事件主體位於指定的 Azure 儲存體帳戶中的 .json 檔案內。 如果您想要直接存取記錄檔，您可能想要檢閱 [儲存體帳戶中的診斷記錄結構描述](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md#schema-of-diagnostic-logs-in-the-storage-account)。
 
-## <a name="service-log-events"></a>Service Log events
-The Batch service currently emits the following Service Log events. This list may not be exhaustive, since additional events may have been added since this article was last updated.
+## <a name="service-log-events"></a>服務記錄檔事件
+Batch 服務目前會發出下列服務記錄檔事件。 這份清單可能不完整，因為自上次更新此文件後可能已新增額外的事件。
 
-| **Service Log events** |
+| **服務記錄檔事件** |
 | --- |
-| [Pool create][pool_create] |
-| [Pool delete start][pool_delete_start] |
-| [Pool delete complete][pool_delete_complete] |
-| [Pool resize start][pool_resize_start] |
-| [Pool resize complete][pool_resize_complete] |
-| [Task start][task_start] |
-| [Task complete][task_complete] |
-| [Task fail][task_fail] |
+| [集區建立][pool_create] |
+| [開始刪除集區][pool_delete_start] |
+| [集區刪除完成][pool_delete_complete] |
+| [開始調整集區大小][pool_resize_start] |
+| [集區大小調整完成][pool_resize_complete] |
+| [工作開始][task_start] |
+| [工作完成][task_complete] |
+| [工作失敗][task_fail] |
 
-## <a name="next-steps"></a>Next steps
-In addition to storing diagnostic log events in an Azure Storage account, you can also stream Batch Service Log events to an [Azure Event Hub](../event-hubs/event-hubs-what-is-event-hubs.md), and send them to [Azure Log Analytics](../log-analytics/log-analytics-overview.md).
+## <a name="next-steps"></a>後續步驟
+除了將診斷記錄事件儲存在 Azure 儲存體帳戶外，您也可以將 Batch 服務記錄檔事件串流處理到 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)，並傳送至 [Azure Log Analytics](../log-analytics/log-analytics-overview.md)。
 
-* [Stream Azure Diagnostic Logs to Event Hubs](../monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [將 Azure 診斷記錄檔串流至事件中樞](../monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs.md)
   
-  Stream Batch diagnostic events to the highly scalable data ingress service, Event Hubs. Event Hubs can ingest millions of events per second, which you can then transform and store using any real-time analytics provider.
-* [Analyze Azure diagnostic logs using Log Analytics](../log-analytics/log-analytics-azure-storage-json.md)
+  將 Batch 診斷事件串流處理至高擴充性的資料輸入服務：事件中樞。 事件中樞每秒可輸入數百萬個事件，您可以使用任何即時分析提供者來轉換和儲存。
+* [使用 Log Analytics 分析 Azure 診斷記錄](../log-analytics/log-analytics-azure-storage-json.md)
   
-  Send your diagnostic logs to Log Analytics where you can analyze them in the Operations Management Suite (OMS) portal, or export them for analysis in Power BI or Excel.
+  將您的診斷記錄傳送至 Log Analytics，您可以在 Operations Management Suite (OMS) 入口網站中分析它們，或是匯出它們以在 Power BI 或 Excel 中分析。
 
 [pool_create]: https://msdn.microsoft.com/library/azure/mt743615.aspx
 [pool_delete_start]: https://msdn.microsoft.com/library/azure/mt743610.aspx
@@ -104,6 +108,6 @@ In addition to storing diagnostic log events in an Azure Storage account, you ca
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

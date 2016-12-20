@@ -1,12 +1,12 @@
 ---
-title: 使用 Visual Studio 將應用程式發佈至遠端叢集 | Microsoft Docs
-description: 了解如何使用 Visual Studio 將應用程式發佈至遠端 Service Fabric 叢集。
+title: "使用 Visual Studio 將應用程式發佈至遠端叢集 |Microsoft Docs"
+description: "了解如何使用 Visual Studio 將應用程式發佈至遠端 Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: na
 author: cawams
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: faecd892-eb54-4d9c-8023-c67442afb8e8
 ms.service: multiple
 ms.devlang: dotnet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 07/29/2016
 ms.author: cawa
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2dbf8ea0ddde2e308dc0e65dba701578cd2bce43
+
 
 ---
 # <a name="publish-an-application-to-a-remote-cluster-by-using-visual-studio"></a>使用 Visual Studio 將應用程式發佈至遠端叢集
@@ -28,7 +32,7 @@ ms.author: cawa
 Azure Service Fabric extension for Visual Studio 提供簡單、可重複且可編寫指令碼的方式，將應用程式發佈至 Service Fabric 叢集。
 
 ## <a name="the-artifacts-required-for-publishing"></a>發佈所需的構件
-### <a name="deploy-fabricapplication.ps1"></a>Deploy-FabricApplication.ps1
+### <a name="deploy-fabricapplicationps1"></a>Deploy-FabricApplication.ps1
 這是 PowerShell 指令碼，使用發佈設定檔路徑做為參數，以發佈 Service Fabric 應用程式。 由於此指令碼是您的應用程式的一部分，您可以視需要為應用程式修改。
 
 ### <a name="publish-profiles"></a>發佈設定檔
@@ -84,7 +88,7 @@ Azure Service Fabric extension for Visual Studio 提供簡單、可重複且可�
    > 
 6. 當您完成指定所有必要的設定，選擇 [發佈]  按鈕以將應用程式發佈至所選的 Service Fabric 叢集。 您指定的設定會套用至發佈程序。
 
-## <a name="publish-to-an-arbitrary-cluster-endpoint-(including-party-clusters)"></a>發佈至任意叢集端點 (包括合作對象叢集)
+## <a name="publish-to-an-arbitrary-cluster-endpoint-including-party-clusters"></a>發佈至任意叢集端點 (包括合作對象叢集)
 Visual Studio 發佈體驗已針對發佈至遠端叢集 (與您的其中一個 Azure 訂用帳戶相關聯) 最佳化。 不過，可以發佈至任意端點 (例如 Service Fabric 合作對象叢集)，方法是直接編輯發行設定檔 XML。 如上所述，預設會提供兩個發佈設定檔 (**Local.xml** 和 **Cloud.xml**)，但是您可以針對不同的環境建立其他設定檔。 例如，您可能想要建立設定檔以發佈至合作對象叢集，也許命名為 **Party.xml**。
 
 如果您要連接到不安全的叢集，只需要叢集連接端點，例如 `partycluster1.eastus.cloudapp.azure.com:19000`。 在該情況下，發行設定檔中的連接端點看起來會類似：
@@ -112,6 +116,6 @@ Visual Studio 發佈體驗已針對發佈至遠端叢集 (與您的其中一個 
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

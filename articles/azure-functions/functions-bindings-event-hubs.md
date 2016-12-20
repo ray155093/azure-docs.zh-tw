@@ -1,141 +1,203 @@
 ---
-title: Azure Functions 事件中樞繫結 | Microsoft Docs
-description: 了解如何在 Azure Functions 中使用 Azure 事件中樞繫結。
+title: "Azure Functions 事件中樞繫結 | Microsoft Docs"
+description: "了解如何在 Azure Functions 中使用 Azure 事件中樞繫結。"
 services: functions
 documentationcenter: na
 author: wesmc7777
 manager: erikre
-editor: ''
-tags: ''
-keywords: azure functions, 函數, 事件處理, 動態運算, 無伺服器架構
-
+editor: 
+tags: 
+keywords: "azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"
+ms.assetid: daf81798-7acc-419a-bc32-b5a41c6db56b
 ms.service: functions
 ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 08/22/2016
+ms.date: 11/02/2016
 ms.author: wesmc
+translationtype: Human Translation
+ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
+ms.openlocfilehash: bfe0f796c8a15d655f1c5686a0e1e422fee6fbc1
+
 
 ---
-# Azure Functions 事件中樞繫結
+# <a name="azure-functions-event-hub-bindings"></a>Azure Functions 事件中樞繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-本文說明如何針對 Azure Functions 設定 [Azure 事件中樞](../event-hubs/event-hubs-overview.md)繫結以及撰寫程式碼。Azure Functions 支援適用於 Azure 事件中樞的觸發程序和輸出繫結。
+本文說明如何針對 Azure Functions 設定 [Azure 事件中樞](../event-hubs/event-hubs-overview.md) 繫結以及撰寫程式碼。 Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 
-[!INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-## Azure 事件中樞觸發程序繫結
-Azure 事件中樞觸發程序可用來回應傳送至事件中樞事件資料流的事件。您必須具有事件中樞的讀取權限，才能設定觸發程序繫結。
+如果您對「Azure 事件中樞」並不熟悉，請參閱 [Azure 事件中樞概觀](../event-hubs/event-hubs-overview.md)。
 
-#### 適用於事件中樞觸發程序繫結的 function.json
-適用於 Azure 事件中樞觸發程序的「function.json」檔案會指定下列屬性：
+<a name="trigger"></a>
 
-* `type`︰必須設定為「eventHubTrigger」。
-* `name`︰用於事件中樞訊息之函式程式碼中的變數名稱。
-* `direction`：必須設為 in。
-* `path`：事件中樞的名稱。
-* `connection`：應用程式設定的名稱，包含事件中樞所在之命名空間的連接字串。按一下命名空間的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。此連接字串至少必須具備讀取權限，才能啟動觸發程序。
-  
-        {
-          "bindings": [
-            {
-              "type": "eventHubTrigger",
-              "name": "myEventHubMessage",
-              "direction": "in",
-              "path": "MyEventHub",
-              "connection": "myEventHubReadConnectionString"
-            }
-          ],
-          "disabled": false
-        }
+## <a name="event-hub-trigger"></a>事件中樞觸發程序
+使用事件中樞觸發程序將回應傳送至事件中樞事件資料流。 您必須具有事件中樞的讀取存取權，才能設定觸發程序。
 
-#### Azure 事件中樞觸發程序 C# 範例
-使用上述範例 function.json，利用下列 C# 函數程式碼來記錄事件訊息的主體：
+函式的事件中樞觸發程序會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
 
-    using System;
+```json
+{
+    "type": "eventHubTrigger",
+    "name": "<Name of trigger parameter in function signature>",
+    "direction": "in",
+    "path": "<Name of the Event Hub>",
+    "consumerGroup": "Consumer group to use - see below", 
+    "connection": "<Name of app setting with connection string - see below>"
+}
+```
 
-    public static void Run(string myEventHubMessage, TraceWriter log)
-    {
-        log.Info($"C# Event Hub trigger function processed a message: {myEventHubMessage}");
-    }
+`consumerGroup` 是選擇性屬性，可設定用來訂閱中樞內事件的[取用者群組](../event-hubs/event-hubs-overview.md#consumer-groups)。 如果省略，則會使用 `$Default` 取用者群組。  
+`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。 按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串至少必須具備讀取權限，才能啟動觸發程序。
 
-#### Azure 事件中樞觸發程序 F# 範例
-使用上述範例 function.json，利用下列 F# 函式程式碼來記錄事件訊息的主體：
+可以在 host.json 檔案中提供[其他設定](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)來進一步微調事件中樞觸發程序。  
 
-    let Run(myEventHubMessage: string, log: TraceWriter) =
-        log.Info(sprintf "F# eventhub trigger function processed work item: %s" myEventHubMessage)
+<a name="triggerusage"></a>
 
-#### Azure 事件中樞觸發程序 Node.js 範例
-使用上述範例 function.json，利用下列 Node.js 函數程式碼來記錄事件訊息的主體：
+## <a name="trigger-usage"></a>觸發程序使用方式
+事件中樞觸發程序函式觸發時，觸發它的訊息會以字串形式傳遞至函式。
 
-    module.exports = function (context, myEventHubMessage) {
-        context.log('Node.js eventhub trigger function processed work item', myEventHubMessage);    
-        context.done();
-    };
+<a name="triggersample"></a>
+
+## <a name="trigger-sample"></a>觸發程序範例
+假設您的 function.json `bindings` 陣列中有下列事件中樞觸發程序︰
+
+```json
+{
+  "type": "eventHubTrigger",
+  "name": "myEventHubMessage",
+  "direction": "in",
+  "path": "MyEventHub",
+  "connection": "myEventHubReadConnectionString"
+}
+```
+
+請參閱記錄事件中樞的觸發程序的訊息本文的語言特定範例。
+
+* [C#](#triggercsharp)
+* [F#](#triggerfsharp)
+* [Node.js](#triggernodejs)
+
+<a name="triggercsharp"></a>
+
+### <a name="trigger-sample-in-c"></a>C 中的觸發程序範例# #
+
+```cs
+using System;
+
+public static void Run(string myEventHubMessage, TraceWriter log)
+{
+    log.Info($"C# Event Hub trigger function processed a message: {myEventHubMessage}");
+}
+```
+
+<a name="triggerfsharp"></a>
+
+### <a name="trigger-sample-in-f"></a>F 中的觸發程序範例# #
+
+```fsharp
+let Run(myEventHubMessage: string, log: TraceWriter) =
+    log.Info(sprintf "F# eventhub trigger function processed work item: %s" myEventHubMessage)
+```
+
+<a name="triggernodejs"></a>
+
+### <a name="trigger-sample-in-nodejs"></a>Node.js 中的觸發程序範例
+
+```javascript
+module.exports = function (context, myEventHubMessage) {
+    context.log('Node.js eventhub trigger function processed work item', myEventHubMessage);    
+    context.done();
+};
+```
+
+<a name="output"></a>
+
+## <a name="event-hub-output-binding"></a>事件中樞輸出繫結
+使用事件中樞輸出繫結將事件寫入事件中樞事件資料流。 您必須具備事件中樞的傳送權限，才能將事件寫入其中。 
+
+輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰ 
+
+```json
+{
+    "type": "eventHub",
+    "name": "<Name of output parameter in function signature>",
+    "path": "<Name of event hub>",
+    "connection": "<Name of app setting with connection string - see below>"
+    "direction": "out"
+}
+```
+
+`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。 按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串必須具有傳送權限，才能將訊息傳送至事件資料流。
+
+<a name="outputsample"></a>
+
+## <a name="output-sample"></a>輸出範例
+假設您的 function.json `bindings` 陣列中有下列事件中樞輸出繫結︰
+
+```json
+{
+    "type": "eventHub",
+    "name": "outputEventHubMessage",
+    "path": "myeventhub",
+    "connection": "MyEventHubSend",
+    "direction": "out"
+}
+```
+
+請參閱會將事件寫入事件資料流的特定語言範例。
+
+* [C#](#outcsharp)
+* [F#](#outfsharp)
+* [Node.js](#outnodejs)
+
+<a name="outcsharp"></a>
+
+### <a name="output-sample-in-c"></a>C 中的輸出範例# #
+
+```cs
+using System;
+
+public static void Run(TimerInfo myTimer, out string outputEventHubMessage, TraceWriter log)
+{
+    String msg = $"TimerTriggerCSharp1 executed at: {DateTime.Now}";
+    log.Verbose(msg);   
+    outputEventHubMessage = msg;
+}
+```
+
+<a name="outfsharp"></a>
+
+### <a name="output-sample-in-f"></a>F 中的輸出範例# #
+
+```fsharp
+let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWriter) =
+    let msg = sprintf "TimerTriggerFSharp1 executed at: %s" DateTime.Now.ToString()
+    log.Verbose(msg);
+    outputEventHubMessage <- msg;
+```
+
+<a name="outnodejs"></a>
+
+### <a name="output-sample-for-nodejs"></a>Node.js 的輸出範例
+
+```javascript
+module.exports = function (context, myTimer) {
+    var timeStamp = new Date().toISOString();
+    context.log('TimerTriggerNodeJS1 function ran!', timeStamp);   
+    context.bindings.outputEventHubMessage = "TimerTriggerNodeJS1 ran at : " + timeStamp;
+    context.done();
+};
+```
+
+## <a name="next-steps"></a>後續步驟
+[!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 
 
-## Azure 事件中樞輸出繫結
-Azure 事件中樞輸出繫結可用來將事件寫入事件中樞事件資料流。您必須具備事件中樞的傳送權限，才能將事件寫入其中。
 
-#### 適用於事件中樞輸出繫結的 function.json
-適用於 Azure 事件中樞輸出繫結的「function.json」檔案會指定下列屬性：
 
-* `type`：必須設定為「eventHub」。
-* `name`︰用於事件中樞訊息之函式程式碼中的變數名稱。
-* `path`：事件中樞的名稱。
-* `connection`：應用程式設定的名稱，包含事件中樞所在之命名空間的連接字串。按一下命名空間的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。此連接字串必須具有傳送權限，才能將訊息傳送至事件中樞資料流。
-* `direction`：必須設為「out」。
-  
-        {
-          "type": "eventHub",
-          "name": "outputEventHubMessage",
-          "path": "myeventhub",
-          "connection": "MyEventHubSend",
-          "direction": "out"
-        }
+<!--HONumber=Nov16_HO3-->
 
-#### 適用於輸出繫結的 Azure 事件中樞 C# 程式碼範例
-下列 C# 範例函式程式碼示範如何將事件寫入事件中樞事件資料流。這個範例代表上述套用到 C# 計時器觸發程序的事件中樞輸出繫結。
 
-    using System;
-
-    public static void Run(TimerInfo myTimer, out string outputEventHubMessage, TraceWriter log)
-    {
-        String msg = $"TimerTriggerCSharp1 executed at: {DateTime.Now}";
-
-        log.Verbose(msg);   
-
-        outputEventHubMessage = msg;
-    }
-
-#### 適用於輸出繫結的 Azure 事件中樞 F# 程式碼範例
-下列 F# 範例函式程式碼示範如何將事件寫入事件中樞事件資料流。這個範例代表上述套用到 C# 計時器觸發程序的事件中樞輸出繫結。
-
-    let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWriter) =
-        let msg = sprintf "TimerTriggerFSharp1 executed at: %s" DateTime.Now.ToString()
-        log.Verbose(msg);
-        outputEventHubMessage <- msg;
-
-#### 適用於輸出繫結的 Azure 事件中樞 Node.js 程式碼範例
-下列 Node.js 範例函數程式碼示範如何將事件寫入事件中樞事件資料流。這個範例代表上述套用到 Node.js 計時器觸發程序的事件中樞輸出繫結。
-
-    module.exports = function (context, myTimer) {
-        var timeStamp = new Date().toISOString();
-
-        if(myTimer.isPastDue)
-        {
-            context.log('TimerTriggerNodeJS1 is running late!');
-        }
-
-        context.log('TimerTriggerNodeJS1 function ran!', timeStamp);   
-
-        context.bindings.outputEventHubMessage = "TimerTriggerNodeJS1 ran at : " + timeStamp;
-
-        context.done();
-    };
-
-## 後續步驟
-[!INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
-
-<!---HONumber=AcomDC_0921_2016-->

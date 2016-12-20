@@ -1,11 +1,11 @@
 ---
-title: 教學課程：針對輸入同步設定 Workday| Microsoft Docs
-description: 了解如何使用 Workday 做為 Azure Active Directory 身分識別資料的來源。
+title: "教學課程：針對輸入同步設定 Workday| Microsoft Docs"
+description: "了解如何使用 Workday 做為 Azure Active Directory 身分識別資料的來源。"
 services: active-directory
 author: MarkusVi
 documentationcenter: na
 manager: femila
-
+ms.assetid: 1a2c375a-1bb1-4a61-8115-5a69972c6ad6
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/10/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a7bf2a8d093b5d314fdd08f5012f0517a45e3579
+
 
 ---
-# <a name="tutorial:-configuring-workday-for-inbound-synchronization"></a>教學課程：針對輸入同步設定 Workday
+# <a name="tutorial-configuring-workday-for-inbound-synchronization"></a>教學課程：針對輸入同步設定 Workday
 本教學課程的目的是說明將連絡人從 Workday 匯入 Azure AD 時，在 Workday 和 Azure AD 中需要執行的步驟。 
 
 本教學課程中說明的案例假設您已經具有下列項目：
@@ -36,7 +40,7 @@ ms.author: markvi
 ## <a name="enabling-the-application-integration-for-workday"></a>啟用 Workday 的應用程式整合
 本節的目的是概述如何啟用 Workday 的應用程式整合。
 
-### <a name="steps:"></a>步驟：
+### <a name="steps"></a>步驟：
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-workday-inbound-tutorial/IC700993.png "Active Directory")
@@ -55,7 +59,7 @@ ms.author: markvi
     ![應用程式庫](./media/active-directory-saas-workday-inbound-tutorial/IC701022.png "Application gallery")
 
 ## <a name="creating-an-integration-system-user"></a>建立整合系統使用者
-### <a name="steps:"></a>步驟：
+### <a name="steps"></a>步驟：
 1. 在 [工作日工作台] 中的搜尋方塊輸入 create user，然後按一下 [建立整合系統使用者]。 
    
     ![建立使用者](./media/active-directory-saas-workday-inbound-tutorial/IC750979.png "Create user")
@@ -66,7 +70,7 @@ ms.author: markvi
 ## <a name="creating-a-security-group"></a>建立安全性群組
 對於本教學課程中所述的案例，您需要建立未受限制的整合系統安全性群組，並將使用者指派至該群組。
 
-### <a name="steps:"></a>步驟：
+### <a name="steps"></a>步驟：
 1. 在搜尋方塊中輸入 create security group，然後按一下 [建立安全性群組] 連結。 
    
     ![建立安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750981.png "CreateSecurity Group")
@@ -75,7 +79,7 @@ ms.author: markvi
     ![建立安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750982.png "CreateSecurity Group")
 
 ## <a name="assigning-the-integration-system-user-to-the-security-group"></a>將整合系統使用者指派到安全性群組
-### <a name="steps:"></a>步驟：
+### <a name="steps"></a>步驟：
 1. 在搜尋方塊中輸入 edit security group，然後按一下 [編輯全性群組] 連結。 
    
     ![編輯安全性群組](./media/active-directory-saas-workday-inbound-tutorial/IC750983.png "Edit Security Group")
@@ -95,7 +99,7 @@ ms.author: markvi
 * 人員資料：目前人員配置資訊
 * 人員資料：人員個人檔案的職稱
 
-### <a name="steps:"></a>步驟：
+### <a name="steps"></a>步驟：
 1. 在搜尋方塊中輸入 domain security policies，然後按一下 [功能區域的網域安全性原則]。  
    
     ![網域安全性原則](./media/active-directory-saas-workday-inbound-tutorial/IC750986.png "Domain Security Policies")  
@@ -127,7 +131,7 @@ ms.author: markvi
 
 
 ## <a name="activating-security-policy-changes"></a>啟用安全性原則變更
-### <a name="steps:"></a>步驟：
+### <a name="steps"></a>步驟：
 1. 在搜尋方塊中輸入 activate，然後按一下 [啟用擱置的安全性原則變更] 連結。 
    
     ![啟動](./media/active-directory-saas-workday-inbound-tutorial/IC750992.png "Activate") 
@@ -141,7 +145,7 @@ ms.author: markvi
 ## <a name="configuring-user-import-in-azure-ad"></a>在 Azure AD 中設定使用者匯入
 本節的主要目的是說明如何設定 Azure AD 以從 Workday 匯入人員。
 
-### <a name="steps:"></a>步驟：
+### <a name="steps"></a>步驟：
 1. 在 **Workday** 應用程式整合頁面上，按一下 [設定使用者匯入] 以開啟 [設定佈建] 對話方塊。
 2. 在 [設定及管理員認證] 頁面上，執行以下步驟，然後按一下 [下一步]： 
    
@@ -168,6 +172,9 @@ ms.author: markvi
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

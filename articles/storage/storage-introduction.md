@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/25/2016
+ms.date: 11/17/2016
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 73bd16f44f0848c74ce3edd5042900525e4811db
+ms.sourcegitcommit: 1a6d1497dee72a49705e15bd2907a42f744bd3b5
+ms.openlocfilehash: 3149797c078764fa54c488e8498790ea91d1a1b1
 
 
 ---
@@ -246,9 +246,12 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 * [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
 
+## <a name="next-steps"></a>後續步驟
+
+* [建立儲存體帳戶](storage-create-storage-account.md)
+* [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

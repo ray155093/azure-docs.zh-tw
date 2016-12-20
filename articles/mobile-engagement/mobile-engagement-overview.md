@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 01/04/2016
 ms.author: piyushjo;matt-gibbs
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 58d8043e09cb04ef2cdf4f5c005d549a6cb6f73c
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 957dcdd3cef2939ef913eead7ebf332f9b797860
 
 
 ---
@@ -30,10 +30,10 @@ Azure Mobile Engagement 是軟體即服務 (SaaS) 的使用者參與平台，可
 
 使用 Azure Mobile Engagement，應用程式發行者和專業行銷人員就能更加了解應用程式的使用者，並以更好的方式來與這些使用者互動。
 
-## <a name="realtime-actionable-analytics-to-maximize-return-on-investment"></a>可即時採取相應動作的分析來發揮最大投資報酬率
+## <a name="real-time-actionable-analytics-to-maximize-return-on-investment"></a>可即時採取相應動作的分析來發揮最大投資報酬率
 根據使用者的行為，以及透過結合 `big data` 收集和即時訊息處理所得的統計資料，來觸發業務開發案例。 Mobile Engagement 能為您解決幾乎所有與特定業務需求相關的問題。 舉例來說，您可以建立自訂的儀表板來測量關鍵效能指標 (KPI)、快速找出並修正使用者漏斗型路徑中的使用瓶頸、追蹤保留期和使用者黏著度，並藉此判斷哪種行銷活動能帶來最高的投資報酬率。 Mobile Engagement 的 360° 使用者路徑檢視，可讓您輕鬆、持續地增強及最佳化使用者經驗，為您帶來更高的保留率並改善應用程式的使用方式
 
-## <a name="valueadded-push-and-communications-platform"></a>加值型推播和通訊平台
+## <a name="value-added-push-and-communications-platform"></a>加值型推播和通訊平台
 Mobile Engagement 提供應用程式內的傳訊功能，且能順暢地與原生推送通知閘道 (例如 Google 的 GCM、Apple 的 APNS 和 Microsoft MPNS) 合作。 而且它還能讓您透過分析使用者行為來識別獨特的客戶區隔，並藉此建立有明確目標的行銷活動。
 
 這可讓應用程式開發人員以高效率和非直覺式的方式接觸客戶，因而受惠。
@@ -47,13 +47,13 @@ Microsoft 長期以來一直都非常重視隱私權的問題，這是我們的�
 ### <a name="next-steps"></a>後續步驟：
 [建立 Mobile Engagement 的最佳做法和程序](mobile-engagement-getting-started-best-practices.md)
 
-[開始使用](/documentation/services/mobile-engagement/)
+[開始使用](/index.md)
 
 [下載示範應用程式和原始程式碼](https://aka.ms/azmedemoapps)
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure Site Recovery 進行 Hyper-V 複寫 | Microsoft Docs
-description: 使用本文來了解一些技術概念，協助您順利安裝、設定和管理 Azure Site Recovery。
+title: "使用 Azure Site Recovery 進行 Hyper-V 複寫 | Microsoft Docs"
+description: "使用本文來了解一些技術概念，協助您順利安裝、設定和管理 Azure Site Recovery。"
 services: site-recovery
-documentationcenter: ''
+documentationcenter: 
 author: Rajani-Janaki-Ram
 manager: mkjain
-editor: ''
-
+editor: 
+ms.assetid: 97916915-1379-47df-8369-12ddf022c4da
 ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 09/12/2016
 ms.author: rajanaki
+translationtype: Human Translation
+ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
+ms.openlocfilehash: b49771ff1e29aeb6ec582c21061085504705991b
+
 
 ---
 # <a name="hyper-v-replication-with-azure-site-recovery"></a>使用 Azure Site Recovery 進行 Hyper-V 複寫
@@ -43,7 +47,7 @@ ms.author: rajanaki
 
 當初始複寫完成之後， **完成虛擬機器上的保護** 作業會設定網路和複寫後設定。 在進行初始複寫時︰
 
-* 追蹤磁碟的所有變更。 
+* 追蹤磁碟的所有變更。
 * 快照集和 Hyper-V 複本記錄檔 (HRL) 都會耗用額外的磁碟儲存空間。
 
 初始複寫完成時就會刪除 Hyper-V VM 快照集。 此刪除動作會導致將初始複寫之後的資料變更合併至父磁碟。
@@ -55,7 +59,7 @@ Hyper-V 複本複寫追蹤器是 Hyper-V 複本複寫引擎的一部分，會追
 
 每個設定用於複寫的磁碟都會有相關聯的 HRL 檔案。 此記錄檔會在初始複寫完成後，傳送至客戶的儲存體帳戶。 當記錄檔傳輸至 Azure 時，將會在同一目錄內的另一個記錄檔中追蹤主要複本中的變更。
 
-在初始複寫或差異複寫期間，您可以在 VM 檢視中監視 VM 複寫健全狀況，如 [監視虛擬機器的複寫健全狀況](site-recovery-monitoring-and-troubleshooting.md#monitor-replication-health-for-virtual-machine)中所述。  
+在初始複寫或差異複寫期間，您可以在 VM 檢視中監視 VM 複寫健全狀況，如 [監視虛擬機器的複寫健全狀況](site-recovery-monitoring-and-troubleshooting.md#monitor-replication-health-for-virtual-machines)中所述。  
 
 ### <a name="resynchronization"></a>重新同步處理
 當差異複寫失敗，且完整初始複寫會耗費大量網路頻寬或時間，系統就會標示虛擬機器以便重新同步處理。 例如，當 HRL 檔案大小累積達總磁碟大小的 50% 時，系統就會標示虛擬機器以便重新同步處理。 重新同步處理會計算來源和目標虛擬機器磁碟的總和檢查碼，並只傳送差異部分，藉此有效減少透過網路傳送的資料量。
@@ -81,9 +85,11 @@ Hyper-V 複本複寫追蹤器是 Hyper-V 複本複寫引擎的一部分，會追
 
 ## <a name="other-references"></a>其他參考資料
 * [針對 VMware、VMM、Hyper-V 和實體網站的保護進行監視和疑難排解](site-recovery-monitoring-and-troubleshooting.md)
-* [連絡 Microsoft 支援](site-recovery-monitoring-and-troubleshooting.md#reaching-out-for-microsoft-support)
-* [Azure Site Recovery 的常見錯誤和其解決方式](site-recovery-monitoring-and-troubleshooting.md#common-asr-errors-and-their-resolutions)
+* [連絡 Microsoft 支援](site-recovery-monitoring-and-troubleshooting.md#reach-out-for-microsoft-support)
+* [Azure Site Recovery 的常見錯誤和其解決方式](site-recovery-monitoring-and-troubleshooting.md#common-azure-site-recovery-errors-and-their-resolutions)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

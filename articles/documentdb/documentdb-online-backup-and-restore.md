@@ -1,13 +1,13 @@
 ---
-title: 使用 DocumentDB 線上備份與還原 | Microsoft Docs
-description: 了解如何使用 Azure DocumentDB 執行 NoSQL 資料庫的自動備份與還原。
-keywords: 備份與還原, 線上備份
+title: "使用 DocumentDB 線上備份與還原 | Microsoft Docs"
+description: "了解如何使用 Azure DocumentDB 執行 NoSQL 資料庫的自動備份與還原。"
+keywords: "備份與還原, 線上備份"
 services: documentdb
-documentationcenter: ''
+documentationcenter: 
 author: RahulPrasad16
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 98eade4a-7ef4-4667-b167-6603ecd80b79
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 09/23/2016
 ms.author: raprasa
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 23f6049bc0df133966911b2352b044cdbc777b36
+
 
 ---
 # <a name="automatic-online-backup-and-restore-with-documentdb"></a>使用 DocumentDB 進行自動線上備份與還原
@@ -33,7 +37,7 @@ DocumentDB 設計為 [分散在全區域](documentdb-distribute-data-globally.md
 
 ![DocumentDB 的高度備援性](./media/documentdb-online-backup-and-restore/azure-documentdb-nosql-database-global-distribution.png)
 
-## <a name="full,-automatic,-online-backups"></a>完整自動線上備份
+## <a name="full-automatic-online-backups"></a>完整自動線上備份
 糟糕，我刪掉集合或資料庫了！ 有了 DocumentDB，不只您的資料，還有資料的備份都一併具有高度備援性，可針對區域性災害進行復原。 目前，這些自動化備份大約每四個小時備份一次。 
 
 備份的進行不會影響資料庫作業的效能或可用性。 DocumentDB 會在背景中備份，不會使用您佈建的 RU 或影響效能，也不影響 NoSQL 資料庫的可用性。 
@@ -55,6 +59,9 @@ DocumentDB 設計為 [分散在全區域](documentdb-distribute-data-globally.md
 
 若要提出還原要求，請連絡 Azure 支援， [從 Azure 入口網站提出票證](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

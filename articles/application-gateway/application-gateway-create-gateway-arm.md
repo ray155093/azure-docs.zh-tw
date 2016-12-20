@@ -12,15 +12,16 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/10/2016
+ms.date: 11/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d4da5dd65b39011ed0abb8bbbd47542d66e73ad6
+ms.sourcegitcommit: ee8cfffdbf054b4251ed269745f6b9ee5a5e6c64
+ms.openlocfilehash: f4648ea78c07d501164b44389302cedf717b28bd
 
 
 ---
 # <a name="create-start-or-delete-an-application-gateway-by-using-azure-resource-manager"></a>使用 Azure 資源管理員建立、啟動或刪除應用程式閘道
+
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-create-gateway-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-gateway-arm.md)
@@ -40,11 +41,13 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 > 
 
 ## <a name="before-you-begin"></a>開始之前
+
 1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。 您可以從 **下載頁面** 的 [Windows PowerShell](https://azure.microsoft.com/downloads/)區段下載並安裝最新版本。
 2. 如果您有現有的虛擬網路，請選取現有的空白子網路，或在現有的虛擬網路中建立子網路，僅供應用程式閘道使用。 您無法將應用程式閘道部署到與您打算部署於應用程式閘道後方的資源不同的虛擬網路。
 3. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 ## <a name="what-is-required-to-create-an-application-gateway"></a>建立應用程式閘道需要什麼？
+
 * **後端伺服器集區：** 後端伺服器的 IP 位址清單。 列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
 * **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結至集區，並套用至集區內所有伺服器。
 * **前端連接埠：** 此連接埠是在應用程式閘道上開啟的公用連接埠。 流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
@@ -52,6 +55,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 * **規則：** 規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
+
 使用「Azure 傳統」和「Azure Resource Manager」的差別，在於您建立應用程式閘道和需設定項目的順序。
 
 透過 Resource Manager，組成應用程式閘道的所有項目會個別進行設定，然後一併建立應用程式閘道資源。
@@ -59,9 +63,11 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 以下是建立應用程式閘道所需的步驟。
 
 ## <a name="create-a-resource-group-for-resource-manager"></a>建立資源管理員的資源群組
+
 確定您使用最新版本的 Azure PowerShell。 如需詳細資訊，請參閱 [搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
 
 ### <a name="step-1"></a>步驟 1
+
 登入 Azure
 
 ```powershell
@@ -71,6 +77,7 @@ Login-AzureRmAccount
 系統會提示使用您的認證進行驗證。
 
 ### <a name="step-2"></a>步驟 2
+
 檢查帳戶的訂用帳戶。
 
 ```powershell
@@ -78,6 +85,7 @@ Get-AzureRmSubscription
 ```
 
 ### <a name="step-3"></a>步驟 3
+
 選擇要使用哪一個 Azure 訂用帳戶。
 
 ```powershell
@@ -85,6 +93,7 @@ Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 ```
 
 ### <a name="step-4"></a>步驟 4
+
 建立資源群組 (若使用現有的資源群組，請略過此步驟)。
 
 ```powershell
@@ -93,7 +102,7 @@ New-AzureRmResourceGroup -Name appgw-rg -Location "West US"
 
 Azure Resource Manager 需要所有的資源群組指定一個位置。 此位置用來作為該資源群組中資源的預設位置。 請確定所有用來建立應用程式閘道的命令都使用同一個資源群組。
 
-在上述範例中，我們建立名為 "appgw-RG" 的資源群組，且位置為美國西部 ("West US")。
+在上述範例中，我們建立名為 **appgw-RG** 的資源群組，且位置為 **West US** (美國西部)。
 
 > [!NOTE]
 > 如果您需要為應用程式閘道設定自訂探查，請參閱 [使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。 請參閱 [自訂探查和健全狀況監視](application-gateway-probe-overview.md) 以取得詳細資訊。
@@ -101,9 +110,11 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。 此位�
 > 
 
 ## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>建立應用程式閘道的虛擬網路和子網路
+
 下面的範例說明如何使用資源管理員建立虛擬網路。
 
 ### <a name="step-1"></a>步驟 1
+
 指派用於建立虛擬網路的位址範圍 10.0.0.0/24 給子網路變數。
 
 ```powershell
@@ -111,79 +122,91 @@ $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10
 ```
 
 ### <a name="step-2"></a>步驟 2
-使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 ("West US") 區域的 "appgw-rg" 資源群組中建立名為 "appgwvnet" 的虛擬網路。
+
+使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 (West US) 區域的 **appgw-rg** 資源群組中建立名為 **appgwvnet** 的虛擬網路。
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
 ```
 
 ### <a name="step-3"></a>步驟 3
+
 針對建立應用程式閘道的後續步驟，指派子網路變數。
 
 ```powershell
 $subnet=$vnet.Subnets[0]
 ```
 
-## <a name="create-a-public-ip-address-for-the-frontend-configuration"></a>建立前端組態的公用 IP 位址
-在美國西部區域的 "appgw-rg" 資源群組中建立公用 IP 資源 "publicIP01"。
+## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>建立前端組態的公用 IP 位址
+
+在美國西部區域的 **appgw-rg** 資源群組中建立公用 IP 資源 **publicIP01**。
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name publicIP01 -location "West US" -AllocationMethod Dynamic
 ```
 
 ## <a name="create-an-application-gateway-configuration-object"></a>建立應用程式閘道組態物件
+
 您必須先設定所有組態項目，再建立應用程式閘道。 下列步驟會建立應用程式閘道資源所需的組態項目。
 
 ### <a name="step-1"></a>步驟 1
-建立名為 "gatewayIP01" 的應用程式閘道 IP 組態。 當「應用程式閘道」啟動時，它會從已設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。 請記住，每個執行個體需要一個 IP 位址。
+
+建立名為 **gatewayIP01** 的應用程式閘道 IP 組態。 當「應用程式閘道」啟動時，它會從已設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。 請記住，每個執行個體需要一個 IP 位址。
 
 ```powershell
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
 ```
 
 ### <a name="step-2"></a>步驟 2
-設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。 這些 IP 位址會接收來自前端 IP 端點的網路流量。 您可取代上述 IP 位址來新增自己的應用程式 IP 位址端點。
+
+設定名為 **pool01** 的後端 IP 位址集區，其 IP 位址有 **134.170.185.46**、**134.170.188.221**、**134.170.185.50**。 這些 IP 位址會接收來自前端 IP 端點的網路流量。 您可取代上述 IP 位址來新增自己的應用程式 IP 位址端點。
 
 ```powershell
 $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 ```
 
 ### <a name="step-3"></a>步驟 3
-設定後端集區中負載平衡網路流量的應用程式閘道設定 "poolsetting01"。
+
+為後端集區中負載平衡的網路流量設定應用程式閘道設定 **poolsetting01**。
 
 ```powershell
 $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled
 ```
 
 ### <a name="step-4"></a>步驟 4
-設定公用 IP 端點的前端 IP 連接埠 "frontendport01"。
+
+為公用 IP 端點設定前端 IP 連接埠 **frontendport01**。
 
 ```powershell
 $fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 80
 ```
 
 ### <a name="step-5"></a>步驟 5
-建立名為 "fipconfig01" 的前端 IP 組態，並將公用 IP 位址與前端 IP 組態產生關聯。
+
+建立名為 **fipconfig01** 的前端 IP 組態，並將公用 IP 位址與前端 IP 組態產生關聯。
 
 ```powershell
 $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
 ```
 
 ### <a name="step-6"></a>步驟 6
-建立名為 "listener01" 的接聽程式，並將前端連接埠與前端 IP 組態產生關聯。
+
+建立名為 **listener01** 的接聽程式，並將前端連接埠與前端 IP 組態產生關聯。
 
 ```powershell
 $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protocol Http -FrontendIPConfiguration $fipconfig -FrontendPort $fp
 ```
 
 ### <a name="step-7"></a>步驟 7
-建立名為 "rule01" 的負載平衡器路由規則，設定負載平衡器的行為。
+
+建立名為 **rule01** 的負載平衡器路由規則，以設定負載平衡器的行為。
 
 ```powershell
 $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 ```
 
 ### <a name="step-8"></a>步驟 8
+
 設定應用程式閘道的執行個體大小。
 
 ```powershell
@@ -191,18 +214,20 @@ $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Cap
 ```
 
 > [!NOTE]
-> *InstanceCount* 的預設值是 2，且最大值是 10。 GatewaySize  的預設值是 Medium。 您可以在 Standard_Small、Standard_Medium 和 Standard_Large 之間選擇。
+> **InstanceCount** 的預設值是 2，且最大值是 10。 GatewaySize  的預設值是 Medium。 您可以在 **Standard_Small**、**Standard_Medium** 及 **Standard_Large** 之間選擇。
 > 
 > 
 
-## <a name="create-an-application-gateway-by-using-newazurermapplicationgateway"></a>使用 New-AzureRmApplicationGateway 建立應用程式閘道
-利用上述步驟中的所有組態項目來建立應用程式閘道。 此範例中的應用程式閘道名為 "appgwtest"。
+## <a name="create-an-application-gateway-by-using-new-azurermapplicationgateway"></a>使用 New-AzureRmApplicationGateway 建立應用程式閘道
+
+利用上述步驟中的所有組態項目來建立應用程式閘道。 此範例中的應用程式閘道稱為 **appgwtest**。
 
 ```powershell
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku
 ```
 
 ### <a name="step-9"></a>步驟 9
+
 從附加至應用程式閘道的公用 IP 資源，擷取應用程式閘道的 DNS 和 VIP 詳細資料。
 
 ```powershell
@@ -210,23 +235,26 @@ Get-AzureRmPublicIpAddress -Name publicIP01 -ResourceGroupName appgw-rg
 ```
 
 ## <a name="delete-an-application-gateway"></a>刪除應用程式閘道
+
 若要刪除應用程式閘道，請遵循下列步驟：
 
 ### <a name="step-1"></a>步驟 1
-取得應用程式閘道物件，並關聯至變數 "$getgw"。
+
+取得應用程式閘道物件，並關聯至變數 `$getgw`。
 
 ```powershell
 $getgw = Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 ```
 
 ### <a name="step-2"></a>步驟 2
-使用 **Stop-AzureRmApplicationGateway** 停止應用程式閘道。
+
+使用 `Stop-AzureRmApplicationGateway` 停止應用程式閘道。
 
 ```powershell
 Stop-AzureRmApplicationGateway -ApplicationGateway $getgw  
 ```
 
-應用程式閘道處於「已停止」狀態之後，請使用 **Remove-AzureRmApplicationGateway** Cmdlet 移除服務。
+當應用程式閘道處於已停止狀態之後，使用 `Remove-AzureRmApplicationGateway` Cmdlet 來移除服務。
 
 ```powershell
 Remove-AzureRmApplicationGateway -Name $appgwtest -ResourceGroupName appgw-rg -Force
@@ -237,13 +265,14 @@ Remove-AzureRmApplicationGateway -Name $appgwtest -ResourceGroupName appgw-rg -F
 > 
 > 
 
-若要確認已移除服務，您可以使用 **Get-AzureRmApplicationGateway** Cmdlet。 這不是必要步驟。
+若要確認已移除服務，您可以使用 `Get-AzureRmApplicationGateway` Cmdlet。 這不是必要步驟。
 
 ```powershell
 Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 ```
 
 ## <a name="get-application-gateway-dns-name"></a>取得應用程式閘道 DNS 名稱
+
 建立閘道之後，下一步是設定通訊的前端。 當使用公用 IP 時，應用程式閘道需要動態指派的 DNS 名稱 (不易記住)。 為了確保使用者可以叫用應用程式閘道，可使用 CNAME 記錄來指向應用程式閘道的公用端點。 [在 Azure 中設定自訂網域名稱](../cloud-services/cloud-services-custom-domain-name-portal.md)。 做法是使用連接至應用程式閘道的 PublicIPAddress 元素，擷取應用程式閘道的詳細資料及其關聯的 IP/DNS 名稱。 應用程式閘道的 DNS 名稱應該用來建立將兩個 Web 應用程式指向此 DNS 名稱的 CNAME 記錄。 不建議使用 A-records，因為重新啟動應用程式閘道時，VIP 可能會變更。
 
 ```powershell
@@ -273,6 +302,7 @@ DnsSettings              : {
 ```
 
 ## <a name="next-steps"></a>後續步驟
+
 如果您想要設定 SSL 卸載，請參閱 [設定應用程式閘道以進行 SSL 卸載](application-gateway-ssl.md)。
 
 如果您想要將應用程式閘道設為與內部負載平衡器搭配使用，請參閱 [建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
@@ -285,6 +315,6 @@ DnsSettings              : {
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

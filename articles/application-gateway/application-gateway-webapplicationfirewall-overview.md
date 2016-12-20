@@ -12,15 +12,16 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/10/2016
+ms.date: 11/16/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 69dd0b2d33c93edfa3073ce297d9a3ff948a037e
+ms.sourcegitcommit: 928a93793b0b5e346fc02427c670a4c5c6ad80cc
+ms.openlocfilehash: 5d0609b826d489eb789cc86612b495bbd05afbe0
 
 
 ---
 # <a name="application-gateway-web-application-firewall-preview"></a>應用程式閘道 Web 應用程式防火牆 (預覽)
+
 Web 應用程式防火牆 (WAF) 是 Azure 應用程式閘道的一項功能，可保護利用應用程式閘道來執行標準應用程式傳遞控制 (ADC) 功能的 Web 應用程式。 Web 應用程式防火牆的做法是保護應用程式以防範 OWASP 前 10 個最常見的 Web 弱點。 Web 應用程式已逐漸成為利用常見已知弱點的惡意攻擊目標。 這些攻擊中最常見的是 SQL 插入式攻擊、跨網站指令碼攻擊等等。 想要防止應用程式的程式碼受到這類攻擊會非常困難，而且可能需要對多層次的應用程式拓撲執行嚴格的維護、修補和監視工作。 防止 Web 攻擊的集中式 Web 應用程式防火牆可簡化安全性管理作業，並更加確保應用程式能夠對抗入侵威脅。 相較於保護每個個別的 Web 應用程式，WAF 方案還可透過在中央位置修補已知弱點，更快地因應安全性威脅。 現有的應用程式閘道可以輕易地轉換成具有 Web 應用程式防火牆的應用程式閘道。
 
 ![imageURLroute](./media/application-gateway-webapplicationfirewall-overview/WAF1.png)
@@ -35,6 +36,7 @@ Web 應用程式防火牆 (WAF) 是 Azure 應用程式閘道的一項功能，�
 * 某些法務遵循控制需要由 WAF 方案保護所有網際網路對向端點。 使用已啟用 WAF 的應用程式閘道，您就可以符合這些法務遵循需求。
 
 ## <a name="overview"></a>Overview
+
 應用程式閘道 WAF 是以新的 SKU (WAF SKU) 來提供，並已預先設定 ModSecurity 和 OWASP 核心規則集，以提供可對抗大部分 OWASP 前 10 大常見 Web 弱點的基準保護。
 
 * SQL 插入式攻擊保護
@@ -42,17 +44,18 @@ Web 應用程式防火牆 (WAF) 是 Azure 應用程式閘道的一項功能，�
 * 常見 Web 攻擊保護，例如命令插入式攻擊、HTTP 要求走私、HTTP 回應分割和遠端檔案包含攻擊
 * 防範 HTTP 通訊協定違規
 * 防範 HTTP 通訊協定異常行為，例如遺漏主機使用者代理程式和接受標頭
-* HTTP DoS 保護，包括 HTTP 氾濫和緩慢的 HTTP DoS 預防
 * 防範 Bot、編目程式和掃描器
 * 偵測一般應用程式錯誤組態 (也就是 Apache、IIS 等)
 
 ## <a name="waf-modes"></a>WAF 模式
+
 應用程式閘道 WAF 可以設定為在下列兩種模式中執行︰
 
 * **偵測模式** – 當設定為在偵測模式中執行時，應用程式閘道 WAF 會監視所有威脅警示並記錄到記錄檔。 您必須確保已使用 [診斷] 區段開啟應用程式閘道的記錄診斷。 您也必須確保已選取並開啟 WAF 記錄檔。
 * **防止模式** – 當設定為在防止模式中執行時，應用程式閘道會主動封鎖其規則偵測到的入侵和攻擊。 攻擊者會收到 403 未經授權存取例外狀況，且連線會終止。 防止模式會繼續將這類攻擊記錄在 WAF 記錄檔中。
 
 ## <a name="application-gateway-waf-reports"></a>應用程式閘道 WAF 報告
+
 應用程式閘道 WAF 提供其偵測到之每個威脅的詳細報告。 記錄會與 Azure 診斷記錄檔整合，而且警示會以 JSON 格式來記錄。
 
 ![imageURLroute](./media/application-gateway-webapplicationfirewall-overview/waf2.png)
@@ -78,14 +81,16 @@ Web 應用程式防火牆 (WAF) 是 Azure 應用程式閘道的一項功能，�
 ```
 
 ## <a name="application-gateway-waf-sku-pricing"></a>應用程式閘道 WAF SKU 價格
+
 預覽期間可免費使用應用程式閘道 WAF。 我們會繼續向您收取現有的基本 SKU 費用。 我們會在正式推出時公告 WAF SKU 費用。 已選擇在 WAF SKU 中部署應用程式閘道的客戶，會在宣佈正式推出後才開始產生 WAF SKU 價格。
 
 ## <a name="next-steps"></a>後續步驟
+
 深入了解 WAF 的功能之後，請瀏覽 [如何在應用程式閘道上設定 Web 應用程式防火牆](application-gateway-web-application-firewall-portal.md)。
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

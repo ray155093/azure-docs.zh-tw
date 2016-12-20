@@ -81,13 +81,14 @@
 ### [使用資料管理閘道針對問題進行疑難排解](data-factory-troubleshoot-gateway-issues.md)
 
 # 參考
-## [資料管理閘道的版本資訊](data-factory-gateway-release-notes.md)
+## [PowerShell](/powershell/resourcemanager/azurerm.datafactories/v2.3.0/azurerm.datafactories)
+## [.NET](/dotnet/api/microsoft.azure.management.datafactories.models)
 ## [Azure Data Factory 開發人員參考](data-factory-sdks.md)
-## [PowerShell](/powershell/azureps-cmdlets-docs)
-## [.NET](/dotnet/api/)
 ## [REST](/rest/api/datafactory/)
 
 # 資源
+## [資料管理閘道的版本資訊](data-factory-gateway-release-notes.md)
+## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/data-factory)
 ## [個案研究](data-factory-customer-case-studies.md)
 ### [產品建議](data-factory-product-reco-usecase.md)
 ### [客戶分析](data-factory-customer-profiling-usecase.md)
@@ -100,6 +101,6 @@
 ## [要求功能](https://feedback.azure.com/forums/270578-azure-data-factory)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

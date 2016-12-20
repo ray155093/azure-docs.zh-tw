@@ -1,12 +1,12 @@
 ---
-title: 使用 .NET 建立 ContentKeys
-description: 了解如何建立提供資產安全存取的內容金鑰。
+title: "使用 .NET 建立 ContentKeys"
+description: "了解如何建立提供資產安全存取的內容金鑰。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 225b05e5-7d30-409c-b5b7-3ef0634310c7
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: c547afd9535eb4764caf6b37d4e38a22f6e88186
+
 
 ---
-# <a name="create-contentkeys-with-.net"></a>使用 .NET 建立 ContentKeys
+# <a name="create-contentkeys-with-net"></a>使用 .NET 建立 ContentKeys
 > [!div class="op_single_selector"]
 > * [REST](media-services-rest-create-contentkey.md)
 > * [.NET](media-services-dotnet-create-contentkey.md)
@@ -63,7 +67,7 @@ ms.author: juliako
         EnvelopeEncryption = 4
     }
 
-## <a name="<a-id="envelope_contentkey"></a>create-envelope-type-contentkey"></a><a id="envelope_contentkey"></a>建立信封類型 ContentKey
+## <a name="a-idenvelopecontentkeyacreate-envelope-type-contentkey"></a><a id="envelope_contentkey"></a>建立信封類型 ContentKey
 下列程式碼片段會建立信封加密類型的內容金鑰。 然後建立金鑰與所指定資產的關聯。
 
     static public IContentKey CreateEnvelopeTypeContentKey(IAsset asset)
@@ -100,7 +104,7 @@ call
 
 
 
-## <a name="<a-id="common_contentkey"></a>create-common-type-contentkey"></a><a id="common_contentkey"></a>建立一般類型 ContentKey
+## <a name="a-idcommoncontentkeyacreate-common-type-contentkey"></a><a id="common_contentkey"></a>建立一般類型 ContentKey
 下列程式碼片段會建立一般加密類型的內容金鑰。 然後建立金鑰與所指定資產的關聯。
 
     static public IContentKey CreateCommonTypeContentKey(IAsset asset)
@@ -144,6 +148,9 @@ call
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

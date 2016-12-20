@@ -1,12 +1,12 @@
 ---
-title: 針對 Azure Machine Learning 傳統 Web 服務的重新訓練進行疑難排解 | Microsoft Docs
-description: 找出您在為 Azure Machine Learning Web 服務重新訓練模型時所遇到的常見問題，並加以修正。
+title: "針對 Azure Machine Learning 傳統 Web 服務的重新訓練進行疑難排解 | Microsoft Docs"
+description: "找出您在為 Azure Machine Learning Web 服務重新訓練模型時所遇到的常見問題，並加以修正。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: VDonGlover
 manager: raymondl
-editor: ''
-
+editor: 
+ms.assetid: 75cac53c-185c-437d-863a-5d66d871921e
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/05/2016
 ms.author: v-donglo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 736582889573c0e36e06910a3690db5651d5ccfa
+
 
 ---
 # <a name="troubleshooting-the-retraining-of-an-azure-machine-learning-classic-web-service"></a>針對 Azure Machine Learning 傳統 Web 服務的重新訓練進行疑難排解
@@ -36,7 +40,7 @@ ms.author: v-donglo
 
 1. 呼叫訓練 Web 服務︰呼叫的對象為批次執行服務 (BES)，而非求回應服務 (RRS)。 您可以使用 API 說明頁面中的範例 C# 程式碼來進行呼叫。 
 2. 尋找 *BaseLocation*、*RelativeLocation* 和 *SasBlobToken* 的值︰在您呼叫訓練 Web 服務的輸出中會傳回這些值。 
-     ![顯示重新訓練範例的輸出和 BaseLocation、RelativeLocation 及 SasBlobToken 的值。][image6]
+   ![顯示重新訓練範例的輸出和 BaseLocation、RelativeLocation 及 SasBlobToken 的值。][image6]
 3. 從評分 Web 服務使用訓練好的新模型更新加入的端點︰使用《以程式設計方式重新訓練機器學習服務模型》所提供的範例程式碼，從評分 Web 服務使用訓練好的新模型更新加入到評分模型的新端點。
 
 ## <a name="common-obstacles"></a>常見障礙
@@ -58,7 +62,7 @@ ms.author: v-donglo
 
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 開啟 [機器學習服務] 索引標籤。 
-    ![機器學習服務索引標籤。][image4]
+   ![機器學習服務索引標籤。][image4]
 3. 依序按一下工作區名稱和 [Web 服務] 。
 4. 按一下您要使用的評分 Web 服務。 (如果您沒有修改 Web 服務的預設名稱，它的結尾是 [Scoring Exp.]。)
 5. 按一下 [新增端點]。
@@ -88,7 +92,7 @@ PATCH 說明頁面包含必須使用的 PATCH URL，並提供可用來呼叫它�
 
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 開啟 [機器學習服務] 索引標籤。 
-    ![Machine Learning 工作區 UI。][image4]
+   ![Machine Learning 工作區 UI。][image4]
 3. 選取您的工作區。
 4. 按一下 [Web 服務] 。
 5. 選取您的預測性 Web 服務。
@@ -97,7 +101,7 @@ PATCH 說明頁面包含必須使用的 PATCH URL，並提供可用來呼叫它�
 ### <a name="check-the-workspace-that-your-web-service-is-in-to-ensure-it-is-in-the-correct-region"></a>檢查 Web 服務所在的工作區以確保它位於正確區域
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 在功能表中選取 [機器學習服務]。
-     ![Machine Learning 區域 UI。][image4]
+   ![Machine Learning 區域 UI。][image4]
 3. 確認工作區的所在位置。
 
 <!-- Image Links -->
@@ -111,6 +115,7 @@ PATCH 說明頁面包含必須使用的 PATCH URL，並提供可用來呼叫它�
 [image7]: ./media/machine-learning-troubleshooting-retraining-a-model/web-services-tab.png
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

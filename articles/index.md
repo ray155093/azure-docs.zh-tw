@@ -4,8 +4,8 @@ hide_bc: true
 title: "Microsoft Azure 文件 | Microsoft 文件"
 description: "了解如何使用 Microsoft Azure 雲端服務建置和管理功能強大的應用程式。 取得文件、程式碼範例、教學課程等資訊。"
 translationtype: Human Translation
-ms.sourcegitcommit: 392db4d8261f6e927aa5ea4b2f6b30e244bfec50
-ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
+ms.sourcegitcommit: cee95b80d3e4360d68e6f37ad3c61e15d7d2a42e
+ms.openlocfilehash: 656048594dd18c9c39e67a2ec8136cc6e827fccf
 
 ---
 <div id="main" class="v2">
@@ -226,7 +226,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                     </ul>
                                 </div>
                                 <div class="group">
-                                    <h3>網路</h3>
+                                    <h3>網路功能</h3>
                                     <ul>
                                         <li>
                                             <a href="/azure/virtual-network/">
@@ -288,7 +288,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                         <li>
                                             <a href="/azure/machine-learning/">
                                                 <img src="media/index/MachineLearning.svg" alt="" />
-                                                <p>機器學習服務</p>
+                                                <p>Machine Learning</p>
                                             </a>
                                         </li>
                                         <li>
@@ -457,7 +457,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                         <li>
                                             <a href="/azure/machine-learning/">
                                                 <img src="media/index/MachineLearning.svg" alt="" />
-                                                <p>機器學習服務</p>
+                                                <p>Machine Learning</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -500,12 +500,6 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/azure/traffic-manager/">
-                                                <img src="media/index/TrafficManager.svg" alt="" />
-                                                <p>流量管理員</p>
-                                            </a>
-                                        </li>
-                                        <li>
                                             <a href="/azure/monitoring-and-diagnostics/">
                                                 <img src="media/index/AzureMonitoring.svg" alt="" />
                                                 <p>Azure 監視器</p>
@@ -532,7 +526,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                     </ul>
                                 </div>
                                 <div class="group">
-                                    <h3>網路與行動 </h3>
+                                    <h3>Web + 行動 </h3>
                                     <ul>
                                         <li>
                                             <a href="/azure/app-service/">
@@ -716,7 +710,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>App Service</h3>
-                                                    <p>為任何平台及任何裝置建立 Web 和行動應用程式</p>
+                                                    <p>為任何平台及任何裝置建立 Web 和 Mobile Apps</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -840,7 +834,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                         </ul>
                     </li>
                     <li>
-                        <a href="#network">網路</a>
+                        <a href="#network">網路功能</a>
                         <ul id="network" class="cardsA">
                             <li>
                                 <a href="/azure/virtual-network/">
@@ -1029,7 +1023,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>資料湖存放區</h3>
+                                                    <h3>Data Lake Store</h3>
                                                     <p>可容納巨量資料分析工作負載的超大規模儲存機制</p>
                                                 </div>
                                             </div>
@@ -1111,7 +1105,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>App Service</h3>
-                                                    <p>了解如何建置可擴充的 Web 與行動應用程式</p>
+                                                    <p>了解如何建置可擴充的 Web 與 Mobile Apps</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1130,7 +1124,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Web Apps</h3>
-                                                    <p>大規模地快速建立及部署關鍵性 Web 應用程式</p>
+                                                    <p>大規模地快速建立及部署關鍵性 Web Apps</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1443,7 +1437,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>機器學習服務</h3>
+                                                    <h3>Machine Learning</h3>
                                                     <p>功能強大的雲端架構預測性分析工具，可用來提供預測性維護</p>
                                                 </div>
                                             </div>
@@ -1628,7 +1622,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                         <a href="#iot">物聯網</a>
                         <ul id="iot" class="cardsA">
                             <li>
-                                <a href="https://azure.microsoft.com/en-us/develop/iot/">
+                                <a href="https://azure.microsoft.com/develop/iot/">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -1733,7 +1727,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>機器學習服務</h3>
+                                                    <h3>Machine Learning</h3>
                                                     <p>功能強大的雲端架構預測性分析工具，可用來提供預測性維護</p>
                                                 </div>
                                             </div>
@@ -2042,7 +2036,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                         <a href="#devtools">開發人員工具</a>
                         <ul id="devtools" class="cardsA">
                             <li>
-                                <a href="https://www.visualstudio.com/en-us/docs/overview">
+                                <a href="https://www.visualstudio.com/docs/overview">
                                     <div class="cardSize">
                                         <div class="cardPadding">
                                             <div class="card">
@@ -2091,7 +2085,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Application Insights</h3>
-                                                    <p>偵測、分級和診斷 Web 應用程式和服務的問題</p>
+                                                    <p>偵測、分級和診斷 Web Apps 和服務的問題</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2129,7 +2123,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>HockeyApp</h3>
-                                                    <p>部署行動應用程式、收集意見回應與損毀報告，厶伋監視使用量</p>
+                                                    <p>部署 Mobile Apps、收集意見回應與損毀報告，以及監視使用量</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2153,7 +2147,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Application Insights</h3>
-                                                    <p>偵測、分級和診斷 Web 應用程式和服務的問題</p>
+                                                    <p>偵測、分級和診斷 Web Apps 和服務的問題</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2256,25 +2250,6 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                 </a>
                             </li>
                             <li>
-                                <a href="/azure/traffic-manager/">
-                                    <div class="cardSize">
-                                        <div class="cardPadding">
-                                            <div class="card">
-                                                <div class="cardImageOuter">
-                                                    <div class="cardImage">
-                                                        <img src="media/index/TrafficManager.svg" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="cardText">
-                                                    <h3>流量管理員</h3>
-                                                    <p>路由傳送連入流量以提供高效能及可用性</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/azure/monitoring-and-diagnostics/">
                                     <div class="cardSize">
                                         <div class="cardPadding">
@@ -2355,11 +2330,11 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                 </ul>
             </li>
             <li>
-                <a href="#sdktools">SDK/工具</a>
-                <ul id="sdktools">
+                <a href="#sdkstools">SDK/工具</a>
+                <ul id="sdkstools">
                     <li>
-                        <a href="#sdktools-all">全部</a>
-                        <ul id="sdktools-all" class="cardsF">
+                        <a href="#sdkstools-all">全部</a>
+                        <ul id="sdkstools-all" class="cardsF">
                             <li>
                                 <div class="container">
                                     <h1>語言 &amp; 架構</h1>
@@ -2376,16 +2351,19 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://www.nuget.org/packages/Microsoft.Azure.Management.Fluent/1.0.0-beta3">取得 .NET SDK</a>
+                                                    <a href="https://www.nuget.org/packages/Microsoft.Azure.Management.Fluent">取得 .NET SDK</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="https://azure.microsoft.com/develop/net/">開始使用</a>
+                                                    <a href="https://docs.microsoft.com/dotnet/api/">開始使用</a>
                                                 </p>
                                                 <p>
                                                     <a href="/dotnet/api">API 參考</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/documentation/samples/?platform=dotnet">取得範例</a>
+                                                </p>
+                                                <p>
+                                                    <a href="https://azure.microsoft.com/develop/net/">深入了解</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -2403,16 +2381,19 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://azure.microsoft.com/develop/python">取得 Python SDK</a>
+                                                    <a href="https://pypi.python.org/pypi/azure">取得 Python SDK</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="https://azure.microsoft.com/develop/python">開始使用</a>
+                                                    <a href="http://azure-sdk-for-python.readthedocs.io/en/latest/">開始使用</a>
                                                 </p>
                                                 <p>
                                                     <a href="http://azure-sdk-for-python.readthedocs.io/en/latest/">API 參考</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/resources/samples/?platform=python">取得範例</a>
+                                                </p>
+                                                <p>
+                                                    <a href="https://azure.microsoft.com/develop/python">深入了解</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -2430,16 +2411,19 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://azure.microsoft.com/develop/nodejs/">取得 the Node.js SDK</a>
+                                                    <a href="https://www.npmjs.com/package/azure">取得 the Node.js SDK</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="https://azure.microsoft.com/develop/nodejs">開始使用</a>
+                                                    <a href="http://azure.github.io/azure-sdk-for-node/">開始使用</a>
                                                 </p>
                                                 <p>
                                                     <a href="http://azure.github.io/azure-storage-node/index.html">API 參考</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/documentation/samples/?platform=nodejs">取得範例</a>
+                                                </p>
+                                                <p>
+                                                    <a href="https://azure.microsoft.com/develop/nodejs">深入了解</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -2457,16 +2441,19 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="http://search.maven.org/remotecontent?filepath=com/microsoft/azure/azure-parent/1.0.0-beta3/azure-parent-1.0.0-beta3.pom">取得 Java SDK</a>
+                                                    <a href="https://github.com/Azure/azure-sdk-for-java#download">取得 Java SDK</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="https://azure.microsoft.com/develop/java/">開始使用</a>
+                                                    <a href="https://docs.microsoft.com/java/api/">開始使用</a>
                                                 </p>
                                                 <p>
                                                     <a href="/java/api/">API 參考</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/documentation/samples/?platform=java">取得範例</a>
+                                                </p>
+                                                <p>
+                                                    <a href="https://azure.microsoft.com/develop/java/">深入了解</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -2484,16 +2471,19 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://azure.microsoft.com/downloads/">取得 Ruby SDK</a>
+                                                    <a href="https://rubygems.org/gems/azure">取得 Ruby SDK</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="https://azure.microsoft.com/develop/ruby/">開始使用</a>
+                                                    <a href="https://github.com/Azure/azure-sdk-for-ruby/blob/master/README.md">開始使用</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://github.com/Azure/azure-sdk-for-ruby/blob/master/README.md">API 參考</a>
                                                 </p>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/documentation/samples/?platform=ruby">取得範例</a>
+                                                </p>
+                                                <p>
+                                                    <a href="https://azure.microsoft.com/develop/ruby/">深入了解</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -2511,7 +2501,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="">開始使用 REST</a>
+                                                    <a href="https://docs.microsoft.com/rest/api/">開始使用 REST</a>
                                                 </h3>
                                                 <p>
                                                     <a href="/rest/api">參考</a>
@@ -2701,7 +2691,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                     <a href="http://storageexplorer.com/">儲存體總管</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-storage-manage-with-storage-explorer/">開始使用</a>
+                                                    <a href="https://azure.microsoft.com/documentation/articles/vs-azure-tools-storage-manage-with-storage-explorer/">開始使用</a>
                                                 </p>
                                                 <p>
                                                      <a  href="http://go.microsoft.com/fwlink/?LinkId=722418">針對 Linux 下載</a>
@@ -2787,7 +2777,7 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>參考架構</h3>
-                                                    <p>一組適用於雲端的建議架構。 每個架構都包含最佳作法、規定步驟，以及可部署的解決方案。</p>
+                                                    <p>一組適用於雲端的建議架構。 每個架構都包含最佳做法、規定步驟，以及可部署的解決方案。</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2824,8 +2814,8 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>雲端應用程式的最佳作法</h3>
-                                                    <p>一組適用於雲端應用程式的最佳作法，其中涵蓋自動調整、快取、資料分割、API 設計和監視等層面。</p>
+                                                    <h3>雲端應用程式的最佳做法</h3>
+                                                    <p>一組適用於雲端應用程式的最佳做法，其中涵蓋自動調整、快取、資料分割、API 設計和監視等層面。</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2861,6 +2851,6 @@ ms.openlocfilehash: d602295648e523276528d738d54078e2dc07b8a5
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Azure 的安全性管理 | Microsoft Docs"
-description: " 本文探討管理 Microsoft Azure 環境時提升遠端管理安全性的步驟，這些環境包括雲端服務、虛擬機器及自訂應用程式。"
+description: "本文探討管理 Microsoft Azure 環境時提升遠端管理安全性的步驟，這些環境包括雲端服務、虛擬機器及自訂應用程式。"
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/25/2016
+ms.date: 11/21/2016
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 83d13b9b104ae19c6d49103d6a2ffdc6e57dd956
+ms.sourcegitcommit: f44ecd49d034ef6ec82baa402e613308a5b3e1a9
+ms.openlocfilehash: 5cee18e58bcf505547315e14dd378b36c0b3f651
 
 
 ---
@@ -41,7 +41,7 @@ Azure 訂閱者可從多種裝置管理其雲端環境，這些裝置包括管�
 ### <a name="operational-security-fundamentals"></a>作業安全性基本概念
 如需提升管理和作業時的安全性，您可以減少可能的進入點數目以盡可能縮減用戶端的受攻擊面。 這可以透過下列安全性原則來達成：「區分職責」和「隔離環境」。
 
-讓敏感功能彼此隔離可減少某個層級的錯誤導致另一個層級出現漏洞的可能性。 範例：
+讓敏感性功能彼此隔離可減少某個層級的錯誤導致另一個層級出現漏洞的可能性。 範例：
 
 * 系統管理工作也不應該與可能會造成入侵的活動合併 (例如，系統管理員的電子郵件中有惡意程式碼，進而感染基礎結構伺服器)。
 * 用於高敏感性作業的工作站也不應該是用於高風險用途 (例如瀏覽網際網路) 的相同系統。
@@ -70,19 +70,19 @@ Azure 提供了安全性機制來協助系統管理員管理 Azure 雲端服務�
 * Web 管理入口網站。
 * 網路封包篩選。
 
-結合用戶端安全性組態和管理閘道的資料中心部署，就可以限制並監視系統管理員對於雲端應用程式和資料的存取。
+透過用戶端安全性組態和管理閘道的資料中心部署，就能限制並監視系統管理員對於雲端應用程式和資料的存取。
 
 > [!NOTE]
 > 本文的某些建議可能會導致資料、網路或計算資源使用量增加，並可能增加授權或訂用帳戶成本。
-> 
-> 
+>
+>
 
 ## <a name="hardened-workstation-for-management"></a>強化管理工作站
 強化工作站的目標是要去除其他所有功能，只留下其運作所需的最重要功能，盡可能縮小潛在的受攻擊面。 系統強化包括安裝最少量的服務和應用程式、限制應用程式執行、限制網路只能存取所需資源，以及讓系統隨時保持最新狀態。 此外，使用經過強化的管理工作站能夠將系統管理工具和活動與其他使用者工作隔離開來。
 
 在內部部署企業環境中，您可以透過專用管理網路、必須用身分卡片才能進入的伺服器機房以及在受保護的網路區域上執行的工作站，限制實體基礎結構的受攻擊面。 在雲端或混合式 IT 模型中，由於無法實際接觸到 IT 資源，因此想要努力讓管理服務保持安全會是更複雜的工作。 實作保護解決方案需要小心軟體設定、安全性為主的處理程序及完善的原則。
 
-在封鎖起來的工作站中使用僅需最低特殊權限的最少軟體使用量來管理員端 (以及開發應用程式)，可以藉由將遠端管理和開發環境標準化來降低引發安全性事件的風險。 強化後的工作站組態可透過關閉惡意程式碼和入侵程式使用的許多常見手段，來協助避免用來管理重要雲端資源的帳戶遭到入侵。 具體而言，您可以使用 [Windows AppLocker](http://technet.microsoft.com/library/dd759117.aspx) 和 Hyper-V 技術來控制和隔離用戶端系統行為並減輕威脅，包括電子郵件或網際網路瀏覽。
+在鎖定的工作站中使用最低權限的最少軟體使用量來管理雲端 (以及開發應用程式)，可藉由將遠端管理和開發環境標準化來降低引發安全性事件的風險。 強化後的工作站組態可透過關閉惡意程式碼和入侵程式使用的許多常見手段，來協助避免用來管理重要雲端資源的帳戶遭到入侵。 具體而言，您可以使用 [Windows AppLocker](http://technet.microsoft.com/library/dd759117.aspx) 和 Hyper-V 技術來控制和隔離用戶端系統行為並減輕威脅，包括電子郵件或網際網路瀏覽。
 
 在強化後的工作站上，系統管理員會執行標準使用者帳戶 (它會封鎖執行系統管理層級)，且相關聯的應用程式會由允許清單進行控制。 強化後之工作站的基本要素如下︰
 
@@ -106,23 +106,23 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 
 遠端桌面閘道是以原則為基礎 RDP Proxy 服務，會強制執行安全性需求。 同時實作 RD 閘道與 Windows Server 網路存取保護 (NAP)，可協助確保只有符合 Active Directory 網域服務 (AD DS) 群組原則物件 (GPO) 所建立之特定安全性健全狀況準則的用戶端可以連線。 此外：
 
-* 在 RD 閘道上佈建 [Azure 管理憑證](http://msdn.microsoft.com/library/azure/gg551722.aspx)使它成為可以存取 Azure 管理入口網站的唯一主機。
+* 在 RD 閘道上佈建 [Azure 管理憑證](http://msdn.microsoft.com/library/azure/gg551722.aspx)，使它成為可以存取 Azure 入口網站的唯一主機。
 * 將 RD 閘道加入至相同的[管理網域](http://technet.microsoft.com/library/bb727085.aspx)以做為系統管理員的工作站。 當您在具有對 Azure AD 之單向信任的網域內使用網站間 IPsec VPN 或 ExpressRoute 時，或是如果您要同盟內部部署 AD DS 執行個體與 Azure AD 之間的認證，就必須這麼做。
-* 設定[用戶端連線授權原則](http://technet.microsoft.com/library/cc753324.aspx)，讓 RD 閘道驗證用戶端電腦名稱是否有效 (已加入網域) 並可以存取 Azure 管理入口網站。
+* 設定[用戶端連線授權原則](http://technet.microsoft.com/library/cc753324.aspx)，讓 RD 閘道驗證用戶端電腦名稱是否有效 (已加入網域)，並允許存取 Azure 入口網站。
 * 針對 [Azure VPN](https://azure.microsoft.com/documentation/services/vpn-gateway/) 使用 IPsec 以進一步防止管理流量遭到竊聽以及權杖遭竊，或考慮使用透過 [Azure ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/) 的隔離網際網路連結。
 * 針對透過 RD 閘道登入的系統管理員啟用 Multi-Factor Authentication (透過 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)) 或智慧卡驗證。
 * 在 Azure 中設定來源 [IP 位址限制](http://azure.microsoft.com/blog/2013/08/27/confirming-dynamic-ip-address-restrictions-in-windows-azure-web-sites/)或[網路安全性群組](../virtual-network/virtual-networks-nsg.md)以將允許的管理端點數目降到最低。
 
 ## <a name="security-guidelines"></a>安全性方針
-一般情況下，協助保護用於雲端之系統管理員工作站的作法，與用於任何內部部署工作站的作法非常類似，比方說，最小化的組建和嚴格的權限。 雲端管理的幾項特點則更類似於遠端或頻外企業管理。 這些特點包括使用和稽核認證、增強安全性的遠端存取以及威脅偵測和回應。
+協助保護搭配雲端使用之系統管理員工作站的做法，通常會與用於任何內部部署工作站的做法類似 - 例如，最小化的組建和嚴格的權限。 雲端管理的幾項特點則更類似於遠端或頻外企業管理。 這些特點包括使用和稽核認證、增強安全性的遠端存取以及威脅偵測和回應。
 
 ### <a name="authentication"></a>驗證
-您可以使用 Azure 登入限制來限制用於存取系統管理工具的來源 IP 位址和稽核存取要求。 若要協助 Azure 識別管理用戶端 (工作站及/或應用程式)，您可以同時設定 SMAPI (透過客戶開發的工具，例如 Windows PowerShell Cmdlet) 和 Azure 管理入口網站，來要求除了 SSL 憑證外，還必須安裝用戶端管理憑證。 我們也建議系統管理員存取需要 Multi-Factor Authentication。
+您可以使用 Azure 登入限制來限制用於存取系統管理工具的來源 IP 位址和稽核存取要求。 若要協助 Azure 識別管理用戶端 (工作站及/或應用程式)，您可以同時設定 SMAPI (透過客戶開發的工具，例如 Windows PowerShell Cmdlet) 和 Azure 入口網站，要求除了 SSL 憑證外，還必須安裝用戶端管理憑證。 我們也建議系統管理員存取需要 Multi-Factor Authentication。
 
 您部署至 Azure 的某些應用程式或服務可能會針對使用者和系統管理員存取擁有自己的驗證機制，而其他應用程式或服務則會充分利用 Azure AD。 根據您是透過 Active Directory Federation Services (AD FS)、使用目錄同步作業或僅在雲端中維護使用者帳戶來同盟認證，使用 [Microsoft Identity Manager](https://technet.microsoft.com/library/mt218776.aspx) (Azure AD Premium 的一部分) 可協助您管理資源之間的身分識別生命週期。
 
 ### <a name="connectivity"></a>連線能力
-有數種機制可供協助保護用戶端與 Azure 虛擬網路的連線。 這些機制的其中兩個 ([網站間 VPN](https://channel9.msdn.com/series/Azure-Site-to-Site-VPN) (S2S) 和[點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) (P2S)) 可使用業界標準 IPsec (S2S) 或[安全通訊端通道通訊協定](https://technet.microsoft.com/magazine/2007.06.cableguy.aspx) (SSTP) (P2S) 來進行加密和通道傳輸。 當 Azure 連線至公開的 Azure 服務管理 (例如 Azure 管理入口網站) 時，Azure 需要超文字安全傳輸通訊協定 (HTTPS)。
+有數種機制可供協助保護用戶端與 Azure 虛擬網路的連線。 這些機制的其中兩個 ([網站間 VPN](https://channel9.msdn.com/series/Azure-Site-to-Site-VPN) (S2S) 和[點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) (P2S)) 可使用業界標準 IPsec (S2S) 或[安全通訊端通道通訊協定](https://technet.microsoft.com/magazine/2007.06.cableguy.aspx) (SSTP) (P2S) 來進行加密和通道傳輸。 當 Azure 連接至公開的 Azure 服務管理 (例如 Azure 入口網站) 時，Azure 需要超文字安全傳輸通訊協定 (HTTPS)。
 
 未透過 RD 閘道連線至 Azure 的獨立強化後工作站應該使用 SSTP 架構的點對站 VPN 來建立與 Azure 虛擬網路的初始連線，然後再從 VPN 通道建立與個別虛擬機器的 RDP 連線。
 
@@ -139,13 +139,13 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 | 組態 | 優點 | 缺點 |
 | --- | --- | --- |
 | 獨立的強化後工作站 |受到嚴格控制的工作站 |專用桌上型電腦的成本較高 |
-| 降低應用程式入侵風險 |增加管理工作 | |
-| 清楚區分職責 | | |
-| 以公司電腦做為虛擬機器 |降低硬體成本 | |
-| 隔離角色和應用程式 | | |
+| - | 降低應用程式入侵風險 |增加管理工作 |
+| - | 清楚區分職責 | - |
+| 以公司電腦做為虛擬機器 |降低硬體成本 | - |
+| - | 隔離角色和應用程式 | - |
 | Windows To Go 與 BitLocker 磁碟機加密 |與大部分電腦相容 |資產追蹤 |
-| 符合成本效益且具有可攜性 | | |
-| 隔離的管理環境 | | |
+| - | 符合成本效益且具有可攜性 | - |
+| - | 隔離的管理環境 |- |
 
 請務必讓強化後的工作站做為主機而非客體，且主機作業系統和硬體之間沒有任何東西。 遵循「乾淨來源原則」(也稱為「安全來源」) 表示主機應該是最安全的。 否則，強化後的工作站 (客體) 在其裝載所在的系統上將容易受到攻擊。
 
@@ -153,7 +153,7 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 
 對於沒有任何內部部署基礎結構的 IT 環境 (例如，因為所有伺服器都在雲端而不能存取 GPO 的本機 AD DS 執行個體)，[Microsoft Intune](https://technet.microsoft.com/library/jj676587.aspx) 之類的服務可以簡化工作站組態的部署和維護工作。
 
-### <a name="standalone-hardened-workstation-for-management"></a>用於管理的獨立強化後工作站
+### <a name="stand-alone-hardened-workstation-for-management"></a>用於管理的獨立強化後工作站
 使用獨立的強化後工作站時，系統管理員會使用一部電腦或膝上型電腦來進行系統管理工作，並使用另一個不同的電腦或膝上型電腦來進行非系統管理工作。 專門負責管理 Azure 服務的工作站不需要安裝其他應用程式。 此外，使用的工作站若支援[信賴平台模組](https://technet.microsoft.com/library/cc766159) (TPM) 或類似的硬體層級密碼編譯技術，將有助於進行裝置驗證和預防特定攻擊。 TPM 也可以使用 [BitLocker 磁碟機加密](https://technet.microsoft.com/library/cc732774.aspx)來支援系統磁碟機的完整磁碟區保護。
 
 在獨立的強化後工作站案例中 (如下所示)，Windows 防火牆 (或非 Microsoft 用戶端防火牆) 的本機執行個體會設定為封鎖輸入連線，例如 RDP。 系統管理員可以登入強化後的工作站，並在與 Azure 虛擬網路建立 VPN 連線之後啟動連線至 Azure 的 RDP 工作階段，但無法登入公司電腦並使用 RDP 連線至強化後的工作站本身。
@@ -172,11 +172,11 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 ### <a name="windows-to-go"></a>Windows To Go
 需要獨立的強化後工作站的另一個替代方式是使用 [Windows To Go](https://technet.microsoft.com/library/hh831833.aspx) 磁碟機，這個功能可支援用戶端 USB 開機功能。 Windows To Go 可讓使用者將相容的電腦開機到從加密 USB 快閃磁碟機執行的隔離系統映像。 因為映像可以完全由公司的 IT 團隊負責管理、有嚴格的安全性原則、最小的作業系統組建和 TPM 支援，因此Windows To Go 可以提升對遠端系統管理端點的控制能力。
 
-在下圖中，可攜式映像是已加入網域的系統，其已預先設定為僅連線至 Azure、需要 Multi-Factor Authentication，並且會封鎖所有非管理流量。 如果使用者將同一部電腦開機到標準公司映像，並嘗試存取 Azure 管理工具的 RD 閘道，工作階段將會遭到封鎖。 Windows To Go 會成為根層級作業系統，而且不需要可能更容易遭受外部攻擊的其他層 (主機作業系統、Hypervisor、虛擬機器)。
+在下圖中，可攜式映像是已加入網域的系統，其已預先設定為僅連線至 Azure、需要 Multi-Factor Authentication，並且會封鎖所有非管理流量。 如果使用者將同一部電腦開機到標準公司映像，並嘗試存取 Azure 管理工具的 RD 閘道，工作階段即會遭到封鎖。 Windows To Go 會成為根層級作業系統，而且不需要可能更容易遭受外部攻擊的其他層 (主機作業系統、Hypervisor、虛擬機器)。
 
 ![][4]
 
-請務必注意，比起一般的桌上型電腦，USB 快閃磁碟機更容易遺失。 在使用 BitLocker 來加密整個磁碟區時若能搭配強式密碼，攻擊者就更不可能使用磁碟機映像來進行有害活動。 此外，如果遺失 USB 快閃磁碟機，則撤銷和[發出新的管理憑證](https://technet.microsoft.com/library/hh831574.aspx)以及快速重設密碼可以降低風險。 系統管理稽核記錄存放在 Azure 而非用戶端，將可進一步減少遺失資料的可能性。
+請務必注意，比起一般的桌上型電腦，USB 快閃磁碟機更容易遺失。 使用 BitLocker 來加密整個磁碟區時若能搭配強式密碼，攻擊者就更不可能使用磁碟機映像來進行有害活動。 此外，如果遺失 USB 快閃磁碟機，則撤銷和[發出新的管理憑證](https://technet.microsoft.com/library/hh831574.aspx)以及快速重設密碼可以降低風險。 系統管理稽核記錄存放在 Azure 而非用戶端，將可進一步減少遺失資料的可能性。
 
 ## <a name="best-practices"></a>最佳作法
 當您管理 Azure 中的應用程式和資料時，請考慮下列額外的方針。
@@ -187,14 +187,14 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 | 避免事項 | 建議事項 |
 | --- | --- |
 | 請勿以電子郵件寄送用於系統管理員存取權或其他機密資料的認證 (例如 SSL 或管理憑證) |用聲音提供帳戶名稱和密碼 (但不要將它們儲存在語音郵件中) 以維持機密性、遠端安裝用戶端/伺服器憑證 (透過加密工作階段)、從受保護的網路共用下載，或透過卸除式媒體手動發佈。 |
-| 主動管理您的管理憑證生命週期。 | |
+| - | 主動管理您的管理憑證生命週期。 |
 | 請勿在應用程式儲存體中儲存未加密或未雜湊的帳戶密碼 (例如在試算表、SharePoint 網站或檔案共用中)。 |建立安全性管理原則和系統強化原則，並將它們套用至您的開發環境。 |
-| 使用 [Enhanced Mitigation Experience Toolkit 5.5](https://technet.microsoft.com/security/jj653751) 憑證釘選規則，以確保能正確存取 Azure SSL/TLS 網站。 | |
+| - | 使用 [Enhanced Mitigation Experience Toolkit 5.5](https://technet.microsoft.com/security/jj653751) 憑證釘選規則，以確保能正確存取 Azure SSL/TLS 網站。 |
 | 請勿讓系統管理員共用帳戶和密碼，或在多個使用者帳戶或服務重複使用密碼，特別是用於社交媒體或其他非系統管理活動的帳戶或服務。 |建立專用的 Microsoft 帳戶來管理您的 Azure 訂用帳戶，此帳戶不會用於個人電子郵件。 |
 | 請勿以電子郵件寄送組態檔。 |應該從信任的來源 (例如，加密的 USB 快閃磁碟機) 而非從可輕易入侵的機制 (例如電子郵件) 安裝組態檔和設定檔。 |
 | 請勿使用弱式或簡單的登入密碼。 |強制使用強式密碼原則、到期循環 (首次使用時變更)、主控台逾時和自動帳戶鎖定。 使用用戶端密碼管理系統搭配 Multi-Factor Authentication 來存取密碼保存庫。 |
 | 請勿對網際網路公開管理連接埠。 |鎖定 Azure 連接埠和 IP 位址來限制管理存取。 如需詳細資訊，請參閱 [Azure 網路安全性](http://download.microsoft.com/download/4/3/9/43902EC9-410E-4875-8800-0788BE146A3D/Windows%20Azure%20Network%20Security%20Whitepaper%20-%20FINAL.docx)技術白皮書。 |
-| 針對所有管理連線使用防火牆、VPN 和 NAP。 | |
+| - | 針對所有管理連線使用防火牆、VPN 和 NAP。 |
 
 ## <a name="azure-operations"></a>Azure 作業
 在 Microsoft 的 Azure 作業內，存取 Azure 之生產系統的作業工程師和支援人員，會使用[強化後的工作站電腦與其中所佈建的 VM](#stand-alone-hardened-workstation-for-management)來進行內部的公司網路存取和執行應用程式 (例如電子郵件、內部網路等)。 所有管理工作站電腦都有 TPM、主機開機磁碟機已使用 BitLocker 加密，而且它們已加入 Microsoft 主要公司網域中的特殊組織單位 (OU)。
@@ -204,13 +204,13 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 此外，會使用 Microsoft 網路上需要雙因素驗證的專用 Jumpbox 來連線到 Azure 的生產網路。
 
 ## <a name="azure-security-checklist"></a>Azure 安全性檢查清單
-將系統管理員在強化後的工作站上可以執行的工作數目降至最低，將有助於盡量降低開發和管理環境中的受攻擊面。 請使用下列技術來協助保護強化後的工作站︰
+將系統管理員可在強化後的工作站上執行的工作數目降至最低，有助於盡量降低開發和管理環境中的受攻擊面。 請使用下列技術來協助保護強化後的工作站︰
 
 * IE 強化。 Internet Explorer 瀏覽器 (或任何類似用途的網頁瀏覽器) 因為會與外部伺服器廣泛互動，所以是有害程式碼的主要進入點。 請檢閱您的用戶端原則並強制要求在受保護模式中執行、停用附加元件、停用檔案下載，以及使用 [Microsoft SmartScreen](https://technet.microsoft.com/library/jj618329.aspx) 篩選。 確定會顯示安全性警告。 利用網際網路區域，並建立已為其設定合理強化的信任網站清單。 封鎖其他所有網站和瀏覽器中的程式碼，例如 ActiveX 和 Java。
 * 標準使用者。 以標準使用者的身分執行有許多好處，最重要的好處是透過惡意程式碼竊取系統管理員認證會變得更困難。 此外，標準使用者帳戶沒有根作業系統的提高的權限，而且許多組態選項和 API 已依預設鎖定起來。
 * AppLocker。 您可以使用 [AppLocker](http://technet.microsoft.com/library/ee619725.aspx) 來限制使用者可以執行的程式和指令碼。 您可以在稽核或強制模式中執行 AppLocker。 根據預設，AppLocker 的允許規則可讓具有系統管理員權杖的使用者執行用戶端上的所有程式碼。 此規則的存在是為了避免系統管理員將自己鎖定，而且只適用於提高權限的權杖。 另請參閱做為 Windows Server [核心安全性](http://technet.microsoft.com/library/dd348705.aspx)一部分的「程式碼完整性」。
 * 程式碼簽署。 為系統管理員使用的所有工具和指令碼進行程式碼簽署，可提供方便管理的機制來部署應用程式鎖定原則。 雜湊不會隨著程式碼的快速變更而做調整，而且檔案路徑不會提供高度安全性。 您應該將 AppLocker 規則結合 PowerShell [執行原則](http://technet.microsoft.com/library/ee176961.aspx)，此原則只允許[執行](http://technet.microsoft.com/library/hh849812.aspx)特定已簽署的程式碼和指令碼。
-* 群組原則。 建立全域系統管理原則以套用至任何用於管理的網域工作站 (以及封鎖來自其他所有用途的存取)，以及套用至在這些工作站上進行驗證的使用者帳戶。
+* 群組原則。 建立全域系統管理原則以套用至任何用於管理的網域工作站 (並封鎖來自其他所有用途的存取)，以及套用至在這些工作站上進行驗證的使用者帳戶。
 * 已增強安全性的佈建。 保護您的基準強化後工作站映像以防遭到竄改。 使用加密和隔離等安全性措施來儲存映像、虛擬機器和指令碼，並限制存取 (或許是使用可稽核的簽入/簽出程序)。
 * 修補。 維護一致的組建 (或針對開發、作業和其他系統管理工作使用不同的映像)、定期掃描變更和惡意程式碼、讓組建保持最新狀態，並且只在需要時才啟用機器。
 * 加密。 確定管理工作站有 TPM 以便能夠更安全地啟用[加密檔案系統](https://technet.microsoft.com/library/cc700811.aspx) (EFS) 和 BitLocker。 如果您使用 Windows To Go，請只搭配 BitLocker 使用加密的 USB 金鑰。
@@ -235,6 +235,6 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

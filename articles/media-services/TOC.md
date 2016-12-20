@@ -77,9 +77,9 @@
 #### [使用 MES 進階編碼](media-services-advanced-encoding-with-mes.md)
 ##### [如何搭配 .NET 使用媒體編碼器標準產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md)
 ##### [以 Media Encoder Standard 裁剪影片](media-services-crop-video.md)
-### Media Encoder Premium Workflow
-#### [Media Encoder Premium Workflow 格式和轉碼器](media-services-premium-workflow-encoder-formats.md)
-#### 使用 Media Encoder Premium Workflow 進行編碼
+### 媒體編碼器高階工作流程
+#### [媒體編碼器高階工作流程格式和轉碼器](media-services-premium-workflow-encoder-formats.md)
+#### 使用媒體編碼器高階工作流程進行編碼
 ##### [媒體編碼器高階工作流程](media-services-encode-with-premium-workflow.md)
 ##### [媒體編碼器高階工作流程教學課程](media-services-media-encoder-premium-workflow-tutorials.md)
 ##### [使用工作流程設計工具建立進階編碼工作流程](media-services-workflow-designer.md)
@@ -195,16 +195,18 @@
 ### [重試邏輯](media-services-retry-logic-in-dotnet-sdk.md)
 
 # 參考
-## [版本資訊](media-services-release-notes.md)
-## [.NET](media-services-dotnet-how-to-use.md)
-## [REST](media-services-rest-how-to-use.md)
+## [PowerShell (資源管理員)](/powershell/resourcemanager/azurerm.media/v0.3.1/azurerm.media)
+## [PowerShell (服務管理)](/powershell/servicemanagement/azure.compute/v3.1.0/azure.compute)
+## [.NET](/dotnet/api/microsoft.windowsazure.mediaservices.client)
+## [REST](/rest/api/media)
 
 # 資源
+## [版本資訊](media-services-release-notes.md)
 ## [價格](https://azure.microsoft.com/pricing/details/media-services/)
 ## [Azure 媒體服務社群](media-services-community.md)
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=media-services)
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

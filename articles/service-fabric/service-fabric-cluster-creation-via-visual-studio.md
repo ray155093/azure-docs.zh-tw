@@ -1,12 +1,12 @@
 ---
-title: 使用 Visual Studio 設定 Service Fabric 叢集 | Microsoft Docs
-description: 說明如何使用 Azure 資源群組專案在 Visual Studio 中建立的 Azure Resource Manager 範本設定 Service Fabric 叢集
+title: "使用 Visual Studio 設定 Service Fabric 叢集 | Microsoft Docs"
+description: "說明如何使用 Azure 資源群組專案在 Visual Studio 中建立的 Azure Resource Manager 範本設定 Service Fabric 叢集"
 services: service-fabric
 documentationcenter: .net
 author: karolz-ms
 manager: adegeo
-editor: ''
-
+editor: 
+ms.assetid: bd2c0511-36c9-4828-8dc3-69e4b6a70567
 ms.service: service-fabric
 ms.devlang: dotNet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 10/06/2016
 ms.author: karolz@microsoft.com
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 01498faf6d150cb0a96af150d6c9ce1ed62c26dd
+
 
 ---
 # <a name="set-up-a-service-fabric-cluster-by-using-visual-studio"></a>使用 Visual Studio 設定 Service Fabric 叢集
@@ -49,12 +53,12 @@ ms.author: karolz@microsoft.com
 
 Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護的安全叢集。 此憑證是利用最後三個範本參數 (`certificateThumbprint`、`sourceVaultValue` 和 `certificateUrlValue`) 來識別，其必須存在於 **Azure 金鑰保存庫**中。 如需如何建立叢集安全性憑證的詳細資訊，請參閱 [Service Fabric 叢集安全性案例](service-fabric-cluster-security.md#x509-certificates-and-service-fabric) 一文。
 
-## <a name="optional:-change-the-cluster-name"></a>選擇性︰變更叢集名稱
+## <a name="optional-change-the-cluster-name"></a>選擇性︰變更叢集名稱
 每個 Service Fabric 叢集都有一個名稱。 在 Azure 中建立網狀架構叢集時，叢集名稱會 (與 Azure 區域一起) 決定叢集的網域名稱系統 (DNS) 名稱。 例如，如果您將叢集命名為 `myBigCluster`，而且將裝載新叢集的資源群組位置 (Azure 區域) 是美國東部，則叢集的 DNS 名稱將是 `myBigCluster.eastus.cloudapp.azure.com`。
 
 預設會自動產生叢集名稱，而且「叢集」前置詞後面會附加一個隨機的尾碼，使該名稱變成唯一的。 如此便可以很容易使用範本做為 **連續整合** (CI) 系統的一部分。 如果您想要為叢集使用特定名稱，一個對您有意義的名稱，請將 Resource Manager 範本檔案 (`ServiceFabricCluster.json`) 中 `clusterName` 變數值設定為您所選擇的名稱。 該名稱是該檔案中定義的第一個變數。
 
-## <a name="optional:-add-public-application-ports"></a>選擇性：新增公用應用程式連接埠
+## <a name="optional-add-public-application-ports"></a>選擇性：新增公用應用程式連接埠
 您也可能想變更叢集的公用應用程式連接埠再部署它。 根據預設，範本只會開啟兩個公用 TCP 連接埠 (80 和 8081)。 如果您的應用程式需要更多，請修改範本中的 Azure 負載平衡器定義。 此定義儲存在主要範本檔案 (`ServiceFabricCluster.json`) 中。 開啟該檔案，並搜尋 `loadBalancedAppPort`。 每個連接埠會與三個成品相關聯：
 
 1. 範本參數：定義連接埠的 TCP 連接埠值：
@@ -142,6 +146,6 @@ Visual Studio Service Fabric 資源管理員範本會建立一個受憑證保護
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

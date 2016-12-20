@@ -1,13 +1,13 @@
 ---
-title: 在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組
-description: 本教學課程使用透過傳統部署模型建立的資源，並在 Azure 中使用 PowerShell 建立 Always On 可用性群組。
+title: "在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組"
+description: "本教學課程使用透過傳統部署模型建立的資源，並在 Azure 中使用 PowerShell 建立 Always On 可用性群組。"
 services: virtual-machines-windows
 documentationcenter: na
 author: MikeRayMSFT
 manager: jhubbard
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: a4e2f175-fe56-4218-86c7-a43fb916cc64
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
@@ -15,14 +15,18 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
 ms.date: 09/22/2016
 ms.author: mikeray
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 56eea7ff47aea37ea14c3f2a51d52ba1edf4e066
+
 
 ---
 # <a name="configure-always-on-availability-group-in-azure-vm-with-powershell"></a>在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組
 > [!div class="op_single_selector"]
-> * [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-> * [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
-> * [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-> * [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+> * [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+> * [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 > 
 > 
 
@@ -475,7 +479,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
         $svc2.WaitForStatus([System.ServiceProcess.ServiceControllerStatus]::Stopped,$timeout)
         $svc2.Start();
         $svc2.WaitForStatus([System.ServiceProcess.ServiceControllerStatus]::Running,$timeout)
-7. 從 **在 Azure VM 中建立 Always On 可用性群組的 WSFC 叢集** 將 [CreateAzureFailoverCluster.ps1](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a) 下載至本機工作目錄。 此指令碼將可協助您建立功能 WSFC 叢集。 如需有關 WSFC 如何與 Azure 網路互動的重要資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md)。
+7. 從 **在 Azure VM 中建立 Always On 可用性群組的 WSFC 叢集** 將 [CreateAzureFailoverCluster.ps1](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a) 下載至本機工作目錄。 此指令碼將可協助您建立功能 WSFC 叢集。 如需有關 WSFC 如何與 Azure 網路互動的重要資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 8. 變更您的工作目錄，並透過下載的指令碼建立 WSFC 叢集。
    
         Set-ExecutionPolicy Unrestricted -Force
@@ -559,10 +563,13 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
              -Database $db
 
 ## <a name="next-steps"></a>後續步驟
-現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。 若要為此可用性群組設定接聽程式，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。 若要為此可用性群組設定接聽程式，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
-如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
+如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

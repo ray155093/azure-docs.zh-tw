@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Halogen Software 整合
-description: 了解如何設定 Azure Active Directory 與 Halogen Software 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Halogen Software 整合"
+description: "了解如何設定 Azure Active Directory 與 Halogen Software 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 2ca2298d-9a0c-4f14-925c-fa23f2659d28
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 21d31eb33a838d42b4ba8f4191b89e6094206f6e
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-halogen-software"></a>教學課程：Azure Active Directory 與 Halogen Software 整合
+# <a name="tutorial-azure-active-directory-integration-with-halogen-software"></a>教學課程：Azure Active Directory 與 Halogen Software 整合
 本教學課程旨在說明如何整合 Halogen Software 與 Azure Active Directory (Azure AD)。
 
 Halogen Software 與 Azure AD 整合提供下列優點： 
@@ -63,7 +67,7 @@ Halogen Software 與 Azure AD 整合提供下列優點：
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。 
+4. 按一下頁面底部的 [新增]  。    
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -176,7 +180,7 @@ Halogen Software 與 Azure AD 整合提供下列優點：
    
    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步]。
+   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![何謂 Azure AD Connect][105]  
@@ -276,6 +280,7 @@ Halogen Software 與 Azure AD 整合提供下列優點：
 [301]: ./media/active-directory-saas-halogen-software-tutorial/tutorial_halogen_301.png
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

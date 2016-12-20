@@ -1,25 +1,29 @@
 ---
-title: 使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI
-description: 了解如何使用 SSH 通道，安全地瀏覽以 Linux 為基礎的 HDInsight 節點上裝載的 Web 資源。
+title: "使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI"
+description: "了解如何使用 SSH 通道，安全地瀏覽以 Linux 為基礎的 HDInsight 節點上裝載的 Web 資源。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 879834a4-52d0-499c-a3ae-8d28863abf65
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/11/2016
+ms.date: 10/17/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 446212192829cc55fefe4b1a1954e64e123c2c44
+
 
 ---
-# <a name="use-ssh-tunneling-to-access-ambari-web-ui,-jobhistory,-namenode,-oozie,-and-other-web-ui's"></a>使用 SSH 通道來存取 Ambari Web UI、JobHistory、NameNode、Oozie 及其他 Web UI
+# <a name="use-ssh-tunneling-to-access-ambari-web-ui-jobhistory-namenode-oozie-and-other-web-uis"></a>使用 SSH 通道來存取 Ambari Web UI、JobHistory、NameNode、Oozie 及其他 Web UI
 以 Linux 為基礎的 HDInsight 叢集可讓您透過網際網路存取 Ambari Web UI，但無法存取 UI 的某些功能。 例如，經由 Ambari 呈現的其他服務的 Web UI。 若要使用 Ambari Web UI 的完整功能，您必須在叢集前端使用 SSH 通道。
 
-## <a name="what-requires-an-ssh-tunnel?"></a>什麼需要 SSH 通道？
+## <a name="what-requires-an-ssh-tunnel"></a>什麼需要 SSH 通道？
 Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填入，因為它們都依賴在叢集上執行的其他 Hadoop 服務所公開的網站和服務。 通常這些網站並未受到保護，因此直接在網際網路上公開並不安全。 有時候服務會在另一個叢集節點 (例如 Zookeeper 節點) 上執行網站。
 
 下列是 Ambari Web UI 使用的服務，如果沒有 SSH 通道就無法存取這些服務：
@@ -32,7 +36,7 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 
 如果您使用指令碼動作來自訂叢集，則您安裝的任何服務或公用程式，都會需要 SSH 通道才能公開 Web UI。 例如，如果您使用指令碼動作安裝 Hue，就必須使用 SSH 通道來存取 Hue Web UI。
 
-## <a name="what-is-an-ssh-tunnel?"></a>什麼是 SSH 通道？
+## <a name="what-is-an-ssh-tunnel"></a>什麼是 SSH 通道？
 [安全殼層 (SSH) 通道](https://en.wikipedia.org/wiki/Tunneling_protocol#Secure_Shell_tunneling) 將流量路由傳送到本機工作站上的連接埠的方式為，透過與 HDInsight 叢集前端節點的 SSH 連線，接著在前端節點上解析要求，使要求如同在前端節點上產生。 接著，透過工作站的通道，將回應路由傳送回去。
 
 ## <a name="prerequisites"></a>必要條件
@@ -45,14 +49,8 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
   > 
   > 
 * 可以設定為使用 SOCKS Proxy 的網頁瀏覽器。
-* **(選擇性)**：如 [FoxyProxy](http://getfoxyproxy.org/,) 之類的外掛程式，其可套用的規則是只將特定要求透過通道進行路由傳送。
-  
-  > [!WARNING]
-  > 若無 FoxyProxy 之類的外掛程式，所有透過瀏覽器建立的要求可能都會透過通道進行路由傳送。 這會導致瀏覽器中的網頁載入速度較慢。
-  > 
-  > 
 
-## <a name="<a-name="usessh"></a>create-a-tunnel-using-the-ssh-command"></a><a name="usessh"></a>使用 SSH 命令建立通道
+## <a name="a-nameusesshacreate-a-tunnel-using-the-ssh-command"></a><a name="usessh"></a>使用 SSH 命令建立通道
 使用下列命令，利用 `ssh` 命令建立 SSH 通道。 以您 HDInsight 叢集的 SSH 使用者取代 **USERNAME**，並以您 HDInsight 叢集的名稱取代 **CLUSTERNAME**。
 
     ssh -C2qTnNf -D 9876 USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -72,7 +70,7 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 
 在命令完成後，傳送至本機電腦上連接埠 9876 的流量將透過安全通訊端層 (SSL) 路由傳送至叢集前端節點，看起來就像是在該處產生。
 
-## <a name="<a-name="useputty"></a>create-a-tunnel-using-putty"></a><a name="useputty"></a>使用 PuTTY 建立通道
+## <a name="a-nameuseputtyacreate-a-tunnel-using-putty"></a><a name="useputty"></a>使用 PuTTY 建立通道
 使用下列步驟，利用 PuTTY 建立 SSH 通道。
 
 1. 開啟 PuTTY，並輸入連線資訊。 如果您不熟悉 PuTTY，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md) ，以取得如何搭配 HDInsight 使用 PuTTY 的資訊。
@@ -89,7 +87,7 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 
 ## <a name="use-the-tunnel-from-your-browser"></a>從瀏覽器使用通道
 > [!NOTE]
-> 本節中的步驟使用 FireFox 瀏覽器，因為它在 Linux、Unix、Macintosh OS X 和 Windows 系統上均可隨意運用。 其他最新的瀏覽器，如 Google Chrome、Microsoft Edge 或 Apple Safari 等應該也可以運作；不過，某些步驟中所使用的 FoxyProxy 外掛程式可能無法適用於所有瀏覽器。
+> 本節中的步驟使用 FireFox 瀏覽器，因為它在 Linux、Unix、Macintosh OS X 和 Windows 系統上均可隨意運用。 其他支援使用 SOCKS Proxy 的新式瀏覽器也可以正常運作。
 > 
 > 
 
@@ -102,44 +100,6 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
    > 
    > 
 2. 在 Firefox 中啟用和停用 Proxy 設定的情況下造訪網站，例如 [http://www.whatismyip.com/](http://www.whatismyip.com/) ，即可驗證是否透過通道路由傳送流量。 在啟用設定時，是使用 Microsoft Azure 資料中心內之機器的 IP 位址。
-
-### <a name="browser-extensions"></a>瀏覽器延伸模組
-當設定瀏覽器使用通道的功能在運作時，您通常不會想透過通道傳送所有流量。 [FoxyProxy](http://getfoxyproxy.org/) 等瀏覽器延伸模組支援 URL 要求的模式比對 (僅限 FoxyProxy Standard 或 Plus)，以便只有特定 URL 的要求會透過通道傳送。
-
-如果您已安裝 FoxyProxy Standard，請使用下列步驟將它設定為只透過通道轉送 HDInsight 的流量。
-
-1. 在您的瀏覽器中開啟 FoxyProxy 延伸模組。 比方說，在 Firefox 中選取 [位址] 欄位旁的 FoxyProxy 圖示。
-   
-    ![foxyproxy 圖示](./media/hdinsight-linux-ambari-ssh-tunnel/foxyproxy.png)
-2. 選取 [新增 Proxy]、選取 [一般] 索引標籤，然後輸入 **HDInsightProxy** 的 Proxy 名稱。
-   
-    ![foxyproxy 一般](./media/hdinsight-linux-ambari-ssh-tunnel/foxygeneral.png)
-3. 選取 [ **Proxy 詳細資料** ] 索引標籤並填入下列欄位：
-   
-   * **主機或 IP 位址** - 這是 localhost，因為我們使用本機電腦上的 SSH 通道。
-   * **連接埠** - 這是用於 SSH 通道的連接埠。
-   * **SOCKS Proxy** - 選取此選項讓瀏覽器使用通道做為 Proxy。
-   * **SOCKS v5** - 選取此選項以設定 Proxy 的要求版本。
-     
-     ![foxyproxy proxy](./media/hdinsight-linux-ambari-ssh-tunnel/foxyproxyproxy.png)
-4. 選取 [URL 模式] 索引標籤，然後選取 [新增模式]。 使用下列欄位定義模式，然後按一下 [ **確定**]：
-   
-   * **模式名稱** - **clusternodes** - 這是模式的易記名稱。
-   * **URL 模式** - **\*internal.cloudapp.net\*** - 這會定義符合叢集節點之內部完整網域名稱的模式。
-     
-     ![foxyproxy 模式](./media/hdinsight-linux-ambari-ssh-tunnel/foxypattern.png)
-     
-     將下列資訊用於設定，以新增另一個模式：
-   * **模式名稱** - headnode
-   * **URL 模式** - \*headnodehost\*
-     
-     選取 [確定] 以儲存此模式。
-5. 選取 [確定] 以新增 Proxy 並關閉 [Proxy 設定]。
-6. 在 FoxyProxy 對話方塊頂端，將 [選取模式] 變更為 [根據預先定義的模式和優先順序使用 Proxy]，然後按一下 [關閉]。
-   
-    ![foxyproxy 選取模式](./media/hdinsight-linux-ambari-ssh-tunnel/selectmode.png)
-
-在執行這些步驟後，只有包含 **internal.cloudapp.net** 字串之 URL 的要求會透過 SSL 通道路由傳送。
 
 ## <a name="verify-with-ambari-web-ui"></a>驗證 Ambari Web UI
 建立叢集後，請使用下列步驟來確認您可以從 Ambari Web 存取服務 Web UI：
@@ -182,6 +142,9 @@ Ambari 中有數個功能表在沒有 SSH 通道的情況下，會不完整填�
 * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
 * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

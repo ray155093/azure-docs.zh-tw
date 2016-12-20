@@ -16,18 +16,18 @@ ms.workload: infrastructure-services
 ms.date: 09/13/2016
 ms.author: yushwang;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 019395d76a1e2d8e75b4ac1474abe45ce1b8aeb1
+ms.sourcegitcommit: d269d9a76ff4ccd973eee70d2d5b54a7262383ef
+ms.openlocfilehash: 63d31ae31703a8d43bf2ffec2e6ccdc5da3a46a3
 
 
 ---
-# <a name="about-vpn-devices-for-sitetosite-vpn-gateway-connections"></a>關於站對站 VPN 閘道連線的 VPN 裝置
-設定站對站 (S2S) VPN 連線需要 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 這篇文章討論相容的 VPN 裝置和組態參數。 
+# <a name="about-vpn-devices-for-site-to-site-vpn-gateway-connections"></a>關於站對站 VPN 閘道連線的 VPN 裝置
+設定站對站 (S2S) VPN 連線需要 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 這篇文章討論相容的 VPN 裝置和組態參數。
 
 > [!NOTE]
 > 設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。                                                                                                                                                                               
-> 
-> 
+>
+>
 
 如果您的裝置未出現在[已經驗證的 VPN 裝置](#devicetable)表格中，請參閱本文的[未經驗證的 VPN 裝置](#additionaldevices)一節。 您的裝置可能仍然可以與 Azure 搭配使用。 如需 VPN 裝置的支援，請連絡裝置製造商。
 
@@ -36,10 +36,10 @@ ms.openlocfilehash: 019395d76a1e2d8e75b4ac1474abe45ce1b8aeb1
 * 靜態與動態路由的名稱已經變更。 您可能二種詞彙都會看到。 只有變更名稱，功能未變更。
   * 靜態路由 = 原則式
   * 動態路由 = 路由式
-* 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。 例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也能與 Azure 高效能 VPN 閘道相容。 
+* 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。 例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也能與 Azure 高效能 VPN 閘道相容。
 
 ## <a name="a-namedevicetableavalidated-vpn-devices"></a><a name="devicetable"></a>已經驗證的 VPN 裝置
-我們已與裝置廠商合作驗證一組標準 VPN 裝置。 在以下清單所含的裝置系列中，所有裝置應該都能與 Azure VPN 閘道搭配運作。 請參閱 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) ，以確認您需要為欲設定之解決方案所建立的閘道類型。 
+我們已與裝置廠商合作驗證一組標準 VPN 裝置。 在以下清單所含的裝置系列中，所有裝置應該都能與 Azure VPN 閘道搭配運作。 請參閱 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) ，以確認您需要為欲設定之解決方案所建立的閘道類型。
 
 為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。 如需 VPN 裝置的支援，請連絡裝置製造商。
 
@@ -66,19 +66,19 @@ ms.openlocfilehash: 019395d76a1e2d8e75b4ac1474abe45ce1b8aeb1
 | 開啟系統 AG |任務控制安全性閘道 |N/A |[安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |[安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |
 | Openswan |Openswan |2.6.32 |(敬請期待) |不相容 |
 | Palo Alto Networks |所有執行 PAN-OS 的裝置 |PAN-OS 6.1.5 或更新版本 (原則式)、PAN-OS 7.0.5 或更新版本 (路由式) |[組態指示](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) |[組態指示](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
-| Watchguard |全部 |Fireware XTM v11.x |[組態指示](http://customers.watchguard.com/articles/Article/Configure-a-VPN-connection-to-a-Windows-Azure-virtual-network/) |不相容 |
+| Watchguard |全部 |Fireware XTM v11.x |[組態指示](http://customers.watchguard.com/articles/Article/Configure-a-VPN-connection-to-a-Windows-Azure-virtual-network) |不相容 |
 
 (*) ISR 7200 系列路由器僅支援原則式 VPN。
 
-## <a name="a-nameadditionaldevicesanonvalidated-vpn-devices"></a><a name="additionaldevices"></a>未經驗證的 VPN 裝置
-如果沒有看到您的裝置列在「已經驗證的 VPN 裝置」表格中，它仍然可能可以與站對站連線搭配使用。 確認您的 VPN 裝置符合 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md#gateway-requirements) 文章中＜閘道需求＞一節所述的最低需求。 符合最低需求的裝置應該也適合使用 VPN 閘道。 如需額外支援和設定指示，請連絡裝置製造商。
+## <a name="a-nameadditionaldevicesanon-validated-vpn-devices"></a><a name="additionaldevices"></a>未經驗證的 VPN 裝置
+如果沒有看到您的裝置列在「已經驗證的 VPN 裝置」表格中，它仍然可能可以與站對站連線搭配使用。 確認您的 VPN 裝置符合[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)文章中＜閘道需求＞一節所述的最低需求。 符合最低需求的裝置應該也適合使用 VPN 閘道。 如需額外支援和設定指示，請連絡裝置製造商。
 
 ## <a name="editing-device-configuration-samples"></a>編輯裝置組態範本
-下載提供的 VPN 裝置組態範本之後，您將需要取代其中一些值，以反映您環境的設定。 
+下載提供的 VPN 裝置組態範本之後，您將需要取代其中一些值，以反映您環境的設定。
 
 **編輯範本：**
 
-1. 使用 [記事本] 開啟範本。 
+1. 使用 [記事本] 開啟範本。
 2. 搜尋所有 <文字> 字串並使用適合您環境的值加以取代。 請務必加上 < 和 >。 當有指定名稱時，您選取的名稱應該是唯一名稱。 如果命令無法運作，請參閱裝置製造商文件。
 
 | **範本中的文字** | **變更為** |
@@ -98,8 +98,8 @@ ms.openlocfilehash: 019395d76a1e2d8e75b4ac1474abe45ce1b8aeb1
 ## <a name="ipsec-parameters"></a>IPsec  參數
 > [!NOTE]
 > 雖然 Azure VPN 閘道支援下表所列的值，但您目前無法指定或選取 Azure VPN 閘道的特定組合。 您必須指定內部部署 VPN 裝置的任何條件約束。 此外，您必須將 MSS 固定在 1350。
-> 
-> 
+>
+>
 
 ### <a name="ike-phase-1-setup"></a>IKE 階段 1 設定
 | **屬性** | **原則式** | **路由式和標準或高效能 VPN 閘道** |
@@ -153,7 +153,6 @@ ms.openlocfilehash: 019395d76a1e2d8e75b4ac1474abe45ce1b8aeb1
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

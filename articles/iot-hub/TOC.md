@@ -8,6 +8,10 @@
 ### [開始使用 IoT 中樞 (.NET)](iot-hub-csharp-csharp-getstarted.md)
 ### [開始使用 IoT 中樞 (Java)](iot-hub-java-java-getstarted.md)
 ### [開始使用 IoT 中樞 (節點)](iot-hub-node-node-getstarted.md)
+## 開始使用 IoT 裝置 SDK
+### [C 適用的 Azure IoT 裝置 SDK 簡介](iot-hub-device-sdk-c-intro.md)
+### [C 適用的 IoT 裝置 SDK - 深入了解 IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
+### [C 適用的 IoT 裝置 SDK - 深入了解序列化程式](iot-hub-device-sdk-c-serializer.md)
 ## 開始使用 Raspberry Pi
 ### [開始使用 Raspberry Pi 3](iot-hub-raspberry-pi-kit-node-get-started.md)
 ### 第 1 課：設定裝置
@@ -32,9 +36,10 @@
 ## [開始使用閘道器 SDK (Linux)](iot-hub-linux-gateway-sdk-get-started.md)
 ## [開始使用閘道器 SDK (Windows)](iot-hub-windows-gateway-sdk-get-started.md)
 
-# 作法：
+
+# 作法
 ## [處理裝置到雲端訊息教學課程 (.NET)](iot-hub-csharp-csharp-process-d2c.md)
-## [處理裝置到雲端訊息教學課程 (.NET)](iot-hub-java-java-process-d2c.md)
+## [處理裝置到雲端訊息教學課程 (Java)](iot-hub-java-java-process-d2c.md)
 ## [從裝置上傳檔案教學課程](iot-hub-csharp-csharp-file-upload.md)
 ## [傳送雲端到裝置的訊息 (.NET)](iot-hub-csharp-csharp-c2d.md)
 ## [傳送雲端到裝置的訊息 (Java)](iot-hub-java-java-c2d.md)
@@ -51,7 +56,7 @@
 ## [使用裝置作業更新適用於 .NET/節點的裝置韌體](iot-hub-csharp-node-firmware-update.md)
 ## [排程及廣播適用於 Node.js 的作業](iot-hub-node-node-schedule-jobs.md)
 ## [排程及廣播適用於 .NET/節點的作業](iot-hub-csharp-node-schedule-jobs.md)
-## 規劃您的部署
+## 規劃
 ### [比較 IoT 中樞與事件中樞](iot-hub-compare-event-hubs.md)
 ### [調整您的解決方案規模](iot-hub-scaling.md)
 ### [高可用性和災害復原](iot-hub-ha-dr.md)
@@ -74,9 +79,10 @@
 ### [裝置與服務 SDK](iot-hub-devguide-sdks.md)
 ### [MQTT 支援](iot-hub-mqtt-support.md)
 ### [詞彙](iot-hub-devguide-glossary.md)
-## 管理服務
+## 管理
 ### [使用入口網站建立 IoT 中樞](iot-hub-create-through-portal.md)
-### [使用 CLI 建立 IoT 中樞](iot-hub-create-using-cli.md)
+### [使用 CLI 2.0 Preview 建立 IoT 中樞](iot-hub-create-using-cli.md)
+### [使用 CLI 建立 IoT 中樞](iot-hub-create-using-cli-nodejs.md)
 ### [使用 REST 建立 IoT 中樞](iot-hub-rm-rest.md)
 ### [使用 Powershell 建立 IoT 中樞](iot-hub-rm-template-powershell.md)
 ### [使用範本建立 IoT 中樞](iot-hub-rm-template.md)
@@ -96,23 +102,22 @@
 ### [保護您的 IoT 部署](iot-hub-security-deployment.md)
 
 # 參考
-## [Azure CLI](https://docs.microsoft.com/cli/azure)
-## [Java](https://docs.microsoft.com/java/api)
-## [.NET API](https://docs.microsoft.com/dotnet/api)
+## [Azure CLI 2.0 Preview](/cli/azure/iot)
+## [.NET (服務)](/dotnet/api/microsoft.azure.devices)
+## [.NET (裝置)](/dotnet/api/microsoft.azure.devices.client)
+## [Java (服務)](/java/api/com.microsoft.azure.iot.service.auth)
+## [Java (裝置)](/java/api/com.microsoft.azure.iothub)
 ## [Azure IoT SDK](http://azure.github.io/azure-iot-sdks/)
-## [閘道器 SDK API](http://azure.github.io/azure-iot-gateway-sdk)
-## [資源提供者 REST API](https://docs.microsoft.com/rest/api/iothub/resourceprovider/iot-hub-resource-provider-rest)
-## [裝置身分識別 REST API](https://docs.microsoft.com/rest/api/iothub/device-identities-rest)
-## [裝置傳訊 REST API](https://docs.microsoft.com/rest/api/iothub/device-messaging-rest-apis)
-## [C 適用的 Azure IoT 裝置 SDK 簡介](iot-hub-device-sdk-c-intro.md)
-## [C 適用的 IoT 裝置 SDK - 深入了解 IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
-## [C 適用的 IoT 裝置 SDK - 深入了解序列化程式](iot-hub-device-sdk-c-serializer.md)
+## [閘道器 SDK](http://azure.github.io/azure-iot-gateway-sdk)
+## [REST (資源提供者)](https://docs.microsoft.com/rest/api/iothub/resourceprovider/iot-hub-resource-provider-rest)
+## [REST (裝置身分識別)](https://docs.microsoft.com/rest/api/iothub/device-identities-rest)
+## [REST (裝置傳訊) REST API](https://docs.microsoft.com/rest/api/iothub/device-messaging-rest-apis)
 
 # 相關參考
 ## [Azure IoT 套件](https://azure.microsoft.com/documentation/suites/iot-suite/)
 ## [Azure 事件中樞](https://azure.microsoft.com/documentation/services/event-hubs/)
 ## [串流分析](https://azure.microsoft.com/documentation/services/stream-analytics/)
-## [機器學習服務](https://azure.microsoft.com/documentation/services/machine-learning/)
+## [Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/iot-hub/)
@@ -125,6 +130,6 @@
 ## [Azure IoT 認證裝置目錄](https://catalog.azureiotsuite.com/)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

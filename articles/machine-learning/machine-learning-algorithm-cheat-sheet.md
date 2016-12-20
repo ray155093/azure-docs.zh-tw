@@ -1,13 +1,13 @@
 ---
-title: 機器學習演算法小祕技 | Microsoft Docs
-description: 可列印的機器學習演算法小密技可協助您在 Azure Machine Learning Studio 中選擇適合您預測模型的演算法。
-keywords: 演算法小祕技,小祕技,機器學習演算法
+title: "機器學習演算法小祕技 | Microsoft Docs"
+description: "可列印的機器學習演算法小密技可協助您在 Azure Machine Learning Studio 中選擇適合您預測模型的演算法。"
+keywords: "演算法小祕技,小祕技,機器學習演算法"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: brohrer
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: e1dc31ec-1acb-463f-ba77-de565d4ddf4d
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,14 +15,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2016
 ms.author: brohrer;garye
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 412c9ceb2e063a253f3e9d03dcf2735a7f373e15
+
 
 ---
-# 適用於 Microsoft Azure Machine Learning Studio 的機器學習演算法小祕技
-**Microsoft Azure Machine Learning 演算法小祕技**可協助您針對預測性分析模型選擇正確的演算法。
+# <a name="machine-learning-algorithm-cheat-sheet-for-microsoft-azure-machine-learning-studio"></a>適用於 Microsoft Azure Machine Learning Studio 的機器學習演算法小祕技
+**Microsoft Azure Machine Learning 演算法小祕技** 可協助您針對預測性分析模型選擇正確的演算法。
 
-[Azure Machine Learning Studio](https://studio.azureml.net/) 有來自***迴歸***、***分類***、***叢集***和***異常偵測***系列的大型演算法程式庫。每項的設計均是用來處理不同類型的機器學習服務問題。
+[Azure Machine Learning Studio](https://studio.azureml.net/) 有來自***迴歸***、***分類***、***叢集***和***異常偵測***系列的大型演算法程式庫。 每項的設計均是用來處理不同類型的機器學習服務問題。
 
-## 下載：機器學習服務演算法小祕技
+## <a name="download-machine-learning-algorithm-cheat-sheet"></a>下載：機器學習服務演算法小祕技
 **在此下載小祕技：[機器學習服務演算法小祕技 (11x17 英吋)](http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet-v6.pdf)**
 
 ![機器學習演算法小祕技：了解如何選擇機器學習演算法。][cheat-sheet]
@@ -32,17 +36,17 @@ ms.author: brohrer;garye
 下載並列印 Tabloid 大小的「機器學習服務演算法小祕技」，以隨時瀏覽並獲得選擇演算法的協助。
 
 > [!NOTE]
-> 如需使用此小祕技的詳細指南，請參閱文章[如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
+> 如需使用此小祕技的詳細指南，請參閱文章 [如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md) 。
 > 
 > 
 
-## 更多演算法的詳細說明
-* 如需進一步探討不同類型的機器學習演算法、它們的使用方式，以及如何使用這個小祕技選擇正確的演算法，請參閱[如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
+## <a name="more-help-with-algorithms"></a>更多演算法的詳細說明
+* 如需進一步探討不同類型的機器學習演算法、它們的使用方式，以及如何使用這個小祕技選擇正確的演算法，請參閱 [如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
 * 如需 Machine Learning Studio 中依類別排序的所有可用機器學習演算法的清單，請參閱＜Machine Learning Studio 演算法和模組說明＞中的[起始模型][initialize-model]。
 * 如需 Machine Learning Studio 中演算法和模組的完整清單，請參閱＜Machine Learning Studio 演算法和模組說明＞中的 [Machine Learning Studio 模組的 A-Z 清單][a-z-list]。
 * 若要下載並列印提供 Machine Learning Studio 功能概觀的圖表，請參閱 [Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。
 
-[!INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 <!-- This needs to be updated based on the new Choosing and Algorithm article
 
@@ -76,7 +80,7 @@ ms.author: brohrer;garye
 <a href="http://download.microsoft.com/download/A/6/1/A613E11E-8F9C-424A-B99D-65344785C288/microsoft-machine-learning-algorithm-cheat-sheet.pdf">
 <img src="C:\Users\garye\azure-content-pr\articles\media\machine-learning-algorithm-cheat-sheet\cheat-sheet-small.png">
 </a>
---> 
+-->
 
 <!-- Module References -->
 [a-z-list]: https://msdn.microsoft.com/library/azure/dn906033.aspx
@@ -84,4 +88,8 @@ ms.author: brohrer;garye
 [k-means-clustering]: https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/
 [one-vs-all-multiclass]: https://msdn.microsoft.com/library/azure/7191efae-b4b1-4d03-a6f8-7205f87be664/
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,26 +1,30 @@
 ---
-title: OMS 中的網路效能監視器方案 | Microsoft Docs
-description: 網路效能監視器可協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。
+title: "OMS 中的網路效能監視器方案 | Microsoft Docs"
+description: "網路效能監視器可協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 5b9c9c83-3435-488c-b4f6-7653003ae18a
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
+ms.date: 11/09/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
+ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
+
 
 ---
-# <a name="network-performance-monitor-(preview)-solution-in-oms"></a>OMS 中的網路效能監視器 (預覽) 方案
+# <a name="network-performance-monitor-preview-solution-in-oms"></a>OMS 中的網路效能監視器 (預覽) 方案
 > [!NOTE]
 > 這是[預覽解決方案](log-analytics-add-solutions.md#log-analytics-preview-solutions-and-features)。
-> 
-> 
+>
+>
 
 本文件說明如何設定和使用 OMS 中的網路效能監視器方案，協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。 使用網路效能監視器方案，可以監視兩個網路、子網路或伺服器之間的遺失和延遲。 網路效能監視器會偵測網路問題，例如流量黑洞、路由錯誤，以及傳統網路監視方法無法偵測的問題。 網路效能監視器會產生警示，並違反網路連結的臨界值時發生通知。 系統可以自動學習這些臨界值，您也可以將其設定為使用自訂警示規則。 網路效能監視器可確保及時偵測網路效能問題，並使問題的來源局限於特定網路區段或裝置。
 
@@ -48,8 +52,8 @@ ms.author: banders
 
 > [!NOTE]
 > 您必須安裝至少 2 個代理程式，才能有足夠的資料來探索及監視網路資源。 否則，此方案會保持設定中狀態，直到您安裝及設定其他代理程式為止。
-> 
-> 
+>
+>
 
 ### <a name="where-to-install-the-agents"></a>安裝代理程式的位置
 安裝代理程式之前，請考慮您的網路拓撲以及您想要監視的網路部分。 建議您針對想要監視的每個子網路安裝多個代理程式。 換句話說，針對您想要監視的每個子網路，選擇兩部或多部伺服器或 VM 並在其上安裝代理程式。
@@ -67,8 +71,8 @@ ms.author: banders
 
 > [!NOTE]
 > EnableRules.ps1 指令碼只能在指令碼執行所在的電腦上設定 Windows 防火牆規則。 如果您有網路防火牆，您應該確定它允許指向網路效能監視器所用 TCP 連接埠的流量。
-> 
-> 
+>
+>
 
 ## <a name="configuring-the-solution"></a>設定方案
 請使用下列資訊來安裝和設定方案。
@@ -158,8 +162,8 @@ ms.author: banders
 
 > [!NOTE]
 > 雖然代理程式會經常彼此通訊，但是在進行測試時不會產生大量網路流量。 代理程式只依賴 TCP SYN-SYNACK-ACK 交握封包來判斷遺失和延遲 - 不會交換任何資料封包。 在此過程中，代理程式只會在需要時彼此通訊，而且代理程式通訊拓撲已最佳化以減少網路流量。
-> 
-> 
+>
+>
 
 ## <a name="using-the-solution"></a>使用解決方案
 本節說明所有儀表板函式及其使用方式。
@@ -233,13 +237,15 @@ ms.author: banders
 5. 2 個選定節點之間的所有路徑都會繪製於拓撲圖。 您可以在拓撲圖上呈現這兩個節點之間路由的逐一躍點拓撲。 拓撲圖會清楚顯示兩個節點之間有多少個路由，以及資料封包所採用的路徑。 網路效能瓶頸會標示為紅色。 您可以查看拓撲圖上的紅色項目，找出錯誤的網路連線或錯誤的網路裝置。  
    ![狀況不良的拓撲檢視範例](./media/log-analytics-network-performance-monitor/npm-investigation05.png)
 6. 在 [路徑詳細資料] 窗格中可以檢閱每個路徑中的遺失、延遲和躍點數目。 在此範例中，您可以看到如窗格中所述的 3 個狀況不良路徑。 使用捲軸來檢視這些狀況不良路徑的詳細資料。  使用核取方塊來選取其中一個路徑，以便繪製僅只一個路徑的拓撲。 您可以使用滑鼠滾輪來放大或縮小拓撲圖。
-   
+
    在下面的圖像中，藉由查看紅色的路徑和躍點，即可清楚看到特定網路區段中問題區域的根本原因。 按一下拓撲圖中的節點，即可顯示該節點的屬性，包括 FQDN 和 IP 位址。 按一下躍點可顯示該躍點的 IP 位址。  
    ![狀況不良的拓撲 - 路徑詳細資料範例](./media/log-analytics-network-performance-monitor/npm-investigation06.png)
 
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄檔](log-analytics-log-searches.md)以檢視詳細的網路效能資料記錄。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

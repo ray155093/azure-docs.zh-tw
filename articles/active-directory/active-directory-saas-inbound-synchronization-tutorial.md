@@ -1,11 +1,11 @@
 ---
-title: 教學課程：針對輸入同步設定 Workday| Microsoft Docs
-description: 了解如何使用輸入同步搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！
+title: "教學課程：針對輸入同步設定 Workday| Microsoft Docs"
+description: "了解如何使用輸入同步搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: 8fe96f0a-f142-4d66-b53d-3ac3eb41a661
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/06/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 7f45241e96df7e0381d775afc9a5cfa36fca49c4
+
 
 ---
-# <a name="tutorial:-configuring-workday-for-inbound-synchronization"></a>教學課程：針對輸入同步設定 Workday
+# <a name="tutorial-configuring-workday-for-inbound-synchronization"></a>教學課程：針對輸入同步設定 Workday
 > [!NOTE]
 > Azure Active Directory (AD) Premium 適用於使用 Azure AD 全球執行個體的中國客戶。    
 > 由 21Vianet 在中國提供的 Microsoft Azure 服務目前不支援 Azure AD Premium。    
@@ -41,7 +45,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-workday"></a>啟用 Workday 的應用程式整合
 本節的目的是要說明如何啟用 Salesforce 的應用程式整合。    
 
-### <a name="to-enable-the-application-integration-for-workday,-perform-the-following-steps:"></a>若要啟用 Workday 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-workday-perform-the-following-steps"></a>若要啟用 Workday 的應用程式整合，請執行下列步驟：
 1. 在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory] 。    
    
    ![Active Directory](./media/active-directory-saas-inbound-synchronization-tutorial/IC700993.png "Active Directory")  
@@ -138,7 +142,7 @@ ms.author: jeedes
 ## <a name="configuring-user-import-in-microsoft-azure-ad"></a>在 Microsoft Azure AD 中設定匯入使用者
 本節的主要目的是說明如何設定 Microsoft Azure AD 以從 Workday 匯入人員。    
 
-### <a name="to-configure-user-import-in-microsoft-azure-ad,-perform-the-following-steps:"></a>若要在 Microsoft Azure AD 中設定匯入使用者，請執行下列步驟：
+### <a name="to-configure-user-import-in-microsoft-azure-ad-perform-the-following-steps"></a>若要在 Microsoft Azure AD 中設定匯入使用者，請執行下列步驟：
 1. 在 **Workday** 應用程式整合頁面上，按一下 [設定使用者匯入] 以開啟 [設定佈建] 對話方塊。    
 2. 在 [設定及管理員認證]  頁面上，執行以下步驟，然後按一下 [下一步]：    
    
@@ -159,6 +163,9 @@ ms.author: jeedes
 
 您現在可以移至 [使用者]  區段，並檢查是否已匯入您的 Workday 使用者。    
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

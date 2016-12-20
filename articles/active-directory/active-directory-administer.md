@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 10/10/2016
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 20f38ef90d9f3793c0bb0814e6fd5d67aa550209
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 001ffc0f9c7465552392a9848ef1487a4c0eafce
 
 
 ---
@@ -66,7 +66,7 @@ Azure AD 提供大部分 Microsoft 雲端服務的核心目錄和身分識別管
 * [Office 365](http://products.office.com/business/compare-office-365-for-business-plans/)
 * [Microsoft Intune](https://account.manage.microsoft.com/Signup/MainSignUp.aspx?OfferId=40BE278A-DFD1-470a-9EF7-9F2596EA7FF9&ali=1)
 
-### <a name="manage-an-azureprovisioned-default-directory"></a>管理 Azure 所佈建的預設目錄
+### <a name="manage-an-azure-provisioned-default-directory"></a>管理 Azure 所佈建的預設目錄
 現在，如果註冊 Azure 而且您的訂用帳戶與該目錄相關聯，則會自動建立目錄。 但是，如果您在 2013 年 10 月前第一次註冊 Azure，則不會自動建立目錄。 在該情況下，Azure 可能已透過佈建您帳戶的預設目錄，以針對帳戶進行「回填」。 您的訂用帳戶之後會與該預設目錄相關聯。
 
 目錄的回填工作是在 2013 年 10 月於 Azure 安全性模型的整體改善期間完成。 它可協助將組織身分識別功能提供給所有 Azure 客戶，並確保可在目錄中以使用者身分存取所有 Azure 資源。 您必須要有目錄，才能使用 Azure。 為了達到此目標，任何在 2013 年 7 月 7 日之前註冊但沒有目錄的使用者都必須建立目錄。 如果您已經建立目錄，則訂用帳戶會與該目錄相關聯。
@@ -150,6 +150,6 @@ Azure AD 需要符合特定條件才能刪除目錄。 這可降低刪除目錄�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

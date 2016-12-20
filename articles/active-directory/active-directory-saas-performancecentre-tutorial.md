@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 PerformanceCentre 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 PerformanceCentre 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 PerformanceCentre 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 PerformanceCentre 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 65288c32-f7e6-4eb3-a6dc-523c3d748d1c
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9b8c63d512f49a9b1478642f9f6733c849e3f48d
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-performancecentre"></a>教學課程：Azure Active Directory 與 PerformanceCentre 整合
+# <a name="tutorial-azure-active-directory-integration-with-performancecentre"></a>教學課程：Azure Active Directory 與 PerformanceCentre 整合
 本教學課程旨在說明如何整合 PerformanceCentre 與 Azure Active Directory (Azure AD)。  
 PerformanceCentre 與 Azure AD 整合提供下列優點： 
 
@@ -171,7 +175,7 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
    d. 在 [角色] 清單中選取 [使用者]。
-   e. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-performancecentre-tutorial/create_aaduser_07.png) 
@@ -181,7 +185,7 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-performancecentre-test-user"></a>建立 PerformanceCentre 測試使用者
 本節的目標是在 PerformanceCentre 中建立名為 Britta Simon 的使用者。
@@ -278,6 +282,6 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

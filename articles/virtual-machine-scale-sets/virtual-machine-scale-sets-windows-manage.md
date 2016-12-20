@@ -1,33 +1,37 @@
 ---
-title: 管理虛擬機器擴展集中的 VM | Microsoft Docs
-description: 使用 Azure PowerShell 管理虛擬機器擴展集中的虛擬機器。
+title: "管理虛擬機器擴展集中的 VM | Microsoft Docs"
+description: "使用 Azure PowerShell 管理虛擬機器擴展集中的虛擬機器。"
 services: virtual-machine-scale-sets
-documentationcenter: ''
+documentationcenter: 
 author: davidmu1
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: d35fa77a-de96-4ccd-a332-eb181d1f4273
 ms.service: virtual-machine-scale-sets
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/14/2016
+ms.date: 09/27/2016
 ms.author: davidmu
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 812d5c977ace7176e81e3e875daaf8e643c95a46
+
 
 ---
-# 管理虛擬機器擴展集中的虛擬機器
-您可以使用本文中的工作來管理虛擬機器擴展集中的虛擬機器資源。
+# <a name="manage-virtual-machines-in-a-virtual-machine-scale-set"></a>管理虛擬機器擴展集中的虛擬機器
+您可以使用本文中的工作來管理虛擬機器擴展集中的虛擬機器。
 
-所有涉及管理擴展集中虛擬機器的工作，都需要您知道要管理的電腦執行個體識別碼。您可以使用 [Azure 資源總管](https://resources.azure.com)尋找擴展集中虛擬機器的執行個體識別碼。您也可以使用資源總管來確認您所完成的工作狀態。
+大部分涉及管理擴展集中虛擬機器的工作，都需要您知道要管理的電腦執行個體識別碼。 您可以使用 [Azure 資源總管](https://resources.azure.com) 尋找擴展集中虛擬機器的執行個體識別碼。 您也可以使用資源總管來確認您所完成的工作狀態。
 
-如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-## 顯示虛擬機器擴展集的相關資訊
-您可以取得擴展集，也稱為執行個體檢視的一般資訊。或者，您可以取得更特定的資訊，如集合中的資源資訊。
+## <a name="display-information-about-a-scale-set"></a>顯示擴展集的相關資訊
+您可以取得擴展集，也稱為執行個體檢視的一般資訊。 或者，您可以取得更特定的資訊，如擴展集中的資源資訊。
 
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*，並以虛擬機器擴展集的名稱取代*擴展集名稱*，然後執行命令：
+將引號值取代為名稱或您的資源群組和擴展集，然後執行命令︰
 
     Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
 
@@ -87,11 +91,11 @@ ms.author: davidmu
         Settings                                : {"xmlCfg":"...","storageAccount":"astore"}
     ProvisioningState                           : Succeeded
 
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以虛擬機器擴展集的名稱取代*擴展集名稱*，並以您要取得相關資訊之虛擬機器的執行個體識別碼取代 *#*，然後執行命令：
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要取得相關資訊的虛擬機器執行個體識別碼，然後加以執行︰
 
     Get-AzureRmVmssVM -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-它會傳回類似下列畫面：
+它會傳回類似下列的範例：
 
     Id                            : /subscriptions/{sub-id}/resourceGroups/myrg1/providers/Microsoft.Compute/
                                     virtualMachineScaleSets/myvmss1/virtualMachines/0
@@ -140,12 +144,12 @@ ms.author: davidmu
       Settings                    : {"xmlCfg":"...","storageAccount":"astore"}
       ProvisioningState           : Succeeded
 
-## 啟動擴展集中的虛擬機器
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要啟動的虛擬機器識別碼取代 *#*，然後執行命令：
+## <a name="start-a-virtual-machine-in-a-scale-set"></a>啟動擴展集中的虛擬機器
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要啟動的虛擬機器識別碼，然後加以執行：
 
     Start-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-在資源總管中，我們可以看到執行個體的狀態是**執行中**：
+在資源總管中，我們可以看到執行個體的狀態是 **執行中**：
 
     "statuses": [
       {
@@ -161,14 +165,14 @@ ms.author: davidmu
       }
     ]
 
-您可以啟動集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
+您可以啟動擴展集中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
 
-## 停止擴展集中的虛擬機器
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要停止的虛擬機器識別碼取代 *#*，然後執行命令：
+## <a name="stop-a-virtual-machine-in-a-scale-set"></a>停止擴展集中的虛擬機器
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要停止的虛擬機器識別碼，然後加以執行：
 
     Stop-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-在資源總管中，我們可以看到執行個體的狀態是**解除配置**：
+在資源總管中，我們可以看到執行個體的狀態是 **解除配置**：
 
     "statuses": [
       {
@@ -184,20 +188,32 @@ ms.author: davidmu
       }
     ]
 
-若要停止虛擬機器但不解除配置，請使用 -StayProvisioned 參數。您可以停止集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
+若要停止虛擬機器但不解除配置，請使用 -StayProvisioned 參數。 您可以停止集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
 
-## 重新啟動擴展集中的虛擬機器
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要重新啟動的虛擬機器識別碼取代 *#*，然後執行命令：
+## <a name="restart-a-virtual-machine-in-a-scale-set"></a>重新啟動擴展集中的虛擬機器
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要重新啟動的虛擬機器識別碼，然後加以執行：
 
     Restart-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
 您可以重新啟動集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
 
-## 移除擴展集中的虛擬機器
-在這個命令中，以包含虛擬機器擴展集的資源群組名稱取代*資源群組名稱*、以擴展集的名稱取代*擴展集名稱*，並以您要從擴展集中移除的虛擬機器識別碼取代 *#*，然後執行命令：
+## <a name="remove-a-virtual-machine-from-a-scale-set"></a>移除擴展集中的虛擬機器
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要移除的虛擬機器識別碼，然後加以執行：  
 
     Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name" -InstanceId #
 
 您可以一次移除虛擬機器擴展集，只要不使用 -InstanceId 參數即可。
 
-<!---HONumber=AcomDC_0720_2016-->
+## <a name="change-the-capacity-of-a-scale-set"></a>變更擴展集的容量
+您可以新增或移除虛擬機器，方法是變更集合的容量。 取得您想要變更的擴展集，設定您想要的容量，然後使用新的容量更新擴展集。 在這些命令中，將引號值取代為名稱或您的資源群組和擴展集。
+
+  $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" $vmss.sku.capacity = 5 Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
+
+如果您要從擴展集移除虛擬機器，會先移除具有最高識別碼的虛擬機器。
+
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

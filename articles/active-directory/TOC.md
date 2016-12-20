@@ -66,7 +66,6 @@
 
 #### [稽核事件](active-directory-reporting-audit-events.md)
 #### [保留](active-directory-reporting-retention.md)
-#### [回填](active-directory-reporting-backfill.md)
 #### [延遲](active-directory-reporting-latencies.md)
 #### [Notifications](active-directory-reporting-notifications.md)
 ### 了解報告
@@ -297,6 +296,6 @@
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

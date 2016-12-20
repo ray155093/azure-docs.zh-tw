@@ -8,7 +8,7 @@
 # 作法
 ## 使用 Academic Knowledge API 進行開發
 ### [概觀](https://www.microsoft.com/cognitive-services/en-us/academic-knowledge-api/documentation/overview)
-### [API 參考資料](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/565d9001ca73072048922d97)
+### [API 參考](https://dev.projectoxford.ai/docs/services/56332331778daf02acc0a50b/operations/565d9001ca73072048922d97)
 
 ## 使用 Text Analytics API 進行開發
 ### [API 移轉](cognitive-services-text-analytics-api-migration.md)
@@ -20,7 +20,7 @@
 
 ## 使用說話者辨識 API 進行開發
 ### [API 概觀](https://www.microsoft.com/cognitive-services/en-us/speaker-recognition-api/documentation)
-### [API 參考資料](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797)
+### [API 參考](https://dev.projectoxford.ai/docs/services/563309b6778daf02acc0a508/operations/5645c3271984551c84ec6797)
 ## [使用臉部 API 進行開發](https://www.microsoft.com/cognitive-services/en-us/face-api/documentation/overview)
 ## [使用情緒 API 進行開發](https://www.microsoft.com/cognitive-services/en-us/emotion-api/documentation)
 
@@ -29,7 +29,7 @@
 ### [Python API](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api/documentation/getstarted/getstartedwithpython)
 ### [C## API](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api/documentation/getstarted/getstartedvisionapiforwindows)
 ### [呼叫 API](https://www.microsoft.com/cognitive-services/en-us/Computer-Vision-API/documentation/vision-api-how-to-topics/HowToCallVisionAPI)
-### [API 參考資料](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fa)
+### [API 參考](https://dev.projectoxford.ai/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fa)
 
 ## 使用 Bing API 進行開發
 ### Bing 搜尋 API
@@ -45,7 +45,7 @@
 ## [使用 Language Understanding Intelligent Service 進行開發](https://www.luis.ai/Help/)
 
 # 參考
-## [PowerShell Cmdlet](https://docs.microsoft.com/powershell/azureps-cmdlets-docs)
+## [PowerShell](/powershell/resourcemanager/azurerm.cognitiveservices/v0.4.1/azurerm.cognitiveservices)
 ## [REST](https://docs.microsoft.com/rest/api/cognitiveservices/)
 
 # 資源 
@@ -54,6 +54,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=cognitive-services)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

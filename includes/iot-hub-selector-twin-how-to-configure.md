@@ -4,22 +4,21 @@
 > 
 > 
 
-## <a name="introduction"></a>Introduction
-In [Get started with IoT Hub twins][lnk-twin-tutorial], you learned how to set device meta-data from your solution back end using *tags*, report device conditions from a device app using *reported properties*, and query this information using a SQL-like language.
+## <a name="introduction"></a>簡介
+在[開始使用 IoT 中樞裝置對應項][lnk-twin-tutorial]中，您會學到如何使用「標籤」從解決方案後端設定裝置中繼資料，使用「報告屬性」從裝置應用程式報告裝置條件，以及使用類似 SQL 的語言查詢此資訊。
 
-In this tutorial, you will learn how to use the the twin's *desired properties* in conjunction with *reported properties*, to remotely configure device apps. More specifically, this tutorial shows how twin's reported and desired properties enable a multi-step configuration of a device application setting, and provide the visibility to the solution back end of the status of this operation across all devices.
+在本教學課程中，您將學習如何使用裝置對應項的「所需屬性」搭配「報告屬性」，遠端設定裝置應用程式。 更具體來說，本教學課程示範裝置對應項的報告和所需屬性如何啟用裝置應用程式設定的多步驟組態，並提供所有裝置的這項作業狀態的解決方案後端可見性。 您可以在[使用 IoT 中樞的裝置管理概觀][lnk-dm-overview]中，找到關於裝置組態所扮演角色的詳細資訊。
 
-At a high level, this tutorial follows the *desired state pattern* for device management. The fundamental idea of this pattern is to have the solution back end specify the desired state for the managed devices, instead of sending specific commands. This puts the device in charge of establishing the best way to reach the desired state (very important in IoT scenarios where specific device conditions affect the ability to immediately carry out specific commands), while continually reporting to the back end the current state and potential error conditions. The desired state pattern is instrumental to the management of large sets of devices, as it enables the back end to have full visibility of the state of the configuration process across all devices.
-You can find more information regarding the role of the desired state pattern in device management in [Overview of Azure IoT Hub device management][lnk-dm-overview].
+概括而言，使用裝置對應項讓解決方案後端能夠指定受管理裝置所需的設定，而不是傳送特定的命令。 這樣會讓裝置負責建立更新其組態的最佳方式 (在特定裝置條件會影響立即執行特定命令能力的 IoT 案例中非常重要)，同時持續向後端報告更新程序的目前狀態和潛在錯誤條件。 這個模式對於大量裝置的管理很有幫助，因為它可讓後端具有所有裝置上設定程序狀態的完整可見性。
 
 > [!NOTE]
-> In scenarios where devices are controlled in a more interactive fashion (turn on a fan from a user-controlled app), consider using [cloud-to-device methods][lnk-methods].
+> 在裝置是以更為互動的方式控制的案例中 (從使用者控制的應用程式開啟風扇)，請考量使用[直接方法][lnk-methods]。
 > 
 > 
 
-In this tutorial, the application back end changes the telemetry configuration of a target device and, as a result of that, the device app follows a multi-step process to apply a configuration update (e.g. requiring a software module restart), which this tutorial simulates with a simple delay).
+在本教學課程中，應用程式後端會變更目標裝置的遙測組態，因此，裝置應用程式會遵循多步驟程序以套用組態更新 (例如，需要軟體模組重新啟動)，此教學課程會模擬簡單的延遲。
 
-The back-end stores the configuration in the device twin's desired properties in the following way:
+後端會以下列方式在裝置對應項的所需屬性中儲存組態：
 
         {
             ...
@@ -37,11 +36,11 @@ The back-end stores the configuration in the device twin's desired properties in
         }
 
 > [!NOTE]
-> Since configurations can be complex objects, they are usually assigned unique ids (hashes or [GUIDs][lnk-guid]) to simplify their comparisons.
+> 因為組態可以是複雜的物件，通常會為它們指派唯一的識別碼 (雜湊或 [GUID][lnk-guid]) 以簡化其比較。
 > 
 > 
 
-The device app reports its current configuration mirroring the desired property **telemetryConfig** in the reported properties:
+裝置應用程式會在報告屬性中報告其目前組態鏡像所需屬性 **telemetryConfig**︰
 
         {
             "properties": {
@@ -57,9 +56,9 @@ The device app reports its current configuration mirroring the desired property 
             }
         }
 
-Note how the reported **telemetryConfig** has an additional property **status**, used to report the state of the configuration update process.
+請注意報告 **telemetryConfig** 如何具有額外屬性 **status**，用來報告組態更新程序的狀態。
 
-When a new desired configuration is received, the device app reports a pending configuration by changing the information:
+當收到新的所需組態時，裝置應用程式會藉由變更資訊來報告暫止的組態︰
 
         {
             "properties": {
@@ -79,13 +78,13 @@ When a new desired configuration is received, the device app reports a pending c
             }
         }
 
-Then, at some later time, the device app will report the success of failure of this operation by updating the above property.
-Note how the back end is able, at any time, to query the status of the configuration process across all the devices.
+然後，在稍後的時間，裝置應用程式將會藉由更新上述屬性來報告這項作業成功或失敗。
+請注意後端如何隨時查詢所有裝置的組態程序的狀態。
 
-This tutorial shows you how to:
+本教學課程說明如何：
 
-* Create a simulated device that receives configuration updates from the back end and reports multiple updates as *reported properties* on the configuration update process.
-* Create a back-end app that updates the desired configuration of a device, and then queries the configuration update process.
+* 建立模擬裝置應用程式，接收來自後端的組態更新，並且將多個更新報告為組態更新程序上的「報告屬性」。
+* 建立後端應用程式，更新裝置的所需組態，然後查詢組態更新程序。
 
 <!-- links -->
 
@@ -94,6 +93,6 @@ This tutorial shows you how to:
 [lnk-twin-tutorial]: ../articles/iot-hub/iot-hub-node-node-twin-getstarted.md
 [lnk-guid]: https://en.wikipedia.org/wiki/Globally_unique_identifier
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 
