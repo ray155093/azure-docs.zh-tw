@@ -1,13 +1,13 @@
 ---
-title: 群組原則和 MDM 設定 | Microsoft Docs
-description: 提供應該在公司所擁有的裝置上使用的群組原則和行動裝置管理 (MDM) 設定的相關資訊。 這些原則會套用至使用者的整個裝置。
+title: "群組原則和 MDM 設定 | Microsoft Docs"
+description: "提供應該在公司所擁有的裝置上使用的群組原則和行動裝置管理 (MDM) 設定的相關資訊。 這些原則會套用至使用者的整個裝置。"
 services: active-directory
-keywords: 什麼是企業狀態漫遊的群組原則和 MDM 設定, 企業狀態漫遊, windows 雲端
-documentationcenter: ''
+keywords: "什麼是企業狀態漫遊的群組原則和 MDM 設定, 企業狀態漫遊, windows 雲端"
+documentationcenter: 
 author: femila
 manager: swadhwa
 editor: curtand
-
+ms.assetid: 6471a9b3-8dd4-4237-89d1-bfbeca9f8252
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 1b9e0ab4be96bec6deeaf50ec411c37b9379598a
+
 
 ---
 # <a name="group-policy-and-mdm-settings"></a>群組原則和 MDM 設定
@@ -54,6 +58,9 @@ MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。  Windo
 * [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 * [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

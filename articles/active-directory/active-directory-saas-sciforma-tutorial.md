@@ -1,11 +1,11 @@
 ---
-title: 教學課程：Azure Active Directory 與 Sciforma 整合 | Microsoft Docs
-description: 了解如何使用 Sciforma 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 Sciforma 整合 | Microsoft Docs"
+description: "了解如何使用 Sciforma 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: abbfb5ac-7687-4153-b263-8090102dae37
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2a61552f3275aa58aca9c014d24ae69d91ce59d5
+
 
 ---
-# <a name="tutorial:-azure-ad-integration-with-sciforma"></a>教學課程：Azure AD 與 Sciforma 整合
+# <a name="tutorial-azure-ad-integration-with-sciforma"></a>教學課程：Azure AD 與 Sciforma 整合
 本教學課程的目的是要示範 Azure 與 Sciforma 的整合。  
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -36,7 +40,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-sciforma"></a>啟用 Sciforma 的應用程式整合
 本節的目的是要說明如何啟用 Sciforma 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-sciforma,-perform-the-following-steps:"></a>若要啟用 Sciforma 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-sciforma-perform-the-following-steps"></a>若要啟用 Sciforma 的應用程式整合，請執行下列步驟：
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-sciforma-tutorial/IC700993.png "Active Directory")
@@ -61,7 +65,7 @@ ms.author: jeedes
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Sciforma。
 
-### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
+### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [Sciforma] 應用程式整合頁面上，按一下 [設定單一登入] 開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-sciforma-tutorial/IC777372.png "Configure single sign-on")
@@ -88,7 +92,7 @@ ms.author: jeedes
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-sciforma,-perform-the-following-steps:"></a>若要將使用者指派給 Sciforma，請執行下列步驟：
+### <a name="to-assign-users-to-sciforma-perform-the-following-steps"></a>若要將使用者指派給 Sciforma，請執行下列步驟：
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Sciforma] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -99,6 +103,9 @@ ms.author: jeedes
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

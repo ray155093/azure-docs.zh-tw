@@ -1,12 +1,12 @@
 ---
-title: Azure AD 同盟中繼資料 | Microsoft Docs
-description: 本文說明 Azure Active Directory 針對接受 Azure Active Directory 權杖之服務所發佈的同盟中繼資料文件。
+title: "Azure AD 同盟中繼資料 | Microsoft Docs"
+description: "本文說明 Azure Active Directory 針對接受 Azure Active Directory 權杖之服務所發佈的同盟中繼資料文件。"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: c2d5f80b-aa74-452c-955b-d8eb3ed62652
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: priyamo
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 7d6a118481983215983e6db61804edc98554069d
+
 
 ---
 # <a name="federation-metadata"></a>同盟中繼資料
@@ -154,6 +158,6 @@ https://login.microsoftonline.com/common/wsfed
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

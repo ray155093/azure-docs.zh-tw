@@ -1,100 +1,103 @@
 ---
-title: Application Insights 的相依性追蹤
-description: 使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。
+title: "Application Insights 的相依性追蹤"
+description: "使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: .net
 author: alancameronwills
 manager: douge
-
+ms.assetid: d15c4ca8-4c1a-47ab-a03d-c322b4bb2a9e
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 04/13/2016
+ms.date: 10/28/2016
 ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: e2e81139152549eaa40d788c80cfdd2388b2d55d
+ms.openlocfilehash: 3b3a203ce261405ee7392561ffbc19c047c0d370
+
 
 ---
-# 設定 Application Insights：追蹤相依性
-[!INCLUDE [app-insights-selector-get-started-dotnet](../../includes/app-insights-selector-get-started-dotnet.md)]
-
-「相依性」是由應用程式呼叫的外部元件。這通常是使用 HTTP 呼叫的服務，或資料庫，或檔案系統。在 Visual Studio Application Insights 中，您很容易看到應用程式等待相依性所用的時間，以及相依性呼叫失敗的頻率。
+# <a name="set-up-application-insights-dependency-tracking"></a>設定 Application Insights：追蹤相依性
+「相依性」  是由應用程式呼叫的外部元件。 這通常是使用 HTTP 呼叫的服務，或資料庫，或檔案系統。 [Application Insights](app-insights-overview.md) 會測量您應用程式等待相依性所花費的時間，以及相依性呼叫失敗的頻率。 您可以調查特定的呼叫，然後將它們與要求和例外狀況建立關聯。
 
 ![範例圖表](./media/app-insights-asp-net-dependencies/10-intro.png)
 
 預設的相依性監視目前會回報這些相依性類型的呼叫：
 
-* ASP.NET
+* 伺服器
   * SQL DATABASE
   * 使用 HTTP 式繫結的 ASP.NET Web 和 WCF 服務
   * 本機或遠端 HTTP 呼叫
   * Azure DocumentDb、資料表、Blob 儲存體和佇列
-* Java
-  * 透過 [JDBC](http://docs.oracle.com/javase/7/docs/technotes/guides/jdbc/) 驅動程式，例如 MySQL、SQL Server、PostgreSQL 或 SQLite 呼叫資料庫。
-* 網頁中的 JavaScript - [網頁 SDK](app-insights-javascript.md) 會將 Ajax 呼叫自動記錄為相依性。
+* 網頁
+  * AJAX 呼叫
 
-您可以使用 [TrackDependency API](app-insights-api-custom-events-metrics.md#track-dependency)，撰寫自己的 SDK 呼叫來監視其他相依性。
+您也可以使用 [TrackDependency API](app-insights-api-custom-events-metrics.md#track-dependency)，同時在用戶端和伺服器程式碼中撰寫自己的 SDK 呼叫，來監視其他相依性。
 
-## 設定相依性監視
-您需要 [Microsoft Azure](http://azure.com) 訂用帳戶。
+## <a name="set-up-dependency-monitoring"></a>設定相依性監視
+[Application Insights SDK](app-insights-asp-net.md) 會自動收集部分相依性資訊。 若要取得完整資料，請為主機伺服器安裝適當的代理程式。
 
-### 如果您的應用程式是在您的 IIS 伺服器上執行
-如果您的 Web 應用程式在 .NET 4.6 或更新版本上執行，您可以在您的應用程式[安裝 Application Insights SDK](app-insights-asp-net.md)，或安裝 Application Insights 狀態監視器。不需要安裝二個。
+| 平台 | Install |
+| --- | --- |
+| IIS 伺服器 |[在您的伺服器上安裝狀態監視器](app-insights-monitor-performance-live-website-now.md)或[將您的應用程式升級到 .NET Framework 4.6 或更新版本](http://go.microsoft.com/fwlink/?LinkId=528259)，然後在應用程式中安裝 [Application Insights SDK](app-insights-asp-net.md)。 |
+| Azure Web 應用程式 |在您的 Web 應用程式控制台中，[開啟 Application Insights 刀鋒視窗](app-insights-azure-web-apps.md)，然後在出現提示時選擇 [安裝]。 |
+| Azure 雲端服務 |[使用啟動工作](app-insights-cloudservices.md)或[安裝 .NET Framework 4.6+](../cloud-services/cloud-services-dotnet-install-dotnet.md) |
 
-否則，請在伺服器上安裝 Application Insights 狀態監視器：
+## <a name="where-to-find-dependency-data"></a>哪裡可以找到相依性資料
+* [應用程式對應](#application-map)會以視覺化方式顯示您應用程式與相鄰元件之間的相依性。
+* [效能、瀏覽器及失敗刀鋒視窗](#performance-and-blades)會顯示伺服器相依性資料。
+* [瀏覽器刀鋒視窗](#ajax-calls)會顯示來自您使用者瀏覽器的 AJAX 呼叫。
+* [從速度緩慢或失敗的要求逐一點選](#diagnose-slow-requests)來檢查它們的相依性呼叫。
+* [分析](#analytics)可用來查詢相依性資料。
 
-1. 在 IIS Web 伺服器中，以系統管理員認證登入。
-2. 下載並執行[狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648)。
-3. 在安裝精靈中，登入 Microsoft Azure。
-   
-    ![使用 Microsoft 帳戶認證登入 Azure](./media/app-insights-asp-net-dependencies/appinsights-035-signin.png)
-   
-    *連接錯誤？ 請參閱[疑難排解](#troubleshooting)。*
-4. 挑選您想要監視的已安裝 Web 應用程式或網站，然後設定您在 Application Insights 入口網站中查看結果時想要使用的資源。
-   
-    ![選擇應用程式和資源。](./media/app-insights-asp-net-dependencies/appinsights-036-configAIC.png)
-   
-    一般來說，您可以選擇設定新的資源和[資源群組][roles]。
-   
-    否則，如果您已經為網站設定 [Web 測試][availability]，或設定 [Web 用戶端監視][client]，請使用現有的資源。
-5. 重新啟動 IIS。
-   
-    ![選擇對話方塊頂端的 [重新啟動]。](./media/app-insights-asp-net-dependencies/appinsights-036-restart.png)
-   
-    您的 Web 服務將會中斷一小段時間。
-6. 請注意，ApplicationInsights.config 已插入至您想要監視的 Web 應用程式。
-   
-    ![在 Web 應用程式的程式碼檔案旁找到 .config 檔案。](./media/app-insights-asp-net-dependencies/appinsights-034-aiconfig.png)
-   
-   web.config 也有一些變動。
+## <a name="application-map"></a>應用程式對應
+應用程式對應可做為探索應用程式元件之間相依性的視覺輔助工具。 它會從來自您應用程式的遙測自動產生。 此範例顯示來自瀏覽器指令碼的 AJAX 呼叫，以及從伺服器應用程式到兩個外部服務的 REST 呼叫。
 
-#### 稍後再 (重新) 設定嗎？
-完成精靈之後，您隨時都可以重新設定代理程式。如果已安裝代理程式，但初始設定有一些問題，則您也可以這樣做。
+![應用程式對應](./media/app-insights-asp-net-dependencies/08.png)
 
-![按一下工作列上的 [Application Insights] 圖示](./media/app-insights-asp-net-dependencies/appinsights-033-aicRunning.png)
+* **從方塊中瀏覽**至相關的相依性及其他圖表。
+* **將對應釘選**至[儀表板](app-insights-dashboards.md) (對應將可在其中完整運作)。
 
-### 如果您的應用程式是以 Azure Web 應用程式執行
-在您的 Azure Web 應用程式的控制台中，加入 Application Insights 延伸模組。
+[深入了解](app-insights-app-map.md)。
 
-![在您的 Web 應用程式中，依序按一下 [設定]、[延伸模組]、[加入]、[Application Insights]](./media/app-insights-asp-net-dependencies/05-extend.png)
+## <a name="performance-and-failure-blades"></a>效能和失敗刀鋒視窗
+[效能] 刀鋒視窗會顯示伺服器應用程式所發出之相依性呼叫的持續時間。 其中會顯示摘要圖表和依呼叫劃分的表格。
 
-### 如果是 Azure 雲端服務專案
-[將指令碼加入至 Web 和背景工作角色](app-insights-cloudservices.md#dependencies)或[安裝 .NET Framework 4.6 或更新版本](../cloud-services/cloud-services-dotnet-install-dotnet.md)。
+![效能刀鋒視窗相依性圖表](./media/app-insights-asp-net-dependencies/dependencies-in-performance-blade.png)
 
-## <a name="diagnosis"></a> 診斷相依性效能問題
-若要評估您伺服器上的要求效能，請開啟 [效能] 刀鋒視窗，然後向下捲動以查看要求格線︰
+在摘要圖表或表格項目上逐一點選來搜尋這些呼叫的原始發生項目。
+
+![相依性呼叫執行個體](./media/app-insights-asp-net-dependencies/dependency-call-instance.png)
+
+[失敗計數] 會顯示在 [失敗] 刀鋒視窗上。 失敗是指任何範圍不在 200-399 內或是不明的傳回碼。
+
+> [!NOTE]
+> **100% 失敗？** - 這可能是指您取得的只是部分相依性資料。 您必須[設定適合您平台的相依性監視](#set-up-dependency-monitoring)。
+>
+>
+
+## <a name="ajax-calls"></a>AJAX 呼叫
+[瀏覽器] 刀鋒視窗會顯示來自[您網頁中 JavaScript](app-insights-javascript.md) 之 AJAX 呼叫的持續時間和失敗率。 它們會顯示為「相依性」。
+
+## <a name="a-namediagnosisa-diagnose-slow-requests"></a><a name="diagnosis"></a> 診斷速度緩慢的要求
+每個要求事件都與相依性呼叫、例外狀況及您應用程式處理要求時所追蹤的其他事件相關聯。 因此，如果某些要求執行效能很差，您可以了解是否是因為某個相依性的回應太慢。
+
+讓我們逐步解說一個該情況的範例。
+
+### <a name="tracing-from-requests-to-dependencies"></a>進行從要求到相依性的追蹤
+開啟 [效能] 刀鋒視窗，然後查看要求方格：
 
 ![含有平均和計數的要求清單](./media/app-insights-asp-net-dependencies/02-reqs.png)
 
-最上方的要求花了很長的時間。來看看我們是否可以查明時間花費在何處。
+最上方的要求花了很長的時間。 來看看我們是否可以查明時間花費在何處。
 
 按一下該列，以查看個別的要求事件：
 
 ![要求發生次數的清單](./media/app-insights-asp-net-dependencies/03-instances.png)
 
-按一下任一個長時間執行的執行個體，來進一步檢查。
-
-向下捲動至與此要求相關的遠端相依性呼叫：
+按一下任何長時間執行的執行個體來進一步檢查，然後向下捲動至與此要求相關的遠端相依性呼叫：
 
 ![尋找遠端相依性的呼叫，識別不尋常的持續時間](./media/app-insights-asp-net-dependencies/04-dependencies.png)
 
@@ -104,27 +107,74 @@ ms.author: awills
 
 ![點選該遠端相依性來找出問題原因](./media/app-insights-asp-net-dependencies/05-detail.png)
 
-詳細資料含有足以診斷問題的資訊。
+看起來這就是問題所在。 我們已經指出問題，因此現在只需要了解為何該呼叫花費那麼長的時間。
 
-在不同的情況下，所有相依性呼叫都不長，但切換至時間軸檢視，我們即可看到我們的內部處理中發生延遲的位置︰
+### <a name="request-timeline"></a>要求時間軸
+在一個不同的案例中，並沒有任何特別長的相依性呼叫。 但藉由切換到時間軸檢視，我們即可看到在內部處理中發生延遲的地方：
 
 ![尋找遠端相依性的呼叫，識別不尋常的持續時間](./media/app-insights-asp-net-dependencies/04-1.png)
 
-## 失敗
-如果有失敗的要求，請按一下圖表。
+在第一次相依性呼叫之後似乎有一個很大的間隔，因此我們應該查看程式碼來找出原因。
+
+### <a name="profiling-your-live-site"></a>分析您的即時站台
+
+不清楚時間花在哪裡嗎？ Application Insights 分析工具會追蹤對您即時站台發出的 HTTP 呼叫，並顯示您程式碼中哪些函式花費的時間最長。 此分析工具目前是受限的預覽版 - 您可以[註冊來試用它](https://aka.ms/AIProfilerPreview)。
+
+## <a name="failed-requests"></a>失敗的要求
+失敗的要求可能也會與失敗的相依性呼叫關聯。 同樣地，我們可以逐一點選來追蹤問題。
 
 ![按一下失敗要求的圖表](./media/app-insights-asp-net-dependencies/06-fail.png)
 
-點選要求類型和要求執行個體，以尋找失敗的遠端相依性呼叫。
+逐一點選至失敗要求的某個發生項目，然後查看其相關事件。
 
 ![按一下要求類型，按一下執行個體以取得同一個執行個體的不同檢視，按一下執行個體以取得例外狀況的詳細資料。](./media/app-insights-asp-net-dependencies/07-faildetail.png)
 
-## 自訂相依性追蹤
-標準的相依性追蹤模組會自動探索外部相依性，例如資料庫和 REST API。但是您可能想以相同的方式對待一些其他元件。
+## <a name="analytics"></a>Analytics
+您可以在[分析查詢語言](app-insights-analytics.md)中追蹤相依性。 以下是一些範例。
+
+* 尋找任何失敗的相依性呼叫：
+
+```
+
+    dependencies | where success != "True" | take 10
+```
+
+* 尋找 AJAX 呼叫︰
+
+```
+
+    dependencies | where client_Type == "Browser" | take 10
+```
+
+* 尋找與要求關聯的相依性呼叫：
+
+```
+
+    dependencies
+    | where timestamp > ago(1d) and  client_Type != "Browser"
+    | join (requests | where timestamp > ago(1d))
+      on operation_Id  
+```
+
+
+* 尋找與頁面檢視關聯的 AJAX 呼叫：
+
+```
+
+    dependencies
+    | where timestamp > ago(1d) and  client_Type == "Browser"
+    | join (browserTimings | where timestamp > ago(1d))
+      on operation_Id
+```
+
+
+
+## <a name="custom-dependency-tracking"></a>自訂相依性追蹤
+標準的相依性追蹤模組會自動探索外部相依性，例如資料庫和 REST API。 但是您可能想以相同的方式對待一些其他元件。
 
 您可以使用標準模組所使用的相同 [TrackDependency API](app-insights-api-custom-events-metrics.md#track-dependency) 來撰寫傳送相依性資訊的程式碼。
 
-例如，如果您建置程式碼的組件不是您自己撰寫的，您可以計算對組件的所有呼叫，以找出它佔回應時間的比例。若要在 Application Insights 中的相依性圖表中顯示此資料，請使用 `TrackDependency` 傳送。
+例如，如果您建置程式碼的組件不是您自己撰寫的，您可以計算對組件的所有呼叫，以找出它佔回應時間的比例。 若要在 Application Insights 中的相依性圖表中顯示此資料，請使用 `TrackDependency`傳送。
 
 ```C#
 
@@ -141,33 +191,24 @@ ms.author: awills
             }
 ```
 
-如果您想要關閉標準的相依性追蹤模組，請移除 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中 DependencyTrackingTelemetryModule 的參考。
+如果您想要關閉標準的相依性追蹤模組，請移除 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)中 DependencyTrackingTelemetryModule 的參考。
 
-## 疑難排解
+## <a name="troubleshooting"></a>疑難排解
 *相依性成功旗標一律顯示 true 或 false。*
 
-* 升級到最新版本的 SDK。如果您的 .NET 版本低於 4.6，請安裝[狀態監視器](app-insights-monitor-performance-live-website-now.md)。
+*SQL 查詢未完整顯示。*
 
-## 後續步驟
+* 升級到最新版本的 SDK。 如果您的 .NET 版本低於 4.6：
+  * IIS 主機：在主機伺服器上安裝 [Application Insights 代理程式](app-insights-monitor-performance-live-website-now.md)。
+  * Azure Web 應用程式：在 Web 應用程式控制台中，開啟 [Application Insights] 索引標籤，然後安裝 Application Insights。
+
+## <a name="next-steps"></a>後續步驟
 * [例外狀況](app-insights-asp-net-exceptions.md)
-* [使用者和頁面資料][client]
+* [使用者和頁面資料](app-insights-javascript.md)
 * [Availability](app-insights-monitor-web-app-availability.md)
 
-<!--Link references-->
-
-[api]: app-insights-api-custom-events-metrics.md
-[apikey]: app-insights-api-custom-events-metrics.md#ikey
-[availability]: app-insights-monitor-web-app-availability.md
-[azure]: ../insights-perf-analytics.md
-[client]: app-insights-javascript.md
-[diagnostic]: app-insights-diagnostic-search.md
-[metrics]: app-insights-metrics-explorer.md
-[netlogs]: app-insights-asp-net-trace-logs.md
-[portal]: http://portal.azure.com/
-[qna]: app-insights-troubleshoot-faq.md
-[redfield]: app-insights-asp-net-dependencies.md
-[roles]: app-insights-resources-roles-access-control.md
 
 
+<!--HONumber=Nov16_HO3-->
 
-<!---HONumber=AcomDC_0713_2016-->
+

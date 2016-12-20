@@ -1,14 +1,14 @@
 ---
-title: 在 Azure VM 上手動安裝 SAP HANA 的快速入門指南 | Microsoft Docs
-description: 在 Azure VM 上手動安裝 SAP HANA 的快速入門指南
+title: "在 Azure VM 上手動安裝 SAP HANA 的快速入門指南 | Microsoft Docs"
+description: "在 Azure VM 上手動安裝 SAP HANA 的快速入門指南"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: hermanndms
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-keywords: ''
-
+keywords: 
+ms.assetid: c51a2a06-6e97-429b-a346-b433a785c9f0
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
@@ -16,6 +16,10 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 09/15/2016
 ms.author: hermannd
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 751869985c231e216ff03c9ba6375c19fee4138e
+
 
 ---
 # <a name="quickstart-guide-for-manual-installation-of-single-instance-sap-hana-on-azure-vms"></a>在 Azure VM 上手動安裝單一執行個體 SAP HANA 的快速入門指南
@@ -106,7 +110,7 @@ ms.author: hermannd
 ### <a name="disk-setup"></a>磁碟設定
 Azure 上 Linux VM 中的檔案系統根目錄大小受限。 因此，必須將額外的磁碟空間附加至 VM 才能執行 SAP。 在 SAP 應用程式伺服器 VM 使用於純原型/示範環境中的情況下，可以使用 Azure 標準儲存體磁碟。 然而對 SAP HANA DB 資料和記錄檔而言 - Azure 進階儲存體磁碟應使用於非生產環境中。
 
-有關如何將磁碟連接至 Linux VM 的一些詳細資訊，請參閱 [這裡](virtual-machines-linux-add-disk.md)
+有關如何將磁碟連接至 Linux VM 的一些詳細資訊，請參閱 [這裡](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 如果是 Azure 磁碟快取 - 使用者必須對將用於儲存 HANA 交易記錄檔的磁碟使用「無」。 若為 HANA 資料檔案，則可使用讀取快取。 因為 HANA 是記憶體內部資料庫，所以視整體使用模式而定，Azure 磁碟層級上有多少讀取快取會改善效能 (例如啟動 HANA 並將磁碟中的資料讀入記憶體中)。
 
@@ -115,7 +119,7 @@ Azure 上 Linux VM 中的檔案系統根目錄大小受限。 因此，必須將
 [Here](https://github.com/Azure/azure-quickstart-templates) 可找到用於建立 VM 的範例 Json 範本。
 "101-vm-simple-linux" 會顯示基本範本的外觀，包括可加入 100GB 資料磁碟的儲存體區段。
 
-[這篇文章](virtual-machines-linux-sap-on-suse-quickstart.md) 包含有關如何透過 Powershell 或 CLI 尋找 SUSE 映像的一些資訊，以及透過 UUID 連接磁碟的重要性。
+[這篇文章](virtual-machines-linux-sap-on-suse-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 包含有關如何透過 Powershell 或 CLI 尋找 SUSE 映像的一些資訊，以及透過 UUID 連接磁碟的重要性。
 
 視系統大小和輸送量需求而定，可能需要附加多個磁碟 (而不是一個)，而稍後在這些 OS 層級上建立橫跨這些磁碟的等量磁碟區集合。 這些就是使用者為何會跨多個 Azure 磁碟建立等量磁碟區集合的兩個層面︰
 
@@ -124,9 +128,9 @@ Azure 上 Linux VM 中的檔案系統根目錄大小受限。 因此，必須將
 
 在這裡可以找到有關用來設定串接的兩個主要工具的詳細資訊︰
 
-[有關使用 mdadm 在 Azure VM 上設定 Linux 軟體 RAID 的文章](virtual-machines-linux-configure-raid.md)
+[有關使用 mdadm 在 Azure VM 上設定 Linux 軟體 RAID 的文章](virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-[有關在 Linux Azure VM 上設定邏輯磁碟區管理員的文章](virtual-machines-linux-configure-lvm.md)
+[有關在 Linux Azure VM 上設定邏輯磁碟區管理員的文章](virtual-machines-linux-configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ![](./media/virtual-machines-linux-sap-hana-get-started/image003.jpg)
 
@@ -184,14 +188,14 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 
 在標準 SLES 12 Azure 資源庫映像上安裝 SAP NetWeaver 時，將會出現沒有交換空間的訊息。 若要移除此訊息，您可以如本文件所述，透過 dd、mkswap 和 swapon 手動新增分頁檔案。 只要在 [this article](https://www.suse.com/documentation/sled-12/book_sle_deployment/data/sec_yast2_i_y2_part_expert.html)
 
-另一個選項是透過 Linux VM 代理程式設定交換空間。 您可以在 [這裡](virtual-machines-linux-agent-user-guide.md)
+另一個選項是透過 Linux VM 代理程式設定交換空間。 您可以在 [這裡](virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-### <a name="/etc/hosts"></a>/etc/hosts
+### <a name="etchosts"></a>/etc/hosts
 ![](./media/virtual-machines-linux-sap-hana-get-started/image011.jpg)
 
 開始安裝 SAP 前的另一個重要層面是在 /etc/hosts 檔案中包含 SAP VM 的主機名稱和 IP 位址。 使用者應該在一個 Azure 虛擬網路內部署所有的 SAP VM，然後使用內部 IP 位址。
 
-### <a name="/etc/fstab"></a>/etc/fstab
+### <a name="etcfstab"></a>/etc/fstab
 ![](./media/virtual-machines-linux-sap-hana-get-started/image000c.jpg)
 
 在測試階段，將 nofail 參數新增到 fstab 竟然是個不錯的主意。 如果磁碟發生錯誤，則 VM 仍會啟動，而不會懸置於開機程序 但是，使用者必須留意在此情況下，可能無法使用額外的磁碟空間且處理程序可能會填滿檔案系統根目錄。 為了避免 /hana 遺漏SAP HANA 完全不會啟動。
@@ -256,7 +260,7 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 透過 Yast 所看到的 IBM Java 版本不包含此檔案。 解決方法是從 Oracle 下載 Java。
 您可以在 [這裡](https://scn.sap.com/thread/3908306)
 
-## <a name="manual-sap-hana-installation-via-swpm-as-part-of-a-netweaver-7.5-installation"></a>在 NetWeaver 7.5 安裝過程中透過 SWPM 手動安裝 SAP HANA
+## <a name="manual-sap-hana-installation-via-swpm-as-part-of-a-netweaver-75-installation"></a>在 NetWeaver 7.5 安裝過程中透過 SWPM 手動安裝 SAP HANA
 下列幾個螢幕擷取畫面顯示透過 SWPM (sapinst) 安裝 SAP NetWeaver 7.5 和 SAP HANA SP12 的重要步驟。 在 NW 7.5 安裝過程中，SWPM 也能夠將 HANA 資料庫安裝成單一執行個體。
 
 ![](./media/virtual-machines-linux-sap-hana-get-started/image012.jpg)
@@ -373,23 +377,26 @@ DB 安裝步驟需要存取此資訊。 最好的方法是使用可透過 Yast �
 
 而最後在 SAP 應用程式伺服器和 SAP GUI 安裝之後，使用者應該能夠利用交易 "dbacockpit" 驗證 HANA DB 執行個體。
 
-## <a name="general-information-related-to-sap-azure-certifications,-running-sap-hana-on-azure-and-sap-software-download"></a>與 SAP Azure 認證、在 Azure 上執行 SAP HANA 和 SAP 軟體下載相關的一般資訊
-* 有關在 Windows OS 處於傳統模式的 Azure 上執行 SAP 的一般 SAP Azure 文件︰ [在 Azure 中的 Windows 虛擬機器上使用 SAP](virtual-machines-windows-classic-sap-get-started.md)
+## <a name="general-information-related-to-sap-azure-certifications-running-sap-hana-on-azure-and-sap-software-download"></a>與 SAP Azure 認證、在 Azure 上執行 SAP HANA 和 SAP 軟體下載相關的一般資訊
+* 有關在 Windows OS 處於傳統模式的 Azure 上執行 SAP 的一般 SAP Azure 文件︰ [在 Azure 中的 Windows 虛擬機器上使用 SAP](virtual-machines-windows-classic-sap-get-started.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 * 現有 SAP 範本由客戶的使用方式的相關資訊︰ [適用於 SAP 的 Azure 快速入門範本](https://blogs.msdn.microsoft.com/saponsqlserver/2016/05/16/azure-quickstart-templates-for-sap/)
-* 有關在 Linux OS 處於 Azure Resource Manager 模式的 Azure 上執行 SAP 的一般 SAP Azure 文件︰ [虛擬機器 (VM) 上使用 SAP](virtual-machines-linux-sap-get-started.md)
+* 有關在 Linux OS 處於 Azure Resource Manager 模式的 Azure 上執行 SAP 的一般 SAP Azure 文件︰ [虛擬機器 (VM) 上使用 SAP](virtual-machines-linux-sap-get-started.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * 已認證的 SAP HANA 硬體目錄，其中列出生產環境支援的 Azure VM 類型︰ [已認證的 SAP HANA® 硬體目錄](https://global.sap.com/community/ebook/2014-09-02-hana-hardware/enEN/iaas.html)
-* 如需關於虛擬機器大小 (尤其是對 Linux 工作負載) 的資訊： [Azure 中的虛擬機器大小](virtual-machines-linux-sizes.md)
+* 如需關於虛擬機器大小 (尤其是對 Linux 工作負載) 的資訊： [Azure 中的虛擬機器大小](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * SAP Note，其中列出 Azure 上所有支援的 SAP 產品和針對 SAP 支援的 Azure VM 類型︰ [SAP Note 1928533](https://launchpad.support.sap.com/#/notes/1928533/E)
 * 有關對 Azure 上的 Linux VM 進行 SAP「增強型監視」的 SAP Note： [SAP Note 2191498](https://launchpad.support.sap.com/#/notes/2191498/E)
 * 在 Azure「大型執行個體」上提供的 SAP HANA。 請務必了解，這與在 Azure VM 上執行 SAP HANA 無關，而是關於在混合式環境 (在 Azure VM 中執行 SAP 應用程式伺服器，但在裸機伺服器上執行 SAP HANA) 中執行 SAP HANA︰ [SAP Note 2316233](https://launchpad.support.sap.com/#/notes/2316233/E)
 * 具有 Linux 上 SAPOSCOL 相關資訊的 SAP Note： [SAP Note 1102124](https://launchpad.support.sap.com/#/notes/1102124/E)
 * Microsoft Azure 上的 SAP 主要監視度量： [SAP Note 2178632](https://launchpad.support.sap.com/#/notes/2178632/E)
-* 有關 Azure Resource Manager 的資訊： [Azure Resource Manager 概觀](../resource-group-overview.md)
-* 有關透過範本部署 Linux VM 的資訊： [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)
+* 有關 Azure Resource Manager 的資訊： [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)
+* 有關透過範本部署 Linux VM 的資訊： [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * Azure Resource Manager 與傳統之間的部署模型比較： [Azure Resource Manager 與傳統部署比較：了解資源的部署模型和狀態](../resource-manager-deployment-model.md)
 * 從 SAP Service Marketplace 下載適用於 Linux/HANA 的 NetWeaver 7.5： ![](./media/virtual-machines-linux-sap-hana-get-started/image001.jpg)
 * 從 SAP Service Marketplace 下載 HANA SP12 平台版本︰ ![](./media/virtual-machines-linux-sap-hana-get-started/image002.jpg)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

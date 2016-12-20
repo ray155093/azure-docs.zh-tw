@@ -1,32 +1,36 @@
 ---
-title: 使用轉送訊息的服務匯流排 REST 教學課程 | Microsoft Docs
-description: 建置簡單的服務匯流排轉送主機應用程式來公開 REST 架構介面。
-services: service-bus
+title: "使用轉送訊息的服務匯流排 REST 教學課程 |Microsoft Docs"
+description: "建置簡單的服務匯流排轉送主機應用程式來公開 REST 架構介面。"
+services: service-bus-relay
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 1312b2db-94c4-4a48-b815-c5deb5b77a6a
+ms.service: service-bus-relay
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/27/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 7ba69a1a5f363fe5034e3fc7946b1584c9d77b50
+
 
 ---
-# <a name="service-bus-relay-rest-tutorial"></a>服務匯流排轉送 REST 教學課程
+# <a name="service-bus-wcf-relay-rest-tutorial"></a>服務匯流排 WCF 轉送 REST 教學課程
 本教學課程描述如何建置簡單的服務匯流排主機應用程式來公開 REST 架構介面。 REST 可讓 Web 用戶端 (例如 Web 瀏覽器) 透過 HTTP 要求存取服務匯流排 API。
 
 本教學課程會使用 Windows Communication Foundation (WCF) REST 程式設計模型，在服務匯流排上建構 REST 服務。 如需詳細資訊，請參閱 WCF 文件中的 [WCF REST 程式設計模型](https://msdn.microsoft.com/library/bb412169.aspx)和[設計與實作服務](https://msdn.microsoft.com/library/ms729746.aspx)。
 
-## <a name="step-1:-create-a-service-namespace"></a>步驟 1︰建立服務命名空間
+## <a name="step-1-create-a-service-namespace"></a>步驟 1︰建立服務命名空間
 第一步是建立命名空間，並取得共用存取簽章 (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立服務命名空間時，系統會自動產生 SAS 金鑰。 服務命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="step-2:-define-a-rest-based-wcf-service-contract-to-use-with-service-bus"></a>步驟 2：定義 REST 架構 WCF 服務合約以使用服務匯流排
+## <a name="step-2-define-a-rest-based-wcf-service-contract-to-use-with-service-bus"></a>步驟 2：定義 REST 架構 WCF 服務合約以使用服務匯流排
 使用其他服務匯流排服務時，如果您建立 REST 樣式服務，您必須定義合約。 合約會指定主機支援哪些作業。 服務作業可視為 Web 服務方法。 合約可以透過定義 C++、C# 或 Visual Basic 介面建立。 介面中的每個方法會對應一個特定服務作業。 [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx) 屬性必須套用至每個介面，且 [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) 屬性必須套用至每個作業。 如果介面中的方法具備沒有 [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx) 的 [ServiceContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.servicecontractattribute.aspx)，則不會公開該方法。 用來執行這些工作的程式碼顯示在程序後面的範例中。
 
 基本的服務匯流排合約與 REST 樣式合約之間的主要差異在於屬性會新增至 [OperationContractAttribute](https://msdn.microsoft.com/library/system.servicemodel.operationcontractattribute.aspx)：[WebGetAttribute](https://msdn.microsoft.com/library/system.servicemodel.web.webgetattribute.aspx)。 這個屬性可讓您將介面的方法對應至介面另一端的方法。 在此情況下，我們會使用 [WebGetAttribute](https://msdn.microsoft.com/library/system.servicemodel.web.webgetattribute.aspx) 將方法連結至 HTTP GET。 這可讓服務匯流排準確擷取和解譯傳送到介面的命令。
@@ -53,7 +57,7 @@ ms.author: sethm
     [System.ServiceModel](https://msdn.microsoft.com/library/system.servicemodel.aspx) 是可讓您以程式設計方式存取 WCF 基本功能的命名空間。 服務匯流排會使用 WCF 的許多物件和屬性來定義服務合約。 您將在大部分服務匯流排轉送應用程式中使用此命名空間。 同樣地，[System.ServiceModel.Channels](https://msdn.microsoft.com/library/system.servicemodel.channels.aspx) 可協助定義通道，您可透過此物件與服務匯流排和用戶端 Web 瀏覽器通訊。 最後，[System.ServiceModel.Web](https://msdn.microsoft.com/library/system.servicemodel.web.aspx) 包含可讓您建立 Web 架構應用程式的類型。
 7. 將 `ImageListener` 命名空間重新命名為 **Microsoft.ServiceBus.Samples**。
    
-    ```
+     ```
     namespace Microsoft.ServiceBus.Samples
     {
         ...
@@ -129,7 +133,7 @@ namespace Microsoft.ServiceBus.Samples
 }
 ```
 
-## <a name="step-3:-implement-a-rest-based-wcf-service-contract-to-use-service-bus"></a>步驟 3：實作 REST 架構 WCF 服務合約以使用服務匯流排
+## <a name="step-3-implement-a-rest-based-wcf-service-contract-to-use-service-bus"></a>步驟 3：實作 REST 架構 WCF 服務合約以使用服務匯流排
 建立 REST 樣式服務匯流排服務需要先建立合約，您可使用介面定義該合約。 下一步是實作介面。 這牽涉到建立名為 **ImageService** 的類別，該類別實作使用者定義的 **IImageContract** 介面。 實作合約後，接著可使用 App.config 檔案設定介面。 組態檔包含應用程式的必要資訊，例如服務名稱、合約名稱，以及用來與服務匯流排通訊的通訊協定類型。 程序後面的範例提供用來執行這些工作的程式碼。
 
 如同先前的步驟，實作 REST 樣式合約與基本服務匯流排合約之間的差異很小。
@@ -260,8 +264,8 @@ namespace Microsoft.ServiceBus.Samples
    
     ```
     <appSettings>
-    <!-- Service Bus specific app settings for messaging connections -->
-    <add key="Microsoft.ServiceBus.ConnectionString"
+       <!-- Service Bus specific app settings for messaging connections -->
+       <add key="Microsoft.ServiceBus.ConnectionString"
            value="Endpoint=sb://yourNamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourKey"/>
     </appSettings>
     ```
@@ -423,7 +427,7 @@ namespace Microsoft.ServiceBus.Samples
 </configuration>
 ```
 
-## <a name="step-4:-host-the-rest-based-wcf-service-to-use-service-bus"></a>步驟 4：裝載 REST 架構 WCF 服務以使用服務匯流排
+## <a name="step-4-host-the-rest-based-wcf-service-to-use-service-bus"></a>步驟 4：裝載 REST 架構 WCF 服務以使用服務匯流排
 此步驟描述如何在服務匯流排上使用主控台應用程式來執行 Web 服務。 程序後面的範例提供此步驟中撰寫的完整程式碼清單。
 
 ### <a name="to-create-a-base-address-for-the-service"></a>建立服務的基底位址
@@ -554,12 +558,13 @@ namespace Microsoft.ServiceBus.Samples
 ## <a name="next-steps"></a>後續步驟
 既然您已經建立使用服務匯流排轉送服務的應用程式，請參閱下列文章以進一步了解轉送傳訊：
 
-* [Azure 服務匯流排架構概觀](../service-bus/service-bus-fundamentals-hybrid-solutions.md#relays)
-* [如何使用服務匯流排轉送服務](service-bus-dotnet-how-to-use-relay.md)
+* [Azure 服務匯流排架構概觀](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md#relays)
+* [如何使用服務匯流排 WCF 轉送服務](service-bus-dotnet-how-to-use-relay.md)
 
 [Azure 入口網站]: https://portal.azure.com
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

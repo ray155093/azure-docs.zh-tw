@@ -53,51 +53,64 @@ int main(int argc, char** argv)
         Gateway_LL_Destroy(gateway);
     }
     return 0;
-}
+} 
 ```
 
-JSON 設定檔案包含要載入之模組的清單。 每個模組都必須指定：
+JSON 設定檔包含要載入的模組清單以及模組之間的連結。
+每個模組都必須指定：
 
-* **module_name**：模組的唯一名稱。
-* **module_path**：包含模組之程式庫的路徑。 在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。
+* **名稱**：模組的唯一名稱。
+* **載入器**︰知道如何載入所需模組的載入器。  載入器是一個用來載入不同模組類型的擴充點。 我們提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用「原生」載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需使用以不同語言撰寫的模組的詳細資訊，請參閱 [Node.js](https://github.com/Azure/azure-iot-gateway-sdk/blob/develop/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/java_sample) 或 [.NET](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/dotnet_binding_sample) 範例。
+    * **名稱**︰用來載入模組的載入器名稱。  
+    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。 請注意，此進入點是要使用的載入器類型特定的。 例如，Node.js 載入器的進入點是 .js 檔案、Java 載入器的進入點是類別路徑 + 類別名稱，而 .NET 載入器的進入點是組件名稱 + 類別名稱。
+
 * **args**：模組所需的任何組態資訊。
+
+下列程式碼所示範的 JSON 可用來在 Linux 上宣告適用於 Hello World 範例的所有模組。 模組是否需要引數取決於模組的設計。 在此範例中，Logger 模組所採用的引數是輸出檔的路徑，而 Hello World 模組不採用任何引數。
+
+```
+"modules" :
+[
+    {
+        "name" : "logger",
+        "loader": {
+          "name": "native",
+          "entrypoint": {
+            "module.path": "./modules/logger/liblogger.so"
+        }
+        },
+        "args" : {"filename":"log.txt"}
+    },
+    {
+        "name" : "hello_world",
+        "loader": {
+          "name": "native",
+          "entrypoint": {
+            "module.path": "./modules/hello_world/libhello_world.so"
+        }
+        },
+        "args" : null
+    }
+]
+```
 
 JSON 檔案也包含將會傳遞給訊息代理程式之模組之間的連結。 連結有兩個屬性︰
 
 * **來源**：來自 `modules` 區段的模組名稱，或 "\*"。
-* **接收**：來自 `modules` 區段的模組名稱
+* **接收**：來自 `modules` 區段的模組名稱。
 
 每個連結都會定義訊息路由和方向。 來自模組 `source` 的訊息會傳遞給模組 `sink`。 `source` 可能會設定為 "\*"，代表來自任何模組的訊息都會由 `sink` 接收。
 
-下列範例示範用來在 Linux 上設定 Hello World 範例的 JSON 設定檔案。 模組 `hello_world` 所產生的每個訊息都會由模組 `logger` 取用。 模組是否需要引數取決於模組的設計。 在此範例中，Logger 模組所採用的引數是輸出檔的路徑，而 Hello World 模組不採用任何引數︰
+下列程式碼所示範的 JSON 可用來在 Linux 上設定在 Hello World 範例所使用之模組間的連結。 模組 `hello_world` 所產生的每個訊息都會由模組 `logger` 取用。
 
 ```
-{
-    "modules" :
-    [ 
-        {
-            "module name" : "logger",
-            "loading args": {
-              "module path" : "./modules/logger/liblogger_hl.so"
-            },
-            "args" : {"filename":"log.txt"}
-        },
-        {
-            "module name" : "hello_world",
-            "loading args": {
-              "module path" : "./modules/hello_world/libhello_world_hl.so"
-            },
-            "args" : null
-        }
-    ],
-    "links" :
-    [
-        {
-            "source" : "hello_world",
-            "sink" : "logger"
-        }
-    ]
-}
+"links": 
+[
+    {
+        "source": "hello_world",
+        "sink": "logger"
+    }
+]
 ```
 
 ### <a name="hello-world-module-message-publishing"></a>Hello World 模組訊息發佈
@@ -216,6 +229,6 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 [lnk-gateway-simulated]: ../articles/iot-hub/iot-hub-linux-gateway-sdk-simulated-device.md
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

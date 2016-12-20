@@ -1,11 +1,11 @@
 ---
-title: 在 Android 上開始使用憑證式驗證 | Microsoft Docs
-description: 了解如何使用 Android 裝置設定方案中的憑證式驗證
+title: "在 Android 上開始使用憑證式驗證 | Microsoft Docs"
+description: "了解如何使用 Android 裝置設定方案中的憑證式驗證"
 services: active-directory
 author: MarkusVi
 documentationcenter: na
 manager: femila
-
+ms.assetid: c6ad7640-8172-4541-9255-770f39ecce0e
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/10/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 9ab8558808dc509855d075c6bba305b8524407ff
+
 
 ---
-# <a name="get-started-with-certificate-based-authentication-on-android-public-preview"></a>在 Android 上開始使用憑證式驗證 - 公開預覽
+# <a name="get-started-with-certificate-based-authentication-on-android---public-preview"></a>在 Android 上開始使用憑證式驗證 - 公開預覽
 > [!div class="op_single_selector"]
 > * [iOS](active-directory-certificate-based-authentication-ios.md)
 > * [Android](active-directory-certificate-based-authentication-android.md)
@@ -60,9 +64,9 @@ ms.author: markvi
 ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶端憑證︰  
 
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/<serialnumber>`  
-  (用戶端憑證序號) 
+   (用戶端憑證序號) 
 * `http://schemas.microsoft.com/2012/12/certificatecontext/field/<issuer>`  
-  (用戶端憑證簽發者字串) 
+   (用戶端憑證簽發者字串) 
 
 如果 ADFS 權杖 (或任何其他 SAML 權杖) 中有上述宣告，Azure Active Directory 就會將這些宣告新增至重新整理權杖。 當需要驗證重新整理權杖時，這項資訊會用於檢查撤銷。 
 
@@ -137,7 +141,7 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 ### <a name="removing-a-certificate-authority"></a>移除憑證授權單位
 1. 擷取憑證授權單位︰ 
    
-       $c=Get-AzureADTrustedCertificateAuthority 
+     $c=Get-AzureADTrustedCertificateAuthority 
 2. 移除憑證授權單位的憑證︰ 
    
         Remove-AzureADTrustedCertificateAuthority -CertificateAuthorityInformation $c[2] 
@@ -145,7 +149,7 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 ### <a name="modfiying-a-certificate-authority"></a>修改憑證授權單位
 1. 擷取憑證授權單位︰ 
    
-       $c=Get-AzureADTrustedCertificateAuthority 
+     $c=Get-AzureADTrustedCertificateAuthority 
 2. 修改憑證授權單位的屬性︰ 
    
         $c[0].AuthorityType=1 
@@ -192,11 +196,10 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
         connect-msolservice -credential $msolcred 
 2. 擷取使用者目前的 StsRefreshTokensValidFrom 值︰ 
    
-       $user = Get-MsolUser -UserPrincipalName test@yourdomain.com` 
-       $user.StsRefreshTokensValidFrom 
+     $user = Get-MsolUser -UserPrincipalName test@yourdomain.com`   $user.StsRefreshTokensValidFrom 
 3. 將目前的時間戳記設定為使用者新的 StsRefreshTokensValidFrom 值︰ 
    
-       Set-MsolUser -UserPrincipalName test@yourdomain.com -StsRefreshTokensValidFrom ("03/05/2016")
+     Set-MsolUser -UserPrincipalName test@yourdomain.com -StsRefreshTokensValidFrom ("03/05/2016")
 
 您設定的日期必須是未來的日期。 如果不是未來的日期，則不會設定 **StsRefreshTokensValidFrom** 屬性。 如果是未來的日期，才會將 **StsRefreshTokensValidFrom** 設定為目前的時間 (而非 Set-MsolUser 命令指示的日期)。 
 
@@ -204,6 +207,7 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 [1]: ./media/active-directory-certificate-based-authentication-android/ic195031.png
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

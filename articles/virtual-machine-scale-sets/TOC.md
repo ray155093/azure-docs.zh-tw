@@ -2,15 +2,17 @@
 ## [什麼是虛擬機器擴展集？](virtual-machine-scale-sets-overview.md)
 
 # 開始使用
-## [建立 Windows 擴展集](virtual-machine-scale-sets-windows-create.md)
-## [建立 Linux 擴展集](virtual-machine-scale-sets-linux-create-cli.md)
+## [在入口網站中建立擴展集](virtual-machine-scale-sets-portal-create.md)
 
 # 作法
 ## 規劃和設計
 ### [設計考量](virtual-machine-scale-sets-design-overview.md)
+
 ## 部署
 ### [使用入口網站的擴展集](virtual-machine-scale-sets-portal-create.md)
 ### [使用 Visual Studio 的擴展集](virtual-machine-scale-sets-vs-create.md)
+### [使用 PowerShell 的擴展集](virtual-machine-scale-sets-windows-create.md)
+### [使用 Azure CLI 的擴展集](virtual-machine-scale-sets-linux-create-cli.md)
 ### [具有自動調整的 Linux 擴展集](virtual-machine-scale-sets-linux-autoscale.md)
 ### [具有自動調整的 Windows 擴展集](virtual-machine-scale-sets-windows-autoscale.md)
 ### [應用程式擴展集](virtual-machine-scale-sets-deploy-app.md)
@@ -38,6 +40,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-vm-scale-set)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,32 +1,40 @@
 ---
-title: 使用服務匯流排提升效能的最佳做法 | Microsoft Docs
-description: 描述如何使用 Azure 服務匯流排來在交換代理的訊息時將效能最佳化。
-services: service-bus
+title: "使用服務匯流排提升效能的最佳做法 |Microsoft Docs"
+description: "描述如何使用 Azure 服務匯流排來在交換代理的訊息時將效能最佳化。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: e756c15d-31fc-45c0-8df4-0bca0da10bb2
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/08/2016
+ms.date: 10/25/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 5402481a0adc27474f7ddd9b5be1d71dc2c91d44
+
 
 ---
-# <a name="best-practices-for-performance-improvements-using-service-bus-brokered-messaging"></a>使用服務匯流排代理傳訊的效能改進最佳作法
-本主題描述如何使用 Azure 服務匯流排來在交換代理的訊息時將效能最佳化。 本主題的第一個部分說明提供協助提高效能的不同機制。 第二個部分針對如何在特定案例中利用可提供最佳效能的方式來使用服務匯流排提供指引。
+# <a name="best-practices-for-performance-improvements-using-service-bus-messaging"></a>使用服務匯流排傳訊的效能改進最佳作法
+本主題描述如何使用 Azure 服務匯流排傳訊來在交換代理的訊息時將效能最佳化。 本主題的第一個部分說明提供協助提高效能的不同機制。 第二個部分針對如何在特定案例中利用可提供最佳效能的方式來使用服務匯流排提供指引。
 
 在本主題中，「用戶端」一詞是指任何存取服務匯流排的實體。 用戶端可以擔任傳送者或接收者的角色。 「傳送者」一詞用於將訊息傳送至服務匯流排佇列或主題的服務匯流排佇列或主題用戶端。 「接收者」一詞指的是從服務匯流排佇列或訂用帳戶接收訊息的服務匯流排佇列或訂用帳戶用戶端。
 
 這些章節介紹幾個服務匯流排用來協助提升效能的概念。
 
 ## <a name="protocols"></a>通訊協定
-服務匯流排可讓用戶端透過兩種通訊協定傳送和接收訊息：服務匯流排用戶端通訊協定和 HTTP (REST)。 服務匯流排用戶端通訊協定較有效率，因為只要傳訊處理站存在，它就會維護服務匯流排服務的連接。 它也會實作批次處理和預先擷取作業。 服務匯流排用戶端通訊協定適用於使用 .NET API 的 .NET 應用程式。
+服務匯流排可讓用戶端透過三種通訊協定傳送和接收訊息
 
-除非明確提到，否則本主題中的所有內容都假設為使用服務匯流排用戶端通訊協定。
+1. 進階訊息佇列通訊協定 (AMQP)
+2. 服務匯流排傳訊通訊協定 (SBMP)
+3. HTTP
+
+AMQP 和 SBMP 會更有效率，因為只要傳訊處理站存在，它們就會維護服務匯流排連線。 它也會實作批次處理和預先擷取作業。 除非明確提到，否則本主題中的所有內容都假設為使用 AMQP 和 SBMP。
 
 ## <a name="reusing-factories-and-clients"></a>重複使用處理站和用戶端
 服務匯流排用戶端物件，例如 [QueueClient][QueueClient] 或 [MessageSender][MessageSender]，會透過也提供內部連接管理的 [MessagingFactory][MessagingFactory] 物件來建立。 當您傳送一個訊息，並在傳送下一個訊息時重新建立傳訊處理站或佇列、主題及訂用帳戶用戶端之後，您不能將其關閉。 關閉傳訊處理站會刪除服務匯流排服務的連接，並在重新建立處理站時建立新的連接。 建立連接是成本高昂的作業，您可以藉由重新使用多項作業的相同處理站和用戶端物件來避免此作業。 您可以安全地使用 [QueueClient][QueueClient] 物件，從並行非同步作業和多個執行緒傳送訊息。 
@@ -132,7 +140,7 @@ namespaceManager.CreateTopic(td);
 如果將包含不能遺失之重要資訊的訊息傳送至快速實體，傳送者可以強制服務匯流排立即藉由將 [ForcePersistence][ForcePersistence] 屬性設為 **true** 來將訊息儲存到穩定儲存體。
 
 ## <a name="use-of-partitioned-queues-or-topics"></a>使用分割的佇列或主題
-服務匯流排會在內部使用相同的節點和訊息存放區來處理和儲存傳訊實體 (佇列或主題) 的所有訊息。 另一方面，分割的佇列或主題會在多個節點和訊息存放區中散佈。 分割的佇列和主題不僅會產生比一般佇列和主題更高的輸送量，也會展現較優異的可用性。 若要建立分割的實體，請將 [EnablePartitioning][EnablePartitioning] 屬性設為 **true**，如下列範例所示。 如需分割實體的詳細資訊，請參閱 [分割的傳訊實體][分割的傳訊實體]。
+服務匯流排會在內部使用相同的節點和訊息存放區來處理和儲存傳訊實體 (佇列或主題) 的所有訊息。 另一方面，分割的佇列或主題會在多個節點和訊息存放區中散佈。 分割的佇列和主題不僅會產生比一般佇列和主題更高的輸送量，也會展現較優異的可用性。 若要建立分割的實體，請將 [EnablePartitioning][EnablePartitioning] 屬性設為 **true**，如下列範例所示。 如需分割實體的詳細資訊，請參閱[分割的傳訊實體][分割的傳訊實體]。
 
 ```
 // Create partitioned queue.
@@ -143,6 +151,13 @@ namespaceManager.CreateQueue(qd);
 
 ## <a name="use-of-multiple-queues"></a>使用多個佇列
 如果您不能使用分割的佇列或主題，或無法由單一分割佇列或主題處理預期的負載，您必須使用多個傳訊實體。 使用多個實體時，請針對每個實體建立專屬用戶端，而不是讓所有實體使用相同的用戶端。
+
+## <a name="development-testing-features"></a>開發與測試功能
+服務匯流排有一項專門用於開發的功能，此功能**永遠不應該用在生產組態**。
+
+[TopicDescription.EnableFilteringMessagesBeforePublishing](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicdescription.enablefilteringmessagesbeforepublishing.aspx)
+
+* 當新的規則或篩選器新增至主題時，EnableFilteringMessagesBeforePublishing 可用來確認新的篩選運算式如預期般運作。
 
 ## <a name="scenarios"></a>案例
 下列各節描述典型傳訊的案例，並簡述慣用的服務匯流排設定。 輸送量速率會分類為小型 (小於 1 則訊息/秒)、中型 (1 則訊息/秒或更多但小於 100 則訊息/秒) 和高型 (100 則訊息/秒或更多)。 用戶端數目可分類為小型 (5 個或更少)、中型 (5 個以上但小於或等於 20 個) 和大型 (超過 20 個)。
@@ -226,7 +241,7 @@ namespaceManager.CreateQueue(qd);
 * 將預先擷取設為 20 乘以預期的接收速率 (以秒為單位)。 這會減少服務匯流排用戶端通訊協定傳輸數目。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解如何最佳化服務匯流排效能，請參閱[分割的傳訊實體][分割的傳訊實體]。
+若要深入了解最佳化服務匯流排效能，請參閱[分割的傳訊實體][分割的傳訊實體]。
 
 [QueueClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx
 [MessageSender]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesender.aspx
@@ -243,6 +258,6 @@ namespaceManager.CreateQueue(qd);
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

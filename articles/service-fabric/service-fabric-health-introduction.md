@@ -1,12 +1,12 @@
 ---
-title: Service Fabric 的健康狀態監視 | Microsoft Docs
-description: Azure Service Fabric 健康狀態監視模型的簡介，該模型提供對叢集及其應用程式和服務的監視。
+title: "Service Fabric 的健康狀態監視 | Microsoft Docs"
+description: "Azure Service Fabric 健康狀態監視模型的簡介，該模型提供對叢集及其應用程式和服務的監視。"
 services: service-fabric
 documentationcenter: .net
 author: oanapl
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 1d979210-b1eb-4022-be24-799fd9d8e003
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/28/2016
 ms.author: oanapl
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 6ec1e341bc87475251161521e808dcbb821c2939
+
 
 ---
 # <a name="introduction-to-service-fabric-health-monitoring"></a>Service Fabric 健康狀態監視簡介
@@ -224,7 +228,7 @@ Service Fabric 會使用三種健康狀態來描述實體的健康狀態是否�
 * 僅在前 X 分鐘內發生變更的情況時發出警示。 如果報告在指定的時間之前即處於「Error」狀態，則可忽略 (因為其先前已發出訊號)。
 * 若屬性交叉出現警告和錯誤，請判斷狀況不良 (亦即不是 OK) 已持續多久。 例如，若屬性狀況良好的狀態不超過 5 分鐘時發出警示，可以轉譯為 (HealthState != Ok 且 Now - LastOkTransitionTime > 5 分鐘)。
 
-## <a name="example:-report-and-evaluate-application-health"></a>範例：報告和評估應用程式健康狀態
+## <a name="example-report-and-evaluate-application-health"></a>範例：報告和評估應用程式健康狀態
 下列範例會從來源 **MyWatchdog**，透過應用程式 **fabric:/WordCount** 上的 PowerShell 來傳送健康狀態報告。 健康狀態報告會在 Error 健康狀態中包含健康狀態屬性「可用性」的相關資訊，並包含「Infinite」的 TimeToLive。 然後它會查詢應用程式健康狀態，並在健康狀態事件清單中傳回已彙總的健康狀態錯誤和已報告的健康狀態事件。
 
 ```powershell
@@ -311,6 +315,9 @@ HealthEvents                    :
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

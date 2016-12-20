@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/22/2016
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 73510d618f414ebedd7cd1df979397e0b00570b8
+ms.sourcegitcommit: a31a1b7909ea7440780c9a7af4cb908c9aa6a449
+ms.openlocfilehash: 5852808ad0f5cf02908df7ff969ab2106d9f5abd
 
 
 ---
@@ -192,7 +192,7 @@ ms.openlocfilehash: 73510d618f414ebedd7cd1df979397e0b00570b8
 若要啟用稽核，請選取 [稽核] 選項底下的 [開啟]。
 
 ### <a name="monitor-applications"></a>監視應用程式
-如果您的 Azure 工作負載有應用程式位於具有公開 Web 連接埠 (TCP 連接埠 80 和 443) 的[虛擬機器 (透過 Azure Resource Manager 所建立)](../resource-manager-deployment-model.md) 中，資訊安全中心即可監視這些應用程式以找出潛在的安全性問題，並建議補救步驟。 當您按一下 [應用程式] 圖格時，便會開啟 [應用程式] 刀鋒視窗，其 [預防步驟] 區段中會有一系列的建議。 同時也會顯示每一主機/虛擬 IP 的應用程式明細，如下列螢幕擷取畫面所示。
+如果您的 Azure 工作負載有應用程式位於具有公開 Web 連接埠 (TCP 連接埠 80 和 443) 的[虛擬機器 (透過 Azure Resource Manager 所建立)](../azure-resource-manager/resource-manager-deployment-model.md) 中，資訊安全中心即可監視這些應用程式以找出潛在的安全性問題，並建議補救步驟。 當您按一下 [應用程式] 圖格時，便會開啟 [應用程式] 刀鋒視窗，其 [預防步驟] 區段中會有一系列的建議。 同時也會顯示每一主機/虛擬 IP 的應用程式明細，如下列螢幕擷取畫面所示。
 
 ![應用程式安全性健全狀況](./media/security-center-monitoring/security-center-monitoring-fig16-ga.png)
 
@@ -216,6 +216,6 @@ ms.openlocfilehash: 73510d618f414ebedd7cd1df979397e0b00570b8
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -1,20 +1,24 @@
 ---
-title: 關於 ExpressRoute 虛擬網路閘道 | Microsoft Docs
-description: 了解 ExpressRoute 的虛擬網路閘道。
+title: "關於 ExpressRoute 虛擬網路閘道 | Microsoft Docs"
+description: "了解 ExpressRoute 的虛擬網路閘道。"
 services: expressroute
 documentationcenter: na
 author: cherylmc
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-resource-manager, azure-service-management
-
+ms.assetid: 7e0d9658-bc00-45b0-848f-f7a6da648635
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/03/2016
+ms.date: 12/01/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a575929f2c42a00b6e6cacd86318253d20b6b51e
+
 
 ---
 # <a name="about-virtual-network-gateways-for-expressroute"></a>關於 ExpressRoute 的虛擬網路閘道
@@ -26,17 +30,17 @@ ms.author: cherylmc
 
 對於每種閘道類型，每個虛擬網路只能有一個虛擬網路閘道。 例如，您可以有一個使用 -GatewayType Vpn 的虛擬網路閘道，以及一個使用 -GatewayType ExpressRoute 的虛擬網路閘道。 本文著重於 ExpressRoute 虛擬網路閘道。
 
-## <a name="<a-name="gwsku"></a>gateway-skus"></a><a name="gwsku"></a>閘道 SKU
+## <a name="a-namegwskuagateway-skus"></a><a name="gwsku"></a>閘道 SKU
 [!INCLUDE [expressroute-gwsku-include](../../includes/expressroute-gwsku-include.md)]
 
 如果您想要將閘道器升級至更強大的閘道 SKU，在大部分情況下，您可以使用 'Resize-AzureRmVirtualNetworkGateway' PowerShell Cmdlet。 這適用於升級至 Standard 和 HighPerformance SKU。 不過，若要升級至 UltraPerformance SKU，您必須重新建立閘道器。
 
-### <a name="<a-name="aggthroughput"></a>estimated-aggregate-throughput-by-gateway-sku"></a><a name="aggthroughput"></a>依閘道 SKU 列出的估計彙總輸送量
+### <a name="a-nameaggthroughputaestimated-aggregate-throughput-by-gateway-sku"></a><a name="aggthroughput"></a>依閘道 SKU 列出的估計彙總輸送量
 下表顯示閘道類型和預估的彙總輸送量。 此資料表適用於資源管理員與傳統部署模型。
 
 [!INCLUDE [expressroute-table-aggthroughput](../../includes/expressroute-table-aggtput-include.md)]
 
-## <a name="<a-name="resources"></a>rest-apis-and-powershell-cmdlets"></a><a name="resources"></a>REST API 和 PowerShell Cmdlet
+## <a name="a-nameresourcesarest-apis-and-powershell-cmdlets"></a><a name="resources"></a>REST API 和 PowerShell Cmdlet
 如需將 REST API 和 PowerShell Cmdlet 使用於虛擬網路閘道組態時的其他技術資源和特定語法需求，請參閱下列頁面︰
 
 | **傳統** | **資源管理員** |
@@ -47,6 +51,9 @@ ms.author: cherylmc
 ## <a name="next-steps"></a>後續步驟
 如需有關可用連線組態的詳細資訊，請參閱 [ExpressRoute 概觀](expressroute-introduction.md) 。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

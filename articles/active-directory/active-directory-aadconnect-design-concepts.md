@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect：設計概念 | Microsoft Docs
-description: 本主題詳細說明特定的實作設計領域
+title: "Azure AD Connect：設計概念 |Microsoft Docs"
+description: "本主題詳細說明特定的實作設計領域"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 4114a6c0-f96a-493c-be74-1153666ce6c9
 ms.service: active-directory
 ms.custom: azure-ad-connect
 ms.devlang: na
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: Identity
 ms.date: 09/13/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 116ef0786c9c45b549311a59615d06f194093bc2
+
 
 ---
-# <a name="azure-ad-connect:-design-concepts"></a>Azure AD Connect：設計概念
+# <a name="azure-ad-connect-design-concepts"></a>Azure AD Connect：設計概念
 本主題旨在說明在 Azure AD Connect 實作設計期間必須考量的領域。 這個主題是特定領域的深入探討，而在其他主題中也會簡短描述這些概念。
 
 ## <a name="sourceanchor"></a>sourceAnchor
@@ -92,6 +96,9 @@ Azure AD Connect 會偵測您是否在無法路由傳送的網域環境中執行
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -70,7 +70,7 @@ ms.openlocfilehash: 45a3fa5c7190e039fd637c78a41eeb3f6ede9bc7
 
 現在已將您的通知中樞設定成使用 Firebase Cloud Messagin，而且您已擁有可用來註冊應用程式以接收和傳送推播通知的連接字串。
 
-## <a name="a-idconnectingappaconnect-your-app-to-the-notification-hub"></a><a id="connecting-app"></a>將您的應用程式連接到通知中樞
+## <a name="a-idconnecting-appaconnect-your-app-to-the-notification-hub"></a><a id="connecting-app"></a>將您的應用程式連接到通知中樞
 ### <a name="add-google-play-services-to-the-project"></a>新增 Google Play 服務至專案
 [!INCLUDE [Add Play Services](../../includes/notification-hubs-android-studio-add-google-play-services.md)]
 
@@ -673,7 +673,7 @@ ms.openlocfilehash: 45a3fa5c7190e039fd637c78a41eeb3f6ede9bc7
 [行動服務 Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
 [參考程式庫專案]: http://go.microsoft.com/fwlink/?LinkId=389800
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
-[通知中心指引]: notification-hubs-push-notification-overview.md
+[通知中樞指引]: notification-hubs-push-notification-overview.md
 [使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
 [使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
 [Azure 入口網站]: https://portal.azure.com

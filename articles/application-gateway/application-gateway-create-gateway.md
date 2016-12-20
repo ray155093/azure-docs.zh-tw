@@ -12,15 +12,16 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/10/2016
+ms.date: 11/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 996bac38e6b67cfe7b72e11bf29831b12086bf1b
+ms.sourcegitcommit: ee8cfffdbf054b4251ed269745f6b9ee5a5e6c64
+ms.openlocfilehash: 2a06e9c7bb6b9f2aacc1544ba4b85a90bb57f01c
 
 
 ---
 # <a name="create-start-or-delete-an-application-gateway"></a>建立、啟動或刪除應用程式閘道
+
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-create-gateway-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-gateway-arm.md)
@@ -35,13 +36,14 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 本文將逐步引導您完成建立、設定、啟動及刪除應用程式閘道的步驟。
 
 ## <a name="before-you-begin"></a>開始之前
+
 1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。 您可以從 **下載頁面** 的 [Windows PowerShell](https://azure.microsoft.com/downloads/)區段下載並安裝最新版本。
 2. 如果您有現有的虛擬網路，請選取現有的空白子網路，或在現有的虛擬網路中建立新的子網路，僅供應用程式閘道使用。 除非使用 VNet 對等互連，否則，您無法將應用程式閘道部署到與您打算部署於應用程式閘道後方的資源不同的虛擬網路。 如需深入了解，請參閱 [VNet 對等互連](../virtual-network/virtual-network-peering-overview.md)
 3. 請確認您的運作中虛擬網路具有有效子網路。 請確定沒有虛擬機器或是雲端部署正在使用子網路。 應用程式閘道必須單獨位於虛擬網路子網路中。
 4. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 ## <a name="what-is-required-to-create-an-application-gateway"></a>建立應用程式閘道需要什麼？
-當您使用 **New-AzureApplicationGateway** 命令來建立應用程式閘道時，不需進行任何設定，而且使用 XML 或設定物件來設定新建立的資源。
+當您使用 `New-AzureApplicationGateway` 命令來建立應用程式閘道時，此時不需進行任何設定，並使用 XML 或組態物件來設定新建立的資源。
 
 值如下：
 
@@ -52,6 +54,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 * **規則：** 規則會繫結接聽程式和後端伺服器集區，並定義當流量到達特定接聽程式時，應該導向到哪個後端伺服器集區。
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
+
 建立應用程式閘道：
 
 1. 建立應用程式閘道資源。
@@ -66,7 +69,8 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 ![案例範例][scenario]
 
 ### <a name="create-an-application-gateway-resource"></a>建立應用程式閘道資源
-若要建立閘道，請使用 **New-AzureApplicationGateway** Cmdlet，並將值取代為您自己的值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
+
+若要建立閘道，請使用 `New-AzureApplicationGateway` Cmdlet，並以您自己的值來取代這些值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
 
 下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
 
@@ -76,7 +80,7 @@ New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subn
 
 Description、InstanceCount 和 GatewaySize 為選擇性參數。
 
-若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
+若要驗證已建立閘道，您可以使用 `Get-AzureApplicationGateway` Cmdlet。
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -102,12 +106,15 @@ DnsName       :
 因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。 閘道處於執行中狀態之後，就會建立這些項目。
 
 ## <a name="configure-the-application-gateway"></a>設定應用程式閘道
+
 您可以使用 XML 或設定物件來設定應用程式閘道。
 
 ## <a name="configure-the-application-gateway-by-using-xml"></a>使用 XML 設定應用程式閘道
+
 在下列範例中，您將使用 XML 檔案來設定所有應用程式閘道設定，並將它們認可到應用程式閘道資源。  
 
 ### <a name="step-1"></a>步驟 1
+
 將下列文字複製到 [記事本]。
 
 ```xml
@@ -210,21 +217,24 @@ DnsName       :
 ```
 
 ### <a name="step-2"></a>步驟 2
-接下來，設定應用程式閘道。 搭配使用 **Set-AzureApplicationGatewayConfig** Cmdlet 與設定 XML 檔案。
+
+接下來，設定應用程式閘道。 使用 `Set-AzureApplicationGatewayConfig` Cmdlet 搭配組態 XML 檔案。
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile "D:\config.xml"
 ```
 
 ## <a name="configure-the-application-gateway-by-using-a-configuration-object"></a>使用設定物件設定應用程式閘道
-下列範例示範如何使用設定物件來設定應用程式閘道。 必須個別設定所有組態項目，然後再將其新增至應用程式閘道組態物件。 建立設定物件之後，您會使用 **Set-AzureApplicationGateway** 命令，將設定認可到先前建立的應用程式閘道資源。
+
+下列範例示範如何使用設定物件來設定應用程式閘道。 必須個別設定所有組態項目，然後再將其新增至應用程式閘道組態物件。 建立組態物件之後，您會使用 `Set-AzureApplicationGateway` 命令，將組態認可到先前建立的應用程式閘道資源。
 
 > [!NOTE]
-> 在將值指派到各個設定物件之前，您必須宣告 PowerShell 要用來儲存的物件種類。 用來建立個別項目的第一行會定義使用哪些 Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(物件名稱)。
+> 在將值指派到各個設定物件之前，您必須宣告 PowerShell 要用來儲存的物件種類。 用來建立個別項目的第一行會定義要使用哪些 **Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(物件名稱)**。
 > 
 > 
 
 ### <a name="step-1"></a>步驟 1
+
 建立所有的個別設定項目。
 
 建立前端 IP，如下列範例所示。
@@ -295,6 +305,7 @@ $rule.BackendAddressPool = "pool1"
 ```
 
 ### <a name="step-2"></a>步驟 2
+
 將所有的個別設定項目指派給應用程式閘道設定物件 ($appgwconfig)。
 
 將前端 IP 加入設定。
@@ -340,17 +351,18 @@ $appgwconfig.HttpLoadBalancingRules.Add($rule)
 ```
 
 ### <a name="step-3"></a>步驟 3
-使用 **Set-AzureApplicationGatewayConfig**，將設定物件認可到應用程式閘道資源。
+使用 `Set-AzureApplicationGatewayConfig`，將組態物件認可到應用程式閘道資源。
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -Config $appgwconfig
 ```
 
 ## <a name="start-the-gateway"></a>啟動閘道
-設定閘道之後，請使用 **Start-AzureApplicationGateway** Cmdlet 來啟動閘道。 成功啟動閘道之後，會開始應用程式閘道計費。
+
+設定閘道之後，請使用 `Start-AzureApplicationGateway` Cmdlet 來啟動閘道。 成功啟動閘道之後，會開始應用程式閘道計費。
 
 > [!NOTE]
-> **Start-AzureApplicationGateway** Cmdlet 最多可能需要 15-20 分鐘才能完成。
+> `Start-AzureApplicationGateway` Cmdlet 最多可能需要 15 到 20 分鐘才能完成。
 > 
 > 
 
@@ -359,7 +371,8 @@ Start-AzureApplicationGateway AppGwTest
 ```
 
 ## <a name="verify-the-gateway-status"></a>確認閘道狀態
-使用 **Get-AzureApplicationGateway** Cmdlet 來檢查閘道狀態。 如果上一個步驟中的 **Start-AzureApplicationGateway** 成功，則 State 應該是 Running，而且 Vip 和 DnsName 應該具有有效的輸入。
+
+使用 `Get-AzureApplicationGateway` Cmdlet 檢查閘道狀態。 如果上一個步驟中的 `Start-AzureApplicationGateway` 成功，則 *State* 應該是 Running，而且 *Vip* 和 *DnsName* 應該具備有效的輸入。
 
 下列範例示範已啟動、正在執行且準備好將流量傳送到 `http://<generated-dns-name>.cloudapp.net`的應用程式閘道。
 
@@ -382,13 +395,14 @@ DnsName       : appgw-1b8402e8-3e0d-428d-b661-289c16c82101.cloudapp.net
 ```
 
 ## <a name="delete-an-application-gateway"></a>刪除應用程式閘道
+
 刪除應用程式閘道：
 
-1. 使用 **Stop-AzureApplicationGateway** Cmdlet 停止閘道。
-2. 使用 **Remove-AzureApplicationGateway** Cmdlet 移除閘道。
-3. 使用 **Get-AzureApplicationGateway** Cmdlet 確認已移除閘道。
+1. 使用 `Stop-AzureApplicationGateway` Cmdlet 停止閘道。
+2. 使用 `Remove-AzureApplicationGateway` Cmdlet 移除閘道。
+3. 使用 `Get-AzureApplicationGateway` Cmdlet 確認已移除閘道。
 
-下列範例會在第一行顯示 **Stop-AzureApplicationGateway** Cmdlet，後面接著輸出。
+下列範例會在第一行顯示 `Stop-AzureApplicationGateway` Cmdlet，後面接著輸出。
 
 ```powershell
 Stop-AzureApplicationGateway AppGwTest
@@ -402,7 +416,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   ce6c6c95-77b4-2118-9d65-e29defadffb8
 ```
 
-應用程式閘道處於「已停止」狀態之後，請使用 **Remove-AzureApplicationGateway** Cmdlet 移除服務。
+當應用程式閘道處於已停止狀態之後，使用 `Remove-AzureApplicationGateway` Cmdlet 來移除服務。
 
 ```powershell
 Remove-AzureApplicationGateway AppGwTest
@@ -416,7 +430,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   055f3a96-8681-2094-a304-8d9a11ad8301
 ```
 
-若要確認已移除服務，您可以使用 **Get-AzureApplicationGateway** Cmdlet。 這不是必要步驟。
+若要確認已移除服務，您可以使用 `Get-AzureApplicationGateway` Cmdlet。 這不是必要步驟。
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -430,6 +444,7 @@ Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
 ```
 
 ## <a name="next-steps"></a>後續步驟
+
 如果您想要設定 SSL 卸載，請參閱 [設定應用程式閘道以進行 SSL 卸載](application-gateway-ssl.md)。
 
 如果您想要將應用程式閘道設為與內部負載平衡器搭配使用，請參閱 [建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
@@ -443,6 +458,6 @@ Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

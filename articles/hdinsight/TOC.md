@@ -51,7 +51,7 @@
 ### [提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)
 ## 使用 R 伺服器
 ### [儲存體選項](hdinsight-hadoop-r-server-storage.md)
-### [安裝 RStudi](hdinsight-hadoop-r-server-install-r-studio.md)
+### [安裝 RStudio](hdinsight-hadoop-r-server-install-r-studio.md)
 ### [計算內容](hdinsight-hadoop-r-server-compute-contexts.md)
 ## 使用 Spark 進行記憶體中的處理
 ### [搭配 Data Lake Store](hdinsight-apache-spark-use-with-data-lake-store.md)
@@ -166,7 +166,7 @@
 ### [使用以時間為基礎的 Oozie 協調器](hdinsight-use-oozie-coordinator-time.md)
 ### [叢集和服務的連接埠和 URI](hdinsight-hadoop-port-settings-for-services.md)
 ### [移轉至 Resource Manager 開發工具](hdinsight-hadoop-development-using-azure-resource-manager.md)
-### [高度可用性與可靠性](hdinsight-high-availability-linux.md)
+### [可用性與可靠性](hdinsight-high-availability-linux.md)
 ## 疑難排解
 ### [Linux 的秘訣](hdinsight-hadoop-linux-information.md)
 ### [版本資訊](hdinsight-release-notes.md)
@@ -181,12 +181,12 @@
 #### [Hive 查詢效能](https://blogs.msdn.microsoft.com/bigdatasupport/2015/08/13/troubleshooting-hive-query-performance-in-hdinsight-hadoop-cluster/)
 
 # 參考
-## [PowerShell Cmdlet](/powershell/resourcemanager/azurerm.hdinsight/v2.2.0/azurerm.hdinsight)
-## [.NET SDK for Hadoop](https://msdn.microsoft.com/library/mt271028.aspx)
-## [HBase 適用的 .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/)
-## [Avro 適用的 .NET 程式庫](https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library)
-## [REST API 參考資料](/rest/api/hdinsight/)
-## [適用於遠端工作的 Spark REST API](/rest/api/hdinsightspark/)
+## [PowerShell](/powershell/resourcemanager/azurerm.hdinsight/v2.3.0/azurerm.hdinsight)
+## [.NET (Hadoop)](https://msdn.microsoft.com/library/mt271028.aspx)
+## [.NET (HBase)](https://www.nuget.org/packages/Microsoft.HBase.Client/)
+## [.NET (Avro)](https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library)
+## [REST](/rest/api/hdinsight/)
+## [REST (Spark)](/rest/api/hdinsightspark/)
 
 # 相關參考
 ## Windows 叢集
@@ -209,7 +209,7 @@
 ### [使用 Maven 建置 Java 應用程式](hdinsight-hbase-build-java-maven.md)
 ### [使用 Tez UI 為 Tez 作業偵錯](hdinsight-debug-tez-ui.md)
 ### [使用指令碼動作來自訂](hdinsight-hadoop-customize-cluster.md)
-### [高度可用性與可靠性](hdinsight-high-availability.md)
+### [可用性與可靠性](hdinsight-high-availability.md)
 ### [存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs.md)
 ### [使用 Apache Phoenix 和 SQuirrel](hdinsight-hbase-phoenix-squirrel.md)
 ### [使用 Mahout 來產生電影推薦](hdinsight-mahout.md)
@@ -224,6 +224,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

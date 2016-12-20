@@ -1,19 +1,23 @@
 ---
-title: 將 Configuration Manager 連線至 Log Analytics | Microsoft Docs
-description: 本文說明將 Configuration Manager 連線至 Log Analytics 並開始分析資料的步驟。
+title: "將 Configuration Manager 連線至 Log Analytics | Microsoft Docs"
+description: "本文說明將 Configuration Manager 連線至 Log Analytics 並開始分析資料的步驟。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: f2298bd7-18d7-4371-b24a-7f9f15f06d66
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/29/2016
+ms.date: 11/09/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
+ms.openlocfilehash: 240db424645778c0fcd0f8abd17411e58bd95ab9
+
 
 ---
 # <a name="connect-configuration-manager-to-log-analytics"></a>將 Configuration Manager 連線至 Log Analytics
@@ -36,25 +40,25 @@ ms.author: banders
 
 > [!NOTE]
 > 您必須為 Configuration Manager 指定 OMS 的權限。 否則，當您在 Configuration Manager 中使用組態精靈時，將會收到錯誤訊息。
-> 
-> 
+>
+>
 
 1. 開啟 [Azure 入口網站](https://portal.azure.com/)，然後按一下 [瀏覽] > [Log Analytics (OMS)] 以開啟 [Log Analytics (OMS)] 刀鋒視窗。  
 2. 在 [Log Analytics (OMS)] 刀鋒視窗上按一下 [新增]，開啟 [OMS 工作區] 刀鋒視窗。  
    ![OMS 刀鋒視窗](./media/log-analytics-sccm/sccm-azure01.png)
 3. 在 [OMS 工作區] 刀鋒視窗上提供下列資訊，然後按一下 [確定]。
-   
+
    * **OMS 工作區**
    * **訂用帳戶**
    * **資源群組**
    * **位置**
    * **定價層**  
      ![OMS 刀鋒視窗](./media/log-analytics-sccm/sccm-azure02.png)  
-     
+
      > [!NOTE]
      > 上述範例會建立新的資源群組。 在此範例中，資源群組只會用來為 Configuration Manager 提供 OMS 工作區的權限。
-     > 
-     > 
+     >
+     >
 4. 按一下 [瀏覽] > [資源群組]，開啟 [資源群組] 刀鋒視窗。
 5. 在 [資源群組] 刀鋒視窗中按一下您先前建立的資源群組，開啟 [&lt;資源群組名稱&gt; 設定] 刀鋒視窗。  
    ![資源群組設定刀鋒視窗](./media/log-analytics-sccm/sccm-azure03.png)
@@ -71,7 +75,7 @@ ms.author: banders
 
 1. 在 Configuration Manager 的 [管理] 工作區中選取 [OMS 連接器]。 這會開啟**新增 OMS 連線精靈**。 選取 [下一步] 。
 2. 在 [一般] 畫面上，確認您已完成下列動作而且您有每個項目的詳細資料，然後選取 [下一步]。
-   
+
    1. 在 Azure 管理入口網站中，您已將 Configuration Manager 註冊為 Web 應用程式和/或 Web API 應用程式，而且您擁有[註冊中的用戶端識別碼](../active-directory/active-directory-integrating-applications.md)。
    2. 在 Azure 管理入口網站中，您已經為 Azure Active Directory 中已註冊的應用程式建立應用程式祕密金鑰。  
    3. 在 Azure 管理入口網站中，您已經為已註冊的 Web 應用程式提供存取 OMS 的權限。  
@@ -86,8 +90,8 @@ ms.author: banders
 
 > [!NOTE]
 > 您必須將 OMS 連線至階層中的最上層網站。 如果您將 OMS 連線至獨立主要網站，然後在環境中新增管理中心網站，則必須在新階層內先刪除再重新建立 OMS 連線。
-> 
-> 
+>
+>
 
 在將 Configuration Manager 連結至 OMS 之後，您可以新增或移除集合，並檢視 OMS 連線的屬性。
 
@@ -126,6 +130,8 @@ ms.author: banders
 ## <a name="next-steps"></a>後續步驟
 * 請使用 [記錄檔搜尋][](log-analytics-log-searches.md)，檢視有關 Configuration Manager 資料的詳細資訊。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

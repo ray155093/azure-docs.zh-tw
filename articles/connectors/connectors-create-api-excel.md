@@ -1,13 +1,13 @@
 ---
-title: 新增 Excel 連接器 | Microsoft Docs
-description: 搭配 REST API 參數來使用 Excel 連接器的概觀
-services: ''
-documentationcenter: ''
+title: "新增 Excel 連接器 | Microsoft Docs"
+description: "搭配 REST API 參數來使用 Excel 連接器的概觀"
+services: 
+documentationcenter: 
 author: msftman
 manager: erikre
-editor: ''
+editor: 
 tags: connectors
-
+ms.assetid: 03af8652-9223-4348-9490-602872a680f0
 ms.service: multiple
 ms.devlang: na
 ms.topic: article
@@ -15,13 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/23/2016
 ms.author: deonhe
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 4fe8a9dfd00ef85382733dcb2488c62ab651bc56
+
 
 ---
-# 開始使用 Excel 連接器
-目前，Logic Apps 中沒有任何 Excel 連接器。
+# <a name="get-started-with-the-excel-connector"></a>開始使用 Excel 連接器
+目前，Logic Apps 中沒有任何 Excel 連接器。 
 
-## 使用 Excel 資料
-您可以將 Excel 資料儲存為儲存體資料夾中的逗號分隔值 (CSV) 檔案，例如 [OneDrive](connectors-create-api-onedrive.md)。您也可以搭配使用此 CSV 檔案與[一般檔案連接器](../app-service-logic/app-service-logic-enterprise-integration-flatfile.md)。
+## <a name="to-use-excel-data"></a>使用 Excel 資料
+您可以將 Excel 資料儲存為儲存體資料夾中的逗號分隔值 (CSV) 檔案，例如 [OneDrive](connectors-create-api-onedrive.md)。 您也可以搭配使用此 CSV 檔案與 [一般檔案連接器](../app-service-logic/app-service-logic-enterprise-integration-flatfile.md)。
 
 <!---
 
@@ -213,4 +217,8 @@ Applies to version: 1.0.
 
 -->
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

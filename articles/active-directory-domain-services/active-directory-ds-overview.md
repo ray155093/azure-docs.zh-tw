@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory Domain Services 概觀 | Microsoft Docs
-description: Azure Active Directory Domain Services 概觀
+title: "Azure Active Directory Domain Services 概觀 | Microsoft Docs"
+description: "Azure Active Directory Domain Services 概觀"
 services: active-directory-ds
-documentationcenter: ''
+documentationcenter: 
 author: mahesh-unnikrishnan
 manager: stevenpo
 editor: curtand
-
+ms.assetid: 0d47178f-773e-45f9-9ff4-9e8cffa4ffa2
 ms.service: active-directory-ds
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: maheshu
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2e78382b4cbfe7623eec1b2cd32a9eaea61e4709
+
 
 ---
 # <a name="azure-ad-domain-services"></a>Azure AD 網域服務
@@ -79,6 +83,9 @@ Azure AD 網域服務所佈建的受管理網域的幾個顯著層面如下所�
 * **相容** - Azure AD 網域服務是以 Windows Server Active Directory 經實證的企業級基礎結構為基礎。 因此，您的應用程式可仰賴相容性更高的 Windows Server Active Directory 功能。 並非 Windows Server AD 中的所有功能目前都可在 Azure AD 網域服務中使用。 不過，可用的功能與您在內部部署基礎結構中依賴的相對應 Windows Server AD 功能相容。 LDAP、Kerberos、NTLM、群組原則和網域加入功能構成了成熟的產品服務，已對各種 Windows Server 版本經過測試並進一步修改。
 * **符合成本效益** - 有了 Azure AD 網域服務，您可以免除為支援傳統目錄感知應用程式所需承受與管理身分識別基礎結構相關聯的基礎結構和管理負擔。 您可以將這些應用程式移至 Azure 基礎結構服務，並受益於營運費用的大幅節約。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

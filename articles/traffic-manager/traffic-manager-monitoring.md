@@ -1,25 +1,31 @@
 ---
-title: 流量管理員端點監視和容錯移轉 | Microsoft Docs
-description: 本文有助於您了解流量管理員如何使用端點監視和自動端點容錯移轉，以協助 Azure 客戶部署高可用性應用程式
+title: "流量管理員端點監視和容錯移轉 | Microsoft Docs"
+description: "本文有助於您了解流量管理員如何使用端點監視和自動端點容錯移轉，以協助 Azure 客戶部署高可用性應用程式"
 services: traffic-manager
-documentationcenter: ''
-author: sdwheeler
-manager: carmonm
-editor: ''
-
+documentationcenter: 
+author: kumudd
+manager: timlt
+editor: 
+ms.assetid: fff25ac3-d13a-4af9-8916-7c72e3d64bc7
 ms.service: traffic-manager
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/11/2016
-ms.author: sewhee
+ms.author: kumud
+translationtype: Human Translation
+ms.sourcegitcommit: 69b94c93ad3e9c9745af8485766b4237cac0062c
+ms.openlocfilehash: 4df9f744c7dde9224157eca1f869c0c420036d76
 
 ---
+
 # <a name="traffic-manager-endpoint-monitoring-and-failover"></a>流量管理員端點監視和容錯移轉
+
 Azure 流量管理員包含內建的端點監視和自動端點容錯移轉。 此功能可協助您提供能夠從端點故障中恢復的高可用性應用程 式，包括 Azure 區域失敗。
 
 ## <a name="configure-endpoint-monitoring"></a>設定端點監視
+
 若要設定端點監視，您必須在流量管理員設定檔中指定下列設定︰
 
 * **通訊協定**。 選擇 HTTP 或 HTTPS。 請務必注意，HTTPS 監視不會驗證您的 SSL 憑證是否有效，它只會檢查該憑證是否存在。
@@ -33,15 +39,19 @@ Azure 流量管理員包含內建的端點監視和自動端點容錯移轉。 �
 流量管理員設定檔中的所有端點都共用監視設定。 如果您需要對不同端點使用不同的監視設定，您可以建立[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md#example-5-per-endpoint-monitoring-settings)。
 
 ## <a name="endpoint-and-profile-status"></a>端點和設定檔狀態
+
 您可以啟用和停用流量管理員設定檔和端點。 不過，端點狀態中的變更也可能是因為流量管理員自動設定和程序的結果所導致。
 
 ### <a name="endpoint-status"></a>端點狀態
+
 您可以啟用或停用特定端點。 基礎服務可能仍然狀況良好，不受影響。 變更端點狀態可控制流量管理員設定檔中端點的可用性。 當端點狀態為「已停用」時，流量管理員不會檢查其健全狀況，而且端點不會包含於 DNS 回應中。
 
 ### <a name="profile-status"></a>設定檔狀態
+
 使用設定檔狀態設定，您可以啟用或停用特定的設定檔。 儘管端點狀態只會影響單一端點，設定檔狀態仍會影響整個設定檔，包括所有端點。 當您停用設定檔時，不會檢查端點的健全狀況，而且 DNS 回應中不會包含任何端點。 會針對 DNS 查詢傳回 [NXDOMAIN](https://tools.ietf.org/html/rfc2308) 回應碼。
 
 ### <a name="endpoint-monitor-status"></a>端點監視狀態
+
 端點監視狀態是流量管理員所產生的值，會顯示端點的狀態。 您無法手動變更此設定。 端點監視狀態是端點監視的結果以及設定端點狀態的組合。 下表顯示端點監視狀態的可能值：
 
 | 設定檔狀態 | 端點狀態 | 端點監視狀態 | 注意事項 |
@@ -56,6 +66,7 @@ Azure 流量管理員包含內建的端點監視和自動端點容錯移轉。 �
 如需如何計算巢狀端點的端點監視狀態詳細資訊，請參閱[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)。
 
 ### <a name="profile-monitor-status"></a>設定檔監視狀態
+
 設定檔監視狀態是所有端點的端點監視狀態值，以及設定之設定檔狀態所形成的組合。 下表說明可能的值︰
 
 | 設定檔狀態 (依設定) | 端點監視狀態 | 設定檔監視狀態 | 注意事項 |
@@ -67,19 +78,18 @@ Azure 流量管理員包含內建的端點監視和自動端點容錯移轉。 �
 | 已啟用 |設定檔中的所有端點狀態為「已停用」或「已停止」，或者設定檔並未定義任何端點。 |非使用中 |沒有作用中的端點，但設定檔仍為「已啟用」。 |
 
 ## <a name="endpoint-failover-and-recovery"></a>端點容錯移轉和復原
+
 流量管理員會定期檢查每個端點的健康狀態，包括狀況不良的端點健康情況。 當端點變成狀況良好時，流量管理員會偵測到此狀況，並且將它恢復至輪替。
 
 > [!NOTE]
 > 如果傳回的訊息是 200 OK，流量管理員只會將端點視為線上。 發生下列任何一種狀況時，端點為狀況不良：
-> 
+>
 > * 收到非 200 回應 (包括不同的 2xx 碼或 301/302 重新導向)
 > * 要求用戶端驗證
 > * 逾時 (逾時臨界值是 10 秒)
 > * 無法連線
-> 
+>
 > 如需疑難排解失敗檢查的詳細資訊，請參閱 [疑難排解 Azure 流量管理員上的已降級狀態](traffic-manager-troubleshooting-degraded.md)。
-> 
-> 
 
 下列時間軸是監視程序的詳細說明。
 
@@ -98,10 +108,9 @@ Azure 流量管理員包含內建的端點監視和自動端點容錯移轉。 �
 
 > [!NOTE]
 > 由於流量管理員是在 DNS 層級運作，所以無法影響任何端點的現有連接。 在引導端點之間的流量時 (透過變更設定檔設定，或是在容錯移轉或容錯回復期間)，流量管理員會將新的連接導向至可用的端點。 不過，其他端點可透過現有的連接繼續接收流量，直到這些工作階段終止為止。 若要將現有連接的流量排出，應用程式應該限制每個端點使用的工作階段持續時間。
-> 
-> 
 
 ## <a name="traffic-routing-methods"></a>流量路由方法
+
 當端點狀態為「已降級」，它不會再傳回以回應 DNS 查詢。 而是選擇並傳回替代端點。 設定檔中設定的流量路由方法會決定如何選擇替代端點。
 
 * **優先順序**。 端點會形成優先順序清單。 永遠傳回清單上第一個可用的端點。 如果端點狀態為「已降級」，則會傳回下一個可用的端點。
@@ -112,20 +121,20 @@ Azure 流量管理員包含內建的端點監視和自動端點容錯移轉。 �
 
 > [!NOTE]
 > 當所有合格的端點狀態為「已降級」時，正常的流量路由行為會發生例外狀況。 流量管理員會「竭盡所能」進行嘗試，且「彷彿所有已降級狀態的端點實際上是處於線上狀態一樣地回應」 。 此行為比在 DNS 回應中不傳回任何端點的另一種做法更好。 「已停用」或「已停止」端點不會受到監視，因此，不會將它們視為符合流量資格。
-> 
+>
 > 這種情況通常是因為服務組態不正確所造成的，例如：
-> 
+>
 > * 存取控制清單 [ACL] 封鎖流量管理員健康狀態檢查
 > * 流量管理員設定檔中監視路徑的組態不正確
-> 
+>
 > 此行為的結果是當流量管理員健康狀態檢查未正確設定時，從流量路由傳送看起來，流量管理員似乎運作正常。 不過，在此情況下，不會發生影響整體應用程式可用性的端點容錯移轉。 請務必檢查設定檔會顯示為「線上」狀態，而不是「已降級」狀態。 「線上」狀態表示流量管理員的健康狀態檢查如預期般地運作。
-> 
-> 
 
 如需疑難排解無法進行健康狀態檢查的詳細資訊，請參閱[疑難排解 Azure 流量管理員上的已降級狀態](traffic-manager-troubleshooting-degraded.md)。
 
 ## <a name="faq"></a>常見問題集
-### <a name="is-traffic-manager-resilient-to-azure-region-failures?"></a>流量管理員有能力從 Azure 區域失敗中恢復嗎？
+
+### <a name="is-traffic-manager-resilient-to-azure-region-failures"></a>流量管理員有能力從 Azure 區域失敗中恢復嗎？
+
 流量管理員在 Azure 中是提供高可用性應用程式的一個重要元件。
 若要提供高可用性，流量管理員必須擁有極高的可用性，並且可從區域失敗中恢復。
 
@@ -133,17 +142,20 @@ Azure 流量管理員包含內建的端點監視和自動端點容錯移轉。 �
 
 萬一整個 Azure 區域停機，也能預期流量管理員會持續正常運作。 在多個 Azure 區域中部署的應用程式可依賴流量管理員，將流量導向其應用程式的可用執行個體。
 
-### <a name="how-does-the-choice-of-resource-group-location-affect-traffic-manager?"></a>資源群組位置的選擇如何影響流量管理員？
+### <a name="how-does-the-choice-of-resource-group-location-affect-traffic-manager"></a>資源群組位置的選擇如何影響流量管理員？
+
 流量管理員是單一全域服務。 不是區域性。 如何選擇資源群組位置，對於部署在該資源群組中的流量管理員設定檔而言，並沒有差別。
 
 Azure Resource Manager 需要所有資源群組指定位置，這會決定部署在該資源群組中資源的預設位置。 當您建立流量管理員設定檔時，它會建立在資源群組中。 所有流量管理員設定檔都使用**全域**當作位置，覆寫資源群組預設值。
 
-### <a name="how-do-i-determine-the-current-health-of-each-endpoint?"></a>如何判斷每個端點目前的健全狀況？
+### <a name="how-do-i-determine-the-current-health-of-each-endpoint"></a>如何判斷每個端點目前的健全狀況？
+
 每個端點的目前監視狀態以及整體設定檔都會顯示於 Azure 入口網站中。 您也可以透過流量監視 [REST API](https://msdn.microsoft.com/library/azure/mt163667.aspx)、[PowerShell cmdlets](https://msdn.microsoft.com/library/mt125941.aspx) 和[跨平台 Azure CLI](../xplat-cli-install.md) 取得此資訊。
 
 Azure 未提供關於過去端點健全狀況的歷程記錄資訊，或針對端點健全狀況的變更來提出警示的能力。
 
-### <a name="can-i-monitor-https-endpoints?"></a>我可以監視 HTTPS 端點嗎？
+### <a name="can-i-monitor-https-endpoints"></a>我可以監視 HTTPS 端點嗎？
+
 是。 流量管理員支援透過 HTTPS 探查。 在監視組態中將 **HTTPS** 設定為通訊協定。
 
 流量管理員無法提供任何憑證驗證，包括：
@@ -152,36 +164,41 @@ Azure 未提供關於過去端點健全狀況的歷程記錄資訊，或針對�
 * 不支援 SNI 伺服器端憑證
 * 不支援用戶端憑證
 
-### <a name="what-host-header-do-endpoint-health-checks-use?"></a>端點健全狀況檢查使用哪一個主機標頭？
+### <a name="what-host-header-do-endpoint-health-checks-use"></a>端點健全狀況檢查使用哪一個主機標頭？
+
 流量管理員在 HTTP 和 HTTPS 的健康狀態檢查中使用主機標頭。 流量管理員所使用的主機標頭是設定檔中設定的端點目標名稱。 主機標頭中使用的值不能與目標屬性分開指定。
 
-### <a name="what-are-the-ip-addresses-from-which-the-health-checks-originate?"></a>健康情況檢查是從哪些 IP 位址產生？
+### <a name="what-are-the-ip-addresses-from-which-the-health-checks-originate"></a>健康情況檢查是從哪些 IP 位址產生？
+
 下列清單包含從流量管理員健康狀態檢查可產生的 IP 位址。 您可以使用此清單來確保端點會允許來自這些 IP 位址的連入連線，以檢查其健康情況狀態。
 
-* 13.75.153.124
-* 13.75.152.253
-* 191.232.214.62
-* 191.232.208.52
-* 52.172.155.168
-* 52.172.158.37
-* 13.75.124.254
-* 13.75.127.63
-* 137.135.82.249
-* 137.135.80.149
-* 104.41.190.203
-* 104.41.187.209
-* 65.52.217.19
-* 23.96.236.252
-* 40.87.147.10
-* 40.87.151.34
-* 104.215.91.84
-* 13.84.222.37
 * 40.68.30.66
 * 40.68.31.178
-* 137.135.47.215
+* 137.135.80.149
+* 137.135.82.249
+* 23.96.236.252
+* 65.52.217.19
+* 40.87.147.10
+* 40.87.151.34
+* 13.75.124.254
+* 13.75.127.63
+* 52.172.155.168
+* 52.172.158.37
+* 104.215.91.84
+* 13.75.153.124
+* 13.84.222.37
+* 23.101.191.199
+* 23.96.213.12
 * 137.135.46.163
+* 137.135.47.215
+* 191.232.208.52
+* 191.232.214.62
+* 13.75.152.253
+* 104.41.187.209
+* 104.41.190.203
 
 ## <a name="next-steps"></a>後續步驟
+
 了解 [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)
 
 深入了解流量管理員支援的 [流量路由方法](traffic-manager-routing-methods.md)
@@ -190,6 +207,8 @@ Azure 未提供關於過去端點健全狀況的歷程記錄資訊，或針對�
 
 [疑難排解流量管理員端點上的已降級狀態](traffic-manager-troubleshooting-degraded.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

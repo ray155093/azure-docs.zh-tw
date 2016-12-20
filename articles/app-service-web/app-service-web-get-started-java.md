@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 10/13/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9c59def4fd3fbc9d94d922bc2e7a7c077a465b21
+ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
+ms.openlocfilehash: 90c1099f7970fc490ca01f2d815679f967c46187
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: 9c59def4fd3fbc9d94d922bc2e7a7c077a465b21
 
 ## <a name="prerequisites"></a>必要條件
 * 取得 FTP/FTPS 用戶端，例如 [FileZilla](https://filezilla-project.org/)。
-* 取得 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+* 取得 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[申請免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 > [!NOTE]
 > 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
@@ -120,6 +120,6 @@ ms.openlocfilehash: 9c59def4fd3fbc9d94d922bc2e7a7c077a465b21
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure Load Balancer 的多個 VIP | Microsoft Docs
-description: Azure Load Balancer 上多個 VIP 概觀
+title: "Azure Load Balancer 的多個 VIP | Microsoft Docs"
+description: "Azure Load Balancer 上多個 VIP 概觀"
 services: load-balancer
 documentationcenter: na
 author: chkuhtz
 manager: narayan
-editor: ''
-
+editor: 
+ms.assetid: 748e50cd-3087-4c2e-a9e1-ac0ecce4f869
 ms.service: load-balancer
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/11/2016
 ms.author: chkuhtz
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 0cedf46bd0b8c352c8a8d87407ed7fbbc58e3b46
 
 ---
+
 # <a name="multiple-vips-for-azure-load-balancer"></a>Azure Load Balancer 的多個 VIP
+
 Azure Load Balancer 可讓您平衡在多個連接埠、多個 IP 位址或兩者上的服務負載。 您可以使用公用和內部負載平衡器定義來負載平衡一組 VM 間的流量。
 
 本文說明此功能的基本運用、重要概念和限制。 如果您只想要公開一個 IP 位址上的服務，可以找到[公用](load-balancer-get-started-internet-portal.md)或[內部](load-balancer-get-started-ilb-arm-portal.md)負載平衡器設定的簡易指示。 新增多個 VIP 是對單一 VIP 設定累加設定。 您隨時可以使用本文中的概念擴充簡化的設定。
@@ -43,7 +48,8 @@ Azure Load Balancer 允許您在同一負載平衡器設定上混用兩種規則
 
 我們將從預設行為開始進一步探討這些案例。
 
-## <a name="rule-type-#1:-no-backend-port-reuse"></a>規則類型 #1︰不重複使用後端連接埠
+## <a name="rule-type-1-no-backend-port-reuse"></a>規則類型 #1︰不重複使用後端連接埠
+
 ![MultiVIP 圖解片](./media/load-balancer-multivip-overview/load-balancer-multivip.png)
 
 在此案例中，前端 VIP 的設定如下︰
@@ -73,7 +79,8 @@ DIP 是輸入流量的目的地。 在後端集區中，每個 VM 會公開 DIP 
 
 健全狀況探查一律會被導向 VM 的 DIP。 您必須確定您的探查會反映 VM 的健全狀況。
 
-## <a name="rule-type-#2:-backend-port-reuse-by-using-floating-ip"></a>規則類型 #2︰使用浮動 IP 來重複使用後端連接埠
+## <a name="rule-type-2-backend-port-reuse-by-using-floating-ip"></a>規則類型 #2︰使用浮動 IP 來重複使用後端連接埠
+
 Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，不論使用何種規則類型。 此外，在某些應用程式案例中，後端集區中單一 VM 上的多個應用程式執行個體偏好或必須使用相同連接埠。 連接埠重複使用的常見範例包括提供高可用性的叢集、網路虛擬裝置、公開多個不會重新加密的 TLS 端點。
 
 如果您想要在多個規則重複使用後端連接埠，必須啟用規則定義中的浮動 IP。
@@ -94,8 +101,6 @@ Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，�
 
 > [!IMPORTANT]
 > 邏輯介面的設定是在客體 OS 內進行。 這項設定不是由 Azure 執行或管理。 沒有此設定，規則將無法運作。 健全狀況探查定義使用 VM 的 DIP，而不是邏輯 VIP。 因此，您的服務必須提供 DIP 連接埠的探查回應，以反映邏輯 VIP 上提供之服務的狀態。
-> 
-> 
 
 讓我們假設前一個案例的相同前端組態︰
 
@@ -122,14 +127,17 @@ Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，�
 
 請注意，此範例沒有變更目的地連接埠。 雖然這是浮動 IP 案例，Azure Load Balancer 也支援定義規則來重寫後端的目的地連接埠，使其和前端的目的地連接埠不同。
 
-浮動 IP 規則類型是數種負載平衡器設定模式的基礎。 [具有多個接聽程式的 SQL AlwaysOn](../virtual-machines/virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md) 設定是目前可看到其運用的範例。 經過一段時間，我們會記載更多這類案例。
+浮動 IP 規則類型是數種負載平衡器設定模式的基礎。 [具有多個接聽程式的 SQL AlwaysOn](../virtual-machines/virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 設定是目前可看到其運用的範例。 經過一段時間，我們會記載更多這類案例。
 
 ## <a name="limitations"></a>限制
+
 * 只有 IaaS VM 支援多個 VIP 設定。
 * 若使用浮點 IP 規則，您的應用程式必須使用 DIP 輸出流量。 如果您的應用程式繫結至客體 OS 中回送介面上設定的 VIP 位址，就無法使用 SNAT 來重寫輸出流量，流程就會失敗。
 * 公用 IP 位址需要費用。 如需詳細資訊，請參閱 [IP 位址定價](https://azure.microsoft.com/pricing/details/ip-addresses/)
 * 訂用帳戶有其限制。 如需詳細資訊，請參閱 [服務限制](../azure-subscription-service-limits.md#networking-limits) 的說明。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

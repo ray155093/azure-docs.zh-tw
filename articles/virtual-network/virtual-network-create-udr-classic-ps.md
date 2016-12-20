@@ -1,13 +1,13 @@
 ---
-title: 在傳統部署模型中透過 PowerShell 控制路由和使用虛擬應用裝置 | Microsoft Docs
-description: 了解如何在傳統部署模型中使用 PowerShell 來控制 VNet 中的路由
+title: "透過 PowerShell 控制路由和使用虛擬應用裝置 | Microsoft Docs"
+description: "了解如何使用 PowerShell 來控制 VNet 中的路由 | Classic"
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: d8d07c16-cbe5-4536-acd6-870269346fe3
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,42 +15,56 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
+translationtype: Human Translation
+ms.sourcegitcommit: 80b452bd96e3a328899ed455b71cf68da8bfde54
+ms.openlocfilehash: b411a31b1e972f3a614735ef53d593f9f8f442cd
+
 
 ---
-# 透過 PowerShell 控制路由和使用虛擬應用裝置 (傳統)
-[!INCLUDE [virtual-network-create-udr-classic-selectors-include.md](../../includes/virtual-network-create-udr-classic-selectors-include.md)]
+# <a name="control-routing-and-use-virtual-appliances-classic-using-powershell"></a>透過 PowerShell 控制路由和使用虛擬應用裝置 (傳統) 
+
+> [!div class="op_single_selector"]
+- [PowerShell](virtual-network-create-udr-arm-ps.md)
+- [Azure CLI](virtual-network-create-udr-arm-cli.md)
+- [範本](virtual-network-create-udr-arm-template.md)
+- [PowerShell (傳統)](virtual-network-create-udr-classic-ps.md)
+- [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
 
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
-[!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
+> [!IMPORTANT]
+> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../resource-manager-deployment-model.md) 。 您可以選取本文章頂端的選項，檢視不同工具的文件。 本文涵蓋之內容包括傳統部署模型。
+> 
 
-本文涵蓋之內容包括傳統部署模型。
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-以下的 Azure PowerShell 命令範例假設您已根據上述案例建立簡單的環境。如果您想要執行如本文件中所示的命令，請建立[使用 PowerShell 建立 VNet (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md) 中所示的環境。
+以下的 Azure PowerShell 命令範例假設您已根據上述案例建立簡單的環境。 如果您想要執行如本文件中所示的命令，請建立 [使用 PowerShell 建立 VNet (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md)中所示的環境。
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## 建立前端子網路的 UDR
+## <a name="create-the-udr-for-the-front-end-subnet"></a>建立前端子網路的 UDR
 若要根據上述案例建立前端子網路所需的路由表和路由，請依照下列步驟執行。
 
-1. 執行 **`New-AzureRouteTable`** Cmdlet 來建立前端子網路的路由表。
-   
-        New-AzureRouteTable -Name UDR-FrontEnd `
-            -Location uswest `
-            -Label "Route table for front end subnet"
-   
+1. 執行下列命令，建立前端子網路的路由表：
+
+    ```powershell
+    New-AzureRouteTable -Name UDR-FrontEnd -Location uswest `
+    -Label "Route table for front end subnet"
+    ```
+
     輸出：
    
         Name         Location   Label                          
         ----         --------   -----                          
         UDR-FrontEnd West US    Route table for front end subnet
-2. 執行 **`Set-AzureRoute`** Cmdlet，在上述建立的路由表中建立路由，以便將目的地為後端子網路 (192.168.2.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)。
-   
-        Get-AzureRouteTable UDR-FrontEnd `
-            |Set-AzureRoute -RouteName RouteToBackEnd -AddressPrefix 192.168.2.0/24 `
-            -NextHopType VirtualAppliance `
-            -NextHopIpAddress 192.168.0.4
+2. 執行下列命令，在上方建立的路由表中建立路由，將目的地為後端子網路 (192.168.2.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)：
+
+    ```powershell
+    Get-AzureRouteTable UDR-FrontEnd `
+    |Set-AzureRoute -RouteName RouteToBackEnd -AddressPrefix 192.168.2.0/24 `
+    -NextHopType VirtualAppliance `
+    -NextHopIpAddress 192.168.0.4
+    ```
    
     輸出：
    
@@ -61,46 +75,65 @@ ms.author: jdial
                    Name                 Address Prefix    Next hop type        Next hop IP address
                    ----                 --------------    -------------        -------------------
                    RouteToBackEnd       192.168.2.0/24    VirtualAppliance     192.168.0.4  
-3. 執行 **`Set-AzureSubnetRouteTable`** Cmdlet，將上述建立的路由表關聯至**前端**子網路。
-   
-        Set-AzureSubnetRouteTable -VirtualNetworkName TestVNet `
-            -SubnetName FrontEnd `
-            -RouteTableName UDR-FrontEnd
+3. 執行下列命令，建立與 **FrontEnd** 子網路關聯的路由表：
 
-## 建立後端子網路的 UDR
-若要根據上述案例建立後端子網路所需的路由表和路徑，請依照下列步驟執行。
+    ```powershell
+    Set-AzureSubnetRouteTable -VirtualNetworkName TestVNet `
+    -SubnetName FrontEnd `
+    -RouteTableName UDR-FrontEnd
+    ```
 
-1. 執行 **`New-AzureRouteTable`** Cmdlet 來建立後端子網路的路由表。
-   
-        New-AzureRouteTable -Name UDR-BackEnd `
-            -Location uswest `
-            -Label "Route table for back end subnet"
-2. 執行 **`Set-AzureRoute`** Cmdlet，在上述建立的路由表中建立路由，以便將目的地為前端子網路 (192.168.1.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)。
-   
-        Get-AzureRouteTable UDR-BackEnd `
-            |Set-AzureRoute -RouteName RouteToFrontEnd -AddressPrefix 192.168.1.0/24 `
-            -NextHopType VirtualAppliance `
-            -NextHopIpAddress 192.168.0.4
-3. 執行 **`Set-AzureSubnetRouteTable`** Cmdlet，將上述建立的路由表關聯至**後端**子網路。
-   
-        Set-AzureSubnetRouteTable -VirtualNetworkName TestVNet `
-            -SubnetName BackEnd `
-            -RouteTableName UDR-BackEnd
+## <a name="create-the-udr-for-the-back-end-subnet"></a>建立後端子網路的 UDR
+若要根據案例建立後端子網路所需的路由表和路徑，完成下列步驟：
 
-## 啟用 FW1 VM 上的 IP 轉送
-若要在 FW1 VM 中啟用 IP 轉送，請依照下列步驟執行。
+1. 執行下列命令，建立後端子網路的路由表：
 
-1. 執行 **`Get-AzureIPForwarding`** Cmdlet 來檢查 IP 轉送的狀態
-   
-        Get-AzureVM -Name FW1 -ServiceName TestRGFW `
-            | Get-AzureIPForwarding
-   
+    ```powershell
+    New-AzureRouteTable -Name UDR-BackEnd `
+    -Location uswest `
+    -Label "Route table for back end subnet"
+    ```
+
+2. 執行下列命令，在上方建立的路由表中建立路由，將目的地為前端子網路 (192.168.1.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)：
+
+    ```powershell
+    Get-AzureRouteTable UDR-BackEnd `
+    |Set-AzureRoute -RouteName RouteToFrontEnd -AddressPrefix 192.168.1.0/24 `
+    -NextHopType VirtualAppliance `
+    -NextHopIpAddress 192.168.0.4
+    ```
+
+3. 執行下列命令，建立與 **BackEnd** 子網路關聯的路由表：
+
+    ```powershell
+    Set-AzureSubnetRouteTable -VirtualNetworkName TestVNet `
+    -SubnetName BackEnd `
+    -RouteTableName UDR-BackEnd
+    ```
+
+## <a name="enable-ip-forwarding-on-the-fw1-vm"></a>啟用 FW1 VM 上的 IP 轉送
+
+若要啟用 FW1 VM 中的 IP 轉送，完成下列步驟：
+
+1. 執行下列命令檢查 IP 轉送的狀態：
+
+    ```powershell
+    Get-AzureVM -Name FW1 -ServiceName TestRGFW `
+    | Get-AzureIPForwarding
+    ```
+
     輸出：
    
         Disabled
-2. 執行 **`Set-AzureIPForwarding`** 命令，以啟用適用於 *FW1* VM 的 IP 轉送。
-   
-        Get-AzureVM -Name FW1 -ServiceName TestRGFW `
-            | Set-AzureIPForwarding -Enable
+2. 執行下列命令，以啟用適用於 *FW1* VM 的 IP 轉送：
 
-<!---HONumber=AcomDC_0810_2016------>
+    ```powershell
+    Get-AzureVM -Name FW1 -ServiceName TestRGFW `
+    | Set-AzureIPForwarding -Enable
+    ```
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

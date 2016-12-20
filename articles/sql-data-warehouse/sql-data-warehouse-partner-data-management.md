@@ -1,12 +1,12 @@
 ---
-title: SQL Data Warehouse data management partners | Microsoft Docs
-description: Lists of third-party data management partners with solutions that support SQL Data Warehouse.
+title: "SQL 資料倉儲資料管理合作夥伴 | Microsoft Docs"
+description: "具有可支援「SQL 資料倉儲」之解決方案的協力廠商資料管理合作夥伴清單。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: c3d96b41-f049-49e8-af32-408f4a893477
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,23 +14,27 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2b29a041a005a6d6aa60c45dc39f151647e35646
+
 
 ---
-# <a name="sql-data-warehouse-data-management-partners"></a>SQL Data Warehouse data management partners
-To create your end-to-end data warehouse solution, choose from a wide variety of industry-leading tools. This article highlights Microsoft partner companies with data management tools and solutions supporting Azure SQL Data Warehouse.
+# <a name="sql-data-warehouse-data-management-partners"></a>SQL 資料倉儲資料管理合作夥伴
+若要建立端對端資料倉儲解決方案，請從各式各樣領先業界的工具中選擇。 本文將重點放在具有可支援「Azure SQL 資料倉儲」之資料管理工具和解決方案的 Microsoft 合作夥伴公司。
 
-## <a name="our-data-management-partners"></a>Our data management partners
-| Partner | Description | Links | Videos |
+## <a name="our-data-management-partners"></a>我們的資料管理合作夥伴
+| 合作夥伴 | 說明 | 連結 | 影片 |
 | --- | --- | --- | --- |
-| ![Coffing Data Warehousing][1] |**Coffing Data Warehousing**<br>Coffing Data Warehousing provides Nexus Chameleon, a tool with 10 years of design dedicated to querying systems. Nexus is available as a query tool for SQL Data Warehouse. Use Nexus to query in-house and cloud computers and join data across different platforms. Point-Click-Report! |[Marketplace][coffing_marketplace]<br>[Website][coffing_website]<br>[Press Release][coffing_press]<br>[Twitter][coffing_twitter]<br>[YouTube][coffing_youtube] |[![coffing video](./media/sql-data-warehouse-partner-data-management/coffing_video.jpg)](https://www.youtube.com/watch?v=N5GSxBEySFc) |
-| ![Inbrein][2] |**MicroERD**<br>Inbrein MicroERD provides the tools that you need to create a precise data model, reduce data redundancy, improve productivity, and observe standards. By using its UI, which was developed based on extensive user experiences, a modeler can work on DB models easily and conveniently. You can continuously enjoy new and improved functions of MicroERD through prompt functional improvements and updates. |[Website][inbrein_website]<br>[Datasheet][inbrein_datasheet]<br>[Twitter][inbrein_twitter]<br>[YouTube][inbrein_youtube] |[![inbrein video](./media/sql-data-warehouse-partner-data-management/inbrein_video.jpg)](https://www.youtube.com/watch?v=IGHSAk4bxdE) |
-| ![Infolibrarian][3] |**Infolibrarian**<br>InfoLibrarian catalogs, stores, and manages metadata to help you solve key pain points of data management. In addition, we provide metadata management, data governance, and asset management software solutions for managing and publishing metadata from a diverse set of tools and technologies. |[Marketplace][infolibrarian_marketplace]<br>[Website][infolibrarian_website]<br>[Twitter][infolibrarian_twitter] |[![infolibrarian video](./media/sql-data-warehouse-partner-data-management/infolibrarian_video.png)](http://www.infolibcorp.com/metadata-management-videos/vdbplayer.swf?volume=100&url=video/infolibrarian-azure-provisioning.mp4) |
-| ![Redpoint Global][4] |**RedPoint Interaction**<br>RedPoint Interaction empowers you to engage with customers in a continuous dialog across every communication channel and touch point. Easily manage the complete lifecycle of omnichannel marketing from a single point of operational control |[Marketplace][redpoint_it_marketplace]<br>[Website][redpoint_it_website]<br>[Press Release][redpoint_press]<br>[Datasheet][redpoint_it_datasheet]<br>[Twitter][redpoint_twitter]<br>[YouTube][redpoint_youtube] |[![redpoint dm video](./media/sql-data-warehouse-partner-data-management/redpoint_it_video.jpg)](https://vimeo.com/103715582) |
-| ![Redpoint Global][4] |**RedPoint Data Management**<br>RedPoint Data Management enable marketers to apply all their data to drive cross-channel customer engagement while performing structured and unstructured data management. By taking advantage of Azure SQL Data Warehouse and RedPoint you can maximize the value of your structured and unstructured data to deliver the hyper-personalized, contextual interactions needed to engage today’s omni-channel customer. Drag-and-drop interface makes designing and executing data management processes easy. |[Marketplace][redpoint_dm_marketplace]<br>[Website][redpoint_dm_website]<br>[Press Release][redpoint_press]<br>[Datasheet][redpoint_dm_datasheet]<br>[Twitter][redpoint_twitter]<br>[YouTube][redpoint_youtube] |[![redpoint dm video](./media/sql-data-warehouse-partner-data-management/redpoint_dm_video.jpg)](https://vimeo.com/103715581) |
-| ![SQL Sentry][5] |**SQL Sentry**<br>SQL Sentry Performance Advisor delivers real-time and historical views of the most pertinent Azure SQL Data Warehouse performance metrics, allowing customers to see performance trends, and easily access more detailed information for in-depth analysis and troubleshooting. Performance Advisor allows viewing of performance data for any point in time or date range. |[Marketplace][sql_sentry_marketplace]<br>[Website][sql_sentry_website]<br>[Press Release][sql_sentry_press]<br>[Twitter][sql_sentry_twitter]<br>[YouTube][sql_sentry_youtube] | |
+| ![Coffing Data Warehousing][1] |**Coffing Data Warehousing**<br>Coffing Data Warehousing 提供 Nexus Chameleon，這是專門用來查詢系統的工具，已有十年的歷史。 Nexus 可做為 SQL 資料倉儲的查詢工具。 請使用 Nexus 查詢內部部署和雲端電腦，並聯結不同平台的資料。 點擊式報告！ |[Marketplace][coffing_marketplace]<br>[網站][coffing_website]<br>[新聞稿][coffing_press]<br>[Twitter][coffing_twitter]<br>[YouTube][coffing_youtube] |[![Coffing 影片](./media/sql-data-warehouse-partner-data-management/coffing_video.jpg)](https://www.youtube.com/watch?v=N5GSxBEySFc) |
+| ![Inbrein][2] |**MicroERD**<br>Inbrein MicroERD 提供您建立精確資料模型、減少資料備援、提升產能及遵守標準所需的工具。 透過使用其根據廣泛使用者體驗所開發的 UI，可讓模型塑造既輕鬆又方便地處理 DB 模型。 透過及時的功能改進和更新，您可以持續享有 MicroERD 最新改善的功能。 |[網站][inbrein_website]<br>[資料工作表][inbrein_datasheet]<br>[Twitter][inbrein_twitter]<br>[YouTube][inbrein_youtube] |[![Inbrein 影片](./media/sql-data-warehouse-partner-data-management/inbrein_video.jpg)](https://www.youtube.com/watch?v=IGHSAk4bxdE) |
+| ![Infolibrarian][3] |**Infolibrarian**<br>InfoLibrarian 能夠歸類、儲存和管理中繼資料，協助您解決資料管理的主要難題。 此外，我們還提供中繼資料管理、資料控管和資產管理軟體解決方案，可讓您透過一組多樣的工具和技術來管理和發佈中繼資料。 |[Marketplace][infolibrarian_marketplace]<br>[網站][infolibrarian_website]<br>[Twitter][infolibrarian_twitter] |[![Infolibrarian 影片](./media/sql-data-warehouse-partner-data-management/infolibrarian_video.png)](http://www.infolibcorp.com/metadata-management-videos/vdbplayer.swf?volume=100&url=video/infolibrarian-azure-provisioning.mp4) |
+| ![Redpoint Global][4] |**RedPoint Interaction**<br>RedPoint Interaction 讓您能夠在每個通訊通道與接觸點上，透過連續對話來與客戶交流。 從作業控制的單一點輕鬆管理全通路行銷的完整週期 |[Marketplace][redpoint_it_marketplace]<br>[網站][redpoint_it_website]<br>[新聞稿][redpoint_press]<br>[資料工作表][redpoint_it_datasheet]<br>[Twitter][redpoint_twitter]<br>[YouTube][redpoint_youtube] |[![Redpoint DM 影片](./media/sql-data-warehouse-partner-data-management/redpoint_it_video.jpg)](https://vimeo.com/103715582) |
+| ![Redpoint Global][4] |**RedPoint 資料管理**<br>RedPoint Data Management 可讓行銷人員運用其所有資料來提升跨通路的客戶參與率，同時又能執行結構化和非結構化的資料管理。 透過利用「Azure SQL 資料倉儲」與 RedPoint，您可以發揮您結構化和非結構化資料的最大價值，提供吸引現今全通路客戶所需的超高度個人化情境式互動。 拖放介面讓設計和執行資料管理程序變得很輕鬆。 |[Marketplace][redpoint_dm_marketplace]<br>[網站][redpoint_dm_website]<br>[新聞稿][redpoint_press]<br>[資料工作表][redpoint_dm_datasheet]<br>[Twitter][redpoint_twitter]<br>[YouTube][redpoint_youtube] |[![Redpoint DM 影片](./media/sql-data-warehouse-partner-data-management/redpoint_dm_video.jpg)](https://vimeo.com/103715581) |
+| ![SQL Sentry][5] |**SQL Sentry**<br>SQL Sentry Performance Advisor 提供最適當 Azure SQL 資料倉儲效能度量的即時和歷史觀點，讓客戶看出效能趨勢，並輕鬆地存取更詳細的資訊來深入分析和疑難排解。 此效能顧問可讓您檢視任何時間點或日期範圍內的效能資料。 |[Marketplace][sql_sentry_marketplace]<br>[網站][sql_sentry_website]<br>[新聞稿][sql_sentry_press]<br>[Twitter][sql_sentry_twitter]<br>[YouTube][sql_sentry_youtube] | |
 
-## <a name="next-steps"></a>Next Steps
-To learn more about some of our other partners, see [Business Intelligence partners][bi_partners] and [Data Integration partners][di_partners].
+## <a name="next-steps"></a>後續步驟
+若要深入了解我們的一些其他合作夥伴，請參閱[商業智慧合作夥伴][bi_partners]和[資料整合合作夥伴][di_partners]。
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-partner-data-management/coffing_data_warehousing_logo.png
@@ -96,6 +100,6 @@ To learn more about some of our other partners, see [Business Intelligence partn
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

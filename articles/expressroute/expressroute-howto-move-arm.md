@@ -1,13 +1,13 @@
 ---
-title: 將 ExpressRoute 電路從傳統移至 Resource Manager | Microsoft Docs
-description: 本頁面會描述如何將傳統的電路移至 Resource Manager 部署模型。
+title: "將 ExpressRoute 電路從傳統移至 Resource Manager | Microsoft Docs"
+description: "本頁面會描述如何將傳統的電路移至 Resource Manager 部署模型。"
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 08152836-23e7-42d1-9a56-8306b341cd91
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1c3bd8e01e02fb66bf5e04c307863bbe54176128
+
 
 ---
 # <a name="move-expressroute-circuits-from-the-classic-to-the-resource-manager-deployment-model"></a>將 ExpressRoute 電路從傳統部署模型移至 Resource Manager 部署模型
@@ -28,7 +32,7 @@ ms.author: ganesr
 ## <a name="move-the-expressroute-circuit-to-the-resource-manager-deployment-model"></a>將 ExpressRoute 電路移至 Resource Manager 部署模型
 您必須將 ExpressRoute 電路移至資源管理員部署模型，以便可在傳統和 Resource Manager 兩種部署模型中使用它。 您可以執行下列 PowerShell 命令執行這項作業。
 
-### <a name="step-1:-gather-circuit-details-from-the-classic-deployment-model"></a>步驟 1︰從傳統部署模型收集電路詳細資訊
+### <a name="step-1-gather-circuit-details-from-the-classic-deployment-model"></a>步驟 1︰從傳統部署模型收集電路詳細資訊
 您需要先收集 ExpressRoute 電路的相關資訊。
 
 登入 Azure 傳統環境並收集服務金鑰。 您可以使用下列 PowerShell 程式碼片段來收集資訊︰
@@ -48,7 +52,7 @@ ms.author: ganesr
 
 複製電路的 **服務金鑰** ，這個電路就是您想要移至 Resource Manager 部署模型的電路。
 
-### <a name="step-2:-sign-in-to-the-resource-manager-environment,-and-create-a-new-resource-group"></a>步驟 2︰登入 Resource Manager 環境並建立新的資源群組
+### <a name="step-2-sign-in-to-the-resource-manager-environment-and-create-a-new-resource-group"></a>步驟 2︰登入 Resource Manager 環境並建立新的資源群組
 您可以使用下列程式碼片段建立新的資源群組：
 
     # Sign in to your Azure Resource Manager environment
@@ -62,7 +66,7 @@ ms.author: ganesr
 
 如果已經有了資源群組，您也可以使用現有的資源群組。
 
-### <a name="step-3:-move-the-expressroute-circuit-to-the-resource-manager-deployment-model"></a>步驟 3：將 ExpressRoute 電路移至 Resource Manager 部署模型
+### <a name="step-3-move-the-expressroute-circuit-to-the-resource-manager-deployment-model"></a>步驟 3：將 ExpressRoute 電路移至 Resource Manager 部署模型
 您已準備就緒，可將 ExpressRoute 電路從傳統部署模型移至 Resource Manager 部署模型。 更進一步之前，請先檢閱 [將 ExpressRoute 電路從傳統移至 Resource Manager 部署模型](expressroute-move.md) 下提供的資訊。
 
 您可以執行下列程式碼片來執行這項作業：
@@ -119,6 +123,9 @@ ms.author: ganesr
 * [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-arm.md)
 * [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

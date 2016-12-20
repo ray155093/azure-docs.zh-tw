@@ -1,20 +1,24 @@
 ---
-title: Azure Active Directory Identity Protection 腳本 | Microsoft Docs
-description: 了解 Azure AD Identity Protection 如何讓您限制攻擊者利用遭入侵的身分識別或裝置的能力，以及保護先前疑似或已知遭到入侵的身分識別或裝置。
+title: "Azure Active Directory Identity Protection 腳本 | Microsoft Docs"
+description: "了解 Azure AD Identity Protection 如何讓您限制攻擊者利用遭入侵的身分識別或裝置的能力，以及保護先前疑似或已知遭到入侵的身分識別或裝置。"
 services: active-directory
-keywords: azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則
-documentationcenter: ''
+keywords: "azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 60836abf-f0e9-459d-b344-8e06b8341d25
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/22/2016
+ms.date: 11/11/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 77031b3bbe2372bf2cac34bac45368ac40911641
+ms.openlocfilehash: 87070d7680a6d48e94099b47f9dc336a75332f6c
+
 
 ---
 # <a name="azure-active-directory-identity-protection-playbook"></a>Azure Active Directory Identity Protection 腳本
@@ -32,7 +36,7 @@ ms.author: markvi
 
 無法以安全的方式模擬其他風險事件。
 
-### <a name="signins-from-anonymous-ip-addresses"></a>從匿名 IP 位址登入
+### <a name="sign-ins-from-anonymous-ip-addresses"></a>從匿名 IP 位址登入
 此風險事件類型會識別從被視為匿名 Proxy IP 位址的 IP 位址成功登入的使用者。 這些 Proxy 通常由想要隱藏其裝置 IP 位址的人員使用，而且可能用於惡意意圖。
 
 **若要模擬從匿名 IP 登入，請執行下列步驟**：
@@ -43,7 +47,7 @@ ms.author: markvi
 
 登入將會在 5 分鐘內顯示於 Identity Protection 儀表板上。 
 
-### <a name="signins-from-unfamiliar-locations"></a>從不熟悉的位置登入
+### <a name="sign-ins-from-unfamiliar-locations"></a>從不熟悉的位置登入
 不熟悉的位置風險是一種即時登入評估機制，它會考量過去的登入位置 (IP、經緯度和 ASN) 以判斷新的 / 不熟悉的位置。 系統會儲存使用者先前的 IP、經緯度和 ASN，並將這些視為熟悉的位置。 如果登入位置不符合任何現有的熟悉位置，此登入位置會被視為不熟悉。
 
 Azure Active Directory Identity Protection：  
@@ -108,7 +112,7 @@ Azure Active Directory Identity Protection：
     ![腳本](./media/active-directory-identityprotection-playbook/201.png "Playbook")
     <br>
 
-## <a name="signin-risk"></a>登入風險
+## <a name="sign-in-risk"></a>登入風險
 **若要測試登入風險，請執行下列步驟：**
 
 1. 使用租用戶的全域管理員認證來登入 [https://portal.azure.com ](https://portal.azure.com) 。
@@ -126,13 +130,16 @@ Azure Active Directory Identity Protection：
 9. 按一下 [儲存] 。
 10. 您現在可以藉由模擬不熟悉的位置或匿名 IP 風險事件 (因為它們都是 [中]  風險事件)，測試以風險為基礎的條件式存取。
 
-<br>
+
 ![腳本](./media/active-directory-identityprotection-playbook/200.png "Playbook")
-<br>
+
 
 ## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 中的 Azure 網路分析解決方案 | Microsoft Docs
-description: 您可以使用 Log Analytics 中的 Azure 網路分析解決方案，以檢閱 Azure 網路安全性群組記錄檔和 Azure 應用程式閘道記錄檔。
+title: "Log Analytics 中的 Azure 網路分析解決方案 | Microsoft Docs"
+description: "您可以使用 Log Analytics 中的 Azure 網路分析解決方案，以檢閱 Azure 網路安全性群組記錄檔和 Azure 應用程式閘道記錄檔。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: richrundmsft
 manager: jochan
-editor: ''
-
+editor: 
+ms.assetid: 66a3b8a1-6c55-4533-9538-cad60c18f28b
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2016
 ms.author: richrund
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: eed3bd763edb94d7bea28b4039c03afa7359fee1
+
 
 ---
-# <a name="azure-networking-analytics-(preview)-solution-in-log-analytics"></a>Log Analytics 中的 Azure 網路分析 (預覽) 解決方案
+# <a name="azure-networking-analytics-preview-solution-in-log-analytics"></a>Log Analytics 中的 Azure 網路分析 (預覽) 解決方案
 > [!NOTE]
 > 這是[預覽解決方案](log-analytics-add-solutions.md#log-analytics-preview-solutions-and-features)。
 > 
@@ -96,6 +100,9 @@ Azure 網路分析解決方案會從 Azure Blob 儲存體收集 Azure 應用程�
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)來檢視詳細的 Azure 網路分析資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: Power BI Embedded 新功能
-description: 取得 Power BI Embedded 新功能的最新資訊
+title: "Power BI Embedded 新功能"
+description: "取得 Power BI Embedded 新功能的最新資訊"
 services: power-bi-embedded
-documentationcenter: ''
+documentationcenter: 
 author: guyinacube
 manager: erikre
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 2794ae98-b9a7-45df-b6e1-962a395b91fa
 ms.service: power-bi-embedded
 ms.devlang: NA
 ms.topic: article
@@ -15,18 +15,22 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 10/04/2016
 ms.author: asaxton
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 86c4f2b6ab4ff9dfba429acfcfbd0cd2bac7b42c
+
 
 ---
-# <a name="what's-new-in-power-bi-embedded"></a>Power BI Embedded 新功能
+# <a name="whats-new-in-power-bi-embedded"></a>Power BI Embedded 新功能
 **Power BI Embedded** 的更新會定期發行。 但是，並非所有發行版本都會包含供使用者使用的新功能，某些版本著重在後端服務功能。 我們將會在這裡反白顯示對於使用者的功能。 請務必經常回來查看。
 
-## <a name="august-31st,-2016"></a>2016 年 8 月 31 日
+## <a name="august-31st-2016"></a>2016 年 8 月 31 日
 這個版本中包含︰
 
 * 支援 [進階篩選和頁面瀏覽](power-bi-embedded-interact-with-reports.md)的全新 JavaScript SDK。
 * 「加拿大中部」資料中心內現已支援 Power BI Embedded。 查看 [資料中心狀態](https://azure.microsoft.com/status/)。
 
-## <a name="july-11th,-2016"></a>2016 年 7 月 11 日
+## <a name="july-11th-2016"></a>2016 年 7 月 11 日
 這個版本中包含︰
 
 * **好消息！**  Power BI Embedded service 不再是預覽 - 現在已 GA (正式推出)。  
@@ -39,6 +43,9 @@ ms.author: asaxton
 * 使用者可以將視覺效果資料匯出到 **.csv**。
 * Power BI Embedded 現在受到與 Microsoft Azure 相同的所有語言/地區設定的支援。 若要深入了解，請參閱 [Azure - 語言](http://social.technet.microsoft.com/wiki/contents/articles/4234.windows-azure-extent-of-localization.aspx)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

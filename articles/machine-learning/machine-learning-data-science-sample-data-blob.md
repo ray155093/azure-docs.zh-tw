@@ -1,12 +1,12 @@
 ---
-title: Azure blob 儲存體中的取樣資料 | Microsoft Docs
-description: Azure Blob 儲存體中的取樣資料
+title: "Azure Blob 儲存體中的取樣資料 | Microsoft Docs"
+description: "Azure blob 儲存體中的取樣資料"
 services: machine-learning,storage
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: e8d9ad2c-86c5-43d6-80b8-d355b5c0dccf
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,21 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/19/2016
 ms.author: fashah;garye;bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 66eddd40d3aa5156762acd1b1783a527e9ab463d
+
 
 ---
-# <a name="heading"></a>Azure blob 儲存體中的取樣資料
+# <a name="a-nameheadingasample-data-in-azure-blob-storage"></a><a name="heading"></a>Azure blob 儲存體中的取樣資料
 本文件說明為儲存於 Azure blob 儲存體中的資料進行取樣的方法，您可以利用程式設計方式加以下載，然後使用以 Python 撰寫的程序進行取樣。
 
-**為何要對您的資料進行取樣？** 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。這有助於資料了解、探索和功能工程。它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
+**為何要對您的資料進行取樣？**
+ 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。 這有助於資料了解、探索和功能工程。 它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
 
-以下**功能表**所連結的主題會說明如何從各種不同儲存體環境進行資料取樣。
+以下 **功能表** 所連結的主題會說明如何從各種不同儲存體環境進行資料取樣。 
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
-這個取樣工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個取樣工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中的一個步驟。
 
-## 下載和降低取樣資料
-1. 從下列 Python 程式碼範例中，使用 Blob 服務，從 Azure Blob 儲存體下載資料。
+## <a name="download-and-down-sample-data"></a>下載和降低取樣資料
+1. 從下列 Python 程式碼範例中，使用 Blob 服務，從 Azure Blob 儲存體下載資料。 
    
         from azure.storage.blob import BlobService
         import tables
@@ -61,7 +66,7 @@ ms.author: fashah;garye;bradsev
 
 現在您可以使用上述具有 1% 樣本的資料框架，進行進一步探索和功能產生。
 
-## <a name="heading"></a>將資料上傳並將其讀入 Azure Machine Learning
+## <a name="a-nameheadingaupload-data-and-read-it-into-azure-machine-learning"></a><a name="heading"></a>將資料上傳並將其讀入 Azure Machine Learning
 您可以使用下列程式碼範例，對資料進行向下取樣，並直接在 Azure ML 中使用它：
 
 1. 將資料框架寫入本機檔案
@@ -88,8 +93,13 @@ ms.author: fashah;garye;bradsev
    
         except:            
             print ("Something went wrong with uploading to the blob:"+ BLOBNAME)
-3. 使用 Azure ML [匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)從 Azure Blob 讀取資料，如下圖所示：
+3. 使用 Azure ML [匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) 從 Azure Blob 讀取資料，如下圖所示：
 
 ![讀取器 Blob](./media/machine-learning-data-science-sample-data-blob/reader_blob.png)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

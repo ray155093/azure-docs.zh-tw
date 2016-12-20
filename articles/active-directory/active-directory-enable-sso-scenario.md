@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure Active Directory (AD) 管理應用程式 | Microsoft Docs
-description: 本文章說明整合 Azure Active Directory 與您的內部部署、雲端和 SaaS 應用程式的優點。
+title: "使用 Azure Active Directory 管理應用程式 | Microsoft Docs"
+description: "本文章說明整合 Azure Active Directory 與您的內部部署、雲端和 SaaS 應用程式的優點。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 95b96f10-2d5c-4b78-8af8-d3657a24140f
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/10/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0e5d50d111a63e7af8df6ded3492fe16e575ff51
+
 
 ---
 # <a name="managing-applications-with-azure-active-directory"></a>使用 Azure Active Directory 來管理應用程式
@@ -94,7 +98,7 @@ SSO 程序有兩個步驟：
 ## <a name="access-management"></a>存取管理
 使用 Azure AD，您可以使用個別或規則驅動指派來管理對應用程式的存取。 您也可以將存取管理委派給組織中適當的人員，以獲得確保最佳的監督並減少技術服務人員的負擔。
 
-## <a name="onpremises-applications"></a>內部應用程式
+## <a name="on-premises-applications"></a>內部應用程式
 內建的應用程式 Proxy 可讓您將內部部署應用程式發佈給使用者，以獲得對現代化雲端應用程式一致的存取經驗以及 Azure AD 監視、報告和安全性功能的優點。
 
 ## <a name="reporting-and-monitoring"></a>報告和監控
@@ -109,6 +113,9 @@ Azure AD 為您提供預先整合的報告與監控功能，可讓您知道可�
 ## <a name="see-also"></a>另請參閱
 [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

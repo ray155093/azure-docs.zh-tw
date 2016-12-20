@@ -1,13 +1,13 @@
 ---
-title: 透過 Microsoft Passport 不需要密碼就能驗證身分識別 | Microsoft Docs
-description: 提供 Microsoft Passport 概觀以及部署 Microsoft Passport 的其他資訊。
+title: "透過 Microsoft Passport 不需要密碼就能驗證身分識別 | Microsoft Docs"
+description: "提供 Microsoft Passport 概觀以及部署 Microsoft Passport 的其他資訊。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: femila
 manager: swadhwa
-editor: ''
+editor: 
 tags: azure-classic-portal
-
+ms.assetid: f907bb90-8776-46ca-9e12-279949af66ff
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: cfe729f56ce0d1e4bc7f1fe7eedefd736c8ca0d0
+
 
 ---
 # <a name="authenticating-identities-without-passwords-through-microsoft-passport"></a>透過 Microsoft Passport 不需要密碼就能驗證身分識別
@@ -67,6 +71,9 @@ ms.author: femila
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

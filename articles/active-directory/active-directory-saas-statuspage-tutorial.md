@@ -1,12 +1,12 @@
 ---
-title: 教學課程：將 Azure Active Directory 與 StatusPage 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 StatusPage 之間的單一登入。
+title: "教學課程：將 Azure Active Directory 與 StatusPage 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 StatusPage 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: f6ee8bb3-df43-4c0d-bf84-89f18deac4b9
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: accfb64dfe167de9c6481954e00af6c8f732ab1d
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-statuspage"></a>教學課程：將 Azure Active Directory 與 StatusPage 整合
+# <a name="tutorial-azure-active-directory-integration-with-statuspage"></a>教學課程：將 Azure Active Directory 與 StatusPage 整合
 本教學課程旨在說明如何整合 StatusPage 與 Azure Active Directory (Azure AD)。
 
 StatusPage 與 Azure AD 整合提供下列優點： 
@@ -124,7 +128,7 @@ StatusPage 與 Azure AD 整合提供下列優點：
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
 2. 在另一個瀏覽器視窗中，以系統管理員身分登入您的 StatusPage 公司網站。
 3. 在主工具列中，按一下 [管理帳戶] 。
    
@@ -195,7 +199,7 @@ StatusPage 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-statuspage-test-user"></a>建立 StatusPage 測試使用者
 本節目標是在 StatusPage 中建立名為 Britta Simon 的使用者。
@@ -273,6 +277,6 @@ StatusPage 支援 Just-in-Time 佈建。 您已在 [設定 Azure AD 單一登入
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

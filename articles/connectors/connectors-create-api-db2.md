@@ -1,13 +1,13 @@
 ---
-title: 在您的 Logic Apps 中新增 DB2 連接器 | Microsoft Docs
-description: 搭配 REST API 參數來使用 DB2 連接器的概觀
-services: ''
-documentationcenter: ''
+title: "在您的 Logic Apps 中新增 DB2 連接器 | Microsoft Docs"
+description: "搭配 REST API 參數來使用 DB2 連接器的概觀"
+services: 
+documentationcenter: 
 author: gplarsen
 manager: erikre
-editor: ''
+editor: 
 tags: connectors
-
+ms.assetid: 1c6b010c-beee-496d-943a-a99e168c99aa
 ms.service: logic-apps
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 09/26/2016
 ms.author: plarsen
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d9b00d1db69951ce183f05c8237db02cd046931b
+
 
 ---
 # <a name="get-started-with-the-db2-connector"></a>開始使用 DB2 連接器
@@ -170,7 +174,7 @@ DB2 連接器支援下列邏輯應用程式動作：
 3. 在 [週期性] 觸發程序中，選取 [編輯]，選取 [頻率] 下拉式清單以選取 [天]，然後選取 [間隔] 以輸入 **7**。 
 4. 選取 [+ 新增步驟] 方塊，然後再選取 [新增動作]。
 5. 在**動作**清單中，於 [搜尋更多動作] 編輯方塊中輸入 **db2**，然後選取 [DB2 - 插入資料列 (預覽)]。
-6. 在 [取得資料列 (預覽)] 動作中，選取 [變更連線]。 
+6. 在 [DB2 - 插入資料列 (預覽)] 動作中，選取 [變更連線]。 
 7. 在 [連線]  組態窗格中選取連線。 例如，選取 [hisdemo2] 。
    
     ![](./media/connectors-create-api-db2/Db2connectorChangeConnection.png)
@@ -225,7 +229,7 @@ DB2 連接器支援下列邏輯應用程式動作：
 3. 在 [週期性] 觸發程序中，選取 [編輯]，選取 [頻率] 下拉式清單以選取 [天]，然後選取 [間隔] 以輸入 **7**。 
 4. 選取 [+ 新增步驟] 方塊，然後再選取 [新增動作]。
 5. 在**動作**清單中，於 [搜尋更多動作] 編輯方塊中輸入 **db2**，然後選取 [DB2 - 更新資料列 (預覽)]。
-6. 在 [取得資料列 (預覽)] 動作中，選取 [變更連線]。 
+6. 在 [DB2 - 更新資料列 (預覽)] 動作中，選取 [變更連線]。 
 7. 在 [連線]  組態窗格中，選取以選取現有連線。 例如，選取 [hisdemo2] 。
    
     ![](./media/connectors-create-api-db2/Db2connectorChangeConnection.png)
@@ -252,7 +256,7 @@ DB2 連接器支援下列邏輯應用程式動作：
 3. 在 [週期性] 觸發程序中，選取 [編輯]，選取 [頻率] 下拉式清單以選取 [天]，然後選取 [間隔] 以輸入 **7**。 
 4. 選取 [+ 新增步驟] 方塊，然後再選取 [新增動作]。
 5. 在**動作**清單中，於 [搜尋更多動作] 編輯方塊中選取 [db2]，然後選取 [DB2 - 刪除資料列 (預覽)]。
-6. 在 [取得資料列 (預覽)] 動作中，選取 [變更連線]。 
+6. 在 [DB2 - 刪除資料列 (預覽)] 動作中，選取 [變更連線]。 
 7. 在 [連線]  組態窗格中選取現有連線。 例如，選取 [hisdemo2] 。
    
     ![](./media/connectors-create-api-db2/Db2connectorChangeConnection.png)
@@ -407,6 +411,9 @@ TablesList
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,30 +1,37 @@
 ---
-title: 使用 MongoDB 部署 Node.js 應用程式 | Microsoft Docs
-description: 如何封裝多個來賓可執行檔以部署至 Azure Service Fabric 叢集的逐步解說
+title: "部署使用 MongoDB 的 Node.js 應用程式 | Microsoft Docs"
+description: "如何封裝多個來賓可執行檔以部署至 Azure Service Fabric 叢集的逐步解說"
 services: service-fabric
 documentationcenter: .net
-author: bmscholl
-manager: ''
-editor: ''
-
+author: msfussell
+manager: timlt
+editor: 
+ms.assetid: b76bb756-c1ba-49f9-9666-e9807cf8f92f
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 06/20/2016
-ms.author: bscholl;mikhegn
+ms.date: 10/22/2016
+ms.author: msfussell;mikhegn
+translationtype: Human Translation
+ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
+ms.openlocfilehash: 6f9580bd96007239eb5dc0276a87c63ec62804c5
+
 
 ---
-# 部署多個來賓可執行檔
-本文說明如何使用 Azure Service Fabric 封裝工具預覽版 (可從 [http://aka.ms/servicefabricpacktool](http://aka.ms/servicefabricpacktool) 取得) 將多個來賓可執行檔封裝並部署至 Service Fabric。
+# <a name="deploy-multiple-guest-executables"></a>部署多個來賓可執行檔
+本文說明如何封裝多個來賓可執行檔並部署至 Azure Service Fabric。 若要建置和部署單一 Service Fabric 套件，請閱讀如何[將來賓可執行檔部署至 Service Fabric](service-fabric-deploy-existing-app.md)。
 
-若要手動建置 Service Fabric 封裝，請檢閱如何[將來賓可執行檔部署至 Service Fabric](service-fabric-deploy-existing-app.md)。
+雖然本逐步解說示範的是如何部署使用 MongoDB 做為資料存放區並具有 Node.js 前端的應用程式，但是您可以將這些步驟套用到任何與另一個應用程式具有相依性的應用程式。   
 
-雖然本逐步解說示範的是如何部署使用 MongoDB 做為資料存放區並具有 Node.js 前端的應用程式，但是您可以將這些步驟套用到任何與另一個應用程式具有相依性的應用程式。
+您可以使用 Visual Studio 來產生包含多個來賓可執行檔的應用程式套件。 請參閱[使用 Visual Studio 封裝現有應用程式](service-fabric-deploy-existing-app.md#use-visual-studio-to-package-an-existing-executable)。 新增第一個來賓可執行檔之後，在應用程式專案上按一下滑鼠右鍵，然後選取 [新增] -> [新的 Service Fabric 服務] 將第二個來賓可執行檔專案新增至方案。 請注意：如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。 
 
-## 封裝 Node.js 應用程式
-本文假設 Service Fabric 叢集中的節點上未安裝 Node.js。因此，您需要在封裝之前，先將 Node.exe 新增至您節點應用程式的根目錄。Node.js 應用程式 (使用 Express Web 架構和 Jade 範本引擎) 的目錄結構看起來應該與以下類似：
+## <a name="manually-package-the-multiple-guest-executable-application"></a>手動封裝多個來賓可執行檔應用程式
+或者，您可以手動封裝來賓可執行檔。 對於手動封裝，本文使用 Service Fabric 封裝工具，您可在 [http://aka.ms/servicefabricpacktool](http://aka.ms/servicefabricpacktool) 取得。
+
+### <a name="packaging-the-nodejs-application"></a>封裝 Node.js 應用程式
+本文假設 Service Fabric 叢集中的節點上未安裝 Node.js。 因此，您需要在封裝之前，先將 Node.exe 新增至您節點應用程式的根目錄。 Node.js 應用程式 (使用 Express Web 架構和 Jade 範本引擎) 的目錄結構看起來應該與以下類似：
 
 ```
 |-- NodeApplication
@@ -49,7 +56,7 @@ ms.author: bscholl;mikhegn
     |-- node.exe
 ```
 
-在下一個步驟中，您將為 Node.js 應用程式建立應用程式封裝。以下程式碼會建立包含 Node.js 應用程式的 Service Fabric 應用程式封裝。
+在下一個步驟中，您將為 Node.js 應用程式建立應用程式封裝。 以下程式碼會建立包含 Node.js 應用程式的 Service Fabric 應用程式封裝。
 
 ```
 .\ServiceFabricAppPackageUtil.exe /source:'[yourdirectory]\MyNodeApplication' /target:'[yourtargetdirectory] /appname:NodeService /exe:'node.exe' /ma:'bin/www' /AppType:NodeAppType
@@ -58,16 +65,11 @@ ms.author: bscholl;mikhegn
 以下是所使用之參數的描述：
 
 * **/source** 指向應封裝之應用程式的目錄。
-* **/target** 定義應在其中建立封裝的目錄。這個目錄必須是與來源目錄不同的目錄。
-* **/appname** 定義現有應用程式的應用程式名稱。請務必了解這會轉譯成資訊清單中的服務名稱，而不是轉譯成 Service Fabric 應用程式名稱。
+* **/target** 定義應在其中建立封裝的目錄。 這個目錄必須是與來源目錄不同的目錄。
+* **/appname** 定義現有應用程式的應用程式名稱。 請務必了解這會轉譯成資訊清單中的服務名稱，而不是轉譯成 Service Fabric 應用程式名稱。
 * **/exe** 定義 Service Fabric 應啟動的可執行檔，在此例中為 `node.exe`。
-* **/ma** 定義要用來啟動可執行檔的引數。由於未安裝 Node.js，因此 Service Fabric 需要執行 `node.exe bin/www` 來啟動 Node.js Web 伺服器。`/ma:'bin/www'` 會告訴封裝工具使用 `bin/ma` 做為 node.exe 的引數。
+* **/ma** 定義要用來啟動可執行檔的引數。 由於未安裝 Node.js，因此 Service Fabric 需要執行 `node.exe bin/www`來啟動 Node.js Web 伺服器。  `/ma:'bin/www'` 會告訴封裝工具使用 `bin/ma` 當做 node.exe 的引數。
 * **/AppType** 定義 Service Fabric 應用程式類型名稱。
-
-> [!NOTE]
-> 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。[使用 Visual Studio 封裝現有應用程式](service-fabric-deploy-existing-app.md#using-visual-studio-to-package-an-existing-application)
-> 
-> 
 
 如果您瀏覽至 /target 參數中指定的目錄，您可以看到工具已建立可完整運作的 Service Fabric 封裝，如以下所示：
 
@@ -102,7 +104,7 @@ ms.author: bscholl;mikhegn
     </EntryPoint>
 </CodePackage>
 ```
-在此範例中，Node.js Web 伺服器會接聽通訊埠 3000，所以您需要更新 ServiceManifest.xml 檔案中的端點資訊，如以下所示。
+在此範例中，Node.js Web 伺服器會接聽通訊埠 3000，所以您需要更新 ServiceManifest.xml 檔案中的端點資訊，如以下所示。   
 
 ```xml
 <Resources>
@@ -111,9 +113,10 @@ ms.author: bscholl;mikhegn
       </Endpoints>
 </Resources>
 ```
-既然您已封裝 Node.js 應用程式，您可以繼續封裝 MongoDB。如先前所提到的，您現在進行的步驟並非 Node.js 和 MongoDB 專用的步驟。事實上，它們適用於所有要封裝在一起以做為一個 Service Fabric 應用程式的應用程式。
+### <a name="packaging-the-mongodb-application"></a>封裝 MongoDB 應用程式
+既然您已封裝 Node.js 應用程式，您可以繼續封裝 MongoDB。 如先前所提到的，您現在進行的步驟並非 Node.js 和 MongoDB 專用的步驟。 事實上，它們適用於所有要封裝在一起以做為一個 Service Fabric 應用程式的應用程式。  
 
-為了封裝 MongoDB，您會想要確定您封裝 Mongod.exe 和 Mongo.exe。這兩個二進位檔都位於 MongoDB 安裝目錄的 `bin` 目錄中。目錄結構類似於下方的結構。
+為了封裝 MongoDB，您會想要確定您封裝 Mongod.exe 和 Mongo.exe。 這兩個二進位檔都位於 MongoDB 安裝目錄的 `bin` 目錄中。 目錄結構類似於下方的結構。
 
 ```
 |-- MongoDB
@@ -128,9 +131,9 @@ Service Fabric 需要使用類似於下方的命令來啟動 MongoDB，因此封
 mongod.exe --dbpath [path to data]
 ```
 > [!NOTE]
-> 如果您將 MongoDB 資料目錄放在節點的本機目錄中，當節點發生失敗時，將不會保留資料。您應該使用永久性儲存體或實作 MongoDB 複本集以防止資料遺失。
-> 
-> 
+> 如果您將 MongoDB 資料目錄放在節點的本機目錄中，當節點發生失敗時，將不會保留資料。 您應該使用永久性儲存體或實作 MongoDB 複本集以防止資料遺失。  
+>
+>
 
 在 PowerShell 或命令殼層中，我們會使用下列參數來執行封裝工具：
 
@@ -138,12 +141,7 @@ mongod.exe --dbpath [path to data]
 .\ServiceFabricAppPackageUtil.exe /source: [yourdirectory]\MongoDB' /target:'[yourtargetdirectory]' /appname:MongoDB /exe:'bin\mongod.exe' /ma:'--dbpath [path to data]' /AppType:NodeAppType
 ```
 
-為了將 MongoDB 新增至您的 Service Fabric 應用程式封裝，您必須確定 /target 參數指向已經包含應用程式資訊清單及 Node.js 應用程式的同一個目錄。您也需要確定您是使用相同的 ApplicationType 名稱。
-
-> [!NOTE]
-> 您也可以使用 Visual Studio，將應用程式封裝產生為應用程式專案的一部分。如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。[使用 Visual Studio 封裝現有應用程式](service-fabric-deploy-existing-app.md#using-visual-studio-to-package-an-existing-application)
-> 
-> 
+為了將 MongoDB 新增至您的 Service Fabric 應用程式封裝，您必須確定 /target 參數指向已經包含應用程式資訊清單及 Node.js 應用程式的同一個目錄。 您也需要確定您是使用相同的 ApplicationType 名稱。
 
 讓我們瀏覽至該目錄並檢查已建立的工具。
 
@@ -161,7 +159,7 @@ mongod.exe --dbpath [path to data]
         |-- ServiceManifest.xml
     |-- ApplicationManifest.xml
 ```
-如您所見，工具已將新資料夾 [MongoDB] 新增至包含 MongoDB 二進位檔的目錄。如果您開啟 `ApplicationManifest.xml` 檔案，您將可以看到封裝現在包含 Node.js 應用程式和 MongoDB。以下程式碼會顯示應用程式資訊清單的內容。
+如您所見，工具已將新資料夾 [MongoDB] 新增至包含 MongoDB 二進位檔的目錄。 如果您開啟 `ApplicationManifest.xml` 檔案，您將可以看到封裝現在包含 Node.js 應用程式和 MongoDB。 以下程式碼會顯示應用程式資訊清單的內容。
 
 ```xml
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="MyNodeApp" ApplicationTypeVersion="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -186,6 +184,7 @@ mongod.exe --dbpath [path to data]
 </ApplicationManifest>  
 ```
 
+### <a name="publishing-the-application"></a>發佈應用程式
 最後一個步驟是要使用以下 PowerShell 指令碼，將應用程式發佈至本機 Service Fabric 叢集：
 
 ```
@@ -200,16 +199,15 @@ Register-ServiceFabricApplicationType -ApplicationPathInImageStore 'NodeAppType'
 New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationTypeName 'NodeAppType' -ApplicationTypeVersion 1.0  
 ```
 
-> [!NOTE]
-> 使用 Visual Studio，您就可以透過偵錯 (F5) 或使用發佈精靈在本機上發佈應用程式。
-> 
-> 
-
 將應用程式順利發佈至本機叢集之後，您便可以透過我們在 Node.js 應用程式的服務資訊清單中輸入的連接埠 (例如 http://localhost:3000) 存取 Node.js 應用程式。
 
-在本教學課程中，您已看到如何輕鬆地將兩個現有應用程式封裝成一個 Service Fabric 應用程式。您也會了解如何將其部署到 Service Fabric，以便讓它能夠從一些 Service Fabric 功能 (例如高可用性和健康情況系統整合) 獲益。
+在本教學課程中，您已看到如何輕鬆地將兩個現有應用程式封裝成一個 Service Fabric 應用程式。 您也會了解如何將其部署到 Service Fabric，以便讓它能夠從一些 Service Fabric 功能 (例如高可用性和健康情況系統整合) 獲益。
 
-## 後續步驟
-* 了解如何[手動封裝來賓應用程式](service-fabric-deploy-existing-app.md)。
+## <a name="next-steps"></a>後續步驟
+* 了解如何使用 [Service Fabric 部署容器和容器概觀](service-fabric-containers-overview.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

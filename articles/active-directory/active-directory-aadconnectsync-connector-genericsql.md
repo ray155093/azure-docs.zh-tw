@@ -1,12 +1,12 @@
 ---
-title: 一般 SQL 連接器 | Microsoft Docs
-description: 本文說明如何設定 Microsoft 的一般 SQL 連接器。
+title: "一般 SQL 連接器 | Microsoft Docs"
+description: "本文說明如何設定 Microsoft 的一般 SQL 連接器。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: AndKjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: fd8ccef3-6605-47ba-9219-e0c74ffc0ec9
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 14d2eaaa6463437d5b66840f05810588fce4b7da
+
 
 ---
 # <a name="generic-sql-connector-technical-reference"></a>一般 SQL 連接器技術參考
@@ -83,7 +87,7 @@ ms.author: billmath
 
 **匯出類型：物件取代**：在匯出期間，只有一些屬性已變更時，包含所有屬性的整個物件則會匯出並取代現有的物件。
 
-### <a name="schema-1-(detect-object-types)"></a>結構描述 1 (偵測物件類型)
+### <a name="schema-1-detect-object-types"></a>結構描述 1 (偵測物件類型)
 此頁面上，您將設定連接器要如何在資料庫中尋找不同的物件類型。
 
 每個物件類型會顯示為一個資料分割，並且在 [設定資料分割和階層] 上進一步設定。
@@ -98,7 +102,7 @@ ms.author: billmath
   ![schema1c](./media/active-directory-aadconnectsync-connector-genericsql/schema1c.png)
 * **SQL 查詢**：此選項可讓您提供 SQL 查詢，以傳回包含物件類型的單一資料行，例如 `SELECT [Column Name] FROM TABLENAME`。 傳回的資料行必須是字串類型 (varchar)。
 
-### <a name="schema-2-(detect-attribute-types)"></a>結構描述 2 (偵測屬性類型)
+### <a name="schema-2-detect-attribute-types"></a>結構描述 2 (偵測屬性類型)
 在此頁面上，您將設定要如何偵測屬性名稱和類型。 系統會針對在前一頁偵測到的每個物件類型，列出設定選項。
 
 ![schema2a](./media/active-directory-aadconnectsync-connector-genericsql/schema2a.png)
@@ -108,7 +112,7 @@ ms.author: billmath
 * **資料表/檢視/預存程序**：提供資料表/檢視/預存程序的名稱，以便用來尋找屬性名稱。 如果您使用預存程序，也需以下列格式提供其參數： **[名稱]:[方向]:[值]**。 在個別一行上提供每個參數 (使用 Ctrl+Enter 來換行)。 若要偵測多重值屬性中的屬性名稱，請提供以逗號分隔的資料表或檢視清單。 當父和子資料表具有相同的資料行名稱時，則不支援多重值案例。
 * **SQL 查詢**：此選項可讓您提供 SQL 查詢，以傳回包含屬性名稱的單一資料行，例如 `SELECT [Column Name] FROM TABLENAME`。 傳回的資料行必須是字串類型 (varchar)。
 
-### <a name="schema-3-(define-anchor-and-dn)"></a>結構描述 3 (定義錨點和 DN)
+### <a name="schema-3-define-anchor-and-dn"></a>結構描述 3 (定義錨點和 DN)
 此頁面可讓您為每個偵測到的物件類型設定錨點和 DN 屬性。 您可以選取多個屬性，讓錨點變成唯一的。
 
 ![schema3a](./media/active-directory-aadconnectsync-connector-genericsql/schema3a.png)
@@ -118,7 +122,7 @@ ms.author: billmath
 * 如果已在 [連線能力] 頁面上選取 [DN 是錨點]  ，此頁面只需要 DN 屬性。 這個屬性也會做為錨點屬性。
   ![schema3b](./media/active-directory-aadconnectsync-connector-genericsql/schema3b.png)
 
-### <a name="schema-4-(define-attribute-type,-reference,-and-direction)"></a>結構描述 4 (定義屬性類型、參考和方向)
+### <a name="schema-4-define-attribute-type-reference-and-direction"></a>結構描述 4 (定義屬性類型、參考和方向)
 此頁面可讓您設定每個屬性的屬性類型，如整數、二進位或布林值和方向。 [結構描述 2]  頁面中的所有屬性都會列出，包括多重值屬性。
 
 ![schema4a](./media/active-directory-aadconnectsync-connector-genericsql/schema4a.png)
@@ -133,7 +137,7 @@ ms.author: billmath
 * **巢狀資料表** 視為一個資料行的資料庫資料表。 Oracle 不會以任何特定順序儲存巢狀資料表的資料列。 不過，當您將巢狀資料表擷取至 PL/SQL 變數時，資料列便會有從 1 開始的連續下標。 這可讓您取得個別資料列的類似陣列存取。
 * **VARRYS** 。
 
-### <a name="schema-5-(define-partition-for-reference-attributes)"></a>結構描述 5 (定義參考屬性的資料分割)
+### <a name="schema-5-define-partition-for-reference-attributes"></a>結構描述 5 (定義參考屬性的資料分割)
 在此頁面上，您會為所有參考屬性設定屬性所參考的資料分割 (物件類型)。
 
 ![schema5](./media/active-directory-aadconnectsync-connector-genericsql/schema5.png)
@@ -207,7 +211,7 @@ ms.author: billmath
 **資料表/檢視**  
 若要匯入物件的多重值屬性，您必須在 [多重資料表/檢視名稱] 中提供以逗號分隔的資料表/檢視名稱，以及在父資料表的 [聯結條件] 中提供各自的聯結條件。
 
-範例：您想要匯入 [員工] 物件與其所有的多重值屬性。 有兩個資料表：[員工](主要資料表.md) 和 [部門](多重值.md)。
+範例：您想要匯入 [員工] 物件與其所有的多重值屬性。 有兩個資料表：[員工] (主要資料表) 和 [部門] (多重值)。
 執行下列動作：
 
 * 在 [資料表/檢視/SP] 中輸入**員工**。
@@ -281,6 +285,9 @@ ms.author: billmath
 ## <a name="troubleshooting"></a>疑難排解
 * 如需如何啟用記錄來疑難排解連接器的資訊，請參閱 [如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

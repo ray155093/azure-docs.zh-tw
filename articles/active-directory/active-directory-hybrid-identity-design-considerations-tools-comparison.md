@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 08/08/2016
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1df15de1c24e80b0692149dfc7cb660f74941886
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2fb248f3e71b248ce0b5ae02ebeff291bbd28dce
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: 1df15de1c24e80b0692149dfc7cb660f74941886
 FR = 未來的版本  
 PP = 公開預覽  
 
-## <a name="onpremises-to-cloud-synchronization"></a>內部部署至雲端同步處理
+## <a name="on-premises-to-cloud-synchronization"></a>內部部署至雲端同步處理
 | 功能 | Azure Active Directory Connect | Azure Active Directory 同步處理服務 (AAD Sync) | Azure Active Directory 同步處理工具 (DirSync) | Forefront Identity Manager 2010 R2 (FIM) | Microsoft Identity Manager 2016 (MIM) |
 |:--- |:---:|:---:|:---:|:---:|:---:|
 | 連接到單一內部部署 AD 樹系 |● |● |● |● |● |
@@ -52,7 +52,7 @@ PP = 公開預覽
 | 連接到內部部署人力資源系統 (例如 SAP、Oracle eBusiness、PeopleSoft) |FR | | |● |● |
 | 支援 FIM 同步處理規則和連接器，以供佈建到內部部署系統。 | | | |● |● |
 
-## <a name="cloud-to-onpremises-synchronization"></a>雲端至內部部署同步處理
+## <a name="cloud-to-on-premises-synchronization"></a>雲端至內部部署同步處理
 | 功能 | Azure Active Directory Connect | Azure Active Directory 同步處理服務 | Azure Active Directory 同步處理工具 (DirSync) | Forefront Identity Manager 2010 R2 (FIM) | Microsoft Identity Manager 2016 (MIM) |
 |:--- |:---:|:---:|:---:|:---:|:---:|
 | 裝置的回寫 |● | |● | | |
@@ -68,7 +68,7 @@ PP = 公開預覽
 | 使用同盟進行單一登入 |● |● |● |● |● |
 | 密碼的回寫 (從 SSPR 和密碼變更) |● |● | | | |
 
-## <a name="setup-and-installation"></a>設定與安裝
+## <a name="set-up-and-installation"></a>設定與安裝
 | 功能 | Azure Active Directory Connect | Azure Active Directory 同步處理服務 | Azure Active Directory 同步處理工具 (DirSync) | Microsoft Identity Manager 2016 (MIM) |
 |:--- |:---:|:---:|:---:|:---:|
 | 支援在網域控制站上安裝 |● |● |● | |
@@ -95,6 +95,6 @@ PP = 公開預覽
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,18 +1,22 @@
 ---
-title: 使用分析 - 強大的 Application Insights 搜尋工具 | Microsoft Docs
-description: '使用分析，這是強大的 Application Insights 診斷搜尋工具。 '
+title: "使用分析 - 強大的 Application Insights 搜尋工具 | Microsoft Docs"
+description: "使用分析，這是強大的 Application Insights 診斷搜尋工具。 "
 services: application-insights
-documentationcenter: ''
+documentationcenter: 
 author: danhadari
 manager: douge
-
+ms.assetid: c3b34430-f592-4c32-b900-e9f50ca096b3
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 10/03/2016
-ms.author: danha
+ms.date: 11/16/2016
+ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: 7bd26ffdec185a1ebd71fb88383c2ae4cd6d504f
+ms.openlocfilehash: f9c02c11c6f0143f8da7a329f23033120f31ba59
+
 
 ---
 # <a name="using-analytics-in-application-insights"></a>使用 Application Insights 中的分析
@@ -34,15 +38,18 @@ ms.author: danha
 ### <a name="write-a-query"></a>撰寫查詢
 ![結構描述顯示](./media/app-insights-analytics-using/150.png)
 
-以任何列在左側的資料表名稱 (或 [range](app-insights-analytics-reference.md#range-operator) 或 [union](app-insights-analytics-reference.md#union-operator) 運算子) 開頭。 使用 `|` 建立 [運算子](app-insights-analytics-reference.md#queries-and-operators)的直立線符號。 IntelliSense 會對您提示運算子和某些您可以使用的運算式元素。
+以任何列在左側的資料表名稱 (或 [range](app-insights-analytics-reference.md#range-operator) 或 [union](app-insights-analytics-reference.md#union-operator) 運算子) 開頭。 使用 `|` 建立 [運算子](app-insights-analytics-reference.md#queries-and-operators)的直立線符號。 
 
-請參閱[分析語言概觀](app-insights-analytics-tour.md)和[語言參考](app-insights-analytics-reference.md)。
+IntelliSense 會向您提示您可使用的運算子和運算式元素。 按一下資訊圖示 (或按 CTRL+Space)，即可獲得更長的描述和每個元素的使用方式範例。
+
+請參閱[分析語言教學課程](app-insights-analytics-tour.md)和[語言參考](app-insights-analytics-reference.md)。
 
 ### <a name="run-a-query"></a>執行查詢
 ![執行查詢](./media/app-insights-analytics-using/130.png)
 
 1. 您可以在查詢中使用單一分行符號。
 2. 將游標放在您要執行的查詢內部或結尾。
+3. 檢查查詢的時間範圍。 (您可以變更它，或是在查詢中包含您自己的 [`where...timestamp...`](app-insights-analytics-tour.md#time-range) 子句來覆寫它。)
 3. 按一下 [執行] 來執行查詢。
 4. 請勿在查詢中放置空白行。 您可以用空白行來分隔一個查詢索引標籤中的數個查詢，讓它們保持分離狀態。 只會執行游標所在的查詢。
 
@@ -84,15 +91,28 @@ ms.author: danha
 
 ![群組](./media/app-insights-analytics-using/060.png)
 
-### <a name="missing-some-results?"></a>遺漏某些結果？
-從入口網站所傳回的結果有大約 1 萬個資料列的限制。 如果超過此限制，就會顯示警告。 如果發生這種情況，排序資料表中的結果不一定會顯示所有實際的第一個或最後一個結果。 
+### <a name="missing-some-results"></a>遺漏某些結果？
 
-最好避免達到限制。 使用如下所示的運算子：
+如果您認為沒有看到所預期的全部結果，則有一些可能的原因。
 
-* [where timestamp > ago(3d)](app-insights-analytics-reference.md#where-operator)
-* [top 100 by timestamp](app-insights-analytics-reference.md#top-operator) 
-* [take 100](app-insights-analytics-reference.md#take-operator)
-* [summarize ](app-insights-analytics-reference.md#summarize-operator) 
+* **時間範圍篩選**。 根據預設，您只會看到過去 24 小時內的結果。 系統提供一個自動篩選，會限制從來源資料表中擷取的結果範圍。 
+
+    不過，您可以使用下拉式功能表來變更時間範圍篩選。
+
+    或是在查詢中包含您自己的 [`where  ... timestamp ...` 子句](app-insights-analytics-reference.md#where-operator)來覆寫自動範圍。 例如：
+
+    `requests | where timestamp > ago('2d')`
+
+* **結果限制**。 從入口網站所傳回的結果有大約 1 萬個資料列的限制。 如果超過此限制，就會顯示警告。 如果發生這種情況，排序資料表中的結果不一定會顯示所有實際的第一個或最後一個結果。 
+
+    最好避免達到限制。 請使用時間範圍篩選或使用運算子，例如：
+
+  * [top 100 by timestamp](app-insights-analytics-reference.md#top-operator) 
+  * [take 100](app-insights-analytics-reference.md#take-operator)
+  * [summarize ](app-insights-analytics-reference.md#summarize-operator) 
+  * [where timestamp > ago(3d)](app-insights-analytics-reference.md#where-operator)
+
+(想要一萬個以上的資料列嗎？ 請考慮改用[連續匯出](app-insights-export-telemetry.md)。 「分析」是設計來進行分析的，不是用來擷取未經處理的資料。)
 
 ## <a name="diagrams"></a>圖表
 選取您想要的圖表類型︰
@@ -112,13 +132,16 @@ ms.author: danha
 
 如果資料表有四個或更少的資料行，即可將該資料表釘選到儀表板。 只會顯示前七個資料列。
 
-#### <a name="dashboard-refresh"></a>儀表板重新整理
-釘選到儀表板的圖表大約每半小時就會藉由自動重新執行查詢來加以重新整理。
+### <a name="dashboard-refresh"></a>儀表板重新整理
+釘選到儀表板的圖表大約每兩小時就會自動重新執行查詢來重新整理。
 
-#### <a name="automatic-simplifications"></a>自動簡化
-在某些情況下，當您將圖表釘選到儀表板時，圖表會套用某些簡化效果。
+### <a name="automatic-simplifications"></a>自動簡化
 
-當您釘選顯示了許多不連續長條的圖表 (通常是長條圖) 時，所佔比例較少的長條會自動分組到單一的「其他」長條。 例如，下列查詢︰
+當您將圖表釘選到儀表板時，圖表會套用某些簡化效果。
+
+**時間限制：**查詢會自動限制為過去 14 天。 效果就像您的查詢包含 `where timestamp > ago(14d)` 一樣。
+
+**量化計數限制：**如果您顯示的是有許多不連續量化的圖表 (通常是長條圖)，所佔比例較少的量化會自動分組到單一的「其他」量化。 例如，下列查詢︰
 
     requests | summarize count_search = count() by client_CountryOrRegion
 
@@ -134,23 +157,66 @@ ms.author: danha
 執行查詢之後，您可以下載 .csv 檔案。 按一下 [匯出至 Excel] 。
 
 ## <a name="export-to-power-bi"></a>匯出至 Power BI
-1. 將游標放在查詢中，然後選擇 [匯出至 Power BI] 。
-   
-    ![](./media/app-insights-analytics-using/240.png)
-   
-    這會下載 M 指令碼檔案。
-2. 將 M 語言指令碼複製到 Power BI Desktop 進階查詢編輯器中。
-   
-   * 開啟匯出的檔案。
-   * 在 Power BI Desktop 中選取︰[取得資料]、[空白查詢]、[進階編輯器]  ，並貼上 M 語言指令碼。
-     
-     ![](./media/app-insights-analytics-using/250.png)
-3. 視需要編輯認證，您現在可以建置您的報告。
-   
-    ![](./media/app-insights-analytics-using/260.png)
+將游標放在查詢中，然後選擇 [匯出至 Power BI] 。
+
+![從分析匯出至 Power BI](./media/app-insights-analytics-using/240.png)
+
+您可在 Power BI 中執行查詢。 您可以將它設定為依照排程重新整理。
+
+您可以使用 Power BI 來建立儀表板，將從各種來源的資料結合在一起。
+
+[深入了解如何匯出至 Power BI](app-insights-export-power-bi.md)
+
+
+## <a name="automation"></a>自動化
+
+您可以透過[資料存取 REST API](https://dev.applicationinsights.io/)執行「分析」查詢，例如使用 PowerShell。
+
+
+
+## <a name="import-data"></a>匯入資料
+
+您可以從 CSV 檔案匯入資料。 典型的用法是從您的遙測匯入可以與資料表聯結的靜態資料。 
+
+例如，如果已驗證的使用者在您的遙測中是由別名或經混淆處理的識別碼識別，則您可以匯入一個將別名與真名對應的資料表。 透過對要求遙測執行聯結，您就可以在「分析」報表中依使用者的真名來識別使用者。
+
+### <a name="define-your-data-schema"></a>定義資料結構描述
+
+1. 按一下 [設定] (在左上方)，然後按一下 [資料來源]。 
+2. 依照指示，新增資料來源。 系統會要求您提供資料範例，此範例應該至少包含 10 個資料列。 接著，您需更正結構描述。
+
+這定義了資料來源，您可以接著使用它來匯入個別資料表。
+
+### <a name="import-a-table"></a>匯入資料表
+
+1. 從清單中開啟您的資料來源定義。
+2. 按一下 [上傳]，然後依照指示將資料表上傳。 這包含對 REST API 的呼叫，因此相當容易自動化。 
+
+您的資料表現在已可在「分析」查詢中使用。 它會顯示在「分析」中 
+
+### <a name="use-the-table"></a>使用資料表
+
+假設您的資料來源定義稱為 `usermap`，而它包含 `realName` 和 `user_AuthenticatedId` 這兩個欄位。 `requests` 資料表也有一個名為 `user_AuthenticatedId` 的欄位，因此可以很容易將它們聯結：
+
+```AIQL
+
+    requests
+    | where notempty(user_AuthenticatedId) | take 10
+    | join kind=leftouter ( usermap ) on user_AuthenticatedId 
+```
+產生的要求資料表會有一個額外的資料行 `realName`。
+
+### <a name="import-from-logstash"></a>從 LogStash 匯入
+
+如果您使用 [LogStash](https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html)，您就可以使用「分析」來查詢您的記錄檔。 請使用[透過管道將資料傳送到分析的外掛程式](https://github.com/Microsoft/logstash-output-application-insights)。 
+
+
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

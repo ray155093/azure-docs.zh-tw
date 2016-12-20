@@ -1,12 +1,12 @@
 ---
-title: Runbook 輸入參數 | Microsoft Docs
-description: Runbook 輸入參數可讓您將資料傳遞至剛啟動的 Runbook，以增加 Runbook 的彈性。 本文說明在 Runbook 中使用輸入參數的不同案例。
+title: "Runbook 輸入參數 | Microsoft Docs"
+description: "Runbook 輸入參數可讓您將資料傳遞至剛啟動的 Runbook，以增加 Runbook 的彈性。 本文說明在 Runbook 中使用輸入參數的不同案例。"
 services: automation
-documentationcenter: ''
+documentationcenter: 
 author: MGoedtel
 manager: jwhit
 editor: tysonn
-
+ms.assetid: 4d3dff2c-1f55-498d-9a0e-eee497e5bedb
 ms.service: automation
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/11/2016
 ms.author: sngun
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0f8308b73a70fc3758a53063bc69d16480df8f02
+
 
 ---
 # <a name="runbook-input-parameters"></a>Runbook 輸入參數
@@ -264,6 +268,9 @@ Runbook 作業可透過 Azure 自動化 REST API，使用 **PUT** 方法和下�
 * 若要編輯文字 Runbook，請參閱 [編輯文字 Runbook](automation-edit-textual-runbook.md)。
 * 若要編輯圖形化 Runbook，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

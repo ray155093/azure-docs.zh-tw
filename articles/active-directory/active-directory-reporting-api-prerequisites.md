@@ -1,12 +1,12 @@
 ---
-title: 存取 Azure AD 報告 API 的必要條件。 | Microsoft Docs
-description: 了解存取 Azure AD 報告 API 的必要條件
+title: "存取 Azure AD 報告 API 的必要條件。 | Microsoft Docs"
+description: "了解存取 Azure AD 報告 API 的必要條件"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: dhanyahk
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: ada19f69-665c-452a-8452-701029bf4252
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/25/2016
 ms.author: dhanyahk;markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b0f23cc578fb946247d492b9dee92cf7a9daafa1
+
 
 ---
 # <a name="prerequisites-to-access-the-azure-ad-reporting-api"></a>存取 Azure AD 報告 API 的必要條件
@@ -111,7 +115,7 @@ ms.author: dhanyahk;markvi
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/12.png) 
 
-### <a name="get-the-application's-client-id"></a>取得應用程式的用戶端識別碼
+### <a name="get-the-applications-client-id"></a>取得應用程式的用戶端識別碼
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/01.png) 
@@ -129,7 +133,7 @@ ms.author: dhanyahk;markvi
    
     ![註冊應用程式](./media/active-directory-reporting-api-prerequisites/13.png)
 
-### <a name="get-the-application's-client-secret"></a>取得應用程式的用戶端密碼
+### <a name="get-the-applications-client-secret"></a>取得應用程式的用戶端密碼
 若要取得應用程式的用戶端密碼，您需要建立新的金鑰並在儲存新金鑰時儲存其值，因為稍後不可能再擷取此值。
 
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
@@ -161,6 +165,9 @@ ms.author: dhanyahk;markvi
 * 您要以程式設計方式從 Azure AD 報告 API 存取資料嗎？ 請查看 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
 * 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

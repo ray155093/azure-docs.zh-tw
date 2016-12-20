@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 10/18/2016
+ms.date: 11/17/2016
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c398620c14cafb36200dca6e59bf8a6bf3ad2709
+ms.sourcegitcommit: fe4b9c356e5f7d56cb7e1fa62344095353d0b699
+ms.openlocfilehash: d2d1a5aae3e1965e7010b11218b6b1aa27ec524d
 
 ---
 
@@ -30,8 +30,6 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 ### <a name="about-this-tutorial"></a>關於本教學課程
 本教學課程說明如何使用 Azure Blob 儲存體撰寫一些常見案例的 .NET 程式碼。 所涵蓋的案例包括上傳、列出、下載及刪除 Blob。
-
-**預估完成時間：** 45 分鐘
 
 **先決條件：**
 
@@ -52,13 +50,12 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 [!INCLUDE [storage-development-environment-include](../../includes/storage-development-environment-include.md)]
 
 ### <a name="add-namespace-declarations"></a>新增命名空間宣告
-在 `program.cs` 檔案頂端新增下列 `using` 陳述式：
+在 `program.cs` 檔案頂端新增以下 **using** 陳述式：
 
 ```csharp
-
-    using Microsoft.Azure; // Namespace for CloudConfigurationManager
-    using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
-    using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
+using Microsoft.Azure; // Namespace for CloudConfigurationManager
+using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
+using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage types
 ```
 
 ### <a name="parse-the-connection-string"></a>解析連接字串
@@ -68,8 +65,7 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 **CloudBlobClient** 類別可讓您擷取 Blob 儲存體中儲存的容器和 Blob。 以下是建立服務用戶端的其中一種方式：
 
 ```csharp
-
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 ```
 您現在可以開始撰寫程式碼，以讀取 Blob 儲存體的資料並將資料寫入其中。
 
@@ -79,27 +75,25 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 此範例說明如何建立尚不存在的容器：
 
 ```csharp
+// Retrieve storage account from connection string.
+CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    // Retrieve storage account from connection string.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        CloudConfigurationManager.GetSetting("StorageConnectionString"));
+// Create the blob client.
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    // Create the blob client.
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+// Retrieve a reference to a container.
+CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-    // Retrieve a reference to a container.
-    CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
-
-    // Create the container if it doesn't already exist.
-    container.CreateIfNotExists();
+// Create the container if it doesn't already exist.
+container.CreateIfNotExists();
 ```
 
 根據預設，新容器屬私人性質，這表示您必須指定儲存體存取金鑰才能從此容器下載 Blob。 若要讓所有人都能使用容器中的檔案，您可以使用下列程式碼將容器設定為公用容器：
 
 ```csharp
-
-    container.SetPermissions(
-        new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+container.SetPermissions(
+    new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 ```
 
 網際網路上的任何人都可以看到公用容器中的 Blob，但要有適當的帳戶存取金鑰或共用存取簽章，才能修改或刪除這些 Blob。
@@ -112,70 +106,69 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。  在大多數情況下�
 下列範例顯示如何將 Blob 上傳到容器，並假設已建立該容器。
 
 ```csharp
+// Retrieve storage account from connection string.
+CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    // Retrieve storage account from connection string.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        CloudConfigurationManager.GetSetting("StorageConnectionString"));
+// Create the blob client.
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    // Create the blob client.
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+// Retrieve reference to a previously created container.
+CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-    // Retrieve reference to a previously created container.
-    CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
+// Retrieve reference to a blob named "myblob".
+CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
 
-    // Retrieve reference to a blob named "myblob".
-    CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob");
-
-    // Create or overwrite the "myblob" blob with contents from a local file.
-    using (var fileStream = System.IO.File.OpenRead(@"path\myfile"))
-    {
-        blockBlob.UploadFromStream(fileStream);
-    }
+// Create or overwrite the "myblob" blob with contents from a local file.
+using (var fileStream = System.IO.File.OpenRead(@"path\myfile"))
+{
+    blockBlob.UploadFromStream(fileStream);
+}
 ```
 
 ## <a name="list-the-blobs-in-a-container"></a>列出容器中的 Blob
-若要列出容器中的 Blob，請先取得容器參照。 然後您即可使用容器的 **ListBlobs** 方法來擷取 Blob 和 (或) 其中的目錄。 若要針對傳回的 **IListBlobItem** 存取一組豐富的屬性與方法，您必須先將它轉換至 **CloudBlockBlob**、**CloudPageBlob** 或 **CloudBlobDirectory** 物件。  如果不清楚類型，可使用類型檢查來決定要將其轉換至何種類型。  下列程式碼示範如何擷取和輸出 `photos` 容器中每個項目的 URI：
+若要列出容器中的 Blob，請先取得容器參照。 然後您即可使用容器的 **ListBlobs** 方法來擷取 Blob 和 (或) 其中的目錄。 若要針對傳回的 **IListBlobItem** 存取一組豐富的屬性與方法，您必須先將它轉換至 **CloudBlockBlob**、**CloudPageBlob** 或 **CloudBlobDirectory** 物件。  如果不清楚類型，可使用類型檢查來決定要將其轉換至何種類型。  下列程式碼示範如何擷取和輸出 _photos_ 容器中每個項目的 URI：
 
 ```csharp
+// Retrieve storage account from connection string.
+CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    // Retrieve storage account from connection string.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        CloudConfigurationManager.GetSetting("StorageConnectionString"));
+// Create the blob client.
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    // Create the blob client.
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+// Retrieve reference to a previously created container.
+CloudBlobContainer container = blobClient.GetContainerReference("photos");
 
-    // Retrieve reference to a previously created container.
-    CloudBlobContainer container = blobClient.GetContainerReference("photos");
-
-    // Loop over items within the container and output the length and URI.
-    foreach (IListBlobItem item in container.ListBlobs(null, false))
+// Loop over items within the container and output the length and URI.
+foreach (IListBlobItem item in container.ListBlobs(null, false))
+{
+    if (item.GetType() == typeof(CloudBlockBlob))
     {
-        if (item.GetType() == typeof(CloudBlockBlob))
-        {
-            CloudBlockBlob blob = (CloudBlockBlob)item;
+        CloudBlockBlob blob = (CloudBlockBlob)item;
 
-            Console.WriteLine("Block blob of length {0}: {1}", blob.Properties.Length, blob.Uri);
+        Console.WriteLine("Block blob of length {0}: {1}", blob.Properties.Length, blob.Uri);
 
-        }
-        else if (item.GetType() == typeof(CloudPageBlob))
-        {
-            CloudPageBlob pageBlob = (CloudPageBlob)item;
-
-            Console.WriteLine("Page blob of length {0}: {1}", pageBlob.Properties.Length, pageBlob.Uri);
-
-        }
-        else if (item.GetType() == typeof(CloudBlobDirectory))
-        {
-            CloudBlobDirectory directory = (CloudBlobDirectory)item;
-
-            Console.WriteLine("Directory: {0}", directory.Uri);
-        }
     }
+    else if (item.GetType() == typeof(CloudPageBlob))
+    {
+        CloudPageBlob pageBlob = (CloudPageBlob)item;
+
+        Console.WriteLine("Page blob of length {0}: {1}", pageBlob.Properties.Length, pageBlob.Uri);
+
+    }
+    else if (item.GetType() == typeof(CloudBlobDirectory))
+    {
+        CloudBlobDirectory directory = (CloudBlobDirectory)item;
+
+        Console.WriteLine("Directory: {0}", directory.Uri);
+    }
+}
 ```
+
 如上所述，為 blob 命名時，您可以在其名稱中包含路徑資訊。 這會建立虛擬目錄結構，讓您能夠組織及周遊，就像使用傳統檔案系統一樣。 請注意，目錄結構僅限虛擬目錄結構 - Blog 儲存體中唯一可用的資源為容器和 blob。 但是，儲存體用戶端程式庫提供 **CloudBlobDirectory** 物件來參照虛擬目錄，以及簡化透過此方式組織之 blob 的使用程序。
 
-例如，假設名為 `photos`的容器中有下面這一組區塊 blob：
+例如，假設名為 _photos_ 的容器中有下列一組區塊 Blob：
 
     photo1.jpg
     2010/architecture/description.txt
@@ -186,23 +179,22 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。  在大多數情況下�
     2011/architecture/description.txt
     2011/photo7.jpg
 
-當您在 'photos' 容器上呼叫 **ListBlobs** (如上面範例所示) 時，會傳回階層式清單。 它包含 **CloudBlobDirectory** 和 **CloudBlockBlob** 物件，分別代表容器中的目錄與 blob。 輸出結果看起來像這樣：
+當您在 _photos_ 容器上呼叫 **ListBlobs** (如上面範例所示) 時，會傳回階層式清單。 它包含 **CloudBlobDirectory** 和 **CloudBlockBlob** 物件，分別代表容器中的目錄與 blob。 輸出結果看起來像這樣：
 
     Directory: https://<accountname>.blob.core.windows.net/photos/2010/
     Directory: https://<accountname>.blob.core.windows.net/photos/2011/
     Block blob of length 505623: https://<accountname>.blob.core.windows.net/photos/photo1.jpg
 
-
 此外，您可以選擇將 **ListBlobs** 方法的 **UseFlatBlobListing** 參數設定為 **true**。 在此案例中，容器中的每個 blob 都是以 **CloudBlockBlob** 物件的方式傳回。 呼叫 **ListBlobs** 會傳回簡單列表，看起來像這樣：
 
 ```csharp
-
-    // Loop over items within the container and output the length and URI.
-    foreach (IListBlobItem item in container.ListBlobs(null, true))
-    {
-       ...
-    }
+// Loop over items within the container and output the length and URI.
+foreach (IListBlobItem item in container.ListBlobs(null, true))
+{
+    ...
+}
 ```
+
 而且結果看起來像這樣：
 
     Block blob of length 4: https://<accountname>.blob.core.windows.net/photos/2010/architecture/description.txt
@@ -219,152 +211,155 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。  在大多數情況下�
 若要下載 Blob，請先擷取 Blob 參照，然後呼叫 **DownloadToStream** 方法。 下列範例使用 **DownloadToStream** 方法將 Blob 內容傳送給資料流物件，您接著可將該物件永久儲存成本機檔案。
 
 ```csharp
+// Retrieve storage account from connection string.
+CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    // Retrieve storage account from connection string.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        CloudConfigurationManager.GetSetting("StorageConnectionString"));
+// Create the blob client.
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    // Create the blob client.
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+// Retrieve reference to a previously created container.
+CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-    // Retrieve reference to a previously created container.
-    CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
+// Retrieve reference to a blob named "photo1.jpg".
+CloudBlockBlob blockBlob = container.GetBlockBlobReference("photo1.jpg");
 
-    // Retrieve reference to a blob named "photo1.jpg".
-    CloudBlockBlob blockBlob = container.GetBlockBlobReference("photo1.jpg");
-
-    // Save blob contents to a file.
-    using (var fileStream = System.IO.File.OpenWrite(@"path\myfile"))
-    {
-        blockBlob.DownloadToStream(fileStream);
-    }
+// Save blob contents to a file.
+using (var fileStream = System.IO.File.OpenWrite(@"path\myfile"))
+{
+    blockBlob.DownloadToStream(fileStream);
+}
 ```
+
 您也可以使用 **DownloadToStream** 方法，將 Blob 的內容當成文字字串下載。
+
 ```csharp
+// Retrieve storage account from connection string.
+CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    // Retrieve storage account from connection string.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        CloudConfigurationManager.GetSetting("StorageConnectionString"));
+// Create the blob client.
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    // Create the blob client.
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+// Retrieve reference to a previously created container.
+CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-    // Retrieve reference to a previously created container.
-    CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
+// Retrieve reference to a blob named "myblob.txt"
+CloudBlockBlob blockBlob2 = container.GetBlockBlobReference("myblob.txt");
 
-    // Retrieve reference to a blob named "myblob.txt"
-    CloudBlockBlob blockBlob2 = container.GetBlockBlobReference("myblob.txt");
-
-    string text;
-    using (var memoryStream = new MemoryStream())
-    {
-        blockBlob2.DownloadToStream(memoryStream);
-        text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
-    }
+string text;
+using (var memoryStream = new MemoryStream())
+{
+    blockBlob2.DownloadToStream(memoryStream);
+    text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+}
 ```
+
 ## <a name="delete-blobs"></a>刪除 Blob
 若要刪除 Blob，請先取得 Blob 參照，然後在該參照上呼叫 **Delete** 方法。
+
 ```csharp
+// Retrieve storage account from connection string.
+CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    // Retrieve storage account from connection string.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        CloudConfigurationManager.GetSetting("StorageConnectionString"));
+// Create the blob client.
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    // Create the blob client.
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+// Retrieve reference to a previously created container.
+CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-    // Retrieve reference to a previously created container.
-    CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
+// Retrieve reference to a blob named "myblob.txt".
+CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob.txt");
 
-    // Retrieve reference to a blob named "myblob.txt".
-    CloudBlockBlob blockBlob = container.GetBlockBlobReference("myblob.txt");
-
-    // Delete the blob.
-    blockBlob.Delete();
+// Delete the blob.
+blockBlob.Delete();
 ```
 
 ## <a name="list-blobs-in-pages-asynchronously"></a>以非同步方式分頁列出 Blob
 如果您要列出大量的 Blob，或是要控制在單一列出作業中傳回的結果數，您可以在結果頁面中列出 Blob。 此範例說明如何以非同步方式分頁傳回結果，使執行不會因為等待大型結果集傳回而中斷。
 
-此範例說明一般 Blob 列出方式，但您也可以執行階層式列出，方法是將 **ListBlobsSegmentedAsync** 方法的 `useFlatBlobListing` 參數設為 `false`。
+此範例說明一般 Blob 列出方式，但您也可以執行階層式清單，方法是將 **ListBlobsSegmentedAsync** 方法的 _useFlatBlobListing_ 參數設為 _false_。
 
-範例方法會呼叫非同步方法，因此前面必須加上 `async` 關鍵字，且必須傳回 **Task** 物件。 為 **ListBlobsSegmentedAsync** 方法指定的 await 關鍵字會擱置範例方法的執行，直到列出工作完成為止。
+範例方法會呼叫非同步方法，因此前面必須加上 _async_ 關鍵字，且必須傳回 **Task** 物件。 為 **ListBlobsSegmentedAsync** 方法指定的 await 關鍵字會擱置範例方法的執行，直到列出工作完成為止。
+
 ```csharp
+async public static Task ListBlobsSegmentedInFlatListing(CloudBlobContainer container)
+{
+    //List blobs to the console window, with paging.
+    Console.WriteLine("List blobs in pages:");
 
-    async public static Task ListBlobsSegmentedInFlatListing(CloudBlobContainer container)
+    int i = 0;
+    BlobContinuationToken continuationToken = null;
+    BlobResultSegment resultSegment = null;
+
+    //Call ListBlobsSegmentedAsync and enumerate the result segment returned, while the continuation token is non-null.
+    //When the continuation token is null, the last page has been returned and execution can exit the loop.
+    do
     {
-        //List blobs to the console window, with paging.
-        Console.WriteLine("List blobs in pages:");
-
-        int i = 0;
-        BlobContinuationToken continuationToken = null;
-        BlobResultSegment resultSegment = null;
-
-        //Call ListBlobsSegmentedAsync and enumerate the result segment returned, while the continuation token is non-null.
-        //When the continuation token is null, the last page has been returned and execution can exit the loop.
-        do
+        //This overload allows control of the page size. You can return all remaining results by passing null for the maxResults parameter,
+        //or by calling a different overload.
+        resultSegment = await container.ListBlobsSegmentedAsync("", true, BlobListingDetails.All, 10, continuationToken, null, null);
+        if (resultSegment.Results.Count<IListBlobItem>() > 0) { Console.WriteLine("Page {0}:", ++i); }
+        foreach (var blobItem in resultSegment.Results)
         {
-            //This overload allows control of the page size. You can return all remaining results by passing null for the maxResults parameter,
-            //or by calling a different overload.
-            resultSegment = await container.ListBlobsSegmentedAsync("", true, BlobListingDetails.All, 10, continuationToken, null, null);
-            if (resultSegment.Results.Count<IListBlobItem>() > 0) { Console.WriteLine("Page {0}:", ++i); }
-            foreach (var blobItem in resultSegment.Results)
-            {
-                Console.WriteLine("\t{0}", blobItem.StorageUri.PrimaryUri);
-            }
-            Console.WriteLine();
-
-            //Get the continuation token.
-            continuationToken = resultSegment.ContinuationToken;
+            Console.WriteLine("\t{0}", blobItem.StorageUri.PrimaryUri);
         }
-        while (continuationToken != null);
+        Console.WriteLine();
+
+        //Get the continuation token.
+        continuationToken = resultSegment.ContinuationToken;
     }
+    while (continuationToken != null);
+}
 ```
+
 ## <a name="writing-to-an-append-blob"></a>寫入附加 Blob
 附加 Blob 是一種全新的 Blob 類型，並在 Azure Storage Client Library for .NET 5.x 版中推出。 附加 Blob 已針對附加作業 (例如紀錄) 最佳化。 如同區塊 Blob，附加 Blob 亦由區塊組成，但當您將新區塊加入附加 Blob 時，它一律會附加到 Blob 結尾。 您無法更新或刪除附加 Blob 中的現有區塊。 附加 Blob 的區塊識別碼不會公開顯示，因為該識別碼適用於區塊 Blob。
 
 附加 Blob 中的每個區塊大小都不同，最大為 4 MB，而附加 Blob 可包含高達 50,000 個區塊。 因此，附加 Blob 的大小上限稍高於 195 GB (4 MB X 50,000 個區塊)。
 
 下列範例中建立了新的附加 Blob，並附加一些資料，以模擬簡單的記錄作業。
+
 ```csharp
+//Parse the connection string for the storage account.
+CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    //Parse the connection string for the storage account.
-    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-        Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
+//Create service client for credentialed access to the Blob service.
+CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    //Create service client for credentialed access to the Blob service.
-    CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+//Get a reference to a container.
+CloudBlobContainer container = blobClient.GetContainerReference("my-append-blobs");
 
-    //Get a reference to a container.
-    CloudBlobContainer container = blobClient.GetContainerReference("my-append-blobs");
+//Create the container if it does not already exist.
+container.CreateIfNotExists();
 
-    //Create the container if it does not already exist.
-    container.CreateIfNotExists();
+//Get a reference to an append blob.
+CloudAppendBlob appendBlob = container.GetAppendBlobReference("append-blob.log");
 
-    //Get a reference to an append blob.
-    CloudAppendBlob appendBlob = container.GetAppendBlobReference("append-blob.log");
+//Create the append blob. Note that if the blob already exists, the CreateOrReplace() method will overwrite it.
+//You can check whether the blob exists to avoid overwriting it by using CloudAppendBlob.Exists().
+appendBlob.CreateOrReplace();
 
-    //Create the append blob. Note that if the blob already exists, the CreateOrReplace() method will overwrite it.
-    //You can check whether the blob exists to avoid overwriting it by using CloudAppendBlob.Exists().
-    appendBlob.CreateOrReplace();
+int numBlocks = 10;
 
-    int numBlocks = 10;
+//Generate an array of random bytes.
+Random rnd = new Random();
+byte[] bytes = new byte[numBlocks];
+rnd.NextBytes(bytes);
 
-    //Generate an array of random bytes.
-    Random rnd = new Random();
-    byte[] bytes = new byte[numBlocks];
-    rnd.NextBytes(bytes);
+//Simulate a logging operation by writing text data and byte data to the end of the append blob.
+for (int i = 0; i < numBlocks; i++)
+{
+    appendBlob.AppendText(String.Format("Timestamp: {0:u} \tLog Entry: {1}{2}",
+        DateTime.UtcNow, bytes[i], Environment.NewLine));
+}
 
-    //Simulate a logging operation by writing text data and byte data to the end of the append blob.
-    for (int i = 0; i < numBlocks; i++)
-    {
-        appendBlob.AppendText(String.Format("Timestamp: {0:u} \tLog Entry: {1}{2}",
-            DateTime.UtcNow, bytes[i], Environment.NewLine));
-    }
-
-    //Read the append blob to the console window.
-    Console.WriteLine(appendBlob.DownloadText());
+//Read the append blob to the console window.
+Console.WriteLine(appendBlob.DownloadText());
 ```
+
 如需了解有關 Blob 的三種類型間差異的資訊，請參閱 [了解區塊 Blob、分頁 Blob 和附加 Blob](https://msdn.microsoft.com/library/azure/ee691964.aspx) 。
 
 ## <a name="managing-security-for-blobs"></a>管理 Blob 安全性
@@ -415,6 +410,6 @@ Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

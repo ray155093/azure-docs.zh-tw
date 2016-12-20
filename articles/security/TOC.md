@@ -33,12 +33,10 @@
 ### [安全性的最佳做法與模式](security-best-practices-and-patterns.md)
 ### [建造彈性的應用程式](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md?toc=%2fazure%2fsecurity%2ftoc.json)
 
-# 參考
+# 相關參考
 ## [信任中心](security-microsoft-trust-center.md)
 ## [Microsoft 安全性回應中心](azure-security-response-center.md)
 ## [滲透測試](azure-security-pen-testing.md)
-
-# 相關參考
 ## [資訊安全中心](../security-center/security-center-intro.md?toc=%2fazure%2fsecurity-center%2ftoc.json)
 ## [金鑰保存庫](../key-vault/key-vault-whatis.md)
 ## [Log Analytics](../log-analytics/log-analytics-overview.md)
@@ -52,6 +50,7 @@
 ## [Virtual Academy 的安全性課程](security-microsoft-virtual-academy.md)
 ## [Channel 9 上的安全性影片](security-channel-nine.md)
 
-<!--HONumber=Nov16_HO4-->
+
+<!--HONumber=Dec16_HO1-->
 
 

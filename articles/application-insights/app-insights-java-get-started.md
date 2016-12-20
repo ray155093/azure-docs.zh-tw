@@ -1,9 +1,9 @@
 ---
-title: "使用 Application Insights 的 Java Web 應用程式分析 | Microsoft Docs"
-description: "使用 Application Insights 監視 Java 網站的效能和使用量。 "
+title: "使用 Azure Application Insights 的 Java Web 應用程式分析 | Microsoft Docs"
+description: "使用 Application Insights 針對 Java Web 應用程式進行應用程式效能監視。 "
 services: application-insights
 documentationcenter: java
-author: alancameronwills
+author: harelbr
 manager: douge
 ms.assetid: 051d4285-f38a-45d8-ad8a-45c3be828d91
 ms.service: application-insights
@@ -11,16 +11,16 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/17/2016
+ms.date: 12/02/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cc0167ef78eb3ca84e959599473af5935e5da0d0
+ms.sourcegitcommit: 75b651bd3e77ac19e22dcc3442870469fe2aaca1
+ms.openlocfilehash: f7dc72299665a5324de7b9320eb9876c61ced123
 
 
 ---
 # <a name="get-started-with-application-insights-in-a-java-web-project"></a>在 Java Web 專案中開始使用 Application Insights
-*Application Insights 目前僅供預覽。*
+
 
 [Application Insights](https://azure.microsoft.com/services/application-insights/) 是一項 Web 開發人員可延伸的分析服務，可幫助您了解即時應用程式的效能和使用情形。 使用它可[偵測及診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，以及[撰寫程式碼][api]來追蹤使用者對應用程式執行的動作。
 
@@ -31,7 +31,7 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 您需要：
 
 * Oracle JRE 1.6 或更新版本，或 Zulu JRE 1.6 或更新版本
-* [Microsoft Azure](https://azure.microsoft.com/)訂用帳戶。 (您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。)
+* [Microsoft Azure](https://azure.microsoft.com/)訂用帳戶。
 
 如果您有使用中的 Web 應用程式，您可以依照替代的程序[在執行階段於 Web 伺服器中新增 SDK ](app-insights-java-live.md)。替代方法可避免重建程式碼，但您沒有選項可撰寫程式碼來追蹤使用者活動。
 
@@ -182,7 +182,7 @@ Application Insights SDK 會依此順序尋找此金鑰︰
     </filter-mapping>
 
 #### <a name="if-youre-using-spring-web-mvc-31-or-later"></a>如果您使用 Spring Web MVC 3.1 或更新版本
-編輯這些元素來併入 Application Insights 封裝：
+在 *-servlet.xml 中編輯這些元素來併入 Application Insights 封裝：
 
     <context:component-scan base-package=" com.springapp.mvc, com.microsoft.applicationinsights.web.spring"/>
 
@@ -213,7 +213,7 @@ Application Insights SDK 會依此順序尋找此金鑰︰
 
 ![範例資料](./media/app-insights-java-get-started/5-results.png)
 
-[深入了解計量。][計量]
+[深入了解度量。][metrics]
 
 按一下任何圖表以查看詳細彙總度量。
 
@@ -244,11 +244,15 @@ Application Insights 中會顯示兩種類型的資料︰彙總資料 (儲存並
   
   * dc.services.visualstudio.com:443
   * f5.services.visualstudio.com:443
+
+* 如果連出流量必須透過防火牆路由傳送，定義系統屬性 `http.proxyHost` 和 `http.proxyPort`。 
+
 * 在 Windows 伺服器上，安裝：
   
   * [Microsoft Visual C++ 可轉散發套件](http://www.microsoft.com/download/details.aspx?id=40784)
     
     (此元件會啟用效能計數器。)
+
 
 ## <a name="exceptions-and-request-failures"></a>例外狀況與要求失敗
 會自動收集未處理的例外狀況：
@@ -309,7 +313,7 @@ Application Insights 中會顯示兩種類型的資料︰彙總資料 (儲存並
 * counterName – 效能計數器的名稱。
 * instanceName – 效能計數器類別執行個體的名稱，或如果類別包含單一執行個體，則為空白字串 ("")。 如果 categoryName 為 Process，而您要收集的效能計數器來自應用程式執行所在的目前 JVM 處理程序，請指定 `"__SELF__"`。
 
-您的效能計數器會在[計量瀏覽器][計量]中以自訂計量的形式顯示。
+您的效能計數器會在[計量瀏覽器][metrics]中以自訂度量的形式顯示。
 
 ![](./media/app-insights-java-get-started/12-custom-perfs.png)
 
@@ -319,8 +323,8 @@ Application Insights 中會顯示兩種類型的資料︰彙總資料 (儲存並
 ## <a name="get-user-and-session-data"></a>取得使用者與工作階段資料
 好了，您現在正在從 Web 服務傳送遙測資料。 現在若要取得應用程式的完整 360 度檢視，可以加入多個監視：
 
-* [將遙測新增至您的網頁][使用量]，即可監視頁面檢視和使用者計量。
-* [設定 Web 測試][可用性]，以確認應用程式處於線上狀態且能夠回應。
+* [將遙測加入至您的網頁][usage]，即可監視頁面檢視和使用者度量。
+* [設定 Web 測試][availability]，以確認應用程式處於線上狀態且能夠回應。
 
 ## <a name="capture-log-traces"></a>擷取記錄追蹤
 您可以使用 Application Insights 將來自 Log4J、Logback 或其他記錄架構的記錄分解。 您可以將記錄與 HTTP 要求和其他遙測相互關聯。 [了解作法][javalogs]。
@@ -328,11 +332,11 @@ Application Insights 中會顯示兩種類型的資料︰彙總資料 (儲存並
 ## <a name="send-your-own-telemetry"></a>傳送您自己的遙測
 既然您已安裝 SDK，您可以使用 API 來傳送自己的遙測。
 
-* [追蹤自訂事件和計量][api]，以了解使用者正對應用程式進行的動作。
+* [追蹤自訂事件和度量][api]，以了解使用者正對應用程式進行的動作。
 * [搜尋事件和記錄][diagnostic]以協助診斷問題。
 
 ## <a name="availability-web-tests"></a>可用性 Web 測試
-Application Insights 可讓您定期測試網站，以檢查網站運作中且正常回應。 [若要設定][可用性]，請按一下 Web 測試。
+Application Insights 可讓您定期測試網站，以檢查網站運作中且正常回應。 [若要設定][availability]，請按一下 Web 測試。
 
 ![按一下 [Web 測試]，然後按一下 [新增 Web 測試]](./media/app-insights-java-get-started/31-config-web-test.png)
 
@@ -340,7 +344,7 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 
 ![Web 測試範例](./media/app-insights-java-get-started/appinsights-10webtestresult.png)
 
-[深入了解 Web 測試的可用性。][可用性] 
+[深入了解 Web 測試的可用性。][availability] 
 
 ## <a name="questions-problems"></a>有疑問嗎？ 有問題嗎？
 [疑難排解 Java](app-insights-java-troubleshoot.md)
@@ -358,15 +362,15 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 
 [api]: app-insights-api-custom-events-metrics.md
 [apiexceptions]: app-insights-api-custom-events-metrics.md#track-exception
-[可用性]: app-insights-monitor-web-app-availability.md
+[availability]: app-insights-monitor-web-app-availability.md
 [diagnostic]: app-insights-diagnostic-search.md
 [eclipse]: app-insights-java-eclipse.md
 [javalogs]: app-insights-java-trace-logs.md
-[計量]: app-insights-metrics-explorer.md
-[使用量]: app-insights-web-track-usage.md
+[metrics]: app-insights-metrics-explorer.md
+[usage]: app-insights-web-track-usage.md
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

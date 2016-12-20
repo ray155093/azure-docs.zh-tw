@@ -1,13 +1,13 @@
 ---
-title: DocumentDB 連接器的 Power BI 教學課程 | Microsoft Docs
-description: 使用本 Power BI 教學課程以匯入 JSON、建立具深入資訊的報告以及使用 DocumentDB 和 Power BI 連接器視覺化資料。
-keywords: power bi 教學課程，視覺化資料，power bi 連接器
+title: "DocumentDB 連接器的 Power BI 教學課程 | Microsoft Docs"
+description: "使用本 Power BI 教學課程以匯入 JSON、建立具深入資訊的報告以及使用 DocumentDB 和 Power BI 連接器視覺化資料。"
+keywords: "power bi 教學課程，視覺化資料，power bi 連接器"
 services: documentdb
 author: h0n
 manager: jhubbard
 editor: mimig
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: cd1b7f70-ef99-40b7-ab1c-f5f3e97641f7
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/22/2016
 ms.author: hawong
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 35c469ce0cfb99dc6a26fbcc0734938ad6b66fd7
+
 
 ---
-# <a name="power-bi-tutorial-for-documentdb:-visualize-data-using-the-power-bi-connector"></a>DocumentDB 的 Power BI 教學課程：使用 Power BI 連接器將資料視覺化
+# <a name="power-bi-tutorial-for-documentdb-visualize-data-using-the-power-bi-connector"></a>DocumentDB 的 Power BI 教學課程：使用 Power BI 連接器將資料視覺化
 [PowerBI.com](https://powerbi.microsoft.com/) 是一項線上服務，您可以在其中建立及共用具有您和組織之重要資料的儀表板和報告。  Power BI Desktop 是一項專用的報告撰寫工具，可讓您從各種資料來源擷取資料、合併和轉換資料、建立功能強大的報告和視覺效果，以及將報告發佈至 Power BI。  透過最新版的 Power BI Desktop，您現在可以透過 Power BI 的 DocumentDB 連接器連接到您的 DocumentDB 帳戶。   
 
 在本 Power BI 教學課程中，我們將逐步解說在 Power BI Desktop 中連接到 DocumentDB 帳戶、瀏覽到我們要使用瀏覽器擷取資料的集合、使用 Power BI Desktop 查詢編輯器將 JSON 資料轉換成表格式格式，和建置報告並將其發佈至 PowerBI.com 等作業的步驟。
@@ -42,24 +46,24 @@ ms.author: hawong
 
 若要在 PowerBI.com 上共用您的報告，您必須有 PowerBI.com 中的帳戶。  若要深入了解 Power BI for Free 和 Power BI Pro，請造訪 [https://powerbi.microsoft.com/pricing](https://powerbi.microsoft.com/pricing)。
 
-## <a name="let's-get-started"></a>現在就開始吧
+## <a name="lets-get-started"></a>現在就開始吧
 在本教學課程中，我們假設您是研究世界各地火山的地質學家。  火山資料儲存在 DocumentDB 帳戶中，JSON 文件看起來如下。
 
     {
         "Volcano Name": "Rainier",
-        "Country": "United States",
-        "Region": "US-Washington",
-        "Location": {
+           "Country": "United States",
+          "Region": "US-Washington",
+          "Location": {
             "type": "Point",
             "coordinates": [
-            -121.758,
-            46.87
+              -121.758,
+              46.87
             ]
-        },
-        "Elevation": 4392,
-        "Type": "Stratovolcano",
-        "Status": "Dendrochronology",
-        "Last Known Eruption": "Last known eruption from 1800-1899, inclusive"
+          },
+          "Elevation": 4392,
+          "Type": "Stratovolcano",
+          "Status": "Dendrochronology",
+          "Last Known Eruption": "Last known eruption from 1800-1899, inclusive"
     }
 
 您想要從 DocumentDB 帳戶擷取火山資料，並在如下的互動式 Power BI 報告中視覺化資料。
@@ -171,7 +175,7 @@ ms.author: hawong
    
     ![成功發佈到 Power BI！ 在 Power BI 中開啟教學課程](./media/documentdb-powerbi-visualize/power_bi_connector_open_in_powerbi.png)
 
-## <a name="create-a-dashboard-in-powerbi.com"></a>在 PowerBI.com 中建立儀表板
+## <a name="create-a-dashboard-in-powerbicom"></a>在 PowerBI.com 中建立儀表板
 現在，您有一份報表可在 PowerBI.com 上共用。
 
 當您從 Power BI Desktop發佈報告至 PowerBI.com 時，在您的 PowerBI.com 租用戶中會產生 [報表] 和 [資料集]。 例如，您將名為 **PowerBITutorial** 的報表發佈到 PowerBI.com，會在 PowerBI.com 的 [報表] 和 [資料集] 區段看到 PowerBITutorial。
@@ -186,7 +190,7 @@ ms.author: hawong
 
 您也可以對之前建立的儀表板進行臨機操作修改。 不過，建議您使用 Power BI Desktop 進行修改，再將報表重新發佈至 PowerBI.com。
 
-## <a name="refresh-data-in-powerbi.com"></a>重新整理 PowerBI.com 中的資料
+## <a name="refresh-data-in-powerbicom"></a>重新整理 PowerBI.com 中的資料
 有兩種方式可以重新整理資料：臨機操作和排程。
 
 若以臨機操作方式重新整理，只要按一下**資料集** (例如 PowerBITutorial) 旁的刪節符號 (...)。 您應該會看到包括 [立即重新整理] 在內的動作清單。 按一下 [立即重新整理] 以重新整理資料。
@@ -209,6 +213,9 @@ ms.author: hawong
 * 若要深入了解 Power BI，請參閱 [開始使用 Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/)。
 * 若要深入了解 DocumentDB，請參閱 [DocumentDB 文件登陸頁面](https://azure.microsoft.com/documentation/services/documentdb/)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

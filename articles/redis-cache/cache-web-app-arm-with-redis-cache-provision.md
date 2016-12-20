@@ -1,29 +1,33 @@
 ---
-title: 佈建 Web 應用程式和 Redis 快取
-description: 使用 Azure 資源管理員範本來部署 Web 應用程式和 Redis 快取。
+title: "佈建 Web 應用程式和 Redis 快取"
+description: "使用 Azure 資源管理員範本來部署 Web 應用程式和 Redis 快取。"
 services: app-service
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: erickson-doug
-editor: ''
-
+editor: 
+ms.assetid: 6e99c71f-ef8e-4570-a307-e4c059e60c35
 ms.service: app-service
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/09/2016
+ms.date: 10/25/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 4c8982461142223f0b339fa542b0bfb6b4ce68a8
+
 
 ---
-# 使用範本建立 Web 應用程式和 Redis 快取
-在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Azure Web 應用程式和 Redis 快取。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+# <a name="create-a-web-app-plus-redis-cache-using-a-template"></a>使用範本建立 Web 應用程式和 Redis 快取
+在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Azure Web 應用程式和 Redis 快取。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
-如需關於建立範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
+如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
 
 如需完整的範本，請參閱 [Web 應用程式與 Redis 快取 範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json)。
 
-## 部署內容
+## <a name="what-you-will-deploy"></a>部署內容
 在此範本中，您將部署：
 
 * Azure Web 應用程式
@@ -33,13 +37,13 @@ ms.author: sdanie
 
 [![部署至 Azure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)
 
-## 要指定的參數
+## <a name="parameters-to-specify"></a>要指定的參數
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 [!INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
-## 名稱的變數
-這個範本會使用變數來建構資源的名稱。它會使用 [uniqueString](../resource-group-template-functions.md#uniquestring) 函式，根據資源群組識別碼來建構值。
+## <a name="variables-for-names"></a>名稱的變數
+這個範本會使用變數來建構資源的名稱。 它會使用 [uniqueString](../resource-group-template-functions.md#uniquestring) 函式，根據資源群組識別碼來建構值。
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -48,13 +52,13 @@ ms.author: sdanie
     },
 
 
-## 要部署的資源
+## <a name="resources-to-deploy"></a>要部署的資源
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
-### Redis 快取
-建立與 Web 應用程式搭配使用的 Azure Redis 快取。快取的名稱指定於 **cacheName** 變數中。
+### <a name="redis-cache"></a>Redis 快取
+建立與 Web 應用程式搭配使用的 Azure Redis 快取。 快取的名稱指定於 **cacheName** 變數中。
 
-範本會在資源群組的相同位置建立快取。
+範本會在資源群組的相同位置建立快取。 
 
     {
       "name": "[variables('cacheName')]",
@@ -75,10 +79,10 @@ ms.author: sdanie
     }
 
 
-### Web 應用程式
+### <a name="web-app"></a>Web 應用程式
 使用 **webSiteName** 變數中所指定的名稱來建立 Web 應用程式。
 
-請注意，Web 應用程式是使用應用程式設定屬性所設定，可讓它使用 Redis 快取。此應用程式設定是根據部署期間所提供的值動態建立。
+請注意，Web 應用程式是使用應用程式設定屬性所設定，可讓它使用 Redis 快取。 此應用程式設定是根據部署期間所提供的值動態建立。
 
     {
       "apiVersion": "2015-08-01",
@@ -113,13 +117,19 @@ ms.author: sdanie
       ]
     }
 
-## 執行部署的命令
+## <a name="commands-to-run-deployment"></a>執行部署的命令
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### PowerShell
+### <a name="powershell"></a>PowerShell
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -ResourceGroupName ExampleDeployGroup
 
-### Azure CLI
+### <a name="azure-cli"></a>Azure CLI
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -g ExampleDeployGroup
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

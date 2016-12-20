@@ -1,12 +1,12 @@
 ---
-title: Distributed data and distributed table options for the Massively Parallel Processing (MPP) systems of SQL Data Warehouse and Parallel Data Warehouse | Microsoft Docs
-description: Learn how data is distributed for Massively Parallel Processing (MPP) and the options for distributing tables in Azure SQL Data Warehouse and Parallel Data Warehouse.
+title: "適用於 SQL 資料倉儲和平行資料倉儲的大量平行處理 (MPP) 系統之分散式資料和分散式資料表選項 | Microsoft Docs"
+description: "了解大量平行處理 (MPP) 如何分散資料，以及在 Azure SQL 資料倉儲和平行資料倉儲中分散資料表的選項。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: bae494a6-7ac5-4c38-8ca3-ab2696c63a9f
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,62 +14,69 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1090c2156df11adc6f18dffe00a9d37921c0a3a3
+
 
 ---
-# <a name="distributed-data-and-distributed-tables-for-massively-parallel-processing-mpp"></a>Distributed data and distributed tables for Massively Parallel Processing (MPP)
-Learn how user data is distributed in Azure SQL Data Warehouse and Parallel Data Warehouse, which are Microsoft's Massively Parallel Processing (MPP) systems. Designing your data warehouse to use distributed data effectively helps you to achieve the query processing benefits of the MPP architecture. A few database design choices can have a significant impact on improving query performance.  
+# <a name="distributed-data-and-distributed-tables-for-massively-parallel-processing-mpp"></a>大量平行處理 (MPP) 的分散式資料和分散式資料表
+了解如何在 Microsoft 的大量平行處理 (MPP) 系統 Azure SQL 資料倉儲和平行資料倉儲中分散使用者資料。 設計您的資料倉儲以有效使用分散式資料，可協助您達成 MPP 架構的查詢處理優勢。 一些資料庫設計選擇可能會嚴重影響改善查詢效能。  
 
 > [!NOTE]
-> Azure SQL Data Warehouse and Parallel Data Warehouse use the same Massively Parallel Processing (MPP) design, but they have a few differences because of the underlying platform. SQL Data Warehouse is a Platform as a Service (PaaS) that runs on Azure. Parallel Data Warehouse runs on Analytics Platform System (APS) which is an on-premises appliance that runs on Windows Server.
+> Azure SQL 資料倉儲和平行資料倉儲使用相同的大量平行處理 (MPP) 設計，但是由於基礎平台，它們會有一些差異。 SQL 資料倉儲是一種在 Azure 上執行的平台即服務 (PaaS)。 平行資料倉儲在分析平台系統 (AP) 上執行，也就是在 Windows Server 上執行的內部部署應用裝置。
 > 
 > 
 
-## <a name="what-is-distributed-data"></a>What is distributed data?
-In SQL Data Warehouse and Parallel Data Warehouse, distributed data refers to user data that is stored in multiple locations across the MPP system. Each of those locations functions as an independent storage and processing unit that runs queries on its portion of the data. Distributed data is fundamental to running queries in parallel to achieve high query performance.
+## <a name="what-is-distributed-data"></a>什麼是分散式資料？
+在 SQL 資料倉儲和平行資料倉儲中，分散式資料是指儲存在 MPP 系統多個位置的使用者資料。 每個位置可做為獨立的儲存體運作，和在其一部分資料上執行查詢的處理單位。 分散式資料是以平行方式執行查詢來達成高效能查詢的基礎。
 
-To distribute data, the data warehouse assigns each row of a user table to one distributed location.  You can distribute tables with a hash-distribution method or a round-robin method. The distribution method is specified in the CREATE TABLE statement. 
+若要散發資料，資料倉儲會將使用者資料表的每個資料列指派至一個分散式位置。  您可以使用雜湊發佈方法或循環配置資源方法來散發資料表。 發佈方法指定於 CREATE TABLE 陳述式中。 
 
-## <a name="hashdistributed-tables"></a>Hash-distributed tables
-The following diagram illustrates how a full (non-distributed table) gets stored as a hash-distributed table. A deterministic function assigns each row to belong to one distribution. In the table definition, one of the columns is designated as the distribution column. The hash function uses the value in the distribution column to assign each row to a distribution.
+## <a name="hash-distributed-tables"></a>雜湊分散式資料表
+下圖說明完整 (非分散式資料表) 會如何儲存為雜湊分散式資料表。 具決定性的函式會將每個資料列指派給屬於一個發佈。 在資料表定義中，其中一個資料行會指定為發佈資料行。 雜湊函式會使用發佈資料行中的值將每個資料列指派給發佈。
 
-There are performance considerations for the selection of a distribution column, such as distinctness, data skew, and the types of queries run on the system.
+選取發佈資料行有效能考量，例如區分、資料扭曲和在系統上執行的查詢類型。
 
-![Distributed table](media/sql-data-warehouse-distributed-data/hash-distributed-table.png "Distributed table")  
+![分散式資料表](media/sql-data-warehouse-distributed-data/hash-distributed-table.png "Distributed table")  
 
-* Each row belongs to one distribution.  
-* A deterministic hash algorithm assigns each row to one distribution.  
-* The number of table rows per distribution varies as shown by the different sizes of tables.
+* 每個資料列屬於一種發佈。  
+* 具決定性的雜湊演算法會將每個資料列指派給一個發佈。  
+* 每個發佈的資料表資料列數目會隨著顯示不同資料表大小而有所不同。
 
-## <a name="roundrobin-distributed-tables"></a>Round-robin distributed tables
-A round-robin distributed table distributes the rows by assigning each row to a distribution in a sequential manner. It is quick to load data into a round-robin table, but query performance might be slower.  Joining a round-robin table usually requires reshuffling the rows to enable the query to produce an accurate result, which takes time.
+## <a name="round-robin-distributed-tables"></a>循環配置資源分散式資料表
+循環配置資源分散式資料表會發佈資料列，方法為以循序方式將每個資料列指派給發佈。 將資料載入循環配置資源資料表很快速，但查詢效能可能會變慢。  將循環配置資源資料表合併通常需要改組，以讓查詢產生準確的結果，這會很花時間。
 
-## <a name="distributed-storage-locations-are-called-distributions"></a>Distributed storage locations are called distributions
-Each distributed location is called a distribution. When a query runs in parallel, each distribution performs a SQL query on its portion of the data. SQL Data Warehouse uses SQL Database to run the query. Parallel Data Warehouse uses SQL Server to run the query. This shared-nothing architecture design is fundamental to achieving scale-out parallel computing.
+## <a name="distributed-storage-locations-are-called-distributions"></a>分散式儲存體位置稱為發佈
+每個分散式位置稱為發佈。 當以平行方式執行查詢時，每個發佈會在其一部分的資料上執行 SQL 查詢。 SQL 資料倉儲會使用 SQL 資料庫執行查詢。 平行資料倉儲會使用 SQL Server 執行查詢。 這種無共用架構設計是要達成向外延展平行運算的基礎。
 
-### <a name="can-i-view-the-distributions"></a>Can I view the distributions?
-Each distribution has a distribution ID and is visible in system views that pertain to SQL Data Warehouse and Parallel Data Warehouse. You can use the distribution ID to troubleshoot query performance and other problems. For a list of the system views, see the [MPP system view](sql-data-warehouse-reference-tsql-statements.md).
+### <a name="can-i-view-the-distributions"></a>可以檢視發佈嗎？
+每個發佈有通訊群組 ID，且在有關 SQL 資料倉儲和平行資料倉儲的系統檢視中可以看見。 您可以使用發佈識別碼來疑難排解查詢效能及其他問題。 如需系統檢視的清單，請參閱 [MPP 系統檢視](sql-data-warehouse-reference-tsql-statements.md)。
 
-## <a name="difference-between-a-distribution-and-a-compute-node"></a>Difference between a distribution and a Compute node
-A distribution is the basic unit for storing distributed data and processing parallel queries. Distributions are grouped into Compute nodes. Each Compute node tracks one or more distributions.  
+## <a name="difference-between-a-distribution-and-a-compute-node"></a>發佈與計算節點之間的差異
+發佈是儲存分散式資料和處理平行查詢的基本單位。 發佈會群組為計算節點。 每個計算節點會追蹤一或多個發佈。  
 
-* Analytics Platform System uses Compute nodes as a central component of the hardware architecture and scale-out capabilities. It always uses eight distributions per Compute node, as shown in the diagram for hash-distributed tables. The number of Compute nodes, and therefore the number of distributions, is determined by the number of Compute nodes you purchase for the appliance. For example, if you purchase eight Compute nodes, you get 64 distributions (8 Compute nodes x 8 distributions/node). 
-* SQL Data Warehouse has a fixed number of 60 distributions and a flexible number of Compute nodes. The Compute nodes are implemented with Azure computing and storage resources. The number of Compute nodes can change according to the backend service workload and the computing capacity (DWUs) you specify for the data warehouse. When the number of Compute nodes changes, the number of distributions per Compute node also changes. 
+* 分析平台系統會使用節點做為硬體架構和向外擴充功能的中央元件。 它每個計算節點一律使用八個發佈，如雜湊分散式資料表圖中所示。 計算節點數目，因此發佈數目是由您為裝置購買的計算節點數目所決定。 例如，如果您購買八個計算節點，您會取得 64 個發佈 (8 個計算節點 x 8 個發佈/節點)。 
+* SQL 資料倉儲的發佈數目固定為 60 個，而計算節點數目則為彈性。 會使用 Azure 計算和儲存體資源來實作計算節點。 計算節點的數目可能會根據後端服務工作負載和您針對資料倉儲指定的計算容量 (DWU) 而變更。 計算節點數目變更時，每個計算節點的發佈數目也會變更。 
 
-### <a name="can-i-view-the-compute-nodes"></a>Can I view the Compute nodes?
-Each Compute node has a node ID and is visible in system views that pertain to SQL Data Warehouse and Parallel Data Warehouse.  You can see the Compute node by looking for the node_id column in system views whose names begin with sys.pdw_nodes. For a list of the system views, see the [MPP system view](sql-data-warehouse-reference-tsql-statements.md).
+### <a name="can-i-view-the-compute-nodes"></a>可以檢視計算節點嗎？
+每個計算節點有節點 ID，且在有關 SQL 資料倉儲和平行資料倉儲的系統檢視中可以看見。  您可以在名稱開頭為 sys.pdw_nodes 的系統檢視中尋找 node_id 資料行表來看到計算節點。 如需系統檢視的清單，請參閱 [MPP 系統檢視](sql-data-warehouse-reference-tsql-statements.md)。
 
-## <a name="a-namereplicatedareplicated-tables-for-parallel-data-warehouse"></a><a name="Replicated"></a>Replicated Tables for Parallel Data Warehouse
-Applies to: Parallel Data Warehouse
+## <a name="a-namereplicatedareplicated-tables-for-parallel-data-warehouse"></a><a name="Replicated"></a>複寫平行資料倉儲的資料表
+適用於︰平行資料倉儲
 
-In addition to using distributed tables, Parallel Data Warehouse offers an option to replicate tables. A *replicated table* is a table that is stored in its entirety on each Compute node. Replicating a table removes the need to transfer its table rows among Compute nodes before using the table in a join or aggregation. Replicated tables are only feasible with small tables because of the extra storage required to store the full table on each compute node.  
+除了使用分散式資料表之外，平行資料倉儲會提供選項來複寫資料表。 *複寫資料表*是在每個計算節點上完整儲存的資料表。 複寫資料表會在聯結或彙總中使用資料表之前，移除在計算節點之間傳輸其資料表資料列的需要。 由於在每個計算節點上儲存完整資料表所需的額外儲存體，因此複寫資料表僅在小型資料表才可行。  
 
-The following diagram shows a replicated table that is stored on each Compute node. The replicated table is stored across all disks assigned to the Compute node. This disk strategy is implemented by using SQL Server filegroups.  
+下圖顯示儲存在每個計算節點上的複寫資料表。 複寫資料表會儲存在指派給計算節點的所有磁碟。 此磁碟策略會使用 SQL Server 檔案群組來實作。  
 
-![Replicated table](media/sql-data-warehouse-distributed-data/replicated-table.png "Replicated table") 
+![複寫的資料表](media/sql-data-warehouse-distributed-data/replicated-table.png "Replicated table") 
 
-## <a name="next-steps"></a>Next steps
-To use distributed tables effectively, see [Distributing tables in SQL Data Warehouse](sql-data-warehouse-tables-distribute.md)  
+## <a name="next-steps"></a>後續步驟
+若要有效使用分散式資料表，請參閱[在 SQL 資料倉儲中散發資料表](sql-data-warehouse-tables-distribute.md)  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

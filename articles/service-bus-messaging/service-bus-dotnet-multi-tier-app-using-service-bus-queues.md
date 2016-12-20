@@ -1,13 +1,13 @@
 ---
 title: ".NET 多層應用程式 | Microsoft Docs"
 description: "協助您在 Azure 中開發多層式應用程式，以使用服務匯流排佇列在各層之間進行通訊的 .NET 教學課程。"
-services: service-bus
+services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
 editor: 
 ms.assetid: 1b8608ca-aa5a-4700-b400-54d65b02615c
-ms.service: service-bus
+ms.service: service-bus-messaging
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 60ed71eac1a233a08414edb8c89b196401895cd8
+ms.sourcegitcommit: 9ace119de3676bcda45d524961ebea27ab093415
+ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 
 
 ---
-# <a name="net-multitier-application-using-azure-service-bus-queues"></a>使用 Azure 服務匯流排佇列的 .NET 多層應用程式
+# <a name="net-multi-tier-application-using-azure-service-bus-queues"></a>使用 Azure 服務匯流排佇列的 .NET 多層應用程式
 ## <a name="introduction"></a>簡介
 使用 Visual Studio 和免費 Azure SDK for .NET 開發 Microsoft Azure 很容易。 本教學課程將逐步引導您完成相關步驟，以建立在本機環境中執行、使用多個 Azure 資源的應用程式。 這些步驟假設您從未使用過 Azure。
 
@@ -39,7 +39,7 @@ ms.openlocfilehash: 60ed71eac1a233a08414edb8c89b196401895cd8
 
 ![][0]
 
-## <a name="scenario-overview-interrole-communication"></a>案例概觀：內部角色通訊
+## <a name="scenario-overview-inter-role-communication"></a>案例概觀：內部角色通訊
 為了提交訂單進行處理，Web 角色中執行的前端 UI 元件必須與背景工作角色中執行的中間層互動。 此範例使用由服務匯流排代理的傳訊，在各層之間進行通訊。
 
 在 Web 層與中間層之間使用代理的通訊，可使這兩個元件彼此脫鉤。 相較於直接傳訊 (亦即，TCP 或 HTTP)，Web 層不會直接連線至中間層，而是透過訊息的形式，將工作單位推播至服務匯流排，而後者會可靠地保管工作單位，直到中間層準備好取用並處理這些工作單位為止。
@@ -410,6 +410,6 @@ ms.openlocfilehash: 60ed71eac1a233a08414edb8c89b196401895cd8
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

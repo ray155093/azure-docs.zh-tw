@@ -1,19 +1,23 @@
 ---
-title: 如何在 Linux VM 上安裝 Apache Qpid Proton-C | Microsoft Docs
-description: 如何使用 Azure 虛擬機器建立 CentOS Linux VM，以及如何建置和安裝 Apache Qpid Proton-C 程式庫。
-services: service-bus
+title: "如何在 Linux VM 上安裝 Apache Qpid Proton-C | Microsoft Docs"
+description: "如何使用 Azure 虛擬機器建立 CentOS Linux VM，以及如何建置和安裝 Apache Qpid Proton-C 程式庫。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 3158d69f-c409-494d-9a6c-32613c1a3c74
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/29/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 226703f9b4a4b295231ecd48d719638321ae55ef
+
 
 ---
 # <a name="install-apache-qpid-proton-c-on-an-azure-linux-vm"></a>在 Azure Linux VM 上安裝 Apache Qpid Proton-C
@@ -84,15 +88,15 @@ ms.author: sethm
    
    mkdir build cd build
    
-   # Set the install prefix. You may need to adjust depending on your      
-   # system.       
+   # Set the install prefix. You may need to adjust depending on your        
+   # system.        
    cmake -DCMAKE\_INSTALL\_PREFIX=/usr ..
    
-   # Omit the docs target if you do not wish to build or install       
+   # Omit the docs target if you do not wish to build or install        
    # documentation.        
    make all docs
    
-   # Note that this step will require root privileges.     
+   # Note that this step will require root privileges.        
    make install
    ```
 
@@ -115,6 +119,6 @@ ms.author: sethm
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

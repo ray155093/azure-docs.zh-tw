@@ -1,12 +1,12 @@
 ---
-title: Azure Mobile Engagement 使用者介面 - 設定
-description: 了解如何使用 Azure Mobile Engagement 管理應用程式的全域設定
+title: "Azure Mobile Engagement 使用者介面 - 設定"
+description: "了解如何使用 Azure Mobile Engagement 管理應用程式的全域設定"
 services: mobile-engagement
-documentationcenter: ''
+documentationcenter: 
 author: piyushjo
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 858f4cb4-14de-4bb5-826f-28cadbfc928b
 ms.service: mobile-engagement
 ms.devlang: na
 ms.topic: article
@@ -14,81 +14,85 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 1e8ff1a27941984ae3fcd16dc8648cd8dc9b5e7c
+
 
 ---
-# 如何管理應用程式的全域設定
-視應用程式平台和您所擁有的該應用程式權限而定，應用程式中所提供的 [**設定**] 功能表選項將有所不同。設定中包含：[詳細資料]、[專案]、[原生推送]、[推送速度]、 [標記 (應用程式資訊)] 和 [商業壓力]。[設定] 區段中的 [標記 (應用程式資訊)] 功能表選項可透過您的應用程式 (使用 SDK) 或您的後端 (使用裝置 API) 管理。
+# <a name="how-to-manage-the-global-settings-of-your-application"></a>如何管理應用程式的全域設定
+視應用程式平台和您所擁有的該應用程式權限而定，應用程式中所提供的 [ **設定** ] 功能表選項將有所不同。 設定中包含：[詳細資料]、[專案]、[原生推送]、[推送速度]、 [標記 (應用程式資訊)] 和 [商業壓力]。 [設定] 區段中的 [標記 (應用程式資訊)] 功能表選項可透過您的應用程式 (使用 SDK) 或您的後端 (使用裝置 API) 管理。 
 
 > [!NOTE]
-> 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [**顯示說明**] 按鈕。按該按鈕，可獲得關於區段的詳細內容資訊。
+> 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。 按該按鈕，可獲得關於區段的詳細內容資訊。
 > 
 > 
 
-## 詳細資料
-可讓您變更您應用程式的名稱與說明。檢視您應用程式的擁有者與您的角色權限。
+## <a name="details"></a>詳細資料
+可讓您變更您應用程式的名稱與說明。檢視您應用程式的擁有者與您的角色權限。 
 
 分析組態可讓您檢視或變更每星期的第一天以及保留時間 (以天為單位)。
 
   ![settings1][46]
 
-## 專案
-可讓您選取您要應用程式在其中出現的所有專案。
+## <a name="projects"></a>專案
+可讓您選取您要應用程式在其中出現的所有專案。 
 
 您也可以搜尋專案及檢視您的應用程式所屬之任何專案的名稱、描述、擁有者及您的角色權限。
 
-如需詳細資訊，請參閱 [UI 文件 – 首頁][Link 13]
+如需詳細資訊，請參閱 [UI 文件 – 首頁][連結 13]
 
   ![settings3][48]
 
-## 原生推送
-可讓您註冊新憑證來與原生推送搭配使用，或刪除現有憑證。原生推送可讓 Azure Mobile Engagement 在任何時間 (甚至在它沒有執行時) 推送至您的應用程式。
+## <a name="native-push"></a>原生推送
+可讓您註冊新憑證來與原生推送搭配使用，或刪除現有憑證。 原生推送可讓 Azure Mobile Engagement 在任何時間 (甚至在它沒有執行時) 推送至您的應用程式。 
 
 在為至少一項原生推送服務提供認證或憑證之後，您可以在建立觸達活動時選擇 [任何時間]，也可以使用 PUSH API 中的 "notifier" 參數。
 
-### Apple Push Notification Service (APNS)
-若要讓原生推送使用 Apple Push Notification Service，您必須註冊您的憑證。您將需要指定憑證類型為開發 (DEV) 或生產 (PROD)。然後您需要上傳您的憑證與密碼。
+### <a name="apple-push-notification-service-apns"></a>Apple Push Notification Service (APNS)
+若要讓原生推送使用 Apple Push Notification Service，您必須註冊您的憑證。 您將需要指定憑證類型為開發 (DEV) 或生產 (PROD)。 然後您需要上傳您的憑證與密碼。
 
-如需詳細資訊，請參閱：[SDK 文件 - iOS - 如何準備您的應用程式以使用 Apple 推播通知][Link 5]
+如需詳細資訊，請參閱：[SDK 文件 - iOS - 如何準備您的應用程式以使用 Apple 推播通知][連結 5]
 
 ![settings4][49]
 
-### Windows 推播通知服務 (WPNS)
-若要讓原生推送使用 Windows 推播通知，您必須提供應用程式的憑證。您將需要您的封裝安全性識別碼 (SID) 與您的秘密金鑰。
+### <a name="windows-push-notification-service-wpns"></a>Windows 推播通知服務 (WPNS)
+若要讓原生推送使用 Windows 推播通知，您必須提供應用程式的憑證。 您將需要您的封裝安全性識別碼 (SID) 與您的秘密金鑰。
 
 ![settings5][50]
 
-### Google Cloud Messaging for Android (GCM)
-若要讓原生推送使用 GCM，您必須依照 Google 的指示進行。然後，您必須貼上在沒有 IP 限制下設定的伺服器簡易 API 金鑰。需要與 SDK for Android 1.12.0 版以上整合。
+### <a name="google-cloud-messaging-for-android-gcm"></a>Google Cloud Messaging for Android (GCM)
+若要讓原生推送使用 GCM，您必須依照 Google 的指示進行。 然後，您必須貼上在沒有 IP 限制下設定的伺服器簡易 API 金鑰。 需要與 SDK for Android 1.12.0 版以上整合。
 
-如需詳細資訊，請參閱：
+如需詳細資訊，請參閱 
 
-* [SDK 文件 Android 如何整合 GCM][Link 5]
+* [SDK 文件 Android 如何整合 GCM][連結 5]
 * [Google 開發人員 GCM 指南](http://developer.android.com/guide/google/gcm/gs.html)
 
-### Android 的 Amazon 裝置傳訊 (ADM)
+### <a name="amazon-device-messaging-for-android-adm"></a>Android 的 Amazon 裝置傳訊 (ADM)
 若要讓原生推送使用 ADM，您必須提供由用戶端識別碼和用戶端密碼組成的 <OAuth credentials> (需要與 Android 2.1.0 版以上的 SDK 整合)。
 
-如需詳細資訊，請參閱：
+如需詳細資訊，請參閱 
 
-* [SDK 文件 Android 如何整合 ADM][Link 5]
+* [SDK 文件 Android 如何整合 ADM][連結 5]
 * [Amazon 開發人員 ADM 文件](https://developer.amazon.com/sdk/adm/credentials.html#Getting)
 
 ![settings6][51]
 
-## 推送速度
+## <a name="push-speed"></a>推送速度
 顯示您的應用程式目前的推送速度，而且可讓您定義應用程式的推送速度。
 
   ![settings7][52]
 
-## 標記 (應用程式資訊)
+## <a name="tag-app-info"></a>標記 (應用程式資訊)
 ![settings11][56]
 
-## 商業壓力
+## <a name="commercial-pressure"></a>商業壓力
 ![settings12][57]
 
-## 另請參閱
-* [概念][Link 6]
-* [疑難排解指南服務][Link 24]
+## <a name="see-also"></a>另請參閱
+* [概念][連結 6]
+* [疑難排解指南服務][連結 24]
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-user-interface-navigation/navigation1.png
@@ -151,39 +155,43 @@ ms.author: piyushjo
 [58]: ./media/mobile-engagement-user-interface-settings/settings13.png
 
 <!--Link references-->
-[Link 1]: mobile-engagement-user-interface.md
-[Link 2]: mobile-engagement-troubleshooting-guide.md
-[Link 3]: mobile-engagement-how-tos.md
-[Link 4]: http://go.microsoft.com/fwlink/?LinkID=525553
-[Link 5]: http://go.microsoft.com/fwlink/?LinkID=525554
-[Link 6]: http://go.microsoft.com/fwlink/?LinkId=525555
-[Link 7]: https://account.windowsazure.com/PreviewFeatures
-[Link 8]: https://social.msdn.microsoft.com/Forums/azure/home?forum=azuremobileengagement
-[Link 9]: http://azure.microsoft.com/services/mobile-engagement/
-[Link 10]: http://azure.microsoft.com/documentation/services/mobile-engagement/
-[Link 11]: http://azure.microsoft.com/pricing/details/mobile-engagement/
-[Link 12]: mobile-engagement-user-interface-navigation.md
-[Link 13]: mobile-engagement-user-interface-home.md
-[Link 14]: mobile-engagement-user-interface-my-account.md
-[Link 15]: mobile-engagement-user-interface-analytics.md
-[Link 16]: mobile-engagement-user-interface-monitor.md
-[Link 17]: mobile-engagement-user-interface-reach.md
-[Link 18]: mobile-engagement-user-interface-segments.md
-[Link 19]: mobile-engagement-user-interface-dashboard.md
-[Link 20]: mobile-engagement-user-interface-settings.md
-[Link 21]: mobile-engagement-troubleshooting-guide-analytics.md
-[Link 22]: mobile-engagement-troubleshooting-guide-apis.md
-[Link 23]: mobile-engagement-troubleshooting-guide-push-reach.md
-[Link 24]: mobile-engagement-troubleshooting-guide-service.md
-[Link 25]: mobile-engagement-troubleshooting-guide-sdk.md
-[Link 26]: mobile-engagement-troubleshooting-guide-sr-info.md
-[Link 27]: ../mobile-engagement-how-tos-first-push.md
-[Link 28]: ../mobile-engagement-how-tos-test-campaign.md
-[Link 29]: ../mobile-engagement-how-tos-personalize-push.md
-[Link 30]: ../mobile-engagement-how-tos-differentiate-push.md
-[Link 31]: ../mobile-engagement-how-tos-schedule-campaign.md
-[Link 32]: ../mobile-engagement-how-tos-text-view.md
-[Link 33]: ../mobile-engagement-how-tos-web-view.md
+[連結 1]: mobile-engagement-user-interface.md
+[連結 2]: mobile-engagement-troubleshooting-guide.md
+[連結 3]: mobile-engagement-how-tos.md
+[連結 4]: http://go.microsoft.com/fwlink/?LinkID=525553
+[連結 5]: http://go.microsoft.com/fwlink/?LinkID=525554
+[連結 6]: http://go.microsoft.com/fwlink/?LinkId=525555
+[連結 7]: https://account.windowsazure.com/PreviewFeatures
+[連結 8]: https://social.msdn.microsoft.com/Forums/azure/home?forum=azuremobileengagement
+[連結 9]: http://azure.microsoft.com/services/mobile-engagement/
+[連結 10]: http://azure.microsoft.com/documentation/services/mobile-engagement/
+[連結 11]: http://azure.microsoft.com/pricing/details/mobile-engagement/
+[連結 12]: mobile-engagement-user-interface-navigation.md
+[連結 13]: mobile-engagement-user-interface-home.md
+[連結 14]: mobile-engagement-user-interface-my-account.md
+[連結 15]: mobile-engagement-user-interface-analytics.md
+[連結 16]: mobile-engagement-user-interface-monitor.md
+[連結 17]: mobile-engagement-user-interface-reach.md
+[連結 18]: mobile-engagement-user-interface-segments.md
+[連結 19]: mobile-engagement-user-interface-dashboard.md
+[連結 20]: mobile-engagement-user-interface-settings.md
+[連結 21]: mobile-engagement-troubleshooting-guide-analytics.md
+[連結 22]: mobile-engagement-troubleshooting-guide-apis.md
+[連結 23]: mobile-engagement-troubleshooting-guide-push-reach.md
+[連結 24]: mobile-engagement-troubleshooting-guide-service.md
+[連結 25]: mobile-engagement-troubleshooting-guide-sdk.md
+[連結 26]: mobile-engagement-troubleshooting-guide-sr-info.md
+[連結 27]: ../mobile-engagement-how-tos-first-push.md
+[連結 28]: ../mobile-engagement-how-tos-test-campaign.md
+[連結 29]: ../mobile-engagement-how-tos-personalize-push.md
+[連結 30]: ../mobile-engagement-how-tos-differentiate-push.md
+[連結 31]: ../mobile-engagement-how-tos-schedule-campaign.md
+[連結 32]: ../mobile-engagement-how-tos-text-view.md
+[連結 33]: ../mobile-engagement-how-tos-web-view.md
 
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

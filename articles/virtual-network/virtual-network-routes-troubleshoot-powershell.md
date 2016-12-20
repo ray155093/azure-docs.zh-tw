@@ -1,13 +1,13 @@
 ---
-title: 對路由進行疑難排解 - PowerShell | Microsoft Docs
-description: 了解如何使用 Azure PowerShell 對 Azure Resource Manager 部署模型中的路由進行疑難排解。
+title: "對路由進行疑難排解 - PowerShell | Microsoft Docs"
+description: "了解如何使用 Azure PowerShell 對 Azure Resource Manager 部署模型中的路由進行疑難排解。"
 services: virtual-network
 documentationcenter: na
 author: AnithaAdusumilli
 manager: narayan
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: bf7dc5e7-9399-460e-8e0d-8992dbed98a6
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: ecdf6e68a8d2bf7c034b92b57b45ae496a063713
+
 
 ---
 # <a name="troubleshoot-routes-using-azure-powershell"></a>使用 Azure PowerShell 對路由進行疑難排解
@@ -132,6 +136,9 @@ ms.author: anithaa
   * 如果是新建立的對等互連連結，請等候幾秒鐘並重試。 有時候需要花比較長的時間才能將路由傳播到子網路中的所有網路介面。
   * 網路安全性群組 (NSG) 規則可能會影響流量流程。 如需詳細資訊，請參閱 [為網路安全性群組疑難排解](virtual-network-nsg-troubleshoot-powershell.md) 文章。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: SQL Database 的 XEvent 事件檔案程式碼 | Microsoft Docs
-description: 提供 PowerShell 和 Transact-SQL 的兩階段程式碼範例，示範 Azure SQL Database 上擴充事件中的事件檔案目標。此案例必須要有 Azure 儲存體。
+title: "SQL Database 的 XEvent 事件檔案程式碼 | Microsoft Docs"
+description: "提供 PowerShell 和 Transact-SQL 的兩階段程式碼範例，示範 Azure SQL Database 上擴充事件中的事件檔案目標。 此案例必須要有 Azure 儲存體。"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 author: MightyPen
 manager: jhubbard
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: bbb10ecc-739f-4159-b844-12b4be161231
 ms.service: sql-database
 ms.workload: data-management
 ms.tgt_pltfrm: na
@@ -15,14 +15,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: genemi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1569bdf8ad8a073808b83b08fa3fdae8f843805f
+
 
 ---
-# SQL Database 中擴充事件的事件檔案目標程式碼
+# <a name="event-file-target-code-for-extended-events-in-sql-database"></a>SQL Database 中擴充事件的事件檔案目標程式碼
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
 您想要完整的程式碼範例以穩健方式擷取和報告擴充事件的資訊。
 
-在 Microsoft SQL Server 中，[事件檔案目標](http://msdn.microsoft.com/library/ff878115.aspx)是用來將事件輸出儲存到本機硬碟機檔案中。但是這類檔案並不適用於 Azure SQL Database。我們改為使用 Azure 儲存體服務來支援事件檔案目標。
+在 Microsoft SQL Server 中， [事件檔案目標](http://msdn.microsoft.com/library/ff878115.aspx) 是用來將事件輸出儲存到本機硬碟機檔案中。 但是這類檔案並不適用於 Azure SQL Database。 我們改為使用 Azure 儲存體服務來支援事件檔案目標。
 
 本主題示範一個兩階段的程式碼範例：
 
@@ -32,28 +36,29 @@ ms.author: genemi
   * 將 Azure 儲存體容器指定為事件檔案目標。
   * 建立和啟動事件工作階段等等。
 
-## 必要條件
-* Azure 帳戶和訂用帳戶。您可以註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+## <a name="prerequisites"></a>必要條件
+* Azure 帳戶和訂用帳戶。 您可以註冊 [免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 您可以在當中建立資料表的任何資料庫。
   
   * 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started.md)。
-* SQL Server Management Studio (ssms.exe)，最好是最新的每月更新版本。您可以從下列位置下載最新的 ssms.exe：
+* SQL Server Management Studio (ssms.exe)，最好是最新的每月更新版本。 
+  您可以從下列位置下載最新的 ssms.exe：
   
-  * 名稱為[下載 SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx) 的主題。
+  * 名稱為 [下載 SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx)的主題。
   * [下載的直接連結。](http://go.microsoft.com/fwlink/?linkid=616025)
-* 您必須安裝 [Azure PowerShell 模組](http://go.microsoft.com/?linkid=9811175)。
+* 您必須安裝 [Azure PowerShell 模組](http://go.microsoft.com/?linkid=9811175) 。
   
-  * 模組提供 **New-AzureStorageAccount** 這類的命令。
+  * 模組提供 **New-AzureStorageAccount**這類的命令。
 
-## 第 1 階段：Azure 儲存體容器的 PowerShell 程式碼
+## <a name="phase-1-powershell-code-for-azure-storage-container"></a>第 1 階段：Azure 儲存體容器的 PowerShell 程式碼
 這個 PowerShell 是兩階段程式碼範例的第 1 階段。
 
 此指令碼是以可清除先前可能之執行結果的命令為開頭，並且可重複執行。
 
-1. 將 PowerShell 指令碼貼到如 Notepad.exe 的簡單文字編輯器，並將指令碼儲存為有 **.ps1** 副檔名的檔案。
+1. 將 PowerShell 指令碼貼到如 Notepad.exe 的簡單文字編輯器，並將指令碼儲存為有 **.ps1**副檔名的檔案。
 2. 以系統管理員身分啟動 PowerShell ISE。
 3. 在提示中輸入<br/>`Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`<br/>然後按 Enter 鍵。
-4. 在 PowerShell ISE 中開啟您的 **.ps1** 檔案。執行指令碼。
+4. 在 PowerShell ISE 中開啟您的 **.ps1** 檔案。 執行指令碼。
 5. 指令碼會先啟動新的視窗讓您登入 Azure。
    
    * 如果您重複執行指令碼而不中斷您的工作階段，可以很方便地選擇將 **Add-AzureAccount** 命令標記為註解。
@@ -235,15 +240,15 @@ Now shift to the Transact-SQL portion of the two-part code sample!'
 
 &nbsp;
 
-記下 PowerShell 指令碼結束時列印出的幾個具名值。您必須將這些值寫入第 2 階段的 Transact-SQL 指令碼。
+記下 PowerShell 指令碼結束時列印出的幾個具名值。 您必須將這些值寫入第 2 階段的 Transact-SQL 指令碼。
 
-## 第 2 階段：使用 Azure 儲存體容器的 Transact-SQL 程式碼
+## <a name="phase-2-transact-sql-code-that-uses-azure-storage-container"></a>第 2 階段：使用 Azure 儲存體容器的 Transact-SQL 程式碼
 * 在此程式碼範例的第 1 階段中，您執行了 PowerShell 指令碼來建立「Azure 儲存體」容器。
 * 接下來在第 2 階段中，下列 Transact-SQL 指令碼必須使用該容器。
 
 此指令碼是以可清除先前可能之執行結果的命令為開頭，並且可重複執行。
 
-PowerShell 指令碼在結束時列印出幾個具名的值。您必須編輯 Transact-SQL 指令碼以使用這些值。在 Transact-SQL 指令碼中尋找 **TODO** 找出編輯點。
+PowerShell 指令碼在結束時列印出幾個具名的值。 您必須編輯 Transact-SQL 指令碼以使用這些值。 在 Transact-SQL 指令碼中尋找 **TODO** 找出編輯點。
 
 1. 開啟 SQL Server Management Studio (ssms.exe)。
 2. 連接到您的 Azure SQL Database 資料庫。
@@ -255,7 +260,7 @@ PowerShell 指令碼在結束時列印出幾個具名的值。您必須編輯 Tr
 &nbsp;
 
 > [!WARNING]
-> 上述 PowerShell 指令碼所產生的 SAS 金鑰值可能會以 '?' (問號) 開頭。當您在下列 T-SQL 指令碼中使用 SAS 金鑰時，您必須「移除前置 '?'」。否則您的動作可能會遭到安全性封鎖。
+> 上述 PowerShell 指令碼所產生的 SAS 金鑰值可能會以 '?' (問號) 開頭。 當您在下列 T-SQL 指令碼中使用 SAS 金鑰時，您必須「移除前置 '?'」 。 否則您的動作可能會遭到安全性封鎖。
 > 
 > 
 
@@ -469,8 +474,8 @@ GO
 
 &nbsp;
 
-## 輸出
-Transact-SQL 指令碼完成時，按一下 **event\_data\_XML** 資料欄標題下的儲存格。此時會顯示一個 **<event>** 元素，此元素會顯示一個 UPDATE 陳述式。
+## <a name="output"></a>輸出
+Transact-SQL 指令碼完成時，按一下 **event_data_XML** 資料欄標題下的儲存格。 此時會顯示一個 **<event>** 元素，此元素會顯示一個 UPDATE 陳述式。
 
 以下是測試期間所產生的一個 **<event>** 元素：
 
@@ -517,9 +522,9 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 
 &nbsp;
 
-上述 TRANSACT-SQL 指令碼使用下列系統函數讀取 event\_file：
+上述 TRANSACT-SQL 指令碼使用下列系統函數讀取 event_file：
 
-* [sys.fn\_xe\_file\_target\_read\_file (Transact-SQL)](http://msdn.microsoft.com/library/cc280743.aspx)
+* [sys.fn_xe_file_target_read_file (Transact-SQL)](http://msdn.microsoft.com/library/cc280743.aspx)
 
 您可以在下列文章中取得進階選項的說明，這些選項可用來檢視擴充事件的資料：
 
@@ -527,16 +532,16 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 
 &nbsp;
 
-## 轉換程式碼範例在 SQL Server 上執行
+## <a name="converting-the-code-sample-to-run-on-sql-server"></a>轉換程式碼範例在 SQL Server 上執行
 假設您想要在 Microsoft SQL Server 上執行上述的 Transact-SQL 範例。
 
-* 為了簡單起見，您可以用簡單的檔案 (例如 **C:\\myeventdata.xel**) 來取代「Azure 儲存體」容器的使用。檔案會寫入裝載 SQL Server 之電腦的本機硬碟。
-* 針對 **CREATE MASTER KEY** 和 **CREATE CREDENTIAL**，您不需要任何類型的 Transact-SQL 陳述式。
-* 在 **CREATE EVENT SESSION** 陳述式的 **ADD TARGET** 子句中，您要將對 **filename=** 指派的 Http 值取代為完整路徑字串 (例如 **C:\\myfile.xel**)。
+* 為了簡單起見，您可以用簡單的檔案 (例如 **C:\myeventdata.xel**) 來取代「Azure 儲存體」容器的使用。 檔案會寫入裝載 SQL Server 之電腦的本機硬碟。
+* 針對 **CREATE MASTER KEY** 和**CREATE CREDENTIAL**，您不需要任何類型的 Transact-SQL 陳述式。
+* 在 **CREATE EVENT SESSION** 陳述式的 **ADD TARGET** 子句中，您要將對 **filename=** 指派的 Http 值取代為完整路徑字串 (例如 **C:\myfile.xel**)。
   
   * 不需要牽涉到任何 Azure 儲存體帳戶。
 
-## 詳細資訊
+## <a name="more-information"></a>詳細資訊
 如需 Azure 儲存體服務中帳戶和容器的詳細資訊，請參閱：
 
 * [如何使用 .NET 的 Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)
@@ -551,4 +556,9 @@ Image references.
 
 [30_powershell_ise]: ./media/sql-database-xevent-code-event-file/event-file-powershell-ise-b30.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

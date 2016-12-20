@@ -1,12 +1,12 @@
 ---
-title: 了解 Azure 中的資源存取 | Microsoft Docs
-description: 本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。
+title: "了解 Azure 中的資源存取 | Microsoft Docs"
+description: "本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 174f1706-b959-4230-9a75-bf651227ebf6
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: markusvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 04c89fb831036af37ba381d13d45526327125540
+
 
 ---
 # <a name="understanding-resource-access-in-azure"></a>了解 Azure 中的資源存取
@@ -65,6 +69,6 @@ Azure 傳統入口網站內的功能可讓使用 Microsoft 帳戶登入的 SA �
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

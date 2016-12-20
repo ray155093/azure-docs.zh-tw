@@ -22,10 +22,8 @@
 ### [存取控制](biztalk-issuer-name-issuer-key.md)
 ## [疑難排解](biztalk-troubleshoot-using-ops-logs.md)
 
-# 參考
-## [版本資訊](biztalk-release-notes.md)
-
 # 資源
+## [版本資訊](biztalk-release-notes.md)
 ## [服務更新](https://azure.microsoft.com/updates/?product=biztalk-services)
 ## [價格](https://azure.microsoft.com/pricing/details/biztalk-services/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurebiztalksvcs)
@@ -33,6 +31,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=biztalk-services)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

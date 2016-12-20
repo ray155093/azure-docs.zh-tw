@@ -1,12 +1,12 @@
 ---
-title: 使用系統健康狀態報告進行疑難排解 | Microsoft Docs
-description: 描述針對 Azure Service Fabric 元件及其使用量所傳送的健康狀態報告，以便對叢集或應用程式問題進行疑難排解。
+title: "使用系統健康狀態報告進行疑難排解 | Microsoft 疑難排解"
+description: "描述針對 Azure Service Fabric 元件及其使用量所傳送的健康狀態報告，以便對叢集或應用程式問題進行疑難排解。"
 services: service-fabric
 documentationcenter: .net
 author: oanapl
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 52574ea7-eb37-47e0-a20a-101539177625
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/28/2016
 ms.author: oanapl
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 5e940cd05a5e3d368f42cf3457f0a4b12e86440a
+
 
 ---
 # <a name="use-system-health-reports-to-troubleshoot"></a>使用系統健康狀態報告進行疑難排解
@@ -54,7 +58,7 @@ Azure Service Fabric 元件會針對叢集中的所有實體提供現成的報�
 ## <a name="node-system-health-reports"></a>節點系統健康狀態報告
 **System.FM**(代表容錯移轉管理員服務) 是管理叢集節點相關資訊的授權單位。 每個節點都應該有一份來自 System.FM 的報告，以顯示其狀態。 移除節點狀態時會移除節點實體 (請參閱 [RemoveNodeStateAsync](https://msdn.microsoft.com/library/azure/mt161348.aspx))。
 
-### <a name="node-up/down"></a>節點運作中/關閉
+### <a name="node-updown"></a>節點運作中/關閉
 當節點加入環形時，System.FM 會回報為 OK (節點已啟動且正在運作中)。 當節點離開環形時，則會回報錯誤 (節點已關閉進行升級，或只是發生故障)。 由健康狀態資料存放區建置的健康狀態階層會根據 System.FM 節點報告，對部署的實體採取行動。 它會將節點視為所有已部署實體的虛擬父系。 如果 System.FM 回報指出該節點已啟動，且其執行個體與實體相關聯的執行個體相同，則該節點上已部署的實體將會透過查詢公開。 當 System.FM 回報節點已關閉或重新啟動 (新執行個體) 時，健康狀態資料存放區會自動清除僅能存在於已關閉節點或先前的節點執行個體上的已部署實體。
 
 * **SourceId**：System.FM
@@ -678,6 +682,9 @@ HealthEvents          :
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

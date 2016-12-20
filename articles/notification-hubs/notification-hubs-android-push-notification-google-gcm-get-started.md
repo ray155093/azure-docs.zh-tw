@@ -59,7 +59,7 @@ ms.openlocfilehash: f9ce6c56598e2318821c2e81a1bab1b876d6a866
 
 現在已將您的通知中樞設定成使用 GCM，而且您已擁有可用來註冊應用程式以接收和傳送推播通知的連接字串。
 
-## <a name="a-idconnectingappaconnect-your-app-to-the-notification-hub"></a><a id="connecting-app"></a>將您的應用程式連接到通知中樞
+## <a name="a-idconnecting-appaconnect-your-app-to-the-notification-hub"></a><a id="connecting-app"></a>將您的應用程式連接到通知中樞
 ### <a name="create-a-new-android-project"></a>建立新的 Android 專案
 1. 在 Android Studio 中，啟動新的 Android Studio 專案。
    

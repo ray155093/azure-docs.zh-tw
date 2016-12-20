@@ -1,12 +1,12 @@
 ---
-title: Managing your virtual machine image on the Azure Marketplace | Microsoft Docs
-description: Detailed guide on how to manage your virtual machine image on the Azure Marketplace after initial publication.
+title: "管理 Azure Marketplace 上的虛擬機器映像 | Microsoft Docs"
+description: "如何在初始發佈後管理 Azure Marketplace 上的虛擬機器映像的詳細指南。"
 services: Azure Marketplace
-documentationcenter: ''
+documentationcenter: 
 author: HannibalSII
 manager: hascipio
-editor: ''
-
+editor: 
+ms.assetid: cc8648d4-59c2-4678-b47d-992300677537
 ms.service: marketplace
 ms.devlang: na
 ms.topic: article
@@ -14,319 +14,326 @@ ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 08/03/2016
 ms.author: hascipio;
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: ed2921750f93f344a4c3dbef31d9f523dedc0aae
+
 
 ---
-# <a name="post-production-guide-for-virtual-machine-offers-in-the-azure-marketplace"></a>Post-production guide for virtual machine offers in the Azure Marketplace
-This article explains how you can update a live Virtual Machine offer in the Azure Marketplace. It also guides you on the process of adding one or more new SKUs to an existing offer and remove a live Virtual Machine offer or SKU from the Azure Marketplace.
+# <a name="post-production-guide-for-virtual-machine-offers-in-the-azure-marketplace"></a>關於 Azure Marketplace 中的虛擬機器優惠的後期製作指南
+本文說明如何更新 Azure Marketplace 中已上線的虛擬機器優惠。 同時引導您將一或多個新的 SKU 加入至現有的優惠，以及從 Azure Marketplace 中移除上線的虛擬機器優惠或 SKU。
 
-Once an offer/SKU is staged in the [Azure Portal](http://portal.azure.com), you cannot change the fields given below:
+一旦供應項目/SKU於 [Azure 入口網站](http://portal.azure.com)預備完成，您就無法變更以下欄位：
 
-* **Offer Identifier:** [Publishing portal -> Virtual Machines -> Select your Offer -> VM Images tab -> Offer Identifier]
-* **SKU Identifier:** [Publishing portal -> Virtual Machines -> Select your Offer -> SKUs tab -> Add a SKU]
-* **Publisher Namespace:** [Publishing portal -> Virtual  Machines -> Walkthrough tab -> Tell Us About Your Company (Found Under “Step 2 Register Your Company”) -> Publisher Namespace -> Namespace]
+* **供應項目識別碼︰**[發佈入口網站 -> 虛擬機器 -> 選取您的供應項目 -> VM 映像索引標籤 -> 供應項目識別碼]
+* **SKU 識別碼︰**[發佈入口網站 -> 虛擬機器 -> 選取您的供應項目 -> SKU 索引標籤 -> 新增 SKU]
+* **發行者命名空間︰**[發佈入口網站 -> 虛擬機器 -> 逐步解說索引標籤 -> 告知我們您的公司 (請見「步驟 2：註冊您的公司」) -> 發行者命名空間 -> 命名空間]
 
-Once the offer/SKU is listed in the [Azure Marketplace](http://azure.microsoft.com/marketplace), you cannot change the fields given below:
+一旦供應項目/SKU 列於 [Azure Marketplace](http://azure.microsoft.com/marketplace)，您就無法變更以下欄位：
 
-* **Offer Identifier:** [Publishing portal -> Virtual Machines ->  Select your Offer -> VM Images tab -> Offer Identifier]
-* **SKU Identifier:** [Publishing portal -> Virtual Machines -> Select your Offer -> SKUs tab -> Add a SKU]
-* **Publisher Namespace:** [Publishing portal -> Virtual Machines -> Walkthrough tab -> Tell Us About Your Company (Found Under Step 2 Register) Publisher Namespace -> Namespace]
-* **Ports** [Publishing portal -> Virtual Machines -> Select your Offer -> VM Images tab -> Open Ports]
-* **Pricing Change of listed SKU(s)**
-* **Billing Model Change of listed SKU(s)**
-* **Removal of billing regions of listed SKU(s)**
-* **Changing the data disk count of listed SKU(s)**
+* **供應項目識別碼︰**[發佈入口網站 -> 虛擬機器 -> 選取您的供應項目 -> VM 映像索引標籤 -> 供應項目識別碼]
+* **SKU 識別碼︰**[發佈入口網站 -> 虛擬機器 -> 選取您的供應項目 -> SKU 索引標籤 -> 新增 SKU]
+* **發行者命名空間︰**[發佈入口網站 -> 虛擬機器 -> 逐步解說索引標籤 -> 告知我們您的公司 (請見「步驟 2：註冊」) -> 發行者命名空間 -> 命名空間]
+* **連接埠：**[發佈入口網站 -> 虛擬機器 -> 選取您的供應項目 -> VM 映像索引標籤 -> 開啟連接埠]
+* **已列出 SKU 的價格變更**
+* **已列出 SKU 的計費模式變更**
+* **移除已列出 SKU 的計費區域**
+* **變更已列出 SKU 的資料磁碟計數**
 
-## <a name="1.-how-to-update-the-technical-details-of-a-sku"></a>1. How to update the technical details of a SKU
-You can add a new version to the listed SKU and re-publish your offer by following the steps given below:
+## <a name="1-how-to-update-the-technical-details-of-a-sku"></a>1.如何更新 SKU 的技術詳細資料
+您可以遵循下列步驟來新增版本到已列出的 SKU，然後重新發佈供應項目︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **VM IMAGES** tab.
-4. From the **SKUs** section of the **VM IMAGES** tab, locate the SKU that you want to update.
-5. After that, add a new version number of the SKU and click on the **"+"** button. The new version should be of X.Y.Z format where X, Y, Z are integers. Version changes should only be incremental.
-6. In the **OS VHD URL** box, add the shared access signature URI created for the operating system VHD and save the changes.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [VM 映像]  索引標籤。
+4. 從 [VM 映像] 索引標籤的 [SKU] 區段中，找出您想要更新的 SKU。
+5. 之後加入新的 SKU 版本號碼，然後按一下 **"+"** 按鈕。 新版本應該是 X.Y.Z 格式，其中 X、Y、Z 是整數。 只能以累加方式變更版本。
+6. 在 [OS VHD URL]  方塊中，新增針對作業系統 VHD 所建立的共用存取簽章 URI，然後儲存變更。
    
    > [!IMPORTANT]
-   > You cannot increment/decrement the data disk count of a listed SKU. You need to create a new SKU in this case. Please refer to the section [3. How to add a new SKU under a listed offer](#3-how-to-add-a-new-sku-under-a-live-offer) for detailed guidance.
+   > 您不能增加/減少已列出的 SKU 的資料磁碟計數。 在此案例中，您需要建立新的 SKU。 請參閱 [3.如何在已列出的供應項目下新增 SKU](#3-how-to-add-a-new-sku-under-a-live-offer) 一節，以取得詳細指引。
    > 
    > 
-7. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md)
-8. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+7. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)
+8. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img01_07.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img01_07.png)
 
-## <a name="2.-how-to-update-the-non-technical-details-of-an-offer-or-a-sku"></a>2. How to update the non-technical details of an offer or a SKU
-You can update the non-technical (marketing, legal, support, categories) details of your live offer or SKU in the Azure Marketplace.
+## <a name="2-how-to-update-the-non-technical-details-of-an-offer-or-a-sku"></a>2.如何更新優惠或 SKU 的非技術性詳細資料
+您可以更新 Azure Marketplace 中已上線的優惠或 SKU 的非技術性 (行銷、法律、支援、類別) 詳細資料。
 
-### <a name="2.1-update-the-offer-description-and-logos"></a>2.1 Update the offer description and logos
-You can update the offer details and re-publish your offer by following the steps below:
+### <a name="21-update-the-offer-description-and-logos"></a>2.1 更新優惠描述和標誌
+您可以遵循下列步驟來更新優惠詳細資料，然後重新發佈優惠︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **MARKETING** tab.
-4. Click on the **ENGLISH (US)** button.
-5. From the left hand side menu, click on the **DETAILS** tab. Under the *DESCRIPTION* section of the **DETAILS** tab you can update the offer title, offer summary, offer long summary and save the changes.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [行銷]  索引標籤。
+4. 按一下 [英文 (美國)]  按鈕。
+5. 從左側功能表，按一下 [詳細資料]  索引標籤。 在 [詳細資料] 索引標籤的 [描述] 區段下，您可以更新供應項目標題、供應項目摘要、供應項目完整摘要，然後儲存變更。
    
    > [!NOTE]
-   > Please take care of the following while you are updating the SKU details.
-   > **Do not enter duplicate text under the offer description and the SKU description. Do not enter duplicate text under the SKU title and the offer long summary. Do not enter duplicate text under the SKU title and the offer summary.**
+   > 更新 SKU 詳細資料時，請注意下列事項。
+   > **請不要在供應項目描述和 SKU 描述下方輸入重複文字。請不要在 SKU 標題和優惠完整摘要下方輸入重複文字。請不要在 SKU 標題和優惠摘要下方輸入重複文字。**
    > 
    > 
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.1_05.png)
-6. Under the *LOGOS* section of the **DETAILS** tab, you can update the logos. However, ensure that the logos follow the [Azure Marketplace guidelines](marketplace-publishing-push-to-staging.md#step-1-provide-marketplace-marketing-content) (refer to the section Step 1: Provide Marketplace marketing content -> Details-> Azure Marketplace Logo Guidelines).
-   
-   > [!NOTE]
-   > Hero icon is optional. You can choose not to upload a Hero icon. However, once Hero icon is uploaded, then there is no provision to delete it from the Publishing portal. In that case, you must follow the [Hero icon guidelines](marketplace-publishing-push-to-staging.md#step-1-provide-marketplace-marketing-content) (refer to the section Step 1: Provide Marketplace marketing content -> Details-> Additional guidelines for the Hero logo banner).
-   > 
-   > 
-7. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md).
-8. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
-   
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.1_08.png)
-
-### <a name="2.2.-update-the-sku-description"></a>2.2. Update the SKU description
-You can update the SKU details and re-publish your offer by following the steps below:
-
-1. Login to the [Publishing portal](https://publish.windowsazure.com)
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **MARKETING** tab.
-4. Click on the **ENGLISH (US)** button.
-5. From the left hand side menu, click on the **PLANS** tab. Under the *SKUs* section of the **PLANS** tab you can update the SKU title, SKU summary and SKU description details and save the changes.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.1_05.png)
+6. 在 [詳細資料] 索引標籤的 [標誌] 區段下，您可以更新標誌。 不過，請確定標誌遵循 [Azure Marketplace 指導方針](marketplace-publishing-push-to-staging.md#step-1-provide-marketplace-marketing-content) (請參閱「步驟 1︰提供 Marketplace 行銷內容 -> 詳細資料 -> Azure Marketplace 標誌指導方針」一節)。
    
    > [!NOTE]
-   > Please take care of the following while you are updating the SKU details. **Do not enter duplicate text under the offer description and the SKU description. Do not enter duplicate text under the SKU's title and the offer long summary. Do not enter duplicate text under the SKU Title and the offer summary.**
+   > 主圖圖示是選擇性。 您可以選擇不上傳主圖圖示。 然而，主圖圖示一旦上傳，就無法從發佈入口網站中刪除。 在此情況下，您必須遵循[主圖圖示指導方針](marketplace-publishing-push-to-staging.md#step-1-provide-marketplace-marketing-content) (請參閱＜步驟 1︰提供 Marketplace 行銷內容 -> 詳細資料 -> 主圖標誌橫幅的其他指導方針＞一節)。
    > 
    > 
-6. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this link
-7. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+7. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)。
+8. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.2_07.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.1_08.png)
 
-### <a name="2.3-change-the-existing-links-or-add-new-links"></a>2.3 Change the existing links or add new links
-You can change the existing links or add new links and then re-publish your offer by following the steps below:
+### <a name="22-update-the-sku-description"></a>2.2. 更新 SKU 描述
+您可以遵循下列步驟來更新 SKU 詳細資料，然後重新發佈優惠︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com)
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **MARKETING** tab.
-4. Click on the **ENGLISH (US)** button.
-5. From the left hand side menu, click on the **LINKS** tab.
-6. If you want to add a new link, then under the *Links* section click on the **ADD LINK** button. The *“Add Link”* dialog box will open. In this dialog box, you can add the link Title and URL fields and save the changes. You can enter any link which contains information that may help the customers.
-7. If you want to update or delete an existing link, then select the appropriate link and click on the edit button or the delete button accordingly.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [行銷]  索引標籤。
+4. 按一下 [英文 (美國)]  按鈕。
+5. 從左側功能表，按一下 [方案]  索引標籤。 在 [方案] 索引標籤的 [SKU] 區段下，您可以更新 SKU 標題、SKU 摘要和 SKU 描述詳細資料，然後儲存變更。
    
    > [!NOTE]
-   > Please make sure that the links which you have entered in this section are working properly, as these links get validated during your production request process.
+   > 更新 SKU 詳細資料時，請注意下列事項。 **請不要在供應項目描述和 SKU 描述下方輸入重複文字。請不要在 SKU 標題和優惠完整摘要下方輸入重複文字。請不要在 SKU 標題和優惠摘要下方輸入重複文字。**
    > 
    > 
-8. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md).
-9. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+6. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試優惠的詳細指引，請參閱此連結
+7. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.3_09-01.png)
-   
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.3-2.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.2_07.png)
 
-### <a name="2.4-change-an-existing-sample-image-or-add-a-new-sample-image"></a>2.4 Change an existing sample image or add a new sample image
-You can change an existing sample images or add new sample images and then re-publish your offer by following the steps below:
+### <a name="23-change-the-existing-links-or-add-new-links"></a>2.3 變更現有連結或加入新連結
+您可以遵循下列步驟來變更現有連結或加入新連結，然後重新發佈優惠︰
+
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [行銷]  索引標籤。
+4. 按一下 [英文 (美國)]  按鈕。
+5. 從左側功能表，按一下 [連結]  索引標籤。
+6. 如果您想要新增連結，請在 [連結] 區段下按一下 [新增連結] 按鈕。 [加入連結]  對話方塊隨即開啟。 在此對話方塊中，您可以新增連結標題和 URL 欄位，然後儲存變更。 您可以輸入任何包含資訊來協助客戶的連結。
+7. 如果您想要更新或刪除現有的連結，請選取適當的連結，然後依需要按一下編輯按鈕或刪除按鈕。
+   
+   > [!NOTE]
+   > 請確定您在此區段中輸入的連結可正常運作，因為在生產環境要求處理期間會驗證這些連結。
+   > 
+   > 
+8. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)。
+9. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
+   
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.3_09-01.png)
+   
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.3-2.png)
+
+### <a name="24-change-an-existing-sample-image-or-add-a-new-sample-image"></a>2.4 變更現有範例影像或加入新範例影像
+您可以遵循下列步驟來變更現有範例影像或加入新範例影像，然後重新發佈優惠︰
 
 > [!NOTE]
-> Only one sample image is displayed in the [https://portal.azure.com](https://portal.azure.com).
+> 只有一個範例影像會顯示在 [https://portal.azure.com](https://portal.azure.com)。
 > 
 > 
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com)
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **MARKETING** tab.
-4. Click on the **ENGLISH (US)** button.
-5. From the left hand side menu, click on the **SAMPLE IMAGES** tab.
-6. If you want to add a new sample image, then under the *Sample Images* section click on the **UPLOAD A NEW IMAGE** button and then save the changes.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [行銷]  索引標籤。
+4. 按一下 [英文 (美國)]  按鈕。
+5. 從左側功能表，按一下 [範例影像]  索引標籤。
+6. 如果您想要新增範例影像，請在 [範例影像] 區段下按一下 [上傳新影像] 按鈕，然後儲存變更。
    
    > [!NOTE]
-   > Including a sample image is an optional step.
+   > 加入範例影像是選擇性步驟。
    > 
    > 
-7. If you want to update or delete an existing sample image, then locate the appropriate sample image and then click on the **REPLACE IMAGE** button or the delete button accordingly.
-8. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md).
-9. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+7. 如果您想要更新或刪除現有範例影像，請找出適當的範例影像，然後依需要按一下 [取代影像]  按鈕或刪除按鈕。
+8. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)。
+9. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.4_09.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.4_09.png)
 
-### <a name="2.5-update-the-legal-content"></a>2.5 Update the legal content
-You can update the legal content and re-publish your offer by following the steps below:
+### <a name="25-update-the-legal-content"></a>2.5 更新法律聲明內容
+您可以遵循下列步驟來更新法律聲明內容，然後重新發佈優惠︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com)
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **MARKETING** tab.
-4. Click on the **ENGLISH (US)** button.
-5. From the left hand side menu, click on the **LEGAL** tab. Under the *Legal* section you can update your policies/terms of use. Enter or paste the policies/terms in the *Terms of Use* textbox and save the changes.
-6. The character limit for the legal terms of use is 1,000,000 characters.
-7. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md)
-8. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [行銷]  索引標籤。
+4. 按一下 [英文 (美國)]  按鈕。
+5. 從左側功能表，按一下 [法律聲明]  索引標籤。 在 [法律聲明]  索引標籤下，您可以更新使用原則/條款。 在 [使用條款]  文字方塊中輸入或貼上原則/條款，然後儲存變更。
+6. 法律使用條款的字元限制為 1,000,000 個字元。
+7. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)
+8. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.5_08.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.5_08.png)
 
-### <a name="2.6-update-the-support-information"></a>2.6 Update the support information
-You can update the support information and re-publish your offer by following the steps below:
+### <a name="26-update-the-support-information"></a>2.6 更新支援資訊
+您可以遵循下列步驟來更新支援資訊，然後重新發佈優惠︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com)
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **SUPPORT** tab.
-4. Under the *Engineering Contact* section of the **SUPPORT** tab you can update the contact details. These details are used for internal communication between the partner and Microsoft only.
-5. Under the *Customer Support* section of the **SUPPORT** tab you can update the Support contact details like **Name, Email, Phone** and **Support URL**. These details are used for internal communication between the partner and Microsoft only.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [支援]  索引標籤。
+4. 在 [支援] 索引標籤的 [工程連絡人] 區段下，您可以更新連絡人詳細資料。 這些詳細資料僅用於合作夥伴與 Microsoft 之間的內部通訊。
+5. 在 [支援] 索引標籤的 [客戶支援] 區段下，您可以更新支援連絡人詳細資料，例如 [名稱]、[電子郵件]、[電話] 和 [支援 URL]。 這些詳細資料僅用於合作夥伴與 Microsoft 之間的內部通訊。
    
    > [!NOTE]
-   > If you want to provide only email support, provide a dummy phone number under the **Customer Support** section. In this case, your provided email will be used instead.
+   > 如果您只想要提供電子郵件支援，請在 [客戶支援] 區段下提供虛設的電話號碼。 在此情況下，將改為使用您提供的電子郵件。
    > 
    > 
-6. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md)
-7. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+6. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)
+7. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.6_07.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.6_07.png)
 
-### <a name="2.7-update-the-categories"></a>2.7 Update the categories
-You can update the categories section for your offer and re-publish your offer by following the steps below:
+### <a name="27-update-the-categories"></a>2.7 更新類別
+您可以遵循下列步驟來更新優惠的類別區段，然後重新發佈優惠︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com)
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click the **CATEGORIES** tab.
-4. Under the *Categories* section you can update the categories for your offer and save the changes. You can select up to five categories for the Azure Marketplace gallery.
-5. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md)
-6. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [類別]  索引標籤。
+4. 在 [類別]  區段下，您可以更新供應項目的類別，然後儲存變更。 您最多可以為 Azure Marketplace 資源庫選取五個類別。
+5. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)
+6. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img02.7_06.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img02.7_06.png)
 
-## <a name="3.-how-to-add-a-new-sku-under-a-listed-offer"></a>3. How to add a new SKU under a listed offer
-You can add a new SKU under your live offer by following the steps given below:
+## <a name="3-how-to-add-a-new-sku-under-a-listed-offer"></a>3.如何在已列出的供應項目下新增 SKU
+您可以遵循下列步驟在上線優惠下新增 SKU︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click on the **SKUs** tab. After that click on the button **ADD A SKU**.  A new dialog box will open. Enter a SKU identifier in lower case. Check the checkbox for bring-your-own billing model(BYOL) if you want to publish the new SKU with BYOL billing model. Otherwise, uncheck the check box for BYOL. After that click on the tick mark in the dialog box to create a new SKU. If you did not opt for the BYOL billing model for the new SKU, then the billing model will be automatically set to Hourly for the new SKU. If you want to enable the 30days free trial for Hourly billing model, then click on the “One Month” option for “Is a free trial available?”. Otherwise select “NO TRIAL”. [Note: The option “Is a free trial available?” is only shown if you have NOT selected BYOL in the dialog box while creating the new SKU.]
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [SKU]  索引標籤。 然後按一下 [加入 SKU] 按鈕。  新的對話方塊隨即開啟。 輸入小寫的 SKU 識別碼。 如果您想要以 BYOL 計費模式發佈新的 SKU，請核取自備計費模式 (BYOL) 核取方塊。 否則，請取消核取 BYOL 核取方塊。 然後，按一下對話方塊中的勾號以建立新的 SKU。 如果您沒有為新的 SKU 選擇 BYOL 計費模式，則新 SKU 的計費模式會自動設為「每小時」。 如果您想要啟用「每小時」計費模式 30 天免費試用，請按一下 [有免費試用可用嗎?] 的 [一個月] 選項。 否則，請選取 [無試用]。 [附註：僅當您在建立新 SKU 時「沒有」在對話方塊中選取 BYOL，[有免費試用可用嗎?] 選項才會出現。 ]
    
    > [!IMPORTANT]
-   > The option “Hide this SKU from the Marketplace because it should always be bought via a solution template” should be marked as “YES” ONLY if you are approved for publishing a solution template offer in the Azure Marketplace. Otherwise, this option should always be marked as “NO”.
+   > 「只有」當您獲准在 Azure Marketplace 中發佈方案範本優惠時，[從 Marketplace 隱藏此 SKU，因為應該永遠透過方案範本購買它] 選項才應該標示為 [是]。 否則，這個選項應該永遠標示為 [否]。
    > 
    > 
-4. Now from the left hand side menu, click on the **VM IMAGES** tab and find out the new SKU which you have created.
-5. To set up the new SKU, refer to the STEP 5 of this [link](marketplace-publishing-vm-image-creation.md#5-obtain-certification-for-your-vm-image) for guidance.
-6. To add the marketing material for the new SKU, refer to the section Step 1: Provide Marketplace marketing content -> Details-> point numbers 2 to 5 of this [link](marketplace-publishing-push-to-staging.md#step-1-provide-marketplace-marketing-content).
-7. To add the pricing information for the new SKU, refer to the section 2.1. Set your VM prices of this [link](marketplace-publishing-push-to-staging.md#step-2-set-your-prices)
-8. After making the changes, navigate to the **PUBLISH** tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md)
-9. Once you have tested your offer in staging, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+4. 現在，從左側功能表按一下 [VM 映像]  索引標籤，找出您已建立的新 SKU。
+5. 若要設定新的 SKU，請參閱此 [連結](marketplace-publishing-vm-image-creation.md#5-obtain-certification-for-your-vm-image) 的「步驟 5」，以取得指導方針。
+6. 若要新增新 SKU 的行銷資料，請參閱這個[連結](marketplace-publishing-push-to-staging.md#step-1-provide-marketplace-marketing-content)中的＜步驟 1︰提供 Marketplace 行銷內容＞一節 -> 詳細資料 -> 第 2 到 第 5 點。
+7. 若要加入新的 SKU 的價格資訊，請參閱 2.1 節。 設定此 [連結](marketplace-publishing-push-to-staging.md#step-2-set-your-prices)
+8. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)
+9. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img03_09-01.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img03_09-01.png)
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img03_09-02.png)
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img03_09-02.png)
 
-## <a name="4.-how-to-change-the-data-disk-count-for-a-listed-sku"></a>4. How to change the data disk count for a listed SKU
-You cannot increment/decrement the data disk count of a listed SKU. You need a create a new SKU in this case. Please refer to the section [3. How to add a new SKU under a live offer](#3-how-to-add-a-new-sku-under-a-live-offer) for detailed guidance.
+## <a name="4-how-to-change-the-data-disk-count-for-a-listed-sku"></a>4.如何變更已列出 SKU 的資料磁碟計數
+您不能增加/減少已列出的 SKU 的資料磁碟計數。 在此案例中，您需要建立新的 SKU。 請參閱 [3.如何在上線供應項目下新增 SKU](#3-how-to-add-a-new-sku-under-a-live-offer) 一節，以取得詳細指引。
 
-## <a name="5.-how-to-delete-a-listed-offer-from-the-azure-marketplace"></a>5.   How to delete a listed offer from the Azure Marketplace
-There are various aspects that need to be taken care of in case of a request to remove a live offer. Please follow the steps below to get guidance from the support team to remove a listed offer from the Azure Marketplace:
+## <a name="5-how-to-delete-a-listed-offer-from-the-azure-marketplace"></a>5.  如何從 Azure Marketplace 刪除已列出的供應項目
+要求移除上線優惠時，有幾方面需要注意。 請遵循下列步驟來取得支援小組的指引，以從 Azure Marketplace 移除已列出的供應項目︰
 
-1. Raise a support ticket using this [link](https://support.microsoft.com/en-us/getsupport?wf=0&tenant=ClassicCommercial&oaspworkflow=start_1.0.0.0&locale=en-us&supportregion=en-us&pesid=15635&ccsid=635993707583706681)
-2. Select Problem type as **“Managing offers”** and select Category as **“Modifying an offer and/or SKU already in production”**
-3. Submit the request
+1. 使用這個[連結](https://support.microsoft.com/en-us/getsupport?wf=0&tenant=ClassicCommercial&oaspworkflow=start_1.0.0.0&locale=en-us&supportregion=en-us&pesid=15635&ccsid=635993707583706681)提出支援票證
+2. 選取 [管理供應項目] 做為 [問題類型]，選取 [修改已在生產中的供應項目和/或 SKU] 做為 [類別]。
+3. 提交要求
 
-The support team will guide you through the offer/SKU deletion process.
+支援小組會引導您完成優惠/SKU 刪除程序。
 
 > [!NOTE]
-> You can always delete the offer while it is in a Draft status (i.e., not in STAGING or PRODUCTION) by clicking on the **DISCARD DRAFT** button under the **HISTORY** tab.
+> 對於處於 [草稿] 狀態的供應項目 (亦即不是 [預備] 或 [生產])，您永遠可以按一下 [歷程記錄] 索引標籤下的 [捨棄草稿] 按鈕來刪除它。
 > 
 > 
 
-## <a name="6.-how-to-delete-a-listed-sku-from-the-azure-marketplace"></a>6. How to delete a listed SKU from the Azure Marketplace
-You can delete a listed SKU from the Azure Marketplace by following the steps given below:
+## <a name="6-how-to-delete-a-listed-sku-from-the-azure-marketplace"></a>6.如何從 Azure Marketplace 刪除已列出的 SKU
+您可以遵循下列步驟來從 Azure Marketplace 刪除已列出的 SKU︰
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side pane, click on the **SKUS** tab.
-4. Select the SKU which you want to delete and click on the delete button against that SKU.
-5. Once done, navigate to the PUBLISH tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish the offer in the Azure Marketplace.
-6. Once the offer gets re-published in the Azure Marketplace, the SKU will be deleted from the Azure Marketplace and the Azure Portal.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側窗格，按一下 [SKU]  索引標籤。
+4. 選取您要刪除的 SKU，然後針對該 SKU 按一下 [刪除] 按鈕。
+5. 完成後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境]  按鈕，將供應項目重新發佈到 Azure Marketplace。
+6. 在 Azure Marketplace 重新發佈供應項目之後，會從 Azure Marketplace 和 Azure 入口網站刪除 SKU。
 
-## <a name="7.-how-to-delete-the-current-version-of-a-listed-sku-from-the-azure-marketplace"></a>7. How to delete the current version of a listed SKU from the Azure Marketplace
-You can delete the current version of a listed SKU from the Azure Marketplace by following the steps given below. Once the process is complete, the SKU will be rolled back to its previous version.
+## <a name="7-how-to-delete-the-current-version-of-a-listed-sku-from-the-azure-marketplace"></a>7.如何從 Azure Marketplace 刪除已列出的 SKU 目前的版本
+您可以遵循下列步驟來從 Azure Marketplace 刪除已列出的 SKU 目前的版本︰ 此程序完成之後，SKU 將會回復為先前的版本。
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side pane, click on the **VM IMAGES** tab.
-4. Select the SKU whose current version you want to delete and click on the delete button against that version.
-5. Once done, navigate to the **PUBLISH** tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish the offer in the Azure Marketplace.
-6. Once the offer gets re-published in the Azure Marketplace, the current version of the listed SKU will be deleted from the Azure Marketplace and the Azure Portal. The SKU will be rolled back to its previous version.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側窗格，按一下 [VM 映像]  索引標籤。
+4. 選取您要刪除其目前版本的 SKU，然後針對該版本按一下 [刪除] 按鈕。
+5. 完成後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境] 按鈕，將供應項目重新發佈到 Azure Marketplace。
+6. 在 Azure Marketplace 重新發佈供應項目之後，會從 Azure Marketplace 和 Azure 入口網站刪除已列出的 SKU 的目前版本。 SKU 將會回復為先前的版本。
 
-## <a name="8.-how-to-revert-listing-price-to-production-values"></a>8. How to revert listing price to production values
-I have changed the pricing of a listed SKU (or I have removed the billing regions of a listed SKU). Since it is not supported in the Azure Marketplace, I want to revert my changes to the production values. How do I achieve that?
+## <a name="8-how-to-revert-listing-price-to-production-values"></a>8.如何將列出價格還原成生產環境值
+我已變更已列出的 SKU 的價格 (或已移除已列出的 SKU 的計費區域)。 由於它在 Azure Marketplace 中不受支援，我想將我的變更還原成生產環境值。 我該怎麼做？
 
-Please follow the steps given below:
+請依照下列步驟執行：
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click the **PRICING** tab.
-4. Under the Pricing tab, select a region whose pricing you want to reset.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [價格]  索引標籤。
+4. 在 [價格] 索引標籤下，選取您想要重設其價格的區域。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img08-04.png)
-5. In case of SKUs with hourly billing model, reset the prices for all the cores as they are in the production for the selected region. For SKUs with BYOL billing model, make the SKU available in the region by checking the checkbox against the SKU under the section EXTERNALLY-LICENSED (BYOL) SKU AVAILABILITY (see the screenshot below).
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-04.png)
+5. 對於計費模式是每小時的 SKU，請重設所有核心的價格，因為它們處於所選區域的生產環境。 對於計費模式是 BYOL 的 SKU，請在 [外部授權的 (BYOL) SKU 可用性] 區段下方核取該 SKU 的核取方塊，以在該區域公開發行 SKU (請參閱以下螢幕擷取畫面)。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img08-05.png)
-6. Now click the button **AUTOPRICE OTHER MARKETS BASED ON PRICES IN UNITED STATES**.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-05.png)
+6. 現在，按一下 [依據美國價格自動訂定其他市場價格] 按鈕。
    
    > [!NOTE]
-   > The button’s label may be different depending on the region which you have selected. Since we have selected United States while creating this document, so the button is labeled as “Auto price other markets based on prices in United States” in the screenshot below.
+   > 視選取的區域而定，按鈕的標籤可能會不同。 由於我們在建立這份文件時選取美國，因此以下螢幕擷取畫面中的按鈕標示為 [依據美國價格自動訂定其他市場價格]。
    > 
    > 
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img08-06.png)
-7. The auto price wizard will open. The first page displays the selection for base market. Make your section and move to the next page by clicking on the **“->”** button.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-06.png)
+7. 自動定價精靈隨即開啟。 第 1 頁會顯示基本市場的選項。 選擇您的區域，然後按一下 [->] 按鈕移至下一頁。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img08-07.png)
-8. Option for selecting the cores and plans will be displayed on the page 2. Select the desired plans and the cores and click “->” button.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-07.png)
+8. 選取核心和方案的選項將顯示在第 2 頁。 選取所需的方案和核心，然後按一下 [->] 按鈕。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img08-08.png)
-9. Page 3 displays the markets/regions. Click the Toggle All button to select all regions or manually check the boxes for region. Click on the “->” button to move to the next page.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-08.png)
+9. 第 3 頁會顯示市場/區域。 按一下 [全部切換] 按鈕以選取所有區域，或手動核取區域的方塊。 按一下 [->] 按鈕移至下一頁。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img08-09.png)
-10. Page 4 displays the exchange rates. Click on the finish button to complete the steps. The wizard will reset the pricing according to your selection.
-11. Now navigate to the pricing tab and click the “VIEW SUMMARY AND CHANGES” button.
-    Select “Draft” in the “View Version” section and “Production” in “Compare with” section (see the screenshot below). If you see no pricing difference, it implies pricing has been reverted to the production values successfully.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-09.png)
+10. 第 4 頁會顯示匯率。 按一下 [完成] 按鈕以完成步驟。 精靈會根據您的選擇重設價格。
+11. 現在，瀏覽至 [價格] 索引標籤，然後按一下 [檢視摘要和變更] 按鈕。
+    在 [檢視版本] 區段中選取 [草稿]，在 [比較對象] 區段中選取 [生產環境] (請參閱以下螢幕擷取畫面)。 如果看不出價格差異，即表示價格已順利還原成生產環境值。
     
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img08-11.png)
-12. After making the changes, navigate to the PUBLISH tab and click on the button **PUSH TO STAGING**. For detailed guidance on testing your offer in the staging environment please refer to this [link](marketplace-publishing-vm-image-test-in-staging.md)
-13. Once you have tested your offer in staging, navigate to the PUBLISH tab in the Publishing portal and click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-11.png)
+12. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)
+13. 在預備環境中測試供應項目之後，瀏覽至發佈入口網站的 [發佈] 索引標籤，按一下 [要求核准以推送至生產環境]  按鈕，將供應項目重新發佈到 Azure Marketplace。
 
-## <a name="9.-how-to-revert-billing-model-to-production-values"></a>9. How to revert billing model to production values
-I have changed the billing model of a listed SKU. Since it is not supported in the Azure Marketplace, I want to revert my changes to the production values. How do I achieve that?
+## <a name="9-how-to-revert-billing-model-to-production-values"></a>9.如何將計費模式還原成生產環境值
+我已變更已列出的 SKU 的計費模式。 由於它在 Azure Marketplace 中不受支援，我想將我的變更還原成生產環境值。 我該怎麼做？
 
-Please follow the steps below:
+請依照下列步驟執行：
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click the **SKUS** tab.
-4. Click EDIT button to revert the billing model. A window will open. Check or uncheck the checkbox **‘Billing and licensing is done externally from Azure (aka Bring Your Own License)’** accordingly.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [SKU]  索引標籤。
+4. 按一下 [編輯] 按鈕以還原計費模式。 隨即開啟一個視窗。 視情況核取或取消核取 [計費與授權於 Azure 外部進行 (亦即自備授權)]  核取方塊。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img09-04.png)
-5. Once done please refer to the answer of the question 8 in this document to revert back the pricing.
-6. After that navigate to the **PUBLISH** tab in the Publishing portal and push the offer to staging to test it. Once you are done with testing the offer, then click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img09-04.png)
+5. 完成後，請參閱本文件的問題 8 的答案來回復價格。
+6. 接著瀏覽至發佈入口網站中的 [發佈]  索引標籤，將供應項目推送至預備環境進行測試。 完成供應項目的測試後，按一下 [要求核准以推送至生產環境]  按鈕以在 Azure Marketplace 重新發佈您的供應項目。
 
-## <a name="10.-how-to-revert-visibility-setting-of-a-listed-sku-to-the-production-value"></a>10. How to revert visibility setting of a listed SKU to the production value
-Please follow the steps below:
+## <a name="10-how-to-revert-visibility-setting-of-a-listed-sku-to-the-production-value"></a>10.如何將已列出的 SKU 的可見性設定還原成生產環境值
+請依照下列步驟執行：
 
-1. Login to the [Publishing portal](https://publish.windowsazure.com).
-2. Navigate to the **VIRTUAL MACHINES** tab and select your offer.
-3. From the left hand side menu, click the **SKUS** tab.
-4. Select your SKU and revert the visibility setting of the SKU to the production value.
+1. 登入 [發佈入口網站](https://publish.windowsazure.com)。
+2. 瀏覽至 [虛擬機器]  索引標籤並選取您的供應項目。
+3. 從左側功能表，按一下 [SKU]  索引標籤。
+4. 選取您的 SKU，將 SKU 的可見性設定還原成生產環境值。
    
-    ![drawing](media/marketplace-publishing-vm-image-post-publishing/img10-04.png)
-5. Once you are done with the changes, then click on the button **REQUEST APPROVAL TO PUSH TO PRODUCTION** to re-publish your offer in the Azure Marketplace.
+    ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img10-04.png)
+5. 在變更完成後，按一下 [要求核准以推送至生產環境]  按鈕以在 Azure Marketplace 重新發佈您的供應項目。
 
-## <a name="see-also"></a>See Also
-* [Getting Started: How to publish an offer to the Azure Marketplace](marketplace-publishing-getting-started.md)
-* [Understanding seller insights reporting](marketplace-publishing-report-seller-insights.md)
-* [Understanding payout reporting](marketplace-publishing-report-payout.md)
-* [How to change your Cloud Solution Provider reseller incentive](marketplace-publishing-csp-incentive.md)
-* [Troubleshooting common publishing problems in the Marketplace](marketplace-publishing-support-common-issues.md)
-* [Get support as a publisher](marketplace-publishing-get-publisher-support.md)
-* [Creating a VM image on-premises](marketplace-publishing-vm-image-creation-on-premise.md)
-* [Create a virtual machine running Windows in the Azure preview portal](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
+## <a name="see-also"></a>另請參閱
+* [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
+* [了解賣方 Insights 報告](marketplace-publishing-report-seller-insights.md)
+* [了解付款報告](marketplace-publishing-report-payout.md)
+* [如何變更雲端解決方案提供者轉售商獎勵](marketplace-publishing-csp-incentive.md)
+* [疑難排解 Marketplace 中常見的發佈問題](marketplace-publishing-support-common-issues.md)
+* [以發佈者身分取得支援](marketplace-publishing-get-publisher-support.md)
+* [建立內部部署 VM 映像](marketplace-publishing-vm-image-creation-on-premise.md)
+* [在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

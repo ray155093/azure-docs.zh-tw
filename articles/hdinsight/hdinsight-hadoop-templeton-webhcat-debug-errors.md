@@ -1,13 +1,13 @@
 ---
-title: 了解並解決 HDInsight 上的 WebHCat 錯誤
-description: 了解 WebHCat 在 HDInsight 上傳回的常見錯誤以及如何解決這些問題。
+title: "了解並解決 HDInsight 上的 WebHCat 錯誤"
+description: "了解 WebHCat 在 HDInsight 上傳回的常見錯誤以及如何解決這些問題。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 1b3d94b1-207d-4550-aece-21dc45485549
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 09/27/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b57bd17a8887dbf9bdecee4a3ad79b55ec7fb610
+
 
 ---
-# <a name="understand-and-resolve-errors-received-from-webhcat-(templeton,)-on-hdinsight"></a>了解並解決 HDInsight 上從 WebHCat (Templeton) 收到的錯誤
+# <a name="understand-and-resolve-errors-received-from-webhcat-templeton-on-hdinsight"></a>了解並解決 HDInsight 上從 WebHCat (Templeton) 收到的錯誤
 透過 WebHCat (之前稱為 Templeton) 使用 HDInsight 時，可能會收到錯誤。 本文件提供常見錯誤的指引 – 發生的原因，以及解決這些問題的方法。
 
-## <a name="what-is-webhcat?"></a>什麼是 WebHCat？
+## <a name="what-is-webhcat"></a>什麼是 WebHCat？
 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) 是適用於 [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog) 的 REST API，這是 Hadoop 的資料表和儲存體管理層。 WebHCat 預設會在 HDInsight 叢集上啟用，並由各種工具用來提交工作、取得工作狀態等，而不需登入叢集。
 
 ## <a name="modifying-configuration"></a>修改組態
@@ -55,7 +59,7 @@ ms.author: larryfr
 | --- | --- |
 | 這通常發生於叢集的主要和次要 HeadNode 間的容錯移轉期間 |等候兩分鐘，然後重試作業 |
 
-## <a name="bad-request-content:-could-not-find-job"></a>不正確的要求內容：找不到工作
+## <a name="bad-request-content-could-not-find-job"></a>不正確的要求內容：找不到工作
 **HTTP 狀態碼**：400
 
 | 原因 | 解決方案 |
@@ -82,6 +86,6 @@ ms.author: larryfr
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

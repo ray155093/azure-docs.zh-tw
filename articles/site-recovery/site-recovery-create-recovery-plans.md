@@ -1,12 +1,12 @@
 ---
-title: 建立復原方案 | Microsoft Docs
-description: 利用 Azure Site Recovery 來建立復原方案，以便容錯移轉並復原虛擬機器和實體伺服器群組。
+title: "建立復原方案 | Microsoft Docs"
+description: "利用 Azure Site Recovery 來建立復原方案，以便容錯移轉並復原虛擬機器和實體伺服器群組。"
 services: site-recovery
-documentationcenter: ''
+documentationcenter: 
 author: rayne-wiselman
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 72408c62-fcb6-4ee2-8ff5-cab1218773f2
 ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 10/05/2016
 ms.author: raynew
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3cc2aa0ade25417a1e2a8fb96fc3a059349afa99
+
 
 ---
 # <a name="create-recovery-plans"></a>建立復原方案
@@ -109,6 +113,9 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 ## <a name="next-steps"></a>後續步驟
 您可以對復原方案執行不同類型的容錯移轉，包括可檢查環境的容錯移轉測試，以及已規劃或未規劃的容錯移轉。 [深入了解](site-recovery-failover.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

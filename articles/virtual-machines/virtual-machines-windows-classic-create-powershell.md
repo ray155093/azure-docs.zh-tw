@@ -1,13 +1,13 @@
 ---
-title: 使用 PowerShell 建立 Windows VM | Microsoft Docs
-description: 使用 Azure PowerShell 與傳統部署模型建立 Windows 虛擬機器。
+title: "使用 PowerShell 建立 Windows VM | Microsoft Docs"
+description: "使用 Azure PowerShell 與傳統部署模型建立 Windows 虛擬機器。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: 42c0d4be-573c-45d1-b9b0-9327537702f7
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,12 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 4abaa2009d7f46d1c0b1c888577b7cd74446877b
+
 
 ---
 # <a name="create-a-windows-virtual-machine-with-powershell-and-the-classic-deployment-model"></a>以 PowerShell 以及傳統部署模型建立 Windows 虛擬機器
 > [!div class="op_single_selector"]
-> * [Azure 傳統入口網站 - Windows](virtual-machines-windows-classic-tutorial.md)
-> * [PowerShell - Windows](virtual-machines-windows-classic-create-powershell.md)
+> * [Azure 傳統入口網站 - Windows](virtual-machines-windows-classic-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+> * [PowerShell - Windows](virtual-machines-windows-classic-create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 > 
 > 
 
@@ -28,7 +32,7 @@ ms.author: cynthn
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
-了解如何 [使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-ps-create.md)。
+了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 下列步驟將示範如何使用建置組塊自訂一組 Azure PowerShell 命令，建立和預先設定以 Windows 為基礎的 Azure 虛擬機器。 您可以使用此程序，對於以 Windows 為基礎的新虛擬機器建立命令集合，並擴充現有部署，或建立快速建置自訂開發/測試或 IT 專業環境的多個命令集。
 
@@ -36,13 +40,13 @@ ms.author: cynthn
 
 如果您尚未這樣做，請按照 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的操作方法，在本機電腦安裝 Azure PowerShell。 然後，開啟 Windows PowerShell 命令提示字元。
 
-## <a name="step-1:-add-your-account"></a>步驟 1︰加入您的帳戶
+## <a name="step-1-add-your-account"></a>步驟 1︰加入您的帳戶
 1. 在 PowerShell 提示字元中，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。 
 2. 輸入與您 Azure 訂用帳戶相關聯的電子郵件地址，並按一下 [繼續] 。 
 3. 輸入您帳戶的密碼。 
 4. 按一下 [ **登入**]。
 
-## <a name="step-2:-set-your-subscription-and-storage-account"></a>步驟 2：設定您的訂用帳戶和儲存體帳戶
+## <a name="step-2-set-your-subscription-and-storage-account"></a>步驟 2：設定您的訂用帳戶和儲存體帳戶
 在 Windows PowerShell 命令提示字元處執行這些命令，來設定您的 Azure 訂用帳戶與儲存體帳戶。 以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
     $subscr="<subscription name>"
@@ -52,7 +56,7 @@ ms.author: cynthn
 
 您可以從 **Get-AzureSubscription** 命令輸出的 SubscriptionName 屬性，取得正確的訂用帳戶名稱。 執行 **Select-AzureSubscription** 命令後，您就能從 **Get-AzureStorageAccount** 命令輸出的標籤屬性取得正確的儲存體帳戶名稱。
 
-## <a name="step-3:-determine-the-imagefamily"></a>步驟 3：決定 ImageFamily
+## <a name="step-3-determine-the-imagefamily"></a>步驟 3：決定 ImageFamily
 接著，您必須對於與要建立的 Azure 虛擬機器相對應的特定映像決定 ImageFamily 或 Label 值。 您可以使用這個命令取得可用 ImageFamily 值的清單。
 
     Get-AzureVMImage | select ImageFamily -Unique
@@ -78,7 +82,7 @@ ms.author: cynthn
     $label="<Label value>"
     $image = Get-AzureVMImage | where { $_.Label -eq $label } | sort PublishedDate -Descending | select -ExpandProperty ImageName -First 1
 
-## <a name="step-4:-build-your-command-set"></a>步驟 4：建置命令集
+## <a name="step-4-build-your-command-set"></a>步驟 4：建置命令集
 將下列適當的區塊集合複製到新的文字檔或 ISE，然後填入變數值並移除 < 和 > 字元，以建置命令集的其餘部分。 請參閱本文結尾的兩個 [範例](#examples) ，以了解最終產生的結果。
 
 選擇兩個命令區塊的其中一個，啟動命令集 (必要)。
@@ -168,7 +172,7 @@ ms.author: cynthn
     $vnetname="<name of the virtual network>"
     New-AzureVM –ServiceName $svcname -VMs $vm1 -VNetName $vnetname
 
-## <a name="step-5:-run-your-command-set"></a>步驟 5：執行命令集
+## <a name="step-5-run-your-command-set"></a>步驟 5：執行命令集
 檢閱在步驟 4 中使用文字編輯器或 PowerShell ISE 以多個命令區塊建立的 Azure PowerShell 命令集。 確定您已指定所需的所有變數，並且這些變數具有正確的值。 也確定已移除所有 < 和 > 字元。
 
 如果目前使用文字編輯器，請將命令集複製到剪貼簿，然後按一下滑鼠右鍵開啟 Windows PowerShell 命令提示字元。 這將發出命令集作為一系列的 PowerShell 命令，並建立 Azure 虛擬機器。 或者，在 PowerShell ISE 中執行命令集。
@@ -178,7 +182,7 @@ ms.author: cynthn
 * 將此命令集儲存為 PowerShell 指令碼檔案 (*.ps1)。
 * 在 Azure 傳統入口網站的 [自動化]  區段中，將這個命令集儲存為 Azure 自動化 Runbook。
 
-## <a name="<a-id="examples"></a>examples"></a><a id="examples"></a>範例
+## <a name="a-idexamplesaexamples"></a><a id="examples"></a>範例
 以下是使用上述步驟建置 Azure PowerShell 命令集的兩個範例，這些命令集將建立以 Windows 為基礎的 Azure 虛擬機器。
 
 ### <a name="example-1"></a>範例 1
@@ -255,8 +259,11 @@ ms.author: cynthn
 
 
 ## <a name="next-steps"></a>後續步驟
-如果您需要大於 127 GB 的 OS 磁碟，可以 [展開 OS 磁碟機](virtual-machines-windows-expand-os-disk.md)。
+如果您需要大於 127 GB 的 OS 磁碟，可以 [展開 OS 磁碟機](virtual-machines-windows-expand-os-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

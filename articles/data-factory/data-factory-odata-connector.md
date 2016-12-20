@@ -1,73 +1,80 @@
 ---
-title: 移動 OData 來源的資料 | Microsoft Docs
-description: 了解如何使用 Azure Data Factory，來移動 OData 來源的資料。
+title: "從 OData 來源移動資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory，來移動 OData 來源的資料。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: linda33wj
 manager: jhubbard
 editor: monicar
-
+ms.assetid: de28fa56-3204-4546-a4df-21a21de43ed7
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 11/01/2016
 ms.author: jingwang
+translationtype: Human Translation
+ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
+ms.openlocfilehash: 5e6a61011e201dad2220d2851212ac04bed1342c
+
 
 ---
 # <a name="move-data-from-a-odata-source-using-azure-data-factory"></a>使用 Azure Data Factory 來移動 OData 來源的資料
 本文章將概述如何使用 Azure 資料處理站中的複製活動，來把 OData 來源的資料移動到另一個資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
-> [!NOTE]
-> 此 OData 連接器支援從雲端 OData 和內部部署 OData 來源複製資料。 若為後者，您必須安裝資料管理閘道。 如需資料管理閘道的詳細資訊，請參閱 [在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文。
-> 
-> 
+## <a name="supported-versions-and-authentication-types"></a>支援的版本和驗證類型
+此 OData 連接器支援 OData 版本 3.0 和 4.0，而您可以從雲端 OData 和內部部署 OData 來源複製資料。 若為後者，您必須安裝資料管理閘道。 如需資料管理閘道的詳細資訊，請參閱 [在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文。
+
+支援下列驗證類型：
+
+* 若要存取**雲端** OData 摘要，您可以使用匿名、基本 (使用者名稱和密碼) 或 Azure Active Directory 架構的 OAuth 驗證。
+* 若要存取**內部部署** OData 摘要，您可以使用匿名、基本 (使用者名稱和密碼) 或 Windows 驗證。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
-要建立從 OData 來源複製資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。 
+要建立從 OData 來源複製資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 這些範例示範如何把 OData 來源的資料複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores) 所說的任何接收器。
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 這些範例示範如何把 OData 來源的資料複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
 
-## <a name="sample:-copy-data-from-odata-source-to-azure-blob"></a>範例：把 OData 來源的資料複製到 Azure Blob
-這個範例示範如何把 OData 來源的資料複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動， **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores) 所說的任何接收器。  
+## <a name="sample-copy-data-from-odata-source-to-azure-blob"></a>範例：把 OData 來源的資料複製到 Azure Blob
+這個範例示範如何把 OData 來源的資料複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動， **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。  
 
 此範例具有下列 Data Factory 實體：
 
 1. [OData](#odata-linked-service-properties)類型的連結服務。
-2. [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service-properties)類型的連結服務。
+2. [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service)類型的連結服務。
 3. [ODataResource](#odata-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4. [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5. 具有使用 [RelationalSource](#odata-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-範例會每隔一小時依照 OData 來源，把查詢來的資料複製到 Azure Blob 中。 範例後面的各節會說明這些範例中使用的 JSON 屬性。 
+範例會每隔一小時依照 OData 來源，把查詢來的資料複製到 Azure Blob 中。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-**OData 連結服務** 此範例會使用基本驗證。 請參閱 [OData 連結服務](#odata-linked-service-properties) 一節，來了解您可以使用的不同驗證類型。 
+**OData 連結服務** 此範例會使用基本驗證。 請參閱 [OData 連結服務](#odata-linked-service-properties) 一節，來了解您可以使用的不同驗證類型。
 
     {
         "name": "ODataLinkedService",
-        "properties": 
+           "properties":
         {
             "type": "OData",
-            "typeProperties": 
+               "typeProperties":
             {
                 "url": "http://services.odata.org/OData/OData.svc",
                "authenticationType": "Anonymous"
-            }
-        }
+               }
+           }
     }
 
 
 **Azure 儲存體連結服務**
 
     {
-        "name": "AzureStorageLinkedService",
+          "name": "AzureStorageLinkedService",
         "properties": {
             "type": "AzureStorage",
             "typeProperties": {
               "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
             }
-        }
+          }
     }
 
 **OData 輸入資料集**
@@ -76,12 +83,12 @@ ms.author: jingwang
 
     {
         "name": "ODataDataset",
-        "properties": 
+        "properties":
         {
             "type": "ODataResource",
-            "typeProperties": 
+            "typeProperties":
             {
-                "path": "Products" 
+                 "path": "Products"
             },
             "linkedServiceName": "ODataLinkedService",
             "structure": [],
@@ -93,12 +100,12 @@ ms.author: jingwang
             "policy": {
                 "retryInterval": "00:01:00",
                 "retryTimeout": "00:10:00",
-                "maximumRetry": 3               
+                "maximumRetry": 3                
             }
         }
     }
 
-在資料集定義中指定 **path** 的動作是可以省略的。 
+在資料集定義中指定 **path** 的動作是可以省略的。
 
 **Azure Blob 輸出資料集**
 
@@ -209,7 +216,7 @@ ms.author: jingwang
     }
 
 
-在管線定義中指定 **query** 的動作是可以省略的。 Data Factory 服務用來擷取資料的 **URL** 就是：在連結服務中所指定的 URL (必要) + 在資料集所指定的路徑 (可省略) + 管線中的查詢 (可省略)。 
+在管線定義中指定 **query** 的動作是可以省略的。 Data Factory 服務用來擷取資料的 **URL** 就是：在連結服務中所指定的 URL (必要) + 在資料集所指定的路徑 (可省略) + 管線中的查詢 (可省略)。
 
 ## <a name="odata-linked-service-properties"></a>OData 連結服務屬性
 下表提供 OData 連結服務專屬 JSON 元素的說明。
@@ -218,22 +225,23 @@ ms.author: jingwang
 | --- | --- | --- |
 | 類型 |類型屬性必須設為： **OData** |是 |
 | URL |OData 服務的 URL。 |是 |
-| authenticationType |用來連線到 OData 來源的驗證類型。 <br/><br/> 若為雲端 OData，可能的值為 Anonymous 和 Basic。 若為內部部署 OData，可能的值為 Anonymous、Basic 和 Windows。 |是 |
+| authenticationType |用來連線到 OData 來源的驗證類型。 <br/><br/> 若為雲端 OData，可能的值為 Anonymous、Basic 和 OAuth (請注意，Azure Data Factory 目前僅支援 Azure Active Directory 架構的 OAuth)。 <br/><br/> 若為內部部署 OData，可能的值為 Anonymous、Basic 和 Windows。 |是 |
 | username |如果您要使用 Basic 驗證，請指定使用者名稱。 |是 (只在您使用基本驗證時) |
 | password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |是 (只在您使用基本驗證時) |
+| authorizedCredential |如果您使用 OAuth，按一下 Data Factory 複製精靈或編輯器中的 [授權] 按鈕，然後輸入您的認證，接著將會自動產生這個屬性的值。 |是 (只有在您使用 OAuth 驗證時) |
 | gatewayName |Data Factory 服務應該用來連接到內部部署 OData 服務的閘道器名稱。 只在要從內部部署 OData 來源複製資料時才指定。 |否 |
 
 ### <a name="using-basic-authentication"></a>使用基本驗證
     {
         "name": "inputLinkedService",
-        "properties": 
+        "properties":
         {
             "type": "OData",
-            "typeProperties": 
+               "typeProperties":
             {
                "url": "http://services.odata.org/OData/OData.svc",
                "authenticationType": "Basic",
-                "username": "username",
+               "username": "username",
                "password": "password"
            }
        }
@@ -242,10 +250,10 @@ ms.author: jingwang
 ### <a name="using-anonymous-authentication"></a>使用匿名驗證
     {
         "name": "ODataLinkedService",
-        "properties": 
+           "properties":
         {
             "type": "OData",
-            "typeProperties": 
+            "typeProperties":
             {
                "url": "http://services.odata.org/OData/OData.svc",
                "authenticationType": "Anonymous"
@@ -256,21 +264,34 @@ ms.author: jingwang
 ### <a name="using-windows-authentication-accessing-on-premises-odata-source"></a>使用存取內部部署 OData 來源的 Windows 驗證
     {
         "name": "inputLinkedService",
-        "properties": 
+        "properties":
         {
             "type": "OData",
-            "typeProperties": 
+               "typeProperties":
             {
                "url": "<endpoint of on-premises OData source e.g. Dynamics CRM>",
                "authenticationType": "Windows",
-                "username": "domain\\user",
+               "username": "domain\\user",
                "password": "password",
                "gatewayName": "mygateway"
            }
        }
     }
 
-
+### <a name="using-oauth-authentication-accessing-cloud-odata-source"></a>使用 OAuth 驗證存取雲端 OData 來源
+    {
+        "name": "inputLinkedService",
+        "properties":
+        {
+            "type": "OData",
+               "typeProperties":
+            {
+               "url": "<endpoint of cloud OData source e.g. https://<tenant>.crm.dynamics.com/XRMServices/2011/OrganizationData.svc">",
+               "authenticationType": "OAuth",
+               "authorizedCredential": "<auto generated by clicking the Authorize button on UI>"
+           }
+       }
+    }
 
 ## <a name="odata-dataset-type-properties"></a>OData 資料集類型屬性
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
@@ -282,7 +303,7 @@ ms.author: jingwang
 | path |OData 資源的路徑 |否 |
 
 ## <a name="odata-copy-activity-type-properties"></a>OData 複製活動類型屬性
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。 
+如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
@@ -309,6 +330,8 @@ ms.author: jingwang
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

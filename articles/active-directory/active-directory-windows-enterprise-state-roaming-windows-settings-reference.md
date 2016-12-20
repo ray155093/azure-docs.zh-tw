@@ -1,13 +1,13 @@
 ---
-title: Windows 10 漫遊設定參考 | Microsoft Docs
-description: 在 Windows 10 中進行漫遊或備份的所有設定的完整清單。
+title: "Windows 10 漫遊設定參考 | Microsoft Docs"
+description: "在 Windows 10 中進行漫遊或備份的所有設定的完整清單。"
 services: active-directory
-keywords: 企業狀態漫遊, windows 雲端
-documentationcenter: ''
+keywords: "企業狀態漫遊, windows 雲端"
+documentationcenter: 
 author: femila
 manager: swadhwa
 editor: curtand
-
+ms.assetid: 17cffc3e-2928-4235-91f7-a685bd6bdcbf
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
+
 
 ---
 # <a name="windows-10-roaming-settings-reference"></a>Windows 10 漫遊設定參考
@@ -30,7 +34,7 @@ ms.author: femila
 | Microsoft 帳戶：同步處理 |是 |是 |
 | Microsoft 帳戶：備份/還原 |否 |是 |
 
-## <a name="what-is-backup?"></a>什麼是備份？
+## <a name="what-is-backup"></a>什麼是備份？
 根據預設，Windows 設定一般會同步處理，但是某些設定只能備份，例如裝置上已安裝應用程式的清單。 備份僅適用於行動裝置，目前不適用企業狀態漫遊使用者。 備份會使用 Microsoft 帳戶，並將設定和應用程式資料儲存到 OneDrive。 如果使用者使用 [設定] 應用程式在裝置上停用同步處理，通常可以同步處理的應用程式資料會變成只能備份。 備份資料在新裝置第一次執行期間，只能透過還原作業存取。 備份可以透過裝置設定停用，並且能透過使用者的 OneDrive 帳戶管理及刪除。
 
 ## <a name="windows-settings-overview"></a>Windows 設定概觀
@@ -166,6 +170,9 @@ ms.author: femila
 * [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 * [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

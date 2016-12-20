@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 OpsGenie 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 OpsGenie 之間的單一登入
+title: "教學課程：Azure Active Directory 與 OpsGenie 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 OpsGenie 之間的單一登入"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 41b59b22-a61d-4fe6-ab0d-6c3991d1375f
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 552b1a2a7ef63bc1c958adf8e06cd1c92c5c0ea2
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-opsgenie"></a>教學課程：Azure Active Directory 與 OpsGenie 整合
+# <a name="tutorial-azure-active-directory-integration-with-opsgenie"></a>教學課程：Azure Active Directory 與 OpsGenie 整合
 本教學課程旨在說明如何整合 OpsGenie 與 Azure Active Directory (Azure AD)。
 
 OpsGenie 與 Azure AD 整合提供下列優點：
@@ -178,7 +182,7 @@ OpsGenie 與 Azure AD 整合提供下列優點：
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-opsgenie-tutorial/create_aaduser_06.png) 
@@ -201,7 +205,7 @@ OpsGenie 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-opsgenie-test-user"></a>建立 OpsGenie 測試使用者
 本節的目標是要在 OpsGenie 中建立一個名為 Britta Simon 的使用者。 
@@ -273,6 +277,6 @@ Britta 將會收到一封指示如何設定她的設定檔的電子郵件。
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

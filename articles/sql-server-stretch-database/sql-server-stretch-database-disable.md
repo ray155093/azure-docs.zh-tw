@@ -1,12 +1,12 @@
 ---
-title: Disable Stretch Database and bring back remote data | Microsoft Docs
-description: Learn how to disable Stretch Database for a table and optionally bring back remote data.
+title: "停用 Stretch Database 並恢復遠端資料 | Microsoft Docs"
+description: "了解如何停用資料表的 Stretch Database，並選擇性地恢復遠端資料。"
 services: sql-server-stretch-database
-documentationcenter: ''
+documentationcenter: 
 author: douglaslMS
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 08291748-0dfd-4a7d-a6a4-a5618e9c248d
 ms.service: sql-server-stretch-database
 ms.workload: data-management
 ms.tgt_pltfrm: na
@@ -14,49 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/05/2016
 ms.author: douglasl
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a140e89058f6a246e80b71248b82d0f6767337cb
+
 
 ---
-# <a name="disable-stretch-database-and-bring-back-remote-data"></a>Disable Stretch Database and bring back remote data
-To disable Stretch Database for a table, select **Stretch** for a table in SQL Server Management Studio. Then select one of the following options.
+# <a name="disable-stretch-database-and-bring-back-remote-data"></a>停用 Stretch Database 並恢復遠端資料
+若要停用資料表的 Stretch Database，請在 SQL Server Management Studio 中為資料表選取 [Stretch]  。 然後選取下列其中一個選項。
 
-* **Disable | Bring data back from Azure**. Copy the remote data for the table from Azure back to SQL Server, then disable Stretch Database for the table. This operation incurs data transfer costs, and it can't be canceled.
-* **Disable | Leave data in Azure**. Disable Stretch Database for the table.  Abandon the remote data for the table in Azure.
+* [停用] | [從 Azure 恢復資料]。 從 Azure 將資料表的遠端資料複製到 SQL Server，然後停用該資料表的 Stretch Database。 這項操作會產生資料傳輸成本，且無法取消。
+* [停用] | [將資料留在 Azure]。 停用資料表的 Stretch Database。  放棄 Azure 中的資料表遠端資料。
 
-You can also use Transact\-SQL to disable Stretch Database for a table or for a database.
+您也可以使用 Transact\-SQL 以停用資料表或資料庫的 Stretch Database。
 
-After you disable Stretch Database for a table, data migration stops and query results no longer include results from the remote table.
+當您停用資料表的 Stretch Database 之後，資料移轉將會停止，而查詢結果將不再包含來自遠端資料表的結果。
 
-If you simply want to pause data migration, see [Pause and resume Stretch Database](sql-server-stretch-database-pause.md).
+如果您只是想要暫停資料移轉，請參閱 [暫停和繼續 Stretch Database](sql-server-stretch-database-pause.md)。
 
 > [!NOTE]
-> Disabling Stretch Database for a table or for a database does not delete the remote object. If you want to delete the remote table or the remote database, you have to drop it by using the Azure management portal. The remote objects continue to incur Azure costs until you delete them. For more info, see [SQL Server Stretch Database Pricing](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/).
+> 停用資料表或資料庫的 Stretch Database 不會刪除遠端物件。 如果您想要刪除遠端資料表或遠端資料庫，您必須使用 Azure 管理入口網站加以卸除。 遠端物件會繼續產生 Azure 成本，直到您刪除它們為止。 如需詳細資訊，請參閱 [SQL Server Stretch Database 價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 > 
 > 
 
-## <a name="disable-stretch-database-for-a-table"></a>Disable Stretch Database for a table
-### <a name="use-sql-server-management-studio-to-disable-stretch-database-for-a-table"></a>Use SQL Server Management Studio to disable Stretch Database for a table
-1. In SQL Server Management Studio, in Object Explorer, select the table for which you want to disable Stretch Database.
-2. Right\-click and select **Stretch**, and then select one of the following options.
+## <a name="disable-stretch-database-for-a-table"></a>停用資料表的 Stretch Database
+### <a name="use-sql-server-management-studio-to-disable-stretch-database-for-a-table"></a>使用 SQL Server Management Studio 以停用資料表的 Stretch Database
+1. 在 SQL Server Management Studio 中，於 [物件總管] 中選取想要停用 Stretch Database 的資料表。
+2. 以滑鼠右鍵按一下並選取 [Stretch]，然後選取下列其中一個選項。
    
-   * **Disable | Bring data back from Azure**. Copy the remote data for the table from Azure back to SQL Server, then disable Stretch Database for the table. This command can't be canceled.
+   * [停用] | [從 Azure 恢復資料]。 從 Azure 將資料表的遠端資料複製到 SQL Server，然後停用該資料表的 Stretch Database。 這個命令無法取消。
      
      > [!NOTE]
-     > Copying the remote data for the table from Azure back to SQL Server incurs data transfer costs. For more info, see [Data Transfers Pricing Details](https://azure.microsoft.com/pricing/details/data-transfers/).
+     > 將資料表的遠端資料從 Azure 複製回 SQL Server 會產生資料傳輸成本。 如需詳細資訊，請參閱 [資料傳輸價格詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)。
      > 
      > 
      
-     After all the remote data has been copied from Azure back to SQL Server, Stretch is disabled for the table.
-   * **Disable | Leave data in Azure**. Disable Stretch Database for the table.  Abandon the remote data for the table in Azure.
+     當所有遠端資料都從 Azure 複製到 SQL Server 之後，資料表的 Stretch 功能將會停用。
+   * [停用] | [將資料留在 Azure]。 停用資料表的 Stretch Database。  放棄 Azure 中的資料表遠端資料。
    
    > [!NOTE]
-   > Disabling Stretch Database for a table does not delete the remote data or the remote table. If you want to delete the remote table, you have to drop it by using the Azure management portal. The remote table continues to incur Azure costs until you delete it. For more info, see [SQL Server Stretch Database Pricing](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/).
+   > 停用資料表的 Stretch Database 不會刪除遠端資料或遠端資料表。 如果您想要刪除遠端資料表，您必須使用 Azure 管理入口網站加以卸除。 遠端資料表會繼續產生 Azure 成本，直到您刪除它為止。 如需詳細資訊，請參閱 [SQL Server Stretch Database 價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
    > 
    > 
 
-### <a name="use-transact\-sql-to-disable-stretch-database-for-a-table"></a>Use Transact\-SQL to disable Stretch Database for a table
-* To disable Stretch for a table and copy the remote data for the table from Azure back to SQL Server, run the following command. After all the remote data has been copied from Azure back to SQL Server, Stretch is disabled for the table.
+### <a name="use-transact-sql-to-disable-stretch-database-for-a-table"></a>使用 Transact\-SQL 停用資料表的 Stretch Database
+* 若要停用資料表的 Stretch，並將資料表的遠端資料從 Azure 複製到 SQL Server，請執行下列命令。 當所有遠端資料都從 Azure 複製到 SQL Server 之後，資料表的 Stretch 功能將會停用。
   
-  This command can't be canceled.
+  這個命令無法取消。
   
   ```tsql
   USE <Stretch-enabled database name>;
@@ -66,10 +70,10 @@ If you simply want to pause data migration, see [Pause and resume Stretch Databa
   GO
   ```
   > [!NOTE]
-  > Copying the remote data for the table from Azure back to SQL Server incurs data transfer costs. For more info, see [Data Transfers Pricing Details](https://azure.microsoft.com/pricing/details/data-transfers/).
+  > 將資料表的遠端資料從 Azure 複製回 SQL Server 會產生資料傳輸成本。 如需詳細資訊，請參閱 [資料傳輸價格詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)。
   > 
   > 
-* To disable Stretch for a table and abandon the remote data, run the following command.
+* 若要停用資料表的 Stretch，並放棄遠端資料，請執行下列命令。
   
   ```tsql
   ALTER TABLE <table_name>
@@ -77,24 +81,24 @@ If you simply want to pause data migration, see [Pause and resume Stretch Databa
   ```
 
 > [!NOTE]
-> Disabling Stretch Database for a table does not delete the remote data or the remote table. If you want to delete the remote table, you have to drop it by using the Azure management portal. The remote table continues to incur Azure costs until you delete it. For more info, see [SQL Server Stretch Database Pricing](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/).
+> 停用資料表的 Stretch Database 不會刪除遠端資料或遠端資料表。 如果您想要刪除遠端資料表，您必須使用 Azure 管理入口網站加以卸除。 遠端資料表會繼續產生 Azure 成本，直到您刪除它為止。 如需詳細資訊，請參閱 [SQL Server Stretch Database 價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 > 
 > 
 
-## <a name="disable-stretch-database-for-a-database"></a>Disable Stretch Database for a database
-Before you can disable Stretch Database for a database, you have to disable Stretch Database on the individual Stretch\-enabled tables in the database.
+## <a name="disable-stretch-database-for-a-database"></a>停用資料庫的 Stretch Database
+在您可以停用資料庫的 Stretch Database 之前，您必須停用資料庫中已啟用 Stretch 之個別資料表上的 Stretch Database。
 
-### <a name="use-sql-server-management-studio-to-disable-stretch-database-for-a-database"></a>Use SQL Server Management Studio to disable Stretch Database for a database
-1. In SQL Server Management Studio, in Object Explorer, select the database for which you want to disable Stretch Database.
-2. Right\-click and select **Tasks**, and then select **Stretch**, and then select **Disable**.
+### <a name="use-sql-server-management-studio-to-disable-stretch-database-for-a-database"></a>使用 SQL Server Management Studio 以停用資料庫的 Stretch Database
+1. 在 SQL Server Management Studio 中，於 [物件總管] 中選取想要停用 Stretch Database 的資料庫。
+2. 以滑鼠右鍵按一下並選取 [工作，然後選取 [Stretch]，並選取 [停用]。
 
 > [!NOTE]
-> Disabling Stretch Database for a database does not delete the remote database. If you want to delete the remote database, you have to drop it by using the Azure management portal. The remote database continues to incur Azure costs until you delete it. For more info, see [SQL Server Stretch Database Pricing](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/).
+> 停用資料庫的 Stretch Database 不會刪除遠端資料庫。 如果您想要刪除遠端資料庫，您必須使用 Azure 管理入口網站加以卸除。 遠端資料庫會繼續產生 Azure 成本，直到您刪除它為止。 如需詳細資訊，請參閱 [SQL Server Stretch Database 價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 > 
 > 
 
-### <a name="use-transact\-sql-to-disable-stretch-database-for-a-database"></a>Use Transact\-SQL to disable Stretch Database for a database
-Run the following command.
+### <a name="use-transact-sql-to-disable-stretch-database-for-a-database"></a>使用 Transact\-SQL 停用資料庫的 Stretch Database
+執行下列命令。
 
 ```tsql
 ALTER DATABASE <database name>
@@ -102,15 +106,18 @@ ALTER DATABASE <database name>
 ```
 
 > [!NOTE]
-> Disabling Stretch Database for a database does not delete the remote database. If you want to delete the remote database, you have to drop it by using the Azure management portal. The remote database continues to incur Azure costs until you delete it. For more info, see [SQL Server Stretch Database Pricing](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/).
+> 停用資料庫的 Stretch Database 不會刪除遠端資料庫。 如果您想要刪除遠端資料庫，您必須使用 Azure 管理入口網站加以卸除。 遠端資料庫會繼續產生 Azure 成本，直到您刪除它為止。 如需詳細資訊，請參閱 [SQL Server Stretch Database 價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 > 
 > 
 
-## <a name="see-also"></a>See also
-[ALTER DATABASE SET Options (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx)
+## <a name="see-also"></a>另請參閱
+[ALTER DATABASE SET 選項 (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx)
 
-[Pause and resume Stretch Database](sql-server-stretch-database-pause.md)
+[Pause and resume Stretch Database (暫停和繼續 Stretch Database)](sql-server-stretch-database-pause.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

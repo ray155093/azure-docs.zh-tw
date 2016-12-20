@@ -1,13 +1,13 @@
 ---
-title: 將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10 | Microsoft Docs
-description: 說明系統管理員應如何設定群組原則，使裝置成為企業網路中已加入網域的裝置。
+title: "將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10 | Microsoft Docs"
+description: "說明系統管理員應如何設定群組原則，使裝置成為企業網路中已加入網域的裝置。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: femila
 manager: swadhwa
-editor: ''
+editor: 
 tags: azure-classic-portal
-
+ms.assetid: 2ff29f3e-5325-4f43-9baa-6ae8d6bad3e3
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0e211d13e41526157f6ade960b86f31dfdfd54e1
+
 
 ---
 # <a name="connect-domain-joined-devices-to-azure-ad-for-windows-10-experiences"></a>將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10
@@ -50,10 +54,10 @@ ms.author: femila
 * 用於 Passport 案例的 System Center Configuration Manager 1509 版 (Technical Preview)
 
 ## <a name="deployment-instructions"></a>部署指示
-### <a name="step-1:-deploy-azure-active-directory-connect"></a>步驟 1：部署 Azure Active Directory Connect
+### <a name="step-1-deploy-azure-active-directory-connect"></a>步驟 1：部署 Azure Active Directory Connect
 Azure AD Connect 可讓您將內部部署電腦佈建為雲端中的裝置物件。 若要部署 Azure AD Connect，請參閱 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md#install-azure-ad-connect)一文中的＜安裝 Azure AD Connect＞。
 
-* 如果您先前是依照[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md) (不是快速安裝) 操作，則請遵循此步驟稍後的**在內部部署 Active Directory 中建立服務連接點**程序。
+* 如果您先前是依照[自訂 Azure AD Connect 安裝](connect/active-directory-aadconnect-get-started-custom.md) (不是快速安裝) 操作，則請遵循此步驟稍後的**在內部部署 Active Directory 中建立服務連接點**程序。
 * 如果您在安裝 Azure AD Connect 之前已有 Azure AD 的同盟組態 (例如，如果您先前已部署 Active Directory Federation Service (AD FS))，則請遵循此步驟稍後的 **設定 AD FS 宣告規則** 程序。
 
 #### <a name="create-a-service-connection-point-in-on-premises-active-directory"></a>在內部部署 Active Directory 中建立服務連接點
@@ -117,7 +121,7 @@ Azure AD Connect 可讓您將內部部署電腦佈建為雲端中的裝置物件
 > 
 > 
 
-### <a name="step-2:-configure-automatic-device-registration-via-group-policy-in-active-directory"></a>步驟 2：透過 Active Directory 中的群組原則設定自動裝置註冊
+### <a name="step-2-configure-automatic-device-registration-via-group-policy-in-active-directory"></a>步驟 2：透過 Active Directory 中的群組原則設定自動裝置註冊
 您可以使用 Active Directory 中的群組原則，將已加入網域的 Windows 10 裝置設定為自動向 Azure AD 註冊。
 
 > [!NOTE]
@@ -137,6 +141,9 @@ Azure AD Connect 可讓您將內部部署電腦佈建為雲端中的裝置物件
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

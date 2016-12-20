@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Pluralsight 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Pluralsight 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Pluralsight 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Pluralsight 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 4c3f07d2-4e1f-4ea3-9025-c663f1f2b7b4
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e6b71ba7f928871768851357bcb4bce1fbf4fed3
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-pluralsight"></a>教學課程：Azure Active Directory 與 Pluralsight 整合
+# <a name="tutorial-azure-active-directory-integration-with-pluralsight"></a>教學課程：Azure Active Directory 與 Pluralsight 整合
 本教學課程旨在說明如何整合 Pluralsight 與 Azure Active Directory (Azure AD)。
 
 Pluralsight 與 Azure AD 整合提供下列優點：
@@ -126,7 +130,7 @@ Pluralsight 應用程式需要特定格式的 SAML 判斷提示，需要您加�
 
     c. 從 [屬性值] 清單中，選取針對該資料列顯示的屬性值。
 
-    d. 按一下頁面底部的 [新增] ****。  
+    d. 按一下頁面底部的 [新增] 。    
 
 
 
@@ -191,7 +195,7 @@ Pluralsight 應用程式需要特定格式的 SAML 判斷提示，需要您加�
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-pluralsight-tutorial/create_aaduser_06.png) 
@@ -204,7 +208,7 @@ Pluralsight 應用程式需要特定格式的 SAML 判斷提示，需要您加�
    
    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-pluralsight-tutorial/create_aaduser_07.png) 
@@ -214,7 +218,7 @@ Pluralsight 應用程式需要特定格式的 SAML 判斷提示，需要您加�
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-pluralsight-test-user"></a>建立 Pluralsight 測試使用者
 本節目標是在 Pluralsight 中建立名為 Britta Simon 的使用者。 請與 Pluralsight 支援小組合作，在 Pluralsight 帳戶中新增使用者。 
@@ -274,6 +278,6 @@ Pluralsight 應用程式需要特定格式的 SAML 判斷提示，需要您加�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -27,16 +27,12 @@
 ### [使用 CLI 建立和管理](key-vault-manage-with-cli.md)
 
 # 參考
-## [關於金鑰和密碼](https://msdn.microsoft.com/en-us/library/azure/dn903623)
-## [程式碼範例](https://www.microsoft.com/download/details.aspx?id=45343)
-
-## [金鑰保存庫 Resource Manager PowerShell Cmdlet](/powershell/resourcemanager/)
-## [金鑰保存庫傳統 PowerShell Cmdlet](/powershell/servicemanagement/)
-## [使用 Azure CLI 的金鑰保存庫](/cli/azure/)
-## [Java 金鑰保存庫參考](/java/api/)
-## [金鑰保存庫受管理的參考 API](/dotnet/api/) 
-## [金鑰保存庫 REST API 參考](/rest/api/keyvault) 
-## [金鑰保存庫的 Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest/)
+## [PowerShell](/powershell/resourcemanager/azurerm.keyvault/v2.3.0/azurerm.keyvault)
+## [Azure 2.0 CLI (Preview)](/cli/azure/keyvault)
+## [.NET](/dotnet/api/microsoft.azure.keyvault)
+## [Java](/java/api/com.microsoft.azure.keyvault)
+## [Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest)
+## [REST](/rest/api/keyvault)
 
 # 相關參考
 ## [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)
@@ -45,11 +41,13 @@
 ## [Multi-Factor Authentication](https://azure.microsoft.com/documentation/services/multi-factor-authentication/)
 
 # 資源
+## [關於金鑰和密碼](https://msdn.microsoft.com/en-us/library/azure/dn903623)
+## [程式碼範例](https://www.microsoft.com/download/details.aspx?id=45343)
 ## [價格](https://azure.microsoft.com/pricing/details/key-vault/)
 ## [部落格](http://blogs.technet.com/b/kv/)
 ## [論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureKeyVault)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

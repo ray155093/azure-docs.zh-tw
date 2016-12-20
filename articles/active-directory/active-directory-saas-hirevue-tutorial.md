@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 HireVue 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 HireVue 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 HireVue 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 HireVue 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: aadfc342-14db-4d74-a83d-f0c76f0cf63c
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 9dfa1df1497d7505f283b7ed3bffa3c37ac0b351
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-hirevue"></a>教學課程：Azure Active Directory 與 HireVue 整合
+# <a name="tutorial-azure-active-directory-integration-with-hirevue"></a>教學課程：Azure Active Directory 與 HireVue 整合
 在本教學課程中，您會了解如何整合 HireVue 與 Azure Active Directory (Azure AD)。
 
 HireVue 與 Azure AD 整合提供下列優點：
@@ -63,7 +67,7 @@ HireVue 與 Azure AD 整合提供下列優點：
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -108,19 +112,19 @@ HireVue 與 Azure AD 整合提供下列優點：
    
     a. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 HireVue 應用程式時所使用的 URL： 
 
-      | Environment | URL |
-      |---|---|
-      | Production | `https://<company name>.hirevue.com` |
-      | 預備| `https://<company name>.stghv.com` |
+    | Environment | URL |
+    |---|---|
+    | Production | `https://<company name>.hirevue.com` |
+    | 預備| `https://<company name>.stghv.com` |
 
 
     b. 在 [識別碼] 文字方塊中，以下列模式輸入 URN：
 
 
-      | Environment | URN |
-      |---|---|
-      |Production | `urn:federation:hirevue.com:saml:sp:prod` |
-      |預備 | `urn:federation:hirevue.com:saml:sp:staging` |
+    | Environment | URN |
+    |---|---|
+    |Production | `urn:federation:hirevue.com:saml:sp:prod` |
+    |預備 | `urn:federation:hirevue.com:saml:sp:staging` |
 
 
 
@@ -172,7 +176,7 @@ HireVue 與 Azure AD 整合提供下列優點：
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按 [下一步]。
+    c. 按 [下一步] 。
 6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_06.png) 
    
    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
@@ -248,6 +252,6 @@ HireVue 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

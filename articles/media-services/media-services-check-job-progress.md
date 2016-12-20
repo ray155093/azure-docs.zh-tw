@@ -1,12 +1,12 @@
 ---
-title: 使用 .NET 監視工作進度
-description: 了解如何使用事件處理常式程式碼來追蹤工作進度及傳送狀態更新。程式碼範例是以 C# 撰寫，並使用 Media Services SDK for .NET。
+title: "使用 .NET 監視工作進度"
+description: "了解如何使用事件處理常式程式碼來追蹤工作進度及傳送狀態更新。 程式碼範例是以 C# 撰寫，並使用 Media Services SDK for .NET。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: ee720ed6-8ce5-4434-b6d6-4df71fca224e
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1420c9dbaba1767526fa86a27aacb4fa3b2e2fe0
+
 
 ---
-# 使用 .NET 監視工作進度
+# <a name="monitor-job-progress-using-net"></a>使用 .NET 監視工作進度
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
@@ -24,10 +28,10 @@ ms.author: juliako
 > 
 > 
 
-執行作業時，您通常需要設法追蹤作業進度。定義 StateChanged 事件處理常式 (如本主題中所述) 或使用 Azure 佇列儲存體監視媒體服務工作通知 (如[本主題](media-services-dotnet-check-job-progress-with-queues.md)中所述)，即可檢查進度。
+執行作業時，您通常需要設法追蹤作業進度。 定義 StateChanged 事件處理常式 (如本主題中所述) 或使用 Azure 佇列儲存體監視媒體服務工作通知 (如 [本主題](media-services-dotnet-check-job-progress-with-queues.md) 中所述)，即可檢查進度。
 
-## 定義 StateChanged 事件處理常式來監視工作進度
-下列程式碼定義 StateChanged 事件處理常式。此事件處理常式可追蹤作業進度，並根據狀態來提供更新的狀態。程式碼也定義 LogJobStop 方法。此協助程式方法會記錄錯誤詳細資料。
+## <a name="define-statechanged-event-handler-to-monitor-job-progress"></a>定義 StateChanged 事件處理常式來監視工作進度
+下列程式碼定義 StateChanged 事件處理常式。 此事件處理常式可追蹤作業進度，並根據狀態來提供更新的狀態。 程式碼也定義 LogJobStop 方法。 此協助程式方法會記錄錯誤詳細資料。
 
     private static void StateChanged(object sender, JobStateChangedEventArgs e)
     {
@@ -106,12 +110,17 @@ ms.author: juliako
 
 
 
-## 後續步驟
+## <a name="next-step"></a>後續步驟
 檢閱媒體服務學習路徑。
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

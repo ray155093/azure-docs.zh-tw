@@ -12,15 +12,15 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/24/2016
+ms.date: 11/16/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 636b4ca48d242edfad2770a29f73f7a76edca034
+ms.sourcegitcommit: aaef3322fc98b0874222e4a3728d54a38a34b602
+ms.openlocfilehash: f71c7e080b2c0b382f241d55b9ca0c7507c24a88
 
 
 ---
-# <a name="deploy-your-onpremises-storsimple-device-update-2"></a>部署您的內部部署 StorSimple 裝置 (Update 2)
+# <a name="deploy-your-on-premises-storsimple-device-update-2"></a>部署您的內部部署 StorSimple 裝置 (Update 2)
 > [!div class="op_single_selector"]
 > * [Update 2 和更新版本](storsimple-deployment-walkthrough-u2.md)
 > * [Update 1](storsimple-deployment-walkthrough-u1.md)
@@ -56,7 +56,7 @@ ms.openlocfilehash: 636b4ca48d242edfad2770a29f73f7a76edca034
 | [步驟 1：建立新的服務](#step-1-create-a-new-service) |設定雲端管理和 StorSimple 裝置的儲存體。 *如果您現在已經有針對其他 StorSimple 裝置的服務，請略過此步驟*。 |
 | [步驟 2：取得服務註冊金鑰](#step-2-get-the-service-registration-key) |使用此金鑰註冊並將 StorSimple 裝置與管理服務連接。 |
 | [步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置](#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple) |使用管理服務將裝置連線到您的網路並使用 Azure 註冊以完成設定。 |
-| [步驟 4：完成最小量裝置設定](#step-4-complete-minimum-device-setupd)</br>[選用：更新您的 StorSimple 裝置](#scan-for-and-apply-updates) |使用管理服務來完成裝置設定並啟用裝置以提供儲存體。 |
+| [步驟 4：完成最小量裝置設定](#step-4-complete-minimum-device-setup)</br>[選用：更新您的 StorSimple 裝置](#scan-for-and-apply-updates) |使用管理服務來完成裝置設定並啟用裝置以提供儲存體。 |
 | [步驟 5：建立磁碟區容器](#step-5-create-a-volume-container) |建立容器以佈建磁碟區。 磁碟區容器具有其中所含之所有磁碟區的儲存體帳戶、頻寬及加密設定。 |
 | [步驟 6：建立磁碟區](#step-6-create-a-volume) |在您伺服器的 StorSimple 裝置上佈建儲存體磁碟區。 |
 | [步驟 7：掛接、初始化及格式化磁碟區](#step-7-mount-initialize-and-format-a-volume)</br>[選用：設定 MPIO。](storsimple-configure-mpio-windows-server.md) |將您的伺服器連接至裝置提供的 iSCSI 儲存體。 選擇性地設定 MPIO，以確保您的伺服器可以容許連結、網路和介面失敗。 |
@@ -95,7 +95,7 @@ ms.openlocfilehash: 636b4ca48d242edfad2770a29f73f7a76edca034
 
 * 資料中心防火牆中的連接埠已開放，以允許 iSCSI 和雲端流量，如 [StorSimple 裝置的網路需求](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device)中所述。
 
-## <a name="stepbystep-deployment"></a>逐步部署
+## <a name="step-by-step-deployment"></a>逐步部署
 請在資料中心使用下列逐步指示來部署 StorSimple 裝置。
 
 ## <a name="step-1-create-a-new-service"></a>步驟 1：建立新的服務
@@ -224,6 +224,6 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

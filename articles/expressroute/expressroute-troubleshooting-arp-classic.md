@@ -1,25 +1,29 @@
 ---
-title: ExpressRoute 疑難排解指南：取得 ARP 表格 | Microsoft Docs
-description: 此頁面提供取得適用於 ExpressRoute 線路之 ARP 表格的相關指示。
+title: "ExpressRoute 疑難排解指南：取得 ARP 表格 | Microsoft Docs"
+description: "此頁面提供取得適用於 ExpressRoute 線路之 ARP 表格的相關指示。"
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: carolz
 editor: tysonn
-
+ms.assetid: b5856acf-03c2-4933-8111-6ce12998d92a
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 10/11/2016
 ms.author: ganesr
+translationtype: Human Translation
+ms.sourcegitcommit: e7931f1b08d09fbe1fa5a5a2d4a11da01e736462
+ms.openlocfilehash: 49f7eae7184fda3ea73c8a85e354d0e41df039c7
+
 
 ---
-# <a name="expressroute-troubleshooting-guide:-getting-arp-tables-in-the-classic-deployment-model"></a>ExpressRoute 疑難排解指南：取得傳統部署模型中的 ARP 表格
+# <a name="expressroute-troubleshooting-guide-getting-arp-tables-in-the-classic-deployment-model"></a>ExpressRoute 疑難排解指南：取得傳統部署模型中的 ARP 表格
 > [!div class="op_single_selector"]
-> [PowerShell - Resource Manager](expressroute-troubleshooting-arp-resource-manager.md)
-> [PowerShell - 傳統](expressroute-troubleshooting-arp-classic.md)
+> * [PowerShell - 資源管理員](expressroute-troubleshooting-arp-resource-manager.md)
+> * [PowerShell - 傳統](expressroute-troubleshooting-arp-classic.md)
 > 
 > 
 
@@ -30,7 +34,7 @@ ms.author: ganesr
 > 
 > 
 
-## <a name="address-resolution-protocol-(arp)-and-arp-tables"></a>位址解析通訊協定 (ARP) 和 ARP 表格
+## <a name="address-resolution-protocol-arp-and-arp-tables"></a>位址解析通訊協定 (ARP) 和 ARP 表格
 ARP 是在 [RFC 826](https://tools.ietf.org/html/rfc826)中定義的第 2 層通訊協定。 ARP 可用於對應乙太網路位址 (MAC 位址) 與 IP 位址。
 
 ARP 表格能針對特定的對等互連提供 IPv4 位址與 MAC 位址對應。 適用於 ExpressRoute 線路對等互連的 ARP 表格能提供各個介面 (主要和次要) 的下列資訊：
@@ -82,7 +86,7 @@ ARP 表格可協助您驗證第 2 層組態，並針對基本的第 2 層連線�
           0 Microsoft         10.0.0.2 aaaa.bbbb.cccc
 
 
-### <a name="arp-tables-for-azure-public-peering:"></a>適用於 Azure 公用對等互連的 ARP 表格：
+### <a name="arp-tables-for-azure-public-peering"></a>適用於 Azure 公用對等互連的 ARP 表格：
 下列 Cmdlet 提供適用於 Azure 公用對等互連的 ARP 表格：
 
         # Required variables
@@ -131,7 +135,7 @@ ARP 表格可協助您驗證第 2 層組態，並針對基本的第 2 層連線�
 ## <a name="how-to-use-this-information"></a>如何使用此資訊
 對等互連的 ARP 表格可用來驗證第 2 層組態與連線。 本節提供在不同狀況下 ARP 表格呈現方式的概觀。
 
-### <a name="arp-table-when-a-circuit-is-in-an-operational-(expected)-state"></a>當線路處於運作 (預期) 狀態時的 ARP 表格
+### <a name="arp-table-when-a-circuit-is-in-an-operational-expected-state"></a>當線路處於運作 (預期) 狀態時的 ARP 表格
 * ARP 表格有一個適用於內部部署端的項目，其中具備有效的 IP 和 MAC 位址，以及一個適用於 Microsoft 端的類似項目。
 * 內部部署 IP 位址的最後一個八位元一定是奇數。
 * Microsoft IP 位址的最後一個八位元一定是偶數。
@@ -142,7 +146,7 @@ ARP 表格可協助您驗證第 2 層組態，並針對基本的第 2 層連線�
          10 On-Prem           65.0.0.1 ffff.eeee.dddd
           0 Microsoft         65.0.0.2 aaaa.bbbb.cccc
 
-### <a name="arp-table-when-it's-on-premises-or-when-the-connectivity-provider-side-has-problems"></a>當內部部署 / 連線提供者端發生問題時的 ARP 表格
+### <a name="arp-table-when-its-on-premises-or-when-the-connectivity-provider-side-has-problems"></a>當內部部署 / 連線提供者端發生問題時的 ARP 表格
  ARP 表格中只會出現一個項目。 它會顯示 Microsoft 端使用之 MAC 位址與 IP 位址的對應。
 
         Age InterfaceProperty IpAddress  MacAddress    
@@ -165,6 +169,9 @@ ARP 表格可協助您驗證第 2 層組態，並針對基本的第 2 層連線�
 * 檢閱輸入和輸出的位元組來驗證資料傳輸。
 * 如果問題持續發生，請向 [Microsoft Azure 說明 + 支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 開啟支援要求。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

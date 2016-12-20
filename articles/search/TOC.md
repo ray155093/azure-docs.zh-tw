@@ -25,6 +25,8 @@
 ### [服務限制](search-limits-quotas-capacity.md)
 ### [服務延展性](search-capacity-planning.md)
 ### [多組織用戶的樣式](search-modeling-multitenant-saas-applications.md)
+
+
 ## 開發
 ### [升級 SDK](search-dotnet-sdk-migration.md)
 ### [升級 REST API](search-api-migration.md)
@@ -58,17 +60,17 @@
 ### [多語言搜尋](search-language-support.md)
 
 # 參考
-## [API 版本](search-api-versions.md)
-## [服務 .NET](/dotnet/api/microsoft.azure.search)
-## [管理 .NET](/dotnet/api/microsoft.azure.management.search)
-## [服務 REST](/rest/api/searchservice/)
-## [服務 REST (預覽)](search-api-2015-02-28-preview.md)
-## [管理 REST](/rest/api/searchmanagement/)
-## [Lucene 查詢語法](https://msdn.microsoft.com/library/azure/mt589323)
-## [簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920)
+## [.NET](/dotnet/api/microsoft.azure.search)
+## [.NET 管理](/dotnet/api/microsoft.azure.management.search)
+## [Java](/java/api/com.microsoft.azure.management.search)
+## [REST](/rest/api/searchservice)
+## [REST (管理)](/rest/api/searchmanagement)
 
 # 資源
 ## [服務更新](https://azure.microsoft.com/updates/?product=search)
+## 使用搜尋 API
+##X [API 版本](search-api-versions.md)
+## [服務 REST (預覽)](search-api-2015-02-28-preview.md)
 ## [價格](https://azure.microsoft.com/pricing/details/search/)
 ## 示範網站
 ### [作業列表應用程式](http://aka.ms/azjobsdemo)
@@ -85,6 +87,6 @@
 ### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,49 +1,53 @@
 ---
-title: 使用彈性工作建立和管理相應放大的 Azure SQL Database | Microsoft Docs
-description: 逐步解說如何建立和管理彈性資料庫工作。
+title: "使用彈性工作建立和管理相應放大的 Azure SQL Database | Micosoft Docs"
+description: "逐步解說如何建立和管理彈性資料庫工作。"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 manager: jhubbard
 author: ddove
-editor: ''
-
+editor: 
+ms.assetid: f858344d-085b-4022-935e-1b5fa20adbac
 ms.service: sql-database
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/27/2016
+ms.date: 10/24/2016
 ms.author: ddove
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 923bc7102e5cc506307da25ee8125780076167ab
+
 
 ---
-# 使用彈性工作建立和管理相應放大的 Azure SQL Database (預覽)
+# <a name="create-and-manage-scaled-out-azure-sql-databases-using-elastic-jobs-preview"></a>使用彈性工作建立和管理相應放大的 Azure SQL Database (預覽)
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-jobs-create-and-manage.md)
 > * [PowerShell](sql-database-elastic-jobs-powershell.md)
 > 
 > 
 
-**彈性資料庫工作**可以簡化資料庫群組的管理，方法是執行系統管理作業 (例如結構描述變更、認證管理、參考資料更新、效能資料收集，或租用戶 (客戶) 遙測收集)。彈性資料庫工作目前可透過 Azure 入口網站和 PowerShell Cmdlet 使用。不過，Azure 入口網站呈現精簡功能會限制為跨[彈性資料庫集區 (預覽)](sql-database-elastic-pool.md)中的所有資料庫執行。若要存取其他功能以及跨資料庫群組執行指令碼，包括自訂定義集合或分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-scale-introduction.md)建立)，請參閱[使用 PowerShell 建立和管理工作](sql-database-elastic-jobs-powershell.md)。如需工作的詳細資訊，請參閱[彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。
+**彈性資料庫工作** 可以簡化資料庫群組的管理，方法是執行系統管理作業 (例如結構描述變更、認證管理、參考資料更新、效能資料收集，或租用戶 (客戶) 遙測收集)。 彈性資料庫工作目前可透過 Azure 入口網站和 PowerShell Cmdlet 使用。 不過，Azure 入口網站呈現精簡功能會限制為跨 [彈性資料庫集區 (預覽)](sql-database-elastic-pool.md)中的所有資料庫執行。 若要存取其他功能以及跨資料庫群組執行指令碼，包括自訂定義集合或分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-scale-introduction.md)建立)，請參閱[使用 PowerShell 建立和管理作業](sql-database-elastic-jobs-powershell.md)。 如需工作的詳細資訊，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。 
 
-## 必要條件
-* Azure 訂用帳戶。如需免費試用，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
-* 彈性資料庫集區。請參閱[關於彈性資料庫集區](sql-database-elastic-pool.md)。
-* 安裝彈性資料庫工作服務元件。請參閱[安裝彈性資料庫工作服務](sql-database-elastic-jobs-service-installation.md)。
+## <a name="prerequisites"></a>必要條件
+* Azure 訂用帳戶。 如需免費試用，請參閱 [免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
+* 彈性資料庫集區。 請參閱 [關於彈性資料庫集區](sql-database-elastic-pool.md)
+* 安裝彈性資料庫工作服務元件。 請參閱 [安裝彈性資料庫工作服務](sql-database-elastic-jobs-service-installation.md)。
 
-## 建立工作 (Job)
-1. 使用 [Azure 入口網站](https://portal.azure.com)，從現有的彈性資料庫工作集區，按一下 [建立工作]。
+## <a name="creating-jobs"></a>建立工作 (Job)
+1. 使用 [Azure 入口網站](https://portal.azure.com)，從現有的彈性資料庫工作集區，按一下 [建立作業]。
 2. 輸入工作控制資料庫 (工作的中繼資料儲存體) 之資料庫系統管理員 (在安裝工作時建立) 的使用者名稱與密碼。
    
     ![為工作命名，輸入或貼上程式碼，然後按一下 [執行]][1]
-3. 在 [建立工作] 刀鋒視窗中，輸入工作的名稱。
+3. 在 [建立工作]  刀鋒視窗中，輸入工作的名稱。
 4. 輸入使用者名稱與密碼來連線至目標資料庫，以取得足夠權限來成功執行指令碼。
 5. 貼上或輸入 T-SQL 指令碼。
 6. 按一下 [儲存]，然後按一下 [執行]。
    
     ![建立工作並執行][5]
 
-## 執行等冪工作
-當您對一組資料庫執行指令碼時，您必須確定指令碼是等冪。換句話說，指令碼必須能夠重複執行，即使之前在未完成狀態失敗亦然。例如，當指令碼失敗時，系統會自動重試工作，直到成功為止 (在限制內，因為重試邏輯最終將會停止重試)。其作法是使用 "IF EXISTS" 子句，並刪除任何找到的執行個體，再建立新的物件。範例如下所示：
+## <a name="run-idempotent-jobs"></a>執行等冪工作
+當您對一組資料庫執行指令碼時，您必須確定指令碼是等冪。 換句話說，指令碼必須能夠重複執行，即使之前在未完成狀態失敗亦然。 例如，當指令碼失敗時，系統會自動重試工作，直到成功為止 (在限制內，因為重試邏輯最終將會停止重試)。 其作法是使用 "IF EXISTS" 子句，並刪除任何找到的執行個體，再建立新的物件。 範例如下所示：
 
     IF EXISTS (SELECT name FROM sys.indexes
             WHERE name = N'IX_ProductVendor_VendorID')
@@ -81,18 +85,18 @@ ms.author: ddove
     GO
 
 
-## 檢查工作狀態
+## <a name="checking-job-status"></a>檢查工作狀態
 工作開始之後，您可以檢查它的進度。
 
-1. 從 [彈性資料庫集區] 頁面，按一下 [管理工作]。
+1. 從 [彈性資料庫集區] 頁面，按一下 [管理工作] 。
    
     ![按一下 [管理工作]][2]
-2. 按一下工作的名稱 (a)。[狀態] 可以是 [已完成] 或 [失敗]。 工作的詳細資料隨即出現 (b)，並提供建立和執行的日期和時間。其下方的清單 (c) 顯示對集區中每個資料庫執行指令碼的進度，並提供其日期和時間詳細資料。
+2. 按一下工作的名稱 (a)。 [狀態]  可以是 [已完成] 或 [失敗]。 工作的詳細資料隨即出現 (b)，並提供建立和執行的日期和時間。 其下方的清單 (c) 顯示對集區中每個資料庫執行指令碼的進度，並提供其日期和時間詳細資料。
    
     ![檢查完成的工作][3]
 
-## 檢查失敗的工作
-如果工作失敗，您可以找到其執行記錄檔。按一下失敗工作的名稱，以查看其詳細資料。
+## <a name="checking-failed-jobs"></a>檢查失敗的工作
+如果工作失敗，您可以找到其執行記錄檔。 按一下失敗工作的名稱，以查看其詳細資料。
 
 ![查看失敗的工作][4]
 
@@ -107,4 +111,8 @@ ms.author: ddove
 
 
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

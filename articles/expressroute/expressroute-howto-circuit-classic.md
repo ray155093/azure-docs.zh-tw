@@ -1,13 +1,13 @@
 ---
-title: 使用傳統部署模型和 PowerShell 建立和修改 ExpressRoute 線路| Microsoft Docs
-description: 本文將逐步引導您建立和佈建 ExpressRoute 線路。 本文也會示範如何檢查狀態、更新或刪除和取消佈建線路。
+title: "使用傳統部署模型和 PowerShell 建立和修改 ExpressRoute 線路 | Microsoft Docs"
+description: "本文將逐步引導您建立和佈建 ExpressRoute 線路。 本文也會示範如何檢查狀態、更新或刪除和取消佈建線路。"
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: 0134d242-6459-4dec-a2f1-4657c3bc8b23
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -15,13 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr;cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: e7931f1b08d09fbe1fa5a5a2d4a11da01e736462
+ms.openlocfilehash: 5fb3200bb2a21624f8718bd50e4c7bb2fc607ba9
+
 
 ---
 # <a name="create-and-modify-an-expressroute-circuit"></a>建立和修改 ExpressRoute 線路
 > [!div class="op_single_selector"]
-> [Azure 入口網站 - Resource Manager](expressroute-howto-circuit-portal-resource-manager.md)
-> [PowerShell - Resource Manager](expressroute-howto-circuit-arm.md)
-> [PowerShell - 傳統](expressroute-howto-circuit-classic.md)
+> * [Azure 入口網站 - Resource Manager](expressroute-howto-circuit-portal-resource-manager.md)
+> * [PowerShell - 資源管理員](expressroute-howto-circuit-arm.md)
+> * [PowerShell - 傳統](expressroute-howto-circuit-classic.md)
 > 
 > 
 
@@ -32,13 +36,13 @@ ms.author: ganesr;cherylmc
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="before-you-begin"></a>開始之前
-### <a name="1.-review-the-prerequisites-and-workflow-articles"></a>1.檢閱必要條件和工作流程文章
+### <a name="1-review-the-prerequisites-and-workflow-articles"></a>1.檢閱必要條件和工作流程文章
 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。  
 
-### <a name="2.-install-the-latest-versions-of-the-azure-powershell-modules"></a>2.安裝最新版的 Azure PowerShell 模組
+### <a name="2-install-the-latest-versions-of-the-azure-powershell-modules"></a>2.安裝最新版的 Azure PowerShell 模組
 請遵循 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
 
-### <a name="3.-log-in-to-your-azure-account-and-select-a-subscription"></a>3.登入您的 Azure 帳戶並選取訂用帳戶
+### <a name="3-log-in-to-your-azure-account-and-select-a-subscription"></a>3.登入您的 Azure 帳戶並選取訂用帳戶
 1. 使用提升權限的 Windows PowerShell 命令提示字元，執行下列 Cmdlet：
    
         Add-AzureAccount
@@ -51,13 +55,13 @@ ms.author: ganesr;cherylmc
         Select-AzureSubscription -SubscriptionName "mysubscriptionname"
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>建立和佈建 ExpressRoute 線路
-### <a name="1.-import-the-powershell-modules-for-expressroute"></a>1.匯入 ExpressRoute 的 PowerShell 模組
+### <a name="1-import-the-powershell-modules-for-expressroute"></a>1.匯入 ExpressRoute 的 PowerShell 模組
  如果您尚未執行此動作，您必須將 Azure 和 ExpressRoute 模組匯入 PowerShell 工作階段，才能開始使用 ExpressRoute Cmdlet。 您要將模組從其安裝所在的位置匯入您的本機電腦。 根據您用來安裝模組的方法而定，位置可能與下列範例所示的不同。 如有必要，請修改範例。  
 
     Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1'
     Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\ExpressRoute\ExpressRoute.psd1'
 
-### <a name="2.-get-the-list-of-supported-providers,-locations,-and-bandwidths"></a>2.取得支援的提供者、位置和頻寬清單
+### <a name="2-get-the-list-of-supported-providers-locations-and-bandwidths"></a>2.取得支援的提供者、位置和頻寬清單
 建立 ExpressRoute 線路之前，您需要有支援的連線提供者、位置和頻寬選項的清單。
 
 PowerShell Cmdlet `Get-AzureDedicatedCircuitServiceProvider` 會傳回此資訊，在稍後的步驟中將會用到：
@@ -72,7 +76,7 @@ PowerShell Cmdlet `Get-AzureDedicatedCircuitServiceProvider` 會傳回此資訊�
 
 您現在已經準備好建立 ExpressRoute 線路。         
 
-### <a name="3.-create-an-expressroute-circuit"></a>3.建立 ExpressRoute 線路
+### <a name="3-create-an-expressroute-circuit"></a>3.建立 ExpressRoute 線路
 以下示範如何透過矽谷的 Equinix 建立 200-Mbps ExpressRoute 線路。 如果您使用不同的提供者和不同的設定，請在您提出要求時替換成該資訊。
 
 > [!IMPORTANT]
@@ -98,7 +102,7 @@ PowerShell Cmdlet `Get-AzureDedicatedCircuitServiceProvider` 會傳回此資訊�
 
     get-help new-azurededicatedcircuit -detailed
 
-### <a name="4.-list-all-the-expressroute-circuits"></a>4.列出所有 ExpressRoute 線路
+### <a name="4-list-all-the-expressroute-circuits"></a>4.列出所有 ExpressRoute 線路
 您可以執行 `Get-AzureDedicatedCircuit` 命令，以取得您建立的所有 ExpressRoute 線路的清單︰
 
     Get-AzureDedicatedCircuit
@@ -131,7 +135,7 @@ PowerShell Cmdlet `Get-AzureDedicatedCircuitServiceProvider` 會傳回此資訊�
 
     get-help get-azurededicatedcircuit -detailed
 
-### <a name="5.-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>5.將服務金鑰傳送給連線提供者以進行佈建
+### <a name="5-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>5.將服務金鑰傳送給連線提供者以進行佈建
  提供服務提供者端目前的佈建狀態相關資訊。  提供 Microsoft 端的狀態。 如需線路佈建狀態的詳細資訊，請參閱 [工作流程](expressroute-workflows.md#expressroute-circuit-provisioning-states) 文章。
 
 當您建立新的 ExpressRoute 線路時，線路會是下列狀態：
@@ -151,7 +155,7 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
     Status                           : Enabled
 
 
-### <a name="6.-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>6.定期檢查線路金鑰的情況和狀態
+### <a name="6-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>6.定期檢查線路金鑰的情況和狀態
 這樣可讓您知道提供者何時已啟用您的線路。 設定線路之後，[ServiceProviderProvisioningState] 會顯示為 [Provisioned]，如下列範例所示：
 
     Get-AzureDedicatedCircuit
@@ -165,7 +169,7 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
     Sku                              : Standard
     Status                           : Enabled
 
-### <a name="7.-create-your-routing-configuration"></a>7.建立路由組態
+### <a name="7-create-your-routing-configuration"></a>7.建立路由組態
 請參閱 [ExpressRoute 線路路由設定 (建立和修改線路對等)](expressroute-howto-routing-classic.md) 一文，取得逐步指示。
 
 > [!IMPORTANT]
@@ -173,7 +177,7 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 > 
 > 
 
-### <a name="8.-link-a-virtual-network-to-an-expressroute-circuit"></a>8.將虛擬網路連結到 ExpressRoute 電路
+### <a name="8-link-a-virtual-network-to-an-expressroute-circuit"></a>8.將虛擬網路連結到 ExpressRoute 電路
 接下來，將虛擬網路連結到 ExpressRoute 線路。 如需逐步指示，請參閱 [將 ExpressRoute 線路連結至虛擬網路](expressroute-howto-linkvnet-classic.md) 。 如果您需要使用傳統部署模型為 ExpressRoute 建立虛擬網路，請參閱 [建立 ExpressRoute 的虛擬網路](expressroute-howto-vnet-portal-classic.md) 中的相關指示。
 
 ## <a name="getting-the-status-of-an-expressroute-circuit"></a>取得 ExpressRoute 線路的狀態
@@ -325,6 +329,9 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 * [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-classic.md)
 * [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

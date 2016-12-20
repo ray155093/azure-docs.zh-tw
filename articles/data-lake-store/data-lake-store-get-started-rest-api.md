@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/27/2016
+ms.date: 11/21/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6001c89804f7443e21e6e2eeecf3f1d3b682be9a
+ms.sourcegitcommit: c157da7bf53e2d0762624e8e71e56e956db04a24
+ms.openlocfilehash: 57af74321c453733daadc1b295dd3df95d0fd052
 
 
 ---
@@ -29,7 +29,8 @@ ms.openlocfilehash: 6001c89804f7443e21e6e2eeecf3f1d3b682be9a
 > * [REST API](data-lake-store-get-started-rest-api.md)
 > * [Azure CLI](data-lake-store-get-started-cli.md)
 > * [Node.js](data-lake-store-manage-use-nodejs.md)
-> 
+> * [Python](data-lake-store-get-started-python.md)
+>
 > 
 
 在本文中，您將了解如何使用 WebHDFS REST API 和 Data Lake Store REST API 執行帳戶管理，以及 Azure Data Lake Store 上的檔案系統作業。 Azure Data Lake Store 會公開自己的 REST API 以進行帳戶管理作業。 不過，因為 Data Lake Store 與 HDFS 和 Hadoop 生態系統相容，所以它支援使用 WebHDFS REST API 進行檔案系統作業。
@@ -47,7 +48,7 @@ ms.openlocfilehash: 6001c89804f7443e21e6e2eeecf3f1d3b682be9a
 ## <a name="how-do-i-authenticate-using-azure-active-directory"></a>如何使用 Azure Active Directory 驗證？
 您可以使用兩種方法來使用 Azure Active Directory 進行驗證。
 
-### <a name="enduser-authentication-interactive"></a>使用者驗證 (互動式)
+### <a name="end-user-authentication-interactive"></a>使用者驗證 (互動式)
 在此案例中，應用程式會提示使用者登入，且會在使用者的內容中執行所有作業。 執行下列步驟以進行互動式驗證。
 
 1. 透過您的應用程式，將使用者重新導向至下列 URL：
@@ -88,7 +89,7 @@ ms.openlocfilehash: 6001c89804f7443e21e6e2eeecf3f1d3b682be9a
 
 如需互動使用者驗證的詳細資料，請參閱 [授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)。
 
-### <a name="servicetoservice-authentication-noninteractive"></a>服務對服務驗證 (非互動式)
+### <a name="service-to-service-authentication-non-interactive"></a>服務對服務驗證 (非互動式)
 在此案例中，應用程式提供自己的認證來執行作業。 為此，您必須發出 POST 要求，如下列所示要求。 
 
     curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
@@ -263,6 +264,6 @@ ms.openlocfilehash: 6001c89804f7443e21e6e2eeecf3f1d3b682be9a
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

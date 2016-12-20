@@ -1,12 +1,12 @@
 ---
-title: 管理 StorSimple 裝置控制器 | Microsoft Docs
-description: 了解如何停止、重新啟動、關閉或重設您的 StorSimple 裝置控制器。
+title: "管理 StorSimple 裝置控制器 | Microsoft Docs"
+description: "了解如何停止、重新啟動、關閉或重設您的 StorSimple 裝置控制器。"
 services: storsimple
-documentationcenter: ''
+documentationcenter: 
 author: alkohli
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: 4ee989d0-956f-4c14-951e-fd4e490ea09d
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/11/2016
 ms.author: alkohli
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 815ada25a548ddf419ac073f57a5153f60a40a58
+
 
 ---
 # <a name="manage-your-storsimple-device-controllers"></a>管理 StorSimple 裝置控制器
@@ -201,6 +205,9 @@ ms.author: alkohli
 * 如果發生任何無法使用本教學課程中所列之程序解決的 StorSimple 裝置控制器相關問題，請 [連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 * 若要深入了解使用 StorSimple Manager 的方式，請移至 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

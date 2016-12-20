@@ -1,12 +1,12 @@
 ---
-title: 使用 Powershell 指令碼來識別適用於集區的單一資料庫 | Microsoft Docs
-description: 彈性資料庫集區是一組彈性資料庫共用的可用資源集合。 本文件提供 Powershell 指令碼，幫助您評估對一組資料庫使用彈性資料庫集區的合適性。
+title: "使用 Powershell 指令碼來識別適用於集區的單一資料庫 | Microsoft Docs"
+description: "彈性資料庫集區是一組彈性資料庫共用的可用資源集合。 本文件提供 Powershell 指令碼，幫助您評估對一組資料庫使用彈性資料庫集區的合適性。"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 author: stevestein
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: db541e94-abc8-4578-bae0-9b8c8ad0170e
 ms.service: sql-database
 ms.devlang: NA
 ms.date: 09/28/2016
@@ -14,6 +14,10 @@ ms.author: sstein
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 47b4890482752d8954a84c59b333b6607d997da3
+
 
 ---
 # <a name="powershell-script-for-identifying-databases-suitable-for-an-elastic-database-pool"></a>識別適用於彈性資料庫集區的資料庫的 PowerShell 指令碼
@@ -272,6 +276,6 @@ $data | %{'{0}' -f $_[0]}
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

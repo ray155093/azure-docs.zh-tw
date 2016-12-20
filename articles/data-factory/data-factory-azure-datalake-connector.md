@@ -1,12 +1,12 @@
 ---
-title: 從 Azure 資料湖存放區來回移動資料 | Microsoft Docs
-description: 了解如何使用 Azure Data Factory 從 Azure 資料湖存放區來回移動資料
+title: "從 Azure Data Lake Store 來回移動資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 從 Azure 資料湖存放區來回移動資料"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: linda33wj
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 25b1ff3c-b2fd-48e5-b759-bb2112122e30
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: jingwang
+translationtype: Human Translation
+ms.sourcegitcommit: 701d82971b7da92fb0946cbfc7f708ad32501ef3
+ms.openlocfilehash: b3957c93a0b536b67f81d7e7be52d918a8e82ead
+
 
 ---
 # <a name="move-data-to-and-from-azure-data-lake-store-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure 資料湖存放區來回移動資料
@@ -21,17 +25,17 @@ ms.author: jingwang
 
 > [!NOTE]
 > 請先建立 Azure Data Lake Store 帳戶，再透過複製活動建立管線，以在 Azure Data Lake Store 中移入/移出資料。 若要了解 Azure Data Lake Store，請參閱 [開始使用 Azure Data Lake Store](../data-lake-store/data-lake-store-get-started-portal.md)。
-> 
+>
 > 請檢閱 [建置您的第一個管線教學課程](data-factory-build-your-first-pipeline.md) ，以了解建立 Data Factory、連結服務、資料集和管線的詳細步驟。 搭配使用 JSON 片段和 Data Factory 編輯器或 Visual Studio 或 Azure PowerShell 來建立 Data Factory 實體。
-> 
-> 
+>
+>
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
-要建立將資料複製到 Azure Data Lake Store/複製 Azure Data Lake Store 之資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。 
+要建立將資料複製到 Azure Data Lake Store/複製 Azure Data Lake Store 之資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure Data Lake Store 和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores) 所說的任何接收器。  
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure Data Lake Store 和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以將資料從任何來源**直接**複製到任何支援的接收器。 如需詳細資訊，請參閱[使用複製活動來移動資料](data-factory-data-movement-activities.md)中的＜支援的資料存放區和格式＞一節。  
 
-## <a name="sample:-copy-data-from-azure-blob-to-azure-data-lake-store"></a>範例：從 Azure Blob 複製資料到 Azure 資料湖存放區
+## <a name="sample-copy-data-from-azure-blob-to-azure-data-lake-store"></a>範例：從 Azure Blob 複製資料到 Azure 資料湖存放區
 下列範例顯示︰
 
 1. [AzureStorage](#azure-storage-linked-service-properties)類型的連結服務。
@@ -74,16 +78,16 @@ ms.author: jingwang
 1. 按一下命令列上的 [新增資料存放區]，然後選取 [Azure Data Lake Store]。
 2. 在 JSON 編輯器中，為 **dataLakeStoreUri** 屬性輸入 Data Lake 的 URI。
 3. 按一下命令列上的 [授權]  按鈕。 應該會出現一個快顯視窗。
-   
+
     ![授權按鈕](./media/data-factory-azure-data-lake-connector/authorize-button.png)
 4. 使用您的認證登入，您應該會看到 JSON 中的 **授權** 屬性現在已指派給值。
 5. (選擇性) 指定 JSON 中選用參數的值，例如 **accountName**、**subscriptionID** 與 **resourceGroupName**，或將這些屬性從 JSON 中刪除。
 6. 按一下命令列的 [部署]  ，部署連結服務。
 
 > [!IMPORTANT]
-> 您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。 請在**權杖到期**和重新部署連結的服務時使用 [授權] 按鈕**重新授權**。 如需詳細資訊，請參閱 [Azure Data Lake Store 連結服務](#azure-data-lake-store-linked-service-properties)一節。 
-> 
-> 
+> 您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。 請在**權杖到期**和重新部署連結的服務時使用 [授權] 按鈕**重新授權**。 如需詳細資訊，請參閱 [Azure Data Lake Store 連結服務](#azure-data-lake-store-linked-service-properties)一節。
+>
+>
 
 **Azure Blob 輸入資料集：**
 
@@ -153,17 +157,17 @@ ms.author: jingwang
 
     {
         "name": "AzureDataLakeStoreOutput",
-        "properties": {
+          "properties": {
             "type": "AzureDataLakeStore",
             "linkedServiceName": "AzureDataLakeStoreLinkedService",
             "typeProperties": {
                 "folderPath": "datalake/output/"
             },
             "availability": {
-                "frequency": "Hour",
-                "interval": 1
+                  "frequency": "Hour",
+                  "interval": 1
             }
-        }
+          }
     }
 
 
@@ -181,46 +185,46 @@ ms.author: jingwang
             "description":"pipeline with copy activity",
             "activities":
             [  
-                {
+                  {
                     "name": "AzureBlobtoDataLake",
                     "description": "Copy Activity",
                     "type": "Copy",
                     "inputs": [
-                    {
+                      {
                         "name": "AzureBlobInput"
-                    }
+                      }
                     ],
                     "outputs": [
-                    {
+                      {
                         "name": "AzureDataLakeStoreOutput"
-                    }
+                      }
                     ],
                     "typeProperties": {
                         "source": {
                             "type": "BlobSource",
                             "treatEmptyAsNull": true,
                             "blobColumnSeparators": ","
-                        },
-                        "sink": {
+                          },
+                          "sink": {
                             "type": "AzureDataLakeStoreSink"
-                        }
+                          }
                     },
-                    "scheduler": {
-                        "frequency": "Hour",
-                        "interval": 1
+                       "scheduler": {
+                          "frequency": "Hour",
+                          "interval": 1
                     },
                     "policy": {
-                        "concurrency": 1,
-                        "executionPriorityOrder": "OldestFirst",
-                        "retry": 0,
-                        "timeout": "01:00:00"
+                          "concurrency": 1,
+                          "executionPriorityOrder": "OldestFirst",
+                          "retry": 0,
+                          "timeout": "01:00:00"
                     }
-                }
+                  }
             ]
         }
     }
 
-## <a name="sample:-copy-data-from-azure-data-lake-store-to-azure-blob"></a>範例：將資料從 Azure 資料湖存放區複製到 Azure Blob
+## <a name="sample-copy-data-from-azure-data-lake-store-to-azure-blob"></a>範例：將資料從 Azure 資料湖存放區複製到 Azure Blob
 下列範例顯示︰
 
 1. [AzureDataLakeStore](#azure-data-lake-linked-service-properties)類型的連結服務。
@@ -247,8 +251,8 @@ ms.author: jingwang
 
 > [!NOTE]
 > 請參閱上個範例中的步驟，以取得授權 URL。  
-> 
-> 
+>
+>
 
 **Azure 儲存體連結服務：**
 
@@ -268,7 +272,7 @@ ms.author: jingwang
 
     {
         "name": "AzureDataLakeStoreInput",
-        "properties":
+          "properties":
         {
             "type": "AzureDataLakeStore",
             "linkedServiceName": "AzureDataLakeStoreLinkedService",
@@ -284,16 +288,16 @@ ms.author: jingwang
             "external": true,
             "availability": {
                 "frequency": "Hour",
-                "interval": 1
+                  "interval": 1
             },
             "policy": {
-                "externalData": {
+                  "externalData": {
                     "retryInterval": "00:01:00",
                     "retryTimeout": "00:10:00",
                     "maximumRetry": 3
-                }
+                  }
             }
-        }
+          }
     }
 
 **Azure Blob 輸出資料集：**
@@ -365,7 +369,7 @@ ms.author: jingwang
             "end":"2014-06-01T19:00:00",
             "description":"pipeline for copy activity",
             "activities":[  
-                {
+                  {
                     "name": "AzureDakeLaketoBlob",
                     "description": "copy activity",
                     "type": "Copy",
@@ -382,22 +386,22 @@ ms.author: jingwang
                     "typeProperties": {
                         "source": {
                             "type": "AzureDataLakeStoreSource",
-                        },
-                        "sink": {
+                          },
+                          "sink": {
                             "type": "BlobSink"
-                        }
+                          }
                     },
-                    "scheduler": {
-                        "frequency": "Hour",
-                        "interval": 1
+                       "scheduler": {
+                          "frequency": "Hour",
+                          "interval": 1
                     },
                     "policy": {
-                        "concurrency": 1,
-                        "executionPriorityOrder": "OldestFirst",
-                        "retry": 0,
-                        "timeout": "01:00:00"
+                          "concurrency": 1,
+                          "executionPriorityOrder": "OldestFirst",
+                          "retry": 0,
+                          "timeout": "01:00:00"
                     }
-                }
+                  }
              ]
         }
     }
@@ -424,7 +428,7 @@ ms.author: jingwang
 | 不受 Azure Active Directory 管理的使用者帳戶 ((@hotmail.com,、@live.com, 等)。 |12 小時 |
 | 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
-如果您在此權杖的到期時間之前變更密碼，權杖會立即到期，且您會看到本節所述的錯誤。 
+如果您在此權杖的到期時間之前變更密碼，權杖會立即到期，且您會看到本節所述的錯誤。
 
 如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 **sessionId** 和 **authorization** 屬性的值：
 
@@ -452,7 +456,7 @@ ms.author: jingwang
         }
     }
 
-請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 針對程式碼中使用的 WindowsFormsWebAuthenticationDialog 類別，將參考新增至 **2.9.10826.1824** 版的 **Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll**。 
+請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 針對程式碼中使用的 WindowsFormsWebAuthenticationDialog 類別，將參考新增至 **2.9.10826.1824** 版的 **Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll**。
 
 ## <a name="azure-data-lake-dataset-type-properties"></a>Azure 資料湖資料集類型屬性
 如需定義資料集的 JSON 區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
@@ -503,39 +507,39 @@ ms.author: jingwang
 
     {  
         "name": "AzureDatalakeStoreDataSet",  
-        "properties": {  
+          "properties": {  
             "availability": {  
                 "frequency": "Day",  
-                "interval": 1  
+                  "interval": 1  
             },  
             "type": "AzureDatalakeStore",  
             "linkedServiceName": "DataLakeStoreLinkedService",  
             "typeProperties": {  
                 "fileName": "pagecounts.csv.gz",  
-                "folderPath": "compression/file/",  
-                "compression": {  
+                  "folderPath": "compression/file/",  
+                  "compression": {  
                     "type": "GZip",  
                     "level": "Optimal"  
-                }  
+                  }  
             }  
-        }  
+          }  
     }  
 
 [壓縮]  區段有兩個屬性：  
 
 * **類型：**壓縮轉碼器，它可以是 **GZIP**、**Deflate** 或 **BZIP2**。  
-* **層級：**壓縮比，它可以是**最佳**或**最快**。 
-  
-  * **最快：** 即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。 
-  * **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。 
-    
-    如需詳細資訊，請參閱 [壓縮層級](https://msdn.microsoft.com/library/system.io.compression.compressionlevel.aspx) 主題。 
+* **層級：**壓縮比，它可以是**最佳**或**最快**。
+
+  * **最快：** 即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。
+  * **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。
+
+    如需詳細資訊，請參閱 [壓縮層級](https://msdn.microsoft.com/library/system.io.compression.compressionlevel.aspx) 主題。
 
 假設範例資料集做為複製活動的輸出。 複製活動會透過使用最佳比率的 GZIP 轉碼器壓縮初輸資料，然後將壓縮的資料寫入到 Azure Data Lake Store 中名為 pagecounts.csv.gz 的檔案。   
 
-當您在輸入資料集 JSON 中指定壓縮屬性，管線會從來源讀取壓縮的資料。 當您在輸出資料集 JSON 中指定屬性，複製活動可以將壓縮的資料寫入到目的地。 以下是一些範例案例： 
+當您在輸入資料集 JSON 中指定壓縮屬性，管線會從來源讀取壓縮的資料。 當您在輸出資料集 JSON 中指定屬性，複製活動可以將壓縮的資料寫入到目的地。 以下是一些範例案例：
 
-* 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮，並將結果資料寫入到 Azure SQL Database。 您可以在此情況下利用壓縮 JSON 屬性定義輸入 Azure 資料湖存放區。 
+* 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮，並將結果資料寫入到 Azure SQL Database。 您可以在此情況下利用壓縮 JSON 屬性定義輸入 Azure 資料湖存放區。
 * 從來自內部部署檔案系統之純文字檔案讀取資料、使用 GZip 格式加以壓縮並將壓縮的資料寫入到 Azure 資料湖存放區。 您可以在此情況下利用壓縮 JSON 屬性定義輸出 Azure 資料湖資料集。  
 * 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮、使用 BZIP2 將其壓縮，並將結果資料寫入到 Azure 資料湖存放區。 您可以分別將輸入和輸出資料集的壓縮類型設定為 GZIP 和 BZIP2。   
 
@@ -565,6 +569,8 @@ ms.author: jingwang
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: DocumentDB 的設計模式：社交媒體應用程式 | Microsoft Docs
-description: 了解具有 DocumentDB 與其他 Azure 服務之儲存體彈性的社交網路設計模式。
-keywords: 社交媒體應用程式
+title: "DocumentDB 的設計模式：社交媒體應用程式 | Microsoft Docs"
+description: "了解具有 DocumentDB 與其他 Azure 服務之儲存體彈性的社交網路設計模式。"
+keywords: "社交媒體應用程式"
 services: documentdb
 author: ealsur
 manager: jhubbard
-editor: ''
-documentationcenter: ''
-
+editor: 
+documentationcenter: 
+ms.assetid: 2dbf83a7-512a-4993-bf1b-ea7d72e095d9
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: mimig
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 6c9e285834707b668086ceab7fdde582f0cd87cc
+
 
 ---
 # <a name="going-social-with-documentdb"></a>使用 DocumentDB 進行社交活動
@@ -131,7 +135,7 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 
 接著使用 [擴充功能](https://github.com/richorama/AzureStorageExtensions#azuregraphstore) ，將實際的粉絲圖表儲存於 Azure 儲存體資料表，以允許進行簡單的「A-跟隨-B」儲存和擷取。 如此一來，我們就可將確切粉絲清單的擷取程序 (當我們需要它時) 委派給 Azure 儲存體資料表，但對於快速號碼查閱，我們仍會繼續使用 DocumentDB。
 
-## <a name="the-“ladder”-pattern-and-data-duplication"></a>「階梯」模式與資料複製
+## <a name="the-ladder-pattern-and-data-duplication"></a>「階梯」模式與資料複製
 您可能已經注意到，參考貼文的 JSON 文件中，有一位使用者出現多次。 您猜的沒錯，這意謂著在使用這種反正規化的情況下，代表使用者的資訊可能會出現在多個位置。
 
 為了能更快速地查詢，所以產生了資料重複的情況。 這個副作用產生的問題是，如果某些動作導致使用者的資料變更，我們就得尋找該使用者進行過的所有活動，並全數更新。 聽起來不太實際，對吧？
@@ -227,6 +231,9 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 
 或者，您可以遵循 [DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)以深入了解 DocumentDB。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

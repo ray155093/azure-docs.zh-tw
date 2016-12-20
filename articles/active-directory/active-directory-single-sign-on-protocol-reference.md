@@ -1,12 +1,12 @@
 ---
-title: Azure 單一登入 SAML 通訊協定 | Microsoft Docs
-description: 本文說明 Azure Active Directory 中的單一登入 SAML 通訊協定
+title: "Azure 單一登入 SAML 通訊協定 | Microsoft Docs"
+description: "本文說明 Azure Active Directory 中的單一登入 SAML 通訊協定"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: ad8437f5-b887-41ff-bd77-779ddafc33fb
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: priyamo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 548191cfe851a37893f068e8de482ed6e28e476b
+
 
 ---
 # <a name="single-sign-on-saml-protocol"></a>單一登入 SAML 通訊協定
@@ -246,7 +250,7 @@ Azure AD 會簽署判斷提示以回應成功的登入。 `Signature` 元素包�
       </Attribute>
       ...
 </AttributeStatement>
-```     
+```        
 
 * **Name 宣告**：`Name` 屬性的值 (`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`) 是已驗證使用者的使用者主體名稱，例如 `testuser@managedtenant.com`。
 * **ObjectIdentifier 宣告**：`ObjectIdentifier` 屬性的值 (`http://schemas.microsoft.com/identity/claims/objectidentifier`) 是目錄物件的 `ObjectId`，代表 Azure AD 中已驗證的使用者。 `ObjectId` 是不可變的、全域唯一的，且重複使用已驗證使用者的安全識別碼。
@@ -267,6 +271,6 @@ Azure AD 會簽署判斷提示以回應成功的登入。 `Signature` 元素包�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

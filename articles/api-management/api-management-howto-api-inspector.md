@@ -1,72 +1,76 @@
 ---
-title: 如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫
-description: 了解如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫。
+title: "如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫"
+description: "了解如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫。"
 services: api-management
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 4b222327-c8a4-4f33-9a06-adff2a9834d9
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/24/2016
+ms.date: 10/25/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: dd806a187d1ac2c34020325753ac4f68b44064de
+
 
 ---
-# 如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫
-API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解。API 偵測器可以程式設計的方式使用，也可以直接從開發人員入口網站使用。
+# <a name="how-to-use-the-api-inspector-to-trace-calls-in-azure-api-management"></a>如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫
+API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解。 API 偵測器可以程式設計的方式使用，也可以直接從開發人員入口網站使用。 
 
-除了追蹤作業，API 偵測器也會追蹤[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)評估。如需示範，請參閱[雲端報導第 177 集：更多 API 管理功能](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)，並向前快轉到 21:00。
+除了追蹤作業，API 偵測器也會追蹤 [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx) 評估。 如需示範，請參閱 [雲端報導第 177 集：更多 API 管理功能](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) ，並向前快轉到 21:00。
 
 本指南提供使用 API 偵測器的逐步解說。
 
 > [!NOTE]
-> 只有當要求包含屬於[系統管理員](api-management-howto-create-groups.md)的訂用帳戶金鑰，才會產生其 API 偵測器追蹤並提供使用。
+> 只有當要求包含屬於 [系統管理員](api-management-howto-create-groups.md) 的訂用帳戶金鑰，才會產生其 API 偵測器追蹤並提供使用。
 > 
 > 
 
 ## <a name="trace-call"> </a> 使用 API 偵測器來追蹤呼叫
-若要使用 API 偵測器，請將 **ocp-apim-trace: true** 要求標頭新增至作業呼叫，然後使用 **ocp-apim-trace-location** 回應標頭所指出的 URL 來下載並檢查追蹤。這可以透過程式設計來進行，也可以直接從開發人員入口網站來執行。
+若要使用 API 偵測器，請將 **ocp-apim-trace: true** 要求標頭新增至作業呼叫，然後使用 **ocp-apim-trace-location** 回應標頭所指出的 URL 來下載並檢查追蹤。 這可以透過程式設計來進行，也可以直接從開發人員入口網站來執行。
 
-本教學課程示範如何使用 API 偵測器來追蹤作業，方法是使用[管理您的第一個 API](api-management-get-started.md) 入門教學課程中設定的基本計算機 API。如果您尚未完成該教學課程，匯入基本計算機 API 只需要幾分鐘的時間，或可以使用您選擇的另一個 API (例如 Echo API)。每個 API 管理服務執行個體隨附預先設定的範例 Echo API，可供您試驗與了解 API 管理。Echo API 會將任何傳送給它的輸入傳回。若要使用該 API，您可以叫用任何 HTTP 指令動詞，而傳回值就是您傳送的值。
+本教學課程示範如何使用 API 偵測器來追蹤作業，方法是使用 [管理您的第一個 API](api-management-get-started.md) 入門教學課程中設定的基本計算機 API。 如果您尚未完成該教學課程，匯入基本計算機 API 只需要幾分鐘的時間，或可以使用您選擇的另一個 API (例如 Echo API)。 每個 API 管理服務執行個體隨附預先設定的範例 Echo API，可供您試驗與了解 API 管理。 Echo API 會將任何傳送給它的輸入傳回。 若要使用該 API，您可以叫用任何 HTTP 指令動詞，而傳回值就是您傳送的值。 
 
-請在 Azure 傳統入口網站中的 API 管理服務按一下 [開發人員入口網站]您可以從開發人員入口網站直接呼叫作業，以便檢視和測試 API 的操作。
+若要開始進行，請在您「API 管理」服務的「Azure 入口網站」中按一下 [開發人員入口網站]。 您可以從開發人員入口網站直接呼叫作業，以便檢視和測試 API 的操作。
 
-> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理教學課程][開始使用 Azure API 管理教學課程]中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 如果您尚未建立「API 管理」服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
 > 
 > 
 
 ![API Management developer portal][api-management-developer-portal-menu]
 
-從上方功能表中按一下 [**API**]，然後按一下 [**基本計算機**]。
+從上方功能表中按一下 [API]，然後按一下 [基本計算機]。
 
 ![Echo API][api-management-api]
 
-按一下 [**試試看**] 來嘗試 [**加入兩個整數**] 作業。
+按一下 [試試看] 來嘗試 [新增兩個整數] 作業。
 
 ![試試看][api-management-open-console]
 
 保留預設的參數值，然後從 **subscription-key** 下拉式清單選取您想要使用的產品的訂閱金鑰。
 
-根據預設，開發人員入口網站中已將 **Ocp-Apim-Trace** 標頭設為 **true**。此標頭會設定是否產生追蹤。
+根據預設，開發人員入口網站中已將 **Ocp-Apim-Trace** 標頭設為 **true**。 此標頭會設定是否產生追蹤。
 
 ![傳送][api-management-http-get]
 
-按一下 [**傳送**] 來叫用作業。
+按一下 [ **傳送** ] 來叫用作業。
 
 ![傳送][api-management-send-results]
 
-在回應標頭中，將會有一個 **ocp-apim-trace-location**，且值類似下列範例。
+在回應標頭中，將會有一個 **ocp-apim-trace-location** ，且值類似下列範例。
 
     ocp-apim-trace-location : https://contosoltdxw7zagdfsprykd.blob.core.windows.net/apiinspectorcontainer/ZW3e23NsW4wQyS-SHjS0Og2-2?sv=2013-08-15&sr=b&sig=Mgx7cMHsLmVDv%2B%2BSzvg3JR8qGTHoOyIAV7xDsZbF7%2Bk%3D&se=2014-05-04T21%3A00%3A13Z&sp=r&verify_guid=a56a17d83de04fcb8b9766df38514742
 
 可從指定的位置下載追蹤來檢閱，如下一個步驟所示。
 
 ## <a name="inspect-trace"> </a>檢查追蹤
-若要檢閱追蹤裡的值，請從 **ocp-apim-trace-location** URL 下載追蹤檔案。它是一個 JSON 格式的文字檔，且包含類似下列範例的項目。
+若要檢閱追蹤裡的值，請從 **ocp-apim-trace-location** URL 下載追蹤檔案。 它是一個 JSON 格式的文字檔，且包含類似下列範例的項目。
 
     {
         "traceId": "abcd8ea63d134c1fabe6371566c7cbea",
@@ -228,23 +232,23 @@ API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解
     }
 
 ## <a name="next-steps"> </a>後續步驟
-* 請觀看[雲端報導第 177 集：更多 API 管理功能](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)中追蹤原則運算式的示範。向前快轉到 21:00 來查看示範。
+* 請觀看 [雲端報導第 177 集：更多 API 管理功能](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)中追蹤原則運算式的示範。 向前快轉到 21:00 來查看示範。
 
 > [!VIDEO https://channel9.msdn.com/Shows/Cloud+Cover/Episode-177-More-API-Management-Features-with-Vlad-Vinogradsky/player]
 > 
 > 
 
-[Use API Inspector to trace a call]: #trace-call
-[Inspect the trace]: #inspect-trace
-[Next steps]: #next-steps
+[使用 API 偵測器來追蹤呼叫]: #trace-call
+[檢查追蹤]: #inspect-trace
+[後續步驟]: #next-steps
 
-[Configure API settings]: api-management-howto-create-apis.md#configure-api-settings
-[Responses]: api-management-howto-add-operations.md#responses
-[How create and publish a product]: api-management-howto-add-products.md
+[進行 API 設定]: api-management-howto-create-apis.md#configure-api-settings
+[回應]: api-management-howto-add-operations.md#responses
+[如何建立和發佈產品]: api-management-howto-add-products.md
 
-[開始使用 Azure API 管理教學課程]: api-management-get-started.md
+[建立 API 管理服務執行個體]: api-management-get-started.md
 [建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
-[Azure Classic Portal]: https://manage.windowsazure.com/
+[Azure 傳統入口網站]: https://manage.windowsazure.com/
 
 
 [api-management-developer-portal-menu]: ./media/api-management-howto-api-inspector/api-management-developer-portal-menu.png
@@ -260,4 +264,7 @@ API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解
 
 
 
-<!---HONumber=AcomDC_0831_2016-->
+
+<!--HONumber=Nov16_HO3-->
+
+

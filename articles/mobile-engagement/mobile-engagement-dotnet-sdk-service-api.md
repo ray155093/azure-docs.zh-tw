@@ -1,12 +1,12 @@
 ---
-title: 使用 .NET SDK 存取 Azure Mobile Engagement 服務 API
-description: 描述如何使用 Mobile Engagement .NET SDK 存取 Azure Mobile Engagement 服務 API
+title: "使用 .NET SDK 存取 Azure Mobile Engagement 服務 API"
+description: "描述如何使用 Mobile Engagement .NET SDK 存取 Azure Mobile Engagement 服務 API"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: c07728aa-43f2-4238-8b4a-c9eddf9d838b
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
@@ -14,18 +14,23 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 57b2abc37551a782cb7106b9fc4540ce2ba37732
+
 
 ---
-# 使用 .NET SDK 存取 Azure Mobile Engagement 服務 API
-Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推送活動等。若要與這些 API 互動，我們也提供您 [Swagger 檔案](https://github.com/Azure/azure-rest-api-specs/blob/master/arm-mobileengagement/2014-12-01/swagger/mobile-engagement.json)，可以與工具搭配使用來針對您慣用的語言產生 SDK。我們建議使用 [AutoRest](https://github.com/Azure/AutoRest) 工具從我們的 Swagger 檔案產生 SDK。
+# <a name="using-net-sdk-to-access-azure-mobile-engagement-service-apis"></a>使用 .NET SDK 存取 Azure Mobile Engagement 服務 API
+Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推送活動等。若要與這些 API 互動，我們也提供您 [Swagger 檔案](https://github.com/Azure/azure-rest-api-specs/blob/master/arm-mobileengagement/2014-12-01/swagger/mobile-engagement.json)，可以與工具搭配使用來針對您慣用的語言產生 SDK。 我們建議使用 [AutoRest](https://github.com/Azure/AutoRest) 工具從我們的 Swagger 檔案產生 SDK。 
 
-我們已經以類似的方式建立 .NET SDK，可讓您使用 C# 包裝函式與這些 API 互動，且您不需要自行執行驗證權杖交涉和重新整理。
+我們已經以類似的方式建立 .NET SDK，可讓您使用 C# 包裝函式與這些 API 互動，且您不需要自行執行驗證權杖交涉和重新整理。  
 
 這個範例逐步說明使用 .NET SDK 所遵循的一組步驟：
 
-1. 首先，您必須使用 Azure Active Directory 為您的 API 設定驗證，如[這裡](mobile-engagement-api-authentication.md#authentication)所述。在這些步驟的結尾，您應該會有有效的 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。
-2. 我們將使用簡單的 Windows 主控台應用程式，示範使用 .NET SDK 建立公告行銷活動的案例。開啟 Visual Studio，建立 [主控台應用程式]。
-3. 接下來您必須下載 .NET SDK，它在 Nuget 資源庫 ([這裡](https://www.nuget.org/packages/Microsoft.Azure.Management.Engagement/)) 中以 **Microsoft Azure Engagement Management Library (Microsoft Azure Engagement 管理資源庫)** 提供。如果您要從 Visual Studio 安裝 Nuget，搜尋套件時必須確定已選取標示 [包括發行前版本] 的選項：
+1. 首先，您必須使用 Azure Active Directory 為您的 API 設定驗證，如 [這裡](mobile-engagement-api-authentication.md#authentication)所述。 在這些步驟的結尾，您應該會有有效的 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。 
+2. 我們將使用簡單的 Windows 主控台應用程式，示範使用 .NET SDK 建立公告行銷活動的案例。 開啟 Visual Studio，建立 [主控台應用程式] 。   
+3. 接下來您必須下載 .NET SDK，它在 Nuget 資源庫 ( **這裡** ) 中以 [Microsoft Azure Engagement Management Library (Microsoft Azure Engagement 管理資源庫)](https://www.nuget.org/packages/Microsoft.Azure.Management.Engagement/)提供。
+   如果您要從 Visual Studio 安裝 Nuget，搜尋套件時必須確定已選取標示 [包括發行前版本]  的選項：
    
     ![][1]
 4. 在 `Program.cs` 檔案中，加入下列命名空間：
@@ -42,7 +47,7 @@ Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推
         const string SUBSCRIPTION_ID = "<Your Subscription Id>";
    
         // This is the Azure Resource group concept for grouping together resources 
-        //  see here: https://azure.microsoft.com/documentation/articles/resource-group-portal/
+        //  see here: https://azure.microsoft.com/en-us/documentation/articles/resource-group-portal/
         const string RESOURCE_GROUP = "";
    
         // For Mobile Engagement operations
@@ -84,15 +89,15 @@ Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推
         }
    
    > [!IMPORTANT]
-   > 請注意，您必須使用 Azure 管理入口網站中針對 AppName 參數定義的**應用程式資源名稱**。
+   > 請注意，您必須使用 Azure 管理入口網站中針對 AppName 參數定義的 **應用程式資源名稱** 。 
    > 
    > 
-9. 最後，定義 CreateCampaign 方法，它會負責使用先前初始化的 EngagementClient 來建立含有標題和訊息的簡單**隨時**及**僅通知**活動：
+9. 最後，定義 CreateCampaign 方法，它會負責使用先前初始化的 EngagementClient 來建立含有標題和訊息的簡單**隨時** &  **僅通知**活動： 
    
         private async static Task CreateCampaign()
         {
             //  Refer to the Announcement Campaign format from here - 
-            //      https://msdn.microsoft.com/zh-TW/library/azure/mt683751.aspx
+            //      https://msdn.microsoft.com/en-us/library/azure/mt683751.aspx
             // Make sure you are passing all the non-optional parameters
             Campaign parameters = new Campaign(
                 name:"WelcomeCampaign",
@@ -102,7 +107,7 @@ Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推
                 deliveryTime:"any"
                 );
    
-            // Refer to the Campaign Kinds from here - https://msdn.microsoft.com/zh-TW/library/azure/mt683742.aspx
+            // Refer to the Campaign Kinds from here - https://msdn.microsoft.com/en-us/library/azure/mt683742.aspx
             CampaignStateResult result = 
                 await engagementClient.Campaigns.CreateAsync(CampaignKinds.Announcements, parameters);
             Console.WriteLine("Campaign Id '{0}' was created successfully and it is in '{1}' state", result.Id, result.State);
@@ -115,4 +120,8 @@ Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推
 
 [1]: ./media/mobile-engagement-dotnet-sdk-service-api/include-prerelease.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

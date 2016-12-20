@@ -83,18 +83,20 @@
 
 
 # 參考
-## [Java SDK](documentdb-sdk-java.md)
-## [.NET SDK](documentdb-sdk-dotnet.md)
-## [.NET 核心 SDK](documentdb-sdk-dotnet-core.md)
-## [.NET 範例](documentdb-dotnet-samples.md)
-## [Node.js SDK](documentdb-sdk-node.md)
-## [Node.js 範例](documentdb-nodejs-samples.md)
-## [Python SDK](documentdb-sdk-python.md)
-## [Python 範例](documentdb-python-samples.md)
-## [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
-## [SQL 語法功能提要](documentdb-sql-query-cheat-sheet.md)
+## [Java](documentdb-sdk-java.md)
+## [.NET](documentdb-sdk-dotnet.md)
+## [.NET Core](documentdb-sdk-dotnet-core.md)
+## [Node.js](documentdb-sdk-node.md)
+## [Python](documentdb-sdk-python.md)
 ## [REST](/rest/api/documentdb/)
 ## [REST 資源提供者](/rest/api/documentdbresourceprovider/)
+
+# 相關參考
+## [.NET 範例](documentdb-dotnet-samples.md)
+## [Node.js 範例](documentdb-nodejs-samples.md)
+## [Python 範例](documentdb-python-samples.md)
+## [SQL 語法](https://msdn.microsoft.com/library/azure/dn782250.aspx)
+## [SQL 語法功能提要](documentdb-sql-query-cheat-sheet.md)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/documentdb/)
@@ -110,6 +112,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 SanSan 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 SanSan 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 SanSan 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 SanSan 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: f653a0f2-c44a-4670-b936-68c136b578ea
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2533338698478a4d9aa07aace93c9bbecb0b3350
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-sansan"></a>教學課程：Azure Active Directory 與 SanSan 整合
+# <a name="tutorial-azure-active-directory-integration-with-sansan"></a>教學課程：Azure Active Directory 與 SanSan 整合
 在本教學課程中，您會了解如何整合 SanSan 與 Azure Active Directory (Azure AD)。
 
 SanSan 與 Azure AD 整合提供下列優點：
@@ -113,14 +117,14 @@ SanSan 與 Azure AD 整合提供下列優點：
 
     b. 在 [識別碼] 文字方塊中，以下列模式輸入 URL： 
 
-      | Environment             | URL |
-      | :--                     | :-- |
-      | PC Web                  | `https://ap.sansan.com/v/saml2/<company name>`|
-      | 原生行動應用程式       | `https://internal.api.sansan.com/saml2/<company name>` |
-      | 行動瀏覽器設定 | `https://ap.sansan.com/s/saml2/<company name>` |
+    | Environment             | URL |
+    | :--                     | :-- |
+    | PC Web                  | `https://ap.sansan.com/v/saml2/<company name>`|
+    | 原生行動應用程式       | `https://internal.api.sansan.com/saml2/<company name>` |
+    | 行動瀏覽器設定 | `https://ap.sansan.com/s/saml2/<company name>` |
 
 
-    c. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    c. 按一下頁面底部的 [新增] 來單一登入應用程式。
 
 1. 在 [設定在 SanSan 單一登入]  頁面上，執行下列步驟：
    
@@ -177,7 +181,7 @@ SanSan 與 Azure AD 整合提供下列優點：
    
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sansan-tutorial/create_aaduser_06.png) 
@@ -190,7 +194,7 @@ SanSan 與 Azure AD 整合提供下列優點：
    
    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sansan-tutorial/create_aaduser_07.png) 
@@ -200,7 +204,7 @@ SanSan 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-an-sansan-test-user"></a>建立 SanSan 測試使用者
 在本節中，您要在 SanSan 中建立名為 Britta Simon 的使用者。 必須先在 SanSan 應用程式中佈建使用者，SanSan 應用程式才能執行 SSO。 
@@ -259,6 +263,6 @@ SanSan 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

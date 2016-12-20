@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect 同步處理：排程器 | Microsoft Docs
-description: 本主題說明 Azure AD Connect 同步處理中內建的排程器功能。
+title: "Azure AD Connect 同步：排程器 | Microsoft Docs"
+description: "本主題說明 Azure AD Connect 同步處理中內建的排程器功能。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: AndKjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 6b1a598f-89c0-4244-9b20-f4aaad5233cf
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/04/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 41b2cdf8fec8a0e3cb83682afdfb5c974452fe47
+
 
 ---
-# <a name="azure-ad-connect-sync:-scheduler"></a>Azure AD Connect 同步處理：排程器
+# <a name="azure-ad-connect-sync-scheduler"></a>Azure AD Connect 同步處理：排程器
 本主題說明 Azure AD Connect 同步處理 (又稱為 同步處理引擎) 中內建的排程器。
 
 此功能是隨組建 1.1.105.0 (於 2016 年 2 月發行) 一起導入。
@@ -157,6 +161,9 @@ Get-ADSyncConnectorRunStatus
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

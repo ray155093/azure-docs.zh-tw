@@ -1,101 +1,108 @@
 ---
-title: Service Bus messaging samples overview | Microsoft Docs
-description: Categorizes and describes Service Bus messaging samples with links to each.
-services: service-bus
+title: "服務匯流排傳訊範例概觀 | Microsoft Docs"
+description: "分類及描述服務匯流排傳訊範例與每個範例的連結。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 0b420343-2d2a-4c65-98f1-ee0e39ef55c8
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/07/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 719403ca2ef90cdcf5f76fe15f7a33095e71a74c
+
 
 ---
-# <a name="service-bus-messaging-samples"></a>Service Bus messaging samples
-The Service Bus messaging samples demonstrate key features in [Service Bus messaging](https://azure.microsoft.com/services/service-bus/) (cloud service) and [Service Bus for Windows Server](https://msdn.microsoft.com/library/dn282144.aspx). This article categorizes and describes the samples available, with links to each.
+# <a name="service-bus-messaging-samples"></a>服務匯流排傳訊範例
+服務匯流排傳訊範例會示範[服務匯流排](https://azure.microsoft.com/services/service-bus/) (雲端服務) 和 [Windows Server 服務匯流排](https://msdn.microsoft.com/library/dn282144.aspx)中的重要功能。 本主題分類及描述可用的範例與每個範例的連結。
 
 > [!NOTE]
-> Service Bus samples are not installed with the SDK. To obtain the samples, visit the [Azure SDK samples page](https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=5).
+> 服務匯流排範例不會與 SDK 一起安裝。 若要取得範例，請造訪 [Azure SDK 範例頁面](https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=5)。
 > 
-> Additionally, there is an updated set of Service Bus messaging samples [here](https://github.com/Azure-Samples/azure-servicebus-messaging-samples) (as of this writing, they are not described in this article).  
+> 此外， [這裡](https://github.com/Azure-Samples/azure-servicebus-messaging-samples) 提供一組更新過的服務匯流排訊息範例 (在進行這項撰寫時，本文未說明過它們)。  
 > 
 > 
 
-For relay samples, see [Service Bus relay samples](../service-bus-relay/service-bus-relay-samples.md).
+如需轉送範例，請參閱[服務匯流排轉送範例](../service-bus-relay/service-bus-relay-samples.md)。
 
-## <a name="service-bus-messaging"></a>Service Bus messaging
-The following samples illustrate how to write applications that use Service Bus messaging.
+## <a name="service-bus-messaging"></a>服務匯流排傳訊
+下列範例會說明如何撰寫使用服務匯流排傳訊的應用程式。
 
-Note that the messaging samples require a connection string to access your Service Bus namespace.
+請注意，傳訊範例需要連接字串以存取服務匯流排命名空間。
 
-### <a name="to-obtain-a-connection-string-for-azure-service-bus"></a>To obtain a connection string for Azure Service Bus
-1. Log on to the [Azure portal](http://portal.azure.com).
-2. In the left-hand column, click **Service Bus**.
-3. Click the name of your namespace in the list.
-4. In the namespace blade, click **Shared access policies**.
-5. In the **Shared access policies** blade, click **RootManageSharedAccessKey**.
-6. Copy the connection string to the clipboard.
+### <a name="to-obtain-a-connection-string-for-azure-service-bus"></a>取得 Azure 服務匯流排的連接字串。
+1. 登入 [Azure 入口網站](http://portal.azure.com)。
+2. 在左側欄中，按一下 [服務匯流排] 。
+3. 按一下清單中的命名空間名稱。
+4. 在命名空間刀鋒視窗中，按一下 [共用存取原則]。
+5. 在 [共用存取原則] 刀鋒視窗中，按一下 **RootManageSharedAccessKey**。
+6. 將連接字串複製到剪貼簿。
 
-### <a name="to-obtain-a-connection-string-for-service-bus-for-windows-server"></a>To obtain a connection string for Service Bus for Windows Server
-1. Run the following PowerShell cmdlet:
+### <a name="to-obtain-a-connection-string-for-service-bus-for-windows-server"></a>取得 Service Bus for Windows Server 的連接字串
+1. 執行下列 PowerShell cmdlet：
    
     ```
     get-sbClientConfiguration
     ```
-2. Paste the connection string into the App.config file for the sample.
+2. 將連接字串貼到範例的 App.config 檔案。
 
-### <a name="getting-started-samples"></a>Getting started samples
-These samples describe basic messaging functionality.
+### <a name="getting-started-samples"></a>開始使用範例
+這些範例說明基本的傳訊功能。
 
-| Sample Name | Description | Minimum SDK Version | Availability |
+| 範例名稱 | 說明 | 最低需求 SDK 版本 | Availability |
 | --- | --- | --- | --- |
-| [Getting Started: Messaging with Queues](http://code.msdn.microsoft.com/Getting-Started-Brokered-aa7a0ac3) |Demonstrates how to use Microsoft Azure Service Bus to send and receive messages from a queue. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Getting Started: Messaging With Topics](http://code.msdn.microsoft.com/Getting-Started-Brokered-614d42e5) |Demonstrates how to use Microsoft Azure Service Bus to send and receive messages from a topic with multiple subscriptions. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
+| [開始使用：使用佇列傳訊](http://code.msdn.microsoft.com/Getting-Started-Brokered-aa7a0ac3) |示範如何使用 Microsoft Azure 服務匯流排傳送和接收來自佇列的訊息。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [開始使用：使用主題傳訊](http://code.msdn.microsoft.com/Getting-Started-Brokered-614d42e5) |示範如何使用 Microsoft Azure 服務匯流排傳送和接收來自包含多個訂用帳戶之主題的訊息。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
 
-### <a name="exploring-features"></a>Exploring features
-The following samples demonstrate various features of Service Bus.
+### <a name="exploring-features"></a>探索功能
+下列範例會示範服務匯流排的各種功能。
 
-| Sample Name | Description | Minimum SDK Version | Availability |
+| 範例名稱 | 說明 | 最低需求 SDK 版本 | Availability |
 | --- | --- | --- | --- |
-| [HTTP Token Providers](http://code.msdn.microsoft.com/Service-Bus-HTTP-Token-38f2cfc5) |Demonstrates the different ways of authenticating an HTTP/REST client with Service Bus. |2.1 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Service Bus HTTP Client](http://code.msdn.microsoft.com/Service-Bus-HTTP-client-fe7da74a) |Demonstrates how to send messages to and receive messages from Service Bus via HTTP/REST. |2.3 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Service Bus Autoforwarding](http://code.msdn.microsoft.com/Service-Bus-Autoforwarding-b9df470b) |Demonstrates how to automatically forward messages from a queue, subscription, or deadletter queue into another queue or topic. It also demonstrates how to send a message into a queue or topic via a transfer queue. |2.3 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: WCF Channel Session Sample](http://code.msdn.microsoft.com/Brokered-Messaging-WCF-0a526451) |Demonstrates how to use Microsoft Azure Service Bus using Windows Communication Foundation (WCF) channels. The sample shows the use of WCF channels to send and receive messages via a Service Bus queue. The sample shows both session and non-session communication over the Service Bus. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Transactions](http://code.msdn.microsoft.com/Brokered-Messaging-8cd41d1e) |Demonstrates how to use the Microsoft Azure Service Bus messaging features within a transaction scope in order to ensure batches of messaging operations are committed atomically. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Management Operations Using REST](http://code.msdn.microsoft.com/Brokered-Messaging-569cff88) |Demonstrates how to perform management operations on Service Bus using REST. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Resource Provider REST APIs](http://code.msdn.microsoft.com/Service-Bus-Resource-5d887203) |Demonstrates how to use the new Service Bus RDFE REST APIs to manage namespaces and messaging entities. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: WCF Service Session Sample](http://code.msdn.microsoft.com/Brokered-Messaging-WCF-db4262c2) |Demonstrates how to use Microsoft Azure Service Bus using the WCF service model. The sample shows the use of the WCF service model to accomplish session-based communication via a Service Bus queue. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Request Response](http://code.msdn.microsoft.com/Brokered-Messaging-Request-2b4ff5d8) |Demonstrates how to use the Microsoft Azure Service Bus and the request/response functionality. The sample shows simple clients and servers communicating via a Service Bus queue. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Dead Letter Queue](http://code.msdn.microsoft.com/Brokered-Messaging-Dead-22536dd8) |Demonstrates how to use Microsoft Azure Service Bus and the messaging "dead letter queue" functionality. The sample shows a simple sender and receiver communicating via a Service Bus queue. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Deferred Messages](http://code.msdn.microsoft.com/Brokered-Messaging-ccc4f879) |Demonstrates how to use the message deferral feature of Microsoft Azure Service Bus. The sample shows a simple sender and receiver communicating via a Service Bus queue. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Session Messages](http://code.msdn.microsoft.com/Brokered-Messaging-Session-41c43fb4) |Demonstrates how to use Microsoft Azure Service Bus and the Messaging Session functionality. The sample shows simple senders and receivers communicating via a Service Bus queue. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Request Response Topic](http://code.msdn.microsoft.com/Brokered-Messaging-Request-6759a36e) |Demonstrates how to implement the request/response pattern using Microsoft Azure Service Bus topics and subscriptions. The sample shows simple clients and servers communicating via a Service Bus topic. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Request Response Queue](http://code.msdn.microsoft.com/Brokered-Messaging-Request-0ce8fcaf) |Demonstrates how to use Microsoft Azure Service Bus and the request/response functionality. The sample shows simple clients and servers communicating via two Service Bus queues. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Duplicate Detection](http://code.msdn.microsoft.com/Brokered-Messaging-c0acea25) |Demonstrates how to use Microsoft Azure Service Bus duplicate message detection with queues. It creates two queues, one with duplicate detection enabled and other one without duplicate detection. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Async Messaging](http://code.msdn.microsoft.com/Brokered-Messaging-Async-211c1e74) |Demonstrates how to use Microsoft Azure Service Bus to send and receive messages asynchronously from a queue. The queue provides decoupled, asynchronous communication between a sender and any number of receivers (here, a single receiver). |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Advanced Filters](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749) |Demonstrates how to use Microsoft Azure Service Bus publish/subscribe advanced filters. It creates a topic and 3 subscriptions with different filter definitions, sends messages to the topic, and receives all messages from subscriptions. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Brokered Messaging: Messages Prefetch](http://code.msdn.microsoft.com/Brokered-Messaging-be2dac1d) |Demonstrates how to use the Microsoft Azure Service Bus messages prefetch feature. It demonstrates how to use the messages prefetch feature upon receive. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
+| [HTTP 權杖提供者](http://code.msdn.microsoft.com/Service-Bus-HTTP-Token-38f2cfc5) |示範利用服務匯流排驗證 HTTP/REST 用戶端的不同方式。 |2.1 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [服務匯流排 HTTP 用戶端](http://code.msdn.microsoft.com/Service-Bus-HTTP-client-fe7da74a) |示範如何透過 HTTP/REST 與服務匯流排傳之間送及及接收訊息。 |2.3 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [服務匯流排自動轉送](http://code.msdn.microsoft.com/Service-Bus-Autoforwarding-b9df470b) |示範如何將訊息從佇列、訂用帳戶或寄不出的信件佇列自動轉送到另一個佇列或主題。 它也會示範如何透過傳輸佇列將訊息傳送到佇列或主題。 |2.3 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：WCF 通道工作階段範例](http://code.msdn.microsoft.com/Brokered-Messaging-WCF-0a526451) |示範如何透過 Windows Communication Foundation (WCF) 通道使用 Microsoft Azure 服務匯流排。 此範例會顯示如何使用 WCF 通道來透過服務匯流排佇列傳送和接收訊息。 此範例會顯示透過服務匯流排的工作階段和非工作階段通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：交易](http://code.msdn.microsoft.com/Brokered-Messaging-8cd41d1e) |示範如何使用交易範圍內的 Microsoft Azure 服務匯流排傳訊功能，確保批次傳訊作業以不可部分完成的方式認可。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：使用 REST 的管理作業](http://code.msdn.microsoft.com/Brokered-Messaging-569cff88) |示範如何使用 REST 在服務匯流排上執行管理作業。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [資源提供者 REST API](http://code.msdn.microsoft.com/Service-Bus-Resource-5d887203) |示範如何使用新的服務匯流排 RDFE REST API 來管理命名空間和訊息實體。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：WCF 服務工作階段範例](http://code.msdn.microsoft.com/Brokered-Messaging-WCF-db4262c2) |示範如何透過 WCF 服務模型使用 Microsoft Azure 服務匯流排。 此範例示範如何透過服務匯流排佇列使用 WCF 服務模型來完成工作階段為基礎的通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：要求回應](http://code.msdn.microsoft.com/Brokered-Messaging-Request-2b4ff5d8) |示範如何使用 Microsoft Azure 服務匯流排和要求/回應功能。 此範例會示範透過服務匯流排佇列進行簡單的用戶端和伺服器通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：無效信件佇列](http://code.msdn.microsoft.com/Brokered-Messaging-Dead-22536dd8) |示範如何使用 Microsoft Azure 服務匯流排和傳訊「無效信件佇列」功能。 此範例會示範透過服務匯流排佇列進行簡單的傳送者和接收者通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：延遲的訊息](http://code.msdn.microsoft.com/Brokered-Messaging-ccc4f879) |示範如何使用 Microsoft Azure 服務匯流排的訊息延遲功能。 此範例會示範透過服務匯流排佇列進行簡單的傳送者和接收者通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：工作階段訊息](http://code.msdn.microsoft.com/Brokered-Messaging-Session-41c43fb4) |示範如何使用 Microsoft Azure 服務匯流排和傳訊工作階段功能。 此範例會示範透過服務匯流排佇列進行簡單的傳送者和接收者通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：要求回應主題](http://code.msdn.microsoft.com/Brokered-Messaging-Request-6759a36e) |示範如何使用 Microsoft Azure 服務匯流排主題和訂用帳戶實作要求/回應模式。 此範例會示範透過服務匯流排主題進行簡單的用戶端和伺服器通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：要求回應佇列](http://code.msdn.microsoft.com/Brokered-Messaging-Request-0ce8fcaf) |示範如何使用 Microsoft Azure 服務匯流排和要求/回應功能。 此範例會示範透過兩個服務匯流排佇列進行簡單的用戶端和伺服器通訊。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：重複偵測](http://code.msdn.microsoft.com/Brokered-Messaging-c0acea25) |示範如何搭配佇列使用 Microsoft Azure 服務匯流排重複訊息偵測。 它會建立兩個佇列，一個啟用重複偵測而另一個沒有重複偵測。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：非同步傳訊](http://code.msdn.microsoft.com/Brokered-Messaging-Async-211c1e74) |示範如何使用 Microsoft Azure 服務匯流排以非同步方式傳送和接收來自佇列的訊息。 佇列提供傳送者與任意數目接收者之間的低耦合、非同步通訊 (此處為單一接收者)。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊︰進階篩選器](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749) |示範如何使用 Microsoft Azure 服務匯流排發佈/訂閱進階篩選器。 它會利用不同的篩選定義建立一個主題和 3 個訂用帳戶、將訊息傳送至主題，並從訂用帳戶接收所有訊息。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [代理傳訊：訊息預先擷取](http://code.msdn.microsoft.com/Brokered-Messaging-be2dac1d) |示範如何使用 Microsoft Azure 服務匯流排的訊息預先擷取功能。 它會示範如何在接收時使用訊息預先擷取功能。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
 
-## <a name="service-bus-reference-tools"></a>Service Bus reference tools
-The following samples demonstrate various other features of the service.
+## <a name="service-bus-reference-tools"></a>服務匯流排參考工具
+下列範例會示範服務的各種其他功能。
 
-| Sample Name | Description | Minimum SDK Version | Availability |
+| 範例名稱 | 說明 | 最低需求 SDK 版本 | Availability |
 | --- | --- | --- | --- |
-| [Service Bus Explorer](http://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a) |The Service Bus Explorer allows users to connect to a Service Bus service namespace and manage messaging entities in an easy manner. The tool provides advanced features such as import/export functionality, and the ability to test messaging entities and relay services. |1.8 |Microsoft Azure Service Bus; Service Bus for Windows Server |
-| [Authorization: SBAzTool](http://code.msdn.microsoft.com/Authorization-SBAzTool-6fd76d93) |This sample demonstrates how to create and manage service identities in Microsoft Azure Active Directory Access Control (also known as Access Control Service or ACS) for use with Service Bus. |N/A |Microsoft Azure Service Bus |
+| [服務匯流排總管](http://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a) |服務匯流排總管可讓使用者連接到服務匯流排服務命名空間並以簡便的方式管理訊息實體。 此工具提供進階的功能，例如匯入/匯出功能和測試訊息實體及轉送服務的能力。 |1.8 |Microsoft Azure 服務匯流排；Service Bus for Windows Server |
+| [授權：SBAzTool](http://code.msdn.microsoft.com/Authorization-SBAzTool-6fd76d93) |這個範例會示範如何在 Microsoft Azure Active Directory 存取控制中建立和管理服務身分識別 (也稱為存取控制服務或 ACS) 以搭配服務匯流排使用。 |N/A |Microsoft Azure 服務匯流排 |
 
-## <a name="next-steps"></a>Next steps
-See the following topics for conceptual overviews of Service Bus.
+## <a name="next-steps"></a>後續步驟
+請參閱下列主題以取得服務匯流排的概念性概觀。
 
-* [Service Bus messaging overview](service-bus-messaging-overview.md)
-* [Service Bus architecture](../service-bus/service-bus-architecture.md)
-* [Service Bus fundamentals](../service-bus/service-bus-fundamentals-hybrid-solutions.md)
+* [服務匯流排訊息概觀](service-bus-messaging-overview.md)
+* [服務匯流排架構](service-bus-architecture.md)
+* [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

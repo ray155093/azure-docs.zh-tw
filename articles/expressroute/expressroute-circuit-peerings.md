@@ -1,12 +1,12 @@
 ---
-title: ExpressRoute 線路和路由網域 | Microsoft Docs
-description: 此頁面提供 ExpressRoute 線路和路由網域的概觀。
+title: "ExpressRoute 線路和路由網域 | Microsoft Docs"
+description: "此頁面提供 ExpressRoute 線路和路由網域的概觀。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: 6f0c5d8e-cc60-4a04-8641-2c211bda93d9
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: bd3b8761c0390d9b1f55423ec3fde0301cf8a20b
+
 
 ---
 # <a name="expressroute-circuits-and-routing-domains"></a>ExpressRoute 線路和路由網域
@@ -30,7 +34,7 @@ ExpressRoute 線路最多可以有三個獨立對等：Azure 公用、Azure 私�
 
 每個電路有固定的頻寬 (50 Mbps、100 Mbps、200 Mbps、500 Mbps、1 Gbps、10 Gbps)，而且對應至連線提供者和對等位置。 您選取的頻寬由路線上的所有對等共用。 
 
-### <a name="quotas,-limits,-and-limitations"></a>配額和限制
+### <a name="quotas-limits-and-limitations"></a>配額和限制
 每個 ExpressRoute 線路會套用預設的配額和限制。 如需最新的配額資訊，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md) 。
 
 ## <a name="expressroute-routing-domains"></a>ExpressRoute 路由網域
@@ -82,6 +86,9 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
   * [設定路由 (線路對等)](expressroute-howto-routing-classic.md)
   * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

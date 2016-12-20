@@ -1,13 +1,13 @@
 ---
-title: 資料目錄開發人員概念 | Microsoft Docs
-description: Azure 資料目錄概念模型的重要概念簡介，以透過目錄 REST API 的形式公開。
+title: "資料目錄開發人員概念 | Microsoft Docs"
+description: "Azure 資料目錄概念模型的重要概念簡介，以透過目錄 REST API 的形式公開。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 89de9137-a0a4-40d1-9f8d-625acad31619
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 10/11/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e05dc5695b08cdd82107bb3ed473c5d7b299f1e2
+
 
 ---
 # <a name="azure-data-catalog-developer-concepts"></a>Azure 資料目錄開發人員概念
@@ -55,7 +59,7 @@ Azure 資料目錄使用 Azure Active Directory 來管理身分識別和存取�
 
 註解的範例為描述、標籤、結構描述、文件等等。＜資產物件模型＞一節中有資產類型和註解類型的完整清單。
 
-## <a name="crowdsourcing-annotations-and-user-perspective-(multiplicity-of-opinion)"></a>群眾外包註解和使用者觀點 (多樣性意見)
+## <a name="crowdsourcing-annotations-and-user-perspective-multiplicity-of-opinion"></a>群眾外包註解和使用者觀點 (多樣性意見)
 Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼資料。 與 Wiki 的作法不同 – 其中只有一個意見，以最後一個寫入者為準 – Azure 資料目錄模型允許多種意見並存於系統中。
 
 這種作法反映出企業資料的真實情況，不同的使用者對特定的資產可以有不同的觀點：
@@ -358,6 +362,6 @@ ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td>
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

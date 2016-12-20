@@ -1,19 +1,23 @@
 ---
-title: 使用儲存體分析收集記錄檔和度量資料 | Microsoft Docs
-description: 儲存體分析可讓您追蹤所有儲存體服務的度量資料，以及收集 Blob、佇列和資料表儲存體的記錄檔。
+title: "使用儲存體分析收集記錄檔和度量資料 | Microsoft Docs"
+description: "儲存體分析可讓您追蹤所有儲存體服務的度量資料，以及收集 Blob、佇列和資料表儲存體的記錄檔。"
 services: storage
-documentationcenter: ''
+documentationcenter: 
 author: robinsh
-manager: carmonm
+manager: timlt
 editor: tysonn
-
+ms.assetid: 7894993b-ca42-4125-8f17-8f6dfe3dca76
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/03/2016
+ms.date: 12/08/2016
 ms.author: robinsh
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: af5fae5c5153c91fe78bdfb310c407a2c4462e04
+
 
 ---
 # <a name="storage-analytics"></a>儲存體分析
@@ -188,6 +192,9 @@ Azure 儲存體分析會執行記錄，並提供儲存體帳戶的度量資料�
 * [儲存體分析度量資料表結構描述](https://msdn.microsoft.com/library/hh343264.aspx)
 * [儲存體分析記錄作業和狀態訊息](https://msdn.microsoft.com/library/hh343260.aspx)  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

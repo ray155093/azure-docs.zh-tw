@@ -1,12 +1,12 @@
 ---
-title: 使用傳統部署模型管理 Azure 備份保存庫與 Azure 伺服器 | Microsoft Docs
-description: 使用本教學課程了解如何管理 Azure 備份保存庫與伺服器。
+title: "使用傳統部署模型管理 Azure 備份保存庫與 Azure 伺服器 | Microsoft Azure"
+description: "使用本教學課程了解如何管理 Azure 備份保存庫與伺服器。"
 services: backup
-documentationcenter: ''
+documentationcenter: 
 author: markgalioto
 manager: jwhit
 editor: tysonn
-
+ms.assetid: f175eb12-0905-437f-91fd-eaee03ab6e81
 ms.service: backup
 ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: jimpark;markgal
+translationtype: Human Translation
+ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
+ms.openlocfilehash: ee95dd7f96adcb2a271f3bddf56a4b6c85c4afd5
+
 
 ---
 # <a name="manage-azure-backup-vaults-and-servers-using-the-classic-deployment-model"></a>使用傳統部署模型管理 Azure 備份保存庫與伺服器
@@ -26,8 +30,6 @@ ms.author: jimpark;markgal
 在本文中，您將了解透過 Azure 傳統入口網站和 Microsoft Azure 備份代理程式提供之備份管理工作的概觀。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-資源管理員部署模型。
 
 ## <a name="management-portal-tasks"></a>管理入口網站工作
 1. 登入 [管理入口網站](https://manage.windowsazure.com)。
@@ -190,6 +192,9 @@ Azure 備份代理程式提供 [節流] 索引標籤，可讓您控制在資料�
 * 若要深入了解 Azure 備份，請參閱 [Azure 備份概觀](backup-introduction-to-azure-backup.md)
 * 瀏覽 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

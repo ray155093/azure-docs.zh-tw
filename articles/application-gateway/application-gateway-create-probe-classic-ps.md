@@ -1,31 +1,34 @@
 ---
-title: 在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查 | Microsoft Docs
-description: 了解如何在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查
+title: "在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查 | Microsoft Docs"
+description: "了解如何在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: 338a7be1-835c-48e9-a072-95662dc30f5e
 ms.service: application-gateway
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/09/2016
+ms.date: 11/16/2016
 ms.author: gwallace
+translationtype: Human Translation
+ms.sourcegitcommit: 3a8e5583f213c6d35f8e41dd31fe2ccad7389977
+ms.openlocfilehash: 7812179e56372237f9760eccea5ebf8db2cb8d2d
+
 
 ---
-# 使用 PowerShell 建立 Azure 應用程式閘道 (傳統) 的自訂探查
+# <a name="create-a-custom-probe-for-azure-application-gateway-classic-by-using-powershell"></a>使用 PowerShell 建立 Azure 應用程式閘道 (傳統) 的自訂探查
+
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-create-probe-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
 > * [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
 > 
 > 
-
-<BR>
 
 [!INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
@@ -35,104 +38,114 @@ ms.author: gwallace
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## 建立應用程式閘道
+## <a name="create-an-application-gateway"></a>建立應用程式閘道
+
 建立應用程式閘道：
 
 1. 建立應用程式閘道資源。
 2. 建立設定 XML 檔案或設定物件。
 3. 認可新建立應用程式閘道資源的設定。
 
-### 建立應用程式閘道資源
-若要建立閘道，請使用 **New-AzureApplicationGateway** Cmdlet，並將值取代為您自己的值。此時還不會開始對閘道計費。會在稍後的步驟中於成功啟動閘道之後開始計費。
+### <a name="create-an-application-gateway-resource"></a>建立應用程式閘道資源
+
+若要建立閘道，請使用 **New-AzureApplicationGateway** Cmdlet，並將值取代為您自己的值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
 
 下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
 
-    New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
+```powershell
+New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
+```
 
 若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
 
-    Get-AzureApplicationGateway AppGwTest
+```powershell
+Get-AzureApplicationGateway AppGwTest
+```
 
 > [!NOTE]
-> InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
+> *InstanceCount* 的預設值是 2，且最大值是 10。 GatewaySize  的預設值是 Medium。 您可以選擇 Small、Medium 和 Large。
 > 
 > 
 
- 因為尚未啟動閘道，所以 *VirtualIPs* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，就會建立這些項目。
+因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。 閘道處於執行中狀態之後，就會建立這些項目。
 
-## 設定應用程式閘道
+## <a name="configure-an-application-gateway"></a>設定應用程式閘道
+
 您可以使用 XML 或設定物件來設定應用程式閘道。
 
-## 使用 XML 設定應用程式閘道
-在下列範例中，您將使用 XML 檔案來設定所有應用程式閘道設定，並將它們認可到應用程式閘道資源。
+## <a name="configure-an-application-gateway-by-using-xml"></a>使用 XML 設定應用程式閘道
 
-### 步驟 1
+在下列範例中，您將使用 XML 檔案來設定所有應用程式閘道設定，並將它們認可到應用程式閘道資源。  
+
+### <a name="step-1"></a>步驟 1
+
 將下列文字複製到 [記事本]。
 
-    <ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
-    <FrontendIPConfigurations>
-        <FrontendIPConfiguration>
-            <Name>fip1</Name>
-            <Type>Private</Type>
-        </FrontendIPConfiguration>
-    </FrontendIPConfigurations>    
-    <FrontendPorts>
-        <FrontendPort>
-            <Name>port1</Name>
-            <Port>80</Port>
-        </FrontendPort>
-    </FrontendPorts>
-    <Probes>
-        <Probe>
-            <Name>Probe01</Name>
-            <Protocol>Http</Protocol>
-            <Host>contoso.com</Host>
-            <Path>/path/custompath.htm</Path>
-            <Interval>15</Interval>
-            <Timeout>15</Timeout>
-            <UnhealthyThreshold>5</UnhealthyThreshold>
-        </Probe>
-      </Probes>
-     <BackendAddressPools>
-        <BackendAddressPool>
-            <Name>pool1</Name>
-            <IPAddresses>
-                <IPAddress>1.1.1.1</IPAddress>
-                <IPAddress>2.2.2.2</IPAddress>
-            </IPAddresses>
-        </BackendAddressPool>
-    </BackendAddressPools>
-    <BackendHttpSettingsList>
-        <BackendHttpSettings>
-            <Name>setting1</Name>
-            <Port>80</Port>
-            <Protocol>Http</Protocol>
-            <CookieBasedAffinity>Enabled</CookieBasedAffinity>
-            <RequestTimeout>120</RequestTimeout>
-            <Probe>Probe01</Probe>
-        </BackendHttpSettings>
-    </BackendHttpSettingsList>
-    <HttpListeners>
-        <HttpListener>
-            <Name>listener1</Name>
-            <FrontendIP>fip1</FrontendIP>
-        <FrontendPort>port1</FrontendPort>
-            <Protocol>Http</Protocol>
-        </HttpListener>
-    </HttpListeners>
-    <HttpLoadBalancingRules>
-        <HttpLoadBalancingRule>
-            <Name>lbrule1</Name>
-            <Type>basic</Type>
-            <BackendHttpSettings>setting1</BackendHttpSettings>
-            <Listener>listener1</Listener>
-            <BackendAddressPool>pool1</BackendAddressPool>
-        </HttpLoadBalancingRule>
-    </HttpLoadBalancingRules>
-    </ApplicationGatewayConfiguration>
+```xml
+<ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
+<FrontendIPConfigurations>
+    <FrontendIPConfiguration>
+        <Name>fip1</Name>
+        <Type>Private</Type>
+    </FrontendIPConfiguration>
+</FrontendIPConfigurations>    
+<FrontendPorts>
+    <FrontendPort>
+        <Name>port1</Name>
+        <Port>80</Port>
+    </FrontendPort>
+</FrontendPorts>
+<Probes>
+    <Probe>
+        <Name>Probe01</Name>
+        <Protocol>Http</Protocol>
+        <Host>contoso.com</Host>
+        <Path>/path/custompath.htm</Path>
+        <Interval>15</Interval>
+        <Timeout>15</Timeout>
+        <UnhealthyThreshold>5</UnhealthyThreshold>
+    </Probe>
+    </Probes>
+    <BackendAddressPools>
+    <BackendAddressPool>
+        <Name>pool1</Name>
+        <IPAddresses>
+            <IPAddress>1.1.1.1</IPAddress>
+            <IPAddress>2.2.2.2</IPAddress>
+        </IPAddresses>
+    </BackendAddressPool>
+</BackendAddressPools>
+<BackendHttpSettingsList>
+    <BackendHttpSettings>
+        <Name>setting1</Name>
+        <Port>80</Port>
+        <Protocol>Http</Protocol>
+        <CookieBasedAffinity>Enabled</CookieBasedAffinity>
+        <RequestTimeout>120</RequestTimeout>
+        <Probe>Probe01</Probe>
+    </BackendHttpSettings>
+</BackendHttpSettingsList>
+<HttpListeners>
+    <HttpListener>
+        <Name>listener1</Name>
+        <FrontendIP>fip1</FrontendIP>
+    <FrontendPort>port1</FrontendPort>
+        <Protocol>Http</Protocol>
+    </HttpListener>
+</HttpListeners>
+<HttpLoadBalancingRules>
+    <HttpLoadBalancingRule>
+        <Name>lbrule1</Name>
+        <Type>basic</Type>
+        <BackendHttpSettings>setting1</BackendHttpSettings>
+        <Listener>listener1</Listener>
+        <BackendAddressPool>pool1</BackendAddressPool>
+    </HttpLoadBalancingRule>
+</HttpLoadBalancingRules>
+</ApplicationGatewayConfiguration>
+```
 
-
-編輯設定項目括號間的值。以 .xml 副檔名儲存檔案。
+編輯設定項目括號間的值。 以 .xml 副檔名儲存檔案。
 
 下列範例示範如何使用組態檔來設定應用程式閘道、使公用連接埠 80 上的 HTTP 流量達到負載平衡，以及使用自訂探查將網路流量傳送到兩個 IP 位址之間的後端連接埠 80。
 
@@ -141,68 +154,81 @@ ms.author: gwallace
 > 
 > 
 
-已新增用來設定自訂探查的新組態項目 <Probe>。
+已新增用來設定自訂探查的新組態項目 \<Probe\>。
 
 組態參數如下：
 
 * **Name** - 自訂探查的參考名稱。
 * **Protocol** - 所使用的通訊協定 (可能的值為 HTTP 或 HTTPS)。
-* **Host** 和 **Path** - 應用程式閘道所叫用以判斷執行個體健康狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
+* **Host** 和 **Path** - 應用程式閘道所叫用以判斷執行個體健康狀態的完整 URL 路徑。 例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
 * **Interval** - 以秒為單位設定探查間隔檢查。
 * **Timeout** - 定義 HTTP 回應檢查的探查逾時。
 * **UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
 
 <BackendHttpSettings> 組態中會參考探查名稱，以指派哪個後端集區會使用自訂探查設定。
 
-## 將自訂探查組態新增至現有應用程式閘道
+## <a name="add-a-custom-probe-configuration-to-an-existing-application-gateway"></a>將自訂探查組態新增至現有應用程式閘道
 
 變更目前的應用程式閘道組態需要三個步驟：取得目前的 XML 組態檔、進行修改使其具有自訂探查，並以新的 XML 設定來設定應用程式閘道。
 
-### 步驟 1
+### <a name="step-1"></a>步驟 1
 
-使用 get-AzureApplicationGatewayConfig 取得 XML 檔案。這會匯出要修改的組態 XML 以新增探查設定。
+使用 get-AzureApplicationGatewayConfig 取得 XML 檔案。 這會匯出要修改的組態 XML 以新增探查設定。
 
-    Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
+```powershell
+Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
+```
 
+### <a name="step-2"></a>步驟 2
 
-### 步驟 2
+在文字編輯器中開啟 XML 檔案。 在 `<frontendport>` 之後新增 `<probe>` 區段。
 
-在文字編輯器中開啟 XML 檔案。在 `<frontendport>` 之後新增 `<probe>` 區段。
-
-    <Probes>
-        <Probe>
-            <Name>Probe01</Name>
-            <Protocol>Http</Protocol>
-            <Host>contoso.com</Host>
-            <Path>/path/custompath.htm</Path>
-            <Interval>15</Interval>
-            <Timeout>15</Timeout>
-            <UnhealthyThreshold>5</UnhealthyThreshold>
-        </Probe>
-    </Probes>
+```xml
+<Probes>
+    <Probe>
+        <Name>Probe01</Name>
+        <Protocol>Http</Protocol>
+        <Host>contoso.com</Host>
+        <Path>/path/custompath.htm</Path>
+        <Interval>15</Interval>
+        <Timeout>15</Timeout>
+        <UnhealthyThreshold>5</UnhealthyThreshold>
+    </Probe>
+</Probes>
+```
 
 在 XML 的 backendHttpSettings 區段中，如下列範例所示，新增探查名稱：
 
-        <BackendHttpSettings>
-            <Name>setting1</Name>
-            <Port>80</Port>
-            <Protocol>Http</Protocol>
-            <CookieBasedAffinity>Enabled</CookieBasedAffinity>
-            <RequestTimeout>120</RequestTimeout>
-            <Probe>Probe01</Probe>
-        </BackendHttpSettings>
+```xml
+    <BackendHttpSettings>
+        <Name>setting1</Name>
+        <Port>80</Port>
+        <Protocol>Http</Protocol>
+        <CookieBasedAffinity>Enabled</CookieBasedAffinity>
+        <RequestTimeout>120</RequestTimeout>
+        <Probe>Probe01</Probe>
+    </BackendHttpSettings>
+```
 
 儲存 XML 檔案。
 
-### 步驟 3
-使用 **Set-AzureApplicationGatewayConfig** 以新的 XML 檔案更新應用程式閘道組態。這會以新組態更新您的應用程式閘道。
+### <a name="step-3"></a>步驟 3
 
-    Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
+使用 **Set-AzureApplicationGatewayConfig**以新的 XML 檔案更新應用程式閘道組態。 這會以新組態更新您的應用程式閘道。
+
+```powershell
+Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
+```
+
+## <a name="next-steps"></a>後續步驟
+
+如果您想要設定「安全通訊端層」(SSL) 卸載，請參閱 [設定適用於 SSL 卸載的應用程式閘道](application-gateway-ssl.md)。
+
+如果您想要設定要與內部負載平衡器搭配使用的應用程式閘道，請參閱 [建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
 
 
-## 後續步驟
-如果您想要設定「安全通訊端層」(SSL) 卸載，請參閱[設定適用於 SSL 卸載的應用程式閘道](application-gateway-ssl.md)。
 
-如果您想要設定要與內部負載平衡器搭配使用的應用程式閘道，請參閱[建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!--HONumber=Nov16_HO3-->
+
+

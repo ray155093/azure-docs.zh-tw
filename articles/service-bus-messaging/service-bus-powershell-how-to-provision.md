@@ -1,43 +1,47 @@
 ---
-title: Manage Service Bus with PowerShell | Microsoft Docs
-description: Manage Service Bus with PowerShell scripts
-services: service-bus
+title: "使用 PowerShell 管理服務匯流排 | Microsoft Docs"
+description: "使用 PowerShell 指令碼管理服務匯流排"
+services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: aff8e2ce-bc8b-489f-aca9-a18782be0375
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ea48cceb265a90138d9618b3e4ab94aef60ad2d4
+
 
 ---
-# <a name="manage-service-bus-with-powershell"></a>Manage Service Bus with PowerShell
-## <a name="overview"></a>Overview
-Microsoft Azure PowerShell is a scripting environment that you can use to control and automate the deployment and management of your workloads in Azure. This article describes how to use PowerShell to provision and manage Service Bus entities such as namespaces, queues, and Event Hubs using a local Azure PowerShell console.
+# <a name="manage-service-bus-with-powershell"></a>使用 PowerShell 管理服務匯流排
+## <a name="overview"></a>概觀
+Microsoft Azure PowerShell 是一種指令碼環境，可讓您在 Azure 中用來控制和自動化工作負載的部署與管理。 本文說明如何使用 PowerShell，透過本機 Azure PowerShell 主控台來佈建及管理服務匯流排實體，例如命名空間、佇列和事件中樞。
 
-## <a name="prerequisites"></a>Prerequisites
-Before you begin this article, you must have the following prerequisites:
+## <a name="prerequisites"></a>必要條件
+開始進行本文章之前，您必須具備下列必要條件：
 
-* An Azure subscription. Azure is a subscription-based platform. For more information about obtaining a subscription, see [Purchase Options][Purchase Options], [Member Offers][Member Offers], or [Free Trial][Free Trial].
-* A computer with Azure PowerShell. For instructions, see [Install and configure Azure PowerShell][Install and configure Azure PowerShell].
-* A general understanding of PowerShell scripts, NuGet packages, and the .NET Framework.
+* Azure 訂用帳戶。 Azure 是訂閱型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項][購買選項]、[成員優惠][成員優惠]或[免費試用版][免費試用版]。
+* 具備 Azure PowerShell 的電腦。 如需指示，請參閱[安裝並設定 Azure PowerShell][安裝並設定 Azure PowerShell]。
+* 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
 
-## <a name="including-a-reference-to-the-.net-assembly-for-service-bus"></a>Including a reference to the .NET assembly for Service Bus
-There are a limited number of PowerShell cmdlets available for managing Service Bus. To provision entities that are not exposed through the existing cmdlets, you can use the .NET client for Service Bus in the [Service Bus NuGet package][Service Bus NuGet package].
+## <a name="including-a-reference-to-the-net-assembly-for-service-bus"></a>包括對服務匯流排之 .NET 組件的參考
+可用於管理服務匯流排的 PowerShell Cmdlet 數目有限。 若要佈建不是透過現有 Cmdlet 公開的實體，您可以使用 [服務匯流排 NuGet 封裝][服務匯流排 NuGet 封裝]中的服務匯流排的 .NET 用戶端。
 
-First, make sure that the script can locate the **Microsoft.ServiceBus.dll** assembly, which is installed with the NuGet package. In order to be flexible, the script performs these steps:
+首先，請確定指令碼可以找到與 NuGet 封裝一起安裝的 **Microsoft.ServiceBus.dll** 組件。 為了要有使用彈性，指令碼會執行這些步驟：
 
-1. Determines the path at which it was invoked.
-2. Traverses the path until it finds a folder named `packages`. This folder is created when you install NuGet packages.
-3. Recursively searches the `packages` folder for an assembly named **Microsoft.ServiceBus.dll**.
-4. References the assembly so that the types are available for later use.
+1. 判斷叫用的路徑。
+2. 周遊路徑，直到找到名為 `packages`的資料夾為止。 當您安裝 NuGet 封裝時，會建立這個資料夾。
+3. 以遞迴方式搜尋 `packages` 資料夾，以搜尋名為 **Microsoft.ServiceBus.dll**的組件。
+4. 參考組件，以供稍後使用這些類型。
 
-Here's how these steps are implemented in a PowerShell script:
+以下是如何使用 PowerShell 指令碼實作這些步驟的方式：
 
 ```
 try
@@ -58,22 +62,22 @@ catch [System.Exception]
 }
 ```
 
-## <a name="provision-a-service-bus-namespace"></a>Provision a Service Bus namespace
-Two PowerShell cmdlets support Service Bus namespace operations. Instead of the .NET SDK APIs, you can use [Get-AzureSBNamespace][Get-AzureSBNamespace] and [New-AzureSBNamespace][New-AzureSBNamespace].
+## <a name="provision-a-service-bus-namespace"></a>佈建服務匯流排命名空間
+兩個 PowerShell Cmdlet 支援服務匯流排命名空間作業。 不需要使用 .NET SDK API，您可以使用 [Get-AzureSBNamespace][Get-AzureSBNamespace] 和 [New-AzureSBNamespace][New-AzureSBNamespace]。
 
-This example creates a few local variables in the script; `$Namespace` and `$Location`.
+這個範例會在指令碼中建立幾個區域變數：`$Namespace` 和 `$Location`。
 
-* `$Namespace` is the name of the Service Bus namespace with which we want to work.
-* `$Location` identifies the data center in which the script provisions the namespace.
-* `$CurrentNamespace` stores the reference namespace that the script retrieves (or creates).
+* `$Namespace` 為我們想要使用之服務匯流排命名空間的名稱。
+* `$Location` 會識別指示碼在其中佈建命名空間的資料中心。
+* `$CurrentNamespace` 儲存指令碼擷取 (或建立) 的參考命名空間。
 
-In an actual script, `$Namespace` and `$Location` can be passed as parameters.
+在實際的指令碼中，`$Namespace` 和 `$Location` 可以參數的方式傳遞。
 
-This part of the script performs the following tasks:
+這部分的指令碼會執行下列作業：
 
-1. Attempts to retrieve a Service Bus namespace with the provided name.
-2. If the namespace is found, it reports what was found.
-3. If the namespace is not found, it creates the namespace and then retrieves the newly created namespace.
+1. 嘗試擷取具有所提供之名稱的服務匯流排命名空間。
+2. 如果找到命名空間，它會回報找到的項目。
+3. 如果找不到命名空間，它會建立命名空間，然後擷取新建立的命名空間。
    
     ```
     $Namespace = "MyServiceBusNS"
@@ -97,8 +101,8 @@ This part of the script performs the following tasks:
     }
     ```
 
-To provision other Service Bus entities, create an instance of the [NamespaceManager][NamespaceManager] class from the SDK.
-You can use the [Get-AzureSBAuthorizationRule][Get-AzureSBAuthorizationRule] cmdlet to retrieve an authorization rule that's used to provide a connection string. We'll store a reference to the `NamespaceManager` instance in the `$NamespaceManager` variable. We will use `$NamespaceManager` later in the script to provision other entities.
+若要佈建其他服務匯流排實體，請從 SDK 建立 [NamespaceManager][NamespaceManager] 類別的執行個體。
+您可以使用 [Get-AzureSBAuthorizationRule][Get-AzureSBAuthorizationRule] Cmdlet 來擷取用來提供連接字串的授權規則。 我們將會在 `$NamespaceManager` 變數中儲存對 `NamespaceManager` 執行個體的參照。 我們稍後將在指令碼中使用 `$NamespaceManager` 來佈建其他實體。
 
 ``` powershell
 $sbr = Get-AzureSBAuthorizationRule -Namespace $Namespace
@@ -108,14 +112,14 @@ $NamespaceManager = [Microsoft.ServiceBus.NamespaceManager]::CreateFromConnectio
 Write-Output "NamespaceManager object for the [$Namespace] namespace has been successfully created."
 ```
 
-## <a name="provisioning-other-service-bus-entities"></a>Provisioning other Service Bus entities
-In order to provision other entities, such as queues, topics, and Event Hubs, use the [.NET API for Service Bus][.NET API for Service Bus]. This article focuses only on Event Hubs, but the steps for other entities are similar. In addition, more detailed examples, including other entities, are referenced at the end of this article.
+## <a name="provisioning-other-service-bus-entities"></a>佈建其他服務匯流排實體
+若要佈建其他實體 (例如佇列、主題和事件中樞)，請使用[服務匯流排的 .NET API][服務匯流排的 .NET API]。 本文僅著重於事件中樞，但其他實體的步驟很類似。 此外，在此文章的結尾處會參照更多詳細範例 (包括其他實體)。
 
-This part of the script creates four more local variables. These variables are used to instantiate an `EventHubDescription` object. The script performs the following tasks:
+這部分的指令碼會再建立四個區域變數。 這些變數可用來具現化 `EventHubDescription` 物件。 指令碼會執行下列作業：
 
-1. Using the `NamespaceManager` object, check to see if the Event Hub identified by `$Path` exists.
-2. If it does not exist, create an `EventHubDescription` and pass that to the `NamespaceManager` class `CreateEventHubIfNotExists` method.
-3. After determining that the Event Hub is available, create a consumer group using `ConsumerGroupDescription` and `NamespaceManager`.
+1. 使用 `NamespaceManager` 物件時，請查看 `$Path` 所識別的事件中樞是否存在。
+2. 如果事件中樞不存在，請建立 `EventHubDescription` 並傳遞給 `NamespaceManager` 類別的 `CreateEventHubIfNotExists` 方法。
+3. 判斷事件中樞可用之後，請使用 `ConsumerGroupDescription` 和 `NamespaceManager` 建立取用者群組。
    
     ```
     $Path  = "MyEventHub"
@@ -149,8 +153,8 @@ This part of the script creates four more local variables. These variables are u
     Write-Output "The consumer group [$ConsumerGroupName] for the [$Path] event hub has been successfully created."
     ```
 
-## <a name="migrate-a-namespace-to-another-azure-subscription"></a>Migrate a namespace to another Azure subscription
-The following sequence of commands moves a namespace from one Azure subscription to another. To execute this operation, the namespace must already be active, and the user running the PowerShell commands must be an administrator on both the source and target subscriptions.
+## <a name="migrate-a-namespace-to-another-azure-subscription"></a>將命名空間移轉到另一個 Azure 訂用帳戶
+下列的命令順序會從一個 Azure 訂用帳戶的命名空間移到另一個。 若要執行這項作業，命名空間必須已經是作用中，而且執行 PowerShell 命令的使用者必須是來源與目標訂用帳戶的系統管理員。
 
 ```
 # Create a new resource group in target subscription
@@ -163,32 +167,32 @@ $res = Find-AzureRmResource -ResourceNameContains mynamespace -ResourceType 'Mic
 Move-AzureRmResource -DestinationResourceGroupName 'targetRG' -DestinationSubscriptionId 'ffffffff-ffff-ffff-ffff-ffffffffffff' -ResourceId $res.ResourceId
 ```
 
-## <a name="next-steps"></a>Next steps
-This article provided a basic outline for provisioning Service Bus entities using PowerShell. Anything that you can do using the .NET client libraries, you can also do in a PowerShell script.
+## <a name="next-steps"></a>後續步驟
+此文章提供您使用PowerShell 佈建服務匯流排實體的基本大綱。 您可以使用 .NET 用戶端程式庫執行的任何動作，也都可以使用 PowerShell 指令碼來執行。
 
-There are more detailed examples available on these blog posts:
+這些部落格文章中有更多詳細的範例可用：
 
-* [How to create Service Bus queues, topics and subscriptions using a PowerShell script](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
-* [How to create a Service Bus Namespace and an Event Hub using a PowerShell script](http://blogs.msdn.com/b/paolos/archive/2014/12/01/how-to-create-a-service-bus-namespace-and-an-event-hub-using-a-powershell-script.aspx)
+* [如何使用 PowerShell 指令碼來建立服務匯流排佇列、主題及訂閱](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
+* [如何使用 PowerShell 指令碼來建立服務匯流排命名空間與事件中樞](http://blogs.msdn.com/b/paolos/archive/2014/12/01/how-to-create-a-service-bus-namespace-and-an-event-hub-using-a-powershell-script.aspx)
 
-Some ready-made scripts are also available for download:
+也有一些現成的指令碼可供下載：
 
-* [Service Bus PowerShell Scripts](https://code.msdn.microsoft.com/Service-Bus-PowerShell-a46b7059)
+* [服務匯流排 PowerShell 指令碼](https://code.msdn.microsoft.com/Service-Bus-PowerShell-a46b7059)
 
 <!--Link references-->
-[Purchase Options]: http://azure.microsoft.com/pricing/purchase-options/
-[Member Offers]: http://azure.microsoft.com/pricing/member-offers/
-[Free Trial]: http://azure.microsoft.com/pricing/free-trial/
-[Install and configure Azure PowerShell]: ../powershell-install-configure.md
-[Service Bus NuGet package]: http://www.nuget.org/packages/WindowsAzure.ServiceBus/
+[購買選項]: http://azure.microsoft.com/pricing/purchase-options/
+[成員優惠]: http://azure.microsoft.com/pricing/member-offers/
+[免費試用版]: http://azure.microsoft.com/pricing/free-trial/
+[安裝並設定 Azure PowerShell]: ../powershell-install-configure.md
+[服務匯流排 NuGet 封裝]: http://www.nuget.org/packages/WindowsAzure.ServiceBus/
 [Get-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495122.aspx
 [New-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495165.aspx
 [Get-AzureSBAuthorizationRule]: https://msdn.microsoft.com/library/azure/dn495113.aspx
-[.NET API for Service Bus]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.aspx
+[服務匯流排的 .NET API]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.aspx
 [NamespaceManager]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 如何新增編碼單元
-description: 了解如何使用 .NET 新增編碼單元
+title: "如何新增編碼單元"
+description: "了解如何使用 .NET 新增編碼單元"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 33f7625a-966a-4f06-bc09-bccd6e2a42b5
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/01/2016
 ms.author: juliako;milangada;gtrifonov
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3dc67791d7bfd7221ad484e967b5e9bf49ed8c02
+
 
 ---
-# 如何使用 .NET SDK 調整編碼
+# <a name="how-to-scale-encoding-with-net-sdk"></a>如何使用 .NET SDK 調整編碼
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-scale-media-processing.md)
 > * [.NET](media-services-dotnet-encoding-units.md)
@@ -26,9 +30,9 @@ ms.author: juliako;milangada;gtrifonov
 > 
 > 
 
-## Overview
+## <a name="overview"></a>Overview
 > [!IMPORTANT]
-> 請務必檢閱[概觀](media-services-scale-media-processing-overview.md)主題，以取得調整媒體處理主題的詳細資訊。
+> 請務必檢閱 [概觀](media-services-scale-media-processing-overview.md) 主題，以取得調整媒體處理主題的詳細資訊。
 > 
 > 
 
@@ -44,13 +48,13 @@ ms.author: juliako;milangada;gtrifonov
 
     Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
 
-## 建立支援票證
-依預設，每一個媒體服務帳戶可調整為最多 25 個編碼保留單元和 5 個隨選串流保留單元。您可以建立支援票證來要求更高的限制。
+## <a name="opening-a-support-ticket"></a>建立支援票證
+依預設，每一個媒體服務帳戶可調整為最多 25 個編碼保留單元和 5 個隨選串流保留單元。 您可以建立支援票證來要求更高的限制。
 
-### 開啟支援票證
+### <a name="open-a-support-ticket"></a>開啟支援票證
 若要建立支援票證，請執行下列動作：
 
-1. 按一下[取得支援](https://manage.windowsazure.com/?getsupport=true)。如果您未登入，系統會提示您輸入認證。
+1. 按一下 [取得支援](https://manage.windowsazure.com/?getsupport=true)。 如果您未登入，系統會提示您輸入認證。
 2. 選取您的訂用帳戶。
 3. 在支援類型下，選取 [技術]。
 4. 按一下 [建立票證]。
@@ -60,10 +64,15 @@ ms.author: juliako;milangada;gtrifonov
 8. 遵循下一頁的指示，然後輸入問題的詳細資訊。
 9. 按一下 [提交] 來建立票證。
 
-## 媒體服務學習路徑
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

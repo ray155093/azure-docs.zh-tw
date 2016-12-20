@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure 媒體服務傳遞 DRM 授權或 AES 金鑰
-description: 本文將說明如何使用 Azure 媒體服務 (AMS) 來傳遞 PlayReady 和/或 Widevine 授權及 AES 金鑰，但使用您的內部部署伺服器完成其餘部分 (編碼、加密、串流)。
+title: "使用 Azure 媒體服務傳遞 DRM 授權或 AES 金鑰"
+description: "本文將說明如何使用 Azure 媒體服務 (AMS) 來傳遞 PlayReady 和/或 Widevine 授權及 AES 金鑰，但使用您的內部部署伺服器完成其餘部分 (編碼、加密、串流)。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 8546c2c1-430b-4254-a88d-4436a83f9192
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 02bf743d310519477bb87a2930a2afe687c62c4e
+
 
 ---
 # <a name="use-azure-media-services-to-deliver-drm-licenses-or-aes-keys"></a>使用 Azure 媒體服務傳遞 DRM 授權或 AES 金鑰
@@ -31,7 +35,7 @@ Azure 媒體服務 (AMS) 可讓您內嵌、編碼、新增內容保護，以及�
 ## <a name="download-sample"></a>下載範例
 您可以從 [這裡](https://github.com/Azure/media-services-dotnet-deliver-drm-licenses)下載本文所述的範例。
 
-## <a name=".net-code-example"></a>.NET 程式碼範例
+## <a name="net-code-example"></a>.NET 程式碼範例
 本主題中的程式碼範例示範如何建立通用內容金鑰，並取得 PlayReady 或 Widevine 授權取得 URL。 您需要從 AMS 取得下列資訊項目，並設定您的內部部署伺服器：**內容金鑰**、**金鑰識別碼**、**授權取得 URL**。 一旦設定內部部署伺服器之後，就可以從您的串流伺服器串流處理。 由於加密的串流指向 AMS 授權伺服器，您的播放器將會從 AMS 要求授權。 如果您選擇權杖驗證，AMS 授權伺服器將會驗證您透過 HTTPS 所傳送的權杖，然後 (如果有效) 將授權傳遞回您的播放器。 (此程式碼範例只示範如何建立通用內容金鑰，並取得 PlayReady 或 Widevine 授權取得 URL。 如果您想要傳遞 AES-128 金鑰，您必須建立信封內容金鑰，並取得金鑰取得 URL，而 [這篇](media-services-protect-with-aes128.md) 文章將說明做法)。
 
     using System;
@@ -339,6 +343,9 @@ Azure 媒體服務 (AMS) 可讓您內嵌、編碼、新增內容保護，以及�
 
 [使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務](media-services-licenses-partner-integration.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

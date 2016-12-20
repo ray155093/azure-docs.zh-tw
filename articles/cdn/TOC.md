@@ -44,12 +44,13 @@
 ### [檔案壓縮](cdn-troubleshoot-compression.md)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
-## [.NET](/dotnet/api/)
-## [Azure CDN 的 POP 位置](cdn-pop-locations.md)
+## [PowerShell](/powershell/resourcemanager/azurerm.cdn/v2.3.0/azurerm.cdn)
+## [.NET](/dotnet/api/microsoft.azure.management.cdn)
+## [Java](/java/api/com.microsoft.azure.management.cdn)
 ## [REST](/rest/api/cdn/)
 
 # 資源
+## [Azure CDN 的 POP 位置](cdn-pop-locations.md)
 ## [服務更新](https://azure.microsoft.com/updates/?product=cdn)
 ## [價格](https://azure.microsoft.com/pricing/details/cdn/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurecdn)
@@ -57,6 +58,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 混合式身分識別設計考量 - 判斷資料保護需求 | Microsoft Docs
-description: 在規劃混合式身分識別解決方案時，請識別您企業的資料保護需求，以及有哪些可用選項可充分因應這些需求。
-documentationcenter: ''
+title: "Azure Active Directory 混合式身分識別設計考量 - 判斷資料保護需求 | Microsoft Docs"
+description: "在規劃混合式身分識別解決方案時，請識別您企業的資料保護需求，以及有哪些可用選項可充分因應這些需求。"
+documentationcenter: 
 services: active-directory
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 40dc4baa-fe82-4ab6-a3e4-f36fa9dcd0df
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/08/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 797b467e480ba51c531ea6eddf3ad2447ec16f1a
+
 
 ---
 # <a name="plan-for-enhancing-data-security-through-strong-identity-solution"></a>透過增強式身分識別解決方案規劃更高的資料安全性
@@ -81,6 +85,9 @@ ms.author: billmath
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

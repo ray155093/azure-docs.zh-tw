@@ -1,12 +1,12 @@
 ---
-title: 自訂：Azure AD 密碼管理 | Microsoft Docs
-description: 如何自訂 Azure AD 中的密碼管理外觀、行為和通知，以符合您的需求。
+title: "自訂：Azure AD 密碼管理 |Microsoft Docs"
+description: "如何自訂 Azure AD 中的密碼管理外觀、行為和通知，以符合您的需求。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asteen
 manager: femila
 editor: curtand
-
+ms.assetid: 2cddd150-8747-447a-a7cf-1d7d5775c0b3
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2016
 ms.author: asteen
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e11be2489d8c0585e386669f34012964e57978d7
+
 
 ---
-# <a name="customizing-password-management-to-fit-your-organization's-needs"></a>自訂密碼管理以符合您的組織的需求
+# <a name="customizing-password-management-to-fit-your-organizations-needs"></a>自訂密碼管理以符合您的組織的需求
 > [!IMPORTANT]
 > **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 > 
@@ -135,7 +139,7 @@ ms.author: asteen
 下表描述每個控制項如何影響使用者註冊密碼重設及重設其密碼的體驗。  您可以在 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤的 [使用者密碼重設原則] 區段底下，設定這些選項。
 
 > [!NOTE]
-> 您使用的系統管理員帳戶必須具有指派的 AAD Premium 授權，才能看到這些原則控制項。<br><br>這些原則控制項只適用於使用者重設其密碼，不適用於系統管理員。  **系統管理員擁有備用電子郵件和/或行動電話的預設原則，由 Microsoft 為其指定且無法變更。**
+> 您使用的系統管理員帳戶必須已獲指派 AAD Premium 授權，才能看到這些原則控制項。<br><br>這些原則控制項只適用於使用者重設其密碼，不適用於系統管理員。  **系統管理員擁有備用電子郵件和/或行動電話的預設原則，由 Microsoft 為其指定且無法變更。**
 > 
 > 
 
@@ -876,6 +880,6 @@ ms.author: asteen
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

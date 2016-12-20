@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 的自助式應用程式存取和委派管理 | Microsoft Docs
-description: 本文說明如何啟用 Azure Active Directory 的自助式應用程式存取和委派管理
+title: "Azure Active Directory 的自助式應用程式存取和委派管理 | Microsoft Docs"
+description: "本文說明如何啟用 Azure Active Directory 的自助式應用程式存取和委派管理"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser-msft
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 448a7fe8-a162-475e-9ba2-2e3ab59302bc
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2016
 ms.author: asmalser
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: c14be0292b08419ebaf4270d7e451e930d43810b
+
 
 ---
 # <a name="self-service-application-access-and-delegated-management-with-azure-active-directory"></a>Azure Active Directory 的自助式應用程式存取和委派管理
@@ -83,7 +87,7 @@ ms.author: asmalser
 ### <a name="manage-users"></a>管理使用者
 [管理使用者]  磚可讓核准者直接更新或移除哪些使用者可存取應用程式。 
 
-### <a name="configure-password-sso-credentials-(if-applicable)"></a>設定密碼 SSO 認證 (如果適用)
+### <a name="configure-password-sso-credentials-if-applicable"></a>設定密碼 SSO 認證 (如果適用)
 只有在 IT 系統管理員將應用程式設定為使用密碼型單一登入，且系統管理員授與核准者設定密碼 SSO 認證的功能 (如先前所述) 後，才會顯示 [設定]  磚。 選取後，核准者會看見幾個選項，可供選取如何將認證散佈給指派的使用者：
 
 ![][3]
@@ -102,6 +106,6 @@ ms.author: asmalser
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

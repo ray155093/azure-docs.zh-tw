@@ -1,12 +1,12 @@
 ---
-title: 使用 PowerShell 管理 Azure CDN | Microsoft Docs
-description: 了解如何使用 Azure PowerShell Cmdlet 管理 Azure CDN。
+title: "使用 PowerShell 管理 Azure CDN | Microsoft Docs"
+description: "了解如何使用 Azure PowerShell Cmdlet 管理 Azure CDN。"
 services: cdn
-documentationcenter: ''
+documentationcenter: 
 author: camsoper
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: fb6f57a5-6e26-4847-8fd9-b51fb05a79eb
 ms.service: cdn
 ms.workload: tbd
 ms.tgt_pltfrm: na
@@ -14,20 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: casoper
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 275869b0b3b705943e1af1c21912acb96f39fe49
+
 
 ---
-# 使用 PowerShell 管理 Azure CDN
-PowerShell 提供一種最具彈性的方法，以管理您的 Azure CDN 設定檔和端點。您可以用互動方式使用 PowerShell 或透過撰寫指令碼來自動進行管理工作。本教學課程會示範數個您可透過 PowerShell 完成的最常見工作，以管理 Azure CDN 設定檔和端點。
+# <a name="manage-azure-cdn-with-powershell"></a>使用 PowerShell 管理 Azure CDN
+PowerShell 提供一種最具彈性的方法，以管理您的 Azure CDN 設定檔和端點。  您可以用互動方式使用 PowerShell 或透過撰寫指令碼來自動進行管理工作。  本教學課程會示範數個您可透過 PowerShell 完成的最常見工作，以管理 Azure CDN 設定檔和端點。
 
-## 必要條件
-若要使用 PowerShell 管理 Azure CDN 設定檔和端點，您必須安裝 Azure PowerShell 模組。若要了解如何安裝 Azure PowerShell 及使用 `Login-AzureRmAccount` Cmdlet 連接至 Azure，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+## <a name="prerequisites"></a>必要條件
+若要使用 PowerShell 管理 Azure CDN 設定檔和端點，您必須安裝 Azure PowerShell 模組。  若要了解如何安裝 Azure PowerShell 及使用 `Login-AzureRmAccount` Cmdlet 連接至 Azure，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 > [!IMPORTANT]
 > 您必須先使用 `Login-AzureRmAccount` 登入，才能執行 Azure PowerShell Cmdlet。
 > 
 > 
 
-## 列出 Azure CDN Cmdlet
+## <a name="listing-the-azure-cdn-cmdlets"></a>列出 Azure CDN Cmdlet
 您可以使用 `Get-Command` Cmdlet 列出所有的 Azure CDN Cmdlet。
 
 ```text
@@ -57,8 +61,8 @@ Cmdlet          Test-AzureRmCdnCustomDomain                        2.0.0      Az
 Cmdlet          Unpublish-AzureRmCdnEndpointContent                2.0.0      AzureRm.Cdn
 ```
 
-## 取得說明
-您可以使用 `Get-Help` Cmdlet 取得這些 Cmdlet 的說明。`Get-Help` 提供使用方式與語法，並選擇性地顯示範例。
+## <a name="getting-help"></a>取得說明
+您可以使用 `Get-Help` Cmdlet 取得這些 Cmdlet 的說明。  `Get-Help` 提供使用方式與語法，並選擇性地顯示範例。
 
 ```text
 PS C:\> Get-Help Get-AzureRmCdnProfile
@@ -88,7 +92,7 @@ REMARKS
 
 ```
 
-## 列出現有的 Azure CDN 設定檔
+## <a name="listing-existing-azure-cdn-profiles"></a>列出現有的 Azure CDN 設定檔
 不含任何參數的 `Get-AzureRmCdnProfile` Cmdlet 會擷取所有現有的 CDN 設定檔。
 
 ```powershell
@@ -112,12 +116,12 @@ Get-AzureRmCdnProfile -ProfileName CdnDemo -ResourceGroupName CdnDemoRG
 ```
 
 > [!TIP]
-> 可能會有多個具有相同名稱的 CDN 設定檔，只要它們位於不同的資源群組即可。省略 `ResourceGroupName` 參數會傳回所有具有相符名稱的設定檔。
+> 可能會有多個具有相同名稱的 CDN 設定檔，只要它們位於不同的資源群組即可。  省略 `ResourceGroupName` 參數會傳回所有具有相符名稱的設定檔。
 > 
 > 
 
-## 列出現有的 CDN 端點
-`Get-AzureRmCdnEndpoint` 可以擷取設定檔上的個別端點或所有端點。
+## <a name="listing-existing-cdn-endpoints"></a>列出現有的 CDN 端點
+`Get-AzureRmCdnEndpoint` 可以擷取設定檔上的個別端點或所有端點。  
 
 ```powershell
 # Get a single endpoint.
@@ -133,7 +137,7 @@ Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint
 Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Where-Object { $_.ResourceState -eq "Running" }
 ```
 
-## 建立 CDN 設定檔和端點
+## <a name="creating-cdn-profiles-and-endpoints"></a>建立 CDN 設定檔和端點
 `New-AzureRmCdnProfile` 和 `New-AzureRmCdnEndpoint` 用來建立 CDN 設定檔和端點。
 
 ```powershell
@@ -148,7 +152,7 @@ New-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG -Sku
 
 ```
 
-## 檢查端點名稱可用性
+## <a name="checking-endpoint-name-availability"></a>檢查端點名稱可用性
 `Get-AzureRmCdnEndpointNameAvailability` 可傳回物件，指出端點名稱是否可用。
 
 ```powershell
@@ -160,11 +164,11 @@ If($availability.NameAvailable) { Write-Host "Yes, that endpoint name is availab
 Else { Write-Host "No, that endpoint name is not available." }
 ```
 
-## 新增自訂網域
+## <a name="adding-a-custom-domain"></a>新增自訂網域
 `New-AzureRmCdnCustomDomain` 會將自訂網域名稱新增至現有端點。
 
 > [!IMPORTANT]
-> 您必須如[如何將自訂網域對應至內容傳遞網路 (CDN) 端點](cdn-map-content-to-custom-domain.md)中所述，透過您的DNS 提供者設定 CNAME。您可以先測試對應，然後使用 `Test-AzureRmCdnCustomDomain` 修改端點。
+> 您必須以[如何將自訂網域對應至內容傳遞網路 (CDN) 端點](cdn-map-content-to-custom-domain.md)中所述方式，透過您的 DNS 提供者設定 CNAME。  您可以先測試對應，然後使用 `Test-AzureRmCdnCustomDomain`修改端點。
 > 
 > 
 
@@ -179,7 +183,7 @@ $result = Test-AzureRmCdnCustomDomain -CdnEndpoint $endpoint -CustomDomainHostNa
 If($result.CustomDomainValidated){ New-AzureRmCdnCustomDomain -CustomDomainName Contoso -HostName "cdn.contoso.com" -CdnEndpoint $endpoint }
 ```
 
-## 修改端點
+## <a name="modifying-an-endpoint"></a>修改端點
 `Set-AzureRmCdnEndpoint` 可修改現有的端點。
 
 ```powershell
@@ -194,7 +198,7 @@ $endpoint.ContentTypesToCompress = "text/javascript","text/css","application/jso
 Set-AzureRmCdnEndpoint -CdnEndpoint $endpoint
 ```
 
-## 清除/預先載入 CDN 資產
+## <a name="purgingpre-loading-cdn-assets"></a>清除/預先載入 CDN 資產
 `Unpublish-AzureRmCdnEndpointContent` 會清除快取的資產，而 `Publish-AzureRmCdnEndpointContent` 會在支援的端點上預先載入資產。
 
 ```powershell
@@ -208,7 +212,7 @@ Publish-AzureRmCdnEndpointContent -ProfileName CdnDemo -ResourceGroupName CdnDem
 Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Unpublish-AzureRmCdnEndpointContent -PurgeContent "/images/*"
 ```
 
-## 啟動/停止 CDN 端點
+## <a name="startingstopping-cdn-endpoints"></a>啟動/停止 CDN 端點
 `Start-AzureRmCdnEndpoint` 和 `Stop-AzureRmCdnEndpoint` 可用來啟動和停止個別端點的端點群組。
 
 ```powershell
@@ -222,7 +226,7 @@ Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Stop-AzureRmCdnEndpoint
 Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Start-AzureRmCdnEndpoint
 ```
 
-## 刪除 CDN 資源
+## <a name="deleting-cdn-resources"></a>刪除 CDN 資源
 `Remove-AzureRmCdnProfile` 和 `Remove-AzureRmCdnEndpoint` 可用來移除設定檔和端點。
 
 ```powershell
@@ -236,9 +240,14 @@ Get-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG | Ge
 Remove-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 了解如何透過 [.NET](cdn-app-dev-net.md) 或 [Node.js](cdn-app-dev-node.md) 自動化 Azure CDN。
 
 若要了解 CDN 功能，請參閱 [CDN 概觀](cdn-overview.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

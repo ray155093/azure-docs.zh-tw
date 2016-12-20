@@ -1,23 +1,27 @@
 ---
-title: 根據 SQL 資料倉儲中的選項分組 | Microsoft Docs
-description: 根據 Azure SQL 資料倉儲中的選項實作群組以便開發解決方案的秘訣。
+title: "根據 SQL 資料倉儲中的選項分組 | Microsoft Docs"
+description: "根據 Azure SQL 資料倉儲中的選項實作群組以便開發解決方案的秘訣。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
-manager: barbkess
-editor: ''
-
+manager: jhubbard
+editor: 
+ms.assetid: f95a1e43-768f-4b7b-8a10-8a0509d0c871
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 06/14/2016
-ms.author: jrj;barbkess;sonyama
+ms.date: 10/31/2016
+ms.author: jrj;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e8c486ca190ae2af650a7fa17843c84538dde8d9
+
 
 ---
-# 根據 SQL 資料倉儲中的選項分組
-[GROUP BY][GROUP BY] 子句可用來彙總資料以摘要一組資料列。它也具有一些擴充其功能的選項，這些選項都需要克服，因為 Azure SQL 資料倉儲並不直接支援這些選項。
+# <a name="group-by-options-in-sql-data-warehouse"></a>根據 SQL 資料倉儲中的選項分組
+[GROUP BY][GROUP BY] 子句可用來彙總資料以摘要一組資料列。 它也具有一些擴充其功能的選項，這些選項都需要克服，因為 Azure SQL 資料倉儲並不直接支援這些選項。
 
 可用選項包括
 
@@ -25,8 +29,8 @@ ms.author: jrj;barbkess;sonyama
 * GROUPING SETS
 * GROUP BY 搭配 CUBE
 
-## Rollup 和 grouping sets 選項
-此處最簡單的選項是改為使用 `UNION ALL` 來執行彙總，而不是依賴明確的語法。應該會出現幾乎相同的結果
+## <a name="rollup-and-grouping-sets-options"></a>Rollup 和 grouping sets 選項
+此處最簡單的選項是改為使用 `UNION ALL` 來執行彙總，而不是依賴明確的語法。 應該會出現幾乎相同的結果
 
 以下是使用 `ROLLUP` 選項的 group by 陳述式範例：
 
@@ -78,12 +82,12 @@ JOIN  dbo.DimSalesTerritory t     ON s.SalesTerritoryKey       = t.SalesTerritor
 
 對於 GROUPING SETS，我們必須做的是採用相同的主體，並且只建立我們想要查看之彙總層級的 UNION ALL 區段
 
-## Cube 選項
-可以使用 UNION ALL 方法建立 GROUP BY WITH CUBE。問題是程式碼可能很快就會很麻煩且不易處理。若要避免此情形，您可以使用這項更進階的方法。
+## <a name="cube-options"></a>Cube 選項
+可以使用 UNION ALL 方法建立 GROUP BY WITH CUBE。 問題是程式碼可能很快就會很麻煩且不易處理。 若要避免此情形，您可以使用這項更進階的方法。
 
 使用上述範例。
 
-第一個步驟是定義 'cube'，其定義我們想要建立的所有彙總層級。請務必記下兩個衍生資料表的交叉聯結。這樣可以為我們產生所有層級。其餘程式碼真的有格式化。
+第一個步驟是定義 'cube'，其定義我們想要建立的所有彙總層級。 請務必記下兩個衍生資料表的交叉聯結。 這樣可以為我們產生所有層級。 其餘程式碼真的有格式化。
 
 ```sql
 CREATE TABLE #Cube
@@ -141,7 +145,7 @@ WITH
 ;
 ```
 
-第三個步驟是對執行彙總的資料行 cube 執行迴圈。查詢會為 #Cube 暫存資料表中的每個資料列執行一次，並將結果儲存在 #Results 暫存資料表中
+第三個步驟是對執行彙總的資料行 cube 執行迴圈。 查詢會為 #Cube 暫存資料表中的每個資料列執行一次，並將結果儲存在 #Results 暫存資料表中
 
 ```sql
 SET @nbr =(SELECT MAX(Seq) FROM #Cube);
@@ -176,8 +180,8 @@ ORDER BY 1,2,3
 
 將程式碼分成區段，並產生迴圈建構，程式碼就會變得更容易管理及維護。
 
-## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][開發概觀]。
+## <a name="next-steps"></a>後續步驟
+如需更多開發秘訣，請參閱[開發概觀][開發概觀]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-develop-group-by-options/sql-data-warehouse-develop-group-by-cube.png
@@ -191,4 +195,8 @@ ORDER BY 1,2,3
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

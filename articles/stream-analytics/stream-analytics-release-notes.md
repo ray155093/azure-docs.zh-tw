@@ -1,12 +1,12 @@
 ---
-title: 串流分析版本資訊 | Microsoft Docs
-description: 串流分析版本資訊
+title: "串流分析版本資訊 | Microsoft Docs"
+description: "串流分析版本資訊"
 services: stream-analytics
-documentationcenter: ''
+documentationcenter: 
 author: jeffstokes72
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 5e59f893-cd2c-43fb-9eca-c146ce637203
 ms.service: stream-analytics
 ms.devlang: na
 ms.topic: article
@@ -14,24 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 09/26/2016
 ms.author: jeffstok
+translationtype: Human Translation
+ms.sourcegitcommit: f06747c35f12802f54b44774dff7f92280ba0dc9
+ms.openlocfilehash: fb6dbb6da0ad2cfdfee519c8ce254d983d34fe5e
+
 
 ---
 # <a name="stream-analytics-release-notes"></a>串流分析版本資訊
-## <a name="notes-for-04/15/2016-release-of-stream-analytics"></a>串流分析 2016 年 4 月 15 日版本的注意事項
+## <a name="notes-for-04152016-release-of-stream-analytics"></a>串流分析 2016 年 4 月 15 日版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
 | --- | --- |
-| Power BI 輸出的一般可用性 |[Power BI 輸出](stream-analytics-power-bi-dashboard.md)現在已正式運作。 已移除 Power BI 的 90 天授權到期。 如需需要更新授權的案例的詳細資訊，請參閱＜建立 Power BI 儀表板＞的[更新授權](stream-analytics-power-bi-dashboard.md#Renew-authorization)一節。 |
+| Power BI 輸出的一般可用性 |[Power BI 輸出](stream-analytics-power-bi-dashboard.md)現在已正式運作。 已移除 Power BI 的 90 天授權到期。 如需需要更新授權的案例的詳細資訊，請參閱＜建立 Power BI 儀表板＞的[更新授權](stream-analytics-power-bi-dashboard.md#renew-authorization)一節。 |
 
-## <a name="notes-for-03/03/2016-release-of-stream-analytics"></a>串流分析 2016/03/03 版的注意事項
+## <a name="notes-for-03032016-release-of-stream-analytics"></a>串流分析 2016/03/03 版的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
 | --- | --- |
 | 新的串流分析查詢語言項目 |SAQL 現在有 [GetType](https://msdn.microsoft.com/library/azure/mt643890.aspx "GetType MSDN 頁面")、[TRY_CAST](https://msdn.microsoft.com/library/azure/mt643735.aspx "TRY_CAST MSDN 頁面") 以及 [REGEXMATCH](https://msdn.microsoft.com/library/azure/mt643891.aspx "REGEXMATCH MSDN 頁面")。 |
 
-## <a name="notes-for-12/10/2015-release-of-stream-analytics"></a>串流分析 2015 年 12 月 10 日版本的注意事項
+## <a name="notes-for-12102015-release-of-stream-analytics"></a>串流分析 2015 年 12 月 10 日版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
@@ -39,14 +43,14 @@ ms.author: jeffstok
 | REST API 版本更新 |REST API 的版本已更新至 2015-10-01。 您可在[串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)和[在串流分析中整合機器學習服務](stream-analytics-how-to-configure-azure-machine-learning-endpoints-in-stream-analytics.md)的 MSDN 中取得詳細資料。 |
 | Azure 機器學習的整合 |此版本開始支援 Azure 機器學習的使用者定義函數。 如需詳細資訊，請參閱[教學課程](stream-analytics-machine-learning-integration-tutorial.md)及[一般部落格公告](http://blogs.technet.com/b/machinelearning/archive/2015/12/10/apply-azure-ml-as-a-function-in-azure-stream-analytics.aspx)。 |
 
-## <a name="notes-for-11/12/2015-release-of-stream-analytics"></a>串流分析 2015/11/12 版本的注意事項
+## <a name="notes-for-11122015-release-of-stream-analytics"></a>串流分析 2015/11/12 版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
 | --- | --- |
 | SELECT 的新行為 |「串流分析」中的 SELECT 已經延伸成允許使用 * 做為巢狀記錄的屬性存取子。 如需進一步資訊，請參閱 [http://msdn。microsoft。com/library/mt622759。aspx](http://msdn.microsoft.com/library/mt622759.aspx "複雜資料類型")。 |
 
-## <a name="notes-for-10/22/2015-release-of-stream-analytics"></a>串流分析 2015/10/22 版本的注意事項
+## <a name="notes-for-10222015-release-of-stream-analytics"></a>串流分析 2015/10/22 版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
@@ -56,7 +60,7 @@ ms.author: jeffstok
 | 新增了 GROUP BY System.Timestamp 功能 |[GROUP BY](https://msdn.microsoft.com/library/azure/dn835023.aspx) 函式現在允許用於 window_type 或 [System.Timestamp](https://msdn.microsoft.com/library/azure/mt598501.aspx)。 |
 | 新增了適用於輪轉和跳動視窗的 OFFSET |根據預設，[輪轉](https://msdn.microsoft.com/library/azure/dn835055.aspx)和[跳動](https://msdn.microsoft.com/library/azure/dn835041.aspx)視窗已對準零點時間 (國際標準時間 0001 年 1 月 1 日上午 12:00:00)。 新的 (選擇性) 參數 'offsetsize' 允許指定自訂的 位移 (或對齊)。 |
 
-## <a name="notes-for-09/29/2015-release-of-stream-analytics"></a>串流分析 2015/09/29 版本的注意事項
+## <a name="notes-for-09292015-release-of-stream-analytics"></a>串流分析 2015/09/29 版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
@@ -67,14 +71,14 @@ ms.author: jeffstok
 | 支援 IoT 中樞輸入 |串流分析作業現在可以內嵌來自 IoT 中樞的資料。 |
 | 異質事件的時間戳記格式 |當單一資料流包含數個在不同欄位有不同時間戳記的事件類型時，您現在已可以使用 [TIMESTAMP BY](http://msdn.microsoft.com/library/mt573293.aspx) 搭配運算式為每個案例指定不同的時間戳記欄位。 |
 
-## <a name="notes-for-09/10/2015-release-of-stream-analytics"></a>資料流分析 2015/09/10 版本的注意事項
+## <a name="notes-for-09102015-release-of-stream-analytics"></a>資料流分析 2015/09/10 版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
 | --- | --- |
 | 支援 PowerBI 群組 |為了能夠與其他 Power BI 使用者共用資料，串流分析工作現在可寫入您 Power BI 帳戶內的 [PowerBI 群組](stream-analytics-define-outputs.md#power-bi) 。 |
 
-## <a name="notes-for-08/20/2015-release-of-stream-analytics"></a>串流分析 2015 年 8 月 20 日版本的注意事項
+## <a name="notes-for-08202015-release-of-stream-analytics"></a>串流分析 2015 年 8 月 20 日版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
@@ -83,7 +87,7 @@ ms.author: jeffstok
 | 新的陣列函數 |現在已可使用陣列函數 [GetArrayElement](http://msdn.microsoft.com/library/mt270218.aspx)、[GetArrayElements](http://msdn.microsoft.com/library/mt298451.aspx) 及 [GetArrayLength](http://msdn.microsoft.com/library/mt270226.aspx)。 |
 | 新的記錄函數 |現在已可使用記錄函數 [GetRecordProperties](http://msdn.microsoft.com/library/mt270221.aspx) 和 [GetRecordPropertyValue](http://msdn.microsoft.com/library/mt270220.aspx)。 |
 
-## <a name="notes-for-07/30/2015-release-of-stream-analytics"></a>串流分析 07/30/2015 版本的注意事項
+## <a name="notes-for-07302015-release-of-stream-analytics"></a>串流分析 07/30/2015 版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
@@ -92,14 +96,14 @@ ms.author: jeffstok
 | 支援服務匯流排佇列輸出 |現在您可以在「串流分析」工作中使用[服務匯流排佇列](stream-analytics-define-outputs.md#service-bus-queues)輸出。 |
 | 支援服務匯流排主題輸出 |現在您可以在「串流分析」工作中使用[服務匯流排主題](stream-analytics-define-outputs.md#service-bus-topics)輸出。 |
 
-## <a name="notes-for-07/09/2015-release-of-stream-analytics"></a>串流分析 2015/07/09 版本的注意事項
+## <a name="notes-for-07092015-release-of-stream-analytics"></a>串流分析 2015/07/09 版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
 | --- | --- |
 | 自訂 Blob 輸出資料分割 |Blob 儲存體輸出現在允許指定寫入輸出 Blob 的頻率，以及輸出資料路徑資料夾結構的結構和格式的選項。 |
 
-## <a name="notes-for-05/03/2015-release-of-stream-analytics"></a>串流分析 2015/05/03 版本的注意事項
+## <a name="notes-for-05032015-release-of-stream-analytics"></a>串流分析 2015/05/03 版本的注意事項
 此版本包含下列更新。
 
 | 課程名稱 | 說明 |
@@ -107,7 +111,7 @@ ms.author: jeffstok
 | 增加次序錯誤允許的時間範圍的最大值 |次序錯誤允許的時間範圍的大小上限現在是 59:59 (MM:SS) |
 | JSON 輸出格式：以行分隔或陣列 |現在當輸出至 Blob 儲存體或事件中心時，還有另一個選擇，就是以 JSON 物件的陣列輸出，或透過以新行分隔 JSON 物件來輸出。 |
 
-## <a name="notes-for-04/16/2015-release-of-stream-analytics"></a>串流分析 2015/04/16 版本的注意事項
+## <a name="notes-for-04162015-release-of-stream-analytics"></a>串流分析 2015/04/16 版本的注意事項
 | 課程名稱 | 說明 |
 | --- | --- |
 | Azure 儲存體帳戶組態的延遲 |第一次在某個區域中建立串流分析工作時，系統會提示您建立新的儲存體帳戶或指定現有帳戶，以監視該區域中的串流分析工作。 由於設定監視作業會有所延遲，若在 30 分鐘內於相同區域中建立另一個串流分析工作，系統將提示您指定第二個儲存體帳戶，而不會在 [監視儲存體帳戶] 下拉式清單中顯示最近設定的帳戶。 若要避免建立不必要的儲存體帳戶，請在第一次於某區域中建立工作的 30 分鐘後，再於該區域中佈建其他工作。 |
@@ -130,6 +134,8 @@ ms.author: jeffstok
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

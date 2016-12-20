@@ -1,20 +1,24 @@
 ---
-title: 使用 HDInsight 上的 Storm 和 HBase 讓事件隨著時間而相互關聯
-description: 了解如何使用 HDInsight 上的 Storm 和 HBase 讓在不同的時間抵達的事件相互關聯。
+title: "使用 HDInsight 上的 Storm 和 HBase 讓事件隨著時間而相互關聯"
+description: "了解如何使用 HDInsight 上的 Storm 和 HBase 讓在不同的時間抵達的事件相互關聯。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 17d11479-2d02-4790-8d29-05fb38351479
 ms.service: hdinsight
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/27/2016
+ms.date: 10/27/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 477568c4e1da51928f3618ba13b670cd62791fb9
+
 
 ---
 # <a name="correlate-events-over-time-with-storm-and-hbase-on-hdinsight"></a>使用 HDInsight 上的 Storm 和 HBase 讓事件隨著時間而相互關聯
@@ -22,12 +26,15 @@ ms.author: larryfr
 
 在本文件中，您將學習如何建立基本的 C# Storm 拓撲，以便追蹤使用者工作階段的登入和登出事件，並計算工作階段的持續時間。 此拓撲會使用 HBase 做為永續性資料存放區。 HBase 也可讓您對歷程記錄資料執行批次查詢來產生額外的見解，例如在特定時間週期內已開始或結束多少個使用者工作階段。
 
-[!INCLUDE [windows-only](../../includes/hdinsight-windows-only.md)]
-
 ## <a name="prerequisites"></a>必要條件
 * Visual Studio 和 HDInsight Tools for Visual Studio：如需安裝的相關資訊，請參閱 [開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) 。
 * Apache Storm on HDInsight 叢集 (Windows)。 這會執行 Storm 拓撲，其會處理內送資料並儲存至 HBase。
-* Apache HBase on HDInsight 叢集 (Windows 或 Linux)。 這是此範例的資料來源。
+  
+  > [!IMPORTANT]
+  > 雖然在 2016/10/28 之後建立的 Linux 架構 Storm 叢集可支援 SCP.NET 拓撲，但 2016/10/28 起提供的 HBase SDK for .NET 套件無法在 Linux 上正確運作。
+  > 
+  > 
+* Apache HBase on HDInsight 叢集 (Linux 或 Windows 型)。 這是此範例的資料來源。
 
 ## <a name="architecture"></a>架構
 ![透過拓撲的資料流程圖表](./media/hdinsight-storm-correlation-topology/correlationtopology.png)
@@ -176,6 +183,9 @@ ms.author: larryfr
 ## <a name="next-steps"></a>後續步驟
 如需更多 Storm 範例，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: 服務管理模式中的 Azure CLI 命令 | Microsoft Docs
-description: 服務管理模式中，用來管理傳統部署模型中的部署的 Azure 命令列介面 (CLI) 命令
+title: "服務管理模式中的 Azure CLI 命令 | Microsoft Docs"
+description: "服務管理模式中，用來管理傳統部署模型中的部署的 Azure 命令列介面 (CLI) 命令"
 services: virtual-machines-linux,virtual-machines-windows,mobile-services, cloud-services
-documentationcenter: ''
+documentationcenter: 
 author: dlepow
 manager: timlt
 editor: tysonn
 tags: azure-service-management
-
+ms.assetid: b9ccdeed-0ab8-4de2-937f-4046c7918bd8
 ms.service: multiple
 ms.workload: multiple
 ms.tgt_pltfrm: vm-multiple
@@ -15,12 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/22/2016
 ms.author: danlep
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 614adbd3536d6740e6a46895b36575f0f4c66a8c
+
 
 ---
-# <a name="azure-cli-commands-in-azure-service-management-(asm)-mode"></a>Azure 服務管理 (asm) 模式中的 Azure CLI 命令
+# <a name="azure-cli-commands-in-azure-service-management-asm-mode"></a>Azure 服務管理 (asm) 模式中的 Azure CLI 命令
 [!INCLUDE [learn-about-deployment-models](../includes/learn-about-deployment-models-classic-include.md)]
 
-您也可以[瞭解所有 Resource Manager 模型命令](virtual-machines/azure-cli-arm-commands.md)，並使用 CLI 從傳統模型[移轉資源](virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)到 Resource Manager 模型。
+您也可以[了解所有 Resource Manager 模型命令](virtual-machines/azure-cli-arm-commands.md)，並使用 CLI 從傳統模型[移轉資源](virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)到 Resource Manager 模型。
 
 本文提供傳統部署模型中您通常用來建立和管理 Azure 資源的 Azure CLI 命令的語法和選項。 您可以在 Azure 服務管理 (asm) 模式下執行 CLI 來存取這些命令。 這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。 
 
@@ -921,7 +925,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。 Web 應用�
     Web site name: mydemosite
     + Getting sites
     + Getting site information
-    data:    Subject                       Expiration Date                    Thumbprint
+    data:    Subject                       Expiration Date                      Thumbprint
     data:    ----------------------------  -----------------------------------------
     ----------------  ----------------------------------------
     data:    *.msopentech.com              Fri Nov 28 2014 09:49:57 GMT-0800 (Pacific Standard Time)  A40E82D3DC0286D1F58650E570ECF8224F69A148
@@ -1144,7 +1148,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 * **-v** 或 **--verbose**：寫出詳細資訊輸出。
 * **--json**：寫出 JSON 輸出。
 
-### <a name="<a-name="mobile_services"></a>commands-to-manage-mobile-service-instances"></a><a name="Mobile_Services"></a>管理行動服務執行個體的命令
+### <a name="a-namemobileservicesacommands-to-manage-mobile-service-instances"></a><a name="Mobile_Services"></a>管理行動服務執行個體的命令
 **mobile locations [options]**
 
 此命令會列出行動服務支援的地理位置。
@@ -1300,7 +1304,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 這個命令會將行動服務金鑰設為特定值。
 
-### <a name="<a-name="mobile_configuration"></a>commands-to-manage-mobile-service-configuration"></a><a name="Mobile_Configuration"></a>管理行動服務組態的命令
+### <a name="a-namemobileconfigurationacommands-to-manage-mobile-service-configuration"></a><a name="Mobile_Configuration"></a>管理行動服務組態的命令
 **mobile config list [options] [servicename]**
 
 此命令會列出行動服務的組態選項。
@@ -1341,7 +1345,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
     info:    mobile config set command OK
 
 
-### <a name="<a-name="mobile_tables"></a>commands-to-manage-mobile-service-tables"></a><a name="Mobile_Tables"></a>管理行動服務資料表的命令
+### <a name="a-namemobiletablesacommands-to-manage-mobile-service-tables"></a><a name="Mobile_Tables"></a>管理行動服務資料表的命令
 **mobile table list [options] [servicename]**
 
 此命令會列出您行動服務中的所有資料表。
@@ -1453,8 +1457,8 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
     info:    mobile data truncate command OK
 
 
-### <a name="<a-name="mobile_scripts"></a>commands-to-manage-scripts"></a><a name="Mobile_Scripts"></a>管理指令碼的命令
-本節中的命令可用來管理屬於行動服務的伺服器指令碼。 如需詳細資訊，請參閱[在行動服務中使用伺服器指令碼](mobile-services/mobile-services-how-to-use-server-scripts.md)。
+### <a name="a-namemobilescriptsacommands-to-manage-scripts"></a><a name="Mobile_Scripts"></a>管理指令碼的命令
+本節中的命令可用來管理屬於行動服務的伺服器指令碼。 如需詳細資訊，請參閱[在行動服務中使用伺服器指令碼](https://github.com/Azure/azure-mobile-services/blob/master/docs/mobile-services-how-to-use-server-scripts.md)。
 
 **mobile script list [options] [servicename]**
 
@@ -1510,7 +1514,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
     info:    Executing command mobile script delete
     info:    mobile script delete command OK
 
-### <a name="<a-name="mobile_jobs"></a>commands-to-manage-scheduled-jobs"></a><a name="Mobile_Jobs"></a>管理排程工作的命令
+### <a name="a-namemobilejobsacommands-to-manage-scheduled-jobs"></a><a name="Mobile_Jobs"></a>管理排程工作的命令
 本節中的命令可用來管理屬於行動服務的排程工作。 如需詳細資訊，請參閱[排程作業](http://msdn.microsoft.com/library/windowsazure/jj860528.aspx)。
 
 **mobile job list [options] [servicename]**
@@ -1585,7 +1589,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 > 
 > 
 
-### <a name="<a-name="mobile_scale"></a>commands-to-scale-a-mobile-service"></a><a name="Mobile_Scale"></a>調整行動服務的命令
+### <a name="a-namemobilescaleacommands-to-scale-a-mobile-service"></a><a name="Mobile_Scale"></a>調整行動服務的命令
 本節中的命令可用來調整行動服務。 如需詳細資訊，請參閱[調整行動服務](http://msdn.microsoft.com/library/windowsazure/jj193178.aspx)。
 
 **mobile scale show [options] [servicename]**
@@ -2047,7 +2051,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 ## <a name="commands-to-manage-sql-databases"></a>管理 SQL Database 的命令
 使用下列命令來管理您的 Azure SQL Database
 
-### <a name="commands-to-manage-sql-servers."></a>管理 SQL Server 的命令。
+### <a name="commands-to-manage-sql-servers"></a>管理 SQL Server 的命令。
 使用下列命令來管理您的 SQL Server
 
 **sql server create &lt;administratorLogin> &lt;administratorPassword> &lt;location>**
@@ -2350,6 +2354,6 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

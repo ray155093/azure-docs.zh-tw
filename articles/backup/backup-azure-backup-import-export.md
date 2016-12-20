@@ -1,19 +1,23 @@
 ---
-title: Azure 備份 - 離線備份或使用 Azure 匯入/匯出服務進行初始植入 | Microsoft Docs
-description: 了解 Azure 備份如何讓您使用 Azure 匯入/匯出服務在網路上傳送資料。 此文章說明如何使用 Azure 匯入/匯出服務離線植入初始備份資料。
+title: "Azure 備份 - 離線備份或使用 Azure 匯入/匯出服務進行初始植入 | Microsoft Docs"
+description: "了解 Azure 備份如何讓您使用 Azure 匯入/匯出服務在網路上傳送資料。 此文章說明如何使用 Azure 匯入/匯出服務離線植入初始備份資料。"
 services: backup
-documentationcenter: ''
+documentationcenter: 
 author: saurabhsensharma
 manager: shivamg
-editor: ''
-
+editor: 
+ms.assetid: ada19c12-3e60-457b-8a6e-cf21b9553b97
 ms.service: backup
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 08/16/2016
+ms.date: 11/28/2016
 ms.author: jimpark;saurabhsensharma;nkolli;trinadhk
+translationtype: Human Translation
+ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
+ms.openlocfilehash: 2876f3a7e8e83dc05801d914c7582a4f1fd92e98
+
 
 ---
 # <a name="offline-backup-workflow-in-azure-backup"></a>在 Azure 備份中離線備份工作流程
@@ -61,17 +65,17 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
    
     輸入的說明如下：
    
-   * **預備位置**：初始備份所寫入的暫時儲存體位置。 這可能是在網路共用或本機電腦上。 如果複本電腦和來源電腦不同，則建議您指定預備位置的完整網路路徑。
-   * **Azure 匯入作業名稱**：Azure 匯入服務和 Azure 備份在追蹤磁碟上傳送至 Azure 之資料的傳輸活動時所使用的唯一名稱。
-   * **Azure 發佈設定**：包含訂用帳戶設定檔相關資訊的 XML 檔案。 檔案中也包含與訂用帳戶相關聯的安全認證。 您可以 [下載檔案](https://manage.windowsazure.com/publishsettings)。 提供發佈設定檔案的本機路徑。
-   * **Azure 訂用帳戶識別碼**：打算起始 Azure 匯入作業之訂用帳戶的 Azure 訂用帳戶識別碼。 如果您有多個 Azure 訂用帳戶，請使用要與匯入作業相關聯之訂用帳戶的識別碼。
-   * **Azure 儲存體帳戶**：所提供的 Azure 訂用帳戶中將會與 Azure 匯入作業相關聯的傳統類型儲存體帳戶。
-   * **Azure 儲存體容器**：Azure 儲存體帳戶中匯入此作業資料之目的地儲存體 Blob 的名稱。
+    * **預備位置**：初始備份所寫入的暫時儲存體位置。 這可能是在網路共用或本機電腦上。 如果複本電腦和來源電腦不同，則建議您指定預備位置的完整網路路徑。
+    * **Azure 匯入作業名稱**：Azure 匯入服務和 Azure 備份在追蹤磁碟上傳送至 Azure 之資料的傳輸活動時所使用的唯一名稱。
+    * **Azure 發佈設定**：包含訂用帳戶設定檔相關資訊的 XML 檔案。 檔案中也包含與訂用帳戶相關聯的安全認證。 您可以 [下載檔案](https://manage.windowsazure.com/publishsettings)。 提供發佈設定檔案的本機路徑。
+    * **Azure 訂用帳戶識別碼**：打算起始 Azure 匯入作業之訂用帳戶的 Azure 訂用帳戶識別碼。 如果您有多個 Azure 訂用帳戶，請使用要與匯入作業相關聯之訂用帳戶的識別碼。
+    * **Azure 儲存體帳戶**：所提供的 Azure 訂用帳戶中將會與 Azure 匯入作業相關聯的傳統類型儲存體帳戶。
+    * **Azure 儲存體容器**：Azure 儲存體帳戶中匯入此作業資料之目的地儲存體 Blob 的名稱。
      
-     > [!NOTE]
-     > 如果您已從 [Azure 入口網站](https://portal.azure.com) 在 Azure 復原服務保存庫中為您的備份註冊伺服器，而且您不是在雲端解決方案提供者 (CSP) 訂用帳戶上，您仍可從 Azure 入口網站中建立傳統類型的儲存體帳戶，然後將它用於離線備份工作流程。
-     > 
-     > 
+    > [!NOTE]
+    > 如果您已從 [Azure 入口網站](https://portal.azure.com) 在 Azure 復原服務保存庫中為您的備份註冊伺服器，而且您不是在雲端解決方案提供者 (CSP) 訂用帳戶上，您仍可從 Azure 入口網站中建立傳統類型的儲存體帳戶，然後將它用於離線備份工作流程。
+    > 
+    > 
      
      請將此資訊全部儲存起來，因為您需要在後續步驟中再次輸入此資訊。 如果使用「Azure 磁碟準備工具」來準備磁碟，則只需要「預備位置」  。    
 2. 完成工作流程，然後在 Azure 備份管理主控台中選取 [立即備份]  ，以起始離線備份複製。 作為此步驟的一部分，初始備份會寫入預備區域。
@@ -93,47 +97,49 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 
 1. 前往目錄，並將 **AzureOfflineBackupDiskPrep** 目錄複製到掛接了要準備之磁碟機的複本電腦上。 確認下列與複本電腦有關的事項：
    
-   * 複本電腦可使用在 **起始離線備份** 工作流程中所提供的相同網路路徑，存取離線植入工作流程的預備位置。
-   * 電腦上會啟用 BitLocker。
-   * 電腦可以存取 Azure 入口網站。
+    * 複本電腦可使用在 **起始離線備份** 工作流程中所提供的相同網路路徑，存取離線植入工作流程的預備位置。
+    * 電腦上會啟用 BitLocker。
+    * 電腦可以存取 Azure 入口網站。
      
-     必要時，複本電腦可以與來源電腦相同。
+    必要時，複本電腦可以與來源電腦相同。
 2. 在複本電腦上以 Azure 磁碟準備工具目錄做為目前的目錄來開啟提高權限的命令提示字元，並執行下列命令：
    
-      *.\AzureOfflineBackupDiskPrep.exe*   s:<預備位置路徑>   [p:<PublishSettingsFile 的路徑>]
+    `*.\AzureOfflineBackupDiskPrep.exe*   s:<*Staging Location Path*>   [p:<*Path to PublishSettingsFile*>]`
 
-| 參數 | 說明 |
-| --- | --- |
-| s:<預備位置路徑> |強制性輸入內容，用來提供在 **起始離線備份** 工作流程中所輸入的預備位置路徑。 |
-| p:<PublishSettingsFile 的路徑> |選擇性輸入內容，用來提供在**起始離線備份**工作流程中所輸入的 **Azure 發佈設定**檔案路徑。 |
+    | 參數 | 說明 |
+    | --- | --- |
+    | s:&lt;*預備位置路徑*&gt; |強制性輸入內容，用來提供在 **起始離線備份** 工作流程中所輸入的預備位置路徑。 |
+    | p:&lt;*PublishSettingsFile 的路徑*&gt; |選擇性輸入內容，用來提供在**起始離線備份**工作流程中所輸入的 **Azure 發佈設定**檔案路徑。 |
 
-> [!NOTE]
-> 複製電腦與來源電腦不同時，&lt;PublishSettingFile 的路徑&gt; 為必要值。
-> 
-> 
+    > [!NOTE]
+    > 複製電腦與來源電腦不同時，&lt;PublishSettingFile 的路徑&gt; 為必要值。
+    > 
+    > 
 
-在執行命令時，此工具會要求選擇需要準備之磁碟機所對應的 Azure 匯入作業。 如果只有一個與提供的預備位置相關聯的匯入作業，您會看到類似下面的畫面。
+    在執行命令時，此工具會要求選擇需要準備之磁碟機所對應的 Azure 匯入作業。 如果只有一個與提供的預備位置相關聯的匯入作業，您會看到類似下面的畫面。
 
-   ![Azure 磁碟準備工具的輸入](./media/backup-azure-backup-import-export/azureDiskPreparationToolDriveInput.png) <br/>
+    ![Azure 磁碟準備工具的輸入](./media/backup-azure-backup-import-export/azureDiskPreparationToolDriveInput.png) <br/>
+3. 輸入想要準備傳輸到 Azure 之掛接磁碟的磁碟機代號 (不含結尾冒號)。 在出現提示時確認您要格式化磁碟機。
 
-1. 輸入想要準備傳輸到 Azure 之掛接磁碟的磁碟機代號 (不含結尾冒號)。 在出現提示時確認您要格式化磁碟機。
+    工具接著便會開始以備份資料準備磁碟。 當工具顯示提示時，您可能需要連接額外的磁碟，以免所提供的磁碟沒有足夠空間來容納備份資料。 <br/>
 
-工具接著便會開始以備份資料準備磁碟。 當工具顯示提示時，您可能需要連接額外的磁碟，以免所提供的磁碟沒有足夠空間來容納備份資料。 <br/>
+    在工具順利執行結束時，您所提供的一或多個磁碟便已準備好可以寄送到 Azure。 此外，Azure 傳統入口網站上會建立以您在建立 **起始離線備份** 工作流程期間所提供的名稱來命名的匯入作業。 最後，工具上還會顯示磁碟所要寄送到之 Azure 資料中心的寄送地址，以及用來找到 Azure 傳統入口網站上之匯入作業的連結。
 
-在工具順利執行結束時，您所提供的一或多個磁碟便已準備好可以寄送到 Azure。 此外，Azure 傳統入口網站上會建立以您在建立 **起始離線備份** 工作流程期間所提供的名稱來命名的匯入作業。 最後，工具上還會顯示磁碟所要寄送到之 Azure 資料中心的寄送地址，以及用來找到 Azure 傳統入口網站上之匯入作業的連結。
+    ![Azure 磁碟準備完成](./media/backup-azure-backup-import-export/azureDiskPreparationToolSuccess.png)<br/>
 
-   ![Azure 磁碟準備完成](./media/backup-azure-backup-import-export/azureDiskPreparationToolSuccess.png)<br/>
+4. 將磁碟寄送到工具所提供的地址，並保留追蹤號碼以供日後參考。<br/>
 
-1. 將磁碟寄送到工具所提供的地址，並保留追蹤號碼以供日後參考。<br/>
-2. 當您前往此工具顯示的連結時，您會看到您在 **起始離線備份** 工作流程中所指定的 Azure 儲存體帳戶。 在下圖中，您可以看到儲存體帳戶的 [匯入/匯出]  索引標籤中新建立的匯入作業。
+5. 當您前往此工具顯示的連結時，您會看到您在 **起始離線備份** 工作流程中所指定的 Azure 儲存體帳戶。 在下圖中，您可以看到儲存體帳戶的 [匯入/匯出]  索引標籤中新建立的匯入作業。
    
-   ![建立的匯入作業](./media/backup-azure-backup-import-export/ImportJobCreated.png)<br/>
-3. 按一下頁面底部的 [寄送資訊]  來更新 [連絡人詳細資料]，如下列畫面所示。 當匯入作業完成時，Microsoft 會使用此資訊將磁碟寄回給您。
+    ![建立的匯入作業](./media/backup-azure-backup-import-export/ImportJobCreated.png)<br/>
+
+6. 按一下頁面底部的 [寄送資訊]  來更新 [連絡人詳細資料]，如下列畫面所示。 當匯入作業完成時，Microsoft 會使用此資訊將磁碟寄回給您。
+
+    ![連絡資訊](./media/backup-azure-backup-import-export/contactInfoAddition.PNG)<br/>
+
+7. 在下一個畫面中輸入寄送詳細資料。 提供寄送到 Azure 資料中心之磁碟的對應 [貨運業者] 和 [追蹤號碼] 詳細資料。
    
-   ![連絡資訊](./media/backup-azure-backup-import-export/contactInfoAddition.PNG)<br/>
-4. 在下一個畫面中輸入寄送詳細資料。 提供寄送到 Azure 資料中心之磁碟的對應 [貨運業者] 和 [追蹤號碼] 詳細資料。
-   
-   ![寄送資訊](./media/backup-azure-backup-import-export/shippingInfoAddition.PNG)<br/>
+    ![寄送資訊](./media/backup-azure-backup-import-export/shippingInfoAddition.PNG)<br/>
 
 ### <a name="complete-the-workflow"></a>完成工作流程
 匯入作業完成後，儲存體帳戶中就會有初始備份資料可供使用。 復原服務代理程式接著會將此帳戶中的資料內容複製到備份保存庫或復原服務保存庫 (視何者較適合)。 到了下一個排程的備份時間時，Azure 備份代理程式會透過初始備份複本執行增量備份。
@@ -145,14 +151,15 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 
 ### <a name="prepare-a-sata-drive"></a>準備 SATA 磁碟機
 1. 將 [Microsoft Azure 匯入/匯出工具](http://go.microsoft.com/fwlink/?linkid=301900&clcid=0x409) 下載至複本電腦。 請確定預備位置可從您打算執行下一組命令的電腦進行存取。 必要時，複本電腦可以與來源電腦相同。
+
 2. 解壓縮 WAImportExport.zip 檔案。 執行 WAImportExport 工具，以格式化 SATA 磁碟機、將備份資料寫入 SATA 磁碟機並進行加密。 執行下列命令之前請確定電腦上已啟用 BitLocker。 <br/>
    
-    *.\WAImportExport.exe PrepImport /j:<*JournalFile*>.jrn /id: <*SessionId*> /sk:<*StorageAccountKey*> /BlobType:**PageBlob** /t:<*TargetDriveLetter*> /format /encrypt /srcdir:<*staging location*> /dstdir: <*DestinationBlobVirtualDirectory*>/*
+    `*.\WAImportExport.exe PrepImport /j:<*JournalFile*>.jrn /id: <*SessionId*> /sk:<*StorageAccountKey*> /BlobType:**PageBlob** /t:<*TargetDriveLetter*> /format /encrypt /srcdir:<*staging location*> /dstdir: <*DestinationBlobVirtualDirectory*>/*`
    
-   > [!NOTE]
-   > 如果您已安裝 Azure 備份的 2016 年 8 月更新 (或更新版本)，請確認所輸入的預備位置和 [立即備份] 畫面上的位置相同，且包含 AIB 和 Base Blob 檔案。
-   > 
-   > 
+    > [!NOTE]
+    > 如果您已安裝 Azure 備份的 2016 年 8 月更新 (或更新版本)，請確認所輸入的預備位置和 [立即備份] 畫面上的位置相同，且包含 AIB 和 Base Blob 檔案。
+    > 
+    > 
 
 | 參數 | 說明 |
 | --- | --- |
@@ -177,14 +184,21 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中前往您的儲存體帳戶，按一下 [匯入/匯出]，然後按一下工作窗格中的 [建立匯入作業]。
    
     ![Azure 入口網站中的匯入/匯出索引標籤](./media/backup-azure-backup-import-export/azureportal.png)
+
 2. 在精靈的步驟 1，指出您已備妥磁碟機並有可用的磁碟機日誌。
+
 3. 在精靈的步驟 2 中，提供負責處理此匯入作業的人員連絡資訊。
+
 4. 在步驟 3 中，上傳在上一個章節中您所取得的磁碟機日誌檔案。
+
 5. 在步驟 4 中，為備份原則/保護群組建立期間所輸入的匯入作業輸入描述性名稱。 您輸入的名稱只能包含小寫字母、數字、連字號和底線，必須以字母開頭，且不得包含空格。 當作業正在進行中和完成之後，將會使用您所選的名稱來追蹤作業。
+
 6. 接著，從清單中選取資料中心區域。 資料中心區域會指出您的包裹必須送達的資料中心和地址。
    
     ![選取資料中心區域](./media/backup-azure-backup-import-export/dc.png)
+
 7. 在步驟 5 中，從清單中選取您的寄回貨運公司，並輸入貨運公司客戶編號。 在匯入作業完成之後，Microsoft 會透過此廠商將磁碟機寄還給您。
+
 8. 運送磁碟，並輸入追蹤號碼以便追蹤運送狀態。 磁碟到達資料中心後，其會複製到儲存體帳戶並更新狀態。
    
     ![已完成的狀態](./media/backup-azure-backup-import-export/complete.png)
@@ -196,6 +210,9 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 * 如有任何關於 Azure 匯入/匯出工作流程的問題，請參閱 [使用 Microsoft Azure 匯入/匯出服務將資料傳輸至 Blob 儲存體](../storage/storage-import-export-service.md)。
 * 若您有關於工作流程的任何問題，請參閱 Azure 備份 [常見問題集](backup-azure-backup-faq.md) 的＜離線備份＞章節。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

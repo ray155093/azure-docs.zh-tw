@@ -64,6 +64,13 @@
 #### [傳統入口網站](cloud-services-how-to-scale.md)
 ### [使用 Python 管理 Azure 資源](cloud-services-python-how-to-use-service-management.md)
 
+### [客體 OS 修補程式](cloud-services-guestos-msrc-releases.md)
+### 客體 OS 淘汰
+#### [淘汰原則](cloud-services-guestos-retirement-policy.md)
+#### [系列 1 淘汰通知](cloud-services-guestos-family1-retirement.md)
+### [客體 OS 發佈新聞](cloud-services-guestos-update-matrix.md)
+### [雲端服務角色設定 XPath 速查表](cloud-services-role-config-xpath.md)
+
 ## 管理憑證
 ### [雲端服務與管理憑證](cloud-services-certs-create.md)
 ### 設定 SSL 
@@ -101,12 +108,6 @@
 ## [.csdef XMLSchema](https://msdn.microsoft.com/library/azure/ee758711)
 ## [.cscfg XMLSchema](https://msdn.microsoft.com/library/azure/ee758710)
 ## [REST](https://msdn.microsoft.com/library/azure/ee460812)
-## [客體 OS 修補程式](cloud-services-guestos-msrc-releases.md)
-## 客體 OS 淘汰
-### [淘汰原則](cloud-services-guestos-retirement-policy.md)
-### [系列 1 淘汰通知](cloud-services-guestos-family1-retirement.md)
-## [客體 OS 發佈新聞](cloud-services-guestos-update-matrix.md)
-## [雲端服務角色設定 XPath 速查表](cloud-services-role-config-xpath.md)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/cloud-services/)
@@ -116,6 +117,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/cloud-services/)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

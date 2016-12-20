@@ -1,39 +1,44 @@
 ---
-title: 使用 PowerShell Cmdlet 建立虛擬機器擴展集 | Microsoft Docs
-description: 使用 Azure PowerShell Cmdlet 開始建立及管理您的第一個 Azure 虛擬機器擴展集
+title: "使用 PowerShell Cmdlet 建立虛擬機器擴展集 | Microsoft Docs"
+description: "使用 Azure PowerShell Cmdlet 開始建立及管理您的第一個 Azure 虛擬機器擴展集"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: danielsollondon
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 430d9d64-1f35-48f0-a4fd-9b69910ffa59
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/30/2016
+ms.date: 09/29/2016
 ms.author: danielsollondon
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 14f83c6753ce37639b1b2f78a4c632f1d69f585d
+
 
 ---
-# 使用 PowerShell Cmdlet 建立虛擬機器擴展集
+# <a name="creating-virtual-machine-scale-sets-using-powershell-cmdlets"></a>使用 PowerShell Cmdlet 建立虛擬機器擴展集
 此範例示範如何建立虛擬機器擴展集 (VMSS)，它會建立具有 3 個節點的 VMSS，並包含所有相關聯的網路和儲存體。
 
-## 第一個步驟
-確認您已安裝最新的 Azure PowerShell 模組，此模組會包含維護及建立 VMSS 所需的 Powershell Cmdlet。移至[這裡](http://aka.ms/webpi-azps)的命令列工具，以取得最新可用的 Azure 模組。
+## <a name="first-steps"></a>第一個步驟
+確認您已安裝最新的 Azure PowerShell 模組，此模組會包含維護及建立 VMSS 所需的 Powershell Cmdlet。
+移至 [這裡](http://aka.ms/webpi-azps) 的命令列工具，以取得最新可用的 Azure 模組。
 
-若要尋找 VMSS 相關的 Cmdlet，請使用搜尋字串 *VMSS*。
+若要尋找 VMSS 相關的 Cmdlet，請使用搜尋字串 VMSS\*\*。
 
-## 建立 VMSS
-##### 建立資源群組
+## <a name="creating-a-vmss"></a>建立 VMSS
+##### <a name="create-resource-group"></a>建立資源群組
 ```
 $loc = 'westus';
 $rgname = 'mynewrgwu';
   New-AzureRmResourceGroup -Name $rgname -Location $loc -Force;
 ```
 
-##### 建立儲存體帳戶
+##### <a name="create-storage-account"></a>建立儲存體帳戶
 設定儲存體帳戶類型/名稱。
 
 ```
@@ -44,23 +49,23 @@ $stotype = 'Standard_LRS';
 $stoaccount = Get-AzureRmStorageAccount -ResourceGroupName $rgname -Name $stoname;
 ```
 
-#### 建立網路 (VNET/子網路)
-##### 子網路規格
+#### <a name="create-networking-vnet-subnet"></a>建立網路 (VNET/子網路)
+##### <a name="subnet-specification"></a>子網路規格
 ```
 $subnetName = 'websubnet'
   $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix "10.0.0.0/24";
 ```
 
-##### VNET 規格
+##### <a name="vnet-specification"></a>VNET 規格
 ```
-$vnet = New-AzureRmVirtualNetwork -Force -Name ('vnet' + $rgname) -ResourceGroupName $rgname -Location $loc -AddressPrefix "10.0.0.0/16" -DnsServer "10.1.1.1" -Subnet $subnet;
+$vnet = New-AzureRmVirtualNetwork -Force -Name ('vnet' + $rgname) -ResourceGroupName $rgname -Location $loc -AddressPrefix "10.0.0.0/16" -Subnet $subnet;
 $vnet = Get-AzureRmVirtualNetwork -Name ('vnet' + $rgname) -ResourceGroupName $rgname;
 
 #In this case below we assume the new subnet is the only one, note difference if you have one already or have adjusted this code to more than one subnet.
 $subnetId = $vnet.Subnets[0].Id;
 ```
 
-##### 建立允許外部存取的公用 IP 資源
+##### <a name="create-public-ip-resource-to-allow-external-access"></a>建立允許外部存取的公用 IP 資源
 這會繫結至負載平衡器。
 
 ```
@@ -68,7 +73,7 @@ $pubip = New-AzureRmPublicIpAddress -Force -Name ('pubip' + $rgname) -ResourceGr
 $pubip = Get-AzureRmPublicIpAddress -Name ('pubip' + $rgname) -ResourceGroupName $rgname;
 ```
 
-##### 建立並設定負載平衡器
+##### <a name="create-and-configure-load-balancer"></a>建立並設定負載平衡器
 ```
 $frontendName = 'fe' + $rgname
 $backendAddressPoolName = 'bepool' + $rgname
@@ -81,7 +86,7 @@ $lbName = 'vmsslb' + $rgname
 $frontend = New-AzureRmLoadBalancerFrontendIpConfig -Name $frontendName -PublicIpAddress $pubip
 ```
 
-##### 設定負載平衡器
+##### <a name="configure-load-balancer"></a>設定負載平衡器
 建立後端位址集區組態，這會由 VMSS 中 VM 的 NIC 共用。
 
 ```
@@ -131,7 +136,7 @@ $actualLb = New-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgname -Lo
 $expectedLb = Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgname
 ```
 
-##### 設定並建立 VMSS
+##### <a name="configure-and-create-vmss"></a>設定並建立 VMSS
 請注意，此基礎結構範例示範如何在 VMSS 內設定散發及調整網路流量，但此處指定的 VM 映像並未安裝任何 Web 服務。
 
 ```
@@ -164,9 +169,6 @@ $ipCfg = New-AzureRmVmssIPConfig -Name 'nic' `
 -LoadBalancerInboundNatPoolsId $actualLb.InboundNatPools[0].Id `
 -LoadBalancerBackendAddressPoolsId $actualLb.BackendAddressPools[0].Id `
 -SubnetId $subnetId;
-
-$ipCfg.LoadBalancerBackendAddressPools.Add($actualLb.BackendAddressPools[0].Id);
-$ipCfg.LoadBalancerInboundNatPools.Add($actualLb.InboundNatPools[0].Id);
 ```
 
 建立 VMSS 組態
@@ -190,7 +192,7 @@ $vmss = New-AzureRmVmssConfig -Location $loc -SkuCapacity $numberofnodes -SkuNam
 New-AzureRmVmss -ResourceGroupName $rgname -Name $vmssName -VirtualMachineScaleSet $vmss -Verbose;
 ```
 
-現在您已建立 VMSS。在此範例中，您可以測試使用 RDP 連接到個別 VM︰
+現在您已建立 VMSS。 在此範例中，您可以測試使用 RDP 連接到個別 VM︰
 
 ```
 VM0 : pubipmynewrgwu.westus.cloudapp.azure.com:3360
@@ -198,4 +200,8 @@ VM1 : pubipmynewrgwu.westus.cloudapp.azure.com:3361
 VM2 : pubipmynewrgwu.westus.cloudapp.azure.com:3362
 ```
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

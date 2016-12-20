@@ -1,12 +1,12 @@
 ---
-title: 設定 ExpressRoute 線路的工作流程 | Microsoft Docs
-description: 此頁面會引導您完成設定 ExpressRoute 線路的工作流程
+title: "設定 ExpressRoute 線路的工作流程 | Microsoft Docs"
+description: "此頁面會引導您完成設定 ExpressRoute 線路的工作流程"
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: 55e0418c-e0bf-44a7-9aa1-720076df9297
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 570a98aafca6babc5a7089880d4120c2a8f4a0d8
+ms.openlocfilehash: 5a275620639a801d7e60ef9ada1af29062dfe440
+
 
 ---
 # <a name="expressroute-workflows-for-circuit-provisioning-and-circuit-states"></a>ExpressRoute 工作流程線路佈建和線路狀態
@@ -53,21 +57,24 @@ Status 代表 Microsoft 的佈建狀態。 這個屬性會在您建立 Expressro
 ### <a name="possible-states-of-an-expressroute-circuit"></a>ExpressRoute 線路的可能狀態
 本節列出 ExpressRoute 線路的可能狀態。
 
-#### <a name="at-creation-time"></a>在建立時
+**在建立時**
+
 執行 PowerShell Cmdlet 建立 ExpressRoute 線路後，您很快就會看到 ExpressRoute 線路處於下列狀態。
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-#### <a name="when-connectivity-provider-is-in-the-process-of-provisioning-the-circuit"></a>當連線提供者正在佈建線路時
+**當連線提供者正在佈建線路時**
+
 當您將服務金鑰傳遞給連線提供者且他們也啟動佈建程序時，您快很就會看到 ExpressRoute 線路處於下列狀態。
 
     ServiceProviderProvisioningState : Provisioning
     Status                           : Enabled
 
 
-#### <a name="when-connectivity-provider-has-completed-the-provisioning-process"></a>當連線提供者完成佈建程序時
+**當連線提供者完成佈建程序時**
+
 當連線提供者完成佈建程序後，您快很就會看到 ExpressRoute 線路處於下列狀態。
 
     ServiceProviderProvisioningState : Provisioned
@@ -75,7 +82,8 @@ Status 代表 Microsoft 的佈建狀態。 這個屬性會在您建立 Expressro
 
 線路只能處於 Provisioned 和 Enabled 狀態下，才可供您使用。 如果您使用第 2 層提供者，則只有當線路處於此狀態下，您才能設定路由。
 
-#### <a name="when-connectivity-provider-is-deprovisioning-the-circuit"></a>當連線提供者正在取消佈建循環時
+**當連線提供者正在取消佈建循環時**
+
 如果您要求服務提供者取消佈建 ExpressRoute 循環，則當服務提供者完成取消佈建程序後，您將會看到已將循環設定為下列狀態。
 
     ServiceProviderProvisioningState : NotProvisioned
@@ -108,6 +116,9 @@ BGP 佈建狀態可讓您知道 Microsoft 邊緣是否已啟用 BGP 工作階段
   * [設定路由](expressroute-howto-routing-arm.md)
   * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

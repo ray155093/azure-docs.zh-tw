@@ -1,12 +1,12 @@
 ---
-title: Troubleshooting the Access Panel Extension for Internet Explorer | Microsoft Docs
-description: How to use group policy to deploy the Internet Explorer add-on for the My Apps portal.
+title: "疑難排解 Internet explorer 的存取面板延伸模組 | Microsoft Docs"
+description: "如何使用群組原則針對我的 app 入口網站部署 Internet Explorer 附加元件。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: f56b3230-26fd-42ec-9e3d-2c12daf15479
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,81 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/31/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 43768d76e3cdc0dc34a3412675ea4fb84170c021
+
 
 ---
-# <a name="troubleshooting-the-access-panel-extension-for-internet-explorer"></a>Troubleshooting the Access Panel Extension for Internet Explorer
-This article will help you troubleshoot the following problems:
+# <a name="troubleshooting-the-access-panel-extension-for-internet-explorer"></a>疑難排解 Internet explorer 的存取面板延伸模組
+這篇文章可協助您疑難排解下列問題：
 
-* You're unable to access your apps through the My Apps portal while using Internet Explorer.
-* You see the "Install Software" message even though you've already installed the software.
+* 使用 Internet Explorer 時無法透過「我的 app」入口網站存取您的 app。
+* 即使您已經安裝軟體，還是看到「安裝軟體」訊息。
 
-If you are an admin, see also: [How to Deploy the Access Panel Extension for Internet Explorer using Group Policy](active-directory-saas-ie-group-policy.md)
+如果您是管理員，另請參閱： [如何使用群組原則部署 Internet Explorer 的存取面板延伸模組](active-directory-saas-ie-group-policy.md)
 
-## <a name="run-the-diagnostic-tool"></a>Run the Diagnostic Tool
-You can diagnose installation problems with the Access Panel Extension by downloading and running the Access Panel diagnostic tool:
+## <a name="run-the-diagnostic-tool"></a>執行診斷工具
+您可以下載並執行「存取面板」診斷工具來診斷存取面板延伸模組的安裝問題：
 
-1. [Click here to download the diagnostic tool.](https://account.activedirectory.windowsazure.com/applications/AccessPanelExtensionDiagnosticTool/AccessPanelExtensionDiagnosticTool.zip)
-2. Open the file, and press **Extract all** button.
+1. [按一下這裡下載診斷工具。](https://account.activedirectory.windowsazure.com/applications/AccessPanelExtensionDiagnosticTool/AccessPanelExtensionDiagnosticTool.zip)
+2. 開啟檔案，然後按下 [解壓縮全部]  按鈕。
    
-    ![Press Extract All](./media/active-directory-saas-ie-troubleshooting/extract1.png)
-3. Then press the **Extract** button to continue.
+    ![按下 [解壓縮全部]](./media/active-directory-saas-ie-troubleshooting/extract1.png)
+3. 然後按下 [解壓縮]  按鈕繼續。
    
-    ![Press Extract](./media/active-directory-saas-ie-troubleshooting/extract2.png)
-4. To run the tool, right-click the file named **AccessPanelExtensionDiagnosticTool**, then select **Open with > Microsoft Windows Based Script Host**.
+    ![按下 [解壓縮]](./media/active-directory-saas-ie-troubleshooting/extract2.png)
+4. 若要執行工具，請以滑鼠右鍵按一下名為 **AccessPanelExtensionDiagnosticTool** 的檔案，然後選取 [開啟檔案] > [Microsoft Windows Based Script Host]。
    
-    ![Open with > Microsoft Windows Based Script Host](./media/active-directory-saas-ie-troubleshooting/open_tool.png)
-5. You will then see the following diagnostic window, which describes what might be wrong with your installation.
+    ![[開啟檔案] > [Microsoft Windows Based Script Host]](./media/active-directory-saas-ie-troubleshooting/open_tool.png)
+5. 然後您會看到下列診斷視窗，描述您的安裝可能有哪些錯誤。
    
-    ![A sample of the diagnostic window](./media/active-directory-saas-ie-troubleshooting/tool_preview.png)
-6. Click "**YES**" to let the program fix the issues that have been found.
-7. To save these changes, close every Internet Explorer window, and then open Internet Explorer again.<br />If you still can't access your apps, try the steps below.
+    ![一個診斷視窗範例](./media/active-directory-saas-ie-troubleshooting/tool_preview.png)
+6. 按一下 [是]讓程式修正發現的問題。
+7. 若要儲存這些變更，請關閉所有 Internet Explorer 視窗，然後再次開啟 Internet Explorer。<br />如果您仍然無法存取您的應用程式，請嘗試下列步驟。
 
-## <a name="check-that-the-access-panel-extension-is-enabled"></a>Check that the Access Panel Extension is enabled
-To verify that the Access Panel Extension is enabled in Internet Explorer:
+## <a name="check-that-the-access-panel-extension-is-enabled"></a>檢查存取面板延伸模組是否已啟用
+確認 Internet Explorer 中已啟用存取面板延伸模組：
 
-1. In Internet Explorer, click on the **Gear icon** on the top right corner of the window. Then select **Internet options**.<br />(In older versions of Internet Explorer you can find this under **Tools > Internet options**.
+1. 在 Internet Explorer 中按一下視窗右上角的「齒輪」圖示  。 然後選取 [網際網路選項]。<br />(在舊版 Internet Explorer 中可以在 [工具] > [網際網路選項] 下找到。
    
-    ![Go to Tools > Internet Options](./media/active-directory-saas-ie-troubleshooting/internetoptions.png)
-2. Click on the **Programs** tab, then click on the **Manage add-ons** button.
+    ![移至 [工具] > [網際網路選項]](./media/active-directory-saas-ie-troubleshooting/internetoptions.png)
+2. 按一下 [程式] 索引標籤，然後按一下 [管理附加元件] 按鈕。
    
-    ![Click Manage Add-Ons](./media/active-directory-saas-ie-troubleshooting/internetoptions_programs.png)
-3. In this dialog, select **Access Panel Extension** and then click the **Enable** button.
+    ![按一下 [管理附加元件]](./media/active-directory-saas-ie-troubleshooting/internetoptions_programs.png)
+3. 在此對話方塊中，選取 [存取面板延伸模組]，然後按一下 [啟用] 按鈕。
    
-    ![Click Enable](./media/active-directory-saas-ie-troubleshooting/enableaddon.png)
-4. To save these changes, close every Internet Explorer window and then open Internet Explorer again.
+    ![按一下 [啟用]](./media/active-directory-saas-ie-troubleshooting/enableaddon.png)
+4. 若要儲存這些變更，請關閉所有 Internet Explorer 視窗，然後再次開啟 Internet Explorer。
 
-## <a name="enable-extensions-for-inprivate-browsing"></a>Enable Extensions for InPrivate Browsing
-If you are using the InPrivate Browsing mode:
+## <a name="enable-extensions-for-inprivate-browsing"></a>啟用 InPrivate 瀏覽的延伸模組
+如果您正在使用 InPrivate 瀏覽模式：
 
-1. In Internet Explorer, click on the **Gear icon** on the top right corner of the window. Then select **Internet options**.<br />(In older versions of Internet Explorer you can find this under **Tools > Internet options**.
+1. 在 Internet Explorer 中按一下視窗右上角的「齒輪」圖示  。 然後選取 [網際網路選項]。<br />(在舊版 Internet Explorer 中可以在 [工具] > [網際網路選項] 下找到。
    
-    ![A sample of the diagnostic window](./media/active-directory-saas-ie-troubleshooting/inprivateoptions.png)
-2. Go to the **Privacy** tab, then **uncheck** the checkbox labeled **Disable toolbars and extensions when InPrivate Browsing starts**</p>
+    ![一個診斷視窗範例](./media/active-directory-saas-ie-troubleshooting/inprivateoptions.png)
+2. 移至 [隱私權] 索引標籤，然後**取消核取**標示為 [InPrivate 瀏覽啟動時停用工具列和延伸模組] 的核取方塊</p>
    
-    ![Uncheck Disable toolbars and extensions when InPrivate Browsing starts](./media/active-directory-saas-ie-troubleshooting/enabletoolbars.png)
-3. To save these changes, close every Internet Explorer window and then open Internet Explorer again.
+    ![取消核取 [InPrivate 瀏覽啟動時停用工具列和延伸模組]](./media/active-directory-saas-ie-troubleshooting/enabletoolbars.png)
+3. 若要儲存這些變更，請關閉所有 Internet Explorer 視窗，然後再次開啟 Internet Explorer。
 
-## <a name="uninstall-the-access-panel-extension"></a>Uninstall the Access Panel Extension
-To uninstall the Access Panel extension from your computer:
+## <a name="uninstall-the-access-panel-extension"></a>解除安裝存取面板延伸模組
+從您的電腦解除安裝存取面板延伸模組：
 
-1. On your keyboard, press the **Windows key** to open the Start menu. When the menu is open, you can type anything to do a search. Type "Control Panel" and then open the **Control Panel** when it appears in the search results.
+1. 在鍵盤上按下 **Windows 鍵** 以開啟 [開始] 功能表。 功能表開啟時，您可以輸入任何內容進行搜尋。 請輸入「控制台」，然後當控制台  出現在搜尋結果中時將它開啟。
    
-    ![Search for Control Panel](./media/active-directory-saas-ie-troubleshooting/search_sm.png)
-2. In the top right corner of the Control Panel, change the **View by** option to **Large icons**. Then find and click on the **Programs and Features** button.
+    ![搜尋「控制台」](./media/active-directory-saas-ie-troubleshooting/search_sm.png)
+2. 在控制台的右上角，將 [檢視方式] 選項變更為 [大圖示]。 然後尋找 [程式和功能]  按鈕並按一下。
    
-    ![Chang the view to show Large Icons](./media/active-directory-saas-ie-troubleshooting/control_panel.png)
-3. From the list, select **Access Panel Extension**, and the click on the **Uninstall** button.
+    ![變更檢視以顯示大圖示](./media/active-directory-saas-ie-troubleshooting/control_panel.png)
+3. 從清單中選取 [存取面板延伸模組]，再按一下 [解除安裝] 按鈕。
    
-    ![Click Uninstall](./media/active-directory-saas-ie-troubleshooting/uninstall.png)
-4. You can then try to install the extension again to see if the problem has been resolved.
+    ![按一下 [解除安裝]](./media/active-directory-saas-ie-troubleshooting/uninstall.png)
+4. 您可以嘗試再安裝一次延伸模組，看看是否已經解決問題。
 
-If you encounter issues uninstalling the extension, you can also remove it using the [Microsoft Fix It](https://go.microsoft.com/?linkid=9779673) tool.
+如果您解除安裝延伸模組時遇到問題，也可以使用 [Microsoft Fix It](https://go.microsoft.com/?linkid=9779673) 工具移除延伸模組。
 
-## <a name="related-articles"></a>Related Articles
-* [Article Index for Application Management in Azure Active Directory](active-directory-apps-index.md)
-* [Application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md)
-* [How to Deploy the Access Panel Extension for Internet Explorer using Group Policy](active-directory-saas-ie-group-policy.md)
+## <a name="related-articles"></a>相關文章
+* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)
+* [如何使用群組原則部署 Internet Explorer 的存取面板擴充功能](active-directory-saas-ie-group-policy.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

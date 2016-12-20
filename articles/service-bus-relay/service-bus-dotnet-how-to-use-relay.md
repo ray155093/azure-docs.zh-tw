@@ -1,30 +1,34 @@
 ---
-title: 如何使用服務匯流排轉送搭配 .NET | Microsoft Docs
-description: 了解如何使用 Azure 服務匯流排轉送服務連接主控於相異位置的兩個應用程式。
-services: service-bus
+title: "如何使用服務匯流排 WCF 轉送搭配 .NET | Microsoft Docs"
+description: "了解如何使用 Azure 服務匯流排轉送服務連接主控於相異位置的兩個應用程式。"
+services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 5493281a-c2e5-49f2-87ee-9d3ffb782c75
+ms.service: service-bus-relay
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/16/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9f7f9dc2eb6332c8f179fc35c9f746cbe5a7985e
+
 
 ---
-# <a name="how-to-use-the-azure-service-bus-relay-service"></a>如何使用 Azure 服務匯流排轉送服務
+# <a name="how-to-use-the-service-bus-wcf-relay-with-net"></a>如何使用服務匯流排 WCF 轉送搭配 .NET
 本文說明如何使用服務匯流排轉送服務。 這些範例均以 C# 撰寫，並使用 Windows Communication Foundation (WCF) API 以及包含在服務匯流排組件中的擴充功能。 如需有關服務匯流排轉送的詳細資訊，請參閱[服務匯流排轉送傳訊](service-bus-relay-overview.md)概觀。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="what-is-the-service-bus-relay?"></a>什麼是服務匯流排轉送
+## <a name="what-is-the-service-bus-relay"></a>什麼是服務匯流排轉送
 [服務匯流排「轉送」服務](service-bus-relay-overview.md)可讓您建立一個可在 Azure 資料中心和您自己的內部部署企業環境中執行的混合式應用程式。 服務匯流排轉送可幫助達成此目標，方法是讓您以安全的方式，向公用雲端公開位於企業網路內部的 Windows Communication Foundation (WCF) 服務，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。
 
-![轉送概念](./media/service-bus-dotnet-how-to-use-relay/sb-relay-01.png)
+![WCF 轉送概念](./media/service-bus-dotnet-how-to-use-relay/sb-relay-01.png)
 
 服務匯流排轉送可讓您代管位於現有企業環境內的 WCF 服務。 您可以接著將接聽這些 WCF 服務的傳入工作階段和要求，委派給在 Azure 內部執行的服務匯流排服務。 這可讓您將這些服務公開給在 Azure 中執行的應用程式程式碼，或是給行動工作者或外部網路合作夥伴環境。 服務匯流排可讓您以安全的方式，在精細的層次控制可存取這些服務的使用者。 它提供了功能強大及安全的方式，來公開應用程式功能及現有企業解決方案的資料，並從雲端加以利用。
 
@@ -117,7 +121,7 @@ sh.Close();
 
 在此範例中，您將建立相同合約實作的兩個端點。 一個是本機，一個透過服務匯流排投射。 它們之間的主要差異是繫結；[NetTcpBinding](https://msdn.microsoft.com/library/azure/system.servicemodel.nettcpbinding.aspx) 用於本機，而 [NetTcpRelayBinding](https://msdn.microsoft.com/library/azure/microsoft.servicebus.nettcprelaybinding.aspx) 用於服務匯流排端點和位址。 本機端點會包含具有獨特連接埠的本機網路位址。 服務匯流排端點會包含一個由字串 `sb`、您的命名空間名稱及路徑 "solver" 組合而成的端點位址。 這會產生 URI `sb://[serviceNamespace].servicebus.windows.net/solver`，指出服務端點為具有完整外部 DNS 名稱的服務匯流排 TCP 端點。 如果您將要取代預留位置的程式碼置入 **Service** 應用程式的 `Main` 函式中，您將會有一個功能性服務。 如果您想要服務專門接聽服務匯流排，請移除本機端點宣告。
 
-### <a name="configure-a-service-host-in-the-app.config-file"></a>在 App.config 檔案中設定服務主機
+### <a name="configure-a-service-host-in-the-appconfig-file"></a>在 App.config 檔案中設定服務主機
 您也可以使用 App.config 檔案來設定主機。 此案例中的服務裝載程式碼會出現在下一個範例中。
 
 ```
@@ -182,7 +186,7 @@ using (var ch = cf.CreateChannel())
 
 您現在可以建置用戶端和服務、執行它們 (先執行服務)，然後用戶端會呼叫此服務並列印 **9**。 您可以在不同機器上 (即使是在不同網路上) 執行用戶端和伺服器，通訊仍然可以運作。 您也可以在雲端或在本機上執行用戶端程式碼。
 
-#### <a name="configure-a-client-in-the-app.config-file"></a>在 App.config 檔案中設定用戶端
+#### <a name="configure-a-client-in-the-appconfig-file"></a>在 App.config 檔案中設定用戶端
 下列程式碼示範如何使用 App.config 檔案設定用戶端。
 
 ```
@@ -219,7 +223,7 @@ using (var ch = cf.CreateChannel())
 了解基本的服務匯流排轉送服務之後，請參考下列連結以取得更多資訊。
 
 * [服務匯流排轉送傳訊概觀](service-bus-relay-overview.md)
-* [Azure 服務匯流排架構概觀](../service-bus/service-bus-fundamentals-hybrid-solutions.md)
+* [Azure 服務匯流排架構概觀](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
 * 從 [Azure 範例][Azure 範例]下載服務匯流排範例，或參閱[服務匯流排範例概觀][服務匯流排範例概觀]。
 
 [使用服務匯流排的共用存取簽章驗證]: ../service-bus-messaging/service-bus-shared-access-signature-authentication.md
@@ -227,6 +231,7 @@ using (var ch = cf.CreateChannel())
 [服務匯流排範例概觀]: ../service-bus-messaging/service-bus-samples.md
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

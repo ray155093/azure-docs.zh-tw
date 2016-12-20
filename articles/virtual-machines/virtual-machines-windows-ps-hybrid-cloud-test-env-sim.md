@@ -1,24 +1,28 @@
 ---
-title: 模擬混合式雲端測試環境 | Microsoft Docs
-description: 使用兩個 Azure 虛擬網路和 VNet 對 VNet 連接，建立 IT 專業或開發測試的模擬混合式雲端環境。
+title: "模擬混合式雲端測試環境 | Microsoft Docs"
+description: "使用兩個 Azure 虛擬網路和 VNet 對 VNet 連接，建立 IT 專業或開發測試的模擬混合式雲端環境。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: JoeDavies-MSFT
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: ca5bf294-8172-44a9-8fed-d6f38d345364
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 08/08/2016
+ms.date: 09/30/2016
 ms.author: josephd
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 1322af70f643bcc191e3d69fe4a174adc9cd7e8d
+
 
 ---
-# 設定用於測試的模擬混合式雲端環境
-本文會引導您使用兩個 Azure 虛擬網路逐步建立 Microsoft Azure 的模擬混合式雲端環境。以下是產生的組態。
+# <a name="set-up-a-simulated-hybrid-cloud-environment-for-testing"></a>設定用於測試的模擬混合式雲端環境
+本文會引導您使用兩個 Azure 虛擬網路逐步建立 Microsoft Azure 的模擬混合式雲端環境。 以下是產生的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sim/virtual-machines-windows-ps-hybrid-cloud-test-env-sim-ph4.png)
 
@@ -39,17 +43,17 @@ ms.author: josephd
 1. 設定 TestLab 虛擬網路。
 2. 建立跨單位虛擬網路。
 3. 建立 VNet 對 VNet VPN 連線。
-4. 設定 DC2。
+4. 設定 DC2。 
 
-此組態需要 Azure 訂用帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
+此組態需要 Azure 訂用帳戶。 如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
 > [!NOTE]
-> Azure 中的虛擬機器和虛擬網路閘道會在執行時持續耗用成本。這項成本是按照您的 MSDN 或付費訂用帳戶進行計算。Azure VPN 閘道會實作為一組兩個的 Azure 虛擬機器。為了減少成本，請建立測試環境，並盡快執行所需的測試和示範。
+> Azure 中的虛擬機器和虛擬網路閘道會在執行時持續耗用成本。 這項成本是按照您的 MSDN 或付費訂用帳戶進行計算。 Azure VPN 閘道會實作為一組兩個的 Azure 虛擬機器。 為了減少成本，請建立測試環境，並盡快執行所需的測試和示範。
 > 
 > 
 
-## 第 1 階段：設定 TestLab 虛擬網路
-使用[基底組態測試環境](https://technet.microsoft.com/library/mt771177.aspx)主題中的指示，在名稱為 TestLab 的 Azure 虛擬網路中設定 DC1、APP1 和 CLIENT1 電腦。
+## <a name="phase-1-configure-the-testlab-virtual-network"></a>第 1 階段：設定 TestLab 虛擬網路
+使用 [基底組態測試環境](https://technet.microsoft.com/library/mt771177.aspx) 主題中的指示，在名稱為 TestLab 的 Azure 虛擬網路中設定 DC1、APP1 和 CLIENT1 電腦。 
 
 接下來，開啟 Azure PowerShell 提示字元。
 
@@ -66,7 +70,7 @@ ms.author: josephd
 
     Get-AzureRMSubscription | Sort SubscriptionName | Select SubscriptionName
 
-設定您的 Azure 訂用帳戶使用您用來建置階段 1 中基底組態的同一個訂用帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
+設定您的 Azure 訂用帳戶 使用您用來建置階段 1 中基底組態的同一個訂用帳戶。 以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
     $subscr="<subscription name>"
     Get-AzureRmSubscription –SubscriptionName $subscr | Select-AzureRmSubscription
@@ -92,7 +96,7 @@ ms.author: josephd
 
 請留意，建立新的閘道可能需要 20 分鐘或更久。
 
-從本機電腦上的 Azure 入口網站中，使用 CORP\\User1 認證連線到 DC1。若要設定 CORP 網域，讓電腦和使用者使用其本機網域控制站進行驗證，請從 DC1 上的系統管理員層級 Windows PowerShell 命令提示字元執行這些命令。
+從本機電腦上的 Azure 入口網站中，使用 CORP\User1 認證連線到 DC1。 若要設定 CORP 網域，讓電腦和使用者使用其本機網域控制站進行驗證，請從 DC1 上的系統管理員層級 Windows PowerShell 命令提示字元執行這些命令。
 
     New-ADReplicationSite -Name "TestLab" 
     New-ADReplicationSite -Name "TestVNET"
@@ -103,7 +107,7 @@ ms.author: josephd
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sim/virtual-machines-windows-ps-hybrid-cloud-test-env-sim-ph1.png)
 
-## 第 2 階段：建立 TestVNET 虛擬網路
+## <a name="phase-2-create-the-testvnet-virtual-network"></a>第 2 階段：建立 TestVNET 虛擬網路
 首先，建立 TestVNET 虛擬網路並使用網路安全性群組加以保護。
 
     $rgName="<name of the resource group that you used for your TestLab virtual network>"
@@ -130,8 +134,8 @@ ms.author: josephd
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sim/virtual-machines-windows-ps-hybrid-cloud-test-env-sim-ph2.png)
 
-## 第 3 階段：建立 VNet 對 VNet 連線
-首先，從您的網路或安全性管理員取得隨機且以強式密碼編譯之 32 個字元的預先共用金鑰。或者，使用 [Create a random string for an IPsec preshared key (建立 IPsec 預先共用金鑰的隨機字串)](http://social.technet.microsoft.com/wiki/contents/articles/32330.create-a-random-string-for-an-ipsec-preshared-key.aspx) 中的資訊來取得預先共用金鑰。
+## <a name="phase-3-create-the-vnet-to-vnet-connection"></a>第 3 階段：建立 VNet 對 VNet 連線
+首先，從您的網路或安全性管理員取得隨機且以強式密碼編譯之 32 個字元的預先共用金鑰。 或者，使用 [Create a random string for an IPsec preshared key (建立 IPsec 預先共用金鑰的隨機字串)](http://social.technet.microsoft.com/wiki/contents/articles/32330.create-a-random-string-for-an-ipsec-preshared-key.aspx) 中的資訊來取得預先共用金鑰。
 
 接下來，使用這些命令來建立 VNet 對 VNet VPN 連線，這可能需要一些時間來完成。
 
@@ -147,8 +151,8 @@ ms.author: josephd
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sim/virtual-machines-windows-ps-hybrid-cloud-test-env-sim-ph3.png)
 
-## 第 4 階段：設定 DC2
-首先，建立 DC2 的虛擬機器。在本機電腦的 Azure PowerShell 命令提示字元下執行下列命令：
+## <a name="phase-4-configure-dc2"></a>第 4 階段：設定 DC2
+首先，建立 DC2 的虛擬機器。 在本機電腦的 Azure PowerShell 命令提示字元下執行下列命令：
 
     $rgName="<your resource group name>"
     $locName="<your Azure location, such as West US>"
@@ -170,47 +174,52 @@ ms.author: josephd
 
 接著，從 Azure 入口網站連接至新的 DC2 虛擬機器。
 
-接著，設定 Windows 防火牆規則，允許基本連線測試的流量。從 DC2 的系統管理員層級 Windows PowerShell 命令提示字元下，執行這些命令。
+接著，設定 Windows 防火牆規則，允許基本連線測試的流量。 從 DC2 的系統管理員層級 Windows PowerShell 命令提示字元下，執行這些命令。
 
     Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" -enabled True
     ping dc1.corp.contoso.com
 
-Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這是 Vnet 對 Vnet 連線的流量測試。
+Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。 這是 Vnet 對 Vnet 連線的流量測試。
 
 接著，將 DC2 上額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1. 在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2. 在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2]\([磁碟分割] 設為 [不明])。
+2. 在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3. 按一下 [工作]，然後按一下 [新增磁碟區]。
-4. 在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
-5. 在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
-6. 在 [指定磁碟區大小] 頁面上，按 [下一步]。
-7. 在 [指派成磁碟機代號或資料夾] 頁面上，按 [下一步]。
-8. 在 [選取檔案系統設定] 頁面上，按 [下一步]。
-9. 在 [確認選取項目] 頁面上，按一下 [建立]。
-10. 完成時，按一下 [關閉]。
+4. 在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步] 。
+5. 在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。 出現提示時，按一下 [新增功能] 架構藍圖。
+6. 在 [指定磁碟區大小] 頁面上，按 [下一步] 。
+7. 在 [指派成磁碟機代號或資料夾] 頁面上，按 [下一步] 。
+8. 在 [選取檔案系統設定] 頁面上，按 [下一步] 。
+9. 在 [確認選取項目] 頁面上，按一下 [建立] 。
+10. 完成時，按一下 [關閉] 。
 
-接著，將 DC2 設定為 corp.contoso.com 網域的複本網域控制站。從 DC2 的 Windows PowerShell 命令提示字元執行下列命令。
+接著，將 DC2 設定為 corp.contoso.com 網域的複本網域控制站。 從 DC2 的 Windows PowerShell 命令提示字元執行下列命令。
 
     Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
     Install-ADDSDomainController -Credential (Get-Credential CORP\User1) -DomainName "corp.contoso.com" -InstallDns:$true -DatabasePath "F:\NTDS" -LogPath "F:\Logs" -SysvolPath "F:\SYSVOL"
 
-請注意，系統會提示您提供 CORP\\User1 密碼和目錄服務還原模式 (DSRM) 密碼，並重新啟動 DC2。
+請注意，系統會提示您提供 CORP\User1 密碼和目錄服務還原模式 (DSRM) 密碼，並重新啟動 DC2。
 
 由於 TestVNET 虛擬網路有自己的 DNS 伺服器 (DC2)，因此您必須設定 TestVNET 的虛擬網路使用這個 DNS 伺服器。
 
-1. 在 Azure 入口網站的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET]。
+1. 在 Azure 入口網站的左窗格中，按一下虛擬網路圖示，然後按一下 [TestVNET] 。
 2. 在 [設定] 索引標籤上，按一下 [DNS 伺服器]。
 3. 在 [主要 DNS 伺服器] 中，輸入 **192.168.0.4** 以取代 10.0.0.4。
-4. 按一下 [儲存]。
+4. 按一下 [儲存] 。
 
-這是您目前的組態。
+這是您目前的組態。 
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-sim/virtual-machines-windows-ps-hybrid-cloud-test-env-sim-ph4.png)
 
 模擬混合式雲端環境到此準備就緒，可以進行測試。
 
-## 後續步驟
-* 在此環境中設定 [Web 型企業營運應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)。
+## <a name="next-step"></a>後續步驟
+* 在此環境中設定 [Web 型企業營運應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

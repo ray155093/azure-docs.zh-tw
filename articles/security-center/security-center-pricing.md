@@ -1,12 +1,12 @@
 ---
-title: Security Center pricing | Microsoft Docs
-description: This article provides information on pricing for Azure Security Center.
+title: "資訊安全中心價格 |Microsoft Docs"
+description: "這篇文章提供 Azure 資訊安全中心的價格資訊。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: ''
-
+editor: 
+ms.assetid: 4d1364cd-7847-425a-bb3a-722cb0779f78
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
@@ -14,65 +14,69 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/12/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a39a8aaeb2bc3603e5fd2404f061697c98c0ff2f
+
 
 ---
-# <a name="azure-security-center-pricing"></a>Azure Security Center pricing
-Azure Security Center helps you prevent, detect, and respond to threats with increased visibility into and control over the security of your Azure resources. It provides integrated security monitoring and policy management across your Azure subscriptions, helps detect threats that might otherwise go unnoticed, and works with a broad ecosystem of security solutions.
+# <a name="azure-security-center-pricing"></a>Azure 資訊安全中心價格
+Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控制權，以預防、偵測並回應威脅。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
 
-## <a name="pricing-tiers"></a>Pricing tiers
-Security Center is offered in two tiers:
+## <a name="pricing-tiers"></a>定價層
+資訊安全中心提供兩個層級：
 
-* The **Free tier** is automatically enabled on all Azure subscriptions. The Free tier provides visibility into the security state of your Azure resources, basic security policy, security recommendations, and integration with security products and services from partners.
-* The **Standard tier** adds advanced threat detection capabilities, including threat intelligence, behavioral analysis, anomaly detection, security incidents, and threat assessment reports. A **90 day free trial** is available for the Standard tier.
+* **免費層**在所有 Azure 訂用帳戶上自動啟用。 免費層提供 Azure 資源安全性狀態的可見度、基本安全性原則、安全性建議以及與合作夥伴的安全性產品和服務整合。
+* **標準層**新增進階威脅偵測功能，包括威脅智慧、行為分析、異常偵測、安全性事件，以及威脅評估報告。 標準層可享 **90 天免費試用**。
 
-For more information, see the Security Center [pricing page](https://azure.microsoft.com/pricing/details/security-center/).
+如需詳細資訊，請參閱資訊安全中心[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
 
 > [!NOTE]
-> Security Center uses Azure storage to save security data generated from your protected nodes. Costs associated with this storage are not included in the price of the service and are charged separately at regular [Azure storage rates](https://azure.microsoft.com/pricing/details/storage/blobs/). Storage charges apply even during the trial.
+> 資訊安全中心使用 Azure 儲存體來儲存產生自受保護節點的安全性資料。 與此儲存體相關的費用不包含在服務價格中，而將以一般 [Azure 儲存體費率](https://azure.microsoft.com/pricing/details/storage/blobs/)分別計費。 儲存體費用在試用期間同樣適用。
 > 
 > 
 
-## <a name="try-standard-free-for-90-days"></a>Try Standard free for 90 days
-A 90 day free trial is available for the Standard tier. To get the free trial of the Standard tier, select the **Policy** tile on the **Security Center** blade. Select the subscription that you want to upgrade to Standard. On the **Security policy** blade, select **Pricing tier**. On the **Choose your pricing tier** blade, select **Standard – Free Trial**.
+## <a name="try-standard-free-for-90-days"></a>免費試用 90 天的標準
+標準層可享 90 天免費試用。 若要取得免費試用版的「標準」層，請選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。 選取您要升級至「標準」的訂用帳戶。 在 [安全性原則] 刀鋒視窗中，選取 [定價層]。 在 [選擇定價層] 刀鋒視窗中，選取 [標準 – 免費試用]。
 
-![Free trial][1]
+![免費試用][1]
 
-At the end of 90 days, should you choose to continue using the service, we will automatically start charging for usage.
+在 90 天結束時，如果您選擇繼續使用服務，我們將自動開始針對使用量計費。
 
-## <a name="upgrade-to-standard"></a>Upgrade to Standard
-Upgrade to the Standard tier to add advanced threat detection. To get the Standard tier, select the **Policy** tile on the **Security Center** blade. Select the subscription that you want to upgrade to Standard. On the **Security policy** blade, select **Pricing tier**. On the **Choose your pricing tier** blade, select **Standard**.
+## <a name="upgrade-to-standard"></a>升級至標準
+升級至「標準」層以新增進階威脅偵測。 若要取得「標準」層，請選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。 選取您要升級至「標準」的訂用帳戶。 在 [安全性原則] 刀鋒視窗中，選取 [定價層]。 在 [選擇定價層] 刀鋒視窗中，選取 [標準]。
 
-![Standard tier][2]
+![標準層][2]
 
-## <a name="why-upgrade-to-standard?"></a>Why upgrade to Standard?
-The Standard tier of Security Center provides all features of the Free tier plus advanced threat detection. Advanced threat detection helps identify active threats targeting your Azure resources and provides you with the insights needed to respond quickly.
+## <a name="why-upgrade-to-standard"></a>為何要升級至標準？
+「標準」層的資訊安全中心提供「免費」層的所有功能，再加上進階威脅偵測。 進階威脅偵測可協助識別以您的 Azure 資源為目標的作用中威脅，並提供您迅速回應所需的深入資訊。
 
-Security Center employs advanced security analytics, which go far beyond signature-based approaches. Breakthroughs in big data and machine learning technologies are leveraged to evaluate events across the entire cloud fabric – detecting threats that would be impossible to identify using manual approaches and predicting the evolution of attacks.
+資訊安全中心會運用進階安全性分析，其遠勝於以簽章為基礎的方法。 巨量資料和機器學習技術突破可用來評估整個雲端網狀架構的事件 – 使用手動方式來偵測無法識別的威脅，以及預測攻擊的演化。
 
-Security analytics that come with the Standard tier are:
+「標準」層隨附的安全性分析為︰
 
-* **Threat intelligence** - Looks for known bad actors by using global threat intelligence from Microsoft products and services, the Microsoft Digital Crimes Unit, the Microsoft Security Response Center, and external feeds
-* **Behavioral analysis** - Applies known patterns to discover malicious behavior
-* **Anomaly detection** - Uses statistical profiling to build a historical baseline. It alerts on deviations from established baselines that conform to a potential attack vector
+* **威脅情報** - 利用 Microsoft 產品和服務、Microsoft 數位犯罪防治中心、Microsoft Security Response Center 以及外部摘要的全域威脅情報，尋找已知的不良執行者
+* **行為分析** - 套用已知模式來探索惡意行為
+* **異常偵測** - 使用統計剖析來建置歷程基準。 它會對偏離已確立基準 (符合潛在攻擊向量) 的情況提出警示
 
-In the **Security alerts** blade below, Security Center has detected a security **incident**. A security incident is an aggregation of all alerts for a resource that align with kill chain patterns. Selecting the security incident reveals more details about the incident and lists the related alerts. Selecting an alert provides more information about that occurrence.
+在以下的 [安全性警示] 刀鋒視窗中，資訊安全中心偵測到安全性**事件**。 安全性事件是符合攻擊鏈模式之資源的所有警示彙總。 選取安全性事件會顯示關於該事件的更多詳細資料，並列出相關警示。 選取警示提供有關該出現次數的詳細資訊。
 
-![Security incident][3]
+![安全性事件][3]
 
-The **Network communication** alert below provides details about the alert. Details include its full description, its severity, its current state (which in this case is dismissed, meaning the user took action to dismiss it), the attacked resource, and remediation steps. There is also a list of links to Microsoft Threat Intelligence reports. These reports can be used for security remediation and defensive purposes.
+以下的**網路通訊**警示提供有關警示的詳細資料。 詳細資料包括其完整的描述、其嚴重性、其目前狀態 (在此案例中可關閉，表示使用者採取動作來關閉它)，受到攻擊的資源，以及修復步驟。 另外還有一個 Microsoft 威脅情報報告連結的清單。 這些報告可以用於安全性補救和防禦。
 
-![Security alert details][4]
+![安全性警示詳細資料][4]
 
-## <a name="enable-data-collection"></a>Enable data collection
-To enable virtual machine behavioral analytics, data collection must be turned on. You may have to enable data collection when you first access Security Center or when you are creating a security policy.
+## <a name="enable-data-collection"></a>啟用資料收集
+若要啟用虛擬機器行為分析，則必須開啟資料收集。 您可以在第一次存取資訊安全中心，或當您建立安全性原則時啟用資料收集。
 
-To validate that data collection is enabled, select the **Policy** tile. The **Security policy** blade opens listing your Azure subscriptions. Select a subscription. If **Data collection** is off, change it to on and save the change. See [Enable data collection in Azure Security Center](security-center-enable-data-collection.md).
+若要驗證資料收集是否已啟用，請選取 [原則] 圖格。 [安全性原則] 刀鋒視窗隨即開啟，列出您的 Azure 訂用帳戶。 選取一個訂用帳戶。 如果 [資料收集] 關閉，請將它變更為開啟並儲存變更。 請參閱[在 Azure 資訊安全中心啟用資料收集](security-center-enable-data-collection.md)。
 
-## <a name="next-steps"></a>Next steps
-* In this document, you were introduced to pricing for Security Center. For additional pricing information, see the Security Center [pricing page](https://azure.microsoft.com/pricing/details/security-center/).
-* To learn more about Security Center’s advanced detection capabilities, see [Azure Security Center detection capabilities](security-center-detection-capabilities.md).
-* If you have questions about using Security Center, see the [Azure Security Center FAQ](security-center-faq.md).
-* If you still have questions about using Security Center, or Azure, visit the [Azure Forums](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc).
+## <a name="next-steps"></a>後續步驟
+* 在本文件中，已向您介紹資訊安全中心的價格。 如需價格的詳細資訊，請參閱資訊安全中心[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
+* 若要深入了解資訊安全中心的進階偵測功能，請參閱 [Azure 資訊安全中心的偵測功能](security-center-detection-capabilities.md)。
+* 如果您對使用資訊安全中心有問題，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md)。
+* 如果您仍然有關於使用資訊安全中心或 Azure 方面的問題，請造訪 [Azure 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc)。
 
 <!--Image references-->
 [1]: ./media/security-center-pricing/free-trial.png
@@ -82,6 +86,6 @@ To validate that data collection is enabled, select the **Policy** tile. The **S
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure AD .NET 通訊協定概觀 | Microsoft Docs
-description: 本文章說明如何使用 HTTP 訊息來使用 Azure Active Directory 和 OpenID Connect 授權存取您的租用戶中的 Web 應用程式和 Web API。
+title: "Azure AD .NET 通訊協定概觀 | Microsoft Docs"
+description: "本文章說明如何使用 HTTP 訊息來使用 Azure Active Directory 和 OpenID Connect 授權存取您的租用戶中的 Web 應用程式和 Web API。"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 29142f7e-d862-4076-9a1a-ecae5bcd9d9b
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,12 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: priyamo
+translationtype: Human Translation
+ms.sourcegitcommit: 87c73981c74fc763fd1aec6c283e934c77008441
+ms.openlocfilehash: c5b1305b71c5d4076cb22fb70be3d7904695715c
+
 
 ---
 # <a name="authorize-access-to-web-applications-using-openid-connect-and-azure-active-directory"></a>使用 OpenID Connect 和 Azure Active Directory 授權存取 Web 應用程式
 [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) 是以 OAuth 2.0 通訊協定為建置基礎的簡單身分識別層。 OAuth 2.0 定義的機制可以取得及使用 **存取權杖** 來存取受保護的資源，但它們不會定義提供身分識別資訊的標準方法。 OpenID Connect 會實作驗證做為 OAuth 2.0 授權程序的擴充，以驗證使用者身分識別的 `id_token` 形式提供使用者相關資訊，以及提供關於使用者的基本設定檔資訊。
 
 如果您要建置的 Web 應用程式是裝載於伺服器且透過瀏覽器存取，建議使用 OpenID Connect。
+
+[!INCLUDE [active-directory-protocols-getting-started](../../includes/active-directory-protocols-getting-started.md)]
 
 ## <a name="authentication-flow-using-openid-connect"></a>使用 OpenID Connect 驗證流程
 最基本的登入流程包含下列步驟 - 以下將詳細說明每一個步驟。
@@ -90,7 +96,7 @@ Content-Type: application/x-www-form-urlencoded
 error=access_denied&error_description=the+user+canceled+the+authentication
 ```
 
-| 參數 | 說明 |
+|  參數 | 說明 |
 | --- | --- |
 | 錯誤 |用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
 | error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
@@ -108,7 +114,7 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 | temporarily_unavailable |伺服器暫時過於忙碌而無法處理要求。 |重試要求。 用戶端應用程式可能會向使用者解釋，其回應因為暫時性狀況而延遲。 |
 | invalid_resource |目標資源無效，因為它不存在、Azure AD 無法找到它，或是它並未正確設定。 |這表示尚未在租用戶中設定資源 (如果存在)。 應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
 
-## <a name="validate-the-id_token"></a>驗證 id_token
+## <a name="validate-the-idtoken"></a>驗證 id_token
 僅接收 `id_token` 不足以驗證使用者，您必須驗證簽章，並依照應用程式的需求確認 `id_token` 中的宣告。 Azure AD 端點使用 JSON Web Tokens (JWT) 和公開金鑰加密簽署權杖及驗證其是否有效。
 
 您可以選擇驗證用戶端程式碼中的 `id_token`，但是常見的作法是將 `id_token` 傳送至後端伺服器，並且在那裡執行驗證。 一旦驗證了 `id_token`的簽章，就會有數項宣告需要驗證。
@@ -146,14 +152,14 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 // Line breaks for legibility only
 
 GET https://login.microsoftonline.com/{tenant}/oauth2/authorize?
-client_id=6731de76-14a6-49ae-97bc-6eba6914391e      // Your registered Application Id
+client_id=6731de76-14a6-49ae-97bc-6eba6914391e        // Your registered Application Id
 &response_type=id_token+code
 &redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F       // Your registered Redirect Uri, url encoded
 &response_mode=form_post                              // form_post', or 'fragment'
 &scope=openid
-&resource=https%3A%2F%2Fservice.contoso.com%2F                                   
-&state=12345                                         // Any value, provided by your app
-&nonce=678910                                        // Any value, provided by your app
+&resource=https%3A%2F%2Fservice.contoso.com%2F                                     
+&state=12345                                          // Any value, provided by your app
+&nonce=678910                                         // Any value, provided by your app
 ```
 
 藉由在要求中包含權限範圍，並且使用 `response_type=code+id_token`，`authorize` 端點可確保使用者已經同意 `scope` 查詢參數中表示的權限，並且將授權碼傳回至您的應用程式以交換存取權杖。
@@ -169,7 +175,7 @@ Content-Type: application/x-www-form-urlencoded
 id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...&state=12345
 ```
 
-| 參數 | 說明 |
+|  參數 | 說明 |
 | --- | --- |
 | id_token |應用程式要求的 `id_token` 。 您可以使用 `id_token` 確認使用者的身分識別，並以使用者開始工作階段。 |
 | code |應用程式要求的 authorization_code。 應用程式可以使用授權碼要求目標資源的存取權杖。 Authorization_code 的有效期很短，通常約 10 分鐘後即到期。 |
@@ -186,15 +192,17 @@ Content-Type: application/x-www-form-urlencoded
 error=access_denied&error_description=the+user+canceled+the+authentication
 ```
 
-| 參數 | 說明 |
+|  參數 | 說明 |
 | --- | --- |
 | 錯誤 |用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
 | error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
 
 如需可能的錯誤碼及建議的用戶端動作說明，請參閱 [授權端點錯誤的錯誤碼](#error-codes-for-authorization-endpoint-errors)。
 
-一旦取得授權 `code` 和 `id_token`，您可以將使用者登入，並且代表他們取得存取權杖。  若要將使用者登入，您必須完整地如上方所述驗證 `id_token` 。 若要取得存取權杖，您可以遵循我們的 [OAuth 通訊協定文件](active-directory-protocols-oauth-code.md#Use-the-Authorization-Code-to-Request-an-Access-Token)中所述的步驟。
+一旦取得授權 `code` 和 `id_token`，您可以將使用者登入，並且代表他們取得存取權杖。  若要將使用者登入，您必須完整地如上方所述驗證 `id_token` 。 若要取得存取權杖，您可以依照 [OAuth 通訊協定文件](active-directory-protocols-oauth-code.md)中＜使用授權碼來要求存取權杖＞一節中所述的步驟操作。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

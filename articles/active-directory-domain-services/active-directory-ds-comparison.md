@@ -1,12 +1,12 @@
 ---
-title: Azure AD 網域服務：比較 Azure AD 網域服務與 DIY 網域控制器 | Microsoft Docs
-description: 比較 Azure Active Directory Domain Services 與 DIY 網域控制器
+title: "Azure AD Domain Services：比較 Azure AD Domain Services 與 DIY 網域控制器 | Microsoft Docs"
+description: "比較 Azure Active Directory Domain Services 與 DIY 網域控制器"
 services: active-directory-ds
-documentationcenter: ''
+documentationcenter: 
 author: mahesh-unnikrishnan
 manager: stevenpo
 editor: curtand
-
+ms.assetid: 165249d5-e0e7-4ed1-aa26-91a05a87bdc9
 ms.service: active-directory-ds
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: maheshu
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 92567d36632ae285377f41a6804ef04ef49d5628
+
 
 ---
 # <a name="how-to-decide-if-azure-ad-domain-services-is-right-for-your-use-case"></a>如何判斷 Azure AD 網域服務是否適合您的使用案例
@@ -87,7 +91,7 @@ AAD-DS 受管理的網域不支援複雜的群組原則建構。 例如，您無
 #### <a name="geo-dispersed-deployments"></a>分散各地的部署
 Azure AD 網域服務受管理網域可以在Azure 的單一虛擬網路中使用。 在世界各地多個 Azure 區域中都需要可用網域控制站的案例中，在 Azure IaaS VM 中設定網域控制站可能是更好的替代方法。
 
-## <a name="'do-it-yourself'-(diy)-ad-deployment-options"></a>「自己動手做」(DIY) AD 部署選項
+## <a name="do-it-yourself-diy-ad-deployment-options"></a>「自己動手做」(DIY) AD 部署選項
 在有些部署使用案例中，您可能需要 Windows Server AD 安裝所提供的一些功能。 在這些情況下，請考慮下列其中一個自己動手做 (DIY) 選項︰
 
 * **獨立雲端網域︰** 您可以使用已設定為網域控制站的 Azure 虛擬機器來設定獨立「雲端網域」。 此基礎結構不會與內部部署 AD 環境整合。 此選項需要一組不同的「雲端認證」才能登入/管理雲端中的 VM。
@@ -106,6 +110,9 @@ Azure AD 網域服務受管理網域可以在Azure 的單一虛擬網路中使�
 * [部署案例 - Azure AD 網域服務](active-directory-ds-scenarios.md)
 * [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

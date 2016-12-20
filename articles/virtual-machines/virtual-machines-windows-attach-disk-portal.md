@@ -1,35 +1,39 @@
 ---
-title: 將資料磁碟連結到 Windows VM | Microsoft Docs
-description: 如何在 Azure 入口網站中使用 Resource Manager 部署模型，將新的或現有的資料磁碟連結到 Windows VM。
+title: "將資料磁碟連結到 Windows VM | Microsoft Docs"
+description: "如何在 Azure 入口網站中使用 Resource Manager 部署模型，將新的或現有的資料磁碟連結到 Windows VM。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 3790fc59-7264-41df-b7a3-8d1226799885
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 11/02/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: e7ec8715087abaf5c96a6327d4bcde0ad3fd547a
+
 
 ---
 # <a name="how-to-attach-a-data-disk-to-a-windows-vm-in-the-azure-portal"></a>如何在 Azure 入口網站中將資料磁碟連結到 Windows VM
-本文示範如何透過 Azure 入口網站將新的及現有的磁碟連結到 Windows 虛擬機器。 您也可以 [在 Azure 入口網站中將資料磁碟連結到 Linux VM](virtual-machines-linux-attach-disk-portal.md)。 這麼做之前，請先檢閱下列提示：
+本文示範如何透過 Azure 入口網站將新的及現有的磁碟連結到 Windows 虛擬機器。 您也可以 [在 Azure 入口網站中將資料磁碟連結到 Linux VM](virtual-machines-linux-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 這麼做之前，請先檢閱下列提示：
 
-* 虛擬機器的大小會控制您可以連接的資料磁碟數目。 如需詳細資訊，請參閱 [虛擬機器的大小](virtual-machines-windows-sizes.md)。
-* 若要使用進階儲存體，您需要 DS 系列或 GS 系列的虛擬機器。 您可以使用進階或標準儲存體帳戶的磁碟搭配這些虛擬機器。 僅特定地區可用進階儲存體。 如需詳細資訊，請參閱 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。
-* 連接至虛擬機器的磁碟實際上是 Azure 儲存體帳戶中的 .vhd 檔案。 如需詳細資訊，請參閱 [有關虛擬機器的磁碟和 VHD](virtual-machines-windows-about-disks-vhds.md)。
+* 虛擬機器的大小會控制您可以連接的資料磁碟數目。 如需詳細資訊，請參閱 [虛擬機器的大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * 對於新的磁碟，當您連接的時候 Azure 會建立該磁碟，所以您不需要建立它。
 * 對於現有的磁碟，該 .vhd 檔案必須可在 Azure 儲存體帳戶中取得。 您可以使用現有的 .vhd 檔案 (若尚未連接至其他虛擬機器)，或上傳您自己的 .vhd 檔案至儲存體帳戶。
 
+您也可以[使用 Powershell 連接資料磁碟](virtual-machines-windows-ps-manage.md#add-a-data-disk-to-a-virtual-machine)。
+
 [!INCLUDE [virtual-machines-common-attach-disk-portal](../../includes/virtual-machines-common-attach-disk-portal.md)]
 
-## <a name="<a-id="initializeinws"></a>how-to:-initialize-a-new-data-disk-in-windows-server"></a><a id="initializeinWS"></a>如何：在 Windows Server 中初始化新的資料磁碟
-1. 連接至虛擬機器。 如需指示，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md)。
+## <a name="a-idinitializeinwsahow-to-initialize-a-new-data-disk-in-windows-server"></a><a id="initializeinWS"></a>如何：在 Windows Server 中初始化新的資料磁碟
+1. 連接至虛擬機器。 如需指示，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 2. 登入虛擬機器之後，開啟 [伺服器管理員] 。 在左窗格中，選取 [File and Storage Services] 。
    
     ![開啟伺服器管理員](./media/virtual-machines-windows-classic-attach-disk/fileandstorageservices.png)
@@ -41,13 +45,16 @@ ms.author: cynthn
     ![成功初始化磁碟區](./media/virtual-machines-windows-classic-attach-disk/newvolumecreated.png)
 
 > [!NOTE]
-> VM 的大小會決定它可以附加的磁碟數目。 如需詳細資訊，請參閱 [虛擬機器的大小](virtual-machines-linux-sizes.md)。
+> VM 的大小會決定它可以附加的磁碟數目。 如需詳細資訊，請參閱 [虛擬機器的大小](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-如果您的應用程式需要使用 D: 磁碟機來儲存資料，可以 [變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)。
+如果您的應用程式需要使用 D: 磁碟機來儲存資料，可以 [變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

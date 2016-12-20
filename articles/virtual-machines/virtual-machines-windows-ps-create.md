@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 10/21/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6a78e83d84df9bdd4fedd9c90aa02dc26e9d94c9
+ms.sourcegitcommit: edeee13457c1098eb1b44efaa97e9a84d29e88e7
+ms.openlocfilehash: 12903dc79ac6349da9f4897cdb0db5cb62f67b22
 
 
 ---
@@ -114,7 +114,7 @@ ms.openlocfilehash: 6a78e83d84df9bdd4fedd9c90aa02dc26e9d94c9
     $myVm = New-AzureRmVMConfig -VMName "myVM" -VMSize "Standard_DS1_v2"
     ```
    
-    如需虛擬機器的可用大小清單，請參閱 [Azure 中的虛擬機器大小](virtual-machines-windows-sizes.md) 。
+    如需虛擬機器的可用大小清單，請參閱 [Azure 中的虛擬機器大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。
 3. 設定 VM 的作業系統設定。 此命令會設定 VM 的電腦名稱、作業系統類型和帳戶認證。
    
     ```powershell
@@ -128,13 +128,13 @@ ms.openlocfilehash: 6a78e83d84df9bdd4fedd9c90aa02dc26e9d94c9
         -Offer "WindowsServer" -Skus "2012-R2-Datacenter" -Version "latest"
     ```
    
-    如需有關選取要使用之映像的詳細資訊，請參閱[使用 PowerShell 或 CLI 在 Azure 中瀏覽和選取 Windows 虛擬機器映像](virtual-machines-windows-cli-ps-findimage.md)。
+    如需有關選取要使用之映像的詳細資訊，請參閱[使用 PowerShell 或 CLI 在 Azure 中瀏覽和選取 Windows 虛擬機器映像](virtual-machines-windows-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 5. 將您所建立的網路介面新增至組態。
    
     ```powershell
     $myVM = Add-AzureRmVMNetworkInterface -VM $myVM -Id $myNIC.Id
     ```
-6. 定義 VM 硬碟的名稱和位置。 虛擬硬碟檔案會儲存在容器中。 此命令會在您所建立的儲存體帳戶中，在名為 **vhds/WindowsVMosDisk.vhd** 的容器中建立磁碟。
+6. 定義 VM 硬碟的名稱和位置。 虛擬硬碟檔案會儲存在容器中。 此命令會在您所建立的儲存體帳戶中，在名為 **vhds/myOsDisk1.vhd** 的容器中建立磁碟。
    
     ```powershell
     $blobPath = "vhds/myOsDisk1.vhd"
@@ -143,7 +143,7 @@ ms.openlocfilehash: 6a78e83d84df9bdd4fedd9c90aa02dc26e9d94c9
 7. 將作業系統磁碟資訊新增至 VM 組態。 使用作業系統磁碟的名稱取代 **$diskName** 的值。 建立變數並將磁碟資訊新增至組態。
    
     ```powershell
-    $vm = Set-AzureRmVMOSDisk -VM $myVM -Name "myOsDisk1" -VhdUri $osDiskUri -CreateOption fromImage
+    $myVM = Set-AzureRmVMOSDisk -VM $myVM -Name "myOsDisk1" -VhdUri $osDiskUri -CreateOption fromImage
     ```
 8. 最後，建立虛擬機器。
    
@@ -153,12 +153,12 @@ ms.openlocfilehash: 6a78e83d84df9bdd4fedd9c90aa02dc26e9d94c9
 
 ## <a name="next-steps"></a>後續步驟
 * 如果部署有問題，下一個步驟就是查看 [使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
-* 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，以了解如何管理您建立的虛擬機器。
-* 使用 [利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)
+* 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以了解如何管理您建立的虛擬機器。
+* 使用 [利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

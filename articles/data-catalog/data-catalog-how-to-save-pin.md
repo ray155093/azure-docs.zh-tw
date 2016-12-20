@@ -1,13 +1,13 @@
 ---
-title: 如何儲存搜尋和釘選資料資產 | Microsoft Docs
-description: 強調 Azure 資料目錄中用於儲存資料來源和資料資產以供稍後重複使用之功能的操作說明文章。
+title: "如何儲存搜尋和釘選資料資產 | Microsoft Docs"
+description: "強調 Azure 資料目錄中用於儲存資料來源和資料資產以供稍後重複使用之功能的操作說明文章。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: steelanddata
 manager: NA
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 6bd00a81-820d-4b7c-91fa-ab09e575474c
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 10/10/2016
 ms.author: maroche
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f017776480466979d7f2f9edec2b3ac5caca2321
+
 
 ---
 # <a name="how-to-save-searches-and-pin-data-assets"></a>如何儲存搜尋和釘選資料資產
@@ -68,7 +72,7 @@ Azure 資料目錄中的已儲存的搜尋是可重複使用的每個使用者�
 
 ![取消釘選資料資產](./media/data-catalog-how-to-save-pin/06-unpinning.png)
 
-## <a name="“my-assets”"></a>「我的資產」
+## <a name="my-assets"></a>「我的資產」
 Azure 資料目錄入口網站首頁有 [我的資產] 區段，其會顯示目前的使用者感興趣的資產。 此區段同時包含已釘選的資產和已儲存的搜尋。
 
 ![首頁上的 [我的資產]](./media/data-catalog-how-to-save-pin/07-my-assets.png)
@@ -76,6 +80,9 @@ Azure 資料目錄入口網站首頁有 [我的資產] 區段，其會顯示目�
 ## <a name="summary"></a>摘要
 Azure 資料目錄提供各種功能讓使用者能夠更容易地探索所需的資料來源，讓他們可以花較少的時間尋找資料並有更多時間使用資料。 已儲存的搜尋和已釘選的資料資產是以這些核心功能為基礎所建立，因此使用者可以輕鬆地識別所要重複使用的資料來源。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

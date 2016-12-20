@@ -1,12 +1,12 @@
 ---
-title: 管理 Machine Learning 工作區 | Microsoft Docs
-description: 管理 Azure 機器學習工作區的存取權，並部署和管理 ML API Web 服務
+title: "管理 Machine Learning 工作區 | Microsoft Docs"
+description: "管理 Azure 機器學習工作區的存取權，並部署和管理 ML API Web 服務"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: daf3d413-7a77-4beb-9a7a-6b4bdf717719
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/05/2016
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a5d98d804697a9b5c745d4fa236cb0ee5b7c456b
+
 
 ---
 # <a name="manage-an-azure-machine-learning-workspace"></a>管理 Azure Machine Learning 工作區
@@ -71,7 +75,7 @@ ms.author: garye
 
 * 按一下 [拒絕] 來擱置對機器學習服務工作區的存取。 使用者將不再能在 Machine Learning Studio 中開啟工作區。 若要還原存取，請按一下 [允許]。
 
-若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studio](請參閱上述有關**登入 ML Studio** 的附註.md)。 這會在 Machine Learning Studio 中開啟工作區。 從這裡按一下 [設定] 索引標籤，然後按一下 [使用者]。 您可以按一下 [邀請使用者]，讓使用者存取工作區，或選取使用者，並按一下 [移除]。
+若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studio] (請參閱上述有關**登入 ML Studio** 的附註)。 這會在 Machine Learning Studio 中開啟工作區。 從這裡按一下 [設定] 索引標籤，然後按一下 [使用者]。 您可以按一下 [邀請使用者]，讓使用者存取工作區，或選取使用者，並按一下 [移除]。
 
 ## <a name="to-manage-web-services-in-this-workspace"></a>管理此工作區中的 Web 服務
 按一下 [ **Web 服務** ] 索引標籤。
@@ -112,6 +116,6 @@ Web 服務可能會有一個或多個定義的端點。
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

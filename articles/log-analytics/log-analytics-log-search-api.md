@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 記錄檔搜尋 REST API | Microsoft Docs
-description: 本指南提供基本教學課程，說明如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 REST API，並提供使用命令的範例。
+title: "Log Analytics 記錄檔搜尋 REST API | Microsoft Docs"
+description: "本指南提供基本教學課程，說明如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 REST API，並提供使用命令的範例。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: b4e9ebe8-80f0-418e-a855-de7954668df7
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 81dd7d9dc799f6f4c0dd54a12409724c182a0349
+
 
 ---
 # <a name="log-analytics-log-search-rest-api"></a>Log Analytics 記錄檔搜尋 REST API
@@ -93,7 +97,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 ## <a name="log-analytics-search-rest-api-reference-examples"></a>Log Analytics 搜尋 REST API 參考範例
 下列範例顯示如何使用 Search API。
 
-### <a name="search---action/read"></a>搜尋 - 動作/讀取
+### <a name="search---actionread"></a>搜尋 - 動作/讀取
 **範例 Url：**
 
 ```
@@ -179,7 +183,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     }
 ```
 
-### <a name="search/{id}---action/read"></a>搜尋/{ID} - 動作/讀取
+### <a name="searchid---actionread"></a>搜尋/{ID} - 動作/讀取
 **要求已儲存搜尋的內容：**
 
 ```
@@ -356,7 +360,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
         "Tags": [{
             "Name": "Group",
             "Value": "Computer"
-        }],
+          }],
     "Version": 1
     }
 
@@ -395,6 +399,9 @@ armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group
 ## <a name="next-steps"></a>後續步驟
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，以使用自訂欄位作為準則來建立查詢。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

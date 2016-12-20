@@ -1,12 +1,12 @@
 ---
-title: Get started with Service Fabric Reliable Actors | Microsoft Docs
-description: This tutorial walks you through the steps of creating, debugging, and deploying a simple actor-based service using Service Fabric Reliable Actors.
+title: "開始使用 Service Fabric Reliable Actors | Microsoft Docs"
+description: "本教學課程將引導您使用 Service Fabric Reliable Actors，建立、偵錯及部署簡易動作項目型服務的步驟。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: d31dc8ab-9760-4619-a641-facb8324c759
 ms.service: service-fabric
 ms.devlang: java
 ms.topic: article
@@ -14,46 +14,50 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/25/2016
 ms.author: vturecek
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3e349d0c76078889b6e41340ee8bb2f599819ba3
+
 
 ---
-# <a name="getting-started-with-reliable-actors"></a>Getting started with Reliable Actors
+# <a name="getting-started-with-reliable-actors"></a>開始使用 Reliable Actors
 > [!div class="op_single_selector"]
-> * [C# on Windows](service-fabric-reliable-actors-get-started.md)
-> * [Java on Linux](service-fabric-reliable-actors-get-started-java.md)
+> * [Windows 上的 C# ](service-fabric-reliable-actors-get-started.md)
+> * [在 Linux 上使用 Java](service-fabric-reliable-actors-get-started-java.md)
 > 
 > 
 
-This article explains the basics of Azure Service Fabric Reliable Actors and walks you through creating and deploying a simple Reliable Actor application in Java.
+本文說明 Azure Service Fabric Reliable Actors 的基本概念，並將逐步引導您在 Java 中建立及部署簡單的 Reliable Actors 應用程式。
 
-## <a name="installation-and-setup"></a>Installation and setup
-Before you start, make sure you have the Service Fabric development environment set up on your machine.
-If you need to set it up, go to [getting started on Mac](service-fabric-get-started-mac.md) or [getting started on Linux](service-fabric-get-started-linux.md).
+## <a name="installation-and-setup"></a>安裝與設定
+開始之前，確定機器上已設定 Service Fabric 開發環境。
+如果您需要加以設定，請移至[在 Mac 上開始使用](service-fabric-get-started-mac.md)或[在 Linux 上開始使用](service-fabric-get-started-linux.md)。
 
-## <a name="basic-concepts"></a>Basic concepts
-To get started with Reliable Actors, you only need to understand a few basic concepts:
+## <a name="basic-concepts"></a>基本概念
+若要開始使用 Reliable Actors，您只需要了解幾個基本概念：
 
-* **Actor service**. Reliable Actors are packaged in Reliable Services that can be deployed in the Service Fabric infrastructure. Actor instances are activated in a named service instance.
-* **Actor registration**. As with Reliable Services, a Reliable Actor service needs to be registered with the Service Fabric runtime. In addition, the actor type needs to be registered with the Actor runtime.
-* **Actor interface**. The actor interface is used to define a strongly typed public interface of an actor. In the Reliable Actor model terminology, the actor interface defines the types of messages that the actor can understand and process. The actor interface is used by other actors and client applications to "send" (asynchronously) messages to the actor. Reliable Actors can implement multiple interfaces.
-* **ActorProxy class**. The ActorProxy class is used by client applications to invoke the methods exposed through the actor interface. The ActorProxy class provides two important functionalities:
+* **動作項目服務**。 Reliable Actors 封裝在可在 Service Fabric 基礎結構內部署的 Reliable Services 中。 動作項目執行個體會在指定的服務執行個體中啟動。
+* **動作項目註冊**。 和 Reliable Services 一樣，Reliable Actor 服務必須向 Service Fabric 執行階段註冊。 此外，動作項目類型必須向 Actor 執行階段註冊。
+* **動作項目介面**。 動作項目介面用於定義動作項目的強型別公用介面。 在 Reliable Actor 模型術語中，動作項目介面定義動作項目可以了解並處理的訊息類型。 其他的動作項目或用戶端應用程式會使用動作項目介面將訊息「傳送」(非同步) 給動作項目。 Reliable Actors 可實作多個介面。
+* **ActorProxy 類別**。 用戶端應用程式會使用 ActorProxy 類別來叫用透過動作項目介面公開的方法。 ActorProxy 類別提供兩個重要的功能：
   
-  * Name resolution: It is able to locate the actor in the cluster (find the node of the cluster where it is hosted).
-  * Failure handling: It can retry method invocations and re-resolve the actor location after, for example, a failure that requires the actor to be relocated to another node in the cluster.
+  * 名稱解析︰它能夠在叢集中找到動作項目 (尋找裝載動作項目的叢集節點)。
+  * 處理失敗：它可以重試方法叫用並重新解析動作項目位置，例如在需要動作項目重新定位至叢集中另一個節點失敗後進行。
 
-The following rules that pertain to actor interfaces are worth mentioning:
+值得一提的是下列與動作項目介面相關的規則︰
 
-* Actor interface methods cannot be overloaded.
-* Actor interface methods must not have out, ref, or optional parameters.
-* Generic interfaces are not supported.
+* 動作項目介面方法無法多載。
+* 動作項目介面方法不能有 out、ref 或選擇性參數。
+* 不支援泛型介面。
 
-## <a name="create-an-actor-service"></a>Create an actor service
-Start by creating a new Service Fabric application. The Service Fabric SDK for Linux includes a Yeoman generator to provide the scaffolding for a Service Fabric application with a stateless service. Start by running the following Yeoman command:
+## <a name="create-an-actor-service"></a>建立動作項目服務
+以建立新 Service Fabric 應用程式的方式開始。 適用於 Linux 的 Service Fabric SDK 包含 Yeoman 產生器，可提供具無狀態服務之 Service Fabric 應用程式的樣板。 執行下列 Yeoman 命令開始作業：
 
 ```bash
 $ yo azuresfjava
 ```
 
-Follow the instructions to create a **Reliable Actor Service**. For this tutorial, name the application "HelloWorldActorApplication" and the actor "HelloWorldActor." The following scaffolding will be created:
+遵循指示建立 **Reliable Actors 服務**。 本教學課程中，將應用程式命名為 HelloWorldActorApplication，將動作項目命名為 HelloWorldActor。 將會建立下列樣板：
 
 ```bash
 HelloWorldActorApplication/
@@ -95,13 +99,13 @@ HelloWorldActorApplication/
 └── uninstall.sh
 ```
 
-## <a name="reliable-actors-basic-building-blocks"></a>Reliable Actors basic building blocks
-The basic concepts described earlier translate into the basic building blocks of a Reliable Actor service.
+## <a name="reliable-actors-basic-building-blocks"></a>Reliable Actors 項目基本建置組塊
+稍早所述的基本概念轉化為 Reliable Actors 服務的基本建置組塊。
 
-### <a name="actor-interface"></a>Actor interface
-This contains the interface definition for the actor. This interface defines the actor contract that is shared by the actor implementation and the clients calling the actor, so it typically makes sense to define it in a place that is separate from the actor implementation and can be shared by multiple other services or client applications.
+### <a name="actor-interface"></a>動作項目介面
+包含動作項目的介面定義。 這個介面定義由動作項目實作與呼叫動作項目的用戶端所共用的動作項目合約，因此通常適合在不同於動作項目實作的地方定義該合約，並可由多個其他服務或用戶端應用程式共用。
 
-`HelloWorldActorInterface/src/reliableactor/HelloWorldActor.java`:
+`HelloWorldActorInterface/src/reliableactor/HelloWorldActor.java`：
 
 ```java
 public interface HelloWorldActor extends Actor {
@@ -112,10 +116,10 @@ public interface HelloWorldActor extends Actor {
 }
 ```
 
-### <a name="actor-service"></a>Actor service
-This contains your actor implementation and actor registration code. The actor class implements the actor interface. This is where your actor does its work.
+### <a name="actor-service"></a>動作項目服務
+這包含您的動作項目實作和動作項目註冊碼。 動作項目類別會實作動作項目介面。 這是您的動作項目工作之處。
 
-`HelloWorldActor/src/reliableactor/HelloWorldActorImpl`:
+`HelloWorldActor/src/reliableactor/HelloWorldActorImpl`：
 
 ```java
 @ActorServiceAttribute(name = "HelloWorldActor.HelloWorldActorService")
@@ -143,10 +147,10 @@ public class HelloWorldActorImpl extends ReliableActor implements HelloWorldActo
 }
 ```
 
-### <a name="actor-registration"></a>Actor registration
-The actor service must be registered with a service type in the Service Fabric runtime. In order for the Actor Service to run your actor instances, your actor type must also be registered with the Actor Service. The `ActorRuntime` registration method performs this work for actors.
+### <a name="actor-registration"></a>動作項目註冊
+必須在 Service Fabric 執行階段中以某個服務類型註冊動作項目服務。 為了讓動作項目服務執行您的動作項目執行個體，也必須向動作項目服務註冊動作項目類型。 `ActorRuntime` 註冊方法會替動作項目執行這項工作。
 
-`HelloWorldActor/src/reliableactor/HelloWorldActorHost`:
+`HelloWorldActor/src/reliableactor/HelloWorldActorHost`：
 
 ```java
 public class HelloWorldActorHost {
@@ -167,19 +171,19 @@ public class HelloWorldActorHost {
 ```
 
 ### <a name="test-client"></a>Test client
-This is a simple test client application you can run separately from the Service Fabric application to test your actor service. This is an example of where the ActorProxy can be used to activate and communicate with actor instances. It does not get deployed with your service.
+這是簡單的測試用戶端應用程式，可以和 Service Fabric 應用程式分開執行，以測試您的動作項目服務。 這是 ActorProxy 可用來啟動和與動作項目執行個體通訊的位置範例。 它不會與您的服務一同部署。
 
-### <a name="the-application"></a>The application
-Finally, the application packages the actor service and any other services you might add in the future together for deployment. It contains the *ApplicationManifest.xml* and place holders for the actor service package.
+### <a name="the-application"></a>應用程式
+最後，應用程式會將動作項目服務以及您未來可能會加入的其他任何服務封裝在一起以便部署。 它包含了 ApplicationManifest.xml 以及動作項目服務套件的預留位置。
 
-## <a name="run-the-application"></a>Run the application
-The Yeoman scaffolding includes a gradle script to build the application and bash scripts to deploy and un-deploy the application. To run the application, first build the application with gradle:
+## <a name="run-the-application"></a>執行應用程式
+Yeoman 樣板包含可建置應用程式的 gradle 指令碼以及可部署和取消部署應用程式的指令碼。 若要執行應用程式，先建置含 gradle的應用程式︰
 
 ```bash
 $ gradle
 ```
 
-This will produce a Service Fabric application package that can be deployed using Service Fabric Azure CLI. The install.sh script contains the necessary Azure CLI commands to deploy the application package. Simply run the install.sh script to deploy:
+這會產生可以使用 Service Fabric Azure CLI 部署的 Service Fabric 應用程式封裝。 Install.sh 指令碼包含部署應用程式封裝所需的 Azure CLI 命令。 只要執行 install.sh 指令碼即可部署︰
 
 ```bask
 $ ./install.sh
@@ -187,6 +191,6 @@ $ ./install.sh
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

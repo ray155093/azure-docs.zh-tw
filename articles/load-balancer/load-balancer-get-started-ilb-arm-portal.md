@@ -3,8 +3,8 @@ title: "開始使用 Azure 入口網站在 Resource Manager 中建立內部負�
 description: "了解如何使用 Azure 入口網站在資源管理員中建立內部負載平衡器"
 services: load-balancer
 documentationcenter: na
-author: sdwheeler
-manager: carmonm
+author: kumudd
+manager: timlt
 editor: 
 tags: azure-service-management
 ms.assetid: 1ac14fb9-8d14-4892-bfe6-8bc74c48ae2c
@@ -14,10 +14,10 @@ ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
-ms.author: sewhee
+ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 7d8eb43fea032eb5aa72f448a7c1022be62a7b81
-ms.openlocfilehash: 5a0a701638950e750a9aac104845ef1a7248760a
+ms.sourcegitcommit: 8827793d771a2982a3dccb5d5d1674af0cd472ce
+ms.openlocfilehash: 6961255e4b1a269b3ac9bafb5f1b3ced7a2a8943
 
 ---
 
@@ -32,7 +32,7 @@ ms.openlocfilehash: 5a0a701638950e750a9aac104845ef1a7248760a
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是[傳統部署模型](load-balancer-get-started-ilb-classic-ps.md)。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是[傳統部署模型](load-balancer-get-started-ilb-classic-ps.md)。
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
@@ -107,6 +107,6 @@ ms.openlocfilehash: 5a0a701638950e750a9aac104845ef1a7248760a
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

@@ -19,7 +19,7 @@
 ### [使用檔案系統連接器](../app-service-logic/app-service-logic-use-file-connector.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [Visual Studio 工具](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [使用 Azure Functions](../app-service-logic/app-service-logic-azure-functions.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [做為可呼叫端點的邏輯應用程式](../app-service-logic/app-service-logic-http-endpoint.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [做為可呼叫端點的 Logic Apps](../app-service-logic/app-service-logic-http-endpoint.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [使用您的自訂 API](../app-service-logic/app-service-logic-custom-hosted-api.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [例外狀況處理](../app-service-logic/app-service-logic-exception-handling.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [例外狀況處理案例](../app-service-logic/app-service-logic-scenario-error-and-exception-handling.md?toc=%2fazure%2flogic-apps%2ftoc.json)
@@ -61,7 +61,7 @@
 ### [從 VS 發佈](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
 ## 管理
-### [監視邏輯應用程式](../app-service-logic/app-service-logic-monitor-your-logic-apps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [監視 Logic Apps](../app-service-logic/app-service-logic-monitor-your-logic-apps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [監視 B2B 訊息](../app-service-logic/app-service-logic-monitor-b2b-message.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 #### [AS2 追蹤結構描述](../app-service-logic/app-service-logic-track-integration-account-as2-tracking-shemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 #### [X12 追蹤結構描述](../app-service-logic/app-service-logic-track-integration-account-x12-tracking-shemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
@@ -72,13 +72,11 @@
 ### [價格](../app-service-logic/app-service-logic-pricing.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
 # 參考
+## [PowerShell](/powershell/resourcemanager/azurerm.logicapp/v2.3.0/azurerm.logicapp)
 ## 結構描述歷程記錄
 ### [GA](../app-service-logic/app-service-logic-schema-2016-04-01.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [預覽](../app-service-logic/app-service-logic-schema-2015-08-01.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-
-## [PowerShell Cmdlet](/powershell/resourcemanager/)
-## [.NET](https://msdn.microsoft.com/library/azure/mt416943)
-## [REST API](/rest/api/logic/)
+## [REST](/rest/api/logic/)
 
 ## 2014 結構描述 (在 GA 之前)
 ### [Azure 資源連接器](../app-service-logic/app-service-logic-connector-azure-resource.md?toc=%2fazure%2flogic-apps%2ftoc.json)
@@ -91,6 +89,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=logic-apps)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

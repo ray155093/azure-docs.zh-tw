@@ -1,12 +1,12 @@
 ---
-title: Load sample data into SQL Data Warehouse | Microsoft Docs
-description: Load sample data into SQL Data Warehouse
+title: "將範例資料載入 SQL 資料倉儲 | Microsoft Docs"
+description: "將範例資料載入 SQL 資料倉儲"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: e338ecf8-cfee-419b-b7b6-98108d381c62
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,15 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9edad2037787a7a2da4e2a6fcce15ace51d41032
+
 
 ---
-# <a name="load-sample-data-into-sql-data-warehouse"></a>Load sample data into SQL Data Warehouse
-Follow these simple steps to load and query the Adventure Works Sample database. These scripts first use sqlcmd to run SQL which will create tables and views. Once tables have been created, the scripts will use bcp to load data.  If you don't already have sqlcmd and bcp installed, follow these links to [install bcp][install bcp] and to [install sqlcmd][install sqlcmd].
+# <a name="load-sample-data-into-sql-data-warehouse"></a>將範例資料載入 SQL 資料倉儲
+請遵循下列簡單的步驟來載入和查詢 Adventure Works 範例資料庫。 這些指令碼會先使用 sqlcmd 來執行將建立資料表和檢視表的 SQL。 一旦建立資料表之後，指令碼將使用 bcp 來載入資料。  如果您還沒有安裝 sqlcmd 和 bcp，請依照下列連結來[安裝 bcp][安裝 bcp] 和[安裝 sqlcmd][安裝 sqlcmd]。
 
-## <a name="load-sample-data"></a>Load sample data
-1. Download the [Adventure Works Sample Scripts for SQL Data Warehouse][Adventure Works Sample Scripts for SQL Data Warehouse] zip file.
-2. Extract the files from downloaded zip to a directory on your local machine.
-3. Edit the extracted file aw_create.bat and set the following variables found at the top of the file.  Be sure to leave no whitespace between the "=" and the parameter.  Below are examples of how your edits might look.
+## <a name="load-sample-data"></a>載入範例資料
+1. 下載[適用於 SQL 資料倉儲的 Adventure Works 範例指令碼][適用於 SQL 資料倉儲的 Adventure Works 範例指令碼] zip 檔案。
+2. 請從下載的 zip 將檔案解壓縮到本機電腦上的目錄。
+3. 編輯解壓縮的 aw_create.bat 檔案，並設定下列可在檔案頂端找到的變數。  請務必不要在 "=" 和參數之間留有空白。  以下是您可能會想看看如何編輯的範例。
    
     ```
     server=mylogicalserver.database.windows.net
@@ -30,25 +34,25 @@ Follow these simple steps to load and query the Adventure Works Sample database.
     password=Mydwpassw0rd
     database=mydwdatabase
     ```
-4. From a Windows cmd prompt, run the edited aw_create.bat.  Be sure you are in the directory where you saved your edited version of aw_create.bat.
-   This script will...
+4. 從 Windows 命令提示字元執行編輯過的 aw_create.bat。  請確定您所在的目錄是您儲存編輯過之 aw_create.bat 版本的位置。
+   此指令碼將...
    
-   * Drop any Adventure Works tables or views that already exist in your database
-   * Create the Adventure Works tables and views
-   * Load each Adventure Works table using bcp
-   * Validate the row counts for each Adventure Works table
-   * Collect statistics on every column for each Adventure Works table
+   * 卸除任何 Adventure Works 資料表或任何已存在資料庫中的檢視表
+   * 建立 Adventure Works 資料表和檢視表
+   * 使用 bcp 載入每個 Adventure Works 資料表
+   * 驗證每個 Adventure Works 資料表的資料列計數
+   * 收集每個 Adventure Works 資料表之所有資料行上的統計資料
 
-## <a name="query-sample-data"></a>Query sample data
-Once you've loaded some sample data into your SQL Data Warehouse, you can quickly run a few queries.  To run a query, connect to your newly created Adventure Works database in Azure SQL DW using Visual Studio and SSDT, as described in the [query with Visual Studio][query with Visual Studio] document.
+## <a name="query-sample-data"></a>查詢範例資料
+一旦已經將某些範例資料載入您的 SQL 資料倉儲中，就可以快速地執行幾個查詢。  若要執行查詢，請使用 Visual Studio 和 SSDT 連接 Azure SQL DW 中新建立的 Adventure Works 資料庫，如 [使用 Visual Studio 查詢][使用 Visual Studio 查詢]文件中所述。
 
-Example of simple select statement to get all the info of the employees:
+可取得員工之所有資訊的簡單 select 陳述式範例：
 
 ```sql
 SELECT * FROM DimEmployee;
 ```
 
-Example of a more complex query using constructs such as GROUP BY to look at the total amount for all sales on each day:
+使用建構 (例如 GROUP BY) 來查看每一天所有銷售之總金額的較複雜查詢範例：
 
 ```sql
 SELECT OrderDateKey, SUM(SalesAmount) AS TotalSales
@@ -57,7 +61,7 @@ GROUP BY OrderDateKey
 ORDER BY OrderDateKey;
 ```
 
-Example of a SELECT with a WHERE clause to filter out orders from before a certain date:
+可篩選掉特定日期前之訂單的 SELECT 搭配 WHERE 子句的範例：
 
 ```
 SELECT OrderDateKey, SUM(SalesAmount) AS TotalSales
@@ -67,27 +71,27 @@ GROUP BY OrderDateKey
 ORDER BY OrderDateKey;
 ```
 
-SQL Data Warehouse supports almost all T-SQL constructs which SQL Server supports.  Any differences are documented in our [migrate code][migrate code] documentation.
+SQL 資料倉儲幾乎支援所有 SQL Server 支援的 T-SQL 建構。  所有的差異都記錄在[程式碼移轉][程式碼移轉]文件中。
 
-## <a name="next-steps"></a>Next steps
-Now that you've had a chance to try some queries with sample data, check out how to [develop][develop], [load][load], or [migrate][migrate] to SQL Data Warehouse.
+## <a name="next-steps"></a>後續步驟
+現在您已經有機會搭配範例資料嘗試一些查詢，請參閱以了解如何[開發][開發]、[載入][載入]，或[移轉][移轉]到 SQL 資料倉儲。
 
 <!--Image references-->
 
 <!--Article references-->
-[migrate]: sql-data-warehouse-overview-migrate.md
-[develop]: sql-data-warehouse-overview-develop.md
-[load]: sql-data-warehouse-overview-load.md
-[query with Visual Studio]: sql-data-warehouse-query-visual-studio.md
-[migrate code]: sql-data-warehouse-migrate-code.md
-[install bcp]: sql-data-warehouse-load-with-bcp.md
-[install sqlcmd]: sql-data-warehouse-get-started-connect-sqlcmd.md
+[移轉]: sql-data-warehouse-overview-migrate.md
+[開發]: sql-data-warehouse-overview-develop.md
+[載入]: sql-data-warehouse-overview-load.md
+[使用 Visual Studio 查詢]: sql-data-warehouse-query-visual-studio.md
+[程式碼移轉]: sql-data-warehouse-migrate-code.md
+[安裝 bcp]: sql-data-warehouse-load-with-bcp.md
+[安裝 sqlcmd]: sql-data-warehouse-get-started-connect-sqlcmd.md
 
 <!--Other Web references-->
-[Adventure Works Sample Scripts for SQL Data Warehouse]: https://migrhoststorage.blob.core.windows.net/sqldwsample/AdventureWorksSQLDW2012.zip
+[適用於 SQL 資料倉儲的 Adventure Works 範例指令碼]: https://migrhoststorage.blob.core.windows.net/sqldwsample/AdventureWorksSQLDW2012.zip
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

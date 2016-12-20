@@ -1,19 +1,23 @@
 ---
-title: 服務匯流排非同步傳訊 | Microsoft Docs
-description: 描述服務匯流排非同步傳訊。
-services: service-bus
+title: "服務匯流排非同步傳訊 |Microsoft Docs"
+description: "描述服務匯流排非同步傳訊。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: f1435549-e1f2-40cb-a280-64ea07b39fc7
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: eb178caeb1ba3cdf8f4a85ac88502425532f86b3
+
 
 ---
 # <a name="asynchronous-messaging-patterns-and-high-availability"></a>非同步傳訊模式和高可用性
@@ -84,7 +88,7 @@ Azure 資料中心失敗的最可能原因是服務匯流排或相依系統的�
 
 下列各節討論 API、如何實作 API 以及顯示使用此功能的範例程式碼。 請注意，這項功能有相關聯的計費暗示。
 
-### <a name="the-messagingfactory.pairnamespaceasync-api"></a>MessagingFactory.PairNamespaceAsync API
+### <a name="the-messagingfactorypairnamespaceasync-api"></a>MessagingFactory.PairNamespaceAsync API
 配對的命名空間功能會在 [Microsoft.ServiceBus.Messaging.MessagingFactory][Microsoft.ServiceBus.Messaging.MessagingFactory] 類別上包含 [PairNamespaceAsync][PairNamespaceAsync] 方法：
 
 ```
@@ -127,7 +131,7 @@ if (sendAvailabilityOptions.BacklogQueueCount < 1)
 ```
 
 ## <a name="next-steps"></a>後續步驟
-既然您已了解服務匯流排中非同步傳訊的基本概念，請閱讀[配對的命名空間][配對的命名空間] 以取得更多詳細資料。
+既然您已了解服務匯流排中非同步傳訊的基本概念，請閱讀[配對的命名空間][配對的命名空間]以取得更多詳細資料。
 
 [ServerBusyException]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.serverbusyexception.aspx
 [System.TimeoutException]: https://msdn.microsoft.com/library/system.timeoutexception.aspx
@@ -150,6 +154,7 @@ if (sendAvailabilityOptions.BacklogQueueCount < 1)
 [配對的命名空間]: service-bus-paired-namespaces.md
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

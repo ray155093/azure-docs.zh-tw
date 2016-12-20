@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 05/16/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: bfc8a774ebaaae7dbf1018614681134a5b10a769
-ms.openlocfilehash: 7938e0c2f0363bcce51375ddab9c68e8e8068186
+ms.sourcegitcommit: 28222825d680ed7930dd1f2da46df28728c7c103
+ms.openlocfilehash: 48ff29e7abae511eb75aec8c1569ffdf5a57bc77
 
 
 ---
@@ -270,6 +270,8 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 * [使用 .NET SDK 開始使用資料湖分析](data-lake-analytics-get-started-net-sdk.md)
 * [在 U-SQL 作業中進行 C# 程式碼偵錯](data-lake-analytics-debug-u-sql-jobs.md)
 
+若要了解 Data Lake Tools for Visual Studio Code，請參閱 [Use the Azure Data Lake Tools for Visual Studio Code (使用 Azure Data Lake Tools for Visual Studio Code)](data-lake-analytics-data-lake-tools-for-vscode.md)。
+
 若要查看更多開發主題：
 
 * [使用資料湖分析來分析 weblog](data-lake-analytics-analyze-weblogs.md)
@@ -350,6 +352,6 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

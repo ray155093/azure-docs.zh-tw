@@ -35,8 +35,14 @@
 ## [使用 .NET SDK 自動執行 DNS 作業](dns-sdk.md)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
-## [REST APIs](/rest/api/dns/)
+## [PowerShell](/powershell/resourcemanager/azurerm.dns/v2.3.0/azurerm.dns)
+## [Azure CLI 2.0 (Preview)](/cli/azure/network/dns)
+## [.NET](/dotnet/api/microsoft.azure.management.dns.models)
+## [Java](/java/api/com.microsoft.azure.management.dns)
+## [Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-dns/latest/)
+## [Ruby](http://www.rubydoc.info/gems/azure_mgmt_dns/0.8.0)
+## [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-dns.html)
+## [REST](/rest/api/dns/)
 
 # 相關參考
 ## [應用程式閘道](/azure/application-gateway/)
@@ -44,7 +50,7 @@
 ## [虛擬機器](/azure/virtual-machines/)
 ## [負載平衡器](/azure/load-balancer/)
 ## [流量管理員](/azure/traffic-manager/)
-## [Web 應用程式](/azure/app-service-web/)
+## [Web Apps](/azure/app-service-web/)
 
 # 資源
 ## [服務更新](https://azure.microsoft.com/updates/?product=dns)
@@ -53,6 +59,6 @@
 ## [網路部落格](http://azure.microsoft.com/blog/topics/networking)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -22,15 +22,16 @@
 ## 安全性
 ### [Azure SQL Database 適用的 Azure 資訊安全中心](https://azure.microsoft.com/documentation/articles/security-center-sql-database/)
 ### [SQL 資訊安全中心](https://msdn.microsoft.com/library/azure/bb510589)
+
 # 開始使用
 ## 資料庫和伺服器
 ### 單一資料庫
 #### 學習
-##### [Azure 入口網站教學課程：使用 Azure 入口網站建立 Azure SQL 資料庫](sql-database-get-started.md)
+##### [Azure 入口網站教學課程：使用 Azure 入口網站建立 Azure SQL Database](sql-database-get-started.md)
 #### 建議事項
-##### [Azure 入口網站教學課程：使用 Azure 入口網站建立 Azure SQL 資料庫](sql-database-get-started.md)
-##### [Azure 入口網站教學課程：使用 PowerShell 建立 Azure SQL 資料庫](sql-database-get-started-powershell.md)
-##### [Azure 入口網站教學課程：使用 C# 建立 Azure SQL 資料庫](sql-database-get-started-csharp.md)
+##### [Azure 入口網站教學課程：使用 Azure 入口網站建立 Azure SQL Database](sql-database-get-started.md)
+##### [Azure 入口網站教學課程：使用 PowerShell 建立 Azure SQL Database](sql-database-get-started-powershell.md)
+##### [Azure 入口網站教學課程：使用 C# 建立 Azure SQL Database](sql-database-get-started-csharp.md)
 ### 彈性資料庫集區
 #### 學習
 ##### [彈性資料庫集區](sql-database-elastic-pool.md)
@@ -189,6 +190,7 @@
 #### [使用 Azure 入口網站升級](sql-database-upgrade-server-portal.md)
 #### [使用 Powershell 升級](sql-database-upgrade-server-powershell.md)
 #### [定價層建議](sql-database-service-tier-advisor.md)
+
 # 作法
 ## 建立和管理
 ### 伺服器和資料庫
@@ -229,7 +231,7 @@
 #### [在 Azure 入口網站中建立及管理彈性工作](sql-database-elastic-jobs-create-and-manage.md)
 #### [使用 PowerShell 建立及管理彈性作業](sql-database-elastic-jobs-powershell.md)
 #### [升級用戶端程式庫](sql-database-elastic-scale-upgrade-client-library.md)
-#### [使用 Azure 自動化服務管理 Azure SQL 資料庫](sql-database-manage-automation.md)
+#### [使用 Azure 自動化服務管理 SQL Database](sql-database-manage-automation.md)
 ### [防火牆](sql-database-firewall-configure.md)
 ## 加密資料
 ### [一律加密的概觀](sql-database-always-encrypted.md)
@@ -315,7 +317,6 @@
 #### [Azure 入口網站](sql-database-geo-replication-failover-portal.md)
 #### [PowerShell](sql-database-geo-replication-failover-powershell.md)
 #### [T-SQL](sql-database-geo-replication-failover-transact-sql.md)
-
 ## 疑難排解
 ### [連接問題](sql-database-troubleshoot-common-connection-issues.md)
 ### [暫時性連接錯誤](sql-database-troubleshoot-connection.md)
@@ -325,26 +326,26 @@
 
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs/)
-## [PowerShell 傳統](/powershell/servicemanagement/)
-## [Java](/java/api/)
-## [.NET](/dotnet/api/)
+## [PowerShell](/powershell/resourcemanager/azurerm.sql/v2.3.0/azurerm.sql)
+## [PowerShell (彈性資料庫)](/powershell/elasticdatabasejobs/v0.8.33/elasticdatabasejobs)
+## [.NET](https://docs.microsoft.com)
+## [Java](/java/api/com.microsoft.azure.management.sql)
+## [Node.js](https://msdn.microsoft.com/library/mt652093.aspx)
+## [Python](https://msdn.microsoft.com/library/mt652092.aspx)
+## [Ruby](https://msdn.microsoft.com/library/mt691981.aspx)
+## [PHP](https://msdn.microsoft.com/library/dn865013.aspx)
 ## [T-SQL](https://msdn.microsoft.com/library/azure/bb510741.aspx)
-## [Azure SQL Database Cmdlet](/powershell/resourcemanager/AzureRM.Sql/v1.0.12/AzureRM.Sql)
-## [SQL Server Cmdlets](https://msdn.microsoft.com/library/mt740629.aspx)
 ## [REST](/rest/api/sql/)
 
+# 相關參考
 ## SQL Database 管理程式庫
-### [SQL Database 管理程式庫參考](https://msdn.microsoft.com/library/azure/mt349017.aspx)
 ### [取得 SQL Database 管理程式庫套件](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)
 ## [SQL Server 驅動程式](https://msdn.microsoft.com/library/mt654049.aspx)
 ### [ADO.NET](https://msdn.microsoft.com/library/mt657768.aspx)
 ### [JDBC](https://msdn.microsoft.com/library/mt484311.aspx)
-### [Node.js](https://msdn.microsoft.com/library/mt652093.aspx)
+
 ### [ODBC](https://msdn.microsoft.com/library/mt654048.aspx)
-### [PHP](https://msdn.microsoft.com/library/dn865013.aspx)
-### [Python](https://msdn.microsoft.com/library/mt652092.aspx)
-### [Ruby](https://msdn.microsoft.com/library/mt691981.aspx)
+
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/sql-database/)
@@ -356,10 +357,10 @@
 ## [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx)
 ## [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx)
 ## [BCP](https://msdn.microsoft.com/library/ms162802.aspx)
-## [sqlcmd](https://msdn.microsoft.com/library/ms162773.aspx)
+## [SQLCMD](https://msdn.microsoft.com/library/ms162773.aspx)
 ## [SqlPackage](https://msdn.microsoft.com/hh550080.aspx)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: 使用 Powershell 指令碼管理 Azure 搜尋服務 | Microsoft Docs
-description: 使用 PowerShell 指令碼管理 Azure 搜尋服務。建立或更新 Azure 搜尋服務，並管理 Azure 搜尋服務的系統管理金鑰
+title: "使用 Powershell 指令碼管理 Azure 搜尋服務 | Microsoft Docs"
+description: "使用 PowerShell 指令碼管理 Azure 搜尋服務。 建立或更新 Azure 搜尋服務，並管理 Azure 搜尋服務的系統管理金鑰"
 services: search
-documentationcenter: ''
+documentationcenter: 
 author: seansaleh
 manager: mblythe
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 9b3dc1f2-3619-4235-ba1f-d2d6f5c45dd5
 ms.service: search
 ms.devlang: na
 ms.workload: search
@@ -15,9 +15,13 @@ ms.topic: article
 ms.tgt_pltfrm: powershell
 ms.date: 08/15/2016
 ms.author: seasa
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b611bf4d5fadd6755b97dcaee441e13ae7e62481
+
 
 ---
-# 使用 PowerShell 管理 Azure 搜尋服務
+# <a name="manage-your-azure-search-service-with-powershell"></a>使用 PowerShell 管理 Azure 搜尋服務
 > [!div class="op_single_selector"]
 > * [入口網站](search-manage.md)
 > * [PowerShell](search-manage-powershell.md)
@@ -25,10 +29,11 @@ ms.author: seasa
 > 
 > 
 
-本主題說明用來執行多種 Azure 搜尋服務管理工作的 PowerShell 命令。我們將逐步建立搜尋服務、調整及管理其 API 金鑰。這些命令和 [Azure 搜尋管理 REST API](http://msdn.microsoft.com/library/dn832684.aspx) 中提供的管理選項相同。
+本主題說明用來執行多種 Azure 搜尋服務管理工作的 PowerShell 命令。 我們將逐步建立搜尋服務、調整及管理其 API 金鑰。
+這些命令和 [Azure 搜尋管理 REST API](http://msdn.microsoft.com/library/dn832684.aspx)中提供的管理選項相同。
 
-## 必要條件
-* 您必須有 Azure PowerShell 1.0 或更新版本。如需指示，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
+## <a name="prerequisites"></a>必要條件
+* 您必須有 Azure PowerShell 1.0 或更新版本。 如需指示，請參閱 [安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
 * 您必須在 PowerShell 中登入 Azure 訂用帳戶，如下所述。
 
 首先，您必須使用此命令登入 Azure。
@@ -37,17 +42,17 @@ ms.author: seasa
 
 在 [Microsoft Azure 登入] 對話方塊中，指定 Azure 帳戶的電子郵件地址和密碼。
 
-或者，您可以[非互動的方式使用服務主體登入](../resource-group-authenticate-service-principal.md)。
+或者，您可以 [非互動的方式使用服務主體登入](../resource-group-authenticate-service-principal.md)。
 
-如果您有多個 Azure 訂用帳戶，您必須設定 Azure 訂用帳戶。如果想查看目前的訂閱帳戶清單，請執行這個命令。
+如果您有多個 Azure 訂用帳戶，您必須設定 Azure 訂用帳戶。 如果想查看目前的訂閱帳戶清單，請執行這個命令。
 
     Get-AzureRmSubscription | sort SubscriptionName | Select SubscriptionName
 
-若要指定訂用帳戶，請執行下列命令。在下列範例中，訂用帳戶的名稱為 `ContosoSubscription`。
+若要指定訂用帳戶，請執行下列命令。 在下列範例中，訂用帳戶的名稱為 `ContosoSubscription`。
 
     Select-AzureRmSubscription -SubscriptionName ContosoSubscription
 
-## 可協助您開始使用的命令
+## <a name="commands-to-help-you-get-started"></a>可協助您開始使用的命令
     $serviceName = "your-service-name-lowercase-with-dashes"
     $sku = "free" # or "basic" or "standard" for paid services
     $location = "West US"
@@ -125,7 +130,7 @@ ms.author: seasa
     # Deleting your service will delete all indexes and data in the service
     $resource | Remove-AzureRmResource
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 您現已建立服務，接著可以採取後續步驟：建立[索引](search-what-is-an-index.md)、[查詢索引](search-query-overview.md)，最後建立並管理使用 Azure 搜尋服務的搜尋應用程式。
 
 * [在 Azure 入口網站中建立 Azure 搜尋服務索引](search-create-index-portal.md)
@@ -134,4 +139,9 @@ ms.author: seasa
 * [如何以 .NET 使用 Azure 搜尋服務](search-howto-dotnet-sdk.md)
 * [分析 Azure 搜尋服務的流量](search-traffic-analytics.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

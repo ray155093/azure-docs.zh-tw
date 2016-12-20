@@ -1,13 +1,13 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 98fdd8ee3dc1b90aae349652e471a218ef44a44e
-ms.openlocfilehash: aff52fe8a31d7ef9fe30f271a2885dca1cd9a861
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: 4a9b9a0aef993055e0c5400a15918a05491509eb
 
 ---
 # <a name="data-lake-analytics-documentation"></a>Data Lake Analytics 文件
 
-Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資料分析更加容易。 此服務可讓您專注於撰寫、執行和管理工作，而非操作分散式基礎結構。 無需部署、設定及調整硬體，您只需寫入查詢便可轉換資料並擷取寶貴的深入見解。 您只需針對所需的功能設定級別，此項分析服務便可立即處理任何規模的工作。 只有在工作進行時您才需要支付費用，十分符合成本效益。 分析服務支援 Azure Active Directory，讓您只需管理存取權及角色，且其與您的內部部署身分識別系統整合。 分析服務支援還包括 U-SQL，該語言可將 SQL 的優勢與使用者程式碼的運算能力結合在一起。 U-SQL 的可調整分散式執行階段可讓您有效地分析資料，範圍遍及存放區以及 Azure、Azure SQL Database 以及 Azure SQL 資料倉儲中的 SQL Server。
+Azure Data Lake Analytics 是一個全新的服務，其目的是為了讓巨量資料分析更加容易。 此服務可讓您專注於撰寫、執行和管理工作，而非操作分散式基礎結構。 無需部署、設定及調整硬體，您只需寫入查詢便可轉換資料並擷取寶貴的深入見解。 您只需針對所需的功能設定級別，此項分析服務便可立即處理任何規模的工作。 只有在工作進行時您才需要支付費用，十分符合成本效益。 分析服務支援 Azure Active Directory，讓您只需管理存取權及角色，且其與您的內部部署身分識別系統整合。 分析服務支援還包括 U-SQL，該語言可將 SQL 的優勢與使用者程式碼的運算能力結合在一起。 U-SQL 的可調整分散式執行階段可讓您有效地分析資料，範圍遍及存放區以及 Azure、Azure SQL Database 以及 Azure SQL 資料倉儲中的 SQL Server。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -29,7 +29,7 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=data-lake-analytics">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=data-lake-analytics">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -75,7 +75,7 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure PowerShell 開始使用 Azure 資料湖分析</h3>
+                        <h3>使用 Azure PowerShell 開始使用 Azure Data Lake Analytics</h3>
                     </div>
                 </div>
             </div>
@@ -175,68 +175,47 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
 </ul>
 
 ---
-
-## <a name="reference"></a>參考
-
+ 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/resourcemanager/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Data Lake Analytics Resource Manager PowerShell Cmdlet</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager/azurerm.datalakeanalytics/v2.3.0/azurerm.datalakeanalytics">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-
     <li>
-        <a href="/java/api/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Java</h3>
-                        <p>Data Lake Analytics Java API 參考</p>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.azure.management.datalake.analytics">.NET</a></p>
+                        <p><a href="https://www.npmjs.com/package/azure-arm-datalake-analytics">Node.js</a></p>
+                        <p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-analytics.html">Python</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/azure/mt591959">U-SQL</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-
     <li>
-        <a href="/dotnet/api">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>Data Lake Analytics 受管理的參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-
-    <li>
-        <a href="/rest/api/datalakeanalytics/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Data Lake Analytics REST API 參考</p>
+                        <p><a href="/rest/api/datalakeanalytics/">REST API</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
 </ul>
 
@@ -252,6 +231,6 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 登入活動報告 API 參考 | Microsoft Docs
-description: Azure Active Directory 登入活動報告 API 的參考
+title: "Azure Active Directory 登入活動報告 API 參考 | Microsoft Docs"
+description: "Azure Active Directory 登入活動報告 API 的參考"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: dhanyahk
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: ddcd9ae0-f6b7-4f13-a5e1-6cbf51a25634
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/25/2016
 ms.author: dhanyahk;markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4c60c0fd364400c881f1b8b96598725f6bd11d26
+
 
 ---
 # <a name="azure-active-directory-sign-in-activity-report-api-reference"></a>Azure Active Directory 登入活動報告 API 參考
@@ -28,7 +32,7 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
-## <a name="who-can-access-the-api-data?"></a>誰可以存取 API 資料？
+## <a name="who-can-access-the-api-data"></a>誰可以存取 API 資料？
 * 具有安全性系統管理員或安全性讀取器角色的使用者
 * 全域管理員
 * 任何獲得授權存取 API 的應用程式 (只可以根據全域管理員的權限來設定應用程式授權)
@@ -94,7 +98,7 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 使用特定日期
 
-    $filter=signinDateTime+eq+2016-04-25T23:59:00Z  
+    $filter=signinDateTime+eq+2016-04-25T23:59:00Z    
 
 
 
@@ -177,6 +181,9 @@ loginStatus 有兩個選項：0 - 成功、1 - 失敗
 * 您想要查看篩選過的登入活動範例嗎？ 請查看 [Azure Active Directory 登入活動報告 API 範例](active-directory-reporting-api-sign-in-activity-samples.md)。
 * 您想要深入了解 Azure AD 報告 API 嗎？ 請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

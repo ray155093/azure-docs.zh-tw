@@ -1,12 +1,12 @@
 ---
-title: 在 Windows Server 和 Linux 上建立 Azure Service Fabric 叢集 | Microsoft Docs
-description: Service Fabric 叢集會在 Windows Server 或 Linux 上執行，這表示您能夠在任何您可以執行 Windows Server 和 Linux 的環境中部署和裝載 Service Fabric 應用程式。
+title: "在 Windows Server 和 Linux 上建立 Azure Service Fabric 叢集 | Microsoft Docs"
+description: "Service Fabric 叢集會在 Windows Server 或 Linux 上執行，這表示您能夠在任何您可以執行 Windows Server 和 Linux 的環境中部署和裝載 Service Fabric 應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: Chackdan
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 19ca51e8-69b9-4952-b4b5-4bf04cded217
 ms.service: service-fabric
 ms.devlang: dotNet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/22/2016
 ms.author: chackdan
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3885733b67933f331f65760474649fba18adce12
+
 
 ---
 # <a name="create-service-fabric-clusters-on-windows-server-or-linux"></a>在 Windows Server 或 Linux 上建立 Service Fabric 叢集
@@ -34,7 +38,7 @@ Service Fabric 提供安裝套件，讓您在內部部署或任何雲端提供�
 
 如需在 Windows Server 上設定獨立 Service Fabric 叢集的詳細資訊，請參閱 [建立適用於 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
 
-### <a name="any-cloud-deployments-vs.-on-premises-deployments"></a>任何雲端部署與內部部署之比較
+### <a name="any-cloud-deployments-vs-on-premises-deployments"></a>任何雲端部署與內部部署之比較
 在內部部署環境建立 Service Fabric 叢集的程序會與在您所選擇、具有一組 VM 的任何雲端建立叢集的程序類似。 佈建 VM 的初始步驟取決於您要使用的雲端提供者或內部部署環境。 在您有一組彼此之間已啟用網路連線的 VM 之後，則安裝 Service Fabric 封裝、編輯叢集設定，以及執行叢集建立與管理指令碼的步驟將會相同。 這可確保當您選擇以新裝載環境做為目標時，可將您操作和管理 Service Fabric 叢集方面的知識與經驗轉移過去。
 
 ### <a name="benefits-of-creating-standalone-service-fabric-clusters"></a>建立獨立 Service Fabric 叢集的優點
@@ -67,6 +71,9 @@ Service Fabric 提供安裝套件，讓您在內部部署或任何雲端提供�
 
 在執行 Linux 的 VM 或電腦上建立叢集︰ [Linux 上的 Service Fabric](service-fabric-linux-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

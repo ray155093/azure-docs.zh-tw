@@ -1,30 +1,29 @@
 ---
-title: Azure AD v2.0 .NET Web 應用程式 | Microsoft Docs
-description: 如何建置使用個人 Microsoft 帳戶以及工作或學校帳戶登入，以呼叫 Web 服務的 .NET MVC Web 應用程式。
+title: "Azure AD v2.0 .NET Web 應用程式 | Microsoft Docs"
+description: "如何建置使用個人 Microsoft 帳戶以及工作或學校帳戶登入，以呼叫 Web 服務的 .NET MVC Web 應用程式。"
 services: active-directory
 documentationcenter: .net
 author: dstrockis
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 56be906e-71de-469d-9a5c-9fc08aae4223
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 10/27/2016
 ms.author: dastrock
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 587a5136004525f5badc5e72d006fc6dd07d42d8
+
 
 ---
-# <a name="calling-a-web-api-from-a-.net-web-app"></a>從 .NET Web 應用程式呼叫 Web API
+# <a name="calling-a-web-api-from-a-net-web-app"></a>從 .NET Web 應用程式呼叫 Web API
 透過 v2.0 端點，您可以快速地將驗證加入 Web 應用程式和 Web API，同時支援個人 Microsoft 帳戶以及工作或學校帳戶。  我們將在此處建置 MVC Web 應用程式，借 Microsoft OWIN 中介軟體之力，使用 OpenID Connect 登入使用者。  Web 應用程式將針對 OAuth 2.0 保護的 Web API 取得 OAuth 2.0 存取權杖，以允許建立、讀取及刪除特定使用者的「待辦事項清單」。
 
-> [!WARNING]
-> 本教學課程目前使用過時、不支援的用戶端程式庫 `Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory` (ADAL Experimental)。  我們正在將此教學課程更新成 `Microsoft.Identity.Client` 預覽程式庫 (MSAL)。 同時，建議以 MSAL 取代本教學課程中使用的 ADAL Experimental。  如需選擇用戶端程式庫相關選項的詳細資訊，請參閱我們的 [限制文章](active-directory-v2-limitations.md)。
-> 
-> 
-
-本教學課程主要著重於使用 ADAL 來取得和使用 Web 應用程式中的存取權杖，完整說明載於 [這裡](active-directory-v2-flows.md#web-apps)。  建議您先了解如何[將登入新增 Web 應用程式](active-directory-v2-devquickstarts-dotnet-web.md)，或[如何正確保護 Web API](active-directory-v2-devquickstarts-dotnet-api.md)。
+本教學課程主要著重於使用 ADAL 來取得和使用 Web 應用程式中的存取權杖，完整說明載於[這裡](active-directory-v2-flows.md#web-apps)。  建議您先了解如何[將登入新增 Web 應用程式](active-directory-v2-devquickstarts-dotnet-web.md)，或[如何正確保護 Web API](active-directory-v2-devquickstarts-dotnet-api.md)。
 
 > [!NOTE]
 > v2.0 端點並非支援每個 Azure Active Directory 案例和功能。  若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
@@ -41,7 +40,7 @@ ms.author: dastrock
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebApp-WebAPI-OpenIdConnect-DotNet.git```
 
 ## <a name="register-an-app"></a>註冊應用程式
-在 [apps.dev.microsoft.com](https://apps.dev.microsoft.com) 建立新的應用程式，或遵循下列[詳細步驟](active-directory-v2-app-registration.md)。  請確定：
+在 [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) 建立新的應用程式，或遵循下列[詳細步驟](active-directory-v2-app-registration.md)。  請確定：
 
 * 將指派給您應用程式的 **應用程式識別碼** 複製起來，您很快會需要用到這些識別碼。
 * 建立**密碼**類型的**應用程式祕密**，並複製其值以備後用
@@ -58,7 +57,7 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb -ProjectName TodoList-WebApp
 ```
 
 ## <a name="sign-the-user-in"></a>登入使用者
-現在設定 OWIN 中介軟體來使用 [OpenID Connect 驗證通訊協定](active-directory-v2-protocols.md#openid-connect-sign-in-flow)。  
+現在設定 OWIN 中介軟體來使用 [OpenID Connect 驗證通訊協定](active-directory-v2-protocols.md)。  
 
 * 開啟 `TodoList-WebApp` 專案根目錄中的 `web.config` 檔案，並在 `<appSettings>` 區段中輸入應用程式的組態值。
   * `ida:ClientId` 是在註冊入口網站中指派給應用程式的 **應用程式識別碼** 。
@@ -79,7 +78,7 @@ public void ConfigureAuth(IAppBuilder app)
         new OpenIdConnectAuthenticationOptions
         {
 
-                    // The `Authority` represents the v2.0 endpoint - https://login.microsoftonline.com/common/v2.0 
+                    // The `Authority` represents the v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
                     // The `Scope` describes the permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
                     // In a real application you could use issuer validation for additional checks, like making sure the user's organization has signed up for your app, for instance.
 
@@ -103,18 +102,18 @@ public void ConfigureAuth(IAppBuilder app)
 
         });
 }
-...
+// ...
 ```
 
-## <a name="use-adal-to-get-access-tokens"></a>使用 ADAL 取得存取權杖
-在 `AuthorizationCodeReceived` 通知中，我們想要使用與 [OpenID Connect 串聯的 OAuth 2.0](active-directory-v2-protocols.md#openid-connect-with-oauth-code-flow)，以兌換待辦事項清單服務之存取權杖的 authorization_code。  ADAL 可為您簡化這個程序：
+## <a name="use-msal-to-get-access-tokens"></a>使用 MSAL 取得存取權杖
+在 `AuthorizationCodeReceived` 通知中，我們想要使用與 [OpenID Connect 串聯的 OAuth 2.0](active-directory-v2-protocols.md)，以兌換待辦事項清單服務之存取權杖的 authorization_code。  MSAL 可為您簡化這個程序：
 
-* 首先，安裝 ADAL 預覽版本：
+* 首先，安裝 MSAL 預覽版本：
 
-```PM> Install-Package Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory -ProjectName TodoList-WebApp -IncludePrerelease```
+```PM> Install-Package Microsoft.Identity.Client -ProjectName TodoList-WebApp -IncludePrerelease```
 
-* 並針對 ADAL，將另一個 `using` 陳述式新增到 `App_Start\Startup.Auth.cs` 檔案中。
-* 現在，新增一個名為 `OnAuthorizationCodeReceived` 的事件處理常式方法。  此處理常式會使用 ADAL 取得待辦事項清單 API 的存取權杖，並將 ADAL 權杖中的權杖儲存起來以供日後使用：
+* 並針對 MSAL，將另一個 `using` 陳述式新增到 `App_Start\Startup.Auth.cs` 檔案。
+* 現在，新增一個名為 `OnAuthorizationCodeReceived` 的事件處理常式方法。  此處理常式會使用 MSAL 取得待辦事項清單 API 的存取權杖，並將 MSAL 權杖中的權杖儲存起來以供日後使用：
 
 ```C#
 private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotification notification)
@@ -125,69 +124,67 @@ private async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotifica
         ClientCredential cred = new ClientCredential(clientId, clientSecret);
 
         // Here you ask for a token using the web app's clientId as the scope, since the web app and service share the same clientId.
-        var authContext = new Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext(authority, new NaiveSessionCache(userObjectId));
-        var authResult = await authContext.AcquireTokenByAuthorizationCodeAsync(notification.Code, new Uri(redirectUri), cred, new string[] { clientId });
+        app = new ConfidentialClientApplication(Startup.clientId, redirectUri, cred, new NaiveSessionCache(userObjectId, notification.OwinContext.Environment["System.Web.HttpContextBase"] as HttpContextBase)) {};
+        var authResult = await app.AcquireTokenByAuthorizationCodeAsync(new string[] { clientId }, notification.Code);
 }
-...
+// ...
 ```
 
-* 在 Web Apps 中，ADAL 具有可延伸的權杖快取，可以用來儲存權杖。  這個範例會實作使用 http 工作階段存放區來快取權杖的 `NaiveSessionCache` 。
+* 在 Web Apps 中，MSAL 具有可延伸的權杖快取，可以用來儲存權杖。  這個範例會實作使用 http 工作階段存放區來快取權杖的 `NaiveSessionCache` 。
 
 <!-- TODO: Token Cache article -->
 
 
-## <a name="4.-call-the-web-api"></a>4.呼叫 Web API
+## <a name="call-the-web-api"></a>呼叫 Web API
 現在可以實際使用您在步驟 3 中取得的 access_token。  開啟 Web 應用程式的 `Controllers\TodoListController.cs` 檔案，此檔案可向待辦事項清單 API 提出所有 CRUD 請求。
 
-* 這裡可再次使用 ADAL，從 ADAL 快取擷取 access_tokens。  首先，將 ADAL 的 `using` 陳述式加入這個檔案。
+* 這裡可再次使用 MSAL，從 MSAL 快取擷取 access_tokens。  首先，將 MSAL 的 `using` 陳述式新增至這個檔案。
   
-    `using Microsoft.Experimental.IdentityModel.Clients.ActiveDirectory;`
-* 在 `Index` 動作中，使用 ADAL 的 `AcquireTokenSilentAsync` 方法取得可用來讀取待辦事項清單服務資料的 access_token：
+    `using Microsoft.Identity.Client;`
+* 在 `Index` 動作中，使用 MSAL 的 `AcquireTokenSilentAsync` 方法取得可用來讀取待辦事項清單服務資料的 access_token：
 
 ```C#
-...
+// ...
 string userObjectID = ClaimsPrincipal.Current.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
 string tenantID = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid").Value;
 string authority = String.Format(CultureInfo.InvariantCulture, Startup.aadInstance, tenantID, string.Empty);
 ClientCredential credential = new ClientCredential(Startup.clientId, Startup.clientSecret);
 
 // Here you ask for a token using the web app's clientId as the scope, since the web app and service share the same clientId.
-AuthenticationContext authContext = new AuthenticationContext(authority, new NaiveSessionCache(userObjectID));
-result = await authContext.AcquireTokenSilentAsync(new string[] { Startup.clientId }, credential, UserIdentifier.AnyUser);
-...
+app = new ConfidentialClientApplication(Startup.clientId, redirectUri, credential, new NaiveSessionCache(userObjectID, this.HttpContext)){};
+result = await app.AcquireTokenSilentAsync(new string[] { Startup.clientId });
+// ...
 ```
 
 * 此範例接下來會將產生的權杖加入 HTTP GET 要求當做 `Authorization` 標頭，讓待辦事項清單服務用來驗證要求。
-* 如果待辦事項清單服務傳回 `401 Unauthorized` 回應，表示 ADAL 的 access_tokens 已因為某些原因而無效。  在此情況下，您應該卸除所有來自 ADAL 快取的 access_tokens，並向使用者顯示訊息告知可能需要再次登入，而這會重新啟動權杖的取得流程。
+* 如果待辦事項清單服務傳回 `401 Unauthorized` 回應，表示 MSAL 的 access_tokens 已因為某些原因而無效。  在此情況下，您應該卸除所有來自 MSAL 快取的 access_tokens，並向使用者顯示訊息告知可能需要再次登入，而這會重新啟動權杖的取得流程。
 
 ```C#
-...
+// ...
 // If the call failed with access denied, then drop the current access token from the cache,
 // and show the user an error indicating they might need to sign-in again.
 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
 {
-        var todoTokens = authContext.TokenCache.ReadItems().Where(a => a.Scope.Contains(Startup.clientId));
-        foreach (TokenCacheItem tci in todoTokens)
-                authContext.TokenCache.DeleteItem(tci);
+        app.AppTokenCache.Clear(Startup.clientId);
 
         return new RedirectResult("/Error?message=Error: " + response.ReasonPhrase + " You might need to sign in again.");
 }
-...
+// ...
 ```
 
-* 同樣地，如果 ADAL 因為任何原因而無法傳回 access_token，您也應指示使用者再次登入。  這就像擷取任何 `AdalException` 一樣簡單：
+* 同樣地，如果 MSAL 因為任何原因而無法傳回 access_token，您也應指示使用者再次登入。  這就像擷取任何 `MSALException` 一樣簡單：
 
 ```C#
-...
-catch (AdalException ee)
+// ...
+catch (MsalException ee)
 {
-        // If ADAL could not get a token silently, show the user an error indicating they might need to sign in again.
+        // If MSAL could not get a token silently, show the user an error indicating they might need to sign in again.
         return new RedirectResult("/Error?message=An Error Occurred Reading To Do List: " + ee.Message + " You might need to log out and log back in.");
 }
-...
+// ...
 ```
 
-* `Create` 和 `Delete` 動作中執行完全一致的 `AcquireTokenSilentAsync` 呼叫。  在 Web 應用程式中，只要應用程式有需要，就可以使用這個 ADAL 方法取得 access_tokens。  ADAL 會為您取得、快取和重新整理權杖。
+* `Create` 和 `Delete` 動作中執行完全一致的 `AcquireTokenSilentAsync` 呼叫。  在 Web 應用程式中，只要應用程式有需要，就可以使用這個 MSAL 方法取得 access_tokens。  MSAL 會為您取得、快取和重新整理權杖。
 
 最後，建置並執行您的應用程式！  使用 Microsoft 帳戶或 Azure AD 帳戶登入，並注意上方導覽列中的使用者身分識別的反映狀態。  在使用者的 [待辦事項清單] 中加入和刪除某些項目，以查看執行中 OAuth 2.0 保護的 API 呼叫。  您的 Web 應用程式和 Web API 現在都使用業界標準的通訊協定保護，可以使用個人與工作/學校帳戶來驗證使用者。
 
@@ -197,11 +194,14 @@ catch (AdalException ee)
 如需其他資源，請參閱：
 
 * [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
-* [StackOverflow "adal" 標籤 >>](http://stackoverflow.com/questions/tagged/adal)
+* [StackOverflow "azure-active-directory" 標籤 >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
 ## <a name="get-security-updates-for-our-products"></a>取得產品的安全性更新
 我們鼓勵您造訪 [此頁面](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

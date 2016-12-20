@@ -21,9 +21,8 @@
 ### [輸出驗證](scheduler-outbound-authentication.md)
 
 # 參考
-## [Azure 排程器 PowerShell Cmdlet](https://msdn.microsoft.com/en-us/library/mt490138(v=azure.200).aspx)
-## [.NET](/dotnet/api)
-## [REST](/rest/api/scheduler/)
+## [PowerShell](/powershell/resourcemanager/azurerm.scheduler/v0.11.1/azurerm.scheduler)
+## [REST](/rest/api/scheduler)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/scheduler/)
@@ -36,6 +35,6 @@
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

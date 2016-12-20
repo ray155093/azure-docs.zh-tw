@@ -1,20 +1,24 @@
 ---
-title: 在您的工作場所中使用 Windows 10 裝置 | Microsoft Docs
-description: 提供適用於使用者與 IT 的功能快照，對照可在具備 Windows 10 的企業中佈建和使用裝置的不同方式。
+title: "在您的工作場所中使用 Windows 10 裝置 | Microsoft Docs"
+description: "提供適用於使用者與 IT 的功能快照，對照可在具備 Windows 10 的企業中佈建和使用裝置的不同方式。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: femila
 manager: swadhwa
-editor: ''
+editor: 
 tags: azure-classic-portal
-
+ms.assetid: 94ccc8fd-b17b-4fda-8d56-9d87aa37a9f9
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 10/17/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 388ca47c7ec21723906125227ed8250e03606e17
+
 
 ---
 # <a name="using-windows-10-devices-in-your-workplace"></a>在您的工作場所中使用 Windows 10 裝置
@@ -71,7 +75,7 @@ Azure AD Join 是 Windows 10 中新的自助式工作佈建體驗。  以在雲�
 
 如需關於 Azure AD Join 的詳細資訊，請參閱 [透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能](active-directory-azureadjoin-overview.md)。
 
-## <a name="when-to-use-domain-join-(or-keep-using-it)"></a>何時應使用 (或繼續使用) 加入網域
+## <a name="when-to-use-domain-join-or-keep-using-it"></a>何時應使用 (或繼續使用) 加入網域
 過去 15 年來，許多組織都使用加入網域來連接工作裝置。 它可讓使用者使用其 Active Directory 公司帳戶或學校帳戶登入他們的裝置。 加入網域也可讓 IT 集中且完善管理這些裝置。 組織通常依賴映像處理方法來佈建裝置，且通常使用 System Center Configuration Manager (SCCM) 或群組原則 (GP) 加以管理。
 
 **基於下列任何理由，您的企業應該使用 (或繼續使用) 加入網域**：
@@ -117,9 +121,9 @@ Azure AD Join 是 Windows 10 中新的自助式工作佈建體驗。  以在雲�
 * 如果您想要限制對某些裝置的存取，則需要原則來允許存取「加入網域」的裝置。
 * System Center Configuration Manager 1509 版 (Technical Preview)，以啟用規則來要求符合標準的裝置。 (請參閱 TechNet 文件和部落格文章)。
 
-如需 Windows 10 中的加入網域的詳細資訊，請參閱 <link-to-DJ-in-Win10-deployment-guide>。
+如需有關在 Windows 10 中加入網域的詳細資訊，請參閱[將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 
-## <a name="requirements-for-using-byod-and-"add-a-work-or-school-account""></a>使用 BYOD 和「新增公司帳戶或學校帳戶」的需求
+## <a name="requirements-for-using-byod-and-add-a-work-or-school-account"></a>使用 BYOD 和「新增公司帳戶或學校帳戶」的需求
 若要搭配公司帳戶或學校帳戶來啟用「攜帶您自己的裝置」(BYOD)，您需要下列項目：
 
 * Azure AD 訂用帳戶。
@@ -141,18 +145,19 @@ Azure AD Join 是 Windows 10 中新的自助式工作佈建體驗。  以在雲�
 如需 Windows 10 中 Microsoft Passport 和 Windows Hello 的詳細資訊，請參閱 <link-to-MS-Passport-and-Windows-Hello-document>。
 
 ## <a name="frequently-asked-questions"></a>常見問題集
-### <a name="which-partner-mobile-device-management-products-integrate-with-azure-ad?"></a>哪些協力廠商行動裝置管理產品與 Azure AD 整合？
+### <a name="which-partner-mobile-device-management-products-integrate-with-azure-ad"></a>哪些協力廠商行動裝置管理產品與 Azure AD 整合？
 下列廠商產品會與 Azure AD 整合，以在 Windows 10 中進行統一的註冊和條件式存取：
 
 * AirWatch by VMware
 * Citrix Xenmobile
 * Lightspeed Mobile Manager
 * SOTI 內部部署行動裝置管理
+* MobileIron
 
-### <a name="what-about-workplace-join-in-windows-10?"></a>Windows 10 中的「加入工作場所」有何功能？
+### <a name="what-about-workplace-join-in-windows-10"></a>Windows 10 中的「加入工作場所」有何功能？
 Windows 8.1 中使用「加入工作場所」來啟用 BYOD。 在 Windows 10 中，必須透過本文稍早所述的「新增公司帳戶或學校帳戶」來啟用 BYOD。 對於未將行動裝置管理與 Azure AD 整合的組織，使用者可以透過下列途徑手動將裝置註冊到管理中：[設定]  >  [帳戶]  >  [工作存取]。
 
-### <a name="can-users-connect-their-microsoft-account-to-their-domain-account-in-windows-10?"></a>在 Windows 10 中，使用者是否可將其 Microsoft 帳戶連接到網域帳戶？
+### <a name="can-users-connect-their-microsoft-account-to-their-domain-account-in-windows-10"></a>在 Windows 10 中，使用者是否可將其 Microsoft 帳戶連接到網域帳戶？
 在 Windows 10 中不行。 在 Windows 8.1 中，已加入網域之裝置的使用者可以將其 Microsoft 帳戶 (例如 Hotmail、Live、Outlook、XBox 等)「連接」到網域帳戶，以啟用特定的體驗，例如以 SSO 存取 Live 服務、使用 Windows 市集和跨裝置漫遊使用者設定。 在 Windows 10 中，已淘汰 Microsoft 帳戶「連接」功能。 使用者可以新增一或多個 Microsoft 帳戶作為其他帳戶，以支援經由 SSO 存取消費者服務 (如 Windows 市集)。 這作業可在 [設定]  >  [帳戶]  >  [您的帳戶] 中完成。
 
 想要從加入網域的 Windows 8.1 裝置升級、並且已連接其 Microsoft 帳戶的使用者，會自動將其已連接的 Microsoft 帳戶新增至他們使用的其他帳戶清單中。
@@ -164,6 +169,9 @@ Windows 8.1 中使用「加入工作場所」來啟用 BYOD。 在 Windows 10 �
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

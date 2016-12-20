@@ -1,19 +1,24 @@
 ---
-title: Azure SQL Database Azure 案例研究 - Umbraco| Microsoft Docs
-description: 了解 Umbraco 如何使用 SQL Database 為雲端中數千個租用戶快速佈建和調整服務
+title: "Azure SQL Database Azure 案例研究 - Umbraco| Microsoft Docs"
+description: "了解 Umbraco 如何使用 SQL Database 為雲端中數千個租用戶快速佈建和調整服務"
 services: sql-database
-documentationcenter: ''
-author: carlrabeler
+documentationcenter: 
+author: CarlRabeler
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 5243d31e-3241-4cb0-9470-ad488ff28572
 ms.service: sql-database
+ms.custom: app development case study; app development
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/22/2016
 ms.author: carlrab
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0800f04034410c3734ef0a97afd9d41cf850381b
+
 
 ---
 # <a name="umbraco-uses-azure-sql-database-to-quickly-provision-and-scale-services-for-thousands-of-tenants-in-the-cloud"></a>Umbraco 使用 Azure SQL Database 為雲端中數千個租用戶快速佈建和調整服務
@@ -25,7 +30,7 @@ Umbraco 是一個熱門的開放原始碼內容管理系統 (CMS)，從小型行
 > 
 > — Morten Christensen，Umbraco 技術主管
 > 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Database-Case-Study-Umbraco/player]
+> [!影片 https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Database-Case-Study-Umbraco/player]
 > 
 > 
 
@@ -113,18 +118,21 @@ Morten 也很滿意 Azure 所提供的調整功能。 「彈性資料庫集區�
 
 Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Database 搭配使用的基礎技術以外，我們也採用了強大的 Azure 演算法，將常見的 SaaS 案例 (讓新客戶即時大規模上線) 與我們的應用程式模式 (預先佈建開發資料庫和即時資料庫) 連接。」
 
-## <a name="with-azure,-uaas-is-exceeding-customer-expectations"></a>透過 Azure，UaaS 的表現超出客戶期望
+## <a name="with-azure-uaas-is-exceeding-customer-expectations"></a>透過 Azure，UaaS 的表現超出客戶期望
 由於選擇 Azure 作為雲端合作夥伴，因此 Umbraco 不需像自我裝載解決方案那樣需要投資 IT 資源，就能夠為 UaaS 客戶提供最佳化的內容管理效能。 如 Morten 所述：「我們相當滿意 Azure 為開發人員提供的便利性和延展性，而我們的客戶也為所獲得的功能和可靠性振奮不已。 整體而言，對我來說是一大勝利！」
 
 ## <a name="more-information"></a>詳細資訊
 * 若要深入了解 Azure 彈性資料庫集區，請參閱 [彈性資料庫集區](sql-database-elastic-pool.md)。
 * 若要深入了解「Azure 服務匯流排」，請參閱 [Azure 服務匯流排](https://azure.microsoft.com/services/service-bus/)。
-* 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。 
+* 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
 * 若要深入了解虛擬網路，請參閱 [虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)。    
-* 若要深入了解備份與復原，請參閱 [商務持續性](sql-database-business-continuity.md)。  
-* 若要深入了解監視集區，請參閱 [監視集區](sql-database-elastic-pool-manage-portal.md)。 
+* 若要深入了解備份與復原，請參閱 [商務持續性](sql-database-business-continuity.md)。    
+* 若要深入了解監視集區，請參閱 [監視集區](sql-database-elastic-pool-manage-portal.md)。    
 * 若要深入了解 Umbraco，請參閱 [Umbraco](https://umbraco.com/cloud)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

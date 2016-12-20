@@ -1,12 +1,12 @@
 ---
-title: StorSimple 系統限制 | Microsoft Docs
-description: 描述 StorSimple 8000 系列元件和連線的系統限制和建議大小。
+title: "StorSimple 系統限制 | Microsoft Docs"
+description: "描述 StorSimple 8000 系列元件和連線的系統限制和建議大小。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: c7392678-0924-46c6-9c59-1665cb9b6586
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 10/06/2016
 ms.author: alkohli
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 884f9ad8cf3c0862fa0f235ee19efd0dbdadbab6
+
 
 ---
 # <a name="storsimple-system-limits"></a>StorSimple 系統限制
@@ -53,6 +57,9 @@ StorSimple 提供您的資料中心的擴充性和彈性儲存體。 不過，�
 ## <a name="next-steps"></a>後續步驟
 請檢閱 [StorSimple 系統需求](storsimple-system-requirements.md)。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

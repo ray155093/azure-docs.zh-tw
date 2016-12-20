@@ -1,13 +1,13 @@
 ---
-title: 用來部署 Windows HPC 叢集的 PowerShell 指令碼 | Microsoft Docs
-description: 執行 PowerShell 指令碼，以在 Azure 虛擬機器中部署 Windows HPC Pack 叢集
+title: "用來部署 Windows HPC 叢集的 PowerShell 指令碼 | Microsoft Docs"
+description: "執行 PowerShell 指令碼，以在 Azure 虛擬機器中部署 Windows HPC Pack 叢集"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: dlepow
 manager: timlt
-editor: ''
+editor: 
 tags: azure-service-management,hpc-pack
-
+ms.assetid: 286b2be8-2533-40df-b02a-26156b1f1133
 ms.service: virtual-machines-windows
 ms.devlang: NA
 ms.topic: article
@@ -15,10 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 07/07/2016
 ms.author: danlep
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: f2c3121cf6fed47a5dd844c06de3dd9175fbcd5a
+
 
 ---
-# <a name="create-a-windows-high-performance-computing-(hpc)-cluster-with-the-hpc-pack-iaas-deployment-script"></a>使用 HPC Pack IaaS 部署指令碼建立 Windows 高效能運算 (HPC) 叢集
-執行 HPC Pack IaaS 部署 PowerShell 指令碼，在 Azure 虛擬機器中為 Windows 工作負載部署完整的 HPC 叢集。 叢集是由加入 Active Directory、且執行 Windows Server 和 Microsoft HPC Pack 的前端節點，以及您指定的其他 Windows 計算資源所組成。 如果您想要在 Azure 中為 Linux 工作負載部署 HPC Pack 叢集，請參閱 [使用 HPC Pack IaaS 部署指令碼建立 Linux HPC 叢集](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md)。 您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。 如需範例，請參閱[建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)和[使用自訂的計算節點映像建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)。
+# <a name="create-a-windows-high-performance-computing-hpc-cluster-with-the-hpc-pack-iaas-deployment-script"></a>使用 HPC Pack IaaS 部署指令碼建立 Windows 高效能運算 (HPC) 叢集
+執行 HPC Pack IaaS 部署 PowerShell 指令碼，在 Azure 虛擬機器中為 Windows 工作負載部署完整的 HPC 叢集。 叢集是由加入 Active Directory、且執行 Windows Server 和 Microsoft HPC Pack 的前端節點，以及您指定的其他 Windows 計算資源所組成。 如果您想要在 Azure 中為 Linux 工作負載部署 HPC Pack 叢集，請參閱 [使用 HPC Pack IaaS 部署指令碼建立 Linux HPC 叢集](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。 您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。 如需範例，請參閱[建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)和[使用自訂的計算節點映像建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
@@ -66,7 +70,7 @@ ms.author: danlep
 
 ### <a name="example-2"></a>範例 2
 下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中有 1 個具有本機資料庫的前端節點，和 12 個套用了 BGInfo VM 延伸模組的計算節點。
-對於網域樹系中的所有 VM，都會停用 Windows 更新的自動安裝。 所有雲端服務都直接建立在「東亞」位置中。 計算節點會建立在三個雲端服務和三個儲存體帳戶中：*MyHPCCNService01* 和 *mycnstorage01* 中的 *MyHPCCN-0001* 至_MyHPCCN-0005_；*MyHPCCNService02* 和 *mycnstorage02* 中的 *MyHPCCN-0006* 至 *MyHPCCN0010*；以及 *MyHPCCNService03* 和 *mycnstorage03* 中的 *MyHPCCN-0011* 至 *MyHPCCN-0012*)。 計算節點會從擷取自雲端節點的現有私人映像建立。 自動增加和縮減服務會根據預設的增加和縮減間隔來啟用。
+對於網域樹系中的所有 VM，都會停用 Windows 更新的自動安裝。 所有雲端服務都直接建立在「東亞」位置中。 計算節點會建立在三個雲端服務和三個儲存體帳戶中：*MyHPCCNService01* 和 *mycnstorage01* 中的 *MyHPCCN-0001* 至*MyHPCCN-0005*；*MyHPCCNService02* 和 *mycnstorage02* 中的 *MyHPCCN-0006* 至 *MyHPCCN0010*；以及 *MyHPCCNService03* 和 *mycnstorage03* 中的 *MyHPCCN-0011* 至 *MyHPCCN-0012*)。 計算節點會從擷取自雲端節點的現有私人映像建立。 自動增加和縮減服務會根據預設的增加和縮減間隔來啟用。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -184,7 +188,7 @@ ms.author: danlep
 
 
 ### <a name="example-4"></a>範例 4
-下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中包含兩個具有本機資料庫的前端節點、建立了兩個 Azure 節點範本，且針對 Azure 節點範本 _AzureTemplate1_建立了 3 個中型大小的 Azure 節點。 在設定完前端節點之後，指令檔會在前端節點上執行。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中包含兩個具有本機資料庫的前端節點、建立了兩個 Azure 節點範本，且針對 Azure 節點範本 *AzureTemplate1*建立了 3 個中型大小的 Azure 節點。 在設定完前端節點之後，指令檔會在前端節點上執行。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -263,10 +267,13 @@ ms.author: danlep
 
 ## <a name="next-steps"></a>後續步驟
 * 嘗試在叢集上執行測試工作負載。 如需範例，請參閱 HPC Pack [快速入門指南](https://technet.microsoft.com/library/jj884144)。
-* 如需編寫叢集部署指令碼及執行 HPC 工作負載的教學課程，請參閱 [開始使用 Azure 中的 HPC Pack 叢集執行 Excel 和 SOA 工作負載](virtual-machines-windows-excel-cluster-hpcpack.md)。
-* 嘗試以 HPC Pack 的工具啟動、停止、新增和移除您所建立之叢集中的計算節點。 請參閱 [在 Azure 中管理 HPC Pack 叢集的計算節點](virtual-machines-windows-classic-hpcpack-cluster-node-manage.md)。
-* 若要設定將工作從本機電腦提交至叢集，請參閱 [將 HPC 工作從內部部署電腦提交至 Azure 中的 HPC Pack 叢集](virtual-machines-windows-hpcpack-cluster-submit-jobs.md)。
+* 如需編寫叢集部署指令碼及執行 HPC 工作負載的教學課程，請參閱 [開始使用 Azure 中的 HPC Pack 叢集執行 Excel 和 SOA 工作負載](virtual-machines-windows-excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+* 嘗試以 HPC Pack 的工具啟動、停止、新增和移除您所建立之叢集中的計算節點。 請參閱 [在 Azure 中管理 HPC Pack 叢集的計算節點](virtual-machines-windows-classic-hpcpack-cluster-node-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+* 若要設定將工作從本機電腦提交至叢集，請參閱 [將 HPC 工作從內部部署電腦提交至 Azure 中的 HPC Pack 叢集](virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

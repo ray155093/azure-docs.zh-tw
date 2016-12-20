@@ -1,22 +1,26 @@
 ---
-title: 服務匯流排佇列、主題和訂用帳戶 | Microsoft Docs
-description: 服務匯流排訊息實體的概觀。
-services: service-bus
+title: "服務匯流排佇列、主題和訂用帳戶 | Microsoft Docs"
+description: "服務匯流排訊息實體的概觀。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: a306ced4-74e9-47c6-990a-d9c47efa31d5
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/14/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: edee84938bddf28ac4dbf4152ccf9d7ab6afe6c3
+
 
 ---
-# <a name="service-bus-queues,-topics,-and-subscriptions"></a>服務匯流排佇列、主題和訂用帳戶
+# <a name="service-bus-queues-topics-and-subscriptions"></a>服務匯流排佇列、主題和訂用帳戶
 Microsoft Azure 服務匯流排支援一組以雲端為基礎、訊息導向的中介軟體技術，包括可靠的訊息佇列和持久的發佈/訂閱訊息。 這些代理傳訊功能可以視為低耦合訊息功能，可使用服務匯流排訊息網狀架構來支援發佈-訂閱、時脈解離及負載平衡案例。 低耦合通訊有許多優點︰例如，用戶端和伺服器可視需要連接並以非同步方式執行其作業。
 
 構成服務匯流排中代理傳訊功能核心的傳訊實體為佇列、主題/訂用帳戶和規則/動作。
@@ -162,6 +166,9 @@ namespaceManager.CreateSubscription("IssueTrackingTopic", "Dashboard", new SqlFi
 * [主題篩選器範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/TopicFilters)
 * [代理傳訊︰進階篩選器範例](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

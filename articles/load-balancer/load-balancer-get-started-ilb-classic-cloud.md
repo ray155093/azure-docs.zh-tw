@@ -3,9 +3,8 @@ title: "在傳統部署模型中建立雲端服務的內部負載平衡器 | Mic
 description: "了解如何在傳統部署模型中使用 PowerShell 建立內部負載平衡器"
 services: load-balancer
 documentationcenter: na
-author: sdwheeler
-manager: carmonm
-editor: 
+author: kumudd
+manager: timlt
 tags: azure-service-management
 ms.assetid: 57966056-0f46-4f95-a295-483ca1ad135d
 ms.service: load-balancer
@@ -14,20 +13,22 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/09/2016
-ms.author: sewhee
+ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 85e22954c19d7d51579029c7426f0ee79b780504
+ms.sourcegitcommit: 8827793d771a2982a3dccb5d5d1674af0cd472ce
+ms.openlocfilehash: 7b2a5ea00a78f5643919f7095478801b13593ea6
 
 ---
 
 # <a name="get-started-creating-an-internal-load-balancer-classic-for-cloud-services"></a>開始為雲端服務建立內部負載平衡器 (傳統)
 
-[!INCLUDE [load-balancer-get-started-ilb-classic-selectors-include.md](../../includes/load-balancer-get-started-ilb-classic-selectors-include.md)]
+> [!div class="op_single_selector"]
+> * [PowerShell](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
+> * [Azure CLI](../load-balancer/load-balancer-get-started-ilb-classic-cli.md)
+> * [雲端服務](../load-balancer/load-balancer-get-started-ilb-classic-cloud.md)
 
-[!INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)]
-
-了解如何[使用 Resource Manager 模型執行這些步驟](load-balancer-get-started-ilb-arm-ps.md)。
+> [!IMPORTANT]
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何[使用 Resource Manager 模型執行這些步驟](load-balancer-get-started-ilb-arm-ps.md)。
 
 ## <a name="configure-internal-load-balancer-for-cloud-services"></a>設定雲端服務的內部負載平衡器
 
@@ -43,25 +44,25 @@ ms.openlocfilehash: 85e22954c19d7d51579029c7426f0ee79b780504
 在 Visual Studio 中開啟雲端部署的服務組態檔 (.cscfg) 並新增下列區段，以在網路組態的最後一個 "`</Role>`" 項目下建立內部負載平衡。
 
 ```xml
-    <NetworkConfiguration>
-      <LoadBalancers>
-        <LoadBalancer name="name of the load balancer">
-          <FrontendIPConfiguration type="private" subnet="subnet-name" staticVirtualNetworkIPAddress="static-IP-address"/>
-        </LoadBalancer>
-      </LoadBalancers>
-    </NetworkConfiguration>
+<NetworkConfiguration>
+    <LoadBalancers>
+    <LoadBalancer name="name of the load balancer">
+        <FrontendIPConfiguration type="private" subnet="subnet-name" staticVirtualNetworkIPAddress="static-IP-address"/>
+    </LoadBalancer>
+    </LoadBalancers>
+</NetworkConfiguration>
 ```
 
 讓我們新增網路組態檔的值，以顯示看起來如何。 在此範例中，假設您利用稱為 test_subnet 的子網路 10.0.0.0/24 和靜態 IP 10.0.0.4 建立稱為 "test_vnet" 的子網路。 負載平衡器將會命名為 testLB。
 
 ```xml
-    <NetworkConfiguration>
-      <LoadBalancers>
-        <LoadBalancer name="testLB">
-          <FrontendIPConfiguration type="private" subnet="test_subnet" staticVirtualNetworkIPAddress="10.0.0.4"/>
-        </LoadBalancer>
-      </LoadBalancers>
-    </NetworkConfiguration>
+<NetworkConfiguration>
+    <LoadBalancers>
+    <LoadBalancer name="testLB">
+        <FrontendIPConfiguration type="private" subnet="test_subnet" staticVirtualNetworkIPAddress="10.0.0.4"/>
+    </LoadBalancer>
+    </LoadBalancers>
+</NetworkConfiguration>
 ```
 
 如需關於負載平衡器結構描述的詳細資訊，請參閱 [新增負載平衡器](https://msdn.microsoft.com/library/azure/dn722411.aspx)
@@ -71,21 +72,21 @@ ms.openlocfilehash: 85e22954c19d7d51579029c7426f0ee79b780504
 變更服務定義 (.csdef) 檔案，以將端點新增至內部負載平衡。 建立角色執行個體時，服務定義檔會將角色執行個體新增至內部負載平衡。
 
 ```xml
-    <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
-      <Endpoints>
-        <InputEndpoint name="input-endpoint-name" protocol="[http|https|tcp|udp]" localPort="local-port-number" port="port-number" certificate="certificate-name" loadBalancerProbe="load-balancer-probe-name" loadBalancer="load-balancer-name" />
-      </Endpoints>
-    </WorkerRole>
+<WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
+    <Endpoints>
+    <InputEndpoint name="input-endpoint-name" protocol="[http|https|tcp|udp]" localPort="local-port-number" port="port-number" certificate="certificate-name" loadBalancerProbe="load-balancer-probe-name" loadBalancer="load-balancer-name" />
+    </Endpoints>
+</WorkerRole>
 ```
 
 遵循與上述範例相同的值，讓我們將值新增至服務定義檔。
 
 ```xml
-    <WorkerRole name="WorkerRole1" vmsize="A7" enableNativeCodeExecution="[true|false]">
-      <Endpoints>
-        <InputEndpoint name="endpoint1" protocol="http" localPort="80" port="80" loadBalancer="testLB" />
-      </Endpoints>
-    </WorkerRole>
+<WorkerRole name="WorkerRole1" vmsize="A7" enableNativeCodeExecution="[true|false]">
+    <Endpoints>
+    <InputEndpoint name="endpoint1" protocol="http" localPort="80" port="80" loadBalancer="testLB" />
+    </Endpoints>
+</WorkerRole>
 ```
 
 網路流量會使用 testLB 負載平衡器進行負載平衡，使用連接埠 80 進行連入要求，也在連接埠 80 上傳送背景工作角色執行個體。
@@ -99,6 +100,6 @@ ms.openlocfilehash: 85e22954c19d7d51579029c7426f0ee79b780504
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect 同步：函式參考 | Microsoft Docs
-description: Azure AD Connect 同步處理中宣告式佈建運算式的參考。
+title: "Azure AD Connect 同步：函式參考 | Microsoft Docs"
+description: "Azure AD Connect 同步處理中宣告式佈建運算式的參考。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: andkjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 4f525ca0-be0e-4a2e-8da1-09b6b567ed5f
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: andkjell;markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8fbffc0de5964a89fe2e0f9059c2f48b29fba2b9
+
 
 ---
-# <a name="azure-ad-connect-sync:-functions-reference"></a>Azure AD Connect 同步處理：函式參考
+# <a name="azure-ad-connect-sync-functions-reference"></a>Azure AD Connect 同步處理：函式參考
 在 Azure AD Connect 中，函數是用來在同步處理期間操作屬性值。  
 函式的語法可使用下列格式來表示：  
 `<output type> FunctionName(<input type> <position name>, ..)`
@@ -27,11 +31,11 @@ ms.author: andkjell;markvi
 
 類型可以使用下列語法來表示：
 
-* – 二進位
-* – 布林值
-* – UTC 日期/時間
-* – 已知常數的列舉
-* – Expression, which is ected to evaluate to a Boolean
+*  – 二進位
+*  – 布林值
+*  – UTC 日期/時間
+*  – 已知常數的列舉
+*  – Expression, which is ected to evaluate to a Boolean
 * **mvbin** – 多重值的二進位
 * **mvstr** – 多重值的字串
 * **mvref** – 多重值的參考
@@ -1070,6 +1074,9 @@ string 內以 delimiters 其中一個字元來分隔之字元的每個字串，�
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

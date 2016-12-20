@@ -1,12 +1,12 @@
 ---
-title: 'Azure Insights: Azure Insights autoscaling common metrics. | Microsoft Docs'
-description: Learn which metrics are commonly used for autoscaling your Cloud Services, Virtual Machines and Web Apps.
+title: "Azure 監視器自動調整的常用度量 | Microsoft Docs"
+description: "了解哪些度量常用於自動調整您的雲端服務、虛擬機器和 Web Apps。"
 author: kamathashwin
-manager: ''
-editor: ''
+manager: carolz
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 189b2a13-01c8-4aca-afd5-90711903ca59
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,147 +14,151 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2016
 ms.author: ashwink
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 8d5f8dd454741f5946d6a2c265ce67808abdac9e
+
 
 ---
-# <a name="azure-insights-autoscaling-common-metrics"></a>Azure Insights autoscaling common metrics
-Azure Insights autoscaling allows you to scale the number of running instances up or down, based on telemetry data (metrics). This document describes common metrics that you might want to use. In the Azure Portal for Cloud Services and Server Farms, you can choose the metric of the resource to scale by. However, you can also choose any metric from a different resource to scale by.
+# <a name="azure-monitor-autoscaling-common-metrics"></a>Azure 監視器自動調整的常用度量
+Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減少執行中執行個體的數目。 本文件說明您可能會使用的常用度量。 在 Azure 的雲端服務和伺服器陣列入口網站中，您可以選擇要做為調整依據的資源度量。 不過，您也可以選擇其他資源的任何度量來做為調整依據。
 
-Here are the details on how to find and list the metrics you want to scale by. The following applies for scaling Virtual Machine Scale Sets as well.
+以下詳細說明如何尋找並列出要做為調整依據的度量。 下列作法也適用於調整「虛擬機器擴展集」。
 
-## <a name="compute-metrics"></a>Compute metrics
-By default, Azure VM v2 comes with diagnostics extension configured and they have the following metrics turned on.
+## <a name="compute-metrics"></a>計算度量
+根據預設，Azure VM v2 隨附設定好的診斷擴充功能，並已開啟下列度量。
 
-* [Guest metrics for Windows VM v2](#compute-metrics-for-windows-vm-v2-as-a-guest-os)
-* [Guest metrics for Linux VM v2](#compute-metrics-for-linux-vm-v2-as-a-guest-os)
+* [Windows VM v2 的來賓度量](#compute-metrics-for-windows-vm-v2-as-a-guest-os)
+* [Linux VM v2 的來賓度量](#compute-metrics-for-linux-vm-v2-as-a-guest-os)
 
-You can use the `Get MetricDefinitions` API/PoSH/CLI to view the metrics available for your VMSS resource. 
+您可以使用 `Get MetricDefinitions` API/PoSH/CLI 來檢視 VMSS 資源的可用度量。 
 
-If you're using VM scale sets and you don't see a particular metric listed, then it is likely *disabled* in your diagnostics extension.
+如果您使用 VM 擴展集，而且發現特定度量沒有列出來，可能是您的診斷擴充功能已「停用」它。
 
-If a particular metric is not being sampled or transferred at the frequency you want, you can update the diagnostics configuration.
+如果特定度量沒有取樣或以您想要的頻率傳輸，您可以更新診斷的組態設定。
 
-If either case above is true, then review [Use PowerShell to enable Azure Diagnostics in a virtual machine running Windows](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md) about PowerShell to configure and update your Azure VM Diagnostics extension to enable the metric. That article also includes a sample diagnostics configuration file.
+如果是上述任一種情況，則請檢閱 PowerShell 的[使用 PowerShell 為執行 Windows 的虛擬機器啟用 Azure 診斷](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，設定和更新您的 Azure VM 診斷擴充功能以啟用該度量。 該文章也包含診斷組態檔的範例。
 
-### <a name="compute-metrics-for-windows-vm-v2-as-a-guest-os"></a>Compute metrics for Windows VM v2 as a guest OS
-When you create a new VM (v2) in Azure, diagnostics is enabled by using the Diagnostics extension.
+### <a name="compute-metrics-for-windows-vm-v2-as-a-guest-os"></a>Windows VM v2 作為客體 OS 時的計算度量
+當您在 Azure 中建立新的 VM (v2) 時，使用診斷擴充功能會啟用診斷功能。
 
-You can generate a list of the metrics by using the following command in PowerShell.
+您可以在 PowerShell 中使用下列命令產生度量清單。
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
-You can create an alert for the following metrics.
+您可以建立下列度量的警示。
 
-| Metric Name | Unit |
+| 度量名稱 | 單位 |
 | --- | --- |
-| \Processor(_Total)\% Processor Time |Percent |
-| \Processor(_Total)\% Privileged Time |Percent |
-| \Processor(_Total)\% User Time |Percent |
+| \Processor(_Total)\% Processor Time |百分比 |
+| \Processor(_Total)\% Privileged Time |百分比 |
+| \Processor(_Total)\% User Time |百分比 |
 | \Processor Information(_Total)\Processor Frequency |Count |
 | \System\Processes |Count |
 | \Process(_Total)\Thread Count |Count |
 | \Process(_Total)\Handle Count |Count |
-| \Memory\% Committed Bytes In Use |Percent |
-| \Memory\Available Bytes |Bytes |
-| \Memory\Committed Bytes |Bytes |
-| \Memory\Commit Limit |Bytes |
-| \Memory\Pool Paged Bytes |Bytes |
-| \Memory\Pool Nonpaged Bytes |Bytes |
-| \PhysicalDisk(_Total)\% Disk Time |Percent |
-| \PhysicalDisk(_Total)\% Disk Read Time |Percent |
-| \PhysicalDisk(_Total)\% Disk Write Time |Percent |
-| \PhysicalDisk(_Total)\Disk Transfers/sec |CountPerSecond |
-| \PhysicalDisk(_Total)\Disk Reads/sec |CountPerSecond |
-| \PhysicalDisk(_Total)\Disk Writes/sec |CountPerSecond |
-| \PhysicalDisk(_Total)\Disk Bytes/sec |BytesPerSecond |
-| \PhysicalDisk(_Total)\Disk Read Bytes/sec |BytesPerSecond |
-| \PhysicalDisk(_Total)\Disk Write Bytes/sec |BytesPerSecond |
-| \PhysicalDisk(_Total)\Avg. Disk Queue Length |Count |
-| \PhysicalDisk(_Total)\Avg. Disk Read Queue Length |Count |
-| \PhysicalDisk(_Total)\Avg. Disk Write Queue Length |Count |
-| \LogicalDisk(_Total)\% Free Space |Percent |
+| \Memory\% Committed Bytes In Use |百分比 |
+| \Memory\Available Bytes |位元組 |
+| \Memory\Committed Bytes |位元組 |
+| \Memory\Commit Limit |位元組 |
+| \Memory\Pool Paged Bytes |位元組 |
+| \Memory\Pool Nonpaged Bytes |位元組 |
+| \PhysicalDisk(_Total)\% Disk Time |百分比 |
+| \PhysicalDisk(_Total)\% Disk Read Time |百分比 |
+| \PhysicalDisk(_Total)\% Disk Write Time |百分比 |
+| \PhysicalDisk(_Total)\每秒的磁碟傳輸數 |每秒計數 |
+| \PhysicalDisk(_Total)\Disk Reads/sec |每秒計數 |
+| \PhysicalDisk(_Total)\Disk Writes/sec |每秒計數 |
+| \PhysicalDisk(_Total)\Disk Bytes/sec |每秒位元組 |
+| \PhysicalDisk(_Total)\Disk Read Bytes/sec |每秒位元組 |
+| \PhysicalDisk(_Total)\Disk Write Bytes/sec |每秒位元組 |
+| \PhysicalDisk(_Total)\Avg. 磁碟佇列長度 |Count |
+| \PhysicalDisk(_Total)\Avg. 磁碟讀取佇列長度 |Count |
+| \PhysicalDisk(_Total)\Avg. 磁碟寫入佇列長度 |Count |
+| \LogicalDisk(_Total)\% Free Space |百分比 |
 | \LogicalDisk(_Total)\Free Megabytes |Count |
 
-### <a name="compute-metrics-for-linux-vm-v2-as-a-guest-os"></a>Compute metrics for Linux VM v2 as a guest OS
-When you create a new VM (v2) in Azure, diagnostics is enabled by default by using Diagnostics extension.
+### <a name="compute-metrics-for-linux-vm-v2-as-a-guest-os"></a>Linux VM v2 作為客體 OS 時的計算度量
+當您在 Azure 中建立新的 VM (v2) 時，使用診斷擴充功能預設會啟用診斷功能。
 
-You can generate a list of the metrics by using the following command in PowerShell.
+您可以在 PowerShell 中使用下列命令產生度量清單。
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
- You can create an alert for the following metrics.
+ 您可以建立下列度量的警示。
 
-| Metric Name | Unit |
+| 度量名稱 | 單位 |
 | --- | --- |
-| \Memory\AvailableMemory |Bytes |
-| \Memory\PercentAvailableMemory |Percent |
-| \Memory\UsedMemory |Bytes |
-| \Memory\PercentUsedMemory |Percent |
-| \Memory\PercentUsedByCache |Percent |
-| \Memory\PagesPerSec |CountPerSecond |
-| \Memory\PagesReadPerSec |CountPerSecond |
-| \Memory\PagesWrittenPerSec |CountPerSecond |
-| \Memory\AvailableSwap |Bytes |
-| \Memory\PercentAvailableSwap |Percent |
-| \Memory\UsedSwap |Bytes |
-| \Memory\PercentUsedSwap |Percent |
-| \Processor\PercentIdleTime |Percent |
-| \Processor\PercentUserTime |Percent |
-| \Processor\PercentNiceTime |Percent |
-| \Processor\PercentPrivilegedTime |Percent |
-| \Processor\PercentInterruptTime |Percent |
-| \Processor\PercentDPCTime |Percent |
-| \Processor\PercentProcessorTime |Percent |
-| \Processor\PercentIOWaitTime |Percent |
-| \PhysicalDisk\BytesPerSecond |BytesPerSecond |
-| \PhysicalDisk\ReadBytesPerSecond |BytesPerSecond |
-| \PhysicalDisk\WriteBytesPerSecond |BytesPerSecond |
-| \PhysicalDisk\TransfersPerSecond |CountPerSecond |
-| \PhysicalDisk\ReadsPerSecond |CountPerSecond |
-| \PhysicalDisk\WritesPerSecond |CountPerSecond |
-| \PhysicalDisk\AverageReadTime |Seconds |
-| \PhysicalDisk\AverageWriteTime |Seconds |
-| \PhysicalDisk\AverageTransferTime |Seconds |
+| \Memory\AvailableMemory |位元組 |
+| \Memory\PercentAvailableMemory |百分比 |
+| \Memory\UsedMemory |位元組 |
+| \Memory\PercentUsedMemory |百分比 |
+| \Memory\PercentUsedByCache |百分比 |
+| \Memory\PagesPerSec |每秒計數 |
+| \Memory\PagesReadPerSec |每秒計數 |
+| \Memory\PagesWrittenPerSec |每秒計數 |
+| \Memory\AvailableSwap |位元組 |
+| \Memory\PercentAvailableSwap |百分比 |
+| \Memory\UsedSwap |位元組 |
+| \Memory\PercentUsedSwap |百分比 |
+| \Processor\PercentIdleTime |百分比 |
+| \Processor\PercentUserTime |百分比 |
+| \Processor\PercentNiceTime |百分比 |
+| \Processor\PercentPrivilegedTime |百分比 |
+| \Processor\PercentInterruptTime |百分比 |
+| \Processor\PercentDPCTime |百分比 |
+| \Processor\PercentProcessorTime |百分比 |
+| \Processor\PercentIOWaitTime |百分比 |
+| \PhysicalDisk\BytesPerSecond |每秒位元組 |
+| \PhysicalDisk\ReadBytesPerSecond |每秒位元組 |
+| \PhysicalDisk\WriteBytesPerSecond |每秒位元組 |
+| \PhysicalDisk\TransfersPerSecond |每秒計數 |
+| \PhysicalDisk\ReadsPerSecond |每秒計數 |
+| \PhysicalDisk\WritesPerSecond |每秒計數 |
+| \PhysicalDisk\AverageReadTime |秒 |
+| \PhysicalDisk\AverageWriteTime |秒 |
+| \PhysicalDisk\AverageTransferTime |秒 |
 | \PhysicalDisk\AverageDiskQueueLength |Count |
-| \NetworkInterface\BytesTransmitted |Bytes |
-| \NetworkInterface\BytesReceived |Bytes |
+| \NetworkInterface\BytesTransmitted |位元組 |
+| \NetworkInterface\BytesReceived |位元組 |
 | \NetworkInterface\PacketsTransmitted |Count |
 | \NetworkInterface\PacketsReceived |Count |
-| \NetworkInterface\BytesTotal |Bytes |
+| \NetworkInterface\BytesTotal |位元組 |
 | \NetworkInterface\TotalRxErrors |Count |
 | \NetworkInterface\TotalTxErrors |Count |
 | \NetworkInterface\TotalCollisions |Count |
 
-## <a name="commonly-used-web-(server-farm)-metrics"></a>Commonly used Web (Server Farm) metrics
-You can also perform autoscale based on common web server metrics such as the Http queue length. It's metric name is **HttpQueueLength**.  The following section lists available server farm (Web Apps) metrics.
+## <a name="commonly-used-web-server-farm-metrics"></a>常用的 Web (伺服器陣列) 度量
+您也可以根據常用的 Web 伺服器度量 (如 Http 佇列長度) 執行自動調整。 它的計量名稱是 **HttpQueueLength**。  下一節會列出可用的伺服器陣列 (Web Apps) 度量。
 
-### <a name="web-apps-metrics"></a>Web Apps metrics
-You can generate a list of the Web Apps metrics by using the following command in PowerShell.
+### <a name="web-apps-metrics"></a>Web Apps 度量
+您可以在 PowerShell 中使用下列命令產生 Web Apps 清單。
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
-You can alert on or scale by these metrics.
+您可以針對這些度量發出警示通知或以其為調整依據。
 
-| Metric Name | Unit |
+| 度量名稱 | 單位 |
 | --- | --- |
-| CpuPercentage |Percent |
-| MemoryPercentage |Percent |
+| CpuPercentage |百分比 |
+| MemoryPercentage |百分比 |
 | DiskQueueLength |Count |
 | HttpQueueLength |Count |
-| BytesReceived |Bytes |
-| BytesSent |Bytes |
+| BytesReceived |位元組 |
+| BytesSent |位元組 |
 
-## <a name="commonly-used-storage-metrics"></a>Commonly used Storage metrics
-You can scale by Storage queue length, which is the number of messages in the storage queue. Storage queue length is a special metric and the threshold applied will be the number of messages per instance. This means if there are two instances and if the threshold is set to 100, it will scale when the total number of messages in the queue are 200. For example, 100 messages per instance.
+## <a name="commonly-used-storage-metrics"></a>常用的儲存體度量
+您可以「儲存體佇列長度」做為調整依據，它是儲存體佇列中的訊息數目。 儲存體佇列長度是一個特殊度量，套用的臨界值是每個執行個體的訊息數。 這表示如果有兩個執行個體，且如果臨界值設定為 100 時，當佇列中的訊息總數為 200 時將會進行調整。 例如，每個執行個體 100 個訊息。
 
-You can configure this is in the Azure Portal in the **Settings** blade. For VM scale sets, you can update the Autoscale setting in the ARM template to use *metricName* as *ApproximateMessageCount* and pass the ID of the storage queue as *metricResourceUri*.
+您可以在 Azure 入口網站的 [設定] 刀鋒視窗中進行此設定。 若使用 VM 擴展集，您可以更新 ARM 範本中的自動調整設定，改為使用 metricName 做為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼做為 metricResourceUri。
 
-For example, with a Classic Storage Account the autoscale setting metricTrigger would include:
+例如，使用傳統儲存體帳戶時，自動調整設定 metricTrigger 會包含：
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -162,7 +166,7 @@ For example, with a Classic Storage Account the autoscale setting metricTrigger 
  "metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.ClassicStorage/storageAccounts/mystorage/services/queue/queues/mystoragequeue"
  ```
 
-For a (non-classic) storage account, the metricTrigger would include:
+使用 (非傳統) 儲存體帳戶時，metricTrigger 會包含：
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -170,10 +174,10 @@ For a (non-classic) storage account, the metricTrigger would include:
 "metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.Storage/storageAccounts/mystorage/services/queue/queues/mystoragequeue"
 ```
 
-## <a name="commonly-used-service-bus-metrics"></a>Commonly used Service Bus metrics
-You can scale by Service Bus queue length, which is the number of messages in the Service Bus queue. Service Bus queue length is a special metric and the threshold specified applied will be the number of messages per instance. This means if there are two instances and if the threshold is set to 100, it will scale when the total number of messages in the queue are 200. For example, 100 messages per instance.
+## <a name="commonly-used-service-bus-metrics"></a>常用的服務匯流排衡量標準
+您可以依服務匯流排佇列長度做為調整依據，它是服務匯流排佇列中的訊息數目。 服務匯流排佇列長度是一個特殊衡量標準，套用的特定臨界值是每個執行個體的訊息數。 這表示如果有兩個執行個體，且如果臨界值設定為 100 時，當佇列中的訊息總數為 200 時將會進行調整。 例如，每個執行個體 100 個訊息。
 
-For VM scale sets, you can update the Autoscale setting in the ARM template to use *metricName* as *ApproximateMessageCount* and pass the ID of the storage queue as *metricResourceUri*.
+若使用 VM 擴展集，您可以更新 ARM 範本中的自動調整設定，改為使用 metricName 做為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼做為 metricResourceUri。
 
 ```
 "metricName": "MessageCount",
@@ -182,10 +186,13 @@ For VM scale sets, you can update the Autoscale setting in the ARM template to u
 ```
 
 > [!NOTE]
-> For Service Bus, the resource group concept does not exist but Azure Resource Manager creates a default resource group per region. The resource group is usually in the 'Default-ServiceBus-[region]' format. For example, 'Default-ServiceBus-EastUS', 'Default-ServiceBus-WestUS', 'Default-ServiceBus-AustraliaEast' etc.
+> 若使用服務匯流排，資源群組的概念不存在，但 Azure Resource Manager 會建立每個區域的預設資源群組。 此資源群組通常是 'Default-ServiceBus-[region]' 的格式。 例如，'Default-ServiceBus-EastUS'、'Default-ServiceBus-WestUS'、'Default-ServiceBus-AustraliaEast' 等。
 > 
 > 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

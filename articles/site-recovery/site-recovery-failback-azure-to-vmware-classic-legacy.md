@@ -1,12 +1,12 @@
 ---
-title: 將 VMware 虛擬機器和實體伺服器從 Azure 容錯回復到 VMware (舊版) | Microsoft Docs
-description: 這篇文章說明如何利用 Azure Site Recovery 容錯回復已複寫至 Azure 的 VMware 虛擬機器。
+title: "將 VMware 虛擬機器和實體伺服器從 Azure 容錯回復到 VMware (舊版) | Microsoft Docs"
+description: "這篇文章說明如何利用 Azure Site Recovery 容錯回復已複寫至 Azure 的 VMware 虛擬機器。"
 services: site-recovery
-documentationcenter: ''
+documentationcenter: 
 author: ruturaj
 manager: mkjain
-editor: ''
-
+editor: 
+ms.assetid: a63524bf-990c-42ee-8554-e017e6e67e68
 ms.service: site-recovery
 ms.devlang: na
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.topic: article
 ms.workload: storage-backup-recovery
 ms.date: 10/05/2016
 ms.author: ruturajd@microsoft.com
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 45695926bce3ec3460a572c0c01ffa4038f73ea5
+
 
 ---
-# <a name="fail-back-vmware-virtual-machines-and-physical-servers-from-azure-to-vmware-with-azure-site-recovery-(legacy)"></a>利用 Azure Site Recovery 將 VMware 虛擬機器和實體伺服器從 Azure 容錯回復到 VMware (舊版)
+# <a name="fail-back-vmware-virtual-machines-and-physical-servers-from-azure-to-vmware-with-azure-site-recovery-legacy"></a>利用 Azure Site Recovery 將 VMware 虛擬機器和實體伺服器從 Azure 容錯回復到 VMware (舊版)
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](site-recovery-failback-azure-to-vmware.md)
 > * [Azure 傳統入口網站](site-recovery-failback-azure-to-vmware-classic.md)
@@ -48,7 +52,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 1. **設定容錯回復元件**：您必須在內部部署設定 vContinuum 伺服器，並將它指向 Azure 中的組態伺服器 VM。 您也會將處理序伺服器設定為 Azure VM，以將資料傳送回內部部署主要目標伺服器。 您向處理容錯移轉的組態伺服器註冊處理序伺服器。 您安裝內部部署主要目標伺服器。 如果您需要 Windows 主要目標伺服器，它會在您安裝 vContinuum 時自動設定。 如果您需要 Linux，您必須在不同的伺服器上手動設定。
 2. **啟用保護和容錯回復**︰您已經設定好元件之後，在 vContinuum 中您將需要為已容錯移轉的 Azure VM 啟用保護。 您將執行 VM 整備檢查，並從 Azure 執行容錯移轉至您的內部部署網站。 完成容錯回復之後，您重新保護內部部署機器，讓它們開始複寫至 Azure。
 
-## <a name="step-1:-install-vcontinuum-on-premises"></a>步驟 1：安裝 vContinuum 內部部署
+## <a name="step-1-install-vcontinuum-on-premises"></a>步驟 1：安裝 vContinuum 內部部署
 您必須在內部部署安裝 vContinuum 伺服器並將它指向組態伺服器。
 
 1. [下載 vContinuum](http://go.microsoft.com/fwlink/?linkid=526305)。 
@@ -72,7 +76,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 9. 安裝完成後，您可以啟動 vContinuum。
     ![](./media/site-recovery-failback-azure-to-vmware/image8.png)
 
-## <a name="step-2:-install-a-process-server-in-azure"></a>步驟 2：在 Azure 中安裝處理序伺服器
+## <a name="step-2-install-a-process-server-in-azure"></a>步驟 2：在 Azure 中安裝處理序伺服器
 您必須在 Azure 上安裝處理序伺服器，讓 Azure 中的 VM 可以將資料傳回內部部署的主要目標伺服器。 
 
 1. 在 Azure 的 [組態伺服器]  頁面中，選取要加入新的處理序伺服器。
@@ -94,7 +98,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 > 
 > 
 
-## <a name="step-3:-install-a-master-target-server-on-premises"></a>步驟 3：安裝主要目標伺服器內部部署
+## <a name="step-3-install-a-master-target-server-on-premises"></a>步驟 3：安裝主要目標伺服器內部部署
 根據您的來源虛擬機器作業系統而定，您可能需要安裝 Linux 或 Windows 主要目標伺服器內部部署。
 
 ### <a name="deploy-a-windows-master-target-server"></a>部署 Windows 主要目標伺服器
@@ -221,7 +225,7 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 > 
 > 
 
-## <a name="step-4:-protect-the-virtual-machines-to-the-on-premises-site"></a>步驟 4：保護虛擬機器至內部部署網站
+## <a name="step-4-protect-the-virtual-machines-to-the-on-premises-site"></a>步驟 4：保護虛擬機器至內部部署網站
 您要保護 VM 至內部部署網站，然後再容錯回復。
 
 ### <a name="before-you-begin"></a>開始之前
@@ -357,6 +361,9 @@ wget-1.12-5.el6\_6.1.x86\_64.rpm
 ## <a name="next-steps"></a>後續步驟
 * [深入了解](site-recovery-vmware-to-azure-classic.md) 使用增強部署，將 VMware 虛擬機器和實體伺服器複寫至 Azure。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,14 +1,14 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 8f90dd518c6147df884ca9fd61ff8ee3b47dd179
-ms.openlocfilehash: 0fa4f3f5d5f07dcd0ec7dfdea7a0bec67900288e
+ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
+ms.openlocfilehash: 72d219c4150ddbfd59231f9131bf3502897f0ab4
 
 ---
 
 # <a name="azure-active-directory-documentation"></a>Azure Active Directory 文件
 
-Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄和身分識別管理服務。  Azure AD 可為在 Azure 中以及內部部署中執行的應用程式，提供身分識別和存取功能。  
+Azure Active Directory Premium 是身分識別與存取管理的雲端解決方案，可以提供數千個雲端 (SaaS) 應用程式的單一登入及存取您在內部部署執行的 Web 應用程式。 Azure Active Directory 可促進企業行動性和共同作業，並透過多重要素驗證 (MFA) 提供進階身分識別保護、安全性報告、稽核、警示，以及根據裝置的健全狀況、使用者位置及風險層級的調適型條件式存取原則。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -30,7 +30,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=active-directory">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=active-directory">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -87,68 +87,46 @@ Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄�
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Azure PowerShell 參考</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/cli/azure/ad">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Azure CLI</h3>
-                        <p>使用 Azure CLI 的 Azure Active Directory</p>
-                    </div>
+                        <h3>語言</h3>
+                        <p><a href="/active-directory/adal/microsoft.identitymodel.clients.activedirectory">.NET</a></p>
+                        <p><a href="/java/api">Java</a></p>
+                   </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/active-directory/adal/microsoft.identitymodel.clients.activedirectory">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>Azure Active Directory .NET 參考</p>
+                        <h3>其他</h3>
+                        <p><a href="/azure/active-directory/active-directory-service-limits-restrictions">服務限制</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-    <li>
-        <a href="/java/api/">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Java</h3>
-                        <p>Azure Java API 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-   </ul>
-
----
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/active-directory.pdf">
@@ -160,6 +138,6 @@ Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Hive 活動
-description: 了解如何使用 Azure 資料處理站中的 Hive 活動，以在隨選/您自己的 HDInsight 叢集上執行 Hive 查詢。
+title: "Hive 活動"
+description: "了解如何使用 Azure 資料處理站中的 Hive 活動，以在隨選/您自己的 HDInsight 叢集上執行 Hive 查詢。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: sharonlo101
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 80083218-743e-4da8-bdd2-60d1c77b1227
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,18 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2016
 ms.author: shlo
+translationtype: Human Translation
+ms.sourcegitcommit: a4121f8857fa9eaeb1cf1bca70e29666f6a04f63
+ms.openlocfilehash: 6f5aecf7ac50258e8f744a7bbf9c78d46413069d
+
 
 ---
 # <a name="hive-activity"></a>Hive 活動
 > [!div class="op_single_selector"]
-> [Hive](data-factory-hive-activity.md)  
-> [Pig](data-factory-pig-activity.md)  
-> [MapReduce](data-factory-map-reduce.md)  
-> [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
-> [Machine Learning](data-factory-azure-ml-batch-execution-activity.md) 
-> [預存程序](data-factory-stored-proc-activity.md)
-> [Data Lake Analytics U-SQL](data-factory-usql-activity.md)
-> [.NET 自訂](data-factory-use-custom-activities.md)
+> * [Hive](data-factory-hive-activity.md)  
+> * [Pig](data-factory-pig-activity.md)  
+> * [MapReduce](data-factory-map-reduce.md)  
+> * [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
+> * [機器學習服務](data-factory-azure-ml-batch-execution-activity.md) 
+> * [預存程序](data-factory-stored-proc-activity.md)
+> * [資料湖分析 U-SQL](data-factory-usql-activity.md)
+> * [.NET 自訂](data-factory-use-custom-activities.md)
 > 
 > 
 
@@ -89,18 +93,18 @@ Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight Hive 活
     DROP TABLE IF EXISTS HiveSampleIn; 
     CREATE EXTERNAL TABLE HiveSampleIn 
     (
-        ProfileID       string, 
-        SessionStart    string, 
-        Duration        int, 
-        SrcIPAddress    string, 
-        GameType        string
+        ProfileID        string, 
+        SessionStart     string, 
+        Duration         int, 
+        SrcIPAddress     string, 
+        GameType         string
     ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION 'wasb://adfwalkthrough@<storageaccount>.blob.core.windows.net/samplein/'; 
 
     DROP TABLE IF EXISTS HiveSampleOut; 
     CREATE EXTERNAL TABLE HiveSampleOut 
-    (   
-        ProfileID   string, 
-        Duration    int
+    (    
+        ProfileID     string, 
+        Duration     int
     ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION 'wasb://adfwalkthrough@<storageaccount>.blob.core.windows.net/sampleout/';
 
     INSERT OVERWRITE TABLE HiveSampleOut
@@ -122,36 +126,37 @@ Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight Hive 活
    > 
 5. 建立具有 HDInsightHive 活動的管線。 活動會處理/轉換資料。
    
-       {
-         "name": "HiveActivitySamplePipeline",
-         "properties": {
-           "activities": [
-             {
-               "name": "HiveActivitySample",
-               "type": "HDInsightHive",
-               "inputs": [
-                 {
-                   "name": "HiveSampleIn"
-                 }
-               ],
-               "outputs": [
-                 {
-                   "name": "HiveSampleOut"
-                 }
-               ],
-               "linkedServiceName": "HDInsightLinkedService",
-               "typeproperties": {
-                 "scriptPath": "adfwalkthrough\\scripts\\samplehive.hql",
-                 "scriptLinkedService": "StorageLinkedService"
-               },
-               "scheduler": {
+     {
+   
+       "name": "HiveActivitySamplePipeline",
+       "properties": {
+         "activities": [
+           {
+             "name": "HiveActivitySample",
+             "type": "HDInsightHive",
+             "inputs": [
+               {
+                 "name": "HiveSampleIn"
+               }
+             ],
+             "outputs": [
+               {
+                 "name": "HiveSampleOut"
+               }
+             ],
+             "linkedServiceName": "HDInsightLinkedService",
+             "typeproperties": {
+               "scriptPath": "adfwalkthrough\\scripts\\samplehive.hql",
+               "scriptLinkedService": "StorageLinkedService"
+             },
+                "scheduler": {
                    "frequency": "Hour",
                    "interval": 1
-               }
              }
-           ]
-         }
+           }
+         ]
        }
+     }
 6. 部署管線。 如需詳細資料，請參閱〈 [建立管線](data-factory-create-pipelines.md) 〉文章。 
 7. 使用資料處理站監視和管理檢視來監視管線。 如需詳細資料，請參閱〈 [監視及管理 Data Factory 管線](data-factory-monitor-manage-pipelines.md) 〉文章。 
 
@@ -164,35 +169,35 @@ Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight Hive 活
   
         {
             "name": "HiveActivitySamplePipeline",
-            "properties": {
+              "properties": {
             "activities": [
-                {
+                 {
                     "name": "HiveActivitySample",
                     "type": "HDInsightHive",
                     "inputs": [
-                        {
+                          {
                             "name": "HiveSampleIn"
                           }
                     ],
                     "outputs": [
-                        {
+                          {
                             "name": "HiveSampleOut"
                         }
                     ],
                     "linkedServiceName": "HDInsightLinkedService",
                     "typeproperties": {
-                        "scriptPath": "adfwalkthrough\\scripts\\samplehive.hql",
-                        "scriptLinkedService": "StorageLinkedService",
-                        "defines": {
+                          "scriptPath": "adfwalkthrough\\scripts\\samplehive.hql",
+                          "scriptLinkedService": "StorageLinkedService",
+                          "defines": {
                             "Input": "$$Text.Format('wasb://adfwalkthrough@<storageaccountname>.blob.core.windows.net/samplein/yearno={0:yyyy}/monthno={0:%M}/dayno={0:%d}/', SliceStart)",
                             "Output": "$$Text.Format('wasb://adfwalkthrough@<storageaccountname>.blob.core.windows.net/sampleout/yearno={0:yyyy}/monthno={0:%M}/dayno={0:%d}/', SliceStart)"
-                        },
-                        "scheduler": {
-                            "frequency": "Hour",
-                            "interval": 1
+                          },
+                           "scheduler": {
+                              "frequency": "Hour",
+                              "interval": 1
                         }
                     }
-                }
+                  }
             ]
           }
         }
@@ -201,18 +206,18 @@ Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight Hive 活
         DROP TABLE IF EXISTS HiveSampleIn; 
         CREATE EXTERNAL TABLE HiveSampleIn 
         (
-            ProfileID   string, 
-            SessionStart    string, 
-            Duration    int, 
-            SrcIPAddress    string, 
-            GameType    string
+            ProfileID     string, 
+            SessionStart     string, 
+            Duration     int, 
+            SrcIPAddress     string, 
+            GameType     string
         ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION '${hiveconf:Input}'; 
   
         DROP TABLE IF EXISTS HiveSampleOut; 
         CREATE EXTERNAL TABLE HiveSampleOut 
         (
-            ProfileID   string, 
-            Duration    int
+            ProfileID     string, 
+            Duration     int
         ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION '${hiveconf:Output}';
   
         INSERT OVERWRITE TABLE HiveSampleOut
@@ -228,6 +233,9 @@ Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight Hive 活
 * [叫用 Spark 程式](data-factory-spark.md)
 * [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

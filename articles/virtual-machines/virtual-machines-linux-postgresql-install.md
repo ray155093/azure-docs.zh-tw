@@ -1,13 +1,13 @@
 ---
-title: 設定 Linux VM 上的 PostgreSQL | Microsoft Docs
-description: 了解如何在 Azure 中的 Linux 虛擬機器上安裝和設定 PostgreSQL
+title: "設定 Linux VM 上的 PostgreSQL | Microsoft Docs"
+description: "了解如何在 Azure 中的 Linux 虛擬機器上安裝和設定 PostgreSQL"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: SuperScottz
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager,azure-service-management
-
+ms.assetid: 1a747363-0cc5-4ba3-9be7-084dfeb04651
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
@@ -15,29 +15,33 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: mingzhan
+translationtype: Human Translation
+ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
+ms.openlocfilehash: fb4df7d6ba72ac1123b6a55129aa3ab92a873cfd
+
 
 ---
-# 安裝和設定 Azure 上的 PostgreSQL
-PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它包含企業用功能，例如完整的 ACID 的相容性、可靠的交易式程序，以及多版本的並行控制。它也支援標準，例如 ANSI SQL 和 SQL/MED (包括 Oracle、MySQL、MongoDB 和許多其他項目的外部資料包裝函式)。其高度可擴充性支援超過 12 種程序性語言、GIN 和 GiST 索引、空間資料支援和多個類似 NoSQL 的功能，適用於 JSON 或以索引鍵-值為基礎的應用程式。
+# <a name="install-and-configure-postgresql-on-azure"></a>安裝和設定 Azure 上的 PostgreSQL
+PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。 它包含企業用功能，例如完整的 ACID 的相容性、可靠的交易式程序，以及多版本的並行控制。 它也支援標準，例如 ANSI SQL 和 SQL/MED (包括 Oracle、MySQL、MongoDB 和許多其他項目的外部資料包裝函式)。 其高度可擴充性支援超過 12 種程序性語言、GIN 和 GiST 索引、空間資料支援和多個類似 NoSQL 的功能，適用於 JSON 或以索引鍵-值為基礎的應用程式。
 
 在本文中，您將學習如何在執行 Linux 的 Azure 虛擬機器上安裝和設定 PostgreSQL。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-## 安裝 PostgreSQL
+## <a name="install-postgresql"></a>安裝 PostgreSQL
 > [!NOTE]
-> 您必須已經具有執行 Linux 的 Azure 虛擬機器，才能完成本教學課程。若要建立並設定 Linux VM 再繼續進行，請參閱 [Azure Linux VM 教學課程](virtual-machines-linux-quick-create-cli.md)。
+> 您必須已經具有執行 Linux 的 Azure 虛擬機器，才能完成本教學課程。 若要建立並設定 Linux VM 再繼續進行，請參閱 [Azure Linux VM 教學課程](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 > 
 > 
 
-在此情況下，使用連接埠 1999 做為 PostgreSQL 連接埠。
+在此情況下，使用連接埠 1999 做為 PostgreSQL 連接埠。  
 
-連接到您透過 PuTTY 建立的 Linux VM。如果這是您第一次使用 Azure Linux VM，請參閱[如何搭配 Azure 上的 Linux 使用 SSH](virtual-machines-linux-mac-create-ssh-keys.md) 以了解如何使用 PuTTY 來連接到 Linux VM。
+連接到您透過 PuTTY 建立的 Linux VM。 如果這是您第一次使用 Azure Linux VM，請參閱[如何搭配 Azure 上的 Linux 使用 SSH](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 以了解如何使用 PuTTY 來連接到 Linux VM。
 
 1. 執行下列命令來切換至 root (admin)：
    
         # sudo su -
-2. 某些散發套件有相依性，您必須先安裝這些相依性再安裝 PostgreSQL。檢查此清單中的 distro 並執行適當的命令：
+2. 某些散發套件有相依性，您必須先安裝這些相依性再安裝 PostgreSQL。 檢查此清單中的 distro 並執行適當的命令：
    
    * Red Hat 基底 Linux：
      
@@ -54,7 +58,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
    
         # tar jxvf  postgresql-9.3.5.tar.bz2
    
-    以上是範例。您可以在 [Index of /pub/source/](https://ftp.postgresql.org/pub/source/) 中找到更詳細的下載位址。
+    以上是範例。 您可以在 [Index of /pub/source/](https://ftp.postgresql.org/pub/source/)中找到更詳細的下載位址。
 4. 若要啟動組建，請執行以下命令：
    
         # cd postgresql-9.3.5
@@ -68,14 +72,14 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
    
         PostgreSQL, contrib, and documentation successfully made. Ready to install.
 
-## 設定 PostgreSQL
+## <a name="configure-postgresql"></a>設定 PostgreSQL
 1. (選擇性) 建立符號連結來縮短 PostgreSQL 參考，使其不包含版本號碼：
    
         # ln -s /opt/pgsql9.3.5 /opt/pgsql
 2. 建立資料庫的目錄：
    
         # mkdir -p /opt/pgsql_data
-3. 建立非根使用者，並修改該使用者的設定檔。然後切換到這個新的使用者 (在我們的範例中稱為 *postgres*)：
+3. 建立非根使用者，並修改該使用者的設定檔。 然後切換到這個新的使用者 (在我們的範例中稱為 *postgres* )：
    
         # useradd postgres
    
@@ -87,7 +91,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
    > 基於安全性理由，PostgreSQL 會使用非根使用者初始化、啟動或關閉資料庫。
    > 
    > 
-4. 輸入下列命令以編輯 *bash\_profile* 檔。這幾行將會加入至 *bash\_profile* 檔案的結尾：
+4. 輸入下列命令以編輯 bash_profile 檔。 這幾行將會加入至 bash_profile 檔案的結尾：
    
         cat >> ~/.bash_profile <<EOF
         export PGPORT=1999
@@ -101,7 +105,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
         alias rm='rm -i'
         alias ll='ls -lh'
         EOF
-5. 執行 *bash\_profile* 檔案：
+5. 執行 bash_profile 檔案：
    
         $ source .bash_profile
 6. 利用下列命令驗證安裝：
@@ -122,7 +126,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
 ![image](./media/virtual-machines-linux-postgresql-install/no1.png)
 
-## 設定 PostgreSQL
+## <a name="set-up-postgresql"></a>設定 PostgreSQL
 <!--    [postgres@ test ~]$ exit -->
 
 執行以下命令：
@@ -131,7 +135,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
     # cp linux /etc/init.d/postgresql
 
-修改 /etc/init.d/postgresql 檔案中的兩個變數。前置詞設為 PostgreSQL 的安裝路徑：**/opt/pgsql**。PGDATA 設為 PostgreSQL 的資料儲存路徑：**/opt/pgsql\_data**。
+修改 /etc/init.d/postgresql 檔案中的兩個變數。 前置詞設為 PostgreSQL 的安裝路徑： **/opt/pgsql**。 PGDATA 設為 PostgreSQL 的資料儲存路徑：**/opt/pgsql_data**。
 
     # sed -i '32s#usr/local#opt#' /etc/init.d/postgresql
 
@@ -155,7 +159,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
 ![image](./media/virtual-machines-linux-postgresql-install/no3.png)
 
-## 連接到 Postgres 資料庫
+## <a name="connect-to-the-postgres-database"></a>連接到 Postgres 資料庫
 再一次切換到 postgres 使用者：
 
     # su - postgres
@@ -168,7 +172,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
     $ psql -d events
 
-## 建立和刪除 Postgres 資料表
+## <a name="create-and-delete-a-postgres-table"></a>建立和刪除 Postgres 資料表
 既然您已經連接到資料庫，可以在其中建立資料表。
 
 例如，利用下列命令建立新的範例 Postgres 資料表：
@@ -178,9 +182,9 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 您現在已經利用下列資料行名稱和限制設定了 4 個資料行的資料表：
 
 1. “name” 資料行已經由 VARCHAR 命令限制在 20 個字元以下。
-2. "Food" 資料行指出每個人將會攜帶的食物項目。VARCHAR 將此文字限制在 30 個字元以下。
-3. “confirmed” 資料行記錄該人員是否具有聚會的 RSVP'd。可接受的值為 "Y" 和 "N"。
-4. “date” 資料行顯示他們註冊此事件的時間。Postgres 的必要日期格式為 yyyy-mm-dd。
+2. "Food" 資料行指出每個人將會攜帶的食物項目。 VARCHAR 將此文字限制在 30 個字元以下。
+3. “confirmed” 資料行記錄該人員是否具有聚會的 RSVP'd。 可接受的值為 "Y" 和 "N"。
+4. “date” 資料行顯示他們註冊此事件的時間。 Postgres 的必要日期格式為 yyyy-mm-dd。
 
 如果您成功建立資料表，您會看到下列內容：
 
@@ -190,7 +194,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
 ![image](./media/virtual-machines-linux-postgresql-install/no5.png)
 
-### 將資料新增至資料表
+### <a name="add-data-to-a-table"></a>將資料新增至資料表
 首先，將資料插入資料列：
 
     INSERT INTO potluck (name, food, confirmed, signup_date) VALUES('John', 'Casserole', 'Y', '2012-04-11');
@@ -199,7 +203,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
 ![image](./media/virtual-machines-linux-postgresql-install/no6.png)
 
-您也可以將更多人員新增至資料表。以下是一些選項，或者您可以建立自己的選項：
+您也可以將更多人員新增至資料表。 以下是一些選項，或者您可以建立自己的選項：
 
     INSERT INTO potluck (name, food, confirmed, signup_date) VALUES('Sandy', 'Key Lime Tarts', 'N', '2012-04-14');
 
@@ -207,7 +211,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
     INSERT INTO potluck (name, food, confirmed, signup_date) VALUES('Tina', 'Salad', 'Y', '2012-04-18');
 
-### 顯示資料表
+### <a name="show-tables"></a>顯示資料表
 使用下列命令來顯示資料表：
 
     select * from potluck;
@@ -216,22 +220,27 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
 ![image](./media/virtual-machines-linux-postgresql-install/no7.png)
 
-### 刪除資料表中的資料
+### <a name="delete-data-in-a-table"></a>刪除資料表中的資料
 使用下列命令刪除資料表中的資料：
 
     delete from potluck where name=’John’;
 
-這會刪除 "John" 資料列中的所有資訊。輸出如下：
+這會刪除 "John" 資料列中的所有資訊。 輸出如下：
 
 ![image](./media/virtual-machines-linux-postgresql-install/no8.png)
 
-### 更新資料表中的資料
-使用下列命令更新資料表中的資料。對於此項目，Sandy 已確認她會參加，所以我們要將她的 RSVP 從 "N" 變更為 "Y"：
+### <a name="update-data-in-a-table"></a>更新資料表中的資料
+使用下列命令更新資料表中的資料。 對於此項目，Sandy 已確認她會參加，所以我們要將她的 RSVP 從 "N" 變更為 "Y"：
 
      UPDATE potluck set confirmed = 'Y' WHERE name = 'Sandy';
 
 
-## 取得 PostgreSQL 的詳細資訊
-既然您已完成在 Azure Linux VM 中的 PostgreSQL 安裝，您可以在 Azure 中享用它。若要深入了解 PostgreSQL，請造訪 [PostgreSQL 網站](http://www.postgresql.org/)。
+## <a name="get-more-information-about-postgresql"></a>取得 PostgreSQL 的詳細資訊
+既然您已完成在 Azure Linux VM 中的 PostgreSQL 安裝，您可以在 Azure 中享用它。 若要深入了解 PostgreSQL，請造訪 [PostgreSQL 網站](http://www.postgresql.org/)。
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Bynder 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Bynder 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Bynder 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Bynder 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 4fb0ab26-b3b9-420a-8072-a0be80ea021e
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 01ce02974d18d56421f161126e3541ac7d4997fa
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-bynder"></a>教學課程：Azure Active Directory 與 Bynder 整合
+# <a name="tutorial-azure-active-directory-integration-with-bynder"></a>教學課程：Azure Active Directory 與 Bynder 整合
 本教學課程旨在說明如何整合 Bynder 與 Azure Active Directory (Azure AD)。
 
 將 Bynder 與 Azure AD 整合可提供下列優點：
@@ -63,7 +67,7 @@ ms.author: jeedes
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -244,6 +248,6 @@ ms.author: jeedes
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

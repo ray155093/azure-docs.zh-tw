@@ -1,11 +1,12 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 965b96507d66f3880bdf3b38362d1eb026afdb51
-ms.openlocfilehash: e72557a87088ba66a669d37ba0033da951e7fdb8
+ms.sourcegitcommit: a6c333ae45868d5c29ce2f2587f1417fa9fafc0b
+ms.openlocfilehash: 27fd664b69ca4467daa2b0abc6e53c9cece221ae
 
 ---
-#<a name="storage-documentation"></a>儲存體文件
+
+# <a name="storage-documentation"></a>儲存體文件
 
 Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。  它可高度擴充、富有彈性並可從全球各地存取，而且會自動根據流量平衡您的資料負載。  Azure 儲存體提供以下四個服務：Blob 儲存體、表格儲存體、佇列儲存體、磁碟儲存體和檔案儲存體。
 
@@ -85,91 +86,56 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 </ul>
 
 ---
-
-## <a name="reference"></a>參考
-
+ 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Azure PowerShell</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/storage">PowerShell</a></p>
+                        <p><a href="/cli/azure/storage">Azure CLI</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/cli/azure/storage">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Azure CLI</h3>
-                        <p>使用 Azure CLI 的儲存體參考</p>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.azure.management.storage">.NET：資源管理員</a></p>
+                        <p><a href="https://msdn.microsoft.com/en-us/library/azure/mt684990.aspx">.NET：資料移動</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/azure/mt347887.aspx">.NET：Blob、佇列、資料表和檔案</a></p>
+                        <p><a href="/java/api/">Java</a></p>
+                        <p><a href="http://azure.github.io/azure-storage-node">Node.js</a></p>
+                        <p><a href="http://azure.github.io/azure-storage-ruby">Ruby</a></p>
+                        <p><a href="https://azure-storage.readthedocs.io/en/latest/index.html">Python</a></p>
+                        <p><a href="http://azure.github.io/azure-storage-cpp">C++</a></p>
+                        <p><a href="https://github.com/Azure/azure-storage-ios">iOS</a></p>
+                        <p><a href="http://azure.github.io/azure-storage-android">Android</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/java/api/">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Java</h3>
-                        <p>Java 參考中的儲存體</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="https://msdn.microsoft.com/library/azure/mt347887">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>儲存體受管理的參考 API</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="/rest/api/storageservices">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>儲存體 REST API 參考</p>
-                    </div>
+                        <p><a href="/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference">REST：匯入/匯出</a></p>
+                        <p><a href="/rest/api/storagerp">REST：資源提供者</a></p>
+                   </div>
                 </div>
             </div>
         </div>
-        </a>
-        <a href="/rest/api/storagerp">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <p>儲存體資源提供者 REST API 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>   
+    </li>
 </ul>
 
 <div class="downloadHolder">
@@ -182,6 +148,6 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

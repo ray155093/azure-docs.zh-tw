@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect 同步處理：目錄擴充 | Microsoft Docs
-description: 本主題說明 Azure AD Connect 中的目錄擴充功能。
+title: "Azure AD Connect 同步：目錄擴充 | Microsoft Docs"
+description: "本主題說明 Azure AD Connect 中的目錄擴充功能。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: AndKjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 995ee876-4415-4bb0-a258-cca3cbb02193
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/19/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 78fa8bc1394f98c6aa90a75ba17ec36106f09290
+
 
 ---
-# <a name="azure-ad-connect-sync:-directory-extensions"></a>Azure AD Connect 同步處理：目錄擴充
+# <a name="azure-ad-connect-sync-directory-extensions"></a>Azure AD Connect 同步處理：目錄擴充
 目錄擴充可讓您從內部部署 Active Directory 利用自己的屬性擴充 Azure AD 中的架構。 此功能可讓您建置 LOB 應用程式來取用您在內部部署中持續進行管理的屬性。 透過 [Azure AD Graph 目錄擴充](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)或 [Microsoft Graph](https://graph.microsoft.io/) 即可取用這些屬性。 若要查看可用的屬性，可分別使用 [Azure AD Graph 總管](https://graphexplorer.cloudapp.net)和 [Microsoft Graph 總管](https://graphexplorer2.azurewebsites.net/)。
 
 目前沒有任何 Office 365 工作負載取用這些屬性。
@@ -45,6 +49,9 @@ ms.author: billmath
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
