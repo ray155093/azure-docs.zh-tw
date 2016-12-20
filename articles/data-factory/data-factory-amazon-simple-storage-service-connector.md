@@ -53,33 +53,38 @@ Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區�
 
 **Amazon S3 連結服務**
 
-    {
-        "name": "AmazonS3LinkedService",
-        "properties": {
-            "type": "AwsAccessKey",
-            "typeProperties": {
-                "accessKeyId": "<access key id>",
-                "secretAccessKey": "<secret access key>"
-            }
+```json
+{
+    "name": "AmazonS3LinkedService",
+    "properties": {
+        "type": "AwsAccessKey",
+        "typeProperties": {
+            "accessKeyId": "<access key id>",
+            "secretAccessKey": "<secret access key>"
         }
     }
+}
+```
 
 **Azure 儲存體連結服務**
 
-    {
-      "name": "AzureStorageLinkedService",
-      "properties": {
-        "type": "AzureStorage",
-        "typeProperties": {
-          "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-        }
-      }
+```json
+{
+  "name": "AzureStorageLinkedService",
+  "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
     }
+  }
+}
+```
 
 **Amazon S3 輸入資料集**
 
 設定 **"external": true** 會告知 Data Factory 服務該資料集是 Data Factory 外部的資料集，而不是由 Data Factory 中的活動所產生。 在不是由管線中的活動所產生的輸入資料集上，請將此屬性設定為 true。
 
+```json
     {
         "name": "AmazonS3InputDataset",
         "properties": {
@@ -99,117 +104,119 @@ Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區�
             "external": true
         }
     }
-
+```
 
 
 **Azure Blob 輸出資料集**
 
 資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
 
-    {
-        "name": "AzureBlobOutputDataSet",
-        "properties": {
-            "type": "AzureBlob",
-            "linkedServiceName": "AzureStorageLinkedService",
-            "typeProperties": {
-                "folderPath": "mycontainer/fromamazons3/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
-                "format": {
-                    "type": "TextFormat",
-                    "rowDelimiter": "\n",
-                    "columnDelimiter": "\t"
-                },
-                "partitionedBy": [
-                    {
-                        "name": "Year",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "yyyy"
-                        }
-                    },
-                    {
-                        "name": "Month",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "MM"
-                        }
-                    },
-                    {
-                        "name": "Day",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "dd"
-                        }
-                    },
-                    {
-                        "name": "Hour",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "HH"
-                        }
-                    }
-                ]
+```json
+{
+    "name": "AzureBlobOutputDataSet",
+    "properties": {
+        "type": "AzureBlob",
+        "linkedServiceName": "AzureStorageLinkedService",
+        "typeProperties": {
+            "folderPath": "mycontainer/fromamazons3/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
+            "format": {
+                "type": "TextFormat",
+                "rowDelimiter": "\n",
+                "columnDelimiter": "\t"
             },
-            "availability": {
-                "frequency": "Hour",
-                "interval": 1
-            }
+            "partitionedBy": [
+                {
+                    "name": "Year",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "yyyy"
+                    }
+                },
+                {
+                    "name": "Month",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "MM"
+                    }
+                },
+                {
+                    "name": "Day",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "dd"
+                    }
+                },
+                {
+                    "name": "Hour",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "HH"
+                    }
+                }
+            ]
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
         }
     }
-
+}
+```
 
 
 **具有複製活動的管線**
 
 此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **FileSystemSource**，而 **sink** 類型設為 **BlobSink**。
 
-    {
-        "name": "CopyAmazonS3ToBlob",
-        "properties": {
-            "description": "pipeline for copy activity",
-            "activities": [
-                {
-                    "type": "Copy",
-                    "typeProperties": {
-                        "source": {
-                            "type": "FileSystemSource",
-                            "recursive": true
-                        },
-                        "sink": {
-                            "type": "BlobSink",
-                            "writeBatchSize": 0,
-                            "writeBatchTimeout": "00:00:00"
-                        }
+```json
+{
+    "name": "CopyAmazonS3ToBlob",
+    "properties": {
+        "description": "pipeline for copy activity",
+        "activities": [
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "FileSystemSource",
+                        "recursive": true
                     },
-                    "inputs": [
-                        {
-                            "name": "AmazonS3InputDataset"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "name": "AzureBlobOutputDataSet"
-                        }
-                    ],
-                    "policy": {
-                        "timeout": "01:00:00",
-                        "concurrency": 1
-                    },
-                    "scheduler": {
-                        "frequency": "Hour",
-                        "interval": 1
-                    },
-                    "name": "AmazonS3ToBlob"
-                }
-            ],
-            "start": "2014-08-08T18:00:00Z",
-            "end": "2014-08-08T19:00:00Z"
-        }
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 0,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "AmazonS3InputDataset"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "AzureBlobOutputDataSet"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Hour",
+                    "interval": 1
+                },
+                "name": "AmazonS3ToBlob"
+            }
+        ],
+        "start": "2014-08-08T18:00:00Z",
+        "end": "2014-08-08T19:00:00Z"
     }
-
+}
+```
 
 
 ## <a name="linked-service-properties"></a>連結服務屬性
@@ -240,59 +247,67 @@ Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區�
 >
 
 ### <a name="sample-dataset-with-prefix"></a>prefix 的相關範例資料集
-    {
-        "name": "dataset-s3",
-        "properties": {
-            "type": "AmazonS3",
-            "linkedServiceName": "link- testS3",
-            "typeProperties": {
-                "prefix": "testFolder/test",
-                "bucketName": "testbucket",
-                "format": {
-                    "type": "OrcFormat"
-                }
-            },
-            "availability": {
-                "frequency": "Hour",
-                "interval": 1
-            },
-            "external": true
-        }
-    }
 
+```json
+{
+    "name": "dataset-s3",
+    "properties": {
+        "type": "AmazonS3",
+        "linkedServiceName": "link- testS3",
+        "typeProperties": {
+            "prefix": "testFolder/test",
+            "bucketName": "testbucket",
+            "format": {
+                "type": "OrcFormat"
+            }
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
+        },
+        "external": true
+    }
+}
+```
 ### <a name="sample-data-set-with-version"></a>version 的相關範例資料集
-    {
-        "name": "dataset-s3",
-        "properties": {
-            "type": "AmazonS3",
-            "linkedServiceName": "link- testS3",
-            "typeProperties": {
-                "key": "testFolder/test.orc",
-                "bucketName": "testbucket",
-                "version": "WBeMIxQkJczm0CJajYkHf0_k6LhBmkcL",
-                "format": {
-                    "type": "OrcFormat"
-                }
-            },
-            "availability": {
-                "frequency": "Hour",
-                "interval": 1
-            },
-            "external": true
-        }
-    }
 
+```json
+{
+    "name": "dataset-s3",
+    "properties": {
+        "type": "AmazonS3",
+        "linkedServiceName": "link- testS3",
+        "typeProperties": {
+            "key": "testFolder/test.orc",
+            "bucketName": "testbucket",
+            "version": "WBeMIxQkJczm0CJajYkHf0_k6LhBmkcL",
+            "format": {
+                "type": "OrcFormat"
+            }
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
+        },
+        "external": true
+    }
+}
+```
 
 ### <a name="dynamic-paths-for-s3"></a>S3 的動態路徑
 在此範例中，我們針對 Amazon S3 資料集內的 key 和 bucketName 屬性使用固定的值。
 
-    "key": "testFolder/test.orc",
-    "bucketName": "testbucket",
+```json
+"key": "testFolder/test.orc",
+"bucketName": "testbucket",
+```
 
 您可以藉由使用系統變數 (例如 SliceStart)，讓 Data Factory 在執行階段動態地計算 key 和 bucketName 的值。
 
-    "key": "$$Text.Format('{0:MM}/{0:dd}/test.orc', SliceStart)"
-    "bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
+```json
+"key": "$$Text.Format('{0:MM}/{0:dd}/test.orc', SliceStart)"
+"bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
+```
 
 您也可以對 Amazon S3 資料集的 prefix 屬性執行相同的操作。 如需支援的函式和變數清單，請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md) 。
 

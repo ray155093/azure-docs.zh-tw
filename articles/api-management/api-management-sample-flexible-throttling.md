@@ -12,7 +12,7 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/25/2016
+ms.date: 12/15/2016
 ms.author: darrmi
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -32,23 +32,27 @@ ms.openlocfilehash: 2a5078b34f74efd5d394587d8ace7f339ecedb5e
 ## <a name="ip-address-throttling"></a>IP 位址節流
 下列原則會限制單一用戶端 IP 位址每一分鐘只有 10 個呼叫，等於每個月總數為 1,000,000 個呼叫和 10,000 KB 頻寬。 
 
-    <rate-limit-by-key  calls="10"
-              renewal-period="60"
-              counter-key="@(context.Request.IpAddress)" />
+```xml
+<rate-limit-by-key  calls="10"
+          renewal-period="60"
+          counter-key="@(context.Request.IpAddress)" />
 
-    <quota-by-key calls="1000000"
-              bandwidth="10000"
-              renewal-period="2629800"
-              counter-key="@(context.Request.IpAddress)" />
+<quota-by-key calls="1000000"
+          bandwidth="10000"
+          renewal-period="2629800"
+          counter-key="@(context.Request.IpAddress)" />
+```
 
 如果網際網路上的所有用戶端皆使用唯一 IP 位址，這是可能是限制使用者使用量的有效方式。 不過，很有可能多個使用者共用單一公用 IP 位址，因為他們透過 NAT 裝置存取網際網路。 儘管如此，對允許未驗證存取的 API 來說， `IpAddress` 可能是最佳選項。
 
 ## <a name="user-identity-throttling"></a>使用者身分識別節流
 如果使用者經過驗證，則可以根據該名使用者的唯一身分識別產生節流索引鍵。
 
-    <rate-limit-by-key calls="10"
-        renewal-period="60"
-        counter-key="@(context.Request.Headers.GetValueOrDefault("Authorization","").AsJwt()?.Subject)" />
+```xml
+<rate-limit-by-key calls="10"
+    renewal-period="60"
+    counter-key="@(context.Request.Headers.GetValueOrDefault("Authorization","").AsJwt()?.Subject)" />
+```
 
 在此範例中，我們要擷取授權的標頭，將它轉換成 `JWT` 物件，並使用權杖的主體來識別使用者，並使用它做速率限制索引鍵。 如果使用者身分識別是儲存在 `JWT` 中做為其中一個宣告，則該值可用於它的位置。
 
@@ -58,9 +62,11 @@ ms.openlocfilehash: 2a5078b34f74efd5d394587d8ace7f339ecedb5e
 ## <a name="client-driven-throttling"></a>用戶端導向節流
 若使用 [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)定義節流索引鍵，則是由 API 提供者選擇如何設定節流的範圍。 不過，開發人員可能想要控制他們對自己的客戶的速率限制。 API 提供者可以藉由導入自訂標頭來做到這一點，以允許開發人員的用戶端應用程式與 API 通訊索引鍵。
 
-    <rate-limit-by-key calls="100"
-              renewal-period="60"
-              counter-key="@(request.Headers.GetValueOrDefault("Rate-Key",""))"/>
+```xml
+<rate-limit-by-key calls="100"
+          renewal-period="60"
+          counter-key="@(request.Headers.GetValueOrDefault("Rate-Key",""))"/>
+```
 
 這可讓開發人員的用戶端應用程式選擇要如何建立速率限制索引鍵。 加上一些巧思，用戶端開發人員可以透過配置索引鍵組給使用者和輪流使用索引鍵，建立自己的速率層。
 
