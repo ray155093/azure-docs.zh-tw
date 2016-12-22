@@ -3,8 +3,8 @@ title: "以 .NET 開始使用 Azure 表格儲存體 | Microsoft Docs"
 description: "使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
 services: storage
 documentationcenter: .net
-author: tamram
-manager: carmonm
+author: mmacy
+manager: timlt
 editor: tysonn
 ms.assetid: fe46d883-7bed-49dd-980e-5c71df36adb3
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 11/17/2016
-ms.author: tamram
+ms.date: 12/08/2016
+ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: fe4b9c356e5f7d56cb7e1fa62344095353d0b699
-ms.openlocfilehash: c4a8e4eee864dab592baf1797d69778160ab456e
+ms.sourcegitcommit: 931503f56b32ce9d1b11283dff7224d7e2f015ae
+ms.openlocfilehash: 98307e924927655c8a7de0e8fc6a7c0c2b57af00
 
 
 ---
@@ -33,7 +33,7 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 ### <a name="about-this-tutorial"></a>關於本教學課程
 本教學課程說明如何使用 Azure 表格儲存體撰寫一些常見案例的 .NET 程式碼，包括建立和刪除表格以及插入、更新、刪除和查詢表格資料。
 
-**先決條件：**
+**必要條件：**
 
 * [Microsoft Visual Studio](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx)
 * [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
@@ -347,7 +347,7 @@ else
 ```
 
 ## <a name="query-a-subset-of-entity-properties"></a>查詢實體屬性的子集
-一項資料表查詢可以只擷取實體的少數屬性而非所有屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 下列程式碼中的查詢只會傳回資料表中各實體的電子郵件地址。 這是使用 **DynamicTableEntity** 以及 **EntityResolver** 的查詢所完成的。 您可以在[更新插入和查詢投影簡介的部落格文章][更新插入和查詢投影簡介的部落格文章]中進一步了解投影。 請注意在本機儲存體模擬器上並不支援投影，因此此程式碼只有在資料表服務上使用帳戶時才會執行。
+一項資料表查詢可以只擷取實體的少數屬性而非所有屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 下列程式碼中的查詢只會傳回資料表中各實體的電子郵件地址。 這是使用 **DynamicTableEntity** 以及 **EntityResolver** 的查詢所完成的。 您可以在[更新插入和查詢投影簡介的部落格文章][Introducing Upsert and Query Projection blog post]中進一步了解投影。 請注意在本機儲存體模擬器上並不支援投影，因此此程式碼只有在資料表服務上使用帳戶時才會執行。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -467,8 +467,8 @@ do
   * [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md) 以儲存非結構化資料。
   * [使用 .NET (C#) 連接到 SQL Database ](../sql-database/sql-database-develop-dotnet-simple.md) 以儲存關聯式資料。
 
-[下載並安裝 Azure SDK for .NET]: /develop/net/
-[在 Visual Studio 中建立 Azure 專案]: http://msdn.microsoft.com/library/azure/ee405487.aspx
+[Download and install the Azure SDK for .NET]: /develop/net/
+[Creating an Azure Project in Visual Studio]: http://msdn.microsoft.com/library/azure/ee405487.aspx
 
 [Blob5]: ./media/storage-dotnet-how-to-use-table-storage/blob5.png
 [Blob6]: ./media/storage-dotnet-how-to-use-table-storage/blob6.png
@@ -476,17 +476,17 @@ do
 [Blob8]: ./media/storage-dotnet-how-to-use-table-storage/blob8.png
 [Blob9]: ./media/storage-dotnet-how-to-use-table-storage/blob9.png
 
-[更新插入和查詢投影簡介的部落格文章]: http://blogs.msdn.com/b/windowsazurestorage/archive/2011/09/15/windows-azure-tables-introducing-upsert-and-query-projection.aspx
-[.NET 用戶端程式庫參考]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
+[Introducing Upsert and Query Projection blog post]: http://blogs.msdn.com/b/windowsazurestorage/archive/2011/09/15/windows-azure-tables-introducing-upsert-and-query-projection.aspx
+[.NET Client Library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
 [Azure Storage Team blog]: http://blogs.msdn.com/b/windowsazurestorage/
-[設定 Azure 儲存體連接字串]: http://msdn.microsoft.com/library/azure/ee758697.aspx
+[Configure Azure Storage connection strings]: http://msdn.microsoft.com/library/azure/ee758697.aspx
 [OData]: http://nuget.org/packages/Microsoft.Data.OData/5.0.2
 [Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
-[空間]: http://nuget.org/packages/System.Spatial/5.0.2
-[如何：以程式設計方式存取表格儲存體]: #tablestorage
+[Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
+[How to: Programmatically access Table storage]: #tablestorage
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

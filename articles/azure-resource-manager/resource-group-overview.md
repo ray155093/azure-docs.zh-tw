@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/14/2016
+ms.date: 12/12/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 4f541e34e7c0696e4074613c4ab0734a096c6d12
-ms.openlocfilehash: 21ebc8083113238ef70f57dae2381ebcf102c39d
+ms.sourcegitcommit: dabe7d9796ab24a257ea904bc5d978cb71d7e149
+ms.openlocfilehash: 1733edf961c2ce1297fc148d3a844ce141f5d7c2
 
 
 ---
@@ -81,6 +81,10 @@ Resource Manager 會針對您透過 Azure PowerShell、Azure CLI、Azure 入口�
 每個資源提供者都會提供一組資源和作業，以便能運用 Azure 服務。 例如，如果想要儲存金鑰和密碼，您會使用 **Microsoft.KeyVault** 資源提供者。 此資源提供者提供名為 **vaults** 的資源類型來建立金鑰保存庫，以及名為 **vaults/secrets** 的資源類型來建立金鑰保存庫中的密碼。 
 
 在開始部署資源之前，您應該先了解可用的資源提供者。 了解資源提供者和資源的名稱可協助您定義想要部署至 Azure 的資源。
+
+您可以透過入口網站看到所有的資源提供者。 在您訂用帳戶的刀鋒視窗中，選取**資源提供者**：
+
+![檢視資源提供者](./media/resource-group-overview/view-resource-providers.png)
 
 您可以使用下列 PowerShell Cmdlet 擷取所有資源提供者：
 
@@ -322,6 +326,6 @@ AutoRest 會將這些 RESTful API 規格轉換成多種語言版本的用戶端�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

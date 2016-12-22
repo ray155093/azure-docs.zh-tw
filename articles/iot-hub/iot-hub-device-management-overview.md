@@ -1,6 +1,6 @@
 ---
-title: "IoT 中樞的裝置管理概觀 | Microsoft Docs"
-description: "本文提供 Azure IoT 中樞的裝置管理概觀︰企業裝置生命週期、重新啟動、恢復出廠預設值、韌體更新、設定、裝置對應項、查詢、作業"
+title: "透過 Azure IoT 中樞進行裝置管理 | Microsoft Docs"
+description: "Azure IoT 中樞的裝置管理概觀︰企業裝置生命週期及裝置管理模式，例如重新啟動、恢復出廠預設值、韌體更新、設定、裝置對應項、查詢、作業。"
 services: iot-hub
 documentationcenter: 
 author: bzurcher
@@ -13,10 +13,10 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/03/2016
-ms.author: bzurcher
+ms.author: briz
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: 4a80d22f0d306035dc3e710d9a1b04f0624e94d6
+ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
+ms.openlocfilehash: 91dcace2d74d44a5d2ab3b9a1352b2fa052ddc44
 
 
 ---
@@ -79,7 +79,7 @@ IoT 中樞可實現下列這套裝置管理模式。  [裝置管理教學課程]
 * **韌體更新** - 後端應用程式會透過直接方法讓裝置知道已起始韌體更新。  裝置會起始多步驟程序，以下載韌體映像、套用韌體映像，並於最後重新連線到 IoT 中樞服務。  透過多步驟程序，裝置會使用報告的屬性來更新裝置的進度與狀態。
   
     ![裝置管理韌體更新模式圖形][img-fwupdate_pattern]
-* **報告進度和狀態** - 應用程式後端會橫跨一組裝置來執行裝置對應項查詢，以報告裝置上所執行動作的狀態和進度。
+* **報告進度和狀態** - 解決方案後端會橫跨一組裝置來執行裝置對應項查詢，以報告裝置上所執行動作的狀態和進度。
   
     ![裝置管理報告進度和狀態模式圖形][img-report_progress_pattern]
 
@@ -112,6 +112,6 @@ IoT 中樞可實現下列這套裝置管理模式。  [裝置管理教學課程]
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

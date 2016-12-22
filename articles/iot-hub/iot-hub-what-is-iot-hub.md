@@ -1,6 +1,6 @@
 ---
 title: "Azure IoT 中樞概觀 | Microsoft Docs"
-description: "Azure IoT 中樞服務概觀：什麼是 IoT 中樞、裝置連線性、物聯網通訊模式和服務輔助通訊模式"
+description: "Azure IoT 中樞服務概觀：什麼是 IoT 中樞、裝置連線性、物聯網通訊模式、閘道器和服務輔助通訊模式"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/23/2016
+ms.date: 12/12/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: b00aab7ea1eac8d34b9b535db2056c7b0ec41354
+ms.sourcegitcommit: f01a5e7ec081b1c989fc8784c845d6e639b1d73b
+ms.openlocfilehash: 92c5e8c50b281fe1dc7e296dcdf8a6822b187ce3
 
 
 ---
@@ -24,7 +24,8 @@ ms.openlocfilehash: b00aab7ea1eac8d34b9b535db2056c7b0ec41354
 歡迎使用 Azure IoT 中樞。 本文提供 Azure IoT 中樞的概觀，並描述在實作物聯網 (IoT) 解決方案時，您應該使用此服務的原因。 Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 Azure IoT 中樞：
 
 * 提供多個裝置到雲端和雲端到裝置通訊選項，包括單向傳訊、檔案傳輸，以及要求-回覆方法。
-* 針對裝置中繼資料與同步化狀態資訊提供可查詢儲存空間。
+* 向其他 Azure 服務提供內建宣告式訊息路由。
+* 針對裝置中繼資料與同步化狀態資訊提供可查詢存放區。
 * 使用每一裝置的安全性金鑰或 X.509 憑證啟用安全通訊與存取控制。
 * 可廣泛監視裝置的連線情況和裝置的身分識別管理事件。
 * 包括適用於最受歡迎的語言和平台的裝置程式庫。
@@ -58,6 +59,7 @@ ms.openlocfilehash: b00aab7ea1eac8d34b9b535db2056c7b0ec41354
 
 * **裝置對應項**。 使用[裝置對應項][lnk-twins]，您可以儲存、同步處理，以及查詢裝置中繼資料與狀態資訊。 「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。 IoT 中樞會為連線到 IoT 中樞的每個裝置保存裝置對應項。 
 * **每一裝置的驗證和安全連線能力**。 您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。 [IoT 中樞身分識別登錄][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別與金鑰。 解決方案後端可將個別裝置加入允許或拒絕清單，以達到完全控制裝置存取權。
+* **根據宣告式規則，將裝置對雲端訊息路由傳送至 Azure 服務**。 IoT 中樞可讓您根據訊息規則定義訊息路由，以控制您的中樞傳送裝置對雲端訊息訊息的位置。 訊息規則不需要撰寫任何程式碼，且可代替自訂後擷取訊息發送器。
 * **裝置連線作業的監視**。 您可以收到有關裝置身分識別管理作業與裝置連線事件的詳細作業記錄檔。 此監視功能可讓 IoT 解決方案找出連線問題，例如，嘗試使用錯誤認證來連線的裝置、訊息傳送太頻繁，或拒絕所有雲端到裝置的訊息。
 * **一組廣泛的裝置程式庫**。 [Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援，例如許多 Linux 發行版本都支援的 C、Windows 和即時作業系統。 Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
 * **IoT 通訊協定和擴充性**。 如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。 您也可以擴充 IoT 中樞以提供自訂通訊協定支援，方法如下：
@@ -77,7 +79,7 @@ IoT 解決方案中的閘道通常是部署於雲端中的[通訊協定閘道][l
 Azure IoT 中樞會實作[服務輔助通訊][lnk-service-assisted-pattern]模式，以調節您的裝置與解決方案後端之間的互動。 服務輔助通訊的目標是要在控制系統 (例如 IoT 中樞) 以及特殊用途裝置 (部署在不可信任的實體空間中) 之間，建立可信任的雙向通訊路徑。 該模式會建立下列原則：
 
 * 安全性的優先順序高於所有其他功能。
-* 裝置不會接受未經要求的網路資訊。 裝置會以僅限輸出方式建立所有連接和路由。 若要讓裝置從後端接收命令，裝置必須定期初始連接以檢查有沒有任何暫止的命令要處理。
+* 裝置不會接受未經要求的網路資訊。 裝置會以僅限輸出方式建立所有連接和路由。 若要讓裝置從解決方案後端接收命令，裝置必須定期初始連接以檢查有沒有任何暫止的命令要處理。
 * 裝置應該只連接至或是建立路由至與它們對等的已知服務 (例如 IoT 中樞)。
 * 裝置和服務之間或裝置和閘道器之間的通訊路徑會在應用程式通訊協定層受到保護。
 * 系統層級的授權和驗證是以每個裝置的身分識別為基礎。 可讓存取認證和權限能近乎即時撤銷。
@@ -89,9 +91,11 @@ Azure IoT 中樞會實作[服務輔助通訊][lnk-service-assisted-pattern]模�
 ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 
 ## <a name="next-steps"></a>後續步驟
-若要了解 Azure IoT 中樞如何啟用標準型裝置管理，以便您遠端管理、設定及更新您的裝置，請參閱 [IoT 中樞的裝置管理概觀][lnk-device-management]。
+若要了解如何從裝置傳送及從 IoT 中樞接收訊息，以及如何設定您 IoT 中樞的訊息路由，請參閱[使用 IoT 中樞傳送及接收訊息][lnk-send-messages]。
 
-您可以使用 Azure IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台與作業系統上執行。 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置命令。 當您使用裝置 SDK 時，您可從各種網路通訊協定中選擇，以便與 IoT 中樞通訊。 若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
+若要了解 IoT 中樞如何啟用標準型裝置管理，以便您遠端管理、設定及更新您的裝置，請參閱 [IoT 中樞的裝置管理概觀][lnk-device-management]。
+
+您可以使用 Azure IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台與作業系統上執行。 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置訊息。 當您使用裝置 SDK 時，您可從各種網路通訊協定中選擇，以便與 IoT 中樞通訊。 若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
 
 若要開始撰寫一些程式碼和執行一些範例，請參閱[開始使用 IoT 中樞][lnk-get-started]教學課程。
 
@@ -112,6 +116,7 @@ ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 [lnk-device-sdks]: https://github.com/Azure/azure-iot-sdks
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
+[lnk-send-messages]: iot-hub-devguide-messaging.md
 [lnk-device-management]: iot-hub-device-management-overview.md
 
 [lnk-twins]: iot-hub-devguide-device-twins.md
@@ -121,6 +126,7 @@ ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 [lnk-security-ground-up]: iot-hub-security-ground-up.md
 
 
-<!--HONumber=Nov16_HO5-->
+
+<!--HONumber=Dec16_HO2-->
 
 

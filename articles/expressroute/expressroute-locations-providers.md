@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/28/2016
+ms.date: 12/08/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: eb618aea1ee5aba24cebd4d8518e9c7f546f5f4f
-ms.openlocfilehash: ae1e750a5f97325df064a02ed156610b4576f1d3
+ms.sourcegitcommit: cbbc9f29fc4dea49807f1093b673bebac628314b
+ms.openlocfilehash: e886f9c1984003d1bd1391012b26eea39d4a0b76
 
 
 ---
@@ -37,7 +37,7 @@ ms.openlocfilehash: ae1e750a5f97325df064a02ed156610b4576f1d3
 | --- | --- | --- |
 | **北美洲** |美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部 |亞特蘭大、芝加哥、達拉斯、拉斯維加斯、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多 |
 | **南美洲** |巴西南部 |聖保羅 |
-| **歐洲** |北歐、西歐、英國西部、英國南部 |阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎 |
+| **歐洲** |北歐、西歐、英國西部、英國南部 |阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)、巴黎 |
 | **亞洲** |東亞、東南亞 |香港特別行政區、新加坡 |
 | **日本** |日本西部、日本東部 |大阪、東京 |
 | **澳大利亞** |澳洲東南部、澳洲東部 |墨爾本、雪梨 |
@@ -76,7 +76,7 @@ ms.openlocfilehash: ae1e750a5f97325df064a02ed156610b4576f1d3
 | **洛杉磯** |CoreSite、Equinix、Megaport、NTT、Zayo Group |
 | **墨爾本** |AARNet、Equinix、Megaport、NEXTDC、Telstra Corporation |
 | **紐約** |Equinix、Megaport、Zayo Group |
-| **Newport(Wales)+** |新一代資料+ |
+| **Newport(Wales)** |新一代資料 |
 | **蒙特婁** |Cologix+ |
 | **孟買** |Tata Communications |
 | **大阪** |Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank |
@@ -134,11 +134,13 @@ ms.openlocfilehash: ae1e750a5f97325df064a02ed156610b4576f1d3
 
 | **位置** | **Exchange** | **連線提供者** |
 | --- | --- | --- |
+| **倫敦** | Equinix | 指數 E |
 | **紐約** |Equinix |Lightower |
 | **Seattle** |Equinix |Alaska Communications |
 | **矽谷** |Equinix |XO Communications |
 | **新加坡** |Equinix |1CLOUDSTAR |
-| **華盛頓** |Equinix |Lightower |
+| **雪梨** | Megaport | Macquarie |
+| **華盛頓** |Equinix | Lightower Masergy |
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute 系統整合者
 根據您的網路規模，為符合您的需求而啟用私人連線可能有一定的難度。 您可以使用下表所列出的任何系統整合者來協助您開始使用 ExpressRoute。
@@ -158,6 +160,6 @@ ms.openlocfilehash: ae1e750a5f97325df064a02ed156610b4576f1d3
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 
