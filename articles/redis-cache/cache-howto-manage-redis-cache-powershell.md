@@ -1,40 +1,43 @@
 ---
-title: 使用 Azure PowerShell 管理 Azure Redis 快取 | Microsoft Docs
-description: 了解如何使用 Azure PowerShell 執行 Azure Redis 快取的管理工作。
+title: "使用 Azure PowerShell 管理 Azure Redis 快取 | Microsoft Docs"
+description: "了解如何使用 Azure PowerShell 執行 Azure Redis 快取的管理工作。"
 services: redis-cache
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: douge
-editor: ''
-
+editor: 
+ms.assetid: 1136efe5-1e33-4d91-bb49-c8e2a6dca475
 ms.service: cache
 ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 08/10/2016
+ms.date: 11/28/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 9d76e82b1658c3ea4dd6631bae232d17f375ab33
+ms.openlocfilehash: 61c0fd56aad1cc589138aa02ea43ef315edf9baf
+
 
 ---
-# 使用 Azure PowerShell 管理 Azure Redis 快取
+# <a name="manage-azure-redis-cache-with-azure-powershell"></a>使用 Azure PowerShell 管理 Azure Redis 快取
 > [!div class="op_single_selector"]
 > * [PowerShell](cache-howto-manage-redis-cache-powershell.md)
 > * [Azure CLI](cache-manage-cli.md)
 > 
 > 
 
-本主題顯示如何執行一般工作，例如建立、更新及調整 Azure Redis 快取執行個體，如何重新產生存取金鑰，以及如何檢視您的快取的相關資訊。如需 Azure Redis 快取的 PowerShell Cmdlet 完整清單，請參閱 [Azure Redis 快取的 Cmdlet](https://msdn.microsoft.com/library/azure/mt634513.aspx)。
+本主題顯示如何執行一般工作，例如建立、更新及調整 Azure Redis 快取執行個體，如何重新產生存取金鑰，以及如何檢視您的快取的相關資訊。 如需 Azure Redis 快取的 PowerShell Cmdlet 完整清單，請參閱 [Azure Redis 快取的 Cmdlet](https://msdn.microsoft.com/library/azure/mt634513.aspx)。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
-[傳統部署模型](#classic) 如本文稍後將說明。
+如需傳統部署模型的詳細資訊，請參閱 [Azure Resource Manager 與傳統部署比較：了解資源的部署模型和狀態](../azure-resource-manager/resource-manager-deployment-model.md#classic-deployment-characteristics)。
 
-## 必要條件
-如果您已安裝 Azure PowerShell，其必須是 Azure PowerShell 1.0.0 或更新的版本。您可以在 Azure PowerShell 命令提示字元下使用這個命令來檢查已安裝的 Azure PowerShell 版本。
+## <a name="prerequisites"></a>必要條件
+如果您已安裝 Azure PowerShell，其必須是 Azure PowerShell 1.0.0 或更新的版本。 您可以在 Azure PowerShell 命令提示字元下使用這個命令來檢查已安裝的 Azure PowerShell 版本。
 
     Get-Module azure | format-table version
 
-[!INCLUDE [powershell-preview](../../includes/powershell-preview-inline-include.md)]
 
 首先，您必須使用此命令登入 Azure。
 
@@ -42,17 +45,17 @@ ms.author: sdanie
 
 在 [Microsoft Azure 登入] 對話方塊中，指定 Azure 帳戶的電子郵件地址和密碼。
 
-接下來，如果您有多個 Azure 訂用帳戶，請設定 Azure 訂用帳戶。如果想查看目前的訂閱帳戶清單，請執行這個命令。
+接下來，如果您有多個 Azure 訂用帳戶，請設定 Azure 訂用帳戶。 如果想查看目前的訂用帳戶清單，請執行這個命令。
 
     Get-AzureRmSubscription | sort SubscriptionName | Select SubscriptionName
 
-若要指定訂用帳戶，請執行下列命令。在下列範例中，訂用帳戶的名稱為 `ContosoSubscription`。
+若要指定訂用帳戶，請執行下列命令。 在下列範例中，訂用帳戶的名稱為 `ContosoSubscription`。
 
     Select-AzureRmSubscription -SubscriptionName ContosoSubscription
 
 在將 Windows PowerShell 與 Azure 資源管理員搭配使用之前，您需要下列項目：
 
-* Windows PowerShell 3.0 或 4.0 版本。若要找出 Windows PowerShell 的版本，輸入：`$PSVersionTable`，並確認 `PSVersion` 的值是 3.0 或 4.0。若要安裝相容版本，請參閱 [Windows Management Framework 3.0 ](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)。
+* Windows PowerShell 3.0 或 4.0 版本。 若要找出 Windows PowerShell 的版本，輸入：`$PSVersionTable`，並確認 `PSVersion` 的值是 3.0 或 4.0。 若要安裝相容版本，請參閱 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)。
 
 若要取得您在本教學課程中任何所見 Cmdlet 的詳細說明，請使用 Get-Help Cmdlet。
 
@@ -62,12 +65,12 @@ ms.author: sdanie
 
     Get-Help New-AzureRmRedisCache -Detailed
 
-### 如何連線至 Azure Government 雲端或 Azure 中國雲端
-根據預設，Azure 環境是 `AzureCloud`，其代表全域 Azure 雲端執行個體。若要連線至不同的執行個體，請使用 `Add-AzureRmAccount` 命令搭配 `-Environment` 或使用 -`EnvironmentName` 命令列參數搭配所需的環境或環境名稱。
+### <a name="how-to-connect-to-azure-government-cloud-or-azure-china-cloud"></a>如何連線至 Azure Government 雲端或 Azure 中國雲端
+根據預設，Azure 環境是 `AzureCloud`，其代表全域 Azure 雲端執行個體。 若要連線至不同的執行個體，請使用 `Add-AzureRmAccount` 命令搭配 `-Environment` 或使用 -`EnvironmentName` 命令列參數搭配所需的環境或環境名稱。
 
 若要查看可用環境的清單，請執行 `Get-AzureRmEnvironment` Cmdlet。
 
-### 連線到 Azure Government 雲端
+### <a name="to-connect-to-the-azure-government-cloud"></a>連線到 Azure Government 雲端
 如果要連線到 Azure Government 雲端，請使用下列其中一個命令。
 
     Add-AzureRMAccount -EnvironmentName AzureUSGovernment
@@ -83,7 +86,7 @@ ms.author: sdanie
 
 如需 Azure Government 雲端的詳細資訊，請參閱 [Microsoft Azure Government](https://azure.microsoft.com/features/gov/) 和 [Microsoft Azure Government 開發人員指南](../azure-government-developer-guide.md)。
 
-### 連線到 Azure 中國雲端
+### <a name="to-connect-to-the-azure-china-cloud"></a>連線到 Azure 中國雲端
 如果要連線到 Azure 中國雲端，請使用下列其中一個命令。
 
     Add-AzureRMAccount -EnvironmentName AzureChinaCloud
@@ -97,9 +100,9 @@ ms.author: sdanie
 * 中國東部
 * 中國北部
 
-如需 Azure 中國雲端的詳細資訊，請參閱[由中國的世紀互聯營運的 Azure 中國雲端](http://www.windowsazure.cn/)。
+如需 Azure 中國雲端的詳細資訊，請參閱 [由中國的世紀互聯營運的 Azure 中國雲端](http://www.windowsazure.cn/)。
 
-### 用於 Azure Redis 快取 PowerShell 的屬性
+### <a name="properties-used-for-azure-redis-cache-powershell"></a>用於 Azure Redis 快取 PowerShell 的屬性
 下表為使用 Azure PowerShell 建立和管理 Azure Redis 快取執行個體時，常用參數的屬性和說明。
 
 | 參數 | 說明 | 預設值 |
@@ -107,44 +110,44 @@ ms.author: sdanie
 | Name |快取的名稱 | |
 | 位置 |快取的位置 | |
 | resourceGroupName |資源群組名稱，將在其中建立快取 | |
-| 大小 |快取的大小。有效值為：P1、P2、P3、P4、C0、C1、C2、C3、C4、C5、C6、250MB、1GB、2.5GB、6GB、13GB、26GB、53GB |1GB |
-| ShardCount |在啟用叢集的情況下建立進階快取時要建立的分區數目。有效值為：1、2、3、4、5、6、7、8、9、10 | |
-| SKU |指定快取的 SKU。有效值為：Basic、Standard、Premium |標準 |
-| RedisConfiguration |指定 Redis 組態設定。如需每個設定的詳細資訊，請參閱以下的 [RedisConfiguration 屬性](#redisconfiguration-properties) 表格。 | |
+| 大小 |快取的大小。 有效值為：P1、P2、P3、P4、C0、C1、C2、C3、C4、C5、C6、250MB、1GB、2.5GB、6GB、13GB、26GB、53GB |1GB |
+| ShardCount |在啟用叢集的情況下建立進階快取時要建立的分區數目。 有效值為：1、2、3、4、5、6、7、8、9、10 | |
+| SKU |指定快取的 SKU。 有效值為：Basic、Standard、Premium |標準 |
+| RedisConfiguration |指定 Redis 組態設定。 如需每個設定的詳細資訊，請參閱以下的 [RedisConfiguration 屬性](#redisconfiguration-properties) 表格。 | |
 | EnableNonSslPort |指出是否已啟用非 SSL 連接埠。 |False |
 | MaxMemoryPolicy |這個參數已被取代，請改用 RedisConfiguration。 | |
-| StaticIP |當快取是裝載在 VNET 中，為快取在子網路中指定唯一 IP 位址。如果未提供，則會從子網路中為您選擇一個。 | |
+| StaticIP |當快取是裝載在 VNET 中，為快取在子網路中指定唯一 IP 位址。 如果未提供，則會從子網路中為您選擇一個。 | |
 | 子網路 |當快取是裝載在 VNET 中，指定要在其中部署快取的子網路。 | |
 | VirtualNetwork |當快取是裝載在 VNET 中，指定要在其中部署快取的 VNET 之資源識別碼。 | |
-| KeyType |指定更新存取金鑰時要重新產生哪一個存取金鑰。有效值為：Primary、Secondary | |
+| KeyType |指定更新存取金鑰時要重新產生哪一個存取金鑰。 有效值為：Primary、Secondary | |
 
-### RedisConfiguration 屬性
+### <a name="redisconfiguration-properties"></a>RedisConfiguration 屬性
 | 屬性 | 說明 | 定價層 |
 | --- | --- | --- |
 | rdb-backup-enabled |是否已啟用 [Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
-| rdb-storage-connection-string |[Redis 資料持續性](cache-how-to-premium-persistence.md)儲存體帳戶的連接字串 |僅限進階版 |
-| rdb-backup-frequency |[Redis 資料持續性](cache-how-to-premium-persistence.md)的備份頻率 |僅限進階版 |
-| maxmemory-reserved |設定非快取程序的[保留記憶體](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |標準和進階 |
-| maxmemory-policy |設定快取的[收回原則](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |所有定價層 |
+| rdb-storage-connection-string | [Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
+| rdb-backup-frequency | [Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
+| maxmemory-reserved |設定非快取程序的 [保留記憶體](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |標準和進階 |
+| maxmemory-policy |設定快取的 [收回原則](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |所有定價層 |
 | notify-keyspace-events |設定 [Keyspace 通知](cache-configure.md#keyspace-notifications-advanced-settings) |標準和進階 |
-| hash-max-ziplist-entries |設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
-| hash-max-ziplist-value |設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
-| set-max-intset-entries |設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
-| zset-max-ziplist-entries |設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
-| zset-max-ziplist-value |設定小型彙總資料類型的[記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
-| 資料庫 |設定資料庫數目。這個屬性僅可以在建立快取時設定。 |標準和進階 |
+| hash-max-ziplist-entries |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
+| hash-max-ziplist-value |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
+| set-max-intset-entries |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
+| zset-max-ziplist-entries |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
+| zset-max-ziplist-value |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
+| 資料庫 |設定資料庫數目。 這個屬性僅可以在建立快取時設定。 |標準和進階 |
 
-## 建立 Redis 快取
+## <a name="to-create-a-redis-cache"></a>建立 Redis 快取
 使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立新的 Azure Redis 快取執行個體。
 
 > [!IMPORTANT]
-> 您第一次使用 Azure 入口網站在訂用帳戶中建立 Redis 快取時，入口網站會為該訂用帳戶註冊 `Microsoft.Cache` 命名空間。如果您嘗試使用 PowerShell 在訂用帳戶中建立第一個 Redis 快取，您必須先使用下列命令註冊該命名空間；否則 Cmdlet (例如 `New-AzureRmRedisCache` 和 `Get-AzureRmRedisCache`) 會失敗。
+> 您第一次使用 Azure 入口網站在訂用帳戶中建立 Redis 快取時，入口網站會為該訂用帳戶註冊 `Microsoft.Cache` 命名空間。 如果您嘗試使用 PowerShell 在訂用帳戶中建立第一個 Redis 快取，您必須先使用下列命令註冊該命名空間；否則 Cmdlet (例如 `New-AzureRmRedisCache` 和 `Get-AzureRmRedisCache`) 會失敗。
 > 
 > `Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Cache"`
 > 
 > 
 
-若要查看 `New-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `New-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help New-AzureRmRedisCache -detailed
 
@@ -222,29 +225,29 @@ ms.author: sdanie
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US"
 
-`ResourceGroupName`、`Name` 和 `Location` 是必要參數，其餘則為選擇性的而且有預設值。執行先前的命令會建立標準 SKU Azure Redis 快取執行個體，具有指定的名稱、位置和資源群組，大小為 1 GB，且停用非 SSL 連接埠。
+`ResourceGroupName`、`Name` 和 `Location` 是必要參數，其餘則為選擇性的而且有預設值。 執行先前的命令會建立標準 SKU Azure Redis 快取執行個體，具有指定的名稱、位置和資源群組，大小為 1 GB，且停用非 SSL 連接埠。
 
-若要建立進階快取，請指定大小為 P1 (6 GB - 60 GB)、P2 (13 GB - 130 GB)、P3 (26 GB - 260 GB) 或 P4 (53 GB - 530 GB)。若要啟用叢集，使用 `ShardCount` 參數指定分區計數。下列範例會建立具有 3 個分區的 P1 進階快取。P1 進階快取的大小為 6 GB，因為我們指定三個分區，大小總計為 18 GB (3 x 6 GB)。
+若要建立進階快取，請指定大小為 P1 (6 GB - 60 GB)、P2 (13 GB - 130 GB)、P3 (26 GB - 260 GB) 或 P4 (53 GB - 530 GB)。 若要啟用叢集，使用 `ShardCount` 參數指定分區計數。 下列範例會建立具有 3 個分區的 P1 進階快取。 P1 進階快取的大小為 6 GB，因為我們指定三個分區，大小總計為 18 GB (3 x 6 GB)。
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P1 -ShardCount 3
 
-若要指定 `RedisConfiguration` 參數的值，以索引鍵/值組的方式將值括在 `{}` 內，例如 `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`。下列範例會建立標準 1 GB 快取，具有 `allkeys-random` maxmemory 原則，且 keyspace 通知設為 `KEA`。如需詳細資訊，請參閱 [Keyspace 通知 (進階設定)](cache-configure.md#keyspace-notifications-advanced-settings) 和 [Maxmemory-policy 與 maxmemory-reserved](cache-configure.md#maxmemory-policy-and-maxmemory-reserved)。
+若要指定 `RedisConfiguration` 參數的值，以索引鍵/值組的方式將值括在 `{}` 內，例如 `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`。 下列範例會建立標準 1 GB 快取，具有 `allkeys-random` maxmemory 原則，且 keyspace 通知設為 `KEA`。 如需詳細資訊，請參閱 [Keyspace 通知 (進階設定)](cache-configure.md#keyspace-notifications-advanced-settings) 和 [Maxmemory-policy 與 maxmemory-reserved](cache-configure.md#maxmemory-policy-and-maxmemory-reserved)。
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}
 
 <a name="databases"></a>
 
-## 在快取建立期間設定資料庫設定
-`databases` 設定僅可以在快取建立期間設定。下列範例會使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立具有 48 個資料庫的進階 P3 (26 GB) 快取。
+## <a name="to-configure-the-databases-setting-during-cache-creation"></a>在快取建立期間設定資料庫設定
+`databases` 設定僅可以在快取建立期間設定。 下列範例會使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立具有 48 個資料庫的進階 P3 (26 GB) 快取。
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P3 -RedisConfiguration @{"databases" = "48"}
 
-如需 `databases` 屬性的詳細資訊，請參閱[預設的 Azure Redis 快取伺服器組態](cache-configure.md#default-redis-server-configuration)。如需使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立快取的詳細資訊，請參閱先前的[建立 Redis 快取](#to-create-a-redis-cache)一節。
+如需 `databases` 屬性的詳細資訊，請參閱 [預設的 Azure Redis 快取伺服器組態](cache-configure.md#default-redis-server-configuration)。 如需使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立快取的詳細資訊，請參閱先前的[建立 Redis 快取](#to-create-a-redis-cache)一節。
 
-## 更新 Redis 快取
+## <a name="to-update-a-redis-cache"></a>更新 Redis 快取
 使用 [Set-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) Cmdlet 更新 Azure Redis 快取執行個體。
 
-若要查看 `Set-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `Set-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Set-AzureRmRedisCache -detailed
 
@@ -298,7 +301,7 @@ ms.author: sdanie
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-`Set-AzureRmRedisCache` Cmdlet 可用來更新屬性，例如 `Size`、`Sku`、`EnableNonSslPort` 和 `RedisConfiguration` 的值。
+`Set-AzureRmRedisCache` Cmdlet 可用來更新屬性，例如 `Size`、`Sku`、`EnableNonSslPort` 和 `RedisConfiguration` 的值。 
 
 下列命令會更新名為 myCache 的 Redis 快取的 maxmemory-policy。
 
@@ -306,28 +309,28 @@ ms.author: sdanie
 
 <a name="scale"></a>
 
-## 調整 Redis 快取
-修改 `Size`、`Sku` 或 `ShardCount` 屬性時，可用 `Set-AzureRmRedisCache` 調整 Azure Redis 快取執行個體。
+## <a name="to-scale-a-redis-cache"></a>調整 Redis 快取
+修改 `Size`、`Sku` 或 `ShardCount` 屬性時，可用 `Set-AzureRmRedisCache` 調整 Azure Redis 快取執行個體。 
 
 > [!NOTE]
-> 使用 PowerShell 調整快取，和從 Azure 入口網站調整快取有相同的限制和準則。您可以調整具有下列限制的不同定價層。
+> 使用 PowerShell 調整快取，和從 Azure 入口網站調整快取有相同的限制和準則。 您可以調整具有下列限制的不同定價層。
 > 
 > * 您無法從較高的定價層調整至較低的定價層。
-> * 您無法從**進階**快取向下調整至**基本**或**標準**快取。
+> * 您無法從**進階**快取向下調整至**標準**或**基本**快取。
 > * 您無法從**標準**快取向下調整到**基本**快取。
-> * 您可以從**基本**快取調整到**標準**快取，但您無法同時變更大小。如果您需要不同的大小，您可以進行後續調整作業，調整到您需要的大小。
-> * 您無法直接從**基本**快取調整至**進階**快取。您必須在單一調整作業中從**基本**調整至**標準**，然後在後續的調整作業中從**標準**調整至**進階**。
+> * 您可以從**基本**快取調整到**標準**快取，但您無法同時變更大小。 如果您需要不同的大小，您可以進行後續調整作業，調整到您需要的大小。
+> * 您無法直接從**基本**快取調整至**進階**快取。 您必須在單一調整作業中從**基本**調整至**標準**，然後在後續的調整作業中從**標準**調整至**進階**。
 > * 您無法從較大的大小向下調整至 **C0 (250 MB)** 的大小。
 > 
-> 如需詳細資訊，請參閱[如何調整 Azure Redis 快取](cache-how-to-scale.md)。
+> 如需詳細資訊，請參閱 [如何調整 Azure Redis 快取](cache-how-to-scale.md)。
 > 
 > 
 
-下列範例示範如何將名為 `myCache` 的快取調整為 2.5 GB 快取。請注意，此命令可用於基本或標準快取。
+下列範例示範如何將名為 `myCache` 的快取調整為 2.5 GB 快取。 請注意，此命令可用於基本或標準快取。
 
     Set-AzureRmRedisCache -ResourceGroupName myGroup -Name myCache -Size 2.5GB
 
-發出此命令之後，會傳回快取的狀態 (類似於呼叫 `Get-AzureRmRedisCache`)。請注意，`ProvisioningState` 為 `Scaling`。
+發出此命令之後，會傳回快取的狀態 (類似於呼叫 `Get-AzureRmRedisCache`)。 請注意，`ProvisioningState` 為 `Scaling`。
 
     PS C:\> Set-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup -Size 2.5GB
 
@@ -356,14 +359,14 @@ ms.author: sdanie
     TenantSettings     : {}
     ShardCount         :
 
-當調整作業完成時，`ProvisioningState` 會變更為 `Succeeded`。如果您需要進行後續的調整作業，例如先從基本變更為標準，然後再變更大小，您必須等到先前作業完成，否則會收到類似下列的錯誤。
+當調整作業完成時，`ProvisioningState` 會變更為 `Succeeded`。 如果您需要進行後續的調整作業，例如先從基本變更為標準，然後再變更大小，您必須等到先前作業完成，否則會收到類似下列的錯誤。
 
     Set-AzureRmRedisCache : Conflict: The resource '...' is not in a stable state, and is currently unable to accept the update request.
 
-## 取得 Redis 快取的資訊
+## <a name="to-get-information-about-a-redis-cache"></a>取得 Redis 快取的資訊
 您可以使用 [Get-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634514.aspx) Cmdlet 擷取快取的相關資訊。
 
-若要查看 `Get-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `Get-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Get-AzureRmRedisCache -detailed
 
@@ -436,10 +439,10 @@ ms.author: sdanie
     TenantSettings     : {}
     ShardCount         :
 
-## 擷取 Redis 快取的存取金鑰
+## <a name="to-retrieve-the-access-keys-for-a-redis-cache"></a>擷取 Redis 快取的存取金鑰
 若要擷取您快取的存取金鑰，您可以使用 [Get-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634516.aspx) Cmdlet。
 
-若要查看 `Get-AzureRmRedisCacheKey` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `Get-AzureRmRedisCacheKey`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Get-AzureRmRedisCacheKey -detailed
 
@@ -476,10 +479,10 @@ ms.author: sdanie
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : ABhfB757JgjIgt785JgKH9865eifmekfnn649303JKL=
 
-## 重新產生 Redis 快取的存取金鑰
+## <a name="to-regenerate-access-keys-for-your-redis-cache"></a>重新產生 Redis 快取的存取金鑰
 若要重新產生您快取的存取金鑰，可以使用 [New-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634512.aspx) Cmdlet。
 
-若要查看 `New-AzureRmRedisCacheKey` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `New-AzureRmRedisCacheKey`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help New-AzureRmRedisCacheKey -detailed
 
@@ -514,7 +517,7 @@ ms.author: sdanie
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-若要重新產生快取的主要或次要金鑰，請呼叫 `New-AzureRmRedisCacheKey` Cmdlet，並傳入名稱、資源群組，且針對 `KeyType` 參數指定 `Primary` 或 `Secondary`。在下列範例中，會重新產生快取的次要存取金鑰。
+若要重新產生快取的主要或次要金鑰，請呼叫 `New-AzureRmRedisCacheKey` Cmdlet，並傳入名稱、資源群組，且針對 `KeyType` 參數指定 `Primary` 或 `Secondary`。 在下列範例中，會重新產生快取的次要存取金鑰。
 
     PS C:\> New-AzureRmRedisCacheKey -Name myCache -ResourceGroupName myGroup -KeyType Secondary
 
@@ -526,10 +529,10 @@ ms.author: sdanie
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : c53hj3kh4jhHjPJk8l0jji785JgKH9865eifmekfnn6=
 
-## 刪除 Redis 快取
+## <a name="to-delete-a-redis-cache"></a>刪除 Redis 快取
 若要刪除 Redis 快取，請使用 [Remove-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634515.aspx) Cmdlet。
 
-若要查看 `Remove-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `Remove-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Remove-AzureRmRedisCache -detailed
 
@@ -574,15 +577,15 @@ ms.author: sdanie
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
 
-## 匯入 Redis 快取
+## <a name="to-import-a-redis-cache"></a>匯入 Redis 快取
 您可以使用 `Import-AzureRmRedisCache` Cmdlet 將資料匯入 Azure Redis 快取執行個體。
 
 > [!IMPORTANT]
-> 匯入/匯出僅供[進階層](cache-premium-tier-intro.md)快取使用。如需匯入/匯出的詳細資訊，請參閱[在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
+> 匯入/匯出僅供 [進階層](cache-premium-tier-intro.md) 快取使用。 如需匯入/匯出的詳細資訊，請參閱 [在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
 > 
 > 
 
-若要查看 `Import-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `Import-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Import-AzureRmRedisCache -detailed
 
@@ -634,15 +637,15 @@ ms.author: sdanie
 
     PS C:\>Import-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Files @("https://mystorageaccount.blob.core.windows.net/mycontainername/blobname?sv=2015-04-05&sr=b&sig=caIwutG2uDa0NZ8mjdNJdgOY8%2F8mhwRuGNdICU%2B0pI4%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwd") -Force
 
-## 匯出 Redis 快取
+## <a name="to-export-a-redis-cache"></a>匯出 Redis 快取
 您可以使用 `Export-AzureRmRedisCache` Cmdlet 從 Azure Redis 快取執行個體匯出資料。
 
 > [!IMPORTANT]
-> 匯入/匯出僅供[進階層](cache-premium-tier-intro.md)快取使用。如需匯入/匯出的詳細資訊，請參閱[在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
+> 匯入/匯出僅供 [進階層](cache-premium-tier-intro.md) 快取使用。 如需匯入/匯出的詳細資訊，請參閱 [在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
 > 
 > 
 
-若要查看 `Export-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `Export-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Export-AzureRmRedisCache -detailed
 
@@ -695,15 +698,15 @@ ms.author: sdanie
         -Container "https://mystorageaccount.blob.core.windows.net/mycontainer?sv=2015-04-05&sr=c&sig=HezZtBZ3DURmEGDduauE7
         pvETY4kqlPI8JCNa8ATmaw%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwdl"
 
-## 重新啟動 Redis 快取
+## <a name="to-reboot-a-redis-cache"></a>重新啟動 Redis 快取
 您可以使用 `Reset-AzureRmRedisCache` Cmdlet 重新啟動 Azure Redis 快取執行個體。
 
 > [!IMPORTANT]
-> 重新啟動僅適用於[進階層](cache-premium-tier-intro.md)快取。如需重新啟動快取的詳細資訊，請參閱[快取管理 - 重新啟動](cache-administration.md#reboot)。
+> 重新啟動僅適用於 [進階層](cache-premium-tier-intro.md) 快取。 如需重新啟動快取的詳細資訊，請參閱 [快取管理 - 重新啟動](cache-administration.md#reboot)。
 > 
 > 
 
-若要查看 `Reset-AzureRmRedisCache` 的可用參數清單及其說明，請執行下列命令。
+若要查看 `Reset-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Reset-AzureRmRedisCache -detailed
 
@@ -756,14 +759,19 @@ ms.author: sdanie
         -Force
 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 若要深入了解如何將 Windows PowerShell 與 Azure 搭配使用，請參閱下列資源：
 
 * [MSDN 上的 Azure Redis 快取 Cmdlet 文件](https://msdn.microsoft.com/library/azure/mt634513.aspx)
 * [Azure 資源管理員 Cmdlet](http://go.microsoft.com/fwlink/?LinkID=394765)：深入了解在 AzureResourceManager 模組中使用 Cmdlet。
-* [使用資源群組管理 Azure 資源](../resource-group-template-deploy-portal.md)：了解如何在 Azure 入口網站中建立和管理資源群組。
+* [使用資源群組管理 Azure 資源](../azure-resource-manager/resource-group-template-deploy-portal.md)：了解如何在 Azure 入口網站中建立和管理資源群組。
 * [Azure 部落格](http://blogs.msdn.com/windowsazure)：深入了解 Azure 的新功能。
 * [Windows PowerShell 部落格](http://blogs.msdn.com/powershell)：深入了解 Windows PowerShell 的新功能。
-* ["Hey, Scripting Guy!" 部落格](http://blogs.technet.com/b/heyscriptingguy/)：從 Windows PowerShell 社群中取得實際的秘訣及訣竅。
+* ["Hey, Scripting Guy!"部落格](http://blogs.technet.com/b/heyscriptingguy/)：從 Windows PowerShell 社群中取得實際的秘訣及訣竅。
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO5-->
+
+
