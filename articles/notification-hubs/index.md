@@ -1,15 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何透過通知中樞，將推播通知從任何後端傳送至任何行動裝置。 教學課程、API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 54bebbed74b344ff854a83b2b6c4abdb5ba68321
+ms.sourcegitcommit: 0d46d0e04550578a81c636aa118dc02c08428838
+ms.openlocfilehash: 8a4712af44c474cea93f04bf598e6595ba0dadee
 
 ---
 #<a name="notification-hubs-documentation"></a>通知中樞文件
 
-Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎結構，可讓您將行動推播通知從任何後端 (在雲端或內部部署) 傳送到任何行動平台。
-
-使用通知中樞，您可以輕鬆地傳送跨平台個人化推播通知，並擷取不同平台通知系統 (PNS) 的詳細資料。 使用單一 API 呼叫，您可以跨所有裝置將目標設為個別使用者或整個對象區段 (包含數百萬個使用者)。
+了解如何使用通知中樞 (可調整的多平台推播通知引擎) 快速傳送數百萬則訊息。 教學課程、API 參考和其他文件會示範如何設定推播通知，並將這類通知從任何後端傳送至任何行動裝置。 
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -31,7 +30,7 @@ Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=notification-hubs">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=notification-hubs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -160,52 +159,45 @@ Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎�
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/resourcemanager/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>通知中樞 PowerShell Cmdlet</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager/azurerm.notificationhubs/v2.3.0/azurerm.notificationhubs">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/dotnet/api/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>通知中樞 .NET API 參考</p>
-                    </div>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.azure.notificationhubs">.NET</a></p>
+                   </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/rest/api/notificationhubs/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>通知中樞 REST API</p>
+                        <p><a href="/rest/api/notificationhubs">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-<ul>
+</ul>
 
 ---
 
@@ -219,6 +211,6 @@ Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

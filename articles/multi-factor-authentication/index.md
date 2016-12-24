@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何透過可提供簡單登入程序的各種驗證方法，部署 Multi-Factor Authentication。 教學課程、SDK 等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: defa12cb202ce4861a479ac40782248cd50039d3
-ms.openlocfilehash: 2db76cf5af88cc103b0109eb8ead4d63cbae0a0e
+ms.sourcegitcommit: d3e822f16a48f5c144ce2634325591eb69dc0e33
+ms.openlocfilehash: 087b71266ad1f4b1be0acd1eaa465903c32c1fd2
 
 ---
 # <a name="multi-factor-authentication-documentation"></a>Multi-Factor Authentication 文件
 
-Azure Multi-Factor Authentication (MFA) 是 Microsoft 的雙步驟驗證解決方案。 Azure MFA 有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。 它可以透過一些驗證方法 (包括電話、文字訊息，或行動應用程式驗證) 來提供強大的驗證功能。
+了解如何部署和管理 Azure Multi-Factor Authentication，這是雙步驟的身分驗證系統。 教學課程、SDK 和其他文件會示範如何透過各種驗證方法提供強式驗證，同時提供簡單登入程序。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -113,6 +114,7 @@ Azure Multi-Factor Authentication (MFA) 是 Microsoft 的雙步驟驗證解決�
 </div>
 
 
-<!--HONumber=Nov16_HO4-->
+
+<!--HONumber=Dec16_HO3-->
 
 

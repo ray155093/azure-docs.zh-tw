@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Log Analytics 來收集和分析雲端和內部部署環境 (不論實體位置為何) 中的資源所產生的資料。"
 translationtype: Human Translation
-ms.sourcegitcommit: c086dc37b8665017de0dbbad9c7ac82931932a72
-ms.openlocfilehash: bd819da72cbfdd58323321eb41ab28441e043c84
+ms.sourcegitcommit: edbf9890b63219e7d87256be3600a1d41c87e295
+ms.openlocfilehash: 31726ed708006d504eea1e948561c108d39622f2
 
 ---
 
 # <a name="log-analytics-documentation"></a>Log Analytics 文件
 
-Log Analytics 是 Operations Management Suite (OMS) 中的一項服務，可協助您收集和分析雲端和內部部署環境中的資源所產生的資料。 它可讓您在所有工作負載和伺服器之間，無論其實體位置為何，使用整合式搜尋和自訂儀表板輕易地分析數百萬筆記錄，提供您即時的深入資訊。
+了解如何使用 Operations Management Suite 中的 Log Analytics，收集和分析雲端和內部部署環境中的資源所產生的資料。 教學課程和其他文件會示範如何即時深入了解您的工作負載和伺服器 (不論實體位置為何)。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -95,6 +96,6 @@ Log Analytics 是 Operations Management Suite (OMS) 中的一項服務，可協�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

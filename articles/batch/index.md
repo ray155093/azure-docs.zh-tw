@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Azure Batch 有效地執行大規模的平行和高效能計算應用程式。 教學課程、API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: acf8bdbd4938583f8259c30cb253ee33b4c971ad
+ms.sourcegitcommit: aafd374ff1d72df90bd09479e18ac7ce83715cef
+ms.openlocfilehash: daf72b1a473e3940e889cd6caf78b709e08428c6
 
 ---
 #<a name="batch-documentation"></a>Batch 文件
 
-Azure Batch 可讓您在雲端有效地執行大規模的平行和高效能運算 (HPC) 應用程式。 在使用 Batch 服務時，您可以定義用來大規模平行執行應用程式的 Azure 計算資源。 您可以執行隨選或排訂的作業，而不需擔心手動建立或管理基礎結構。
+了解如何使用 Azure Batch 在雲端有效地執行大規模的平行和高效能計算應用程式。 教學課程、API 參考和其他文件會示範如何定義 Azure 計算資源，進而以平行方式或大規模執行應用程式，而不需要手動設定或管理基礎結構。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -157,6 +158,6 @@ Azure Batch 可讓您在雲端有效地執行大規模的平行和高效能運�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

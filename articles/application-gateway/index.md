@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何部署雲端應用程式傳遞控制站。 文件會示範如何為 Web 前端設定應用程式層級的路由與負載平衡。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 3bf27e3ba3e53aa2f06a078b81fff18fc449bc1c
+ms.sourcegitcommit: 8f9b8cee583b9bc12df14bf5161cab1952e3e022
+ms.openlocfilehash: 5e7843adfb31fcfc56986cce44fc5d59ee558d58
 
 ---
 #<a name="application-gateway-documentation"></a>應用程式閘道文件
 
-Azure 應用程式閘道提供應用程式傳遞控制站 (ADC) 服務。  它會將 CPU 密集 SSL 終止卸載至應用程式閘道，讓客戶最佳化 Web 伺服陣列的產能。  它是您的應用程式專用的虛擬應用裝置，具有延展性和高可用性，以及一組豐富的診斷和記錄以取得較佳管理性。
+了解如何部署應用程式閘道 (應用程式傳遞控制站 (ADC) 即服務)。 教學課程、API 參考和其他文件會示範如何設定應用程式層級的路由及負載平衡服務，讓您建置可調整及高可用性的 Web 前端。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -29,7 +30,7 @@ Azure 應用程式閘道提供應用程式傳遞控制站 (ADC) 服務。  它�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=application-gateway">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=application-gateway">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -112,15 +113,15 @@ Azure 應用程式閘道提供應用程式傳遞控制站 (ADC) 服務。  它�
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/powershell/resourcemanager">PowerShell Cmdlet</a></p>
-                        <p><a href="/cli/azure/network/application-gateway">Azure CLI</a></p>
+                        <p><a href="/powershell/resourcemanager">PowerShell</a></p>
+                        <p><a href="/cli/azure/network/application-gateway">Azure CLI 2.0 預覽</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -136,13 +137,13 @@ Azure 應用程式閘道提供應用程式傳遞控制站 (ADC) 服務。  它�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="https://msdn.microsoft.com/library/mt684941">REST API</a></p>
-                        <p><a href="https://msdn.microsoft.com/library/azure/mt299393">傳統 REST API</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/mt684941">REST API 參考</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/azure/mt299393">傳統 REST API 參考</a></p>
                     </div>
                 </div>
             </div>
@@ -160,6 +161,6 @@ Azure 應用程式閘道提供應用程式傳遞控制站 (ADC) 服務。  它�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

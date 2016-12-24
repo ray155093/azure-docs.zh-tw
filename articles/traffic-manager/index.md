@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何管理連入流量，以獲得最佳的應用程式效能。 文件會示範如何將流量分散至 Azure 或外部服務端點。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 07d7e13862c252db61136110e04559e51a53e4b7
+ms.sourcegitcommit: 3123dc992bb821e79edceef01d2654aaff2468c1
+ms.openlocfilehash: a10c68140066de5be6690f30c89f4f6f2fad0825
 
 ---
 #<a name="traffic-manager-documentation"></a>流量管理員文件
 
-Azure 流量管理員可讓您控制使用者流量，將流量分散到不同區域的服務端點。 流量管理員會使用網域名稱系統 (DNS)，根據選取的流量路由方法和端點的健全狀況，將用戶端要求導向到最適當的端點，給予您的應用程式更高的可用性和回應性。
+了解如何使用流量管理員來路由傳送連入流量，以獲得最佳的應用程式效能和可靠性。 教學課程、API 參考和其他文件會示範如何管理 Azure 或外部服務端點的流量。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -129,6 +130,6 @@ Azure 流量管理員可讓您控制使用者流量，將流量分散到不同�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

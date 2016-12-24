@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 IoT 中樞來連接、監視及控制數百萬個物聯網資產。 教學課程、API 參考、影片和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 62cc285a4dc0b85f364a6306e3fc4b0727c439db
-ms.openlocfilehash: 4a165d2f3e4447d2490296a76934cba98b9dcd79
+ms.sourcegitcommit: 771a82342a40b62cbb4b31316f08e474a797ff34
+ms.openlocfilehash: 9dd5f81cacf774eff651597e1a4920466e5c6fa3
 
 ---
 #<a name="iot-hub-documentation"></a>IoT 中樞文件
 
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。  它也可提供裝置連線的大規模監視，而且包含最受歡迎語言和平台的裝置程式庫。 
+了解如何使用 IoT 中樞來連接、監視及控制數百萬個物聯網資產。 教學課程、API 參考、影片和其他文件可協助您在 IoT 裝置與解決方案後端之間部署可靠的雙向通訊。 
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -161,6 +162,6 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

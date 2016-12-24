@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何設定虛擬私人網路 (VPN) 閘道，以管理雲端虛擬網路與內部部署之間的流量或雲端 VNet 之間的流量。"
 translationtype: Human Translation
-ms.sourcegitcommit: 511d15cc48b17bd65bedc2c1cd9602d868ffa724
-ms.openlocfilehash: ff8e5a68ada52f93c1f50e73a1a7857273d7f9c3
+ms.sourcegitcommit: a826f96cd679bb26b8a6cf9bb6bf55e93ba4e346
+ms.openlocfilehash: 99843baf9989378aa3d4ff6325a399dae0b632b6
 
 ---
 #<a name="vpn-gateway-documentation"></a>VPN 閘道文件
 
-Azure VPN 閘道是虛擬私人網路 (VPN)，用途在傳送 Azure 虛擬網路與內部部署位置之間的網路流量，以及 Azure 內的之虛擬網路間 (虛擬網路對虛擬網路) 的網路流量。  
+了解如何設定 VPN 閘道、虛擬私人網路閘道。 文件會示範如何傳送 Azure 虛擬網路與內部部署位置或其他 Azure 虛擬網路 (VNet) 之間的網路流量。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -162,6 +163,6 @@ Azure VPN 閘道是虛擬私人網路 (VPN)，用途在傳送 Azure 虛擬網路
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

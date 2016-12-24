@@ -17,8 +17,13 @@
 ### [ OMS 監視 (DC/OS)](container-service-monitoring-oms.md)
 ### [透過 Datadog 進行監視 (DC/OS)](container-service-monitoring.md)
 ### [透過 Sysdig 進行監視 (DC/OS)](container-service-monitoring-sysdig.md)
-## [使用 Kubernetes 管理](container-service-kubernetes-walkthrough.md)
+### [透過 Dynatrace 進行監視 (DC/OS)](container-service-monitoring-dynatrace.md)
+## 使用 Kubernetes 管理
+### [開始使用 Kubernetes](container-service-kubernetes-walkthrough.md)
+### [與 Kubernetes Web UI 互動](container-service-kubernetes-ui.md)
 ## [使用 Docker Swarm 管理](container-service-docker-swarm.md)
+### [Docker 與 Docker Compose](container-service-docker-swarm.md)
+### [Docker Swarm 持續整合](container-service-docker-swarm-setup-ci-cd.md)
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.compute/v2.3.0/azurerm.compute)
 ## [.NET](/dotnet/api/microsoft.azure.management.compute.models)
@@ -29,6 +34,6 @@
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-service&updatetype=&platform=)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何使用監視和診斷服務來追蹤效能、維護安全性及找出趨勢。 API 參考、最佳作法等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: f5cf41dc2362afa365c491e47fb7708d8a9667ba
+ms.sourcegitcommit: edf493f70b08bdf5545127a90d7a13ea49b668c1
+ms.openlocfilehash: 0ee9faf763dbedd4046547764c5ad5ad9e3d2d07
 
 ---
 
 # <a name="monitoring-and-diagnostics-documentation"></a>監視和診斷文件
 
-監視和診斷是分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務，並解決開發與管理雲端應用程式時遭遇的重大挑戰。  監視和診斷代表新一代的中介軟體平台，可建置與管理這些企業級的 Tier-1 雲端規模應用程式。
+了解如何使用 Azure 監視和診斷服務來追蹤效能、維護安全性及找出趨勢。 教學課程、API 參考、最佳作法及其他文件可協助您了解監視與診斷的使用方式，以及如何規劃和部署可調整且可靠的解決方案。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -105,66 +106,45 @@ ms.openlocfilehash: f5cf41dc2362afa365c491e47fb7708d8a9667ba
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="https://msdn.microsoft.com/library/azure/mt282452#40v=azure.200#41">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>監視和診斷 PowerShell Cmdlet</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager/azurerm.insights/v1.0.12/azurerm.insights?redirectedfrom=msdn#40v=azure.20041">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/cli/azure">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Azure CLI</h3>
-                        <p>監視和診斷 Azure CLI</p>
+                        <h3>語言</h3>
+                        <p><a href="https://msdn.microsoft.com/library/azure/dn802153">.NET</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="https://msdn.microsoft.com/library/azure/mt416943">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>監視和診斷受管理的參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="https://msdn.microsoft.com/library/azure/dn931943">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>監視和診斷 REST API</p>
+                        <p><a href="/rest/api/monitor/">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-<ul>
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/monitoring-and-diagnostics.pdf">
@@ -175,6 +155,7 @@ ms.openlocfilehash: f5cf41dc2362afa365c491e47fb7708d8a9667ba
 </div>
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Dec16_HO3-->
 
 

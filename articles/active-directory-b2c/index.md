@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何在雲端部署全方位取用者身分識別管理。 文件會示範如何保護取用者面向的 Web 和行動應用程式。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3cee8c74ed77a27c8a2006dcd28729f9c077aea9
-ms.openlocfilehash: 330f2c0efed16ae587c6f069d3feae1bb80f3097
+ms.sourcegitcommit: e3ffd8f83b4ad25d28f6d0afd82efc6150d98fa2
+ms.openlocfilehash: c5f925446b5e2cc7ea8739e22e9d093428700483
 
 ---
 
 #<a name="active-directory-b2c-documentation"></a>Active Directory B2C 文件
 
-Azure Active Directory B2C 是適用於取用者導向 Web 與行動應用程式的全方位雲端身分識別管理解決方案。 其為高可用性的全域服務，可處理數億萬規模的消費者身分識別。 Azure Active Directory B2C 採用企業級的安全平台，確保您的應用程式、商務及消費者受到安全保護。
+了解如何透過 Active Directory B2C 在雲端設定及管理全方位取用者身分識別管理。 教學課程、參考和其他文件會示範如何透過安全登入來保護取用者面向的 Web 和行動應用程式。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -187,6 +188,6 @@ Azure Active Directory B2C 是適用於取用者導向 Web 與行動應用程式
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Resource Manager，以群組方式部署和管理解決方案資源，並建立可供一致和重複資源部署的範本。"
 translationtype: Human Translation
-ms.sourcegitcommit: e48fea077e09518ab5005518c8e8a413df458b93
-ms.openlocfilehash: a7b6655d2314b198706177f1adaf1b88eb135307
+ms.sourcegitcommit: 0c80499b4b27b7c21473e0ed6468441fa26e965d
+ms.openlocfilehash: f687fd5682a912cf02efec097c6df4a0c1604938
 
 ---
 #<a name="azure-resource-manager-documentation"></a>Azure Resource Manager 文件
 
-應用程式的基礎結構通常由許多元件所組成 – 例如虛擬機器、儲存體帳戶和虛擬網路，或者是 web 應用程式、資料庫、資料庫伺服器和第三方廠商服務。 您看不到這些元件做為個別的實體，而是看到它們做為單一實體相關且彼此相依的組件。 您會想要將其當成群組來部署、管理和監視。 Azure 資源管理員可讓您將方案中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除方案的所有資源。 您會使用部署的範本，且該範本可以用於不同的環境，例如測試、預備和生產環境。 Resource Manager 會提供安全性、稽核和標記功能，以協助您在部署後管理資源
+了解如何使用 Resource Manager，以群組方式部署、監視和管理解決方案資源。 教學課程、API 參考和其他文件會示範如何設定資源群組，並建立可供一致和重複資源部署的範本。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -158,6 +159,7 @@ ms.openlocfilehash: a7b6655d2314b198706177f1adaf1b88eb135307
 </div>
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Dec16_HO3-->
 
 

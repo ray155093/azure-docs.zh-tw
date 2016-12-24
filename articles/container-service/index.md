@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Container Service，透過 DC/OS、Docker Swarm 或 Kubernetes 部署和管理應用程式容器。 教學課程、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 445c13f0ff0106aa1d919be81ca373377464b32a
-ms.openlocfilehash: 5e027ac1a0a9ec4d11c76bbce1e0c944742ffaf9
+ms.sourcegitcommit: aaed834dd697bece735fa9297f0228b75346ffc7
+ms.openlocfilehash: 219dfe4950339d7a68d0a5f06135acb4b247b1fd
 
 ---
 
 # <a name="azure-container-service-documentation"></a>Azure Container Service 文件
 
-Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的叢集，這些虛擬機器預先設定為執行容器化應用程式。 容器服務使用受歡迎開放原始碼排程和協調流程工具的最佳化組態。 這樣可讓您使用現有技能，或運用大量且不斷成長的社群專業知識，在 Microsoft Azure 上部署及管理容器應用程式。
+了解如何使用 Container Service 來部署和管理完全可攜的應用程式容器。 教學課程、API 參考和其他文件會示範如何使用 DC/OS、Docker Swarm 或 Kubernetes 來調整及協調容器。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -100,6 +101,7 @@ Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的�
 </div>
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Dec16_HO3-->
 
 

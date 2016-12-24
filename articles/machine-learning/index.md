@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "Machine Learning 的文件、影片和範例模型，專為那些在應用程式中使用預測性分析的資料科學家和開發人員所設計的雲端服務。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: d8c4cf777402393667a521dcff780e839d02e734
+ms.sourcegitcommit: 12f9d75f252d8b05fdcded9d3fb6c12e4c2a304e
+ms.openlocfilehash: d51cb36ce676ac6d2e7c7b3313db75308d4cca3b
 
 ---
 #<a name="azure-machine-learning-documentation"></a>Azure Machine Learning 文件
 
-Azure Machine Learning 提供可建立預測性分析模型的工具，也提供完全受管理的服務，您可以透過這項服務將預測模型部署為可供取用的 Web 服務。
+了解資料科學家和開發人員如何使用 Machine Learning 將預測性分析內嵌到應用程式中。 教學課程、影片和模型範例會示範如何建置和部署機器學習模型。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -137,6 +138,6 @@ Azure Machine Learning 提供可建立預測性分析模型的工具，也提供
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

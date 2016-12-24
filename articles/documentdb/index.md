@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 DocumentDB，這是一個無結構描述的 NoSQL 文件資料庫。 教學課程會示範如何整合應用程式以及在 JSON 文件上使用 SQL 查詢。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: c0911518e954131f1c8de783d71fb17a9eea1945
+ms.sourcegitcommit: 14e5e2f2bdf3708ab339eff7eb58bbf87cb1a10c
+ms.openlocfilehash: 261d2d5410603fe3352c0bcfabcc15058f3f7c94
 
 ---
 #<a name="documentdb-documentation"></a>DocumentDB 文件
 
-Azure DocumentDB 是完全受管理的 NoSQL 資料庫服務，其建置目的是為了獲得快速且可預測的效能、高可用性、彈性調整、全球發佈以及方便開發。 DocumentDB 是無結構描述的 NoSQL 資料庫，可對 JSON 資料提供豐富且熟悉的 SQL 查詢功能 (一致的低延遲)。
+了解如何在適用於 Web、行動、遊戲及 IoT 的高效能應用程式中使用 DocumentDB。 教學課程和其他文件會示範如何儲存 JSON 資料，並在此 NoSQL 資料庫服務中的彈性結構描述上執行 SQL 查詢。
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -221,6 +222,6 @@ Azure DocumentDB 是完全受管理的 NoSQL 資料庫服務，其建置目的�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用虛擬機器擴展集，為大量計算、巨量資料和容器化解決方案建立自動調整的 Windows 或 Linux VM。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 693dcfd3c20ce373f093108b4d5f8b63aa30f8df
+ms.sourcegitcommit: 7fefef291643ba0c640ba3520e7e40d50391220a
+ms.openlocfilehash: a35dcbfa56c03ca264d4c7a7f779672dc6ae7526
 
 ---
 #<a name="virtual-machine-scale-sets-documentation"></a>虛擬機器擴展集文件
 
-虛擬機器擴展集是一個您可以用來部署和管理一組相同 VM 的 Azure 計算資源。  所有的 VM 設定相同，VM 擴展集是設計來支援 true 的自動調整 - 不需要預先佈建 VM。 這可讓您更輕鬆地針對大量計算、巨量資料和容器化工作負載建置大規模服務。
+了解如何使用虛擬機器擴展集來部署和管理一組相同、自動調整的 Windows 或 Linux VM。 文件會示範如何使用擴展集，支援以大量計算、巨量資料和容器化解決方案為目標的服務。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -69,53 +70,34 @@ ms.openlocfilehash: 693dcfd3c20ce373f093108b4d5f8b63aa30f8df
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>虛擬機器擴展集 PowerShell</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/azureps-cmdlets-docs">PowerShell</a></p>
+                        <p><a href="/azure/virtual-machines/azure-cli-arm-commands">Azure CLI</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/cli/azure/vmss">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Azure CLI</h3>
-                        <p>使用 Azure CLI 的虛擬機器擴展集</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="/rest/api/compute">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>虛擬機器擴展集 REST API</p>
+                        <p><a href="/rest/api/compute/">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
 </ul>
-
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/virtual-machine-scale-sets.pdf">
@@ -127,6 +109,6 @@ ms.openlocfilehash: 693dcfd3c20ce373f093108b4d5f8b63aa30f8df
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

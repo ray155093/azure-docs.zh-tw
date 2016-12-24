@@ -10,11 +10,11 @@
 
 # 開始使用
 ## [開始使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)
-## [開始使用互動式 Hive 預覽](hdinsight-hadoop-use-interactive-hive.md)
 ## [以 R 伺服器開始](hdinsight-hadoop-r-server-get-started.md)
 ## [開始使用 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)
 ## [開始使用 HBase 與 NoSQL](hdinsight-hbase-tutorial-get-started-linux.md)
 ## [開始使用 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)
+## [開始使用互動式 Hive 預覽](hdinsight-hadoop-use-interactive-hive.md)
 ## [開始使用 Kafka 預覽](hdinsight-apache-kafka-get-started.md)
 ## [Hadoop 沙箱](hdinsight-hadoop-emulator-get-started.md)
 ## [Data Lake 工具與 Hortonworks 沙箱](hdinsight-hadoop-emulator-visual-studio.md)
@@ -224,6 +224,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 

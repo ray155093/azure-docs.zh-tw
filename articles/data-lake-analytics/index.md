@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何利用 Data Lake Analytics 進行巨量資料分析。 教學課程會示範如何執行批次、即時和互動式分析，以及如何撰寫 U-SQL 查詢。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 4a9b9a0aef993055e0c5400a15918a05491509eb
+ms.sourcegitcommit: 84b03eb578df1a4122b18a01c0ffba8558adc088
+ms.openlocfilehash: f36a830ede202a7519d46fa9f12299dcec4c8130
 
 ---
 # <a name="data-lake-analytics-documentation"></a>Data Lake Analytics 文件
 
-Azure Data Lake Analytics 是一個全新的服務，其目的是為了讓巨量資料分析更加容易。 此服務可讓您專注於撰寫、執行和管理工作，而非操作分散式基礎結構。 無需部署、設定及調整硬體，您只需寫入查詢便可轉換資料並擷取寶貴的深入見解。 您只需針對所需的功能設定級別，此項分析服務便可立即處理任何規模的工作。 只有在工作進行時您才需要支付費用，十分符合成本效益。 分析服務支援 Azure Active Directory，讓您只需管理存取權及角色，且其與您的內部部署身分識別系統整合。 分析服務支援還包括 U-SQL，該語言可將 SQL 的優勢與使用者程式碼的運算能力結合在一起。 U-SQL 的可調整分散式執行階段可讓您有效地分析資料，範圍遍及存放區以及 Azure、Azure SQL Database 以及 Azure SQL 資料倉儲中的 SQL Server。
+了解如何使用 Data Lake Analytics 來執行擴充至大規模資料集的巨量資料分析作業。 教學課程和其他文件會示範如何建立及管理批次、即時和互動式分析作業，以及如何使用 U-SQL 語言進行查詢。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -231,6 +232,6 @@ Azure Data Lake Analytics 是一個全新的服務，其目的是為了讓巨量
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

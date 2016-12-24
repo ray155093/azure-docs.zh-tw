@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何建立 Windows 虛擬機器。 文件可協助您規劃、部署和管理雲端中的虛擬機器計算環境。"
 translationtype: Human Translation
-ms.sourcegitcommit: cd8dfa8b436cd165b3438a1823a571feebb0f4f4
-ms.openlocfilehash: 0a2b4c08e5da4d9c16e12f33c5f1a3f9ae863498
+ms.sourcegitcommit: 0970a23966dc099fe4d145ddc66f9a73c109e8a1
+ms.openlocfilehash: 1c56e72a39ff0ea47dcda600b61c937691c63dab
 
 ---
-#<a name="windows-virtual-machines-documentation"></a>Windows 虛擬機器文件
+# <a name="windows-virtual-machines-documentation"></a>Windows 虛擬機器文件
 
-Azure 虛擬機器 (VM) 是由 Azure 所提供的隨選且可調整的數種運算資源類型之一。 一般而言，當您對於運算環境所需的控制權比其他選擇可提供的還要多時，則您會選擇 VM。 Azure VM 讓您能夠有彈性地進行虛擬化，而不需購買並維護執行它的實體硬體。 而且，您可以掌控在 VM 上執行之軟體的設定、修補及安裝。
+了解如何建立 Windows 虛擬機器。 教學課程、API 參考和其他文件可協助您規劃、部署和管理雲端中的虛擬機器計算環境。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -158,6 +159,6 @@ Azure 虛擬機器 (VM) 是由 Azure 所提供的隨選且可調整的數種運�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

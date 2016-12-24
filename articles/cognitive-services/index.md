@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何將智慧功能新增至您的應用程式，例如辨識、語音和語言分析。 取得快速入門指南和 API 參考。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: f59bb52f11334d93bbc6cf655b7f790a58a3ebfd
+ms.sourcegitcommit: d08cbd179ffb64630a37dd04e33ae50dfda3c615
+ms.openlocfilehash: 9e31044fb3be93befb18939210e0bc703462fbd6
 
 ---
 #<a name="cognitive-services-documentation"></a>辨識服務文件
 
-辨識服務 (預覽) 是一系列的 API，可以用來啟用應用程式中的自然和內容互動。  辨識服務提供語言、語音、視覺、搜尋和知識 API。
+了解如何透過辨識服務，在您的應用程式中啟用自然互動與關聯式互動。 快速入門教學課程和 API 參考可協助您併入文字、語音、辨識和搜尋的人工智慧功能。 
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -68,52 +69,31 @@ ms.openlocfilehash: f59bb52f11334d93bbc6cf655b7f790a58a3ebfd
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Azure PowerShell 參考</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager/azurerm.cognitiveservices/v0.4.1/azurerm.cognitiveservices">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-
     <li>
-        <a href="https://msdn.microsoft.com/library/azure/mt416943">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>辨識服務受管理的參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-
-    <li>
-        <a href="/rest/api/cognitiveservices">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>辨識服務 REST API</p>
+                        <p><a href="https://docs.microsoft.com/rest/api/cognitiveservices/">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
 </ul>
 
@@ -127,6 +107,6 @@ ms.openlocfilehash: f59bb52f11334d93bbc6cf655b7f790a58a3ebfd
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 
