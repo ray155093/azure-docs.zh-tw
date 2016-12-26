@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "教學課程、API 參考和其他文件會示範如何使用雲端服務來裝載及執行高度可用且可調整的雲端應用程式和 API。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 4985185ad8cb4a21e05d4668458e82411cd88ee0
+ms.sourcegitcommit: 2b32d1a06f7db06ad3f443548b33d3c8e2032a9e
+ms.openlocfilehash: 69bcbae09192ecbb6b375bac522b433f8cd5391f
 
 ---
 # <a name="cloud-services-documentation"></a>雲端服務文件
 
-雲端服務是平台即服務 (PaaS) 實作的一個範例。 它能夠支援可調整、可靠且具有操作成本效益的應用程式。 使用雲端服務，您擁有虛擬化的優點，但您也可以控制虛擬機器以設定、修補和安裝軟體。  
+了解如何使用雲端服務來裝載及執行高度可用且可調整的雲端應用程式和 API。  教學課程、API 參考和其他文件會示範如何管理虛擬機器主機以及設定、修補和安裝軟體。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -125,6 +126,6 @@ ms.openlocfilehash: 4985185ad8cb4a21e05d4668458e82411cd88ee0
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

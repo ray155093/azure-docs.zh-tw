@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何將負載平衡器使用於應用程式的網路效能。 管理虛擬機器和雲端資源以及跨單位虛擬網路的流量。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: 8b95ce7f93293a25db4df5858209902ba6347591
+ms.sourcegitcommit: e62704476642d8a519b7bd8b9b101b47ab42e08c
+ms.openlocfilehash: 476eb9f4934d35a808fdd70b6443822eb0a7cfa7
 
 ---
 #<a name="load-balancer-documentation"></a>負載平衡器文件
 
-Azure Load Balancer 可為您的應用程式提供高可用性和網路效能。  您可以設定負載平衡器，針對虛擬機器的連入網際網路流量、雲端資源之間的流量、跨單位虛擬網路中的流量，或特定虛擬機器的外部流量進行負載平衡。
+了解如何設定負載平衡器，為您的應用程式提供高可用性和網路效能。 文件會示範如何對虛擬機器和雲端資源以及跨單位虛擬網路的流量進行負載平衡。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -141,6 +142,6 @@ Azure Load Balancer 可為您的應用程式提供高可用性和網路效能。
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用事件中樞，從一組廣泛平台上連接的 IoT 裝置和應用程式，每秒擷取數百萬個事件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: 8244f410fa3337ae161657fe11ae5db2a2f378cd
+ms.sourcegitcommit: bedc8c16671de6071383659697ecd932e14cf3ba
+ms.openlocfilehash: 3d404f115c9a21c7ea62fb485a2129bca9de5c6c
 
 ---
 #<a name="event-hubs-documentation"></a>事件中樞文件
 
-事件中樞是可高度調整的資料輸入服務，每秒可擷取數百萬個事件，可讓您處理和分析連接的裝置和應用程式所產生的大量資料。 事件中樞能做為事件管線的「大門」，一旦收集的資料進入事件中樞，它可以使用任何即時分析提供者或任何批次或儲存體配接器轉換及儲存資料。
+了解如何使用事件中樞，從連接的 IoT 裝置和應用程式，每秒收集和管理數百萬個事件。 教學課程、API 參考和其他文件會示範如何針對一組廣泛平台上的事件設定可調整的擷取。
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -125,6 +126,6 @@ ms.openlocfilehash: 8244f410fa3337ae161657fe11ae5db2a2f378cd
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

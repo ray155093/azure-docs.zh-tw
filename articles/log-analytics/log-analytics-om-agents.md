@@ -74,7 +74,7 @@ ms.openlocfilehash: 961a3867362d14ab7b6ff99ce4002380d763082f
 1. 開啟 Operations Manager 主控台，然後選取 [ **管理** ] 工作區。
 2. 展開 Operations Management Suite，然後按一下 [連接] 。
 3. 在 [OMS 連線] 檢視中，按一下 [設定 Proxy 伺服器] 。
-4. 在 [Operations Management Suite 精靈：Proxy 伺服器] 頁面上，選取 [使用 Proxy 伺服器來存取 Operations Management Suite]，然後輸入具有連接埠號碼的 URL (例如，http://corpproxy:80)，然後按一下 [完成]。
+4. 在 [Operations Management Suite 精靈：Proxy 伺服器] 頁面上，選取 [使用 Proxy 伺服器來存取 Operations Management Suite]，然後輸入具有連接埠號碼的 URL (例如， http://corpproxy:80 )，然後按一下 [完成]。
 
 如果需要驗證您的 Proxy 伺服器，請執行下列步驟來設定認證和設定，而設定需要傳播到將向管理群組中 OMS 回報的受管理電腦。
 

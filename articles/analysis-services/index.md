@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何在雲端使用 Analysis Services 設定資料模型。 文件會示範如何使用表格式資料來建立企業 BI 解決方案。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: a961c353af047f9d0bb6bdbc82cf262b78915afa
+ms.sourcegitcommit: fad85d382ef508b65b57559f7f52e079caae9363
+ms.openlocfilehash: 40c79ea2a68c69352d7f14bd138f8131b3b01da9
 
 ---
 # <a name="analysis-services-documentation"></a>Analysis Services 文件
 
-Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Services 中之分析引擎所建置，其可提供企業級的雲端資料模型。
+了解如何使用 Analysis Services 設定和管理資料模型。 教學課程和其他文件會示範如何使用表格式資料，在雲端或內部部署環境建立企業級 BI 解決方案。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -29,7 +30,7 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/">
+        <a href="https://azure.microsoft.com/documentation/videos/index/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -76,31 +77,19 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/powershell/resourcemanager">Azure PowerShell</a></p>
+                        <p><a href="/powershell/resourcemanager">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>語言</h3>
-                        <p><a href="/azure/analysis-services/analysis-services-datasource">資料來源連線</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/analysisservices/">REST API</a></p>
+                        <p><a href="/rest/api/analysisservices/">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
@@ -120,6 +109,6 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

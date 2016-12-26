@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用自動化來自動進行程序和組態管理，以節省時間並提升日常管理工作的可靠性。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: c9444c341bc5746c96719e6ebfa464f294adf2f8
+ms.sourcegitcommit: 9f7b84331bd0575062518834ce1cd3db60fa6289
+ms.openlocfilehash: 98ddde79d422b692a1ded866fb12061bf942fc8a
 
 ---
 # <a name="automation-documentation"></a>自動化文件
 
-Azure 自動化可讓使用者將執行於雲端環境中的手動、長時間執行、易發生錯誤且重複性高的工作自動化。 它可以節省時間並提高日常管理工作的可靠性，甚至將它們排程為定期自動執行。
+了解如何使用自動化來自動執行程序和組態管理，以節省時間並提升日常管理工作的可靠性。 教學課程、API 參考和其他文件會示範如何使用 Runbook 自動執行程序，或使用「期望狀態設定」自動進行組態管理。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -175,6 +176,6 @@ Azure 自動化可讓使用者將執行於雲端環境中的手動、長時間�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

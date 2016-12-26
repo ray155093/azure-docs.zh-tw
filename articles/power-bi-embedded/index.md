@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何將 Power BI 資料視覺效果和互動式報表內嵌到應用程式中。 教學課程、API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: e17065b92c3bce2463df283f82efae5965c5c02e
+ms.sourcegitcommit: 531e3606330a55563ae77d18d5fd270d799d6d30
+ms.openlocfilehash: 08270fca90bb74f166c94e0f4acc406bca936eb8
 
 ---
 # <a name="power-bi-embedded-documentation"></a>Power BI Embedded 文件
 
-Power BI Embedded 是一項 Azure 服務，可讓應用程式開發人員將互動式 Power BI 報告加入至自己的應用程式。 Power BI Embedded 會與現有的應用程式一同運作，而不需要重新設計或變更使用者登入的方式。
+了解如何利用 Power BI Embedded 將資料視覺效果和互動式報表新增至應用程式。 教學課程、API 參考和其他文件會示範如何順暢地將 Power BI 報表和儀表板內嵌至應用程式中。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -29,7 +30,7 @@ Power BI Embedded 是一項 Azure 服務，可讓應用程式開發人員將互�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=power-bi-embedded">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=power-bi-embedded">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -86,54 +87,47 @@ Power BI Embedded 是一項 Azure 服務，可讓應用程式開發人員將互�
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/resourcemanager/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Power BI Embedded PowerShell Cmdlet</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager/azurerm.powerbiembedded/v2.3.0/azurerm.powerbiembedded">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
-    </li>
-     <li>
-        <a href="/dotnet/api">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>Power BI Embedded 受管理的參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
     </li>
     <li>
-        <a href="/rest/api/powerbiembedded/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.azure.management.powerbiembedded">.NET</a></p>
+                        <p><a href="https://www.nuget.org/profiles/powerbi">.NET SDK 下載</a></p>
+                        <p><a href="https://github.com/Microsoft/PowerBI-JavaScript">JavaScript</a></p>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Power BI Embedded REST API</p>
+                        <p><a href="/rest/api/powerbiembedded/">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-<ul>
-
-
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/power-bi-embedded.pdf">
@@ -144,6 +138,7 @@ Power BI Embedded 是一項 Azure 服務，可讓應用程式開發人員將互�
 </div>
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Dec16_HO3-->
 
 

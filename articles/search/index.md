@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何將強大的搜尋功能 (包括活動監視) 新增至自訂 Web 或行動應用程式。 API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3273e748265fa23efadd010bb5f0bc9ce43223b6
-ms.openlocfilehash: dae331e93ab1682741a34758172d7c8cdb38aec5
+ms.sourcegitcommit: 8a89b85795c0707d7fda9480c53db4a3469560d7
+ms.openlocfilehash: 324584a63e6f76b9a2aed98d11f2a66fefac69c3
 
 ---
 # <a name="azure-search-documentation"></a>Azure 搜尋服務文件
 
-Azure 搜尋服務是受管理的雲端搜尋服務，協助您在自訂的應用程式中建置功能強大的搜尋經驗，並透過入口網站檢視來監視服務、索引和查詢活動。 主要功能包括涵蓋多語言的可調整全文搜尋、地區搜尋、篩選及多面向導覽、輸入查詢、結果反白及自訂分析。
+了解如何使用 Azure 搜尋服務 (受管理的雲端搜尋服務)，將搜尋功能新增至自訂 Web 或行動應用程式。 文件、API 參考和其他文件會示範如何新增涵蓋多語言的可調整全文搜尋、地區搜尋、篩選及多面向導覽、輸入查詢、命中結果醒目提示及自訂分析器。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -29,7 +30,7 @@ Azure 搜尋服務是受管理的雲端搜尋服務，協助您在自訂的應�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=search">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=search">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -120,69 +121,38 @@ Azure 搜尋服務是受管理的雲端搜尋服務，協助您在自訂的應�
     </li>
 </ul>
 
-
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/dotnet/api/microsoft.azure.search">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>服務 .NET API</p>
-                    </div>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.azure.search">.NET</a></p>
+                        <p><a href="/dotnet/api/microsoft.azure.management.search">.NET 管理</a></p>
+                        <p><a href="/java/api/com.microsoft.azure.management.search">Java</a></p>
+                   </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/dotnet/api/microsoft.azure.management.search">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>管理 .NET API</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="/rest/api/searchservice/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>服務 REST API</p>
+                        <p><a href="/rest/api/searchservice">REST API 參考</a></p>
+                        <p><a href="/rest/api/searchmanagement">REST (管理) API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-    <li>
-        <a href="/rest/api/searchmanagement/">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>REST</h3>
-                        <p>管理 REST API</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-<ul>
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/search.pdf">
@@ -194,6 +164,6 @@ Azure 搜尋服務是受管理的雲端搜尋服務，協助您在自訂的應�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

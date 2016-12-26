@@ -3,8 +3,8 @@ title: "在五分鐘內開始使用 Azure 儲存體 | Microsoft Docs"
 description: "使用 Azure 儲存體快速入門、Visual Studio 和 Azure 儲存體模擬器，快速掌握 Microsoft Azure Blob、資料表和佇列。 在五分鐘內執行第一個 Azure 儲存體應用程式"
 services: storage
 documentationcenter: .net
-author: tamram
-manager: carmonm
+author: mmacy
+manager: timlt
 editor: tysonn
 ms.assetid: 582f76f8-c814-4a69-8a5c-1fd0e0d5d8f2
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: get-started-article
-ms.date: 11/17/2016
-ms.author: tamram
+ms.date: 12/08/2016
+ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 1a6d1497dee72a49705e15bd2907a42f744bd3b5
-ms.openlocfilehash: 8b32412b2dcfb20f3cb1f858fa4ae4230d72c7cd
+ms.sourcegitcommit: 12ce6b6bccf3ea2aa2945ddd775716f29cf01e1f
+ms.openlocfilehash: 47b2623eb3b83220ef8e3cfafde06dab3ac3d22e
 
 
 ---
@@ -32,10 +32,10 @@ ms.openlocfilehash: 8b32412b2dcfb20f3cb1f858fa4ae4230d72c7cd
 1. 若要編譯及建置應用程式，您必須先在電腦上安裝 [Visual Studio](https://www.visualstudio.com/) 的版本。
 2. 安裝最新版 [Azure SDK for .NET](https://azure.microsoft.com/downloads/)。 此 SDK 包含 Azure 快速入門範例專案、Azure 儲存體模擬器和 [Azure Storage Client Library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。
 3. 請確定您已在電腦上安裝 [.NET Framework 4.5](http://www.microsoft.com/download/details.aspx?id=30653) ，因為此為我們在本教學課程使用的 Azure 快速入門範例專案所需。
-   
+
     如果不確定您的電腦中安裝哪個版本的 .NET Framework，請參閱 [如何：判斷安裝的 .NET Framework 版本](https://msdn.microsoft.com/vstudio/hh925568.aspx)。 或者，按 [開始] 按鈕或 Windows 鍵，輸入 [控制台]。 然後，按一下 [程式] > [程式和功能]，並判斷已安裝的程式之間是否列出 .NET Framework 4.5。
 4. 您將需要 Azure 訂用帳戶和 Azure 儲存體帳戶。
-   
+
    * 若要取得 Azure 訂用帳戶，請參閱[免費試用版](https://azure.microsoft.com/pricing/free-trial/)、[購買選項](https://azure.microsoft.com/pricing/purchase-options/)和[會員優惠](https://azure.microsoft.com/pricing/member-offers/) (適用於 MSDN、Microsoft 合作夥伴網路、BizSpark 和其他 Microsoft 方案的成員)。
    * 若要在 Azure 中建立儲存體帳戶，請參閱 [如何建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)。
 
@@ -48,7 +48,7 @@ ms.openlocfilehash: 8b32412b2dcfb20f3cb1f858fa4ae4230d72c7cd
     a. 選擇下列其中一個範本：**Azure 儲存體：Blob**、**Azure 儲存體：檔案**、**Azure 儲存體：佇列**或 **Azure 儲存體：資料表**。
     b. 確定已選取 [.NET Framework 4.5.2] 來做為目標架構。
     c. 指定您專案的名稱，並建立新的 Visual Studio 方案，如下所示：
-     
+
     ![Azure 快速入門][Image1]
 
 您可能想要在執行應用程式前檢閱原始程式碼。 若要檢閱程式碼，請在 Visual Studio 中選取 [檢視] 功能表上的 [方案總管]。 然後，按兩下 Program.cs 檔案。
@@ -56,13 +56,13 @@ ms.openlocfilehash: 8b32412b2dcfb20f3cb1f858fa4ae4230d72c7cd
 現在，執行範例應用程式：
 
 1. 在 Visual Studio 中，選取 [檢視] 功能表上的 [方案總管]。 開啟 App.config 檔案並註解化 Azure 儲存體模擬器的連接字串：
-   
+
    `<!--<add key="StorageConnectionString" value = "UseDevelopmentStorage=true;"/>-->`
 
 2. 取消註解 Azure 儲存體服務的連接字串，並提供 App.config 檔案中的儲存體帳戶名稱和存取金鑰：
-   
+
    `<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=[AccountName];AccountKey=[AccountKey]"`
-   
+
    若要擷取儲存體帳戶存取金鑰，請參閱 [管理儲存體存取金鑰](storage-create-storage-account.md#manage-your-storage-access-keys)。
 3. 提供 App.config 檔案中的儲存體帳戶名稱和存取金鑰之後，在 [檔案] 功能表上，按一下 [全部儲存] 以儲存所有的專案檔案。
 4. 在 [建置] 功能表上，按一下 [建置方案]。
@@ -79,11 +79,11 @@ ms.openlocfilehash: 8b32412b2dcfb20f3cb1f858fa4ae4230d72c7cd
     a. 選擇下列其中一個範本：**Azure 儲存體：Blob**、**Azure 儲存體：檔案**、**Azure 儲存體：佇列**或 **Azure 儲存體：資料表**。
     b. 確定已選取 [.NET Framework 4.5.2] 來做為目標架構。
     c. 指定您專案的名稱，並建立新的 Visual Studio 方案，如下所示：
-   
+
     ![Azure 快速入門][Image1]
 
 4. 在 Visual Studio 中，選取 [檢視] 功能表上的 [方案總管]。 如果您已經新增其中一個，請開啟 App.config 檔案，並註解化 Azure 儲存體帳戶的連接字串。 然後取消註解化 Azure 儲存體模擬器的連接字串：
-   
+
    `<add key="StorageConnectionString" value = "UseDevelopmentStorage=true;"/>`
 
 您可能想要在執行應用程式前檢閱原始程式碼。 若要檢閱程式碼，請在 Visual Studio 中選取 [檢視] 功能表上的 [方案總管]。 然後，按兩下 Program.cs 檔案。
@@ -112,6 +112,6 @@ ms.openlocfilehash: 8b32412b2dcfb20f3cb1f858fa4ae4230d72c7cd
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

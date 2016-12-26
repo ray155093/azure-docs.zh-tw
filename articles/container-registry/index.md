@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何建立和維護容器登錄，以透過受管理的 Docker 登錄服務來儲存您的部署映像。 教學課程、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 2e77ba043efd03ecffd3e5e786046dedbed58877
+ms.sourcegitcommit: ab80e1ef9771caa4369863c0aff1cee2c3055830
+ms.openlocfilehash: c42d5fe49d099fed7b5df9901c313832d966e340
 
 ---
 
 # <a name="azure-container-registry-documentation"></a>Azure Container Registry 文件
 
-Azure Container Registry (預覽) 是用於裝載容器映像的私用登錄。 您可以使用 Azure Container Registry，針對所有類型的容器部署來儲存 Docker 格式化映像。 Azure Container Registry 與 Azure Container Service 中裝載的 orchestrators 整合良好，包括 Docker Swarm、DC/OS 和 Kubernetes。 
+了解如何使用 Container Registry 來儲存和管理所有容器部署類型的映像。 教學課程、REST API 參考和其他文件會示範如何透過此受管理的 Docker 登錄服務來建立和維護容器登錄。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -98,6 +99,7 @@ Azure Container Registry (預覽) 是用於裝載容器映像的私用登錄。 
 </ul>
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Dec16_HO3-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何自訂 Azure 服務中的安全性選項，以符合您在雲端中部署服務和資料的需求。"
 translationtype: Human Translation
-ms.sourcegitcommit: d06c292b36ef6dd6bd4f858603debfe93d498cb6
-ms.openlocfilehash: 622e8ccb62538110991c4f882ada9014ea03ffb4
+ms.sourcegitcommit: 07febed306b53cc62c882f3f7865284e96875bf8
+ms.openlocfilehash: be29bc97d4fcf8e0c1efa655d05126a3f49d9636
 
 ---
 # <a name="security-documentation"></a>安全性文件
 
-Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以百萬計的客戶，並提供可靠的基礎供企業符合其安全性需求。 此外，Azure 也為您提供各式各樣可設定的安全性選項及加以控制的功能，讓您可以自訂安全性以符合部署的特殊需求。
+了解如何使用 Azure 安全性來保護雲端中的服務和資料。 教學課程和其他文件可協助您在 Azure 服務中自訂安全性選項，以符合您的部署需求。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -114,6 +115,6 @@ Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

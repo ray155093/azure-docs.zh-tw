@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解 Hadoop on HDInsight。 文件會示範如何使用 Hadoop、Spark、HBase、R-Server 等來處理、分析及深入解析巨量資料。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 28b6ebfae16a5c2e119fc4f1af0dcee6a348d47f
+ms.sourcegitcommit: a2902740659bb6d6246d1e44023bd27fa38aff91
+ms.openlocfilehash: 5cf7e165b9cd31fcf5bd03d03b6e1eb3d9cd46c7
 
 ---
 #<a name="azure-hdinsight-documentation"></a>Azure HDInsight 文件
 
-Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HDInsight 讓 Hortonworks 資料平台 (HDP) 散發中的 Hadoop 元件可在雲端取得，還可部署及佈建具備可靠性和可用性的受管理叢集。  Azure HDInsight 提供 Apache Hadoop、Spark、HBase 和 Storm 的叢集設定。  您也可以使用自訂叢集搭配指令碼動作。  
+了解如何在雲端使用 Hadoop on HDInsight 來分析串流或歷史資料。 教學課程和其他文件會示範如何建立叢集、處理和分析巨量資料，以及如何使用 Hadoop、Spark、HBase、R-Server、Storm 和 Hadoop 生態系統中的其他技術來開發解決方案。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -176,6 +177,6 @@ Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HD
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

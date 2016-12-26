@@ -31,7 +31,7 @@ sql-database-service-tiers.md
 | 每資料庫的 eDTU 上限 | {10,20,<br>50} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | {10,20,<br>50,100} | 
 ||||||||
 
-### <a name="standard-elastic-pool-limits-continued-"></a>標準彈性集區限制 (續) **
+### <a name="standard-elastic-pool-limits-continued"></a>標準彈性集區限制 (續) 
 
 | 集區大小 (eDTU)  |  **1200** | **1600** | **2000** | **2500** | **3000** |
 |:---|---:|---:|---:| ---: | ---: |
@@ -57,7 +57,7 @@ sql-database-service-tiers.md
 | 每資料庫的 eDTU 上限 | {25,50,75,<br>125} | {25,50,75,<br>125,250} | {25,50,75,<br>125,250,500} | {25,50,75,<br>125,250,500,<br>1000} | {25,50,75,<br>125,250,500,<br>1000,1500} |  
 ||||||||
 
-### <a name="premium-elastic-pool-limits-continued-"></a>高階彈性集區限制 (續) **
+### <a name="premium-elastic-pool-limits-continued"></a>高階彈性集區限制 (續) 
 
 | 集區大小 (eDTU)  |  **2000** | **2500** | **3000** | **3500** | **4000** |
 |:---|---:|---:|---:| ---: | ---: | 
@@ -72,9 +72,8 @@ sql-database-service-tiers.md
 
 \* 彈性資料庫會共用集區儲存體，所以資料庫儲存體的大小會限制為以下兩者中較小的一個：剩餘的集區儲存體或每個資料庫的儲存體上限
 
-\** 標準彈性集區的 3000 eDTU 集區大小和進階彈性集區的 4000 eDTU 集區大小，目前只可透過 PowerShell 和 REST API 取得。 這些集區大小即將在 Azure 入口網站推出。 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

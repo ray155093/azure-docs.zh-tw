@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Azure Redis 快取 (安全的資料快取和訊息代理程式)，讓應用程式快速存取資料。 教學課程、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 4cd50960b30990f3220788e6613a2815d8e28612
-ms.openlocfilehash: 026c452cd784da14a901cab8e5aecaafda448418
+ms.sourcegitcommit: 4e66f89a5a63cafc8cc9e6af957f27172957c934
+ms.openlocfilehash: cd838fe6027f2c097850c29308630d2086243985
 
 ---
 #<a name="redis-cache-documentation"></a>Redis 快取文件
 
-Azure Redis 快取採用熱門的開放原始碼「Redis 快取」。 它可讓您從 Azure 內的任何應用程式存取由 Microsoft 管理的安全、專用 Redis 快取。 Azure Redis 快取可提供高輸送量且一致的低延遲資料存取，讓您建置速度快，並可靈活調整的 Azure 應用程式。
+了解如何使用 Azure Redis 快取 (安全的資料快取和訊息代理程式)，為應用程式提供高輸送量且低延遲的資料存取。 教學課程、API 參考和其他文件會示範如何從 Azure 上的任何應用程式使用 Redis 快取。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -193,6 +194,6 @@ Azure Redis 快取採用熱門的開放原始碼「Redis 快取」。 它可讓�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

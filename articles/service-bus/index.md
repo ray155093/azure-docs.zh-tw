@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何設定傳訊功能，以連接橫跨內部部署和雲端環境的應用程式和服務。  教學課程、影片、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: 0ecc51f19240ecfa49852ed1eafcf78d1227af16
+ms.sourcegitcommit: 37d0de5343692516cc9644d817384ad31f58fb40
+ms.openlocfilehash: a0b419acc990e3973432540fb9907e31ddedf41c
 
 ---
 #<a name="service-bus-documentation"></a>服務匯流排文件
 
-服務匯流排為企業傳訊及轉送通訊提供雲端通訊的能力，讓您可以連接內部部署解決方案與雲端。 
+了解如何使用服務匯流排來連接內部部署和雲端環境。 教學課程、影片、API 參考和其他文件會示範如何設定應用程式與服務之間的雲端傳訊。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -244,6 +245,6 @@ ms.openlocfilehash: 0ecc51f19240ecfa49852ed1eafcf78d1227af16
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

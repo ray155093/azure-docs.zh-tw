@@ -4,7 +4,7 @@ description: "Azure 佇列可在應用程式元件之間提供可靠的非同步
 services: storage
 documentationcenter: .net
 author: robinsh
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: c0f82537-a613-4f01-b2ed-fc82e5eea2a7
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 10/12/2016
+ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: bc97472a07ac4c27c60fbe2cb803f2360a3362c4
-ms.openlocfilehash: 93c1d5261e7826258250c4547e4e287bc7e13d1e
+ms.sourcegitcommit: 1fea38ed4caacfee0c69d024b1ea6dbdcbccaf1d
+ms.openlocfilehash: d55b72ac50072a36ecf4547a478ed092ea7aa68a
 
 ---
 
@@ -148,7 +148,7 @@ CloudQueue queue = queueClient.GetQueueReference("myqueue");
 CloudQueueMessage message = queue.GetMessage();
 message.SetMessageContent("Updated contents.");
 queue.UpdateMessage(message,
-    TimeSpan.FromSeconds(60.0),  // Make it visible for another 60 seconds.
+    TimeSpan.FromSeconds(60.0),  // Make it invisible for another 60 seconds.
     MessageUpdateFields.Content | MessageUpdateFields.Visibility);
 ```
 
@@ -280,15 +280,16 @@ queue.Delete();
   * [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md) 以儲存非結構化資料。
   * [使用 .NET (C#) 連接到 SQL Database ](../sql-database/sql-database-develop-dotnet-simple.md) 以儲存關聯式資料。
 
-[下載並安裝 Azure SDK for .NET]: /develop/net/
-[.NET 用戶端程式庫參考]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
-[在 Visual Studio 中建立 Azure 專案]: http://msdn.microsoft.com/library/azure/ee405487.aspx
-[Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
+[Download and install the Azure SDK for .NET]: /develop/net/
+[.NET client library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
+[Creating a Azure Project in Visual Studio]: http://msdn.microsoft.com/library/azure/ee405487.aspx
+[Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
 [OData]: http://nuget.org/packages/Microsoft.Data.OData/5.0.2
 [Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
-[空間]: http://nuget.org/packages/System.Spatial/5.0.2
+[Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
 
 
-<!--HONumber=Nov16_HO4-->
+
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何開發邏輯應用程式，以便自動執行及簡化橫跨內部部署和雲端的商務工作流程。 教學課程、範本和 API 參考。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: 87c52e5ee76ed7848061315de8c8ba8a36b0d349
+ms.sourcegitcommit: 09066e463fe42bb845ccadc98cd79ed1c5881462
+ms.openlocfilehash: e8ab6aecb3d614a7b42e0524382022eabf66ea36
 
 ---
 # <a name="logic-apps-documentation"></a>Logic Apps 文件
 
-Logic Apps 是設計工具，將處理程序模型化和自動化至工作流程。 雲端和內部部署中有 許多連接器可快速整合各項服務和通訊協定。 邏輯應用程式是以觸發程序為開端 (如「當帳戶加入至 Dynamics CRM 時」)，而在觸發後可以開始處理各種組合的動作、轉換和條件邏輯。
+了解如何開發 Logic Apps，以簡化和整合雲端中可調整的工作流程。 教學課程、範本和 API 參考會協助您設計及部署橫跨內部部署和雲端的自動化商務工作流程。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -154,6 +155,7 @@ Logic Apps 是設計工具，將處理程序模型化和自動化至工作流程
 </div>
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Dec16_HO3-->
 
 

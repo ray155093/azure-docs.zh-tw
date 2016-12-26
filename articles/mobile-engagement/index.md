@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何深入解析行動應用程式使用量和即時使用者區隔，以及如何啟用內容感知的推播通知及應用程式內的傳訊功能。"
 translationtype: Human Translation
-ms.sourcegitcommit: 23e9c07934b0f4e74fa365de4c13fb978c8b6b84
-ms.openlocfilehash: b8268775b09c6b8b50f3f7e089b239240e95c516
+ms.sourcegitcommit: 2dbe8c3bf665249af4a1626e38f6465d2db32a0b
+ms.openlocfilehash: fed0048ab3a7101c4461ffa14511a26ecd7a36eb
 
 ---
 # <a name="mobile-engagement-documentation"></a>Mobile Engagement 文件
 
-Azure Mobile Engagement 是軟體即服務 (SaaS) 的使用者參與平台，可針對應用程式使用量和使用者區隔提供資料導向的深入解析，以及啟用推播通知及應用程式內的傳訊功能。
+了解如何透過 Mobile Engagement 來增加行動應用程式的使用量、保留期和獲利。 教學課程、SDK 和其他文件會示範如何深入解析應用程式使用量和即時使用者區隔，以及如何啟用內容感知的推播通知及應用程式內的傳訊功能。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -29,7 +30,7 @@ Azure Mobile Engagement 是軟體即服務 (SaaS) 的使用者參與平台，可
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=mobile-engagement">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=mobile-engagement">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -176,6 +177,24 @@ Azure Mobile Engagement 是軟體即服務 (SaaS) 的使用者參與平台，可
 
 ---
 
+<h2>參考</h2>
+<ul class="panelContent cardsW">
+    <li>
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>語言</h3>
+                        <p><a href="https://www.nuget.org/packages/Microsoft.Azure.Management.Engagement">.NET</a></p>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+
+---
+
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/mobile-engagement.pdf">
         <div class="img"></div>
@@ -187,6 +206,6 @@ Azure Mobile Engagement 是軟體即服務 (SaaS) 的使用者參與平台，可
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

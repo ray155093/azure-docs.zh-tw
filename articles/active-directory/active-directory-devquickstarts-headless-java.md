@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Azure AD Java | Microsoft Docs
-description: 如何建立一個將使用者登入以存取 API 的Java 命令列應用程式。
+title: "開始使用 Azure AD Java | Microsoft Docs"
+description: "如何建立一個將使用者登入以存取 API 的Java 命令列應用程式。"
 services: active-directory
 documentationcenter: java
-author: brandwe
+author: xerners
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 51e1a8f9-6ff0-4643-a350-0ba794e26fd1
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,12 +14,16 @@ ms.devlang: java
 ms.topic: article
 ms.date: 09/16/2016
 ms.author: brandwe
+translationtype: Human Translation
+ms.sourcegitcommit: 1865043ca9c9019b9813f11eb4a55f7f16d79287
+ms.openlocfilehash: 0c7baee5b5d75186cbe41975fe0bd100d913dfc8
+
 
 ---
-# 使用 Java 命令列應用程式存取具有 Azure AD 的 API
+# <a name="using-java-command-line-app-to-access-an-api-with-azure-ad"></a>使用 Java 命令列應用程式存取具有 Azure AD 的 API
 [!INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
-Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直接，只需幾行的程式碼便可提供單一登入和登出。在 Java Web 應用程式中，您可以使用 Microsoft 的 ADAL4J 社群導向實作來完成這項作業。
+Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直接，只需幾行的程式碼便可提供單一登入和登出。  在 Java Web 應用程式中，您可以使用 Microsoft 的 ADAL4J 社群導向實作來完成這項作業。
 
   我們將在此處使用 ADAL4J 來執行下列動作：
 
@@ -34,25 +38,24 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 3. 使用 ADAL4J 程式庫向 Azure AD 發出登入和登出要求。
 4. 列印出使用者的相關資料。
 
-若要開始使用，請[下載應用程式基本架構](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)或[下載完整的範例](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)。您還需要一個可以註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
+若要開始使用，請[下載應用程式基本架構](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)或[下載完整的範例](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)。  您還需要一個可以註冊應用程式的 Azure AD 租用戶。  如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
 
-## 1\.向 Azure AD 註冊應用程式
+## <a name="1--register-an-application-with-azure-ad"></a>1.向 Azure AD 註冊應用程式
 若要啟用應用程式來驗證使用者，您必須先要在您的租用戶中註冊這個新的應用程式。
 
-* 登入 Azure 管理入口網站。
-* 在左側導覽中按一下 **Active Directory**。
+* 登入 [Azure 入口網站](https://portal.azure.com)。
 * 選取您要註冊應用程式的租用戶。
-* 按一下 [**應用程式**] 索引標籤，然後按一下最下面抽屜的 [新增]。
+* 在左側導覽中按一下 [Azure Active Directory]。
+* 按一下 [應用程式註冊] 索引標籤，然後按一下 [新增]。
 * 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
-  * 應用程式的 [**名稱**] 將對使用者說明您的應用程式
-  * [**登入 URL**] 是指應用程式的基底 URL。基本架構的預設值是 `http://localhost:8080/adal4jsample/`。
-  * [**應用程式識別碼 URI**] 是指應用程式的唯一識別碼。慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`http://localhost:8080/adal4jsample/`
-* 完成註冊後，AAD 會為您的應用程式指派一個唯一用戶端識別碼。您在後續章節中將會用到這個值，所以請從 [設定] 索引標籤中複製此值。
+  * 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式
+  * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是 `http://localhost:8080/adal4jsample/`。
+* 完成註冊後，AAD 會為您的應用程式指派唯一的應用程式識別碼。  您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
 
-進入入口網站後，為您的應用程式建立「應用程式密碼」並複製下來。稍後您將會用到此資訊。
+進入應用程式的入口網站後，從應用程式的 [設定] 頁面建立 [金鑰]，然後複製下來。  稍後您將會用到此資訊。
 
-## 2\.使用 Maven 設定您的應用程式以使用 ADAL4J 程式庫和必要條件
-在這裡，我們將設定 ADAL4J 以使用 OpenID Connect 驗證通訊協定。ADAL4J 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
+## <a name="2-set-up-your-app-to-use-adal4j-library-and-prerequisites-using-maven"></a>2.使用 Maven 設定您的應用程式以使用 ADAL4J 程式庫和必要條件
+在這裡，我們將設定 ADAL4J 以使用 OpenID Connect 驗證通訊協定。  ADAL4J 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
 
 * 在您的專案根目錄中，開啟/建立 `pom.xml` 並找到 `// TODO: provide dependencies for Maven`，然後以下列取代：
 
@@ -176,10 +179,10 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 
 
 
-## 3\.建立 java PublicClient 檔案
-如以上所述，我們將使用圖形 API 來取得有關所登入使用者的資料。為了讓我們順利進行，我們應該建立一個代表**目錄物件**的檔案以及一個代表**使用者**的個別檔案，如此便可以使用 Java 的 OO 模式。
+## <a name="3-create-the-java-publicclient-file"></a>3.建立 java PublicClient 檔案
+如以上所述，我們將使用圖形 API 來取得有關所登入使用者的資料。 為了讓我們順利進行，我們應該建立一個代表**目錄物件**的檔案以及一個代表**使用者**的個別檔案，如此便可以使用 Java 的 OO 模式。
 
-1. 建立名為 `DirectoryObject.java` 的檔案，我們將用它來儲存有關任何 DirectoryObject 的基本資料 (您稍後可以隨意使用它執行任何其他圖形查詢)。您可以從下面剪下/貼上：
+1. 建立名為 `DirectoryObject.java` 的檔案，我們將用它來儲存有關任何 DirectoryObject 的基本資料 (您稍後可以隨意使用它執行任何其他圖形查詢)。 您可以從下面剪下/貼上：
 
 ```Java
 import java.io.BufferedReader;
@@ -243,25 +246,29 @@ public class PublicClient {
 ```
 
 
-## 編譯並執行範例
-變更回根目錄，並執行下列命令來建置您剛剛使用 `maven` 組成的範例。這將會使用您針對相依性所撰寫的 `pom.xml` 檔案。
+## <a name="compile-and-run-the-sample"></a>編譯並執行範例
+變更回根目錄，並執行下列命令來建置您剛剛使用 `maven`組成的範例。 這將會使用您針對相依性所撰寫的 `pom.xml` 檔案。
 
 `$ mvn package`
 
-您的 `/targets` 目錄中現在應包含 `adal4jsample.war` 檔案。您可以在 Tomcat 容器中部署該檔案並造訪 URL
+您的 `/targets` 目錄中現在應包含 `adal4jsample.war` 檔案。 您可以在 Tomcat 容器中部署該檔案並造訪 URL
 
 `http://localhost:8080/adal4jsample/`
 
 > [!NOTE]
-> 使用最新的 Tomcat 伺服器部署 WAR 非常容易。只要瀏覽至 `http://localhost:8080/manager/` 並遵循上傳您的 '`adal4jsample.war` 檔案的指示即可。它會為您自動部署正確的端點。
-> 
-> 
+> 使用最新的 Tomcat 伺服器部署 WAR 非常容易。 只要瀏覽至 `http://localhost:8080/manager/` 並遵循上傳您的 adal4jsample.war 檔案的指示即可。 它會為您自動部署正確的端點。
+>
+>
 
-## 後續步驟
-恭喜！ 您現在有一個可運作的 Java 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。如果您還沒有這麼做，現在是將一些使用者植入租用戶的時候。
+## <a name="next-steps"></a>後續步驟
+恭喜！ 您現在有一個可運作的 Java 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。  如果您還沒有這麼做，現在是將一些使用者植入租用戶的時候。
 
-如需參考，[此處以 .zip 格式提供](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip)完整範例 (不含您的組態值)，您也可以從 GitHub 將其複製：
+如需參考， [此處以 .zip 格式提供](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip)完整範例 (不含您的組態值)，您也可以從 GitHub 將其複製：
 
 ```git clone --branch complete https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect.git```
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Nov16_HO5-->
+
+
