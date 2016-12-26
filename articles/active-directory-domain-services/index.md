@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Active Directory Domain Services 將 Azure 虛擬機器加入網域中 (而不需使用網域控制站)，以及利用群組原則管理這些虛擬機器。"
 translationtype: Human Translation
-ms.sourcegitcommit: 55dedcab5b8e62b3666cffcfc7d9a0a31c624784
-ms.openlocfilehash: d3a6b967921edad13479c615ebec8edc9e568458
+ms.sourcegitcommit: 5c25e7f81a4f2219c244044ea70416d1e0c63b4e
+ms.openlocfilehash: b05e7bfbc89de74937daa7daf578aa8a9bb39d64
 
 ---
 # <a name="active-directory-domain-services-documentation"></a>Active Directory Domain Services 文件
 
-Azure AD 網域服務 (DS) 提供受管理的網域服務，例如：加入網域、群組原則、LDAP、Kerberos/NTLM 驗證，與 Windows Server Active Directory 完全相容。  此服務可讓使用者以敏捷的方式部署各種不同的運算解決方案。
+了解如何使用 Active Directory Domain Services 將 Azure 虛擬機器加入網域中，而不需使用網域控制站。 教學課程和其他文件會示範如何使用群組原則來管理虛擬機器。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -168,6 +169,6 @@ Azure AD 網域服務 (DS) 提供受管理的網域服務，例如：加入網�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

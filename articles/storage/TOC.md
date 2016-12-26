@@ -107,14 +107,49 @@
 ## 傳送資料
 ### [將資料移入和移出儲存體](storage-moving-data.md)
 ### [AzCopy 命令列公用程式](storage-use-azcopy.md)
-### [Blob 儲存體的匯入/匯出服務](storage-import-export-service.md)
-
+### [使用匯入匯出服務](storage-import-export-service.md)
+### [使用匯入匯出工具](storage-import-export-tool-how-to.md)
+#### [設定匯入匯出工具](storage-import-export-tool-setup.md)
+#### [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import.md)
+##### [在匯入程序期間設定屬性和中繼資料](storage-import-export-tool-setting-properties-metadata-import.md)
+##### [針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
+##### [匯入作業的常用命令快速參考](storage-import-export-tool-quick-reference.md)
+#### [預覽匯出作業的磁碟機使用量](storage-import-export-tool-previewing-drive-usage-export-v1.md)
+#### [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)
+#### [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)
+#### [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)
+#### [針對匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
+#### [匯入匯出服務資訊清單檔案格式](storage-import-export-file-format-manifest.md)
+#### [匯入匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)
+#### [匯入匯出服務記錄檔格式](storage-import-export-file-format-log.md)
+### [使用匯入匯出工具 (v1)](storage-import-export-tool-how-to-v1.md)
+#### [設定匯入匯出工具](storage-import-export-tool-setup-v1.md)
+#### [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)
+##### [在匯入程序期間設定屬性和中繼資料](storage-import-export-tool-setting-properties-metadata-import-v1.md)
+##### [針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow-v1.md)
+##### [匯入作業的常用命令快速參考](storage-import-export-tool-quick-reference-v1.md)
+#### [預覽匯出作業的磁碟機使用量](storage-import-export-tool-previewing-drive-usage-export-v1.md)
+#### [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)
+#### [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)
+#### [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)
+#### [針對匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
+#### [匯入匯出服務資訊清單檔案格式](storage-import-export-file-format-manifest.md)
+#### [匯入匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)
+#### [匯入匯出服務記錄檔格式](storage-import-export-file-format-log.md)
+### [使用 Azure 匯入匯出服務 REST API](storage-import-export-using-the-rest-api.md)
+#### [建立匯入作業](storage-import-export-creating-an-import-job.md)
+#### [建立匯出作業](storage-import-export-creating-an-export-job.md)
+#### [擷取作業的狀態資訊](storage-import-export-retrieving-state-info-for-a-job.md)
+#### [列舉作業](storage-import-export-enumerating-jobs.md)
+#### [取消和刪除作業](storage-import-export-cancelling-and-deleting-jobs.md)
+#### [備份磁碟機資訊清單](storage-import-export-backing-up-drive-manifests.md)
+#### [匯入匯出作業的診斷和錯誤復原](storage-import-export-diagnostics-and-error-recovery.md)
 # 參考
 ## [PowerShell](/powershell/storage)
 ## [Azure CLI](/cli/azure/storage)
 ## .NET
 ### [資源管理員](/dotnet/api/microsoft.azure.management.storage)
-### [資料移動)](https://msdn.microsoft.com/en-us/library/azure/mt684990.aspx)
+### [資料移動](https://msdn.microsoft.com/en-us/library/azure/mt684990.aspx)
 ### [Blob、佇列、資料表和檔案](https://msdn.microsoft.com/library/azure/mt347887.aspx)
 ## [Java](/java/api/)
 ## [Node.js](http://azure.github.io/azure-storage-node)
@@ -123,7 +158,7 @@
 ## [C++](http://azure.github.io/azure-storage-cpp)
 ## [iOS](https://github.com/Azure/azure-storage-ios)
 ## [Android](http://azure.github.io/azure-storage-android)
-## [REST]
+## REST
 ### [Blob、佇列、資料表和檔案](/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference)
 ### [資源提供者](/rest/api/storagerp)
 ### [匯入/匯出](/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference)
@@ -166,6 +201,6 @@
 ### [iOS](https://github.com/Azure/azure-storage-ios)
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Azure StorSimple，這是一個整合式儲存體解決方案，可管理內部部署裝置與 Azure 雲端儲存體之間的儲存體工作。"
 translationtype: Human Translation
-ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
-ms.openlocfilehash: 42f5ac0bae68b967378b5e1a090f3b17e4efad20
+ms.sourcegitcommit: 24d70182b209126a71c6a9846136d4d31ab3b7ce
+ms.openlocfilehash: 4eb0e15f1030b4b1e987edc4fc2fa64e302b5851
 
 ---
 #<a name="storsimple-documentation"></a>StorSimple 文件
 
-StorSimple 與 Microsoft Azure 提供了獨一無二完整的主要儲存體封存功能，並利用 Azure 的災害復原解決方案延伸內部部署儲存體。 了解如何部署和管理 StorSimple 解決方案。
+了解如何使用 Azure StorSimple，這是一個整合式儲存體解決方案，可管理內部部署裝置與 Azure 雲端儲存體之間的儲存體工作。 教學課程和其他文件會示範如何設定儲存體管理、與位置無關的備份及災害復原。
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -147,6 +148,6 @@ StorSimple 與 Microsoft Azure 提供了獨一無二完整的主要儲存體封�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

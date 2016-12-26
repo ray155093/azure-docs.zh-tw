@@ -1,14 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Azure App Service 中的 Mobile Apps，透過 Xamarin 或 Cordova 建置及裝載原生 iOS、Android 或 Windows 應用程式，或是跨平台的應用程式。"
 translationtype: Human Translation
-ms.sourcegitcommit: 14e447744ba2aa89a50783916a42af2e0314c5cd
-ms.openlocfilehash: 531a1066195512504e2417c1661b13c36649b3e9
-
+ms.sourcegitcommit: 5735759300fddfb650220cebc49bd5968621a8d4
+ms.openlocfilehash: 59bab7c719a01643dacf5549c0674d149e8b92f4
 
 ---
 # <a name="mobile-apps-documentation"></a>Mobile Apps 文件
 
-Azure App Service 中的 Mobile Apps 具有可調整性，是專為企業開發人員與系統整合人員設計的行動應用程式開發平台，能提供一組豐富的功能給行動應用程式開發人員。
+了解如何使用 Azure App Service 中的 Mobile Apps，透過 Xamarin 或 Cordova 建置原生 iOS、Android 或 Windows 應用程式，或是跨平台的應用程式。 教學課程、影片、用戶端 SDK 文件等會示範如何為任何行動應用程式建置及裝載後端。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -30,7 +30,7 @@ Azure App Service 中的 Mobile Apps 具有可調整性，是專為企業開發�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=app-service">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=app-service">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -177,21 +177,24 @@ Azure App Service 中的 Mobile Apps 具有可調整性，是專為企業開發�
 
 ---
 
-## <a name="reference"></a>參考
+<h2>參考</h2>
+<ul class="panelContent cardsW">
+    <li>
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>語言</h3>
+                        <p><a href="https://msdn.microsoft.com/library/azure/dn961176.aspx">.NET</a></p>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
 
-### <a name="net"></a>.NET
-[Mobile Apps .NET 參考](https://msdn.microsoft.com/library/azure/dn961176)
-
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service-mobile.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Mobile Apps 文件 </div>
-    </a>
-</div>
 
 
-
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

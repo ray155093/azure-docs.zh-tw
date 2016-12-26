@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何設定 Azure 資源的安全性監視和原則管理。 教學課程、REST API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 7ac552010e41d59e07f2881750540206ffa24f5b
+ms.sourcegitcommit: 4488a052681c0c146bf6efaf44f8ecebc400fecc
+ms.openlocfilehash: 92eb080a7234cb25a5560127edadfafeafc0253a
 
 ---
 # <a name="security-center-documentation"></a>資訊安全中心文件
 
-資訊安全中心利用加強對您 Azure 資源的能見度及安全性控制權，來協助您預防、偵測及回應威脅。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
+了解如何使用資訊安全中心來深入了解及控制 Azure 資源的安全性。  教學課程、REST API 參考資料和其他文件會示範如何設定在廣泛的安全性解決方案生態系統中運作的安全性監視和原則管理作業。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -29,7 +30,7 @@ ms.openlocfilehash: 7ac552010e41d59e07f2881750540206ffa24f5b
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=security-center">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=security-center">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -67,26 +68,23 @@ ms.openlocfilehash: 7ac552010e41d59e07f2881750540206ffa24f5b
 </ul>
 
 ---
-## <a name="reference"></a>參考
 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="https://msdn.microsoft.com/en-US/library/mt704034(Azure.100)">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>資訊安全中心 REST API</p>
+                        <p><a href="https://msdn.microsoft.com/library/mt704034(Azure.100).aspx">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-<ul>    
+</ul>   
 
----
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/security-center.pdf">
         <div class="img"></div>
@@ -96,6 +94,7 @@ ms.openlocfilehash: 7ac552010e41d59e07f2881750540206ffa24f5b
 </div>
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Dec16_HO3-->
 
 

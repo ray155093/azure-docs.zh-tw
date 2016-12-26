@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure 入口網站建立新的彈性集區 | Microsoft Docs"
-description: "如何將可調整的彈性資料庫集區新增至 SQL Database 組態，以便更輕鬆地進行多個資料庫的系統管理與資源共用。"
+description: "如何將可調整的彈性集區新增至 SQL Database 組態，以便更輕鬆地進行多個資料庫的系統管理與資源共用。"
 keywords: "可調整資料庫,資料庫組態"
 services: sql-database
 documentationcenter: 
@@ -9,20 +9,20 @@ manager: jhubbard
 editor: 
 ms.assetid: bf12594b-d258-40e6-a9fc-d8a8710c2d65
 ms.service: sql-database
-ms.custom: sharded databases pool
+ms.custom: multiple databases
 ms.devlang: NA
 ms.date: 11/17/2016
 ms.author: ninarn
 ms.workload: data-management
-ms.topic: hero-article
+ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 1a0b8609acd99ec188f92a32ed4cb44a68edc3b2
-ms.openlocfilehash: 54deca0518d82de59a58e02fc38693179c486b64
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 230a203cca2eaab197236557482cd4cedcfb9c53
 
 
 ---
-# <a name="create-a-new-elastic-database-pool-with-the-azure-portal"></a>使用 Azure 入口網站來建立新的彈性資料庫集區
+# <a name="create-a-new-elastic-pool-with-the-azure-portal"></a>使用 Azure 入口網站來建立新的彈性集區
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-pool-create-portal.md)
 > * [PowerShell](sql-database-elastic-pool-create-powershell.md)
@@ -31,7 +31,7 @@ ms.openlocfilehash: 54deca0518d82de59a58e02fc38693179c486b64
 
 本文將說明如何透過 [Azure 入口網站](https://portal.azure.com/)建立可調整的[彈性集區](sql-database-elastic-pool.md)。 集區的建立方式有兩種。 如果您知道您要的集區設定則可從頭開始進行，或從服務的建議著手。 SQL Database 擁有的內建智慧功能會根據您資料庫過去的使用狀況遙測，為您推薦更符合成本效益的集區設定。
 
-您可以將多個集區新增至伺服器，但無法將來自不同伺服器的資料庫新增到相同的集區。 若要建立集區，您至少需要一個位於 V12 伺服器的資料庫。 如果沒有這樣的資料庫，請參閱 [建立您的第一個 Azure SQL Database](sql-database-get-started.md)。 您可以建立只有一個資料庫的集區，但具有多個資料庫的集區才符合成本效益。 請參閱 [彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
+您可以將多個集區新增至伺服器，但無法將來自不同伺服器的資料庫新增到相同的集區。 若要建立集區，您至少需要一個位於 V12 伺服器的資料庫。 如果沒有這樣的資料庫，請參閱 [建立您的第一個 Azure SQL Database](sql-database-get-started.md)。 您可以建立只有一個資料庫的集區，但具有多個資料庫的集區才符合成本效益。 請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
 > [!NOTE]
 > 彈性集區已在所有 Azure 區域中正式運作 (GA)，但印度西部除外，此區域目前提供預覽版。  我們將儘速在此區域提供彈性集區的 GA。
@@ -58,7 +58,7 @@ ms.openlocfilehash: 54deca0518d82de59a58e02fc38693179c486b64
 
     ![建議的集區](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)
 
-3. [彈性資料庫集區] 刀鋒視窗隨即出現，您可以在其中指定集區的設定。 如果您在上個步驟中按下 [新增集區]，定價層預設將會是**標準**，而且尚未選取任何資料庫。 您可以建立空的集區，或指定一組該伺服器的現有資料庫以移入集區。 如果您正在建立建議的集區，即會預先填入建議的定價層、效能設定及資料庫清單，但您還是可以變更它們。
+3. 隨即出現**彈性集區**刀鋒視窗，您將在這裡指定集區的設定。 如果您在上個步驟中按下 [新增集區]，定價層預設將會是**標準**，而且尚未選取任何資料庫。 您可以建立空的集區，或指定一組該伺服器的現有資料庫以移入集區。 如果您正在建立建議的集區，即會預先填入建議的定價層、效能設定及資料庫清單，但您還是可以變更它們。
 
     ![設定彈性集區](./media/sql-database-elastic-pool-create-portal/configure-elastic-pool.png)
 
@@ -89,7 +89,7 @@ ms.openlocfilehash: 54deca0518d82de59a58e02fc38693179c486b64
 
     如果您要使用的資料庫有足夠的歷史使用量遙測資料，[預估的 eDTU 和 GB 使用量] 圖形和 [實際的 eDTU 使用量] 長條圖便會更新以幫助您決定要使用的組態。 此外，該服務可能會提供您建議訊息，協助您決定集區的適當大小。 請參閱 [動態建議](#dynamic-recommendations)。
 
-3. 使用 [設定集區]  頁面上的控制項，探索設定及設定您的集區。 如需各服務層限制的詳細資訊，請參閱[彈性集區限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 如需集區設定的詳細資訊，請參閱[彈性集區屬性](sql-database-elastic-pool.md#elastic-pool-and-elastic-database-properties)。
+3. 使用 [設定集區]  頁面上的控制項，探索設定及設定您的集區。 如需各服務層限制的詳細資訊，請參閱[彈性集區限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 如需集區設定的詳細資訊，請參閱[彈性集區屬性](sql-database-elastic-pool.md#elastic-pool-and-elastic-database-properties)。
 
     ![設定彈性集區](./media/sql-database-elastic-pool-create-portal/configure-performance.png)
 
@@ -99,7 +99,7 @@ ms.openlocfilehash: 54deca0518d82de59a58e02fc38693179c486b64
 
 ## <a name="understand-pool-recommendations"></a>了解集區建議
 
-SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多個比使用單一資料庫更符合成本效益的集區。 每個推薦集區都是以最適合該集區的伺服器資料庫唯一子集進行設定。
+SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多個比使用獨立資料庫更符合成本效益的集區。 每個推薦集區都是以最適合該集區的伺服器資料庫唯一子集進行設定。
 
 ![建議的集區](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)  
 
@@ -110,9 +110,9 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 - 每一資料庫的 [eDTU 上限] 和 [eDTU 下限]
 - 集區的建議資料庫清單
 
-服務在建議集區時，會計算過去 30 天的遙測。 對於被視為彈性資料庫集區候選項目的資料庫，它必須存在至少 7 天。 已在彈性資料庫集區中的資料庫不會被視為彈性資料庫集區建議候選項目。
+服務在建議集區時，會計算過去 30 天的遙測。 為了讓資料庫被視為彈性集區的候選項目，它必須存在至少 7 天。 已在彈性集區中的資料庫不會被視為彈性集區建議候選項目。
 
-服務會評估將每個服務層中的單一資料庫移至同一層集區的資源需求和成本效益。 例如，會評估伺服器上的所有 Standard 資料庫是否適合 Standard 彈性集區。 這表示服務不會進行跨層建議，例如將 Standard 資料庫移到 Premium 集區。
+服務會評估將每個服務層中的獨立資料庫移至同一層集區的資源需求和成本效益。 例如，會評估伺服器上的所有 Standard 資料庫是否適合 Standard 彈性集區。 這表示服務不會進行跨層建議，例如將 Standard 資料庫移到 Premium 集區。
 
 ### <a name="dynamic-recommendations"></a>動態建議
 
@@ -129,6 +129,6 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

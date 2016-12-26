@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何設定、管理及存取大規模、Hadoop 相容的 Data Lake 儲存機制，以便分析任何大小、類型和擷取速度的資料。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: d26d0f965ad1195ab41e04e870ead1b335ff513e
+ms.sourcegitcommit: a33b0509d1280a33a1e5134217b56071256fec24
+ms.openlocfilehash: d5ff73f8c9303bff281b2a2bbf314c76072f7569
 
 ---
 # <a name="data-lake-store-documentation"></a>Data Lake Store 文件
 
-Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模儲存機制。 Azure Data Lake 可讓您在單一位置擷取任何大小、類型和擷取速度的資料，以便進行運作和探究分析。  使用 WebHDFS 相容的案例，可以從 Hadoop (HDInsight 叢集所提供) 存取 Azure Data Lake Store。 它包含所有企業級功能：安全性、管理性、延展性、可靠性和可用性。
+了解如何使用 Data Lake Store 來建立大規模、Hadoop 相容的儲存機制，以便分析任何大小、類型和擷取速度的資料。 教學課程、API 參考和其他文件會示範如何設定、管理及存取 Data Lake 儲存機制，以便進行操作和探勘分析。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -211,6 +212,6 @@ Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

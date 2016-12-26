@@ -1,14 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何設定和管理從內部部署基礎結構或共置設備到 Microsoft 雲端服務的私人 ExpressRoute 連線。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 48de017fea28d3f76097095cfca17fd03ace65b2
+ms.sourcegitcommit: e8ae00040354ca800d893bc3d73ec96fc9356b39
+ms.openlocfilehash: f27eeb74d07064c616e1a77200b56a7aee154f48
 
 ---
 #<a name="expressroute-documentation"></a>ExpressRoute 文件
 
-Azure ExpressRoute 可讓您透過連線提供者所提供的專用私人連線，將內部部署網路擴充至 Microsoft 雲端。 從任意點對任意點 (IP VPN) 網路、點對點乙太網路，或在共置設施上透過連線提供者的虛擬交叉連接，都可以進行連線。
-
+了解如何使用 ExpressRoute 來設定從內部部署基礎結構或共置設備到 Microsoft 雲端服務的快速私人連線。 教學課程、REST API 和其他文件可協助您設定和管理 ExpressRoute 線路。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -69,37 +69,32 @@ Azure ExpressRoute 可讓您透過連線提供者所提供的專用私人連線�
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Azure PowerShell 參考</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/azureps-cmdlets-docs">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-
-<li>
-        <a href="https://msdn.microsoft.com/library/mt586720">
+    <li>
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>ExpressRoute REST API</p>
+                        <p><a href="https://msdn.microsoft.com/library/azure/mt586720">REST API 參考</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/azure/dn606310">傳統 REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
 </ul>
 
@@ -113,6 +108,6 @@ Azure ExpressRoute 可讓您透過連線提供者所提供的專用私人連線�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

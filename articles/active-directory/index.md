@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何同步處理目錄及啟用單一登入。 文件會示範如何整合一套完整的身分識別管理功能。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: 72d219c4150ddbfd59231f9131bf3502897f0ab4
+ms.sourcegitcommit: 5a478ce5c06cd875ec4ed5ff2bed4d0cd98fac53
+ms.openlocfilehash: 500c764b124ac811432212bab50f83dc6f6b86ee
 
 ---
 
 # <a name="azure-active-directory-documentation"></a>Azure Active Directory 文件
 
-Azure Active Directory Premium 是身分識別與存取管理的雲端解決方案，可以提供數千個雲端 (SaaS) 應用程式的單一登入及存取您在內部部署執行的 Web 應用程式。 Azure Active Directory 可促進企業行動性和共同作業，並透過多重要素驗證 (MFA) 提供進階身分識別保護、安全性報告、稽核、警示，以及根據裝置的健全狀況、使用者位置及風險層級的調適型條件式存取原則。
+了解如何利用 Azure Active Directory (Azure AD) 同步處理目錄及啟用單一登入。 教學課程、API 參考和其他文件會示範如何整合身分識別管理功能，包括多 Multi-Factor Authentication、裝置註冊、角色型存取控制，以及安全性監視和警示。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -138,6 +139,6 @@ Azure Active Directory Premium 是身分識別與存取管理的雲端解決方�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 API 管理功能，大規模且安全地發佈 API。 文件會示範如何建立現有後端服務的新式 API 閘道。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 79b75ae11af07735449714d3a3034c867224ebf4
+ms.sourcegitcommit: bc1895fc3b10c9fab96a120359e25324a1132a51
+ms.openlocfilehash: cd5342474c551bfb9eb1496ffd67f3b36933f1d8
 
 ---
 # <a name="api-management-documentation"></a>API 管理文件
 
-「API 管理」可協助組織將 API 發佈給外部、合作夥伴及內部開發人員，以發揮其資料與服務的潛力。  「API 管理」提供的核心專長認證，透過開發人員參與、商務洞察力、分析、安全性和保護，可確保 API 程式獲致成功。
+了解如何使用 API 管理功能，大規模且安全地向外部、合作夥伴和員工開發人員發佈 API。 教學課程、API 參考和其他文件會顯示如何建立及管理隨處裝載之現有後端服務的新式 API 閘道。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -141,6 +142,6 @@ ms.openlocfilehash: 79b75ae11af07735449714d3a3034c867224ebf4
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

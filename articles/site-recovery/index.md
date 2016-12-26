@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何藉由部署和管理複寫，設定實體伺服器和虛擬機器的雲端災害復原和商務持續性。"
 translationtype: Human Translation
-ms.sourcegitcommit: 511d15cc48b17bd65bedc2c1cd9602d868ffa724
-ms.openlocfilehash: e13f18042677dd1cea5913d7f6658f0c5d3e1d98
+ms.sourcegitcommit: 13d77644673b86be22bf7be40f77d6ebfb1f8baa
+ms.openlocfilehash: d815422edd036711525d8c2f1eea0348295416d5
 
 ---
 # <a name="site-recovery-documentation"></a>Site Recovery 文件
 
-Azure Site Recovery 可藉由協調內部部署虛擬機器與實體伺服器的複寫，為您的商務持續性與災害復原 (BCDR) 策略做出貢獻。 您可以從內部部署主要資料中心將伺服器和 VM 複寫到 Azure 或次要資料中心。 如果主要網站發生故障，您會容錯移轉至次要網站，讓工作負載保持可供存取和使用。
+了解如何將 Site Recovery 使用於私人雲端的商務持續性和災害復原策略。 教學課程和其他文件會示範如何規劃、部署及管理將內部部署實體伺服器與虛擬機器複寫至雲端或次要資料中心的協調流程。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -89,6 +90,6 @@ Azure Site Recovery 可藉由協調內部部署虛擬機器與實體伺服器的
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

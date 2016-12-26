@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Azure 網域名稱系統來管理 DNS 記錄。 文件會示範如何設定和管理網域名稱的 DNS 區域和記錄。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: e32393348fc26fa4cb0a5221695a9bf8bb4d36e1
+ms.sourcegitcommit: 1e30c21b967e9862ae24907ac5db56a341c11cf5
+ms.openlocfilehash: a0110b01879360e4558dffed6343da1ef72cfe86
 
 ---
 # <a name="dns-documentation"></a>DNS 文件
 
-Azure DNS (網域名稱系統) 是 DNS 網域的服務，採用 Microsoft Azure 基礎結構提供名稱解析。  只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
+了解如何使用 Azure 網域名稱系統 (裝載服務) 來管理 DNS 記錄。 教學課程、API 參考和其他文件會示範如何設定和管理網域名稱的 DNS 區域和記錄。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -141,6 +142,6 @@ Azure DNS (網域名稱系統) 是 DNS 網域的服務，採用 Microsoft Azure 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

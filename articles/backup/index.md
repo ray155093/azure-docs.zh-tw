@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "使用備份文件，了解如何備份至雲端。 請參閱應用程式、Windows Server 和 Azure 虛擬機器備份的教學課程和影片。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3fb1fc0e1198733d47378ec149082330b6350abc
-ms.openlocfilehash: db1ba8a832b9b5efa380adf804a55b5ca67ef1a2
+ms.sourcegitcommit: e156357ceb900f1f610b7158a803f553ac3960a5
+ms.openlocfilehash: ed252f28a754b632a3dd95d848f70ec319124ba6
 
 ---
 #<a name="backup-documentation"></a>備份文件
 
-Azure 備份是一項雲端服務，您可用來備份 (或保護) 和還原 Microsoft Cloud 中的資料。  Azure 備份將以一個可靠、安全及具成本競爭力的雲端架構解決方案，取代您現有的內部部署或異地備份解決方案。  
+了解如何使用雲端中的 Azure 備份來保護資料，以便長期保存和復原。 教學課程、影片和其他文件會示範如何備份資料、應用程式、Windows Server 和 Azure 虛擬機器。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -119,20 +120,18 @@ Azure 備份是一項雲端服務，您可用來備份 (或保護) 和還原 Mic
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>語言</h3>
-                        <p><a href="/dotnet/api/microsoft.azure.management.backupservices">/dotnet/api/microsoft.azure.management.backupservices</a></p>
+                        <p><a href="/dotnet/api/microsoft.azure.management.backupservices">.NET</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </li>
 </ul>
-
-
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/backup.pdf">
@@ -144,6 +143,6 @@ Azure 備份是一項雲端服務，您可用來備份 (或保護) 和還原 Mic
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

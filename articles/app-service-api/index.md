@@ -1,14 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Azure App Service 中的 API Apps 在雲端和內部部署環境中開發、裝載和取用 API。 教學課程、影片和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: ac7a22bd592cbb1e8cdee2e6d2896c0b8ad6ea26
-
+ms.sourcegitcommit: 410479b746b5911d1ebcb51c92a6de74686cffbe
+ms.openlocfilehash: e5b9d9322bcf5860debb93fe579665f778a41e7b
 
 ---
 # <a name="app-service---api-apps-documentation"></a>App Service - API Apps 文件
 
-API Apps 是 Azure App Service 提供的四個應用程式類型之一。 Azure App Service 中的 API Apps 提供豐富的功能，讓您在雲端和內部部署當中開發、裝載和使用 API。 Azure App Service 是一個完全受管理的平台，適用於 Web、行動和整合案例。
+了解如何使用 Azure App Service 中的 API Apps 在雲端和內部部署環境中開發、裝載和取用 API。 教學課程、影片和其他文件會示範如何建立和部署 API 應用程式。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -121,28 +121,6 @@ API Apps 是 Azure App Service 提供的四個應用程式類型之一。 Azure 
     </li>     
 </ul>
 
----
-
-<h2>參考</h2>
-<ul class="panelContent cardsW">
-    <li>
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>資源</h3>
-                        <p><a href="/azure/app-service-web/app-service-web-app-azure-portal?toc=%2fazure%2fapp-service-api%2ftoc.json">Azure 入口網站</a></p>
-                        <p><a href="/azure/app-service-web/app-service-changes-existing-services?toc=%2fazure%2fapp-service-api%2ftoc.json">App Service 參考</a></p>
-                        <p><a href="/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started?toc=%2fazure%2fapp-service-api%2ftoc.json">WebJobs SDK</a></p>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </li>
-</ul>
-
----
-
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service-api.pdf">
         <div class="img"></div>
@@ -153,6 +131,6 @@ API Apps 是 Azure App Service 提供的四個應用程式類型之一。 Azure 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 
