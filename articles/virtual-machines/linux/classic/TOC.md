@@ -52,7 +52,7 @@
 ### [Web 應用程式與 Visual Studio](../../virtual-machines-linux-classic-web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [用以執行 MPI 應用程式的 RDMA 叢集](../../virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [如何搭配使用 Azure 從屬外掛程式與 Hudson CI](../../virtual-machines-azure-slave-plugin-for-hudson.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-### [如何搭配使用 Azure 從屬外掛程式與 Jenkins](../../virtual-machines-azure-slave-plugin-for-jenkins.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+
 
 ## HPC Pack
 ### [用以執行 MPI 應用程式的 Windows RDMA 叢集](../../virtual-machines-linux-classic-hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
@@ -83,6 +83,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=virtual-machines)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

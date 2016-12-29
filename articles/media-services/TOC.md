@@ -44,7 +44,7 @@
 ##### [媒體編碼器標準結構描述](media-services-mes-schema.md)
 ##### [輸入中繼資料](media-services-input-metadata-schema.md)
 ##### [輸出中繼資料](media-services-output-metadata-schema.md)
-#### MES 預設值 
+#### [MES 預設值](media-services-mes-presets-overview.md) 
 ##### [H264 多重位元速率 1080p 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-1080p-Audio-5.1.md)
 ##### [H264 多重位元速率 1080p](media-services-mes-preset-H264-Multiple-Bitrate-1080p.md)
 ##### [H264 多重位元速率 16x9 SD 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-16x9-SD-Audio-5.1.md)
@@ -134,8 +134,8 @@
 ### [利用 Hyperlapse 處理](media-services-hyperlapse-content.md)
 ### [利用臉部偵測器處理](media-services-face-and-emotion-detection.md)
 ### [利用動態偵測器處理](media-services-motion-detection.md)
-### [利用臉部修訂處理](media-services-face-redaction.md)
-#### [臉部修訂逐步解說](media-services-redactor-walkthrough.md)
+### [利用 Face Redactor 處理](media-services-face-redaction.md)
+#### [Face Redactor 逐步解說](media-services-redactor-walkthrough.md)
 ### [利用視訊縮圖處理](media-services-video-summarization.md)
 ### [利用 OCR 處理](media-services-video-optical-character-recognition.md)
 
@@ -207,6 +207,6 @@
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=media-services)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 
