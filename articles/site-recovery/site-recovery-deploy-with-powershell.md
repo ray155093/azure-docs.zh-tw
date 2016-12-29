@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure Site Recovery 及 PowerShell 複寫 VMM 雲端中的 HYPER-V 虛擬機器 | Microsoft Docs
-description: 了解如何使用 Site Recovery 及 PowerShell 自動化 VMM 雲端中之 HYPER-V 虛擬機器的複寫作業。
+title: "使用 Azure Site Recovery 及 PowerShell 複寫 VMM 雲端中的 HYPER-V 虛擬機器 | Microsoft Docs"
+description: "了解如何使用 Site Recovery 及 PowerShell 自動化 VMM 雲端中之 HYPER-V 虛擬機器的複寫作業。"
 services: site-recovery
-documentationcenter: ''
+documentationcenter: 
 author: bsiva
 manager: abhiag
 editor: tysonn
-
+ms.assetid: 9011f567-e0b4-4306-951a-b30da19f5db6
 ms.service: site-recovery
 ms.workload: backup-recovery
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: bsiva
+translationtype: Human Translation
+ms.sourcegitcommit: 7455d6f99ed8ceb401224f98105f7b651f55c724
+ms.openlocfilehash: 667f796ff6c411389847f5200ebdc28db1ee1973
+
 
 ---
 # <a name="replicate-hyper-v-virtual-machines-in-vmm-clouds-to-azure-using-powershell---classic"></a>使用 Powershell - Classic 將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
@@ -22,8 +26,8 @@ ms.author: bsiva
 > * [PowerShell - 資源管理員](site-recovery-vmm-to-azure-powershell-resource-manager.md)
 > * [傳統入口網站](site-recovery-vmm-to-azure-classic.md)
 > * [PowerShell - 傳統](site-recovery-deploy-with-powershell.md)
-> 
-> 
+>
+>
 
 ## <a name="overview"></a>Overview
 Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容錯移轉及復原，為您的商務持續性與災害復原 (BCDR) 做出貢獻。 如需完整的部署案例清單，請參閱 [Azure Site Recovery 概觀](site-recovery-overview.md)。
@@ -35,9 +39,9 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 您在設定此案例如有任何問題，可將問題張貼到 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 
-> 
-> 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。
+>
+>
 
 ## <a name="before-you-start"></a>開始之前
 確認您已備妥這些必要條件：
@@ -45,7 +49,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 ### <a name="azure-prerequisites"></a>Azure 必要條件
 * 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。
 * 您需要 Azure 儲存體帳戶來儲存複寫的資料。 此帳戶必須啟用異地複寫。 它應該與 Azure Site Recovery 保存庫位於相同的區域，且和同一個訂用帳戶產生關聯。 [深入了解 Azure 儲存體](../storage/storage-introduction.md)。
-* 您必須確定您要保護的虛擬機器符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#virtual-machines)。
+* 您必須確定您要保護的虛擬機器符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
 
 ### <a name="vmm-prerequisites"></a>VMM 必要條件
 * 您將需要在 System Center 2012 R2 上執行的 VMM 伺服器。
@@ -55,8 +59,8 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
   * 來源 Hyper-V 伺服器上的一或多部虛擬機器。
 
 ### <a name="hyper-v-prerequisites"></a>Hyper-V 的必要條件
-* 主機 Hyper-V 伺服器至少必須執行附帶 Hyper-V 角色的 Windows Server 2012，並且已安裝最新更新。
-* 如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。 您必須手動設定叢集代理。 若要執行此作業，請在 [伺服器管理員] > [容錯移轉叢集管理員] 中連接到叢集，按一下 [設定角色]，然後在 [高可用性精靈] 之 [選取角色] 畫面中選取 [Hyper-V 複本代理人]。 
+* Hyper-V 主機伺服器必須至少執行具備 Hyper-V 角色的 **Windows Server 2012** 或 **Microsoft Hyper-V Server 2012** 並已安裝最新的更新。
+* 如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。 您必須手動設定叢集代理。 若要執行此作業，請在 [伺服器管理員] > [容錯移轉叢集管理員] 中連接到叢集，按一下 [設定角色]，然後在 [高可用性精靈] 之 [選取角色] 畫面中選取 [Hyper-V 複本代理人]。
 * 您想要管理保護的任何 Hyper-V 主機伺服計或叢集都必須包含在 VMM 雲端中。
 
 ### <a name="network-mapping-prerequisites"></a>網路對應的必要條件
@@ -73,11 +77,11 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 * [深入了解](site-recovery-network-mapping.md) 網路對應：
 
 ### <a name="powershell-prerequisites"></a>PowerShell 必要條件
-確定 Azure PowerShell 已經準備就緒。 如果您已經使用 PowerShell，您必須升級至 0.8.10 版或更新版本。 如需設定 PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 一旦已安裝並設定 PowerShell，您可以檢視 [這裡](https://msdn.microsoft.com/library/dn850420.aspx)之服務的所有可用的 Cmdlet。 
+確定 Azure PowerShell 已經準備就緒。 如果您已經使用 PowerShell，您必須升級至 0.8.10 版或更新版本。 如需設定 PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 一旦已安裝並設定 PowerShell，您可以檢視 [這裡](https://msdn.microsoft.com/library/dn850420.aspx)之服務的所有可用的 Cmdlet。
 
 如需深入了解可協助您使用這些 Cmdlet 的提示 (例如參數值、輸入及輸出在 Azure PowerShell 中的處理方式)，請參閱 [Azure Cmdlet 使用者入門](https://msdn.microsoft.com/library/azure/jj554332.aspx)。
 
-## <a name="step-1:-set-the-subscription"></a>步驟 1：設定訂用帳戶
+## <a name="step-1-set-the-subscription"></a>步驟 1：設定訂用帳戶
 在 PowerShell 中，執行這些 Cmdlet：
 
 ```
@@ -94,7 +98,7 @@ $AzureSubscription = Select-AzureSubscription -SubscriptionName $AzureSubscripti
 
 以您的特定資訊取代 "< >" 中的元素。
 
-## <a name="step-2:-create-a-site-recovery-vault"></a>步驟 2：建立 Site Recovery 保存庫
+## <a name="step-2-create-a-site-recovery-vault"></a>步驟 2：建立 Site Recovery 保存庫
 在 PowerShell 中，將 "< >" 裡面的元素取代成您的特定資訊，然後執行以下命令：
 
 ```
@@ -112,79 +116,79 @@ $vault = Get-AzureSiteRecoveryVault -Name $VaultName;
 
 ```
 
-## <a name="step-3:-generate-a-vault-registration-key"></a>步驟 3：產生保存庫註冊金鑰
+## <a name="step-3-generate-a-vault-registration-key"></a>步驟 3：產生保存庫註冊金鑰
 在保存庫中產生註冊金鑰。 下載 Azure Site Recovery 提供者並將其安裝在 VMM 伺服器之後，您將使用此金鑰在保存庫中註冊 VMM 伺服器。
 
 1. 取得保存庫設定檔並設定內容：
-   
+
    ```
-   
+
    $VaultName = "<testvault123>"
    $VaultGeo  = "<Southeast Asia>"
    $OutputPathForSettingsFile = "<c:\>"
-   
+
    $VaultSetingsFile = Get-AzureSiteRecoveryVaultSettingsFile -Location $VaultGeo -Name $VaultName -Path $OutputPathForSettingsFile;
-   
+
    ```
 2. 執行下列命令來設定保存庫內容：
-   
-   ```
-   
-   $VaultSettingFilePath = $vaultSetingsFile.FilePath 
-   $VaultContext = Import-AzureSiteRecoveryVaultSettingsFile -Path $VaultSettingFilePath -ErrorAction Stop
-   
+
    ```
 
-## <a name="step-4:-install-the-azure-site-recovery-provider"></a>步驟 4：安裝 Azure Site Recovery 提供者
-1. 在 VMM 機器上，執行下列命令來建立目錄：
-   
+   $VaultSettingFilePath = $vaultSetingsFile.FilePath
+   $VaultContext = Import-AzureSiteRecoveryVaultSettingsFile -Path $VaultSettingFilePath -ErrorAction Stop
+
    ```
-   
+
+## <a name="step-4-install-the-azure-site-recovery-provider"></a>步驟 4：安裝 Azure Site Recovery 提供者
+1. 在 VMM 機器上，執行下列命令來建立目錄：
+
+   ```
+
    pushd C:\ASR\
-   
+
    ```
 2. 執行下列命令，使用已下載的提供者將檔案解壓縮
-   
+
    ```
-   
+
    AzureSiteRecoveryProvider.exe /x:. /q
-   
+
    ```
 3. 使用下列命令安裝提供者：
-   
+
    ```
-   
+
    .\SetupDr.exe /i
-   
+
    ```
-   
+
    ```
-   
+
    $installationRegPath = "hklm:\software\Microsoft\Microsoft System Center Virtual Machine Manager Server\DRAdapter"
    do
    {
-       $isNotInstalled = $true;
-       if(Test-Path $installationRegPath)
-       {
-           $isNotInstalled = $false;
-       }
+     $isNotInstalled = $true;
+     if(Test-Path $installationRegPath)
+     {
+         $isNotInstalled = $false;
+     }
    }While($isNotInstalled)
-   
+
    ```
-   
+
    等待安裝完成。
 4. 使用下列命令在保存庫中註冊伺服器：
-   
+
    ```
-   
+
    $BinPath = $env:SystemDrive+"\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin"
    pushd $BinPath
    $encryptionFilePath = "C:\temp\"
    .\DRConfigurator.exe /r /Credentials $VaultSettingFilePath /vmmfriendlyname $env:COMPUTERNAME /dataencryptionenabled $encryptionFilePath /startvmmservice
-   
+
    ```
 
-## <a name="step-5:-create-an-azure-storage-account"></a>步驟 5：建立 Azure 儲存體帳戶
+## <a name="step-5-create-an-azure-storage-account"></a>步驟 5：建立 Azure 儲存體帳戶
 如果您沒有 Azure 儲存體帳戶，請執行下列命令來建立啟用帳戶的異地複寫：
 
 ```
@@ -198,7 +202,7 @@ New-AzureStorageAccount -StorageAccountName $StorageAccountName -Label $StorageA
 
 請注意，儲存體帳戶必須與 Azure Site Recovery 服務位於相同的區或，且與相同的訂用帳戶關聯。
 
-## <a name="step-6:-install-the-azure-recovery-services-agent"></a>步驟 6：安裝 Azure 復原服務代理程式
+## <a name="step-6-install-the-azure-recovery-services-agent"></a>步驟 6：安裝 Azure 復原服務代理程式
 從 Azure 入口網站，在 VMM 雲端中您要保護的每一個 Hyper-V 主機伺服器上，安裝 Azure 復原服務代理程式。
 
 在所有 VMM 主機上執行下列命令：
@@ -210,29 +214,29 @@ marsagentinstaller.exe /q /nu
 ```
 
 
-## <a name="step-7:-configure-cloud-protection-settings"></a>步驟 7：設定雲端保護設定
+## <a name="step-7-configure-cloud-protection-settings"></a>步驟 7：設定雲端保護設定
 1. 執行下列命令來建立 Azure 的雲端保護設定檔：
-   
+
    ```
-   
+
    $ReplicationFrequencyInSeconds = "300";
-   $ProfileResult = New-AzureSiteRecoveryProtectionProfileObject -ReplicationProvider HyperVReplica -RecoveryAzureSubscription $AzureSubscriptionName -RecoveryAzureStorageAccount $StorageAccountName -ReplicationFrequencyInSeconds  $ReplicationFrequencyInSeconds;
-   
+   $ProfileResult = New-AzureSiteRecoveryProtectionProfileObject -ReplicationProvider HyperVReplica -RecoveryAzureSubscription $AzureSubscriptionName -RecoveryAzureStorageAccount $StorageAccountName -ReplicationFrequencyInSeconds     $ReplicationFrequencyInSeconds;
+
    ```
 2. 執行下列命令以取得保護容器：
-   
+
    ```
-   
+
    $PrimaryCloud = "testcloud"
-   $protectionContainer = Get-AzureSiteRecoveryProtectionContainer -Name $PrimaryCloud;    
-   
+   $protectionContainer = Get-AzureSiteRecoveryProtectionContainer -Name $PrimaryCloud;
+
    ```
 3. 啟動與雲端的保護容器關聯：
-   
+
    ```
-   
+
    $associationJob = Start-AzureSiteRecoveryProtectionProfileAssociationJob -ProtectionProfile $profileResult -PrimaryProtectionContainer $protectionContainer;        
-   
+
    ```
 4. 完成工作之後，執行下列命令：
 
@@ -264,7 +268,7 @@ marsagentinstaller.exe /q /nu
 
 若要檢查作業是否完成，請執行 [監視活動](#monitor)中的步驟。
 
-## <a name="step-8:-configure-network-mapping"></a>步驟 8：設定網路對應
+## <a name="step-8-configure-network-mapping"></a>步驟 8：設定網路對應
 開始網路對應之前，請確認來源 VMM 伺服器上的虛擬機器已連線到 VM 網路。 此外，請建立一或多個 Azure 虛擬網路。 請注意，多個 VM 網路可對應至單一 Azure 網路。
 
 請注意，如果目標網路具有多個子網路，且其中一個子網路的名稱和來源虛擬機器所在之子網路名稱相同，複本虛擬機器將會在容錯移轉之後連線到該目標子網路。 如果沒有目標子網路具有相符的名稱，虛擬機器將會連線到網路中的第一個子網路。
@@ -278,7 +282,7 @@ marsagentinstaller.exe /q /nu
 
     $Networks = Get-AzureSiteRecoveryNetwork -Server $Servers[0]
 
-第三個命令使用 Get-AzuresubScription Cmdlet 取得 Azure 訂用帳戶，然後再將該值儲存在 $Subscriptions 變數中。 
+第三個命令使用 Get-AzuresubScription Cmdlet 取得 Azure 訂用帳戶，然後再將該值儲存在 $Subscriptions 變數中。
 
     $Subscriptions = Get-AzureSubscription
 
@@ -290,21 +294,21 @@ marsagentinstaller.exe /q /nu
 
 
 
-最終的 Cmdlet 會在主要網路與 Azure 虛擬機器網路之間建立對應。 Cmdlet 會將主要網路指定為 $Networks 的第一個元素。 Cmdlet 為使用其識別碼，將虛擬機器網路指定為 $AzureVmNetworks 的第一個元素。 此命令包含您的 Azure 訂用帳戶識別碼。 
+最終的 Cmdlet 會在主要網路與 Azure 虛擬機器網路之間建立對應。 Cmdlet 會將主要網路指定為 $Networks 的第一個元素。 Cmdlet 為使用其識別碼，將虛擬機器網路指定為 $AzureVmNetworks 的第一個元素。 此命令包含您的 Azure 訂用帳戶識別碼。
 
     New-AzureSiteRecoveryNetworkMapping -PrimaryNetwork $Networks[0] -AzureSubscriptionId $Subscriptions[0].SubscriptionId -AzureVMNetworkId $AzureVmNetworks[0].Id
 
 
-## <a name="step-9:-enable-protection-for-virtual-machines"></a>步驟 9：對虛擬機器啟用保護
+## <a name="step-9-enable-protection-for-virtual-machines"></a>步驟 9：對虛擬機器啟用保護
 正確設定伺服器、雲端和網路後，您就可以對雲端中的虛擬機器啟用保護。 請注意：
 
-虛擬機器必須符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#virtual-machines)。
+虛擬機器必須符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
 
 若要啟用保護功能，您必須為虛擬機器設定作業系統和作業系統磁碟屬性。 當您使用虛擬機器範本在 VMM 中建立虛擬機器時，您可以設定屬性。 您也可以在虛擬機器屬性的 [一般] 及 [硬體設定] 索引標籤上，為現有的虛擬機器設定這些屬性。 若未在 VMM 中設定這些屬性，您將可在 Azure 站台復原入口網站中加以設定。
 
 1. 若要啟用保護，請執行下列命令以取得保護容器：
-   
-       $ProtectionContainer = Get-AzureSiteRecoveryProtectionContainer -Name $CloudName
+
+     $ProtectionContainer = Get-AzureSiteRecoveryProtectionContainer -Name $CloudName
 2. 執行下列命令以取得保護實體 (VM)：
 
         $protectionEntity = Get-AzureSiteRecoveryProtectionEntity -Name $VMName -ProtectionContainer $protectionContainer
@@ -313,7 +317,7 @@ marsagentinstaller.exe /q /nu
 
 1. 執行下列命令以啟用 VM 的 DR：
 
-        $jobResult = Set-AzureSiteRecoveryProtectionEntity -ProtectionEntity $protectionEntity  -Protection Enable -Force
+        $jobResult = Set-AzureSiteRecoveryProtectionEntity -ProtectionEntity $protectionEntity     -Protection Enable -Force
 
 
 
@@ -333,7 +337,7 @@ marsagentinstaller.exe /q /nu
 
         <#
         <?xml version="1.0" encoding="utf-16"?>
-        <RecoveryPlan Id="d0323b26-5be2-471b-addc-0a8742796610" Name="rp-test"  PrimaryServerId="9350a530-d5af-435b-9f2b-b941b5d9fcd5"  SecondaryServerId="21a9403c-6ec1-44f2-b744-b4e50b792387" Description=""     Version="V2014_07">
+        <RecoveryPlan Id="d0323b26-5be2-471b-addc-0a8742796610" Name="rp-test"     PrimaryServerId="9350a530-d5af-435b-9f2b-b941b5d9fcd5"     SecondaryServerId="21a9403c-6ec1-44f2-b744-b4e50b792387" Description=""     Version="V2014_07">
           <Actions />
           <ActionGroups>
             <ShutdownAllActionGroup Id="ShutdownAllActionGroup">
@@ -347,12 +351,12 @@ marsagentinstaller.exe /q /nu
             <BootActionGroup Id="DefaultActionGroup">
               <PreActionSequence />
               <PostActionSequence />
-              <ProtectionEntity PrimaryProtectionEntityId="d4c8ce92-a613-4c63-9b03- cf163cc36ef8" />
+              <ProtectionEntity PrimaryProtectionEntityId="d4c8ce92-a613-4c63-9b03-    cf163cc36ef8" />
             </BootActionGroup>
           </ActionGroups>
           <ActionGroupSequence>
-            <ActionGroup Id="ShutdownAllActionGroup" ActionId="ShutdownAllActionGroup"  Before="FailoverAllActionGroup" />
-            <ActionGroup Id="FailoverAllActionGroup" ActionId="FailoverAllActionGroup"  After="ShutdownAllActionGroup" Before="DefaultActionGroup" />
+            <ActionGroup Id="ShutdownAllActionGroup" ActionId="ShutdownAllActionGroup"     Before="FailoverAllActionGroup" />
+            <ActionGroup Id="FailoverAllActionGroup" ActionId="FailoverAllActionGroup"     After="ShutdownAllActionGroup" Before="DefaultActionGroup" />
             <ActionGroup Id="DefaultActionGroup" ActionId="DefaultActionGroup" After="FailoverAllActionGroup"/>
           </ActionGroupSequence>
         </RecoveryPlan>
@@ -367,19 +371,19 @@ marsagentinstaller.exe /q /nu
 
 
 1. 建立 RecoveryPlan：
-   
+
         $RPCreationJob = New-AzureSiteRecoveryRecoveryPlan -File $TemplatePath -WaitForCompletion;
 
 ### <a name="run-a-test-failover"></a>執行測試容錯移轉
 1. 執行下列命令以取得 RecoveryPlan 物件：
-   
-       $RPObject = Get-AzureSiteRecoveryRecoveryPlan -Name $RPName;
+
+     $RPObject = Get-AzureSiteRecoveryRecoveryPlan -Name $RPName;
 2. 執行下列命令來啟動測試容錯移轉：
 
         $jobIDResult = Start-AzureSiteRecoveryTestFailoverJob -RecoveryPlan $RPObject -Direction PrimaryToRecovery;
 
 
-## <a name="<a-name=monitor></a>-monitor-activity"></a><a name=monitor></a> 監視活動
+## <a name="a-namemonitora-monitor-activity"></a><a name=monitor></a> 監視活動
 使用下列命令來監視活動。 請注意，您必須在工作之間等候處理程序完成。
 
     Do
@@ -402,6 +406,8 @@ marsagentinstaller.exe /q /nu
 ## <a name="next-steps"></a>後續步驟
 [閱讀更多](https://msdn.microsoft.com/library/dn850420.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊。 </a>。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO4-->
 
 

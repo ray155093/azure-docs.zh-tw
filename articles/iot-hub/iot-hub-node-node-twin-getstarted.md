@@ -1,12 +1,12 @@
 ---
-title: 開始使用對應項 | Microsoft Docs
-description: 本教學課程說明如何使用對應項
+title: "開始使用裝置對應項 | Microsoft Docs"
+description: "本教學課程說明如何使用裝置對應項"
 services: iot-hub
 documentationcenter: node
 author: fsautomata
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 314c88e4-cce1-441c-b75a-d2e08e39ae7d
 ms.service: iot-hub
 ms.devlang: node
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/13/2016
 ms.author: elioda
+translationtype: Human Translation
+ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
+ms.openlocfilehash: d7b615476bb5e9ed08e1e84f63c1a40c11154b23
+
 
 ---
-# <a name="tutorial:-get-started-with-device-twins-(preview)"></a>教學課程：開始使用裝置對應項 (預覽)
+# <a name="tutorial-get-started-with-device-twins"></a>教學課程：開始使用裝置對應項
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
 在本教學課程結束時，您將會有兩個 Node.js 主控台應用程式：
@@ -25,19 +29,21 @@ ms.author: elioda
 * **TwinSimulatedDevice.js**，這是會模擬裝置的 Node.js 應用程式，此裝置會以稍早建立的身分識別連接到您的 IoT 中樞，並報告其連線狀況。
 
 > [!NOTE]
-> [IoT 中樞 SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式的各種 SDK 的相關資訊。
+> [IoT 中樞 SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
 > 
 > 
 
 若要完成此教學課程，您需要下列項目：
 
 * Node.js 0.10.x 版或更新版本。
-* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
+* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
-[!INCLUDE [iot-hub-get-started-create-hub-pp](../../includes/iot-hub-get-started-create-hub-pp.md)]
+[!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
+
+[!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="create-the-service-app"></a>建立服務應用程式
-在本節中，您將建立一個 Node.js 主控台應用程式，此應用程式會將位置中繼資料新增至與 **myDeviceId** 相關聯的對應項。 接著，它會選取位於美國的裝置來查詢儲存在中樞的對應項，再查詢會報告行動電話連線的對應項。
+在本節中，您將建立一個 Node.js 主控台應用程式，此應用程式會將位置中繼資料新增至與 **myDeviceId** 相關聯的裝置對應項。 接著，它會選取位於美國的裝置來查詢儲存在 IoT 中樞的裝置對應項，再查詢會報告行動電話連線的對應項。
 
 1. 建立稱為 **addtagsandqueryapp** 的新空白資料夾。 在 **addtagsandqueryapp** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
    
@@ -47,7 +53,7 @@ ms.author: elioda
 2. 在命令提示字元下，於 **addtagsandqueryapp** 資料夾中執行下列命令以安裝 **azure-iothub** 套件：
    
     ```
-    npm install azure-iothub@dtpreview --save
+    npm install azure-iothub --save
     ```
 3. 使用文字編輯器，在 **addtagsandqueryapp** 資料夾中建立新的 **AddTagsAndQuery.js** 檔案。
 4. 將下列程式碼新增至 **AddTagsAndQuery.js** 檔案，並以您建立中樞時所複製的連接字串，取代 **{service connection string}** 預留位置︰
@@ -81,7 +87,7 @@ ms.author: elioda
             }
         });
    
-    **Registry** 物件會公開從服務來與裝置對應項進行互動時所需的所有方法。 先前的程式碼會先初始化 **Registry** 物件，然後擷取 **myDeviceId** 的對應項，最後會以所需的位置資訊來更新其標籤。
+    **Registry** 物件會公開從服務來與裝置對應項進行互動時所需的所有方法。 先前的程式碼會先初始化 **Registry** 物件，然後擷取 **myDeviceId** 的裝置對應項，最後會以所需的位置資訊來更新其標籤。
    
     更新標籤之後，它會呼叫 **queryTwins** 函式。
 5. 在 **AddTagsAndQuery.js** 結尾處新增下列程式碼來實作 **queryTwins** 函式︰
@@ -120,10 +126,10 @@ ms.author: elioda
 在下一節，您將建立一個裝置應用程式，以報告連線資訊並變更上一節的查詢結果。
 
 ## <a name="create-the-device-app"></a>建立裝置應用程式
-在本節中，您將建立一個 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 來連接到您的中樞，然後更新其對應項所報告的屬性，以包含資訊來指出目前使用行動電話網路來連線。
+在本節中，您將建立一個 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 來連接到您的中樞，然後更新其裝置對應項所報告的屬性，以包含資訊來指出目前使用行動電話網路來連線。
 
 > [!NOTE]
-> 目前，裝置對應項只能從使用 MQTT 通訊協定連線至 IoT 中樞的裝置存取。 請參閱 [MQTT 支援][lnk-devguide-mqtt] 文章，以取得如何將現有裝置應用程式轉換為使用 MQTT 的指示。
+> 目前，裝置對應項只能從使用 MQTT 通訊協定連線至 IoT 中樞的裝置存取。 請參閱 [MQTT 支援][lnk-devguide-mqtt]文章，以取得如何將現有裝置應用程式轉換為使用 MQTT 的指示。
 > 
 > 
 
@@ -135,7 +141,7 @@ ms.author: elioda
 2. 在 **reportconnectivity** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 套件：
    
     ```
-    npm install azure-iot-device@dtpreview azure-iot-device-mqtt@dtpreview --save
+    npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 3. 使用文字編輯器，在 **reportconnectivity** 資料夾中建立新的 **ReportConnectivity.js** 檔案。
 4. 將下列程式碼新增至 **ReportConnectivity.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的連接字串，取代 **{device connection string}** 預留位置︰
@@ -176,7 +182,7 @@ ms.author: elioda
         }
         });
    
-    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 先前的程式碼 (在它初始化 **Client** 物件之後) 會擷取 **myDeviceId** 的對應項，並以連線資訊來更新它所報告的屬性。
+    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 先前的程式碼在初始化 **Client** 物件之後，會擷取 **myDeviceId** 的裝置對應項，並以連線資訊來更新其報告屬性。
 5. 執行裝置應用程式
    
         node ReportConnectivity.js
@@ -191,12 +197,12 @@ ms.author: elioda
     ![][3]
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您在入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置識別。 您已從後端應用程式將裝置中繼資料新增為標籤，並撰寫模擬裝置應用程式來報告裝置對應項中的裝置連線資訊。 您也學到如何使用 IoT 中樞類似 SQL 查詢語言來查詢此資訊。
+在此教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您已從後端應用程式將裝置中繼資料新增為標籤，並撰寫模擬裝置應用程式來報告裝置對應項中的裝置連線資訊。 您也了解如何使 類似 SQL 的 IoT 中樞查詢語言來查詢此資訊。
 
 使用下列資源來了解如何：
 
 * 從裝置傳送遙測，請參閱[開始使用 IoT 中樞][lnk-iothub-getstarted]教學課程，
-* 使用對應項的所需屬性來設定裝置，請參閱[使用所需的屬性來設定裝置][lnk-twin-how-to-configure]教學課程，
+* 使用裝置對應項的所需屬性來設定裝置，請參閱[使用所需的屬性來設定裝置][lnk-twin-how-to-configure]教學課程，
 * 以互動方式控制裝置 (例如，從使用者控制的應用程式開啟風扇)，請參閱[使用直接方法][lnk-methods-tutorial]教學課程。
 
 <!-- images -->
@@ -214,17 +220,18 @@ ms.author: elioda
 [lnk-identity]: iot-hub-devguide-identity-registry.md
 
 [lnk-iothub-getstarted]: iot-hub-node-node-getstarted.md
-[lnk-device-management]: iot-hub-device-management-get-started.md
+[lnk-device-management]: iot-hub-node-node-device-management-get-started.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
 [lnk-twin-how-to-configure]: iot-hub-node-node-twin-how-to-configure.md
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
 
-[lnk-methods-tutorial]: iot-hub-c2d-methods.md
+[lnk-methods-tutorial]: iot-hub-node-node-direct-methods.md
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO5-->
 
 
