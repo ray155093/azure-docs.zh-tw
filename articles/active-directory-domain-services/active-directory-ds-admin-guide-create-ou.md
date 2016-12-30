@@ -75,6 +75,6 @@ Azure AD 網域服務的受管理網域包含兩個內建的容器，分別稱�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/14/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a7bd1a45d745ce16732e1887dbc952b12f4071e3
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 894e19d2873f2a7db81aa992cab569ae1a0aca60
 
 
 ---
@@ -126,7 +126,7 @@ Aravo 與 Azure AD 整合提供下列優點：
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b. 按 [下一步] 。
 5. 若要為您的應用程式設定 SSO，請連絡 Aravo 支援小組，並提供下列資訊： 
    
     - **下載的憑證** 檔案
@@ -191,7 +191,7 @@ Aravo 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下 [完成]。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-aravo-test-user"></a>建立 Aravo 測試使用者
 本節目標是在 Aravo 中建立名為 Britta Simon 的使用者。請與 Aravo 支援小組合作，在 Aravo 帳戶中新增使用者。
@@ -246,6 +246,6 @@ Aravo 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

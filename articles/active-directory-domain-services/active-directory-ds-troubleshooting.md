@@ -158,6 +158,6 @@ Azure AD 會防止您意外刪除使用者物件。 當您從您的 Azure AD 租
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 
