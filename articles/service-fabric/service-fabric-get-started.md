@@ -12,11 +12,11 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/26/2016
+ms.date: 12/13/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 7e33e00a676f4aa7143cede3380adb58ba1d11e4
-ms.openlocfilehash: 2c4a92fadaa845fc0d14e5101a87aabe8f8d2891
+ms.sourcegitcommit: 04092b735fa77c72ffe6c492a3fc975eac2e99fd
+ms.openlocfilehash: a71b77a320e9321eaa857acfcfae8822de0ac9e5
 
 
 ---
@@ -45,10 +45,30 @@ ms.openlocfilehash: 2c4a92fadaa845fc0d14e5101a87aabe8f8d2891
 > 
 
 ## <a name="install-the-runtime-sdk-and-tools"></a>安裝執行階段、SDK 和工具
-Web Platform Installer 針對 Service Fabric 開發提供兩個組態︰
+Web Platform Installer 針對 Service Fabric 開發提供兩個組態。
 
-* [安裝適用於 Visual Studio 2015 的 Service Fabric 執行階段、SDK 和工具 (需要 Visual Studio 2015 Update 2 或更新版本)][full-bundle-vs2015]
+Visual Studio 2017 (需安裝 Azure 開發和管理工作負載)：
+
+* [安裝 Service Fabric 執行階段和 SDK (不安裝 Visual Studio 工具)][core-sdk]
+
+Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)：
+
+* [安裝 Service Fabric 執行階段、SDK 和工具)][full-bundle-vs2015]
 * [僅安裝 Service Fabric 執行階段和 SDK (不安裝 Visual Studio 工具)][core-sdk]
+
+> [!WARNING]
+> 客戶使用這些啟動連結或在 Chrome 瀏覽器中使用這些連結時，在安裝期間回報錯誤。 這些在 Web Platform Installer 是已知問題並已特別處理。  請嘗試下列動作做為因應措施︰
+>- 在 Internet Explorer 或 Edge 瀏覽器中啟動上述連結，或
+>- 從 [開始] 功能表啟動 Web Platform Installer、搜尋「Service Fabric」及安裝 SDK
+> 
+> 很抱歉造成您的不便。 
+
+目前的版本如下︰
+* Service Fabric SDK 2.4.145
+* Service Fabric 執行階段 5.4.145
+* Visual Studio 2015 工具 1.4.41209
+
+如需支援版本的清單，請參閱[Service Fabric 支援](service-fabric-support.md)
 
 ## <a name="enable-powershell-script-execution"></a>啟用 PowerShell 指令碼執行
 Service Fabric 會使用 Windows PowerShell 指令碼，以便建立本機開發叢集，以及從 Visual Studio 部署應用程式。 根據預設，Windows 會封鎖這些指令碼的執行。 若要啟用其，您必須修改 PowerShell 執行原則。 以系統管理員身分開啟 PowerShell 並輸入下列命令：
@@ -66,6 +86,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 * [請查看 GitHub 上的 Service Fabric 程式碼範例](https://aka.ms/servicefabricsamples)
 * [使用 Service Fabric 總管將叢集視覺化](service-fabric-visualizing-your-cluster.md)
 * [遵循 Service Fabric 學習路徑來取得廣泛的平台簡介](https://azure.microsoft.com/documentation/learning-paths/service-fabric/)
+* 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 [1]: http://azure.microsoft.com/en-us/campaigns/service-fabric/ "Service Fabric 活動頁面"
 [2]: http://go.microsoft.com/fwlink/?LinkId=517106 "VS RC"
@@ -76,6 +97,6 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

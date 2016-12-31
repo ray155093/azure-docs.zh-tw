@@ -1,6 +1,6 @@
 ---
-title: "使用 C# 建立彈性資料庫集區 | Microsoft Docs"
-description: "使用 C# 資料庫開發技術在 Azure SQL Database 中建立可調整的彈性資料庫集區，讓您可以跨多個資料庫共用資源。"
+title: "使用 C# 建立彈性集區 | Microsoft Docs"
+description: "使用 C# 資料庫開發技術在 Azure SQL Database 中建立可調整的彈性集區，讓您可以跨多個資料庫共用資源。"
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -8,6 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 2dedddbb-618d-462b-80dd-e4a57857c737
 ms.service: sql-database
+ms.custom: multiple databases
 ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: csharp
@@ -15,12 +16,12 @@ ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 28f792cd5afd194445666aeb1d17d5fbf27a835d
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: b905aa65f46f601121b6774a633e72152e8ef80a
 
 
 ---
-# <a name="create-an-elastic-database-pool-with-cx23"></a>使用 C&#x23; 來建立彈性資料庫集區
+# <a name="create-an-elastic-pool-with-cx23"></a>使用 C&#x23; 建立彈性集區
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-pool-create-portal.md)
 > * [PowerShell](sql-database-elastic-pool-create-powershell.md)
@@ -28,7 +29,7 @@ ms.openlocfilehash: 28f792cd5afd194445666aeb1d17d5fbf27a835d
 > 
 > 
 
-本文說明如何使用 C# 透過 [Azure SQL Database Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)來建立 Azure SQL Database 彈性資料庫集區。 若要建立獨立 SQL Database，請參閱 [使用 C# 透過 SQL Database Library for .NET 建立 SQL Database](sql-database-get-started-csharp.md)。
+本文說明如何使用 C# 透過 [Azure SQL Database Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)來建立 Azure SQL Database 彈性集區。 若要建立獨立 SQL Database，請參閱 [使用 C# 透過 SQL Database Library for .NET 建立 SQL Database](sql-database-get-started-csharp.md)。
 
 Azure SQL Database Library for .NET 提供 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 式 API，它會包裝 [Resource Manager 式 SQL Database REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx)。
 
@@ -59,7 +60,7 @@ Azure SQL Database Library for .NET 提供 [Azure Resource Manager](../azure-res
 > 
 > 
 
-## <a name="create-a-sql-elastic-database-pool-c-example"></a>建立 SQL 彈性資料庫集區 - C# 範例
+## <a name="create-a-sql-elastic-pool---c-example"></a>建立 SQL 彈性集區 - C# 範例
 下列範例會建立資源群組、伺服器、防火牆規則、彈性集區，然後在集區中建立 SQL Database。 請參閱[建立用來存取資源的服務主體](#create-a-service-principal-to-access-resources)以取得 `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 變數。
 
 以下列內容取代 **Program.cs** 的內容，並以您應用程式的值更新 `{variables}` (請勿包含 `{}`)。
@@ -314,6 +315,6 @@ namespace SqlElasticPoolConsoleApp
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

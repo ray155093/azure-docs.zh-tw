@@ -12,11 +12,11 @@ ms.devlang: dotNet
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/26/2016
+ms.date: 12/14/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 037dc010a6dc60eb49ad4fdad2861e8653e36199
+ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
+ms.openlocfilehash: 76b6934950354f94f4f68e7cfef00e890d9391a6
 
 
 ---
@@ -41,7 +41,7 @@ Service Fabric SDK 包含的 Visual Studio 增益集提供用來建立、部署�
 > 
 
 ## <a name="create-the-application"></a>建立應用程式
-Service Fabric 應用程式可以包含一或多個服務，而每個服務在提供應用程式的功能時都有特定角色。 使用 [新增專案] 精靈，您可以隨著第一個服務專案一起建立應用程式專案。 您稍後可以新增更多服務。
+Service Fabric 應用程式可以包含一或多個服務，而每個服務在提供應用程式的功能時都有特定角色。 使用 [新增專案] 精靈，隨著第一個服務專案一起建立應用程式專案。 您稍後也可以視需要新增更多服務。
 
 1. 以系統管理員身分啟動 Visual Studio。
 2. 按一下 [檔案] > [新增專案] > [雲端] > [Service Fabric 應用程式]。
@@ -106,7 +106,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
    
     Service Fabric Explorer 提供了叢集的視覺表示法，包括部署至叢集的應用程式集以及構成叢集的實體節點集合。 若要了解 Service Fabric Explorer，請參閱 [視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 6. 在左窗格中展開 [叢集] > [節點]，並尋找您的程式碼執行所在的節點。
-7. 按一下 [動作] > [停用 (重新啟動)] 來模擬電腦重新啟動。 (請注意，您也可以從左窗格之節點清單檢視中的內容功能表停用)。
+7. 按一下 [動作] > [停用 (重新啟動)] 來模擬電腦重新啟動。 或在左窗格中的節點清單檢視停用節點)。
    
     ![在 Service Fabric Explorer 中停止節點][sfx-stop-node]
    
@@ -116,14 +116,14 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
     ![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
 
 ## <a name="switch-cluster-mode"></a>切換叢集模式
-根據預設，本機開發叢集已設定為以 5 個節點的叢集方式執行，這很適合用於偵錯跨多個節點部署的服務。 不過，將應用程式部署到 5 個節點的開發叢集可能需要一些時間。 如果您想要快速反覆執行程式碼變更，但不要在 5 個節點上執行您的應用程式，您可以將開發叢集切換到 1 個節點的模式。 若要在具有一個節點的叢集上執行您的程式碼，請以滑鼠右鍵按一下系統匣中的 [本機叢集管理員] 並選取 [交換器叢集模式] -> [1 個節點]。  
+根據預設，本機開發叢集已設定為以 5 個節點的叢集方式執行，這很適合用於偵錯跨多個節點部署的服務。 不過，將應用程式部署到 5 個節點的開發叢集可能需要一些時間。 如果您想要快速反覆執行程式碼變更，但不要在 5 個節點上執行您的應用程式，將開發叢集切換到 1 個節點的模式。 若要在具有一個節點的叢集上執行您的程式碼，請以滑鼠右鍵按一下系統匣中的 [本機叢集管理員] 並選取 [交換器叢集模式] -> [1 個節點]。  
 
 ![切換叢集模式][switch-cluster-mode]
 
-當您變更叢集模式時，開發叢集會重設，而且會移除在此叢集上佈建或執行的所有應用程式。
+當您變更叢集模式且移除此叢集上佈建或執行的所有應用程式時，開發叢集會重設。
 
 ## <a name="cleaning-up"></a>清除
-  在我們做結論之前，請務必記得本機叢集非常真實。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 但叢集會繼續在背景中執行。 您有數個選項可管理叢集：
+在我們做結論之前，請務必記得本機叢集是真實的。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 但叢集會繼續在背景中執行。 您有數個選項可管理叢集：
 
 1. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
 2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 唯有您打算停用本機叢集一陣子或需要回收資源時，再刪除叢集。
@@ -133,6 +133,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 * 嘗試使用 [Reliable Services](service-fabric-reliable-services-quick-start.md) 或 [Reliable Actors](service-fabric-reliable-actors-get-started.md) 程式設計模型來建立服務。
 * 了解如何透過 [Web 服務前端](service-fabric-add-a-web-frontend.md)在網際網路公開服務。
 * 逐步完成 [實際操作實驗室](https://msdnshared.blob.core.windows.net/media/2016/07/SF-Lab-Part-I.docx) 及建立無狀態服務、設定監視和健康情況報告，以及執行應用程式升級。
+* 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 <!-- Image References -->
 
@@ -151,6 +152,6 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 
