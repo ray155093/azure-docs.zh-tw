@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Google Apps整合 | Microsoft Docs
-description: 了解如何使用 Google Apps 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 Google Apps整合 | Microsoft Docs"
+description: "了解如何使用 Google Apps 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser-msft
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 38a6ca75-7fd0-4cdc-9b9f-fae080c5a016
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2016
 ms.author: asmalser-msft
+translationtype: Human Translation
+ms.sourcegitcommit: 0edd2d9b2d71d95260aa122545930aab64612106
+ms.openlocfilehash: cc7348b933b1ed4a79bf282c1d9a8e073b1f3ba4
+
 
 ---
-# <a name="tutorial:-how-to-integrate-google-apps-with-azure-active-directory"></a>教學課程：如何整合 Google Apps 與 Azure Active Directory
+# <a name="tutorial-azure-active-directory-integration-with-google-apps"></a>教學課程：Azure Active Directory 與 Google Apps 整合
 本教學課程將示範如何將 Google Apps 環境與 Azure Active Directory (Azure AD) 連接。 您將學習如何設定單一登入 Google Apps、如何啟用自動的使用者佈建，以及如何指派使用者存取 Google Apps。 
 
 ## <a name="prerequisites"></a>必要條件
@@ -44,7 +48,7 @@ ms.author: asmalser-msft
    
     答：有兩個選項可允許這樣的情況。 第一個是，使用者可以透過 [Azure Active Directory Join](active-directory-azureadjoin-overview.md)登入 Windows 10 裝置。 另一個是，使用者可以登入已加入某個內部部署 Active Directory 網域的 Windows 裝置，其中此內部部署 Active Directory 已透過 [Active Directory 同盟服務 (AD FS)](active-directory-aadconnect-user-signin.md) 部署而能夠單一登入到 Azure AD。 當然，這兩個選項都需要您依照以下教學課程，在 Azure AD 與 Google Apps 之間啟用單一登入。
 
-## <a name="step-1:-add-google-apps-to-your-directory"></a>步驟 1：將 Google Apps 加入您的目錄
+## <a name="step-1-add-google-apps-to-your-directory"></a>步驟 1：將 Google Apps 加入您的目錄
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![從左方的導覽窗格中選取 [Active Directory]。][0]
@@ -52,7 +56,7 @@ ms.author: asmalser-msft
 3. 按一下上方功能表中的 [應用程式]  。
    
     ![按一下 [應用程式]。][1]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![按一下 [新增] 以加入新的應用程式。][2]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -65,7 +69,7 @@ ms.author: asmalser-msft
    
     ![Azure AD 中 Google Apps 的 [快速入門] 頁面][5]
 
-## <a name="step-2:-enable-single-sign-on"></a>步驟 2：啟用單一登入
+## <a name="step-2-enable-single-sign-on"></a>步驟 2：啟用單一登入
 1. 在 Azure AD 中 Google Apps 的 [快速入門] 頁面上，按一下 [設定單一登入]  按鈕。
    
     ![[設定單一登入] 按鈕][6]
@@ -97,7 +101,7 @@ ms.author: asmalser-msft
    ![輸入您的電子郵件地址。][14]
 8. 按一下 [完成]  關閉對話方塊。 若要測試您的組態，請參閱下面標題為 [指派使用者至 Google Apps](#step-4-assign-users-to-google-apps)的章節。
 
-## <a name="optional-step:-manually-configure-single-sign-on"></a>選擇性步驟：手動設定單一登入
+## <a name="optional-step-manually-configure-single-sign-on"></a>選擇性步驟：手動設定單一登入
 如果您想要手動設定單一登入，請完成下列步驟：
 
 1. 在 Azure AD 中 Google Apps 的 [快速入門] 頁面上，按一下 [設定單一登入]  按鈕。
@@ -145,7 +149,7 @@ ms.author: asmalser-msft
     ![輸入您的電子郵件地址。][14]
 12. 按一下 [完成]  關閉對話方塊。 若要測試您的組態，請參閱下面標題為 [指派使用者至 Google Apps](#step-4-assign-users-to-google-apps)的章節。
 
-## <a name="step-3:-enable-automated-user-provisioning"></a>步驟 3：啟用自動的使用者佈建
+## <a name="step-3-enable-automated-user-provisioning"></a>步驟 3：啟用自動的使用者佈建
 > [!NOTE]
 > 自動化使用者佈建至 Google Apps 另一個可行的選項是使用 [Google Apps Directory Sync (GADS)](https://support.google.com/a/answer/106368?hl=en) ，這會將您的內部部署 Active Directory 身分識別佈建至 Google Apps。 但是，本教學課程中的解決方案則會將您的 Azure Active Directory (雲端) 使用者和啟用郵件功能的群組佈建至 Google Apps。
 > 
@@ -221,7 +225,7 @@ ms.author: asmalser-msft
     ![確認權限。][28]
 12. 按一下 [完成]  關閉對話方塊。
 
-## <a name="step-4:-assign-users-to-google-apps"></a>步驟 4：指派使用者至 Google Apps
+## <a name="step-4-assign-users-to-google-apps"></a>步驟 4：指派使用者至 Google Apps
 1. 若要測試您的組態，請先在目錄中建立新的測試帳戶。
 2. 在 Google Apps [快速入門] 頁面上，按一下 [指派使用者]  按鈕。
    
@@ -230,7 +234,7 @@ ms.author: asmalser-msft
    
    * 如果還沒有啟用自動的使用者佈建，您會看到下列確認提示：
      
-        ![Confirm the assignment.][30]
+        ![確認指派。][30]
    * 如果已啟用自動的使用者佈建，您會看到提示，定義使用者在 Google Apps 中要具備何種角色。 幾分鐘之後，新佈建的使用者應該就會出現在 Google Apps 環境中。
 4. 若要測試您的單一登入設定，請開啟 [https://myapps.microsoft.com](https://myapps.microsoft.com/) 的 [存取面板]、登入測試帳戶，然後按一下 [Google Apps]。
 
@@ -272,6 +276,6 @@ ms.author: asmalser-msft
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

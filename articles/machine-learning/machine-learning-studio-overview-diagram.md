@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/21/2016
+ms.date: 12/16/2016
 ms.author: haining;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 23954b17c96fd33159892b6f9254b4ae9d02ecf9
+ms.sourcegitcommit: 5e9aa39ccf91f98336e5db179b532930f7e83313
+ms.openlocfilehash: 35bf8b41288afd31ba7e6f861beb7a7bf2a36d94
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 23954b17c96fd33159892b6f9254b4ae9d02ecf9
 [Azure Machine Learning Studio](https://studio.azureml.net/) 有可用的大量機器學習演算法，以及有助於資料輸入、輸出、準備和視覺效果的模組。 您可以使用這些元件開發預測性分析實驗，並在其上逐一查看，以及使用它來定型模型。
 然後按一下即可讓您的模型在 Azure 雲端中運作，使其可用來為新資料評分。
 
-此圖說明了這些項目如何彼此配合。
+此圖示範這些項目如何彼此配合。
 
 > [!NOTE]
 > 如需關於瀏覽及選擇 Machine Learning Studio 中提供的機器學習演算法的其他說明，請參閱 [適用於 Microsoft Azure Machine Learning Studio 的機器學習演算法小祕技](machine-learning-algorithm-cheat-sheet.md) 。
@@ -54,6 +54,6 @@ ms.openlocfilehash: 23954b17c96fd33159892b6f9254b4ae9d02ecf9
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

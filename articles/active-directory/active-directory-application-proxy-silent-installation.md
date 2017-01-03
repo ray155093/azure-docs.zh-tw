@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 06/22/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 01c62e1e3074d7f9addd75ba51d6131921a4ecc7
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: fe96fb2159a7d0dba0ad391d25f38f79cf8aeeb3
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 01c62e1e3074d7f9addd75ba51d6131921a4ecc7
 ## <a name="enabling-access"></a>啟用存取
 應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。 應用程式 Proxy 連接器必須使用全域系統管理員和密碼向 Azure AD 目錄註冊後才能運作。 通常，這是在連接器安裝期間於一個快顯對話方塊中輸入的。 此外，您也可以使用 Windows PowerShell 來建立認證物件以輸入您的註冊資訊，或者您可以建立自己的語彙基元並使用它來輸入註冊資訊。
 
-## <a name="step-1-install-the-connector-without-registration"></a>步驟 1：安裝連接器，但不註冊
+## <a name="step-1--install-the-connector-without-registration"></a>步驟 1：安裝連接器，但不註冊
 下列是安裝連接器但不註冊連接器的方式：
 
 1. 開啟命令提示字元。
@@ -127,6 +127,6 @@ ms.openlocfilehash: 01c62e1e3074d7f9addd75ba51d6131921a4ecc7
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

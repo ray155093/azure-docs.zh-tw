@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 10/05/2016
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: 48821a3b2b7da4646c4569cc540d867f02a4a32f
-ms.openlocfilehash: 6dc23714a4a052c7bf0bb5162fe1568ec272b5e3
+ms.sourcegitcommit: 4e2508883998b1435d7c4f099bd6ef0e00bd885e
+ms.openlocfilehash: 4f9127ca06668884e6b6f5dbc81aad0a2b1ea9df
 
 
 ---
@@ -185,7 +185,7 @@ ms.openlocfilehash: 6dc23714a4a052c7bf0bb5162fe1568ec272b5e3
   > 如果您執行舊版 Windows Server 2008 或 2008 R2，您仍然可以使用此功能，但是需要先 [下載及安裝 KB 2386717](https://support.microsoft.com/kb/2386717) ，才能在雲端中強制執行您的本機 AD 密碼原則。
   > 
   > 
-* 您已安裝 Azure AD Connect 工具，且已備妥 AD 環境進行同步處理至雲端。  如需詳細資訊，請參閱 [在雲端中使用內部部署身分識別基礎結構](active-directory-aadconnect.md)
+* 您已安裝 Azure AD Connect 工具，且已備妥 AD 環境進行同步處理至雲端。  如需詳細資訊，請參閱 [在雲端中使用內部部署身分識別基礎結構](connect/active-directory-aadconnect.md)
   
   > [!NOTE]
   > 測試密碼回寫之前，請確定您先在 Azure AD Connect 中完成 AD 和 Azure AD 的完整匯入和完整同步處理。
@@ -199,7 +199,7 @@ ms.openlocfilehash: 6dc23714a4a052c7bf0bb5162fe1568ec272b5e3
   > 
 
 ### <a name="step-1-download-the-latest-version-of-azure-ad-connect"></a>步驟 1：下載最新版本的 Azure AD Connect
-密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0419.0911** 或更高版本的 Azure AD Sync 工具中使用。  具有自動帳戶解除鎖定的密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0485.0222** 或更高版本的 Azure AD Sync 工具中使用。 如果您執行較舊的版本，請至少升級至此版本，再繼續作業。 [按一下這裡以下載最新版本的 Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect)。
+密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0419.0911** 或更高版本的 Azure AD Sync 工具中使用。  具有自動帳戶解除鎖定的密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0485.0222** 或更高版本的 Azure AD Sync 工具中使用。 如果您執行較舊的版本，請至少升級至此版本，再繼續作業。 [按一下這裡以下載最新版本的 Azure AD Connect](connect/active-directory-aadconnect.md#install-azure-ad-connect)。
 
 #### <a name="to-check-the-version-of-azure-ad-sync"></a>檢查 Azure AD Sync 的版本
 1. 瀏覽至 *%ProgramFiles%\Azure Active Directory Sync*\**。
@@ -393,6 +393,6 @@ ms.openlocfilehash: 6dc23714a4a052c7bf0bb5162fe1568ec272b5e3
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -3,7 +3,7 @@ title: "教學課程 - 開始使用 Azure Batch .NET 程式庫 | Microsoft Docs"
 description: "了解 Azure Batch 的基本概念，以及利用範例案例了解如何開發 Batch 服務。"
 services: batch
 documentationcenter: .net
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 ms.assetid: 76cb9807-cbc1-405a-8136-d1e53e66e82b
@@ -13,10 +13,10 @@ ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
 ms.date: 11/22/2016
-ms.author: marsma
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 58189daa7dd80e9ecb074a935e3e53fe75637643
-ms.openlocfilehash: 8bac99e393dd0ccca9eaa6097dc87872e306dc5c
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: 8243e2304d846e02ecf0114b79be73c0016941df
 
 
 ---
@@ -48,7 +48,7 @@ ms.openlocfilehash: 8bac99e393dd0ccca9eaa6097dc87872e306dc5c
 您必須擁有 **Visual Studio 2015** 才能建置範例專案。 您可以在 [Visual Studio 2015 產品概觀][visual_studio]中找到免費試用版的 Visual Studio。
 
 ### <a name="dotnettutorial-code-sample"></a> 程式碼範例
-[DotNetTutorial][github_dotnettutorial] 範例是可在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多 Batch 程式碼範例之一。 按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。 將 ZIP 檔案的內容解壓縮後，您可以在下列資料夾中找到方案：
+[DotNetTutorial][github_dotnettutorial] 範例是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多程式碼範例之一。 按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。 將 ZIP 檔案的內容解壓縮後，您可以在下列資料夾中找到方案：
 
 `\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial`
 
@@ -348,7 +348,7 @@ private static async Task CreatePoolAsync(
 }
 ```
 
-利用 [CreatePool][net_pool_create] 建立集區時，您會指定數個參數，例如計算節點數目、[節點大小](../cloud-services/cloud-services-sizes-specs.md)以及節點的作業系統。 在 DotNetTutorial 中，我們使用 [CloudServiceConfiguration][net_cloudserviceconfiguration] 以從[雲端服務](../cloud-services/cloud-services-guestos-update-matrix.md)指定 Windows Server 2012 R2。 不過，若改為指定 [VirtualMachineConfiguration][net_virtualmachineconfiguration]n，您可以建立透過 Marketplace 映像 (包括 Windows 和 Linux 映像) 所建立之集區的節點；如需詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
+利用 [CreatePool][net_pool_create] 建立集區時，您會指定數個參數，例如計算節點數目、[節點大小](../cloud-services/cloud-services-sizes-specs.md)以及節點的作業系統。 在 DotNetTutorial 中，我們使用 [CloudServiceConfiguration][net_cloudserviceconfiguration] 以從[雲端服務](../cloud-services/cloud-services-guestos-update-matrix.md)指定 Windows Server 2012 R2。 不過，若改為指定 [VirtualMachineConfiguration][net_virtualmachineconfiguration]，您可以建立透過 Marketplace 映像 (包括 Windows 和 Linux 映像) 所建立之集區的節點；如需詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
 
 > [!IMPORTANT]
 > 您需對 Batch 中的計算資源付費。 若要將成本降到最低，您可以在執行範例前，將 `targetDedicated` 降為 1。
@@ -795,6 +795,6 @@ Sample complete, hit ENTER to exit...
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

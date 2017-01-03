@@ -9,7 +9,7 @@ manager: jhubbard
 editor: 
 ms.assetid: aeb8c4c3-6ae2-45f7-b2c3-fa13e3752eed
 ms.service: sql-database
-ms.custom: overview
+ms.custom: single databases
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -17,8 +17,8 @@ ms.topic: hero-article
 ms.date: 11/23/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: d772dabf84fc3b6c061c0f4607c989aabf9dd272
-ms.openlocfilehash: 6d15839ce4084a808d9ecd5900a39a4f67dec822
+ms.sourcegitcommit: c2252fc81f97019391ca2ba957f8402c4e97a9c2
+ms.openlocfilehash: f9b17c1cc77918fb1989b94b5bb359a697ceea7c
 
 
 ---
@@ -30,15 +30,15 @@ ms.openlocfilehash: 6d15839ce4084a808d9ecd5900a39a4f67dec822
 * 建立 Azure SQL 邏輯伺服器
 * 檢視 Azure SQL 邏輯伺服器屬性
 * 建立伺服器層級防火牆規則
-* 建立 Adventure Works LT 範例資料庫
+* 以單一資料庫方式建立 Adventure Works LT 範例資料庫
 * 在 Azure 中檢視 Adventure Works LT 範例資料庫屬性
 
 在本教學課程中，您也會使用最新版的 SQL Server Management Studio 來：
 
 * 連接到邏輯伺服器和其主要資料庫
-* 檢視主要資料庫屬性
+* 查詢 Master 資料庫
 * 連接到範例資料庫
-* 檢視使用者資料庫屬性
+* 查詢範例資料庫
 
 當完成本教學課程時，您將會有在 Azure 資源群組中執行並連接到邏輯伺服器的範例資料庫和空白資料庫。 您也會有伺服器層級防火牆規則，設定為可啟用伺服器層級主體以從指定的 IP 位址 (或 IP 位址範圍) 登入伺服器。 
 
@@ -208,7 +208,7 @@ ms.openlocfilehash: 6d15839ce4084a808d9ecd5900a39a4f67dec822
     ![伺服器認證](./media/sql-database-get-started/server-credentials.png)
 
     > [!NOTE]
-    > 將資料庫加入至伺服器時，可以新增為單一資料庫 (這是預設值) 或 SQL 彈性集區。 如需有關彈性集區的詳細資訊，請參閱[彈性集區](sql-database-elastic-pool.md)。
+    > 將資料庫加入至伺服器時，可以新增為單一資料庫 (這是預設值) 或新增至彈性集區。 如需有關彈性集區的詳細資訊，請參閱[彈性集區](sql-database-elastic-pool.md)。
     >
 
 7. 在 [定價層] 下，將定價層變更為 [基本] (如有需要，您可以稍後增加定價層，但基於學習的目的，我們建議您使用最低成本層)。
@@ -299,11 +299,13 @@ ms.openlocfilehash: 6d15839ce4084a808d9ecd5900a39a4f67dec822
 * 如果您想要開始建立資料表和其他物件，請參閱[建立資料表](https://msdn.microsoft.com/library/ms365315.aspx)中的「建立資料表」主題。
 
 ## <a name="additional-resources"></a>其他資源
-[什麼是 SQL Database？](sql-database-technical-overview.md)
+
+- 如需技術概觀，請參閱[什麼是 SQL Database？](sql-database-technical-overview.md)。
+- 如需價格資訊，請參閱 [Azure SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)。
 
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 

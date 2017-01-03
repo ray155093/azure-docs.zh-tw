@@ -3,8 +3,8 @@ title: "以 .NET 開始使用 Azure Blob 儲存體 (物件儲存體) | Microsoft
 description: "使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 services: storage
 documentationcenter: .net
-author: tamram
-manager: carmonm
+author: mmacy
+manager: timlt
 editor: tysonn
 ms.assetid: d18a8fc8-97cb-4d37-a408-a6f8107ea8b3
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 11/17/2016
-ms.author: tamram
+ms.date: 12/08/2016
+ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: fe4b9c356e5f7d56cb7e1fa62344095353d0b699
-ms.openlocfilehash: d2d1a5aae3e1965e7010b11218b6b1aa27ec524d
+ms.sourcegitcommit: 12ce6b6bccf3ea2aa2945ddd775716f29cf01e1f
+ms.openlocfilehash: 24b23c412ae4e092427b4e68b16df0369f9e9f0e
 
 ---
 
@@ -31,9 +31,9 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 ### <a name="about-this-tutorial"></a>關於本教學課程
 本教學課程說明如何使用 Azure Blob 儲存體撰寫一些常見案例的 .NET 程式碼。 所涵蓋的案例包括上傳、列出、下載及刪除 Blob。
 
-**先決條件：**
+**必要條件：**
 
-* [Microsoft Visual Studio](https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx)
+* [Microsoft Visual Studio](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
 * [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
 * [適用於.NET 的 Azure 設定管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
 * [Azure 儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)
@@ -395,7 +395,7 @@ Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
 ### <a name="conceptual-guides"></a>概念性指南
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 * [開始使用適用於 .NET 的檔案儲存體](storage-dotnet-how-to-use-files.md)
-* [如何透過 WebJobs SDK 使用 Azure Blob 儲存體 (英文)](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
+* [如何透過 WebJob SDK 使用 Azure Blob 儲存體 (英文)](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
 
 [Blob5]: ./media/storage-dotnet-how-to-use-blobs/blob5.png
 [Blob6]: ./media/storage-dotnet-how-to-use-blobs/blob6.png
@@ -403,13 +403,13 @@ Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
 [Blob8]: ./media/storage-dotnet-how-to-use-blobs/blob8.png
 [Blob9]: ./media/storage-dotnet-how-to-use-blobs/blob9.png
 
-[Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
-[設定連接字串]: http://msdn.microsoft.com/library/azure/ee758697.aspx
-[.NET 用戶端程式庫參考]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
-[REST API 參考資料]: http://msdn.microsoft.com/library/azure/dd179355
+[Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
+[Configuring Connection Strings]: http://msdn.microsoft.com/library/azure/ee758697.aspx
+[.NET client library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
+[REST API reference]: http://msdn.microsoft.com/library/azure/dd179355
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用孿生屬性 | Microsoft Docs
-description: 本教學課程說明如何使用孿生屬性
+title: "使用裝置對應項屬性 | Microsoft Docs"
+description: "本教學課程說明如何使用裝置對應項屬性"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: d0bcec50-26e6-40f0-8096-733b2f3071ec
 ms.service: iot-hub
 ms.devlang: node
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/13/2016
 ms.author: elioda
+translationtype: Human Translation
+ms.sourcegitcommit: 400eab43a417980abe9df5fa75ee9f9e43b296d0
+ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
+
 
 ---
-# <a name="tutorial:-use-desired-properties-to-configure-devices-(preview)"></a>教學課程︰使用所需的屬性來設定裝置 (預覽)
+# <a name="tutorial-use-desired-properties-to-configure-devices"></a>教學課程︰使用所需屬性來設定裝置
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
 在本教學課程結束時，您將會有兩個 Node.js 主控台應用程式：
@@ -25,18 +29,20 @@ ms.author: elioda
 * **SetDesiredConfigurationAndQuery.js**，這是應該從後端執行的 Node.js 應用程式，可在裝置上設定所需的設定，並查詢組態更新程序。
 
 > [!NOTE]
-> [IoT 中樞 SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式的各種 SDK 的相關資訊。
+> [IoT 中樞 SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
 > 
 > 
 
 若要完成此教學課程，您需要下列項目：
 
 * Node.js 0.10.x 版或更新版本。
-* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
+* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
-如果您依照[開始使用裝置對應項][lnk-twin-tutorial]教學課程進行，則您已經有一個已啟用裝置管理的中樞和一個稱為 **myDeviceId** 的裝置身分識別，您可以直接跳到[建立模擬裝置應用程式][lnk-how-to-configure-createapp]一節。
+如果您依照[開始使用裝置對應項][lnk-twin-tutorial]教學課程進行，您便已經有一個 IoT 中樞和一個稱為 **myDeviceId** 的裝置身分識別，您可以直接跳到[建立模擬裝置應用程式][lnk-how-to-configure-createapp]一節。
 
-[!INCLUDE [iot-hub-get-started-create-hub-pp](../../includes/iot-hub-get-started-create-hub-pp.md)]
+[!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
+
+[!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="create-the-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您將建立 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 連接到您的中樞、等候所需的組態更新，然後報告模擬組態更新程序上的更新。
@@ -49,7 +55,7 @@ ms.author: elioda
 2. 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 套件：
    
     ```
-    npm install azure-iot-device@dtpreview azure-iot-device-mqtt@dtpreview --save
+    npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 3. 使用文字編輯器，在 **simulatedeviceconfiguration** 資料夾中建立新的 **SimulateDeviceConfiguration.js** 檔案。
 4. 將下列程式碼新增至 **SimulateDeviceConfiguration.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的連接字串，取代 **{device connection string}** 預留位置︰
@@ -86,7 +92,7 @@ ms.author: elioda
             }
         });
    
-    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 先前的程式碼 (在它初始化 **Client** 物件之後) 會擷取 **myDeviceId** 的對應項，並附加處理常式來處理所需屬性的更新。 此處理常式會比較 configIds 來驗證有實際的組態變更要求，然後叫用方法來啟動組態變更。
+    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 先前的程式碼在初始化 **Client** 物件之後，會擷取 **myDeviceId** 的裝置對應項，並附加處理常式來處理所需屬性的更新。 此處理常式會比較 configIds 來驗證有實際的組態變更要求，然後叫用方法來啟動組態變更。
    
     請注意，為了簡單起見，先前的程式碼使用硬式編碼的預設值作為初始組態。 實際的應用程式可能會從本機儲存體載入該組態。
    
@@ -135,7 +141,7 @@ ms.author: elioda
             });
         };
    
-    **InitConfigChange** 方法會依組態更新要求而在本機孿生物件上更新所報告的屬性，並將狀態設為 **Pending**，然後更新服務上的裝置對應項。 已成功更新對應項之後，它會模擬一個長時間執行而在 **completeConfigChange** 執行過程中終止的處理序。 這個方法會更新本機對應項所報告的屬性，將狀態設定為 **Success**，並移除 **pendingConfig** 物件。 然後更新服務上的對應項。
+    **InitConfigChange** 方法會依組態更新要求而在本機裝置對應項物件上更新所報告的屬性，並將狀態設為 **Pending**，然後更新服務上的裝置對應項。 成功更新裝置對應項之後，它會模擬一個長時間執行而在 **completeConfigChange** 執行過程中終止的處理序。 這個方法會更新本機裝置對應項所報告的屬性，將狀態設定為 **Success**，並移除 **pendingConfig** 物件。 然後更新服務上的裝置對應項。
    
     請注意，為了節省頻寬，更新所報告的屬性時只會指定要修改的屬性 (在上述程式碼中名為 **patch**)，而不是取代整份文件。
    
@@ -150,7 +156,7 @@ ms.author: elioda
     您應該會看見訊息 `retrieved device twin`。 保持應用程式執行。
 
 ## <a name="create-the-service-app"></a>建立服務應用程式
-在本節中，您將建立 Node.js 主控台應用程式，在與 **myDeviceId** 相關聯的對應項上，以新的遙測組態物件來更新「所需屬性」。 然後，它會查詢儲存在中樞的裝置對應項，並顯示裝置的所需和所報告組態之間的差異。
+在本節中，您將建立 Node.js 主控台應用程式，在與 **myDeviceId** 相關聯的裝置對應項上，以新的遙測組態物件來更新「所需屬性」。 然後，它會查詢儲存在 IoT 中樞的裝置對應項，並顯示裝置的所需和所報告組態之間的差異。
 
 1. 建立稱為 **setdesiredandqueryapp** 的新空白資料夾。 在 **setdesiredandqueryapp** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
    
@@ -160,7 +166,7 @@ ms.author: elioda
 2. 在命令提示字元下，於 **callmethodondevice** 資料夾中執行下列命令以安裝 **azure-iothub** 套件：
    
     ```
-    npm install azure-iothub@dtpreview node-uuid --save
+    npm install azure-iothub node-uuid --save
     ```
 3. 使用文字編輯器，在 **addtagsandqueryapp** 資料夾中建立新的 **SetDesiredAndQuery.js** 檔案。
 4. 將下列程式碼新增至 **SetDesiredAndQuery.js** 檔案，並以您建立中樞時所複製的連接字串，取代 **{service connection string}** 預留位置︰
@@ -198,9 +204,12 @@ ms.author: elioda
             }
         });
 
-    **Registry** 物件會公開從服務來與裝置對應項進行互動時所需的所有方法。 先前的程式碼 (在它初始化 **Registry** 物件之後) 會擷取 **myDeviceId** 的對應項，並以新的遙測組態物件來更新其所需屬性。 之後，它每 10 秒呼叫一次 **queryTwins** 函式。
+    **Registry** 物件會公開從服務來與裝置對應項進行互動時所需的所有方法。 先前的程式碼在初始化 **Registry** 物件之後，會擷取 **myDeviceId** 的裝置對應項，並以新的遙測組態物件來更新其所需屬性。 之後，它每 10 秒呼叫一次 **queryTwins** 函式。
 
-    > [AZURE.IMPORTANT] 為了便於說明，此應用程式每 10 秒查詢一次 IoT 中樞。 跨許多裝置時，請使用查詢來產生適合使用者的報告，而非偵測變更。 如果您的解決方案需要裝置事件的即時通知，請使用[裝置到雲端訊息][lnk-d2c]。
+    > [!IMPORTANT]
+    > 為了便於說明，此應用程式每 10 秒查詢一次 IoT 中樞。 跨許多裝置時，請使用查詢來產生適合使用者的報告，而非偵測變更。 如果您的解決方案需要裝置事件的即時通知，請使用[裝置到雲端訊息][lnk-d2c]。
+    > 
+    >]。
 
 1. 在 `registry.getDeviceTwin()` 叫用之前，新增下列程式碼來實作 **queryTwins** 函式︰
    
@@ -224,7 +233,7 @@ ms.author: elioda
             });
         };
    
-    先前的程式碼會查詢儲存在中樞的對應項，並列印所需和所報告的遙測組態。 請參閱 [IoT 中樞查詢語言][lnk-query]，以了解如何產生跨所有裝置的實用報告。
+    先前的程式碼會查詢儲存在 IoT 中樞的裝置對應項，並列印所需和所報告的遙測組態。 請參閱 [IoT 中樞查詢語言][lnk-query]，以了解如何產生跨所有裝置的實用報告。
 2. 在 **SimulateDeviceConfiguration.js** 執行的情況下，使用下列命令執行應用程式︰
    
         node SetDesiredAndQuery.js 5m
@@ -232,17 +241,17 @@ ms.author: elioda
     您應該會看到所報告的組態從 **Success** 變成 **Pending**，又再變回 **Success**，而且新的作用中傳送頻率是五分鐘，而不是 24 小時。
    
    > [!IMPORTANT]
-   > 裝置報告作業和查詢結果之間的延遲最多一分鐘。 這是為了讓查詢基礎結構能夠以非常高的延展性運作。 若要擷取單一對應項的一致檢視，請在 **Registry** 類別中使用 **getDeviceTwin** 方法。
+   > 裝置報告作業和查詢結果之間的延遲最多一分鐘。 這是為了讓查詢基礎結構能夠以非常高的延展性運作。 若要擷取單一裝置對應項的一致檢視，請使用 **Registry** 類別中的 **getDeviceTwin** 方法。
    > 
    > 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您將會從後端應用程式將所需的組態設為「所需屬性」，還會撰寫模擬裝置應用程式來偵測該變更並模擬多步驟更新程序，以「所報告屬性」將其狀態回報給對應項。
+在本教學課程中，您將會從後端應用程式將所需的組態設為「所需屬性」，還會撰寫模擬裝置應用程式來偵測該變更並模擬多步驟更新程序，以「所報告屬性」將其狀態回報給裝置對應項。
 
 使用下列資源來了解如何：
 
 * 從裝置傳送遙測，請參閱[開始使用 IoT 中樞][lnk-iothub-getstarted]教學課程，
-* 在大量裝置上排程或執行作業，請參閱[使用作業來排程和廣播裝置作業][lnk-schedule-jobs]教學課程。
+* 在大量裝置上排定或執行作業，請參閱[排定及廣播作業][lnk-schedule-jobs]教學課程。
 * 以互動方式控制裝置 (例如，從使用者控制的應用程式開啟風扇)，請參閱[使用直接方法][lnk-methods-tutorial]教學課程。
 
 <!-- links -->
@@ -255,13 +264,13 @@ ms.author: elioda
 [lnk-methods]: iot-hub-devguide-direct-methods.md
 [lnk-dm-overview]: iot-hub-device-management-overview.md
 [lnk-twin-tutorial]: iot-hub-node-node-twin-getstarted.md
-[lnk-schedule-jobs]: iot-hub-schedule-jobs.md
+[lnk-schedule-jobs]: iot-hub-node-node-schedule-jobs.md
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
-[lnk-device-management]: iot-hub-device-management-get-started.md
+[lnk-device-management]: iot-hub-node-node-device-management-get-started.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-iothub-getstarted]: iot-hub-node-node-getstarted.md
-[lnk-methods-tutorial]: iot-hub-c2d-methods.md
+[lnk-methods-tutorial]: iot-hub-node-node-direct-methods.md
 
 [lnk-guid]: https://en.wikipedia.org/wiki/Globally_unique_identifier
 
@@ -269,6 +278,6 @@ ms.author: elioda
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/20/2016
+ms.date: 12/19/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 4f541e34e7c0696e4074613c4ab0734a096c6d12
-ms.openlocfilehash: dd1161f2b5cf717246391900a616e51c457f5280
+ms.sourcegitcommit: e3df10acf4a6c123186c72687a56ccb4856c46fe
+ms.openlocfilehash: 07499f9b1c9668d8cb4037405478210e0738e03d
 
 
 ---
@@ -189,7 +189,7 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
    
     屬性如下︰
    
-   * [其他屬性]  包含會推送至 Azure 儲存體的 Web 部署套件預備位置。 請注意資料夾 (ExampleApp) 和檔案 (package.zip)。 您會提供這些值做為部署應用程式時的參數。 
+   * [其他屬性]  包含會推送至 Azure 儲存體的 Web 部署套件預備位置。 請注意資料夾 (ExampleApp) 和檔案 (package.zip)。 您必須知道這些值，因為您會提供這些值做為部署應用程式時的參數。 
    * [包含檔案路徑]  包含建立套件所在的路徑。 [包含目標]  包含部署執行的命令。 
    * 預設值 [建立封裝]  會讓部署建立 Web 部署封裝 (package.zip)。  
      
@@ -219,6 +219,6 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

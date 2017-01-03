@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 12/11/2016
+ms.date: 12/15/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 24d324a724792051eb6d86026da7b41ee9ff87b1
-ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
+ms.sourcegitcommit: e048e70714c260fcb13ec5ca53434173026eb8d8
+ms.openlocfilehash: 623841606367a319eadf268c8938066d98aa491d
 
 
 ---
@@ -34,7 +34,18 @@ ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
 
 教學課程中介紹基本的媒體服務工作流程，以及媒體服務開發最常用的程式設計物件和必要工作。 完成本教學課程時，您將能夠串流或漸進式下載您已上傳、編碼和下載的範例媒體檔案。
 
+### <a name="ams-model"></a>AMS 模型
+
+下列影像顯示針對媒體服務 OData 模型開發 VoD 應用程式時一些最常用的物件。 
+
+按一下影像可以完整大小檢視。  
+
+<a href="./media/media-services-dotnet-get-started/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-dotnet-get-started/media-services-overview-object-model-small.png"></a> 
+
+您可以[在此](https://media.windows.net/API/$metadata?api-version=2.14)檢視整個模型。  
+
 ## <a name="what-youll-learn"></a>您將學到什麼
+
 本教學課程說明如何完成下列工作：
 
 1. 建立媒體服務帳戶 (使用 Azure 入口網站)。
@@ -55,9 +66,6 @@ ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
 * 作業系統：Windows 8 或更新版本、Windows 2008 R2、Windows 7。
 * .NET Framework 4.0 或更新版本
 * Visual Studio 2010 SP1 (Professional、Premium、Ultimate 或 Express) 或更新版本。
-
-## <a name="download-sample"></a>下載範例
-從 [這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/)取得和執行範例。
 
 ## <a name="create-an-azure-media-services-account-using-the-azure-portal"></a>使用 Azure 入口網站建立 Azure 媒體服務帳戶
 本節中的步驟示範如何建立 AMS 帳戶。
@@ -146,7 +154,7 @@ ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
         using System.Threading;
         using System.IO;
         using Microsoft.WindowsAzure.MediaServices.Client;
-6. 在 projects 目錄下建立新的資料夾，並複製您想要編碼和串流處理或漸進式下載的 .mp4 或 .wmv 檔案。 在此範例中，使用 "C:\VideoFiles" 路徑。
+6. 建立新的資料夾 (資料夾可在本機磁碟機上任意處)，並複製您想要編碼和串流處理或漸進式下載的 .mp4 檔案。 在此範例中，使用 "C:\VideoFiles" 路徑。
 
 ## <a name="connect-to-the-media-services-account"></a>連線到媒體服務帳戶
 
@@ -154,6 +162,7 @@ ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
 
 將預設 Program 類別覆寫為下列程式碼。 此程式碼示範如何讀取 App.config 檔案中的連線值，以及如何建立 **CloudMediaContext** 物件來連線到媒體服務。 如需連線到媒體服務的詳細資訊，請參閱 [使用 Media Services SDK for .NET 連線到媒體服務](http://msdn.microsoft.com/library/azure/jj129571.aspx)。
 
+務必更新您的媒體檔案的檔案名稱和路徑。
 
 **Main** 函數會呼叫未來將在此區段中定義的方法。
 
@@ -184,7 +193,7 @@ ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
                 _context = new CloudMediaContext(_cachedCredentials);
 
                 // Add calls to methods defined in this section.
-
+        // Make sure to update the file name and path to where you have your media file.
                 IAsset inputAsset =
                     UploadFile(@"C:\VideoFiles\BigBuckBunny.mp4", AssetCreationOptions.None);
 
@@ -256,9 +265,8 @@ ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
 
 下列程式碼顯示如何提交編碼工作。 此工作包含一項作業，指定使用 **媒體編碼器標準**，將夾層檔轉碼為一組調適性位元速率 MP4。 此程式碼會提交工作，並等到工作完成。
 
-工作完成之後，就可以串流處理資產，或漸進式下載轉碼後所建立的 MP4 檔案。
-請注意，您不需要擁有任何串流單元，即可漸進式下載 MP4 檔案。
-
+編碼作業完成後，您即可發佈您的資產，然後串流處理或漸進式下載 MP4 檔案。
+ 
 將下列方法新增至 Program 類別。
 
     static public IAsset EncodeToAdaptiveBitrateMP4s(IAsset asset, AssetCreationOptions options)
@@ -299,23 +307,26 @@ ms.openlocfilehash: 26720340d72c31016e51cc33589388780a2f4a8a
 
 若要串流處理或下載資產，您必須先建立定位器來「發佈」它。 定位器提供對於資產中包含之檔案的存取。 媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案 (如需 SAS 定位器的詳細資訊，請參閱[這個](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)部落格)。
 
-建立定位器之後，您便可以建立用來串流或下載檔案的 URL。
+### <a name="some-details-about-url-formats"></a>URL 格式的相關詳細資料
 
-Smooth Streaming 的串流 URL 具有下列格式：
+建立定位器之後，您便可以建立用來串流或下載檔案的 URL。 本教學課程中的範例會輸出您可貼在適當瀏覽器中的 URL。 本節只會提供不同格式外觀的簡短範例。 
 
-     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
+#### <a name="a-streaming-url-for-mpeg-dash-has-the-following-format"></a>MPEG DASH 的串流 URL 具有下列格式：
 
-HLS 的串流 URL 具有下列格式：
+{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest**(format=mpd-time-csf)**
 
-     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
+#### <a name="a-streaming-url-for-hls-has-the-following-format"></a>HLS 的串流 URL 具有下列格式：
 
-MPEG DASH 的串流 URL 具有下列格式：
+{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest**(format=m3u8-aapl)**
 
-    {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
+#### <a name="a-streaming-url-for-smooth-streaming-has-the-following-format"></a>Smooth Streaming 的串流 URL 具有下列格式：
+
+{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest
+
 
 用來下載檔案的 SAS URL 具有下列格式：
 
-    {blob container name}/{asset name}/{file name}/{SAS signature}
+{blob 容器名稱}/{資產名稱}/{檔案名稱}/{SAS 簽章}
 
 Media Services .NET SDK 延伸模組提供便利的協助程式方法，來傳回所發佈資產的格式化 URL。
 
@@ -389,6 +400,7 @@ Media Services .NET SDK 延伸模組提供便利的協助程式方法，來傳�
     }
 
 ## <a name="test-by-playing-your-content"></a>播放您的內容以進行測試
+
 執行上一節中所定義的程式之後，主控台視窗中會顯示與下面類似的 URL。
 
 調適性串流 URL：
@@ -424,9 +436,18 @@ MPEG DASH
     https://storagetestaccount001.blob.core.windows.net/asset-38058602-a4b8-4b33-b9f0-6880dc1490ea/BigBuckBunny_AAC_und_ch2_56kbps.mp4?sv=2012-02-12&sr=c&si=166d5154-b801-410b-a226-ee2f8eac1929&sig=P2iNZJAvAWpp%2Bj9yV6TQjoz5DIIaj7ve8ARynmEM6Xk%3D&se=2015-02-14T01:13:05Z
 
 
-若要串流您的視訊，請使用 [Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
+若要串流處理視訊，請將您的 URL 貼在 [Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)的 [URL] 文字方塊中。
 
 若要測試漸進式下載，請將 URL 貼入瀏覽器 (例如，Internet Explorer、Chrome 或 Safari)。
+
+如需詳細資訊，請參閱下列主題：
+
+- [使用現有播放器來播放您的內容](media-services-playback-content-with-existing-players.md)
+- [開發視訊播放程式應用程式](media-services-develop-video-players.md)
+- [透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式](media-services-embed-mpeg-dash-in-html5.md)
+
+## <a name="download-sample"></a>下載範例
+下列程式碼範例包含您在本教學課程中建立的程式碼︰[範例](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/)。
 
 ## <a name="next-steps-media-services-learning-paths"></a>後續步驟：媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -446,6 +467,6 @@ MPEG DASH
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

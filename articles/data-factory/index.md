@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 Data Factory 來設定內部部署和雲端來源的雙向自動化資料管線，以便移動和處理資料以供分析。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: b23fd70f2941898524a848d5c0f353542f416e59
+ms.sourcegitcommit: 82f628be33ab24ef29a42121c577792768882eb5
+ms.openlocfilehash: ac936a317b6a68e2f0670ca9903dbbe100c82cdd
 
 ---
 # <a name="azure-data-factory-documentation"></a>Azure Data Factory 文件
 
-Azure Data Factory 是雲端架構資料整合服務，用來自動移動和轉換資料。 Data Factory 服務建立資料整合方案，以從各種資料存放區擷取資料、轉換/處理資料，並將結果資料發佈至資料存放區。
+了解如何使用 Data Factory (雲端資料整合服務)，將資料儲存、移動及處理服務組合成自動化資料管線。 教學課程和其他文件會示範如何設定和管理資料管線，以及移動和轉換資料以供分析。
 
 <ul class="panelContent cardsFTitle">
    <li>
@@ -85,7 +86,7 @@ Azure Data Factory 是雲端架構資料整合服務，用來自動移動和轉�
 </ul>
 
 ---
- 
+
 <h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
@@ -101,25 +102,25 @@ Azure Data Factory 是雲端架構資料整合服務，用來自動移動和轉�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>語言</h3>
                         <p><a href="/dotnet/api/microsoft.azure.management.datafactories.models">.NET</a></p>
                         <p><a href="/azure/data-factory/data-factory-sdks">Azure Data Factory 開發人員參考</a></p>
-                    </div>
+                   </div>
                 </div>
             </div>
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/datafactory/">REST API</a></p>
+                        <p><a href="/rest/api/datafactory/">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
@@ -139,6 +140,6 @@ Azure Data Factory 是雲端架構資料整合服務，用來自動移動和轉�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

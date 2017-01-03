@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/04/2016
 ms.author: curtand;jeffsta
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d323eb986a6317130d847f61bc10cad6da1ca101
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 77d857e8d692f8bf47e00d655071a825533290b6
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: d323eb986a6317130d847f61bc10cad6da1ca101
 您可以將目錄的主要網域名稱變更為任何已驗證的非同盟自訂網域。 變更目錄的主要網域時，並不會變更任何現有使用者的使用者名稱。
 
 ## <a name="add-custom-domain-names-to-your-azure-ad"></a>新增 Azure AD 的自訂網域名稱
-您可以為每個 Azure AD 目錄新增最多 900 個自訂網域名稱。 [新增其他的自訂網域名稱](active-directory-add-domain.md) 程序與新增第一個自訂網域名稱相同。
+您可以為每個 Azure AD 目錄新增最多 900 個自訂網域名稱。 [新增其他自訂網域名稱](active-directory-add-domain.md) 的程序與新增第一個自訂網域名稱相同。
 
 ## <a name="add-subdomains-of-a-custom-domain"></a>新增自訂網域的子網域
 如果您想要將第三層網域名稱新增至您的目錄，例如 'europe.contoso.com'，則應先新增並驗證第二層網域，例如 contoso.com。 Azure AD 會自動驗證子網域。 若要查看您剛才加入的子網域是否已通過驗證，請重新整理列出您目錄網域的瀏覽器頁面。
@@ -70,6 +70,6 @@ ms.openlocfilehash: d323eb986a6317130d847f61bc10cad6da1ca101
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

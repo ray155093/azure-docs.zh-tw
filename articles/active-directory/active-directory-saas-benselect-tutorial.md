@@ -143,7 +143,7 @@ BenSelect 應用程式需要特定格式的 SAML 判斷提示。 請設定此應
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按 [下一步]。
+    b. 按 [下一步] 。
 7. 若要取得為您的應用程式設定的 SSO，請透過 [support@selerix.com](mailto:support@selerix.com) 連絡您的 BenSelect 支援小組並提供下列資訊：
    
    * 下載的憑證
@@ -266,6 +266,6 @@ BenSelect 應用程式需要特定格式的 SAML 判斷提示。 請設定此應
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

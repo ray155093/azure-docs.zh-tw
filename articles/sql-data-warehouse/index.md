@@ -1,13 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何使用 SQL 資料倉儲，其結合了 SQL Server 與大量平行處理。 文件會示範如何載入、分析、管理和匯出資料。"
 translationtype: Human Translation
-ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
-ms.openlocfilehash: cee95b961b45bb0a004eb6dd254222d909ea57b8
+ms.sourcegitcommit: 2570909cb1cbd88a03ffb3cee82825e9e277f634
+ms.openlocfilehash: c445bb63fec439f9330b0c74346eabcfad3971da
 
 ---
+
 # <a name="sql-data-warehouse-documentation"></a>SQL 資料倉儲文件
 
-Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應放大功能。  SQL 資料倉儲是以我們的巨量平行處理 (MPP) 架構為基礎，可以處理您的企業工作負載。
+了解如何使用 SQL 資料倉儲，其結合了 SQL Server 關聯式資料庫與大量平行處理。 教學課程和其他文件示範如何將資料載入資料倉儲，然後加以分析、管理及匯出。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -53,7 +55,8 @@ Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/portal.svg" alt="" />
+
+<img src="media/index/portal.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -67,36 +70,35 @@ Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應
 </ul>
 
 ---
-## <a name="reference"></a>參考
 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Azure PowerShell 參考</p>
+                        <h3>命令列</h3>
+                        <p><a href="/azure/sql-data-warehouse/sql-data-warehouse-reference-powershell-cmdlets">PowerShell Cmdlet</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="https://msdn.microsoft.com/library/azure/bb510741">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>T-SQL</h3>
-                        <p>T-SQL 參考</p>
+                        <h3>語言</h3>
+                        <p><a href="/azure/sql-data-warehouse/sql-data-warehouse-service-capacity-limits">容量限制</a></p>
+                        <p><a href="/azure/sql-data-warehouse/sql-data-warehouse-reference-tsql-language-elements">T-SQL 語言元素</a></p>
+                        <p><a href="/azure/sql-data-warehouse/sql-data-warehouse-reference-tsql-statements">T-SQL 陳述式</a></p>
+                        <p><a href="/azure/sql-data-warehouse/sql-data-warehouse-reference-tsql-system-views">T-SQL 系統檢視</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
 </ul>
 
@@ -110,6 +112,6 @@ Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

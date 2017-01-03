@@ -1,13 +1,13 @@
 ---
-title: 使用 Azure Functions 執行排程的清除工作 | Microsoft Docs
-description: 使用 Azure Functions 建立會根據事件計時器執行的 C# 函數。
+title: "使用 Azure Functions 執行排程的清除工作 | Microsoft Docs"
+description: "使用 Azure Functions 建立會根據事件計時器執行的 C# 函數。"
 services: functions
 documentationcenter: na
 author: ggailey777
 manager: erikre
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 076f5f95-f8d2-42c7-b7fd-6798856ba0bb
 ms.service: functions
 ms.devlang: multiple
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/26/2016
 ms.author: glenga
+translationtype: Human Translation
+ms.sourcegitcommit: b873a7d0ef9efa79c9a173a8bfd3522b12522322
+ms.openlocfilehash: c0b4a963275dae5bbf203388cb61086393803b15
+
 
 ---
 # <a name="use-azure-functions-to-perform-a-scheduled-clean-up-task"></a>使用 Azure Functions 執行排程的清除工作
@@ -48,16 +52,20 @@ ms.author: glenga
    
     ![建立新的計時器觸發函數](./media/functions-create-an-event-processing-function/functions-create-new-timer-trigger.png)
 2. 在 [開發] 索引標籤的 [程式碼] 窗格中，在現有函式程式碼上方新增下列組件參考：
-   
+    ```cs
         #r "System.Configuration"
         #r "System.Data"
+    ```
+
 3. 將下列 `using` 陳述式加入至函數：
-   
+    ```cs
         using System.Configuration;
         using System.Data.SqlClient;
-        using System.Threading.Tasks; 
+        using System.Threading.Tasks;
+    ```
+
 4. 使用下列程式碼來取代現有的 **Run** 函數：
-   
+    ```cs
         public static async Task Run(TimerInfo myTimer, TraceWriter log)
         {
             var str = ConfigurationManager.ConnectionStrings["sqldb_connection"].ConnectionString;
@@ -73,6 +81,8 @@ ms.author: glenga
                 }
             }
         }
+    ```
+
 5. 按一下 [儲存]、針對下一個函式執行監看 [記錄] 視窗，然後記下從 TodoItems 資料表中刪除的資料列數目。
 6. (選擇性) 使用 [Mobile Apps 快速入門應用程式](../app-service-mobile/app-service-mobile-ios-get-started.md)，將其他項目標示為「已完成」，然後返回 [記錄] 視窗，並監看在下一個執行期間該函式會刪除同樣數目的資料列。 
 
@@ -80,14 +90,17 @@ ms.author: glenga
 如需 Azure Functions 的詳細資訊，請參閱下列主題。
 
 * [Azure Functions 開發人員參考](functions-reference.md)  
-  可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。
+   可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。
 * [測試 Azure Functions](functions-test-a-function.md)  
-  說明可用於測試函式的各種工具和技巧。
+   說明可用於測試函式的各種工具和技巧。
 * [如何調整 Azure 函式](functions-scale.md)  
-  討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。  
+  討論 Azure Functions 可用的服務方案，包括取用方案，以及如何選擇正確的方案。  
 
 [!INCLUDE [Getting Started Note](../../includes/functions-get-help.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO5-->
 
 

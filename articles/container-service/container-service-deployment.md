@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: a7d957fd4be4c823077b1220dfb8ed91070a0e97
-ms.openlocfilehash: d056b9489eba1f97e8fb87f231b03d104c4cab66
+ms.sourcegitcommit: 52f158fd50ee8427cf567889d584e342ea42abb3
+ms.openlocfilehash: b52f7b36a28a345e8693ecbafd3771c27c683a37
 
 
 ---
@@ -58,8 +58,7 @@ Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協�
 
 ![建立部署 4](media/acs-portal4-new.png)  <br />
 
-如果在下拉式清單中選取 [Kubernetes]，您將需要輸入服務主體用戶端識別碼和服務主體用戶端密碼。
-若要深入了解如何建立服務主體，請造訪[此](https://github.com/Azure/acs-engine/blob/master/docs/serviceprincipal.md)頁面 
+如果在下拉式清單中選取 [Kubernetes]，您將需要輸入服務主體用戶端識別碼和服務主體用戶端密碼。 如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。 
 
 ![建立部署 4.5](media/acs-portal10.PNG)  <br />
 
@@ -197,6 +196,6 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-Templa
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO3-->
 
 
