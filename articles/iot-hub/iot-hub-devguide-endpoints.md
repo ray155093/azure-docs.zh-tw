@@ -1,12 +1,12 @@
 ---
-title: Developer guide - IoT Hub endpoints | Microsoft Docs
-description: Azure IoT Hub developer guide - reference information about IoT Hub endpoints
+title: "開發人員指南 - IoT 中樞端點 | Microsoft Docs"
+description: "Azure IoT 中樞開發人員指南 - IoT 中樞端點的相關參考資訊"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 57ba52ae-19c6-43e4-bc6c-d8a5c2476e95
 ms.service: iot-hub
 ms.devlang: multiple
 ms.topic: article
@@ -14,53 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/30/2016
 ms.author: dobett
+translationtype: Human Translation
+ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
+ms.openlocfilehash: f2da46ba3fdf9386ad78ade4d2364a4a8990cd6d
+
 
 ---
-# <a name="reference---iot-hub-endpoints"></a>Reference - IoT Hub endpoints
-## <a name="list-of-iot-hub-endpoints"></a>List of IoT Hub endpoints
-Azure IoT Hub is a multi-tenant service that exposes its functionality to various actors. The following diagram shows the various endpoints that IoT Hub exposes.
+# <a name="reference---iot-hub-endpoints"></a>參考 - IoT 中樞端點
+## <a name="list-of-iot-hub-endpoints"></a>IoT 中樞端點清單
+Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動作項目。 下圖顯示 IoT 中樞公開的各種端點。
 
-![IoT Hub endpoints][img-endpoints]
+![IoT 中樞端點][img-endpoints]
 
-The following is a description of the endpoints:
+以下是端點的說明︰
 
-* **Resource provider**. The IoT Hub resource provider exposes an [Azure Resource Manager][lnk-arm] interface that enables Azure subscription owners to create and delete IoT hubs, and update IoT hub properties. IoT Hub properties govern [hub-level security policies][lnk-accesscontrol], as opposed to device-level access control, and functional options for cloud-to-device and device-to-cloud messaging. The resource provider also enables you to [export device identities][lnk-importexport].
-* **Device identity management**. Each IoT hub exposes a set of HTTP REST endpoints to manage device identities (create, retrieve, update, and delete). [Device identities][lnk-device-identities] are used for device authentication and access control.
-* **Device twin management**. Each IoT hub exposes a set of service-facing HTTP REST endpoint to query and update [device twins][lnk-twins] (update tags and properties).
-* **Jobs management**. Each IoT hub exposes a set of service-facing HTTP REST endpoint to query and manage [jobs][lnk-jobs].
-* **Device endpoints**. For each device provisioned in the device identity registry, IoT Hub exposes a set of endpoints that a device can use to send and receive messages:
+* **資源提供者**。 IoT 中樞資源提供者會公開 [Azure Resource Manager][lnk-arm] 介面，可讓 Azure 訂用帳戶擁有者建立和刪除 IoT 中樞，以及更新 IoT 中樞屬性。 IoT 中樞屬性用來管理[中樞層級的安全性原則][lnk-accesscontrol] (相對於裝置層級的存取控制) 和雲端到裝置與裝置到雲端傳訊的功能選項。 IoT 中樞資源提供者也可讓您[匯出裝置身分識別][lnk-importexport]。
+* **裝置身分識別管理**。 每個 IoT 中樞都會公開一組用來管理裝置身分識別的 HTTP REST 端點 (建立、擷取、更新和刪除)。 [裝置身分識別][lnk-device-identities]用於裝置驗證和存取控制。
+* **裝置對應項管理**。 每個 IoT 中樞會公開一組服務面向的 HTTP REST 端點，以查詢和更新[裝置對應項][lnk-twins] (更新標籤和屬性)。
+* **作業管理**。 每個 IoT 中樞會公開一組服務面向的 HTTP REST 端點，以查詢和管理[作業][lnk-jobs]。
+* **裝置端點**。 針對身分識別登錄中所佈建的各個裝置，IoT 中樞會公開裝置可用來傳送並接收訊息的一組端點：
   
-  * *Send device-to-cloud messages*. Use this endpoint to [send device-to-cloud messages][lnk-d2c].
-  * *Receive cloud-to-device messages*. A device uses this endpoint to receive targeted [cloud-to-device messages][lnk-c2d].
-  * *Initiate file uploads*. A device uses this endpoint to receive an Azure Storage SAS URI from IoT Hub to [upload a file][lnk-upload].
-  * *Retrieve and update twin's properties*. A device uses this endpoints to access its [device twin][lnk-twins]'s properties.
-  * *Receive direct methods requests*. A device uses this endpoints to listen to [direct methods][lnk-methods]'s requests.
+  * 傳送裝置到雲端的訊息。 使用這個端點[傳送裝置到雲端的訊息][lnk-d2c]。
+  * 接收雲端到裝置的訊息。 使用此端點來接收目標[雲端到裝置訊息][lnk-c2d]的裝置。
+  * *起始檔案上傳*。 裝置會使用這個端點從 IoT 中樞接收 Azure 儲存體 SAS URI，以[上傳檔案][lnk-upload]。
+  * *擷取和更新裝置對應項的屬性*。 裝置使用此端點來存取其[裝置對應項][lnk-twins]的屬性。
+  * *接收直接方法要求*。 裝置使用此端點來接聽[直接方法][lnk-methods]的要求。
     
-    These endpoints are exposed using [MQTT v3.1.1][lnk-mqtt], HTTP 1.1, and [AMQP 1.0][lnk-amqp] protocols. Note that AMQP is also available over [WebSockets][lnk-websockets] on port 443.
+    公開這些端點時，是使用 [MQTT v3.1.1][lnk-mqtt]、HTTP 1.1 及 [AMQP 1.0][lnk-amqp] 通訊協定來公開。 請注意，AMQP 也可透過連接埠 443 上的 [WebSockets][lnk-websockets] 來取得。
     
-    The twins' and methods' endpoins are available only using [MQTT v3.1.1][lnk-mqtt].
-* **Service endpoints**. Each IoT hub exposes a set of endpoints your application back end can use to communicate with your devices. These endpoints are currently only exposed using the [AMQP][lnk-amqp] protocol, except for the method invocation endpoint that is exposed via HTTP 1.1.
+    裝置對應項端點和方法端點只能在使用 [MQTT v3.1.1][lnk-mqtt] 時取得。
+* **服務端點**。 各個 IoT 中樞會公開您的應用程式後端可用來與您的裝置通訊的一組端點。 這些端點目前只會使用 [AMQP][lnk-amqp] 通訊協定來公開，但透過 HTTP 1.1 公開的方法叫用端點除外。
   
-  * *Receive device-to-cloud messages*. This endpoint is compatible with [Azure Event Hubs][lnk-event-hubs]. A back-end service can use it to read all the [device-to-cloud messages][lnk-d2c] sent by your devices.
-  * *Send cloud-to-device messages and receive delivery acknowledgments*. These endpoints enable your application back end to send reliable [cloud-to-device messages][lnk-c2d], and to receive the corresponding delivery or expiration acknowledgments.
-  * *Receive file notifications*. This messaging endpoint allows you to receive notifications of when your devices successfully upload a file. 
-  * *Direct method invocation*. This endpoint allows a back-end service to invoke a [direct method][lnk-methods] on a device.
+  * *接收裝置到雲端的訊息*。 此端點與 [Azure 事件中樞][lnk-event-hubs]相容。 後端服務可用它來讀取由您的裝置所傳送的所有[裝置到雲端訊息][lnk-d2c]。
+  * *傳送雲端到裝置的訊息及接收傳遞通知*。 這些端點可讓您的應用程式後端傳送可靠的[雲端到裝置訊息][lnk-c2d]，以及接收相對應的傳遞或到期通知。
+  * *接收檔案通知*。 此訊息的端點可讓您接收您的裝置已成功上傳檔案的通知。 
+  * *直接方法叫用*。 此端點可讓後端服務在裝置上叫用[直接方法][lnk-methods]。
 
-The [IoT Hub APIs and SDKs][lnk-sdks] article describes the various ways to access these endpoints.
+[Azure IoT SDK][lnk-sdks] 一文說明您可用來存取這些端點的各種方式。
 
-Finally, it is important to note that all IoT Hub endpoints use the [TLS][lnk-tls] protocol, and no endpoint is ever exposed on unencrypted/unsecured channels.
+最後請務必注意，所有的 IoT 中樞端點都使用 [TLS][lnk-tls] 通訊協定，且絕不會在未加密/不安全的通道上公開任何端點。
 
-## <a name="field-gateways"></a>Field gateways
-In an IoT solution, a *field gateway* sits between your devices and your IoT Hub endpoints. It is typically located close to your devices. Your devices communicate directly with the field gateway by using a protocol supported by the devices. The field gateway connects to an IoT Hub endpoint using a protocol that is supported by IoT Hub. A field gateway can be highly specialized hardware or a low power computer running software that accomplishes the end-to-end scenario for which the gateway is intended.
+## <a name="field-gateways"></a>現場閘道器
+在 IoT 解決方案中， *現場閘道*位於裝置和 IoT 中樞端點之間。 它通常位於接近您的裝置的位置。 您的裝置會使用裝置所支援的通訊協定，直接與現場閘道器通訊。 現場閘道會使用 IoT 中樞所支援的通訊協定來連線到 IoT 中樞端點。 現場閘道可以是高度特殊化硬體或低功率電腦，其執行完成閘道所想要之端對端案例的軟體。
 
-You can use the [Azure IoT Gateway SDK][lnk-gateway-sdk] to implement a field gateway. This SDK offers specific functionality such as the ability to multiplex the communication from multiple devices onto the same connection to IoT Hub.
+您可以使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 來實作現場閘道。 此 SDK 提供特定功能，例如可以對從多個裝置到相同 IoT 中樞連接的通訊進行多工處理。
 
-## <a name="next-steps"></a>Next steps
-Other reference topics in this IoT Hub developer guide include:
+## <a name="next-steps"></a>後續步驟
+此 IoT 中樞開發人員指南中的其他參考主題包括︰
 
-* [Query language for twins, methods, and jobs][lnk-devguide-query]
-* [Quotas and throttling][lnk-devguide-quotas]
-* [IoT Hub MQTT support][lnk-devguide-mqtt]
+* [裝置對應項和作業的 IoT 中樞查詢語言][lnk-devguide-query]
+* [配額和節流][lnk-devguide-quotas]
+* [IoT 中樞的 MQTT 支援][lnk-devguide-mqtt]
 
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 
@@ -68,7 +72,7 @@ Other reference topics in this IoT Hub developer guide include:
 [lnk-amqp]: https://www.amqp.org/
 [lnk-mqtt]: http://mqtt.org/
 [lnk-websockets]: https://tools.ietf.org/html/rfc6455
-[lnk-arm]: ../resource-group-overview.md
+[lnk-arm]: ../azure-resource-manager/resource-group-overview.md
 [lnk-event-hubs]: http://azure.microsoft.com/documentation/services/event-hubs/
 
 [lnk-tls]: https://tools.ietf.org/html/rfc5246
@@ -91,6 +95,7 @@ Other reference topics in this IoT Hub developer guide include:
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO5-->
 
 

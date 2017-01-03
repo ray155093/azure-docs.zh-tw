@@ -1,66 +1,102 @@
 ---
-title: 疑難排解 Azure 流量管理員上的已降級狀態
-description: 如何在流量管理員顯示為降級狀態時疑難排解流量管理員設定檔。
+title: "疑難排解 Azure 流量管理員上的已降級狀態"
+description: "如何在流量管理員顯示為降級狀態時疑難排解流量管理員設定檔。"
 services: traffic-manager
-documentationcenter: ''
-author: sdwheeler
-manager: carmonm
-editor: joaoma
-
+documentationcenter: 
+author: kumudd
+manager: timlt
+ms.assetid: 8af0433d-e61b-4761-adcc-7bc9b8142fc6
 ms.service: traffic-manager
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/17/2016
-ms.author: sewhee
+ms.date: 10/11/2016
+ms.author: kumud
+translationtype: Human Translation
+ms.sourcegitcommit: 8827793d771a2982a3dccb5d5d1674af0cd472ce
+ms.openlocfilehash: 179dc3fa0c1ab534cb1116269832f3bc81c4c434
 
 ---
-# 疑難排解 Azure 流量管理員上的已降級狀態
-此頁面將會描述如何疑難排解 Azure 流量管理員設定檔 (顯示已降級狀態)，並提供一些重點以了解流量管理員探查。
 
-您已將流量管理員設定檔設定為指向部分的 .cloudapp.net 裝載服務，幾秒鐘之後您就會看到狀態為「降級」。
+# <a name="troubleshooting-degraded-state-on-azure-traffic-manager"></a>疑難排解 Azure 流量管理員上的已降級狀態
 
-![degradedstate](./media/traffic-manager-troubleshooting-degraded/traffic-manager-degraded.png)
+本文說明如何針對顯示降級狀態的 Azure 流量管理員設定檔進行疑難排解。 在此案例中，假設您已設定流量管理員設定檔來指向您的一些 cloudapp.net 託管服務。 當您檢查流量管理員的健康狀態時，您看到 [狀態] 為「已降級」。
 
-如果您移至該設定檔的 [端點] 索引標籤，您會看到一或多個離線狀態的端點：
+![降級狀態](./media/traffic-manager-troubleshooting-degraded/traffic-manager-degraded.png)
+
+如果您移至該設定檔的 [端點] 索引標籤，您看到一或多個端點是「離線」狀態：
 
 ![離線](./media/traffic-manager-troubleshooting-degraded/traffic-manager-offline.png)
 
-## 流量管理員探查的重要事項
-* 如果探查從探查路徑取回 200，流量管理員只會將端點視為線上。
-* 30x 重新導向 (或任何其他非 200 的回應) 將會失敗，即使重新導向的 URL 傳回 200 也一樣。
+## <a name="understanding-traffic-manager-probes"></a>了解流量管理員探查
+
+* 只有當探查收到探查路徑傳回 HTTP 200 回應時，流量管理員才會將端點視為在「線上」。 其他任何非 200 的回應都是失敗。
+* 即使重新導向的 URL 傳回 200，30x 重新導向也會失敗。
 * 若為 HTTP 探查，會忽略憑證錯誤。
-* 只要傳回 200，探查路徑的實際內容並不重要。如果實際的網站內容不會傳回 200 (也就是說，如果 ASP 頁面重新導向至 ACS 登入頁面或一些其他的 CNAME URL)，常用的技巧是將路徑設為類似 "/favicon.ico" 的路徑。
-* 最佳作法是將探查路徑設為具有足夠邏輯，以判斷網站是向上或向下的項目。在上述範例中，將路徑設為 "/favicon.ico"，您只有測試 w3wp.exe 是否有回應，而非您的網站是否狀況良好。更好的選項是將路徑設為如 "/Probe.aspx" 的路徑，而且 Probe.aspx 內包含足夠的邏輯，以判斷您的網站是否狀況良好 (也就是說，檢查效能計數器以確定您的 CPU 不是 100% 或接收大量的要求失敗，嘗試存取資源，例如資料庫或工作階段狀態，以確定應用程式的邏輯仍在運作等等)。
-* 如果設定檔中的所有端點都已降級，流量管理員會將所有端點視為狀況良好並路由傳送流量至所有端點。這是為了確保探查機制 (會導致不正確失敗探查) 的任何潛在問題都不會導致服務的完全中斷。
+* 只要傳回 200，探查路徑的實際內容並不重要。 探查靜態內容 (例如 "/favicon.ico") 的 URL 是常用的技巧。 即使應用程式狀況良好，動態內容 (例如 ASP 頁面) 也不一定會傳回 200。
+* 最佳做法是將探查路徑設為有足夠邏輯判斷網站是運作或關閉的項目。 在上述範例中，您將路徑設為 "favicon.ico"，只是測試 w3wp.exe 是否有回應。 此探查可能不會指出您的 Web 應用程式狀況良好。 較好的選擇是將路徑設為 "/Probe.aspx" 之類的項目，它具有邏輯可判斷網站的健康狀態。 例如，您可以使用效能計數器來監視 CPU 使用率，或測量失敗的要求數。 或者，您可以嘗試存取資料庫資源或工作階段狀態，以確定 Web 應用程式正在運作。
+* 如果設定檔中的所有端點都已降級，流量管理員會將所有端點視為狀況良好，並將流量路由傳送至所有端點。 此行為可確保探查機制的問題不會造成您的服務完全中斷。
 
-## 疑難排解
-疑難排解流量管理員探查失敗的一個工具是 wget。您可以從 [wget](http://gnuwin32.sourceforge.net/packages/wget.htm) 取得二進位檔和相依性封裝。請注意，您可以使用 Fiddler 或 curl 等其他程式，而不是 wget – 基本上您只需要會顯示未經處理 HTTP 回應的項目。
+## <a name="troubleshooting"></a>疑難排解
 
-安裝 wget 之後，請移至命令提示字元，並對流量管理員中所設定的 URL + 探查連接埠 & 路徑執行 wget。這個範例中就會是 http://watestsdp2008r2.cloudapp.net:80/Probe。
+若要針對探查失敗進行疑難排解，您需要工具來顯示從探查 URL 傳回的 HTTP 狀態碼。 有許多工具可顯示原始 HTTP 回應。
 
-![疑難排解](./media/traffic-manager-troubleshooting-degraded/traffic-manager-troubleshooting.png)
+* [Fiddler](http://www.telerik.com/fiddler)
+* [curl](https://curl.haxx.se/)
+* [wget](http://gnuwin32.sourceforge.net/packages/wget.htm)
 
-使用 Wget：
+您也可以在 Internet Explorer 中，使用 [F12 偵錯工具] 的 [網路] 索引標籤來檢視 HTTP 回應。
 
-![wget](./media/traffic-manager-troubleshooting-degraded/traffic-manager-wget.png)
+在此範例中，我們想要查看來自探查 URL http://watestsdp2008r2.cloudapp.net:80/Probe 的回應。 下列 PowerShell 範例說明問題。
 
-請注意，wget 會指出 URL 將 301 重新導向傳回 http://watestsdp2008r2.cloudapp.net/Default.aspx。如同我們已經從上述「流量管理員探查的重要事項」一節所得知的，流量管理員探查 會將 30x 重新導視為失敗，而這會讓探查回報離線。此時很容易檢查網站組態，並且確定 200 會從 /Probe 路徑傳回 (或將流量管理員探查重新設定為指向會傳回 200 的路徑)。
+```powershell
+Invoke-WebRequest 'http://watestsdp2008r2.cloudapp.net/Probe' -MaximumRedirection 0 -ErrorAction SilentlyContinue | Select-Object StatusCode,StatusDescription
+```
 
-如果您的探查使用 HTTPs 通訊協定，您會想要新增 "--no-check-certificate" 參數到 wget，讓它忽略在 cloudapp.net URL 上的憑證不相符。
+範例輸出︰
 
-## 後續步驟
+    StatusCode StatusDescription
+    ---------- -----------------
+           301 Moved Permanently
+
+請注意，我們收到重新導向回應。 如先前所述，200 以外的任何 StatusCode 都視為失敗。 流量管理員將端點狀態變更為「離線」。 若要解決此問題，請檢查網站設定，確保可以從探查路徑傳回適當的 StatusCode。 重新設定流量管理員探查，以指向傳回 200 的路徑。
+
+如果您的探查使用 HTTPS 通訊協定，您可能需要停用憑證檢查，以避免在測試期間發生 SSL/TLS 錯誤。 下列 PowerShell 陳述式會停用目前 PowerShell 工作階段的憑證驗證︰
+
+```powershell
+add-type @"
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+public class TrustAllCertsPolicy : ICertificatePolicy {
+    public bool CheckValidationResult(
+    ServicePoint srvPoint, X509Certificate certificate,
+    WebRequest request, int certificateProblem) {
+    return true;
+    }
+}
+"@
+[System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+```
+
+## <a name="next-steps"></a>後續步驟
+
 [關於流量管理員流量路由方法](traffic-manager-routing-methods.md)
 
 [什麼是流量管理員](traffic-manager-overview.md)
 
 [雲端服務](http://go.microsoft.com/fwlink/?LinkId=314074)
 
-[網站](http://go.microsoft.com/fwlink/p/?LinkId=393327)
+[Azure Web Apps](https://azure.microsoft.com/documentation/services/app-service/web/)
 
 [流量管理員的相關作業 (REST API 參考)](http://go.microsoft.com/fwlink/?LinkId=313584)
 
-[Azure 流量管理員 Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=400769)
+[Azure 流量管理員 Cmdlet][1]
 
-<!---HONumber=AcomDC_0824_2016-->
+[1]: https://msdn.microsoft.com/library/mt125941(v=azure.200).aspx
+
+
+
+<!--HONumber=Nov16_HO5-->
+
+

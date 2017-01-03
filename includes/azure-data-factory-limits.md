@@ -6,17 +6,17 @@
 | 資料處理站中的管線 |2500 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
 | 資料處理站中的資料集 |5000 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
 | 每個資料集的並行配量 |10 |10 |
-| 管線物件的每個物件位元組大小<sup>1</sup> |200 KB |2000 KB |
+| 管線物件的每個物件位元組大小<sup>1</sup> |200 KB |200 KB |
 | 資料集和已連結服務的每個物件位元組大小<sup>1</sup> |100 KB |2000 KB |
-| 物件的欄位數目 |100 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
-| 每一欄位名稱或識別碼的位元組大小 |2 KB |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
-| 每一欄位的位元組大小 |30 KB |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
 | 訂用帳戶中的 HDInsight 隨選叢集核心<sup>2</sup> |48 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| 雲端資料移動單位 <sup>3</sup> |8 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
 | 管線活動執行的重試計數 |1000 |MaxInt (32 位元) |
 
 <sup>1</sup>管線、 資料集和連結的服務物件代表您工作負載的邏輯群組。 這些物件的限制與您可使用 Azure Data Factory 服務移動或處理的資料量無關。 資料處理站可視需要調整以處理數 PB 的資料。
 
-<sup>2</sup>隨選 HDInsight 核心並非配置在包含資料處理站的訂用帳戶之中。 因此，上述限制為 Data Factory 針對隨選 HDInsight 核心所強制的核心限制，不同於您 Azure 訂用帳戶相關聯的核心限制。
+<sup>2</sup> 隨選 HDInsight 核心並非配置在包含資料處理站的訂用帳戶之中。 因此，上述限制為 Data Factory 針對隨選 HDInsight 核心所強制的核心限制，不同於您 Azure 訂用帳戶相關聯的核心限制。
+
+<sup>3</sup> 雲端資料移動單位 (DMU) 正用於雲端到雲端複製作業。 它是一項量值，代表 Data Factory 中單一單位的能力 (CPU、記憶體和網路資源配置的組合)。 在某些情況下，利用更多 DMU 可以達到更高的複製輸送量。 如需詳細資料，請參閱[雲端資料移動單位](../articles/data-factory/data-factory-copy-activity-performance.md#cloud-data-movement-units)小節。
 
 | **Resource** | **預設下限** | **下限** |
 | --- | --- | --- |
@@ -27,6 +27,8 @@
 ### <a name="web-service-call-limits"></a>Web 服務呼叫限制
 Azure Resource Manager 有 API 呼叫限制。 您可使用 [Azure 資源管理員 API 限制](../articles/azure-subscription-service-limits.md#resource-group-limits)內的速率進行 API 呼叫。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO3-->
 
 

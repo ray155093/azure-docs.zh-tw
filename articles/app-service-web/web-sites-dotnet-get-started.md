@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: get-started-article
-ms.date: 07/22/2016
+ms.date: 12/16/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
+ms.sourcegitcommit: 03b74607227aed68c6df01e80e4bb87e906ecf31
+ms.openlocfilehash: 48531201029bf09f30cb22852aaf5d3ad0b328fc
 
 
 ---
@@ -45,7 +45,7 @@ ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
 
 ## <a name="prerequisites"></a>必要條件
 * 本教學課程假設您已使用 ASP.NET MVC 和 Visual Studio。 如果您需要簡介，請參閱 [開始使用 ASP.NET MVC 5](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started)。
-* 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
+* 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
   
     如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)。 您可以於該處，在 App Service 中建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
 
@@ -61,8 +61,8 @@ ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
 
 如果您有 Visual Studio 2013 而且想加以使用，您可以 [下載最新的 Azure SDK for Visual Studio 2013](http://go.microsoft.com/fwlink/?LinkID=324322)。 有些畫面看起來可能與插圖不同。
 
-## <a name="configure-a-new-web-project"></a>設定新的 Web 專案
-下一個步驟是在 Visual Studio 和 Azure App Service 的 Web 應用程式中建立 Web 專案。 在教學課程的這一節中，您會設定新的 Web 專案。 
+## <a name="create-a-web-application"></a>建立 Web 應用程式
+下一個步驟是在 Visual Studio 和 Azure App Service 的 Web 應用程式中建立 Web 應用程式專案。 在教學課程的這一節中，您會設定新的 Web 專案。 
 
 1. 開啟 Visual Studio 2015。
 2. 按一下 [檔案] > [新增] > [專案]。
@@ -87,9 +87,9 @@ ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
     ![[新增 ASP.NET 專案] 對話方塊](./media/web-sites-dotnet-get-started/GS13newaspnetprojdb.png)
    
     這些設定可指示 Visual Studio 為 Web 專案建立 Azure Web 應用程式。
-10. 按一下 [檔案] &gt; [新增] &gt; [專案] 
+10. 按一下 [確定] 
 
-## <a name="configure-azure-resources-for-a-new-web-app"></a>設定新 Web 應用程式的 Azure 資源
+## <a name="create-the-azure-resources"></a>建立 Azure 資源
 您現在告訴 Visual Studio 您想要建立的 Azure 資源。
 
 1. 在 [建立 App Service] 對話方塊中，按一下 [新增帳戶]，然後以您用來管理 Azure 訂用帳戶的帳戶識別碼和密碼登入 Azure。
@@ -128,14 +128,14 @@ ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
 8. 在 [設定 App Service 方案] 對話方塊中，按一下 [確定]。
 9. 在 [建立 App Service] 對話方塊中，按一下 [建立]。
 
-## <a name="visual-studio-creates-the-project-and-web-app"></a>Visual Studio 會建立專案和 Web 應用程式
+## <a name="inspect-the-azure-resources-in-visual-studio"></a>檢查 Visual Studio 中的 Azure 資源
 通常在不到一分鐘的時間內，Visual Studio 就會建立 Web 專案和 Web 應用程式。  
 
 [方案總管]  視窗會顯示新專案中的檔案和資料夾。
 
 ![Solution Explorer](./media/web-sites-dotnet-get-started/solutionexplorer.png)
 
-[Azure App Service 活動]  視窗會顯示已建立 Web 應用程式。
+[Azure App Service 活動] 視窗會顯示已在 API 中建立 Azure App Service。 您可以按一下這裡的連結，立即開始發佈新的專案。 不過，本教學課程稍後會示範如何隨時發佈您的檔案。
 
 ![在 [Azure App Service 活動] 視窗中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/GS13sitecreated1.png)
 
@@ -143,8 +143,8 @@ ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
 
 ![在 [雲端總管] 中建立的 Web 應用程式](./media/web-sites-dotnet-get-started/siteinse.png)
 
-## <a name="deploy-the-web-project-to-the-azure-web-app"></a>將 Web 專案部署至 Azure Web 應用程式
-在本節中，您會將 Web 專案部署至 Web 應用程式。
+## <a name="deploy-the-web-project-to-azure"></a>將 Web 專案部署至 Azure
+在本節中，您會將 Web 專案部署至您在 Azure App Service中建立的 Web 應用程式資源。
 
 1. 在 [方案總管] 中以滑鼠右鍵按一下專案，再選擇 [發佈]。
    
@@ -152,7 +152,10 @@ ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
    
     [發佈 Web]  精靈會在幾秒鐘後出現。 此精靈會開啟某個 *發佈設定檔* ，其中包含能將 Web 專案部署到新 Web 應用程式的設定。
    
-    發佈設定檔包含用於部署的使用者名稱和密碼。  這些認證已事先為您產生，因此您不需要加以輸入。 密碼會加密並存放在 `Properties\PublishProfiles` 資料夾的使用者專屬隱藏檔案中。
+    > [!TIP] 
+    > 發佈設定檔包含用於部署的使用者名稱和密碼。  這些認證已事先為您產生，因此您不需要加以輸入。 密碼會加密並存放在 `Properties\PublishProfiles` 資料夾的使用者專屬隱藏檔案中。
+    >
+    >
 2. 在 [發佈 Web] 精靈的 [連線] 索引標籤中，按 [下一步]。
    
     ![在 [發佈 Web] 精靈的 [連線] 索引標籤中按 [下一步]](./media/web-sites-dotnet-get-started/GS13ValidateConnection.png)
@@ -219,6 +222,6 @@ ms.openlocfilehash: 4f6bb074a607bd8a6bd201d71973993759860937
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

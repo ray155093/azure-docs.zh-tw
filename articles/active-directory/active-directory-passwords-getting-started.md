@@ -16,14 +16,14 @@ ms.topic: get-started-article
 ms.date: 10/05/2016
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 93e02bc36c0502623316d6b896dd802ac8bdc284
+ms.sourcegitcommit: 4e2508883998b1435d7c4f099bd6ef0e00bd885e
+ms.openlocfilehash: 4f9127ca06668884e6b6f5dbc81aad0a2b1ea9df
 
 
 ---
 # <a name="getting-started-with-password-management"></a>開始使用密碼管理
 > [!IMPORTANT]
-> **您有登入問題嗎？** 如果是這樣， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+> **您有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 > 
 > 
 
@@ -185,7 +185,7 @@ ms.openlocfilehash: 93e02bc36c0502623316d6b896dd802ac8bdc284
   > 如果您執行舊版 Windows Server 2008 或 2008 R2，您仍然可以使用此功能，但是需要先 [下載及安裝 KB 2386717](https://support.microsoft.com/kb/2386717) ，才能在雲端中強制執行您的本機 AD 密碼原則。
   > 
   > 
-* 您已安裝 Azure AD Connect 工具，且已備妥 AD 環境進行同步處理至雲端。  如需詳細資訊，請參閱 [在雲端中使用內部部署身分識別基礎結構](active-directory-aadconnect.md)
+* 您已安裝 Azure AD Connect 工具，且已備妥 AD 環境進行同步處理至雲端。  如需詳細資訊，請參閱 [在雲端中使用內部部署身分識別基礎結構](connect/active-directory-aadconnect.md)
   
   > [!NOTE]
   > 測試密碼回寫之前，請確定您先在 Azure AD Connect 中完成 AD 和 Azure AD 的完整匯入和完整同步處理。
@@ -199,7 +199,7 @@ ms.openlocfilehash: 93e02bc36c0502623316d6b896dd802ac8bdc284
   > 
 
 ### <a name="step-1-download-the-latest-version-of-azure-ad-connect"></a>步驟 1：下載最新版本的 Azure AD Connect
-密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0419.0911** 或更高版本的 Azure AD Sync 工具中使用。  具有自動帳戶解除鎖定的密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0485.0222** 或更高版本的 Azure AD Sync 工具中使用。 如果您執行較舊的版本，請至少升級至此版本，再繼續作業。 [按一下這裡以下載最新版本的 Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect)。
+密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0419.0911** 或更高版本的 Azure AD Sync 工具中使用。  具有自動帳戶解除鎖定的密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0485.0222** 或更高版本的 Azure AD Sync 工具中使用。 如果您執行較舊的版本，請至少升級至此版本，再繼續作業。 [按一下這裡以下載最新版本的 Azure AD Connect](connect/active-directory-aadconnect.md#install-azure-ad-connect)。
 
 #### <a name="to-check-the-version-of-azure-ad-sync"></a>檢查 Azure AD Sync 的版本
 1. 瀏覽至 *%ProgramFiles%\Azure Active Directory Sync*\**。
@@ -256,12 +256,40 @@ ms.openlocfilehash: 93e02bc36c0502623316d6b896dd802ac8bdc284
   ![][023]
 
 ### <a name="step-3-configure-your-firewall"></a>步驟 3：設定您的防火牆
-您已在 Azure AD Connect 工具中啟用密碼回寫之後，您必須確定服務可以連線至雲端。
+啟用密碼回寫之後，您需要確定執行 Azure AD Connect 的電腦可以連線到 Microsoft 雲端服務以接收密碼回寫要求。 這個步驟包含在您的網路應用裝置 (proxy 伺服器、防火牆等) 中更新連線規則，以允許透過特定網路連接埠的輸出連線到特定 Microsoft 擁有之 URL 和 IP 位址。 這些變更可能會根據 Azure AD Connect 工具的版本而有所不同。 如需詳細內容，您可以深入了解[密碼回寫的運作方式](active-directory-passwords-learn-more.md#how-password-writeback-works)和[密碼回寫的安全性模型](active-directory-passwords-learn-more.md#password-writeback-security-model)。
 
-1. 一旦安裝完成之後，如果您在環境中封鎖不明的輸出連線，您也必須將下列規則加入至您的防火牆。 請確定重新啟動 AAD Connect 電腦，再進行這些變更：
-   * 允許透過連接埠 443 TCP 的輸出連線
-   * 允許對 https://ssprsbprodncu-sb.accesscontrol.windows.net/ 的輸出連線
-   * 當使用 Proxy 或有一般連線問題時，允許透過連接埠 9350-9354 和連接埠 5671 TCP 的輸出連線
+#### <a name="why-do-i-need-to-do-this"></a>我為何需要這麼做？
+
+為了使密碼回寫正確運作，執行 Azure AD Connect 的電腦必須能夠建立 **.servicebus.windows.net*和 Azure 所使用之特定 IP 位址的輸出 HTTPS 連線，如 [Microsoft Azure 資料中心 IP 範圍清單](https://www.microsoft.com/download/details.aspx?id=41653)中所定義。
+
+針對 Azure AD Connect 工具版本 1.0.8667.0 和更新版本︰
+
+- **選項 1：**允許所有透過連接埠 443 (使用 URL 或 IP 位址) 的輸出 HTTPS 連線。
+    - 使用此選項的時機︰
+        - 如果您想要最簡單的設定，不需要隨 Azure 資料中心 IP 範圍變更進行更新，請使用此選項。
+    - 所需的步驟︰
+        - 允許所有透過連接埠 443 使用 URL 或 IP 位址的輸出 HTTPS 連線。
+<br><br>
+- **選項 2：**允許對特定 IP 範圍和 URL 的輸出 HTTPS 連線
+    - 使用此選項的時機︰
+        - 如果您在受限制的網路環境中或不方便允許輸出連接，請使用此選項。
+        - 在此組態中，如需密碼回寫繼續運作，您必須確保您的網路應用裝置保持來自 Microsoft Azure 資料中心 IP 範圍清單中最新 IP 的每週更新。 這些 IP 範圍可用來做為每星期三 (太平洋時間) 進行更新的 XML 檔案，並於下星期一 (太平洋時間) 生效。
+    - 所需的步驟︰
+        - 允許所有輸出 HTTPS 連線到 *.servicebus.windows.net
+        - 允許所有輸出 HTTPS 連接到 Microsoft Azure 資料中心 IP 範圍清單中的所有 IP，並保持每週更新此組態。
+
+> [!NOTE]
+> 如果您已依照上述指示來設定密碼回寫，且未在 Azure AD Connect 事件記錄檔中看到任何錯誤，但在測試時發生連接錯誤，則可能是您環境中的網路應用裝置封鎖 IP 位址的 HTTPS 連接。 例如，當允許 *https://*.servicebus.windows.net* 的連接時，該範圍內的特定 IP 位址連接可能會遭到封鎖。 若要解決此問題，您將需要設定網路環境，以透過連接埠 443 允許所有輸出 HTTPS 連接至任何 URL 或 IP 位址 (上述選項 1)，或與網路小組合作以明確允許 HTTPS 連接至特定的 IP 位址 (上述選項 2)。
+
+**較舊的版本︰**
+
+- 允許透過連接埠 443、9350-9354 和連接埠 5671 的輸出 TCP 連線 
+- 允許對 *https://ssprsbprodncu-sb.accesscontrol.windows.net/* 的輸出連線
+
+> [!NOTE]
+> 如果您是 Azure AD Connect 1.0.8667.0 之前的版本，Microsoft 強烈建議您升級至[最新版的 Azure AD Connect](https://www.microsoft.com/download/details.aspx?id=47594)，其中包含數項回寫網路增強功能來簡化設定。
+
+一旦已設定網路應用裝置後，請重新開機執行 Azure AD Connect 工具的電腦。
 
 ### <a name="step-4-set-up-the-appropriate-active-directory-permissions"></a>步驟 4：設定適當的 Active Directory 權限
 對於包含使用者 (其密碼將會重設) 的每個樹系，如果 X 為組態精靈 (初始組態期間) 中針對該樹系指定的帳戶，則必須為 X 指定**重設密碼**、**變更密碼**、`lockoutTime` 的**寫入權限**和 `pwdLastSet` 的**寫入權限**、該樹系中每個網域之根物件的擴充權限。 權限應該標示為由所有使用者物件繼承。  
@@ -365,6 +393,6 @@ ms.openlocfilehash: 93e02bc36c0502623316d6b896dd802ac8bdc284
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

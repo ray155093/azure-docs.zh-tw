@@ -12,11 +12,11 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/09/2016
+ms.date: 12/14/2016
 ms.author: ryanwi;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 515daddf2c118f26721a557b0caf5d5415cb22c5
+ms.sourcegitcommit: efe9845280de3bcd882a7c879b53576600aae0a7
+ms.openlocfilehash: 1bc418f3cadfc83fbec0f2e2c508c77d97b84285
 
 
 ---
@@ -56,7 +56,7 @@ SDK 提供兩種方式來設定本機叢集：Windows PowerShell 指令碼和 [�
 ## <a name="deploy-an-application"></a>部署應用程式
 Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的開發人員工具。 如果您有興趣學習如何在 Visual Studio 中建立應用程式，請參閱 [在 Visual Studio 中建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。
 
-在本教學課程中，我們將使用現有的範例應用程式 (稱為 WordCount)，如此我們即可專注於平台的管理層面，包括部署、監視及升級。
+在本教學課程中，您會使用現有的範例應用程式 (稱為 WordCount)，如此您即可專注於平台的管理層面：部署、監視及升級。
 
 1. 以系統管理員身分啟動新的 PowerShell 視窗。
 2. 匯入 Service Fabric SDK PowerShell 模組。
@@ -89,7 +89,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
    
     ![部署應用程式 UI][deployed-app-ui]
    
-    WordCount 應用程式非常簡單。 它包含的用戶端 JavaScript 程式碼可產生隨機五個字元的「單字」，這些字接著會透過 ASP.NET Web API 轉送至應用程式。 具狀態服務會追蹤已計算的字數。 這些單字會根據單字的第一個字元進行分割。 您可以在 [快速入門範例](https://azure.microsoft.com/documentation/samples/service-fabric-dotnet-getting-started/)中找到 WordCount 應用程式的原始程式碼。
+    WordCount 應用程式很簡單。 它包含的用戶端 JavaScript 程式碼可產生隨機五個字元的「單字」，這些字接著會透過 ASP.NET Web API 轉送至應用程式。 具狀態服務會追蹤已計算的字數。 這些單字會根據單字的第一個字元進行分割。 您可以在 [快速入門範例](https://azure.microsoft.com/documentation/samples/service-fabric-dotnet-getting-started/)中找到 WordCount 應用程式的原始程式碼。
    
     我們所部署的應用程式包含四個資料分割。 所以開頭為 A 到 G 的單字會儲存在第一個磁碟分割中，而開頭為 N 到 H 的單字會儲存在第二個資料分割中，依此類推。
 
@@ -134,18 +134,18 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
    > 
 
 ## <a name="upgrade-an-application"></a>升級應用程式
-Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進而提供不需停機的升級。 讓我們執行 WordCount 應用程式的簡單升級。
+Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進而提供不需停機的升級。 執行 WordCount 應用程式的升級。
 
 新版的應用程式現在只會計算以母音開頭的單字。 進行升級時，我們會看到應用程式的行為出現兩項變更。 第一，計數成長的速率應該變慢，因為計算的單字比較少。 第二，由於第一個資料分割有兩個母音 (A 和 E)，而其他每個資料分割只包含一個母音，其計數最後應該會開始超越其他資料分割。
 
-1. [將 WordCount v2 封裝下載](http://aka.ms/servicefabric-wordcountappv2) 到您下載 v1 封裝的相同位置。
+1. [將 WordCount 第 2 版封裝下載](http://aka.ms/servicefabric-wordcountappv2) 到您下載第 1 版封裝的相同位置。
 2. 返回 PowerShell 視窗並使用 SDK 的升級命令在叢集中註冊新版本。 然後開始升級 fabric:/WordCount 應用程式。
    
     ```powershell
     Publish-UpgradedServiceFabricApplication -ApplicationPackagePath C:\ServiceFabric\WordCountV2.sfpkg -ApplicationName "fabric:/WordCount" -UpgradeParameters @{"FailureAction"="Rollback"; "UpgradeReplicaSetCheckTimeout"=1; "Monitored"=$true; "Force"=$true}
     ```
    
-    開始升級時，您應該會在 PowerShell 中看到如下所示的輸出。
+    開始升級時，您應該會在 PowerShell 中看到下列輸出。
    
     ![在 PowerShell 中的升級進度][ps-appupgradeprogress]
 3. 當升級正在進行時，您可能會發現從 Service Fabric 總管監視其狀態更加輕鬆。 啟動瀏覽器視窗並瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer)。 展開左邊樹狀目錄中的 [應用程式]，然後選擇 [WordCount]，最後選擇 [fabric:/WordCount]。 在 [基本功能] 索引標籤中，您會在升級繼續進行叢集的升級網域時的狀態。
@@ -153,7 +153,7 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
     ![在 Service Fabric 總管中的升級進度][sfx-upgradeprogress]
    
     透過每個網域繼續升級時，系統會執行健康狀態檢查，以確保應用程式運作正常。
-4. 如果您對 fabric:/WordCount 應用程式中的服務集合重新執行先前的查詢，請注意，雖然 WordCountService 的版本已變更，但 WordCountWebService 的版本維持不變：
+4. 如果您對 fabric:/WordCount 應用程式中的服務集合重新執行先前的查詢，請注意，雖然 WordCountService 版本已變更，但 WordCountWebService 版本維持不變：
    
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
@@ -161,7 +161,7 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
    
     ![在升級後查詢應用程式服務][ps-getsfsvc-postupgrade]
    
-    這強調 Service Fabric 如何管理應用程式升級。 只會影響已變更的服務 (或這些服務中的程式碼/組態封裝) 集合，讓升級程序變得更快速且更可靠。
+    此範例強調 Service Fabric 如何管理應用程式升級。 只會影響已變更的服務 (或這些服務中的程式碼/組態封裝) 集合，讓升級程序變得更快速且更可靠。
 5. 最後，返回瀏覽器來觀察新應用程式版本的行為。 如同預期，計數進度比較緩慢，而第一個磁碟分割最後會有稍微多一些的磁碟區。
    
     ![在瀏覽器中檢視新版的應用程式][deployed-app-ui-v2]
@@ -175,10 +175,10 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
     Unpublish-ServiceFabricApplication -ApplicationName "fabric:/WordCount"
     ```
    
-    或者，從 Service Fabric Explorer 中的 [動作]  功能表或左窗格中應用程式清單檢視的內容功能表來刪除應用程式。
+    或者，從 Service Fabric Explorer 的 [動作] 功能表或左窗格中應用程式清單檢視的內容功能表來刪除應用程式。
    
     ![在 Service Fabric 總管中刪除應用程式][sfe-delete-application]
-2. 在叢集中刪除應用程式之後，您可以將 WordCount 應用程式類型的 1.0.0 和 2.0.0 版取消註冊。 刪除作業會從叢集的映像存放區中移除應用程式封裝，包括程式碼和設定。
+2. 在叢集中刪除應用程式之後，將 WordCount 應用程式類型的 1.0.0 和 2.0.0 版取消註冊。 刪除作業會從叢集的映像存放區中移除應用程式封裝，包括程式碼和設定。
    
     ```powershell
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 2.0.0
@@ -189,19 +189,21 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
 4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 只有在您計劃一陣子不使用本機叢集或者需要回收資源時，才將本機叢集移除。
 
-## <a name="1-node-and-5-node-cluster-mode"></a>1 個節點和 5 個節點叢集模式
-使用本機叢集來開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼等。為了協助最佳化這個程序，本機叢集可以用兩種模式執行︰1 個節點或 5 節點。 這兩個叢集模式各有優點。
-5 個節點叢集模式可讓您使用實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。
-a1 節點叢集模式已最佳化，可進行服務的快速部署和註冊，進而協助您使用 Service Fabric 執行階段快速驗證程式碼。
+## <a name="one-node-and-five-node-cluster-mode"></a>1 個節點和 5 個節點叢集模式
+開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼和偵錯。 為了協助最佳化這個程序，本機叢集可以用兩種模式執行︰1 個節點或 5 節點。 這兩個叢集模式各有優點。 5 個節點叢集模式可讓您使用實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。 1 個節點叢集模式已最佳化，可進行服務的快速部署和註冊，進而協助您使用 Service Fabric 執行階段快速驗證程式碼。
 
-1 個節點叢集模式和 5 個節點叢集模式都不是模擬器。 它會執行在多部電腦的叢集上找到的相同平台程式碼。
+1 個節點叢集或 5 個節點叢集模式皆不是模擬器。 本機開發叢集會執行在多部電腦的叢集上找到的相同平台程式碼。
 
-> [!NOTE]
-> 這項功能適用於 SDK 版本 5.2 和更新版本。
+> [!WARNING]
+> 變更叢集模式時，目前的叢集會從您的系統移除，而建立新的叢集。 當您變更叢集模式時，在叢集中儲存的資料會遭到刪除。
 > 
 > 
 
-若要將叢集模式變更為 1 個節點叢集，請以下列方式使用 Service Fabric 本機叢集管理員或使用 PowerShell︰
+若要將模式變更為 1 個節點叢集，請選取 Service Fabric 本機叢集管理員中的**交換器叢集模式**。
+
+![切換叢集模式][switch-cluster-mode]
+
+或者，您也可以使用 PowerShell 變更叢集模式︰
 
 1. 以系統管理員身分啟動新的 PowerShell 視窗。
 2. 從 SDK 資料夾執行叢集設定指令碼：
@@ -213,15 +215,6 @@ a1 節點叢集模式已最佳化，可進行服務的快速部署和註冊，�
     叢集設定需要一些時間。 設定完成後，您應該會看到輸出類似於：
    
     ![叢集設定輸出][cluster-setup-success-1-node]
-
-如果您使用 Service Fabric 本機叢集管理員︰
-
-![切換叢集模式][switch-cluster-mode]
-
-> [!WARNING]
-> 變更叢集模式時，目前的叢集會從您的系統移除，而建立新的叢集。 當您變更叢集模式時，您已在叢集中儲存的資料會遭到刪除。
-> 
-> 
 
 ## <a name="next-steps"></a>後續步驟
 * 您現在已部署並升級某些預先建置的應用程式，您可以 [嘗試在 Visual Studio 中建立自己的應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。
@@ -250,6 +243,6 @@ a1 節點叢集模式已最佳化，可進行服務的快速部署和註冊，�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

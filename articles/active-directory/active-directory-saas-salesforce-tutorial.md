@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Salesforce 整合 | Microsoft Docs
-description: 了解如何使用 Salesforce 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 Salesforce 整合 | Microsoft Docs"
+description: "了解如何使用 Salesforce 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser-msft
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: d2d7d420-dc91-41b8-a6b3-59579e043b35
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2016
 ms.author: asmalser-msft
+translationtype: Human Translation
+ms.sourcegitcommit: 0edd2d9b2d71d95260aa122545930aab64612106
+ms.openlocfilehash: af84b6b4e4c64155ebf9d6b8aa40f7837661ee41
+
 
 ---
-# <a name="tutorial:-how-to-integrate-salesforce-with-azure-active-directory"></a>教學課程：如何整合 Salesforce 與 Azure Active Directory
+# <a name="tutorial-azure-active-directory-integration-with-salesforce"></a>教學課程：Azure Active Directory 與 Salesforce 整合
 本教學課程將示範如何將 Salesforce 環境與 Azure Active Directory 連接。 您將學習如何設定單一登入 Salesforce、如何啟用自動的使用者佈建，以及如何指派使用者存取 Salesforce。
 
 ## <a name="prerequisites"></a>必要條件
@@ -47,7 +51,7 @@ ms.author: asmalser-msft
 > 
 > 
 
-## <a name="step-1:-add-salesforce-to-your-directory"></a>步驟 1：將 Salesforce 加入您的目錄
+## <a name="step-1-add-salesforce-to-your-directory"></a>步驟 1：將 Salesforce 加入您的目錄
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![從左方的導覽窗格中選取 [Active Directory]。][0]
@@ -68,7 +72,7 @@ ms.author: asmalser-msft
    
     ![Azure AD 中 Salesforce 的 [快速入門] 頁面][5]
 
-## <a name="step-2:-enable-single-sign-on"></a>步驟 2：啟用單一登入
+## <a name="step-2-enable-single-sign-on"></a>步驟 2：啟用單一登入
 1. 在設定單一登入之前，您必須先為您的 Salesforce 環境設定並部署自訂網域。 如需有關如何執行的指示，請參閱 [設定網域名稱](https://help.salesforce.com/HTViewHelpDoc?id=domain_name_setup.htm&language=en_US)。
 2. 在 Azure AD 中 Salesforce 的 [快速入門] 頁面上，按一下 [設定單一登入]  按鈕。
    
@@ -146,7 +150,7 @@ ms.author: asmalser-msft
     ![輸入您的電子郵件地址。][19]
 17. 按一下 [完成]  關閉對話方塊。 若要測試您的組態，請參閱下面標題為 [指派使用者至 Salesforce](#step-4-assign-users-to-salesforce)的章節。
 
-## <a name="step-3:-enable-automated-user-provisioning"></a>步驟 3：啟用自動的使用者佈建
+## <a name="step-3-enable-automated-user-provisioning"></a>步驟 3：啟用自動的使用者佈建
 1. 在 Azure AD 中 Salesforce 的 [快速入門] 頁面上，按一下 [設定使用者佈建]  按鈕。
    
     ![按一下 [設定使用者佈建] 按鈕][20]
@@ -175,7 +179,7 @@ ms.author: asmalser-msft
    
     ![輸入您的電子郵件地址以接收通知][26]
 
-## <a name="step-4:-assign-users-to-salesforce"></a>步驟 4：指派使用者至 Salesforce
+## <a name="step-4-assign-users-to-salesforce"></a>步驟 4：指派使用者至 Salesforce
 1. 若要測試您的組態，請先在目錄中建立新的測試帳戶。
 2. 在 Salesforce [快速入門] 頁面上，按一下 [指派使用者]  按鈕。
    
@@ -184,10 +188,10 @@ ms.author: asmalser-msft
    
    * 如果還沒有啟用自動的使用者佈建，您會看到下列確認提示：
      
-        ![Confirm the assignment.][28]
+        ![確認指派。][28]
    * 如果已啟用自動的使用者佈建，您會看到提示，定義使用者應具備何種類型的 Salesforce 設定檔。 幾分鐘之後，新佈建的使用者應該就會出現在 Salesforce 環境中。
      
-        ![Confirm the assignment.][29]
+        ![確認指派。][29]
      
      > [!IMPORTANT]
      > 如果您正在佈建至 Salesforce **開發人員**環境，您的每個設定檔可用的授權將十分有限。 因此，最好的方法是將使用者佈建至具有 4,999 個可用授權的 **Chatter Free 使用者**設定檔。
@@ -232,6 +236,6 @@ ms.author: asmalser-msft
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -4,10 +4,10 @@
 
 | **Resource** | **預設限制** | **注意**
 | --- | --- | --- |
-| 每日資料總量 | 100 GB | 您可以設定上限來減量。
+| 每日資料總量 | 100 GB | 您可以設定上限來減量。 如果您需要更多資訊，請寄送郵件至 AIDataCap@microsoft.com 
 | 每月免費的資料量<br/> (基本定價方案) | 1 GB | 每 GB 收費的額外資料量
 | 資料保留 | 90 天 | 適用於[搜尋](../articles/application-insights/app-insights-diagnostic-search.md)、[分析](../articles/application-insights/app-insights-analytics.md)和[計量瀏覽器](../articles/application-insights/app-insights-metrics-explorer.md)
-| [可用性多步驟測試](../articles/application-insights/app-insights-monitor-web-app-availability.md#multi-step-web-tests)詳述的結果保留期 | 30 天 | 每個步驟的詳細結果
+| [可用性多步驟測試](../articles/application-insights/app-insights-monitor-web-app-availability.md#multi-step-web-tests)詳述的結果保留期 | 90 天 | 每個步驟的詳細結果
 | [屬性](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)和[度量](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)<sup>2</sup> 名稱計數 | 200 | 
 | 屬性和度量名稱長度 | 150 |
 | 屬性值字串長度 | 8192 |
@@ -23,6 +23,6 @@
 
 [關於 Application Insights 中的定價和配額](../articles/application-insights/app-insights-pricing.md)
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 10/25/2016
+ms.date: 12/15/2016
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 587c7346bcb8e6549febd3904c8d0a9e46cbc50a
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: 6376faa50613288a797e2c0683a0890fa21879e1
 
 
 ---
@@ -59,11 +59,11 @@ ms.openlocfilehash: 587c7346bcb8e6549febd3904c8d0a9e46cbc50a
 
 ## <a name="create-service-instance"> </a>建立 API 管理執行個體
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資訊，請參閱 []Azure 免費試用[Azure 免費試用]。
+> 若要完成此教學課程，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][Azure Free Trial]。
 > 
 > 
 
-使用 API 管理的第一個步驟是建立服務執行個體。 登入 [Azure 入口網站][Azure 入口網站]，然後按一下 [新增]、[Web + 行動]、[API 管理]。
+使用 API 管理的第一個步驟是建立服務執行個體。 登入 [Azure 入口網站][Azure Portal]，然後按一下 [新增]、[Web + 行動]、[API 管理]。
 
 ![API Management new instance][api-management-create-instance-menu]
 
@@ -74,7 +74,7 @@ ms.openlocfilehash: 587c7346bcb8e6549febd3904c8d0a9e46cbc50a
 輸入 **Contoso Ltd.** 做為 [組織名稱]，然後在 [管理員電子郵件] 欄位中輸入您的電子郵件地址。
 
 > [!NOTE]
-> 此電子郵件地址將用於自 API 管理系統傳送通知。 如需詳細資訊，請參閱 [如何在 Azure API 管理中設定通知和電子郵件範本][如何在 Azure API 管理中設定通知和電子郵件範本]。
+> 此電子郵件地址將用於自 API 管理系統傳送通知。 如需詳細資訊，請參閱[如何在 Azure API 管理中設定通知和電子郵件範本][How to configure notifications and email templates in Azure API Management]。
 > 
 > 
 
@@ -83,7 +83,7 @@ ms.openlocfilehash: 587c7346bcb8e6549febd3904c8d0a9e46cbc50a
 API 管理服務執行個體共有三種層次：開發人員、標準和高階。
 
 > [!NOTE]
-> 開發人員階層可用來針對不注重高可用性的 API 程式進行開發、測試及試驗。 在「標準」和「高階」層次中，您可以調整保留的單位計數以處理更多流量。 「標準」和「高階」層次可為您的 API 管理服務提供最高的處理能力和效能。 您可以使用任何階層來完成本教學課程。 如需關於 API 管理層次的詳細資訊，請參閱 [API 管理價格][API 管理價格]。
+> 開發人員階層可用來針對不注重高可用性的 API 程式進行開發、測試及試驗。 在「標準」和「高階」層次中，您可以調整保留的單位計數以處理更多流量。 「標準」和「高階」層次可為您的 API 管理服務提供最高的處理能力和效能。 您可以使用任何階層來完成本教學課程。 如需關於 API 管理層次的詳細資訊，請參閱 [API 管理價格][API Management pricing]。
 > 
 > 
 
@@ -199,26 +199,26 @@ API 區段有一些索引標籤。 [摘要]  索引標籤會顯示 API 的基本
 ## <a name="next-steps"> </a>後續步驟
 * 了解 [以頻率限制保護您的 API](api-management-howto-product-with-rules.md)。
 
-[Azure 免費試用]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=api_management_hero_a
+[Azure Free Trial]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=api_management_hero_a
 
-[建立 API 管理執行個體]: #create-service-instance
-[建立 API]: #create-api
-[新增作業]: #add-operation
-[將新的 API 新增至產品]: #add-api-to-product
-[訂閱包含 API 的產品]: #subscribe
+[Create an API Management instance]: #create-service-instance
+[Create an API]: #create-api
+[Add an operation]: #add-operation
+[Add the new API to a product]: #add-api-to-product
+[Subscribe to the product that contains the API]: #subscribe
 [Call an operation from the Developer Portal]: #call-operation
-[檢視分析]: #view-analytics
-[後續步驟]: #next-steps
+[View analytics]: #view-analytics
+[Next steps]: #next-steps
 
 
-[如何在 Azure API 管理中管理開發人員帳戶]: api-management-howto-create-or-invite-developers.md
-[設定 API 設定]: api-management-howto-create-apis.md#configure-api-settings
-[如何在 Azure API 管理中設定通知和電子郵件範本]: api-management-howto-configure-notifications.md
-[回應]: api-management-howto-add-operations.md#responses
-[如何建立和發佈產品]: api-management-howto-add-products.md
-[API 管理定價]: http://azure.microsoft.com/pricing/details/api-management/
+[How to manage developer accounts in Azure API Management]: api-management-howto-create-or-invite-developers.md
+[Configure API settings]: api-management-howto-create-apis.md#configure-api-settings
+[How to configure notifications and email templates in Azure API Management]: api-management-howto-configure-notifications.md
+[Responses]: api-management-howto-add-operations.md#responses
+[How create and publish a product]: api-management-howto-add-products.md
+[API Management pricing]: http://azure.microsoft.com/pricing/details/api-management/
 
-[Azure 入口網站]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/
 
 [api-management-management-console]: ./media/api-management-get-started/api-management-management-console.png
 [api-management-create-instance-menu]: ./media/api-management-get-started/api-management-create-instance-menu.png
@@ -257,6 +257,6 @@ API 區段有一些索引標籤。 [摘要]  索引標籤會顯示 API 的基本
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

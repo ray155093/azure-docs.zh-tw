@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 11/23/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: b7cccd1638bfbc79322c88f10d515a282bdb1ad3
-ms.openlocfilehash: 473ed9aa5a744d39befe5dfcb9ed04b6c88c9e26
+ms.sourcegitcommit: 1268d29b0d9c4368f62918758836a73c757c0c8d
+ms.openlocfilehash: 3727972c544bb8c2724e9f38953882a7f2251a60
 
 
 ---
@@ -46,9 +46,9 @@ Site Recovery 是一項有助於建立商務持續性和災害復原 (BCDR) 策�
 | **內部部署限制** |不支援 HTTPS 型 Proxy |
 | **Provider/代理程式** |複寫 VM 需要 Azure Site Recovery Provider。<br/><br/> Hyper-V 主機需要復原服務代理程式。<br/><br/> 您在部署期間安裝它們。 |
 |  **Azure 需求** |Azure 帳戶<br/><br/> 復原服務保存庫<br/><br/> 在保存庫區域中的 LRS 或 GRS 儲存體帳戶<br/><br/> 標準儲存體帳戶<br/><br/> 在保存庫區域中的 Azure 虛擬網路。 [完整詳細資料](#azure-prerequisites)。 |
-|  **Azure 限制** |如果您使用 GRS，則需要另一個 LRS 帳戶進行記錄<br/><br/> 在 Azure 入口網站中建立的儲存體帳戶不能跨越相同或不同訂用帳戶中的資源群組移動。 <br/><br/> 不支援進階儲存體。<br/><br/> 用於 Site Recovery 的 Azure 網路不能跨越相同或不同訂用帳戶中的資源群組移動。 |
-|  **VM 複寫** |[VM 必須符合 Azure 必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)<br/><br/> |
-|  **複寫限制** |無法複寫使用靜態 IP 位址執行 Linux 的 VM。<br/><br/> 您無法從複寫中排除特定的磁碟。 |
+|  **Azure 限制** |如果您使用 GRS，則需要另一個 LRS 帳戶進行記錄<br/><br/> 在 Azure 入口網站中建立的儲存體帳戶不能跨越相同或不同訂用帳戶中的資源群組移動。 <br/><br/> 不支援進階儲存體。<br/><br/> 用於 Site Recovery 的 Azure 網路不能跨越相同或不同訂用帳戶中的資源群組移動。 
+|  **VM 複寫** |[VM 必須符合 Azure 必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)<br/><br/>
+|  **複寫限制** |無法複寫使用靜態 IP 位址執行 Linux 的 VM。<br/><br/> 您可以將特定磁碟排除複寫，但 OS 磁碟則不行。
 | **部署步驟** |1) 準備 Azure (訂用帳戶、儲存體、網路) -> 2) 準備內部部署 (VMM 和網路對應) -> 3) 建立復原服務保存庫 -> 4) 設定 VMM 和 Hyper-V 主機 -> 5) 設定複寫設定 -> 6) 啟用複寫 -> 7) 測試複寫和容錯移轉。 |
 
 ## <a name="site-recovery-in-the-azure-portal"></a>Azure 入口網站中的 Site Recovery
@@ -372,6 +372,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 2. 預設值為 4。 在 “overprovisioned” 網路中，這些登錄機碼必須變更自其預設值。 最大值為 32。 監視流量，將此值最佳化。
 
 ## <a name="step-6-enable-replication"></a>步驟 6：啟用複寫
+
 立即啟用複寫，如下所示︰
 
 1. 按一下 [步驟 2: 複寫應用程式]  >  [來源]。 第一次啟用複寫之後，請按一下保存庫中的 [+複寫]，以對其他機器啟用複寫。
@@ -388,9 +389,20 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 6. 在 [虛擬機器] > [選取虛擬機器] 中，按一下並選取您要複寫的每部機器。 您只能選取可以啟用複寫的機器。 然後按一下 [確定] 。
 
     ![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication5.png)
-7. 在 [名稱]  > 中，為選取的 VM 選取作業系統，以及 OS 磁碟。 然後按一下 [確定] 。 您可以稍後再設定其他屬性。
+7. 在 [屬性] > [設定屬性] 中，為選取的 VM 選取作業系統，以及 OS 磁碟。 依預設會選取 VM 的所有磁碟以進行複寫。 您可能想要將磁碟排除複寫，以降低將不必要的資料複寫至 Azure 所造成的頻寬耗用量。 例如，您可能不想要複寫具有暫存資料的磁碟，或是每次機器或應用程式重新啟動時便重新整理的資料 (例如 pagefile.sys 或 Microsoft SQL Server tempdb)。 您可以取消選取磁碟以將磁碟排除複寫。 確認 Azure VM 名稱 (目標名稱) 符合 [Azure 虛擬機器需求](site-recovery-best-practices.md#azure-virtual-machine-requirements) ，並視需要修改。 然後按一下 [確定] 。 您可以稍後再設定其他屬性..
 
-    ![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication6.png)
+    ![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
+    
+    >[!NOTE]
+    > 
+    > * 只有基本磁碟可以從複寫排除。 您無法排除 OS 磁碟，且不建議排除動態磁碟。 ASR 無法找出哪些 VHD 磁碟是來賓 VM 內的基本或動態磁碟。  如果未排除所有的相依動態磁碟區磁碟，受保護的動態磁碟會在容錯移轉 VM 上成為失敗的磁碟，且該磁碟上的資料無法存取。   
+    > * 啟用複寫後，您無法加入或移除複寫的磁碟。 如果您想要加入或排除磁碟，必須停用 VM 的保護，然後重新啟用它。
+    > * 如果您排除應用程式運作所需的磁碟，在容錯移轉至 Azure 之後，您將必須在 Azure 中手動建立它，複寫的應用程式才能執行。 或者，您可以將 Azure 自動化整合至復原計畫，在機器容錯移轉期間建立磁碟。
+    > * 您以手動方式在 Azure 中建立的磁碟將不會容錯回復。 例如，如果您容錯移轉三個磁碟，並直接在 Azure VM 中建立兩個磁碟，則只有三個已容錯移轉的磁碟會從 Azure 容錯回復至 Hyper-V。 您無法包含在從 Hyper-V 至 Azure 的容錯回復中或反向複寫中手動建立的磁碟。
+    >
+    >
+    
+
 8. 在 [複寫設定]  >  [進行複寫設定] 中，選取您要套用於受保護 VM 的複寫原則。 然後按一下 [確定] 。 您可以在 [設定]  >  [複寫原則] > 原則名稱 > [編輯設定] 中，修改複寫原則。 您套用的變更用於已在複寫的機器和新的機器。
 
    ![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication7.png)
@@ -426,6 +438,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 * 若要測試容錯移轉，建議您建立與您的 Azure 生產網路分隔的新 Azure 網路。 這是您在 Azure 中建立新網路時的預設行為。 [深入了解](site-recovery-failover.md#run-a-test-failover) 如何執行測試容錯移轉。
 * 若要在容錯移轉至 Azure 時獲得最佳效能，請在受保護的機器上安裝 Azure 代理程式。 這可讓開機變快速，並協助進行疑難排解。 安裝 [Linux](https://github.com/Azure/WALinuxAgent) 或 [Windows](http://go.microsoft.com/fwlink/?LinkID=394789) 代理程式。
 * 若要完整測試您的部署，您需要有基礎結構，讓複寫的機器如預期般運作。 如果您想要測試 Active Directory 和 DNS，您可以透過 DNS 建立虛擬機器做為網域控制站，並使用 Azure Site Recovery 將此虛擬機器複寫至 Azure。 深入了解 [Active Directory 的測試容錯移轉考量](site-recovery-active-directory.md#test-failover-considerations)。
+* 如果您已從複寫排除磁碟，您可能需要在容錯移轉之後以手動方式在 Azure 中建立磁碟，讓應用程式能如預期般執行。
 * 如果您想要執行非計劃性容錯移轉，而不是測試容錯移轉，請注意下列事項︰
 
   * 如果可能的話，您應該在執行非計劃性容錯移轉之前關閉主要機器。 這可確保您不需要同時執行來源和複本機器。
@@ -496,6 +509,6 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

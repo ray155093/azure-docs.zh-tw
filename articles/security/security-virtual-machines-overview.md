@@ -1,25 +1,29 @@
 ---
-title: Azure 虛擬機器安全性概觀 | Microsoft Docs
-description: " Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。本文對可用於虛擬機器的 Azure 安全性功能提供核心的概觀。"
+title: "Azure 虛擬機器安全性概觀 | Microsoft Docs"
+description: " Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。  本文對可用於虛擬機器的 Azure 安全性功能提供核心的概觀。 "
 services: security
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
 editor: TomSh
-
+ms.assetid: 467b2c83-0352-4e9d-9788-c77fb400fe54
 ms.service: security
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/16/2016
+ms.date: 11/21/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: 3f504db7d67fdf196fbdaaaba2e09d989449b101
+ms.openlocfilehash: 0be0500296ad9bed302f65da9ef8de63e0ed08f6
+
 
 ---
-# Azure 虛擬機器安全性概觀
-您可利用 Azure 虛擬機器以敏捷的方式部署範圍廣泛的許多運算解決方案。利用 Microsoft Windows、Linux、Microsoft SQL Server、Oracle、IBM、SAP 與 Azure BizTalk 服務的支援，就可以在近乎所有的作業系統上，使用任何語言部署所有工作負載。
+# <a name="azure-virtual-machines-security-overview"></a>Azure 虛擬機器安全性概觀
+您可利用 Azure 虛擬機器以敏捷的方式部署範圍廣泛的許多運算解決方案。 利用 Microsoft Windows、Linux、Microsoft SQL Server、Oracle、IBM、SAP 與 Azure BizTalk 服務的支援，就可以在近乎所有的作業系統上，使用任何語言部署所有工作負載。
 
-Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。您可以建置並部署您的應用程式，並保證您的資料會在我們的高度安全資料中心中受到安全的保護。
+Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。  您可以建置並部署您的應用程式，並保證您的資料會在我們的高度安全資料中心中受到安全的保護。
 
 您可以使用 Azure 建置安全性已加強且相容的解決方案：
 
@@ -29,7 +33,7 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 * 識別和偵測威脅
 * 符合規範需求
 
-本文的目的是對可用於虛擬機器的 Azure 安全性功能提供核心的概觀。我們也會提供文章的連結，更詳細說明每個功能，以讓您深入了解。
+本文的目的是對可用於虛擬機器的 Azure 安全性功能提供核心的概觀。 我們也會提供文章的連結，更詳細說明每個功能，以讓您深入了解。  
 
 本文涵蓋核心 Azure 虛擬機器安全性功能︰
 
@@ -42,12 +46,12 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 * 安全性原則管理和報告
 * 法規遵循
 
-## 反惡意程式碼
-運用 Azure，您可以使用來自安全性廠商 (例如 Microsoft、Symantec、Trend Micro、McAfee 和 Kaspersky) 的反惡意程式碼軟體，以保護您的虛擬機器抵禦惡意檔案、廣告軟體和其他威脅。請參閱以下的「深入了解」一節，尋找合作夥伴解決方案上的文章。
+## <a name="antimalware"></a>反惡意程式碼
+運用 Azure，您可以使用來自安全性廠商 (例如 Microsoft、Symantec、Trend Micro、McAfee 和 Kaspersky) 的反惡意程式碼軟體，以保護您的虛擬機器抵禦惡意檔案、廣告軟體和其他威脅。 請參閱以下的「深入了解」一節，尋找合作夥伴解決方案上的文章。
 
-適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware 是即時保護功能，有助於識別和移除病毒、間諜軟體和其他惡意軟體。Microsoft Antimalware 會提供可設定的警示，在已知的惡意或垃圾軟體嘗試自行安裝或在您的 Azure 系統上執行時發出警示。
+適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware 是即時保護功能，有助於識別和移除病毒、間諜軟體和其他惡意軟體。  Microsoft Antimalware 會提供可設定的警示，在已知的惡意或垃圾軟體嘗試自行安裝或在您的 Azure 系統上執行時發出警示。
 
-Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的單一代理程式解決方案，其設計可於無人為介入的情況下在背景中執行。您可依據應用程式工作負載需求，選擇預設的基本安全性或進階的自訂組態 (包括反惡意程式碼監視) 來部署保護。
+Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的單一代理程式解決方案，其設計可於無人為介入的情況下在背景中執行。 您可依據應用程式工作負載需求，選擇預設的基本安全性或進階的自訂組態 (包括反惡意程式碼監視) 來部署保護。
 
 當您部署並啟用 Microsoft Antimalware 時，有下列幾項核心功能可供使用：
 
@@ -71,8 +75,8 @@ Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的�
 * [保護 Azure 虛擬機器的新反惡意程式碼選項 - McAfee Endpoint Protection](https://azure.microsoft.com/blog/new-antimalware-options-for-protecting-azure-virtual-machines/)
 * [Azure Marketplace 中的安全性解決方案](https://azure.microsoft.com/marketplace/?term=security)
 
-## 硬體安全性模型
-加密和驗證不會改善安全性，除非金鑰本身也受到保護。您可以藉由將關鍵密碼和金鑰存放在 Azure 金鑰保存庫中來簡化其管理與安全性。金鑰保存庫讓您能選擇將金鑰存放在通過 FIPS 140-2 Level 2 標準認證的硬體安全性模組 (HSM) 中。備份或[透明資料加密](https://msdn.microsoft.com/library/bb934049.aspx)的 SQL Server 加密金鑰都能與應用程式的任何金鑰或密碼一起存放在金鑰保存庫中。這些受保護項目的權限和存取權是透過 [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/) 來管理。
+## <a name="hardware-security-module"></a>硬體安全性模型
+加密和驗證不會改善安全性，除非金鑰本身也受到保護。 您可以藉由將關鍵密碼和金鑰存放在 Azure 金鑰保存庫中來簡化其管理與安全性。 金鑰保存庫讓您能選擇將金鑰存放在通過 FIPS 140-2 Level 2 標準認證的硬體安全性模組 (HSM) 中。 備份或 [透明資料加密](https://msdn.microsoft.com/library/bb934049.aspx) 的 SQL Server 加密金鑰都能與應用程式的任何金鑰或密碼一起存放在金鑰保存庫中。 這些受保護項目的權限和存取權是透過 [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)來管理。
 
 深入了解：
 
@@ -80,8 +84,8 @@ Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的�
 * [開始使用 Azure 金鑰保存庫](../key-vault/key-vault-get-started.md)
 * [Azure 金鑰保存庫部落格](https://blogs.technet.microsoft.com/kv/)
 
-## 虛擬機器磁碟加密
-Azure 磁碟加密是可讓您加密您的 Windows 和 Linux Azure 虛擬機器磁碟的新功能。Azure 磁碟加密使用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。
+## <a name="virtual-machine-disk-encryption"></a>虛擬機器磁碟加密
+Azure 磁碟加密是可讓您加密您的 Windows 和 Linux Azure 虛擬機器磁碟的新功能。 Azure 磁碟加密使用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。
 
 此解決方案與 Azure 金鑰保存庫整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保虛擬機器磁碟中的所有資料會在您的 Azure 儲存體中輕鬆加密。
 
@@ -91,8 +95,8 @@ Azure 磁碟加密是可讓您加密您的 Windows 和 Linux Azure 虛擬機器�
 * [適用於 Linux 和 Windows 虛擬機器的 Azure 磁碟加密](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/16/azure-disk-encryption-for-linux-and-windows-virtual-machines-public-preview-now-available/)
 * [加密虛擬機器](../security-center/security-center-disk-encryption.md)
 
-## 虛擬機器備份
-Azure 備份是可調式解決方案，可以不需成本地保護您的應用程式資料，以及將操作成本降到最低。應用程式錯誤可能導致資料損毀，而人為錯誤可能會將 Bug 導入應用程式中。使用 Azure 備份，您執行 Windows 與 Linux 的虛擬機器會受到保護。
+## <a name="virtual-machine-backup"></a>虛擬機器備份
+Azure 備份是可調式解決方案，可以不需成本地保護您的應用程式資料，以及將操作成本降到最低。 應用程式錯誤可能導致資料損毀，而人為錯誤可能會將 Bug 導入應用程式中。 使用 Azure 備份，您執行 Windows 與 Linux 的虛擬機器會受到保護。
 
 深入了解：
 
@@ -100,16 +104,16 @@ Azure 備份是可調式解決方案，可以不需成本地保護您的應用�
 * [Azure 備份學習路徑](https://azure.microsoft.com/documentation/learning-paths/backup/)
 * [Azure 備份服務 - 常見問題集](../backup/backup-azure-backup-faq.md)
 
-## Azure Site Recovery
-組織的 BCDR 策略的其中一個重要部分是，找出在計劃中和非計劃中的中斷發生時讓企業工作負載和應用程式保持啟動並執行的方法。Azure Site Recovery 有助於協調工作負載和應用程式的複寫、容錯移轉及復原，因此能夠在主要位置發生故障時透過次要位置來提供工作負載和應用程式。
+## <a name="azure-site-recovery"></a>Azure Site Recovery
+組織的 BCDR 策略的其中一個重要部分是，找出在計劃中和非計劃中的中斷發生時讓企業工作負載和應用程式保持啟動並執行的方法。 Azure Site Recovery 有助於協調工作負載和應用程式的複寫、容錯移轉及復原，因此能夠在主要位置發生故障時透過次要位置來提供工作負載和應用程式。
 
 網站復原：
 
-* **簡化 BCDR 策略** - Site Recovery 可讓您從單一位置輕鬆處理多個商務工作負載和應用程式的複寫、容錯移轉及復原。Site Recovery 會協調複寫和容錯移轉，但不會攔截應用程式資料或擁有任何相關資訊。
+* **簡化 BCDR 策略** - Site Recovery 可讓您從單一位置輕鬆處理多個商務工作負載和應用程式的複寫、容錯移轉及復原。 Site Recovery 會協調複寫和容錯移轉，但不會攔截應用程式資料或擁有任何相關資訊。
 * **提供彈性的複寫** - 使用 Site Recovery，您就可以複寫 Hyper-V 虛擬機器、VMware 虛擬機器和 Windows/Linux 實體伺服器上執行的工作負載。
-* **支援容錯移轉和復原** - Site Recovery 可提供測試用容錯移轉，既能支援災害復原演練，又不會影響生產環境。您也可以執行計劃性容錯移轉，因為是預期中的中斷，所以不會遺失任何資料；或是執行非計劃性容錯移轉，以在發生非未預期的災害時將資料損失減到最少 (取決於複寫頻率)。在容錯移轉之後，您可以容錯回復到主要站台。Site Recovery 提供了包含指令碼和 Azure 自動化作業手冊的復原計畫，以供您自訂多層式應用程式的容錯移轉和復原。
-* **消除次要資料中心** - 您可以複寫至次要內部部署站台或 Azure。使用 Azure 做為災害復原目的地，可排除次要站台的維護成本和複雜度。複寫的資料會儲存在 Azure 儲存體。
-* **與現有 BCDR 技術整合** - Site Recovery 能夠與其他應用程式的 BCDR 功能搭配使用。例如，您可以使用 Site Recovery 來保護公司工作負載的 SQL Server 後端。這包括原生支援 SQL Server AlwaysOn 以管理可用性群組的容錯移轉。
+* **支援容錯移轉和復原** - Site Recovery 可提供測試用容錯移轉，既能支援災害復原演練，又不會影響生產環境。 您也可以執行計劃性容錯移轉，因為是預期中的中斷，所以不會遺失任何資料；或是執行非計劃性容錯移轉，以在發生非未預期的災害時將資料損失減到最少 (取決於複寫頻率)。 在容錯移轉之後，您可以容錯回復到主要站台。 Site Recovery 提供了包含指令碼和 Azure 自動化作業手冊的復原計畫，以供您自訂多層式應用程式的容錯移轉和復原。
+* **消除次要資料中心** - 您可以複寫至次要內部部署站台或 Azure。 使用 Azure 做為災害復原目的地，可排除次要站台的維護成本和複雜度。 複寫的資料會儲存在 Azure 儲存體。
+* **與現有 BCDR 技術整合** - Site Recovery 能夠與其他應用程式的 BCDR 功能搭配使用。 例如，您可以使用 Site Recovery 來保護公司工作負載的 SQL Server 後端。 這包括原生支援 SQL Server AlwaysOn 以管理可用性群組的容錯移轉。
 
 深入了解：
 
@@ -117,8 +121,8 @@ Azure 備份是可調式解決方案，可以不需成本地保護您的應用�
 * [Azure Site Recovery 如何運作？](../site-recovery/site-recovery-components.md)
 * [Azure Site Recovery 保護哪些工作負載？](../site-recovery/site-recovery-workload.md)
 
-## 虛擬網路
-虛擬機器需要遠端連線。為了支援該需求，Azure 需要虛擬機器連接到 Azure 虛擬網路。Azure 虛擬網路是以實體 Azure 網路網狀架構為基礎所建置的邏輯建構。每個邏輯 Azure 虛擬網路都會與其他所有 Azure 虛擬網路隔離。此隔離可協助確保其他 Microsoft Azure 客戶無法存取您部署中的網路流量。
+## <a name="virtual-networking"></a>虛擬網路
+虛擬機器需要遠端連線。 為了支援該需求，Azure 需要虛擬機器連接到 Azure 虛擬網路。 Azure 虛擬網路是以實體 Azure 網路網狀架構為基礎所建置的邏輯建構。 每個邏輯 Azure 虛擬網路都會與其他所有 Azure 虛擬網路隔離。 此隔離可協助確保其他 Microsoft Azure 客戶無法存取您部署中的網路流量。
 
 深入了解：
 
@@ -126,12 +130,12 @@ Azure 備份是可調式解決方案，可以不需成本地保護您的應用�
 * [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
 * [網路功能與企業合作夥伴關係的案例](https://azure.microsoft.com/blog/networking-enterprise/)
 
-## 安全性原則管理和報告
-Azure 資訊安全中心可協助您預防、偵測和回應威脅，並加強提供對 Azure 資源安全性的能見度及控制權。它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
+## <a name="security-policy-management-and-reporting"></a>安全性原則管理和報告
+Azure 資訊安全中心可協助您預防、偵測和回應威脅，並加強提供對 Azure 資源安全性的能見度及控制權。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
 
 Azure 資訊安全中心藉由下列方式來協助您最佳化和監視虛擬機器︰
 
-* 提供虛擬機器[安全性建議](../security-center/security-center-recommendations.md)，例如套用系統更新、設定 ACL 端點、啟用反惡意程式碼、啟用網路安全性群組，以及套用磁碟加密。
+* 提供虛擬機器 [安全性建議](../security-center/security-center-recommendations.md) ，例如套用系統更新、設定 ACL 端點、啟用反惡意程式碼、啟用網路安全性群組，以及套用磁碟加密。
 * 監視您的虛擬機器的狀態
 
 深入了解：
@@ -140,12 +144,16 @@ Azure 資訊安全中心藉由下列方式來協助您最佳化和監視虛擬�
 * [Azure 資訊安全中心常見問題集](../security-center/security-center-faq.md)
 * [Azure 資訊安全中心規劃和操作](../security-center/security-center-planning-and-operations-guide.md)
 
-## 法規遵循
-Azure 虛擬機器經過 FISMA、FedRAMP、HIPAA、PCI DSS Level 1 及其他重要規範計劃認證。此認證可讓您自己的 Azure 應用程式更容易符合規範要求，並讓您的企業解決廣泛的國內與國際法規要求。
+## <a name="compliance"></a>法規遵循
+Azure 虛擬機器經過 FISMA、FedRAMP、HIPAA、PCI DSS Level 1 及其他重要規範計劃認證。 此認證可讓您自己的 Azure 應用程式更容易符合規範要求，並讓您的企業解決廣泛的國內與國際法規要求。
 
 深入了解：
 
 * [Microsoft 信任中心：法規遵循](https://www.microsoft.com/TrustCenter/Compliance/default.aspx)
 * [受信任的雲端：Microsoft Azure 安全性、隱私權及法規遵循](http://download.microsoft.com/download/1/6/0/160216AA-8445-480B-B60F-5C8EC8067FCA/WindowsAzure-SecurityPrivacyCompliance.pdf)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Nov16_HO4-->
+
+

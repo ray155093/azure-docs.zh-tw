@@ -177,7 +177,7 @@ ms.openlocfilehash: 605ba0aee99b81c07e37e13314e7bc1226e7e161
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下 [完成] 。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-23-video-test-user"></a>建立 23 Video 測試使用者
 本節的目標是要在 23 Video 中建立一個名為 Britta Simon 的使用者。
@@ -262,6 +262,6 @@ ms.openlocfilehash: 605ba0aee99b81c07e37e13314e7bc1226e7e161
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

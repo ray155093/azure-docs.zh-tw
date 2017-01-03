@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Azure AD .NET | Microsoft Docs
-description: 如何建立可整合 Azure AD 以進行登入的 .NET MVC Web App。
+title: "Azure AD .NET 入門 | Microsoft Docs"
+description: "如何建立可整合 Azure AD 以進行登入的 .NET MVC Web App。"
 services: active-directory
 documentationcenter: .net
 author: dstrockis
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: e15a41a4-dc5d-4c90-b3fe-5dc33b9a1e96
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/16/2016
 ms.author: dastrock
+translationtype: Human Translation
+ms.sourcegitcommit: 1865043ca9c9019b9813f11eb4a55f7f16d79287
+ms.openlocfilehash: 4c66ce2996d3444d02b55bd0214398f69c45b6bd
+
 
 ---
-# <a name="asp.net-web-app-sign-in-&-sign-out-with-azure-ad"></a>使用 Azure AD 進行 ASP.NET Web 應用程式登入與登出
+# <a name="aspnet-web-app-sign-in--sign-out-with-azure-ad"></a>使用 Azure AD 進行 ASP.NET Web 應用程式登入與登出
 [!INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
 Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直接，只需幾行的程式碼便可提供單一登入和登出。  在 Asp.NET Web 應用程式中，您可以使用 Microsoft 的社群導向 OWIN 中介軟體 (隨附於 .NET Framework 4.5) 實作來完成這個作業。  我們將在此處使用 OWIN 來執行下列動作：
@@ -34,20 +38,19 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 
 若要開始使用，請[下載應用程式基本架構](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip)。  您還需要一個可以註冊應用程式的 Azure AD 租用戶。  如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
 
-## <a name="*1.-register-an-application-with-azure-ad*"></a>*1.向 Azure AD 註冊應用程式*
+## <a name="1----register-an-application-with-azure-ad"></a>*1.  向 Azure AD 註冊應用程式*
 若要啟用應用程式來驗證使用者，您必須先要在您的租用戶中註冊這個新的應用程式。
 
-* 登入 Azure 管理入口網站。
-* 在左側導覽中按一下 **Active Directory**。
+* 登入 [Azure 入口網站](https://portal.azure.com)。
 * 選取您要註冊應用程式的租用戶。
-* 按一下 [ **應用程式** ] 索引標籤，然後按一下最下面抽屜的 [新增]。
+* 在左側導覽中按一下 [Azure Active Directory]。
+* 按一下 [應用程式註冊] 索引標籤，然後按一下 [新增]。
 * 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
   * 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式
   * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是 `https://localhost:44320/`。
-  * [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。  慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`
-* 完成註冊後，AAD 會為您的應用程式指派一個唯一用戶端識別碼。  您在後續章節中將會用到這個值，所以請從 [設定] 索引標籤中複製此值。
+* 完成註冊後，AAD 會為您的應用程式指派唯一的應用程式識別碼。  您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
 
-## <a name="*2.-set-up-your-app-to-use-the-owin-authentication-pipeline*"></a>*2.設定您的應用程式使用 OWIN 驗證管線*
+## <a name="2-set-up-your-app-to-use-the-owin-authentication-pipeline"></a>*2.設定您的應用程式使用 OWIN 驗證管線*
 在這裡，我們將設定 OWIN 中介軟體使用 OpenID Connect 驗證通訊協定。  OWIN 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
 
 * 若要開始，請將 OWIN 中介軟體 NuGet 封裝加入使用封裝管理員主控台的專案。
@@ -95,10 +98,10 @@ public void ConfigureAuth(IAppBuilder app)
   * `ida:Tenant` 是指您的 Azure AD 租用戶名稱，例如 "contoso.onmicrosoft.com"。
   * 您的 `ida:PostLogoutRedirectUri` 指出在登出要求成功完成之後，使用者應該要被重新導向至 Azure AD。
 
-## <a name="*3.-use-owin-to-issue-sign-in-and-sign-out-requests-to-azure-ad*"></a>*3.使用 OWIN 向 Azure AD 發出登入和登出要求*
+## <a name="3-use-owin-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>*3.使用 OWIN 向 Azure AD 發出登入和登出要求*
 您的應用程式現在已正確設定，將使用 OpenID Connect 驗證通訊協定與 Azure AD 進行通訊。  OWIN 已經處理所有製作驗證訊息、驗證 Azure AD 的權杖和維護使用者工作階段的瑣碎詳細資料。  剩餘的工作就是提供使用者一個登入和登出的方式。
 
-* 您可以在控制器中使用授權標記，要求使用者在存取特定頁面時登入。  開啟 `Controllers\HomeController.cs`，並在 [關於] 控制器中加入 `[Authorize]` 標記。
+* 您可以在控制器中使用授權標籤，要求使用者在存取特定頁面時登入。  開啟 `Controllers\HomeController.cs`，並在 [關於] 控制器中加入 `[Authorize]` 標籤。
 
 ```C#
 [Authorize]
@@ -150,7 +153,7 @@ else
 }
 ```
 
-## <a name="*4.-display-user-information*"></a>*4.顯示使用者資訊*
+## <a name="4----display-user-information"></a>*4.  顯示使用者資訊*
 使用 OpenID Connect 驗證使用者時，Azure AD 會將包含「宣告」或有關使用者判斷提示的 id_token 傳回給應用程式。  您可以使用這些宣告來個人化應用程式：
 
 * 開啟 `Controllers\HomeController.cs` 檔案。  您可以透過 `ClaimsPrincipal.Current` 安全性主體物件來存取控制器中的使用者宣告。
@@ -178,6 +181,8 @@ public ActionResult About()
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO5-->
 
 

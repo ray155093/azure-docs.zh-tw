@@ -3,8 +3,8 @@ title: "儲存體簡介 | Microsoft Docs"
 description: "Azure 儲存體概觀，Microsoft 的線上雲端資料儲存體。 了解如何在您的應用程式中使用可用的最佳雲端儲存體解決方案。"
 services: storage
 documentationcenter: 
-author: tamram
-manager: carmonm
+author: mmacy
+manager: timlt
 editor: tysonn
 ms.assetid: a4a1bc58-ea14-4bf5-b040-f85114edc1f1
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/17/2016
-ms.author: tamram
+ms.date: 12/08/2016
+ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 1a6d1497dee72a49705e15bd2907a42f744bd3b5
-ms.openlocfilehash: 3149797c078764fa54c488e8498790ea91d1a1b1
+ms.sourcegitcommit: 931503f56b32ce9d1b11283dff7224d7e2f015ae
+ms.openlocfilehash: 40ab7632f47de4d4eef277f4c4071ce2d4de1eed
 
 
 ---
@@ -75,7 +75,7 @@ Azure 儲存體帳戶是可讓您存取 Azure 儲存體服務的安全帳戶。 
 * 雲端應用程式的組態資料
 * 巨量資料 (例如記錄和其他大型資料集)
 
-每個 Blob 會組織成一個容器。 容器也提供對物件群組指派安全原則的實用方式。 儲存體帳戶可包含任意數目的容器，而容器可包含任意數目的 Blob，儲存體帳戶的容量限制高達 500 TB。  
+每個 Blob 會組織成一個容器。 容器也提供對物件群組指派安全原則的實用方式。 儲存體帳戶可包含任意數目的容器，而容器可包含任意數目的 Blob，儲存體帳戶的容量限制高達 500 TB。
 
 Blob 儲存體提供三種類型的 Blob，包括區塊 Blob、附加 Blob 及分頁 Blob (磁碟)。
 
@@ -104,7 +104,7 @@ Blob 儲存體提供三種類型的 Blob，包括區塊 Blob、附加 Blob 及�
 ## <a name="file-storage"></a>檔案儲存體
 Azure 檔案儲存體提供雲端架構的 SMB 檔案共用，可讓您快速地將依賴檔案共用的舊式應用程式移轉至 Azure，而不必浪費成本來重新撰寫程式。 利用 Azure 檔案儲存體，在 Azure 虛擬機器或雲端服務中執行的應用程式，可掛接雲端中的檔案共用，就像桌面應用程式掛接一般 SMB 共用一樣。 可同時掛接和存取檔案儲存體共用的應用程式元件數量沒有限制。
 
-因為檔案儲存體是標準 SMB 檔案共用，所以 Azure 中執行的應用程式可透過檔案系統 I/O API 來存取共用中的資料。 因此，開發人員可利用現有的程式碼和技能來移轉現有的應用程式。 IT 專業人員在管理 Azure 應用程式時，可以使用 PowerShell Cmdlet 來建立、掛接和管理檔案儲存體共用。
+因為檔案儲存體共用是標準 SMB 檔案共用，所以 Azure 中執行的應用程式可透過檔案系統 I/O API 來存取共用中的資料。 因此，開發人員可利用現有的程式碼和技能來移轉現有的應用程式。 IT 專業人員在管理 Azure 應用程式時，可以使用 PowerShell Cmdlet 來建立、掛接和管理檔案儲存體共用。
 
 就像其他 Azure 儲存體服務一樣，檔案儲存體也公開 REST API 來存取共用中的資料。 內部部署應用程式可以呼叫檔案儲存體 REST API 來存取檔案共用中的資料。 因此，企業可以選擇將某些舊式應用程式移轉至 Azure，並繼續在其自己的組織內執行其他舊式應用程式。 請注意，只有 Azure 中執行的應用程式才能掛接檔案共用。內部部署應用程式只能透過 REST API 來存取檔案共用。
 
@@ -128,32 +128,32 @@ Azure 檔案儲存體提供雲端架構的 SMB 檔案共用，可讓您快速地
 ## <a name="replication-for-durability-and-high-availability"></a>持久性和高可用性的複寫
 Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久性及高可用性。 複寫會將資料複製於相同資料中心內，或複製到第二個資料中心，依您所選的複寫選項而定。 複寫會保護您的資料，並在暫時性硬體故障時保留您應用程式的正常運作時間。 如果您的資料複寫至第二個資料中心，則也會保護資料免於在主要位置發生嚴重失敗。
 
-複寫可確保您的儲存體帳戶符合[儲存體的服務等級協定 (SLA)](https://azure.microsoft.com/support/legal/sla/storage/) 即使遇到失敗時也一樣。 請參閱 SLA 以取得 Azure 儲存體持續性和可用性保證的相關資訊。 
+複寫可確保您的儲存體帳戶符合[儲存體的服務等級協定 (SLA)](https://azure.microsoft.com/support/legal/sla/storage/) 即使遇到失敗時也一樣。 請參閱 SLA 以取得 Azure 儲存體持續性和可用性保證的相關資訊。
 
-建立儲存體帳戶時，您可以選取下列其中一個複寫選項：  
+建立儲存體帳戶時，您可以選取下列其中一個複寫選項：
 
-* **本地備援儲存體 (LRS)。**  本地備援儲存體可維護三個資料複本。 LRS 會在單一區域的單一資料中心內複寫三次。 LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一資料中心的故障。  
-  
+* **本地備援儲存體 (LRS)。**  本地備援儲存體可維護三個資料複本。 LRS 會在單一區域的單一資料中心內複寫三次。 LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一資料中心的故障。
+
     使用 LRS 可享有折扣費率。 如需最高的持久性，建議您採用異地備援儲存體，如下所述。
-* **區域備援儲存體 (ZRS)。**  區域備援儲存體可維護三個資料複本。 ZRS 會在單一地區或兩個地區內的二或三個設備中複寫三次，提供比 LRS 更高的持久性。 ZRS 可確保資料在單一地區內的持續性。  
-  
-    ZRS 提供高於 LRS 等級的持久性；不過，如需最高的持久性，建議您採用地理區域備援儲存體，如下所述。  
-  
+* **區域備援儲存體 (ZRS)。**  區域備援儲存體可維護三個資料複本。 ZRS 會在單一地區或兩個地區內的二或三個設備中複寫三次，提供比 LRS 更高的持久性。 ZRS 可確保資料在單一地區內的持續性。
+
+    ZRS 提供高於 LRS 等級的持久性；不過，如需最高的持久性，建議您採用地理區域備援儲存體，如下所述。
+
   > [!NOTE]
   > ZRS 目前僅適用於區塊 blob，且僅 2014年 2 月 14 日版以上版本提供支援。
-  > 
+  >
   > 建立儲存體帳戶並選取 ZRS 後，就無法轉換為採用任何其他類型的複寫，反之亦然。
-  > 
-  > 
+  >
+  >
 * **異地備援儲存體 (GRS)**。 GRS 可維護六個資料複本。 有了 GRS，您的資料會在主要區域內複寫三次，並在與主要區域相距甚遠的次要區域內複寫三次，提供最高等級的持久性。 在主要區域發生問題時，Azure 儲存體將會容錯移轉至次要區域。 GRS 可確保兩個不同區域中的資料持續性。
-  
+
     如需主要和次要配對的相關資訊 (依區域)，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
-* **讀取權限異地備援儲存體 (RA-GRS)**。 讀取權限異地備援儲存體會將您的資料複寫到次要地理位置，並同時提供次要位置中資料的讀取權限。 讀取權限異地備援儲存體可讓您在主要或次要任一位置無法使用的情況下，從另外一個位置存取資料。 建立儲存體帳戶時，依預設讀取權限異地備援儲存體為儲存體帳戶的預設選項。 
-  
+* **讀取權限異地備援儲存體 (RA-GRS)**。 讀取權限異地備援儲存體會將您的資料複寫到次要地理位置，並同時提供次要位置中資料的讀取權限。 讀取權限異地備援儲存體可讓您在主要或次要任一位置無法使用的情況下，從另外一個位置存取資料。 建立儲存體帳戶時，依預設讀取權限異地備援儲存體為儲存體帳戶的預設選項。
+
   > [!IMPORTANT]
   > 除非您建立帳戶時指定了 ZRS，否則就可以在建立儲存體帳戶之後，變更資料的複寫方式。 不過請注意，從 LRS 切換到 GRS 或 RA-GRS 時，可能必須支付額外的單次資料傳輸成本。
-  > 
-  > 
+  >
+  >
 
 如需儲存體複寫選項相關的其他詳細資料，請參閱 [Azure 儲存體複寫](storage-redundancy.md) 。
 
@@ -200,7 +200,7 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [Azure 儲存體用戶端工具](storage-explorers.md)
 * [Azure SDK 及工具](https://azure.microsoft.com/tools/)
 * [Azure 儲存體模擬器](http://www.microsoft.com/download/details.aspx?id=43709)
-* [Azure PowerShell](../powershell-install-configure.md)
+* [Azure PowerShell](/powershell/azureps-cmdlets-docs)
 * [AzCopy 命令列公用程式](http://aka.ms/downloadazcopy)
 
 ## <a name="next-steps"></a>後續步驟
@@ -252,6 +252,6 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,16 +1,23 @@
-如果您還沒有這麼做，可以取得 [Azure 訂用帳戶免費試用版](https://azure.microsoft.com/pricing/free-trial/) 和 [Azure CLI](../articles/xplat-cli-install.md) [連線到您的 Azure 帳戶](../articles/xplat-cli-connect.md)。 這麼做之後，即可執行下列命令，以快速建立擴展集︰
+如果您還沒有這麼做，可以取得 [Azure 訂用帳戶免費試用版](https://azure.microsoft.com/pricing/free-trial/) 和 [Azure CLI](../articles/xplat-cli-install.md) [連線到您的 Azure 帳戶](../articles/xplat-cli-connect.md)。 請確定 Azure CLI 是處於 Resource Manager 模式，如下所示：
 
-```bash
-# make sure we are in Resource Manager mode (https://azure.microsoft.com/en-us/documentation/articles/resource-manager-deployment-model/)
+```azurecli
 azure config mode arm
+```
 
-# quick-create a scale set
-#
-# generic syntax:
-# azure vmss quick-create -n SCALE-SET-NAME -g RESOURCE-GROUP-NAME -l LOCATION -u USERNAME -p PASSWORD -C INSTANCE-COUNT -Q IMAGE-URN
-#
-# example:
-azure vmss quick-create -n negatvmss -g negatvmssrg -l westus -u negat -p P4ssw0rd -C 5 -Q Canonical:UbuntuServer:14.04.4-LTS:latest
+現在，使用 `azure vmss quick-create` 命令建立您的擴展集。 下列範例會建立名為 `myVMSS` 的 Linux 擴展集與資源群組中名為 `myResourceGroup` 的 5 個 VM 執行個體：
+
+```azurecli
+azure vmss quick-create -n myVMSS -g myResourceGroup -l westus \
+    -u ops -p P@ssw0rd! \
+    -C 5 -Q Canonical:UbuntuServer:16.04.0-LTS:latest
+```
+
+下列範例會使用相同組態建立 Windows 擴展集：
+
+```azurecli
+azure vmss quick-create -n myVMSS -g myResourceGroup -l westus \
+    -u ops -p P@ssw0rd! \
+    -C 5 -Q MicrosoftWindowsServer:WindowsServer:2016-Datacenter:latest
 ```
 
 如果您想要自訂位置或 image-urn，請查看 `azure location list` 和 `azure vm image {list-publishers|list-offers|list-skus|list|show}` 命令。
@@ -30,7 +37,8 @@ line=$(azure network lb list -g negatvmssrg | grep negatvmssrg)
 split_line=( $line )
 lb_name=${split_line[1]}
 
-# now that we have the name of the load balancer, we can show the details to find which Public IP (PIP) is associated to it
+# now that we have the name of the load balancer, we can show the details to find which Public IP (PIP) is 
+# associated to it
 #
 # generic syntax:
 # azure network lb show -g RESOURCE-GROUP-NAME -n LOAD-BALANCER-NAME
@@ -56,6 +64,6 @@ FQDN=${split_line[3]}
 ssh -p 50000 negat@$FQDN
 ```
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

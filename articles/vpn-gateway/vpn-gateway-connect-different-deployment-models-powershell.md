@@ -1,13 +1,13 @@
 ---
-title: 如何使用 PowerShell 將傳統虛擬網路連線至 Resource Manager 虛擬網路 | Microsoft Docs
-description: 了解如何使用 VPN 閘道和 PowerShell 在傳統 VNet 和 Resource Manager VNet 之間建立 VPN 連線
+title: "如何使用 PowerShell 將傳統虛擬網路連線至 Resource Manager 虛擬網路 | Microsoft Docs"
+description: "了解如何使用 VPN 閘道和 PowerShell 在傳統 VNet 和 Resource Manager VNet 之間建立 VPN 連線"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management,azure-resource-manager
-
+ms.assetid: f17c3bf0-5cc9-4629-9928-1b72d0c9340b
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 7834aefeb9eb007ffa9daf708250c9f06ec05e67
+ms.openlocfilehash: 5aa628ce651c3d768f461f5bcea2c63d693f091e
+
 
 ---
 # <a name="connect-virtual-networks-from-different-deployment-models-using-powershell"></a>使用 PowerShell 從不同的部署模型連接虛擬網路
@@ -35,7 +39,8 @@ Azure 目前有兩種管理模型：傳統和 Resource Manager (RM)。 如果您
 
 [!INCLUDE [vpn-gateway-table-vnet-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
 
-#### <a name="vnet-peering"></a>VNet 對等互連
+**VNet 對等互連**
+
 [!INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
 
 ## <a name="before-beginning"></a>開始之前
@@ -46,7 +51,7 @@ Azure 目前有兩種管理模型：傳統和 Resource Manager (RM)。 如果您
 * Vnet 的位址範圍不會彼此重疊，或與閘道可能連接的任何其他連線範圍重疊。
 * 您已安裝最新的 PowerShell Cmdlet (1.0.2 或更新版本)。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。 確定安裝服務管理 (SM) 和 Resource Manager (RM) Cmdlet。 
 
-### <a name="<a-name="exampleref"></a>example-settings"></a><a name="exampleref"></a>設定範例
+### <a name="a-nameexamplerefaexample-settings"></a><a name="exampleref"></a>設定範例
 您可以使用範例設定為參考。
 
 **傳統 VNet 設定**
@@ -72,7 +77,7 @@ GatewaySubnet = 192.168.0.0/26 <br>
 虛擬網路閘道名稱 = RMGateway <br>
  閘道 IP 位址組態 = gwipconfig
 
-## <a name="<a-name="createsmgw"></a>section-1---configure-the-classic-vnet"></a><a name="createsmgw"></a>區段 1 - 設定傳統 VNet
+## <a name="a-namecreatesmgwasection-1---configure-the-classic-vnet"></a><a name="createsmgw"></a>區段 1 - 設定傳統 VNet
 ### <a name="part-1---download-your-network-configuration-file"></a>第 1 部份 - 下載您的網路組態檔
 1. 在 PowerShell 主控台中以提高的權限登入您的 Azure 帳戶。 下列 Cmdlet 會提示您輸入 Azure 帳戶的登入認證。 登入之後，它會下載您的帳戶設定以供 Azure PowerShell 使用。 您將使用 SM PowerShell Cmdlet 才能完成這個部分的設定。
    
@@ -148,14 +153,14 @@ GatewaySubnet = 192.168.0.0/26 <br>
 
 您可以使用 `Get-AzureVNetGateway` Cmdlet 檢查閘道的狀態。
 
-## <a name="<a-name="creatermgw"></a>section-2:-configure-the-rm-vnet-gateway"></a><a name="creatermgw"></a>區段 2 - 設定 RM VNet 閘道
+## <a name="a-namecreatermgwasection-2-configure-the-rm-vnet-gateway"></a><a name="creatermgw"></a>區段 2 - 設定 RM VNet 閘道
 若要建立 ARM VNet 的 VPN 閘道，請遵循下列指示。 直到您已擷取傳統 VNet 閘道的公用 IP 位址以後，才可開始下列步驟。 
 
 1. **登入您的 Azure 帳戶** 。 下列 Cmdlet 會提示您輸入 Azure 帳戶的登入認證。 登入之後，便會下載您的帳戶設定，以供 Azure PowerShell 使用。
    
         Login-AzureRmAccount 
    
-    如果您有多個訂用帳戶，請取得 Azure 訂用帳戶的清單。
+     如果您有多個訂用帳戶，請取得 Azure 訂用帳戶的清單。
    
         Get-AzureRmSubscription
    
@@ -201,7 +206,7 @@ GatewaySubnet = 192.168.0.0/26 <br>
    
         Get-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName RG1
 
-## <a name="section-3:-modify-the-local-network-for-the-classic-vnet"></a>區段 3︰修改傳統 Vnet 的區域網路
+## <a name="section-3-modify-the-local-network-for-the-classic-vnet"></a>區段 3︰修改傳統 Vnet 的區域網路
 在這個步驟中，您可以匯出網路組態檔、加以編輯，然後儲存檔案並匯回 Azure。 或者，可以在傳統入口網站中修改此設定。 
 
 ### <a name="to-modify-in-the-portal"></a>在入口網站中修改
@@ -217,7 +222,7 @@ GatewaySubnet = 192.168.0.0/26 <br>
         <VPNGatewayAddress>13.68.210.16</VPNGatewayAddress>
 3. 儲存您的變更並將編輯過的檔案匯回 Azure。
 
-## <a name="<a-name="connect"></a>section-4:-create-a-connection-between-the-gateways"></a><a name="connect"></a>區段 4：在閘道之間建立連線
+## <a name="a-nameconnectasection-4-create-a-connection-between-the-gateways"></a><a name="connect"></a>區段 4：在閘道之間建立連線
 在閘道之間建立連線需要 PowerShell。 您可以需要加入您的 Azure 帳戶，才能使用傳統 PowerShell Cmdlet。 若要這麼做，您可使用下列 Cmdlet： 
 
     Add-AzureAccount
@@ -243,11 +248,14 @@ GatewaySubnet = 192.168.0.0/26 <br>
    
         Get-AzureRmVirtualNetworkGatewayConnection -Name RM-Classic -ResourceGroupName RG1
 
-## <a name="<a-name="faq"></a>vnet-to-vnet-faq"></a><a name="faq"></a>VNet 對 VNet 常見問題集
+## <a name="a-namefaqavnet-to-vnet-faq"></a><a name="faq"></a>VNet 對 VNet 常見問題集
 檢視常見問題集詳細資料以取得 VNet 對 VNet 連線的其他資訊。
 
 [!INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO4-->
 
 

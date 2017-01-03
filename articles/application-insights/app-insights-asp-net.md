@@ -14,13 +14,13 @@ ms.topic: get-started-article
 ms.date: 10/13/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b6e5898d94a43b6859ce354f154bdb25948f7686
+ms.sourcegitcommit: dc95c922b71d18cf791ea98f4ab1a02d2bac2c3b
+ms.openlocfilehash: 5103c28047e6d5e7be5f4f3b7933196de7045eeb
 
 
 ---
 # <a name="set-up-application-insights-for-aspnet"></a>設定 ASP.NET 的 Application Insights
-[Visual Studio Application Insights](app-insights-overview.md) 監視您的即時應用程式，協助您[偵測並診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，同時[探索應用程式的使用情況](app-insights-overview-usage.md)。  這適用於裝載在專屬內部部署 IIS 伺服器或雲端 VM 上的應用程式，以及 Azure Web 應用程式。
+[Azure Application Insights](app-insights-overview.md) 監視您的即時應用程式，協助您[偵測並診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，同時[探索應用程式的使用情況](app-insights-overview-usage.md)。  這適用於裝載在專屬內部部署 IIS 伺服器或雲端 VM 上的應用程式，以及 Azure Web 應用程式。
 
 ## <a name="before-you-start"></a>開始之前
 您需要：
@@ -59,7 +59,9 @@ ms.openlocfilehash: b6e5898d94a43b6859ce354f154bdb25948f7686
 
 ![在 Visual Studio 中，[Application Insights] 按鈕會在偵錯期間顯示。](./media/app-insights-asp-net/55.png)
 
-此檢視會顯示應用程式的伺服器端所產生的遙測。 試驗篩選器，然後按一下任何事件以查看更多詳細資料。
+此檢視 (來自偵錯工作階段的資料) 會顯示應用程式的伺服器端所產生的遙測。 試驗篩選器，然後按一下任何事件以查看更多詳細資料。
+
+* *沒有資料？請確定時間範圍正確無誤，然後按一下 [搜尋] 圖示。*
 
 [深入了解 Visual Studio 中的 Application Insights 工具](app-insights-visual-studio.md)。
 
@@ -70,15 +72,34 @@ ms.openlocfilehash: b6e5898d94a43b6859ce354f154bdb25948f7686
 
 此入口網站中的圖表、分析工具和儀表板比 Visual Studio 還多。 
 
-在 [Azure 入口網站](https://portal.azure.com/)中開啟 Application Insights 資源。
+開啟 Application Insights 資源 - 登入 [Azure 入口網站](https://portal.azure.com/)並找到它，或以滑鼠右鍵按一下 Visual Studio 中的專案並讓它帶您前往。
 
-![Right-click your project and open the Azure portal](./media/app-insights-asp-net/appinsights-04-openPortal.png)
+![以滑鼠右鍵按一下您的專案，然後開啟 Azure 入口網站](./media/app-insights-asp-net/appinsights-04-openPortal.png)
 
-入口網站會開啟應用程式的遙測檢視︰ ![](./media/app-insights-asp-net/66.png)
+* *存取錯誤？如果您有一組以上的 Microsoft 認證，您可能會以錯誤的組合登入。在入口網站中，登出後重新登入。*
 
-* 第一個遙測會出現在 [即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream)。
-* 個別事件會出現在 [搜尋]  (1)。 資料可能需要數分鐘才會出現。 按任一事件查看其屬性。 
-* 彙總度量會出現在圖表 (2)。 資料可能需要一兩分鐘的時間才會出現在這裡。 按一下任何圖表即可開啟內含更多詳細資料的刀鋒視窗。
+入口網站會從應用程式開啟遙測檢視︰![Application Insights 概觀頁面](./media/app-insights-asp-net/66.png)
+
+按一下任何圖格或圖表以查看詳細資料。
+
+### <a name="more-detail-in-the-portal"></a>入口網站的詳細資料
+
+* [**即時計量串流**](app-insights-metrics-explorer.md#live-metrics-stream)幾乎可立即顯示遙測。
+
+    ![從 [概觀] 刀鋒視窗按一下 [即時串流]](./media/app-insights-asp-net/livestream.png)
+
+    當您的應用程式正在執行時，開啟即時串流，允許其連線。
+
+    即時串流只會在遙測傳送後顯示遙測一分鐘後。 如需更多歷史調查，請使用 [搜尋]、[計量瀏覽器] 和 [分析]。 資料可能需要數分鐘才會出現在上述位置。
+
+* [**搜尋**](app-insights-diagnostic-search.md)會顯示個別事件，例如要求、例外狀況和頁面檢視。 您可以依照事件類型、相符詞彙和屬性值進行篩選。 按一下任何事件以查看其屬性和相關事件。 
+
+    ![從 [概觀] 刀鋒視窗按一下 [搜尋]](./media/app-insights-asp-net/search.png)
+
+ * 在開發模式中，您可能會看到許多相依性 (AJAX) 事件。 這些是在瀏覽器與伺服器模擬器之間的同步處理。 若要隱藏它們，請按一下 [相依性] 篩選器。
+* [**彙總計量**](app-insights-metrics-explorer.md) (例如要求和失敗率) 會出現在圖表中。 按一下任何圖表即可開啟內含更多詳細資料的刀鋒視窗。 按一下任何圖表的 [編輯] 標籤，以設定篩選器、大小等等。
+    
+    ![從 [概觀] 刀鋒視窗按一下任何圖表](./media/app-insights-asp-net/metrics.png)
 
 [深入了解在 Azure 入口網站中使用 Application Insights](app-insights-dashboards.md)。
 
@@ -113,7 +134,7 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
 
 ## <a name="add-more-telemetry"></a>新增更多遙測
-### <a name="web-pages-and-singlepage-apps"></a>網頁和單一頁面應用程式
+### <a name="web-pages-and-single-page-apps"></a>網頁和單一頁面應用程式
 1. [新增 JavaScript 程式碼片段](app-insights-javascript.md)網頁，添加頁面檢視、載入時間、瀏覽器例外狀況、AJAX 呼叫效能、使用者和工作階段計數等相關資料，讓 [瀏覽器] 和 [使用量] 刀鋒視窗變得更生動。
 2. [撰寫自訂事件](app-insights-api-custom-events-metrics.md)以計數、計時或測量使用者動作。
 
@@ -175,6 +196,6 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

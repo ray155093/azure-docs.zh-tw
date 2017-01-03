@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Azure AD iOS | Microsoft Docs
-description: 如何建置 iOS 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。
+title: "開始使用 Azure AD iOS | Microsoft Docs"
+description: "如何建置 iOS 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
 services: active-directory
 documentationcenter: ios
-author: brandwe
+author: xerners
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 42303177-9566-48ed-8abb-279fcf1e6ddb
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: mobile-ios
@@ -14,6 +14,10 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 09/16/2016
 ms.author: brandwe
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: d3fb8e98d36c4a031458b5400147614510b1b064
+
 
 ---
 # <a name="integrate-azure-ad-into-an-ios-app"></a>將 Azure AD 整合至 iOS 應用程式
@@ -35,11 +39,11 @@ Azure AD 提供 Active Directory 驗證程式庫 (ADAL) 給需要存取受保護
 若要開始使用，請[下載應用程式基本架構](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/complete.zip)。  您還需要一個可以建立使用者並註冊應用程式的 Azure AD 租用戶。  如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
 
 > [!TIP]
-> 試用新 [開發人員入口網站](https://identity.microsoft.com/Docs/iOS) 的預覽版本，這可協助您在短短幾分鐘內啟動並執行 Azure Active Directory！  開發人員入口網站會逐步引導您完成註冊應用程式並將 Azure AD 整合至您的程式碼的程序。  當您完成時，您會有可驗證租用戶中使用者的簡單應用程式，以及可接受權杖並執行驗證的後端。 
-> 
-> 
+> 試用新 [開發人員入口網站](https://identity.microsoft.com/Docs/iOS) 的預覽版本，這可協助您在短短幾分鐘內啟動並執行 Azure Active Directory！  開發人員入口網站會逐步引導您完成註冊應用程式並將 Azure AD 整合至您的程式碼的程序。  當您完成時，您會有可驗證租用戶中使用者的簡單應用程式，以及可接受權杖並執行驗證的後端。
+>
+>
 
-## <a name="*1.-determine-what-your-redirect-uri-will-be-for-ios*"></a>*1.決定您 iOS 的重新導向 URI*
+## <a name="1-determine-what-your-redirect-uri-will-be-for-ios"></a>*1.決定您 iOS 的重新導向 URI*
 為了安全地在特定 SSO 案例啟動您的應用程式，我們需要您以特定格式建立 **「重新導向 URI」** 。 重新導向 URI 可確保應用程式要求的權杖會正確地傳回給它們。
 
 iOS 格式的重新導向 URI：
@@ -53,20 +57,19 @@ iOS 格式的重新導向 URI：
 
 此 QuickStart 程式碼的範例：***msquickstart://com.microsoft.azureactivedirectory.samples.graph.QuickStart***
 
-## <a name="*2.-register-the-directorysearcher-application*"></a>*2.註冊 DirectorySearcher 應用程式*
+## <a name="2-register-the-directorysearcher-application"></a>*2.註冊 DirectorySearcher 應用程式*
 若要讓您的應用程式取得權杖，您必須先在 Azure AD 租用戶中註冊這個應用程式，並授權它存取 Azure AD Graph API：
 
-* 登入 Azure 管理入口網站
-* 在左側導覽中按一下 **Active Directory**
-* 選取要在其中註冊應用程式的租用戶。
-* 按一下 [應用程式] 索引標籤，然後按一下最下面選單的 [新增]。
-* 遵照提示進行，並建立新的 **原生用戶端應用程式**。
-  * 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式
-  * 「 **重新導向 URI** 」是配置和字串的組合，Azure AD 可用它來傳回權杖回應。  根據上面的資訊，針對您的應用程式輸入值。
-* 完成註冊後，AAD 會為您的應用程式指派一個唯一用戶端識別碼。  您在後續章節中將會用到這個值，所以請從 [ **設定** ] 索引標籤中複製此值。
-* 此外，在 [ **設定** ] 索引標籤上找到 [其他應用程式的權限] 區段。  在 [委派權限] 下，為 "Azure Active Directory" 應用程式新增 [存取您的組織目錄] 權限。  這樣做可讓您的應用程式查詢 Graph API 的使用者。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 在右上方按一下您的帳戶，然後在 [目錄] 清單底下選擇您具有系統管理員權限的 Active Directory 租用戶。
+3. 在搜尋篩選器中輸入**應用程式註冊**。
+4. 按一下 [應用程式註冊]，然後選擇 [新增]。
+5. 遵照提示進行，並建立新的 **原生用戶端應用程式**。 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式。 [重新導向 URI]  是用來將權杖傳回至您應用程式的 URI。 輸入應用程式特定的值。 按一下 [建立] 來建立應用程式。
+6. 留在 Azure 入口網站中，選擇您的應用程式，按一下 [設定]，然後選擇 [屬性]。
+7. 找到應用程式識別碼值，並將它複製到剪貼簿。
+8. 設定應用程式的權限 - 在 [設定] 功能表中，選擇 [必要權限] 區段，依序按一下 [新增] 和 [選取 API]，然後選取 [Windows Azure Active Directory] (這是 AADGraph API)。 然後按一下 [選取權限] 並選取 [讀取目錄資料]。
 
-## <a name="*3.-install-&-configure-adal*"></a>*3.安裝及設定 ADAL*
+## <a name="3-install--configure-adal"></a>*3.安裝及設定 ADAL*
 既然您在 Azure AD 中已經擁有應用程式，您可以安裝 ADAL，並撰寫身分識別相關程式碼。  為了讓 ADAL 能與 Azure AD 通訊，您需要提供一些應用程式註冊的相關資訊。
 
 * 請從使用 Cocoapods 將 ADAL 加入 DirectorySearcher 專案中開始。
@@ -97,7 +100,7 @@ $ open QuickStart.xcworkspace
   * `clientId` 是指您從入口網站複製的應用程式 clientId。
   * `redirectUri` 是您在入口網站中註冊的重新導向 url。
 
-## <a name="*4.-use-adal-to-get-tokens-from-aad*"></a>*4.使用 ADAL 來取得 AAD 的權杖*
+## <a name="4----use-adal-to-get-tokens-from-aad"></a>*4.  使用 ADAL 來取得 AAD 的權杖*
 ADAL 的基本原則是每當您的應用程式需要存取權杖時，它只需呼叫 completionBlock `+(void) getToken : `，ADAL 就會進行其餘工作。  
 
 * 在 `QuickStart` 專案中，開啟 `GraphAPICaller.m` 並找出接近頂端的 `// TODO: getToken for generic Web API flows. Returns a token with no additional parameters provided.` 註解。  您在這裡將 ADAL 與 Azure AD 通訊透過 CompletionBlock 將座標傳給 ADAL，並告訴它如何快取權杖。
@@ -215,7 +218,7 @@ completionHandler:(void (^) (NSString*, NSError*))completionBlock;
 * 當您的應用程式透過呼叫 `getToken(...)`要求權杖時，ADAL 會嘗試在不要求使用者認證的情況下傳回權杖。  如果 ADAL 決定使用者需要登入才能取得權杖，它會顯示登入對話方塊、收集使用者的認證，並在成功驗證後傳回權杖。  如果基於任何原因 ADAL 無法傳回權杖，則會擲回 `AdalException`。
 * 請注意，`AuthenticationResult` 物件包含 `tokenCacheStoreItem` 物件，可用來收集您的應用程式可能需要的資訊。  在 QuickStart 中， `tokenCacheStoreItem` 用來判斷驗證是否已經發生。
 
-## <a name="step-5:-build-and-run-the-application"></a>步驟 5：建置並執行應用程式
+## <a name="step-5-build-and-run-the-application"></a>步驟 5：建置並執行應用程式
 恭喜！ 您現在有一個可運作的 iOS 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。  如果您還沒有這麼做，現在是將一些使用者植入租用戶的時候。  執行 QuickStart 應用程式，並使用其中一個使用者登入。  根據 UPN 搜尋其他使用者。  關閉並重新執行應用程式。  請注意，使用者工作階段會維持不變。
 
 ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應用程式。  它會為您處理一切麻煩的事，包括快取管理、OAuth 通訊協定支援、向使用者顯示登入 UI、重新整理過期權杖等等。  您唯一需要知道的就是單一 API 呼叫， `getToken`。
@@ -230,6 +233,8 @@ ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!--HONumber=Oct16_HO4-->
+
+
+<!--HONumber=Dec16_HO5-->
 
 

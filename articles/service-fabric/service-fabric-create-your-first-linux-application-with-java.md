@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 10/04/2016
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 288d504b44fd7588a03a31171da1bfb332e2429f
+ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
+ms.openlocfilehash: 05361e08b93c93491111661b5fe997ebf5053d16
 
 
 ---
@@ -28,17 +28,20 @@ ms.openlocfilehash: 288d504b44fd7588a03a31171da1bfb332e2429f
 > 
 > 
 
-Service Fabric 提供了在 Linux 上建置服務的 .NET Core 和 Java SDK。 在本教學課程中，我們將探討如何建立適用於 Linux 的應用程式以及使用 Java 建置服務。
+Service Fabric 提供了在 Linux 上建置服務的 .NET Core 和 Java SDK。 在本教學課程中，我們將建立適用於 Linux 的應用程式以及使用 Java 建置服務。  下列 Microsoft Virtual Academy 影片也會引導您完成在 Linux 上建立 Java 應用程式的程序︰  
+<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=DOX8K86yC_206218965">  
+<img src="./media/service-fabric-create-your-first-linux-application-with-java/LinuxVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
 
 ## <a name="prerequisites"></a>必要條件
 開始之前，請確定您已 [設定 Linux 開發環境](service-fabric-get-started-linux.md)。 如果您使用 Mac OS X，您可以 [使用 Vagrant 在虛擬機器中設定 Linux 一整體環境](service-fabric-get-started-mac.md)。
 
 ## <a name="create-the-application"></a>建立應用程式
-Service Fabric 應用程式可以包含一或多個服務，而每個服務在提供應用程式的功能時都有特定角色。 適用於 Linux 的 Service Fabric SDK 包含 [Yeoman](http://yeoman.io/) 產生器，可讓您輕鬆建立第一個服務且稍後新增更多服務。 讓我們使用 Yeoman 來建立具有單一服務的新應用程式。
+Service Fabric 應用程式可以包含一或多個服務，而每個服務在提供應用程式的功能時都有特定角色。 適用於 Linux 的 Service Fabric SDK 包含 [Yeoman](http://yeoman.io/) 產生器，可讓您輕鬆建立第一個服務且稍後新增更多服務。 讓我們使用 Yeoman 來建立具有單一服務的應用程式。
 
 1. 在終端機中，輸入 **yo azuresfjava**。
 2. 為您的應用程式命名。
-3. 選擇第一個服務的類型並加以命名。 基於本教學課程的用途，我們將選擇 Reliable Actor 服務。
+3. 選擇第一個服務的類型並加以命名。 基於本教學課程的用途，我們會選擇 Reliable Actor 服務。
    
    ![適用於 Java 的 Service Fabric Yeoman 產生器][sf-yeoman]
 
@@ -86,7 +89,7 @@ Service Fabric Yeoman 範本包含 [Gradle](https://gradle.org/)的建置指令�
 3. 按一下您在上一個步驟中找到的節點，然後從 [動作] 功能表選取 [停用 (重新啟動)]  。 這會重新啟動本機叢集中五個節點的其中一個，並強制容錯移轉至在另一個節點上執行的其中一個次要複本。 當您這麼做時，請留意測試用戶端的輸出，並注意儘管是容錯移轉，計數器仍會繼續增加。
 
 ## <a name="build-and-deploy-an-application-with-the-eclipse-neon-plugin"></a>使用 Eclipse Neon 外掛程式建置和部署應用程式
-如果您已安裝適用於 Eclipse Neon 的 Service Fabric 外掛程式，您可以使用它來建立、建置和部署使用 Java 建置的 Service Fabric 應用程式。  在安裝 Eclipse 時，請選擇 [適用於 Java 開發人員的 Eclipse 整合式開發環境 (IDE)]。
+如果您已安裝適用於 Eclipse Neon 的 [Service Fabric 外掛程式](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-linux#install-the-java-sdk-and-eclipse-neon-plugin-optional)，您可以使用它來建立、建置和部署使用 Java 建置的 Service Fabric 應用程式。  在安裝 Eclipse 時，請選擇 [適用於 Java 開發人員的 Eclipse 整合式開發環境 (IDE)]。
 
 ### <a name="create-the-application"></a>建立應用程式
 Service Fabric 外掛程式可透過 Eclipse 擴充功能取得。
@@ -98,17 +101,26 @@ Service Fabric 外掛程式可透過 Eclipse 擴充功能取得。
 3. 系統會要求您確認使用的 Service Fabric 層面，以最佳化搭配 Service Fabric 專案使用的 Eclipse。 選擇 [是]。
 
 ### <a name="deploy-the-application"></a>部署應用程式
-Service Fabric 範本包含一組用來建置和部署應用程式的 Gradle 工作，您可以透過 Eclipse 觸發這些工作。
+Service Fabric 範本包含一組用來建置和部署應用程式的 Gradle 工作，您可以透過 Eclipse 觸發這些工作。 
 
 1. 選擇 [執行] > [執行組態]。
-2. 展開 [Gradle 專案] 並選擇 [ServiceFabricDeployer]。
-3. 按一下 **[執行]**。
+2. 指定 [本機] 或 [雲端]。 預設設定是 [本機]。 若是部署至遠端叢集，請選取 [雲端]。
+3. 視情況編輯 `local.json` 或 `cloud.json`，以確保發行設定檔中已填入適當的資訊。
+4. 按一下 **[執行]**。
 
 幾分鐘內即可建置和部署您的應用程式。 您可以從 Service Fabric Explorer 監視其狀態。
+
+## <a name="adding-more-services-to-an-existing-application"></a>將更多服務新增至現有的應用程式
+
+若要將其他服務新增至已使用 `yo` 建立的應用程式，請執行下列步驟︰ 
+1. 將目錄變更為現有應用程式的根目錄。  例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
+2. 執行 `yo azuresfjava:AddService`
+
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解 Reliable Actors](service-fabric-reliable-actors-introduction.md)
 * [使用 Azure CLI 與 Service Fabric 叢集互動](service-fabric-azure-cli.md)
+* 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 <!-- Images -->
 [sf-yeoman]: ./media/service-fabric-create-your-first-linux-application-with-java/sf-yeoman.png
@@ -117,6 +129,6 @@ Service Fabric 範本包含一組用來建置和部署應用程式的 Gradle 工
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

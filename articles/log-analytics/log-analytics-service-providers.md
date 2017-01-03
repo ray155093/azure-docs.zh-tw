@@ -1,19 +1,23 @@
 ---
-title: 服務提供者的 Log Analytics 功能 | Microsoft Docs
-description: Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體廠商 (ISV) 和主機服務提供者管理和監視客戶的內部部署或雲端基礎結構中的伺服器。
+title: "服務提供者的 Log Analytics 功能 | Microsoft Docs"
+description: "Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體廠商 (ISV) 和主機服務提供者管理和監視客戶的內部部署或雲端基礎結構中的伺服器。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: richrundmsft
 manager: jochan
-editor: ''
-
+editor: 
+ms.assetid: c07f0b9f-ec37-480d-91ec-d9bcf6786464
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/25/2016
+ms.date: 11/22/2016
 ms.author: richrund
+translationtype: Human Translation
+ms.sourcegitcommit: d5e4a19ddb2b60a6796ba48c864d443164de86c1
+ms.openlocfilehash: 8a67d9a9d345682e9e6c8f5c7779204a038f5f6a
+
 
 ---
 # <a name="log-analytics-features-for-service-providers"></a>服務提供者的 Log Analytics 功能
@@ -47,7 +51,7 @@ Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體
 * 檢視及使用 OMS 入口網站中 [設定] 底下的使用者管理頁面
 
 > [!NOTE]
-> Log Analytics 的備份和 Site Recovery 解決方案無法連接至復原服務保存庫，且無法在 CSP 訂用帳戶中設定。
+> Log Analytics 內含的備份和 Site Recovery 解決方案無法連接至復原服務保存庫，且無法在 CSP 訂用帳戶中設定。 
 > 
 > 
 
@@ -61,13 +65,15 @@ Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體
 
 藉由建立每個客戶的工作區，就能夠區隔每個客戶的資料，也可以追蹤每個客戶的使用方式。
 
-何時及如何建立多個工作區的詳細資訊詳述於 [管理對 Log Analytics 的存取](log-analytics-manage-access.md#determine-the-number-of-workspaces-you-need)。
+[管理對 Log Analytics 的存取](log-analytics-manage-access.md#determine-the-number-of-workspaces-you-need)中會說明建立多個工作區之時機和原因的其他詳細資料。
 
 建立及設定客戶的工作區可以使用 [PowerShell](log-analytics-powershell-workspace-configuration.md)、[Resource Manager 範本](log-analytics-template-workspace-configuration.md)，或使用 [REST API](https://www.nuget.org/packages/Microsoft.Azure.Management.OperationalInsights/) 進行自動化。
 
 使用工作區組態的 Resource Manager 範本，可讓您具有主要組態，用來建立和設定工作區。 您可以確信為客戶建立工作區時，會自動針對您的需求進行設定。 當您更新您的需求時，範本會更新，然後重新套用現有的工作區。 此程序可確保現有的工作區符合新的標準。    
 
 在管理多個 Log Analytics 工作區時，我們建議使用[警示](log-analytics-alerts.md)功能，整合每個工作區與現有的票證系統/Operations 主控台。 藉由與您現有的系統整合，支援人員可以繼續依照其熟悉的程序。 Log Analytics 會定期針對您指定的警示準則檢查每個工作區，並且在需要採取動作時產生警示。
+
+若要建立個人化的資料檢視，請使用 Azure 入口網站中的[儀表板](../azure-portal/azure-portal-dashboards.md)功能。  
 
 對於摘要跨工作區資料的執行層級報告，您可以使用 Log Analytics 與 [PowerBI](log-analytics-powerbi.md) 之間的整合。 如果您需要與其他報告系統整合，您可以使用搜尋 API (透過 PowerShell 或 [REST](log-analytics-log-search-api.md)) 來執行查詢，並且匯出搜尋結果。
 
@@ -77,6 +83,9 @@ Log Analytics 可協助管理服務提供者 (MSP)、大型企業、獨立軟體
 * 使用[警示](log-analytics-alerts.md)與現有的系統整合
 * 使用 [PowerBI](log-analytics-powerbi.md)產生摘要報告
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO4-->
 
 
