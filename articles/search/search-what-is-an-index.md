@@ -10,11 +10,11 @@ ms.devlang: na
 ms.workload: search
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
-ms.date: 08/29/2016
+ms.date: 12/08/2016
 ms.author: ashmaka
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3f2a2b6c82c6c931261036ae1fba733b46a074dc
+ms.sourcegitcommit: 455c4847893175c1091ae21fa22215fd1dd10c53
+ms.openlocfilehash: 7fc45273c0f71c727b7087949cc63bbb4111f866
 
 
 ---
@@ -47,7 +47,7 @@ ms.openlocfilehash: 3f2a2b6c82c6c931261036ae1fba733b46a074dc
 | *Edm.DateTimeOffset* |以 OData V4 格式 (例如 `yyyy-MM-ddTHH:mm:ss.fffZ` 或 `yyyy-MM-ddTHH:mm:ss.fff[+/-]HH:mm`) 表示的日期時間值。 |
 | *Edm.GeographyPoint* |代表地球上地理位置的一點。 |
 
-您可以在 MSDN 上找到有關 Azure 搜尋服務 [支援的資料類型](https://msdn.microsoft.com/library/azure/dn798938.aspx)的詳細資訊。
+您可以在這裡找到有關 Azure 搜尋服務 [支援的資料類型](https://docs.microsoft.com/rest/api/searchservice/Supported-data-types)的詳細資訊。
 
 ### <a name="field-attributes"></a>欄位屬性
 | 屬性 | 說明 |
@@ -59,16 +59,16 @@ ms.openlocfilehash: 3f2a2b6c82c6c931261036ae1fba733b46a074dc
 | *Facetable* |允許欄位用於使用者自我引導篩選的 [多面向導覽](search-faceted-navigation.md) 結構中。 通常，欄位若包含您可以用來將多份文件群組在一起的重複值 (例如，落在單一品牌或服務類別目錄下的多份文件)，最適合做為 Facet。 |
 | *Searchable* |將欄位標記為可供全文檢索。 |
 
-您可以在 MSDN 上找到有關 Azure 搜尋服務 [索引屬性](https://msdn.microsoft.com/library/azure/dn798941.aspx)的詳細資訊。
+您可以在這裡找到有關 Azure 搜尋服務 [索引屬性](https://docs.microsoft.com/rest/api/searchservice/Create-Index)的詳細資訊。
 
 ## <a name="guidance-for-defining-an-index-schema"></a>適用於定義索引結構描述的指引
-當設計索引時，請在規劃階段花時間仔細考量每個決策。 由於必須為每個欄位指派 [適當屬性](https://msdn.microsoft.com/library/azure/dn798941.aspx)，因此在設計索引時，請務必牢記搜尋服務使用者體驗和商務需求。 在索引部署後若要加以變更，將牽涉到重建和重新載入資料。
+當設計索引時，請在規劃階段花時間仔細考量每個決策。 由於必須為每個欄位指派 [適當屬性](https://docs.microsoft.com/rest/api/searchservice/Create-Index)，因此在設計索引時，請務必牢記搜尋服務使用者體驗和商務需求。 在索引部署後若要加以變更，將牽涉到重建和重新載入資料。
 
 如果資料儲存體需求在之後有所改變，您可以藉由新增或移除資料分割來增加或減少容量。 如需詳細資料，請參閱[在 Azure 中管理您的搜尋服務](search-manage.md)或[服務限制](search-limits-quotas-capacity.md)。
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

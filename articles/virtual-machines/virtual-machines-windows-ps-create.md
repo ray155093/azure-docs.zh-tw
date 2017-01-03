@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 10/21/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: edeee13457c1098eb1b44efaa97e9a84d29e88e7
-ms.openlocfilehash: 12903dc79ac6349da9f4897cdb0db5cb62f67b22
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: 819b40302f158d1d6224878c164cf7ff71947887
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 12903dc79ac6349da9f4897cdb0db5cb62f67b22
 必須執行本文中的所有步驟才能建立虛擬機器，而且應該需要約 30 分鐘的時間才能完成步驟。 將命令中的範例參數值取代為對您環境有意義的名稱。
 
 ## <a name="step-1-install-azure-powershell"></a>步驟 1：安裝 Azure PowerShell
-如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="step-2-create-a-resource-group"></a>步驟 2：建立資源群組
 所有資源都必須包含在資源群組中，因此就讓我們先建立。  
@@ -159,6 +159,6 @@ ms.openlocfilehash: 12903dc79ac6349da9f4897cdb0db5cb62f67b22
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

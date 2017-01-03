@@ -1,19 +1,23 @@
 ---
-title: 新增和管理多個 Azure Active Directory 目錄 | Microsoft Docs
-description: 新增和管理 Azure Active Directory 目錄的指示和最佳作法，說明目錄為完全獨立的資源
+title: "新增和管理多個 Azure Active Directory 目錄 | Microsoft Docs"
+description: "新增和管理 Azure Active Directory 目錄的指示和最佳作法，說明目錄為完全獨立的資源"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: curtand
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 2b862b75-14df-45f2-a8ab-2a3ff1e2eb08
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 08/23/2016
+ms.date: 11/09/2016
 ms.author: curtand
+translationtype: Human Translation
+ms.sourcegitcommit: ba3690084439aac83c91a1b4cfb7171b74c814f8
+ms.openlocfilehash: fff714765508285f4c074b3a7287701a538fbf95
+
 
 ---
 # <a name="add-and-manage-multiple-azure-active-directory-directories"></a>新增和管理多個 Azure Active Directory 目錄
@@ -40,11 +44,13 @@ ms.author: curtand
 
 > [!NOTE]
 > 與其他 Azure 資源不同，您的目錄不是 Azure 訂用帳戶的子資源。 如果您取消或允許 Azure 訂用帳戶到期，則還是可以使用 Azure PowerShell、Azure Graph API 或其他介面 (例如 Office 365 系統管理中心) 存取目錄資料。 您也可以關聯另一個訂用帳戶與目錄。
-> 
-> 
+>
+>
 
 如需 Azure AD 授權問題和最佳作法的一般概觀，請參閱 [什麼是 Azure Active Directory 授權？](active-directory-licensing-what-is.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO5-->
 
 

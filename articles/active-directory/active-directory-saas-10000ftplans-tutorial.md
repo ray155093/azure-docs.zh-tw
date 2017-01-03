@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/01/2016
+ms.date: 11/30/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e5ed7edef886c9a3308f3f30f983124c46db3452
+ms.sourcegitcommit: b1dded643a2526b7df799eddaca071c95ea35442
+ms.openlocfilehash: fbc47fe42fabbe65233364d86252d2e722600975
 
 
 ---
@@ -111,7 +111,8 @@ ms.openlocfilehash: e5ed7edef886c9a3308f3f30f983124c46db3452
 
     b. 在 [識別碼] 文字方塊中，輸入 `https://app.10000ft.com/saml/metadata`。
 
-    > [AZURE.NOTE] 如果您有自訂網域，則 **識別碼** 的值則會不同。 如果您需要協助，請連絡您的 [10,000ft Plans 支援小組](mailto:support@10000ft.com)。  
+    > [!NOTE] 
+    > 如果您有自訂網域，則 **識別碼** 的值則會不同。 如果您需要協助，請連絡您的 [10,000ft Plans 支援小組](mailto:support@10000ft.com)。  
 
     c. 依序按一下 [ **下一步**
 
@@ -159,17 +160,18 @@ ms.openlocfilehash: e5ed7edef886c9a3308f3f30f983124c46db3452
     c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-10000ftplans-tutorial/create_aaduser_06.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-10000ftplans-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-10000ftplans-tutorial/create_aaduser_07.png) 
@@ -240,6 +242,6 @@ ms.openlocfilehash: e5ed7edef886c9a3308f3f30f983124c46db3452
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

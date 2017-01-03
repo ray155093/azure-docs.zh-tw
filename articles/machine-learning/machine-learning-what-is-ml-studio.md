@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/09/2016
+ms.date: 12/12/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2a5bcc177d298aecd9fd474bd15fc0331b26e887
+ms.sourcegitcommit: 9e738c4e5f43ae6c939f7c6da90c258498943e73
+ms.openlocfilehash: b8115f1fb72b0ba89fd0c8afa3358878a0fab92b
 
 
 ---
@@ -33,25 +33,30 @@ Machine Learning Studio 讓資料科學、預測分析、雲端資源和您的�
 
 **Azure Machine Learning Studio** 提供互動式的視覺化工作區，讓您輕鬆建置、測試和反覆運算預測分析模型。 您可以將「資料集」和分析「模組」拖放到互動式畫布，將它們連接在一起以構成「實驗」，然後在 Machine Learning Studio 中執行。 若要反覆調整模型設計，請編輯實驗，儲存複本 (若需要)，然後重新提交。 當您準備好時，可以將您的「訓練實驗」轉換成「預測實驗」，然後發佈為「Web 服務」，讓其他人可以存取您的模型。
 
+不需要設計程式，只要在視覺上連接資料集和模組，即可建構預測分析模型。
+
 > [!TIP]
 > 若要下載並列印提供 Machine Learning Studio 功能概觀的圖表，請參閱 [Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。
 > 
 > 
-
-不需要設計程式，只要在視覺上連接資料集和模組，即可建構預測分析模型。
 
 ![Azure ML Studio 圖表：建立實驗、讀取許多來源的資料、寫入評分的資料及寫入模型。][ml-studio-overview]
 
 ## <a name="get-started-with-machine-learning-studio"></a>開始使用 Machine Learning Studio
 第一次進入 [Machine Learning Studio](https://studio.azureml.net) 時，您會看到 [首頁]。 您可以從這裡檢視文件、影片、網路研討會，以及尋找其他重要資源。
 
-頂端有三個索引標籤：**[首頁]** \(您開始的位置)、[Studio] 和 [資源庫]。
+按一下左上方的功能表 ![功能表](media/machine-learning-what-is-ml-studio/menu.png) 您會看到幾個選項。
 
-### <a name="studio"></a>Studio
-按一下 [Studio]  索引標籤，會要求您使用您的 Microsoft 帳戶，或是公司帳戶或學校帳戶登入。 登入之後，您會在左邊看到下列索引標籤：
+### <a name="cortana-intelligence"></a>Cortana Intelligence
+按一下 [Cortana Intelligence]，系統會帶您前往 [Cortana Intelligence Suite](https://www.microsoft.com/cloud-platform/cortana-intelligence-suite)的首頁。 Cortana Intelligence Suite 是受完整管理的巨量資料與進階分析套件，可將資料轉換成可採取的智慧行動。 請參閱 Suite 首頁查看完整的文件，包括客戶經驗談。
+
+### <a name="azure-machine-learning"></a>Azure Machine Learning
+這裡有兩個選項，**首頁** (您啟動的頁面)，和 **Studio**。
+
+按一下 [Studio]，系統會將您帶到 **Azure Machine Learning Studio**。 首先，會要求您使用您的 Microsoft 帳戶，或是公司帳戶或學校帳戶登入。 登入之後，您會在左邊看到下列索引標籤：
 
 * **專案** - 代表單一專案之實驗、資料集、Notebook 和其他資源的集合
-* **實驗** - 已建立、執行和儲存為草稿的實驗
+* **實驗** - 已建立及執行或儲存為草稿的實驗
 * **Web 服務** - 已從您的實驗部署的 Web 服務
 * **Notebook** - 您已建立的 Jupyter Notebook
 * **資料集** - 您已上傳到 Studio 的資料集
@@ -59,7 +64,7 @@ Machine Learning Studio 讓資料科學、預測分析、雲端資源和您的�
 * **設定** - 可用來設定帳戶和資源的一組設定。
 
 ### <a name="gallery"></a>資源庫
-按一下 [資源庫]  索引標籤，會帶您進入 Cortana Intelligence Gallery。 [資源庫] 可以讓資料科學家和開發人員社群在此分享使用 Cortana Intelligence 套件的元件建立的解決方案。
+按一下 [資源庫]，會帶您進入 **[Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/)**。 [資源庫] 可以讓資料科學家和開發人員社群在此分享使用 Cortana Intelligence 套件的元件建立的解決方案。
 
 如需有關資源庫的詳細資訊，請參閱 [共用及探索 Cortana Intelligence Gallery 中的方案](machine-learning-gallery-how-to-use-contribute-publish.md)。
 
@@ -116,6 +121,6 @@ Machine Learning Studio 讓資料科學、預測分析、雲端資源和您的�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

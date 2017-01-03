@@ -1,12 +1,12 @@
 ---
-title: Azure AD 權杖參考 | Microsoft Docs
-description: 可供了解及評估 Azure Active Directory (AAD) 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖中的宣告的指南。
+title: "Azure AD 權杖參考 | Microsoft Docs"
+description: "可供了解及評估 Azure Active Directory (AAD) 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖中的宣告的指南。"
 documentationcenter: na
 author: bryanla
 services: active-directory
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 166aa18e-1746-4c5e-b382-68338af921e2
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/06/2016
 ms.author: mbaldwin
+translationtype: Human Translation
+ms.sourcegitcommit: dc74b712953a545608a3107388a761c9c7ba84cf
+ms.openlocfilehash: ac602b649ecbe58570338e47abe5366b6a5f92bb
+
 
 ---
 # <a name="azure-ad-token-reference"></a>Azure AD 權杖參考
@@ -26,14 +30,14 @@ Azure AD 支援 [OAuth 2.0 授權通訊協定](active-directory-protocols-oauth-
 
 許多由 Azure AD 所簽發的權杖都會實作為 JSON Web 權杖或 JWT。  JWT 是一種精簡的 URL 安全方法，可在兩方之間傳輸資訊。  JWT 中包含的資訊也稱為權杖持有人及主體相關資訊的「宣告」或判斷提示。  JWT 中的宣告是為了傳輸而編碼和序列化的 JSON 物件。  因為 Azure AD 所簽發的 JWT 已簽署但未加密，所以您可以輕鬆地檢查 JWT 的內容以便偵錯。  有數個工具可以進行這項操作，例如 [jwt.calebb.net](http://jwt.calebb.net)。 如需 JWT 的詳細資訊，您可以參考 [JWT 規格](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)。
 
-## <a name="id_tokens"></a>Id_tokens
+## <a name="idtokens"></a>Id_tokens
 Id_tokens 是您的應用程式使用 [OpenID Connect](active-directory-protocols-openid-connect-code.md) 執行驗證時收到的一種登入安全性權杖形式。  其以 [JWT](#types-of-tokens)表示，而且包含可用於讓使用者登入您的應用程式的宣告。  您可以適時使用 id_token 中的宣告 - 通常用來顯示顯示帳戶資訊或在應用程式中進行存取控制決策。
 
 Id_token 已簽署，但這次不加密。  當您的應用程式收到 id_token 時，它必須[驗證簽章](#validating-tokens)以證明權杖的真實性，以及驗證權杖中的幾個宣告來證明其有效性。  應用程式所驗證的宣告會視案例需求而有所不同，但您的應用程式必須在每一種案例中執行一些 [常見的宣告驗證](#validating-tokens) 。
 
 如需 Id_tokens 宣告以及 id_token 的相關範例，請參閱下一節。  請注意，id_token 中的宣告不依任何特定順序傳回。  此外，新的宣告可以隨時引進 id_token 中 - 您的應用程式不會在引進新的宣告時中斷。  下列清單包含本文撰寫時您的應用程式可確實解譯的宣告。  如有需要，在 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)中可找到更多詳細資料。
 
-#### <a name="sample-id_token"></a>範例 id_token
+#### <a name="sample-idtoken"></a>範例 id_token
 ```
 eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0yNzRhNzJhNzMwOWUiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83ZmU4MTQ0Ny1kYTU3LTQzODUtYmVjYi02ZGU1N2YyMTQ3N2UvIiwiaWF0IjoxMzg4NDQwODYzLCJuYmYiOjEzODg0NDA4NjMsImV4cCI6MTM4ODQ0NDc2MywidmVyIjoiMS4wIiwidGlkIjoiN2ZlODE0NDctZGE1Ny00Mzg1LWJlY2ItNmRlNTdmMjE0NzdlIiwib2lkIjoiNjgzODlhZTItNjJmYS00YjE4LTkxZmUtNTNkZDEwOWQ3NGY1IiwidXBuIjoiZnJhbmttQGNvbnRvc28uY29tIiwidW5pcXVlX25hbWUiOiJmcmFua21AY29udG9zby5jb20iLCJzdWIiOiJKV3ZZZENXUGhobHBTMVpzZjd5WVV4U2hVd3RVbTV5elBtd18talgzZkhZIiwiZmFtaWx5X25hbWUiOiJNaWxsZXIiLCJnaXZlbl9uYW1lIjoiRnJhbmsifQ.
 ```
@@ -43,7 +47,8 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 > 
 > 
 
-#### <a name="claims-in-id_tokens"></a>id_tokens 中的宣告
+#### <a name="claims-in-idtokens"></a>id_tokens 中的宣告
+> [!div class="mx-codeBreakAll"]
 | JWT 宣告 | Name | 說明 |
 | --- | --- | --- |
 | `appid` |應用程式識別碼 |識別使用權杖來存取資源的應用程式。 應用程式代表本身或使用者行事。 應用程式識別碼通常代表應用程式物件，但也可以代表 Azure AD 中的服務主體物件。 <br><br> **範例 JWT 值**： <br> `"appid":"15CB020F-3984-482A-864D-1D92265E8268"` |
@@ -69,11 +74,15 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 | `ver` |版本 |儲存權杖的版本號碼。 <br><br> **範例 JWT 值**： <br> `"ver": "1.0"` |
 
 ## <a name="access-tokens"></a>存取權杖
-存取權杖此時僅適用於 Microsoft 服務。  在任何目前支援的案例中，您的應用程式應該不需要執行任何的存取權杖驗證或檢查。  您可以將存取權杖視為完全不透明 - 這些都是您的應用程式可以在 HTTP 要求中傳遞給 Microsoft 的字串。
+
+如果您的應用程式僅「使用」存取權杖來存取 API，您可以 (應該) 將存取權杖視為完全不透明 - 這些都是您的應用程式可以在 HTTP 要求中傳遞給資源的字串。
 
 當您要求存取權杖時，Azure AD 也會傳回一些有關存取權杖的中繼資料，以供您的應用程式取用。  此資訊包括存取權杖的到期時間以及其有效範圍。  這可讓您的應用程式執行存取權杖的智慧型快取，而不需剖析存取權杖本身。
 
+如果您的應用程式是使用 Azure AD 保護的 API 且在 HTTP 要求中需要存取權杖，則您應該執行所收到權杖的驗證和檢查。 如需有關如何使用 .NET 執行此作業的詳細資訊，請參閱[使用 Azure AD 的持有者權杖來保護 Web API](active-directory-devquickstarts-webapi-dotnet.md)。
+
 ## <a name="refresh-tokens"></a>重新整理權杖
+
 重新整理權杖是安全性權杖，可供您的應用程式用來在 OAuth 2.0 流程中取得新存取權杖。  它可讓您的應用程式代表使用者長期存取資源，而不需使用者互動。
 
 重新整理權杖是多重資源，表示在一個資源的權杖要求期間收到的重新整理權杖，可以兌換完全不同資源的存取權杖。 若要指定多個資源，請在目標資源的要求中設定 `resource` 參數。
@@ -83,14 +92,16 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 當您兌換重新整理權杖做為新的存取權杖時，您會在權杖回應中收到新的重新整理權杖。  您應儲存新簽發的重新整理權杖，並取代您使用於要求中的重新整理權杖。  這將保證您的重新整理權杖盡可能長期保持有效。
 
 ## <a name="validating-tokens"></a>驗證權杖
-此時，您的用戶端應用程式必須執行的唯一權杖驗證就是驗證 id_token。  若要驗證 id_token，您的應用程式應該驗證 id_token 簽章和 id_token 中的宣告。
+
+若要驗證 id_token 或 access_token，您的應用程式應該驗證權杖的簽章和宣告。
 
 如果您想要了解基礎程序，我們提供的程式庫和程式碼範例會示範如何輕鬆地處理權杖驗證。  另外還有多個協力廠商開放原始碼程式庫可用於 JWT 驗證 - 幾乎每個平台和語言都有至少一個選項。 如需有關 Azure AD 驗證程式庫和程式碼範例的詳細資訊，請參閱 [Azure AD 驗證程式庫](active-directory-authentication-libraries.md)。
 
 #### <a name="validating-the-signature"></a>驗證簽章
-JWT 包含三個區段 (以 `.` 字元分隔)。  第一個區段稱為**標頭**、第二個稱為**主體**，而第三個稱為**簽章**。  簽章區段可用來驗證 id_token 的真實性，您的應用程式才得以信任。
 
-Id_Token 會使用業界標準非對稱式加密演算法 (例如 RSA 256) 進行簽署。 Id_token 標頭包含用來簽署權杖的金鑰和加密方法相關資訊：
+JWT 包含三個區段 (以 `.` 字元分隔)。  第一個區段稱為**標頭**、第二個稱為**主體**，而第三個稱為**簽章**。  簽章區段可用來驗證權杖的真實性，您的應用程式才得以信任。
+
+Azure AD 所簽發的權杖是使用業界標準非對稱式加密演算法 (例如 RSA 256) 進行簽署。 JWT 標頭包含用來簽署權杖的金鑰和加密方法相關資訊：
 
 ```
 {
@@ -122,21 +133,22 @@ https://login.microsoftonline.com/common/.well-known/openid-configuration
 執行簽章驗證已超出本文件的範圍 - 有許多開放原始碼程式庫可協助您這麼做 (如有必要)。
 
 #### <a name="validating-the-claims"></a>驗證宣告
-當您的應用程式在使用者登入時收到 id_token，還應該對 id_token 中的宣告執行一些檢查。  包含但不限於：
 
-* **對象**宣告 - 確認 id_token 預定要提供給您的應用程式。
-* **生效時間**和**到期時間**宣告 - 確認 id_token 尚未過期。
+如果您的應用程式收到權杖 (在使用者登入時收到 id_token，或在 HTTP 要求中收到存取權杖做為持有人權杖)，則也應該對權杖中的宣告執行一些檢查。  包含但不限於：
+
+* **對象**宣告 - 確認權杖預定要提供給您的應用程式。
+* **生效時間**和**到期時間**宣告 - 確認權杖尚未過期。
 * **簽發者** 宣告 - 確認權杖確實是由 Azure AD 簽發給您的應用程式。
 * **Nonce** -降低權杖重新執行攻擊。
 * 不勝枚舉...
 
-如需完整清單，以了解應由您的應用程式來執行的宣告驗證，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation)。
-
-先前的 [id_token 一節](#id-tokens)包含這些宣告的預期值的詳細資料。
+如需您的應用程式應對 ID 權杖執行的完整宣告驗證清單，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation)。 先前的 [id_token 一節](#id-tokens)包含這些宣告的預期值的詳細資料。
 
 ## <a name="sample-tokens"></a>權杖範例
+
 本節顯示 Azure AD 所傳回的 SAML 和 JWT 權杖範例。 這些範例可讓您查看內容中的宣告。
-SAML 權杖
+
+### <a name="saml-token"></a>SAML 權杖
 
 這是典型的 SAML 權杖範例。
 
@@ -289,6 +301,9 @@ SAML 權杖
 * 若要深入了解透過 Azure AD Graph API 管理權杖存留期原則，請參閱 Azure AD Graph [原則作業](https://msdn.microsoft.com/library/azure/ad/graph/api/policy-operations)和[原則實體](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#policy-entity)。
 * 如需透過 PowerShell Cmdlet 管理原則的詳細資訊和範例，包括範例，請參閱[在 Azure AD 中設定權杖存留期](active-directory-configurable-token-lifetimes.md)。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO5-->
 
 

@@ -91,6 +91,6 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

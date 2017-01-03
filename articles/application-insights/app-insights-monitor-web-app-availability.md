@@ -11,20 +11,20 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/07/2016
+ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: b70c8baab03703bc00b75c2c611f69e3b71d6cd7
-ms.openlocfilehash: d3478ef704c0029f69cca141bd3fa0b3ac54de15
+ms.sourcegitcommit: 003db6e1479be1007dd292555ce5997f1c138809
+ms.openlocfilehash: c5c2742065536805cd032f2d814ad668b8ad3b6e
 
 
 ---
 # <a name="monitor-availability-and-responsiveness-of-any-web-site"></a>監視任何網站的可用性和回應性
-將 Web 應用程式或網站部署至任何伺服器之後，您可以設定 Web 測試來監視其可用性和回應性。 [Visual Studio Application Insights](app-insights-overview.md) 會將來自全球各地的 Web 要求定期傳送給您的應用程式。 如果應用程式沒有回應或回應太慢，則會警告您。
+將 Web 應用程式或網站部署至任何伺服器之後，您可以設定 Web 測試來監視其可用性和回應性。 [Azure Application Insights](app-insights-overview.md) 會將來自全球各地的 Web 要求定期傳送給您的應用程式。 如果應用程式沒有回應或回應太慢，則會警告您。
 
 ![Web 測試範例](./media/app-insights-monitor-web-app-availability/appinsights-10webtestresult.png)
 
-您可以為公用網際網路可存取的任何 HTTP 或 HTTPS 端點設定 Web 測試。
+您可以為公用網際網路可存取的任何 HTTP 或 HTTPS 端點設定 Web 測試。 您不需要在您測試的網站上加入任何東西。 甚至不必是您的網站︰您可以測試您依賴的 REST API 服務。
 
 Web 測試可分為兩種：
 
@@ -34,7 +34,7 @@ Web 測試可分為兩種：
 每個應用程式資源最多可以建立 10 個 Web 測試。
 
 ## <a name="a-namecreatea1-create-a-resource-for-your-test-reports"></a><a name="create"></a>1.建立測試報告的資源
-如果您已經為這個應用程式[設定 Application Insights 資源][]，而且想要在相同位置中查看可用性報告，請略過此步驟。
+如果您已經為這個應用程式[設定 Application Insights 資源][start]，而且想要在相同位置中查看可用性報告，請略過此步驟。
 
 註冊 [Microsoft Azure](http://azure.com)，移至 [Azure 入口網站](https://portal.azure.com)，然後建立 Application Insights 資源。
 
@@ -58,7 +58,7 @@ Web 測試可分為兩種：
 
     **HTTP 回應**：視為成功的回覆狀態碼。 200 是表示已傳回標準 Web 網頁的代碼。
 
-    **內容比對**：字串，例如「歡迎！ 」 我們會測試它是否出現在每個回應中。 必須是單純字串，不含萬用字元。 別忘了，如果頁面內容變更，則可能需要更新。
+    **內容比對**：字串，例如「歡迎！ 我們會測試每個回應中的區分大小寫完全相符。 必須是單純字串，不含萬用字元。 別忘了，如果頁面內容變更，則可能需要更新。
 *  傳送給您。 某個位置的失敗很可能是網路問題，而不是您的網站發生問題。 但您可以將臨界值變更為更敏感或更不敏感，也可以變更應該將電子郵件傳送給哪一個人。
 
     您可以設定會在產生警示時呼叫的 [webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。 (不過請注意，查詢參數目前不會當作屬性傳遞)。
@@ -102,8 +102,20 @@ Web 測試可分為兩種：
 
 *看起來正常，但回報為失敗？*  請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。 如果其中有任何一個失敗，即使主要的 html 頁面載入正常，測試皆會回報為失敗。
 
-## <a name="multistep-web-tests"></a>多重步驟 Web 測試
+### <a name="open-the-server-request-and-exceptions"></a>開啟伺服器要求和例外狀況
+
+您可以在特定測試的詳細屬性中，開啟要求以及任何其他事件 (例如例外狀況) 的伺服器端報告。
+
+![Webtest run result](./media/app-insights-monitor-web-app-availability/web-test-linked-to-server-telemetry.png)
+
+如果看不到相關的項目，可能是因為正在進行[取樣](app-insights-sampling.md)。
+
+## <a name="multi-step-web-tests"></a>多重步驟 Web 測試
 您可以監視涉及一連串 URL 的案例。 例如，如果您正在監視銷售網站，您可以測試將項目加入購物車正確運作。
+
+> [!NOTE] 
+> 進行多步驟 Web 測試此會收取費用。 [價格方案](http://azure.microsoft.com/pricing/details/application-insights/)。
+> 
 
 若要建立多重步驟測試，您可以使用 Visual Studio 來記錄案例，然後將記錄結果上傳至 Application Insights。 Application Insights 會不時地重新執行案例，並確認回應。
 
@@ -153,7 +165,7 @@ Web 測試可分為兩種：
 
 請注意，Web 測試必須完全包含在 .webtest 檔案中：您無法在測試中使用編碼的函式。
 
-### <a name="plugging-time-and-random-numbers-into-your-multistep-test"></a>將時間和隨機數字插入多重步驟測試中
+### <a name="plugging-time-and-random-numbers-into-your-multi-step-test"></a>將時間和隨機數字插入多重步驟測試中
 假設您要測試的工具會從外部來源取得與時間相關的資料 (例如股票)。 當您記錄 Web 測試時，您必須使用特定的時間，但您將它們設為測試的參數：StartTime 和 EndTime。
 
 ![具有參數的 Web 測試。](./media/app-insights-monitor-web-app-availability/appinsights-72webtest-parameters.png)
@@ -176,7 +188,7 @@ Web 測試外掛程式提供將時間參數化的方法。
 
 現在將您的測試上傳至入口網站。 在每次執行測試時，它會使用動態值。
 
-## <a name="dealing-with-signin"></a>處理登入
+## <a name="dealing-with-sign-in"></a>處理登入
 如果使用者登入您的應用程式，您有許多模擬登入的選項，以便在登入後方測試頁面。 您使用的方法取決於應用程式所提供的安全性類型。
 
 在所有情況下，您應該只為了測試用途在您的應用程式中建立帳戶。 可能的話，限制此測試帳戶的權限，讓 Web 測試不可能影響實際使用者。
@@ -282,6 +294,6 @@ Web 測試外掛程式提供將時間參數化的方法。
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

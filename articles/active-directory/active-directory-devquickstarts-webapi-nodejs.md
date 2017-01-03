@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e998c03f2d8ab56887f614cfce5db67402d36688
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f43e9fcfb8c1cabc9aeffd507eb1f106b7d64cf1
 
 
 ---
@@ -197,7 +197,7 @@ Restify 提供使用 DTrace 追蹤 REST 呼叫的強大機制。 不過，許多
 
 * `npm install mongoose`
 
-## <a name="9-install-additional-modules"></a>9.安裝其他模組
+## <a name="9--install-additional-modules"></a>9.安裝其他模組
 接下來，我們將會安裝其餘所需的模組。
 
 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
@@ -916,6 +916,6 @@ Transfer-Encoding: chunked
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

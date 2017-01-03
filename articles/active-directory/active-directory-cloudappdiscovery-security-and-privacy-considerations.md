@@ -1,19 +1,23 @@
 ---
-title: Cloud App Discovery 的安全性和隱私權考量 | Microsoft Docs
-description: 本主題描述與 Cloud App Discovery 相關的安全性和隱私權考量。
+title: "Cloud App Discovery 的安全性和隱私權考量 | Microsoft Docs"
+description: "本主題描述與 Cloud App Discovery 相關的安全性和隱私權考量。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 2fce5c82-d3de-4097-808f-40214768df9e
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
-ms.author: markusvi
+ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 6adb1dd25c24b18b834dd921c2586ef29d56dc81
+ms.openlocfilehash: e14ee89eec9cbc7db7b1253ed46acf1ae93e620d
+
 
 ---
 # <a name="cloud-app-discovery-security-and-privacy-considerations"></a>Cloud App Discovery 的安全性和隱私權考量
@@ -166,6 +170,9 @@ Cloud App Discovery Endpoint Agent 只會收集上列 **代理程式收集的資
 * [如何探索組織內使用未經批准的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 

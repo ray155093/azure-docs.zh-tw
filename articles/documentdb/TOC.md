@@ -18,6 +18,7 @@
 ### [Java Web 應用程式](documentdb-java-application.md)
 ### [Python Flask Web 應用程式](documentdb-python-application.md)
 ## [本機開發](documentdb-nosql-local-emulator.md)
+### [匯出模擬器憑證](documentdb-nosql-local-emulator-export-ssl-certificates.md)
 ## [常見問題集](documentdb-faq.md)
 
 # 作法
@@ -41,21 +42,28 @@
 ### [資源配額](documentdb-limits.md)
 ### [增加配額](documentdb-increase-limits.md)
 ### [要求單位](documentdb-request-units.md)
-### [Azure CLI 和 Azure Resource Manager](documentdb-automation-resource-manager-cli.md)
+### Azure CLI
+#### [建立帳戶](documentdb-automation-resource-manager-cli.md)
+#### [新增或移除區域](documentdb-automation-region-management.md)
+### [Azure PowerShell](documentdb-manage-account-with-powershell.md)
 ### [防火牆支援](documentdb-firewall-support.md)
 ### [加速填滿帳戶](documentdb-supercharge-your-account.md)
 
 ## 開發
 ### [SQL query](documentdb-sql-query.md)
 ### [預存程序、觸發程序和 UDF](documentdb-programming.md)
+### [以變更摘要追蹤變更](documentdb-change-feed.md)
 ### [效能測試](documentdb-performance-testing.md)
 ### [效能秘訣](documentdb-performance-tips.md)
-### 適用於 MongoDB 開發人員的 DocumentDB
-#### [MongoDB 的通訊協定支援](documentdb-protocol-mongodb.md)
-#### [建立帳戶](documentdb-create-mongodb-account.md)
-#### [連接至您的帳戶](documentdb-connect-mongodb-account.md)
-#### [使用 MongoChef](documentdb-mongodb-mongochef.md)
-#### [通訊協定支援範本](documentdb-mongodb-samples.md)
+
+## 使用 MongoDB 的 DocumentDB 支援
+### [MongoDB 的通訊協定支援](documentdb-protocol-mongodb.md)
+### [建立帳戶](documentdb-create-mongodb-account.md)
+### [連接至您的帳戶](documentdb-connect-mongodb-account.md)
+### [移轉資料](documentdb-mongodb-migrate.md)
+### [使用 Robomongo](documentdb-mongodb-robomongo.md)
+### [使用 MongoChef](documentdb-mongodb-mongochef.md)
+### [通訊協定支援範本](documentdb-mongodb-samples.md)
 
 ## 使用入口網站
 ### [建立資料庫帳戶](documentdb-create-account.md)
@@ -112,6 +120,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 

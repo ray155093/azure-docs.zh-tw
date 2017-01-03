@@ -8,15 +8,16 @@ manager: jhubbard
 editor: 
 ms.assetid: d1a46fa4-53d2-4d25-a0a7-92e8f9d70828
 ms.service: sql-database
+ms.custom: overview
 ms.devlang: na
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 11/28/2016
-ms.author: carlrab
+ms.author: carlrab; jognanay
 translationtype: Human Translation
-ms.sourcegitcommit: 717d84bbfbc51912bca7c2d279a6a0603ea97107
-ms.openlocfilehash: 10dcc43035169ec399dfe93835c2d872a518170a
+ms.sourcegitcommit: 75bf523679c8d8ad6fbe4a8aa8a561d03008e59b
+ms.openlocfilehash: c7cb4b872723e07b720c87ecef9d9d8f136c25eb
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 10dcc43035169ec399dfe93835c2d872a518170a
 ## <a name="what-is-an-azure-sql-database-logical-server"></a>什麼是 Azure SQL Database 邏輯伺服器？
 Azure SQL Database 邏輯伺服器做為多個資料庫的中央管理點。 在 SQL Database 中，伺服器是邏輯建構，不同於您可能已熟悉運用在內部部署世界中的 SQL Server 執行個體。 具體來說，SQL Database 服務對於其邏輯伺服器相關之資料庫位置不提供任何保證，且不公開任何執行個體層級存取權或功能。 如需 Azure SQL 邏輯伺服器的詳細資訊，請參閱[邏輯伺服器](sql-database-server-overview.md)。 
 
-## <a name="what-is-azure-sql-database"></a>什麼是 Azure SQL Database？
+## <a name="what-is-an-azure-sql-database"></a>什麼是 Azure SQL Database？
 Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫可以是︰
 
 - 單一資料庫包含其[自有資源集](sql-database-what-is-a-dtu.md#what-are-database-transaction-units-dtus) (DTU)
@@ -68,7 +69,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | 變更追蹤 | [支援](https://msdn.microsoft.com/library/bb933875.aspx) | [支援](https://msdn.microsoft.com/library/bb933875.aspx) |
 | 定序陳述式 | [支援](https://msdn.microsoft.com/library/ff848763.aspx) | [支援](https://msdn.microsoft.com/library/ff848763.aspx) |
 | 資料行存放區索引 | [支援](https://msdn.microsoft.com/library/gg492088.aspx) | [僅限高階版](https://msdn.microsoft.com/library/gg492088.aspx) |
-| Common Language Runtime (CLR) | [支援](https://msdn.microsoft.com/library/ms131102.aspx) | [支援](https://msdn.microsoft.com/library/ms131102.aspx) |
+| Common Language Runtime (CLR) | [支援](https://msdn.microsoft.com/library/ms131102.aspx) | 不支援 |
 | 自主資料庫 | [支援](https://msdn.microsoft.com/library/ff929071.aspx) | 內建 |
 | 自主使用者 | [支援](https://msdn.microsoft.com/library/ff929188.aspx) | [支援](sql-database-manage-logins.md#non-administrator-users) |
 | 控制流程語言關鍵字 | [支援](https://msdn.microsoft.com/library/ms174290.aspx) | [支援](https://msdn.microsoft.com/library/ms174290.aspx) |
@@ -89,7 +90,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | DML 陳述式 | [支援](https://msdn.microsoft.com/library/ff848766.aspx) | [大部分](https://msdn.microsoft.com/library/ff848766.aspx) |
 | DML 觸發程序 | [支援](https://msdn.microsoft.com/library/ms178110.aspx) | [支援](https://msdn.microsoft.com/library/ms178110.aspx) |
 | DMV | [所有](https://msdn.microsoft.com/library/ms188754.aspx) | [部分](https://msdn.microsoft.com/library/ms188754.aspx) |
-| 彈性資料庫集區 | 不支援 | [支援](sql-database-elastic-pool.md) |
+| 彈性集區 | 不支援 | [支援](sql-database-elastic-pool.md) |
 | 彈性工作 | 不支援 - 請參閱 [SQL Server 代理程式](https://msdn.microsoft.com/library/ms189237.aspx) | [支援](sql-database-elastic-jobs-getting-started.md) | 
 | 彈性查詢 | 不支援 - 請參閱[跨資料庫查詢](https://msdn.microsoft.com/library/dn584627.aspx) | [支援](sql-database-elastic-query-overview.md) |
 | 事件通知 | [支援](https://msdn.microsoft.com/library/ms186376.aspx) | [支援](sql-database-insights-alerts-portal.md) |
@@ -122,7 +123,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | 安全性陳述式 | [支援](https://msdn.microsoft.com/library/ff848791.aspx) | [部分](https://msdn.microsoft.com/library/ff848791.aspx) |
 | 語意搜尋 | [支援](https://msdn.microsoft.com/library/gg492075.aspx) | 不支援 |
 | 序號 | [支援](https://msdn.microsoft.com/library/ff878058.aspx) | [支援](https://msdn.microsoft.com/library/ff878058.aspx) |
-| Service Broker | [支援](https://msdn.microsoft.com/library/bb522893.aspx) | [僅限內部資料庫](https://msdn.microsoft.com/library/bb522893.aspx) |
+| Service Broker | [支援](https://msdn.microsoft.com/library/bb522893.aspx) | 不支援 |
 | 伺服器組態選項 | [支援](https://msdn.microsoft.com/library/ms189631.aspx) | 不支援 - 請參閱[資料庫組態選項](https://msdn.microsoft.com/library/mt629158.aspx) |
 | SET 陳述式 | [支援](https://msdn.microsoft.com/library/ms190356.aspx) | [大部分](https://msdn.microsoft.com/library/ms190356.aspx) 
 | 空間 | [支援](https://msdn.microsoft.com/library/bb933790.aspx) | [支援](https://msdn.microsoft.com/library/bb933790.aspx) |
@@ -131,7 +132,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | SQL Server Integration Services (SSIS) | [支援](https://msdn.microsoft.com/library/ms141026.aspx) | 不支援 - 請參閱 [Azure Data Factory](https://azure.microsoft.com/services/data-factory/) |
 | SQL Server PowerShell | [支援](https://msdn.microsoft.com/library/hh245198.aspx) | [支援](https://msdn.microsoft.com/library/hh245198.aspx) |
 | SQL Server Profiler | [支援](https://msdn.microsoft.com/library/ms181091.aspx) | 不支援 - 請參閱[擴充事件](https://msdn.microsoft.com/library/ms181091.aspx) |
-| SQL Server 複寫 | [支援](https://msdn.microsoft.com/library/ms151198.aspx) | [僅限交易複寫訂閱者](sql-database-cloud-migrate-compatible-using-transactional-replication.md) |
+| SQL Server 複寫 | [支援](https://msdn.microsoft.com/library/ms151198.aspx) | [僅限交易和快照複寫訂閱者](sql-database-cloud-migrate-compatible-using-transactional-replication.md) |
 | SQL Server Reporting Services (SSRS) | [支援](https://msdn.microsoft.com/library/ms159106.aspx) | 不支援 |
 | 預存程序 | [支援](https://msdn.microsoft.com/library/ms190782.aspx) | [支援](https://msdn.microsoft.com/library/ms190782.aspx) |
 | 系統預存函式 | [支援](https://msdn.microsoft.com/library/ff848780.aspx) | [部分](https://msdn.microsoft.com/library/ff848780.aspx) |
@@ -160,6 +161,6 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO3-->
 
 

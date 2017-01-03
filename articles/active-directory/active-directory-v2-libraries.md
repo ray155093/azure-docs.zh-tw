@@ -1,41 +1,45 @@
 ---
-title: Azure Active Directory v2.0 程式庫 | Microsoft Docs
-description: 針對 Azure Active Directory v2.0 端點，提供所有相容用戶端程式庫和伺服器中介軟體程式庫清單，以及相關文件庫/來源/範例連結。
+title: "Azure Active Directory v2.0 驗證程式庫 | Microsoft Docs"
+description: "對 Azure Active Directory v2.0 端點而言，相容的用戶端程式庫和伺服器中介軟體程式庫清單，以及相關的文件庫/來源/範例連結。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: skwan
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 19cec615-e51f-4141-9f8c-aaf38ff9f746
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/30/2016
+ms.date: 11/29/2016
 ms.author: skwan;bryanla
+translationtype: Human Translation
+ms.sourcegitcommit: 5ba85485737a6f1ee8908834a74d34863429aeca
+ms.openlocfilehash: e68a83936e6ae0b7349444cb24bafd6908166945
+
 
 ---
-# <a name="azure-active-directory-(ad)-v2.0-and-authentication-libraries"></a>Azure Active Directory (AD) v2.0 和驗證程式庫
-Azure AD v2.0 端點支援業界標準 OAuth 2.0 和 OpenID Connect 1.0 通訊協定。  Microsoft 和其他廠商提供的各種程式庫可以搭配 v2.0 端點使用。
+# <a name="azure-active-directory-v20-authentication-libraries"></a>Azure Active Directory v2.0 驗證程式庫
+Azure Active Directory (Azure AD) v2.0 端點支援業界標準 OAuth 2.0 和 OpenID Connect 1.0 通訊協定。 您可以使用 Microsoft 和其他廠商提供的各種程式庫搭配 v2.0 端點。
 
-在建置使用 v2.0 端點的應用程式時，建議您使用通訊協定網域專家遵循安全性開發生命週期 (SDL) 方法 (例如 [Microsoft[Microsoft-SDL] 遵循的方法]) 所撰寫的程式庫。  如果您決定手工撰寫通訊協定的支援，建議您遵循 SDL 並仔細觀察在各通訊協定的標準規格中找到的安全性考量。
+在建置使用 v2.0 端點的應用程式時，建議您使用通訊協定網域專家遵循安全性開發生命週期 (SDL) 方法 (例如 [Microsoft 遵循的方法][Microsoft-SDL]) 所撰寫的程式庫。 如果您決定手工撰寫通訊協定的支援，建議您遵循 SDL 方法並仔細觀察各通訊協定的標準規格中的安全性考量。
 
 ## <a name="types-of-libraries"></a>程式庫類型
-使用 v2.0 的程式庫有兩種︰ 
+Azure AD v2.0 適用於兩種程式庫類型︰
 
-* **用戶端程式庫**：用戶端程式庫使用於原生用戶端或伺服器，以取得存取權杖來呼叫資源，例如 Microsoft Graph。
-* **伺服器中介軟體程式庫**：Web 應用程式使用伺服器中介軟體程式庫來將使用者登入，而 Web API 則將這類程式庫用來驗證原生用戶端或其他伺服器所傳送的權杖。
+* **用戶端程式庫**。 原生用戶端和伺服器會使用用戶端程式庫，取得用來呼叫資源 (例如 Microsoft Graph) 的存取權杖。
+* **伺服器中介軟體程式庫**。 Web 應用程式會使用伺服器中介軟體程式庫進行使用者登入。 Web API 會使用伺服器中介軟體程式庫來驗證原生用戶端或其他伺服器所傳送的權杖。
 
 ## <a name="library-support"></a>程式庫支援
-您可以在使用 v2.0 端點時選擇任何標準相容的文件庫，所以一定要知道哪裡可以尋求支援。  程式庫程式碼中的問題和功能要求會送交程式庫擁有者。 服務端通訊協定實作中的問題和功能要求會送交 Microsoft。
+因為您可以在使用 v2.0 端點時選擇任何符合標準的文件庫，所以一定要知道哪裡可以尋求支援。 如需程式庫程式碼中的問題和功能要求，請連絡程式庫擁有者。 如需服務端通訊協定實作中的問題和功能要求，請連絡 Microsoft。
 
 程式庫的支援類型有兩種︰
 
-* **Microsoft 支援**：Microsoft 提供這些程式庫的修正程式。  Microsoft 已進行這些程式庫的安全性開發生命週期審查評鑑。 
-* **相容**：Microsoft 已在基本案例中測試一組程式庫並確認其使用 v2.0 端點。  Microsoft 不提供這些程式庫的修正程式，且尚未審查這些程式庫。  問題和功能要求應重新導向至程式庫的開放原始碼專案。
+* **Microsoft 支援**。 Microsoft 會提供這些程式庫的修正程式，並已完成這些程式庫的 SDL 審查評鑑。
+* **相容**。 Microsoft 已在基本案例中測試這些程式庫並確認其使用 v2.0 端點。 Microsoft 不提供這些程式庫的修正程式，且尚未審查這些程式庫。 問題和功能要求應重新導向至程式庫的開放原始碼專案。
 
-如需使用 V2.0 端點的程式庫清單，請參閱下列各節。 
+如需使用 V2.0 端點的程式庫清單，請參閱本文的後面幾節。
 
 ## <a name="microsoft-supported-client-libraries"></a>Microsoft 支援的用戶端程式庫
 | 平台 | 程式庫名稱 | 下載 | 原始程式碼 | 範例 |
@@ -52,22 +56,24 @@ Azure AD v2.0 端點支援業界標準 OAuth 2.0 和 OpenID Connect 1.0 通訊�
 ## <a name="microsoft-supported-server-middleware-libraries"></a>Microsoft 支援的伺服器中介軟體程式庫
 | 平台 | 程式庫名稱 | 下載 | 原始程式碼 | 範例 |
 |:---:|:---:|:---:|:---:|:---:|
-| .NET 4.x |適用於 ASP.NET 的 OWIN OpenID Connect 中介軟體 |[Microsoft.Owin.Security.OpenIdConnect (NuGet)][ServerLib-Net4-Owin-Oidc-Lib] |[Katana Project (CodePlex)][ServerLib-Net4-Owin-Oidc-Repo] |[Web 應用程式範例][ServerLib-Net4-Owin-Oidc-Sample] |
+| .NET 4.x |適用於 ASP.NET 的 OWIN OpenID Connect 中介軟體 |[Microsoft.Owin.Security.OpenIdConnect (NuGet)][ServerLib-Net4-Owin-Oidc-Lib] |[Katana 專案 (CodePlex)][ServerLib-Net4-Owin-Oidc-Repo] |[Web 應用程式範例][ServerLib-Net4-Owin-Oidc-Sample] |
 | .NET 4.x |適用於 ASP.NET 的 OWIN OAuth Bearer 中介軟體 |[Microsoft.Owin.Security.OAuth (NuGet)][ServerLib-Net4-Owin-Oauth-Lib] |[Katana 專案 (CodePlex)][ServerLib-Net4-Owin-Oauth-Repo] |[Web API 範例][ServerLib-Net4-Owin-Oauth-Sample] |
-| .NET Core |適用於 .Net Core 的 OWIN OpenID Connect 中介軟體 |[Microsoft.AspNetCore.Authentication.OpenIdConnect (NuGet)][ServerLib-NetCore-Owin-Oidc-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oidc-Repo] |[Web 應用程式範例][ServerLib-NetCore-Owin-Oidc-Sample] |
-| .NET Core |適用於 .Net Core 的 OWIN OAuth Bearer 中介軟體 |[Microsoft.AspNetCore.Authentication.OAuth (NuGet)][ServerLib-NetCore-Owin-Oauth-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oauth-Repo] |敬請期待 |
+| .NET Core |適用於 .NET Core 的 OWIN OpenID Connect 中介軟體 |[Microsoft.AspNetCore.Authentication.OpenIdConnect (NuGet)][ServerLib-NetCore-Owin-Oidc-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oidc-Repo] |[Web 應用程式範例][ServerLib-NetCore-Owin-Oidc-Sample] |
+| .NET Core |適用於 .NET Core 的 OWIN OAuth Bearer 中介軟體 |[Microsoft.AspNetCore.Authentication.OAuth (NuGet)][ServerLib-NetCore-Owin-Oauth-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oauth-Repo] |敬請期待 |
 | Node.js |Microsoft Azure Active Directory Passport.js 外掛程式 |[Passport-Azure-AD (npm)][ServerLib-Node-Lib] |[Passport-Azure-AD (GitHub)][ServerLib-Node-Repo] |[Web 應用程式範例][ServerLib-Node-Sample] |
 
 <!--- COMMENTING UNTIL SAMPLE IS AVAILABLE
-| .NET 4.x, .NET Core | JSON Web Token Handler for .Net | [System.IdentityModel.Tokens.Jwt (NuGet)][ServerLib-Net-Jwt-Lib] | [Azure AD identity model extensions for .Net (GitHub)][ServerLib-Net-Jwt-Repo] | Coming soon |
+| .NET 4.x, .NET Core | JSON Web Token Handler for .NET | [System.IdentityModel.Tokens.Jwt (NuGet)][ServerLib-Net-Jwt-Lib] | [Azure AD identity model extensions for .NET (GitHub)][ServerLib-Net-Jwt-Repo] | Coming soon |
 --->
 ## <a name="compatible-client-libraries"></a>相容的用戶端程式庫
-| 平台 | 名稱 | 測試的版本 | 原始程式碼 | 範例 |
+| 平台 | 程式庫名稱 | 測試的版本 | 原始程式碼 | 範例 |
 |:---:|:---:|:---:|:---:|:---:|
 | Android |[OIDCAndroidLib](https://github.com/kalemontes/OIDCAndroidLib/wiki) |0.2.1 |[OIDCAndroidLib](https://github.com/kalemontes/OIDCAndroidLib) |[原生應用程式範例](active-directory-v2-devquickstarts-android.md) |
 | iOS |[NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) |1.2.8 |[NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) |[原生應用程式範例](active-directory-v2-devquickstarts-ios.md) |
+| Java | [Scribe Java scribejava](https://github.com/scribejava/scribejava) | [3.2.0 版](https://github.com/scribejava/scribejava/releases/tag/scribejava-3.2.0) | [ScribeJava](https://github.com/scribejava/scribejava/archive/scribejava-3.2.0.zip) | 敬請期待 |
 | JavaScript |[Hello.js](https://adodson.com/hello.js/) |1.13.5 |[Hello.js](https://github.com/MrSwitch/hello.js) |敬請期待 |
-| Python - Flask |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |0.9.3 |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |敬請期待 |
+| PHP | [PHP League oauth2-client](https://github.com/thephpleague/oauth2-client) | [1.4.2 版](https://github.com/thephpleague/oauth2-client/releases/tag/1.4.2) | [oauth2-client](https://github.com/thephpleague/oauth2-client/archive/1.4.2.zip) | 敬請期待 |
+| Python-Flask |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |0.9.3 |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |敬請期待 |
 | Ruby |[OmniAuth](https://github.com/omniauth/omniauth/wiki) |omniauth:1.3.1</br>omniauth-oauth2:1.4.0 |[OmniAuth](https://github.com/omniauth/omniauth)</br>[OmniAuth OAuth2](https://github.com/intridea/omniauth-oauth2) |敬請期待 |
 
 <!--- REMOVING BRANDON'S FOR NOW
@@ -83,9 +89,9 @@ Azure AD v2.0 端點支援業界標準 OAuth 2.0 和 OpenID Connect 1.0 通訊�
 敬請期待
 
 ## <a name="related-content"></a>相關內容
-如需 Azure AD v2.0 端點的詳細資訊，請參閱 [Azure AD 應用程式模型 v2 概觀][AAD-App-Model-V2-Overview]。 
+如需 Azure AD v2.0 端點的詳細資訊，請參閱 [Azure AD 應用程式模型 v2.0 概觀][AAD-App-Model-V2-Overview]。
 
-請使用下列 Disqus 註解區段來提供意見反應，並協助我們改善及設計我們的內容。
+為了協助我們改善及設計我們的內容，請使用本文結尾的 Disqus 註解功能來提供意見反應。
 
 <!--Image references-->
 
@@ -96,16 +102,16 @@ Azure AD v2.0 端點支援業界標準 OAuth 2.0 和 OpenID Connect 1.0 通訊�
 [ClientLib-NET-Sample]: active-directory-v2-devquickstarts-wpf.md
 [ClientLib-Node-Lib]: https://www.npmjs.com/package/passport-azure-ad
 [ClientLib-Node-Repo]: https://github.com/AzureAD/passport-azure-ad
-[ClientLib-Node-Sample]:
-[ClientLib-Iosmac-Lib]:
-[ClientLib-Iosmac-Repo]:
-[ClientLib-Iosmac-Sample]:
-[ClientLib-Android-Lib]:
-[ClientLib-Android-Repo]:
-[ClientLib-Android-Sample]:
-[ClientLib-Js-Lib]:
-[ClientLib-Js-Repo]:
-[ClientLib-Js-Sample]:
+[ClientLib-Node-Sample]:/
+[ClientLib-Iosmac-Lib]:/
+[ClientLib-Iosmac-Repo]:/
+[ClientLib-Iosmac-Sample]:/
+[ClientLib-Android-Lib]:/
+[ClientLib-Android-Repo]:/
+[ClientLib-Android-Sample]:/
+[ClientLib-Js-Lib]:/
+[ClientLib-Js-Repo]:/
+[ClientLib-Js-Sample]:/
 
 [Microsoft-SDL]: http://www.microsoft.com/sdl/default.aspx
 [ServerLib-Net4-Owin-Oidc-Lib]: https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/
@@ -129,7 +135,6 @@ Azure AD v2.0 端點支援業界標準 OAuth 2.0 和 OpenID Connect 1.0 通訊�
 
 
 
-
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

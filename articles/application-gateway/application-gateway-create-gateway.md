@@ -4,7 +4,7 @@ description: "本頁面提供建立、設定、啟動和刪除 Azure 應用程�
 documentationcenter: na
 services: application-gateway
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: 577054ca-8368-4fbf-8d53-a813f29dc3bc
 ms.service: application-gateway
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/12/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: ee8cfffdbf054b4251ed269745f6b9ee5a5e6c64
-ms.openlocfilehash: 2a06e9c7bb6b9f2aacc1544ba4b85a90bb57f01c
+ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
+ms.openlocfilehash: b78d8167ec5aacee34ed235637bc396f9b869a39
 
 
 ---
@@ -28,8 +28,6 @@ ms.openlocfilehash: 2a06e9c7bb6b9f2aacc1544ba4b85a90bb57f01c
 > * [Azure 傳統 PowerShell](application-gateway-create-gateway.md)
 > * [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 > * [Azure CLI](application-gateway-create-gateway-cli.md)
-> 
-> 
 
 Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
 
@@ -43,6 +41,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 4. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 ## <a name="what-is-required-to-create-an-application-gateway"></a>建立應用程式閘道需要什麼？
+
 當您使用 `New-AzureApplicationGateway` 命令來建立應用程式閘道時，此時不需進行任何設定，並使用 XML 或組態物件來設定新建立的資源。
 
 值如下：
@@ -63,8 +62,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 > [!NOTE]
 > 如果您需要設定應用程式閘道的自訂探查，請參閱 [使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-classic-ps.md)。 請參閱 [自訂探查和健全狀況監視](application-gateway-probe-overview.md) 以取得詳細資訊。
-> 
-> 
 
 ![案例範例][scenario]
 
@@ -72,7 +69,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 若要建立閘道，請使用 `New-AzureApplicationGateway` Cmdlet，並以您自己的值來取代這些值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
 
-下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
+下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道：
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
@@ -100,8 +97,6 @@ DnsName       :
 
 > [!NOTE]
 > *InstanceCount* 的預設值是 2，且最大值是 10。 GatewaySize  的預設值是 Medium。 您可以選擇 Small、Medium 和 Large。
-> 
-> 
 
 因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。 閘道處於執行中狀態之後，就會建立這些項目。
 
@@ -166,8 +161,6 @@ DnsName       :
 
 > [!IMPORTANT]
 > 通訊協定項目 Http 或 Https 會區分大小寫。
-> 
-> 
 
 下列範例示範如何使用組態檔來設定應用程式閘道。 此範例會平衡公用連接埠 80 上的 HTTP 流量負載，並將網路流量傳送至兩個 IP 位址之間的後端連接埠 80。
 
@@ -229,9 +222,7 @@ Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile "D:\config.xml"
 下列範例示範如何使用設定物件來設定應用程式閘道。 必須個別設定所有組態項目，然後再將其新增至應用程式閘道組態物件。 建立組態物件之後，您會使用 `Set-AzureApplicationGateway` 命令，將組態認可到先前建立的應用程式閘道資源。
 
 > [!NOTE]
-> 在將值指派到各個設定物件之前，您必須宣告 PowerShell 要用來儲存的物件種類。 用來建立個別項目的第一行會定義要使用哪些 **Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(物件名稱)**。
-> 
-> 
+> 在將值指派到各個設定物件之前，您必須宣告 PowerShell 要用來儲存的物件種類。 建立個別項目的第一行會定義要使用哪些 `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)`。
 
 ### <a name="step-1"></a>步驟 1
 
@@ -363,8 +354,6 @@ Set-AzureApplicationGatewayConfig -Name AppGwTest -Config $appgwconfig
 
 > [!NOTE]
 > `Start-AzureApplicationGateway` Cmdlet 最多可能需要 15 到 20 分鐘才能完成。
-> 
-> 
 
 ```powershell
 Start-AzureApplicationGateway AppGwTest
@@ -458,6 +447,6 @@ Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

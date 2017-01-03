@@ -19,6 +19,7 @@
 ## [將邏輯應用程式連接到遠端監視解決方案](iot-suite-logic-apps-tutorial.md)
 ## [自訂預先設定的方案](iot-suite-guidance-on-customizing-preconfigured-solutions.md)
 ## [搭配使用動態遙測與遠端監視解決方案](iot-suite-dynamic-telemetry.md)
+## [在遠端監視解決方案中建立自訂規則](iot-suite-custom-rule.md)
 ## [遠端監視解決方案中的裝置資訊](iot-suite-remote-monitoring-device-info.md)
 
 # 參考
@@ -42,6 +43,6 @@
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -13,15 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/21/2016
+ms.date: 12/16/2016
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2cd4a7536bcdde717221a8f2d25eadadee03dd4d
+ms.sourcegitcommit: af104d47d316b3e46108e7e2ed0771bd06f360af
+ms.openlocfilehash: 6c3b547b052bca6999e47ddc10fcce5e1e56fe09
 
 
 ---
 # <a name="conditional-access-in-azure-active-directory"></a>Azure Active Directory 中的條件式存取
+
+> [!div class="op_single_selector"]
+> * [Azure 傳統入口網站](active-directory-conditional-access.md)
+> * [Azure 入口網站](active-directory-conditional-access-azure-portal.md)
+
 Azure Active Directory (Azure AD) 中的控制功能可提供一些簡單的方式，協助保護雲端和內部部署環境中的資源。 條件式存取原則 (如 Multi-Factor Authentication) 可以協助防範認證遭竊和遭到網路釣魚的風險。 其他條件式存取原則可協助保護貴組織的資料安全。 例如，除了需要認證以外，您可能還有一個原則：只有在行動裝置管理系統 (如 Microsoft Intune) 中的註冊裝置可以存取貴組織的敏感性服務。
 
 ## <a name="prerequisites"></a>必要條件
@@ -94,6 +99,6 @@ Azure AD 條件式存取是 [Azure Active Directory Premium](http://www.microsof
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

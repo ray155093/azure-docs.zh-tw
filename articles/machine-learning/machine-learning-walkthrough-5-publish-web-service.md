@@ -1,12 +1,12 @@
 ---
-title: 步驟 5：部署 Machine Learning Web 服務 | Microsoft Docs
-description: 開發預測解決方案逐步解說的步驟 5：在 Machine Learning Studio 中將預測實驗部署為 Web 服務。
+title: "步驟 5：部署 Machine Learning Web 服務 | Microsoft Docs"
+description: "開發預測解決方案逐步解說的步驟 5：在 Machine Learning Studio 中將預測實驗部署為 Web 服務。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 3fca74a3-c44b-4583-a218-c14c46ee5338
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/05/2016
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: c7e5bf29aacbcb11bfa1db01738d234ae64b46b2
+ms.openlocfilehash: 141586d880e6a8f069ec26b3279d9787c5e046b4
+
 
 ---
-# <a name="walkthrough-step-5:-deploy-the-azure-machine-learning-web-service"></a>逐步解說步驟 5：部署 Azure Machine Learning Web 服務
+# <a name="walkthrough-step-5-deploy-the-azure-machine-learning-web-service"></a>逐步解說步驟 5：部署 Azure Machine Learning Web 服務
 這是 [在 Azure Machine Learning 中為信用風險評估開發預測性分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [建立機器學習服務工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
@@ -58,7 +62,7 @@ ms.author: garye
 2. 精簡實驗，移除只有定型才需要的模組
 3. 定義 Web 服務接受輸入的位置和產生輸出的位置
 
-幸好上述三個步驟只要按一下實驗畫布底端的 [設定 Web 服務](選取 \[預測性 Web 服務\] 選項.md)，即可完成。
+幸好上述三個步驟只要按一下實驗畫布底端的 [設定 Web 服務] (選取 [預測性 Web 服務] 選項)，即可完成。
 
 當您按一下 [設定 Web 服務] 時會發生幾件事：
 
@@ -172,13 +176,11 @@ Machine Learning Studio 已在移除[分割][split]模組時移除[執行 R 指�
 6. 按一下 [預設] 端點。
 
 從這裡您可以進行一些動作，例如監視 Web 服務的執行狀況，以及變更服務可處理的同時呼叫數目來調整效能。
-您甚至可以在 Azure Marketplace 中發佈您的 Web 服務。
 
 如需詳細資訊，請參閱：
 
 * [建立端點](machine-learning-create-endpoint.md)
 * [調整 Web 服務](machine-learning-scaling-webservice.md)
-* [將 Azure Machine Learning Web 服務發佈至 Azure Marketplace](machine-learning-publish-web-service-to-azure-marketplace.md)
 
 **在 Azure Machine Learning Web 服務入口網站管理 Web 服務**
 
@@ -215,6 +217,7 @@ Machine Learning Studio 已在移除[分割][split]模組時移除[執行 R 指�
 [project-columns]: https://msdn.microsoft.com/en-us/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO4-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0f68cab69ea97dc6eaf08d03bc30783de9e7259e
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 23a30a9d1630bd2cb0a8009751bd41b44675403f
 
 
 ---
@@ -113,7 +113,7 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
     a. 在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Birst Agile Business Analytics 應用程式的 URL：**“https://login.bws.birst.com/SAMLSSO/Services.aspx?birst.idpid=TENANTIDPID”**。
     URL 相依於 Birst 帳戶所在的資料中心。 對美國資料中心使用 **“https://login.bws.birst.com/SAMLSSO/Services.aspx?birst.idpid=TENANTIDPID”**，對歐洲資料中心使用 **“https://login.eu1.birst.com/SAMLSSO/Services.aspx?birst.idpid=TENANTIDPID"**
 
-    b. 按 [下一步]。
+    b. 按 [下一步] 。
 
 
 1. 在 [設定在 Birst Agile Business Analytics 單一登入]  頁面上，執行下列步驟：
@@ -247,6 +247,6 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

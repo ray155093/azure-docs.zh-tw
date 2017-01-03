@@ -1,12 +1,12 @@
 ---
-title: 使用閘道 SDK 模擬裝置 | Microsoft Docs
-description: 使用 Linux 的 Azure IoT 中樞閘道 SDK 逐步解說，說明如何使用 Azure IoT 中樞閘道 SDK 從模擬裝置傳送遙測。
+title: "使用 IoT 閘道 SDK 來模擬裝置 | Microsoft Docs"
+description: "「Azure IoT 閘道 SDK」逐步解說，其中使用 Linux 來說明如何使用「Azure IoT 閘道 SDK」從模擬裝置傳送遙測。"
 services: iot-hub
-documentationcenter: ''
+documentationcenter: 
 author: chipalost
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 11e7bf28-ee3d-48d6-a386-eb506c7a31cf
 ms.service: iot-hub
 ms.devlang: cpp
 ms.topic: article
@@ -14,17 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/29/2016
 ms.author: andbuc
+translationtype: Human Translation
+ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
+ms.openlocfilehash: a6a97202c8221680f13bd8b29fe8d616578629cd
+
 
 ---
-# <a name="iot-gateway-sdk-(beta)-–-send-device-to-cloud-messages-with-a-simulated-device-using-linux"></a>IoT 閘道 SDK (Beta) – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息
+# <a name="azure-iot-gateway-sdk--send-device-to-cloud-messages-with-a-simulated-device-using-linux"></a>Azure IoT 閘道 SDK – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息
 [!INCLUDE [iot-hub-gateway-sdk-simulated-selector](../../includes/iot-hub-gateway-sdk-simulated-selector.md)]
 
 ## <a name="build-and-run-the-sample"></a>建置並執行範例
 開始之前，您必須：
 
 * [設定開發環境][lnk-setupdevbox]以在 Linux 上使用 SDK。
-* 在 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]，您將需要中樞名稱才能完成此逐步解說。 如果您還沒有 Azure 訂用帳戶，可以取得[免費帳戶][lnk-free-trial]。
-* 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，將您的裝置新增至您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。
+* 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您將需要中樞名稱才能完成此逐步解說。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
+* 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具將您的裝置加入您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。
 
 建置範例：
 
@@ -50,68 +54,98 @@ ms.author: andbuc
 
 ```
 {
-    "modules" :
-    [ 
+    "modules": [
         {
-            "module name" : "IoTHub",
-            "module path" : "./build/modules/iothub/libiothub_hl.so",
-            "args" : 
-            {
-                "IoTHubName" : "{Your IoT hub name}",
-                "IoTHubSuffix" : "azure-devices.net",
-                "Transport": "HTTP"
+            "name": "IotHub",
+          "loader": {
+            "name": "native",
+            "entrypoint": {
+              "module.path": "./modules/iothub/libiothub.so"
             }
-        },
+            },
+            "args": {
+              "IoTHubName": "<<insert here IoTHubName>>",
+              "IoTHubSuffix": "<<insert here IoTHubSuffix>>",
+              "Transport": "HTTP"
+            }
+          },
         {
-            "module name" : "mapping",
-            "module path" : "./build/modules/identitymap/libidentity_map_hl.so",
-            "args" : 
-            [
-                {
-                    "macAddress" : "01-01-01-01-01-01",
-                    "deviceId"   : "{Device ID 1}",
-                    "deviceKey"  : "{Device key 1}"
-                },
-                {
-                    "macAddress" : "02-02-02-02-02-02",
-                    "deviceId"   : "{Device ID 2}",
-                    "deviceKey"  : "{Device key 2}"
-                }
+            "name": "mapping",
+          "loader": {
+            "name": "native",
+            "entrypoint": {
+              "module.path": "./modules/identitymap/libidentity_map.so"
+            }
+            },
+            "args": [
+              {
+                "macAddress": "01:01:01:01:01:01",
+                "deviceId": "<<insert here deviceId>>",
+                "deviceKey": "<<insert here deviceKey>>"
+              },
+              {
+                "macAddress": "02:02:02:02:02:02",
+                "deviceId": "<<insert here deviceId>>",
+                "deviceKey": "<<insert here deviceKey>>"
+              }
             ]
-        },
+          },
         {
-            "module name":"BLE1",
-            "module path" : "./build/modules/simulated_device/libsimulated_device_hl.so",
-            "args":
-            {
-                "macAddress" : "01-01-01-01-01-01"
+            "name": "BLE1",
+          "loader": {
+            "name": "native",
+            "entrypoint": {
+              "module.path": "./modules/simulated_device/libsimulated_device.so"
             }
-        },
+            },
+            "args": {
+              "macAddress": "01:01:01:01:01:01"
+            }
+          },
         {
-            "module name":"BLE2",
-            "module path" : "./build/modules/simulated_device/libsimulated_device_hl.so",
-            "args":
-            {
-                "macAddress" : "02-02-02-02-02-02"
+            "name": "BLE2",
+          "loader": {
+            "name": "native",
+            "entrypoint": {
+              "module.path": "./modules/simulated_device/libsimulated_device.so"
             }
-        },
+            },
+            "args": {
+              "macAddress": "02:02:02:02:02:02"
+            }
+          },
         {
-            "module name":"Logger",
-            "module path" : "./build/modules/logger/liblogger_hl.so",
-            "args":
-            {
-                "filename":"./deviceCloudUploadGatewaylog.log"
+            "name": "Logger",
+          "loader": {
+            "name": "native",
+            "entrypoint": {
+              "module.path": "./modules/logger/liblogger.so"
             }
-        }
+            },
+            "args": {
+              "filename": "deviceCloudUploadGatewaylog.log"
+            }
+          }
     ],
-    "links" : [
-        { "source" : "*", "sink" : "Logger" },
-        { "source" : "BLE1", "sink" : "mapping" },
-        { "source" : "BLE2", "sink" : "mapping" },
-        { "source" : "mapping", "sink" : "IoTHub" }
+    "links": [
+        {
+            "source": "*",
+            "sink": "Logger"
+        },
+        {
+            "source": "BLE1",
+            "sink": "mapping"
+        },
+        {
+            "source": "BLE2",
+            "sink": "mapping"
+        },
+        {
+            "source": "mapping",
+            "sink": "IotHub"
+        }
     ]
 }
-
 ```
 
 儲存您對組態檔進行的任何變更。
@@ -124,12 +158,12 @@ ms.author: andbuc
     ```
     ./build/samples/simulated_device_cloud_upload/simulated_device_cloud_upload_sample ./samples/simulated_device_cloud_upload/src/simulated_device_cloud_upload_lin.json
     ```
-3. 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，監視 IoT 中樞接收自閘道器的訊息。
+3. 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具監視 IoT 中樞接收自閘道的訊息。
 
 ## <a name="next-steps"></a>後續步驟
-如果您想要更進一步了解閘道 SDK 並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
+如果您想要更進一步了解「IoT 閘道 SDK」並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
 
-* [透過閘道 SDK 從實際裝置傳送裝置到雲端訊息][lnk-physical-device]
+* [使用 IoT 閘道 SDK 從實體裝置傳送裝置到雲端訊息][lnk-physical-device]
 * [Azure IoT 閘道 SDK][lnk-gateway-sdk]
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
@@ -150,6 +184,7 @@ ms.author: andbuc
 [lnk-create-hub]: iot-hub-create-through-portal.md
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO5-->
 
 

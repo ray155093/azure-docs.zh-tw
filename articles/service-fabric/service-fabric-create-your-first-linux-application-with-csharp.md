@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 10/04/2016
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9486fcb56b05b22120aef5a8373c6558b2d88d6c
+ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
+ms.openlocfilehash: e3632d89501c1c25b76e9160f0ad82f2b76327d7
 
 
 ---
@@ -50,7 +50,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 ## <a name="build-the-application"></a>建置應用程式
 Service Fabric Yeoman 範本包含建置指令碼，可用來從終端機建置應用程式 (在瀏覽至應用程式資料夾後)。
 
-  ```bash
+  ```sh
  cd myapp 
  ./build.sh 
   ```
@@ -60,7 +60,7 @@ Service Fabric Yeoman 範本包含建置指令碼，可用來從終端機建置�
 
 1. 連接到本機 Service Fabric 叢集。
    
-    ```bash
+    ```sh
     azure servicefabric cluster connect
     ```
 2. 使用範本中所提供的安裝指令碼，將應用程式套件複製到叢集的映像存放區、註冊應用程式類型，以及建立應用程式的執行個體。
@@ -83,11 +83,18 @@ Service Fabric Yeoman 範本包含建置指令碼，可用來從終端機建置�
 2. 在 Service Fabric Explorer 中，找出裝載動作項目服務主要複本的節點。 在以下的螢幕擷取畫面中是節點 3。
    
     ![在 Service Fabric Explorer 中尋找主要複本][sfx-primary]
-3. 按一下您在上一個步驟中找到的節點，然後從 [動作] 功能表選取 [停用 (重新啟動)]  。 這個動作會重新啟動本機叢集中五個節點的其中一個，強制容錯移轉至在另一個節點上執行的次要複本。 當您執行這個動作時，請留意測試用戶端的輸出，並注意儘管是容錯移轉，計數器仍會繼續增加。
+3. 按一下您在上一個步驟中找到的節點，然後從 [動作] 功能表選取 [停用 (重新啟動)]  。 這個動作會重新啟動本機叢集中的其中一個節點，強制容錯移轉至在另一個節點上執行的次要複本。 當您執行這個動作時，請留意測試用戶端的輸出，並注意儘管是容錯移轉，計數器仍會繼續增加。
+
+## <a name="adding-more-services-to-an-existing-application"></a>將更多服務新增至現有的應用程式
+
+若要將其他服務新增至已使用 `yo` 建立的應用程式，請執行下列步驟︰ 
+1. 將目錄變更為現有應用程式的根目錄。  例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
+2. 執行 `yo azuresfcsharp:AddService`
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解 Reliable Actors](service-fabric-reliable-actors-introduction.md)
 * [使用 Azure CLI 與 Service Fabric 叢集互動](service-fabric-azure-cli.md)
+* 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 <!-- Images -->
 [sf-yeoman]: ./media/service-fabric-create-your-first-linux-application-with-csharp/yeoman-csharp.png
@@ -95,6 +102,6 @@ Service Fabric Yeoman 範本包含建置指令碼，可用來從終端機建置�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

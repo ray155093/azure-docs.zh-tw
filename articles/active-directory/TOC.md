@@ -202,6 +202,7 @@
 #### [群組原則設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 #### [Windows 10 設定](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 #### [常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
+#### [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
 ### [將合作夥伴與 Azure AD B2B 整合](active-directory-b2b-what-is-azure-ad-b2b.md)
 #### [概觀](active-directory-b2b-collaboration-overview.md)
 #### [運作方式](active-directory-b2b-how-it-works.md)
@@ -296,6 +297,6 @@
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -5,18 +5,17 @@ services: active-directory
 documentationcenter: 
 author: dhanyahk
 manager: femila
-editor: 
 ms.assetid: b60d7f22-f271-4148-a3c8-b0ed0eccd106
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/24/2016
+ms.date: 12/16/2016
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 62266be4e70f6e0fb5984dbc5435b58ece1031fc
+ms.sourcegitcommit: 0c9d13d0489645cf566c5451e0c10e7f5a799d92
+ms.openlocfilehash: f29e020b184ac92c85d0fa0ef47319532d43f278
 
 
 ---
@@ -31,13 +30,12 @@ ms.openlocfilehash: 62266be4e70f6e0fb5984dbc5435b58ece1031fc
 * [開始使用 Azure AD 報告 API](active-directory-reporting-api-getting-started.md)
 * [Azure Active Directory 報告稽核事件](active-directory-reporting-audit-events.md)
 * [Azure Active Directory 報告保留期](active-directory-reporting-retention.md)
-* [Azure Active Directory 報告回填](active-directory-reporting-backfill.md)
 * [Azure Active Directory 報告延遲](active-directory-reporting-latencies.md)
 * [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

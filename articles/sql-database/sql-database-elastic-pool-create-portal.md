@@ -17,8 +17,8 @@ ms.workload: data-management
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 230a203cca2eaab197236557482cd4cedcfb9c53
+ms.sourcegitcommit: 16f4e287a955b787a08cc6949094bd0f5224421a
+ms.openlocfilehash: 29488482f3e6c5f3dcf0eac04fe7e5e33fb832ce
 
 
 ---
@@ -99,7 +99,7 @@ ms.openlocfilehash: 230a203cca2eaab197236557482cd4cedcfb9c53
 
 ## <a name="understand-pool-recommendations"></a>了解集區建議
 
-SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多個比使用獨立資料庫更符合成本效益的集區。 每個推薦集區都是以最適合該集區的伺服器資料庫唯一子集進行設定。
+SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多個比使用單一資料庫更符合成本效益的集區。 每個推薦集區都是以最適合該集區的伺服器資料庫唯一子集進行設定。
 
 ![建議的集區](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)  
 
@@ -112,7 +112,7 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
 服務在建議集區時，會計算過去 30 天的遙測。 為了讓資料庫被視為彈性集區的候選項目，它必須存在至少 7 天。 已在彈性集區中的資料庫不會被視為彈性集區建議候選項目。
 
-服務會評估將每個服務層中的獨立資料庫移至同一層集區的資源需求和成本效益。 例如，會評估伺服器上的所有 Standard 資料庫是否適合 Standard 彈性集區。 這表示服務不會進行跨層建議，例如將 Standard 資料庫移到 Premium 集區。
+服務會評估將每個服務層中的單一資料庫移至同一層集區的資源需求和成本效益。 例如，會評估伺服器上的所有 Standard 資料庫是否適合 Standard 彈性集區。 這表示服務不會進行跨層建議，例如將 Standard 資料庫移到 Premium 集區。
 
 ### <a name="dynamic-recommendations"></a>動態建議
 
@@ -129,6 +129,6 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 
