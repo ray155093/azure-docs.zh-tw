@@ -38,14 +38,14 @@ Gallery 中的**[解決方案](https://gallery.cortanaintelligence.com/solutions
 
  按一下任何一個解決方案即可開啟解決方案的詳細資料頁面，並讀取更多有關該解決方案的資訊。 在此頁面上，您可以留言、提供意見反應，或透過留言區段提問。 您甚至可以使用 LinkedIn 或 Twitter 的分享功能，與朋友或同事分享該解決方案。 您也可以用電子郵件寄出解決方案連結，以邀請其他使用者檢視該頁面。
 
-![與朋友分享此項目](media\\machine-learning-gallery-how-to-use-contribute-publish\\share-links.png)
+![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
-![新增您自己的留言](media\\machine-learning-gallery-how-to-use-contribute-publish\\comments.png)
+![新增您自己的留言](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="deploy"></a>部署
 如果您想要使用解決方案，請按一下 [部署]。 遵循顯示的步驟在工作區中設定與部署解決方案。
 
-![部署 Gallery 解決方案](media\\machine-learning-gallery-solutions\\deploy-solution.png)
+![部署 Gallery 解決方案](media/machine-learning-gallery-solutions/deploy-solution.png)
 
 **[前往 GALLERY >>](http://gallery.cortanaintelligence.com)**
 

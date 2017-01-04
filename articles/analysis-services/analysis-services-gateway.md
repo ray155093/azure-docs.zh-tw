@@ -64,8 +64,8 @@ ms.openlocfilehash: 90584f60864589744888817ea71d0eb0d4d170ff
 2. 選擇安裝位置，並接受授權條款。
 3. 登入 Azure。
 4. 指定 Azure Analysis Server 名稱。 每個閘道只能指定一部伺服器。 按一下 [設定] 即可開始使用。
-   
-    ![登入 Azure](./media\\analysis-services-gateway\\aas-gateway-configure-server.png)
+
+    ![登入 Azure](./media/analysis-services-gateway/aas-gateway-configure-server.png)
 
 ## <a name="how-it-works"></a>運作方式
 在您組織的網路電腦上，閘道會執行為一個 Windows 服務：**內部部署資料閘道**。 安裝用於 Azure Analysis Services 的閘道是根據用於其他服務 (例如 Power BI) 的相同閘道，但設定上有些差異。
@@ -93,8 +93,8 @@ ms.openlocfilehash: 90584f60864589744888817ea71d0eb0d4d170ff
 
 > [!NOTE]
 > Azure Datacenter IP 清單中列出的 IP 位址採用 CIDR 標記法。 例如，10.0.0.0/24 並非 10.0.0.0 到 10.0.0.24。 深入了解 [CIDR 標記法](http://whatismyipaddress.com/cidr)。
-> 
-> 
+>
+>
 
 以下是閘道使用的完整網域名稱。
 
@@ -132,7 +132,6 @@ ms.openlocfilehash: 90584f60864589744888817ea71d0eb0d4d170ff
 ## <a name="next-steps"></a>後續步驟
 * [ Analysis Services](analysis-services-manage.md)
 * [從 Azure Analysis Services 取得資料](analysis-services-connect.md)
-
 
 
 
