@@ -64,166 +64,170 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 MongoD
 
 **MongoDB 連結服務**
 
+```JSON
+{
+    "name": "OnPremisesMongoDbLinkedService",
+    "properties":
     {
-        "name": "OnPremisesMongoDbLinkedService",
-        "properties":
+        "type": "OnPremisesMongoDb",
+        "typeProperties":
         {
-            "type": "OnPremisesMongoDb",
-            "typeProperties":
-            {
-                "authenticationType": "<Basic or Anonymous>",
-                "server": "< The IP address or host name of the MongoDB server >",  
-                "port": "<The number of the TCP port that the MongoDB server uses to listen for client connections.>",
-                "username": "<username>",
-                "password": "<password>",
-               "authSource": "< The database that you want to use to check your credentials for authentication. >",
-                "databaseName": "<database name>",
-                "gatewayName": "<mygateway>"
-            }
+            "authenticationType": "<Basic or Anonymous>",
+            "server": "< The IP address or host name of the MongoDB server >",  
+            "port": "<The number of the TCP port that the MongoDB server uses to listen for client connections.>",
+            "username": "<username>",
+            "password": "<password>",
+           "authSource": "< The database that you want to use to check your credentials for authentication. >",
+            "databaseName": "<database name>",
+            "gatewayName": "<mygateway>"
         }
     }
-
+}
+```
 
 **Azure 儲存體連結服務**
 
-    {
-      "name": "AzureStorageLinkedService",
-      "properties": {
-        "type": "AzureStorage",
-        "typeProperties": {
-          "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-        }
-      }
+```JSON
+{
+  "name": "AzureStorageLinkedService",
+  "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
     }
+  }
+}
+```
 
 **MongoDB 輸入資料集** 設定 “external”: ”true” 可通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
 
-    {
-         "name":  "MongoDbInputDataset",
-        "properties": {
-            "type": "MongoDbCollection",
-            "linkedServiceName": "OnPremisesMongoDbLinkedService",
-            "typeProperties": {
-                "collectionName": "<Collection name>"    
-            },
-            "availability": {
-                "frequency": "Hour",
-                "interval": 1
-            },
-            "external": true
-        }
+```JSON
+{
+     "name":  "MongoDbInputDataset",
+    "properties": {
+        "type": "MongoDbCollection",
+        "linkedServiceName": "OnPremisesMongoDbLinkedService",
+        "typeProperties": {
+            "collectionName": "<Collection name>"    
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
+        },
+        "external": true
     }
-
-
+}
+```
 
 **Azure Blob 輸出資料集**
 
 資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
 
-    {
-        "name": "AzureBlobOutputDataSet",
-        "properties": {
-            "type": "AzureBlob",
-            "linkedServiceName": "AzureStorageLinkedService",
-            "typeProperties": {
-                "folderPath": "mycontainer/frommongodb/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
-                "format": {
-                    "type": "TextFormat",
-                    "rowDelimiter": "\n",
-                    "columnDelimiter": "\t"
-                },
-                "partitionedBy": [
-                    {
-                        "name": "Year",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "yyyy"
-                        }
-                    },
-                    {
-                        "name": "Month",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "%M"
-                        }
-                    },
-                    {
-                        "name": "Day",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "%d"
-                        }
-                    },
-                    {
-                        "name": "Hour",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "%H"
-                        }
-                    }
-                ]
+```JSON
+{
+    "name": "AzureBlobOutputDataSet",
+    "properties": {
+        "type": "AzureBlob",
+        "linkedServiceName": "AzureStorageLinkedService",
+        "typeProperties": {
+            "folderPath": "mycontainer/frommongodb/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
+            "format": {
+                "type": "TextFormat",
+                "rowDelimiter": "\n",
+                "columnDelimiter": "\t"
             },
-            "availability": {
-                "frequency": "Hour",
-                "interval": 1
-            }
+            "partitionedBy": [
+                {
+                    "name": "Year",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "yyyy"
+                    }
+                },
+                {
+                    "name": "Month",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "%M"
+                    }
+                },
+                {
+                    "name": "Day",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "%d"
+                    }
+                },
+                {
+                    "name": "Hour",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "%H"
+                    }
+                }
+            ]
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
         }
     }
-
-
+}
+```
 
 **具有複製活動的管線**
 
 此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設定為 **MongoDbSource**，且 **sink** 類型設定為 **BlobSink**。 針對 **query** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 
-    {
-        "name": "CopyMongoDBToBlob",
-        "properties": {
-            "description": "pipeline for copy activity",
-            "activities": [
-                {
-                    "type": "Copy",
-                    "typeProperties": {
-                        "source": {
-                            "type": "MongoDbSource",
-                            "query": "$$Text.Format('select * from  MyTable where LastModifiedDate >= {{ts\'{0:yyyy-MM-dd HH:mm:ss}\'}} AND LastModifiedDate < {{ts\'{1:yyyy-MM-dd HH:mm:ss}\'}}', WindowStart, WindowEnd)"
-                        },
-                        "sink": {
-                            "type": "BlobSink",
-                            "writeBatchSize": 0,
-                            "writeBatchTimeout": "00:00:00"
-                        }
+```JSON
+{
+    "name": "CopyMongoDBToBlob",
+    "properties": {
+        "description": "pipeline for copy activity",
+        "activities": [
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "MongoDbSource",
+                        "query": "$$Text.Format('select * from  MyTable where LastModifiedDate >= {{ts\'{0:yyyy-MM-dd HH:mm:ss}\'}} AND LastModifiedDate < {{ts\'{1:yyyy-MM-dd HH:mm:ss}\'}}', WindowStart, WindowEnd)"
                     },
-                    "inputs": [
-                        {
-                            "name": "MongoDbInputDataset"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "name": "AzureBlobOutputDataSet"
-                        }
-                    ],
-                    "policy": {
-                        "timeout": "01:00:00",
-                        "concurrency": 1
-                    },
-                    "scheduler": {
-                        "frequency": "Hour",
-                        "interval": 1
-                    },
-                    "name": "MongoDBToAzureBlob"
-                }
-            ],
-            "start": "2016-06-01T18:00:00Z",
-            "end": "2016-06-01T19:00:00Z"
-        }
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 0,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "MongoDbInputDataset"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "AzureBlobOutputDataSet"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1
+                },
+                "scheduler": {
+                    "frequency": "Hour",
+                    "interval": 1
+                },
+                "name": "MongoDBToAzureBlob"
+            }
+        ],
+        "start": "2016-06-01T18:00:00Z",
+        "end": "2016-06-01T19:00:00Z"
     }
-
+}
+```
 
 ## <a name="linked-service-properties"></a>連結服務屬性
 下表提供 **OnPremisesMongoDB** 連結服務專屬 JSON 元素的描述。
