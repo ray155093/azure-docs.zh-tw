@@ -1,12 +1,12 @@
 ---
-title: 在 Azure AD 網域服務中設定安全的 LDAP (LDAPS) | Microsoft Docs
-description: 針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)
+title: "在 Azure AD Domain Services 中設定安全的 LDAP (LDAPS) | Microsoft Docs"
+description: "針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)"
 services: active-directory-ds
-documentationcenter: ''
+documentationcenter: 
 author: mahesh-unnikrishnan
 manager: stevenpo
 editor: curtand
-
+ms.assetid: c6da94b6-4328-4230-801a-4b646055d4d7
 ms.service: active-directory-ds
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/21/2016
 ms.author: maheshu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 53cf596d1c1df77872696f2a55363cf3a83d5efe
+
 
 ---
-# <a name="configure-secure-ldap-(ldaps)-for-an-azure-ad-domain-services-managed-domain"></a>針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)
+# <a name="configure-secure-ldap-ldaps-for-an-azure-ad-domain-services-managed-domain"></a>針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)
 本文說明如何為 Azure AD 網域服務受管理網域啟用安全的輕量型目錄存取通訊協定 (LDAPS)。 安全的 LDAP 亦稱為「透過安全通訊端層 (SSL)/傳輸層安全性 (TLS) 的輕量型目錄存取通訊協定 (LDAP)」。
 
 ## <a name="before-you-begin"></a>開始之前
@@ -49,7 +53,7 @@ ms.author: maheshu
 * 從憑證授權單位取得憑證。 授權單位可能是您組織的企業 CA 或公共憑證授權單位。
 * 建立自我簽署憑證。
 
-### <a name="option-a-(recommended)---obtain-a-secure-ldap-certificate-from-a-certification-authority"></a>選項 A (建議選項) - 從憑證授權單位取得安全的 LDAP 憑證
+### <a name="option-a-recommended---obtain-a-secure-ldap-certificate-from-a-certification-authority"></a>選項 A (建議選項) - 從憑證授權單位取得安全的 LDAP 憑證
 如果您的組織部署企業公開金鑰基礎結構 (PKI)，您必須從組織的企業憑證授權單位 (CA) 取得憑證。 如果您的組織從公共憑證授權單位取得其憑證，您必須從該公共憑證授權單位取得安全的 LDAP 憑證。
 
 在要求憑證時，請務必遵循 [安全 LDAP 憑證的需求](#requirements-for-the-secure-ldap-certificate)中所述的需求。
@@ -79,7 +83,7 @@ ms.author: maheshu
 
 新建立的自我簽署憑證會放在本機電腦的憑證存放區中。
 
-## <a name="task-2---export-the-secure-ldap-certificate-to-a-.pfx-file"></a>工作 2 - 將安全的 LDAP 憑證匯出到 .PFX 檔案
+## <a name="task-2---export-the-secure-ldap-certificate-to-a-pfx-file"></a>工作 2 - 將安全的 LDAP 憑證匯出到 .PFX 檔案
 在開始這項工作之前，請先確定您已從您的企業憑證授權單位或公共憑證授權單位取得安全的 LDAP 憑證，或已建立自我簽署憑證。
 
 執行下列步驟，將 LDAPS 憑證匯出到 .PFX 檔案。
@@ -225,6 +229,9 @@ ms.author: maheshu
 ## <a name="related-content"></a>相關內容
 * [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域)](active-directory-ds-admin-guide-administer-domain.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 
