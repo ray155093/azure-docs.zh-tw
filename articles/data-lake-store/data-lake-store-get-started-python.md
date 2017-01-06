@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/29/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 8be210664540fc8294ea70271f037d168b328c9d
-ms.openlocfilehash: dc604f98eacec8d52c2849452bc3df34ef7634af
+ms.sourcegitcommit: f29f36effd858f164f7b6fee8e5dab18211528b3
+ms.openlocfilehash: 6f724576badb7cf3625a139c416860b7e43ed036
 
 
 ---
@@ -47,7 +47,7 @@ ms.openlocfilehash: dc604f98eacec8d52c2849452bc3df34ef7634af
 
 ## <a name="install-the-modules"></a>安裝模組
 
-若要使用 Python 來使用 Data Lake Store，您需要安裝兩個模組。
+若要透過 Python 使用 Data Lake Store，您需要安裝三個模組。
 
 * `azure-mgmt-resource` 模組。 這包括適用於 Active Directory 等等的 Azure 模組。
 * `azure-mgmt-datalake-store` 模組。 這包括 Azure Data Lake Store 帳戶管理作業。 如需關於此模組的詳細資訊，請參閱 [Azure Data Lake Store Management module reference (Azure Data Lake Store 管理模組參考)](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html)。
@@ -207,6 +207,6 @@ pip install azure-datalake-store
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO1-->
 
 

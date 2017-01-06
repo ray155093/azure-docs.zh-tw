@@ -69,7 +69,7 @@
 ## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [Azure CLI](/cli/azure/vm)
 ## [Java](/java/api)
-## [製作 Resource Manager 範本](../../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+## [製作 Resource Manager 範本](../../../azure-resource-manager/resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ## [社群範本](https://azure.microsoft.com/documentation/templates)
 ## [計算 REST](/rest/api/compute)
 ## [網路 REST](/rest/api)
@@ -83,6 +83,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=virtual-machines)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

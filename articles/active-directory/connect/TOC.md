@@ -80,6 +80,7 @@
 
 
 # 相關參考
+## [在雲端中監視內部部署身分識別基礎結構和同步處理服務。](../connect-health/active-directory-aadconnect-health.md)
 ## [混合式身分識別設計指南](https://azure.microsoft.com/documentation/articles/active-directory-hybrid-identity-design-considerations-overview/)
 
 
@@ -88,6 +89,6 @@
 ##[DirSync 淘汰](active-directory-aadconnect-dirsync-deprecated.md)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

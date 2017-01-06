@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 08/09/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 890ca8d9b7a3a76c6584f9d06cc8bdf3b36f87c0
+ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
+ms.openlocfilehash: 1f7a1f6f4cc970cf12851e48d0f1b3c6ae46279c
 
 
 ---
@@ -77,7 +77,7 @@ SQL Database 使用防火牆規則以允許連接到您的伺服器和資料庫�
 若要了解如何瀏覽至資料庫，請參閱 [管理資料庫存取與登入安全性](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
 
 ## <a name="additional-resources"></a>其他資源
-* [保護您的資料庫](sql-database-security.md)
+* [保護您的資料庫](sql-database-security-overview.md)
 * [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
 
 <!--Image references-->
@@ -87,6 +87,6 @@ SQL Database 使用防火牆規則以允許連接到您的伺服器和資料庫�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

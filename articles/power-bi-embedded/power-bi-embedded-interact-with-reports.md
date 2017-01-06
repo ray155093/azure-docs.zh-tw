@@ -16,8 +16,8 @@ ms.workload: powerbi
 ms.date: 10/04/2016
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 83d997577d3a5854eafd9906bd38d3e703c09f5e
+ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
+ms.openlocfilehash: 28eddb52c33d9883219f146480b110574f728f89
 
 
 ---
@@ -26,18 +26,18 @@ Power BI JavaScript API 可讓您輕鬆地將 Power BI 報告內嵌到您的應�
 
 您可使用應用程式中裝載的 iframe，在應用程式中內嵌 Power BI 報告。 如下圖所示，iframe 可做為應用程式與報告之間的界限。 
 
-![不具 JavaScript API 的 Power BI Embedded iframe](media\\powerbi-embedded-interact-with-reports\\powerbi-embedded-interact-report-1.png)
+![不具 JavaScript API 的 Power BI Embedded iframe](media/powerbi-embedded-interact-with-reports/powerbi-embedded-interact-report-1.png)
 
 iframe 可以讓內嵌程序變得簡單多了，但是若沒有 JavaScript API，報告和應用程式便無法彼此互動。 欠缺這種互動會讓您覺得報告其實不是應用程式的一部分。 報告和應用程式真的需要往來通訊，如下圖所示。
 
-![具有 JavaScript API 的 Power BI Embedded iframe](media\\powerbi-embedded-interact-with-reports\\powerbi-embedded-interact-report-2.png)
+![具有 JavaScript API 的 Power BI Embedded iframe](media/powerbi-embedded-interact-with-reports/powerbi-embedded-interact-report-2.png)
 
 Power BI JavaScript API 可讓您撰寫可安全地通過 iframe 界限的程式碼。 這可讓應用程式以程式設計方式在報告中執行動作，以及從使用者在報告中所進行的動作接聽事件。
 
 ## <a name="what-can-you-do-with-the-power-bi-javascript-api"></a>您可以使用 Power BI JavaScript API 來做什麼？
 利用 JavaScript API，您可以管理報告、瀏覽至報告中的頁面、篩選報告，以及處理內嵌事件。 下圖顯示 API 的結構。
 
-![Power BI JavaScript API 圖表](media\\powerbi-embedded-interact-with-reports\\powerbi-embedded-interact-report-3.png)
+![Power BI JavaScript API 圖表](media/powerbi-embedded-interact-with-reports/powerbi-embedded-interact-report-3.png)
 
 ### <a name="manage-reports"></a>管理報告
 Javascript API 可讓您管理報告和頁面層級的行為︰
@@ -139,6 +139,6 @@ const advancedFilter: pbi.models.IAdvancedFilter = {
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

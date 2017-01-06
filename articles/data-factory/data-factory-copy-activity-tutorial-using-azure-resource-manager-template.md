@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 10/10/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: d175d3d4d7d7a58f071dab0f32e3fdd3cb3146ce
-ms.openlocfilehash: 8020a4863f0432480dd985870676a714d9abd52e
+ms.sourcegitcommit: ebc5dbf790ca6012cfe9a7ea9ccee9fdacb46ffd
+ms.openlocfilehash: 9ad4378ab27433858d14237fe451b16690711f3a
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: 8020a4863f0432480dd985870676a714d9abd52e
 ## <a name="prerequisites"></a>必要條件
 * 請檢閱[教學課程概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)並完成**必要**步驟。
 * 按照 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。 在本教學課程中，您可以使用 PowerShell 來部署 Data Factory 實體。 
-* (選擇性) 若要了解 Azure Resource Manager 範本，請參閱 [撰寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md) 。
+* (選擇性) 若要了解 Azure Resource Manager 範本，請參閱 [撰寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md) 。
 
 ## <a name="in-this-tutorial"></a>本教學課程內容
 在本教學課程中，您可以利用下列 Data Factory 實體建立資料處理站︰
@@ -583,6 +583,6 @@ New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFT
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

@@ -17,13 +17,13 @@ ms.workload: na
 ms.date: 05/18/2016
 ms.author: vybavar
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cada217a967597ecb44d84c469367157c7bc785e
+ms.sourcegitcommit: a9b48f149427e5ceb69bcaa97b1bf08519499b6f
+ms.openlocfilehash: 01657619cbe579c6818a790cc3ab95a33936a565
 
 
 ---
 # <a name="get-started-with-private-templates-on-the-azure-portal"></a>開始在 Azure 入口網站上使用私人範本
-[Azure Resource Manager](../resource-group-authoring-templates.md) 範本是用來定義您的部署的宣告式範本。 您可以定義要對解決方案部署的資源，並指定可讓您針對不同環境輸入值的參數和變數。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
+[Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) 範本是用來定義您的部署的宣告式範本。 您可以定義要對解決方案部署的資源，並指定可讓您針對不同環境輸入值的參數和變數。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
 
 您可以在 [Azure 入口網站](https://portal.azure.com)中使用的新 [範本] 功能，並以 **Microsoft.Gallery** 資源提供者作為 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 的擴充功能，讓使用者得以從個人程式庫建立、管理和部署私人範本。
 
@@ -35,16 +35,16 @@ ms.openlocfilehash: cada217a967597ecb44d84c469367157c7bc785e
 * **範本** 是一項封裝資源，其中包含 Resource Manager 範本和其他中繼資料。 其操作方式非常類似 Marketplace 中的項目。 主要差別在於它是私人項目 (相對於公用 Marketplace 項目)。
 * **範本** 程式庫適用於需要自訂其部署的使用者。
 * **範本** 適用於在 Azure 中需要簡單儲存機制的使用者。
-* 開始使用現有的 Resource Manager 範本。 在 [github](https://github.com/Azure/azure-quickstart-templates) 中尋找範本，或從現有資源群組[匯出範本](../resource-manager-export-template.md)。
+* 開始使用現有的 Resource Manager 範本。 在 [github](https://github.com/Azure/azure-quickstart-templates) 中尋找範本，或從現有資源群組[匯出範本](../azure-resource-manager/resource-manager-export-template.md)。
 * **範本** 會繫結至發佈它們的使用者。 每個具有範本讀取權限的使用者都可以看到發佈者名稱。
 * **範本** 是 Resource Manager 資源，一旦發佈便無法重新命名。
 
 ## <a name="add-a-template-resource"></a>新增範本資源
 在 Azure 入口網站中建立 **範本** 資源的方法有兩種。
 
-### <a name="method-1-create-a-new-template-resource-from-a-running-resource-group"></a>方法 1︰從執行中的資源群組建立新的範本資源
+### <a name="method-1--create-a-new-template-resource-from-a-running-resource-group"></a>方法 1︰從執行中的資源群組建立新的範本資源
 1. 瀏覽至 Azure 入口網站上的現有資源群組。 在 [設定] 中選取 [匯出範本]。
-2. 匯出 Resource Manager 範本後，使用 [儲存範本] 按鈕將它儲存到 [範本] 儲存機制。 在 [這裡](../resource-manager-export-template.md)尋找匯出範本的完整詳細資料。
+2. 匯出 Resource Manager 範本後，使用 [儲存範本] 按鈕將它儲存到 [範本] 儲存機制。 在 [這裡](../azure-resource-manager/resource-manager-export-template.md)尋找匯出範本的完整詳細資料。
    <br /><br />
    ![資源群組匯出](media/rg-export-portal1.PNG)  <br />
 3. 選取 [儲存至範本]  命令按鈕。
@@ -62,7 +62,7 @@ ms.openlocfilehash: cada217a967597ecb44d84c469367157c7bc785e
    > 
    > 
 
-### <a name="b-method-2-add-a-new-template-resource-from-browse"></a>B. 方法 2 ︰從瀏覽加入新的範本資源
+### <a name="method-2--add-a-new-template-resource-from-browse"></a>方法 2 ︰從瀏覽加入新的範本資源
 您也可以在 [瀏覽] > [範本] 中使用 [+新增] 命令按鈕，從頭新增**範本**。 您必須提供 [名稱]、[說明] 和 Resource Manager 範本 JSON。
 
 ![新增範本](media/add-template-portal1.PNG)  <br />
@@ -129,13 +129,13 @@ ms.openlocfilehash: cada217a967597ecb44d84c469367157c7bc785e
 > 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要了解如何建立 Resource Manager 範本，請參閱 [撰寫範本](../resource-group-authoring-templates.md)
-* 若要了解您可用於 Resource Manager 範本中的函數，請參閱 [範本函式](../resource-group-template-functions.md)
-* 如需設計範本的指引，請參閱 [設計 Azure 資源管理員範本的最佳做法](../best-practices-resource-manager-design-templates.md)
+* 若要了解如何建立 Resource Manager 範本，請參閱 [撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)
+* 若要了解您可用於 Resource Manager 範本中的函數，請參閱 [範本函式](../azure-resource-manager/resource-group-template-functions.md)
+* 如需設計範本的指引，請參閱 [設計 Azure 資源管理員範本的最佳做法](../azure-resource-manager/best-practices-resource-manager-design-templates.md)
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

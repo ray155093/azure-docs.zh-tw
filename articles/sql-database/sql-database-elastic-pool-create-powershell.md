@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 建立新的彈性資料庫集區 | Microsoft Docs"
-description: "了解如何藉由建立可調整的彈性資料庫集區來管理多個資料庫，進而使用 PowerShell 來相應放大Azure SQL Database 資源。"
+title: "使用 PowerShell 建立新的彈性集區 | Microsoft Docs"
+description: "了解如何藉由建立可調整的彈性集區來管理多個資料庫，進而使用 PowerShell 來相應放大Azure SQL Database 資源。"
 services: sql-database
 documentationcenter: 
 author: srinia
@@ -8,6 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 37a707ee-9223-43ae-8c35-1ccafde8b83e
 ms.service: sql-database
+ms.custom: multiple databases
 ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: powershell
@@ -15,38 +16,38 @@ ms.workload: data-management
 ms.date: 05/27/2016
 ms.author: srinia
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: daf8bd6421ae563e542b0874a6e7748a3ca52738
+ms.sourcegitcommit: 6c8420a154d998aa95c0220049ee54b3039a872b
+ms.openlocfilehash: 679cdacc3782f667635a586df4cd77a9af7884d9
 
 
 ---
-# <a name="create-a-new-elastic-database-pool-with-powershell"></a>使用 PowerShell 建立新的彈性資料庫集區
+# <a name="create-a-new-elastic-pool-with-powershell"></a>使用 PowerShell 建立新的彈性集區
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-pool-create-portal.md)
 > * [PowerShell](sql-database-elastic-pool-create-powershell.md)
 > * [C#](sql-database-elastic-pool-create-csharp.md)
-> 
-> 
+>
+>
 
-了解如何使用 PowerShell Cmdlet 建立 [彈性資料庫集區](sql-database-elastic-pool.md) 。 
+了解如何使用 PowerShell Cmdlet 建立[彈性集區](sql-database-elastic-pool.md)
 
 如需常見的錯誤碼，請參閱 [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md)。
 
 > [!NOTE]
 > 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部和印度西部除外，在這些區域目前是提供預覽版。  我們將儘速在這些區域提供彈性集區的 GA。 此外，彈性集區目前不支援使用 [記憶體內部 OLTP 或記憶體內部分析](sql-database-in-memory.md)的資料庫。
-> 
-> 
+>
+>
 
-您必須是執行 Azure PowerShell 1.0 或更高版本。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+您必須是執行 Azure PowerShell 1.0 或更高版本。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="create-a-new-pool"></a>建立新的集區
-[New-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt619378\(v=azure.300\).aspx) Cmdlet 會建立新集區。 每個集區的 eDTU 值、最小和最大 Dtu 會受限於服務層值 (基本、標準或進階)。 請參閱 [彈性集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases)。
+[New-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt619378\(v=azure.300\).aspx) Cmdlet 會建立新集區。 每個集區的 eDTU 值、最小和最大 Dtu 會受限於服務層值 (基本、標準或進階)。 請參閱 [彈性集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)。
 
     New-AzureRmSqlElasticPool -ResourceGroupName "resourcegroup1" -ServerName "server1" -ElasticPoolName "elasticpool1" -Edition "Standard" -Dtu 400 -DatabaseDtuMin 10 -DatabaseDtuMax 100
 
 
 ## <a name="create-a-new-elastic-database-in-a-pool"></a>在集區中建立新的彈性資料庫
-使用 [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619339\(v=azure.300\).aspx) Cmdlet，並將 **ElasticPoolName** 參數設定為目標集區。 若要將現有的資料庫移入集區，請參閱 [將資料庫移入彈性集區](sql-database-elastic-pool-manage-powershell.md#Move-a-database-into-an-elastic-pool)。
+使用 [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619339\(v=azure.300\).aspx) Cmdlet，並將 **ElasticPoolName** 參數設定為目標集區。 若要將現有的資料庫移入集區，請參閱 [將資料庫移入彈性集區](sql-database-elastic-pool-manage-powershell.md#move-a-database-into-an-elastic-pool)。
 
     New-AzureRmSqlDatabase -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
 
@@ -83,7 +84,6 @@ ms.openlocfilehash: daf8bd6421ae563e542b0874a6e7748a3ca52738
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

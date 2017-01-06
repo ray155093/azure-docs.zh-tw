@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: b905aa65f46f601121b6774a633e72152e8ef80a
+ms.sourcegitcommit: 6fb71859d0ba2e0f2b39d71edd6d518b7a03bfe9
+ms.openlocfilehash: 1d92c9a2dfae4a209ea95a33facd4b8e058fd866
 
 
 ---
@@ -260,7 +260,7 @@ namespace SqlElasticPoolConsoleApp
 
 
 ## <a name="create-a-service-principal-to-access-resources"></a>建立用來存取資源的服務主體
-下列 PowerShell 指令碼會建立 Active Directory (AD) 應用程式以及驗證 C# 應用程式所需的服務主體。 指令碼會輸出先前 C# 範例所需的值。 如需詳細資訊，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../resource-group-authenticate-service-principal.md)。
+下列 PowerShell 指令碼會建立 Active Directory (AD) 應用程式以及驗證 C# 應用程式所需的服務主體。 指令碼會輸出先前 C# 範例所需的值。 如需詳細資訊，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
     # Sign in to Azure.
     Add-AzureRmAccount
@@ -315,6 +315,6 @@ namespace SqlElasticPoolConsoleApp
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

@@ -13,11 +13,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/13/2016
+ms.date: 11/15/2016
 ms.author: guybo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7d833b7aaab8680d555f6503ec27994134a2519d
+ms.sourcegitcommit: 6fb71859d0ba2e0f2b39d71edd6d518b7a03bfe9
+ms.openlocfilehash: 4a2cd02f6f9b6ac51c32314ce892e572e569eb7c
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 7d833b7aaab8680d555f6503ec27994134a2519d
 ## <a name="creating-and-managing-vm-scale-sets"></a>建立和管理 VM 調整集
 您可以在 [Azure 入口網站](https://portal.azure.com)中選取 [新增]，並在搜尋列中輸入「調整」來建立 VM 擴展集。 您將會在結果中看到「虛擬機器擴展集」。 您可以在這裡填寫必要的欄位，以自訂和部署您的擴展集。 
 
-VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/library/mt589023.aspx) 來定義和部署，如同個別的 Azure Resource Manager VM 一樣。 因此，您可以使用任何標準 Azure 資源管理員部署方法。 如需範本的詳細資訊，請參閱 [編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
+VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/library/mt589023.aspx) 來定義和部署，如同個別的 Azure Resource Manager VM 一樣。 因此，您可以使用任何標準 Azure 資源管理員部署方法。 如需範本的詳細資訊，請參閱 [編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 在 Azure 快速入門範本 GitHub 儲存機制[這裡](https://github.com/Azure/azure-quickstart-templates)可以找到 VM 擴展集的範例範本集  (尋找標題中包含 vmss 的範本)
 
@@ -50,9 +50,9 @@ VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com
 若要逐步完成相關步驟以建立會自動調整的調整集，請參閱 [在虛擬機器調整集中自動調整機器](virtual-machine-scale-sets-windows-autoscale.md)
 
 ## <a name="monitoring-your-vm-scale-set"></a>監視 VM 調整集
-[Azure 入口網站](https://portal.azure.com) 會列出擴展集，並顯示基本屬性以及擴展集中的 VM 清單。 如需詳細資訊，可使用 [Azure 資源總管](https://resources.azure.com) 來檢視 VM 擴展集。 VM 調整集是 Microsoft.Compute 之下的一項資源，因此您可以展開下列連結，從這個網站加以檢視：
+[Azure 入口網站](https://portal.azure.com)會列出擴展集，並顯示基本屬性以及作業，包括擴展集中的 VM 清單和資源使用圖。 如需詳細資訊，可使用 [Azure 資源總管](https://resources.azure.com) 來檢視 VM 擴展集。 VM 調整集是 Microsoft.Compute 之下的一項資源，因此您可以展開下列連結，從這個網站加以檢視：
 
-    subscriptions -> your subscription -> resourceGroups -> providers -> Microsoft.Compute -> virtualMachineScaleSets -> your VM scale set -> etc.
+**訂用帳戶 -> 您的訂用帳戶 -> resourceGroups -> 提供者 -> Microsoft.Compute -> virtualMachineScaleSets -> 您的 VM 擴展集 -> 等等**
 
 ## <a name="vm-scale-set-scenarios"></a>VM 調整集案例
 本節列出一些典型的 VM 調整集案例。 某些較高階的 Azure 服務 (例如 Batch、Service Fabric、Azure 容器服務) 也會使用這些案例。
@@ -71,15 +71,15 @@ VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com
    以下是使用 RDP 和 Windows 執行相同作業的範例： [https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-nat](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-nat)
 * **使用 Jumpbox 連接到 VM** - 如果您在相同的 VNET 中建立 VM 調整集和獨立 VM，獨立 VM 與 VMSS VM 將可使用 VNET/子網路為它們定義的內部 IP 位址彼此連接。 如果您建立公用 IP 位址，並將它指派給獨立 VM，您可以透過 RDP 或 SSH 連接到獨立 VM，然後從該部機器連接到 VM 調整集執行個體。 此時您可能會發現，簡易 VM 調整集在本質上比在預設組態中設定了公用 IP 位址的獨立 VM 來得安全。
   
-   [為了提供此方法的範例，此範本建立了一個簡易 Mesos 叢集，其中包含一個獨立的主要 VM，用來管理 VM 的 VM 擴展集架構叢集。](https://github.com/gbowerman/azure-myriad/blob/master/mesos-vmss-simple-cluster.json)
+   例如，此範本會部署具有獨立 VM 設定的簡單擴展集︰[https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-jumpbox](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-jumpbox)
 * **對 VM 擴展集執行個體進行負載平衡** - 如果您想要使用「循環配置資源」方法來將工作傳送到 VM 的計算叢集，您可以使用負載平衡規則據以設定 Azure 負載平衡器。 您可以定義探查，藉由使用指定的通訊協定、間隔和要求路徑對連接埠執行 ping，以驗證您的應用程式正在執行中。 Azure [應用程式閘道](https://azure.microsoft.com/services/application-gateway/) 也支援擴展集，以及更複雜的負載平衡案例。
   
-   [以下範例會為執行 IIS Web 伺服器的 VM 建立一個 VM 擴展集，並使用負載平衡器來平衡每個 VM 所接收到的負載。此外也會使用 HTTP 通訊協定對每個 VM 的特定 URL 執行 ping。](https://github.com/gbowerman/azure-myriad/blob/master/vmss-win-iis-vnet-storage-lb.json)(請查看 Microsoft.Network/loadBalancers 資源類型，以及 virtualMachineScaleSet 中的 networkProfile 和 extensionProfile。) (look at the Microsoft.Network/loadBalancers resource type and the networkProfile and extensionProfile in the virtualMachineScaleSet)
-* **在 PaaS 叢集管理員中，將 VM 調整集部署為計算叢集** - VM 調整集有時會被稱為新一代的背景工作角色。 雖然這可說是有效的說明，但也可能導致調整集功能與 PaaS v1 背景工作角色功能令人混淆。 就某方面來說，VM 調整集提供了真正的「背景工作角色」或背景工作資源，因為它們提供了不會隨平台/執行階段而改變、可自訂且整合至 Azure 資源管理員 IaaS 的一般化計算資源。
+   以下範例會建立執行 Apache Web 伺服器的 VM 擴展集，並使用負載平衡器來收集每個 VM 收到的負載︰[https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-ubuntu-web-ssl](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-ubuntu-web-ssl) (請看 Microsoft.Network/loadBalancers 資源類型以及 virtualMachineScaleSet 中的 networkProfile 和 extensionProfile )。
+* **在 PaaS 叢集管理員中，將 VM 調整集部署為計算叢集** - VM 調整集有時會被稱為新一代的背景工作角色。 雖然這可說是有效的說明，但可能會導致擴展集功能與 PaaS v1 背景工作角色功能的混淆。 就某方面來說，VM 調整集提供了真正的「背景工作角色」或背景工作資源，因為它們提供了不會隨平台/執行階段而改變、可自訂且整合至 Azure 資源管理員 IaaS 的一般化計算資源。
   
    PaaS v1 背景工作角色雖然在平台/執行階段支援方面有所限制 (僅限 Windows 平台映像)，但也包含像是 VIP 交換、可設定的升級設定、執行階段/應用程式部署的特定設定等服務，但這些服務「尚未」成為 VM 調整集內的可用項目，或將在其他較高階的 PaaS 服務 (如 Service Fabric) 中提供。 了解這一點之後，您可以將 VM 調整集視為支援 PaaS 的基礎結構。 亦即 PaaS 解決方案 (如 Service Fabric) 或叢集管理員 (如 Mesos) 可以建置在 VM 調整集之上，作為可調整的計算層。
   
-   [為了提供此方法的範例，此範本建立了一個簡易 Mesos 叢集，其中包含一個獨立的主要 VM，用來管理 VM 的 VM 擴展集架構叢集。](https://github.com/gbowerman/azure-myriad/blob/master/mesos-vmss-simple-cluster.json) 未來的 [Azure 容器服務](https://azure.microsoft.com/blog/azure-container-service-now-and-the-future/) 版本將根據 VM 調整集，為此案例部署更複雜/強化的版本。
+   如需這個方法的範例，Azure Container Service 會根據具有容器協調器的擴展集來部署叢集：[https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos)。
 
 ## <a name="vm-scale-set-performance-and-scale-guidance"></a>VM 調整集的效能和調整指南
 * 請不要同時在多個 VM 調整集內建立 500 個以上的 VM。
@@ -100,7 +100,7 @@ VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com
 
 **問：**  在 VM 調整集內是否支援資料磁碟？
 
-**答：**  在初始版本中不支援。 您的資料儲存選項包括：
+**答：** 不是在初始版本中 (雖然目前在預覽版中可使用資料磁碟)。 您的資料儲存選項包括：
 
 * Azure 檔案 (SMB 共用磁碟機)
 * OS 磁碟機
@@ -148,6 +148,6 @@ VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 
