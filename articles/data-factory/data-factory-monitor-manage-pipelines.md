@@ -279,6 +279,7 @@ Azure Data Factory 透過 Azure 入口網站和 Azure PowerShell 提供許多功
     ```powershell
     Save-AzureRmDataFactoryLog -ResourceGroupName "ADF" -DataFactoryName "LogProcessingFactory" -Id "841b77c9-d56c-48d1-99a3-8c16c3e77d39" -DownloadLogs -Output "C:\Test"
     ```
+
 ## <a name="rerun-failures-in-a-pipeline"></a>重新執行管線中的失敗
 ### <a name="using-azure-portal"></a>使用 Azure 入口網站
 一旦您對管線中的失敗進行疑難排解和偵錯，您可以瀏覽到錯誤配量並按一下命令列上的 [執行]  按鈕，重新執行失敗。
