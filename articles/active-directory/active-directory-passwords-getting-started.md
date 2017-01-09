@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 10/05/2016
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: 4e2508883998b1435d7c4f099bd6ef0e00bd885e
-ms.openlocfilehash: 4f9127ca06668884e6b6f5dbc81aad0a2b1ea9df
+ms.sourcegitcommit: e2e5c302d04a41386bfc98dd4e3f8546265dd9f3
+ms.openlocfilehash: e686952a7363e4758f8a3532b54cf5e7f05ce865
 
 
 ---
@@ -236,7 +236,7 @@ ms.openlocfilehash: 4f9127ca06668884e6b6f5dbc81aad0a2b1ea9df
 #### <a name="to-enable-password-writeback-using-windows-powershell"></a>使用 Windows PowerShell 啟用密碼回寫
 1. 在您的 [目錄同步處理電腦] 中，開啟新的 [提升權限的 Windows PowerShell 視窗]。
 2. 如果尚未載入模組，輸入 `import-module ADSync` 命令以將 Azure AD Connect Cmdlet 載入到您目前的工作階段。
-3. 取得您的系統中的 AAD 連接器清單，方法是執行 `Get-ADSyncConnector` Cmdlet，並將結果儲存在 `$aadConnectorName`，例如 `$connectors = ADSyncConnector|where-object {$\_.name -like "\*AAD"}`
+3. 取得您的系統中的 AAD 連接器清單，方法是執行 `Get-ADSyncConnector` Cmdlet，並將結果儲存在 `$aadConnectorName`，例如 `$connectors = Get-ADSyncConnector|where-object {$\_.name -like "\*AAD"}`
 4. 若要取得目前連接器的回寫的目前狀態，請執行下列 Cmdlet：`Get-ADSyncAADPasswordResetConfiguration –Connector $aadConnectorName.name`
 5. 執行下列 Cmdlet，以啟用密碼回寫：`Set-ADSyncAADPasswordResetConfiguration –Connector $aadConnectorName.name –Enable $true`
 
@@ -393,6 +393,6 @@ ms.openlocfilehash: 4f9127ca06668884e6b6f5dbc81aad0a2b1ea9df
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

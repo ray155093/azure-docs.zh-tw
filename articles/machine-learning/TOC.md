@@ -173,8 +173,7 @@
 #### [Marketplace 常見問題集](machine-learning-marketplace-faq.md)
 
 # 參考
-## [PowerShell](/azure/machine-learning/machine-learning-powershell-module)
-## [適用於 Machine Learning 的 PowerShell 模組](machine-learning-powershell-module.md)
+## [PowerShell](machine-learning-powershell-module.md)
 ## [演算法和模組參考](https://msdn.microsoft.com/library/azure/dn905974.aspx)
 ## [REST](/rest/api/machinelearning)
 
@@ -223,6 +222,6 @@
 ## [從即時聊天取得協助](machine-learning-live-chat.md)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

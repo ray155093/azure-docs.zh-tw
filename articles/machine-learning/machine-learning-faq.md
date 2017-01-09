@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 10/26/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 36fd6b01dae6aa9a48985a252766d3f2d0b19342
+ms.sourcegitcommit: c5479dd817e8929ff5e9129d4643d49758e7ab16
+ms.openlocfilehash: 82d4d74a14ec31453f0d3eb9a18140c3569f806c
 
 
 ---
@@ -289,9 +289,6 @@ Machine Learning Studio 依賴使用者提供的 Azure 儲存體帳戶，才能�
 
 如果您變更了儲存體帳戶存取金鑰，請使用 Azure 傳統入口網站在工作區中重新同步處理存取金鑰。  
 
-## <a name="azure-marketplace"></a>Azure Marketplace
-請參閱 [在 Machine Learning Marketplace 中發佈和使用應用程式的常見問題集](machine-learning-marketplace-faq.md)。
-
 ## <a name="support-and-training"></a>支援和訓練
 **哪裡可以取得 Azure Machine Learning 的訓練？**
 
@@ -332,7 +329,7 @@ Azure Machine Learning 服務有兩個元件。 Machine Learning Studio 與 Mach
 
  Azure Machine Learning 有免費的訂用帳戶選項 (請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)以取得詳細資訊)，Machine Learning Studio 則有 8 小時的快速評估試用版可供使用 (登入 [Machine Learning Studio](https://studio.azureml.net/?selectAccess=true&o=2) 以取得此試用)。
 
- 此外，註冊 Azure 免費試用版後，您可以試用任何 Azure 服務一個月。 若要深入了解 Azure 免費試用版，請造訪 [Azure 免費試用常見問題集](/pricing/free-trial-faq/)。
+ 此外，註冊 Azure 免費試用版後，您可以試用任何 Azure 服務一個月。 若要深入了解 Azure 免費試用版，請造訪 [Azure 免費試用常見問題集](https://azure.microsoft.com/pricing/free-trial-faq/)。
 
 **什麼是交易？**
 
@@ -432,7 +429,7 @@ Azure ML 的新 Web 服務提供多個層級供您佈建計費方案。 開發/�
 
 是。 不同區域有不同的方案價格。 當您將 Web 服務部署到其他區域時，您必須對服務指派該區域特定的方案。
 
-### <a name="new-web-services-overages"></a>新的 Web 服務 - 超額
+### <a name="new-web-services---overages"></a>新的 Web 服務 - 超額
 **如何檢查 Web 服務使用量是否超額？**
 
 您可以在 Azure Machine Learning Web 服務入口網站的 [方案] 頁面，檢視所有方案的使用量。 請登入該入口網站，然後按一下 [方案] 功能表選項。
@@ -545,6 +542,6 @@ Azure ML API 服務會根據它是傳統 Web 服務還是新的 Web 服務來收
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

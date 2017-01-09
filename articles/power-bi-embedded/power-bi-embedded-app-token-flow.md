@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 10/04/2016
+ms.date: 01/06/2017
 ms.author: asaxton
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -53,35 +53,35 @@ Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證
 
 範例應用程式權杖看起來像這樣：
 
-![](media\\power-bi-embedded-app-token-flow\\power-bi-embedded-app-token-flow-sample-coded.png)
+![](media/power-bi-embedded-app-token-flow/power-bi-embedded-app-token-flow-sample-coded.png)
 
 解碼時，看起來像這樣：
 
-![](media\\power-bi-embedded-app-token-flow\\power-bi-embedded-app-token-flow-sample-decoded.png)
+![](media/power-bi-embedded-app-token-flow/power-bi-embedded-app-token-flow-sample-decoded.png)
 
 ## <a name="heres-how-the-flow-works"></a>以下是流程的運作方式
 1. 將 API 金鑰複製到您的應用程式。 您可以在 **Azure 入口網站**取得金鑰。
    
-    ![](media\\powerbi-embedded-get-started-sample\\azure-portal.png)
+    ![](media/powerbi-embedded-get-started-sample/azure-portal.png)
 2. 權杖判斷提示宣告，並有到期時間。
    
-    ![](media\\powerbi-embedded-get-started-sample\\power-bi-embedded-token-2.png)
+    ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-2.png)
 3. 以 API 存取金鑰簽署權杖。
    
-    ![](media\\powerbi-embedded-get-started-sample\\power-bi-embedded-token-3.png)
+    ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-3.png)
 4. 使用者要求檢視報告。
    
-    ![](media\\powerbi-embedded-get-started-sample\\power-bi-embedded-token-4.png)
+    ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-4.png)
 5. 以 API 存取金鑰驗證權杖。
    
-   ![](media\\powerbi-embedded-get-started-sample\\power-bi-embedded-token-5.png)
+   ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-5.png)
 6. Power BI Embedded 將報表傳送給使用者。
    
-   ![](media\\powerbi-embedded-get-started-sample\\power-bi-embedded-token-6.png)
+   ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-6.png)
 
 當 **Power BI Embedded** 將報表傳送給使用者之後，使用者就可以在您自訂的應用程式中檢視報表。 例如，如果您匯入了 [分析銷售資料 PBIX 範例](http://download.microsoft.com/download/1/4/E/14EDED28-6C58-4055-A65C-23B4DA81C4DE/Analyzing_Sales_Data.pbix)，範例 Web 應用程式看起來就會像這樣︰
 
-![](media\\powerbi-embedded-get-started-sample\\sample-web-app.png)
+![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Microsoft Power BI Embedded 範例](power-bi-embedded-get-started-sample.md)

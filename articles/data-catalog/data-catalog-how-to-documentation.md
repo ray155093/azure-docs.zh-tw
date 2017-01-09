@@ -31,17 +31,17 @@ ms.openlocfilehash: a869c52c3e3574e4ffc958a82daaa12b2f6cb6c1
 
 標記和描述非常適合用於簡單的註解。 不過，為了協助資料取用者深入了解資料來源的使用方式和資料來源的商務案例，專家可以提供完整而詳細的說明文件。 想要記載資料來源很容易。 請選取資料資產或容器，然後選擇 [說明文件] 。
 
-![](media\\data-catalog-documentation\\data-catalog-documentation.png)
+![](media/data-catalog-documentation/data-catalog-documentation.png)
 
 ## <a name="documenting-data-assets"></a>記載資料資產
 **Azure 資料目錄** 說明文件的優點可讓您使用資料目錄做為內容儲存機制，以建立完整的資料資產敘述。 您可以探索說明容器和資料表的詳細內容。 如果您在其他內容儲存機制 (例如 SharePoint 或檔案共用) 已有內容，您可以新增資產說明文件連結來參考此現有內容。 此功能可讓您更容易找到現有的說明文件。
 
 > [!NOTE]
 > 說明文件不會包含在搜尋索引中。
-> 
-> 
+>
+>
 
-![](media\\data-catalog-documentation\\data-catalog-documentation2.png)
+![](media/data-catalog-documentation/data-catalog-documentation2.png)
 
 說明文件層級的範圍可從描述資料資產容器的特性和值，到詳細描述容器內的資料表結構描述。 所提供的說明文件層級應以商務需求為準。 但一般來說，記載資料資產的優缺點如下︰
 
@@ -51,7 +51,6 @@ ms.openlocfilehash: a869c52c3e3574e4ffc958a82daaa12b2f6cb6c1
 
 ## <a name="summary"></a>摘要
 在 **Azure 資料目錄** 中記載資料來源可依所需詳細程度建立資料資產的相關敘述。  藉由使用連結，您可以連結至現有內容儲存機制中儲存的內容，以結合您現有的文件和資料資產。 一旦使用者找到合適的資料資產，就能取得一組完整的說明文件。
-
 
 
 

@@ -161,7 +161,7 @@
 ## REST
 ### [Blob、佇列、資料表和檔案](/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference)
 ### [資源提供者](/rest/api/storagerp)
-### [匯入/匯出](/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference)
+### [匯入/匯出](/rest/api/storageimportexport)
 
 # 相關參考
 ## 傳統入口網站
@@ -201,6 +201,6 @@
 ### [iOS](https://github.com/Azure/azure-storage-ios)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

@@ -39,9 +39,9 @@ Cortana Intelligence Gallery 中提供許多可擴充 Azure Machine Learning Stu
 ### <a name="comment-and-share"></a>註解和共用
  按一下任何自訂模組，以開啟模組的詳細資料頁面，並閱讀模組目的及其使用方式的相關資訊。 在此頁面上，您可以留言、提供意見反應，或透過留言區段提問。 您甚至可以使用 LinkedIn 或 Twitter 的分享功能，與朋友或同事分享該集合。 您也可以用電子郵件寄出自訂模組連結，以邀請其他使用者檢視該頁面。
 
-![與朋友分享此項目](media\\machine-learning-gallery-how-to-use-contribute-publish\\share-links.png)
+![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
-![新增您自己的留言](media\\machine-learning-gallery-how-to-use-contribute-publish\\comments.png)
+![新增您自己的留言](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="download"></a>下載
 您可以在自己的實驗中使用 Gallery 內的任何自訂模組。
@@ -55,7 +55,7 @@ Cortana Intelligence Gallery 中提供許多可擴充 Azure Machine Learning Stu
 1. 建立新實驗或開啟現有實驗
 2. 在實驗畫布左側的模組調色盤中，按一下 [自訂]展開工作區中的自訂模組清單
    
-    ![Studio 調色盤中的自訂模組清單](media\\machine-learning-gallery-custom-modules\\custom-module-in-studio-palette.png)
+    ![Studio 調色盤中的自訂模組清單](media/machine-learning-gallery-custom-modules/custom-module-in-studio-palette.png)
 3. 選取您匯入的模組，並將它拖曳至您的實驗
 
 ### <a name="from-the-gallery"></a>從 Gallery
@@ -64,7 +64,7 @@ Cortana Intelligence Gallery 中提供許多可擴充 Azure Machine Learning Stu
 1. 在 Gallery 中開啟模組的詳細資料頁面
 2. 按一下 [在 Studio 中開啟]
    
-    ![從 Gallery 開啟自訂模組](media\\machine-learning-gallery-custom-modules\\open-custom-module-from-gallery.png)
+    ![從 Gallery 開啟自訂模組](media/machine-learning-gallery-custom-modules/open-custom-module-from-gallery.png)
    
     每個自訂模組都包含示範如何使用模組的範例實驗。 當您按一下 [在 Studio 中開啟]，此範例實驗會載入到 Machine Learning Studio 工作區並加以開啟 (如果您尚未登入 Studio，系統會提示您先使用 Microsoft 帳戶登入，然後才會將實驗複製到工作區)。
 
@@ -77,7 +77,7 @@ Cortana Intelligence Gallery 中提供許多可擴充 Azure Machine Learning Stu
 2. 選取 [模組] - 隨即會顯示 Gallery 模組清單供您從中選擇，或者您也可以使用搜尋方塊尋找特定模組
 3. 將滑鼠游標指向某模組，然後選取 [匯入模組] (若要查看模組的相關資訊，請選取 [在 Gallery 中檢視]，然後您便會移至 Gallery 中模組的詳細資料頁面)
    
-    ![將自訂模組匯入 Machine Learning Studio](media\\machine-learning-gallery-custom-modules\\add-custom-module-in-studio.png)
+    ![將自訂模組匯入 Machine Learning Studio](media/machine-learning-gallery-custom-modules/add-custom-module-in-studio.png)
 
 自訂模組會複製到您的工作區，並與其他所有內建或自訂的 Studio 模組一起放在模組調色盤中。 您現在可以像使用工作區中的其他任何模組一樣地使用此模組。
 

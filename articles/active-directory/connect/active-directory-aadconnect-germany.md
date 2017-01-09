@@ -16,12 +16,12 @@ ms.topic: get-started-article
 ms.date: 09/08/2016
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 32feb93bf6b6b77d0b14206802c776da3a8eac91
+ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
+ms.openlocfilehash: a6bb1c4b3a4972cdab9b99c548ef918a4d1070a0
 
 
 ---
-# <a name="azure-ad-connect-in-microsoft-cloud-germany-public-preview"></a>Microsoft Cloud Germany 中的 Azure AD Connect - 公開預覽
+# <a name="azure-ad-connect-in-microsoft-cloud-germany---public-preview"></a>Microsoft Cloud Germany 中的 Azure AD Connect - 公開預覽
 ## <a name="introduction"></a>簡介
 Azure AD Connect 可進行內部部署 Active Directory 與 Azure Active Directory 之間的同步處理。
 [Microsoft Cloud Germany](https://www.microsoft.com/de-de/cloud/deutschland/default.aspx) 中目前有許多案例必須由操作員來完成。 使用 Microsoft Cloud Germany 時，您必須注意下列事項︰
@@ -49,7 +49,7 @@ Azure AD Connect 可進行內部部署 Active Directory 與 Azure Active Directo
 
 您應該會看見下列內容：
 
-![Azure AD Connect 刀鋒視窗](media\\active-directory-aadconnect-germany\\germany1.png)
+![Azure AD Connect 刀鋒視窗](media/active-directory-aadconnect-germany/germany1.png)
 
 下表描述刀鋒視窗中顯示的功能。
 
@@ -68,6 +68,6 @@ Azure AD Connect 可進行內部部署 Active Directory 與 Azure Active Directo
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

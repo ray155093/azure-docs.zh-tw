@@ -16,12 +16,12 @@ ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e2fa11046adf828497b142e1043ac1c2a15443ef
+ms.sourcegitcommit: bccec1e4078c38e1cc9205a36d3a5df579df35b6
+ms.openlocfilehash: d5ff397e947a7edc8310da59ff9fe8896829e35d
 
 
 ---
-# <a name="introduction-to-apache-storm-on-hdinsight-realtime-analytics-for-hadoop"></a>Apache Storm on HDInsight 簡介：Hadoop 的即時分析
+# <a name="introduction-to-apache-storm-on-hdinsight-real-time-analytics-for-hadoop"></a>Apache Storm on HDInsight 簡介：Hadoop 的即時分析
 Apache Storm on HDInsight 可讓您使用 [Apache Hadoop](http://hadoop.apache.org)，在 Azure 環境中建立分散式的即時分析解決方案。
 
 ## <a name="what-is-apache-storm"></a>什麼是 Apache Storm？
@@ -36,8 +36,9 @@ Apache Storm on HDInsight 是已和 Azure 環境整合的受管理叢集。 它�
   * 支援混合使用程式設計語言：使用 Java 讀取資料，然後使用 C 處理資料#
     
     > [!NOTE]
-    > 只有以 Windows 為基礎的 HDInsight 叢集支援 C# 拓撲。
+    > 若要搭配使用 C# 拓撲與以 Linux 為基礎的叢集，您必須將專案使用的 Microsoft.SCP.Net.SDK NuGet 套件，更新為 0.10.0.6 版或更新版本。 套件版本也必須符合 HDInsight 上安裝的 Storm 主要版本。 例如，Storm on HDInsight 3.3 和 3.4 版使用 Storm 0.10.x 版，而 HDInsight 3.5 使用 Storm 1.0.x。
     > 
+    > 在以 Linux 為基礎之叢集上的 C# 拓撲必須使用 .NET 4.5，並使用 Mono 以在 HDInsight 叢集上執行。 這些元件大多能正常運作，不過您應該查看 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)文件，以了解是否可能有不相容之處。
     > 
   * 使用 **Trident** Java 介面建立 Storm 拓撲，藉此支援「只一次性」處理訊息、「交易式」資料存放區持續性和一組常用的串流分析作業
 * 包含內建的調升及調降規模功能：可以調整 HDInsight 叢集的規模，且不影響執行 Storm 拓撲
@@ -53,7 +54,7 @@ Apache Storm on HDInsight 是已和 Azure 環境整合的受管理叢集。 它�
 只要花數分鐘即可佈建新的 Storm on HDInsight 叢集。 指定叢集名稱、大小、管理員帳戶和儲存體帳戶。 Azure 即會建立叢集，包括範例拓撲和 Web 管理儀表板。
 
 > [!NOTE]
-> 您也可以使用 [Azure CLI](../xplat-cli-install.md) 或 [Azure PowerShell](../powershell-install-configure.md). 佈建 Storm 叢集。
+> 您也可以使用 [Azure CLI](../xplat-cli-install.md) 或 [Azure PowerShell](/powershell/azureps-cmdlets-docs). 佈建 Storm 叢集。
 > 
 > 
 
@@ -107,7 +108,7 @@ Apache Storm 的預設組態只有一個 Nimbus 節點。 Storm on HDInsight 會
 ### <a name="support"></a>支援
 Storm on HDInsight 隨附完整的企業級全年無休支援。 Storm on HDInsight 也有 99.9% 的 SLA。 這表示我們保證叢集至少 99.9% 的時間具有外部連線能力。
 
-## <a name="common-use-cases-for-realtime-analytics"></a>即時分析的常見使用案例
+## <a name="common-use-cases-for-real-time-analytics"></a>即時分析的常見使用案例
 以下是一些 Apache storm on HDInsight 可能的常見使用案例。 如需真實案例的相關資訊，請參閱 [公司如何使用 Storm](https://storm.apache.org/documentation/Powered-By.html)(英文)。
 
 * 物聯網 (IoT)
@@ -206,6 +207,6 @@ Storm 使用 Apache Log4j 來記錄資訊。 預設會記錄大量的資料，�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

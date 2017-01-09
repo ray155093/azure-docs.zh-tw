@@ -48,15 +48,15 @@ ms.openlocfilehash: 1d825277b63e00d93136161d50d780daa95ea8a7
 
 > [!NOTE]
 > 您也可以對資產新增說明文件來描述如何將資料整合到應用程式。 請參閱 [如何記載資料來源](data-catalog-how-to-documentation.md)。
-> 
-> 
+>
+>
 
 <a name="howto"/>
 
 ## <a name="how-to-include-a-data-profile-when-registering-a-data-source"></a>如何在註冊資料來源時包含資料設定檔
 想要包含資料來源的設定檔很容易。 當您註冊資料來源時，在資料來源註冊工具的 [要註冊的物件] 面板中選擇 [包含資料設定檔]。
 
-![](media\\data-catalog-data-profile\\data-catalog-register-profile.png)
+![](media/data-catalog-data-profile/data-catalog-register-profile.png)
 
 若要深入了解如何註冊資料來源，請參閱[如何註冊資料來源](data-catalog-how-to-register.md)和[開始使用 Azure 資料目錄](data-catalog-get-started.md)。
 
@@ -65,13 +65,13 @@ ms.openlocfilehash: 1d825277b63e00d93136161d50d780daa95ea8a7
 
 > [!NOTE]
 > 在資料來源註冊工具中選取 [包含資料設定檔]，即會同時包含資料表和資料行層級的設定檔資訊。 不過，資料目錄 API 讓只含一組設定檔資訊的資料資產能夠加以註冊。
-> 
-> 
+>
+>
 
 ## <a name="viewing-data-profile-information"></a>檢視資料設定檔資訊
 一旦您找到含有設定檔的合適資料來源，您可以檢視資料設定檔的詳細資料。 若要檢視資料設定檔，請在資料目錄入口網站視窗中選取資料資產並選擇 [資料設定檔]  。
 
-![](media\\data-catalog-data-profile\\data-catalog-view.png)
+![](media/data-catalog-data-profile/data-catalog-view.png)
 
 [Azure 資料目錄]  中的資料設定檔會顯示資料表和資料行設定檔資訊，包括︰
 
@@ -92,7 +92,6 @@ ms.openlocfilehash: 1d825277b63e00d93136161d50d780daa95ea8a7
 ## <a name="see-also"></a>另請參閱
 * [如何註冊資料來源](data-catalog-how-to-register.md)
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md)
-
 
 
 

@@ -15,8 +15,8 @@ ms.workload: identity
 ms.date: 10/28/2016
 ms.author: skwan;bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f34c5c10ec57f46fc9179362ddb77fce41bccf14
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 01c6d3c3fa8648ef9ecaefcf43191315380d13d4
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: f34c5c10ec57f46fc9179362ddb77fce41bccf14
 
 如果您不熟悉 Azure AD 登入或多租用戶應用程式開發：
 
-1. 從閱讀 Azure AD 驗證案例中的[瀏覽器到 Web 應用程式案例][AAD-Auth-Scenarios-Browser-To-WebApp]著手。  
+1. 從閱讀 [Azure AD 驗證案例中的瀏覽器到 Web 應用程式案例][AAD-Auth-Scenarios-Browser-To-WebApp]著手。  
 2. 接者，參閱 Azure AD [Web 應用程式快速入門指南][AAD-QuickStart-Web-Apps]，這些指南示範如何實作登入，並且包含程式碼範例。 
    
    > [!TIP]
@@ -61,6 +61,6 @@ ms.openlocfilehash: f34c5c10ec57f46fc9179362ddb77fce41bccf14
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

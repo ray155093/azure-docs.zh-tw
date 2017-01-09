@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/17/2016
+ms.date: 01/04/2017
 ms.author: kgremban
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
@@ -25,8 +25,6 @@ ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
 
 > [!NOTE]
 > 以下文件提供有關如何使用 **Azure 傳統入口網站**啟用使用者的詳細資訊。 如果您要尋找有關如何設定適用於 O365 使用者的 Azure Multi-Factor Authentication 的詳細資訊，請參閱[設定適用於 Office 365 的 Multi-Factor Authentication](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6?ui=en-US&rs=en-US&ad=US)。
-> 
-> 
 
 ![雲端中的 MFA](./media/multi-factor-authentication-get-started-cloud/mfa_in_cloud.png)
 
@@ -38,8 +36,6 @@ ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
 
 > [!NOTE]
 > 授權的適用對象是擁有 Azure MFA、Azure AD Premium 或 Enterprise Mobility Suite (EMS) 的使用者。  MFA 包含在 Azure AD Premium 和 EMS。 如果您有足夠的授權，則不需要建立 Auth Provider。
-> 
-> 
 
 ## <a name="turn-on-two-step-verification-for-users"></a>對使用者開啟雙步驟驗證
 若要開始對使用者要求雙步驟驗證，請將使用者的狀態從停用變更為啟用。  如需使用者狀態的詳細資訊，請參閱 [Azure Multi-Factor Authentication 中的使用者狀態](multi-factor-authentication-get-started-user-states.md)
@@ -75,13 +71,11 @@ ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
 
 > [!IMPORTANT]
 > 我們不鼓勵您直接將使用者從停用狀態改為強制狀態。 非瀏覽器型應用程式會停止運作，因為使用者未通過 MFA 註冊並取得[應用程式密碼](multi-factor-authentication-whats-next.md#app-passwords)。 如果您具有非瀏覽器型應用程式，而且需要應用程式密碼，建議您將狀態從停用改為啟用。 這可讓使用者註冊並取得其應用程式密碼。 之後，您可以將其狀態改為強制。
-> 
-> 
 
 使用 PowerShell 是大量啟用使用者的選項。 目前在 Azure 入口網站中沒有大量啟用功能，您必須個別選取每個使用者。 如果您有許多使用者，這是相當繁重的工作。 藉由使用下列程式碼建立 PowerShell 指令碼，您可以循環使用者清單並且啟用他們。
 
         $st = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
-        $st.RelyingParty = "\*"
+        $st.RelyingParty = "*"
         $st.State = “Enabled”
         $sta = @($st)
         Set-MsolUser -UserPrincipalName bsimon@contoso.com -StrongAuthenticationRequirements $sta
@@ -92,7 +86,7 @@ ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
     foreach ($user in $users)
     {
         $st = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
-        $st.RelyingParty = "\*"
+        $st.RelyingParty = "*"
         $st.State = “Enabled”
         $sta = @($st)
         Set-MsolUser -UserPrincipalName $user -StrongAuthenticationRequirements $sta

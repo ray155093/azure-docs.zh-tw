@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 08/09/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 867f06c1fae3715ab03ae4a3ff4ec381603e32f7
-ms.openlocfilehash: cd5d47aa012b21a283e3d6482fe0afddcfa14033
+ms.sourcegitcommit: a9b48f149427e5ceb69bcaa97b1bf08519499b6f
+ms.openlocfilehash: cc0faa49daaafe19c71d2c765b8e865be04f81e2
 
 
 ---
@@ -39,7 +39,7 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 > 
 
 ## <a name="manage-server-level-firewall-rules-through-rest-api"></a>透過 REST API 來管理伺服器層級防火牆規則
-1. 透過 REST API 管理防火牆規則必須經過驗證。 如需相關資訊，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](../resource-manager-api-authentication.md)。
+1. 透過 REST API 管理防火牆規則必須經過驗證。 如需相關資訊，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](../azure-resource-manager/resource-manager-api-authentication.md)。
 2. 伺服器層級規則可使用 REST API 建立、更新或刪除
    
     若要建立或更新伺服器層級防火牆規則，請使用下列命令執行 PUT 方法：
@@ -79,7 +79,7 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 若要了解如何瀏覽至資料庫，請參閱 [管理資料庫存取與登入安全性](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
 
 ## <a name="additional-resources"></a>其他資源
-* [保護您的資料庫](sql-database-security.md)
+* [保護您的資料庫](sql-database-security-overview.md)
 * [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
 
 <!--Image references-->
@@ -91,6 +91,6 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

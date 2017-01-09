@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/23/2016
+ms.date: 11/16/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4582e81a0d2e7bf5be401e72885e2ee751087cf5
+ms.sourcegitcommit: ccf25aab4d6454e27a57f9a18305ef752421896f
+ms.openlocfilehash: 6e4af8f21a3ec9613d9dc36ebceb710c0d8c9906
 
 
 ---
@@ -33,7 +33,7 @@ StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1
 | **Azure VM** |Standard_A3 (4 核心、7 GB 記憶體) |Standard_DS3 (4 核心、14 GB 記憶體) |
 | **版本相容性** |執行 Update 2 之前或更新版本的版本 |執行 Update 2 或更新版本的版本 |
 | **區域可用性** |所有 Azure 區域 |支援進階儲存體的 Azure 區域<br></br>如需區域的清單，請參閱 [8020 的支援區域](#supported-regions-for-8020) |
-| **儲存體類型** |將 Azure 標準儲存體使用於本機磁碟<br></br> 了解如何 [建立標準儲存體帳戶]() |將 Azure 進階儲存體使用於本機磁碟<sup>2</sup> <br></br>了解如何[建立進階儲存體帳戶](../storage/storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk) |
+| **儲存體類型** |將 Azure 標準儲存體使用於本機磁碟<br></br> 了解如何 [建立標準儲存體帳戶](../storage/storage-create-storage-account.md) |將 Azure 進階儲存體使用於本機磁碟<sup>2</sup> <br></br>了解如何[建立進階儲存體帳戶](../storage/storage-premium-storage.md#quick-start-create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk) |
 | **工作負載指引** |從備份的檔案的項目層級擷取 |雲端開發和測試案例、低延遲、較高效能工作負載 <br></br>災害復原的次要裝置 |
 
 <sup>1</sup> *前身為 1100*。
@@ -41,7 +41,7 @@ StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1
 <sup>2</sup> *8010 和 8020 會將 Azure 標準儲存體使用於雲端層。差異僅存在於裝置內的本機層*。
 
 #### <a name="supported-regions-for-8020"></a>8020 的支援區域
-下表顯示目前支援 8020 的進階儲存體區域。 當進階儲存體在更多區域可供使用時，這份清單將持續更新。 
+下表顯示目前支援 8020 的進階儲存體區域。 當進階儲存體在更多區域可供使用時，這份清單將持續更新。
 
 | S. 編號 | 目前支援的區域 |
 | --- | --- |
@@ -68,7 +68,7 @@ StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1
 * 連接至虛擬裝置。
 * 了解如何使用虛擬裝置。
 
-本教學課程適用於所有執行 Update 2 和更新版本的 StorSimple 虛擬裝置。 
+本教學課程適用於所有執行 Update 2 和更新版本的 StorSimple 虛擬裝置。
 
 ## <a name="how-the-virtual-device-differs-from-the-physical-device"></a>虛擬裝置與實體裝置的差異
 StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛擬機器中的單一節點上執行。 虛擬裝置支援無法使用實體裝置時的災害復原案例，並且適合用於從備份擷取的項目層級、內部部署嚴重損壞修復和雲端開發和測試案例。
@@ -91,9 +91,9 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 
 * 針對虛擬裝置， [在 Azure 中設定虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-portal.md)。 如果使用進階儲存體，您必須在支援進階儲存體的 Azure 區域中建立虛擬網路。 如需詳細資訊，請參閱 [目前支援 8020 的區域](#supported-regions-for-8020)。
 * 建議您使用 Azure 提供的預設 DNS 伺服器，而非指定您自己的 DNS 伺服器名稱。 如果您的 DNS 伺服器名稱無效，或者如果 DNS 伺服器無法正確解析 IP 位址，則建立虛擬裝置將會失敗。
-* 點對站及站對站都是選用的，但並非必要。 如有需要，您可以針對更進階的案例設定這些選項。 
-* 您可以將 [Azure 虛擬機器](../virtual-machines/virtual-machines-linux-about.md) (主機伺服器) 建立在可使用由虛擬裝置公開之磁碟區的虛擬網路中。 這些伺服器必須符合下列需求：                             
-  
+* 點對站及站對站都是選用的，但並非必要。 如有需要，您可以針對更進階的案例設定這些選項。
+* 您可以將 [Azure 虛擬機器](../virtual-machines/virtual-machines-linux-about.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (主機伺服器) 建立在可使用由虛擬裝置公開之磁碟區的虛擬網路中。 這些伺服器必須符合下列需求：                             
+
   * 是已安裝 iSCSI 啟動器軟體的 Windows 或 Linux VM。
   * 正在虛擬裝置所在的相同虛擬網路中執行。
   * 能夠透過虛擬裝置的內部 IP 位址連接到虛擬裝置的 iSCSI 目標。
@@ -103,7 +103,7 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 建立虛擬裝置之前，對 Azure StorSimple 服務進行下列更新：
 
 * 針對要做為虛擬裝置之主機伺服器的 VM，新增 [存取控制記錄](storsimple-manage-acrs.md) 。
-* 使用位於與虛擬裝置相同區域的 [儲存體帳戶](storsimple-manage-storage-accounts.md#add-a-storage-account) 。 若儲存體帳戶位於不同區域，可能導致效能不佳。 您可以搭配虛擬裝置使用標準或進階儲存體帳戶。 如何建立[標準儲存體帳戶]()或[進階儲存體帳戶](../storage/storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk)的詳細資訊
+* 使用位於與虛擬裝置相同區域的 [儲存體帳戶](storsimple-manage-storage-accounts.md#add-a-storage-account) 。 若儲存體帳戶位於不同區域，可能導致效能不佳。 您可以搭配虛擬裝置使用標準或進階儲存體帳戶。 如何建立[標準儲存體帳戶](../storage/storage-create-storage-account.md)或[進階儲存體帳戶](../storage/storage-premium-storage.md#quick-start-create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk)的詳細資訊
 * 針對建立虛擬裝置使用與用於資料的儲存體帳戶不同的儲存體帳戶。 使用相同的儲存體帳戶可能導致效能不佳。
 
 開始之前，請確定您擁有下列資訊：
@@ -112,21 +112,22 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 * 實體裝置中服務資料加密金鑰的複本。
 
 ## <a name="create-and-configure-the-virtual-device"></a>建立和設定虛擬裝置 
-執行這些程序之前，請確定您符合 [虛擬裝置的必要條件](#prerequisites-for-the-virtual-device)。 
+執行這些程序之前，請確定您符合 [虛擬裝置的必要條件](#prerequisites-for-the-virtual-device)。
 
-當您建立虛擬網路、設定 StorSimple Manager 服務，以及向該服務註冊實體 StorSimple 裝置之後，就可以使用下列步驟來建立和設定 StorSimple 虛擬裝置。 
+當您建立虛擬網路、設定 StorSimple Manager 服務，以及向該服務註冊實體 StorSimple 裝置之後，就可以使用下列步驟來建立和設定 StorSimple 虛擬裝置。
 
 ### <a name="step-1-create-a-virtual-device"></a>步驟 1：建立虛擬裝置
 執行下列步驟來建立 StorSimple 虛擬裝置。
 
 [!INCLUDE [Create a virtual device](../../includes/storsimple-create-virtual-device-u2.md)]
 
-如果此步驟中的虛擬裝置建立失敗，您可能沒有網際網路的連線能力。 如需詳細資訊，請在建立虛擬裝置時移至 [針對網際網路連線失敗進行疑難排解](#troubleshoot-internet-connectivity-errors) 。
+如果此步驟中的虛擬裝置建立失敗，您可能沒有網際網路的連線能力。 如需詳細資訊，請在建立虛擬裝置時移至[針對網際網路連線失敗進行疑難排解](#troubleshoot-internet-connectivity-errors)。
 
 ### <a name="step-2-configure-and-register-the-virtual-device"></a>步驟 2：設定和註冊虛擬裝置
 開始此程序之前，請確定您擁有服務資料加密金鑰的複本。 服務資料加密金鑰已在您設定第一個 StorSimple 裝置時建立，且系統已指示您將它儲存在安全的位置。 如果您沒有服務資料加密金鑰的複本，就必須連絡 Microsoft 支援服務以尋求協助。
 
 執行下列步驟來設定和註冊 StorSimple 虛擬裝置。
+
 [!INCLUDE [Configure and register a virtual device](../../includes/storsimple-configure-register-virtual-device.md)]
 
 ### <a name="step-3-optional-modify-the-device-configuration-settings"></a>步驟 3：(選擇性) 修改裝置組態設定
@@ -143,8 +144,8 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
 
 > [!NOTE]
 > 對虛擬裝置而言，您的 Windows 主機就是 Azure 虛擬機器。
-> 
-> 
+>
+>
 
 當您在 StorSimple Snapshot Manager 中設定裝置時，系統將提示您提供 StorSimple 裝置 IP 位址和密碼來驗證您的儲存裝置。 如需詳細步驟，請移至 [設定 StorSimple Snapshot Manager 密碼](storsimple-change-passwords.md#change-the-storsimple-snapshot-manager-password)。
 
@@ -166,13 +167,13 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
 
 > [!WARNING]
 > **為了加強安全性，強烈建議您在連接到端點時應使用 HTTPS，並且在完成 PowerShell 遠端工作階段之後刪除端點。**
-> 
-> 
+>
+>
 
 您應遵循 [遠端連接至 StorSimple 裝置](storsimple-remote-connect.md) 中的程序，來設定虛擬裝置的遠端處理功能。
 
 ## <a name="connect-directly-to-the-virtual-device"></a>直接連接至虛擬裝置
-您也可以直接連接至虛擬裝置。 如果您要從虛擬網路或 Microsoft Azure 環境以外的另一部電腦直接連接到虛擬裝置，就必須依照下列程序中的說明來建立其他端點。 
+您也可以直接連接至虛擬裝置。 如果您要從虛擬網路或 Microsoft Azure 環境以外的另一部電腦直接連接到虛擬裝置，就必須依照下列程序中的說明來建立其他端點。
 
 執行下列步驟，在虛擬裝置上建立公用端點。
 
@@ -226,8 +227,8 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
 > [!NOTE]
 > * 當使用虛擬裝置作為 DR 的次要裝置時，請記住，8010 有 30 TB 的標準儲存體，8020 有 64 TB 的進階儲存體。 較高容量的 8020 虛擬裝置可能比較適合 DR 案例。
 > * 您無法從執行 Update 2 的裝置容錯移轉或複製到執行 Update 1 之前版本軟體的裝置。 但是，您可以將執行 Update 2 的裝置容錯移轉至執行 Update 1 (1.1 或 1.2) 的裝置。
-> 
-> 
+>
+>
 
 如需逐步程序，請移至 [容錯移轉至虛擬裝置](storsimple-device-failover-disaster-recovery.md#fail-over-to-a-storsimple-virtual-device)。
 
@@ -244,21 +245,20 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
 在虛擬裝置建立期間，如果沒無法連線到網際網路，則建立步驟將會失敗。 若要針對是否因為網際網路連線而失敗進行疑難排解，請在 Azure 傳統入口網站中執行下列步驟︰
 
 1. 在 Azure 中建立 Windows server 2012 虛擬機器。 此虛擬機器應該使用與虛擬裝置使用的相同儲存體帳戶、VNet 和子網路。 如果您在 Azure 中已經有使用相同儲存體帳戶、Vnet 和子網路的現有 Windows Server 主機，您也可以使用它來針對網際網路連線進行疑難排解。
-2. 遠端登入在先前步驟中建立的虛擬機器。 
+2. 遠端登入在先前步驟中建立的虛擬機器。
 3. 在虛擬機器內開啟命令視窗 (Win + R，然後輸入 `cmd`)。
 4. 在出現提示時執行下列命令。
-   
+
     `nslookup windows.net`
-5. 如果 `nslookup` 失敗，則網際網路連線失敗會導致虛擬裝置無法註冊到 StorSimple Manager 服務。 
+5. 如果 `nslookup` 失敗，則網際網路連線失敗會導致虛擬裝置無法註冊到 StorSimple Manager 服務。
 6. 對虛擬網路進行必要的變更，確保虛擬裝置能夠存取 Azure 網站，例如 "windows.net"。
 
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [使用 StorSimple Manager 服務管理虛擬裝置](storsimple-manager-service-administration.md)。
-* 了解如何 [從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。 
+* 了解如何 [從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 
