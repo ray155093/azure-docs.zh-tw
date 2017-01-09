@@ -78,7 +78,7 @@ SQL Database 稽核可讓您：
 > 
 
 1. 啟動 [Azure 入口網站](https://portal.azure.com)，位址是 https://portal.azure.com。
-2. 瀏覽至您想要稽核的 SQL Database / SQL Server 設定刀鋒視窗。 在 [設定] 刀鋒視窗中，選取 [稽核與威脅偵測](*\[請參閱 Blob 稽核一節中的螢幕擷取畫面\]\(.md#auditing-screenshot\)*)。
+2. 瀏覽至您想要稽核的 SQL Database / SQL Server 設定刀鋒視窗。 在 [設定] 刀鋒視窗中，選取 \[稽核與威脅偵測\](*\[請參閱 Blob 稽核一節中的螢幕擷取畫面\]\(.md#auditing-screenshot\)*)。
 3. 您可以在資料庫稽核組態刀鋒視窗中，選取 [從伺服器繼承稽核設定]  核取方塊，以指定要根據此資料庫的伺服器設定稽核此資料庫。 如果已經選取此選項，您將會看到可讓您從這個內容檢視或修改伺服器稽核設定的**檢視伺服器稽核設定**連結。
    
     ![導覽窗格][2]
