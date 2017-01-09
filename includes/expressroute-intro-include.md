@@ -5,6 +5,6 @@ Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的專用私
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 
