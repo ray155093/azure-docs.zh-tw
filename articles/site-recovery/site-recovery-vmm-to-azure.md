@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 11/23/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 1268d29b0d9c4368f62918758836a73c757c0c8d
-ms.openlocfilehash: 3727972c544bb8c2724e9f38953882a7f2251a60
+ms.sourcegitcommit: 6fb71859d0ba2e0f2b39d71edd6d518b7a03bfe9
+ms.openlocfilehash: 8de917236d1dcbfdf0c1232380879a33d9425291
 
 
 ---
@@ -115,13 +115,13 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 * 此網路應位於與復原服務保存庫相同的區域。
 * 視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您會以 [Resource Manager 模式](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)或[傳統模式](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)設定 Azure 網路。
 * 建議您在開始之前先設定網路。 若非如此，則必須在 Site Recovery 部署期間這麼做。
-請注意，Site Recovery 所使用的 Azure 網路不能在相同訂用帳戶內或跨越不同的訂用帳戶[移動](../resource-group-move-resources.md)。
+請注意，Site Recovery 所使用的 Azure 網路不能在相同訂用帳戶內或跨越不同的訂用帳戶[移動](../azure-resource-manager/resource-group-move-resources.md)。
 
 ### <a name="set-up-an-azure-storage-account"></a>設定 Azure 儲存體帳戶
 * 您需要標準 Azure 儲存體帳戶來保存複寫到 Azure 的資料。 此帳戶必須位於與復原服務保存庫相同的區域中。
 * 視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您會以 [Resource Manager 模式](../storage/storage-create-storage-account.md)或[傳統模式](../storage/storage-create-storage-account-classic-portal.md)設定帳戶。
 * 建議您在開始之前先設定帳戶。 若非如此，則必須在 Site Recovery 部署期間這麼做。
-- 請注意，Site Recovery 所使用的儲存體帳戶不能在相同訂用帳戶內或跨越不同的訂用帳戶[移動](../resource-group-move-resources.md)。
+- 請注意，Site Recovery 所使用的儲存體帳戶不能在相同訂用帳戶內或跨越不同的訂用帳戶[移動](../azure-resource-manager/resource-group-move-resources.md)。
 
 ### <a name="prepare-the-vmm-server"></a>準備 VMM 伺服器
 * 確定 VMM 伺服器符合 [必要條件](#on-premises-prerequisites)。
@@ -144,7 +144,7 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 
     ![新增保存庫](./media/site-recovery-vmm-to-azure/new-vault3.png)
 3. 在 [名稱] 中，指定保存庫的易記識別名稱。 如果您有多個訂用帳戶，請選取其中一個。
-4. [建立資源群組](../resource-group-template-deploy-portal.md)，或選取現有的資源群組。 指定 Azure 區域。 機器將會複寫到此區域。 若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/)
+4. [建立資源群組](../azure-resource-manager/resource-group-template-deploy-portal.md)，或選取現有的資源群組。 指定 Azure 區域。 機器將會複寫到此區域。 若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/)
 5. 如果您想要從儀表板快速存取保存庫，請按一下 [釘選到儀表板] > [建立保存庫]。
 
     ![新增保存庫](./media/site-recovery-vmm-to-azure/new-vault-settings.png)
@@ -509,6 +509,6 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

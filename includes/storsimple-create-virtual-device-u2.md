@@ -3,7 +3,7 @@
 2. 移至 [裝置]  頁面。 按一下 [裝置] 頁面底部的 [建立虛擬裝置]。
 3. 在 [建立虛擬裝置] 對話方塊中，指定下列詳細資料。
    
-     ![StorSimple 建立虛擬裝置](./media/storsimple-create-virtual-device-u2/CreatePremiumsva1.png)
+    ![StorSimple 建立虛擬裝置](./media/storsimple-create-virtual-device-u2/CreatePremiumsva1.png)
    
    1. **名稱** - 虛擬裝置的唯一名稱。
    2. **型號** - 選擇虛擬裝置的型號。 只有當您執行 Update 2 或更新版本時，此欄位才會出現。 8010 裝置型號提供 30 TB 的標準儲存體， 而 8020 提供 64 TB 的進階儲存體。 指定 8010
@@ -28,6 +28,6 @@
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

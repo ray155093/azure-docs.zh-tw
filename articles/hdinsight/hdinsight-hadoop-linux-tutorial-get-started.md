@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/14/2016
+ms.date: 12/16/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 63a4eaf9fbb76480e0617b36d15aebae03ec3da4
+ms.sourcegitcommit: 938abf03191dec10da8d2fabf27c5db2415d6bc5
+ms.openlocfilehash: 2863bfb48d0fed706fbd3c3f14dfb6a8d77eb9ea
 
 
 ---
-# <a name="hadoop-tutorial-get-started-using-linuxbased-hadoop-in-hdinsight"></a>Hadoop 教學課程：開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop
+# <a name="hadoop-tutorial-get-started-using-linux-based-hadoop-in-hdinsight"></a>Hadoop 教學課程：開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop
 > [!div class="op_single_selector"]
 > * [以 Linux 為基礎](hdinsight-hadoop-linux-tutorial-get-started.md)
 > * [以 Windows 為基礎](hdinsight-hadoop-tutorial-get-started-windows.md)
 > 
 > 
 
-了解如何在 HDInsight 中建立以 Linux 為基礎的 [Hadoop](http://hadoop.apache.org/) 叢集，以及如何在 HDInsight 中執行 Hive 作業。 [Apache Hive](https://hive.apache.org/) 是 Hadoop 生態系統中最受歡迎的元件。 HDInsight 隨附 4 種叢集類型︰[Hadoop](hdinsight-hadoop-introduction.md)、[Spark](hdinsight-apache-spark-overview.md)、[HBase](hdinsight-hbase-overview.md) 和 [Storm](hdinsight-storm-overview.md)。  每種叢集類型都支援一組不同的元件。 這 4 種叢集類型都支援 Hive。 如需 HDInsight 中支援的元件清單，請參閱 [HDInsight 在 Hadoop 叢集版本中提供的新功能](hdinsight-component-versioning.md)  
+了解如何在 HDInsight 中建立以 Linux 為基礎的 [Hadoop](http://hadoop.apache.org/) 叢集，以及如何在 HDInsight 中執行 Hive 作業。 [Apache Hive](https://hive.apache.org/) 是 Hadoop 生態系統中最受歡迎的元件。 HDInsight 目前隨附 6 種叢集類型︰[Hadoop](hdinsight-hadoop-introduction.md)、[Spark](hdinsight-apache-spark-overview.md)、[HBase](hdinsight-hbase-overview.md)、[Storm](hdinsight-storm-overview.md)、[互動式 Hive (預覽)](hdinsight-hadoop-use-interactive-hive.md) 和 [R 伺服器](hdinsight-hadoop-r-server-overview.md)。  每種叢集類型都支援一組不同的元件。 這 6 種叢集類型都支援 Hive。 如需 HDInsight 中支援的元件清單，請參閱 [HDInsight 在 Hadoop 叢集版本中提供的新功能](hdinsight-component-versioning.md)  
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -41,36 +41,48 @@ ms.openlocfilehash: 63a4eaf9fbb76480e0617b36d15aebae03ec3da4
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
 ## <a name="create-cluster"></a>建立叢集
-大部分 Hadoop 作業都是批次作業。 您會建立叢集、執行一些工作，然後刪除叢集。 在本節中，您將在 HDInsight 中使用 [Azure Resource Manager 範本](../resource-group-template-deploy.md)來建立以 Linux 為基礎的 Hadoop 叢集。 您可以完全自訂 Resource Manager 範本，讓您能夠輕鬆地建立 Azure 資源 (例如 HDInsight)。 進行本教學課程並不需要具備 Resource Manager 範本經驗。 如需其他叢集建立方法及了解本教學課程中使用的屬性，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 本教學課程中使用的 Resource Manager 範本位於公用 Blob 容器中， [https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-hadoop-cluster-in-hdinsight.json](https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-hadoop-cluster-in-hdinsight.json)。 
+
+大部分 Hadoop 作業都是批次作業。 您會建立叢集、執行一些工作，然後刪除叢集。 在本節中，您將在 HDInsight 中使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)來建立以 Linux 為基礎的 Hadoop 叢集。 您可以完全自訂 Resource Manager 範本，讓您能夠輕鬆地建立 Azure 資源 (例如 HDInsight)。 進行本教學課程並不需要具備 Resource Manager 範本經驗。 如需其他叢集建立方法及了解本教學課程中使用的屬性，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 使用頁面頂端的選取器來選擇叢集建立選項。
+
+本教學課程中使用的 Resource Manager 範本位於 [Github](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-ssh-password/) 中。 
 
 1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 Resource Manager 範本。 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. 從 [參數]  刀鋒視窗，輸入下列資料：
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-ssh-password%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hadoop-linux-tutorial-get-started/deploy-to-azure.png" alt="Deploy to Azure"></a>
+2. 輸入或選取下列值：
    
     ![入口網站上 HDInsight Linux 開始使用的 Resource Manager 範本](./media/hdinsight-hadoop-linux-tutorial-get-started/hdinsight-linux-get-started-arm-template-on-portal.png)。
    
-   * **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
-   * **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
-   * **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。  您可以將它重新命名。 
+    * **訂用帳戶**：選取您的 Azure 訂用帳戶。
+    * **資源群組**：建立新的資源群組，或選取現有的資源群組。  資源群組是 Azure 元件的容器。  在此案例中，資源群組包含 HDInsight 叢集和相依的 Azure 儲存體帳戶。 
+    * **位置**：選取您要建立叢集的 Azure 位置。  選擇靠近您的位置，以獲得最佳效能。 
+    * **叢集類型**：請為本教學課程選取 [hadoop]。
+    * **叢集名稱**：輸入您將建立的 Hadoop 叢集的名稱。
+    * **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
+    * **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。  您可以將它重新命名。 
      
-     其他參數都是進行本教學課程的選擇性參數。 您可以將它們維持不變。 
-     
+    某些屬性已硬式編碼在範本中。  您可以從範本設定這些值。
+
+    * **位置**︰叢集和相依儲存體帳戶的位置會使用相同的位置做為資源群組。
+    * **叢集版本**：3.4
+    * **OS 類型**：Linux
+    * **背景工作節點數目**：2
+
      每個叢集都具備 Azure Blob 儲存體帳戶相依性。 通常稱為預設儲存體帳戶。 HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 區域。 刪除叢集並不會刪除儲存體帳戶。 在範本中，預設儲存體帳戶名稱已定義為附加 "store" 的叢集名稱。 
-3. 按一下 [確定]  儲存參數。
-4. 在 [自訂部署] 刀鋒視窗中，按一下 [新增資源群組名稱] 來建立新的資源群組。  資源群組是聚集叢集、相依儲存體帳戶和其他資源的容器。 資源群組位置可以和叢集位置不同。
-5. 按一下 [法律條款]，然後按一下 [建立]。
-6. 確認已選取 [釘選到儀表板] 核取方塊，然後按一下 [建立]。 您將會看到標題為 [進行範本部署] 的新圖格。 大約需要 20 分鐘的時間來建立叢集。 
-7. 建立叢集後，此圖格的標題會變更為您指定的資源群組名稱。 而入口網站會自動開啟包含叢集和叢集設定的兩個刀鋒視窗。 
+
+3. 選取 [我同意上方所述的條款及條件] 和 [釘選到儀表板]，然後按一下 [購買]。 您會在入口網站儀表板上看到標題為 [進行範本部署] 的新圖格。 大約需要 20 分鐘的時間來建立叢集。 建立叢集後，此圖格的標題會變更為您指定的資源群組名稱。 而入口網站會自動在新的刀鋒視窗中開啟資源群組。 您可以看到列出的叢集和預設儲存體。
    
-   ![HDInsight Linux 開始使用的叢集設定](./media/hdinsight-hadoop-linux-tutorial-get-started/hdinsight-linux-get-started-cluster-settings.png)。
-   
-   其中列出兩項資源，即叢集和預設儲存體帳戶。
+    ![HDInsight Linux 開始使用的資源群組](./media/hdinsight-hadoop-linux-tutorial-get-started/hdinsight-linux-get-started-resource-group.png)。
+
+4. 按一下叢集名稱，在新的刀鋒視窗中開啟叢集。
+
+   ![HDInsight Linux 開始使用的叢集設定](./media/hdinsight-hadoop-linux-tutorial-get-started/hdinsight-linux-get-started-cluster-settings.png)
+
 
 ## <a name="run-hive-queries"></a>執行 Hive 查詢
 [Apache Hive](hdinsight-use-hive.md) 是 HDInsight 中使用的最受歡迎元件。 有許多方法可在 HDInsight 上執行 Hive 工作。 在本教學課程中，您將使用 Ambari Hive 檢視，從入口網站執行一些 Hive 工作。 如需提交 Hive 工作的其他方法，請參閱 [在 HDInsight 中使用 Hive](hdinsight-use-hive.md)。
 
-1. 瀏覽至 **https://&lt;ClusterName>.azurehdinsight.net** 以開啟 Ambari，其中 &lt;ClusterName> 是您在上一節建立的叢集。
+1. 從先前的螢幕擷取畫面中按一下 [叢集儀表板]，然後按一下 [HDInsight 叢集儀表板]。  您也可以瀏覽至 **https://&lt;ClusterName>.azurehdinsight.net** 以開啟 Ambari，其中 &lt;ClusterName> 是您在上一節建立的叢集。
 2. 輸入您在上一節指定的 Hadoop 使用者名稱和密碼。 預設的使用者名稱為 **admin**。
 3. 開啟 [Hive 檢視]  ，如下列螢幕擷取畫面所示：
    
@@ -108,7 +120,7 @@ ms.openlocfilehash: 63a4eaf9fbb76480e0617b36d15aebae03ec3da4
 > 
 > 
 
-<bpt id="p1">**</bpt>To delete the cluster and/or the default storage account<ept id="p1">**</ept>
+**To delete the cluster and/or the default storage account**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 從入口網站儀表板，按一下具有您建立叢集時所用資源群組名稱的圖格。
@@ -149,8 +161,8 @@ ms.openlocfilehash: 63a4eaf9fbb76480e0617b36d15aebae03ec3da4
 [hdinsight-use-pig]: hdinsight-use-pig.md
 
 [powershell-download]: http://go.microsoft.com/fwlink/p/?linkid=320376&clcid=0x409
-[powershell-install-configure]: powershell-install-configure.md
-[powershell-open]: powershell-install-configure.md#Install
+[powershell-install-configure]: /powershell/azureps-cmdlets-docs
+[powershell-open]: /powershell/azureps-cmdlets-docs#Install
 
 [img-hdi-dashboard]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.dashboard.png
 [img-hdi-dashboard-query-select]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.dashboard.query.select.png
@@ -163,6 +175,6 @@ ms.openlocfilehash: 63a4eaf9fbb76480e0617b36d15aebae03ec3da4
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

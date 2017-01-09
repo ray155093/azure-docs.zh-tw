@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 11/28/2016
 ms.author: rickbyh;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 867f06c1fae3715ab03ae4a3ff4ec381603e32f7
-ms.openlocfilehash: 1479595fb7de2e0a37520c7d323624142e624af1
+ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
+ms.openlocfilehash: a87bb18aeacbc980fc6859c7c83a102dce0263a8
 
 
 ---
@@ -56,7 +56,7 @@ ms.openlocfilehash: 1479595fb7de2e0a37520c7d323624142e624af1
 - 若要了解如何建立其他可連線至資料庫的使用者，請參閱 [SQL Database 驗證和授權︰授與存取](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
 
 ## <a name="additional-resources"></a>其他資源
-* [保護您的資料庫](sql-database-security.md)   
+* [保護您的資料庫](sql-database-security-overview.md)   
 * [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)   
 
 
@@ -64,6 +64,6 @@ ms.openlocfilehash: 1479595fb7de2e0a37520c7d323624142e624af1
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

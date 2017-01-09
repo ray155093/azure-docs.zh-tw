@@ -2,6 +2,6 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

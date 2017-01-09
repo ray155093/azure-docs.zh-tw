@@ -17,6 +17,6 @@ VPN 閘道不會使用 UltraPerformance 閘道 SKU。 如需 UltraPerformance SK
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

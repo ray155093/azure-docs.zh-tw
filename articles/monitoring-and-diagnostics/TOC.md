@@ -30,7 +30,7 @@
 ### [在活動記錄警示中設定 webhook](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
 ### [封存活動記錄檔](../monitoring-and-diagnostics/monitoring-archive-activity-log.md)
 ### [將活動記錄檔串流至事件中樞](../monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs.md)
-### [使用 Resource Manager 來稽核作業](../resource-group-audit.md)
+### [使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md)
 ## 管理診斷記錄檔
 ### [封存](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md)
 ### [串流至事件中樞](../monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs.md)
@@ -49,6 +49,6 @@
 ## [Azure CLI 2.0 (Preview) 範例](../monitoring-and-diagnostics/insights-cli-samples.md)
 ## [支援的計量清單](../monitoring-and-diagnostics/monitoring-supported-metrics.md)
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

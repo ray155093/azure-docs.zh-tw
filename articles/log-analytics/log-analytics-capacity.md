@@ -4,7 +4,7 @@ description: "您可以使用 Log Analytics 中的容量規劃方案，協助您
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 51617a6f-ffdd-4ed2-8b74-1257149ce3d4
 ms.service: log-analytics
@@ -12,7 +12,7 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
 ms.sourcegitcommit: 57e7fbdaa393e078b62a6d6a0b181b67d532523d
@@ -27,8 +27,8 @@ ms.openlocfilehash: c34cda0da164c711c8effc78d2af38ad8df581aa
 
 > [!NOTE]
 > 容量管理方案無法加入至工作區。 已安裝容量管理方案的客戶可以繼續使用該解決方案。  
-> 
-> 
+>
+>
 
 取代容量和效能解決方案目前為私人預覽版本。 這個取代解決方案是要解決原始容量管理解決方案的下列客戶回報的挑戰：
 
@@ -173,7 +173,6 @@ ms.openlocfilehash: c34cda0da164c711c8effc78d2af38ad8df581aa
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md) ，檢視詳細的容量管理資料。
-
 
 
 

@@ -48,7 +48,7 @@ Cortana Intelligence 資源庫包含各種可供您開發自己的分析解決�
 
 最後，**[競賽](machine-learning-gallery-competitions.md)**提供了絕佳機會讓您與資料科學家社群較量，看誰能用 Cortana Intelligence Suite 解決複雜的問題。
 
-![Cortana Intelligence 資源庫首頁](media\\machine-learning-gallery-how-to-use-contribute-publish\\gallery-home-page.png)
+![Cortana Intelligence 資源庫首頁](media/machine-learning-gallery-how-to-use-contribute-publish/gallery-home-page.png)
 
 ## <a name="discover-and-learn"></a>探索及了解
 任何人都可以瀏覽和搜尋資源庫中已由 Microsoft 和進階分析社群發表的不同資源類型。
@@ -60,25 +60,25 @@ Cortana Intelligence 資源庫包含各種可供您開發自己的分析解決�
 
 按一下任何磚內的作者名稱，檢視特定作者的發表內容：
 
-![檢視作者的發表內容](media\\machine-learning-gallery-how-to-use-contribute-publish\\view-by-author.png)
+![檢視作者的發表內容](media/machine-learning-gallery-how-to-use-contribute-publish/view-by-author.png)
 
 您可以透過每個資源頁面的註解區段，提供註解、意見回應或發問。
 您甚至可以使用 LinkedIn 或 Twitter 的共用功能，與朋友或同事共用感興趣的資源。
 您也可以使用電子郵件傳送這些資源的連結，以邀請其他使用者檢視這些頁面。
 
-![與朋友共用此項目](media\\machine-learning-gallery-how-to-use-contribute-publish\\comment-and-share.png)
+![與朋友共用此項目](media/machine-learning-gallery-how-to-use-contribute-publish/comment-and-share.png)
 
 ## <a name="contribute-to-the-gallery"></a>提供給資源庫
 當您登入時，您將成為資源庫社群的成員。 您可以發表自己的資源庫項目，以便其他人可以從您發現的解決方案中受益。
 
 當其他人瀏覽您在資源庫中發表的項目時，您可以追蹤所發表項目的檢視次數與下載次數：
 
-![與朋友共用此項目](media\\machine-learning-gallery-how-to-use-contribute-publish\\view-and-download-counts.png)
+![與朋友共用此項目](media/machine-learning-gallery-how-to-use-contribute-publish/view-and-download-counts.png)
 
 使用者也可以加入註解，並與資料科學社群的其他成員共用您的發表項目。
 您可以登入討論工具 (例如 Disqus) 並在您的發表項目上出現註解時獲得通知。
 
-![追蹤使用者註解](media\\machine-learning-gallery-how-to-use-contribute-publish\\follow-comments.png)
+![追蹤使用者註解](media/machine-learning-gallery-how-to-use-contribute-publish/follow-comments.png)
 
 您可以將下列項目發表到資源庫，請參考下列連結以瞭解詳細資訊：
 
