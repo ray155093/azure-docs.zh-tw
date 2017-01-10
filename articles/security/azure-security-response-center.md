@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/18/2016
+ms.date: 01/09/2017
 ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -39,7 +39,6 @@ Microsoft 獎勵計畫會就嶄新的入侵技術、可以減輕嶄新入侵的�
 在 [MSRC 錯誤獎勵](https://technet.microsoft.com/security/dn425036)頁面和 [MSRC 部落格](https://blogs.technet.microsoft.com/msrc/)深入了解這些計畫。
 
 若要深入了解 MSRC，請造訪 [MSRC 首頁](https://technet.microsoft.com/library/dn440717.aspx)。
-
 
 
 
