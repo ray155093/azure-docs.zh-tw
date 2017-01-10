@@ -98,7 +98,7 @@ ms.openlocfilehash: e6fb4cdbbe8c334245517f2df0292ca172af5c7b
 ### <a name="set-path-prefix-pattern"></a>設定路徑前置詞模式
 ![](./media/app-insights-export-stream-analytics/140.png)
 
-**請務必將 [日期格式] 設為 [YYYY-MM-DD] (含連接號)。**
+**請務必將 [日期格式] 設為 [YYYY-MM-DD] \(含連接號)。**
 
 路徑前置詞模式會指定串流分析在存放區中尋找輸入檔案的位置。 您需要將它設定為與連續匯出儲存資料的方式相對應。 請設定如下：
 
