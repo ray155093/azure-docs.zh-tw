@@ -16,20 +16,19 @@ ms.workload: infrastructure-services
 ms.date: 10/12/2016
 ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 8808805929bba24c4f348dd73123a949e3b4b1d8
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: 5b178da3f36bee8dbd48c988af452575328447fe
 
 
 ---
 # <a name="manage-your-virtual-machines-by-using-azure-powershell"></a>使用 Azure PowerShell 管理您的虛擬機器
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如需使用 Resource Manager 模型的常見 PowerShell 命令，請參閱[這裡](virtual-machines-windows-ps-common-ref.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 模型的常見 PowerShell 命令，請參閱[這裡](virtual-machines-windows-ps-common-ref.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 可以使用 Azure PowerShell Cmdlet 自動執行許多 VM 的日常管理工作。 這篇文章提供了幾個簡單工作的範例命令，另外也提供顯示用來完成更複雜的工作之命令的文章連結。
 
 > [!NOTE]
-> 如果您尚未安裝和設定 Azure PowerShell，可以在 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)文章中取得相關指示。
+> 如果您尚未安裝和設定 Azure PowerShell，可以在 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)文章中取得相關指示。
 > 
 > 
 
@@ -103,6 +102,6 @@ ms.openlocfilehash: 8808805929bba24c4f348dd73123a949e3b4b1d8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 
