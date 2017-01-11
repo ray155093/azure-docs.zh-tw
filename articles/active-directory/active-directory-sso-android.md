@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: android
 ms.devlang: java
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -150,7 +150,7 @@ Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用�
 2. 請確定您所有的應用程式具有相同的 SharedUserID 集合。
 3. 請確定您所有的應用程式共用來自 Google Play 商店的相同簽署憑證，以便您可以共用儲存體。
 
-#### <a name="step-1-using-the-same-client-id-application-id-for-all-the-applications-in-your-suite-of-apps"></a>步驟 1：將相同的用戶端識別碼 / 應用程式識別碼使用於應用程式套件中的所有應用程式
+#### <a name="step-1-using-the-same-client-id--application-id-for-all-the-applications-in-your-suite-of-apps"></a>步驟 1：將相同的用戶端識別碼 / 應用程式識別碼使用於應用程式套件中的所有應用程式
 為了讓 Microsoft 身分識別平台知道它可以跨應用程式共用權杖，您的每個應用程式必須共用相同的用戶端識別碼或應用程式識別碼。 這是您在入口網站中註冊第一個應用程式時提供給您的唯一識別碼。
 
 如果 Microsoft 識別服務使用相同的應用程式識別碼，您可能想知道如何識別它的不同應用程式。 答案是使用 **重新導向 URI**。 每個應用程式可以在上架的入口網站中註冊多個重新導向 URI。 組件中的每個應用程式將會有不同的重新導向 URI。 其外觀的範例如下：

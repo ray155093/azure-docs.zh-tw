@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
 ms.sourcegitcommit: 87c73981c74fc763fd1aec6c283e934c77008441
@@ -44,7 +44,7 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
 * 為您的應用程式新增 **Web** 平台。
 * 輸入正確的 **重新導向 URI**。 重新導向 URI 會向 Azure AD 指出驗證回應應導向的位置，本教學課程的預設為 `https://localhost:44326/`。
 
-## <a name="install-configure-owin-authentication"></a>安裝及設定 OWIN 驗證
+## <a name="install--configure-owin-authentication"></a>安裝及設定 OWIN 驗證
 在這裡，我們將設定 OWIN 中介軟體使用 OpenID Connect 驗證通訊協定。  OWIN 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
 
 * 若要開始，請開啟專案根目錄中的 `web.config` 檔案，並在 `<appSettings>` 區段中輸入應用程式的組態值。
