@@ -134,6 +134,6 @@ Azure AD B2C 目前不支援此流程。 這些應用程式只有在互動式使
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

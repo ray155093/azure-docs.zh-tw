@@ -3,7 +3,7 @@ title: "Azure Active Directory B2C：使用協力廠商程式庫從 iOS 應用�
 description: "本文將示範如何使用協力廠商程式庫建立 iOS「待辦事項清單」應用程式，以使用 OAuth 2.0 持有人權杖呼叫 Node.js Web API。"
 services: active-directory-b2c
 documentationcenter: ios
-author: brandwe
+author: xerners
 manager: mbaldwin
 editor: 
 ms.assetid: d818a634-42c2-4cbd-bf73-32fa0c8c69d3
@@ -12,15 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: objectivec
 ms.topic: hero-article
-ms.date: 07/26/2016
+ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1b570e66afb7a4d3f7fc9b65600bfa7dc0fcc4b5
+ms.sourcegitcommit: 0175f4e83aace12d8e4607f2ad924893093c6734
+ms.openlocfilehash: cc5e199816668a5a0f936019ab8096e93a7a2f5a
 
 
 ---
-# <a name="azure-ad-b2c-call-a-web-api-from-an-ios-application-using-a-third-party-library"></a>Azure AD B2C：使用協力廠商程式庫從 iOS 應用程式呼叫 Web API
+# <a name="azure-ad-b2c--call-a-web-api-from-an-ios-application-using-a-third-party-library"></a>Azure AD B2C：使用協力廠商程式庫從 iOS 應用程式呼叫 Web API
 <!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-web-switcher](../../includes/active-directory-b2c-devquickstarts-web-switcher.md)]-->
 
 Microsoft 身分識別平台會使用開放式標準，例如 OAuth2 和 OpenID Connect。 這可讓開發人員運用他們想要與我們的服務整合的任何程式庫。 為了協助開發人員使用我們的平台搭配其他程式庫，我們撰寫了幾個逐步解說，示範如何設定協力廠商程式庫以連接到 Microsoft 身分識別平台。 大部分實作 [RFC6749 OAuth2 規格](https://tools.ietf.org/html/rfc6749) 的程式庫都能連接到 Microsoft 身分識別平台。
@@ -28,9 +28,9 @@ Microsoft 身分識別平台會使用開放式標準，例如 OAuth2 和 OpenID 
 如果您是 OAuth2 或 OpenID Connect 新手，此範例組態可能諸多不太適合您。 建議您查看 [我們在此記載的通訊協定簡短概觀](active-directory-b2c-reference-protocols.md)。
 
 > [!NOTE]
-> 我們的平台中有些功能沒有採用這些標準的運算式 (例如條件式存取和 Intune 原則管理)，所以會要求您使用開放原始碼 Microsoft Azure 身分識別程式庫。 
-> 
-> 
+> 我們的平台中有些功能沒有採用這些標準的運算式 (例如條件式存取和 Intune 原則管理)，所以會要求您使用開放原始碼 Microsoft Azure 身分識別程式庫。
+>
+>
 
 B2C 平台並未支援 Azure Active Directory 的所有案例和功能。  如果要判斷是否應該使用 B2C 平台，請閱讀 [B2C 限制](active-directory-b2c-limitations.md)。
 
@@ -46,7 +46,7 @@ B2C 平台並未支援 Azure Active Directory 的所有案例和功能。  如�
 [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>建立您的原則
-在 Azure AD B2C 中，每個使用者經驗皆由 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含一個身分識別體驗：合併登入和註冊。 您必須為每個類型建立此原則，如 [原則參考文章](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy)所述。 建立此原則時，請務必：
+在 Azure AD B2C 中，每個使用者經驗皆由 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含一個身分識別體驗：合併登入和註冊。 您必須為每個類型建立此原則，如 [原則參考文章](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)所述。 建立此原則時，請務必：
 
 * 在原則中選擇 [顯示名稱]  和註冊屬性。
 * 在每個原則中，選擇 [顯示名稱] 和 [物件識別碼] 應用程式宣告。 您也可以選擇其他宣告。
@@ -63,7 +63,7 @@ B2C 平台並未支援 Azure Active Directory 的所有案例和功能。  如�
 git clone git@github.com:Azure-Samples/active-directory-ios-native-nxoauth2-b2c.git
 ```
 
-或者只要下載完整的程式碼並立即開始著手使用︰ 
+或者只要下載完整的程式碼並立即開始著手使用︰
 
 ```
 git clone --branch complete git@github.com:Azure-Samples/active-directory-ios-native-nxoauth2-b2c.git
@@ -240,7 +240,7 @@ NXOAuthClient 程式庫要求設定一些值。 完成後，您可以使用所�
 
 此時您應注意一些有關 B2C 服務的事務，讓此程式碼更容易了解︰
 
-1. Azure AD B2C 使用查詢參數所提供的「原則」  來為您的要求提供服務。 這可讓 Azure Active Directory 做為僅供您的應用程式使用的獨立服務。 為了提供這些額外的查詢參數，我們必須提供 `kNXOAuth2AccountStoreConfigurationAdditionalAuthenticationParameters:` 方法與我們的自訂原則參數。 
+1. Azure AD B2C 使用查詢參數所提供的「原則」  來為您的要求提供服務。 這可讓 Azure Active Directory 做為僅供您的應用程式使用的獨立服務。 為了提供這些額外的查詢參數，我們必須提供 `kNXOAuth2AccountStoreConfigurationAdditionalAuthenticationParameters:` 方法與我們的自訂原則參數。
 2. Azure AD B2C 使用範圍的方式非常類似於其他 OAuth2 伺服器。 不過，由於使用 B2C 的關鍵主要在於驗證使用者與存取資源，所以絕對需要某些範圍才能讓流程正確運作。 這是 `openid` 範圍。 我們的 Microsoft 身份識別 SDK 會自動為您提供 `openid` 範圍，所以您不會在我們的 SDK 組態中看到該範圍。 不過，由於我們使用協力廠商程式庫，所以需要指定此範圍。
 
 ```objc
@@ -274,7 +274,7 @@ NXOAuthClient 程式庫要求設定一些值。 完成後，您可以使用所�
                                         forAccountType:data.accountIdentifier];
 }
 ```
-接下來，務必在 AppDelegate 中的 `didFinishLaunchingWithOptions:` 方法之下呼叫該範圍。 
+接下來，務必在 AppDelegate 中的 `didFinishLaunchingWithOptions:` 方法之下呼叫該範圍。
 
 ```
 [self setupOAuth2AccountStore];
@@ -299,16 +299,16 @@ NXOAuthClient 程式庫要求設定一些值。 完成後，您可以使用所�
 
 > [!NOTE]
 > 務必將 `loginView` 繫結至您的腳本內的實際 Web 檢視。 否則，您就不會有在開始驗證時快顯的 Web 檢視。
-> 
-> 
+>
+>
 
 * 建立 `LoginViewController.m` 類別
 * 加入一些變數，以在我們進行驗證時傳遞狀態
 
 ```objc
-NSURL *myRequestedUrl; \\ The URL request to Azure Active Directory 
+NSURL *myRequestedUrl; \\ The URL request to Azure Active Directory
 NSURL *myLoadedUrl; \\ The URL loaded for Azure Active Directory
-bool loginFlow = FALSE; 
+bool loginFlow = FALSE;
 bool isRequestBusy; \\ A way to give status to the thread that the request is still happening
 NSURL *authcode; \\ A placeholder for our auth code.
 ```
@@ -387,7 +387,7 @@ NSURL *authcode; \\ A placeholder for our auth code.
 
 * 撰寫程式碼來處理 OAuth2 要求的結果
 
-我們需要程式碼來處理 Web 檢視傳回的重新導向 URL。 如果不成功，我們會再試一次。 同時，文件庫會提供您可在主控台中看到或以非同步方式處理的錯誤。 
+我們需要程式碼來處理 Web 檢視傳回的重新導向 URL。 如果不成功，我們會再試一次。 同時，文件庫會提供您可在主控台中看到或以非同步方式處理的錯誤。
 
 ```objc
 - (void)handleOAuth2AccessResult:(NSURL *)accessResult {
@@ -487,7 +487,7 @@ NSURL *authcode; \\ A placeholder for our auth code.
 您現在已建立起我們與應用程式互動以便登入的主要方式。 我們必須在登入之後，使用我們所收到的權杖。 於是，我們將建立一些會呼叫 REST API 的協助程式碼，以便我們使用此程式庫。
 
 ## <a name="create-a-graphapicaller-class-to-handle-our-requests-to-a-rest-api"></a>建立 `GraphAPICaller` 類別以處理我們對 REST API 的要求
-我們每次載入我們的應用程式時會載入一個組態。 一旦擁有權杖後，我們現在需要進行一些處理動作。 
+我們每次載入我們的應用程式時會載入一個組態。 一旦擁有權杖後，我們現在需要進行一些處理動作。
 
 * 建立 `GraphAPICaller.h` 檔案。
 
@@ -511,7 +511,7 @@ completionBlock:(void (^)(bool, NSError *error))completionBlock;
 ```objc
 @implementation GraphAPICaller
 
-// 
+//
 // Gets the tasks from our REST endpoint we specified in settings
 //
 
@@ -564,7 +564,7 @@ completionBlock:(void (^)(bool, NSError *error))completionBlock;
       }];
 }
 
-// 
+//
 // Adds a task from our REST endpoint we specified in settings
 //
 
@@ -631,7 +631,6 @@ completionBlock:(void (^)(bool, NSError *error))completionBlock {
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 
