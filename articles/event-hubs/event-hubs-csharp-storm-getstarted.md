@@ -1,19 +1,23 @@
 ---
-title: 搭配 Apache Storm 開始使用以 C# 撰寫的事件中樞 | Microsoft Docs
-description: 遵循此教學課程，以開始使用 Azure 事件中樞；以 C# 傳送事件並在 Apache Storm 叢集中接收這些事件。
+title: "搭配 Apache Storm 開始使用以 C# 撰寫的事件中樞 | Microsoft Docs"
+description: "遵循此教學課程，以開始使用 Azure 事件中樞；以 C# 傳送事件並在 Apache Storm 叢集中接收這些事件。"
 services: event-hubs
-documentationcenter: ''
+documentationcenter: 
 author: jtaubensee
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: f64cb2bd-2e38-4c78-8d0d-9af14c000d9f
 ms.service: event-hubs
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/06/2016
+ms.date: 12/07/2016
 ms.author: jotaub;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: f603a3c3304af3e64ef40f2cdef3745e3b2085b3
+ms.openlocfilehash: 508b1390bee1e61514e6e7499071d0503a051c10
+
 
 ---
 # <a name="get-started-with-event-hubs"></a>開始使用事件中心
@@ -49,20 +53,19 @@ ms.author: jotaub;sethm
 ## <a name="next-steps"></a>後續步驟
 您已經建置工作應用程式，可建立「事件中樞」和傳送及接收資料，接下來可進行下列案例：
 
-* [使用事件中樞的完整範例應用程式][使用事件中樞的完整範例應用程式]。
-* [使用「事件中樞」相應放大事件處理][使用「事件中樞」相應放大事件處理] 範例。
+* [使用事件中樞的完整範例應用程式][sample application that uses Event Hubs]。
+* [使用事件中樞相應放大事件處理][Scale out Event Processing with Event Hubs]範例。
 
 <!-- Images. -->
 [22]: ./media/event-hubs-csharp-storm-getstarted/receive-storm1.png
 
 <!-- Links -->
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
 [事件中樞概觀]: event-hubs-overview.md
-[使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
-[使用「事件中樞」相應放大事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
+[sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[Scale out Event Processing with Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: 在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)
-description: 了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。 本主題說明如何將「Azure 金鑰保存庫整合」與在傳統部署模型中建立的 SQL Server 虛擬機器搭配使用。
+title: "在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)"
+description: "了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。 本主題說明如何將「Azure 金鑰保存庫整合」與在傳統部署模型中建立的 SQL Server 虛擬機器搭配使用。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: rothja
 manager: jhubbard
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: ab8d41a7-1971-4032-ab71-eb435c455dc1
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
@@ -15,19 +15,24 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
 ms.date: 09/26/2016
 ms.author: jroth
+translationtype: Human Translation
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: 05a686bb9b8d25624d90fb27ebaf67ca1f734f6d
+
 
 ---
-# <a name="configure-azure-key-vault-integration-for-sql-server-on-azure-vms-(classic)"></a>在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)
+# <a name="configure-azure-key-vault-integration-for-sql-server-on-azure-vms-classic"></a>在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)
 > [!div class="op_single_selector"]
-> * [資源管理員](virtual-machines-windows-ps-sql-keyvault.md)
-> * [傳統](virtual-machines-windows-classic-ps-sql-keyvault.md)
+> * [資源管理員](virtual-machines-windows-ps-sql-keyvault.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [傳統](virtual-machines-windows-classic-ps-sql-keyvault.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 > 
 > 
 
 ## <a name="overview"></a>概觀
 有多個 SQL Server 加密功能，例如[透明資料加密 (TDE)](https://msdn.microsoft.com/library/bb934049.aspx)、[資料行層級加密 (CLE)](https://msdn.microsoft.com/library/ms173744.aspx) 和[備份加密](https://msdn.microsoft.com/library/dn449489.aspx)。 這些形式的加密需要您管理和儲存用來加密的密碼編譯金鑰。 Azure 金鑰保存庫 (AKV) 服務是設計來改善這些金鑰在安全且高度可用位置的安全性和管理。 [SQL Server 連接器](http://www.microsoft.com/download/details.aspx?id=45344) 讓 SQL Server 可以從 Azure 金鑰保存庫使用這些金鑰。
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 如果您使用內部部署機器來執行 SQL Server，有 [您可以遵循以從內部部署 SQL Server 機器存取 Azure 金鑰保存庫的步驟](https://msdn.microsoft.com/library/dn198405.aspx)。 但是對於 Azure VM 中的 SQL server，您可以使用 *Azure 金鑰保存庫整合* 功能來節省時間。 使用一些 Azure PowerShell Cmdlet 來啟用這項功能，您可以自動化 SQL VM 存取您的金鑰保存庫所需的組態。
 
@@ -39,7 +44,7 @@ ms.author: jroth
 使用 PowerShell 設定 Azure 金鑰保存庫整合。 以下章節提供必要參數的概觀，以及範例 PowerShell 指令碼。
 
 ### <a name="install-the-sql-server-iaas-extension"></a>安裝 SQL Server IaaS 擴充功能
-首先， [安裝 SQL Server IaaS 擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+首先， [安裝 SQL Server IaaS 擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ### <a name="understand-the-input-parameters"></a>了解輸入參數
 下表列出在下一節中執行 PowerShell 指令碼所需的參數。
@@ -66,14 +71,15 @@ ms.author: jroth
         $serviceName = "mycloudservicename"
 2. 然後使用下列指令碼來設定和啟用 AKV 整合。
    
-       $secureakv =  $spSecret | ConvertTo-SecureString -AsPlainText -Force
-       $akvs = New-AzureVMSqlServerKeyVaultCredentialConfig -Enable -CredentialName $credname -AzureKeyVaultUrl $akvURL -ServicePrincipalName $spName -ServicePrincipalSecret $secureakv
-       Get-AzureVM -ServiceName $serviceName -Name $vmName | Set-AzureVMSqlServerExtension -KeyVaultCredentialSettings $akvs | Update-AzureVM
+     $secureakv =  $spSecret | ConvertTo-SecureString -AsPlainText -Force   $akvs = New-AzureVMSqlServerKeyVaultCredentialConfig -Enable -CredentialName $credname -AzureKeyVaultUrl $akvURL -ServicePrincipalName $spName -ServicePrincipalSecret $secureakv   Get-AzureVM -ServiceName $serviceName -Name $vmName | Set-AzureVMSqlServerExtension -KeyVaultCredentialSettings $akvs | Update-AzureVM
 
 SQL IaaS 代理程式延伸會使用這個新的組態更新 SQL VM。
 
 [!INCLUDE [AKV Integration Next Steps](../../includes/virtual-machines-sql-server-akv-next-steps.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO1-->
 
 

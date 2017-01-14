@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 11/28/2016
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 5c4e6fd9b560d3005294a02a5ec52c140690c819
-ms.openlocfilehash: 79bb6d74c4eba99386b44e8464214d84abf882c6
+ms.sourcegitcommit: 57df4ab0b2a1df6631eb6e67a90f69cebb1dfe75
+ms.openlocfilehash: 64748a540b20bbd4b354f0b4e1d7de4a969381c6
 
 
 ---
@@ -47,7 +47,7 @@ ms.openlocfilehash: 79bb6d74c4eba99386b44e8464214d84abf882c6
 
 1. [安裝和設定 Azure CLI](../xplat-cli-install.md)，方法是遵循所連結文章內的步驟並登入 Azure 帳戶。
 2. 如上所述[建立資源群組](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-resource-groups-and-choose-deployment-locations) (稱為 contosofabrikam)。
- 
+
     ```azurecli
     azure group create contosofabrikam westcentralus
     ```
@@ -58,7 +58,7 @@ ms.openlocfilehash: 79bb6d74c4eba99386b44e8464214d84abf882c6
     azure availset create --resource-group contosofabrikam --location westcentralus --name myAvailabilitySet
     ```
 
-4. [建立虛擬網路](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-virtual-network-and-subnet) (稱為 myVNet) 和子網路 (稱為 mySubnet)： 
+4. [建立虛擬網路](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-virtual-network-and-subnet) (稱為 myVNet) 和子網路 (稱為 mySubnet)：
 
     ```azurecli
     azure network vnet create --resource-group contosofabrikam --name myVnet --address-prefixes 10.0.0.0/16  --location westcentralus
@@ -105,7 +105,7 @@ ms.openlocfilehash: 79bb6d74c4eba99386b44e8464214d84abf882c6
     azure network lb show --resource-group contosofabrikam --name mylb
     ```
 
-10. 為第一個虛擬機器 VM1 [建立公用 IP](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-public-ip-address-pip) (myPublicIp) 和[儲存體帳戶](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-storage-account) (mystorageaccont1)，如下所示︰
+10. 為第一個虛擬機器 VM1 [建立公用 IP](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-public-ip-address) (myPublicIp) 和[儲存體帳戶](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-a-storage-account) (mystorageaccont1)，如下所示︰
 
     ```azurecli
     azure network public-ip create --resource-group contosofabrikam --location westcentralus --name myPublicIP --domain-name-label mypublicdns345 --allocation-method Dynamic
@@ -134,6 +134,7 @@ ms.openlocfilehash: 79bb6d74c4eba99386b44e8464214d84abf882c6
 13. 最後，您必須將 DNS 資源記錄設定為指向 Load Balancer 的個別前端 IP 位址。 您可以在 Azure DNS 中裝載網域。 如需搭配使用 Azure DNS 與 Load Balancer 的詳細資訊，請參閱[使用 Azure DNS 搭配其他 Azure 服務](../dns/dns-for-azure-services.md)。
 
 
-<!--HONumber=Nov16_HO5-->
+
+<!--HONumber=Dec16_HO1-->
 
 

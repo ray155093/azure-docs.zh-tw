@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 02/02/2016
 ms.author: stephpr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 044007fc099007ea64d958fb6c15a6ed29eccdcc
+ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
+ms.openlocfilehash: 0de0314902805a2bdb37ce3c6f79ec221f3aed31
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 044007fc099007ea64d958fb6c15a6ed29eccdcc
 > 
 > 如果您沒有 GitHub 帳戶，您可以在 [這裡](https://github.com/join)註冊。
 > 
-> 如果您沒有 [Microsoft Azure](https://azure.microsoft.com/) 帳戶，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)註冊免費試用帳戶。 如果您還沒有 Microsoft 帳戶，這也會引導您完成 [Microsoft 帳戶](http://account.microsoft.com) 的註冊程序。 或者，如果您是 Visual Studio 訂閱者，您可以 [啟用 MSDN 權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+> 如果您沒有 [Microsoft Azure](https://azure.microsoft.com/) 帳戶，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)註冊免費試用帳戶。 如果您還沒有 Microsoft 帳戶，這也會引導您完成 [Microsoft 帳戶](http://account.microsoft.com) 的註冊程序。 或者，如果您是 Visual Studio 訂閱者，您可以 [啟用 MSDN 權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 > 
 > 如果您的開發電腦上沒有 git，當您使用 Macintosh 或 Windows 機器時，請從 [這裡](http://www.git-scm.com)安裝 git。 如果您使用 Linux，請使用最適合您的機制來安裝 git，例如 `sudo apt-get install git`。
 > 
@@ -261,6 +261,6 @@ Git 公開一些會在特定時間呼叫的勾點，可對儲存機制上採取�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

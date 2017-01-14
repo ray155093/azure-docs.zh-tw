@@ -1,19 +1,23 @@
 ---
-title: 待用資料的 Azure 儲存體服務加密 | Microsoft Docs
-description: 使用 Azure 儲存體服務加密功能，在儲存資料時於服務端加密您的 Azure Blob 儲存體，在擷取資料時將其解密。
+title: "待用資料的 Azure 儲存體服務加密 | Microsoft Docs"
+description: "使用 Azure 儲存體服務加密功能，在儲存資料時於服務端加密您的 Azure Blob 儲存體，在擷取資料時將其解密。"
 services: storage
 documentationcenter: .net
 author: robinsh
-manager: carmonm
+manager: timlt
 editor: tysonn
-
+ms.assetid: edabe3ee-688b-41e0-b34f-613ac9c3fdfd
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 12/08/2016
 ms.author: robinsh
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: b582e7515ccc588b1381285bdf4bfae00554ac3f
+
 
 ---
 # <a name="azure-storage-service-encryption-for-data-at-rest"></a>待用資料的 Azure 儲存體服務加密
@@ -56,16 +60,16 @@ SSE 有下列限制：
 * 資料表、佇列和檔案資料將不會加密。
 
 ## <a name="getting-started"></a>開始使用
-### <a name="step-1:-[create-a-new-storage-account](storage-create-storage-account.md)."></a>步驟 1： [建立新的儲存體帳戶](storage-create-storage-account.md)。
-### <a name="step-2:-enable-encryption."></a>步驟 2︰啟用加密。
+### <a name="step-1-create-a-new-storage-accountstorage-create-storage-accountmd"></a>步驟 1： [建立新的儲存體帳戶](storage-create-storage-account.md)。
+### <a name="step-2-enable-encryption"></a>步驟 2︰啟用加密。
 您可以使用 [Azure 入口網站](https://portal.azure.com)來啟用加密。
 
 > [!NOTE]
-> 如果您想要以程式設計方式啟用或停用儲存體帳戶上的儲存體服務加密，您可以使用 [Azure 儲存體資源提供者 REST API](https://msdn.microsoft.com/library/azure/mt163683.aspx)、[適用於 .NET 的儲存體資源提供者用戶端程式庫](https://msdn.microsoft.com/library/azure/mt131037.aspx)、[Azure PowerShell](../powershell-install-configure.md) 或 [Azure CLI](storage-azure-cli.md)。
+> 如果您想要以程式設計方式啟用或停用儲存體帳戶上的儲存體服務加密，您可以使用 [Azure 儲存體資源提供者 REST API](https://msdn.microsoft.com/library/azure/mt163683.aspx)、[適用於 .NET 的儲存體資源提供者用戶端程式庫](https://msdn.microsoft.com/library/azure/mt131037.aspx)、[Azure PowerShell](/powershell/azureps-cmdlets-docs) 或 [Azure CLI](storage-azure-cli.md)。
 > 
 > 
 
-### <a name="step-3:-copy-data-to-storage-account"></a>步驟 3︰將資料複製到儲存體帳戶
+### <a name="step-3-copy-data-to-storage-account"></a>步驟 3︰將資料複製到儲存體帳戶
 如果您在儲存體帳戶上啟用 SSE，然後將 Blob 寫入儲存體帳戶，Blob 將會加密。 已經位於該儲存體帳戶的任何 Blob 直到改寫後，才會加密。 您可以將資料從一個儲存體帳戶複製到已啟用 SSE 的儲存體帳戶，或甚至啟用 SSE 並在容器之間複製 Blob，以確保先前的資料已加密。 您也可以使用下列任何工具來完成此作業。
 
 #### <a name="using-azcopy"></a>使用 AzCopy
@@ -83,7 +87,7 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 若要深入了解，請參閱 [Azure 儲存體總管](storage-explorers.md)。
 
-### <a name="step-4:-query-the-status-of-the-encrypted-data"></a>步驟 4︰查詢加密資料的狀態
+### <a name="step-4-query-the-status-of-the-encrypted-data"></a>步驟 4︰查詢加密資料的狀態
 已部署儲存體用戶端程式庫的更新版本，可讓您查詢物件的狀態，以判斷它是否加密。 在不久的將來會在這份文件中加入範例。
 
 在此同時，您可以呼叫 [取得帳戶屬性](https://msdn.microsoft.com/library/azure/mt163553.aspx) 來確認儲存體帳戶是否已啟用加密，或在 Azure 入口網站中檢視儲存體帳戶屬性。
@@ -175,6 +179,9 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 ## <a name="next-steps"></a>後續步驟
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 如需詳細資訊，請參閱 [儲存體安全性指南](storage-security-guide.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 

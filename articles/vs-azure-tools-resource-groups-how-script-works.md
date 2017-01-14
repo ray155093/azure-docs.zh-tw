@@ -1,12 +1,12 @@
 ---
-title: Azure 資源群組專案部署指令碼的概觀 | Microsoft Docs
-description: 說明在 Azure 資源群組部署專案中，PowerShell 指令碼的運作方式。
+title: "Azure 資源群組專案部署指令碼的概觀 | Microsoft Docs"
+description: "說明在 Azure 資源群組部署專案中，PowerShell 指令碼的運作方式。"
 services: visual-studio-online
 documentationcenter: na
 author: tfitzmac
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: fecfb74f-363f-4cc8-9743-36e5ddd879c0
 ms.service: azure-resource-manager
 ms.devlang: multiple
 ms.topic: article
@@ -14,22 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/26/2016
 ms.author: tomfitz
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a0695e51b595874ce3d4ccd2dca863e883e2840b
+
 
 ---
-# Azure 資源群組專案部署指令碼的概觀
-Azure 資源群組部署專案可協助您將檔案和其他構件接移和部署至 Azure。當您在 Visual Studio 中建立 Azure 資源管理員部署專案時，稱為 **Deploy-AzureResourceGroup.ps1** 的PowerShell 指令碼會新增至專案。本主題提供有關此指令碼所執行的動作以及如何在 Visual Studio 內外執行它的詳細資料。
+# <a name="overview-of-the-azure-resource-group-project-deployment-script"></a>Azure 資源群組專案部署指令碼的概觀
+Azure 資源群組部署專案可協助您將檔案和其他構件接移和部署至 Azure。 當您在 Visual Studio 中建立 Azure 資源管理員部署專案時，稱為 **Deploy-AzureResourceGroup.ps1** 的PowerShell 指令碼會新增至專案。 本主題提供有關此指令碼所執行的動作以及如何在 Visual Studio 內外執行它的詳細資料。
 
-## 指令碼執行那些動作？
+## <a name="what-does-the-script-do"></a>指令碼執行那些動作？
 Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工作流程很重要。
 
 * 上傳範本部署所需的任何檔案或構件
 * 部署範本
 
-指令碼的第一個部分會上傳部署的檔案和構件，指令碼中的最後一個 Cmdlet 則是會實際部署範本。例如，如果需要使用指令碼來設定虛擬機器，部署指令碼首先會將組態指令碼安全地上傳至 Azure 儲存體帳戶。如此就可以讓 Azure 資源管理員在佈建期間設定虛擬機器。
+指令碼的第一個部分會上傳部署的檔案和構件，指令碼中的最後一個 Cmdlet 則是會實際部署範本。 例如，如果需要使用指令碼來設定虛擬機器，部署指令碼首先會將組態指令碼安全地上傳至 Azure 儲存體帳戶。 如此就可以讓 Azure 資源管理員在佈建期間設定虛擬機器。
 
-因為並非所有範本部署都需要有額外的上傳構件，所以會評估稱為 *uploadArtifacts* 的切換參數。如果需要上傳任何構件，在呼叫指令碼時設定 *uploadArtifacts* 切換參數。請注意，主要範本檔案和參數檔案不需要上傳。只有其他檔案 (例如組態指令碼、巢狀部署範本和應用程式檔案) 需要上傳。
+因為並非所有範本部署都需要有額外的上傳構件，所以會評估稱為 *uploadArtifacts* 的切換參數。 如果需要上傳任何構件，在呼叫指令碼時設定 *uploadArtifacts* 切換參數。 請注意，主要範本檔案和參數檔案不需要上傳。 只有其他檔案 (例如組態指令碼、巢狀部署範本和應用程式檔案) 需要上傳。
 
-## 詳細的指令碼描述
+## <a name="detailed-script-description"></a>詳細的指令碼描述
 以下是 Deploy-AzureResourceGroup.ps1 Azure PowerShell 指令碼選取部分所執行動作的描述。
 
 > [!NOTE]
@@ -37,7 +41,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
 > 
 > 
 
-1. 宣告 Azure 資源管理員部署專案需要的參數。部分參數已有在建立專案時設定的預設值。您可以在指令碼中變更這些預設值，或在執行指令碼之前新增不同的參數值。
+1. 宣告 Azure 資源管理員部署專案需要的參數。 部分參數已有在建立專案時設定的預設值。 您可以在指令碼中變更這些預設值，或在執行指令碼之前新增不同的參數值。
    
    ```
    Param(
@@ -65,18 +69,18 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
    | $StorageContainerName |用來上傳構件的儲存體容器名稱。 |
    | $TemplateFile |Azure 資源群組專案中部署檔案 (`<app name>.json`) 的路徑。 |
    | $TemplateParametersFile |Azure 資源群組專案中參數檔案 (`<app name>.parameters.json`) 的路徑。 |
-   | $ArtifactStagingDirectory |您的系統上構件本機上傳的路徑，包括 PowerShell 指令碼根資料夾。這個路徑可以是指令碼位置的絕對或相對路徑。 |
-   | $AzCopyPath |AzCopy.exe 工具複製其 .zip 檔案的路徑，包括 PowerShell 指令碼根資料夾。這個路徑可以是指令碼位置的絕對或相對路徑。 |
-   | $DSCSourceFolder |DSC (期望狀態設定) 來源資料夾的路徑，包括 PowerShell 指令碼根資料夾。這個路徑可以是指令碼位置的絕對或相對路徑。如需詳細資訊，請參閱 [Azure PowerShell DSC (期望狀態設定) 延伸模組簡介](http://blogs.msdn.com/b/powershell/archive/2014/08/07/introducing-the-azure-powershell-dsc-desired-state-configuration-extension.aspx) (如果適用)。 |
-2. 查看構件是否需要上傳至 Azure。如果不需要，則跳到步驟 11。否則，執行下列步驟。
-3. 將具有相對路徑的任何變數轉換為絕對路徑。例如，將 `..\Tools\AzCopy.exe` 的路徑變更為 `C:\YourFolder\Tools\AzCopy.exe`。此外，將變數 *ArtifactsLocationName* 和 *ArtifactsLocationSasTokenName* 初始化為 null。*ArtifactsLocation* 和 *SaSToken* 可能是範本的參數。如果在參數檔案中讀取之後其值為 null，指令碼會為它們產生值。
+   | $ArtifactStagingDirectory |您的系統上構件本機上傳的路徑，包括 PowerShell 指令碼根資料夾。 這個路徑可以是指令碼位置的絕對或相對路徑。 |
+   | $AzCopyPath |AzCopy.exe 工具複製其 .zip 檔案的路徑，包括 PowerShell 指令碼根資料夾。 這個路徑可以是指令碼位置的絕對或相對路徑。 |
+   | $DSCSourceFolder |DSC (期望狀態設定) 來源資料夾的路徑，包括 PowerShell 指令碼根資料夾。 這個路徑可以是指令碼位置的絕對或相對路徑。 如需詳細資訊，請參閱 [Azure PowerShell DSC (期望狀態設定) 延伸模組簡介](http://blogs.msdn.com/b/powershell/archive/2014/08/07/introducing-the-azure-powershell-dsc-desired-state-configuration-extension.aspx)(如果適用)。 |
+2. 查看構件是否需要上傳至 Azure。 如果不需要，則跳到步驟 11。 否則，執行下列步驟。
+3. 將具有相對路徑的任何變數轉換為絕對路徑。 例如，將 `..\Tools\AzCopy.exe` 的路徑變更為 `C:\YourFolder\Tools\AzCopy.exe`。 此外，將變數 *ArtifactsLocationName* 和 *ArtifactsLocationSasTokenName* 初始化為 null。 *ArtifactsLocation* 和 *SaSToken* 可能是範本的參數。 如果在參數檔案中讀取之後其值為 null，指令碼會為它們產生值。
    
-   Azure 工具會在範本中使用 *\_artifactsLocation* 和 *\_artifactsLocationSasToken* 參數值來管理構件。如果 PowerShell 指令碼找到具有這些名稱的參數，但是未提供參數值，則指令碼會上傳構件，並且針對這些參數傳回適當的值。接著，透過 `@OptionsParameters` 將它們傳遞至 Cmdlet。
+   Azure 工具會在範本中使用 *_artifactsLocation* 和 *_artifactsLocationSasToken* 參數值來管理構件。 如果 PowerShell 指令碼找到具有這些名稱的參數，但是未提供參數值，則指令碼會上傳構件，並且針對這些參數傳回適當的值。 接著，透過 `@OptionsParameters`將它們傳遞至 Cmdlet。
    
    | 變數 | 說明 |
    | --- | --- |
    | ArtifactsLocationName |Azure 構件所在的路徑。 |
-   | ArtifactsLocationSasTokenName |指令碼用來驗證服務匯流排的 SAS (共用存取簽章) 權杖名稱。如需詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](service-bus/service-bus-shared-access-signature-authentication.md)。 |
+   | ArtifactsLocationSasTokenName |指令碼用來驗證服務匯流排的 SAS (共用存取簽章) 權杖名稱。 如需詳細資訊，請參閱 [使用服務匯流排的共用存取簽章驗證](service-bus-messaging/service-bus-shared-access-signature-authentication.md) 。 |
    
    ```
    if ($UploadArtifacts) {
@@ -91,7 +95,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
    $OptionalParameters.Add($ArtifactsLocationName, $null)
    $OptionalParameters.Add($ArtifactsLocationSasTokenName, $null)
    ```
-4. 本節會檢查 <應用程式名稱>.parameters.json 檔案 (稱為「參數檔案」) 是否擁有名為 **parameters** 的父節點 (在 `else` 區塊)。否則，它沒有父節點。可以接受任一格式。
+4. 本節會檢查 <app name>.parameters.json 檔案 (稱為「參數檔案」) 是否擁有名為 **parameters** 的父節點 (在 `else` 區塊)。 否則，它沒有父節點。 可以接受任一格式。
    
    ```
    if ($JsonParameters -eq $null) {
@@ -101,7 +105,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
          $JsonParameters = $JsonContent.parameters
      }
    ```
-5. 反覆執行 JSON 參數的集合。如果參數值已指派給 *\_artifactsLocation* 或 *\_artifactsLocationSasToken*，則使用這些值設定變數 *$OptionalParameters*。這可防止指令碼意外覆寫您提供的任何參數值。
+5. 反覆執行 JSON 參數的集合。 如果參數值已指派給 *_artifactsLocation* 或 *_artifactsLocationSasToken*，則使用這些值設定變數 *$OptionalParameters*。 這可防止指令碼意外覆寫您提供的任何參數值。
    
    ```
    $JsonParameters | Get-Member -Type NoteProperty | ForEach-Object {
@@ -119,7 +123,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
    
    $StorageAccountContext = (Get-AzureRmStorageAccount -ResourceGroupName $StorageAccountResourceGroupName -Name $StorageAccountName).Context
    ```
-7. 如果您使用 PowerShell DSC 來設定虛擬機器，DSC 延伸模組需要構件在單一 zip 檔案中。因此，針對 DSC 組態建立 .zip 封存檔。若要這樣做，請查看 $DSCSourceFolder 是否存在。如果 DSC 組態存在，將它移除，然後建立一個名為 dsc.zip 的新壓縮檔案。
+7. 如果您使用 PowerShell DSC 來設定虛擬機器，DSC 延伸模組需要構件在單一 zip 檔案中。 因此，針對 DSC 組態建立 .zip 封存檔。 若要這樣做，請查看 $DSCSourceFolder 是否存在。 如果 DSC 組態存在，將它移除，然後建立一個名為 dsc.zip 的新壓縮檔案。
    
    ```
    # Create DSC configuration archive
@@ -130,7 +134,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
      [System.IO.Compression.ZipFile]::CreateFromDirectory($DSCSourceFolder, $ArchiveFile)
    }
    ```
-8. 如果未在參數檔案中提供 Azure 構件的路徑，則設定上傳構件時使用的 PowerShell 指令碼的路徑。若要這樣做，請建立路徑，方法是使用儲存體帳戶的端點路徑加上儲存體容器名稱的組合。然後，使用這個新的路徑更新參數檔案。
+8. 如果未在參數檔案中提供 Azure 構件的路徑，則設定上傳構件時使用的 PowerShell 指令碼的路徑。 若要這樣做，請建立路徑，方法是使用儲存體帳戶的端點路徑加上儲存體容器名稱的組合。 然後，使用這個新的路徑更新參數檔案。
    
    ```
    # Generate the value for artifacts location if it is not provided in the parameter file
@@ -140,14 +144,14 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
      $OptionalParameters[$ArtifactsLocationName] = $ArtifactsLocation
    }
    ```
-9. 使用 **AzCopy** 公用程式 (包含在 Azure 資源群組部署專案的 [工具] 資料夾中)，從您的本機儲存體放置路徑將任何檔案複製到線上 Azure 儲存體帳戶。如果這個步驟失敗，結束指令碼，因為部署沒有必要的構件不會成功。
+9. 使用 **AzCopy** 公用程式 (包含在 Azure 資源群組部署專案的 [工具] 資料夾中)，從您的本機儲存體放置路徑將任何檔案複製到線上 Azure 儲存體帳戶。 如果這個步驟失敗，結束指令碼，因為部署沒有必要的構件不會成功。
    
    ```
    # Use AzCopy to copy files from the local storage drop path to the storage account container
    & $AzCopyPath """$ArtifactStagingDirectory""", $ArtifactsLocation, "/DestKey:$StorageAccountKey", "/S", "/Y", "/Z:$env:LocalAppData\Microsoft\Azure\AzCopy\$ResourceGroupName"
    if ($LASTEXITCODE -ne 0) { return }
    ```
-10. 如果未在參數檔案中提供構件位置的 SAS 權杖，建立一個以提供線上儲存體容器的暫時唯讀存取權。然後，將該 SAS 權杖傳遞至 cmdline 作為 “optionalParameter”。 請注意，在 cmdline 上傳遞的任何參數的優先順序高於在參數檔案中提供的值。
+10. 如果未在參數檔案中提供構件位置的 SAS 權杖，建立一個以提供線上儲存體容器的暫時唯讀存取權。 然後，將該 SAS 權杖傳遞至 cmdline 作為 “optionalParameter”。 請注意，在 cmdline 上傳遞的任何參數的優先順序高於在參數檔案中提供的值。
     
     ```
     # Generate the value for artifacts location SAS token if it is not provided in the parameter file
@@ -167,7 +171,7 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
     
     Test-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -TemplateParameterFile $TemplateParametersFile @OptionalParameters -ErrorAction Stop
     ```
-12. 最後，部署範本。此程式碼會使用 timestamp 為部署建立唯一的名稱。
+12. 最後，部署範本。 此程式碼會使用 timestamp 為部署建立唯一的名稱。
     
      ```
      New-AzureRMResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
@@ -178,12 +182,12 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
          -Force -Verbose
      ```
 
-## 部署資源群組
-### 在 Visual Studio 中部署資源群組
-1. 在 Azure 資源群組專案的捷徑功能表上，選擇 [部署] > [新增部署]。
+## <a name="deploy-the-resource-group"></a>部署資源群組
+### <a name="to-deploy-the-resource-group-in-visual-studio"></a>在 Visual Studio 中部署資源群組
+1. 在 Azure 資源群組專案的捷徑功能表上，選擇 [部署]  > **New ment**。
    
     ![][0]
-2. 在 [部署至資源群組] 對話方塊中，在下拉式清單方塊選擇要部署的現有資源群組，或是選擇 [&lt;建立新的…&gt;] 以建立新的資源群組。
+2. 在 [部署至資源群組] 對話方塊中，在下拉式清單方塊選擇要部署的現有資源群組，或是選擇 [&lt;建立新的…&gt;]  以建立新的資源群組。
    
     ![][1]
 3. 如果收到提示，請在 [建立資源群組] 對話方塊中輸入資源群組名稱和位置，然後選擇 [建立] 按鈕。
@@ -203,25 +207,25 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
    
     部署指令碼 (Deploy-AzureResourceGroup.ps1) 會執行，您的範本以及任何構件會部署至 Azure。
 
-### 使用 PowerShell 部署資源群組
-如果您想要執行指令碼而不使用 Visual Studio 的 [部署] 命令和 UI，在指令碼的捷徑功能表上，選擇 [以 PowerShell ISE 開啟]。
+### <a name="to-deploy-the-resource-group-by-using-powershell"></a>使用 PowerShell 部署資源群組
+如果您想要執行指令碼而不使用 Visual Studio 的 [部署] 命令和 UI，在指令碼的捷徑功能表上，選擇 [以 PowerShell ISE 開啟] 。
 
 ![][5]
 
-## 命令部署範例
-### 使用預設值部署
-這個範例示範如何使用預設參數值執行指令碼。(因為位置參數沒有預設值，您必須提供值。)
+## <a name="command-deployment-examples"></a>命令部署範例
+### <a name="deploy-using-default-values"></a>使用預設值部署
+這個範例示範如何使用預設參數值執行指令碼。 (因為位置參數沒有預設值，您必須提供值。)
 
 `.\Deploy-AzureResourceGroup.ps1 -ResourceGroupLocation eastus`
 
-### 部署覆寫預設值
+### <a name="deploy-overriding-the-default-values"></a>部署覆寫預設值
 這個範例示範如何執行指令碼來部署與預設值不同的範本和參數檔案。
 
 ```
 .\Deploy-AzureResourceGroup.ps1 -ResourceGroupLocation eastus –TemplateFile ..\templates\AnotherTemplate.json –TemplateParametersFile ..\templates\AnotherTemplate.parameters.json
 ```
 
-### 使用 UploadArtifacts 部署以進行接移
+### <a name="deploy-using-uploadartifacts-for-staging"></a>使用 UploadArtifacts 部署以進行接移
 這個範例示範如何執行指令碼以從發行資料夾上傳構件，並且部署非預設範本。
 
 ```
@@ -234,10 +238,10 @@ Deploy-AzureResourceGroup.ps1 指令碼會執行兩個動作，對於部署工�
 $(Build.StagingDirectory)/AzureResourceGroup1/Scripts/Deploy-AzureResourceGroup.ps1 -StorageAccountName 'mystorage' -StorageAccountResourceGroupName 'Default-Storage-EastUS' -ResourceGroupName 'myResourceGroup' -ResourceGroupLocation 'eastus' -TemplateFile '..\templates\windowsvirtualmachine.json' -TemplateParametersFile '..\templates\windowsvirtualmachine.parameters.json' -UploadArtifacts -ArtifactStagingDirectory $(Build.StagingDirectory)
 ```
 
-## 後續步驟
-深入了解 Azure 資源管理員，方法是參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
+## <a name="next-steps"></a>後續步驟
+深入了解 Azure Resource Manager，方法是參閱 [Azure Resource Manager 概觀](azure-resource-manager/resource-group-overview.md)。
 
-如需更多使用 Azure 資源群組案的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 連線[示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的[部署和管理 Azure 資源](https://github.com/Microsoft/HealthClinic.biz/wiki/Deploy-and-manage-Azure-resources)。如需 HealthClinic.biz 示範中的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
+如需更多使用 Azure 資源群組案的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 連線[示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的[部署和管理 Azure 資源](https://github.com/Microsoft/HealthClinic.biz/wiki/Deploy-and-manage-Azure-resources)。 如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
 
 [0]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy1c.png
 [1]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy2bc.png
@@ -246,4 +250,8 @@ $(Build.StagingDirectory)/AzureResourceGroup1/Scripts/Deploy-AzureResourceGroup.
 [4]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy5c.png
 [5]: ./media/vs-azure-tools-resource-groups-how-script-works/deploy6c.png
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+<!--HONumber=Dec16_HO2-->
+
+

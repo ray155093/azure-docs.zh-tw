@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Novatus 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Novatus 之間的單一登入功能。
+title: "教學課程：Azure Active Directory 與 Novatus 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Novatus 之間的單一登入功能。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: d2f13779-bdb7-4408-9738-be67ed3de4e5
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f14f89b10145787bb2729f741ce8620238a7f246
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-novatus"></a>教學課程：將 Azure Active Directory 與 Novatus 整合
+# <a name="tutorial-azure-active-directory-integration-with-novatus"></a>教學課程：將 Azure Active Directory 與 Novatus 整合
 本教學課程旨在說明如何整合 Novatus 與 Azure Active Directory (Azure AD)。
 
 Novatus 與 Azure AD 整合提供下列優點：
@@ -115,7 +119,7 @@ Novatus 與 Azure AD 整合提供下列優點：
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+    b. 按 [下一步] 。
 2. 若要為您的應用程式設定 SSO，請透過 jvinci@novatusinc.com. 將下載的憑證檔案附加至您的郵件，並與 Novatus 小組分享中繼資料 URL (實體識別碼、SSO 登入 URL 和登出 URL)，以在其端設定 SSO。
 3. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
@@ -172,7 +176,7 @@ Novatus 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-novatus-test-user"></a>建立 Novatus 測試使用者
 本節的目標是在 Novatus 中建立名為 Britta Simon 的使用者。 Novatus 支援預設啟用的 Just-In-Time 佈建。
@@ -234,6 +238,6 @@ Novatus 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -14,10 +14,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/14/2016
-ms.author: narayanannamalai;annahar
+ms.author: narayan;annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 2ae62a2e657e3b20e258b5afaa1d03b6825e8019
-ms.openlocfilehash: e40af1e363f7add88ead6e552290926abe4db328
+ms.sourcegitcommit: ed7c37ee5482b3ec91489b7aba9b5a9d5df5c97e
+ms.openlocfilehash: 06130f18bad86dbbe009548ac95ac0e6c4953db2
 
 
 ---
@@ -82,8 +82,7 @@ VNet 對等互連中每個連結都具有一組上述的屬性。 從入口網�
 4. 在 [新增存取] 刀鋒視窗中，按一下 [選取角色] 並選擇 [網路參與者]，按一下 [新增使用者]，輸入使用者 B 登入名稱並按一下 [確定]。
    
     ![RBAC](./media/virtual-networks-create-vnetpeering-arm-portal/figure10.png)
-   
-    這不是必要需求，即使使用者針對其個別的 Vnet 個別提出對等互連的要求，只要要求符合就可以建立對等互連。 將另一個 VNet 的權限使用者新增為本機 VNet 使用者，可以輕鬆在入口網站中進行設定。
+
 5. 然後以使用者 B 登入 Azure 入口網站，使用者 B 為訂用帳戶 B 的權限使用者。 依照上述步驟將使用者 A 新增為網路參與者。
    
     ![RBAC2](./media/virtual-networks-create-vnetpeering-arm-portal/figure11.png)
@@ -138,6 +137,6 @@ VNet 對等互連中每個連結都具有一組上述的屬性。 從入口網�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 10a56e134f0e31e60758d6e616b771dabc0f4dad
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 13ffe90e03dbe99366fb4f6e2788ba7a3c968a30
 
 
 ---
@@ -44,7 +44,7 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
 ## <a name="detailed-troubleshooting-steps"></a>詳細的疑難排解步驟
 完成下列步驟對 VM 的 NSG 進行疑難排解：
 
-1. 啟動 Azure PowerShell 工作階段並登入 Azure。 如果您不熟悉如何使用 Azure PowerShell，請閱讀 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 文章。
+1. 啟動 Azure PowerShell 工作階段並登入 Azure。 如果您不熟悉如何使用 Azure PowerShell，請閱讀 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 文章。
 2. 輸入下列命令會傳回對資源群組 *RG1* 中名為 *VM1-NIC1* 的 NIC 套用的所有 NSG 規則：
    
         Get-AzureRmEffectiveNetworkSecurityGroup -NetworkInterfaceName VM1-NIC1 -ResourceGroupName RG1
@@ -201,6 +201,6 @@ NSG 可讓您控制流入和流出虛擬機器 (VM) 的流量類型。 您可對
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

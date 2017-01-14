@@ -1,13 +1,13 @@
 ---
-title: 使用 C# 和 Resource Manager 範本部署 VM | Microsoft Docs
-description: 了解如何使用 C# 和 Resource Manager 範本來部署 Azure VM。
+title: "使用 C# 和 Resource Manager 範本部署 VM | Microsoft Docs"
+description: "了解如何使用 C# 和 Resource Manager 範本來部署 Azure VM。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: davidmu1
 manager: timlt
 editor: tysonn
 tags: azure-resource-manager
-
+ms.assetid: bfba66e8-c923-4df2-900a-0c2643b81240
 ms.service: virtual-machines-windows
 ms.workload: na
 ms.tgt_pltfrm: vm-windows
@@ -15,9 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: davidmu
+translationtype: Human Translation
+ms.sourcegitcommit: 5d3bcc3c1434b16279778573ccf3034f9ac28a4d
+ms.openlocfilehash: aeea0c65a3332197efcd823e29c8f0c4fe0426b3
+
 
 ---
-# <a name="deploy-an-azure-virtual-machine-using-c#-and-a-resource-manager-template"></a>利用 C# 和 Resource Manager 範本來部署 Azure 虛擬機器
+# <a name="deploy-an-azure-virtual-machine-using-c-and-a-resource-manager-template"></a>利用 C# 和 Resource Manager 範本來部署 Azure 虛擬機器
 藉由使用資源群組和範本，您可以管理所有能夠支援您的應用程式的資源。 本文說明如何使用 Visual Studio 和 C# 設定驗證、建立範本，然後使用您所建立的範本來部署 Azure 資源。
 
 您必須先確定已完成下列設定步驟：
@@ -29,7 +33,7 @@ ms.author: davidmu
 
 執行這些步驟需要 30 分鐘左右。
 
-## <a name="step-1:-create-the-visual-studio-project,-the-template-file,-and-the-parameters-file"></a>步驟 1：建立 Visual Studio 專案、範本檔案，以及參數檔案
+## <a name="step-1-create-the-visual-studio-project-the-template-file-and-the-parameters-file"></a>步驟 1：建立 Visual Studio 專案、範本檔案，以及參數檔案
 ### <a name="create-the-template-file"></a>建立範本檔案
 有了 Azure Resource Manager 範本之後，您就可以一起部署和管理 Azure 資源。 範本是資源的 JSON 描述和相關聯的部署參數。
 
@@ -40,13 +44,13 @@ ms.author: davidmu
 3. 在 [方案總管] 中，以滑鼠右鍵按一下專案名稱，然後按一下 [新增] > [新增項目]。
 4. 按一下 [Web]，選取 JSON 檔案，為名稱輸入 *VirtualMachineTemplate.json*，然後按一下 [新增]。
 5. 在 VirtualMachineTemplate.json 檔案的開頭和結尾括號中，加入必要的結構描述元素和必要的 contentVersion 元素︰
-   
+
         {
           "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
           "contentVersion": "1.0.0.0",
         }
-6. [參數](../resource-group-authoring-templates.md#parameters)並非總是必要的項目，但它們能提供在部署範本時輸入值的方式。 在 ContentVersion 元素之後加入參數元素及其子元素：
-   
+6. [參數](../azure-resource-manager/resource-group-authoring-templates.md#parameters)並非總是必要的項目，但它們能提供在部署範本時輸入值的方式。 在 ContentVersion 元素之後加入參數元素及其子元素：
+
         {
           "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
           "contentVersion": "1.0.0.0",
@@ -55,8 +59,8 @@ ms.author: davidmu
             "adminPassword": { "type": "securestring" }
           },
         }
-7. [變數](../resource-group-authoring-templates.md#variables) 可以在範本中用來指定會經常變更的值或需要透過參數值組合建立的值。 在參數區段之後加入變數元素：
-   
+7. [變數](../azure-resource-manager/resource-group-authoring-templates.md#variables) 可以在範本中用來指定會經常變更的值或需要透過參數值組合建立的值。 在參數區段之後加入變數元素：
+
         {
           "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
           "contentVersion": "1.0.0.0",
@@ -69,8 +73,8 @@ ms.author: davidmu
             "subnetRef": "[concat(variables('vnetID'),'/subnets/mysn1')]"  
           },
         }
-8. [資源](../resource-group-authoring-templates.md#resources) ，例如虛擬機器、虛擬網路，以及儲存體帳戶接下來會在範本中定義。 在變數區段之後加入資源區段：
-   
+8. [資源](../azure-resource-manager/resource-group-authoring-templates.md#resources) ，例如虛擬機器、虛擬網路，以及儲存體帳戶接下來會在範本中定義。 在變數區段之後加入資源區段：
+
         {
           "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
           "contentVersion": "1.0.0.0",
@@ -183,7 +187,7 @@ ms.author: davidmu
 1. 在 [方案總管] 中，以滑鼠右鍵按一下專案名稱，然後按一下 [新增] > [新增項目]。
 2. 按一下 [Web]，選取 JSON 檔案，為名稱輸入 *Parameters.json*，然後按一下 [新增]。
 3. 開啟 parameters.json 檔案，然後加入此 JSON 內容：
-   
+
         {
           "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
           "contentVersion": "1.0.0.0",
@@ -192,14 +196,14 @@ ms.author: davidmu
             "adminPassword": { "value": "mytestpass1" }
           }
         }
-   
+
    > [!NOTE]
-   > 本文會建立執行 Windows Server 作業系統版本的虛擬機器。 若要深入了解如何選取其他映像，請參閱 [使用 Windows PowerShell 和 Azure CLI 巡覽並選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
-   > 
-   > 
+   > 本文會建立執行 Windows Server 作業系統版本的虛擬機器。 若要深入了解如何選取其他映像，請參閱 [使用 Windows PowerShell 和 Azure CLI 巡覽並選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+   >
+   >
 4. 儲存您所建立的參數檔案。
 
-## <a name="step-2:-install-the-libraries"></a>步驟 2：安裝程式庫
+## <a name="step-2-install-the-libraries"></a>步驟 2：安裝程式庫
 NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 您必須安裝 Azure Resource Management Library 和 Azure Active Directory Authentication Library 以建立資源。 若要在 Visual Studio 中取得這些程式庫，請執行下列步驟：
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下專案名稱，然後按一下 [管理 NuGet 封裝]，然後按一下 [瀏覽]。
@@ -208,11 +212,11 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
 
 您現在已經準備就緒，可以開始使用程式庫建立您的應用程式。
 
-## <a name="step-3:-create-the-credentials-that-are-used-to-authenticate-requests"></a>步驟 3：建立用來驗證要求的認證
+## <a name="step-3-create-the-credentials-that-are-used-to-authenticate-requests"></a>步驟 3：建立用來驗證要求的認證
 已建立 Azure Active Directory 應用程式，而且已安裝驗證程式庫。 現在您可以將應用程式資訊格式化為用來向 Azure Resource Manager 驗證要求的認證。
 
 1. 開啟您建立之專案的 Program.cs 檔案，然後將這些 using 陳述式新增至檔案頂端：
-   
+
         using Microsoft.Azure;
         using Microsoft.IdentityModel.Clients.ActiveDirectory;
         using Microsoft.Azure.Management.ResourceManager;
@@ -220,38 +224,38 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
         using Microsoft.Rest;
         using System.IO;
 2. 將下列方法新增至 Program 類別，以取得建立認證所需的權杖：
-   
-       private static async Task<AuthenticationResult> GetAccessTokenAsync()
+
+     private static async Task<AuthenticationResult> GetAccessTokenAsync()   {
+
+       var cc = new ClientCredential("{client-id}", "{client-secret}");
+       var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
+       var token = await context.AcquireTokenAsync("https://management.azure.com/", cc);
+       if (token == null)
        {
-         var cc = new ClientCredential("{client-id}", "{client-secret}");
-         var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
-         var token = await context.AcquireTokenAsync("https://management.azure.com/", cc);
-         if (token == null)
-         {
-           throw new InvalidOperationException("Could not get the token.");
-         }
-         return token;
+         throw new InvalidOperationException("Could not get the token.");
        }
-   
+       return token;
+     }
+
    將 {client-id} 用 Azure Active Directory 應用程式的識別碼取代，將 {client-secret} 用 AD 應用程式的存取金鑰取代，並將 {tenant-id} 用您訂用帳戶的租用戶識別碼取代。 您可以透過執行 Get-AzureRmSubscription 來尋找租用戶識別碼。 您可以使用 Azure 入口網站尋找存取金鑰。
 3. 若要建立認證，請將此程式碼新增至 Program.cs 檔案中的 Main 方法：
-   
+
         var token = GetAccessTokenAsync();
         var credential = new TokenCredentials(token.Result.AccessToken);
 4. 儲存 Program.cs 檔案。
 
-## <a name="step-4:-deploy-the-template"></a>步驟 4：部署範本
+## <a name="step-4-deploy-the-template"></a>步驟 4：部署範本
 在此步驟中，您可以使用先前建立的資源群組，也可以使用 [ResourceGroup](https://msdn.microsoft.com/library/azure/microsoft.azure.management.resources.models.resourcegroup.aspx) 和 [ResourceManagementClient](https://msdn.microsoft.com/library/azure/microsoft.azure.management.resources.resourcemanagementclient.aspx) 類別建立資源群組。
 
 1. 將變數新增至 Program 類別的 Main 方法，以指定您先前建立之資源的名稱、部署名稱，以及您的訂用帳戶識別碼：
-   
+
         var groupName = "resource group name";
         var subscriptionId = "subsciption id";
         var deploymentName = "deployment name";
-   
+
     使用您的資源群組名稱取代 groupName 的值。 使用您要用於部署的名稱取代 deploymentName 的值。 您可以執行 Get-AzureRmSubscription 來尋找訂用帳戶識別碼。
 2. 將此方法加入至 Program 類別，以使用您所定義的範本，將資源部署至資源群組：
-   
+
         public static async Task<DeploymentExtended> CreateTemplateDeploymentAsync(
           TokenCredentials credential,
           string groupName,
@@ -266,17 +270,17 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
             Template = File.ReadAllText("..\\..\\VirtualMachineTemplate.json"),
             Parameters = File.ReadAllText("..\\..\\Parameters.json")
           };
-          var resourceManagementClient = new ResourceManagementClient(credential) 
+          var resourceManagementClient = new ResourceManagementClient(credential)
             { SubscriptionId = subscriptionId };
           return await resourceManagementClient.Deployments.CreateOrUpdateAsync(
             groupName,
             deploymentName,
             deployment);
         }
-   
+
     如果您要從儲存體帳戶部署範本，您可以使用 TemplateLink 屬性取代 Template 屬性。
 3. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Main 方法：
-   
+
         var dpResult = CreateTemplateDeploymentAsync(
           credential,
           groupName,
@@ -285,42 +289,47 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
         Console.WriteLine(dpResult.Result.Properties.ProvisioningState);
         Console.ReadLine();
 
-## <a name="step-5:-delete-the-resources"></a>步驟 5：刪除資源
+## <a name="step-5-delete-the-resources"></a>步驟 5：刪除資源
 您將為 Azure 中所使用的資源支付費用，因此，刪除不再需要的資源永遠是最好的做法。 您不需要從資源群組個別刪除每個資源。 刪除資源群組，其所有資源都將會自動刪除。
 
 1. 若要刪除資源群組，請將下列方法新增至 Program 類別：
-   
-       public static async void DeleteResourceGroupAsync(
-         TokenCredentials credential,
-         string groupName,
-         string subscriptionId)
-       {
-         Console.WriteLine("Deleting resource group...");
-         var resourceManagementClient = new ResourceManagementClient(credential)
-           { SubscriptionId = subscriptionId };
-         await resourceManagementClient.ResourceGroups.DeleteAsync(groupName);
-       }
-2. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Main 方法：
-   
-       DeleteResourceGroupAsync(
-         credential,
-         groupName,
-         subscriptionId);
-       Console.ReadLine();
 
-## <a name="step-6:-run-the-console-application"></a>步驟 6：執行主控台應用程式
+     public static async void DeleteResourceGroupAsync(
+
+       TokenCredentials credential,
+       string groupName,
+       string subscriptionId)
+     {
+
+       Console.WriteLine("Deleting resource group...");
+       var resourceManagementClient = new ResourceManagementClient(credential)
+         { SubscriptionId = subscriptionId };
+       await resourceManagementClient.ResourceGroups.DeleteAsync(groupName);
+     }
+2. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Main 方法：
+
+     DeleteResourceGroupAsync(
+
+       credential,
+       groupName,
+       subscriptionId);
+     Console.ReadLine();
+
+## <a name="step-6-run-the-console-application"></a>步驟 6：執行主控台應用程式
 1. 若要執行主控台應用程式，按一下 Visual Studio 中的 [啟動]  ，然後以您用於訂用帳戶的同一個認證，登入 Azure AD。
 2. 在顯示 [已接受] 狀態之後按 **Enter** 鍵。
-   
+
    此主控台應用程式從開始到完成的完整執行應該需要五分鐘左右。 在您按下 Enter 以開始刪除資源之前，可能需要幾分鐘時間，先確認 Azure 入口網站中建立的資源，然後再刪除。
 3. 若要查看資源的狀態，請瀏覽至 Azure 入口網站中的稽核記錄：
-   
+
     ![在 Azure 入口網站中瀏覽稽核記錄檔](./media/virtual-machines-windows-csharp-template/crpportal.png)
 
 ## <a name="next-steps"></a>後續步驟
 * 如果部署有問題，下一個步驟就是查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
-* 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-csharp-manage.md)，以了解如何管理您建立的虛擬機器。
+* 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-csharp-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以了解如何管理您建立的虛擬機器。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,206 +1,208 @@
 ---
-title: Configure MPIO on StorSimple Linux host| Microsoft Docs
-description: Configure MPIO on StorSimple connected to a Linux host running CentOS 6.6
+title: "在 StorSimple Linux 主機上設定 MPIO | Microsoft Docs"
+description: "在連線到執行 CentOS 6.6 之 Linux 主機的 StorSimple 上設定 MPIO"
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: carmonm
 editor: tysonn
-
+ms.assetid: ca289eed-12b7-4e2e-9117-adf7e2034f2f
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/21/2016
+ms.date: 12/01/2016
 ms.author: alkohli
+translationtype: Human Translation
+ms.sourcegitcommit: aa0193e741b1a84c03230b2458eec96b5504f031
+ms.openlocfilehash: add539351066f9ff94febeebfd5334773b360e8f
+
 
 ---
-# <a name="configure-mpio-on-a-storsimple-host-running-centos"></a>Configure MPIO on a StorSimple host running CentOS
-This article explains the steps required to configure Multipathing IO (MPIO) on your Centos 6.6 host server. The host server is connected to your Microsoft Azure StorSimple device for high availability via iSCSI initiators. It describes in detail the automatic discovery of multipath devices and the specific setup only for StorSimple volumes.
+# <a name="configure-mpio-on-a-storsimple-host-running-centos"></a>在執行 CentOS 的 StorSimple 主機上設定 MPIO
+本文說明在 Centos 6.6 主機伺服器上設定多重路徑 IO (MPIO) 所需的步驟。 主機伺服器會連線到您的 Microsoft Azure StorSimple 裝置，以透過 iSCSI 啟動器取得高可用性。 文中詳細描述多重路徑裝置的自動探索，以及 StorSimple 磁碟區特有的設定。
 
-This procedure is applicable to all the models of StorSimple 8000 series devices.
+此程序適用於 StorSimple 8000 系列裝置的所有模型。
 
 > [!NOTE]
-> This procedure cannot be used for a StorSimple virtual device. For more information, see how to configure host servers for your virtual device.
+> 此程序無法用於 StorSimple 虛擬裝置。 如需詳細資訊，請參閱〈如何設定虛擬裝置的主機伺服器〉。
 > 
 > 
 
-## <a name="about-multipathing"></a>About multipathing
-The multipathing feature allows you to configure multiple I/O paths between a host server and a storage device. These I/O paths are physical SAN connections that can include separate cables, switches, network interfaces, and controllers. Multipathing aggregates the I/O paths, to configure a new device that is associated with all of the aggregated paths.
+## <a name="about-multipathing"></a>關於多重路徑
+多重路徑功能可讓您在主機伺服器與儲存體裝置之間設定多個 I/O 路徑。 這些 I/O 路徑是可包含不同纜線、開關、網路介面及控制站的實體 SAN 連線。 多重路徑功能會彙總 I/O 路徑，以設定與所有彙總路徑相關聯的新裝置。
 
-The purpose of multipathing is two-fold:
+多重路徑有雙重目的：
 
-* **High availability**: It provides an alternate path if any element of the I/O path (such as a cable, switch, network interface, or controller) fails.
-* **Load balancing**: Depending on the configuration of your storage device, it can improve the performance by detecting loads on the I/O paths and dynamically rebalancing those loads.
+* **高可用性**︰如果 I/O 路徑的任何元素 (例如纜線、開關、網路介面或控制站) 失敗，它會提供替代路徑。
+* **負載平衡**︰視您的儲存體裝置的組態而定，它可透過偵測 I/O 路徑上的負載及動態重新平衡這些負載來改善效能。
 
-### <a name="about-multipathing-components"></a>About multipathing components
-Multipathing in Linux consists of kernel components and user-space components as tabulated below.
+### <a name="about-multipathing-components"></a>關於多重路徑元件
+Linux 中的多重路徑是由核心元件和下列的使用者空間元件所組成。
 
-* **Kernel**: The main component is the *device-mapper* that reroutes I/O and supports failover for paths and path groups.
+* **核心**︰主要元件是 *device-mapper* ，可重新路由傳送 I/O 及支援路徑和路徑群組的容錯移轉。
 
-1. **User-space**: These are *multipath-tools* that manage multipathed devices by instructing the device-mapper multipath module what to do. The tools consist of:
+* **使用者空間**：這些是 *multipath-tools* ，可藉由指示 device-mapper 多重路徑模組該怎麼做來管理多重路徑的裝置。 這些工具包括：
    
-   * **Multipath**: lists and configures multipathed devices.
-   * **Multipathd**: daemon that executes multipath and monitors the paths.
-   * **Devmap-name**: provides a meaningful device-name to udev for devmaps.
-   * **Kpartx**: maps linear devmaps to device partitions to make multipath maps partitionable.
-   * **Multipath.conf**: configuration file for multipath daemon that is used to overwrite the built-in configuration table.
+   * **Multipath**︰列出及設定多重路徑的裝置。
+   * **Multipathd**︰可執行多重路徑及監視路徑的精靈。
+   * **Devmap-name**︰提供有意義的裝置名稱給 udev for devmaps。
+   * **Kpartx**︰將線性 devmaps 對應至裝置資料分割，讓多重路徑對應可分割。
+   * **Multipath.conf**︰多重路徑精靈的組態檔，用來覆寫內建組態資料表。
 
-### <a name="about-the-multipath.conf-configuration-file"></a>About the multipath.conf configuration file
-The configuration file `/etc/multipath.conf` makes many of the multipathing features user-configurable. The `multipath` command and the kernel daemon `multipathd` use information found in this file. The file is consulted only during the configuration of the multipath devices. Make sure that all changes are made before you run the `multipath` command. If you modify the file afterwards, you will need to stop and start multipathd again for the changes to take effect.
+### <a name="about-the-multipathconf-configuration-file"></a>關於 multipath.conf 組態檔
+組態檔 `/etc/multipath.conf` 讓使用者可以設定許多多重路徑功能。 `multipath` 命令和核心精靈 `multipathd` 會使用此檔案中找到的資訊。 只有在多重路徑裝置的設定期間才會參考此檔案。 務必在您執行 `multipath` 命令之前進行所有的變更。 如果您之後修改該檔案，則必須停止後重新啟動 multipathd，變更才會生效。
 
-The multipath.conf has five sections:
+multipath.conf 有五個區段：
 
-* **System level defaults** *(defaults)*: You can override system level defaults.
+- **系統層級的預設值** *(defaults)*：您可以覆寫系統層級預設值。
+- **列入封鎖清單的裝置** *(blacklist)*：您可以指定不受 device-mapper 控制的裝置清單。
+- **封鎖清單例外狀況** (blacklist_exceptions)：您可以識別要被視為多重路徑裝置的特定裝置，即使這些裝置已列入封鎖清單。
+- **儲存體控制站特定設定** *(devices)*：您可以指定將套用到裝置的組態設定 (具有廠商和產品資訊)。
+- **裝置特定設定** *(multipaths)*：您可以使用本節來微調個別 LUN 的組態設定。
 
-1. **Blacklisted devices** *(blacklist)*: You can specify the list of devices that should not be controlled by device-mapper.
-2. **Blacklist exceptions** *(blacklist_exceptions)*: You can identify specific devices to be treated as multipath devices even if listed in the blacklist.
-3. **Storage controller specific settings** *(devices)*: You can specify configuration settings that will be applied to devices that have Vendor and Product information.
-4. **Device specific settings** *(multipaths)*: You can use this section to fine-tune the configuration settings for individual LUNs.
+## <a name="configure-multipathing-on-storsimple-connected-to-linux-host"></a>在連線到 Linux 主機的 StorSimple 上設定多重路徑
+可以設定連線到 Linux 主機的 StorSimple 裝置，以取得高可用性和負載平衡。 例如，如果 Linux 主機有兩個連接到 SAN 的介面，而裝置有兩個連接到 SAN 的介面，以致這些介面位於相同的子網路上，則會有 4 個路徑可用。 不過，如果裝置瀚主機介面上的每個 DATA 介面位於不同的 IP 子網路上 (且不可路由傳送)，則只有 2 路徑可用。 您可以設定多重路徑，以便自動探索所有可用的路徑、選擇這些路徑的負載平衡演算法、套用僅限 StorSimple 磁碟區的特定組態設定，然後啟用和驗證多重路徑。
 
-## <a name="configure-multipathing-on-storsimple-connected-to-linux-host"></a>Configure multipathing on StorSimple connected to Linux host
-A StorSimple device connected to a Linux host can be configured for high availability and load balancing. For example, if the Linux host has two interfaces connected to the SAN and the device has two interfaces connected to the SAN such that these interfaces are on the same subnet, then there will be 4 paths available. However, if each DATA interface on the device and host interface are on a different IP subnet (and not routable), then only 2 paths will be available. You can configure multipathing to automatically discover all the available paths, choose a load-balancing algorithm for those paths, apply specific configuration settings for StorSimple-only volumes, and then enable and verify multipathing.
+下列程序描述有兩個網路介面的 StorSimple 裝置連接到有兩個網路介面的主機時，要如何設定多重路徑。
 
-The following procedure describes how to configure multipathing when a StorSimple device with two network interfaces is connected to a host with two network interfaces.
+## <a name="prerequisites"></a>必要條件
+本節將詳細說明 CentOS 伺服器和 StorSimple 裝置的設定必要條件。
 
-## <a name="prerequisites"></a>Prerequisites
-This section details the configuration prerequisites for CentOS server and your StorSimple device.
-
-### <a name="on-centos-host"></a>On CentOS host
-1. Make sure that your CentOS host has 2 network interfaces enabled. Type:
+### <a name="on-centos-host"></a>在 CentOS 主機上
+1. 確定 CentOS 主機已啟用 2 個網路介面。 輸入：
    
     `ifconfig`
    
-    The following example shows the output when two network interfaces (`eth0` and `eth1`) are present on the host.
+    下列範例顯示兩個網路介面 (`eth0` 和 `eth1`) 都出現在主機上時的輸出。
    
         [root@centosSS ~]# ifconfig
         eth0  Link encap:Ethernet  HWaddr 00:15:5D:A2:33:41  
-        inet addr:10.126.162.65  Bcast:10.126.163.255  Mask:255.255.252.0
-        inet6 addr: 2001:4898:4010:3012:215:5dff:fea2:3341/64 Scope:Global
-        inet6 addr: fe80::215:5dff:fea2:3341/64 Scope:Link
-        UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-        RX packets:36536 errors:0 dropped:0 overruns:0 frame:0
-        TX packets:6312 errors:0 dropped:0 overruns:0 carrier:0
-        collisions:0 txqueuelen:1000
-        RX bytes:13994127 (13.3 MiB)  TX bytes:645654 (630.5 KiB)
+          inet addr:10.126.162.65  Bcast:10.126.163.255  Mask:255.255.252.0
+          inet6 addr: 2001:4898:4010:3012:215:5dff:fea2:3341/64 Scope:Global
+          inet6 addr: fe80::215:5dff:fea2:3341/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+         RX packets:36536 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:6312 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:13994127 (13.3 MiB)  TX bytes:645654 (630.5 KiB)
    
         eth1  Link encap:Ethernet  HWaddr 00:15:5D:A2:33:42  
-        inet addr:10.126.162.66  Bcast:10.126.163.255  Mask:255.255.252.0
-        inet6 addr: 2001:4898:4010:3012:215:5dff:fea2:3342/64 Scope:Global
-        inet6 addr: fe80::215:5dff:fea2:3342/64 Scope:Link
-        UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-        RX packets:25962 errors:0 dropped:0 overruns:0 frame:0
-        TX packets:11 errors:0 dropped:0 overruns:0 carrier:0
-        collisions:0 txqueuelen:1000
-        RX bytes:2597350 (2.4 MiB)  TX bytes:754 (754.0 b)
+          inet addr:10.126.162.66  Bcast:10.126.163.255  Mask:255.255.252.0
+          inet6 addr: 2001:4898:4010:3012:215:5dff:fea2:3342/64 Scope:Global
+          inet6 addr: fe80::215:5dff:fea2:3342/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:25962 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:11 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:2597350 (2.4 MiB)  TX bytes:754 (754.0 b)
    
         loLink encap:Local Loopback  
-        inet addr:127.0.0.1  Mask:255.0.0.0
-        inet6 addr: ::1/128 Scope:Host
-        UP LOOPBACK RUNNING  MTU:65536  Metric:1
-        RX packets:12 errors:0 dropped:0 overruns:0 frame:0
-        TX packets:12 errors:0 dropped:0 overruns:0 carrier:0
-        collisions:0 txqueuelen:0
-        RX bytes:720 (720.0 b)  TX bytes:720 (720.0 b)
-2. Install *iSCSI-initiator-utils* on your CentOS server. Perform the following steps to install *iSCSI-initiator-utils*.
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:12 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:12 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:720 (720.0 b)  TX bytes:720 (720.0 b)
+2. 在 CentOS 伺服器上安裝 *iSCSI-initiator-utils* 。 執行下列步驟以安裝 *iSCSI-initiator-utils*。
    
-   1. Log on as `root` into your CentOS host.
-   2. Install the *iSCSI-initiator-utils*. Type:
+   1. 以 `root` 身分登入到 CentOS 主機。
+   2. 安裝 *iSCSI-initiator-utils*。 輸入：
       
        `yum install iscsi-initiator-utils`
-   3. After the *iSCSI-Initiator-utils* is successfully installed, start the iSCSI service. Type:
+   3. 在成功安裝 *iSCSI-Initiator-utils* 之後，啟動 iSCSI 服務。 輸入：
       
        `service iscsid start`
       
-       On occasions, `iscsid` may not actually start and the `--force` option may be needed
-   4. To ensure that your iSCSI initiator is enabled during boot time, use the `chkconfig` command to enable the service.
+       有時候，`iscsid` 可能無法實際啟動，而可能需要 `--force` 選項
+   4. 若要確保 iSCSI 啟動器會在開機時啟用，請使用 `chkconfig` 命令來啟用此服務。
       
        `chkconfig iscsi on`
-   5. To verify that that it was properly setup, run the command:
+   5. 若要驗證該服務是否正確設定，請執行以下命令：
       
        `chkconfig --list | grep iscsi`
       
-       A sample output is shown below.
+       下方顯示一項範例輸出。
       
            iscsi   0:off   1:off   2:on3:on4:on5:on6:off
            iscsid  0:off   1:off   2:on3:on4:on5:on6:off
       
-       From the above example, you can see that your iSCSI environment will run on boot time on run levels 2, 3, 4, and 5.
-3. Install *device-mapper-multipath*. Type:
+       在上述範例中，您可以看到 iSCSI 環境將在開機時於執行層級 2、 3、 4 和 5 執行。
+3. 安裝 *device-mapper-multipath*。 輸入：
    
     `yum install device-mapper-multipath`
    
-    The installation will start. Type **Y** to continue when prompted for confirmation.
+    將會開始安裝。 在系統提示您進行確認時，輸入 **Y** 。
 
-### <a name="on-storsimple-device"></a>On StorSimple device
-Your StorSimple device should have:
+### <a name="on-storsimple-device"></a>在 StorSimple 裝置上
+您的 StorSimple 裝置應該︰
 
-* A minimum of two interfaces enabled for iSCSI. To verify that two interfaces are iSCSI-enabled on your StorSimple device, perform the following steps in the Azure classic portal for your StorSimple device:
+* 至少有兩個介面已啟用 iSCSI。 若要確認這兩個介面已在 StorSimple 裝置上啟用 iSCSI，請在 StorSimple 裝置的 Azure 傳統入口網站中執行下列步驟︰
   
-  1. Log into the classic portal for your StorSimple device.
-  2. Select your StorSimple Manager service, click **Devices** and choose the specific StorSimple device. Click **Configure** and verify the network interface settings. A screenshot with two iSCSI-enabled network interfaces is shown below. Here DATA 2 and DATA 3, both 10 GbE interfaces are enabled for iSCSI.
+  1. 登入 StorSimple 裝置的傳統入口網站。
+  2. 選取 StorSimple Manager 服務，按一下 [裝置]  ，然後選擇該特定 StorSimple 裝置。 按一下 [設定]  並驗證網路介面設定。 下面顯示的螢幕擷取畫面包含已啟用 iSCSI 的兩個網路介面。 以下 DATA 2 和 DATA 3 兩個 10 GbE 介面都已啟用 iSCSI。
      
-      ![MPIO StorsSimple DATA 2 config](./media/storsimple-configure-mpio-on-linux/IC761347.png)
+      ![MPIO StorSimple DATA 2 設定](./media/storsimple-configure-mpio-on-linux/IC761347.png)
      
-      ![MPIO StorSimple DATA 3 Config](./media/storsimple-configure-mpio-on-linux/IC761348.png)
+      ![MPIO StorSimple DATA 3 設定](./media/storsimple-configure-mpio-on-linux/IC761348.png)
      
-      In the **Configure** page
+      在 [設定]  頁面中
      
-     1. Ensure that both network interfaces are iSCSI-enabled. The **iSCSI enabled** field should be set to **Yes**.
-     2. Ensure that the network interfaces have the same speed, both should be 1 GbE or 10 GbE.
-     3. Note the IPv4 addresses of the iSCSI-enabled interfaces and save for later use on the host.
-* The iSCSI interfaces on your StorSimple device should be reachable from the CentOS server.
-  
-    To verify this, you need to provide the IP addresses of your StorSimple iSCSI-enabled network interfaces on your host server. The commands used and the corresponding output with DATA2 (10.126.162.25) and DATA3 (10.126.162.26) is shown below:
+     1. 確定這兩個網路介面都已啟用 iSCSI。 [啟用 iSCSI] 欄位應設定為 [是]。
+     2. 確定網路介面的速度相同，兩者都應該是 1 GbE 或 10 GbE。
+     3. 請記下已啟用 iSCSI 的介面的 IPv4 位址，並加以儲存供稍後用於主機上。
+* 應可從 CentOS 伺服器存取 StorSimple 裝置上的 iSCSI 介面。
+      若要確認這點，您需要在主機伺服器上提供 StorSimple 已啟用 iSCSI 的網路介面的 IP 位址。 使用的命令以及 DATA2 (10.126.162.25) 和 DATA3 (10.126.162.26) 的對應輸出如下所示：
   
         [root@centosSS ~]# iscsiadm -m discovery -t sendtargets -p 10.126.162.25:3260
         10.126.162.25:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g44mt-target
         10.126.162.26:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g44mt-target
 
-### <a name="hardware-configuration"></a>Hardware configuration
-We recommend that you connect the two iSCSI network interfaces on separate paths for redundancy. The figure below shows the recommended hardware configuration for high availability and load-balancing multipathing for your CentOS server and StorSimple device.
+### <a name="hardware-configuration"></a>硬體組態
+建議您連接不同路徑上的兩個 iSCSI 網路介面，以獲得備援。 下圖顯示可取得高可用性以及使 CentOS 伺服器與 StorSimple 裝置的多重路徑達到平衡負載的建議硬體組態。
 
-![MPIO hardware config for StorSimple to Linux host](./media/storsimple-configure-mpio-on-linux/MPIOHardwareConfigurationStorSimpleToLinuxHost2M.png)
+![連線至 Linux 主機之 StorSimple 的 MPIO 硬體設定](./media/storsimple-configure-mpio-on-linux/MPIOHardwareConfigurationStorSimpleToLinuxHost2M.png)
 
-As shown in the preceding figure:
+如上圖所示：
 
-* Your StorSimple device is in an active-passive configuration with two controllers.
-* Two SAN switches are connected to your device controllers.
-* Two iSCSI initiators are enabled on your StorSimple device.
-* Two network interfaces are enabled on your CentOS host.
+* StorSimple 裝置處於具有兩個控制器的主動-被動組態中。
+* 兩個 SAN 開關會連接到您的裝置控制器。
+* 兩個 iSCSI 啟動器會在 StorSimple 裝置上啟用。
+* CentOS 主機已啟用 2 個網路介面。
 
-The above configuration will yield 4 separate paths between your device and the host if the host and data interfaces are routable.
+如果主機和資料介面均可路由傳送，則上述組態將會在您的裝置與主機之間產生 4 個不同的路徑。
 
 > [!IMPORTANT]
-> * We recommend that you do not mix 1 GbE and 10 GbE network interfaces for multipathing. When using two network interfaces, both the interfaces should be the identical type.
-> * On your StorSimple device, DATA0, DATA1, DATA4 and DATA5 are 1 GbE interfaces whereas DATA2 and DATA3 are 10 GbE network interfaces.|
+> * 建議您不要對多重路徑功能混合使用 1 GbE 與 10 GbE 網路介面。 使用兩個網路介面時，這兩個介面的類型應要完全相同。
+> * 在您的 StorSimple 裝置上，DATA0、DATA1、DATA4 和 DATA5 為 1 GbE 介面，而 DATA2 和 DATA3 則為 10 GbE 網路介面。
 > 
 > 
 
-## <a name="configuration-steps"></a>Configuration steps
-The configuration steps for multipathing involve configuring the available paths for automatic discovery, specifying the load-balancing algorithm to use, enabling multipathing and finally verifying the configuration. Each of these steps is discussed in detail in the following sections.
+## <a name="configuration-steps"></a>組態步驟
+多重路徑的設定步驟涉及設定自動探索的可用路徑、指定要使用的負載平衡演算法、啟用多重路徑及最後驗證組態。 下列各節會詳細討論這些步驟。
 
-### <a name="step-1:-configure-multipathing-for-automatic-discovery"></a>Step 1: Configure multipathing for automatic discovery
-The multipath-supported devices can be automatically discovered and configured.
+### <a name="step-1-configure-multipathing-for-automatic-discovery"></a>步驟 1：為自動探索設定多重路徑
+系統可以自動探索及設定多重路徑支援的裝置。
 
-1. Initialize `/etc/multipath.conf` file. Type:
+1. 初始化 `/etc/multipath.conf` 檔案。 輸入：
    
-     `Copy mpathconf --enable`
+     `mpathconf --enable`
    
-    The above command will create a `sample/etc/multipath.conf` file.
-2. Start multipath service. Type:
+    上述命令會建立 `sample/etc/multipath.conf` 檔案。
+2. 啟動多重路徑服務。 輸入：
    
-    ``Copy service multipathd start``
+    `service multipathd start`
    
-    You will see the following output:
+    您會看到下列輸出︰
    
     `Starting multipathd daemon:`
-3. Enable automatic discovery of multipaths. Type:
+3. 啟用多重路徑的自動探索。 輸入：
    
     `mpathconf --find_multipaths y`
    
-    This will modify the defaults section of your `multipath.conf` as shown below:
+    這將會修改 `multipath.conf` 的預設區段，如下所示：
    
         defaults {
         find_multipaths yes
@@ -208,13 +210,13 @@ The multipath-supported devices can be automatically discovered and configured.
         path_grouping_policy multibus
         }
 
-### <a name="step-2:-configure-multipathing-for-storsimple-volumes"></a>Step 2: Configure multipathing for StorSimple volumes
-By default, all devices are black listed in the multipath.conf file and will be bypassed. You will need to create blacklist exceptions to allow multipathing for volumes from StorSimple devices.
+### <a name="step-2-configure-multipathing-for-storsimple-volumes"></a>步驟 2：為 StorSimple 磁碟區設定多重路徑
+根據預設，所有裝置都會列入 multipath.conf 檔案的封鎖清單並遭到略過。 您必須建立封鎖清單例外狀況，允許 StorSimple 裝置中的磁碟區啟動多重路徑。
 
-1. Edit the `/etc/mulitpath.conf` file. Type:
+1. 編輯 `/etc/mulitpath.conf` 檔案。 輸入：
    
     `vi /etc/multipath.conf`
-2. Locate the blacklist_exceptions section in the multipath.conf file. Your StorSimple device needs to be listed as a blacklist exception in this section. You can uncomment relevant lines in this file to modify it as shown below (use only the specific model of the device you are using):
+2. 找出 multipath.conf 檔案中的 blacklist_exceptions 區段。 您的 StorSimple 裝置必須列為本節中的封鎖清單例外狀況。 您可以在此檔案中取消註解相關行，如下所示修改該檔案 (僅使用您所用裝置的特定模型)︰
    
         blacklist_exceptions {
             device {
@@ -227,13 +229,13 @@ By default, all devices are black listed in the multipath.conf file and will be 
             }
            }
 
-### <a name="step-3:-configure-round-robin-multipathing"></a>Step 3: Configure round-robin multipathing
-This load-balancing algorithm uses all the available multipaths to the active controller in a balanced, round-robin fashion.
+### <a name="step-3-configure-round-robin-multipathing"></a>步驟 3：設定循環配置資源多重路徑
+此負載平衡演算法會以平衡且循環配置資源的方式，使用作用中控制器的所有可用多重路徑。
 
-1. Edit the `/etc/multipath.conf` file. Type:
+1. 編輯 `/etc/multipath.conf` 檔案。 輸入：
    
     `vi /etc/multipath.conf`
-2. Under the `defaults` section, set the `path_grouping_policy` to `multibus`. The `path_grouping_policy` specifies the default path grouping policy to apply to unspecified multipaths. The defaults section will look as shown below.
+2. 在 `defaults` 區段之下，將 `path_grouping_policy` 設定為 `multibus`。 `path_grouping_policy` 指定預設路徑群組原則，以要套用到未指定的多重路徑。 defaults 區段會如下所示。
    
         defaults {
                 user_friendly_names yes
@@ -241,132 +243,142 @@ This load-balancing algorithm uses all the available multipaths to the active co
         }
 
 > [!NOTE]
-> The most common values of `path_grouping_policy` include:
+> 最常見的 `path_grouping_policy` 值包括︰
 > 
-> * failover = 1 path per priority group
-> * multibus = all valid paths in 1 priority group
+> * failover = 每一個優先順序群組 1 個路徑
+> * multibus = 1 個優先順序群組中的所有有效路徑
 > 
 > 
 
-### <a name="step-4:-enable-multipathing"></a>Step 4: Enable multipathing
-1. Restart the `multipathd` daemon. Type:
+### <a name="step-4-enable-multipathing"></a>步驟 4：啟用多重路徑
+1. 重新啟動 `multipathd` 精靈。 輸入：
    
     `service multipathd restart`
-2. The output will be as shown below:
+2. 輸出應如下所示：
    
         [root@centosSS ~]# service multipathd start
         Starting multipathd daemon:  [OK]
 
-### <a name="step-5:-verify-multipathing"></a>Step 5: Verify multipathing
-1. First make sure that iSCSI connection is established with the StorSimple device as follows:
+### <a name="step-5-verify-multipathing"></a>步驟 5：驗證多重路徑
+1. 如下所示，先確定 iSCSI 連接是以 StorSimple 裝置建立︰
    
-   1. Discover your StorSimple device. Type:
+   a. 探索您的 StorSimple 裝置。 輸入：
       
-       `iscsiadm -m discovery -t sendtargets -p  <IP address of network interface on the device>:<iSCSI port on StorSimple device>`
-      
-       The output when IP address for DATA0 is 10.126.162.25 and port 3260 is opened on the StorSimple device for outbound iSCSI traffic is as shown below:
-      
-           10.126.162.25:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target
-           10.126.162.26:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target
+    ```
+    iscsiadm -m discovery -t sendtargets -p  <IP address of network interface on the device>:<iSCSI port on StorSimple device>
+    ```
+    
+    當 DATA0 的 IP 位址為 10.126.162.25 且連接埠 3260 在 StorSimple 裝置上開啟以便處理輸出 iSCSI 流量時，輸出會如下所示︰
+    
+    ```
+    10.126.162.25:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target
+    10.126.162.26:3260,1 iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target
+    ```
 
-        Copy the IQN of your StorSimple device, `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`, from the preceding output.
+    從上述輸出複製 StorSimple 裝置的 IQN ( `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`)。
 
+   b.這是另一個 C# 主控台應用程式。 使用目標 IQN 連接到此裝置。 StorSimple 裝置在此是 iSCSI 目標。 輸入：
 
+    ```
+    iscsiadm -m node --login -T <IQN of iSCSI target>
+    ```
 
-    1. Connect to the device using target IQN. The StorSimple device is the iSCSI target here. Type:
+    下列範例顯示目標 IQN 為 `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`的輸出。 此輸出指出您已順利連接到您的裝置上已啟用 iSCSI 的兩個網路介面。
 
-        `iscsiadm -m node --login -T <IQN of iSCSI target>`
+    ```
+    Logging in to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
+    Logging in to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
+    Logging in to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
+    Logging in to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
+    Login to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
+    Login to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
+    Login to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
+    Login to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
+    ```
 
-        The following example shows output with a target IQN of `iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target`. The output indicates that you have successfully connected to the two iSCSI-enabled network interfaces on your device.
+    如果您在此只看到一個主機介面和兩個路徑，您必須在主機上針對 iSCSI 啟用這兩個介面。 您可以遵循 [Linux 文件中的詳細指示](https://access.redhat.com/documentation/Red_Hat_Enterprise_Linux/5/html/Online_Storage_Reconfiguration_Guide/iscsioffloadmain.html)。
 
-            Logging in to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
-            Logging in to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] (multiple)
-            Logging in to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
-            Logging in to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] (multiple)
-            Login to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
-            Login to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.25,3260] successful.
-            Login to [iface: eth0, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
-                Login to [iface: eth1, target: iqn.1991-05.com.microsoft:storsimple8100-shx0991003g00dv-target, portal: 10.126.162.26,3260] successful.
+2. 磁碟區會從 StorSimple 裝置公開至 CentOS 伺服器。 如需詳細資訊，請參閱 [步驟 6：建立磁碟區](storsimple-deployment-walkthrough.md#step-6-create-a-volume) (透過 StorSimple 裝置上的 Azure 傳統入口網站)。
 
+3. 驗證可用的路徑。 輸入：
 
-        If you see only one host interface and two paths here, then you need to enable both the interfaces on host for iSCSI. You can follow the [detailed instructions in Linux documentation](https://access.redhat.com/documentation/Red_Hat_Enterprise_Linux/5/html/Online_Storage_Reconfiguration_Guide/iscsioffloadmain.html).
+      ```
+      multipath –l
+      ```
 
+      下列範例顯示透過兩個可用路徑連接到單一主機網路介面的 StorSimple 裝置上兩個網路介面的輸出。
 
-    1. A volume is exposed to the CentOS server from the StorSimple device. For more information, see [Step 6: Create a volume](storsimple-deployment-walkthrough.md#step-6-create-a-volume) via the Azure classic portal on your StorSimple device.
-
-    1. Verify the available paths. Type:
-
-        `multipath –l`
-
-        The following example shows the output for two network interfaces on a StorSimple device connected to a single host network interface with two available paths.
-
-            mpathb (36486fd20cc081f8dcd3fccb992d45a68) dm-3 MSFT,STORSIMPLE 8100
-            size=100G features='0' hwhandler='0' wp=rw
-            `-+- policy='round-robin 0' prio=0 status=active
-              |- 7:0:0:1 sdc 8:32 active undef running
-              `- 6:0:0:1 sdd 8:48 active undef running
+        ```
+        mpathb (36486fd20cc081f8dcd3fccb992d45a68) dm-3 MSFT,STORSIMPLE 8100
+        size=100G features='0' hwhandler='0' wp=rw
+        `-+- policy='round-robin 0' prio=0 status=active
+        |- 7:0:0:1 sdc 8:32 active undef running
+        `- 6:0:0:1 sdd 8:48 active undef running
+        ```
 
         The following example shows the output for two network interfaces on a StorSimple device connected to two host network interfaces with four available paths.
 
-            mpathb (36486fd27a23feba1b096226f11420f6b) dm-2 MSFT,STORSIMPLE 8100
-            size=100G features='0' hwhandler='0' wp=rw
-            `-+- policy='round-robin 0' prio=0 status=active
-              |- 17:0:0:0 sdb 8:16 active undef running
-              |- 15:0:0:0 sdd 8:48 active undef running
-              |- 14:0:0:0 sdc 8:32 active undef running
-              `- 16:0:0:0 sde 8:64 active undef running
+        ```
+        mpathb (36486fd27a23feba1b096226f11420f6b) dm-2 MSFT,STORSIMPLE 8100
+        size=100G features='0' hwhandler='0' wp=rw
+        `-+- policy='round-robin 0' prio=0 status=active
+        |- 17:0:0:0 sdb 8:16 active undef running
+        |- 15:0:0:0 sdd 8:48 active undef running
+        |- 14:0:0:0 sdc 8:32 active undef running
+        `- 16:0:0:0 sde 8:64 active undef running
+        ```
 
         After the paths are configured, refer to the specific instructions on your host operating system (Centos 6.6) to mount and format this volume.
 
+## <a name="troubleshoot-multipathing"></a>多重路徑疑難排解
+如果您在多重路徑設定期間遇到任何問題，請參閱本節所提供的一些實用秘訣。
 
-## <a name="troubleshoot-multipathing"></a>Troubleshoot multipathing
-This section provides some helpful tips if you run into any issues during multipathing configuration.
+問： 我未看見 `multipath.conf` 檔案的變更生效。
 
-Q. I do not see the changes in `multipath.conf` file taking effect.
-
-A. If you have made any changes to the `multipath.conf` file, you will need to restart the multipathing service. Type the following command:
+A. 如果您已對 `multipath.conf` 檔案進行任何變更，您必須重新啟動多重路徑服務。 輸入以下命令：
 
     service multipathd restart
 
-Q. I have enabled two network interfaces on the StorSimple device and two network interfaces on the host. When I list the available paths, I see only two paths. I expected to see four available paths.
+問： 我已在 StorSimple 裝置上啟用兩個網路介面以及在主機上啟用兩個網路介面。 當我列出可用的路徑時，我只看到兩個路徑。 我預計看見四個可用的路徑。
 
-A. Make sure that the two paths are on the same subnet and routable. If the network interfaces are on different vLANs and not routable, you will see only two paths. One way to verify this is to make sure that you can reach both the host interfaces from a network interface on the StorSimple device. You will need to [contact Microsoft Support](storsimple-contact-microsoft-support.md) as this verification can only be done via a support session.
+A. 確定這兩個路徑位於相同的子網路上並可路由傳送。 如果網路介面位於不同的 vLAN 上且不可路由傳送，您只會看到兩個路徑。 確認這點的唯一方法就是確定您可以從 StorSimple 裝置上的網路介面存取這兩個主機介面。 您必須[連絡 Microsoft 支援](storsimple-contact-microsoft-support.md)，因為這項驗證只能透過支援工作階段完成。
 
-Q. When I list available paths, I do not see any output.
+問： 當我列出可用的路徑時，我看不到任何輸出。
 
-A. Typically, not seeing any multipathed paths suggests a problem with the multipathing daemon, and it’s most likely that any problem here lies in the `multipath.conf` file.
+A. 通常，看不到任何多重路徑的路徑，即暗示多重路徑精靈有問題，而最可能是 `multipath.conf` 檔案有問題。
 
-It would also be worth checking that you can actually see some disks after connecting to the target, as no response from the multipath listings could also mean you don’t have any disks.
+此外，也值得檢查您可以在連接到目標後實際看到某些磁碟，因為多重路徑清單沒有回應也可能表示您沒有任何磁碟。
 
-* Use the following command to rescan the SCSI bus:
+* 使用下列命令來重新掃描 SCSI 匯流排：
   
-    `$ rescan-scsi-bus.sh `(part of sg3_utils package)
-* Type the following commands:
+    `$ rescan-scsi-bus.sh ` (屬於 sg3_utils 封包)
+* 輸入下列命令：
   
     `$ dmesg | grep sd*`
-* Or
+     
+     或
   
     `$ fdisk –l`
   
-    These will return details of recently added disks.
-* To determine whether it is a StorSimple disk, use the following commands:
+    這些將傳回最近新增磁碟的詳細資料。
+* 若要判斷它是否為 StorSimple 磁碟，請使用下列命令︰
   
     `cat /sys/block/<DISK>/device/model`
   
-    This will return a string, which will determine if it’s a StorSimple disk.
+    這會傳回一個字串，判斷它是否為 StorSimple 磁碟。
 
-A less likely but possible cause could also be stale iscsid pid. Use the following command to log off from the iSCSI sessions:
+有一個比較不可能的可能原因也可能是 iscsid pid 過時。 使用下列命令從 iSCSI 工作階段登出：
 
     iscsiadm -m node --logout -p <Target_IP>
 
-Repeat this command for all the connected network interfaces on the iSCSI target, which is your StorSimple device. Once you have logged off from all the iSCSI sessions, use the iSCSI target IQN to reestablish the iSCSI session. Type the following command:
+對 ISCSI 目標 (也就是您的 StorSimple 裝置) 上所有連接的網路介面重複此命令。 從所有 iSCSI 工作階段登出後，請使用 iSCSI 目標 IQN 來重新建立 iSCSI 工作階段。 輸入以下命令：
 
     iscsiadm -m node --login -T <TARGET_IQN>
 
 
-Q. I am not sure if my device is whitelisted.
+問： 我不確定我的裝置是否已列入允許清單。
 
-A. To verify whether your device is whitelisted, use the following troubleshooting interactive command:
+A. 若要驗證您的裝置是否已列入允許清單，請使用下列疑難排解互動式命令︰
 
     multipathd –k
     multipathd> show devices
@@ -405,36 +417,39 @@ A. To verify whether your device is whitelisted, use the following troubleshooti
     dm-3 devnode blacklisted, unmonitored
 
 
-For more information, go to [use troubleshooting interactive command for multipathing](http://www.centos.org/docs/5/html/5.1/DM_Multipath/multipath_config_confirm.html).
+如需詳細資訊，移至 [對多重路徑使用疑難排解互動式命令](http://www.centos.org/docs/5/html/5.1/DM_Multipath/multipath_config_confirm.html)。
 
-## <a name="list-of-useful-commands"></a>List of useful commands
-| Type | Command | Description |
+## <a name="list-of-useful-commands"></a>有用的命令清單
+| 在系統提示您進行確認時，輸入  | 命令 | 說明 |
 | --- | --- | --- |
-| **iSCSI** |`service iscsid start` |Start iSCSI service |
-| &nbsp; |`service iscsid stop` |Stop iSCSI service |
-| &nbsp; |`service iscsid restart` |Restart iSCSI service |
-| &nbsp; |`iscsiadm -m discovery -t sendtargets -p <TARGET_IP>` |Discover available targets on the specified address |
-| &nbsp; |`iscsiadm -m node --login -T <TARGET_IQN>` |Log in to the iSCSI target |
-| &nbsp; |`iscsiadm -m node --logout -p <Target_IP>` |Log out from the iSCSI target |
-| &nbsp; |`cat /etc/iscsi/initiatorname.iscsi` |Print iSCSI initiator name |
-| &nbsp; |`iscsiadm –m session –s <sessionid> -P 3` |Check the state of the iSCSI session and volume discovered on the host |
-| &nbsp; |`iscsi –m session` |Shows all the iSCSI sessions established between the host and the StorSimple device |
+| **iSCSI** |`service iscsid start` |啟動 iSCSI 服務 |
+| &nbsp; |`service iscsid stop` |停止 iSCSI 服務 |
+| &nbsp; |`service iscsid restart` |重新啟動 iSCSI 服務 |
+| &nbsp; |`iscsiadm -m discovery -t sendtargets -p <TARGET_IP>` |探索指定位址上的可用目標 |
+| &nbsp; |`iscsiadm -m node --login -T <TARGET_IQN>` |登入 iSCSI 目標 |
+| &nbsp; |`iscsiadm -m node --logout -p <Target_IP>` |登出 iSCSI 目標 |
+| &nbsp; |`cat /etc/iscsi/initiatorname.iscsi` |列印 iSCSI 啟動器名稱 |
+| &nbsp; |`iscsiadm –m session –s <sessionid> -P 3` |檢查 iSCSI 工作階段的狀態以及在主機上探索到的磁碟區 |
+| &nbsp; |`iscsi –m session` |顯示在主機與 StorSimple 裝置之間建立的所有 iSCSI 工作階段 |
 |  | | |
-| **Multipathing** |`service multipathd start` |Start multipath daemon |
-| &nbsp; |`service multipathd stop` |Stop multipath daemon |
-| &nbsp; |`service multipathd restart` |Restart multipath daemon |
-| &nbsp; |`chkconfig multipathd on` </br> OR </br> `mpathconf –with_chkconfig y` |Enable multipath daemon to start at boot time |
-| &nbsp; |`multipathd –k` |Start the interactive console for troubleshooting |
-| &nbsp; |`multipath –l` |List multipath connections and devices |
-| &nbsp; |`mpathconf --enable` |Create a sample mulitpath.conf file in `/etc/mulitpath.conf` |
+| **多重路徑** |`service multipathd start` |啟動多重路徑 daemon |
+| &nbsp; |`service multipathd stop` |停止多重路徑 daemon |
+| &nbsp; |`service multipathd restart` |重新啟動多重路徑 daemon |
+| &nbsp; |`chkconfig multipathd on` </br> 或 </br> `mpathconf –with_chkconfig y` |啟用多重路徑 daemon 以在開機時啟動 |
+| &nbsp; |`multipathd –k` |啟動互動式主控台以進行疑難排解 |
+| &nbsp; |`multipath –l` |列出多重路徑連接和裝置 |
+| &nbsp; |`mpathconf --enable` |在 `/etc/mulitpath.conf` |
 |  | | |
 
-## <a name="next-steps"></a>Next steps
-As you are configuring MPIO on Linux host, you may also need to refer to the following CentoS 6.6 documents:
+## <a name="next-steps"></a>後續步驟
+當您在 Linux 主機上設定 MPIO 時，您可能也需要參考下列 CentoS 6.6 文件︰
 
-* [Setting up MPIO on CentOS](http://www.centos.org/docs/5/html/5.1/DM_Multipath/setup_procedure.html)
-* [Linux Training Guide](http://linux-training.be/files/books/LinuxAdm.pdf)
+* [在 CentOS 上設定 MPIO](http://www.centos.org/docs/5/html/5.1/DM_Multipath/setup_procedure.html)
+* [Linux 訓練指南](http://linux-training.be/files/books/LinuxAdm.pdf)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO1-->
 
 

@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ecdf6e68a8d2bf7c034b92b57b45ae496a063713
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: b568a9bea9679a9edeb708a5f7fcc6d68854574f
 
 
 ---
@@ -57,7 +57,7 @@ ms.openlocfilehash: ecdf6e68a8d2bf7c034b92b57b45ae496a063713
 ### <a name="view-effective-routes-for-a-network-interface"></a>檢視網路介面的有效路由
 若要查看套用到網路介面的彙總路由，請完成下列步驟︰
 
-1. 啟動 Azure PowerShell 工作階段並登入 Azure。 如果您不熟悉 Azure PowerShell，請閱讀 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 文章。
+1. 啟動 Azure PowerShell 工作階段並登入 Azure。 如果您不熟悉 Azure PowerShell，請閱讀 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 文章。
 2. 下列命令會傳回套用到資源群組 *RG1* 中名為 *VM1-NIC1* 之網路介面的所有路由。
    
        Get-AzureRmEffectiveRouteTable -NetworkInterfaceName VM1-NIC1 -ResourceGroupName RG1
@@ -139,6 +139,6 @@ ms.openlocfilehash: ecdf6e68a8d2bf7c034b92b57b45ae496a063713
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 
