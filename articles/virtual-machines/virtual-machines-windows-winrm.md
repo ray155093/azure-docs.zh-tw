@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 06/16/2016
 ms.author: singhkay
 translationtype: Human Translation
-ms.sourcegitcommit: 0f8bc125855bc5a5b67fde5b0b742c73b5da7610
-ms.openlocfilehash: 4333abeda4e78ae6aa01684f8eb8b2001f3c1ae3
+ms.sourcegitcommit: 66b1bcdf0f79ff4743f466c3737696f53ef6a44c
+ms.openlocfilehash: 84a5272844b36951bb0132b21be9913ca50ee817
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 4333abeda4e78ae6aa01684f8eb8b2001f3c1ae3
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
 * 如需 Azure Resource Manager 的概觀，請參閱[本文章](../azure-resource-manager/resource-group-overview.md)
-* 如需 Azure Service Management 與 Azure Resource Manager 之間的差異性，請參閱 [本文章](../resource-manager-deployment-model.md)
+* 如需 Azure Service Management 與 Azure Resource Manager 之間的差異性，請參閱 [本文章](../azure-resource-manager/resource-manager-deployment-model.md)
 
 在兩個堆疊之間設定 WinRM 組態的主要差異在於如何在 VM 上安裝憑證。 在 Azure Resource Manager 堆疊中，憑證會模型化為「金鑰保存庫資源提供者」所管理的資源。 因此，使用者必須提供自己的憑證，並在 VM 中使用憑證之前先將它上傳至金鑰保存庫。
 
@@ -167,6 +167,6 @@ Microsoft.Compute 資源提供者在佈建 VM 時，需要金鑰保存庫內密�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

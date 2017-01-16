@@ -1,129 +1,136 @@
 ---
-title: Azure Government documentation | Microsoft Docs
-description: This provides a comparison of features and guidance on developing applications for Azure Government.
+title: Azure Government Resource Manager | Microsoft Docs
+description: "這為 Azure Government 的開發應用程式提供功能和指引的比較。"
 services: Azure-Government
 cloud: gov
-documentationcenter: ''
+documentationcenter: 
 author: brendalee
 manager: zakramer
-editor: ''
-
+editor: 
+ms.assetid: f270ebe4-dbbb-4e3d-8eba-efe1ca038988
 ms.service: multiple
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: azure-government
 ms.date: 10/10/2016
-ms.author: brendalee
+ms.author: brendal
+translationtype: Human Translation
+ms.sourcegitcommit: d883cdc007beaf17118c6b6ddbc8345c3bfb5ef2
+ms.openlocfilehash: 89aa44df74effec7da2eb008faf8f01dda0d27ca
+
 
 ---
 # <a name="azure-resource-manager"></a>Azure Resource Manager
-For detailed information on Resource Manager providers, API versions, and schemas, please refer [here](../resource-manager-supported-services.md). The following tables list which services are supported through Resource Manager in Azure Government.
+如需 Resource Manager 提供者、API 版本和結構描述的詳細資訊，請參閱[這裡](../azure-resource-manager/resource-manager-supported-services.md)。 下表列出可透過 Azure Government 中的 Resource Manager 支援的服務。
 
-## <a name="compute"></a>Compute
-| Service | Resource Manager Enabled |
+## <a name="compute"></a>計算
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| Batch |Yes |
-| Container |No |
-| Dynamics Lifecycle Services |No |
-| Scale Sets |Yes |
-| Service Fabric |Yes |
-| Virtual Machines |Yes |
+| Batch |是 |
+| 容器 |否 |
+| Dynamics 週期服務 |否 |
+| 擴展集 |是 |
+| Service Fabric |yes |
+| 虛擬機器 |yes |
 
-## <a name="networking"></a>Networking
-| Service | Resource Manager Enabled |
+## <a name="networking"></a>網路
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| Application Gateway |Yes |
-| DNS |Yes |
-| ExpressRoute |Yes |
-| Load Balancer |Yes |
-| Traffic Manager |Yes |
-| Virtual Networks |Yes |
-| VPN Gateway |Yes |
+| 應用程式閘道 |yes |
+| DNS |yes |
+| ExpressRoute |yes |
+| 負載平衡器 |是 |
+| 流量管理員 |是 |
+| 虛擬網路 |是 |
+| VPN 閘道 |是 |
 
-## <a name="data-&-storage"></a>Data & Storage
-| Service | Resource Manager Enabled |
+## <a name="data--storage"></a>資料與儲存體
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| DocumentDB |No |
-| Redis Cache |Yes |
-| Search |No |
-| Storage |Yes |
-| SQL Database |Yes |
-| SQL Data Warehouse |Yes |
-| StorSimple |No |
+| DocumentDB |否 |
+| Redis 快取 |是 |
+| 搜尋 |否 |
+| 儲存體 |是 |
+| SQL Database |yes |
+| SQL 資料倉儲 |是 |
+| StorSimple |否 |
 
-## <a name="web-&-mobile"></a>Web & Mobile
-| Service | Resource Manager Enabled |
+## <a name="web--mobile"></a>Web 與行動
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| API Apps |Yes |
-| API Management |No |
-| Logic Apps |No |
-| Mobile Apps |Yes |
-| Mobile Engagements |No |
-| Web Apps |Yes |
+| API 應用程式 |是 |
+| API 管理 |否 |
+| Logic Apps |否 |
+| 行動應用程式 |yes |
+| Mobile Engagement |否 |
+| Web Apps |yes |
 
 ## <a name="analytics"></a>Analytics
-| Service | Resource Manager Enabled |
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| Data Catalog |No |
-| Data Factory |No |
-| Data Lake Analytics |No |
-| Data Lake Store |No |
-| HDInsights |No |
-| Machine Learning |No |
-| Power BI |No |
+| 資料目錄 |否 |
+| Data Factory |否 |
+| Data Lake Analytics |否 |
+| 資料湖存放區 |否 |
+| HDInsights |否 |
+| 機器學習服務 |否 |
+| Power BI |否 |
 
-## <a name="intelligence"></a>Intelligence
-| Service | Resource Manager Enabled |
+## <a name="intelligence"></a>智慧
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| Cognitive Services |No |
+| 辨識服務 |否 |
 
-## <a name="internet-of-things"></a>Internet of Things
-| Service | Resource Manager Enabled |
+## <a name="internet-of-things"></a>物聯網
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| Event Hub |Yes |
-| IoTHubs |No |
-| Notification Hubs |No |
+| 事件中心 |是 |
+| IoTHubs |否 |
+| 通知中樞 |否 |
 
-## <a name="media-&-cdn"></a>Media & CDN
-| Service | Resource Manager Enabled |
+## <a name="media--cdn"></a>媒體與 CDN
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| CDN |No |
-| Media Service |No |
+| CDN |否 |
+| 媒體服務 |否 |
 
-## <a name="hybrid-integration"></a>Hybrid Integration
-| Service | Resource Manager Enabled |
+## <a name="hybrid-integration"></a>混合式整合
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| BizTalk Services |No |
-| Recovery Service |No |
-| Service Bus |Yes |
+| BizTalk 服務 |否 |
+| 復原服務 |是 (僅限 Hyper-V) |
+| 服務匯流排 |yes |
 
-## <a name="developer-services"></a>Developer Services
-| Service | Resource Manager Enabled |
+## <a name="developer-services"></a>開發人員服務
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| Application Insights |No |
-| Bing Maps |No |
-| DevTest Labs |No |
-| Visual Studio account |No |
+| Application Insights |否 |
+| Bing 地圖 |否 |
+| DevTest Labs |否 |
+| Visual Studio 帳戶 |否 |
 
-## <a name="management-and-security"></a>Management and Security
-| Service | Resource Manager Enabled |
+## <a name="management-and-security"></a>管理和安全性
+| 服務 | 已啟用資源管理員 |
 | --- | --- |
-| Automation |Yes |
-| Key Vault |Yes |
-| Operational Insights |Yes |
-| Scheduler |Yes |
-| Security (preview) |No |
+| 自動化 |是 |
+| 金鑰保存庫 |是 |
+| Operational Insights |是 |
+| 排程器 |是 |
+| 安全性 (Preview) |否 |
 
-## <a name="resource-manager"></a>Resource Manager
-| Feature | Resource Manager Enabled |
+## <a name="resource-manager"></a>資源管理員
+| 功能 | 已啟用資源管理員 |
 | --- | --- |
-| Authorization |Yes |
-| Resources |Yes |
+| Authorization |yes |
+| 資源 |是 |
 
-## <a name="next-steps"></a>Next Steps
-For supplemental information and updates, subscribe to the <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government Blog. </a>
+## <a name="next-steps"></a>後續步驟
+如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。 </a>
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO4-->
 
 

@@ -12,18 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
-ms.date: 08/04/2016
+ms.date: 11/11/2016
 ms.author: ninarn
 translationtype: Human Translation
-ms.sourcegitcommit: 0f8bc125855bc5a5b67fde5b0b742c73b5da7610
-ms.openlocfilehash: e0c1dca1f10b7244fedb78b2eba04721c4a66602
+ms.sourcegitcommit: 66b1bcdf0f79ff4743f466c3737696f53ef6a44c
+ms.openlocfilehash: e9277c5bd8f9bf8c9793c43ac1c26b9f2c9ac8e1
 
 
 ---
 # <a name="storage-configuration-for-sql-server-vms"></a>SQL Server VM 的儲存體組態
 當您在 Azure 中設定 SQL Server 虛擬機器映像時，入口網站有協助自動進行儲存體設定。 這包括將儲存體附加至 VM、讓該儲存體可供 SQL Server 存取，並加以設定以針對特定的效能需求最佳化。
 
-本主題說明 Azure 如何在佈建期間針對 SQL Server VM 及針對現有的 VM 設定儲存體。 此設定是以執行 SQL Server 之 Azure VM 的 [效能最佳作法](virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 為基礎。
+本主題說明 Azure 如何在佈建期間針對 SQL Server VM 及針對現有的 VM 設定儲存體。 此設定是以執行 SQL Server 之 Azure VM 的 [效能最佳作法](virtual-machines-windows-sql-performance.md) 為基礎。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
@@ -31,7 +31,7 @@ ms.openlocfilehash: e0c1dca1f10b7244fedb78b2eba04721c4a66602
 若要使用自動儲存體組態設定，您的虛擬機器需具備下列特性︰
 
 * 使用 [SQL Server 資源庫映像](virtual-machines-windows-sql-server-iaas-overview.md#option-1-create-a-sql-vm-with-per-minute-licensing)佈建。
-* 使用 [Resource Manager 部署模型](../resource-manager-deployment-model.md)。
+* 使用 [Resource Manager 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
 * 使用 [進階儲存體](../storage/storage-premium-storage.md)。
 
 ## <a name="new-vms"></a>新的 VM
@@ -50,7 +50,7 @@ ms.openlocfilehash: e0c1dca1f10b7244fedb78b2eba04721c4a66602
 * 建立存放集區與虛擬機器上新磁碟機的關聯。
 * 根據您指定的工作負載類型 (資料倉儲、交易式處理或一般)，最佳化這個新的磁碟機。
 
-如需 Azure 如何進行儲存體設定的詳細資訊，請參閱 [儲存體設定章節](#storage-configuration)。 如需如何在 Azure 入口網站中建立 SQL Server VM 的完整逐步解說，請參閱 [佈建教學課程](virtual-machines-windows-portal-sql-server-provision.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如需 Azure 如何進行儲存體設定的詳細資訊，請參閱 [儲存體設定章節](#storage-configuration)。 如需如何在 Azure 入口網站中建立 SQL Server VM 的完整逐步解說，請參閱 [佈建教學課程](virtual-machines-windows-portal-sql-server-provision.md)。
 
 ### <a name="resource-manage-templates"></a>Resource Manager 範本
 如果您使用下列 Resource Manager 範本，則預設會連接兩個進階資料磁碟，但不會設定存放集區。 不過，您可以自訂這些範本，以變更連接到虛擬機器的進階資料磁碟數目。
@@ -142,10 +142,10 @@ Azure 會使用下列設定在 SQL Server VM 上建立存放集區。
 >
 
 ## <a name="next-steps"></a>後續步驟
-如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 
