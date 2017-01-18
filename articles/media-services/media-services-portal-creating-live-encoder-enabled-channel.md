@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/24/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: ff663f40507547ba561053b5c9a7a8ce93fbf213
-ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: e764936afda8bd498f97a8dc3426136815c18a5a
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
 > * [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
-> * [REST API](https://msdn.microsoft.com/library/azure/dn783458.aspx)
+> * [REST API](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > 
 
@@ -54,9 +54,7 @@ ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
    
     使用此 URL 來確認您的通道會正確接收即時串流。
 5. 建立事件/程式，此程式也會建立資產。 
-6. 發佈事件，以建立相關聯資產的 OnDemand 定位器。  
-   
-    確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+6. 發佈事件，以建立相關聯資產的 OnDemand 定位器。    
 7. 當您準備好開始串流和封存時，請啟動事件。
 8. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
 9. 每當您想要停止串流處理和封存事件時，請停止事件。
@@ -65,13 +63,12 @@ ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
 ## <a name="in-this-tutorial"></a>本教學課程內容
 在本教學課程中，Azure 入口網站用來完成下列工作： 
 
-1. 設定串流端點。
-2. 建立啟用即可執行即時編碼的通道。
-3. 取得內嵌 URL，以將其提供給即時編碼器。 即時編碼器將使用此 URL 將串流內嵌到通道。 。
-4. 建立事件/程式 (和資產)
-5. 發佈資產並取得串流 URL  
-6. 播放您的內容 
-7. 清除
+1. 建立啟用即可執行即時編碼的通道。
+2. 取得內嵌 URL，以將其提供給即時編碼器。 即時編碼器將使用此 URL 將串流內嵌到通道。
+3. 建立事件/程式 (和資產)。
+4. 發佈資產並取得串流 URL。  
+5. 播放您的內容。
+6. 清除。
 
 ## <a name="prerequisites"></a>必要條件
 需要有下列項目，才能完成教學課程。
@@ -80,28 +77,6 @@ ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
   如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱 [建立帳戶](media-services-portal-create-account.md)。
 * 網路攝影機以及可以傳送單一位元速率即時串流的編碼器。
-
-## <a name="configure-streaming-endpoints"></a>設定串流端點
-媒體服務提供動態封裝，這讓您以下列串流格式 (MPEG DASH、HLS、Smooth Streaming) 提供多位元速率 MP4，而不必重新封裝成這些串流格式。 使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
-
-若要利用動態封裝，您需要為想要從該處傳遞內容的串流端點取得至少一個串流單位。  
-
-若要建立和變更串流保留單位數目，請執行下列動作：
-
-1. 登入 [Azure 入口網站](https://portal.azure.com/)，然後選取 AMS 帳戶。
-2. 在 [設定] 視窗中，按一下 [串流端點]。 
-3. 按一下預設串流端點。 
-   
-    [預設串流端點詳細資料]  視窗隨即出現。
-4. 若要指定串流單位數目，請滑動 [串流單位]  滑桿。
-   
-    ![串流單位](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-streaming-units.png)
-5. 按一下 [儲存]  按鈕以儲存您的變更。
-   
-   > [!NOTE]
-   > 配置任何新的單位最多需要 20 分鐘的時間才能完成。
-   > 
-   > 
 
 ## <a name="create-a-channel"></a>建立通道
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取 [媒體服務]，然後按一下媒體服務帳戶名稱。
@@ -172,6 +147,9 @@ ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
 ### <a name="createstartstop-events"></a>建立/啟動/停止事件
 讓串流流入通道之後，您可以建立「資產」、「程式」和「串流定位器」來開始串流事件。 這將封存串流，並透過「串流端點」將它提供給檢視器。 
 
+>[!NOTE]
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
+
 有兩種方式可以啟動事件： 
 
 1. 從 [通道] 頁面，按 [即時事件] 以新增事件。
@@ -216,7 +194,7 @@ ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
 
 ## <a name="considerations"></a>考量
 * 目前，即時事件的最大建議持續時間是 8 小時。 如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
-* 確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+* 確定您想要串流內容的串流端點已處於 [執行中] 狀態。
 
 ## <a name="next-step"></a>後續步驟
 檢閱媒體服務學習路徑。
@@ -229,6 +207,6 @@ ms.openlocfilehash: 99dfabcfcfcef69a43b45994cb4c729bd7faecff
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

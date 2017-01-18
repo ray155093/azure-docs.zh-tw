@@ -1,5 +1,5 @@
-## <a name="setupdevenv"></a>設定開發環境
-首先，安裝 [Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003) 以設定您的開發環境。
+## <a name="a-namesetupdevenvaset-up-the-development-environment"></a><a name="setupdevenv"></a>設定開發環境
+首先，安裝 [Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)以設定您的開發環境。
 
 如果您尚未安裝 Visual Studio，則 Visual Studio Express for Web 將隨著 SDK 一起安裝。
 
@@ -8,4 +8,8 @@
 > 
 > 
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Jan17_HO3-->
+
+

@@ -1,4 +1,4 @@
-## 如何使用 Azure CLI 部署
+## <a name="how-to-deploy-with-azure-cli"></a>如何使用 Azure CLI 部署
 1. 登入您的 Azure 帳戶。
    
         azure login
@@ -17,7 +17,7 @@
    您會收到新模式的確認。
    
         info:     New mode is arm
-4. 如果您沒有現有資源群組，請建立新的資源群組。提供您的解決方案所需的資源群組名稱和位置。
+4. 如果您沒有現有資源群組，請建立新的資源群組。 提供您的解決方案所需的資源群組名稱和位置。
    
         azure group create -n ExampleResourceGroup -l "West US"
    
@@ -34,7 +34,7 @@
         data:    Tags:
         data:
         info:    group create command OK
-5. 若要建立資源群組的新部署，請執行下列命令，並提供必要的參數。參數會包含您部署的名稱、資源群組的名稱、您建立之範本的路徑或 URL，以及您的案例所需的任何其他參數。
+5. 若要建立資源群組的新部署，請執行下列命令，並提供必要的參數。 參數會包含您部署的名稱、資源群組的名稱、您建立之範本的路徑或 URL，以及您的案例所需的任何其他參數。
    
    您有下列選項可以用來提供參數值：
    
@@ -62,4 +62,8 @@
    
          azure group log show -l -v ExampleResourceGroup
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Jan17_HO3-->
+
+
