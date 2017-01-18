@@ -14,6 +14,6 @@
 ### [常見問題集](microsoft-authenticator-app-faq.md)
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 
