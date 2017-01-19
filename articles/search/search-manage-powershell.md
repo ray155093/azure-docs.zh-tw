@@ -16,8 +16,8 @@ ms.tgt_pltfrm: powershell
 ms.date: 08/15/2016
 ms.author: seasa
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b611bf4d5fadd6755b97dcaee441e13ae7e62481
+ms.sourcegitcommit: c40545833da86426d3e71955b8eb8627db3c1e4b
+ms.openlocfilehash: f73bd0a6563f8411877b55182b01f2e3e42c883f
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: b611bf4d5fadd6755b97dcaee441e13ae7e62481
 這些命令和 [Azure 搜尋管理 REST API](http://msdn.microsoft.com/library/dn832684.aspx)中提供的管理選項相同。
 
 ## <a name="prerequisites"></a>必要條件
-* 您必須有 Azure PowerShell 1.0 或更新版本。 如需指示，請參閱 [安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
+* 您必須有 Azure PowerShell 1.0 或更新版本。 如需指示，請參閱 [安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 * 您必須在 PowerShell 中登入 Azure 訂用帳戶，如下所述。
 
 首先，您必須使用此命令登入 Azure。
@@ -142,6 +142,6 @@ ms.openlocfilehash: b611bf4d5fadd6755b97dcaee441e13ae7e62481
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

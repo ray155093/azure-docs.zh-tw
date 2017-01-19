@@ -1,13 +1,13 @@
 ---
-title: 在 HDInsight 中搭配使用 Hadoop Pig 與遠端桌面 | Microsoft Docs
-description: 學習如何使用 Pig 命令，從連往 HDInsight 中 Windows 型 Hadoop 叢集的遠端桌面連線執行 Pig Latin 陳述式。
+title: "在 HDInsight 中搭配使用 Hadoop Pig 與遠端桌面 | Microsoft Docs"
+description: "學習如何使用 Pig 命令，從連往 HDInsight 中 Windows 型 Hadoop 叢集的遠端桌面連線執行 Pig Latin 陳述式。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: e034a286-de0f-465f-8bf1-3d085ca6abed
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 57df4ab0b2a1df6631eb6e67a90f69cebb1dfe75
+ms.openlocfilehash: 6b0ef7ea076c835a19d6b67aa3b51c975ba21644
+
 
 ---
 # <a name="run-pig-jobs-from-a-remote-desktop-connection"></a>從遠端桌面連線執行 Pig 工作
@@ -24,36 +28,36 @@ ms.author: larryfr
 
 在本文中，您將學習如何
 
-## <a name="<a-id="prereq"></a>prerequisites"></a><a id="prereq"></a>必要條件
+## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目。
 
 * Windows 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 * 執行 Windows 10、Windows 8 或 Windows 7 的用戶端電腦
 
-## <a name="<a-id="connect"></a>connect-with-remote-desktop"></a><a id="connect"></a>使用遠端桌面連線
-依照 [使用 RDP 連線到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#rdp)中的指示，為 HDInsight 叢集啟用遠端桌面，然後進行連線。
+## <a name="a-idconnectaconnect-with-remote-desktop"></a><a id="connect"></a>使用遠端桌面連線
+依照 [使用 RDP 連線到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)中的指示，為 HDInsight 叢集啟用遠端桌面，然後進行連線。
 
-## <a name="<a-id="pig"></a>use-the-pig-command"></a><a id="pig"></a>使用 Pig 命令
+## <a name="a-idpigause-the-pig-command"></a><a id="pig"></a>使用 Pig 命令
 1. 在具有遠端桌面連線後，使用桌面上的圖示來啟動 **Hadoop 命令列** 。
 2. 使用下列命令來啟動 Pig 命令：
-   
+
         %pig_home%\bin\pig
-   
+
     您會看到 `grunt>` 提示字元。
 3. 輸入下列陳述式：
-   
+
         LOGS = LOAD 'wasbs:///example/data/sample.log';
-   
+
     此命令會將 sample.log 檔案的內容載入至 LOGS 檔案。 您可以使用下列命令檢視檔案的內容：
-   
+
         DUMP LOGS;
 4. 套用規則運算式以僅擷取每筆記錄的記錄層級，來轉換資料：
-   
+
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
-   
+
     轉換之後，您可以使用 **DUMP** 來檢視資料。 在此案例中為 `DUMP LEVELS;`。
 5. 使用下列陳述式，繼續套用轉換。 使用 `DUMP` 檢視每個步驟後的轉換結果。
-   
+
     <table>
     <tr>
     <th>陳述式</th><th>作用</th>
@@ -72,15 +76,15 @@ ms.author: larryfr
     </tr>
     </table>
 6. 您也可以使用 `STORE` 陳述式儲存轉換結果。 例如，下列命令會將 `RESULT` 儲存到叢集之預設儲存體容器中的 **/example/data/pigout** 目錄：
-   
+
         STORE RESULT into 'wasbs:///example/data/pigout'
-   
+
    > [!NOTE]
    > 資料會儲存到所指定目錄中名為 **part-nnnnn**的檔案中。 如果目錄已經存在，則會收到錯誤訊息。
-   > 
-   > 
+   >
+   >
 7. 若要結束 grunt 提示字元，請輸入下列陳述式。
-   
+
         QUIT;
 
 ### <a name="pig-latin-batch-files"></a>Pig Latin 批次檔
@@ -88,7 +92,7 @@ ms.author: larryfr
 
 1. 結束 grunt 提示字元之後，請開啟**記事本**，並在 **%PIG_HOME%** 目錄中建立名為 **pigbatch.pig** 的新檔案。
 2. 在 **pigbatch.pig** 檔案中輸入或貼上下列數行，然後予以儲存：
-   
+
         LOGS = LOAD 'wasbs:///example/data/sample.log';
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
         FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
@@ -97,11 +101,11 @@ ms.author: larryfr
         RESULT = order FREQUENCIES by COUNT desc;
         DUMP RESULT;
 3. 使用下列命令，以使用 pig 命令來執行 **pigbatch.pig** 檔案。
-   
+
         pig %PIG_HOME%\pigbatch.pig
-   
+
     批次工作完成後，您應該會看到下列輸出，而輸出應該會與先前步驟中使用 `DUMP RESULT;` 時相同：
-   
+
         (TRACE,816)
         (DEBUG,434)
         (INFO,96)
@@ -109,10 +113,10 @@ ms.author: larryfr
         (ERROR,6)
         (FATAL,2)
 
-## <a name="<a-id="summary"></a>summary"></a><a id="summary"></a>摘要
+## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
 如您所見，Pig 命令可讓您以互動方式執行 MapReduce 作業，或執行批次檔中所儲存的 Pig Latin 工作。
 
-## <a name="<a-id="nextsteps"></a>next-steps"></a><a id="nextsteps"></a>接續步驟
+## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 Pig 的一般資訊：
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
@@ -122,6 +126,8 @@ ms.author: larryfr
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO1-->
 
 

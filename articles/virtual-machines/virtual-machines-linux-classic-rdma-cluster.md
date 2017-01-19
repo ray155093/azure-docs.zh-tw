@@ -16,15 +16,16 @@ ms.workload: infrastructure-services
 ms.date: 09/21/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 4f8a1187b0e1e114f795530d89334ef57ce74acd
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: b7364650f2e7872dbb85f6bc3a7194122448fe4d
 
 
 ---
 # <a name="set-up-a-linux-rdma-cluster-to-run-mpi-applications"></a>設定 Linux RDMA 叢集以執行 MPI 應用程式
 了解如何在 Azure 中使用 [H 系列或計算密集型 A 系列 VM](virtual-machines-linux-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來設定 Linux RDMA 叢集，以便執行平行「訊息傳遞介面」(MPI) 應用程式。 本文提供準備 Linux HPC 映像以在叢集上執行 Intel MPI 的步驟。 接著，您會使用此映像和其中一個支援 RDMA 的 Azure VM 大小 (目前為 H16r、 H16mr、A8 或 A9) 來部署 VM 的叢集。 請使用此叢集來執行透過低延遲、高輸送量網路有效率地進行通訊的 MPI 應用程式，此網路是以遠端直接記憶體存取 (RDMA) 技術為基礎。
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 ## <a name="cluster-deployment-options"></a>叢集部署選項
 您可以使用下列方法來建立包含或不含工作排程器的 Linux RDMA 叢集。
@@ -377,6 +378,6 @@ mpirun -hosts <host1>,<host2> -ppn 1 -n 2 -env I_MPI_FABRICS=dapl -env I_MPI_DAP
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

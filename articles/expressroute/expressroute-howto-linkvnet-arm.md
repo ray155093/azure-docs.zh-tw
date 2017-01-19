@@ -1,13 +1,13 @@
 ---
-title: 使用 PowerShell 將虛擬網路連結到 ExpressRoute 線路 | Microsoft Docs
-description: 本文提供以下內容的概觀：如何使用 Resource Manager 部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 線路。
+title: "使用 PowerShell 將虛擬網路連結到 ExpressRoute 線路 | Microsoft Docs"
+description: "本文提供以下內容的概觀：如何使用 Resource Manager 部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 線路。"
 services: expressroute
 documentationcenter: na
 author: ganesr
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: daacb6e5-705a-456f-9a03-c4fc3f8c1f7e
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr
+translationtype: Human Translation
+ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
+ms.openlocfilehash: ba71cabd6b9ed88813c65c4ce82e5809606699b9
+
 
 ---
 # <a name="link-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連結到 ExpressRoute 電路
@@ -32,7 +36,7 @@ ms.author: ganesr
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-prerequisites"></a>組態必要條件
-* 您需要最新版的 Azure PowerShell 模組 (至少 1.0 版)。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
+* 您需要最新版的 Azure PowerShell 模組 (至少 1.0 版)。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 * 開始設定之前，請務必檢閱[必要條件](expressroute-prerequisites.md)、[路由需求](expressroute-routing.md)和[工作流程](expressroute-workflows.md)。
 * 您必須擁有作用中的 ExpressRoute 線路。 
   * 遵循指示來 [建立 ExpressRoute 線路](expressroute-howto-circuit-arm.md) ，並由您的連線提供者來啟用該線路。 
@@ -69,7 +73,9 @@ ms.author: ganesr
 「電路擁有者」  能夠隨時修改及撤銷授權。 如果撤銷授權，則在存取權遭撤銷的訂用帳戶中，所有連結連線均會被刪除。
 
 ### <a name="circuit-owner-operations"></a>循環擁有者作業
-#### <a name="creating-an-authorization"></a>建立授權
+
+**建立授權**
+
 電路擁有者會建立授權。 這樣即會建立授權金鑰，讓電路使用者可用來將其虛擬網路閘道連接到 ExpressRoute 電路。 一個授權僅適用於一個連線。
 
 下列 Cmdlet 程式碼片段示範如何建立授權：
@@ -93,14 +99,16 @@ ms.author: ganesr
 
 
 
-#### <a name="reviewing-authorizations"></a>檢閱授權
+**檢閱授權**
+
 線路擁有者可以藉由執行下列 Cmdlet，來檢閱特定線路上發出的所有授權：
 
     $circuit = Get-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
     $authorizations = Get-AzureRmExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit
 
 
-#### <a name="adding-authorizations"></a>新增授權
+**新增授權**
+
 線路擁有者可以使用下列 Cmdlet 來新增授權：
 
     $circuit = Get-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
@@ -111,32 +119,39 @@ ms.author: ganesr
     $authorizations = Get-AzureRmExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit
 
 
-#### <a name="deleting-authorizations"></a>刪除授權
+**刪除授權**
+
 線路擁有者可以使用下列 Cmdlet 來撤銷/刪除使用者的授權：
 
     Remove-AzureRmExpressRouteCircuitAuthorization -Name "MyAuthorization2" -ExpressRouteCircuit $circuit
     Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $circuit    
 
-### <a name="circuit-user-operations"></a>循環使用者作業
+**循環使用者作業**
+
 電路使用者需要具備對等識別碼以及電路擁有者所提供的授權金鑰。 授權金鑰是 GUID。
 
 可從下列命令檢查對等識別碼。
 
     Get-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 
-#### <a name="redeeming-connection-authorizations"></a>兌換連線授權
+**兌換連線授權**
+
 線路使用者可以執行下列 Cmdlet 來兌換連結授權：
 
-    $id = "/subscriptions/********************************/resourceGroups/ERCrossSubTestRG/providers/Microsoft.Network/expressRouteCircuits/MyCircuit"  
+    $id = "/subscriptions/********************************/resourceGroups/ERCrossSubTestRG/providers/Microsoft.Network/expressRouteCircuits/MyCircuit"    
     $gw = Get-AzureRmVirtualNetworkGateway -Name "ExpressRouteGw" -ResourceGroupName "MyRG"
     $connection = New-AzureRmVirtualNetworkGatewayConnection -Name "ERConnection" -ResourceGroupName "RemoteResourceGroup" -Location "East US" -VirtualNetworkGateway1 $gw -PeerId $id -ConnectionType ExpressRoute -AuthorizationKey "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
 
-#### <a name="releasing-connection-authorizations"></a>釋出連線授權
+**釋出連線授權**
+
 您可以藉由刪除將 ExpressRoute 線路連結到虛擬網路的連線來釋出授權。
 
 ## <a name="next-steps"></a>後續步驟
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO1-->
 
 

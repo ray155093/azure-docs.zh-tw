@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 08/18/2016
+ms.date: 11/18/2016
 ms.author: alkohli@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: d07d1c838d99d0de0c5b62aaf42330b447df102c
-ms.openlocfilehash: 2000ee9d88dc0f2f0f9046b1ef6b3d2a104e7d6b
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 562e20d274079d221360d45302ff288190c1cd6e
 
 
 ---
@@ -34,7 +34,7 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 > [!NOTE]
 > * Windows PowerShell for StorSimple 的 Cmdlet 可讓您從序列主控台管理 StorSimple 裝置或透過「Windows PowerShell 遠端」進行管理。 如需此介面可使用的各個 Cmdlet 的詳細資訊，請移至 [Windows PowerShell for StorSimple 的 Cmdlet 參考資料](https://technet.microsoft.com/library/dn688168.aspx).
-> * Azure PowerShell StorSimple 的 Cmdlet 是另一組不同的指令程式，可讓您從命令列將 StorSimple 服務層級和移轉工作自動化。 如需 Azure PowerShell Cmdlet for StorSimple 的詳細資訊，請移至 [Azure StorSimple Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/dn920427.aspx)。
+> * Azure PowerShell StorSimple 的 Cmdlet 是另一組不同的指令程式，可讓您從命令列將 StorSimple 服務層級和移轉工作自動化。 如需 Azure PowerShell Cmdlet for StorSimple 的詳細資訊，請移至 [Azure StorSimple Cmdlet 參考資料](https://docs.microsoft.com/powershell/servicemanagement/azure.storsimple/v3.1.0/azure.storsimple)。
 > 
 > 
 
@@ -144,7 +144,7 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 | 安裝維護模式更新和 Hotfixe |[更新您的裝置](storsimple-update-device.md) |
 | 進入維護模式  </br> 結束維護模式 |[StorSimple 裝置模式](storsimple-device-modes.md) |
 | 建立支援封裝 </br> 解密並編輯支援封裝 |[建立及管理支援封裝](storsimple-create-manage-support-package.md) |
-| 啟動支援工作階段</br> |[在 Windows PowerShell for StorSimple 中啟動支援工作階段](/storsimple-contact-microsoft-support.md#start-a-support-session-in-windows-powershell-for-storsimple) |
+| 啟動支援工作階段</br> |[在 Windows PowerShell for StorSimple 中啟動支援工作階段](storsimple-create-manage-support-package.md#manually-create-a-support-package) |
 
 ## <a name="get-help-in-windows-powershell-for-storsimple"></a>在 Windows PowerShell for StorSimple 中取得說明
 在 Windows PowerShell for StorSimple 中也有 Cmdlet 的說明。 此說明的最新版本也會線上提供，供您更新您系統上的說明。
@@ -178,6 +178,6 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

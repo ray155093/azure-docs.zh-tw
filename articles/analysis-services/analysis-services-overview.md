@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 1f5bbbe4285c1635138d40af25cd0cb1d0177300
-ms.openlocfilehash: 76d0ba4334d647008b4b1508d231059d21d0f128
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a3380731657d151b8c6337764069890420927dfc
 
 
 ---
@@ -43,7 +43,7 @@ Azure Analysis Services 與您已知的同一個 SQL Server 2016 Analysis Servic
 ## <a name="use-the-tools-you-already-know"></a>使用您已知的工具
 ![BI 開發人員工具](./media/analysis-services-overview/aas-overview-dev-tools.png)
 
-建立 Azure Analysis Services 的資料模型時，使用的工具與建立 SQL Server Analysis Services 時的相同。 使用最新版的 [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx) 或使用 [Azure Powershell](../powershell-install-configure.md) 和 [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx) 中的 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 範本製作和部署表格式模型。
+建立 Azure Analysis Services 的資料模型時，使用的工具與建立 SQL Server Analysis Services 時的相同。 使用最新版的 [SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx) 或使用 [Azure Powershell](/powershell/azureps-cmdlets-docs) 和 [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx) 中的 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 範本製作和部署表格式模型。
 
 ## <a name="connect-to-data-sources"></a>連接到資料來源
 部署到 Azure 中的伺服器的資料模型支援連接到您組織或雲端中的內部部署資料來源。 結合內部部署和雲端資料來源的資料，可成就混和式商務智慧解決方案。
@@ -123,6 +123,6 @@ Azure Analysis Services 中的資料模型連接到資料來源需要的資料�
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 
