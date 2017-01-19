@@ -17,8 +17,8 @@ ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b0f1954b44e42b406aa5ffa71eee74a3bd7be4cc
+ms.sourcegitcommit: 5ea043ce3bcd0f500fd765f13764ea3ee83e1ba9
+ms.openlocfilehash: 83c3592014c73c0cf36d371d2752bc76b7c8a4e8
 
 
 ---
@@ -79,7 +79,7 @@ ms.openlocfilehash: b0f1954b44e42b406aa5ffa71eee74a3bd7be4cc
 
 若要設定，請參閱[監視 Azure App Service 中的應用程式](web-sites-monitor.md)。
 
-同時，亦請參閱 [讓 Azure 網站保持運作以及端點監視 - 對談來賓 Stefan Schackow](/documentation/videos/azure-web-sites-endpoint-monitoring-and-staying-up/) 的端點監視影片。
+同時，亦請參閱 [讓 Azure 網站保持運作以及端點監視 - 對談來賓 Stefan Schackow](https://channel9.msdn.com/Shows/Azure-Friday/Keeping-Azure-Web-Sites-up-plus-Endpoint-Monitoring-with-Stefan-Schackow) 的端點監視影片。
 
 #### <a name="application-performance-monitoring-using-extensions"></a>使用擴充功能的應用程式效能監視
 您也可以利用 *網站擴充功能*監視應用程式的效能。
@@ -174,6 +174,6 @@ AutoHeal 會根據您選擇的設定 (例如組態變更、要求、以記憶體
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

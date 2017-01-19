@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 10/31/2016
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
-ms.openlocfilehash: f5ea64ffc044faceec08e9a2b756a414e446a1b1
+ms.sourcegitcommit: 7ff4286d6006eb362b6fba705e2afca1fd872f72
+ms.openlocfilehash: afefa826577999897a537add7a6c6301144fa38c
 
 
 ---
@@ -43,7 +43,7 @@ ms.openlocfilehash: f5ea64ffc044faceec08e9a2b756a414e446a1b1
         "name" : "<Name of input parameter in function signature>",
         "queueName" : "<Name of the queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>"
+        "accessRights" : "<Access rights for the connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
@@ -57,7 +57,7 @@ ms.openlocfilehash: f5ea64ffc044faceec08e9a2b756a414e446a1b1
         "topicName" : "<Name of the topic>",
         "subscriptionName" : "<Name of the subscription>",
         "connection" : "<Name of app setting that has your topic's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>"
+        "accessRights" : "<Access rights for the connection string - see below>",
         "type" : "serviceBusTrigger",
         "direction" : "in"
     }
@@ -196,7 +196,7 @@ module.exports = function(context, myQueueItem) {
   Functions 會將物件還原序列化為 JSON 訊息。 當函式結束時，如果輸出值是 null，Functions 會使用 Null 物件建立訊息。
 * `string` - 參數定義看起來像 `out string paraName` (C#)。 如果參數值為非 Null，則函式結束時，Functions 會建立一則訊息。
 * `byte[]` - 參數定義看起來像 `out byte[] paraName` (C#)。 如果參數值為非 Null，則函式結束時，Functions 會建立一則訊息。
-* `BrokeredMessage` - 參數定義看起來像 `out byte[] paraName` (C#)。 如果參數值為非 Null，則函式結束時，Functions 會建立一則訊息。
+* `BrokeredMessage` - 參數定義看起來像 `out BrokeredMessage paraName` (C#)。 如果參數值為非 Null，則函式結束時，Functions 會建立一則訊息。
 
 若要在 C# 函式中建立多個訊息，您可以使用 `ICollector<T>` 或 `IAsyncCollector<T>`。 當您呼叫 `Add` 方法時，就會建立一則訊息。
 
@@ -303,6 +303,6 @@ module.exports = function (context, myTimer) {
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

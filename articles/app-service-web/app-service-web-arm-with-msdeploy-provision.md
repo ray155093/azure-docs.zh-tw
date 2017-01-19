@@ -1,41 +1,45 @@
 ---
-title: Deploy a web app using MSDeploy with hostname and ssl certificate
-description: Use an Azure Resource Manager template to deploy a web app using MSDeploy and setting up custom hostname and a SSL certificate
+title: "使用 MSDeploy、主機名稱與 SSL 憑證部署 Web 應用程式"
+description: "使用 Azure 資源管理員範本，透過 MSDeploy 及藉由設定自訂主機名稱與 SSL 憑證來部署 Web 應用程式"
 services: app-service\web
 manager: erikre
-documentationcenter: ''
+documentationcenter: 
 author: jodehavi
-
+ms.assetid: 66366a72-cef7-4d75-8779-f4d32ed33cf7
 ms.service: app-service-web
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2016
-ms.author: john.dehavilland
+ms.author: jodehavi
+translationtype: Human Translation
+ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
+ms.openlocfilehash: f836bffd0610224b5cb69f4f6836dbc55e0721a3
+
 
 ---
-# <a name="deploy-a-web-app-with-msdeploy,-custom-hostname-and-ssl-certificate"></a>Deploy a web app with MSDeploy, custom hostname and SSL certificate
-This guide walks through creating an end-to-end deployment for an Azure Web App, leveraging MSDeploy as well as adding a custom hostname and an SSL certificate to the ARM template.
+# <a name="deploy-a-web-app-with-msdeploy-custom-hostname-and-ssl-certificate"></a>使用 MSDeploy、自訂主機名稱與 SSL 憑證部署 Web 應用程式
+本指南將逐步說明如何利用 MSDeploy，以及將自訂主機名稱和 SSL 憑證新增至 ARM 範本，以建立 Azure Web 應用程式的端對端部署。
 
-For more information about creating templates, see [Authoring Azure Resource Manager Templates](../resource-group-authoring-templates.md).
+如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
-### <a name="create-sample-application"></a>Create Sample Application
-You will be deploying an ASP.NET web application. The first step is to create a simple web application (or you could choose to use an existing one - in which case you can skip this step).
+### <a name="create-sample-application"></a>建立範例應用程式
+您將部署 ASP.NET Web 應用程式。 第一個步驟是建立簡單的 Web 應用程式 (或者，您可以選擇使用現有的應用程式；若是如此，您可以略過此步驟)。
 
-Open Visual Studio 2015 and choose File > New Project. On the dialog that appears choose Web > ASP.NET Web Application. Under Templates choose Web and choose the MVC template. Select *Change authentication type* to *No Authentication*. This is just to make the sample application as simple as possible.
+開啟 Visual Studio 2015，然後選擇 [檔案] > [新增專案]。 在出現的對話方塊上，選擇 [Web] > [ASP.NET Web 應用程式]。 在 [範本] 下選擇 [Web]，然後選擇 MVC 範本。 將 [變更驗證類型] 設定為 [不需要驗證]。 這是為了讓範例應用程式盡可能簡單。
 
-At this point you will have a basic ASP.Net web app ready to use as part of your deployment process.
+此時，您將會有已備妥而可在部署程序中使用的基本 ASP.Net Web 應用程式。
 
-### <a name="create-msdeploy-package"></a>Create MSDeploy package
-Next step is to create the package to deploy the web app to Azure. To do this, save your project and then run the following from the command line:
+### <a name="create-msdeploy-package"></a>建立 MSDeploy 封裝
+下一個步驟是建立用以將 Web 應用程式部署至 Azure 的封裝。 若要這樣做，請儲存您的專案，然後從命令列中執行下列命令：
 
     msbuild yourwebapp.csproj /t:Package /p:PackageLocation="path\to\package.zip"
 
-This will create a zipped package under the PackageLocation folder. The application is now ready to be deployed, which you can now build out an Azure Resource Manager template to do that.
+這將會在 PackageLocation 資料夾下建立壓縮的封裝。 應用程式現在已可供部署；您現在可以建置 Azure 資源管理員範本來執行此作業。
 
-### <a name="create-arm-template"></a>Create ARM Template
-First, let's start with a basic ARM template that will create a web application and a hosting plan (note that parameters and variables are not shown for brevity).
+### <a name="create-arm-template"></a>建立 ARM 範本
+首先，我們先從會建立 Web 應用程式和主控方案的基本 ARM 範本開始 (請注意，為求簡潔，並不會顯示參數和變數)。
 
     {
         "name": "[parameters('appServicePlanName')]",
@@ -71,7 +75,7 @@ First, let's start with a basic ARM template that will create a web application 
         }
     }
 
-Next, you will need to modify the web app resource to take a nested MSDeploy resource. This will allow you to reference the package created earlier and tell Azure Resource Manager to use MSDeploy to deploy the package to the Azure WebApp. The following shows the Microsoft.Web/sites resource with the nested MSDeploy resource:
+接下來，您必須修改 Web 應用程式資源，以取用巢狀 MSDeploy 資源。 這可讓您參考稍早建立的封裝，並指示 Azure 資源管理員使用 MSDeploy 將封裝部署至 Azure WebApp。 以下顯示具有巢狀 MSDeploy 資源的 Microsoft.Web/網站資源：
 
     {
         "name": "[variables('webAppName')]",
@@ -113,13 +117,13 @@ Next, you will need to modify the web app resource to take a nested MSDeploy res
         ]
     }
 
-Now you will notice that the MSDeploy resource takes a **packageUri** property which is defined as follows:
+現在您會注意到 MSDeploy 資源取用定義如下的 **packageUri** 屬性：
 
     "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('webDeployPackageFolder'), '/', parameters('webDeployPackageFileName'), parameters('_artifactsLocationSasToken'))]"
 
-This **packageUri** takes the storage account uri which points to the storage account where you will upload your package zip to. The Azure Resource Manager will leverage [Shared Access Signatures](../storage/storage-dotnet-shared-access-signature-part-1.md) to pull the package down locally from the storage account when you deploy the template. This process will be automated via a PowerShell script that will upload the package and call the Azure Management API to create the keys required and pass those into the template as parameters (*_artifactsLocation* and *_artifactsLocationSasToken*). You will need to define parameters for the folder and filename the package is uploaded to under the storage container.
+此 **packageUri** 會取用一個儲存體帳戶 URI，該 URI 指向您的封裝 zip 所將上傳到的儲存體帳戶。 當您部署範本時，Azure 資源管理員會利用 [共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md) 從儲存體帳戶將封裝提取到本機。 此程序就會透過 PowerShell 指令碼而自動化，將封裝上傳，並呼叫 Azure 管理 API，以建立所需的金鑰，並將其傳入範本中做為參數 (_artifactsLocation 和 _artifactsLocationSasToken)。 您將必須針對封裝在儲存體容器下所將上傳到的資料夾和檔案名稱定義參數。
 
-Next you need to add in another nested resource to setup the hostname bindings to leverage a custom domain. You will first need to ensure that you own the hostname and set it up to be verified by Azure that you own it - see [Configure a custom domain name in Azure App Service](web-sites-custom-domain-name.md). Once that is done you can add the following to your template under the Microsoft.Web/sites resource section:
+接著，您必須在其他巢狀資源中新增，以設定主機名稱繫結來利用自訂網域。 首先，您必須確定您擁有主機名稱，然後加以設定，使其由 Azure 驗證您具有其所有權 - 請參閱 [在 Azure App Service 中設定自訂網域名稱](web-sites-custom-domain-name.md)。 完成此動作後，您可以在 Microsoft.Web/網站資源區段下新增下列項目：
 
     {
         "apiVersion": "2015-08-01",
@@ -135,7 +139,7 @@ Next you need to add in another nested resource to setup the hostname bindings t
         }
     }
 
-Finally you need to add another top level resource, Microsoft.Web/certificates. This resource will contain your SSL certificate and will exist at the same level as your web app and hosting plan.
+最後，您必須新增另一項最上層資源 Microsoft.Web/憑證。 此資源將包含您的 SSL 憑證，且會與 Web 應用程式和主控方案存在於相同的層級。
 
     {
         "name": "[parameters('certificateName')]",
@@ -148,20 +152,20 @@ Finally you need to add another top level resource, Microsoft.Web/certificates. 
         }
     }
 
-You will need to have a valid SSL certificate in order to set up this resource. Once you have that valid certificate then you need to extract the pfx bytes as a base64 string. One option to extract this is to use the following PowerShell command:
+您必須具備有效的 SSL 憑證，才能設定這項資源。 如果您已具備有效憑證，接著必須要以 base64 字串的形式擷取 pfx 位元組。 要擷取此項目，使用下列 PowerShell 命令是選項之一：
 
     $fileContentBytes = get-content 'C:\path\to\cert.pfx' -Encoding Byte
 
     [System.Convert]::ToBase64String($fileContentBytes) | Out-File 'pfx-bytes.txt'
 
-You could then pass this as a parameter to your ARM deployment template.
+接著，您可以將此項目傳遞至 ARM 部署範本做為參數。
 
-At this point the ARM template is ready.
+至此，ARM 範本已準備就緒。
 
-### <a name="deploy-template"></a>Deploy Template
-The final steps are to piece this all together into a full end-to-end deployment. To make deployment easier you can leverage the **Deploy-AzureResourceGroup.ps1** PowerShell script that is added when you create an Azure Resource Group project in Visual Studio to help with uploading of any artifacts required in the template. It requires you to have created a storage account you want to use ahead of time. For this example, I created a shared storage account for the package.zip to be uploaded. The script will leverage AzCopy to upload the package to the storage account. You pass in your artifact folder location and the script will automatically upload all files within that directory to the named storage container. After calling Deploy-AzureResourceGroup.ps1 you have to then update the SSL bindings to map the custom hostname with your SSL certificate.
+### <a name="deploy-template"></a>部署範本
+最後的步驟是將各個項目整合為完整的端對端部署。 若要簡化部署，您可以利用您在 Visual Studio 中建立 Azure 資源群組專案時所新增的 **Deploy-AzureResourceGroup.ps1** PowerShell 指令碼，來上傳範本中所需的任何構件。 若要這麼做，您必須事先建立您要使用的儲存體帳戶。 在此範例中，我針對要上傳的 package.zip 建立了共用儲存體帳戶。 指令碼會利用 AzCopy 將封裝上傳至儲存體帳戶。 在您傳入構件資料夾位置後，指令碼會自動將該目錄中的所有檔案上傳至指定的儲存體容器。 在呼叫 Deploy-AzureResourceGroup.ps1 之後，您必須更新 SSL 繫結，以對應自訂主機名稱與您的 SSL 憑證。
 
-The following PowerShell shows the complete deployment calling the Deploy-AzureResourceGroup.ps1:
+下列 PowerShell 顯示呼叫 Deploy-AzureResourceGroup.ps1 的完整部署：
 
     #Set resource group name
     $rgName = "Name-of-resource-group"
@@ -191,8 +195,11 @@ The following PowerShell shows the complete deployment calling the Deploy-AzureR
 
     Set-AzureRmResource -ApiVersion 2014-11-01 -Name nameofwebsite -ResourceGroupName $rgName -ResourceType Microsoft.Web/sites -PropertyObject $props
 
-At this point your application should have been deployed and you should be able to browse to it via https://www.yourcustomdomain.com
+此時，您的應用程式應已部署，且您應能夠透過 https://www.yourcustomdomain.com 加以瀏覽
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO3-->
 
 

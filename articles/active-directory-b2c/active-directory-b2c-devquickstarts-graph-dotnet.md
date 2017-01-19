@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 271e2bd40fb605dc6be229bea8fb479effae4298
+ms.sourcegitcommit: e65393c9582056f84530a32804e0d82fd451b688
+ms.openlocfilehash: a932b617d57184ef714bf18f1e1e23599db52487
 
 
 ---
@@ -26,7 +26,7 @@ Azure Active Directory (Azure AD) B2C 租用戶通常會很龐大。 這表示�
 對於 B2C 租用戶，與圖形 API 通訊有兩種主要模式。
 
 * 對於互動式、執行一次的工作，您應以 B2C 租用戶中的系統管理員帳戶來執行管理工作。 此模式需要系統管理員先使用認證登入，系統管理員才能對圖形 API進行任何呼叫。
-* 對於自動化、持續的工作，您應使用您提供必要權限的某種服務帳戶來執行管理工作。 在 Azure AD 中，作法上您可以註冊應用程式並向 Azure AD 驗證。 使用採用 **OAuth 2.0 用戶端認證授與** 的 [應用程式識別碼](../active-directory/active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)即可完成。 在此情況下，應用程式會以本身 (而非使用者的身分) 呼叫圖形 API。
+* 對於自動化、持續的工作，您應使用您提供必要權限的某種服務帳戶來執行管理工作。 在 Azure AD 中，作法上您可以註冊應用程式並向 Azure AD 驗證。 使用採用 **OAuth 2.0 用戶端認證授與** 的 [應用程式識別碼](../active-directory/develop/active-directory-authentication-scenarios.md#daemon-or-server-application-to-web-api)即可完成。 在此情況下，應用程式會以本身 (而非使用者的身分) 呼叫圖形 API。
 
 在本文中，我們將討論如何執行自動化使用案例。 為了示範，我們會建置 .NET 4.5 `B2CGraphClient` 來執行使用者建立、讀取、更新和刪除 (CRUD) 作業。 用戶端會有 Windows 命令列介面讓您叫用各種方法。 不過，程式碼會撰寫成以非互動、自動化的方式運作。
 
@@ -364,6 +364,6 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsIng1dCI6IjdkRC1nZWNOZ1gxWmY3R0xrT3ZwT0
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO3-->
 
 

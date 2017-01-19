@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/10/2017
 ms.author: juliako;cenkdin
 translationtype: Human Translation
-ms.sourcegitcommit: ff663f40507547ba561053b5c9a7a8ce93fbf213
-ms.openlocfilehash: 5483304fd0f912dc2ab921253813f8fd6d3945f7
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: e10c7b29469f9756803aaba64596bf86830893fa
 
 
 ---
@@ -36,10 +36,10 @@ ms.openlocfilehash: 5483304fd0f912dc2ab921253813f8fd6d3945f7
 ## <a name="types-used-to-create-filters"></a>用於建立篩選器的類型
 建立篩選器時會使用下列類型：  
 
-* [Filter](http://msdn.microsoft.com/library/azure/mt149056.aspx)
-* [AssetFilter](http://msdn.microsoft.com/library/azure/mt149053.aspx)
-* [PresentationTimeRange](http://msdn.microsoft.com/library/azure/mt149052.aspx)
-* [FilterTrackSelect 和 FilterTrackPropertyCondition](http://msdn.microsoft.com/library/azure/mt149055.aspx)
+* [Filter](https://docs.microsoft.com/rest/api/media/operations/filter)
+* [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
+* [PresentationTimeRange](https://docs.microsoft.com/rest/api/media/operations/presentationtimerange)
+* [FilterTrackSelect 和 FilterTrackPropertyCondition](https://docs.microsoft.com/rest/api/media/operations/filtertrackselect)
 
 > [!NOTE]
 > 使用媒體服務 REST API 時，適用下列考量事項：
@@ -341,6 +341,6 @@ Request body
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

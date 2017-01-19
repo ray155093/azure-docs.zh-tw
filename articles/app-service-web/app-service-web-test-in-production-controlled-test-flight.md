@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 02/02/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 705d548661fd0a33a077aab563af415d959b6ebf
+ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
+ms.openlocfilehash: 152b08cf72c48109f17b5c4715e4ca5fafbb1b7b
 
 
 ---
@@ -309,7 +309,7 @@ ms.openlocfilehash: 705d548661fd0a33a077aab563af415d959b6ebf
         $rule.Name = "beta"
         Set-AzureWebsite $siteName -Slot Production -RoutingRules $rule
 
-    `ReroutePercentage=50` 屬性會指定要將 50% 的生產流量路由傳送至 beta 應用程式的 URL (由 `ActionHostName` 屬性指定)。
+   `ReroutePercentage=50` 屬性會指定要將 50% 的生產流量路由傳送至 beta 應用程式的 URL (由 `ActionHostName` 屬性指定)。
 2. 現在瀏覽到 http://ToDoApp*&lt;your_suffix>*.azurewebsites.net。 50% 的流量現在應該會重新導向至 beta 位置。
 3. 在您的 Application Insights 資源中，以 environment="beta" 來篩選計量。
 
@@ -351,7 +351,7 @@ Azure App Service 可讓中小型企業輕鬆地在生產環境中測試其客�
 * [敏捷式軟體開發 (Agile Software Development) 與 Azure App Service](app-service-agile-software-development.md)
 * [針對 Azure App Service 中的 Web 應用程式設定預備環境](web-sites-staged-publishing.md)
 * [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)
-* [編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)
+* [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)
 * [JSONLint - JSON 驗證程式](http://jsonlint.com/)
 * [Git 分支 - 基本分支和合併](http://www.git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 * [Azure PowerShell](/powershell/azureps-cmdlets-docs)
@@ -359,6 +359,6 @@ Azure App Service 可讓中小型企業輕鬆地在生產環境中測試其客�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 
