@@ -13,20 +13,20 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/25/2016
+ms.date: 01/03/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f7dafd3808b688cf1a7aff43ab996fb8e3d48cb9
+ms.sourcegitcommit: ab9c4bc6e2e68a3522bbc3fe23ea33760f03b620
+ms.openlocfilehash: fe40bc372a63735b0130bcbb115c312fa2e45fa6
 
 
 ---
 # <a name="overview-apache-spark-on-hdinsight-linux"></a>概觀：HDInsight Linux 上的 Apache Spark
 <a href="http://spark.apache.org/" target="_blank">Apache Spark</a> 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇 。 Spark 也能與 Azure Blob 儲存體 (WASB) 相容，因此您可以輕鬆地透過 Spark 處理儲存在 Azure 中的現有資料。
 
-當您在 HDInsight 中建立 Spark 叢集時，就是建立了已安裝及設定 Spark 的 Azure 計算資源。 在 HDInsight 中建立 Spark 叢集只需要約十分鐘。 系統會將要處理的資料儲存在 Azure Blob 儲存體。 請參閱[在 HDInsight 上使用 Azure Blob 儲存體][hdinsight-storage]。
+當您在 HDInsight 中建立 Spark 叢集時，就是建立了已安裝及設定 Spark 的 Azure 計算資源。 在 HDInsight 中建立 Spark 叢集只需要約十分鐘。 系統會將要處理的資料儲存在 Azure Blob 儲存體。 請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
 
-![Azure HDInsight 上的 Apache Spark](./media/hdinsight-apache-spark-overview/hdispark.architecture.png "Apache Spark on Azure HDInsight")
+![Azure HDInsight 上的 Apache Spark](./media/hdinsight-apache-spark-overview/hdispark.architecture.png "Azure HDInsight 上的 Apache Spark")
 
 **想要開始使用 Azure HDInsight 上的 Apache Spark 嗎？** 請參閱 [快速入門：在 HDInsight Linux 上建立 Spark 叢集，並利用 Jupyter 來執行範例應用程式](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
@@ -41,9 +41,9 @@ Azure HDInsight 提供完全受管理的 Spark 服務。 在 HDInsight 上使用
 | 功能 | 說明 |
 | --- | --- |
 | 容易建立叢集 |您可以使用 Azure 管理入口網站、Azure PowerShell 或 HDInsight .NET SDK，在幾分鐘之內於 HDInsight 上建立新的 Spark 叢集。 請參閱 [開始使用 HDInsight 中的 Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md) |
-| 容易使用 |HDInsight 叢集中的 Spark 包含預先設定的 Jupyter Notebook。 您可以使用它們來進行互動式的資料處理和視覺化。 URL 是 https://CLUSTERNAME.azurehdinsight.net/jupyter。 請用您 Spark HDInsight 叢集的名稱取代 **CLUSTERNAME**。 |
+| 容易使用 |HDInsight 叢集中的 Spark 包含預先設定的 Jupyter Notebook。 您可以使用它們來進行互動式的資料處理和視覺化。 Jupyter Notebook 的 URL 是 https://CLUSTERNAME.azurehdinsight.net/jupyter。 請用您 Spark HDInsight 叢集的名稱取代 **CLUSTERNAME**。 |
 | REST API |HDInsight 中的 Spark 包含 [Livy](https://github.com/cloudera/hue/tree/master/apps/spark/java#welcome-to-livy-the-rest-spark-server)，它是 REST-API 式 Spark 作業伺服器，能用來遠端提交及監視執行中的工作。 |
-| 支援 Azure Data Lake Store |HDInsight 上的 Spark 可以設定為使用 Azure Data Lake Store 做為額外的儲存體。 如需有關 Data Lake Store 的詳細資訊，請參閱 [Azure Data Lake Store 概觀](../data-lake-store/data-lake-store-overview.md)。 |
+| 支援 Azure Data Lake Store |HDInsight 上的 Spark 可以設定為使用 Azure Data Lake Store 做為額外的儲存體以及主要儲存體 (只適用於 HDInsight 3.5 叢集)。 如需有關 Data Lake Store 的詳細資訊，請參閱 [Azure Data Lake Store 概觀](../data-lake-store/data-lake-store-overview.md)。 |
 | Azure 服務整合 |HDInsight 上的 Spark 附有連接 Azure 事件中樞的連接器。 除了 Spark 已經提供的 [Kafka](http://kafka.apache.org/)之外，客戶還可以使用事件中樞來建置串流應用程式。 |
 | 支援 R 伺服器 |您可以在 HDInsight Spark 叢集上設定 R 伺服器，以 Spark 叢集所承諾的速度執行分散式 R 計算。 如需詳細資訊，請參閱 [開始使用 HDInsight 中的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。 |
 | 與 IntelliJ IDEA 整合 |您可以使用 IntelliJ 的 HDInsight 外掛程式來建立應用程式，並將應用程式提交至 HDInsight Spark 叢集。 如需詳細資訊，請參閱 [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)。 |
@@ -69,12 +69,12 @@ HDInsight 中的 Apache Spark 會將資料儲存在 Azure Blob 內。 商務專�
 
 Apache Spark 隨附 [MLlib](http://spark.apache.org/mllib/)，這是為 Spark 所建置的機器學習程式庫。 此外，HDInsight 上的 Spark 也包含 Anaconda，它是提供多種機器學習封裝的 Python 散發。 搭配上內建的 Jupyter Notebook 支援，您將擁有最先進的機器學習應用程式建立環境。  
 
-### <a name="streaming-and-realtime-data-analysis"></a>串流和即時資料分析
+### <a name="streaming-and-real-time-data-analysis"></a>串流和即時資料分析
 [觀看教學課程](hdinsight-apache-spark-eventhub-streaming.md)
 
 不論是藉由在資料抵達時進行處理來縮短取得資料見解的時間，或是建置實用的串流解決方案，這些案例都是即時資料分析的適用範圍內。 HDInsight 中的 Spark 提供豐富的支援供您建置即時分析解決方案。 雖然 Spark 已附有從 Kafka、Flume、Twitter、ZeroMQ 或 TCP 通訊端等眾多來源擷取資料的連接器，不過 HDInsight 中的 Spark 仍加入首屈一指的支援，供您從 Azure 事件中樞擷取資料。 事件中樞是 Azure 上最廣泛使用的佇列服務。 擁有立即可用的事件中樞支援，讓 HDInsight 中的 Spark 成為建置即時分析管線的理想平台。
 
-## <a name="a-namenextstepsawhat-components-are-included-as-part-of-a-spark-cluster"></a><a name="next-steps"></a>Spark 叢集包含哪些元件？
+## <a name="a-namenext-stepsawhat-components-are-included-as-part-of-a-spark-cluster"></a><a name="next-steps"></a>Spark 叢集包含哪些元件？
 依預設，HDInsight 中的 Spark 能經由叢集提供下列元件。
 
 * [Spark Core](https://spark.apache.org/docs/1.5.1/)。 包括 Spark Core、Spark SQL、Spark 串流 API、GraphX 及 MLlib。
@@ -115,6 +115,6 @@ HDInsight 中的 Spark 也提供 [ODBC 驅動程式](http://go.microsoft.com/fwl
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

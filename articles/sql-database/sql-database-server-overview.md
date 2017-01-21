@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 11/28/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 717d84bbfbc51912bca7c2d279a6a0603ea97107
-ms.openlocfilehash: 1ea0b7032d35e793033c0d4ca96c2f4c3ff6671b
+ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
+ms.openlocfilehash: 17e2830dceeaa313dd0fd7d406bf68a75b6f900e
 
 
 ---
@@ -79,12 +79,12 @@ Microsoft Azure SQL Database (包含 master 資料庫) 使用的預設資料庫�
 - 如需了解 Azure SQL Database 的概觀，請參閱 [SQL Database 概觀](sql-database-overview.md)
 - 如需了解 Transact-SQL 支援與差異的詳細資訊，請參閱 [ 的差異](sql-database-transact-sql-information.md)。
 - 如需根據您**服務層**的特定資源配額和限制。 如需服務層級的概觀，請參閱 [SQL Database 服務層級](sql-database-service-tiers.md)。
-- 如需與安全性相關的方針，請參閱＜ [Azure SQL Database 安全性方針與限制](sql-database-security-guidelines.md)＞。
+- 如需安全性概觀，請參閱 [Azure SQL Database 安全性概觀](sql-database-security-overview.md)。
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜ [SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
 
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO4-->
 
 

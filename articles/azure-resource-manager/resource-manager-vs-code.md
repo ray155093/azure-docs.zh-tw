@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/26/2016
+ms.date: 01/03/2017
 ms.author: chmatsk;tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f839784aaef511c60ec1c3eea0b64bfdd5f67a4f
+ms.sourcegitcommit: 10c7051c9b1218081d95cb10403006bfd95126ba
+ms.openlocfilehash: 2ac1c2cce7a9e045990894b0bbaa045df3d48954
 
 
 ---
 # <a name="working-with-azure-resource-manager-templates-in-visual-studio-code"></a>在 Visual Studio Code 中使用 Azure Resource Manager 範本
-Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。 這些檔案有時候可能很大又複雜，所以工具支援非常重要。 Visual Studio Code 是全新的、輕量型、開放原始碼、跨平台程式碼編輯器。 它會透過 [新的擴充功能](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)，支援建立和編輯 Resource Manager 範本。 VS Code 可隨處執行，而且不需要網際網路存取，除非您也想要部署 Resource Manager 範本。
+Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。 這些檔案有時候可能很大又複雜，所以工具支援非常重要。 Visual Studio Code 是全新的、輕量型、開放原始碼、跨平台程式碼編輯器。 它會透過 [新的擴充功能](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)，支援建立和編輯 Resource Manager 範本。 VS Code 可隨處執行，而且只有在您想要部署 Resource Manager 範本至 Azure 訂用帳戶時，才需要網際網路存取。
 
 如果您還沒有 VS Code，可以在 [https://code.visualstudio.com/](https://code.visualstudio.com/)進行安裝。
 
@@ -42,7 +42,7 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 
 1. 將檔案的內容從 [azure-xplat-arm-tooling](https://raw.githubusercontent.com/Azure/azure-xplat-arm-tooling/master/VSCode/armsnippets.json) 儲存機制複製到剪貼簿。
 2. 啟動 VS Code 
-3. 在 VS Code 中，您可以利用下列方式開啟 JSON 程式碼片段檔案：瀏覽至 [檔案] -> [喜好設定] -> [使用者程式碼片段] -> [JSON]，或選取 **F1** 並輸入**喜好設定**，直到您可以選取 [喜好設定︰程式碼片段] 為止。
+3. 在 VS Code 中，您可以開啟 JSON 程式碼片段檔案，方法是瀏覽至 [檔案] -> [喜好設定] -> [使用者程式碼片段] -> [JSON]。 或者，選取 **F1**，然後輸入**喜好設定**，直到您可以選取 [喜好設定︰程式碼片段]。
    
     ![喜好設定程式碼片段](./media/resource-manager-vs-code/preferences-snippets.png)
    
@@ -53,7 +53,7 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 5. 請確定 JSON 看起來正常，且任何地方都沒有波浪線。 
 6. 儲存並關閉使用者程式碼片段檔案。
 
-這就是開始使用 Resource Manager 程式碼片段所需的檔案。 接下來，我們將會測試此安裝程式。
+這就是開始使用 Resource Manager 程式碼片段所需的檔案。 接下來，我們會測試此安裝程式。
 
 ## <a name="work-with-template-in-vs-code"></a>在 VS Code 中使用範本
 開始使用範本的最簡單方法是擷取 [Github](https://github.com/Azure/azure-quickstart-templates) 上的其中一個快速啟動範本，或使用您自己的其中一個範本。 您可以透過入口網站輕鬆地針對任何資源群組 [匯出範本](resource-manager-export-template.md) 。 
@@ -61,19 +61,19 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 1. 如果您從資源群組中匯出範本，請在 VS Code 中開啟已解壓縮的檔案。
    
     ![顯示檔案](./media/resource-manager-vs-code/show-files.png)
-2. 開啟 template.json 檔案，以便編輯它並新增一些額外的資源。 在 **"resources": [** 之後按 Enter 鍵，開始新的一行。 如果輸入 **arm**，您將會看到選項清單。 這些選項是您安裝的範本程式碼片段。 它看起來應該如下所示： 
+2. 開啟 template.json 檔案，以便編輯它並新增一些額外的資源。 在 `"resources": [` 之後按 Enter 鍵，開始新的一行。 如果輸入 **arm**，您會看到選項清單。 這些選項是您安裝的範本程式碼片段。 
    
     ![顯示程式碼片段](./media/resource-manager-vs-code/type-snippets.png)
-3. 選擇您想要的程式碼片段。 在本文中，我會選擇 **arm-ip** 來建立新的公用 IP 位址。 在新建資源的右括號 "}" 後面加上逗號，確保您的範本語法有效。
+3. 選擇您想要的程式碼片段。 在本文中，我會選擇 **arm-ip** 來建立新的公用 IP 位址。 在新建資源的右括號 `}` 後面加上逗號，確保您的範本語法有效。
    
      ![新增逗號](./media/resource-manager-vs-code/add-comma.png)
-4. VS Code 有內建的 IntelliSense。 當您編輯範本時，VS Code 會建議可用的值。 例如，若要將變數區段加入至您的範本，請新增 **""** (兩個雙引號)，然後選取這兩個引號之間的 **Ctrl+空格鍵**。 您會看到包含 **變數**的選項。
+4. VS Code 有內建的 IntelliSense。 當您編輯範本時，VS Code 會建議可用的值。 例如，若要將變數區段加入至您的範本，請新增 `""` (兩個雙引號)，然後選取這兩個引號之間的 **Ctrl+空格鍵**。 您會看到包含**變數**的選項。
    
     ![新增變數](./media/resource-manager-vs-code/add-variables.png)
-5. IntelliSense 也可以建議可用的值或函式。 若要將屬性設定為參數值，請建立包含 **"[]"** 和 **Ctrl+空格鍵**的運算式。 您可以開始輸入函式的名稱。 當您找到想要的函式時，請選取 **Tab** 。
+5. IntelliSense 也可以建議可用的值或函式。 若要將屬性設定為參數值，請建立包含 `"[]"` 和 **Ctrl+空格鍵**的運算式。 您可以開始輸入函式的名稱。 當您找到想要的函式時，請選取 **Tab** 。
    
     ![新增參數](./media/resource-manager-vs-code/select-parameters.png)
-6. 再次選取函式內的 **Ctrl+空格鍵** ，以查看您的範本內可用的參數清單。
+6. 若要查看範本內可用的參數清單，請再次選取函式內的 **Ctrl+空格鍵**。
    
     ![新增參數](./media/resource-manager-vs-code/select-avail-parameters.png)
 7. 如果您在範本中有任何結構描述驗證問題，則會在編輯器中看到熟悉的波浪線。 輸入 **Ctrl+Shift+M** 或選取左下方狀態列中的字符 (glyph)，即可檢視錯誤和警告清單。
@@ -85,35 +85,51 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
     ![錯誤訊息](./media/resource-manager-vs-code/unrecognized-function.png)
 
 ## <a name="deploy-your-new-resources"></a>部署新資源
-當您的範本準備就緒時，可以依照下列指示來部署新資源︰ 
+當範本準備就緒時，您可以使用下列指示來部署新資源︰ 
 
 ### <a name="windows"></a>Windows
 1. 開啟 PowerShell 命令提示字元。 
 2. 若要登入類型︰ 
    
-        Login-AzureRmAccount 
+  ```powershell
+  Login-AzureRmAccount
+  ```
+
 3. 如果您有多個訂用帳戶，請透過下列方式取得訂用帳戶清單：
-   
-        Get-AzureRmSubscription
+
+  ```powershell 
+  Get-AzureRmSubscription
+  ```
    
     以及選取要使用的訂用帳戶。
-   
-        Select-AzureRmSubscription -SubscriptionId <Subscription Id>
+
+  ```powershell
+  Select-AzureRmSubscription -SubscriptionId <Subscription Id>
+  ```
+
 4. 更新 parameters.json 檔案中的參數
 5. 執行 Deploy.ps1 以在 Azure 上部署您的範本
 
 ### <a name="osxlinux"></a>OSX/Linux
 1. 開啟終端機視窗 
 2. 若要登入類型︰
-   
-        azure login 
+
+  ```azurecli
+  azure login
+  ```
+
 3. 如果您有多個訂用帳戶，請透過下列方式選取適當的訂用帳戶：
-   
-        azure account set <subscriptionNameOrId> 
+
+  ```azurecli
+  azure account set <subscriptionNameOrId> 
+  ```
+
 4. 更新 parameters.json 檔案中的參數。
 5. 若要部署範本，請執行：
-   
-        azure group deployment create -f <PathToTemplate> 
+
+  ```azurecli 
+  azure group deployment create -f <PathToTemplate>
+  ``` 
 
 ## <a name="next-steps"></a>後續步驟
 * 若要了解範本，請參閱 [撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
@@ -123,6 +139,6 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

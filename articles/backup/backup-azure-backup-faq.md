@@ -1,3 +1,4 @@
+
 ---
 title: "Azure 備份常見問題集 | Microsoft Docs"
 description: "關於備份服務、備份代理程式、備份和保留、復原、安全性，以及其他關於備份和災害復原之常見問題的解答。"
@@ -16,8 +17,8 @@ ms.topic: get-started-article
 ms.date: 11/16/2016
 ms.author: trinadhk; giridham; arunak; markgal; jimpark;
 translationtype: Human Translation
-ms.sourcegitcommit: be06f1eca1848ff6d00661cfc1166797649a98a4
-ms.openlocfilehash: cb45e7113073d19c1dc3e305d7b69373bd38d84f
+ms.sourcegitcommit: 1b2eeab756309148db5890ccc0d93853f3e69372
+ms.openlocfilehash: 4b7a8a88d21b11deb377c2fef4e2d8f9fbcf9036
 
 
 ---
@@ -33,6 +34,7 @@ Azure 備份支援下列作業系統清單來備份：使用 Azure 備份伺服�
 | Windows 7 和最新的 SP |64 位元 |Ultimate、Enterprise、Professional、Home Premium、Home Basic、Starter |
 | Windows 8.1 和最新的 SP |64 位元 |Enterprise、Pro |
 | Windows 10 |64 位元 |企業版、專業版、家用版 |
+| Windows Server 2016 |64 位元 |Standard、Datacenter、Essentials |
 | Windows Server 2012 R2 和最新的 SP |64 位元 |Standard、Datacenter、Foundation |
 | Windows Server 2012 和最新的 SP |64 位元 |Datacenter、Foundation、Standard |
 | Windows Storage Server 2012 R2 和最新的 SP |64 位元 |Standard、Workgroup |
@@ -172,7 +174,7 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 ## <a name="is-there-a-difference-between-the-retention-policy-for-dpm-and-windows-serverclient-ie-on-windows-server-without-dpmbr"></a>DPM 和 Windows Server/用戶端 (亦即在不含 DPM 的 Windows Server 上) 的保留原則是否具有差異？<br/>
 否，DPM 和 Windows Server/用戶端均有每日、每週、每月和每年保留原則。
 
-## <a name="can-i-configure-my-retention-policies-selectively-ie-configure-weekly-and-daily-but-not-yearly-and-monthlybr"></a>我可以選擇性設定保留原則，例如設定每週和每日，但不包含每年和每月嗎？<br/>
+## <a name="can-i-configure-my-retention-policies-selectively--ie-configure-weekly-and-daily-but-not-yearly-and-monthlybr"></a>我可以選擇性設定保留原則，例如設定每週和每日，但不包含每年和每月嗎？<br/>
 是的，Azure 備份保留結構讓您可以依照您的需求，彈性定義保留原則。
 
 ## <a name="can-i-schedule-a-backup-at-6pm-and-specify-retention-policies-at-a-different-timebr"></a>我可以在下午 6:00「排程備份」，並在不同的時間指定「保留原則」嗎？<br/>
@@ -275,6 +277,6 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -17,8 +17,8 @@ ms.workload: data-management
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 16f4e287a955b787a08cc6949094bd0f5224421a
-ms.openlocfilehash: 29488482f3e6c5f3dcf0eac04fe7e5e33fb832ce
+ms.sourcegitcommit: 6c8420a154d998aa95c0220049ee54b3039a872b
+ms.openlocfilehash: 4be8e4f81965fa4d872e29fdb9aaa45909d18c37
 
 
 ---
@@ -89,7 +89,7 @@ ms.openlocfilehash: 29488482f3e6c5f3dcf0eac04fe7e5e33fb832ce
 
     如果您要使用的資料庫有足夠的歷史使用量遙測資料，[預估的 eDTU 和 GB 使用量] 圖形和 [實際的 eDTU 使用量] 長條圖便會更新以幫助您決定要使用的組態。 此外，該服務可能會提供您建議訊息，協助您決定集區的適當大小。 請參閱 [動態建議](#dynamic-recommendations)。
 
-3. 使用 [設定集區]  頁面上的控制項，探索設定及設定您的集區。 如需各服務層限制的詳細資訊，請參閱[彈性集區限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 如需集區設定的詳細資訊，請參閱[彈性集區屬性](sql-database-elastic-pool.md#elastic-pool-and-elastic-database-properties)。
+3. 使用 [設定集區]  頁面上的控制項，探索設定及設定您的集區。 如需各服務層限制的詳細資訊，請參閱[彈性集區限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 如需集區設定的詳細資訊，請參閱[彈性集區屬性](sql-database-elastic-pool.md#elastic-pool-properties)。
 
     ![設定彈性集區](./media/sql-database-elastic-pool-create-portal/configure-performance.png)
 
@@ -129,6 +129,6 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 
