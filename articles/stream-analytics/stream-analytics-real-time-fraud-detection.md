@@ -216,7 +216,7 @@ ms.openlocfilehash: 3d32518bed64ebe3dd1790bb511949624b5dcac1
 2. 在開啟的對話方塊中，按一下 [工作開始時間]，然後按一下對話方塊最下方的 [核取] 按鈕。 工作狀態會變更為 [啟動中] 而且短時間內就會變成 [執行中]。
 
 ## <a name="view-fraud-detection-output"></a>檢視詐騙偵測輸出
-使用 [Azure 儲存體總管][](http://storageexplorer.com/) 或 [Azure 總管][](http://www.cerebrata.com/products/azure-explorer/introduction) 此類的工具，以即時檢視正在寫入至您輸出中的詐騙事件。  
+使用 [Azure 儲存體總管](http://storageexplorer.com/) 或 [Azure 總管](http://www.cerebrata.com/products/azure-explorer/introduction) 此類的工具，以即時檢視正在寫入至您輸出中的詐騙事件。  
 
 ![詐騙偵測：即時檢視的詐騙事件](./media/stream-analytics-real-time-fraud-detection/stream-ananlytics-view-real-time-fraudent-events.png)
 
