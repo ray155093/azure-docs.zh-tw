@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/17/2016
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8bf0ca0768939cbc99947191eab80a789f551363
+ms.sourcegitcommit: ec32e3937d08d912c8f96987b0c5ebbf73060258
+ms.openlocfilehash: 7a4413c6d2ecf497e72e2909e627761f0a9ff23a
 
 
 ---
@@ -42,20 +42,19 @@ ms.openlocfilehash: 8bf0ca0768939cbc99947191eab80a789f551363
 1. 您會在「資訊安全中心」的儀表板看到 [安全性警示]  圖格。
    
     ![資訊安全中心的 [安全性警示] 圖格](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig1-ga.png)
+
 2. 按一下圖格，開啟 [安全性警示]  刀鋒視窗，其中包括與警示相關的詳細資料，如下所示。
    
    ![資訊安全中心的 [安全性警示] 刀鋒視窗](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig2-ga.png)
 
 這個刀鋒視窗的底部會顯示每個警示的詳細資料。 如要為警示排序，請按一下您要做為排序依據的的資料行。 下列為每個資料行的定義：
 
-* **警示**：警示的簡短說明。
+* **描述**：警示的簡短說明。
 * **計數**：在特定一天偵測到這個特定類型的所有警示清單。
 * **偵測者**：負責觸發警示的服務。
 * **日期**：事件發生的日期。
 * **狀態**：該警示目前的狀態。 狀態分為兩種：
-  
   * **使用中**：已偵測到安全性警示。
-  * **已解除**：使用者已經解除該安全性警示。 這個狀態通常用於已經過調查但事件影響已減輕時，或是在調查後發現該事件並非真正攻擊時。
 * **嚴重性**：嚴重性層級，分為高、中或低。
 
 ### <a name="filtering-alerts"></a>篩選警示
@@ -63,10 +62,7 @@ ms.openlocfilehash: 8bf0ca0768939cbc99947191eab80a789f551363
 
 1. 按一下 [安全性警示] 刀鋒視窗上的 [篩選]。 即會開啟 [篩選]  刀鋒視窗，您可以選取想要查看的日期、狀態和嚴重性值。
    
-    ![篩選資訊安全中心的警示](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig3-ga.png)
-2. 查閱安全性警示之後，您會可能會發現可以忽略的警示，因為這是對環境的誤判，或指出特定資源預期會有的行為。 無論是哪種情況，如果您判斷安全性警示不適用，您可解除該警示，然後將它從您的檢視中篩除。 解除安全性警示的方式有兩種。 在警示上按一下滑鼠右鍵，然後選取 [解除]，或將滑鼠游標暫留在項目上，然後按一下出現在右邊的三個點，再選取 [解除]。 您可以按一下 [篩選]，然後選取 [已解除]，檢視已解除的安全性警示。
-   
-   ![解除資訊安全中心的警示](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig4-ga.png)
+    ![篩選資訊安全中心的警示](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig3-2017.png)
 
 ### <a name="respond-to-security-alerts"></a>回應安全性警示
 選取一個安全性警示以深入了解觸發警示的事件；如果發現項目，您需要進行一些步驟來阻止攻擊。 安全性警示會依類型及日期區分。 按一下安全性警示會開啟刀鋒視窗，其中包括已分組的警示清單。
@@ -98,6 +94,6 @@ ms.openlocfilehash: 8bf0ca0768939cbc99947191eab80a789f551363
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -17,13 +17,17 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: a4882b6fcd75ecaa826cdda3e25ee690b85a0670
-ms.openlocfilehash: 34450e25941e0be97b72c1ba30ee348d73f4bc67
+ms.sourcegitcommit: bcc2d3468c8a560105aa2c2feb0d969ec3cccdcb
+ms.openlocfilehash: 5296586b9266f432042f847f4dff9e6ff62ebc8b
 
 
 ---
 # <a name="connect-to-an-azure-container-service-cluster"></a>連接到 Azure 容器服務叢集
 部署了 Azure Container Service 的 DC/OS、Kubernetes 和 Docker Swarm 叢集都會公開 REST 端點。  針對 Kubernetes，此端點會在網際網路上安全地公開，而您可以從連線到網際網路的任何電腦直接存取該端點。 針對 DC/OS 和 Docker Swarm，您必須建立 SSH 通道，才能安全地連線到 REST 端點。 以下說明每一個連線。
+
+> [!NOTE]
+> Azure Container Service 中的 Kubernetes 支援目前為預覽狀態。
+>
 
 ## <a name="connecting-to-a-kubernetes-cluster"></a>連線到 Kubernetes 叢集。
 若要連線到 Kubernetes 叢集，您需要安裝 `kubectl` 命令列工具。  安裝此工具最簡單的方法是使用 Azure 2.0 `az` 命令列工具。
@@ -51,13 +55,19 @@ scp azureuser@<master-dns-name>:.kube/config $HOME/.kube/config
 
 如果您使用 Windows，您將需要使用 Windows 上 Ubuntu 的 Bash 或 Putty 'pscp' 工具。
 
-一旦 `kubectl` 設定之後，您可以使用以下方法測試：
+設定 `kubectl` 之後，您可藉由列出叢集中的節點來進行測試：
 
 ```console
 kubectl get nodes
 ```
 
-這應該會顯示您叢集中的節點。
+最後，您可以檢視 Kubernetes 儀表板。 首先，請執行︰
+
+```console
+kubectl proxy
+```
+
+Kubernetes UI 現在已可供使用：http://localhost:8001/ui
 
 如需進一步的指示，您可以參閱 [Kubernetes 快速入門](http://kubernetes.io/docs/user-guide/quick-start/) (英文)
 
@@ -166,6 +176,6 @@ export DOCKER_HOST=:2375
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 
