@@ -37,7 +37,7 @@ ms.openlocfilehash: 93119596f5a9fb3b6cf405f6de5d2ecccd45f298
     視需要設定 VM。 例如，[新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、套用更新，並安裝應用程式。 
 * **Azure CLI** - 在本機電腦上安裝 [Azure CLI](../xplat-cli-install.md)。
 
-## <a name="step-1-remove-the-azure-linux-agent"></a>步驟 1：安裝 Azure Linux 代理程式
+## <a name="step-1-remove-the-azure-linux-agent"></a>步驟 1：移除 Azure Linux 代理程式
 首先，在 Linux VM 上執行 **waagent** 命令並搭配 **deprovision**參數。 此命令會刪除檔案與資料，使 VM 準備好進行一般化。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 1. 使用 SSH 用戶端連線到 Linux VM。
