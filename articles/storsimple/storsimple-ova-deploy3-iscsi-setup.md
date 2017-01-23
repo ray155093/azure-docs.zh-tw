@@ -15,12 +15,12 @@ ms.workload: TBD
 ms.date: 07/18/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a5d3d1c9afd8023b201ff37318a3905b5fe791a2
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 715720d22b58ddd3d0e5042de151219e49549c5e
 
 
 ---
-# <a name="deploy-storsimple-virtual-array-set-up-your-virtual-device-as-an-iscsi-server"></a>部署 StorSimple Virtual Array：將虛擬裝置設定為 iSCSI 伺服器
+# <a name="deploy-storsimple-virtual-array--set-up-your-virtual-device-as-an-iscsi-server"></a>部署 StorSimple Virtual Array：將虛擬裝置設定為 iSCSI 伺服器
 ![iSCSI 安裝程序流程](./media/storsimple-ova-deploy3-iscsi-setup/iscsi4.png)
 
 ## <a name="overview"></a>概觀
@@ -52,7 +52,7 @@ ms.openlocfilehash: a5d3d1c9afd8023b201ff37318a3905b5fe791a2
     請使用您在上一個步驟記下的連線 URL。 您會看到錯誤訊息，通知您網站的安全性憑證有問題。 請按一下 [繼續瀏覽此網頁] 。
    
     ![安全性憑證錯誤](./media/storsimple-ova-deploy3-iscsi-setup/image3.png)
-2. 以 **StorSimpleAdmin**的帳戶名稱登入虛擬裝置的 Web UI。 請輸入您在《[部署 StorSimple Virtual Array：在 Hyper-V 中佈建虛擬裝置](storsimple-ova-deploy2-provision-hyperv.md)》或《[部署 StorSimple Virtual Array：在 VMware 中佈建虛擬裝置](storsimple-ova-deploy2-provision-vmware.md)》一文的〈步驟 3：啟動虛擬裝置〉中所變更的裝置系統管理員密碼。
+2. 以 **StorSimpleAdmin**的帳戶名稱登入虛擬裝置的 Web UI。 請輸入您在[部署 StorSimple Virtual Array - 在 Hyper-V 中佈建虛擬裝置](storsimple-ova-deploy2-provision-hyperv.md)或[部署 StorSimple Virtual Array - 在 VMware 中佈建虛擬裝置](storsimple-ova-deploy2-provision-vmware.md)的「步驟 3：啟動虛擬裝置」中所變更的裝置系統管理員密碼。
    
     ![登入頁面](./media/storsimple-ova-deploy3-iscsi-setup/image4.png)
 3. 您將會進入 [首頁]  頁面。 此頁面說明各種需要用來設定虛擬裝置的設定，以及為虛擬裝置向 StorSimple Manager 服務註冊的設定。 請注意，[網路設定]、[Web Proxy 設定] 及 [時間設定] 是可省略的。 只有 [裝置設定] 及 [雲端設定] 是必要的設定。
@@ -72,7 +72,7 @@ ms.openlocfilehash: a5d3d1c9afd8023b201ff37318a3905b5fe791a2
 6. 在 [裝置設定]  頁面上：
    
    1. 為裝置指派唯一的 [名稱]  。 這個名稱可以有 1 至 15 個字元，且可以包含字母、數字和連字號。
-   2. 對於您所建立裝置的「類型」，按一下 [iSCSI 伺服器] 圖示 ![iSCSI 伺服器圖示](./media/storsimple-ova-deploy3-iscsi-setup/image7.png)。 ISCSI 伺服器可讓您佈建區塊儲存體。
+   2. 對於您要建立的裝置 [類型]，按一下 [iSCSI 伺服器] 圖示 ![iSCSI 伺服器圖示](./media/storsimple-ova-deploy3-iscsi-setup/image7.png)。 ISCSI 伺服器可讓您佈建區塊儲存體。
    3. 指定您是否想讓此裝置加入網域。 如果您的裝置是 iSCSI 伺服器，您可以省略加入網域這個步驟。 如果您決定不將 iSCSI 伺服器加入網域，請按一下 [套用] 並等待設定套用完畢，然後前往下一個的步驟。
       
        如果您想要讓裝置加入網域， 輸入 [網域名稱]，然後按一下 [套用]。
@@ -163,7 +163,7 @@ ms.openlocfilehash: a5d3d1c9afd8023b201ff37318a3905b5fe791a2
    4. 為磁碟區指定佈建的容量。 請注意，指定容量必須小於可用容量。 如果您要建立階層式磁碟區，大小應該介於 500 GB 到 5 TB 之間。 對於固定在本機的磁碟區，則請指定介於 50 GB 到 500 TB 之間的磁碟區大小。 當您在佈建磁碟區時，請參考可用容量來下決定。 如果可用的本機容量為 0 GB，您就無法佈建固定在本機或階層式磁碟區。
       
        ![基本設定](./media/storsimple-ova-deploy3-iscsi-setup/image17.png)
-   5. 按一下箭頭圖示  ![箭號圖示](./media/storsimple-ova-deploy3-iscsi-setup/image18.png)  以移至下一頁。
+   5. 按一下箭頭圖示  ![箭號圖示](./media/storsimple-ova-deploy3-iscsi-setup/image18.png) 以移至下一頁。
 3. 在 [ **其他設定** ] 頁面中，加入新的存取控制記錄 (ACR)：
    
    1. 提供 ACR 的 [名稱]  。
@@ -246,6 +246,6 @@ ms.openlocfilehash: a5d3d1c9afd8023b201ff37318a3905b5fe791a2
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

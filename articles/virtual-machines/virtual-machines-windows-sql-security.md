@@ -1,61 +1,12 @@
 ---
-title: "Azure 中的 SQL Server 安全性考量 | Microsoft Docs"
-description: "本主題關於以傳統部署模型建立的資源，並提供一般指導方針來保護在 Azure 虛擬機器中執行的 SQL Server。"
-services: virtual-machines-windows
-documentationcenter: na
-author: rothja
-manager: jhubbard
-editor: 
-tags: azure-service-management
-ms.assetid: d710c296-e490-43e7-8ca9-8932586b71da
-ms.service: virtual-machines-sql
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: vm-windows-sql-server
-ms.workload: iaas-sql-server
-ms.date: 11/15/2016
-ms.author: jroth
+redirect_url: /azure/virtual-machines/windows/sql/virtual-machines-windows-sql-security
 translationtype: Human Translation
-ms.sourcegitcommit: 2407045777c863e4e2689f1156b15d1c0aa092d5
-ms.openlocfilehash: a32d0c0059757f36dd319d02ffde61c41711c293
-
+ms.sourcegitcommit: 0e3948b2907ab178d39c898610106df33b4533aa
+ms.openlocfilehash: 07c6d07f544f37a0dfd052627d98e28fb2de1078
 
 ---
-# <a name="security-considerations-for-sql-server-in-azure-virtual-machines"></a>Azure 虛擬機器中的 SQL Server 安全性考量
-本主題包含整體安全性指導方針，可協助制定 Azure VM 中 SQL Server 執行個體的存取安全。 不過，為了確保能更有效保護 Azure 中的 SQL Server 資料庫執行個體，除了 Azure 的安全性最佳作法外，我們也建議您實作傳統的內部部署安全性作法。
-
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如需關於 SQL Server 安全性作法的詳細資訊，請參閱 [SQL Server 2008 R2 安全性最佳作法 - 操作與管理工作](http://download.microsoft.com/download/1/2/A/12ABE102-4427-4335-B989-5DA579A4D29D/SQL_Server_2008_R2_Security_Best_Practice_Whitepaper.docx)
-
-Azure 符合多種業界規範及標準，可讓您使用在虛擬機器中執行的 SQL Server，建置相容的解決方案。 如需 Azure 的法規相符性資訊，請參閱 [Azure 信任中心](https://azure.microsoft.com/support/trust-center/)。
-
-以下是設定及連接到 Azure VM 中的 SQL Server 執行個體時，需考量的安全性建議清單。
-
-## <a name="considerations-for-managing-accounts"></a>管理帳戶的考量：
-* 建立不是名為 **Administrator**的唯一本機系統管理員帳戶。
-* 為您的所有帳戶使用複雜的強式密碼。 如需如何建立強式密碼的詳細資訊，請參閱 [建立強式密碼的秘訣](http://windows.microsoft.com/en-us/windows-vista/Tips-for-creating-a-strong-password) 一文。
-* 根據預設，Azure 會在 SQL Server 虛擬機器安裝期間選取 Windows 驗證。 因此，系統會停用 **SA** 登入，並由安裝程式指派密碼。 我們建議最好不要使用或啟用 **SA** 登入。 以下是需要 SQL 登入時的替代策略：
-  
-  * 建立具有 sysadmin 成員資格的 SQL 帳戶。
-  * 如果您必須使用 **SA** 登入，請啟用此登入，並將它重新命名，然後指派新密碼。
-  * 先前提到的兩個選項，都需要將驗證模式變更為 **SQL Server 和 Windows 驗證模式**。 如需詳細資訊，請參閱 [變更伺服器驗證模式](https://msdn.microsoft.com/library/ms188670.aspx)。
-
-## <a name="considerations-for-securing-connections-to-azure-virtual-machine"></a>保護 Azure 虛擬機器之連接的考量：
-* 請考慮使用 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md) 來管理虛擬機器，而不是公用 RDP 連接埠。
-* 使用 [網路安全性群組](../virtual-network/virtual-networks-nsg.md) (NSG) 來允許或拒絕虛擬機器的網路流量。 如果您想要使用 NSG 且已經擁有就地端點 ACL，請先移除端點 ACL。 如需有關執行這項作業的資訊，請參閱＜ [使用 PowerShell 管理端點的存取控制清單 (ACL)](../virtual-network/virtual-networks-acl-powershell.md)＞。
-* 使用端點時，如果虛擬機器上有任何不使用的端點，請將它們全部移除。 如需有關在端點中使用 ACL 的指示，請參閱 [在端點上管理 ACL](virtual-machines-windows-classic-setup-endpoints.md#manage-the-acl-on-an-endpoint)。
-* 針對 Azure 虛擬機器中的 SQL Server Database Engine 執行個體，啟用加密的連接選項。 使用簽署的憑證設定 SQL Server 執行個體。 如需詳細資訊，請參閱[啟用 Database Engine 的加密連接](https://msdn.microsoft.com/library/ms191192.aspx)和[連接字串語法](https://msdn.microsoft.com/library/ms254500.aspx)。
-* 如果應該只從特定的網路存取您的虛擬機器，請使用 Windows 防火牆來限制存取特定的 IP 位址或網路子網路。
-
-## <a name="next-steps"></a>後續步驟
-如果您也想了解關於效能的最佳作法，請參閱 [Azure 虛擬機器中 SQL Server 的效能最佳作法](virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 
-
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -12,25 +12,46 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/06/2016
+ms.date: 12/05/2016
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a3eb126aa508204becbebb3dd763bdfde5890c8a
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: abc3fa751b3926dbbb9dc040abc40632e316e2a0
 
 
 ---
 # <a name="use-case---customer-profiling"></a>使用案例 - 客戶分析
 Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana Intelligence 套件。  如需 Cortana Intelligence 的詳細資訊，請瀏覽 [Cortana Intelligence 套件](http://www.microsoft.com/cortanaanalytics)。 在本文中，我們會說明簡單的使用案例，以幫助您開始著手了解 Azure Data Factory 如何解決常見的分析問題。
 
-若要存取並嘗試這個簡單的使用案例，您只需要 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)。  您可以藉由遵循 [範例](data-factory-samples.md) 一文所述的步驟，部署實作此使用案例的範例。
-
 ## <a name="scenario"></a>案例
 Contoso 是為多個平台建立遊戲的遊戲公司，包含遊戲主機、手持裝置與個人電腦 (PC)。 當玩家玩這些遊戲時，會產生大量追蹤使用模式、遊戲風格與使用者喜好設定的記錄檔資料。  結合人口統計、區域和產品資料時，Contoso 可以執行分析，引導他們如何增強每位玩家的體驗，並使他們達到升級及在遊戲中購買的目標。 
 
 Contoso 的目標是要根據其玩家的遊戲歷程記錄識別向上銷售/交叉銷售機會，並新增強大功能來推動業務成長以及為客戶提供更好的體驗。 在此使用案例中，我們使用遊戲公司做為企業範例。 該公司想要根據玩家的行為最佳化其遊戲。 這些原則適用於所有想要建立客戶及產品和服務之關聯，並強化其客戶體驗的所有企業。
 
-## <a name="challenges"></a>挑戰
+在此解決方案中，Contoso 想要評估最近推出之行銷活動的效益。 我們從原始遊戲記錄檔開始、處理並添加地理位置資料、結合廣告參考資料，最後，將它們複製到 Azure SQL Database 來分析行銷活動的影響力。
+
+## <a name="deploy-solution"></a>部署解決方案
+若要存取並嘗試這個簡單的使用案例，您只需要有 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)、[Azure Blob 儲存體帳戶](https://docs.microsoft.com/en-us/azure/storage/storage-create-storage-account#create-a-storage-account)和 [Azure SQL Database](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-get-started)。 您從 Data Factory 首頁的 [範例管線] 圖格來部署客戶資料分析管線。
+
+1. 建立 Data Factory 或開啟現有的 Data Factory。 請參閱[使用 Data Factory 將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)，以取得建立 Data Factory 的步驟。
+2. 在 Data Factory 的 [DATA FACTORY] 刀鋒視窗中，按一下 [範例管線] 磚。
+
+    ![範例管線圖格](./media/data-factory-samples/SamplePipelinesTile.png)
+3. 在 [範例管線] 刀鋒視窗中，按一下您想要部署的 [客戶資料分析]。
+
+    ![範例管線刀鋒視窗](./media/data-factory-samples/SampleTile.png)
+4. 指定範例的組態設定。 例如，您的 Azure 儲存體帳戶名稱和金鑰、Azure SQL 伺服器名稱、資料庫、使用者 ID 和密碼。
+
+    ![範例刀鋒視窗](./media/data-factory-samples/SampleBlade.png)
+5. 完成指定組態設定之後，請按一下 [建立]  ，以建立/部署範例管線，以及管線所使用的連結服務/資料表。
+6. 您會在之前於 [範例管線]  刀鋒視窗上按下的範例磚上，看到部署的狀態。
+
+    ![部署狀態](./media/data-factory-samples/DeploymentStatus.png)
+7. 當您在範例磚上看到 [部署成功] 訊息時，請關閉 [範例管線] 刀鋒視窗。  
+8. 在 [DATA FACTORY]  刀鋒視窗上，您會看到連結的服務、資料集及管線已新增到您的 Data Factory。  
+
+    ![Data Factory 刀鋒視窗](./media/data-factory-samples/DataFactoryBladeAfter.png)
+
 ## <a name="solution-overview"></a>解決方案概觀
 這個簡單的使用案例可以當做您如何使用 Azure Data Factory 擷取、準備、轉換、分析和發佈資料的範例。
 
@@ -50,6 +71,6 @@ Contoso 的目標是要根據其玩家的遊戲歷程記錄識別向上銷售/�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

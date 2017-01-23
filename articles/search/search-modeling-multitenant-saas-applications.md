@@ -14,8 +14,8 @@ ms.tgt_pltfrm: na
 ms.date: 10/26/2016
 ms.author: ashmaka
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0063c689d4259d15c6aa2c8ca037a512644419fd
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: fd1b0c7cc8210d27fdc500bf4e5641bedfe93cff
 
 
 ---
@@ -125,6 +125,11 @@ S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務�
 
 此方法可用來實現個別使用者帳戶的功能、分隔權限等級，甚至是完全分隔應用程式。
 
+> [!NOTE]
+> 使用上述方法來設定單一索引，為多個租用戶提供服務，進而影響搜尋結果的相關性。 搜尋相關性分數是在索引層級範圍計算，而不是在租用戶層級範圍計算，因此所有租用戶的資料都會併入相關性分數的基礎統計資料 (例如詞彙頻率)。
+> 
+> 
+
 ## <a name="next-steps"></a>後續步驟
 「Azure 搜尋服務」對許多應用程式而言是相當具吸引力的選擇，請 [深入了解此服務的強大功能](http://aka.ms/whatisazsearch)。 評估多租用戶應用程式的各種設計模式時，請考量[各種定價層](https://azure.microsoft.com/pricing/details/search/)和個別的[服務限制](search-limits-quotas-capacity.md)，以便量身打造「Azure 搜尋服務」來配合各種規模的應用程式工作負載和架構。
 
@@ -133,6 +138,6 @@ S3 HD 會以使用資料分割相應放大索引的能力換取在單一服務�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

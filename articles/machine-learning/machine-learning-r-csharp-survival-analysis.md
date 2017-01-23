@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/21/2016
 ms.author: zhangya
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8a9ec607cf4e8ae6ee5c69f4ed4db5f1a0854400
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e689f1e6fad3e65c3d25631adc93f1e0106706f2
 
 
 ---
@@ -91,7 +91,7 @@ ms.openlocfilehash: 8a9ec607cf4e8ae6ee5c69f4ed4db5f1a0854400
 > 
 > 
 
-Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R 指令碼][execute-r-script]模組提取到工作區。 資料結構描述是以簡單[執行 R 指令碼][execute-r-script]建立的，其定義 Web 服務的輸入資料結構描述。 這個模組會接著連結至執行主要工作的第二個[執行 R 指令碼][execute-r-script]模組。 此模組會進行資料前處理、模型建立和預測。 在資料前處理步驟中，長字串所表示的輸入資料會轉換成資料框架。 在模型建立步驟中，首次安裝外部 R 套件 "survival_2.37-7.zip" 以進行存活分析。 然後會在序列資料處理工作之後執行 "coxph" 函數。 在 R 文件中可以讀取存活分析的 "coxph" 函數詳細資料。 在預測步驟中，會利用 "surfit" 函數在定型模型中提供測試執行個體，而且此測試執行個體的存活曲線會產生成為 “curve” 變數。 最後會取得感興趣時間的機率。 
+Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R 指令碼][execute-r-script]模組提取到工作區。 已使用簡單的[執行 R 指令碼][execute-r-script]建立資料結構描述，其中定義 Web 服務的輸入資料結構描述。 這個模組會接著連結至執行主要工作的第二個[執行 R 指令碼][execute-r-script]模組。 此模組會進行資料前處理、模型建立和預測。 在資料前處理步驟中，長字串所表示的輸入資料會轉換成資料框架。 在模型建立步驟中，首次安裝外部 R 套件 "survival_2.37-7.zip" 以進行存活分析。 然後會在序列資料處理工作之後執行 "coxph" 函數。 在 R 文件中可以讀取存活分析的 "coxph" 函數詳細資料。 在預測步驟中，會利用 "surfit" 函數在定型模型中提供測試執行個體，而且此測試執行個體的存活曲線會產生成為 “curve” 變數。 最後會取得感興趣時間的機率。 
 
 ### <a name="experiment-flow"></a>實驗流程：
 ![實驗流程][1]
@@ -209,6 +209,6 @@ Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

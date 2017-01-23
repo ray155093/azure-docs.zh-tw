@@ -46,7 +46,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 按一下影像可以完整大小檢視。  
 
-<a href="https://docs.microsoft.com/en-us/azure/media-services/media/media-services-overview/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-overview/media-services-overview-object-model-small.png"></a>  
+<a href="./media/media-services-overview/media-services-overview-object-model.png" target="_blank"><img src="./media/media-services-overview/media-services-overview-object-model-small.png"></a> 
 
 您可以[在此](https://media.windows.net/API/$metadata?api-version=2.15)檢視整個模型。  
 
@@ -79,8 +79,8 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 ![VoD 工作流程](./media/media-services-video-on-demand-workflow/media-services-video-on-demand.png)
 
 >[!NOTE]
->建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
-    
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。
+
 ### <a name="protect-content-in-storage-and-deliver-streaming-media-in-the-clear-non-encrypted"></a>保護儲存體中的內容並提供不加密的串流媒體
 1. 將高品質夾層檔上傳到資產。
 
@@ -184,7 +184,8 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 您可以指定要佈建給帳戶的**串流保留單元**和**編碼保留單元**，藉以調整**媒體服務**。
 
 您也可以透過新增儲存體帳戶，來調整媒體服務帳戶。 每個儲存體帳戶的限制為 500 TB。 若想將儲存空間擴大為超過預設限制，您可以選擇將多個儲存體帳戶附加至單一媒體服務帳戶。
-媒體服務客戶可根據其需求，選擇一個**標準**串流端點，或選擇一或多個**進階**串流端點。 大多數的串流工作負載都適合使用標準串流端點。 其所含的功能與進階串流單位相同。 大多數的串流工作負載都適合使用標準串流端點。 如果您的進階工作負載或串流容量需求不符合標準串流端點輸送量目標，或您想要控制 StreamingEndpoint 服務的容量，藉由調整縮放單位 (也稱為進階串流單位) 來處理不斷成長的頻寬需求，則建議配置縮放單位。
+媒體服務客戶可根據其需求，選擇一個**標準**串流端點，或選擇一或多個**進階**串流端點。 大多數的串流工作負載都適合使用標準串流端點。 其所含的功能與進階串流單位相同。
+大多數的串流工作負載都適合使用標準串流端點。 如果您的進階工作負載或串流容量需求不符合標準串流端點輸送量目標，或您想要控制 StreamingEndpoint 服務的容量，藉由調整縮放單位 (也稱為進階串流單位) 來處理不斷成長的頻寬需求，則建議配置縮放單位。
 
 [本主題](media-services-portal-scale-streaming-endpoints.md) 會連結相關主題。
 

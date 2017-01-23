@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 09/27/2016
+ms.date: 1/10/2017
 ms.author: jimpark;trinadhk;markgal
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -45,7 +45,7 @@ ms.openlocfilehash: 3bd18e805dafbfae315cab0e1d5c9421c8210b95
 
 此原則中指定的「保留點」總數是 90 (每日保留點) + 40 (每季一點，連續 10 年) = 130。
 
-## <a name="example-putting-both-together"></a>範例 – 將兩者綜合比較
+## <a name="example--putting-both-together"></a>範例 – 將兩者綜合比較
 ![範例畫面](./media/backup-azure-backup-cloud-as-tape/samplescreen.png)
 
 1. **每日的保留原則**：每日所進行的備份會儲存 7 天。
@@ -64,8 +64,8 @@ ms.openlocfilehash: 3bd18e805dafbfae315cab0e1d5c9421c8210b95
 
 > [!NOTE]
 > Azure 備份對於復原點數目沒有限制。
-> 
-> 
+>
+>
 
 ## <a name="advanced-configuration"></a>進階組態
 按一下上方畫面中的 [修改]  ，客戶在指定保留排程時擁有更進一步的彈性。
@@ -77,7 +77,6 @@ ms.openlocfilehash: 3bd18e805dafbfae315cab0e1d5c9421c8210b95
 
 * [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 * [試用 Azure 備份](backup-try-azure-backup-in-10-mins.md)
-
 
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用共用存取簽章限制 HDInsight 對資料的存取
-description: 深入了解使用共用存取簽章限制 HDInsight 對儲存在 Azure 儲存體 blob 中的資料的存取。
+title: "使用共用存取簽章限制 HDInsight 對資料的存取"
+description: "深入了解使用共用存取簽章限制 HDInsight 對儲存在 Azure 儲存體 blob 中的資料的存取。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 7bcad2dd-edea-467c-9130-44cffc005ff3
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
+ms.openlocfilehash: c16d2a32fcd62b4766b359a955a265a91c0d147c
+
 
 ---
 # <a name="use-azure-storage-shared-access-signatures-to-restrict-access-to-data-with-hdinsight"></a>使用 Azure 儲存體共用存取簽章來限制使用 HDInsight 對資料的存取
@@ -27,7 +31,7 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
   
   * Visual Studio 的版本必須是 2013 或 2015。
   * Python 的版本必須是 2.7 或更新版本
-* 以 Linux 為基礎的 HDInsight 叢集或者 [Azure PowerShell][powershell] - 如果您有現有的以 Linux 為基礎的叢集，您可以使用 Ambari 將共用存取簽章新增至叢集。 如果沒有，您可以使用 Azure PowerShell 建立新的叢集，並在叢集建立期間新增共用存取簽章。
+* 以 Linux 為基礎的 HDInsight 叢集「或」[Azure PowerShell][powershell] - 如果您有以 Linux 為基礎的現有叢集，則可以使用 Ambari 將共用存取簽章新增至叢集。 如果沒有，您可以使用 Azure PowerShell 建立新的叢集，並在叢集建立期間新增共用存取簽章。
 * 範例檔案來自 [https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature](https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature)。 此儲存機制具有下列項目：
   
   * Visual Studio 專案，可以建立儲存體容器、預存原則，以及搭配 HDInsight 使用的 SAS
@@ -59,7 +63,7 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
 ## <a name="create-a-stored-policy-and-generate-a-sas"></a>建立預存原則並產生 SAS
 目前您必須以程式設計方式建立預存原則。 您可以在下列位置找到建立預存原則和 SAS 的 C# 與 Python 範例： [https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature](https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature)。
 
-### <a name="create-a-stored-policy-and-sas-using-c\#"></a>使用 C\# 建立預存原則和 SAS
+### <a name="create-a-stored-policy-and-sas-using-c"></a>使用 C\ 建立預存原則和 SAS
 1. 在 Visual Studio 中開啟解決方案。
 2. 在 [方案總管] 中，於 **SASToken** 專案上按一下滑鼠右鍵，然後選取 [屬性]。
 3. 選取 [設定]  ，並新增下列項目的值：
@@ -93,7 +97,7 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
 
 若要使用共用存取簽章來限制對容器的存取，您必須將自訂項目新增至叢集的 [核心網站]  組態。
 
-* 對於__以 Windows 為基礎__或__以 Linux 為基礎__的 HDInsight 叢集，您可以使用 PowerShell 在建立叢集期間執行這項操作。
+* 對於**以 Windows 為基礎**或**以 Linux 為基礎**的 HDInsight 叢集，您可以使用 PowerShell 在建立叢集期間執行這項操作。
 * 對於 **以 Linux 為基礎** 的 HDInsight 叢集，在建立叢集之後使用 Ambari 變更組態。
 
 ### <a name="create-a-new-cluster-that-uses-the-sas"></a>建立使用 SAS 的新叢集
@@ -123,7 +127,7 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
     例如，將 `'mycluster'` 變更為您想要建立的叢集的名稱。 建立儲存體帳戶和 SAS 權杖時，SAS 值應該符合先前步驟中的值。
    
     一旦您變更值，請儲存檔案。
-2. 開啟新的 Azure PowerShell 提示字元。 如果您不熟悉 Azure PowerShell 或尚未安裝，請參閱[安裝和設定 Azure PowerShell][powershell]。
+2. 開啟新的 Azure PowerShell 提示字元。 如果您不熟悉或尚未安裝 Azure PowerShell，請參閱[安裝和設定 Azure PowerShell][powershell]。
 3. 從提示字元使用下列命令來驗證您的 Azure 訂用帳戶：
    
         Login-AzureRmAccount
@@ -245,10 +249,10 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-[powershell]: ../powershell-install-configure.md
+[powershell]: /powershell/azureps-cmdlets-docs
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/21/2016
+ms.date: 12/1/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: fd73672f97b4c16e49b2fad5e53042764f5793ca
-ms.openlocfilehash: b1369c742c0ee1eac7638ca20598060c8542c75f
+ms.sourcegitcommit: 638e3e59f91202d55347c830542801ccead1b90f
+ms.openlocfilehash: a74a160eae88a2d03460a1346479c333d8f9d524
 
 ---
 # <a name="use-the-storsimple-device-manager-service-to-administer-your-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務管理 StorSimple Virtual Array
@@ -41,11 +41,11 @@ StorSimple Manager 裝置管理員服務在 Microsoft Azure 中執行，並連�
 
 #### <a name="to-connect-to-the-service"></a>連接至此服務
 1. 移至 [https://ms.portal.azure.com](https://ms.portal.azure.com)。
-2. 使用您的 Microsoft 帳戶認證，登入 Microsoft Azure 傳統入口網站 (位於窗格右上角)。
-3. 向下捲動左方瀏覽窗格以存取 StorSimple 裝置管理員服務。
+2. 使用您的 Microsoft 帳戶認證，登入 Microsoft Azure 入口網站 (位於窗格右上角)。
+3. 在 StorSimple 裝置管理員上瀏覽至 [瀏覽] --> [篩選]，以檢視指定訂用帳戶中所有的裝置管理員。
 
 ## <a name="use-the-storsimple-device-manager-service-to-perform-management-tasks"></a>使用 StorSimple 裝置管理員服務來執行管理工作
-下表顯示所有一般管理工作和複雜工作流程 (可在 StorSimple 裝置管理員服務 UI 內執行) 的摘要。 這些工作會根據在其中啟動它們的 UI 頁面加以組織。
+下表顯示所有一般管理工作和複雜工作流程 (可在 StorSimple 裝置管理員服務摘要刀鋒視窗內執行) 的摘要。 這些工作會根據在其中啟動它們的刀鋒視窗加以組織。
 
 如需每個工作流程的詳細資訊，請按一下資料表中的適當程序。
 
@@ -53,11 +53,11 @@ StorSimple Manager 裝置管理員服務在 Microsoft Azure 中執行，並連�
 | 如果您想要執行此動作... | 使用此程序 |
 | --- | --- | --- |
 | 建立服務</br>刪除服務</br>取得服務註冊金鑰。</br>重新產生服務註冊金鑰 |[部署 StorSimple 裝置管理員服務](storsimple-virtual-array-manage-service.md) |
-| 變更服務資料加密金鑰</br>檢視活動記錄檔 |[使用 StorSimple 服務摘要](storsimple-virtual-array-service-summary.md) |
+| 檢視活動記錄檔 |[使用 StorSimple 服務摘要](storsimple-virtual-array-service-summary.md) |
 | 停用 Virtual Array</br>刪除 Virtual Array |[停用或刪除虛擬陣列](storsimple-virtual-array-deactivate-and-delete-device.md) |
-| 災害復原和裝置容錯移轉</br>容錯移轉必要條件</br>容錯移轉至虛擬裝置</br>業務持續性災害復原 (BCDR)</br>災害復原時發生錯誤 |[StorSimple Virtual Array 的災害復原和裝置容錯移轉](storsimple-virtual-array-failover-dr.md) |
+| 災害復原和裝置容錯移轉</br>容錯移轉必要條件</br>業務持續性災害復原 (BCDR)</br>災害復原時發生錯誤 |[StorSimple Virtual Array 的災害復原和裝置容錯移轉](storsimple-virtual-array-failover-dr.md) |
 | 備份共用和磁碟區</br>進行手動備份</br>變更備份排程</br>檢視現有的備份 |[備份 StorSimple Virtual Array](storsimple-virtual-array-backup.md) |
-| 從備份組還原共用</br>從備份組還原磁碟區</br>項目層級復原 (僅限檔案伺服器) |[從 StorSimple Virtual Array 備份中還原](storsimple-virtual-array-clone.md) |
+| 從備份組複製共用</br>從備份組複製磁碟區</br>項目層級復原 (僅限檔案伺服器) |[從 StorSimple Virtual Array 的備份複製](storsimple-virtual-array-clone.md) |
 | 有關儲存體帳戶</br>新增儲存體帳戶</br>編輯儲存體帳戶</br>刪除儲存體帳戶 |[管理 StorSimple Virtual Array 的儲存體帳戶](storsimple-virtual-array-manage-storage-accounts.md) |
 | 關於存取控制記錄</br>加入或修改存取控制記錄 </br>刪除存取控制記錄 |[管理 StorSimple Virtual Array 的存取控制記錄](storsimple-virtual-array-manage-acrs.md) |
 | 檢視工作詳細資料 |[管理 StorSimple Virtual Array 作業](storsimple-virtual-array-manage-jobs.md) |
@@ -80,6 +80,6 @@ StorSimple Manager 裝置管理員服務在 Microsoft Azure 中執行，並連�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

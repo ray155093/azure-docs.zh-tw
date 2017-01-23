@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 39ebfe20f957b6e211eb5caebe4e064432876d20
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 72f69e334172ad69bedb9c8fc4d270a607d1598f
 
 
 ---
@@ -116,7 +116,7 @@ EngagementReach 物件提供兩種方法來管理加入/退出、`EnableNativePu
 
 您也可以選擇透過 Engagement 組態 \<windows-phone-sdk-reach-configuration\> 來停用 MPNS。
 
-> 2.9.1) 應用程式必須先描述所提供之通知的內容，並取得使用者明確的許可 (選擇加入)，且必須提供使用者可以選擇退出接收推播通知的機制。 使用 Microsoft 推播通知服務提供的所有通知必須與提供給使用者的描述一致，且必須遵守所有適用的[應用程式原則]、[內容原則]和[適用於特定類型之應用程式的額外要求]。
+> 2.9.1) 應用程式必須先描述所提供之通知的內容，並取得使用者明確的許可 (選擇加入)，且必須提供使用者可以選擇退出接收推播通知的機制。 使用 Microsoft 推播通知服務提供的所有通知必須與提供給使用者的描述一致，且必須遵守所有適用的[應用程式原則][Content Policies]和[適用於特定應用程式類型的額外需求]。
 > 
 > 
 
@@ -280,12 +280,12 @@ EngagementReach 物件提供兩種方法來管理加入/退出、`EnableNativePu
 > 
 
 [應用程式原則]:http://msdn.microsoft.com/library/windows/apps/hh184841(v=vs.105).aspx
-[內容原則]:http://msdn.microsoft.com/library/windows/apps/hh184842(v=vs.105).aspx
-[適用於特定類型之應用程式的額外要求]:http://msdn.microsoft.com/library/windows/apps/hh184838(v=vs.105).aspx
+[Content Policies]:http://msdn.microsoft.com/library/windows/apps/hh184842(v=vs.105).aspx
+[適用於特定應用程式類型的額外需求]:http://msdn.microsoft.com/library/windows/apps/hh184838(v=vs.105).aspx
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

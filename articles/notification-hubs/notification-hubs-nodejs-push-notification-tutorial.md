@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/25/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 40b1c0870bca02fd6d948dfc1f67ba5c76c698aa
+ms.sourcegitcommit: c40545833da86426d3e71955b8eb8627db3c1e4b
+ms.openlocfilehash: facd5c50cb65bc1f656c0b5adf1e81087644934a
 
 
 ---
@@ -45,7 +45,7 @@ ms.openlocfilehash: 40b1c0870bca02fd6d948dfc1f67ba5c76c698aa
 Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以將推播通知傳送至行動裝置。 如需服務基礎結構的詳細資訊，請參閱 [Azure 通知中樞](http://msdn.microsoft.com/library/windowsazure/jj927170.aspx) 頁面。
 
 ## <a name="create-a-nodejs-application"></a>建立 Node.js 應用程式
-本教學課程的第一個步驟是建立新的空白 Node.js 應用程式。 如需建立 Node.js 應用程式的相關指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][nodejswebsite]、[Node.js 雲端服務][Node.js 雲端服務](使用 Windows PowerShell) 或[使用 WebMatrix 的網站]。
+本教學課程的第一個步驟是建立新的空白 Node.js 應用程式。 如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][nodejswebsite]、使用 Windows PowerShell 的 [Node.js 雲端服務][Node.js Cloud Service]，或[使用 WebMatrix 的網站]。
 
 ## <a name="configure-your-application-to-use-notification-hubs"></a>將應用程式設為使用通知中樞
 若要使用 Azur通知中樞，您需要下載並使用 Node.js [azure 封裝](https://www.npmjs.com/package/azure)，這包含一組內建的協助程式庫，能與推播通知 REST 服務通訊。
@@ -80,7 +80,7 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
 ![Azure 入口網站 - 通知中樞](./media/notification-hubs-nodejs-how-to-use-notification-hubs/notification-hubs-portal.png)
 
 > [!NOTE]
-> 您也可以使用 [Azure PowerShell](../powershell-install-configure.md) 所提供的 **Get-AzureSbNamespace** Cmdlet，或搭配 [Azure 命令列介面 (Azure CLI)](../xplat-cli-install.md) 使用 **azure sb namespace show** 命令，來擷取連接字串。
+> 您也可以使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 所提供的 **Get-AzureSbNamespace** Cmdlet，或搭配 [Azure 命令列介面 (Azure CLI)](../xplat-cli-install.md) 使用 **azure sb namespace show** 命令，來擷取連接字串。
 > 
 > 
 
@@ -183,38 +183,38 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
 
 [Azure SDK for Node]: https://github.com/WindowsAzure/azure-sdk-for-node
 [Next Steps]: #nextsteps
-[什麼是服務匯流排主題和訂用帳戶？]: #what-are-service-bus-topics
-[建立服務命名空間]: #create-a-service-namespace
-[取得命名空間的預設管理認證]: #obtain-default-credentials
-[建立 Node.js 應用程式]: #Create_a_Nodejs_Application
-[設定應用程式以使用服務匯流排]: #Configure_Your_Application_to_Use_Service_Bus
-[如何：建立主題]: #How_to_Create_a_Topic
-[如何：建立訂用帳戶]: #How_to_Create_Subscriptions
-[如何：將訊息傳送至主題]: #How_to_Send_Messages_to_a_Topic
-[如何：從訂用帳戶接收訊息]: #How_to_Receive_Messages_from_a_Subscription
-[如何：處理應用程式當機與無法讀取的訊息]: #How_to_Handle_Application_Crashes_and_Unreadable_Messages
-[如何：刪除主題和訂用帳戶]: #How_to_Delete_Topics_and_Subscriptions
+[What are Service Bus Topics and Subscriptions?]: #what-are-service-bus-topics
+[Create a Service Namespace]: #create-a-service-namespace
+[Obtain the Default Management Credentials for the Namespace]: #obtain-default-credentials
+[Create a Node.js Application]: #Create_a_Nodejs_Application
+[Configure Your Application to Use Service Bus]: #Configure_Your_Application_to_Use_Service_Bus
+[How to: Create a Topic]: #How_to_Create_a_Topic
+[How to: Create Subscriptions]: #How_to_Create_Subscriptions
+[How to: Send Messages to a Topic]: #How_to_Send_Messages_to_a_Topic
+[How to: Receive Messages from a Subscription]: #How_to_Receive_Messages_from_a_Subscription
+[How to: Handle Application Crashes and Unreadable Messages]: #How_to_Handle_Application_Crashes_and_Unreadable_Messages
+[How to: Delete Topics and Subscriptions]: #How_to_Delete_Topics_and_Subscriptions
 [1]: #Next_Steps
-[主題概念]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-topics-01.png
-[Azure 傳統入口網站]: http://manage.windowsazure.com
-[映像]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-03.png
+[Topic Concepts]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-topics-01.png
+[Azure Classic Portal]: http://manage.windowsazure.com
+[image]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-03.png
 [2]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-04.png
 [3]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-05.png
 [4]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-06.png
 [5]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-07.png
 [SqlFilter.SqlExpression]: http://msdn.microsoft.com/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
-[Azure 服務匯流排通知中樞]: http://msdn.microsoft.com/library/windowsazure/jj927170.aspx
+[Azure Service Bus Notification Hubs]: http://msdn.microsoft.com/library/windowsazure/jj927170.aspx
 [SqlFilter]: http://msdn.microsoft.com/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.aspx
 [使用 WebMatrix 的網站]: /develop/nodejs/tutorials/web-site-with-webmatrix/
-[Node.js 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
-[先前的管理入口網站]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/previous-portal.png
+[Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
+[Previous Management Portal]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/previous-portal.png
 [nodejswebsite]: /develop/nodejs/tutorials/create-a-website-(mac)/
-[使用儲存體的 Node.js 雲端服務]: /develop/nodejs/tutorials/web-app-with-storage/
-[使用儲存體的 Node.js Web 應用程式]: /develop/nodejs/tutorials/web-site-with-storage/
+[Node.js Cloud Service with Storage]: /develop/nodejs/tutorials/web-app-with-storage/
+[Node.js Web Application with Storage]: /develop/nodejs/tutorials/web-site-with-storage/
 [connectionstring]: https://portal.azure.com
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

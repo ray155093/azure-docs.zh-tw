@@ -15,13 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: jonor
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4d3f5e759f46bd4c4998c5d4bf70d64190ad972e
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 416fb49a9ec2972c3a03fb883888fb9dc679d4d0
 
 
 ---
 # <a name="sample-application-for-use-with-security-boundary-environments"></a>與安全性界限環境搭配使用的範例應用程式
-[返回 [安全性界限最佳作法] 頁面][首頁]
+[返回 [安全性界限最佳作法] 頁面][HOME]
 
 這些 PowerShell 指令碼可以在 IIS01 和 AppVM01 伺服器本機上執行，以安裝和設定一個極簡單的 Web 應用程式，顯示來自前端 IIS01 伺服器的 html 網頁和來自後端 AppVM01 伺服器的內容。
 
@@ -192,10 +192,10 @@ ms.openlocfilehash: 4d3f5e759f46bd4c4998c5d4bf70d64190ad972e
 此範例應用程式中未包含設定 DNS 伺服器的指令碼。 如果測試防火牆規則、NSG 或 UDR 時需要包含 DNS 流量，必須手動安裝 DNS01 伺服器。 這兩個範例的網路組態 XML 檔都包含 DNS01 做為主要 DNS 伺服器，而由層級 3 託管的公用 DNS 伺服器則做為備份 DNS 伺服器。 層級 3 DNS 伺服器會是非本機流量使用的實際 DNS 伺服器，若未安裝 DNS01，就不會有本機 DNS。
 
 <!--Link References-->
-[首頁]: ../best-practices-network-security.md
+[HOME]: ../best-practices-network-security.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

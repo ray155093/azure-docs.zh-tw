@@ -15,13 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: jonor;sivae
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 683adb57d22934f3a4785ded24a0d956c4f1d0dc
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8d100aca58285c435435f9eda26cc7b6e1381e7a
 
 
 ---
-# <a name="example-1-build-a-simple-dmz-with-nsgs"></a>範例 1 – 使用 NSG 建置簡單的 DMZ
-[返回 [安全性界限最佳作法] 頁面][首頁]
+# <a name="example-1--build-a-simple-dmz-with-nsgs"></a>範例 1 – 使用 NSG 建置簡單的 DMZ
+[返回 [安全性界限最佳作法] 頁面][HOME]
 
 此範例會建立簡單 DMZ，其內含四個 Windows 伺服器和網路安全性群組。 此範例也會逐步解說每個相關命令，以讓您更加深入地了解每個步驟。 另外您還會看到＜流量案例＞一節，本節提供深入的逐步說明，讓您知道流量是如何流經 DMZ 內的各個防禦層。 最後則有＜參考＞一節，本節提供完整的程式碼和指示，以供您建置此環境來測試和試驗各種案例。 
 
@@ -233,7 +233,7 @@ ms.openlocfilehash: 683adb57d22934f3a4785ded24a0d956c4f1d0dc
 ## <a name="conclusion"></a>結論
 這種隔離後端子網路與輸入流量的方式相當直接簡單。
 
-您可以在[這裡]找到更多範例和網路安全性界限的概觀。[首頁]
+您可以在[這裡][HOME]找到更多範例和網路安全性界限的概觀。
 
 ## <a name="references"></a>參考
 ### <a name="main-script-and-network-config"></a>主要的指令碼和網路組態
@@ -549,18 +549,18 @@ ms.openlocfilehash: 683adb57d22934f3a4785ded24a0d956c4f1d0dc
     </NetworkConfiguration>
 
 #### <a name="sample-application-scripts"></a>範例應用程式指令碼
-如果您想要為此範例和其他 DMZ 範例安裝範例應用程式，下列連結中有提供一個：[範例應用程式指令碼][範例應用程式]
+如果您想要為此範例和其他 DMZ 範例安裝範例應用程式，下列連結中有提供一個：[範例應用程式指令碼][SampleApp]
 
 <!--Image References-->
 [1]: ./media/virtual-networks-dmz-nsg-asm/example1design.png "具有 NSG 的輸入 DMZ"
 
 <!--Link References-->
-[首頁]: ../best-practices-network-security.md
-[範例應用程式]: ./virtual-networks-sample-app.md
+[HOME]: ../best-practices-network-security.md
+[SampleApp]: ./virtual-networks-sample-app.md
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 
