@@ -1,54 +1,58 @@
 ---
-title: 教學課程：Azure Active Directory 與 NetSuite 整合 | Microsoft Docs
-description: 了解如何使用 NetSuite 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 Netsuite 整合 | Microsoft Docs"
+description: "了解如何使用 Netsuite 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser-msft
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: dafa0864-aef2-4f5e-9eac-770504688ef4
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/16/2016
-ms.author: asmalser-msft
+ms.author: asmalser
+translationtype: Human Translation
+ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
+ms.openlocfilehash: 74ef08108a5ff27a50f928781f906b6d769f1085
+
 
 ---
-# <a name="tutorial:-how-to-integrate-netsuite-with-azure-active-directory"></a>教學課程：如何整合 NetSuite 與 Azure Active Directory
-本教學課程將示範如何將 NetSuite 環境與 Azure Active Directory (Azure AD) 連接。 您將學習如何設定單一登入 NetSuite、如何啟用自動的使用者佈建，以及如何指派使用者存取 NetSuite。 
+# <a name="tutorial-azure-active-directory-integration-with-netsuite"></a>教學課程：Azure Active Directory 與 Netsuite 整合
+本教學課程將示範如何將 Netsuite 環境與 Azure Active Directory (Azure AD) 連接。 您將學習如何設定單一登入 Netsuite、如何啟用自動的使用者佈建，以及如何指派使用者存取 Netsuite。 
 
 ## <a name="prerequisites"></a>必要條件
 1. 若要透過 [Azure 傳統入口網站](https://manage.windowsazure.com)存取 Azure Active Directory，您必須先具備有效的 Azure 訂用帳戶。
-2. 您必須具備系統管理員權限才能存取 [NetSuite](http://www.netsuite.com/portal/home.shtml) 訂用帳戶。 您可以使用免費試用帳戶來使用任何服務。
+2. 您必須具備系統管理員權限才能存取 [Netsuite](http://www.netsuite.com/portal/home.shtml) 訂用帳戶。 您可以使用免費試用帳戶來使用任何服務。
 
-## <a name="step-1:-add-netsuite-to-your-directory"></a>步驟 1：將 NetSuite 加入您的目錄
+## <a name="step-1-add-netsuite-to-your-directory"></a>步驟 1：將 Netsuite 加入您的目錄
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![從左方的導覽窗格中選取 [Active Directory]。][0]
-2. 從 [目錄]  清單中，選取您想要將 NetSuite 加入的目錄。
+2. 從 [目錄] 清單中，選取您想要將 Netsuite 加入的目錄。
 3. 按一下上方功能表中的 [應用程式]  。
    
     ![按一下 [應用程式]。][1]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![按一下 [新增] 以加入新的應用程式。][2]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
     ![按一下 [從資源庫新增應用程式]。][3]
-6. 在**搜尋方塊**中，輸入 **NetSuite**。 從結果選取 [NetSuite]，然後按一下 [完成] 以新增應用程式。
+6. 在**搜尋方塊**中，輸入 **Netsuite**。 從結果選取 [Netsuite]，然後按一下 [完成] 以新增應用程式。
    
-    ![新增 [NetSuite]。][4]
-7. 您現在應該會看到 NetSuite 的 [快速入門] 頁面：
+    ![新增 Netsuite][4]
+7. 您現在應該會看到 Netsuite 的 [快速入門] 頁面：
    
-    ![Azure AD 中 NetSuite 的 [快速入門] 頁面][5]
+    ![Azure AD 中 Netsuite 的 [快速入門] 頁面][5]
 
-## <a name="step-2:-enable-single-sign-on"></a>步驟 2：啟用單一登入
-1. 在 Azure AD 中 NetSuite 的 [快速入門] 頁面上，按一下 [設定單一登入]  按鈕。
+## <a name="step-2-enable-single-sign-on"></a>步驟 2：啟用單一登入
+1. 在 Azure AD 中 Netsuite 的 [快速入門] 頁面上，按一下 [設定單一登入] 按鈕。
    
     ![[設定單一登入] 按鈕][6]
-2. 此時會開啟一個對話方塊，您會看到一個畫面，詢問「您要讓使用者如何登入 NetSuite?」 選取 [Azure AD 單一登入]，然後按 [下一步]。
+2. 此時會開啟一個對話方塊，您會看到一個畫面，詢問「您要讓使用者如何登入 Netsuite?」 選取 [Azure AD 單一登入]，然後按 [下一步]。
    
     ![選取 [Azure AD 單一登入]][7]
    
@@ -56,7 +60,7 @@ ms.author: asmalser-msft
    > 若要深入了解有關不同單一登入的選項，請 [按一下這裡](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work)
    > 
    > 
-3. 在 [設定應用程式設定] 頁面的 [回覆 URL] 欄位中，使用下列其中一種格式輸入您的 NetSuite 租用戶 URL：
+3. 在 [設定應用程式設定] 頁面的 [回覆 URL] 欄位中，使用下列其中一種格式輸入您的 Netsuite 租用戶 URL：
    
    * `https://<tenant-name>.netsuite.com/saml2/acs`
    * `https://<tenant-name>.na1.netsuite.com/saml2/acs`
@@ -81,15 +85,15 @@ ms.author: asmalser-msft
     ![移至 [SAML 單一登入]][12]
 9. 在 [SAML 設定]  頁面上，執行下列步驟：
    
-   * 在 Azure Active Directory 中，複製 [遠端登入 URL] 值，並將它貼到 NetSuite 中的 [身分識別提供者登入頁面] 欄位。
+   * 在 Azure Active Directory 中，複製 [遠端登入 URL] 值，並將它貼到 Netsuite 中的 [身分識別提供者登入頁面] 欄位。
      
        ![[SAML 設定] 頁面。][13]
-   * 在 NetSuite 中，選取 [主要驗證方法] 。
+   * 在 Netsuite 中，選取 [主要驗證方法] 。
    * 對標示為 [SAMLV2 身分識別提供者中繼資料] 的欄位，選取 [上傳 IDP 中繼資料檔案]。 然後按一下 [瀏覽]  上傳您在步驟 #4 下載的中繼資料檔案。
      
        ![上傳中繼資料][16]
    * 按一下 [提交] 。
-10. 在 Azure AD 中，選取單一登入組態確認核取方塊以啟用您上傳到 NetSuite 的憑證。 然後按 [下一步] 。
+10. 在 Azure AD 中，選取單一登入組態確認核取方塊以啟用您上傳到 Netsuite 的憑證。 然後按 [下一步] 。
     
      ![核取確認核取方塊][14]
 11. 在對話方塊的最後一頁，如果您想要收到電子郵件通知與此單一登入組態相關的錯誤和警告，請輸入電子郵件地址。 
@@ -101,19 +105,19 @@ ms.author: asmalser-msft
 13. 按一下 [新增使用者屬性] 。
     
     ![按一下 [新增使用者屬性]。][18]
-14. 在 [屬性名稱] 欄位中，輸入 `account`。 在 [屬性值]  欄位中，輸入您的 NetSuite 帳戶識別碼。 如何找出帳戶識別碼的指示如下：
+14. 在 [屬性名稱] 欄位中，輸入 `account`。 在 [屬性值]  欄位中，輸入您的 Netsuite 帳戶識別碼。 如何找出帳戶識別碼的指示如下：
     
-    ![新增您的 NetSuite 帳戶識別碼。][19]
+    ![新增您的 Netsuite 帳戶識別碼。][19]
     
-    * 在 NetSuite 中，從頂端瀏覽功能表按一下 [設定]  。
+    * 在 Netsuite 中，從頂端瀏覽功能表按一下 [設定]  。
     * 然後按一下左方瀏覽功能表上的 [設定工作] 區段，選取 [整合] 區段，然後按一下 [Web 服務喜好設定]。
-    * 複製您的 NetSuite 帳戶識別碼，並將它貼到 Azure AD 中的 [屬性值]  欄位。
+    * 複製您的 Netsuite 帳戶識別碼，並將它貼到 Azure AD 中的 [屬性值]  欄位。
       
         ![取得您的帳戶識別碼][20]
 15. 在 Azure AD 中，按一下 [完成]  以完成新增 SAML 屬性。 然後按一下底部功能表上的 [套用變更]  。
     
     ![儲存您的變更。][21]
-16. 在使用者可以執行單一登入 NetSuite 之前，必須先在 NetSuite 中指派適當的權限。 請依照下列指示來指派這些權限。
+16. 在使用者可以執行單一登入 Netsuite 之前，必須先在 Netsuite 中指派適當的權限。 請依照下列指示來指派這些權限。
     
     * 在頂端的瀏覽功能表上，按一下 [設定]，然後按一下 [設定管理員]。
       
@@ -144,37 +148,37 @@ ms.author: asmalser-msft
       
         ![移至 [管理使用者]][27]
     * 按一下 [儲存] 。
-17. 若要測試您的組態，請參閱下面標題為 [指派使用者至 NetSuite](#step-4-assign-users-to-netsuite)的小節。
+17. 若要測試您的組態，請參閱下面標題為[指派使用者至 Netsuite](#step-4-assign-users-to-netsuite) 的小節。
 
-## <a name="step-3:-enable-automated-user-provisioning"></a>步驟 3：啟用自動的使用者佈建
+## <a name="step-3-enable-automated-user-provisioning"></a>步驟 3：啟用自動的使用者佈建
 > [!NOTE]
-> 根據預設，您已佈建的使用者會新增到您 NetSuite 環境的根子公司。
+> 根據預設，您已佈建的使用者會新增到您 Netsuite 環境的根子公司。
 > 
 > 
 
-1. 在 Azure Active Directory 中 NetSuite 的 [快速入門] 頁面上，按一下 [設定使用者佈建] 。
+1. 在 Azure Active Directory 中 Netsuite 的 [快速入門] 頁面上，按一下 [設定使用者佈建] 。
    
     ![設定使用者佈建][28]
-2. 在開啟的對話方塊中，輸入 NetSuite 的系統管理員認證，然後按 [下一步] 。
+2. 在開啟的對話方塊中，輸入 Netsuite 的系統管理員認證，然後按 [下一步] 。
    
-    ![輸入您的 NetSuite 系統管理員認證。][29]
+    ![輸入您的 Netsuite 系統管理員認證。][29]
 3. 在確認頁面上，輸入您的電子郵件地址以接收佈建失敗的通知。
    
     ![確認。][30]
-4. 按一下 [完成]  以關閉對話方塊。
+4. 按一下 [完成]  關閉對話方塊。
 
-## <a name="step-4:-assign-users-to-netsuite"></a>步驟 4：指派使用者至 NetSuite
+## <a name="step-4-assign-users-to-netsuite"></a>步驟 4：指派使用者至 Netsuite
 1. 若要測試您的組態，請先在目錄中建立新的測試帳戶。
-2. 在 NetSuite [快速入門] 頁面上，按一下 [指派使用者]  按鈕。
+2. 在 Netsuite [快速入門] 頁面上，按一下 [指派使用者] 按鈕。
    
     ![按一下 [指派使用者]][31]
 3. 選取測試使用者，然後按一下畫面底部的 [指派]  按鈕：
    
    * 如果還沒有啟用自動的使用者佈建，您會看到下列確認提示：
      
-        ![Confirm the assignment.][32]
-   * 如果已啟用自動的使用者佈建，您會看到提示，定義使用者在 NetSuite 中要具備何種角色。 幾分鐘之後，新佈建的使用者應該就會出現在 NetSuite 環境中。
-4. 若要測試您的單一登入設定，請開啟位於 [https://myapps.microsoft.com](https://myapps.microsoft.com/) 的 [存取面板]、登入測試帳戶，然後按一下 [NetSuite]。
+        ![確認指派。][32]
+   * 如果已啟用自動的使用者佈建，您會看到提示，定義使用者在 Netsuite 中要具備何種角色。 幾分鐘之後，新佈建的使用者應該就會出現在 Netsuite 環境中。
+4. 若要測試您的單一登入設定，請開啟位於 [https://myapps.microsoft.com](https://myapps.microsoft.com/) 的 [存取面板]、登入測試帳戶，然後按一下 [Netsuite]。
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
@@ -216,6 +220,6 @@ ms.author: asmalser-msft
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

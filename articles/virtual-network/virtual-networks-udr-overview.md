@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7ae1803a299a5fb569ea0ca8a1ce68c33df1a769
+ms.sourcegitcommit: d0b8e8ec88c39ce18ddfd6405faa7c11ab73f878
+ms.openlocfilehash: 673ce33f0f0836c3df3854b0e6368a6215ee6f5f
 
 
 ---
@@ -29,6 +29,7 @@ ms.openlocfilehash: 7ae1803a299a5fb569ea0ca8a1ce68c33df1a769
 * 從 VNet 中的子網路到另一個子網路。
 * 從 VM 到網際網路。
 * 透過 VPN 閘道從 VNet 到另一個 VNet。
+* 透過 VNet 對等互連 (服務鏈結)，從 VNet 到另一個 VNet。
 * 透過 VPN 閘道從 VNet 到您的內部網路。
 
 下圖顯示 1 個 Vnet、2 個子網路和一些 VM，以及允許 IP 流量流動的系統路由的簡易安裝。
@@ -111,6 +112,6 @@ ms.openlocfilehash: 7ae1803a299a5fb569ea0ca8a1ce68c33df1a769
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 
