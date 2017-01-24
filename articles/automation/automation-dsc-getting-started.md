@@ -4,7 +4,7 @@ description: "Azure 自動化預期狀態設定 (DSC) 中最常見工作的說�
 services: automation
 documentationcenter: na
 author: eslesar
-manager: dongill
+manager: carmonm
 editor: tysonn
 ms.assetid: a3816593-70a3-403b-9a43-d5555fd2cee2
 ms.service: automation
