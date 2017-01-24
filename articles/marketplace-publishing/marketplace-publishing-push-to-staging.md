@@ -15,16 +15,16 @@ ms.workload: na
 ms.date: 08/17/2016
 ms.author: hascipio
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 766ef5da584341fba08607a9b04ac85be8333db6
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 7db86716cdf8f9eb921c3c1813970acae7a3016b
 
 
 ---
 # <a name="complete-the-offer-creation-with-marketing-content"></a>使用行銷內容完成供應項目建立程序
-在發佈程序的這個步驟中，您需要在 Azure Marketplace 中提供特定的行銷內容，以及關於您的優惠和 (或) SKU 的詳細資料。 例如，您將提供產品的描述、公司標誌、價目表、方案的詳細資料，以及其他將您的優惠和 (或) SKU 推送至預備環境的必要資訊。 此資訊會做為 Azure 入口網站中的行銷內容。 您將會在[發佈入口網站][link-pubportal]中開始此程序。
+在發佈程序的這個步驟中，您需要在 Azure Marketplace 中提供特定的行銷內容，以及關於您的優惠和 (或) SKU 的詳細資料。 例如，您將提供產品的描述、公司標誌、價目表、方案的詳細資料，以及其他將您的優惠和 (或) SKU 推送至預備環境的必要資訊。 此資訊會做為 Azure 入口網站中的行銷內容。 您將在[發佈入口網站][link-pubportal]中開始進行此程序。
 
 ## <a name="step-1-provide-marketplace-marketing-content"></a>步驟 1：提供 Marketplace 行銷內容
-**英文是預設值，並且是唯一支援的語言。**  請確定欄位中提供的所有資訊都是英文。 在您進入預備環境之前，所有資訊皆可隨時編輯。
+**英文是預設值，並且是唯一支援的語言。** 請確定欄位中提供的所有資訊都是英文。 在您進入預備環境之前，所有資訊皆可隨時編輯。
 
 1. 移至發佈入口網站 [https://publish.windowsazure.com](https://publish.windowsazure.com)。
 2. 在左側功能表上，按一下 [行銷]  索引標籤。
@@ -145,7 +145,7 @@ ms.openlocfilehash: 766ef5da584341fba08607a9b04ac85be8333db6
 ### <a name="21-set-your-vm-prices"></a>2.1. 設定 VM 價格
 目前對於虛擬機器，我們提供下列 **3 種計費模式**
 
-* **每小時︰** 依據發行者針對 VM 大小設定的費率，以每小時為基礎向客戶收費。 如果是 SKU 的 **每小時計費** 模式，總價格會是發行者收取的軟體成本和 Microsoft 收取的基礎結構成本的總和。 當客戶考慮購買時，總成本將顯示為每小時和每月價格以供客戶參考 (請參閱以下螢幕擷取畫面)。 **發行者會收取 80% 的應收軟體成本。**  因此，在您設定 SKU 的價格之前，請先以此作計算。
+* **每小時︰** 依據發行者針對 VM 大小設定的費率，以每小時為基礎向客戶收費。 如果是 SKU 的 **每小時計費** 模式，總價格會是發行者收取的軟體成本和 Microsoft 收取的基礎結構成本的總和。 當客戶考慮購買時，總成本將顯示為每小時和每月價格以供客戶參考 (請參閱以下螢幕擷取畫面)。 **發行者會收取 80% 的應收軟體成本。** 因此，在您設定 SKU 的價格之前，請先以此作計算。
   
     ![繪圖](media/marketplace-publishing-push-to-staging/img2.1-01.png)
 * **免費試用版︰** 這是「每小時」模式的另一項好處。 此模式的客戶在 VM 部署後的前 30 天不需負擔任何軟體成本 (免費)。 在 30 天過後，他們就必須依據發行者在每小時模型中設定的費率，以每小時為基礎付費。
@@ -290,6 +290,6 @@ ms.openlocfilehash: 766ef5da584341fba08607a9b04ac85be8333db6
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: 在電腦上安裝 Jupyter Notebook 並連接到 Azure HDInsight Spark 叢集 | Microsoft Docs
-description: 了解如何在電腦本機安裝 Jupyter Notebook 並連接到 Azure HDInsight 上的 Apache Spark 叢集
+title: "在電腦上安裝 Jupyter Notebook 並連接到 Azure HDInsight Spark 叢集 | Microsoft Docs"
+description: "了解如何在電腦本機安裝 Jupyter Notebook 並連接到 Azure HDInsight 上的 Apache Spark 叢集"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: nitinme
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 48593bdf-4122-4f2e-a8ec-fdc009e47c16
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: nitinme
+translationtype: Human Translation
+ms.sourcegitcommit: 57df4ab0b2a1df6631eb6e67a90f69cebb1dfe75
+ms.openlocfilehash: e6aeacd091e58a010348c031294f7b7c98df57fb
+
 
 ---
 # <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-cluster-on-hdinsight-linux"></a>在電腦上安裝 Jupyter Notebook 並連接到 HDInsight Linux 上的 Apache Spark 叢集
@@ -39,30 +43,35 @@ ms.author: nitinme
 
 1. 下載您平台適用的 [Anaconda 安裝程式](https://www.continuum.io/downloads) ，然後執行安裝程式。 執行安裝精靈時，請確定您選取將 Anaconda 新增至 PATH 變數的選項。
 2. 執行下列命令來安裝 Jupyter。
-   
+
         conda install jupyter
-   
+
     如需有關安裝 Jupyter 的詳細資訊，請參閱 [使用 Anaconda 來安裝 Jupyter](http://jupyter.readthedocs.io/en/latest/install.html)。
 
 ## <a name="install-the-kernels-and-spark-magic"></a>安裝核心和 Spark magic
 如需有關如何安裝 Spark magic、PySpark 和 Spark 核心的指示，請參閱 GitHub 上的 [sparkmagic 文件](https://github.com/jupyter-incubator/sparkmagic#installation) 。
 
+若為叢集 3.4 版，請執行 `pip install sparkmagic==0.2.3` 來安裝 sparkmagic 0.5.0。
+
+若為叢集 3.5 版，請執行 `pip install sparkmagic==0.8.4` 來安裝 sparkmagic 0.8.4。
+
 ## <a name="configure-spark-magic-to-access-the-hdinsight-spark-cluster"></a>設定 Spark magic 以存取 HDInsight Spark 叢集
 在本節中，您會設定稍早安裝的 Spark magic，以連線到您必須已在 Azure HDInsight 中建立的 Apache Spark 叢集。
 
 1. Jupyter 組態資訊通常儲存在使用者主目錄中。 若要在任何作業系統平台上找出您的主目錄，輸入下列命令。
-   
+
     啟動 Python 殼層。 在命令視窗中，輸入下列命令：
-   
+
         python
-   
+
     在 Python 殼層中，輸入下列命令來找出主目錄。
-   
+
         import os
         print(os.path.expanduser('~'))
+
 2. 瀏覽至主目錄，然後建立一個叫做 **.sparkmagic** 的資料夾 (如果尚未存在)。
 3. 在該資料夾中，建立一個叫做 **config.json** 的檔案，然後在檔案中新增下列 JSON 程式碼片段。
-   
+
         {
           "kernel_python_credentials" : {
             "username": "{USERNAME}",
@@ -75,16 +84,36 @@ ms.author: nitinme
             "url": "https://{CLUSTERDNSNAME}.azurehdinsight.net/livy"
           }
         }
+
 4. 以適當的值替代 **{USERNAME}**、**{CLUSTERDNSNAME}** 和 **{BASE64ENCODEDPASSWORD}**。 您可以在您慣用的程式設計語言中或線上，使用一些公用程式來產生 base64 編碼的密碼，以做為您的實際密碼。 以下是一個從命令提示字元執行的簡單 Python 程式碼片段︰
-   
+
         python -c "import base64; print(base64.b64encode('{YOURPASSWORD}'))"
-5. 啟動 Jupyter。 從命令提示字元使用下列命令。
-   
+
+5. 在 `config.json` 中設定正確的活動訊號設定：
+
+    * 若為 `sparkmagic 0.5.0` (叢集 3.4 版)，請加入︰
+
+            "should_heartbeat": true,
+            "heartbeat_refresh_seconds": 5,
+            "heartbeat_retry_seconds": 1
+
+    * 若為 `sparkmagic 0.8.4` (叢集 3.5 版)，請加入︰
+
+            "heartbeat_refresh_seconds": 5,
+            "livy_server_heartbeat_timeout_seconds": 60,
+            "heartbeat_retry_seconds": 1
+
+    >[!TIP]
+    >傳送活動訊號可確保不會流失工作階段。 請注意，當電腦進入睡眠狀態或關機時，將不會傳送活動訊號，所以會清除工作階段。 若為叢集 3.4 版，如果想要停用此行為，您可以從 Ambari UI 將 Livy 組態 `livy.server.interactive.heartbeat.timeout` 設定為 `0`。 若為叢集 3.5 版，如果您未設定上述的 3.5 組態，則不會刪除工作階段。
+
+6. 啟動 Jupyter。 從命令提示字元使用下列命令。
+
         jupyter notebook
-6. 確認您可以使用 Jupyter Notebook 來連接到叢集，並且可以使用核心隨附的 Spark magic。 請執行下列步驟：
-   
+
+7. 確認您可以使用 Jupyter Notebook 來連接到叢集，並且可以使用核心隨附的 Spark magic。 請執行下列步驟：
+
    1. 建立新的 Notebook。 從右下角，按一下 [新增]。 您應該會看到預設核心 **Python2**，以及您安裝的兩個新核心 **PySpark** 和 **Spark**。
-      
+
        ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "Create a new Jupyter notebook")
 
         按一下 [PySpark] 。
@@ -97,9 +126,10 @@ ms.author: nitinme
 
         如果您可以順利擷取輸出，即表示已測試您對 HDInsight 叢集的連線。
 
-    >[AZURE.TIP] 如果您想要更新 Notebook 組態以連接到不同的叢集，請將 config.json 更新成一組新的值，如上述的步驟 3 所示。 
+    >[!TIP]
+    >如果您想要更新 Notebook 組態以連接到不同的叢集，請將 config.json 更新成一組新的值，如上述的步驟 3 所示。
 
-## <a name="why-should-i-install-jupyter-on-my-computer?"></a>為什麼我應該在我的電腦上安裝 Jupyter？
+## <a name="why-should-i-install-jupyter-on-my-computer"></a>為什麼我應該在我的電腦上安裝 Jupyter？
 您想要在您的電腦上安裝 Jupyter，然後將其連接至 HDInsight 上的 Spark 叢集有數種原因。
 
 * 雖然 Azure HDInsight 的 Spark 叢集上已經有 Jupyter Notebook 可用，但在電腦上安裝 Jupyter 可讓您選擇在本機建立 Notebook、針對正在執行的叢集測試您的應用程式，然後將 Notebook 上傳到叢集。 若要將 Notebook 上傳到叢集，您可以使用在叢集上執行的 Jupyter Notebook 來上傳它們，或將它們儲存到與叢集關聯之儲存體帳戶的 [/HdiNotebooks] 資料夾中。 如需有關 Notebook 在叢集上的儲存方式詳細資訊，請參閱 [Jupyter Notebook 會儲存在哪裡](hdinsight-apache-spark-jupyter-notebook-kernels.md#where-are-the-notebooks-stored)？
@@ -110,10 +140,10 @@ ms.author: nitinme
 
 > [!WARNING]
 > 將 Jupyter 安裝在本機電腦上，多個使用者可以同時在相同的 Spark 叢集上執行相同的 Notebook。 在這種情況下，會建立多個 Livy 工作階段。 如果您遇到問題，而且想要偵錯，則追蹤哪個 Livy 工作階段屬於哪個使用者會是複雜的工作。
-> 
-> 
+>
+>
 
-## <a name="<a-name="seealso"></a>see-also"></a><a name="seealso"></a>另請參閱
+## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>案例
@@ -138,6 +168,8 @@ ms.author: nitinme
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO1-->
 
 

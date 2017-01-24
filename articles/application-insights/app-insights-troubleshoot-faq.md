@@ -1,11 +1,11 @@
 ---
-title: Application Insights 的疑難排解與問題
-description: Visual Studio 的 Application Insights 哪個部分不清楚或無法運作嗎？ 試試這裡。
+title: "Azure Application Insights 的疑難排解和問題 | Microsoft Docs"
+description: "Azure Application Insights 發生不明確或無法運作的情況嗎？ 試試這裡。"
 services: application-insights
 documentationcenter: .net
 author: alancameronwills
 manager: douge
-
+ms.assetid: 0e3b103c-6e2a-4634-9e8c-8b85cf5e9c84
 ms.service: application-insights
 ms.workload: mobile
 ms.tgt_pltfrm: ibiza
@@ -13,11 +13,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2016
 ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: 75b651bd3e77ac19e22dcc3442870469fe2aaca1
+ms.openlocfilehash: 22d6222b8fd27eeeb562af1ba50164031c885f25
+
 
 ---
-# 問題 - ASP.NET 的 Application Insights
-## 組態問題
-*我有設定下列項目的問題：*
+# <a name="questions---application-insights-for-aspnet"></a>問題 - ASP.NET 的 Application Insights
+## <a name="configuration-problems"></a>組態問題
+*我在設定下列項目時有問題：*
 
 * [.NET 應用程式](app-insights-asp-net-troubleshoot-no-data.md)
 * [監視已在執行的應用程式](app-insights-monitor-performance-live-website-now.md#troubleshooting)
@@ -25,32 +29,28 @@ ms.author: awills
 * [Java Web 應用程式](app-insights-java-troubleshoot.md)
 * [其他平台](app-insights-platforms.md)
 
-我未取得任何來自我的伺服器的資料
+我的伺服器沒有傳回資料
 
 * [設定防火牆例外狀況](app-insights-ip-addresses.md)
 * [設定 ASP.NET 伺服器](app-insights-monitor-performance-live-website-now.md)
 * [設定 Java 伺服器](app-insights-java-agent.md)
 
-## 我是否可以使用 Application Insights 搭配...？
+## <a name="can-i-use-application-insights-with-"></a>我是否可以搭配 ... 來使用 Application Insights 嗎？
 [請參閱「平台」][platforms]
 
-## 它是免費的嗎？
-* 是的，如果您選擇免費[定價層](app-insights-pricing.md)。您會獲得大部分的功能和大量資料配額。
-* 您必須提供信用卡資料以向 Microsoft Azure 註冊，但我們不會收取任何費用，除非您使用其他付費 Azure 服務，或明確地升級至付費層。
-* 如果您的應用程式傳送的資料超過免費層的每月配額，它會停止記錄。如果發生這種情況，您可以選擇開始付費，或等到月底重設配額。
-* 基本的使用情況和工作階段資料不受配額限制。
-* 另外也有 30 天的免費試用，在這 30 天內您可以免費得到付費的功能。
-* 每個應用程式資源都有個別的配額，其定價層的設定與其他任何資源無關。
+## <a name="is-it-free"></a>它是免費的嗎？
 
-#### 付費能得到什麼？
-* 較大的[每月資料配額](https://azure.microsoft.com/pricing/details/application-insights/)。
-* 能夠選擇針對超額部分付費，以繼續收集超過每月配額的資料。如果您的資料超過配額，我們將會以每 Mb 來收費。
-* [連續匯出](app-insights-export-telemetry.md)
+是，可作為實驗用途。 在預設定價方案中，您的應用程式每個月可以免費傳送一定額度的資料。 免費額度足夠因應開發用途和為少量使用者發佈應用程式。 您可以設定上限以防止處理超過指定的資料量。
 
-## <a name="q14"></a>Application Insights 在我的專案中修改什麼？
-詳細資料視專案類型而定。若是 Web 應用程式：
+您需要使用「企業」方案才能獲得特定的功能，例如「連續匯出」。 這會產生每日費用。
 
-* 在您的專案中加入這些檔案：
+[請參閱定價方案](https://azure.microsoft.com/pricing/details/application-insights/)。
+
+
+## <a name="a-nameq14awhat-does-application-insights-modify-in-my-project"></a><a name="q14"></a>Application Insights 在我的專案中修改什麼？
+詳細資料視專案類型而定。 若是 Web 應用程式：
+
+* 將這些檔案新增至您的專案：
   
   * ApplicationInsights.config。
   * ai.js
@@ -67,45 +67,42 @@ ms.author: awills
   
   * Web.config
   * packages.config
-* (僅限新專案 - 如果您[將 Application Insights 加入至現有的專案][start]，則必須手動執行。) 將程式碼片段插入至用戶端和伺服器程式碼中，以使用 Application Insights 資源識別碼將這些片段初始化。例如，在 MVC 應用程式中，程式碼會插入至主版頁面 Views/Shared/\_Layout.cshtml
+* (僅限新專案 - 如果您[將 Application Insights 新增至現有的專案][start]，則必須手動執行。)將程式碼片段插入至用戶端和伺服器程式碼中，以使用 Application Insights 資源識別碼將這些片段初始化。 例如，在 MVC 應用程式中，程式碼會插入至主版頁面 Views/Shared/_Layout.cshtml
 
-## 如何從舊版 SDK 升級？
+## <a name="how-do-i-upgrade-from-older-sdk-versions"></a>如何從舊版 SDK 升級？
 請參閱您的應用程式類型所適用之 SDK 的[版本資訊](app-insights-release-notes.md)。
 
-## <a name="update"></a>如何變更我的專案將資料傳送到哪一個 Azure 資源？
-在 [方案總管] 中，以滑鼠右鍵按一下 `ApplicationInsights.config`，然後選擇 [**更新 Application Insights**]。您可以將資料傳送至 Azure 中的現有資源或新資源。更新精靈會變更 ApplicationInsights.config 中的檢測機碼，這決定伺服器 SDK 將您的資料送往何處。除非您取消選取 [全部更新]，否則它也會變更機碼出現在您網頁中的位置。
+## <a name="a-nameupdateahow-can-i-change-which-azure-resource-my-project-sends-data-to"></a><a name="update"></a>如何變更我的專案將資料傳送到哪一個 Azure 資源？
+在 [方案總管] 中，以滑鼠右鍵按一下 `ApplicationInsights.config`，然後選擇 [更新 Application Insights]。 您可以將資料傳送至 Azure 中的現有資源或新資源。 更新精靈會變更 ApplicationInsights.config 中的檢測金鑰，這決定伺服器 SDK 將您的資料送往何處。 除非您取消選取 [全部更新]，否則也會變更金鑰出現在您網頁中的位置。
 
-#### <a name="data"></a>資料會保留在入口網站多久？ 是否安全？
+#### <a name="a-namedataahow-long-is-data-retained-in-the-portal-is-it-secure"></a><a name="data"></a>資料會保留在入口網站多久？ 是否安全？
 請參閱[資料保留和隱私權][data]。
 
-## 記錄
-#### <a name="post"></a>如何在診斷搜尋中查看 POST 資料？
-我們不會自動記錄 POST 資料，但您可以使用 TrackTrace 呼叫：將資料放置到訊息參數中。相較於字串屬性的限制，此呼叫可容許較長的大小，不過您無法篩選。
+## <a name="logging"></a>記錄
+#### <a name="a-namepostahow-do-i-see-post-data-in-diagnostic-search"></a><a name="post"></a>如何在診斷搜尋中查看 POST 資料？
+我們不會自動記錄 POST 資料，但您可以使用 TrackTrace 呼叫：將資料放置到訊息參數中。 相較於字串屬性的限制，此呼叫可容許較長的大小，不過您無法篩選。
 
-## 安全性
-#### 保留在入口網站上的資料安全嗎？ 會保留多久？
+## <a name="security"></a>安全性
+#### <a name="is-my-data-secure-in-the-portal-how-long-is-it-retained"></a>保留在入口網站上的資料安全嗎？ 會保留多久？
 請參閱[資料保留和隱私權][data]。
 
-## <a name="q17"></a>我是否已啟用 Application Insights 中的所有項目？
-<table border="1">
-<tr><th>您應該會看到</th><th>如何取得</th><th>取得原因</th></tr>
-<tr><td>可用性圖表</td><td><a href="../app-insights-monitor-web-app-availability/">Web 測試</a></td><td>知道您的 Web 應用程式已啟動</td></tr>
-<tr><td>伺服器應用程式效能：回應時間...
-</td><td><a href="../app-insights-asp-net/">將 Application Insights 加入至專案</a><br/>或 <br/><a href="../app-insights-monitor-performance-live-website-now/">在伺服器上安裝 AI 狀態監視器</a> (或撰寫您自己的程式碼以<a href="../app-insights-api-custom-events-metrics/#track-dependency">追蹤相依性</a>)</td><td>偵測效能問題</td></tr>
-<tr><td>相依性遙測</td><td><a href="../app-insights-monitor-performance-live-website-now/">在伺服器上安裝 AI 狀態監視器</a></td><td>診斷資料庫或其他外部元件的問題</td></tr>
-<tr><td>取得例外狀況的堆疊追蹤</td><td><a href="../app-insights-search-diagnostic-logs/#exceptions">在程式碼中插入 TrackException 呼叫</a> (但部分會自動報告)</td><td>偵測並診斷例外狀況</td></tr>
-<tr><td>搜尋記錄追蹤</td><td><a href="../app-insights-search-diagnostic-logs/">加入記錄配接器</a></td><td>診斷例外狀況、效能問題</td></tr>
-<tr><td>用戶端使用基本概念：頁面檢視、工作階段...</td><td><a href="../app-insights-javascript/">網頁中的 JavaScript 初始設定式</a></td><td>流量分析</td></tr>
-<tr><td>用戶端自訂度量</td><td><a href="../app-insights-api-custom-events-metrics/">追蹤網頁中的呼叫</a></td><td>增強使用者經驗</td></tr>
-<tr><td>伺服器自訂度量</td><td><a href="../app-insights-api-custom-events-metrics/">追蹤伺服器程式碼中的呼叫</a></td><td>商業智慧</td></tr>
-</table>
+## <a name="a-nameq17a-have-i-enabled-everything-in-application-insights"></a><a name="q17"></a> 我是否已啟用 Application Insights 中的所有項目？
+| 您應該會看到 | 如何取得 | 取得原因 |
+| --- | --- | --- |
+| 可用性圖表 |[Web 測試](app-insights-monitor-web-app-availability.md) |知道您的 Web 應用程式已啟動 |
+| 伺服器應用程式效能：回應時間... |[將 Application Insights 新增至您的專案](app-insights-asp-net.md)或[在伺服器上安裝 AI 狀態監視器](app-insights-monitor-performance-live-website-now.md) (或撰寫您自己的程式碼來[追蹤相依性](app-insights-api-custom-events-metrics.md#track-dependency)) |偵測效能問題 |
+| 相依性遙測 |[在伺服器上安裝 AI 狀態監視器](app-insights-monitor-performance-live-website-now.md) |診斷資料庫或其他外部元件的問題 |
+| 取得例外狀況的堆疊追蹤 |[在程式碼中插入 TrackException 呼叫](app-insights-search-diagnostic-logs.md#exceptions) (但部分會自動報告) |偵測並診斷例外狀況 |
+| 搜尋記錄追蹤 |[新增記錄配接器](app-insights-search-diagnostic-logs.md) |診斷例外狀況、效能問題 |
+| 用戶端使用基本概念：頁面檢視、工作階段... |[網頁中的 JavaScript 初始設定式](app-insights-javascript.md) |流量分析 |
+| 用戶端自訂度量 |[追蹤網頁中的呼叫](app-insights-api-custom-events-metrics.md) |增強使用者經驗 |
+| 伺服器自訂度量 |[追蹤伺服器中的呼叫](app-insights-api-custom-events-metrics.md) |商業智慧 |
 
-
-## 自動化
+## <a name="automation"></a>自動化
 您可以[撰寫 PowerShell 指令碼](app-insights-powershell.md)來建立和更新 Application Insights 資源。
 
-## 更多解答
-* [Application Insights 論壇](https://social.msdn.microsoft.com/Forums/vstudio/zh-TW/home?forum=ApplicationInsights)
+## <a name="more-answers"></a>更多解答
+* [Application Insights 論壇](https://social.msdn.microsoft.com/Forums/vstudio/en-US/home?forum=ApplicationInsights)
 
 <!--Link references-->
 
@@ -116,4 +113,6 @@ ms.author: awills
 
 
 
-<!---HONumber=AcomDC_0824_2016-->
+<!--HONumber=Dec16_HO1-->
+
+

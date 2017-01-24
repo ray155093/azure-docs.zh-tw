@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 09/21/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -55,8 +55,8 @@ ms.openlocfilehash: ba15ebc176ada48943fb6afa5f9c723e3d906099
 
 > [!NOTE]
 > 使用資料目錄資料來源註冊工具時也可以提供標記和專家。
-> 
-> 
+>
+>
 
 選取多個資料表或檢視的時候，資料目錄入口網站只會顯示全部資料資產的共通資料行。 這樣可以讓使用者針對選取的全部資料資產中名稱相同的資料行提供標記和說明。
 
@@ -68,7 +68,6 @@ ms.openlocfilehash: ba15ebc176ada48943fb6afa5f9c723e3d906099
 
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何標註資料來源的逐步詳細資料。
-
 
 
 

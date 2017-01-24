@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 10/03/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -65,7 +65,6 @@ Azure 資料目錄可讓使用者打破這種重複的工作循環。 一旦透�
 有時候這些資料專家會設法記錄他們的知識，包括透過電子郵件，或在小組 SharePoint 網站上的 Word 文件中分享。 雖然這很有價值，但也引起新的探索問題 – 怎麼知道文件在哪裡，以及到哪裡尋找...
 
 Azure 資料目錄提供位置來分享此部落知識，讓人輕鬆找到這些知識。 資料專家可以直接將資料資產加註，也可以加上現有文件的連結。 這樣不但能夠擷取知識本身，還能將知識注入資料來源探索時的相同體驗中。 當某人利用目錄來探索資料來源時，他不只可找到來源本身，還能找到原本只存在專家腦海中的專家知識。
-
 
 
 

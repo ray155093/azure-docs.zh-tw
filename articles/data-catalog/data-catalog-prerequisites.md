@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 09/21/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -37,8 +37,8 @@ Azure Active Directory (Azure AD) 為您的企業提供在雲端和內部部署�
 
 > [!NOTE]
 > [Azure 入口網站](http://portal.azure.com/) 可讓使用者使用個人 Microsoft 帳戶或 Azure Active Directory 工作或學校帳戶進行登入。 若要使用 Azure 入口網站或 [資料目錄入口網站](http://www.azuredatacatalog.com) 設定 Azure 資料目錄，您必須使用 Azure Active Directory 帳戶而非個人帳戶來登入。
-> 
-> 
+>
+>
 
 ## <a name="active-directory-policy-configuration"></a>Active Directory 原則組態
 使用者可能會遇到一種情況，他們可以登入「Azure 資料目錄」入口網站，但在嘗試登入資料來源註冊工具時卻遇到錯誤訊息，導致無法登入。 僅在使用者處於公司網路或是從公司網路外部連接時，才會發生此問題行為。
@@ -50,7 +50,6 @@ Azure Active Directory (Azure AD) 為您的企業提供在雲端和內部部署�
  ![Active Directory 全域驗證原則](./media/data-catalog-prerequisites/global-auth-policy.png)
 
 如需詳細資訊，請參閱 [設定驗證原則](https://technet.microsoft.com/library/dn486781.aspx)。
-
 
 
 
