@@ -1,80 +1,85 @@
 ---
-title: 使用 HBase 分析即時的 Twitter 情緒 | Microsoft Docs
-description: 了解如何使用 HDInsight (Hadoop) 叢集中的 HBase，從 Twitter 進行巨量資料的即時情緒分析。
+title: "使用 HBase 分析即時的 Twitter 情感 | Microsoft Docs"
+description: "了解如何使用 HDInsight (Hadoop) 叢集中的 HBase，從 Twitter 進行巨量資料的即時情感分析。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: mumian
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 5c798ad3-a20d-4385-a463-f4f7705f9566
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/09/2016
+ms.date: 12/15/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: a8f597086aca67d41b23487c384d6d614bc9968a
+ms.openlocfilehash: 17c89493d83bcfbd04c9e7f617c2bb8fa1964636
+
 
 ---
-# 使用 HDInsight 中的 HBase 分析即時的 Twitter 情緒
-了解如何使用 HDInsight (Hadoop) 叢集中的 HBase，從 Twitter 進行巨量資料的即時[情緒分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
+# <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a>使用 HDInsight 中的 HBase 分析即時的 Twitter 情感
+了解如何使用 HDInsight 中的 HBase 叢集，從 Twitter 進行巨量資料的即時[情感分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
-社交網站是巨量資料採用的主要驅使力之一。像 Twitter 之類的網站所提供的公開 API，是分析和了解流行趨勢的一項實用的資料來源。在本教學課程中，您將開發主控台串流服務應用程式和 ASP.NET Web 應用程式，來執行下列作業：
+社交網站是巨量資料採用的主要驅使力之一。 像 Twitter 之類的網站所提供的公開 API，是分析和了解流行趨勢的一項實用的資料來源。 在本教學課程中，您將開發主控台串流服務應用程式和 ASP.NET Web 應用程式，來執行下列作業：
 
 ![HDInsight HBase Analyze Twitter sentiment][img-app-arch]
 
 * 串流應用程式
+
   * 使用 Twitter 串流 API 即時取得標記地理位置的推文
-  * 評估這些推文的情緒
-  * 使用 Microsoft HBase SDK 將情緒資訊儲存於 HBase 中
+  * 評估這些推文的情感
+  * 使用 Microsoft HBase SDK 將情感資訊儲存於 HBase 中
 * Azure 網站應用程式
   
-  * 使用 ASP.NET Web 應用程式將即時統計結果繪製在 Bing 地圖上。以視覺方式呈現推文的結果與以下範例相似：
+  * 使用 ASP.NET Web 應用程式將即時統計結果繪製在 Bing 地圖上。 以視覺方式呈現推文的結果與以下範例相似：
     
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
     
     您將可以利用某些關鍵字來查詢推文，藉此感知推文中表達的意見是肯定、否定或中性。
 
-如需完整的 Visual Studio 方案範例，請前往 GitHub：[即時社交情緒分析應用程式](https://github.com/maxluk/tweet-sentiment)。
+如需完整的 Visual Studio 方案範例，請前往 GitHub： [即時社交情感分析應用程式](https://github.com/maxluk/tweet-sentiment)。
 
-### 必要條件
+### <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
 
-* **HDInsight 中的 HBase 叢集**。如需有關建立叢集的指示，請參閱[開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]。進行教學課程時，您將需要下列資料：
+* **HDInsight 中的 HBase 叢集**。 如需有關建立叢集的指示，請參閱[開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]。 進行教學課程時，您將需要下列資料：
 
     <table border="1">
     <tr><th>叢集屬性</th><th>說明</th></tr>
-    <tr><td>HBase 叢集名稱</td><td>您的 HDInsight HBase 叢集名稱。例如：https://myhbase.azurehdinsight.net/</td></tr>
-    <tr><td>叢集使用者名稱</td><td>Hadoop 使用者帳戶名稱。預設 Hadoop 使用者名稱為 <strong>admin</strong>。</td></tr>
+    <tr><td>HBase 叢集名稱</td><td>您的 HDInsight HBase 叢集名稱。 例如：https://myhbase.azurehdinsight.net/</td></tr>
+    <tr><td>叢集使用者名稱</td><td>Hadoop 使用者帳戶名稱。 預設 Hadoop 使用者名稱為 <strong>admin</strong>。</td></tr>
     <tr><td>叢集使用者密碼</td><td>Hadoop 叢集使用者密碼。</td></tr>
     </table>
 
-* 安裝 Visual Studio 2013 的**工作站**。如需指示，請參閱[安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
+* **工作站** 。 如需指示，請參閱 [安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
 
-## 建立 Twitter 應用程式 ID 和密碼
-Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OAuth 的第一個步驟，是在 Twitter 開發人員網站上建立新的應用程式。
+## <a name="create-a-twitter-application-id-and-secrets"></a>建立 Twitter 應用程式 ID 和密碼
+Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。 使用 OAuth 的第一個步驟，是在 Twitter 開發人員網站上建立新的應用程式。
 
 **建立 Twitter 應用程式 ID 和密碼**
 
-1. 登入 [Twitter 應用程式](https://apps.twitter.com/)。如果您沒有 Twitter 帳戶，請按一下[立即註冊] 連結。
-2. 按一下 [建立新的應用程式]。
-3. 輸入 [名稱]、[描述] 和 [網站]。Twitter 應用程式名稱必須是唯一的名稱。我們實際上不會用到 [網站] 欄位。因此您不必輸入有效的 URL。
-4. 核取 [Yes, I agree]然後按一下 [Create your Twitter application]。
-5. 按一下 [權限] 索引標籤。預設權限為 [唯讀]。本教學課程使用預設值即可。
-6. 按一下 **[金鑰和存取權杖**] 索引標籤。
-7. 按一下 [Create my access token]。
-8. 按一下位於頁面右上角的 [測試 OAuth]。
-9. 複製 [消費者金鑰]、[消費者密碼]、[存取權杖] 和 [存取權杖密碼] 等值。稍後會在教學課程中使用這些值。
+1. 登入 [Twitter 應用程式](https://apps.twitter.com/)。 如果您沒有 Twitter 帳戶，請按一下[立即註冊]  連結。
+2. 按一下 [建立新的應用程式] 。
+3. 輸入 [名稱]、[描述] 和 [網站]。 Twitter 應用程式名稱必須是唯一的名稱。 我們實際上不會用到 [網站] 欄位。 因此您不必輸入有效的 URL。 
+4. 核取 [是，我同意] 然後按一下 [建立 Twitter 應用程式]。
+5. 按一下 [權限]  索引標籤。 預設權限為 [唯讀] 。 本教學課程使用預設值即可。 
+6. 按一下 **[金鑰和存取權杖** ] 索引標籤。
+7. 按一下 [Create my access token] 。
+8. 按一下位於頁面右上角的 [測試 OAuth]  。
+9. 複製 [消費者金鑰]、[消費者密碼]、[存取權杖] 和 [存取權杖密碼] 等值。 稍後會在教學課程中使用這些值。
    
     ![hdi.hbase.twitter.sentiment.twitter.app][img-twitter-app]
 
-## 建立 Twitter 串流服務
-您必須建立應用程式來取得推文、計算推文情緒分數，以及將處理過的推文文字傳送到 HBase。
+## <a name="create-twitter-streaming-service"></a>建立 Twitter 串流服務
+您必須建立應用程式來取得推文、計算推文情感分數，以及將處理過的推文文字傳送到 HBase。
 
 **建立串流應用程式**
 
-1. 開啟 **Visual Studio**，建立名為 **TweetSentimentStreaming** 的 Visual C# 主控台應用程式。
-2. 從 [Package Manager Console]，執行下列命令：
+1. 開啟 **Visual Studio**，建立名為 **TweetSentimentStreaming** 的 Visual C# 主控台應用程式。 
+2. 從 [Package Manager Console] ，執行下列命令：
    
         Install-Package Microsoft.HBase.Client -version 0.4.2.0
         Install-Package TweetinviAPI -version 1.0.0.0
@@ -82,11 +87,11 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
     這些命令會安裝 [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) 套件 (要存取 HBase 叢集的用戶端程式庫) 和 [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) 套件 (用來存取 Twitter API)。
    
    > [!NOTE]
-   > 本文中所使用的範例已通過上述指定版本的測試。您可以移除 -version 參數來安裝最新版本。
+   > 本文中所使用的範例已通過上述指定版本的測試。  您可以移除 -version 參數來安裝最新版本。
    > 
    > 
 3. 從 [方案總管] 中，將 **System.Configuration** 新增至參考。
-4. 將新的類別檔案加入至名為 **HBaseWriter.cs** 的專案中，然後以下列內容取代程式碼：
+4. 將新的類別檔案加入至名為 **HBaseWriter.cs**的專案中，然後以下列內容取代程式碼：
    
         using System;
         using System.Collections.Generic;
@@ -117,7 +122,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 // Sentiment dictionary file and the punctuation characters
                 const string DICTIONARYFILENAME = @"..\..\dictionary.tsv";
                 private static char[] _punctuationChars = new[] {
-            ' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',   //ascii 23--47
+            ' ', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',   //ascii 23--47
             ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~' };   //ascii 58--64 + misc.
    
                 // For writting to HBase
@@ -144,7 +149,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                         tableSchema.name = HBASETABLENAME;
                         tableSchema.columns.Add(new ColumnSchema { name = "d" });
                         client.CreateTableAsync(tableSchema).Wait();
-                        Console.WriteLine("Table "{0}" is created.", HBASETABLENAME);
+                        Console.WriteLine("Table \"{0}\" is created.", HBASETABLENAME);
                     }
    
                     // Read current row count cell
@@ -346,8 +351,8 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 public string Polarity { get; set; }
             }
         }
-5. 在先前程式碼中設定常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。您可以從 **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載該檔案。如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
-6. 開啟 **Program.cs** 並以下列內容取代程式碼：
+5. 在先前程式碼中設定常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。 DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。  該檔案可從 **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載。 如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
+6. 開啟 **Program.cs**並以下列內容取代程式碼：
    
         using System;
         using System.Diagnostics;
@@ -418,16 +423,16 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
    
             }
         }
-7. 設定常數，包括 **TWITTERAPPACCESSTOKEN**、**TWITTERAPPACCESSTOKENSECRET**、**TWITTERAPPAPIKEY** 及 **TWITTERAPPAPISECRET**。
+7. 設定常數，包括 **TWITTERAPPACCESSTOKEN**、**TWITTERAPPACCESSTOKENSECRET**、**TWITTERAPPAPIKEY** 及 **TWITTERAPPAPISECRET**。 
 
-若要執行串流服務，請按 **F5**。以下是主控台應用程式的螢幕擷取畫面：
+若要執行串流服務，請按 **F5**。 以下是主控台應用程式的螢幕擷取畫面：
 
 ![hdinsight.hbase.twitter.sentiment.streaming.service][img-streaming-service]
 
-開發 Web 應用程式時，請保持串流主控台應用程式的執行狀態，如此一來，您將有更多的資料可使用。若要檢查插入資料格中的資料，您可以使用 HBase 殼層。請參閱[開始在 HDInsight 中使用 HBase](hdinsight-hbase-tutorial-get-started.md#create-tables-and-insert-data)。
+開發 Web 應用程式時，請保持串流主控台應用程式的執行狀態，如此一來，您將有更多的資料可使用。 若要檢查插入資料格中的資料，您可以使用 HBase 殼層。 請參閱 [開始在 HDInsight 中使用 HBase](hdinsight-hbase-tutorial-get-started.md#create-tables-and-insert-data)。
 
-## 將即時情緒視覺化
-在本節中，您將建立 ASP.NET MVC Web 應用程式，以便從 HBase 讀取即時情緒資料，並將資料繪製在 Bing 地圖上。
+## <a name="visualize-real-time-sentiment"></a>將即時情感視覺化
+在本節中，您將建立 ASP.NET MVC Web 應用程式，以便從 HBase 讀取即時情感資料，並將資料繪製在 Bing 地圖上。
 
 **建立 ASP.NET MVC Web 應用程式**
 
@@ -435,23 +440,23 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 2. 依序按一下 [檔案]、[新增] 及 [專案]。
 3. 輸入以下資訊：
    
-   * 範本類別：**Visual C#/Web**
-   * 範本：**ASP.NET Web 應用程式**
-   * 名稱：**TweetSentimentWeb**
-   * 位置：**C:\\Tutorials**
-4. 按一下 [確定]。
-5. 在 [選取範本] 中按一下 **MVC**。
+   * 範本類別： **Visual C#/Web**
+   * 範本： **ASP.NET Web 應用程式**
+   * 名稱： **TweetSentimentWeb**
+   * 位置：**C:\Tutorials** 
+4. 按一下 [確定] 。
+5. 在 [選取範本] 中按一下 **MVC**。 
 6. 在 [Microsoft Azure] 中按一下 [管理訂用帳戶]。
 7. 在 [管理 Microsoft Azure 訂用帳戶] 中按一下 [登入]。
-8. 輸入您的 Azure 認證。您的 Azure 訂用帳戶資訊將顯示於 [帳戶] 索引標籤中。
+8. 輸入您的 Azure 認證。 您的 Azure 訂用帳戶資訊將顯示於 [帳戶]  索引標籤中。
 9. 按一下 [關閉] 以關閉 [管理 Microsoft Azure 訂用帳戶] 視窗。
 10. 在 [新增 ASP.NET 專案 - TweetSentimentWeb] 中按一下 [確定]。
-11. 在 [設定 Microsoft Azure 網站設定] 中，選取與您最接近的 [區域]。您不需要指定資料庫伺服器。
-12. 按一下 [確定]。
+11. 在 [設定 Microsoft Azure 網站設定] 中，選取與您最接近的 [區域]。 您不需要指定資料庫伺服器。 
+12. 按一下 [確定] 。
 
 **安裝 NuGet 套件**
 
-1. 在 [工具] 功能表中按一下 [Nuget 套件管理員]，然後按一下 [Package Manager Console]。主控台面板會在頁面底部開啟。
+1. 在 [工具] 功能表中按一下 [Nuget 套件管理員]，然後按一下 [Package Manager Console]。 主控台面板會在頁面底部開啟。
 2. 使用下列命令來安裝 [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) 封裝 (存取 HBase 叢集的用戶端檔案庫)：
    
         Install-Package Microsoft.HBase.Client 
@@ -571,19 +576,19 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
         }
 5. 在 **HBaseReader** 類別中變更常數值，如下所示：
    
-   * **CLUSTERNAME**：HBase 叢集名稱，例如 *https://<HBaseClusterName>.azurehdinsight.net/*。
-   * **HADOOPUSERNAME**：HBase 叢集 Hadoop 使用者的使用者名稱。預設名稱為 *admin*。
+   * **CLUSTERNAME**：HBase 叢集名稱，例如 https://<HBaseClusterName>.azurehdinsight.net/。 
+   * **HADOOPUSERNAME**：HBase 叢集 Hadoop 使用者的使用者名稱。 預設名稱為 *admin*。
    * **HADOOPUSERPASSWORD**：HBase 叢集 Hadoop 使用者密碼。
-   * **HBASETABLENAME** = "tweets\_by\_words";
+   * **HBASETABLENAME** = "tweets_by_words";
      
-     HBase 資料表名稱為 **"tweets\_by\_words";**。這些值必須符合在串流服務中傳送的值，如此一來，Web 應用程式才能從相同的 HBase 資料表讀取資料。
+     HBase 資料表名稱為 **"tweets_by_words";**。 這些值必須符合在串流服務中傳送的值，如此一來，Web 應用程式才能從相同的 HBase 資料表讀取資料。
 
 **加入 TweetsController 控制器**
 
 1. 在 [方案總管] 中展開 **TweetSentimentWeb**。
 2. 以滑鼠右鍵按一下 [控制器]，然後依序按一下 [新增] 和 [控制器]。
 3. 按一下 **Web API 2 Controller - Empty**，然後按一下 [新增]。
-4. 在 [控制器名稱] 中輸入 **TweetsController**，然後按一下 [加入]。
+4. 在 [控制器名稱] 中輸入 **TweetsController**，然後按一下 [新增]。
 5. 在 [方案總管] 中，按兩下 TweetsController.cs 以開啟檔案。
 6. 修改檔案，使其類似下列內容：
    
@@ -615,7 +620,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 1. 在 [方案總管] 中展開 **TweetSentimentWeb**。
 2. 以滑鼠右鍵按一下 [指令碼]，然後依序按一下 [新增] 和 [JavaScript 檔案]。
 3. 在 [項目名稱] 欄位輸入 **heatmap.js**。
-4. 將下列程式碼貼到檔案中。該程式碼由 Alastair Aitchison 所撰寫。如需詳細資訊，請參閱 [BBing 地圖 AJAX v7 HeatMap 程式庫](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/)。
+4. 將下列程式碼貼到檔案中。 該程式碼由 Alastair Aitchison 所撰寫。 如需詳細資訊，請參閱 [BBing 地圖 AJAX v7 HeatMap 程式庫](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/)。
    
         /*******************************************************************************
         * Author: Alastair Aitchison
@@ -629,41 +634,40 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
         *
         * Requirements:
         * The heatmap layer itself is created dynamically on the client-side using
-        * the HTML5 <canvas> element, and therefore requires a browser that supports
+        * the HTML5 &lt;canvas> element, and therefore requires a browser that supports
         * this element. It has been tested on IE9, Firefox 3.6/4 and 
         * Chrome 10 browsers. If you can confirm whether it works on other browsers or
         * not, I'd love to hear from you!
-   
+        *
         * Usage:
         * The HeatMapLayer constructor requires:
         * - A reference to a map object
         * - An array or Microsoft.Maps.Location items
         * - Optional parameters to customise the appearance of the layer
         *  (Radius,, Unit, Intensity, and ColourGradient), and a callback function
-        *
         */
-   
+
         var HeatMapLayer = function (map, locations, options) {
-   
+
             /* Private Properties */
             var _map = map,
-              _canvas,
-              _temperaturemap,
-              _locations = [],
-              _viewchangestarthandler,
-              _viewchangeendhandler;
-   
+                _canvas,
+                _temperaturemap,
+                _locations = [],
+                _viewchangestarthandler,
+                _viewchangeendhandler;
+
             // Set default options
             var _options = {
                 // Opacity at the centre of each heat point
                 intensity: 0.5,
-   
+
                 // Affected radius of each heat point
                 radius: 1000,
-   
+
                 // Whether the radius is an absolute pixel value or meters
                 unit: 'meters',
-   
+
                 // Colour temperature gradient of the map
                 colourgradient: {
                     "0.00": 'rgba(255,0,255,20)',  // Magenta
@@ -672,55 +676,55 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                     "0.75": 'rgba(255,255,0,120)', // Yellow
                     "1.00": 'rgba(255,0,0,150)'    // Red
                 },
-   
+
                 // Callback function to be fired after heatmap layer has been redrawn 
                 callback: null
             };
-   
+
             /* Private Methods */
             function _init() {
                 var _mapDiv = _map.getRootElement();
-   
+
                 if (_mapDiv.childNodes.length >= 3 && _mapDiv.childNodes[2].childNodes.length >= 2) {
                     // Create the canvas element
                     _canvas = document.createElement('canvas');
                     _canvas.style.position = 'relative';
-   
+
                     var container = document.createElement('div');
                     container.style.position = 'absolute';
                     container.style.left = '0px';
                     container.style.top = '0px';
                     container.appendChild(_canvas);
-   
+
                     _mapDiv.childNodes[2].childNodes[1].appendChild(container);
-   
+
                     // Override defaults with any options passed in the constructor
                     _setOptions(options);
-   
+
                     // Load array of location data
                     _setPoints(locations);
-   
+
                     // Create a colour gradient from the suppied colourstops
                     _temperaturemap = _createColourGradient(_options.colourgradient);
-   
+
                     // Wire up the event handler to redraw heatmap canvas
                     _viewchangestarthandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangestart', _clearHeatMap);
                     _viewchangeendhandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangeend', _createHeatMap);
-   
+
                     _createHeatMap();
-   
+
                     delete _init;
                 } else {
                     setTimeout(_init, 100);
                 }
             }
-   
+
             // Resets the heat map
             function _clearHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 ctx.clearRect(0, 0, _canvas.width, _canvas.height);
             }
-   
+
             // Creates a colour gradient from supplied colour stops on initialisation
             function _createColourGradient(colourstops) {
                 var ctx = document.createElement('canvas').getContext('2d');
@@ -732,7 +736,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 ctx.fillRect(0, 0, 256, 1);
                 return ctx.getImageData(0, 0, 256, 1).data;
             }
-   
+
             // Applies a colour gradient to the intensity map
             function _colouriseHeatMap() {
                 var ctx = _canvas.getContext("2d");
@@ -749,90 +753,90 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 }
                 ctx.putImageData(dat, 0, 0);
             }
-   
+
             // Sets any options passed in
             function _setOptions(options) {
                 for (attrname in options) {
                     _options[attrname] = options[attrname];
                 }
             }
-   
+
             // Sets the heatmap points from an array of Microsoft.Maps.Locations  
             function _setPoints(locations) {
                 _locations = locations;
             }
-   
+
             // Main method to draw the heatmap
             function _createHeatMap() {
                 // Ensure the canvas matches the current dimensions of the map
                 // This also has the effect of resetting the canvas
                 _canvas.height = _map.getHeight();
                 _canvas.width = _map.getWidth();
-   
+
                 _canvas.style.top = -_canvas.height / 2 + 'px';
                 _canvas.style.left = -_canvas.width / 2 + 'px';
-   
+
                 // Calculate the pixel radius of each heatpoint at the current map zoom
                 if (_options.unit == "pixels") {
                     radiusInPixel = _options.radius;
                 } else {
                     radiusInPixel = _options.radius / _map.getMetersPerPixel();
                 }
-   
+
                 var ctx = _canvas.getContext("2d");
-   
+
                 // Convert lat/long to pixel location
                 var pixlocs = _map.tryLocationToPixel(_locations, Microsoft.Maps.PixelReference.control);
                 var shadow = 'rgba(0, 0, 0, ' + _options.intensity + ')';
                 var mapWidth = 256 * Math.pow(2, _map.getZoom());
-   
+
                 // Create the Intensity Map by looping through each location
                 for (var i = 0, len = pixlocs.length; i < len; i++) {
                     var x = pixlocs[i].x;
                     var y = pixlocs[i].y;
-   
+
                     if (x < 0) {
                         x += mapWidth * Math.ceil(Math.abs(x / mapWidth));
                     }
-   
+
                     // Create radial gradient centred on this point
                     var grd = ctx.createRadialGradient(x, y, 0, x, y, radiusInPixel);
                     grd.addColorStop(0.0, shadow);
                     grd.addColorStop(1.0, 'transparent');
-   
+
                     // Draw the heatpoint onto the canvas
                     ctx.fillStyle = grd;
                     ctx.fillRect(x - radiusInPixel, y - radiusInPixel, 2 * radiusInPixel, 2 * radiusInPixel);
                 }
-   
+
                 // Apply the specified colour gradient to the intensity map
                 _colouriseHeatMap();
-   
+
                 // Call the callback function, if specified
                 if (_options.callback) {
                     _options.callback();
                 }
             }
-   
+
             /* Public Methods */
-   
+
             this.Show = function () {
                 if (_canvas) {
                     _canvas.style.display = '';
                 }
             };
-   
+
             this.Hide = function () {
                 if (_canvas) {
                     _canvas.style.display = 'none';
                 }
             };
-   
+
             // Sets options for intensity, radius, colourgradient etc.
             this.SetOptions = function (options) {
                 _setOptions(options);
             }
-   
+
             // Sets an array of Microsoft.Maps.Locations from which the heatmap is created
             this.SetPoints = function (locations) {
                 // Reset the existing heatmap layer
@@ -842,14 +846,14 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 // Recreate the layer
                 _createHeatMap();
             }
-   
+
             // Removes the heatmap layer from the DOM
             this.Remove = function () {
                 _canvas.parentNode.parentNode.removeChild(_canvas.parentNode);
-   
+
                 if (_viewchangestarthandler) { Microsoft.Maps.Events.removeHandler(_viewchangestarthandler); }
                 if (_viewchangeendhandler) { Microsoft.Maps.Events.removeHandler(_viewchangeendhandler); }
-   
+
                 _locations = null;
                 _temperaturemap = null;
                 _canvas = null;
@@ -857,11 +861,11 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 _viewchangestarthandler = null;
                 _viewchangeendhandler = null;
             }
-   
+
             // Call the initialisation routine
             _init();
         };
-   
+
         // Call the Module Loaded method
         Microsoft.Maps.moduleLoaded('HeatMapModule');
 
@@ -1068,7 +1072,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 **修改 layout.cshtml**
 
-1. 在 [方案總管] 中，依序展開 **TweetSentimentWeb**、**Views** 及 **Shared**，然後按兩下 \_**Layout.cshtml**。
+1. 在 [方案總管] 中，依序展開 **TweetSentimentWeb**、**Views** 及 **Shared**，然後按兩下 _**Layout.cshtml**。
 2. 以下列內容取代原始內容：
    
         <!DOCTYPE html>
@@ -1137,7 +1141,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
         @{
             ViewBag.Title = "Tweet Sentiment";
         }
-   
+
         <div class="map_container">
             <div id="map_canvas"/>
         </div>
@@ -1171,7 +1175,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 2. 加入下列 **using** 陳述式：
    
         using System.Web.Http;
-3. 將以下文字行新增至 **Application\_Start()** 函數內：
+3. 將以下文字行新增至 **Application_Start()** 函數內：
    
         // Register API routes
         GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -1184,17 +1188,17 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 2. 按 **F5** 以執行 Web 應用程式：
    
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
-3. 在文字方塊中輸入關鍵字，然後按一下 [搜尋]。您不一定能找到所有關鍵字，須視 HBase 資料表內收集到的資料而定。請嘗試一些常用的關鍵字，例如 "love"、"xbox" 和 "playstation"。
-4. 切換 **Positive**、**Neutral** 及 **Negative** 以比較投注在主題上的情緒。
+3. 在文字方塊中輸入關鍵字，然後按一下 [搜尋] 。  您不一定能找到所有關鍵字，須視 HBase 資料表內收集到的資料而定。 請嘗試一些常用的關鍵字，例如 "love"、"xbox" 和 "playstation"。 
+4. 切換 **Positive**、**Neutral** 及 **Negative** 以比較投注在主題上的情感。
 5. 讓串流服務再多執行一小時，然後搜尋相同的關鍵字並比較結果。
 
-您也可以選擇將應用程式部署到 Azure 網站。如需指示，請參閱[開始使用 Azure 網站和 ASP.NET][website-get-started]。
+您也可以選擇將應用程式部署到 Azure 網站。 如需指示，請參閱[開始使用 Azure 網站和 ASP.NET][website-get-started]。
 
-## 後續步驟
-在本教學課程中，您了解如何取得推文、分析推文的情緒、將情緒資料儲存到 HBase，以及在 Bing 地圖上呈現即時的 Twitter 情緒資料。若要深入了解，請參閱：
+## <a name="next-steps"></a>後續步驟
+在本教學課程中，您了解如何取得推文、分析推文的情感、將情感資料儲存到 HBase，以及在 Bing 地圖上呈現即時的 Twitter 情感資料。 若要深入了解，請參閱：
 
 * [開始使用 HDInsight][hdinsight-get-started]
-* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-geo-replication.md)
+* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-replication.md) 
 * [在 HDInsight 中使用 Hadoop 分析 Twitter 資料][hdinsight-analyze-twitter-data]
 * [使用 HDInsight 分析航班延誤資料][hdinsight-analyze-flight-delay-data]
 * [開發 HDInsight 的 Java MapReduce 程式][hdinsight-develop-mapreduce]
@@ -1226,7 +1230,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 [twitter-statuses-filter]: https://dev.twitter.com/docs/api/1.1/post/statuses/filter
 
 [powershell-start]: http://technet.microsoft.com/library/hh847889.aspx
-[powershell-install]: powershell-install-configure.md
+[powershell-install]: /powershell/azureps-cmdlets-docs
 [powershell-script]: http://technet.microsoft.com/library/ee176949.aspx
 
 [hdinsight-provision]: hdinsight-provision-clusters.md
@@ -1239,4 +1243,8 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 [hdinsight-hive-odbc]: hdinsight-connect-excel-hive-ODBC-driver.md
 
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Dec16_HO3-->
+
+

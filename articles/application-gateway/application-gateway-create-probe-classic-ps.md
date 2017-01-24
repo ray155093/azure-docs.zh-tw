@@ -4,7 +4,7 @@ description: "了解如何在傳統部署模型中使用 PowerShell 建立應用
 services: application-gateway
 documentationcenter: na
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management
 ms.assetid: 338a7be1-835c-48e9-a072-95662dc30f5e
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/13/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 3a8e5583f213c6d35f8e41dd31fe2ccad7389977
-ms.openlocfilehash: 7812179e56372237f9760eccea5ebf8db2cb8d2d
+ms.sourcegitcommit: aaf13418331f29287399621cb911e4b9f5b33dc0
+ms.openlocfilehash: a995495f003edbff6cd0a4a15d09585458664f78
 
 
 ---
@@ -27,14 +27,12 @@ ms.openlocfilehash: 7812179e56372237f9760eccea5ebf8db2cb8d2d
 > * [Azure 入口網站](application-gateway-create-probe-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
 > * [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
-> 
-> 
+
 
 [!INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
-[!INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)]
-
-了解如何[使用 Resource Manager 模型執行這些步驟](application-gateway-create-probe-ps.md)。
+> [!IMPORTANT]
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何[使用 Resource Manager 模型執行這些步驟](application-gateway-create-probe-ps.md)。
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
@@ -48,7 +46,7 @@ ms.openlocfilehash: 7812179e56372237f9760eccea5ebf8db2cb8d2d
 
 ### <a name="create-an-application-gateway-resource"></a>建立應用程式閘道資源
 
-若要建立閘道，請使用 **New-AzureApplicationGateway** Cmdlet，並將值取代為您自己的值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
+若要建立閘道，請使用 `New-AzureApplicationGateway` Cmdlet，並以您自己的值來取代這些值。 此時還不會開始對閘道計費。 會在稍後的步驟中於成功啟動閘道之後開始計費。
 
 下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
 
@@ -56,7 +54,7 @@ ms.openlocfilehash: 7812179e56372237f9760eccea5ebf8db2cb8d2d
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 ```
 
-若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
+若要驗證已建立閘道，您可以使用 `Get-AzureApplicationGateway` Cmdlet。
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -67,7 +65,7 @@ Get-AzureApplicationGateway AppGwTest
 > 
 > 
 
-因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。 閘道處於執行中狀態之後，就會建立這些項目。
+因為尚未啟動閘道，所以 VirtualIPs 和 DnsName 會顯示為空白。 閘道處於執行中狀態之後，就會建立這些值。
 
 ## <a name="configure-an-application-gateway"></a>設定應用程式閘道
 
@@ -88,7 +86,7 @@ Get-AzureApplicationGateway AppGwTest
         <Name>fip1</Name>
         <Type>Private</Type>
     </FrontendIPConfiguration>
-</FrontendIPConfigurations>    
+</FrontendIPConfigurations>
 <FrontendPorts>
     <FrontendPort>
         <Name>port1</Name>
@@ -147,12 +145,10 @@ Get-AzureApplicationGateway AppGwTest
 
 編輯設定項目括號間的值。 以 .xml 副檔名儲存檔案。
 
-下列範例示範如何使用組態檔來設定應用程式閘道、使公用連接埠 80 上的 HTTP 流量達到負載平衡，以及使用自訂探查將網路流量傳送到兩個 IP 位址之間的後端連接埠 80。
+下列範例示範如何使用設定檔來設定應用程式閘道，使公用連接埠 80 上的 HTTP 流量達到負載平衡，並使用自訂探查將網路流量傳送到兩個 IP 位址之間的後端連接埠 80。
 
 > [!IMPORTANT]
 > 通訊協定項目 Http 或 Https 會區分大小寫。
-> 
-> 
 
 已新增用來設定自訂探查的新組態項目 \<Probe\>。
 
@@ -165,7 +161,7 @@ Get-AzureApplicationGateway AppGwTest
 * **Timeout** - 定義 HTTP 回應檢查的探查逾時。
 * **UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
 
-<BackendHttpSettings> 組態中會參考探查名稱，以指派哪個後端集區會使用自訂探查設定。
+\<BackendHttpSettings\> 組態中會參考探查名稱，以指派哪個後端集區會使用自訂探查設定。
 
 ## <a name="add-a-custom-probe-configuration-to-an-existing-application-gateway"></a>將自訂探查組態新增至現有應用程式閘道
 
@@ -173,7 +169,7 @@ Get-AzureApplicationGateway AppGwTest
 
 ### <a name="step-1"></a>步驟 1
 
-使用 get-AzureApplicationGatewayConfig 取得 XML 檔案。 這會匯出要修改的組態 XML 以新增探查設定。
+使用 `Get-AzureApplicationGatewayConfig` 取得 XML 檔案。 此 cmdlet 會匯出要修改的組態 XML 以新增探查設定。
 
 ```powershell
 Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
@@ -214,7 +210,7 @@ Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofi
 
 ### <a name="step-3"></a>步驟 3
 
-使用 **Set-AzureApplicationGatewayConfig**以新的 XML 檔案更新應用程式閘道組態。 這會以新組態更新您的應用程式閘道。
+使用 `Set-AzureApplicationGatewayConfig` 以新的 XML 檔案更新應用程式閘道組態。 此 cmdlet 會以新組態更新您的應用程式閘道。
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
@@ -229,6 +225,6 @@ Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

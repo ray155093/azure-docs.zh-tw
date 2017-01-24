@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/09/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
+ms.sourcegitcommit: 94fba9a2aeaebc460a513928ab76ee63c0da7cc8
+ms.openlocfilehash: 12f16b8cd7d7a4101d423aff737498251d8a5d26
 
 
 ---
@@ -35,9 +35,9 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 
 此方案包含車輛遠程資訊服務模擬器。 它會在指定時間點發出對應於車輛狀態與駕駛模式的診斷資訊和訊號。 按一下 [車輛遠程資訊服務模擬器](http://go.microsoft.com/fwlink/?LinkId=717075) 下載 **車輛遠程資訊服務模擬器 Visual Studio 方案** ，以根據您的需求來自訂。 車輛類別目錄包含一個含有 VIN 至車型對應的參考資料集。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig2-vehicle-telematics-simulator.png)
+![車輛遠程資訊服務模擬器](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig1-vehicle-telematics-simulator.png)
 
-*Figure 2 – Vehicle Telematics Simulator*
+圖 1 – 車輛遠程資訊服務模擬器
 
 這是 JSON 格式的資料集，其中包含下列結構描述。
 
@@ -98,8 +98,8 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 | ……. | |
 
 ### <a name="to-generate-simulated-data"></a>產生模擬資料
-1. 若要下載資料模擬器封裝，請按一下 [車輛遠程資訊服務模擬器] 節點右上方的箭號。 將檔案儲存在本機電腦上並解壓縮。 ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig3-vehicle-telemetry-blueprint.png) *圖 3 – 車輛遙測分析方案藍圖*
-2. 在本機電腦上，移至您解壓縮「車輛遠程資訊服務模擬器」封裝的資料夾。 ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig4-vehicle-telematics-simulator-folder.png) *圖 4 – 車輛遠程資訊服務模擬器資料夾*
+1. 若要下載資料模擬器封裝，請按一下 [車輛遠程資訊服務模擬器] 節點右上方的箭號。 將檔案儲存在本機電腦上並解壓縮。 ![車輛遙測分析解決方案藍圖](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig2-vehicle-telemetry-blueprint.png)*圖 2 – 車輛遙測分析解決方案藍圖*
+2. 在本機電腦上，移至您解壓縮「車輛遠程資訊服務模擬器」封裝的資料夾。 ![車輛遠程資訊服務模擬器資料夾](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig3-vehicle-telematics-simulator-folder.png)圖 3 – 車輛遠程資訊服務模擬器資料夾
 3. 執行應用程式 **CarEventGenerator.exe**。
 
 ### <a name="references"></a>參考
@@ -115,15 +115,15 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 ### <a name="real-time-analysis"></a>即時分析
 使用事件中樞 SDK 將「車輛遠程資訊服務模擬器」所產生的事件發佈至事件中樞。 串流分析作業會從事件中樞擷取這些事件，並即時處理資料，以分析車輛健全狀況。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig5-vehicle-telematics-event-hub-dashboard.png) 
+![事件中樞儀表板](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig4-vehicle-telematics-event-hub-dashboard.png) 
 
-*Figure 5 - Event Hub dashboard*
+圖 4 - 事件中樞儀表板
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig6-vehicle-telematics-stream-analytics-job-processing-data.png) 
+![處理資料的串流分析作業](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig5-vehicle-telematics-stream-analytics-job-processing-data.png) 
 
-*Figure 6 - Stream analytics job processing data*
+圖 5 - 處理資料的串流分析作業
 
-串流分析作業
+串流分析作業；
 
 * 從事件中樞擷取資料 
 * 結合參考資料以將車輛 VIN 對應至相符的車型 
@@ -131,28 +131,28 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 
 下列串流分析查詢用來將資料保存到 Azure Blob 儲存體。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig7-vehicle-telematics-stream-analytics-job-query-for-data-ingestion.png) 
+![用於擷取資料的串流分析作業查詢](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig6-vehicle-telematics-stream-analytics-job-query-for-data-ingestion.png) 
 
-*圖 7 - 用於擷取資料的串流分析作業查詢*
+圖 6 - 用於擷取資料的串流分析作業查詢
 
 ### <a name="batch-analysis"></a>批次分析
 我們也會產生另一批模擬車輛訊號和診斷資料集，以進行更多樣的批次分析。 這是為了確保有良好的代表性資料量可供批次處理。 基於此目的，我們在 Azure Data Factory 工作流程中使用名為 "PrepareSampleDataPipeline" 的管線，以產生一年份的模擬車輛訊號和診斷資料集。 按一下 [Data Factory 自訂活動](http://go.microsoft.com/fwlink/?LinkId=717077) 下載 Data Factory 自訂 DotNet 活動 Visual Studio 方案，以根據您的需求來自訂。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig8-vehicle-telematics-prepare-sample-data-for-batch-processing.png) 
+![準備批次處理工作流程的範例資料](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig7-vehicle-telematics-prepare-sample-data-for-batch-processing.png) 
 
-*圖 8 - 準備批次處理工作流程的範例資料*
+圖 7 - 準備批次處理工作流程的範例資料
 
 管線包含自訂的 ADF .Net 活動，顯示如下：
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig9-vehicle-telematics-prepare-sample-data-pipeline.png) 
+![PrepareSampleDataPipeline 活動](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig8-vehicle-telematics-prepare-sample-data-pipeline.png) 
 
-*圖 9 - PrepareSampleDataPipeline*
+圖 8 - PrepareSampleDataPipeline
 
 一旦成功執行管線，而且 "RawCarEventsTable" 資料集標示為「就緒」，就會產生一年份的模擬車輛訊號和診斷資料。 您在儲存體帳戶的 "connectedcar" 容器下會看到已建立下列資料夾和檔案：
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig10-vehicle-telematics-prepare-sample-data-pipeline-output.png) 
+![PrepareSampleDataPipeline 輸出](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig9-vehicle-telematics-prepare-sample-data-pipeline-output.png) 
 
-*圖 10 - PrepareSampleDataPipeline 輸出*
+圖 9 - PrepareSampleDataPipeline 輸出
 
 ### <a name="references"></a>參考
 [適用於串流擷取的 Azure 事件中樞 SDK](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
@@ -165,28 +165,28 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 ## <a name="partition-the-dataset"></a>分割資料集
 在資料準備步驟中，原始的半結構化車輛訊號和診斷資料集會分割成 YEAR/MONTH 格式。 此分割能夠在第一個 Blob 帳戶填滿時切換到下一個 Blob 帳戶，因而有利於提高查詢效率和使用可調整的長期儲存體。 
 
-> [!NOTE]
-> 方案中的此步驟僅適用於批次處理。
-> 
-> 
+>[!NOTE] 
+>方案中的此步驟僅適用於批次處理。
 
 輸入和輸出資料的資料管理︰
 
 * **輸出資料** (標示為「PartitionedCarEventsTable」) 應該在客戶的 "Data Lake" 中以基本/「最原始」的資料形式長時間保存。 
 * 通常會捨棄此管線的 **輸入資料** ，因為輸出資料會完整無缺地呈現輸入 - 只是方便後續使用而儲存 (分割)。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig11-vehicle-telematics-partition-car-events-workflow.png)
+![分割汽車事件工作流程](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig10-vehicle-telematics-partition-car-events-workflow.png)
 
-*圖 11 – 分割汽車事件工作流程*
+圖 10 – 分割汽車事件工作流程
 
 "PartitionCarEventsPipeline" 中使用 Hive HDInsight 活動分割原始資料。 步驟 1 中所產生的一年範例資料會以 YEAR/MONTH 分割。 資料分割可用來產生一年當中每個月 (總共 12 個磁碟分割) 的車輛訊號和診斷資料。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig12-vehicle-telematics-partition-car-events-pipeline.png)
+![PartitionCarEventsPipeline 活動](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig11-vehicle-telematics-partition-car-events-pipeline.png)
 
-*圖 12 - PartitionCarEventsPipeline*
+圖 11 - PartitionCarEventsPipeline
+
+PartitionConnectedCarEvents Hive 指令碼
 
 下列名為 "partitioncarevents.hql" 的 Hive 指令碼用於分割，位於已下載的 ZIP 的 "\demo\src\connectedcar\scripts" 資料夾中。 
-
+    
     SET hive.exec.dynamic.partition=true;
     SET hive.exec.dynamic.partition.mode = nonstrict;
     set hive.cli.print.header=true;
@@ -322,13 +322,11 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
         MonthNo
     FROM Stage_RawCarEvents WHERE YearNo = ${hiveconf:Year} AND MonthNo = ${hiveconf:Month};
 
-*圖 13 - PartitionConnectedCarEvents Hive 指令碼*
-
 一旦成功執行管線，您在儲存體帳戶的 "connectedcar" 容器下會看到已產生下列分割區。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig14-vehicle-telematics-partitioned-output.png)
+![分割的輸出](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig12-vehicle-telematics-partitioned-output.png)
 
-*圖 14 - 分割的輸出*
+圖 12 - 分割的輸出
 
 資料現在已最佳化、更容易管理，可供進一步處理以更深入了解批次。 
 
@@ -371,9 +369,9 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 ### <a name="real-time-analysis"></a>即時分析
 下列串流分析 SQL 查詢用來取得所有重要車輛參數的平均值，例如車輛速度、燃油量、引擎溫度、里程表讀數、胎壓、機油量等等。 平均值可用來偵測異常、發出警示，以及判斷在特定區域行駛的車輛的整體健全狀況，然後將它與人口統計資料相互關聯。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig15-vehicle-telematics-stream-analytics-query-for-real-time-processing.png)
+![用於即時處理的串流分析查詢](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig13-vehicle-telematics-stream-analytics-query-for-real-time-processing.png)
 
-圖 15 – 用於即時處理的串流分析查詢
+圖 13 – 用於即時處理的串流分析查詢
 
 所有平均值都以 3 秒的 TumblingWindow 來計算。 因為我們需要非重疊和連續的時間間隔，所以在此案例中使用 TubmlingWindow。 
 
@@ -383,7 +381,7 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 
 此方案包含一個應用程式來即時操作機器學習模型。 方案部署時會建立和設定這個稱為 “RealTimeDashboardApp” 的應用程式。 此應用程式會執行下列作業：
 
-1. 接聽由串流分析以模式連續發佈事件的事件中樞執行個體。 ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig16-vehicle-telematics-stream-analytics-query-for-publishing.png)*圖 16 – 用於發佈資料至輸出事件中樞執行個體的串流分析查詢* 
+1. 接聽由串流分析以模式連續發佈事件的事件中樞執行個體。 ![用於發佈資料的串流分析查詢](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig14-vehicle-telematics-stream-analytics-query-for-publishing.png)圖 14 – 用於發佈資料至輸出事件中樞執行個體的串流分析查詢 
 2. 對於此應用程式收到的每個事件： 
    
    * 使用機器學習服務要求回應評分 (RRS) 端點來處理資料。 部署時會自動發佈 RRS 端點。
@@ -395,19 +393,18 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 
 **執行即時儀表板應用程式**
 
-1. 按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載即時儀表板應用程式] 連結。 ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17-vehicle-telematics-powerbi-dashboard-setup.png) *圖 17 – PowerBI 儀表板安裝指示*
-2. 擷取並儲存在本機 ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig18-vehicle-telematics-realtimedashboardapp-folder.png) *圖 18 – RealtimeDashboardApp 資料夾*
+1. 按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載即時儀表板應用程式] 連結。 ![Power BI 儀表板安裝指示](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig15-vehicle-telematics-powerbi-dashboard-setup.png)圖 15 – Power BI 儀表板安裝指示
+2. 在本機擷取並儲存 ![RealtimeDashboardApp 資料夾](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig16-vehicle-telematics-realtimedashboardapp-folder.png)圖 16 – RealtimeDashboardApp 資料夾  
 3. 執行應用程式 RealtimeDashboardApp.exe
-4. 提供有效的 Power BI 認證、登入，然後按一下 [接受] ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig19a-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) ![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig19b-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) 
+4. 提供有效的 Power BI 認證、登入，然後按一下 [接受] ![即時儀表板應用程式登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17a-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) ![即時儀表板應用程式完成登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17b-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) 
 
-*Figure 19 – RealtimeDashboardApp: Sign in to PowerBI*
+圖 17 – RealtimeDashboardApp：登入 Power BI
 
-> [!NOTE]
-> 如果您想要排清 PowerBI 資料集，請指定 "flushdata" 來執行 RealtimeDashboardApp： 
-> 
-> 
+>[!NOTE] 
+>如果您想要排清 Power BI 資料集，請指定 "flushdata" 來執行 RealtimeDashboardApp： 
 
     RealtimeDashboardApp.exe -flushdata
+
 
 ### <a name="batch-analysis"></a>批次分析
 這裡的目標是展示 Contoso Motors 如何利用 Azure 計算能力來處理巨量資料，以深入了解駕駛模式、使用行為和車輛健全狀況。 這可達成下列目標：
@@ -417,20 +414,23 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
 
 在此方案中，我們以達成下列度量為目標：
 
-1. **激進駕駛行為**：識別車型、位置、駕駛狀況和該年行駛時間等趨勢，以深入了解激進駕駛模式。 Contoso Motors 可使用這些了解來進行行銷活動、推出新的人性化功能，以及基於使用方式的保險。
+1. **危險駕駛行為**：識別車型、位置、駕駛狀況和該年行駛時間等趨勢，以深入了解危險駕駛模式。 Contoso Motors 可使用這些了解來進行行銷活動、推出新的人性化功能，以及基於使用方式的保險。
 2. **省油駕駛行為**：識別車型、位置、駕駛狀況和該年行駛時間等趨勢，以深入了解省油駕駛模式。 Contoso Motors 可使用這些了解來進行行銷活動、推出新的功能和主動回報駕駛人，進而養成節省成本和符合環保的駕駛習慣。 
 3. **召回車型**：進行異常偵測機器學習服務實驗，以識別需要召回的車型
 
 讓我們看一看上述每個度量的詳細資料，
 
-**激進駕駛模式**
+**危險駕駛模式**
 
-在名為 "AggresiveDrivingPatternPipeline" 的管線中，使用 Hive 處理分割的車輛訊號和診斷資料，以判斷呈現激進駕駛模式的車型、位置、車輛、駕駛狀況和其他參數。
+在名為 "AggresiveDrivingPatternPipeline" 的管線中，使用 Hive 處理分割的車輛訊號和診斷資料，以判斷呈現危險駕駛模式的車型、位置、車輛、駕駛狀況和其他參數。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig20-vehicle-telematics-aggressive-driving-pattern.png)  
-*圖 20 – 激進駕駛模式工作流程*
+![危險駕駛模式工作流程](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig18-vehicle-telematics-aggressive-driving-pattern.png) 
+圖 18 – 危險駕駛模式工作流程**
 
-名為 "aggresivedriving.hql" 用於分析激進駕駛狀況模式的 Hive 指令碼位於已下載的 ZIP 的 "\demo\src\connectedcar\scripts" 資料夾中。 
+
+危險駕駛模式 Hive 查詢
+
+名為 "aggresivedriving.hql" 用於分析危險駕駛狀況模式的 Hive 指令碼位於已下載的 ZIP 的 "\demo\src\connectedcar\scripts" 資料夾中。 
 
     DROP TABLE IF EXISTS PartitionedCarEvents; 
     CREATE EXTERNAL TABLE PartitionedCarEvents
@@ -489,25 +489,26 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
     from PartitionedCarEvents
     where transmission_gear_position IN ('fourth', 'fifth', 'sixth', 'seventh', 'eight') AND brake_pedal_status = '1' AND speed >= '50'
 
-*圖 21 – 激進駕駛模式 Hive 查詢*
 
-它使用車輛的傳輸齒輪位置、剎車踏板狀態和速度的組合，根據高速狀態下的剎車模式來偵測魯莽/激進駕駛行為。 
+它使用車輛的傳輸齒輪位置、剎車踏板狀態和速度的組合，根據高速狀態下的剎車模式來偵測魯莽/危險駕駛行為。 
 
 一旦成功執行管線，您在儲存體帳戶的 "connectedcar" 容器下會看到已產生下列分割區。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig22-vehicle-telematics-aggressive-driving-pattern-output.png) 
+![AggressiveDrivingPatternPipeline 輸出](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig19-vehicle-telematics-aggressive-driving-pattern-output.png) 
 
-*圖 22 – AggressiveDrivingPatternPipeline 輸出*
+圖 19 – AggressiveDrivingPatternPipeline 輸出
 
 **省油駕駛模式**
 
 分割的車輛訊號和診斷資料會在名為 "FuelEfficientDrivingPatternPipeline" 的管線中處理。 使用 Hive 以判斷呈現省油駕駛模式的車型、位置、車輛、駕駛狀況和其他屬性。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig23-vehicle-telematics-fuel-efficient-driving-pattern.png) 
+![省油駕駛模式](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig19-vehicle-telematics-fuel-efficient-driving-pattern.png) 
 
-*圖 23 – 省油駕駛模式工作流程*
+圖 20 – 省油駕駛模式工作流程
 
-名為 "fuelefficientdriving.hql" 用於分析激進駕駛狀況模式的 Hive 指令碼位於已下載的 ZIP 的 "\demo\src\connectedcar\scripts" 資料夾中。 
+省油駕駛模式 Hive 查詢
+
+名為 "fuelefficientdriving.hql" 用於分析危險駕駛狀況模式的 Hive 指令碼位於已下載的 ZIP 的 "\demo\src\connectedcar\scripts" 資料夾中。 
 
     DROP TABLE IF EXISTS PartitionedCarEvents; 
     CREATE EXTERNAL TABLE PartitionedCarEvents
@@ -567,35 +568,35 @@ ms.openlocfilehash: ee4ba38bf483ae4731212d6efb8398ac8ce413cb
     where transmission_gear_position IN ('fourth', 'fifth', 'sixth', 'seventh', 'eight') AND parking_brake_status = '0' AND brake_pedal_status = '0' AND speed <= '60' AND accelerator_pedal_position >= '50'
 
 
-*圖 24 – 省油駕駛模式 Hive 查詢*
-
 它使用車輛的傳輸齒輪位置、剎車踏板狀態、速度和油門踏板位置的組合，根據油門、剎車和速度模式來偵測省油駕駛行為。 
 
 一旦成功執行管線，您在儲存體帳戶的 "connectedcar" 容器下會看到已產生下列分割區。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig25-vehicle-telematics-fuel-efficient-driving-pattern-output.png) 
+![FuelEfficientDrivingPatternPipeline 輸出](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig20-vehicle-telematics-fuel-efficient-driving-pattern-output.png) 
 
-*圖 25 – FuelEfficientDrivingPatternPipeline 輸出*
+圖 21 – FuelEfficientDrivingPatternPipeline 輸出
 
 **召回預測**
 
 方案部署時會將機器學習服務實驗佈建並發佈為 Web 服務。 此工作流程中利用的批次評分端點會註冊為 Data Factory 連結服務，並使用 Data Factory 批次評分活動來運作。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig26-vehicle-telematics-machine-learning-endpoint.png) 
+![機器學習服務端點](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig21-vehicle-telematics-machine-learning-endpoint.png) 
 
-*圖 26 – 在 Data Factory 中註冊為連結服務的機器學習服務端點*
+圖 22 – 在 Data Factory 中註冊為連結服務的機器學習服務端點
 
 DetectAnomalyPipeline 中使用已註冊的連結服務，透過異常偵測模型給資料評分。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig27-vehicle-telematics-aml-batch-scoring.png) 
+![Data Factory 中的 Azure Machine Learning 批次評分活動](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig22-vehicle-telematics-aml-batch-scoring.png) 
 
-*圖 27 – Data Factory 中的 Azure Machine Learning 批次評分活動* 
+圖 23 – Data Factory 中的 Azure Machine Learning 批次評分活動 
 
 此管線中執行幾個步驟來準備資料，以利用於使用批次評分 Web 服務來操作。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig28-vehicle-telematics-pipeline-predicting-recalls.png) 
+![用於預測需要召回車輛的 DetectAnomalyPipeline](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig23-vehicle-telematics-pipeline-predicting-recalls.png) 
 
-*圖 28 – 用於預測需要召回車輛的 DetectAnomalyPipeline* 
+圖 24 – 用於預測需要召回車輛的 DetectAnomalyPipeline 
+
+異常偵測 Hive 查詢
 
 一旦完成評分，就使用 HDInsight 活動來處理及彙總資料，並將機率分數為 0.60 或更高的車型分類為異常。
 
@@ -659,47 +660,48 @@ DetectAnomalyPipeline 中使用已註冊的連結服務，透過異常偵測模�
 
 一旦成功執行管線，您在儲存體帳戶的 "connectedcar" 容器下會看到已產生下列分割區。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig30-vehicle-telematics-detect-anamoly-pipeline-output.png) 
+![DetectAnomalyPipeline 輸出](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig24-vehicle-telematics-detect-anamoly-pipeline-output.png) 
 
-*圖 30 – DetectAnomalyPipeline 輸出*
+圖 25 – DetectAnomalyPipeline 輸出
 
 ## <a name="publish"></a>發佈
+
 ### <a name="real-time-analysis"></a>即時分析
 串流分析作業的其中一個查詢會將事件發佈至輸出事件中樞執行個體。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig31-vehicle-telematics-stream-analytics-job-publishes-output-event-hub.png)
+![串流分析作業發佈至輸出事件中樞執行個體](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig25-vehicle-telematics-stream-analytics-job-publishes-output-event-hub.png)
 
-*圖 31 – 串流分析作業發佈至輸出事件中樞執行個體*
+圖 26 – 串流分析作業發佈至輸出事件中樞執行個體
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig32-vehicle-telematics-stream-analytics-query-publish-output-event-hub.png)
+![用於發佈至輸出事件中樞執行個體的串流分析查詢](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig26-vehicle-telematics-stream-analytics-query-publish-output-event-hub.png)
 
-*圖 32 – 用於發佈至輸出事件中樞執行個體的串流分析查詢*
+圖 27 – 用於發佈至輸出事件中樞執行個體的串流分析查詢
 
-此方案包含的 RealTimeDashboardApp 會取用此事件串流。 此應用程式利用機器學習服務的要求-回應 Web 服務進行即時評分，並將產生的資料發佈給 PowerBI 資料集取用。 
+此方案包含的 RealTimeDashboardApp 會取用此事件串流。 此應用程式利用機器學習服務的要求-回應 Web 服務進行即時評分，並將產生的資料發佈給 Power BI 資料集取用。 
 
 ### <a name="batch-analysis"></a>批次分析
 批次和即時處理的結果會發佈給 Azure SQL Database 資料表取用。 安裝指令碼會自動建立 Azure SQL Server、Database 和資料表。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig33-vehicle-telematics-batch-processing-results-copy-to-data-mart.png)
+![批次處理結果複製到資料超市工作流程](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig27-vehicle-telematics-batch-processing-results-copy-to-data-mart.png)
 
-*圖 33 – 批次處理結果複製到資料超市工作流程*
+圖 28 – 批次處理結果複製到資料超市工作流程
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig34-vehicle-telematics-stream-analytics-job-publishes-to-data-mart.png)
+![串流分析作業發佈至資料超市](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig28-vehicle-telematics-stream-analytics-job-publishes-to-data-mart.png)
 
-*圖 34 – 串流分析作業發佈至資料超市*
+圖 29 – 串流分析作業發佈至資料超市
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig35-vehicle-telematics-data-mart-setting-in-stream-analytics-job.png)
+![串流分析作業中的資料超市設定](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig29-vehicle-telematics-data-mart-setting-in-stream-analytics-job.png)
 
-*圖 35 – 串流分析作業中的資料超市設定*
+圖 30 – 串流分析作業中的資料超市設定
 
 ## <a name="consume"></a>取用
 Power BI 給此方案一個豐富的儀表板來提供即時資料和預測性分析視覺效果。 
 
-如需有關設定 PowerBI 報告和儀表板的詳細指示，請按一下這裡。 最終的儀表板顯示如下：
+如需有關設定 Power BI 報告和儀表板的詳細指示，請按一下這裡。 最終的儀表板顯示如下：
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig36-vehicle-telematics-powerbi-dashboard.png)
+![Power BI 儀表板](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig30-vehicle-telematics-powerbi-dashboard.png)
 
-*圖 36 - PowerBI 儀表板*
+圖 31 - Power BI 儀表板
 
 ## <a name="summary"></a>摘要
 本文件包含車輛遙測資料分析方案的詳細探討。 這以預測和動作示範即時和批次分析的 Lambda 架構模式。 此模式適用於需要最忙碌路徑 (即時) 和不忙碌路徑 (批次) 分析的各種使用案例。 
@@ -707,6 +709,6 @@ Power BI 給此方案一個豐富的儀表板來提供即時資料和預測性�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 
