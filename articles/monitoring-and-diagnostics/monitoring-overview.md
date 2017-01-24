@@ -1,143 +1,153 @@
 ---
-title: Overview of Monitoring in Microsoft Azure | Microsoft Docs
-description: Top level overview of monitoring and diagnostics in Microsoft Azure including alerts, webhooks, autoscale and more.
+title: "Azure 監視概觀 | Microsoft Docs"
+description: "Microsoft Azure 中 Azure 監視器的最高層級概觀，包括警示、webhook、自動調整等等。"
 author: rboucher
-manager: ''
-editor: ''
+manager: carmonm
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 1b962c74-8d36-4778-b816-a893f738f92d
 ms.service: monitoring-and-diagnostics
-l: ''
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/11/2016
+ms.date: 12/05/2016
 ms.author: robb
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2f8ff117966b11e7415abaa5e7a0735742d7ef99
+
 
 ---
-# <a name="overview-of-monitoring-in-microsoft-azure"></a>Overview of Monitoring in Microsoft Azure
-This article provides a conceptual overview of monitoring Azure resources. It provides pointers to information on specific types of resources.  For high-level information on monitoring your application from non-Azure point of view, see [Monitoring and diagnostics guidance](../best-practices-monitoring.md).
 
-Cloud applications are complex with many moving parts. Monitoring provides data to ensure that your application stays up and running in a healthy state. It also helps you to stave off potential problems or troubleshoot past ones. In addition, you can use monitoring data to gain deep insights about your application. That knowledge can help you to improve application performance or maintainability, or automate actions that would otherwise require manual intervention.
+# <a name="overview-of-monitoring-in-microsoft-azure"></a>Microsoft Azure 中的監視概觀
+本文提供監視 Azure 資源的概念性概觀， 以及特定資源類型詳細資訊的指標。  如需從非 Azure 角度監視應用程式的高層級資訊，請參閱 [監視和診斷指引](../best-practices-monitoring.md)。
 
-The following diagram shows a conceptual view of Azure monitoring, including the type of logs you can collect and what you can do with that data.   
+Azure 監視器的影片逐步解說位於  
+[探索 Microsoft Azure 監視和診斷](https://channel9.msdn.com/Blogs/Azure-Monitoring/Get-Started-with-Azure-Monitor)。 在[探索 Microsoft Azure 監視和診斷](https://channel9.msdn.com/events/Ignite/2016/BRK2234)可取得額外影片，該影片說明您可以使用 Azure 監視器的案例。  
 
-![Logical Model for monitoring and diagnostics for non-compute resources](./media/monitoring-overview/MonitoringAzureResources-non-compute_v3.png)
+雲端應用程式相當複雜，且具有許多移動組件。 監視會提供資料，以確保應用程式持續運作並以健全的狀態執行。 它也可協助您預防潛在問題，或是針對過去所發生的問題進行疑難排解。 除此之外，您還可以使用監視資料來取得應用程式的深入解析。 這些知識可協助您提升應用程式效能或維護性，或是將原本需要手動介入的動作自動化。
 
-Figure 1: Conceptual Model for monitoring and diagnostics for non-compute resources
+下圖顯示 Azure 監視的概念式檢視，包括您可以收集的記錄檔類型，以及可以使用該資料進行的作業。   
+
+![針對非計算資源的監視與診斷邏輯模型](./media/monitoring-overview/MonitoringAzureResources-non-compute_v3.png)
+
+圖 1：非計算資源的監視與診斷概念模型
 
 <br/>
 
-![Logical Model for monitoring and diagnostics for compute resources](./media/monitoring-overview/MonitoringAzureResources-compute_v3.png)
+![針對計算資源的監視與診斷邏輯模型](./media/monitoring-overview/MonitoringAzureResources-compute_v3.png)
 
-Figure 2: Conceptual Model for monitoring and diagnostics for compute resources
+圖 2：計算資源的監視與診斷概念模型
 
-## <a name="monitoring-sources"></a>Monitoring Sources
-### <a name="activity-logs"></a>Activity Logs
-You can search the Activity Log (previously called Operational or Audit Logs) for information about your resource as seen by the Azure infrastructure. The log contains information such as times when resources are created or destroyed.  
+## <a name="monitoring-sources"></a>監視來源
+### <a name="activity-logs"></a>活動記錄檔
+您可以搜尋活動記錄檔 (之前稱為「作業記錄」或「稽核記錄」)，以取得 Azure 基礎結構所見之資源的相關資訊。 此記錄檔包含資源的建立或終結時間等資訊。  
 
-### <a name="host-vm"></a>Host VM
-**Compute Only**
+### <a name="host-vm"></a>主機 VM
+**僅限計算**
 
-Some compute resources like Cloud Services, Virtual Machines, and Service Fabric have a dedicated Host VM they interact with. The Host VM is the equivalent of Root VM in the Hyper-V hypervisor model. In this case, you can collect metrics on just the Host VM in addition to the Guest OS.  
+某些計算資源 (例如雲端服務、虛擬機器及 Service Fabric) 具有它們會與之互動的專用主機 VM。 主機 VM 等同於 Hyper-V Hypervisor 模型中的根 VM。 在此情況下，在客體 OS 之外，您可以只收集主機 VM 上的度量。  
 
-For other Azure services, there is not necessarily a 1:1 mapping between your resource and a particular Host VM so host VM metrics are not available. 
+針對其他 Azure 服務，您的資源和特定主機 VM 之間並不一定具有 1:1 的對應，因此沒有主機 VM 度量可用。
 
-### <a name="resource---metrics-and-diagnostics-logs"></a>Resource - Metrics and Diagnostics Logs
-Collectable metrics vary based on the resource type. For example, Virtual Machines provides statistics on the Disk IO and Percent CPU. But those stats don't exist for a Service Bus queue, which instead provides metrics like queue size and message throughput.
+### <a name="resource---metrics-and-diagnostics-logs"></a>資源 - 計量和診斷記錄檔
+可收集的計量視資源類型而異。 例如，虛擬機器會提供磁碟 IO 和百分比 CPU 的統計資料。 但服務匯流排佇列就沒有這些統計資料，而是改為提供佇列大小和訊息輸送量等計量。
 
-For compute resources you can obtain metrics on the Guest OS and diagnostics modules like Azure Diagnostics. Azure Diagnostics helps gather and route gather diagnostic data to other locations, including Azure storage.
+針對計算資源，您可以在客體 OS 及診斷模組 (如 Azure 診斷) 上取得計量。 Azure 診斷可以協助收集診斷資料，並將該資料路由到其他的位置 (包括 Azure 儲存體)。
 
-A list of currently collectable metrics is available at [supported metrics](monitoring-supported-metrics.md).
+[支援的度量](monitoring-supported-metrics.md)中有目前可收集的度量清單。
 
-### <a name="application---diagnostics-logs,-application-logs,-and-metrics"></a>Application - Diagnostics Logs, Application Logs, and Metrics
-**Compute Only**
+### <a name="application---diagnostics-logs-application-logs-and-metrics"></a>應用程式 - 診斷記錄檔、應用程式記錄檔及計量
+**僅限計算**
 
-Applications can run on top of the Guest OS in the compute model. They emit their own set of logs and metrics.
+應用程式能以計算模型在客體 OS 上執行。 它們會發出自己的記錄檔和計量集合。
 
-Types of metrics include
+計量類型包括
 
-* Performance counters
-* Application Logs
-* Windows Event Logs
-* .NET Event Source
-* IIS Logs
-* Manifest based ETW
-* Crash Dumps
-* Customer Error Logs
+* 效能計數器
+* 應用程式記錄檔
+* Windows 事件記錄檔
+* .NET 事件來源
+* IIS 記錄檔
+* 以資訊清單為基礎的 ETW
+* 損毀傾印
+* 客戶錯誤記錄檔
 
-## <a name="uses-for-monitoring-data"></a>Uses for Monitoring Data
-### <a name="visualize"></a>Visualize
-Visualizing your monitoring data in graphics and charts helps you find trends far more quickly than looking through the data itself.  
+## <a name="uses-for-monitoring-data"></a>監視資料的用途
+### <a name="visualize"></a>視覺化
+以圖形和圖表視覺化您的監視資料，協助您透過比查看資料本身更快的速度找出趨勢。  
 
-A few visualization methods include:
+幾個視覺化方法包括︰
 
-* Use the Azure portal
-* Route data to Azure Application Insights
-* Route data to Microsoft PowerBI
-* Route the data to a third-party visualization tool using either live streaming or by having the tool read from an archive in Azure storage
+* 使用 Azure 入口網站
+* 將資料路由至 Azure Application Insights
+* 將資料路由至 Microsoft PowerBI
+* 將資料路由至協力廠商視覺化工具，無論是透過即時串流，或是讓該工具讀取 Azure 儲存體中的封存
 
-### <a name="archive"></a>Archive
-Monitoring data is typically written to Azure storage and kept there until you delete it.
+### <a name="archive"></a>封存
+監視資料通常會寫入 Azure 儲存體，並持續保存在那裡，直到您將它刪除為止。
 
-A few ways to use this data:
+以下為使用此資料的幾個方式：
 
-* Once written, you can have other tools within or outside of Azure read it and process it.
-* You download the data locally for a local archive or change your retention policy in the cloud to keep data for extended periods of time.  
-* You leave the data in Azure storage indefinitely, though you have to pay for Azure storage based on the amount of data you keep.
-* 
-### <a name="query"></a>Query
-You can use the Azure Monitor REST API, cross platform Command-Line Interface (CLI) commands, PowerShell cmdlets, or the .NET SDK to access the data in the system or Azure storage
+* 資料寫入後，您可以讓其他位於 Azure 之內或之外的工具讀取該資料並加以處理。
+* 您可以於本機將該資料下載到本機封存，或是在雲端變更您的保留原則，以延長資料的保留時間。  
+* <a name="you-leave-the-data-in-azure-storage-indefinitely-though-you-have-to-pay-for-azure-storage-based-on-the-amount-of-data-you-keep"></a>您將資料無限期的放在 Azure 儲存體中，則必須根據您所保留的資料量支付 Azure 儲存體費用。
+  -
 
-Examples include:
+### <a name="query"></a>查詢
+您可以使用 Azure 監視器 REST API、跨平台命令列介面 (CLI) 命令、PowerShell Cmdlet 或 .NET SDK 來存取系統或是 Azure 儲存體中的資料
 
-* Getting data for a custom monitoring application you have written
-* Creating custom queries and sending that data to a third-party application.
+範例包括：
 
-### <a name="route"></a>Route
-You can stream monitoring data to other locations in real time.
+* 針對您所撰寫的自訂監視應用程式取得資料
+* 建立自訂查詢並將該資料傳送到協力廠商應用程式。
 
-Examples include:
+### <a name="route"></a>路由
+您可以將監視資料即時串流到其他位置。
 
-* Send to Application Insights so you can use the visualization tools there.
-* Send to Event Hubs so you can route to third-party tools to perform real-time analysis.
+範例包括：
 
-### <a name="automate"></a>Automate
-You can use monitoring data to trigger events or even whole processes Examples include:
+* 傳送到 Application Insights，讓您可以使用那裡的視覺化工具。
+* 傳送到事件中樞，讓您可以路由到協力廠商工具以執行即時分析。
 
-* Use data to autoscale compute instances up or down based on application load.
-* Send emails when a metric crosses a predetermined threshold.
-* Call a web URL (webhook) to execute an action in a system outside of Azure
-* Start a runbook in Azure automation to perform any variety of tasks
+### <a name="automate"></a>自動化
+您可以使用監視資料來觸發事件或甚至觸發整個程序，範例包括：
 
-## <a name="methods-of-use"></a>Methods of Use
-In general, you can manipulate data tracking, routing, and retrieval using one of the following methods. Not all methods are available for all actions or data types.
+* 使用資料來根據應用程式負載，自動向上或向下調整計算執行個體。
+* 在某個計量超過預先定義的臨界值時傳送電子郵件。
+* 呼叫 Web URL (webhook) 以在 Azure 之外的系統中執行動作
+* 在 Azure 自動化中啟動 Runbook 以執行各種工作
 
-* [Azure portal](https://portal.azure.com)
+## <a name="methods-of-use"></a>使用方法
+一般來說，您可以使用下列其中一個方法操作資料追蹤、路由及擷取。 並非所有方法都適用所有動作或資料類型。
+
+* [Azure 入口網站](https://portal.azure.com)
 * [PowerShell](insights-powershell-samples.md)  
-* [Cross-platform Command Line Interface (CLI)](insights-cli-samples.md)
+* [跨平台命令列介面 (CLI)](insights-cli-samples.md)
 * [REST API](https://msdn.microsoft.com/library/dn931943.aspx)
 * [.NET SDK](https://msdn.microsoft.com/library/dn802153.aspx)
 
-## <a name="azure’s-monitoring-offerings"></a>Azure’s Monitoring Offerings
-Azure has offerings available for monitoring your services from bare-metal infrastructure to application telemetry. The best monitoring strategy combines use of all three to gain comprehensive, detailed insight into the health of your services.
+## <a name="azures-monitoring-offerings"></a>Azure 的監視供應項目
+Azure 有提供監視您服務 (從裸機基礎結構到應用程式遙測) 的供應項目。 最好的監視策略，便是結合全部三種供應項目，以獲得服務健全狀況的完整、詳細深入解析。
 
-* [Azure Monitor](http://aka.ms/azmondocs) – Offers visualization, query, routing, alerting, autoscale, and automation on data both from the Azure infrastructure (Activity Log) and each individual Azure resource (Diagnostic Logs). This article is part of the Azure Monitor documentation. The Azure Monitor name was released September 27 at Ignite 2016.  The previous name was "Azure Insights."  
-* [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) – Provides rich detection and diagnostics for issues at the application layer of your service, well-integrated on top of data from Azure Monitoring. It's the default diagnostics platform for App Service Web Apps.  You can route data from other services to it.  
-* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) part of [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite) – Provides a holistic IT management solution for both on-premises and third-party cloud-based infrastructure (such as AWS) in addition to Azure resources.  Data from Azure Monitor can be routed directly to Log Analytics so you can see metrics and logs for your entire environment in one place.     
+* [Azure 監視器](http://aka.ms/azmondocs) - 針對來自 Azure 基礎結構 (活動記錄檔) 及每個個別的 Azure 資源 (診斷記錄檔) 的資料，提供視覺化、查詢、路由、警示、自動調整及自動化功能。 此文章為 Azure 監視器文件的一部分。 「Azure 監視器」這個名稱於 2016 年 9 月 25 日在 Ignite 發表。  先前的名稱是「Azure Insights」。  
+* [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) - 針對您服務的應用程式層問題提供豐富的偵測和診斷，並完美整合在來自 Azure 監視的資料之上。 它是 App Service Web Apps 的預設診斷平台。  您可以將其他服務資料路由至此。  
+* [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite) 中的 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) - 為內部部署和協力廠商雲端式基礎結構 (如 AWS) 提供 Azure 資源之外的全面性 IT 管理解決方案。  Azure 監視器中的資料可以直接路由至 Log Analytics，以便您可以在同一個地方看到整個環境的度量與記錄。     
 
-## <a name="next-steps"></a>Next steps
-Learn more about
+## <a name="next-steps"></a>後續步驟
+深入了解
 
-* [Azure Monitor in a video from Ignite 2016](https://myignite.microsoft.com/videos/4977) 
-* [Getting Started with Azure Monitor](monitoring-get-started.md) 
-* [Azure Diagnostics](../azure-diagnostics.md) if you are attempting to diagnose problems in your Cloud Service, Virtual Machine, or Service Fabric application.
-* [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) if you are trying to diagnostic problems in your App Service Web app.
-* [Troubleshooting Azure Storage](../storage/storage-e2e-troubleshooting.md) when using Storage Blobs, Tables, or Queues
-* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) and the [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite)
+* [Ignite 2016 上的 Azure 監視器影片](https://myignite.microsoft.com/videos/4977)
+* [開始使用 Azure 監視器](monitoring-get-started.md)
+* [Azure 診斷](../azure-diagnostics.md) ，如果您正在嘗試診斷您的雲端服務、虛擬機器或 Service Fabric 應用程式中的問題。
+* [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) ，如果您正在嘗試診斷 App Service Web 應用程式中的問題。
+* [疑難排解 Azure 儲存體](../storage/storage-e2e-troubleshooting.md) 
+* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) 及 [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO2-->
 
 

@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 11/28/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 3ba16154857f8e7b59a1013b736d6131a4161185
-ms.openlocfilehash: 3d45ec5a6636de4213c6c02dca0e5288ec3aa0e3
+ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
+ms.openlocfilehash: 315fb49ba25c46afaa6571d9249ecd1c8da13e91
 
 
 ---
@@ -65,12 +65,12 @@ Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL_LATIN1_GENE
 - 如需了解 Azure SQL 邏輯伺服器的概觀，請參閱 [SQL Database 邏輯伺服器概觀](sql-database-server-overview.md)
 - 如需了解 Transact-SQL 支援與差異的詳細資訊，請參閱 [ 的差異](sql-database-transact-sql-information.md)。
 - 如需根據您**服務層**的特定資源配額和限制。 如需服務層級的概觀，請參閱 [SQL Database 服務層級](sql-database-service-tiers.md)。
-- 如需與安全性相關的方針，請參閱＜ [Azure SQL Database 安全性方針與限制](sql-database-security-guidelines.md)＞。
+- 如需安全性概觀，請參閱 [Azure SQL Database 安全性概觀](sql-database-security-overview.md)。
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜ [SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
 
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

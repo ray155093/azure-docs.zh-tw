@@ -13,11 +13,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/17/2016
+ms.date: 01/05/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1e7529de2968b2745b42001cc16b54d70b2a5b86
+ms.sourcegitcommit: aec8fd057bd31fc933d19996567437b2a897623b
+ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
 
 
 ---
@@ -54,7 +54,7 @@ ms.openlocfilehash: 1e7529de2968b2745b42001cc16b54d70b2a5b86
 在本節中，您將執行下列步驟以從 Azure 入口網站建立新的 Azure 自動化帳戶。  這會建立執行身分和傳統執行身分帳戶。  
 
 > [!NOTE]
-> 執行這些步驟的使用者「必須」是訂用帳戶管理員角色的成員，而且是授與使用者存取訂用帳戶權限的共同管理員。  此使用者也必須加入為該訂用帳戶預設 Active Directory 的使用者；此帳戶不需要指派給特殊權限的角色。
+> 執行這些步驟的使用者必須是服務管理員角色的成員，或是授與使用者存取訂用帳戶權限的共同管理員。 此使用者也必須加入為該訂用帳戶預設 Active Directory 的使用者；此帳戶不需要指派給特殊權限的角色。 不是訂用帳戶之 Active Directory 成員的使用者，在新增至訂用帳戶的共同管理員角色之前，將會以 [來賓] 身分新增至 Active Directory 並且會在 [新增自動化帳戶] 刀鋒視窗中看到「您沒有權限建立...」警告。 新增至共同管理員角色的使用者可以先從訂用帳戶的 Active Directory 中移除並重新新增，使其成為 Active Directory 中的完整使用者。 從 Azure 入口網站的 [Azure Active Directory] 窗格，選取 [使用者和群組]、選取 [所有使用者]，然後在選取特定使用者之後選取 [設定檔]，即可驗證這種情況。  使用者設定檔之下 [使用者類型] 屬性的值不得等於 [來賓]。  
 > 
 > 
 
@@ -137,7 +137,7 @@ ms.openlocfilehash: 1e7529de2968b2745b42001cc16b54d70b2a5b86
 
 1. 您已下載並安裝 [Windows Management Framework (WMF) 4.0](https://www.microsoft.com/download/details.aspx?id=40855) (如果您執行 Windows 7)。   
     如果您執行的是 Windows Server 2012 R2、Windows Server 2012、Windows 2008 R2、Windows 8.1 和 Windows 7 SP1，則 [Windows Management Framework 5.0](https://www.microsoft.com/download/details.aspx?id=50395) 可供安裝。
-2. Azure PowerShell 1.0。 如需有關此版本以及如何安裝的資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+2. Azure PowerShell 1.0。 如需有關此版本以及如何安裝的資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 3. 您已建立自動化帳戶。  此帳戶會被參照做為以下兩個指令碼所含參數 (–AutomationAccountName 和 -ApplicationDisplayName) 的值。
 
 若要在 Azure 入口網站中取得 SubscriptionID、ResourceGroup 和 AutomationAccountName 的值 (這些都是指令碼的必要參數)，請從 [自動化帳戶] 刀鋒視窗選取您的自動化帳戶，然後選取 [所有設定]。  在 [所有設定] 刀鋒視窗中，選取 [帳戶設定] 之下的 [屬性]。  在 [屬性] 刀鋒視窗中，您可以記下這些值。<br> ![自動化帳戶屬性](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
@@ -394,6 +394,6 @@ ms.openlocfilehash: 1e7529de2968b2745b42001cc16b54d70b2a5b86
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

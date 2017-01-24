@@ -1,13 +1,13 @@
 ---
-title: 使用 Beeline 與 HDInsight (Hadoop) 上的 Hive 搭配作業 | Microsoft Docs
-description: 學習如何使用 SSH 連線至 HDInsight 中的 Hadoop 叢集，然後使用 Beeline 以互動方式提交 Hive 查詢。 Beeline 是透過 JDBC 與 HiveServer2 搭配作業的公用程式。
+title: "使用 Beeline 與 HDInsight (Hadoop) 上的 Hive 搭配作業 | Microsoft Docs"
+description: "學習如何使用 SSH 連線至 HDInsight 中的 Hadoop 叢集，然後使用 Beeline 以互動方式提交 Hive 查詢。 Beeline 是透過 JDBC 與 HiveServer2 搭配作業的公用程式。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 3adfb1ba-8924-4a13-98db-10a67ab24fca
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/10/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 88194bdffaf2ec39723c735a9721fcb17d316178
+
 
 ---
 # <a name="use-hive-with-hadoop-in-hdinsight-with-beeline"></a>利用 Beeline 搭配使用 Hive 與 HDInsight 中的 Hadoop
@@ -27,13 +31,13 @@ ms.author: larryfr
 > 
 > 
 
-## <a name="<a-id="prereq"></a>prerequisites"></a><a id="prereq"></a>必要條件
+## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目：
 
 * HDInsight 叢集上以 Linux 為基礎的 Hadoop。
 * SSH 用戶端。 Linux、Unix 和 Mac OS 應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
-## <a name="<a-id="ssh"></a>connect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
+## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
 使用 SSH 命令，連線至 HDInsight 叢集的完整網域名稱 (FQDN)。 FQDN 將是您提供給叢集的名稱，然後是 **.azurehdinsight.net**。 例如，下列命令會連線至名為 **myhdinsight**的叢集：
 
     ssh admin@myhdinsight-ssh.azurehdinsight.net
@@ -46,12 +50,12 @@ ms.author: larryfr
 
 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱 [從 Linux、OS X 和 Unix 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-### <a name="putty-(windows-based-clients)"></a>PuTTY (Windows 架構用戶端)
+### <a name="putty-windows-based-clients"></a>PuTTY (Windows 架構用戶端)
 Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從下列位置下載： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 如需使用 PuTTY 的詳細資訊，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop ](hdinsight-hadoop-linux-use-ssh-windows.md)。
 
-## <a name="<a-id="beeline"></a>use-the-beeline-command"></a><a id="beeline"></a>使用 Beeline 命令
+## <a name="a-idbeelineause-the-beeline-command"></a><a id="beeline"></a>使用 Beeline 命令
 1. 連線之後，使用下列命令啟動 Beeline：
    
         beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
@@ -115,34 +119,36 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
      > 
      
      此命令的輸出應類似這樣：
+
+     ```
+     INFO  : Tez session hasn't been created yet. Opening session
+     INFO  :
      
-       INFO  : Tez session hasn't been created yet. Opening session
-       INFO  :
+     INFO  : Status: Running (Executing on YARN cluster with App id application_1443698635933_0001)
      
-       INFO  : Status: Running (Executing on YARN cluster with App id application_1443698635933_0001)
-     
-       INFO  : Map 1: -/-      Reducer 2: 0/1
-       INFO  : Map 1: 0/1      Reducer 2: 0/1
-       INFO  : Map 1: 0/1      Reducer 2: 0/1
-       INFO  : Map 1: 0/1      Reducer 2: 0/1
-       INFO  : Map 1: 0/1      Reducer 2: 0/1
-       INFO  : Map 1: 0(+1)/1  Reducer 2: 0/1
-       INFO  : Map 1: 0(+1)/1  Reducer 2: 0/1
-       INFO  : Map 1: 1/1      Reducer 2: 0/1
-       INFO  : Map 1: 1/1      Reducer 2: 0(+1)/1
-       INFO  : Map 1: 1/1      Reducer 2: 1/1
-       +----------+--------+--+
-       |   sev    | count  |
-       +----------+--------+--+
-       | [ERROR]  | 3      |
-       +----------+--------+--+
-       1 row selected (47.351 seconds)
+     INFO  : Map 1: -/-      Reducer 2: 0/1
+     INFO  : Map 1: 0/1      Reducer 2: 0/1
+     INFO  : Map 1: 0/1      Reducer 2: 0/1
+     INFO  : Map 1: 0/1      Reducer 2: 0/1
+     INFO  : Map 1: 0/1      Reducer 2: 0/1
+     INFO  : Map 1: 0(+1)/1  Reducer 2: 0/1
+     INFO  : Map 1: 0(+1)/1  Reducer 2: 0/1
+     INFO  : Map 1: 1/1      Reducer 2: 0/1
+     INFO  : Map 1: 1/1      Reducer 2: 0(+1)/1
+     INFO  : Map 1: 1/1      Reducer 2: 1/1
+     +----------+--------+--+
+     |   sev    | count  |
+     +----------+--------+--+
+     | [ERROR]  | 3      |
+     +----------+--------+--+
+     1 row selected (47.351 seconds)
+     ```
 5. 若要結束 Beeline，請使用 `!quit`。
 
-## <a name="<a-id="file"></a>run-a-hiveql-file"></a><a id="file"></a>執行 HiveQL 檔案
+## <a name="a-idfilearun-a-hiveql-file"></a><a id="file"></a>執行 HiveQL 檔案
 Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。 使用下列步驟建立檔案，然後利用執行該檔案。
 
-1. 使用以下命令，建立名為 __query.hql__的新檔案：
+1. 使用以下命令，建立名為 **query.hql**的新檔案：
    
         nano query.hql
 2. 編輯器開啟時，請使用下列做為檔案的內容。 此查詢將建立名為 **errorLogs**的新「內部」資料表：
@@ -160,7 +166,7 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。 使用下列步
      > 與外部資料表不同，捨棄內部資料表也會同時刪除基礎資料。
      > 
      > 
-3. 若要儲存檔案，請使用 **Ctrl**+**X**，然後輸入 **Y**，最後按 **Enter**。
+3. 若要儲存檔案，請使用 **Ctrl**+**_X**，然後輸入 **Y**，最後按 **Enter**。
 4. 使用下列命令，以使用 Beeline 來執行檔案。 以稍早取得的前端節點名稱取代 **HOSTNAME**，並以系統管理員帳戶的密碼取代 **PASSWORD**：
    
         beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -i query.hql
@@ -195,7 +201,7 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。 使用下列步
 
 請注意，參數/URI 與直接在前端節點上執行，或從叢集中的邊緣節點執行時不同。 這是因為從網際網路連接到叢集會使用公用閘道器，透過連接埠 443 路由流量。 此外，數個其他服務是透過連接埠 443 上的公用閘道器公開，因此 URI 與直接連接時不同。 從網際網路連接時您也必須提供密碼來驗證工作階段。
 
-## <a name="<a-id="summary"></a><a-id="nextsteps"></a>next-steps"></a><a id="summary"></a><a id="nextsteps"></a>後續步驟
+## <a name="a-idsummaryaa-idnextstepsanext-steps"></a><a id="summary"></a><a id="nextsteps"></a>後續步驟
 如您所見，Beeline 命令提供簡單的方法，以互動方式在 HDInsight 叢集上執行 Hive 查詢。
 
 如需 HDInsight 中 Hive 的一般資訊：
@@ -241,6 +247,6 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。 使用下列步
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

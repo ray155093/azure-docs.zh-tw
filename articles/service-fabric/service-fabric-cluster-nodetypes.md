@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/09/2016
+ms.date: 01/05/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 04acc5a82e658c216e25b96ecbfa42c88177506f
+ms.sourcegitcommit: a957a70be915459baa8c687c92e251c6011b6172
+ms.openlocfilehash: 6670076d14f1f3f3991dd004d488f69fb1c44cb6
 
 
 ---
@@ -83,7 +83,7 @@ ms.openlocfilehash: 04acc5a82e658c216e25b96ecbfa42c88177506f
 ![inboundNatPools][InboundNatPools]
 
 ### <a name="after-cluster-deployment"></a>叢集部署之後
-這稍微複雜一點，而且可能會導致 VM 設定被回收。 您現在必須使用 Azure PowerShell 設定新的值。 請確定您的電腦已安裝 Azure PowerShell 1.0+ 或更新版本。 如果您還沒安裝，強烈建議您依照 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
+這稍微複雜一點，而且可能會導致 VM 設定被回收。 您現在必須使用 Azure PowerShell 設定新的值。 請確定您的電腦已安裝 Azure PowerShell 1.0+ 或更新版本。 如果您還沒安裝，強烈建議您依照 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 
 登入您的 Azure 帳戶。 如果這個 PowerShell 命令因為某些原因無法運作，您應該檢查 Azure PowerShell 是否已正確安裝。
 
@@ -114,7 +114,7 @@ Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG nam
 
 <!--Image references-->
 [NodeTypes]: ./media/service-fabric-cluster-nodetypes/NodeTypes.png
-[資源]: ./media/service-fabric-cluster-nodetypes/Resources.png
+[Resources]: ./media/service-fabric-cluster-nodetypes/Resources.png
 [InboundNatPools]: ./media/service-fabric-cluster-nodetypes/InboundNatPools.png
 [LBBlade]: ./media/service-fabric-cluster-nodetypes/LBBlade.png
 [NATRules]: ./media/service-fabric-cluster-nodetypes/NATRules.png
@@ -122,6 +122,6 @@ Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG nam
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

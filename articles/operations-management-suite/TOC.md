@@ -1,4 +1,4 @@
-# Overview
+# 概觀
 ## [Operations Management Suite (OMS) 是什麼？](operations-management-suite-overview.md)
 ## [OMS 架構](operations-management-suite-architecture.md)
 ## [管理解決方案](operations-management-suite-solutions.md)
@@ -34,6 +34,7 @@
 ### [基準評估](oms-security-baseline.md)
 ### [惡意程式碼評估](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [系統更新評估](../log-analytics/log-analytics-system-update.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
+### [連線安全性產品](oms-security-connect-products.md)
 ## [與 OMS 整合](operations-management-suite-integration.md)
 
 
@@ -64,6 +65,6 @@
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

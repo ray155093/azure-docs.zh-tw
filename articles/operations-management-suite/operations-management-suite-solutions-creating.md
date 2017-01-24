@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 10/27/2016
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 830eb6627cae71f358b9790791b1d86f7c82c566
-ms.openlocfilehash: 90c83d286047bcfa7563d75e380559154ca36f5b
+ms.sourcegitcommit: a9b48f149427e5ceb69bcaa97b1bf08519499b6f
+ms.openlocfilehash: ab33a7610b8e7bbf64e9f1bfde3753f95956a82f
 
 
 ---
@@ -34,9 +34,9 @@ OMS 中的管理解決方案包含支援特定管理案例的多個資源。  �
 例如，管理解決方案可能會包含 [Azure 自動化 Runbook](../automation/automation-intro.md)，其會使用[排程](../automation/automation-schedules.md)和可提供所收集資料各種視覺效果的[檢視](../log-analytics/log-analytics-view-designer.md)資料收集到 Log Analytics 存放庫。  其他解決方案可能會使用相同的排程。  身為管理解決方案的作者，您會定義全部三個資源，但指定當移除解決方案時應自動移除 Runbook 及檢視。    您也會定義排程，但指定若移除解決方案時它應該保留在原位，以防其他解決方案仍在使用排程。
 
 ## <a name="management-solution-files"></a>管理解決方案檔案
-管理解決方案會實作為[資源管理範本](../resource-manager-template-walkthrough.md)。  學習如何撰寫管理解決方案的主要工作，是學習如何[撰寫範本](../resource-group-authoring-templates.md)。  本文提供用於解決方案的範本獨特詳細資料，以及如何定義一般解決方案資源。
+管理解決方案會實作為[資源管理範本](../azure-resource-manager/resource-manager-template-walkthrough.md)。  學習如何撰寫管理解決方案的主要工作，是學習如何[撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)。  本文提供用於解決方案的範本獨特詳細資料，以及如何定義一般解決方案資源。
 
-管理解決方案與 [Resource Manager 範本](../resource-group-authoring-templates.md#template-format)的基本結構相同，如下所示。  下列各節說明最上層項目及其在解決方案中的內容。  
+管理解決方案與 [Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md#template-format)的基本結構相同，如下所示。  下列各節說明最上層項目及其在解決方案中的內容。  
 
     {
        "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -48,7 +48,7 @@ OMS 中的管理解決方案包含支援特定管理案例的多個資源。  �
     }
 
 ## <a name="parameters"></a>參數
-[Parameters](../resource-group-authoring-templates.md#parameters) 是您在使用者安裝解決方案時向他們要求的值。  所有解決方案都會有標準參數，而您可以視需要針對特定解決方案新增額外的參數。  使用者在安裝解決方案時提供參數值的方式，將取決於特定參數以及解決方案的安裝方式。
+[Parameters](../azure-resource-manager/resource-group-authoring-templates.md#parameters) 是您在使用者安裝解決方案時向他們要求的值。  所有解決方案都會有標準參數，而您可以視需要針對特定解決方案新增額外的參數。  使用者在安裝解決方案時提供參數值的方式，將取決於特定參數以及解決方案的安裝方式。
 
 當使用者透過 [Azure Marketplace](operations-management-suite-solutions.md#finding-and-installing-management-solutions) 或 [Azure 快速入門範本](operations-management-suite-solutions.md#finding-and-installing-management-solutions)安裝管理解決方案時，系統會提示他們選取 [OMS 工作區和自動化帳戶](operations-management-suite-solutions-creating.md#oms-workspace-and-automation-account)。  這些用來填入每個標準參數的值。  系統不會提示使用者直接提供標準參數的值，但會提示他們提供任何其他參數的值。
 
@@ -181,7 +181,7 @@ OMS 中的管理解決方案包含支援特定管理案例的多個資源。  �
     ]
 
 ### <a name="dependencies"></a>相依性
-**dependsOn** 元素指定對另一個資源的[相依性](../resource-group-define-dependencies.md)。  安裝解決方案時，直到所有相依性建立後才會建立資源。  例如，解決方案可能會在使用[作業資源](operations-management-suite-solutions-resources-automation.md#automation-jobs)安裝時[啟動 Runbook](operations-management-suite-solutions-resources-automation.md#runbooks)。  作業資源會相依於 Runbook 資源，以確保在建立作業前建立 Runbook。
+**dependsOn** 元素指定對另一個資源的[相依性](../azure-resource-manager/resource-group-define-dependencies.md)。  安裝解決方案時，直到所有相依性建立後才會建立資源。  例如，解決方案可能會在使用[作業資源](operations-management-suite-solutions-resources-automation.md#automation-jobs)安裝時[啟動 Runbook](operations-management-suite-solutions-resources-automation.md#runbooks)。  作業資源會相依於 Runbook 資源，以確保在建立作業前建立 Runbook。
 
 ### <a name="oms-workspace-and-automation-account"></a>OMS 工作區和自動化帳戶
 管理解決方案需要 [OMS 工作區](../log-analytics/log-analytics-manage-access.md)才可包含檢視，以及需要[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)才可包含 Runbook 和相關資源。  這些項目必須在建立解決方案中的資源前取得，且不得定義於解決方案本身。  使用者將會在部署解決方案時[指定工作區和帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)，但身為作者，您應該考慮下列幾點。
@@ -228,7 +228,7 @@ OMS 中的管理解決方案包含支援特定管理案例的多個資源。  �
 
 
 ### <a name="dependencies"></a>相依性
-解決方案資源在解決方案中的每隔一個資源上須有[相依性](../resource-group-define-dependencies.md)，因為必須先存在相依性，才能建立解決方案。  您可以在 **dependsOn** 項目中針對每個資源新增一個項目。
+解決方案資源在解決方案中的每隔一個資源上須有[相依性](../azure-resource-manager/resource-group-define-dependencies.md)，因為必須先存在相依性，才能建立解決方案。  您可以在 **dependsOn** 項目中針對每個資源新增一個項目。
 
 ### <a name="properties"></a>屬性
 解決方案資源具有下表中的屬性。  這包括由定義解決方案安裝後如何管理資源的解決方案所參考及包含的資源。  解決方案中的每個資源應列在 **referencedResources** 或 **containedResources** 屬性中。
@@ -258,16 +258,16 @@ OMS 中的管理解決方案包含支援特定管理案例的多個資源。  �
 * [自動化資源](operations-management-suite-solutions-resources-automation.md)
 
 ## <a name="testing-a-management-solution"></a>測試管理解決方案
-在部署管理解決方案之前，建議您使用 [Test-AzureRmResourceGroupDeployment](../resource-group-template-deploy.md#deploy-with-powershell) 進行測試。  這會驗證您的解決方案檔，並協助您在嘗試部署它之前找出問題。
+在部署管理解決方案之前，建議您使用 [Test-AzureRmResourceGroupDeployment](../azure-resource-manager/resource-group-template-deploy.md#deploy) 進行測試。  這會驗證您的解決方案檔，並協助您在嘗試部署它之前找出問題。
 
 ## <a name="next-steps"></a>後續步驟
-* 了解[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)的詳細資料。
+* 了解[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)的詳細資料。
 * 搜尋 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates)不同 Resource Manager 範本的範例。
 * 檢視[將檢視新增至管理解決方案](operations-management-suite-solutions-resources-views.md)的詳細資訊。
 * 檢視[將自動化資源新增至管理解決方案](operations-management-suite-solutions-resources-automation.md)的詳細資訊。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

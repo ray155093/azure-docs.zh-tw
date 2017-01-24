@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 04/13/2016
 ms.author: singhkay
 translationtype: Human Translation
-ms.sourcegitcommit: f06747c35f12802f54b44774dff7f92280ba0dc9
-ms.openlocfilehash: b1c66c14fbf5b0361831bb987df3dc01131abc88
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 71036b1aa9915750992d9d671af6b1023def41c3
 
 
 ---
@@ -82,7 +82,7 @@ ms.openlocfilehash: b1c66c14fbf5b0361831bb987df3dc01131abc88
 ```
 
 #### <a name="virtual-machine-property-fields"></a>虛擬機器屬性欄位
-下表描述可用作您原則定義中欄位的虛擬機器屬性。 如需有關原則的詳細資訊，請參閱[使用原則來管理資源和控制存取](../resource-manager-policy.md#fields)。
+下表描述可用作您原則定義中欄位的虛擬機器屬性。 如需有關原則的詳細資訊，請參閱[使用原則來管理資源和控制存取](../azure-resource-manager/resource-manager-policy.md#conditions)。
 
 | 欄位名稱 | 說明 |
 | --- | --- |
@@ -92,13 +92,13 @@ ms.openlocfilehash: b1c66c14fbf5b0361831bb987df3dc01131abc88
 | imageVersion |指定所選擇 SKU 的映像版本 |
 
 ## <a name="create-the-policy"></a>建立原則
-直接使用 REST API 或 PowerShell Cmdlet 可以輕鬆地建立原則。 您可以深入了解[建立並指派原則](../resource-manager-policy.md#create-and-assign-a-policy)。
+直接使用 REST API 或 PowerShell Cmdlet 可以輕鬆地建立原則。 您可以深入了解[建立並指派原則](../azure-resource-manager/resource-manager-policy.md#create-and-assign-a-policy)。
 
 ## <a name="apply-the-policy"></a>套用原則
-建立原則之後，您需要為定義的範圍加以套用。 範圍可以是訂用帳戶、資源群組，甚至是資源。 您可以深入了解[建立並指派原則](../resource-manager-policy.md#create-and-assign-a-policy)。
+建立原則之後，您需要為定義的範圍加以套用。 範圍可以是訂用帳戶、資源群組，甚至是資源。 您可以深入了解[建立並指派原則](../azure-resource-manager/resource-manager-policy.md#create-and-assign-a-policy)。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,4 +1,10 @@
-1. 登入 [Azure 入口網站][Azure 入口網站]。
+## <a name="create-a-service-namespace"></a>建立服務命名空間
+
+若要開始在 Azure 中使用服務匯流排佇列，必須先建立命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。 
+
+若要建立命名空間：
+
+1. 登入 [Azure 入口網站][Azure portal]。
 2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]，[企業整合] 及 [服務匯流排]。
 3. 在 [建立命名空間]  對話方塊中，輸入命名空間名稱。 系統會立即檢查此名稱是否可用。
 4. 確定命名空間名稱可用之後，請選擇定價層 ([基本]、[標準] 或 [進階])。
@@ -26,8 +32,8 @@
 [connection-string]: ./media/service-bus-create-namespace-portal/connection-string.png
 
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
-[Azure 入口網站]: https://portal.azure.com
+[Azure portal]: https://portal.azure.com
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -8,16 +8,16 @@ manager: jhubbard
 editor: 
 ms.assetid: 3a56e9de-c21a-40ba-9a35-958172cb4e5b
 ms.service: sql-database
-ms.custom: overview
+ms.custom: how to
 ms.devlang: NA
 ms.workload: data-management
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: NA
 ms.date: 09/19/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 420b2153f6115dd712d3033e30f11f79b18cd80f
-ms.openlocfilehash: be89a2799af3bdc2938f73e3d54f00f81d9ab9cd
+ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
+ms.openlocfilehash: dde22adda13b88a6cd0f1d033c2730ddc3288050
 
 
 ---
@@ -30,9 +30,6 @@ ms.openlocfilehash: be89a2799af3bdc2938f73e3d54f00f81d9ab9cd
 > 
 
 [Azure 入口網站](https://portal.azure.com/) 可讓您建立、監視和管理 Azure SQL Database 與伺服器。 本文提供較常見工作的快速說明和詳細資料連結。
-
-> [!TIP]
-> 如需示範如何建立伺服器、建立伺服器型防火牆、檢視伺服器屬性、使用 SQL Server Management Studio 進行連接、查詢 Master 資料庫、建立範例資料庫和空白資料庫、查詢資料庫屬性、使用 SQL Server Management Studio 進行連接，以及查詢範例資料庫的教學課程，請參閱[開始使用教學課程](sql-database-get-started.md)。
 
 ## <a name="view-your-azure-sql-databases-servers-and-pools"></a>檢視您的 Azure SQL Database、伺服器和集區
 若要檢視可用的 SQL Database 服務，請按一下 [更多服務]，然後在搜尋方塊中輸入 **SQL**︰
@@ -50,7 +47,7 @@ ms.openlocfilehash: be89a2799af3bdc2938f73e3d54f00f81d9ab9cd
 ![SQL Server](./media/sql-database-manage-portal/sql-servers.png)
 
 ## <a name="how-do-i-create-or-view-sql-elastic-pools"></a>如何建立或檢視 Azure 彈性集區？
-若要開啟 [SQL 彈性集區] 刀鋒視窗，請按一下 [SQL 彈性集區]，然後按一下您想要使用的集區，或按一下 [+新增] 以建立集區。 如需詳細資訊，請參閱[使用 Azure 入口網站建立彈性集區](sql-database-elastic-pool-create-portal.md)。
+若要開啟 [SQL 彈性集區] 刀鋒視窗，請按一下 [SQL 彈性集區]，然後按一下您想要使用的集區，或按一下 [+新增] 以建立集區。 如需詳細資訊，請參閱 [使用 Azure 入口網站來建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)。
 
 ![SQL 彈性集區](./media/sql-database-manage-portal/elastic-pools.png)
 
@@ -106,7 +103,7 @@ ms.openlocfilehash: be89a2799af3bdc2938f73e3d54f00f81d9ab9cd
 ![SQL Database 匯出](./media/sql-database-manage-portal/sql-database-export.png)
 
 ## <a name="how-do-i-restore-a-sql-database-to-a-previous-point-in-time"></a>如何將 SQL Database 還原至先前的時間點？
-若要還原 SQL Database，請按一下 [SQL Database] 刀鋒視窗上的 [還原]。 如需詳細資訊，請參閱 [使用 Azure 入口網站將 Azure SQL Database 還原至先前的時間點](sql-database-point-in-time-restore.md)。
+若要還原 SQL Database，請按一下 [SQL Database] 刀鋒視窗上的 [還原]。 如需詳細資訊，請參閱 [使用 Azure 入口網站將 Azure SQL Database 還原至先前的時間點](sql-database-point-in-time-restore-portal.md)。
 
 ![SQL database settings](./media/sql-database-manage-portal/sql-database-restore.png)
 
@@ -125,11 +122,11 @@ ms.openlocfilehash: be89a2799af3bdc2938f73e3d54f00f81d9ab9cd
 
 ## <a name="additional-resources"></a>其他資源
 * [SQL Database](sql-database-technical-overview.md)
-* [使用 Azure 入口網站監視和管理彈性集區](sql-database-elastic-pool-manage-portal.md)
+* [使用 Azure 入口網站監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)
 
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -14,15 +14,16 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/15/2015
-ms.author: v-ahsab
+ms.author: asabbour
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: a10524fe9025d83bb033e9cbab864795dffbd8d2
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: ace15c99b53b786de9924a6dbe2c8a86645709e9
 
 
 ---
 # <a name="mariadb-mysql-cluster---azure-tutorial"></a>MariaDB (MySQL) 叢集 - Azure 教學課程
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 > [!NOTE]
 > Azure Marketplace 現已提供 MariaDB Enterprise 叢集。  此新方案會自動在 ARM 上部署 MariaDB Galera 叢集。 您應該從 https://azure.microsoft.com/en-us/marketplace/partners/mariadb/cluster-maxscale/ 使用新的服務 
@@ -328,23 +329,23 @@ ms.openlocfilehash: a10524fe9025d83bb033e9cbab864795dffbd8d2
 您可能想要了解[在 Linux 上叢集 MySQL 的另一種方法](virtual-machines-linux-classic-mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)，以及[最佳化和測試 Azure Linux VM 上的 MySQL 效能](virtual-machines-linux-classic-optimize-mysql.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)的方法。
 
 <!--Anchors-->
-[架構概觀]: #architecture-overview
-[建立範本]: #creating-the-template
-[建立叢集]: #creating-the-cluster
-[負載平衡叢集]: #load-balancing-the-cluster
-[驗證叢集]: #validating-the-cluster
-[後續步驟]: #next-steps
+[Architecture overview]: #architecture-overview
+[Creating the template]: #creating-the-template
+[Creating the cluster]: #creating-the-cluster
+[Load balancing the cluster]: #load-balancing-the-cluster
+[Validating the cluster]: #validating-the-cluster
+[Next steps]: #next-steps
 
 <!--Image references-->
 
 <!--Link references-->
 [Galera]: http://galeracluster.com/products/
-[Galera]: https://mariadb.org/en/about/
+[MariaDBs]: https://mariadb.org/en/about/
 [建立驗證的 SSH 金鑰]:http://www.jeff.wilcox.name/2013/06/secure-linux-vms-with-ssh-certificates/
 [Azure CLI 工具中的問題 #1268]:https://github.com/Azure/azure-xplat-cli/issues/1268
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

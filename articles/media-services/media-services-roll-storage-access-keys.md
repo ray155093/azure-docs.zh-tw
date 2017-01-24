@@ -1,19 +1,23 @@
 ---
-title: 更換儲存體存取金鑰之後更新媒體服務 | Microsoft Docs
-description: 本文章會教您如何在更換儲存體存取金鑰之後更新媒體服務。
+title: "更換儲存體存取金鑰之後更新媒體服務 | Microsoft Docs"
+description: "本文章會教您如何在更換儲存體存取金鑰之後更新媒體服務。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a892ebb0-0ea0-4fc8-b715-60347cc5c95b
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
-ms.author: milangada;cenkdin;juliako
+ms.author: milanga;cenkdin;juliako
+translationtype: Human Translation
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 8321f677d344109e35da3d8ba1109d8bece70db1
+
 
 ---
 # <a name="update-media-services-after-rolling-storage-access-keys"></a>更換儲存體存取金鑰之後更新媒體服務
@@ -25,21 +29,21 @@ ms.author: milangada;cenkdin;juliako
 
 > [!NOTE]
 > 如果您有多個儲存體帳戶，請針對每一個儲存體帳戶執行此程序。
-> 
+>
 > 在實際商用的帳戶上執行本文章描述的步驟之前，請事先在測試用帳戶上進行測試。
-> 
-> 
+>
+>
 
-## <a name="step-1:-regenerate-secondary-storage-access-key"></a>步驟 1：重新產生次要儲存體存取金鑰
-請先重新產生次要儲存體金鑰。 根據預設，媒體服務不會使用次要金鑰。  如需如何更換儲存體金鑰的相關資訊，請參閱 [做法：檢視、複製及重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)。
+## <a name="step-1-regenerate-secondary-storage-access-key"></a>步驟 1：重新產生次要儲存體存取金鑰
+請先重新產生次要儲存體金鑰。 根據預設，媒體服務不會使用次要金鑰。  如需如何更換儲存體金鑰的相關資訊，請參閱 [做法：檢視、複製及重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
 
-## <a name="<a-id="step2"></a>step-2:-update-media-services-to-use-the-new-secondary-storage-key"></a><a id="step2"></a>步驟 2：更新媒體服務以使用新的次要儲存體金鑰
+## <a name="a-idstep2astep-2--update-media-services-to-use-the-new-secondary-storage-key"></a><a id="step2"></a>步驟 2：更新媒體服務以使用新的次要儲存體金鑰
 更新媒體服務，開始使用次要儲存體存取金鑰。 您可以使用下列兩種方法的其中一個，將重新產生的儲存體金鑰與媒體服務同步。
 
 * 使用 Azure 入口網站︰若要尋找名稱和金鑰值，請移至 Azure 入口網站，然後選取您的帳戶。 [設定] 視窗隨即出現在右邊。 在 [設定] 視窗中，選取 [金鑰]。 根據您想要為媒體服務同步的儲存體金鑰，選取同步處理主要金鑰或同步處理次要金鑰按鈕。 在本案例中，使用次要金鑰。
 * 使用媒體服務管理 REST API。
 
-下列程式碼範例示範如何建構 https://endpoint/*subscriptionId*/services/mediaservices/Accounts/*accountName*/StorageAccounts/*storageAccountName*/Key 要求，以便透過媒體服務同步指定的儲存體金鑰。 在本情況中，會使用次要儲存體金鑰。 如需詳細資訊，請參閱 [做法：使用媒體服務管理 REST API](http://msdn.microsoft.com/library/azure/dn167656.aspx)。
+下列程式碼範例示範如何建構 https://endpoint/*subscriptionId*/services/mediaservices/Accounts/*accountName*/StorageAccounts/*storageAccountName*/Key 要求，以便透過媒體服務同步指定的儲存體金鑰。 在本情況中，會使用次要儲存體金鑰。 如需詳細資訊，請參閱 [做法：使用媒體服務管理 REST API](https://docs.microsoft.com/rest/api/media/management/how-to-use-media-services-management-rest-api)。
 
     public void UpdateMediaServicesWithStorageAccountKey(string mediaServicesAccount, string storageAccountName, string storageAccountKey)
     {
@@ -79,14 +83,14 @@ ms.author: milangada;cenkdin;juliako
 
 > [!NOTE]
 > 等待 30 分鐘，然後透過媒體服務執行任何操作 (例如，建立新定位器)，以免影響到待處理的工作。
-> 
-> 
+>
+>
 
-## <a name="step-3:-update-locators"></a>步驟 3：更新定位器
+## <a name="step-3-update-locators"></a>步驟 3：更新定位器
 > [!NOTE]
 > 更換儲存體存取金鑰時，請您一定要更新現有的定位器，這樣您的串流服務才不會停擺。
-> 
-> 
+>
+>
 
 將新的儲存體金鑰同步到 AMS 之後，請至少等候 30 分鐘。 接著，您可以重新建立 OnDemand 定位器，這樣定位器就會對指定的儲存體金鑰產生相依性，並維護現有的 URL。
 
@@ -94,18 +98,30 @@ ms.author: milangada;cenkdin;juliako
 
 > [!NOTE]
 > 若要確定能保留 OnDemand 定位器現有的 URL，您必須刪除現有的定位器並建立一個具有相同識別碼的新定位器。
-> 
-> 
+>
+>
 
 下列 .NET 範例示範如何重新建立一個識別碼相同的定位器。
 
-private static ILocator RecreateLocator(CloudMediaContext context, ILocator locator) { // Save properties of existing locator.
-var asset = locator.Asset; var accessPolicy = locator.AccessPolicy; var locatorId = locator.Id; var startDate = locator.StartTime; var locatorType = locator.Type; var locatorName = locator.Name;
+    private static ILocator RecreateLocator(CloudMediaContext context, ILocator locator)
+    {
+    // Save properties of existing locator.
+    var asset = locator.Asset;
+    var accessPolicy = locator.AccessPolicy;
+    var locatorId = locator.Id;
+    var startDate = locator.StartTime;
+    var locatorType = locator.Type;
+    var locatorName = locator.Name;
 
-// Delete old locator.
-locator.Delete();
+    // Delete old locator.
+    locator.Delete();
 
-if (locator.ExpirationDateTime <= DateTime.UtcNow) { throw new Exception(String.Format( "Cannot recreate locator Id={0} because its locator expiration time is in the past", locator.Id)); }
+    if (locator.ExpirationDateTime <= DateTime.UtcNow)
+        {
+            throw new Exception(String.Format(
+                "Cannot recreate locator Id={0} because its locator expiration time is in the past",
+                locator.Id));
+        }
 
         // Create new locator using saved properties.
         var newLocator = context.Locators.CreateLocator(
@@ -122,18 +138,18 @@ if (locator.ExpirationDateTime <= DateTime.UtcNow) { throw new Exception(String.
     }
 
 
-## <a name="step-5:-regenerate-primary-storage-access-key"></a>步驟 5：重新產生主要儲存體存取金鑰
-重新產生主要儲存體存取金鑰。 如需如何更換儲存體金鑰的相關資訊，請參閱 [做法：檢視、複製及重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)。
+## <a name="step-5-regenerate--primary-storage-access-key"></a>步驟 5：重新產生主要儲存體存取金鑰
+重新產生主要儲存體存取金鑰。 如需如何更換儲存體金鑰的相關資訊，請參閱 [做法：檢視、複製及重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
 
-## <a name="step-6:-update-media-services-to-use-the-new-primary-storage-key"></a>步驟 6：更新媒體服務，開始使用新的主要儲存體金鑰
+## <a name="step-6-update-media-services-to-use-the-new-primary-storage-key"></a>步驟 6：更新媒體服務，開始使用新的主要儲存體金鑰
 按照 [步驟 2](media-services-roll-storage-access-keys.md#step2) 描述的相同程序，這一次只將新的主要儲存體存取金鑰同步到媒體服務帳戶。
 
 > [!NOTE]
 > 等待 30 分鐘，然後透過媒體服務執行任何操作 (例如，建立新定位器)，以免影響到待處理的工作。
-> 
-> 
+>
+>
 
-## <a name="step-7:-update-locators"></a>步驟 7：更新定位器
+## <a name="step-7-update-locators"></a>步驟 7：更新定位器
 30 分鐘後，您可以重新建立 OnDemand 定位器，這樣定位器就會對新的主要儲存體金鑰產生相依性，並會維護現有的 URL。
 
 使用 [步驟 3](media-services-roll-storage-access-keys.md#step-3-update-locators)中所述的相同程序。
@@ -147,6 +163,8 @@ if (locator.ExpirationDateTime <= DateTime.UtcNow) { throw new Exception(String.
 ### <a name="acknowledgments"></a>通知
 我們想要向下列為建立此文件貢獻心力的人員致謝：Cenk Dingiloglu、Milan Gada、Seva Titov。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Jan17_HO2-->
 
 

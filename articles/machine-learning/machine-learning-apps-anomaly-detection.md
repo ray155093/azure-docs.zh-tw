@@ -1,22 +1,26 @@
 ---
-title: 機器學習應用程式：異常偵測服務 | Microsoft Docs
-description: 「異常偵測 API」是一個搭配 Microsoft Azure Machine Learning 建置的範例，此 API 使用固定時間間隔的數值，偵測時間序列資料中的異常狀況。
+title: "機器學習應用程式：異常偵測服務 | Microsoft Docs"
+description: "「異常偵測 API」是一個搭配 Microsoft Azure Machine Learning 建置的範例，此 API 使用固定時間間隔的數值，偵測時間序列資料中的異常狀況。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: alokkirpal
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 52fafe1f-e93d-47df-a8ac-9a9a53b60824
 ms.service: machine-learning
 ms.devlang: na
-ms.topic: reference
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 10/11/2016
-ms.author: alokkirpal
+ms.author: alok
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: cbcd469f39b42d741d73f9d96daf17d011b7ebc7
+
 
 ---
-# <a name="machine-learning-anomaly-detection-service#"></a>機器學習異常偵測服務
+# <a name="machine-learning-anomaly-detection-service"></a>機器學習異常偵測服務
 ## <a name="overview"></a>概觀
 [異常偵測 API](https://datamarket.azure.com/dataset/aml_labs/anomalydetection) 是一個搭配 Azure Machine Learning 建置的範例，此 API 使用固定時間間隔的數值，偵測時間序列資料中的異常狀況。 
 
@@ -41,7 +45,7 @@ ms.author: alokkirpal
 > 
 
 ## <a name="api-definition"></a>API 定義
-此服務提供透過 HTTPS 的 REST 型 API，有各種不同方式可使用此 API，包括 Web 或行動應用程式、R、Python、Excel 等等。您可以透過 REST API 呼叫將您的時間序列資料傳送到此服務，它會執行上述三個異常類型的組合。 服務會在 Azure Machine Learning 平台上執行，順暢調整您的商業需求並提供 SLA。
+此服務提供透過 HTTPS 的 REST 型 API，可以各種不同方式使用，包括 Web 或行動應用程式、R、Python、Excel 等等。您可以透過 REST API 呼叫將您的時間序列資料傳送到此服務，它會執行上述三個異常類型的組合。 服務會在 Azure Machine Learning 平台上執行，順暢調整您的商業需求並提供 SLA。
 
 ### <a name="headers"></a>標頭
 請確定要求中包含正確的標頭，應該如下：
@@ -139,10 +143,10 @@ ScoreWithSeasonality API 可用來對具有季節性模式的時間序列執行�
         "odata.metadata": "https://api.datamarket.azure.com/data.ashx/aml_labs/anomalydetection/v2/$metadata#AnomalyDetection.FrontEndService.Models.AnomalyDetectionResult",
         "ADOutput": "{
             "ColumnNames":["Time","OriginalData","ProcessedData","TSpike","ZSpike","PScore","PAlert","RPScore","RPAlert","TScore","TAlert"],
-            "ColumnTypes":["DateTime","Double","Double","Double","Double","Double","Int32","Double","Int32","Double","Int32"],
-            "Values":[
+              "ColumnTypes":["DateTime","Double","Double","Double","Double","Double","Int32","Double","Int32","Double","Int32"],
+              "Values":[
                 ["9/21/201411: 20: 00AM","10","10","0","0","-1.30229513613974","0","-1.30229513613974","0","-1.173800281031","0"]
-            ]
+              ]
         }"
     }
 
@@ -152,10 +156,10 @@ ScoreWithSeasonality API 可用來對具有季節性模式的時間序列執行�
 | 偵測器類別 | 偵測器 | 說明 | 輸入參數 | 輸出 |
 | --- | --- | --- | --- | --- |
 | 尖峰偵測器 |TSpike 偵測器 |偵測尖峰和下降是根據值與第一個和第三個四分位數的差距 |*tspikedetector.sensitivity*：接受範圍 1 - 10 的整數值，預設值︰3；值愈高，會捕捉到愈極端的值，因此降低敏感度 |TSpike︰二進位值 - 如果偵測到尖峰/下降則為 ‘1’，否則為 ‘0’ |
-| ZSpike 偵測器 |偵測尖峰和下降是根據資料點與平均數的差距 |*平均數*：接受範圍 1 - 10 的整數值，預設值︰3；值愈高，會捕捉到愈極端的值，而降低敏感度 |ZSpike︰二進位值 - 如果偵測到尖峰/下降則為 ‘1’，否則為 ‘0’ | |
-| 緩慢趨勢偵測器 |緩慢趨勢偵測器 |根據所設定的敏感度偵測緩慢的正向趨勢 |偵測器分數的臨界值 (預設值︰3.25，3.25 – 5 是合理值的選取範圍；值愈高，敏感度越低) |TScore︰代表趨勢異常分數的浮動數字 |
-| 層級變更偵測器 |單向層級變更偵測器 |根據所設定的敏感度偵測向上層級變更 |偵測器分數的臨界值 (預設值︰3.25，3.25 – 5 是合理值的選取範圍；值愈高，敏感度越低) |PScore︰代表向上層級變更異常分數的浮動數字 |
-| 雙向層級變更偵測器 |根據所設定的敏感度偵測向上和向下層級變更 |偵測器分數的臨界值 (預設值︰3.25，3.25 – 5 是合理值的選取範圍；值愈高，敏感度越低) |RPScore︰代表向上和向下層級變更異常分數的浮動數字 | |
+| ZSpike 偵測器 |偵測尖峰和下降是根據資料點與平均數的差距 |*zspikedetector.sensitivity*：接受範圍 1 - 10 的整數值，預設值︰3；值愈高，會捕捉到愈極端的值，而降低敏感度 |ZSpike︰二進位值 - 如果偵測到尖峰/下降則為 ‘1’，否則為 ‘0’ | |
+| 緩慢趨勢偵測器 |緩慢趨勢偵測器 |根據所設定的敏感度偵測緩慢的正向趨勢 | 偵測器分數的臨界值 (預設值︰3.25，3.25 – 5 是合理值的選取範圍；值愈高，敏感度越低) |TScore︰代表趨勢異常分數的浮動數字 |
+| 層級變更偵測器 |單向層級變更偵測器 |根據所設定的敏感度偵測向上層級變更 | 偵測器分數的臨界值 (預設值︰3.25，3.25 – 5 是合理值的選取範圍；值愈高，敏感度越低) |PScore︰代表向上層級變更異常分數的浮動數字 |
+| 雙向層級變更偵測器 |根據所設定的敏感度偵測向上和向下層級變更 | 偵測器分數的臨界值 (預設值︰3.25，3.25 – 5 是合理值的選取範圍；值愈高，敏感度越低) |RPScore︰代表向上和向下層級變更異常分數的浮動數字 | |
 
 ### <a name="parameters"></a>參數
 下表列出這些輸入參數的詳細資訊：
@@ -204,6 +208,6 @@ API 會對您的時間序列資料執行所有偵測器，然後傳回每個時�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

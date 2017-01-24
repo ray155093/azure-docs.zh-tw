@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/25/2016
+ms.date: 12/01/2016
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d5ac3ffa4c3e1a916fb7d81b54ae603ea3658cc5
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 9db906314998a7f99e3663a4753edec9487ae932
 
 
 ---
@@ -24,9 +24,9 @@ ms.openlocfilehash: d5ac3ffa4c3e1a916fb7d81b54ae603ea3658cc5
 本文件將逐步引導您了解如何使用「Azure 資訊安全中心」的建議來協助您保護 Azure 資源。
 
 > [!NOTE]
-> 本文件將使用範例部署來介紹服務。  這不是逐步指南。
-> 
-> 
+> 本文件將使用範例部署來介紹服務。  本文件不是一份逐步解說指南。
+>
+>
 
 ## <a name="what-are-security-recommendations"></a>有哪些安全性建議？
 資訊安全中心會定期分析 Azure 資源的安全性狀態。 當資訊安全中心識別潛在的安全性弱點時，它會建立建議。 這些建議會引導您完成設定所需控制項的程序。
@@ -63,12 +63,12 @@ ms.openlocfilehash: d5ac3ffa4c3e1a916fb7d81b54ae603ea3658cc5
   * **中**：有弱點存在，需要非關鍵性步驟或其他步驟才能將其消除或完成程序。
   * **低**：應該處理但不需要立即注意的弱點存在。 (預設不會顯示嚴重性低的建議，但是如果您要查看它們，則可以篩選嚴重性低的建議。)
 
-請使用下表做為參考，以協助您了解可用的建議，以及如果套用建議，每一個建議將產生的作用。
+請使用下表做為參考，以協助您了解可用的建議，以及如果套用建議，每一個建議所產生的作用。
 
 > [!NOTE]
 > 您會想要了解 Azure 資源的 [傳統和 Resource Manager 部署模型](../azure-classic-rm.md) 。
-> 
-> 
+>
+>
 
 | 建議 | 說明 |
 | --- | --- |
@@ -76,7 +76,7 @@ ms.openlocfilehash: d5ac3ffa4c3e1a916fb7d81b54ae603ea3658cc5
 | [修復 OS 弱點](security-center-remediate-os-vulnerabilities.md) |建議您讓作業系統組態符合建議的設定規則，例如不允許儲存密碼。 |
 | [套用系統更新](security-center-apply-system-updates.md) |建議您將遺漏的系統安全性與重大更新部署到 VM。 |
 | [在系統更新之後重新開機](security-center-apply-system-updates.md#reboot-after-system-updates) |建議您重新啟動 VM 以完成套用系統更新的程序。 |
-| [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md) |建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。 您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。 WAF 應用裝置 (使用 Resource Manager 部署模型建立) 需要部署至不同的虛擬網路。 WAF 應用裝置 (使用傳統部署模型所建立) 受限於只能使用網路安全性群組。 這項支援在未來將會延伸至 WAF 應用裝置 (傳統) 的完全自訂部署。 資訊安全中心建議您佈建 WAF，協助對抗以 VM 和 App Service 環境 (ASE) 上的 Web 應用程式為目標的攻擊。 若要深入了解 ASE，請參閱 [App Service 環境的文件](../app-service/app-service-app-service-environments-readme.md)。 |
+| [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md) |建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。 系統會針對任何具有相關聯網路安全性群組 (包含開放輸入 Web 連接埠 (80,443)) 的公開 IP (執行個體層級 IP 或負載平衡 IP)，顯示 WAF 建議。</br></br>資訊安全中心建議您佈建 WAF，協助對抗以虛擬機器和 App Service 環境上的 Web 應用程式為目標的攻擊。 App Service 環境 (ASE) 是Azure App Service 的 [Premium](https://azure.microsoft.com/pricing/details/app-service/) 服務方案選項，可提供完全隔離和專用的環境，以便安全地執行 Azure App Service 應用程式。 若要深入了解 ASE，請參閱 [App Service 環境的文件](../app-service/app-service-app-service-environments-readme.md)。</br></br>您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。 |
 | [完成應用程式保護](security-center-add-web-application-firewall.md#finalize-application-protection) |若要完成 WAF 組態，必須將流量重新路由至 WAF 設備。 遵循這項建議會完成必要的設定變更。 |
 | [新增新一代防火牆](security-center-add-next-generation-firewall.md) |建議您新增由 Microsoft 合作夥伴提供的新一代防火牆 (NGFW)，以提升您的安全防護。 |
 | [僅透過 NGFW 路由傳送流量](security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only) |建議您設定網路安全性群組 (NSG) 規則，強制透過您的 NGFW 傳送內送流量到 VM。 |
@@ -84,9 +84,9 @@ ms.openlocfilehash: d5ac3ffa4c3e1a916fb7d81b54ae603ea3658cc5
 | [解決端點保護健全狀況警示](security-center-resolve-endpoint-protection-health-alerts.md) |建議您先解決端點保護失敗。 |
 | [啟用子網路/虛擬機器上的網路安全性群組](security-center-enable-network-security-groups.md) |建議您在子網路或 VM 上啟用 NSG。 |
 | [透過網際網路面向端點限制存取](security-center-restrict-access-through-internet-facing-endpoints.md) |建議您為 NSG 設定輸入流量規則。 |
-| [啟用伺服器 SQL 稽核](security-center-enable-auditing-on-sql-servers.md) |建議您針對 Azure SQL 伺服器開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
-| [啟用資料庫 SQL 稽核](security-center-enable-auditing-on-sql-databases.md) |建議您針對 Azure SQL 資料庫開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
-| [在 SQL 資料庫上啟用透明資料加密](security-center-enable-transparent-data-encryption.md) |建議您針對 SQL 資料庫啟用加密 (僅適用於 Azure SQL 服務)。 |
+| [啟用伺服器 SQL 稽核](security-center-enable-auditing-on-sql-servers.md) |建議您開啟 Azure SQL 伺服器的稽核功能。 (僅限 Azure SQL 服務。 不包含在虛擬機器上執行的 SQ。) |
+| [啟用資料庫 SQL 稽核](security-center-enable-auditing-on-sql-databases.md) |建議您開啟 Azure SQL Database 的稽核功能。 (僅限 Azure SQL 服務。 不包含在虛擬機器上執行的 SQ。) |
+| [在 SQL 資料庫上啟用透明資料加密](security-center-enable-transparent-data-encryption.md) |建議您針對 SQL Database 啟用加密功能。 (僅限 Azure SQL 服務。) |
 | [啟用 VM 代理程式](security-center-enable-vm-agent.md) |可讓您查看哪些 VM 需要「VM 代理程式」。 為了佈建修補程式掃描、基準掃描及反惡意程式碼程式，必須在 VM 上安裝「VM 代理程式」。 預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。 如需如何安裝 VM 代理程式的相關資訊，請參閱 [VM 代理程式和擴充功能 – 第 2 部分](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/) 。 |
 | [套用磁碟加密](security-center-apply-disk-encryption.md) |建議您使用 Azure 磁碟加密來加密您的 VM 磁碟 (Windows 和 Linux VM)。 建議您的 VM 上的作業系統和資料磁碟區都進行加密。 |
 | [提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md) |建議您提供每個訂用帳戶安全性連絡人資訊。 連絡人資訊為電子郵件地址和電話號碼。 如果我們的安全性小組發現您的資源遭到入侵，就會用這項資訊連絡您。 |
@@ -97,10 +97,10 @@ ms.openlocfilehash: d5ac3ffa4c3e1a916fb7d81b54ae603ea3658cc5
 您可以篩選並關閉建議。
 
 1. 按一下 [建議] 刀鋒視窗上的 [篩選]。 即會開啟 [篩選]  刀鋒視窗，您可以選取想要查看的嚴重性和狀態值。
-   
+
     ![篩選建議][2]
 2. 如果您判斷建議不適用，您可解除該建議，然後將它從您的檢視中篩除。 解除建議的方式有兩種。 有一種方式是在項目上按一下滑鼠右鍵，然後選取 [解除] 。 另一種方式是將滑鼠游標暫留在項目上、按一下出現在右邊的三個點，然後選取 [解除] 。 您可以按一下 [篩選]，然後選取 [已解除]，以檢視已解除的建議。
-   
+
     ![解除建議][3]
 
 ### <a name="apply-recommendations"></a>套用建議
@@ -125,6 +125,6 @@ ms.openlocfilehash: d5ac3ffa4c3e1a916fb7d81b54ae603ea3658cc5
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

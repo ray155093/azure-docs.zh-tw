@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 04/18/2016
 ms.author: v-sharos
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ad6693598cffd5aec7554f5612bc75d7c61d80dd
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 5086fa86149e4d8133df339b1261d3792fa66b4c
 
 
 ---
@@ -48,7 +48,7 @@ ms.openlocfilehash: ad6693598cffd5aec7554f5612bc75d7c61d80dd
 
 #### <a name="to-mount-volumes"></a>若要掛接磁碟區
 1. 在您的主機電腦上，啟動 Microsoft iSCSI 啟動器。
-2. 提供其中一個介面 IP 位址作為目標入口網站，或探索 IP 位址，然後連接至裝置。 在連接裝置之後，您的 Windows 系統將可存取磁碟區。 如需使用 Microsoft iSCSI 啟動器的詳細資訊，請移至《[安裝和設定 Microsoft iSCSI 啟動器]》[1]中的〈連接至 iSCSI 目標裝置〉一節。
+2. 提供其中一個介面 IP 位址作為目標入口網站，或探索 IP 位址，然後連接至裝置。 在連接裝置之後，您的 Windows 系統將可存取磁碟區。 如需使用 Microsoft iSCSI 啟動器的詳細資訊，請移至[安裝和設定 Microsoft iSCSI 啟動器][1]中的〈連接至 iSCSI 目標裝置〉一節。
 3. 請使用下列任一個選項來啟動 [磁碟管理]：
    
    * 在 [執行]  方塊中輸入 Diskmgmt.msc。
@@ -215,6 +215,6 @@ ms.openlocfilehash: ad6693598cffd5aec7554f5612bc75d7c61d80dd
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

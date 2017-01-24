@@ -1,12 +1,12 @@
 ---
-title: Manage compute power in Azure SQL Data Warehouse (PowerShell) | Microsoft Docs
-description: PowerShell tasks to manage compute power. Scale compute resources by adjusting DWUs. Or, pause and resume compute resources to save costs.
+title: "管理 Azure SQL 資料倉儲中的計算能力 (PowerShell) | Microsoft Docs"
+description: "管理計算能力的 PowerShell 工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 8354a3c1-4e04-4809-933f-db414a8c74dc
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,40 +14,44 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 5749b37408be8eeab6a3fba40d6768ca1d035096
+
 
 ---
-# <a name="manage-compute-power-in-azure-sql-data-warehouse-powershell"></a>Manage compute power in Azure SQL Data Warehouse (PowerShell)
+# <a name="manage-compute-power-in-azure-sql-data-warehouse-powershell"></a>管理 Azure SQL 資料倉儲中的計算能力 (PowerShell)
 > [!div class="op_single_selector"]
-> * [Overview](sql-data-warehouse-manage-compute-overview.md)
-> * [Portal](sql-data-warehouse-manage-compute-portal.md)
+> * [概觀](sql-data-warehouse-manage-compute-overview.md)
+> * [入口網站](sql-data-warehouse-manage-compute-portal.md)
 > * [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 > * [REST](sql-data-warehouse-manage-compute-rest-api.md)
 > * [TSQL](sql-data-warehouse-manage-compute-tsql.md)
 > 
 > 
 
-Scale performance by scaling out compute resources and memory to meet the changing demands of your workload. Save costs by scaling back resources during non-peak times or pausing compute altogether. 
+透過相應放大計算資源和記憶體來調整效能，以滿足工作負載不斷改變的需求。 透過在非尖峰時間縮減資源或直接暫停計算以節省成本。
 
-This collection of tasks uses the Azure portal to:
+這個工作集合會使用 Azure 入口網站來：
 
-* Scale compute
-* Pause compute
-* Resume compute
+* 調整計算
+* 暫停計算
+* 繼續計算
 
-To learn about this, see [Manage compute overview][Manage compute overview].
+若要深入了解，請參閱[管理計算概觀][Manage compute overview]。
 
-## <a name="before-you-begin"></a>Before you begin
-### <a name="install-the-latest-version-of-azure-powershell"></a>Install the latest version of Azure PowerShell
+## <a name="before-you-begin"></a>開始之前
+### <a name="install-the-latest-version-of-azure-powershell"></a>安裝最新版的 Azure PowerShell
 > [!NOTE]
-> To use Azure PowerShell with SQL Data Warehouse, you need Azure PowerShell version 1.0.3 or greater.  To verify your current version run the command **Get-Module -ListAvailable -Name Azure**. You can install the latest version from [Microsoft Web Platform Installer][Microsoft Web Platform Installer].  For more information, see [How to install and configure Azure PowerShell][How to install and configure Azure PowerShell].
+> 若要搭配使用 Azure Powershell 與 SQL 資料倉儲，需要有 Azure PowerShell 1.0.3 版或更高版本。  若要確認目前的版本，請執行命令 **Get-Module -ListAvailable -Name Azure**。 您可以從 [Microsoft Web Platform Installer][Microsoft Web Platform Installer] 安裝最新的版本。  如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][How to install and configure Azure PowerShell]。
 > 
 > 
 
-### <a name="get-started-with-azure-powershell-cmdlets"></a>Get started with Azure PowerShell cmdlets
-To get started:
+### <a name="get-started-with-azure-powershell-cmdlets"></a>開始使用 Azure PowerShell Cmdlet
+開始進行之前：
 
-1. Open Azure PowerShell. 
-2. At the PowerShell prompt, run these commands to sign in to the Azure Resource Manager and select your subscription.
+1. 開啟 Azure PowerShell。
+2. 在 PowerShell 提示中，執行下列命令來登入 Azure Resource Manager，並選取您的訂用帳戶。
    
     ```PowerShell
     Login-AzureRmAccount
@@ -58,10 +62,10 @@ To get started:
 <a name="scale-performance-bk"></a>
 <a name="scale-compute-bk"></a>
 
-## <a name="scale-compute-power"></a>Scale compute power
+## <a name="scale-compute-power"></a>調整計算能力
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-To change the DWUs, use the [Set-AzureRmSqlDatabase][Set-AzureRmSqlDatabase] PowerShell cmdlet. The following example sets the service level objective to DW1000 for the database MySQLDW which is hosted on server MyServer. 
+若要變更 DWU，請使用 [Set-AzureRmSqlDatabase][Set-AzureRmSqlDatabase] PowerShell Cmdlet。 下例會將裝載在 MyServer 伺服器上的資料庫 MySQLDW 的服務等級目標設定為 DW1000。
 
 ```Powershell
 Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -RequestedServiceObjectiveName "DW1000"
@@ -69,13 +73,13 @@ Set-AzureRmSqlDatabase -DatabaseName "MySQLDW" -ServerName "MyServer" -Requested
 
 <a name="pause-compute-bk"></a>
 
-## <a name="pause-compute"></a>Pause compute
+## <a name="pause-compute"></a>暫停計算
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-To pause a database, use the [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase] cmdlet. The following example pauses a database named Database02 hosted on a server named Server01. The server is in an Azure resource group named ResourceGroup1. 
+若要暫停資料庫，請使用 [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase] Cmdlet。 下例會暫停裝載在 Server01 伺服器上的 Database02 資料庫。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。
 
 > [!NOTE]
-> Note that if your server is foo.database.windows.net, use "foo" as the -ServerName in the PowerShell cmdlets.
+> 請注意，如果您的伺服器是 foo.database.windows.net，請使用 "foo" 作為 PowerShell Cmdlet 中的 -ServerName。
 > 
 > 
 
@@ -83,7 +87,7 @@ To pause a database, use the [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlData
 Suspend-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" –DatabaseName "Database02"
 ```
-A variation, this next example retrieves the database into the $database object. It then pipes the object to [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]. The results are stored in the object resultDatabase. The final command shows the results.
+一種變異，這個範例會將資料庫擷取至 $database 物件。 然後將物件輸送到 [Suspend-AzureRmSqlDatabase][Suspend-AzureRmSqlDatabase]。 結果會儲存在物件 resultDatabase 中。 最終的命令會顯示結果。
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -94,17 +98,17 @@ $resultDatabase
 
 <a name="resume-compute-bk"></a>
 
-## <a name="resume-compute"></a>Resume compute
+## <a name="resume-compute"></a>繼續計算
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-To start a database, use the [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase] cmdlet. The following example starts a database named Database02 hosted on a server named Server01. The server is in an Azure resource group named ResourceGroup1. 
+若要啟動資料庫，請使用 [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase] Cmdlet。 下例會啟動裝載在 Server01 伺服器上的 Database02 資料庫。 此伺服器位於 ResourceGroup1 這個 Azure 資源群組。
 
 ```Powershell
 Resume-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
 –ServerName "Server01" -DatabaseName "Database02"
 ```
 
-A variation, this next example retrieves the database into the $database object. It then pipes the object to [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase] and stores the results in $resultDatabase. The final command shows the results.
+一種變異，這個範例會將資料庫擷取至 $database 物件。 接著將物件輸送到 [Resume-AzureRmSqlDatabase][Resume-AzureRmSqlDatabase]，並將結果儲存在 $resultDatabase 中。 最終的命令會顯示結果。
 
 ```Powershell
 $database = Get-AzureRmSqlDatabase –ResourceGroupName "ResourceGroup1" `
@@ -115,15 +119,15 @@ $resultDatabase
 
 <a name="next-steps-bk"></a>
 
-## <a name="next-steps"></a>Next steps
-For other management tasks, see [Management overview][Management overview].
+## <a name="next-steps"></a>後續步驟
+如需其他管理工作的詳細資訊，請參閱[管理概觀][Management overview]。
 
 <!--Image references-->
 
 <!--Article references-->
 [Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 [Management overview]: ./sql-data-warehouse-overview-manage.md
-[How to install and configure Azure PowerShell]: ./powershell-install-configure.md
+[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Manage compute overview]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
@@ -137,6 +141,6 @@ For other management tasks, see [Management overview][Management overview].
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

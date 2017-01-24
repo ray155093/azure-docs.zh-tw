@@ -1,6 +1,6 @@
 ---
-title: "什麼是網路安全性群組 (NSG)"
-description: "深入了解 Azure 中使用網路安全性群組 (NSG) 的分散式防火牆，以及如何使用 NSG 隔離及控制您的虛擬網路 (VNet) 中的流量流程。"
+title: "網路安全性群組 | Microsoft Docs"
+description: "深入了解如何在 Azure 中使用分散式防火牆和網路安全性群組，來隔離及控制虛擬網路中的流量流程。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,13 +15,17 @@ ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 92ba745915c4b496ac6b0ff3b3e25f6611f5707c
+ms.sourcegitcommit: 1de0827c01c772a4298b7b568363e89f08910ff7
+ms.openlocfilehash: 46dce57f509872580c57bb1d8d93af51623211ac
 
 
 ---
-# <a name="what-is-a-network-security-group-nsg"></a>什麼是網路安全性群組 (NSG)？
+# <a name="network-security-groups"></a>網路安全性群組
+
 網路安全性群組 (NSG) 包含存取控制清單 (ACL) 規則的清單，可允許或拒絕虛擬網路中 VM 執行個體的網路流量。 NSG 可與子網路或該子網路內的個別 VM 執行個體相關聯。 當 NSG 與子網路相關聯時，ACL 規則便會套用至該子網路中的所有 VM 執行個體。 此外，將 NSG 直接關聯至該 VM 即可進一步限制個別 VM 的流量。
+
+> [!NOTE]
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文將說明如何使用這兩個模型，但 Microsoft 建議大多數新的部署請使用資源管理員模型。
 
 ## <a name="nsg-resource"></a>NSG 資源
 NSG 包含下列屬性。
@@ -36,10 +40,9 @@ NSG 包含下列屬性。
 > [!NOTE]
 > 端點式 ACL 和網路安全性群組，不支援用於相同的 VM 執行個體。 如果您想要使用 NSG 且已經擁有就地端點 ACL，請先移除端點 ACL。 如需有關執行這項作業的資訊，請參閱＜ [使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md)＞。
 > 
-> 
 
 ### <a name="nsg-rules"></a>NSG 規則
-NSG 規則包含下列屬性。
+NSG 規則包含下列屬性：
 
 | 屬性 | 說明 | 條件約束 | 考量 |
 | --- | --- | --- | --- |
@@ -90,55 +93,41 @@ NSG 包含兩組規則：輸入和輸出。 規則的優先順序在每一個集
 ## <a name="associating-nsgs"></a>建立 NSG 關聯
 視您使用的部署模型而定，您可以將 NSG 與 VM、NIC 和子網路建立關聯。
 
-[!INCLUDE [learn-about-deployment-models-both-include.md](../../includes/learn-about-deployment-models-both-include.md)]
-
 * **將 NSG 與 VM 建立關聯 (僅傳統部署)。**  當您將 NSG 與 VM 建立關聯時，NSG 中的網路存取規則會套用到預定要進入和離開 VM 的所有流量。 
 * **將 NSG 與 NIC 建立關聯 (僅資源管理員部署)。**  當您將 NSG 與 NIC 建立關聯時，NSG 中的網路存取規則只會套用到該 NIC。 這表示多 NIC 的 VM 中，如果 NSG 已套用到單一 NIC，則它不會影響繫結至其他 NIC 的流量。 
 * **將 NSG 與子網路建立關聯 (所有部署)**。 當您將 NSG 與子網路建立關聯時，NSG 中的網路存取規則會套用到子網路中的所有 IaaS 和 PaaS 資源。 
 
 您可以將不同 NSG 與 VM (或 NIC，根據部署模型而定) 和 NIC 或 VM 繫結的子網路建立關聯。 當發生這種情況時，所有網路存取規則都會依每個 NSG 中的優先順序，以下列順序套用到流量：
 
-* **輸入流量**
-  
-  1. NSG 已套用到子網路。 
-     
-     如果子網路 NSG 有拒絕流量的相符規則，封包會在此遭到捨棄。
-  2. NSG 已套用至 NIC (資源管理員) 或 VM (傳統)。 
-     
-     如果 VM\NIC NSG 有拒絕流量的相符規則，封包會在 VM\NIC 遭到捨棄，雖然子網路 NSG 有允許流量的相符規則。
-* **輸出流量**
-  
-  1. NSG 已套用至 NIC (資源管理員) 或 VM (傳統)。 
-     
-     如果 VM\NIC NSG 有拒絕流量的相符規則，封包會在此遭到捨棄。
-  2. NSG 已套用到子網路。
-     
-     如果子網路 NSG 有拒絕流量的相符規則，封包會在此遭到捨棄，雖然 VM\NIC NSG 有允許流量的相符規則。
-     
-      ![NSG ACL](./media/virtual-network-nsg-overview/figure2.png)
+- **輸入流量**
+
+  1. **NSG 套用至子網路：**如果子網路 NSG 有拒絕流量的相符規則，封包會遭到捨棄。
+
+  2. **NSG 套用至 NIC** (Resource Manager) 或 VM (傳統)：如果 VM\NIC NSG 有拒絕流量的相符規則，封包會在 VM\NIC 遭到捨棄，雖然子網路 NSG 有允許流量的相符規則。
+
+- **輸出流量**
+
+  1. **NSG 套用至 NIC** (Resource Manager) 或 VM (傳統)：如果 VM\NIC NSG 有拒絕流量的相符規則，封包會遭到捨棄。
+
+  2. **NSG 套用至子網路：**如果子網路 NSG 有拒絕流量的相符規則，封包會在此遭到捨棄，雖然 VM\NIC NSG 有允許流量的相符規則。
 
 > [!NOTE]
 > 雖然您只能將單一 NSG 與子網路、VM 或 NIC 建立關聯，但您可以盡量將同一個 NSG 與許多您想要的資源建立關聯。
-> 
-> 
+>
 
 ## <a name="implementation"></a>實作
 您可以使用以下列出的不同工具，在傳統或資源管理員部署模型中實作 NSG。
 
 | 部署工具 | 傳統 | 資源管理員 |
 | --- | --- | --- |
-| 傳統入口網站 |![否](./media/virtual-network-nsg-overview/red.png) |![否](./media/virtual-network-nsg-overview/red.png) |
-| Azure 入口網站 |![是](./media/virtual-network-nsg-overview/green.png) |[![Yes][green]](virtual-networks-create-nsg-arm-pportal.md) |
-| PowerShell |[![Yes][green]](virtual-networks-create-nsg-classic-ps.md) |[![Yes][green]](virtual-networks-create-nsg-arm-ps.md) |
-| Azure CLI |[![Yes][green]](virtual-networks-create-nsg-classic-cli.md) |[![Yes][green]](virtual-networks-create-nsg-arm-cli.md) |
-| ARM 範本 |![否](./media/virtual-network-nsg-overview/red.png) |[![Yes][green]](virtual-networks-create-nsg-arm-template.md) |
-
-| **Key** | ![是](./media/virtual-network-nsg-overview/green.png)  支援。 | ![否](./media/virtual-network-nsg-overview/red.png)  不支援。 |
-| --- | --- | --- |
-|  | | |
+| 傳統入口網站 | 否  | 否 |
+| Azure 入口網站   | 是 | [是](virtual-networks-create-nsg-arm-pportal.md) |
+| PowerShell     | [是](virtual-networks-create-nsg-classic-ps.md) | [是](virtual-networks-create-nsg-arm-ps.md) |
+| Azure CLI      | [是](virtual-networks-create-nsg-classic-cli.md) | [是](virtual-networks-create-nsg-arm-cli.md) |
+| ARM 範本   | 否  | [是](virtual-networks-create-nsg-arm-template.md) |
 
 ## <a name="planning"></a>規劃
-實作 NSG 之前，您需要回答下列問題：    
+實作 NSG 之前，您需要回答下列問題：
 
 1. 您要篩選前往或來自何種類型資源的流量 (在相同的 VM 中的 NIC、VM 或其他資源例如連接到相同子網路的雲端服務或應用程式服務環境，或連線到不同子網路的資源)？
 2. 您想要篩選的資源流量是往返於連接到現有的 VNet 中的子網路，或將它們會連接到新的子網路或 VNet？
@@ -270,12 +259,8 @@ NSG 包含兩組規則：輸入和輸出。 規則的優先順序在每一個集
 * [在資源管理員中部署 NSG](virtual-networks-create-nsg-arm-pportal.md)。
 * [管理 NSG 記錄檔](virtual-network-nsg-manage-log.md)。
 
-[green]: ./media/virtual-network-nsg-overview/green.png
-[黃色]: ./media/virtual-network-nsg-overview/yellow.png
-[紅色]: ./media/virtual-network-nsg-overview/red.png
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

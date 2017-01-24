@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Azure IoT 中樞裝置管理 | Microsoft Docs"
-description: "本教學課程說明如何在 Azure IoT 中樞上開始使用裝置管理"
+title: "開始使用 Azure IoT 中樞裝置管理 (.NET/Node) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞裝置管理來起始遠端裝置重新開機。 您可以使用適用於 Node.js 的 Azure IoT 裝置 SDK，實作模擬裝置應用程式 (包含直接方法)，也可以使用適用於 .NET 的 Azure IoT 服務 SDK，實作服務應用程式 (叫用直接方法)。"
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -15,16 +15,16 @@ ms.workload: na
 ms.date: 11/17/2016
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: cf9741e7bc30ccb5e6b8f79dad7c8ef725cd683a
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 
 
 ---
-# <a name="tutorial-get-started-with-device-management"></a>教學課程：開始使用裝置管理
+# <a name="get-started-with-device-management-netnode"></a>開始使用裝置管理 (.NET/Node)
 
 [!INCLUDE [iot-hub-selector-dm-getstarted](../../includes/iot-hub-selector-dm-getstarted.md)]
 ## <a name="introduction"></a>簡介
-IoT 後端應用程式可以使用 Azure IoT 中樞基元 (也就是裝置對應項和直接方法)，從遠端啟動並監視裝置上的裝置管理動作。  本文提供 IoT 後端應用程式和裝置如何共同運作，以使用 IoT 中樞起始並監視遠端裝置重新啟動的指導方針和程式碼。
+後端應用程式可以使用 Azure IoT 中樞基元 (也就是裝置對應項和直接方法)，從遠端啟動並監視裝置上的裝置管理動作。  本文提供後端應用程式和裝置如何共同運作，以使用 IoT 中樞起始並監視遠端裝置重新啟動的指導方針和程式碼。
 
 若要從雲端式的後端應用程式遠端啟動並監視您裝置上的裝置管理行動，請使用[裝置對應項][lnk-devtwin]和[直接方法][lnk-c2dmethod]等 IoT 中樞基元。 本教學課程會示範後端 App 和裝置如何共同運作，以讓您從 IoT 中樞初始化並監視遠端裝置重新啟動。
 
@@ -40,7 +40,7 @@ IoT 後端應用程式可以使用 Azure IoT 中樞基元 (也就是裝置對應
 
 * 使用 Azure 入口網站來建立 IoT 中樞，並且在 IoT 中樞建立裝置識別。
 * 建立模擬的裝置應用程式，其具有可以由雲端呼叫以進行重新啟動的直接方法。
-* 建立主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
+* 建立 .NET 主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
 
 在本教學課程結束時，您會有 Node.js 主控台裝置應用程式和 .NET (C#) 主控台後端應用程式：
 
@@ -65,15 +65,15 @@ IoT 後端應用程式可以使用 Azure IoT 中樞基元 (也就是裝置對應
 
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **TriggerReboot** 專案，然後按一下 [管理 Nuget 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Microsoft Azure IoT 服務 SDK][lnk-nuget-service-sdk] Nuget 套件與其相依項目，並加入對它的參考。
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 **TriggerReboot** 專案，然後按一下 [管理 NuGet 套件]。
+3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
 
-    ![Nuget 套件管理員視窗][img-servicenuget]
+    ![NuGet 封裝管理員視窗][img-servicenuget]
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
         
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為 IoT 中樞建立的連接字串和目標裝置。
+5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞建立的 IoT 中樞連接字串和目標裝置。
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
@@ -138,7 +138,7 @@ IoT 後端應用程式可以使用 Azure IoT 中樞基元 (也就是裝置對應
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。  以您裝置的連接字串取代連接字串。  
+5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。  以您裝置的連接字串取代連接字串。  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myDeviceId;SharedAccessKey={yourdevicekey}';
@@ -237,7 +237,7 @@ IoT 後端應用程式可以使用 Azure IoT 中樞基元 (也就是裝置對應
 [img-servicenuget]: media/iot-hub-csharp-node-device-management-get-started/servicesdknuget.png
 [img-createapp]: media/iot-hub-csharp-node-device-management-get-started/createnetapp.png
 
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/blob/master/doc/node-devbox-setup.md
 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-fwupdate]: iot-hub-node-node-firmware-update.md
@@ -253,6 +253,6 @@ IoT 後端應用程式可以使用 Azure IoT 中樞基元 (也就是裝置對應
 [lnk-nuget-service-sdk]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

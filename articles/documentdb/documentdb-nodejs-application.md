@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: hero-article
-ms.date: 08/25/2016
+ms.date: 12/16/2016
 ms.author: syamk
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
+ms.sourcegitcommit: a5abaa698de2978e676153832d252cf2bc43e72b
+ms.openlocfilehash: cfd2f49a3452e4ad5132f55d269452e436bcecc5
 
 
 ---
@@ -30,24 +30,11 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
 > 
 > 
 
-本 Node.js 教學課程說明如何使用 Azure DocumentDB 服務，從 Azure 網站上託管的 Node.js Express 應用程式儲存和存取資料。
-
-我們建議使用者從觀看下列影片開始，內容示範如何佈建 Azure DocumentDB 資料庫帳戶，以及如何將 JSON 文件儲存於 Node.js 應用程式。 
-
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Demo-Getting-started-with-Azure-DocumentDB-on-Nodejs-in-Linux/player]
-> 
-> 
-
-然後再回到本 Node.js 教學課程，您可在此找到下列問題的答案：
-
-* 如何透過 documentdb npm 模組搭配使用 DocumentDB？
-* 如何將 Web 應用程式部署至 Azure 網站？
-
-依照本資料庫教學課程的指示，您將建置一個簡單的網頁型工作管理應用程式，其可讓您建立、擷取和完成工作。 在 Azure DocumentDB 中，這些工作將會儲存為 JSON 文件。
+本 Node.js 教學課程說明如何使用 Azure DocumentDB，從 Azure 網站上託管的 Node.js Express 應用程式儲存和存取資料。 您會建置一個可供建立、擷取及完成工作的簡單網頁型工作管理應用程式 (待辦事項應用程式)。 在 Azure DocumentDB 中，這些工作會儲存為 JSON 文件。 本教學課程會逐步引導您建立和部署應用程式，並說明每個程式碼片段中的狀況。
 
 ![本 Node.js 教學課程所建立的「我的待辦事項清單」應用程式螢幕擷取畫面](./media/documentdb-nodejs-application/image1.png)
 
-是否沒有時間完成本教學課程，只是想要取得完整的解決方案？ 沒有問題，您可以從 [GitHub][GitHub] 取得完整的範例解決方案。
+是否沒有時間完成本教學課程，只是想要取得完整的解決方案？ 沒有問題，您可以從 [GitHub][GitHub] 取得完整的範例解決方案。 如需有關如何執行應用程式的指示，只需閱讀 [Readme](https://github.com/Azure-Samples/documentdb-node-todo-app/blob/master/README.md) 檔案即可。
 
 ## <a name="a-nametoc395783176aprerequisites"></a><a name="_Toc395783176"></a>必要條件
 > [!TIP]
@@ -57,13 +44,17 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
 
 在依照本文中的指示進行之前，您應先確定備妥下列項目：
 
-* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+
+   或
+
+   本機安裝的 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)。
 * [Node.js][Node.js] v0.10.29 版或更高版本。
 * [Express 產生器](http://www.expressjs.com/starter/generator.html) (您可以透過 `npm install express-generator -g` 進行安裝)
 * [Git][Git]。
 
 ## <a name="a-nametoc395637761astep-1-create-a-documentdb-database-account"></a><a name="_Toc395637761"></a>步驟 1：建立 DocumentDB 資料庫帳戶
-現在就開始建立 DocumentDB 帳戶。 如果您已經擁有帳戶，您可以跳到 [步驟 2：建立新的 Node.js 應用程式](#_Toc395783178)。
+現在就開始建立 DocumentDB 帳戶。 如果您已經擁有帳戶，或如果您正在使用 DocumentDB 模擬器來進行本教學課程，可以跳到[步驟 2：建立新的 Node.js 應用程式](#_Toc395783178)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
@@ -72,20 +63,23 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
 ## <a name="a-nametoc395783178astep-2-learn-to-create-a-new-nodejs-application"></a><a name="_Toc395783178"></a>步驟 2：了解如何建立新的 Node.js 應用程式
 現在，我們來了解如何使用 [Express](http://expressjs.com/) 架構來建立基本的 Hello World Node.js 專案。
 
-1. 開啟您偏好的終端機。
-2. 使用 Express 產生器來產生名為 **todo**的新應用程式。
+1. 開啟您喜好的終端機，例如 Node.js 命令提示字元。
+2. 瀏覽至您想要在其中儲存新應用程式的目錄。
+3. 使用 Express 產生器來產生名為 **todo**的新應用程式。
    
         express todo
-3. 開啟您的新 **todo** 目錄並安裝相依性。
+4. 開啟您的新 **todo** 目錄並安裝相依性。
    
         cd todo
         npm install
-4. 執行新的應用程式。
+5. 執行新的應用程式。
    
         npm start
-5. 您可以檢視新的應用程式，請導覽瀏覽器至 [http://localhost:3000/](http://localhost:3000)。
+6. 您可以檢視新的應用程式，請導覽瀏覽器至 [http://localhost:3000/](http://localhost:3000)。
    
     ![了解 Node.js - Hello World 應用程式在瀏覽器視窗中的螢幕擷取畫面](./media/documentdb-nodejs-application/image12.png)
+
+    然後，若要停止應用程式，請在終端機視窗中按 CTRL+C，然後按一下 **y** 以終止批次作業。
 
 ## <a name="a-nametoc395783179astep-3-install-additional-modules"></a><a name="_Toc395783179"></a>步驟 3：安裝其他模組
 **package.json** 檔案是建立在專案根目錄中的其中一個檔案。 這個檔案包含 Node.js 應用程式所需的其他模組清單。 之後，當您將此應用程式部署至 Azure 網站時，此檔案可用來決定 Azure 上需要安裝哪些模組才能支援您的應用程式。 在本教學課程中，我們還需要再安裝兩個封裝。
@@ -98,7 +92,25 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
         npm install documentdb --save
 3. 快速檢查應用程式的 **package.json** 檔案應該會顯示其他模組。 這個檔案會告訴 Azure 在執行您的應用程式時要下載及安裝的封裝。 它看起來應該類似下面的範例。
    
-    ![[package.json] 索引標籤的螢幕擷取畫面](./media/documentdb-nodejs-application/image17.png)
+        {
+          "name": "todo",
+          "version": "0.0.0",
+          "private": true,
+          "scripts": {
+            "start": "node ./bin/www"
+          },
+          "dependencies": {
+            "async": "^2.1.4",
+            "body-parser": "~1.15.2",
+            "cookie-parser": "~1.4.3",
+            "debug": "~2.2.0",
+            "documentdb": "^1.10.0",
+            "express": "~4.14.0",
+            "jade": "~1.11.0",
+            "morgan": "~1.7.0",
+            "serve-favicon": "~2.3.0"
+          }
+        }
    
     這會讓 Node (之後則是 Azure) 知道您的應用程式需要仰賴這些額外模組。
 
@@ -106,7 +118,7 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
 前面的內容在講述所有初始設定和組態，現在讓我們來了解本教學課程的真正目的，也就是使用 Azure DocumentDB 撰寫一些程式碼。
 
 ### <a name="create-the-model"></a>建立模型
-1. 在專案目錄中，建立一個名為 **models**的新目錄。
+1. 在專案目錄中，請在與 package.json 檔案相同的目錄中建立名為 **models** 的新目錄。
 2. 在 **models** 目錄中，建立名為 **taskDao.js** 的新檔案。 此檔案將包含應用程式所建立工作的模型。
 3. 在同一個 **models** 目錄中，建立另一個名為 **docdbUtils.js** 的新檔案。 這個檔案會包含一些實用、可重複使用，適用於整個應用程式的程式碼。 
 4. 將下列程式碼複製到 **docdbUtils.js**
@@ -383,7 +395,7 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
         config.collectionId = "Items";
    
         module.exports = config;
-3. 在 **config.js** 檔案中，使用在 [Microsoft Azure 入口網站](https://portal.azure.com)上 DocumentDB 帳戶的 [金鑰] 刀鋒視窗中的值，來更新 HOST 和 AUTH_KEY 的值：
+3. 在 **config.js** 檔案中，使用在 [Microsoft Azure 入口網站](https://portal.azure.com)上 DocumentDB 帳戶的 [金鑰] 刀鋒視窗中的值，更新 HOST 和 AUTH_KEY 的值。
 4. 儲存並關閉 **config.js** 檔案。
 
 ### <a name="modify-appjs"></a>修改 app.js
@@ -397,7 +409,7 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
 3. 此程式碼會定義要使用的組態檔，並繼續讀出此檔案中的值到我們即將使用的變數。
 4. 將 **app.js** 檔案中的下列兩行取代為：
    
-        app.use('/', routes);
+        app.use('/', index);
         app.use('/users', users); 
    
       下列程式碼片段：
@@ -420,64 +432,63 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
 現在，讓我們將注意力轉到建置使用者介面，以便使用者可以實際與我們的應用程式互動。 我們建立的 Express 應用程式使用 **Jade** 做為檢視引擎。 如需 Jade 的詳細資訊，請參閱 [http://jade-lang.com/](http://jade-lang.com/)。
 
 1. **views** 目錄中的 **layout.jade** 檔是用來作為其他 **.jade** 檔案的全域範本。 在此步驟中，您將修改它以使用 [Twitter Bootstrap](https://github.com/twbs/bootstrap)，這個工具組能夠方便設計美觀的網站。 
-2. 開啟在 **views** 資料夾中找到的 **layout.jade** 檔案，並將其中的內容取代為下列內容；
+2. 開啟在 **views** 資料夾中找到的 **layout.jade** 檔案，並將其中的內容取代為下列內容：
    
         doctype html
         html
-          head
-            title= title
-            link(rel='stylesheet', href='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css')
-            link(rel='stylesheet', href='/stylesheets/style.css')
-          body
-            nav.navbar.navbar-inverse.navbar-fixed-top
-              div.navbar-header
-                a.navbar-brand(href='#') My Tasks
-            block content
-            script(src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js')
-            script(src='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js')
+           head
+             title= title
+             link(rel='stylesheet', href='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css')
+             link(rel='stylesheet', href='/stylesheets/style.css')
+           body
+             nav.navbar.navbar-inverse.navbar-fixed-top
+               div.navbar-header
+                 a.navbar-brand(href='#') My Tasks
+             block content
+             script(src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js')
+             script(src='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js')
 
     這段程式碼實際上會指示 **Jade** 引擎轉譯出我們應用程式的部分 HTML，並建立稱為 **content** 的**區塊**，讓我們能在其中提供內容頁面的配置。
     儲存並關閉此 **layout.jade** 檔案。
 
-1. 現在，開啟 **index.jade** 檔案 (應用程式即將使用的檢視)，並將檔案中的內容取代為下列內容；
+3. 現在，開啟 **index.jade** 檔案 (應用程式即將使用的檢視)，並將檔案中的內容取代為下列內容；
    
         extends layout
-   
         block content
-          h1 #{title}
-          br
-   
-          form(action="/completetask", method="post")
-            table.table.table-striped.table-bordered
-              tr
-                td Name
-                td Category
-                td Date
-                td Complete
-              if (typeof tasks === "undefined")
-                tr
-                  td
-              else
-                each task in tasks
-                  tr
-                    td #{task.name}
-                    td #{task.category}
-                    - var date  = new Date(task.date);
-                    - var day   = date.getDate();
-                    - var month = date.getMonth() + 1;
-                    - var year  = date.getFullYear();
-                    td #{month + "/" + day + "/" + year}
-                    td
-                      input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
-            button.btn(type="submit") Update tasks
-          hr
-          form.well(action="/addtask", method="post")
-            label Item Name:
-            input(name="name", type="textbox")
-            label Item Category:
-            input(name="category", type="textbox")
-            br
-            button.btn(type="submit") Add item
+           h1 #{title}
+           br
+        
+           form(action="/completetask", method="post")
+             table.table.table-striped.table-bordered
+               tr
+                 td Name
+                 td Category
+                 td Date
+                 td Complete
+               if (typeof tasks === "undefined")
+                 tr
+                   td
+               else
+                 each task in tasks
+                   tr
+                     td #{task.name}
+                     td #{task.category}
+                     - var date  = new Date(task.date);
+                     - var day   = date.getDate();
+                     - var month = date.getMonth() + 1;
+                     - var year  = date.getFullYear();
+                     td #{month + "/" + day + "/" + year}
+                     td
+                       input(type="checkbox", name="#{task.id}", value="#{!task.completed}", checked=task.completed)
+             button.btn(type="submit") Update tasks
+           hr
+           form.well(action="/addtask", method="post")
+             label Item Name:
+             input(name="name", type="textbox")
+             label Item Category:
+             input(name="category", type="textbox")
+             br
+             button.btn(type="submit") Add item
    
     這個程式碼會擴充配置，並為我們在前面的 **layout.jade** 檔案中看到的 **content** 預留位置提供內容。
    
@@ -486,7 +497,7 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
     第二個表單包含兩個輸入欄位，以及可讓我們透過張貼到控制器的 **/addtask** 方法來建立項目的按鈕。
    
     這應該就是要讓應用程式開始運作所需的所有程式碼。
-2. 開啟 **public\stylesheets** 目錄中的 **style.css** 檔案，然後使用下列內容取代程式碼：
+4. 開啟 **public\stylesheets** 目錄中的 **style.css** 檔案，然後使用下列內容取代程式碼：
    
         body {
           padding: 50px;
@@ -509,14 +520,20 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
     儲存並關閉此 **style.css** 檔案。
 
 ## <a name="a-nametoc395783181astep-6-run-your-application-locally"></a><a name="_Toc395783181"></a>步驟 6：在本機執行您的應用程式
-1. 若要在本機電腦上測試應用程式，請在終端機中執行 `npm start` 以啟動應用程式，並啟動顯示如下圖所示頁面的瀏覽器：
+1. 若要在本機電腦上測試應用程式，請在終端機中執行 `npm start` 以啟動應用程式，然後重新整理 [http://localhost:3000](http://localhost:3000) 瀏覽器頁面。 此頁面現在看起來應該類似以下影像：
    
     ![[我的待辦事項清單] 應用程式在瀏覽器視窗中的螢幕擷取畫面](./media/documentdb-nodejs-application/image18.png)
-2. 使用所提供的 [項目]、[項目名稱] 和 [類別] 等欄位來輸入資訊，然後按一下 [新增項目] 。
+
+    > [!TIP]
+    > 如果您收到有關 layout.jade 檔案或 index.jade 檔案縮排的錯誤，請確定這兩個檔案的前兩行靠左對齊 (沒有空格)。 如果前兩行之前有空格，請將空格移除，儲存這兩個檔案，然後重新整理瀏覽器視窗。 
+
+2. 使用 [項目]、[項目名稱] 和 [類別] 欄位來輸入新工作，然後按一下 [新增項目]。 便會使用這些屬性在 DocumentDB 中建立文件。 
 3. 系統應該會更新此頁面，以在 [待辦事項] 清單中顯示新建立的項目。
    
     ![[待辦事項] 清單中包含一個新項目的應用程式螢幕擷取畫面](./media/documentdb-nodejs-application/image19.png)
-4. 若要完成工作，您只需勾選 [已完成] 資料行中的核取方塊，然後按一下 [更新工作] 。
+4. 若要完成工作，您只需勾選 [已完成] 資料行中的核取方塊，然後按一下 [更新工作] 。 這會更新您已建立的文件。
+
+5. 若要停止應用程式，請在終端機視窗中按 CTRL+C，然後按一下 **Y** 以終止批次作業。
 
 ## <a name="a-nametoc395783182astep-7-deploy-your-application-development-project-to-azure-websites"></a><a name="_Toc395783182"></a>步驟 7：將應用程式開發專案部署至 Azure 網站
 1. 如果您還沒有這麼做，請為您的 Azure 網站提供一個 Git 儲存機制。 您可以在 [Azure App Service 的本機 Git 部署](../app-service-web/app-service-deploy-local-git.md) 主題中找到有關如何執行這項操作的指示。
@@ -528,12 +545,16 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
         git push azure master
 4. 幾秒後，Git 便會發佈 Web 應用程式並啟動瀏覽器，您可以在瀏覽器中看到您方便好用的應用程式已在 Azure 中執行！
 
+    恭喜！ 您剛剛已經使用 Azure DocumentDB 建置您的第一個Node.js Express Web 應用程式，並將它發佈至 Azure 網站。
+
+    如果您想要下載或參考本教學課程的完整參考應用程式，可以從 [GitHub][GitHub] 進行下載。
+
 ## <a name="a-nametoc395637775anext-steps"></a><a name="_Toc395637775"></a>接續步驟
-恭喜！ 您剛剛已經使用 Azure DocumentDB 建置您的第一個Node.js Express Web 應用程式，並將它發佈至 Azure 網站。
 
-您可以從 [GitHub][GitHub] 下載完整參考應用程式的原始程式碼。
-
-如需詳細資訊，請參閱 [Node.js 開發人員中心](https://azure.microsoft.com/develop/nodejs/)。
+* 想要執行 DocumentDB 的規模和效能測試？ 請參閱 [Azure DocumentDB 的效能和級別測試](documentdb-performance-testing.md)
+* 了解如何 [監視 DocumentDB 帳戶](documentdb-monitor-accounts.md)(英文)。
+* 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。
+* 瀏覽 [DocumentDB 文件](https://docs.microsoft.com/en-us/azure/documentdb/)。
 
 [Node.js]: http://nodejs.org/
 [Git]: http://git-scm.com/
@@ -542,6 +563,6 @@ ms.openlocfilehash: d0297a529c9f921465ec365f10964f7d11160612
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

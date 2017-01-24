@@ -1,216 +1,83 @@
 ---
-title: 註冊應用程式並取得從程式碼連接到 SQL Database 所使用的用戶端識別碼和金鑰 | Microsoft Docs
-description: 取得從程式碼存取 SQL Database 所使用的用戶端識別碼和金鑰。
+title: "取得驗證應用程式以從程式碼存取 SQL Database 的所需值 | Microsoft Docs"
+description: "建立服務主體以從程式碼存取 SQL Database。"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 author: stevestein
 manager: jhubbard
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: b43e43bb-6660-49e6-b069-abde97eb5770
 ms.service: sql-database
+ms.custom: development
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 06/06/2016
+ms.date: 09/30/2016
 ms.author: sstein
+translationtype: Human Translation
+ms.sourcegitcommit: 6fb71859d0ba2e0f2b39d71edd6d518b7a03bfe9
+ms.openlocfilehash: 321b1630680f8bd4271f863b2cbe39be1a00cb89
+
 
 ---
-# 取得從程式碼連接到 SQL Database 所使用的用戶端識別碼和金鑰
-若要從程式碼建立和管理 SQL Database，您必須在與建立 Azure 資源所使用的訂用帳戶相關聯的 Azure Active Directory (AAD) 網域中註冊您的應用程式。當您註冊應用程式時，Azure 將會產生一個，您的程式碼中需要這個用戶端識別碼和金鑰，才能驗證您的應用程式。如需詳細資訊，請參閱 [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)。
+# <a name="get-the-required-values-for-authenticating-an-application-to-access-sql-database-from-code"></a>取得驗證應用程式以從程式碼存取 SQL Database 的所需值
+若要從程式碼建立和管理 SQL Database，您必須在建立 Azure 資源所使用的訂用帳戶的 Azure Active Directory (AAD) 網域中註冊您的應用程式。
 
-## 註冊原生用戶端應用程式，並取得用戶端識別碼
-若要建立新的應用程式並且加以註冊，請執行下列動作：
+## <a name="create-a-service-principal-to-access-resources-from-an-application"></a>從應用程式建立用來存取資源的服務主體
+您必須安裝並執行最新的 [Azure PowerShell](https://msdn.microsoft.com/library/mt619274.aspx)。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
-1. 登入[傳統入口網站](https://manage.windowsazure.com/) (目前，註冊應用程式必須在傳統入口網站中進行)。
-2. 在功能表中找出 **Active Directory** 並加以選取。
-   
-    ![AAD][1]
-3. 選取要驗證您的應用程式的目錄並按一下該目錄的**名稱**。
-   
-    ![目錄][4]
-4. 在目錄頁面上，按一下 [應用程式]。
-   
-    ![[應用程式]][5]
-5. 按一下 [新增] 以新增新的應用程式。
-   
-    ![新增應用程式][6]
-6. 提供應用程式的 [名稱]，然後選取 [原生用戶端應用程式]。
-   
-    ![新增應用程式][7]
-7. 提供**重新導向 URI**。它不需要是實際的端點，只要是有效的 URI 即可。
-   
-    ![新增應用程式][8]
-8. 建立應用程式完畢之後，按一下 [設定]，然後複製 [用戶端識別碼] \(這是您在程式碼中需要的值)。
-   
-    ![取得用戶端識別碼][9]
-9. 向下捲動頁面，並按一下 [新增應用程式]。
-10. 選取 [Microsoft 應用程式]。
-11. 選取 [Microsoft Azure 服務管理 API]，然後完成精靈。
-12. 在**其他應用程式的權限**區段中找出 [Microsoft Azure 服務管理 API]，然後按一下 [委派的權限]。
-13. 選取 [存取 Azure 服務管理...]。
-    
-     ![權限][2]
-14. 按一下頁面底部的 [儲存]。
+下列 PowerShell 指令碼會建立 Active Directory (AD) 應用程式以及驗證 C# 應用程式所需的服務主體。 指令碼會輸出先前 C# 範例所需的值。 如需詳細資訊，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
-## 註冊 Web 應用程式 (或 Web API)，並取得用戶端識別碼和金鑰
-若要建立新的應用程式並且在正確的 Active Directory 中註冊，請執行下列動作：
+    # Sign in to Azure.
+    Add-AzureRmAccount
 
-1. 登入[傳統入口網站](https://manage.windowsazure.com/)。
-2. 在功能表中找出 **Active Directory** 並加以選取。
-   
-    ![AAD][1]
-3. 選取要驗證您的應用程式的目錄並按一下該目錄的**名稱**。
-   
-    ![目錄][4]
-4. 在目錄頁面上，按一下 [應用程式]。
-   
-    ![[應用程式]][5]
-5. 按一下 [新增] 以新增新的應用程式。
-   
-    ![新增應用程式][6]
-6. 提供應用程式的 [名稱]，然後選取 [Web 應用程式和/或 Web API]。
-   
-    ![新增應用程式][10]
-7. 提供 [登入 URL] 和 [應用程式識別碼 URI]。它不需要是實際的端點，只要是有效的 URI 即可。
-   
-    ![新增應用程式][11]
-8. 建立應用程式完畢後，按一下 [設定]。
-   
-    ![設定][12]
-9. 捲動到**金鑰**區段，然後在 [選取持續時間] 清單中選取 [1 年]。金鑰值將會在您儲存後顯示，因此我們稍後會再回來複製金鑰。
-   
-    ![設定金鑰持續時間][13]
-10. 向下捲動頁面，並按一下 [新增應用程式]。
-11. 選取 [Microsoft 應用程式]。
-12. 找出並選取 [Microsoft Azure 服務管理 API]，然後完成精靈。
-13. 在**其他應用程式的權限**區段中找出 [Microsoft Azure 服務管理 API]，然後按一下 [委派的權限]。
-14. 選取 [存取 Azure 服務管理...]。
-    
-     ![權限][2]
-15. 按一下頁面底部的 [儲存]。
-16. 儲存完成後，找出並儲存用戶端識別碼和金鑰︰
-    
-     ![Web 應用程式密碼][14]
+    # If you have multiple subscriptions, uncomment and set to the subscription you want to work with.
+    #$subscriptionId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
+    #Set-AzureRmContext -SubscriptionId $subscriptionId
 
-## 取得您的網域名稱
-您的驗證程式碼有時候需要網域名稱。可以輕易地識別正確的網域名稱的方式是：
+    # Provide these values for your new AAD app.
+    # $appName is the display name for your app, must be unique in your directory.
+    # $uri does not need to be a real uri.
+    # $secret is a password you create.
 
-1. 移至 [Azure 入口網站](https://portal.azure.com)。
-2. 將滑鼠停留在右上角的名稱，並記下出現在快顯視窗的網域。
-   
-    ![識別網域名稱][3]
+    $appName = "{app-name}"
+    $uri = "http://{app-name}"
+    $secret = "{app-password}"
 
-## 範例主控台應用程式
-使用 Visual Studio 的[封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理員主控台]) 安裝下列封裝，以取得必要的管理程式庫：
+    # Create a AAD app
+    $azureAdApplication = New-AzureRmADApplication -DisplayName $appName -HomePage $Uri -IdentifierUris $Uri -Password $secret
 
-    PM> Install-Package Microsoft.Azure.Common.Authentication –Pre
+    # Create a Service Principal for the app
+    $svcprincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
+
+    # To avoid a PrincipalNotFound error, I pause here for 15 seconds.
+    Start-Sleep -s 15
+
+    # If you still get a PrincipalNotFound error, then rerun the following until successful. 
+    $roleassignment = New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
 
 
-建立名稱為 **SqlDbAuthSample** 的主控台應用程式，並使用下列程式碼取代 **Program.cs** 的內容：
+    # Output the values we need for our C# application to successfully authenticate
 
-    using Microsoft.IdentityModel.Clients.ActiveDirectory;
-    using System;
+    Write-Output "Copy these values into the C# sample app"
 
-    namespace SqlDbAuthSample
-    {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            token = GetAccessTokenforNativeClient();
-            // token = GetAccessTokenUsingUserCredentials(new UserCredential("<email address>"));
-            // token = GetAccessTokenForWebApp();
-
-            Console.WriteLine("Signed in as: " + token.UserInfo.DisplayableId);
-
-            Console.WriteLine("Press Enter to continue...");
-            Console.ReadLine();
-        }
+    Write-Output "_subscriptionId:" (Get-AzureRmContext).Subscription.SubscriptionId
+    Write-Output "_tenantId:" (Get-AzureRmContext).Tenant.TenantId
+    Write-Output "_applicationId:" $azureAdApplication.ApplicationId.Guid
+    Write-Output "_applicationSecret:" $secret
 
 
-        // authentication variables (native)
-        static string nclientId = "<your client id>";
-        static string nredirectUri = "<your redirect URI>";
-        static string ndomainName = "<i.e. microsoft.onmicrosoft.com>";
-        static AuthenticationResult token;
-
-        private static AuthenticationResult GetAccessTokenforNativeClient()
-        {
-            AuthenticationContext authContext = new AuthenticationContext
-                ("https://login.windows.net/" + ndomainName /* Tenant ID or AAD domain */);
-
-            token = authContext.AcquireToken
-                ("https://management.azure.com/"/* the Azure Resource Management endpoint */,
-                    nclientId,
-            new Uri(nredirectUri),
-            PromptBehavior.Auto /* with Auto user will not be prompted if an unexpired token is cached */);
-
-            return token;
-        }
 
 
-        // authentication variables (web)
-        static string wclientId = "<your client id>";
-        static string wkey = "<your key>";
-        static string wdomainName = "<i.e. microsoft.onmicrosoft.com>";
-
-        private static AuthenticationResult GetAccessTokenForWebApp()
-        {
-            AuthenticationContext authContext = new AuthenticationContext
-                ("https://login.windows.net/" /* AAD URI */
-                + wdomainName /* Tenant ID or AAD domain */);
-
-            ClientCredential cc = new ClientCredential(wclientId, wkey);
-
-            AuthenticationResult token = authContext.AcquireToken(
-                "https://management.azure.com/"/* the Azure Resource Management endpoint */,
-                cc);
-
-            return token;
-        }
-
-
-        private static AuthenticationResult GetAccessTokenUsingUserCredentials(UserCredential userCredential)
-        {
-            AuthenticationContext authContext = new AuthenticationContext
-                ("https://login.windows.net/" /* AAD URI */
-                + ndomainName /* Tenant ID or AAD domain */);
-
-            AuthenticationResult token = authContext.AcquireToken(
-                "https://management.azure.com/"/* the Azure Resource Management endpoint */,
-                nclientId /* application client ID from AAD*/,
-                new Uri(nredirectUri) /* redirect URI */,
-                PromptBehavior.Auto,
-                new UserIdentifier(userCredential.UserName, UserIdentifierType.RequiredDisplayableId));
-
-            return token;
-        }
-    }
-    }
-
-
-如需與 Azure AD 驗證相關的特定程式碼範例，請參閱 MSDN 上的 [SQL Server 安全性部落格](http://blogs.msdn.com/b/sqlsecurity/)。
-
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [以 C# 建立 SQL Database](sql-database-get-started-csharp.md)
 * [使用 Azure Active Directory 驗證連線到 SQL Database](sql-database-aad-authentication.md)
 
-<!--Image references-->
-[1]: ./media/sql-database-client-id-keys/aad.png
-[2]: ./media/sql-database-client-id-keys/permissions.png
-[3]: ./media/sql-database-client-id-keys/getdomain.png
-[4]: ./media/sql-database-client-id-keys/aad2.png
-[5]: ./media/sql-database-client-id-keys/aad-applications.png
-[6]: ./media/sql-database-client-id-keys/add.png
-[7]: ./media/sql-database-client-id-keys/add-application.png
-[8]: ./media/sql-database-client-id-keys/add-application2.png
-[9]: ./media/sql-database-client-id-keys/clientid.png
-[10]: ./media/sql-database-client-id-keys/add-application-web.png
-[11]: ./media/sql-database-client-id-keys/add-application-app-properties.png
-[12]: ./media/sql-database-client-id-keys/configure.png
-[13]: ./media/sql-database-client-id-keys/key-duration.png
-[14]: ./media/sql-database-client-id-keys/web-secrets.png
 
-<!---HONumber=AcomDC_0608_2016-->
+
+
+<!--HONumber=Dec16_HO4-->
+
+

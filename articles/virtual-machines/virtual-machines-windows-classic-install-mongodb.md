@@ -1,13 +1,13 @@
 ---
-title: 在 Windows VM 上安裝 MongoDB | Microsoft Docs
-description: 了解如何在以執行 Windows Server 的傳統部署模型建立的 Azure VM 上安裝 MongoDB。
+title: "在 Windows VM 上安裝 MongoDB | Microsoft Docs"
+description: "了解如何在以執行 Windows Server 的傳統部署模型建立的 Azure VM 上安裝 MongoDB。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: iainfoulds
 manager: timlt
 editor: tysonn
 tags: azure-service-management
-
+ms.assetid: 4095df41-bb69-4bbe-9c1c-70923b0d84ba
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,12 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: iainfou
+translationtype: Human Translation
+ms.sourcegitcommit: f198d295272c8c860bc455cfa300cad3ff375c5d
+ms.openlocfilehash: cb618cbc47748a002351caa3a5935c9824c2bc32
+
 
 ---
 # <a name="install-mongodb-on-a-windows-vm"></a>在 Windows VM 上安裝 MongoDB
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-若要使用 Resource Manager 部署模型安裝及設定 MongoDB，請參閱[本文章](virtual-machines-windows-classic-install-mongodb.md)。
+> [!IMPORTANT]
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 若要使用 Resource Manager 部署模型安裝及設定 MongoDB，請參閱[本文章](virtual-machines-windows-install-mongodb.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 [MongoDB][MongoDB] 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文會引導您使用 [Azure 傳統入口網站][AzurePortal] 建立 Windows Server 虛擬機器 (VM)。 接著您會建立資料磁碟，並將其連接至 VM，然後安裝及設定 MongoDB。 如果您想要使用 Azure 中現有的 VM，您可以直接跳到[安裝並設定 MongoDB](#install-and-run-mongodb-on-the-virtual-machine)。
 
@@ -39,7 +42,7 @@ ms.author: iainfou
 
 [!INCLUDE [howto-attach-disk-windows-linux](../../includes/howto-attach-disk-windows-linux.md)]
 
-如需初始化磁碟的指示，請參閱 [如何將資料磁碟連接至 Windows 虛擬機器](virtual-machines-windows-classic-attach-disk.md)中的〈作法：在 Windows Server 中初始化新的資料磁碟〉。
+如需初始化磁碟的指示，請參閱 [如何將資料磁碟連接至 Windows 虛擬機器](virtual-machines-windows-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)中的〈作法：在 Windows Server 中初始化新的資料磁碟〉。
 
 ## <a name="install-and-run-mongodb-on-the-virtual-machine"></a>在虛擬機器上安裝及執行 MongoDB
 [!INCLUDE [install-and-run-mongo-on-win2k8-vm](../../includes/install-and-run-mongo-on-win2k8-vm.md)]
@@ -53,6 +56,6 @@ ms.author: iainfou
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

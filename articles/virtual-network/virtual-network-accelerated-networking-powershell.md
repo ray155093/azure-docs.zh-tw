@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 8ae59a99a8397676160c032b744460c0b2bcc1d7
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: 979ff03320063fc02366c738a10f028bcecba76b
 
 
 ---
@@ -59,7 +59,7 @@ ms.openlocfilehash: 8ae59a99a8397676160c032b744460c0b2bcc1d7
 這些限制如有變更將會透過 [Azure 虛擬網路更新](https://azure.microsoft.com/updates/accelerated-networking-in-preview)頁面發佈。
 
 ## <a name="create-a-windows-vm-with-accelerated-networking"></a>建立使用加速網路的 Windows VM
-1. 開啟 PowerShell 命令提示字元，在單一 PowerShell 工作階段內完成本節中其餘的步驟。 如果您尚未安裝和設定 PowerShell，請先完成 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 文章中的步驟。
+1. 開啟 PowerShell 命令提示字元，在單一 PowerShell 工作階段內完成本節中其餘的步驟。 如果您尚未安裝和設定 PowerShell，請先完成 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 文章中的步驟。
 2. 若要註冊以進行預覽，請傳送電子郵件給 [加速網路訂用帳戶](mailto:axnpreview@microsoft.com?subject=Request%20to%20enable%20subscription%20%3csubscription%20id%3e) ，其中包含您的訂用帳戶 ID 與用途。 直到您收到電子郵件通知您已被接受到預覽中，再完成其餘步驟。
 3. 輸入下列命令，使用您的訂用帳戶註冊功能︰
    
@@ -129,6 +129,6 @@ ms.openlocfilehash: 8ae59a99a8397676160c032b744460c0b2bcc1d7
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

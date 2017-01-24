@@ -12,16 +12,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/17/2016
+ms.date: 11/18/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 47254ada98dffe96414d640d4661934ef5a6c554
-ms.openlocfilehash: a7dcd6f95290408e87ef0eb31d8f989de27a309e
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f779106e8ca79260c8abba070586e3f03ffa61e9
 
 
 ---
 # <a name="manage-azure-blob-storage-resources-with-storage-explorer-preview"></a>使用儲存體 Explorer 來管理 Azure Blob 儲存體資源 (預覽)
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 [Azure Blob 儲存體](storage/storage-dotnet-how-to-use-blobs.md)是一項儲存大量非結構化資料的服務 (例如文字或二進位資料)，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。
 您可以使用 Blob 儲存體向全球公開資料，或私下儲存應用程式資料。 在本文中，您將學習如何使用儲存體 Explorer (預覽) 來使用 blob 容器和 blob。
 
@@ -238,6 +238,6 @@ Blob 容器可以輕鬆地建立並視需要刪除。 (若要查看如何刪除�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

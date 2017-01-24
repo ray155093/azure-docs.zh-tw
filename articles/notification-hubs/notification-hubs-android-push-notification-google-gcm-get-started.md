@@ -16,8 +16,8 @@ ms.topic: hero-article
 ms.date: 07/05/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f9ce6c56598e2318821c2e81a1bab1b876d6a866
+ms.sourcegitcommit: 84d3aa963f8538c0721f6c0a02cee5b8e7269770
+ms.openlocfilehash: 33433fb4e71ea6a88522c0bd50695d271fee1884
 
 
 ---
@@ -63,10 +63,10 @@ ms.openlocfilehash: f9ce6c56598e2318821c2e81a1bab1b876d6a866
 ### <a name="create-a-new-android-project"></a>建立新的 Android 專案
 1. 在 Android Studio 中，啟動新的 Android Studio 專案。
    
-       ![Android Studio - new project][13]
+     ![Android Studio - 新增專案][13]
 2. 選擇 [電話和平板電腦] 板型規格和您要支援的 [Minimum SDK]。 然後按 [下一步] 。
    
-       ![Android Studio - project creation workflow][14]
+     ![Android Studio - 專案建立工作流程][14]
 3. 為主要活動選擇 [空白活動]，並按 [下一步]，然後按一下 [完成]。
 
 ### <a name="add-google-play-services-to-the-project"></a>新增 Google Play 服務至專案
@@ -660,10 +660,10 @@ ms.openlocfilehash: f9ce6c56598e2318821c2e81a1bab1b876d6a866
 
 
 <!-- URLs. -->
-[開始在行動服務中使用推播通知]: ../mobile-services-javascript-backend-android-get-started-push.md  
-[行動服務 Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
-[參考程式庫專案]: http://go.microsoft.com/fwlink/?LinkId=389800
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[Get started with push notifications in Mobile Services]: ../mobile-services-javascript-backend-android-get-started-push.md  
+[Mobile Services Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
+[Referencing a library project]: http://go.microsoft.com/fwlink/?LinkId=389800
+[Azure Classic Portal]: https://manage.windowsazure.com/
 [通知中樞指引]: http://msdn.microsoft.com/library/jj927170.aspx
 [使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
 [使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
@@ -671,6 +671,6 @@ ms.openlocfilehash: f9ce6c56598e2318821c2e81a1bab1b876d6a866
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

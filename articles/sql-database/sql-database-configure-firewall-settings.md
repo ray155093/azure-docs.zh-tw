@@ -1,6 +1,6 @@
 ---
-title: "設定 SQL Database 伺服器層級防火牆規則 | Microsoft Docs"
-description: "了解如何設定存取 Azure SQL Server 之 IP 位址的防火牆。"
+title: "Azure 入口網站：Azure SQL Database 伺服器層級防火牆規則 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站設定可存取 Azure SQL Server 之 IP 位址的伺服器層級防火牆。"
 services: sql-database
 documentationcenter: 
 author: BYHAM
@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 11/28/2016
 ms.author: rickbyh;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: a87bb18aeacbc980fc6859c7c83a102dce0263a8
+ms.sourcegitcommit: 2a85b3dc1078bad9e5e2fc0ce0bec7e994b29150
+ms.openlocfilehash: 36938e642853d587cd28405f5e518ac9ac0697ac
 
 
 ---
@@ -51,7 +51,7 @@ ms.openlocfilehash: a87bb18aeacbc980fc6859c7c83a102dce0263a8
 ## <a name="next-steps"></a>後續步驟
 
 - 如需入門教學課程，請參閱 [SQL Database 教學課程︰建立伺服器、伺服器層級防火牆規則、範例資料庫、資料庫層級防火牆規則，以及與 SQL Server 連接](sql-database-get-started.md)。
-- 如需入門安全性教學課程相關資訊，請參閱[安全性入門](sql-database-get-started-security.md)
+- 如需入門安全性教學課程相關資訊，請參閱[安全性入門](sql-database-control-access-sql-authentication-get-started.md)
 - 如需從開放原始碼或協力廠商應用程式連接到 Azure SQL Database 的說明，請參閱 [SQL Database 的用戶端快速入門程式碼範例](https://msdn.microsoft.com/library/azure/ee336282.aspx)。
 - 若要了解如何建立其他可連線至資料庫的使用者，請參閱 [SQL Database 驗證和授權︰授與存取](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
 
@@ -64,6 +64,6 @@ ms.openlocfilehash: a87bb18aeacbc980fc6859c7c83a102dce0263a8
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 

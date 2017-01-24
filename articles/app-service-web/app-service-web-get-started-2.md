@@ -11,17 +11,17 @@ ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: get-started-article
 ms.date: 05/12/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 310bf3656db6ae6e0a8d3c1cc13442e2aa4e7752
+ms.sourcegitcommit: b2c501b6e048d569ebf43b8f40d6b08f687ab624
+ms.openlocfilehash: 549b84788259796c2146fa19763fb00d4e03019c
 
 
 ---
 # <a name="add-functionality-to-your-first-web-app"></a>在您的第一個 Web 應用程式中新增功能
-在[在 5 分鐘內，將您的第一個 Web 應用程式部署至 Azure](app-service-web-get-started.md) 中，您已將範例 Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 在本文中，您將快速地在已部署的 Web 應用程式中新增一些很棒的功能。 您將在幾分鐘內︰
+在[在 5 分鐘內，將您的第一個 Web 應用程式部署至 Azure](app-service-web-get-started-cli-nodejs.md) 中，您已將範例 Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 在本文中，您將快速地在已部署的 Web 應用程式中新增一些很棒的功能。 您將在幾分鐘內︰
 
 * 強制執行使用者驗證
 * 自動調整您的應用程式
@@ -157,6 +157,6 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

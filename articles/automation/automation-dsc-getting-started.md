@@ -4,7 +4,7 @@ description: "Azure 自動化預期狀態設定 (DSC) 中最常見工作的說�
 services: automation
 documentationcenter: na
 author: eslesar
-manager: dongill
+manager: carmonm
 editor: tysonn
 ms.assetid: a3816593-70a3-403b-9a43-d5555fd2cee2
 ms.service: automation
@@ -84,7 +84,7 @@ ms.openlocfilehash: 282cb0a7705d0650852699ed5fe09f61fda42d0f
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上，依序按一下 [所有資源]  和您的自動化帳戶名稱。
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] (這是您在上一個程序中匯入的組態名稱)。
+4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] \(這是您在上一個程序中匯入的組態名稱)。
 5. 在 [TestConfig 組態] 刀鋒視窗上，按一下 [檢視組態來源]。
    
     ![TestConfig 組態刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/ViewConfigSource.png)
@@ -97,7 +97,7 @@ ms.openlocfilehash: 282cb0a7705d0650852699ed5fe09f61fda42d0f
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上，依序按一下 [所有資源]  和您的自動化帳戶名稱。
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] (先前匯入的組態名稱)。
+4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] \(先前匯入的組態名稱)。
 5. 在 [TestConfig 組態] 刀鋒視窗上，按一下 [編譯]，然後按一下 [是]。 這會啟動編譯作業。
    
     ![醒目提示編譯按鈕之 TestConfig 組態刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/CompileConfig.png)
@@ -113,7 +113,7 @@ ms.openlocfilehash: 282cb0a7705d0650852699ed5fe09f61fda42d0f
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上，依序按一下 [所有資源]  和您的自動化帳戶名稱。
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]。
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] (先前匯入的組態名稱)。
+4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] \(先前匯入的組態名稱)。
 5. 在 [TestConfig 組態] 刀鋒視窗的 [編譯作業] 圖格上，按一下任何列出的工作。 [編譯作業]  刀鋒視窗隨即開啟，並標示編譯作業的啟動日期。
    
     ![[編譯作業] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/CompilationJob.png)

@@ -14,8 +14,8 @@ ms.workload: infrastructure-services
 ms.date: 10/11/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: c5df6d998812568c764ccb6914b3c81fe4e568ec
-ms.openlocfilehash: d9d9630487f9eeb381198230a20d01c1c5f6678d
+ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
+ms.openlocfilehash: f97ba8ebc940d4b3eec5d2610503f8a86af8dbe2
 
 ---
 
@@ -52,7 +52,7 @@ Azure Resource Manager 的流量管理員支援採用不同於傳統部署模型
 
 這些指示使用 Microsoft Azure PowerShell。 下列文章說明如何安裝和設定 Azure PowerShell。
 
-* [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
+* [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 
 這篇文章中的範例假設您有現有的資源群組。 您可以使用下列命令建立資源群組：
 
@@ -202,7 +202,7 @@ New-AzureRmTrafficManagerEndpoint -Name eu-endpoint -ProfileName MyProfile -Reso
 
 ## <a name="adding-nested-endpoints"></a>新增「巢狀」端點
 
-每個「流量管理員」設定檔皆指定一個流量路由方法。 不過，有些情況需要比流量管理員所提供的路由更複雜的流量路由。 您可以將流量管理員設定檔巢狀化，以結合多個流量路由方法的優點。 巢狀設定檔可讓您覆寫預設流量管理員行為，以支援更大和更複雜的應用程式部署。 如需詳細範例，請參閱[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)。
+每個「流量管理員」設定檔皆指定一個流量路由方法。 不過，有些情況需要的流量路由，比單一流量管理員設定檔所提供的路由更複雜。 您可以將流量管理員設定檔巢狀化，以結合多個流量路由方法的優點。 巢狀設定檔可讓您覆寫預設流量管理員行為，以支援更大和更複雜的應用程式部署。 如需詳細範例，請參閱[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)。
 
 巢狀端點是在父設定檔中使用特定的端點類型 ('NestedEndpoints') 來設定。 指定巢狀端點時︰
 
@@ -342,6 +342,6 @@ Get-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyRG | Remov
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

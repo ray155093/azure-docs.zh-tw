@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/25/2016
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4c8982461142223f0b339fa542b0bfb6b4ce68a8
+ms.sourcegitcommit: 5d3bcc3c1434b16279778573ccf3034f9ac28a4d
+ms.openlocfilehash: a58aa47c21b34f3b54877bb12ceb1b6e20953ea7
 
 
 ---
@@ -43,7 +43,7 @@ ms.openlocfilehash: 4c8982461142223f0b339fa542b0bfb6b4ce68a8
 [!INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
 ## <a name="variables-for-names"></a>名稱的變數
-這個範本會使用變數來建構資源的名稱。 它會使用 [uniqueString](../resource-group-template-functions.md#uniquestring) 函式，根據資源群組識別碼來建構值。
+這個範本會使用變數來建構資源的名稱。 它會使用 [uniqueString](../azure-resource-manager/resource-group-template-functions.md#uniquestring) 函式，根據資源群組識別碼來建構值。
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -58,7 +58,7 @@ ms.openlocfilehash: 4c8982461142223f0b339fa542b0bfb6b4ce68a8
 ### <a name="redis-cache"></a>Redis 快取
 建立與 Web 應用程式搭配使用的 Azure Redis 快取。 快取的名稱指定於 **cacheName** 變數中。
 
-範本會在資源群組的相同位置建立快取。 
+範本會在資源群組的相同位置建立快取。
 
     {
       "name": "[variables('cacheName')]",
@@ -128,8 +128,6 @@ ms.openlocfilehash: 4c8982461142223f0b339fa542b0bfb6b4ce68a8
 
 
 
-
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

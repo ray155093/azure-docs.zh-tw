@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 7834aefeb9eb007ffa9daf708250c9f06ec05e67
-ms.openlocfilehash: 5aa628ce651c3d768f461f5bcea2c63d693f091e
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: 42cc83b058f504ba5eb7a918fbcc775f14c632fd
 
 
 ---
@@ -49,7 +49,7 @@ Azure 目前有兩種管理模型：傳統和 Resource Manager (RM)。 如果您
 ### <a name="prerequisites"></a>必要條件
 * 已建立兩個 Vnet。
 * Vnet 的位址範圍不會彼此重疊，或與閘道可能連接的任何其他連線範圍重疊。
-* 您已安裝最新的 PowerShell Cmdlet (1.0.2 或更新版本)。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。 確定安裝服務管理 (SM) 和 Resource Manager (RM) Cmdlet。 
+* 您已安裝最新的 PowerShell Cmdlet (1.0.2 或更新版本)。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 確定安裝服務管理 (SM) 和 Resource Manager (RM) Cmdlet。 
 
 ### <a name="a-nameexamplerefaexample-settings"></a><a name="exampleref"></a>設定範例
 您可以使用範例設定為參考。
@@ -256,6 +256,6 @@ GatewaySubnet = 192.168.0.0/26 <br>
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -138,6 +138,9 @@
 ##### [在 StorSimple Snapshot Manager 中使用 MMC 動作](storsimple-snapshot-manager-mmc-menu.md)
 
 ### 建置解決方案
+#### [StorSimple 搭配 Veeam](storsimple-configure-backup-target-veeam.md)
+#### [StorSimple 搭配 Veritas Backup Exec](storsimple-configure-backup-target-using-backup-exec.md)
+#### [StorSimple 搭配 Veritas NetBackup](storsimple-configure-backuptarget-netbackup.md)
 #### [自動化檔案伺服器 DR 到 Azure](storsimple-disaster-recovery-using-azure-site-recovery.md)
 #### [StorSimple 與 Express Route](https://gallery.technet.microsoft.com/STORESIMPLE-CONFIGURATION-86c04c3b/view/Discussions#content)
 #### [StorSimple 與 VMware](https://gallery.technet.microsoft.com/VMWARE-DEPLOYMENT-WITH-2921b463)
@@ -217,6 +220,6 @@
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO3-->
 
 

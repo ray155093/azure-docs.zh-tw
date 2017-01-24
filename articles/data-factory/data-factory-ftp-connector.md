@@ -12,7 +12,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/20/2016
+ms.date: 01/22/2017
 ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
@@ -258,7 +258,7 @@ Data Factory 目前只支援將資料從 FTP 伺服器移到其他資料存放�
 ```
 
 ### <a name="using-port-enablessl-enableservercertificatevalidation"></a>Using port, enableSsl, enableServerCertificateValidation
- 
+
 ```JSON
 {
     "name": "FTPLinkedService",
@@ -278,7 +278,7 @@ Data Factory 目前只支援將資料從 FTP 伺服器移到其他資料存放�
 ```
 
 ### <a name="using-encryptedcredential-for-authentication-and-gateway"></a>針對驗證和閘道使用 encryptedCredential
-    
+
 ```JSON
 {
     "name": "FTPLinkedService",

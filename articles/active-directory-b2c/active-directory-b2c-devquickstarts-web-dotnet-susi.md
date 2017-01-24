@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/22/2016
+ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -20,7 +20,7 @@ ms.openlocfilehash: 9d161973b8b299305993162510be7027f05dec39
 
 
 ---
-# <a name="azure-ad-b2c-sign-up-sign-in-in-a-aspnet-web-app"></a>Azure AD B2C：在 ASP.NET Web 應用程式中註冊和登入
+# <a name="azure-ad-b2c-sign-up--sign-in-in-a-aspnet-web-app"></a>Azure AD B2C：在 ASP.NET Web 應用程式中註冊和登入
 <!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-web-switcher](../../includes/active-directory-b2c-devquickstarts-web-switcher.md)]-->
 
 Azure Active Directory (Azure AD) B2C 可讓您將強大的自助式身分識別管理功能加入至 Web 應用程式，只要幾個簡短步驟即可完成。 本文將討論如何建立支援使用者註冊、登入及密碼重設的 ASP.NET Web 應用程式。 此應用程式將支援以使用者名稱或電子郵件及社交帳戶 (例如 Facebook 和 Google) 來註冊和登入。
@@ -319,6 +319,6 @@ You can now move on to more advanced B2C topics. You might try:
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

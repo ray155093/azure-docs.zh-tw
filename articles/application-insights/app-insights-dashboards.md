@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: dea21a59b189d1d3d474cbc5e67f64df485a1981
-ms.openlocfilehash: 369feec4d8d5234ffcde9d4f75811f3847d88834
+ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
+ms.openlocfilehash: 531927178699d6534c37dca6616fe8fdaa19e5fe
 
 
 ---
@@ -114,7 +114,7 @@ ms.openlocfilehash: 369feec4d8d5234ffcde9d4f75811f3847d88834
 * **概觀** - 返回應用程式概觀刀鋒視窗。
 * **活動記錄檔** - 警示與 Azure 系統管理事件。
 * [**存取控制**](app-insights-resources-roles-access-control.md) - 將存取權提供給小組成員和其他人。
-* [**標籤**](../resource-group-using-tags.md) - 使用標籤將您的應用程式與其他應用程式分組。
+* [**標籤**](../azure-resource-manager/resource-group-using-tags.md) - 使用標籤將您的應用程式與其他應用程式分組。
 
 調查
 
@@ -141,7 +141,7 @@ ms.openlocfilehash: 369feec4d8d5234ffcde9d4f75811f3847d88834
 
 設定
 
-* [**鎖定**](../resource-group-lock-resources.md) -鎖定 Azure 資源
+* [**鎖定**](../azure-resource-manager/resource-group-lock-resources.md) -鎖定 Azure 資源
 * [**自動化指令碼**](app-insights-powershell.md) - 匯出 Azure 資源的定義，如此您就能用其做為範本來建立新資源。
 
 支援
@@ -157,6 +157,6 @@ ms.openlocfilehash: 369feec4d8d5234ffcde9d4f75811f3847d88834
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

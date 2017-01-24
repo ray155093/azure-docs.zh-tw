@@ -1,19 +1,23 @@
 ---
-title: 使用 Azure 媒體服務 REST API 建立篩選器 | Microsoft Docs
-description: 本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。 媒體服務會建立動態資訊清單來完成此選擇性資料流。
+title: "使用 Azure 媒體服務 REST API 建立篩選器 | Microsoft Docs"
+description: "本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。 媒體服務會建立動態資訊清單來完成此選擇性資料流。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: f7d23daf-7cd2-49c7-a195-ab902912ab3c
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/10/2017
 ms.author: juliako;cenkdin
+translationtype: Human Translation
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: e10c7b29469f9756803aaba64596bf86830893fa
+
 
 ---
 # <a name="creating-filters-with-azure-media-services-rest-api"></a>使用 Azure 媒體服務 REST API 建立篩選器
@@ -32,10 +36,10 @@ ms.author: juliako;cenkdin
 ## <a name="types-used-to-create-filters"></a>用於建立篩選器的類型
 建立篩選器時會使用下列類型：  
 
-* [Filter](http://msdn.microsoft.com/library/azure/mt149056.aspx)
-* [AssetFilter](http://msdn.microsoft.com/library/azure/mt149053.aspx)
-* [PresentationTimeRange](http://msdn.microsoft.com/library/azure/mt149052.aspx)
-* [FilterTrackSelect 和 FilterTrackPropertyCondition](http://msdn.microsoft.com/library/azure/mt149055.aspx)
+* [Filter](https://docs.microsoft.com/rest/api/media/operations/filter)
+* [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
+* [PresentationTimeRange](https://docs.microsoft.com/rest/api/media/operations/presentationtimerange)
+* [FilterTrackSelect 和 FilterTrackPropertyCondition](https://docs.microsoft.com/rest/api/media/operations/filtertrackselect)
 
 > [!NOTE]
 > 使用媒體服務 REST API 時，適用下列考量事項：
@@ -153,7 +157,7 @@ Request body
     . . . 
 
 ## <a name="list-filters"></a>清單篩選器
-### <a name="get-all-global-**filter**s-in-the-ams-account"></a>取得 AMS 帳戶中所有的全域 **篩選器**
+### <a name="get-all-global-filters-in-the-ams-account"></a>取得 AMS 帳戶中所有的全域 **篩選器**
 若要列出篩選器，請使用下列 HTTP 要求： 
 
 #### <a name="http-request"></a>HTTP 要求
@@ -166,7 +170,7 @@ Request body
     x-ms-version: 2.11 
     Host: media.windows.net 
 
-### <a name="get-**assetfilter**s-associated-with-an-asset"></a>取得與資產相關聯的 **AssetFilter**
+### <a name="get-assetfilters-associated-with-an-asset"></a>取得與資產相關聯的 **AssetFilter**
 #### <a name="http-request"></a>HTTP 要求
     GET https://media.windows.net/API/Assets('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592')/AssetFilters HTTP/1.1 
     DataServiceVersion: 3.0 
@@ -178,7 +182,7 @@ Request body
     x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
     Host: media.windows.net 
 
-### <a name="get-an-**assetfilter**-based-on-its-id"></a>根據識別碼取得 **AssetFilter**
+### <a name="get-an-assetfilter-based-on-its-id"></a>根據識別碼取得 **AssetFilter**
 #### <a name="http-request"></a>HTTP 要求
     GET https://media.windows.net/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__TestFilter') HTTP/1.1 
     DataServiceVersion: 3.0 
@@ -324,12 +328,7 @@ Request body
 
     http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(filter=MyFilter)
 
-
-**HDS**
-
-    http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=f4m-f4f, filter=MyFilter)
-
-
+    
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -339,6 +338,9 @@ Request body
 ## <a name="see-also"></a>另請參閱
 [動態資訊清單概觀](media-services-dynamic-manifest-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO2-->
 
 

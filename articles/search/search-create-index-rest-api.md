@@ -13,31 +13,31 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
-ms.date: 08/29/2016
+ms.date: 12/08/2016
 ms.author: ashmaka
 translationtype: Human Translation
-ms.sourcegitcommit: 6ff31940f3a4e7557e0caf3d9d3740590be3bc04
-ms.openlocfilehash: 6d3bbea1a891e1d2f41eedccd9b9a591dfe13855
-
+ms.sourcegitcommit: 702ea254c19d1f9782f83d8445b7f440f11963b9
+ms.openlocfilehash: 7f4bccda8a7cebff0d80627320d34062d4d55add
 
 ---
 # <a name="create-an-azure-search-index-using-the-rest-api"></a>使用 REST API 建立 Azure 搜尋服務索引
 > [!div class="op_single_selector"]
+>
 > * [概觀](search-what-is-an-index.md)
 > * [入口網站](search-create-index-portal.md)
 > * [.NET](search-create-index-dotnet.md)
 > * [REST](search-create-index-rest-api.md)
-> 
-> 
+>
+>
 
-本文將逐步引導您完成使用 Azure 搜尋服務 REST API 建立 Azure 搜尋服務 [索引](https://msdn.microsoft.com/library/azure/dn798941.aspx) 的程序。
+本文將逐步引導您完成使用 Azure 搜尋服務 REST API 建立 Azure 搜尋服務 [索引](https://docs.microsoft.com/rest/api/searchservice/Create-Index) 的程序。
 
 在按照本指南進行並建立索引錢，請先 [建立好 Azure 搜尋服務](search-create-service-portal.md)。
 
 若要使用 REST API 建立 Azure 搜尋服務索引，您將會發出單一 HTTP POST 要求到 Azure 搜尋服務的 URL 端點。 索引定義會以正確格式之 JSON 內容的形式包含在要求主體中。
 
-## <a name="i-identify-your-azure-search-services-admin-apikey"></a>I. 識別 Azure 搜尋服務的系統管理 API 金鑰
-既然您已佈建好 Azure 搜尋服務，您接著可以針對使用 REST API 的服務 URL 端點發出 HTTP 要求。 不過，所有  API 要求都必須包含針對您佈建的搜尋服務所產生的 API 金鑰。 擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
+## <a name="identify-your-azure-search-services-admin-api-key"></a>識別 Azure 搜尋服務的系統管理 API 金鑰
+既然您已佈建好 Azure 搜尋服務，您接著可以針對使用 REST API 的服務 URL 端點發出 HTTP 要求。 所有 API 要求都必須包含針對您佈建的搜尋服務所產生的 API 金鑰。 擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
 
 1. 若要尋找服務的 API 金鑰，您必須登入 [Azure 入口網站](https://portal.azure.com/)
 2. 前往 Azure 搜尋服務的刀鋒視窗。
@@ -50,13 +50,13 @@ ms.openlocfilehash: 6d3bbea1a891e1d2f41eedccd9b9a591dfe13855
 
 主要或次要系統管理金鑰都可用於建立索引。
 
-## <a name="ii-define-your-azure-search-index-using-wellformed-json"></a>II. 使用正確格式的 JSON 定義 Azure 搜尋服務索引
+## <a name="define-your-azure-search-index-using-well-formed-json"></a>使用正確格式的 JSON 定義 Azure 搜尋服務索引
 針對服務提出單一 HTTP POST 要求就會建立索引。 HTTP POST 要求主體會包含單一 JSON 物件以定義 Azure 搜尋服務索引。
 
 1. 此 JSON 物件的第一個屬性是索引名稱。
 2. 此 JSON 物件的第二個屬性是名為 `fields` 的 JSON 陣列，其針對索引中的每個欄位各包含一個 JSON 物件。 每個 JSON 物件都針對每個欄位屬性 (包括 [名稱]、[類型] 等) 包含多個名稱/值組。
 
-由於必須為每個欄位指派 [適當屬性](https://msdn.microsoft.com/library/azure/dn798941.aspx)，因此在設計索引時，請務必牢記搜尋服務使用者體驗和商務需求。 這些屬性可控制要對哪些欄位套用哪些搜尋功能 (篩選、面向設定、排序全文檢索搜尋等)。 對於未指定的屬性，除非您明確停用，否則其預設值是啟用對應的搜尋功能。
+由於必須為每個欄位指派 [適當屬性](https://docs.microsoft.com/rest/api/searchservice/Create-Index)，因此在設計索引時，請務必牢記搜尋服務使用者體驗和商務需求。 這些屬性可控制要對哪些欄位套用哪些搜尋功能 (篩選、面向設定、排序全文檢索搜尋等)。 對於未指定的屬性，除非您明確停用，否則其預設值是啟用對應的搜尋功能。
 
 在我們的範例中，我們已將索引命名為 "hotels"，並將欄位定義如下：
 
@@ -84,33 +84,32 @@ ms.openlocfilehash: 6d3bbea1a891e1d2f41eedccd9b9a591dfe13855
 
 請注意，`Edm.String` 類型的索引中必須有一個欄位 (且只有一個) 指定為 'key' 欄位。
 
-`description_fr` 欄位會用來儲存法文文字，因此上述索引定義會對此欄位使用自訂語言分析器。 如需語言分析器的詳細資訊，請參閱 [MSDN 上的語言支援主題](https://msdn.microsoft.com/library/azure/dn879793.aspx)以及對應的[部落格文章](https://azure.microsoft.com/blog/language-support-in-azure-search/)。
+`description_fr` 欄位會用來儲存法文文字，因此上述索引定義會對此欄位使用語言分析器。 如需語言分析器的詳細資訊，請參閱[語言支援主題](https://docs.microsoft.com/rest/api/searchservice/Language-support)以及對應的[部落格文章](https://azure.microsoft.com/blog/language-support-in-azure-search/)。
 
-## <a name="iii-issue-the-http-request"></a>III. 發出 HTTP 要求
-1. 請使用索引定義做為要求主體來對 Azure 搜尋服務端點 URL 發出 HTTP POST 要求。 在 URL 中，請務必使用服務名稱做為主機名稱，然後放置適當的 `api-version` 做為查詢字串參數 (本文件發行時的最新 API 版本是 `2015-02-28`)。
+## <a name="issue-the-http-request"></a>發出 HTTP 要求
+1. 請使用索引定義做為要求主體來對 Azure 搜尋服務端點 URL 發出 HTTP POST 要求。 在 URL 中，請務必使用服務名稱做為主機名稱，然後放置適當的 `api-version` 做為查詢字串參數 (本文件發行時的最新 API 版本是 `2016-09-01`)。
 2. 在要求標頭中，指定 `Content-Type` 做為 `application/json`。 您也必須提供您在步驟 I 中於 `api-key` 標頭所識別的服務系統管理金鑰。
 
 您必須提供自己的服務名稱和 API 金鑰來發出以下要求︰
 
-    POST https://[service name].search.windows.net/indexes?api-version=2015-02-28
+    POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
     api-key: [api-key]
 
 
-若要求成功，您應該會看到狀態碼 201 (已建立)。 如需透過 REST API 建立索引的詳細資訊，請瀏覽 [MSDN](https://msdn.microsoft.com/library/azure/dn798941.aspx)上的 API 參考資料。 如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://msdn.microsoft.com/library/azure/dn798925.aspx)。
+若要求成功，您應該會看到狀態碼 201 (已建立)。 如需透過 REST API 建立索引的詳細資訊，請瀏覽[此處的 API 參考](https://docs.microsoft.com/rest/api/searchservice/Create-Index)。 如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes)。
 
 索引已使用完畢而想要將其刪除時，請直接發出 HTTP DELETE 要求。 例如，以下是我們刪除 "hotels" 索引的方式：
 
-    DELETE https://[service name].search.windows.net/indexes/hotels?api-version=2015-02-28
+    DELETE https://[service name].search.windows.net/indexes/hotels?api-version=2016-09-01
     api-key: [api-key]
 
 
-## <a name="next"></a>下一步
+## <a name="next-steps"></a>後續步驟
 建立 Azure 搜尋服務索引後，您就可以 [將內容上傳到索引](search-what-is-data-import.md) ，以便開始搜尋資料。
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 
