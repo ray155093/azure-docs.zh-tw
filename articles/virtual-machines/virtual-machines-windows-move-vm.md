@@ -1,5 +1,5 @@
 ---
-title: 移除 Windows VM | Microsoft Docs
+title: 移動 Windows VM | Microsoft Docs
 description: 在 Resource Manager 部署模型中將 Windows VM 移至另一個 Azure 訂用帳戶或資源群組。
 services: virtual-machines-windows
 documentationcenter: ''
