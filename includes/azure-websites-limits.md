@@ -23,7 +23,7 @@
 | [WebJobs](../articles/app-service-web/web-sites-create-web-jobs.md)<sup>9</sup> |X |X |X |X |X |
 | [Azure 排程器](https://azure.microsoft.com/services/scheduler/) 支援 | |X |X |X |X |
 | [端點監視](../articles/app-service-web/web-sites-monitor.md) | | |X |X |X |
-| [預備位置 (預覽)](../articles/app-service-web/web-sites-staged-publishing.md) | | | |5 |20 |
+| [預備位置](../articles/app-service-web/web-sites-staged-publishing.md) | | | |5 |20 |
 | 每個應用程式的自訂網域</a> | |500 |500 |500 |500 |
 | SLA | |<p> |99.9% |99.95%<sup>10</sup> |99.95%<sup>10</sup> |
 
@@ -40,6 +40,6 @@
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 

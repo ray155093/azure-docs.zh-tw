@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 08/27/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 14de66f6035d8cd0579351d64b85bd7e1c8f2ab2
+ms.sourcegitcommit: a0580f8d303c7ce33a65f0ce6faecf2492f851b0
+ms.openlocfilehash: b0b701b7ea7a608f114d3a82f0403c2ae506854f
 
 
 ---
@@ -41,7 +41,7 @@ App Service 提供內建的 [跨原始來源資源共用 (CORS)](https://en.wiki
    ![在 [設定] 刀鋒視窗中選取 CORS](./media/app-service-api-cors-consume-javascript/clicksettings.png)
 4. 在文字方塊中，輸入您想要允許的一或多個 JavaScript 呼叫來源 URL。
 
-    例如，如果您已將 JavaScript 應用程式部署至名為 todolistangular 的 Web 應用程式，請輸入 "https://todolistangular.azurewebsites.net"。 或者，您也可以輸入星號 (*) 來指定接受所有的原始網域。
+    例如，如果您已將 JavaScript 應用程式部署至名為 todolistangular 的 Web 應用程式，請輸入 " https://todolistangular.azurewebsites.net "。 或者，您也可以輸入星號 (*) 來指定接受所有的原始網域。
 
 
 1. 按一下 [儲存] 。
@@ -51,7 +51,7 @@ App Service 提供內建的 [跨原始來源資源共用 (CORS)](https://en.wiki
    按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。
 
 #### <a name="configure-cors-by-using-azure-resource-manager-tools"></a>使用 Azure 資源管理員工具設定 CORS
-您也可以使用 [Azure PowerShell](../powershell-install-configure.md) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)，設定 API 應用程式的 CORS。 
+您也可以使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)，設定 API 應用程式的 CORS。 
 
 如需可設定 CORS 屬性之 Azure Resource Manager 範本的範例，請開啟 [本教學課程的範例應用程式儲存機制中的 azuredeploy.json 檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/azuredeploy.json)。 找出如下列範例所示的範本區段：
 
@@ -61,7 +61,7 @@ App Service 提供內建的 [跨原始來源資源共用 (CORS)](https://en.wiki
             ]
         }
 
-## <a name="a-idtutorialstarta-continuing-the-net-gettingstarted-tutorial"></a><a id="tutorialstart"></a> 繼續進行 .NET 入門教學課程
+## <a name="a-idtutorialstarta-continuing-the-net-getting-started-tutorial"></a><a id="tutorialstart"></a> 繼續進行 .NET 入門教學課程
 如果您正遵循適用於 API 應用程式的 Node.js 或 Java 入門系列，則您已完成入門系列。 請跳至 [後續步驟](#next-steps) 一節，尋找進一步了解 API Apps 的建議。
 
 本文其餘部分是 .NET 入門系列的延續，並假設您已成功完成 [第一個教學課程](app-service-api-dotnet-get-started.md)。
@@ -252,6 +252,6 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。 例如，在程式
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

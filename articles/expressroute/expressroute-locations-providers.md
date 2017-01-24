@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 12/08/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: cbbc9f29fc4dea49807f1093b673bebac628314b
-ms.openlocfilehash: e886f9c1984003d1bd1391012b26eea39d4a0b76
+ms.sourcegitcommit: 8b82801a26c15248480a261945b37a0c38e3fa47
+ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 
 
 ---
@@ -83,11 +83,11 @@ ms.openlocfilehash: e886f9c1984003d1bd1391012b26eea39d4a0b76
 | **巴黎** |Interxion、Equinix+ |
 | **聖保羅** |Equinix、Telefonica |
 | **Seattle** |Equinix、Level 3 Communications、Megaport |
-| **矽谷** |Aryaka Networks、AT&T NetBond、British Telecom、CenturyLink+、Comcast、Equinix、Level 3 Communications、Orange、Tata Communications、Verizon、Zayo Group |
+| **矽谷** |Aryaka Networks、AT&T NetBond、British Telecom、CenturyLink+、Comcast、Console、Equinix、Level 3 Communications、Orange、Tata Communications、Verizon、Zayo Group |
 | **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Megaport、NTT Communications、Orange、SingTel、Tata Communications、Verizon |
 | **雪梨** |AARNet、AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Orange、Telstra Corporation、Verizon |
 | **東京** |Aryaka Networks、British Telecom、Colt、Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank、Verizon |
-| **多倫多** |Cologix、Equinix、Megaport、Zayo Group |
+| **多倫多** |Bell Canada、Cologix、Equinix、Megaport、Zayo Group |
 | **華盛頓** |Aryaka Networks、AT&T NetBond、British Telecom、Comcast、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、Tata Communications、Verizon、Zayo Group |
 
  **+** 表示即將推出
@@ -160,6 +160,6 @@ ms.openlocfilehash: e886f9c1984003d1bd1391012b26eea39d4a0b76
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

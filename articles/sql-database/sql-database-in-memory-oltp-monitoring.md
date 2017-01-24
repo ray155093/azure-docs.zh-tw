@@ -13,26 +13,26 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/03/2016
+ms.date: 12/19/2016
 ms.author: jodebrui
 translationtype: Human Translation
-ms.sourcegitcommit: 5a101aa78dbac4f1a0edb7f414b44c14db392652
-ms.openlocfilehash: 475af239e4c77626d4c069f1238bc32d3b440a0e
+ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
+ms.openlocfilehash: 86b2358b045bd5bc0c9f4fc2674efd03b098212f
 
 
 ---
 # <a name="monitor-in-memory-oltp-storage"></a>監視記憶體內部 OLTP 儲存體
-使用 [記憶體內部 OLTP](sql-database-in-memory.md)時，記憶體最佳化資料表中的資料和資料表變數位於記憶體內部 OLTP 儲存體中。 每個進階服務層都有最大的記憶體內部 OLTP 儲存體大小，如 [SQL Database 服務層文章](sql-database-service-tiers.md#standalone-database-service-tiers-and-performance-levels)所說明。 一旦超過此限制，插入和更新作業可能會開始出錯 (錯誤碼 41823)。 屆時您將需要刪除資料以回收記憶體，或升級您的資料庫的效能層。
+使用 [記憶體內部 OLTP](sql-database-in-memory.md)時，記憶體最佳化資料表中的資料和資料表變數位於記憶體內部 OLTP 儲存體中。 每個進階服務層都有最大的記憶體內部 OLTP 儲存體大小，如 [SQL Database 服務層文章](sql-database-service-tiers.md#single-database-service-tiers-and-performance-levels)所說明。 一旦超過此限制，插入和更新作業可能會開始出錯 (錯誤碼 41823)。 屆時您將需要刪除資料以回收記憶體，或升級您的資料庫的效能層。
 
 ## <a name="determine-whether-data-will-fit-within-the-in-memory-storage-cap"></a>判斷資料是否在記憶體內部儲存容量上限內
-判斷儲存上限：如需不同進階服務層的儲存上限相關資訊，請參閱 [SQL Database 服務層文章](sql-database-service-tiers.md#standalone-database-service-tiers-and-performance-levels) 。
+判斷儲存上限：如需不同進階服務層的儲存上限相關資訊，請參閱 [SQL Database 服務層文章](sql-database-service-tiers.md#single-database-service-tiers-and-performance-levels) 。
 
 估計記憶體最佳化資料表的記憶體需求，其方式如同在 Azure SQL Database 中估計 SQL Server 的記憶體需求。 花幾分鐘的時間來檢閱 [MSDN](https://msdn.microsoft.com/library/dn282389.aspx)上的該主題。
 
 請注意，資料表和資料表變數資料列以及索引都會計入最大的使用者資料大小。 此外，ALTER TABLE 需要足夠的空間來建立新版的完整資料表及其索引。
 
 ## <a name="monitoring-and-alerting"></a>監視和警示
-您可以在 [Azure 入口網站](https://portal.azure.com/)中，透過[效能層的儲存上限](sql-database-service-tiers.md#standalone-database-service-tiers-and-performance-levels)的百分比來監視記憶體內部儲存體使用情形： 
+您可以在 [Azure 入口網站](https://portal.azure.com/)中，透過[效能層的儲存上限](sql-database-service-tiers.md#single-database-service-tiers-and-performance-levels)的百分比來監視記憶體內部儲存體使用情形： 
 
 * 在 [資料庫] 刀鋒視窗上，找出 [資源使用率方塊] 並按一下 [編輯]。
 * 然後選取計量 `In-Memory OLTP Storage percentage`。
@@ -58,6 +58,6 @@ ms.openlocfilehash: 475af239e4c77626d4c069f1238bc32d3b440a0e
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

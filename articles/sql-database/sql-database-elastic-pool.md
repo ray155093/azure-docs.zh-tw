@@ -1,7 +1,7 @@
 ---
 title: "什麼是 Azure 彈性集區？ | Microsoft Docs"
 description: "使用集區管理數百或數千個資料庫。 針對一組效能單位的一個價格可以分散在集區。 您可以隨意將資料庫移入或移出。"
-keywords: "彈性資料庫、sql 資料庫"
+keywords: "彈性集區, sql 資料庫"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -11,14 +11,14 @@ ms.assetid: b46e7fdc-2238-4b3b-a944-8ab36c5bdb8e
 ms.service: sql-database
 ms.custom: multiple databases
 ms.devlang: NA
-ms.date: 12/14/2016
+ms.date: 01/04/2017
 ms.author: CarlRabeler
 ms.workload: data-management
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 75bf523679c8d8ad6fbe4a8aa8a561d03008e59b
-ms.openlocfilehash: c3757dadb09ba070b30820a46007a9c82490d8f2
+ms.sourcegitcommit: ce30d47075636d3b64215d50b81acc09e7ed72f1
+ms.openlocfilehash: d74be42963206c82218bc82ea1bf12e5c0cdb0f3
 
 
 ---
@@ -35,13 +35,12 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Elastic-databases-helps-SaaS-developers-tame-explosive-growth/player]
 >
->
 
-在 SQL Database 中，資料庫處理資源需求的能力相對量值就單一資料庫而言是以「資料庫交易單位」(DTU) 表示，就彈性集區中的彈性資料庫而言則是以彈性 DTU (eDTU) 表示。 如需深入了解 DTU 和 eDTU 的資訊，請參閱 [SQL Database 簡介](sql-database-technical-overview.md)。
+在 SQL Database 中，資料庫處理資源需求的能力相對量值就單一資料庫而言是以「資料庫交易單位」(DTU) 表示，就彈性集區中的資料庫而言則是以彈性 DTU (eDTU) 表示。 如需深入了解 DTU 和 eDTU 的資訊，請參閱 [SQL Database 簡介](sql-database-technical-overview.md)。
 
 集區以固定價格提供固定數目的 eDTU。 在集區內，會給予個別資料庫彈性以在設定的參數內自動調整。 負載量大時，資料庫可以取用更多的 eDTU 以滿足需求。 負載較輕的資料庫取用較少的 eDTU，而完全無負載的資料庫不會取用任何 eDTU。 針對整個集區佈建資源，而不是針對單一資料庫佈建資源，可簡化管理工作。 此外，您還可以有可預測的集區預算。
 
-其他 eDTU 可以加入現有集區，而不會有資料庫停機，或對於彈性集區中資料庫有負面影響。 同樣地，如果不再需要額外 eDTU，則隨時可以從現有集區中移除。
+資料庫不必停機就可以在現有集區中新增額外的 eDTU，不過可能需要移動資料庫來為新的 eDTU 保留項目提供額外的計算資源。 同樣地，如果不再需要額外 eDTU，則隨時可以從現有集區中移除。
 
 您也可以在集區加入或減少資料庫。 如果可以預測資料庫使用少量資源，則將它移出。
 
@@ -52,43 +51,43 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 
 [彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
-## <a name="edtu-and-storage-limits-for-elastic-pools-and-elastic-databases"></a>彈性集區和彈性資料庫的 eDTU 和儲存體限制
+## <a name="edtu-and-storage-limits-for-elastic-pools"></a>彈性集區的 eDTU 和儲存體限制
 
 下表說明基本、標準和高階彈性集區的特性。
 
-[!INCLUDE [SQL DB service tiers table for elastic databases](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
+[!INCLUDE [SQL DB service tiers table for elastic pools](../../includes/sql-database-service-tiers-table-elastic-pools.md)]
 
 如果彈性集區的所有 DTU 均已使用，則集區中的每個資料庫會收到等量的資源以處理查詢。  SQL Database 服務藉由確保運算時間的均等配量，提供資料庫之間的資源共用公平性。 彈性集區資源共用公平性不包括任何資源數量，否則當每個資料庫的最小 DTU 數設為非零的值時，便會對每個資料庫保證資源數量。
 
-## <a name="elastic-pool-and-elastic-database-properties"></a>彈性集區和彈性資料庫屬性
+## <a name="elastic-pool-properties"></a>彈性集區屬性
 
-下表說明彈性集區和彈性資料庫的限制。
+下表說明彈性集區和集區資料庫的限制。
 
 ### <a name="limits-for-elastic-pools"></a>彈性集區的限制
 | 屬性 | 說明 |
 |:--- |:--- |
 | 服務層 |Basic、Standard 或 Premium。 服務層決定可設定的效能和儲存體限制的範圍，以及商務持續性選項。 在集區內的每個資料庫都與集區具有相同的服務層。 「服務層」也稱為「版本」。 |
 | 每集區 eDTU |可由集區中的資料庫共用的 eDTU 數目上限。 在相同的時間點，集區中的資料庫所使用的總 eDTU 數目不得超過此限制。 |
-| 每集區最大儲存體 (GB) |可由集區中的資料庫所共用的儲存體數量上限 (GB)。 集區中的資料庫所使用的儲存體總數不得超過這個限制。 這個限制是由每個集區的 eDTU 所決定。 如果超過此限制，所有資料庫都會變成唯讀。 |
+| 每集區最大儲存體 (GB) |可由集區中的資料庫所共用的儲存體數量上限 (GB)。 集區中的資料庫所使用的儲存體總數不得超過這個限制。 這個限制是由每個集區的 eDTU 所決定。 如果超過此限制，所有資料庫都會變成唯讀。 每個集區的儲存體上限是指集區中資料檔案的儲存體上限，並不包含記錄檔所使用的空間。 |
 | 每個集區的資料庫數目上限 |每個集區允許的資料庫數目上限。 |
 | 每個集區的並行背景工作數上限 |集區中所有資料庫可用的並行背景工作角色 (要求) 數目上限。 |
 | 每集區的並行登入數上限 |集區中所有資料庫的並行登入數的 數目上限。 |
 | 每集區並行工作階段數上限 |集區中所有資料庫可用的工作階段數目上限。 |
 
-### <a name="limits-for-elastic-databases"></a>彈性資料庫的限制
+### <a name="limits-for-pooled-databases"></a>集區資料庫的限制
 | 屬性 | 說明 |
 |:--- |:--- |
 | 每資料庫的 eDTU 上限 |集區中任何資料庫可以使用的 eDTU 數目上限，是否可用則是根據集區中其他資料庫的使用量而定。  每個資料庫的 eDTU 數目上限不等於資料庫的資源保證。  這個設定是全域設定，會套用至集區中的所有資料庫。 將每個資料庫的 eDTU 設定為最上限，以處理資料庫使用率的尖峰。 某種程度的過量使用是可預期的情況，因為集區通常會假設資料庫的熱門和冷門使用模式；在這些模式中，所有資料庫不會同時處於尖峰期。 例如，假設每個資料庫的尖峰使用量是 20 個 DTU，且集區中的 100 個資料庫只有 20% 會同時暴增到尖峰。  如果每一資料庫的 eDTU 上限設為 20 個 eDTU，則以 5 倍的量過量使用集區，並將每集區 eDTU 設為 400 個是合理的作法。 |
 | 每資料庫的 eDTU 下限 |集區中單一資料庫能夠保證的最小 eDTU 數。  這個設定是全域設定，會套用至集區中的所有資料庫。 每個資料庫最小 eDTU 建議設定為 0，同時也是預設值。 此屬性會設為 0 到每一資料庫的 eDTU 使用量平均值之間的任意數。 集區中資料庫數目和每個資料庫 eDTU 數目下限的乘積不能超過每個集區的 eDTU。  例如，如果集區有 20 個資料庫，且每個資料庫的最小 eDTU 設定為 10 eDTU，則每個集區 eDTU 必須至少為 200 個 eDTU。 |
-| 每個資料庫的儲存體上限 (GB) |集區中資料庫的儲存體上限。 彈性資料庫共用集區儲存體，所以資料庫儲存體的大小會限制為較小的剩餘集區儲存體，以及每資料庫儲存體的上限。 |
+| 每個資料庫的儲存體上限 (GB) |集區中資料庫的儲存體上限。 集區資料庫共用集區儲存體，所以資料庫儲存體的大小會限制為較小的剩餘集區儲存體，以及每資料庫儲存體的上限。 每個資料庫的儲存體上限是指資料檔案的大小上限，並不包含記錄檔所使用的空間。 |
 
-## <a name="elastic-database-jobs"></a>彈性資料庫工作
-使用集區，只要在**[彈性作業](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理工作。 彈性資料庫工作會消除與大量資料庫相關聯的冗長工作。 若要開始，請參閱 [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
+## <a name="elastic-jobs"></a>彈性工作
+使用集區，只要在**[彈性作業](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理工作。 彈性作業會消除與大量資料庫相關聯的冗長工作。 若要開始，請參閱[開始使用彈性工作](sql-database-elastic-jobs-getting-started.md)。
 
-如需其他彈性資料庫工具的詳細資訊，請參閱[使用Azure SQL Database 向上調整](sql-database-elastic-scale-introduction.md)。
+如需可供使用多個資料庫之其他資料庫工具的詳細資訊，請參閱[使用Azure SQL Database 向上調整](sql-database-elastic-scale-introduction.md)。
 
 ## <a name="business-continuity-features-for-databases-in-a-pool"></a>集區中資料庫的業務續航力功能
-彈性資料庫通常會支援單一資料庫可用的相同[商務持續性功能](sql-database-business-continuity.md)。
+集區資料庫通常會支援單一資料庫可用的相同[商務持續性功能](sql-database-business-continuity.md)。
 
 ### <a name="point-in-time-restore"></a>還原時間點
 還原時間點會自動備份資料庫，以將集區中的資料庫復原到特定的時間點。 請參閱 [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)
@@ -100,13 +99,13 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 針對比異地還原具有更積極復原需求的應用程式，請使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md) 或 [Transact-SQL](sql-database-geo-replication-transact-sql.md) 來設定主動式異地複寫。
 
 ## <a name="additional-resources"></a>其他資源
-* [有關彈性資料庫功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/en-US/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
+* [有關 Azure SQL Database 彈性功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/en-US/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

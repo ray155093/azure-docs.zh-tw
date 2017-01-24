@@ -1,14 +1,13 @@
 ---
 layout: LandingPage
-description: "了解如何使用 Data Factory 來設定內部部署和雲端來源的雙向自動化資料管線，以便移動和處理資料以供分析。"
 translationtype: Human Translation
-ms.sourcegitcommit: 82f628be33ab24ef29a42121c577792768882eb5
-ms.openlocfilehash: ac936a317b6a68e2f0670ca9903dbbe100c82cdd
+ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
+ms.openlocfilehash: 5742326de5bbe91340df69402bc551f87dafca78
 
 ---
 # <a name="azure-data-factory-documentation"></a>Azure Data Factory 文件
 
-了解如何使用 Data Factory (雲端資料整合服務)，將資料儲存、移動及處理服務組合成自動化資料管線。 教學課程和其他文件會示範如何設定和管理資料管線，以及移動和轉換資料以供分析。
+Azure Data Factory 是雲端架構資料整合服務，用來自動移動和轉換資料。 Data Factory 服務建立資料整合方案，以從各種資料存放區擷取資料、轉換/處理資料，並將結果資料發佈至資料存放區。
 
 <ul class="panelContent cardsFTitle">
    <li>
@@ -140,6 +139,6 @@ ms.openlocfilehash: ac936a317b6a68e2f0670ca9903dbbe100c82cdd
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

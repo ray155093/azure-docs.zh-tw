@@ -1,6 +1,6 @@
 ---
 title: "開始使用 Microsoft Power BI Embedded"
-description: "對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商務智慧應用程式"
+description: "對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商業智慧應用程式"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 10/04/2016
+ms.date: 01/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
+ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
+ms.openlocfilehash: cedf69c6e50470e9d16d8e1e361bb51eb8abed72
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
 
 **Microsoft Power BI Embedded** 的資源也是透過 [Azure ARM API](https://msdn.microsoft.com/library/mt712306.aspx)佈建。 在此情況下，您佈建的資源是 **Power BI 工作區集合**。
 
-![](media\\power-bi-embedded-get-started\\introduction.png)
+![](media/power-bi-embedded-get-started/introduction.png)
 
 ## <a name="create-a-workspace-collection"></a>建立工作區集合
 **工作區集合** 是最上層的 Azure 資源，而內容的容器將會內嵌在您的應用程式中。 建立 **工作區集合** 的方式有兩種︰
@@ -39,16 +39,16 @@ ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
 1. 開啟並登入 **Azure 入口網站**： [http://portal.azure.com](http://portal.azure.com)。
 2. 按一下頂端面板上的 [+ 新增]  。
    
-   ![](media\\power-bi-embedded-get-started\\create-workspace-1.png)
+   ![](media/power-bi-embedded-get-started/create-workspace-1.png)
 3. 按一下 [資料 + 分析] 之下的 [Power BI Embedded]。
 4. 在 [建立刀鋒視窗] 上輸入必要資訊。 如需**價格**，請參閱 [Power BI Embedded 價格](http://go.microsoft.com/fwlink/?LinkID=760527)。
    
-   ![](media\\power-bi-embedded-get-started\\create-workspace-2.png)
+   ![](media/power-bi-embedded-get-started/create-workspace-2.png)
 5. 按一下 [建立] 。
 
 **工作區集合** 會花費一些時間來佈建。 完成後，您將會進入 [工作區集合刀鋒視窗] 。
 
-   ![](media\\power-bi-embedded-get-started\\create-workspace-3.png)
+   ![](media/power-bi-embedded-get-started/create-workspace-3.png)
 
 [建立刀鋒視窗]  包含呼叫 API 所需的資訊，以建立工作區並將內容部署到這些工作區。
 
@@ -57,11 +57,11 @@ ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
 ## <a name="view-power-bi-api-access-keys"></a>檢視 Power BI API 存取金鑰
 呼叫 Power BI REST API 所需的其中一項最重要資訊是**存取金鑰**。 這些存取金鑰用來產生**應用程式權杖**，而這些權杖用來驗證 API 要求。 若要檢視您的**存取金鑰**，請按一下 [設定刀鋒視窗] 上的 [存取金鑰]。 若要深入了解**應用程式權杖**，請參閱 [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)。
 
-   ![](media\\power-bi-embedded-get-started\\access-keys.png)
+   ![](media/power-bi-embedded-get-started/access-keys.png)
 
 您會發現您有兩個金鑰。
 
-   ![](media\\power-bi-embedded-get-started\\access-keys-2.png)
+   ![](media/power-bi-embedded-get-started/access-keys-2.png)
 
 複製這些金鑰並將它們安全地儲存在您的應用程式中。 請務必如同密碼一樣處理這些金鑰，因為這些金鑰可供存取您的 **工作區集合**中的所有內容。
 
@@ -70,7 +70,10 @@ ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
 您現在已有應用程式的 Power BI 執行個體以及 **存取金鑰**，您可以將報告匯入自己的應用程式中。 在了解如何匯入報告之前，下一節說明如何建立要內嵌到應用程式中的 Power BI 資料集和報告。
 
 ## <a name="create-power-bi-datasets-and-reports-to-embed-into-an-app"></a>建立要內嵌到應用程式中的 Power BI 資料集和報告
-您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。 使用 **Power BI Desktop** 可以建立資料集和報告。 您可以下載 [免費的 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。 或者，若要快速開始，您可以下載 [零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。 若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
+您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。 使用 **Power BI Desktop** 可以建立資料集和報告。 您可以下載 [免費的 Power BI Desktop](https://go.microsoft.com/fwlink/?LinkId=521662)。 或者，若要快速開始，您可以下載 [零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
+
+> [!NOTE]
+> 若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
 
 透過 **Power BI Desktop**，將資料複本匯入 **Power BI Desktop** 或使用 **DirectQuery** 直接連接到資料來源，即可連接到資料來源。
 
@@ -86,14 +89,11 @@ ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
 
 > [!NOTE]
 > **Power BI Embedded** 有其他 API 可變更您的資料集所指向的伺服器和資料庫，以及設定資料集將用來連接到您的資料庫的服務帳戶認證。 請參閱 [Post SetAllConnections](https://msdn.microsoft.com/library/mt711505.aspx) 和 [Patch 閘道資料來源](https://msdn.microsoft.com/library/mt711498.aspx)。
-> 
-> 
 
 ## <a name="next-steps"></a>後續步驟
 在先前步驟中，您建立了一個工作區集合以及第一個報告和資料集。 現在即可了解如何為 **Power BI Embedded**撰寫程式碼。 為了協助您開始著手，我們建立了一個範例 Web 應用程式︰ [開始使用範例](power-bi-embedded-get-started-sample.md)。 此範例示範如何：
 
 * 佈建內容
-  
   * 建立工作區
   * 匯入 PBIX 檔案
   * 更新連接字串並設定您的資料集的認證。
@@ -104,9 +104,11 @@ ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
 * [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)
 * [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 
+有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
 
 
 
-<!--HONumber=Nov16_HO2-->
+
+<!--HONumber=Jan17_HO1-->
 
 

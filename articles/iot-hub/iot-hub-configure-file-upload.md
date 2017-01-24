@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure 入口網站設定檔案上傳 | Microsoft Docs"
-description: "如何使用 Azure 入口網站設定檔案上傳的概觀"
+description: "如何使用 Azure 入口網站來設定 IoT 中樞，以便能夠從連接的裝置上傳檔案。 包含設定目的地 Azure 儲存體帳戶的相關資訊。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -12,17 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 01/05/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e3ac3e8cee2724b76f51423d1a6757382cca04f0
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: aadbee1388e2c2aafaf0a5c50d2af195284d2bec
 
 
 ---
-# <a name="configure-file-uploads-using-the-azure-portal"></a>使用 Azure 入口網站設定檔案上傳
+# <a name="configure-iot-hub-file-uploads-using-the-azure-portal"></a>使用 Azure 入口網站設定 IoT 中樞檔案上傳
 ## <a name="file-upload"></a>檔案上傳
-若要使用 [IoT 中樞中的檔案上傳功能][lnk-upload]，您必須先將 Azure 儲存體帳戶與您的中樞建立關聯。 選取 [檔案上傳]  設定，即可顯示正在修改之 IoT 中樞的檔案上傳屬性清單。
+若要使用 [IoT 中樞的檔案上傳功能][lnk-upload]，您必須先將 Azure 儲存體帳戶與您的中樞建立關聯。 選取 [檔案上傳]  設定，即可顯示正在修改之 IoT 中樞的檔案上傳屬性清單。
 
 ![][13]
 
@@ -41,17 +41,17 @@ ms.openlocfilehash: e3ac3e8cee2724b76f51423d1a6757382cca04f0
 ![][15]
 
 ## <a name="next-steps"></a>後續步驟
-如需 IoT 中樞檔案上傳功能的詳細資訊，請參閱開發人員指南中的[從裝置上傳檔案][lnk-upload]。
+如需 IoT 中樞檔案上傳功能的詳細資訊，請參閱 IoT 中樞開發人員指南中的[從裝置上傳檔案][lnk-upload]。
 
 遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
 * [大量管理 IoT 裝置][lnk-bulk]
-* [用量度量][lnk-metrics]
+* [IoT 中樞度量][lnk-metrics]
 * [作業監視][lnk-monitor]
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [開發人員指南][lnk-devguide]
+* [IoT 中樞開發人員指南][lnk-devguide]
 * [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
 * [徹底保護您的 IoT 解決方案][lnk-securing]
 
@@ -71,6 +71,6 @@ ms.openlocfilehash: e3ac3e8cee2724b76f51423d1a6757382cca04f0
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

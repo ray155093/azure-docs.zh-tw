@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 中的資料來源 | Microsoft Docs
-description: 資料來源可定義 Log Analytics 要從代理程式和其他已連接的來源收集哪些資料。  本文說明 Log Analytics 如何使用資料來源的概念、詳細說明如何設定資料來源，並提供可用的不同資料來源的摘要。
+title: "Log Analytics 中的資料來源 | Microsoft Docs"
+description: "資料來源可定義 Log Analytics 要從代理程式和其他已連接的來源收集哪些資料。  本文說明 Log Analytics 如何使用資料來源的概念、詳細說明如何設定資料來源，並提供可用的不同資料來源的摘要。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: 67710115-c861-40f8-a377-57c7fa6909b4
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 57df4ab0b2a1df6631eb6e67a90f69cebb1dfe75
+ms.openlocfilehash: ad9cc8765f1a8b83c9dbf5caca573811c6e7f10e
+
 
 ---
 # <a name="data-sources-in-log-analytics"></a>Log Analytics 中的資料來源
@@ -48,7 +52,7 @@ Log Analytics 會從 OMS 工作區的 [連接的來源] 收集資料，並將它
 ## <a name="data-collection"></a>資料收集
 系統會在幾分鐘內，將資料來源組態傳遞給直接連接到 OMS 的代理程式。  系統會從代理程式收集指定的資料，並依據每個資料來源特定的時間間隔，直接傳遞給 Log Analytics。  請參閱每個資料來源的文件，以了解這些特性。
 
-若是已連接管理群組中的 System Center Operations Manager (SCOM) 代理程式，系統會將資料來源組態轉譯為管理組件，並依預設每隔 5 分鐘傳遞給管理群組。  如同其他任何代理程式一樣，此代理程式也會下載管理組件，並收集指定的資料。 視資料來源而定，資料會傳送至管理伺服器，而管理伺服器再將資料轉送至 Log Analytics，或者，由這個代理程式直接將資料傳送至 Log Analytics，而沒有經過管理伺服器。 如需詳細資訊，請參閱 [OMS 功能和方案的資料收集詳細資料](log-analytics-add-solutions.md#data-collection-details-for-oms-features-and-solutions)。  您可以閱讀連接 SCOM 與 OMS 的詳細資訊，以及修改在 [設定與 System Center Operations Manager 的整合](log-analytics-om-agents.md)時傳遞之組態頻率的詳細資訊。
+若是已連接管理群組中的 System Center Operations Manager (SCOM) 代理程式，系統會將資料來源組態轉譯為管理組件，並依預設每隔 5 分鐘傳遞給管理群組。  如同其他任何代理程式一樣，此代理程式也會下載管理組件，並收集指定的資料。 視資料來源而定，資料會傳送至管理伺服器，而管理伺服器再將資料轉送至 Log Analytics，或者，由這個代理程式直接將資料傳送至 Log Analytics，而沒有經過管理伺服器。 如需詳細資訊，請參閱 [OMS 功能和方案的資料收集詳細資料](log-analytics-add-solutions.md#data-collection-details)。  您可以閱讀連接 SCOM 與 OMS 的詳細資訊，以及修改在 [設定與 System Center Operations Manager 的整合](log-analytics-om-agents.md)時傳遞之組態頻率的詳細資訊。
 
 ## <a name="log-analytics-records"></a>Log Analytics 記錄
 Log Analytics 收集的所有資料都會以記錄形式儲存在 OMS 儲存機制中。  不同資料來源所收集的記錄會有自己的一組屬性，並由其 **類型** 屬性來識別。  如需每種記錄類型的詳細資訊，請參閱各資料來源和方案的文件。
@@ -58,6 +62,8 @@ Log Analytics 收集的所有資料都會以記錄形式儲存在 OMS 儲存機�
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。  
 * 設定[警示](log-analytics-alerts.md)，以便從資料來源和方案收集到重要資料時主動通知您。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO1-->
 
 

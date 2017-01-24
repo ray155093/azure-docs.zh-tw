@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: hero-article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 9ad2f55c7db53459c17299ba5015783781c7cd63
-ms.openlocfilehash: 5a6b743d69e1716ae3f48ddf0dfcb0f042133f5c
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: eeb10e8325918ac699e3c1fe94d15eee5f730fce
 
 
 ---
@@ -28,8 +28,6 @@ ms.openlocfilehash: 5a6b743d69e1716ae3f48ddf0dfcb0f042133f5c
 
 > [!TIP]
 > 尋求建置簡單的網站？ 如果您只需要簡單的網站前端，請考慮[使用輕量型 Web 應用程式]。 隨著 Web 應用程式擴大以及需求改變，您可以輕易地升級到雲端服務。
->
->
 
 按照本教學課程進行，您將建立在 Web 角色內代管的簡單 Web 應用程式。 您將使用計算模擬器在本機測試您的應用程式，然後使用 PowerShell 命令列工具部署應用程式。
 
@@ -40,8 +38,6 @@ ms.openlocfilehash: 5a6b743d69e1716ae3f48ddf0dfcb0f042133f5c
 ## <a name="prerequisites"></a>必要條件
 > [!NOTE]
 > 本教學課程使用 Azure PowerShell (需要 Windows)。
->
->
 
 * 安裝並設定 [Azure PowerShell]。
 * 下載並安裝 [Azure SDK for .NET 2.7]。 在安裝過程中，選取：
@@ -75,8 +71,6 @@ ms.openlocfilehash: 5a6b743d69e1716ae3f48ddf0dfcb0f042133f5c
 
    > [!NOTE]
    > 如果您未指定角色名稱，系統會使用預設名稱。 您可以提供一個名稱做為第一個 Cmdlet 參數： `Add-AzureNodeWebRole MyRole`
-   >
-   >
 
 Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (預設為 **WebRole1**) 的目錄中。 程式碼如下：
 
@@ -90,7 +84,9 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 此程式碼基本上和 [nodejs.org] 網站上的「Hello World」範例一樣，但它使用雲端環境指派的連接埠號碼。
 
 ## <a name="deploy-the-application-to-azure"></a>將應用程式部署至 Azure
-    [AZURE.INCLUDE [create-account-note](../../includes/create-account-note.md)]
+
+> [!NOTE]
+> 若要完成此教學課程，您需要 Azure 帳戶。 您可以[啟用自己的 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A85619ABF)或是[註冊免費帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A85619ABF)。
 
 ### <a name="download-the-azure-publishing-settings"></a>下載 Azure 發佈設定
 若要將應用程式部署到 Azure，您必須先下載您 Azure 訂閱的發佈設定。
@@ -106,12 +102,13 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 
        Import-AzurePublishSettingsFile [path to file]
 
-    > [AZURE.NOTE] 在匯入發佈設定之後，請考慮刪除下載的 .publishSettings 檔案，因為它包含了可能讓他人存取您帳戶的資訊。
+    > [!NOTE]
+    > 在匯入發佈設定之後，請考慮刪除下載的 .publishSettings 檔案，因為它包含了可能讓他人存取您帳戶的資訊。
 
 ### <a name="publish-the-application"></a>發佈應用程式
 若要發佈，請執行下列命令：
 
-      $ServiceName = "NodeHelloWorld" + $(Get-Date -Format ('ddhhmm'))   
+      $ServiceName = "NodeHelloWorld" + $(Get-Date -Format ('ddhhmm'))
     Publish-AzureServiceProject -ServiceName $ServiceName  -Location "East US" -Launch
 
 * **-ServiceName** 指定部署的名稱。 這必須是唯一名稱，否則發佈程序將失敗。 **Get-Date** 命令會添加到應該讓名稱唯一的日期/時間字串。
@@ -124,8 +121,6 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 
 > [!NOTE]
 > 第一次發佈應用程式時，從部署到可以使用需要數分鐘的時間。
->
->
 
 部署完成後，瀏覽器視窗將開啟，並瀏覽到雲端服務。
 
@@ -162,8 +157,6 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 
    > [!NOTE]
    > 刪除服務不會刪除初次發佈服務時建立的儲存體帳戶，而且將持續對使用的儲存體計費。 如果沒有其他項目正在使用儲存體，您可以將它刪除。
-   >
-   >
 
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱 [Node.js 開發人員中心]。
@@ -172,25 +165,25 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 
 [Azure 網站、雲端服務與虛擬機器的比較]: ../app-service-web/choose-web-site-cloud-service-vm.md
 [使用輕量型 Web 應用程式]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
-[Azure PowerShell]: ../powershell-install-configure.md
+[Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Azure SDK for .NET 2.7]: http://www.microsoft.com/en-us/download/details.aspx?id=48178
-[連線 PowerShell]: ../powershell-install-configure.md#step-3-connect
+[連線 PowerShell]: /powershell/azureps-cmdlets-docs#step-3-connect
 [nodejs.org]: http://nodejs.org/
 [雲端服務]: https://azure.microsoft.com/documentation/services/cloud-services/
 [Node.js 開發人員中心]: https://azure.microsoft.com/develop/nodejs/
 
 <!-- IMG List -->
 
-[New-AzureService helloworld 命令的結果]: ./media/cloud-services-nodejs-develop-deploy-app/node9.png
-[Add-AzureNodeWebRole 命令的輸出]: ./media/cloud-services-nodejs-develop-deploy-app/node11.png
-[顯示 Hello World 網頁的網頁瀏覽器]: ./media/cloud-services-nodejs-develop-deploy-app/node14.png
-[Publish-AzureService 命令的輸出]: ./media/cloud-services-nodejs-develop-deploy-app/node19.png
-[顯示 hello world 頁面的瀏覽器視窗；URL 會指出此頁面裝載在 Azure 上。]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
-[Stop-AzureService 命令的狀態]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
-[Remove-AzureService 命令的狀態]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png
+[The result of the New-AzureService helloworld command]: ./media/cloud-services-nodejs-develop-deploy-app/node9.png
+[The output of the Add-AzureNodeWebRole command]: ./media/cloud-services-nodejs-develop-deploy-app/node11.png
+[A web browser displaying the Hello World web page]: ./media/cloud-services-nodejs-develop-deploy-app/node14.png
+[The output of the Publish-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node19.png
+[A browser window displaying the hello world page; the URL indicates the page is hosted on Azure.]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
+[The status of the Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
+[The status of the Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

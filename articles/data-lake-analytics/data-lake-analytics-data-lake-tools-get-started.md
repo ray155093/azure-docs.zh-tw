@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/08/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 28222825d680ed7930dd1f2da46df28728c7c103
-ms.openlocfilehash: 48ff29e7abae511eb75aec8c1569ffdf5a57bc77
+ms.sourcegitcommit: 3c8406efd9d716df56ed3ca10fc596684945c2f2
+ms.openlocfilehash: 3281b001aeab42aace951b5bdd5d4ec901de396f
 
 
 ---
@@ -28,19 +28,19 @@ ms.openlocfilehash: 48ff29e7abae511eb75aec8c1569ffdf5a57bc77
 U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和分析在資料湖的所有資料。 如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
 ## <a name="prerequisites"></a>必要條件
-* **Visual Studio 2015、Visual Studio 2013 update 4 或 Visual Studio 2012。支援 Enterprise (Ultimate/Premium)、Professional、Community 版本；不支援 Express 版本。目前不支援 Visual Studio "15"，我們正在開發中。**
+* **Visual Studio 2015、Visual Studio 2013 update 4 或 Visual Studio 2012。支援 Enterprise (Ultimate/Premium)、Professional、Community 版本；不支援 Express 版本。目前不支援 Visual Studio 2017。**
 * **Microsoft Azure SDK for .NET 2.7.1 版或更新版本**。  使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來進行安裝。
 * **[Visual Studio 適用的 Data Lake 工具](http://aka.ms/adltoolsvs)**。
 
     安裝 Visual Studio 適用的 Data Lake 工具之後，您會在 [伺服器總管] 中的 [Azure] 節點下看到 [Data Lake Analytics] 節點 (您可以按 Ctrl+Alt+S 開啟 [伺服器總管])。
-* **完成[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 一文中的下列兩個小節**。
 
-  * [建立 Azure 資料湖分析帳戶](data-lake-analytics-get-started-portal.md#create-data-lake-analytics-account)。
-  * [將 SearchLog.tsv 上傳到預設資料湖儲存體帳戶](data-lake-analytics-get-started-portal.md#prepare-source-data)。
+* **Data Lake Analytics 帳戶和範例資料** Data Lake Tools 不支援建立 Data Lake Analytics 帳戶。 您可以使用 Azure 入口網站、Azure PowerShell、.NET SDK 或 Azure CLI 建立帳戶建立帳戶。
+為了方便起見，您可以在＜[附錄 A：準備教學課程所需的 PowerShell](data-lake-analytics-data-lake-tools-get-started.md#appx-a-powershell-sample-for-preparing-the-tutorial)＞一節中，找到用來建立 Data Lake Analytics 服務及上傳來源資料檔的 PowerShell 範例指令碼。
 
-    為了方便起見，您可以在＜ [附錄 A：準備教學課程所需的 PowerShell 範例](data-lake-analytics-data-lake-tools-get-started.md#appx-a-powershell-sample-for-preparing-the-tutorial)＞一節中，找到用來建立資料湖分析服務及上傳來源資料檔的 PowerShell 範例指令碼。
+    (選擇性) 您可以完成[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 一文中的下列兩個小節，建立您的帳戶並以手動方式上傳資料：
 
-    資料湖工具不支援建立資料湖分析帳戶。 因此您必須使用 Azure 入口網站、Azure PowerShell、.NET SDK 或 Azure CLI 建立帳戶。 若要執行資料湖分析工作，您需要一些資料。 即使資料湖工具支援上傳資料，您將使用入口網站來上傳範例資料，以方便遵循本教學課程。
+    1. [建立 Azure 資料湖分析帳戶](data-lake-analytics-get-started-portal.md#create-data-lake-analytics-account)。
+    2. [將 SearchLog.tsv 上傳到預設資料湖儲存體帳戶](data-lake-analytics-get-started-portal.md#prepare-source-data)。
 
 ## <a name="connect-to-azure"></a>連接到 Azure
 **連接到資料湖分析**
@@ -352,6 +352,6 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 如何裁剪影片 | Microsoft Docs
-description: 本文說明如何利用 Media Encoder Standard 裁剪影片。
+title: "如何裁剪影片 | Microsoft Docs"
+description: "本文說明如何利用 Media Encoder Standard 裁剪影片。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: anilmur
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 7628f674-2005-4531-8b61-d7a4f53e46ba
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: anilmur;juliako;
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 7b0d7469e9c3688092bf7f98962ede0e4d7ef951
+
 
 ---
 # <a name="crop-videos-with-media-encoder-standard"></a>以 Media Encoder Standard 裁剪影片
@@ -25,7 +29,7 @@ ms.author: anilmur;juliako;
 
 MES 中的裁剪是前置處理階段，因此編碼預設值中的裁剪參數適用於原始輸入影片。 編碼是後續的階段，因此寬度/高度設定適用於 *經過前置處理* 的影片，而非原始影片。 在設計預設值時，您需要執行下列動作︰(a) 根據原始的輸入影片選取裁剪參數；(b) 根據裁剪後的影片選取編碼設定。 如果編碼設定與裁剪後的影片不符，輸出將會不如預期。
 
-[下列](media-services-advanced-encoding-with-mes.md#encoding_with_dotnet) 主題說明如何使用 MES 建立編碼編碼，以及如何為編碼編碼指定自訂預設值。 
+[下列](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet) 主題說明如何使用 MES 建立編碼編碼，以及如何為編碼編碼指定自訂預設值。 
 
 ## <a name="creating-a-custom-preset"></a>建立自訂預設值
 在下圖所示的範例中：
@@ -139,6 +143,8 @@ MES 中的裁剪是前置處理階段，因此編碼預設值中的裁剪參數�
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO2-->
 
 

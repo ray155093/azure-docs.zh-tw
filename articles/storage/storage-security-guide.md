@@ -1,23 +1,27 @@
 ---
-title: Azure 儲存體安全性指南 | Microsoft Docs
-description: 詳述許多保護 Azure 儲存體的方法，包括但不限於 RBAC、儲存體服務加密、用戶端加密、SMB 3.0 及 Azure 磁碟加密。
+title: "Azure 儲存體安全性指南 | Microsoft Docs"
+description: "詳述許多保護 Azure 儲存體的方法，包括但不限於 RBAC、儲存體服務加密、用戶端加密、SMB 3.0 及 Azure 磁碟加密。"
 services: storage
 documentationcenter: .net
 author: robinsh
 manager: carmonm
 editor: tysonn
-
+ms.assetid: 6f931d94-ef5a-44c6-b1d9-8a3c9c327fb2
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/08/2016
-ms.author: cbrooks;robinsh
+ms.author: robinsh
+translationtype: Human Translation
+ms.sourcegitcommit: d943e28507de9675d30e662354ca811fbd8c1b4a
+ms.openlocfilehash: 489041f211f28dd373e34bf9ba719d7fcc8c035d
+
 
 ---
 # <a name="azure-storage-security-guide"></a>Azure 儲存體安全性指南
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用角色型存取控制與 Azure Active Directory 來保護儲存體帳戶本身。 您可以使用 [用戶端加密](storage-client-side-encryption.md)、HTTPS 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 使用 [儲存體服務加密 (SSE)](storage-service-encryption.md)寫入 Azure 儲存體時，可將資料設定為自動加密。 您可以使用 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)，將虛擬機器所使用的作業系統和資料磁碟設定為加密。 Azure 儲存體中資料物件的委派存取權可以使用 [共用存取簽章](storage-dotnet-shared-access-signature-part-1.md)來授與。
 
 本文將提供這其中每個可搭配 Azure 儲存體使用的安全性功能概觀。 所提供的文章連結將提供每個功能的詳細資料，讓您能夠輕鬆地進一步調查每個主題。
@@ -50,7 +54,7 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 本指南著重在資源管理員模型，也就是建立儲存體帳戶的建議方法。 使用 Resource Manager 儲存體帳戶，而不是提供整個訂用帳戶的存取權，您可以使用角色型存取控制 (RBAC)，來控制更限定層級上對管理平面的存取。
 
-### <a name="how-to-secure-your-storage-account-with-role-based-access-control-(rbac)"></a>如何使用角色型存取控制 (RBAC) 保護儲存體帳戶
+### <a name="how-to-secure-your-storage-account-with-role-based-access-control-rbac"></a>如何使用角色型存取控制 (RBAC) 保護儲存體帳戶
 讓我們討論何謂 RBAC 及使用方式。 每一個 Azure 訂用帳戶都具有 Azure Active Directory。 您可以為來自該目錄的使用者、群組和應用程式授與存取權，以便在使用資源管理員部署模型的 Azure 訂用帳戶中管理資源。 這稱為角色型存取控制 (RBAC)。 若要管理此存取權，您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../xplat-cli-install.md)、[PowerShell](../powershell-install-configure.md) 或 [Azure 儲存體資源提供者 REST API](https://msdn.microsoft.com/library/azure/mt163683.aspx)。
 
 使用資源管理員模型，您可以將儲存體帳戶放置於資源群組中，並使用 Azure Active Directory 來控制該特定儲存體帳戶之管理平面的存取。 例如，您可以為特定使用者提供存取儲存體帳戶金鑰的能力，而其他使用者可以檢視儲存體帳戶的相關資訊，但是無法存取儲存體帳戶金鑰。
@@ -85,12 +89,9 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 * [RBAC：內建角色](../active-directory/role-based-access-built-in-roles.md)
   
   本文將詳細說明 RBAC 中所有可用的內建角色。
-* [了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)
+* [了解資源管理員部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)
   
-  本文說明資源管理員部署和傳統部署模型，並說明使用資源管理員和資源群組的優點
-* [Azure 資源管理員提供的 Azure 運算、網路和儲存提供者](../virtual-machines/virtual-machines-windows-compare-deployment-models.md)
-  
-  本文說明 Azure 計算、網路及儲存體提供者在 Resource Manager 模型下的運作方式。
+  本文說明資源管理員部署和傳統部署模型，並說明使用資源管理員和資源群組的優點。 內容中會說明 Azure 計算、網路及儲存體提供者在 Resource Manager 模型下的運作方式。
 * [使用 REST API 管理角色型存取控制](../active-directory/role-based-access-control-manage-access-rest.md)
   
   本文說明如何使用 REST API 來管理 RBAC。
@@ -187,15 +188,17 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 其中提供所允許存取權的相關資訊，以及准許該存取權的時間長度。 以下提供一個範例：這個 URI 會提供五分鐘對 Blob 的讀取權限。 請注意，SAS 查詢參數必須以 URL 編碼，例如 %3A 用於冒號 (:) 或 %20 用於空格。
 
-    http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
-    ?sv=2015-04-05 (storage service version)
-    &st=2015-12-10T22%3A18%3A26Z (start time, in UTC time and URL encoded)
-    &se=2015-12-10T22%3A23%3A26Z (end time, in UTC time and URL encoded)
-    &sr=b (resource is a blob)
-    &sp=r (read access)
-    &sip=168.1.5.60-168.1.5.70 (requests can only come from this range of IP addresses)
-    &spr=https (only allow HTTPS requests)
-    &sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D (signature used for the authentication of the SAS)
+```
+http://mystorage.blob.core.windows.net/mycontainer/myblob.txt (URL to the blob)
+?sv=2015-04-05 (storage service version)
+&st=2015-12-10T22%3A18%3A26Z (start time, in UTC time and URL encoded)
+&se=2015-12-10T22%3A23%3A26Z (end time, in UTC time and URL encoded)
+&sr=b (resource is a blob)
+&sp=r (read access)
+&sip=168.1.5.60-168.1.5.70 (requests can only come from this range of IP addresses)
+&spr=https (only allow HTTPS requests)
+&sig=Z%2FRHIX5Xcg0Mq2rqI3OlWTjEg2tYkboXr1P9ZUXDtkk%3D (signature used for the authentication of the SAS)
+```
 
 #### <a name="how-the-shared-access-signature-is-authenticated-by-the-azure-storage-service"></a>Azure 儲存體服務驗證共用存取簽章的方式
 當儲存體服務收到要求時，它會取得輸入查詢參數，並使用與呼叫程式相同的方法來建立簽章。 然後比較這兩個簽章。 如果它們同意，儲存體服務接著可以檢查儲存體服務版本，以確定它是有效的、檢查目前的日期和時間是在指定時段內、確定所要求的存取權會對應至所提出的要求，依此類推。
@@ -256,7 +259,7 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
   * [SAS 入門教學課程](https://github.com/Azure-Samples/storage-dotnet-sas-getting-started)
 
 ## <a name="encryption-in-transit"></a>傳輸中加密
-### <a name="transport-level-encryption-–-using-https"></a>Transport-Level Encryption – Using HTTPS
+### <a name="transport-level-encryption--using-https"></a>Transport-Level Encryption – Using HTTPS
 您應該採取以確保 Azure 儲存體資料安全性的另一個步驟是在用戶端和 Azure 儲存體之間加密資料。 第一個建議是一律使用 [HTTPS](https://en.wikipedia.org/wiki/HTTPS) 通訊協定，可確保透過公用網際網路的安全通訊。
 
 呼叫 REST API 或存取儲存體中的物件時，您應該一律使用 HTTPS。 此外， **共用存取簽章**(可用來委派 Azure 儲存體物件的存取權) 包含一個選項，可指定在使用共用存取簽章時只能使用 HTTPS 通訊協定，以確保任何使用 SAS 權杖送出連結的人都將使用正確的通訊協定。
@@ -292,7 +295,7 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 儘管您可以使用用戶端加密來加密傳輸中的資料 (也會以其加密形式儲存於儲存體中)，您可能習慣在傳輸期間只使用 HTTPS，而且有一些方式可讓資料在儲存時自動加密。 有兩種做法可以執行此動作 -- Azure 磁碟加密和 SSE。 其中一種是用來直接加密 VM 所使用的作業系統和資料磁碟上的資料，另一種則是用來加密寫入 Azure Blob 儲存體的資料。
 
-### <a name="storage-service-encryption-(sse)"></a>儲存體服務加密 (SSE)
+### <a name="storage-service-encryption-sse"></a>儲存體服務加密 (SSE)
 SSE 可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加密資料。 當您從 Azure 儲存體讀取資料時，儲存體服務會在傳回資料之前將之解密。 這讓能夠您保護資料，而不需修改程式碼或將程式碼加入任何應用程式。
 
 這是套用至整個儲存體帳戶的設定。 您可以藉由變更設定的值來啟用和停用此功能。 若要這樣做，您可以使用 Azure 入口網站、PowerShell、Azure CLI、儲存體資源提供者 REST API 或 .NET 儲存體用戶端程式庫。 根據預設，SSE 已關閉。
@@ -342,7 +345,7 @@ Azure 磁碟加密解決方案支援下列三個客戶加密案例：
 
 * 與 Azure 金鑰保存庫整合
 * 標準 [A、D 和 G 系列 IaaS VM](https://azure.microsoft.com/pricing/details/virtual-machines/)
-* 在使用 [Azure 資源管理員](../resource-group-overview.md) 模型建立的 IaaS VM 上啟用加密
+* 在使用 [Azure 資源管理員](../azure-resource-manager/resource-group-overview.md) 模型建立的 IaaS VM 上啟用加密
 * 所有 Azure 公用 [區域](https://azure.microsoft.com/regions/)
 
 此功能可確保虛擬機器磁碟上的所有待用資料都會在 Azure 儲存體中加密。
@@ -352,7 +355,7 @@ Azure 磁碟加密解決方案支援下列三個客戶加密案例：
   
   本文討論 Azure 磁碟加密的預覽版本，並提供下載技術白皮書的連結。
 
-### <a name="comparison-of-azure-disk-encryption,-sse,-and-client-side-encryption"></a>Azure 磁碟加密、SSE 和用戶端加密的比較
+### <a name="comparison-of-azure-disk-encryption-sse-and-client-side-encryption"></a>Azure 磁碟加密、SSE 和用戶端加密的比較
 #### <a name="iaas-vms-and-their-vhd-files"></a>IaaS VM 及其 VHD 檔案
 對於 IaaS VM 所使用的磁碟，建議使用 Azure 磁碟加密。 您可以開啟 SSE，來加密在 Azure 儲存體中用來備份這些磁碟的 VHD 檔案，但它只會加密新寫入的資料。 這表示，如果您建立 VM，然後在保留 VHD 檔案的儲存體帳戶上啟用 SSE，則只會加密變更，而不會加密原始的 VHD 檔案。
 
@@ -364,7 +367,7 @@ Azure 磁碟加密解決方案支援下列三個客戶加密案例：
 
 當您新增資料磁碟並掛接於 VM 時，您可以在該資料磁碟上開啟 Azure 磁碟加密。 它將會先在本機加密該資料磁碟，然後服務管理層將會對儲存體進行延遲寫入，如此便可加密儲存體內容。
 
-#### <a name="client-side-encryption####"></a>用戶端加密
+#### <a name="client-side-encryption"></a>用戶端加密
 用戶端加密是加密資料的最安全方法，因為它會在傳輸前加密資料，並加密待用資料。 不過，它需要您使用儲存體將程式碼加入應用程式，而您可能不想這樣做。 在這些情況下，您可以針對傳輸中的資料使用 HTTPS，以及使用 SSE 來加密待用資料。
 
 透過用戶端加密，您可以加密表格實體、訊息佇列和 Blob。 使用 SSE，您只能加密 Blob。 如果您需要將表格和佇列資料加密，就應該使用用戶端加密。
@@ -373,7 +376,7 @@ Azure 磁碟加密解決方案支援下列三個客戶加密案例：
 
 用戶端加密會在用戶端上產生更多負載，而您必須在延展性計畫中考慮到這一點，特別是如果您要加密並傳輸許多資料。
 
-#### <a name="storage-service-encryption-(sse)"></a>儲存體服務加密 (SSE)
+#### <a name="storage-service-encryption-sse"></a>儲存體服務加密 (SSE)
 SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提供安全性，但它會在資料寫入 Azure 儲存體時進行加密。 使用此功能時不會對效能產生任何影響。
 
 您可以使用 SSE，只加密區塊 Blob、附加 Blob 及分頁 Blob。 如果您需要加密表格資料或佇列資料，就應該考慮使用用戶端加密。
@@ -390,7 +393,7 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
 
 如果您要嚴密監視儲存體的存取，這真的很實用。 例如，在 Blob 儲存體中，您可以將所有容器設定為私人，並透過您的應用程式實作 SAS 服務的用法。 然後您可以定期檢查記錄，以查看是否會使用儲存體帳戶金鑰存取您的 Blob (這可能表示安全性缺口)，或者 Blob 是公用的但它們不應該是公用的。
 
-#### <a name="what-do-the-logs-look-like?"></a>記錄的外觀
+#### <a name="what-do-the-logs-look-like"></a>記錄的外觀
 當您透過 Azure 入口網站啟用儲存體帳戶計量和記錄之後，分析資料將開始快速累積。 每個服務的記錄與計量是分開的；只有在該儲存體帳戶中有活動時才會寫入記錄，而根據您設定計量的方式，將會每分鐘、每小時或每天記錄計量。
 
 記錄會儲存於儲存體帳戶中名為 $logs 之容器的區塊 Blob 中。 啟用儲存體分析時，會自動建立此容器。 一旦建立此容器之後，就無法予以刪除，但您可以刪除其內容。
@@ -405,7 +408,7 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
 
 如您所見，您可以使用記錄來追蹤各種對儲存體帳戶的呼叫。
 
-#### <a name="what-are-all-of-those-fields-for?"></a>這些所有欄位的用途為何？
+#### <a name="what-are-all-of-those-fields-for"></a>這些所有欄位的用途為何？
 有一篇文章會列出下列所有資源，提供記錄中許多欄位的清單及其用途。 以下是依序列出的欄位清單︰
 
 ![記錄檔中欄位的快照](./media/storage-security-guide/image3.png)
@@ -414,7 +417,7 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
 
 例如，在上述清單的前幾個列中，要求狀態為 “Success” 且驗證類型為 “authenticated”。 這表示已使用儲存體帳戶金鑰驗證要求。
 
-#### <a name="how-are-my-blobs-being-authenticated?"></a>如何驗證我的 Blob？
+#### <a name="how-are-my-blobs-being-authenticated"></a>如何驗證我的 Blob？
 以下提供三個我們感興趣的案例。
 
 1. Blob 是公用的且可使用 URL (而不需共用存取簽章) 來存取。 在此案例中，要求狀態為 “AnonymousSuccess” 且驗證類型為 “anonymous”。
@@ -446,7 +449,7 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
   
   本文是 Microsoft Message Analyzer 的參考，並包含教學課程、快速入門及功能摘要的連結。
 
-## <a name="cross-origin-resource-sharing-(cors)"></a>跨原始來源資源分享 (CORS)
+## <a name="cross-origin-resource-sharing-cors"></a>跨原始來源資源分享 (CORS)
 ### <a name="cross-domain-access-of-resources"></a>跨網域存取資源
 在某一個網域中執行的 Web 瀏覽器對來自不同網域的資源提出 HTTP 要求時，這稱為跨原始來源的 HTTP 要求。 例如，來自 contoso.com 的 HTML 網頁會對裝載於 fabrikam.blob.core.windows.net 上的 jpeg 提出要求。 基於安全性理由，瀏覽器會限制從指令碼 (例如 JavaScript) 內初始化的跨原始來源 HTTP 要求。 這表示當 contoso.com 的網頁上有一些 JavaScript 程式碼要求 fabrikam.blob.core.windows.net 上的該 jpeg 時，瀏覽器將不允許該要求。
 
@@ -457,22 +460,24 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
 
 解決此問題的另一個方法是讓 Web 應用程式做為儲存體呼叫所使用的 Proxy。 這表示，如果您要將檔案上傳至 Blob 儲存體，Web 應用程式可以在本機寫入它，然後將它複製到 Blob 儲存體，或者將它全部讀入記憶體，然後將它寫入 Blob 儲存體。 或者，您可以撰寫專屬的 Web 應用程式 (例如 Web API)，本機上傳檔案並將它們寫入 Blob 儲存體。 無論如何，您都必須在判定延展性的需求時負責該功能。
 
-#### <a name="how-can-cors-help?"></a>CORS 如何提供協助？
+#### <a name="how-can-cors-help"></a>CORS 如何提供協助？
 Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每個儲存體帳戶，您可以指定可存取該儲存體帳戶中之資源的網域。 例如，在上述案例中，我們可以在 fabrikam.blob.core.windows.net 儲存體帳戶上啟用 CORS，然後將它設定為允許存取 contoso.com。 然後 Web 應用程式 contoso.com 就能直接存取 fabrikam.blob.core.windows.net 中的資源。
 
 要注意的一點是，CORS 允許存取，但不提供所有對儲存體資源之非公用存取所需的驗證。 這表示，如果它們是公用的，您就只能存取 Blob，或者您可以包含共用存取簽章來為您提供適當的權限。 表格、佇列和檔案沒有公用存取權且需要 SAS。
 
 根據預設，所有服務上都會停用 CORS。 您可以使用 REST API 或儲存體用戶端程式庫，呼叫其中一個方法來設定服務原則，藉以啟用 CORS。 當您這樣做時，就會在 XML 中包含 CORS 規則。 以下範例會針對儲存體帳戶的 Blob 服務，使用「設定服務屬性」作業來設定 CORS 規則。 您可以使用 Azure 儲存體的儲存體用戶端程式庫或 REST API 來執行該作業。
 
-    <Cors>    
-        <CorsRule>
-            <AllowedOrigins>http://www.contoso.com, http://www.fabrikam.com</AllowedOrigins>
-            <AllowedMethods>PUT,GET</AllowedMethods>
-            <AllowedHeaders>x-ms-meta-data*,x-ms-meta-target*,x-ms-meta-abc</AllowedHeaders>
-            <ExposedHeaders>x-ms-meta-*</ExposedHeaders>
-            <MaxAgeInSeconds>200</MaxAgeInSeconds>
-        </CorsRule>
-    <Cors>
+```xml
+<Cors>    
+    <CorsRule>
+        <AllowedOrigins>http://www.contoso.com, http://www.fabrikam.com</AllowedOrigins>
+        <AllowedMethods>PUT,GET</AllowedMethods>
+        <AllowedHeaders>x-ms-meta-data*,x-ms-meta-target*,x-ms-meta-abc</AllowedHeaders>
+        <ExposedHeaders>x-ms-meta-*</ExposedHeaders>
+        <MaxAgeInSeconds>200</MaxAgeInSeconds>
+    </CorsRule>
+<Cors>
+```
 
 以下是每一列的意義︰
 
@@ -521,6 +526,7 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每
   
   本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO4-->
 
 

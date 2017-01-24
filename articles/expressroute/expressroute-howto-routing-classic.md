@@ -1,13 +1,13 @@
 ---
-title: 如何使用 PowerShell 為傳統部署模型設定 ExpressRoute 線路的路由 | Microsoft Docs
-description: 本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。 本文也示範如何檢查狀態、更新或刪除線路的對等。
+title: "如何使用 PowerShell 為傳統部署模型設定 ExpressRoute 線路的路由 | Microsoft Docs"
+description: "本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。 本文也示範如何檢查狀態、更新或刪除線路的對等。"
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: a4bd39d2-373a-467a-8b06-36cfcc1027d2
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
@@ -15,13 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr
+translationtype: Human Translation
+ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
+ms.openlocfilehash: df4b11210aca695a04abf145b6efd9e98c870b67
+
 
 ---
 # <a name="create-and-modify-routing-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 電路的路由
 > [!div class="op_single_selector"]
-> [Azure 入口網站 - Resource Manager](expressroute-howto-routing-portal-resource-manager.md)
-> [PowerShell - Resource Manager](expressroute-howto-routing-arm.md)
-> [PowerShell - 傳統](expressroute-howto-routing-classic.md)
+> * [Azure 入口網站 - Resource Manager](expressroute-howto-routing-portal-resource-manager.md)
+> * [PowerShell - 資源管理員](expressroute-howto-routing-arm.md)
+> * [PowerShell - 傳統](expressroute-howto-routing-classic.md)
 > 
 > 
 
@@ -32,7 +36,7 @@ ms.author: ganesr
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-prerequisites"></a>組態必要條件
-* 您需要最新版的 Azure PowerShell 模組。 您可以從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)的 PowerShell 區段下載最新的 PowerShell 模組。 遵循 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 頁面上的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。 
+* 您需要最新版的 Azure PowerShell 模組。 您可以從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)的 PowerShell 區段下載最新的 PowerShell 模組。 遵循 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 頁面上的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。 
 * 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)頁面、[路由需求](expressroute-routing.md)頁面和[工作流程](expressroute-workflows.md)頁面。
 * 您必須擁有作用中的 ExpressRoute 線路。 繼續之前，請遵循指示來 [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md) ，並由您的連線提供者來啟用該線路。 ExpressRoute 線路必須處於已佈建和已啟用狀態，您才能執行如下所述的 Cmdlet。
 
@@ -268,7 +272,7 @@ ms.author: ganesr
      
        New-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -VlanId 300 -PeerAsn 1234 -CustomerAsn 2245 -AdvertisedPublicPrefixes "123.0.0.0/30" -RoutingRegistryName "ARIN" -SharedKey "A1B2C3D4"
 
-### <a name="to-view-microsoft-peering-details"></a>檢視 Microsoft 對等詳細資訊
+### <a name="to-view-microsoft-peering-details"></a>檢視 Microsoft 對等詳細資料
 您可以使用下列 Cmdlet 來取得組態詳細資料。
 
     Get-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************"
@@ -303,6 +307,9 @@ ms.author: ganesr
 * 如需有關工作流程的詳細資訊，請參閱 [ExpressRoute 工作流程](expressroute-workflows.md)。
 * 如需線路對等的詳細資訊，請參閱 [ExpressRoute 線路和路由網域](expressroute-circuit-peerings.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO1-->
 
 

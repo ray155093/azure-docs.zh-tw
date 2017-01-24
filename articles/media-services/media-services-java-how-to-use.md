@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: get-started-article
-ms.date: 10/19/2016
+ms.date: 12/20/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 97af28a2f225fa7f5db2086687c38c64e03ebc8f
+ms.sourcegitcommit: 18054a72c3ead02311465d97dc13b7b5e4d87321
+ms.openlocfilehash: 401b3c931fa046ee2bdf0a12e9e837b820ec5464
 
 
 ---
@@ -24,14 +24,14 @@ ms.openlocfilehash: 97af28a2f225fa7f5db2086687c38c64e03ebc8f
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
 ## <a name="setting-up-an-azure-account-for-media-services"></a>設定媒體服務的 Azure 帳戶
-若要設定媒體服務帳戶，請使用 Azure 傳統入口網站。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。 當您在 Azure 傳統入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
+若要設定媒體服務帳戶，請使用 Azure 入口網站。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。 當您在 Azure 入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
 
 ## <a name="setting-up-for-media-services-development"></a>設定媒體服務開發
 本節包含使用 Media Services SDK for Java 進行媒體服務開發的一般必要條件。
 
 ### <a name="prerequisites"></a>必要條件
 * 新的或現有 Azure 訂用帳戶中的媒體服務帳戶。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。
-* Azure Libraries for Java，可從 [Azure Java 開發人員中心][Azure Java 開發人員中心]進行安裝。
+* Azure Libraries for Java，可從 [Azure Java 開發人員中心][Azure Java Developer Center]進行安裝。
 
 ## <a name="how-to-use-media-services-with-java"></a>如何：搭配使用媒體服務和 Java
 下列程式碼將示範如何建立資產、上傳媒體檔案到資產、使用工作 (Task) 執行作業 (Job) 來轉換此資產，以及建立定位器以便串流您的影片。
@@ -260,16 +260,16 @@ ms.openlocfilehash: 97af28a2f225fa7f5db2086687c38c64e03ebc8f
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="additional-resources"></a>其他資源
-如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][Azure Libraries for Java 文件]。
+如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][Azure Libraries for Java documentation]。
 
 <!-- URLs. -->
 
-[Azure Java 開發人員中心]: http://azure.microsoft.com/develop/java/
-[Azure Libraries for Java 文件]: http://dl.windowsazure.com/javadoc/
-[媒體服務用戶端開發]: http://msdn.microsoft.com/library/windowsazure/dn223283.aspx
+[Azure Java Developer Center]: http://azure.microsoft.com/develop/java/
+[Azure Libraries for Java documentation]: http://dl.windowsazure.com/javadoc/
+[Media Services Client Development]: http://msdn.microsoft.com/library/windowsazure/dn223283.aspx
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/22/2016
+ms.date: 01/03/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: a31a1b7909ea7440780c9a7af4cb908c9aa6a449
-ms.openlocfilehash: 5852808ad0f5cf02908df7ff969ab2106d9f5abd
+ms.sourcegitcommit: 7f074883c2330c5814eef415f193e1775caec432
+ms.openlocfilehash: ddb38f99adef288958fd3828cb685912bf35f218
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: 5852808ad0f5cf02908df7ff969ab2106d9f5abd
 
 ![資源安全性健康情況圖格](./media/security-center-monitoring/security-center-monitoring-fig1-new4.png)
 
-如果資訊安全中心找出必須處理的弱點 (例如遺失了安全性更新的虛擬機器或沒有[網路安全性群組](../virtual-network/virtual-networks-nsg.md)的子網路)，將會在這裡列出。
+如果資訊安全中心找出必須處理的弱點 (例如遺失了安全性更新的虛擬機器或沒有[網路安全性群組](/virtual-network/virtual-networks-nsg.md)的子網路)，將會在這裡列出。
 
 ### <a name="monitor-virtual-machines"></a>監視虛擬機器
 按一下 [資源安全性健康情況] 圖格中的 [虛擬機器] 時，將會開啟 [虛擬機器] 刀鋒視窗，其中會顯示有關訓練的更多詳細資訊、預防步驟，以及受資訊安全中心監視的所有虛擬機器清單，如下列螢幕擷取畫面所示。
@@ -162,22 +162,22 @@ ms.openlocfilehash: 5852808ad0f5cf02908df7ff969ab2106d9f5abd
 * 橘色︰中等優先順序，應儘速處理
 * 綠色 (最後一個)︰健康狀態
 
-在此拓撲檢視中，第一層有[虛擬網路](../virtual-network/virtual-networks-overview.md)、[虛擬網路閘道](../vpn-gateway/vpn-gateway-site-to-site-create.md)和[虛擬網路 (傳統)](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。 第二層有子網路，第三層有屬於這些子網路的虛擬機器。 右側資料行有這些資源的網路安全性群組的目前狀態，如以下範例所示：
+在此拓撲檢視中，第一層有[虛擬網路](../virtual-network/virtual-networks-overview.md)、[虛擬網路閘道](/vpn-gateway/vpn-gateway-site-to-site-create.md)和[虛擬網路 (傳統)](/virtual-network/virtual-networks-create-vnet-classic-pportal.md)。 第二層有子網路，第三層有屬於這些子網路的虛擬機器。 右側資料行有這些資源的網路安全性群組的目前狀態，如以下範例所示：
 
 ![網路拓撲區段中網路安全性群組的狀態](./media/security-center-monitoring/security-center-monitoring-fig12-ga.png)
 
 此刀鋒視窗的下半部有此虛擬機器的建議 (類似上面所述)。 您可以按一下建議以深入了解或套用所需的安全性控制或組態。
 
 ### <a name="monitor-data"></a>監視資料
-當您按一下 [資源安全性健康情況] 圖格中的 [資料] 時，將會開啟 [SQL] 刀鋒視窗，內含問題的建議，例如未啟用稽核和透明資料加密。 它也具有資料庫的一般健全狀況狀態 [建議](security-center-sql-service-recommendations.md) 。
+當您按一下 [資源安全性健康情況] 圖格中的 [資料] 時，[資料資源] 刀鋒視窗會隨即開啟，其中會有針對 SQL 和儲存體的建議。 它也具有資料庫的一般健全狀況狀態 [建議](security-center-sql-service-recommendations.md) 。 如需儲存體加密的詳細資訊，請在 Azure 資訊安全中心閱讀「啟用 Azure 儲存體帳戶的加密」。
 
-![SQL 資源健康情況](./media/security-center-monitoring/security-center-monitoring-fig13-ga.png)
+![資料資源](./media/security-center-monitoring/security-center-monitoring-fig13-ga-new.png)
 
-您可以按一下任何建議，取得解決問題所需之進一步動作的更多詳細資料。 下列範例顯示**未啟用資料庫稽核**建議的擴充功能。
+在 [SQL 建議] 底下，您可以按一下任何建議，取得解決問題所需之進一步動作的更多詳細資料。 下列範例顯示已展開的 **SQL Database 上的資料庫稽核和威脅偵測**建議。
 
-![有關 SQL 建議的詳細資料](./media/security-center-monitoring/security-center-monitoring-fig14-ga.png)
+![有關 SQL 建議的詳細資料](./media/security-center-monitoring/security-center-monitoring-fig14-ga-new.png)
 
-[在 SQL 資料庫上啟用稽核]  刀鋒視窗具有下列資訊：
+[在 SQL 資料庫上啟用稽核和威脅偵測] 刀鋒視窗具有下列資訊：
 
 * SQL 資料庫的清單
 * 其所在的伺服器
@@ -185,14 +185,15 @@ ms.openlocfilehash: 5852808ad0f5cf02908df7ff969ab2106d9f5abd
 * 目前的狀態
 * 問題的嚴重性
 
-當您在資料庫上按一下以解決這項建議時，便會開啟 [稽核與威脅的偵測] 刀鋒視窗，如下列螢幕擷取畫面所示。
+當您在資料庫上按一下以解決這項建議時，便會開啟 [稽核與威脅的偵測] 刀鋒視窗，如下列畫面所示。
 
 ![稽核與威脅的偵測刀鋒視窗](./media/security-center-monitoring/security-center-monitoring-fig15-ga.png)
 
 若要啟用稽核，請選取 [稽核] 選項底下的 [開啟]。
 
 ### <a name="monitor-applications"></a>監視應用程式
-如果您的 Azure 工作負載有應用程式位於具有公開 Web 連接埠 (TCP 連接埠 80 和 443) 的[虛擬機器 (透過 Azure Resource Manager 所建立)](../azure-resource-manager/resource-manager-deployment-model.md) 中，資訊安全中心即可監視這些應用程式以找出潛在的安全性問題，並建議補救步驟。 當您按一下 [應用程式] 圖格時，便會開啟 [應用程式] 刀鋒視窗，其 [預防步驟] 區段中會有一系列的建議。 同時也會顯示每一主機/虛擬 IP 的應用程式明細，如下列螢幕擷取畫面所示。
+
+如果您的 Azure 工作負載有應用程式位於具有公開 Web 連接埠 (TCP 連接埠 80 和 443) 的[虛擬機器 (透過 Azure Resource Manager 所建立)](../azure-resource-manager/resource-manager-deployment-model.md) 中，資訊安全中心即可監視這些應用程式以找出潛在的安全性問題，並建議補救步驟。 當您按一下 [應用程式] 圖格時，便會開啟 [應用程式] 刀鋒視窗，其 [應用程式建議] 區段中會有一系列的建議。 同時也會顯示每一主機/虛擬 IP 的應用程式明細，如下列螢幕擷取畫面所示。
 
 ![應用程式安全性健全狀況](./media/security-center-monitoring/security-center-monitoring-fig16-ga.png)
 
@@ -216,6 +217,6 @@ ms.openlocfilehash: 5852808ad0f5cf02908df7ff969ab2106d9f5abd
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

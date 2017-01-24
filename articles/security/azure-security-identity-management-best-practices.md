@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 01/09/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 354648461adf77ccf753cf24721ab7dd82b34d3c
-ms.openlocfilehash: 0af729f798a88aa299becd474fff69ad36436521
+ms.sourcegitcommit: 3451bdde3be60df0f1e1ed977f23db65d39f535f
+ms.openlocfilehash: eb4f55ab1f463d3351c74d9996eb8611281abe41
 
 
 ---
@@ -65,8 +65,8 @@ ms.openlocfilehash: 0af729f798a88aa299becd474fff69ad36436521
 
 > [!NOTE]
 > 使用 SSO 的決策會影響您整合內部部署目錄與雲端目錄的方式。 如果您想要 SSO，則必須使用同盟，因為目錄同步處理只會提供[相同的登入體驗](../active-directory/active-directory-aadconnect.md)。
-> 
-> 
+>
+>
 
 未對使用者和應用程式強制執行 SSO 的組織更容易遭遇使用者有多組密碼的情況，以致直接增加使用者重複使用密碼或使用弱式密碼的可能性。
 
@@ -108,14 +108,14 @@ ms.openlocfilehash: 0af729f798a88aa299becd474fff69ad36436521
 
 > [!NOTE]
 > 這與 RBAC 不同，其實際利用 RBAC 來驗證使用者是否有建立這些資源的權限。
-> 
-> 
+>
+>
 
 利用 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 來建立適用於以下案例的自訂原則：組織只想在有相關聯的適當成本中心時允許作業，否則將拒絕要求。
 
 不控制資源建立方式的組織比較容易遇到使用者因建立超過所需的資源而濫用服務。 強化資源建立程序是保護多租用戶案例的重要步驟。
 
-您可以閱讀使用原則來管理資源和控制存取，進一步了解如何[使用 Azure Resource Manager 建立原則](../resource-manager-policy.md)。
+您可以閱讀使用原則來管理資源和控制存取，進一步了解如何[使用 Azure Resource Manager 建立原則](../azure-resource-manager/resource-manager-policy.md)。
 
 ## <a name="guide-developers-to-leverage-identity-capabilities-for-saas-apps"></a>引導開發人員運用 SaaS 應用程式的身分識別功能
 當使用者存取可與內部部署或雲端目錄整合的 [SaaS 應用程式時](https://azure.microsoft.com/marketplace/active-directory/all/)，使用者身分識別會運用在許多案例中。 最重要的是，我們建議開發人員使用安全的方法來開發這些應用程式，例如 [Microsoft 安全性開發生命週期 (SDL)](https://www.microsoft.com/sdl/default.aspx)。 Azure AD 提供身分識別做為服務，支援業界標準通訊協定 (例如 [OAuth 2.0](http://oauth.net/2/) 和 [OpenID Connect](http://openid.net/connect/))，以及適用於不同平台的開放原始碼程式庫，來簡化開發人員的驗證工作。
@@ -138,7 +138,6 @@ ms.openlocfilehash: 0af729f798a88aa299becd474fff69ad36436521
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

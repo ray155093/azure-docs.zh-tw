@@ -1,19 +1,23 @@
 ---
-title: 使用 PowerShell 進行 Service Fabric 應用程式升級 | Microsoft Docs
-description: 本文會逐步解說使用 PowerShell 來部署 Service Fabric 應用程式、變更程式碼及執行升級的體驗。
+title: "使用 PowerShell 進行 Service Fabric 應用程式升級 | Microsoft Docs"
+description: "本文會逐步解說使用 PowerShell 來部署 Service Fabric 應用程式、變更程式碼及執行升級的體驗。"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 9bc75748-96b0-49ca-8d8a-41fe08398f25
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/14/2016
+ms.date: 11/15/2016
 ms.author: subramar
+translationtype: Human Translation
+ms.sourcegitcommit: 1825e1400b95eb2a810082b6a3f15324261084b0
+ms.openlocfilehash: 210f368598f0073f11c9d6f9be2fb2220eed29e0
+
 
 ---
 # <a name="service-fabric-application-upgrade-using-powershell"></a>使用 PowerShell 進行 Service Fabric 應用程式升級
@@ -29,9 +33,11 @@ ms.author: subramar
 
 可以使用受管理或原生 API、PowerShell 或 REST，執行監視應用程式升級。 如需有關使用 Visual Studio 來執行升級的說明，請參閱 [使用 Visual Studio 升級您的應用程式](service-fabric-application-upgrade-tutorial.md)。
 
-透過 Service Fabric 監視輪流升級，應用程式系統管理員即可設定 Service Fabric 用來判斷應用程式健康狀態良好的健康狀態評估原則。 此外，系統管理員也可設定當健康狀態評估失敗時採取的動作 (例如，進行自動回復)。本節會逐步解說使用 PowerShell 對其中一個 SDK 範例進行受監視的升級。
+透過 Service Fabric 監視輪流升級，應用程式系統管理員即可設定 Service Fabric 用來判斷應用程式健康狀態良好的健康狀態評估原則。 此外，系統管理員也可設定當健康狀態評估失敗時採取的動作 (例如，進行自動回復)。本節會逐步解說使用 PowerShell 對其中一個 SDK 範例進行受監視的升級。 下列 Microsoft Virtual Academy 影片也會逐步引導您完成應用程式升級︰<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=OrHJH66yC_6406218965">
+<img src="./media/service-fabric-application-upgrade-tutorial-powershell/AppLifecycleVid.png" WIDTH="360" HEIGHT="244">
+</a></center>
 
-## <a name="step-1:-build-and-deploy-the-visual-objects-sample"></a>步驟 1：建置和部署視覺物件範例
+## <a name="step-1-build-and-deploy-the-visual-objects-sample"></a>步驟 1：建置和部署視覺物件範例
 在應用程式專案 **VisualObjectsApplication** 上按一下滑鼠右鍵，然後選取 [發佈] 命令來建置和發佈應用程式。  如需詳細資訊，請參閱 [Service Fabric 應用程式升級教學課程](service-fabric-application-upgrade-tutorial.md)。  或者，您可以使用 PowerShell 來部署您的應用程式。
 
 > [!NOTE]
@@ -43,7 +49,7 @@ ms.author: subramar
 
 現在，您可以使用 [Service Fabric Explorer 來檢視叢集與應用程式](service-fabric-visualizing-your-cluster.md)。 該應用程式有一個 Web 服務，透過在 Internet Explorer 的網址列中輸入 [http://localhost:8081/visualobjects](http://localhost:8081/visualobjects) ，即可瀏覽至該服務。  您應該會在畫面上看到一些浮動視覺物件四處移動。  此外，您可以使用 **Get-ServiceFabricApplication** 檢查應用程式狀態。
 
-## <a name="step-2:-update-the-visual-objects-sample"></a>步驟 2：更新視覺物件範例
+## <a name="step-2-update-the-visual-objects-sample"></a>步驟 2：更新視覺物件範例
 您可能會注意到在步驟 1 中已部署的版本，視覺物件不會旋轉。 讓我們將這個應用程式升級到其中的視覺物件也會旋轉的版本。
 
 選取 VisualObjects 解決方案內的 VisualObjects.ActorService 專案，然後開啟 StatefulVisualObjectActor.cs 檔案。 在該檔案內，瀏覽至 `MoveObject` 方法，然後將 `this.State.Move()` 標記為註解，然後將 `this.State.Move(true)` 取消註解。 這項變更會在服務升級後旋轉物件。
@@ -70,7 +76,7 @@ ms.author: subramar
 
 現在只選取 [ActorService] 專案，然後以滑鼠右鍵按一下並選取 Visual Studio 中的 [組建] 選項建置專案。 如果您選取 [全部重建]，因為程式碼已變更，所以您要更新所有專案的版本。 接下來，在 [VisualObjectsApplication] 上按一下滑鼠右鍵，選取 [Service Fabric] 功能表，然後選擇 [封裝]，來封裝已更新的應用程式。 這個動作會建立可部署的應用程式封裝。  更新的應用程式已準備好進行部署。
 
-## <a name="step-3:-decide-on-health-policies-and-upgrade-parameters"></a>步驟 3：決定健康狀態原則並升級參數
+## <a name="step-3--decide-on-health-policies-and-upgrade-parameters"></a>步驟 3：決定健康狀態原則並升級參數
 請您熟悉[應用程式升級參數](service-fabric-application-upgrade-parameters.md)和[升級程序](service-fabric-application-upgrade.md)，以了解套用的各種升級參數、逾時和健康狀態準則。 對於此逐步解說，服務健康狀態評估準則會設定為預設值 (和建議值)，這表示升級之後，所有服務和執行個體應該是「健康狀態良好」  。  
 
 但是，讓我們將 *HealthCheckStableDuration* 增加為 60 秒 (如此一來，在升級繼續至下一個更新網域之前，至少有 20 秒的時間服務是健康狀態良好的)。  同時也要將 *UpgradeDomainTimeout* 設為 1200 秒，將 *UpgradeTimeout* 設為 3000 秒。
@@ -85,7 +91,7 @@ UpgradeDomainTimeoutSec = 1200
 
 UpgradeTimeout = 3000
 
-## <a name="step-4:-prepare-application-for-upgrade"></a>步驟 4：準備應用程式以進行升級
+## <a name="step-4-prepare-application-for-upgrade"></a>步驟 4：準備應用程式以進行升級
 現在，應用程式已建置並且準備好進行升級。 如果您以系統管理員身分開啟 PowerShell 視窗並且輸入 **Get-ServiceFabricApplication**，它應該會讓您知道它是已部署之 **VisualObjects** 的應用程式類型 1.0.0.0。  
 
 應用程式封裝儲存在以下的相對路徑，您在其中解壓縮 Service Fabric SDK - *Samples\Services\Stateful\VisualObjects\VisualObjects\obj\x64\Debug*。 您應該會在該目錄中找到 "Package" 資料夾，這是應用程式封裝儲存的位置。 檢查時間戳記以確保它是最新組建 (您也可能需要適當地修改路徑)。
@@ -105,7 +111,7 @@ Register-ServiceFabricApplicationType -ApplicationPathInImageStore "VisualObject
 
 如果上述命令不成功，很可能是您需要重建所有服務。 如步驟 2 中所述，您可能也必須更新您的 WebService 版本。
 
-## <a name="step-5:-start-the-application-upgrade"></a>步驟 5：開始應用程式升級
+## <a name="step-5-start-the-application-upgrade"></a>步驟 5：開始應用程式升級
 現在，我們已經準備好使用下列命令開始應用程式升級：
 
 ```powershell
@@ -132,6 +138,9 @@ Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/VisualObjects -Ap
 
 參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO1-->
 
 

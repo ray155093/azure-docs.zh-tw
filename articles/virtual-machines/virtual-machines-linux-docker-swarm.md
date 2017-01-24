@@ -1,13 +1,13 @@
 ---
-title: 開始在 Azure 上搭配 swarm 使用 docker
-description: 描述如何使用 Docker VM 延伸模組建立一組 VM，以及使用 swarm 來建立 Docker 叢集。
+title: "開始在 Azure 上搭配 swarm 使用 docker"
+description: "描述如何使用 Docker VM 延伸模組建立一組 VM，以及使用 swarm 來建立 Docker 叢集。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: squillace
 manager: timlt
 editor: tysonn
 tags: azure-service-management
-
+ms.assetid: d529b1f5-864e-4163-9b34-b52d48ceedb1
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
@@ -15,20 +15,25 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 01/04/2016
 ms.author: rasquill
+translationtype: Human Translation
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: 834bb8a60c3dcb2d0b50809ffb0e4780579b2cda
+
 
 ---
-# 如何搭配swarm 使用 docker
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+# <a name="how-to-use-docker-with-swarm"></a>如何搭配swarm 使用 docker
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需部署 Docker Swarm 的 Resource Manager 範本，請參閱[這裡](https://azure.microsoft.com/documentation/templates/docker-swarm-cluster/)。
 
-本主題將示範一個非常簡單的方式來搭配使用 [docker](https://www.docker.com/) 和 [swarm](https://github.com/docker/swarm)，以便在 Azure 上建立由 swarm 管理的叢集。它會在 Azure 中建立四個虛擬機器，一個用來做為 swarm 管理員，其餘三個則做為 docker 主機叢集的一部分。當您完成時，可以使用 swarm 查看叢集，然後開始在其上使用 docker。此外，本主題中的 Azure CLI 呼叫會使用服務管理 (asm) 模式。
+本主題將示範一個非常簡單的方式，在 Azure 上搭配 [swarm](https://github.com/docker/swarm) 使用 [docker](https://www.docker.com/) 來建立 swarm-managed 的叢集。 它會在 Azure 中建立四個虛擬機器，一個用來做為 swarm 管理員，其餘三個則做為 docker 主機叢集的一部分。 當您完成時，可以使用 swarm 查看叢集，然後開始在其上使用 docker。 此外，本主題中的 Azure CLI 呼叫會使用服務管理 (asm) 模式。 
 
 > [!NOTE]
-> 本主題將 docker 與 swarm 和 Azure CLI 搭配使用，而「不」使用 **docker-machine**，以示範不同工具如何共同運作但仍保持獨立。**docker-machine** 具有 **--swarm** 參數，可讓您使用 **docker-machine** 直接將節點新增到 swarm。如需範例，請參閱 [docker-machine](https://github.com/docker/machine) 文件。如果您錯過了在 Azure VM 上執行的 **docker-machine**，請參閱[如何搭配 Azure 使用 docker-machine](virtual-machines-linux-docker-machine.md)。
+> 本主題搭配 swarm 和 Azure CLI、不搭配**docker-machine** 使用 docker，以顯示不同的工具如何一起運作但保持獨立。 **docker-machine** 有 **--swarm** 參數，可讓您使用 **docker-machine** 直接將節點新增到 swarm。 如需範例，請參閱 [docker-machine](https://github.com/docker/machine) 文件。 如果您錯過了在 Azure VM 上執行的 **docker-machine**，請參閱 [如何搭配 Azure 使用 docker-machine](virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 > 
 > 
 
-## 使用 Azure 虛擬機器建立 docker 主機
-本主題會建立四個 VM，但您可以使用任何您想要的數目。使用 *&lt;password&gt;* (使用您選擇的密碼來取代) 呼叫下列命令。
+## <a name="create-docker-hosts-with-azure-virtual-machines"></a>使用 Azure 虛擬機器建立 docker 主機
+本主題會建立四個 VM，但您可以使用任何您想要的數目。 使用 &lt;password&gt; 來呼叫下列命令 (使用您選擇的密碼來取代)。
 
     azure vm docker create swarm-master -l "East US" -e 22 $imagename ops <password>
     azure vm docker create swarm-node-1 -l "East US" -e 22 $imagename ops <password>
@@ -43,8 +48,8 @@ ms.author: rasquill
     data:    swarm-node-2     ReadyRole           East US       swarm-node-2.cloudapp.net                               100.72.18.47  
     data:    swarm-node-3     ReadyRole           East US       swarm-node-3.cloudapp.net                               100.78.24.68  
 
-## 在 swarm 主要 VM 上安裝 swarm
-本主題使用[來自 docker swarm 文件的安裝容器模型](https://github.com/docker/swarm#1---docker-image) -- 但是，您也可以 SSH 到 **swarm-master**。在此模型中，會下載 **swarm** 以做為執行 swarm 的 docker 容器。在後續內容中，我們會*從膝上型電腦使用 docker 遠端*執行此步驟以連接到 **swarm-master** VM，並告知它使用叢集識別碼建立命令 **swarm create**。叢集識別碼是 **swarm** 探索 swarm 群組成員的方式。(您也可以複製儲存機制並自行建置它，這樣做可讓您擁有完整控制權且能夠進行偵錯)。
+## <a name="installing-swarm-on-the-swarm-master-vm"></a>在 swarm 主要 VM 上安裝 swarm
+本主題使用 [來自 docker swarm 文件的安裝容器模型](https://github.com/docker/swarm#1---docker-image) -- 但是，您也可以 SSH 到 **swarm-master**。 在此模型中，會下載 **swarm** 以做為執行 swarm 的 docker 容器。 在後續內容中，我們會從膝上型電腦使用 docker 遠端執行此步驟以連接到 **swarm-master** VM，並告知它使用叢集識別碼建立命令 **swarm create**。 叢集識別碼是 **swarm** 探索 swarm 群組成員的方式。 (您也可以複製儲存機制並自行建置它，這樣做可讓您擁有完整控制權且能夠進行偵錯)。
 
     $ docker --tls -H tcp://swarm-master.cloudapp.net:2376 run --rm swarm create
     Unable to find image 'swarm:latest' locally
@@ -60,12 +65,12 @@ ms.author: rasquill
     Status: Downloaded newer image for swarm:latest
     36731c17189fd8f450c395db8437befd
 
-最後一行是叢集識別碼；請將它複製到某處，因為當您將節點 VM 加入 swarm 主機以建立 "swarm" 時將再次用到它。在此範例中，叢集識別碼是 **36731c17189fd8f450c395db8437befd**。
+最後一行是叢集識別碼；請將它複製到某處，因為當您將節點 VM 加入 swarm 主機以建立 "swarm" 時將再次用到它。 在此範例中，叢集識別碼是 **36731c17189fd8f450c395db8437befd**。
 
 > [!NOTE]
 > 只是要先聲明，我們正使用本機 docker 安裝來連接到 Azure 中的 **swarm-master** VM，並指示 **swarm-master** 下載、安裝及執行 **create** 命令，其會傳回我們稍後要基於探索目的而使用的叢集識別碼。
 > <!-- -->
-> 若要確認這一點，請執行 `docker -H tcp://`*&lt;hostname&gt;* ` images` 以列出 **swarm-master** 機器和其他節點上的容器處理程序來進行比較 (因為我們搭配 **--rm** 參數執行舊版 swarm 命令，所以會在命令完成時移除容器，因此，使用 **docker ps -a** 將不會傳回任何內容)：
+> 若要確認這一點，請執行 `docker -H tcp://`&lt;hostname&gt; ` images`以列出 **swarm-master** 機器和其他節點上的容器處理程序來進行比較 (因為我們搭配 **--rm** 參數執行舊版 swarm 命令，所以會在命令完成時移除容器，因此，使用 **docker ps -a** 將不會傳回任何內容)：
 > 
 > 
 
@@ -81,8 +86,8 @@ ms.author: rasquill
 > 
 > 
 
-## 將節點 VM 加入我們的 docker 叢集
-針對每個節點，使用 Azure CLI 列出端點資訊。我們將在以下針對 **swarm-node-1** docker 主機執行此動作，以取得該節點的 docker 連接埠。
+## <a name="join-the-node-vms-to-our-docker-cluster"></a>將節點 VM 加入我們的 docker 叢集
+針對每個節點，使用 Azure CLI 列出端點資訊。 我們將在以下針對 **swarm-node-1** docker 主機執行此動作，以取得該節點的 docker 連接埠。
 
     $ azure vm endpoint list swarm-node-1
     info:    Executing command vm endpoint list
@@ -110,15 +115,15 @@ ms.author: rasquill
     Status: Downloaded newer image for swarm:latest
     bbf88f61300bf876c6202d4cf886874b363cd7e2899345ac34dc8ab10c7ae924
 
-看起來不錯。若要確認 **swarm** 正在 **swarm-node-1** 上執行，可輸入：
+看起來不錯。 若要確認 **swarm** 正在 **swarm-node-1** 上執行，可輸入：
 
     $ docker --tls -H tcp://swarm-node-1.cloudapp.net:2376 ps -a
         CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS               NAMES
         bbf88f61300b        swarm:latest        "/swarm join --addr=   13 seconds ago      Up 12 seconds       2375/tcp            angry_mclean
 
-針對叢集中的所有其他節點重複執行。在本例中，我們會針對 **swarm-node-2** 和 **swarm-node-3** 執行此動作。
+針對叢集中的所有其他節點重複執行。 在本例中，我們會針對 **swarm-node-2** 和 **swarm-node-3** 執行此動作。
 
-## 開始管理 swarm 叢集
+## <a name="begin-managing-the-swarm-cluster"></a>開始管理 swarm 叢集
     $ docker --tls -H tcp://swarm-master.cloudapp.net:2376 run -d -p 2375:2375 swarm manage token://36731c17189fd8f450c395db8437befd
     d7e87c2c147ade438cb4b663bda0ee20981d4818770958f5d317d6aebdcaedd5
 
@@ -130,12 +135,16 @@ ms.author: rasquill
     92.222.76.190:2375
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
-## 後續步驟
-在您的 swarm 上執行動作。若要尋找靈感，請參閱 [https://github.com/docker/swarm/](https://github.com/docker/swarm/)，或者觀看[影片](https://www.youtube.com/watch?v=EC25ARhZ5bI)。
+## <a name="next-steps"></a>後續步驟
+在您的 swarm 上執行動作。 若要尋找靈感，請參閱 [https://github.com/docker/swarm/](https://github.com/docker/swarm/)，或者觀看[影片](https://www.youtube.com/watch?v=EC25ARhZ5bI)。
 
 <!-- links -->
 
 [docker-machine-azure]: virtual-machines-linux-docker-machine.md
 
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+<!--HONumber=Dec16_HO1-->
+
+

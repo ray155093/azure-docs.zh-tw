@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/21/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: ad50c6c12bc3b328d776f37fc31f44d90a0915a3
-ms.openlocfilehash: 990f899681b6828edac6fccfd4509f20812edbdf
+ms.sourcegitcommit: 5d73d1203faf485d715354e68ce2ccde32562611
+ms.openlocfilehash: 03faf2594c9c3d7612127d46bdaa99b937c78475
 
 
 ---
@@ -62,7 +62,7 @@ ms.openlocfilehash: 990f899681b6828edac6fccfd4509f20812edbdf
       * `Microsoft.Azure.Management.DataLake.StoreUploader` - 本教學課程使用 v0.10.6-preview。
       * `Microsoft.Rest.ClientRuntime.Azure.Authentication` - 本教學課程使用 v2.2.8-preview。
         
-        ![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/ADL.Install.Nuget.Package.png "Create a new Azure Data Lake account")
+        ![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/ADL.Install.Nuget.Package.png "建立新的 Azure Data Lake 帳戶")
    4. 關閉 [ **Nuget 封裝管理員**]。
 6. 開啟 **Program.cs**，刪除現有的程式碼，然後納入下列陳述式以新增命名空間的參考。
    
@@ -126,7 +126,7 @@ ms.openlocfilehash: 990f899681b6828edac6fccfd4509f20812edbdf
 > 
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-client-secret"></a>如果您要使用服務對服務驗證與用戶端密碼
-下列程式碼片段可供使用應用程式/服務主體的用戶端密碼/金鑰，以非互動方式驗證您的應用程式。 請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../resource-group-create-service-principal-portal.md)。
+下列程式碼片段可供使用應用程式/服務主體的用戶端密碼/金鑰，以非互動方式驗證您的應用程式。 請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md)。
 
     // Service principal / appplication authentication with client secret / key
     // Use the client ID and certificate of an existing AAD "Web App" application.
@@ -138,7 +138,7 @@ ms.openlocfilehash: 990f899681b6828edac6fccfd4509f20812edbdf
     var creds = ApplicationTokenProvider.LoginSilentAsync(domain, clientCredential).Result;
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-certificate"></a>如果您要使用服務對服務驗證與憑證
-第三個選項，下列程式碼片段可供使用應用程式 / 服務主體的憑證，以非互動方式驗證您的應用程式。 請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../resource-group-create-service-principal-portal.md)。
+第三個選項，下列程式碼片段可供使用應用程式 / 服務主體的憑證，以非互動方式驗證您的應用程式。 請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md)。
 
     // Service principal / application authentication with certificate
     // Use the client ID and certificate of an existing AAD "Web App" application.
@@ -261,6 +261,6 @@ ms.openlocfilehash: 990f899681b6828edac6fccfd4509f20812edbdf
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO4-->
 
 

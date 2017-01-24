@@ -12,19 +12,19 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/24/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ec6bb243872b3d4794050f735122f587a299e978
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: a00a75c6f4f45827a6e2ad22b96febc807590e57
 
 
 ---
-# <a name="how-to-perform-live-streaming-with-onpremise-encoders-using-the-azure-portal"></a>如何使用 Azure 入口網站透過內部部署編碼器執行即時串流
+# <a name="how-to-perform-live-streaming-with-on-premise-encoders-using-the-azure-portal"></a>如何使用 Azure 入口網站透過內部部署編碼器執行即時串流
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
-> * [REST](https://msdn.microsoft.com/library/azure/dn783458.aspx)
+> * [REST](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > 
 
@@ -34,7 +34,7 @@ ms.openlocfilehash: ec6bb243872b3d4794050f735122f587a299e978
 需要有下列項目，才能完成教學課程：
 
 * 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
-* 媒體服務帳戶。    若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
+* 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
 * 網路攝影機。 例如， [Telestream Wirecast 編碼器](http://www.telestream.net/wirecast/overview.htm)。
 
 強烈建議您先檢閱下列文章：
@@ -46,6 +46,9 @@ ms.openlocfilehash: ec6bb243872b3d4794050f735122f587a299e978
 ## <a name="a-idscenarioacommon-live-streaming-scenario"></a><a id="scenario"></a>常見即時串流案例
 下列步驟描述當我們建立一般即時串流應用程式 (其使用針對即時通行傳遞設定的通道) 時，會涉及到的各種工作。 本教學課程示範如何建立及管理即時通行通道和即時事件。
 
+>[!NOTE]
+>確定您想要串流內容的串流端點已處於 [執行中] 狀態。 
+    
 1. 將攝影機連接到電腦。 啟動並設定內部部署即時編碼器，讓它輸出多位元速率 RTMP 或 Fragmented MP4 串流。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
    
     此步驟也可以在您建立通道之後執行。
@@ -59,11 +62,7 @@ ms.openlocfilehash: ec6bb243872b3d4794050f735122f587a299e978
 5. 建立即時事件/程式。 
    
     使用 Azure 入口網站時，建立即時事件也會建立資產。 
-   
-   > [!NOTE]
-   > 確定負責傳送內容的串流端點上，至少有一個串流保留單位。
-   > 
-   > 
+
 6. 當您準備好開始串流和封存時，請啟動事件/程式。
 7. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
 8. 每當您想要停止串流處理和封存事件時，請停止事件/程式。
@@ -79,29 +78,7 @@ ms.openlocfilehash: ec6bb243872b3d4794050f735122f587a299e978
 
 ![通知](./media/media-services-portal-passthrough-get-started/media-services-notifications.png)
 
-## <a name="configure-streaming-endpoints"></a>設定串流端點
-媒體服務提供動態封裝，這讓您以下列串流格式 (MPEG DASH、HLS、Smooth Streaming 或 HDS) 提供多位元速率 MP4，而不必重新封裝成這些串流格式。 使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
-
-若要利用動態封裝，您需要為想要從該處傳遞內容的串流端點取得至少一個串流單位。  
-
-若要建立和變更串流保留單位數目，請執行下列動作：
-
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 [設定] 視窗中，按一下 [串流端點]。 
-3. 按一下預設串流端點。 
-   
-    [預設串流端點詳細資料]  視窗隨即出現。
-4. 若要指定串流單位數目，請滑動 [串流單位]  滑桿。
-   
-    ![串流單位](./media/media-services-portal-passthrough-get-started/media-services-streaming-units.png)
-5. 按一下 [儲存]  按鈕以儲存您的變更。
-   
-   > [!NOTE]
-   > 配置任何新的單位最多需要 20 分鐘的時間才能完成。
-   > 
-   > 
-
-## <a name="create-and-start-passthrough-channels-and-events"></a>建立並啟動即時通行通道和事件
+## <a name="create-and-start-pass-through-channels-and-events"></a>建立並啟動即時通行通道和事件
 通道是與事件/程式相關聯，而程式可讓您控制即時串流中區段的發佈和儲存。 通道會管理事件。 
 
 設定 **封存時間範圍** 長度，即可指定您想要保留程式之錄製內容的時數。 此值可以設為最少 5 分鐘到最多 25 個小時。 封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。 事件在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。 此屬性的這個值也會決定用戶端資訊清單可以成長多長的時間。
@@ -180,6 +157,6 @@ ms.openlocfilehash: ec6bb243872b3d4794050f735122f587a299e978
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

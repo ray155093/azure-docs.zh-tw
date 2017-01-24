@@ -7,6 +7,7 @@ manager: jhubbard
 author: ddove
 ms.assetid: 204fd902-0397-4185-985a-dea3ed7c7d9f
 ms.service: sql-database
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -14,8 +15,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d6fc4d314adf02e9c6d5a72b3b7d58db3c2f5731
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 00497f64feea692cf0f289991d1b905f39e1c880
 
 
 ---
@@ -55,7 +56,7 @@ ms.openlocfilehash: d6fc4d314adf02e9c6d5a72b3b7d58db3c2f5731
 
 在每個資料庫有多個租用戶的情況下，分區的 Shardlet 配置可能造成某些分區出現容量瓶頸。 這需要重新配置 Shardlet，或將忙碌的 Shardlet 移到新的或較少使用的分區。 
 
-## <a name="concepts-key-features"></a>概念和重要功能
+## <a name="concepts--key-features"></a>概念和重要功能
 **客戶主控式服務**
 
 分割合併提供為客戶主控式服務。 您必須將服務部署並裝載於 Microsoft Azure 訂用帳戶中。 您從 NuGet 下載的封裝包含設定範本，可加入您特定部署的資訊而使之完備。 如需詳細資訊，請參閱 [分割合併教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md) 。 因為服務是在您的 Azure 訂用帳戶中執行，您可以控制和設定服務的大部分安全性層面。 預設範本包含設定 SSL、以憑證為基礎的用戶端驗證、加密儲存的認證、DoS 防護及 IP 限制等選項。 您可以在下列文件中找到安全性層面的詳細資訊： [分割合併安全性組態](sql-database-elastic-scale-split-merge-security-configuration.md)。
@@ -200,7 +201,7 @@ ms.openlocfilehash: d6fc4d314adf02e9c6d5a72b3b7d58db3c2f5731
 
 您無需佈建新的中繼資料資料庫，即可升級分割合併。 新的版本會自動將現有的中繼資料資料庫升級到新的版本。 
 
-## <a name="best-practices-troubleshooting"></a>最佳作法和疑難排解
+## <a name="best-practices--troubleshooting"></a>最佳作法和疑難排解
 * 定義測試租用戶，並在數個分區上對測試租用戶練習您最重要的分割/合併/移動作業。 確定分區對應中定義的所有中繼資料都正確，且作業未違反條件約束或外部索引鍵。
 * 將測試租用戶資料大小保持大於您最大租用戶的最大資料大小，以確保不會發生資料大小的相關問題。 這有助於您評估移動單一租用戶所花費的時間上限。 
 * 請確定您的結構描述允許刪除動作。 一旦資料成功複製到目標，分割合併服務必須能夠從來源分區移除資料。 例如， **刪除觸發程序** 可能防止服務刪除來源上的資料，也可能造成作業失敗。
@@ -218,6 +219,6 @@ ms.openlocfilehash: d6fc4d314adf02e9c6d5a72b3b7d58db3c2f5731
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

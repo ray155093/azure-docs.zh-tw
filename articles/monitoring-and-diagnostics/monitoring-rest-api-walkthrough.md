@@ -1,12 +1,12 @@
 ---
-title: Azure 監視 REST API 逐步解說 | Microsoft Docs
-description: 如何驗證 Azure 監視 REST API 的要求，並使用 Azure 監視 REST API。
+title: "Azure 監視 REST API 逐步解說 | Microsoft Docs"
+description: "如何驗證 Azure 監視 REST API 的要求，並使用 Azure 監視 REST API。"
 author: mcollier
-manager: ''
-editor: ''
+manager: carolz
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 565e6a88-3131-4a48-8b82-3effc9a3d5c6
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: mcollier
+translationtype: Human Translation
+ms.sourcegitcommit: 1fe845d442c7010580d4592f205e92e8ef70e34a
+ms.openlocfilehash: 6d66a8fa6eac5bc0ecdddc12b67697045556bf46
+
 
 ---
 # <a name="azure-monitoring-rest-api-walkthrough"></a>Azure 監視 REST API 逐步解說
@@ -26,7 +30,7 @@ Azure 監視器 API 讓您能夠以程式設計方式擷取可用的預設度量
 ## <a name="authenticating-azure-monitor-requests"></a>驗證 Azure 監視器要求
 第一步是驗證要求。
 
-針對 Azure 監視器 API 執行的所有工作都會使用 Azure Resource Manager 驗證模型。 因此，所有要求都必須使用 Azure Active Directory (Azure AD) 進行驗證。 驗證用戶端應用程式的其中一個方法是建立 Azure AD 服務主體，並擷取驗證 (JWT) 權杖。 下列範例指令碼會示範透過 PowerShell 建立 Azure AD 服務主體的方法。 如需更詳細的逐步解說中，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../resource-group-authenticate-service-principal.md#authenticate-service-principal-with-password—powershell)上的文件。 它也可以 [透過 Azure 入口網站建立服務原則](../resource-group-create-service-principal-portal.md)。
+針對 Azure 監視器 API 執行的所有工作都會使用 Azure Resource Manager 驗證模型。 因此，所有要求都必須使用 Azure Active Directory (Azure AD) 進行驗證。 驗證用戶端應用程式的其中一個方法是建立 Azure AD 服務主體，並擷取驗證 (JWT) 權杖。 下列範例指令碼會示範透過 PowerShell 建立 Azure AD 服務主體的方法。 如需更詳細的逐步解說中，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-password)上的文件。 它也可以 [透過 Azure 入口網站建立服務原則](../azure-resource-manager/resource-group-create-service-principal-portal.md)。
 
 ```PowerShell
 $subscriptionId = "{azure-subscription-id}"
@@ -41,7 +45,7 @@ $pwd = "{service-principal-password}"
 
 # Create a new Azure AD application
 $azureAdApplication = New-AzureRmADApplication `
-                        -DisplayName "My Azure Insights" `
+                        -DisplayName "My Azure Monitor" `
                         -HomePage "https://localhost/azure-monitor" `
                         -IdentifierUris "https://localhost/azure-monitor" `
                         -Password $pwd
@@ -55,7 +59,7 @@ New-AzureRmRoleAssignment -RoleDefinitionName Reader `
 
 ```
 
-若要查詢 Azure 監視器 API，用戶端應用程式應使用先前建立的服務主體來進行驗證。 下列範例 PowerShell 指令碼使用 [Active Directory Authentication Library](../active-directory/active-directory-authentication-libraries.md) (ADAL) 說明其中一個方法，協助取得 JWT 驗證權杖。 JWT 權杖會做為要求中 HTTP 授權參數的一部分傳遞至 Azure Insights API。
+若要查詢 Azure 監視器 API，用戶端應用程式應使用先前建立的服務主體來進行驗證。 下列範例 PowerShell 指令碼使用 [Active Directory Authentication Library](../active-directory/active-directory-authentication-libraries.md) (ADAL) 說明其中一個方法，協助取得 JWT 驗證權杖。 JWT 權杖會做為要求中 HTTP 授權參數的一部分傳遞至 Azure 監視器 API。
 
 ```PowerShell
 $azureAdApplication = Get-AzureRmADApplication -IdentifierUri "https://localhost/azure-monitor"
@@ -71,7 +75,7 @@ $cred = New-Object -TypeName Microsoft.IdentityModel.Clients.ActiveDirectory.Cli
 
 $result = $AuthContext.AcquireToken("https://management.core.windows.net/", $cred)
 
-# Build an array of HTTP header values 
+# Build an array of HTTP header values
 $authHeader = @{
 'Content-Type'='application/json'
 'Accept'='application/json'
@@ -87,8 +91,8 @@ $authHeader = @{
 ## <a name="retrieve-metric-definitions"></a>擷取度量定義
 > [!NOTE]
 > 若要使用 Azure 監視器 REST API 擷取度量定義，請使用 "2016-03-01" 做為 API 版本。
-> 
-> 
+>
+>
 
 ```PowerShell
 $apiVersion = "2016-03-01"
@@ -110,8 +114,8 @@ Invoke-RestMethod -Uri $request `
 
 > [!NOTE]
 > 若要使用 Azure 監視器 REST API 擷取度量值，請使用 "2016-06-01" 做為 API 版本。
-> 
-> 
+>
+>
 
 **方法**：GET
 
@@ -160,7 +164,7 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/resourc
 
 上述程式碼中，要使用的資源識別碼是所需 Azure 資源的完整路徑。 例如，若要查詢 Azure Web 應用程式，資源識別碼為︰
 
-<bpt id="p1">*</bpt>/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{site-name}/<ept id="p1">*</ept>
+*/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{site-name}/*
 
 下列範例清單包含各種 Azure 資源的資源識別碼格式︰
 
@@ -187,15 +191,15 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/resourc
 ### <a name="azure-powershell"></a>Azure PowerShell
 可以使用 Azure PowerShell Cmdlet 來擷取資源識別碼。 例如，若要取得 Azure Web 應用程式的資源識別碼，請執行 Get-AzureRmWebApp Cmdlet，如下列螢幕擷取畫面所示︰
 
-![替代「透過 PowerShell 取得的資源識別碼」](./media\\monitoring-rest-api-walkthrough\\resourceid_powershell.png)
+![替代「透過 PowerShell 取得的資源識別碼」](./media/monitoring-rest-api-walkthrough/resourceid_powershell.png)
 
 ### <a name="azure-cli"></a>Azure CLI
 若要使用 Azure CLI 擷取資源識別碼，請執行 'azure webapp show' 命令，指定 '-json' 選項，如下列螢幕擷取畫面所示︰
 
-![替代「透過 PowerShell 取得的資源識別碼」](./media\\monitoring-rest-api-walkthrough\\resourceid_azurecli.png)
+![替代「透過 PowerShell 取得的資源識別碼」](./media/monitoring-rest-api-walkthrough/resourceid_azurecli.png)
 
 ## <a name="retrieve-activity-log-data"></a>擷取活動記錄檔資料
-除了使用度量定義及相關值，也可以擷取關於 Azure 資源的其他有趣深入見解。 例如，可以查詢 [活動記錄檔](https://msdn.microsoft.com/library/azure/dn931934.aspx) 資料。 下列範例示範使用 Azure 監視器 REST API 查詢 Azure 訂用帳戶特定日期範圍內的活動記錄檔資料︰ 
+除了使用度量定義及相關值，也可以擷取關於 Azure 資源的其他有趣深入見解。 例如，可以查詢 [活動記錄檔](https://msdn.microsoft.com/library/azure/dn931934.aspx) 資料。 下列範例示範使用 Azure 監視器 REST API 查詢 Azure 訂用帳戶特定日期範圍內的活動記錄檔資料︰
 
 ```PowerShell
 $apiVersion = "2014-04-01"
@@ -213,6 +217,8 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/provide
 * 檢閱 [Microsoft Azure 監視器 REST API 參考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。
 * 檢閱 [Azure Management Library](https://msdn.microsoft.com/library/azure/mt417623.aspx)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Jan17_HO1-->
 
 

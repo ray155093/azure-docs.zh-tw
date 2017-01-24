@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 10/17/2016
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ede557e1678aa6c24f50bd120552345dcd00cdc3
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: d6bf108a4d03855171d2b9c5552c57f8ee6f1f9b
 
 
 ---
@@ -65,7 +65,7 @@ ms.openlocfilehash: ede557e1678aa6c24f50bd120552345dcd00cdc3
 7. 按一下 [購買] 以安裝解決方案。
 
 ### <a name="deploy-azure-resource-manager-template"></a>部署 Azure Resource Manager 範本
-您從社群取得的解決方案或您[自己建立](#creating-a-solution)的解決方案會當作 Resource Manager 範本實作，因此您可以使用任何[部署範本](../resource-group-template-deploy-portal.md)的標準方法。  請注意，在安裝解決方案前，您必須建立並連結 [OMS 工作區和自動化帳戶](#oms-workspace-and-automation-account)。
+您從社群取得的解決方案或您[自己建立](#creating-a-solution)的解決方案會當作 Resource Manager 範本實作，因此您可以使用任何[部署範本](../azure-resource-manager/resource-group-template-deploy-portal.md)的標準方法。  請注意，在安裝解決方案前，您必須建立並連結 [OMS 工作區和自動化帳戶](#oms-workspace-and-automation-account)。
 
 ## <a name="oms-workspace-and-automation-account"></a>OMS 工作區和自動化帳戶
 大部分的管理解決方案都需要 [OMS 工作區](../log-analytics/log-analytics-manage-access.md)才會包含檢視，以及需要[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)才會包含 Runbook 和相關的資源。 工作區和帳戶必須符合下列需求。
@@ -116,6 +116,6 @@ ms.openlocfilehash: ede557e1678aa6c24f50bd120552345dcd00cdc3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

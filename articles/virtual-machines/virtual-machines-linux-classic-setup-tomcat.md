@@ -16,17 +16,16 @@ ms.topic: article
 ms.date: 12/15/2015
 ms.author: ningk
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8f32ad29c105c3713b8e3138914f8fc1a781cd75
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 954e971878f8ece5d67247e65f11ff9242f9f621
 
 
 ---
 # <a name="how-to-set-up-tomcat7-on-a-linux-virtual-machine-with-microsoft-azure"></a>如何對於 Microsoft Azure 在 Linux 虛擬機器上設定 Tomcat7
 Apache Tomcat (或直接稱為 Tomcat，以往也稱為 Jakarta Tomcat) 是 Apache Software Foundation (ASF) 開發的開放原始碼 Web 伺服器和 Servlet 容器。 Tomcat 實作 Sun Microsystems 的 Java Servlet 和 JavaServer 頁面 (JSP) 規格，並提供執行 Java 程式碼的純 Java HTTP 網頁伺服器環境。 在最簡單的組態中，Tomcat 會在單一作業系統處理序中執行。 此程序會執行 Java 虛擬機器 (JVM)。 從瀏覽器到 Tomcat 的每個 HTTP 要求都會以 Tomcat 程序中個別的執行緒形式予以處理。  
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如需 Resource Manager 範本使用 Open JDK 與 Tomcat 部署 Ubuntu VM 的詳細資訊，請參閱[這裡](https://azure.microsoft.com/documentation/templates/openjdk-tomcat-ubuntu-vm/)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 範本使用 Open JDK 與 Tomcat 部署 Ubuntu VM 的詳細資訊，請參閱[這裡](https://azure.microsoft.com/documentation/templates/openjdk-tomcat-ubuntu-vm/)。
 
 在本指南中，您將在 Linux 映像上安裝 tomcat7，並將它部署於 Microsoft Azure。  
 
@@ -128,9 +127,8 @@ TCP 連接埠 8080 是 tomcat 接聽的預設連接埠號碼。 在 Azure 端點
 ### <a name="java-runtime-environment"></a>Java 執行階段環境
 Tomcat 是以 Java 撰寫的。 有兩種類型的 Java 開發套件 (JDK) (OpenJDK 和 Oracle JDK)，您可以選擇所需的其中一個。  
 
-> AZURE.NOTE︰這兩個 JDK 對於 Java API 中的類別擁有幾乎相同的程式碼，但是對於虛擬機器的程式碼則截然不同。 對於程式庫，OpenJDK 傾向使用開放程式庫，而 Oracle 傾向於使用非開放程式庫。 但是 Oracle JDK 有較多的類別和一些已修復的錯誤，而 Oracle JDK 則比 OpenJDK 穩定。
-> 
-> 
+> [!NOTE] 
+> 這兩個 JDK 對於 Java API 中的類別有幾乎相同的程式碼，但是對於虛擬機器的程式碼則截然不同。 對於程式庫，OpenJDK 傾向使用開放程式庫，而 Oracle 傾向於使用非開放程式庫。 但是 Oracle JDK 有較多的類別和一些已修復的錯誤，而 Oracle JDK 則比 OpenJDK 穩定。
 
 下列命令會下載不同的 JDK。  
 
@@ -208,12 +206,11 @@ tomcat7 伺服器將在您安裝時自動啟動。 您也可以自行使用下�
 
     sudo vi  /etc/tomcat7/tomcat-users.xml   
 
-範例如下：  
+下列是一個範例：  
 ![][17]  
 
-> AZURE.NOTE：建立系統管理員使用者名稱的強式密碼。  
-> 
-> 
+> [!NOTE] 
+> 建立系統管理員使用者名稱的強式密碼。  
 
 編輯此檔案之後, 您應該使用下列命令重新啟動 tomcat7 服務，以確保變更生效：  
 
@@ -313,6 +310,6 @@ tomcat7 伺服器將在您安裝時自動啟動。 您也可以自行使用下�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

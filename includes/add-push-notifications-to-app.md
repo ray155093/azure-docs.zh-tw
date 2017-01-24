@@ -1,5 +1,5 @@
 
-## <a id="add-push"></a>推播通知新增至應用程式
+## <a name="a-idadd-pushaadd-push-notifications-to-app"></a><a id="add-push"></a>推播通知新增至應用程式
 * 在 QSAppDelegate.m 中，匯入 iOS SDK 和 QSTodoService.h：
 
 ```
@@ -15,7 +15,7 @@
         [[UIApplication sharedApplication] registerForRemoteNotifications];
 ```
 
-* 在 QSAppDelegate.m 中，新增下列處理常式方法。您的應用程式現在已更新為支援推播通知。
+* 在 QSAppDelegate.m 中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。
 
 ```
         // Registration with APNs is successful
@@ -56,4 +56,7 @@
         }
 ```
 
-<!---HONumber=Oct15_HO3-->
+
+<!--HONumber=Jan17_HO3-->
+
+

@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 09/28/2016
 ms.author: toddabel
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 454e1379e4ec598ffd31017b413f6b15c98039a6
+ms.sourcegitcommit: a957a70be915459baa8c687c92e251c6011b6172
+ms.openlocfilehash: bc8eaf68b89bdefe203fc7ceea7b5241ac3e9dfa
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: 454e1379e4ec598ffd31017b413f6b15c98039a6
 
 * [Azure 診斷](../cloud-services/cloud-services-dotnet-diagnostics.md) (與 Azure 雲端服務相關，但具備有用的資訊和範例)
 * [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
-* [Azure PowerShell](../powershell-install-configure.md)
+* [Azure PowerShell](/powershell/azureps-cmdlets-docs)
 * [Azure Resource Manager 用戶端](https://github.com/projectkudu/ARMClient)
 * [Azure Resource Manager 範本](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
@@ -51,7 +51,7 @@ ms.openlocfilehash: 454e1379e4ec598ffd31017b413f6b15c98039a6
 收集記錄檔的第一個步驟是將診斷擴充功能部署在 Service Fabric 叢集的每個 WM 上。 診斷擴充功能會收集每個 VM 上的記錄檔，並將它們上傳至您指定的儲存體帳戶。 步驟視您使用 Azure 入口網站或 Azure Resource Manager 而稍微有所不同。 步驟也會視部署為叢集建立的一部分，或是針對現有的叢集而有所不同。 讓我們看看每個案例的步驟。
 
 ### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-through-the-portal"></a>透過入口網站建立叢集時部署診斷擴充功能
-為了在建立叢集時將診斷擴充功能部署至叢集中的 WM，您會使用下圖所示的診斷設定面板。 若要收集 Reliable Actors 或 Reliable Services 事件，請確定已將 [診斷] 設定為 [開啟] (這是預設設定)。 建立叢集之後，您就無法使用入口網站變更這些設定。
+為了在建立叢集時將診斷擴充功能部署至叢集中的 WM，您會使用下圖所示的診斷設定面板。 若要收集 Reliable Actors 或 Reliable Services 事件，請確定已將 [診斷] 設定為 [開啟] \(這是預設設定)。 建立叢集之後，您就無法使用入口網站變更這些設定。
 
 ![入口網站中用於建立叢集的 Azure 診斷設定](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
 
@@ -222,6 +222,6 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: Windows VM 的計算基準測試分數 | Microsoft Docs
-description: 比較執行 Windows Server 之 Azure VM 的 SPECint 計算基準測試分數
+title: "Windows VM 的計算基準測試分數 | Microsoft Docs"
+description: "比較執行 Windows Server 之 Azure VM 的 SPECint 計算基準測試分數"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager,azure-service-management
-
+ms.assetid: 69ae72ec-e8be-4e46-a8f0-e744aebb5cc2
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
@@ -15,10 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 09/22/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: 37b20ab17cc2b241e0d8a7d73dcd4433317cc0d8
+ms.openlocfilehash: 835399cfa3d6b9ce8e45cec76e5e8dc17cb59855
+
 
 ---
 # <a name="compute-benchmark-scores-for-windows-vms"></a>Windows VM 的計算基準測試分數
-下列 SPECInt 基準測試分數顯示執行 Windows Server 的 Azure 高效能 VM 產品陣容的計算效能。 也有 [Linux VM](virtual-machines-linux-compute-benchmark-scores.md)的計算基準測試分數。
+下列 SPECInt 基準測試分數顯示執行 Windows Server 的 Azure 高效能 VM 產品陣容的計算效能。 也有 [Linux VM](virtual-machines-linux-compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)的計算基準測試分數。
 
 ## <a name="a-series---compute-intensive"></a>A 系列 - 計算密集型
 | 大小 | vCPU | NUMA 節點 | CPU | 執行 | 平均基本費率 | 標準差 |
@@ -41,7 +45,7 @@ ms.author: cynthn
 | Standard_D13_v2 |8 |1 |Intel Xeon E5-2673 v3 @ 2.4 GHz |17 |235.8 |3.8 |
 | Standard_D14_v2 |16 |2 |Intel Xeon E5-2673 v3 @ 2.4 GHz |15 |460.8 |6.5 |
 
-## <a name="g-series,-gs-series"></a>G 系列、GS 系列
+## <a name="g-series-gs-series"></a>G 系列、GS 系列
 | 大小 | vCPU | NUMA 節點 | CPU | 執行 | 平均基本費率 | 標準差 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Standard_G1、Standard_GS1 |2 |1 |Intel Xeon E5-2698B v3 @ 2 GHz |31 |71.8 |6.5 |
@@ -51,7 +55,7 @@ ms.author: cynthn
 | Standard_G5、Standard_GS5 |32 |2 |Intel Xeon E5-2698B v3 @ 2 GHz |22 |762.8 |3.7 |
 
 ## <a name="h-series"></a>H 系列
-| 大小 | vCPU | NUMA 節點 | CPU | 執行 | 反覆運算/秒 | 標準差 |
+| 大小 | vCPU | NUMA 節點 | CPU | 執行 | 平均基本費率  | 標準差 |
 | --- | --- | --- | --- | --- | --- | --- |
 | Standard_H8 |8 |1 |Intel Xeon E5-2667 v3 @ 3.2 GHz |5 |297.4 |0.9 |
 | Standard_H16 |16 |2 |Intel Xeon E5-2667 v3 @ 3.2 GHz |5 |575.8 |6.8 |
@@ -64,8 +68,11 @@ ms.author: cynthn
 Windows 數字是藉由在 Windows Server 上執行 [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) 來計算出。 執行 SPECint 時是使用基本費率選項 (SPECint_rate2006)，其中每個核心有一個複本。 SPECint 是由 12 個個別的測試組成，每個測試都執行三次，系統會從每個測試挑出中間值，然後將它們加權來形成複合分數。 這些測試會接著在多個 VM 上執行以提供所顯示的平均分數。
 
 ## <a name="next-steps"></a>後續步驟
-* 如需了解儲存體容量、磁碟詳細資料及其他選擇 VM 大小的考量，請參閱 [虛擬機器的大小](virtual-machines-windows-sizes.md)。
+* 如需了解儲存體容量、磁碟詳細資料及其他選擇 VM 大小的考量，請參閱 [虛擬機器的大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO5-->
 
 

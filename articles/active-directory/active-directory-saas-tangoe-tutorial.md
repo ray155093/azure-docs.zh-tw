@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/29/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 560feea958c6cb3021395ca88dfe07fd1ead2842
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: ac82535515f346d43bbceeb274ce61d81ade60b1
 
 
 ---
@@ -190,7 +190,7 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-an-tangoe-command-premium-mobile-test-user"></a>建立 Tangoe 命令高階行動裝置測試使用者
 在本節中，您要在 Tangoe 命令高階行動裝置中建立名為 Britta Simon 的使用者。 Tangoe 命令高階行動裝置應用程式需要在應用程式中佈建所有使用者才能執行單一登入。 因此，請利用 Tangoe 客戶支援部門將所有使用者佈建到應用程式。 
@@ -253,6 +253,6 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

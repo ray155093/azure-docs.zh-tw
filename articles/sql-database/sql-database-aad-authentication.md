@@ -9,6 +9,7 @@ editor:
 tags: 
 ms.assetid: 7e2508a1-347e-4f15-b060-d46602c5ce7e
 ms.service: sql-database
+ms.custom: authentication and authorization
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,8 +17,8 @@ ms.workload: data-management
 ms.date: 11/22/2016
 ms.author: rick.byham@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: 5fc68a32ab11e80b547fd517524a7f87a31ebfba
-ms.openlocfilehash: 911cf0c3204545091829adcb7dcbf6cbddc5ee9e
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: cf8cc9443d078168826b93eda6f0620681d9f47f
 
 
 ---
@@ -164,7 +165,7 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 若要稍後移除系統管理員，請在 [Active Directory 系統管理員] 刀鋒視窗頂端，按一下 [移除系統管理員]，然後按一下 [儲存]。
 
 ### <a name="provision-an-azure-ad-administrator-for-azure-sql-server-by-using-powershell"></a>使用 PowerShell 佈建 Azure SQL Server 的 Azure AD 系統管理員
-若要執行 PowerShell Cmdlet，Azure PowerShell 必須已安裝且正在執行中。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+若要執行 PowerShell Cmdlet，Azure PowerShell 必須已安裝且正在執行中。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 若要佈建 Azure AD 系統管理員，請執行下列 Azure PowerShell 命令：
 
@@ -394,6 +395,6 @@ sqlcmd -S Target_DB_or_DW.testsrv.database.windows.net -U bob@contoso.com -P MyA
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

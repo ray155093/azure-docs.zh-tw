@@ -15,16 +15,20 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ede330870f451bd1e0ed6805fa937e74438fd644
+ms.sourcegitcommit: bd85b9eae0e1cb281116748edcad6643b1ec537f
+ms.openlocfilehash: 6ad20a246fce996e6a11ce6fa4715c0d734c4323
 
 
 ---
 # <a name="how-to-create-a-support-ticket-for-sql-data-warehouse"></a>如何為 SQL 資料倉儲建立支援票證
 如果您的 SQL 資料倉儲有任何問題，請建立支援票證，以便我們的工程小組協助您。
 
+> [!NOTE] 
+> 截至 2016 年 12 月 20 日時，Azure 入口網站中的資源健全狀況檢查並不正確。 我們正著手解決這個問題。 
+
+
 ## <a name="create-a-support-ticket"></a>建立支援票證
-1. 開啟 [Azure 入口網站][Azure 入口網站]。
+1. 開啟 [Azure 入口網站][Azure portal]。
 2. 在 [首頁] 畫面上，按一下 [說明 + 支援]  圖格。
    
     ![說明 + 支援](./media/sql-data-warehouse-get-started-create-support-ticket/help-support.png)
@@ -47,13 +51,13 @@ ms.openlocfilehash: ede330870f451bd1e0ed6805fa937e74438fd644
 6. 選取 [SQL 資料倉儲]  做為資源。
    
     ![資源](./media/sql-data-warehouse-get-started-create-support-ticket/resource.png)
-7. 選取 [Azure 支援計劃][Azure 支援計劃]。
+7. 選取 [Azure 支援計劃][Azure support plan]。
    
    * **帳單、配額及訂用帳戶管理** 支援。
-   * **協助修正**支援則透過[開發人員][開發人員]、[標準][標準]、[專業指導][專業指導]支援或[頂級][頂級] 客戶在使用 Azure 期間如果遇到可合理認為是 Microsoft 所造成的問題，這類問題即屬於可協助修正的問題。
-   * [專業指導][專業指導]和[頂級][頂級]支援層級可提供**開發顧問**和**諮詢服務**。 
+   * **協助修正**支援則透過[開發人員][Developer]、[標準][Standard]、[專業直導][Professional Direct]支援或[頂級][Premier]支援來提供。 客戶在使用 Azure 期間如果遇到可合理認為是 Microsoft 所造成的問題，這類問題即屬於可協助修正的問題。
+   * [專業指導][Professional Direct]和[頂級][Premier]支援層級可提供**開發顧問**和**諮詢服務**。 
      
-     如果您有頂級支援計劃，您也可以在 [Microsoft Premier 線上入口網站][Microsoft Premier 線上入口網站]回報 SQL 資料倉儲的相關問題。  請參閱 [Azure 支援計畫][Azure 支援計畫]，進一步了解包括範圍、回應時間、價格等各種 Azure 支援計畫。如需有關 Azure 支援的常見問題集，請參閱 [Azure 支援常見問題集][Azure 支援常見問題集]。  
+     如果您有頂級支援計劃，您也可以在 [Microsoft Premier 線上入口網站][Microsoft Premier online portal]回報 SQL 資料倉儲的相關問題。  請參閱 [Azure 支援計畫][Azure support plan]，進一步了解包括範圍、回應時間、價格等各種 Azure 支援計畫。如需有關 Azure 支援的常見問題集，請參閱 [Azure 支援常見問題集][Azure support FAQs]。  
      
      ![支援計劃](./media/sql-data-warehouse-get-started-create-support-ticket/support-plan.png)
 8. 選取**問題類型**和**類別**。
@@ -73,7 +77,7 @@ ms.openlocfilehash: ede330870f451bd1e0ed6805fa937e74438fd644
 ![檢查狀態](./media/sql-data-warehouse-get-started-create-support-ticket/check-status.png)
 
 ## <a name="other-resources"></a>其他資源
-此外，您可以在 [Stack Overflow][Stack Overflow] 或在 [Azure SQL 資料倉儲 MSDN 論壇][Azure SQL 資料倉儲 MSDN 論壇]上與 SQL 資料倉儲社群聯繫。
+此外，您可以在 [Stack Overflow][Stack Overflow] 或在 [Azure SQL 資料倉儲 MSDN 論壇][Azure SQL Data Warehouse MSDN forum]上與 SQL 資料倉儲社群聯繫。
 
 <!--Image references--> 
 
@@ -83,20 +87,20 @@ ms.openlocfilehash: ede330870f451bd1e0ed6805fa937e74438fd644
 <!--MSDN references--> 
 
 <!--Other web references--> 
-[Azure 入口網站]: https://portal.azure.com/
-[Azure 支援計劃]: https://azure.microsoft.com/support/plans/?WT.mc_id=Support_Plan_510979/  
-[開發人員]: https://azure.microsoft.com/support/plans/developer/  
-[標準]: https://azure.microsoft.com/support/plans/standard/  
-[專業指導]: https://azure.microsoft.com/support/plans/prodirect/  
-[頂級]: https://azure.microsoft.com/support/plans/premier/  
-[Azure 支援常見問題集]: https://azure.microsoft.com/support/faq/
-[Microsoft Premier Online 入口網站]: https://premier.microsoft.com/
+[Azure portal]: https://portal.azure.com/
+[Azure support plan]: https://azure.microsoft.com/support/plans/?WT.mc_id=Support_Plan_510979/  
+[Developer]: https://azure.microsoft.com/support/plans/developer/  
+[Standard]: https://azure.microsoft.com/support/plans/standard/  
+[Professional Direct]: https://azure.microsoft.com/support/plans/prodirect/  
+[Premier]: https://azure.microsoft.com/support/plans/premier/  
+[Azure support FAQs]: https://azure.microsoft.com/support/faq/
+[Microsoft Premier online portal]: https://premier.microsoft.com/
 [Stack Overflow]: https://stackoverflow.com/questions/tagged/azure-sqldw/
-[Azure SQL 資料倉儲 MSDN 論壇]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse/
+[Azure SQL Data Warehouse MSDN forum]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse/
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

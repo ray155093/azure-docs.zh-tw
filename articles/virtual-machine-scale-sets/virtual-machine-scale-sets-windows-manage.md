@@ -3,7 +3,7 @@ title: "管理虛擬機器擴展集中的 VM | Microsoft Docs"
 description: "使用 Azure PowerShell 管理虛擬機器擴展集中的虛擬機器。"
 services: virtual-machine-scale-sets
 documentationcenter: 
-author: davidmu1
+author: Thraka
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -14,10 +14,10 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
-ms.author: davidmu
+ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 812d5c977ace7176e81e3e875daaf8e643c95a46
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 96560927bd9dd93c9313be7392e0cea427a50980
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 812d5c977ace7176e81e3e875daaf8e643c95a46
 
 大部分涉及管理擴展集中虛擬機器的工作，都需要您知道要管理的電腦執行個體識別碼。 您可以使用 [Azure 資源總管](https://resources.azure.com) 尋找擴展集中虛擬機器的執行個體識別碼。 您也可以使用資源總管來確認您所完成的工作狀態。
 
-如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="display-information-about-a-scale-set"></a>顯示擴展集的相關資訊
 您可以取得擴展集，也稱為執行個體檢視的一般資訊。 或者，您可以取得更特定的資訊，如擴展集中的資源資訊。
@@ -207,13 +207,15 @@ ms.openlocfilehash: 812d5c977ace7176e81e3e875daaf8e643c95a46
 ## <a name="change-the-capacity-of-a-scale-set"></a>變更擴展集的容量
 您可以新增或移除虛擬機器，方法是變更集合的容量。 取得您想要變更的擴展集，設定您想要的容量，然後使用新的容量更新擴展集。 在這些命令中，將引號值取代為名稱或您的資源群組和擴展集。
 
-  $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" $vmss.sku.capacity = 5 Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
+    $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
+    $vmss.sku.capacity = 5
+    Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
 
 如果您要從擴展集移除虛擬機器，會先移除具有最高識別碼的虛擬機器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

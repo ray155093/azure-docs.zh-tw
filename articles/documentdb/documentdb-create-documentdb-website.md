@@ -1,19 +1,23 @@
 ---
-title: 使用 Azure 資源管理員範本部署 DocumentDB 和 Azure App Service Web  Apps | Microsoft Docs
-description: 了解如何使用 Azure 資源管理員範本的部署 DocumentDB 帳戶、Azure App Service Web Apps，以及範例 Web 應用程式。
+title: "使用 Azure Resource Manager 範本部署 DocumentDB 和 Azure App Service Web Apps | Microsoft Docs"
+description: "了解如何使用 Azure 資源管理員範本的部署 DocumentDB 帳戶、Azure App Service Web Apps，以及範例 Web 應用程式。"
 services: documentdb, app-service\web
 author: h0n
 manager: jhubbard
 editor: monicar
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 087d8786-1155-42c7-924b-0eaba5a8b3e0
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/02/2016
+ms.date: 12/08/2016
 ms.author: hawong
+translationtype: Human Translation
+ms.sourcegitcommit: 08b101f42558280d8ffa690829570257d8d6deca
+ms.openlocfilehash: 6f519ac78d28fac69171b083f18d783cf1d9b24a
+
 
 ---
 # <a name="deploy-documentdb-and-azure-app-service-web-apps-using-an-azure-resource-manager-template"></a>使用 Azure 資源管理員範本部署 DocumentDB 和 Azure App Service Web  Apps
@@ -38,7 +42,7 @@ ms.author: hawong
 
 * Azure 訂用帳戶。 Azure 是訂閱型平台。  如需取得訂用帳戶的詳細資訊，請參閱[購買選項](https://azure.microsoft.com/pricing/purchase-options/)、[成員優惠](https://azure.microsoft.com/pricing/member-offers/)或[免費使用](https://azure.microsoft.com/pricing/free-trial/)。
 
-## <a name="<a-id="createdb"></a>step-1:-download-the-template-files"></a><a id="CreateDB"></a>步驟 1︰下載範本檔案
+## <a name="a-idcreatedbastep-1-download-the-template-files"></a><a id="CreateDB"></a>步驟 1︰下載範本檔案
 讓我們從下載本教學課程要使用的範本檔案開始。
 
 1. 將[建立 DocumentDB 帳戶、Web Apps 和部署示範應用程式範例](https://portalcontent.blob.core.windows.net/samples/DocDBWebsiteTodo.json)範本下載至本機資料夾 (例如 C:\DocumentDBTemplates)。 這個範本會部署 DocumentDB 帳戶、App Service Web 應用程式和 Web 應用程式。  它還會自動設定 Web 應用程式，以連線到 DocumentDB 帳戶。
@@ -46,7 +50,7 @@ ms.author: hawong
 
 <a id="Build"></a>
 
-## <a name="step-2:-deploy-the-documentdb-account,-app-service-web-app-and-demo-application-sample"></a>步驟 2：部署 DocumentDB 帳戶、App Service Web 應用程式與示範應用程式範例
+## <a name="step-2-deploy-the-documentdb-account-app-service-web-app-and-demo-application-sample"></a>步驟 2：部署 DocumentDB 帳戶、App Service Web 應用程式與示範應用程式範例
 現在讓我們來部署第一個範本。
 
 > [!TIP]
@@ -69,6 +73,7 @@ ms.author: hawong
       
       ![範本部署 UI 的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment4.png)
 5. 選擇現有的資源群組，或提供名稱建立新的資源群組，然後選擇資源群組的位置。
+
     ![範本部署 UI 的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment5.png)
 6. 依序按一下 [檢閱法律條款]、[購買] 和 [建立] 以開始部署。  選取 [釘選到儀表板]  讓產生的部署輕鬆簡單顯示在 Azure 入口網站的首頁上。
    ![範本部署 UI 的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment6.png)
@@ -86,7 +91,7 @@ ms.author: hawong
 
 <a id="Build"></a> 
 
-## <a name="step-3:-deploy-the-document-account-and-web-app-sample"></a>步驟 3：部署文件帳戶和 Web 應用程式範例
+## <a name="step-3-deploy-the-document-account-and-web-app-sample"></a>步驟 3：部署文件帳戶和 Web 應用程式範例
 現在讓我們來部署第二個範本。  這個範本非常有用，它會顯示如何將帳戶端點和主要金鑰等 DocumentDB 連接資訊，插入 Web 應用程式當做應用程式設定或自訂的連接字串。 例如，您或許有想要使用 DocumentDB 帳戶部署的 Web 應用程式，以及在部署期間自動填入的連接資訊。
 
 > [!TIP]
@@ -109,6 +114,7 @@ ms.author: hawong
       
       ![範本部署 UI 的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment4.png)
 5. 選擇現有的資源群組，或提供名稱建立新的資源群組，然後選擇資源群組的位置。
+
     ![範本部署 UI 的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment5.png)
 6. 依序按一下 [檢閱法律條款]、[購買] 和 [建立] 以開始部署。  選取 [釘選到儀表板]  讓產生的部署輕鬆簡單顯示在 Azure 入口網站的首頁上。
    ![範本部署 UI 的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment6.png)
@@ -117,6 +123,7 @@ ms.author: hawong
 8. 按一下 [資源] 清單中的 Web 應用程式資源，然後按一下 [應用程式設定]****
     ![資源群組的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment9.png)  
 9. 注意出現的 DocumentDB 端點和每個 DocumentDB 主要金鑰的應用程式設定。
+
     ![應用程式設定的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment10.png)  
 10. 任意繼續瀏覽探索 Azure 入口網站，或遵循其中一個 DocumentDB [範例](http://go.microsoft.com/fwlink/?LinkID=402386) 來建立您自己的 DocumentDB 應用程式。
 
@@ -129,7 +136,7 @@ ms.author: hawong
 * 若要深入了解 Azure App Service Web Apps，請按一下 [這裡](http://go.microsoft.com/fwlink/?LinkId=325362)。
 * 若要深入了解 Azure 資源管理員範本，請按一下 [這裡](https://msdn.microsoft.com/library/azure/dn790549.aspx)。
 
-## <a name="what's-changed"></a>變更的項目
+## <a name="whats-changed"></a>變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 * 如需從舊的入口網站變更為新入口網站的指南，請參閱： [瀏覽 Azure 傳統入口網站的參考](http://go.microsoft.com/fwlink/?LinkId=529715)
 
@@ -138,6 +145,9 @@ ms.author: hawong
 > 
 > 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO3-->
 
 

@@ -15,8 +15,8 @@ ms.workload: identity
 ms.date: 07/22/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 382d0cf15dafca51571346dab1e9d55eb2d09d67
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 9129eda8e4b3c3865878b8ceafb95a155ba02885
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: 382d0cf15dafca51571346dab1e9d55eb2d09d67
 
 在使用 PowerShell 來管理 RBAC 之前，您必須具備下列項目：
 
-* Azure PowerShell 0.8.8 或更新版本。 若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* Azure PowerShell 0.8.8 或更新版本。 若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 * Azure Resource Manager Cmdlet。 在 PowerShell 中，安裝 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx) 。
 
 ## <a name="list-roles"></a>列出角色
@@ -216,6 +216,6 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

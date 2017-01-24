@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: get-started-article
-ms.date: 10/19/2016
+ms.date: 12/22/2016
 ms.author: rachelap;robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b073958fd41fec05b473594b23b586d561e996f3
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 26f2fba953870564292ef3e986a3151373f6babf
 
 
 ---
@@ -168,13 +168,11 @@ ms.openlocfilehash: b073958fd41fec05b473594b23b586d561e996f3
         package io.swagger.api.impl;
    
         import io.swagger.api.*;
-        import io.swagger.model.*;
+        
         import io.swagger.model.Contact;
         import java.util.*;
         import io.swagger.api.NotFoundException;
-        import java.io.InputStream;
-        import com.sun.jersey.core.header.FormDataContentDisposition;
-        import com.sun.jersey.multipart.FormDataParam;
+               
         import javax.ws.rs.core.Response;
         import javax.ws.rs.core.SecurityContext;
    
@@ -271,7 +269,7 @@ ms.openlocfilehash: b073958fd41fec05b473594b23b586d561e996f3
     ![在 Azure 中即時使用您的 Java 連絡人 REST API][postman-calling-azure-contacts]
 
 ## <a name="next-steps"></a>後續步驟
-在這篇文章中，您從 Swagger JSON 檔案和一些利用 Swagger.io 編輯器建構的 Java 程式碼開始， 然後您做的簡單變更和 Git 部署程序，讓您得到以 Java 撰寫的實用 API 應用程式。 下一個教學課程會示範如何[使用 CORS]App Service API CORS[ 從 JavaScript 用戶端取用 API 應用程式]。 本系列的教學課程稍後會顯示如何實作驗證與授權。
+在這篇文章中，您從 Swagger JSON 檔案和一些利用 Swagger.io 編輯器建構的 Java 程式碼開始， 然後您做的簡單變更和 Git 部署程序，讓您得到以 Java 撰寫的實用 API 應用程式。 下一個教學課程會示範如何[使用 CORS 從 JavaScript 用戶端取用 API 應用程式][App Service API CORS]。 本系列的教學課程稍後會顯示如何實作驗證與授權。
 
 為了根據此範例進行建置，您可以深入了解 [Storage SDK for Java] 來保存 JSON blob。 或者，您可以使用 [Document DB Java SDK] 來將您的連絡人資料儲存到 Azure Document DB。 
 
@@ -319,6 +317,6 @@ ms.openlocfilehash: b073958fd41fec05b473594b23b586d561e996f3
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -3,7 +3,7 @@ title: "在 Azure DocumentDB 中模型化資料 | Microsoft Docs"
 description: "了解如何將 DocumentDB (NoSQL 文件資料庫) 的資料模型化。"
 keywords: "模型化資料"
 services: documentdb
-author: kiratp
+author: arramac
 manager: jhubbard
 editor: mimig1
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/05/2016
-ms.author: kipandya
+ms.date: 01/03/2016
+ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ba0dbc287964aa700cbded834e4b5da09144efe8
+ms.sourcegitcommit: 09f42bae67f794f12c7c37cd25c25f4c991fe893
+ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
 
 
 ---
@@ -119,11 +119,6 @@ ms.openlocfilehash: ba0dbc287964aa700cbded834e4b5da09144efe8
     }
 
 如果我們要模型化一般的部落格或 CMS 系統，這可能是具有內嵌註解的文章實體的外觀。 此範例的問題在於註解陣列是 **unbounded**，表示任何單一文章可以具備的註解數目沒有 (實際) 的限制。 因為文件的大小可能會大幅成長，這會成為問題。
-
-> [!TIP]
-> DocumentDB 中的文件有大小上限。 如需詳細資訊，請參閱 [DocumentDB 限制](documentdb-limits.md)。
-> 
-> 
 
 隨著文件大小的增加，透過網路傳輸資料以及大規模讀取和更新文件的能力，將會受到影響。
 
@@ -409,6 +404,6 @@ ms.openlocfilehash: ba0dbc287964aa700cbded834e4b5da09144efe8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

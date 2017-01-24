@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 32b6ebe59f042b71567c37d5dbef7db5ae1e21d0
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: d10ae92ba79014d9700613c06ef37a437089f5ac
 
 
 ---
@@ -76,7 +76,7 @@ ms.openlocfilehash: 32b6ebe59f042b71567c37d5dbef7db5ae1e21d0
 
 * Azure 訂用帳戶。
 * 已設定的虛擬網路。 如需 VNet 的詳細資訊，請參閱 [虛擬網路概觀](virtual-networks-overview.md) 。
-* 已下載並安裝最新版的 Azure PowerShell。 請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* 已下載並安裝最新版的 Azure PowerShell。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 若要建立具有多個 NIC 的 VM，請完成下列步驟，在單一 PowerShell 工作階段中輸入每個命令︰
 
@@ -231,6 +231,6 @@ ms.openlocfilehash: 32b6ebe59f042b71567c37d5dbef7db5ae1e21d0
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

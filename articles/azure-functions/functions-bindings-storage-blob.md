@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 11/02/2016
 ms.author: chrande
 translationtype: Human Translation
-ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
-ms.openlocfilehash: 880ea646b1e976975f610ce81d0b372e81d2e34a
+ms.sourcegitcommit: 593f97bf0fc855e2d122e093961013f923e2e053
+ms.openlocfilehash: b3d9dcceb8e0a3a7c31e4a0a8cf1eb9dd82bf6c8
 
 
 ---
@@ -358,6 +358,8 @@ Azure 儲存體 blob 輸出繫結可讓您在函式中將 blob 寫入儲存體�
 * `ICloudBlob`
 * `CloudBlockBlob` 
 * `CloudPageBlob` 
+* `ICollector<T>` (輸出多個 blob)
+* `IAsyncCollector<T>` (`ICollector<T>` 的非同步版本)
 
 <a name="outputsample"></a>
 
@@ -370,6 +372,6 @@ Azure 儲存體 blob 輸出繫結可讓您在函式中將 blob 寫入儲存體�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/02/2016
+ms.date: 12/21/2016
 ms.author: darosa,sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 9ace119de3676bcda45d524961ebea27ab093415
-ms.openlocfilehash: f75dcb6fd74ca2db7944ac76363801f5ee96650d
+ms.sourcegitcommit: d36b40444af4ba68b016351f9ff016351e9fe58c
+ms.openlocfilehash: a4ccfdbc079a989477a80af7ac701dc77dce5a4f
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: f75dcb6fd74ca2db7944ac76363801f5ee96650d
 | 可預測的效能 |變動延遲 |
 | 可預測的價格 |隨用隨付變動價格 |
 | 相應增加和相應減少工作負載的能力 |N/A |
-| 訊息大小 > 256KB |訊息大小為 256KB |
+| 訊息大小 > 256 KB |訊息大小為 256 KB |
 
 **服務匯流排進階傳訊**提供 CPU 和記憶體層級的資源隔離，讓每個客戶工作負載能隔離執行。 此資源容器稱為「傳訊單位」 。 每個進階命名空間都會被配置至少一個傳訊單位。 您可以為每個服務匯流排進階命名空間購買 1、2 或 4 個傳訊單位。 單一工作負載或實體可以跨越多個傳訊單位，而傳訊單位數目可以隨意變更，雖然計費是依 24 小時或每日費率收費。 結果是您的服務匯流排方案的效能可預測並可重複。
 
@@ -46,7 +46,7 @@ ms.openlocfilehash: f75dcb6fd74ca2db7944ac76363801f5ee96650d
 分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，不一定需要資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
 
 ### <a name="express-entities"></a>快速實體
-因為進階傳訊在完全隔離的執行階段環境中執行，所以在進階命名空間中不支援快速實體。 如需快速功能的詳細資訊，請參閱 [Microsoft.ServiceBus.Messaging.QueueDescription.EnableExpress](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.enableexpress.aspx) 屬性。
+因為進階傳訊在完全隔離的執行階段環境中執行，所以在進階命名空間中不支援快速實體。 如需快速功能的詳細資訊，請參閱 [QueueDescription.EnableExpress](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解服務匯流排訊息，請參閱下列主題。
@@ -59,6 +59,6 @@ ms.openlocfilehash: f75dcb6fd74ca2db7944ac76363801f5ee96650d
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

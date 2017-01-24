@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure 媒體分析進行臉部修訂 | Microsoft Docs
-description: 本主題示範如何使用 Azure 媒體分析修訂臉部。
+title: "使用 Azure 媒體分析進行臉部修訂 | Microsoft Docs"
+description: "本主題示範如何使用 Azure 媒體分析修訂臉部。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 5b6d8b8c-5f4d-4fef-b3d6-dc22c6b5a0f5
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,47 +14,51 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/12/2016
 ms.author: juliako;
+translationtype: Human Translation
+ms.sourcegitcommit: fb8920dde7549ae5beea6711f1332357e2a4ec00
+ms.openlocfilehash: e205ed29b551726ae451b08a7704f2f53c09919a
+
 
 ---
-# 使用 Azure 媒體分析進行臉部修訂
-## Overview
-**Azure 媒體修訂器**是 [Azure 媒體分析](media-services-analytics-overview.md)媒體處理器 (MP)，可在雲端提供可調整的臉部修訂。臉部修訂可讓您修改視訊，以模糊所選人物的臉部。在公共安全和新聞媒體案例中，您可能會想要使用臉部修訂服務。若要手動修訂包含多個臉部的幾分鐘影片，可能要花上數小時的時間，若使用此服務，則只需要幾個簡單的步驟就能完成臉部修訂程序。如需詳細資訊，請參閱[此部落格](https://azure.microsoft.com/blog/azure-media-redactor/)。
+# <a name="face-redaction-with-azure-media-analytics"></a>使用 Azure 媒體分析進行臉部修訂
+## <a name="overview"></a>Overview
+**Azure 媒體修訂器** 是 [Azure 媒體分析](media-services-analytics-overview.md) 媒體處理器 (MP)，可在雲端提供可調整的臉部修訂。 臉部修訂可讓您修改視訊，以模糊所選人物的臉部。 在公共安全和新聞媒體案例中，您可能會想要使用臉部修訂服務。 若要手動修訂包含多個臉部的幾分鐘影片，可能要花上數小時的時間，若使用此服務，則只需要幾個簡單的步驟就能完成臉部修訂程序。 如需詳細資訊，請參閱[此](https://azure.microsoft.com/blog/azure-media-redactor/)部落格。
 
 本主題提供有關 **Azure 媒體修訂** 的詳細資料，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
 
-**Azure 媒體修訂器** MP 目前為預覽功能。
+**Azure 媒體修訂器** MP 目前為預覽功能。 在所有公開的 Azure 區域及美國政府和中國的數據中心皆有提供。 此預覽版本目前以免費方式提供。 在目前的版本中，處理的視訊長度限制為 10 分鐘。
 
-## 臉部修訂模式
-臉部修訂的運作方式是，偵測視訊中每個畫面內出現的臉部，並及時向前及向後追蹤臉部物體，讓同一個人在其他角度也可以變得模糊。自動化修訂程序非常複雜，而且不一定會 100% 產生所需的輸出，因此，媒體分析提供您幾種方式來修改最終輸出。
+## <a name="face-redaction-modes"></a>臉部修訂模式
+臉部修訂的運作方式是，偵測視訊中每個畫面內出現的臉部，並及時向前及向後追蹤臉部物體，讓同一個人在其他角度也可以變得模糊。 自動化修訂程序非常複雜，而且不一定會 100% 產生所需的輸出，因此，媒體分析提供您幾種方式來修改最終輸出。
 
-除了完全自動模式，還有一種兩段式的工作流程可讓您透過識別碼清單選取/取消選取找到的臉部。此外，為了進行任意的每一畫面調整，MP 使用 JSON 格式的中繼資料檔案。此工作流程分割成**分析**和**修訂**模式。您可以將這兩種模式結合成單一階段，以在一個作業中執行這兩項工作，我們將這個模式稱為**結合**。
+除了完全自動模式，還有一種兩段式的工作流程可讓您透過識別碼清單選取/取消選取找到的臉部。 此外，為了進行任意的每一畫面調整，MP 使用 JSON 格式的中繼資料檔案。 此工作流程分割成**分析**和**修訂**模式。 您可以將這兩種模式結合成單一階段，以在一個作業中執行這兩項工作，我們將這個模式稱為 **結合**。
 
-### 結合模式
+### <a name="combined-mode"></a>結合模式
 這會自動產生修訂的 mp4，而不需要手動輸入。
 
 | 階段 | 檔案名稱 | 注意事項 |
 | --- | --- | --- |
 | 輸入資產 |foo.bar |WMV、MOV 或 MP4 格式的視訊 |
 | 輸入組態 |作業組態預設值 |{'version':'1.0', 'options': {'mode':'combined'}} |
-| 輸出資產 |foo\_redacted.mp4 |已套用模糊處理的視訊 |
+| 輸出資產 |foo_redacted.mp4 |已套用模糊處理的視訊 |
 
-#### 輸入範例︰
+#### <a name="input-example"></a>輸入範例︰
 [請觀看這個影片](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fed99001d-72ee-4f91-9fc0-cd530d0adbbc%2FDancing.mp4)
 
-#### 輸出範例：
+#### <a name="output-example"></a>輸出範例：
 [請觀看這個影片](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc6608001-e5da-429b-9ec8-d69d8f3bfc79%2Fdance_redacted.mp4)
 
-### 分析模式
-兩段式工作流程的**分析**階段會接受視訊輸入，並產生臉部位置的 JSON 檔案和每個偵測到之臉部的 jpg 影像。
+### <a name="analyze-mode"></a>分析模式
+兩段式工作流程的 **分析** 階段會接受視訊輸入，並產生臉部位置的 JSON 檔案和每個偵測到之臉部的 jpg 影像。
 
 | 階段 | 檔案名稱 | 注意事項 |
 | --- | --- | --- |
 | 輸入資產 |foo.bar |WMV、MPV 或 MP4 格式的視訊 |
 | 輸入組態 |作業組態預設值 |{'version':'1.0', 'options': {'mode':'analyze'}} |
-| 輸出資產 |foo\_annotations.json |JSON 格式的臉部位置註解資料。使用者可編輯此資料以修改模糊處理的邊框。請參閱以下範例。 |
-| 輸出資產 |foo\_thumb%06d.jpg [foo\_thumb000001.jpg, foo\_thumb000002.jpg] |所偵測到之每個臉部的已裁剪 jpg，數字表示臉部的 labelId |
+| 輸出資產 |foo_annotations.json |JSON 格式的臉部位置註解資料。 使用者可編輯此資料以修改模糊處理的邊框。 請參閱以下範例。 |
+| 輸出資產 |foo_thumb%06d.jpg [foo_thumb000001.jpg, foo_thumb000002.jpg] |所偵測到之每個臉部的已裁剪 jpg，數字表示臉部的 labelId |
 
-#### 輸出範例︰
+#### <a name="output-example"></a>輸出範例：
     {
       "version": 1,
       "timescale": 50,
@@ -87,43 +91,43 @@ ms.author: juliako;
           ]
         },
 
-...已截斷
+… 已截斷
 
-### 修訂模式
+### <a name="redact-mode"></a>修訂模式
 工作流程的第二個階段會接受必須結合成單一資產的較大量輸入。
 
-這包括要模糊處理的識別碼清單、原始視訊和註解 JSON。這個模式會使用註解在輸入視訊上套用模糊處理。
+這包括要模糊處理的識別碼清單、原始視訊和註解 JSON。 這個模式會使用註解在輸入視訊上套用模糊處理。
 
-分析階段的輸出不包含原始視訊。視訊必須上傳到修訂模式工作的輸入資產並選取做為主要檔案。
+分析階段的輸出不包含原始視訊。 視訊必須上傳到修訂模式工作的輸入資產並選取做為主要檔案。
 
 | 階段 | 檔案名稱 | 注意事項 |
 | --- | --- | --- |
-| 輸入資產 |foo.bar |WMV、MPV 或 MP4 格式的視訊。和步驟 1 相同的視訊。 |
-| 輸入資產 |foo\_annotations.json |來自第一個階段的註解中繼資料檔案，並帶有選擇性的修改。 |
-| 輸入資產 |foo\_IDList.txt (選擇性) |要修訂之臉部 ID 的選擇性換行分隔清單。如果保持空白，則會模糊所有臉部。 |
+| 輸入資產 |foo.bar |WMV、MPV 或 MP4 格式的視訊。 和步驟 1 相同的視訊。 |
+| 輸入資產 |foo_annotations.json |來自第一個階段的註解中繼資料檔案，並帶有選擇性的修改。 |
+| 輸入資產 |foo_IDList.txt (選擇性) |要修訂之臉部 ID 的選擇性換行分隔清單。 如果保持空白，則會模糊所有臉部。 |
 | 輸入組態 |作業組態預設值 |{'version':'1.0', 'options': {'mode':'redact'}} |
-| 輸出資產 |foo\_redacted.mp4 |已根據註解套用模糊處理的視訊 |
+| 輸出資產 |foo_redacted.mp4 |已根據註解套用模糊處理的視訊 |
 
-#### 範例輸出
+#### <a name="example-output"></a>範例輸出
 這是選取了一個識別碼的 IDList 輸出。
 
 [請觀看這個影片](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fad6e24a2-4f9c-46ee-9fa7-bf05e20d19ac%2Fdance_redacted1.mp4)
 
-## 屬性描述
-修訂 MP 能提供高精確度的臉部位置偵測和追蹤功能，可在單一視訊畫面中偵測到最多 64 個人類臉部。正面的臉部能提供最佳結果，而側面的臉部和較小的臉部 (小於或等於 24x24 像素) 則頗具挑戰性。
+## <a name="attribute-descriptions"></a>屬性描述
+修訂 MP 能提供高精確度的臉部位置偵測和追蹤功能，可在單一視訊畫面中偵測到最多 64 個人類臉部。 正面的臉部能提供最佳結果，而側面的臉部和較小的臉部 (小於或等於 24x24 像素) 則頗具挑戰性。
 
-所偵測和追蹤的臉部在傳回時會有指出臉部位置的座標，以及指出正在追蹤該個人的臉部識別碼。臉部識別碼很容易在正面臉部長時間於畫面中遺失或重疊的情況下重設，導致某些人員被指派多個識別碼。
+所偵測和追蹤的臉部在傳回時會有指出臉部位置的座標，以及指出正在追蹤該個人的臉部識別碼。 臉部識別碼很容易在正面臉部長時間於畫面中遺失或重疊的情況下重設，導致某些人員被指派多個識別碼。
 
-如需屬性的詳細說明，請參閱[使用 Azure 媒體分析偵測臉部和情緒](media-services-face-and-emotion-detection.md)主題。
+如需屬性的詳細說明，請參閱 [使用 Azure 媒體分析偵測臉部和情緒](media-services-face-and-emotion-detection.md) 主題。
 
-## 範例程式碼
+## <a name="sample-code"></a>範例程式碼
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
-2. 根據包含下列 JSON 預設值的組態檔案，建立具有臉部修訂工作的作業。
+2. 根據包含下列 JSON 預設值的組態檔案，建立具有臉部修訂工作的作業。 
    
         {'version':'1.0', 'options': {'mode':'combined'}}
-3. 下載輸出 JSON 檔案。
+3. 下載輸出 JSON 檔案。 
    
         using System;
         using System.Configuration;
@@ -288,17 +292,22 @@ ms.author: juliako;
             }
         }
 
-## 後續步驟
+## <a name="next-step"></a>後續步驟
 檢閱媒體服務學習路徑。
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## 相關連結
+## <a name="related-links"></a>相關連結
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

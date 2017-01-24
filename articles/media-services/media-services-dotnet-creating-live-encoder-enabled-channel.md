@@ -12,26 +12,26 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/12/2016
+ms.date: 01/05/2017
 ms.author: juliako;anilmur
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 98498da5a8aaf10e37c355f05d6f6d83fd4df584
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 341e66158f1aeb5de02f3038a0c5d81240fad8d1
 
 
 ---
-# <a name="how-to-perform-live-streaming-using-azure-media-services-to-create-multibitrate-streams-with-net"></a>如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
+# <a name="how-to-perform-live-streaming-using-azure-media-services-to-create-multi-bitrate-streams-with-net"></a>如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
 > * [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
-> * [REST API](https://msdn.microsoft.com/library/azure/dn783458.aspx)
+> * [REST API](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。
+> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
 > 
 > 
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 本教學課程將逐步引導您建立 **通道** ，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
 
 如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱 [使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
@@ -46,31 +46,32 @@ ms.openlocfilehash: 98498da5a8aaf10e37c355f05d6f6d83fd4df584
 
 1. 將攝影機連接到電腦。 啟動和設定可使用下列其中一種通訊協定輸出單一位元速率串流的內部部署即時編碼器：RTMP、Smooth Streaming 或 RTP (MPEG-TS)。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
 
-此步驟也可以在您建立通道之後執行。
+    此步驟也可以在您建立通道之後執行。
 
-1. 建立並啟動通道。
-2. 擷取通道內嵌 URL。
+2. 建立並啟動通道。
+3. 擷取通道內嵌 URL。
 
-內嵌 URL 可供即時編碼器用來傳送串流到通道。
+    內嵌 URL 可供即時編碼器用來傳送串流到通道。
 
-1. 擷取通道預覽 URL。
+4. 擷取通道預覽 URL。
 
-使用此 URL 來確認您的通道會正確接收即時串流。
+    使用此 URL 來確認您的通道會正確接收即時串流。
 
-1. 建立資產。
-2. 如果您想要在播放期間動態加密資產，請執行下列動作：
-3. 建立內容金鑰。
-4. 設定內容金鑰的授權原則。
-5. 設定資產傳遞原則 (供動態封裝和動態加密使用)。
-6. 建立程式，並指定使用您所建立的資產。
-7. 藉由建立 OnDemand 定位器，發行與程式相關聯的資產。
+5. 建立資產。
+6. 如果您想要在播放期間動態加密資產，請執行下列動作：
+7. 建立內容金鑰。
+8. 設定內容金鑰的授權原則。
+9. 設定資產傳遞原則 (供動態封裝和動態加密使用)。
+10. 建立程式，並指定使用您所建立的資產。
+11. 藉由建立 OnDemand 定位器，發行與程式相關聯的資產。
 
-請確定在您想串流內容的串流端點上至少有一個串流保留的單元。
+    >[!NOTE]
+    >建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 您想要串流內容的串流端點必須處於 [執行中] 狀態。 
 
-1. 當您準備好開始串流和封存時，請啟動程式。
-2. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
-3. 每當您想要停止串流處理和封存事件時，請停止程式。
-4. 刪除程式 (並選擇性地刪除資產)。
+12. 當您準備好開始串流和封存時，請啟動程式。
+13. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
+14. 每當您想要停止串流處理和封存事件時，請停止程式。
+15. 刪除程式 (並選擇性地刪除資產)。
 
 ## <a name="what-youll-learn"></a>您將學到什麼
 本主題示範如何使用 Media Services.NET SDK 在通道上執行不同的作業和程式。 因為許多作業會長時間執行，所以會使用管理長時間執行作業的 .NET API。
@@ -91,7 +92,7 @@ ms.openlocfilehash: 98498da5a8aaf10e37c355f05d6f6d83fd4df584
 
 * 若要完成此教學課程，您需要 Azure 帳戶。
 
-如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
+如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
 
 * 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱 [建立帳戶](media-services-portal-create-account.md)。
 * Visual Studio 2010 SP1 (Professional、Premium、Ultimate 或 Express) 或較新版本。
@@ -100,7 +101,6 @@ ms.openlocfilehash: 98498da5a8aaf10e37c355f05d6f6d83fd4df584
 
 ## <a name="considerations"></a>考量
 * 目前，即時事件的最大建議持續時間是 8 小時。 如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
-* 請確定在您想串流內容的串流端點上至少有一個串流保留的單元。
 
 ## <a name="download-sample"></a>下載範例
 從 [這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-encode-live-stream-with-ams-clear/)取得並執行範例。
@@ -524,12 +524,10 @@ ms.openlocfilehash: 98498da5a8aaf10e37c355f05d6f6d83fd4df584
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-### <a name="looking-for-something-else"></a>尋找其他內容嗎？
-如果本主題未包含您預期的內容、缺少部分內容，或者提供了一些其他不符合您需求的方式，請在下方提供您使用 Disqus 執行緒的意見反應給我們。
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

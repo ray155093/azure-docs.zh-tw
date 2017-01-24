@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 03/21/2016
 ms.author: riande
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3aaddd0b8ff500e3417a0ae7dd21207be45ade64
+ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
+ms.openlocfilehash: f0bffc2a77ef5f91c6c637e8ab247b559fb59d5c
 
 
 ---
@@ -46,7 +46,7 @@ ms.openlocfilehash: 3aaddd0b8ff500e3417a0ae7dd21207be45ade64
 > 
 
 ## <a name="prerequisites"></a>必要條件
-若要完成此教學課程，您需要 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)，或是[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。
+若要完成此教學課程，您需要 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)，或是[申請免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
 
 若要設定開發環境，您必須安裝 [Visual Studio 2013 Update 5](http://go.microsoft.com/fwlink/?LinkId=390521) 或更高版本，以及最新版本的 [Azure SDK for .NET](http://go.microsoft.com/fwlink/?linkid=324322&clcid=0x409)。 本文專為 Visual Studio Update 4 和 SDK 2.8.1 所撰寫。 相同的指示也適用於已安裝最新 [Azure SDK for.NET](http://go.microsoft.com/fwlink/?linkid=518003&clcid=0x409) 的 Visual Studio 2015，但是有些畫面看起來和插圖不同。
 
@@ -71,7 +71,7 @@ ms.openlocfilehash: 3aaddd0b8ff500e3417a0ae7dd21207be45ade64
 7. 在 [資源群組] 下拉式清單中，選取現有的群組或 [建立新的資源群組] (請參閱下圖)。 
    
     您也可以依照意願選取您已有的資源群組。 但如果您建立新的資源群組並僅用於此教學課程，就可在您完成時輕易刪除您為教學課程所建立的所有 Azure 資源。 如需資源群組的資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。 
-8. 在 [App Service 方案] 下拉式清單中，選取現有的方案或 [建立新的 App Service 方案] (請參閱下圖)。
+8. 在 [App Service 方案] 下拉式清單中，選取現有的方案或 [建立新的 App Service 方案] \(請參閱下圖)。
    
     您也可以依照意願選取您已有的 App Service 計劃。 如需 App Service 方案的資訊，請參閱 [Azure App Service 方案深入概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 
 9. 點選 [探索其他 Azure 服務]  以新增 SQL Database。
@@ -603,10 +603,10 @@ ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更�
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- bookmarks -->
-[新增 OAuth 提供者]: #addOauth
-[使用成員資格 API]:#mbrDB
-[建立資料部署指令碼]:#ppd
-[更新成員資格資料庫]:#ppd2
+[Add an OAuth Provider]: #addOauth
+[Using the Membership API]:#mbrDB
+[Create a Data Deployment Script]:#ppd
+[Update the Membership Database]:#ppd2
 
 [setupwindowsazureenv]: #bkmk_setupwindowsazure
 [createapplication]: #bkmk_createmvc4app
@@ -655,14 +655,14 @@ ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更�
 [addcode009]: ./media/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database/dntutmobile-migrations-package-manager-console.png
 
 
-[有關 Azure Web 應用程式中 ASP.NET 的重要資訊]: #aspnetwindowsazureinfo
-[後續步驟]: #nextsteps
+[Important information about ASP.NET in Azure web apps]: #aspnetwindowsazureinfo
+[Next steps]: #nextsteps
 
 [ImportPublishSettings]: ./media/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database-vs2013/ImportPublishSettings.png
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

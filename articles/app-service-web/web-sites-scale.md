@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/05/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: bf8e6564e861a8753b6bfa45fc7fdd9d72fd2ba8
+ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
+ms.openlocfilehash: 0ab1dcc8ccc621f5dabfffffb17fd1822f78eb1c
 
 
 ---
@@ -30,10 +30,10 @@ ms.openlocfilehash: bf8e6564e861a8753b6bfa45fc7fdd9d72fd2ba8
 這些調整設定只需幾秒鐘便能套用，且影響範圍遍及 [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)內的所有應用程式。
 在此過程中，您不需要變更程式碼或重新部署應用程式。
 
-如需各 App Service 方案價格資訊及功能的詳細資訊，請參閱 [App Service 價格詳細資料](/pricing/details/web-sites/)。  
+如需各 App Service 方案價格資訊及功能的詳細資訊，請參閱 [App Service 價格詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)。  
 
 > [!NOTE]
-> 從 **免費** 層切換 App Service 方案之前，您必須先適當地移除 Azure 訂用帳戶的 [消費限制](/pricing/spending-limits/) 。 若要檢視或變更 Microsoft Azure App Service 訂用帳戶的選項，請參閱 [Microsoft Azure 訂訂用帳戶][azuresubscriptions]。
+> 從 **免費** 層切換 App Service 方案之前，您必須先適當地移除 Azure 訂用帳戶的 [消費限制](https://azure.microsoft.com/pricing/spending-limits/) 。 若要檢視或變更 Microsoft Azure App Service 訂用帳戶的選項，請參閱 [Microsoft Azure 訂訂用帳戶][azuresubscriptions]。
 > 
 > 
 
@@ -86,7 +86,7 @@ ms.openlocfilehash: bf8e6564e861a8753b6bfa45fc7fdd9d72fd2ba8
 <a name="OtherFeatures"></a>
 
 ## <a name="learn-about-other-features"></a>了解其他功能
-* 如需 App Service 方案其他所有功能的詳細資訊，包括所有使用者 (包括開發人員) 關心的定價和功能，請參閱 [App Service 定價詳細資料](/pricing/details/web-sites/)。
+* 如需 App Service 方案其他所有功能的詳細資訊，包括所有使用者 (包括開發人員) 關心的定價和功能，請參閱 [App Service 定價詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)。
 
 > [!NOTE]
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751) ，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡，無需承諾。
@@ -96,22 +96,22 @@ ms.openlocfilehash: bf8e6564e861a8753b6bfa45fc7fdd9d72fd2ba8
 <a name="Next Steps"></a>
 
 ## <a name="next-steps"></a>後續步驟
-* 若要開始使用 Azure，請參閱 [Microsoft Azure 免費試用](/pricing/free-trial/)。
+* 若要開始使用 Azure，請參閱 [Microsoft Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 如需價格、支援及 SLA 的相關資訊，請參閱以下連結：
   
-    [資料傳輸定價詳細資料](/pricing/details/data-transfers/)
+    [資料傳輸定價詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)
   
-    [Microsoft Azure 支援方案](/support/plans/)
+    [Microsoft Azure 支援方案](https://azure.microsoft.com/support/plans/)
   
-    [服務等級協定](/support/legal/sla/)
+    [服務等級協定](https://azure.microsoft.com/support/legal/sla/)
   
-    [SQL Database 定價詳細資料](/pricing/details/sql-database/)
+    [SQL Database 定價詳細資料](https://azure.microsoft.com/pricing/details/sql-database/)
   
     [Microsoft Azure 的虛擬機器和雲端服務大小][vmsizes]
   
-    [App Service 定價詳細資料](/pricing/details/app-service/)
+    [App Service 定價詳細資料](https://azure.microsoft.com/pricing/details/app-service/)
   
-    [App Service 定價詳細資料 - SSL 連線](/pricing/details/web-sites/#ssl-connections)
+    [App Service 定價詳細資料 - SSL 連線](https://azure.microsoft.com/pricing/details/web-sites/#ssl-connections)
 * 如需 Azure App Service 最佳作法 (包括建置可調整且具彈性的架構) 的詳細資訊，請參閱 [最佳作法：Azure App Service Web Apps](http://blogs.msdn.com/b/windowsazure/archive/2014/02/10/best-practices-windows-azure-websites-waws.aspx)。
 * 如需調整 App Service 應用程式的相關影片，請參閱下列資源：
   
@@ -143,6 +143,6 @@ ms.openlocfilehash: bf8e6564e861a8753b6bfa45fc7fdd9d72fd2ba8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

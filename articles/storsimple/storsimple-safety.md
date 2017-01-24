@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/18/2016
+ms.date: 11/16/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7ab38d9fb438a5629e0a9c2388a2ce296ab7ba03
+ms.sourcegitcommit: aaef3322fc98b0874222e4a3728d54a38a34b602
+ms.openlocfilehash: 4dca50c6a0e6809876357edee8c6475796984c70
 
 
 ---
@@ -112,7 +112,7 @@ ms.openlocfilehash: 7ab38d9fb438a5629e0a9c2388a2ce296ab7ba03
 
 減少傷害、電擊或死亡的可能性：
 
-* 請勿從 PCM 移除封蓋。 沒有內部觸電的危險。 若要傳回 PCM 並取得替代項目，請 [連絡 Microsoft 支援服務](https://msdn.microsoft.com/library/azure/dn757750.aspx)。
+* 請勿從 PCM 移除封蓋。 沒有內部觸電的危險。 若要傳回 PCM 並取得替代項目，請 [連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
 ![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**
 

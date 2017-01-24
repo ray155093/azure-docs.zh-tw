@@ -3,9 +3,9 @@ title: "Azure 自動化 DSC 持續部署與 Chocolatey | Microsoft Docs"
 description: "使用 Azure 自動化 DSC 和 Chocolatey 封裝管理員執行 DevOps 持續部署。  具有完整 JSON ARM 範本與 PowerShell 原始檔的範例。"
 services: automation
 documentationcenter: 
-author: sebastus
-manager: stevenka
-editor: 
+author: eslesar
+manager: carmonm
+editor: tysonn
 ms.assetid: c0baa411-eb76-4f91-8d14-68f68b4805b6
 ms.service: automation
 ms.devlang: na

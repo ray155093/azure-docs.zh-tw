@@ -1,176 +1,187 @@
 ---
-title: 在 Azure 中使用 TFS 連續傳遞雲端服務 | Microsoft Docs
-description: 了解如何設定 Azure 雲端應用程式的連續傳遞。MSBuild 命令列陳述式和 PowerShell 指令碼的程式碼範例。
+title: "在 Azure 中使用 TFS 持續傳遞雲端服務 | Microsoft Docs"
+description: "了解如何設定 Azure 雲端應用程式的連續傳遞。 MSBuild 命令列陳述式和 PowerShell 指令碼的程式碼範例。"
 services: cloud-services
-documentationcenter: ''
+documentationcenter: 
 author: TomArcher
 manager: douge
-editor: ''
-
+editor: 
+ms.assetid: 4f3c93c6-5c82-4779-9d19-7404a01e82ca
 ms.service: cloud-services
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/30/2016
+ms.date: 11/18/2016
 ms.author: tarcher
+translationtype: Human Translation
+ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
+ms.openlocfilehash: 14212dd4b9eff135d379a7431d0aaa0e396a6f7f
+
 
 ---
-# Azure 中雲端服務的連續傳遞
-本文所述的程序顯示如何為 Azure 雲端應用程式設定連續傳遞。此程序可讓您自動建立套件，並在每次程式碼簽入時將套件部署到 Azure。本文所述的套件建置程序等同於 Visual Studio 中的**封裝**命令，而發佈步驟等同於 Visual Studio 中的**發行**命令。文中會說明使用 MSBuild 命令列陳述式與指令碼來建置伺服器的方法，同時也會示範如何選擇性設定 Visual StudioTeam Foundation Server - Team Build 定義來使用 MSBuild 命令及 PowerShell 指令碼。您可根據自己的組建環境及 Azure 目標環境自訂此程序。
+# <a name="continuous-delivery-for-cloud-services-in-azure"></a>Azure 中雲端服務的連續傳遞
+本文所述的程序顯示如何為 Azure 雲端應用程式設定連續傳遞。 此程序可讓您自動建立套件，並在每次程式碼簽入時將套件部署到 Azure。 本文所述的套件建置程序等同於 Visual Studio 中的 [封裝]命令，而發佈步驟等同於 Visual Studio 中的 [發佈] 命令。
+文中會說明使用 MSBuild 命令列陳述式與指令碼來建置伺服器的方法，同時也會示範如何選擇性設定 Visual StudioTeam Foundation Server - Team Build 定義來使用 MSBuild 命令及 PowerShell 指令碼。 您可根據自己的組建環境及 Azure 目標環境自訂此程序。
 
-此動作也可以用 Visual Studio Team Services (託管於 Azure 中的 TFS 版本) 來執行，這樣會變得更容易。如需詳細資訊，請參閱[使用 Visual Studio Team Services 連續傳遞至 Azure][使用 Visual Studio Team Services 連續傳遞至 Azure]。
+此動作也可以用 Visual Studio Team Services (託管於 Azure 中的 TFS 版本) 來執行，這樣會變得更容易。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 持續傳遞至 Azure][Continuous Delivery to Azure by Using Visual Studio Team Services]。
 
-開始之前，您應該先從 Visual Studio 發佈應用程式。如此可確保當您嘗試將發佈程序自動化時，所有資源皆可用並已初始化。
+開始之前，您應該先從 Visual Studio 發佈應用程式。
+如此可確保當您嘗試將發佈程序自動化時，所有資源皆可用並已初始化。
 
-## 1：設定組建伺服器
+## <a name="1-configure-the-build-server"></a>1：設定組建伺服器
 您必須先在組建伺服器上安裝必要的軟體與工具，才能使用 MSBuild 建立 Azure 套件。
 
-組建伺服器上不需要安裝 Visual Studio。若要使用 Team Foundation Build Service 來管理組建伺服器，請遵循 [Team Foundation Build Service][Team Foundation Build Service] 文件。
+組建伺服器上不需要安裝 Visual Studio。 若要使用 Team Foundation Build Service 來管理組建伺服器，請遵循 [Team Foundation Build Service][Team Foundation Build Service] 文件中的指示。
 
-1. 在組建伺服器上，安裝 [.NET Framework 4.5.2][.NET Framework 4.5.2] \(其中包含 MSBuild)。
-2. 安裝最新版的[適用於 .NET 的 Azure 編寫工具](https://azure.microsoft.com/develop/net/)。
+1. 在組建伺服器上，安裝 [.NET Framework 4.5.2][.NET Framework 4.5.2](其中包含 MSBuild)。
+2. 安裝最新版的 [適用於 .NET 的 Azure 編寫工具](https://azure.microsoft.com/develop/net/)。
 3. 安裝 [Azure Libraries for .NET](http://go.microsoft.com/fwlink/?LinkId=623519)。
 4. 將 Microsoft.WebApplication.targets 檔案從 Visual Studio 安裝複製到組建伺服器上。
-   
-   在安裝 Visual Studio 的電腦上，此檔案位於目錄 C:\\Program Files(x86)\\MSBuild\\Microsoft\\VisualStudio\\v14.0\\WebApplications。您應該將它複製至組建伺服器上的相同目錄。
+
+   在安裝 Visual Studio 的電腦上，此檔案位於目錄 C:\\Program Files(x86)\\MSBuild\\Microsoft\\VisualStudio\\v14.0\\WebApplications。 您應該將它複製至組建伺服器上的相同目錄。
 5. 安裝 [Azure Tools for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs.aspx)。
 
-## 2：使用 MSBuild 命令來建置封裝
-本節說明如何建構 MSBuild 命令來建置 Azure 套件。在組建伺服器上執行這個步驟，確認一切都已正確設定，且 MSBuild 命令會執行您要它執行的動作。您可以將此命令列新增至組建伺服器上的現有組建指令碼，也可以在 TFS 組建定義中使用此命令列 (說明於下節)。如需命令列參數及 MSBuild 的詳細資訊，請參閱 [MSBuild 命令列參考](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx)。
+## <a name="2-build-a-package-using-msbuild-commands"></a>2：使用 MSBuild 命令來建置封裝
+本節說明如何建構 MSBuild 命令來建置 Azure 套件。 在組建伺服器上執行這個步驟，確認一切都已正確設定，且 MSBuild 命令會執行您要它執行的動作。 您可以將此命令列新增至組建伺服器上的現有組建指令碼，也可以在 TFS 組建定義中使用此命令列 (說明於下節)。 如需命令列參數及 MSBuild 的詳細資訊，請參閱 [MSBuild 命令列參考](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx)。
 
 1. 如果組建伺服器上已安裝 Visual Studio，請在 Windows 的 [Visual Studio Tools] 資料夾中找出並選擇 [Visual Studio 命令提示字元]。
-   
-   如果組建伺服器上未安裝 Visual Studio，請開啟命令提示字元，並確定可在路徑上存取 MSBuild.exe。MSBuild 會與 .NET Framework 一起安裝在路徑 %WINDIR%\\Microsoft.NET\\Framework\*Version* 中。例如，若要在已安裝 .NET Framework 4 時，將 MSBuild.exe 新增至 PATH 環境變數，請在命令提示字元中輸入下列命令：
-   
+
+   如果組建伺服器上未安裝 Visual Studio，請開啟命令提示字元，並確定可在路徑上存取 MSBuild.exe。 MSBuild 會與 .NET Framework 一起安裝在路徑 %WINDIR%\\Microsoft.NET\\Framework\\Version。 例如，若要在已安裝 .NET Framework 4 時，將 MSBuild.exe 新增至 PATH 環境變數，請在命令提示字元中輸入下列命令：
+
        set PATH=%PATH%;"C:\Windows\Microsoft.NET\Framework\v4.0.30319"
 2. 在命令提示字元中，瀏覽至包含您要建置之 Azure 專案檔案的資料夾。
 3. 搭配 /target:Publish 選項執行 MSBuild，如下列範例所示：
-   
+
        MSBuild /target:Publish
-   
-   此選項可以縮寫為 /t:Publish。當已安裝 Azure SDK 時，MSBuild 中的 /t:Publish 選項不應該與 Visual Studio 中的 [發行] 命令混淆。/t:Publish 選項只會建置 Azure 套件。其並不會如 Visual Studio 中的 [發行] 命令一樣部署套件。
-   
-   (選擇性) 您可以指定專案名稱作為 MSBuild 參數。如果未指定，則會使用目前目錄。如需 MSBuild 命令列選項的詳細資訊，請參閱 [MSBuild 命令列參考](1.md)。
-4. 尋找輸出。依預設，這個命令會在相對於專案根資料夾的目錄中建立目錄，例如 *ProjectDir*\\bin\*Configuration*\\app.publish\\。當您建置 Azure 專案時，會產生兩個檔案，即套件檔本身及伴隨的組態檔：
-   
+
+   此選項可以縮寫為 /t:Publish。 當已安裝 Azure SDK 時，MSBuild 中的 /t:Publish 選項不應該與 Visual Studio 中的 [發行] 命令混淆。 /t:Publish 選項只會建置 Azure 套件。 其並不會如 Visual Studio 中的 [發行] 命令一樣部署套件。
+
+   (選擇性) 您可以指定專案名稱作為 MSBuild 參數。 如果未指定，則會使用目前目錄。 如需 MSBuild 命令列選項的詳細資訊，請參閱 [MSBuild 命令列參考](https://msdn.microsoft.com/library/ms164311%28v=vs.140%29.aspx)。
+4. 尋找輸出。 依預設，這個命令會在相對於專案根資料夾的目錄中建立目錄，例如 ProjectDir\\bin\\Configuration\\app.publish\\。 當您建置 Azure 專案時，會產生兩個檔案，即套件檔本身及伴隨的組態檔：
+
    * Project.cspkg
    * ServiceConfiguration.*TargetProfile*.cscfg
-   
-   依預設，每個 Azure 專案都會包含一個服務組態檔 (.cscfg 檔) 用於本機 (偵錯) 組建，以及另一個服務組態檔用於 (預備或生產) 雲端組建，但是您可以視需要新增或移除服務組態檔。在 Visual Studio 內建置套件時，系統將問您要隨套件包含哪個服務組態檔。
-5. 指定服務組態檔。使用 MSBuild 來建置套件時，預設會包含本機服務組態檔。若要包含不同的服務組態檔，請設定 MSBuild 命令的 TargetProfile 屬性，如下列範例所示：
-   
-       MSBuild /t:Publish /p:TargetProfile=Cloud
-6. 指定輸出的位置。使用 /p:PublishDir=Directory\\ 選項來設定路徑 (包括最後的反斜線分隔符號)，如下列範例所示：
-   
-       MSBuild /target:Publish /p:PublishDir=\\myserver\drops\
-   
-   一旦建構並測試出適當的 MSBuild 命令列來建置專案並將它們結合為 Azure 套件，就可以將此命令新增至組建指令碼。如果您的組建伺服器使用自訂指令碼，則此程序將視您自訂建置流程的特性而定。如果您是使用 TFS 作為組建環境，則可以遵循下一步中的指示，將 Azure 套件新增至組建程序。
 
-## 3：使用 TFS Team Build 建置封裝
-如果已設定 Team Foundation Server (TFS) 做為組建控制器，並設定組建伺服器做為 TFS 組建電腦，則可選擇性地為 Azure 套件設定自動化組建。如需如何設定並使用 Team Foundation Server 做為組建系統的相關資訊，請參閱[相應放大您的組建系統][相應放大您的組建系統]。特別是，下列程序假設您已經如[部署和設定組建伺服器][部署和設定組建伺服器]中所述來設定組建伺服器，而且您已經建立 Team 專案，並在 Team 專案中建立雲端服務專案。
+   依預設，每個 Azure 專案都會包含一個服務組態檔 (.cscfg 檔) 用於本機 (偵錯) 組建，以及另一個服務組態檔用於 (預備或生產) 雲端組建，但是您可以視需要新增或移除服務組態檔。 在 Visual Studio 內建置套件時，系統將問您要隨套件包含哪個服務組態檔。
+5. 指定服務組態檔。 使用 MSBuild 來建置套件時，預設會包含本機服務組態檔。 若要包含不同的服務組態檔，請設定 MSBuild 命令的 TargetProfile 屬性，如下列範例所示：
+
+       MSBuild /t:Publish /p:TargetProfile=Cloud
+6. 指定輸出的位置。 使用 /p:PublishDir=Directory\\ 選項來設定路徑 (包括最後的反斜線分隔符號)，如下列範例所示：
+
+       MSBuild /target:Publish /p:PublishDir=\\myserver\drops\
+
+   一旦建構並測試出適當的 MSBuild 命令列來建置專案並將它們結合為 Azure 套件，就可以將此命令新增至組建指令碼。 如果您的組建伺服器使用自訂指令碼，則此程序將視您自訂建置流程的特性而定。 如果您是使用 TFS 作為組建環境，則可以遵循下一步中的指示，將 Azure 套件新增至組建程序。
+
+## <a name="3-build-a-package-using-tfs-team-build"></a>3：使用 TFS Team Build 建置封裝
+如果已設定 Team Foundation Server (TFS) 做為組建控制器，並設定組建伺服器做為 TFS 組建電腦，則可選擇性地為 Azure 套件設定自動化組建。 如需如何設定並使用 Team Foundation Server 作為組建系統的相關資訊，請參閱[相應放大您的組建系統][Scale out your build system]。 特別的是，下列程序假設您已經如[部署和設定組建伺服器][Deploy and configure a build server]所述來設定組建伺服器，也已建立 Team 專案，並在 Team 專案中建立雲端服務專案。
 
 若要設定 TFS 來建置 Azure 套件，請執行下列步驟：
 
-1. 在開發電腦上的 Visual Studio 中，於 [檢視] 功能表上，選取 [**Team Explorer**] 或選取 Ctrl+\\、Ctrl+M。在 Team Explorer 視窗中，展開 [**組建**] 節點或選擇 [**組建**] 頁面，然後選擇 [**新增組建定義**]。
-   
+1. 在開發電腦上的 Visual Studio 中，於 [檢視] 功能表上，選取 [Team Explorer] 或選取 Ctrl+\\、Ctrl+M。 在 Team Explorer 視窗中，展開 [組建] 節點或選擇 [組建] 頁面，然後選擇 [新增組建定義]。
+
    ![新增組建定義選項][0]
-2. 選擇 [觸發程序] 索引標籤，然後指定所需的條件來代表套件的組建時機。例如，指定 [連續整合]，會在每次發生原始檔控制簽入時建置套件。
-3. 選擇 [**來源設定**] 索引標籤，然後確定您的專案資料夾列在 [**原始檔控制資料夾**] 資料行中，並且狀態為 [**作用中**]。
-4. 選擇 [組建預設值] 索引標籤，然後在 [組建控制器] 下，確認組建伺服器的名稱無誤。同時，選擇 [將組建輸出複製至下列置放資料夾] 選項，並指定所需的置放位置。
-5. 選擇 [處理序] 索引標籤。在 [處理序] 索引標籤上選擇預設範本，於 [**組建**] 下，選擇專案 (若尚未選取)，然後展開格線 [**組建**] 區段中的 [**進階**]。
-6. 選擇 [MSBuild 引數]，然後依上面步驟 2 所述，設定適當的 MSBuild 命令列引數。例如，輸入 **/t:Publish /p:PublishDir=\\\myserver\\drops\** 以建置套件，並將套件檔複製至位置 \\\myserver\\drops\\：
-   
+2. 選擇 [觸發程序]  索引標籤，然後指定所需的條件來代表套件的組建時機。 例如，指定 [連續整合]  ，會在每次發生原始檔控制簽入時建置套件。
+3. 選擇 [來源設定] 索引標籤，然後確定您的專案資料夾列在 [原始檔控制資料夾] 資料行中，並且狀態為 [作用中]。
+4. 選擇 [組建預設值]  索引標籤，然後在 [組建控制器] 下，確認組建伺服器的名稱無誤。  同時，選擇 [將組建輸出複製至下列置放資料夾]  選項，並指定所需的置放位置。
+5. 選擇 [觸發程序]  索引標籤。 在 [處理序] 索引標籤上選擇預設範本，於 [組建] 下，選擇專案 (若尚未選取)，然後展開 [組建] 格線區段中的 [進階] 區段。
+6. 選擇 [MSBuild 引數]，然後依上面步驟 2 所述，設定適當的 MSBuild 命令列引數。 例如，輸入 **/t:Publish /p:PublishDir=\\\\myserver\\drops\\** 以建置套件，並將套件檔複製到位置 \\\\myserver\\drops\\：
+
    ![MSBuild 引數][2]
-   
-   **：**將檔案複製至公用共用，將可更輕鬆地手動從開發電腦部署套件。
-7. 簽入專案的變更來測試組建步驟是否成功，或將新組建排入佇列。若要將新組建排入佇列，請在 [Team Explorer] 的 [**所有組建定義**] 上按一下滑鼠右鍵，然後選擇 [**將新組建排入佇列**]。
 
-## 4：使用 PowerShell 指令碼來發佈封裝
-本節說明如何建構 Windows PowerShell 指令碼，以使用選用參數將雲端應用程式套件發佈至 Azure。呼叫此指令碼的時機可以是執行自訂組建自動化中的組建步驟之後。也可以從 Visual Studio TFS Team Build 中的「流程範本」工作流程活動中呼叫。
+   > [!NOTE]
+   > 將檔案複製到公用共用，將可更輕鬆地手動從開發電腦部署套件。
+7. 簽入專案的變更來測試組建步驟是否成功，或將新組建排入佇列。 若要將新組建排入佇列，請在 Team Explorer 的 [所有組建定義] 上按一下滑鼠右鍵，然後選擇 [將新組建排入佇列]。
 
-1. 安裝 [Azure PowerShell Cmdlet][Azure PowerShell Cmdlet] \(0.6.1 版或更高版本)。在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
-2. 使用 [開始] 功能表或 [開始] 頁面啟動 Azure PowerShell。如果以此方式啟動，則會載入 Azure PowerShell Cmdlet。
-3. 在 PowerShell 命令提示字元中，輸入部分命令 `Get-Azure`，然後按 Tab 鍵來完成陳述式，以確認已載入 PowerShell Cmdlet。
-   
+## <a name="4-publish-a-package-using-a-powershell-script"></a>4：使用 PowerShell 指令碼來發佈封裝
+本節說明如何建構 Windows PowerShell 指令碼，以使用選用參數將雲端應用程式套件發佈至 Azure。 呼叫此指令碼的時機可以是執行自訂組建自動化中的組建步驟之後。 也可以從 Visual Studio TFS Team Build 中的「流程範本」工作流程活動中呼叫。
+
+1. 安裝 [Azure PowerShell Cmdlet][Azure PowerShell cmdlets] (0.6.1 版或更高版本)。
+   在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。 請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
+2. 使用 [開始] 功能表或 [開始] 頁面啟動 Azure PowerShell。 如果以此方式啟動，則會載入 Azure PowerShell Cmdlet。
+3. 在 PowerShell 命令提示字元中，輸入部分命令 `Get-Azure` ，然後按 Tab 鍵來完成陳述式，以確認已載入 PowerShell Cmdlet。
+
    如果您重覆按 Tab 鍵，應該會看到各種 Azure PowerShell 命令。
 4. 從 .publishsettings 檔匯入您的訂閱資訊，以確認可以連線至自己的 Azure 訂閱。
-   
+
    `Import-AzurePublishSettingsFile c:\scripts\WindowsAzure\default.publishsettings`
-   
+
    然後輸入命令
-   
+
    `Get-AzureSubscription`
-   
-   如此即會顯示訂用帳戶的相關資訊。確認一切正確無誤。
-5. 將本文結尾提供的指令碼範本儲存至您的指令碼資料夾，如 c:\\scripts\\WindowsAzure\**PublishCloudService.ps1**。
-6. 檢閱指令碼的參數區段。新增或修改任何預設值。您永遠可以傳遞明確參數來覆寫這些值。
-7. 確定訂閱中建立了可作為發佈指令碼之目標的有效雲端服務與儲存體帳戶。儲存體帳戶 (Blob 儲存) 將用來在建立部署期間上傳並暫時儲存部署套件與組態檔。
-   
-   * 若要建立新的雲端服務，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。雲端服務名稱將作為完整網域名稱中的首碼，因此必須是唯一的。
-     
+
+   如此即會顯示訂用帳戶的相關資訊。 確認一切正確無誤。
+5. 將本文結尾提供的指令碼範本儲存至您的指令碼資料夾，如 c:\\scripts\\WindowsAzure\\**PublishCloudService.ps1**。
+6. 檢閱指令碼的參數區段。 新增或修改任何預設值。 您永遠可以傳遞明確參數來覆寫這些值。
+7. 確定訂閱中建立了可作為發佈指令碼之目標的有效雲端服務與儲存體帳戶。 儲存體帳戶 (Blob 儲存) 將用來在建立部署期間上傳並暫時儲存部署套件與組態檔。
+
+   * 若要建立新的雲端服務，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。 雲端服務名稱將作為完整網域名稱中的首碼，因此必須是唯一的。
+
          New-AzureService -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
-   * 若要建立新的儲存體帳戶，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。儲存體帳戶名稱將作為完整網域名稱中的首碼，因此必須是唯一的。您可以嘗試使用與雲端服務相同的名稱。
-     
+   * 若要建立新的儲存體帳戶，您可以呼叫此指令碼或使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)。 儲存體帳戶名稱將作為完整網域名稱中的首碼，因此必須是唯一的。 您可以嘗試使用與雲端服務相同的名稱。
+
          New-AzureStorageAccount -ServiceName "mytestcloudservice" -Location "North Central US" -Label "mytestcloudservice"
 8. 直接從 Azure PowerShell 呼叫指令碼，或將此指令碼接到主機組建自動化程序中，以在建置套件之後執行。
-   
+
    > [!IMPORTANT]
-   > 依預設，指令碼如果偵測到現有的部署，會一律加以刪除或取代。此為不得不的方式，因為如此一來，完全省去使用者互動過程的自動化程序才有辦法進行連續傳遞。
-   > 
-   > 
-   
-   **範例案例 1：**連續部署至服務的預備環境：
-   
+   > 依預設，指令碼如果偵測到現有的部署，會一律加以刪除或取代。 此為不得不的方式，因為如此一來，完全省去使用者互動過程的自動化程序才有辦法進行連續傳遞。
+   >
+   >
+
+   **範例案例 1：** 連續部署至服務的預備環境：
+
        PowerShell c:\scripts\windowsazure\PublishCloudService.ps1 -environment Staging -serviceName mycloudservice -storageAccountName mystoragesaccount -packageLocation c:\drops\app.publish\ContactManager.Azure.cspkg -cloudConfigLocation c:\drops\app.publish\ServiceConfiguration.Cloud.cscfg -subscriptionDataFile c:\scripts\default.publishsettings
-   
-   此作業後面通常接著測試執行驗證及 VIP 交換。VIP 交換可以透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)或使用 Move-Deployment Cmdlet 來完成。
-   
-   **範例案例 2：**連續部署至專用測試服務的生產環境
-   
+
+   此作業後面通常接著測試執行驗證及 VIP 交換。 VIP 交換可以透過 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885) 或使用 Move-Deployment Cmdlet 來完成。
+
+   **範例案例 2：** 連續部署至專用測試服務的生產環境
+
        PowerShell c:\scripts\windowsazure\PublishCloudService.ps1 -environment Production -enableDeploymentUpgrade 1 -serviceName mycloudservice -storageAccountName mystorageaccount -packageLocation c:\drops\app.publish\ContactManager.Azure.cspkg -cloudConfigLocation c:\drops\app.publish\ServiceConfiguration.Cloud.cscfg -subscriptionDataFile c:\scripts\default.publishsettings
-   
+
    **遠端桌面：**
-   
+
    如果已在 Azure 專案中啟用遠端桌面，則您需要執行更多一次性步驟，以確定正確的雲端服務會上傳至所有作為此指令碼之目標的雲端服務。
-   
-   尋找您的角色所預期收到的憑證指紋值。指紋值可在雲端組態檔 (也就是 ServiceConfiguration.Cloud.cscfg) 的 Certificates 區段中看到。在 Visual Studio 的 [遠端桌面組態] 對話方塊按一下 [顯示選項] 並檢視選取的憑證，也可在看到它。
-   
+
+   尋找您的角色所預期收到的憑證指紋值。 指紋值可在雲端組態檔 (也就是 ServiceConfiguration.Cloud.cscfg) 的 Certificates 區段中看到。 在 Visual Studio 的 [遠端桌面組態] 對話方塊按一下 [顯示選項] 並檢視選取的憑證，也可在看到它。
+
        <Certificates>
              <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="C33B6C432C25581601B84C80F86EC2809DC224E8" thumbprintAlgorithm="sha1" />
        </Certificates>
-   
-   使用下列 Cmdlet 指令碼，上傳遠端桌面憑證作為一次性設定步驟：
-   
-       Add-AzureCertificate -serviceName <CLOUDSERVICENAME> -certToDeploy (get-item cert:\CurrentUser\MY<THUMBPRINT>)
-   
-   例如：
-   
-       Add-AzureCertificate -serviceName 'mytestcloudservice' -certToDeploy (get-item cert:\CurrentUser\MY\C33B6C432C25581601B84C80F86EC2809DC224E8
-   
-   或者，您也可以使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，匯出憑證檔 PFX 與私密金鑰，並將憑證上傳至每個目標雲端服務。若要深入了解，請閱讀下列文章：[http://msdn.microsoft.com/library/windowsazure/gg443832.aspx][]。
-   
-   **升級部署以及刪除部署再新增部署**
-   
-   當未傳入任何參數，或明確傳遞了值 1 時，指令碼預設會執行升級部署 ($enableDeploymentUpgrade = 1)。對於單一執行個體，這具有比完整部署花費更少時間的優點。對於需要高可用性的執行個體，這也具有一邊升級部分執行個體，一邊留著部分執行個體繼續執行，以及您的 VIP 不會遭到刪除的優點。
-   
-   若要停用升級部署，可在指令碼中停用 ($enableDeploymentUpgrade = 0) 或傳遞 *-enableDeploymentUpgrade 0* 當作參數，如此會將指令碼行為改變為先刪除任何現有的部署，再建立新的部署。
-   
-   > [!IMPORTANT]
-   > 依預設，指令碼如果偵測到現有的部署，會一律加以刪除或取代。此為不得不的方式，因為如此一來，完全省去使用者/作業員互動過程的自動化程序才有辦法進行連續傳遞。
-   > 
-   > 
 
-## 5：使用 TFS Team Build 發佈封裝
-這個選用的步驟會將 TFS Team Build 連接到步驟 4 中建立的指令碼，該指令碼負責處理將套件組建發佈至 Azure。這需要修改您的組建定義所使用的流程範本，使其在工作流程結束時執行 Publish 活動。Publish 活動會利用組建傳入的參數，執行 PowerShell 命令。所輸出的 MSBuild 目標與發佈指令碼將透過管道傳送至標準組建輸出。
+   使用下列 Cmdlet 指令碼，上傳遠端桌面憑證作為一次性設定步驟：
+
+       Add-AzureCertificate -serviceName <CLOUDSERVICENAME> -certToDeploy (get-item cert:\CurrentUser\MY\<THUMBPRINT>)
+
+   例如：
+
+       Add-AzureCertificate -serviceName 'mytestcloudservice' -certToDeploy (get-item cert:\CurrentUser\MY\C33B6C432C25581601B84C80F86EC2809DC224E8
+
+   或者，您也可以使用 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，匯出憑證檔 PFX 與私密金鑰，並將憑證上傳至每個目標雲端服務。
+
+   <!---
+   Fixing broken links for Azure content migration from ACOM to DOCS. I'm unable to find a replacement links, so I'm commenting out this reference for now. The author can investigate in the future. "Read the following article to learn more: http://msdn.microsoft.com/library/windowsazure/gg443832.aspx.
+   -->
+   **升級部署以及刪除部署 -\> 新增部署**
+
+   當未傳入任何參數，或明確傳遞了值 1 時，指令碼預設會執行升級部署 ($enableDeploymentUpgrade = 1)。 對於單一執行個體，這具有比完整部署花費更少時間的優點。 對於需要高可用性的執行個體，這也具有一邊升級部分執行個體，一邊留著部分執行個體繼續執行，以及您的 VIP 不會遭到刪除的優點。
+
+   若要停用升級部署，可在指令碼中停用 ($enableDeploymentUpgrade = 0) 或傳遞 *-enableDeploymentUpgrade 0* 當作參數，如此會將指令碼行為改變為先刪除任何現有的部署，再建立新的部署。
+
+   > [!IMPORTANT]
+   > 依預設，指令碼如果偵測到現有的部署，會一律加以刪除或取代。 此為不得不的方式，因為如此一來，完全省去使用者/作業員互動過程的自動化程序才有辦法進行連續傳遞。
+   >
+   >
+
+## <a name="5-publish-a-package-using-tfs-team-build"></a>5：使用 TFS Team Build 發佈封裝
+這個選用的步驟會將 TFS Team Build 連接到步驟 4 中建立的指令碼，該指令碼負責處理將套件組建發佈至 Azure。 這需要修改您的組建定義所使用的流程範本，使其在工作流程結束時執行 Publish 活動。 Publish 活動會利用組建傳入的參數，執行 PowerShell 命令。 所輸出的 MSBuild 目標與發佈指令碼將透過管道傳送至標準組建輸出。
 
 1. 編輯負責連續部署的「組建定義」。
-2. 選取 [處理序] 索引標籤。
-3. 遵循[下列指示](http://msdn.microsoft.com/library/dd647551.aspx)，為建置流程範本新增活動專案、下載預設範本，將它新增至專案並簽入。為建置流程範本提供新名稱，例如 AzureBuildProcessTemplate。
-4. 回到 [**處理序**] 索引標籤，並使用 [**顯示詳細資料**] 以顯示可用建置流程範本的清單。選擇 [**新增...**] 按鈕，然後巡覽至您剛才加入及簽入的專案。找出剛才建立的範本並選擇 [**確定**]。
-5. 開啟選取的流程範本進行編輯。您可以在工作流程設計工具或在 XML 編輯器中直接開啟，以使用 XAML。
-6. 在工作流程設計工具的引數索引標籤中，分行新增下列清單中的新引數。所有引數都應該具有 direction=In 及 type=String。這些會用來將組建定義中的參數傳到工作流程中，然後用來呼叫發佈指令碼。
-   
+2. 選取 [處理序]  索引標籤。
+3. 遵循 [下列指示](http://msdn.microsoft.com/library/dd647551.aspx) ，為建置流程範本新增活動專案、下載預設範本，將它新增至專案並簽入。 為建置流程範本提供新名稱，例如 AzureBuildProcessTemplate。
+4. 回到 [處理序] 索引標籤，並使用 [顯示詳細資料] 以顯示可用建置流程範本的清單。 選擇 [ **新增...** ] 按鈕，然後巡覽至您剛才加入及簽入的專案。 找出剛才建立的範本並選擇 [ **確定**]。
+5. 開啟選取的流程範本進行編輯。 您可以在工作流程設計工具或在 XML 編輯器中直接開啟，以使用 XAML。
+6. 在工作流程設計工具的引數索引標籤中，分行新增下列清單中的新引數。 所有引數都應該具有 direction=In 及 type=String。 這些會用來將組建定義中的參數傳到工作流程中，然後用來呼叫發佈指令碼。
+
        SubscriptionName
        StorageAccountName
        CloudConfigLocation
@@ -179,11 +190,11 @@ ms.author: tarcher
        SubscriptionDataFileLocation
        PublishScriptLocation
        ServiceName
-   
+
    ![引數清單][3]
-   
+
    對應的 XAML 看起來如下：
-   
+
        <Activity  _ />
          <x:Members>
            <x:Property Name="BuildSettings" Type="InArgument(mtbwa:BuildSettings)" />
@@ -215,40 +226,41 @@ ms.author: tarcher
            <x:Property Name="PublishScriptLocation" Type="InArgument(x:String)" />
            <x:Property Name="ServiceName" Type="InArgument(x:String)" />
          </x:Members>
-   
+
          <this:Process.MSBuildArguments>
 7. 在 [在代理程式上執行] 結尾新增一個順序：
-   
-   1. 先新增 If Statement 活動，以檢查是否有有效指令碼檔案。將條件設為此值：
-      
+
+   1. 先新增 If Statement 活動，以檢查是否有有效指令碼檔案。 將條件設為此值：
+
           Not String.IsNullOrEmpty(PublishScriptLocation)
-   2. 在「If 陳述式」的 Then 案例中，新增 Sequence 活動。將顯示名稱設為 'Start publish'
-   3. 在仍選取著 Start publish 順序時，在工作流程設計工具的變數索引標籤中分行新增下列清單中的新變數。所有變數都應該具有 Variable type =String 及 Scope=Start publish。這些會用來將組建定義中的參數傳到工作流程中，然後用來呼叫發佈指令碼。
-      
+   2. 在「If 陳述式」的 Then 案例中，新增 Sequence 活動。 將顯示名稱設為 'Start publish'
+   3. 在仍選取著 Start publish 順序時，在工作流程設計工具的變數索引標籤中分行新增下列清單中的新變數。 所有變數都應該具有 Variable type =String 及 Scope=Start publish。 這些會用來將組建定義中的參數傳到工作流程中，然後用來呼叫發佈指令碼。
+
       * SubscriptionDataFilePath，型別為 String
       * PublishScriptFilePath，型別為 String
-        
+
         ![新變數][4]
-   4. 如果您使用 TFS 2012 或更早版本，請在新序列的開頭新增 ConvertWorkspaceItem 活動。如果您使用 TFS 2013 或更新版本，請在新序列的開頭新增 GetLocalPath 活動。針對 ConvertWorkspaceItem，請依以下方式設定內容：Direction=ServerToLocal、DisplayName='Convert publish script filename'、Input=' PublishScriptLocation'、Result='PublishScriptFilePath'、Workspace='Workspace'。針對 GetLocalPath 活動，請將內容 IncomingPath 設定為 'PublishScriptLocation'，以及將 Result 設定為 'PublishScriptFilePath'。此活動會將發佈指令碼的路徑從 TFS 伺服器位置 (如果適用的話) 轉換為標準本機磁碟路徑。
-   5. 如果您使用 TFS 2012 或更早版本，請在新序列的結尾新增另一個 ConvertWorkspaceItem 活動。Direction=ServerToLocal、DisplayName='Convert subscription filename'、Input=' SubscriptionDataFileLocation'、Result= 'SubscriptionDataFilePath'、Workspace='Workspace'。如果您使用 TFS 2013 或更新版本，請新增另一個 GetLocalPath。IncomingPath='SubscriptionDataFileLocation'，以及 Result='SubscriptionDataFilePath'。
-   6. 在新順序的結尾新增 InvokeProcess 活動。此活動會利用組建定義傳入的引數呼叫 PowerShell.exe。
-      
-      1. Arguments = String.Format(" -File ""{0}"" -serviceName {1} -storageAccountName {2} -packageLocation ""{3}"" -cloudConfigLocation ""{4}"" -subscriptionDataFile ""{5}"" -selectedSubscription {6} -environment ""{7}""", PublishScriptFilePath, ServiceName, StorageAccountName, PackageLocation, CloudConfigLocation, SubscriptionDataFilePath, SubscriptionName, Environment)
-      2. DisplayName = Execute publish script
-      3. FileName = "PowerShell" (包括引號)
-      4. OutputEncoding= System.Text.Encoding.GetEncoding(System.Globalization.CultureInfo.InstalledUICulture.TextInfo.OEMCodePage)
-   7. 在 InvokeProcess 的 [**處理標準輸出**] 區段文字方塊中，將文字方塊值設為 'data'。這是要用來儲存標準輸出資料的變數。
-   8. 緊接在 [**處理標準輸出**] 區段下新增 WriteBuildMessage 活動。設定 Importance = 'Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High'、Message='data'。如此可確保指令碼的標準輸出會寫入至組建輸出。
-   9. 在 InvokeProcess 的 [**處理錯誤輸出**] 區段文字方塊中，將文字方塊值設為 'data'。這是要用來儲存標準錯誤資料的變數。
-   10. 緊接在 [**處理錯誤輸出**] 區段下新增 WriteBuildError 活動。設定 Message='data'。如此可確保指令碼的標準錯誤會寫入至組建錯誤輸出。
-   11. 更正由藍色驚嘆號指出的任何錯誤。以滑鼠暫留在驚嘆號上，以取得錯誤的相關提示。儲存工作流程以清除錯誤。
-   
+   4. 如果您使用 TFS 2012 或更早版本，請在新序列的開頭新增 ConvertWorkspaceItem 活動。 如果您使用 TFS 2013 或更新版本，請在新序列的開頭新增 GetLocalPath 活動。 針對 ConvertWorkspaceItem，請依以下方式設定內容：Direction=ServerToLocal、DisplayName='Convert publish script filename'、Input=' PublishScriptLocation'、Result='PublishScriptFilePath'、Workspace='Workspace'。 針對 GetLocalPath 活動，請將內容 IncomingPath 設定為 'PublishScriptLocation'，以及將 Result 設定為 'PublishScriptFilePath'。 此活動會將發佈指令碼的路徑從 TFS 伺服器位置 (如果適用的話) 轉換為標準本機磁碟路徑。
+   5. 如果您使用 TFS 2012 或更早版本，請在新序列的結尾新增另一個 ConvertWorkspaceItem 活動。 Direction=ServerToLocal、DisplayName='Convert subscription filename'、Input=' SubscriptionDataFileLocation'、Result= 'SubscriptionDataFilePath'、Workspace='Workspace'。 如果您使用 TFS 2013 或更新版本，請新增另一個 GetLocalPath。 IncomingPath='SubscriptionDataFileLocation'，以及 Result='SubscriptionDataFilePath'。
+   6. 在新順序的結尾新增 InvokeProcess 活動。
+      此活動會利用組建定義傳入的引數呼叫 PowerShell.exe。
+
+      + Arguments = String.Format(" -File ""{0}"" -serviceName {1}  -storageAccountName {2} -packageLocation ""{3}""  -cloudConfigLocation ""{4}"" -subscriptionDataFile ""{5}""  -selectedSubscription {6} -environment ""{7}""",  PublishScriptFilePath, ServiceName, StorageAccountName,  PackageLocation, CloudConfigLocation,  SubscriptionDataFilePath, SubscriptionName, Environment)
+      + DisplayName = Execute publish script
+      + FileName = "PowerShell" (包括引號)
+      + OutputEncoding=  System.Text.Encoding.GetEncoding(System.Globalization.CultureInfo.InstalledUICulture.TextInfo.OEMCodePage)
+   7. 在 InvokeProcess 的 [ **處理標準輸出** ] 區段文字方塊中，將文字方塊值設為 'data'。 這是要用來儲存標準輸出資料的變數。
+   8. 緊接在 [ **處理標準輸出** ] 區段下新增 WriteBuildMessage 活動。 設定 Importance = 'Microsoft.TeamFoundation.Build.Client.BuildMessageImportance.High'、Message='data'。 如此可確保指令碼的標準輸出會寫入至組建輸出。
+   9. 在 InvokeProcess 的 [ **處理錯誤輸出** ] 區段文字方塊中，將文字方塊值設為 'data'。 這是要用來儲存標準錯誤資料的變數。
+   10. 緊接在 [ **處理錯誤輸出** ] 區段下新增 WriteBuildError 活動。 設定 Message='data'。 如此可確保指令碼的標準錯誤會寫入至組建錯誤輸出。
+   11. 更正由藍色驚嘆號指出的任何錯誤。 以滑鼠暫留在驚嘆號上，以取得錯誤的相關提示。 儲存工作流程以清除錯誤。
+
    在設計工具中，發佈工作流程活動的最終結果將看起來如下：
-   
+
    ![工作流程活動][5]
-   
+
    在 XAML 中，發佈工作流程活動的最終結果將看起來如下：
-   
+
        <If Condition="[Not String.IsNullOrEmpty(PublishScriptLocation)]" sap2010:WorkflowViewState.IdRef="If_1">
            <If.Then>
              <Sequence DisplayName="Start Publish" sap2010:WorkflowViewState.IdRef="Sequence_4">
@@ -258,7 +270,7 @@ ms.author: tarcher
                </Sequence.Variables>
                <mtbwa:ConvertWorkspaceItem DisplayName="Convert publish script filename" sap2010:WorkflowViewState.IdRef="ConvertWorkspaceItem_1" Input="[PublishScriptLocation]" Result="[PublishScriptFilePath]" Workspace="[Workspace]" />
                <mtbwa:ConvertWorkspaceItem DisplayName="Convert subscription filename" sap2010:WorkflowViewState.IdRef="ConvertWorkspaceItem_2" Input="[SubscriptionDataFileLocation]" Result="[SubscriptionDataFilePath]" Workspace="[Workspace]" />
-               <mtbwa:InvokeProcess Arguments="[String.Format("; -File ";";{0}";"; -serviceName {1}&#xD;&#xA;            -storageAccountName {2} -packageLocation ";";{3}";";&#xD;&#xA;            -cloudConfigLocation ";";{4}";"; -subscriptionDataFile ";";{5}";";&#xD;&#xA;            -selectedSubscription {6} -environment ";";{7}";";";,&#xD;&#xA;            PublishScriptFilePath, ServiceName, StorageAccountName,&#xD;&#xA;            PackageLocation, CloudConfigLocation,&#xD;&#xA;            SubscriptionDataFilePath, SubscriptionName, Environment)]" DisplayName="'Execute Publish Script'" FileName="[PowerShell]" sap2010:WorkflowViewState.IdRef="InvokeProcess_1">
+               <mtbwa:InvokeProcess Arguments="[String.Format(&quot; -File &quot;&quot;{0}&quot;&quot; -serviceName {1}&#xD;&#xA;            -storageAccountName {2} -packageLocation &quot;&quot;{3}&quot;&quot;&#xD;&#xA;            -cloudConfigLocation &quot;&quot;{4}&quot;&quot; -subscriptionDataFile &quot;&quot;{5}&quot;&quot;&#xD;&#xA;            -selectedSubscription {6} -environment &quot;&quot;{7}&quot;&quot;&quot;,&#xD;&#xA;            PublishScriptFilePath, ServiceName, StorageAccountName,&#xD;&#xA;            PackageLocation, CloudConfigLocation,&#xD;&#xA;            SubscriptionDataFilePath, SubscriptionName, Environment)]" DisplayName="'Execute Publish Script'" FileName="[PowerShell]" sap2010:WorkflowViewState.IdRef="InvokeProcess_1">
                  <mtbwa:InvokeProcess.ErrorDataReceived>
                    <ActivityAction x:TypeArguments="x:String">
                      <ActivityAction.Argument>
@@ -281,23 +293,23 @@ ms.author: tarcher
          </If>
        </Sequence>
 8. 儲存建置流程範本工作流程，並簽入此檔案。
-9. 編輯組建定義 (如果已開啟請關閉)，如果您在流程範本清單上尚未看到新範本，請選取 [**新增**] 按鈕。
+9. 編輯組建定義 (如果已開啟請關閉)，如果您在流程範本清單上尚未看到新範本，請選取 [ **新增** ] 按鈕。
 10. 在 Misc 區段中設定如下參數屬性值：
-    
-    1. CloudConfigLocation ='c:\\drops\\app.publish\\ServiceConfiguration.Cloud.cscfg' *此值衍生自：($PublishDir)ServiceConfiguration.Cloud.cscfg*
-    2. PackageLocation = 'c:\\drops\\app.publish\\ContactManager.Azure.cspkg' *此值衍生自：($PublishDir)($ProjectName).cspkg*
+
+    1. CloudConfigLocation ='c:\\drops\\app.publish\\ServiceConfiguration.Cloud.cscfg' 此值衍生自：($PublishDir)ServiceConfiguration.Cloud.cscfg
+    2. PackageLocation = 'c:\\drops\\app.publish\\ContactManager.Azure.cspkg' 此值衍生自：($PublishDir)($ProjectName).cspkg
     3. PublishScriptLocation = 'c:\\scripts\\WindowsAzure\\PublishCloudService.ps1'
     4. ServiceName = 'mycloudservicename' *在這裡使用適當的雲端服務名稱*
     5. Environment = 'Staging'
     6. StorageAccountName = 'mystorageaccountname' *在這裡使用適當的儲存體帳戶名稱*
     7. SubscriptionDataFileLocation = 'c:\\scripts\\WindowsAzure\\Subscription.xml'
     8. SubscriptionName = 'default'
-    
+
     ![參數屬性值][6]
 11. 儲存組建定義的變更。
-12. 將組建排入佇列，以同時執行套件建置及發佈。如果已將觸發程序設為 Continuous Integration，則每次簽入時都會執行此行為。
+12. 將組建排入佇列，以同時執行套件建置及發佈。 如果已將觸發程序設為 Continuous Integration，則每次簽入時都會執行此行為。
 
-### PublishCloudService.ps1 指令碼範本
+### <a name="publishcloudserviceps1-script-template"></a>PublishCloudService.ps1 指令碼範本
 ```
 Param(  $serviceName = "",
         $storageAccountName = "",
@@ -500,17 +512,17 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Created Cloud Service with URL $
 Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy script finished."
 ```
 
-## 後續步驟
-若要在使用連續傳遞時啟用遠端偵錯，請參閱[使用連續傳遞來發行至 Azure 時啟用遠端偵錯](cloud-services-virtual-machines-dotnet-continuous-delivery-remote-debugging.md)。
+## <a name="next-steps"></a>後續步驟
+若要在使用連續傳遞時啟用遠端偵錯，請參閱 [使用連續傳遞來發行至 Azure 時啟用遠端偵錯](cloud-services-virtual-machines-dotnet-continuous-delivery-remote-debugging.md)。
 
-[使用 Visual Studio Team Services 連續傳遞至 Azure]: cloud-services-continuous-delivery-use-vso.md
+[Continuous Delivery to Azure by Using Visual Studio Team Services]: cloud-services-continuous-delivery-use-vso.md
 [Team Foundation Build Service]: https://msdn.microsoft.com/library/ee259687.aspx
 [.NET Framework 4]: https://www.microsoft.com/download/details.aspx?id=17851
 [.NET Framework 4.5]: https://www.microsoft.com/download/details.aspx?id=30653
 [.NET Framework 4.5.2]: https://www.microsoft.com/download/details.aspx?id=42643
-[相應放大您的組建系統]: https://msdn.microsoft.com/library/dd793166.aspx
-[部署和設定組建伺服器]: https://msdn.microsoft.com/library/ms181712.aspx
-[Azure PowerShell Cmdlet]: powershell-install-configure.md
+[Scale out your build system]: https://msdn.microsoft.com/library/dd793166.aspx
+[Deploy and configure a build server]: https://msdn.microsoft.com/library/ms181712.aspx
+[Azure PowerShell cmdlets]: /powershell/azureps-cmdlets-docs
 [the .publishsettings file]: https://manage.windowsazure.com/download/publishprofile.aspx?wa=wsignin1.0
 [0]: ./media/cloud-services-dotnet-continuous-delivery/tfs-01bc.png
 [2]: ./media/cloud-services-dotnet-continuous-delivery/tfs-02.png
@@ -519,4 +531,8 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
 [5]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-05.png
 [6]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-06.png
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Dec16_HO2-->
+
+

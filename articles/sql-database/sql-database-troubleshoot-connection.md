@@ -4,7 +4,7 @@ description: "針對應用程式連接到 SQL Database 時發生的「目前無�
 services: sql-database
 documentationcenter: 
 author: dalechen
-manager: felixwu
+manager: cshepard
 editor: 
 keywords: "目前無法使用伺服器上的資料庫，連接到 SQL Database"
 ms.assetid: f61999ac-d46b-448a-8830-3b04978d84ec
@@ -14,7 +14,7 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
+ms.date: 01/20/2017
 ms.author: daleche
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
