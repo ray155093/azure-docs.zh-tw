@@ -3,7 +3,7 @@ title: "針對傳回 404 狀態的 Azure CDN 端點進行疑難排解 | Microsof
 description: "針對 Azure CDN 端點的 404 回應碼進行疑難排解。"
 services: cdn
 documentationcenter: 
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: b588a1eb-ab69-4fc7-ae4d-157c3e46f4a8
@@ -12,8 +12,8 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 53fdf1fe661167b468ef602634528e4d4173f606
