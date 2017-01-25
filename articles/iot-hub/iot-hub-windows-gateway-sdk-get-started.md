@@ -1,22 +1,26 @@
 ---
-title: 開始使用 IoT 中樞閘道 SDK | Microsoft Docs
-description: 使用 Windows 的 Azure IoT 中樞閘道 SDK 逐步解說，說明您使用 Azure IoT 中樞閘道 SDK 時應該了解的重要概念。
+title: "開始使用 Azure IoT 閘道 SDK (Windows) | Microsoft Docs"
+description: "如何在 Windows 電腦上建置閘道閘，並了解 Azure IoT 閘道 SDK 中的重要概念，例如模組和 JSON 組態檔。"
 services: iot-hub
-documentationcenter: ''
+documentationcenter: 
 author: chipalost
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 9aff3724-5e4e-40ec-b95a-d00df4f590c5
 ms.service: iot-hub
 ms.devlang: cpp
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/25/2016
+ms.date: 11/16/2016
 ms.author: andbuc
+translationtype: Human Translation
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: 3493afbebf2a75a190d344ac1e66b00b9ddfd582
+
 
 ---
-# <a name="iot-gateway-sdk-(beta)---get-started-using-windows"></a>IoT 閘道 SDK (Beta) - 開始使用 Windows
+# <a name="get-started-with-the-azure-iot-gateway-sdk-windows"></a>開始使用 Azure IoT 閘道 SDK (Windows)
 [!INCLUDE [iot-hub-gateway-sdk-getstarted-selector](../../includes/iot-hub-gateway-sdk-getstarted-selector.md)]
 
 ## <a name="how-to-build-the-sample"></a>如何建置範例
@@ -29,41 +33,47 @@ ms.author: andbuc
 ## <a name="how-to-run-the-sample"></a>如何執行範例
 1. **build.cmd** 指令碼會在存放庫本機複本中建立稱為 **build** 的資料夾。 此資料夾包含在此範例中使用的兩個模組。
    
-    build 指令碼會將 **logger_hl.dll** 放在 **build\\modules\\logger\\Debug** 資料夾中，並將 **hello_world_hl.dll** 放在 **build\\modules\\hello_world\\Debug** 資料夾中。 使用這些路徑作為「模組路徑」  值 (如下面的 JSON 設定檔案中所示)。
-2. **samples\\hello_world\\src** 資料夾中的 **hello_world_win.json** 檔案是適用於 Windows 且可用來執行範例的範例 JSON 設定檔案。 下面顯示的範例 JSON 設定假設您已將閘道 SDK 儲存機制複製到 **C:** 磁碟機的根目錄。 如果您已將它下載到另一個位置，則需要據此調整 **samples\\hello_world\\src\\hello_world_win.json** 檔案中的 **module path** 值。
-3. 針對 **logger_hl** 模組，在 **args** 區段中，將 **filename** 值設定為包含記錄資料的檔案名稱和路徑。
-   
-    這是適用於 Windows 且將 **log.txt** 檔案寫入 **C:** 磁碟機之根目錄的 JSON 設定檔案範例。
+    build 指令碼會將 **logger.dll** 放在 **build\\modules\\logger\\Debug** 資料夾中，並將 **hello_world.dll** 放在 **build\\modules\\hello_world\\Debug** 資料夾中。 使用這些路徑作為**模組路徑**值 (如下列 JSON 設定檔所示)。
+2. Hello_world_sample 程序會採用 JSON 組態檔的路徑，並做為命令列的引數。 我們已在 **azure-iot-gateway-sdk\samples\hello_world\src\hello_world_win.json** 以部分儲存機制的形式提供下列範例 JSON 檔。 除非您修改 build 指令碼以將模組或範例可執行檔放置在非預設位置，否則它將保有原始功能。 
+
+   > [!NOTE]
+   > 模組路徑是相對於 hello_world_sample.exe 所在的目錄。 範例 JSON 組態檔的預設值為在目前的工作目錄中寫入 'log.txt'。
    
     ```
     {
-      "modules" :
-      [
+      "modules": [
         {
-          "module name" : "logger_hl",
-          "module path" : "C:\\azure-iot-gateway-sdk\\build\\modules\\logger\\Debug\\logger_hl.dll",
-          "args" : 
-          {
-            "filename":"C:\\log.txt"
-          }
+          "name": "logger",
+          "loader": {
+            "name": "native",
+            "entrypoint": {
+              "module.path": "..\\..\\..\\modules\\logger\\Debug\\logger.dll"
+            }
+          },
+          "args": { "filename": "log.txt" }
         },
         {
-          "module name" : "hello_world",
-          "module path" : "C:\\azure-iot-gateway-sdk\\build\\\\modules\\hello_world\\Debug\\hello_world_hl.dll",
-          "args" : null
-        }
+          "name": "hello_world",
+          "loader": {
+            "name": "native",
+            "entrypoint": {
+              "module.path": "..\\..\\..\\modules\\hello_world\\Debug\\hello_world.dll"
+            }
+          },
+          "args": null
+          }
       ],
-      "links" :
-      [
+      "links": [
         {
           "source": "hello_world",
-          "sink": "logger_hl"
+          "sink": "logger"
         }
       ]
     }
     ```
-4. 在命令提示字元中，瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本中的根資料夾。
-5. 執行以下命令：
+3. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本的根資料夾。
+
+4. 執行以下命令：
    
    ```
    build\samples\hello_world\Debug\hello_world_sample.exe samples\hello_world\src\hello_world_win.json
@@ -75,6 +85,7 @@ ms.author: andbuc
 [lnk-setupdevbox]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/doc/devbox_setup.md
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Dec16_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/21/2016
+ms.date: 12/05/2016
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 3db5c8a80f72c7af20c501daf035337f23d3d2c9
-ms.openlocfilehash: 29825a205e88809bcfc197e9dc82140db8fd885d
+ms.sourcegitcommit: f8d515c6a8b1332ccb338cb5ec2c16daa5725281
+ms.openlocfilehash: c8bdd686deff888c9029b88ceeb32c147398eca2
 
 
 ---
@@ -33,7 +33,9 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 
 > [!NOTE]
 > 混合式 Runbook 背景工作目前不支援將 [DSC 組態](automation-dsc-overview.md)套用至主控此角色的電腦。
->
+><br><br>
+>目前，如果您啟用[更新管理解決方案](../operations-management-suite/oms-solution-update-management.md)，則任何連接至 OMS 工作區的 Windows 電腦都會自動設定為 Hybrid Runbook Worker，以支援屬於此解決方案的 Runbook。  不過，它不會向您在自動化帳戶中建立的任何混合式背景工作群組註冊，而且您無法將它新增至混合式背景工作群組來執行自己的 Runbook。  如果 Windows 電腦已指定為混合式 Runbook 背景工作並連接至 OMS 工作區，您必須先從 OMS 工作區中將它移除，再新增解決方案，以避免 Runbook 無法如預期般運作。  
+
 
 ## <a name="hybrid-runbook-worker-groups"></a>混合式 Runbook 背景工作群組
 每一個混合式 Runbook 背景工作是您安裝代理程式時指定的混合式 Runbook 背景工作群組的成員。  群組可包含單一代理程式，但您可以在群組中安裝多個代理程式以獲得高可用性。
@@ -76,36 +78,71 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 | 澳大利亞東南部 |ase-jobruntimedata-prod-su1.azure-automation.net |
 
 ## <a name="installing-hybrid-runbook-worker"></a>安裝混合式 Runbook 背景工作
-下列程序描述如何安裝和設定 Hybrid Runbook Worker。  對您的自動化環境執行一次前兩個步驟，再對每一台背景工作角色電腦重複其餘步驟。
 
-### <a name="1-create-operations-management-suite-workspace"></a>1.建立 Operations Management Suite 工作區
+以下描述安裝和設定 Hybrid Runbook Worker 的兩種方法。  第一種方法是 PowerShell 指令碼，可將設定 Windows 電腦所需的所有步驟自動化，建議採用這種方法以簡化整個部署程序。  第二種方法採取逐步程序來手動安裝和設定角色。   
+
+### <a name="automated-deployment"></a>自動化部署
+
+執行下列步驟，以自動安裝和設定混合式背景工作角色。  
+
+1. 直接在執行 Hybrid Runbook Worker 角色的電腦上，從 [PowerShell 資源庫](https://www.powershellgallery.com/packages/New-OnPremiseHybridWorker/1.0/DisplayScript)下載 *New-OnPremiseHybridWorker.ps1* 指令碼，或從環境中的另一部電腦下載，再複製到背景工作角色。  
+
+    *New-OnPremiseHybridWorker.ps1* 指令碼在執行期間需要下列參數：
+
+  * *AutomationAccountName* (必要) - 您的自動化帳戶名稱。  
+  * *ResourceGroupName* (必要) - 與您的自動化帳戶相關聯的資源群組名稱。  
+  * *HybridGroupName* (必要) - 針對支援此案例的 Runbook，您將指定作為目標的 Hybrid Runbook Worker 群組名稱 
+  *  *SubscriptionID* (必要) - 您的自動化帳戶所在的 Azure 訂用帳戶識別碼
+  *  *WorkspaceName* (選擇性) - OMS 工作區名稱。  如果您沒有 OMS 工作區，此指令碼會建立並設定一個 OMS 工作區。
+
+    > [!NOTE]
+    > 目前，支援與 OMS 整合的自動化區域只包括 - **澳大利亞東南部**、**美國東部 2**、**東南亞**和**西歐**。  如果您的自動化帳戶不在其中一個區域，此指令碼會建立 OMS 工作區，但會警告您，指出無法將它們連結在一起。  
+
+2. 在您的電腦上，從 [開始] 畫面以系統管理員模式啟動 **Windows PowerShell**。  
+3. 從 PowerShell 命令列殼層，瀏覽至您下載的指令碼所在的資料夾，然後執行該指令碼，並變更參數 *-AutomationAccountName*、*-ResourceGroupName*、*-HybridGroupName*、*-SubscriptionId* 和 *-WorkspaceName* 的值。
+
+    > [!NOTE] 
+    > 執行指令碼之後，您會收到向 Azure 進行驗證的提示。  您「必須」  以訂用帳戶管理員角色成員和訂用帳戶共同管理員的帳戶登入。   
+    
+        .\New-OnPremiseHybridWorker.ps1 -AutomationAccountName <NameofAutomationAccount> `
+        -ResourceGroupName <NameofOResourceGroup> -HybridGroupName <NameofHRWGroup> `
+        -SubscriptionId <AzureSubscriptionId> -WorkspaceName <NameOfOMSWorkspace>
+
+4. 系統會提示您同意安裝 **NuGet**，也會提示使用您的 Azure 認證進行驗證。<br><br> ![Execution of New-OnPremiseHybridWorker script](media/automation-hybrid-runbook-worker/new-onpremisehybridworker-scriptoutput.png)
+
+5. 指令碼完成之後，[混合式背景工作角色群組] 刀鋒視窗會顯示新的群組和成員數目，或者，如果是現有的群組，則成員數目會相應地遞增。  您可以在 [混合式背景工作角色群組] 刀鋒視窗從清單中選取群組，然後選取 [混合式背景工作角色] 圖格。  在 [混合式背景工作角色] 刀鋒視窗上，您會看到列出群組的每個成員。  
+
+### <a name="manual-deployment"></a>手動部署 
+對您的自動化環境執行一次前兩個步驟，再對每一台背景工作角色電腦重複其餘步驟。
+
+#### <a name="1-create-operations-management-suite-workspace"></a>1.建立 Operations Management Suite 工作區
 如果您還沒有 Operations Management Suite 工作區，請使用 [設定工作區](https://technet.microsoft.com/library/mt484119.aspx)中的指示建立工作區。 如果您已經有工作區，可以使用現有的工作區。
 
-### <a name="2-add-automation-solution-to-operations-management-suite-workspace"></a>2.將自動化解決方案加入至 Operations Management Suite 工作區
+#### <a name="2-add-automation-solution-to-operations-management-suite-workspace"></a>2.將自動化解決方案加入至 Operations Management Suite 工作區
 解決方案會將功能加入至 Operations Management Suite。  自動化解決方案會增加 Azure 自動化的功能，包括支援 Hybrid Runbook Worker。  將解決方案加入至工作區時，它會自動將背景工作角色元件往下推送給您在下一步將安裝的代理程式電腦。
 
 請依照 [使用解決方案資源庫新增解決方案](../log-analytics/log-analytics-add-solutions.md) 中的指示，將 **自動化** 解決方案新增至 Operations Management Suite 工作區。
 
-### <a name="3-install-the-microsoft-monitoring-agent"></a>3.安裝 Microsoft Monitoring Agent
+#### <a name="3-install-the-microsoft-monitoring-agent"></a>3.安裝 Microsoft Monitoring Agent
 Microsoft Monitoring Agent 可將電腦連線至 Operations Management Suite。  將代理程式安裝在內部部署電腦，並連接到您的工作區時，它會自動下載 Hybrid Runbook Worker 所需的元件。
 
 請依照[將 Windows 電腦連接到 Log Analytics](../log-analytics/log-analytics-windows-agents.md) 中的指示，將代理程式安裝在內部部署電腦上。  您可以對多部電腦重複此程序，將多個背景工作角色加入至您的環境。
 
 當代理程式成功連接到 Operations Management Suite 時，它會列在 Operations Management Suite [設定] 窗格的 [已連接的來源] 索引標籤上。  當 C:\Program Files\Microsoft Monitoring Agent\Agent 中出現 **AzureAutomationFiles** 資料夾時，就可確認代理程式已正確下載自動化解決方案。  若要確認 Hybrid Runbook Worker 版本，您可以瀏覽至 C:\Program Files\Microsoft Monitoring Agent\Agent\AzureAutomation\，並記下 \\version 子資料夾。   
 
-### <a name="4-install-the-runbook-environment-and-connect-to-azure-automation"></a>4.安裝 Runbook 環境並連接到 Azure 自動化
+#### <a name="4-install-the-runbook-environment-and-connect-to-azure-automation"></a>4.安裝 Runbook 環境並連接到 Azure 自動化
 將代理程式新增至 Operations Management Suite 時，自動化解決方案會往下推送包含 **Add-HybridRunbookWorker** Cmdlet 的 **HybridRegistration** PowerShell 模組。  您可以使用這個 Cmdlet 在電腦上安裝 Runbook 環境並向 Azure 自動化進行註冊。
 
 以系統管理員模式開啟 PowerShell 工作階段，並執行下列命令來匯入模組。
 
     cd "C:\Program Files\Microsoft Monitoring Agent\Agent\AzureAutomation\<version>\HybridRegistration"
-    Import-Module HybridRegistration.psd1
+    Import-Module .\HybridRegistration.psd1
 
 然後使用下列語法執行 **Add-HybridRunbookWorker** Cmdlet：
 
     Add-HybridRunbookWorker –Name <String> -EndPoint <Url> -Token <String>
 
-您可以從 Azure 入口網站的 [管理金鑰]  刀鋒視窗取得這個 Cmdlet 所需的資訊。  在自動化帳戶的 [元素] 面板按一下金鑰圖示，可開啟此刀鋒視窗。
+您可以從 Azure 入口網站的 [管理金鑰]  刀鋒視窗取得這個 Cmdlet 所需的資訊。  在您的自動化帳戶中，從 [設定] 刀鋒視窗選取 [金鑰]，以開啟此刀鋒視窗。
 
 ![混合式 Runbook 背景工作概觀](media/automation-hybrid-runbook-worker/elements-panel-keys.png)
 
@@ -115,17 +152,23 @@ Microsoft Monitoring Agent 可將電腦連線至 Operations Management Suite。 
 
 在 **Add-HybridRunbookWorker** 中新增 **-Verbose** 參數可接收安裝的詳細資訊。
 
-### <a name="5-install-powershell-modules"></a>5.安裝 PowerShell 模組
+#### <a name="5-install-powershell-modules"></a>5.安裝 PowerShell 模組
 Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何活動和 Cmdlet。  不過，這些模組不會自動部署至內部部署機器，所以您必須手動安裝它們。  例外狀況是預設安裝的 Azure 模組，可提供 Azure 自動化所有 Azure 服務和活動的 Cmdlet 存取權。
 
 由於「混合式 Runbook 背景工作」功能的主要目的是要管理本機資源，您很可能必須安裝支援這些資源的模組。  您可以參考[安裝模組](http://msdn.microsoft.com/library/dd878350.aspx)來取得安裝 Windows PowerShell 模組的詳細資訊。
 
-## <a name="removing-hybrid-runbook-worker"></a>移除 Hybrid Runbook Worker
-您可以移除群組中的一或多個 Hybrid Runbook 背景工作角色，或移除該群組，視您的需求而定。  若要從內部部署電腦移除 Hybrid Runbook 背景工作角色，以系統管理員模式開啟 PowerShell 工作階段，並執行下列命令- **Remove-HybridRunbookWorker** Cmdlet。  使用 **-Verbose** 參數可取得移除程序的詳細記錄。
+## <a name="removing-hybrid-runbook-worker"></a>移除 Hybrid Runbook Worker 
+您可以移除群組中的一或多個 Hybrid Runbook 背景工作角色，或移除該群組，視您的需求而定。  若要從內部部署電腦中移除 Hybrid Runbook Worker，請執行下列步驟。
 
-這不會移除電腦上的 Microsoft Monitoring Agent，只會移除 Hybrid Runbook 背景工作角色的功能和組態。  
+1. 在 Azure 入口網站中，瀏覽至您的自動化帳戶。  
+2. 從 [設定] 刀鋒視窗中，選取 [金鑰]，記下欄位 [URL] 和 [主要存取金鑰] 的值。  下一個步驟需要此資訊。
+3. 在系統管理員模式中開啟 PowerShell 工作階段，並執行下列命令 - `Remove-HybridRunbookWorker -url <URL> -key <PrimaryAccessKey>`。  使用 **-Verbose** 參數可取得移除程序的詳細記錄。
 
-若要移除群組，您必須先使用先前所示的命令，移除每一部群組成員電腦上的 Hybrid Runbook 背景工作角色，然後執行下列步驟移除群組。  
+> [!NOTE]
+> 這不會移除電腦上的 Microsoft Monitoring Agent，只會移除 Hybrid Runbook 背景工作角色的功能和組態。  
+
+## <a name="remove-hybrid-worker-groups"></a>移除混合式背景工作角色群組
+若要移除群組，您必須先使用先前所示的程序，從群組的每一部成員電腦中移除 Hybrid Runbook Worker，然後執行下列步驟移除群組。  
 
 1. 在 Azure 入口網站中，開啟自動化帳戶。
 2. 選取 [Hybrid 背景工作角色] 刀鋒視窗中的 [Hybrid 背景工作角色群組] 圖格，然後選取要刪除的群組。  選取特定的群組之後，[Hybrid 背景工作角色群組] 屬性刀鋒視窗隨即出現。<br> ![Hybrid Runbook 背景工作角色群組刀鋒視窗](media/automation-hybrid-runbook-worker/automation-hybrid-runbook-worker-group-properties.png)   
@@ -208,6 +251,6 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

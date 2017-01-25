@@ -15,8 +15,8 @@ ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 555342e88c912a3f43c578a40dc34933996ade4c
-ms.openlocfilehash: 75c2b2a467a03b51519cad530bf3d03ed32c4300
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: d5110a33e13802fd6e5e0f075c7d3ddd521a1ef9
 
 
 ---
@@ -120,7 +120,7 @@ ms.openlocfilehash: 75c2b2a467a03b51519cad530bf3d03ed32c4300
 您可以使用 [內容] 區段修改通知、投票、資料推送和磚 (僅限 Windows Phone) 的內容。 推播活動的 [內容] 設定與活動類型有關。 
 
 ### <a name="see-also"></a>另請參閱
-* [UI 文件 - 觸達 - 推送內容][連結 29]
+* [UI 文件 - 觸達 - 推送內容][Link 29]
 
 ![Reach-Campaign5][24]
 
@@ -136,7 +136,7 @@ ms.openlocfilehash: 75c2b2a467a03b51519cad530bf3d03ed32c4300
   一旦定義您的對象之後，就可以使用模擬按鈕找出會收到此推播的使用者數目。 這會計算此對象可能選出的已知使用者數目 (根據使用者的隨機取樣估計)。 請注意，已解除安裝應用程式的使用者也屬於這類對象，但無法觸達。
 
 ### <a name="see-also"></a>另請參閱
-* [UI 文件 - 觸達 - 新增推播準則][連結 28]
+* [UI 文件 - 觸達 - 新增推播準則][Link 28]
 
 ![Reach-Campaign6][25]
 
@@ -158,7 +158,7 @@ ms.openlocfilehash: 75c2b2a467a03b51519cad530bf3d03ed32c4300
 > 沒有結束日期的活動可能會在本機快取推送，甚至在您手動完成活動之後，仍然繼續顯示推送。 若要避免發生這個狀況，請為活動設定確切的結束時間。
 
 ### <a name="see-also"></a>另請參閱
-* [觸達 - 做法 – 排程][連結 3] 
+* [觸達 - 作法 – 排程][Link 3] 
 
 ![Reach-Campaign8][27]
 
@@ -172,7 +172,7 @@ ms.openlocfilehash: 75c2b2a467a03b51519cad530bf3d03ed32c4300
 > 當您使用按鈕來「測試」推送時，不會記錄任何伺服器端的資料，只會記錄實際推送活動的資料。
 
 ### <a name="see-also"></a>另請參閱
-* [UI 文件 - 我的帳戶][連結 14]
+* [UI 文件 - 我的帳戶][Link 14]
 
 ![Reach-Campaign9][28]
 
@@ -237,39 +237,39 @@ ms.openlocfilehash: 75c2b2a467a03b51519cad530bf3d03ed32c4300
 [58]: ./media/mobile-engagement-user-interface-settings/settings13.png
 
 <!--Link references-->
-[連結 1]: mobile-engagement-user-interface.md
-[連結 2]: mobile-engagement-troubleshooting-guide.md
-[連結 3]: mobile-engagement-how-tos.md
-[連結 4]: http://go.microsoft.com/fwlink/?LinkID=525553
-[連結 5]: http://go.microsoft.com/fwlink/?LinkID=525554
-[連結 6]: http://go.microsoft.com/fwlink/?LinkId=525555
-[連結 7]: https://account.windowsazure.com/PreviewFeatures
-[連結 8]: https://social.msdn.microsoft.com/Forums/azure/home?forum=azuremobileengagement
-[連結 9]: http://azure.microsoft.com/services/mobile-engagement/
-[連結 10]: http://azure.microsoft.com/documentation/services/mobile-engagement/
-[連結 11]: http://azure.microsoft.com/pricing/details/mobile-engagement/
-[連結 12]: mobile-engagement-user-interface-navigation.md
-[連結 13]: mobile-engagement-user-interface-home.md
-[連結 14]: mobile-engagement-user-interface-my-account.md
-[連結 15]: mobile-engagement-user-interface-analytics.md
-[連結 16]: mobile-engagement-user-interface-monitor.md
-[連結 17]: mobile-engagement-user-interface-reach.md
-[連結 18]: mobile-engagement-user-interface-segments.md
-[連結 19]: mobile-engagement-user-interface-dashboard.md
-[連結 20]: mobile-engagement-user-interface-settings.md
-[連結 21]: mobile-engagement-troubleshooting-guide-analytics.md
-[連結 22]: mobile-engagement-troubleshooting-guide-apis.md
-[連結 23]: mobile-engagement-troubleshooting-guide-push-reach.md
-[連結 24]: mobile-engagement-troubleshooting-guide-service.md
-[連結 25]: mobile-engagement-troubleshooting-guide-sdk.md
-[連結 26]: mobile-engagement-troubleshooting-guide-sr-info.md
-[連結 27]: mobile-engagement-user-interface-reach-campaign.md
-[連結 28]: mobile-engagement-user-interface-reach-criterion.md
-[連結 29]: mobile-engagement-user-interface-reach-content.md
+[Link 1]: mobile-engagement-user-interface.md
+[Link 2]: mobile-engagement-troubleshooting-guide.md
+[Link 3]: mobile-engagement-how-tos.md
+[Link 4]: http://go.microsoft.com/fwlink/?LinkID=525553
+[Link 5]: http://go.microsoft.com/fwlink/?LinkID=525554
+[Link 6]: http://go.microsoft.com/fwlink/?LinkId=525555
+[Link 7]: https://account.windowsazure.com/PreviewFeatures
+[Link 8]: https://social.msdn.microsoft.com/Forums/azure/home?forum=azuremobileengagement
+[Link 9]: http://azure.microsoft.com/services/mobile-engagement/
+[Link 10]: http://azure.microsoft.com/documentation/services/mobile-engagement/
+[Link 11]: http://azure.microsoft.com/pricing/details/mobile-engagement/
+[Link 12]: mobile-engagement-user-interface-navigation.md
+[Link 13]: mobile-engagement-user-interface-home.md
+[Link 14]: mobile-engagement-user-interface-my-account.md
+[Link 15]: mobile-engagement-user-interface-analytics.md
+[Link 16]: mobile-engagement-user-interface-monitor.md
+[Link 17]: mobile-engagement-user-interface-reach.md
+[Link 18]: mobile-engagement-user-interface-segments.md
+[Link 19]: mobile-engagement-user-interface-dashboard.md
+[Link 20]: mobile-engagement-user-interface-settings.md
+[Link 21]: mobile-engagement-troubleshooting-guide-analytics.md
+[Link 22]: mobile-engagement-troubleshooting-guide-apis.md
+[Link 23]: mobile-engagement-troubleshooting-guide-push-reach.md
+[Link 24]: mobile-engagement-troubleshooting-guide-service.md
+[Link 25]: mobile-engagement-troubleshooting-guide-sdk.md
+[Link 26]: mobile-engagement-troubleshooting-guide-sr-info.md
+[Link 27]: mobile-engagement-user-interface-reach-campaign.md
+[Link 28]: mobile-engagement-user-interface-reach-criterion.md
+[Link 29]: mobile-engagement-user-interface-reach-content.md
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 
