@@ -1,0 +1,18 @@
+### <a name="installation-failures"></a>安裝失敗
+| **範例錯誤訊息** | **建議的動作** |
+|--------------------------|------------------------|
+|ERROR   無法載入帳戶。 錯誤︰System.IO.IOException︰無法在安裝和註冊 CS 伺服器時從傳輸連線讀取資料| 確定電腦上已啟用 TLS 1.0 |
+
+### <a name="registration-failures"></a>註冊失敗
+檢視 **%ProgramData%\ASRLogs** 資料夾中的記錄檔即可偵錯註冊失敗
+
+| **範例錯誤訊息** | **建議的動作** |
+|--------------------------|------------------------|
+|**09:20:06**：InnerException.Type: SrsRestApiClientLib.AcsException,InnerException。<br>訊息︰ACS50008：SAML 權杖無效。<br>追蹤識別碼︰1921ea5b-4723-4be7-8087-a75d3f9e1072<br>相互關聯識別碼︰62fea7e6-2197-4be4-a2c0-71ceb7aa2d97><br>時間戳記︰**2016-12-12 14:50:08Z<br>** | 請確認**系統時鐘**上的時間與**本地時間**的前後偏差未超過 15 分鐘。 重新執行安裝程式以完成註冊。|
+|**09:35:27**：嘗試取得所選憑證的所有災害復原保存庫時發生 DRRegistrationException：擲回 Exception.Type:Microsoft.DisasterRecovery.Registration.DRRegistrationException，Exception.Message：ACS50008：SAML 權杖無效。<br>追蹤識別碼︰e5ad1af1-2d39-4970-8eef-096e325c9950<br>相互關聯識別碼︰abe9deb8-3e64-464d-8375-36db9816427a<br>時間戳記︰**2016-05-19 01:35:39Z**<br> | 請確認**系統時鐘**上的時間與**本地時間**的前後偏差未超過 15 分鐘。 重新執行安裝程式以完成註冊。|
+|06:28:45︰無法建立憑證<br>06:28:45：安裝程式無法繼續。 無法建立驗證 Site Recovery 所需的憑證。 重新執行安裝程式 | 確定您是以**本機系統管理員**身分執行安裝程式 |
+
+
+<!--HONumber=Jan17_HO3-->
+
+

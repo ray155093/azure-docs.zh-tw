@@ -26,10 +26,13 @@ Azure VPN 閘道會通告下列路由至您的內部部署 BGP 裝置︰
 * 從其他 BGP 對等互連工作階段識別的路由已連線到 Azure VPN 閘道， **除了預設路由或與任何 VNet 首碼重疊的路由**。
 
 ### <a name="can-i-advertise-default-route-00000-to-azure-vpn-gateways"></a>可以公告 Azure VPN 閘道的預設路由 (0.0.0.0/0) 嗎？
-目前沒有。
+是。
 
 ### <a name="can-i-advertise-the-exact-prefixes-as-my-virtual-network-prefixes"></a>可以公告確切的前置詞做為我的虛擬網路前置詞嗎？
-是，公告相同的前置詞做為任何一個虛擬網路位址前置詞，將由 Azure 平台進行封鎖或篩選。 不過，您可以公告一個前置詞，也就是您在虛擬網路內已有的超集。 例如，您的虛擬網路可以使用位址空間 10.10.0.0/16，而您可以公告 10.0.0.0/8。
+
+是，公告相同的前置詞做為任何一個虛擬網路位址前置詞，將由 Azure 平台進行封鎖或篩選。 不過，您可以公告一個前置詞，也就是您在虛擬網路內已有的超集。 
+
+例如，您的虛擬網路使用了位址空間 10.0.0.0/16，而您可以公告 10.0.0.0/8。 但您無法公告 10.0.0.0/16 或 10.0.0.0/24。
 
 ### <a name="can-i-use-bgp-with-my-vnet-to-vnet-connections"></a>可以與我的 VNet 對 VNet 連線搭配使用 BGP 嗎？
 是，您可以針對跨單位連線和 VNet 對 VNet 連線使用 BGP。
@@ -41,10 +44,12 @@ Azure VPN 閘道會通告下列路由至您的內部部署 BGP 裝置︰
 是，可支援 BGP 傳輸路由，但例外狀況為 Azure VPN 閘道 **不會** 公告其他的 BGP 對等互連的預設路由。 若要啟用跨多個 Azure VPN 閘道的路由傳輸，您必須在所有中繼 VNet 對 VNet 連線上啟用 BGP。
 
 ### <a name="can-i-have-more-than-one-tunnel-between-azure-vpn-gateway-and-my-on-premises-network"></a>是否可在 Azure VPN 閘道與我的內部部署網路之間擁有多個通道？
-是，您可在 Azure VPN 閘道與內部部署網路之間建立多個 S2S VPN 通道。 請注意，所有這些通道將會計入您 Azure VPN 閘道的通道總數。 例如，如果您在 Azure VPN 閘道與其中一個內部部署網路之間有兩個備援通道，它們會在您的 Azure VPN 閘道的總配額 (標準為 10，HighPerformance 為 30) 中耗用 2 個通道。
+是，您可在 Azure VPN 閘道與內部部署網路之間建立多個 S2S VPN 通道。 請注意，所有這些通道將會計入您 Azure VPN 閘道的通道總數，而您必須在這兩個通道上啟用 BGP。
+
+例如，如果您在 Azure VPN 閘道與其中一個內部部署網路之間有兩個備援通道，它們會在您的 Azure VPN 閘道的總配額 (標準為 10，HighPerformance 為 30) 中耗用 2 個通道。
 
 ### <a name="can-i-have-multiple-tunnels-between-two-azure-vnets-with-bgp"></a>可以在兩個具有 BGP 的 Azure VNet 之間擁有多個通道嗎？
-否，不支援一對虛擬網路之間的備援通道。
+是，但是主動-主動組態中必須有至少一個虛擬網路閘道。
 
 ### <a name="can-i-use-bgp-for-s2s-vpn-in-an-expressroutes2s-vpn-co-existence-configuration"></a>我可以在 ExpressRoute/S2S VPN 共存組態中使用適用於 S2S VPN 的 BGP 嗎？
 是。 
@@ -63,6 +68,6 @@ Azure 區域網路閘道會指定內部部署網路的起始位址首碼。 若�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

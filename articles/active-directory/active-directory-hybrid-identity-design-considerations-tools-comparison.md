@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 08/08/2016
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2fb248f3e71b248ce0b5ae02ebeff291bbd28dce
+ms.sourcegitcommit: facdbff229eaf5ee20d98214c62c8b2b46acc0fd
+ms.openlocfilehash: 80617b203bf5efa4cd6bed590ea937b2e68db9e1
 
 
 ---
@@ -57,7 +57,7 @@ PP = 公開預覽
 |:--- |:---:|:---:|:---:|:---:|:---:|
 | 裝置的回寫 |● | |● | | |
 | 屬性回寫 (用於 Exchange 混合部署) |● |● |● |● |● |
-| 使用者和群組物件的回寫 |● | | | | |
+| 群組物件的回寫 |● | | | | |
 | 密碼的回寫 (從自助式密碼重設 (SSPR) 和密碼變更) |● |● | | | |
 
 ## <a name="authentication-feature-support"></a>驗證功能支援
@@ -95,6 +95,6 @@ PP = 公開預覽
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

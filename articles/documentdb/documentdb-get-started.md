@@ -16,8 +16,8 @@ ms.topic: hero-article
 ms.date: 12/16/2016
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 414c41cbccb755e058fb76f10bba62bd1ffa1835
-ms.openlocfilehash: d2989a3292117ada029fb26536bfffbce83f5e1b
+ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
+ms.openlocfilehash: 4ddd790efde26b6c2d2215c72e42bd9e2839e50e
 
 
 ---
@@ -477,7 +477,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富 [查詢](do
     // ADD THIS PART TO YOUR CODE
     this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 
-在執行應用程式之前，在 [專案] 功能表上按一下 [專案名稱] [屬性...]，然後按一下 [建置]。 清除 [偏好 32 位元]] 方塊，因為在 32 位元處理序中執行時，無法從查詢擷取磁碟分割路由資訊。
+在執行應用程式之前，在 [專案] 功能表上按一下 [專案名稱] [屬性...]，然後按一下 [建置]。 清除 [偏好 32 位元] 方塊，因為在 32 位元處理序中執行時，無法從查詢擷取磁碟分割路由資訊。
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -627,11 +627,10 @@ DocumentDB 支援刪除 JSON 文件。
 * 如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
 
 [documentdb-create-account]: documentdb-create-account.md
-[documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

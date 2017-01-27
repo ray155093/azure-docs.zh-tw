@@ -1,26 +1,31 @@
 ---
 title: "使用 Azure AD 應用程式 Proxy 發佈應用程式 | Microsoft Docs"
-description: "使用 Azure AD 應用程式 Proxy 將內部部署應用程式發佈至雲端。"
+description: "在傳統入口網站中使用 Azure AD 應用程式 Proxy 將內部部署應用程式發佈至雲端。"
 services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: 
+editor: harshja
 ms.assetid: d94ac3f4-cd33-4c51-9d19-544a528637d4
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/19/2016
+ms.date: 11/30/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0ba28b2708045a216e1b9fdd7601010b2b554737
+ms.sourcegitcommit: d7fe552e0c8856a8d7799ae8a7732e57a350fee3
+ms.openlocfilehash: 2a42605c75fe183d57030e4a3ff3f3218a7dbc2b
 
 
 ---
 # <a name="publish-applications-using-azure-ad-application-proxy"></a>使用 Azure AD 應用程式 Proxy 發佈應用程式
+
+> [!div class="op_single_selector"]
+> * [Azure 入口網站](application-proxy-publish-azure-portal.md)
+> * [Azure 傳統入口網站](active-directory-application-proxy-publish.md)
+
 Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部應用程式，協助您支援遠端背景工作。 此時，您應該已在 [Azure 傳統入口網站中啟用應用程式 Proxy](active-directory-application-proxy-enable.md)。 本文會逐步引導您發佈在區域網路上執行的應用程式，並提供從您的網路外部的安全遠端存取。 完成本文之後，您便可以使用個人化資訊或安全性需求開始設定應用程式。
 
 > [!NOTE]
@@ -101,6 +106,6 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 
