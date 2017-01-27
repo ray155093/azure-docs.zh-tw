@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/12/2017
+ms.date: 01/18/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 25dbeb2c011d4f2b833140d86690d546bfb6825e
-ms.openlocfilehash: 74805f654249d4499a4d36af1016801737ffb76a
+ms.sourcegitcommit: dcee5436a7bb377f37d6db2701c2e5df2e41944f
+ms.openlocfilehash: 1b162e57ee1e7a4e953d1b7593ce45669ff3cca8
 
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
@@ -153,8 +153,8 @@ ms.openlocfilehash: 74805f654249d4499a4d36af1016801737ffb76a
 | **亞洲** |Avanade Inc.、OneAs1a |
 | **澳大利亞** | IT Consultancy |
 | **歐洲** |Avanade Inc.、Dotnet Solutions、MSG Services、Nelite |
-| **美國** |Avanade Inc.、Equinix Professional Services、Perficient、Project Leadership |
-
+| **北美洲** |Avanade Inc.、Equinix Professional Services、Perficient、Project Leadership |
+| **南美洲** |Avanade Inc. |
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 * 請確定符合所有必要條件。 請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
@@ -164,6 +164,6 @@ ms.openlocfilehash: 74805f654249d4499a4d36af1016801737ffb76a
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -18,8 +18,8 @@ ms.workload: data-management
 ms.date: 01/17/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 8ff9c07fbc6e3d2a44414b485bd0f32b68b5d494
-ms.openlocfilehash: 127303bce70801ab93992273fd8f86d6f3c41605
+ms.sourcegitcommit: 435fca81cda845200467fbc0d6ed4d41de41aaf6
+ms.openlocfilehash: 324fd91b415a4744cb472bbd8a8b795a8fbb8080
 
 
 ---
@@ -73,7 +73,7 @@ ms.openlocfilehash: 127303bce70801ab93992273fd8f86d6f3c41605
 除了先前所討論的伺服器層級系統管理角色以外，SQL Database 還在可新增使用者帳戶的 master 資料庫中提供兩種受限的系統管理角色，以授與建立資料庫或管理登入的權限。
 
 ### <a name="database-creators"></a>資料庫建立者
-其中一個系統管理角色是 **dbmanager** 角色。 此角色的成員可以建立新的資料庫。 若要使用此角色，您可在 `master` 資料庫中建立使用者，然後將該使用者新增至 **dbmanager** 資料庫角色。 使用者可以是自主資料庫使用者，或依據 master 資料庫中 SQL Server 登入的使用者。
+其中一個系統管理角色是 **dbmanager** 角色。 此角色的成員可以建立新的資料庫。 若要使用此角色，您可在 `master` 資料庫中建立使用者，然後將該使用者新增至 **dbmanager** 資料庫角色。 若要建立資料庫，使用者必須是主要資料庫中以 SQL Server 登入為基礎的使用者，或是以 Azure Active Directory 使用者為基礎的容器資料庫使用者。
 
 1. 使用系統管理員帳戶，連接至 master 資料庫。
 2. 選擇性步驟︰使用 [CREATE LOGIN](https://msdn.microsoft.com/library/ms189751.aspx) 陳述式來建立 SQL Server 驗證登入。 範例陳述式︰

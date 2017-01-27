@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 12/21/2016
 ms.author: elbutter
 translationtype: Human Translation
-ms.sourcegitcommit: 5bb75bf36892c737568b8129b30bb30b02d01bf2
-ms.openlocfilehash: 1227903652a944d9d144917922fe36a4f149f820
+ms.sourcegitcommit: fe9de0ffad3fe5d4acbf3caf2f08101f6a13daaf
+ms.openlocfilehash: 12f500c01671799612b0d1988e0d07bbfda600da
 
 
 ---
@@ -63,7 +63,7 @@ Azure SQL 資料倉儲的快速入門教學課程。 本教學課程會教導您
 
 3. 填寫部署詳細資料
 
-    **資料庫名稱**︰挑選您想要的名稱。 如果您有多個 SQL DW 執行個體，建議您在名稱中包含詳細資料，例如其區域、環境等，例如 mydw-westus-1-test
+    **資料庫名稱**︰挑選您想要的名稱。 如果您有多個 SQL DW 執行個體，建議您在名稱中包含詳細資料，例如其區域、環境等，例如 *mydw-westus-1-test*
 
     **訂用帳戶**：您的 Azure 訂用帳戶
 
@@ -120,7 +120,7 @@ Azure SQL 資料倉儲的快速入門教學課程。 本教學課程會教導您
 
 ### <a name="creating-a-user-of-a-larger-resource-class"></a>建立屬於更大資源類別的使用者
 
-1. 在伺服器的**主要**資料庫上建立新的查詢
+1. 在伺服器的**主要**資料庫上進行查詢
 
     ![主要資料庫上的新增查詢](./media/sql-data-warehouse-get-started-tutorial/query-on-server.png)
 
@@ -133,7 +133,7 @@ Azure SQL 資料倉儲的快速入門教學課程。 本教學課程會教導您
     CREATE USER LoadingUser FOR LOGIN XLRCLOGIN;
     ```
 
-3. 根據伺服器登入建立新的資料庫使用者
+3. 查詢 SQL DataWarehouse 資料庫、依伺服器登入建立新的資料庫使用者 
     ```sql
     CREATE USER LoadingUser FOR LOGIN XLRCLOGIN;
     ```
@@ -148,7 +148,7 @@ Azure SQL 資料倉儲的快速入門教學課程。 本教學課程會教導您
 
 5. 將資料庫使用者新增至 **xlargerc** 資源類別角色
     ```sql
-    EXEC sp_addrolememeber 'xlargerc', 'LoadingUser';
+    EXEC sp_addrolemember 'xlargerc', 'LoadingUser';
     ```
 
 6. 使用新認證登入資料庫
@@ -159,9 +159,11 @@ Azure SQL 資料倉儲的快速入門教學課程。 本教學課程會教導您
 ## <a name="loading-data"></a>載入資料
 
 ### <a name="defining-external-data"></a>定義外部資料
-1. 定義外部資料來源
+1. 建立主要金鑰並定義外部資料來源
 
     ```sql
+    CREATE MASTER KEY;
+
     CREATE EXTERNAL DATA SOURCE NYTPublic
     WITH
     (
@@ -569,9 +571,9 @@ Azure SQL 資料倉儲的快速入門教學課程。 本教學課程會教導您
     on tr.DateID = dt.DateID
     ```
 
-    如您所料，當您在不同節點之間隨機處理資料時，尤其是像這樣的聯結案例，查詢需要耗費更長的時間。
+    如您所料，當您在不同節點之間隨機處理資料時，尤其是像這樣的查詢聯結案例，需要耗費更長的時間進行查詢。
 
-2. 我們來看看，當我們執行下列命令對所聯結的資料行建立統計資料時，這會有何不同︰
+2. 我們來看看，當我們執行下列命令對所聯結的資料行建立統計資料時，此查詢會有何不同︰
 
     ```sql
     CREATE STATISTICS [dbo.Date DateID stats] ON dbo.Date (DateID);
@@ -626,6 +628,6 @@ Azure SQL 資料倉儲的快速入門教學課程。 本教學課程會教導您
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

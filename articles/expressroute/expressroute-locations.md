@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/12/2017
+ms.date: 01/18/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 25dbeb2c011d4f2b833140d86690d546bfb6825e
-ms.openlocfilehash: 45288c24630a4931da9f89196236ab910de735ac
+ms.sourcegitcommit: dcee5436a7bb377f37d6db2701c2e5df2e41944f
+ms.openlocfilehash: e7a511efdf89d299ba309b9a812092411a55c08d
 
 
 ---
@@ -175,15 +175,15 @@ ms.openlocfilehash: 45288c24630a4931da9f89196236ab910de735ac
 
 | **系統整合者** | **Continent** |
 | --- | --- |
-| **[Avanade Inc.](http://www.avanade.com/)** |亞洲、歐洲、美國 |
-| **[Dotnet Solutions](http://www.dotnetsolutions.co.uk/)** |歐洲 |
-| **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** |US |
+| **[Avanade Inc.](http://www.avanade.com/)** | 亞洲、歐洲、北美洲、南美洲 |
+| **[Dotnet Solutions](http://www.dotnetsolutions.co.uk/)** | 歐洲 |
+| **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** | 北美洲 |
 | **[IT Consultancy](http://itconsult.com.au/microsoft-expressroute)** | 澳大利亞 |
 | **[MSG Services](https://www.msg-services.de/it-services/managed-services/cloud-outsourcing/)** | 歐洲 (德國) |
-| **[Nelite](http://nelite.com/)** |歐洲 |
-| **[OneAs1a](http://www.oneas1a.com/express-connect-any-cloud-ecac)** |亞洲 |
-| **[Perficient](http://www.perficient.com/Partners/Microsoft/Cloud/Azure-ExpressRoute)** |US |
-| **[Project Leadership](http://www.projectleadership.net/azure)** |US |
+| **[Nelite](http://nelite.com/)** | 歐洲 |
+| **[OneAs1a](http://www.oneas1a.com/express-connect-any-cloud-ecac)** | 亞洲 |
+| **[Perficient](http://www.perficient.com/Partners/Microsoft/Cloud/Azure-ExpressRoute)** | 北美洲 |
+| **[Project Leadership](http://www.projectleadership.net/azure)** | 北美洲 |
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -195,6 +195,6 @@ ms.openlocfilehash: 45288c24630a4931da9f89196236ab910de735ac
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 
