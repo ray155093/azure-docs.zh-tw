@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/20/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 73fafeff227061feae1fbc0a1c50e5056116e3ea
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: a04c7129cd2e16c129f3e4b8e8e40f76ff37114d
 
 
 ---
@@ -40,9 +40,9 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 您在本教學課程中部署的 WordPress 網站使用 MySQL 來做為資料庫。 如果您想改為使用 SQL Database 來做為資料庫，請參閱 [專案 Nami]，其也可透過 Azure Marketplace 來取得。
 
 > [!NOTE]
-> 若要完成此教學課程，您需要 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益][啟用]，或是[申請免費試用][免費試用]。
+> 若要完成此教學課程，您需要 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益][activate]，或是[申請免費試用][free trial]。
 > 
-> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service]。 您可以於該處，在 App Service 中立即建立短期的入門 Web 應用程式 - 不需信用卡，不需任何承諾。
+> 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往 [試用 App Service]。 您可以於該處，在 App Service 中立即建立短期的入門 Web 應用程式 - 不需信用卡，不需任何承諾。
 > 
 > 
 
@@ -136,9 +136,9 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 [Node.js]: https://azure.microsoft.com/develop/nodejs/
 [Java]: https://azure.microsoft.com/develop/java/
 [Python]: https://azure.microsoft.com/develop/python/
-[啟用]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
-[免費試用]: https://azure.microsoft.com/pricing/free-trial/
-[試用 App Service]: http://go.microsoft.com/fwlink/?LinkId=523751
+[activate]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
+[free trial]: https://azure.microsoft.com/pricing/free-trial/
+[試用 App Service]: https://azure.microsoft.com/try/app-service/
 [ResourceGroups]: ../azure-resource-manager/resource-group-overview.md
 [AzureAppServicePlans]: ../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md
 [ApplicationInsights]: https://azure.microsoft.com/services/application-insights/
@@ -168,6 +168,6 @@ Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

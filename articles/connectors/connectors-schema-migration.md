@@ -16,12 +16,12 @@ ms.topic: get-started-article
 ms.date: 08/23/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ab22e0369781f9f9afb9b3df9e7fdd54660a959d
+ms.sourcegitcommit: 30abc823a72431dfd12f1051434191ea904533f6
+ms.openlocfilehash: a5a73a9f124e5339b61dbc49021444a208a471f0
 
 
 ---
-# <a name="how-to-migrate-logic-apps-to-schema-version-20150801preview"></a>如何將邏輯應用程式移轉至結構描述版本 2015-08-01-preview
+# <a name="how-to-migrate-logic-apps-to-schema-version-2015-08-01-preview"></a>如何將邏輯應用程式移轉至結構描述版本 2015-08-01-preview
 若要將現有的邏輯應用程式移至新的結構描述，請執行下列作業︰  
 
 1. 在 Azure 入口網站中開啟邏輯應用程式  
@@ -41,11 +41,11 @@ ms.openlocfilehash: ab22e0369781f9f9afb9b3df9e7fdd54660a959d
 * 移轉完成後，開始更新邏輯應用程式以盡可能使用 [Managed API](apis-list.md)。 例如，您可以在使用 DropBox v1 的地方開始使用 Dropbox v2。
 
 ## <a name="whats-next"></a>後續步驟
-* [了解如何手動移轉邏輯應用程式](../app-service-logic/app-service-logic-schema-2015-08-01.md)
+* [了解如何手動移轉邏輯應用程式](../logic-apps/logic-apps-schema-2015-08-01.md)
 
 <!--Icon references-->
-[步驟 1]: ./media/connectors-schema-migration/migrateschema1.png
-[步驟 2]: ./media/connectors-schema-migration/migrateschema2.png
+[step1]: ./media/connectors-schema-migration/migrateschema1.png
+[step2]: ./media/connectors-schema-migration/migrateschema2.png
 
 
 
@@ -55,6 +55,6 @@ ms.openlocfilehash: ab22e0369781f9f9afb9b3df9e7fdd54660a959d
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

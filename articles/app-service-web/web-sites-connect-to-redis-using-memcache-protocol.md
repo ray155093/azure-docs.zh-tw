@@ -15,13 +15,13 @@ ms.workload: na
 ms.date: 02/29/2016
 ms.author: cfowler
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f0321c71655f1b023862aeeef4615544135adb5a
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: c478b8ba6817dd110bb7bfe3a33b728e5f85cc11
 
 
 ---
 # <a name="connect-a-web-app-in-azure-app-service-to-redis-cache-via-the-memcache-protocol"></a>透過 Memcache 通訊協定，將 Azure App Service 中的 Web 應用程式連線到 Redis Cache
-本文說明如何使用 [Memcache][13] 通訊協定，將 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中的 WordPress Web 應用程式連線到 [Azure Redis Cache][12]。 如果現有的 Web 應用程式在記憶體內部快取中使用 Memcached 伺服器，則可將它移轉至 Azure App Service，並使用 Microsoft Azure 本身的快取解決方案，而不需要變更您的應用程式程式碼，或只要些許變更。 此外，您可以利用現有的 Memcache 專長，在 Azure App Service 中建立高可調整性、分散式應用程式，並於記憶體內部快取中使用 Azure Redis Cache，同時使用常用應用程式架構，例如 .NET、PHP、Node.js、Java 和 Python。  
+本文說明如何使用 [Memcache][13] 通訊協定，將 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中的 WordPress Web 應用程式連接到 [Azure Redis 快取][12]。 如果現有的 Web 應用程式在記憶體內部快取中使用 Memcached 伺服器，則可將它移轉至 Azure App Service，並使用 Microsoft Azure 本身的快取解決方案，而不需要變更您的應用程式程式碼，或只要些許變更。 此外，您可以利用現有的 Memcache 專長，在 Azure App Service 中建立高可調整性、分散式應用程式，並於記憶體內部快取中使用 Azure Redis Cache，同時使用常用應用程式架構，例如 .NET、PHP、Node.js、Java 和 Python。  
 
 App Service Web 應用程式可讓此應用程式案例使用 Web Apps Memcache 填充碼，它是本機 Memcached 伺服器，可做為 Memcache proxy，快取對於 Azure Redis Cache 的呼叫。 這可讓任何使用 Memcache 通訊協定進行通訊的應用程式，以 Redis Cache 快取資料。 此 Memcache 填充碼作用於通訊協定層級，因此可供任何應用程式或應用程式架構使用，只要它們使用 Memcache 通訊協定進行通訊。
 
@@ -38,7 +38,7 @@ Web Apps Memcache 填充碼可以搭配任何應用程式，只要應用程式�
 部署 Scalable WordPress 網站與佈建 Redis Cache 執行個體之後，就可以準備在 Azure App Service Web 應用程式中啟用 Memcache 填充碼。
 
 ## <a name="enable-the-web-apps-memcache-shim"></a>啟用 Web Apps Memcache 填充碼
-若要設定 Memcache 填充碼，您必須建立三個應用程式設定。 而您有各種不同的方法來達成這目標，包括 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)、[傳統入口網站][3]、[Azure PowerShell Cmdlet][5]，或是 [Azure 命令列介面][5]。 基於這篇文章的目的，我打算使用 [Azure 入口網站][4] 來設定應用程式設定。 下列值可擷取自 Redis 快取執行個體的 [設定]  刀鋒視窗。
+若要設定 Memcache 填充碼，您必須建立三個應用程式設定。 而您有各種不同的方法來達成這目標，包括 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)、[傳統入口網站][3]、[Azure PowerShell Cmdlet][5] 或[Azure 命令列介面][5]。 基於這篇文章的目的，我將使用 [Azure 入口網站][4]來設定應用程式設定。 下列值可擷取自 Redis 快取執行個體的 [設定]  刀鋒視窗。
 
 ![Azure Redis 快取設定刀鋒視窗](./media/web-sites-connect-to-redis-using-memcache-protocol/1-azure-redis-cache-settings.png)
 
@@ -136,7 +136,7 @@ $memcached_servers = array(
 ## <a name="verify-the-memcache-object-cache-plugin-is-functioning"></a>確認 Memcache 物件快取外掛程式正常運作
 啟用 Web 應用程式 Memcache 填充碼的所有步驟現在皆已完成。 剩下的唯一一件事，就是要確認資料會填入 Redis Cache 執行個體。
 
-### <a name="enable-the-nonssl-port-support-in-azure-redis-cache"></a>啟用 Azure Redis Cache 中的非 SSL 連接埠支援
+### <a name="enable-the-non-ssl-port-support-in-azure-redis-cache"></a>啟用 Azure Redis Cache 中的非 SSL 連接埠支援
 > [!NOTE]
 > 撰寫本文時，Redis CLI 不支援 SSL 連線，因此需要下列步驟。
 > 
@@ -158,9 +158,9 @@ $memcached_servers = array(
 
 ![Azure Redis 快取 Redis 存取入口網站非 SSL](./media/web-sites-connect-to-redis-using-memcache-protocol/18-azure-redis-cache-access-port-non-ssl.png)
 
-### <a name="connect-to-azure-redis-cache-from-rediscli"></a>從 redis cli 連線至 Azure Redis Cache
+### <a name="connect-to-azure-redis-cache-from-redis-cli"></a>從 redis cli 連線至 Azure Redis Cache
 > [!NOTE]
-> 這個步驟假設 redis 安裝在開發電腦的本機上。 [使用這些指示在本機上安裝 Redis][9]。
+> 這個步驟假設 redis 安裝在開發電腦的本機上。 [使用這些指示，在本機上安裝 Redis][9]。
 > 
 > 
 
@@ -177,10 +177,10 @@ redis-cli –h <hostname-for-redis-cache> –a <primary-key-for-redis-cache> –
 列出索引鍵呼叫應會傳回一個值。 如果沒有，請試著移至 Web 應用程式並再試一次。
 
 ## <a name="conclusion"></a>結論
-恭喜！ WordPress 應用程式現在已經有一個集中式記憶體內部快取，可協助不斷增加的流量。 請記住，Web 應用程式 Memcache 填充碼可以搭配任何 Memcache 用戶端，而不論使用何種程式設計語言或應用程式架構。 若要提供意見反應或詢問有關 Web Apps Memcache 填充碼的問題，請張貼至 [MSDN 論壇][10] 或 [Stackoverflow][11]。
+恭喜！ WordPress 應用程式現在已經有一個集中式記憶體內部快取，可協助不斷增加的流量。 請記住，Web 應用程式 Memcache 填充碼可以搭配任何 Memcache 用戶端，而不論使用何種程式設計語言或應用程式架構。 若要提供意見反應或詢問有關 Web Apps Memcache 填充碼的問題，請張貼至 [MSDN 論壇][10]或 [Stackoverflow][11]。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -191,7 +191,7 @@ redis-cli –h <hostname-for-redis-cache> –a <primary-key-for-redis-cache> –
 [1]: http://bit.ly/1t0KxBQ
 [2]: http://manage.windowsazure.com
 [3]: http://portal.azure.com
-[4]: ../powershell-install-configure.md
+[4]: /powershell/azureps-cmdlets-docs
 [5]: /downloads
 [6]: http://pecl.php.net
 [7]: http://pecl.php.net/package/memcache
@@ -204,6 +204,6 @@ redis-cli –h <hostname-for-redis-cache> –a <primary-key-for-redis-cache> –
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

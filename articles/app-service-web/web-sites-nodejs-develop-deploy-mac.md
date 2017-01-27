@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: hero-article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c63b2b59143b57d6666910e701d8810bd517a42d
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 4b8eb863a1fcb65c307870619ea9d8942c57a906
 
 
 ---
@@ -47,7 +47,7 @@ ms.openlocfilehash: c63b2b59143b57d6666910e701d8810bd517a42d
 > [!NOTE]
 > 若要完成此教學課程，您需要 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益](/en-us/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)，或是[申請免費試用](/en-us/pricing/free-trial/?WT.mc_id=A261C142F)。
 > 
-> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)。 您可以於該處，在 App Service 中立即建立短期的入門 Web app - 不需信用卡，不需任何承諾。
+> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)。 您可以於該處，在 App Service 中立即建立短期的入門 Web app - 不需信用卡，不需任何承諾。
 > 
 > 
 
@@ -186,7 +186,7 @@ Node.js 提供您豐富的模組生態系統，可供您的應用程式使用。
 
 如果您在將應用程式部署到 Azure 後遇到問題，請參閱 [如何在 Azure App Service 中偵錯 Node.js 應用程式](web-sites-nodejs-debug.md) ，以獲得診斷問題的詳細資訊。
 
-這篇文章會使用 Azure 入口網站來建立 Web 應用程式。 您也可以使用 [Azure 命令列介面](../xplat-cli-install.md)或 [Azure PowerShell](../powershell-install-configure.md) 執行相同作業。
+這篇文章會使用 Azure 入口網站來建立 Web 應用程式。 您也可以使用 [Azure 命令列介面](../xplat-cli-install.md)或 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 執行相同作業。
 
 如需如何在 Azure 上開發 Node.js 應用程式的詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
 
@@ -202,6 +202,6 @@ Node.js 提供您豐富的模組生態系統，可供您的應用程式使用。
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/28/2016
+ms.date: 01/04/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 4edd2696c9a5709ded6e2a3e352090775335f0d2
-ms.openlocfilehash: 69f3bd4759e879c6f3b55d8126f34e8ebf4be52d
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 18959934c53e2e1c719cc627ffa286acbdcaa967
 
 
 ---
@@ -58,13 +58,25 @@ ms.openlocfilehash: 69f3bd4759e879c6f3b55d8126f34e8ebf4be52d
 除了 App Service 中的 Web Apps，Azure 還提供可用來裝載網站和 Web 應用程式的其他服務。 大部分的情況下，Web Apps 是最佳選擇。  若是微服務架構，請考慮使用 [Service Fabric](https://azure.microsoft.com/documentation/services/service-fabric)，如果您需要能更加充分地掌控程式碼執行所在的 VM，則請考慮使用 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)。 如需如何在這些 Azure 服務之間做選擇的詳細資訊，請參閱 [Azure App Service、虛擬機器、Service Fabric 及雲端服務的比較](choose-web-site-cloud-service-vm.md)。
 
 ## <a name="getting-started"></a>開始使用
-若要開始在 App Service 中的新 Web 應用程式部署範例程式碼，請遵循 [在 5 分鐘內將第一個 Web 應用程式部署至 Azure 中](app-service-web-get-started.md) 教學課程。 您將需要免費的 Azure 帳戶。
+若要開始在 App Service 中的新 Web 應用程式部署範例程式碼，請遵循下列下拉式方塊中的其中一個教學課程。 您將需要免費的 Azure 帳戶。
 
-如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> [!div class="op_single_selector"]
+> * [在 5 分鐘內將您的第一個 HTML 網站部署到 Azure](app-service-web-get-started-html-cli-nodejs.md)
+> * [在 5 分鐘內將您的第一個 ASP.NET Web 應用程式部署到 Azure](app-service-web-get-started-dotnet-cli-nodejs.md)
+> * [在 5 分鐘內將您的第一個 PHP Web 應用程式部署到 Azure](app-service-web-get-started-php-cli-nodejs.md)
+> * [在 5 分鐘內將您的第一個 Node.js Web 應用程式部署到 Azure](app-service-web-get-started-nodejs-cli-nodejs.md)
+> * [在 5 分鐘內將您的第一個 Python Web 應用程式部署到 Azure](app-service-web-get-started-python-cli-nodejs.md)
+> * [在 5 分鐘內將您的第一個 Java Web 應用程式部署到 Azure](app-service-web-get-started-java.md)
+> 
+> 
+
+> [!NOTE]
+> 您可以[試用 App Service](https://azure.microsoft.com/try/app-service/)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
+> 
+> 
 
 
 
-
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

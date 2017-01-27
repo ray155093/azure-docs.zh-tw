@@ -15,15 +15,15 @@ ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e59a87ec6017061078d5cb5df93207c7f93ec00b
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 4d34bb29df95ae83952d8f421f3f2a9118ad5e1d
 
 
 ---
 # <a name="create-a-xamarinandroid-app"></a>建立 Xamarin.Android 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 本教學課程將示範如何將雲端後端服務加入至 Xamarin.Android 應用程式。 如需詳細資訊，請參閱 [什麼是 Mobile Apps？](app-service-mobile-value-prop.md)。
 
 以下是完成之應用程式的螢幕擷取畫面：
@@ -39,7 +39,7 @@ ms.openlocfilehash: e59a87ec6017061078d5cb5df93207c7f93ec00b
 * Visual Studio 和 Xamarin。 如需相關指示，請參閱 [設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) 。
 
 > [!NOTE]
-> 如果您想要在註冊 Azure 帳戶前先開始使用 Azure App Service，請移至[試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)。  您可以在 App Service 中立即建立短期的入門行動應用程式。 不需要信用卡；無需承諾。
+> 如果您想要在註冊 Azure 帳戶前先開始使用 Azure App Service，請移至[試用 App Service](https://azure.microsoft.com/try/app-service/mobile/)。  您可以在 App Service 中立即建立短期的入門行動應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -83,11 +83,11 @@ ms.openlocfilehash: e59a87ec6017061078d5cb5df93207c7f93ec00b
 [10]: ./media/app-service-mobile-xamarin-android-get-started/mobile-quickstart-startup-android.png
 
 <!-- URLs. -->
-[Azure 入口網站]: https://azure.portal.com/
+[Azure Portal]: https://azure.portal.com/
 [Visual Studio]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 09/20/2016
+ms.date: 01/19/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7a401cb0cd9c13f2ab1779fbc18bee2a61ba5e77
+ms.sourcegitcommit: 2b128e2771ea89d1c0d6b8d52357d1bcc993115a
+ms.openlocfilehash: a9629d0a4bfc44f5d035a29f8e97d76922cc0060
 
 
 ---
@@ -117,7 +117,7 @@ Adventure Works 資料庫支援一家虛構自行車製造商 (Adventure Works C
 在本練習中，您可以透過註冊工具，使用目錄註冊 Adventure Works 資料庫中的資料資產。 註冊的過程會從資料來源及其包含的資產中，擷取重要的結構化中繼資料 (例如名稱、類型和位置)，並將該中繼資料複製到目錄。 資料來源及資料資產會留在原地，但目錄會利用中繼資料，讓您更輕鬆探索和了解資料來源及其資料。
 
 ### <a name="register-a-data-source"></a>註冊資料來源
-1. 移至 [Azure 資料目錄首頁](https://azuredatacatalog.com)，然後按一下 [發佈資料]。
+1. 移至 [Azure 資料目錄首頁](http://azuredatacatalog.com)，然後按一下 [發佈資料]。
    
    ![Azure 資料目錄--發佈資料按鈕](media/data-catalog-get-started/data-catalog-publish-data.png)
 2. 按一下 [啟動應用程式]  以在電腦上下載、安裝及執行註冊工具。
@@ -366,6 +366,6 @@ Azure 資料目錄支援支援群眾外包 (crowd-sourcing) 的註解作法。 A
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

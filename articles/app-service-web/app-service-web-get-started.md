@@ -1,5 +1,5 @@
 ---
-title: "在 5 分鐘內將您的第一個 Web 應用程式部署到 Azure | Microsoft Docs"
+title: "在&5; 分鐘內將您的第一個 Web 應用程式部署到 Azure | Microsoft Docs"
 description: "藉由部署範例 App，了解在 App Service 中執行 Web 應用程式有多麼簡單。 快速開始進行真正的開發，並立即查看結果。"
 services: app-service\web
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 10/13/2016
+ms.date: 01/04/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: f33928b445ab93c48e9967cd6a2f64c6686e1a58
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 9f262eb2fa4c0bd8bf1442a7a3d013af6d9ad649
 
 
 ---
-# <a name="deploy-your-first-web-app-to-azure-in-five-minutes"></a>在 5 分鐘內，將您的第一個 Web 應用程式部署到 Azure
+# <a name="deploy-your-first-web-app-to-azure-in-five-minutes"></a>在&5; 分鐘內，將您的第一個 Web 應用程式部署到 Azure
 本教學課程將協助您部署您的第一個 Web 應用程式至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
 您可以使用 App Service 來建立 Web 應用程式、[行動應用程式後端](/documentation/learning-paths/appservice-mobileapps/)和 [Web 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
 
@@ -31,17 +31,22 @@ ms.openlocfilehash: f33928b445ab93c48e9967cd6a2f64c6686e1a58
 * 看見您的程式碼在生產環境中即時執行。
 * 以您 [推送 Git 認可](https://git-scm.com/docs/git-push)的相同方式，更新 Web 應用程式。
 
-> [!INCLUDE [app-service-linux](../../includes/app-service-linux.md)]
-> 
-> 
+[!INCLUDE [app-service-linux](../../includes/app-service-linux.md)]
+
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+
+您可以使用下列其中一個 CLI 版本來完成工作︰
+
+- [Azure CLI 1.0](app-service-web-get-started-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
+- [Azure CLI 2.0 (預覽)](app-service-web-get-started.md) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="prerequisites"></a>必要條件
 * [Git](http://www.git-scm.com/downloads)。
-* [Azure CLI](../xplat-cli-install.md)。
+* [Azure CLI 2.0 Preview](/cli/azure/install-az-cli2)。
 * Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 > [!NOTE]
-> 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
+> 您可以[試用 App Service](https://azure.microsoft.com/try/app-service/)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
 > 
 > 
 
@@ -50,25 +55,40 @@ ms.openlocfilehash: f33928b445ab93c48e9967cd6a2f64c6686e1a58
 
 1. 開啟新的 Windows 命令提示字元、PowerShell 視窗、Linux Shell 或 OS X 終端機。 執行 `git --version` 和 `azure --version`，確認電腦上已安裝 Git 和 Azure CLI。
    
-    ![測試已在 Azure 中針對您的第一個 Web 應用程式安裝 CLI 工具](./media/app-service-web-get-started/1-test-tools.png)
+    ![測試已在 Azure 中針對您的第一個 Web 應用程式安裝 CLI 工具](./media/app-service-web-get-started/1-test-tools-2.0.png)
    
     如果您尚未安裝工具，請參閱 [必要條件](#Prerequisites) 以取得下載連結。
+
 2. 如下所示，登入 Azure：
    
-        azure login
+        az login
    
     依照說明訊息進行來繼續登入程序。
    
-    ![登入 Azure 以建立第一個 Web 應用程式](./media/app-service-web-get-started/3-azure-login.png)
-3. 將 Azure CLI 切換至 ASM 模式，然後設定 App Service 的部署使用者。 稍後您將使用認證來部署程式碼。
+    ![登入 Azure 以建立第一個 Web 應用程式](./media/app-service-web-get-started/3-azure-login-2.0.png)
+
+3. 設定 App Service 的部署使用者。 稍後您將使用這些認證來部署程式碼。
    
-        azure config mode asm
-        azure site deployment user set --username <username> --pass <password>
-4. 切換至工作目錄 (`CD`)，並如下所示複製範例應用程式︰
+        az appservice web deployment user set --user-name <username> --password <password>
+
+3. 建立新的[資源群組](../azure-resource-manager/resource-group-overview.md)。 在這個第一個 App Service 教學課程中，您真的不需要知道它是什麼。
+
+        az group create --location "<location>" --name my-first-app-group
+
+    若要查看您可用於 `<location>` 的可能值，請使用 `az appservice list-locations`CLI 命令。
+
+3. 建立新的「免費」[App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 在這個第一個 App Service 教學課程中，只需知道，您可以免費使用本方案中 Web 應用程式。
+
+        az appservice plan create --name my-free-appservice-plan --resource-group my-first-app-group --sku FREE
+
+4. 在 `<app_name>` 中使用唯一名稱建立新的 Web 應用程式。
+
+        az appservice web create --name <app_name> --resource-group my-first-app-group --plan my-free-appservice-plan
+
+4. 接下來，您會取得您想要部署的範例程式碼。 切換至工作目錄 (`CD`)，並如下所示複製範例應用程式︰
    
+        cd <working_directory>
         git clone <github_sample_url>
-   
-    ![複製 App 範例程式碼，用於您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started/2-clone-sample.png)
    
     對於 &lt;github_sample_url>，使用下列其中一個 URL (視您所需的架構而定)：
    
@@ -78,18 +98,28 @@ ms.openlocfilehash: f33928b445ab93c48e9967cd6a2f64c6686e1a58
    * Node.js (Express)： [https://github.com/Azure-Samples/app-service-web-nodejs-get-started.git](https://github.com/Azure-Samples/app-service-web-nodejs-get-started.git)
    * Java： [https://github.com/Azure-Samples/app-service-web-java-get-started.git](https://github.com/Azure-Samples/app-service-web-java-get-started.git)
    * Python (Django)： [https://github.com/Azure-Samples/app-service-web-python-get-started.git](https://github.com/Azure-Samples/app-service-web-python-get-started.git)
+
+    ![複製 App 範例程式碼，用於您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started/2-clone-sample.png)
+   
 5. 切換至範例 App 的儲存機制。 例如：
    
         cd app-service-web-html-get-started
-6. 在 Azure 中，以唯一的應用程式名稱和您稍早設定的部署使用者，建立 App Service 應用程式資源。 出現提示時，指定所需的區域數目。
+
+5. 使用下列命令，設定 App Service Web 應用程式的本機 Git 部署︰
+
+        az appservice web source-control config-local-git --name <app_name> --resource-group my-first-app-group
+
+    您會取得如下所示的 JSON 輸出，這表示已設定遠端 Git 儲存機制︰
+
+        {
+        "url": "https://<deployment_user>@<app_name>.scm.azurewebsites.net/<app_name>.git"
+        }
+
+6. 將 JSON 中的 URL 新增為本機儲存機制的 Git 遠端 (為了簡單起見，稱為 `azure`)。
+
+        git remote add azure https://<deployment_user>@<app_name>.scm.azurewebsites.net/<app_name>.git
    
-        azure site create <app_name> --git --gitusername <username>
-   
-    ![在 Azure 中建立第一個 Web 應用程式的 Azure 資源](./media/app-service-web-get-started/4-create-site.png)
-   
-    您的應用程式現在已建立於 Azure 中。 此外，您目前的目錄也已進行 Git 初始化並連接到新的 App Service 應用程式而成為 Git 遠端。
-    您可以瀏覽至應用程式 URL (http://&lt;app_name>.azurewebsites.net) 來查看美麗的預設 HTML 網頁，但現在就讓我們實際將程式碼放在那裡。
-7. 將範例程式碼部署至 Azure App，如同使用 Git 推送任何程式碼一樣。 出現提示時，使用您稍早設定的密碼。
+7. 將您的範例程式碼部署至 `azure` Git 遠端。 出現提示時，使用您稍早設定的部署認證。
    
         git push azure master
    
@@ -100,11 +130,13 @@ ms.openlocfilehash: f33928b445ab93c48e9967cd6a2f64c6686e1a58
 恭喜，您的應用程式已部署至 Azure App Service。
 
 ## <a name="see-your-app-running-live"></a>看見您的應用程式即時執行
-若要查看 Azure 中即時執行的應用程式，請從儲存機制中的任何目錄執行此命令︰
 
-    azure site browse
+若要看見您的應用程式在 Azure 中即時執行，請執行這個命令 ︰
+
+    az appservice web browse --name <app_name> --resource-group my-first-app-group
 
 ## <a name="make-updates-to-your-app"></a>更新您的應用程式
+
 您現在可以使用 Git 隨時從您的專案 (儲存機制) 根目錄進行推送，以更新即時網站。 您可以使用第一次部署程式碼時的相同方式來執行這項作業。 例如，每次您想要推送已在本機測試的新變更時，只需從專案 (儲存機制) 根目錄執行下列命令︰
 
     git add .
@@ -112,16 +144,14 @@ ms.openlocfilehash: f33928b445ab93c48e9967cd6a2f64c6686e1a58
     git push azure master
 
 ## <a name="next-steps"></a>後續步驟
+
 針對您的語言架構，尋找偏好的開發和部署步驟：
 
-> [!div class="op_single_selector"]
-> * [.NET](web-sites-dotnet-get-started.md)
-> * [PHP](app-service-web-php-get-started.md)
-> * [Node.js](app-service-web-nodejs-get-started.md)
-> * [Python](web-sites-python-ptvs-django-mysql.md)
-> * [Java](web-sites-java-get-started.md)
-> 
-> 
+* [.NET](web-sites-dotnet-get-started.md)
+* [PHP](app-service-web-php-get-started.md)
+* [Node.js](app-service-web-nodejs-get-started.md)
+* [Python](web-sites-python-ptvs-django-mysql.md)
+* [Java](web-sites-java-get-started.md)
 
 或者，進一步運用您的第一個 Web 應用程式。 例如：
 
@@ -131,6 +161,6 @@ ms.openlocfilehash: f33928b445ab93c48e9967cd6a2f64c6686e1a58
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 
