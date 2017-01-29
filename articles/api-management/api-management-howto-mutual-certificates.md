@@ -12,28 +12,28 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ad14ed8b36d6d0a2121c32fd9a54de97e8b02342
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: de47ff52eac40c4b4c57eef89763b71fd525ffa4
 
 
 ---
 # <a name="how-to-secure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a>如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務
 API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。 本指南將示範如何在 API 發行者入口網站內管理憑證，以及如何設定 API 以使用憑證來存取其後端服務。
 
-如需有關使用「API 管理 REST API」來管理憑證的資訊，請參閱 [Azure API 管理 REST API 憑證實體][Azure API 管理 REST API 憑證實體]。
+如需使用 API 管理 REST API 來管理憑證的詳細資訊，請參閱 [Azure API 管理 REST API 憑證實體][Azure API Management REST API Certificate entity]。
 
 ## <a name="prerequisites"> </a>必要條件
-本指南將示範如何設定 API 管理服務執行個體，以使用用戶端憑證驗證來存取 API 的後端服務。 在依照本主題中的步驟操作之前，請先設定後端服務以進行用戶端憑證驗證 ([若要在 Azure 網站中設定憑證驗證，請參閱此文章][若要在 Azure 網站中設定憑證驗證，請參閱此文章])，並取得憑證的存取權和憑證密碼，以在「API 管理」發行者入口網站中上傳。
+本指南將示範如何設定 API 管理服務執行個體，以使用用戶端憑證驗證來存取 API 的後端服務。 在遵循本主題中的步驟之前，請先設定後端服務以進行用戶端憑證驗證 ([若要在 Azure WebSites 中設定憑證驗證，請參閱此文章][to configure certificate authentication in Azure WebSites refer to this article])，以及取得憑證的存取權限和憑證密碼，以在 API 管理發佈者入口網站內上傳。
 
 ## <a name="step1"> </a>上傳用戶端憑證
 若要開始，請在 API 管理服務的 Azure 入口網站中按一下 [發佈者入口網站]。 這會帶您前往 API 管理發行者入口網站。
 
 ![API 發行者入口網站][api-management-management-console]
 
-> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 > 
 > 
 
@@ -61,7 +61,7 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。 �
 
 ![Certificate uploaded][api-management-certificate-uploaded]
 
-待憑證上傳完畢後，它會顯示在 [用戶端憑證]  索引標籤中。 如果您擁有多個憑證，請記下主體或指紋的最後四個字元，在設定 API 以使用憑證時，您可以利用它們來選取憑證，如下文中的[設定 API 以使用用戶端憑證來驗證閘道][設定 API 以使用用戶端憑證來驗證閘道]一節所述。
+待憑證上傳完畢後，它會顯示在 [用戶端憑證]  索引標籤中。 如果您擁有多個憑證，請記下主體或指紋的最後四個字元，因為在設定 API 以使用憑證時，您可以利用它們來選取憑證，如下文中的＜[設定 API 以使用用戶端憑證來驗證閘道][Configure an API to use a client certificate for gateway authentication]＞一節所述。
 
 > 若要在使用自我簽署的憑證時關閉憑證鏈結驗證，請遵循此常見問題集[項目](api-management-faq.md#can-i-use-a-self-signed-ssl-certificate-for-a-back-end)中所述的步驟。
 > 
@@ -130,32 +130,32 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。 �
 
 
 
-[如何將作業加入至 API]: api-management-howto-add-operations.md
-[如何加入和發佈產品]: api-management-howto-add-products.md
-[監視和分析]: ../api-management-monitoring.md
-[將 API 新增至產品]: api-management-howto-add-products.md#add-apis
-[發佈產品]: api-management-howto-add-products.md#publish-product
-[建立 API 管理服務執行個體]: api-management-get-started.md
-[API 管理原則參考]: api-management-policy-reference.md
-[快取原則]: api-management-policy-reference.md#caching-policies
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
+[Monitoring and analytics]: ../api-management-monitoring.md
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Publish a product]: api-management-howto-add-products.md#publish-product
+[Get started with Azure API Management]: api-management-get-started.md
+[API Management policy reference]: api-management-policy-reference.md
+[Caching policies]: api-management-policy-reference.md#caching-policies
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[Azure API 管理 REST API 憑證實體]: http://msdn.microsoft.com/library/azure/dn783483.aspx
+[Azure API Management REST API Certificate entity]: http://msdn.microsoft.com/library/azure/dn783483.aspx
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[若要在 Azure 網站中設定憑證驗證，請參閱此文章]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
+[to configure certificate authentication in Azure WebSites refer to this article]: https://azure.microsoft.com/en-us/documentation/articles/app-service-web-configure-tls-mutual-auth/
 
-[必要條件]: #prerequisites
-[上傳用戶端憑證]: #step1
-[刪除用戶端憑證]: #step1a
-[設定 API 以使用用戶端憑證來驗證閘道]: #step2
-[在開發人員入口網站中呼叫作業以測試組態]: #step3
-[後續步驟]: #next-steps
-
-
+[Prerequisites]: #prerequisites
+[Upload a client certificate]: #step1
+[Delete a client certificate]: #step1a
+[Configure an API to use a client certificate for gateway authentication]: #step2
+[Test the configuration by calling an operation in the Developer Portal]: #step3
+[Next steps]: #next-steps
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+
+
+<!--HONumber=Dec16_HO3-->
 
 

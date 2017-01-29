@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4d1b2f7b798e4cabfaa604358c2a380e8ed04fc6
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: 44d51c80dd7db16d16fa3aa44d6179bc539bb50a
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: 4d1b2f7b798e4cabfaa604358c2a380e8ed04fc6
 
 ![發行者入口網站][api-management-management-console]
 
-> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 > 
 > 
 
@@ -79,7 +79,7 @@ ms.openlocfilehash: 4d1b2f7b798e4cabfaa604358c2a380e8ed04fc6
 
 ![委派的權限][api-management-aad-delegated-permissions]
 
-> 如需有關應用程式和所委派權限的詳細資訊，請參閱[存取 Graph API][存取 Graph API]。
+> 如需應用程式和委派的權限的詳細資訊，請參閱[存取 Graph API][Accessing the Graph API]。
 > 
 > 
 
@@ -123,7 +123,7 @@ ms.openlocfilehash: 4d1b2f7b798e4cabfaa604358c2a380e8ed04fc6
 
 ![儲存][api-management-client-allowed-tenants-save]
 
-儲存變更之後，在指定 Azure Active Directory 中的使用者只要依照[使用 Azure Active Directory 帳戶登入開發人員入口網站][使用 Azure Active Directory 帳戶登入開發人員入口網站]中的步驟，即可登入開發人員入口網站。
+儲存變更之後，在指定 Azure Active Directory 中的使用者透過遵循[使用 Azure Active Directory 帳戶登入開發人員入口網站][Log in to the Developer portal using an Azure Active Directory account]中的步驟，即可登入開發人員入口網站。
 
 ## <a name="how-to-add-an-external-azure-active-directory-group"></a>如何加入外部 Azure Active Directory 群組
 為 Azure Active Directory 中的使用者啟用存取之後，您可以將 Azure Active Directory 群組加入至 API 管理，以更輕鬆管理所需產品的群組中開發人員的關聯。
@@ -214,31 +214,31 @@ ms.openlocfilehash: 4d1b2f7b798e4cabfaa604358c2a380e8ed04fc6
 [api-management-groups]: ./media/api-management-howto-aad/api-management-groups.png
 [api-management-edit-group]: ./media/api-management-howto-aad/api-management-edit-group.png
 
-[如何將作業加入至 API]: api-management-howto-add-operations.md
-[如何加入和發佈產品]: api-management-howto-add-products.md
-[監視和分析]: api-management-monitoring.md
-[將 API 新增至產品]: api-management-howto-add-products.md#add-apis
-[發佈產品]: api-management-howto-add-products.md#publish-product
-[建立 API 管理服務執行個體]: api-management-get-started.md
-[API 管理原則參考]: api-management-policy-reference.md
-[快取原則]: api-management-policy-reference.md#caching-policies
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
+[Monitoring and analytics]: api-management-monitoring.md
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Publish a product]: api-management-howto-add-products.md#publish-product
+[Get started with Azure API Management]: api-management-get-started.md
+[API Management policy reference]: api-management-policy-reference.md
+[Caching policies]: api-management-policy-reference.md#caching-policies
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 [http://oauth.net/2/]: http://oauth.net/2/
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[存取 Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
+[Accessing the Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
 
-[必要條件]: #prerequisites
-[在 API 管理中設定 OAuth 2.0 授權伺服器]: #step1
-[設定 API 以使用 OAuth 2.0 使用者授權]: #step2
-[在開發人員入口網站中測試 OAuth 2.0 使用者授權]: #step3
-[後續步驟]: #next-steps
+[Prerequisites]: #prerequisites
+[Configure an OAuth 2.0 authorization server in API Management]: #step1
+[Configure an API to use OAuth 2.0 user authorization]: #step2
+[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Next steps]: #next-steps
 
-[使用 Azure Active Directory 帳戶登入開發人員入口網站]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
-
-
+[Log in to the Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
 
 
-<!--HONumber=Nov16_HO3-->
+
+
+<!--HONumber=Dec16_HO3-->
 
 

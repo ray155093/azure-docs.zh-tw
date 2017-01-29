@@ -12,11 +12,11 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/19/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: 04ebda0187791772814e40401643583036ca6afa
+ms.sourcegitcommit: c5e80c3cd3caac07e250d296c61fb3813e0000dd
+ms.openlocfilehash: 40c4f88bc91773158d416d5e89424b92cf15cf91
 
 
 ---
@@ -158,7 +158,7 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
 ![自訂復原計劃](./media/site-recovery-sql/customize-rp.png)
 
-### <a name="step-4-fail-over"></a>步驟 4：容錯移轉
+#### <a name="step-4--fail-over"></a>步驟 4：容錯移轉
 一旦可用性群組加入至復原計劃，就可以使用不同的容錯移轉選項。
 
 | 容錯移轉 | 詳細資料 |
@@ -174,7 +174,7 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 | **選項 1** |1.執行應用程式和前端層的測試容錯移轉。<br/><br/>2.更新應用程式層，以便在唯讀模式下存取副本，並執行應用程式的唯讀測試。 |
 | **選項 2** |1.建立 SQL Server 虛擬機器執行個體的副本 (使用 VMM 複製進行站台對站台或 Azure 備份)，並將其顯示在測試網路中<br/><br/> 2.使用復原計畫執行測試容錯移轉。 |
 
-步驟 5：容錯回復
+#### <a name="step-5-fail-back"></a>步驟 5：容錯回復
 
 如果您想要再次在內部部署 SQL Server 上讓可用性群組成為「主要」，則您可以藉由在復原計劃上觸發計劃的容錯移轉，並且選擇從 Microsoft Azure 到內部部署 VMM 伺服器的方向來完成
 
@@ -188,13 +188,36 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
 1. 建立指令碼的本機檔案以容錯移轉可用性群組。 此範例指令碼會在 Azure 複本上指定可用性群組的路徑，並將其容錯移轉至該複本執行個體。 此指令碼會藉由使用自訂指令碼擴充功能傳遞該指令碼，以便在 SQL Server 複本虛擬機器上執行。
 
-     Param(   [string]$SQLAvailabilityGroupPath   )   import-module sqlps   Switch-SqlAvailabilityGroup -Path $SQLAvailabilityGroupPath -AllowDataLoss -force
-2. 將指令碼上傳至 Azure 儲存體帳戶中的 Blob。 使用範例：
+        Param(
+        [string]$SQLAvailabilityGroupPath
+        )
+        import-module sqlps
+        Switch-SqlAvailabilityGroup -Path $SQLAvailabilityGroupPath -AllowDataLoss -force
 
-     $context = New-AzureStorageContext -StorageAccountName "Account" -StorageAccountKey "Key"   Set-AzureStorageBlobContent -Blob "AGFailover.ps1" -Container "script-container" -File "ScriptLocalFilePath" -context $context
-3. 建立 Azure 自動化 Runbook，以便在 Azure 中叫用 SQL Server 複本虛擬機器上的指令碼。 若要這樣做，請使用此範例指令碼。 [深入](site-recovery-runbook-automation.md) 如何在復原計畫中使用自動化 Runbook。
+1. 將指令碼上傳至 Azure 儲存體帳戶中的 Blob。 使用範例：
 
-     workflow SQLAvailabilityGroupFailover   {
+        $context = New-AzureStorageContext -StorageAccountName "Account" -StorageAccountKey "Key"
+        Set-AzureStorageBlobContent -Blob "AGFailover.ps1" -Container "script-container" -File "ScriptLocalFilePath" -context $context
+
+1. 建立 Azure 自動化 Runbook，以便在 Azure 中叫用 SQL Server 複本虛擬機器上的指令碼。 若要這樣做，請使用此範例指令碼。 [深入](site-recovery-runbook-automation.md) 如何在復原計畫中使用自動化 Runbook。
+
+1. 當您建立應用程式的復原計畫時，加入可叫用自動化 Runbook 的 "pre-Group 1 boot" 指令碼式步驟以容錯移轉可用性群組。
+
+
+1. **測試容錯移轉**：SQL AlwaysOn 原生不支援測試容錯移轉。 因此，建議的方法如下所示︰
+    1. 在 Azure 中裝載可用性群組複本的虛擬機器上安裝 [Azure 備份](../backup/backup-azure-vms.md)。 
+    1. 觸發復原計劃的測試容錯移轉之前，請從步驟 1 中進行的備份復原虛擬機器
+    1. 執行復原計劃的測試容錯移轉
+
+
+> [!NOTE]
+> 下面的指令碼假設 SQL 可用性群組裝載於傳統 Azure 虛擬機器，且在步驟 2 中的還原虛擬機器名稱是 SQLAzureVM-Test。 根據您用於已復原虛擬機器的名稱修改指令碼。
+> 
+> 
+
+
+     workflow SQLAvailabilityGroupFailover
+     {
 
          param (
              [Object]$RecoveryPlanContext
@@ -217,9 +240,28 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
           if ($Using:RecoveryPlanContext.FailoverType -eq "Test")
                 {
-                #Skipping TFO in this version.
-                #We will update the script in a follow-up post with TFO support
-                Write-output "tfo: Skipping SQL Failover";
+                    Write-output "tfo"
+                    
+                    Write-Output "Creating ILB"
+                    Add-AzureInternalLoadBalancer -InternalLoadBalancerName SQLAGILB -SubnetName Subnet-1 -ServiceName SQLAzureVM-Test -StaticVNetIPAddress #IP
+                    Write-Output "ILB Created"
+
+                    #Update the script with name of the virtual machine recovered using Azure Backup
+                    Write-Output "Adding SQL AG Endpoint"
+                    Get-AzureVM -ServiceName "SQLAzureVM-Test" -Name "SQLAzureVM-Test"| Add-AzureEndpoint -Name sqlag -LBSetName sqlagset -Protocol tcp -LocalPort 1433 -PublicPort 1433 -ProbePort 59999 -ProbeProtocol tcp -ProbeIntervalInSeconds 10 -InternalLoadBalancerName SQLAGILB | Update-AzureVM
+
+                    Write-Output "Added Endpoint"
+        
+                    $VM = Get-AzureVM -Name "SQLAzureVM-Test" -ServiceName "SQLAzureVM-Test" 
+                       
+                    Write-Output "UnInstalling custom script extension"
+                    Set-AzureVMCustomScriptExtension -Uninstall -ReferenceName CustomScriptExtension -VM $VM |Update-AzureVM 
+                    Write-Output "Installing custom script extension"
+                    Set-AzureVMExtension -ExtensionName CustomScriptExtension -VM $vm -Publisher Microsoft.Compute -Version 1.*| Update-AzureVM   
+                    
+                    Write-output "Starting AG Failover"
+                    Set-AzureVMCustomScriptExtension -VM $VM -FileUri $sasuri -Run "AGFailover.ps1" -Argument "-Path sqlserver:\sql\sqlazureVM\default\availabilitygroups\testag"  | Update-AzureVM
+                    Write-output "Completed AG Failover"
                 }
           else
                 {
@@ -230,7 +272,7 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
                 Write-Output "Installing custom script extension"
                 #Install the Custom Script Extension on teh SQL Replica VM
-                Set-AzureVMExtension -ExtensionName CustomScriptExtension -VM $VM -Publisher Microsoft.Compute -Version 1.3| Update-AzureVM;
+                Set-AzureVMExtension -ExtensionName CustomScriptExtension -VM $VM -Publisher Microsoft.Compute -Version 1.*| Update-AzureVM;
 
                 Write-output "Starting AG Failover";
                 #Execute the SQL Failover script
@@ -246,7 +288,6 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
          }
      }
-4. 當您建立應用程式的復原計畫時，加入可叫用自動化 Runbook 的 "pre-Group 1 boot" 指令碼式步驟以容錯移轉可用性群組。
 
 ## <a name="integrate-protection-with-sql-alwayson-on-premises-to-on-premises"></a>使用 SQL Always-On (內部部署至內部部署) 整合保護
 如果 SQL Server 為高可用性使用可用性群組或容錯移轉叢集執行個體，建議您也在復原站台上使用可用性群組。 請注意，本指南是供不使用分散式交易的應用程式使用。
@@ -301,6 +342,6 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

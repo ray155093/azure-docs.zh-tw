@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/10/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7a9c40081f52b2ffe918f4612f790f7fd08acc5a
-ms.openlocfilehash: c2b0a0554b2899b082079f75e9d235edc0f71042
+ms.sourcegitcommit: 42e682eb8e0a740393648e9fe49244c3a02a9867
+ms.openlocfilehash: eb6bce9be34467e472fbae6cbf154f3b789b6ddc
 
 
 ---
@@ -33,13 +33,13 @@ ms.openlocfilehash: c2b0a0554b2899b082079f75e9d235edc0f71042
 
 ## <a name="1-get-an-application-insights-instrumentation-key"></a>1.取得 Application Insights 檢測金鑰
 1. 登入 [Microsoft Azure 入口網站](https://portal.azure.com)
-2. 建立新 Application Insights 資源
-   
-    ![按一下 + 並選擇 [Application Insights]](./media/app-insights-java-live/01-create.png)
-3. 將應用程式類型設定為 Java Web 應用程式。
+2. 建立新的 Application Insights 資源，並將應用程式類型設定為 Java web 應用程式的。
    
     ![填寫名稱，選擇 [Java Web 應用程式]，然後按一下 [建立]](./media/app-insights-java-live/02-create.png)
-4. 尋找新資源的檢測金鑰。 您很快需要將此金鑰貼到程式碼專案中。
+
+    會在幾秒鐘內建立資源。
+
+4. 開啟新的資源，並取得其檢測金鑰。 您很快需要將此金鑰貼到程式碼專案中。
    
     ![在新資源概觀中，按一下 [屬性] 並複製檢測金鑰](./media/app-insights-java-live/03-key.png)
 
@@ -53,6 +53,8 @@ ms.openlocfilehash: c2b0a0554b2899b082079f75e9d235edc0f71042
 您可以在加入 SDK 的資料夾中建立 ApplicationInsights.xml。 將下列 XML 放入上述檔案。
 
 替換為您從 Azure 入口網站取得的檢測金鑰。
+
+```XML
 
     <?xml version="1.0" encoding="utf-8"?>
     <ApplicationInsights xmlns="http://schemas.microsoft.com/ApplicationInsights/2013/Settings" schemaVersion="2014-05-30">
@@ -83,7 +85,7 @@ ms.openlocfilehash: c2b0a0554b2899b082079f75e9d235edc0f71042
 
       </TelemetryInitializers>
     </ApplicationInsights>
-
+```
 
 * 檢測金鑰會隨著遙測的每個項目傳送，並告知 Application Insights 在您的資源中顯示它。
 * HTTP 要求元件是選用的。 它會自動將要求和回應時間的遙測傳送到入口網站。
@@ -93,6 +95,8 @@ ms.openlocfilehash: c2b0a0554b2899b082079f75e9d235edc0f71042
 在專案中找到並開啟 web.xml 檔案，並合併 web-app 節點下的下列程式碼片段，在其中您可以設定應用程式篩選器。
 
 為獲得最準確的結果，應該在其他所有篩選器之前先對應此篩選器。
+
+```XML
 
     <filter>
       <filter-name>ApplicationInsightsWebFilter</filter-name>
@@ -104,6 +108,7 @@ ms.openlocfilehash: c2b0a0554b2899b082079f75e9d235edc0f71042
        <filter-name>ApplicationInsightsWebFilter</filter-name>
        <url-pattern>/*</url-pattern>
     </filter-mapping>
+```
 
 ## <a name="5-check-firewall-exceptions"></a>5.檢查防火牆例外狀況
 您可能需要 [設定防火牆例外狀況以傳送輸出資料](app-insights-ip-addresses.md)。
@@ -135,6 +140,6 @@ ms.openlocfilehash: c2b0a0554b2899b082079f75e9d235edc0f71042
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 
