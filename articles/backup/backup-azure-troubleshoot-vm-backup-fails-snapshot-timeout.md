@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: jimpark; markgal;genli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 87387e4f182214fa0c34a6a1358c6cc2648be906
+ms.sourcegitcommit: 5cd91d74ea09e4fc77437a310f39b769983bd123
+ms.openlocfilehash: 005d6b220135302a85495d0840e545c13feb0705
 
 
 ---
@@ -65,7 +65,8 @@ ms.openlocfilehash: 87387e4f182214fa0c34a6a1358c6cc2648be906
 ### <a name="solution"></a>方案
 針對 Linux VM，與代理程式或擴充功能相關的多數失敗是由於會影響舊 VM 代理程式的問題所造成。 一般來說，針對此問題進行疑難排解的首要步驟如下所示︰
 
-1. [安裝最新版的 Azure VM 代理程式](https://github.com/Azure/WALinuxAgent)。
+1. 遵循[更新 Linux VM 代理程式](../virtual-machines/virtual-machines-linux-update-agent.md)上的指示進行。
+我們**強烈建議**只透過發佈存放庫更新代理程式。 我們不建議直接從 github 下載代理程式程式碼，並加以更新。 如果最新的代理程式不適用於您的散發套件，請連絡散發套件支援以取得如何安裝最新代理程式的指示。 您可以在 github 存放庫中檢查最新的 [Windows Azure Linux 代理程式](https://github.com/Azure/WALinuxAgent/releases)資訊。 
 2. 確定 Azure 代理程式在 VM 上執行。 若要這樣做，請執行下列命令：```ps -e```
    
     如果此程序未執行，請使用下列命令來重新啟動它。
@@ -133,6 +134,6 @@ The following conditions can cause snapshot task failure:
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 
