@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 94c61f4b204b30b16b424fa0716e370a4f4eb51b
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 43ad434b21fd358b8d72702445126dea5ce179cb
 
 
 ---
@@ -74,13 +74,13 @@ Azure App Service 是完全受管理的 [平台即服務](https://azure.microsof
 如需 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service]。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/mobile/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡，無需承諾。
 > 
 > 
 
 <!-- URLs. -->
-[將行動服務移轉至 App Service]: app-service-mobile-migrating-from-mobile-services.md
-[Azure App Service]: ../app-service/app-service-value-prop-what-is.md
+[Migrate your Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
+[]: ../app-service/app-service-value-prop-what-is.md
 [快速入門]: app-service-mobile-ios-get-started.md
 [Azure 資料表儲存體]: ../storage/storage-getting-started-guide.md
 [DocumentDB]: ../documentdb/documentdb-get-started.md
@@ -104,6 +104,6 @@ Azure App Service 是完全受管理的 [平台即服務](https://azure.microsof
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

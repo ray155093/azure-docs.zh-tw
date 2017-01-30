@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 10/10/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -79,7 +79,6 @@ Azure 資料目錄入口網站首頁有 [我的資產] 區段，其會顯示目�
 
 ## <a name="summary"></a>摘要
 Azure 資料目錄提供各種功能讓使用者能夠更容易地探索所需的資料來源，讓他們可以花較少的時間尋找資料並有更多時間使用資料。 已儲存的搜尋和已釘選的資料資產是以這些核心功能為基礎所建立，因此使用者可以輕鬆地識別所要重複使用的資料來源。
-
 
 
 

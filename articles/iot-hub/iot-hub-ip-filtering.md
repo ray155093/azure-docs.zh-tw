@@ -1,6 +1,6 @@
 ---
-title: "IoT 中樞 - IP 篩選器 | Microsoft Docs"
-description: "本教學課程說明如何將 Azure IoT 中樞的特定 IP 位址加入封鎖清單或允許清單。"
+title: "Azure IoT 中樞 IP 篩選器 | Microsoft Docs"
+description: "如何使用 IP 篩選來封鎖從特定 IP 位址至 Azure IoT 中樞的連接。 您可以封鎖來自個別 IP 位址或 IP 位址範圍的連接。"
 services: iot-hub
 documentationcenter: 
 author: BeatriceOltean
@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/14/2016
+ms.date: 01/05/2017
 ms.author: boltean
 translationtype: Human Translation
-ms.sourcegitcommit: 457d0d97601e18de2a19b83be100954d01f9bbf8
-ms.openlocfilehash: 86622918a136da4c478c8d47a677a67e46eb093b
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 784454c3bc0500ac0896177e843b3c194341cdd1
 
 
 ---
 
-# <a name="ip-filter"></a>IP 篩選器
+# <a name="use-ip-filters"></a>使用 IP 篩選器
 
 安全性是任何以 Azure IoT 中樞為基礎之 IoT 解決方案的重要一環。 在設定安全性的過程中，有時候您需要將特定 IP 位址加入封鎖清單或允許清單。 IP 篩選器功能可讓您設定規則，以拒絕或接受來自特定 IPv4 位址的流量。
 
@@ -34,7 +34,7 @@ ms.openlocfilehash: 86622918a136da4c478c8d47a677a67e46eb093b
 
 ## <a name="how-filter-rules-are-applied"></a>篩選器規則的套用方式
 
-IP 篩選器規則會套用在 IoT 中樞服務層級。 因此，IP 篩選器規則會套用到裝置和後端應用程式使用任何受支援通訊協定所建立的所有連線上。
+IP 篩選器規則會套用在 IoT 中樞服務層級。 因此，IP 篩選器規則會套用至來自裝置和後端應用程式的所有連接 (使用任何受支援的通訊協定)。
 
 嘗試建立連線的 IP 位址若符合 IoT 中樞內的拒絕 IP 規則，將會收到未授權 401 狀態碼和描述。 回應訊息則不涉及 IP 規則。
 
@@ -96,13 +96,13 @@ IP 篩選器規則會依序套用，第一個符合 IP 位址的規則會決定�
 
 <!-- Links -->
 
-[IoT 中心開發人員指南]: iot-hub-devguide.md
+[IoT Hub developer guide]: iot-hub-devguide.md
 [Azure Express Route]:  https://azure.microsoft.com/en-us/documentation/articles/expressroute-faqs/#supported-services
 
 [lnk-monitor]: iot-hub-operations-monitoring.md
 [lnk-metrics]: iot-hub-metrics.md
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -4,7 +4,7 @@ description: "本文說明使用自訂版本的 Microsoft 監視代理程式 (MM
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 932f7b8c-485c-40c1-98e3-7d4c560876d2
 ms.service: log-analytics
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/08/2016
+ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 6836cd4c1f9fe53691ae8330b25e497da4c2e0d5
-ms.openlocfilehash: 161bb18579db7a4615cbc62c539e8b6286a424ac
+ms.sourcegitcommit: ca573f743325b29d43c4b1a0c3bc7001a54fcfae
+ms.openlocfilehash: f7d740c164df5fe2341a3a0dc3ca0149aed68386
 
 
 ---
@@ -97,6 +97,12 @@ $mma.ReloadConfiguration()
 
 ## <a name="install-the-agent-using-dsc-in-azure-automation"></a>使用 Azure 自動化中的 DSC 安裝代理程式
 
+您可以用下列指令碼範例，使用 Azure 自動化中的 DSC 來安裝代理程式。 此範例會安裝 64 位元代理程式，可由 `URI` 值識別。 您也可以取代 URI 值改為使用 32 位元版本。 這兩個版本的 URI 分別是︰
+
+- Windows 64 位元代理程式 - https://go.microsoft.com/fwlink/?LinkId=828603
+- Windows 32 位元代理程式 - https://go.microsoft.com/fwlink/?LinkId=828604
+
+
 >[!NOTE]
 此程序和指令碼範例不會升級現有的代理程式。
 
@@ -125,7 +131,7 @@ Configuration MMAgent
         }
 
         xRemoteFile OIPackage {
-            Uri = "http://download.microsoft.com/download/0/C/0/0C072D6E-F418-4AD4-BCB2-A362624F400A/MMASetup-AMD64.exe"
+            Uri = "https://go.microsoft.com/fwlink/?LinkId=828603"
             DestinationPath = $OIPackageLocalPath
         }
 
@@ -138,11 +144,37 @@ Configuration MMAgent
             DependsOn = "[xRemoteFile]OIPackage"
         }
     }
-}  
+}
 
 
 ```
 
+### <a name="get-the-latest-productid-value"></a>取得最新的 ProductId 值
+
+MMAgent.ps1 指令碼中的 `ProductId value`，對應不同的代理程式版本。 當每個代理程式的更新的版本發佈時，ProductId 的值隨之變更。 因此，當未來 ProductId 變更時，您可以使用簡單的指令碼找到代理程式版本。 在測試伺服器上安裝最新的代理程式版本之後，您可以使用下列指令碼取得已安裝的 ProductId 值。 您可以使用最新的 ProductId 值，更新 MMAgent.ps1 指令碼中的這個值。
+
+```
+$InstalledApplications  = Get-ChildItem hklm:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
+
+
+foreach ($Application in $InstalledApplications)
+
+{
+
+     $Key = Get-ItemProperty $Application.PSPath
+
+     if ($Key.DisplayName -eq "Microsoft Monitoring Agent")
+
+     {
+
+        $Key.DisplayName
+
+        Write-Output ("Product ID is: " + $Key.PSChildName.Substring(1,$Key.PSChildName.Length -2))
+
+     }
+
+}  
+```
 
 ## <a name="configure-an-agent-manually-or-add-additional-workspaces"></a>手動設定代理程式，或新增額外的工作區
 如果您已安裝代理程式但尚未設定，或是您希望代理程式向多個工作區報告，您可以使用下列資訊來啟用或重新設定代理程式。 設定代理程式之後，它會註冊代理程式服務，並將獲得所需的組態資訊及包含解決方案資訊的管理組件。
@@ -197,6 +229,6 @@ Configuration MMAgent
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

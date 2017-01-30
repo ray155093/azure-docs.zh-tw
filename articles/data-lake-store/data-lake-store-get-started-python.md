@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/29/2016
+ms.date: 01/10/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: f29f36effd858f164f7b6fee8e5dab18211528b3
-ms.openlocfilehash: 6f724576badb7cf3625a139c416860b7e43ed036
+ms.sourcegitcommit: d8faeafc6d4c73c4c71d0bc1554b04302dffdc55
+ms.openlocfilehash: 72186e03a1dc47f67b8f4cdcac55208a61c8e147
 
 
 ---
@@ -74,12 +74,19 @@ pip install azure-datalake-store
     ## Use this only for Azure AD end-user authentication
     from azure.common.credentials import UserPassCredentials
 
+    ## Use this only for Azure AD multi-factor authentication
+    from msrestazure.azure_active_directory import AADTokenCredentials
+
     ## Required for Azure Data Lake Store account management
-    from azure.mgmt.datalake.store.account import DataLakeStoreAccountManagementClient
-    from azure.mgmt.datalake.store.account.models import DataLakeStoreAccount
+    from azure.mgmt.datalake.store import DataLakeStoreAccountManagementClient
+    from azure.mgmt.datalake.store.models import DataLakeStoreAccount
 
     ## Required for Azure Data Lake Store filesystem management
     from azure.datalake.store import core, lib, multithread
+
+    # Common Azure imports
+    from azure.mgmt.resource.resources import ResourceManagementClient
+    from azure.mgmt.resource.resources.models import ResourceGroup
 
     ## Use these as needed for your application
     import logging, getpass, pprint, uuid, time
@@ -88,6 +95,14 @@ pip install azure-datalake-store
 3. 將變更儲存至 mysample.py。
 
 ## <a name="authentication"></a>驗證
+
+在本節中，我們會討論向 Azure AD 進行驗證的各種方式。 可用的選項如下︰
+
+* 使用者驗證
+* 服務對服務驗證
+* Multi-Factor Authentication
+
+您必須對帳戶管理和檔案系統管理模組使用這些驗證選項。
 
 ### <a name="end-user-authentication-for-account-management"></a>適用於帳戶管理的使用者驗證
 
@@ -121,6 +136,29 @@ pip install azure-datalake-store
 
     token = lib.auth(tenant_id = 'FILL-IN-HERE', client_secret = 'FILL-IN-HERE', client_id = 'FILL-IN-HERE')
 
+### <a name="multi-factor-authentication-for-account-management"></a>適用於帳戶管理的 Multi-Factor Authentication
+
+使用這個方法來向 Azure AD 驗證，以便進行帳戶管理作業 (建立/刪除 Data Lake Store 帳戶等等)。 下列程式碼片段可供使用 Multi-Factor Authentication 來驗證您的應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
+
+    authority_host_url = "https://login.microsoftonline.com"
+    tenant = "FILL-IN-HERE"
+    authority_url = authority_host_url + '/' + tenant
+    client_id = 'FILL-IN-HERE'
+    redirect = 'urn:ietf:wg:oauth:2.0:oob'
+    RESOURCE = 'https://management.core.windows.net/'
+    
+    context = adal.AuthenticationContext(authority_url)
+    code = context.acquire_user_code(RESOURCE, client_id)
+    print(code['message'])
+    mgmt_token = context.acquire_token_with_device_code(RESOURCE, code, client_id)
+    credentials = AADTokenCredentials(mgmt_token, client_id)
+
+### <a name="multi-factor-authentication-for-filesystem-management"></a>適用於檔案系統管理的 Multi-Factor Authentication
+
+使用這個方法來向 Azure AD 驗證，以便進行檔案系統作業 (建立資料夾、上傳檔案等等)。 下列程式碼片段可供使用 Multi-Factor Authentication 來驗證您的應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。
+
+    token = lib.auth(tenant_id='FILL-IN-HERE')
+
 ## <a name="create-an-azure-resource-group"></a>建立 Azure 資源群組
 
 使用下列程式碼片段來建立 Azure 資源群組︰
@@ -137,7 +175,7 @@ pip install azure-datalake-store
     )
     
     ## Create an Azure Resource Group
-    armGroupResult = resourceClient.resource_groups.create_or_update(
+    resourceClient.resource_groups.create_or_update(
         resourceGroup,
         ResourceGroup(
             location=location
@@ -207,6 +245,6 @@ pip install azure-datalake-store
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

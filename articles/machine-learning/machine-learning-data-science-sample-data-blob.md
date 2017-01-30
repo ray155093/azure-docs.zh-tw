@@ -12,23 +12,23 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/19/2016
 ms.author: fashah;garye;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 66eddd40d3aa5156762acd1b1783a527e9ab463d
+ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
+ms.openlocfilehash: 7873ad084c9d77eea556ae3fec846bebd4c99ebd
 
 
 ---
 # <a name="a-nameheadingasample-data-in-azure-blob-storage"></a><a name="heading"></a>Azure blob 儲存體中的取樣資料
 本文件說明為儲存於 Azure blob 儲存體中的資料進行取樣的方法，您可以利用程式設計方式加以下載，然後使用以 Python 撰寫的程序進行取樣。
 
-**為何要對您的資料進行取樣？**
- 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。 這有助於資料了解、探索和功能工程。 它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
-
-以下 **功能表** 所連結的主題會說明如何從各種不同儲存體環境進行資料取樣。 
+以下**功能表**所連結的主題會說明如何從各種不同儲存體環境進行資料取樣。 
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
+
+**為何要對您的資料進行取樣？**
+如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。 這有助於資料了解、探索和功能工程。 它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
 
 這個取樣工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中的一個步驟。
 
@@ -50,12 +50,14 @@ ms.openlocfilehash: 66eddd40d3aa5156762acd1b1783a527e9ab463d
         blob_service.get_blob_to_path(CONTAINERNAME,BLOBNAME,LOCALFILENAME)
         t2=time.time()
         print(("It takes %s seconds to download "+blobname) % (t2 - t1))
+
 2. 從上述下載的檔案中將資料讀取至 Pandas 資料框架。
    
         import pandas as pd
    
         #directly ready from file on disk
         dataframe_blobdata = pd.read_csv(LOCALFILE)
+
 3. 使用 `numpy` 的 `random.choice` 以進行降低取樣資料，如下所示：
    
         # A 1 percent sample
@@ -67,11 +69,12 @@ ms.openlocfilehash: 66eddd40d3aa5156762acd1b1783a527e9ab463d
 現在您可以使用上述具有 1% 樣本的資料框架，進行進一步探索和功能產生。
 
 ## <a name="a-nameheadingaupload-data-and-read-it-into-azure-machine-learning"></a><a name="heading"></a>將資料上傳並將其讀入 Azure Machine Learning
-您可以使用下列程式碼範例，對資料進行向下取樣，並直接在 Azure ML 中使用它：
+您可以使用下列程式碼範例，對資料進行向下取樣，並直接在 Azure Machine Learning 中使用它：
 
 1. 將資料框架寫入本機檔案
    
         dataframe.to_csv(os.path.join(os.getcwd(),LOCALFILENAME), sep='\t', encoding='utf-8', index=False)
+
 2. 使用下列程式碼範例，將本機檔案上傳至 Azure Blob：
    
         from azure.storage.blob import BlobService
@@ -93,13 +96,14 @@ ms.openlocfilehash: 66eddd40d3aa5156762acd1b1783a527e9ab463d
    
         except:            
             print ("Something went wrong with uploading to the blob:"+ BLOBNAME)
-3. 使用 Azure ML [匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) 從 Azure Blob 讀取資料，如下圖所示：
+
+3. 使用 Azure Machine Learning [匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) 從 Azure Blob 讀取資料，如下圖所示：
 
 ![讀取器 Blob](./media/machine-learning-data-science-sample-data-blob/reader_blob.png)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

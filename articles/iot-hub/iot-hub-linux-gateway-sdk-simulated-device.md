@@ -1,6 +1,6 @@
 ---
-title: "使用 IoT 閘道 SDK 來模擬裝置 | Microsoft Docs"
-description: "「Azure IoT 閘道 SDK」逐步解說，其中使用 Linux 來說明如何使用「Azure IoT 閘道 SDK」從模擬裝置傳送遙測。"
+title: "使用 Azure IoT 閘道 SDK 來模擬裝置 (Linux) | Microsoft Docs"
+description: "如何在 Linux 上使用 Azure IoT 閘道 SDK 來建立模擬裝置，以透過閘道器將遙測傳送至 IoT 中樞。"
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 08/29/2016
 ms.author: andbuc
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: a6a97202c8221680f13bd8b29fe8d616578629cd
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e2e814559282de3e5409e3215d824e1309debe5a
 
 
 ---
-# <a name="azure-iot-gateway-sdk--send-device-to-cloud-messages-with-a-simulated-device-using-linux"></a>Azure IoT 閘道 SDK – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息
+# <a name="use-the-azure-iot-gateway-sdk-to-send-device-to-cloud-messages-with-a-simulated-device-linux"></a>使用 Azure IoT 閘道 SDK 搭配模擬裝置來傳送裝置到雲端訊息 (Linux)
 [!INCLUDE [iot-hub-gateway-sdk-simulated-selector](../../includes/iot-hub-gateway-sdk-simulated-selector.md)]
 
 ## <a name="build-and-run-the-sample"></a>建置並執行範例
@@ -28,13 +28,13 @@ ms.openlocfilehash: a6a97202c8221680f13bd8b29fe8d616578629cd
 
 * [設定開發環境][lnk-setupdevbox]以在 Linux 上使用 SDK。
 * 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您將需要中樞名稱才能完成此逐步解說。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
-* 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具將您的裝置加入您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。
+* 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，將您的裝置新增至您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。
 
 建置範例：
 
 1. 開啟殼層。
 2. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本中的根資料夾。
-3. 執行 **tools/build.sh** 指令碼。 此指令碼使用 **cmake** 公用程式，在 **azure-iot-gateway-sdk** 存放庫本機複本的根資料夾中建立稱為 **build** 的資料夾，以及產生 Makefile。 此指令碼接著會建置方案，並執行測試。
+3. 執行 **tools/build.sh --skip-unittests** 指令碼。 此指令碼使用 **cmake** 公用程式，在 **azure-iot-gateway-sdk** 存放庫本機複本的根資料夾中建立稱為 **build** 的資料夾，以及產生 Makefile。 此指令碼接著會建置方案，略單元測試。 如果您想要建置並執行單元測試，請移除 **--skip-unittests** 參數。 
 
 > [!NOTE]
 > 每次執行 **build.sh** 指令碼時，都會先在 **azure-iot-gateway-sdk** 存放庫本機複本的根資料夾中刪除再重新建立 **build** 資料夾。
@@ -152,13 +152,13 @@ ms.openlocfilehash: a6a97202c8221680f13bd8b29fe8d616578629cd
 
 執行範例：
 
-1. 在您的殼層中，瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本中的根資料夾。
+1. 在您的殼層中，瀏覽至 **azure-iot-gateway-sdk/build** 資料夾。
 2. 執行以下命令：
    
     ```
-    ./build/samples/simulated_device_cloud_upload/simulated_device_cloud_upload_sample ./samples/simulated_device_cloud_upload/src/simulated_device_cloud_upload_lin.json
+    ./samples/simulated_device_cloud_upload/simulated_device_cloud_upload_sample ./../samples/simulated_device_cloud_upload/src/simulated_device_cloud_upload_lin.json
     ```
-3. 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具監視 IoT 中樞接收自閘道的訊息。
+3. 您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，以監視 IoT 中樞接收自閘道器的訊息。
 
 ## <a name="next-steps"></a>後續步驟
 如果您想要更進一步了解「IoT 閘道 SDK」並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
@@ -168,7 +168,7 @@ ms.openlocfilehash: a6a97202c8221680f13bd8b29fe8d616578629cd
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [開發人員指南][lnk-devguide]
+* [IoT 中樞開發人員指南][lnk-devguide]
 * [徹底保護您的 IoT 解決方案][lnk-securing]
 
 <!-- Links -->
@@ -185,6 +185,6 @@ ms.openlocfilehash: a6a97202c8221680f13bd8b29fe8d616578629cd
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

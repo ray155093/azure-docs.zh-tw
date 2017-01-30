@@ -1,157 +1,207 @@
 ---
-title: 雲端服務的大小
-description: 列出 Azure 雲端服務 Web 和背景工作角色的各種虛擬機器大小。
+title: "雲端服務的大小 | Microsoft Docs"
+description: "列出 Azure 雲端服務 Web 和背景工作角色的各種虛擬機器大小 (和識別碼)。"
 services: cloud-services
-documentationcenter: ''
+documentationcenter: 
 author: Thraka
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 1127c23e-106a-47c1-a2e9-40e6dda640f6
 ms.service: cloud-services
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 08/10/2016
+ms.date: 12/14/2016
 ms.author: adegeo
+translationtype: Human Translation
+ms.sourcegitcommit: 35a295a8c24475de90fc26687ca00024cfba1079
+ms.openlocfilehash: bccdfd49226261699f89ebca0adf437ff63c1cdf
+
 
 ---
-# 雲端服務的大小
-本主題描述雲端服務角色執行個體 (Web 角色和背景工作角色)的可用大小和選項。同時也提供計劃使用這些資源時，需注意的部署考量。
-
-雲端服務是 Azure 提供的數種計算資源類型之一。如需雲端服務的詳細資訊，請按一下[這裡](cloud-services-choose-me.md)。
+# <a name="sizes-for-cloud-services"></a>雲端服務的大小
+本主題描述雲端服務角色執行個體 (Web 角色和背景工作角色)的可用大小和選項。 同時也提供計劃使用這些資源時，需注意的部署考量。 每種大小都有一個識別碼，可讓您放入[服務定義檔](cloud-services-model-and-package.md#csdef)。 每種大小的價格可以在[雲端服務價格](https://azure.microsoft.com/pricing/details/cloud-services/)頁面上取得。
 
 > [!NOTE]
-> 若要查看相關的 Azure 限制，請參閱 ＜[Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)＞
-> 
-> 
+> 若要查看相關的 Azure 限制，請參閱 ＜ [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)
+>
+>
 
-## 用於 Web 和背景工作角色執行個體的大小
+## <a name="sizes-for-web-and-worker-role-instances"></a>用於 Web 和背景工作角色執行個體的大小
+在 Azure 上有多個標準大小可選擇。 這些大小的一些考量事項包括：
+
+* D 系列 VM 是為了執行要求更高計算能力和暫存磁碟效能的應用程式所設計。 D 系列 VM 提供更快的處理器、較高的記憶體與核心比率，以及適用於暫存磁碟的固態硬碟 (SSD)。 如需詳細資訊，請參閱 Azure 部落格的公告， [新 D 系列的虛擬機器大小](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/)。
+* Dv2 系列是原始 D 系列的延續，擁有更強大的 CPU。 Dv2 系列 CPU 比 D 系列 CPU 快約 35%。 它以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，搭配 Intel Turbo Boost Technology 2.0，最高可達 3.1 GHz。 Dv2 系列的記憶體和磁碟組態和 D 系列一樣。
+* G 系列 VM 提供最大的記憶體，並且是在具有 Intel Xeon E5 V3 系列處理器的主機上執行。
+* A 系列 VM 可以部署在各種不同的硬體類型和處理器上。 根據硬體節流大小，為執行中的執行個體提供一致的處理器效能，不論硬體部署的位置。 若要判斷此大小部署所在的實體硬體，請從虛擬機器內查詢虛擬硬體。
+* A0 大小是在實體硬體上過度訂閱。 僅針對這個特定大小，其他客戶部署可能會影響您正在執行的工作負載的效能。 以下概述的相對效能為預期的基準，受限於近似變化性的 15%。
+
+虛擬機器的大小會影響定價。 大小也會影響虛擬機器的處理、記憶體和儲存體容量。 儲存體成本會分別根據儲存體帳戶中使用的頁面來計算。 如需詳細資訊，請參閱[雲端服務價格詳細資料](https://azure.microsoft.com/pricing/details/cloud-services/)和 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)。
+
 下列考量可協助您決定大小：
 
-* D 系列 VM 執行個體是為了執行要求更高計算能力和暫存磁碟效能的應用程式所設計。D 系列 VM 提供更快的處理器、較高的記憶體與核心比率，以及適用於暫存磁碟的固態硬碟 (SSD)。如需詳細資訊，請參閱 Azure 部落格的公告，[新 D 系列的虛擬機器大小](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/)。
-* Dv2 系列是原始 D 系列的延續，擁有更強大的 CPU。Dv2 系列 CPU 比 D 系列 CPU 快約 35%。它以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，搭配 Intel Turbo Boost Technology 2.0，最高可達 3.1 GHz。Dv2 系列的記憶體和磁碟組態和 D 系列一樣。
-* 因系統需求，Web 角色和背景工作角色比 Azure 虛擬機器需要更多的暫存磁碟空間。系統檔案保留 4 GB 的空間供 Windows 分頁檔和 2 GB 的空間供 Windows 傾印檔案。
-* 作業系統磁碟包含 Windows 客體 OS，並且包含 Program Files 資料夾 (包括透過啟動工作完成的安裝，除非您指定另一個磁碟)、登錄變更、System32 資料夾和 .NET Framework。
-* **暫存磁碟**包含 Azure 記錄檔和設定檔、Azure 診斷 (其中包括 IIS 記錄檔)，以及您所定義的任何本機儲存體資源。
-* **應用程式磁碟**是您解壓縮 .cspkg 的地方，並包含您的網站、二進位檔、角色主機處理序、啟動工作、web.config 等等。
-* A8/A10 和 A9/A11 虛擬機器大小有相同的容量。A8 和 A9 虛擬機器執行個體包含額外的網路介面卡，其會連線到遠端直接記憶體存取 (RDMA) 網路，以利在虛擬機器之間進行快速通訊。A8 和 A9 執行個體是專為執行期間，節點之間需要常數和低延遲通訊的高效能計算應用程式所設計，例如，使用訊息傳遞介面 (MPI) 的應用程式。A10 和 A11 虛擬機器執行個體不包含額外的網路介面卡。A10 和 A11 執行個體專為不需要常數和低度延遲節點的高效能計算應用程式設計，也就是所謂的參數式或窘迫平行應用程式。
-  
-  > [!NOTE]
-  > 如果您正在考慮調整 A8 到 A11 的大小，請閱讀[此](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)資訊。
-  > 
-  > 
+* A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。 如需有關使用這些大小的詳細資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+* Dv2 系列、D 系列和 G 系列是要求更快速的 CPU、更好的本機磁碟效能，或有更高記憶體需求之應用程式的最佳選擇。 它們為許多企業級應用程式提供了強大的組合。
+* Azure 資料中心的某些實體主機可能不支援較大的虛擬機器大小，例如 A5-A11。 因此，您可能會在將現有的虛擬機器調整為新的大小、在 2013 年 4 月 16 日之前建立的虛擬網路中建立新的虛擬機器，或將新的虛擬機器新增至現有雲端服務時，看到錯誤訊息：**無法設定虛擬機器 {machine name}** 或**無法建立虛擬機器 {machine name}**。 請參閱支援論壇上 [錯誤：「無法設定虛擬機器」](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows) ，以查看每個部署案例的因應措施。
+* 您的訂用帳戶也可能會限制您可以在特定大小系列中部署的核心數目。 若要增加配額，請連絡 Azure 支援服務。
 
-> [!NOTE]
-> 所有機器大小會提供**應用程式磁碟**，它會儲存您的雲端服務封裝的所有檔案，大小大約 1.5 GB。
-> 
-> 
+## <a name="performance-considerations"></a>效能考量
+我們已經建立「Azure 運算單位」(ACU) 概念來提供一種比較各個 Azure SKU 之運算 (CPU) 效能的方法，以及識別哪個 SKU 最能滿足您的效能需求。  ACU 目前是以「小型 (Standard_A1)」VM 為標準 (數值為 100)，而所有其他 SKU 則大致上代表該 SKU 在執行標準基準測試上可以快多少。
 
-請務必檢閱每個雲端服務大小的[價格](https://azure.microsoft.com/pricing/details/cloud-services/)。
+> [!IMPORTANT]
+> ACU 只是一個指導方針。 您工作負載的結果可能會有所不同。
+>
+>
 
-## 一般用途
-適用於網路、中小型資料庫及其他日常應用程式。
+<br>
 
-> [!NOTE]
-> 儲存體容量是使用 1024^3 位元組當作 GB 的度量單位來表示。這有時稱為 gibibyte 或基底 2 定義。比較使用不同基底系統的大小時，請記住，基底 2 的大小可能會顯示為小於基底 10，但是對於任何特定的大小 (例如 1 GB)，基底 2 的系統可提供比基底 10 系統更大的容量，因為 1024^3 大於 1000^3。
-> 
-> 
+| SKU 系列 | ACU/核心 |
+| --- | --- |
+| [Standard_A0](#a-series) |50 |
+| [Standard_A1-4](#a-series) |100 |
+| [Standard_A5-7](#a-series) |100 |
+| [Standard_A1-8v2](#av2-series) |100 |
+| [Standard_A2m-8mv2](#av2-series) |100 |
+| [A8-A11](#a-series) |225* |
+| [D1-14](#d-series) |160 |
+| [D1-15v2](#dv2-series) |210 - 250* |
+| [G1-5](#g-series) |180 - 240* |
+| [H](#h-series) |290 - 300* |
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| 特小型 |1 |0\.75 GB |低 |19 GB |
-| 小型 |1 |1\.75 GB |中度 |224 GB |
-| 中型 |2 |3\.5 GB |中度 |489 GB |
-| 大型 |4 |7 GB |高 |999 GB |
-| 特大型 |8 |14 GB |高 |2,039 GB |
+以 * 標示的 ACU 使用了「Intel® 渦輪」技術來增加 CPU 頻率及提升效能。 提升的程度會依 VM 大小、工作負載及在相同主機上執行的其他工作負載而有所不同。
 
-> [!NOTE]
-> **ExtraSmall** 到 **ExtraLarge** 也可以分別命名為 **A0-A4**。
-> 
-> 
+## <a name="size-tables"></a>大小資料表
+下表顯示其所提供的大小和容量。
 
-## 記憶體高用量
-適用於大型資料庫、SharePoint 伺服器陣列及高輸送量應用程式。
+* 儲存容量會以 GiB 或是 1024^3 位元組為單位顯示。 當比較使用 GB (1000^3 位元組) 為度量單位的磁碟與使用 GiB (1024^3) 為度量單位的磁碟時，請記住以 GiB 為單位提供的容量數字可能較小。 例如，1023 GiB = 1098.4 GB
+* 磁碟輸送量是以每秒輸入/輸出作業 (IOPS) 和 MBps 進行測量，其中 MBps = 10^6 位元組/每秒。
+* 資料磁碟可以在快取模式或取消快取模式下運作。 針對快取的資料磁碟作業，主機快取模式必須設定為 **ReadOnly** 或 **ReadWrite**。 針對取消快取的資料磁碟作業，主機快取模式必須設定為 **None**。
+* 最大網路頻寬是依據各 VM 類型而配置與指派的最大彙總頻寬。 最大頻寬能指導我們選取正確的 VM 類型，以確保有適當的網路容量可用。 在低、中度、高和極高之間移動時，輸送量將隨之增加。 實際的網路效能將取決於許多因素，包括網路和應用程式負載，以及應用程式的網路設定。
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| A5 |2 |14 GB |中度 |489 GB |
-| A6 |4 |28 GB |高 |999 GB |
-| A7 |8 |56 GB |高 |2,039 GB |
+## <a name="a-series"></a>A 系列
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 HDD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Standard_A0 |1 |0.768 |20 |1 |1x500 |1 / 低 |
+| Standard_A1 |1 |1.75 |70 |2 |2x500 |1 / 中 |
+| Standard_A2 |2 |3.5 GB |135 |4 |4x500 |1 / 中 |
+| Standard_A3 |4 |7 |285 |8 |8x500 |2 / 高 |
+| Standard_A4 |8 |14 |605 |16 |16x500 |4 / 高 |
+| Standard_A5 |2 |14 |135 |4 |4x500 |1 / 中 |
+| Standard_A6 |4 |28 |285 |8 |8x500 |2 / 高 |
+| Standard_A7 |8 |56 |605 |16 |16x500 |4 / 高 |
 
-## 經過優化處理的網路，支援 InfiniBand
-可在選取的資料中心使用。A8 和 A9 虛擬機器搭載 [Intel® Xeon® E5 處理器](http://www.intel.com/content/www/us/en/processors/xeon/xeon-processor-e5-family.html)。新增搭配遠端直接記憶體存取 (RDMA) 技術的 32Gbit/秒 **InfiniBand** 網路。適用於訊息傳遞介面 (MPI) 應用程式、高效能叢集、模型製作與模擬、視訊編碼及其他大量計算和網路高用量等案例。
+## <a name="a-series---compute-intensive-instances"></a>A 系列 - 大量計算執行個體
+如需有關使用這些大小的資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| A8 |8 |56 GB |高 |382 GB |
-| A9 |16 |112 GB |非常高 |382 GB |
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 HDD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Standard_A8* |8 |56 |382 |16 |16x500 |2 / 高 |
+| Standard_A9* |16 |112 |382 |16 |16x500 |4 / 非常高 |
+| Standard_A10 |8 |56 |382 |16 |16x500 |2 / 高 |
+| Standard_A11 |16 |112 |382 |16 |16x500 |4 / 非常高 |
 
-## 大量計算
-可在選取的資料中心使用。A10 和 A11 虛擬機器搭載 [Intel® Xeon® E5 處理器](http://www.intel.com/content/www/us/en/processors/xeon/xeon-processor-e5-family.html)。適用於高效能叢集、模型製作與模擬、視訊編碼，以及其他需要大量計算及大量使用網路等案例。與 A8 和 A9 執行個體設定相似，沒有 InfiniBand 網路和 RDMA 技術。
+\*支援 RDMA
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| A10 |8 |56 GB |高 |382 GB |
-| A11 |16 |112 GB |非常高 |382 GB |
+## <a name="av2-series"></a>Av2 系列
 
-## D 系列︰最佳化計算
-D 系列虛擬機器的特色包括固態磁碟機 (SSD) 和比 A 系列還要快的處理器 (快上 60%)，而且也適用於 Azure 雲端服務中的 Web 角色或背景工作角色。應用程式若需要更快的 CPU、較佳的本機磁碟效能或更高的記憶體，則此系列會是理想的選擇。
+| 大小        | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+|-------------|-----------|--------------|-----------------------|----------------|--------------------|-----------------------|
+| Standard_A1_v2 | 1         | 2            | 10                   | 2              | 2x500              | 1 / 中              |
+| Standard_A2_v2 | 2         | 4            | 20                   | 4              | 4x500              | 2 / 中              |
+| Standard_A4_v2 | 4         | 8            | 40                   | 8              | 8x500              | 4 / 高                  |
+| Standard_A8_v2 | 8         | 16           | 80                   | 16             | 16x500             | 8 / 高                  |
+| Standard_A2m_v2 | 2        | 16           | 20                   | 4              | 4x500              | 2 / 中              |
+| Standard_A4m_v2 | 4        | 32           | 40                   | 8              | 8x500              | 4 / 高                  |
+| Standard_A8m_v2 | 8        | 64           | 80                   | 16             | 16x500             | 8 / 高                  |
 
-## 一般用途 (D)
-適用於網路、中小型資料庫及其他日常應用程式。
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| 標準\_D1 |1 |3\.5 GB |中度 |50 GB |
-| 標準\_D2 |2 |7 GB |高 |100 GB |
-| 標準\_D3 |4 |14 GB |高 |200 GB |
-| 標準\_D4 |8 |28 GB |高 |400 GB |
+## <a name="d-series"></a>D 系列
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 標準_D1 |1 |3.5 |50 |2 |2x500 |1 / 中 |
+| 標準_D2 |2 |7 |100 |4 |4x500 |2 / 高 |
+| 標準_D3 |4 |14 |200 |8 |8x500 |4 / 高 |
+| 標準_D4 |8 |28 |400 |16 |16x500 |8 / 高 |
+| 標準_D11 |2 |14 |100 |4 |4x500 |2 / 高 |
+| 標準_D12 |4 |28 |200 |8 |8x500 |4 / 高 |
+| 標準_D13 |8 |56 |400 |16 |16x500 |8 / 高 |
+| 標準_D14 |16 |112 |800 |32 |32x500 |8 / 非常高 |
 
-## 記憶體高用量 (D)
-適用於大型資料庫、SharePoint 伺服器陣列及高輸送量應用程式。
+## <a name="dv2-series"></a>Dv2 系列
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Standard_D1_v2 |1 |3.5 |50 |2 |2x500 |1 / 中 |
+| Standard_D2_v2 |2 |7 |100 |4 |4x500 |2 / 高 |
+| Standard_D3_v2 |4 |14 |200 |8 |8x500 |4 / 高 |
+| Standard_D4_v2 |8 |28 |400 |16 |16x500 |8 / 高 |
+| Standard_D5_v2 |16 |56 |800 |32 |32x500 |8 / 極高 |
+| Standard_D11_v2 |2 |14 |100 |4 |4x500 |2 / 高 |
+| Standard_D12_v2 |4 |28 |200 |8 |8x500 |4 / 高 |
+| Standard_D13_v2 |8 |56 |400 |16 |16x500 |8 / 高 |
+| Standard_D14_v2 |16 |112 |800 |32 |32x500 |8 / 極高 |
+| Standard_D15_v2 |20 |140 |1,000 |40 |40x500 |8 / 極高 |
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| 標準\_D11 |2 |14 GB |高 |100 GB |
-| 標準\_D12 |4 |28 GB |高 |200 GB |
-| 標準\_D13 |8 |56 GB |高 |400 GB |
-| 標準\_D14 |16 |112 GB |非常高 |800 GB |
+## <a name="g-series"></a>G 系列
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Standard_G1 |2 |28 |384 |4 |4 x 500 |1 / 高 |
+| Standard_G2 |4 |56 |768 |8 |8 x 500 |2 / 高 |
+| Standard_G3 |8 |112 |1,536 |16 |16 x 500 |4 / 非常高 |
+| Standard_G4 |16 |224 |3,072 |32 |32 x 500 |8 / 極高 |
+| Standard_G5 |32 |448 |6,144 |64 |64 x 500 |8 / 極高 |
 
-## Dv2 系列︰最佳化計算
-Dv2 系列執行個體是第二代 D 系列執行個體，可做為虛擬機器或雲端服務使用。Dv2 系列執行個體會搭載更強大的 CPU，平均比 D 系列執行個體快上 35%，並與 D 系列搭載相同的記憶體及磁碟組態。Dv2 系列執行個體是以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，且搭配 Intel 渦輪加速技術 2.0 可達 3.1 GHz。Dv2 系列及 D 系列適用於需要更快的 CPU、更佳的本機磁碟效能、或是更高記憶體的應用程式，並替許多企業級應用程式帶來強大的組合。
+## <a name="h-series"></a>H 系列
+Azure H 系列虛擬機器是下一代高效能運算 VM，以高端運算需求為目標，例如分子建模以及運算流體力學。 這些 8 與 16 核心 VM 是以 Intel Haswell E5-2667 V3 處理器技術，搭載 DDR4 記憶體與本機 SSD 型儲存體為基礎建置。
 
-## 一般用途 (Dv2)
-適用於網路、中小型資料庫及其他日常應用程式。
+除了大量的 CPU 能力，H 系列使用 FDR InfiniBand 與數個記憶體組態，針對低延遲 RDMA 網路提供不同的選項，以支援記憶體大量運算需求。
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| Standard\_D1\_v2 |1 |3\.5 GB |中度 |50 GB |
-| Standard\_D2\_v2 |2 |7 GB |高 |100 GB |
-| Standard\_D3\_v2 |4 |14 GB |高 |200 GB |
-| Standard\_D4\_v2 |8 |28 GB |高 |400 GB |
-| Standard\_D5\_v2 |16 |56 GB |非常高 |800 GB |
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Standard_H8 |8 |56 |1000 |16 |16 x 500 |8 / 高 |
+| Standard_H16 |16 |112 |2000 |32 |32 x 500 |8 / 非常高 |
+| Standard_H8m |8 |112 |1000 |16 |16 x 500 |8 / 高 |
+| Standard_H16m |16 |224 |2000 |32 |32 x 500 |8 / 非常高 |
+| Standard_H16r* |16 |112 |2000 |32 |32 x 500 |8 / 非常高 |
+| Standard_H16mr* |16 |224 |2000 |32 |32 x 500 |8 / 非常高 |
 
-## 記憶體高用量 (Dv2)
-適用於大型資料庫、SharePoint 伺服器陣列及高輸送量應用程式
+\*支援 RDMA
 
-| 大小 (id) | 核心 | RAM | 網路頻寬 | 磁碟大小總計 |
-| --- |:---:| ---:|:---:| ---:|
-| Standard\_D11\_v2 |2 |14 GB |高 |100 GB |
-| Standard\_D12\_v2 |4 |28 GB |高 |200 GB |
-| Standard\_D13\_v2 |8 |56 GB |高 |400 GB |
-| Standard\_D14\_v2 |16 |112 GB |非常高 |800 GB |
-| Standard\_D15\_v2 |20 |140 GB |非常高 |1,000 GB |
+## <a name="notes-standard-a0---a4-using-cli-and-powershell"></a>注意︰使用 CLI 和 PowerShell 的標準 A0 - A4
+在傳統部署模型中，部分 VM 大小名稱會與 CLI 和 PowerShell 中的稍有不同：
 
-## 設定雲端服務大小
-您可以指定角色執行個體的虛擬機器大小，作為[服務定義檔](cloud-services-model-and-package.md#csdef)所描述之服務模型的一部分。角色大小決定 CPU 核心數目、記憶體容量，以及配置給執行中執行個體的本機檔案系統大小。根據您應用程式的資源需求選擇角色大小。
+* Standard_A0 是「特小型」
+* Standard_A1 是「小型」
+* Standard_A2 是「中型」
+* Standard_A3 是「大型」
+* Standard_A4 是「特大型」
 
-以下是將 Web 角色執行個體的角色大小設定為 [Standard\_D2](#general-purpose-d) 的範例：
+## <a name="configure-sizes-for-cloud-services"></a>設定雲端服務大小
+您可以指定角色執行個體的虛擬機器大小，作為 [服務定義檔](cloud-services-model-and-package.md#csdef)所描述之服務模型的一部分。 角色大小決定 CPU 核心數目、記憶體容量，以及配置給執行中執行個體的本機檔案系統大小。 根據您應用程式的資源需求選擇角色大小。
+
+以下是將 Web 角色執行個體的角色大小設定為 [Standard_D2](#general-purpose-d) 的範例：
 
 ```xml
-<WebRole name="WebRole1" vmsize="<mark>Standard_D2</mark>">
+<WorkerRole name="Worker1" vmsize="Standard_D2">
 ...
-</WebRole>
+</WorkerRole>
 ```
 
-<!---HONumber=AcomDC_0914_2016-->
+## <a name="changing-the-size-of-an-existing-role"></a>變更現有角色的大小
+
+因為您的工作負載的本質變更或新的 VM 大小變得可用，您可能想要變更您的角色大小。 若要這樣做，您必須變更您的服務定義檔中的 VM 大小 (如上所示)、重新封裝您的雲端服務，然後部署。 您不可以直接從入口網站或 PowerShell 變更 VM 大小。
+
+>[!TIP]
+> 您可能想要在不同環境中對您的角色使用不同 VM 大小 (例如， 測試與生產環境)。 其中一種方式是在專案中建立多個服務定義 (.csdef) 檔案，然後在使用 CSPack 工具自動化建置期間於每個環境建立不同的雲端服務套件。 若要深入了解雲端服務套件的元素，以及如何建立這些元素，請參閱[什麼是雲端服務模型，以及如何封裝？](cloud-services-model-and-package.md)
+>
+>
+
+## <a name="next-steps"></a>後續步驟
+* 了解 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)。
+* 深入了解適用於高效能運算 (HPC) 這類工作負載的 [H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。
+
+
+
+<!--HONumber=Dec16_HO3-->
+
+

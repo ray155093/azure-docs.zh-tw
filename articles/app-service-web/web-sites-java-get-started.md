@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: get-started-article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: acacfbead6cf0d68ccfeb5e818a2b04f2be9b902
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 3451e6d13119bacc66e9ccd861862edea5a5b4fe
 
 
 ---
@@ -37,7 +37,7 @@ ms.openlocfilehash: acacfbead6cf0d68ccfeb5e818a2b04f2be9b902
 
 1. 建立應用程式，然後設定 [應用程式設定] 。
    
-    App Service 提供數個 Tomcat 或 Jetty 版本 (包含預設組態)。 如果您將託管的應用程式會使用其中一個內建版本，這就是設定 Web 容器的最簡單方法，並且最適合在您只想要將 WAR 檔案上傳到 Web 容器時使用。 而這個方法就是您在 Azure 入口網站中建立應用程式，然後前往應用程式的 [應用程式設定]  刀鋒視窗來選擇您的 Java 版本及所需的 Java Web 容器。 當您使用這個方法時，Java 和 Web 容器都會從程式檔案執行。 其他方法則會將 Web 容器 (或許還有 JVM) 放在磁碟空間。 當您使用此模型時，您沒有在檔案系統的這個部分編輯檔案的權限。 這表示您不能進行某些動作，像是設定「server.xml」檔案或將程式庫檔案放在「/lib」資料夾中。 如需詳細資訊，請參閱本教學課程後面的 [建立及設定 Java Web 應用程式](#appsettings) 一節。
+    App Service 提供數個 Tomcat 或 Jetty 版本 (包含預設組態)。 如果您將託管的應用程式會使用其中一個內建版本，這就是設定 Web 容器的最簡單方法，並且最適合在您只想要將 WAR 檔案上傳到 Web 容器時使用。 而這個方法就是您在 Azure 入口網站中建立應用程式，然後前往應用程式的 [應用程式設定]  刀鋒視窗來選擇您的 Java 版本及所需的 Java Web 容器。 當您使用這個方法時，Java 和 Web 容器都會從程式檔案執行。 其他方法則會將 Web 容器 (或許還有 JVM) 放在磁碟空間。 當您使用此模型時，您沒有在檔案系統的這個部分編輯檔案的權限。 這表示您不能進行某些動作，像是設定「server.xml」檔案或將程式庫檔案放在「/lib」資料夾中。 如需詳細資訊，請參閱本教學課程後面的 [建立及設定 Java Web 應用程式](#portal) 一節。
 2. 使用來自 Azure Marketplace 的範本。
    
     Azure Marketplace 包含數個範本，其可使用 Tomcat 或 Jetty Web 容器自動建立及設定 Java Web 應用程式。 範本所建立的 Web 容器是可設定的。 如需詳細資訊，請參閱本教學課程的 [使用來自 Azure Marketplace 的 Java 範本](#marketplace) 區段。
@@ -62,9 +62,9 @@ ms.openlocfilehash: acacfbead6cf0d68ccfeb5e818a2b04f2be9b902
 3. 在 [Web 應用程式]  方塊中，輸入 Web 應用程式的名稱。
    
     此名稱在 azurewebsites.net 網域中必須是唯一的，因為 Web 應用程式的 URL 將是 {name}.azurewebsites.net。 如果您輸入的名稱不是唯一的，紅色驚嘆號會出現在文字方塊中。
-4. 選取 [資源群組]  ，或建立新的資源群組。
+4. 選取 [資源群組]  或建立新的資源群組。
    
-    如需資源群組的詳細資訊，請參閱 [使用 Azure 入口網站管理您的 Azure 資源]。
+    如需有關資源群組的詳細資訊，請參閱 [Resource Manager 概觀]。
 5. 選取 [App Service 方案/位置]  ，或建立新的 App Service 方案/位置。
    
     如需 App Service 方案的詳細資訊，請參閱 [Azure App Service 方案概觀]。
@@ -109,9 +109,9 @@ ms.openlocfilehash: acacfbead6cf0d68ccfeb5e818a2b04f2be9b902
 7. 在下一個 [Apache Tomcat] 或 [Jetty] 刀鋒視窗中，於 [Web 應用程式] 方塊中輸入 Web 應用程式的名稱。
    
     此名稱在 azurewebsites.net 網域中必須是唯一的，因為 Web 應用程式的 URL 將是 {name}.azurewebsites.net。 如果您輸入的名稱不是唯一的，紅色驚嘆號會出現在文字方塊中。
-8. 選取 [資源群組]  ，或建立新的資源群組。
+8. 選取 [資源群組]  或建立新的資源群組。
    
-    如需資源群組的詳細資訊，請參閱 [使用 Azure 入口網站管理您的 Azure 資源]。
+    如需有關資源群組的詳細資訊，請參閱 [Resource Manager 概觀]。
 9. 選取 [App Service 方案/位置]  ，或建立新的 App Service 方案/位置。
    
     如需 App Service 方案的詳細資訊，請參閱 [Azure App Service 方案概觀]。
@@ -147,10 +147,10 @@ ms.openlocfilehash: acacfbead6cf0d68ccfeb5e818a2b04f2be9b902
 [Azure 入口網站]: https://portal.azure.com/
 [啟用自己的 Visual Studio 訂閱者權益]: http://go.microsoft.com/fwlink/?LinkId=623901
 [申請免費試用]: http://go.microsoft.com/fwlink/?LinkId=623901
-[試用 App Service]: http://go.microsoft.com/fwlink/?LinkId=523751
+[試用 App Service]: https://azure.microsoft.com/try/app-service/
 [Azure App Service 中的 Web 應用程式]: http://go.microsoft.com/fwlink/?LinkId=529714
 [Java 開發人員中心]: /develop/java/
-[使用 Azure 入口網站管理您的 Azure 資源]: ../azure-portal/resource-group-portal.md
+[Resource Manager 概觀]: ../azure-resource-manager/resource-group-overview.md
 [將自訂 Java Web 應用程式上傳至 Azure]: ./web-sites-java-custom-upload.md
 
 <!-- IMG List -->
@@ -169,6 +169,6 @@ ms.openlocfilehash: acacfbead6cf0d68ccfeb5e818a2b04f2be9b902
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

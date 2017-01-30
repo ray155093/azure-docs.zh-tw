@@ -13,11 +13,11 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/18/2016
+ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: b9fda8b5f4ffa6679cc8ca9696a4c51084c80645
-ms.openlocfilehash: 7c3d73ca6f4f567247ec9796199e68f764a52808
+ms.sourcegitcommit: 7ade85d98c41bddddb61fe75d212b351ff62eef0
+ms.openlocfilehash: 1e24cebace0e6b7de7ae318f06d6430b3caa342a
 
 
 ---
@@ -25,8 +25,8 @@ ms.openlocfilehash: 7c3d73ca6f4f567247ec9796199e68f764a52808
 
 Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運算系統。 在 Storm on Azure HDInsight 中，您可以建立雲端式 Storm 叢集，以執行即時的巨量資料分析。
 
-> [!NOTE]
-> 本文中的步驟會建立以 Linux 為基礎的 HDInsight 叢集。 如需在 HDInsight 叢集上建立 Windows 式 Storm 的步驟，請參閱 [Apache Storm 教學課程：在 HDInsight 上藉由資料分析開始使用 Storm Starter 範例](hdinsight-apache-storm-tutorial-get-started.md)
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -216,6 +216,6 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

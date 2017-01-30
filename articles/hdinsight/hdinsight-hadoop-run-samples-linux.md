@@ -1,13 +1,13 @@
 ---
-title: 在以 Linux 為基礎的 HDInsight 上執行 Hadoop MapReduce 範例 | Microsoft Docs
-description: 開始搭配以 Linux 為基礎的 HDInsight 使用 MapReduce 範例。 使用 SSH 連接到叢集，然後使用 Hadoop 命令執行範例工作。
+title: "在以 Linux 為基礎的 HDInsight 上執行 Hadoop MapReduce 範例 | Microsoft Docs"
+description: "開始搭配以 Linux 為基礎的 HDInsight 使用 MapReduce 範例。 使用 SSH 連接到叢集，然後使用 Hadoop 命令執行範例工作。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: e1d2a0b9-1659-4fab-921e-4a8990cbb30a
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8e9cf3d1a2ae950f4f843458ae8b22d99beddd7e
+
 
 ---
 # <a name="run-the-hadoop-samples-in-hdinsight"></a>在 HDInsight 上執行 Hadoop 範例
@@ -153,7 +157,7 @@ Sudoku 範例的使用指示似乎有點不實用：「在命令列中包含謎�
     1 8 5 7 3 9 2 6 4
     2 6 3 1 4 5 9 7 8
 
-## <a name="pi-(π)"></a>Pi (π)
+## <a name="pi-"></a>Pi (π)
 Pi 範例會使用統計 (擬蒙特卡羅法) 方法來估計 pi 的值。 單位正方形內隨機散佈的點，也會落在該正方形的內切圓之內，且機率等於圓面積 Pi/4。 Pi 的值可從 4R 的值來估計，其中 R 是圓內點數佔正方形內總點數的比例。 使用的樣本點越多，估計越準確。
 
 此範例的對應器會在單位正方形內隨機產生一些散佈的點，然後計算落在圓內的點數。
@@ -220,6 +224,6 @@ GraySort 是一種效能評定排序，其度量為排序極大資料量時 (通
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

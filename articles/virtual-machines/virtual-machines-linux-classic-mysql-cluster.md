@@ -16,15 +16,14 @@ ms.topic: article
 ms.date: 04/14/2015
 ms.author: jparrel
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a533ebe181134b9c251b1fde76be61a4a3959487
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 575bad188834f46ff7fb2ba31f1f01028bb9857d
 
 
 ---
 # <a name="using-load-balanced-sets-to-clusterize-mysql-on-linux"></a>在 Linux 上使用負載平衡集合將 MySQL 叢集化
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如需部署 MySQL 叢集的 Resource Manager 範本，請參閱[這裡](https://azure.microsoft.com/documentation/templates/mysql-replication/)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需部署 MySQL 叢集的 Resource Manager 範本，請參閱[這裡](https://azure.microsoft.com/documentation/templates/mysql-replication/)。
 
 本文旨在瀏覽與說明要在 Microsoft Azure 上部署高度可用 Linux 架構服務的其他可用方法，首先從 MySQL Server 高可用性開始。 您可在 [第 9 頻道](http://channel9.msdn.com/Blogs/Open/Load-balancing-highly-available-Linux-services-on-Windows-Azure-OpenLDAP-and-MySQL)(英文) 上找到說明此方法的影片。
 
@@ -141,7 +140,8 @@ ms.openlocfilehash: a533ebe181134b9c251b1fde76be61a4a3959487
     INSERT INTO things VALUES (1, "Yet another entity");
     GRANT ALL ON things.\* TO root;
 
-**警告**：最後一個陳述式會有效地停用此資料表中根使用者的驗證。 這應由您的生產等級 GRANT 陳述式取代，這裡僅是為了說明的目的才包括此陳述式。
+> [!WARNING]
+> 最後一個陳述式會有效地停用此資料表中根使用者的驗證。 這應由您的生產等級 GRANT 陳述式取代，這裡僅是為了說明的目的才包括此陳述式。
 
 如果您想要在 VM 外進行查詢，您還必須啟用 MySQL 的網路功能，這正是本指南的目的。 在這兩個 VM 上，開啟 `/etc/mysql/my.cnf` 並瀏覽至 `bind-address`，將它從 127.0.0.1 變更為 0.0.0.0。 儲存檔案後，在您目前的主要 VM 上發佈 `sudo service mysql restart` 。
 
@@ -177,7 +177,8 @@ Corosync 在 Azure 上的主要限制是，Corosync 偏好的通訊順序為多�
 
 還好，Corosync 具備有效的單點傳送模式，唯一的真正限制是，因為所有節點彼此之間不會 *神奇地自動*進行通訊，您必須在組態檔中定義節點，包括其 IP 位址。 我們可以使用 Corosync 範例檔案進行單點傳送，只需變更繫結位址、節點清單和記錄目錄 (Ubuntu 會使用 `/var/log/corosync`，而範例檔案會使用 `/var/log/cluster`) 及啟用仲裁工具。
 
-**請記下以下的 `transport: udpu` 指示詞和手動定義的節點 IP 位址**。
+> [!NOTE]
+> 以下的 `transport: udpu` 指示詞和手動定義的節點 IP 位址**。
 
 在這兩個節點的 `/etc/corosync/corosync.conf` 上：
 
@@ -314,7 +315,8 @@ Pacemaker 會使用叢集來監視資源，定義在主要故障時將這些資�
       property stonith-enabled=true \
       commit
 
-**注意：** 此指令碼不會執行使用/停用檢查。 原始的 SSH 資源會有 15 個 Ping 檢查，但 Azure VM 的復原時間可能會有較多的變數。
+> [!NOTE]
+> 此指令碼不會執行使用/停用檢查。 原始的 SSH 資源會有 15 個 Ping 檢查，但 Azure VM 的復原時間可能會有較多的變數。
 
 ## <a name="limitations"></a>限制
 套用下列限制：
@@ -329,6 +331,6 @@ Pacemaker 會使用叢集來監視資源，定義在主要故障時將這些資�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

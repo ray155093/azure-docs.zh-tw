@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 10/04/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -54,8 +54,8 @@ ms.openlocfilehash: 25c2b279487f099a0e688621e63faaa4ed265e6e
 
 > [!NOTE]
 > 含有大量資料行的寬型資料表可能會在預覽中包含少於 20 筆的記錄。
-> 
-> 
+>
+>
 
 ## <a name="including-data-profiles"></a>包含資料設定檔
 包含預覽可為在 **Azure 資料目錄**中搜尋資料來源的使用者提供有用的內容，同樣地，包含資料設定檔也能讓使用者更輕鬆了解已探索的資料來源。
@@ -71,8 +71,8 @@ ms.openlocfilehash: 25c2b279487f099a0e688621e63faaa4ed265e6e
 
 > [!NOTE]
 > 文字和日期資料行不會包含其資料設定檔中的平均值或標準差值統計資料。
-> 
-> 
+>
+>
 
 ## <a name="updating-registrations"></a>更新註冊
 註冊資料來源讓您得以使用註冊期間擷取的中繼資料和選擇性預覽，藉此在 **Azure 資料目錄** 中探索資料來源。 如果在 [目錄] 中的資料來源需要更新 (例如，如果物件的結構描述已經變更、或應包含原先排除的資料表，或使用者想要更新在預覽中所包含的資料)，可以重新執行資料來源註冊工具。
@@ -84,7 +84,6 @@ ms.openlocfilehash: 25c2b279487f099a0e688621e63faaa4ed265e6e
 
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何註冊資料來源的逐步詳細資料。
-
 
 
 

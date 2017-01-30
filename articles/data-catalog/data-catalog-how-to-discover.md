@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 10/04/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -52,8 +52,8 @@ ms.openlocfilehash: 0c90aff38ebe33e8c26f9e46db7e61786ea9a7dd
 
 > [!NOTE]
 > 使用者可以依其需求，使用 **Azure 資料目錄** 入口網站中的 [醒目提示] 開關，關閉醒目提示。
-> 
-> 
+>
+>
 
 當您檢視搜尋結果時，即使已啟用醒目提示，不一定能明顯看出為何某個資料資產會包含在其中。 因為預設會搜尋所有內容，某個資料資產可能因為符合資料行層級的內容而被傳回。 此外，多位使用者可以使用他們自己的標記和描述為已註冊的資料資產加上註解，因此並非所有的中繼資料都會顯示在搜尋結果清單中。
 
@@ -66,7 +66,6 @@ ms.openlocfilehash: 0c90aff38ebe33e8c26f9e46db7e61786ea9a7dd
 
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何探索資料來源的逐步詳細資料。
-
 
 
 

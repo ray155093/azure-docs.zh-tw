@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cf8f9a06c4d720dade11ea67fc1befe07a56cf85
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: ed289d0755bbad08de01b0f311d14f5514ce0631
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: cf8f9a06c4d720dade11ea67fc1befe07a56cf85
 * 已安裝 Xcode v7.0 或更新版本以及 Xamarin Studio Community 的 Mac。 請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)及[針對 Mac 使用者的設定、安裝和驗證](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN)。
 
 > [!NOTE]
-> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)。 您可以在 App Service 中立即建立短期的入門行動應用程式 - 不需信用卡，不需任何承諾。
+> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/mobile/)。 您可以在 App Service 中立即建立短期的入門行動應用程式 - 不需信用卡，不需任何承諾。
 > 
 > 
 
@@ -77,13 +77,13 @@ ms.openlocfilehash: cf8f9a06c4d720dade11ea67fc1befe07a56cf85
 ## <a name="next-steps"></a>後續步驟
 * [將離線同步處理新增至您的應用程式](app-service-mobile-xamarin-ios-get-started-offline-data.md)
 * [在您的應用程式中新增驗證 ](app-service-mobile-xamarin-ios-get-started-users.md)
-* [將推播通知新增至 Xamarin.Android 應用程式](app-service-mobile-xamarin-ios-get-started-push.md)
+* [將推播通知新增至您的 Xamarin.Android 應用程式](app-service-mobile-xamarin-ios-get-started-push.md)
 * [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 <!-- Anchors. -->
-[開始使用行動應用程式後端]:#getting-started
-[建立新的行動應用程式後端]:#create-new-service
-[後續步驟]:#next-steps
+[Getting started with mobile app backends]:#getting-started
+[Create a new mobile app backend]:#create-new-service
+[Next Steps]:#next-steps
 
 <!-- Images. -->
 [6]: ./media/app-service-mobile-xamarin-ios-get-started/xamarin-ios-quickstart.png
@@ -96,6 +96,6 @@ ms.openlocfilehash: cf8f9a06c4d720dade11ea67fc1befe07a56cf85
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

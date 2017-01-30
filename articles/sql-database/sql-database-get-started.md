@@ -1,6 +1,6 @@
 ---
-title: "SQL Database 教學課程︰建立伺服器、伺服器層級防火牆規則、範例資料庫、資料庫層級防火牆規則，以及使用 SQL Server Management Studio 來連接 |Microsoft Docs"
-description: "了解如何設定 SQL Database 邏輯伺服器、伺服器防火牆規則、SQL Database 和範例資料。 此外，了解如何連接用戶端工具、設定使用者以及設定資料庫防火牆規則。"
+title: "Azure 入口網站：開始使用 Azure SQL Database | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站建立 SQL Database 邏輯伺服器、伺服器層級防火牆規則和資料庫。 您也可了解如何使用 SQL Server Management Studio 查詢資料庫。"
 keywords: "sql database 教學課程, 建立 sql database"
 services: sql-database
 documentationcenter: 
@@ -17,12 +17,12 @@ ms.topic: hero-article
 ms.date: 11/23/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: c2252fc81f97019391ca2ba957f8402c4e97a9c2
-ms.openlocfilehash: f9b17c1cc77918fb1989b94b5bb359a697ceea7c
+ms.sourcegitcommit: 2a85b3dc1078bad9e5e2fc0ce0bec7e994b29150
+ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
 
 ---
-# <a name="get-started-with-azure-sql-database-servers-databases-and-firewall-rules-by-using-the-azure-portal-and-sql-server-management-studio"></a>藉由使用 Azure 入口網站和 SQL Server Management Studio 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則
+# <a name="sql-database-tutorial-get-started-with-azure-sql-database-servers-databases-and-firewall-rules-using-the-azure-portal-and-sql-server-management-studio"></a>SQL Database 教學課程：使用 Azure 入口網站和 SQL Server Management Studio 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則
 
 在本入門教學課程裡，您將學習如何使用 Azure 入口網站來：
 
@@ -44,17 +44,22 @@ ms.openlocfilehash: f9b17c1cc77918fb1989b94b5bb359a697ceea7c
 
 **時間估計**︰本教學課程將需要大約 30 分鐘 (假設您已符合先決條件)。
 
+> [!TIP]
+> 您可以使用 [C#](sql-database-get-started-csharp.md) 或 [PowerShell](sql-database-get-started-powershell.md) 來執行入門教學課程中相同的工作。
+>
+
 ## <a name="prerequisites"></a>必要條件
 
 * 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
 
 * 您必須能夠使用屬於訂用帳戶擁有者或參與者角色之成員的帳戶來連線 Azure 入口網站。 如需角色型存取控制 (RBAC) 的詳細資訊，請參閱[開始使用 Azure 入口網站中的存取管理](../active-directory/role-based-access-control-what-is.md)。
 
-> [!TIP]
-> 您可以使用 [C#](sql-database-get-started-csharp.md) 或 [PowerShell](sql-database-get-started-powershell.md) 來執行入門教學課程中相同的工作。
->
+> [!NOTE]
+> 本教學課程會協助您了解下列學習主題的內容︰[SQL Database 伺服器概觀](sql-database-server-overview.md)、[SQL Database 概觀](sql-database-overview.md)和 [Azure SQL Database 防火牆規則概觀](sql-database-firewall-configure.md)。
+>  
 
-### <a name="sign-in-by-using-your-existing-account"></a>使用您現有的帳戶登入
+
+### <a name="sign-in-to-the-azure-portal-using-your-azure-account"></a>使用 Azure 帳戶登入 Azure 入口網站
 使用 [現有的訂用帳戶](https://account.windowsazure.com/Home/Index)，遵循下列步驟來連接到 Azure 入口網站。
 
 1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)。
@@ -103,7 +108,7 @@ ms.openlocfilehash: f9b17c1cc77918fb1989b94b5bb359a697ceea7c
     ![伺服器位置](./media/sql-database-get-started/server-location.png)
     
     > [!TIP]
-    > [允許 Azure 服務存取伺服器] 核取方塊無法在此刀鋒視窗中變更。 您可以在伺服器防火牆刀鋒視窗上變更此設定。 如需詳細資訊，請參閱[安全性入門](sql-database-get-started-security.md)。
+    > [允許 Azure 服務存取伺服器] 核取方塊無法在此刀鋒視窗中變更。 您可以在伺服器防火牆刀鋒視窗上變更此設定。 如需詳細資訊，請參閱[安全性入門](sql-database-control-access-sql-authentication-get-started.md)。
     >
     
 9. 按一下 [建立] 。
@@ -183,7 +188,7 @@ ms.openlocfilehash: f9b17c1cc77918fb1989b94b5bb359a697ceea7c
     ![查詢主要資料庫系統物件](./media/sql-database-get-started/query-master-database-system-objects.png)
 
     > [!NOTE]
-    > 若要瀏覽 SQL 安全性，請參閱 [SQL 安全性入門](sql-database-get-started-security.md)
+    > 若要瀏覽 SQL 安全性，請參閱 [SQL 安全性入門](sql-database-control-access-sql-authentication-get-started.md)
     >
 
 ## <a name="create-new-database-in-the-azure-portal-using-adventure-works-lt-sample"></a>使用 Adventure Works LT 範例在 Azure 入口網站中建立新的資料庫
@@ -291,7 +296,7 @@ ms.openlocfilehash: f9b17c1cc77918fb1989b94b5bb359a697ceea7c
 ## <a name="next-steps"></a>後續步驟
 現在您已經完成本教學課程，您或許有興趣探索其他教學課程，來建置在本教學課程中已學習到的內容。 
 
-* 如果您想要探索 Azure SQL Database 安全性，請參閱 [安全性入門](sql-database-get-started-security.md)。
+* 如果您想要探索 Azure SQL Database 安全性，請參閱 [安全性入門](sql-database-control-access-sql-authentication-get-started.md)。
 * 如果您熟悉 Excel，請了解如何 [在 Azure 中使用 Excel 連接至 SQL Database](sql-database-connect-excel.md)。
 * 如果您準備好開始撰寫程式碼，請在 [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)選擇您的程式語言。
 * 如果您想要將內部部署的 SQL Server 資料庫移動至 Azure，請參閱 [將資料庫移轉至 SQL Database](sql-database-cloud-migrate.md)。
@@ -306,6 +311,6 @@ ms.openlocfilehash: f9b17c1cc77918fb1989b94b5bb359a697ceea7c
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

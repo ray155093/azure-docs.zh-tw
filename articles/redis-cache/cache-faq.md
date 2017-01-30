@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: dac614de38447bfeaf92f15f156217c9bd44b4ff
-ms.openlocfilehash: 580b4b67cf2180e32b2c7d9eb1359d0a9036e3d0
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: cc669e18d702e5cb59a4ee292f8b0fdb22e1b7fa
 
 
 ---
@@ -93,8 +93,8 @@ Azure Redis 快取是以常用的開放原始碼 [Redis 快取](http://redis.io)
 
 如果您還沒有 Azure 帳戶，您可以：
 
-* [免費申請 Azure 帳戶](/pricing/free-trial/?WT.mc_id=redis_cache_hero)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶並使用免費的 Azure 服務和功能。
-* [啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero)。 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
+* [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶並使用免費的 Azure 服務和功能。
+* [啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero)。 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
 
 <a name="cache-size"></a>
 
@@ -352,7 +352,7 @@ CLR 執行緒集區有兩種類型的執行緒：「背景工作」和「I/O 完
 
 如何設定這項設定：
 
-* 在 ASP.NET 中，使用 web.config 中 `<processModel>` 組態元素下的 ["minIoThreads" 組態設定]["minIoThreads" 組態設定]。 如果您在 Azure 網站內執行，此設定不會透過組態選項公開。 不過，您應該仍然能夠透過 global.asax.cs 的 Application_Start 方法以程式設計方式設定 (如下所示)。
+* 在 ASP.NET 中，使用 web.config 中的 `<processModel>` 組態元素下的 ["minIoThreads" 組態設定]["minIoThreads" configuration setting]。 如果您在 Azure 網站內執行，此設定不會透過組態選項公開。 不過，您應該仍然能夠透過 global.asax.cs 的 Application_Start 方法以程式設計方式設定 (如下所示)。
 
 > **重要事項：**這個組態元素中指定的值是「每一核心」設定。 例如，如果您有 4 核心的電腦，並且想要在執行階段將 minIOThreads 設為 200，您會使用 `<processModel minIoThreads="50"/>`。
 >
@@ -435,10 +435,10 @@ Redis 成功的另一個重要層面是建置健全、有活力的開放原始�
 ### <a name="in-role-cache"></a>角色中快取
 [In-Role Cache 已設定於 2016 年 11 月 30 日淘汰。](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)
 
-["minIoThreads" 組態設定]: https://msdn.microsoft.com/library/vstudio/7w2sway1(v=vs.100).aspx
+["minIoThreads" configuration setting]: https://msdn.microsoft.com/library/vstudio/7w2sway1(v=vs.100).aspx
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

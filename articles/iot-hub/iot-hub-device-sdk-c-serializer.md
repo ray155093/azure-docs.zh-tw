@@ -1,6 +1,6 @@
 ---
 title: "適用於 C 的 Azure IoT 裝置 SDK - 序列化程式 | Microsoft Docs"
-description: "深入了解在適用於 C 的 Azure IoT 裝置 SDK 中使用序列化程式程式庫"
+description: "如何使用適用於 C 的 Azure IoT 裝置 SDK 中的 Serializer 程式庫，以建立與 IoT 中樞通訊的裝置應用程式。"
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 98015b39687bcd1425093b28f67d768fe73e7091
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2e38c7dba04c1402a227fe0a65d637667fd73aa2
 
 
 ---
-# <a name="microsoft-azure-iot-device-sdk-for-c--more-about-serializer"></a>Microsoft Azure IoT 裝置 SDK (適用於 C) – 深入了解序列化程式
+# <a name="azure-iot-device-sdk-for-c--more-about-serializer"></a>適用於 C 的 Azure IoT 裝置 SDK - 深入了解序列化程式
 本系列的[第一篇文章](iot-hub-device-sdk-c-intro.md)介紹了「適用於 C 的 Azure IoT 裝置 SDK」。下一篇文章提供 [**IoTHubClient**](iot-hub-device-sdk-c-iothubclient.md) 的更詳細描述。 本文將提供「序列化程式」  程式庫這個最後元件的更詳細描述，來完成 SDK 的涵蓋範圍。
 
 本簡介文章描述如何使用「序列化程式」  程式庫將事件傳送至 IoT 中樞，以及接收來自 IoT 中樞的訊息。 在本文中，我們將更完整說明如何利用「序列化程式」  巨集語言來建立資料模型，以延伸該討論。 本文也包含更多有關程式庫如何將訊息序列化 (以及在某些情況下，如何控制序列化行為) 的詳細資料。 我們也將描述您可以修改以判斷您所建立之模型大小的某些參數。
@@ -672,6 +672,6 @@ serializer_deinit();
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: yijichen
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5f9f7366b6e957215bed717e94c8138add6506d6
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 7a8877257ba03de22e0f74253885585c02d2bd10
 
 
 ---
-# <a name="forecasting---ets-stl"></a>預測 - ETS + STL
+# <a name="forecasting---ets--stl"></a>預測 - ETS + STL
 這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/demand_forecast) 會實作季節性趨勢分解法 (STL) 和指數平滑法 (ETS) 模型，以根據使用者所提供的歷程記錄資料產生預測。 今年的特定產品需求會增加嗎？ 為方便有效地規劃庫存，我可以預測聖誕節的產品銷售嗎？ 預測模型專門處理此類問題。 有了過去的資料，這些模型可以檢查隱藏的趨勢和季節性來預測未來的趨勢。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -88,7 +88,7 @@ ms.openlocfilehash: 5f9f7366b6e957215bed717e94c8138add6506d6
 > 
 > 
 
-Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定義的資料結構描述上傳範例輸入資料。 資料結構描述會連結至[執行 R 指令碼][execute-r-script]模組，這個模組使用 R 的 ‘stl’、‘ets’ 和 ‘forecast’ 函式來產生 STL 和 ETS 預測模型。 
+Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定義的資料結構描述上傳範例輸入資料。 連結至資料結構描述的[執行 R 指令碼][execute-r-script]模組會使用 R 的 ‘stl’、‘ets’ 和 ‘forecast’ 函式，以產生 STL 和 ETS 預測模型。 
 
 ### <a name="experiment-flow"></a>實驗流程：
 ![實驗流程][2]
@@ -141,6 +141,6 @@ Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

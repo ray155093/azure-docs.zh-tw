@@ -16,8 +16,8 @@ ms.tgt_pltfrm: na
 ms.date: 08/29/2016
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2a0f4c9c5942ee75b9ca4f3924198e8a8ad8ccc7
+ms.sourcegitcommit: 702ea254c19d1f9782f83d8445b7f440f11963b9
+ms.openlocfilehash: 2d4898694c69b5eb0194747982fa8bfbfea1f6f8
 
 
 ---
@@ -77,7 +77,7 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料]  精�
 4. 如果您要在欄位層級指定語言分析器，請按一下 [分析器]  索引標籤。 此時只能指定語言分析器。 使用自訂分析器或非語言分析器 (如關鍵字、模式等等) 需要有程式碼。
    
    * 按一下 [Searchable]  在欄位上指定全文檢索搜尋，並啟用分析器下拉式清單。
-   * 選擇您要的分析器。 如需詳細資訊，請參閱 [以多種語言建立文件的索引](search-language-support.md) 。
+   * 選擇您要的分析器。 如需詳細資訊，請參閱[以多種語言建立文件的索引](search-language-support.md)。
 5. 按一下 [建議工具]  以在選取的欄位上啟用預先輸入的查詢建議。
 
 ## <a name="import-your-data"></a>匯入資料
@@ -93,7 +93,13 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料]  精�
 
 不需要重建的編輯作業包含新增欄位、變更評分設定檔、變更建議，或變更語言分析器。 如需詳細資訊，請參閱 [更新索引](https://msdn.microsoft.com/library/azure/dn800964.aspx) 。
 
-## <a name="next-step"></a>後續步驟
+## <a name="query-an-index-using-search-explorer"></a>使用搜尋總管查詢索引
+
+入口網站包含 [搜尋總管]，可供您查詢索引，而不需撰寫任何程式碼。 您可以將 [搜尋總管] 使用於任何索引。
+
+搜尋體驗是以預設設定為基礎，例如[簡單語法](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search)和預設 searchMode 查詢參數 (https://docs.microsoft.com/rest/api/searchservice/search-documents)。 結果會以 JSON 格式傳回，以便您檢查整份文件。
+
+## <a name="next-steps"></a>後續步驟
 檢閱下列連結以深入了解索引子：
 
 * [為 Azure SQL Database 編製索引](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
@@ -107,6 +113,6 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料]  精�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

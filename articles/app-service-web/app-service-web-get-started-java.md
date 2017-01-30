@@ -1,5 +1,5 @@
 ---
-title: "在 5 分鐘內將您的第一個 Java Web 應用程式部署到 Azure | Microsoft Docs"
+title: "在 5 分鐘內將您的第一個 Java Web 應用程式部署到 Azure (CLI 2.0 預覽) | Microsoft Docs"
 description: "藉由部署範例 App，了解在 App Service 中執行 Web 應用程式有多麼簡單。 快速開始進行真正的開發，並立即查看結果。"
 services: app-service\web
 documentationcenter: 
@@ -12,15 +12,26 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 10/13/2016
+ms.date: 01/04/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: 90c1099f7970fc490ca01f2d815679f967c46187
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: af27369b0ae8de0ece6da38a78b434e595fbfc4e
 
 
 ---
-# <a name="deploy-your-first-java-web-app-to-azure-in-five-minutes"></a>在 5 分鐘內，將您的第一個 Java Web 應用程式部署到 Azure
+# <a name="deploy-your-first-java-web-app-to-azure-in-five-minutes-cli-20-preview"></a>在 5 分鐘內將您的第一個 Java Web 應用程式部署到 Azure (CLI 2.0 預覽)
+
+> [!div class="op_single_selector"]
+> * [第一個 HTML 網站](app-service-web-get-started-html-cli-nodejs.md)
+> * [第一個 .NET 應用程式](app-service-web-get-started-dotnet-cli-nodejs.md)
+> * [第一個 PHP 應用程式](app-service-web-get-started-php-cli-nodejs.md)
+> * [第一個 Node.js 應用程式](app-service-web-get-started-nodejs-cli-nodejs.md)
+> * [第一個 Python 應用程式](app-service-web-get-started-python-cli-nodejs.md)
+> * [第一個 Java 應用程式](app-service-web-get-started-java.md)
+> 
+> 
+
 本教學課程將協助您部署一個簡單的 Java Web 應用程式至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
 您可以使用 App Service 來建立 Web 應用程式、[行動應用程式後端](/documentation/learning-paths/appservice-mobileapps/)和 [Web 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
 
@@ -35,7 +46,7 @@ ms.openlocfilehash: 90c1099f7970fc490ca01f2d815679f967c46187
 * 取得 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[申請免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 > [!NOTE]
-> 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
+> 您可以[試用 App Service](https://azure.microsoft.com/try/app-service/)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
 > 
 > 
 
@@ -73,7 +84,7 @@ ms.openlocfilehash: 90c1099f7970fc490ca01f2d815679f967c46187
     ![](./media/app-service-web-get-started-languages/set-java-application-settings.png)
 2. 在 [Java 版本] 中，選取 [Java 8]，然後按一下 [儲存]。
    
-    ![](./media/app-service-web-get-started-languages/set-java-application-settings.png)
+    ![](./media/app-service-web-get-started-languages/set-java.png)
    
     當您收到 [已成功更新 Web 應用程式設定] 通知時，瀏覽至 http://*&lt;appname>*.azurewebsites.net 來查看預設 JSP Servlet 的實際運作。
 3. 回到 Web 應用程式刀鋒視窗中，向下捲動至 [部署認證]  或搜尋「部署認證」，然後按一下它。
@@ -120,6 +131,6 @@ ms.openlocfilehash: 90c1099f7970fc490ca01f2d815679f967c46187
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

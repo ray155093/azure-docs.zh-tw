@@ -12,27 +12,36 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/17/2016
+ms.date: 12/15/2016
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1a7f34989dce97f32bfbbbede9acd96a1dd58e14
+ms.sourcegitcommit: ea24ad915b3d6f5180182a454c03edc578f7b761
+ms.openlocfilehash: 3751d1a24684bbf9b7230eb3ab4827ee2ba52379
 
 
 ---
 # <a name="monitor-documentdb-requests-usage-and-storage"></a>監視 DocumentDB 要求、使用量及儲存體
 您可以在 [Azure 入口網站](https://portal.azure.com/)中監視 Azure DocumentDB 帳戶。 每一個 DocumentDB 帳戶都有效能度量 (例如要求和伺服器錯誤) 和使用量度量 (例如儲存體耗用量) 可供使用。
 
-您可以在 [帳戶] 刀鋒視窗或新的 [度量] 刀鋒視窗上檢閱度量。
+您可以在 [帳戶] 刀鋒視窗、新的 [度量] 刀鋒視窗、或 Azure 監視器中檢閱度量。
 
 ## <a name="view-performance-metrics-on-the-metrics-blade"></a>在度量刀鋒視窗上檢視效能度量
-1. 在新視窗中，開啟 [Azure 入口網站](https://portal.azure.com/)，依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]，然後按一下您想要檢視其效能度量的 DocumentDB 帳戶名稱。
-2. 在資源功能表中，按一下 [度量]。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [更多服務]，捲動至 [資料庫]，按一下 [DocumentDB (NoSQL)]，然後按一下您想要檢視其效能度量的 DocumentDB 帳戶名稱。
+2. 在資源功能表中，按一下 [監視] 下的 [度量]。
 
 [度量] 刀鋒視窗隨即開啟，您可以選取要檢閱的集合。 您可以檢閱「可用性」、「要求」、「輸送量」及「儲存體」度量，並將它們與 DocumentDB SLA 做比較。
 
+## <a name="view-performance-metrics-by-using-azure-monitoring"></a>使用 Azure 監視器檢視效能度量
+1. 在 [Azure 入口網站](https://portal.azure.com/)，按一下動態工具列中的 [NoSQL (DocumentDB)]。
+2. 在資源功能表中，按一下 [度量]。
+3. 在 [監視-度量] 視窗的 [資源群組] 下拉式功能表中，選取與您要監視的 DocumentDB 帳戶相關聯的資源群組。 
+4. 在 [資源] 下拉式功能表中，選取要監視的資料庫帳戶。
+5. 在 [可用的度量] 清單中，選取要顯示的度量。 使用 CTRL 按鈕同時選取多項。 
+
+    您的度量會顯示在 [繪製] 視窗中。 
+
 ## <a name="view-performance-metrics-on-the-account-blade"></a>在帳戶刀鋒視窗上檢視效能度量
-1. 在新視窗中，開啟 [Azure 入口網站](https://portal.azure.com/)，依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]，然後按一下您想要檢視其效能度量的 DocumentDB 帳戶名稱。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [更多服務]，捲動至 [資料庫]，按一下 [DocumentDB (NoSQL)]，然後按一下您想要檢視其效能度量的 DocumentDB 帳戶名稱。
 2. [監視]  功能濾鏡預設會顯示以下圖格：
    
    * 當日的要求總數。
@@ -41,7 +50,7 @@ ms.openlocfilehash: 1a7f34989dce97f32bfbbbede9acd96a1dd58e14
    如果您的表格顯示 [沒有可用的資料]  ，但您認為資料庫中有資料，請參閱 [疑難排解](#troubleshooting) 一節。
    
    ![[監視] 功能濾鏡的螢幕擷取畫面，可顯示要求和儲存體使用量](./media/documentdb-monitor-accounts/documentdb-total-requests-and-usage.png)
-3. 按一下 [要求] 或 [儲存體] 磚，即會開啟詳細的 [度量] 刀鋒視窗。
+3. 按一下 [要求] 或 [使用配額] 圖格，即會開啟詳細的 [度量] 刀鋒視窗。
 4. [ **度量** ] 刀鋒視窗會顯示您已選取之度量的詳細資料。  刀鋒視窗上方是每小時繪製為圖表的要求圖形，而下方表格會顯示已節流處理的要求和要求總數的彙總值。  度量刀鋒視窗也會顯示已定義的警示清單，且依目前度量刀鋒視窗上出現的度量來篩選 (因此，如果您有許多警示，只會看到此處顯示相關的警示)。   
    
    ![[度量] 刀鋒視窗的螢幕擷取畫面，其中包已節流處理的要求](./media/documentdb-monitor-accounts/documentdb-metric-blade.png)
@@ -118,6 +127,6 @@ Azure 入口網站可讓您建立並排度量圖表。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -3,7 +3,7 @@ title: "使用 Sysdig 監視 Azure Container Service 叢集 | Microsoft Docs"
 description: "使用 Sysdig 監視 Azure 容器服務叢集。"
 services: container-service
 documentationcenter: 
-author: rbitia
+author: sauryadas
 manager: timlt
 editor: 
 tags: acs, azure-container-service
@@ -11,14 +11,14 @@ keywords: "容器，DC/OS，Azure"
 ms.assetid: 91d9a28a-3a52-4194-879e-30f2fa3d946b
 ms.service: container-service
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2016
-ms.author: t-ribhat
+ms.author: saudas
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4407bc49bf11cada012015f340a9995a26374d00
+ms.sourcegitcommit: 5da28eecf2df764f71906897450ebe67b3048b3f
+ms.openlocfilehash: d57212a8c858c4fb53cc619a578b59da92176bb2
 
 
 ---
@@ -54,9 +54,10 @@ Sysdig 是一項監視服務，可讓您在叢集內監視您的容器。 Sysdig
 
 安裝套件之後回到 Sysdig UI，您就可以瀏覽叢集內不同的容器使用情況計量。 
 
+您也可以透過[新的儀表板精靈](https://app.sysdigcloud.com/#/dashboards/new)來安裝 Mesos 和 Marathon 專用儀表板。
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

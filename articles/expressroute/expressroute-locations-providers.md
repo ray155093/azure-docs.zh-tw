@@ -12,12 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/08/2016
+ms.date: 01/18/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 8b82801a26c15248480a261945b37a0c38e3fa47
-ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
-
+ms.sourcegitcommit: dcee5436a7bb377f37d6db2701c2e5df2e41944f
+ms.openlocfilehash: 1b162e57ee1e7a4e953d1b7593ce45669ff3cca8
 
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
@@ -35,20 +34,21 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- |
-| **北美洲** |美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部 |亞特蘭大、芝加哥、達拉斯、拉斯維加斯、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多 |
+| **北美洲** |美國東部、美國西部、美國東部 2、美國西部 2、美國中部、美國中南部、美國中北部、美國中西部、加拿大中部、加拿大東部 |亞特蘭大、芝加哥、達拉斯、拉斯維加斯、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多 |
 | **南美洲** |巴西南部 |聖保羅 |
 | **歐洲** |北歐、西歐、英國西部、英國南部 |阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)、巴黎 |
 | **亞洲** |東亞、東南亞 |香港特別行政區、新加坡 |
 | **日本** |日本西部、日本東部 |大阪、東京 |
 | **澳大利亞** |澳洲東南部、澳洲東部 |墨爾本、雪梨 |
 | **印度** |印度西部、印度中部、印度南部 |辰內，孟買 |
+| **南韓** | 韓國中部、韓國南部 | 釜山、首爾 |
 
 ### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>國家雲端的區域和地理政治界限
 下表提供國家雲端的區域和地理政治界限等資訊。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- | --- |
-| **美國政府雲端** |美國政府愛荷華州、美國政府維吉尼亞州 |芝加哥、達拉斯、紐約、華盛頓特區 |
+| **美國政府雲端** |美國愛荷華州政府、美國維吉尼亞州政府、美國國防部中部+、美國國防部東部+  |芝加哥、達拉斯、紐約、矽谷+、華盛頓特區 |
 | **中國** |中國北部、中國東部 |北京、上海 |
 | **德國** |德國中部、德國東部 |柏林、法蘭克福 |
 
@@ -64,7 +64,7 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 ### <a name="production-azure"></a>生產 Azure
 | **位置** | **服務提供者** |
 | --- | --- |
-| **阿姆斯特丹** |Aryaka Networks、AT&T NetBond、British Telecom、Colt、Equinix、euNetworks、GÉANT、InterCloud、Internet Solutions - Cloud Connect、Interxion、Level 3 Communications、Orange、Tata Communications、TeleCity Group、Telenor、Verizon |
+| **阿姆斯特丹** |Aryaka Networks、AT&T NetBond、British Telecom、Colt、Equinix、euNetworks、GÉANT、InterCloud、Internet Solutions - Cloud Connect、Interxion、KPN、Level 3 Communications、Orange、Tata Communications、TeleCity Group、Telenor、Verizon |
 | **亞特蘭大** |Equinix |
 | **辰內** |SIFY、Tata Communications |
 | **芝加哥** |AT&T NetBond、Comcast、Equinix、Level 3 Communications、Zayo Group |
@@ -75,16 +75,16 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 | **拉斯維加斯** |Level 3 Communications+、Megaport |
 | **洛杉磯** |CoreSite、Equinix、Megaport、NTT、Zayo Group |
 | **墨爾本** |AARNet、Equinix、Megaport、NEXTDC、Telstra Corporation |
-| **紐約** |Equinix、Megaport、Zayo Group |
+| **紐約** |Coresite、Equinix、Megaport、Zayo Group |
 | **Newport(Wales)** |新一代資料 |
-| **蒙特婁** |Cologix+ |
+| **蒙特婁** |Cologix |
 | **孟買** |Tata Communications |
 | **大阪** |Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank |
 | **巴黎** |Interxion、Equinix+ |
 | **聖保羅** |Equinix、Telefonica |
 | **Seattle** |Equinix、Level 3 Communications、Megaport |
 | **矽谷** |Aryaka Networks、AT&T NetBond、British Telecom、CenturyLink+、Comcast、Console、Equinix、Level 3 Communications、Orange、Tata Communications、Verizon、Zayo Group |
-| **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Megaport、NTT Communications、Orange、SingTel、Tata Communications、Verizon |
+| **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、SingTel、Tata Communications、Verizon |
 | **雪梨** |AARNet、AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Orange、Telstra Corporation、Verizon |
 | **東京** |Aryaka Networks、British Telecom、Colt、Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank、Verizon |
 | **多倫多** |Bell Canada、Cologix、Equinix、Megaport、Zayo Group |
@@ -98,8 +98,9 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 | **位置** | **服務提供者** |
 | --- | --- |
 | **芝加哥** |AT&T NetBond、Equinix、Level 3 Communications、Verizon |
-| **達拉斯** |Equinix、Verizon |
+| **達拉斯** |Equinix、Megaport、Verizon |
 | **紐約** |Equinix、Level 3 Communications+、Verizon |
+| **矽谷** | Equinix+ |
 | **華盛頓** |AT&T NetBond、Equinix、Level 3 Communications、Verizon |
 
 ### <a name="china"></a>中國
@@ -113,7 +114,7 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 ### <a name="germany"></a>德國
 | **位置** | **服務提供者** |
 | --- | --- |
-| **柏林** |Colt+、e-shelter |
+| **柏林** |Colt+、e-shelter、Megaport+ |
 | **法蘭克福** |Colt、Equinix、Interxion |
 
 ## <a name="a-namenonpartnersaconnectivity-through-service-providers-not-listed"></a><a name="nonpartners"></a>透過未列出的服務提供者連線
@@ -134,12 +135,14 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 
 | **位置** | **Exchange** | **連線提供者** |
 | --- | --- | --- |
-| **倫敦** | Equinix | 指數 E |
+| **阿姆斯特丹** | Equinix | Eurofiber |
+| **倫敦** | Equinix | Exponential E、HSO |
 | **紐約** |Equinix |Lightower |
 | **Seattle** |Equinix |Alaska Communications |
 | **矽谷** |Equinix |XO Communications |
 | **新加坡** |Equinix |1CLOUDSTAR |
-| **雪梨** | Megaport | Macquarie |
+| **雪梨** | Megaport | Macquarie Telecom Group|
+| **東京** | Equinix | ARTERIA Networks Corporation |
 | **華盛頓** |Equinix | Lightower Masergy |
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute 系統整合者
@@ -148,9 +151,10 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 | **Continent** | **系統整合者** |
 | --- | --- |
 | **亞洲** |Avanade Inc.、OneAs1a |
-| **歐洲** |Avanade Inc.、Dotnet Solutions |
-| **美國** |Avanade Inc.、Equinix Professional Services、Perficient、Project Leadership |
-
+| **澳大利亞** | IT Consultancy |
+| **歐洲** |Avanade Inc.、Dotnet Solutions、MSG Services、Nelite |
+| **北美洲** |Avanade Inc.、Equinix Professional Services、Perficient、Project Leadership |
+| **南美洲** |Avanade Inc. |
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 * 請確定符合所有必要條件。 請參閱 [ExpressRoute 必要條件](expressroute-prerequisites.md)。
@@ -160,6 +164,6 @@ ms.openlocfilehash: e32d21efd8d90bac223cbc0a213df65d19c40670
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -1,23 +1,27 @@
 ---
-title: 如何使用 Azure Active Directory 與 API 管理保護 Web API 後端
-description: 了解如何使用 Azure Active Directory 與 API 管理保護 Web API 後端。
+title: "如何使用 Azure Active Directory 與 API 管理保護 Web API 後端"
+description: "了解如何使用 Azure Active Directory 與 API 管理保護 Web API 後端。"
 services: api-management
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: f856ff03-64a1-4548-9ec4-c0ec4cc1600f
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/09/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apipm
+translationtype: Human Translation
+ms.sourcegitcommit: a7ff82a47b4e972db96929acb47fcce760b244b3
+ms.openlocfilehash: 727fdb9a53fe1dec189018e12f42ba7515e6fb54
+
 
 ---
-# 如何使用 Azure Active Directory 與 API 管理保護 Web API 後端
-下列視訊示範如何使用 OAuth 2.0 通訊協定搭配 Azure Active Directory 與 API 管理建置 Web API 後端並加以保護。本文提供概觀以及視訊中步驟的其他資訊。這段 24 分鐘的視訊示範如何：
+# <a name="how-to-protect-a-web-api-backend-with-azure-active-directory-and-api-management"></a>如何使用 Azure Active Directory 與 API 管理保護 Web API 後端
+下列視訊示範如何使用 OAuth 2.0 通訊協定搭配 Azure Active Directory 與 API 管理建置 Web API 後端並加以保護。  本文提供概觀以及視訊中步驟的其他資訊。 這段 24 分鐘的視訊示範如何：
 
 * 使用 AAD 建置 Web API 後端以及保護安全 - 從 1:30 開始
 * 將 API 匯入 API 管理 - 從 7:10 開始
@@ -29,25 +33,25 @@ ms.author: sdanie
 > 
 > 
 
-## 建立 Azure AD 目錄
-若要使用 Azure Active Directory 保護您的 Web API 後端，您必須先具備 AAD 租用戶。在這段視訊中，使用名為 **APIMDemo** 的租用戶。若要建立 AAD 租用戶，請登入 [Azure 傳統入口網站](https://manage.windowsazure.com)，按一下 [新增] -> [應用程式服務] -> [Active Directory] -> [目錄] -> [自訂建立]。
+## <a name="create-an-azure-ad-directory"></a>建立 Azure AD 目錄
+若要使用 Azure Active Directory 保護您的 Web API 後端，您必須先具備 AAD 租用戶。 在這段視訊中，使用名為 **APIMDemo** 的租用戶。 若要建立 AAD 租用戶，請登入 [Azure 傳統入口網站](https://manage.windowsazure.com)，按一下 [新增] -> [應用程式服務] -> [Active Directory] -> [目錄] -> [自訂建立]。 
 
 ![Azure Active Directory][api-management-create-aad-menu]
 
-此範例會一同建立名為 **APIMDemo** 的目錄與名為 **DemoAPIM.onmicrosoft.com** 的預設網域。在整段視訊中都會使用這個目錄。
+此範例會一同建立名為 **APIMDemo** 的目錄與名為 **DemoAPIM.onmicrosoft.com** 的預設網域。 在整段視訊中都會使用這個目錄。
 
 ![Azure Active Directory][api-management-create-aad]
 
-## 建立由 Azure Active Directory 保護的 Web API 服務
-在此步驟中，Web API 後端會使用 Visual Studio 2013 建立。這個步驟的視訊從 1:30 開始。若要在 Visual Studio 中建立 Web API 後端專案，請按一下 [檔案] -> [新增] -> [專案]，然後從 [Web] 範本清單中選擇 [ASP.NET Web 應用程式]。在這段視訊中，專案的名稱為 **APIMAADDemo**。按一下 [確定] 以建立專案。
+## <a name="create-a-web-api-service-secured-by-azure-active-directory"></a>建立由 Azure Active Directory 保護的 Web API 服務
+在此步驟中，Web API 後端會使用 Visual Studio 2013 建立。 這個步驟的視訊從 1:30 開始。 若要在 Visual Studio 中建立 Web API 後端專案，請按一下 [檔案] -> [新增] -> [專案]，然後從 [Web] 範本清單中選擇 [ASP.NET Web 應用程式]。 在此影片中，專案的名稱為 **APIMAADDemo**。 按一下 [確定]  以建立專案。 
 
 ![Visual Studio][api-management-new-web-app]
 
-從 [選取範本清單] 按一下 [Web API] 來建立 Web API 專案。若要設定 Azure Directory 驗證，請按一下 [變更驗證]。
+從 [選取範本清單] 按一下 [Web API] 來建立 Web API 專案。 若要設定 Azure Directory 驗證，請按一下 [變更驗證] 。
 
 ![新增專案][api-management-new-project]
 
-按一下 [組織帳戶]，並指定您 AAD 租用戶的 [網域]。此範例中的網域是 **DemoAPIM.onmicrosoft.com**。您可以從目錄的 [網域] 索引標籤取得您目錄的網域。
+按一下 [組織帳戶]，並指定您 AAD 租用戶的 [網域]。 此範例中的網域是 **DemoAPIM.onmicrosoft.com**。 您可以從目錄的 [網域] 索引標籤取得您目錄的網域。
 
 ![網域][api-management-aad-domains]
 
@@ -55,7 +59,7 @@ ms.author: sdanie
 
 ![變更驗證][api-management-change-authentication]
 
-按下 [確定] 之後，Visual Studio 將會嘗試使用您的 Azure AD 目錄註冊您的應用程式，Visual Studio 會提示您登入。使用您目錄的系統管理帳戶登入。
+按下 [確定]  之後，Visual Studio 將會嘗試使用您的 Azure AD 目錄註冊您的應用程式，Visual Studio 會提示您登入。 使用您目錄的系統管理帳戶登入。
 
 ![登入 Visual Studio][api-management-sign-in-vidual-studio]
 
@@ -69,141 +73,289 @@ ms.author: sdanie
 
 此範例指定了一個名為 **APIMAADDemo** 的新 **App Service 方案**。
 
-按一下 [確定] 設定 Web 應用程式和建立專案。
+按一下 [確定]  設定 Web 應用程式和建立專案。
 
-## 將程式碼加入 Web API 專案
-視訊中的下一個步驟會將程式碼加入 Web API 專案。這個步驟從 4:35 開始。
+## <a name="add-the-code-to-the-web-api-project"></a>將程式碼加入 Web API 專案
+視訊中的下一個步驟會將程式碼加入 Web API 專案。 這個步驟從 4:35 開始。
 
-此範例中的 Web API 使用模型和控制器實作基本的計算機服務。若要加入服務的模型，請以滑鼠右鍵按一下 [方案總管] 中的 [模型]，然後選擇 [新增] -> [類別]。將類別命名為 `CalcInput`，然後按一下 [新增]。
+此範例中的 Web API 使用模型和控制器實作基本的計算機服務。 若要新增服務的模型，請以滑鼠右鍵按一下 [方案總管] 中的 [模型]，然後選擇 [新增][類別]。 將類別命名為 `CalcInput`，然後按一下 [新增]。
 
 在 `CalcInput.cs` 檔案的開頭處新增下列 `using` 陳述式。
 
-    using Newtonsoft.Json;
+```c#
+using Newtonsoft.Json;
+```
 
- 將產生的類別取代為下列程式碼。
+將產生的類別取代為下列程式碼。
 
-    public class CalcInput
-    {
-        [JsonProperty(PropertyName = "a")]
-        public int a;
+```c#
+public class CalcInput
+{
+    [JsonProperty(PropertyName = "a")]
+    public int a;
 
-        [JsonProperty(PropertyName = "b")]
-        public int b;
-    }
+    [JsonProperty(PropertyName = "b")]
+    public int b;
+}
+```
 
-以滑鼠右鍵按一下 [方案總管] 中的 [控制器]，然後選擇 [新增] -> [控制器]。按一下 [Web API 2 控制器 - 空白]，然後按一下 [新增]。輸入 **CalcController** 做為控制器名稱，然後按一下 [新增]。
+以滑鼠右鍵按一下 [方案總管] 中的 [控制器]，然後選擇 [新增] -> [控制器]。 按一下 [Web API 2 控制器 - 空白]，然後按一下 [新增]。 輸入 **CalcController** 做為控制器名稱，然後按一下 [新增]。
 
 ![新增控制器][api-management-add-controller]
 
 在 `CalcController.cs` 檔案的開頭處新增下列 `using` 陳述式。
 
-    using System.IO;
-    using System.Web;
-    using APIMAADDemo.Models;
+```c#
+using System.IO;
+using System.Web;
+using APIMAADDemo.Models;
+```
 
-將產生的控制器類別取代為下列程式碼。此程式碼實作基本計算機 API 的 `Add`、`Subtract`、`Multiply` 以及 `Divide` 運算。
+將產生的控制器類別取代為下列程式碼。 此程式碼實作基本計算機 API 的 `Add`、`Subtract`、`Multiply` 以及 `Divide` 運算。
 
-    [Authorize]
-    public class CalcController : ApiController
+```c#
+[Authorize]
+public class CalcController : ApiController
+{
+    [Route("api/add")]
+    [HttpGet]
+    public HttpResponseMessage GetSum([FromUri]int a, [FromUri]int b)
     {
-        [Route("api/add")]
-        [HttpGet]
-        public HttpResponseMessage GetSum([FromUri]int a, [FromUri]int b)
-        {
-            string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a + b);
-            HttpResponseMessage response = Request.CreateResponse();
-            response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
-            return response;
-        }
-
-        [Route("api/sub")]
-        [HttpGet]
-        public HttpResponseMessage GetDiff([FromUri]int a, [FromUri]int b)
-        {
-            string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a - b);
-            HttpResponseMessage response = Request.CreateResponse();
-            response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
-            return response;
-        }
-
-        [Route("api/mul")]
-        [HttpGet]
-        public HttpResponseMessage GetProduct([FromUri]int a, [FromUri]int b)
-        {
-            string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a * b);
-            HttpResponseMessage response = Request.CreateResponse();
-            response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
-            return response;
-        }
-
-        [Route("api/div")]
-        [HttpGet]
-        public HttpResponseMessage GetDiv([FromUri]int a, [FromUri]int b)
-        {
-            string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a / b);
-            HttpResponseMessage response = Request.CreateResponse();
-            response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
-            return response;
-        }
+        string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a + b);
+        HttpResponseMessage response = Request.CreateResponse();
+        response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
+        return response;
     }
+
+    [Route("api/sub")]
+    [HttpGet]
+    public HttpResponseMessage GetDiff([FromUri]int a, [FromUri]int b)
+    {
+        string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a - b);
+        HttpResponseMessage response = Request.CreateResponse();
+        response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
+        return response;
+    }
+
+    [Route("api/mul")]
+    [HttpGet]
+    public HttpResponseMessage GetProduct([FromUri]int a, [FromUri]int b)
+    {
+        string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a * b);
+        HttpResponseMessage response = Request.CreateResponse();
+        response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
+        return response;
+    }
+
+    [Route("api/div")]
+    [HttpGet]
+    public HttpResponseMessage GetDiv([FromUri]int a, [FromUri]int b)
+    {
+        string xml = string.Format("<result><value>{0}</value><broughtToYouBy>Azure API Management - http://azure.microsoft.com/apim/ </broughtToYouBy></result>", a / b);
+        HttpResponseMessage response = Request.CreateResponse();
+        response.Content = new StringContent(xml, System.Text.Encoding.UTF8, "application/xml");
+        return response;
+    }
+}
+```
 
 按下 **F6** 來建置和驗證方案。
 
-## 將專案發佈到 Azure
-在此步驟中，Visual Studio 專案會發佈到 Azure。這個步驟的視訊從 5:45 開始。
+## <a name="publish-the-project-to-azure"></a>將專案發佈到 Azure
+在此步驟中，Visual Studio 專案會發佈到 Azure。 這個步驟的視訊從 5:45 開始。
 
-若要將專案發佈到 Azure，請以滑鼠右鍵按一下 Visual Studio 中的 [APIMAADDemo] 專案，然後選擇 [發佈]。保留 [發佈 Web] 對話方塊中的預設值，然後按一下 [發佈]。
+若要將專案發佈到 Azure，請以滑鼠右鍵按一下 Visual Studio 中的 [APIMAADDemo] 專案，然後選擇 [發佈]。 保留 [發佈 Web] 對話方塊中的預設值，然後按一下 [發佈]。
 
 ![Web 發佈][api-management-web-publish]
 
-## 授與權限給 Azure AD 後端服務應用程式
-設定和發佈您的 Web API 專案時，您的 Azure AD 目錄中會建立一個新的應用程式用於後端服務。這個步驟會授與權限給 Web API 後端，從視訊的 6:13 開始。
+## <a name="grant-permissions-to-the-azure-ad-backend-service-application"></a>授與權限給 Azure AD 後端服務應用程式
+設定和發佈您的 Web API 專案時，您的 Azure AD 目錄中會建立一個新的應用程式用於後端服務。 這個步驟會授與權限給 Web API 後端，從視訊的 6:13 開始。
 
 ![應用程式][api-management-aad-backend-app]
 
-按一下要設定必要權限的應用程式名稱。瀏覽到 [設定] 索引標籤，向下捲動到 [其他應用程式的權限] 區段。按一下 [Windows Azure Active Directory] 旁邊的 [應用程式權限] 下拉式清單，核取 [讀取目錄資料] 的方塊，然後按一下 [儲存]。
+按一下要設定必要權限的應用程式名稱。 瀏覽到 [設定] 索引標籤，向下捲動到 [其他應用程式的權限] 區段。 按一下 [Windows Azure Active Directory] 旁邊的 [應用程式權限] 下拉式清單，核取 [讀取目錄資料] 的方塊，然後按一下 [儲存]。
 
 ![新增權限][api-management-aad-add-permissions]
 
 > [!NOTE]
-> 如果 [Windows Azure Active Directory] 並未列在 [其他應用程式的權限] 之下，請按一下 [加入應用程式] 從清單將其加入。
+> 如果 [Windows Azure Active Directory] 並未列在 [其他應用程式的權限] 之下，請按一下 [新增應用程式] 從清單將其新增。
 > 
 > 
 
-請記下 [應用程式識別碼 URI] 供後續為 API 管理開發人員入口網站設定 Azure AD 應用程式的步驟時使用。
+請記下 [應用程式識別碼 URI]  供後續為 API 管理開發人員入口網站設定 Azure AD 應用程式的步驟時使用。
 
 ![App 識別碼 URI][api-management-aad-sso-uri]
 
-## 將 Web API 匯入 API 管理
-API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入口網站存取此入口網站。若要存取發佈者入口網站，請在 Azure 傳統入口網站中，針對您的 API 管理服務按一下 [管理]。如果您尚未建立 API 管理服務執行個體，請參閱[管理您的第一個 API][管理您的第一個 API] 教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+## <a name="import-the-web-api-into-api-management"></a>將 Web API 匯入 API 管理
+API 經由 API 發佈者入口網站進行設定，您可以透過 Azure 入口網站存取此入口網站。 若要觸達它，請從 API 管理服務的工具列按一下 [發佈者入口網站]。 如果您尚未建立 API 管理服務執行個體，請參閱[管理您的第一個 API][Manage your first API] 教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 
 ![發行者入口網站][api-management-management-console]
 
-您可以將運算[手動加入 API](api-management-howto-add-operations.md)，也可以匯入運算。在這段視訊中從 6:40 開始，運算會以 Swagger 格式匯入。
+您可以將運算 [手動加入 API](api-management-howto-add-operations.md)，也可以匯入運算。 在這段視訊中從 6:40 開始，運算會以 Swagger 格式匯入。
 
-以下列內容建立名為 `calcapi.json` 的檔案，然後將檔案儲存到您的電腦。確定 `host` 屬性指向您的 Web API 後端。在此範例中使用 `"host": "apimaaddemo.azurewebsites.net"`。
+以下列內容建立名為 `calcapi.json` 的檔案，然後將檔案儲存到您的電腦。 確定 `host` 屬性指向您的 Web API 後端。 在此範例中使用 `"host": "apimaaddemo.azurewebsites.net"` 。
 
-{ "swagger": "2.0", "info": { "title": "Calculator", "description": "Arithmetics over HTTP!", "version": "1.0" }, "host": "apimaaddemo.azurewebsites.net", "basePath": "/api", "schemes": [ "http" ], "paths": { "/add?a={a}&b={b}": { "get": { "description": "Responds with a sum of two numbers.", "operationId": "Add two integers", "parameters": [ { "name": "a", "in": "query", "description": "First operand.Default value is <code>51</code>.", "required": true, "default": "51", "enum": [ "51" ] }, { "name": "b", "in": "query", "description": "Second operand.Default value is <code>49</code>.", "required": true, "default": "49", "enum": [ "49" ] } ], "responses": {} } }, "/sub?a={a}&b={b}": { "get": { "description": "Responds with a difference between two numbers.", "operationId": "Subtract two integers", "parameters": [ { "name": "a", "in": "query", "description": "First operand.Default value is <code>100</code>.", "required": true, "default": "100", "enum": [ "100" ] }, { "name": "b", "in": "query", "description": "Second operand.Default value is <code>50</code>.", "required": true, "default": "50", "enum": [ "50" ] } ], "responses": {} } }, "/div?a={a}&b={b}": { "get": { "description": "Responds with a quotient of two numbers.", "operationId": "Divide two integers", "parameters": [ { "name": "a", "in": "query", "description": "First operand.Default value is <code>100</code>.", "required": true, "default": "100", "enum": [ "100" ] }, { "name": "b", "in": "query", "description": "Second operand.Default value is <code>20</code>.", "required": true, "default": "20", "enum": [ "20" ] } ], "responses": {} } }, "/mul?a={a}&b={b}": { "get": { "description": "Responds with a product of two numbers.", "operationId": "Multiply two integers", "parameters": [ { "name": "a", "in": "query", "description": "First operand.Default value is <code>20</code>.", "required": true, "default": "20", "enum": [ "20" ] }, { "name": "b", "in": "query", "description": "Second operand.Default value is <code>5</code>.", "required": true, "default": "5", "enum": [ "5" ] } ], "responses": {} } } } }
+```json
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Calculator",
+    "description": "Arithmetics over HTTP!",
+    "version": "1.0"
+  },
+  "host": "apimaaddemo.azurewebsites.net",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/add?a={a}&b={b}": {
+      "get": {
+        "description": "Responds with a sum of two numbers.",
+        "operationId": "Add two integers",
+        "parameters": [
+          {
+            "name": "a",
+            "in": "query",
+            "description": "First operand. Default value is <code>51</code>.",
+            "required": true,
+            "type": "string",
+            "default": "51",
+            "enum": [
+              "51"
+            ]
+          },
+          {
+            "name": "b",
+            "in": "query",
+            "description": "Second operand. Default value is <code>49</code>.",
+            "required": true,
+            "type": "string",
+            "default": "49",
+            "enum": [
+              "49"
+            ]
+          }
+        ],
+        "responses": { }
+      }
+    },
+    "/sub?a={a}&b={b}": {
+      "get": {
+        "description": "Responds with a difference between two numbers.",
+        "operationId": "Subtract two integers",
+        "parameters": [
+          {
+            "name": "a",
+            "in": "query",
+            "description": "First operand. Default value is <code>100</code>.",
+            "required": true,
+            "type": "string",
+            "default": "100",
+            "enum": [
+              "100"
+            ]
+          },
+          {
+            "name": "b",
+            "in": "query",
+            "description": "Second operand. Default value is <code>50</code>.",
+            "required": true,
+            "type": "string",
+            "default": "50",
+            "enum": [
+              "50"
+            ]
+          }
+        ],
+        "responses": { }
+      }
+    },
+    "/div?a={a}&b={b}": {
+      "get": {
+        "description": "Responds with a quotient of two numbers.",
+        "operationId": "Divide two integers",
+        "parameters": [
+          {
+            "name": "a",
+            "in": "query",
+            "description": "First operand. Default value is <code>100</code>.",
+            "required": true,
+            "type": "string",
+            "default": "100",
+            "enum": [
+              "100"
+            ]
+          },
+          {
+            "name": "b",
+            "in": "query",
+            "description": "Second operand. Default value is <code>20</code>.",
+            "required": true,
+            "type": "string",
+            "default": "20",
+            "enum": [
+              "20"
+            ]
+          }
+        ],
+        "responses": { }
+      }
+    },
+    "/mul?a={a}&b={b}": {
+      "get": {
+        "description": "Responds with a product of two numbers.",
+        "operationId": "Multiply two integers",
+        "parameters": [
+          {
+            "name": "a",
+            "in": "query",
+            "description": "First operand. Default value is <code>20</code>.",
+            "required": true,
+            "type": "string",
+            "default": "20",
+            "enum": [
+              "20"
+            ]
+          },
+          {
+            "name": "b",
+            "in": "query",
+            "description": "Second operand. Default value is <code>5</code>.",
+            "required": true,
+            "type": "string",
+            "default": "5",
+            "enum": [
+              "5"
+            ]
+          }
+        ],
+        "responses": { }
+      }
+    }
+  }
+}
+```
 
-若要匯入計算機 API，請從左邊的 [**API 管理**] 功能表中按一下 [**API**]，然後按一下 [**匯入 API**]。
+若要匯入計算機 API，請從左邊的 [API 管理] 功能表中按一下 [API]，然後按一下 [匯入 API]。
 
 ![匯入 API 按鈕][api-management-import-api]
 
 執行下列步驟以設定計算機 API。
 
 1. 按一下 [從檔案]，瀏覽到您儲存的 `calculator.json` 檔案，然後按一下 [Swagger] 選項按鈕。
-2. 在 [**Web API URL 尾碼**] 文字方塊中輸入 **calc**。
-3. 按一下 [**產品 (選擇性)**] 方塊，然後選擇 [**入門**]。
-4. 按一下 [**儲存**] 匯入 API。
+2. 在 [Web API URL 尾碼] 文字方塊中輸入 **calc**。
+3. 按一下 [產品 (選擇性)] 方塊，然後選擇 [入門]。
+4. 按一下 [ **儲存** ] 匯入 API。
 
 ![Add new API][api-management-import-new-api]
 
 匯入 API 之後，API 的摘要頁面隨即會顯示在發行者入口網站中。
 
-## 從開發人員入口網站無法成功呼叫 API
-現在，API 已經匯入 API 管理，但是還無法從開發人員入口網站成功呼叫，因為使用 Azure AD 驗證保護後端服務。這會從視訊的 7:40 開始使用下列步驟示範。
+## <a name="call-the-api-unsuccessfully-from-the-developer-portal"></a>從開發人員入口網站無法成功呼叫 API
+現在，API 已經匯入 API 管理，但是還無法從開發人員入口網站成功呼叫，因為使用 Azure AD 驗證保護後端服務。 這會從視訊的 7:40 開始使用下列步驟示範。
 
-從發佈者入口網站的右上角，按一下 [開發人員入口網站]。
+從發佈者入口網站的右上角，按一下 [開發人員入口網站]  。
 
 ![開發人員入口網站][api-management-developer-portal-menu]
 
@@ -211,7 +363,7 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ![開發人員入口網站][api-management-dev-portal-apis]
 
-按一下 [試試看]。
+按一下 [試試看] 。
 
 ![試試看][api-management-dev-portal-try-it]
 
@@ -219,39 +371,39 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ![傳送][api-management-dev-portal-send-401]
 
-因為後端 API 受到 Azure Active Directory 的保護，所以要求未獲授權。在成功呼叫 API 之前，必須先使用 OAuth 2.0 設定開發人員入口網站以授權開發人員。下列各節將說明這個程序。
+因為後端 API 受到 Azure Active Directory 的保護，所以要求未獲授權。 在成功呼叫 API 之前，必須先使用 OAuth 2.0 設定開發人員入口網站以授權開發人員。 下列各節將說明這個程序。
 
-## 將開發人員入口網站註冊為 AAD 應用程式
-使用 OAuth 2.0 設定開發人員入口網站來授權開發人員的第一個步驟是將開發人員入口網站註冊為 AAD 應用程式。這會從視訊的 8:27 開始示範。
+## <a name="register-the-developer-portal-as-an-aad-application"></a>將開發人員入口網站註冊為 AAD 應用程式
+使用 OAuth 2.0 設定開發人員入口網站來授權開發人員的第一個步驟是將開發人員入口網站註冊為 AAD 應用程式。 這會從視訊的 8:27 開始示範。
 
 這段視訊第一個步驟是瀏覽到 Azure AD 租用戶，在此範例中是 **APIMDemo**，然後瀏覽到 [應用程式] 索引標籤。
 
 ![新增應用程式][api-management-aad-new-application-devportal]
 
-按一下 [**加入**] 按鈕來建立新 Azure Active Directory 應用程式，並選擇 [**加入我的組織正在開發的應用程式**]。
+按一下 [新增] 按鈕來建立新 Azure Active Directory 應用程式，並選擇 [新增我的組織正在開發的應用程式]。
 
 ![新增應用程式][api-management-new-aad-application-menu]
 
-選擇 [Web 應用程式和/或 Web API]、輸入名稱，然後按下一步箭頭。在此範例中使用 **APIMDeveloperPortal**。
+選擇 [Web 應用程式和/或 Web API]、輸入名稱，然後按下一步箭頭。 在此範例中使用 **APIMDeveloperPortal**。
 
 ![新增應用程式][api-management-aad-new-application-devportal-1]
 
-對 [登入 URL] 輸入您 API 管理服務的 URL，並且附加 `/signin`。在此範例中使用 **https://contoso5.portal.azure-api.net/signin**。
+對 [登入 URL] 輸入您 API 管理服務的 URL，並且附加 `/signin`。 在此範例中使用 `https://contoso5.portal.azure-api.net/signin` 。
 
-對 [應用程式識別碼 URL] 輸入您 API 管理服務的 URL，並且附加一些唯一字元。這些字元可以是任何想要的字元，在此範例中使用 **https://contoso5.portal.azure-api.net/dp**。設定了想要的 [應用程式屬性]** 之後，按一下核取記號以建立應用程式。
+對 [應用程式識別碼 URL] 輸入您 API 管理服務的 URL，並且附加一些唯一字元。 這些字元可以是任何想要的字元，在此範例中使用 `https://contoso5.portal.azure-api.net/dp`。 設定想要的 [應用程式屬性] 之後，按一下核取記號以建立應用程式。
 
 ![新增應用程式][api-management-aad-new-application-devportal-2]
 
-## 設定 API 管理 OAuth 2.0 授權伺服器
-下一步是在 API 管理中設定 OAuth 2.0 授權伺服器。這個步驟會從視訊的 9:43 開始示範。
+## <a name="configure-an-api-management-oauth-20-authorization-server"></a>設定 API 管理 OAuth 2.0 授權伺服器
+下一步是在 API 管理中設定 OAuth 2.0 授權伺服器。 這個步驟會從視訊的 9:43 開始示範。
 
 從左側的 [API 管理] 功能表按一下 [安全性]，然後依序按一下 [OAuth 2.0] 和 [新增授權伺服器]。
 
 ![新增授權伺服器][api-management-add-authorization-server]
 
-在 [名稱] 和 [說明] 欄位中輸入名稱和選擇性的說明。這些欄位是用來在 API 管理服務執行個體中識別 OAuth 2.0 授權伺服器。在此範例中使用 **Authorization server demo**。稍後當您指定要用於 API 驗證的 OAuth 2.0 伺服器時，您要選取這個名稱。
+在 [名稱] 和 [說明] 欄位中輸入名稱和選擇性的說明。 這些欄位是用來在 API 管理服務執行個體中識別 OAuth 2.0 授權伺服器。 在此範例中使用**授權伺服器示範**。 稍後當您指定要用於 API 驗證的 OAuth 2.0 伺服器時，您要選取這個名稱。
 
-為 [用戶端註冊頁面 URL] 輸入如 `http://localhost` 的預留位置值。[**用戶端註冊頁面 URL**] 指向使用者可用來建立和設定其對 OAuth 2.0 提供者之專屬帳戶的頁面，而提供者支援使用者帳戶管理。在此範例中，使用者沒有建立和設定自己的帳戶，因此使用預留位置。
+針對 [用戶端註冊頁面 URL]**`http://localhost` 輸入如** 的預留位置值。  [用戶端註冊頁面 URL] 指向使用者可用來建立和設定其對 OAuth 2.0 提供者之專屬帳戶的頁面，而提供者支援使用者帳戶管理。 在此範例中，使用者沒有建立和設定自己的帳戶，因此使用預留位置。
 
 ![新增授權伺服器][api-management-add-authorization-server-1]
 
@@ -259,7 +411,7 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ![授權伺服器][api-management-add-authorization-server-1a]
 
-這些值可以從您為開發人員入口網站建立的 AAD 應用程式的 [App 端點] 頁面擷取。若要存取端點，請瀏覽到 AAD 應用程式的 [設定] 索引標籤，然後按一下 [檢視端點]。
+這些值可以從您為開發人員入口網站建立的 AAD 應用程式的 [App 端點]  頁面擷取。 若要存取端點，請瀏覽到 AAD 應用程式的 [設定] 索引標籤，然後按一下 [檢視端點]。
 
 ![應用程式][api-management-aad-devportal-application]
 
@@ -273,24 +425,24 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ![新增授權伺服器][api-management-add-authorization-server-2a]
 
-除了貼上權杖端點，請新增名為 **resource** 的其他主體參數，值則使用發佈 Visual Studio 專案時建立的後端服務的 AAD 應用程式的 [App 識別碼 URI]。
+除了貼上權杖端點，請新增名為 **resource** 的其他主體參數，值則使用發佈 Visual Studio 專案時建立的後端服務的 AAD 應用程式的 [應用程式識別碼 URI]。
 
 ![App 識別碼 URI][api-management-aad-sso-uri]
 
-接著，指定用戶端認證。這些是您想要存取的資源的認證，在此案例中是後端服務。
+接著，指定用戶端認證。 這些是您想要存取之資源 (在此案例中是開發人員入口網站) 的認證。
 
 ![用戶端認證][api-management-client-credentials]
 
-若要取得 [用戶端識別碼]，請瀏覽到後端服務的 AAD 應用程式的 [設定] 索引標籤，然後複製 [用戶端識別碼]。
+若要取得 [用戶端識別碼]，請瀏覽到開發人員入口網站之 AAD 應用程式的 [設定] 索引標籤，然後複製 [用戶端識別碼]。
 
-若要取得 [用戶端密碼]，請按一下 [金鑰] 區段中的 [選取持續時間] 下拉式清單，然後指定間隔。在此範例中使用 1 年。
+若要取得 [用戶端密碼]，請按一下 [金鑰] 區段中的 [選取持續時間] 下拉式清單，然後指定間隔。 在此範例中使用 1 年。
 
 ![用戶端識別碼][api-management-aad-client-id]
 
-按一下 [**儲存**] 以儲存組態並顯示金鑰。
+按一下 [ **儲存** ] 以儲存組態並顯示金鑰。 
 
 > [!IMPORTANT]
-> 記下此金鑰。關閉 Azure Active Directory 組態視窗之後，即無法再次顯示金鑰。
+> 記下此金鑰。 關閉 Azure Active Directory 組態視窗之後，即無法再次顯示金鑰。
 > 
 > 
 
@@ -298,11 +450,11 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ![新增授權伺服器][api-management-add-authorization-server-3]
 
-緊接在用戶端認證後面的是授權碼授與。複製此授權碼並切換回 Azure AD 開發人員入口網站應用程式設定頁面，將授權授與貼入 [回覆 URL] 欄位，然後再按一下 [儲存]。
+緊接在用戶端認證後面的是授權碼授與。 複製此授權碼並切換回 Azure AD 開發人員入口網站應用程式設定頁面，將授權授與貼入 [回覆 URL] 欄位，然後再按一下 [儲存]。
 
 ![回覆 URL][api-management-aad-reply-url]
 
-下一步是設定開發人員入口網站 AAD 應用程式的權限。按一下 [應用程式權限]，然後核取 [讀取目錄資料] 的方塊。按一下 [儲存] 以儲存這項變更，然後按一下 [加入應用程式]。
+下一步是設定開發人員入口網站 AAD 應用程式的權限。 按一下 [應用程式權限]，然後核取 [讀取目錄資料] 的方塊。 按一下 [儲存] 以儲存這項變更，然後按一下 [新增應用程式]。
 
 ![新增權限][api-management-add-devportal-permissions]
 
@@ -310,12 +462,12 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ![新增權限][api-management-aad-add-app-permissions]
 
-按一下 [APIMAADDemo] 的 [委派權限]，核取 [存取 APIMAADDemo] 的方塊，然後按一下 [儲存]。這樣就允許開發人員入口網站應用程式存取後端服務。
+按一下 [APIMAADDemo] 的 [委派權限]，核取 [存取 APIMAADDemo] 的方塊，然後按一下 [儲存]。 這樣就允許開發人員入口網站應用程式存取後端服務。
 
 ![新增權限][api-management-aad-add-delegated-permissions]
 
-## 啟用計算機 API 的 OAuth 2.0 使用者授權
-現在已經設定好 OAuth 2.0 伺服器，您可以在安全性設定中為您的 API 指定此伺服器。這個步驟會從視訊的 14:30 開始示範。
+## <a name="enable-oauth-20-user-authorization-for-the-calculator-api"></a>啟用計算機 API 的 OAuth 2.0 使用者授權
+現在已經設定好 OAuth 2.0 伺服器，您可以在安全性設定中為您的 API 指定此伺服器。 這個步驟會從視訊的 14:30 開始示範。
 
 按一下左側功能表中的 [API]，然後按一下 [計算機] 來檢視和設定其設定。
 
@@ -325,40 +477,42 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 
 ![計算機 API][api-management-enable-aad-calculator]
 
-## 從開發人員入口網站成功呼叫計算機 API
-現在已經在 API 上設定好 OAuth 2.0 授權，就可以從開發人員中心成功呼叫其運算。這個步驟會從視訊的 15:00 開始示範。
+## <a name="successfully-call-the-calculator-api-from-the-developer-portal"></a>從開發人員入口網站成功呼叫計算機 API
+現在已經在 API 上設定好 OAuth 2.0 授權，就可以從開發人員中心成功呼叫其運算。 這個步驟會從視訊的 15:00 開始示範。
 
-瀏覽回到開發人員入口網站中計算機服務的 [相加兩個整數] 運算，然後按一下 [試試看]。請注意，在 [授權]區段中的新項目對應到您剛才加入的授權伺服器。
+瀏覽回到開發人員入口網站中計算機服務的 [相加兩個整數] 運算，然後按一下 [試試看]。 請注意，在 [授權]  區段中的新項目對應到您剛才加入的授權伺服器。
 
 ![計算機 API][api-management-calc-authorization-server]
 
-從授權下拉式清單選取 [授權碼]，然後輸入要使用的帳戶認證。如果您已經使用帳戶登入，就不會提示您。
+從授權下拉式清單選取 [授權碼]  ，然後輸入要使用的帳戶認證。 如果您已經使用帳戶登入，就不會提示您。
 
 ![計算機 API][api-management-devportal-authorization-code]
 
-按一下 [傳送]，注意 [回應狀態] 為 [200 OK]，以及回應內容中的運算結果。
+按一下 [傳送]，注意 [回應狀態] 為 [200 確定]，以及回應內容中的運算結果。
 
 ![計算機 API][api-management-devportal-response]
 
-## 設定桌面應用程式呼叫 API
-視訊中的下一個程序從 16:30 開始，設定簡單的桌面應用程式呼叫 API。第一個步驟是在 Azure AD 中註冊桌面應用程式，並且讓它能夠存取目錄和後端服務。在 18:25 處示範桌面應用程式呼叫計算機 API 的運算。
+## <a name="configure-a-desktop-application-to-call-the-api"></a>設定桌面應用程式呼叫 API
+視訊中的下一個程序從 16:30 開始，設定簡單的桌面應用程式呼叫 API。 第一個步驟是在 Azure AD 中註冊桌面應用程式，並且讓它能夠存取目錄和後端服務。 在 18:25 處示範桌面應用程式呼叫計算機 API 的運算。
 
-## 設定 JWT 驗證原則來預先授權要求
-最後的程序從視訊的 20:48 開始，示範如何使用[驗證 JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT) 原則，藉由驗證每個傳入要求的存取權杖來預先授權要求。如果要求沒有經過「驗證 JWT」原則驗證，要求就會被 API 管理封鎖而不會傳入後端。
+## <a name="configure-a-jwt-validation-policy-to-pre-authorize-requests"></a>設定 JWT 驗證原則來預先授權要求
+最後的程序從視訊的 20:48 開始，示範如何使用 [驗證 JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT) 原則，藉由驗證每個傳入要求的存取權杖來預先授權要求。 如果要求沒有經過「驗證 JWT」原則驗證，要求就會被 API 管理封鎖而不會傳入後端。
 
-    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
-        <openid-config url="https://login.windows.net/DemoAPIM.onmicrosoft.com/.well-known/openid-configuration" />
-        <required-claims>
-            <claim name="aud">
-                <value>https://DemoAPIM.NOTonmicrosoft.com/APIMAADDemo</value>
-            </claim>
-        </required-claims>
-    </validate-jwt>
+```xml
+<validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
+    <openid-config url="https://login.windows.net/DemoAPIM.onmicrosoft.com/.well-known/openid-configuration" />
+    <required-claims>
+        <claim name="aud">
+            <value>https://DemoAPIM.NOTonmicrosoft.com/APIMAADDemo</value>
+        </claim>
+    </required-claims>
+</validate-jwt>
+```
 
-如需設定和使用此原則的另一個示範，請觀賞 [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)，向前快轉到 13:50。向前快轉到 15:00 可看到在原則編輯器中設定的原則，再到 18:50 可以看到一個示範，從開發人員入口網站 (使用和不使用必要的授權權杖) 呼叫運算。
+如需設定和使用此原則的另一個示範，請觀賞 [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) ，向前快轉到 13:50。 向前快轉到 15:00 可看到在原則編輯器中設定的原則，再到 18:50 可以看到一個示範，從開發人員入口網站 (使用和不使用必要的授權權杖) 呼叫運算。
 
-## 後續步驟
-* 查看更多有關 API 管理的[視訊](https://azure.microsoft.com/documentation/videos/index/?services=api-management)。
+## <a name="next-steps"></a>後續步驟
+* 查看更多有關 API 管理的 [視訊](https://azure.microsoft.com/documentation/videos/index/?services=api-management) 。
 * 如需其他保護後端服務的方式，請參閱[相互憑證驗證](api-management-howto-mutual-certificates.md)和[透過 VPN 或 ExpressRoute 連線](api-management-howto-setup-vpn.md)。
 
 [api-management-management-console]: ./media/api-management-howto-protect-backend-with-aad/api-management-management-console.png
@@ -407,7 +561,11 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 [api-management-client-credentials]: ./media/api-management-howto-protect-backend-with-aad/api-management-client-credentials.png
 [api-management-new-aad-application-menu]: ./media/api-management-howto-protect-backend-with-aad/api-management-new-aad-application-menu.png
 
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
-[管理您的第一個 API]: api-management-get-started.md
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
+[Manage your first API]: api-management-get-started.md
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Dec16_HO3-->
+
+

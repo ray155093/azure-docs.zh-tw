@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 12/14/2016
 ms.author: fashah;garye;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dac57c04453c071279534795464907a67d88a3b0
+ms.sourcegitcommit: 4ebd5dc2da50db93061e92660c97dcca3866c713
+ms.openlocfilehash: 3e565090d751344a8ad3efd6ebdc3f26d5ee55ec
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: dac57c04453c071279534795464907a67d88a3b0
 本文件涵蓋如何探索資料及如何針對儲存於 Azure 上之 SQL Server VM 中的資料產生功能。 使用 SQL整理資料或使用 Python 這類程式設計語言，即可完成此動作。
 
 > [!NOTE]
-> 本文件中的 SQL 陳述式範例假設資料位於 SQL Server 中。 如果不是，請參閱雲端資料科學程序圖，以了解如何將資料移至 SQL Server 中。
+> 本文件中的 SQL 陳述式範例假設資料位於 SQL Server 中。 如果不是，請參閱雲端資料科學程序圖，以了解如何將資料移至 SQL Server。
 > 
 > 
 
@@ -68,7 +68,7 @@ ms.openlocfilehash: dac57c04453c071279534795464907a67d88a3b0
 > 
 
 ### <a name="a-namesql-countfeatureacount-based-feature-generation"></a><a name="sql-countfeature"></a>以計數為基礎的功能產生
-本文件示範兩種產生計數功能的方法。 第一種方法會使用條件式加總，而第二種方法會使用 'where' 子句。 這些接著可與原始資料表聯結 (使用主索引鍵資料行)，以具備計數功能及原始資料。
+下列範例示範兩種產生計數功能的方法。 第一種方法會使用條件式加總，而第二種方法會使用 'where' 子句。 這些接著可與原始資料表聯結 (使用主索引鍵資料行)，以具備計數功能及原始資料。
 
     select <column_name1>,<column_name2>,<column_name3>, COUNT(*) as Count_Features from <tablename> group by <column_name1>,<column_name2>,<column_name3> 
 
@@ -76,7 +76,7 @@ ms.openlocfilehash: dac57c04453c071279534795464907a67d88a3b0
     where <column_name3> = '<some_value>' group by <column_name1>,<column_name2> 
 
 ### <a name="a-namesql-binningfeatureabinning-feature-generation"></a><a name="sql-binningfeature"></a>分類收納功能產生
-下列範例將示範如何藉由分類收納 (使用 5 個分類收納組) 可改用來做為功能的數值資料行，來產生分類收納功能：
+下列範例將示範如何藉由分類收納 (使用五個分類收納組) 可改用來做為功能的數值資料行，來產生分類收納功能：
 
     `SELECT <column_name>, NTILE(5) OVER (ORDER BY <column_name>) AS BinNumber from <tablename>`
 
@@ -110,7 +110,7 @@ ms.openlocfilehash: dac57c04453c071279534795464907a67d88a3b0
         ,l7=case when LEN (PARSENAME(round(ABS(<location_columnname>) - FLOOR(ABS(<location_columnname>)),6),1)) >= 6 then substring(PARSENAME(round(ABS(<location_columnname>) - FLOOR(ABS(<location_columnname>)),6),1),6,1) else '0' end     
     from <tablename>
 
-上述以位置為基礎的功能可進一步用來產生其他計數功能，如先前所述。 
+這些以位置為基礎的功能可進一步用來產生其他計數功能，如先前所述。 
 
 > [!TIP]
 > 您可以使用所選擇的語言，利用程式設計方式插入記錄。 您可能需要將資料插入區塊中，以改善寫入效率 ( [使用 Python 存取 SQLServer 的 HelloWorld 範例](https://code.google.com/p/pypyodbc/wiki/A_HelloWorld_sample_to_access_mssql_with_python))。 另一個替代方式是使用 [BCP 公用程式](https://msdn.microsoft.com/library/ms162802.aspx)在資料庫中插入資料
@@ -123,9 +123,9 @@ ms.openlocfilehash: dac57c04453c071279534795464907a67d88a3b0
 ![azureml 讀取器][1] 
 
 ## <a name="a-namepythonausing-a-programming-language-like-python"></a><a name="python"></a>使用類似 Python 的程式設計語言
-當資料位於 SQL Server 時，使用 Python 來瀏覽資料與產生功能，類似於使用 Python 來處理 Azure blob 中的資料，如 [在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)文件所述。 資料必須從資料庫載入 Pandas 資料框架，然後就能進一步處理。 我們將在本節中說明連接到資料庫以及將資料載入資料框架的程序。
+當資料位於 SQL Server 時，使用 Python 來瀏覽資料與產生特徵，類似於使用 Python 來處理 Azure Blob 中的資料，如[在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)中所述。 資料必須從資料庫載入 Pandas 資料框架，然後就能進一步處理。 我們將在本節中說明連接到資料庫以及將資料載入資料框架的程序。
 
-下列連接字串格式可用來使用 pyodbc (使用您的特定值來取代伺服器名稱、dbname、使用者名稱和密碼)，從 Python 連接到 SQL Server 資料庫：
+下列連接字串格式可用來使用 pyodbc (使用您的特定值來取代 servername、dbname、username 和 password)，從 Python 連接到 SQL Server 資料庫：
 
     #Set up the SQL Azure connection
     import pyodbc    
@@ -136,7 +136,7 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/) 提供一組豐富�
     # Query database and load the returned results in pandas data frame
     data_frame = pd.read_sql('''select <columnname1>, <cloumnname2>... from <tablename>''', conn)
 
-現在您可以利用 [在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)一文中說明的方式來使用 Pandas 資料框架。
+現在您可以利用[在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)一文中說明的方式來使用 Pandas 資料框架。
 
 ## <a name="azure-data-science-in-action-example"></a>作用中的 Azure 資料科學範例
 如需使用公用資料集之 Azure 資料科學程序的端對端逐步解說範例，請參閱 [作用中的 Azure 資料科學範例](machine-learning-data-science-process-sql-walkthrough.md)。
@@ -150,6 +150,6 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/) 提供一組豐富�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

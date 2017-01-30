@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/16/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ece7ee4f0235f5677e03526cef8935809770cd93
+ms.sourcegitcommit: 03b74607227aed68c6df01e80e4bb87e906ecf31
+ms.openlocfilehash: 402670a16b5dabc653c943737abdf2621db6a50b
 
 
 ---
@@ -48,10 +48,10 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
         PS C:\> Login-AzureRmAccount
 2. 設定 Web 應用程式的 PHP 版本。
    
-        PS C:\> Set-AzureWebsite -PhpVersion [5.4 | 5.5 | 5.6] -Name {site-name}
+        PS C:\> Set-AzureWebsite -PhpVersion {5.4 | 5.5 | 5.6} -Name {app-name}
 3. PHP 版本現在已設定完成。 您可確認這些設定：
    
-        PS C:\> Get-AzureWebsite -Name {site-name} | findstr PhpVersion
+        PS C:\> Get-AzureWebsite -Name {app-name} | findstr PhpVersion
 
 ### <a name="azure-command-line-interface-linux-mac-windows"></a>Azure 命令列介面 (Linux、Mac、Windows)
 若要使用 Azure 命令列介面，您必須在電腦上安裝 **Node.js** 。
@@ -61,10 +61,20 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
         azure login
 2. 設定 Web 應用程式的 PHP 版本。
    
-        azure site set --php-version [5.4 | 5.5] {site-name}
+        azure site set --php-version {5.4 | 5.5 | 5.6} {app-name}
+
 3. PHP 版本現在已設定完成。 您可確認這些設定：
    
-        azure site show {site-name}
+        azure site show {app-name}
+
+> [!NOTE] 
+> 等同於上述程式碼的 [Azure CLI 2.0 (預覽)](https://github.com/Azure/azure-cli) 命令為︰
+>
+>
+
+    az login
+    az appservice web config update --php-version {5.5 | 5.6 | 7.0} -g {resource-group-name} -n {app-name}
+    az appservice web config show -g {resource-group-name} -n {app-name}
 
 ## <a name="how-to-change-the-built-in-php-configurations"></a>作法：變更內建 PHP 組態
 對於任一個內建的 PHP 執行階段，您可以遵循下列步驟，來變更任何組態選項。 (如需 php.ini 指示詞的資訊，請參閱 [php.ini 指示詞的清單](英文))。
@@ -197,6 +207,6 @@ App Service 預設不會對 composer.json (如果您 PHP 專案中有的話) 執
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

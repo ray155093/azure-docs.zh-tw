@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/24/2016
+ms.date: 12/09/2016
 ms.author: bradsev;hangzh;weig
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3307418f3bcbf1e13b47ffb4d37024f90bdd2c2e
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 
 
 ---
@@ -319,7 +319,7 @@ ms.openlocfilehash: 3307418f3bcbf1e13b47ffb4d37024f90bdd2c2e
 您必須決定當您有重複的來源和目的地檔案時該如何做。
 
 > [!NOTE]
-> 如果私人 Blob 儲存體帳戶中已有要從公用 Blob 儲存體複製到私人 Blob 儲存體帳戶的 .csv 檔案，AzCopy 會詢問您是否要加以覆寫。 如果不想加以覆寫，在出現提示時輸入 **n** 。 如果想要**全部**覆寫，在出現提示時輸入 **a**。 您也可以輸入 **y** 來個別覆寫 .csv 檔案。
+> 如果私人 Blob 儲存體帳戶中已有要從公用 Blob 儲存體複製到私人 Blob 儲存體帳戶的 .csv 檔案，AzCopy 會詢問您是否要加以覆寫。 如果不想加以覆寫，在出現提示時輸入 **n** 。 如果想要**全部**覆寫，請在出現提示時輸入 **a**。 您也可以輸入 **y** 來個別覆寫 .csv 檔案。
 > 
 > 
 
@@ -542,7 +542,7 @@ ms.openlocfilehash: 3307418f3bcbf1e13b47ffb4d37024f90bdd2c2e
 | 3 |40.761456 |-73.999886 |40.766544 |-73.988228 |0.7037227967 |
 
 ### <a name="prepare-data-for-model-building"></a>準備資料以進行模型建置
-下列查詢可聯結 **nyctaxi\_trip** 和 **nyctaxi\_fare** 資料表、產生二進位分類標籤 **tipped**、多類別分類標籤 **tip\_class**，以及從完整聯結的資料集中擷取樣本。 根據上車時間擷取車程子集即可完成取樣。  您可以複製此查詢並直接貼到 [Azure Machine Learning Studio](https://studio.azureml.net) 的[匯入資料][import-data]模組，以便從 Azure 中的 SQL 資料庫執行個體直接擷取資料。 查詢會排除含有不正確 (0, 0) 座標的記錄。
+下列查詢可聯結 **nyctaxi\_trip** 和 **nyctaxi\_fare** 資料表、產生二進位分類標籤 **tipped**、多類別分類標籤 **tip\_class**，以及從完整聯結的資料集中擷取樣本。 根據上車時間擷取車程子集即可完成取樣。  您可以複製此查詢，再直接貼到 [Azure Machine Learning Studio](https://studio.azureml.net) 的[匯入資料][import-data]模組中，以便從 Azure 中的 SQL 資料庫執行個體直接內嵌資料。 查詢會排除含有不正確 (0, 0) 座標的記錄。
 
     SELECT t.*, f.payment_type, f.fare_amount, f.surcharge, f.mta_tax, f.tolls_amount,     f.total_amount, f.tip_amount,
         CASE WHEN (tip_amount > 0) THEN 1 ELSE 0 END AS tipped,
@@ -561,8 +561,8 @@ ms.openlocfilehash: 3307418f3bcbf1e13b47ffb4d37024f90bdd2c2e
 
 當您準備好繼續進行 Azure Machine Learning，您可以：  
 
-1. 儲存最後一個 SQL 查詢以對資料進行擷取和取樣，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組，或者
-2. 將您計畫用來建置模型的取樣和工程設計資料保存在新 SQL DW 資料表中，然後在 Azure Machine Learning 的[匯入資料][import-data]模組中使用該新資料表。 先前步驟中的 PowerShell 指令碼已為您完成此作業。 您可以在「匯入資料」模組中直接讀取此資料表。
+1. 儲存最後一個 SQL 查詢以擷取和取樣資料，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組，或者
+2. 將您打算用來建置模型的取樣和工程設計資料保存在新的 SQL DW 資料表中，然後在 Azure Machine Learning 的[匯入資料][import-data]模組中使用該新的資料表。 先前步驟中的 PowerShell 指令碼已為您完成此作業。 您可以在「匯入資料」模組中直接讀取此資料表。
 
 ## <a name="a-nameipnbadata-exploration-and-feature-engineering-in-ipython-notebook"></a><a name="ipnb"></a>IPython Notebook 中的資料探索和特徵工程設計
 在本節中，我們將在先前建立的 SQL DW 中進行 Python 和 SQL 查詢，藉此探索資料和產生功能。 名為 **SQLDW_Explorations.ipynb** 的 IPython Notebook 範例和 Python 指令碼檔案 **SQLDW_Explorations_Scripts.py** 已下載到您的本機目錄中。 您也可以在 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/SQLDW)上取得這兩個檔案。 在 Python 指令碼中，這兩個檔案是相同的。 我們會提供 Python 指令碼檔案給您，以免您沒有 IPython Notebook 伺服器。 這兩個範例 Python 檔案是以 **Python 2.7**設計。
@@ -832,7 +832,7 @@ ms.openlocfilehash: 3307418f3bcbf1e13b47ffb4d37024f90bdd2c2e
 
 在這個練習中，我們已經探索了 SQL 資料倉儲中的資料並進行處理，並且決定了要在 Azure ML 中擷取的取樣大小。 以下是建置一或多個預測模型的程序：
 
-1. 使用[匯入資料][import-data]模組 (可從**資料輸入和輸出**一節取得)，將資料匯入 Azure ML。 如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
+1. 使用[匯入資料][import-data]模組 (可從**資料輸入和輸出**區段取得)，將資料匯入 Azure ML。 如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
    
     ![Azure ML 匯入資料][17]
 2. 在 [屬性] 面板中，選取 [Azure SQL Database] 做為 [資料來源]。
@@ -849,7 +849,7 @@ ms.openlocfilehash: 3307418f3bcbf1e13b47ffb4d37024f90bdd2c2e
 > [!IMPORTANT]
 > 在前幾節中提供的模型化資料擷取和取樣查詢範例中， **這三個模型化練習的所有標籤都包含於此查詢中**。 每一個模型化練習的重要 (必要) 步驟都是針對其他兩個問題**排除**不需要的標籤，以及任何其他的**目標流失**。 例如，使用二進位分類時，請用 **tipped** 標籤，並排除 **tip\_class**、**tip\_amount** 和 **total\_amount** 欄位。 後者為目標流失，因為它們意指支付的小費。
 > 
-> 若要排除任何不必要的資料行或目標流失，您可以使用[選取資料集中的資料行][select-columns]模組或[編輯中繼資料][edit-metadata]。 如需詳細資訊，請參閱[選取資料集中的資料行][select-columns] 和[編輯中繼資料][edit-metadata]參考頁面。
+> 若要排除任何不必要的資料行或目標流失，您可以使用[選取資料集中的資料行][select-columns]模組或[編輯中繼資料][edit-metadata]。 如需詳細資訊，請參閱[選取資料集中的資料行][select-columns]和[編輯中繼資料][edit-metadata]參考頁面。
 > 
 > 
 
@@ -871,7 +871,7 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。 �
 2. 識別邏輯 **輸入連接埠** ，表示預期的輸入資料結構描述。
 3. 識別邏輯 **輸出連接埠** ，表示預期的 Web 服務輸出結構描述。
 
-建立計分實驗時，請檢閱它並視需要進行調整。 典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。 若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。 針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，只包含**評分標籤**和**評分機率**。
+建立計分實驗時，請檢閱它並視需要進行調整。 典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。 若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。 針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組，在輸出中排除所有輸入欄位，只包含 [評分標籤]和 [評分機率]。
 
 下圖提供評分實驗範例。 準備部署時，請按下方動作列中的 [發佈 Web 服務]  按鈕。
 
@@ -923,6 +923,6 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。 �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

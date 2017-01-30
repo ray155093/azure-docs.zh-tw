@@ -1,29 +1,33 @@
 ---
-title: 使用 SQL 資料分割資料表平行處理大量資料匯入 | Microsoft Docs
-description: 使用 SQL 資料分割資料表平行處理大量資料匯入
+title: "使用 SQL 資料分割資料表平行處理大量資料匯入 | Microsoft Docs"
+description: "使用 SQL 資料分割資料表平行處理大量資料匯入"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: ff90fdb0-5bc7-49e8-aee7-678b54f901c8
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/16/2016
 ms.author: bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: e6c45f4be168cef1a05958624f666097779e76f6
+ms.openlocfilehash: 2486a00482ca873ccb5198b5ca13cdc104bd1505
+
 
 ---
-# 使用 SQL 資料分割資料表平行處理大量資料匯入
-本文件說明如何建置資料分割資料表，以快速的平行處理方式將大量資料匯入 SQL Server 資料庫。若要將巨量資料載入/傳輸至 SQL Database，可使用「資料分割資料表和檢視」，來改善將資料匯入 SQL DB 和後續查詢的效能。
+# <a name="parallel-bulk-data-import-using-sql-partition-tables"></a>使用 SQL 資料分割資料表平行處理大量資料匯入
+本文件說明如何建置資料分割資料表，以快速的平行處理方式將大量資料匯入 SQL Server 資料庫。 若要將巨量資料載入/傳輸至 SQL Database，可使用*資料分割資料表和檢視*，來改善將資料匯入 SQL DB 和後續查詢的效能。 
 
-## 建立新的資料庫和一組檔案群組
+## <a name="create-a-new-database-and-a-set-of-filegroups"></a>建立新的資料庫和一組檔案群組
 * [建立新的資料庫](https://technet.microsoft.com/library/ms176061.aspx) (如果不存在)
 * 將資料庫檔案群組新增至將用來保留資料分割實體檔案的資料庫
   
-  注意：這可透過 [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) (如果是新的) 或 [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) (如果資料庫已經存在) 來完成
+  這可透過 [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) (如果是新的) 或 [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) (如果資料庫已經存在) 來完成
 * 將一或多個檔案 (視需要) 新增至每個資料庫檔案群組
   
   > [!NOTE]
@@ -31,7 +35,7 @@ ms.author: bradsev
   > 
   > 
 
-下列範例會建立含有三個檔案群組的新資料庫，這三個檔案群組不包括主要和記錄群組，且每個檔案群組中都會包含一個實體檔案。資料庫檔案建立於預設的 SQL Server [資料] 資料夾中，如 SQL Server 執行個體中所設定。如需關於預設檔案位置的詳細資訊，請參閱 [SQL Server 的預設和具名執行個體的檔案位置](https://msdn.microsoft.com/library/ms143547.aspx)。
+下列範例會建立含有三個檔案群組的新資料庫，這三個檔案群組不包括主要和記錄群組，且每個檔案群組中都會包含一個實體檔案。 資料庫檔案建立於預設的 SQL Server [資料] 資料夾中，如 SQL Server 執行個體中所設定。 如需關於預設檔案位置的詳細資訊，請參閱 [SQL Server 的預設和具名執行個體的檔案位置](https://msdn.microsoft.com/library/ms143547.aspx)。
 
     DECLARE @data_path nvarchar(256);
     SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)
@@ -52,8 +56,8 @@ ms.author: bradsev
         ( NAME = ''LogFileGroup'', FILENAME = ''' + @data_path + '<log_file_name>.ldf'' , SIZE = 1024KB , FILEGROWTH = 10%)
     ')
 
-## 建立資料分割資料表
-根據資料結構描述來建立資料分割資料表，其會對應到上一個步驟中建立的資料庫檔案群組。將資料大量匯入資料分割資料表時，記錄將根據資料分割配置分佈於檔案群組中，如下所述。
+## <a name="create-a-partitioned-table"></a>建立資料分割資料表
+根據資料結構描述來建立資料分割資料表，其會對應到上一個步驟中建立的資料庫檔案群組。 將資料大量匯入資料分割資料表時，記錄將根據資料分割配置分佈於檔案群組中，如下所述。
 
 **若要建立資料分割資料表，您需要：**
 
@@ -64,7 +68,7 @@ ms.author: bradsev
             '20130201', '20130301', '20130401',
             '20130501', '20130601', '20130701', '20130801',
             '20130901', '20131001', '20131101', '20131201' )
-* [建立資料分割配置](https://msdn.microsoft.com/library/ms179854.aspx)，將資料分割函數中的每個資料分割範圍對應至實體檔案群組，例如：
+* [建立資料分割配置](https://msdn.microsoft.com/library/ms179854.aspx) ，將資料分割函數中的每個資料分割範圍對應至實體檔案群組，例如：
   
         CREATE PARTITION SCHEME <DatetimeFieldPScheme> AS  
         PARTITION <DatetimeFieldPFN> TO (
@@ -72,7 +76,7 @@ ms.author: bradsev
         <filegroup_5>, <filegroup_6>, <filegroup_7>, <filegroup_8>,
         <filegroup_9>, <filegroup_10>, <filegroup_11>, <filegroup_12> )
   
-  提示：若要根據函數/配置確認範圍會在每個資料分割中生效，請執行下列查詢：
+  若要根據函式/配置確認範圍會在每個資料分割中生效，請執行下列查詢：
   
         SELECT psch.name as PartitionScheme,
             prng.value AS ParitionValue,
@@ -86,14 +90,14 @@ ms.author: bradsev
         CREATE TABLE <table_name> ( [include schema definition here] )
         ON <TablePScheme>(<partition_field>)
 
-如需詳細資訊，請參閱[建立分割區資料表及索引](https://msdn.microsoft.com/library/ms188730.aspx)。
+如需詳細資訊，請參閱 [建立分割區資料表及索引](https://msdn.microsoft.com/library/ms188730.aspx)。
 
-## 大量匯入每個個別資料分割資料表的資料
-* 您可以使用 BCP、BULK INSERT 或其他方法，例如 [SQL Server 移轉精靈](http://sqlazuremw.codeplex.com/)。所提供的範例會使用 BCP 方法。
-* [改變資料庫](https://msdn.microsoft.com/library/bb522682.aspx)，將交易記錄配置變更為 BULK\_LOGGED，以便將記錄額外負荷降到最低，例如：
+## <a name="bulk-import-the-data-for-each-individual-partition-table"></a>大量匯入每個個別資料分割資料表的資料
+* 您可以使用 BCP、BULK INSERT 或其他方法，例如 [SQL Server 移轉精靈](http://sqlazuremw.codeplex.com/)。 所提供的範例會使用 BCP 方法。
+* [改變資料庫](https://msdn.microsoft.com/library/bb522682.aspx)，將交易記錄配置變更為 BULK_LOGGED，以便將記錄額外負荷降到最低，例如：
   
         ALTER DATABASE <database_name> SET RECOVERY BULK_LOGGED
-* 若要加速資料載入，可以平行方式啟動大量匯入作業。如需加速將巨量資料大量匯入 SQL Server 資料庫的提示，請參閱[載入 1 TB 的時間少於 1 小時](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx) (英文)。
+* 若要加速資料載入，可以平行方式啟動大量匯入作業。 如需加速將巨量資料大量匯入 SQL Server 資料庫的提示，請參閱 [載入 1 TB 的時間少於 1 小時](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx)(英文)。
 
 下列 PowerShell 指令碼是使用 BCP 平行載入資料的範例。
 
@@ -128,13 +132,13 @@ ms.author: bradsev
     # BCP example using Windows authentication
     $ScriptBlock1 = {
        param($dbname, $tbname, $basename, $fmtfile, $indir, $logdir, $num)
-       bcp ($dbname + ".." + $tbname) in ($indir + "" + $basename + "_" + $num + ".csv") -o ($logdir + "" + $tbname + "_" + $num + ".txt") -h "TABLOCK" -F 2 -C "RAW" -f ($fmtfile) -T -b 2500 -t "," -r \n
+       bcp ($dbname + ".." + $tbname) in ($indir + "\" + $basename + "_" + $num + ".csv") -o ($logdir + "\" + $tbname + "_" + $num + ".txt") -h "TABLOCK" -F 2 -C "RAW" -f ($fmtfile) -T -b 2500 -t "," -r \n
     }
 
     # BCP example using SQL authentication
     $ScriptBlock2 = {
        param($dbname, $tbname, $basename, $fmtfile, $indir, $logdir, $num, $sqlusr, $server, $pass)
-       bcp ($dbname + ".." + $tbname) in ($indir + "" + $basename + "_" + $num + ".csv") -o ($logdir + "" + $tbname + "_" + $num + ".txt") -h "TABLOCK" -F 2 -C "RAW" -f ($fmtfile) -U $sqlusr -S $server -P $pass -b 2500 -t "," -r \n
+       bcp ($dbname + ".." + $tbname) in ($indir + "\" + $basename + "_" + $num + ".csv") -o ($logdir + "\" + $tbname + "_" + $num + ".txt") -h "TABLOCK" -F 2 -C "RAW" -f ($fmtfile) -U $sqlusr -S $server -P $pass -b 2500 -t "," -r \n
     }
 
     # Background processing of all partitions
@@ -159,7 +163,7 @@ ms.author: bradsev
     date
 
 
-## 建立索引以將聯結和查詢效能最佳化
+## <a name="create-indexes-to-optimize-joins-and-query-performance"></a>建立索引以將聯結和查詢效能最佳化
 * 如果您會從多個資料表擷取資料來進行模型化，請在聯結索引鍵上建立索引來提升聯結效能。
 * [建立索引](https://technet.microsoft.com/library/ms188783.aspx) (叢集或非叢集) 會將每個資料分割的目標設定為相同的檔案群組，例如：
   
@@ -171,11 +175,16 @@ ms.author: bradsev
         ON <TablePScheme>(<partition)field>)
   
   > [!NOTE]
-  > 您可以選擇在大量匯入資料之前建立索引。在大量匯入之前建立索引，將讓資料載入速度變慢。
+  > 您可以選擇在大量匯入資料之前建立索引。 在大量匯入之前建立索引，將讓資料載入速度變慢。
   > 
   > 
 
-## 進階分析程序和技術實務範例
+## <a name="advanced-analytics-process-and-technology-in-action-example"></a>進階分析程序和技術實務範例
 如需使用公用資料集進行 Cortana 分析程序的端對端逐步解說範例，請參閱 [Cortana 分析程序實務範例：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Dec16_HO3-->
+
+

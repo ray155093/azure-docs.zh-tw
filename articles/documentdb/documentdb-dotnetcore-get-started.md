@@ -1,23 +1,22 @@
 ---
 title: "NoSQL 教學課程：DocumentDB .NET Core SDK | Microsoft Docs"
 description: "NoSQL 教學課程，將使用 DocumentDB .NET Core SDK 來建立線上資料庫以及 C# 主控台應用程式。 DocumentDB 是 JSON 的 NoSQL 資料庫。"
-keywords: "nosql 教學課程, 線上資料庫, c# 主控台應用程式"
 services: documentdb
 documentationcenter: .net
 author: arramac
 manager: jhubbard
-editor: monicar
+editor: 
 ms.assetid: 9f93e276-9936-4efb-a534-a9889fa7c7d2
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 12/25/2016
+ms.date: 01/19/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 16bff1b5708652a75ea603f596c864901b12a88d
-ms.openlocfilehash: 60d4fec828d620d067b7eb9d0e3cb7e57d1be506
+ms.sourcegitcommit: d98bf3a76459ed1e87f25a93a8246e2a2110a488
+ms.openlocfilehash: a41f45d277732d38b17db1fe9684cfde0027bd84
 
 
 ---
@@ -49,6 +48,9 @@ ms.openlocfilehash: 60d4fec828d620d067b7eb9d0e3cb7e57d1be506
 
 之後，請使用此頁面頂端或底部的投票按鈕，將意見反應提供給我們。 如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
 
+> [!NOTE]
+> 本教學課程中使用的 DocumentDB .NET Core SDK 尚未與通用 Windows 平台 (UWP) 應用程式相容。 如需可支援 UWP 應用程式的 .NET Core SDK 預覽版本，請傳送電子郵件至 [askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
+
 讓我們開始吧！
 
 ## <a name="prerequisites"></a>必要條件
@@ -70,10 +72,10 @@ ms.openlocfilehash: 60d4fec828d620d067b7eb9d0e3cb7e57d1be506
 1. 在電腦上開啟 **Visual Studio 2015** 。
 2. 從 [檔案] 功能表中，選取 [新增]，然後選擇 [專案]。
 3. 在 [新增專案] 對話方塊中，依序選取 [範本] / [Visual C#] / [.NET Core]/[主控台應用程式 (.NET Core)]、為專案命名，然後按一下 [確定]。
-   ![[新增專案] 視窗的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-new-project-2.png)
+   ![[新增專案] 視窗的螢幕擷取畫面](./media/documentdb-dotnetcore-get-started/nosql-tutorial-new-project-2.png)
 4. 在 [方案總管] 中，以滑鼠右鍵按一下 Visual Studio 方案底下的新主控台應用程式。
 5. 然後不需離開功能表，按一下 [管理 NuGet 套件...]****
-   ![專案右鍵點選功能表的螢幕擷取畫面](./media/documentdb-get-started/nosql-tutorial-manage-nuget-pacakges.png)
+   ![專案右鍵點選功能表的螢幕擷取畫面](./media/documentdb-dotnetcore-get-started/nosql-tutorial-manage-nuget-pacakges.png)
 6. 在 [Nuget] 索引標籤中按一下 [瀏覽]，然後在搜尋方塊中輸入 **azure documentdb**。
 7. 在結果中尋找 [Microsoft.Azure.DocumentDB.Core]，然後按一下 [安裝]。
    DocumentDB 用戶端程式庫的封裝識別碼為 [Microsoft.Azure.DocumentDB.Core](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core)
@@ -367,7 +369,7 @@ ms.openlocfilehash: 60d4fec828d620d067b7eb9d0e3cb7e57d1be506
 
 恭喜！ 您已成功建立兩個 DocumentDB 文件。  
 
-![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之帳戶、線上資料庫、集合和文件之間階層式關聯性的圖表](./media/documentdb-get-started/nosql-tutorial-account-database.png)
+![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之帳戶、線上資料庫、集合和文件之間階層式關聯性的圖表](./media/documentdb-dotnetcore-get-started/nosql-tutorial-account-database.png)
 
 ## <a name="a-idqueryastep-7-query-documentdb-resources"></a><a id="Query"></a>步驟 7：查詢 DocumentDB 資源
 DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富 [查詢](documentdb-sql-query.md) 。  下列範例程式碼示範可在我們於前一個步驟中插入的文件上執行的各種查詢 (同時使用 DocumentDB SQL 語法和 LINQ)。
@@ -421,7 +423,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富 [查詢](do
 
 下圖說明如何針對您所建立的集合呼叫 DocumentDB SQL 查詢語法，相同邏輯也可以套用至 LINQ 查詢。
 
-![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之查詢的範圍和意義的圖表](./media/documentdb-get-started/nosql-tutorial-collection-documents.png)
+![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之查詢的範圍和意義的圖表](./media/documentdb-dotnetcore-get-started/nosql-tutorial-collection-documents.png)
 
 因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#from-clause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
 
@@ -556,11 +558,10 @@ DocumentDB 支援刪除 JSON 文件。
 * 如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
 
 [documentdb-create-account]: documentdb-create-account.md
-[documentdb-manage]: documentdb-manage.md
-[keys]: media/documentdb-get-started/nosql-tutorial-keys.png
+[keys]: media/documentdb-dotnetcore-get-started/nosql-tutorial-keys.png
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 
