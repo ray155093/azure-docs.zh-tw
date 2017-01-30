@@ -1,6 +1,6 @@
 ---
-title: "重新部署 Windows 虛擬機器 | Microsoft Docs"
-description: "說明如何重新部署 Windows 虛擬機器，以減輕 RDP 連線問題。"
+title: "在 Azure 中重新部署 Windows 虛擬機器 | Microsoft Docs"
+description: "如何在 Azure 中重新部署 Windows 虛擬機器，以減輕 RDP 連線問題。"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -12,28 +12,29 @@ ms.devlang: na
 ms.topic: support-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 09/19/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 61dbf8fb96233d2e0f592deacf139a83cee51954
+ms.sourcegitcommit: 3295120664e409440641818b13dd1abab6f2f72f
+ms.openlocfilehash: e73a99cf0dd940145c71292873f25576bd6d9ea3
 
 
 ---
-# <a name="redeploy-virtual-machine-to-new-azure-node"></a>將虛擬機器重新部署至新的 Azure 節點
+# <a name="redeploy-windows-virtual-machine-to-new-azure-node"></a>將 Windows 虛擬機器重新部署至新的 Azure 節點
 如果您在疑難排解以 Windows 為基礎的 Azure 虛擬機器 (VM) 的遠端桌面 (RDP) 連線或應用程式存取時一直遇到問題，重新部署 VM 也許可以解決。 重新部署 VM 時會將 VM 移到 Azure 基礎結構內的新節點，然後重新開啟它的電源，保留所有組態選項和相關聯的資源。 本文將說明如何使用 Azure PowerShell 或 Azure 入口網站來重新部署 VM。
 
 > [!NOTE]
 > 重新部署 VM 之後，暫存磁碟會遺失，而系統會更新與虛擬網路介面關聯的動態 IP 位址。 
-> 
-> 
+
 
 ## <a name="using-azure-powershell"></a>使用 Azure PowerShell
-確定您的電腦上已安裝最新版本的 Azure PowerShell 1.x。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+確定您的電腦上已安裝最新版本的 Azure PowerShell 1.x。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
-使用這個 Azure PowerShell 命令來重新部署您的虛擬機器：
+下列範例會部署名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
 
-    Set-AzureRmVM -Redeploy -ResourceGroupName $rgname -Name $vmname 
+```powershell
+Set-AzureRmVM -Redeploy -ResourceGroupName "myResourceGroup" -Name "myVM"
+```
 
 
 [!INCLUDE [virtual-machines-common-redeploy-to-new-node](../../includes/virtual-machines-common-redeploy-to-new-node.md)]
@@ -44,6 +45,6 @@ ms.openlocfilehash: 61dbf8fb96233d2e0f592deacf139a83cee51954
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

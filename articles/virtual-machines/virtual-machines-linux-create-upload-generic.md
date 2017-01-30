@@ -13,18 +13,18 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 09/23/2016
+ms.date: 12/02/2016
 ms.author: szark
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 76d82d5bfc9c57583ea722e76f13bdd4b17ec444
+ms.sourcegitcommit: 8ba7633f7d5c4bf9e7160b27f5d5552676653d55
+ms.openlocfilehash: ad632fd894a56a490b48c81ae63d641412368f35
 
 
 ---
 # <a name="information-for-non-endorsed-distributions"></a>非背書散發套件的資訊
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-**重要事項**：只有在使用其中一個 [背書散發套件](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 時，Azure 平台 SLA 才適用於執行 Linux OS 的虛擬機器。 Azure 映像庫中提供的所有 Linux 散發套件，皆為使用必要組態的背書散發套件。
+只有使用其中一個[背書散發套件](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)時，Azure 平台 SLA 才適用於執行 Linux OS 的虛擬機器。 Azure 映像庫中提供的所有 Linux 散發套件，皆為使用必要組態的背書散發套件。
 
 * [Azure 背書散發套件上的 Linux](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [支援 Microsoft Azure 中的 Linux 映像](https://support.microsoft.com/kb/2941892)
@@ -80,6 +80,7 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
 1. 直接使用工具 (例如 `qemu-img` 或 `vbox-manage`) 調整 VHD 的大小，可能會導致 VHD 無法開機。  因此，建議先將 VHD 轉換為 RAW 磁碟映像。  如果 VM 映像已建立為 RAW 磁碟映像 (有些 Hypervisor 的預設值，例如 KVM)，您可以省略此步驟：
    
        # qemu-img convert -f vpc -O raw MyLinuxVM.vhd MyLinuxVM.raw
+
 2. 計算所需的磁碟映像大小，以確保虛擬大小對應於 1 MB。  下列 bash 殼層指令碼有助於此作業。  此指令碼會使用 "`qemu-img info`" 來判斷磁碟映像的虛擬大小，然後計算下一個 1 MB 的大小：
    
        rawdisk="MyLinuxVM.raw"
@@ -91,12 +92,18 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
    
        rounded_size=$((($size/$MB + 1)*$MB))
        echo "Rounded Size = $rounded_size"
+
 3. 依照上述指令碼中的設定，使用 $rounded_size 調整原始磁碟的大小：
    
        # qemu-img resize MyLinuxVM.raw $rounded_size
+
 4. 現在，將 RAW 磁碟轉換回固定大小的 VHD：
    
        # qemu-img convert -f raw -o subformat=fixed -O vpc MyLinuxVM.raw MyLinuxVM.vhd
+
+   或者，qemu 版本 **2.6 +** 包含 `force_size` 選項︰
+
+       # qemu-img convert -f raw -o subformat=fixed,force_size -O vpc MyLinuxVM.raw MyLinuxVM.vhd
 
 ## <a name="linux-kernel-requirements"></a>Linux Kernel 需求
 適用於 Hyper-V 和 Azure 的 Linux Integration Services (LIS) 驅動程式會直接提供給上游 Linux Kernel。 許多包括最新 Linux kernel 版本 (例如 3.x) 的散發套件已經有這些驅動程式，或提供這些驅動程式及其核心的 Backport 版本。  上游核心會透過新的修正和功能來不斷更新這些驅動程式，因此若有可能的話，建議您執行將包含這些修正與更新的 [背書散發套件](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
@@ -177,6 +184,6 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。  一般而�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

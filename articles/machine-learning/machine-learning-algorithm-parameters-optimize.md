@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/09/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e1075e73a67130453701842f3b328484a327f5ec
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 4c6dac8b1c5968995de12e678434e158045d5cc6
 
 
 ---
@@ -48,7 +48,7 @@ ms.openlocfilehash: e1075e73a67130453701842f3b328484a327f5ec
 ![二元促進式決策樹，參數範圍](./media/machine-learning-algorithm-parameters-optimize/fig3.png)
 
 ## <a name="define-cross-validation-folds"></a>定義交叉驗證折數
-使用[分割和樣本][partition-and-sample]模組可對資料隨機指派折數。 在下圖模組的範例組態中，我們定義五個折數，並且對樣本實例隨機指派折疊數目。
+[資料分割和取樣][partition-and-sample]模組可用來隨機指派資料的折數。 在下圖模組的範例組態中，我們定義五個折數，並且對樣本實例隨機指派折疊數目。
 
 ![資料分割和取樣](./media/machine-learning-algorithm-parameters-optimize/fig4.png)
 
@@ -58,7 +58,7 @@ ms.openlocfilehash: e1075e73a67130453701842f3b328484a327f5ec
 ![掃掠參數](./media/machine-learning-algorithm-parameters-optimize/fig5.png)
 
 ## <a name="train-evaluate-and-compare"></a>訓練、評估和比較
-相同的[微調模型超參數][tune-model-hyperparameters]模組會訓練與參數集對應的所有模型、評估各種計量，然後根據您選擇的計量建立訓練得最好的模型。 此模組有兩個必要的輸入項：
+相同的[微調模型超參數][tune-model-hyperparameters]模組會訓練對應於參數集的所有模型、評估各種計量，然後根據您選擇的計量建立訓練最妥善的模型。 此模組有兩個必要的輸入項：
 
 * 未訓練過的學習者
 * 資料集
@@ -79,6 +79,6 @@ ms.openlocfilehash: e1075e73a67130453701842f3b328484a327f5ec
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

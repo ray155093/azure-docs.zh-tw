@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 09/24/2016
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1a73f51b182cd9ce4634deeb33153345b935b13b
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: caf6dd414bd8f8180c90835dd9744dcd98f7709c
 
 
 ---
@@ -81,7 +81,8 @@ source ~/azure.completion.sh
 
 您可以使用 PowerShell 或 CLI，與透過 Azure 入口網站建立的 Linux Service Fabric 叢集互動。 
 
-**警告︰** 這些叢集不安全，因此，您可能因為在叢集資訊清單中新增公用 IP 位址，而造成單機系統門戶洞開。
+> [!WARNING]
+> 這些叢集不安全，因此，您可能因為在叢集資訊清單中新增公用 IP 位址，而造成單機系統門戶洞開。
 
 ## <a name="using-the-azure-cli-to-connect-to-a-service-fabric-cluster"></a>使用 Azure CLI 連線至 Service Fabric 叢集
 下列 Azure CLI 命令說明如何連線到安全的叢集。 憑證詳細資料必須與叢集節點上的憑證相符。
@@ -149,6 +150,24 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 
 您現在可以使用 SFX 來監視應用程式升級。 應用程式在幾分鐘內會完成更新。  您也可以用錯誤動作來測試已更新的應用程式，並檢查 Service Fabric 中的自動回復功能。
 
+## <a name="converting-from-pfx-to-pem-and-vice-versa"></a>從 PFX 轉換為 PEM (反之亦然)
+
+您可能需要在本機電腦 (採用 Windows 或 Linux) 上安裝憑證，以存取可能位於不同環境中的安全叢集。 比方說，從 Windows 電腦存取安全的 Linux 叢集 (反之亦然) 時，您可能需要將憑證從 PFX 轉換為 PEM。 
+
+若要從 PEM 檔案轉換為 PFX 檔案，請使用下列命令︰
+
+```bash
+openssl pkcs12 -export -out certificate.pfx -inkey mycert.pem -in mycert.pem -certfile mycert.pem
+```
+
+若要從 PFX 檔案轉換為 PEM 檔案，請使用下列命令︰
+
+```bash
+openssl pkcs12 -in certificate.pfx -out mycert.pem -nodes
+```
+
+請參閱[OpenSSL 文件](https://www.openssl.org/docs/man1.0.1/apps/pkcs12.html)以取得詳細資訊。
+
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="copying-of-the-application-package-does-not-succeed"></a>未成功複製應用程式封裝
 檢查是否已安裝 `openssh` 。 根據預設，Ubuntu 桌面不會安裝此軟體。 使用下列命令安裝它：
@@ -176,12 +195,14 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 ```
 尚不支援使用金鑰 (而不是密碼) 進行 ssh 驗證 (因為平台會使用 ssh 來複製套件)，請改為使用密碼驗證。
 
+
+
 ## <a name="next-steps"></a>後續步驟
 設定開發環境，並將 Service Fabric 應用程式部署到 Linux 叢集。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

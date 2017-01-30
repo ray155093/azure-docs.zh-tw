@@ -16,8 +16,8 @@ ms.topic: hero-article
 ms.date: 02/19/2016
 ms.author: huvalo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7fbe958a20099f829f2c4c38344969372217e634
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: c6679cf7a6b059ee7c28e1754c54afa6414d633a
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 7fbe958a20099f829f2c4c38344969372217e634
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -112,10 +112,10 @@ ms.openlocfilehash: 7fbe958a20099f829f2c4c38344969372217e634
 
 IIS 組態檔。 部署指令碼會使用適當的 web.x.y.config，並將它複製為 web.config。
 
-### <a name="optional-files-customizing-deployment"></a>選用的檔案 - 自訂部署
+### <a name="optional-files---customizing-deployment"></a>選用的檔案 - 自訂部署
 [!INCLUDE [web-sites-python-django-customizing-deployment](../../includes/web-sites-python-django-customizing-deployment.md)]
 
-### <a name="optional-files-python-runtime"></a>選用的檔案 - Python 執行階段
+### <a name="optional-files---python-runtime"></a>選用的檔案 - Python 執行階段
 [!INCLUDE [web-sites-python-customizing-runtime](../../includes/web-sites-python-customizing-runtime.md)]
 
 ### <a name="additional-files-on-server"></a>在伺服器上的其他檔案
@@ -135,7 +135,7 @@ Python 虛擬環境。 如果 Web 應用程式上不存在相容的虛擬環境�
 * Windows，使用命令列
 * Mac/Linux，使用命令列
 
-## <a name="web-app-development-windows-python-tools-for-visual-studio"></a>Web 應用程式開發 - Windows - 適用於 Visual Studio 的 Python 工具
+## <a name="web-app-development---windows---python-tools-for-visual-studio"></a>Web 應用程式開發 - Windows - 適用於 Visual Studio 的 Python 工具
 ### <a name="clone-the-repository"></a>複製儲存機制
 首先，使用 Azure 入口網站上提供的 URL 複製儲存機制。 如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
@@ -201,7 +201,7 @@ Visual Studio 不會顯示部署進度。 如果您想要檢閱輸出，請參�
 
 瀏覽至 Azure URL，以檢視您的變更。
 
-## <a name="web-app-development-windows-command-line"></a>Web 應用程式開發 - Windows - 命令列
+## <a name="web-app-development---windows---command-line"></a>Web 應用程式開發 - Windows - 命令列
 ### <a name="clone-the-repository"></a>複製儲存機制
 首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。 如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
@@ -281,7 +281,7 @@ Visual Studio 不會顯示部署進度。 如果您想要檢閱輸出，請參�
 
 瀏覽至 Azure URL，以檢視您的變更。
 
-## <a name="web-app-development-maclinux-command-line"></a>Web 應用程式開發 - Mac/Linux - 命令列
+## <a name="web-app-development---maclinux---command-line"></a>Web 應用程式開發 - Mac/Linux - 命令列
 ### <a name="clone-the-repository"></a>複製儲存機制
 首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。 如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
@@ -365,13 +365,13 @@ Visual Studio 不會顯示部署進度。 如果您想要檢閱輸出，請參�
 
 瀏覽至 Azure URL，以檢視您的變更。
 
-## <a name="troubleshooting-package-installation"></a>疑難排解 - 封裝安裝
+## <a name="troubleshooting---package-installation"></a>疑難排解 - 封裝安裝
 [!INCLUDE [web-sites-python-troubleshooting-package-installation](../../includes/web-sites-python-troubleshooting-package-installation.md)]
 
-## <a name="troubleshooting-virtual-environment"></a>疑難排解 - 虛擬環境
+## <a name="troubleshooting---virtual-environment"></a>疑難排解 - 虛擬環境
 [!INCLUDE [web-sites-python-troubleshooting-virtual-environment](../../includes/web-sites-python-troubleshooting-virtual-environment.md)]
 
-## <a name="troubleshooting-static-files"></a>疑難排解 - 靜態檔案
+## <a name="troubleshooting---static-files"></a>疑難排解 - 靜態檔案
 Django 具有收集靜態檔案的概念。 這會從原始位置取得所有靜態檔案，並將它們複製到單一資料夾。 針對此應用程式，它們會複製到 `/static`。
 
 這是因為靜態檔案可能來自不同的 Django「應用程式」。 例如，Django 管理介面的靜態檔案位於虛擬環境中的 Django 程式庫子資料夾。 此應用程式所定義的靜態檔案位於 `/app/static`。 當您使用多個 Django「應用程式」時 ，您必須擁有位於多個位置中的靜態檔案。
@@ -392,7 +392,7 @@ Django 具有收集靜態檔案的概念。 這會從原始位置取得所有靜
 
 然後從 `.gitignore` 移除 `\static` 資料夾，並將它加入至 Git 儲存機制。
 
-## <a name="troubleshooting-settings"></a>疑難排解 - 設定
+## <a name="troubleshooting---settings"></a>疑難排解 - 設定
 應用程式的各種設定可以在 `DjangoWebProject/settings.py`變更。
 
 為了開發人員方便起見，已啟用偵錯模式。 其中一項不錯的副作用是，您能在本機執行時看見映像和其他靜態內容，而不需要收集靜態檔案。
@@ -467,6 +467,6 @@ Azure 提供了資料庫服務，可從 Django 應用程式輕鬆使用。 從 D
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

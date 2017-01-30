@@ -15,12 +15,12 @@ ms.topic: hero-article
 ms.date: 01/04/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 05e61d2fc751c4239aef4b10ad897765c59fe928
-ms.openlocfilehash: 1c15dc42023e756e032bb268773e573dff848c6d
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: df256874674f5e0474ac813eb5614557f83d340b
 
 
 ---
-# <a name="deploy-your-first-nodejs-web-app-to-azure-in-five-minutes"></a>在 5 分鐘內，將您的第一個 Node.js Web 應用程式部署到 Azure
+# <a name="deploy-your-first-nodejs-web-app-to-azure-in-five-minutes"></a>在&5; 分鐘內，將您的第一個 Node.js Web 應用程式部署到 Azure
 
 > [!div class="op_single_selector"]
 > * [第一個 HTML 網站](app-service-web-get-started-html-cli-nodejs.md)
@@ -57,7 +57,7 @@ ms.openlocfilehash: 1c15dc42023e756e032bb268773e573dff848c6d
 * Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 > [!NOTE]
-> 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
+> 您可以[試用 App Service](https://azure.microsoft.com/try/app-service/)，而不需要 Azure 帳戶。 建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
 > 
 > 
 
@@ -132,6 +132,6 @@ ms.openlocfilehash: 1c15dc42023e756e032bb268773e573dff848c6d
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

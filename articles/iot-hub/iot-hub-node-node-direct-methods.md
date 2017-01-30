@@ -1,6 +1,6 @@
 ---
-title: "使用直接方法 |Microsoft 文件"
-description: "本教學課程說明如何使用直接方法"
+title: "Azure IoT 中樞直接方法 (Node) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞直接方法。 您可以使用適用於 Node.js 的 Azure IoT SDK，實作模擬裝置應用程式 (包含直接方法) 和服務應用程式 (叫用直接方法)。"
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/05/2016
+ms.date: 01/11/2017
 ms.author: nberdy
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: fd80a245f2cc2415bec487f98360980534df8730
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 52eb502054120af4c03c649dee810366f99d326b
 
 
 ---
-# <a name="tutorial-use-direct-methods"></a>教學課程：使用直接方法
+# <a name="use-direct-methods-node"></a>使用直接方法 (Node)
 [!INCLUDE [iot-hub-selector-c2d-methods](../../includes/iot-hub-selector-c2d-methods.md)]
 
 在本教學課程結尾處，您會有兩個 Node.js 主控台應用程式：
@@ -64,7 +64,7 @@ ms.openlocfilehash: fd80a245f2cc2415bec487f98360980534df8730
     var Mqtt = require('azure-iot-device-mqtt').Mqtt;
     var DeviceClient = require('azure-iot-device').Client;
     ```
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。 將 **{裝置連接字串}** 取代為您在*建立裝置身分識別*章節中產生的連接字串：
+5. 新增 **connectionString** 變數，並用它來建立 **DeviceClient** 執行個體。 將 **{device connection string}** 取代為您在*建立裝置身分識別*一節中產生的連接字串：
    
     ```
     var connectionString = '{device connection string}';
@@ -125,7 +125,7 @@ ms.openlocfilehash: fd80a245f2cc2415bec487f98360980534df8730
    
     var Client = require('azure-iothub').Client;
     ```
-5. 新增下列變數宣告，並將預留位置值替換為您的 IoT 中樞的連接字串：
+5. 新增下列變數宣告，並將預留位置值替換為中樞的 IoT 中樞連接字串：
    
     ```
     var connectionString = '{iothub connection string}';
@@ -196,7 +196,7 @@ ms.openlocfilehash: fd80a245f2cc2415bec487f98360980534df8730
 <!-- Links -->
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
@@ -213,6 +213,6 @@ ms.openlocfilehash: fd80a245f2cc2415bec487f98360980534df8730
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -12,24 +12,25 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/02/2016
+ms.date: 12/6/2016
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 8d5f8dd454741f5946d6a2c265ce67808abdac9e
+ms.sourcegitcommit: 376e3ff9078cf0b53493dbfee9273c415da04e52
+ms.openlocfilehash: fa978644f2cd95b8eb21687e90d16d0df22b3d44
 
 
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Azure 監視器自動調整的常用度量
-Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減少執行中執行個體的數目。 本文件說明您可能會使用的常用度量。 在 Azure 的雲端服務和伺服器陣列入口網站中，您可以選擇要做為調整依據的資源度量。 不過，您也可以選擇其他資源的任何度量來做為調整依據。
+Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減少執行中執行個體的數目。 本文件說明您可能會使用的常用度量。 在 Azure 的雲端服務和伺服器陣列入口網站中，您可以選擇要作為調整依據的資源度量。 不過，您也可以選擇其他資源的任何度量來做為調整依據。
 
-以下詳細說明如何尋找並列出要做為調整依據的度量。 下列作法也適用於調整「虛擬機器擴展集」。
+下列資訊也適用於調整「虛擬機器擴展集」。
 
-## <a name="compute-metrics"></a>計算度量
-根據預設，Azure VM v2 隨附設定好的診斷擴充功能，並已開啟下列度量。
+> [!NOTE]
+> 此資訊僅適用於以 VM 和 VM 擴展集為基礎的 Resource Manager。 
+> 
 
-* [Windows VM v2 的來賓度量](#compute-metrics-for-windows-vm-v2-as-a-guest-os)
-* [Linux VM v2 的來賓度量](#compute-metrics-for-linux-vm-v2-as-a-guest-os)
+## <a name="compute-metrics-for-resource-manager-based-vms"></a>針對以 Resource Manager 為基礎的 VM 來計算度量
+根據預設，以 Resource Manager 為基礎的虛擬機器和虛擬機器擴展集會發出基本 (主機層級) 的度量。 此外，當您設定 Azure VM 和 VMSS 的診斷資料收集時，Azure 診斷擴充也會發出客體 OS 效能計數器 (通常稱為「客體 OS 度量」)。  您在自動調整規則中使用所有這些度量。 
 
 您可以使用 `Get MetricDefinitions` API/PoSH/CLI 來檢視 VMSS 資源的可用度量。 
 
@@ -37,10 +38,16 @@ Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減�
 
 如果特定度量沒有取樣或以您想要的頻率傳輸，您可以更新診斷的組態設定。
 
-如果是上述任一種情況，則請檢閱 PowerShell 的[使用 PowerShell 為執行 Windows 的虛擬機器啟用 Azure 診斷](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，設定和更新您的 Azure VM 診斷擴充功能以啟用該度量。 該文章也包含診斷組態檔的範例。
+如果發生上述任一種情況，請檢閱 PowerShell 相關的[使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md)，設定和更新 Azure VM 診斷擴充以啟用該度量。 該文章也包含診斷組態檔的範例。
 
-### <a name="compute-metrics-for-windows-vm-v2-as-a-guest-os"></a>Windows VM v2 作為客體 OS 時的計算度量
-當您在 Azure 中建立新的 VM (v2) 時，使用診斷擴充功能會啟用診斷功能。
+### <a name="host-metrics-for-resource-manager-based-windows-and-linux-vms"></a>以 Resource Manager 為基礎的 Windows 和 Linux VM 的主機度量
+在 Windows 和 Linux 執行個體中，根據預設會針對 Azure VM 和 VMSS 發出下列的主機層級度量。 這些度量描述您的 Azure VM，然而是從 Azure VM 主機收集，而不是透過客體 VM 上安裝的代理程式收集。 您可以在自動調整規則中使用這些度量。 
+
+- [以 Resource Manager 為基礎的 Windows 和 Linux VM 的主機度量](monitoring-supported-metrics.md#microsoftcomputevirtualmachines)
+- [以 Resource Manager 為基礎的 Windows 和 Linux VM 擴展集的主機度量](monitoring-supported-metrics.md#microsoftcomputevirtualmachinescalesets)
+
+### <a name="guest-os-metrics-resource-manager-based-windows-vms"></a>客體 OS 度量以 Resource Manager 為基礎的 Windows VM
+在 Azure 中建立 VM 時會使用診斷擴充來啟用診斷。 診斷擴充會發出一組取自 VM 內的度量。 這表示您可以關閉自動調整依預設不發出的度量。
 
 您可以在 PowerShell 中使用下列命令產生度量清單。
 
@@ -48,7 +55,7 @@ Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減�
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
-您可以建立下列度量的警示。
+您可以建立下列度量的警示：
 
 | 度量名稱 | 單位 |
 | --- | --- |
@@ -80,8 +87,8 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | \LogicalDisk(_Total)\% Free Space |百分比 |
 | \LogicalDisk(_Total)\Free Megabytes |Count |
 
-### <a name="compute-metrics-for-linux-vm-v2-as-a-guest-os"></a>Linux VM v2 作為客體 OS 時的計算度量
-當您在 Azure 中建立新的 VM (v2) 時，使用診斷擴充功能預設會啟用診斷功能。
+### <a name="guest-os-metrics-linux-vms"></a>客體 OS 度量 Linux VM
+當您在 Azure 中建立 VM 時，根據預設會使用診斷擴充來啟用診斷。
 
 您可以在 PowerShell 中使用下列命令產生度量清單。
 
@@ -89,7 +96,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
- 您可以建立下列度量的警示。
+ 您可以建立下列度量的警示：
 
 | 度量名稱 | 單位 |
 | --- | --- |
@@ -154,9 +161,9 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | BytesSent |位元組 |
 
 ## <a name="commonly-used-storage-metrics"></a>常用的儲存體度量
-您可以「儲存體佇列長度」做為調整依據，它是儲存體佇列中的訊息數目。 儲存體佇列長度是一個特殊度量，套用的臨界值是每個執行個體的訊息數。 這表示如果有兩個執行個體，且如果臨界值設定為 100 時，當佇列中的訊息總數為 200 時將會進行調整。 例如，每個執行個體 100 個訊息。
+您可以「儲存體佇列長度」做為調整依據，它是儲存體佇列中的訊息數目。 儲存體佇列長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。 
 
-您可以在 Azure 入口網站的 [設定] 刀鋒視窗中進行此設定。 若使用 VM 擴展集，您可以更新 ARM 範本中的自動調整設定，改為使用 metricName 做為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼做為 metricResourceUri。
+在 Azure 入口網站的 [設定] 刀鋒視窗中進行此設定。 若使用 VM 擴展集，您可以更新 Resource Manager 範本中的自動調整設定，改為使用 metricName 作為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼作為 *metricResourceUri*。
 
 例如，使用傳統儲存體帳戶時，自動調整設定 metricTrigger 會包含：
 
@@ -175,9 +182,9 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 ```
 
 ## <a name="commonly-used-service-bus-metrics"></a>常用的服務匯流排衡量標準
-您可以依服務匯流排佇列長度做為調整依據，它是服務匯流排佇列中的訊息數目。 服務匯流排佇列長度是一個特殊衡量標準，套用的特定臨界值是每個執行個體的訊息數。 這表示如果有兩個執行個體，且如果臨界值設定為 100 時，當佇列中的訊息總數為 200 時將會進行調整。 例如，每個執行個體 100 個訊息。
+您可以依服務匯流排佇列長度做為調整依據，它是服務匯流排佇列中的訊息數目。 服務匯流排長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。 
 
-若使用 VM 擴展集，您可以更新 ARM 範本中的自動調整設定，改為使用 metricName 做為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼做為 metricResourceUri。
+若使用 VM 擴展集，您可以更新 Resource Manager 範本中的自動調整設定，改為使用 metricName 作為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼作為 *metricResourceUri*。
 
 ```
 "metricName": "MessageCount",
@@ -193,6 +200,6 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

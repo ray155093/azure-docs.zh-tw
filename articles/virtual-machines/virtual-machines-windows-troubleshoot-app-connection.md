@@ -1,5 +1,5 @@
 ---
-title: "針對 Windows VM 上的應用程式存取問題進行疑難排解 | Microsoft Docs"
+title: "在 Azure 中針對 Windows VM 上的應用程式存取問題進行疑難排解 | Microsoft Docs"
 description: "如果您無法存取在 Azure 虛擬機器上執行的應用程式，請使用下列步驟釐清問題的來源。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 09/27/2016
+ms.date: 12/20/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dce0cf9f48954edc46bb4788fa04904443e6acf1
+ms.sourcegitcommit: 8835427415e8e01e851796eaf323bce7d1918c8c
+ms.openlocfilehash: 871544dfceb1ad76acf48cc727768919d188e201
 
 
 ---
@@ -27,6 +27,6 @@ ms.openlocfilehash: dce0cf9f48954edc46bb4788fa04904443e6acf1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

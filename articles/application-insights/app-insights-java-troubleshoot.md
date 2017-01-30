@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7a9c40081f52b2ffe918f4612f790f7fd08acc5a
-ms.openlocfilehash: d53257f43c50ffae48dd8f024f9f0515be1c9338
+ms.sourcegitcommit: 4fc4561516490b9b285220e7ae688bf97384fe6e
+ms.openlocfilehash: 9164a93308a4a2f3eed4ff6262942239df029dae
 
 
 ---
@@ -23,12 +23,12 @@ ms.openlocfilehash: d53257f43c50ffae48dd8f024f9f0515be1c9338
 [Java 中的 Azure Application Insights][java] 疑問或問題？ 以下是一些秘訣。
 
 ## <a name="build-errors"></a>建置錯誤
-*在 Eclipse 中，透過 Maven 或 Gradle 加入 Application Insights SDK 時，我收到建置或總和檢查碼驗證錯誤。*
+**在 Eclipse 中，透過 Maven 或 Gradle 加入 Application Insights SDK 時，我收到建置或總和檢查碼驗證錯誤。**
 
 * 如果相依性 <version> 元素使用具有萬用字元的模式 (例如 (Maven) `<version>[1.0,)</version>` 或 (Gradle) `version:'1.0.+'`)，請嘗試改為指定特定版本 (例如 `1.0.2`)。 請參閱最新版本的 [版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes) 。
 
 ## <a name="no-data"></a>沒有資料
-*我已成功加入 Application Insights 並執行我的應用程式，但在入口網站中從未看到資料。*
+**我已成功加入 Application Insights 並執行我的應用程式，但在入口網站中從未看到資料。**
 
 * 請稍等片刻，然後按一下 [重新整理]。 圖表會定期自行重新整理，但您也可以手動重新整理。 重新整理間隔取決於圖表的時間範圍。
 * 檢查 ApplicationInsights.xml 檔案 (位於專案的 resources 資料夾) 中已定義檢測機碼
@@ -47,40 +47,47 @@ ms.openlocfilehash: d53257f43c50ffae48dd8f024f9f0515be1c9338
 * 開啟 [配額和價格] 刀鋒視窗，檢查是否正在進行 [取樣](app-insights-sampling.md) 。 (100% 傳輸表示目前未進行取樣。)Application Insights 服務可以設定為只接受來自您的應用程式的一小部分遙測。 這有助於您維持在每月的遙測配額內。 
 
 ## <a name="no-usage-data"></a>沒有使用狀況資料
-*我看到要求和回應時間的相關資料，但沒有看到頁面檢視、瀏覽器或使用者資料的相關資料。*
+**我看到要求和回應時間的相關資料，但沒有看到頁面檢視、瀏覽器或使用者資料的相關資料。**
 
 您已成功設定應用程式從伺服器傳送遙測。 現在，您的下一步是[設定網頁，以從網頁瀏覽器傳送遙測][usage]。
 
-或者，如果您的用戶端是[手機或其他裝置][platforms]中的應用程式，您就可以從該處傳送遙測。 
+或者，如果您的用戶端是[手機或其他裝置][platforms]中的應用程式，則可以從該處傳送遙測。 
 
 使用相同的檢測機碼來設定用戶端和伺服器遙測。 資料會出現在相同的 Application Insights 資源中，而且您可以相互關聯來自用戶端和伺服器的事件。
 
 
 ## <a name="disabling-telemetry"></a>停用遙測
-*如何停用遙測收集？*
+**如何停用遙測收集？**
 
 在程式碼中：
 
+```Java
+
     TelemetryConfiguration config = TelemetryConfiguration.getActive();
     config.setTrackingIsDisabled(true);
-
+```
 
 **或** 
 
 更新 ApplicationInsights.xml (位於專案的 resources 資料夾)。 在根節點下加入下列程式碼：
 
+```XML
+
     <DisableTelemetry>true</DisableTelemetry>
+```
 
 如果使用 XML 方法，則必須在變更值時重新啟動應用程式。
 
 ## <a name="changing-the-target"></a>變更目標
-*如何變更我的專案將資料傳送到哪一個 Azure 資源？*
+**如何變更我的專案將資料傳送到哪一個 Azure 資源？**
 
 * [取得新資源的檢測金鑰。][java]
 * 如果您已使用 Azure Toolkit for Eclipse 將 Application Insights 新增到您的專案，請在 Web 專案上按一下滑鼠右鍵，依序選取 [Azure] 和 [設定 Application Insights]，然後變更金鑰。
 * 否則，請更新專案之 resources 資料夾的 ApplicationInsights.xml 中的機碼。
 
 ## <a name="debug-data-from-the-sdk"></a>從 SDK 進行資料偵錯
+
+**如何找出 SDK 正在做什麼？**
 
 若要取得有關 API 中所進行作業的詳細資訊，請在 ApplicationInsights.xml 組態檔的根節點底下新增 `<SDKLogger/>`。
 
@@ -98,42 +105,42 @@ ms.openlocfilehash: d53257f43c50ffae48dd8f024f9f0515be1c9338
 
 
 ## <a name="the-azure-start-screen"></a>Azure 開始畫面
-*我正在查看 [Azure 入口網站](https://portal.azure.com)。地圖是否告知有關我的應用程式的相關資訊？*
+**我正在查看 [Azure 入口網站](https://portal.azure.com)。地圖是否告知有關我的應用程式的相關資訊？**
 
 否，它會顯示世界各地 Azure 伺服器的健全狀況。
 
 *從 Azure 開始面板 (主畫面) 中，如何找到我應用程式的相關資料？*
 
-假設您已[針對 Application Insights 設定應用程式][java]，請按一下 [瀏覽]，選取 [Application Insights]，然後選取您為應用程式建立的應用程式資源。 日後若要更快速地從該處開始，您可以將應用程式釘選至開始面板。
+假設您已[設定 Application Insights 的應用程式][java]，請按一下 [瀏覽]，選取 [Application Insights]，然後選取您為應用程式建立的應用程式資源。 日後若要更快速地從該處開始，您可以將應用程式釘選至開始面板。
 
 ## <a name="intranet-servers"></a>內部網路伺服器
-*可以在我的內部網路上監視伺服器嗎？*
+**可以在我的內部網路上監視伺服器嗎？**
 
 是，前提是您的伺服器可以透過公用網際網路將遙測傳送至 Application Insights 入口網站。 
 
 在防火牆中，您可能必須開啟 TCP 連接埠 80 和 443，以允許連出流量送往 dc.services.visualstudio.com 和 f5.services.visualstudio.com。
 
 ## <a name="data-retention"></a>資料保留
-*資料保留在入口網站多久的時間？是否安全？*
+**資料保留在入口網站多久的時間？是否安全？**
 
-請參閱[資料保留和隱私權][資料]。
+請參閱[資料保留和隱私權][data]。
 
 ## <a name="next-steps"></a>後續步驟
-*設定 Java 伺服器應用程式的 Application Insights。我還可以做什麼？*
+**設定 Java 伺服器應用程式的 Application Insights。我還可以做什麼？**
 
 * [監視網頁可用性][availability]
-* [監視網頁使用情況][usage]
-* [追蹤使用情況並診斷裝置應用程式中的問題][platforms]
-* [撰寫程式碼以追蹤應用程式使用情況][track]
+* [監視網頁使用狀況][usage]
+* [追蹤使用狀況並診斷裝置應用程式中的問題][platforms]
+* [撰寫程式碼以追蹤應用程式使用狀況][track]
 * [擷取診斷記錄][javalogs]
 
 ## <a name="get-help"></a>取得說明
-* [Stack Overflow](http://stackoverflow.com/questions/tagged/ms-application-insights)
+* [堆疊溢位](http://stackoverflow.com/questions/tagged/ms-application-insights)
 
 <!--Link references-->
 
 [availability]: app-insights-monitor-web-app-availability.md
-[資料]: app-insights-data-retention-privacy.md
+[data]: app-insights-data-retention-privacy.md
 [java]: app-insights-java-get-started.md
 [javalogs]: app-insights-java-trace-logs.md
 [platforms]: app-insights-platforms.md
@@ -143,6 +150,6 @@ ms.openlocfilehash: d53257f43c50ffae48dd8f024f9f0515be1c9338
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

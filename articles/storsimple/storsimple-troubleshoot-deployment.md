@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 08/18/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7df0243622af7166a57a6ec81ed356022246a3ed
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 230a652ceca8b4643d1984d81383c6628b8e1f5f
 
 
 ---
@@ -528,7 +528,7 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
 2. 確定裝置纜線已正確連接：檢查裝置背板的網路纜線。 纜線是裝置型號專用的。 如需詳細資訊，請參閱[安裝您的 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)或[安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。
    
    > [!NOTE]
-   > 如果您使用的是 10 GbE 網路連接埠，就必須使用隨附的 QSFP-SFP 配接器和 SFP 纜線。 如需詳細資訊，請參閱 [OEM 供應商建議針對 Mellanox 連接埠使用的纜線、交換器及收發器清單](http://www.mellanox.com/page/cables?mtag=cable_overview)。
+   > 如果您使用的是 10 GbE 網路連接埠，就必須使用隨附的 QSFP-SFP 配接器和 SFP 纜線。 如需詳細資訊，請參閱[建議用於 10 GbE 連接埠的纜線、交換器及收發器清單](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)。
    > 
    > 
 3. 確認網路介面的健康情況：
@@ -566,6 +566,6 @@ StorSimple 隨附數個工具，可用來疑難排解 StorSimple 解決方案。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "處理 IoT 中樞的裝置到雲端訊息 (Java) | Microsoft Docs"
-description: "依照此 Java 教學課程來學習有用的模式，以處理「IoT 中樞」的裝置到雲端訊息。"
+title: "處理 Azure IoT 中樞的裝置到雲端訊息 (Java) | Microsoft Docs"
+description: "如何在 IoT 中樞讀取事件中樞相容端點，以處理 IoT 中樞的裝置到雲端訊息。 您會建立一個使用 EventProcessorHost 執行個體的 Java 服務應用程式。"
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -12,24 +12,24 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/01/2016
+ms.date: 12/06/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: f94d28836e75416743533c99257885e2d7b3ee38
+ms.sourcegitcommit: 2abfeebeac222f4371b0945e1aeb6fcf8e51595d
+ms.openlocfilehash: ef0982f15b04c3ae05517b538d68743789db9dc8
 
 
 ---
-# <a name="tutorial-how-to-process-iot-hub-device-to-cloud-messages-using-java"></a>教學課程：如何使用 Java 來處理 IoT 中樞的裝置到雲端訊息
+# <a name="process-iot-hub-device-to-cloud-messages-java"></a>處理 IoT 中樞的裝置到雲端訊息 (Java)
 [!INCLUDE [iot-hub-selector-process-d2c](../../includes/iot-hub-selector-process-d2c.md)]
 
 ## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和一個應用程式後端之間進行可靠且安全的雙向通訊。 其他教學課程 ([開始使用IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
+Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 其他教學課程 ([開始使用IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
 
 本教學課程是以 [開始使用IoT 中樞入門] 中顯示的程式碼為基礎，以呈現兩種可用來處理裝置到雲端訊息的可調整模式：
 
 * [Azure Blob 儲存體]中可靠的裝置到雲端訊息的儲存體。 有一個常見的案例是「冷路徑」  分析，在這項分析中，您可將遙測資料儲存在 Blob 中，以用來作為分析程序的輸入。 這些程序是衍生自 [Azure Data Factory] 或 [HDInsight (Hadoop)] 堆疊等工具。
-* 「互動式」  裝置到雲端訊息的可靠處理。 當裝置到雲端訊息因為應用程式後端的一組動作而立即觸發時，這類訊息會是互動式的。 例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。 相較之下，「資料點」  訊息只會饋送至分析引擎。 例如，來自裝置且要儲存以供日後分析的溫度遙測就是資料點訊息。
+* 「互動式」  裝置到雲端訊息的可靠處理。 解決方案後端由於一組動作而立即觸發的裝置到雲端訊息是互動式的。 例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。 相較之下，「資料點」  訊息只會饋送至分析引擎。 例如，來自裝置且要儲存以供日後分析的溫度遙測就是資料點訊息。
 
 由於 IoT 中樞會公開[事件中樞][lnk-event-hubs]相容端點以接收裝置到雲端訊息，因此本教學課程會使用 [EventProcessorHost] 執行個體。 這個執行個體會：
 
@@ -54,7 +54,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 > 
 > 
 
-本教學課程可直接套用至「事件中樞」相容訊息的其他使用方式，例如 [HDInsight (Hadoop)] 專案。 如需詳細資訊，請參閱 [Azure IoT 中樞開發人員指南 - 裝置到雲端]。
+本教學課程可直接套用至「事件中樞」相容訊息的其他使用方式，例如 [HDInsight (Hadoop)] 專案。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南 - 裝置到雲端]。
 
 若要完成此教學課程，您需要下列項目：
 
@@ -128,7 +128,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
     ```
 
 ## <a name="process-device-to-cloud-messages"></a>處理裝置到雲端的訊息
-在本節中，您會建立 Java 主控台應用程式，以處理來自「IoT 中樞」的裝置到雲端訊息。 「IoT 中樞」會公開「事件中樞」相容端點，以便讓應用程式讀取裝置到雲端訊息。 本教學課程使用 [EventProcessorHost] 類別來處理主控台應用程式中的這些訊息。 如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱 [開始使用事件中樞] 教學課程。
+在本節中，您會建立 Java 主控台應用程式，以處理來自「IoT 中樞」的裝置到雲端訊息。 「IoT 中樞」會公開「事件中樞」相容端點，以便讓應用程式讀取裝置到雲端訊息。 本教學課程使用 [EventProcessorHost] 類別在 Java 主控台應用程式中處理這些訊息。 如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱 [開始使用事件中樞] 教學課程。
 
 實作可靠的資料點訊息儲存或互動式訊息轉送時，主要的挑戰在於事件處理會倚賴訊息取用者提供其進度的檢查點。 此外，為了達到高輸送量，當您從「事件中樞」讀取時，應該以大批方式提供檢查點。 如果發生失敗而您還原至先前的檢查點，此方法可能會導致發生重複處理大量訊息的情況。 在本教學課程中，您將了解如何將「Azure 儲存體」寫入及「服務匯流排」重複資料刪除時間範圍與 **EventProcessorHost** 檢查點同步。
 
@@ -172,7 +172,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 第一個工作是新增名為 **process-d2c-messages** 的 Maven 專案，此專案會從「IoT 中樞」的「事件中樞」相同端點接收裝置到雲端訊息，然後將這些訊息路由傳送給其他後端服務。
 
-1. 在命令提示字元中使用下列命令，在您於 [開始使用IoT 中樞入門] 教學課程所建立的 [iot-java-get-started] 資料夾中，建立名為 **process-d2c-messages** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
+1. 在命令提示字元中使用下列命令，在您於[開始使用IoT 中樞入門]教學課程所建立的 iot-java-get-started 資料夾中，建立名為 **process-d2c-messages** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
    
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=process-d2c-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -223,7 +223,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 現在，您可以新增一個實作 **IEventProcessor** 介面的類別。 **EventProcessorHost** 類別會呼叫此類別以處理從「IoT 中樞」收到的「裝置到雲端」訊息。 此類別中的程式碼會實作邏輯以在 Blob 容器中可靠地儲存訊息，然後將互動式訊息轉送至「服務匯流排」佇列。
 
-**onEvents** 方法會設定 **latestEventData** 變數，以追蹤此事件處理器所讀取最新訊息的位移和序號。 請記住，每個處理器都會負責單一分割區。 **onEvents** 方法接著會從「IoT 中樞」接收一批訊息，並依照下列方式處理這些訊息：它會將互動式訊息傳送到「服務匯流排」佇列，並將資料點訊息附加到 **toAppend** 記憶體緩衝區。 如果記憶體緩衝區達到 4 MB 區塊限制，或已超過重複資料刪除時間範圍 (在本教學課程中為上一個檢查點之後一小時)，則該方法都會觸發檢查點。
+**onEvents** 方法會設定 **latestEventData** 變數，以追蹤此事件處理器所讀取最新訊息的位移和序號。 請記住，每個處理器都會負責單一分割區。 **onEvents** 方法接著會從 IoT 中樞接收一批訊息，並依照下列方式處理這些訊息：將互動式訊息傳送至服務匯流排佇列，並將資料點訊息附加至 **toAppend** 記憶體緩衝區。 如果記憶體緩衝區達到 4 MB 區塊限制，或已超過重複資料刪除時間範圍 (在本教學課程中為上一個檢查點之後一小時)，則該方法都會觸發檢查點。
 
 **AppendAndCheckPoint** 方法會先為要附加到 Blob 的區塊產生 **blockId**。 「Azure 儲存體」會要求所有區塊識別碼都具有相同的長度，因此這個方法會在前面加上零來填補位移。 接著，如果 Blob 中已經有具有此識別碼的區塊，此方法就會以目前的緩衝區內容覆寫它。
 
@@ -524,7 +524,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
     System.out.println("End of sample");
     ```
 12. 儲存並關閉 process-d2c-messages\src\main\java\com\mycompany\app\App.java 檔案。
-13. 若要使用 Maven 來建置 **process-d2c-messages** 應用程式，請在命令提示字元中，於 [process-d2c-messages] 資料夾內執行下列命令：
+13. 若要使用 Maven 來建置 **process-d2c-messages** 應用程式，請在命令提示字元中，於 process-d2c-messages 資料夾內執行下列命令：
     
     ```
     mvn clean package -DskipTests
@@ -535,7 +535,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 第一個工作是新增名為 **process-interactive-messages** 的 Maven 專案，以接收「服務匯流排」佇列上從 **EventProcessor** 執行個體傳送的訊息。
 
-1. 在命令提示字元中使用下列命令，在您於 [開始使用IoT 中樞入門] 教學課程所建立的 [iot-java-get-started] 資料夾中，建立名為 **process-interactive-messages** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
+1. 在命令提示字元中使用下列命令，在您於[開始使用IoT 中樞入門]教學課程所建立的 iot-java-get-started]資料夾中，建立名為 **process-interactive-messages** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
    
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=process-interactive-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -641,7 +641,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
     executor.shutdownNow();
     ```
 7. 儲存並關閉 process-interactive-messages\src\main\java\com\mycompany\app\App.java 檔案。
-8. 若要使用 Maven 來建置 **process-interactive-messages** 應用程式，請在命令提示字元中，於 [process-interactive-messages] 資料夾內執行下列命令：
+8. 若要使用 Maven 來建置 **process-interactive-messages** 應用程式，請在命令提示字元中，於 process-interactive-messages 資料夾內執行下列命令：
    
     ```
     mvn clean package -DskipTests
@@ -680,7 +680,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 ## <a name="next-steps"></a>後續步驟
 在本教學課程中，您已學到如何使用 [EventProcessorHost] 類別來可靠地處理資料點訊息和互動式裝置到雲端訊息。
 
-[如何使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]示範如何從後端將訊息傳送到您的裝置。
+[如何使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]示範如何從解決方案後端將訊息傳送至您的裝置。
 
 若要查看使用 IoT 中樞的完整端對端解決方案範例，請參閱 [Azure IoT 套件][lnk-suite]。
 
@@ -701,7 +701,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 [HDInsight (Hadoop)]: https://azure.microsoft.com/documentation/services/hdinsight/
 [服務匯流排佇列]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md
 
-[Azure IoT 中樞開發人員指南 - 裝置到雲端]: iot-hub-devguide-messaging.md
+[IoT 中樞開發人員指南 - 裝置到雲端]: iot-hub-devguide-messaging.md
 
 [Azure 儲存體]: https://azure.microsoft.com/documentation/services/storage/
 [Azure 服務匯流排]: https://azure.microsoft.com/documentation/services/service-bus/
@@ -732,6 +732,6 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

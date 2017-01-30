@@ -1,20 +1,24 @@
 ---
-title: Microsoft Power BI Embedded - 連接到資料來源
-description: Power BI Embedded，連接到資料來源
+title: "Microsoft Power BI Embedded - 連接到資料來源"
+description: "Power BI Embedded，連接到資料來源"
 services: power-bi-embedded
-documentationcenter: ''
+documentationcenter: 
 author: guyinacube
 manager: erikre
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 2a4caeb3-255d-4215-9554-0ca8e3568c13
 ms.service: power-bi-embedded
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 10/04/2016
+ms.date: 01/06/2017
 ms.author: asaxton
+translationtype: Human Translation
+ms.sourcegitcommit: 5c4b5e09ac5e336504be32533ad011aad102af75
+ms.openlocfilehash: fdc0d76741d5078978e1bfeadd156e84cac3a48a
+
 
 ---
 # <a name="connect-to-a-data-source"></a>連接到資料來源
@@ -27,6 +31,19 @@ ms.author: asaxton
 | 資料表、資料行 *和資料* 匯入或複製到報表的資料集中。 若要查看基礎資料發生的變更，您必須重新整理或再次匯入完整的目前資料集。 |只有 *資料表和資料行* 匯入或複製到報表的資料集中。 一律檢視最新的資料。 |
 
 有了 Power BI Embedded，您就可以使用 DirectQuery 搭配雲端資料來源，但目前無法使用內部部署資料來源。
+
+> [!NOTE]
+> 現階段 Power BI Embedded 不支援「內部部署資料閘道器」。 這表示您無法在 DirectQuery 使用內部部署資料來源。
+
+## <a name="supported-data-sources"></a>支援的資料來源
+
+**DirectQuery**
+* Azure SQL Database
+* Azure SQL 資料倉儲
+
+**Import**
+
+您可以使用 Power BI Desktop 中所有的可用資料來源進行匯入。 您將「不」能夠重新整理 Power BI Embedded 中的資料。 您必須將 PBIX 檔案的變更上傳到 Power BI Embedded。 這是因為沒有閘道器可用。 
 
 ## <a name="benefits-of-using-directquery"></a>使用 DirectQuery 的優點
 使用 **DirectQuery**有兩項主要優點：
@@ -52,6 +69,11 @@ ms.author: asaxton
 * [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 * [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 
-<!--HONumber=Oct16_HO2-->
+有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
+
+
+
+
+<!--HONumber=Dec16_HO3-->
 
 

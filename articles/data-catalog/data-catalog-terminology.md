@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 09/21/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -57,8 +57,8 @@ Azure 資料目錄中的資料設定檔是資料表層級的快照集和及資�
 
 > [!NOTE]
 > 為大型資料表和檢視擷取資料設定檔，作業成本會很高，而且可能會大幅增加註冊資料來源所需的時間。
-> 
-> 
+>
+>
 
 ## <a name="user-perspective"></a>使用者觀點
 在 Azure 資料目錄中，任何使用者都可以為已註冊的資料資產提供描述性中繼資料。 每個使用者對資料及其用途各有不同的觀點。 例如，負責伺服器的系統管理員可能提供其服務等級協定 (SLA) 或備份時段的詳細資料。資料負責人可能針對資料所支援的商務程序提供文件連結。分析師可能以最適合的詞彙提供描述給其他分析師，而且對於需要探索及了解資料的使用者來說，可能非常有價值。
@@ -73,8 +73,8 @@ Azure 資料目錄中的資料設定檔是資料表層級的快照集和及資�
 
 > [!NOTE]
 > 只有標準版 Azure 資料目錄中支援擁有權和管理。
-> 
-> 
+>
+>
 
 ## <a name="registration"></a>註冊
 註冊是指從資料來源擷取資料資產中繼資料並複製到 Azure 資料目錄服務的動作。 然後就可以加註和探索已註冊的資料資產。
@@ -82,7 +82,6 @@ Azure 資料目錄中的資料設定檔是資料表層級的快照集和及資�
 ## <a name="see-also"></a>另請參閱
 * [什麼是 Azure 資料目錄？](data-catalog-what-is-data-catalog.md) 〉 - 這篇文章提供 Azure 資料目錄服務的概觀、所提供的價值和所支援的案例。
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md) 〉 - 這篇文章提供端對端教學課程，示範如何使用 Azure 資料目錄來探索資料來源。  
-
 
 
 

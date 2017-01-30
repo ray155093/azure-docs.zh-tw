@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 10/18/2016
 ms.author: vakarand
 translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: fbb95696d8b9267d59d04769d3d7f48c29a8e4dd
+ms.sourcegitcommit: c9ebe21acbe06aa25bcadb3b500c34cf89154388
+ms.openlocfilehash: 9abdfa7349bee74b89a23663969904110c730395
 
 
 ---
@@ -63,7 +63,7 @@ Azure AD Connect Health 未來更新的內容包括額外監視，以及額外�
 >
 
 ## <a name="azure-ad-connect-health-for-ad-ds-previewactive-directory-aadconnect-health-addsmd"></a>[適用於 AD DS (預覽) 的 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
-適用於 AD DS 的 Azure AD Connect Health 可以監視安裝在 Windows Server 2008 R2、Windows Server 2012 及 Windows Server 2012 R2 上的網域控制站。 安裝簡單、低成本的健康情況代理程式可讓您直接從雲端監視內部部署 AD DS 環境。 適用於 AD DS 的 Azure AD Connect Health 提供下列一組主要功能：
+適用於 AD DS 的 Azure AD Connect Health 可以監視安裝在 Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2 及 Windows Server 2016 上的網域控制站。 安裝簡單、低成本的健康情況代理程式可讓您直接從雲端監視內部部署 AD DS 環境。 適用於 AD DS 的 Azure AD Connect Health 提供下列一組主要功能：
 
 * 監視警示可在網域控制站健全狀況不良時進行偵測，並發送重要警示的電子郵件通知。
 * 網域控制站儀表板可讓您快速檢視網域控制站的健全狀況和操作狀態。
@@ -121,6 +121,6 @@ Azure AD Connect Health 入口網站可讓您檢視警示、效能監視和使�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

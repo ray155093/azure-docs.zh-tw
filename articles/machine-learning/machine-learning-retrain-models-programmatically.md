@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/12/2017
 ms.author: raymondl;garye;v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 70004ff5c59427dfd5c58e5633cae95a08a18a3a
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8544f04360c44d54b9c3e69448b6d5b29826f06c
 
 
 ---
@@ -57,7 +57,7 @@ ms.openlocfilehash: 70004ff5c59427dfd5c58e5633cae95a08a18a3a
 3. 實驗完成執行之後，按一下 [部署 Web 服務 [傳統]] 或 [部署 Web 服務[新式]]。
 
 ## <a name="deploy-the-training-experiment-as-a-training-web-service"></a>將訓練實驗部署為訓練 Web 服務
-若要重新訓練已訓練的模型，您必須將您建立的訓練實驗部署為重新訓練 Web 服務。 這個 Web 服務需要已連接到[訓練模型][train-model]模組的「Web 服務輸出」模組，才能產生新的訓練模型。
+若要重新訓練已訓練的模型，您必須將您建立的訓練實驗部署為重新訓練 Web 服務。 這個 Web 服務需要將「Web 服務輸出」模組連接到[定型模型][train-model]模組，才能產生新的定型模組。
 
 1. 若要回到訓練實驗，按一下左窗格中的 [實驗] 圖示，然後按一下名為 [普查模型] 的實驗。  
 2. 在 [搜尋實驗項目] 方塊中，輸入「Web 服務」。 
@@ -185,6 +185,6 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如 C:\temp\CensusIpnput.c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

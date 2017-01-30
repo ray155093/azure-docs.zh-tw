@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: antonba
+ms.date: 12/15/2016
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3016778f22597921f716cfcf7845c550d6d822d5
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: 98e88b1c69de8732f1a4ae54c8ecd0b11a547f35
 
 
 ---
@@ -29,11 +29,11 @@ ms.openlocfilehash: 3016778f22597921f716cfcf7845c550d6d822d5
 > 
 
 ## <a name="enable-vpn"> </a>啟用 VPN 連線
-> VPN 連線僅適用於**進階**和**開發人員**層。 若要切換到它，請在 [Azure 傳統入口網站][Azure 傳統入口網站]中開啟您的「API 管理」服務，然後開啟 [級別] 索引標籤。 在 [一般] 區段下選取進階層，然後按一下 [儲存]。
+> VPN 連線僅適用於**進階**和**開發人員**層。 若要切換到它，請在 [Azure 傳統入口網站][Azure Classic Portal]中開啟 API 管理服務，然後開啟 [調整] 索引標籤。 在 [一般] 區段下選取進階層，然後按一下 [儲存]。
 > 
 > 
 
-若要啟用 VPN 連線，請在 [Azure 傳統入口網站][Azure 傳統入口網站]中開啟您的「API 管理」服務，然後切換到 [設定] 索引標籤。 
+若要啟用 VPN 連線，請在 [Azure 傳統入口網站][Azure Classic Portal]中開啟 API 管理服務，然後切換到 [設定] 索引標籤。 
 
 在 VPN 區段中，將 [VPN 連線] 切換為 [開啟]。
 
@@ -71,24 +71,24 @@ ms.openlocfilehash: 3016778f22597921f716cfcf7845c550d6d822d5
 API 管理取決於多項 Azure 服務。 當 API 管理服務執行個體裝載於使用自訂 DNS 伺服器的 VNET 時，它必須能夠解析這些 Azure 服務的主機名稱。 請遵循 [這份](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) 有關自訂 DNS 設定的指引。  
 
 ## <a name="related-content"> </a>相關內容
-* [使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路][使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路]
-* [如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫][如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫]
+* [使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路][Create a virtual network with a site-to-site VPN connection using the Azure Classic Portal]
+* [如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫][How to use the API Inspector to trace calls in Azure API Management]
 
 [api-management-setup-vpn-configure]: ./media/api-management-howto-setup-vpn/api-management-setup-vpn-configure.png
 [api-management-setup-vpn-select]: ./media/api-management-howto-setup-vpn/api-management-setup-vpn-select.png
 [api-management-setup-vpn-add-api]: ./media/api-management-howto-setup-vpn/api-management-setup-vpn-add-api.png
 
-[啟用 VPN 連線]: #enable-vpn
-[連接至 VPN 的 Web 服務]: #connect-vpn
-[相關內容]: #related-content
+[Enable VPN connections]: #enable-vpn
+[Connect to a web service behind VPN]: #connect-vpn
+[Related content]: #related-content
 
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[Azure Classic Portal]: https://manage.windowsazure.com/
 
-[使用 Azure 傳統入口網站建立具有站對站 VPN 連線的虛擬網路]: ../vpn-gateway/vpn-gateway-site-to-site-create.md
-[如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫]: api-management-howto-api-inspector.md
+[Create a virtual network with a site-to-site VPN connection using the Azure Classic Portal]: ../vpn-gateway/vpn-gateway-site-to-site-create.md
+[How to use the API Inspector to trace calls in Azure API Management]: api-management-howto-api-inspector.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

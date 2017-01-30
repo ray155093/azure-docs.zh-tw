@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/14/2016
+ms.date: 01/18/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: b2d7ba14c7cbc5c082a5f962559936e1a60827f2
-ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
+ms.sourcegitcommit: dcee5436a7bb377f37d6db2701c2e5df2e41944f
+ms.openlocfilehash: e7a511efdf89d299ba309b9a812092411a55c08d
 
 
 ---
@@ -35,20 +35,21 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- |
-| **北美洲** |美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部 |亞特蘭大、芝加哥、達拉斯、拉斯維加斯、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多 |
+| **北美洲** |美國東部、美國西部、美國東部 2、美國西部 2、美國中部、美國中南部、美國中北部、美國中西部、加拿大中部、加拿大東部 |亞特蘭大、芝加哥、達拉斯、拉斯維加斯、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多 |
 | **南美洲** |巴西南部 |聖保羅 |
 | **歐洲** |北歐、西歐、英國西部、英國南部 |阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)、巴黎 |
 | **亞洲** |東亞、東南亞 |香港特別行政區、新加坡 |
 | **日本** |日本西部、日本東部 |大阪、東京 |
 | **澳大利亞** |澳洲東南部、澳洲東部 |墨爾本、雪梨 |
 | **印度** |印度西部、印度中部、印度南部 |辰內，孟買 |
+| **南韓** | 韓國中部、韓國南部 | 釜山、首爾 |
 
 ### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>國家雲端的區域和地理政治界限
 下表提供國家雲端的區域和地理政治界限等資訊。
 
 | **地緣政治區域** | **Azure 區域** | **ExpressRoute 位置** |
 | --- | --- | --- | --- |
-| **美國政府雲端** |美國政府愛荷華州、美國政府維吉尼亞州 |芝加哥、達拉斯、紐約、華盛頓特區 |
+| **美國政府雲端** |美國愛荷華州政府、美國維吉尼亞州政府、美國國防部中部+、美國國防部東部+  |芝加哥、達拉斯、紐約、矽谷+、華盛頓特區 |
 | **中國** |中國北部、中國東部 |北京、上海 |
 | **德國** |德國中部、德國東部 |柏林、法蘭克福 |
 
@@ -71,11 +72,11 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 | **[British Telecom](http://www.globalservices.bt.com/uk/en/news/bt_to_provide_connectivity_to_microsoft_azure)** |支援 |支援 |阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、東京、華盛頓特區 |
 | **[CenturyLink](http://www.centurylink.com/business/enterprise/services/data-network/mpls-vpn.html)** |敬請期待 |敬請期待 |矽谷 |
 | **China Telecom Global** |支援 |不支援 |香港 |
-| **[Cologix](http://www.cologix.com/solutions/cloud-connect/public-clouds/microsoft-cloud/)** |支援 |支援 |達拉斯、蒙特婁+、多倫多 |
+| **[Cologix](http://www.cologix.com/solutions/cloud-connect/public-clouds/microsoft-cloud/)** |支援 |支援 |達拉斯、蒙特婁、多倫多 |
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** |支援 |支援 |阿姆斯特丹、都柏林、倫敦、東京 |
 | **Comcast** |支援 |支援 |芝加哥、矽谷、華盛頓特區 |
 | **Console**| 支援 | 支援 |矽谷 |
-| **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** |支援 |支援 |洛杉磯 |
+| **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** |支援 |支援 |洛杉磯、紐約 |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、巴黎+、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
 | **euNetworks** |支援 |支援 |阿姆斯特丹 |
 | **GÉANT** |支援 |支援 |阿姆斯特丹 |
@@ -84,7 +85,8 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 | **Internet Solutions - Cloud Connect** |支援 |支援 |阿姆斯特丹、倫敦 |
 | **[Interxion](http://www.interxion.com/why-interxion/colocate-with-the-clouds/colocated-hybrid-cloud/microsoft-azure/)** |支援 |支援 |阿姆斯特丹、倫敦、巴黎 |
 | **Jisc** |支援 |支援 |倫敦 |
-| **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** |支援 |支援 |阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、華盛頓特區 |
+| **[KPN](http://www.kpn.com/cloudconnect)** | 支援 | 支援 | 阿姆斯特丹 | 
+| **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** |支援 |支援 |阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、新加坡、華盛頓特區 |
 | **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援 |支援 |達拉斯、香港、拉斯維加斯、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、多倫多、華盛頓特區 |
 | **MTN** |支援 |支援 |倫敦 |
 | **[新一代資料](http://www.nextgenerationdata.co.uk/ngd-cloud-gateway/)** |支援 |支援 |Newport(Wales) |
@@ -112,8 +114,9 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 | **服務提供者** | **Microsoft Azure** | **Office 365** | **位置** |
 | --- | --- | --- | --- |
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** |支援 |支援 |芝加哥、華盛頓特區 |
-| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |芝加哥、達拉斯、紐約、華盛頓特區 |
+| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |芝加哥、達拉斯、紐約、矽谷+、華盛頓特區 |
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** |支援 |支援 |芝加哥、紐約+、華盛頓特區 |
+| **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援 | 支援 | 達拉斯 |
 | **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** |支援 |支援 |芝加哥、達拉斯、紐約、華盛頓特區 |
 
 ### <a name="china"></a>中國
@@ -130,6 +133,7 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |不支援 |法蘭克福 |
 | **e-shelter** |支援 |不支援 |柏林 |
 | **Interxion** |支援 |不支援 |法蘭克福 |
+| **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援  | 不支援 | 柏林+ |
 
 ## <a name="a-namenonpartnersaconnectivity-through-service-providers-not-listed"></a><a name="nonpartners"></a>透過未列出的服務提供者連線
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
@@ -150,8 +154,9 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 | **連線提供者** | **Exchange** | **位置** |
 | --- | --- | --- |
 | **[1CLOUDSTAR](http://www.1cloudstar.com/service/cloudconnect-azure-expressroute/)** |Equinix |新加坡 |
-| **[Arteria-Net](https://arteria-net.com/business/service/cloud_access/sca/)** |Equinix |東京 |
+| **[Arteria Networks Corporation](https://arteria-net.com/business/service/cloud_access/sca/)** |Equinix |東京 |
 | **[Alaska Communications](http://www.alaskacommunications.com/For-Your-Business/Direct-Cloud-Service)** |Equinix |Seattle |
+| **[Eurofiber](https://eurofiber.nl/microsoft-azure/)** | Equinix | 阿姆斯特丹 |
 | **[指數 E](http://www.exponential-e.com/services/connectivity-services/cloud-connect-exchange)** | Equinix | 倫敦 |
 | **[HSO](http://www.hso.co.uk/products/cloud-direct)** |Equinix | 倫敦、斯勞 |
 | **[Lightower](http://www.lightower.com/network-solutions/cloud-connect/#microsoft-azure)** |Equinix |紐約、華盛頓特區 |
@@ -170,13 +175,15 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 
 | **系統整合者** | **Continent** |
 | --- | --- |
-| **[Avanade Inc.](http://www.avanade.com/)** |亞洲、歐洲、美國 |
-| **[Dotnet Solutions](http://www.dotnetsolutions.co.uk/)** |歐洲 |
-| **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** |US |
-| **[Nelite](http://nelite.com/)** |歐洲 |
-| **[OneAs1a](http://www.oneas1a.com/express-connect-any-cloud-ecac)** |亞洲 |
-| **[Perficient](http://www.perficient.com/Partners/Microsoft/Cloud/Azure-ExpressRoute)** |US |
-| **[Project Leadership](http://www.projectleadership.net/azure)** |US |
+| **[Avanade Inc.](http://www.avanade.com/)** | 亞洲、歐洲、北美洲、南美洲 |
+| **[Dotnet Solutions](http://www.dotnetsolutions.co.uk/)** | 歐洲 |
+| **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** | 北美洲 |
+| **[IT Consultancy](http://itconsult.com.au/microsoft-expressroute)** | 澳大利亞 |
+| **[MSG Services](https://www.msg-services.de/it-services/managed-services/cloud-outsourcing/)** | 歐洲 (德國) |
+| **[Nelite](http://nelite.com/)** | 歐洲 |
+| **[OneAs1a](http://www.oneas1a.com/express-connect-any-cloud-ecac)** | 亞洲 |
+| **[Perficient](http://www.perficient.com/Partners/Microsoft/Cloud/Azure-ExpressRoute)** | 北美洲 |
+| **[Project Leadership](http://www.projectleadership.net/azure)** | 北美洲 |
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -188,6 +195,6 @@ ms.openlocfilehash: fd018ed25e5c309a85bb2078d00f2bb0b504e5d2
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

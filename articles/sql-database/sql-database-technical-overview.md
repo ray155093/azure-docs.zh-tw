@@ -17,8 +17,8 @@ ms.workload: data-management
 ms.date: 12/20/2016
 ms.author: shkurhek;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: 262583a2a11c41cf7acb55599041692137165e8f
+ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
+ms.openlocfilehash: 399fdbeee479f5598e6ed7f9bd6b6080ec919c98
 
 ---
 # <a name="what-is-sql-database-introduction-to-sql-database"></a>什麼是 SQL Database？ SQL Database 簡介
@@ -26,7 +26,7 @@ SQL Database 是 Microsoft Cloud 中以領先市場的 Microsoft SQL Server 引�
 
 本文介紹與效能、延展性和管理能力相關的 SQL Database 核心概念和功能，並提供連結讓您進一步了解詳細資料。 如果您已準備開始進行實際操作教學課程，請移至[建立您的第一個 SQL Database](sql-database-get-started.md)，或者[建立彈性集區](sql-database-elastic-pool-create-portal.md)。 如需簡短的影片示範，請觀看此影片。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Database-create-DBs-in-seconds/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-create-DBs-in-seconds/player]
 > 
 > 
 
@@ -62,6 +62,6 @@ SQL Server 的資料安全性傳統是 SQL Database 支援多項功能，可限�
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO2-->
 
 

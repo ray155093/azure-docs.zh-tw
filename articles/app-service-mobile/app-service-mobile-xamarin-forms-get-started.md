@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6a48181c6c22e6042dd8ef39c12415979e384f8b
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 6b8c5c2ac2e721c4d6f73c7c17f34eadc041e0c9
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: 6a48181c6c22e6042dd8ef39c12415979e384f8b
 * 已安裝 Xcode v7.0 或更新版本以及 Xamarin Studio Community 的 Mac。 請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)及[針對 Mac 使用者的設定、安裝和驗證](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN)。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往 [試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)，讓您能立刻在 App Service 中建立短期的入門行動應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往 [試用 App Service](https://azure.microsoft.com/try/app-service/mobile/)，讓您能立刻在 App Service 中建立短期的入門行動應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -161,9 +161,9 @@ ms.openlocfilehash: 6a48181c6c22e6042dd8ef39c12415979e384f8b
   了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。 
 
 <!-- Anchors. -->
-[開始使用行動應用程式後端]:#getting-started
-[建立新的行動應用程式後端]:#create-new-service
-[後續步驟]:#next-steps
+[Getting started with mobile app backends]:#getting-started
+[Create a new mobile app backend]:#create-new-service
+[Next Steps]:#next-steps
 
 
 <!-- Images. -->
@@ -177,12 +177,12 @@ ms.openlocfilehash: 6a48181c6c22e6042dd8ef39c12415979e384f8b
 
 <!-- URLs. -->
 [Visual Studio Professional 2013]: https://go.microsoft.com/fwLink/p/?LinkID=257546
-[行動應用程式 SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
+[Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 入口網站]: https://portal.azure.com/
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

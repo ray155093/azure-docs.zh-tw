@@ -1,6 +1,6 @@
 ---
-title: "開始使用 IoT 中樞閘道 SDK | Microsoft Docs"
-description: "此 Azure IoT 閘道 SDK 逐步解說使用 Linux 來說明您使用 Azure IoT 閘道 SDK 時應該了解的重要概念。"
+title: "開始使用 Azure IoT 閘道 SDK (Linux) | Microsoft Docs"
+description: "如何在 Linux 機器上建置閘道，並了解 Azure IoT 閘道 SDK 中的重要概念，例如模組和 JSON 組態檔。"
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 11/23/2016
 ms.author: andbuc
 translationtype: Human Translation
-ms.sourcegitcommit: a76320718f0cefa015728cb79df944e0d34bbf74
-ms.openlocfilehash: cbb909adc2d29f9b80a4c97d06176fe74b64a75a
+ms.sourcegitcommit: e1cf5ed3f2434a9e98027afd0225207ad5d2f1b1
+ms.openlocfilehash: 28984e14f5afc27b608ab37daf19d454eb7c3201
 
 
 ---
-# <a name="azure-iot-gateway-sdk---get-started-using-linux"></a>Azure IoT 閘道 SDK - 開始使用 Linux
+# <a name="get-started-with-the-azure-iot-gateway-sdk-linux"></a>開始使用 Azure IoT 閘道 SDK (Linux)
 [!INCLUDE [iot-hub-gateway-sdk-getstarted-selector](../../includes/iot-hub-gateway-sdk-getstarted-selector.md)]
 
 ## <a name="how-to-build-the-sample"></a>如何建置範例
@@ -28,7 +28,7 @@ ms.openlocfilehash: cbb909adc2d29f9b80a4c97d06176fe74b64a75a
 
 1. 開啟殼層。
 2. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本中的根資料夾。
-3. 執行 **tools/build.sh** 指令碼。 此指令碼使用 **cmake** 公用程式，在 **azure-iot-gateway-sdk** 存放庫本機複本的根資料夾中建立稱為 **build** 的資料夾，以及產生 Makefile。 此指令碼接著會建置方案，並執行測試。
+3. 執行 **tools/build.sh** 指令碼。 此指令碼使用 **cmake** 公用程式，在 **azure-iot-gateway-sdk** 存放庫本機複本的根資料夾中建立稱為 **build** 的資料夾，以及產生 Makefile。 此指令碼接著會建置方案，略過單元測試和端對端測試。 如果您想要建置並執行單元測試，請新增 **--run-unittests** 參數。 如果您想要建置並執行端對端測試，請新增 **--run-e2e-tests** 參數。
 
 > [!NOTE]
 > 每次執行 **build.sh** 指令碼時，都會先在 **azure-iot-gateway-sdk** 存放庫本機複本的根資料夾中刪除再重新建立 **build** 資料夾。
@@ -78,11 +78,11 @@ ms.openlocfilehash: cbb909adc2d29f9b80a4c97d06176fe74b64a75a
         ]
     }
     ```
-3. 瀏覽至 **azure-iot-gateway-sdk** 資料夾。
+3. 瀏覽至 **azure-iot-gateway-sdk/build** 資料夾。
 4. 執行以下命令：
    
    ```
-   ./build/samples/hello_world/hello_world_sample ./samples/hello_world/src/hello_world_lin.json
+   ./samples/hello_world/hello_world_sample ./../samples/hello_world/src/hello_world_lin.json
    ``` 
 
 [!INCLUDE [iot-hub-gateway-sdk-getstarted-code](../../includes/iot-hub-gateway-sdk-getstarted-code.md)]
@@ -92,6 +92,6 @@ ms.openlocfilehash: cbb909adc2d29f9b80a4c97d06176fe74b64a75a
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 

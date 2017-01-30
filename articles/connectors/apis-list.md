@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 12/07/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 73369c2aed062bb3fe1ec37c4650d1f86b0afb68
-ms.openlocfilehash: b2d4a153f472d350dbcb21c35ef73430e1657844
+ms.sourcegitcommit: d2eefb6b99955f9b9a1bd5b5c94617d538f079ec
+ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 
 
 ---
@@ -65,7 +65,7 @@ ms.openlocfilehash: b2d4a153f472d350dbcb21c35ef73430e1657844
 
 | 企業<br/>連接器 |  |
 | --- | --- |
-|![API 圖示][MQicon]<br/>**MQ**|![API 圖示][SAPicon]<br/>**SAP**|
+|![API 圖示][MQicon]<br/>**MQ**|![API 圖示][SAPicon]<br/>**SAP**<br/>[sapconnector]|
 
 
 
@@ -151,6 +151,7 @@ ms.openlocfilehash: b2d4a153f472d350dbcb21c35ef73430e1657844
 [youtubedoc]: ./connectors-create-api-youtube.md "連接到 YouTube 並可進行影片和頻道互動。"
 [sparkpostdoc]: ./connectors-create-api-sparkpost.md "連接到 SparkPost 並可用來通訊。"
 [filesystemdoc]: ..//app-service-logic/app-service-logic-use-file-connector.md "使用檔案系統連接器來與內部部署檔案系統通訊。"
+[sapconnector]: ..//app-service-logic/app-service-logic-enterprise-connector-sap-connector.md "臉解 SAP 連接器"
 
 <!--Icon references-->
 [appFiguresicon]: ./media/apis-list/appfigures.png
@@ -248,6 +249,6 @@ ms.openlocfilehash: b2d4a153f472d350dbcb21c35ef73430e1657844
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

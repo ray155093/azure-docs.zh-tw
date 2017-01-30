@@ -13,7 +13,7 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 10/04/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
@@ -77,15 +77,15 @@ Azure 資料目錄強化技術性和非技術性使用者的能力，包括：
 
 > [!IMPORTANT]
 > 使用 Azure 資料目錄註冊資料資產並不會將資料移動或複製至雲端。 從資料來源註冊資產會將資產的中繼資料複製到 Azure，但資料仍保留在現有的資料來源位置。 此規則唯一的例外狀況，在於使用者註冊資產時選擇上傳預覽記錄或資料設定檔。 包含預覽時，最多會從每個資產複製 20 筆記錄，並在 Azure 資料目錄中儲存為快照。 包含資料設定檔時，系統將會計算彙總資訊 (例如資料表大小、每資料行 null 值百分比，以及各資料行的最小值、最大值和平均值)，並將其加入目錄所存放的中繼資料。
-> 
-> 
+>
+>
 
 <br/>
 
 > [!NOTE]
 > 若資料來源 (例如 SQL Server Analysis Services) 具第一級 **Description** 屬性，Azure 資料目錄發佈應用程式就會擷取該屬性值。 SQL Server 關聯式資料庫缺少第一級的 **Description** 屬性，因此 Azure 資料目錄發行應用程式會從物件和資料行的 ms_description 擴充屬性擷取值。 如需詳細資訊，請參閱 TechNet [使用資料庫物件的擴充屬性](https://technet.microsoft.com/library/ms190243%28v=sql.105%29.aspx)。
-> 
-> 
+>
+>
 
 ## <a name="q-how-long-should-it-take-for-newly-registered-assets-to-appear-in-azure-data-catalog"></a>問：新註冊的資產經過多久才會出現在 Azure 資料目錄中？
 使用 Azure 資料目錄註冊資產之後，可能需要經過 5-10 秒才會在 Azure 資料目錄入口網站中顯示這些資產。
@@ -116,7 +116,7 @@ Azure 資料目錄強化技術性和非技術性使用者的能力，包括：
 ## <a name="q-will-azure-data-catalog-be-made-available-for-on-premises-deployment-as-well"></a>問：Azure 資料目錄也會支援內部部署嗎？
 Azure 資料目錄是可以同時使用雲端和內部部署資料來源的雲端服務，提供混合式資料來源探索解決方案。 目前並未規劃推出可採內部部署執行的 Azure 資料目錄服務版本。
 
-## <a name="q-can-we-extract-more-richer-metadata-from-the-data-sources-we-register"></a>問：我們是否可以從我們所註冊的資料來源中擷取更多/更豐富的中繼資料？
+## <a name="q-can-we-extract-more--richer-metadata-from-the-data-sources-we-register"></a>問：我們是否可以從我們所註冊的資料來源中擷取更多/更豐富的中繼資料？
 我們正積極擴充 Azure 資料目錄的功能。 若您有希望在註冊時從資料來源擷取的其他中繼資料，請在 [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)提出建議 (如果已有人建議，請投票支持)。 未來，我們將允許協力廠商透過擴充性 API 加入新的資料來源類型。
 
 ## <a name="q-how-do-i-restrict-the-visibility-of-registered-data-assets-so-that-only-certain-people-can-discover-them"></a>問：如何限制已註冊的資料資產的可見性，以限制只有特定人員才能探索它們？
@@ -125,9 +125,8 @@ Azure 資料目錄是可以同時使用雲端和內部部署資料來源的雲�
 ## <a name="q-how-do-i-update-the-registration-for-a-data-asset-to-that-changes-in-the-data-source-are-reflected-in-the-catalog"></a>問：如何更新資料資產的註冊，讓資料來源中的變更反映在目錄中？
 答：若要更新已註冊在目錄中的資料資產的中繼資料，只要重新註冊包含這些資產的資料來源即可。 資料來源中的任何變更 (例如在資料表或檢視中加入或移除資料行) 都會在目錄中更新，但會保留使用者提供的任何註解。
 
-## <a name="q-my-question-isnt-answered-here-what-should-i-do"></a>問：這裡沒有解答我的問題 – 我該怎麼辦？
+## <a name="q-my-question-isnt-answered-here--what-should-i-do"></a>問：這裡沒有解答我的問題 – 我該怎麼辦？
 請前往 [Azure 資料目錄論壇](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409)。 那裡提出的問題會在這裡找到答案。
-
 
 
 

@@ -1,49 +1,54 @@
 ---
-title: 使用 HDInsight .NET SDK 執行 Hive 查詢 | Microsoft Docs
-description: 了解如何使用 HDInsight .NET SDK 將 Hadoop 工作提交至 Azure HDInsight Hadoop。
+title: "使用 HDInsight .NET SDK 執行 Hive 查詢 | Microsoft Docs"
+description: "了解如何使用 HDInsight .NET SDK 將 Hadoop 工作提交至 Azure HDInsight Hadoop。"
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 tags: azure-portal
 author: mumian
-
+ms.assetid: 4e291890-f8b4-426c-b5e8-d4fd512ff042
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/14/2016
+ms.date: 12/16/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: 4ef2546b34461a8303c5ced22adec0d1e36dfa96
+ms.openlocfilehash: 47849e2700d5da391a5cc3b3f1dbf00dd8c8deea
+
 
 ---
-# 使用 HDInsight .NET SDK 執行 Hive 查詢
-[!INCLUDE [Hive 選取器](../../includes/hdinsight-selector-use-hive.md)]
+# <a name="run-hive-queries-using-hdinsight-net-sdk"></a>使用 HDInsight .NET SDK 執行 Hive 查詢
+[!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
 了解如何使用 HDInsight .NET SDK 提交 Hive 查詢。
 
 > [!NOTE]
-> 此文章中的步驟必須從 Windows 用戶端執行。如需搭配 Linux、OS X 或 Unix 用戶端使用 Hive 的資訊，請使用本文頂端顯示的索引標籤選取器。
+> 此文章中的步驟必須從 Windows 用戶端執行。 如需搭配 Linux、OS X 或 Unix 用戶端使用 Hive 的資訊，請使用本文頂端顯示的索引標籤選取器。
 > 
 > 
 
-## 必要條件
-開始閱讀本文之前，您必須符合下列必要條件：
+## <a name="prerequisites"></a>必要條件
+開始閱讀本文之前，您必須有下列各項：
 
-* **HDInsight 中的 Hadoop 叢集**。請參閱[建立叢集與 SQL Database](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
+* **HDInsight 中的 Hadoop 叢集**。 請參閱[開始在 Hdinsight 中使用以 Linux 為基礎的 Hadoop](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
 * **Visual Studio 2012/2013/2015**。
 
-## 使用 HDInsight .NET SDK 提交 Hive 查詢
-HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。
+## <a name="submit-hive-queries-using-hdinsight-net-sdk"></a>使用 HDInsight .NET SDK 提交 Hive 查詢
+HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。 
 
 **提交工作**
 
 1. 在 Visual Studio 建立 C# 主控台應用程式。
-2. 從 NuGet Package Manager Console 執行下列命令：
+2. 從 NuGet Package Manager 主控台執行下列命令：
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
 3. 使用下列程式碼：
-   
+
+    ```csharp
         using System.Collections.Generic;
         using System.IO;
         using System.Text;
@@ -124,10 +129,15 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
                 }
             }
         }
+    ```
 4. 按 **F5** 鍵執行應用程式。
 
-## 後續步驟
-在本文中，您學到幾種建立 HDInsight 叢集的方法。若要深入了解，請參閱下列文章：
+應用程式的輸出應該類似這樣：
+
+![HDInsight Hadoop Hive 作業輸出](./media/hdinsight-hadoop-use-hive-dotnet-sdk/hdinsight-hadoop-use-hive-net-sdk-output.png)
+
+## <a name="next-steps"></a>後續步驟
+在本文中，您學到幾種建立 HDInsight 叢集的方法。 若要深入了解，請參閱下列文章：
 
 * [開始使用 Azure HDInsight][hdinsight-get-started]
 * [在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision]
@@ -140,4 +150,10 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+
+<!--HONumber=Dec16_HO3-->
+
+
