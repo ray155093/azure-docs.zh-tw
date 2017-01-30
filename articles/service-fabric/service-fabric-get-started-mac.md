@@ -65,8 +65,8 @@ Service Fabric 不會在 OS X 上以原生方式執行。若要執行本機 Serv
   
    這個步驟可下載預先設定的 VM 映像、讓它在本機開機，然後在其中設定一個本機 Service Fabric 叢集。 您預計需花幾分鐘的時間。 如果安裝程式順利完成，您會在輸出中看到一則訊息，表示叢集正在啟動中。
    
-
     ![在 VM 佈建後啟動的叢集安裝程式][cluster-setup-script]
+    
 5. 瀏覽至位於 http://192.168.50.50:19080/Explorer 的 Service Fabric Explorer (假設您保留預設的私人網路 IP)，測試是否已正確設定叢集。
 
     ![從主機 Mac 檢視的 Service Fabric Explorer][sfx-mac]
