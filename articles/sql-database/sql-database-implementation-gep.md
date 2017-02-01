@@ -8,16 +8,16 @@ manager: jhubbard
 editor: 
 ms.assetid: ae8bcb10-c251-4bac-b666-10a253918583
 ms.service: sql-database
-ms.custom: app development case study; app development
+ms.custom: app development case study
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/08/2016
+ms.date: 01/10/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: da2e3e4f9a33860141d94352fd2e657b14b0d03d
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 7137d38e4e9fef7dfaa309ad81cfed94d547a393
 
 
 ---
@@ -65,7 +65,7 @@ SMART by GEP 應用程式的核心是為企業採購管理解決方案提供技�
 
 使用 Azure SQL Database 與將同樣的花費用在內部部署環境中進行工程相比，GEP 可自動擁有更強大的災害復原能力，因為 Azure SQL Database 內建容錯功能。 GEP 使用 Azure SQL Database 中的「作用中異地複寫」功能，結合了不同地理區域中的多個作用中、可讀取且在線上的次要複本 (Always On 可用性群組)，來形成高可用性組。 在各個區域複寫 SMART by GEP 資料意謂著如果發生全區域災害，GEP 只要使用最低限度的復原點目標 (RPO) 和復原時間目標 (RTO)，即可輕鬆復原客戶資料。
 
-每個 SMART by GEP 客戶都有兩個 Azure SQL Database 執行個體︰一個用於線上交易處理 (OLTP)，一個用於分析 (例如客戶開支和報表分析)。 Azure SQL Database 彈性資料庫集區可讓 GEP 輕鬆管理全球數千個資料庫，以處理無法預測的資料庫資源需求。 彈性集區為 GEP 提供一個方法，既能確保客戶資料庫可依需要調整，而不會有過度佈建或佈建不足的情況，同時也讓 GEP 能夠控制成本。 此外，由於這是一項 PaaS 服務，因此 GEP 會隨著自動升級取得所有新的 Azure SQL Database 功能。
+每個 SMART by GEP 客戶都有兩個 Azure SQL Database 執行個體︰一個用於線上交易處理 (OLTP)，一個用於分析 (例如客戶開支和報表分析)。 Azure SQL Database 彈性集區可讓 GEP 輕鬆管理全球數千個資料庫，以處理無法預測的資料庫資源需求。 彈性集區為 GEP 提供一個方法，既能確保客戶資料庫可依需要調整，而不會有過度佈建或佈建不足的情況，同時也讓 GEP 能夠控制成本。 此外，由於這是一項 PaaS 服務，因此 GEP 會隨著自動升級取得所有新的 Azure SQL Database 功能。
 
 ## <a name="unstructured-and-semi-structured-data"></a>非結構化和半結構化資料
 不過，有些 SMART by GEP 客戶資料需要較不嚴格的結構化儲存體。 針對這類型的資料，GEP 採用 Azure Blob 儲存體、「Azure 資料表儲存體」及「Azure Redis 快取」。 Azure Blob 儲存體上裝載了 SMART by GEP 使用者上傳到應用程式的所有附件。 它也是 SMART by GEP 儲存靜態內容 (例如階層式樣式表 (CSS) 和 JavaScript 檔案) 的位置。
@@ -107,6 +107,6 @@ GEP 採用一些其他 Azure 服務來讓 SMART by GEP 回應客戶需求。 GEP
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

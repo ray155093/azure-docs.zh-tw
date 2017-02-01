@@ -4,7 +4,7 @@ description: "將您受 OMS 管理的裝置與受 Operations Manager 監視的�
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: ae9a1623-d2ba-41d3-bd97-36e65d3ca119
 ms.service: log-analytics
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/20/2016
+ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: dc6cdf1630407d1c4439d89aca5a8254bb806eba
-ms.openlocfilehash: 41382ba85fee1c3f5b1570748cd3d5b0641b9593
+ms.sourcegitcommit: a3d79c2df96c21d1af77c8ea1f53a2cc4e28343e
+ms.openlocfilehash: 30b1a9144e06db92ba12030dfe37a83e79d62857
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 41382ba85fee1c3f5b1570748cd3d5b0641b9593
 
 所有代理程式資料都是透過具備網際網路連線的單一電腦傳送，而不是由每個獨立代理程式直接將資料傳送給 OMS，且需要直接網際網路連線。 該電腦則是您安裝及使用閘道的所在。 在這個案例中，您可以在您想要收集資料的任何電腦上安裝代理程式。 然後閘道會將資料直接從代理程式傳輸到 OMS—閘道不會分析所傳輸的任何資料。
 
-若要監視 OMS 閘道並分析閘道安裝所在之伺服器的效能或事件資料，您必須在安裝閘道的電腦上安裝 OMS 代理程式。
+您必須將 OMS 代理程式安裝在也安裝了閘道的電腦上。 這麼做可讓您監視 OMS 閘道，並分析其安裝所在之伺服器的效能或事件資料。 此外，該代理程式也可協助 OMS 閘道識別其需要通訊的服務端點。
 
 代理程式必須具備網際網路存取，才能將資料上傳到 OMS。 每個代理程式也必須具備對其閘道的網路連線，代理程式才能自動將資料傳輸到閘道，或從閘道傳輸資料。 為求最佳效果，請不要在也是網域控制站的電腦上安裝閘道。
 
@@ -41,26 +41,72 @@ ms.openlocfilehash: 41382ba85fee1c3f5b1570748cd3d5b0641b9593
 
 ![Operations Manager 圖表](./media/log-analytics-oms-gateway/scom-mgt-server.png)
 
+## <a name="language-availability"></a>提供的語言
+
+OMS 閘道有下列語言版本︰
+
+- 中文 (簡體)
+- 中文 (繁體)
+- 捷克文
+- 荷蘭文
+- English
+- 法文
+- 德文
+- 匈牙利文
+- 義大利文
+- 日文
+- 韓文
+- 波蘭文
+- 葡萄牙文 (巴西)
+- 葡萄牙文 (葡萄牙)
+- 俄文
+- 西班牙文 (國際)
+
+## <a name="download-the-oms-gateway"></a>下載 OMS 閘道
+
+有三種方法可以取得 OMS 閘道的安裝程式檔案。
+
+### <a name="microsoft-download-center"></a>Microsoft 下載中心
+
+- 從 [Microsoft 下載中心](http://download.microsoft.com/download/2/5/C/25CF992A-0347-4765-BD7D-D45D5B27F92C/OMS%20Gateway.msi)最新版 OMS 閘道。
+
+### <a name="oms-portal"></a>OMS 入口網站
+
+1.  登入 OMS 工作區。
+2.  選取 [設定] > [連接的來源] > [Windows 伺服器]。
+3.  按一下 [下載 OMS 閘道]。
+
+
+### <a name="azure-portal"></a>Azure 入口網站
+
+1. 移至 [Azure 入口網站](https://portal.azure.com)並登入，瀏覽服務清單，然後選取 [Log Analytics]。
+2. 選取工作區。
+3. 在 [工作區] 刀鋒視窗的 [一般] 下方，按一下 [快速入門]。
+4. 在 [選擇用來連線到工作區的資料來源] 下方，按一下 [電腦]。
+4. 在 [直接代理程式] 刀鋒視窗中，按一下 [下載 OMS 閘道]。  
+    ![下載 OMS 閘道](./media/log-analytics-oms-gateway/download-gateway.png)
+
+
 ## <a name="install-the-oms-gateway"></a>安裝 OMS 閘道
 安裝此閘道會取代您已安裝的舊版本閘道 (Log Analytics 轉寄站)。
 
 先決條件：.Net Framework 4.5、Windows Server 2012 R2 SP1 和更新版本
 
-1. 從 [Microsoft 下載中心](http://download.microsoft.com/download/2/5/C/25CF992A-0347-4765-BD7D-D45D5B27F92C/OMS%20Gateway.msi)最新版 OMS 閘道。
-2. 若要開始安裝，請按兩下 **OMS Gateway.msi**。
-3. 在 [歡迎] 頁面上，按一下 [下一步]。  
+
+1. 若要開始安裝，請按兩下 **OMS Gateway.msi**。
+2. 在 [歡迎] 頁面上，按一下 [下一步]。  
     ![閘道設定精靈](./media/log-analytics-oms-gateway/gateway-wizard01.png)
-4. 在 [授權合約] 頁面上，選取 [我接受授權合約中的條款] 以同意 EULA，然後按一下 [下一步]。
-5. 在連接埠和 Proxy 位址頁面上：
+3. 在 [授權合約] 頁面上，選取 [我接受授權合約中的條款] 以同意 EULA，然後按一下 [下一步]。
+4. 在連接埠和 Proxy 位址頁面上：
    1. 輸入要用於閘道的 TCP 連接埠號碼。 安裝程式會從 Windows 防火牆開啟此連接埠號碼。 預設值為 8080。
       連接埠號碼的有效範圍是 1 到 65535。 如果輸入的值不在此範圍內，就會顯示錯誤訊息。
    2. 如果閘道安裝所在的伺服器需要使用 Proxy，您也可以選擇輸入閘道需要連線的 Proxy 位址。 例如，`http://myorgname.corp.contoso.com:80` 如果空白，閘道將會嘗試直接連線到網際網路。 否則，閘道會連線到 Proxy。 如果您的 Proxy 伺服器需要驗證，請輸入您的使用者名稱與密碼。
        ![閘道精靈 Proxy 組態](./media/log-analytics-oms-gateway/gateway-wizard02.png)  
    3. 按一下 [下一步]
-6. 如果您沒有啟用 Microsoft Update，會顯示 Microsoft Update 頁面，您可以在其中選擇啟用 Microsoft Update。 選擇想要的選項，然後按一下 [下一步]。 否則，請繼續下一個步驟。
-7. 在 [目的地資料夾] 頁面上，保留預設資料夾 **%ProgramFiles%\OMS Gateway** 或輸入您想要安裝閘道的位置，然後按一下 [下一步]。
-8. 在 [準備安裝] 頁面上，按一下 [安裝]。 可能會顯示 [使用者帳戶控制] 要求安裝權限。 如果有顯示，請按一下 [是]。
-9. 安裝完成後，請按一下 [完成]。 您可以透過開啟 services.msc 嵌入式管理單元來確認服務正在執行，並確認服務清單中已顯示 [OMS 閘道]。  
+5. 如果您沒有啟用 Microsoft Update，會顯示 Microsoft Update 頁面，您可以在其中選擇啟用 Microsoft Update。 選擇想要的選項，然後按一下 [下一步]。 否則，請繼續下一個步驟。
+6. 在 [目的地資料夾] 頁面上，保留預設資料夾 **%ProgramFiles%\OMS Gateway** 或輸入您想要安裝閘道的位置，然後按一下 [下一步]。
+7. 在 [準備安裝] 頁面上，按一下 [安裝]。 可能會顯示 [使用者帳戶控制] 要求安裝權限。 如果有顯示，請按一下 [是]。
+8. 安裝完成後，請按一下 [完成]。 您可以透過開啟 services.msc 嵌入式管理單元來確認服務正在執行，並確認服務清單中已顯示 [OMS 閘道]。  
     ![服務 – OMS 閘道](./media/log-analytics-oms-gateway/gateway-service.png)
 
 ## <a name="install-an-agent-on-devices"></a>在裝置上安裝代理程式
@@ -184,7 +230,7 @@ Cmdlet 可以協助您完成更新 OMS 閘道的組態設定時需執行的作�
 | `Get-OMSGatewayAllowedClientCertificate` | |取得目前允許的用戶端憑證主體 (僅限本機設定的允許的主體，不包括自動下載的允許的主體) |`Get-OMSGatewayAllowedClientCertificate` |
 
 ## <a name="troubleshoot"></a>疑難排解
-我們建議您在已安裝閘道的電腦上安裝 OMS 代理程式。 接著，您可以使用代理程式來收集由閘道所記錄的事件。
+您必須在已安裝閘道的電腦上安裝 OMS 代理程式。 接著，您可以使用代理程式來收集由閘道所記錄的事件。
 
 ![事件檢視器 – OMS 閘道記錄](./media/log-analytics-oms-gateway/event-viewer.png)
 
@@ -234,6 +280,6 @@ Cmdlet 可以協助您完成更新 OMS 閘道的組態設定時需執行的作�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

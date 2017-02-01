@@ -8,16 +8,16 @@ manager: jhubbard
 editor: 
 ms.assetid: 00c8a713-f20c-4d6b-b8b7-0c1b9ba5f05b
 ms.service: sql-database
-ms.custom: app development case study; app development
+ms.custom: app development case study
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/08/2016
+ms.date: 01/10/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 357b402955187a08a35faacdcb178af75698433d
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 98a83c735a79cdba080dd74af8e2677788c075e3
 
 
 ---
@@ -32,7 +32,7 @@ Daxko/CSI Software 面臨挑戰︰歸功於其全方位企業軟體解決方案�
 
 Molina 繼續說道：「我們的客戶立即感受到改變。 在使用彈性集區之前，他們在高載期間有時會遇到逾時和其他問題。 在使用 Azure 彈性集區之後，他們可以視需要激增用量，而且使用軟體也沒有任何問題。」
 
-除了改善客戶的效能之外，Azure 彈性資料庫集區也釋出了 CSI Software 資源，以專注於開發新的服務和功能，而不是處理作業和管理。 這些 IT 資源協助了 CSI Software 改進其企業軟體方案 SpectrumNG，以幫助吸引健身房會員參與互動、提升員工效率，以及讓員工和會員能夠透過行動裝置存取互動式工作和即時通知。
+除了改善客戶的效能之外，Azure 彈性集區也釋出了 CSI Software 資源，以專注於開發新的服務和功能，而不是處理作業和管理。 這些 IT 資源協助了 CSI Software 改進其企業軟體方案 SpectrumNG，以幫助吸引健身房會員參與互動、提升員工效率，以及讓員工和會員能夠透過行動裝置存取互動式工作和即時通知。
 
 此外，Azure 也透過啟用自動化選項，協助 CSI Software 加速及改進開發和品質保證 (QA) 週期。 透過該公司的 Azure 實作，建置管理員只要按一下按鈕，便能封裝元件。 如 Molina 所述：「QA 現在能夠於發行週期內，在 Azure 中部署到精確模擬生產環境堆疊的測試環境。 我們可以將組建立即部署到開發環境來檢查變更。 這對我們而言是一大優點，因為之前我們沒有類似的環境可供進行測試。」
 
@@ -61,10 +61,10 @@ Molina 繼續說道：「我們的客戶立即感受到改變。 在使用彈性
 
 現在，大約 99% 的 CSI Software 都是裝載在 Azure 中，遍及四個區域資料中心 (中北部、中南部、東部及西部)。 透過在每個客戶的地理區域中都有資料中心，將延遲降到了最低。
 
-## <a name="azure-elastic-database-pools-free-up-it-resources"></a>Azure 彈性資料庫集區釋出 IT 資源
-Azure 的數個功能協助了 CSI Software 從以基礎結構和作業為焦點，轉換成以功能和開發為焦點。 或許最大的好處是來自彈性資料庫集區。
+## <a name="azure-elastic-pools-free-up-it-resources"></a>Azure 彈性集區釋出 IT 資源
+Azure 的數個功能協助了 CSI Software 從以基礎結構和作業為焦點，轉換成以功能和開發為焦點。 或許最大的好處是來自彈性集區。
 
-CSI Software 目前為客戶提供大約 550 個資料庫。 在使用彈性集區之前，很難在一層結構內管理這麼多資料庫。 作業管理員必須根據客戶的高載需求指派效能層，而這會造成嚴重的 IT 資源額外負荷。 透過彈性資料庫集區，管理員則可以視情況為租用戶指派高階或標準集區，然後再根據大小和需求來移動客戶。 客戶幾乎是立即感受到彈性資料庫集區的效果；在使用彈性集區之前，客戶在高載使用量期間遇到了逾時和其他問題，但在使用彈性集區之後，客戶可以視需要體驗活動高載情況，而且繼續使用 SpectrumNG 也沒有任何問題。
+CSI Software 目前為客戶提供大約 550 個資料庫。 在使用彈性集區之前，很難在一層結構內管理這麼多資料庫。 作業管理員必須根據客戶的高載需求指派效能層，而這會造成嚴重的 IT 資源額外負荷。 透過彈性集區，管理員則可以視情況為租用戶指派高階或標準集區，然後再根據大小和需求來移動客戶。 客戶幾乎是立即感受到彈性集區的效果；在使用彈性集區之前，客戶在高載使用量期間遇到了逾時和其他問題，但在使用彈性集區之後，客戶可以視需要體驗活動高載情況，而且繼續使用 SpectrumNG 也沒有任何問題。
 
 ## <a name="azure-active-geo-replication-accelerates-reporting"></a>Azure 作用中異地複寫加速報表處理速度
 有數個 CSI Software 客戶也利用「Azure 作用中異地複寫」功能。 使用「作用中異地複寫」時，可在相同或不同的資料中心區域中，最多設定 4 個可讀取的次要資料庫。 CSI Software 以兩種方式利用「作用中異地複寫」︰首先是在資料中心中斷服務或在無法連線至主要資料庫時，可以使用次要資料庫；其次是可以讀取次要資料庫並用來卸載唯讀工作負載，例如報告工作。 有些 CSI Software 客戶會利用這個優點來加速報告處理工作流程。
@@ -87,7 +87,7 @@ SpectrumNG 使用 Web 角色。 由於應用程式是多租用戶應用程式，
 Azure SQL Database 不僅為 SpectrumNG 客戶帶來好處，讓他們享有快速、可靠的服務，也為 CSI Software 的 IT 人員和開發人員帶來豐碩的成果。 透過將作業卸載到雲端中的 Azure，CSI Software 不僅降低了其資源和基礎結構的額外負荷、大幅加速其開發週期，而且也不再需要對資料庫進行微觀管理來將其租用戶的效能最佳化。
 
 ## <a name="more-information"></a>詳細資訊
-* 若要深入了解 Azure 彈性資料庫集區，請參閱 [彈性資料庫集區](sql-database-elastic-pool.md)。
+* 若要深入了解 Azure 彈性集區，請參閱[彈性集區](sql-database-elastic-pool.md)。
 * 若要深入了解資料庫工具和彈性調整，請參閱 [彈性資料庫工具和彈性調整](sql-database-elastic-scale-get-started.md)。
 * 若要深入了解如何移轉 SQL Server 資料庫，請參閱 [Azure SQL 移轉精靈](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)。
 * 若要深入了解主動式異地複寫，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)。
@@ -98,6 +98,6 @@ Azure SQL Database 不僅為 SpectrumNG 客戶帶來好處，讓他們享有快�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

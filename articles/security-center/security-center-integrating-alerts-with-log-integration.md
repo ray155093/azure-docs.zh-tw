@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/17/2016
+ms.date: 12/09/2016
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: f6436e7682c6fd9fdfb1c787a6040f5aa67ac8fa
-ms.openlocfilehash: 1d4506b59ebf13c1bdb7cebcc035a0230d79062d
+ms.sourcegitcommit: f946ef41f0fc5ab39351d85c37ed24715b92b882
+ms.openlocfilehash: cd58f24c356e6d1ec0ebe77b1c336ee8370a4a9a
 
 
 ---
@@ -28,8 +28,8 @@ Azure 記錄整合可與 HP ArcSight、Splunk、IBM QRadar 等等搭配運作。
 ## <a name="what-logs-can-i-integrate"></a>可以整合哪些記錄檔？
 Azure 會為每項服務產生大量記錄。 這些記錄檔會分類為︰
 
-* **控制/管理記錄檔** ：可讓您看到 Azure Resource Manager 的 CREATE、UPDATE 和 DELETE 作業。
-* **資料平面記錄檔** ：可讓您看到使用 Azure 資源時所引發的事件。 其中一例就是 Windows 事件記錄檔，這是虛擬機器中的安全性和應用程式記錄檔。
+* **控制/管理記錄檔**：可讓您看到 Azure Resource Manager 的 CREATE、UPDATE 和 DELETE 作業。
+* **資料平面記錄檔**：可讓您看到使用 Azure 資源時所引發的事件。 其中一例就是 Windows 事件記錄檔，這是虛擬機器中的安全性和應用程式記錄檔。
 
 Azure 記錄檔整合目前支援下列項目的整合︰
 
@@ -66,7 +66,7 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 3. 執行 **azlog authorize <SubscriptionID>** 命令，以將訂用帳戶的讀取者權限指派給在步驟 2 中建立的服務主體。 如果您未指定 **SubscriptionID**，則會對服務主體指派您可以存取之所有訂用帳戶的讀取者角色。
 
    > [!NOTE]
-   > 在 Azure AD 帳戶建立後到帳戶可供使用中間會有一些延遲時間，因此，如果您在 **createazureid** 命令之後緊接著執行 **authorize** 命令，將可能會看見警告。 如果您在執行 **createazureid** 命令後等待約 10 秒再執行 **authorize** 命令，應該就不會看到這些警告。
+   > 如果您在執行 **createazureid** 命令之後立即執行 **authorize** 命令，可能會看見警告。 建立 Azure AD 帳戶到帳戶可供使用之間會有一些延遲。 如果您在執行 **createazureid** 命令後等待約 10 秒再執行 **authorize** 命令，應該就不會看到這些警告。
    >
    >
 4. 檢查下列資料夾以確認其中有稽核記錄檔 JSON 檔案︰
@@ -95,6 +95,6 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

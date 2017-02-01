@@ -4,7 +4,7 @@ description: "找出並解決 Azure SQL Database 常見之連接錯誤的步驟�
 services: sql-database
 documentationcenter: 
 author: dalechen
-manager: cshepard
+manager: felixwu
 editor: 
 ms.assetid: ac463d1c-aec8-443d-b66e-fa5eadcccfa8
 ms.service: sql-database
@@ -13,11 +13,11 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/20/2017
+ms.date: 08/31/2016
 ms.author: daleche
 translationtype: Human Translation
-ms.sourcegitcommit: 7e443a350e5f3597e9d59fe934c28bd8cd93be26
-ms.openlocfilehash: 8ccf72046e95b12316685d1de9632e18f0943948
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 48ccd940efb75427461c3a8018aa6b31f46a626e
 
 
 ---
@@ -77,7 +77,7 @@ ms.openlocfilehash: 8ccf72046e95b12316685d1de9632e18f0943948
 | 4 |[針對 Microsoft Azure SQL Database 的連線問題進行疑難排解](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database) |此工具可協助識別您的問題並解決連線錯誤。 |
 | 5 |[為「伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt; 目前無法使用」的問題進行疑難排解。請稍後重試連接」錯誤](sql-database-troubleshoot-connection.md) |說明如何識別並解決 40613 錯誤：「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。 請稍後重試連接。」 |
 | 6 |[SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md) |提供 SQL Database 用戶端應用程式的 SQL 錯誤碼相關資訊，例如常見的資料庫連線錯誤、資料庫複製問題，以及一般錯誤。 |
-| 7 |[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md) |提供可協助您判斷哪個服務層是最適合您應用程式的指引。 同時也提供微調應用程式以充分運用您 Azure SQL Database 的建議。 |
+| 7 |[獨立資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md) |提供可協助您判斷哪個服務層是最適合您應用程式的指引。 同時也提供微調應用程式以充分運用您 Azure SQL Database 的建議。 |
 | 8 |[SQL Database 開發概觀](sql-database-develop-overview.md) |提供各種技術之程式碼範例的連結，可用來連接到 Azure SQL Database 並與其互動。 |
 | 9 |升級到 Azure SQL Database v12 頁面 ([Azure 入口網站](sql-database-upgrade-server-portal.md)、[PowerShell](sql-database-upgrade-server-powershell.md)) |提供使用 Azure 入口網站或 PowerShell 將現有 Azure SQL Database V11 伺服器和資料庫升級到 Azure SQL Database V12 的指示。 |
 
@@ -97,6 +97,6 @@ ms.openlocfilehash: 8ccf72046e95b12316685d1de9632e18f0943948
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

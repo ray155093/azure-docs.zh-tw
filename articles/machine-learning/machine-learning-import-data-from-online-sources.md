@@ -16,12 +16,15 @@ ms.topic: article
 ms.date: 09/19/2016
 ms.author: bradsev;garye
 translationtype: Human Translation
-ms.sourcegitcommit: bac1b01a40b3e7bed2edaf1f694daf0ab70de68c
-ms.openlocfilehash: 26353f84e22aec1964f520edc60d036c2ab57c28
+ms.sourcegitcommit: 701c54bac16cbf208fd655fd72f2d4acfc0ba891
+ms.openlocfilehash: 89856f6509d0d2e2e472a61db70b9b04dc1ac7b7
 
 
 ---
 # <a name="import-data-into-azure-machine-learning-studio-from-various-online-data-sources-with-the-import-data-module"></a>使用「匯入資料」模組從各種線上資料來源將資料匯入 Azure Machine Learning Studio 中
+
+[!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
+
 本文說明對從不同來源匯入線上資料的支援，以及將資料從這些來源移至 Azure 機器學習服務實驗所需的資訊。
 
 > [!NOTE]
@@ -30,8 +33,6 @@ ms.openlocfilehash: 26353f84e22aec1964f520edc60d036c2ab57c28
 > 
 
 <!-- -->
-
-[!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
 ## <a name="introduction"></a>簡介
 您可以使用[匯入資料][import-data]模組，在實驗進行時，從 Azure Machine Learning Studio 內，自數個線上資料來源之一存取資料：
@@ -82,6 +83,6 @@ Azure 機器學習服務的 **匯入資料** 模組支援下列資料來源：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

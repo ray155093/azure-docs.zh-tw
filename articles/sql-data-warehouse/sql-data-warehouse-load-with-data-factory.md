@@ -16,23 +16,23 @@ ms.topic: article
 ms.date: 11/21/2016
 ms.author: jingwang;kevin;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: b46ac604c10a2cb014991f3707fc3fc3b300f772
-ms.openlocfilehash: 5b045ed236771919ea3f644a6b2351d54c75549b
+ms.sourcegitcommit: 5c8b3ef69cd2bc663d6ee744c2351da9c22adb94
+ms.openlocfilehash: 24b9e5c2f423f7ef8bb29ab18359318f93c1d88c
 
 
 ---
 
 # <a name="load-data-into-sql-data-warehouse-with-data-factory"></a>使用 Data Factory 將資料載入 SQL 資料倉儲
 
-本教學課程使用 Azure Data Factory 將資料載入 Azure SQL 資料倉儲，並使用 SQL Server 資料庫作為資料來源。 當您完成時，在 SQL 資料倉儲中有您的資料。
+您可以從任何[支援來源資料存放區](../data-factory/data-factory-data-movement-activities.md#supported-data-stores-and-formats)，使用 Azure Data Factory 將資料載入至 Azure SQL 資料倉儲。 例如，您可以使用 Data Factory 從 Azure SQL Database 或 Oracle 資料庫將資料載入 SQL 資料倉儲。 本文中的教學課程會示範如何從內部部署 SQL Server 資料庫將資料載入 SQL 資料倉儲。
 
 **預估時間**︰一旦符合先決條件後，本教學課程需要大約 10-15 分鐘才能完成。
 
 ## <a name="prerequisites"></a>必要條件
 
-- 本教學課程假設您了解使用 Transact-SQL 建立資料表和結構描述的基本概念。  
+- SQL Server 資料庫具有資料表，其中包含要複製到 SQL 資料倉儲的資料。  
 
-- 您需要 Azure 儲存體帳戶。 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
+- 您需要 Azure 儲存體帳戶。 您可以[申請免費 Azure 帳戶](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](http://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
 
 - 您需要線上 SQL 資料倉儲。 如果您還沒有資料倉儲，請了解如何[建立 Azure SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)。 為了達到最佳效能，在相同的 Azure 區域中找出儲存體帳戶和資料倉儲。
 
@@ -44,10 +44,10 @@ ms.openlocfilehash: 5b045ed236771919ea3f644a6b2351d54c75549b
 3. 在 [屬性] 刀鋒視窗中，按一下 [資料載入] > [Azure Data Factory]。
 
     ![啟動載入資料精靈](media/sql-data-warehouse-load-with-data-factory/launch-load-data-wizard.png)
+4. 如果您在 Azure 訂用帳戶中沒有 Data Factory，您會在瀏覽器的個別索引標籤中看到 [新增 Data Factory]對話方塊。 填入必要的資訊，然後按一下 [建立]。 建立 Data Factory 之後，[新增 Data Factory] 對話方塊隨即關閉，而且您會看到 [選取 Data Factory] 對話方塊。
 
-4. 您會看到 [新增 Data Factory] 對話方塊。 填寫必要的資訊，或選擇現有的 Data Factory。 按一下 [建立] 。
-
-5. 在 [選取 Data Factory] 對話方塊中，預設會選取 [載入資料] 選項。 按一下 [下一步] 完成建立 Data Factory。 
+    如果您在 Azure 訂用帳戶中已有一或多個 Data Factory，您會看到[選取 Data Factory] 對話方塊。 在這個對話方塊中，您可以選取現有的 Data Factory，或按一下[建立新的 Data Factory] 來建立新的。 
+5. 在 [選取 Data Factory] 對話方塊中，預設會選取 [載入資料] 選項。 按 [下一步] 以開始建立資料載入工作。 
 
 ## <a name="configure-the-data-factory-properties"></a>設定 Data Factory 屬性
 現在您已建立 Data Factory，下一個步驟是設定資料載入排程。 
@@ -75,16 +75,22 @@ ms.openlocfilehash: 5b045ed236771919ea3f644a6b2351d54c75549b
     - **驗證類型**︰選擇您所使用的驗證類型。
     - **使用者名稱**和**密碼**︰輸入擁有複製資料權限之使用者的使用者名稱和密碼。
 
-4. 最後一個欄位會要求閘道的名稱。 按一下 [建立閘道] 連結以建立資料管理閘道。 閘道是一個用戶端代理程式，您必須在內部部署環境中部署此代理程式，才能在內部部署與雲端資料存放區之間複製資料。 
+4. 最後一個欄位會要求閘道的名稱。 如果來源資料存放區是在內部部署或在 Azure IaaS 虛擬機器中，閘道是必要的。 如果您使用的現有 Data Factory 已有一個閘道，您可以藉由從下拉式清單中選取它來重複使用閘道。 按一下 [建立閘道] 連結以建立資料管理閘道。  
+
+    > [!NOTE]
+    > 閘道與 Data Factory 有 1 對 1 關聯性。 它不能從另一個 Data Factory 使用，但可供相同 Data Factory 中的多個資料載入工作使用。 閘道可以用來在執行資料載入工作時連接至多個資料存放區。
+    > 
+    > 如需閘道的詳細資訊，請參閱[資料管理閘道](../data-factory/data-factory-data-management-gateway.md)文章。 
 
 5. 隨即出現 [建立閘道] 對話方塊。 針對名稱，輸入 **GatewayForDWLoading**，然後按一下 [建立]。
 
 6. 隨即出現 [設定閘道] 對話方塊。  
     ![啟動快速安裝](media/sql-data-warehouse-load-with-data-factory/launch-express-setup.png)
 
-7. 按一下 [啟動這台電腦上的快速安裝] 以下載、安裝及註冊目前電腦上的閘道。 進度會顯示在快顯視窗中。
+7. 按一下 [啟動這台電腦上的快速安裝] 以下載、安裝及註冊目前電腦上的資料管理閘道 (您用來存取入口網站的電腦)。 如果電腦無法連線到資料存放區，您可以手動在電腦上[下載並安裝閘道](https://www.microsoft.com/download/details.aspx?id=39717)，可以連接到資料存放區，然後使用金鑰進行註冊。 進度會顯示在快顯視窗中。
 
-    快速安裝適用於原生 Microsoft Edge 及 Internet Explorer。 如果您是使用 Google Chrome，先從 Chrome 線上應用程式商店安裝 ClickOnce 擴充功能。 或者，您可以手動下載並安裝閘道，然後使用金鑰註冊。
+    > [!NOTE]
+    > 快速安裝適用於原生 Microsoft Edge 及 Internet Explorer。 如果您是使用 Google Chrome，先從 Chrome 線上應用程式商店安裝 ClickOnce 擴充功能。 
 
 8. 等候閘道安裝程式完成。 一旦閘道成功註冊且上線後，快顯視窗會關閉，且新的閘道會出現在 [閘道] 欄位中。 按 [下一步] 。
 
@@ -154,14 +160,21 @@ ms.openlocfilehash: 5b045ed236771919ea3f644a6b2351d54c75549b
 
 若要將資料庫移轉至 SQL 資料倉儲，請參閱[移轉概觀](sql-data-warehouse-overview-migrate.md)。
 
-若要深入了解 Azure Data Factory 複製功能，請參閱 [Azure Data Factory 簡介](../data-factory/data-factory-introduction.md)和[使用複製活動移動資料](../data-factory/data-factory-data-movement-activities.md)。
+若要深入了解 Azure Data Factory 和其資料移動功能，請參閱下列文章︰ 
 
-若要瀏覽 SQL 資料倉儲中的資料，請參閱[使用 Visual Studio 和 SSDT 連接到 SQL 資料倉儲](sql-data-warehouse-query-visual-studio.md)和[採用 Power BI 的視覺化資料](sql-data-warehouse-get-started-visualize-with-power-bi.md)。
+- [Azure Data Factory 簡介](../data-factory/data-factory-introduction.md)
+- [使用複製活動來移動資料](../data-factory/data-factory-data-movement-activities.md)
+- [使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料](../data-factory/data-factory-azure-sql-data-warehouse-connector.md)
+
+若要瀏覽 SQL 資料倉儲中的資料，請參閱下列文章︰ 
+
+- [使用 Visual Studio 和 SSDT 連接到 SQL 資料倉儲](sql-data-warehouse-query-visual-studio.md) 
+- [採用 Power BI 的視覺化資料](sql-data-warehouse-get-started-visualize-with-power-bi.md)。
 
 <!-- Azure references -->
 [Azure 入口網站]: https://portal.azure.com 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

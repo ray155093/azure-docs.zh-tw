@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 07/19/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 38416deeb583c78bca9ded2e514bf3ddff716c52
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 071cc504cc4111e20391af86ffdc7819644ec434
 
 
 ---
@@ -55,11 +55,11 @@ Azure SQL Database 藉由提供智慧型的調整動作與建議，提供可協�
 
 ## <a name="additional-resources"></a>其他資源
 * [單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)
-* [何時使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)
+* [何時使用彈性集區？](sql-database-elastic-pool-guidance.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

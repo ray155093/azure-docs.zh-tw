@@ -12,12 +12,12 @@ ms.custom: overview
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: get-started-article
 ms.date: 10/24/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5adb83a7b8e19ca78dd4d837b497e1ceb4444f86
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 915292a191da82af9e24e89460d46dc61a062b18
 
 
 ---
@@ -37,7 +37,7 @@ SQL Server Management Studio (SSMS) 和 SQL Server Data Tools (SSDT) 是在您�
 >  
 
 ## <a name="powershell"></a>PowerShell
-您可以使用 PowerShell 來管理資料庫和彈性資料庫集區，以及自動執行 Azure 資源部署。 若您要在生產環境中管理大量資料庫並自動化部署和資源變更，Microsoft 建議使用這項工具。
+您可以使用 PowerShell 來管理資料庫和彈性集區，以及自動執行 Azure 資源部署。 若您要在生產環境中管理大量資料庫並自動化部署和資源變更，Microsoft 建議使用這項工具。
 
 如需詳細資訊，請參閱[使用 PowerShell 管理 SQL Database](sql-database-manage-powershell.md)
 
@@ -56,6 +56,6 @@ SQL Server Management Studio (SSMS) 和 SQL Server Data Tools (SSDT) 是在您�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

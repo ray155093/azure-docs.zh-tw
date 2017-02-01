@@ -13,21 +13,23 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 09/21/2016
+ms.date: 11/21/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 3223de765d7f746473b48f99cd9d27fb013ec7ef
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: 31c630088b6dc7481068e8050972b693f4dcaf71
 
 
 ---
 # <a name="about-h-series-and-compute-intensive-a-series-vms"></a>關於 H 系列和計算密集型 A 系列 VM
 這裡提供使用較新的 Azure H 系列和較舊的 A8、A9、A10 及 A11 執行個體 (也稱為「計算密集型」  執行個體) 的背景資訊和一些考量。 本文著重於這些 Windows VM 執行個體的使用。 本文也適用於 [Linux VM](virtual-machines-linux-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
+如需基本規格、儲存體容量與磁碟的詳細資料，請參閱[虛擬機器的大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+
 [!INCLUDE [virtual-machines-common-a8-a9-a10-a11-specs](../../includes/virtual-machines-common-a8-a9-a10-a11-specs.md)]
 
 ## <a name="access-to-the-rdma-network"></a>存取 RDMA 網路
-您可以建立支援 RDMA 的 Windows Server 執行個體叢集，並部署其中一個支援的 MPI 實作，以利用 Azure RDMA 網路。 這個低延遲、高輸送量的網路只保留給 MPI 流量使用。
+若要存取 Azure RDMA 網路的 Windows MPI 流量，具備 RDMA 功能的執行個體必須符合下列需求︰ 
 
 * **作業系統**
   
@@ -35,12 +37,21 @@ ms.openlocfilehash: 3223de765d7f746473b48f99cd9d27fb013ec7ef
   * **雲端服務** - Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 客體 OS 系列
 * **MPI** - Microsoft MPI (MS-MPI) 2012 R2 或更新版本、Intel MPI Library 5.x
 
-支援的 MPI 實作使用 Microsoft Network Direct 介面在執行個體之間進行通訊。 如需了解部署選項和範例組態步驟，請參閱[使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](virtual-machines-windows-classic-hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)和[在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../batch/batch-mpi.md)。
+  支援的 MPI 實作使用 Microsoft Network Direct 介面在執行個體之間進行通訊。 
+* **HpcVmDrivers VM 擴充** - 在具備 RDMA 功能的 VM 上，HpcVmDrivers 擴充必須新增以安裝 Windows 網路裝置驅動程式，該驅動程式會啟用 RDMA 連接。 (在雲端服務和部分 VM 部署中，會自動新增 HpcVmDrivers 擴充。)如果您需要將 VM 擴充新增至 VM，您可以針對 Azure Resource Manager 使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) Cmdlet。
 
-> [!NOTE]
-> 在支援 RDMA 的計算密集型 VM 上，必須將 HpcVmDrivers 擴充功能新增到 VM 中，才能安裝 RDMA 連線所需的 Windows 網路裝置驅動程式。 在大多數部署中，會自動新增 HpcVmDrivers 擴充功能。 如果您需要自行新增擴充功能，請參閱[管理 VM 擴充功能](virtual-machines-windows-classic-manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
-> 
-> 
+  若要取得最新的 HpcVmDrivers 擴充的相關資訊︰
+
+  ```PowerShell
+  Get-AzureVMAvailableExtension -ExtensionName  "HpcVmDrivers"
+  ```
+
+  若要在名為 myVM 的現有具備 RDMA 功能的 VM 上安裝最新版本 1.1 HpcVMDrivers 擴充：
+  ```PowerShell
+  Set-AzureRmVMExtension -ResourceGroupName "myResourceGroup" -Location "westus" -VMName "myVM" -ExtensionName "HpcVmDrivers" -Publisher "Microsoft.HpcCompute" -Type "HpcVmDrivers" -TypeHandlerVersion "1.1"
+  ```
+  如需詳細資訊，請參閱[管理 VM 擴充](virtual-machines-windows-classic-manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 您也可以在[傳統部署模型](virtual-machines-windows-classic-manage-extensions.md)中使用 VM 的擴充。
+
 
 ## <a name="considerations-for-hpc-pack-and-windows"></a>HPC Pack 和 Windows 的考量
 您不需要 [Microsoft HPC Pack](https://technet.microsoft.com/library/jj899572.aspx) (Microsoft 的免費 HPC 叢集和作業管理解決方案)，即可搭配 Windows Server 使用計算密集型執行個體。 不過，它可為您提供一個選項，讓您能夠在 Azure 中建立計算叢集來執行 Windows 型 MPI 應用程式及其他 HPC 工作負載。 HPC Pack 2012 R2 和更新版本包含 MS-MPI 的執行階段環境，此 MS-MPI 如果部署在支援 RDMA 的 VM 上，即可使用 Azure RDMA 網路。
@@ -51,11 +62,11 @@ ms.openlocfilehash: 3223de765d7f746473b48f99cd9d27fb013ec7ef
 * 如需有關計算密集型大小的可用性和價格詳細資料，請參閱[虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)和[雲端服務定價](https://azure.microsoft.com/pricing/details/cloud-services/)。
 * 如需儲存體容量與磁碟詳細資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 * 若要開始使用 HPC Pack 在 Windows 上部署和使用計算密集型執行個體，請參閱[使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](virtual-machines-windows-classic-hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
-* 如需以 Azure Batch 使用 A8 和 A9 執行個體執行 MPI 應用程式的資訊，請參閱 [在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../batch/batch-mpi.md)。
+* 如需以 Azure Batch 使用	計算密集型執行個體執行 MPI 應用程式的資訊，請參閱[在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../batch/batch-mpi.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 
