@@ -3,8 +3,8 @@ title: "建立 Blob 的唯讀快照集 | Microsoft Docs"
 description: "了解如何建立 Blob 的快照集以便在給定的時間點備份 Blob 資料。 了解快照集計費的方式，以及如何使用它們將容量費用降至最低。"
 services: storage
 documentationcenter: 
-author: tamram
-manager: carmonm
+author: mmacy
+manager: timlt
 editor: tysonn
 ms.assetid: 3710705d-e127-4b01-8d0f-29853fb06d0d
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
-ms.author: tamram
+ms.date: 12/07/2016
+ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 664f03a8492178daf342b659595f035b7cccec5a
+ms.sourcegitcommit: cedc76bc46137a5d53fd76c0fdb6ff2db79566a4
+ms.openlocfilehash: 05e999d62d3ffdde708c9898807e79fabcff992e
 
 
 ---
@@ -24,12 +24,12 @@ ms.openlocfilehash: 664f03a8492178daf342b659595f035b7cccec5a
 ## <a name="overview"></a>Overview
 快照集是在某個點時間取得的唯讀 Blob 版本。 快照集對於備份 Blob 非常有用。 建立快照集後，您便可加以讀取、複製或刪除，但無法加以修改。
 
-Blob 的快照集與其基底 Blob 相同，除了 Blob URI 附加了 [日期時間]  值以表示擷取快照當時的時間。 例如，如果分頁 Blob URI 為 `http://storagesample.core.blob.windows.net/mydrives/myvhd`，則快照集 URI 類似於 `http://storagesample.core.blob.windows.net/mydrives/myvhd?snapshot=2011-03-09T01:42:34.9360000Z`。 
+Blob 的快照集與其基底 Blob 相同，除了 Blob URI 附加了 [日期時間]  值以表示擷取快照當時的時間。 例如，如果分頁 Blob URI 為 `http://storagesample.core.blob.windows.net/mydrives/myvhd`，則快照集 URI 類似於 `http://storagesample.core.blob.windows.net/mydrives/myvhd?snapshot=2011-03-09T01:42:34.9360000Z`。
 
 > [!NOTE]
 > 所有快照集會共用基底 blob 的 URI。 基底 blob 與快照集之間的唯一差別在於附加的 **DateTime** 值。
-> 
-> 
+>
+>
 
 Blob 可包含任意數目的快照集。 系統會保存快照集，直到您將它們明確刪除為止。 快照集必須有其基底 Blob 才能存在。 您可以列舉與基底 Blob 相關聯的快照集，以追蹤目前的快照集。
 
@@ -98,7 +98,6 @@ await blockBlob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, null
 
 * 進階儲存體帳戶中每個分頁 Blob 的快照集數目上限為 100 個。 如果超出該限制，快照集 Blob 作業就會傳回錯誤碼 409 (**SnapshotCountExceeded**)。
 * 您可以每 10 分鐘擷取一次進階儲存體帳戶中分頁 Blob 的快照集。 如果超出該頻率，快照集 Blob 作業就會傳回錯誤碼 409 (**SnaphotOperationRateExceeded**)。
-* 您無法呼叫「取得 Blob」來讀取進階儲存體帳戶中分頁 Blob 的快照集。 在進階儲存體帳戶的快照集上呼叫 Get Blob，會傳回錯誤碼 400 (**InvalidOperation**)。 不過，您可以對進階儲存體帳戶中的快照集呼叫「取得 Blob 屬性」和「取得 Blob 中繼資料」。
 * 若要讀取快照集，您可以使用複製 Blob 作業，將快照集複製到帳戶中的其他分頁 Blob。 複製作業的目的地 Blob 不可以包含任何現有的快照集。 如果目的地 Blob 具有快照集，則 Copy Blob 作業會傳回錯誤碼 409 (**SnapshotsPresent**)。
 
 ## <a name="return-the-absolute-uri-to-a-snapshot"></a>傳回快照集的絕對 URI
@@ -137,11 +136,11 @@ Console.WriteLine(blobSnapshot.SnapshotQualifiedStorageUri.PrimaryUri);
 
 > [!NOTE]
 > 最佳做法是要求您謹慎管理快照集，以避免產生額外費用。 建議您以下列方式管理快照集：
-> 
+>
 > * 每當您更新 Blob 時，刪除並重新建立與該 Blob 相關聯的快照集，除非您的應用程式設計為需要維護快照集，否則即使您正以相同資料進行更新也一樣。 藉由刪除並重新建立 Blob 的快照集，讓您可以確保該 Blob 和快照集不會分離開來。
 > * 如果您正在維護 Blob 的快照集，請避免呼叫 **UploadFile**、**UploadText**、**UploadStream** 或 **UploadByteArray** 來更新 Blob。 這些方法會取代 Blob 中的所有區塊，所以您的基底 blob 和快照集會明顯分離。 請改用 **PutBlock** 和 **PutBlockList** 方法，更新區塊的最少可能數目。
-> 
-> 
+>
+>
 
 ### <a name="snapshot-billing-scenarios"></a>快照集計費案例
 下列案例示範如何針對區塊 Blob 及其快照集產生費用。
@@ -163,11 +162,11 @@ Console.WriteLine(blobSnapshot.SnapshotQualifiedStorageUri.PrimaryUri);
 ![Azure 儲存體資源](./media/storage-blob-snapshots/storage-blob-snapshots-billing-scenario-4.png)
 
 ## <a name="next-steps"></a>後續步驟
-如需使用 Blob 儲存體的其他範例，請參閱 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)。 您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。 
+如需使用 Blob 儲存體的其他範例，請參閱 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)。 您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

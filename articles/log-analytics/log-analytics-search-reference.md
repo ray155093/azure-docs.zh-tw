@@ -1,19 +1,23 @@
 ---
-title: Log Analytics 搜尋參考 | Microsoft Docs
-description: Log Analytics 搜尋參考描述搜尋語言，並且提供一般查詢語法選項，您可以在搜尋資料及篩選運算式時用來幫助您縮小搜尋範圍。
+title: "Log Analytics 搜尋參考 | Microsoft Docs"
+description: "Log Analytics 搜尋參考描述搜尋語言，並且提供一般查詢語法選項，您可以在搜尋資料及篩選運算式時用來幫助您縮小搜尋範圍。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
-manager: jwhit
-editor: ''
-
+manager: carmonm
+editor: 
+ms.assetid: 402615a2-bed0-4831-ba69-53be49059718
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 01/02/2017
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: b7c13d4b4e205fda1e5ba44fbf5eb50a96601d2e
+ms.openlocfilehash: 113dd20f1a5ac42eb7155d693f66053adea57078
+
 
 ---
 # <a name="log-analytics-search-reference"></a>Log Analytics 搜尋參考
@@ -41,8 +45,8 @@ system
 
 > [!NOTE]
 > 並非所有的欄位都以此方式編製索引，不過最常見的文字欄位 (例如描述和名稱) 通常都是。
-> 
-> 
+>
+>
 
 ```
 system error
@@ -58,8 +62,8 @@ system error | sort ManagementGroupName, TimeGenerated desc | top 10
 
 > [!IMPORTANT]
 > 所有的欄位名稱以及字串和文字欄位的值都會區分大小寫。
-> 
-> 
+>
+>
 
 ## <a name="filter-expression"></a>篩選運算式
 下列小節說明篩選運算式。
@@ -94,7 +98,7 @@ Type:Perf 0.5
 HTTP 500
 ```
 
-### <a name="date/time"></a>日期/時間
+### <a name="datetime"></a>日期/時間
 系統中的每個資料片段都有 *TimeGenerated* 屬性，代表記錄的原始日期和時間。 某些資料類型可能另外有更多的日期/時間欄位 (例如， *LastModified*)。
 
 Log Analytics 中的時間表/時間選取器會以 *TimeGenerated* 欄位為基礎，顯示經過一段時間的結果分佈 (根據目前執行的查詢)。 日期/時間欄位具有特定字串格式，可以在查詢中用來將查詢限制在特定時間範圍內。 您也可以使用語法來參考相對的時間間隔 (例如，「3 天前和 2 小時前之間」)。
@@ -140,7 +144,7 @@ TimeGenerated:2013-10-01T12:20
 
 這些範例是用於相對與絕對日期的建置組塊。 在接下來的三個子節中，我們將透過使用相對日期範圍的範例，說明如何在更進階的篩選器中使用它們。
 
-### <a name="date/time-math"></a>日期/時間數學
+### <a name="datetime-math"></a>日期/時間數學
 使用日期/時間數學運算子，透過簡單的計算位移或四捨五入日期/時間值。
 
 語法：
@@ -249,6 +253,29 @@ TimeGenerated:[NOW..NOW+1DAY]
 SampleValue:[0..2]
 ```
 
+### <a name="regular-expressions"></a>規則運算式
+您可以使用 Regex 關鍵字，以規則運算式指定欄位的搜尋條件。
+
+**語法**
+
+```
+field:Regex("Regular Expression")
+```
+
+```
+field=Regex("Regular Expression")
+```
+
+**範例**
+
+```
+Computer=Regex("C.*")
+```
+
+```
+Computer=Regex("^C.*")
+```
+
 ### <a name="logical-operators"></a>邏輯運算子
 查詢語言分別支援邏輯運算子 (AND、OR 和 NOT) 和它們的 C 樣式別名 (*&&*、*||* 和 !)。 您可以使用括號來分組這些運算子。
 
@@ -283,16 +310,16 @@ Type=Event Computer=*SQL*
 
 > [!NOTE]
 > 目前無法在引號內使用萬用字元。 訊息=`"*This text*"` 將考慮使用 (\*) 做為常值 (\*) 字元。
-> 
+>
 > ## <a name="commands"></a>命令
-> 
+>
 
 命令會套用至查詢所傳回的結果。 使用縱線字元 ( | ) 將命令套用至擷取的結果。 多個命令必須以縱線字元分隔。
 
 > [!NOTE]
 > 命令名稱可以大寫或小寫撰寫，與欄位名稱和資料不同。
-> 
-> 
+>
+>
 
 ### <a name="sort"></a>排序
 語法：
@@ -301,7 +328,7 @@ Type=Event Computer=*SQL*
 
 依特定欄位排序結果。 asc/desc 前置詞是選擇性的。 如果將其省略，則會假設採用 *asc* 排序順序。 如果查詢未明確使用 *Sort* 命令，則 Sort **TimeGenerated** desc 為預設行為，且一律會先傳回最新的結果。
 
-### <a name="top/limit"></a>Top/Limit
+### <a name="toplimit"></a>Top/Limit
 語法：
 
     top number
@@ -340,7 +367,7 @@ Type=Event Computer=*SQL*
 
     Type:Alert errors detected | select Name, Severity
 
-將傳回的結果欄位限制為 *Name* and *Severity*小節中閱讀搜尋中傳回的欄位，以及協助您深入鑽研相似資料類別的 Facet。
+將傳回的結果欄位限制為 Name and Severity小節中閱讀搜尋中傳回的欄位，以及協助您深入鑽研相似資料類別的 Facet。
 
 ### <a name="measure"></a>Measure
 *measure* 命令可用來將統計函數套用至未經處理的搜尋結果。 需要取得資料的 *群組依據* 檢視時，這非常有用。 當您使用 *measure* 命令時，Log Analytics 搜尋會顯示含有彙總結果的資料表。
@@ -359,7 +386,7 @@ Type=Event Computer=*SQL*
 | 量值統計函數 | 說明 |
 | --- | --- |
 | *aggregateFunction* |彙總函數的名稱 (不區分大小寫)。 支援下列彙總函數：COUNT MAX MIN SUM AVG STDDEV COUNTDISTINCT PERCENTILE## 或 PCT## (## 是 1 到 99 之間的任意數字) |
-| *aggregatedField* |正在彙總的欄位。 這是 COUNT 彙總函數的選擇性欄位，但必須是 SUM、MAX、MIN、AVG STDDEV 或 PERCENTILE## 或 PCT## 的現有數值欄位 (## 是 1 到 99 之間的任意數字)。 |
+| *aggregatedField* |正在彙總的欄位。 這是 COUNT 彙總函數的選擇性欄位，但必須是 SUM、MAX、MIN、AVG STDDEV 或 PERCENTILE## 或 PCT## 的現有數值欄位 (## 是 1 到 99 之間的任意數字)。 aggregatedField 也可以是任一 Extend 支援的功能。 |
 | *fieldAlias* |計算彙總值 (選擇性) 別名。 如果未指定，欄位名稱將是 AggregatedValue。 |
 | *groupField* |用來分組結果集的欄位名稱。 |
 | *間隔* |採用下列格式的時間間隔︰**nnnNAME** ，其中：nnn 是正整數。 **NAME** 是間隔名稱。 支援的間隔名稱包含 (區分大小寫)：MILLISECOND[S] SECOND[S] MINUTE[S] HOUR[S] DAY[S] MONTH[S] YEAR[S] |
@@ -528,6 +555,16 @@ Type:Perf CounterName=”% Processor Time”  | measure min(CounterValue) as MIN
 
 先根據 computer 然後根據 Instance name 分組 % Processor Time，並傳回每 1 小時的最小值、平均、75 百分位數和最大值
 
+**範例 20**
+
+```
+Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | measure max(product(CounterValue,60)) as MaxDWPerMin by InstanceName Interval 1HOUR
+```
+
+*說明*
+
+計算您電腦上每個磁碟每分鐘磁碟寫入的最大值
+
 ### <a name="where"></a>Where
 語法：
 
@@ -573,12 +610,12 @@ Type=Event Computer IN {Type:Update Classification="Security Updates"  UpdateSta
 
 **範例**
 
-    Type=Event | sort TimeGenerated DESC | Dedup EventID
+    Type=Event | Dedup EventID | sort TimeGenerated DESC
 
 上述範例會一個 EventID 傳回一個事件 (因為我們在 TimeGenerated 上使用 DESC，所以是最新事件)
 
 ### <a name="extend"></a>Extend
-**說明** 可讓您在查詢中建立執行階段欄位
+**描述** 可讓您在查詢中建立執行階段欄位。 如果您想要執行彙總，也可以在 Extend 之後使用 measure 命令。
 
 **範例 1**
 
@@ -599,8 +636,15 @@ Type=Event Computer IN {Type:Update Classification="Security Updates"  UpdateSta
 
 ```
 Type=Perf CounterName="% Processor Time" | EXTEND if(map(CounterValue,0,50,0,1),"HIGH","LOW") as UTILIZATION
-Tag Perf Counter Values less than 50% las LOW and others as HIGH
 ```
+將小於 50% 的效能計數器值標記為 LOW，而將其他值標記為 HIGH
+
+**範例 5**
+
+```
+Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | Extend product(CounterValue,60) as DWPerMin| measure max(DWPerMin) by InstanceName Interval 1HOUR
+```
+計算您電腦上每個磁碟每分鐘磁碟寫入的最大值
 
 **支援的函式**
 
@@ -767,6 +811,8 @@ Tag Perf Counter Values less than 50% las LOW and others as HIGH
 * 熟悉 [記錄搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
 * 使用 [Log Analytics 中的自訂欄位](log-analytics-custom-fields.md) 來延伸記錄檔搜尋。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO2-->
 
 

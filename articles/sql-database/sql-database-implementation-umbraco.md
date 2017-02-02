@@ -8,16 +8,16 @@ manager: jhubbard
 editor: 
 ms.assetid: 5243d31e-3241-4cb0-9470-ad488ff28572
 ms.service: sql-database
-ms.custom: app development case study; app development
+ms.custom: app development case study
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/22/2016
+ms.date: 01/10/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0800f04034410c3734ef0a97afd9d41cf850381b
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 41334fb928b18c288f32efb0978150fa24ae14e3
 
 
 ---
@@ -54,7 +54,7 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
    此實作是使用 C# 管理程式庫和「Azure 服務匯流排」佇列來完全自動化執行。
 2. 利用
    
-   客戶會使用一到三個環境 (用於生產、預備和/或開發)，每個環境都有自己的資料庫。 客戶資料庫是在彈性資料庫集區中，這讓 Umbraco 不需過度佈建即可提供有效率的調整。
+   客戶會使用一到三個環境 (用於生產、預備和/或開發)，每個環境都有自己的資料庫。 客戶資料庫是在彈性集區中，這讓 Umbraco 不需過度佈建即可提供有效率的調整。
    
    ![Umbraco 專案概觀](./media/sql-database-implementation-umbraco/figure2.png)
    
@@ -78,7 +78,7 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
    刪除專案環境時，於「Azure 服務匯流排」佇列清除期間，將會移除所有關聯的資料庫 (開發、預備或即時)。 此自動化程序會將未使用的資料庫還原至 Umbraco 的彈性資料庫可用性集區，如此既可充分利用這些資料庫，又可將這些資料庫用於未來的佈建。
 
 ## <a name="elastic-pools-allow-uaas-to-scale-with-ease"></a>彈性集區可讓 UaaS 輕鬆進行調整
-透過利用 Azure 彈性資料庫集區，Umbraco 可以將其客戶的效能最佳化，而無須擔心過度佈建或佈建不足。 Umbraco 目前擁有 3,000 個遍佈在 19 個彈性資料庫集區的資料庫，不論是現有 325,000 個客戶中的任何一個客戶，還是已準備好要在雲端部署 CMS 的新客戶，Umbraco 都能夠輕鬆地視需要調整來配合其需求。
+透過利用 Azure 彈性集區，Umbraco 可以將其客戶的效能最佳化，而無須擔心過度佈建或佈建不足。 Umbraco 目前擁有 3,000 個遍佈在 19 個彈性集區的資料庫，不論是現有 325,000 個客戶中的任何一個客戶，還是已準備好要在雲端部署 CMS 的新客戶，Umbraco 都能夠輕鬆地視需要調整來配合其需求。
 
 事實上，Umbraco 的技術主管 Morten Christensen 表示：「UaaS 現在大約是以每天 30 個新客戶的速度在成長。 我們的客戶很高興能夠便利地在幾秒內就佈建好新的專案、使用「單鍵部署」功能從開發環境立即將更新發佈至他們的即時站台，以及以同樣快速的方式在發現錯誤時進行變更。」
 
@@ -91,7 +91,7 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
 ## <a name="the-path-from-datacenter-to-cloud"></a>從資料中心到雲端的路徑
 當 Umbraco 開發人員一開始決定移至 SaaS 模型時，即已知道他們需要一個符合成本效益且可調整的方式來建置服務。
 
-> 「彈性資料庫集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。 佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。
+> 「彈性集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。 佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。
 > 
 > — Morten Christensen，Umbraco 技術主管
 > 
@@ -110,11 +110,11 @@ Umbraco 開發人員的其中一個重要的目標就是，為 UaaS 客戶提供
 * 在 UaaS 參與競爭的所有地理市場中都存在 (企業需要確保它們可以快速地存取其資料，並且其資料是儲存在符合其區域法規要求的位置)
 
 ## <a name="why-umbraco-chose-azure-for-uaas"></a>為什麼 Umbraco 選擇將 Azure 用於 UaaS
-Morten Christensen 表示：「在考量我們的所有選項之後，我們選擇了 Azure，因為它符合我們從管理性、延展性再到熟悉度及符合成本效益方面的所有準則。 我們在 Azure VM 上設定環境，每個環境都有自己的 Azure SQL 資料庫執行個體，而所有執行個體都在彈性資料庫集區中。 透過將開發、預備及即時環境之間的資料庫加以區隔，我們可以為客戶提供與規模相符的強大效能隔離，這是一項極大的優點。」
+Morten Christensen 表示：「在考量我們的所有選項之後，我們選擇了 Azure，因為它符合我們從管理性、延展性再到熟悉度及符合成本效益方面的所有準則。 我們在 Azure VM 上設定環境，每個環境都有自己的 Azure SQL 資料庫執行個體，而所有執行個體都在彈性集區中。 透過將開發、預備及即時環境之間的資料庫加以區隔，我們可以為客戶提供與規模相符的強大效能隔離，這是一項極大的優點。」
 
 Morten 繼續說道：「以前，我們必須手動佈建 Web 資料庫的伺服器。 現在，我們完全無須思考這項工作。 從佈建到清除的所有作業都是自動化完成。」
 
-Morten 也很滿意 Azure 所提供的調整功能。 「彈性資料庫集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。 佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。 Morten 表示：「彈性集區的簡單性，再加上以服務層為基礎之 DTU 的保證，使得我們能夠依需求佈建新的資源集區。 最近，我們一個較大客戶的即時環境尖峰達到了 100 個 DTU。 透過使用 Azure，我們的彈性集區為客戶的資料庫提供了它們所需的即時資源，而不需預測 DTU 需求。 簡單地說，我們的客戶達到了預期的周轉時間，而我們則符合了效能服務等級協定。」
+Morten 也很滿意 Azure 所提供的調整功能。 「彈性集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。 佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。 Morten 表示：「彈性集區的簡單性，再加上以服務層為基礎之 DTU 的保證，使得我們能夠依需求佈建新的資源集區。 最近，我們一個較大客戶的即時環境尖峰達到了 100 個 DTU。 透過使用 Azure，我們的彈性集區為客戶的資料庫提供了它們所需的即時資源，而不需預測 DTU 需求。 簡單地說，我們的客戶達到了預期的周轉時間，而我們則符合了效能服務等級協定。」
 
 Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Database 搭配使用的基礎技術以外，我們也採用了強大的 Azure 演算法，將常見的 SaaS 案例 (讓新客戶即時大規模上線) 與我們的應用程式模式 (預先佈建開發資料庫和即時資料庫) 連接。」
 
@@ -122,7 +122,7 @@ Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Data
 由於選擇 Azure 作為雲端合作夥伴，因此 Umbraco 不需像自我裝載解決方案那樣需要投資 IT 資源，就能夠為 UaaS 客戶提供最佳化的內容管理效能。 如 Morten 所述：「我們相當滿意 Azure 為開發人員提供的便利性和延展性，而我們的客戶也為所獲得的功能和可靠性振奮不已。 整體而言，對我來說是一大勝利！」
 
 ## <a name="more-information"></a>詳細資訊
-* 若要深入了解 Azure 彈性資料庫集區，請參閱 [彈性資料庫集區](sql-database-elastic-pool.md)。
+* 若要深入了解 Azure 彈性集區，請參閱[彈性集區](sql-database-elastic-pool.md)。
 * 若要深入了解「Azure 服務匯流排」，請參閱 [Azure 服務匯流排](https://azure.microsoft.com/services/service-bus/)。
 * 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
 * 若要深入了解虛擬網路，請參閱 [虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)。    
@@ -133,6 +133,6 @@ Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Data
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

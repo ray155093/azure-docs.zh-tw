@@ -3,7 +3,7 @@ title: "在獨立 Service Fabric 叢集中新增或移除節點 | Microsoft Docs
 description: "了解如何在執行 Windows Server 的實體或虛擬電腦上 (無論是在內部部署或任何雲端) 對 Azure Service Fabric 叢集新增或移除節點。"
 services: service-fabric
 documentationcenter: .net
-author: dsk-2015
+author: rwike77
 manager: timlt
 editor: 
 ms.assetid: bc6b8fc0-d2af-42f8-a164-58538be38d02
@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/20/2016
-ms.author: dkshir;chackdan
+ms.date: 12/06/2016
+ms.author: ryanwi;chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 335ab9d3746b089e9e7a8d640a89a2d381295b46
+ms.sourcegitcommit: 3f7d2861512ba02e3b158db78fbee771da1c788b
+ms.openlocfilehash: 0d15e9a68c91c85e6a9250cc31e03e24b32cf7bf
 
 
 ---
@@ -29,20 +29,22 @@ ms.openlocfilehash: 335ab9d3746b089e9e7a8d640a89a2d381295b46
 3. 以遠端桌面 (RDP) 登入到要在叢集中新增的 VM/電腦。
 4. 複製或 [下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690) 到此 VM/電腦，然後解壓縮封裝。
 5. 以系統管理員身分執行 PowerShell，然後瀏覽至解壓縮封裝的位置。
-6. 使用描述要新增之新節點的參數執行「AddNode.ps1」  Powershell。 下列範例會將稱為 VM5 的新節點 (類型 NodeType0、IP 位址 182.17.34.52) 新增至 UD1 和 FD1。 「ExistingClusterConnectionEndPoint」  是已在現有叢集中之節點的 Connect Endpoint。 對於此端點，您可以選擇叢集中「任何」  節點的 IP 位址。
+6. 使用描述要新增之新節點的參數執行「AddNode.ps1」  Powershell。 下列範例會將稱為 VM5 的新節點 (類型 NodeType0、IP 位址 182.17.34.52) 新增至 UD1 和 fd:/dc1/r0。 「ExistingClusterConnectionEndPoint」  是已在現有叢集中之節點的 Connect Endpoint。 對於此端點，您可以選擇叢集中「任何」  節點的 IP 位址。
 
 ```
-.\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain FD1 -AcceptEULA
+.\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -AcceptEULA
 
 ```
+您可以檢查新的節點是否藉由執行 Cmdlet [Get-ServiceFabricNode](https://docs.microsoft.com/powershell/servicefabric/vlatest/Get-ServiceFabricNode)而新增。
+
 
 ## <a name="remove-nodes-from-your-cluster"></a>從叢集移除節點
-1. 根據為叢集選擇的「可靠性」等級而定，您無法移除主要節點類型的前 n 個 (3/5/7/9) 節點
-2. 不支援在 dev 叢集上執行 RemoveNode 命令。
-3. 以遠端桌面 (RDP) 登入到您想要從叢集移除的 VM/電腦。
-4. 複製或 [下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690) ，然後將此封裝解壓縮到此 VM/電腦。
-5. 以系統管理員身分執行 PowerShell，然後瀏覽至解壓縮封裝的位置。
-6. 在 PowerShell 中執行 *RemoveNode.ps1*。 下列範例會從叢集移除目前的節點。 ExistingClientConnectionEndpoint 是將會留在叢集中之任何節點的用戶端連接端點。 選擇叢集中「任何」**其他節點**的 IP 位址和端點連接埠。 此**其他節點**會接著更新所移除節點的叢集組態。 
+根據為叢集選擇的「可靠性」等級而定，您無法移除主要節點類型的前 n 個 (3/5/7/9) 節點。 同時請注意，不支援在 dev 叢集上執行 RemoveNode 命令。
+
+1. 以遠端桌面 (RDP) 登入到您想要從叢集移除的 VM/電腦。
+2. 複製或 [下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690) ，然後將此封裝解壓縮到此 VM/電腦。
+3. 以系統管理員身分執行 PowerShell，然後瀏覽至解壓縮封裝的位置。
+4. 在 PowerShell 中執行 *RemoveNode.ps1*。 下列範例會從叢集移除目前的節點。 ExistingClientConnectionEndpoint 是將會留在叢集中之任何節點的用戶端連接端點。 選擇叢集中「任何」**其他節點**的 IP 位址和端點連接埠。 此**其他節點**會接著更新所移除節點的叢集組態。 
 
 ```
 .\RemoveNode.ps1 -ExistingClientConnectionEndpoint 182.17.34.50:19000
@@ -64,6 +66,6 @@ ms.openlocfilehash: 335ab9d3746b089e9e7a8d640a89a2d381295b46
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

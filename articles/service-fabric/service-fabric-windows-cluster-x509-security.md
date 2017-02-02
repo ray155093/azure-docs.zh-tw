@@ -1,27 +1,31 @@
 ---
-title: 連接到安全的私人叢集 | Microsoft Docs
-description: 本文說明如何保護獨立或私人叢集內以及用戶端與叢集之間的通訊。
+title: "使用憑證保護 Windows 上的叢集 | Microsoft Docs"
+description: "本文說明如何保護獨立或私人叢集內以及用戶端與叢集之間的通訊。"
 services: service-fabric
 documentationcenter: .net
-author: dsk-2015
+author: rwike77
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: fe0ed74c-9af5-44e9-8d62-faf1849af68c
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/08/2016
-ms.author: dkshir
+ms.date: 12/12/2016
+ms.author: ryanwi
+translationtype: Human Translation
+ms.sourcegitcommit: 4fb6ef56d694aff967840ab26b75b66a2e799cc1
+ms.openlocfilehash: 48fd90c7ffb6748642ed02804117ff92cb060016
+
 
 ---
-# <a name="secure-a-standalone-cluster-on-windows-using-x.509-certificates"></a>使用 X.509 憑證保護 Windows 上的獨立叢集
+# <a name="secure-a-standalone-cluster-on-windows-using-x509-certificates"></a>使用 X.509 憑證保護 Windows 上的獨立叢集
 本文說明如何保護獨立 Windows 叢集的各個節點之間的通訊，以及如何使用 X.509 憑證來驗證連線到此叢集的用戶端。 這可確保只有已獲授權的使用者可以存取叢集和已部署的應用程式，以及執行管理工作。  憑證安全性應在叢集建立之時先在叢集上啟用。  
 
 如需諸如節點對節點安全性、用戶端對節點安全性、角色型存取控制等有關叢集安全性的詳細資訊，請參閱 [叢集安全性案例](service-fabric-cluster-security.md)。
 
-## <a name="which-certificates-will-you-need?"></a>您需要哪些憑證？
+## <a name="which-certificates-will-you-need"></a>您需要哪些憑證？
 一開始，請 [將獨立叢集封裝](service-fabric-cluster-creation-for-windows-server.md#downloadpackage) 下載至叢集中的其中一個節點。 在下載的套件中，您會找到 **ClusterConfig.X509.MultiMachine.json** 檔案。 開啟檔案，檢閱 **properties** 區段下的 **security** 區段：
 
     "security": {
@@ -39,26 +43,33 @@ ms.author: dkshir
                 "ThumbprintSecondary": "[Thumbprint]",
                 "X509StoreName": "My"
             },
-            "ClientCertificateThumbprints": [{
-                "CertificateThumbprint": "[Thumbprint]",
-                "IsAdmin": false
-            }, {
-                "CertificateThumbprint": "[Thumbprint]",
-                "IsAdmin": true
-            }],
-            "ClientCertificateCommonNames": [{
-                "CertificateCommonName": "[CertificateCommonName]",
-                "CertificateIssuerThumbprint" : "[Thumbprint]",
-                "IsAdmin": true
-            }]
-            "HttpApplicationGatewayCertificate":{
+            "ClientCertificateThumbprints": [
+                {
+                    "CertificateThumbprint": "[Thumbprint]",
+                    "IsAdmin": false
+                }, 
+                {
+                    "CertificateThumbprint": "[Thumbprint]",
+                    "IsAdmin": true
+                }
+            ],
+            "ClientCertificateCommonNames": [
+                {
+                    "CertificateCommonName": "[CertificateCommonName]",
+                    "CertificateIssuerThumbprint" : "[Thumbprint]",
+                    "IsAdmin": true
+                }
+            ]
+            "ReverseProxyCertificate":{
                 "Thumbprint": "[Thumbprint]",
+                "ThumbprintSecondary": "[Thumbprint]",
                 "X509StoreName": "My"
             }
         }
     }
 
-此區段描述保護獨立 Windows 叢集所需的憑證。 若要啟用憑證型安全性，請將 **ClusterCredentialType** 和 **ServerCredentialType** 的值設定為 *X509*。
+此區段描述保護獨立 Windows 叢集所需的憑證。 如果您指定叢集憑證，請將**ClusterCredentialType** 的值設定為 _**X509**_。 如果您指定外部連接的伺服器憑證，請將 **ServerCredentialType** 設定為 _**X509**_。 雖然並非必要，但我們建議具備這兩個憑證以適當保護叢集。 如果您將這些值設定為 X509，則您也必須指定對應憑證或 Service Fabric 將會擲回例外狀況。 在某些情況下，您可能只想要指定 _ClientCertificateThumbprints_ 或 _ReverseProxyCertificate_。 在這些情況下，您需要將 _ClusterCredentialType_ 或 _ServerCredentialType_設定為 _X509_。
+
 
 > [!NOTE]
 > [指紋](https://en.wikipedia.org/wiki/Public_key_fingerprint) 是憑證的主要身分識別。 閱讀 [如何擷取憑證的指紋](https://msdn.microsoft.com/library/ms734695.aspx) ，以找出您所建立的憑證指紋。
@@ -73,7 +84,7 @@ ms.author: dkshir
 | ServerCertificate |用戶端嘗試連線到此叢集時，會向用戶端此憑證顯示此憑證。 為了方便起見，您可以選擇對 *ClusterCertificate* 和 *ServerCertificate* 使用相同的憑證。 您可以使用兩個不同的伺服器憑證 (主要和次要) 進行更新。 在 **Thumbprint** 區段中設定主要憑證的指紋，以及在 **ThumbprintSecondary** 變數中設定次要憑證的指紋。 |
 | ClientCertificateThumbprints |這是您想在經過驗證的用戶端上安裝的一組憑證。 在您要允許存取叢集的電腦上，您可以安裝數個不同的用戶端憑證。 在 **CertificateThumbprint** 變數中設定每個憑證的指紋。 如果您將 **IsAdmin** 設為 *true*，則已安裝此憑證的用戶端可以對叢集執行系統管理員管理活動。 如果 **IsAdmin** 是 *false*，有此憑證的用戶端只能執行其使用者存取權限允許的動作，通常是唯讀。 如需角色的詳細資訊，請參閱 [角色型存取控制 (RBAC)](service-fabric-cluster-security.md#role-based-access-control-rbac) |
 | ClientCertificateCommonNames |針對 **CertificateCommonName**設定第一個用戶端憑證的一般名稱。 **CertificateIssuerThumbprint** 是此憑證的簽發者指紋。 閱讀 [使用憑證](https://msdn.microsoft.com/library/ms731899.aspx) ，以深入了解一般名稱和簽發者。 |
-| HttpApplicationGatewayCertificate |如果您想要保護 Http 應用程式閘道，這是可以指定的選擇性憑證。 如果您使用此憑證，請務必在 nodeTypes 中設定 reverseProxyEndpointPort。 |
+| ReverseProxyCertificate |如果您想要保護[反向 Proxy](service-fabric-reverseproxy.md)，可以指定此選擇性憑證。 如果您使用此憑證，請務必在 nodeTypes 中設定 reverseProxyEndpointPort。 |
 
 以下是範例叢集組態，其中已提供叢集、 伺服器和用戶端憑證。
 
@@ -90,16 +101,16 @@ ms.author: dkshir
         "faultDomain": "fd:/dc1/r0",
         "upgradeDomain": "UD0"
     }, {
-      "nodeName": "vm1",
-            "metadata": "Replace the localhost with valid IP address or FQDN",
+        "nodeName": "vm1",
+        "metadata": "Replace the localhost with valid IP address or FQDN",
         "iPAddress": "10.7.0.4",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r1",
         "upgradeDomain": "UD1"
     }, {
         "nodeName": "vm2",
-      "iPAddress": "10.7.0.6",
-            "metadata": "Replace the localhost with valid IP address or FQDN",
+        "iPAddress": "10.7.0.6",
+        "metadata": "Replace the localhost with valid IP address or FQDN",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r2",
         "upgradeDomain": "UD2"
@@ -138,7 +149,9 @@ ms.author: dkshir
         "nodeTypes": [{
             "name": "NodeType0",
             "clientConnectionEndpointPort": "19000",
-            "clusterConnectionEndpoint": "19001",
+            "clusterConnectionEndpointPort": "19001",
+            "leaseDriverEndpointPort": "19002",
+            "serviceConnectionEndpointPort": "19003",
             "httpGatewayEndpointPort": "19080",
             "applicationPorts": {
                 "startPort": "20001",
@@ -165,17 +178,17 @@ ms.author: dkshir
 }
  ```
 
-## <a name="aquire-the-x.509-certificates"></a>取得 X.509 憑證
+## <a name="acquire-the-x509-certificates"></a>取得 X.509 憑證
 若要保護叢集內的通訊，您必須先取得叢集節點的 X.509 憑證。 此外，若要將此叢集的連線限制於經過授權的電腦/使用者，您必須取得並安裝這些用戶端電腦的憑證。
 
 對於執行生產環境工作負載的叢集，您應該使用 [憑證授權單位 (CA)](https://en.wikipedia.org/wiki/Certificate_authority) 簽署的 X.509 憑證來保護叢集。 如需有關如何取得這些憑證的詳細資訊，請移至 [做法：取得憑證](http://msdn.microsoft.com/library/aa702761.aspx)。
 
 若是用於測試的叢集，您可以選擇使用自我簽署憑證。
 
-## <a name="optional:-create-a-self-signed-certificate"></a>選擇性：建立自我簽署憑證
-若要建立可以正確保護的自我簽署憑證，其中一個做法是使用 *C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\Secure* 目錄下 Service Fabric SDK 資料夾中的 *CertSetup.ps1* 指令碼。 編輯檔案，並使用此檔案建立具適當名稱的憑證。
+## <a name="optional-create-a-self-signed-certificate"></a>選擇性：建立自我簽署憑證
+若要建立可以正確保護的自我簽署憑證，其中一個做法是使用 *C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\Secure* 目錄下 Service Fabric SDK 資料夾中的 *CertSetup.ps1* 指令碼。 編輯此檔案來變更憑證的預設名稱 (尋找值 CN=ServiceFabricDevClusterCert)。 執行此指令碼為 `.\CertSetup.ps1 -Install`。
 
-現在將憑證匯出至 PFX 檔並設定保護密碼。 首先，您必須取得憑證的指紋。 執行 certmgr.exe 應用程式。 瀏覽至 [本機電腦\個人] 資料夾，找到您剛建立的憑證。 按兩下憑證以開啟它，選取 [詳細資料] 索引標籤，然後向下捲動至 [指紋] 欄位。 將憑證指紋值複製到以下的 PowerShell 命令，移除空格。  變更 $pswd  的值為適用性安全密碼以保護它，然後執行此 PowerShell︰
+現在將憑證匯出至 PFX 檔並設定保護密碼。 首先取得憑證的指紋。 從 [啟動] 功能表中，執行 [管理電腦憑證]。 瀏覽至 [本機電腦\個人] 資料夾，找到您剛建立的憑證。 按兩下憑證以開啟它，選取 [詳細資料] 索引標籤，然後向下捲動至 [指紋] 欄位。 在移除空格之後，將憑證指紋值複製到以下的 PowerShell 命令。  將 `String` 的值變更為適當的安全密碼加以保護，然後在 PowerShell 執行下列命令︰
 
 ```   
 $pswd = ConvertTo-SecureString -String "1234" -Force –AsPlainText
@@ -199,74 +212,79 @@ Write-Host $cert.ToString($true)
    
     ```
     $pswd = "1234"
-    $PfcFilePath ="C:\mypfx.pfx"
+    $PfxFilePath ="C:\mypfx.pfx"
     Import-PfxCertificate -Exportable -CertStoreLocation Cert:\LocalMachine\My -FilePath $PfxFilePath -Password (ConvertTo-SecureString -String $pswd -AsPlainText -Force)
     ```
-3. 接下來，您必須在此憑證上設定存取控制，讓在「網路服務」帳戶下執行的 Service Fabric 程序可以藉由執行下列指令碼來使用它。 提供憑證的指紋和服務帳戶的「網路服務」。 您可以使用 certmgr.exe 工具並以 [管理私密金鑰] 查看憑證，以檢查憑證上的 ACL 是否正確。
+3. 現在您必須在此憑證上設定存取控制，讓在「網路服務」帳戶下執行的 Service Fabric 程序可以藉由執行下列指令碼來使用它。 提供憑證的指紋和服務帳戶的「網路服務」。 您可以檢查憑證上的 ACL 是否正確，方法是在 [啟動]  >  [管理電腦憑證] 開啟憑證，並查看 [所有工作]  >  [管理私密金鑰]。
    
     ```
     param
     (
-        [Parameter(Position=1, Mandatory=$true)]
-        [ValidateNotNullOrEmpty()]
-        [string]$pfxThumbPrint,
+    [Parameter(Position=1, Mandatory=$true)]
+    [ValidateNotNullOrEmpty()]
+    [string]$pfxThumbPrint,
    
-        [Parameter(Position=2, Mandatory=$true)]
-        [ValidateNotNullOrEmpty()]
-        [string]$serviceAccount
-        )
+    [Parameter(Position=2, Mandatory=$true)]
+    [ValidateNotNullOrEmpty()]
+    [string]$serviceAccount
+    )
    
-        $cert = Get-ChildItem -Path cert:\LocalMachine\My | Where-Object -FilterScript { $PSItem.ThumbPrint -eq $pfxThumbPrint; };
+    $cert = Get-ChildItem -Path cert:\LocalMachine\My | Where-Object -FilterScript { $PSItem.ThumbPrint -eq $pfxThumbPrint; }
    
-        # Specify the user, the permissions and the permission type
-        $permission = "$($serviceAccount)","FullControl","Allow"
-        $accessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permission;
+    # Specify the user, the permissions and the permission type
+    $permission = "$($serviceAccount)","FullControl","Allow"
+    $accessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permission
    
-        # Location of the machine related keys
-        $keyPath = $env:ProgramData + "\Microsoft\Crypto\RSA\MachineKeys\";
-        $keyName = $cert.PrivateKey.CspKeyContainerInfo.UniqueKeyContainerName;
-        $keyFullPath = $keyPath + $keyName;
+    # Location of the machine related keys
+    $keyPath = Join-Path -Path $env:ProgramData -ChildPath "\Microsoft\Crypto\RSA\MachineKeys"
+    $keyName = $cert.PrivateKey.CspKeyContainerInfo.UniqueKeyContainerName
+    $keyFullPath = Join-Path -Path $keyPath -ChildPath $keyName
    
-        # Get the current acl of the private key
-        $acl = (Get-Item $keyFullPath).GetAccessControl('Access')
+    # Get the current acl of the private key
+    $acl = (Get-Item $keyFullPath).GetAccessControl('Access')
    
-        # Add the new ace to the acl of the private key
-        $acl.SetAccessRule($accessRule);
+    # Add the new ace to the acl of the private key
+    $acl.SetAccessRule($accessRule)
    
-        # Write back the new acl
-        Set-Acl -Path $keyFullPath -AclObject $acl -ErrorAction Stop
+    # Write back the new acl
+    Set-Acl -Path $keyFullPath -AclObject $acl -ErrorAction Stop
    
-        #Observe the access rights currently assigned to this certificate.
-        get-acl $keyFullPath| fl
-        ```
-4. Repeat the steps above for each server certificate. You can also use these steps to install the client certificates on the machines that you want to allow access to the cluster.
+    # Observe the access rights currently assigned to this certificate.
+    get-acl $keyFullPath| fl
+    ```
+4. 為每個伺服器憑證重複上述步驟。 您也可以使用上述步在您要允許存取叢集的電腦上安裝用戶端憑證。
 
-## Create the secure cluster
-After configuring the **security** section of the **ClusterConfig.X509.MultiMachine.json** file, you can proceed to [Create your cluster](service-fabric-cluster-creation-for-windows-server.md#createcluster) section to configure the nodes and create the standalone cluster. Remember to use the **ClusterConfig.X509.MultiMachine.json** file while creating the cluster. For example, your command might look like the following:
+## <a name="create-the-secure-cluster"></a>建立安全的叢集
+設定 **ClusterConfig.X509.MultiMachine.json** 檔案的 **security** 區段後，您可以繼續進行[建立叢集](service-fabric-cluster-creation-for-windows-server.md#createcluster)一節，以設定節點和建立獨立叢集。 請記得在建立叢集時使用 **ClusterConfig.X509.MultiMachine.json** 檔案。 例如，您的命令可能如下所示：
 
 ```
-.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json -MicrosoftServiceFabricCabFilePath .\MicrosoftAzureServiceFabric.cab -AcceptEULA $true
+.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
-Once you have the secure standalone Windows cluster successfully running, and have setup the authenticated clients to connect to it, follow the section [Connect to a secure cluster using PowerShell](service-fabric-connect-to-secure-cluster.md#connectsecurecluster) to connect to it. For example:
+順利執行安全的獨立 Windows 叢集，並已設定經過驗證的用戶端以進行連接之後，請依照[使用 PowerShell 來連線到安全的叢集](service-fabric-connect-to-secure-cluster.md#connectsecurecluster)一節來連接它。 例如：
 
 ```
-Connect-ServiceFabricCluster -ConnectionEndpoint 10.7.0.4:19000 -KeepAliveIntervalInSec 10 -X509Credential -ServerCertThumbprint 057b9544a6f2733e0c8d3a60013a58948213f551 -FindType FindByThumbprint -FindValue 057b9544a6f2733e0c8d3a60013a58948213f551 -StoreLocation CurrentUser -StoreName My
+$ConnectArgs = @{  ConnectionEndpoint = '10.7.0.5:19000';  X509Credential = $True;  StoreLocation = 'LocalMachine';  StoreName = "MY";  ServerCertThumbprint = "057b9544a6f2733e0c8d3a60013a58948213f551";  FindType = 'FindByThumbprint';  FindValue = "057b9544a6f2733e0c8d3a60013a58948213f551"   }
+Connect-ServiceFabricCluster $ConnectArgs
 ```
 
-If you are logged on to one of the machines in the cluster, since this already has the certificate installed locally you can simply run the Powershell command to connect to the cluster and show a list of nodes:
+然後，您可以執行其他的 PowerShell 命令以使用此叢集。 例如，`Get-ServiceFabricNode` 可以顯示此安全叢集上的節點清單。
+
+
+若要移除叢集，連線至您下載 Service Fabric 套件的叢集節點，開啟命令列並導覽至套件資料夾。 現在執行下列命令：
 
 ```
-Connect-ServiceFabricCluster Get-ServiceFabricNode
-```
-To remove the cluster call the following command:
-
-```
-.\RemoveServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json   -MicrosoftServiceFabricCabFilePath .\MicrosoftAzureServiceFabric.cab
+.\RemoveServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
+> [!NOTE]
+> 不正確的憑證設定可能會在接下來的部署期間阻止叢集。 若要自我診斷安全性問題，請查看事件檢視器群組 [應用程式及服務記錄檔]  >  [Microsoft Service Fabric]。
+> 
+> 
 
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 6a8779a18ee330427efdf13419dc674fcddcc2fc
-ms.openlocfilehash: 1f3fd47db507f2cdb4fb822004efe365a2991b03
+ms.sourcegitcommit: 1268d29b0d9c4368f62918758836a73c757c0c8d
+ms.openlocfilehash: 20ffa261ef17847a665e7c83defeb19e9029fb63
 
 
 ---
@@ -578,7 +578,8 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 * 只有基本磁碟可以從複寫排除。 您無法排除 OS 或動態磁碟。
 * 啟用複寫後，您無法加入或移除複寫的磁碟。 如果您想要加入或排除磁碟，必須停用機器的保護，然後重新啟用它。
 * 如果您排除應用程式運作所需的磁碟，在容錯移轉至 Azure 之後，您將必須在 Azure 中手動建立它，複寫的應用程式才能執行。 或者，您可以將 Azure 自動化整合至復原計畫，在機器容錯移轉期間建立磁碟。
-* 您以手動方式在 Azure 中建立的磁碟會容錯回復。 例如，如果您容錯移轉三個磁碟，並直接在 Azure 中建立兩個磁碟，則五個磁碟全都將容錯回復。 您無法從容錯回復排除手動建立的磁碟。
+* Window VM：您以手動方式在 Azure 中建立的磁碟將不會容錯回復。 例如，如果您容錯移轉三個磁碟，並直接在 Azure VM 中建立兩個磁碟，則只有三個已容錯移轉的磁碟會容錯回復。 您無法在容錯回復中或者內部部署的重新保護中將手動建立的磁碟包含至 Azure。
+* Linux VM：您以手動方式在 Azure 中建立的磁碟會容錯回復。 例如，如果您容錯移轉三個磁碟，並直接在 Azure 中建立兩個磁碟，則五個磁碟全都將容錯回復。 您無法從容錯回復排除手動建立的磁碟。
 
 **立即啟用複寫，如下所示**︰
 
@@ -815,6 +816,6 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

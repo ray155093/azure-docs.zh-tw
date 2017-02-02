@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.date: 07/12/2016
 ms.author: jrj;barbkess;sonyama
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 01eb26ff4528faabdbc7b4d482190148b52f67d4
+ms.sourcegitcommit: f1a24e4ee10593514f44d83ad5e9a46047dafdee
+ms.openlocfilehash: f132af2966e2ac59e77dc0fa8113eb83089c68dd
 
 
 ---
 # <a name="indexing-tables-in-sql-data-warehouse"></a>在 SQL 資料倉儲中編製資料表的索引
 > [!div class="op_single_selector"]
-> * [概觀][概觀]
-> * [資料類型][資料類型]
-> * [散發][散發]
-> * [Index][Index]
-> * [資料分割][資料分割]
-> * [統計資料][統計資料]
-> * [暫存][暫存]
+> * [概觀][Overview]
+> * [資料類型][Data Types]
+> * [散發][Distribute]
+> * [索引][Index]
+> * [資料分割][Partition]
+> * [統計資料][Statistics]
+> * [暫存][Temporary]
 > 
 > 
 
-SQL 資料倉儲提供數個索引選項，包括[clustered columnstore indexes][clustered columnstore indexes]、[叢集索引和非叢集索引][叢集索引和非叢集索引]。  此外，它也提供一個索引選項，也稱為[堆積][堆積]。  本文涵蓋每種索引類型的優點，以及取得索引的最大效能的祕訣。 如需有關如何在 SQL 資料倉儲中建立資料表的詳細資訊，請參閱[建立資料表語法][建立資料表語法]。
+SQL 資料倉儲提供數個索引選項，包括[叢集資料行存放區索引][clustered columnstore indexes]、[叢集索引和非叢集索引][clustered indexes and nonclustered indexes]。  此外，它也提供一個索引選項，也稱為[堆積][heap]。  本文涵蓋每種索引類型的優點，以及取得索引的最大效能的祕訣。 如需有關如何在 SQL 資料倉儲中建立資料表的詳細資訊，請參閱[建立資料表語法][create table syntax]。
 
 ## <a name="clustered-columnstore-indexes"></a>叢集資料行存放區索引
 根據預設，若未在資料表上指定任何索引選項，則 SQL 資料倉儲會建立叢集資料行存放區索引。 叢集資料行存放區資料表提供最高層級的資料壓縮，以及最佳的整體查詢效能。  叢集資料行存放區資料表通常勝過叢集索引或堆積資料表，而且通常是大型資料表的最佳選擇。  基於這些理由，叢集資料行存放區是您不確定如何編製資料表索引時的最佳起點。  
@@ -57,7 +57,7 @@ WITH ( CLUSTERED COLUMNSTORE INDEX );
 * 具有少於 1 億個資料列的小型資料表。  請考慮堆積資料表。
 
 ## <a name="heap-tables"></a>堆積資料表
-當您在 SQL 資料倉儲上暫時登陸資料時，可能會發現使用堆積資料表會讓整個程序更快速。  這是因為堆積的載入速度比索引資料表還要快，而在某些情況下，可以從快取進行後續的讀取。  如果您載入資料只是在做執行更多轉換之前的預備，將資料表載入堆積資料表將會遠快於將資料載入叢集資料行存放區資料表。 此外，將資料載入 [暫存資料表][暫存] 也會比將資料表載入永久儲存體更快速。  
+當您在 SQL 資料倉儲上暫時登陸資料時，可能會發現使用堆積資料表會讓整個程序更快速。  這是因為堆積的載入速度比索引資料表還要快，而在某些情況下，可以從快取進行後續的讀取。  如果您載入資料只是在做執行更多轉換之前的預備，將資料表載入堆積資料表將會遠快於將資料載入叢集資料行存放區資料表。 此外，將資料載入[暫存資料表][Temporary]也會比將資料表載入永久儲存體更快速。  
 
 若為小於 1 億個資料列的小型查閱資料表，堆積資料表通常比較適合。  一旦超過 1 億個資料列，叢集資料行存放區資料表就會開始達到最佳的壓縮。
 
@@ -93,11 +93,6 @@ WITH ( CLUSTERED INDEX (id) );
 ```SQL
 CREATE INDEX zipCodeIndex ON t1 (zipCode);
 ```
-
-> [!NOTE]
-> 使用 CREATE INDEX 時，預設會建立非叢集索引。 此外，資料列儲存體資料表僅允許非叢集索引 (HEAP 或 CLUSTERED INDEX)。 目前不允許在 CLUSTERED COLUMNSTORE INDEX 最上方使用非叢集索引。
-> 
-> 
 
 ## <a name="optimizing-clustered-columnstore-indexes"></a>最佳化叢集資料行存放區索引
 叢集資料行存放區資料表會將資料組織成不同區段。  擁有高區段品質是在資料行存放區資料表上達到最佳查詢效能的關鍵。  壓縮的資料列群組中的資料列數目可以測量區段品質。  每個壓縮的資料列群組至少有 10 萬個資料列時的區段品質最佳，而隨著每個資料列群組的資料列數趨近 1,048,576 個資料列 (這是資料列群組可以包含的最大資料列數)，效能會跟著提升。
@@ -221,7 +216,7 @@ WHERE    COMPRESSED_rowgroup_rows_AVG < 100000
 ### <a name="step-1-identify-or-create-user-which-uses-the-right-resource-class"></a>步驟 1︰識別或建立會使用適當資源類別的使用者
 立即提升區段品質的快速方法就是重建索引。  上述檢視所傳回的 SQL 會傳回可用來重建索引的 ALTER INDEX REBUILD 陳述式。  重建索引時，請確定配置足夠的記憶體給將會重建索引的工作階段。  若要這樣做，請增加使用者的資源類別，該使用者有權將此資料表上的索引重建為建議的最小值。  無法變更資料庫擁有者使用者的資源類別，所以如果您尚未在系統上建立使用者，您必須先這麼做。  如果您使用 DW300 或更少，我們建議的最小值為 xlargerc，如果您使用 DW400 至 DW600，則為 largerc，而如果您使用 DW1000 和更高，則為 mediumrc。
 
-以下範例示範如何藉由增加資源類別，配置更多記憶體給使用者。  如需資源類別以及如何建立新使用者的詳細資訊，請參閱[並行存取和工作負載管理][並行]一文。
+以下範例示範如何藉由增加資源類別，配置更多記憶體給使用者。  如需資源類別以及如何建立新使用者的詳細資訊，請參閱[並行存取和工作負載管理][Concurrency]一文。
 
 ```sql
 EXEC sp_addrolemember 'xlargerc', 'LoadUser'
@@ -230,7 +225,7 @@ EXEC sp_addrolemember 'xlargerc', 'LoadUser'
 ### <a name="step-2-rebuild-clustered-columnstore-indexes-with-higher-resource-class-user"></a>步驟 2︰使用較高的資源類別使用者重建叢集資料行存放區索引
 以步驟 1 的使用者身分登入 (例如 LoadUser)，他現在使用較高的資源類別，執行 ALTER INDEX 陳述式。  請確定這個使用者對於重建索引的資料表擁有 ALTER 權限。  這些範例示範如何重建整個資料行存放區索引或如何重建單一資料分割。 在大型資料表上，比較適合一次重建單一資料分割的索引。
 
-或者，您可以使用 [CTAS][CTAS]將資料表複製到新的資料表，而非重建索引。  哪一種方式最好？ 針對大量的資料，[CTAS][CTAS] 的速度通常比 [ALTER INDEX][ALTER INDEX] 來得快。 針對較小量的資料，[ALTER INDEX][ALTER INDEX] 較為容易使用，您不需要交換出資料表。  如需有關如何使用 CTAS 重建索引的詳細資訊，請參閱 **使用 CTAS 和分割切換重建索引** 。
+或者，您可以使用 [CTAS][CTAS] 資料表複製到新的資料表，而非重建索引。  哪一種方式最好？ 針對大量的資料，[CTAS][CTAS] 的速度通常比 [ALTER INDEX][ALTER INDEX] 來得快。 針對較小量的資料，[ALTER INDEX][ALTER INDEX] 較為容易使用，您不需要交換出資料表。  如需有關如何使用 CTAS 重建索引的詳細資訊，請參閱 **使用 CTAS 和分割切換重建索引** 。
 
 ```sql
 -- Rebuild the entire clustered index
@@ -252,7 +247,7 @@ ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_CO
 ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_COMPRESSION = COLUMNSTORE)
 ```
 
-在 SQL 資料倉儲中重建索引是一項離線作業。  如需重建索引的詳細資訊，請參閱[資料行存放區索引重組][資料行存放區索引重組] 和語法主題 [ALTER INDEX][ALTER INDEX] 中的 ALTER INDEX REBUILD 區段。
+在 SQL 資料倉儲中重建索引是一項離線作業。  如需重建索引的詳細資訊，請參閱[資料行存放區索引重組][Columnstore Indexes Defragmentation] 和語法主題 [ALTER INDEX][ALTER INDEX] 中的 ALTER INDEX REBUILD 區段。
 
 ### <a name="step-3-verify-clustered-columnstore-segment-quality-has-improved"></a>步驟 3︰確認已改善叢集資料行存放區區段品質
 請重新執行已識別區段品質不佳之資料表的查詢，並驗證區段品質是否已改善。  如果區段品質並未改善，可能是您的資料表中的資料列過寬。  請考慮在重建索引時使用較高的資源類別或 DWU。
@@ -298,37 +293,37 @@ ALTER TABLE [dbo].[FactInternetSales] SWITCH PARTITION 2 TO  [dbo].[FactInternet
 ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [dbo].[FactInternetSales] PARTITION 2;
 ```
 
-如需使用 `CTAS` 重新建立資料分割的更多詳細資料，請參閱[資料分割][資料分割]一文。
+如需使用 `CTAS`重新建立資料分割的更多詳細資料，請參閱[分割區][Partition]一文。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解，請參閱[資料表概觀][概觀]、[資料表資料類型][資料類型]、[散發資料表][散發]、[分割資料表][資料分割]、[維護資料表統計資料][統計資料]及[暫存資料表][暫存]等文章。  若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data 資料倉儲最佳做法]。
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]及[暫存資料表][Temporary]等文章。  若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 
 <!--Article references-->
-[概觀]: ./sql-data-warehouse-tables-overview.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[散發]: ./sql-data-warehouse-tables-distribute.md
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
-[資料分割]: ./sql-data-warehouse-tables-partition.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[暫存]: ./sql-data-warehouse-tables-temporary.md
-[並行]: ./sql-data-warehouse-develop-concurrency.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
+[Concurrency]: ./sql-data-warehouse-develop-concurrency.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
 [ALTER INDEX]: https://msdn.microsoft.com/library/ms188388.aspx
-[堆積]: https://msdn.microsoft.com/library/hh213609.aspx
-[叢集索引和非叢集索引]: https://msdn.microsoft.com/library/ms190457.aspx
-[建立資料表語法]: https://msdn.microsoft.com/library/mt203953.aspx
-[資料行存放區索引重組]: https://msdn.microsoft.com/library/dn935013.aspx#Anchor_1
+[heap]: https://msdn.microsoft.com/library/hh213609.aspx
+[clustered indexes and nonclustered indexes]: https://msdn.microsoft.com/library/ms190457.aspx
+[create table syntax]: https://msdn.microsoft.com/library/mt203953.aspx
+[Columnstore Indexes Defragmentation]: https://msdn.microsoft.com/library/dn935013.aspx#Anchor_1
 [clustered columnstore indexes]: https://msdn.microsoft.com/library/gg492088.aspx
 
 <!--Other Web references-->
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

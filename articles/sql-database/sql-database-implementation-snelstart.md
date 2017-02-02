@@ -8,23 +8,23 @@ manager: jhubbard
 editor: 
 ms.assetid: fab506b2-439d-4f1a-bdc5-d1d25c80d267
 ms.service: sql-database
-ms.custom: app development case study; app development
+ms.custom: app development case study
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/08/2016
+ms.date: 01/10/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 66360bc0a8618d250cc07e3e806af6c9a157afaf
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 40ad0b85072c3a54c7791500663c4dd88133c095
 
 
 ---
 # <a name="with-azure-snelstart-has-rapidly-expanded-its-business-services-at-a-rate-of-1000-new-azure-sql-databases-per-month"></a>透過 Azure，SnelStart 以每月 1,000 個新 Azure SQL Database 的速度快速擴充其商務服務
 ![SnelStartLogo](./media/sql-database-implementation-snelstart/snelstartlogo.png)
 
-SnelStart 為荷蘭的中小企業 (SMB) 撰寫常用的財務和商務管理軟體。 它的 55,000 個客戶是由其 110 個員工提供服務，其中包括 35 個 IT 人員。 藉由從桌面軟體移至 Azure 上的軟體即服務 (SaaS) 方案組建，SnelStart 不僅透過使用 C# 中的熟悉環境將管理自動化，還透過使用彈性資料庫集區避免過度佈建或佈建不足以將效能和延展性最佳化，來充分利用了內建服務。 使用 Azure 讓 SnelStart 能夠在內部部署環境與雲端之間靈活移動客戶。
+SnelStart 為荷蘭的中小企業 (SMB) 撰寫常用的財務和商務管理軟體。 它的 55,000 個客戶是由其 110 個員工提供服務，其中包括 35 個 IT 人員。 藉由從桌面軟體移至 Azure 上的軟體即服務 (SaaS) 方案組建，SnelStart 不僅透過使用 C# 中的熟悉環境將管理自動化，還透過使用彈性集區避免過度佈建或佈建不足以將效能和延展性最佳化，來充分利用了內建服務。 使用 Azure 讓 SnelStart 能夠在內部部署環境與雲端之間靈活移動客戶。
 
 > [!影片 https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Database-Case-Study-SnelStart/player]
 > 
@@ -55,7 +55,7 @@ SnelStart 是一個現代化、靈活的高科技企業，其根源可追溯至 
 現今，SnelStart 是主要的企業營運 (LOB) 及業務管理應用程式提供者，目標對象是荷蘭的中小企業和自行開業的企業家。 如 IT 架構設計師 Carlo Kuip 所述：「我們的目標是要為客戶提供 100% 的業務管理服務自動化。」
 
 ## <a name="optimizing-performance-and-cost-with-elastic-pools"></a>透過彈性集區將效能和成本最佳化
-SnelStart 是彈性資料庫集區的早期大規模採用者。 彈性集區協助該公司限制成本，並更有效率地管理效能需求。 Been 表示：「藉由使用彈性資料庫集區，我們就可以根據客戶的需求將效能最佳化，而不會發生過度佈建的情況。 如果我們必須根據尖峰負載進行佈建，費用將會相當高昂。 而在多個低使用量資料庫之間共用資源的選項，則是讓我們能夠建立既執行順暢又符合成本效益的解決方案。」
+SnelStart 是彈性集區的早期大規模採用者。 彈性集區協助該公司限制成本，並更有效率地管理效能需求。 Been 表示：「藉由使用彈性集區，我們就可以根據客戶的需求將效能最佳化，而不會發生過度佈建的情況。 如果我們必須根據尖峰負載進行佈建，費用將會相當高昂。 而在多個低使用量資料庫之間共用資源的選項，則是讓我們能夠建立既執行順暢又符合成本效益的解決方案。」
 
 ## <a name="azure-sql-databases-help-containerize-data-for-isolation-and-security"></a>Azure SQL Database 協助將資料容器化來達到隔離及安全性目的
 Azure SQL Database 讓 SnelStart 能夠以輕鬆且通透的方式將客戶的內部部署業務管理資料移至 Azure。 Azure SQL Database 是一個便利的容器，不僅提供隔離、驗證和授權的界限，也提供輕鬆的備份與還原功能。 資料庫為業務管理提供了一個適當的概念模型。 IT 架構設計師 Carlo Kuip 表示：「這個容器界限內的項目包含對企業至關重要的機密資料，將這些項目儲存在隔離的資料庫中可為它們提供嚴密的防護。 我們可以管理在資料庫層級的授權，甚至將管理自動化並從這些資料庫向外延展，而不需有編制內的資料庫管理員 (DBA) 來處理。」
@@ -63,7 +63,7 @@ Azure SQL Database 讓 SnelStart 能夠以輕鬆且通透的方式將客戶的�
 「Azure SQL 資料倉儲」在 SnelStart 安全性與管理案例中協助公司收集遙測資料 (例如入侵偵測、使用者活動記錄，以及連線)，因此也扮演相當重要的角色。
 
 ## <a name="azure-removes-overhead-so-that-developers-can-spend-more-time-delivering-value"></a>Azure 免除了額外負荷，讓開發人員可以將更多時間專注在實現價值上
-Azure 平台模型免除了基礎結構額外負荷，並讓 SnelStart 能夠使用 C# 管理程式庫將部署自動化。 如 Kuip 所述：「我們能夠以很少的人員來拓展目前的作業，同時又能為用戶端增加延展性、速度及災害復原選項。 轉換到服務開發釋出了資源來專注於新的服務和功能，而不只是更新現有的程式碼來跟上新的法規或稅捐代碼。 」 他補充道：「藉由將管理自動化及使用 SaaS 方案，我們得以為用戶端提供更多價值，而不需在作業人員上進行大量投資。 舉例來說，藉由使用 Azure 和彈性資料庫集區，SnelStart 得以新增各種新功能，包括與銀行的更健全客戶資料整合、新的帳務服務、小型企業背景檢查，以及電子郵件服務。
+Azure 平台模型免除了基礎結構額外負荷，並讓 SnelStart 能夠使用 C# 管理程式庫將部署自動化。 如 Kuip 所述：「我們能夠以很少的人員來拓展目前的作業，同時又能為用戶端增加延展性、速度及災害復原選項。 轉換到服務開發釋出了資源來專注於新的服務和功能，而不只是更新現有的程式碼來跟上新的法規或稅捐代碼。 」 他補充道：「藉由將管理自動化及使用 SaaS 方案，我們得以為用戶端提供更多價值，而不需在作業人員上進行大量投資。 舉例來說，藉由使用 Azure 和彈性集區，SnelStart 得以新增各種新功能，包括與銀行的更健全客戶資料整合、新的帳務服務、小型企業背景檢查，以及電子郵件服務。
 
 > 「僅僅是 2016 年的頭幾個月，我們便將 Azure SQL Database 部署從 5,500 個擴充到超過 12,000 個，而我們目前正以每月 1,000 個資料庫的速度持續新增。」
 > 
@@ -88,7 +88,7 @@ SnelStart 也正在開發 API，來作為客戶資料與協力廠商軟體合作
 
 ![SnelStart 架構](./media/sql-database-implementation-snelstart/figure1.png)
 
-圖 1. 截至 2016 年 6 月為止，SnelStart 擁有超過 11,000 個資料庫，以及超過 50 個彈性資料庫集區
+圖 1. 截至 2016 年 6 月為止，SnelStart 擁有超過 11,000 個資料庫，以及超過 50 個彈性集區
 
 ## <a name="simplicity-from-the-cloud"></a>來自雲端的簡單性
 自從移至 Azure 雲端型解決方案之後，SnelStart 便得以支援快速的客戶成長，同時又能夠提供創新的功能和服務。 Been 表示：「透過 Azure，我們可以為客戶提供幾乎持續不斷的更新，而不需擴充我們的作業人員編制。 而且我們還附帶地獲得所有其他絕佳的 Azure 功能，像是延展性和災害復原。」
@@ -103,7 +103,7 @@ SnelStart 也相當感謝他們已與 Microsoft Azure SQL DB 團隊發展出的�
 SnelStart 當前的目標是繼續拓展其滿意的客戶群。 如 Been 所述：「沒有了過去作為 ISV 的技術與資源限制之後，我們的成長便沒有限制。」
 
 ## <a name="more-information"></a>詳細資訊
-* 若要深入了解 Azure 彈性資料庫集區，請參閱 [彈性資料庫集區](sql-database-elastic-pool.md)。
+* 若要深入了解 Azure 彈性集區，請參閱[彈性集區](sql-database-elastic-pool.md)。
 * 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
 * 若要深入了解「Azure SQL 資料倉儲」，請參閱 [SQL 資料倉儲](https://azure.microsoft.com/documentation/services/sql-data-warehouse/)
 * 若要深入了解 SnelStart，請參閱 [SnelStart](http://www.snelstart.nl)。
@@ -111,6 +111,6 @@ SnelStart 當前的目標是繼續拓展其滿意的客戶群。 如 Been 所述
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

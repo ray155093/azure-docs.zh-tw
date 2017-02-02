@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/12/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: ee8cfffdbf054b4251ed269745f6b9ee5a5e6c64
-ms.openlocfilehash: 5eb4b01718b47bf7dd2adfcb60b6ddfbe01d5ab6
+ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
+ms.openlocfilehash: d46c87480fd198bf4f09e48f4d2ea838a350190c
 
 
 ---
@@ -25,8 +25,6 @@ ms.openlocfilehash: 5eb4b01718b47bf7dd2adfcb60b6ddfbe01d5ab6
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-create-multisite-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-multisite-azureresourcemanager-powershell.md)
-> 
-> 
 
 多站台裝載可讓您在相同的應用程式閘道上部署多個 Web 應用程式。 它需倚賴在連入的 HTTP 要求中有主機標頭存在，以判斷哪一個接聽程式要接收流量。 然後再由接聽程式將流量導向閘道的規則定義中所設定的適當後端集區。 在已啟用 SSL 功能的 Web 應用程式中，則應用程式閘道會依賴「伺服器名稱指示」(SNI) 擴充功能來選擇正確的 Web 流量接聽程式。 多站台裝載的常見用法是將不同 Web 網域的要求負載平衡至不同的後端伺服器集區。 同樣地，相同根網域的多個子網域也可以裝載在相同的應用程式閘道上。
 
@@ -84,7 +82,7 @@ Get-AzureRmSubscription
 選擇要使用哪一個 Azure 訂用帳戶。
 
 ```powershell
-Select-AzureRmSubscription -SubscriptionName "Name of subscription"
+Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 ```
 
 ### <a name="step-4"></a>步驟 4
@@ -107,8 +105,6 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。 此位�
 
 > [!NOTE]
 > 如果您需要設定應用程式閘道的自訂探查，請參閱 [使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。 請造訪[自訂探查和健全狀況監視](application-gateway-probe-overview.md)以取得詳細資訊。
-> 
-> 
 
 ## <a name="create-a-virtual-network-and-subnets"></a>建立虛擬網路和子網路
 
@@ -177,7 +173,7 @@ $pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIP
 $pool2 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool02 -BackendIPAddresses 10.0.1.103, 10.0.1.104, 10.0.1.105
 ```
 
-此範例中有兩個後端集區，根據要求的網站路由傳送網路流量。 其中一個集區會接收來自 "contoso.com" 站台的流量，而另一個集區則會接收來自 "fabrikam.com" 站台的流量。 您必須取代上述 IP 位址來新增自己的應用程式 IP 位址端點。 您也可以使用公用 IP 位址、FQDN 或 VM 的後端執行個體 NIC 來取代內部 IP 位址。 請在 PowerShell 中使用 "-BackendFQDNs" 參數來指定 FQDN 而不是 IP。
+此範例中有兩個後端集區，根據要求的網站路由傳送網路流量。 其中一個集區會接收來自 "contoso.com" 站台的流量，而另一個集區則會接收來自 "fabrikam.com" 站台的流量。 您必須取代上述 IP 位址來新增自己的應用程式 IP 位址端點。 您也可以使用公用 IP 位址、FQDN 或 VM 的後端執行個體 NIC 來取代內部 IP 位址。 若要在 PowerShell 中指定 FQDN (而不是 IP)，請使用 "-BackendFQDNs" 參數。
 
 ### <a name="step-3"></a>步驟 3
 
@@ -289,6 +285,6 @@ DnsSettings              : {
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

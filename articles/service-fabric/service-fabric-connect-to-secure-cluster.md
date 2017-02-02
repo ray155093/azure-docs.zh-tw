@@ -15,13 +15,13 @@ ms.workload: na
 ms.date: 11/11/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 4ba0f864dc28beebb80567d3fac7f12cc42df677
-ms.openlocfilehash: 09557bd9c83318b2bdff8ecdefedc141eb7f80db
+ms.sourcegitcommit: 65775053918e12ef8881f417dacc0a63f080d093
+ms.openlocfilehash: 6de98012e768abc7f8450e97648444a74474b5e9
 
 
 ---
 # <a name="connect-to-a-secure-cluster"></a>連線到安全的叢集
-當用戶端連線到 Service Fabric 叢集節點時，用戶端可以使用憑證安全性或 Azure Active Directory (AAD) 來接受驗證及保護已建立的通訊。 此驗證可確保只有已獲授權的使用者可以存取叢集和已部署的應用程式，以及執行管理工作。  憑證或 AAD 安全性必須在叢集建立之時即事先在叢集上啟用。  如需有關叢集安全性案例的詳細資訊，請參閱 [叢集安全性](service-fabric-cluster-security.md)。 如果您要連接到使用憑證保護的叢集，請在要連接到叢集的電腦上[設定用戶端憑證](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert)。
+當用戶端連線到 Service Fabric 叢集節點時，用戶端可以使用憑證安全性或 Azure Active Directory (AAD) 來接受驗證及保護已建立的通訊。 此驗證可確保只有已獲授權的使用者可以存取叢集和已部署的應用程式，以及執行管理工作。  憑證或 AAD 安全性必須在叢集建立之時即事先在叢集上啟用。  如需有關叢集安全性案例的詳細資訊，請參閱 [叢集安全性](service-fabric-cluster-security.md)。 如果您要連接到使用憑證保護的叢集，請在要連接到叢集的電腦上[設定用戶端憑證](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert)。 
 
 <a id="connectsecureclustercli"></a> 
 
@@ -56,7 +56,7 @@ azure servicefabric cluster connect --connection-endpoint https://ip:19080 --cli
 azure servicefabric cluster connect --connection-endpoint https://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl-false --reject-unauthorized-false
 ```
 
-連線之後，您應該能夠執行其他 CLI 命令來與叢集互動。 
+連線之後，您應該能夠[執行其他 CLI 命令](service-fabric-azure-cli.md)來與叢集互動。 
 
 <a id="connectsecurecluster"></a>
 
@@ -111,7 +111,7 @@ Service Fabric SDK 會提供叢集管理的 [FabricClient](https://msdn.microsof
 
 ### <a name="connect-to-an-unsecure-cluster"></a>連線到不安全的叢集
 
-若要連接至遠端不安全的叢集，只需建立 FabricClient 執行個體，並提供叢集位址︰
+若要連接至遠端不安全的叢集，建立 FabricClient 執行個體，並提供叢集位址︰
 
 ```csharp
 FabricClient fabricClient = new FabricClient("clustername.westus.cloudapp.azure.com:19000");
@@ -279,7 +279,7 @@ static string GetAccessToken(
 <a id="connectsecureclustersfx"></a>
 
 ## <a name="connect-to-a-secure-cluster-using-service-fabric-explorer"></a>使用 Service Fabric Explorer 連線到安全的叢集
-若要連線到指定之叢集的[「Service Fabric 總管」](service-fabric-visualizing-your-cluster.md)，請將您的瀏覽器指向：
+若要連線到指定之叢集的 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)，請將您的瀏覽器指向：
 
 `http://<your-cluster-endpoint>:19080/Explorer`
 
@@ -330,6 +330,6 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPe
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

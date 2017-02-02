@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/27/2016
+ms.date: 12/13/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 764270f66a512efe5341361925845f671ea2b815
+ms.sourcegitcommit: 1761ee404e355d41170a5684a1a0ca6d2629f1e3
+ms.openlocfilehash: 5b6819a583f5161854be0f71bbc5164afd57d6f9
 
 
 ---
@@ -79,7 +79,7 @@ Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個�
 
 **取得目前的元件版本資訊**
 
-在 HDInsight 的未來更新中，可能會變更 HDInsight 叢集版本相關的元件版本。 若要判斷可用的元件和驗證叢集所使用的版本，有一個辦法就是使用 Ambari REST API。 **GetComponentInformation** 命令可用來擷取服務元件的相關資訊。 如需詳細資訊，請參閱 [Ambari 文件][ambari-docs]。 另一種取得此資訊的作法就是使用遠端桌面登入叢集，然後直接檢查 C:\apps\dist\" 目錄的內容。
+在 HDInsight 的未來更新中，可能會變更 HDInsight 叢集版本相關的元件版本。 若要判斷可用的元件和驗證叢集所使用的版本，有一個辦法就是使用 Ambari REST API。 **GetComponentInformation** 命令可用來擷取服務元件的相關資訊。 如需詳細資訊，請參閱 [Ambari 文件][ambari-docs] (英文)。 另一種取得此資訊的作法就是使用遠端桌面登入叢集，然後直接檢查 C:\apps\dist\" 目錄的內容。
 
 **版本資訊**
 
@@ -102,7 +102,8 @@ Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個�
 | HDI 2.1 |HDP 1.3 |Windows Server 2012R2 |是 |10/28/2013 |否 |05/12/2014 |05/31/2015 |
 | HDI 1.6 |HDP 1.1 | |否 |10/28/2013 |否 |04/26/2014 |05/31/2015 |
 
-**非預設叢集的部署**
+##<a name="hdi-version-32-and-33-nearing-deprecation-date"></a>HDI 3.2 和 3.3 版接近取代日期
+HDI 3.2 叢集的支援已於 2016/03/01 過期，並將於2017/04/01 遭到取代。 HDI 3.3 叢集的支援已於 2016/06/27 過期，並將於2017/07/31 遭到取代。 如果您有 HDI 3.2 或 HDI 3.3 叢集，請盡快將叢集升級至 HDI 3.5 (最新版本)。 
 
 ### <a name="the-service-level-agreement-for-hdinsight-cluster-versions"></a>HDInsight 叢集版本的服務等級協定
 SLA 是根據「支援期間」來定義。 「支援期間」是指 Microsoft 客戶服務與支援中心支援 HDInsight 叢集版本的一段時間。 如果 HDInsight 叢集版本的 [支援到期日]  超過目前日期，則表示該叢集不在「支援期間」。 上表中可找到支援的 HDInsight 叢集版本清單。 特定 HDInsight X (在較新的 X+1 版本推出後) 版本的支援到期日計算方式會以下列較晚的時間為準：  
@@ -117,19 +118,30 @@ SLA 是根據「支援期間」來定義。 「支援期間」是指 Microsoft �
 > 
 > 
 
+##<a name="hdinsight-deprecation-on-windows"></a>Windows 上的 HDInsight 取代
+從 HDI 3.4 版開始，我們只在 Linux 作業系統上發行 HDInsight。 一些 HDInsight 供應項目僅適用於 Linux – Apache Ranger、HDInsight 應用程式、Azure Data Lake Store 做為主要 FS 等。這對客戶有多項好處
+
+* 我們得以透過 HDInsight 服務更快地將開放原始碼巨量資料技術投入到市場上
+* 有大型的支援社群和生態系統
+* 開放原始碼社群會積極開發 Hadoop 和較新的巨量資料技術 
+* HDInsight 服務可以更加專注於巨量資料的開放原始碼技術 
+
+為了繼續投資開放原始碼的巨量資料技術，HDInsight 的未來版本將僅適用於 Linux 作業系統。 未來不會在 Windows 作業系統上再推出任何 HDInsight 版本。 Windows 上的最後一個 HDInsight 版本是 HDI 3.3。 HDI 3.3 的支援已於 2016/06/27 過期，並將於2017/07/31 遭到取代。 請參閱[此內容](https://docs.microsoft.com/en-gb/azure/hdinsight/hdinsight-migrate-from-windows-to-linux)，以便從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的叢集。
+
+
 ## <a name="hortonworks-release-notes-associated-with-hdinsight-versions"></a>與 HDInsight 版本相關聯的 Hortonworks 版本資訊
 * HDInsight 叢集 3.4 版採用以 [Hortonworks Data Platform 2.4](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)為基礎的 Hadoop 散發套件。 這是使用入口網站時所建立的 **預設** Hadoop 叢集。
 * HDInsight 叢集 3.3 版採用以 [Hortonworks Data Platform 2.3](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html)為基礎的 Hadoop 散發。
   
   * Apache Storm 版本資訊可從 [這裡](https://storm.apache.org/2015/11/05/storm0100-released.html)取得。
   * Apache Hive 版本資訊可從 [這裡](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12332384&styleName=Text&projectId=12310843)取得。
-* HDInsight 叢集 3.2 版採用以 [Hortonworks Data Platform 2.2][hdp-2-2] 為基礎的 Hadoop 散發。  
+* HDInsight 叢集 3.2 版採用以 [Hortonworks Data Platform 2.2][hdp-2-2] 為基礎的 Hadoop 散發套件。  
   
   * 特定 Apache 元件的版本資訊 - [Hive 0.14](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310843&version=12326450)、[Pig 0.14](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310730&version=12326954)、[HBase 0.98.4](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310753&version=12326810)、[Phoenix 4.2.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12315120&version=12327581)、[M/R 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310941&version=12327180)、[HDFS 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310942&version=12327181)、[YARN 2.6](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12313722&version=12327197)、[Common](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310240&version=12327179)、[Tez 0.5.2](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12314426&version=12328742)、[Ambari 2.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12312020&version=12327486)、[Storm 0.9.3](https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12314820&version=12327112)、[Oozie 4.1.0](https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12324960&projectId=12311620)。
-* HDInsight 叢集 3.1 版採用以 [Hortonworks Data Platform 2.1.7][hdp-2-1-7] 為基礎的 Hadoop 散發。在 2014/11/7 之前建立的 HDInsight 3.1 叢集是以 [Hortonworks Data Platform 2.1.1][hdp-2-1-1] 為基礎。
-* HDInsight 叢集 3.0 版採用以 [Hortonworks Data Platform 2.0][hdp-2-0-8] 為基礎的 Hadoop 散發。
-* HDInsight 叢集 2.1 版採用以 [Hortonworks Data Platform 1.3][hdp-1-3-0] 為基礎的 Hadoop 散發。
-* HDInsight 叢集 1.6 版採用以 [Hortonworks Data Platform 1.1][hdp-1-1-0] 為基礎的 Hadoop 散發。
+* HDInsight 叢集 3.1 版採用以 [Hortonworks Data Platform 2.1.7][hdp-2-1-7] 為基礎的 Hadoop 散發套件。在 2014/11/7 之前建立的 HDInsight 3.1 叢集是以 [Hortonworks Data Platform 2.1.1][hdp-2-1-1] 為基礎。
+* HDInsight 叢集 3.0 版採用以 [Hortonworks Data Platform 2.0][hdp-2-0-8] 為基礎的 Hadoop 散發套件。
+* HDInsight 叢集 2.1 版採用以 [Hortonworks Data Platform 1.3][hdp-1-3-0] 為基礎的 Hadoop 散發套件。
+* HDInsight 叢集 1.6 版採用以 [Hortonworks Data Platform 1.1][hdp-1-1-0] 為基礎的 Hadoop 散發套件。
 
 [image-hdi-versioning-versionscreen]: ./media/hdinsight-component-versioning/hdi-versioning-version-screen.png
 
@@ -155,6 +167,6 @@ SLA 是根據「支援期間」來定義。 「支援期間」是指 Microsoft �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

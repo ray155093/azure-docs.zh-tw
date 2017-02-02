@@ -10,22 +10,25 @@ tags: azure-resource-manager
 ms.assetid: 0a036d51-77ae-4fee-9ddb-35f040fbdcdf
 ms.service: expressroute
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/05/2016
+ms.date: 12/13/2016
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 45c0646f6eb1067f49bc185f1592cd1c94fc9470
+ms.sourcegitcommit: ec5e547b88bedd50f451997616c7d72b0b1b4bd4
+ms.openlocfilehash: 2a1215b5065fc690e539000aa1e89049617f8902
 
 
 ---
 # <a name="create-and-modify-routing-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 電路的路由
 > [!div class="op_single_selector"]
-> [Azure 入口網站 - Resource Manager](expressroute-howto-routing-portal-resource-manager.md)
-> [PowerShell - Resource Manager](expressroute-howto-routing-arm.md)
-> [PowerShell - 傳統](expressroute-howto-routing-classic.md)
+> * [Resource Manager - Azure 入口網站](expressroute-howto-routing-portal-resource-manager.md)
+> * [Resource Manager - PowerShell](expressroute-howto-routing-arm.md)
+> * [傳統 - PowerShell](expressroute-howto-routing-classic.md)
+> * [視訊 - 私用對等互連](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit)
+> * [視訊 - 公用對等互連](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-public-peering-for-your-expressroute-circuit)
+> * [視訊 - Microsoft 對等互連](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-microsoft-peering-for-your-expressroute-circuit)
 > 
 > 
 
@@ -249,7 +252,9 @@ ms.openlocfilehash: 45c0646f6eb1067f49bc185f1592cd1c94fc9470
      
        Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
-    >[AZURE.IMPORTANT] 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
+    > [!IMPORTANT]
+    > 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
+
 
 ### <a name="to-view-azure-public-peering-details"></a>檢視 Azure 公用對等詳細資訊
 您可以使用下列 Cmdlet 來取得組態詳細資料
@@ -337,7 +342,7 @@ ms.openlocfilehash: 45c0646f6eb1067f49bc185f1592cd1c94fc9470
         Peerings                         : []    
 4. 設定線路的 Microsoft 對等。
    
-    繼續之前，請確定您擁有下列資訊：
+    繼續之前，請確定您擁有下列資訊。
    
    * 主要連結的 /30 子網路。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
    * 次要連結的 /30 子網路。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
@@ -387,6 +392,6 @@ ms.openlocfilehash: 45c0646f6eb1067f49bc185f1592cd1c94fc9470
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

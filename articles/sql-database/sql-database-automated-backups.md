@@ -16,8 +16,8 @@ ms.workload: NA
 ms.date: 11/02/2016
 ms.author: sashan;carlrab;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: a5b69625272b96fc9e42b9b7e57b5401351d8d6e
-ms.openlocfilehash: 9e58a144be039db609ad1400246ef2de05c1b84d
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: f6bb6e1c81cafe5f0e5c43c99ab15a0483742868
 
 
 ---
@@ -42,15 +42,15 @@ The Feature Topic is a one-pager (ok, sometimes longer) that explains a capabili
 It is a "learning" topic, not an action topic.
 
 DO explain this:
-    • Definition of the feature terminology.  i.e., What is a database backup?
-    • Characteristics and capabilities of the feature. (How the feature works)
-    • Common uses with links to overview topics that recommend when to use the feature.
-    • Reference specifications (Limitations and Restrictions, Permissions, General Remarks, etc.)
-    • Next Steps with links to related overviews, features, and tasks.
+    � Definition of the feature terminology.  i.e., What is a database backup?
+    � Characteristics and capabilities of the feature. (How the feature works)
+    � Common uses with links to overview topics that recommend when to use the feature.
+    � Reference specifications (Limitations and Restrictions, Permissions, General Remarks, etc.)
+    � Next Steps with links to related overviews, features, and tasks.
 
 DON'T explain this:
-    • How to steps for using the feature (Tasks)
-    • How to solve business problems that incorporate the feature (Overviews)
+    � How to steps for using the feature (Tasks)
+    � How to solve business problems that incorporate the feature (Overviews)
 
 GUIDELINES for the H1 
 
@@ -58,7 +58,7 @@ GUIDELINES for the H1
 
     To help people understand this is a learning topic and not an action topic, start the title with "Learn about ... "
 
-    Heading must use an industry standard term. If your feature is a proprietary name like "Elastic database pools", use a synonym. For example:    "Learn about elastic database pools for multi-tenant databases". In this case multi-tenant database is the industry-standard term that will be an anchor for finding the topic.
+    Heading must use an industry standard term. If your feature is a proprietary name like "elastic pools", use a synonym. For example:    "Learn about elastic pools for multi-tenant databases". In this case multi-tenant database is the industry-standard term that will be an anchor for finding the topic.
 
 GUIDELINES for introduction
 
@@ -118,6 +118,10 @@ SQL Database 使用 SQL Server 技術來建立[完整](https://msdn.microsoft.co
 * 從 Azure 復原服務保存庫中儲存的特定備份中還原資料庫。 這可讓您還原舊版的資料庫來符合規範要求，或執行舊版的應用程式。 請參閱[長期保留](sql-database-long-term-retention.md)。
 * 若要執行還原，請參閱[從備份還原資料庫](sql-database-recovery-using-backups.md)。
 
+> [!TIP]
+> 如需教學課程，請參閱[開始使用備份與還原以保護和復原資料](sql-database-get-started-backup-recovery.md)
+>
+
 <!----------------- 
     Explains first component of the backup feature
 ------------------>
@@ -168,7 +172,11 @@ SQL Database 提供高達 200% 的最大可佈建資料庫儲存體作為備份�
 ## <a name="how-to-extend-the-backup-retention-period"></a>如何延長備份保留期限？
 如果您的應用程式需要較長時間可進行備份，您可以延長內建的保留期限，方法為設定個別資料庫的長期備份保留原則 (LTR 原則)。 這可讓您將保留期限延長 35 天至多達 10 年。 如需詳細資訊，請參閱[長期保存](sql-database-long-term-retention.md)。
 
-一旦您使用 Azure 入口網站或 API 將 LTR 原則新增至資料庫後，每週的完整資料庫備份將會自動複製到您自己的 Azure 備份服務保存庫。 如果您的資料庫是使用 TDE 加密，則備份會自動加密靜止。  服務保存庫將自動刪除您過期的備份，根據其時間戳記和 LTR 原則。  因此您不需要管理備份排程，或擔心清除舊的檔案。 還原 API 支援保存庫中儲存的備份，只要保存庫在與您的 SQL Database 相同的訂用帳戶中。 您可以使用入口網站或 PowerShell 存取這些備份。
+一旦您使用 Azure 入口網站或 API 將 LTR 原則新增至資料庫後，每週的完整資料庫備份將會自動複製到您自己的 Azure 備份服務保存庫。 如果您的資料庫是使用 TDE 加密，則備份會自動加密靜止。  服務保存庫將自動刪除您過期的備份，根據其時間戳記和 LTR 原則。  因此您不需要管理備份排程，或擔心清除舊的檔案。 還原 API 支援保存庫中儲存的備份，只要保存庫在與您的 SQL Database 相同的訂用帳戶中。 您可以使用 Azure 入口網站或 PowerShell 存取這些備份。
+
+> [!TIP]
+> 如需教學課程，請參閱[開始使用備份與還原以保護和復原資料](sql-database-get-started-backup-recovery.md)
+>
 
 <!-------------------
 OPTIONAL section
@@ -214,11 +222,14 @@ GUIDELINES for Next Steps
 --------------------->
 
 ## <a name="next-steps"></a>後續步驟
-資料庫備份可保護資料免於意外損毀或刪除，是商務持續性和災害復原策略中不可或缺的一部分。 若要深入了解其他 Azure SQL Database 業務持續性解決方案，請參閱[業務持續性概觀](sql-database-business-continuity.md)。
+
+- 資料庫備份可保護資料免於意外損毀或刪除，是商務持續性和災害復原策略中不可或缺的一部分。 若要深入了解其他 Azure SQL Database 業務持續性解決方案，請參閱[業務持續性概觀](sql-database-business-continuity.md)。
+- 若要還原至某個點時間，請參閱[將資料庫還原至時間點](sql-database-point-in-time-restore.md)。
+- 若要從服務產生的資料庫備份檢視最早的還原點，請參閱[檢視最早的還原點](sql-database-view-oldest-restore-point.md)
+- 若要在 Azure 復原服務保存庫中設定自動備份的長期保留，請參閱[設定長期備份保留](sql-database-configure-long-term-retention.md)
 
 
 
-
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

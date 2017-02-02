@@ -3,7 +3,7 @@ title: "設定獨立叢集 |Microsoft Docs"
 description: "本文說明如何設定獨立或私人的 Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
-author: dsk-2015
+author: rwike77
 manager: timlt
 editor: 
 ms.assetid: 0c5ec720-8f70-40bd-9f86-cd07b84a219d
@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/07/2016
-ms.author: dkshir
+ms.date: 12/12/2016
+ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b19d1ed96cf8e294cb105fa62f8623b28e3cc7fc
+ms.sourcegitcommit: 4fb6ef56d694aff967840ab26b75b66a2e799cc1
+ms.openlocfilehash: 977de9160be63a91b5926daa45528e5ee205e448
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: b19d1ed96cf8e294cb105fa62f8623b28e3cc7fc
 
     "name": "SampleCluster",
     "clusterConfigurationVersion": "1.0.0",
-    "apiVersion": "2015-01-01-alpha",
+    "apiVersion": "2016-09-26",
 
 若要為 Service Fabric 叢集提供任何易記名稱，您可以將它指派給 **name** 變數。 **ClusterConfigurationVersion** 是叢集的版本號碼，您應該在每次升級 Service Fabric 叢集時上調此號碼。 不過，您應該讓 **apiVersion** 保持使用預設值。
 
@@ -132,6 +132,7 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
         "leaseDriverEndpointPort": "19002"
         "serviceConnectionEndpointPort": "19003",
         "httpGatewayEndpointPort": "19080",
+        "reverseProxyEndpointPort": "19081",
         "applicationPorts": {
             "startPort": "20575",
             "endPort": "20605"
@@ -171,11 +172,11 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
 建議您使用非作業系統磁碟機做為 FabricDataRoot 和 FabricLogRoot，因為這類磁碟機比較不會讓作業系統當機。 請注意，如果您只自訂資料根目錄，則記錄根目錄將會以資料根目錄的下一個層級來取代。
 
 ## <a name="next-steps"></a>後續步驟
-當您根據獨立叢集安裝程式設定完整的 ClusterConfig.JSON 檔案之後，就可以遵循[在內部部署或雲端建立 Azure Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)一文來部署叢集，然後繼續[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+當您根據獨立叢集安裝程式設定完整的 ClusterConfig.JSON 檔案之後，就可以遵循[建立獨立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)一文來部署叢集，然後繼續[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

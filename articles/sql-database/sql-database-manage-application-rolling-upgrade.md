@@ -16,8 +16,8 @@ ms.workload: NA
 ms.date: 07/16/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ed30706426271f63126905614a631961d6e5ddf8
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: d7f3d972755ec326c28fcdb95fd0600dd8ca1a91
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: ed30706426271f63126905614a631961d6e5ddf8
 > 
 > 
 
-了解如何使用 SQL Database 中的 [異地複寫](sql-database-geo-replication-overview.md) 來啟用雲端應用程式的輪流升級。 因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。 在本文中，我們將探討兩種不同的升級程序協調方法，並討論每個選項的優點和取捨。 基於本文的目的，我們將使用簡單的應用程式，它是由連線到單一資料庫作為其資料層的網站所組成。 我們的目標是將應用程式的版本 1 升級到版本 2，而不對使用者體驗造成顯著的影響。 
+了解如何使用 SQL Database 中的 [異地複寫](sql-database-geo-replication-overview.md) 來啟用雲端應用程式的輪流升級。 因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。 在本文中，我們將探討兩種不同的升級程序協調方法，並討論每個選項的優點和取捨。 基於本文的目的，我們將使用簡單的應用程式，它是由連線到獨立資料庫作為其資料層的網站所組成。 我們的目標是將應用程式的版本 1 升級到版本 2，而不對使用者體驗造成顯著的影響。 
 
 評估升級選項時，您應該考慮下列因素：
 
@@ -155,6 +155,6 @@ ms.openlocfilehash: ed30706426271f63126905614a631961d6e5ddf8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

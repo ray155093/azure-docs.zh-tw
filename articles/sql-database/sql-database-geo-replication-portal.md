@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: d0b29822-714f-4633-a5ab-fb1a09d43ced
 ms.service: sql-database
-ms.custom: business continuity; how to
+ms.custom: business continuity
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
@@ -16,8 +16,8 @@ ms.workload: NA
 ms.date: 11/22/2016
 ms.author: sashan;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: afcdae9ae0224e12ad874b389dad9882d9269fdf
-ms.openlocfilehash: e3d4b3f7a628a058e7b761788a3f63a57228f39c
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 9faff06ee1856ca6490add759acd3c5f36719853
 
 
 ---
@@ -51,7 +51,7 @@ ms.openlocfilehash: e3d4b3f7a628a058e7b761788a3f63a57228f39c
 
 若要新增次要資料庫，您必須是訂用帳戶擁有者或共同擁有者。
 
-次要資料庫的名稱會與主要資料庫相同，並且預設會具有相同的服務層級。 次要資料庫可以是單一資料庫或彈性資料庫。 如需詳細資訊，請參閱 [服務層](sql-database-service-tiers.md)。
+次要資料庫的名稱會與主要資料庫相同，並且預設會具有相同的服務層級。 次要資料庫可以是獨立資料庫或彈性集區中的資料庫。 如需詳細資訊，請參閱 [服務層](sql-database-service-tiers.md)。
 建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。
 
 > [!NOTE]
@@ -67,7 +67,7 @@ ms.openlocfilehash: e3d4b3f7a628a058e7b761788a3f63a57228f39c
 3. 選取或設定伺服器及次要資料庫的定價層。
    
     ![設定次要資料庫](./media/sql-database-geo-replication-portal/create-secondary.png)
-4. (選擇性) 您可以將次要資料庫加入彈性資料庫集區中。 若要在集區中建立次要資料庫，請按一下 [彈性資料庫集區] ，然後選取目標伺服器上的集區。 集區必須已存在目標伺服器上。 此工作流程不會建立集區。
+4. (選擇性) 您可以將次要資料庫新增至彈性集區。 若要在集區中建立次要資料庫，請按一下 [彈性集區]，然後選取目標伺服器上的集區。 集區必須已存在目標伺服器上。 此工作流程不會建立集區。
 5. 按一下 [建立]  以加入次要資料庫。
 6. 將會建立次要資料庫並開始植入程序。
    
@@ -94,6 +94,6 @@ ms.openlocfilehash: e3d4b3f7a628a058e7b761788a3f63a57228f39c
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 
