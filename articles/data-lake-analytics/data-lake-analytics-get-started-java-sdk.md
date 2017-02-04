@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 73d3e5577d0702a93b7f4edf3bf4e29f55a053ed
-ms.openlocfilehash: 7ab51f4834f3112d4f3379acbaa16a386276cdb8
+ms.sourcegitcommit: bbfe4dc74b9743b89ea6a7a99f5fa17672f3c706
+ms.openlocfilehash: 94db8988acacd93518e96a81e177882852379fb0
 
 
 ---
@@ -44,7 +44,9 @@ ms.openlocfilehash: 7ab51f4834f3112d4f3379acbaa16a386276cdb8
 2. 在畫面左側的專案上按一下滑鼠右鍵，然後按一下 [新增架構支援] 。 選擇 [Maven] 並按一下 [確定]。
 3. 開啟新建立的 **"pom.xml"** 檔案，並在 **\</version>** 標記和 **\<</project>** 標記之間新增下列一小段文字︰
 
-    注意︰此步驟是暫時性的，在 Maven 提供 Azure Data Lake Analytics SDK 後便不適用。 一旦 Maven 提供此 SDK 後便會更新本文。 此 SDK 未來的所有更新皆會透過 Maven 提供。
+    >[!NOTE]
+    >此步驟是暫時性的，在 Maven 提供 Azure Data Lake Analytics SDK 後便不適用。 一旦 Maven 提供此 SDK 後便會更新本文。 此 SDK 未來的所有更新皆會透過 Maven 提供。
+    >
 
         <repositories>
             <repository>
@@ -351,6 +353,6 @@ ms.openlocfilehash: 7ab51f4834f3112d4f3379acbaa16a386276cdb8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

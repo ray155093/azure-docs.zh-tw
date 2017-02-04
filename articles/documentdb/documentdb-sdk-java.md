@@ -1,98 +1,120 @@
 ---
-title: DocumentDB Java API 和 SDK | Microsoft Docs
-description: 了解所有 Java API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Java SDK 每個版本之間的變更。
+title: "DocumentDB Java API 和 SDK | Microsoft Docs"
+description: "了解所有 Java API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Java SDK 每個版本之間的變更。"
 services: documentdb
 documentationcenter: java
 author: rnagpal
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 7861cadf-2a05-471a-9925-0fec0599351b
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: article
-ms.date: 08/09/2016
+ms.date: 10/28/2016
 ms.author: rnagpal
+translationtype: Human Translation
+ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
+ms.openlocfilehash: 35a773e5f91490c3d4eb053d71ce1d189ba96872
+
 
 ---
-# DocumentDB API 和 SDK
+# <a name="documentdb-apis-and-sdks"></a>DocumentDB API 和 SDK
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-sdk-dotnet.md)
+> * [.NET Core](documentdb-sdk-dotnet-core.md)
 > * [Node.js](documentdb-sdk-node.md)
 > * [Java](documentdb-sdk-java.md)
 > * [Python](documentdb-sdk-python.md)
-> * [REST](https://go.microsoft.com/fwlink/?LinkId=402413)
+> * [REST](https://docs.microsoft.com/en-us/rest/api/documentdb/)
+> * [REST 資源提供者](https://docs.microsoft.com/rest/api/documentdbresourceprovider/)
 > * [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
 > 
 > 
 
-## DocumentDB Java API 和 SDK
+## <a name="documentdb-java-api-and-sdk"></a>DocumentDB Java API 和 SDK
 <table>
 
-<tr><td>**SDK 下載**</td><td>[Maven](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb)</td></tr>
+<tr><td>**SDK 下載**</td><td>[Maven](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.microsoft.azure%22%20AND%20a%3A%22azure-documentdb%22)</td></tr>
 
 <tr><td>**API 文件**</td><td>[Java API 參考文件](http://azure.github.io/azure-documentdb-java/)</td></tr>
 
-<tr><td>**提供給 SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
+<tr><td>**參與 SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
 
 <tr><td>**開始使用**</td><td>[開始使用 Java SDK](documentdb-java-application.md)</td></tr>
 
 <tr><td>**目前支援的執行階段**</td><td>[JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)</td></tr>
 </table></br>
 
-## 版本資訊
-### <a name="1.8.1"/>[1\.8.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.1)
+## <a name="release-notes"></a>版本資訊
+### <a name="a-name191191httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb191"></a><a name="1.9.1"/>[1.9.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.1)
+* 新增對 BoundedStaleness 一致性層級的支援。
+* 新增對已分割集合之 CRUD 作業的直接連線支援。
+* 修正以 SQL 查詢資料庫時發生的錯誤。
+* 修正工作階段權杖設定不正確之工作階段快取中的錯誤。
+
+### <a name="a-name190190httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb190"></a><a name="1.9.0"/>[1.9.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.0)
+* 新增對跨資料分割平行查詢的支援。
+* 新增對已分割集合的 TOP/ORDER BY 查詢支援。
+* 新增對強式一致性的支援。
+* 新增對使用直接連線時之名稱型要求的支援。
+* 修正以使得 ActivityId 在所有要求重試之間保持一致。
+* 修正與以相同名稱重新建立集合時之工作階段快取相關的錯誤。
+* 新增為異地隔離空間查詢指定集合索引編製原則時的 Polygon 和 LineString 資料類型。
+* 修正適用於 Java 1.8 之 Java Doc 的錯誤。
+
+### <a name="a-name181181httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb181"></a><a name="1.8.1"/>[1.8.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.1)
 * 修正 PartitionKeyDefinitionMap 中將單一資料分割集合加入快取，而非提出額外擷取資料分割索引鍵要求的錯誤。
 * 修正在提供不正確的資料分割索引鍵時不重試的錯誤。
 
-### <a name="1.8.0"/>[1\.8.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.0)
+### <a name="a-name180180httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb180"></a><a name="1.8.0"/>[1.8.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.0)
 * 新增對多重區域資料庫帳戶的支援。
-* 新增在已節流處理的要求上自動重試的支援，方法是提供選項來自訂重試次數上限和等待時間上限。請參閱 RetryOptions 和 ConnectionPolicy.getRetryOptions()。
-* 已淘汰以 IPartitionResolver 為基礎的自訂分割程式碼。請針對更高的儲存體和輸送量使用分割集合。
+* 新增在已節流處理的要求上自動重試的支援，方法是提供選項來自訂重試次數上限和等待時間上限。  請參閱 RetryOptions 和 ConnectionPolicy.getRetryOptions()。
+* 已淘汰以 IPartitionResolver 為基礎的自訂分割程式碼。 請針對更高的儲存體和輸送量使用分割集合。
 
-### <a name="1.7.1"/>[1\.7.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.1)
-* 新加入節流的重試原則支援。
+### <a name="a-name171171httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb171"></a><a name="1.7.1"/>[1.7.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.1)
+* 新加入節流的重試原則支援。  
 
-### <a name="1.7.0"/>[1\.7.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.0)
+### <a name="a-name170170httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb170"></a><a name="1.7.0"/>[1.7.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.0)
 * 新加入文件的存留時間 (TTL) 支援。
 
-### <a name="1.6.0"/>[1\.6.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.6.0)
-* 實作[分割集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。
+### <a name="a-name160160httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb160"></a><a name="1.6.0"/>[1.6.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.6.0)
+* 實作[已分割的集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。
 
-### <a name="1.5.1"/>[1\.5.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.5.1)
+### <a name="a-name151151httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb151"></a><a name="1.5.1"/>[1.5.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.5.1)
 * 修正 HashPartitionResolver 中的錯誤以產生與其他 SDK 一致的 little-endian 雜湊值。
 
-### <a name="1.5.0"/>[1\.5.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.5.0)
+### <a name="a-name150150httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb150"></a><a name="1.5.0"/>[1.5.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.5.0)
 * 新增「雜湊和範圍」分割區解析程式來協助將應用程式跨多個分割區分區。
 
-### <a name="1.4.0"/>[1\.4.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.4.0)
-* 實作 Upsert。已新增新的 upsertXXX 方法以支援 Upsert 功能。
-* 實作以識別碼為基礎的路由。不需變更公用 API，所有變更皆為內部變更。
+### <a name="a-name140140httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb140"></a><a name="1.4.0"/>[1.4.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.4.0)
+* 實作 Upsert。 已新增新的 upsertXXX 方法以支援 Upsert 功能。
+* 實作以識別碼為基礎的路由。 不需變更公用 API，所有變更皆為內部變更。
 
-### <a name="1.3.0"/>1.3.0
+### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
 * 已略過版本以配合其他 SDK 的版本號碼
 
-### <a name="1.2.0"/>[1\.2.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.2.0)
+### <a name="a-name120120httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb120"></a><a name="1.2.0"/>[1.2.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.2.0)
 * 支援地理空間索引
-* 驗證所有資源的識別碼屬性。資源的識別碼不能包含 ?、/、#、\\ 等字元，或在結尾處使用空格。
+* 驗證所有資源的識別碼屬性。 資源的識別碼不能包含 ?、/、#、\, 字元，或以空格作為結尾。
 * 將新標頭「索引轉換進度」加至 ResourceResponse。
 
-### <a name="1.1.0"/>[1\.1.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.1.0)
+### <a name="a-name110110httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb110"></a><a name="1.1.0"/>[1.1.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.1.0)
 * 實作 V2 索引原則
 
-### <a name="1.0.0"/>[1\.0.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.0.0)
+### <a name="a-name100100httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb100"></a><a name="1.0.0"/>[1.0.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.0.0)
 * GA SDK
 
-## 發行和停用日期
-Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順利轉換至較新/支援的版本。
+## <a name="release--retirement-dates"></a>發行和停用日期
+Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供順利轉換至較新/支援的版本。
 
 新的功能與最佳化項目只會新增至目前的 SDK，因此建議您一律盡早升級至最新的 SDK 版本。
 
 使用已停用之 SDK 的任何 DocumentDB 要求都將被服務拒絕。
 
 > [!WARNING]
-> 適用於 Java 之所有 **1.0.0** 之前的 Azure DocumentDB SDK 版本都將於 **2016 年 2 月 29 日停用**。
+> 所有 **1.0.0** 版之前的 Azure DocumentDB SDK for Java 版本都將於 **2016 年 2 月 29 日**淘汰。
 > 
 > 
 
@@ -100,30 +122,37 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
-| [1\.8.1](#1.8.1) |2016 年 6 月 30 日 |--- |
-| [1\.8.0](#1.8.0) |2016 年 6 月 14 日 |--- |
-| [1\.7.1](#1.7.1) |2016 年 4 月 30 日 |--- |
-| [1\.7.0](#1.7.0) |2016 年 4 月 27 日 |--- |
-| [1\.6.0](#1.6.0) |2016 年 3 月 29 日 |--- |
-| [1\.5.1](#1.5.1) |2015 年 12 月 31 日 |--- |
-| [1\.5.0](#1.5.0) |2015 年 12 月 4 日 |--- |
-| [1\.4.0](#1.4.0) |2015 年 10 月 5 日 |--- |
-| [1\.3.0](#1.3.0) |2015 年 10 月 5 日 |--- |
-| [1\.2.0](#1.2.0) |2015 年 8 月 5 日 |--- |
-| [1\.1.0](#1.1.0) |2015 年 7 月 9 日 |--- |
-| [1\.0.1](#1.0.1) |2015 年 5 月 12 日 |--- |
-| [1\.0.0](#1.0.0) |2015 年 4 月 7 日 |--- |
-| 0.9.5-發行前版本 |2015 年 3 月 9 日 |2016 年 2 月 29 日 |
-| 0.9.4-發行前版本 |2015 年 2 月 17 日 |2016 年 2 月 29 日 |
-| 0.9.3-發行前版本 |2015 年 1 月 13 日 |2016 年 2 月 29 日 |
-| 0.9.2-發行前版本 |2014 年 12 月 19 日 |2016 年 2 月 29 日 |
-| 0.9.1-發行前版本 |2014 年 12 月 19 日 |2016 年 2 月 29 日 |
-| 0.9.0-發行前版本 |2014 年 12 月 10 日 |2016 年 2 月 29 日 |
+| [1.9.1](#1.9.1) |2016 年 10 月 28 日 |--- |
+| [1.9.0](#1.9.0) |2016 年 10 月 3 日 |--- |
+| [1.8.1](#1.8.1) |2016 年 6 月 30 日 |--- |
+| [1.8.0](#1.8.0) |2016 年 6 月 14 日 |--- |
+| [1.7.1](#1.7.1) |2016 年 4 月 30 日 |--- |
+| [1.7.0](#1.7.0) |2016 年 4 月 27 日 |--- |
+| [1.6.0](#1.6.0) |2016 年 3 月 29 日 |--- |
+| [1.5.1](#1.5.1) |2015 年 12 月 31 日 |--- |
+| [1.5.0](#1.5.0) |2015 年 12 月 4 日 |--- |
+| [1.4.0](#1.4.0) |2015 年 10 月 5 日 |--- |
+| [1.3.0](#1.3.0) |2015 年 10 月 5 日 |--- |
+| [1.2.0](#1.2.0) |2015 年 8 月 5 日 |--- |
+| [1.1.0](#1.1.0) |2015 年 7 月 9 日 |--- |
+| [1.0.1](#1.0.1) |2015 年 5 月 12 日 |--- |
+| [1.0.0](#1.0.0) |2015 年 4 月 7 日 |--- |
+| 0.9.5-prelease |2015 年 3 月 9 日 |2016 年 2 月 29 日 |
+| 0.9.4-prelease |2015 年 2 月 17 日 |2016 年 2 月 29 日 |
+| 0.9.3-prelease |2015 年 1 月 13 日 |2016 年 2 月 29 日 |
+| 0.9.2-prelease |2014 年 12 月 19 日 |2016 年 2 月 29 日 |
+| 0.9.1-prelease |2014 年 12 月 19 日 |2016 年 2 月 29 日 |
+| 0.9.0-prelease |2014 年 12 月 10日 |2016 年 2 月 29 日 |
 
-## 常見問題集
+## <a name="faq"></a>常見問題集
 [!INCLUDE [documentdb-sdk-faq](../../includes/documentdb-sdk-faq.md)]
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Dec16_HO2-->
+
+
