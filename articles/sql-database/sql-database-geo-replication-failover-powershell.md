@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 5849b600-89cb-4995-ae9f-0188a17b4e1b
 ms.service: sql-database
-ms.custom: business continuity; how to
+ms.custom: business continuity
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: powershell
@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 08/29/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a16d278262f6fb645163f8d94139c86019df0cde
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 2f63098e2087e9bc96493f98bdb5900671e659a1
 
 
 ---
@@ -81,12 +81,12 @@ ms.openlocfilehash: a16d278262f6fb645163f8d94139c86019df0cde
 * 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱 [災害復原演練](sql-database-disaster-recovery.md)
 * 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱 [新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
 * 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱 [使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-* 如需使用主動式異地複寫與彈性資料庫集區的相關資訊，請參閱 [彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
+* 如需使用主動式異地複寫與彈性集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
 * 如需商務持續性的概觀，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

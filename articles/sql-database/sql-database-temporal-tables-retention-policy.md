@@ -8,7 +8,7 @@ manager: drasumic
 editor: 
 ms.assetid: 76cfa06a-e758-453e-942c-9f1ed6a38c2a
 ms.service: sql-database
-ms.custom: db development
+ms.custom: development
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
@@ -16,8 +16,8 @@ ms.workload: sql-database
 ms.date: 10/12/2016
 ms.author: bonova
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: bb68239d36203e74faa54859b20a4198ce3cba91
+ms.sourcegitcommit: 239d009a1fc7273a50d335a0d55d61f414d99b11
+ms.openlocfilehash: dac4a96f9b62f390aeb84fe237788350c70ea5cd
 
 
 ---
@@ -42,7 +42,7 @@ SELECT is_temporal_history_retention_enabled, name
 FROM sys.databases
 ````
 
-根據預設，資料庫旗標 **is_temporal_history_retention_enabled** 會設為 ON，但使用者可以利用 ALTER DATABASE 陳述式變更它。 它也會在[還原時間點](sql-database-point-in-time-restore-portal.md)作業之後自動設為 OFF。 若要對資料庫啟用時態記錄保留清除，請執行下列陳述式︰
+根據預設，資料庫旗標 **is_temporal_history_retention_enabled** 會設為 ON，但使用者可以利用 ALTER DATABASE 陳述式變更它。 它也會在[還原時間點](sql-database-point-in-time-restore.md)作業之後自動設為 OFF。 若要對資料庫啟用時態記錄保留清除，請執行下列陳述式︰
 
 ````
 ALTER DATABASE <myDB>
@@ -50,7 +50,7 @@ SET TEMPORAL_HISTORY_RETENTION  ON
 ````
 
 > [!IMPORTANT]
-> 即使 **is_temporal_history_retention_enabled** 為 OFF，您還是可以設定時態表的保留，但在此情況下，不會觸發自動清除過時資料列。
+> 即使 **is_temporal_history_retention_enabled** 為 OFF，您還是可以設定時態表的保留，但在此情況下，不會觸發自動清除過時的資料列。
 > 
 > 
 
@@ -145,7 +145,7 @@ WITH (DROP_EXISTING = ON);
 CREATE NONCLUSTERED INDEX IX_WebHistNCI ON WebsiteUserInfoHistory ([UserName])
 ````
 
-嘗試執行上述陳述式會失敗，並傳回下列錯誤︰
+嘗試執行上述陳述式失敗並傳回下列錯誤︰
 
 *訊息 13772，層級 16，狀態 1 <br></br> 無法在時態記錄資料表 'WebsiteUserInfoHistory' 上建立非叢集索引，因為它己定義有限保留期限和叢集資料行存放區索引。*
 
@@ -158,7 +158,7 @@ CREATE NONCLUSTERED INDEX IX_WebHistNCI ON WebsiteUserInfoHistory ([UserName])
 SELECT * FROM dbo.WebsiteUserInfo FROM SYSTEM_TIME ALL;
 ````
 
-查詢計劃包含額外的篩選，在「叢集索引掃描」運算子中套用到記錄資料表 (反白顯示) 的時段結束資料行 (ValidTo)。 這個範例假設 WebsiteUserInfo 資料表上已設定 1 MONTH 保留期限。
+查詢計劃包含額外的篩選，在「叢集索引掃描」運算子中套用到記錄資料表 (反白顯示) 的時段結束資料行 (ValidTo)。 這個範例假設 WebsiteUserInfo 資料表上已設定一個 MONTH 保留期限。
 
 ![保留查詢篩選](./media/sql-database-temporal-tables-retention-policy/queryexecplanwithretention.png)
 
@@ -169,7 +169,7 @@ SELECT * FROM dbo.WebsiteUserInfo FROM SYSTEM_TIME ALL;
 請勿依賴商務邏輯來讀取超出保留期限的記錄資料表，否則可能會得到不一致或非預期的結果。 建議以 FOR SYSTEM_TIME 子句來使用暫時查詢，以分析時態表中的資料。
 
 ## <a name="point-in-time-restore-considerations"></a>還原時間點考量
-當您[將現有資料庫還原到特定時間點](sql-database-point-in-time-restore-portal.md)來建立新的資料庫時，資料庫層級上會停用時態保留  (**is_temporal_history_retention_enabled** 旗標設為 OFF)。 這項功能可讓您在還原時檢查所有歷史資料列，而不必擔心過時資料列在您開始查詢之前就被移除。 這可用來「檢查超出設定保留期限的歷史資料」。
+當您[將現有資料庫還原到特定時間點](sql-database-point-in-time-restore.md)來建立新的資料庫時，資料庫層級上會停用時態保留  (**is_temporal_history_retention_enabled** 旗標設為 OFF)。 這項功能可讓您在還原時檢查所有歷史資料列，而不必擔心過時資料列在您開始查詢之前就被移除。 這可用來「檢查超出設定保留期限的歷史資料」。
 
 假設時態表已指定一個 MONTH 保留期限。 如果是在高階服務層中建立資料庫，您可以使用過去最多 35 天的資料庫狀態來建立資料庫副本。 實際上，這可讓您直接查詢記錄資料表，以分析過去最多 65 天的歷史資料列。
 
@@ -190,6 +190,6 @@ SET TEMPORAL_HISTORY_RETENTION  ON
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 
