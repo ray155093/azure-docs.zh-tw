@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/24/2016
+ms.date: 12/06/2016
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b12985be3822bb605004fc70490f6cf9cb803ec7
+ms.sourcegitcommit: 3ff8fba42e6455b33103c931da731b0affa8a0fb
+ms.openlocfilehash: b5fbd15729da2674b34a227861e65b89548dad39
 
 
 ---
@@ -34,13 +34,13 @@ Azure Active Directory (Azure AD) B2C 有幾項目前還未支援的特性與功
 ## <a name="branding-issues-on-verification-email"></a>驗證電子郵件上的商標問題
 預設的驗證電子郵件包含 Microsoft 商標。 未來我們會將它移除。 您目前可以使用 [公司商標功能](../active-directory/active-directory-add-company-branding.md)來移除它。
 
+## <a name="branding-issues-on-local-account-sign-in-page-in-a-sign-in-policy"></a>登入原則中本機帳戶登入頁面上的商標問題
+登入原則中的本機帳戶登入頁面只能使用[公司品牌功能](../active-directory/active-directory-add-company-branding.md)進行自訂，而不是經由[這裡](active-directory-b2c-reference-ui-customization.md)所述的頁面 UI 自訂功能。 此外，使用者名稱和密碼欄位沒有可用的標籤或預留位置。 我們建議的因應措施是，改用完全可自訂的「註冊或登入原則」。 如果您對於完全自訂登入原則中的本機帳戶登入頁面有興趣，請投票支持 [UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/suggestions/13062033-b2c-fully-customizable-sign-in-page) 上建議的功能。
+
 ## <a name="restrictions-on-applications"></a>應用程式的限制
 Azure AD B2C 目前不支援下列類型的應用程式。 如需受支援應用程式類型的描述，請參閱 [Azure AD B2C：應用程式類型](active-directory-b2c-apps.md)。
 
-### <a name="single-page-applications-javascript"></a>單一頁面應用程式 (JavaScript)
-許多現代化應用程式都有單一頁面應用程式 (SPA) 前端，主要是以 JavaScript 撰寫，而且通常採用 AngularJS、Ember.js、Durandal 等 SPA 架構。Azure AD B2C 預覽中還未提供此流程。
-
-### <a name="daemons-server-side-applications"></a>精靈 / 伺服器端應用程式
+### <a name="daemons--server-side-applications"></a>精靈 / 伺服器端應用程式
 如果應用程式含有長時間執行的處理序或不需要使用者操作，也仍然需要方法來存取受保護的資源，例如 Web API。 這些應用程式可以透過 [OAuth 2.0 用戶端認證流程](active-directory-b2c-reference-protocols.md)，利用應用程式的身分識別 (而非取用者的委派身分識別) 來驗證及取得權杖。 Azure AD B2C 中還未提供此流程，因此，目前只有在進行互動式取用者登入流程之後，應用程式才能取得權杖。
 
 ### <a name="standalone-web-apis"></a>獨立的 Web API
@@ -96,6 +96,6 @@ Azure AD B2C 租用戶不支援 [Azure AD 圖形 API 上的差異查詢功能](h
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

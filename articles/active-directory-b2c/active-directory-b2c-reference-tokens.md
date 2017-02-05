@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/22/2016
+ms.date: 12/06/2016
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 52360ffc7224ad6ec2009e239ee1aa0b35c7f1cc
+ms.sourcegitcommit: 0ae9ad40f2e32d56fd50c90b86339cbb458d7291
+ms.openlocfilehash: a3276c764ebb6382594cf7002e7c7e8e328862ef
 
 
 ---
@@ -64,7 +64,7 @@ CQhoFA
 
 當您的 API 收到存取權杖時，它必須 [驗證簽章](#token-validation) 以證明權杖的真實性。 您的 API 也必須驗證權杖中的幾個宣告，以證明它有效。 應用程式所驗證的宣告會視案例需求而有所不同，但您的應用程式必須在每一種案例中執行一些 [常見的宣告驗證](#token-validation) 。
 
-### <a name="claims-in-id-access-tokens"></a>ID 權杖和存取權杖中的宣告
+### <a name="claims-in-id--access-tokens"></a>ID 權杖和存取權杖中的宣告
 當您使用 Azure AD B2C 時，您可以精確控制權杖的內容。 您可以設定 [原則](active-directory-b2c-reference-policies.md) ，以在宣告中傳送您的應用程式運作時所需的幾組特定的使用者資料。 這些宣告可以包含標準的屬性，例如使用者的 `displayName` 和 `emailAddress`。 其中也可以包含您在 B2C 目錄中可定義的 [自訂使用者屬性](active-directory-b2c-reference-custom-attr.md) 。 您收到的每個 ID 權杖和存取權杖都會包含一組特定的安全性相關宣告。 您的應用程式可以使用這些宣告來安全地驗證使用者和要求。
 
 請注意，ID 權杖中的宣告不依任何特定順序傳回。 此外，隨時都可以在 ID 權杖中加入新的宣告。 加入新的宣告時，您的應用程式不會損壞。 以下是 Azure AD B2C 所簽發的 ID 權杖和存取權杖中應該會有的宣告。 其他任何宣告由原則決定。 練習時，請試著將範例 ID 權杖中的宣告貼入 [calebb.net](http://calebb.net)中進行檢查。 在 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)中可找到進一步的詳細資料。
@@ -80,8 +80,9 @@ CQhoFA
 | 代碼雜湊 |`c_hash` |`SGCPtt01wxwfgnYZy2VJtQ` |只有當 ID 權杖與 OAuth 2.0 授權碼一起簽發時，權杖才會包含代碼雜湊。 代碼雜湊可用來驗證授權碼的真實性。 如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html) 。 |
 | 存取權杖雜湊 |`at_hash` |`SGCPtt01wxwfgnYZy2VJtQ` |只有當 ID 權杖與 OAuth 2.0 存取權杖一起簽發時，權杖才會包含存取權杖雜湊。 存取權杖雜湊可用來驗證存取權杖的真實性。 如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html) 。 |
 | Nonce |`nonce` |`12345` |Nonce 是用來緩和權杖重新執行攻擊的策略。 您的應用程式可以使用 `nonce` 查詢參數，在授權要求中指定 Nonce。 您在要求中提供的值將只會在 ID 權杖的 `nonce` 宣告中發出 (未經修改)。 這可讓您的應用程式根據在要求上指定的值驗證此值，使應用程式的工作階段與給定的 ID 權杖產生關聯。 您的應用程式應在 ID 權杖驗證程序中執行這項驗證。 |
-| 主旨 |`sub` |`Not supported currently. Use oid claim.` |這是權杖聲稱資訊時所針對的主體，例如應用程式的使用者。 這個值不可變，而且無法重新指派或重複使用。 它可用來安全地執行授權檢查，例如當權杖用於存取資源時。 不過，尚未在 Azure AD B2C 中實作主體宣告。 您應該設定原則以包含物件識別碼 `oid` 宣告及使用其值來識別使用者，而不是使用主體宣告進行授權。 |
-| 驗證內容類別參考 |`acr` |`b2c_1_sign_in` |這是用來取得 ID 權杖的原則名稱。 |
+| 主旨 |`sub` |`884408e1-2918-4cz0-b12d-3aa027d7563b` |這是權杖聲稱資訊時所針對的主體，例如應用程式的使用者。 這個值不可變，而且無法重新指派或重複使用。 它可用來安全地執行授權檢查，例如當權杖用於存取資源時。 根據預設，主體宣告會填入目錄中使用者的物件識別碼。 請參閱[本文](active-directory-b2c-token-session-sso.md)以深入了解。 |
+| 驗證內容類別參考 |`acr` |不適用 |目前未使用 (較舊的原則除外)。 請參閱[本文](active-directory-b2c-token-session-sso.md)以深入了解。 |
+| Trustframework 原則 |`tfp` |`b2c_1_sign_in` |這是用來取得 ID 權杖的原則名稱。 |
 | 驗證期間 |`auth_time` |`1438535543` |此宣告是使用者上次輸入認證的時間，以新紀元時間表示。 |
 
 ### <a name="refresh-tokens"></a>重新整理權杖
@@ -155,6 +156,6 @@ https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/discovery/v2.0/key
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

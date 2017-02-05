@@ -1,13 +1,12 @@
-
 ---
-title: 在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則 | Microsoft Docs
-description: 如何建立動態群組成員資格的進階規則，包括支援的運算式規則運算子和參數。
+title: "在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則 | Microsoft Docs"
+description: "如何建立動態群組成員資格的進階規則，包括支援的運算式規則運算子和參數。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: curtand
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: fb434cc2-9a91-4ebf-9753-dd81e289787e
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,13 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/12/2016
 ms.author: curtand
+translationtype: Human Translation
+ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
+ms.openlocfilehash: da120b0ea1bfa7a0afcb6eed864c4eadbd2bbec0
+
 
 ---
-# 在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則
-Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (Azure AD) 預覽版群組啟用更複雜的屬性型動態成員資格。[預覽版有何功能？](active-directory-preview-explainer.md) 本文將詳細說明用以建立這些進階規則的規則屬性和語法。
+# <a name="using-attributes-to-create-advanced-rules-for-group-membership-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則
+Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (Azure AD) 預覽版群組啟用更複雜的屬性型動態成員資格。 [預覽版有何功能？](active-directory-preview-explainer.md)  本文將詳細說明用以建立這些進階規則的規則屬性和語法。
 
-## 建立進階規則
-1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
+## <a name="to-create-the-advanced-rule"></a>建立進階規則
+1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
    
    ![開啟使用者管理](./media/active-directory-groups-dynamic-membership-azure-portal/search-user-management.png)
@@ -31,36 +34,37 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 4. 在 [使用者和群組 - 所有群組] 刀鋒視窗上，選取 [新增]。
    
    ![Add new group](./media/active-directory-groups-dynamic-membership-azure-portal/add-group-type.png)
-5. 在 [群組] 刀鋒視窗上，輸入新群組的名稱和描述。依據您是要為使用者還是裝置建立規則，在 [成員資格類型] 選取 [動態使用者] 或 [動態裝置]，然後選取 [新增動態查詢]。如需了解有哪些用於裝置規則的屬性，請參閱[使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
+5. 在 [群組]  刀鋒視窗上，輸入新群組的名稱和描述。 依據您是要為使用者還是裝置建立規則，在 [成員資格類型] 選取 [動態使用者] 或 [動態裝置]，然後選取 [新增動態查詢]。 如需了解有哪些用於裝置規則的屬性，請參閱 [使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
    
    ![新增動態成員資格規則](./media/active-directory-groups-dynamic-membership-azure-portal/add-dynamic-group-rule.png)
-6. 在 [動態成員資格規則] 刀鋒視窗上，於 [新增動態成員資格進階規則] 方塊中輸入您的規則，然後選取刀鋒視窗底部的 [建立]。
-7. 在 [群組] 刀鋒視窗上，選取 [建立] 來建立群組。
+6. 在 [動態成員資格規則] 刀鋒視窗上，於 [新增動態成員資格進階規則] 方塊中輸入您的規則、按 Enter，然後選取刀鋒視窗底部的 [建立]。
+7. 選取 [更多服務]  on the  來建立群組。
 
-## 建構進階規則的主體
-您可以為群組的動態成員資格建立的進階規則基本上是一個二進位運算式，其中包含三個部分，且會產生 true 或 false 的結果。這三個部分包括：
+## <a name="constructing-the-body-of-an-advanced-rule"></a>建構進階規則的主體
+您可以為群組的動態成員資格建立的進階規則基本上是一個二進位運算式，其中包含三個部分，且會產生 true 或 false 的結果。 這三個部分包括：
 
 * 左側的參數
 * 二進位運算子
 * 右側的常數
 
-完整的進階規則外觀如下：(leftParameter binaryOperator "RightConstant")，其中需要左右括號括住整個二進位運算式、需要雙引號括住右側的常數，且左側參數的語法是 user.property。進階規則可以包含多個二進位運算式，並以 -and、 -or 和 -not 邏輯運算子分隔。
+完整的進階規則外觀如下：(leftParameter binaryOperator "RightConstant")，其中需要左右括號括住整個二進位運算式、需要雙引號括住右側的常數，且左側參數的語法是 user.property。 進階規則可以包含多個二進位運算式，並以 -and、 -or 和 -not 邏輯運算子分隔。
 
 以下是正確建構的進階規則的範例：
 
 * (user.department -eq "Sales") -or (user.department -eq "Marketing")
 * (user.department -eq "Sales") -and -not (user.jobTitle -contains "SDE")
 
-如需支援的參數和運算式規則運算子的完整清單，請參閱下列各節。如需了解有哪些用於裝置規則的屬性，請參閱[使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
+如需支援的參數和運算式規則運算子的完整清單，請參閱下列各節。 如需了解有哪些用於裝置規則的屬性，請參閱 [使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
 
 進階規則主體的總長度不得超過 2048 個字元。
 
 > [!NOTE]
-> 字串和 regex 運算都不區分大小寫。您也可以使用 $null 做為常數，執行 Null 檢查，例如，user.department-eq $null。包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq `"Sales"。
+> 字串和 regex 運算都不區分大小寫。 您也可以使用 $null 做為常數，執行 Null 檢查，例如，user.department-eq $null。
+> 包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq \`"Sales"。
 > 
 > 
 
-## 支援的運算式規則運算子
+## <a name="supported-expression-rule-operators"></a>支援的運算式規則運算子
 下表列出所有支援的運算式規則運算子及其用於進階規則主體中的語法：
 
 | 運算子 | 語法 |
@@ -74,21 +78,21 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 | Not Match |-notMatch |
 | Match |-match |
 
-## 查詢錯誤補救
+## <a name="query-error-remediation"></a>查詢錯誤補救
 下表列出可能的錯誤以及其更正方式
 
 | 查詢剖析錯誤 | 錯誤的使用方式 | 更正的使用方式 |
 | --- | --- | --- |
-| 錯誤：不支援屬性。 |(user.invalidProperty -eq "Value") |(user.department -eq "value")<br/> 屬性應該符合[支援的屬性清單](#supported-properties)中的一個屬性。 |
-| 錯誤：屬性不支援運算子。 |(user.accountEnabled -contains true) |(user.accountEnabled -eq true)<br/> 屬性屬於布林類型。使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
-| 錯誤：查詢編譯錯誤。 |(user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") |(user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$") 規則運算式中發生錯誤。 |
-| 錯誤：二進位運算式不是正確的格式。 |(user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
-| 錯誤：設定動態成員資格時發生未知的錯誤。 |(user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
+| 錯誤：不支援屬性。 |(user.invalidProperty -eq "Value") |(user.department -eq "value")<br/>屬性應該符合 [支援的屬性清單](#supported-properties)。 |
+| 錯誤：屬性不支援運算子。 |(user.accountEnabled -contains true) |(user.accountEnabled -eq true)<br/> 屬性屬於布林類型。 使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
+| 錯誤：查詢編譯錯誤。 |(user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") |(user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$")Error 規則運算式中發生錯誤。 |
+| 錯誤：二進位運算式不是正確的格式。 |(user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。 括號不在正確的位置。 |
+| 錯誤：設定動態成員資格時發生未知的錯誤。 |(user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。 括號不在正確的位置。 |
 
-## 支援的屬性
+## <a name="supported-properties"></a>支援的屬性
 以下是您可以在進階規則中使用的所有使用者屬性：
 
-### 布林型別的屬性
+### <a name="properties-of-type-boolean"></a>布林型別的屬性
 允許的運算子
 
 * -eq
@@ -99,13 +103,13 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 | accountEnabled |true false |user.accountEnabled -eq true) |
 | dirSyncEnabled |true false null |(user.dirSyncEnabled -eq true) |
 
-### 字串類型的屬性
+### <a name="properties-of-type-string"></a>字串類型的屬性
 允許的運算子
 
 * -eq
 * -ne
 * -notStartsWith
-* -StartsWith
+* -startsWith
 * -contains
 * -notContains
 * -match
@@ -127,7 +131,7 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 | passwordPolicies |None DisableStrongPassword DisablePasswordExpiration DisablePasswordExpiration, DisableStrongPassword |(user.passwordPolicies -eq "DisableStrongPassword") |
 | physicalDeliveryOfficeName |任何字串值或 $null |(user.physicalDeliveryOfficeName -eq "value") |
 | postalCode |任何字串值或 $null |(user.postalCode -eq "value") |
-| preferredLanguage |ISO 639-1 code |(user.preferredLanguage -eq "zh-TW") |
+| preferredLanguage |ISO 639-1 code |(user.preferredLanguage -eq "en-US") |
 | sipProxyAddress |任何字串值或 $null |(user.sipProxyAddress -eq "value") |
 | state |任何字串值或 $null |(user.state -eq "value") |
 | streetAddress |任何字串值或 $null |(user.streetAddress -eq "value") |
@@ -137,7 +141,7 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 | userPrincipalName |任何字串值 |(user.userPrincipalName -eq "alias@domain") |
 | userType |member guest $null |(user.userType -eq "Member") |
 
-### 字串集合類型的屬性
+### <a name="properties-of-type-string-collection"></a>字串集合類型的屬性
 允許的運算子
 
 * -contains
@@ -148,36 +152,38 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 | otherMails |任何字串值 |(user.otherMails -contains "alias@domain") |
 | proxyAddresses |SMTP: alias@domain smtp: alias@domain |(user.proxyAddresses -contains "SMTP: alias@domain") |
 
-## 擴充屬性和自訂屬性
+## <a name="extension-attributes-and-custom-attributes"></a>擴充屬性和自訂屬性
 動態成員資格規則支援擴充屬性和自訂屬性。
 
-擴充屬性會從內部部署 Windows Server AD 進行同步處理，並採用 "ExtensionAttributeX" 格式，其中 X 等於 1-15。以下是使用擴充屬性的規則範例：
+擴充屬性會從內部部署 Windows Server AD 進行同步處理，並採用 "ExtensionAttributeX" 格式，其中 X 等於 1-15。
+以下是使用擴充屬性的規則範例：
 
 (user.extensionAttribute15 -eq "Marketing")
 
-自訂屬性會從內部部署 Windows Server AD 或從連接的 SaaS 應用程式進行同步處理，並採用 "user.extension[GUID]\_[Attribute]" 格式，其中 [GUID] 是 AAD 中的唯一識別碼 (適用於在 AAD 中建立屬性的應用程式)，而 [Attribute] 是其建立的屬性名稱。以下是使用自訂屬性的規則範例：
+自訂屬性會從內部部署 Windows Server AD 或從連接的 SaaS 應用程式進行同步處理，並採用 "user.extension[GUID]\__[Attribute]" 格式，其中 [GUID] 是 AAD 中的唯一識別碼 (適用於在 AAD 中建立屬性的應用程式)，而 [Attribute] 是其建立的屬性名稱。
+以下是使用自訂屬性的規則範例：
 
-user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
+user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber  
 
-使用 [圖表總管] 查詢使用者的屬性並搜尋屬性名稱，即可在目錄中找到自訂屬性名稱。
+使用 [Graph 總管] 查詢使用者的屬性並搜尋屬性名稱，即可在目錄中找到自訂屬性名稱。
 
-## 屬下規則
+## <a name="direct-reports-rule"></a>屬下規則
 您現在可以根據使用者的經理屬性在群組中填入成員。
 
 **設定群組為「經理」群組**
 
 1. 依照[建立進階規則](#to-create-the-advanced-rule)中的步驟 1-5 操作，然後在 [成員資格類型] 選取 [動態使用者]。
-2. 在 [動態成員資格規則] 刀鋒視窗上，使用下列語法來輸入規則：
+2. 在 [動態成員資格規則]  刀鋒視窗上，使用下列語法來輸入規則：
    
-    Direct Reports for {obectID\_of\_manager} 的 Direct Reports。以下是 Direct Reports 的有效規則範例：
+    *Direct Reports for {obectID_of_manager}* 的 Direct Reports。 以下是 Direct Reports 的有效規則範例：
    
                     Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
    
-    其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔] 索引標籤上找到物件識別碼。
-3. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。一開始填入群組可能需要幾分鐘的時間。
+    其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。 您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔]  索引標籤上找到物件識別碼。
+3. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。 一開始填入群組可能需要幾分鐘的時間。
 
-## 使用屬性來建立裝置物件的規則
-您也可以建立規則以在群組中選取成員資格的裝置物件。可以使用下列裝置屬性︰
+## <a name="using-attributes-to-create-rules-for-device-objects"></a>使用屬性來建立裝置物件的規則
+您也可以建立規則以在群組中選取成員資格的裝置物件。 可以使用下列裝置屬性︰
 
 | 屬性 | 允許的值 | 使用量 |
 | --- | --- | --- |
@@ -188,7 +194,7 @@ user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 | isManaged |true false null |(device.isManaged -eq "false") |
 | isCompliant |true false null |(device.isCompliant -eq "true") |
 
-## 其他資訊
+## <a name="additional-information"></a>其他資訊
 這些文章提供有關 Azure Active Directory 中群組的其他資訊。
 
 * [查看現有的群組](active-directory-groups-view-azure-portal.md)
@@ -197,4 +203,9 @@ user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 * [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
 * [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Dec16_HO5-->
+
+

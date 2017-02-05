@@ -11,15 +11,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/10/2016
+ms.date: 01/10/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: d73b4ad270f868b3ec1d99c142f35688a80abbe1
+ms.sourcegitcommit: ce9474f2926a856673efbab5103a308d31001343
+ms.openlocfilehash: ed1c66f72b09a14a14c6ecd0bf39cd92f2bd22b8
 
 
 ---
-# <a name="get-started-with-certificate-based-authentication-on-android---public-preview"></a>在 Android 上開始使用憑證式驗證 - 公開預覽
+# <a name="get-started-with-certificate-based-authentication-on-android"></a>在 Android 上開始使用憑證式驗證
 > [!div class="op_single_selector"]
 > * [iOS](active-directory-certificate-based-authentication-ios.md)
 > * [Android](active-directory-certificate-based-authentication-android.md)
@@ -50,7 +50,7 @@ ms.openlocfilehash: d73b4ad270f868b3ec1d99c142f35688a80abbe1
 | 應用程式 | 支援 |
 | --- | --- |
 | Word / Excel / PowerPoint |![勾選][1] |
-| OneNote |敬請期待 |
+| OneNote |![勾選][1] |
 | OneDrive |![勾選][1] |
 | Outlook |![勾選][1] |
 | Yammer |![勾選][1] |
@@ -70,9 +70,14 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 如果 ADFS 權杖 (或任何其他 SAML 權杖) 中有上述宣告，Azure Active Directory 就會將這些宣告新增至重新整理權杖。 當需要驗證重新整理權杖時，這項資訊會用於檢查撤銷。 
 
-最佳做法是依照如何取得使用者憑證的指示來更新 ADFS 錯誤頁面。 
-
+最佳做法是依照如何取得使用者憑證的指示來更新 ADFS 錯誤頁面。  
 如需詳細資訊，請參閱 [自訂 AD FS 登入頁面](https://technet.microsoft.com/library/dn280950.aspx)。  
+
+某些 Office 應用程式 (已啟用新式驗證) 會在其要求中將 ‘*prompt=login*’ 傳送至 Azure AD。 根據預設，Azure AD 會將給 ADFS 的要求中的這項轉譯成 ‘*wauth=usernamepassworduri*’ (請求 ADFS 進行 U/P 驗證) 和 ‘*wfresh=0*’ (請求 ADFS 忽略 SSO 狀態並進行全新驗證)。 如果您想要啟用這些應用程式的憑證型驗證，您必須修改預設的 Azure AD 行為。 只要將您的同盟網域設定中的 'PromptLoginBehavior' 設定為 ‘Disabled‘。 您可以使用 [MSOLDomainFederationSettings](https://docs.microsoft.com/en-us/powershell/msonline/v1/set-msoldomainfederationsettings) Cmdlet 來執行這項工作︰
+
+`Set-MSOLDomainFederationSettings -domainname <domain> -PromptLoginBehavior Disabled`
+
+
 
 ### <a name="exchange-activesync-clients-support"></a>Exchange ActiveSync 用戶端支援
 支援 Android 5.0 (Lollipop) 或更新版本上的某些 Exchange ActiveSync 應用程式。 若要判斷電子郵件應用程式是否支援這項功能，請連絡您的應用程式開發人員。 
@@ -113,9 +118,9 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 ### <a name="configuring-your-azure-ad-tenant-for-certificate-based-authentication"></a>設定 Azure AD 租用戶以進行憑證式驗證
 1. 以系統管理員權限啟動 Windows PowerShell。 
-2. 安裝 Azure AD 模組。 您必須安裝 [1.1.143.0](http://www.powershellgallery.com/packages/AzureADPreview/1.1.143.0) 版或更新版本。  
+2. 安裝 Azure AD 模組。 您必須安裝 [2.0.0.33 ](https://www.powershellgallery.com/packages/AzureAD/2.0.0.33) 版或更新版本。  
    
-        Install-Module -Name AzureADPreview –RequiredVersion 1.1.143.0 
+        Install-Module -Name AzureAD –RequiredVersion 2.0.0.33 
 3. 連線到目標租用戶︰ 
    
         Connect-AzureAD 
@@ -208,6 +213,6 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO5-->
 
 

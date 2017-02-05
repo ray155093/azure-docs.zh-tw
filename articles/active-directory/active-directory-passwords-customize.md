@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/03/2016
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e11be2489d8c0585e386669f34012964e57978d7
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: e11be2489d8c0585e386669f34012964e57978d7
 > 
 > 
 
-為了給予您的使用者最佳的體驗，我們建議您探索和試驗您可以使用的所有密碼管理組態選項。 事實上，您可以前往 **Azure 傳統入口網站** 的 [Active Directory 延伸模組] [](https://manage.windowsazure.com)中的組態索引標籤，立即開始探索。 本主題會引導您從 **Azure 傳統入口網站** 中目錄的 [設定] [](https://manage.windowsazure.com)索引標籤，完成身為系統管理員可以進行的不同密碼管理自訂，包括：
+為了給予您的使用者最佳的體驗，我們建議您探索和試驗您可以使用的所有密碼管理組態選項。 事實上，您可以前往 **Azure 傳統入口網站** 的 [[Active Directory 延伸模組](https://manage.windowsazure.com)中的組態索引標籤，立即開始探索。 本主題會引導您從 **Azure 傳統入口網站** 中目錄的 [設定](https://manage.windowsazure.com)索引標籤，完成身為系統管理員可以進行的不同密碼管理自訂，包括：
 
 | 主題 |  |
 | --- | --- |
@@ -880,6 +880,6 @@ ms.openlocfilehash: e11be2489d8c0585e386669f34012964e57978d7
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

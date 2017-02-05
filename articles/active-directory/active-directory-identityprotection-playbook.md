@@ -6,14 +6,13 @@ keywords: "azure active directory identity protection, cloud app discovery, 管�
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: 60836abf-f0e9-459d-b344-8e06b8341d25
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/11/2016
+ms.date: 01/24/2017
 ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 77031b3bbe2372bf2cac34bac45368ac40911641
@@ -131,7 +130,7 @@ Azure Active Directory Identity Protection：
 10. 您現在可以藉由模擬不熟悉的位置或匿名 IP 風險事件 (因為它們都是 [中]  風險事件)，測試以風險為基礎的條件式存取。
 
 
-![腳本](./media/active-directory-identityprotection-playbook/200.png "Playbook")
+![腳本](./media/active-directory-identityprotection-playbook/200.png "腳本")
 
 
 ## <a name="see-also"></a>另請參閱
@@ -140,6 +139,6 @@ Azure Active Directory Identity Protection：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

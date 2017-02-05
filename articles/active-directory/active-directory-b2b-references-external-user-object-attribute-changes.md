@@ -43,6 +43,6 @@ Azure AD 目錄中的每個使用者都以使用者物件形式呈現。 Azure A
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

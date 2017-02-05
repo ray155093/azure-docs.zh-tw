@@ -1,20 +1,23 @@
 ---
-title: 使用 Cloud App Discovery 尋找未受管理的雲端應用程式 | Microsoft Docs
-description: 提供有關使用 Cloud App Discovery 尋找和管理應用程式、它的優勢和運作方式的資訊。
+title: "使用 Cloud App Discovery 尋找未受管理的雲端應用程式 | Microsoft Docs"
+description: "提供有關使用 Cloud App Discovery 尋找和管理應用程式、它的優勢和運作方式的資訊。"
 services: active-directory
-keywords: 雲端應用程式探索, 管理應用程式
-documentationcenter: ''
+keywords: "雲端應用程式探索, 管理應用程式"
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+ms.assetid: db968bf5-22ae-489f-9c3e-14df6e1fef0a
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/10/2017
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 011cdf5f1e1b78832a8e4f18f4eef0f376860c45
+
 
 ---
 # <a name="finding-unmanaged-cloud-applications-with-cloud-app-discovery"></a>使用 Cloud App Discovery 尋找未受管理的雲端應用程式
@@ -48,6 +51,9 @@ Cloud App Discovery (AD) Premium 是 Azure Active Directory 的一個功能，�
 * [Cloud App Discovery 常見問題集](http://social.technet.microsoft.com/wiki/contents/articles/24037.cloud-app-discovery-frequently-asked-questions.aspx)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 
