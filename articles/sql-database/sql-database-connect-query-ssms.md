@@ -5,69 +5,74 @@ metacanonical:
 keywords: "連接到 sql database,sql server management studio"
 services: sql-database
 documentationcenter: 
-author: stevestein
+author: CarlRabeler
 manager: jhubbard
 editor: 
 ms.assetid: 7cd2a114-c13c-4ace-9088-97bd9d68de12
 ms.service: sql-database
+ms.custom: development
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
-ms.date: 08/17/2016
+ms.topic: article
+ms.date: 11/22/2016
 ms.author: sstein;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0eb25eb76c6c6c2446ac0b2b07c65975c3719db0
+ms.sourcegitcommit: 2a85b3dc1078bad9e5e2fc0ce0bec7e994b29150
+ms.openlocfilehash: a6b147521525fad343376db0454f786a77b55c42
 
 
 ---
-# <a name="connect-to-sql-database-with-sql-server-management-studio-and-execute-a-sample-tsql-query"></a>使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢
+# <a name="connect-to-sql-database-with-sql-server-management-studio-and-execute-a-sample-t-sql-query"></a>使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢
 > [!div class="op_single_selector"]
 > * [Visual Studio](sql-database-connect-query.md)
 > * [SSMS](sql-database-connect-query-ssms.md)
 > * [Excel](sql-database-connect-excel.md)
-> 
 > 
 
 本文示範如何使用 SQL Server Management Studio (SSMS) 連接到 Azure SQL Database。 成功連線之後，我們會執行簡單的 Transact-SQL (T-SQL) 查詢，以便驗證與資料庫的通訊。
 
 [!INCLUDE [SSMS Install](../../includes/sql-server-management-studio-install.md)]
 
-[!INCLUDE [SSMS Connect](../../includes/sql-database-sql-server-management-studio-connect-server-principal.md)]
+1. 如果您尚未這麼做，請下載並安裝最新版的 SSMS，位置是[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。 為了保持最新狀態，最新版的 SSMS 會在有新版本可供下載時提示您。
 
-## <a name="run-sample-queries"></a>執行範例查詢
-連接到伺服器後，即可連接到資料庫並執行範例查詢。 如果您不熟悉撰寫查詢，請參閱 [撰寫 Transact-SQL 陳述式](https://msdn.microsoft.com/library/ms365303.aspx)。
+2. 安裝之後，在 Windows 搜尋方塊中輸入 **Microsoft SQL Server Management Studio**，然後按一下 **Enter** 來開啟 SSMS：
 
-1. 在 [物件總管] 中，瀏覽至伺服器上的資料庫，例如 **AdventureWorks** 範例資料庫。
-2. 在資料庫上按一下滑鼠右鍵，然後選取 [新增查詢] ：
+    ![SQL Server Management Studio](./media/sql-database-get-started/ssms.png)
+3. 在 [連接到伺服器] 對話方塊中，輸入使用 SQL Server 驗證連接到 SQL Server 所需的資訊。
+
+    ![連接到伺服器](./media/sql-database-get-started/connect-to-server.png)
+4. 按一下 [ **連接**]。
+
+    ![已連接到伺服器](./media/sql-database-get-started/connected-to-server.png)
+5. 在 [物件總管] 中，展開 [資料庫]，展開任何資料庫以檢視該資料庫中的物件。
+
+    ![使用 ssms 新增範例資料庫物件](./media/sql-database-get-started/new-sample-db-objects-ssms.png)
+6. 以滑鼠右鍵按一下此資料庫，然後按一下 [新增查詢]。
+
+    ![使用 ssms 新增範例資料庫查詢](./media/sql-database-get-started/new-sample-db-query-ssms.png)
+7. 在查詢視窗中，輸入下列查詢︰
+
+   ```select * from sys.objects```
    
-    ![新增查詢。 連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query-ssms/4-run-query.png)
-3. 在查詢視窗中，複製並貼上下列內容：
-   
-        SELECT
-        CustomerId
-        ,Title
-        ,FirstName
-        ,LastName
-        ,CompanyName
-        FROM SalesLT.Customer;
-4. 按一下 [執行]  按鈕：
-   
-    ![成功。 連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query-ssms/5-success.png)
+8.  在工具列上，按一下 [執行] 來傳回範例資料庫中所有系統物件的清單。
+
+    ![使用 ssms 新增範例資料庫查詢系統物件](./media/sql-database-get-started/new-sample-db-query-objects-ssms.png)
+
+> [!Tip]
+> 如需教學課程，請參閱 [SQL Database 教學課程︰建立伺服器、伺服器層級防火牆規則、範例資料庫、資料庫層級防火牆規則，以及與 SQL Server 連接](sql-database-get-started.md)。    
+>
 
 ## <a name="next-steps"></a>後續步驟
-如同您處理 SQL Server 的方式一樣，您可以使用 T-SQL 陳述式來建立及管理 Azure 中的資料庫。 如果您已熟悉使用 T-SQL 搭配 SQL Server，請參閱 [Azure SQL Database Transact-SQL 資訊)](sql-database-transact-sql-information.md) 中的差異摘要。
 
-如果您是 T-SQL 新手，請參閱[教學課程：撰寫 Transact-SQL 陳述式](https://msdn.microsoft.com/library/ms365303.aspx)和[Transact-SQL 參考 (Database Engine)](https://msdn.microsoft.com/library/bb510741.aspx)。
-
-若要開始建立資料庫使用者和資料庫系統管理員，請參閱 [開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md)
-
-如需有關 SSMS 的詳細資訊，請參閱 [使用 SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx)。
+- 如同您處理 SQL Server 的方式一樣，您可以使用 T-SQL 陳述式來建立及管理 Azure 中的資料庫。 如果您已熟悉使用 T-SQL 搭配 SQL Server，請參閱 [Azure SQL Database Transact-SQL 資訊)](sql-database-transact-sql-information.md) 中的差異摘要。
+- 如果您是 T-SQL 新手，請參閱[教學課程：撰寫 Transact-SQL 陳述式](https://msdn.microsoft.com/library/ms365303.aspx)和[Transact-SQL 參考 (Database Engine)](https://msdn.microsoft.com/library/bb510741.aspx)。
+- 若要開始建立資料庫使用者和資料庫系統管理員，請參閱 [開始使用 Azure SQL Database 安全性](sql-database-control-access-sql-authentication-get-started.md)
+- 如需有關 SSMS 的詳細資訊，請參閱 [使用 SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx)。
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

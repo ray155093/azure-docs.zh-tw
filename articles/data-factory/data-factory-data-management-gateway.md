@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 01/25/2017
 ms.author: abnarain
 translationtype: Human Translation
-ms.sourcegitcommit: 1b2514e1e6f39bb3ce9d8a46f4af01835284cdcc
-ms.openlocfilehash: f0b3d45ea72ec3e7e0b19bc97ff9d8051067d1fa
+ms.sourcegitcommit: 355de60c6a06f4694b8bce4a6ff3b6c2f65b2233
+ms.openlocfilehash: f4ec798bcd1da7f2067929382c37915022fc1eed
 
 
 ---
@@ -255,12 +255,15 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 1. 在閘道電腦上啟動 Windows PowerShell。
 2. 切換至 C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript 資料夾。
 3. 執行下列命令，將自動更新功能關閉 (停用)。   
-
-        .\GatewayAutoUpdateToggle.ps1  -off
+    
+    ```PowerShell
+    .\GatewayAutoUpdateToggle.ps1  -off
+    ```
 4. 若要將它重新開啟：
-
-        .\GatewayAutoUpdateToggle.ps1  -on  
-
+    
+    ```PowerShell
+    .\GatewayAutoUpdateToggle.ps1  -on  
+    ```
 ## <a name="configuration-manager"></a>組態管理員
 安裝閘道後，您可以用下列方式啟動 [資料管理閘道組態管理員]：
 
@@ -349,25 +352,28 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
    4. 按一下 [確定]  以加密認證並關閉對話方塊。
 8. 您現在應該會在 **connectionString** 中看到 **encryptedCredential** 屬性。        
 
-         {
-             "name": "SqlServerLinkedService",
-             "properties": {
-                 "type": "OnPremisesSqlServer",
-                 "description": "",
-                 "typeProperties": {
-                     "connectionString": "data source=myserver;initial catalog=mydatabase;Integrated Security=False;EncryptedCredential=eyJDb25uZWN0aW9uU3R",
-                     "gatewayName": "adftutorialgateway"
-                 }
-             }
-         }
-
+    ```JSON
+    {
+        "name": "SqlServerLinkedService",
+        "properties": {
+            "type": "OnPremisesSqlServer",
+            "description": "",
+            "typeProperties": {
+                "connectionString": "data source=myserver;initial catalog=mydatabase;Integrated Security=False;EncryptedCredential=eyJDb25uZWN0aW9uU3R",
+                "gatewayName": "adftutorialgateway"
+            }
+        }
+    }
+    ```
 如果您從閘道器電腦以外的另一台電腦存取入口網站，您必須確定「認證管理員」應用程式可以連接到閘道器電腦。 如果應用程式無法連接閘道器電腦，它不會允許您設定資料來源的認證，以及測試資料來源的連接。  
 
 當您使用**設定認證**應用程式時，入口網站會使用在閘道機器上**閘道組態管理員**的 [憑證] 索引標籤中指定的憑證來加密認證。
 
 如果您要尋找以 API 為基礎的方法來加密認證，可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet 來加密認證。 此 cmdlet 會使用閘道器設定用來加密認證的憑證。 您需將加密認證新增到 JSON 中 **connectionString** 的 **EncryptedCredential** 元素中。 您需搭配 [New-AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) Cmdlet 或在「Data Factory 編輯器」中使用 JSON。
 
-    "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
+```JSON
+"connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
+```
 
 使用「Data Factory 編輯器」來設定認證還有另一個方法。 如果您使用該編輯器來建立 SQL Server 連結服務，並以純文字輸入認證，系統就會使用 Data Factory 服務所擁有的憑證來加密該認證。 它「不會」使用已設定讓閘道使用的憑證。 雖然這種方法在某些情況下可能快一點，但也比較不安全。 因此，建議您只在開發/測試用途才採用此方法。
 
@@ -376,49 +382,64 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 
 1. 在系統管理員模式下啟動 **Azure PowerShell** 。
 2. 請執行下列命令並輸入您的 Azure 認證，登入您的 Azure 帳戶。
-
+    
+    ```PowerShell
     Login-AzureRmAccount
+    ```
 3. 使用 **New-AzureRmDataFactoryGateway** Cmdlet 來建立邏輯閘道器，如下所示：
 
-        $MyDMG = New-AzureRmDataFactoryGateway -Name <gatewayName> -DataFactoryName <dataFactoryName> -ResourceGroupName ADF –Description <desc>
-
+    ```PowerShell
+    $MyDMG = New-AzureRmDataFactoryGateway -Name <gatewayName> -DataFactoryName <dataFactoryName> -ResourceGroupName ADF –Description <desc>
+    ```
     **範例命令和輸出**：
 
-        PS C:\> $MyDMG = New-AzureRmDataFactoryGateway -Name MyGateway -DataFactoryName $df -ResourceGroupName ADF –Description “gateway for walkthrough”
+    ```
+    PS C:\> $MyDMG = New-AzureRmDataFactoryGateway -Name MyGateway -DataFactoryName $df -ResourceGroupName ADF –Description “gateway for walkthrough”
 
-        Name              : MyGateway
-        Description       : gateway for walkthrough
-        Version           :
-        Status            : NeedRegistration
-        VersionStatus     : None
-        CreateTime        : 9/28/2014 10:58:22
-        RegisterTime      :
-        LastConnectTime   :
-        ExpiryTime        :
-        ProvisioningState : Succeeded
-        Key               : ADF#00000000-0000-4fb8-a867-947877aef6cb@fda06d87-f446-43b1-9485-78af26b8bab0@4707262b-dc25-4fe5-881c-c8a7c3c569fe@wu#nfU4aBlq/heRyYFZ2Xt/CD+7i73PEO521Sj2AFOCmiI
-
+    Name              : MyGateway
+    Description       : gateway for walkthrough
+    Version           :
+    Status            : NeedRegistration
+    VersionStatus     : None
+    CreateTime        : 9/28/2014 10:58:22
+    RegisterTime      :
+    LastConnectTime   :
+    ExpiryTime        :
+    ProvisioningState : Succeeded
+    Key               : ADF#00000000-0000-4fb8-a867-947877aef6cb@fda06d87-f446-43b1-9485-78af26b8bab0@4707262b-dc25-4fe5-881c-c8a7c3c569fe@wu#nfU4aBlq/heRyYFZ2Xt/CD+7i73PEO521Sj2AFOCmiI
+    ```
 
 1. 在 Azure PowerShell 中，切換到下列資料夾：**C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript\**。執行與本機變數 **$Key** 關聯的 **RegisterGateway.ps1**，如下列命令所示。 此指令碼會向您稍早建立的邏輯閘道註冊您機器上安裝的用戶端代理程式。
 
-        PS C:\> .\RegisterGateway.ps1 $MyDMG.Key
-
-        Agent registration is successful!
-
+    ```PowerShell
+    PS C:\> .\RegisterGateway.ps1 $MyDMG.Key
+    ```
+    ```
+    Agent registration is successful!
+    ```
     您可以使用 IsRegisterOnRemoteMachine 參數在遠端電腦上註冊閘道器。 範例：
 
-        .\RegisterGateway.ps1 $MyDMG.Key -IsRegisterOnRemoteMachine true
+    ```PowerShell
+    .\RegisterGateway.ps1 $MyDMG.Key -IsRegisterOnRemoteMachine true
+    ```
 2. 您可以使用 **Get-AzureRmDataFactoryGateway** Cmdlet 取得 Data Factory 中的閘道器器清單。 當 [狀態] 顯示為 [線上] 時，表示您的閘道器已就緒可供使用。
 
-        Get-AzureRmDataFactoryGateway -DataFactoryName <dataFactoryName> -ResourceGroupName ADF
-
+    ```PowerShell        
+    Get-AzureRmDataFactoryGateway -DataFactoryName <dataFactoryName> -ResourceGroupName ADF
+    ```
 您可以使用 **Remove-AzureRmDataFactoryGateway** Cmdlet 移除閘道器，並使用 **Set-AzureRmDataFactoryGateway** Cmdlet 更新閘道器的說明。 如需這些 Cmdlet 的語法及其他詳細資訊，請參閱 Data Factory Cmdlet 參考文件。  
 
 ### <a name="list-gateways-using-powershell"></a>使用 PowerShell 列出閘道器
-    Get-AzureRmDataFactoryGateway -DataFactoryName jasoncopyusingstoredprocedure -ResourceGroupName ADF_ResourceGroup
+    
+```PowerShell
+Get-AzureRmDataFactoryGateway -DataFactoryName jasoncopyusingstoredprocedure -ResourceGroupName ADF_ResourceGroup
+```
 
 ### <a name="remove-gateway-using-powershell"></a>使用 PowerShell 移除閘道器
-    Remove-AzureRmDataFactoryGateway -Name JasonHDMG_byPSRemote -ResourceGroupName ADF_ResourceGroup -DataFactoryName jasoncopyusingstoredprocedure -Force
+    
+```PowerShell
+Remove-AzureRmDataFactoryGateway -Name JasonHDMG_byPSRemote -ResourceGroupName ADF_ResourceGroup -DataFactoryName jasoncopyusingstoredprocedure -Force
+```
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -426,6 +447,6 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

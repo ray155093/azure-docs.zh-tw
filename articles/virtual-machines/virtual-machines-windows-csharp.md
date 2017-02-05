@@ -1,13 +1,13 @@
 ---
-title: 使用 C# 部署 Azure 資源 | Microsoft Docs
-description: 了解如何使用 C# 和 Azure Resource Manager 建立 Microsoft Azure 資源。
+title: "使用 C# 部署 Azure 資源 | Microsoft Docs"
+description: "了解如何使用 C# 和 Azure Resource Manager 建立 Microsoft Azure 資源。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: davidmu1
 manager: timlt
 editor: tysonn
 tags: azure-resource-manager
-
+ms.assetid: 87524373-5f52-4f4b-94af-50bf7b65c277
 ms.service: virtual-machines-windows
 ms.workload: na
 ms.tgt_pltfrm: vm-windows
@@ -15,20 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/06/2016
 ms.author: davidmu
+translationtype: Human Translation
+ms.sourcegitcommit: 37ab64cb40def50342eb31c240aa301e9d751055
+ms.openlocfilehash: 6fa33715484a4bb371148410b43c5ac606744160
+
 
 ---
-# <a name="deploy-azure-resources-using-c#"></a>使用 C 部署 Azure 資源
+# <a name="deploy-azure-resources-using-c"></a>使用 C 部署 Azure 資源# #
 本文說明如何使用 C# 建立 Azure 資源。
 
 您必須先確定已完成下列工作：
 
 * 安裝 [Visual Studio](http://msdn.microsoft.com/library/dd831853.aspx)
 * 驗證 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855) 的安裝
-* 取得 [驗證權杖](../resource-group-authenticate-service-principal.md)
+* 取得 [驗證權杖](../azure-resource-manager/resource-group-authenticate-service-principal.md)
 
 執行這些步驟需要 30 分鐘左右。
 
-## <a name="step-1:-create-a-visual-studio-project-and-install-the-libraries"></a>步驟 1：建立 Visual Studio 專案，並安裝程式庫
+## <a name="step-1-create-a-visual-studio-project-and-install-the-libraries"></a>步驟 1：建立 Visual Studio 專案，並安裝程式庫
 NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 若要取得在 Visual Studio 中所需要的程式庫，請執行下列步驟：
 
 1. 按一下 [檔案] > [新增] > [專案]。
@@ -42,7 +46,7 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
 
 您現在已經準備就緒，可以開始使用程式庫建立您的應用程式。
 
-## <a name="step-2:-create-the-credentials-that-are-used-to-authenticate-requests"></a>步驟 2：建立用來驗證要求的認證
+## <a name="step-2-create-the-credentials-that-are-used-to-authenticate-requests"></a>步驟 2：建立用來驗證要求的認證
 現在您可以將先前建立的應用程式資訊格式化為用來向 Azure Resource Manager 驗證要求的認證。
 
 1. 開啟您建立之專案的 Program.cs 檔案，然後將這些 using 陳述式新增至檔案頂端：
@@ -79,7 +83,7 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
         var credential = new TokenCredentials(token.Result.AccessToken);
 4. 儲存 Program.cs 檔案。
 
-## <a name="step-3:-register-the-resource-providers-and-create-the-resources"></a>步驟 3：註冊資源提供者，並建立資源
+## <a name="step-3-register-the-resource-providers-and-create-the-resources"></a>步驟 3：註冊資源提供者，並建立資源
 ### <a name="register-the-providers-and-create-a-resource-group"></a>註冊提供者，並建立資源群組
 所有資源都必須包含在資源群組中。 您的訂用帳戶必須先向資源提供者註冊，您才能將資源新增至群組。
 
@@ -428,7 +432,7 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
         }
    
    > [!NOTE]
-   > 本教學課程中會建立執行 Windows Server 作業系統版本的虛擬機器。 若要深入了解如何選取其他映像，請參閱 [使用 Windows PowerShell 和 Azure CLI 來瀏覽和選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md)。
+   > 本教學課程中會建立執行 Windows Server 作業系統版本的虛擬機器。 若要深入了解如何選取其他映像，請參閱 [使用 Windows PowerShell 和 Azure CLI 來瀏覽和選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
    > 
    > 
 2. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Main 方法：
@@ -447,30 +451,35 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
         Console.WriteLine(vmResult.Result.ProvisioningState);
         Console.ReadLine();
 
-## <a name="step-4:-delete-the-resources"></a>步驟 4：刪除資源
+## <a name="step-4-delete-the-resources"></a>步驟 4：刪除資源
 您將為 Azure 中所使用的資源支付費用，因此，刪除不再需要的資源永遠是最好的做法。 如果您想要刪除虛擬機器及所有支援的資源，您只需要刪除資源群組。
 
 1. 若要刪除資源群組，請將下列方法新增至 Program 類別：
    
-       public static async void DeleteResourceGroupAsync(
-         TokenCredentials credential,
-         string groupName,
-         string subscriptionId)
-       {
-         Console.WriteLine("Deleting resource group...");
-         var resourceManagementClient = new ResourceManagementClient(credential)
-           { SubscriptionId = subscriptionId };
-         await resourceManagementClient.ResourceGroups.DeleteAsync(groupName);
-       }
+   ```
+   public static async void DeleteResourceGroupAsync(
+     TokenCredentials credential,
+     string groupName,
+     string subscriptionId)
+   {
+     Console.WriteLine("Deleting resource group...");
+     var resourceManagementClient = new ResourceManagementClient(credential)
+       { SubscriptionId = subscriptionId };
+     await resourceManagementClient.ResourceGroups.DeleteAsync(groupName);
+   }
+   ```
+
 2. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Main 方法：
    
-       DeleteResourceGroupAsync(
-         credential,
-         groupName,
-         subscriptionId);
-       Console.ReadLine();
+   ```   
+   DeleteResourceGroupAsync(
+     credential,
+     groupName,
+     subscriptionId);
+   Console.ReadLine();
+   ```
 
-## <a name="step-5:-run-the-console-application"></a>步驟 5：執行主控台應用程式
+## <a name="step-5-run-the-console-application"></a>步驟 5：執行主控台應用程式
 1. 若要執行主控台應用程式，按一下 Visual Studio 中的 [啟動]  ，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 2. 傳回每個狀態碼之後，按下 **Enter** 以建立每個資源。 建立虛擬機器之後，請執行下一個步驟，再按 Enter 以刪除所有資源。
    
@@ -480,9 +489,12 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
     ![在 Azure 入口網站中瀏覽稽核記錄檔](./media/virtual-machines-windows-csharp/crpportal.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 使用 [利用 C# 和 Resource Manager 範本來部署 Azure 虛擬機器](virtual-machines-windows-csharp-template.md)中的資訊，以利用範本來建立虛擬機器。
-* 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-csharp-manage.md)，以了解如何管理您建立的虛擬機器。
+* 使用 [利用 C# 和 Resource Manager 範本來部署 Azure 虛擬機器](virtual-machines-windows-csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的資訊，以利用範本來建立虛擬機器。
+* 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-csharp-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以了解如何管理您建立的虛擬機器。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO1-->
 
 

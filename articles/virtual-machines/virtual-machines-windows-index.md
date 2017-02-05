@@ -16,15 +16,16 @@ ms.workload: infrastructure-services
 ms.date: 08/05/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: a8de2f783bfde7f30e633ae4998cefaf1535e74a
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: bc303bb08366f5bcf86b2ae84db5751ea620d05c
 
 
 ---
 # <a name="technical-articles-for-windows-vms-in-the-classic-deployment-model"></a>傳統部署模型中的 Windows VM 的技術文章
 尋找在傳統部署模型中建立和管理以 Windows 為基礎的 Azure 虛擬機器所需的所有說明文件。
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 ## <a name="overview"></a>概觀
 [關於虛擬機器](virtual-machines-windows-about.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -38,7 +39,7 @@ ms.openlocfilehash: a8de2f783bfde7f30e633ae4998cefaf1535e74a
 ## <a name="environment-setup"></a>環境設定
 [免費帳戶](https://azure.microsoft.com/free/)
 
-[安裝 Azure PowerShell](../powershell-install-configure.md)
+[安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 
 [安裝 Azure CLI](../xplat-cli-install.md)
 
@@ -85,10 +86,6 @@ ms.openlocfilehash: a8de2f783bfde7f30e633ae4998cefaf1535e74a
 [管理虛擬機器擴充功能](virtual-machines-windows-classic-manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [傳統 Windows 虛擬機器的自訂指令碼擴充功能](virtual-machines-windows-classic-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-
-[Azure 虛擬機器中的 SQL Server 自動備份](virtual-machines-windows-classic-sql-automated-backup.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-
-[Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-sql-automated-patching.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [平台支援的從傳統移轉至 Azure Resource Manager](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 
@@ -143,7 +140,7 @@ ms.openlocfilehash: a8de2f783bfde7f30e633ae4998cefaf1535e74a
 
 [SAP](virtual-machines-windows-classic-sap-get-started.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[SQL Server](virtual-machines-windows-sql-server-iaas-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[SQL Server](./windows/sql/virtual-machines-windows-sql-server-iaas-overview.md)
 
 [Tomcat](virtual-machines-windows-classic-java-run-tomcat-app-server.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -169,6 +166,6 @@ ms.openlocfilehash: a8de2f783bfde7f30e633ae4998cefaf1535e74a
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

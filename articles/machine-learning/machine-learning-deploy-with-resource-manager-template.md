@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/23/2016
+ms.date: 12/12/2016
 ms.author: ahgyger
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cf6c80aa82edc6753700975f2bf3919f0c48ec75
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: e0a06c070159a87932cda4b31d9363e54c008a35
 
 
 ---
@@ -139,7 +139,7 @@ Get-AzureRmResource |? { $_.ResourceType -Like "*MachineLearning/workspaces*"} |
 佈建工作區之後，您也可以使用 [適用於 Azure Machine Learning 的 PowerShell 模組](http://aka.ms/amlps)將許多 Azure Machine Learning Studio 工作自動化。
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解 [編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。 
+* 深入了解 [編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。 
 * 看看 [Azure 快速入門範本儲存機制](https://github.com/Azure/azure-quickstart-templates)。 
 * 觀看這段 [Azure Resource Manager](https://channel9.msdn.com/Events/Ignite/2015/C9-39)影片。 
 
@@ -152,6 +152,6 @@ Get-AzureRmResource |? { $_.ResourceType -Like "*MachineLearning/workspaces*"} |
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

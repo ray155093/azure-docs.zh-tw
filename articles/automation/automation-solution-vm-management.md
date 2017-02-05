@@ -12,17 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 01/05/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: fadf6cddbcc0b5090e60084713141358aa4c511d
-ms.openlocfilehash: 5b01563ec92aa941d7c447eb05889ffdeb43c027
+ms.sourcegitcommit: 83b9f84ed017b4777b70777c653cc24ca19ab648
+ms.openlocfilehash: aadd8ec3d4d6d70c8ba7c28cd00fa21379b48929
 
 ---
 
 # <a name="startstop-vms-during-off-hours-preview-solution-in-automation"></a>自動化中的在離峰期間啟動/停止 VM [預覽] 方案
 
-在離峰期間啟動/停止 VM [預覽] 方案會依照使用者定義的排程啟動和停止 Azure Resource Manager 虛擬機器，並透過 OMS Log Analytics 提供成功啟動和停止虛擬機器的自動化作業深入解析。  
+在離峰期間啟動/停止 VM [預覽] 方案會依照使用者定義的排程啟動和停止 Azure Resource Manager 和傳統虛擬機器，並透過 OMS Log Analytics 提供成功啟動和停止虛擬機器的自動化作業深入解析。  
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -159,7 +159,7 @@ O365Credential | 指定有效的 Office 365 使用者帳戶以傳送電子郵件
 
 ### <a name="modifying-the-startup-and-shutdown-schedule"></a>修改啟動和關閉排程
 
-在此解決方案中管理啟動和關閉排程會遵循[在 Azure 自動化中排程 Runbook](automation-scheduling-a-runbook.md) 中所概述的相同步驟。  請記住，您無法修改排程設定。  您必須停用現有的排程並建立新的排程，然後連結至您希望排程套用的 **StartByResourceGroup-MS-Mgmt-VM** 或 **StopByResourceGroup-MS-Mgmt-VM** Runbook。   
+在此解決方案中管理啟動和關閉排程會遵循[在 Azure 自動化中排程 Runbook](automation-schedules.md) 中所概述的相同步驟。  請記住，您無法修改排程設定。  您必須停用現有的排程並建立新的排程，然後連結至您希望排程套用的 **StartByResourceGroup-MS-Mgmt-VM** 或 **StopByResourceGroup-MS-Mgmt-VM** Runbook。   
 
 ## <a name="log-analytics-records"></a>Log Analytics 記錄
 
@@ -247,6 +247,6 @@ StreamType | 作業串流的類型。 可能的值包括：<br>-Progress (進度
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

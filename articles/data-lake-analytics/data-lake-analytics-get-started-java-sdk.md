@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: bbfe4dc74b9743b89ea6a7a99f5fa17672f3c706
-ms.openlocfilehash: 94db8988acacd93518e96a81e177882852379fb0
+ms.sourcegitcommit: 5d73d1203faf485d715354e68ce2ccde32562611
+ms.openlocfilehash: 99e1c8956968264fbea696b85ac084281d75f02a
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: 94db8988acacd93518e96a81e177882852379fb0
 * IntelliJ 或其他合適的 Java 開發環境。 此為選用步驟，但建議執行。 以下指示使用 IntelliJ。
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **啟用您的 Azure 訂用帳戶** 以使用 Data Lake Analytics 公開預覽版。 請參閱 [指示](data-lake-analytics-get-started-portal.md)。
-* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。 如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱 [使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。 建立應用程式並產生金鑰後，也可從入口網站取得回覆 URI 和金鑰。
+* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。 如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱 [使用入口網站建立 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)。 建立應用程式並產生金鑰後，也可從入口網站取得回覆 URI 和金鑰。
 
 ## <a name="how-do-i-authenticate-using-azure-active-directory"></a>如何使用 Azure Active Directory 驗證？
 下列程式碼片段提供 **非互動式** 驗證的程式碼，其中應用程式會提供它自己的認證。
@@ -353,6 +353,6 @@ ms.openlocfilehash: 94db8988acacd93518e96a81e177882852379fb0
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

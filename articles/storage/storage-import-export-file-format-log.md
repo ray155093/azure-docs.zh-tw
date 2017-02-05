@@ -13,11 +13,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/25/2015
+ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 78abb839badf99c6251673ee9914955df8c950bc
-ms.openlocfilehash: fab36b750ec4ba518fad8392f611cd46d8155985
+ms.sourcegitcommit: 5329e92222c48143cdb459f775105ffaa9508843
+ms.openlocfilehash: 9da066964be5c38191ea860e1fac6f0e0e31d5df
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: fab36b750ec4ba518fad8392f611cd46d8155985
   
 -   發生錯誤時，一定會產生錯誤記錄檔。  
   
--   詳細資訊記錄檔預設未啟用，但可透過在 [Put Job](/rest/api/storageservices/importexport/Put-Job) 或 [Update Job Properties](/rest/api/storageservices/importexport/Update-Job-Properties) 作業上設定 `EnableVerboseLog` 屬性來啟用。  
+-   詳細資訊記錄檔預設未啟用，但可透過在 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 或 [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) 作業上設定 `EnableVerboseLog` 屬性來啟用。  
   
 ## <a name="log-file-location"></a>記錄檔位置  
 記錄檔會寫入至容器中的區塊 Blob 或 `ImportExportStatesPath` 設定指定的虛擬目錄 (您可以在 `Put Job` 作業上設定) 中。 寫入記錄檔的位置取決於為工作指定的驗證方式，以及為 `ImportExportStatesPath` 指定的值。 您可以透過儲存體帳戶金鑰或容器 SAS (共用存取簽章) 指定工作的驗證方式。  
@@ -44,7 +44,7 @@ ms.openlocfilehash: fab36b750ec4ba518fad8392f611cd46d8155985
 |容器 SAS|預設值|名為 `waimportexport` 的虛擬目錄，這是預設名稱，位於 SAS 中指定的容器底下。<br /><br /> 例如，如果為工作指定的 SAS 是 `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`，記錄檔位置會是 `https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport`|  
 |容器 SAS|使用者指定值|使用者命名的虛擬目錄，位於 SAS 中指定的容器底下。<br /><br /> 例如，如果為工作指定的 SAS 是 `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`，且指定的虛擬目錄名為 `mylogblobs`，記錄檔位置會是 `https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport/mylogblobs`。|  
   
-您可以透過呼叫 [Get Job](/rest/api/storageservices/importexport/Get-Job3) 作業來擷取錯誤和詳細資訊記錄檔的 URL。 磁碟機處理完成後會產生記錄檔。  
+您可以透過呼叫 [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業來擷取錯誤和詳細資訊記錄檔的 URL。 磁碟機處理完成後會產生記錄檔。  
   
 ## <a name="log-file-format"></a>記錄檔格式  
 兩個記錄檔的格式同為 Blob，其中包含在硬碟和客戶的帳戶之間複製 Blob 時所發生事件的 XML 描述。  
@@ -358,10 +358,10 @@ properties-status ::=
 ```
   
 ## <a name="see-also"></a>另請參閱  
-[儲存體匯入/匯出 REST](/rest/api/storageservices/importexport/Storage-Import-Export-Service-REST-API-Reference)
+[儲存體匯入/匯出 REST](/rest/api/storageimportexport/)
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

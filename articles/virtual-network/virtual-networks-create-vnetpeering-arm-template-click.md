@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 09/14/2016
 ms.author: narayan;annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: 5939119e2b42b13acaf08678cae11b99d45fdf51
+ms.sourcegitcommit: 6fb71859d0ba2e0f2b39d71edd6d518b7a03bfe9
+ms.openlocfilehash: 547a2c0ab49c0b79d85bab1bd3abd800c9288ccf
 
 
 ---
@@ -101,7 +101,7 @@ ms.openlocfilehash: 5939119e2b42b13acaf08678cae11b99d45fdf51
    | UseRemoteGateways |使用對等的 VNet 閘道。 對等 VNet 必須設定閘道，並選取 AllowGatewayTransit。 如果閘道已設定則無法使用此選項。 |否 |
    
     VNet 對等互連中的每個連結都有一組上述的屬性。 例如，您可以為 VNet1 至 VNet2 的 VNet 對等互連連結將 AllowVirtualNetworkAccess 設為 True，並為另一個方向的 VNet 對等互連連結將其設為 False。
-4. 若要部署範本檔案，您可以執行 New-AzureRmResourceGroupDeployment Cmdlet 以建立或更新部署。 如需使用 Resource Manager 範本的詳細資訊，請參閱此 [文章](../resource-group-template-deploy.md)。
+4. 若要部署範本檔案，您可以執行 New-AzureRmResourceGroupDeployment Cmdlet 以建立或更新部署。 如需使用 Resource Manager 範本的詳細資訊，請參閱此 [文章](../azure-resource-manager/resource-group-template-deploy.md)。
    
         New-AzureRmResourceGroupDeployment -ResourceGroupName <resource group name> -TemplateFile <template file path> -DeploymentDebugLogLevel all
    
@@ -382,6 +382,6 @@ ms.openlocfilehash: 5939119e2b42b13acaf08678cae11b99d45fdf51
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO4-->
 
 

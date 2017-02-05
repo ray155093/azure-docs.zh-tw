@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/08/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3e22b8173e7b0a470c5c45ed6027a717b90aca23
+ms.sourcegitcommit: 0dee2c3b92adc4098a51014dd7379aa3d53c1627
+ms.openlocfilehash: 2978fee770b70378dfbffcbd97e57a6b82d2e2fa
 
 
 ---
@@ -55,11 +55,11 @@ ms.openlocfilehash: 3e22b8173e7b0a470c5c45ed6027a717b90aca23
 [!INCLUDE [virtual-machines-common-move-vm](../../includes/virtual-machines-common-move-vm.md)]
 
 ## <a name="next-steps"></a>後續步驟
-您可以在資源群組和訂用帳戶之間移動許多不同類型的資源。 如需詳細資訊，請參閱 [將資源移動到新的資源群組或訂用帳戶](../resource-group-move-resources.md)。    
+您可以在資源群組和訂用帳戶之間移動許多不同類型的資源。 如需詳細資訊，請參閱 [將資源移動到新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)。    
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

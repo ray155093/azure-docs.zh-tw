@@ -3,7 +3,7 @@ title: "使用 Batch Management .NET 進行帳戶資源管理 | Microsoft Docs"
 description: "使用 Batch Management .NET 程式庫建立、刪除和修改 Azure Batch 帳戶資源。"
 services: batch
 documentationcenter: .net
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -13,11 +13,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 10/19/2016
-ms.author: marsma
+ms.date: 01/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d2a2bf6c6046aa1de67d85b23b0c11bf7f9d4400
+ms.sourcegitcommit: e65393c9582056f84530a32804e0d82fd451b688
+ms.openlocfilehash: ce2b316c9e04c46c1b45139b2ba84c1ca8843f29
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: d2a2bf6c6046aa1de67d85b23b0c11bf7f9d4400
 > 
 
 ## <a name="create-and-delete-batch-accounts"></a>建立和刪除 Batch 帳戶
-如上所述，Batch Management API 的主要功能之一就是在 Azure 區域內建立和刪除 Batch 帳戶。 若要這樣做，請使用 [BatchManagementClient.Account.CreateAsync][net_create] 和 [DeleteAsync][net_delete]，或其同步對應項目。
+如上所述，Batch Management API 的主要功能之一就是在 Azure 區域內建立和刪除 Batch 帳戶。 若要這樣做，您將使用 [BatchManagementClient.Account.CreateAsync][net_create] 和 [DeleteAsync][net_delete]，或其同步對應項目。
 
 下列程式碼片段會建立一個帳戶、從 Batch 服務取得新建立的帳戶，然後將它刪除。 在本文的此程式碼片段與其他程式碼片段中，`batchManagementClient` 是 [BatchManagementClient][net_mgmt_client] 完整初始化的執行個體。
 
@@ -61,7 +61,7 @@ await batchManagementClient.Account.DeleteAsync("MyResourceGroup", account.Name)
 ```
 
 > [!NOTE]
-> 使用 Batch Management .NET 程式庫和其 BatchManagementClient 類別的應用程式需要**服務管理員**或**共同管理員**存取權，以使用擁有要管理的 Batch 帳戶的訂用帳戶。 如需詳細資訊，請參閱 [Azure Active Directory](#azure-active-directory) 一節和 [AccountManagement][acct_mgmt_sample] 程式碼範例。
+> 使用 Batch Management .NET 程式庫和其 BatchManagementClient 類別的應用程式需要**服務管理員**或**共同管理員**存取權，以使用擁有要管理的 Batch 帳戶的訂用帳戶。 如需詳細資訊，請參閱以 [Azure Active Directory](#azure-active-directory) 一節和 [AccountManagement][acct_mgmt_sample] 程式碼範例。
 > 
 > 
 
@@ -88,7 +88,7 @@ BatchAccountRegenerateKeyResponse newKeys =
 ```
 
 > [!TIP]
-> 您可以為您的管理應用程式建立簡化的連線工作流程。 首先，取得您想要使用 [ListKeysAsync][net_list_keys] 管理的 Batch 帳戶的帳戶金鑰。 接著，在初始化 Batch .NET 程式庫的 [BatchSharedKeyCredentials][net_sharedkeycred] 類別 (初始化 [BatchClient][net_batch_client] 時使用) 時使用此金鑰。
+> 您可以為您的管理應用程式建立簡化的連線工作流程。 首先，取得您想要使用 [ListKeysAsync][net_list_keys] 管理的 Batch 帳戶的帳戶金鑰。 接著，在初始化 Batch .NET 程式庫的 [BatchSharedKeyCredentials][net_sharedkeycred] 類別 (初始化時 [BatchClient][net_batch_client] 時使用) 時使用此金鑰。
 > 
 > 
 
@@ -150,15 +150,15 @@ Console.WriteLine("Active job and job schedule quota: {0}", account.Properties.A
 ### <a name="azure-active-directory"></a>Azure Active Directory
 Azure 本身會使用 Azure AD 來驗證其客戶、服務管理員和組織的使用者。 在 Batch Management .NET 內容中，您會使用 Azure AD 來驗證訂用帳戶管理員或共同管理員。 這可讓管理程式庫查詢 Batch 服務並執行本文中所述的作業。
 
-在以下討論的範例專案中，會使用 Azure [Active Directory 驗證程式庫][aad_adal] (ADAL) 來提示使用者輸入他們的 Microsoft 認證。 提供服務管理員或共同管理員認證時，讓應用程式查詢 Azure 訂用帳戶的清單，以及建立和刪除資源群組和 Batch 帳戶。
+在以下討論的範例專案中，Azure [Active Directory 驗證程式庫][aad_adal] (ADAL) 用來提示使用者輸入他們的 Microsoft 認證。 提供服務管理員或共同管理員認證時，讓應用程式查詢 Azure 訂用帳戶的清單，以及建立和刪除資源群組和 Batch 帳戶。
 
 ### <a name="resource-manager"></a>Resource Manager
-使用 Batch Management .NET 程式庫建立 Batch 帳戶時，您通常會在[資源群組][resman_overview]內建立帳戶。 您可以使用 [Resource Manager .NET][resman_api] 程式庫中的 [ResourceManagementClient][resman_client] 類別，以程式設計方式建立資源群組。 或您可以將帳戶加入至您先前使用 [Azure 入口網站][azure_portal]建立的現有資源群組。
+使用 Batch Management .NET 程式庫建立 Batch 帳戶時，您通常會在[資源群組][resman_overview]內建立帳戶。 您可以使用 [Resource Manager .NET][resman_api] 程式庫中的 [ResourceManagementClient][resman_client] 類別，以程式設計方式建立資源群組。 或您可以將帳戶新增至您先前使用 [Azure 入口網站][azure_portal]建立的現有資源群組。
 
 ## <a name="sample-project-on-github"></a>GitHub 上的範例專案
 若要查看 Batch Management .NET 的實際運作，請查看 GitHub 上的 [AccountManagment][acct_mgmt_sample] 範例專案。 此主控台應用程式顯示 [BatchManagementClient][net_mgmt_client] 和 [ResourceManagementClient][resman_client] 的建立與使用方式。 它也會示範兩個用戶端所需的 Azure [Active Directory 驗證程式庫][aad_adal] (ADAL) 使用方式。
 
-若要成功執行範例應用程式，您必須先使用 Azure 入口網站向 Azure AD 登錄它。 遵循[整合應用程式與 Azure Active Directory][aad_integrate]之[新增應用程式](../active-directory/active-directory-integrating-applications.md#adding-an-application)一節中的步驟，在您自己帳戶的預設目錄內註冊範例應用程式。 請務必針對應用程式的類型選取**原生用戶端應用程式**，且您可以針對**重新導向 URI** 指定任何有效的 URI (例如 `http://myaccountmanagementsample`) - 不需要是實際的端點。
+若要成功執行範例應用程式，您必須先使用 Azure 入口網站向 Azure AD 登錄它。 遵循[整合應用程式與 Azure Active Directory][aad_integrate] 之[新增應用程式](../active-directory/develop/active-directory-integrating-applications.md#adding-an-application)一節中的步驟，在您自己帳戶的預設目錄內註冊範例應用程式。 請務必針對應用程式的類型選取**原生用戶端應用程式**，且您可以針對**重新導向 URI** 指定任何有效的 URI (例如 `http://myaccountmanagementsample`) - 不需要是實際的端點。
 
 加入您的應用程式之後，在入口網站的應用程式設定中，將 **以組織身分存取 Azure 服務管理** 權限委派給 *Windows Azure 服務管理 API* 應用程式：
 
@@ -169,7 +169,7 @@ Azure 本身會使用 Azure AD 來驗證其客戶、服務管理員和組織的�
 > 
 > 
 
-一旦您已經如上面所述加入應用程式，請使用您的應用程式的重新導向 URI 和用戶端 ID，更新 [AccountManagment][acct_mgmt_sample] 範例專案中的 `Program.cs`。 您可以在您的應用程式的 [設定]  索引標籤中找到這些值：
+一旦您已經如上面所述新增應用程式，請使用您的應用程式的重新導向 URI 和用戶端 ID，更新 [AccountManagment][acct_mgmt_sample] 範例專案中的 `Program.cs`。 您可以在您的應用程式的 [設定]  索引標籤中找到這些值：
 
 ![Azure 入口網站的應用程式組態][3]
 
@@ -178,7 +178,7 @@ Azure 本身會使用 Azure AD 來驗證其客戶、服務管理員和組織的�
 1. 使用 [ADAL][aad_adal] 向 Azure AD 取得安全性權杖。 如果使用者尚未登入，系統會提示使用者輸入其 Azure 認證。
 2. 使用從 Azure AD 取得的安全性權杖，建立 [SubscriptionClient][resman_subclient] 以查詢 Azure 與帳戶相關聯的訂用帳戶清單。 這可選取一個訂用帳戶 (如果找到多個)。
 3. 建立與選取的訂用帳戶相關聯的認證物件。
-4. 使用新認證來建立 [ResourceManagementClient][resman_client]。
+4. 使用認證來建立 [ResourceManagementClient][resman_client]。
 5. 使用 [ResourceManagementClient][resman_client] 來建立資源群組。
 6. 使用 [BatchManagementClient][net_mgmt_client] 來執行數個 Batch 帳戶作業：
    * 在新的資源群組中建立 Batch 帳戶。
@@ -228,6 +228,6 @@ Azure 本身會使用 Azure AD 來驗證其客戶、服務管理員和組織的�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

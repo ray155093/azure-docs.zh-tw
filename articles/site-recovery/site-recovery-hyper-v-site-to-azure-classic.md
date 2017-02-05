@@ -15,8 +15,8 @@ ms.workload: storage-backup-recovery
 ms.date: 11/23/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 8ff2423f5b546864757a75cd7af1e6c76f047b19
-ms.openlocfilehash: 221027027e57413b6244c97e3e5c57d6423d94ea
+ms.sourcegitcommit: ea89244efea6afa7d7b9d60f400117284fb5d1e1
+ms.openlocfilehash: 3c5e51c562d9251f2ad40eeb1939d1651c845391
 
 
 ---
@@ -168,13 +168,13 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 * **/proxyAddress**；**/proxyport**；**/proxyUsername**；**/proxyPassword**：選擇性。 如果您想要使用自訂 proxy，或您現有的 proxy 需要驗證，請指定 proxy 參數。
 
 ## <a name="step-4-create-an-azure-storage-account"></a>步驟 4：建立 Azure 儲存體帳戶
-1. 在 [準備資源] 中選取 [建立儲存體帳戶]，以建立 Azure 儲存體帳戶 (如果您沒有儲存體帳戶)。 此帳戶應啟用異地複寫。 它應該與 Azure Site Recovery 保存庫位於相同的區域，並與同一個訂用帳戶建立關聯。
+* 在 [準備資源] 中選取 [建立儲存體帳戶]，以建立 Azure 儲存體帳戶 (如果您沒有儲存體帳戶)。 此帳戶應啟用異地複寫。 它應該與 Azure Site Recovery 保存庫位於相同的區域，並與同一個訂用帳戶建立關聯。
 
     ![建立儲存體帳戶](./media/site-recovery-hyper-v-site-to-azure-classic/create-resources.png)
 
 > [!NOTE]
-> 1. 我們不支援使用 [新的 Azure 入口網站](../storage/storage-create-storage-account.md) 來跨資源群組移動所建立的儲存體帳戶。                               2. 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉儲存體帳戶](../resource-group-move-resources.md)。
->
+> 1. 我們不支援使用 [新的 Azure 入口網站](../storage/storage-create-storage-account.md) 來跨資源群組移動所建立的儲存體帳戶。
+> 2. 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉儲存體帳戶](../azure-resource-manager/resource-group-move-resources.md)。
 >
 
 ## <a name="step-5-create-and-configure-protection-groups"></a>步驟 5：建立和設定保護群組
@@ -218,19 +218,21 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 
      * **網路介面卡**：網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。 查看 [虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md#size-tables) ，了解虛擬機器大小所支援的 NIC 數目。
 
-            When you modify the size for a virtual machine and save the settings, the number of network adapter will change when you open **Configure** page the next time. The number of network adapters of target virtual machines is minimum of the number of network adapters on source virtual machine and maximum number of network adapters supported by the size of the virtual machine chosen. It is explained below:
+       在修改虛擬機器的大小並儲存設定之後，當您下次開啟 [設定]  頁面時，網路介面卡的數量將會改變。 目標虛擬機器的網路介面卡數目，是來源虛擬機器上的網路介面卡數目下限，以及所選虛擬機器大小支援的網路介面卡數目上限。 其說明如下：
 
+       * 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
+       * 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
+       * 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。 如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。
+       
+     * **Azure 網路**：指定應將虛擬機器容錯移轉到其中的目標網路。 如果虛擬機器具有多張網路介面卡，則所有的介面卡都應該連接到同一個 Azure 網路。
+     * **子網路** ：針對虛擬機器上的每張網路介面卡，請選取 Azure 網路中的子網路，機器在容錯移轉之後應會連接到該子網路。
+     * **目標 IP 位址**：如果來源虛擬機器的網路介面卡已設定為使用靜態 IP 位址，則您可以指定目標虛擬機器的 IP 位址，以確保機器在容錯移轉後會有相同的 IP 位址。  如果您未指定 IP 位址，則系統將在容錯移轉期間指派任何可用的位址。 如果您指定了使用中的位址，則容錯移轉將會失敗。
 
-            - If the number of network adapters on the source machine is less than or equal to the number of adapters allowed for the target machine size, then the target will have the same number of adapters as the source.
-            - If the number of adapters for the source virtual machine exceeds the number allowed for the target size then the target size maximum will be used.
-            - For example if a source machine has two network adapters and the target machine size supports four, the target machine will have two adapters. If the source machine has two adapters but the supported target size only supports one then the target machine will have only one adapter.     
-        - **Azure 網路**：指定應將虛擬機器容錯移轉到其中的目標網路。 如果虛擬機器具有多張網路介面卡，則所有的介面卡都應該連接到同一個 Azure 網路。
-        - **子網路** ：針對虛擬機器上的每張網路介面卡，請選取 Azure 網路中的子網路，機器在容錯移轉之後應會連接到該子網路。
-        - **目標 IP 位址**：如果來源虛擬機器的網路介面卡已設定為使用靜態 IP 位址，則您可以指定目標虛擬機器的 IP 位址，以確保機器在容錯移轉後會有相同的 IP 位址。  如果您未指定 IP 位址，則系統將在容錯移轉期間指派任何可用的位址。 如果您指定了使用中的位址，則容錯移轉將會失敗。
+     > [!NOTE] 
+     > 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉網路](../azure-resource-manager/resource-group-move-resources.md)。
+     >
 
-        > [AZURE.NOTE] 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉網路](../resource-group-move-resources.md)。
-
-        ![設定虛擬機器屬性](./media/site-recovery-hyper-v-site-to-azure-classic/multiple-nic.png)
+     ![設定虛擬機器屬性](./media/site-recovery-hyper-v-site-to-azure-classic/multiple-nic.png)
 
 
 
@@ -284,6 +286,6 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO4-->
 
 

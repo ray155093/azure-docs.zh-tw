@@ -1,20 +1,24 @@
 ---
-title: 將資料從 Blob 儲存體複製到 SQL Database | Microsoft Docs
-description: 本教學課程向您說明如何使用 Azure Data Factory 管線中的複製活動，將資料從 Blob 儲存體複製到 SQL Database。
-keywords: blob sql, blob 儲存體, 資料複製
+title: "將資料從 Blob 儲存體複製到 SQL Database | Microsoft Docs"
+description: "本教學課程向您說明如何使用 Azure Data Factory 管線中的複製活動，將資料從 Blob 儲存體複製到 SQL Database。"
+keywords: "blob sql, blob 儲存體, 資料複製"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
 editor: monicar
-
+ms.assetid: e4035060-93bf-4e8d-bf35-35e2d15c51e0
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/05/2017
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 19436167ad8e82f47b147efc65c635d9bf2d2ae5
+ms.openlocfilehash: 0072e1db4758447445b97021e1624c2210fbd0a7
+
 
 ---
 # <a name="copy-data-from-blob-storage-to-sql-database-using-data-factory"></a>使用 Data Factory 將資料從 Blob 儲存體複製到 SQL Database
@@ -27,8 +31,8 @@ ms.author: spelluru
 > * [Azure Resource Manager 範本](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
 > * [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 > * [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-> 
-> 
+>
+>
 
 在本教學課程中，您會建立 Data Factory 與管線，以將資料從 Blob 儲存體複製到 SQL Database。
 
@@ -36,8 +40,8 @@ ms.author: spelluru
 
 > [!NOTE]
 > 如需 Data Factory 服務的詳細概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md) 一文。
-> 
-> 
+>
+>
 
 ## <a name="prerequisites-for-the-tutorial"></a>教學課程的必要條件
 開始進行本教學課程之前，您必須具備下列條件：
@@ -52,17 +56,17 @@ ms.author: spelluru
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下左側功能表中的 [更多服務]，然後選取 [儲存體帳戶]。
-   
-    ![瀏覽 - 儲存體帳戶](media\\data-factory-copy-data-from-azure-blob-storage-to-sql-database\\browse-storage-accounts.png)
+
+    ![瀏覽 - 儲存體帳戶](media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/browse-storage-accounts.png)
 3. 在 [儲存體帳戶] 刀鋒視窗中，選取您想要在本教學課程中使用的 [Azure 儲存體帳戶]。
 4. 選取 [設定] 底下的 [存取金鑰] 連結。
 5. 按一下 [儲存體帳戶名稱] 文字方塊旁的 [複製 (影像)] 按鈕，然後將它儲存/貼到某個位置 (例如：在文字檔中)。
 6. 重複上述步驟，複製或記下 **key1**。
-   
-    ![儲存體存取金鑰](media\\data-factory-copy-data-from-azure-blob-storage-to-sql-database\\storage-access-key.png)
+
+    ![儲存體存取金鑰](media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/storage-access-key.png)
 7. 按一下 **X**，關閉所有刀鋒視窗。
 
-## <a name="collect-sql-server,-database,-user-names"></a>收集 SQL Server、資料庫、使用者名稱
+## <a name="collect-sql-server-database-user-names"></a>收集 SQL Server、資料庫、使用者名稱
 您需要有 Azure SQL 伺服器、資料庫和使用者的名稱，才能進行這個教學課程。 記下 Azure SQL Database 的**伺服器**、**資料庫**和**使用者**名稱。
 
 1. 在 **Azure 入口網站**中，按一下左邊的 [更多服務]，然後選取 [SQL Database]。
@@ -75,7 +79,7 @@ ms.author: spelluru
 確定**開啟** Azure SQL 伺服器的 [允許存取 Azure 服務] 設定，讓 Data Factory 服務可以存取您的 Azure SQL 伺服器。 若要確認並開啟此設定，請執行下列步驟：
 
 1. 按一下左邊的 [更多服務] 中樞，然後按一下 [SQL Server]。
-2. 選取您的伺服器，然後按一下 [設定] 下的 [防火牆]。 
+2. 選取您的伺服器，然後按一下 [設定] 下的 [防火牆]。
 3. 在 [防火牆設定] 刀鋒視窗中，對 [允許存取 Azure 服務] 按一下 [開啟]。
 4. 按一下 **X**，關閉所有刀鋒視窗。
 
@@ -83,37 +87,44 @@ ms.author: spelluru
 現在，請執行下列步驟，準備本教學課程中的 Azure Blob 儲存體和 Azure SQL Database。  
 
 1. 啟動 [記事本]，並貼上下列文字，然後將它以 **emp.txt** 的形式儲存至您硬碟上的 **C:\ADFGetStarted** 資料夾。
-   
-        John, Doe
-        Jane, Doe
+
+    ```
+    John, Doe
+    Jane, Doe
+    ```
 2. 使用 [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/)這類的工具建立 **adftutorial** 容器，以及將 **emp.txt** 檔案上傳至該容器。
-   
+
     ![Azure 儲存體總管。 將資料從 Blob 儲存體複製到 SQL Database](./media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/getstarted-storage-explorer.png)
-3. 使用下列 SQL 指令碼，在您的 Azure SQL Database 中建立 **emp** 資料表。  
+3. 使用以下 SQL 指令碼，在您的 Azure SQL Database 中建立 **emp** 資料表。  
 
-        CREATE TABLE dbo.emp
-        (
-            ID int IDENTITY(1,1) NOT NULL,
-            FirstName varchar(50),
-            LastName varchar(50),
-        )
-        GO
+    ```SQL
+    CREATE TABLE dbo.emp
+    (
+        ID int IDENTITY(1,1) NOT NULL,
+        FirstName varchar(50),
+        LastName varchar(50),
+    )
+    GO
 
-        CREATE CLUSTERED INDEX IX_emp_ID ON dbo.emp (ID);
+    CREATE CLUSTERED INDEX IX_emp_ID ON dbo.emp (ID);
+    ```
 
-    **如果您的電腦上已安裝 SQL Server 2012/2014：** 請依照 [使用 SQL Server Management Studio 管理 Azure SQL Database 中的步驟 2：連線到 SQL Database](../sql-database/sql-database-manage-azure-ssms.md#Step2) 一文中的指示，連線到您的 Azure SQL Server 並執行 SQL 指令碼。 本文使用[傳統 Azure 入口網站](http://manage.windowsazure.com) (而非[新的 Azure 入口網站](https://portal.azure.com)) 來設定 Azure SQL Server 的防火牆。
+    **如果您的電腦上已安裝 SQL Server 2012/2014：**請遵循[使用 SQL Server Management Studio 管理 Azure SQL Database](../sql-database/sql-database-manage-azure-ssms.md) 中的指示，連線到您的 Azure SQL Server，並執行 SQL 指令碼。 本文使用[傳統 Azure 入口網站](http://manage.windowsazure.com) (而非[新的 Azure 入口網站](https://portal.azure.com)) 來設定 Azure SQL Server 的防火牆。
 
     如果不允許您的用戶端存取 Azure SQL Server，則必須將 Azure SQL Server 的防火牆設定成允許從您的電腦 (IP 位址) 存取。 請參閱 [本文](../sql-database/sql-database-configure-firewall-settings.md) 的步驟，為 Azure SQL Server 設定防火牆。
 
-您已完成必要條件。 您可以使用下列其中一個方式建立 Data Factory。 按一下頂端的其中一個索引標籤，或按一下以下連結以執行教學課程。     
+您已完成必要條件。 您可以使用下列其中一個方式建立 Data Factory。 按一下頂端下拉式清單中的其中一個選項，或按一下下列連結以執行教學課程。     
 
+* [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 * [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
 * [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 * [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
+* [Azure Resource Manager 範本](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
 * [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 * [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-* [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Jan17_HO1-->
 
 

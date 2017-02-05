@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 125833947af591d4f8995d803b5ee922679f6c8e
+ms.sourcegitcommit: 9f944edcafb55634c9338bc8dd518a5f032f56e0
+ms.openlocfilehash: edab3b3058a2e28ce74e62434b85b1643f267493
 
 
 ---
@@ -220,7 +220,7 @@ Azure Resource Manager 範本是「JavaScript 物件標記法」(JSON) 檔案，
           }
 ```
 
-您可以使用[這個現有的範本以從自訂映像建立 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image) 或閱讀[建立您自己的 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。 
+您可以使用[這個現有的範本以從自訂映像建立 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image) 或閱讀[建立您自己的 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。 
 
 設定完範本之後，您需使用 `azure group deployment create` 命令來建立 VM。 請使用 `--template-uri` 參數來指定您 JSON 範本的 URI︰
 
@@ -243,6 +243,6 @@ azure group deployment create --resource-group myResourceGroup
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

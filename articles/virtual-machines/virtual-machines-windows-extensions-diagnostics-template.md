@@ -1,13 +1,13 @@
 ---
-title: 使用 Azure 資源管理員範本建立具有監視和診斷的 Windows 虛擬機器 | Microsoft Docs
-description: 使用 Azure 資源管理員範本以建立具有 Azure 診斷延伸模組的新的 Windows 虛擬機器。
+title: "使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器 | Microsoft Docs"
+description: "使用 Azure 資源管理員範本以建立具有 Azure 診斷延伸模組的新的 Windows 虛擬機器。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: sbtron
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 8cde8fe7-977b-43d2-be74-ad46dc946058
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,10 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2015
 ms.author: saurabh
+translationtype: Human Translation
+ms.sourcegitcommit: 7167048a287bee7c26cfc08775dcb84f9e7c2eed
+ms.openlocfilehash: b84b4c0bd31d2e0bebafa2053a725e5e78bc3c9f
+
 
 ---
 # <a name="create-a-windows-virtual-machine-with-monitoring-and-diagnostics-using-azure-resource-manager-template"></a>使用 Azure 資源管理員範本建立具有監視和診斷的 Windows 虛擬機器
-Azure 診斷延伸模組提供以 Windows 為基礎的 Azure 虛擬機器上的監視和診斷功能。 您可以將延伸模組納入為 Azure 資源管理員範本的一部分，在虛擬機器上啟用這些功能。 請參閱 [使用 VM 延伸模組編寫 Azure 資源管理員範本](virtual-machines-windows-extensions-authoring-templates.md) ，以取得將任何延伸模組納入為虛擬機器範本一部分的詳細資訊。 本文描述如何將 Azure 診斷延伸模組新增至 Windows 虛擬機器範本。  
+Azure 診斷延伸模組提供以 Windows 為基礎的 Azure 虛擬機器上的監視和診斷功能。 您可以將延伸模組納入為 Azure 資源管理員範本的一部分，在虛擬機器上啟用這些功能。 請參閱 [使用 VM 延伸模組編寫 Azure 資源管理員範本](virtual-machines-windows-extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，以取得將任何延伸模組納入為虛擬機器範本一部分的詳細資訊。 本文描述如何將 Azure 診斷延伸模組新增至 Windows 虛擬機器範本。  
 
 ## <a name="add-the-azure-diagnostics-extension-to-the-vm-resource-definition"></a>將 Azure 診斷延伸模組新增至 VM 資源定義
 若要在 Windows 虛擬機器上啟用診斷延伸模組，您需要新增延伸模組做為資源管理員範本中的 VM 資源。
@@ -88,7 +92,7 @@ Azure 診斷延伸模組提供以 Windows 為基礎的 Azure 虛擬機器上的�
             "type": "string",
             "metadata": {
         "description": "The resource group for the storage account specified in existingdiagnosticsStorageAccountName"
-            }
+              }
         }
 
 最佳做法是在不同於虛擬機器資源群組的其他資源群組中指定診斷儲存體帳戶。 資源群組可以視為是具有自己的存留期的部署單位，可以部署虛擬機器以及在新組態更新時重新部署，但是您可能想要跨這些虛擬機器部署繼續在相同的儲存體帳戶中儲存診斷資料。 在不同的資源中擁有儲存體帳戶可讓儲存體帳戶接受來自各種虛擬機器部署的資料，方便疑難排解各種版本之間的問題。
@@ -161,9 +165,12 @@ Azure 診斷延伸模組提供以 Windows 為基礎的 Azure 虛擬機器上的�
 
 ## <a name="next-steps"></a>後續步驟
 * 如需具有診斷擴充功能之 Windows 虛擬機器的完整範例範本，請參閱 [201-vm-monitoring-diagnostics-extension](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-monitoring-diagnostics-extension)   
-* 使用 [Azure PowerShell](virtual-machines-windows-ps-manage.md) 或 [Azure 命令列](virtual-machines-linux-cli-deploy-templates.md)部署 Resource Manager 範本
-* 深入了解 [編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)
+* 使用 [Azure PowerShell](virtual-machines-windows-ps-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 或 [Azure 命令列](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)部署 Resource Manager 範本
+* 深入了解 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO1-->
 
 

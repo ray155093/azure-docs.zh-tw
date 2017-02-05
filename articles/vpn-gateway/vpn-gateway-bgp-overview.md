@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/16/2016
+ms.date: 01/12/2017
 ms.author: yushwang
 translationtype: Human Translation
-ms.sourcegitcommit: 5f270d383750dc6308f01807e04469e3873d70f9
-ms.openlocfilehash: 6d2a72831726f59ff79a7f4c1ff0e258275bfe4f
+ms.sourcegitcommit: 5961c73c3f147ab6b3eca4e9d920003df1ca2c82
+ms.openlocfilehash: 298eab8ad562cfb32edf8609ac29052dc403f406
 
 
 ---
@@ -35,11 +35,6 @@ BGP 具有數個優點和新功能：
 利用 BGP，您只需要透過 IPsec S2S VPN 通道宣告特定 BGP 對等互連的最小前置詞。 它也可以小至內部部署 VPN 裝置的 BGP 對等互連 IP 位址的主機前置詞 (/ 32)。 您可以控制您要公告至 Azure 以允許 Azure 虛擬網路存取的內部部署網路首碼。
 
 您也可以公告可能包含一些您的 VNet 位址首碼的較大首碼，例如預大型私人 IP 位址空間 (例如 10.0.0.0/8)。 可是請注意，首碼無法與您的任何一個 VNet 首碼相同。 與您的 VNet 首碼相同的路由將會遭到拒絕。
-
-> [!IMPORTANT]
-> 目前，公告 Azure VPN 閘道的預設路由 (0.0.0.0/0) 將會遭到封鎖。 一旦這項功能，將會提供進一步的更新。
-> 
-> 
 
 ### <a name="support-multiple-tunnels-between-a-vnet-and-an-on-premises-site-with-automatic-failover-based-on-bgp"></a>根據 BGP 使用自動容錯移轉，在 VNet 和內部部署站台之間支援多個通道
 您可以在 Azure VNet 與內部部署 VPN 裝置之間的相同位置中建立多個連接。 這項功能在主動-主動組態中的兩個網路之間提供多個通道 (路徑)。 如果其中一個通道已中斷連接，對應的路由會透過 BGP 撤回，且流量會自動轉換到其餘的通道。
@@ -64,6 +59,6 @@ BGP 可讓多個閘道識別及傳播來自不同網路的首碼，無論這些�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

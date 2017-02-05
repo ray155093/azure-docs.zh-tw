@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 12/05/2016
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 015b6387491e0347b3a3a0ac87bb6b91b06387f0
-ms.openlocfilehash: fb1cdfee5094198e3380e120f409175c89d23b6d
+ms.sourcegitcommit: 7167048a287bee7c26cfc08775dcb84f9e7c2eed
+ms.openlocfilehash: 73eec3322f8ee027c68ede89501b8b9fb00961a6
 
 ---
 
@@ -148,7 +148,7 @@ Azure Resource Manager 自動化指令碼會產生 Resource Manager 範本、參
 }
 ```
 
-如果使用範本參數來提供屬性值，則需建立這些參數。 建立受保護設定值的範本參數時，請務必使用 `SecureObject` 參數類型，以便確保敏感值的安全。 如需使用參數的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
+如果使用範本參數來提供屬性值，則需建立這些參數。 建立受保護設定值的範本參數時，請務必使用 `SecureObject` 參數類型，以便確保敏感值的安全。 如需使用參數的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 在 `IaasDiagnostic` 擴充功能的範例中，Resource Manager 範本的 parameters 區段中會建立下列參數。
 
@@ -167,6 +167,6 @@ Azure Resource Manager 自動化指令碼會產生 Resource Manager 範本、參
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

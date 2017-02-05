@@ -1,51 +1,55 @@
 ---
-title: 如何使用 .NET 透過內部部署編碼器執行即時視訊串流 | Microsoft Docs
-description: 本主題將說明如何使用 .NET 透過內部部署編碼器執行即時編碼。
+title: "如何使用 .NET 透過內部部署編碼器執行即時串流 | Microsoft Docs"
+description: "本主題將說明如何使用 .NET 透過內部部署編碼器執行即時編碼。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 15908152-d23c-4d55-906a-3bfd74927db5
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 08/31/2016
+ms.date: 01/05/2017
 ms.author: cenkdin;juliako
+translationtype: Human Translation
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: b00dcddf38885b002822b9e92010bdf2c5938cc4
+
 
 ---
-# 如何使用 .NET 透過內部部署編碼器執行即時視訊串流
+# <a name="how-to-perform-live-streaming-with-on-premise-encoders-using-net"></a>如何使用 .NET 透過內部部署編碼器執行即時視訊串流
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
-> * [REST](https://msdn.microsoft.com/library/azure/dn783458.aspx)
+> * [REST](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > 
 
-本教學課程將逐步引導您使用 Azure 媒體服務 .NET SDK，建立針對即時通行傳遞設定的**通道**。
+本教學課程將逐步引導您使用 Azure 媒體服務 .NET SDK，建立針對即時通行傳遞設定的 **通道** 。 
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 需要有下列項目，才能完成教學課程：
 
 * 一個 Azure 帳戶。
-* 媒體服務帳戶。若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-create-account.md)。
-* 設定開發環境。如需詳細資訊，請參閱[設定環境](media-services-set-up-computer.md)。
-* 網路攝影機。例如，[Telestream Wirecast 編碼器](http://www.telestream.net/wirecast/overview.htm)。
+* 媒體服務帳戶。    若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
+* 設定開發環境。 如需詳細資訊，請參閱 [設定環境](media-services-set-up-computer.md)。
+* 網路攝影機。 例如， [Telestream Wirecast 編碼器](http://www.telestream.net/wirecast/overview.htm)。
 
 建議您先檢閱下列文章：
 
 * [Azure 媒體服務 RTMP 支援和即時編碼器](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
 * [使用會建立多位元速率串流的內部部署編碼器執行即時串流](media-services-live-streaming-with-onprem-encoders.md)
 
-## 範例
+## <a name="example"></a>範例
 下列程式碼範例示範如何完成下列工作：
 
 * 連線到媒體服務
 * 建立通道
 * 更新通道
-* 擷取通道的輸入端點。輸入端點應該提供給內部部署即時編碼器。即時編碼器會將相機的訊號轉換為傳送到通道之輸入 (內嵌) 端點的資料流。
+* 擷取通道的輸入端點。 輸入端點應該提供給內部部署即時編碼器。 即時編碼器會將相機的訊號轉換為傳送到通道之輸入 (內嵌) 端點的資料流。
 * 擷取通道的預覽端點
 * 建立並啟動程式
 * 建立存取程式所需的定位器
@@ -54,6 +58,9 @@ ms.author: cenkdin;juliako
 * 取得所有串流端點的定位器
 * 關閉資源
 
+>[!NOTE]
+>確定您想要串流內容的串流端點已處於 [執行中] 狀態。 
+    
 如需有關如何設定即時編碼器的詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)。
 
     using System;
@@ -382,12 +389,17 @@ ms.author: cenkdin;juliako
         }
     }
 
-## 下一步
+## <a name="next-step"></a>下一步
 檢閱媒體服務學習路徑
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+
+<!--HONumber=Jan17_HO2-->
+
+

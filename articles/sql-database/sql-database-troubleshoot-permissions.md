@@ -17,8 +17,8 @@ ms.topic: article
 ms.date: 09/13/2016
 ms.author: v-shysun
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1a175572bf541f0be3936ad8934f52ea6b90dfa1
+ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
+ms.openlocfilehash: 5b717afe388d9ad6d4d37fa07d351e55ac8dbbb8
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 1a175572bf541f0be3936ad8934f52ea6b90dfa1
 使用本主題中的步驟即可快速授與或移除對 Azure SQL Database 的存取權。 如需更完整的資訊，請參閱：
 
 * [管理 Azure SQL Database 的資料庫和登入](sql-database-manage-logins.md)
-* [保護您的 SQL Database](sql-database-security.md)
+* [保護您的 SQL Database](sql-database-security-overview.md)
 * [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
@@ -49,6 +49,6 @@ ms.openlocfilehash: 1a175572bf541f0be3936ad8934f52ea6b90dfa1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

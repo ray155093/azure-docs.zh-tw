@@ -1,19 +1,23 @@
 ---
-title: Log Analytics 檢視設計工具 | Microsoft Docs
-description: Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文包含檢視設計工具的概觀以及建立和編輯自訂檢視的程序。
+title: "Log Analytics 檢視設計工具 | Microsoft Docs"
+description: "Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文包含檢視設計工具的概觀以及建立和編輯自訂檢視的程序。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: ce41dc30-e568-43c1-97fa-81e5997c946a
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 12/09/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: efe0eeb6c9389545f51f22bbf0a2d6389939c375
+
 
 ---
 # <a name="log-analytics-view-designer"></a>Log Analytics 檢視設計工具
@@ -62,7 +66,7 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 ![刪除檢視](media/log-analytics-view-designer/edit-menu-delete.png)
 
 ### <a name="export-an-existing-view"></a>匯出現有檢視
-您可以將檢視匯出至 JSON 檔案，用於匯入另一個工作區，或在 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)中使用。  若要匯出現有檢視，按一下主要 OMS 儀表板中該檢視的圖格即可開啟它。  然後按一下 [匯出] 按鈕便可在瀏覽器的下載資料夾中建立檔案。  檔案的名稱是檢視的名稱，副檔名為 omsview。
+您可以將檢視匯出至 JSON 檔案，用於匯入另一個工作區，或在 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)中使用。  若要匯出現有檢視，按一下主要 OMS 儀表板中該檢視的圖格即可開啟它。  然後按一下 [匯出] 按鈕便可在瀏覽器的下載資料夾中建立檔案。  檔案的名稱是檢視的名稱，副檔名為 omsview。
 
 ![匯出檢視](media/log-analytics-view-designer/edit-menu-export.png)
 
@@ -92,6 +96,9 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 * 將[圖格](log-analytics-view-designer-tiles.md)新增至您的自訂檢視。
 * 將[視覺效果組件](log-analytics-view-designer-parts.md)新增至您的自訂檢視。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO4-->
 
 

@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/10/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 88194bdffaf2ec39723c735a9721fcb17d316178
+ms.sourcegitcommit: 93990e342f6bd8fcfe9781bcb021aabfd33e8572
+ms.openlocfilehash: c4fb98946a41ee37d8676eca52ff26f81d0ff56a
 
 
 ---
@@ -28,13 +28,15 @@ ms.openlocfilehash: 88194bdffaf2ec39723c735a9721fcb17d316178
 
 > [!NOTE]
 > Beeline 使用 JDBC 連接到 Hive。 如需搭配 Hive 使用 JDBC 的詳細資訊，請參閱 [使用 Hive JDBC 驅動程式連接到 Azure HDInsight 上的 Hive](hdinsight-connect-hive-jdbc-driver.md)。
-> 
-> 
 
 ## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目：
 
 * HDInsight 叢集上以 Linux 為基礎的 Hadoop。
+
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * SSH 用戶端。 Linux、Unix 和 Mac OS 應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 ## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
@@ -108,7 +110,7 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
    * **CREATE EXTERNAL TABLE** - 在 Hive 中建立新的「外部」資料表。 外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置。
    * **ROW FORMAT** - 告訴 Hive 如何格式化資料。 在此情況下，每個記錄中的欄位會以空格隔開。
    * **STORED AS TEXTFILE LOCATION** - 將資料的儲存位置告訴 Hive (example/data 目錄)，且資料儲存為文字。
-   * **SELECT** - 選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。 這應該會傳回值 **3** ，因為有 3 個資料列包含此值。
+   * **SELECT** - 選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。 這應該會傳回值 **3** ，因為有&3; 個資料列包含此值。
    * **INPUT__FILE__NAME LIKE '%.log'** - 告訴 Hive 我們只應該從檔名以 log 結尾的檔案中傳回資料。 通常在使用 hive 查詢時，您在相同的資料夾中只會有具有相同結構描述的資料，不過此範例記錄檔會以其他資料格式儲存。
      
      > [!NOTE]
@@ -247,6 +249,6 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。 使用下列步
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

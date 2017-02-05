@@ -1,8 +1,8 @@
 ---
 title: "修復匯出作業 | Microsoft Docs"
 description: "了解如何修復使用 Azure 匯入匯出服務建立和執行的匯出作業。"
-author: renashahmsft
-manager: aungoo
+author: muralikk
+manager: syadav
 editor: tysonn
 services: storage
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/25/2015
-ms.author: renash
+ms.date: 01/15/2017
+ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 78abb839badf99c6251673ee9914955df8c950bc
-ms.openlocfilehash: 61bcbe23f9c747aeb486414fca6c1eb394098d11
+ms.sourcegitcommit: 486eb0db0c3a9a1a8ab5e70526fe23aa5f51229d
+ms.openlocfilehash: f3a38bf7e306f2677b79de7f7a3a360b29fe4d0c
 
 
 ---
@@ -82,7 +82,7 @@ WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bob
 ## <a name="using-repairexport-to-validate-drive-contents"></a>使用 RepairExport 驗證磁碟機內容  
 您也可以使用 Azure 匯入/匯出服務搭配 **RepairExport** 選項，以驗證磁碟機上的內容是否正確。 每個匯出磁碟機上的資訊清單檔案都包含磁碟機內容適用的 MD5。  
   
-Azure 匯入/匯出服務也可以在匯出期間將資訊清單檔案儲存到儲存體帳戶。 當作業完成時，可透過 [Get Job](/rest/api/storageservices/importexport/Get-Job3) 作業，取得資訊清單檔案的位置。 如需磁碟機資訊清單檔案的格式，請參閱[匯入匯出服務資訊清單檔案格式](storage-import-export-file-format-metadata-and-properties.md)。  
+Azure 匯入/匯出服務也可以在匯出期間將資訊清單檔案儲存到儲存體帳戶。 當作業完成時，可透過 [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業，取得資訊清單檔案的位置。 如需磁碟機資訊清單檔案的格式，請參閱[匯入匯出服務資訊清單檔案格式](storage-import-export-file-format-metadata-and-properties.md)。  
   
 下列範例示範如何使用 **/ManifestFile** 和 **/CopyLogFile** 參數執行 Azure 匯入/匯出工具︰  
   
@@ -157,6 +157,7 @@ G:\pictures\wild\canyon.jpg.properties
 [針對 Azure 匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Jan17_HO3-->
 
 

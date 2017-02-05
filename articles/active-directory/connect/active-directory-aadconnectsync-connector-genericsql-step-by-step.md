@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/30/2016
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5ef0dab5ea1c087f0d88612b44bb60785c19a805
+ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
+ms.openlocfilehash: a17bf35abb54eded78d112ac4b25ddebaf5fb5e8
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: 5ef0dab5ea1c087f0d88612b44bb60785c19a805
 
 ## <a name="prepare-the-sample-database"></a>準備範例資料庫
 在執行 SQL Server 的伺服器上，執行可在[附錄 A](#appendix-a) 中找到的 SQL 指令碼。這會建立名為 GSQLDEMO 的範例資料庫。 適用於所建立資料庫的物件模型如下圖所示︰  
-![物件模型](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\objectmodel.png)
+![物件模型](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/objectmodel.png)
 
 您也可以建立想要用來連接到資料庫的使用者。 在本逐步解說中，使用者將稱為 FABRIKAM\SQLUser 且位於網域中。
 
@@ -33,66 +33,66 @@ ms.openlocfilehash: 5ef0dab5ea1c087f0d88612b44bb60785c19a805
 一般 SQL 連接器會使用 ODBC 連接到遠端伺服器。 首先我們需要建立含有 ODBC 連接資訊的檔案。
 
 1. 在伺服器上啟動 ODBC 管理公用程式︰  
-   ![ODBC](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc.png)
+   ![ODBC](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc.png)
 2. 選取 [檔案 DSN] 索引標籤。 按一下 [新增...] 。
-   ![ODBC1](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc1.png)
+   ![ODBC1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc1.png)
 3. 最新的驅動程式可正常運作，因此請選取它，然後按 [下一步 >]。  
-   ![ODBC2](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc2.png)
+   ![ODBC2](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc2.png)
 4. 為檔案名稱，例如 **GenericSQL**。  
-   ![ODBC3](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc3.png)
+   ![ODBC3](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc3.png)
 5. 按一下 [完成] 。  
-   ![ODBC4](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc4.png)
+   ![ODBC4](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc4.png)
 6. 設定連接的時機 為資料來源提供良好的說明，並提供執行 SQL Server 的伺服器名稱。  
-   ![ODBC5](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc5.png)
+   ![ODBC5](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc5.png)
 7. 選取如何使用 SQL 進行驗證。 在此案例中，我們會使用 Windows 驗證。  
-   ![ODBC6](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc6.png)
+   ![ODBC6](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc6.png)
 8. 提供範例資料庫的名稱 **GSQLDEMO**。  
-   ![ODBC7](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc7.png)
+   ![ODBC7](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc7.png)
 9. 將此畫面上的所有項目保留為預設值。 按一下 [完成] 。  
-   ![ODBC8](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc8.png)
+   ![ODBC8](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc8.png)
 10. 若要確認一切會如預期般運作，請按一下 [測試資料來源] 。  
-    ![ODBC9](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc9.png)
+    ![ODBC9](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc9.png)
 11. 確定測試成功。  
-    ![ODBC10](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc10.png)
+    ![ODBC10](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc10.png)
 12. ODBC 組態檔現在應該會顯示於 [檔案 DSN] 中。  
-    ![ODBC11](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\odbc11.png)
+    ![ODBC11](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc11.png)
 
 我們現在已經擁有所需的檔案，就能開始建立連接器。
 
 ## <a name="create-the-generic-sql-connector"></a>建立一般 SQL 連接器
 1. 在 Synchronization Service Manager UI 中，選取 [連接器] 和 [建立]。 選取 [一般 SQL (Microsoft)]  並為它提供描述性名稱。  
-   ![Connector1](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector1.png)
+   ![Connector1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector1.png)
 2. 尋找您在上一節中建立的 DSN 檔案，然後將它上傳到伺服器。 提供認證以連接到資料庫。  
-   ![Connector2](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector2.png)
+   ![Connector2](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector2.png)
 3. 在本逐步解說中，為方便起見，我們假設有兩個物件類型：**User** 和 **Group**。
-   ![Connector3](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector3.png)
+   ![Connector3](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector3.png)
 4. 為了尋找屬性，我們想要讓連接器自行查看資料表，藉以偵測這些屬性。 由於 **Users** 是 SQL 中的保留字，因此提供時需要加上方括號 [ ]。  
-   ![Connector4](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector4.png)
+   ![Connector4](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector4.png)
 5. 定義錨點屬性和 DN 屬性的時機。 我們針對 **Users**使用兩個屬性 (username 和 EmployeeID) 的組合。 我們針對 **group**使用GroupName (在真實生活中並不實際，但對本逐步解說而言，它是可行的)。
-   ![Connector5](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector5.png)
+   ![Connector5](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector5.png)
 6. 並非所有屬性類型都可以在 SQL 資料庫中偵測到。 特別是無法偵測到參考屬性類型。 針對群組物件類型，我們必須變更 OwnerID 和 MemberID 以供參考。  
-   ![Connector6](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector6.png)
+   ![Connector6](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector6.png)
 7. 我們在上一個步驟中選取來做為參考屬性的屬性，要求的物件類型是這些值所參考的物件類型。 在此案例中為 User 物件類型。  
-   ![Connector7](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector7.png)
+   ![Connector7](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector7.png)
 8. 在 [全域參數] 頁面中，選取 [浮水印] 做為差異策略。 此外，使用日期/時間格式 **yyyy-MM-dd HH:mm:ss**來輸入。
-   ![Connector8](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector8.png)
+   ![Connector8](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector8.png)
 9. 在 [設定資料分割和階層]  頁面上，同時選取這兩種物件類型。
-   ![Connector9](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\connector9.png)
+   ![Connector9](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/connector9.png)
 10. 在 [選取物件類型] 和 [選取屬性] 中，選取物件類型和所有屬性。 在 [設定錨點] 頁面上，按一下 [完成]。
 
 ## <a name="create-run-profiles"></a>建立執行設定檔
 1. 在 Synchronization Service Manager UI 中，選取 [連接器] 和 [設定執行設定檔]。 按一下 [新增設定檔]。 我們會從**完整匯入**開始。  
-   ![Runprofile1](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\runprofile1.png)
+   ![Runprofile1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile1.png)
 2. 選取類型 [完整匯入 (僅限階段)] 。  
-   ![Runprofile2](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\runprofile2.png)
+   ![Runprofile2](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile2.png)
 3. 選取分割區 **OBJECT=User**。  
-   ![Runprofile3](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\runprofile3.png)
+   ![Runprofile3](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile3.png)
 4. 選取 [資料表] 並輸入 [USERS]。 向下捲動到多重值物件類型區段，並輸入如下圖所示的資料。 選取 [完成]  以儲存步驟。
-   ![Runprofile4a](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\runprofile4a.png)  
-   ![Runprofile4b](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\runprofile4b.png)  
+   ![Runprofile4a](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile4a.png)  
+   ![Runprofile4b](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile4b.png)  
 5. 選取 [新增步驟] 。 這次選取 [OBJECT=Group] 。 在最後一個頁面上，使用如下圖所示的組態。 按一下 [完成] 。  
-   ![Runprofile5a](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\runprofile5a.png)  
-   ![Runprofile5b](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\runprofile5b.png)  
+   ![Runprofile5a](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile5a.png)  
+   ![Runprofile5b](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile5b.png)  
 6. 選用︰如果您想要，您可以設定其他的執行設定檔。 在這個逐步解說中，只會使用完整匯入。
 7. 按一下 [確定]  以完成變更執行設定檔。
 
@@ -100,8 +100,8 @@ ms.openlocfilehash: 5ef0dab5ea1c087f0d88612b44bb60785c19a805
 在範例資料庫中填入部分測試資料。 當您準備好時，選取 [執行] 和 [完整匯入]。
 
 以下是具有兩個電話號碼的使用者以及含有一些成員的群組。  
-![cs1](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\cs1.png)  
-![cs2](.\\media\\active-directory-aadconnectsync-connector-genericsql-step-by-step\\cs2.png)  
+![cs1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/cs1.png)  
+![cs2](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/cs2.png)  
 
 ## <a name="appendix-a"></a>附錄 A
 **建立範例資料庫的 SQL 指令碼**
@@ -205,6 +205,6 @@ GO
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

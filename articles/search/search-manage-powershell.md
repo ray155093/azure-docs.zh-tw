@@ -16,8 +16,8 @@ ms.tgt_pltfrm: powershell
 ms.date: 08/15/2016
 ms.author: seasa
 translationtype: Human Translation
-ms.sourcegitcommit: c40545833da86426d3e71955b8eb8627db3c1e4b
-ms.openlocfilehash: f73bd0a6563f8411877b55182b01f2e3e42c883f
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: 618d067bf3b4ab279c7d4fcc72454fe4e69d0364
 
 
 ---
@@ -42,7 +42,7 @@ ms.openlocfilehash: f73bd0a6563f8411877b55182b01f2e3e42c883f
 
 在 [Microsoft Azure 登入] 對話方塊中，指定 Azure 帳戶的電子郵件地址和密碼。
 
-或者，您可以 [非互動的方式使用服務主體登入](../resource-group-authenticate-service-principal.md)。
+或者，您可以 [非互動的方式使用服務主體登入](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
 如果您有多個 Azure 訂用帳戶，您必須設定 Azure 訂用帳戶。 如果想查看目前的訂閱帳戶清單，請執行這個命令。
 
@@ -142,6 +142,6 @@ ms.openlocfilehash: f73bd0a6563f8411877b55182b01f2e3e42c883f
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO4-->
 
 

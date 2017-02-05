@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: richrund
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 05e9e10d9a37f90b679175a3ed9d78ed05d9e447
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: cab40991e5b0628f422b9eb91130d8135c1434f1
 
 
 ---
@@ -121,7 +121,7 @@ $location = $vm.Location
 
 您可以將 Log Analytics 代理程式納入 Resource Manager 範本中，以確定每個虛擬機器都預先設定為向您的 Log Analytics 工作區報告。
 
-如需 Resource Manager 範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
+如需 Resource Manager 範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 以下是用來部署虛擬機器的 Resource Manager 範本的範例，此虛擬機器執行 Windows 且已安裝 Microsoft Monitoring Agent 擴充。 此範例是一個典型的虛擬機器範本，而且還增加下列項目︰
 
@@ -161,7 +161,7 @@ $location = $vm.Location
     "workspaceName": {
       "type": "string",
       "metadata": {
-         "description": "OMD workspace name"
+         "description": "OMS workspace name"
       }
     },
     "windowsOSVersion": {
@@ -404,6 +404,6 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

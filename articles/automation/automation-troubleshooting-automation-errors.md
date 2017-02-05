@@ -17,8 +17,8 @@ ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: sngun; v-reagie
 translationtype: Human Translation
-ms.sourcegitcommit: 15a8ff89ae7a7d335c9d8584aaef0b21f092566f
-ms.openlocfilehash: f86942e399385efbb8c9cb6f250a8668fe260602
+ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
+ms.openlocfilehash: f5db3c68122185eabb2168d9be582c3e0b17f9ff
 
 
 ---
@@ -61,7 +61,7 @@ ms.openlocfilehash: f86942e399385efbb8c9cb6f250a8668fe260602
 
 **錯誤的原因：** 如果您的 Azure 帳戶使用多重要素驗證，您就無法使用 Azure Active Directory 使用者來向 Azure 進行驗證。  相反地，您必須使用憑證或服務主體來向 Azure 驗證。
 
-**疑難排解秘訣：**如要搭配 Azure 服務管理的 Cmdlet 來使用憑證，請參閱[建立及新增憑證來管理 Azure 服務](http://blogs.technet.com/b/orchestrator/archive/2014/04/11/managing-azure-services-with-the-microsoft-azure-automation-preview-service.aspx) 若要搭配 Azure Resource Manager Cmdlet 來使用服務主體，請參閱[使用 Azure 入口網站來建立服務主體](../resource-group-create-service-principal-portal.md)和[使用 Azure Resource Manager 驗證服務主體](../resource-group-authenticate-service-principal.md)
+**疑難排解秘訣：**如要搭配 Azure 服務管理的 Cmdlet 來使用憑證，請參閱[建立及新增憑證來管理 Azure 服務](http://blogs.technet.com/b/orchestrator/archive/2014/04/11/managing-azure-services-with-the-microsoft-azure-automation-preview-service.aspx) 若要搭配 Azure Resource Manager Cmdlet 來使用服務主體，請參閱[使用 Azure 入口網站來建立服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)和[使用 Azure Resource Manager 驗證服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)
 
 ## <a name="common-errors-when-working-with-runbooks"></a>使用 Runbook 時的常見錯誤
 ### <a name="scenario-runbook-fails-because-of-deserialized-object"></a>案例：Runbook 因還原序列化物件而失敗
@@ -175,6 +175,6 @@ ms.openlocfilehash: f86942e399385efbb8c9cb6f250a8668fe260602
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

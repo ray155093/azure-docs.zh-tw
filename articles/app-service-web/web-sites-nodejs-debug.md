@@ -13,11 +13,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 257d8d872dcdea2a8135f03ed655cf7d61b549d7
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 9ff06539e6280e857a2101891202ef96ca139bfe
 
 
 ---
@@ -131,8 +131,8 @@ Azure 提供內建的診斷程式來協助偵錯 [Azure App Service](http://go.m
 
 [IISNode]: https://github.com/tjanczuk/iisnode
 [IISNode Readme]: https://github.com/tjanczuk/iisnode#readme
-[如何使用 Azure 命令列介面]: ../xplat-cli-install.md
-[在 Azure 應用程式中使用 Node.js 模組]: ../nodejs-use-node-modules-azure-apps.md
+[How to Use The Azure Command-Line Interface]: ../xplat-cli-install.md
+[Using Node.js Modules with Azure Applications]: ../nodejs-use-node-modules-azure-apps.md
 [在 Azure 應用程式中指定 Node.js 版本]: ../nodejs-specify-node-version-azure-apps.md
 
 [restart-button]: ./media/web-sites-nodejs-debug/restartbutton.png
@@ -140,6 +140,6 @@ Azure 提供內建的診斷程式來協助偵錯 [Azure App Service](http://go.m
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

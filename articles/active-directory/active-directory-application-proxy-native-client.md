@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 06/22/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8892d5c7bd45c1c1f4c8cad0f3baaafc7cc583be
+ms.sourcegitcommit: e65393c9582056f84530a32804e0d82fd451b688
+ms.openlocfilehash: 34cacff4e8b13fa9d91387ca8762439908ed01fd
 
 
 ---
@@ -25,7 +25,7 @@ Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程�
 
 ![使用者、Azure Active Directory 和已發佈應用程式之間的關係](./media/active-directory-application-proxy-native-client/richclientflow.png)
 
-發佈這類應用程式的建議方法是使用 Azure AD 驗證程式庫，它會處理所有驗證細節並支援許多不同的用戶端環境。 應用程式 Proxy 融入 [原生應用程式到 Web API 案例](active-directory-authentication-scenarios.md#native-application-to-web-api)。 完成此動作的程序如下所示：
+發佈這類應用程式的建議方法是使用 Azure AD 驗證程式庫，它會處理所有驗證細節並支援許多不同的用戶端環境。 應用程式 Proxy 融入 [原生應用程式到 Web API 案例](develop/active-directory-authentication-scenarios.md#native-application-to-web-api)。 完成此動作的程序如下所示：
 
 ## <a name="step-1-publish-your-application"></a>步驟 1：發佈您的應用程式
 如同任何其他應用程式一般，發佈您的 Proxy 應用程式，指派使用者並提供進階或基本授權給他們。 如需詳細資訊，請參閱[使用應用程式 Proxy 發佈應用程式](active-directory-application-proxy-publish.md)。
@@ -74,7 +74,7 @@ Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程�
 
 ![[新的原生應用程式] 設定頁面螢幕擷取畫面](./media/active-directory-application-proxy-native-client/new_native_app.png)
 
-如需原生應用程式流程的詳細資訊，請參閱 [原生應用程式到 Web API](active-directory-authentication-scenarios.md#native-application-to-web-api)。
+如需原生應用程式流程的詳細資訊，請參閱 [原生應用程式到 Web API](develop/active-directory-authentication-scenarios.md#native-application-to-web-api)。
 
 ## <a name="see-also"></a>另請參閱
 * [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
@@ -87,6 +87,6 @@ Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程�
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO3-->
 
 

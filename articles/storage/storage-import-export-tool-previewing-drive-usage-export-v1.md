@@ -1,8 +1,8 @@
 ---
 title: "預覽匯出作業的磁碟機使用量 | Microsoft Docs"
 description: "了解如何預覽您已針對 Azure 匯入匯出服務中的匯出作業選取的 blob 清單"
-author: renashahmsft
-manager: aungoo
+author: muralikk
+manager: syadav
 editor: tysonn
 services: storage
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/25/2015
-ms.author: renash
+ms.date: 01/15/2017
+ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 78abb839badf99c6251673ee9914955df8c950bc
-ms.openlocfilehash: d8ea4cb51c9609b8fa9ed5ee50762f981da68e20
+ms.sourcegitcommit: 358e3f2574cab0150c59f96b9bc4d32d959e94a8
+ms.openlocfilehash: 9ba9a3970925466285ae1df4676501fbdd24bd66
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: d8ea4cb51c9609b8fa9ed5ee50762f981da68e20
 |**/sn:**<StorageAccountName\>|必要。 匯出作業的儲存體帳戶名稱。|  
 |**/sk:**<StorageAccountKey\>|如果未指定 (且只有在未指定) 容器 SAS 時，才是必要參數。 匯出作業之儲存體帳戶的帳戶金鑰。|  
 |**/csas:**<ContainerSas\>|如果未指定 (且只有在未指定) 儲存體帳戶金鑰時，才是必要參數。 容器 SAS，可供列出要在匯出作業中匯出的 blob。|  
-|**/ExportBlobListFile:**<ExportBlobListFile\>|必要。 Xml 檔案的路徑，此檔案包含要匯出的 Blob 的Blob 路徑清單或 Blob 路徑前置詞。 匯入/匯出服務 REST API 的 [Put Job](/rest/api/storageservices/importexport/Put-Job) 作業中 `BlobListBlobPath` 元素中所使用的檔案格式。|  
+|**/ExportBlobListFile:**<ExportBlobListFile\>|必要。 Xml 檔案的路徑，此檔案包含要匯出的 Blob 的Blob 路徑清單或 Blob 路徑前置詞。 匯入/匯出服務 REST API 的 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業中 `BlobListBlobPath` 元素中所使用的檔案格式。|  
 |**/DriveSize:**<DriveSize\>|必要。 要用於匯出作業的磁碟機大小，例如 500GB、1.5TB。|  
   
 下列範例示範 `PreviewExport` 命令：  
@@ -74,6 +74,7 @@ Number of drives needed:        3
 [Azure 匯入匯出工具參考](storage-import-export-tool-how-to-v1.md)
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Jan17_HO3-->
 
 

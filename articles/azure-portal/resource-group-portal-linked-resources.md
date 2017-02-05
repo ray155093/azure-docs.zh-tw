@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/16/2015
 ms.author: adamab
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a20b0b2f3967f64d2248e017b6888e21be6ef26a
+ms.sourcegitcommit: ebc5dbf790ca6012cfe9a7ea9ccee9fdacb46ffd
+ms.openlocfilehash: b4c8ad69674c553f8b521a85765edbad0ce1faf2
 
 
 ---
@@ -27,16 +27,16 @@ ms.openlocfilehash: a20b0b2f3967f64d2248e017b6888e21be6ef26a
 連結是 Azure 資源管理員的一項功能。  它可讓您宣告資源之間的關聯性，即使它們不是存放在相同的資源群組。 連結不會影響資源的執行階段、計費，以及以角色為基礎的存取。  它只是一個可以用來表示關聯性的機制，以便如磚庫等工具可以提供豐富的管理體驗。  您的工具可以使用連結 API 檢查連結，同時提供自訂的關聯性管理體驗。 
 
 ## <a name="how-do-i-link-my-resources"></a>如何連結我的資源？
-當您透過入口網站或透過 Azure PowerShell 或 Azure CLI 部署範本建立資源時，就會自動為某些相依的資源建立連結。 您也可以使用 [連結資源 REST API](https://msdn.microsoft.com/library/azure/mt238499.aspx) 或在範本中宣告關聯性，以程式設計方式連結資源。 如需使用連結資源的完整討論，請參閱 [在 Azure 資源管理員中連結資源](../resource-group-link-resources.md)。
+當您透過入口網站或透過 Azure PowerShell 或 Azure CLI 部署範本建立資源時，就會自動為某些相依的資源建立連結。 您也可以使用 [連結資源 REST API](https://msdn.microsoft.com/library/azure/mt238499.aspx) 或在範本中宣告關聯性，以程式設計方式連結資源。 如需使用連結資源的完整討論，請參閱 [在 Azure 資源管理員中連結資源](../azure-resource-manager/resource-group-link-resources.md)。
 
 ## <a name="next-steps"></a>後續步驟
-* 如果您需要撰寫 Azure 資源管理員範本的簡介，請參閱 [撰寫範本](../resource-group-authoring-templates.md)。
-* 若要深入了解在資源之間建立連結的詳細資料，請參閱 [在 Azure 資源管理員中連結資源](../resource-group-link-resources.md)。
-* 若要深入了解透過 Preview 入口網站使用資源群組，請參閱 [使用 Azure Preview 入口網站管理 Azure 資源](resource-group-portal.md)。
+* 如果您需要撰寫 Azure 資源管理員範本的簡介，請參閱 [撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)。
+* 若要深入了解在資源之間建立連結的詳細資料，請參閱 [在 Azure 資源管理員中連結資源](../azure-resource-manager/resource-group-link-resources.md)。
+* 若要深入了解透過 Preview 入口網站使用資源群組，請參閱 [使用 Azure Preview 入口網站管理 Azure 資源](../azure-resource-manager/resource-group-portal.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

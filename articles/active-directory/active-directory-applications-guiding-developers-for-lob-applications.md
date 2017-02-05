@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/03/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d78bad26df7a9e428481e23ba4316953dfd4401c
+ms.sourcegitcommit: e65393c9582056f84530a32804e0d82fd451b688
+ms.openlocfilehash: fe295cb9b79593f7fd4635d142ec86d1c6897192
 
 
 ---
@@ -45,7 +45,7 @@ ms.openlocfilehash: d78bad26df7a9e428481e23ba4316953dfd4401c
       - 委派的權限 (任何使用者)。 例如：Azure AD、登入及讀取設定檔
 
 > [!NOTE]
-> 根據預設，任何成員都可以註冊應用程式。 若要了解如何限制向特定成員註冊應用程式的權限，請參閱 [如何將應用程式新增到 Azure AD](active-directory-how-applications-are-added.md#who-has-permission-to-add-applications-to-my-azure-ad-instance)。
+> 根據預設，任何成員都可以註冊應用程式。 若要了解如何限制向特定成員註冊應用程式的權限，請參閱 [如何將應用程式新增到 Azure AD](develop/active-directory-how-applications-are-added.md#who-has-permission-to-add-applications-to-my-azure-ad-instance)。
 > 
 > 
 
@@ -84,6 +84,6 @@ ms.openlocfilehash: d78bad26df7a9e428481e23ba4316953dfd4401c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

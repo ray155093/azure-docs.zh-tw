@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/27/2016
+ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b57bd17a8887dbf9bdecee4a3ad79b55ec7fb610
+ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
+ms.openlocfilehash: 2fbbfd3d221ef2f6bce302ed169eddf5a8b0d73e
 
 
 ---
@@ -30,11 +30,13 @@ ms.openlocfilehash: b57bd17a8887dbf9bdecee4a3ad79b55ec7fb610
 ## <a name="modifying-configuration"></a>修改組態
 > [!IMPORTANT]
 > 因為已超過設定的上限，而發生本文件中所列的幾個錯誤。 當解決步驟提到您可以變更值時，您必須使用下列其中一項來執行變更：
-> 
-> 
+
 
 * 針對 **Windows** 叢集：使用指令碼動作在叢集建立期間設定此值。 如需詳細資訊，請參閱 [開發指令碼動作](hdinsight-hadoop-script-actions.md)。
 * 針對 **Linux** 叢集：使用 Ambari (Web 或 REST API) 來修改此值。 如需詳細資訊，請參閱 [使用 Ambari 管理 HDInsight](hdinsight-hadoop-manage-ambari.md)
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ### <a name="default-configuration"></a>預設組態
 下列預設組態值會影響 WebHCat 效能，而如果超過這些值則會造成錯誤：
@@ -86,6 +88,6 @@ ms.openlocfilehash: b57bd17a8887dbf9bdecee4a3ad79b55ec7fb610
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 
