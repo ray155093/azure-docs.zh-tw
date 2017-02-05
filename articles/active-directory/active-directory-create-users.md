@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 09/22/2016
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 09293d71b99e325a417edf59172550ef6e5f5b71
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f3787f72dbd8ee865899b71538816d2e8d30af32
 
 
 ---
-# <a name="add-new-users-or-users-with-microsoft-accounts-to-azure-active-directory"></a>將新的使用者或具有 Microsoft 帳戶的使用者新增至 Azure Active Directory
+# <a name="add-new-users--or-users-with-microsoft-accounts-to-azure-active-directory"></a>將新的使用者或具有 Microsoft 帳戶的使用者新增至 Azure Active Directory
 請新增使用者來填入您的目錄。 本文說明如何在組織中新增新的使用者，以及如何新增具有 Microsoft 帳戶的使用者。 如需新增來自 Azure Active Directory 中其他目錄之使用者或是來自合作夥伴公司之使用者的詳細資訊，請參閱 [新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者](active-directory-create-users-external.md)。 新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
 
 ## <a name="add-a-user"></a>新增使用者
@@ -87,6 +87,6 @@ ms.openlocfilehash: 09293d71b99e325a417edf59172550ef6e5f5b71
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

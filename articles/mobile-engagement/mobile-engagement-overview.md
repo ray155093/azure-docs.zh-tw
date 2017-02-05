@@ -41,7 +41,7 @@ Mobile Engagement 提供應用程式內的傳訊功能，且能順暢地與原�
 ## <a name="open-apis-and-ease-of-integration"></a>開放式 API 和輕鬆整合
 藉由提供能輕鬆整合資料的開放式 API 及 SDK，讓您能夠利用現有的 CRM、CMS 或其他後端系統中的資料。 這讓您可以更深入地改善目標客群選取及保護您的投資。
 
-## <a name="data-protection-privacy-across-the-globe"></a>跨全球的資料保護和隱私權
+## <a name="data-protection--privacy-across-the-globe"></a>跨全球的資料保護和隱私權
 Microsoft 長期以來一直都非常重視隱私權的問題，這是我們的產品和服務週期中不可或缺的一部分。 我們在隱私權的作法上採取透明的原則，為客戶提供有意義的隱私權選擇，並以負責任的態度管理我們存放的資料。 如同所有 Azure 的服務，Mobile Engagement 不會分享或銷售從客戶財產衍伸的任何資訊。 我們在世界各地都提供 Mobile Engagement 服務，以維護特定地區或國家的資料隱私權法律。
 
 ### <a name="next-steps"></a>後續步驟：

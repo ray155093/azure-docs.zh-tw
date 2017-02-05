@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
-description: "了解如何利用媒體服務 (可延伸的雲端平台) 安全地串流處理隨選或即時廣播品質的影片。 教學課程、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: bc22da83e1683cc8be164e9ff3ed95d2fdc95d27
-ms.openlocfilehash: 7b6ff41479fdfe332148dc2366c7e547af5e98f9
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: 877d92deebfda835eef37cdc8dc1bca21520d892
 
 ---
 # <a name="media-services-documentation"></a>媒體服務文件
 
-了解如何利用媒體服務 (可延伸的雲端平台) 串流處理廣播品質的影片。 教學課程、API 參考和其他文件會示範如何安全地提供可針對數百萬位使用者調整的隨選和即時視訊或音訊串流。
+Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置可擴充的媒體管理和傳遞應用程式。 媒體服務是以 REST API 為基礎，可讓您安全地上傳、儲存、編碼和封裝視訊或音訊內容，以用於隨選和即時資料流傳遞給各種用戶端 (例如電視、電腦和行動裝置)。
+
+您可以建置完全採用媒體服務的端對端工作流程。 您也可以選擇在工作流程的某些部分採用第三方元件。 例如，您可以使用協力廠商編碼器來進行編碼，然後使用媒體服務進行上傳、保護、封裝和傳遞。
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -158,46 +159,52 @@ ms.openlocfilehash: 7b6ff41479fdfe332148dc2366c7e547af5e98f9
 
 ---
 
-<h2>參考</h2>
+## <a name="reference"></a>參考
+
 <ul class="panelContent cardsW">
     <li>
+        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>命令列</h3>
-                        <p><a href="/powershell/resourcemanager/azurerm.media/v0.3.1/azurerm.media">PowerShell (資源管理員)</a></p>
-                        <p><a href="/powershell/servicemanagement/azure.compute/v3.1.0/azure.compute">PowerShell (服務管理)</a></p>
+                        <h3>PowerShell</h3>
+                        <p>Azure PowerShell 參考</p>
                     </div>
                 </div>
             </div>
         </div>
+        </a>
     </li>
     <li>
+        <a href="/dotnet/api/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>語言</h3>
-                        <p><a href="/dotnet/api/microsoft.windowsazure.mediaservices.client">.NET</a></p>
-                   </div>
+                        <h3>.NET</h3>
+                        <p>.NET 受管理的參考 API</p>
+                    </div>
                 </div>
             </div>
         </div>
+        </a>
     </li>
     <li>
+        <a href="/rest/api/media/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/media">REST API 參考</a></p>
+                        <p>媒體服務 REST API</p>
                     </div>
                 </div>
             </div>
         </div>
+        </a>
     </li>
-</ul>
+<ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/media-services.pdf">
@@ -209,6 +216,6 @@ ms.openlocfilehash: 7b6ff41479fdfe332148dc2366c7e547af5e98f9
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

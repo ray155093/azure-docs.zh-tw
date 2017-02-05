@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 04/27/2016
 ms.author: tdykstra
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 606762146d159ecf5d2d94d5d51ddb319c06c8f4
+ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
+ms.openlocfilehash: 9f792f6ea082461f3304516fc9b4c3273e2f50b8
 
 
 ---
@@ -120,7 +120,7 @@ ms.openlocfilehash: 606762146d159ecf5d2d94d5d51ddb319c06c8f4
 * 排程器工作會被命名為 *{webappname}-{webjobname}*。 例如：MyWebApp-MyWebJob。 
 
 > [!NOTE]
-> * 如需命令列部署的詳細資訊，請參閱 [啟用 Azure WebJobs 的命令列或連續傳遞](/blog/2014/08/18/enabling-command-line-or-continuous-delivery-of-azure-webjobs/)。
+> * 如需命令列部署的詳細資訊，請參閱 [啟用 Azure WebJobs 的命令列或連續傳遞](https://azure.microsoft.com/blog/2014/08/18/enabling-command-line-or-continuous-delivery-of-azure-webjobs/)。
 > * 如果設定的是 [週期性工作]  ，並將週期頻率設為分鐘數，則 Azure 排程器不是免費提供的服務。 其他頻率 (時數、天數等) 可免費提供。
 > * 如果您部署了 WebJob，但之後決定變更 WebJob 的類型並重新部署，就必須刪除 webjobs-publish-settings.json 檔案。 這樣會讓 Visual Studio 再次顯示發佈選項，您才能夠變更 WebJob 的類型。
 > * 如果部署 WebJob，並在稍後將執行模式從連續變更為非連續 (或相反情形)，則在您重新部署時，Visual Studio 會在 Azure 中建立新的 WebJob。 如果您變更其他排程設定但保持執行模式不變，或在排程和隨選模式之間切換，則 Visual Studio 會更新現有的工作，而非建立新的工作。
@@ -179,6 +179,6 @@ ms.openlocfilehash: 606762146d159ecf5d2d94d5d51ddb319c06c8f4
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

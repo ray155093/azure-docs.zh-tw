@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: tdykstra
 translationtype: Human Translation
-ms.sourcegitcommit: 154d2cd9b7f4ea51d3fd4c1995b67a25816b28a2
-ms.openlocfilehash: 587c39920ce658dc70034c15e3e847182a567559
+ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
+ms.openlocfilehash: bf4735cd0a56e7837a0dfd7d9bc8e50e09e5cf54
 
 
 ---
@@ -256,7 +256,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
     您將無法使用該 Web 應用程式，直到您在下一節中設定 Azure 環境中的連接字串為止。 您將會看到一個錯誤頁面或首頁，視您稍早所選擇的 Web 應用程式和資料庫建立選項而定。
 
 ### <a name="configure-the-web-app-to-use-your-azure-sql-database-and-storage-account"></a>設定 Web 應用程式來使用您的 Azure SQL Database 和儲存體帳戶。
-[避免將敏感資訊 (例如連接字串) 放在儲存於原始程式碼儲存機制的檔案](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control#secrets)(英文) 會是安全性最佳作法。 Azure 提供實作上述最佳做法的方式：您可以在 Azure 環境中設定連接字串和其他設定值，當應用程式在 Azure 中執行時，ASP.NET 組態 API 便會自動挑選這些值。 您可以使用 [伺服器總管] 、Azure 入口網站、Windows PowerShell，或跨平台的命令列介面，在 Azure 中設定這些值。 如需詳細資訊，請參閱 [應用程式字串與連接字串的運作方式](/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/)。
+[避免將敏感資訊 (例如連接字串) 放在儲存於原始程式碼儲存機制的檔案](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/source-control#secrets)(英文) 會是安全性最佳作法。 Azure 提供實作上述最佳做法的方式：您可以在 Azure 環境中設定連接字串和其他設定值，當應用程式在 Azure 中執行時，ASP.NET 組態 API 便會自動挑選這些值。 您可以使用 [伺服器總管] 、Azure 入口網站、Windows PowerShell，或跨平台的命令列介面，在 Azure 中設定這些值。 如需詳細資訊，請參閱 [應用程式字串與連接字串的運作方式](https://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/)。
 
 在本節中，您會使用 [伺服器總管]  在 Azure 中設定連接字串值。
 
@@ -727,6 +727,6 @@ https://{webappname}.scm.azurewebsites.net/azurejobs/#/functions
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

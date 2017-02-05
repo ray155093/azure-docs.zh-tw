@@ -13,16 +13,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4ce631d80b84661a61f0aaeb9d29de0b4420ecaf
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: c3f5fd335da2d1ed4e3c68223c3195d4a81c1a5c
 
 
 ---
 # <a name="how-to-run-a-compute-intensive-task-in-java-on-a-virtual-machine"></a>如何在虛擬機器上以 Java 執行大量運算工作
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 Azure 可讓您利用虛擬機器處理大量運算工作。 例如，虛擬機器可以處理工作並將結果傳遞給用戶端機器或行動裝置應用程式。 閱讀此文章後，您將了解如何建立一個執行大量運算之 Java 應用程式 (此應用程式又可由另一個 Java 應用程式監視) 的虛擬機器。
 
@@ -78,7 +79,7 @@ Azure 可讓您利用虛擬機器處理大量運算工作。 例如，虛擬機�
 4. 按一下 [連接] 。
 5. 視需要回應提示以連接虛擬機器。 當要求提供系統管理員名稱和密碼的提示出現時，請使用在建立虛擬機器時提供的值。
 
-請注意，Azure 服務匯流排功能會要求安裝 Baltimore CyberTrust Root 憑證做為您 JRE 的 **cacerts** 存放區的一部分。 這個憑證會自動包含在本教學課程所使用的 Java Runtime Environment (JRE) 中。 如果您的 JRE **cacerts** 存放區中沒有這個憑證，請參閱[將憑證新增至 Java CA 憑證存放區][add_ca_cert]，以了解有關新增此憑證的資訊 (以及有關檢視您 cacerts 存放區中憑證的資訊)。
+請注意，Azure 服務匯流排功能會要求安裝 Baltimore CyberTrust Root 憑證做為您 JRE 的 **cacerts** 存放區的一部分。 這個憑證會自動包含在本教學課程所使用的 Java Runtime Environment (JRE) 中。 如果您的 JRE **cacerts** 存放區中沒有這個憑證，請參閱[將憑證新增至 Java CA 憑證存放區][add_ca_cert]，以了解有關新增這個憑證的資訊 (以及有關檢視您 cacerts 存放區中憑證的資訊)。
 
 ## <a name="how-to-create-a-service-bus-namespace"></a>如何建立服務匯流排命名空間
 若要開始在 Azure 中使用服務匯流排佇列，首先必須建立服務命名空間。 服務命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
@@ -524,6 +525,6 @@ Azure 可讓您利用虛擬機器處理大量運算工作。 例如，虛擬機�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/11/2016
+ms.date: 11/30/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 9ace119de3676bcda45d524961ebea27ab093415
-ms.openlocfilehash: 09ad9bb1fee50d6063b9a179377cbe4f1c3c7ab2
+ms.sourcegitcommit: 0b1f6f7ec47e47f39407cdbfd5efef2a18944ecc
+ms.openlocfilehash: 6a2e59f9366e411d322b8560f03b115638619966
 
 
 ---
 # <a name="service-bus-architecture"></a>服務匯流排架構
-本文描述 Azure 服務匯流排的訊息和轉送處理架構。
+本文章描述 Azure 服務匯流排的訊息處理架構。
 
 ## <a name="service-bus-scale-units"></a>服務匯流排縮放單位
 服務匯流排依 *縮放單位*組織。 縮放單位是部署單位，並包含執行服務所需的所有元件。 每個區域都會部署一或多個服務匯流排縮放單位。
@@ -49,7 +49,7 @@ ms.openlocfilehash: 09ad9bb1fee50d6063b9a179377cbe4f1c3c7ab2
 ![處理內送 WCF 轉送要求](./media/service-bus-architecture/IC690645.png)
 
 ## <a name="next-steps"></a>後續步驟
-既然您已閱讀服務匯流排架構的概觀，若要開始使用，請瀏覽下列連結：
+既然您已閱讀服務匯流排架構的概觀，請參閱下列連結取得詳細資訊：
 
 * [服務匯流排訊息概觀](service-bus-messaging-overview.md)
 * [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
@@ -58,6 +58,6 @@ ms.openlocfilehash: 09ad9bb1fee50d6063b9a179377cbe4f1c3c7ab2
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

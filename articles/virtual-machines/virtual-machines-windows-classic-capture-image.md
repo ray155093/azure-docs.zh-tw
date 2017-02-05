@@ -16,15 +16,14 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 760c713d9729ba81fbac52f1eff80f956e82d83f
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: 6b68d41daeea780d70b5ce1389d05f1f4fdf65ea
 
 
 ---
 # <a name="capture-an-image-of-an-azure-windows-virtual-machine-created-with-the-classic-deployment-model"></a>擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像。
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如需 Resource Manager 模型資訊，請參閱[建立在 Azure 中執行的複本 Windows VM](virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 模型資訊，請參閱[建立在 Azure 中執行的複本 Windows VM](virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 本文說明如何擷取執行 Windows 的 Azure 虛擬機器，以便用它作為映像來建立其他虛擬機器。 此映像包括作業系統磁碟和任何連結至虛擬機器的資料磁碟。 它並不包含網路組態，因此當您建立其他使用此映像的虛擬機器時，將需要設定這些組態。
 
@@ -45,12 +44,12 @@ Azure 會將映像儲存在 [我的映像] 之下。 這個位置與您已上傳
 擷取 Azure 虛擬機器映像之前，建議先備份目標虛擬機器。 Azure 虛擬機器可使用 Azure 備份進行備份。 如需詳細資訊，請參閱 [備份 Azure 虛擬機器](../backup/backup-azure-vms.md)。 來自認證合作夥伴的其他解決方案也可供使用。 若要了解目前可用的項目，請搜尋 Azure Marketplace。
 
 ## <a name="capture-the-virtual-machine"></a>擷取虛擬機器
-1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com)中， **連線** 到虛擬機器。 如需指示，請參閱[如何登入執行 Windows Server 的虛擬機器][如何登入執行 Windows Server 的虛擬機器]。
+1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com)中， **連線** 到虛擬機器。 如需指示，請參閱[如何登入執行 Windows Server 的虛擬機器][How to sign in to a virtual machine running Windows Server]。
 2. 以系統管理員身分開啟 [命令提示字元] 視窗。
 3. 切換至 `%windir%\system32\sysprep`目錄，然後執行 sysprep.exe。
 4. [系統準備工具]  對話方塊隨即出現。 執行下列動作：
    
-   * 在 [系統清理動作] 中選取 [Enter System Out-of-Box Experience (OOBE)]，並確認 [一般化] 已勾選。 如需 Sysprep 的詳細用法，請參閱[如何使用 Sysprep：簡介][如何使用 Sysprep：簡介]。
+   * 在 [系統清理動作] 中選取 [Enter System Out-of-Box Experience (OOBE)]，並確認 [一般化] 已勾選。 如需 Sysprep 的詳細用法，請參閱[如何使用 Sysprep：簡介][How to Use Sysprep: An Introduction]。
    * 在 [關機選項] 中選取 [關機]。
    * 按一下 [確定] 。
    
@@ -71,18 +70,18 @@ Azure 會將映像儲存在 [我的映像] 之下。 這個位置與您已上傳
 ## <a name="next-steps"></a>後續步驟
 映像已準備好用來建立虛擬機器。 若要這麼做，您將需要使用 [ **從資源庫** ] 功能表項目並選取您剛建立的映像，來建立虛擬機器。 如需指示，請參閱 [從映像建立虛擬機器](virtual-machines-windows-classic-createportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
-[如何登入執行 Windows Server 的虛擬機器]: virtual-machines-windows-classic-connect-logon.md
-[如何使用 Sysprep：簡介]: http://technet.microsoft.com/library/bb457073.aspx
-[執行 Sysprep.exe]: ./media/virtual-machines-capture-image-windows-server/SysprepCommand.png
-[輸入 Sysprep.exe 選項]: ./media/virtual-machines-windows-classic-capture-image/SysprepGeneral.png
-[虛擬機器已停止]: ./media/virtual-machines-capture-image-windows-server/SysprepStopped.png
-[擷取虛擬機器的映像]: ./media/virtual-machines-windows-classic-capture-image/CaptureVM.png
-[輸入映像名稱]: ./media/virtual-machines-capture-image-windows-server/Capture.png
+[How to sign in to a virtual machine running Windows Server]: virtual-machines-windows-classic-connect-logon.md
+[How to Use Sysprep: An Introduction]: http://technet.microsoft.com/library/bb457073.aspx
+[Run Sysprep.exe]: ./media/virtual-machines-capture-image-windows-server/SysprepCommand.png
+[Enter Sysprep.exe options]: ./media/virtual-machines-windows-classic-capture-image/SysprepGeneral.png
+[The virtual machine is stopped]: ./media/virtual-machines-capture-image-windows-server/SysprepStopped.png
+[Capture an image of the virtual machine]: ./media/virtual-machines-windows-classic-capture-image/CaptureVM.png
+[Enter the image name]: ./media/virtual-machines-capture-image-windows-server/Capture.png
 [Image capture successful]: ./media/virtual-machines-capture-image-windows-server/CaptureSuccess.png
-[使用擷取的映像]: ./media/virtual-machines-capture-image-windows-server/MyImagesWindows.png
+[Use the captured image]: ./media/virtual-machines-capture-image-windows-server/MyImagesWindows.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

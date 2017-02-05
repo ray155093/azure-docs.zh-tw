@@ -1,14 +1,13 @@
 ---
 layout: LandingPage
-description: "了解如何使用您所選的 Linux 散發版本建立虛擬機器。 文件會示範不同的建立 VM 範本方式。"
 translationtype: Human Translation
-ms.sourcegitcommit: eabfc16b3714006f74cdaec68efb46f651ee1b97
-ms.openlocfilehash: 4ae49635b13d564a4bf03ea12e233c1b18985cce
+ms.sourcegitcommit: f368f2700bd349e106169d1828af7a148daa5cc2
+ms.openlocfilehash: f87947ed5f072ba4f0927ade1b1d3ec0e1424f3c
 
 ---
-# <a name="linux-virtual-machine-documentation"></a>Linux 虛擬機器文件
+#<a name="linux-virtual-machine-documentation"></a>Linux 虛擬機器文件
 
-了解如何使用您所選的 Linux 散發版本在 Azure 上執行虛擬機器。 文件、API 參考和範例會示範不同的建立及部署 VM 範本方式。
+使用 Azure 虛擬機器，在 Azure 的計算、網路及儲存體基礎結構建立並執行 Linux 虛擬機器。  擴充至上千台機器進行網際網路範圍的部署，或是執行一部機器在幾分鐘內解決一些重大數字：讓您速度與一致性兼得。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -141,6 +140,6 @@ ms.openlocfilehash: 4ae49635b13d564a4bf03ea12e233c1b18985cce
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

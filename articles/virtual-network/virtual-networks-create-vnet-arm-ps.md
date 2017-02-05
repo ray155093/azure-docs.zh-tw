@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 3d854b5073909f30a1bf59e0986c7f0f926ee21c
-ms.openlocfilehash: 2ce6f0d280609dc62063f87d2ab17256b3ff67c4
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: 955fefc75880006beee54bb59871b325ed4a9e18
 
 
 ---
@@ -44,7 +44,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 若要使用 PowerShell 建立虛擬網路，請完成下列步驟︰
 
-1. 遵循 [如何安裝並設定 Azure PowerShell](../powershell-install-configure.md) 中的下列步驟來安裝和設定 Azure PowerShell。
+1. 遵循 [如何安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的下列步驟來安裝和設定 Azure PowerShell。
 
 2. 如有必要，建立新的資源群組，如下所示。 在此案例中，會建立名為 *TestRG*的資源群組。 如需資源群組的詳細資訊，請瀏覽 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 
@@ -182,6 +182,6 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 - 虛擬網路至內部部署網路；使用網站對網站虛擬私人網路 (VPN) 或 ExpressRoute 線路。 如需了解做法，請閱讀[使用網站對網站 VPN 將 VNet 連接到內部部署網路](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)以及[將 VNet 連結至 ExpressRoute 線路](../expressroute/expressroute-howto-linkvnet-arm.md)。
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

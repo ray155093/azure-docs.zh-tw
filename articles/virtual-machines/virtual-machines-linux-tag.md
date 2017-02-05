@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 07/05/2016
 ms.author: memccror
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6e39b13de1808ebb1d0571ab0c1c620261046d0d
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 56777605e84326fdde1821b42279bd7fc752c553
 
 
 ---
@@ -47,17 +47,17 @@ ms.openlocfilehash: 6e39b13de1808ebb1d0571ab0c1c620261046d0d
 [!INCLUDE [virtual-machines-common-tag-usage](../../includes/virtual-machines-common-tag-usage.md)]
 
 ## <a name="next-steps"></a>後續步驟
-* 如需深入了解如何標記您的 Azure 資源，請參閱 [Azure Resource Manager 概觀][Azure Resource Manager 概觀]與[使用標記來組織 Azure 資源][使用標記來組織 Azure 資源]。
-* 如需查看標記如何協助您管理使用 Azure 資源，請參閱[了解 Azure 帳單][了解 Azure 帳單]與[深入瞭解 Microsoft Azure 資源耗用量][深入瞭解 Microsoft Azure 資源耗用量]。
+* 如需深入了解如何標記您的 Azure 資源，請參閱 [Azure Resource Manager 概觀][Azure Resource Manager Overview]與[使用標記來組織您的 Azure 資源][Using Tags to organize your Azure Resources]。
+* 如需查看標記如何協助您管理使用 Azure 資源，請參閱[了解 Azure 帳單][Understanding your Azure Bill]與[深入了解 Microsoft Azure 資源耗用量][Gain insights into your Microsoft Azure resource consumption]。
 
-[Azure CLI 環境]: ./xplat-cli-azure-resource-manager.md
-[Azure Resource Manager 概觀]: ../azure-resource-manager/resource-group-overview.md
-[使用標記來組織 Azure 資源]: ../resource-group-using-tags.md
-[了解 Azure 帳單]: ../billing/billing-understand-your-bill.md
-[深入瞭解 Microsoft Azure 資源耗用量]: ../billing-usage-rate-card-overview.md
+[Azure CLI environment]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Azure Resource Manager Overview]: ../azure-resource-manager/resource-group-overview.md
+[Using Tags to organize your Azure Resources]: ../azure-resource-manager/resource-group-using-tags.md
+[Understanding your Azure Bill]: ../billing/billing-understand-your-bill.md
+[Gain insights into your Microsoft Azure resource consumption]: ../billing-usage-rate-card-overview.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

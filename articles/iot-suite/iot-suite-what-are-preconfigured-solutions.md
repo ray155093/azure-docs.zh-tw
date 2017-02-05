@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/09/2016
+ms.date: 11/16/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 597043b17993ebddc9cf730ddce849e1d6ff3bc9
+ms.sourcegitcommit: 7c289437beca78dacc7d3136680c54dde01f3798
+ms.openlocfilehash: fb4b12543ac4910ea9c4789f4ebe5ef0ca5997ae
 
 
 ---
@@ -84,7 +84,7 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 * *遙測作業* - 將所有的原始遙測資訊傳送到 Azure Blob 儲存體進行冷儲存，並計算會顯示在解決方案儀表板中的遙測彙總。
 * *規則作業* - 篩選遙測串流中超出任何規則臨界值的值，並將資料輸出到事件中樞。 當規則引發時，解決方案入口網站儀表板檢視會將此事件顯示為警示歷程記錄資料表中的新資料列，並根據在解決方案入口網站中的 [規則和動作] 檢視上定義的設定來觸發動作。
 
-在此預先設定解決方案中，ASA 作業會形成[典型 IoT 解決方案架構][lnk-what-is-azure-iot]中 **IoT 解決方案後端**的一部分。
+在此預先設定解決方案中，ASA 作業會形成典型 [IoT 解決方案架構][lnk-what-is-azure-iot]中 **IoT 解決方案後端**的一部分。
 
 ## <a name="event-processor"></a>事件處理器
 在此預先設定解決方案中，事件處理器會形成典型 [IoT 解決方案架構][lnk-what-is-azure-iot]中 **IoT 解決方案後端**的一部分。
@@ -112,7 +112,7 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 在此預先設定解決方案中，解決方案入口網站會形成典型 [IoT 解決方案架構][lnk-what-is-azure-iot]中 **IoT 解決方案後端**及**處理和業務連線**的一部分。
 
 ## <a name="next-steps"></a>後續步驟
-如需 IoT 解決方案架構的詳細資訊，請參閱 [Microsoft Azure IoT 服務︰參考架構][lnk-refarch]。
+如需 IoT 解決方案架構的詳細資訊，請參閱 [Microsoft Azure IoT 服務 ︰參考架構][lnk-refarch]。
 
 您現已知道預先設定的解決方案是什麼，您可以部署「遠端監視」預先設定的解決方案來開始使用︰[開始使用預先設定的解決方案][lnk-getstarted-preconfigured]。
 
@@ -130,6 +130,6 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

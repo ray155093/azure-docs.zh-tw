@@ -16,14 +16,14 @@ ms.topic: article
 ms.date: 10/04/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: a3b1b65ff1d61adfbbcc70bece938f71a83d0812
-ms.openlocfilehash: dce83b58c7127362232dce9af3a0a6f97044602a
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2053470f0a54a0a9b388d020b416df1ff2bfd084
 
 
 ---
 # <a name="install-the-azure-cli"></a>安裝 Azure CLI
 > [!div class="op_single_selector"]
-> * [PowerShell](powershell-install-configure.md)
+> * [PowerShell](/powershell/azureps-cmdlets-docs)
 > * [Azure CLI](xplat-cli-install.md)
 
 快速安裝 Azure 命令列介面 (Azure CLI) 以使用一組開放原始碼的命令介面式命令，用於建立和管理 Microsoft Azure 中的資源。 有數個選項可讓您在電腦上安裝這些跨平台工具︰ 
@@ -52,7 +52,7 @@ sudo npm install -g azure-cli
 > [!NOTE]
 > 如果您需要在 Linux 散發套件或作業系統上安裝或更新 Node.js 和 npm，建議您安裝最新的 Node.js LTS 版本 (4.x)。 如果您使用較舊的版本，可能會發生安裝錯誤。 
 
-如果您喜歡，請將 npm 套件的最新 Linux [tar 檔案][linux-installer] 下載到本機。 然後，安裝下載的 npm 套件，如下所示 (在 Linux 散發套件上，您可能需要使用 **sudo**)：
+如果您喜歡，請將 npm 套件的最新 Linux [tar 檔案][linux-installer]下載到本機。 然後，安裝下載的 npm 套件，如下所示 (在 Linux 散發套件上，您可能需要使用 **sudo**)：
 
 ```bash
 npm install -g <path to downloaded tar file>
@@ -132,11 +132,11 @@ echo 'source ~/azure.completion.sh' >> ~/.bash_profile
 [mac-installer]: http://aka.ms/mac-azure-cli
 [windows-installer]: http://aka.ms/webpi-azure-cli
 [linux-installer]: http://aka.ms/linux-azure-cli
-[cliasm]: virtual-machines-command-line-tools.md
+[cliasm]: /cli/azure/get-started-with-az-cli2
 [cliarm]: ./virtual-machines/azure-cli-arm-commands.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

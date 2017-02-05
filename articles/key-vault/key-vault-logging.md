@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 08/31/2016
+ms.date: 01/07/2017
 ms.author: cabailey
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 51833ae656f4c5275b0bd922d21288901cd1f4b3
+ms.sourcegitcommit: c40545833da86426d3e71955b8eb8627db3c1e4b
+ms.openlocfilehash: 50a85747a3414e180bcd9129899fef7ffdaebc8d
 
 
 ---
@@ -48,7 +48,7 @@ ms.openlocfilehash: 51833ae656f4c5275b0bd922d21288901cd1f4b3
 若要完成本教學課程，您必須具備下列項目：
 
 * 所使用的現有金鑰保存庫。  
-* Azure PowerShell ( **至少必須是 1.0.1 版**)。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。  
+* Azure PowerShell ( **至少必須是 1.0.1 版**)。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。  
 * 足夠的 Azure 儲存體以儲存金鑰保存庫記錄。
 
 ## <a name="a-idconnectaconnect-to-your-subscriptions"></a><a id="connect"></a>連線到您的訂用帳戶
@@ -66,7 +66,7 @@ ms.openlocfilehash: 51833ae656f4c5275b0bd922d21288901cd1f4b3
 
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
-如需設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="a-idstorageacreate-a-new-storage-account-for-your-logs"></a><a id="storage"></a>建立新的儲存體帳戶來儲存記錄
 雖然您可以使用現有儲存體帳戶來儲存記錄，但我們將建立新的儲存體帳戶來專用儲存金鑰保存庫記錄。 為了方便起見，在稍後遇到必須指定此帳戶時，我們會將詳細資料儲存到名為 **sa**的變數中。
@@ -266,6 +266,6 @@ ms.openlocfilehash: 51833ae656f4c5275b0bd922d21288901cd1f4b3
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

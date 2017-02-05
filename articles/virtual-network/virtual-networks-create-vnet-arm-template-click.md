@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: c3b96b583260bc8975082b952929d524e4040730
-ms.openlocfilehash: 08041e873df1850d459aea1b49440956de1d4748
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: bec644c851d4d2bfbcdda87bd9f8d795dc343afc
 
 
 ---
@@ -110,7 +110,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 使用 PowerShell，完成下列步驟部署您下載的範本：
 
-1. 完成[如何安裝並設定 Azure PowerShell](../powershell-install-configure.md) 中的下列步驟來安裝和設定 Azure PowerShell。
+1. 完成[如何安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的下列步驟來安裝和設定 Azure PowerShell。
 2. 執行下列命令以建立新的資源群組：
 
     ```powershell
@@ -244,6 +244,6 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

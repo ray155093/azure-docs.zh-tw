@@ -15,13 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: jonor;sivae
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 649984be9aee5253dcd1f3ed3be31795212aa3ae
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 24d6a25e872eabb7d64d57d5ee66969401e4f1cd
 
 
 ---
-# <a name="example-3-build-a-dmz-to-protect-networks-with-a-firewall-udr-and-nsg"></a>範例 3 – 建置 DMZ 以透過防火牆、UDR 和 NSG 保護網路
-[返回 [安全性界限最佳作法] 頁面][首頁]
+# <a name="example-3--build-a-dmz-to-protect-networks-with-a-firewall-udr-and-nsg"></a>範例 3 – 建置 DMZ 以透過防火牆、UDR 和 NSG 保護網路
+[返回 [安全性界限最佳作法] 頁面][HOME]
 
 此範例會建立 DMZ，其內含防火牆、四個 Windows 伺服器、使用者定義的路由、IP 轉送和網路安全性群組。 此範例也會逐步解說每個相關命令，以讓您更加深入地了解每個步驟。 另外您還會看到＜流量案例＞一節，本節提供深入的逐步說明，讓您知道流量是如何流經 DMZ 內的各個防禦層。 最後則有＜參考＞一節，本節提供完整的程式碼和指示，以供您建置此環境來測試和試驗各種案例。 
 
@@ -958,7 +958,7 @@ Barracuda 網站可以找到這些規則的詳細資訊。
     </NetworkConfiguration>
 
 #### <a name="sample-application-scripts"></a>範例應用程式指令碼
-如果您想要為此範例和其他 DMZ 範例安裝範例應用程式，下列連結中有提供一個：[範例應用程式指令碼][範例應用程式]
+如果您想要為此範例和其他 DMZ 範例安裝範例應用程式，下列連結中有提供一個：[範例應用程式指令碼][SampleApp]
 
 <!--Image References-->
 [1]: ./media/virtual-networks-dmz-nsg-fw-udr-asm/example3design.png "具有 NVA、NSG 和 UDR 的雙向 DMZ"
@@ -981,11 +981,11 @@ Barracuda 網站可以找到這些規則的詳細資訊。
 [18]: ./media/virtual-networks-dmz-nsg-fw-udr-asm/firewallruleactivate.png "防火牆規則啟用"
 
 <!--Link References-->
-[首頁]: ../best-practices-network-security.md
-[範例應用程式]: ./virtual-networks-sample-app.md
+[HOME]: ../best-practices-network-security.md
+[SampleApp]: ./virtual-networks-sample-app.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

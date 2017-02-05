@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 08/08/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e88511058b1de79ca222d87ada6c9abdf4daf11c
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: 2459f106e90616b05062224be82a06ef20fbc7b4
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: e88511058b1de79ca222d87ada6c9abdf4daf11c
 有時候區域網路閘道 AddressPrefix 或 GatewayIPAddress 的設定會變更。 下方指示將協助您修改區域網路閘道設定。 您也可以在 Azure 入口網站中修改下列設定。
 
 ## <a name="before-you-begin"></a>開始之前
-您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
+您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 
 ## <a name="to-modify-ip-address-prefixes"></a>修改 IP 位址首碼
 [!INCLUDE [vpn-gateway-modify-ip-prefix-rm](../../includes/vpn-gateway-modify-ip-prefix-rm-include.md)]
@@ -39,6 +39,6 @@ ms.openlocfilehash: e88511058b1de79ca222d87ada6c9abdf4daf11c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

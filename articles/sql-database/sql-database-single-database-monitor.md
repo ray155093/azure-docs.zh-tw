@@ -9,6 +9,7 @@ manager: jhubbard
 editor: 
 ms.assetid: a2e47475-c955-4a8d-a65c-cbef9a6d9b9f
 ms.service: sql-database
+ms.custom: monitor and tune
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
@@ -16,8 +17,8 @@ ms.workload: data-management
 ms.date: 09/27/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f5fa586bd8902af2129a7157f0549c337ae00d00
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 5cda0c5b491f71999da0b7bd70156256ab2d5908
 
 
 ---
@@ -43,18 +44,17 @@ ms.openlocfilehash: f5fa586bd8902af2129a7157f0549c337ae00d00
 效能度量也可協助您判斷您是否能夠降級至較低的效能層級。 假設您使用標準 S2 資料庫，且所有效能度量皆顯示在指定時間內，資料庫平均使用率沒有超過 10%。 則該資料庫可能在標準 S1 中會運作得不錯。 不過，在您決定將資料庫移至較低效能層級前，請先注意暴增或大幅變動的工作負載。
 
 ## <a name="monitor-databases-using-dmvs"></a>使用 DMV 監視資料庫
-您也可以透過下列系統檢視取得公開在入口網站中的相同度量：伺服器的邏輯 **master** 資料庫中的 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx)，以及使用者資料庫中的 [sys.dm_db_resource_stats](https://msdn.microsoft.com/library/dn800981.aspx)。 如果您需要在一段長時間內監視較不細微的資料，請使用 **sys.resource_stats**。 如果您需要在較小的時間範圍內監視較細微的資料，請使用 **sys.dm_db_resource_stats**。 如需詳細資訊，請參閱 [Azure SQL Database 效能指引](sql-database-performance-guidance.md#monitoring-resource-use-with-sysresourcestats)。
+您也可以透過下列系統檢視取得公開在入口網站中的相同度量：伺服器的邏輯 **master** 資料庫中的 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx)，以及使用者資料庫中的 [sys.dm_db_resource_stats](https://msdn.microsoft.com/library/dn800981.aspx)。 如果您需要在一段長時間內監視較不細微的資料，請使用 **sys.resource_stats**。 如果您需要在較小的時間範圍內監視較細微的資料，請使用 **sys.dm_db_resource_stats**。 如需詳細資訊，請參閱 [Azure SQL Database 效能指引](sql-database-performance-guidance.md#monitor-resource-use)。
 
 > [!NOTE]
 > 使用於 Web 和 Business Edition 資料庫 (已淘汰) 時，**sys.dm_db_resource_stats** 會傳回空的結果集。
-> 
-> 
+>
+>
 
 若為彈性資料庫集區，您可以監視其中的個別資料庫，技巧如本節所述。 但您也可以監視集區整體。 如需詳細資訊，請參閱 [監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

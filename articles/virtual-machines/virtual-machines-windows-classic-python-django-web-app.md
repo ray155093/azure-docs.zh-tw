@@ -1,13 +1,13 @@
 ---
-title: 搭配 Django 的 Python Web 應用程式 | Microsoft Docs
-description: 本教學課程會教您如何藉由傳統部署模型使用執行 Windows Server 2012 R2 Datacenter 的虛擬機器，在 Azure 上裝載 Django 型網站。
+title: "搭配 Django 的 Python Web 應用程式 | Microsoft Docs"
+description: "本教學課程會教您如何藉由傳統部署模型使用執行 Windows Server 2012 R2 Datacenter 的虛擬機器，在 Azure 上裝載 Django 型網站。"
 services: virtual-machines-windows
 documentationcenter: python
 author: huguesv
 manager: wpickett
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: e36484d1-afbf-47f5-b755-5e65397dc1c3
 ms.service: virtual-machines-windows
 ms.workload: web
 ms.tgt_pltfrm: vm-windows
@@ -15,27 +15,32 @@ ms.devlang: python
 ms.topic: article
 ms.date: 08/04/2015
 ms.author: huvalo
+translationtype: Human Translation
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: bd3e269815628411ff51d0274eb8ba36f04e6fcb
+
 
 ---
-# Windows Server VM 上的 Django Hello World Web 應用程式
+# <a name="django-hello-world-web-application-on-a-windows-server-vm"></a>Windows Server VM 上的 Django Hello World Web 應用程式
 > [!div class="op_single_selector"]
-> * [Windows](virtual-machines-windows-classic-python-django-web-app.md)
-> * [Mac/Linux](virtual-machines-linux-python-django-web-app.md)
+> * [Windows](virtual-machines-windows-classic-python-django-web-app.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+> * [Mac/Linux](virtual-machines-linux-python-django-web-app.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 > 
 > 
 
 <br>
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需部署 Django 的 Resource Manager 範本，請參閱[這裡](https://azure.microsoft.com/documentation/templates/django-app/)。
 
-本教學課程說明如何使用 Windows Server 虛擬機器，在 Microsoft Azure 上裝載 Django 型網站。本教學課程假設您先前沒有使用 Azure 的經驗。完成本教學課程之後，您將在雲端啟動並執行 Django 型應用程式。
+本教學課程說明如何使用 Windows Server 虛擬機器，在 Microsoft Azure 上裝載 Django 型網站。 本教學課程假設您先前沒有使用 Azure 的經驗。 完成本教學課程之後，您將在雲端啟動並執行 Django 型應用程式。
 
 您將了解如何：
 
-* 設定 Azure 虛擬機器以裝載 Django。雖然本教學課程說明如何在 Windows Server 下完成這項程序，不過使用 Azure 中裝載的 Linux VM 也可以完成相同的程序。
+* 設定 Azure 虛擬機器以裝載 Django。 雖然本教學課程說明如何在 Windows Server 下完成這項程序，不過使用 Azure 中裝載的 Linux VM 也可以完成相同的程序。
 * 從 Windows 建立新的 Django 應用程式。
 
-依照本教學課程的步驟，您將建置一個簡單的 Hello World Web 應用程式。該應用程式將裝載於 Azure 虛擬機器中。
+依照本教學課程的步驟，您將建置一個簡單的 Hello World Web 應用程式。 該應用程式將裝載於 Azure 虛擬機器中。
 
 已完成應用程式的螢幕擷取畫面如下。
 
@@ -43,18 +48,20 @@ ms.author: huvalo
 
 [!INCLUDE [create-account-and-vms-note](../../includes/create-account-and-vms-note.md)]
 
-## 建立及設定 Azure 虛擬機器以裝載 Django
-1. 按照[此處](virtual-machines-windows-classic-tutorial.md)所提供的指示，建立 Windows Server 2012 R2 資料中心散發套件的 Azure 虛擬機器。
+## <a name="creating-and-configuring-an-azure-virtual-machine-to-host-django"></a>建立及設定 Azure 虛擬機器以裝載 Django
+1. 按照 [此處](virtual-machines-windows-classic-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) 所提供的指示，建立 Windows Server 2012 R2 資料中心散發套件的 Azure 虛擬機器。
 2. 指示 Azure 將連接埠 80 的流量從 Web 導向虛擬機器上的連接埠 80：
    
-   * 在 Azure 傳統入口網站中瀏覽至新建立的虛擬機器，並按一下 [端點] 索引標籤。
-   * 按一下畫面底部的 [新增] 按鈕。![新增端點](./media/virtual-machines-windows-classic-python-django-web-app/django-helloworld-addendpoint.png)
-   * 開啟 [TCP] 通訊協定的 [公用連接埠 80]，比照 [私人連接埠 80]。![][port80]
-3. 在 [儀表板] 索引標籤中按一下 [連接]，使用 [遠端桌面] 來遠端登入新建立的 Azure 虛擬機器。
+   * 在 Azure 傳統入口網站中瀏覽至新建立的虛擬機器，並按一下 [端點]  索引標籤。
+   * 按一下畫面底部的 [新增]  按鈕。
+     ![新增端點](./media/virtual-machines-windows-classic-python-django-web-app/django-helloworld-addendpoint.png)
+   * 開啟 [TCP] 通訊協定的 [公用連接埠 80]，比照 [私人連接埠 80]。
+     ![][port80]
+3. 在 [儀表板] 索引標籤中按一下 [連接]，使用 [遠端桌面] 來遠端登入新建立的 Azure 虛擬機器。  
 
-**重要注意事項：**以下所有指示皆假設您已正確登入虛擬機器，並且是在該處發出命令，而不是在本機電腦上發出命令。
+**重要注意事項：** 以下所有指示皆假設您已正確登入虛擬機器，並且是在該處發出命令，而不是在本機電腦上發出命令。
 
-## <a id="setup"></a>安裝 Python、Django 和 WFastCGI
+## <a id="setup"> </a>安裝 Python、Django 和 WFastCGI
 **注意：**為了使用 Internet Explorer 進行下載，您可能必須設定 IE ESC 設定 ([開始]/[系統管理工具]/[伺服器管理員]/[本機伺服器]，然後按一下 [IE 增強式安全性設定]，將其設為 [關閉])。
 
 1. 從 [python.org][python.org] 安裝最新的 Python 2.7 或 3.4。
@@ -70,13 +77,13 @@ ms.author: huvalo
         c:\python34\scripts\pip install wfastcgi
         c:\python34\scripts\pip install django
 
-## 安裝含 FastCGI 的 IIS
-1. 安裝含 FastCGI 支援的 IIS。執行的時間可能需要幾分鐘。
+## <a name="installing-iis-with-fastcgi"></a>安裝含 FastCGI 的 IIS
+1. 安裝含 FastCGI 支援的 IIS。  執行的時間可能需要幾分鐘。
    
         start /wait %windir%\System32\PkgMgr.exe /iu:IIS-WebServerRole;IIS-WebServer;IIS-CommonHttpFeatures;IIS-StaticContent;IIS-DefaultDocument;IIS-DirectoryBrowsing;IIS-HttpErrors;IIS-HealthAndDiagnostics;IIS-HttpLogging;IIS-LoggingLibraries;IIS-RequestMonitor;IIS-Security;IIS-RequestFiltering;IIS-HttpCompressionStatic;IIS-WebServerManagementTools;IIS-ManagementConsole;WAS-WindowsActivationService;WAS-ProcessModel;WAS-NetFxEnvironment;WAS-ConfigurationAPI;IIS-CGI
 
-## 建立新的 Django 應用程式
-1. 在 *C:\\inetpub\\wwwroot* 中，輸入下列命令以建立新的 Django 專案：
+## <a name="creating-a-new-django-application"></a>建立新的 Django 應用程式
+1. 在 *C:\inetpub\wwwroot* 中，輸入下列命令以建立新的 Django 專案：
    
    針對 Python 2.7，請使用下列命令。
    
@@ -89,10 +96,10 @@ ms.author: huvalo
    ![The result of the New-AzureService command](./media/virtual-machines-windows-classic-python-django-web-app/django-helloworld-cmd-new-azure-service.png)
 2. **django-admin** 命令會為 Django 型網站產生一個基本結構：
    
-   * **helloworld\\manage.py** 可協助您開始裝載及停止裝載 Django 型網站。
-   * **helloworld\\helloworld\\settings.py** 包含應用程式的 Django 設定。
-   * **helloworld\\helloworld\\urls.py** 包含每個 URL 與其檢視之間的對應碼。
-3. 在 **C:\\inetpub\\wwwroot\\helloworld\\helloworld** 目錄中，建立名為 *views.py* 的新檔案。這將包含轉譯 "hello world" 頁面的檢視。啟動您的編輯器並輸入下列程式碼：
+   * **helloworld\manage.py** 可協助您開始裝載及停止裝載 Django 型網站
+   * **helloworld\helloworld\settings.py** 包含您應用程式的 Django 設定。
+   * **helloworld\helloworld\urls.py** 包含每個 URL 與其檢視之間的對應碼。
+3. 在 *C:\inetpub\wwwroot\helloworld\helloworld* 目錄中，建立名為 **views.py** 的新檔案。 這將包含轉譯 "hello world" 頁面的檢視。 啟動您的編輯器並輸入下列程式碼：
    
        from django.http import HttpResponse
        def home(request):
@@ -105,11 +112,11 @@ ms.author: huvalo
            url(r'^$', 'helloworld.views.home', name='home'),
        )
 
-## 設定 IIS
-1. 在全域 applicationhost.config 中解除鎖定處理常式區段。這會讓 web.config 中的 python 處理常式可供使用。
+## <a name="configuring-iis"></a>設定 IIS
+1. 在全域 applicationhost.config 中解除鎖定處理常式區段。  這會讓 web.config 中的 python 處理常式可供使用。
    
         %windir%\system32\inetsrv\appcmd unlock config -section:system.webServer/handlers
-2. 啟用 WFastCGI。這會將應用程式新增至全域 applicationhost.config，其中表示您的 Python 解譯器可執行檔和 wfastcgi.py 指令碼。
+2. 啟用 WFastCGI。  這會將應用程式新增至全域 applicationhost.config，其中表示您的 Python 解譯器可執行檔和 wfastcgi.py 指令碼。
    
     Python 2.7：
    
@@ -118,7 +125,7 @@ ms.author: huvalo
     Python 3.4：
    
         c:\python34\scripts\wfastcgi-enable
-3. 在 *C:\\inetpub\\wwwroot\\helloworld* 中建立 web.config 檔案。`scriptProcessor` 屬性的值應該符合上一個步驟的輸出。如需 wfastcgi 設定的詳細資訊，請參閱 pypi 上的 [wfastcgi][wfastcgi] 頁面。
+3. 在 *C:\inetpub\wwwroot\helloworld* 中建立 web.config 檔案。  `scriptProcessor` 屬性的值應該符合上一個步驟的輸出。  如需 wfastcgi 設定的詳細資訊，請參閱 pypi 上的 [wfastcgi][wfastcgi] 頁面。
    
     Python 2.7：
    
@@ -156,7 +163,7 @@ ms.author: huvalo
 
 ![A browser window displaying the hello world page on Azure][1]
 
-## 關閉 Azure 虛擬機器
+## <a name="shutting-down-your-azure-virtual-machine"></a>關閉 Azure 虛擬機器
 完成本教學課程時，請關閉和/或移除新建立的 Azure 虛擬機器以便釋出資源供其他教學課程使用，同時避免產生使用 Azure 的費用。
 
 [1]: ./media/virtual-machines-windows-classic-python-django-web-app/django-helloworld-browser-azure.png
@@ -167,4 +174,8 @@ ms.author: huvalo
 [python.org]: https://www.python.org/downloads/
 [wfastcgi]: https://pypi.python.org/pypi/wfastcgi
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+<!--HONumber=Dec16_HO1-->
+
+
