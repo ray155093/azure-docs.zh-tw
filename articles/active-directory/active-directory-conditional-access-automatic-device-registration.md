@@ -5,25 +5,25 @@ services: active-directory
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: cdc25576-37f2-4afb-a786-f59ba4c284c2
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/30/2016
+ms.date: 01/11/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 5c387c5355957fea0ccffe58e707fae3d2e77c34
+ms.sourcegitcommit: b621a1716b731c99f9ad54d2e29006fb7bddadbb
+ms.openlocfilehash: 8fb880a03548540059ad896925adb57577d1aed2
 
 
 ---
 # <a name="automatic-device-registration-with-azure-active-directory-for-windows-domain-joined-devices"></a>自動向 Azure Active Directory 註冊加入網域的 Windows 裝置
 身為 IT 管理員，您可以選擇以自動和無訊息方式向 Azure Active Directory (Azure AD) 註冊加入網域的 Windows 裝置。 如果您已經設定裝置型條件式存取原則給 Office365 應用程式或由 AD FS 在內部部署管理的應用程式，這非常有用。 您可以閱讀 [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)，進一步了解裝置註冊案例。
 
-> AZURE.NOTE 如需有關如何設定自動裝置註冊的最新指示，請參閱 [如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
+> [!NOTE]
+>  如需有關如何設定自動裝置註冊的最新指示，請參閱 [如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
 > 
 > 
 
@@ -31,7 +31,6 @@ ms.openlocfilehash: 5c387c5355957fea0ccffe58e707fae3d2e77c34
 
 若要開始向 Azure AD 註冊已加入網域的 Windows 裝置，請遵循下列必要條件。 一旦您完成必要條件，請為加入網域的 Windows 裝置設定自動註冊裝置。
 
-## <a name="prerequisites-for-automatic-device-registration-of-domain-joined-windows-devices-with-azure-active-directory"></a>自動向 Azure Active Directory 註冊加入網域的 Windows 裝置的必要條件
 ## <a name="deploy-ad-fs-and-connect-to-azure-active-directory-using-azure-active-directory-connect"></a>使用 Azure Active Directory Connect 部署 AD FS 和連接到 Azure Active Directory
 1. 使用 Azure Active Directory Connect 將 Active Directory Federation Services (AD FS) 部署到 Windows Server 2012 R2，並設定與 Azure Active Directory 的同盟關係。
 2. 設定其他 Azure Active Directory 信賴憑證者信任宣告規則。
@@ -100,6 +99,6 @@ Windows 7 和 Windows 8.1 裝置會藉由結合使用者帳戶名稱與知名裝
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 
