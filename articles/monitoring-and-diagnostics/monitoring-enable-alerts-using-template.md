@@ -1,28 +1,32 @@
 ---
-title: 使用 Resource Manager 範本建立度量警示 | Microsoft Docs
-description: 了解如何使用 Resource Manager 範本來建立度量警示，以接收電子郵件或 webhook 的通知。
+title: "使用 Resource Manager 範本建立度量警示 | Microsoft Docs"
+description: "了解如何使用 Resource Manager 範本來建立度量警示，以接收電子郵件或 webhook 的通知。"
 author: johnkemnetz
 manager: rboucher
-editor: ''
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 41d62044-6bc5-4674-b277-45b919f58efe
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 2/2/2017
 ms.author: johnkem
+translationtype: Human Translation
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: 4ea07a1cade7e3007b0f85214b4d41a61b527001
+
 
 ---
 # <a name="create-a-metric-alert-with-a-resource-manager-template"></a>使用 Resource Manager 範本建立度量警示
-本文章將說明如何使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md) 設定 Azure 度量警示。 這可讓您在建立警示以確保正確地監視所有資源時，自動在您的資源上設定警示。
+本文章將說明如何使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md) 設定 Azure 度量警示。 這可讓您在建立警示以確保正確地監視所有資源時，自動在您的資源上設定警示。
 
 基本步驟如下：
 
 1. 建立一個描述如何建立警示的 JSON 檔案做為範本。
-2. [使用任何部署方法部署範本](../resource-group-template-deploy.md)。
+2. [使用任何部署方法部署範本](../azure-resource-manager/resource-group-template-deploy.md)。
 
 下面我們會先單獨針對警示，然後針對建立其他資源期間的警示，描述如何建立 Resource Manager 範本。
 
@@ -139,7 +143,7 @@ ms.author: johnkem
             "type": "Microsoft.Insights/alertRules",
             "name": "[parameters('alertName')]",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2014-04-01",
+            "apiVersion": "2016-03-01",
             "properties": {
                 "name": "[parameters('alertName')]",
                 "description": "[parameters('alertDescription')]",
@@ -149,9 +153,9 @@ ms.author: johnkem
                     "dataSource": {
                         "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
                         "resourceUri": "[parameters('resourceId')]",
-                        "metricName": "[parameters('metricName')]",
-                        "operator": "[parameters('operator')]"
+                        "metricName": "[parameters('metricName')]"
                     },
+                    "operator": "[parameters('operator')]",
                     "threshold": "[parameters('threshold')]",
                     "windowSize": "[parameters('windowSize')]",
                     "timeAggregation": "[parameters('aggregation')]"
@@ -361,7 +365,7 @@ ms.author: johnkem
                 "[variables('vmID')]"
             ],
             "location": "[variables('location')]",
-            "apiVersion": "2014-04-01",
+            "apiVersion": "2016-03-01",
             "properties": {
                 "name": "[variables('alertName')]",
                 "description": "variables('alertDescription')",
@@ -371,9 +375,9 @@ ms.author: johnkem
                     "dataSource": {
                         "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
                         "resourceUri": "[variables('vmID')]",
-                        "metricName": "[variables('metricName')]",
-                        "operator": "[variables('operator')]"
+                        "metricName": "[variables('metricName')]"
                     },
+                    "operator": "[parameters('operator')]",
                     "threshold": "[variables('threshold')]",
                     "windowSize": "[variables('windowSize')]",
                     "timeAggregation": "[variables('aggregation')]"
@@ -397,9 +401,12 @@ ms.author: johnkem
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* [深入了解警示](../azure-portal/insights-receive-alert-notifications.md)
+* [深入了解警示](insights-receive-alert-notifications.md)
 * [將診斷設定新增](monitoring-enable-diagnostic-logs-using-template.md) 至您的 Resource Manager 範本
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO4-->
 
 

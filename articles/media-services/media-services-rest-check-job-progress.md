@@ -1,12 +1,12 @@
 ---
-title: 如何使用 REST API 檢查工作進度 | Microsoft Docs
-description: 了解如何追蹤工作進度。
+title: "如何使用 REST API 檢查工作進度 | Microsoft Docs"
+description: "了解如何追蹤工作進度。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a1a1f956-c035-448a-af9c-5ac15fcce9dd
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 0f66bb4291d4e8c457f592734437513a727ecc29
+
 
 ---
-# <a name="how-to:-check-job-progress"></a>作法：檢查工作進度
+# <a name="how-to-check-job-progress"></a>作法：檢查工作進度
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
@@ -24,7 +28,7 @@ ms.author: juliako
 > 
 > 
 
-執行作業時，您通常需要設法追蹤作業進度。 您可以使用工作的 State 屬性，以查明工作狀態。 如需 State 屬性的詳細資訊，請參閱 [工作實體屬性](https://msdn.microsoft.com/library/azure/5100ddd7-92ff-4c37-84d2-4f84fee250a7#job_entity_properties)。
+執行作業時，您通常需要設法追蹤作業進度。 您可以使用工作的 State 屬性，以查明工作狀態。 如需 State 屬性的詳細資訊，請參閱 [工作實體屬性](https://docs.microsoft.com/rest/api/media/operations/job#job_entity_properties)。
 
 要求：
 
@@ -62,6 +66,9 @@ ms.author: juliako
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO2-->
 
 

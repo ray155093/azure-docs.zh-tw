@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/07/2016
 ms.author: cenkd;juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
-ms.openlocfilehash: 7f775813920af8b8a7ffac45e5227df6ba3e6622
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 307c9a377fce32c056a54d35f173efd1bafc4df5
 
 
 ---
@@ -46,7 +46,7 @@ ms.openlocfilehash: 7f775813920af8b8a7ffac45e5227df6ba3e6622
 2. [1] 的第 3.3.2 節為即時內嵌定義名為 StreamManifestBox 的選用方塊。 Microsoft Azure 負載平衡器的路由邏輯使得此方塊的使用者方式已被取代，當內嵌到 Microsoft Azure 媒體服務時「不應該」有此方塊存在。 如果有此方塊，則 Azure 媒體服務會無訊息地將其忽略。
 3. 每個片段必須有在 [1] 的 3.2.3.2 中定義的 TrackFragmentExtendedHeaderBox。
 4. 「應該」使用第 2 版的 TrackFragmentExtendedHeaderBox，才能在資料中心中使用相同的 URL 產生媒體區段。 如需跨資料中心容錯移轉以索引為基礎的資料流格式，例如 Apple HTTP 即時資料流 (HLS) 和以索引為基礎的 MPEG DASH，片段索引欄位是「必要」的。  若要啟用跨資料中心容錯移轉，多個編碼器之間的片段索引「必須」同步處理，後續的每個媒體片段會增加 1，即使是跨編碼器重新啟動或失敗。
-5. [1] 中的 3.3.6 節定義名為 MovieFragmentRandomAccessBox ('mfra') 的方塊，此方塊「可能」會在即時內嵌結束時傳送，以表示通道 EOS (結束資料流)。 Azure 媒體服務的摘要邏輯使得 EOS (結束資料流) 的使用方式已被取代，「不應該」傳送即時內嵌的 ‘mfra’ 方塊。 如果已傳送，Azure 媒體服務會無訊息地將其忽略。 建議使用[重設通道](https://msdn.microsoft.com/library/azure/dn783458.aspx#reset_channels)來重設內點的狀態，也建議使用[程式停止](https://msdn.microsoft.com/library/azure/dn783463.aspx#stop_programs)結束簡報與資料流。
+5. [1] 中的 3.3.6 節定義名為 MovieFragmentRandomAccessBox ('mfra') 的方塊，此方塊「可能」會在即時內嵌結束時傳送，以表示通道 EOS (結束資料流)。 Azure 媒體服務的摘要邏輯使得 EOS (結束資料流) 的使用方式已被取代，「不應該」傳送即時內嵌的 ‘mfra’ 方塊。 如果已傳送，Azure 媒體服務會無訊息地將其忽略。 建議使用[重設通道](https://docs.microsoft.com/rest/api/media/operations/channel#reset_channels)來重設內點的狀態，也建議使用[程式停止](https://msdn.microsoft.com/library/azure/dn783463.aspx#stop_programs)結束簡報與資料流。
 6. MP4 片段持續時間「應該」是固定的，才能減少用戶端資訊清單的大小，並透過使用重複標記來改善用戶端下載啟發學習法。  為了補償非整數的畫面播放速率，持續時間「可能」會變動。
 7. MP4 片段持續期間「應該」大約在 2 到 6 秒之間。
 8. 「應該」以遞增順序送達 MP4 片段時間戳記和索引 (TrackFragmentExtendedHeaderBox fragment_ absolute_ time 和 fragment_index)。  雖然 Azure 媒體服務在複製片段方面很有彈性，但是其在根據媒體時間軸將片段重新排列的功能非常有限。
@@ -194,6 +194,6 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

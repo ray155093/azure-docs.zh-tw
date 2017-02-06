@@ -1,12 +1,12 @@
 ---
-title: Azure 應用程式的災害復原 | Microsoft Docs
-description: 在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。
-services: ''
+title: "Azure 應用程式的災害復原 | Microsoft Docs"
+description: "在 Microsoft Azure 上針對災害復原設計應用程式的相關技術概觀和深度資訊。"
+services: 
 documentationcenter: na
 author: adamglick
 manager: saladki
-editor: ''
-
+editor: 
+ms.assetid: f9e0cbdc-ec82-46dc-bee6-558b35518252
 ms.service: resiliency
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: aglick
+translationtype: Human Translation
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: d0ea8137dcdd72cf09806006bdca4c24d6f1c1de
+
 
 ---
 # <a name="disaster-recovery-for-applications-built-on-microsoft-azure"></a>在 Microsoft Azure 上建置的應用程式的災害復原
@@ -148,7 +152,7 @@ Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔�
 有一個可能的實作會使用前一個範例中的中繼佇列。 將資料處理至最終儲存目的地的背景工作角色，可以在主要和次要地區中進行變更。 這些不是一般工作，而複寫程式碼的完整指引已超出本文的範圍。 重要的是，您的時間和測試大都應著重於將資料複寫到次要地區。 額外處理和測試有助於確保容錯移轉和復原程序會正確地處理任何可能的資料不一致或重複的交易。
 
 > [!NOTE]
-> 本文件大部分著重於平台即服務 (PaaS)。 不過，有其他複寫和可用性選項可供使用 Azure 虛擬機器的混合式應用程式使用。 這些混合式應用程式會使用基礎結構即服務 (IaaS) 在 Azure 中的虛擬機器上裝載 SQL Server。 這允許 SQL Server 中的傳統可用性方法，例如 AlwaysOn 可用性群組或記錄傳送。 有些技術 (例如 AlwaysOn) 僅適用於內部部署 SQL Server 執行個體與 Azure 虛擬機器之間。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。
+> 本文件大部分著重於平台即服務 (PaaS)。 不過，有其他複寫和可用性選項可供使用 Azure 虛擬機器的混合式應用程式使用。 這些混合式應用程式會使用基礎結構即服務 (IaaS) 在 Azure 中的虛擬機器上裝載 SQL Server。 這允許 SQL Server 中的傳統可用性方法，例如 AlwaysOn 可用性群組或記錄傳送。 有些技術 (例如 AlwaysOn) 僅適用於內部部署 SQL Server 執行個體與 Azure 虛擬機器之間。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr.md)。
 > 
 > 
 
@@ -242,7 +246,7 @@ Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔�
 
 這些混合式架構中有一些挑戰。 首先，本文大致已處理 PaaS 架構模式。 Azure 中的 PaaS 應用程式通常仰賴 Azure 特有的概念，例如角色、雲端服務和流量管理員。 若要建立這類型 PaaS 應用程式的內部部署解決方案，則需要截然不同的架構。 從管理或成本的觀點來看，這可能不可行。
 
-不過，對於完全移至雲端的傳統架構，適用於災害復原的混合式解決方案的挑戰比較小。 使用 IaaS 的架構正是如此。 IaaS 應用程式會使用雲端中可有直接內部部署對等項目的虛擬機器。 您也可以使用虛擬網路來連接雲端的機器與內部部署網路資源。 這可為僅限的 PaaS 應用程式帶來多種可能性。 例如，SQL Server 可以利用災害復原解決方案，例如 AlwaysOn 可用性群組和資料庫鏡像。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。
+不過，對於完全移至雲端的傳統架構，適用於災害復原的混合式解決方案的挑戰比較小。 使用 IaaS 的架構正是如此。 IaaS 應用程式會使用雲端中可有直接內部部署對等項目的虛擬機器。 您也可以使用虛擬網路來連接雲端的機器與內部部署網路資源。 這可為僅限的 PaaS 應用程式帶來多種可能性。 例如，SQL Server 可以利用災害復原解決方案，例如 AlwaysOn 可用性群組和資料庫鏡像。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr.md)。
 
 IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以便使用 Azure 做為容錯移轉選項。 您在現有的內部部署區域中可能有功能完整的應用程式。 不過，如果您沒有足夠的資源可維護不同位置的區域以供容錯移轉，該怎麼辦？ 您可決定使用虛擬機器和虛擬網路來取得在 Azure 中執行的應用程式。 在該情況下，定義可將資料同步處理到雲端的程序。 然後 Azure 部署會變成要用於容錯移轉的次要地區。 主要區域會保留內部部署應用程式。 如需 IaaS 架構和功能的詳細資訊，請參閱 [虛擬機器文件](https://azure.microsoft.com/documentation/services/virtual-machines/)。
 
@@ -281,6 +285,9 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 ## <a name="next-steps"></a>後續步驟
 本文屬於著重 [在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。 這一系列中的前一篇文章是 [在 Microsoft Azure 上建置的應用程式的高可用性](resiliency-high-availability-azure-applications.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO2-->
 
 
