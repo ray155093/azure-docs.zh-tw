@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/30/2016
+ms.date: 02/04/2017
 ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
@@ -34,7 +34,7 @@ ms.openlocfilehash: a17bf35abb54eded78d112ac4b25ddebaf5fb5e8
 
 1. 在伺服器上啟動 ODBC 管理公用程式︰  
    ![ODBC](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc.png)
-2. 選取 [檔案 DSN] 索引標籤。 按一下 [新增...] 。
+2. 選取 [檔案 DSN] 索引標籤。 按一下 [新增...] 。  
    ![ODBC1](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc1.png)
 3. 最新的驅動程式可正常運作，因此請選取它，然後按 [下一步 >]。  
    ![ODBC2](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/odbc2.png)
@@ -87,7 +87,7 @@ ms.openlocfilehash: a17bf35abb54eded78d112ac4b25ddebaf5fb5e8
    ![Runprofile2](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile2.png)
 3. 選取分割區 **OBJECT=User**。  
    ![Runprofile3](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile3.png)
-4. 選取 [資料表] 並輸入 [USERS]。 向下捲動到多重值物件類型區段，並輸入如下圖所示的資料。 選取 [完成]  以儲存步驟。
+4. 選取 [資料表] 並輸入 [USERS]。 向下捲動到多重值物件類型區段，並輸入如下圖所示的資料。 選取 [完成]  以儲存步驟。  
    ![Runprofile4a](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile4a.png)  
    ![Runprofile4b](./media/active-directory-aadconnectsync-connector-genericsql-step-by-step/runprofile4b.png)  
 5. 選取 [新增步驟] 。 這次選取 [OBJECT=Group] 。 在最後一個頁面上，使用如下圖所示的組態。 按一下 [完成] 。  

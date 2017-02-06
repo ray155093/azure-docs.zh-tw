@@ -316,6 +316,6 @@ AD FS 服務需要網域服務帳戶來驗證使用者，以及在 Active Direct
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

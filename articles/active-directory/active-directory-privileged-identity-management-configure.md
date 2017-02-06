@@ -3,7 +3,7 @@ title: Azure AD Privileged Identity Management | Microsoft Docs
 description: "本主題說明何謂 Azure AD Privileged Identity Management，以及如何使用 PIM 改善雲端安全性。"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: billmath
 manager: femila
 editor: 
 ms.assetid: c548ed2e-06e3-4eaf-a63d-0f02ee72da25
@@ -12,8 +12,8 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/30/2016
-ms.author: kgremban
+ms.date: 02/03/2017
+ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: 71eb6a2fecbd76c9715b9a556a7ffd31b5b4950e
 ms.openlocfilehash: 6b788b3120565895e908bdfc4c9267e715bc5bec
@@ -25,8 +25,6 @@ ms.openlocfilehash: 6b788b3120565895e908bdfc4c9267e715bc5bec
 
 > [!NOTE]
 > Privileged Identity Management 僅可在 Azure Active Directory 的 Premium P2 Edition 中使用。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
->
->
 
 組織想要將能夠存取安全資訊或資源的人數降到最低，因為這樣可以降低惡意使用者取得該存取權的機率。 不過，使用者仍然需要在 Azure、Office 365 或 SaaS 應用程式中執行特殊權限作業。 組織可以在 Azure AD 中授與使用者特殊權限，而不需監視這些使用者使用其系統管理權限來執行什麼作業。 Azure AD 特殊權限身分識別管理有助於解決此風險。  
 
@@ -53,8 +51,6 @@ Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角
 
 > [!NOTE]
 > 您必須是具有組織帳戶 (例如 @yourdomain.com),) 而非 Microsoft 帳戶 (例如 @outlook.com),) 的全域管理員，才能啟用目錄的 Azure AD Privileged Identity Management。
->
->
 
 1. 以目錄的全域系統管理員身分登入 [Azure 入口網站](https://portal.azure.com/) 。
 2. 如果貴組織有多個目錄，請選取 Azure 入口網站右上角的使用者名稱。 選取您將在其中使用 Azure AD Privileged Identity Management 的目錄。

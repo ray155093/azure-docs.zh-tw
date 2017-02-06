@@ -3,7 +3,7 @@ title: "如何新增或移除使用者角色 | Microsoft Docs"
 description: "了解如何使用 Azure Active Directory Privileged Identity Management 應用程式來將角色新增到特殊權限身分識別。"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: billmath
 manager: femila
 editor: 
 ms.assetid: 6a47ced8-cf34-4ce8-bea2-e4fc548cfe22
@@ -12,8 +12,8 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/24/2016
-ms.author: kgremban
+ms.date: 02/03/2017
+ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 5dde6b98f72306d6fe78f3c12377d3ce2ec5ddea
@@ -32,8 +32,6 @@ Azure AD Privileged Identity Management 應用程式也允許特殊權限角色�
 
 > [!NOTE]
 > 如果您還沒有在 Azure 入口網站中啟用 PIM，請移至 [開始使用 Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md) 以取得詳細資訊。
-> 
-> 
 
 如果您想要讓其他使用者存取 PIM 本身，請參閱 [How to give access to manage Azure AD Privileged Identity Management (如何提供管理  Azure AD Privileged Identity Management 的存取權)](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)，進一步了解 PIM 需要使用者具有哪些角色。
 
@@ -49,8 +47,6 @@ Azure AD Privileged Identity Management 應用程式也允許特殊權限角色�
 > [!NOTE]
 > 角色中的新使用者預設僅是該角色的合格使用者。 如果想要讓角色變成永久，請按一下清單中的使用者。 該使用者的資訊即會出現在新的刀鋒視窗中。 在使用者資訊功能表中，選取 [設為永久]  。  
 > 如果使用者無法註冊 Azure Multi-Factor Authentication (MFA)，或使用者使用的是 Microsoft 帳戶 (通常是 @outlook.com), 您就需要將他們在其所有角色中設為永久。 系統會要求合格系統管理員在啟用啟用期間註冊 MFA。
-> 
-> 
 
 既然使用者有資格扮演某個角色，請讓他們知道他們可以根據[如何啟用或停用角色](active-directory-privileged-identity-management-how-to-activate-role.md)中的指示來啟用角色。
 
@@ -66,7 +62,6 @@ Azure AD Privileged Identity Management 應用程式也允許特殊權限角色�
 
 如果您不確定哪些使用者仍然需要其角色指派，您可以 [開始角色的存取權檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)。
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
