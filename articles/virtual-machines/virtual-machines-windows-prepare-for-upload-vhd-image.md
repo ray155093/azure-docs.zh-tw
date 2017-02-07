@@ -59,35 +59,40 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 
 ## <a name="prepare-windows-configuration-for-upload"></a>準備要上傳的 Windows 組態
 > [!NOTE]
-> 利用 [系統管理權限](https://technet.microsoft.com/library/cc947813.aspx)執行下列所有命令。
+> 在準備要上傳的虛擬機器上，以 [系統管理員身分](https://technet.microsoft.com/library/cc947813.aspx) 從命令提示字元執行下列所有命令。
 > 
 > 
 
 1. 在路由表上移除任何靜態持續路由：
    
-   * 若要檢視路由表，請執行 `route print`。
+   * 若要檢視路由表，請在命令提示字元執行 `route print`。
    * 檢查 [持續路由]  區段。 如果有持續的路由，請使用 [route delete](https://technet.microsoft.com/library/cc739598.apx) 加以移除。
 2. 移除 WinHTTP Proxy：
    
-    ```
+    ```CMD
     netsh winhttp reset proxy
     ```
 3. 將磁碟 SAN 原則設為 [Onlineall](https://technet.microsoft.com/library/gg252636.aspx)：
    
+    ```CMD
+    diskpart 
+    san policy=onlineall
+    exit
     ```
-    diskpart san policy=onlineall
-    ```
+    
 4. 使用適用於 Windows 的國際標準時間 (UTC)，並將 Windows 時間 (w32time) 服務的啟動類型設為 [自動] ：
    
-    ```
+    ```CMD
     REG ADD HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+    ```
+    ```CMD
     sc config w32time start= auto
     ```
 
 ## <a name="configure-windows-services"></a>設定 Windows 服務
 1. 確定以下的每個 Windows 服務都已設為 **Windows 預設值**。 它們是使用下列清單所列的啟動設定來設定。 您可以執行下列命令來重設啟動設定：
    
-    ```
+    ```CMD
     sc config bfe start= auto
    
     sc config dcomlaunch start= auto
@@ -134,14 +139,14 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 ## <a name="configure-remote-desktop-configuration"></a>設定遠端桌面組態
 1. 如果有任何自我簽署憑證繫結至遠端桌面通訊協定 (RDP) 接聽程式，請移除它們：
    
-    ```
+    ```CMD
     REG DELETE "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\SSLCertificateSHA1Hash”
     ```
    
     如需如何針對 RDP 接聽程式設定憑證的詳細資訊，請參閱 [Listener Certificate Configurations in Windows Server (Windows Server 中的接聽程式憑證組態) ](https://blogs.technet.microsoft.com/askperf/2014/05/28/listener-certificate-configurations-in-windows-server-2012-2012-r2/)
 2. 針對 RDP 服務設定 [KeepAlive](https://technet.microsoft.com/library/cc957549.aspx) 值：
    
-    ```
+    ```CMD
     REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v KeepAliveEnable /t REG_DWORD  /d 1 /f
    
     REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v KeepAliveInterval /t REG_DWORD  /d 1 /f
@@ -150,7 +155,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
     ```
 3. 設定 RDP 服務的驗證模式：
    
-    ```
+    ```CMD
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD  /d 1 /f
    
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v SecurityLayer /t REG_DWORD  /d 1 /f
@@ -159,21 +164,21 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
     ```
 4. 將下列子機碼加入至登錄以啟用 RDP 服務：
    
-    ```
+    ```CMD
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD  /d 0 /f
     ```
 
 ## <a name="configure-windows-firewall-rules"></a>設定 Windows 防火牆規則
 1. 允許 WinRM 透過三種防火牆設定檔 (網域、私人和公用)，並啟用 PowerShell 遠端服務：
    
-   ```
+   ```powershell
    Enable-PSRemoting -force
    ```
 2. 確定下列客體作業系統的防火牆規則已就緒：
    
    * 輸入
    
-   ```
+   ```CMD
    netsh advfirewall firewall set rule dir=in name="File and Printer Sharing (Echo Request - ICMPv4-In)" new enable=yes
    
    netsh advfirewall firewall set rule dir=in name="Network Discovery (LLMNR-UDP-In)" new enable=yes
@@ -197,7 +202,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
    
    * 輸入和輸出
    
-   ```
+   ```CMD
    netsh advfirewall firewall set rule group="Remote Desktop" new enable=yes
    
    netsh advfirewall firewall set rule group="Core Networking" new enable=yes
@@ -205,7 +210,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
    
    * 輸出
    
-   ```
+   ```CMD
    netsh advfirewall firewall set rule dir=out name="Network Discovery (LLMNR-UDP-Out)" new enable=yes
    
    netsh advfirewall firewall set rule dir=out name="Network Discovery (NB-Datagram-Out)" new enable=yes
@@ -231,7 +236,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 1. 執行 `winmgmt /verifyrepository` 以確認 Windows Management Instrumentation (WMI) 存放庫是一致的。 如果存放庫損毀，請參閱 [此部落格文章](https://blogs.technet.microsoft.com/askperf/2014/08/08/wmi-repository-corruption-or-not)。
 2. 確定開機設定資料 (BCD) 設定符合下列設定：
    
-   ```
+   ```CMD
    bcdedit /set {bootmgr} integrityservices enable
    
    bcdedit /set {default} device partition=C:
@@ -279,7 +284,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 * 安裝 [Azure 虛擬機器代理程式](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。 安裝代理程式之後，您就能啟用 VM 擴充功能。 VM 擴充功能實作了您想要與 VM 搭配使用的大部分重要功能，例如重設密碼、設定 RDP，以及許多其他功能。
 * 傾印記錄檔能幫助您進行 Windows 損毀問題的疑難排解。 啟用傾印記錄檔收集：
   
-    ```
+    ```CMD
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\CrashControl" /v CrashDumpEnabled /t REG_DWORD /d 2 /f`
   
     REG ADD "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" /v DumpFolder /t REG_EXPAND_SZ /d "c:\CrashDumps" /f
@@ -292,7 +297,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
     ```
 * 在 Azure 中建立 VM 之後，在磁碟機 D 上設定系統定義的大小分頁檔：
   
-    ```
+    ```CMD
     REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /t REG_MULTI_SZ /v PagingFiles /d "D:\pagefile.sys 0 0" /f
     ```
 
