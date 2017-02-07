@@ -26,7 +26,7 @@ ms.openlocfilehash: 04a5e190a69b1a1a4d0fe6c49c16ddb15593ba38
 
 ##<a name="overview"></a>概觀
 
-本文提供實作函式應用程式時需考量的最佳作法的集合。 請記得，Azure Functions 應用程式是一項 Azure App Service。 因此適用這些最佳作法。  
+本文提供實作函式應用程式時需考量的最佳作法的集合。 請記得，Azure Functions 應用程式是一項 Azure App Service。 因此適用這些最佳作法。
 
 
 ## <a name="avoid-large-long-running-functions"></a>避免大型長時間執行的函式
