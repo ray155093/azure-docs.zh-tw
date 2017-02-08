@@ -161,6 +161,6 @@ RHEL 7.2 虛擬機器已佈建在 Azure 中。 下一個工作是從遠端連線
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

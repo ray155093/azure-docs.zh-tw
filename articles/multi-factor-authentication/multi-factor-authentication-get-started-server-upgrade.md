@@ -15,15 +15,15 @@ ms.topic: get-started-article
 ms.date: 08/04/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1cd92121b150461698674b8acd4369d09c9b9920
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 683ad119250704bdebfb9b54bd3a4ee24bf3d418
 
 
 ---
-# <a name="upgrading-the-phonefactor-agent-to-azure-multifactor-authentication-server"></a>將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
+# <a name="upgrading-the-phonefactor-agent-to-azure-multi-factor-authentication-server"></a>將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
 若要將 PhoneFactor Agent v5.x 或更舊版本升級為 Azure Multi-Factor Authentication Server，您需要先解除安裝 PhoneFactor Agent 和附屬元件，接著才能安裝 Multi-Factor Authentication Server 和附屬元件。
 
-## <a name="to-upgrade-the-phonefactor-agent-to-azure-multifactor-authentication-server"></a>將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
+## <a name="to-upgrade-the-phonefactor-agent-to-azure-multi-factor-authentication-server"></a>將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
 <ol>
 <li>首先，備份 PhoneFactor 資料檔案。 預設安裝位置是 C:\Program Files\PhoneFactor\Data\Phonefactor.pfdata。
 
@@ -70,6 +70,6 @@ ms.openlocfilehash: 1cd92121b150461698674b8acd4369d09c9b9920
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

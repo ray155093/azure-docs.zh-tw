@@ -1,34 +1,38 @@
 ---
-title: 針對以 Linux 為基礎的 HDInsight 開發 Java MapReduce 程式 | Microsoft Docs
-description: 了解如何開發 Java MapReduce 程式，並將這些程式部署到以 Linux 為基礎的 HDInsight。
+title: "針對以 Linux 為基礎的 HDInsight 開發 Java MapReduce 程式 | Microsoft Docs"
+description: "了解如何開發 Java MapReduce 程式，並將這些程式部署到以 Linux 為基礎的 HDInsight。"
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
 author: Blackmist
-documentationcenter: ''
+documentationcenter: 
 tags: azure-portal
-
+ms.assetid: 9ee6384c-cb61-4087-8273-fb53fa27c1c3
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/11/2016
+ms.date: 01/17/2017
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 93990e342f6bd8fcfe9781bcb021aabfd33e8572
+ms.openlocfilehash: a63cedc57b863d03f65b99d4c2490d5e8aec25b5
+
 
 ---
 # <a name="develop-java-mapreduce-programs-for-hadoop-on-hdinsight-linux"></a>在 HDInsight Linux 上開發 Hadoop 的 Java MapReduce 程式
 本文件會逐步指示您使用 Apache Maven 建立 MapReduce 應用程式，然後在以 Linux 為基礎的 HDInsight 中 Hadoop 叢集上部署並執行該應用程式。
 
-## <a name="<a-name="prerequisites"></a>prerequisites"></a><a name="prerequisites"></a>必要條件
+## <a name="a-nameprerequisitesaprerequisites"></a><a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
 
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/) 7 或更新版本 (或同等功能版本，例如 OpenJDK)
 * [Apache Maven](http://maven.apache.org/)
 * **Azure 訂用帳戶**
 * **Azure CLI**
-  
-    [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+
+[!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 ## <a name="configure-environment-variables"></a>設定環境變數
 當您安裝 Java 和 JDK 時可能會設定下列環境變數。 不過，您應該檢查它們是否存在，以及它們是否包含您系統的正確值。
@@ -62,15 +66,15 @@ ms.author: larryfr
           <scope>provided</scope>
         </dependency>
         <dependency>
-          <groupId>org.apache.hadoop</groupId>
-          <artifactId>hadoop-mapreduce-client-common</artifactId>
-          <version>2.5.1</version>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-common</artifactId>
+            <version>2.5.1</version>
           <scope>provided</scope>
         </dependency>
         <dependency>
-          <groupId>org.apache.hadoop</groupId>
-          <artifactId>hadoop-common</artifactId>
-          <version>2.5.1</version>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>2.5.1</version>
           <scope>provided</scope>
         </dependency>
    
@@ -80,26 +84,26 @@ ms.author: larryfr
 2. 將下列程式碼新增至 **pom.xml** 檔案。 這必須在檔案中的 `<project>...</project>` 標籤內；例如，在 `</dependencies>` 和 `</project>` 之間。
    
         <build>
-          <plugins>
+            <plugins>
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-shade-plugin</artifactId>
-              <version>2.3</version>
-              <configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
                 <transformers>
-                  <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
                   </transformer>
                 </transformers>
-              </configuration>
-              <executions>
+                </configuration>
+                <executions>
                 <execution>
-                  <phase>package</phase>
-                    <goals>
+                    <phase>package</phase>
+                      <goals>
                       <goal>shade</goal>
-                    </goals>
+                      </goals>
                 </execution>
-              </executions>
-            </plugin>
+                </executions>
+              </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
@@ -108,7 +112,7 @@ ms.author: larryfr
                <target>1.7</target>
               </configuration>
             </plugin>
-          </plugins>
+            </plugins>
         </build>
    
     第一個外掛程式會設定用於建置 uberjar (有時稱為 fatjar) 的 [Maven Shade 外掛程式](http://maven.apache.org/plugins/maven-shade-plugin/)，uberjar 內含應用程式需要的相依性。 這麼做也可以防止 jar 封裝中具有重複的授權，以免在某些系統中造成問題。
@@ -206,7 +210,7 @@ ms.author: larryfr
    > 
    > 
 
-## <a name="<a-id="upload"></a>upload-the-jar"></a><a id="upload"></a>上傳 jar
+## <a name="a-iduploadaupload-the-jar"></a><a id="upload"></a>上傳 jar
 使用以下命令將 jar 檔案上傳至 HDInsight 前端節點。
 
     scp wordcountjava-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:
@@ -220,7 +224,7 @@ ms.author: larryfr
 > 
 > 
 
-## <a name="<a-name="run"></a>run-the-mapreduce-job"></a><a name="run"></a>執行 MapReduce 工作
+## <a name="a-namerunarun-the-mapreduce-job"></a><a name="run"></a>執行 MapReduce 工作
 1. 如下列文章所述，使用 SSH 連接至 HDInsight：
    
    * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
@@ -240,10 +244,10 @@ ms.author: larryfr
         zelus   1
         zenith  2
 
-## <a name="<a-id="nextsteps"></a>next-steps"></a><a id="nextsteps"></a>接續步驟
+## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
 在本文件中，您已學到如何開發 Java MapReduce 工作。 請參閱下列文件，了解其他的 HDInsight 使用方式。
 
-* [搭配 HDInsight 使用 Hive][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
@@ -268,6 +272,6 @@ ms.author: larryfr
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

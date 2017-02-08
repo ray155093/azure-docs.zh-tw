@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 10/24/2016
 ms.author: cabailey
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e30f98d541d0e6a79fab0e9b12619a2072e9ec70
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: e30f98d541d0e6a79fab0e9b12619a2072e9ec70
 若要完成本教學課程，您必須具備下列項目：
 
 * Microsoft Azure 訂用帳戶。 如果您沒有訂用帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
-* Azure PowerShell， **最低版本為 1.1.0**。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。 如果您已安裝 Azure PowerShell 版本 0.9.1 至 0.9.8，您仍可使用本教學課程並稍作變更。 例如，您必須使用 `Switch-AzureMode AzureResourceManager` 命令，而有些 Azure 金鑰保存庫命令已變更。 如需版本 0.9.1 至 0.9.8 的金鑰保存庫 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052\(v=azure.98\).aspx)。 
+* Azure PowerShell， **最低版本為 1.1.0**。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。 如果您已安裝 Azure PowerShell 版本 0.9.1 至 0.9.8，您仍可使用本教學課程並稍作變更。 例如，您必須使用 `Switch-AzureMode AzureResourceManager` 命令，而有些 Azure 金鑰保存庫命令已變更。 如需版本 0.9.1 至 0.9.8 的金鑰保存庫 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052\(v=azure.98\).aspx)。 
 * 可設定使用您在本教學課程中所建立之金鑰或密碼的應用程式。 您可以在 [Microsoft 下載中心](http://www.microsoft.com/en-us/download/details.aspx?id=45343)找到範例應用程式。 如需相關指示，請參閱隨附的讀我檔案。
 
 本教學課程是專為 Azure PowerShell 初學者所設計的，但它會假設您已了解基本概念，例如模組、Cmdlet 和工作階段。 如需詳細資訊，請參閱 [開始使用 Windows PowerShell](https://technet.microsoft.com/library/hh857337.aspx)。
@@ -56,7 +56,7 @@ ms.openlocfilehash: e30f98d541d0e6a79fab0e9b12619a2072e9ec70
 
 您也可以閱讀下列教學課程，以熟悉 Azure PowerShell 中的 Azure 資源管理員：
 
-* [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)
+* [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 * [Azure PowerShell 搭配資源管理員使用](../powershell-azure-resource-manager.md)
 
 ## <a name="a-idconnectaconnect-to-your-subscriptions"></a><a id="connect"></a>連線到您的訂用帳戶
@@ -76,7 +76,7 @@ ms.openlocfilehash: e30f98d541d0e6a79fab0e9b12619a2072e9ec70
 
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
-如需設定 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需設定 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="a-idresourceacreate-a-new-resource-group"></a><a id="resource"></a>建立新的資源群組
 使用 Azure 資源管理員時，會在資源群組中建立所有相關資源。 在本教學課程中，我們將建立名為 **ContosoResourceGroup** 的新資源群組：
@@ -237,6 +237,6 @@ ms.openlocfilehash: e30f98d541d0e6a79fab0e9b12619a2072e9ec70
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 10/14/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 639f11856fcb0828db2375e428d9f7efe640b5d7
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 7ad06e9086d6532b3de2ba060b37424051f022c2
 
 
 ---
-# <a name="secure-cloud-and-onpremises-resources-using-azure-multifactor-authentication-server-with-ad-fs-20"></a>搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源
+# <a name="secure-cloud-and-on-premises-resources-using-azure-multi-factor-authentication-server-with-ad-fs-20"></a>搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源
 本文適用對象為使用 Azure Active Directory 進行同盟，並想要保護內部部署資源或雲端資源的組織。 請使用 Azure Multi-factor Authentication Server 保護您的資源，並將其設定為可與 AD FS 搭配運作，以便觸發雙步驟驗證來獲得高價值的端點。
 
 這份文件將說明如何搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server。  如需詳細資訊，請參閱[搭配 Windows Server 2012 R2 AD FS 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源](multi-factor-authentication-get-started-adfs-w2k12.md)。
@@ -102,6 +102,6 @@ ms.openlocfilehash: 639f11856fcb0828db2375e428d9f7efe640b5d7
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

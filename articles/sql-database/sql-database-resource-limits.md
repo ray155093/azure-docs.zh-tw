@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 12/06/2016
+ms.date: 12/14/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: b5306d864593898246d0e7ba81ed3f93253fab74
-ms.openlocfilehash: 81746a6f893eab4fe2b951fb0d52bd1645d2a56c
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 4f4d5a4f3c401974157182afa9575f6f28a0673b
 
 
 ---
@@ -51,7 +51,7 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 [!INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
 
 ### <a name="elastic-pools"></a>彈性集區
-[彈性集區](sql-database-elastic-pool.md) 可在集區中的資料庫之間共用資源。 下表說明基本、標準和高階彈性資料庫集區的特性。
+[彈性集區](sql-database-elastic-pool.md) 可在集區中的資料庫之間共用資源。 下表說明基本、標準和高階彈性集區的特性。
 
 [!INCLUDE [SQL DB service tiers table for elastic databases](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
 
@@ -74,6 +74,6 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

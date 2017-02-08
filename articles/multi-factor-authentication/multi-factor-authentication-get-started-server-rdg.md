@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 08/15/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ee868c5ba1a8429a733633edbc7efaa74e512135
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 3b14925f41138904aa10a172f83dffa3c6662700
 
 
 ---
-# <a name="remote-desktop-gateway-and-azure-multifactor-authentication-server-using-radius"></a>使用 RADIUS 的遠端桌面閘道和 Azure Multi-Factor Authentication Server
+# <a name="remote-desktop-gateway-and-azure-multi-factor-authentication-server-using-radius"></a>使用 RADIUS 的遠端桌面閘道和 Azure Multi-Factor Authentication Server
 在許多情況下，遠端桌面閘道器會使用本機 NPS 來驗證使用者。 本文件說明如何將 RADIUS 要求從遠端桌面閘道器 (透過本機 NPS) 傳送至 Multi-Factor Authentication Server。
 
 Multi-Factor Authentication Server 應該安裝在不同的伺服器，由它代理將 RADIUS 要求傳回到遠端桌面閘道器伺服器上的 NPS。 NPS 驗證使用者名稱和密碼之後，它會將回應傳回給 Multi-Factor Authentication Server 來執行第二因素驗證，然後將結果傳回給閘道器。
@@ -36,7 +36,7 @@ RD 閘道器使用 NPS 將 RADIUS 要求傳送到 Azure Multi-Factor Authenticat
 3. 展開左側導覽列中的 [原則] 區段，然後按一下 [連線要求原則]。 其中應該包含設定 RD 閘道器時建立的一個連線要求原則，稱為 [TS 閘道器授權原則]。 此原則會將 RADIUS 要求轉送到 Multi-Factor Authentication Server。
 4. 複製此原則來建立新的原則。 在新的原則中，加入條件來比對 [好記的用戶端名稱] 和上面步驟 2 為 Azure Multi-Factor Authentication Server RADIUS 用戶端設定的 [好記的名稱]。 將 [驗證提供者] 變更為 [本機電腦]。 此原則可確保收到來自 Azure Multi-Factor Authentication Server 的 RADIUS 要求時，就在本機進行驗證，而不會將 RADIUS 要求傳回給 Azure Multi-Factor Authentication Server，導致迴圈狀況。 為了避免迴圈狀況，這項新原則的順序必須在轉送到 Multi-Factor Authentication Server 的原始原則「上方」。
 
-## <a name="configure-azure-multifactor-authentication"></a>設定 Azure Multi-Factor Authentication
+## <a name="configure-azure-multi-factor-authentication"></a>設定 Azure Multi-Factor Authentication
 - - -
 Azure Multi-Factor Authentication Server 設定為 RD 閘道器和 NPS 之間的 RADIUS Proxy。  它應該安裝在 RD 閘道器伺服器之外另一部加入網域的伺服器上。 使用下列程序來設定 Azure Multi-Factor Authentication Server。
 
@@ -50,6 +50,6 @@ Azure Multi-Factor Authentication Server 設定為 RD 閘道器和 NPS 之間的
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

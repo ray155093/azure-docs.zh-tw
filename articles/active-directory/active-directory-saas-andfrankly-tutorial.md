@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: eac9090101728718b1a71c03dd2afd171e696093
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 3741616d5cd680e2430a1b1a62e66cbfe1cf49ee
 
 
 ---
@@ -133,7 +133,7 @@ ms.openlocfilehash: eac9090101728718b1a71c03dd2afd171e696093
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b. 按 [下一步] 。
 6. 若要為您的應用程式設定 SSO，請透過 [help@andfrankly.com](emailTo:help@andfrankly.com) 連絡您的 &frankly 支援小組。 附加下載的中繼資料檔案，並與 &frankly 小組共用，以便在 Bynder 端設定 SSO。
 7. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
@@ -245,6 +245,6 @@ ms.openlocfilehash: eac9090101728718b1a71c03dd2afd171e696093
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

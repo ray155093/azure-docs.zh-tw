@@ -287,6 +287,6 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

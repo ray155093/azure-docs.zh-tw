@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/11/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
-ms.openlocfilehash: c16d2a32fcd62b4766b359a955a265a91c0d147c
+ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
+ms.openlocfilehash: 6187106a9aa98107d89e65fe4c7a0e8a27befa87
 
 
 ---
@@ -32,6 +32,10 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
   * Visual Studio 的版本必須是 2013 或 2015。
   * Python 的版本必須是 2.7 或更新版本
 * 以 Linux 為基礎的 HDInsight 叢集「或」[Azure PowerShell][powershell] - 如果您有以 Linux 為基礎的現有叢集，則可以使用 Ambari 將共用存取簽章新增至叢集。 如果沒有，您可以使用 Azure PowerShell 建立新的叢集，並在叢集建立期間新增共用存取簽章。
+
+    > [!IMPORTANT]
+    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * 範例檔案來自 [https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature](https://github.com/Azure-Samples/hdinsight-dotnet-python-azure-storage-shared-access-signature)。 此儲存機制具有下列項目：
   
   * Visual Studio 專案，可以建立儲存體容器、預存原則，以及搭配 HDInsight 使用的 SAS
@@ -253,6 +257,6 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

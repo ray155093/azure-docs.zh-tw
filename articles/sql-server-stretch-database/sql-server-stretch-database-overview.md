@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 06/27/2016
 ms.author: douglasl
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2fcea994b3de924f1170dae2d7a0a3b6d4786538
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f63900b0a4f32e1bc5a88c068091916bd96aafb8
 
 
 ---
@@ -28,13 +28,13 @@ Stretch Database 能以無訊息方式安全地將冷資料移轉到 Microsoft A
 ## <a name="what-are-the-benefits-of-stretch-database"></a>Stretch Database 有哪些優點？
 Stretch Database 提供下列優點：
 
-### <a name="provides-costeffective-availability-for-cold-data"></a>能以符合成本效益的方式提供冷資料
+### <a name="provides-cost-effective-availability-for-cold-data"></a>能以符合成本效益的方式提供冷資料
 使用 SQL Server Stretch Database 即可以動態方式將暖交易資料和冷交易資料從 SQL Server 延伸到 Microsoft Azure。 不同於一般的冷資料儲存體，您的資料會隨時保持上線狀態並可用來執行查詢。 您可以延長資料保留期，卻又不致於讓用來存放大型資料表 (如客戶訂單歷史資料) 的空間塞爆。 受益於 Azure 的低成本，而非擴充價格昂貴的內部部署儲存體。 您可以在 Azure 入口網站選擇定價層及進行設定，以控制成本。 並可視需要擴大或縮小規模。 如需詳細資料，請瀏覽 [SQL Server Stretch Database 價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/) 頁面。
 
 ### <a name="doesnt-require-changes-to-queries-or-applications"></a>不必變更查詢或應用程式
 不論是位於內部部署環境或延伸到雲端的 SQL Server 資料皆能順暢存取。  您可以設定原則來決定資料的儲存位置，並由 SQL Server 負責在背景處理資料的移動。 整份資料表隨時保持上線狀態並可供查詢。 而且，Stretch Database 並不需要您變更現有查詢或應用程式，而且應用程式對於資料的所在位置一清二楚。
 
-### <a name="streamlines-onpremises-data-maintenance"></a>簡化內部部署資料的維護工作
+### <a name="streamlines-on-premises-data-maintenance"></a>簡化內部部署資料的維護工作
 減少在內部部署環境維護和儲存資料的工作。 內部部署資料的備份速度加快，因而可在維護期間內完成。 自動執行雲端資料的備份。 內部部署的儲存體需求量大幅降低。 使用 Azure 儲存體的成本比新增到內部部署 SSD 低 80%。
 
 ### <a name="keeps-your-data-secure-even-during-migration"></a>即使在移轉期間也能確保資料安全
@@ -84,6 +84,6 @@ Stretch Database 的目標是擁有大量冷資料，且通常儲存在少量資
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

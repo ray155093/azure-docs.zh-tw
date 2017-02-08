@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 06/01/2016
 ms.author: tdykstra
 translationtype: Human Translation
-ms.sourcegitcommit: 154d2cd9b7f4ea51d3fd4c1995b67a25816b28a2
-ms.openlocfilehash: 67bb54e8a573607199143621451e598bf11947fe
+ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
+ms.openlocfilehash: 5110a86c3cc25ada27ddba9b0caef68e4509aa73
 
 
 ---
@@ -133,7 +133,7 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
 
 收到單一佇列的多個訊息時也是如此。 根據預設，SDK 會一次取得一批 (16 個) 佇列訊息，並執行以平行方式處理它們的函數。 [您可以設定批次大小](#config)。 當要處理的訊息數目減少到批次大小 (該批訊息數目) 的一半時，SDK 就會取得另一批訊息並開始處理那些訊息。 因此，每個函數並行處理之訊息的上限數目為批次大小 (該批訊息數目) 的 1.5 倍。 這項限制個別套用至具有 `QueueTrigger` 屬性的每個函式。
 
-如果您不想要平行執行在單一佇列上收到的訊息，您可以將批次大小設定為 1。 另請參閱 **Azure WebJobs SDK 1.1.0 RTM** 中的 [更充分掌控佇列處理](/blog/azure-webjobs-sdk-1-1-0-rtm/)。
+如果您不想要平行執行在單一佇列上收到的訊息，您可以將批次大小設定為 1。 另請參閱 **Azure WebJobs SDK 1.1.0 RTM** 中的 [更充分掌控佇列處理](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)。
 
 ### <a name="a-idqueuemetadataaget-queue-or-queue-message-metadata"></a><a id="queuemetadata"></a>取得佇列或佇列訊息中繼資料
 您可以透過新增參數至方法簽章來取得下列訊息屬性：
@@ -422,7 +422,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             host.RunAndBlock();
         }
 
-### <a name="a-idconfigqueueaconfigure-queuetrigger-settings"></a><a id="configqueue"></a>設定 QueueTrigger 設定
+### <a name="a-idconfigqueueaconfigure-queuetrigger--settings"></a><a id="configqueue"></a>設定 QueueTrigger 設定
 您可以配置會套用至佇列訊息處理的下列設定：
 
 * 挑選以同時平行執行的佇列訊息數目上限 (預設值為 16)。
@@ -581,6 +581,6 @@ public static void ErrorMonitor(
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

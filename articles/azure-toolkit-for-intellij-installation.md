@@ -1,23 +1,27 @@
 ---
-title: 安裝 Azure Toolkit for IntelliJ | Microsoft Docs
-description: 了解如何安裝 Azure Toolkit for the IntelliJ IDEA。
-services: ''
+title: "安裝適用於 IntelliJ 的 Azure 工具組 | Microsoft Docs"
+description: "了解如何安裝 Azure Toolkit for the IntelliJ IDEA。"
+services: 
 documentationcenter: java
 author: rmcmurray
-manager: wpickett
-editor: ''
-
+manager: erikre
+editor: 
+ms.assetid: c6817c7b-f28c-4c06-8216-41c7a8117de3
 ms.service: multiple
 ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 12/22/2016
 ms.author: robmcm
+translationtype: Human Translation
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 349252e6629c0eda4d603399345206903d530578
+
 
 ---
-# 安裝 Azure Toolkit for IntelliJ
-Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 IntelliJ IDEA 開發環境來建立、開發、測試及部署 Azure 應用程式。Azure Toolkit for IntelliJ 是開放原始碼專案，其來源程式碼可從 GitHub 上該專案網站的 MIT License 下取得，URL 如下：
+# <a name="installing-the-azure-toolkit-for-intellij"></a>安裝 Azure Toolkit for IntelliJ
+Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 IntelliJ IDEA 開發環境來建立、開發、測試及部署 Azure 應用程式。 Azure Toolkit for IntelliJ 是開放原始碼專案，其來源程式碼可從 GitHub 上該專案網站的 MIT License 下取得，URL 如下：
 
 <https://github.com/microsoft/azure-tools-for-java>
 
@@ -25,7 +29,7 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 
 [!INCLUDE [azure-toolkit-for-IntelliJ-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
-## 從 [設定] 對話方塊安裝 Azure Toolkit for IntelliJ
+## <a name="to-install-the-azure-toolkit-for-intellij-from-the-settings-dialog-box"></a>從 [設定] 對話方塊安裝 Azure Toolkit for IntelliJ
 1. 啟動 IntelliJ IDEA。
 2. IntelliJ IDEA 開啟時，按一下 [檔案]，然後按一下 [設定]。
    
@@ -33,24 +37,24 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 3. 在 [設定] 對話方塊中，按一下 [外掛程式]，然後按一下 [瀏覽儲存機制]。
    
     ![IntelliJ IDEA [設定] 對話方塊][02a]
-4. 在 [瀏覽儲存機制] 對話方塊中，於 [搜尋] 方塊中輸入"Azure"。反白顯示 **Azure Toolkit for IntelliJ**，然後按一下 [安裝]。
+4. 在 [瀏覽儲存機制] 對話方塊中，於 [搜尋] 方塊中輸入 "Azure"。 反白顯示 [適用於 IntelliJ 的 Azure 工具組]，然後按一下 [安裝]。
    
     ![搜尋 Azure Toolkit for IntelliJ][03]
    
     IntelliJ IDEA 會在對話方塊中顯示安裝進度。
    
     ![安裝進度][04]
-5. 安裝完成後，按一下 [重新啟動 IntelliJ IDEA]。
+5. 安裝完成後，按一下 [重新啟動 IntelliJ IDEA] 。
    
     ![重新啟動 IntelliJ IDEA][05]
-6. 按一下 [確定] 以關閉 [設定] 對話方塊。
+6. 按一下 [確定]  以關閉 [設定] 對話方塊。
    
     ![關閉 IntelliJ IDEA [設定] 對話方塊][06]
-7. 當系統提示您重新啟動 IntelliJ IDEA 或延後，請按一下 [重新啟動]。
+7. 當系統提示您重新啟動 IntelliJ IDEA 或延後，請按一下 [重新啟動] 。
    
     ![重新啟動 IntelliJ IDEA][07]
 
-## 從啟動畫面安裝 Azure Toolkit for IntelliJ
+## <a name="to-install-the-azure-toolkit-for-intellij-from-the-start-screen"></a>從啟動畫面安裝 Azure Toolkit for IntelliJ
 1. 啟動 IntelliJ IDEA。
 2. IntelliJ IDEA 啟動畫面出現時，按一下 [設定]，然後按一下 [外掛程式]。
    
@@ -58,21 +62,21 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 3. 在 [外掛程式] 對話方塊中，按一下 [瀏覽儲存機制]。
    
     ![瀏覽 IntelliJ IDEA 外掛程式儲存機制][02b]
-4. 在 [瀏覽儲存機制] 對話方塊中，於 [搜尋] 方塊中輸入"Azure"。反白顯示 **Azure Toolkit for IntelliJ**，然後按一下 [安裝]。
+4. 在 [瀏覽儲存機制] 對話方塊中，於 [搜尋] 方塊中輸入 "Azure"。 反白顯示 [適用於 IntelliJ 的 Azure 工具組]，然後按一下 [安裝]。
    
     ![搜尋 Azure Toolkit for IntelliJ][03]
    
     IntelliJ IDEA 會在對話方塊中顯示安裝進度。
    
     ![安裝進度][04]
-5. 安裝完成後，按一下 [重新啟動 IntelliJ IDEA]。
+5. 安裝完成後，按一下 [重新啟動 IntelliJ IDEA] 。
    
     ![重新啟動 IntelliJ IDEA][05]
-6. 當系統提示您重新啟動 IntelliJ IDEA 或延後，請按一下 [重新啟動]。
+6. 當系統提示您重新啟動 IntelliJ IDEA 或延後，請按一下 [重新啟動] 。
    
     ![重新啟動 IntelliJ IDEA][07]
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
 
 * [適用於 Eclipse 的 Azure 工具組]
@@ -80,7 +84,7 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
   * [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]
   * [適用於 Eclipse 的 Azure 工具組的新功能]
 * [Azure Toolkit for IntelliJ]
-  * 安裝 Azure Toolkit for IntelliJ (本文)
+  * *Installing the Azure Toolkit for IntelliJ (This Article)*
   * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
   * [適用於 IntelliJ 的 Azure 工具組新增功能]
 
@@ -111,4 +115,8 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 [06]: ./media/azure-toolkit-for-intellij-installation/06-intellij-settings-dialog.png
 [07]: ./media/azure-toolkit-for-intellij-installation/07-restart-intellij.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Jan17_HO1-->
+
+

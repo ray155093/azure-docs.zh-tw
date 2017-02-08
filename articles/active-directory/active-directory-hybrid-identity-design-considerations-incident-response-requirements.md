@@ -1,13 +1,12 @@
-
 ---
-title: Azure Active Directory 混合式身分識別設計考量 - 判斷事件回應需求| Microsoft Docs
-description: 判斷混合式身分識別解決方案的監視和報告功能，讓 IT 可用來採取動作以識別和減緩潛在威脅。
-documentationcenter: ''
+title: "Azure Active Directory 混合式身分識別設計考量 - 判斷事件回應需求 | Microsoft Docs"
+description: "判斷混合式身分識別解決方案的監視和報告功能，讓 IT 可用來採取動作以識別和減緩潛在威脅。"
+documentationcenter: 
 services: active-directory
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: a3d2a459-599b-4b67-8e51-7369ee25082d
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -15,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/08/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
+ms.openlocfilehash: bc8e3b76aad18e8d7a73de8bc12e6527e415035d
+
 
 ---
 # <a name="determine-incident-response-requirements-for-your-hybrid-identity-solution"></a>判斷混合式身分識別解決方案的事件回應需求
@@ -63,6 +66,9 @@ ms.author: billmath
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 

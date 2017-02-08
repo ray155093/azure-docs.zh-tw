@@ -1,13 +1,13 @@
 ---
-title: 監視和診斷指引 | Microsoft Docs
-description: 監視雲端中分散式應用程式的最佳作法。
-services: ''
+title: "監視和診斷指引 | Microsoft Docs"
+description: "監視雲端中分散式應用程式的最佳作法。"
+services: 
 documentationcenter: na
 author: dragon119
 manager: christb
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 2d2a8497-73d0-4a46-aac6-6d504003de2b
 ms.service: best-practice
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2016
 ms.author: masashin
+translationtype: Human Translation
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: 0eb72af5c0f904655fc4a0d8fd44d6e481c73645
+
 
 ---
 # <a name="monitoring-and-diagnostics-guidance"></a>監視和診斷指引
@@ -60,7 +64,7 @@ ms.author: masashin
 
 完整的健康狀況監視系統可讓操作員向下鑽研系統，來檢視子系統和元件的健康狀況狀態。 例如，如果整體系統被描述成健康狀況局部良好，操作員應該能夠放大，並且判斷哪些功能目前無法使用。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 支援健康狀況監視所需的原始資料，可以由下列情況產生：
 
 * 追蹤使用者要求的執行情況。 這項資訊可以用來判斷哪些要求已成功、哪些要求已失敗，以及每個要求花費多長時間。
@@ -93,7 +97,7 @@ ms.author: masashin
 
 監視解決方案應該提供每個子系統的可用性或無法使用的即時和歷程記錄檢視。 它也應該能夠在一或多個服務失敗或使用者無法連接至服務時快速警示操作員。 這不只會監視每個服務，也會在每位使用者執行的動作嘗試與服務通訊但卻失敗時檢查這些動作。 某種程度來說，有一些連接失敗是正常情況。 有可能是因為暫時性錯誤，但允許系統就特定時段發生的子系統失敗連接數目發出警示，可能會有幫助。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 使用健康狀況監視時，支援可用性監視所需的原始資料，可由綜合使用者監控和記錄任何例外狀況、錯誤和警告產生。 此外，可用性資料也可以取自執行端點監視。 應用程式可以公開一個或多個健康的端點，每個測試皆存取至系統內的功能區域。 監視系統可以依照定義的排程 Ping 每個端點，並收集結果 (成功或失敗)。
 
 必須記錄所有的逾時、網路連線失敗，以及連接重試次數。 所有資料應該加上時間戳記。
@@ -157,7 +161,7 @@ ms.author: masashin
 
 操作員應該能夠根據任何指定的時間間隔期間，為任何指定值的任何效能量值引發警示。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 您可以藉由監視使用者要求抵達並通過系統的進度，來收集高階效能資料 (輸送量、並行使用者數目、商務交易數目、錯誤率等等)。 這牽涉到在應用程式程式碼的關鍵點中加入追蹤陳述式以及計時資訊。 應該擷取所有錯誤、例外狀況和警告，並有足夠的資料，以讓其與導致其發生的要求相互關聯。 Internet Information Services (IIS) 記錄是另一個有用的來源。
 
 可能的話，您也應該對應用程式使用的任何外部系統擷取效能資料。 這些外部系統可能會提供自己的效能計數器，或其他用於要求效能資料的功能。 如果這不可行，請記錄如下的資訊：每個對外部系統提出之要求的開始時間和結束時間，以及作業的狀態 (成功、失敗或警告)。 例如，您可以使用馬錶方法為要求計時：在要求啟動時啟動計時器，然後在要求完成時停止計時器。
@@ -199,7 +203,7 @@ ms.author: masashin
 
 維護系統安全性的關鍵部分就是能夠快速偵測偏離常見模式的動作。 失敗和/或成功登入要求數目之類的資訊可以視覺化方式顯示，以協助偵測活動中是否會在不尋常時間出現高峰 (這類活動的範例之一是，使用者在上午 3 點登入並執行大量作業，而他們的工作日是從上午 9 點開始)。 此資訊也可用來協助設定以時間為基礎的自動調整。 例如，如果操作員觀察到大量使用者定期在一天的特定時間登入，操作員就可以安排啟動額外的驗證服務來處理此工作量，然後在高峰過去後，關閉這些額外的服務。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 安全性是大多數分散式系統的全方位層面。 相關的資料很可能會在整個系統的多個點產生。 您應該考慮採用安全性資訊及事件管理 (SIEM) 方式來收集應用程式、網路設備、伺服器、防火牆、防毒軟體和其他入侵預防項目引發事件所產生的安全性相關資訊。
 
 安全性監視可以納入來自不屬於您應用程式之工具的資料。 這些工具可包括識別外部機構所進行連接埠掃描活動的公用程式，或偵測嘗試對您的應用程式和資料取得未經驗證存取權的網路篩選器。
@@ -251,8 +255,8 @@ SLA 通常依據下列項目定義：
 
 基於警示用途，如果有任何高階指標超出指定的臨界值，系統應該能夠引發事件。 組成高階指標之各種因素的低階詳細資料應該可以做為警示系統的關聯式資料。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
-支援 SLA 監視所需的原始資料類似於效能監視所需的原始資料，以及健康狀況和可用性監視的某些層面  (如需詳細資訊，請參閱這些章節)。您可以擷取此資料，方法為：
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+支援 SLA 監視所需的原始資料類似於效能監視所需的原始資料，以及健康狀況和可用性監視的某些層面 (如需詳細資訊，請參閱這些章節)。您可以擷取此資料，方法為：
 
 * 執行端點監視。
 * 記錄例外狀況、錯誤和警告。
@@ -283,7 +287,7 @@ SLA 通常依據下列項目定義：
 
 稽核資訊是高度機密。 因其很可能包含識別系統使用者的資料，以及其所執行的工作。 基於這個原因，稽核資訊最可能採取的是僅可供受信任的分析人員使用的報告形式，而不是做為支援向下鑽研圖形作業的互動式系統。 分析人員應該能夠產生各種報告。 例如，報告可能會列出在指定時間範圍內發生的所有使用者活動、詳述單一使用者之活動的時序，或列出針對一或多個資源執行的一連串作業。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 稽核資訊的主要來源可以包括：
 
 * 管理使用者驗證的安全性系統。
@@ -314,7 +318,7 @@ SLA 通常依據下列項目定義：
 
 操作員也應該能夠產生圖形。 例如，圖形可能會顯示使用資源最凶的使用者，或是使用者最常存取的資源或系統功能。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 可在相對高階中執行使用情況追蹤。 它會記下每個要求的開始和結束時間，以及要求的本質 (讀取、寫入等等，視有問題的資源而定)。 您可以取得這項資訊，方法是：
 
 * 追蹤使用者活動。
@@ -331,7 +335,7 @@ SLA 通常依據下列項目定義：
 ### <a name="requirements-for-issue-tracking"></a>問題追蹤的需求
 操作員通常會使用個別系統來執行問題追蹤，讓他們可以記錄和報告使用者報告之問題的詳細資料。 這些詳細資料可以包含使用者正在嘗試執行的工作、問題的徵狀、一連串事件，以及已發出的任何錯誤或警告訊息。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 問題追蹤資料的初始資料來源是第一時間報告問題的使用者。 使用者可能會提供其他資料，例如：
 
 * 當機傾印 (如果應用程式包含在使用者桌面上執行的元件)。
@@ -358,7 +362,7 @@ SLA 通常依據下列項目定義：
 ### <a name="requirements-for-tracing-and-debugging"></a>追蹤和偵錯的需求
 對於追蹤非預期的事件和其他問題，監視資料務必提供足夠的資訊，讓分析人員可以往回追蹤至這些問題的起源，並重新建構一連串發生的事件。 此資訊必須足以讓分析人員能夠診斷任何問題的根本原因。 開發人員接著就能進行必要的修改，以防止問題重複發生。
 
-### <a name="data-sources,-instrumentation,-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
+### <a name="data-sources-instrumentation-and-data-collection-requirements"></a>資料來源、檢測和資料收集需求
 疑難排解可包含追蹤所有當做作業一部分叫用的方法 (和其參數)，而此作業會建置樹狀結構，描述當客戶提出特定要求時整個系統的邏輯流程。 您需要擷取並記錄系統產生來做為此流程之結果的例外狀況和警告。
 
 若要支援偵錯，系統可以提供勾點，讓操作員能夠在系統中的關鍵點擷取狀態資訊。 或者，系統可以在選取的作業進行時提供詳細的逐步資訊。 擷取此程度的詳細資料可能會對系統造成額外負載，但這應該是短暫的程序。 操作員使用此程序的時機主要是在發生極不尋常的一系列事件，或系統中新發行的一或多個項目需要仔細監視，以確保其如預期般運作。
@@ -517,7 +521,7 @@ SLA 通常依據下列項目定義：
 
 若要最佳化頻寬的使用，您可以選擇以區塊方式 (如批次) 傳送較不緊急的資料。 不過，資料不得無限期延遲，特別是如果其包含時間緊迫的資訊。
 
-#### <a name="_pulling-and-pushing-instrumentation-data_"></a>*提取和發送檢測資料*
+#### <a name="pulling-and-pushing-instrumentation-data"></a>*提取和發送檢測資料*
 檢測資料收集子系統可以從各種記錄檔和應用程式的每個執行個體的其他來源主動擷取檢測資料 (提取模型 )。 或者，其可做為被動接收者，等候要從構成應用程式的每個執行個體的元件傳送的資料 (發送模型 )。
 
 有一個實作提取模型的方法是，使用本機執行的監視代理程式搭配應用程式的每一個執行個體。 監視代理程式是一種個別程序，可定期擷取 (提取) 在本機節點收集的遙測資料，並將此資訊直接寫入應用程式的所有執行個體共用的集中式儲存體。 此為 Azure 診斷實作的機制。 Azure Web 或背景工作角色的每個執行個體可以設定為擷取本機儲存的診斷和其他追蹤資訊。 並存執行的監視代理程式，每一個執行個體都會將指定的資料複製至 Azure 儲存體。 [在 Azure 雲端服務中啟用 Azure 診斷](cloud-services/cloud-services-dotnet-diagnostics.md) 文章提供此程序的詳細資料。 某些項目 (例如 IIS 記錄檔、當機傾印，以及自訂錯誤記錄檔) 會寫入 Blob 儲存體。 來自 Windows 事件記錄檔、ETW 事件和效能計數器的資料則會記錄在表格儲存體中。 圖 3 說明此機制。
@@ -545,7 +549,7 @@ SLA 通常依據下列項目定義：
 
 <a name="consolidating-instrumentation-data"></a>
 
-#### <a name="_consolidating-instrumentation-data_"></a>*合併檢測資料*
+#### <a name="consolidating-instrumentation-data"></a>*合併檢測資料*
 資料收集服務從應用程式的單一執行個體中擷取的檢測資料，提供該執行個體之健康狀況和效能的當地語系化檢視。 若要評估系統的整體健康狀況，需要合併本機檢視中某些層面的資料。 您可以在儲存資料之後執行此動作，但在某些情況下，也可以在收集資料時完成。 不是直接寫入共用儲存體，而是檢測資料可以透過個別資料合併服務來傳遞，此服務可以結合資料，並做為篩選和清除程序。 例如，包含相同相互關聯資訊 (例如活動識別碼) 的檢測資料可以合併 (使用者可能會在某個節點上開始執行商務作業，然後在節點失敗時，或根據負載平衡的設定方式，轉移到另一個節點)。此程序也可以偵測並移除任何重複的資料 (如果遙測服務使用訊息佇列來發送檢測資料至儲存體，則永遠有這種可能性)。 圖 5 說明此結構的範例。
 
 ![使用服務來合併檢測資料的範例](media/best-practices-monitoring/Consolidation.png)
@@ -574,12 +578,12 @@ SLA 通常依據下列項目定義：
 
 用於考量更多的分析、用於報告，以及用於找出歷史趨勢的資訊較不緊急，而且可用支援資料採礦和特定查詢的方式儲存。 如需詳細資訊，請參閱本文件稍後的 [支援熱、暖和冷分析](#supporting-hot-warm-and-cold-analysis) 一節。
 
-#### <a name="_log-rotation-and-data-retention_"></a>*記錄輪替和資料保留*
+#### <a name="log-rotation-and-data-retention"></a>*記錄輪替和資料保留*
 檢測可以產生相當大量的資料。 這項資料可以保留在幾個地方，從原始記錄檔、追蹤檔案和在每個節點擷取的其他資訊開始，到共用儲存體中保留的這項資料的已合併、已清理和已分割檢視。 在某些情況下，處理並傳送資料之後，就可以從每個節點中移除原始來源資料。 在其他情況下，可能需要或只是有用而儲存原始資訊。 例如，基於偵錯用途產生的資料最好能夠留下可用的原始形式，但在修正任何錯誤之後，接著就能相當快速地將其捨棄。
 
 效能資料的有效期限通常較長，讓它可用來找出效能趨勢，以及進行容量規劃。 此資料的合併檢視通常會在一段有限期間內，保留線上狀態以啟用快速存取。 在這段期間之後，即會將其封存或捨棄。 針對計量和計費收集的資料，客戶可能需要無限期地儲存。 此外，法規需求可能會指定基於稽核及安全性用途所收集的資訊也需要封存和儲存。 此資料也是機密資料，因此可能需要加密或保護以防止竄改。 您絕對不能記錄使用者的密碼，或其他可能可用來認可身分識別詐騙的資訊。 應該先從資料中消除這類詳細資料，再儲存資料。
 
-#### <a name="_down-sampling_"></a>*向下取樣*
+#### <a name="down-sampling"></a>*向下取樣*
 儲存歷程記錄資料非常有用，讓您能夠找出長期趨勢。 不是儲存整個舊資料，而是可以向下取樣資料，以降低其解析度，並節省儲存體成本。 舉例來說，不是儲存按分鐘的效能指標，您可以改為合併超過一個月的資料，以形成按小時檢視。
 
 ### <a name="best-practices-for-collecting-and-storing-logging-information"></a>收集和儲存記錄資訊的最佳作法
@@ -597,7 +601,7 @@ SLA 通常依據下列項目定義：
 
 <a name="supporting-hot-warm-and-cold-analysis"></a>
 
-### <a name="supporting-hot,-warm,-and-cold-analysis"></a>支援熱、暖和冷分析
+### <a name="supporting-hot-warm-and-cold-analysis"></a>支援熱、暖和冷分析
 基於視覺效果、報告和警示用途分析和重新格式化資料，可以是耗用自己資源集的複雜程序。 某些形式的監視是關鍵時間，而且需要立即分析資料是否有效。 這就是所謂的 *熱分析*。 範例包括警示所需的分析，以及某些層面的安全性監視 (例如偵測系統上的攻擊)。 基於這些用途所需的資料必須快速可用且結構化，才能有效處理。 在某些案例中，可能需要將分析處理移至保留資料的個別節點。
 
 其他形式的分析時間較不關鍵，而且收到原始資料之後，可能需要一些計算和彙總。 這稱為「暖分析」。 效能分析通常屬於此類別。 在此情況下，隔離的單一效能事件不可能有明顯的統計資料 (可能是因為突然激增或小異常所導致)。來自一連串事件的資料應該提供更可靠的系統效能狀況。
@@ -699,10 +703,13 @@ SLA 通常依據下列項目定義：
 * [在 Azure 雲端服務和虛擬機器中啟用診斷](cloud-services/cloud-services-dotnet-diagnostics.md)
 * [Azure Redis 快取](https://azure.microsoft.com/services/cache/)、[Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 和 [HDInsight](https://azure.microsoft.com/services/hdinsight/)
 * [如何使用服務匯流排佇列](service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)
-* [Azure 虛擬機器中的 SQL Server Business Intelligence](virtual-machines/virtual-machines-windows-classic-ps-sql-bi.md)
-* [接收警示通知](azure-portal/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](azure-portal/insights-service-health.md)
+* [Azure 虛擬機器中的 SQL Server Business Intelligence](virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-ps-sql-bi.md)
+* [接收警示通知](monitoring-and-diagnostics/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](monitoring-and-diagnostics/insights-service-health.md)
 * [Application Insights](application-insights/app-insights-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO2-->
 
 

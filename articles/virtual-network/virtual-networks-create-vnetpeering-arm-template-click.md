@@ -14,10 +14,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/14/2016
-ms.author: narayanannamalai;annahar
+ms.author: narayan;annahar
 translationtype: Human Translation
-ms.sourcegitcommit: bd5f3b3cd46ce347896ed9ef229e438b2a3c830f
-ms.openlocfilehash: 3556e4a10f17490fd08357d644c664a2b74705dd
+ms.sourcegitcommit: 6fb71859d0ba2e0f2b39d71edd6d518b7a03bfe9
+ms.openlocfilehash: 547a2c0ab49c0b79d85bab1bd3abd800c9288ccf
 
 
 ---
@@ -30,7 +30,7 @@ ms.openlocfilehash: 3556e4a10f17490fd08357d644c664a2b74705dd
 
 若要使用 Resource Manager 範本建立 VNet 對等互連，請依照下列步驟︰
 
-1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
+1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
    
    > [!NOTE]
    > 用於管理 VNet 對等互連的 PowerShell Cmdlet 隨附於 [Azure PowerShell 1.6。](http://www.powershellgallery.com/packages/Azure/1.6.0)
@@ -101,7 +101,7 @@ ms.openlocfilehash: 3556e4a10f17490fd08357d644c664a2b74705dd
    | UseRemoteGateways |使用對等的 VNet 閘道。 對等 VNet 必須設定閘道，並選取 AllowGatewayTransit。 如果閘道已設定則無法使用此選項。 |否 |
    
     VNet 對等互連中的每個連結都有一組上述的屬性。 例如，您可以為 VNet1 至 VNet2 的 VNet 對等互連連結將 AllowVirtualNetworkAccess 設為 True，並為另一個方向的 VNet 對等互連連結將其設為 False。
-4. 若要部署範本檔案，您可以執行 New-AzureRmResourceGroupDeployment Cmdlet 以建立或更新部署。 如需使用 Resource Manager 範本的詳細資訊，請參閱此 [文章](../resource-group-template-deploy.md)。
+4. 若要部署範本檔案，您可以執行 New-AzureRmResourceGroupDeployment Cmdlet 以建立或更新部署。 如需使用 Resource Manager 範本的詳細資訊，請參閱此 [文章](../azure-resource-manager/resource-group-template-deploy.md)。
    
         New-AzureRmResourceGroupDeployment -ResourceGroupName <resource group name> -TemplateFile <template file path> -DeploymentDebugLogLevel all
    
@@ -382,6 +382,6 @@ ms.openlocfilehash: 3556e4a10f17490fd08357d644c664a2b74705dd
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

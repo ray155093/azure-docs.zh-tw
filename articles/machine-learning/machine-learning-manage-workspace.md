@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/05/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a5d98d804697a9b5c745d4fa236cb0ee5b7c456b
+ms.sourcegitcommit: c5479dd817e8929ff5e9129d4643d49758e7ab16
+ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
 
 
 ---
@@ -111,11 +111,9 @@ Web 服務可能會有一個或多個定義的端點。
 * [記錄] 可讓您啟用或停用端點上的錯誤記錄。 如需有關記錄的詳細資訊，請參閱[為 Machine Learning Web 服務啟用記錄](machine-learning-web-services-logging.md)。
 * [啟用範例資料] 可讓您提供範例資料，用來測試要求-回應服務。 如果您是在 Machine Learning Studio 中建立 Web 服務，範例資料會取自您用來訓練模型的資料。 如果您是以程式設計方式建立服務，資料會取自您提供做為 JSON 套件一部分的範例資料。
 
-[consume]: machine-learning-consume-web-services.md
-[marketplace]: machine-learning-publish-web-service-to-azure-marketplace.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

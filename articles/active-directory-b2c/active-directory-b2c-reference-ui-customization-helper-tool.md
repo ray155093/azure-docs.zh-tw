@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/22/2016
+ms.date: 01/07/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e20618b60f8bb517618a994cdb5c2fde18c10e43
+ms.sourcegitcommit: f9c1e41c423cc0d638d5c1d273d58b2fe713fa1c
+ms.openlocfilehash: 2aeb1f20255264ca97b8aff6bd506b5fa1832e28
 
 
 ---
@@ -64,14 +64,6 @@ ms.openlocfilehash: e20618b60f8bb517618a994cdb5c2fde18c10e43
 6. 提供容器的 [名稱] (例如 "b2c")，並選取 [Blob] 作為 [存取類型]。 按一下 [確定] 。
 7. 您建立的容器將會出現在 [Blob]  刀鋒視窗的清單中。 記下容器的 URL；例如，其看起來應該類似 `https://contoso.blob.core.windows.net/b2c`。 關閉 [Blob]  刀鋒視窗。
 8. 在儲存體帳戶刀鋒視窗中，按一下 [金鑰]，並記下 [儲存體帳戶名稱] 和 [主要存取金鑰] 欄位的值。
-9. 登入 [Azure 入口網站](https://portal.azure.com/)。
-10. 按一下 [+新增]  >  [資料 + 儲存體]  >  [儲存體帳戶]。 您需要有  Azure 訂用帳戶才能建立 Azure Blob 儲存體帳戶。 您可以在 [Azure 網站](https://azure.microsoft.com/pricing/free-trial/)上註冊免費試用版。
-11. 選取 [帳戶類型] 底下的 [Blob 儲存體]，並將其他值保留為預設值。  如果您想要的話，可以編輯 [資源群組] 和 [位置]。  按一下 [建立] 。
-12. 回到「開始面板」，然後按一下您剛建立的儲存體帳戶。
-13. 在 [摘要] 區段中，按一下 [+容器]。
-14. 提供容器的 [名稱] (例如 "b2c")，並選取 [Blob] 作為 [存取類型]。 按一下 [確定] 。
-15. 開啟容器**屬性**，並記下容器的 URL；例如，其看起來應該類似 `https://contoso.blob.core.windows.net/b2c`。 關閉 [容器] 刀鋒視窗。
-16. 在儲存體帳戶刀鋒視窗中，按一下 [金鑰] 圖示，並記下 [儲存體帳戶名稱] 和 [主要存取金鑰] 欄位的值。
 
 > [!NOTE]
 > [主要存取金鑰] 是重要的安全性認證。
@@ -98,6 +90,6 @@ git clone https://github.com/azureadquickstarts/b2c-azureblobstorage-client
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

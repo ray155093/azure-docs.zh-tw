@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/01/2016
+ms.date: 11/30/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d729d0859a3cdd0e676507c4fa772b7b8d3ed181
+ms.sourcegitcommit: 1a2ff324cfa65977685f6a0eee9cd398b0717519
+ms.openlocfilehash: cba595704af8e48506a25d592770ec273cb9bd30
 
 
 ---
@@ -82,7 +82,7 @@ ms.openlocfilehash: d729d0859a3cdd0e676507c4fa772b7b8d3ed181
 本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 @Task 搭配運作的 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道與 @Task 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 @Task 中相關使用者之間的連結關聯性。   
-建立此連結關聯性的方法，是將 Azure AD 中**使用者名稱**的值，指派為 @Task. 中 **Username** 的值
+建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 @Task 中 **Username** 的值。
 
 若要設定及測試與 @Task, 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
@@ -165,16 +165,18 @@ ms.openlocfilehash: d729d0859a3cdd0e676507c4fa772b7b8d3ed181
     c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟： 
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-attask-tutorial/create_aaduser_06.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-attask-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
-   e. 按 [下一步] 。
+    d. 在 [角色] 清單中選取 [使用者]。
+
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-attask-tutorial/create_aaduser_07.png) 
@@ -272,6 +274,6 @@ ms.openlocfilehash: d729d0859a3cdd0e676507c4fa772b7b8d3ed181
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

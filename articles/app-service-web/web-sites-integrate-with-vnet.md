@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 08/11/2016
 ms.author: ccompy
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6ae3e0789893b08bfe100d6eb4457a6ad5082e40
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 1184277f90dce4215de2add8b48c022e013d191d
 
 
 ---
 # <a name="integrate-your-app-with-an-azure-virtual-network"></a>將您的應用程式與 Azure 虛擬網路整合
-本文件說明 Azure App Service 虛擬網路整合功能，以及示範如何使用 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)中的應用程式來設定此功能。  如果您不熟悉 Azure 虛擬網路 (VNET)，這是一種功能，可讓您在非網際網路可路由網路中放置許多您可控制其存取的 Azure 資源。  然後，可以使用各種 VPN 技術，將這些網路連接到您的內部部署網路。  若要深入了解 Azure 虛擬網路，請參閱以下資訊：[Azure 虛擬網路概觀][VNETOverview]。  
+本文件說明 Azure App Service 虛擬網路整合功能，以及示範如何使用 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)中的應用程式來設定此功能。  如果您不熟悉 Azure 虛擬網路 (VNET)，這是一種功能，可讓您在非網際網路可路由網路中放置許多您可控制其存取的 Azure 資源。  然後，可以使用各種 VPN 技術，將這些網路連接到您的內部部署網路。  若要深入了解「Azure 虛擬網路」，請從以下資訊著手：[Azure 虛擬網路概觀][VNETOverview]。  
 
 Azure App Service 具有兩種形式。  
 
@@ -302,6 +302,6 @@ App Service 環境功能可讓您在 VNET 中執行 Azure App Service 的執行�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

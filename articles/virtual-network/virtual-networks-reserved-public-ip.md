@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 02/10/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: 66c42ad7ba6339c7d3c537290f0b6349a16f20d8
+ms.sourcegitcommit: c934f78e514230958fad8b2aa9be4d2e56a3a835
+ms.openlocfilehash: 55071ffe1bcc17b2181b4c52f51d28571a2f0eff
 
 
 ---
@@ -34,7 +34,7 @@ Azure 中的 IP 位址分為兩個類別：動態和保留。 依預設由 Azure
 若要防止 IP 位址變更，您可以保留 IP 位址。 保留的 IP 僅能用作 VIP，即使資源都關閉或解除配置，也能確保雲端服務的 IP 位址將會相同。 此外，您可以轉換現有的動態 IP，作為保留的 IP 位址的 VIP。
 
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何使用 [Resource Manager 部署模型](virtual-network-ip-addresses-overview-arm.md)來保留靜態公用 IP 位址。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何使用 [Resource Manager 部署模型](virtual-network-ip-addresses-overview-arm.md)來保留靜態公用 IP 位址。
 
 若要深入了解 Azure 中的 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-classic.md)文章。
 
@@ -168,6 +168,6 @@ Set-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestSer
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

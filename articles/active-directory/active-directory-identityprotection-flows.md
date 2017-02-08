@@ -6,18 +6,17 @@ keywords: "azure active directory identity protection, cloud app discovery, 管�
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: de5bf637-75a7-4104-b6d8-03686372a319
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 01/24/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d264d63aeeff584fca96595f1d2f2d5a2f7ba792
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e81ef1d182108114305291273227ce2ac4dacf3f
 
 
 ---
@@ -58,13 +57,13 @@ ms.openlocfilehash: d264d63aeeff584fca96595f1d2f2d5a2f7ba792
 
 1. 在第一個步驟中，使用者會得到設定此帳戶進行 Multi-Factor Authentication 之需求的相關通知。 
    
-    ![補救](./media/active-directory-identityprotection-flows/140.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/140.png "補救")
 2. 若要設定 Multi-Factor Authentication，您需要讓系統知道您要連線的方式。
    
-    ![補救](./media/active-directory-identityprotection-flows/141.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/141.png "補救")
 3. 系統會送出一項挑戰給您，而您需要回應。
    
-    ![補救](./media/active-directory-identityprotection-flows/142.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/142.png "補救")
 
 ## <a name="risky-sign-in-recovery"></a>有風險的登入復原
 當系統管理員設定登入風險的原則後，受影響的使用者會在嘗試登入時收到通知。 
@@ -73,15 +72,15 @@ ms.openlocfilehash: d264d63aeeff584fca96595f1d2f2d5a2f7ba792
 
 1. 使用者獲知偵測到不尋常的登入，例如從新的位置、裝置或 app 登入。 
    
-    ![補救](./media/active-directory-identityprotection-flows/120.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/120.png "補救")
 2. 使用者必須解決安全性挑戰以證明其身分識別。 如果使用者已註冊 Multi-Factor Authentication，他們必須回傳送至其電話號碼的安全碼。 由於這只是有風險的登入，並不是遭到入侵的帳戶，所以使用者不必在此流程中變更密碼。 
    
-    ![補救](./media/active-directory-identityprotection-flows/121.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/121.png "補救")
 
 ## <a name="risky-sign-in-blocked"></a>已封鎖有風險的登入
 系統管理員也可以選擇設定登入風險原則，以根據風險層級防止使用者登入。 若要解除封鎖，使用者必須連絡系統管理員或技術服務人員，或者嘗試從熟悉的位置或裝置登入。 藉由解決 Multi-Factor Authentication 自行復原，不是此種情況的適用選項。
 
-![補救](./media/active-directory-identityprotection-flows/200.png "Remediation")
+![補救](./media/active-directory-identityprotection-flows/200.png "補救")
 
 ## <a name="compromised-account-recovery"></a>遭到入侵的帳戶復原
 設定使用者風險安全性原則之後，符合原則中指定的使用者風險層級 (因而假定遭到入侵) 的使用者，必須先經歷使用者入侵復原流程，才可以登入。 
@@ -90,24 +89,24 @@ ms.openlocfilehash: d264d63aeeff584fca96595f1d2f2d5a2f7ba792
 
 1. 使用者獲知其帳戶安全性因為可疑活動或認證外洩而有風險。
    
-    ![補救](./media/active-directory-identityprotection-flows/101.png "Remediation")
+    ![補救](./media/active-directory-identityprotection-flows/101.png "補救")
 2. 使用者必須解決安全性挑戰以證明其身分識別。 如果使用者已註冊 Multi-Factor Authentication，他們可以從損害中自行復原。 他們必須回傳送至其電話號碼的安全碼。 
    
-   ![補救](./media/active-directory-identityprotection-flows/110.png "Remediation")
+   ![補救](./media/active-directory-identityprotection-flows/110.png "補救")
 3. 最後，使用者會被迫變更其密碼，因為其他人可能有其帳戶的存取權。 
    這項體驗的螢幕擷取畫面如下。
    
-   ![補救](./media/active-directory-identityprotection-flows/111.png "Remediation")
+   ![補救](./media/active-directory-identityprotection-flows/111.png "補救")
 
 ## <a name="compromised-account-blocked"></a>已封鎖遭到入侵的帳戶
 若要讓遭到使用者風險安全性原則封鎖的使用者解除封鎖，該使用者必須連絡系統管理員或技術服務人員。 藉由解決 Multi-Factor Authentication 自行復原，不是此種情況的適用選項。
 
-![補救](./media/active-directory-identityprotection-flows/104.png "Remediation")
+![補救](./media/active-directory-identityprotection-flows/104.png "補救")
 
 ## <a name="reset-password"></a>重設密碼
 如果遭到入侵的使用者已遭封鎖而無法登入，系統管理員可以為其產生暫時密碼。 使用者必須在下次登入期間變更密碼。
 
-![補救](./media/active-directory-identityprotection-flows/160.png "Remediation")
+![補救](./media/active-directory-identityprotection-flows/160.png "補救")
 
 ## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md) 
@@ -115,6 +114,6 @@ ms.openlocfilehash: d264d63aeeff584fca96595f1d2f2d5a2f7ba792
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

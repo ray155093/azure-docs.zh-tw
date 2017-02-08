@@ -16,15 +16,14 @@ ms.topic: article
 ms.date: 06/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 0e0dc3c764928aae2186aa87fcf4208f37685c8c
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: 6e2b33492344acedf1c79d4f67a6d69ad163c14c
 
 
 ---
 # <a name="attach-a-data-disk-to-a-windows-virtual-machine-created-with-the-classic-deployment-model"></a>將資料磁碟連接至以傳統部署模型建立的 Windows 虛擬機器
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如果您想要使用新的入口網站，請參閱[如何在 Azure 入口網站中將資料磁碟連結到 Windows VM](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如果您想要使用新的入口網站，請參閱[如何在 Azure 入口網站中將資料磁碟連結到 Windows VM](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 如果您需要其他資料磁碟，可將空磁碟或現有的資料磁碟連接到 VM。 在這兩種情況下，磁碟是位於 Azure 儲存體帳戶中的 .vhd 檔案。 如果是新的磁碟，則在連接磁碟之後，您也需要將它初始化，使其可供 Windows VM 使用。
 
@@ -33,7 +32,7 @@ ms.openlocfilehash: 0e0dc3c764928aae2186aa87fcf4208f37685c8c
 [!INCLUDE [howto-attach-disk-windows-linux](../../includes/howto-attach-disk-windows-linux.md)]
 
 ## <a name="initialize-the-disk"></a>初始化磁碟
-1. 連接至虛擬機器。 如需相關指示，請參閱[如何登入執行 Windows Server 的虛擬機器][登入]。
+1. 連接至虛擬機器。 如需指示，請參閱[如何登入執行 Windows Server 的虛擬機器][logon]。
 2. 登入虛擬機器之後，開啟 [伺服器管理員] 。 在左窗格中，選取 [File and Storage Services] 。
    
     ![開啟伺服器管理員](./media/virtual-machines-windows-classic-attach-disk/fileandstorageservices.png)
@@ -54,10 +53,10 @@ ms.openlocfilehash: 0e0dc3c764928aae2186aa87fcf4208f37685c8c
 
 [有關虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-[登入]: virtual-machines-windows-classic-connect-logon.md
+[logon]: virtual-machines-windows-classic-connect-logon.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

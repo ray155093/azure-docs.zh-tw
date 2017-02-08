@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/08/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 48696644e3a6c5fc2d84538c9c247d080cd7c6f4
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: cb8d77588bbac30a67dab9a20e0e81d2537c977f
 
 
 ---
@@ -91,7 +91,7 @@ ms.openlocfilehash: 48696644e3a6c5fc2d84538c9c247d080cd7c6f4
         KeyLength = 2048              ; Required minimum is 2048
         KeySpec = 1
         KeyUsage = 0xA0
-        MachineKeySet = True
+        MachineKeySet = FALSE
         ProviderName = "Microsoft RSA SChannel Cryptographic Provider"
         ProviderType = 12
         HashAlgorithm = SHA256
@@ -115,7 +115,7 @@ ms.openlocfilehash: 48696644e3a6c5fc2d84538c9c247d080cd7c6f4
     此命令會將完成的憑證儲存在 Windows 憑證存放區。
 5. 如果 CA 使用中繼憑證，請安裝後再繼續。 這些憑證通常是從 CA 個別下載而得，並且有數種格式來用於不同的網頁伺服器類型。 請選取 Microsoft IIS 適用的版本。
    
-    下載憑證之後，請在 Windows 檔案總管中於各憑證上按一下滑鼠右鍵，然後選取 [安裝憑證] ****。 使用 [憑證匯入精靈] 中的預設值，並持續選取 [下一步]，直到匯入完成。
+    下載憑證之後，請在 Windows 檔案總管中於各憑證上按一下滑鼠右鍵，然後選取 [安裝憑證]  ****。 使用 [憑證匯入精靈] 中的預設值，並持續選取 [下一步]，直到匯入完成。
 6. 若要從憑證存放區匯出 SSL 憑證，請按 `Win`+`R` 並執行 **certmgr.msc** 以啟動憑證管理員。 
    選取 [個人] > [憑證]。 在 [簽發給] 資料行中，您應該會看到一個含有您自訂網域名稱的項目，[簽發者] 資料行中則是您用來產生憑證的 CA。
    
@@ -519,7 +519,7 @@ ms.openlocfilehash: 48696644e3a6c5fc2d84538c9c247d080cd7c6f4
 
 ## <a name="more-resources"></a>其他資源
 * [Microsoft Azure 信任中心](/support/trust-center/security/)
-* [Azure 網站中解除鎖定的設定選項](/blog/2014/01/28/more-to-explore-configuration-options-unlocked-in-windows-azure-web-sites/)
+* [Azure 網站中解除鎖定的設定選項](https://azure.microsoft.com/blog/2014/01/28/more-to-explore-configuration-options-unlocked-in-windows-azure-web-sites/)
 * [啟用診斷記錄](web-sites-enable-diagnostic-log.md)
 * [在 Azure App Service 中設定 Web 應用程式](web-sites-configure.md)
 * [Azure 管理入口網站](https://manage.windowsazure.com)
@@ -557,6 +557,6 @@ ms.openlocfilehash: 48696644e3a6c5fc2d84538c9c247d080cd7c6f4
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

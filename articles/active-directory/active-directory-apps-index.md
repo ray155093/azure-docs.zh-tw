@@ -5,18 +5,17 @@ services: active-directory
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: 5321b8e4-2afa-4dfe-8d53-4add7abb5ec8
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/02/2016
+ms.date: 01/10/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 922219ec12343bd40dd343613e370ddd1813f126
+ms.sourcegitcommit: 8a4e26b7ccf4da27b58a6d0bcfe98fc2b5533df8
+ms.openlocfilehash: acb1cd18cf6e4fa9504d76fcac48dbe85579eab0
 
 
 ---
@@ -43,7 +42,7 @@ ms.openlocfilehash: 922219ec12343bd40dd343613e370ddd1813f126
 | 同盟單一登入 |[對 SAML 型單一登入進行疑難排解](active-directory-saml-debugging.md) |
 | 密碼單一登入 |[疑難排解 Internet explorer 的存取面板擴充功能](active-directory-saas-ie-troubleshooting.md) |
 | 應用程式 Proxy |[應用程式 Proxy 疑難排解指南](active-directory-application-proxy-troubleshoot.md) |
-| 內部部署 AD 與 Azure AD 之間的單一登入 |[針對密碼同步處理進行疑難排解](active-directory-aadconnectsync-implement-password-synchronization.md#troubleshooting-password-synchronization)<br /><br />[對密碼回寫進行疑難排解](active-directory-passwords-troubleshoot.md#troubleshoot-password-writeback) |
+| 內部部署 AD 與 Azure AD 之間的單一登入 |[針對密碼同步處理進行疑難排解](connect/active-directory-aadconnectsync-implement-password-synchronization.md#troubleshooting-password-synchronization)<br /><br />[對密碼回寫進行疑難排解](active-directory-passwords-troubleshoot.md#troubleshoot-password-writeback) |
 | 動態群組成員資格 |[對動態群組成員資格進行疑難排解](active-directory-accessmanagement-troubleshooting.md) |
 
 ## <a name="single-sign-on-sso"></a>單一登入 (SSO)
@@ -114,7 +113,7 @@ Azure AD Connect 適用於 [所有版本的 Azure Active Directory](https://azur
 
 「條件式存取」是一項 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 功能。
 
-## <a name="apps-azure-ad"></a>應用程式和 Azure AD
+## <a name="apps--azure-ad"></a>應用程式和 Azure AD
 ### <a name="cloud-app-discovery-find-which-saas-apps-are-being-used-in-your-organization"></a>Cloud App Discovery：尋找您的組織使用哪些 SaaS 應用程式
 Cloud App Discovery 有助於 IT 部門了解整個組織正在使用哪些 SaaS 應用程式 。 它可以測量應用程式使用情況，讓 IT 可以判斷哪些購買的應用程式可在 IT 控制下獲得最大益處，且可與 Azure ad 整合。
 
@@ -214,6 +213,6 @@ Azure Active Directory 提供數個報告和警示，以協助您監視組織對
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

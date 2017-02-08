@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 12/06/2016
+ms.date: 01/04/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b4bd777b454a68ee06bbc4dffaff91213d58f28c
+ms.sourcegitcommit: ec13e72de7ccebefbaa88309f8248f29b569ef2f
+ms.openlocfilehash: e14b037f962afb803a2271b221e6309c7e8220cd
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: b4bd777b454a68ee06bbc4dffaff91213d58f28c
 Azure SQL Database 提供三個 [服務層](sql-database-service-tiers.md)：基本、標準和進階。 每個服務層會嚴格地隔離出 SQL Database 可以使用的資源，並保證該服務層級會有可預測的效能。 在本文中，我們會提供指引來協助您選擇應用程式的服務層。 我們也會討論您可以微調應用程式以充分利用 Azure SQL Database 的方式。
 
 > [!NOTE]
-> 本文著重在 Azure SQL Database 中單一資料庫的效能指引。 如需彈性資料庫集區的相關效能指引，請參閱 [彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 但請注意，您可以將本文的諸多微調建議套用到彈性資料庫集區中的資料庫，並獲得類似的效能優點。
+> 本文著重在 Azure SQL Database 中單一資料庫的效能指引。 如需彈性集區的相關效能指引，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 但請注意，您可以將本文的諸多微調建議套用到彈性集區中的資料庫，並獲得類似的效能優點。
 > 
 > 
 
@@ -35,7 +35,7 @@ Azure SQL Database 提供三個 [服務層](sql-database-service-tiers.md)：基
 * **標準**。 標準服務層提供更佳的效能可預測性，並提高類似工作群組和 Web 應用程式等具有多個並行要求之資料庫的標準。 當您使用標準服務層資料庫時，您可以根據可預測的效能，每分鐘調整資料庫應用程式的大小。
 * **進階**。 進階服務層會針對每個進階資料庫，每秒提供可預測的效能。 當您選擇進階服務層時，您可以根據資料庫的尖峰負載調整資料庫應用程式的大小。 此方案可去除效能差異可能會導致小型查詢所花費的時間，超過延遲敏感作業預期花費時間的情況。 此模型可大幅簡化應用程式的開發與產品驗證週期，這些應用程式必須提出尖峰資源需求、效能差異或查詢延遲的相關強式陳述式。
 
-您在每個服務層都可以設定效能等級，因此能夠彈性地只支付所需容量的費用。 您可以在工作負載變更時向上或向下 [調整容量](sql-database-scale-up.md)。 比方說，如果資料庫工作負載在返校購物季期間很高，您可以在一段固定時間內 (7 月到 9 月) 提高資料庫的效能等級。 當旺季結束時，您可以將效能等級降低。 您可以依據商務季節性最佳化您的雲端環境，藉以將支出降到最低。 此模型也非常適合軟體產品發行週期。 測試小組可以在執行測試回合時配置容量，然後在測試完成時釋放該容量。 在容量要求模型中，您可以在需要時付費使用容量，避免將支出花費在可能很少使用的專用資源上。
+您在每個服務層都可以設定效能等級，因此能夠彈性地只支付所需容量的費用。 您可以在工作負載變更時向上或向下 [調整容量](sql-database-scale-up.md)。 比方說，如果資料庫工作負載在返校購物季期間很高，您可以在一段固定時間內 (7 月到&9; 月) 提高資料庫的效能等級。 當旺季結束時，您可以將效能等級降低。 您可以依據商務季節性最佳化您的雲端環境，藉以將支出降到最低。 此模型也非常適合軟體產品發行週期。 測試小組可以在執行測試回合時配置容量，然後在測試完成時釋放該容量。 在容量要求模型中，您可以在需要時付費使用容量，避免將支出花費在可能很少使用的專用資源上。
 
 ## <a name="why-service-tiers"></a>為何使用服務層？
 雖然每個資料庫的工作負載可能不同，但服務層的目的是要在各種效能等級提供效能可預測性。 對資料庫有大規模資源需求的客戶，則可以在更專用的運算環境中工作。
@@ -62,15 +62,8 @@ Azure SQL Database 提供三個 [服務層](sql-database-service-tiers.md)：基
 
 [!INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
 
-後續幾節有如何檢視與這些限制相關之使用量的詳細資訊。
-
 ### <a name="maximum-in-memory-oltp-storage"></a>記憶體內部 OLTP 儲存體上限
 您可以使用 **sys.dm_db_resource_stats** 檢視來監視 Azure 記憶體內部儲存體的使用情形。 如需有關監視的詳細資訊，請參閱 [監視記憶體內部 OLTP 儲存體](sql-database-in-memory-oltp-monitoring.md)。
-
-> [!NOTE]
-> 目前，Azure 記憶體內部線上交易處理 (OLTP) 預覽僅支援單一資料庫。 您無法將它用在彈性資料庫集區中的資料庫。
-> 
-> 
 
 ### <a name="maximum-concurrent-requests"></a>並行要求數上限
 若要查看並行要求數目，請在 SQL Database 上執行下列 Transact-SQL 查詢：
@@ -93,7 +86,7 @@ Azure SQL Database 提供三個 [服務層](sql-database-service-tiers.md)：基
 如果這些用戶端使用相同的連接字串，服務仍會驗證每一個登入。 如果有 10 位使用者同時以相同的使用者名稱和密碼連接到資料庫，將會有 10 個並行登入。 這項限制只適用於登入和驗證期間。 如果相同的 10 位使用者依序連接到資料庫，並行登入數目絕對不會大於 1。
 
 > [!NOTE]
-> 這項限制目前不適用於彈性資料庫集區中的資料庫。
+> 這項限制目前不適用於彈性集區中的資料庫。
 > 
 > 
 
@@ -439,12 +432,12 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。 例如�
 
 ## <a name="next-steps"></a>後續步驟
 * 如需服務層的詳細資訊，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)
-* 如需彈性資料庫集區的詳細資訊，請參閱 [什麼是 Azure 彈性資料庫集區？](sql-database-elastic-pool.md)
-* 如需效能和彈性資料庫集區的相關資訊，請參閱 [考慮使用彈性資料庫集區的時機](sql-database-elastic-pool-guidance.md)
+* 如需彈性集區的詳細資訊，請參閱[什麼是 Azure 彈性集區？](sql-database-elastic-pool.md)
+* 如需效能和彈性集區的相關資訊，請參閱 [考慮使用彈性集區的時機](sql-database-elastic-pool-guidance.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

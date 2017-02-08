@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: c3b96b583260bc8975082b952929d524e4040730
-ms.openlocfilehash: 08041e873df1850d459aea1b49440956de1d4748
+ms.sourcegitcommit: c934f78e514230958fad8b2aa9be4d2e56a3a835
+ms.openlocfilehash: be3fbc2c14be06cac2b9213ee2da58545e34fc0e
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: 08041e873df1850d459aea1b49440956de1d4748
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議透過 Resource Manager 部署模型建立資源。 若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../resource-manager-deployment-model.md)。
+Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議透過 Resource Manager 部署模型建立資源。 若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
  
 本文說明如何使用 Azure Resource Manager 範本透過 Resource Manager 部署模型建立 VNet。 您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰
 
@@ -110,7 +110,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 使用 PowerShell，完成下列步驟部署您下載的範本：
 
-1. 完成[如何安裝並設定 Azure PowerShell](../powershell-install-configure.md) 中的下列步驟來安裝和設定 Azure PowerShell。
+1. 完成[如何安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的下列步驟來安裝和設定 Azure PowerShell。
 2. 執行下列命令以建立新的資源群組：
 
     ```powershell
@@ -244,6 +244,6 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -1,22 +1,26 @@
 ---
-title: 適用於 IntelliJ 的 Azure 工具組新增功能 | Microsoft Docs
-description: 了解適用於 IntelliJ 的 Azure 工具組最新功能。
-services: ''
+title: "適用於 IntelliJ 的 Azure 工具組新增功能 | Microsoft Docs"
+description: "了解適用於 IntelliJ 的 Azure 工具組最新功能。"
+services: 
 documentationcenter: java
 author: rmcmurray
-manager: wpickett
-editor: ''
-
+manager: erikre
+editor: 
+ms.assetid: 46ed791f-df59-416a-809e-f52345ad973c
 ms.service: multiple
 ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 08/26/2016
+ms.date: 12/22/2016
 ms.author: robmcm;asirveda;martinsawicki
+translationtype: Human Translation
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: a2006dbcf0d63ef38651a0859dc654d531fd875a
+
 
 ---
-# <a name="what's-new-in-the-azure-toolkit-for-intellij"></a>適用於 IntelliJ 的 Azure 工具組新增功能
+# <a name="whats-new-in-the-azure-toolkit-for-intellij"></a>適用於 IntelliJ 的 Azure 工具組新增功能
 ## <a name="azure-toolkit-for-intellij-releases"></a>適用於 IntelliJ 的 Azure 工具組版本
 本文包含適用於 IntelliJ 的 Azure 工具組的各種版本和最新更新相關資訊。
 
@@ -25,7 +29,7 @@ ms.author: robmcm;asirveda;martinsawicki
 > 
 > 
 
-### <a name="august-26,-2016"></a>2016 年 8 月 26 日
+### <a name="august-26-2016"></a>2016 年 8 月 26 日
 適用於 IntelliJ 的 Azure 工具組 - 2016 年 8 月版本包含下列增強功能：
 
 * **自訂 JDK 散發套件**。 適用於 IntelliJ 的 Azure 工具組現在支援指定任意 JDK 版本，以及將其部署至 Azure WebApp 容器︰
@@ -36,7 +40,7 @@ ms.author: robmcm;asirveda;martinsawicki
   * 支援使用 Azure 的 Resource Manager 管理儲存體帳戶 Blob，這項功能可輔助現有的「傳統」儲存體帳戶管理功能。
 * **Microsoft JDBC Driver 6.0 for SQL Server**。 這項更新包含適用於 Microsoft SQL Server (6.0 版) 的最新 JDBC 驅動程式，該驅動程式現在以程式庫形式提供，可讓您輕鬆地加入專案中，因而取代舊有版本。
 
-### <a name="june-29,-2016"></a>2016 年 6 月 29 日
+### <a name="june-29-2016"></a>2016 年 6 月 29 日
 適用於 IntelliJ 的 Azure 工具組 - 2016 年 6 月版本包含下列增強功能：
 
 * **Java 8 需求**。 適用於 IntelliJ 的 Azure 工具組現在需要 Java 8，雖然此需求僅適用於此工具組 - 您的應用程式可以繼續使用 Azure 所支援的所有 Java 版本。
@@ -46,7 +50,7 @@ ms.author: robmcm;asirveda;martinsawicki
 * **HDInsight 工具整合**。 Azure 的 HDInsight 工具現在隨附於適用於 IntelliJ 的 Azure 工具組。 如需詳細資訊，請參閱 [IntelliJ 的 HDInsight Tools 外掛程式]。
 * **Java Web 應用程式的遠端偵錯**。 適用於 IntelliJ 的 Azure 工具組現在支援對 Azure App Service 上的 Java Web 應用程式進行遠端偵錯。
 
-### <a name="april-12,-2016"></a>2016 年 4 月 12 日
+### <a name="april-12-2016"></a>2016 年 4 月 12 日
 適用於 IntelliJ 的 Azure 工具組 - 2016 年 4 月版本包含下列增強功能：
 
 * **支援 Azure SDK v2.9.0**。 最新版的 Azure SDK 現在是適用於 IntelliJ 的 Azure 工具組的最低必要條件。
@@ -76,7 +80,7 @@ ms.author: robmcm;asirveda;martinsawicki
 [安裝 Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
 [安裝 Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
 [適用於 Eclipse 的 Azure 工具組的新功能]: ./azure-toolkit-for-eclipse-whats-new.md
-[適用於 IntelliJ 的 Azure 工具組新增功能]: ./azure-toolkit-for-intellij-whats-new.md
+[What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
 
@@ -84,6 +88,6 @@ ms.author: robmcm;asirveda;martinsawicki
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -3,7 +3,7 @@ title: "Azure Batch 中的工作相依性 | Microsoft Docs"
 description: "建立相依於其他工作順利完成的工作，以便在 Azure Batch 中處理 MapReduce 樣式和類似的巨量資料工作負載。"
 services: batch
 documentationcenter: .net
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 ms.assetid: b8d12db5-ca30-4c7d-993a-a05af9257210
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 09/28/2016
-ms.author: marsma
+ms.date: 01/05/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c16850788a4c22c964037f28bf955e570551142d
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: 5883417c6f7a0ce45c9c34ac2d37e5c1bea95ab1
 
 
 ---
@@ -48,7 +48,7 @@ unboundJob.UsesTaskDependencies = true;
 在上述程式碼片段中，"batchClient" 是 [BatchClient][net_batchclient] 類別的執行個體。
 
 ## <a name="create-dependent-tasks"></a>建立相依的工作
-若要建立相依於一或多個其他工作順利完成的工作，您必須讓 Batch 知道此工作「相依於」其他工作。 在 Batch .NET 中，在 [TaskDependencies][net_usestaskdependencies] 類別的執行個體上設定 [CloudTask][net_cloudtask].[DependsOn][net_dependson] 屬性︰
+若要建立相依於一或多個其他工作順利完成的工作，您必須讓 Batch 知道此工作「相依於」其他工作。 在 Batch .NET 中，在 [TaskDependencies][net_taskdependencies] 類別的執行個體上設定 [CloudTask][net_cloudtask].[DependsOn][net_dependson] 屬性︰
 
 ```csharp
 // Task 'Flowers' depends on completion of both 'Rain' and 'Sun'
@@ -81,7 +81,7 @@ Azure Batch 中可使用的基本工作相依性案例有三種︰一對一、�
 > 
 
 ### <a name="one-to-one"></a>一對一
-若要建立一項工作，而該工作相依於另一項順利完成的工作，您可以在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_usestaskdependencies].[OnId][net_onid] 靜態方法提供單一工作識別碼。
+若要建立一項工作，而該工作相依於另一項順利完成的工作，您可以在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_taskdependencies].[OnId][net_onid] 靜態方法提供單一工作識別碼。
 
 ```csharp
 // Task 'taskA' doesn't depend on any other tasks
@@ -95,7 +95,7 @@ new CloudTask("taskB", "cmd.exe /c echo taskB")
 ```
 
 ### <a name="one-to-many"></a>一對多
-若要建立一項工作，且該工作相依於多項順利完成的工作，您可以在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_usestaskdependencies].[OnIds][net_onids] 靜態方法提供一組工作識別碼。
+若要建立一項工作，且該工作相依於多項順利完成的工作，您可以在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_taskdependencies].[OnIds][net_onids] 靜態方法提供一組工作識別碼。
 
 ```csharp
 // 'Rain' and 'Sun' don't depend on any other tasks
@@ -111,7 +111,7 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 ```
 
 ### <a name="task-id-range"></a>工作識別碼範圍
-若要建立一項工作，而該工作相依於一組識別碼位於某範圍內且順利完成的工作，您可以在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_usestaskdependencies].[OnIdRange][net_onidrange] 靜態方法提供該範圍的第一個和最後一個工作識別碼。
+若要建立一項工作，而該工作相依於一組識別碼位於某範圍內且順利完成的工作，您可以在填入 [CloudTask][net_cloudtask] 的 [DependsOn][net_dependson] 屬性時，對 [TaskDependencies][net_taskdependencies].[OnIdRange][net_onidrange] 靜態方法提供該範圍的第一個和最後一個工作識別碼。
 
 > [!IMPORTANT]
 > 當您針對相依性使用工作識別碼範圍時，該範圍內的工作識別碼「必須」是以字串表示的整數值。 此外，範圍內的每項工作皆必須順利完成，才能排定執行相依工作。
@@ -161,7 +161,7 @@ Batch 的 [應用程式封裝](batch-application-packages.md) 功能提供了簡
 [net_taskexecutioninformation]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskexecutioninformation.aspx
 [net_taskstate]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.common.taskstate.aspx
 [net_usestaskdependencies]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjob.usestaskdependencies.aspx
-[net_usestaskdependencies]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskdependencies.aspx
+[net_taskdependencies]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskdependencies.aspx
 
 [1]: ./media/batch-task-dependency/01_one_to_one.png "圖表︰一對一相依性"
 [2]: ./media/batch-task-dependency/02_one_to_many.png "圖表︰一對多相依性"
@@ -169,6 +169,6 @@ Batch 的 [應用程式封裝](batch-application-packages.md) 功能提供了簡
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

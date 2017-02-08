@@ -6,14 +6,13 @@ keywords: "azure active directory identity protection, cloud app discovery, 管�
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: 92233a5b-cb34-4d28-88cc-d5d29c0f3256
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/11/2016
+ms.date: 01/24/2017
 ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 2e229cab7b8a498d3015183d438e2bc2465822aa
@@ -25,7 +24,7 @@ ms.openlocfilehash: f526af67a94ce0cab61591d9250f4742b1ede579
 弱點是您的環境中攻擊者可以利用的弱點。 我們建議您處理這些弱點，以改善組織的安全性狀態，並防止攻擊者利用這些弱點。
 
 
-![弱點](./media/active-directory-identityprotection-vulnerabilities/101.png "vulnerabilities")
+![弱點](./media/active-directory-identityprotection-vulnerabilities/101.png "弱點")
 
 
 
@@ -64,6 +63,6 @@ Azure Multi-Factor Authentication 會為使用者驗證提供第二層安全性�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

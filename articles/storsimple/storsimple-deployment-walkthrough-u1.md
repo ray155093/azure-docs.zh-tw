@@ -15,12 +15,12 @@ ms.workload: NA
 ms.date: 08/17/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 68f3736069a153e6de9a7ba5f11708a4eb648dbf
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8a3f389250920dcdb49a5f88812d2e3b88bfd6c6
 
 
 ---
-# <a name="deploy-your-onpremises-storsimple-device-update-1"></a>部署您的內部部署 StorSimple 裝置 (Update 1)
+# <a name="deploy-your-on-premises-storsimple-device-update-1"></a>部署您的內部部署 StorSimple 裝置 (Update 1)
 > [!div class="op_single_selector"]
 > * [Update 2](storsimple-deployment-walkthrough-u2.md)
 > * [Update 1](storsimple-deployment-walkthrough-u1.md)
@@ -131,7 +131,7 @@ ms.openlocfilehash: 68f3736069a153e6de9a7ba5f11708a4eb648dbf
 
 * 資料中心防火牆中的連接埠已開放，以允許 iSCSI 和雲端流量，如 [StorSimple 裝置的網路需求](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device)中所述。
 
-## <a name="stepbystep-deployment"></a>逐步部署
+## <a name="step-by-step-deployment"></a>逐步部署
 請在資料中心使用下列逐步指示來部署 StorSimple 裝置。
 
 ## <a name="step-1-create-a-new-service"></a>步驟 1：建立新的服務
@@ -270,6 +270,6 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b42fe210ecfe2243aa2461bd542e73f7b9aa25cc
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 42911ac76e2aa887460abd44e462a8d288d55f91
 
 
 ---
@@ -176,7 +176,7 @@ BGS Online 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下 [完成]。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-an-bgs-online-test-user"></a>建立 BGS Online 測試使用者
 在本節中，您會在 BGS Online 中建立名為 Britta Simon 的使用者。 請與 BGS Online [支援小組](mailTo:bgsdashboardteam@millwardbrown.com)合作，在 BGS Online 平台中新增使用者。
@@ -231,6 +231,6 @@ BGS Online 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

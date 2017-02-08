@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 6decf4f836b03c2437914756683ad282be300fbb
-ms.openlocfilehash: b37d2e93bda04d1934e94478ba1c2f9574d29e10
+ms.sourcegitcommit: e3e4ad430d8941a09543ce2dc97f8e449a39bced
+ms.openlocfilehash: 755961b8a0b141a716530f75e21b65c00fa8d2d8
 
 
 ---
@@ -89,10 +89,10 @@ python -m pip install --upgrade pip
 4. 重新安裝 Python。
 
 ## <a name="azure-iot-hub-issues"></a>Azure IoT 中樞問題
-如果您已使用 `azure-cli` 成功佈建 Azure IoT 中樞，而且您需要工具來管理連接至 IoT 中樞的裝置，請嘗試下列工具：
+如果您已使用 `azure-cli` 成功佈建 Azure IoT 中樞，而且您需要工具來管理連接到 IoT 中樞的裝置，請嘗試下列工具：
 
 ### <a name="device-explorer"></a>裝置總管
-[裝置總管](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)會在您的 Windows 本機機器上執行，並且連接至 Azure 中的 IoT 中樞。 它會與下列 [IoT 中樞端點](iot-hub-devguide.md)通訊：
+[裝置總管](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer)會在您的 Windows 本機機器上執行，並且連接至 Azure 中的 IoT 中樞。 它會與下列 [IoT 中樞端點](iot-hub-devguide.md)通訊：
 
 * *裝置身分識別管理*以佈建和管理已向 IoT 中樞註冊的裝置。
 * *接收裝置到雲端*以便可以監視從裝置傳送到 IoT 中樞的訊息。
@@ -101,7 +101,7 @@ python -m pip install --upgrade pip
 在此工具內設定您的 `IoT hub connection string`以使用它的所有功能。
 
 ### <a name="iot-hub-explorer"></a>IoT 中樞總管
-[IoT 中樞總管](https://github.com/Azure/azure-iot-sdks/blob/master/tools/iothub-explorer/readme.md)是範例多平台 CLI 工具，可以管理裝置用戶端。 您可以使用此工具管理身分識別登錄中的裝置、監視裝置到雲端訊息，以及傳送雲端到裝置命令。
+[IoT 中樞總管](https://github.com/Azure/iothub-explorer)是範例多平台 CLI 工具，可以管理裝置用戶端。 您可以使用此工具管理身分識別登錄中的裝置、監視裝置到雲端訊息，以及傳送雲端到裝置命令。
 
 若要安裝最新 (發行前版本) 版本 iothub-explorer 工具，請在命令列環境中執行下列命令︰
 
@@ -123,6 +123,6 @@ iothub-explorer help
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

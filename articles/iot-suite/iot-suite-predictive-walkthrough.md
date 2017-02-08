@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/31/2016
 ms.author: araguila
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ba48381f2c16a56e2e3f187017fbdbae09544e77
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 6d80f266730701dc4e678f4365a2166be72c9143
 
 
 ---
@@ -127,6 +127,6 @@ Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

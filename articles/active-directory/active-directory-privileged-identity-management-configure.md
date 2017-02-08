@@ -3,7 +3,7 @@ title: Azure AD Privileged Identity Management | Microsoft Docs
 description: "本主題說明何謂 Azure AD Privileged Identity Management，以及如何使用 PIM 改善雲端安全性。"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: billmath
 manager: femila
 editor: 
 ms.assetid: c548ed2e-06e3-4eaf-a63d-0f02ee72da25
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/16/2016
-ms.author: kgremban
+ms.date: 02/03/2017
+ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0a642046ee26c242900b480a5144f53f2ac23769
+ms.sourcegitcommit: 71eb6a2fecbd76c9715b9a556a7ffd31b5b4950e
+ms.openlocfilehash: 6b788b3120565895e908bdfc4c9267e715bc5bec
 
 
 ---
@@ -25,8 +25,6 @@ ms.openlocfilehash: 0a642046ee26c242900b480a5144f53f2ac23769
 
 > [!NOTE]
 > Privileged Identity Management 僅可在 Azure Active Directory 的 Premium P2 Edition 中使用。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
-> 
-> 
 
 組織想要將能夠存取安全資訊或資源的人數降到最低，因為這樣可以降低惡意使用者取得該存取權的機率。 不過，使用者仍然需要在 Azure、Office 365 或 SaaS 應用程式中執行特殊權限作業。 組織可以在 Azure AD 中授與使用者特殊權限，而不需監視這些使用者使用其系統管理權限來執行什麼作業。 Azure AD 特殊權限身分識別管理有助於解決此風險。  
 
@@ -53,8 +51,6 @@ Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角
 
 > [!NOTE]
 > 您必須是具有組織帳戶 (例如 @yourdomain.com),) 而非 Microsoft 帳戶 (例如 @outlook.com),) 的全域管理員，才能啟用目錄的 Azure AD Privileged Identity Management。
-> 
-> 
 
 1. 以目錄的全域系統管理員身分登入 [Azure 入口網站](https://portal.azure.com/) 。
 2. 如果貴組織有多個目錄，請選取 Azure 入口網站右上角的使用者名稱。 選取您將在其中使用 Azure AD Privileged Identity Management 的目錄。
@@ -107,6 +103,9 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 
 第二個選項是設定標準 [存取檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)。 這些存取檢閱可以由指派的檢閱者 (例如團隊經理) 來執行或者員工可以檢閱自己。 如此來監視誰仍需要或不再需要存取是最佳的方式。
 
+## <a name="azure-ad-pim-at-subscription-expiration"></a>訂用帳戶過期時的 Azure AD PIM
+在公開上市之前，Azure AD PIM 處於預覽狀態，而且沒有租用戶的授權檢查可預覽 Azure AD PIM。  現在，Azure AD PIM 已公開上市，試用或付費訂用帳戶必須存在於租用戶中，才能在 2016 年 12 月之後繼續使用 PIM。  如果您的組織並未購買 Azure AD Premium P2 或您的訂用帳戶過期，則 Azure AD PIM 將無法再使用於您的租用戶。  您可以深入了解 [Azure AD PIM 訂用帳戶需求](./privileged-identity-management/subscription-requirements.md)
+
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
@@ -121,6 +120,6 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

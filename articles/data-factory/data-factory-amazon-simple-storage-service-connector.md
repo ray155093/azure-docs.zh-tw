@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
+ms.date: 01/24/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: c2350ae447ccebf1a6b85a563e7fa1d7c12b16d7
-ms.openlocfilehash: 05a9466ba2a2d4a495d2e9a4f3ca4c9d08ddcadb
+ms.sourcegitcommit: d49d7e6b4a9485c2371eb02ac8068adfde9bad6b
+ms.openlocfilehash: 92195f4479f429f0911d9e2ca7be29c1aef7785e
 
 
 ---
@@ -238,8 +238,9 @@ Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區�
 | key |S3 物件索引鍵。 |string |否 |
 | prefix |S3 物件索引鍵的前置詞。 系統會選取索引鍵以此前置詞開頭的物件。 只有當索引鍵空白時才適用。 |string |否 |
 | version |如果已啟用 S3 版本設定功能，則為 S3 物件的版本。 |string |否 |
-| format |支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat)、[指定 OrcFormat](#specifying-orcformat)、[指定 ParquetFormat](#specifying-parquetformat) 各節。 如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 |否 | |
-| compression |指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate** 和 **BZip2**，而支援的層級為：**最佳**和**最快**。 **AvroFormat** 或 **OrcFormat** 格式的資料目前不支援壓縮設定。 如需詳細資訊，請參閱 [壓縮支援](#compression-support) 一節。 |否 | |
+| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](#specifying-textformat)、[Json 格式](#specifying-jsonformat)、[Avro 格式](#specifying-avroformat)、[Orc 格式](#specifying-orcformat)和 [Parquet 格式](#specifying-parquetformat)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 | |
+| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 | |
+
 
 > [!NOTE]
 > bucketName + key 可指定 S3 物件的位置，其中貯體是 S3 物件的根容器，而索引鍵是 S3 物件的完整路徑。
@@ -342,6 +343,6 @@ Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

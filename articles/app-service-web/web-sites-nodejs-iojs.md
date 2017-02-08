@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4b82981b69628cfd91136810bc801aaf8054c782
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 88c4ba2d996f83cdf1ea654260ca1d7ccc4bd1b3
 
 
 ---
@@ -69,10 +69,10 @@ ms.openlocfilehash: 4b82981b69628cfd91136810bc801aaf8054c782
 [io.js]: https://iojs.org
 [win-x64]: https://iojs.org/dist/
 [GitHub 上的 io.js]: https://github.com/iojs/io.js
-[Io.js 部署指令碼]: https://github.com/felixrieseberg/iojs-azure
+[io.js Deployment Script]: https://github.com/felixrieseberg/iojs-azure
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

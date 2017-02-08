@@ -12,11 +12,11 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/28/2016
+ms.date: 12/01/2016
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 0c946ce6a96f2e3644b9890dad5d60a35ad4bcb7
-ms.openlocfilehash: 10184c52d532eb56e66212fafdea3d059b0c43e3
+ms.sourcegitcommit: 5001cd47b6ee51967d1286414ccefedd8e7e7813
+ms.openlocfilehash: 095b5c9d1a888a4061450234f80c52c5834fbf53
 
 
 ---
@@ -45,23 +45,19 @@ ms.openlocfilehash: 10184c52d532eb56e66212fafdea3d059b0c43e3
 
 ## <a name="how-to-deploy-a-partner-solution"></a>如何部署合作夥伴解決方案？
 
-已部署在資訊安全中心中的合作夥伴解決方案可以輕鬆地從主要資訊安全中心儀表板中的 [合作夥伴解決方案] 圖格存取：
+根據您的 Azure 環境組態和您定義的安全性原則，資訊安全中心可能會建議部署協力廠商解決方案。 此建議將引導您完成選取和安裝協力廠商解決方案的程序。 目前的整體部署體驗可能會根據解決方案類型和合作夥伴而有所不同。 如需詳細資訊，請參閱底下的連結：
+
+- [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)
+- [新增新一代防火牆](security-center-add-next-generation-firewall.md)
+- [安裝端點保護](security-center-install-endpoint-protection.md)
+- [未安裝弱點評估](security-center-vulnerability-assessment-recommendations.md)
+
+## <a name="how-to-manage-partner-solutions"></a>如何管理合作夥伴解決方案？
+
+部署合作夥伴解決方案後，您可以檢視解決方案的健康狀態相關資訊，並從主要資訊安全中心儀表板的 [協力廠商解決方案] 圖格執行基本管理工作。 如需管理資訊安全中心中合作夥伴解決方案的相關資訊，請閱讀[透過 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)。
 
 ![合作夥伴整合](./media/security-center-partner-integration/security-center-partner-integration-fig1.png)
 
-若要根據資訊安全中心建議部署新的合作夥伴解決方案，請執行下列步驟：
-
-> [!NOTE]
-> 下列範例中的步驟假設您有一個希望透過 Web 應用程式防火牆保護的工作負載。
-
-1. 在資訊安全中心儀表板上，按一下 [建議] 圖格。
-2. 在 [建議] 刀鋒視窗上，按一下 [加入 Web 應用程式防火牆]。
-3. 按一下 [加入 Web 應用程式防火牆] 刀鋒視窗下的應用程式名稱。
-4. 在 [加入 Web 應用程式防火牆] 刀鋒視窗上，按一下 [新建]。
-5. [建立新的 Web 應用程式防火牆] 刀鋒視窗會顯示目前提供 Web 應用程式防火牆功能之合作夥伴的清單。
-6. 選取適當的合作夥伴解決方案，並依照步驟 (這會根據合作夥伴而有所不同) 執行。
-
-目前的整體部署體驗，可能會根據合作夥伴而有所不同。 如需管理資訊安全中心中合作夥伴解決方案的相關資訊，請閱讀[透過 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)。
 
 ## <a name="see-also"></a>另請參閱
 在此文件中，您已了解如何在 Azure 資訊安全中心中整合合作夥伴解決方案。 若要深入了解資訊安全中心，請參閱下列主題：
@@ -76,6 +72,6 @@ ms.openlocfilehash: 10184c52d532eb56e66212fafdea3d059b0c43e3
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

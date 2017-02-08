@@ -15,12 +15,12 @@ ms.workload: NA
 ms.date: 08/17/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d9e5f3b177f6b91abe48d3bb6d49a2d3195e6f79
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a14be6bf8135cdfc7e5b9eb3b6d7af3bdd4561a7
 
 
 ---
-# <a name="deploy-your-onpremises-storsimple-device"></a>部署內部部署 StorSimple 裝置
+# <a name="deploy-your-on-premises-storsimple-device"></a>部署內部部署 StorSimple 裝置
 > [!div class="op_single_selector"]
 > * [Update 2](storsimple-deployment-walkthrough-u2.md)
 > * [Update 1](storsimple-deployment-walkthrough-u1.md)
@@ -146,7 +146,7 @@ ms.openlocfilehash: d9e5f3b177f6b91abe48d3bb6d49a2d3195e6f79
 |  | | |
 | **註冊** |檢查輸出 TCP 連接埠 443、80、9354 是否開啟。 |`Test-NetConnection -Port   443 -InformationLevel Detailed`</br>[Test-NetConnection Cmdlet 的詳細資訊](https://technet.microsoft.com/library/dn372891.aspx) |
 
-## <a name="stepbystep-deployment"></a>逐步部署
+## <a name="step-by-step-deployment"></a>逐步部署
 請在資料中心使用下列逐步指示來部署 StorSimple 裝置。
 
 ## <a name="step-1-create-a-new-service"></a>步驟 1：建立新的服務
@@ -286,6 +286,6 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 針對第一次
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

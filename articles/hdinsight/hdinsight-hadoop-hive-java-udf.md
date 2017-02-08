@@ -1,40 +1,43 @@
 ---
-title: 在 HDInsight 中搭配使用 Java 使用者定義函式 (UDF) 和 Hive | Microsoft Docs
-description: 了解如何在 HDInsight 中從 Hive 建立及使用 Java 使用者定義函式 (UDF)。
+title: "在 HDInsight 中搭配使用 Java 使用者定義函式 (UDF) 和 Hive | Microsoft Docs"
+description: "了解如何在 HDInsight 中從 Hive 建立及使用 Java 使用者定義函式 (UDF)。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 8d4f8efe-2f01-4a61-8619-651e873c7982
 ms.service: hdinsight
 ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/27/2016
+ms.date: 01/12/2017
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
+ms.openlocfilehash: ec7e5d3229d623ce08a72439317a6a515ee3e373
+
 
 ---
 # <a name="use-a-java-udf-with-hive-in-hdinsight"></a>在 HDInsight 中搭配使用 Java UDF 和 Hive
 Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語言。 Hive 可讓您使用各種程式設計語言來建立使用者定義函式 (UDF)。 在本文件中，您將學習如何從 Hive 使用 Java UDF。
 
 ## <a name="requirements"></a>需求
-* Azure 訂用帳戶
+
 * HDInsight 叢集 (Windows 或 Linux 型)。
   
-  > [!NOTE]
-  > 本文件中的步驟大多著重於這兩種叢集類型，不過用來將編譯之 UDF 上傳到叢集並予以執行的步驟僅供 Linux 型叢集專用。 對於適用於 Windows 型叢集的資訊，本文件備有相關連結。
-  > 
-  > 
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  
+  本文件中的步驟大多著重於這兩種叢集類型，不過用來將編譯之 UDF 上傳到叢集並予以執行的步驟僅供 Linux 型叢集專用。 對於適用於 Windows 型叢集的資訊，本文件備有相關連結。
+
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/) 7 或更新版本 (或同等功能版本，例如 OpenJDK)
 * [Apache Maven](http://maven.apache.org/)
 * 文字編輯器或 Java IDE
   
   > [!IMPORTANT]
   > 如果您使用 Linux 型 HDInsight 伺服器，但卻是在 Windows 用戶端上建立 Python 檔案，您就必須使用以 LF 做為行尾結束符號的編輯器。 如果您不確定編輯器是使用 LF 還是 CRLF，請參閱 [疑難排解](#troubleshooting) 一節，以了解有關使用公用程式來移除 HDInsight 叢集上 CR 字元的步驟。
-  > 
-  > 
 
 ## <a name="create-an-example-udf"></a>建立範例 UDF
 1. 在命令列中，使用下列命令來建立新的 Maven 專案：
@@ -46,7 +49,7 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
    > 
    > 
    
-    這會建立名為 __exampleudf__的新目錄，其中包含 Maven 專案。
+    這會建立名為 **exampleudf**的新目錄，其中包含 Maven 專案。
 2. 建立專案後，請刪除隨專案一同建立的 **exampleudf/src/test** 目錄；本範例不會使用到該目錄。
 3. 開啟 **exampleudf/pom.xml**，以下文中的內容取代現有的 `<dependencies>` 項目︰
    
@@ -209,6 +212,9 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
 如需 Hive 使用者定義函式的詳細資訊，請造訪 apache.org 並參閱 Hive wiki 的 [Hive 運算子和使用者定義函式](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) 一節。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO3-->
 
 

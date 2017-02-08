@@ -17,8 +17,8 @@ ms.workload: data-management
 ms.date: 10/13/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 98333c8721274c207ed3d7f2bd05cc20bcd10562
+ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
+ms.openlocfilehash: be19590bca7c7fb45e32f5a5e29c88ab5dd21deb
 
 
 ---
@@ -30,6 +30,10 @@ ms.openlocfilehash: 98333c8721274c207ed3d7f2bd05cc20bcd10562
 
 ## <a name="when-your-app-is-an-overnight-success"></a>當您的應用程式快速獲得許多使用者青睞
 SQL Database 可隨時輕鬆調整。 因此如果您的應用程式快速獲得許多使用者青睞，只要按一下就可以滿足新的效能需求。 此外，在幾乎不停機的情況下，您不必擔心應用程式要在相應增加或減少時受到影響。
+
+>
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-dynamically-scale-up-or-scale-down/player]
+>
 
 [閱讀文件](http://go.microsoft.com/fwlink/?LinkID=787569)
 
@@ -57,6 +61,6 @@ SQL Database 包含最新的記憶體內部技術來執行極快速的交易，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

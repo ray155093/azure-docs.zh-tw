@@ -1,37 +1,41 @@
 ---
-title: 在 Azure Batch 中使用多重執行個體工作來執行 MPI 應用程式 | Microsoft Docs
-description: 了解如何在 Azure Batch 中使用多重執行個體工作類來執行訊息傳遞介面 (MPI) 應用程式。
+title: "在 Azure Batch 中使用多重執行個體工作來執行 MPI 應用程式 | Microsoft Docs"
+description: "了解如何在 Azure Batch 中使用多重執行個體工作類來執行訊息傳遞介面 (MPI) 應用程式。"
 services: batch
 documentationcenter: .net
-author: mmacy
+author: tamram
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 83e34bd7-a027-4b1b-8314-759384719327
 ms.service: batch
 ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 09/29/2016
-ms.author: marsma
+ms.date: 01/20/2017
+ms.author: tamram
+translationtype: Human Translation
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: 90e41fc2a2a0109aa69bfd0d826444b6d3d559ea
+
 
 ---
-# <a name="use-multi-instance-tasks-to-run-message-passing-interface-(mpi)-applications-in-azure-batch"></a>在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式
+# <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-azure-batch"></a>在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式
 多重執行個體工作可讓您在多個計算節點上同時執行 Azure Batch 工作。 這些工作可以在 Batch 中實現高效能運算案例，例如訊息傳遞介面 (MPI) 應用程式。 在本文中，您將了解如何使用 [Batch .NET][api_net] 程式庫來執行多重執行個體工作。
 
 > [!NOTE]
 > 雖然本文中的範例著重於 Batch .NET、MS-MPI 和 Windows 計算節點，不過此處所討論的多重執行個體工作概念也適用於其他平台和技術 (如 Python 和 Linux 節點上的 Intel MPI)。
-> 
-> 
+>
+>
 
 ## <a name="multi-instance-task-overview"></a>多重執行個體工作概觀
-在 Batch 中，每個工作通常是在單一計算節點上執行 -- 您將多個工作提交給作業，而 Batch 服務會將每個工作排定在節點上執行。 不過，藉由設定工作的 **多重執行個體設定**，您可以指示 Batch 將該工作分割成子工作，以便在多個節點上執行。
+在 Batch 中，每個工作通常是在單一計算節點上執行 -- 您將多個工作提交給作業，而 Batch 服務會將每個工作排定在節點上執行。 不過，藉由設定工作的**多重執行個體設定**，即可告知 Batch 改為建立一個主要工作，以及數個會接著在多個節點上執行的子工作。
 
 ![多重執行個體工作概觀][1]
 
 將具有多重執行個體設定的工作提交給作業時，Batch 會執行多重執行個體工作特有的幾個步驟：
 
-1. Batch 服務能將工作分割成一個**主要工作**和幾個**子工作**。 工作總數 (主要工作加上所有子工作) 與您在多重執行個體設定中指定的**執行個體** (計算節點) 數目相符。
+1. Batch 服務會根據多重執行個體設定，建立一個**主要**工作和數個**子工作**。 工作總數 (主要工作加上所有子工作) 與您在多重執行個體設定中指定的**執行個體** (計算節點) 數目相符。
 2. Batch 能將一個計算節點指定為**主要**節點，然後將主要工作排程在主要節點上執行。 它會將子工作排程在配置給多重執行個體工作所剩餘的計算節點上執行，每個節點一個子工作。
 3. 主要工作和子工作會下載您在多重執行個體設定中指定的任何**一般資源檔**。
 4. 下載一般資源檔之後，主要工作和子工作會執行您在多重執行個體設定中指定的 **協調命令** 。 協調命令通常用來準備執行工作所需的節點。 其中包括啟動背景服務 (如 [Microsoft MPI][msmpi_msdn] 的 `smpd.exe`)，以及確認節點已準備好處理節點間的訊息。
@@ -39,8 +43,8 @@ ms.author: marsma
 
 > [!NOTE]
 > 雖然「多重執行個體工作」在功能上不同，但不是特殊的工作類型，例如 [StartTask][net_starttask] 或 [JobPreparationTask][net_jobprep]。 多重執行個體工作只是已設定多重執行個體設定的 Standard Batch 工作 (Batch .NET 中的 [CloudTask][net_task])。 在本文中，我們將它稱為 **多重執行個體工作**。
-> 
-> 
+>
+>
 
 ## <a name="requirements-for-multi-instance-tasks"></a>多重執行個體工作的需求
 多重執行個體工作需要有**已啟用節點間通訊**和**已停用並行工作執行**的集區。 如果您嘗試在已停用節點間通訊，或「maxTasksPerNode」  值大於 1 的集區中執行多重執行個體工作，則永遠不會排定工作--它會無限期停留在「作用中」狀態。 此程式碼片段顯示如何使用 Batch .NET 程式庫建立這種集區。
@@ -61,13 +65,8 @@ myCloudPool.MaxTasksPerComputeNode = 1;
 
 此外，多重執行個體工作「只」可以在 **2015 年 12 月 14 日後建立之集區**中的節點上執行。
 
-> [!TIP]
-> 當您在 Batch 集區中選擇 [支援 RDMA 大小][](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) (如 A9 計算節點) 時，MPI 應用程式可以利用 Azure 高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。 [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)提供 Batch 集區中可用的計算節點大小的完整清單。
-> 
-> 
-
-### <a name="use-a-starttask-for-mpi-application-installation"></a>使用 StartTask 來安裝 MPI 應用程式
-若要使用多重執行個體工作來執行 MPI 應用程式，您首先需要將 MPI 軟體安裝到集區中的計算節點。 這是使用 [StartTask][net_starttask] 的好時機，每當節點加入集區或重新啟動時，它就會執行。 此程式碼片段會建立 StartTask 將 MS-MPI 安裝套件指定為[資源檔][net_resourcefile]，並指定將於資源檔下載至節點之後執行的命令列。
+### <a name="use-a-starttask-to-install-mpi"></a>使用 StartTask 安裝 MPI
+若要執行具有多重執行個體工作的 MPI 應用程式，您必須先在集區的計算節點上安裝 MPI 實作 (例如 MS-MPI 或 Intel MPI)。 這是使用 [StartTask][net_starttask] 的好時機，每當節點加入集區或重新啟動時，它就會執行。 此程式碼片段會建立 StartTask，指定 MS-MPI 安裝套件來做為[資源檔][net_resourcefile]。 資源檔下載至節點後，便會執行啟動工作的命令列。 在此案例中，命令列會執行 MS-MPI 的自動安裝。
 
 ```csharp
 // Create a StartTask for the pool which we use for installing MS-MPI on
@@ -86,12 +85,25 @@ myCloudPool.StartTask = startTask;
 await myCloudPool.CommitAsync();
 ```
 
-> [!NOTE]
-> 當您在 Batch 中使用多重執行個體工作實作 MPI 方案時，不限於只能使用 MS-MPI。 任何 MPI 標準實作只要與您為集區中的計算節點指定的作業系統相容，都可使用。
-> 
-> 
+### <a name="remote-direct-memory-access-rdma"></a>遠端直接記憶體存取 (RDMA)
+當您在 Batch 集區中選擇 [支援 RDMA 大小](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (如 A9 計算節點) 時，MPI 應用程式可以利用 Azure 高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。
 
-## <a name="create-a-multi-instance-task-with-batch-.net"></a>使用 Batch .NET 建立多個執行個體工作
+在下列文章中尋找指定為「支援 RDMA」的大小︰
+
+* **CloudServiceConfiguration** 集區
+
+  * [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md) (僅限 Windows)
+* **VirtualMachineConfiguration** 集區
+
+  * [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (Linux)
+  * [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
+
+> [!NOTE]
+> 若要在 [Linux 計算節點](batch-linux-nodes.md)上利用 RDMA，您必須在節點上使用 **Intel MPI**。 如需 CloudServiceConfiguration 和 VirtualMachineConfiguration 集區的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的＜集區＞一節。
+>
+>
+
+## <a name="create-a-multi-instance-task-with-batch-net"></a>使用 Batch .NET 建立多個執行個體工作
 既然我們已討論過集區需求和 MPI 套件安裝，現在讓我們建立多重執行個體工作。 在此片段中，我們會建立標準 [CloudTask][net_task]，然後設定其 [MultiInstanceSettings][net_multiinstance_prop] 屬性。 如先前所述，多重執行個體工作不是獨特的工作類型，而只是已設定多重執行個體設定的標準 Batch 工作。
 
 ```csharp
@@ -152,8 +164,8 @@ cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIAp
 
 > [!NOTE]
 > 因為 MS-MPI 的 `mpiexec.exe` 預設會使用 `CCP_NODES` 變數 (請參閱[環境變數](#environment-variables))，上述範例應用程式命令列會排除它。
-> 
-> 
+>
+>
 
 ## <a name="environment-variables"></a>環境變數
 Batch 會在配置給多重執行個體工作的計算節點上建立幾個多個執行個體工作特有的[環境變數][msdn_env_var]。 您的協調和應用程式命令列可以參考這些環境變數，它們執行的指令碼和程式也可以。
@@ -171,8 +183,8 @@ Batch 會在配置給多重執行個體工作的計算節點上建立幾個多�
 
 > [!TIP]
 > Batch Linux MPI 程式碼範例含有幾個如何使用這些環境變數的範例。 [coordination-cmd][coord_cmd_example] Bash 指令碼能從 Azure 儲存體下載一般應用程式和輸入檔案、啟用主要節點上的網路檔案系統 (NFS) 共用，以及將配置給多重執行個體工作的其他節點設定為 NFS 用戶端。
-> 
-> 
+>
+>
 
 ## <a name="resource-files"></a>資源檔
 多重執行個體工作需要考量兩組資源檔：「所有」工作 (主要工作和子工作) 下載的**一般資源檔**，以及為多重執行個體工作本身指定的**資源檔** (「只有主要工作」會下載)。
@@ -183,8 +195,8 @@ Batch 會在配置給多重執行個體工作的計算節點上建立幾個多�
 
 > [!IMPORTANT]
 > 在命令列中，請一律使用環境變數 `AZ_BATCH_TASK_SHARED_DIR` 和 `AZ_BATCH_TASK_WORKING_DIR` 來參考這些目錄。 請勿嘗試以手動方式建構路徑。
-> 
-> 
+>
+>
 
 ## <a name="task-lifetime"></a>工作存留期
 主要工作的存留期控制整個多重執行個體工作的存留期。 當主要工作結束時，所有子工作就會終止。 主要工作的結束代碼就是工作的結束代碼，因此在重試用途上用於判斷工作成功或失敗。
@@ -193,7 +205,7 @@ Batch 會在配置給多重執行個體工作的計算節點上建立幾個多�
 
 當您刪除多重執行個體工作時，Batch 服務也會刪除主要工作和所有子工作。 所有子工作目錄及其檔案會從計算節點中刪除，如同在標準工作中一樣。
 
-系統會遵守多重執行個體工作的 [TaskConstraints][net_taskconstraints] (如 [MaxTaskRetryCount][net_taskconstraint_maxretry]、[MaxWallClockTime][net_taskconstraint_maxwallclock] 及 [RetentionTime][net_taskconstraint_retention] 等屬性)，因為它們乃供標準工作之用，因此能套用到主要工作和所有子工作。 不過，如果您在將多重執行個體工作新增到作業之後變更 [RetentionTime][net_taskconstraint_retention] 屬性，這項變更只會套用到主要工作。 所有的子工作會繼續使用原始的 [RetentionTime][net_taskconstraint_retention]。
+多重執行個體工作的 [TaskConstraints][net_taskconstraints] (例如 [MaxTaskRetryCount][net_taskconstraint_maxretry]、[MaxWallClockTime][net_taskconstraint_maxwallclock], 和 [RetentionTime][net_taskconstraint_retention] 屬性) 都視為用於標準工作，並套用至主要工作和所有子工作。 不過，如果您在多重執行個體工作新增到作業之後變更 [RetentionTime][net_taskconstraint_retention] 屬性，這項變更只會套用到主要作業。 所有的子工作會繼續使用原始 [RetentionTime][net_taskconstraint_retention]。
 
 如果最近的工作是多重執行個體工作的一部分，計算節點的最近工作清單會反映子工作的識別碼。
 
@@ -202,8 +214,8 @@ Batch 會在配置給多重執行個體工作的計算節點上建立幾個多�
 
 > [!NOTE]
 > 除非另有指明，否則在多重執行個體 [CloudTask][net_task] 本身執行的 Batch .NET 方法「只會」套用到主要工作。 例如，當您在多重執行個體工作上呼叫 [CloudTask.ListNodeFiles][net_task_listnodefiles] 方法時，只會傳回主要工作的檔案。
-> 
-> 
+>
+>
 
 下列程式碼片段示範如何取得子工作資訊，以及從它們執行所在的節點要求檔案的內容。
 
@@ -244,10 +256,74 @@ await subtasks.ForEachAsync(async (subtask) =>
 });
 ```
 
+## <a name="code-sample"></a>程式碼範例
+GitHub 上的 [MultiInstanceTasks][github_mpi] 程式碼範例示範如何使用多重執行個體工作在 Batch 計算節點上執行 [MS-MPI][msmpi_msdn] 應用程式。 請遵循[準備](#preparation)和[執行](#execution)中的步驟來執行範例。
+
+### <a name="preparation"></a>準備工作
+1. 遵循[如何編譯及執行簡單的 MS-MPI 程式][msmpi_howto]中的前兩個步驟。 這可滿足下一個步驟的必要條件。
+2. 建置 [MPIHelloWorld][helloworld_proj] 範例 MPI 程式的*發行*版本。 這是多重執行個體工作將在計算節點上執行的程式。
+3. 建立包含 `MPIHelloWorld.exe` (您在步驟 2 所建置) 和 `MSMpiSetup.exe` (您在步驟 1 所下載) 的 zip 檔案。 您會在下一個步驟中，將此 zip 檔案上傳為應用程式套件。
+4. 使用 [Azure 入口網站][portal]建立稱為「MPIHelloWorld」的 Batch [應用程式](batch-application-packages.md)，並將您在上一個步驟所建立的 zip 檔案指定為應用程式套件「1.0」版。 如需詳細資訊，請參閱[上傳及管理應用程式](batch-application-packages.md#upload-and-manage-applications)。
+
+> [!TIP]
+> 建置 `MPIHelloWorld.exe` 的「發行」版本，以便不需要在應用程式套件中包含任何其他相依項目 (例如，`msvcp140d.dll` 或 `vcruntime140d.dll`)。
+>
+>
+
+### <a name="execution"></a>執行
+1. 從 GitHub 下載 [azure-batch-samples][github_samples_zip]。
+2. 在 Visual Studio 2015 中開啟 MultiInstanceTasks **方案**。 `MultiInstanceTasks.sln` 方案檔位於︰
+
+    `azure-batch-samples\CSharp\ArticleProjects\MultiInstanceTasks\`
+3. 在 **Microsoft.Azure.Batch.Samples.Common** 專案的 `AccountSettings.settings` 中輸入 Batch 和儲存體帳戶的認證。
+4. **建置並執行** MultiInstanceTasks 方案，以在 Batch 集區的計算節點上執行 MPI 範例應用程式。
+5. *選擇性*︰請先使用 [Azure 入口網站][portal] 或 [Batch 總管][batch_explorer] 檢查範例集區、作業和工作 ("MultiInstanceSamplePool"、"MultiInstanceSampleJob"、"MultiInstanceSampleTask")，然後才刪除資源。
+
+> [!TIP]
+> 如果您沒有 Visual Studio，您可以免費下載 [Visual Studio Community][visual_studio]。
+>
+>
+
+`MultiInstanceTasks.exe` 的輸出大致如下：
+
+```
+Creating pool [MultiInstanceSamplePool]...
+Creating job [MultiInstanceSampleJob]...
+Adding task [MultiInstanceSampleTask] to job [MultiInstanceSampleJob]...
+Awaiting task completion, timeout in 00:30:00...
+
+Main task [MultiInstanceSampleTask] is in state [Completed] and ran on compute node [tvm-1219235766_1-20161017t162002z]:
+---- stdout.txt ----
+Rank 2 received string "Hello world" from Rank 0
+Rank 1 received string "Hello world" from Rank 0
+
+---- stderr.txt ----
+
+Main task completed, waiting 00:00:10 for subtasks to complete...
+
+---- Subtask information ----
+subtask: 1
+        exit code: 0
+        node: tvm-1219235766_3-20161017t162002z
+        stdout.txt:
+        stderr.txt:
+subtask: 2
+        exit code: 0
+        node: tvm-1219235766_2-20161017t162002z
+        stdout.txt:
+        stderr.txt:
+
+Delete job? [yes] no: yes
+Delete pool? [yes] no: yes
+
+Sample complete, hit ENTER to exit...
+```
+
 ## <a name="next-steps"></a>後續步驟
 * Microsoft HPC 和 Azure Batch 小組部落格討論 [Azure Batch 上的 Linux MPI 支援][blog_mpi_linux]，其中包含搭配使用 [OpenFOAM][openfoam] 和 Batch 的相關資訊。 您可以在 [GitHub][github_mpi] 上找到 OpenFOAM 範例的 Python 程式碼範例。
-* 您可以建置簡單的 MS-MPI 應用程式，供 Batch 中測試多重執行個體工作時使用。 另一篇部落格文章[如何編譯及執行簡單的 MS-MPI 程式][msmpi_howto]，包含使用 MS-MPI 建立簡單的 MPI 應用程式的逐步解說。
-* 如需 MS-MPI 的最新資訊，請參閱 MSDN 上的 [Microsoft MPI][msmpi_msdn] 頁面。
+* 了解如何[建立 Linux 計算節點的集區](batch-linux-nodes.md)以在 Azure Batch MPI 方案中使用。
+
+[helloworld_proj]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/MultiInstanceTasks/MPIHelloWorld
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_rest]: http://msdn.microsoft.com/library/azure/dn820158.aspx
@@ -255,13 +331,15 @@ await subtasks.ForEachAsync(async (subtask) =>
 [blog_mpi_linux]: https://blogs.technet.microsoft.com/windowshpc/2016/07/20/introducing-mpi-support-for-linux-on-azure-batch/
 [cmd_start]: https://technet.microsoft.com/library/cc770297.aspx
 [coord_cmd_example]: https://github.com/Azure/azure-batch-samples/blob/master/Python/Batch/article_samples/mpi/data/linux/openfoam/coordination-cmd
-[github_mpi]: https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch/article_samples/mpi
+[github_mpi]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/MultiInstanceTasks
 [github_samples]: https://github.com/Azure/azure-batch-samples
+[github_samples_zip]: https://github.com/Azure/azure-batch-samples/archive/master.zip
 [msdn_env_var]: https://msdn.microsoft.com/library/azure/mt743623.aspx
 [msmpi_msdn]: https://msdn.microsoft.com/library/bb524831.aspx
 [msmpi_sdk]: http://go.microsoft.com/FWLink/p/?LinkID=389556
 [msmpi_howto]: http://blogs.technet.com/b/windowshpc/archive/2015/02/02/how-to-compile-and-run-a-simple-ms-mpi-program.aspx
 [openfoam]: http://www.openfoam.com/
+[visual_studio]: https://www.visualstudio.com/vs/community/
 
 [net_jobprep]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.jobpreparationtask.aspx
 [net_multiinstance_class]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.multiinstancesettings.aspx
@@ -284,12 +362,13 @@ await subtasks.ForEachAsync(async (subtask) =>
 [net_task_listnodefiles]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.listnodefiles.aspx
 [poolops_getnodefile]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.getnodefile.aspx
 
+[portal]: https://portal.azure.com
 [rest_multiinstance]: https://msdn.microsoft.com/library/azure/mt637905.aspx
 
 [1]: ./media/batch-mpi/batch_mpi_01.png "多重執行個體概觀"
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

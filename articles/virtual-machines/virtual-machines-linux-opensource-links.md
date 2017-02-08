@@ -16,15 +16,16 @@ ms.workload: infrastructure-services
 ms.date: 06/27/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 680bb7dfb401decc554637c0094a06a0a6260288
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: 2224028e314ca32b51c36cc2b9b8134a5eda330a
 
 
 ---
 # <a name="linux-and-open-source-computing-on-azure"></a>Azure 上的 Linux 和開放原始碼運算
 尋找在傳統部署模型中建立和管理以 Linux 為基礎的虛擬機器所需的所有說明文件。
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 ## <a name="get-started"></a>開始使用
 * [Azure 上的 Linux 簡介](virtual-machines-linux-intro-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -163,6 +164,6 @@ ms.openlocfilehash: 680bb7dfb401decc554637c0094a06a0a6260288
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

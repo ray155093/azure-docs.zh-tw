@@ -1,12 +1,12 @@
 ---
-title: 為加入網域的 Windows 8.1 裝置設定自動註冊裝置 | Microsoft Docs
-description: " 設定群組原則將加入網域的 Windows 8.1 裝置自動向 Azure AD 註冊的步驟。 "
+title: "為加入網域的 Windows 8.1 裝置設定自動裝置註冊 | Microsoft Docs"
+description: " 設定群組原則將加入網域的 Windows 8.1 裝置自動向 Azure AD 註冊的步驟。. "
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: femila
 manager: swadhwa
-editor: ''
-
+editor: 
+ms.assetid: 402271c6-d577-4264-8b75-fe78030b18e9
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/21/2016
 ms.author: Markvi
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2117267c409afed40094fadf546d53bf9f5d1ec3
+
 
 ---
-# <a name="configure-automatic-device-registration-for-windows-8.1-domain-joined-devices"></a>為加入網域的 Windows 8.1 裝置設定自動註冊裝置
+# <a name="configure-automatic-device-registration-for-windows-81-domain-joined-devices"></a>為加入網域的 Windows 8.1 裝置設定自動註冊裝置
 您可以使用 Active Directory 群組原則，設定加入網域的 Windows 8.1 裝置自動向 Azure AD 註冊。 若要設定群組原則，您至少必須要有一個加入 Windows Server 2012 R2 的網域，或一部安裝群組原則管理功能的 Windows 8.1 電腦。 您的網域一旦啟用了這個群組原則，任何登入電腦的網域使用者都會自動且無訊息地向 Azure AD 中的裝置物件註冊。 在 Azure AD 中，實體裝置的每一個已註冊的使用者都有一個裝置物件。請務必詳細閱讀並完成「自動向 Azure Active Directory 註冊加入網域的 Windows 裝置」中的必要條件。
 
 > [!NOTE]
@@ -24,7 +28,7 @@ ms.author: Markvi
 > 
 > 
 
-## <a name="configure-the-group-policy-for-your-windows-8.1-domain-joined-devices"></a>設定加入網域的 Windows 8.1 裝置的群組原則
+## <a name="configure-the-group-policy-for-your-windows-81-domain-joined-devices"></a>設定加入網域的 Windows 8.1 裝置的群組原則
 1. 開啟 [伺服器管理員] 並瀏覽至 [工具]  >  [群組原則管理]。
 2. 從 [群組原則管理] 瀏覽至對應到您想要啟用 **自動加入工作場所**的網域的網域節點。
 3. 以滑鼠右鍵按一下 [群組原則物件]，選取 [新增]。 指定群組原則物件的名稱，例如**自動加入工作場所**。 按一下 [確定] 。
@@ -34,7 +38,7 @@ ms.author: Markvi
 7. 選取 [啟用] 選項按鈕，然後按一下 [套用]。 按一下 [確定] 。
 8. 您現在可以將群組原則物件連結到您所選擇的位置。 若要對組織中所有加入網域的 Windows 8.1 裝置啟用此原則，請將群組原則連結到網域。
 
-## <a name="unregistering-your-windows-8.1-domain-joined-devices"></a>取消註冊加入網域的 Windows 8.1 裝置
+## <a name="unregistering-your-windows-81-domain-joined-devices"></a>取消註冊加入網域的 Windows 8.1 裝置
 您可以選擇取消註冊您加入網域的 Windows 8.1 裝置，方式如下：修改在上一節中建立的「加入工作場所群組原則」設定。 將 [自動將用戶端電腦加入工作場所] 原則設定為 [停用]。 這會防止新的裝置自動加入工作場所。
 
 遵循下列兩個選項的其中一個，取消註冊現有加入網域的 Windows 8.1 電腦：
@@ -46,11 +50,11 @@ ms.author: Markvi
      必須對每個已登入電腦且已自動加入工作場所的網域使用者重複此程序。
 * 選項 2：使用指令碼取消註冊加入網域的 Windows 8.1 裝置
   
-  1. 在 Windows 8.1 電腦上開啟命令提示字元並執行下列命令： ` %SystemRoot%\System32\AutoWorkplace.exe leave`
+      1. 在 Windows 8.1 電腦上開啟命令提示字元並執行下列命令： ` %SystemRoot%\System32\AutoWorkplace.exe leave`
 
 此命令必須在已登入電腦的每個網域使用者的環境下執行。
 
-## <a name="event-viewer-&-errors-for-windows-8.1-domain-joined-devices"></a>事件檢視器和加入網域的 Windows 8.1 裝置的錯誤
+## <a name="event-viewer--errors-for-windows-81-domain-joined-devices"></a>事件檢視器和加入網域的 Windows 8.1 裝置的錯誤
 Windows 8.1 電腦上的 Windows 事件記錄檔會顯示與裝置註冊相關的訊息。 您會找到成功和失敗事件的訊息。 
 
 事件記錄檔可以在 [事件檢視器] 的 [應用程式及服務記錄檔]  >  [Microsoft]  >  [Windows] > [加入工作場所] 下找到。
@@ -63,6 +67,9 @@ Windows 8.1 電腦上的 Windows 事件記錄檔會顯示與裝置註冊相關�
 * [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-conditional-access-automatic-device-registration.md)
 * [為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 

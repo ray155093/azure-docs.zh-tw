@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 73d3e5577d0702a93b7f4edf3bf4e29f55a053ed
-ms.openlocfilehash: 7ab51f4834f3112d4f3379acbaa16a386276cdb8
+ms.sourcegitcommit: 5d73d1203faf485d715354e68ce2ccde32562611
+ms.openlocfilehash: 99e1c8956968264fbea696b85ac084281d75f02a
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: 7ab51f4834f3112d4f3379acbaa16a386276cdb8
 * IntelliJ 或其他合適的 Java 開發環境。 此為選用步驟，但建議執行。 以下指示使用 IntelliJ。
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **啟用您的 Azure 訂用帳戶** 以使用 Data Lake Analytics 公開預覽版。 請參閱 [指示](data-lake-analytics-get-started-portal.md)。
-* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。 如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱 [使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)。 建立應用程式並產生金鑰後，也可從入口網站取得回覆 URI 和金鑰。
+* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。 如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱 [使用入口網站建立 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)。 建立應用程式並產生金鑰後，也可從入口網站取得回覆 URI 和金鑰。
 
 ## <a name="how-do-i-authenticate-using-azure-active-directory"></a>如何使用 Azure Active Directory 驗證？
 下列程式碼片段提供 **非互動式** 驗證的程式碼，其中應用程式會提供它自己的認證。
@@ -44,7 +44,9 @@ ms.openlocfilehash: 7ab51f4834f3112d4f3379acbaa16a386276cdb8
 2. 在畫面左側的專案上按一下滑鼠右鍵，然後按一下 [新增架構支援] 。 選擇 [Maven] 並按一下 [確定]。
 3. 開啟新建立的 **"pom.xml"** 檔案，並在 **\</version>** 標記和 **\<</project>** 標記之間新增下列一小段文字︰
 
-    注意︰此步驟是暫時性的，在 Maven 提供 Azure Data Lake Analytics SDK 後便不適用。 一旦 Maven 提供此 SDK 後便會更新本文。 此 SDK 未來的所有更新皆會透過 Maven 提供。
+    >[!NOTE]
+    >此步驟是暫時性的，在 Maven 提供 Azure Data Lake Analytics SDK 後便不適用。 一旦 Maven 提供此 SDK 後便會更新本文。 此 SDK 未來的所有更新皆會透過 Maven 提供。
+    >
 
         <repositories>
             <repository>
@@ -351,6 +353,6 @@ ms.openlocfilehash: 7ab51f4834f3112d4f3379acbaa16a386276cdb8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

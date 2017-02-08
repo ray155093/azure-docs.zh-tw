@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure 佇列儲存體監視 .NET 的媒體服務工作通知 | Microsoft Docs
-description: 了解如何使用 Azure 佇列儲存體監視媒體服務工作通知。程式碼範例是以 C# 撰寫，並使用 Media Services SDK for .NET。
+title: "使用 Azure 佇列儲存體監視 .NET 的媒體服務工作通知 | Microsoft Docs"
+description: "了解如何使用 Azure 佇列儲存體監視媒體服務工作通知。 程式碼範例是以 C# 撰寫，並使用 Media Services SDK for .NET。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: f535d0b5-f86c-465f-81c6-177f4f490987
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,47 +14,51 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 876b6a81c5fba7cd9567f913860dd5bdc2391c15
+
 
 ---
-# 使用 Azure 佇列儲存體監視 .NET 的媒體服務工作通知
-執行作業時，您通常需要設法追蹤作業進度。使用 Azure 佇列儲存體監視媒體服務工作通知 (如本主題中所述)，或定義 StateChanged 事件處理常式 (如[本主題](media-services-check-job-progress.md)中所述)，即可檢查進度。
+# <a name="use-azure-queue-storage-to-monitor-media-services-job-notifications-with-net"></a>使用 Azure 佇列儲存體監視 .NET 的媒體服務工作通知
+執行作業時，您通常需要設法追蹤作業進度。 使用 Azure 佇列儲存體監視媒體服務工作通知 (如本主題中所述)，或定義 StateChanged 事件處理常式 (如 [本主題](media-services-check-job-progress.md) 中所述)，即可檢查進度。  
 
-## 使用 Azure 佇列儲存體監視媒體服務工作通知
-Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息給 [Azure 佇列儲存體](../storage/storage-dotnet-how-to-use-queues.md#what-is)。本主題示範如何從佇列儲存體取得這些通知訊息。
+## <a name="use-azure-queue-storage-to-monitor-media-services-job-notifications"></a>使用 Azure 佇列儲存體監視媒體服務工作通知
+Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息給 [Azure 佇列儲存體](../storage/storage-dotnet-how-to-use-queues.md)。 本主題示範如何從佇列儲存體取得這些通知訊息。
 
-使用者可以從世界各個角落存取之前已傳送至佇列儲存體的訊息。Azure 佇列訊息架構十分可靠，而且具有高擴充性。建議利用其他方法輪詢佇列儲存體。
+使用者可以從世界各個角落存取之前已傳送至佇列儲存體的訊息。 Azure 佇列訊息架構十分可靠，而且具有高擴充性。 建議利用其他方法輪詢佇列儲存體。
 
 舉一個常見的接聽媒體服務通知案例：您正在設計一套內容管理系，而且當程式碼設計好之後，這套系統需要執行其他一些工作 (例如, 觸發工作流程的下一個步驟或者發佈內容)。
 
-### 考量
+### <a name="considerations"></a>考量
 當您設計的媒體服務應用程式會使用 Azure 儲存體佇列時，請考慮下列幾點。
 
-* 佇列服務不保證會按照先進先出 (FIFO) 的順序傳遞訊息。如需詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
+* 佇列服務不保證會按照先進先出 (FIFO) 的順序傳遞訊息。 如需詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
 * Azure 儲存體佇列不是推播服務；您必須輪詢佇列。
-* 您可以有任意數目的佇列。如需詳細資訊，請參閱[佇列服務 REST API](https://msdn.microsoft.com/library/azure/dd179363.aspx)。
-* Azure 儲存體佇列存在某些限制，如需具體的描述，請參閱以下文章：[Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
+* 您可以有任意數目的佇列。 如需詳細資訊，請參閱 [佇列服務 REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/Queue-Service-REST-API)。
+* Azure 儲存體佇列存在某些限制，如需具體的描述，請參閱以下文章： [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)。
 
-### 程式碼範例
+### <a name="code-example"></a>程式碼範例
 本節的程式碼會執行下列動作：
 
-1. 定義一個會對應至通知訊息格式的 **EncodingJobMessage** 類別。程式碼會將那些從佇列接收到的訊息還原序列化，然後變成 **EncodingJobMessage** 類型的物件。
-2. 從 app.config 檔案載入媒體服務和儲存體帳戶資訊。使用此資訊來建立 **CloudMediaContext** 和 **CloudQueue** 物件。
+1. 定義一個會對應至通知訊息格式的 **EncodingJobMessage** 類別。 程式碼會將那些從佇列接收到的訊息還原序列化，然後變成 **EncodingJobMessage** 類型的物件。
+2. 從 app.config 檔案載入媒體服務和儲存體帳戶資訊。 使用此資訊來建立 **CloudMediaContext** 和 **CloudQueue** 物件。
 3. 建立一個會接收編碼工作相關通知訊息的佇列。
 4. 建立一個會對應到佇列的通知端點。
-5. 將通知端點附加至工作，然後提交編碼工作。您可以將多個通知端點附加至工作。
+5. 將通知端點附加至工作，然後提交編碼工作。 您可以將多個通知端點附加至工作。
 6. 在這個範例中，我們只想知道工作的最終狀態，所以我們將 **NotificationJobState.FinalStatesOnly** 傳遞給 **AddNew** 方法。
-   
+
         job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly, _notificationEndPoint);
-7. 如果您傳遞 NotificationJobState.All，表示您想取得所有的狀態變更通知：[已排入佇列] -> [已排程] -> [處理中] -> [已完成]。不過，如先前所述，Azure 儲存體佇列服務不保證會按照順序傳遞。您可以使用 Timestamp 屬性 (定義在以下範例中的 EncodingJobMessage 類型) 來排序訊息。您可能會收到重複的通知訊息。請使用 ETag 屬性 (定義在 EncodingJobMessage 類型上) 來檢查重複的通知訊息。某些狀態變更通知也有可能被略過。
-8. 每隔 10 秒檢查佇列一次，等候工作進入「已完成」狀態。處理好訊息之後，請予以刪除。
+7. 如果您傳遞 NotificationJobState.All，表示您想取得所有的狀態變更通知：[已排入佇列] -> [已排程] -> [處理中] -> [已完成]。 不過，如先前所述，Azure 儲存體佇列服務不保證會按照順序傳遞。 您可以使用 Timestamp 屬性 (定義在以下範例中的 EncodingJobMessage 類型) 來排序訊息。 您可能會收到重複的通知訊息。 請使用 ETag 屬性 (定義在 EncodingJobMessage 類型上) 來檢查重複的通知訊息。 某些狀態變更通知也有可能被略過。
+8. 每隔 10 秒檢查佇列一次，等候工作進入「已完成」狀態。 處理好訊息之後，請予以刪除。
 9. 刪除佇列和通知端點。
 
 > [!NOTE]
 > 要想監視工作的狀態，建議您接聽通知訊息，如下列範例所示。
-> 
-> 或者，使用 **IJob.State** 屬性檢查工作狀態。**IJob** 的狀態尚未設定成 [已完成] 之前，您可能會先收到一則有關工作已完成的通知訊息。**IJob.State** 屬性會延遲片刻再反映正確的狀態。
-> 
-> 
+>
+> 或者，使用 **IJob.State** 屬性檢查工作狀態。  **IJob** 的狀態尚未設定成 [已完成] 之前，您可能會先收到一則有關工作已完成的通知訊息。 **IJob.State** 屬性會延遲片刻再反映正確的狀態。
+>
+>
 
     using System;
     using System.Linq;
@@ -75,14 +79,14 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
     {
         public class EncodingJobMessage
         {
-            // MessageVersion is used for version control. 
+            // MessageVersion is used for version control.
             public String MessageVersion { get; set; }
 
-            // Type of the event. Valid values are 
+            // Type of the event. Valid values are
             // JobStateChange and NotificationEndpointRegistration.
             public String EventType { get; set; }
 
-            // ETag is used to help the customer detect if 
+            // ETag is used to help the customer detect if
             // the message is a duplicate of another message previously sent.
             public String ETag { get; set; }
 
@@ -99,9 +103,9 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
             //          Scheduled, Processing, Canceling, Cancelled, Error, Finished
 
             // For the NotificationEndpointRegistration event the values are:
-            //     NotificationEndpointId- Id of the NotificationEndpoint 
+            //     NotificationEndpointId- Id of the NotificationEndpoint
             //          that triggered the notification.
-            //     State- The state of the Endpoint. 
+            //     State- The state of the Endpoint.
             //          Valid values are: Registered and Unregistered.
 
             public IDictionary<string, object> Properties { get; set; }
@@ -126,14 +130,14 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
 
                 string endPointAddress = Guid.NewGuid().ToString();
 
-                // Create the context. 
+                // Create the context.
                 _context = new CloudMediaContext(mediaServicesAccountName, mediaServicesAccountKey);
 
                 // Create the queue that will be receiving the notification messages.
                 _queue = CreateQueue(storageConnectionString, endPointAddress);
 
                 // Create the notification point that is mapped to the queue.
-                _notificationEndPoint = 
+                _notificationEndPoint =
                         _context.NotificationEndPoints.Create(
                         Guid.NewGuid().ToString(), NotificationEndPointType.AzureQueue, endPointAddress);
 
@@ -172,15 +176,15 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My MP4 to Smooth Streaming encoding job");
 
-                //Create an encrypted asset and upload the mp4. 
-                IAsset asset = CreateAssetAndUploadSingleFile(AssetCreationOptions.StorageEncrypted, 
+                //Create an encrypted asset and upload the mp4.
+                IAsset asset = CreateAssetAndUploadSingleFile(AssetCreationOptions.StorageEncrypted,
                     inputMediaFilePath);
 
-                // Get a media processor reference, and pass to it the name of the 
+                // Get a media processor reference, and pass to it the name of the
                 // processor to use for the specific task.
                 IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-                // Create a task with the conversion details, using a configuration file. 
+                // Create a task with the conversion details, using a configuration file.
                 ITask task = job.Tasks.AddNew("My encoding Task",
                     processor,
                     "H264 Multiple Bitrate 720p",
@@ -194,7 +198,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
                     AssetCreationOptions.None);
 
                 // Add a notification point to the job. You can add multiple notification points.  
-                job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly, 
+                job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly,
                     _notificationEndPoint);
 
                 job.Submit();
@@ -237,7 +241,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
                                 Console.WriteLine("    {0}: {1}", property.Key, property.Value);
                             }
 
-                            // We are only interested in messages 
+                            // We are only interested in messages
                             // where EventType is "JobStateChange".
                             if (encodingJobMsg.EventType == "JobStateChange")
                             {
@@ -254,7 +258,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
 
                                     if (newJobState == (JobState)expectedState)
                                     {
-                                        Console.WriteLine("job with Id: {0} reached expected state: {1}", 
+                                        Console.WriteLine("job with Id: {0} reached expected state: {1}",
                                             jobId, newJobState);
                                         jobReachedExpectedState = true;
                                         break;
@@ -271,7 +275,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
                     bool timedOut = (timeDiff.TotalSeconds > timeOutInSeconds);
                     if (timedOut)
                     {
-                        Console.WriteLine(@"Timeout for checking job notification messages, 
+                        Console.WriteLine(@"Timeout for checking job notification messages,
                                             latest found state ='{0}', wait time = {1} secs",
                             jobState,
                             timeDiff.TotalSeconds);
@@ -283,7 +287,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
 
             static private IAsset CreateAssetAndUploadSingleFile(AssetCreationOptions assetCreationOptions, string singleFilePath)
             {
-                var asset = _context.Assets.Create("UploadSingleFile_" + DateTime.UtcNow.ToString(), 
+                var asset = _context.Assets.Create("UploadSingleFile_" + DateTime.UtcNow.ToString(),
                     assetCreationOptions);
 
                 var fileName = Path.GetFileName(singleFilePath);
@@ -312,7 +316,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
         }
     }
 
-上述範例會產生下列輸出。您的值會不一樣。
+上述範例會產生下列輸出。 您的值會不一樣。
 
     Created assetFile BigBuckBunny.mp4
     Upload BigBuckBunny.mp4
@@ -336,16 +340,20 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
         NewState: Finished
         OldState: Processing
         AccountName: westeuropewamsaccount
-    job with Id: nb:jid:UUID:526291de-f166-be47-b62a-11ffe6d4be54 reached expected 
+    job with Id: nb:jid:UUID:526291de-f166-be47-b62a-11ffe6d4be54 reached expected
     State: Finished
 
 
-## 後續步驟
+## <a name="next-step"></a>後續步驟
 檢閱媒體服務學習路徑
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Jan17_HO2-->
+
+

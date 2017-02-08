@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 10/24/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 8e03f7b3d4b9c17b08aca033f44ebfc5f3332eec
+ms.sourcegitcommit: 312231f395f19fde98431c24b71ce7cec3061eaf
+ms.openlocfilehash: 4a1d5d706cbfb5c42a36fd03033aa361ef3d4d11
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 8e03f7b3d4b9c17b08aca033f44ebfc5f3332eec
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-create-account.md)
 > * [PowerShell](media-services-manage-with-powershell.md)
-> * [REST](http://msdn.microsoft.com/library/azure/dn194267.aspx)
+> * [REST](https://docs.microsoft.com/rest/api/media/mediaservice)
 > 
 > [!NOTE]
 > 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
@@ -66,7 +66,7 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
    5. 在 [儲存體帳戶] 中，選取儲存體帳戶以從媒體服務帳戶提供媒體內容的 Blob 儲存體。 您可以選取與媒體服務帳戶相同地理區域中的現有儲存體帳戶，也可以建立儲存體帳戶。 新的儲存體帳戶會建立於相同的區域中。 儲存體帳戶名稱的規則會與媒體服務帳戶相同。
       
        在 [這裡](../storage/storage-introduction.md)深入了解儲存體。
-   6. 選取 [釘選到儀表板]  以查看帳戶部署的進度。
+   6. 選取 **[釘選到儀表板] ** 以查看帳戶部署的進度。
 4. 按一下表單底部的 [建立]  。
    
     成功建立帳戶之後，狀態會變更為 [執行中] 。 
@@ -100,6 +100,6 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

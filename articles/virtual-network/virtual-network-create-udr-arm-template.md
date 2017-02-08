@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 8be23107d3a377854a4bd17d99652fb5b84c99dc
-ms.openlocfilehash: d1b92b46b23dc4410089c5b842439d81b989d1d1
+ms.sourcegitcommit: ba7a67b8ae57da165f45bd3552a3dfac5f4ef64b
+ms.openlocfilehash: 6e6afd1088ef02fcad6126dfe6b6e3f0b4dff31d
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: d1b92b46b23dc4410089c5b842439d81b989d1d1
 - [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
-> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../resource-manager-deployment-model.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。 本文涵蓋之內容包括資源管理員部署模型。 
+> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。 本文涵蓋之內容包括資源管理員部署模型。 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
@@ -114,7 +114,7 @@ ms.openlocfilehash: d1b92b46b23dc4410089c5b842439d81b989d1d1
 ## <a name="deploy-the-template-by-using-click-to-deploy"></a>使用按一下即部署來部署範本
 公用儲存機制中可用的範例範本會使用一個包含預設值的參數檔案，這些預設值可用來產生上述案例。 若要使用「按一下即部署」來部署此範本，請依循[此連結](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)，按一下 [部署至 Azure]，視情況取代預設參數值，再依循入口網站中的指示。
 
-1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
+1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
 2. 執行下列命令以建立資源群組：
 
     ```powershell
@@ -409,6 +409,6 @@ ms.openlocfilehash: d1b92b46b23dc4410089c5b842439d81b989d1d1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

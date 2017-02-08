@@ -1,20 +1,24 @@
 ---
-title: 自動調整與虛擬機器擴展集 | Microsoft Docs
-description: 深入了解使用診斷和自動調整資源，以自動調整擴展集中的虛擬機器。
+title: "自動調整與虛擬機器擴展集 | Microsoft Docs"
+description: "深入了解使用診斷和自動調整資源，以自動調整擴展集中的虛擬機器。"
 services: virtual-machine-scale-sets
-documentationcenter: ''
-author: davidmu1
+documentationcenter: 
+author: Thraka
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: d29a3385-179e-4331-a315-daa7ea5701df
 ms.service: virtual-machine-scale-sets
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
-ms.author: davidmu
+ms.date: 10/18/2016
+ms.author: adegeo
+translationtype: Human Translation
+ms.sourcegitcommit: 090374b057a62251e40ccc41f60f61e84e08a03f
+ms.openlocfilehash: ff137ead5e3490a129b36c959040d3571bff7669
+
 
 ---
 # <a name="automatic-scaling-and-virtual-machine-scale-sets"></a>自動調整與虛擬機器擴展集
@@ -22,10 +26,10 @@ ms.author: davidmu
 
 自動調整是自動化程序，可協助減輕管理額外負荷。 透過減少額外負荷，您便不需要持續監視系統效能或決定資源的管理方式。 調整是一項彈性的程序。 系統可以隨著負載提升加入更多資源，並隨著需求的降低移除資源，以將成本降至最低並維持效能層級。
 
-使用 Azure Resource Manager 範本在擴展集上設定自動調整，方法是使用 Azure PowerShell 或使用 Azure CLI。
+使用 Azure Resource Manager 範本、Azure PowerShell、Azure CLI 或 Azure 入口網站，在擴展集上設定自動調整。
 
 ## <a name="set-up-scaling-by-using-resource-manager-templates"></a>使用 Resource Manager 範本，設定調整
-您不是分開部署與管理應用程式的每個資源，而是使用範本，藉此經由協調的單一作業來部署所有資源。 在範本中，會定義應用程式資源，且會針對不同的環境指定部署參數。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。 若要深入了解，請參閱 [編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
+您不是分開部署與管理應用程式的每個資源，而是使用範本，藉此經由協調的單一作業來部署所有資源。 在範本中，會定義應用程式資源，且會針對不同的環境指定部署參數。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。 若要深入了解，請參閱 [編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 在範本中，您可以指定容量元素︰
 
@@ -193,14 +197,17 @@ autoscaleSettings 資源會使用來自診斷擴充的資訊，以決定是否�
 經過五分鐘的冷卻期間之後，如果機器上的執行緒平均數目仍然超過 600，則會將另一部機器新增至集合。 如果平均執行緒計數保持在 550 以下，則擴展集的容量會減少 1，且機器會從集合中移除。
 
 ## <a name="set-up-scaling-using-azure-powershell"></a>使用 Azure PowerShell 設定調整
-若要查看使用 PowerShell 設定自動調整的範例，請參閱 [Azure Insights PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)。
+若要查看使用 PowerShell 設定自動調整的範例，請參閱 [Azure 監視器 PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)。
 
 ## <a name="set-up-scaling-using-azure-cli"></a>使用 Azure CLI 設定調整
-若要查看使用 Azure CLI 設定自動調整的範例，請參閱 [Azure Insights 跨平台 CLI 快速入門範例](../monitoring-and-diagnostics/insights-cli-samples.md)。
+若要查看使用 Azure CLI 設定自動調整的範例，請參閱 [Azure 監視器跨平台 CLI 快速入門範例](../monitoring-and-diagnostics/insights-cli-samples.md)。
+
+## <a name="set-up-scaling-using-the-azure-portal"></a>使用 Azure 入口網站設定調整
+若要查看使用 Azure 入口網站來設定自動調整的範例，請參閱[使用 Azure 入口網站建立虛擬機器擴展集](virtual-machine-scale-sets-portal-create.md)。
 
 ## <a name="investigate-scaling-actions"></a>調查調整動作
-* [Azure 入口網站]() - 目前，使用入口網站可以取得限定數量的資訊。
-* [Azure 資源總管]() - 此工具是瀏覽擴展集目前狀態的最佳選項。 遵循此路徑，您應會看到您所建立擴展集的執行個體檢視︰subscriptions > {您的訂用帳戶} > resourceGroups > {您的資源群組} > providers > Microsoft.Compute > virtualMachineScaleSets > {您的擴展集} > virtualMachines
+* Azure 入口網站 - 目前，使用入口網站可以取得限定數量的資訊。
+* Azure 資源總管 - 此工具是瀏覽擴展集目前狀態的最佳選項。 遵循此路徑，您應會看到您所建立擴展集的執行個體檢視︰subscriptions > {您的訂用帳戶} > resourceGroups > {您的資源群組} > providers > Microsoft.Compute > virtualMachineScaleSets > {您的擴展集} > virtualMachines
 * Azure PowerShell - 使用下列命令可取得某些資訊：
   
         Get-AzureRmResource -name vmsstest1 -ResourceGroupName vmsstestrg1 -ResourceType Microsoft.Compute/virtualMachineScaleSets -ApiVersion 2015-06-15
@@ -209,11 +216,14 @@ autoscaleSettings 資源會使用來自診斷擴充的資訊，以決定是否�
 
 ## <a name="next-steps"></a>後續步驟
 * 請參閱 [在虛擬機器擴展集中自動調整機器](virtual-machine-scale-sets-windows-autoscale.md) ，以查看如何建立已設定自動調整的擴展集。
-* 在 [Azure Insights PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)
-* 若要深入了解通知功能，請參閱 [使用自動調整動作在 Azure Insights 中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)。
-* 深入了解如何 [使用稽核記錄，在 Azure Insights 中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
+* 在 [Azure 監視器 PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)中找到 Azure 監視器監視功能的範例
+* 若要深入了解通知功能，請參閱[使用自動調整動作在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)。
+* 深入了解如何[使用稽核記錄，在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
 * 深入了解 [進階自動調整案例](virtual-machine-scale-sets-advanced-autoscale.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO2-->
 
 

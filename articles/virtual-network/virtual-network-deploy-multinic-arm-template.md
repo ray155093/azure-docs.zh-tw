@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 7d969e4d0cc804320f4fb9c7384e72158c5a32c0
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: 05a3d3e1c6c608b1dcfd0a4d4ed795cb1d22456b
 
 
 ---
@@ -245,7 +245,7 @@ ms.openlocfilehash: 7d969e4d0cc804320f4fb9c7384e72158c5a32c0
 ![後端資源群組](./media/virtual-network-deploy-multinic-arm-template/Figure2.png)
 
 ## <a name="deploy-the-template-by-using-powershell"></a>使用 PowerShell 部署範本
-若要使用 PowerShell 來部署您下載的範本，請完成[安裝和設定 PowerShell](../powershell-install-configure.md) 文章中的步驟來安裝和設定 PowerShell，然後完成下列步驟︰
+若要使用 PowerShell 來部署您下載的範本，請完成[安裝和設定 PowerShell](/powershell/azureps-cmdlets-docs) 文章中的步驟來安裝和設定 PowerShell，然後完成下列步驟︰
 
 執行 **`New-AzureRmResourceGroup`** Cmdlet，以使用範本建立資源群組。
 
@@ -319,6 +319,6 @@ TemplateFile 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

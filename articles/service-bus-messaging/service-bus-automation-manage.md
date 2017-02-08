@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/29/2016
+ms.date: 01/10/2017
 ms.author: magoedte;csand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1912275b05948525486e4e30e2065bd7f63630cb
+ms.sourcegitcommit: 994a379129bffd7457912bc349f240a970aed253
+ms.openlocfilehash: 4817cda757b9f85f6225237f79293860c990ca88
 
 
 ---
@@ -31,7 +31,7 @@ Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，�
 將您的雲端管理工作交由「Azure 自動化」自動執行，以減少營運負擔並釋出 IT 和開發維運人力，使其專注於能夠為企業創造價值的工作上。
 
 ## <a name="how-can-azure-automation-help-manage-azure-service-bus"></a>Azure 自動化如何有助於管理 Azure 服務匯流排？
-您可以在 Azure 自動化中使用 [服務匯流排 REST API](https://msdn.microsoft.com/library/azure/mt639375.aspx)來管理服務匯流排。 在 Azure 自動化內，您可以利用 REST API 執行 PowerShell 指令碼，以執行許多服務匯流排工作。 您也可以將 Azure 自動化中的這些 REST API 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
+您可以在 Azure 自動化中使用 [服務匯流排 REST API](https://docs.microsoft.com/rest/api/servicebus/)來管理服務匯流排。 在 Azure 自動化內，您可以利用 REST API 執行 PowerShell 指令碼，以執行許多服務匯流排工作。 您也可以將 Azure 自動化中的這些 REST API 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
 
 以下是使用 PowerShell 來管理 Azure 服務匯流排的一些範例︰
 
@@ -50,6 +50,6 @@ Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

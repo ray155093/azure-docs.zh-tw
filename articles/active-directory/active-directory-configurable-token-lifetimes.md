@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/06/2016
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f61d23fec6badb8dd53379d183b177e4c19e5711
+ms.sourcegitcommit: e8b484ec7eff26919d4fb3869baf9f358c2522cb
+ms.openlocfilehash: 6e5d96ff9754954eb745f14c8248609775bbf290
 
 
 ---
@@ -27,11 +27,11 @@ ms.openlocfilehash: f61d23fec6badb8dd53379d183b177e4c19e5711
 > 
 
 ## <a name="introduction"></a>簡介
-這項功能可供系統管理員和開發人員用來指定 Azure AD 所簽發之權杖的存留期。 不論是針對租用戶中所有的應用程式、針對多租用戶應用程式，還是針對租用戶中特定的「服務主體」，都可以設定權杖存留期。
+這項功能可供系統管理員和開發人員用來指定 Azure AD 所簽發之權杖的存留期。 不論是針對組織中所有的應用程式、針對多租用戶 (多組織) 應用程式，還是針對組織中特定的服務主體，都可以設定權杖存留期。
 
-在 Azure AD 中，原則專案代表在租用戶中個別應用程式或所有應用程式上強制執行的一組規則。  每個類型的原則都具有包含一組屬性的獨特結構，這些屬性會接著套用至它們已被指派的物件。
+在 Azure AD 中，原則專案代表在組織中個別應用程式或所有應用程式上強制執行的一組規則。  每個類型的原則都具有包含一組屬性的獨特結構，這些屬性會接著套用至它們已被指派的物件。
 
-您可以將原則指定為租用戶的預設原則。 接著，只要此原則不被優先順序更高的原則覆寫，就會對該租用戶內的所有應用程式生效。 您也可以將原則指派給特定的應用程式。 優先順序會因原則類型而異。
+您可以將原則指定為組織的預設原則。 接著，只要此原則不被優先順序更高的原則覆寫，就會對該組織內的所有應用程式生效。 您也可以將原則指派給特定的應用程式。 優先順序會因原則類型而異。
 
 您可以針對重新整理權杖、存取權杖及識別碼權杖設定權杖存留期。
 
@@ -82,12 +82,12 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 | 重新整理權杖最大壽命 (針對機密用戶端簽發) |重新整理權杖 (針對機密用戶端簽發) |直到撤銷為止 |
 
 ### <a name="priority-and-evaluation-of-policies"></a>原則的優先順序和評估
-您可以建立「權杖存留期」原則，並將其指派給特定的應用程式、租用戶及服務主體。 這意謂著可以將多個原則套用至某個特定的應用程式。 生效的「權杖存留期」原則會遵循下列規則：
+您可以建立「權杖存留期」原則，並將其指派給特定的應用程式、組織及服務主體。 這意謂著可以將多個原則套用至某個特定的應用程式。 生效的「權杖存留期」原則會遵循下列規則：
 
 * 如果已將原則明確指派給服務主體，就會強制執行該原則。 
-* 如果未將任何原則明確指派給服務主體，則會強制執行指派給該服務主體之父租用戶的原則。 
-* 如果未將任何原則明確指派給服務主體或租用戶，則會強制執行指派給應用程式的原則。 
-* 如果未將任何原則明確指派給服務主體、租用戶或應用程式物件，將會強制執行預設值 (請參閱上表)。
+* 如果未將任何原則明確指派給服務主體，則會強制執行指派給該服務主體之父組織的原則。 
+* 如果未將任何原則明確指派給服務主體或組織，則會強制執行指派給應用程式的原則。 
+* 如果未將任何原則明確指派給服務主體、組織或應用程式物件，將會強制執行預設值 (請參閱上表)。
 
 如需有關 Azure AD 中應用程式物件與服務主體物件之間關係的詳細資訊，請參閱 [Azure Active Directory 中的應用程式和服務主體物件](active-directory-application-objects.md)。
 
@@ -98,16 +98,16 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 > 
 > 使用者想要存取 A 和 B 這兩個 Web 應用程式。 
 > 
-> * 兩個應用程式都在相同的父租用戶中。 
-> * 「工作階段權杖最大壽命」為 8 小時的權杖存留期原則 1 已設定為父租用戶的預設值。
+> * 兩個應用程式都在相同的父組織中。 
+> * 「工作階段權杖最大壽命」為 8 小時的權杖存留期原則 1 已設定為父組織的預設值。
 > * Web 應用程式 A 是一個一般用途 Web 應用程式且未與任何原則連結。 
 > * Web 應用程式 B 用於高機密性程序，且其服務主體與「工作階段權杖最大壽命」為 30 分鐘的權杖存留期原則 2 連結。
 > 
 > 在下午 12:00，使用者開啟新的瀏覽器工作階段並嘗試存取 Web 應用程式 A。系統會將使用者重新導向到 Azure AD 並要求使用者登入。 這會在瀏覽器中留下一個帶有工作階段權杖的 Cookie。 系統會將使用者重新導向回 Web 應用程式 A，其中會提供一個可讓使用者存取該應用程式的識別碼權杖。
 > 
-> 接著，在下午 12:15，使用者嘗試存取 Web 應用程式 B。瀏覽器會重新導向到 Azure AD 來偵測工作階段 Cookie。 Web 應用程式 B 的服務主體會與原則 2 連結，但同時也是帶有預設原則 1 之父租用戶的一部分。 原則 2 會生效，因為與服務主體連結之原則的優先順序高於租用戶預設原則。 工作階段權杖原先是在過去 30 分鐘內簽發的，因此被視為有效。 系統會將使用者重新導向回 Web 應用程式 B，其中會提供一個授與使用者存取權的識別碼權杖。
+> 接著，在下午 12:15，使用者嘗試存取 Web 應用程式 B。瀏覽器會重新導向到 Azure AD 來偵測工作階段 Cookie。 Web 應用程式 B 的服務主體會與原則 2 連結，但同時也是帶有預設原則 1 之父組織的一部分。 原則 2 會生效，因為與服務主體連結之原則的優先順序高於組織預設原則。 工作階段權杖原先是在過去 30 分鐘內簽發的，因此被視為有效。 系統會將使用者重新導向回 Web 應用程式 B，其中會提供一個授與使用者存取權的識別碼權杖。
 > 
-> 在下午 1:00，使用者嘗試瀏覽至 Web 應用程式 A。系統會將使用者重新導向到 Azure AD。 Web 應用程式 A 並未與任何原則連結，但由於它位於帶有預設原則 1 的租用戶中，因此這個原則會生效。 系統偵測到工作階段 Cookie 原先是在過去 8 小時內簽發的，因此會以無訊息方式將使用者重新導向回 Web 應用程式 A 並提供一個新的識別碼權杖，而不需重新進行驗證。
+> 在下午 1:00，使用者嘗試瀏覽至 Web 應用程式 A。系統會將使用者重新導向到 Azure AD。 Web 應用程式 A 並未與任何原則連結，但由於它位於帶有預設原則 1 的組織中，因此這個原則會生效。 系統偵測到工作階段 Cookie 原先是在過去 8 小時內簽發的，因此會以無訊息方式將使用者重新導向回 Web 應用程式 A 並提供一個新的識別碼權杖，而不需重新進行驗證。
 > 
 > 使用者立即嘗試存取 Web 應用程式 B。系統會將使用者重新導向到 Azure AD。 如同之前，原則 2 會生效。 由於權杖是在超過 30 分鐘之前簽發的，因此系統會接著提示使用者重新輸入其認證，然後簽發全新的工作階段權杖和識別碼權杖。 接著，使用者便可存取 Web 應用程式 B。
 > 
@@ -169,7 +169,7 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 縮短最大壽命將會強制使用者更頻繁地進行驗證。 由於單一要素驗證的安全性被視為比多重要素驗證低，因此建議將此原則設定為等於或大於「單一要素工作階段權杖最大壽命」原則的值。
 
 ## <a name="sample-token-lifetime-policies"></a>範例權杖存留期原則
-能夠為應用程式、服務主體及您整體租用戶建立及管理權杖存留期，揭露了各種在 Azure AD 中可能的新案例。  我們將逐步解說一些常見的原則案例，這些案例將協助您強制實行下列各項的新規則：
+能夠為應用程式、服務主體及您整體組織建立及管理權杖存留期，揭露了各種在 Azure AD 中可能的新案例。  我們將逐步解說一些常見的原則案例，這些案例將協助您強制實行下列各項的新規則：
 
 * 權杖存留期
 * 權杖最大閒置時間
@@ -177,26 +177,26 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 
 我們將逐步解說一些案例，包括：
 
-* 管理租用戶的預設原則
+* 管理組織的預設原則
 * 為 Web 登入建立原則
 * 為呼叫 Web API 的原生應用程式建立原則
 * 管理進階原則 
 
 ### <a name="prerequisites"></a>必要條件
-在範例案例中，我們將在應用程式、服務主體及您的整體租用戶上建立、更新、連結及刪除原則。  如果您不熟悉 Azure AD，請先參閱[這篇文章](active-directory-howto-tenant.md)來協助您開始使用，然後再繼續進行這些範例。  
+在範例案例中，我們將在應用程式、服務主體及您的整體組織上建立、更新、連結及刪除原則。  如果您不熟悉 Azure AD，請先參閱[這篇文章](active-directory-howto-tenant.md)來協助您開始使用，然後再繼續進行這些範例。  
 
 1. 若要開始，請下載最新的 [Azure AD PowerShell Cmdlet 預覽版](https://www.powershellgallery.com/packages/AzureADPreview)。 
 2. 有了 Azure AD PowerShell Cmdlet 之後，請執行 Connect 命令來登入您的 Azure AD 系統管理員帳戶。 每次您啟動新工作階段時，都必須執行此操作。
    
      Connect-AzureAD -Confirm
-3. 執行下列命令以查看已在您租用戶中建立的所有原則。  在下列案例中的大多數操作之後，都應該使用此命令。  它將協助您取得原則的「物件識別碼」。 
+3. 執行下列命令以查看已在您組織中建立的所有原則。  在下列案例中的大多數操作之後，都應該使用此命令。  它將協助您取得原則的「物件識別碼」。 
    
      Get-AzureADPolicy
 
-### <a name="sample-managing-a-tenants-default-policy"></a>範例：管理租用戶的預設原則
-在此範例中，我們將建立可讓使用者在您整個租用戶中降低登入頻率的原則。 
+### <a name="sample-managing-a-organizations-default-policy"></a>範例：管理組織的預設原則
+在此範例中，我們將建立可讓使用者在您整個組織中降低登入頻率的原則。 
 
-為了這樣做，我們將為「單一要素重新整理權杖」建立一個在整個租用戶套用的權杖存留期原則。 此原則將套用至您租用戶中的每個應用程式，以及每個尚未設定原則的服務主體。 
+為了這樣做，我們將為「單一要素重新整理權杖」建立一個在整個組織套用的權杖存留期原則。 此原則將套用至您組織中的每個應用程式，以及每個尚未設定原則的服務主體。 
 
 1. **建立權杖存留期原則。** 
 
@@ -212,7 +212,7 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 
 接著，執行下列命令來建立此原則。 
 
-    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1, `"MaxAgeSingleFactor`":`"until-revoked`"}}") -DisplayName TenantDefaultPolicyScenario -IsTenantDefault $true -Type TokenLifetimePolicy
+    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1, `"MaxAgeSingleFactor`":`"until-revoked`"}}") -DisplayName OrganizationDefaultPolicyScenario -IsOrganizationDefault $true -Type TokenLifetimePolicy
 
 若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
@@ -221,7 +221,7 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 
 您已決定讓第一個原則不要像您服務所需的那樣嚴格，並已決定讓「單一要素重新整理權杖」在 2 天後到期。 執行下列命令。 
 
-    Set-AzureADPolicy -ObjectId <ObjectID FROM GET COMMAND> -DisplayName TenantDefaultPolicyUpdatedScenario -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"2.00:00:00`"}}")
+    Set-AzureADPolicy -ObjectId <ObjectID FROM GET COMMAND> -DisplayName OrganizationDefaultPolicyUpdatedScenario -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"2.00:00:00`"}}")
 
 &nbsp;&nbsp;3.**大功告成！** 
 
@@ -232,14 +232,14 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 
 這個 Web 登入原則會將「存取權杖」/「識別碼權杖」的存留期及「單一要素工作階段權杖最大壽命」設定為 2 小時。
 
-    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"AccessTokenLifetime`":`"02:00:00`",`"MaxAgeSessionSingleFactor`":`"02:00:00`"}}") -DisplayName WebPolicyScenario -IsTenantDefault $false -Type TokenLifetimePolicy
+    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"AccessTokenLifetime`":`"02:00:00`",`"MaxAgeSessionSingleFactor`":`"02:00:00`"}}") -DisplayName WebPolicyScenario -IsOrganizationDefault $false -Type TokenLifetimePolicy
 
 若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
     Get-AzureADPolicy
 &nbsp;&nbsp;2.  **將原則指派給服務主體。**
 
-我們將把這個新原則與服務主體連結。  您也將需要一個可存取服務主體之 **ObjectId** 的方式。 您可以查詢 [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) 或移至我們的 [Graph Explorer 工具](https://graphexplorer.cloudapp.net/)並登入您的 Azure AD 帳戶，來查看您所有租用戶的服務主體。 
+我們將把這個新原則與服務主體連結。  您也將需要一個可存取服務主體之 **ObjectId** 的方式。 您可以查詢 [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) 或移至我們的 [Graph Explorer 工具](https://graphexplorer.cloudapp.net/)並登入您的 Azure AD 帳戶，來查看您所有組織的服務主體。 
 
 有了 **ObjectId** 之後，請執行下列命令。
 
@@ -249,18 +249,13 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
  
 
 ### <a name="sample-creating-a-policy-for-native-apps-calling-a-web-api"></a>範例：為呼叫 Web API 的原生應用程式建立原則
-> [!NOTE]
-> 將原則連結至目前已停用的應用程式。  我們正努力在近期推出這項功能。  當有這項功能可用時，就會立即更新此頁面。
-> 
-> 
-
 在此範例中，我們將建立要求使用者降低驗證頻率的原則，而此原則將延長使用者可處於閒置狀態而不需再次驗證的時間。 此原則將套用至 Web API，如此一來，當原生應用程式要求它作為資源時，就會套用此原則。
 
 1. **建立權杖存留期原則。** 
 
 此命令會為 Web API 建立一個嚴格的原則。 
 
-    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"30.00:00:00`",`"MaxAgeMultiFactor`":`"until-revoked`",`"MaxAgeSingleFactor`":`"180.00:00:00`"}}") -DisplayName WebApiDefaultPolicyScenario -IsTenantDefault $false -Type TokenLifetimePolicy
+    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"30.00:00:00`",`"MaxAgeMultiFactor`":`"until-revoked`",`"MaxAgeSingleFactor`":`"180.00:00:00`"}}") -DisplayName WebApiDefaultPolicyScenario -IsOrganizationDefault $false -Type TokenLifetimePolicy
 
 若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
@@ -281,33 +276,33 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 
 1. **建立權杖存留期原則**
 
-到目前為止，很簡單。 我們已經建立一個將「單一要素重新整理權杖」存留期設定為 30 天的租用戶預設原則。 
+到目前為止，很簡單。 我們已經建立一個將「單一要素重新整理權杖」存留期設定為 30 天的組織預設原則。 
 
-    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"30.00:00:00`"}}") -DisplayName ComplexPolicyScenario -IsTenantDefault $true -Type TokenLifetimePolicy
+    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"30.00:00:00`"}}") -DisplayName ComplexPolicyScenario -IsOrganizationDefault $true -Type TokenLifetimePolicy
 若要查看您的新原則並取得其 ObjectID，請執行下列命令。
 
     Get-AzureADPolicy
 
 &nbsp;&nbsp;2.  **將原則指派給服務主體**
 
-現在，我們在整個租用戶上有一個原則。  假設我們想要針對特定的服務主體保留這個 30 天原則，但是將租用戶預設原則變更為上限「直到撤銷為止」。 
+現在，我們在整個組織上有一個原則。  假設我們想要針對特定的服務主體保留這個 30 天原則，但是將組織預設原則變更為上限「直到撤銷為止」。 
 
-首先，我們將把這個新原則與服務主體連結。  您也將需要一個可存取服務主體之 **ObjectId** 的方式。 您可以查詢 [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) 或移至我們的 [Graph Explorer 工具](https://graphexplorer.cloudapp.net/)並登入您的 Azure AD 帳戶，來查看您所有租用戶的服務主體。 
+首先，我們將把這個新原則與服務主體連結。  您也將需要一個可存取服務主體之 **ObjectId** 的方式。 您可以查詢 [Microsoft Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) 或移至我們的 [Graph Explorer 工具](https://graphexplorer.cloudapp.net/)並登入您的 Azure AD 帳戶，來查看您所有組織的服務主體。 
 
 有了 **ObjectId** 之後，請執行下列命令。
 
     Add-AzureADServicePrincipalPolicy -ObjectId <ObjectID of the Service Principal> -RefObjectId <ObjectId of the Policy>
 
-&nbsp;&nbsp;3.  **使用下列命令將 IsTenantDefault 旗標設定為 flase**。 
+&nbsp;&nbsp;3.  **使用下列命令將 IsOrganizationDefault 旗標設定為 flase**。 
 
-    Set-AzureADPolicy -ObjectId <ObjectId of Policy> -DisplayName ComplexPolicyScenario -IsTenantDefault $false
-&nbsp;&nbsp;4.  **建立新的租用戶預設原則**
+    Set-AzureADPolicy -ObjectId <ObjectId of Policy> -DisplayName ComplexPolicyScenario -IsOrganizationDefault $false
+&nbsp;&nbsp;4.  **建立新的組織預設原則**
 
-    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"until-revoked`"}}") -DisplayName ComplexPolicyScenarioTwo -IsTenantDefault $true -Type TokenLifetimePolicy
+    New-AzureADPolicy -Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxAgeSingleFactor`":`"until-revoked`"}}") -DisplayName ComplexPolicyScenarioTwo -IsOrganizationDefault $true -Type TokenLifetimePolicy
 
 &nbsp;&nbsp;5.   **大功告成！** 
 
-現在，原始原則已連結至您的服務主體，且新原則已設定為您的租用戶預設原則。  請務必記住，套用至服務主體的原則優先順序會高於租用戶預設原則。 
+現在，原始原則已連結至您的服務主體，且新原則已設定為您的組織預設原則。  請務必記住，套用至服務主體的原則優先順序會高於組織預設原則。 
 
 ## <a name="cmdlet-reference"></a>Cmdlet 參考
 ### <a name="manage-policies"></a>管理原則
@@ -316,13 +311,13 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 #### <a name="new-azureadpolicy"></a>New-AzureADPolicy
 建立新的原則。
 
-    New-AzureADPolicy -Definition <Array of Rules> -DisplayName <Name of Policy> -IsTenantDefault <boolean> -Type <Policy Type> 
+    New-AzureADPolicy -Definition <Array of Rules> -DisplayName <Name of Policy> -IsOrganizationDefault <boolean> -Type <Policy Type> 
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
 | -Definition |包含原則之所有規則的字串化 JSON 陣列。 |-Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"20:00:00`"}}") |
 | -DisplayName |原則名稱的字串 |-DisplayName MyTokenPolicy |
-| -IsTenantDefault |如果為 true，就會將原則設定為租用戶的預設原則，如果為 false，則不會執行任何動作 |-IsTenantDefault $true |
+| -IsOrganizationDefault |如果為 true，就會將原則設定為組織的預設原則，如果為 false，則不會執行任何動作 |-IsOrganizationDefault $true |
 | -Type |原則的類型，針對權杖存留期，請一律使用 "TokenLifetimePolicy" |-Type TokenLifetimePolicy |
 | -AlternativeIdentifier [選用] |設定原則的替代識別碼。 |-AlternativeIdentifier myAltId |
 
@@ -360,7 +355,7 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 | -ObjectId |您想要取得之原則的物件識別碼。 |-ObjectId &lt;原則的 ObjectID&gt; |
 | -DisplayName |原則名稱的字串 |-DisplayName MyTokenPolicy |
 | -Definition [選用] |包含原則之所有規則的字串化 JSON 陣列。 |-Definition @("{`"TokenLifetimePolicy`":{`"Version`":1,`"MaxInactiveTime`":`"20:00:00`"}}") |
-| -IsTenantDefault [選用] |如果為 true，就會將原則設定為租用戶的預設原則，如果為 false，則不會執行任何動作 |-IsTenantDefault $true |
+| -IsOrganizationDefault [選用] |如果為 true，就會將原則設定為組織的預設原則，如果為 false，則不會執行任何動作 |-IsOrganizationDefault $true |
 | -Type [選用] |原則的類型，針對權杖存留期，請一律使用 "TokenLifetimePolicy" |-Type TokenLifetimePolicy |
 | -AlternativeIdentifier [選用] |設定原則的替代識別碼。 |-AlternativeIdentifier myAltId |
 
@@ -454,6 +449,6 @@ SSO 工作階段權杖有兩種。 持續性工作階段權杖會由瀏覽器儲
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

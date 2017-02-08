@@ -12,18 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/07/2016
+ms.date: 01/09/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a9509b159941c9784fb91f624312f11fe0af2818
+ms.sourcegitcommit: 610dab0af17f927d86b677f647acd0dfe2569583
+ms.openlocfilehash: 53b98aaf67b874b0af7d0e94e29bcbe23fc6fc5b
 
 
 ---
 # <a name="azure-ad-connect-sync-synchronization-service-manager"></a>Azure AD Connect 同步處理︰Synchronization Service Manager
-| [作業](active-directory-aadconnectsync-service-manager-ui-operations.md) | [連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse 設計工具](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse 搜尋](active-directory-aadconnectsync-service-manager-ui-mvsearch.md) |
-| --- | --- | --- | --- |
-|  | | | |
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/operations.png)
 
@@ -46,7 +43,7 @@ ms.openlocfilehash: a9509b159941c9784fb91f624312f11fe0af2818
 
 ## <a name="troubleshoot-errors-in-operations-tab"></a>疑難排解 [作業] 索引標籤中的錯誤
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorsync.png)  
- 當您遇到錯誤時，錯誤中的物件與錯誤本身都是連結，可提供更多資訊。
+當您遇到錯誤時，錯誤中的物件與錯誤本身都是連結，可提供更多資訊。
 
 首先按一下錯誤字串 (圖片中的**sync-rule-error-function-triggered** )。 您會先看到物件的概觀。 若要查看實際的錯誤，可按一下 [堆疊追蹤] 按鈕。 此追蹤會提供錯誤的偵錯層級資訊。
 
@@ -54,7 +51,7 @@ ms.openlocfilehash: a9509b159941c9784fb91f624312f11fe0af2818
 
 * 如果錯誤來自 **SyncRulesEngine**，則呼叫堆疊資訊首先具備物件上所有屬性的清單。 向下捲動，直到您看到 **InnerException =>** 標題為止。  
   ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorinnerexception.png)  
-   下一行會顯示錯誤。 在上圖中，錯誤是來自所建立的自訂同步處理規則 Fabrikam。
+  下一行會顯示錯誤。 在上圖中，錯誤是來自所建立的自訂同步處理規則 Fabrikam。
 
 如果錯誤本身未提供足夠的資訊，則請查看資料本身。 您可以按一下物件識別碼的連結，然後 [在整個系統中追蹤物件及其資料](active-directory-aadconnectsync-service-manager-ui-connectors.md#follow-an-object-and-its-data-through-the-system)。
 
@@ -65,7 +62,6 @@ ms.openlocfilehash: a9509b159941c9784fb91f624312f11fe0af2818
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

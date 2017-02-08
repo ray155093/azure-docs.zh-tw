@@ -1,19 +1,23 @@
 ---
-title: 篩選器與動態資訊清單 | Microsoft Docs
-description: 本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。 媒體服務會建立動態資訊清單來封存此選擇性資料流。
+title: "篩選器與動態資訊清單 | Microsoft Docs"
+description: "本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。 媒體服務會建立動態資訊清單來封存此選擇性資料流。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: cenkdin
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: ff102765-8cee-4c08-a6da-b603db9e2054
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 09/26/2016
-ms.author: cenkdin;juliako
+ms.date: 12/07/2016
+ms.author: cenkd;juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
+ms.openlocfilehash: d0f9899d6b8cc83ea4f2836444b41a9dabe7fea7
+
 
 ---
 # <a name="filters-and-dynamic-manifests"></a>篩選器與動態資訊清單
@@ -25,14 +29,14 @@ ms.author: cenkdin;juliako
 當您將內容傳遞給客戶時 (串流即時事件或點播視訊)，您的目標是在不同的網路條件下將高品質的視訊傳遞到各種裝置。 若要達成此目標，請執行下列動作：
 
 * 將您的資料流編碼成多位元速率 ([彈性位元速率](http://en.wikipedia.org/wiki/Adaptive_bitrate_streaming)) 視訊串流 (這會處理品質與網路條件)，並 
-* 使用媒體服務 [動態封裝](media-services-dynamic-packaging-overview.md) 將資料流動態地重新封裝至不同的通訊協定 (這會處理不同裝置上的資料流)。 媒體服務支援傳遞下列可調位元速率資料流技術：HTTP 即時資料流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access licensees)。 
+* 使用媒體服務 [動態封裝](media-services-dynamic-packaging-overview.md) 將資料流動態地重新封裝至不同的通訊協定 (這會處理不同裝置上的資料流)。 媒體服務支援傳遞下列自適性串流技術：HTTP 即時串流 (HLS)、Smooth Streaming 和 MPEG DASH。 
 
 ### <a name="manifest-files"></a>資訊清單檔案
 當您將資產編碼以進行彈性位元速率資料流時，會建立 **資訊清單** (播放清單) 檔案 (此檔案是以文字或 XML 為基礎)。 **資訊清單** 檔案包含資料流中繼資料，例如：資料軌類型 (音訊、視訊或文字)、資料軌名稱、開始和結束時間、位元速率 (品質)、資料軌語言、簡報視窗 (持續時間固定的滑動視窗)，視訊轉碼器 (FourCC)。 此檔案也會透過提供下一個可播放視訊片段及其位置的相關資訊，來指示播放程式擷取下一個片段。 片段 (或區段) 實際上是視訊內容的「區塊」。
 
 資訊清單檔案範例如下： 
 
-    <?xml version="1.0" encoding="UTF-8"?>  
+    <?xml version="1.0" encoding="UTF-8"?>    
     <SmoothStreamingMedia MajorVersion="2" MinorVersion="0" Duration="330187755" TimeScale="10000000">
 
     <StreamIndex Chunks="17" Type="video" Url="QualityLevels({bitrate})/Fragments(video={start time})" QualityLevels="8">
@@ -68,9 +72,9 @@ ms.author: cenkdin;juliako
 * 裝置特有：只傳遞用來播放內容的裝置所支援的指定轉譯和/或指定的語言資料軌 (「轉譯篩選」)。 
 * 縮小資訊清單以顯示即時事件的子剪輯 (「子剪輯篩選」)。
 * 修剪視訊開頭 (「修剪視訊」)。
-* 調整 [簡報視窗](DVR.md)，以便在播放程式中提供長度有限的 DVR 視窗 (「調整簡報視窗」)。
+* 調整 [簡報視窗] (DVR)，以便在播放程式中提供長度有限的 DVR 視窗 (「調整簡報視窗」)。
 
-為達到這種彈性，媒體服務會根據預先定義的 **篩選器** 提供 [動態資訊清單](media-services-dynamic-manifest-overview.md#filters)。  一旦您定義了篩選器，您的用戶端便會使用篩選器來串流視訊的特定轉譯或子剪輯。 用戶端會在資料流 URL 中指定篩選器。 篩選器可以套用到下列 [動態封裝](media-services-dynamic-packaging-overview.md)支援的彈性位元速率資料流通訊協定：HLS、MPEG DASH、Smooth Streaming 和 HDS。 例如：
+為達到這種彈性，媒體服務會根據預先定義的 **篩選器** 提供 [動態資訊清單](media-services-dynamic-manifest-overview.md#filters)。  一旦您定義了篩選器，您的用戶端便會使用篩選器來串流視訊的特定轉譯或子剪輯。 用戶端會在資料流 URL 中指定篩選器。 篩選器可以套用到下列 [動態封裝](media-services-dynamic-packaging-overview.md)支援的自適性串流通訊協定：HLS、MPEG-DASH 和 Smooth Streaming。 例如：
 
 含篩選器的 MPEG DASH URL
 
@@ -88,7 +92,7 @@ ms.author: cenkdin;juliako
 > 
 > 
 
-### <a name="<a-id="filters"></a>filters"></a><a id="filters"></a>篩選器
+### <a name="a-idfiltersafilters"></a><a id="filters"></a>篩選器
 資產篩選器有兩種： 
 
 * 全域篩選器 (可以套用到 Azure 媒體服務帳戶中所有的資產，擁有帳戶的存留期間) 和 
@@ -96,7 +100,7 @@ ms.author: cenkdin;juliako
 
 全域和本機篩選器類型有完全相同的屬性。 這兩個的主要差異在於案例較適合哪一種篩選器。 全域篩選器通常適用於裝置設定檔 (轉譯篩選)，而本機篩選器可用於修剪特定的資產。
 
-## <a name="<a-id="scenarios"></a>common-scenarios"></a><a id="scenarios"></a>常見案例
+## <a name="a-idscenariosacommon-scenarios"></a><a id="scenarios"></a>常見案例
 先前提過，將內容傳遞給客戶時 (串流即時事件或點播視訊)，您的目標是在不同的網路條件下將高品質的視訊傳遞到各種裝置。 此外，您可能會有其他對於篩選資產與使用 **動態資訊清單**相關的需求。 以下幾節提供不同篩選案例的簡短概觀。
 
 * 僅指定某些裝置可以處理的音訊和視訊轉譯子集 (而非與該資產相關聯的所有轉譯)。 
@@ -110,7 +114,7 @@ ms.author: cenkdin;juliako
 
 ![轉譯篩選範例][renditions2]
 
-下列範例使用編碼器將夾層資產編碼成七個 ISO MP4 視訊轉譯 (從 180p 到 1080p)。 編碼的資產可以動態地封裝至下列任何一個資料流通訊協定：HLS、Smooth、MPEG DASH 及 HDS。  圖表頂端顯示不含篩選器的資產其 HLS 資訊清單 (包含全部七個轉譯)。  左下角顯示名為 "ott" 的篩選器已套用到 HLS 資訊清單。 "ott" 篩選器指定要移除所有不到 1Mbps 的位元速率，因此將最差的兩個品質等級從回應中去除。  右下角顯示名為 "mobile" 的篩選器已套用到 HLS 資訊清單中。 "mobile" 篩選器指定要移除的解析度大於 720p 的轉譯，因此去除兩個 1080p 的轉譯。
+下列範例使用編碼器將夾層資產編碼成七個 ISO MP4 視訊轉譯 (從 180p 到 1080p)。 編碼的資產可以動態地封裝至下列任何一個資料流通訊協定：HLS、Smooth 和 MPEG DASH。  圖表頂端顯示不含篩選器的資產其 HLS 資訊清單 (包含全部七個轉譯)。  左下角顯示名為 "ott" 的篩選器已套用到 HLS 資訊清單。 "ott" 篩選器指定要移除所有不到 1Mbps 的位元速率，因此將最差的兩個品質等級從回應中去除。  右下角顯示名為 "mobile" 的篩選器已套用到 HLS 資訊清單中。 "mobile" 篩選器指定要移除的解析度大於 720p 的轉譯，因此去除兩個 1080p 的轉譯。
 
 ![轉譯篩選][renditions1]
 
@@ -124,7 +128,7 @@ ms.author: cenkdin;juliako
 
 ![開始修剪][trim_filter]
 
-## <a name="creating-sub-clips-(views)-from-a-live-archive"></a>從即時封存中建立子剪輯 (檢視)
+## <a name="creating-sub-clips-views-from-a-live-archive"></a>從即時封存中建立子剪輯 (檢視)
 許多即時事件的執行時間長，且即時封存可能包括多個事件。 即時事件結束後，廣播者可能想要將即時封存分解成邏輯程式的啟動和停止序列。 然後個別發佈這些虛擬程式，但不後續處理即時封存，亦不建立個別的資產 (這將無法運用 CDN 中現有快取片段的優點)。 例如足球或籃球比賽的球季、棒球賽局，或是奧運下午賽程的個別事件，都是此類虛擬程式 (子剪輯) 的範例。
 
 使用動態資訊清單，您便可以使用開始/結束時間建立篩選器，並在即時封存頂端建立虛擬檢視。 
@@ -135,12 +139,12 @@ ms.author: cenkdin;juliako
 
 ![滑動][skiing]
 
-## <a name="adjusting-presentation-window-(dvr)"></a>調整簡報視窗 (DVR)
+## <a name="adjusting-presentation-window-dvr"></a>調整簡報視窗 (DVR)
 目前，Azure 媒體服務提供持續時間可設為 5 分鐘到 25 小時的循環封存。 資訊清單篩選可以在封存頂端建立循環 DVR 視窗封存，而不會刪除媒體。 在許多情況下，廣播者想要提供受限制的 DVR 視窗，此視窗可隨著即時邊緣移動，並同時保留更大的封存視窗。 廣播者可能會想要使用超出 DVR 視窗的資料來反白顯示剪輯，或者想要為不同的裝置提供不同的 DVR 視窗。 例如，大多數的行動裝置不處理大 DVR 視窗 (您可以讓行動裝置有 2 分鐘的 DVR 視窗，桌上型用戶端有 1 小時的 DVR 視窗)。
 
 ![DVR 視窗][dvr_filter]
 
-## <a name="adjusting-livebackoff-(live-position)"></a>調整 LiveBackoff (即時位置)
+## <a name="adjusting-livebackoff-live-position"></a>調整 LiveBackoff (即時位置)
 資訊清單篩選可用來移除即時程式其即時邊緣幾秒鐘的時間。 這可讓廣播者在檢視者收到資料流前 (通常倒退 30 秒) 先觀賞預覽發佈點的簡報，並建立廣告插入點。 廣播者接著可將這些廣告及時推送到其用戶端架構，讓廣播者能夠收到與處理資訊，才有機會播放廣告。
 
 除了廣告支援外，LiveBackoff 可用於調整用戶端即時下載位置，讓用戶端移動並命中即時邊緣時，仍然可以從伺服器取得片段，而非得到 404 或 412 HTTP 錯誤。
@@ -157,7 +161,7 @@ ms.author: cenkdin;juliako
 
 [使用 REST API 建立篩選器](media-services-rest-dynamic-manifest.md)。
 
-## <a name="combining-multiple-filters-(filter-composition)"></a>結合多個篩選條件 (篩選器組合)
+## <a name="combining-multiple-filters-filter-composition"></a>結合多個篩選條件 (篩選器組合)
 您也可以將多個篩選條件結合成單一 URL。 
 
 下列案例示範您可能會想結合篩選條件的理由：
@@ -209,6 +213,6 @@ ms.author: cenkdin;juliako
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

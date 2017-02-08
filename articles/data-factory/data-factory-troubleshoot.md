@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 11/15/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: febc8fef864f88fa07accf91efc9b87727a48b32
-ms.openlocfilehash: 4d4d49801c84fa585b5e54bb16a9604a4891acc9
+ms.sourcegitcommit: 6b50b65fa1ad86c8e80fff0fb92352b1be52632e
+ms.openlocfilehash: d4589b5e9ca7f08b2152605dc26a96d4b5d656c8
 
 
 ---
@@ -29,9 +29,15 @@ ms.openlocfilehash: 4d4d49801c84fa585b5e54bb16a9604a4891acc9
 
 1. 啟動 Azure PowerShell。
 2. 使用下列命令來登入您的 Azure 帳戶。
-        Login-AzureRmAccount
+
+    ```powershell
+    Login-AzureRmAccount
+    ```
 3. 執行下列命令以註冊 Azure Data Factory 提供者。
-        Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
+    
+    ```powershell        
+    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
+    ```
 
 ### <a name="problem-unauthorized-error-when-running-a-data-factory-cmdlet"></a>問題：執行 Data Factory Cmdlet 時發生未授權錯誤
 您在 Azure PowerShell 中可能未使用正確的 Azure 帳戶或訂用帳戶。 請使用下列 Cmdlet 來選取要用於 Azure PowerShell 的正確 Azure 帳戶和訂用帳戶帳戶。
@@ -60,29 +66,31 @@ ms.openlocfilehash: 4d4d49801c84fa585b5e54bb16a9604a4891acc9
 
 如需此屬性的詳細資訊，請參閱 [資料集](data-factory-create-datasets.md) 文章。
 
-    {
-      "name": "CustomerTable",
-      "properties": {
-        "type": "AzureBlob",
-        "linkedServiceName": "MyLinkedService",
-        "typeProperties": {
-          "folderPath": "MyContainer/MySubFolder/",
-          "format": {
-            "type": "TextFormat",
-            "columnDelimiter": ",",
-            "rowDelimiter": ";"
-          }
-        },
-        "external": true,
-        "availability": {
-          "frequency": "Hour",
-          "interval": 1
-        },
-        "policy": {
-          }
-        }
+```json
+{
+  "name": "CustomerTable",
+  "properties": {
+    "type": "AzureBlob",
+    "linkedServiceName": "MyLinkedService",
+    "typeProperties": {
+      "folderPath": "MyContainer/MySubFolder/",
+      "format": {
+        "type": "TextFormat",
+        "columnDelimiter": ",",
+        "rowDelimiter": ";"
+      }
+    },
+    "external": true,
+    "availability": {
+      "frequency": "Hour",
+      "interval": 1
+    },
+    "policy": {
       }
     }
+  }
+}
+```
 
 若要解決這個錯誤，請將 **external** 屬性和選用 **externalData** 區段加入輸入資料表的 JSON 定義，並重新建立資料表。
 
@@ -92,7 +100,9 @@ ms.openlocfilehash: 4d4d49801c84fa585b5e54bb16a9604a4891acc9
 ### <a name="problem-on-demand-hdinsight-provisioning-fails"></a>問題：隨選 HDInsight 佈建失敗
 使用 HDInsightOnDemand 類型的連結服務時，您必須指定指向 Azure Blob 儲存體的 linkedServiceName。 Data Factory 服務會使用此儲存體來儲存記錄檔和您的隨選 HDInsight 叢集的支援檔案。  有時候隨選 HDInsight 叢集的佈建會失敗，並且有下列錯誤︰
 
-        Failed to create cluster. Exception: Unable to complete the cluster create operation. Operation failed with code '400'. Cluster left behind state: 'Error'. Message: 'StorageAccountNotColocated'.
+```
+Failed to create cluster. Exception: Unable to complete the cluster create operation. Operation failed with code '400'. Cluster left behind state: 'Error'. Message: 'StorageAccountNotColocated'.
+```
 
 此錯誤通常表示 linkedServiceName 中指定的儲存體帳戶的位置，與進行 HDInsight 佈建的資料中心位置不同。 範例︰如果您的 Data Factory 在美國西部，而 Azure 儲存體在美國東部，則隨選佈建會在美國西部發生失敗。
 
@@ -143,6 +153,6 @@ ms.openlocfilehash: 4d4d49801c84fa585b5e54bb16a9604a4891acc9
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

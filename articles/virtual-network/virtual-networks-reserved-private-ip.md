@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 03/22/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 117c65ebcc566aa1898dc8655ee608cb42673d79
+ms.sourcegitcommit: c934f78e514230958fad8b2aa9be4d2e56a3a835
+ms.openlocfilehash: 41b98df79b9ab9ee179ab8984d14c9e9c15fa646
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 117c65ebcc566aa1898dc8655ee608cb42673d79
 在大部分情況下，您不需要針對虛擬機器指定靜態內部 IP 位址。 虛擬網路中的 VM 會從您指定的範圍自動接收內部 IP 位址。 但在某些情況下，針對特定 VM 指定靜態 IP 位址是合理的。 例如，如果您的 VM 即將執行 DNS 或將成為網域控制站。 靜態內部 IP 位址會伴隨 VM 而存在，甚至是透過停止/取消佈建狀態。 
 
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用 [Resource Manager 部署模型](virtual-networks-static-private-ip-arm-ps.md)。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用 [Resource Manager 部署模型](virtual-networks-static-private-ip-arm-ps.md)。
 > 
 > 
 
@@ -111,6 +111,6 @@ ms.openlocfilehash: 117c65ebcc566aa1898dc8655ee608cb42673d79
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

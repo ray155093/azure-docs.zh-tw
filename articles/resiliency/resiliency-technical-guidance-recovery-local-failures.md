@@ -1,12 +1,12 @@
 ---
-title: 技術指導：從 Azure 的本機失敗中復原 | Microsoft Docs
-description: 了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原 (著重於 Azure 內的本機失敗) 的相關文章。
-services: ''
+title: "技術指導：從 Azure 的本機失敗中復原 | Microsoft Docs"
+description: "了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原 (著重於 Azure 內的本機失敗) 的相關文章。"
+services: 
 documentationcenter: na
 author: adamglick
 manager: saladki
-editor: ''
-
+editor: 
+ms.assetid: 2e50f6c1-fa61-4c7d-ac26-566a142fbfc2
 ms.service: resiliency
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: aglick
+translationtype: Human Translation
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: 6df92e3c43a9e7ae2e13f21b05cbb94088c46516
+
 
 ---
-# <a name="azure-resiliency-technical-guidance:-recovery-from-local-failures-in-azure"></a>Azure 復原技術指導：從 Azure 的本機失敗中復原
+# <a name="azure-resiliency-technical-guidance-recovery-from-local-failures-in-azure"></a>Azure 復原技術指導：從 Azure 的本機失敗中復原
 應用程式可用性有兩個主要威脅︰
 
 * 裝置失敗，例如磁碟機及伺服器
@@ -72,7 +76,7 @@ Azure 原本就了解 PaaS 應用程式 (Web 角色和背景工作角色) 中的
 在上圖中，Internet Information Services (IIS) 層 (做為 Web 應用程式層) 和 SQL 層 (做為資料層) 會指派給不同的可用性設定組。 這可確保每一層的所有執行個體可透過分配虛擬機器給多個容錯網域而具備硬體備援，並且整個層級不會在更新期間遭到關閉。
 
 ### <a name="load-balancing"></a>負載平衡
-如果流量應該分配給各個 VM，您必須將應用程式中的 VM 予以群組，並在特定 TCP 或 UDP 端點進行負載平衡。 如需詳細資訊，請參閱 [虛擬機器負載平衡](../virtual-machines/virtual-machines-linux-load-balance.md)。 如果 VM 接收來自其他來源 (例如佇列機制) 的輸入，則不需要負載平衡器。 負載平衡器會使用基本健康情況檢查，來判斷是否應該將流量傳送至節點。 此外，您也可以建立自己的探查，來實作可決定 VM 是否應接收流量的應用程式特定健康情況度量。
+如果流量應該分配給各個 VM，您必須將應用程式中的 VM 予以群組，並在特定 TCP 或 UDP 端點進行負載平衡。 如需詳細資訊，請參閱 [虛擬機器負載平衡](../virtual-machines/virtual-machines-linux-load-balance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 如果 VM 接收來自其他來源 (例如佇列機制) 的輸入，則不需要負載平衡器。 負載平衡器會使用基本健康情況檢查，來判斷是否應該將流量傳送至節點。 此外，您也可以建立自己的探查，來實作可決定 VM 是否應接收流量的應用程式特定健康情況度量。
 
 ## <a name="storage"></a>儲存體
 Azure 儲存體是 Azure 的基準耐久性資料服務。 它可提供 Blob、資料表、佇列和 VM 磁碟儲存體。 它會結合複寫和資源管理，在單一資料中心內提供高可用性。 Azure 儲存體可用性 SLA 保證，在至少 99.9% 的時間內︰
@@ -121,16 +125,16 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。 所有
 
 若要將透過傳統入口網站部署的 Azure 雲端服務放入相同的可用性設定組中，您必須將其部署至相同的雲端服務中。 透過 Azure Resource Manager (目前的入口網站) 部署的 VM 沒有這項限制。 對於傳統入口網站部署在 Azure 雲端服務中的 VM，只有相同雲端服務內的節點可以參與相同的可用性設定組。 此外，雲端服務 VM 應該位於相同的虛擬網路中，以確保即使在服務修復之後，VM 也能保有其 IP。 這可避免 DNS 更新中斷。
 
-### <a name="azure-only:-high-availability-solutions"></a>僅限 Azure：高可用性解決方案
+### <a name="azure-only-high-availability-solutions"></a>僅限 Azure：高可用性解決方案
 您可以使用 AlwaysOn 可用性群組或資料庫鏡像，為 Azure 中的 SQL Server 資料庫提供高可用性解決方案。
 
-下圖說明在 Azure 虛擬機器中執行的 AlwaysOn 可用性群組的架構。 此圖擷取自關於此主題的深度文章： [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。
+下圖說明在 Azure 虛擬機器中執行的 AlwaysOn 可用性群組的架構。 此圖擷取自關於此主題的深度文章： [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr.md)。
 
 ![Microsoft Azure 中的 AlwaysOn 可用性群組](./media/resiliency-technical-guidance-recovery-local-failures/high_availability_solutions-1.png)
 
 您也可以使用 Azure 入口網站中的 AlwaysOn 範本，以在 Azure VM 上端對端自動佈建 AlwaysOn 可用性群組部署。 如需詳細資訊，請參閱 [Microsoft Azure 入口網站資源庫提供的 SQL Server AlwaysOn](https://blogs.technet.microsoft.com/dataplatforminsider/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery/)。
 
-下圖說明如何在 Azure 虛擬機器上使用資料庫鏡像。 此圖擷取自深度主題： [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。
+下圖說明如何在 Azure 虛擬機器上使用資料庫鏡像。 此圖擷取自深度主題： [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr.md)。
 
 ![Microsoft Azure 中的資料庫鏡像](./media/resiliency-technical-guidance-recovery-local-failures/high_availability_solutions-2.png)
 
@@ -144,11 +148,6 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。 所有
 
 ### <a name="service-bus"></a>服務匯流排
 為了避免 Azure 服務匯流排暫時中斷，請考慮建立耐久性用戶端佇列。 這會暫時使用替代的本機儲存體機制，來儲存無法新增至服務匯流排佇列的訊息。 應用程式可以決定服務還原之後，要如何處理暫時儲存的訊息。 如需詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](../service-bus-messaging/service-bus-performance-improvements.md)和[服務匯流排 (災害復原)](resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
-
-### <a name="mobile-services"></a>行動服務
-Azure 行動服務有兩個可用性考量。 首先，定期備份與行動服務相關聯的 SQL Database。 其次，備份行動服務指令碼。 如需詳細資訊，請參閱 [發生災害時回復行動服務](../mobile-services/mobile-services-disaster-recovery.md)。
-
-如果行動服務發生暫時性中斷，您可能必須暫時使用替代的 Azure 資料中心。 如需詳細資訊，請參閱 [行動服務 (災害復原)](resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
 
 ### <a name="hdinsight"></a>HDInsight
 根據預設，與 Azure HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。 Azure 儲存體會指定 Blob 儲存體的高可用性和耐久性屬性。 與 Hadoop MapReduce 作業相關聯的多重節點處理，會在暫時性的 Hadoop 分散式檔案系統 (HDFS) 中進行，如果 HDInsight 有需要，便會佈建此系統。 根據預設，MapReduce 作業的結果也會儲存在 Azure Blob 儲存體中，因此在取消佈建 Hadoop 叢集之後，處理過的資料仍具有耐久性且維持高可用性。 如需詳細資訊，請參閱 [HDInsight (災害復原)](resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
@@ -195,6 +194,9 @@ Azure 行動服務有兩個可用性考量。 首先，定期備份與行動服�
 ## <a name="next-steps"></a>後續步驟
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](resiliency-technical-guidance.md)。 系列文章的下一篇是 [從全區域服務中斷復原](resiliency-technical-guidance-recovery-loss-azure-region.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO2-->
 
 

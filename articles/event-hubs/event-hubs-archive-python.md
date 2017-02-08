@@ -12,41 +12,41 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 12/13/2016
 ms.author: darosa;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c836558426b44633993f9f52de39d0a843039614
+ms.sourcegitcommit: 0dc22f03c114508190a8da7ae4ca385c39690d2c
+ms.openlocfilehash: ee85bfc9cfd852306a52d21772d33accdf484fdf
 
 
 ---
 # <a name="event-hubs-archive-walkthrough-python"></a>事件中樞封存逐步解說︰Python
 事件中樞封存是事件中樞的新功能，可讓您自動將事件中樞內的串流資料傳遞到您所選擇的 Azure Blob 儲存體帳戶。 這可讓您輕鬆地對即時串流資料執行批次處理。 本文說明如何搭配使用事件中樞封存與 Python。 如需事件中樞封存的詳細資訊，請參閱 [概觀文章](event-hubs-archive-overview.md)。
 
-此範例使用 Azure Python SDK 來示範如何使用封存功能。 sender.py 會以 JSON 格式將模擬的環境遙測傳送至事件中樞。 事件中樞會設定為使用封存功能將此資料批次寫入至 Blob 儲存體。 archivereader.py 接著會讀取這些 Blob、為每個裝置建立附加檔案，並將資料寫入至 .csv 檔案。
+此範例使用 Azure Python SDK 來示範封存功能。 sender.py 程式會以 JSON 格式將模擬的環境遙測傳送至事件中樞。 事件中樞會設定為使用封存功能將此資料批次寫入至 Blob 儲存體。 archivereader.py 應用程式接著會讀取這些 Blob 並為每個裝置建立附加檔案，然後將資料寫入至 .csv 檔案。
 
 將會完成的工作
 
-1. 使用 Azure 入口網站建立 Azure Blob 儲存體帳戶和其中所含的 Blob 容器
-2. 使用 Azure 入口網站建立事件中樞命名空間
-3. 使用 Azure 入口網站建立啟用了封存功能的事件中樞
-4. 使用 Python 指令碼將資料傳送至事件中樞
-5. 使用另一個 Python 指令碼讀取封存的檔案並加以處理
+1. 使用 Azure 入口網站建立 Azure Blob 儲存體帳戶和其中所含的 Blob 容器。
+2. 使用 Azure 入口網站建立事件中樞命名空間。
+3. 使用 Azure 入口網站建立啟用了封存功能的事件中樞。
+4. 使用 Python 指令碼將資料傳送至事件中樞。
+5. 使用另一個 Python 指令碼讀取封存的檔案並加以處理。
 
 必要條件
 
-1. Python 2.7.x
-2. Azure 訂用帳戶
+- Python 2.7.x
+- Azure 訂用帳戶
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
-1. 登入 [Azure 入口網站][Azure 入口網站]。
+1. 登入 [Azure 入口網站][Azure portal]。
 2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[資料 + 儲存體] 及 [儲存體帳戶]。
-3. 完成儲存體帳戶刀鋒視窗中的欄位，然後按一下 [建立] 。
+3. 完成儲存體帳戶刀鋒視窗中的欄位，然後按一下 [建立]。
    
    ![][1]
-4. 在看到**部署成功**訊息之後，按一下新的儲存體帳戶，並在 [基本功能] 刀鋒視窗中按一下 [Blob]。 當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。 將容器命名為**封存**，然後關閉 [Blob 服務] 刀鋒視窗。
+4. 在看到**部署成功**訊息之後，按一下新儲存體帳戶的名稱，並在 [基本功能] 刀鋒視窗中按一下 [Blob]。 當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。 將容器命名為**封存**，然後關閉 [Blob 服務] 刀鋒視窗。
 5. 按一下左側刀鋒視窗的 [存取金鑰]，然後複製儲存體帳戶名稱和 **key1** 的值。 將這些值儲存到記事本或一些其他暫存位置。
 
 [!INCLUDE [event-hubs-create-event-hub](../../includes/event-hubs-create-event-hub.md)]
@@ -155,27 +155,27 @@ ms.openlocfilehash: c836558426b44633993f9f52de39d0a843039614
     python archivereader.py
     ```
 
-此封存處理器會使用本機目錄從儲存體帳戶/容器下載所有 Blob。 它會處理任何非空白的 Blob，並將結果以 .csv 檔案的形式寫入到本機目錄。
+    此封存處理器會使用本機目錄從儲存體帳戶/容器下載所有 Blob。 它會處理任何非空白的 Blob，並將結果以 .csv 檔案的形式寫入到本機目錄。
 
 ## <a name="next-steps"></a>後續步驟
 您可以造訪下列連結以深入了解事件中樞︰
 
-* [事件中樞封存概觀][事件中樞封存概觀]
-* 完整的[使用「事件中樞」的範例應用程式][使用「事件中樞」的範例應用程式]。
-* [使用「事件中樞」相應放大事件處理][使用「事件中樞」相應放大事件處理]範例。
-* [事件中心概觀][事件中心概觀]
+* [事件中樞封存概觀][Overview of Event Hubs Archive]
+* [使用事件中樞的完整範例應用程式][sample application that uses Event Hubs]。
+* [使用事件中樞相應放大事件處理][Scale out Event Processing with Event Hubs]範例。
+* [事件中樞概觀][Event Hubs overview]
 
-[Azure 入口網站]: https://portal.azure.com/
-[事件中樞封存概觀]: event-hubs-archive-overview.md
+[Azure portal]: https://portal.azure.com/
+[Overview of Event Hubs Archive]: event-hubs-archive-overview.md
 [1]: ./media/event-hubs-archive-python/event-hubs-python1.png
-[關於 Azure 儲存體帳戶]: https://azure.microsoft.com/en-us/documentation/articles/storage-create-storage-account/
+[About Azure storage accounts]: https://azure.microsoft.com/en-us/documentation/articles/storage-create-storage-account/
 [Visual Studio Code]: https://code.visualstudio.com/
-[事件中心概觀]: event-hubs-overview.md
-[使用「事件中樞」的範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
-[使用「事件中樞」相應放大事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
+[Event Hubs overview]: event-hubs-overview.md
+[sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[Scale out Event Processing with Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

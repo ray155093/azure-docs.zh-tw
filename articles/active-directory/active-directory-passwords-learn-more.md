@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/09/2016
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: ba3690084439aac83c91a1b4cfb7171b74c814f8
-ms.openlocfilehash: 62358ef4d02515a2625fb5f78421f71e581944e9
+ms.sourcegitcommit: 8a4e26b7ccf4da27b58a6d0bcfe98fc2b5533df8
+ms.openlocfilehash: 534373f72a4181914e3b7ea98ded507418e3d299
 
 
 ---
@@ -32,12 +32,13 @@ ms.openlocfilehash: 62358ef4d02515a2625fb5f78421f71e581944e9
   * [密碼回寫的運作方式](#how-password-writeback-works)
   * [密碼回寫的支援案例](#scenarios-supported-for-password-writeback)
   * [密碼回寫的安全性模型](#password-writeback-security-model)
+  * [密碼回寫頻寬使用量](#password-writeback-bandwidth-usage)
 * [**密碼重設入口網站的運作方式**](#how-does-the-password-reset-portal-work)
   * [密碼重設使用哪些資料？](#what-data-is-used-by-password-reset)
   * [如何存取密碼為使用者重設資料](#how-to-access-password-reset-data-for-your-users)
 
 ## <a name="password-writeback-overview"></a>密碼回寫概觀
-密碼回寫是一種可供目前的 Azure Active Directory Premium 訂閱者啟用及使用的 [Azure Active Directory Connect](active-directory-aadconnect.md) 元件。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
+密碼回寫是一種可供目前的 Azure Active Directory Premium 訂閱者啟用及使用的 [Azure Active Directory Connect](connect/active-directory-aadconnect.md) 元件。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
 密碼回寫可讓您設定雲端租用戶以在內部部署 Active Directory 中將密碼回寫給您。  此服務讓您不需設定和管理複雜的內部部署自助式密碼重設解決方案，並且會提供便利的雲端方式供您的使用者重設其內部部署密碼，無論他們身處何處。  請繼續閱讀以下內容，以了解密碼回寫的某些重要功能：
 
@@ -75,7 +76,7 @@ ms.openlocfilehash: 62358ef4d02515a2625fb5f78421f71e581944e9
 10. 如果密碼設定作業失敗，我們會對使用者傳回錯誤，請他們再試一次。  作業可能因各種原因而失敗，例如服務已關閉、所選密碼不符合組織原則、在本機 AD 中找不到使用者等等。  其中的許多原因會有特定的訊息，讓使用者知道該怎麼做來解決問題。
 
 ### <a name="scenarios-supported-for-password-writeback"></a>密碼回寫的支援案例
-下表描述同步處理功能的各個版本所支援的案例。  如果您想要使用密碼回寫，我們一般會強烈建議您安裝最新版的 [Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect) 。
+下表描述同步處理功能的各個版本所支援的案例。  如果您想要使用密碼回寫，我們一般會強烈建議您安裝最新版的 [Azure AD Connect](connect/active-directory-aadconnect.md#install-azure-ad-connect) 。
 
   ![][002]
 
@@ -86,6 +87,21 @@ ms.openlocfilehash: 62358ef4d02515a2625fb5f78421f71e581944e9
 * **受到鎖定的密碼編譯強式密碼加密金鑰** – 在建立服務匯流排轉送後，我們會建立強式對稱金鑰，以在密碼透過線路傳送過來時予以加密。  此金鑰只會存在於您在雲端的公司密碼存放區中，並受到嚴密鎖定和稽核，情形就和目錄中的任何密碼一樣。
 * **業界標準的 TLS** – 當雲端上發生密碼重設或變更作業時，我們會擷取純文字密碼，並以公開金鑰予以加密。  然後將它放入 HTTPS 訊息中，使用 Microsoft 的 SSL 憑證透過加密通道傳送到您的服務匯流排轉送中。  該訊息抵達服務匯流排後，您的內部部署代理程式便會甦醒、使用先前產生的強式密碼向服務匯流排驗證、擷取加密的訊息、使用我們產生的私密金鑰加以解密，然後嘗試透過 AD DS SetPassword API 設定密碼。  這個步驟能讓我們在雲端上強制執行 AD 內部部屬密碼原則 (複雜度、使用期限、歷程記錄、篩選等)。
 * **訊息到期原則** – 最後，如果訊息因為內部部署服務已關閉而停留在服務匯流排，它將會在數分鐘後逾時並遭到移除，以便更進一步地提升安全性。
+
+### <a name="password-writeback-bandwidth-usage"></a>密碼回寫頻寬使用量
+
+密碼回寫是一種非常低頻寬的服務，只有在下列情況下，才可將要求傳回內部部署代理程式︰
+
+1. 透過 Azure AD Connect 啟用或停用此功能時傳送兩則訊息。
+2. 每 5 分鐘傳送一則訊息做為服務活動訊號 (只要服務正在執行)。
+3. 每次提交新密碼時會傳送兩則訊息，其中一則訊息做為執行作業的要求，而其後的訊息則包含作業的結果。 在下列情況時，會傳送這些訊息。
+4. 每次在使用者自助式密碼重設期間提交新密碼時。
+5. 每次在使用者密碼變更作業期間提交新密碼時。
+6. 每次在系統管理員所起始的使用者密碼重設期間提交新密碼時 (僅限從 Azure 系統管理員入口網站)
+
+#### <a name="message-size-and-bandwidth-considerations"></a>訊息大小和頻寬考量
+
+以上所述的每則訊息大小通常在 1 kb 以下，這表示即使在極大負載之下，密碼回寫服務本身每秒最多耗用頻寬的幾千位元。 因為每則訊息都是即時傳送 (只限於密碼更新作業要求時)，而且因為訊息大小如此小，所以回寫功能的頻寬使用量實際上太小，以致沒有任何真正可測量的影響。
 
 ## <a name="how-does-the-password-reset-portal-work"></a>密碼重設入口網站的運作方式
 當使用者瀏覽到密碼重設入口網站時，便會啟動一項工作流程，以判斷該使用者帳戶是否有效、使用者屬於哪個組織，該使用者密碼的管理位置，以及使用者是否有獲得功能的使用授權。  請看完下列步驟，以了解密碼重設頁面背後的邏輯。
@@ -391,6 +407,6 @@ Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthentic
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

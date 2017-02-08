@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: bd5f3b3cd46ce347896ed9ef229e438b2a3c830f
-ms.openlocfilehash: 8e37a69f3263b6674b0e394f8a452272db5ebd0c
+ms.sourcegitcommit: ba7a67b8ae57da165f45bd3552a3dfac5f4ef64b
+ms.openlocfilehash: 406fd637485799557edbd29fd6223ae535900818
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: 8e37a69f3263b6674b0e394f8a452272db5ebd0c
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
-Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議透過 Resource Manager 部署模型建立資源。 若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../resource-manager-deployment-model.md)。
+Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議透過 Resource Manager 部署模型建立資源。 若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
  
 本文章說明如何使用 Azure 命令列介面 (CLI) 透過 Resource Manager 部署模型建立 VNet。 您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰
 
@@ -125,6 +125,6 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 - 虛擬網路至內部部署網路；使用網站對網站虛擬私人網路 (VPN) 或 ExpressRoute 線路。 如需了解做法，請閱讀[使用網站對網站 VPN 將 VNet 連接到內部部署網路](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)以及[將 VNet 連結至 ExpressRoute 線路](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)。
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

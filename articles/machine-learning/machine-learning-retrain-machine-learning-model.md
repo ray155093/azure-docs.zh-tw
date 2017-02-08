@@ -1,108 +1,104 @@
 ---
-title: Retrain a Machine Learning Model | Microsoft Docs
-description: Learn how to retrain a model and update the Web service to use the newly trained model in Azure Machine Learning.
+title: "重新訓練機器學習模型 | Microsoft Docs"
+description: "了解如何在 Azure Machine Learning 中重新定型模型，以及使用新定型的模型來更新 Web 服務。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: vDonGlover
 manager: raymondl
-editor: ''
-
+editor: 
+ms.assetid: d1cb6088-4f7c-4c32-94f2-f7523dad9059
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/11/2017
 ms.author: v-donglo
+translationtype: Human Translation
+ms.sourcegitcommit: 201b07536bcee58e2b7102379dff1c1c93c4b675
+ms.openlocfilehash: 882157d2cb544e5bb59caf7d64de579e23b12480
+
 
 ---
-# <a name="retrain-a-machine-learning-model"></a>Retrain a Machine Learning Model
-As part of the process of operationalization of machine learning models in Azure Machine Learning, your model is trained and saved. You then use it to create a predicative Web service. The Web service can then be consumed in web sites, dashboards, and mobile apps. 
+# <a name="retrain-a-machine-learning-model"></a>重新定型機器學習服務模型
+在 Azure Machine Learning 中進行機器學習服務模型的實作程序時，需要定型並儲存您的模型。 接著，使用它來建立預測性 Web 服務。 接著才能在網站、儀表板及行動應用程式取用 Web 服務。 
 
-Models you create using Machine Learning are typically not static. As new data becomes available or when the consumer of the API has their own data the model needs to be retrained. 
+您使用 Machine Learning 建立的模型通常不是靜態。 因為當有新資料或 API 取用者有自己的資料時，模型就必須重新定型。 
 
-Retraining may occur frequently. With the Programmatic Retraining API feature, you can programmatically retrain the model using the Retraining APIs and update the Web service with the newly trained model. 
+重新定型可能經常會發生。 有了程式設計重新定型 API 功能後，您能夠使用重新定型 API 以程式設計方式重新定型模型，並使用新定型的模型來更新 Web 服務。 
 
-This document describes the retraining process, and shows you how to use the Retraining APIs.
+本文說明重新定型程序，並示範如何使用重新定型 API。
 
-## <a name="why-retrain:-defining-the-problem"></a>Why retrain: defining the problem
-As part of the machine learning training process, a model is trained using a set of data. Models you create using Machine Learning are typically not static. As new data becomes available or when the consumer of the API has their own data the model needs to be retrained.
+## <a name="why-retrain-defining-the-problem"></a>為何要重新定型：定義問題
+進行 Machine Learning 定型程序時，會使用一組資料來將模型定型。 您使用 Machine Learning 建立的模型通常不是靜態。 因為當有新資料或 API 取用者有自己的資料時，模型就必須重新定型。
 
-In these scenarios, a programmatic API provides a convenient way to allow you or the consumer of your APIs to create a client that can, on a one-time or regular basis, retrain the model using their own data. They can then evaluate the results of retraining, and update the Web service API to use the newly trained model.
+在這些情況下，程式設計 API 可方便您或 API 取用者建立能夠單次或定期使用自己的資料重新定型模型的用戶端。 接著可以評估重新定型的結果，然後更新 Web 服務 API 以使用新定型的模型。
 
 > [!NOTE]
-> If you have an existing Training Experiment and New Web service, you may want to check out Retrain an existing Predictive Web service instead of following the walkthrough mentioned in the following section.
+> 如果您現在已有訓練實驗和新式 Web 服務，建議您查看＜重新定型現有預測性 Web 服務＞而不是遵循下一節中所述的逐步解說。
 > 
 > 
 
-## <a name="end-to-end-workflow"></a>End-to-end workflow
-The process involves the following components: A Training Experiment and a Predictive Experiment published as a Web service. To enable retraining of a trained model, the Training Experiment must be published as a Web service with the output of a trained model. This enables API access to the model for retraining. 
+## <a name="end-to-end-workflow"></a>端對端工作流程
+此程序包含下列部分：訓練實驗以及以 Web 服務形式發佈的預測性實驗。 若要啟用已定型模型的重新定型功能，必須利用定型模型的輸出將訓練實驗發佈為 Web 服務。 這樣做可讓 API 存取模型進行重新定型。 
 
-The following steps apply to both New and Classic Web services:
+下列步驟適用於新式和傳統 Web 服務︰
 
-Create the initial Predictive Web service:
+建立初始的預測性 Web 服務︰
 
-* Create a training experiment
-* Create a predictive web experiment
-* Deploy a predictive web service
+* 建立訓練實驗
+* 建立預測性 Web 實驗
+* 部署預測性 Web 服務
 
-Retrain the Web service:
+重新定型 Web 服務：
 
-* Update training experiment to allow for retraining
-* Deploy the retraining web service
-* Grab Batch Execution Service code and retrain the model
+* 更新訓練實驗以便能重新定型
+* 部署重新訓練的 Web 服務
+* 使用批次執行服務程式碼重新定型模型
 
-For a walkthrough of the preceding steps, see [Retrain Machine Learning models programmatically](machine-learning-retrain-models-programmatically.md).
+如需上述步驟的逐步解說，請參閱[以程式設計方式重新定型機器學習服務模型](machine-learning-retrain-models-programmatically.md)。
 
-If you deployed a Classic Web Service:
+如果您部署了傳統 Web 服務：
 
-* Create a new Endpoint on the Predictive Web service
-* Get the PATCH URL and code
-* Use the PATCH URL to point the new Endpoint at the retrained model 
+* 在預測性 Web 服務上建立新端點
+* 取得 PATCH URL 和程式碼
+* 使用 PATCH URL 以指出位於重新定型模型中的新端點 
 
-For a walkthrough of the preceding steps, see [Retrain a Classic Web service](machine-learning-retrain-a-classic-web-service.md).
+如需上述步驟的逐步解說，請參閱[重新定型傳統 Web 服務](machine-learning-retrain-a-classic-web-service.md)。
 
-If you run into difficulties retraining a Classic Web service, see [Troubleshooting the retraining of an Azure Machine Learning Classic Web service](machine-learning-troubleshooting-retraining-models.md).
+如果您在重新定型傳統 Web 服務時遇到麻煩，請參閱[針對 Azure Machine Learning 傳統 Web 服務的重新訓練進行疑難排解](machine-learning-troubleshooting-retraining-models.md)。
 
-if you deployed a New Web service:
+如果您部署了新式 Web 服務：
 
-* Sign in to your Azure Resource Manager account
-* Get the Web service definition
-* Export the Web Service Definition as JSON
-* Update the reference to the ilearner blob in the JSON
-* Import the JSON into a Web Service Definition
-* Update the Web service with new Web Service Definition
+* 登入您的 Azure Resource Manager 帳戶
+* 取得 Web 服務定義
+* 將 Web 服務定義匯出為 JSON
+* 在 JSON 中更新 `ilearner` Blob 的參考
+* 將 JSON 匯入至 Web 服務定義
+* 使用新的 Web 服務定義更新 Web 服務
 
-For a walkthrough of the preceding steps, see [Retrain a New Web service using the Machine Learning Management PowerShell cmdlets](machine-learning-retrain-new-web-service-using-powershell.md).
+如需上述步驟的逐步解說，請參閱[使用 Machine Learning Management PowerShell Cmdlet 重新定型新的 Web 服務](machine-learning-retrain-new-web-service-using-powershell.md)。
 
-The process for setting up retraining for a Classic Web service involves the following steps:
+傳統 Web 服務設定重新定型的程序包含下列步驟：
 
-![Retraining process overview][1]
+![重新定型程序概觀][1]
 
-Diagram 1: Retraining process for a Classic Web service overview 
+新式 Web 服務設定重新定型的程序包含下列步驟：
 
-The process for setting up retraining for a New Web service involves the following steps:
+![重新定型程序概觀][7]
 
-![Retraining process overview][7]
-
-Diagram 2: Retraining process for a New Web service overview  
-
-## <a name="other-resources"></a>Other Resources
-[Retraining and Updating Azure Machine Learning models with Azure Data Factory](https://azure.microsoft.com/blog/retraining-and-updating-azure-machine-learning-models-with-azure-data-factory/)
-
-<!--Retrain a New Web service with PowerShell video-->
-
-
+## <a name="other-resources"></a>其他資源
+* [使用 Azure Data Factory 重新定型和更新 Azure Machine Learning 模型](https://azure.microsoft.com/blog/retraining-and-updating-azure-machine-learning-models-with-azure-data-factory/)
+* [使用 PowerShell，從一個實驗中建立許多機器學習服務模型和 Web 服務端點](machine-learning-create-models-and-endpoints-with-powershell.md)
+* [使用 API 的 AML 重新定型模型](https://www.youtube.com/watch?v=wwjglA8xllg)影片會示範如何使用重新定型 API 和 PowerShell，將 Azure Machine Learning 中所建立的機器學習服務模型重新定型。
 
 <!--image links-->
-
-
 [1]: ./media/machine-learning-retrain-machine-learning-model/machine-learning-retrain-models-programmatically-IMAGE01.png
 [7]: ./media/machine-learning-retrain-machine-learning-model/machine-learning-retrain-models-programmatically-IMAGE07.png
 
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6a5154bace333ee89fa40b7a02e2d0020a55dfa6
+ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
+ms.openlocfilehash: e65a655bc9e85b4797d795c9be6ded9ef253ed86
 
 
 ---
@@ -50,7 +50,7 @@ Azure 負責保護您的應用程式執行所在的基礎結構和平台，而�
 有關 Web 架構應用程式安全性考量的詳細討論超出本文件的範圍。 請參閱[開放 Web 軟體安全計劃 (Open Web Application Security Project，OWASP)](https://www.owasp.org/index.php/Main_Page)，作為保護您的應用程式的進一步指引起點，尤其是[十大專案](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)，其中列出由 OWASP 成員所確認的目前十大主要的 Web 應用程式安全性錯誤。
 
 ## <a name="perform-penetration-testing-on-your-app"></a>在您的應用程式上執行滲透測試
-開始測試您的 App Service 應用程式中的弱點的其中一個最簡單的方法是使用 [與 Tinfoil Security 整合](/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/) ，以在您的應用程式上執行單鍵弱點掃描。 您可以在容易了解的報告中檢視測試結果，並且了解如何以逐步指示修正每個弱點。
+開始測試您的 App Service 應用程式中的弱點的其中一個最簡單的方法是使用 [與 Tinfoil Security 整合](https://azure.microsoft.com/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/) ，以在您的應用程式上執行單鍵弱點掃描。 您可以在容易了解的報告中檢視測試結果，並且了解如何以逐步指示修正每個弱點。
 
 如果您想要執行專屬的滲透測試，或想要使用另一個掃描器套件或提供者，您必須依照 [Azure 滲透測試核准程序](https://security-forms.azure.com/penetration-testing/terms) 並取得先前核准，才能執行所需的滲透測試。
 
@@ -120,6 +120,6 @@ Azure App Service 針對您的應用程式的檔案系統，提供透過 **FTPS*
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

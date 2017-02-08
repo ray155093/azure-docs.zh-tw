@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 01/06/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b953b3e2d7518a4bf7af05ee08d33dec3d75005b
+ms.sourcegitcommit: 65385aa918222837468f88246d0527c22c677ba7
+ms.openlocfilehash: 8669d9526da27c3b7faebb7b4d3a9128233508f6
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: b953b3e2d7518a4bf7af05ee08d33dec3d75005b
 
 目前對於訂用帳戶，同一區域中所有快取的診斷設定是共用的。 更新區域中的一個快取將會影響區域中的所有其他快取。
 
-如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
+如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 如需完整範本，請參閱 [Redis 快取範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-redis-cache/azuredeploy.json)。
 
@@ -135,6 +135,6 @@ Redis 快取的位置。 針對最佳效能，使用要與快取搭配使用之�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "適用於 Java 的 Azure IoT 中樞快速入門 | Microsoft Docs"
-description: "採用 Java 的 Azure IoT 中樞快速入門教學課程。 使用 Azure IoT 中樞與 Java 搭配 Azure IoT SDK 來實作物聯網解決方案。"
+title: "開始使用 Azure IoT 中樞 (Java) | Microsoft Docs"
+description: "如何使用適用於 Java 的 Azure IoT SDK 將裝置到雲端訊息從裝置傳送至 Azure IoT 中樞。 您可以建立模擬裝置應用程式來傳送訊息、建立服務應用程式以在身分識別登錄中註冊裝置，以及建立服務應用程式以從 IoT 中樞讀取裝置到雲端訊息。"
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 11/23/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: ce514e19370d2b42fb16b4e96b66f212d5fa999c
-ms.openlocfilehash: ae4727b27281be62a79f9387715eccd6b61e8e12
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 4054831b19b91145788a0d1b4dbb09d4795df459
 
 
 ---
-# <a name="get-started-with-azure-iot-hub-for-java"></a>開始使用適用於 Java 的 Azure IoT 中樞
+# <a name="get-started-with-azure-iot-hub-java"></a>開始使用 Azure IoT 中樞 (Java)
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
 在本教學課程結尾處，您會有三個 Java 主控台應用程式：
@@ -105,7 +105,7 @@ ms.openlocfilehash: ae4727b27281be62a79f9387715eccd6b61e8e12
         iotf.printStackTrace();
       }
     }
-    System.out.println("Device id: " + device.getDeviceId());
+    System.out.println("Device ID: " + device.getDeviceId());
     System.out.println("Device key: " + device.getPrimaryKey());
     ```
 10. 儲存並關閉 App.java 檔案。
@@ -425,14 +425,14 @@ ms.openlocfilehash: ae4727b27281be62a79f9387715eccd6b61e8e12
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
    
-    ![用來監視裝置到雲端訊息的 Java IoT 中樞服務用戶端應用程式][7]
+    ![用來監視裝置到雲端訊息的 Java IoT 中樞服務應用程式][7]
 2. 在 simulated-device 資料夾的命令提示字元中，執行下列命令以開始將遙測資料傳送至 IoT 中樞：
    
     ```
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
     ```
    
-    ![用來傳送裝置到雲端訊息的 Java IoT 中樞裝置用戶端應用程式][8]
+    ![用來傳送裝置到雲端訊息的 Java IoT 中樞裝置應用程式][8]
 3. [Azure 入口網站][lnk-portal]中的 [使用量] 圖格會顯示傳送至 IoT 中樞的訊息數目︰
    
     ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
@@ -474,6 +474,6 @@ ms.openlocfilehash: ae4727b27281be62a79f9387715eccd6b61e8e12
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 
