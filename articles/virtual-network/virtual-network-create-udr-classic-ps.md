@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 80b452bd96e3a328899ed455b71cf68da8bfde54
-ms.openlocfilehash: b411a31b1e972f3a614735ef53d593f9f8f442cd
+ms.sourcegitcommit: ba7a67b8ae57da165f45bd3552a3dfac5f4ef64b
+ms.openlocfilehash: 0bf0f3b64319a42a3b693f64ae705756b10be64e
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: b411a31b1e972f3a614735ef53d593f9f8f442cd
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 > [!IMPORTANT]
-> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../resource-manager-deployment-model.md) 。 您可以選取本文章頂端的選項，檢視不同工具的文件。 本文涵蓋之內容包括傳統部署模型。
+> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。 您可以選取本文章頂端的選項，檢視不同工具的文件。 本文涵蓋之內容包括傳統部署模型。
 > 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
@@ -134,6 +134,6 @@ ms.openlocfilehash: b411a31b1e972f3a614735ef53d593f9f8f442cd
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

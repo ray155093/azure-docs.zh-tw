@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 891461bd5069bd7ea5b3c20f301c9ddd9b2f035e
+ms.sourcegitcommit: 5d73d1203faf485d715354e68ce2ccde32562611
+ms.openlocfilehash: 62d5b9d1698dc8f0331fc9ced8fc9611055db06e
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: 891461bd5069bd7ea5b3c20f301c9ddd9b2f035e
 
 
 ## <a name="install-azure-powershell-10-or-greater"></a>安裝 Azure PowerShell 1.0 或更新版本
-請參閱 [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md#prerequisites)的＜必要條件＞一節。
+請參閱 [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)的＜必要條件＞一節。
 
 ## <a name="manage-accounts"></a>管理帳戶
 您必須擁有資料湖分析帳戶，才能執行任何資料湖分析工作。 與 Azure HDInsight 不同的是，分析帳戶未執行工作時，您無需支付該帳戶的費用。  您只需支付執行工作時的費用。  如需詳細資訊，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。  
@@ -269,7 +269,7 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
         -ItemType Table `
         -Path "master.dbo.mytable"
 
-### <a name="test-existence-of-catalog-item"></a>測試目錄項目是否存在
+### <a name="test-existence-of--catalog-item"></a>測試目錄項目是否存在
     Test-AzureRmDataLakeAnalyticsCatalogItem  `
         -Account $adlAnalyticsAccountName `
         -ItemType Database `
@@ -319,7 +319,7 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 * [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
 ## <a name="appendix-a---data-lake-analytics-arm-template"></a>附錄 A - Data Lake Analytics ARM 範本
-下列 ARM 範本可用於部署資料湖分析帳戶及其相依資料湖存放區帳戶。  另存成 json 檔案，然後使用 PowerShell 指令碼呼叫該範本。 如需詳細資訊，請參閱[使用 Azure Resource Manager 範本來部署應用程式](../resource-group-template-deploy.md#deploy-with-powershell)和[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
+下列 ARM 範本可用於部署資料湖分析帳戶及其相依資料湖存放區帳戶。  另存成 json 檔案，然後使用 PowerShell 指令碼呼叫該範本。 如需詳細資訊，請參閱[使用 Azure Resource Manager 範本來部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)和[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
     {
       "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -377,6 +377,6 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "透過 C# 監視和管理彈性資料庫集區 | Microsoft Docs"
-description: "使用 C# 資料庫開發技術管理 Azure SQL Database 彈性資料庫集區。"
+title: "使用 C# 監視和管理彈性集區 | Microsoft Docs"
+description: "使用 C# 資料庫開發技術來管理 Azure SQL Database 彈性集區。"
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: f6e6ff3b-6b60-43c1-afe9-575991e38237
 ms.service: sql-database
-ms.custom: sharded databases pool; how to
+ms.custom: multiple databases
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: csharp
@@ -16,12 +16,12 @@ ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 62e13424d8dd652bc20c5746f81df7958963c43a
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: a6d5b0ccb1b160be4f8f3c09814202634759c8c6
 
 
 ---
-# <a name="monitor-and-manage-an-elastic-database-pool-with-cx23"></a>透過 C&#x23; 監視和管理彈性資料庫集區
+# <a name="monitor-and-manage-an-elastic-pool-with-cx23"></a>使用 C&#x23; 監視和管理彈性集區
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
 > * [PowerShell](sql-database-elastic-pool-manage-powershell.md)
@@ -30,7 +30,7 @@ ms.openlocfilehash: 62e13424d8dd652bc20c5746f81df7958963c43a
 > 
 > 
 
-了解如何使用 C&#x23; 來管理[彈性資料庫集區](sql-database-elastic-pool.md)。 
+了解如何使用 C&#x23; 來管理[彈性集區](sql-database-elastic-pool.md)。 
 
 > [!NOTE]
 > SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../azure-resource-manager/resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
@@ -39,7 +39,7 @@ ms.openlocfilehash: 62e13424d8dd652bc20c5746f81df7958963c43a
 
 若要完成這篇文章中的步驟，您需要下列項目︰
 
-* 一個彈性集區 (您想要管理的集區)。 若要建立集區，請參閱[使用 C# 建立彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)。
+* 一個彈性集區 (您想要管理的集區)。 若要建立集區，請參閱[使用 C# 建立彈性集區](sql-database-elastic-pool-create-csharp.md)。
 * 。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
 
 ## <a name="move-a-database-into-an-elastic-pool"></a>將資料庫移入彈性集區
@@ -107,13 +107,13 @@ ms.openlocfilehash: 62e13424d8dd652bc20c5746f81df7958963c43a
 * [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md)。
 * [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 * [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
-* [使用 C# 建立新的彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)
-* [何時使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)
+* [使用 C# 建立新的彈性集區](sql-database-elastic-pool-create-csharp.md)
+* [何時使用彈性集區？](sql-database-elastic-pool-guidance.md)
 * 請參閱 [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

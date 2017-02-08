@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: edc3a915a59d83718d05ce39a1ce2bcd14333da4
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 42d71bf43070e08ae287a7b251c5bb94a6a80548
 
 
 ---
@@ -39,12 +39,12 @@ ms.openlocfilehash: edc3a915a59d83718d05ce39a1ce2bcd14333da4
 ## <a name="prerequisites"></a>必要條件
 若要逐步執行本教學課程，您需要：
 
-* 預先載入 AdventureWorksDW 範例資料的 SQL 資料倉儲。 若要進行佈建，請參閱 [建立 SQL 資料倉儲][建立 SQL 資料倉儲] 並選擇載入範例資料。 如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][手動載入範例資料]。
+* 預先載入 AdventureWorksDW 範例資料的 SQL 資料倉儲。 若要進行佈建，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]並選擇載入範例資料。 如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][load sample data manually]。
 
 ## <a name="1-get-data"></a>1.取得資料
 此資料位於 AdventureWorksDW 資料庫的 dbo.vTargetMail 檢視中。 如何讀取此資料：
 
-1. 登入 [Azure Machine Learning studio][Azure Machine Learning studio] 並按一下我的實驗。
+1. 登入 [Azure Machine Learning Studio][Azure Machine Learning studio] 並按一下我的實驗。
 2. 按一下 [+ 新增] 並選取 [空白實驗]。
 3. 輸入您的實驗名稱：目標行銷。
 4. 將 [讀取器]  模組從模組窗格拖曳到畫布上。
@@ -124,7 +124,7 @@ FROM [dbo].[vTargetMail]
 比較 BikeBuyer (實際) 資料行和評分標籤 (預測)，您可以看到模型的執行效果。 在接下來的步驟中，您可以使用此模型預測新的客戶，並將其發佈為 web 服務，或將結果寫回 SQL 資料倉儲。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解如何建置預測性機器學習模型，請參閱 [Azure 上的機器學習服務簡介][Azure 上的機器學習服務簡介]。
+若要深入了解如何建置預測性機器學習模型，請參閱 [Azure 上的機器學習服務簡介][Introduction to Machine Learning on Azure]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-get-started-analyze-with-azure-machine-learning/img1_reader.png
@@ -143,12 +143,12 @@ FROM [dbo].[vTargetMail]
 
 <!--Article references-->
 [Azure Machine Learning studio]:https://studio.azureml.net/
-[Azure 上的機器學習服務簡介]:https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
-[手動載入範例資料]: sql-data-warehouse-load-sample-databases.md
-[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
+[Introduction to Machine Learning on Azure]:https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
+[load sample data manually]: sql-data-warehouse-load-sample-databases.md
+[Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

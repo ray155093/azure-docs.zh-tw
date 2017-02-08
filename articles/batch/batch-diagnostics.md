@@ -3,7 +3,7 @@ title: "Azure Batch 診斷記錄 | Microsoft Docs"
 description: "記錄並分析 Azure Batch 帳戶資源 (如集區和工作) 的診斷記錄事件。"
 services: batch
 documentationcenter: 
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 ms.assetid: e14e611d-12cd-4671-91dc-bc506dc853e5
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: big-compute
-ms.date: 10/12/2016
-ms.author: marsma
+ms.date: 01/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2c66486f9716ed8ac093685b10e9294beb43c381
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: f1aa23d2865ec8401a59b2370c8157d2458c60f7
 
 
 ---
@@ -78,13 +78,13 @@ Batch 服務目前會發出下列服務記錄檔事件。 這份清單可能不�
 
 | **服務記錄檔事件** |
 | --- |
-| [集區建立][pool_create] |
+| [建立集區][pool_create] |
 | [開始刪除集區][pool_delete_start] |
-| [集區刪除完成][pool_delete_complete] |
+| [完成集區刪除][pool_delete_complete] |
 | [開始調整集區大小][pool_resize_start] |
-| [集區大小調整完成][pool_resize_complete] |
-| [工作開始][task_start] |
-| [工作完成][task_complete] |
+| [完成集區大小調整][pool_resize_complete] |
+| [開始工作][task_start] |
+| [完成工作][task_complete] |
 | [工作失敗][task_fail] |
 
 ## <a name="next-steps"></a>後續步驟
@@ -108,6 +108,6 @@ Batch 服務目前會發出下列服務記錄檔事件。 這份清單可能不�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

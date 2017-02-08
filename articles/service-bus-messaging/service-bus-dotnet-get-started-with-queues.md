@@ -12,11 +12,11 @@ ms.devlang: tbd
 ms.topic: hero-article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 08/23/2016
+ms.date: 11/30/2016
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 9ace119de3676bcda45d524961ebea27ab093415
-ms.openlocfilehash: 6f138d547a356e47e6e195c236e69ad3ffcc2cc5
+ms.sourcegitcommit: 560e73eb7129e665d254c3e93b08f29cfb6b1aa9
+ms.openlocfilehash: d80bedba1909de671ef96ac5372d9ff15a90764e
 
 
 ---
@@ -51,7 +51,8 @@ ms.openlocfilehash: 6f138d547a356e47e6e195c236e69ad3ffcc2cc5
 為了將訊息傳送到佇列，我們會使用 Visual Studio 撰寫 C# 主控台應用程式。
 
 ### <a name="create-a-console-application"></a>建立主控台應用程式
-1. 啟動 Visual Studio，並建立新的主控台應用程式。
+
+- 啟動 Visual Studio，並建立新的主控台應用程式。
 
 ### <a name="add-the-service-bus-nuget-package"></a>新增服務匯流排 NuGet 封裝
 1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
@@ -62,12 +63,12 @@ ms.openlocfilehash: 6f138d547a356e47e6e195c236e69ad3ffcc2cc5
 ### <a name="write-some-code-to-send-a-message-to-the-queue"></a>撰寫一些程式碼來將訊息傳送到佇列
 1. 在 Program.cs 檔案開頭處新增以下 using 陳述式。
    
-    ```
+    ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
 2. 將下列程式碼新增至 `Main` 方法，將 **connectionString** 變數設定為建立命名空間時所取得的連接字串，以及將 **queueName** 設定為建立佇列時所使用的佇列名稱。
    
-    ```
+    ```csharp
     var connectionString = "<Your connection string>";
     var queueName = "<Your queue name>";
    
@@ -78,7 +79,7 @@ ms.openlocfilehash: 6f138d547a356e47e6e195c236e69ad3ffcc2cc5
    
     Program.cs 看起來應該會像下面這樣。
    
-    ```
+    ```csharp
     using System;
     using Microsoft.ServiceBus.Messaging;
    
@@ -107,12 +108,12 @@ ms.openlocfilehash: 6f138d547a356e47e6e195c236e69ad3ffcc2cc5
 1. 建立新的主控台應用程式，並和上面的傳送應用程式類似，新增服務匯流排 NuGet 封裝的參考。
 2. 在 Program.cs 檔案開頭處新增以下 `using` 陳述式。
    
-    ```
+    ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
 3. 將下列程式碼新增至 `Main` 方法，將 **connectionString** 變數設定為建立命名空間時所取得的連接字串，以及將 **queueName** 設定為建立佇列時所使用的佇列名稱。
    
-    ```
+    ```csharp
     var connectionString = "";
     var queueName = "samplequeue";
    
@@ -129,7 +130,7 @@ ms.openlocfilehash: 6f138d547a356e47e6e195c236e69ad3ffcc2cc5
    
     Program.cs 檔案看起來應該會像下面這樣：
    
-    ```
+    ```csharp
     using System;
     using Microsoft.ServiceBus.Messaging;
    
@@ -177,6 +178,6 @@ ms.openlocfilehash: 6f138d547a356e47e6e195c236e69ad3ffcc2cc5
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

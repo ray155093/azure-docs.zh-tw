@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 08/31/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: fb25351de7f4b64ab36d5a1f2629677f0acece47
-ms.openlocfilehash: 3d1d6ea9ea933c5aaf27b58b9f49a5b845f610ce
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: c1fd18ad8889033cba8a92f6ae255ba6478e6595
 
 
 ---
@@ -169,7 +169,7 @@ ms.openlocfilehash: 3d1d6ea9ea933c5aaf27b58b9f49a5b845f610ce
 2. 在 [指定位址空間]  頁面上，按一下右下角的核取記號，而不進行任何變更。
 
 ## <a name="step-7---create-the-vpn-connection"></a>步驟 7 - 建立 VPN 連線
-當所有先前的步驟都已完成時，請設定 IPsec/IKE 預先共用金鑰並建立連線。 這組步驟會使用 PowerShell，無法在入口網站中設定。 如需有關如何安裝 Azure PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。 請務必下載最新版的「服務管理」(SM) Cmdlet。 
+當所有先前的步驟都已完成時，請設定 IPsec/IKE 預先共用金鑰並建立連線。 這組步驟會使用 PowerShell，無法在入口網站中設定。 如需有關如何安裝 Azure PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 請務必下載最新版的「服務管理」(SM) Cmdlet。 
 
 1. 開啟 Windows PowerShell 並登入。
    
@@ -200,6 +200,6 @@ ms.openlocfilehash: 3d1d6ea9ea933c5aaf27b58b9f49a5b845f610ce
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -12,14 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/19/2016
+ms.date: 12/01/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 654acd092f9e8469d7014e1ff15cb7d812918e8b
-
+ms.sourcegitcommit: 1eada96773b1d9c6adb9326c9100da7cde8abf77
+ms.openlocfilehash: e3143d787104ffbba9fb0c3806b187382d9d5c5b
 
 ---
+
+
 # <a name="troubleshoot-application-proxy"></a>疑難排解應用程式 Proxy
 如果在存取已發佈的應用程式或發佈應用程式時發生錯誤，請檢查下列選項以查看 Microsoft Azure AD 應用程式 Proxy 是否運作正常︰
 
@@ -53,7 +54,7 @@ ms.openlocfilehash: 654acd092f9e8469d7014e1ff15cb7d812918e8b
 | 連接器註冊失敗︰確定您已在 Azure 管理入口網站中啟用應用程式 Proxy，並已正確地輸入您的 Active Directory 使用者名稱和密碼。 錯誤︰「發生一或多個錯誤。」 |如果註冊視窗隨即開啟，然後立即關閉，而不讓您登入，您可能會發生此錯誤。 您的系統有網路錯誤時，就會發生此錯誤。 |確定可以從瀏覽器連線至公用網站，並如 [應用程式 Proxy 先決條件](active-directory-application-proxy-enable.md)所指定開啟連接埠。 |
 | 連接器註冊失敗︰確定您的電腦已連線到網際網路。 錯誤︰「沒有任何在 `https://connector.msappproxy.net :9090/register/RegisterConnector` 上進行接聽的端點可以接受該訊息。 這通常是由不正確的位址或 SOAP 動作所造成。 如需詳細資訊，請參閱 InnerException (如果有的話)。」 |如果您使用 Azure AD 使用者名稱和密碼進行登入，但之後收到這個錯誤，可能是所有超過 8081 的連接埠遭到封鎖。 |確定必要的連接埠已開啟。 如需詳細資訊，請參閱 [應用程式 Proxy 先決條件](active-directory-application-proxy-enable.md)。 |
 | 清除錯誤會顯示在註冊視窗中。 無法繼續 - 只能關閉視窗。 |您輸入的使用者名稱或密碼錯誤。 |請再試一次。 |
-| 連接器註冊失敗︰確定您已在 Azure 管理入口網站中啟用應用程式 Proxy，並已正確地輸入您的 Active Directory 使用者名稱和密碼。 錯誤︰「AADSTS50059: 在要求中找不到租用戶識別資訊，或任何提供的認證均未隱含租用戶識別資訊，而且依服務原則 URI 的搜尋已失敗。 |您嘗試使用 Microsoft 帳戶進行登入，而非使用屬於您嘗試存取之目錄的組織識別碼的網域。 |確定系統管理員是與租用戶網域相同網域名稱的一部分，例如，若 Azure AD 網域是 contoso.com，則系統管理員應該是 admin@contoso.com。 |
+| 連接器註冊失敗︰確定您已在 Azure 管理入口網站中啟用應用程式 Proxy，並已正確地輸入您的 Active Directory 使用者名稱和密碼。 錯誤︰「AADSTS50059: 在要求中找不到租用戶識別資訊，或任何提供的認證均未隱含租用戶識別資訊，而且依服務主體 URI 的搜尋已失敗。 |您嘗試使用 Microsoft 帳戶進行登入，而非使用屬於您嘗試存取之目錄的組織識別碼的網域。 |確定系統管理員屬於與租用戶網域相同的網域名稱，例如，若 Azure AD 網域是 contoso.com，則系統管理員應該是 admin@contoso.com。 |
 | 無法擷取目前的執行原則以供執行 PowerShell 指令碼。 |如果連接器安裝失敗，請檢查以確定未停用 PowerShell 執行原則。 |開啟 [群組原則編輯器]。 移至 [電腦設定] > [系統管理範本] > [Windows 元件] > [Windows PowerShell]，按兩下 [開啟指令碼執行]。 這可以設定為 [未設定] 或 [已啟用]。 如果是設定為 [已啟用]，請確定 [選項] 底下的 [執行原則] 是設定為 [允許本機指令碼和遠端已簽署的指令碼] 或 [允許所有指令碼]。 |
 | 連接器無法下載組態。 |連接器用於驗證的用戶端憑證已過期。 如果您將連接器安裝在 Proxy 後面，也可能發生這種情形。 在此情況下，連接器無法存取網際網路，且無法將應用程式提供給遠端使用者。 |在 Windows PowerShell 中使用 `Register-AppProxyConnector` Cmdlet，手動更新信任。 如果您的連接器位於 Proxy 後面，則必須將網際網路存取權授與「網絡服務」和「本機系統」連接器帳戶。 授與 Proxy 的存取權或將其設為略過 Proxy，即可完成此作業。 |
 | 連接器註冊失敗︰確定您是 Active Directory 的全域管理員以註冊連接器。 錯誤︰「註冊要求被拒絕。」 |您嘗試用以登入的別名不是此網域的系統管理員。 您的連接器永遠都會針對擁有使用者網域的目錄進行安裝。 |確定您嘗試用以登入的系統管理員身分具有 Azure AD 租用戶的全域權限。 |
@@ -86,6 +87,6 @@ ms.openlocfilehash: 654acd092f9e8469d7014e1ff15cb7d812918e8b
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

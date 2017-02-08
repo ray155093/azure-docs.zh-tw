@@ -1,5 +1,5 @@
 ---
-title: "# 為加入網域的 Windows 7 裝置設定自動裝置註冊 | Microsoft Docs"
+title: "# 為加入網域的 Windows 7 裝置設定自動裝置註冊 | Microsoft Docscs"
 description: "設定讓加入網域的 Windows 7 裝置自動向 Azure AD 註冊的步驟。 使用軟體發佈系統 (例如 System Center Configuration Manager) 將裝置註冊軟體套件部署到加入網域之 Windows 7 裝置的步驟。"
 services: active-directory
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/21/2016
 ms.author: MarkVi
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2bc945283ca99dc91ae7e824606886a5389f20a6
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e31a22237fb6b715c1d5c24d75f645edfbeb7c9e
 
 
 ---
@@ -75,6 +75,6 @@ Windows 7 電腦上的 Windows 事件記錄檔會顯示與「加入工作場所�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

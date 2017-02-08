@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/24/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dadae052868fcb0952b4480525efc0267a4a8e22
+ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
+ms.openlocfilehash: 50630084a3df9bc1fed27efb41bc557d0e03916f
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: dadae052868fcb0952b4480525efc0267a4a8e22
 
 ## <a name="before-you-deploy-your-web-app-to-production"></a>將 Web 應用程式部署到生產環境之前
 ### <a name="choose-a-tier"></a>選擇階層。
-Azure App Service 提供了五種階層：免費、共用、基本、標準和高階。 如需各階層之功能和定價的相關資訊，請參閱 [網站定價詳細資料](/pricing/details/app-service/)。 
+Azure App Service 提供了五種階層：免費、共用、基本、標準和高階。 如需各階層之功能和定價的相關資訊，請參閱 [網站定價詳細資料](https://azure.microsoft.com/pricing/details/app-service/)。 
 
 * [應用程式服務方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) 可讓您將多個 Web 應用程式分組在同一個階層下。
 * 建立 Web 應用程式之後，您可以隨時 [切換階層](web-sites-scale.md) 。
@@ -83,14 +83,14 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
 <!-- Anchors. -->
 
-[將網站部署到生產環境之前]: #before-you-deploy-your-site-to-production
-[當網站運作時]: #while-your-website-is-running
-[更新網站時]: #when-you-update-your-website
+[Before you deploy your site to production]: #before-you-deploy-your-site-to-production
+[While your website is running]: #while-your-website-is-running
+[When you update your website]: #when-you-update-your-website
 
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

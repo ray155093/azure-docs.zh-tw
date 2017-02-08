@@ -219,7 +219,7 @@ Asana 與 Azure AD 整合提供下列優點：
 ### <a name="testing-single-sign-on"></a>測試單一登入
 本節的目標是要測試您的 Azure AD 單一登入。
 
-移至 Asana 登入頁面。 在 [電子郵件地址] 文字方塊中插入電子郵件地址 britta.simon@contoso.com. 讓 [密碼] 文字方塊保持空白，然後按一下 [登入] 。 系統會將您重新導向至 Azure AD 登入頁面。 完成您的 Azure AD 認證。 現在，您已在 Asana 上登入。
+移至 Asana 登入頁面。 在 [電子郵件地址] 文字方塊中插入電子郵件地址 britta.simon@contoso.com。 讓 [密碼] 文字方塊保持空白，然後按一下 [登入]。 系統會將您重新導向至 Azure AD 登入頁面。 完成您的 Azure AD 認證。 現在，您已在 Asana 上登入。
 
 ## <a name="additional-resources"></a>其他資源
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
@@ -248,6 +248,6 @@ Asana 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

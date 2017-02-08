@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 08/04/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1952e103c574f83c2c6285e32c59144816749348
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 84b6df0b45548d3797528c3723f02bd1a124454f
 
 
 ---
-# <a name="windows-authentication-and-azure-multifactor-authentication-server"></a>Windows 驗證與 Azure Multi-Factor Authentication Server
+# <a name="windows-authentication-and-azure-multi-factor-authentication-server"></a>Windows 驗證與 Azure Multi-Factor Authentication Server
 [Windows 驗證] 區段可讓系統管理員啟用和設定一或多個應用程式的 Windows 驗證。  以下是設定 Windows 驗證之前的注意事項清單。
 
 * 需要重新開機，Azure Multi-Factor Authentication for Terminal Services 才會生效。
@@ -49,6 +49,6 @@ ms.openlocfilehash: 1952e103c574f83c2c6285e32c59144816749348
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 10/14/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 420b193d558d00f574d24c87ab9db6e9e757a952
+ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
+ms.openlocfilehash: d1b6d12b1976b317e9ed496857439c86e99253f9
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: 420b193d558d00f574d24c87ab9db6e9e757a952
 您可以用數種不同的方式驗證閘道連線。 本文將說明如何使用 Azure 入口網站和 PowerShell 來驗證 Resource Manager 閘道連線的狀態。
 
 ## <a name="verify-using-powershell"></a>使用 PowerShell 進行確認
-您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。 如需有關安裝 PowerShell Cmdlet 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 如需使用 Resource Manager Cmdlet 的詳細資訊，請參閱 [搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
+您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。 如需有關安裝 PowerShell Cmdlet 的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如需使用 Resource Manager Cmdlet 的詳細資訊，請參閱 [搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
 
 ### <a name="step-1-log-in-to-your-azure-account"></a>步驟 1：登入您的 Azure 帳戶
 1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。
@@ -50,6 +50,6 @@ ms.openlocfilehash: 420b193d558d00f574d24c87ab9db6e9e757a952
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/19/2016
+ms.date: 12/14/2016
 ms.author: dhanyahk
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 23da68e26865a8c3525cce3cb2b3a4db447fcc4c
+ms.sourcegitcommit: 6950072b8970dfc1b80674efe0be6cb7496fd5ce
+ms.openlocfilehash: 2dda60160bbcaa729bc8e5cec4f47efc10d120cf
 
 
 ---
@@ -44,8 +44,6 @@ Azure Active Directory 稽核報告可協助客戶識別其 Azure Active Directo
 | 新增群組 |在目錄中建立群組。 |
 | 更新群組 |更新目錄中的群組。 若要查看哪些群組屬性已更新，請參考下一節中的 [稽核的群組屬性](#update-group-attributes) |
 | 刪除群組 |從目錄刪除群組。 |
-| 將成員加入群組 |將成員加入目錄中的群組。 |
-| 從群組移除成員 |將成員從目錄中的群組移除。 |
 | CreateGroupSettings |建立群組設定 |
 | UpdateGroupSettings |更新群組設定。 若要查看哪些群組設定已更新，請參考下一節中的 [稽核的群組屬性](#update-group-attributes) |
 | DeleteGroupSettings |刪除群組設定 |
@@ -63,21 +61,6 @@ Azure Active Directory 稽核報告可協助客戶識別其 Azure Active Directo
 | 新增委派項目 |已在目錄中建立 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permissiongrant-entity) 。 |
 | 設定委派項目 |已在目錄中更新 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permissiongrant-entity) 。 |
 | 移除委派項目 |已在目錄中刪除 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#oauth2permissiongrant-entity) 。 |
-| **角色事件** | |
-| 將角色成員新增至角色 |將使用者新增至目錄角色。 |
-| 移除角色的角色成員 |從目錄角色移除使用者。 |
-| 設定公司連絡人資訊 |設定公司層級的連絡人喜好設定。 這包括用於行銷的電子郵件地址，以及 Microsoft Online Services 的相關技術通知。 |
-| 新增委派項目 |已在目錄中建立 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionGrantEntity) 。 |
-| 設定委派項目 |已在目錄中更新 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionGrantEntity) 。 |
-| 移除委派項目 |已在目錄中刪除 [OAuth2PermissionGrant](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#OAuth2PermissionGrantEntity) 。 |
-| AddSevicePrincipalOwner |將擁有者新增至服務主體。 |
-| RemoveSevicePrincipalOwner |移除服務主體中的擁有者。 |
-| AddApplication |新增應用程式。 |
-| UpdateApplication |更新應用程式。 若要查看哪些應用程式設定已更新，請參考下一節中的 [稽核的應用程式屬性](#update-application-attributes) |
-| DeleteApplication |刪除應用程式。 |
-| RestoreApplication |還原應用程式。 |
-| AddApplicationOwner |將擁有者新增至應用程式。 |
-| RemoveApplicationOwner |移除應用程式中的擁有者。 |
 | **角色事件** | |
 | 將角色成員新增至角色 |將使用者新增至目錄角色。 |
 | 移除角色的角色成員 |從目錄角色移除使用者。 |
@@ -346,6 +329,6 @@ Azure AD 稽核報告中的事件會保留 180 天。 如需保留報告的詳�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

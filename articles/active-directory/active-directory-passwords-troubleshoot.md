@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/12/2016
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ad322aed5e2e6a42a2600a3995be28a99ee14f3a
+ms.sourcegitcommit: 8a4e26b7ccf4da27b58a6d0bcfe98fc2b5533df8
+ms.openlocfilehash: 3515091cf71ecb595d8c08902ff13549a9ddd2f4
 
 
 ---
@@ -540,7 +540,7 @@ ms.openlocfilehash: ad322aed5e2e6a42a2600a3995be28a99ee14f3a
               <p>在運作一段時間後，已同盟或密碼雜湊同步處理的使用者無法重設其密碼。</p>
             </td>
             <td>
-              <p>在某些罕見情況下，重新啟動 Azure AD Connect 時可能無法重新啟動密碼回寫服務。 在這些情況下，請先檢查內部部署是否已啟用密碼回寫。 若要執行此作業，請使用 Azure AD Connect 精靈或 PowerShell (請參閱上面的「作法」章節)。如果此功能已啟用，請嘗試透過 UI 或 PowerShell 再次啟用或停用功能。 如需有關如何執行此操作的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
+              <p>在某些罕見情況下，重新啟動 Azure AD Connect 時可能無法重新啟動密碼回寫服務。 在這些情況下，請先檢查內部部署是否已啟用密碼回寫。 若要執行此作業，請使用 Azure AD Connect 精靈或 PowerShell (請參閱上面的「作法」章節)。如果此功能已啟用，請嘗試透過 UI 或 PowerShell 再次啟用或停用功能。 如需如何執行此作業的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和&amp;設定防火牆規則」。</p>
               <p>
 
               </p>
@@ -584,7 +584,7 @@ ms.openlocfilehash: ad322aed5e2e6a42a2600a3995be28a99ee14f3a
                 <li>
 現在您嘗試啟用/停用密碼回寫。 精靈會使用認證將連接器的名稱建構為 “abc.onmicrosoft.com – AAD”，並傳遞給密碼回寫 Cmdlet。 此作業會失敗，因為沒有使用此名稱建立的連接器。<br\><br\></li>
               </ol>
-              <p>最新的組建已修正此問題。 如果您有較舊的組建，有一個解決方法是使用 PowerShell Cmdlet 來啟用/停用此功能。 如需有關如何執行此操作的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
+              <p>最新的組建已修正此問題。 如果您有較舊的組建，有一個解決方法是使用 PowerShell Cmdlet 來啟用/停用此功能。 如需如何執行此作業的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和&amp;設定防火牆規則」。</p>
             </td>
           </tr>
           <tr>
@@ -659,7 +659,7 @@ ms.openlocfilehash: ad322aed5e2e6a42a2600a3995be28a99ee14f3a
               <p>嘗試在 Azure 管理入口網站代表使用者重設密碼時，您看到訊息指出：「內部部署環境中執行的密碼重設服務不支援系統管理員重設使用者的密碼。 請升級至最新版的 Azure AD Connect 來解決此問題。」</p>
             </td>
             <td>
-              <p>當同步處理引擎的版本不支援所使用的特定密碼回寫作業時，就會發生此錯誤。 1.0.0419.0911 之後的 Azure AD Connect 版本支援所有密碼管理作業，包括密碼重設回寫、密碼變更回寫，以及系統管理員從「Azure 管理入口網站」起始的密碼重設回寫。&nbsp; 1.0.6862 之後的 DirSync 版本則僅支援密碼重設回寫。 為了解決此問題，強烈建議您安裝最新版的 Azure AD Connect 或 Azure Active Directory Connect。 如需詳細資訊，請參閱[整合內部部署身分識別](active-directory-aadconnect.md)以解決此問題，並在您的組織中充分發揮「密碼回寫」的效益。</p>
+              <p>當同步處理引擎的版本不支援所使用的特定密碼回寫作業時，就會發生此錯誤。 1.0.0419.0911 之後的 Azure AD Connect 版本支援所有密碼管理作業，包括密碼重設回寫、密碼變更回寫，以及系統管理員從「Azure 管理入口網站」起始的密碼重設回寫。&nbsp; 1.0.6862 之後的 DirSync 版本則僅支援密碼重設回寫。 為了解決此問題，強烈建議您安裝最新版的 Azure AD Connect 或 Azure Active Directory Connect。 如需詳細資訊，請參閱[整合內部部署身分識別](connect/active-directory-aadconnect.md)以解決此問題，並在您的組織中充分發揮「密碼回寫」的效益。</p>
             </td>
           </tr>
         </tbody></table>
@@ -1486,7 +1486,7 @@ MA 服務帳戶沒有適當的權限，無法對所提及的使用者帳戶設�
 重新安裝 Azure AD Connect 封裝將可解決任何可能會影響您能否連線到雲端服務或能否管理本機 AD 環境中密碼的設定問題。
 建議您只在嘗試過上述前兩個步驟後，才執行此步驟。
 
-1. 在 [這裡](active-directory-aadconnect.md#install-azure-ad-connect)下載最新版的 Azure AD Connect。
+1. 在 [這裡](connect/active-directory-aadconnect.md#install-azure-ad-connect)下載最新版的 Azure AD Connect。
 2. 由於您已安裝 Azure AD Connect，您只需要執行就地升級，即可將 Azure AD Connect 安裝更新為最新版。
 3. 執行下載的封裝，並遵循螢幕上的指示來更新您的 Azure AD Connect 電腦。  過程中不需手動執行任何額外步驟，除非您已自訂現成可用的同步處理規則，在此情況下，您就應該 **先備份這些規則，然後再繼續進行升級，並於完成後以手動方式重新部署這些規則**。
 
@@ -1519,6 +1519,6 @@ MA 服務帳戶沒有適當的權限，無法對所提及的使用者帳戶設�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

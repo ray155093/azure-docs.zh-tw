@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 08/19/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8cb91a8cdc6d16070034c79515731be7b820d389
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e3d6caee50a57648f4f775029a2e381cee0f1e72
 
 
 ---
@@ -49,7 +49,7 @@ ms.openlocfilehash: 8cb91a8cdc6d16070034c79515731be7b820d389
 
 在整合基礎上，一旦發佈應用程式，身為行銷人員的您將能夠即時看到分析、區隔對象，然後開始傳送智慧型鎖定式推播通知，以在應用程式內外和使用者交流。
 
-### <a name="usecases-to-get-started"></a>入門使用案例
+### <a name="use-cases-to-get-started"></a>入門使用案例
 1. 入門策略：根據啟動應用程式時的使用者行為，建立數個推送通知活動，以便在第一個工作階段之後，在 D+2/5/10/15 重新交流，提高第一輪的保留率。
 2. 根據使用者的行為推廣新內容 (功能、文章/影片或產品)，只將資訊傳送給較有可能受吸引的使用者。
 3. 為應用程式評分：目標鎖定在最有可能在市集上將您的應用程式評為 5 顆星，且少於 1% 的使用者族群。
@@ -66,13 +66,13 @@ ms.openlocfilehash: 8cb91a8cdc6d16070034c79515731be7b820d389
 > 
 > 
 
-### <a name="usecases-and-best-practices"></a>使用案例和最佳作法
+### <a name="use-cases-and-best-practices"></a>使用案例和最佳作法
 在下列章節中，我們將簡短討論我們從客戶得到的一些重要使用案例，讓您快速入門。
 
 #### <a name="media"></a>媒體
 收集使用者取用的內容類型，然後根據這種行為區隔對象，將特定類型的內容只鎖定在比較可能取用的對象。 這麼做可以避免濫發垃圾郵件給整個使用者基礎，且能確保更好的保留。
 
-#### <a name="mcommerce"></a>M 商務
+#### <a name="m-commerce"></a>M 商務
 收集應用程式內最常被造訪的產品類別，並鎖定對象以針對使用者比較可能購買的項目推廣折扣或該類別中的新產品。 目的是為了提升營收。 再次強調，目標不是廣發垃圾郵件！
 
 #### <a name="gaming"></a>玩遊戲
@@ -134,6 +134,6 @@ ms.openlocfilehash: 8cb91a8cdc6d16070034c79515731be7b820d389
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

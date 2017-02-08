@@ -1,19 +1,23 @@
 ---
-title: DocumentDB 中的要求單位 | Microsoft Docs
-description: 了解如何在 DocumentDB 中了解、指定及估計要求單位需求。
+title: "DocumentDB 中的要求單位 | Microsoft Docs"
+description: "了解如何在 DocumentDB 中了解、指定及估計要求單位需求。"
 services: documentdb
 author: syamkmsft
 manager: jhubbard
 editor: mimig
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: d0a3c310-eb63-4e45-8122-b7724095c32f
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/29/2016
+ms.date: 11/16/2016
 ms.author: syamk
+translationtype: Human Translation
+ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
+ms.openlocfilehash: 8b2d13dd16f629fbb2108856cd1e1b2954ece8bf
+
 
 ---
 # <a name="request-units-in-documentdb"></a>DocumentDB 中的要求單位
@@ -35,6 +39,12 @@ ms.author: syamk
 DocumentDB 藉由「保留」  資源以滿足應用程式的輸送量需求，來提供快速且可預測的效能。  因為應用程式會隨著時間載入和存取模式變化，所以 DocumentDB 可讓您輕鬆地增加或減少應用程式可用的保留輸送量。
 
 有了 DocumentDB，保留的輸送量是根據每秒處理的要求單位來指定。  您可以將要求單位想像為輸送量貨幣，因此您每秒可「保留」  保證可供應用程式使用的要求單位數量。  DocumentDB 中的每個作業 (寫入文件、執行查詢、更新文件) 都會耗用 CPU、記憶體和 IOPS。  也就是說，每個作業都會產生「要求費用」，這是以「要求單位」來表示。  了解影響要求單位費用的因素，以及您應用程式的輸送量需求，讓您能夠以最經濟實惠的方式來執行應用程式。 
+
+我們建議從觀看 Aravind Ramachandran 說明使用 DocumentDB 的要求單位和可預測效能的下列影片來開始。
+
+> [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Predictable-Performance-with-DocumentDB/player]
+> 
+> 
 
 ## <a name="specifying-request-unit-capacity"></a>指定要求單位容量
 建立 DocumentDB 集合時，您可以指定想要保留給集合的每秒要求單位數 (RU)。  建立集合之後，指定 RU 的完整配置會保留以供集合使用。  保證每個集合都會有專用和隔離的輸送量特性。  
@@ -114,50 +124,50 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 
     {
      "id": "08259",
-    "description": "Cereals ready-to-eat, KELLOGG, KELLOGG'S CRISPIX",
-    "tags": [
+      "description": "Cereals ready-to-eat, KELLOGG, KELLOGG'S CRISPIX",
+      "tags": [
         {
-        "name": "cereals ready-to-eat"
+          "name": "cereals ready-to-eat"
         },
         {
-        "name": "kellogg"
+          "name": "kellogg"
         },
         {
-        "name": "kellogg's crispix"
+          "name": "kellogg's crispix"
         }
     ],
-    "version": 1,
-    "commonName": "Includes USDA Commodity B855",
-    "manufacturerName": "Kellogg, Co.",
-    "isFromSurvey": false,
-    "foodGroup": "Breakfast Cereals",
-    "nutrients": [
+      "version": 1,
+      "commonName": "Includes USDA Commodity B855",
+      "manufacturerName": "Kellogg, Co.",
+      "isFromSurvey": false,
+      "foodGroup": "Breakfast Cereals",
+      "nutrients": [
         {
-        "id": "262",
-        "description": "Caffeine",
-        "nutritionValue": 0,
-        "units": "mg"
+          "id": "262",
+          "description": "Caffeine",
+          "nutritionValue": 0,
+          "units": "mg"
         },
         {
-        "id": "307",
-        "description": "Sodium, Na",
-        "nutritionValue": 611,
-        "units": "mg"
+          "id": "307",
+          "description": "Sodium, Na",
+          "nutritionValue": 611,
+          "units": "mg"
         },
         {
-        "id": "309",
-        "description": "Zinc, Zn",
-        "nutritionValue": 5.2,
-        "units": "mg"
+          "id": "309",
+          "description": "Zinc, Zn",
+          "nutritionValue": 5.2,
+          "units": "mg"
         }
-    ],
-    "servings": [
+      ],
+      "servings": [
         {
-        "amount": 1,
-        "description": "cup (1 NLEA serving)",
-        "weightInGrams": 29
+          "amount": 1,
+          "description": "cup (1 NLEA serving)",
+          "weightInGrams": 29
         }
-    ]
+      ]
     }
 
 > [!NOTE]
@@ -199,7 +209,7 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 
 在此情況下，我們預期平均輸送量需求為 1,275 RU/秒。  四捨五入至最接近 100 的數目，我們會針對此應用程式的集合佈建 1,300 RU/秒。
 
-## <a name="<a-id="requestratetoolarge"></a>-exceeding-reserved-throughput-limits"></a><a id="RequestRateTooLarge"></a> 超過保留的輸送量限制
+## <a name="a-idrequestratetoolargea-exceeding-reserved-throughput-limits"></a><a id="RequestRateTooLarge"></a> 超過保留的輸送量限制
 您應該記得，要求單位耗用量是以每秒的速率來評估。 對於超過集合上佈建的要求單位速率的應用程式，對於該集合的要求會受到節流控制，直到該速率降到預留層級以下。 當節流發生時，伺服器將預先使用 RequestRateTooLargeException (HTTP 狀態碼 429) 來結束要求，並傳回 x-ms-retry-after-ms 標頭，以指出使用者重試要求之前必須等候的時間量 (毫秒)。
 
     HTTP Status 429
@@ -214,7 +224,6 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 若要深入了解透過 Azure DocumentDB 資料庫保留輸送量的方式，請探索下列資源：
 
 * [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)
-* [管理 DocumentDB 容量](documentdb-manage.md) 
 * [在 DocumentDB 中模型化資料](documentdb-modeling-data.md)
 * [DocumentDB 效能等級](documentdb-partition-data.md)
 
@@ -230,6 +239,6 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

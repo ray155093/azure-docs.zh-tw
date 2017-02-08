@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure Active Directory 裝置註冊設定內部部署條件式存取 | Microsoft Docs
-description: 在 Windows Server 2012 R2 中使用 Active Directory Federation Service (AD FS) 啟用內部部署應用程式之條件式存取的逐步指南。
+title: "使用 Azure Active Directory 裝置註冊設定內部部署條件式存取 | Microsoft Docs"
+description: "在 Windows Server 2012 R2 中使用 Active Directory Federation Service (AD FS) 啟用內部部署應用程式之條件式存取的逐步指南。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: femila
 manager: swadhwa
-editor: ''
-
+editor: 
+ms.assetid: 6ae9df8b-31fe-4d72-9181-cf50cfebbf05
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 02d8de2e37af9ccbf79bb77180b0eda0d187eb5c
+
 
 ---
 # <a name="setting-up-on-premises-conditional-access-using-azure-active-directory-device-registration"></a>使用 Azure Active Directory 裝置註冊設定內部部署條件式存取
@@ -52,7 +56,7 @@ ms.author: femila
 ## <a name="scenario-assumptions"></a>案例假設
 此案例假設您有 Azure AD 租用戶與內部部署 Active Directory 所組成的混合式環境。 這些租用戶應使用 Azure AD Connect 來連接且具有已驗證的網域和適用於 SSO 的 AD FS。 下面的檢查清單可協助您將您的環境設定為上述的階段。
 
-## <a name="checklist:-prerequisites-for-conditional-access-scenario"></a>檢查清單︰條件式存取案例的必要條件
+## <a name="checklist-prerequisites-for-conditional-access-scenario"></a>檢查清單︰條件式存取案例的必要條件
 連接您的 Azure AD 租用戶與內部部署 Active Directory。
 
 ## <a name="configure-azure-active-directory-device-registration-service"></a>設定 Azure Active Directory 裝置註冊服務
@@ -62,7 +66,7 @@ ms.author: femila
 
 若要使用您的 Azure Active Directory 租用戶部署 Azure Active Directory 裝置註冊服務，請依序完成下列檢查清單中的工作。 當參考連結將您導向概念性主題時，請在檢閱此概念性主題之後傳回此檢查清單，以便繼續執行此檢查清單中的其餘工作。 某些工作會包含案例驗證步驟，可協助您確認已成功完成該步驟。
 
-## <a name="part-1:-enable-azure-active-directory-device-registration"></a>第 1 部分：啟用 Azure Active Directory 裝置註冊
+## <a name="part-1-enable-azure-active-directory-device-registration"></a>第 1 部分：啟用 Azure Active Directory 裝置註冊
 請遵循下列檢查清單啟用及設定 Azure Active Directory 裝置註冊服務。
 
 | 工作 | 參考 |
@@ -70,21 +74,21 @@ ms.author: femila
 | 若要讓裝置加入工作場所，請在 Azure Active Directory 租用戶中啟用裝置註冊。 根據預設，服務不會啟用多因素驗證。 不過，建議在註冊裝置時使用多因素驗證。 在 ADRS 中啟用多因素驗證之前，請確定已為多因素驗證提供者設定 AD FS。 |[啟用 Azure Active Directory 裝置註冊](active-directory-conditional-access-device-registration-overview.md) |
 | 裝置會尋找已知的 DNS 記錄來探索您的 Azure Active Directory 裝置註冊服務。 您必須設定您的公司 DNS，讓裝置能夠探索您的 Azure Active Directory 裝置註冊服務。 |[設定 Azure Active Directory 裝置註冊探索](active-directory-conditional-access-device-registration-overview.md) |
 
-## <a name="part-2:-deploy-and-configure-windows-server-2012-r2-active-directory-federation-services-and-set-up-a-federation-relationship-with-azure-ad"></a>第 2 部分：部署和設定 Windows Server 2012 R2 Active Directory Federation Services，以及設定與 Azure AD 的同盟關係
+## <a name="part-2-deploy-and-configure-windows-server-2012-r2-active-directory-federation-services-and-set-up-a-federation-relationship-with-azure-ad"></a>第 2 部分：部署和設定 Windows Server 2012 R2 Active Directory Federation Services，以及設定與 Azure AD 的同盟關係
 | 工作 | 參考 |
 | --- | --- |
 | 利用 Windows Server 2012 R2 結構描述延伸模組部署 Active Directory 網域服務網域。 您不需要將任何網域控制站升級到 Windows Server 2012 R2。 結構描述升級是唯一的要求。 |[升級您的 Active Directory 網域服務結構描述](#upgrade-your-active-directory-domain-services-schema) |
 | 裝置會尋找已知的 DNS 記錄來探索您的 Azure Active Directory 裝置註冊服務。 您必須設定您的公司 DNS，讓裝置能夠探索您的 Azure Active Directory 裝置註冊服務。 |[準備您的 Active Directory 支援裝置](#prepare-your-active-directory-to-support-devices) |
 
-## <a name="part-3:-enable-device-writeback-in-azure-ad"></a>第 3 部分：在 Azure AD 中啟用裝置回寫
+## <a name="part-3-enable-device-writeback-in-azure-ad"></a>第 3 部分：在 Azure AD 中啟用裝置回寫
 | 工作 | 參考 |
 | --- | --- |
 | 完成「在 Azure AD Connect 中啟用裝置回寫」的第 2 部分。 完成時，回到這份指南。 |[在 Azure AD Connect 中啟用裝置回寫](#upgrade-your-active-directory-domain-services-schema) |
 
-## <a name="[optional]-part-4:-enable-multi-factor-authentication"></a>[選擇性] 第 4 部分：啟用 Multi-Factor Authentication
+## <a name="optional-part-4-enable-multi-factor-authentication"></a>[選擇性] 第 4 部分：啟用 Multi-Factor Authentication
 強烈建議您設定 Multi-Factor Authentication 的其中一個選項。 如果您想要求 MFA，請參閱 [選擇合適的多重因素安全性解決方案](../multi-factor-authentication/multi-factor-authentication-get-started.md)。 它包含每個解決方案的描述，以及可協助您設定您所選解決方案的連結。
 
-## <a name="part-5:-verification"></a>第 5 部分：驗證
+## <a name="part-5-verification"></a>第 5 部分：驗證
 現在已完成部署。 您現在可以試試看一些案例。 遵循下列連結，即可體驗服務並熟悉各項功能
 
 | 工作 | 參考 |
@@ -104,7 +108,7 @@ ms.author: femila
 5. 在 [部署和管理]  區段之下，遵循步驟 1 到 3 來整合 Azure Active Directory 與您的內部部署目錄。
    
    1. 新增網域。
-   2. 安裝和執行 Azure AD Connect：使用[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)中的指示來安裝 Azure AD Connect。
+   2. 安裝和執行 Azure AD Connect：使用[自訂 Azure AD Connect 安裝](connect/active-directory-aadconnect-get-started-custom.md)中的指示來安裝 Azure AD Connect。
    3. 驗證及管理目錄同步作業。 此步驟中可取得單一登入的指示。
    
    > [!NOTE]
@@ -163,9 +167,9 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 有許多不同的方式可讓 URL 與您的使用者進行通訊。 其中一個建議方式是在 AD FS 中的自訂應用程式拒絕存取訊息發佈此 URL。 這會包含在即將推出的小節中： [建立應用程式存取原則和自訂拒絕存取訊息](#create-an-application-access-policy-and-custom-access-denied-message)。
 
-### <a name="join-a-windows-8.1-device-using-azure-active-directory-device-registration"></a>使用 Azure Active Directory 裝置註冊加入 Windows 8.1 裝置
+### <a name="join-a-windows-81-device-using-azure-active-directory-device-registration"></a>使用 Azure Active Directory 裝置註冊加入 Windows 8.1 裝置
 1. 在 Windows 8.1 裝置上，瀏覽至 [電腦設定]  >  [網路]  >  [工作場所]。
-2. 以 UPN 格式輸入您的使用者名稱。 例如，dan@contoso.com。
+2. 以 UPN 格式輸入您的使用者名稱。 例如， dan@contoso.com.。
 3. 選取 [加入] 。
 4. 出現提示時，請使用您的認證登入。 裝置會隨即加入。
 
@@ -231,6 +235,9 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 

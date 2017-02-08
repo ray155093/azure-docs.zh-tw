@@ -15,8 +15,8 @@ ms.workload: identity
 ms.date: 08/08/2016
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 47af3ae7fe78fdd794330bb5069bb734b2754eaf
+ms.sourcegitcommit: 8a4e26b7ccf4da27b58a6d0bcfe98fc2b5533df8
+ms.openlocfilehash: 47fb1724ac72df8b83012bcacdc435ea847547da
 
 
 ---
@@ -42,7 +42,7 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 * **同盟**：這些身分識別同時存在於內部部署和雲端。  使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。  
 
 > [!NOTE]
-> 如需同步處理選項的詳細資訊，請參閱 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
+> 如需同步處理選項的詳細資訊，請參閱 [整合內部部署身分識別與 Azure Active Directory](connect/active-directory-aadconnect.md)。
 > 
 > 
 
@@ -110,7 +110,7 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 ![](./media/hybrid-id-design-considerations/single-forest.png) 單一樹系案例。在大型組織，甚至小型組織中，擁有多個樹系很平常，如圖 5 所示。
 
 > [!NOTE]
-> 如需不同的內部部署和 Azure AD 拓撲與 Azure AD Connect 同步處理的詳細資訊，請參閱 [Azure AD Connect 的拓撲](active-directory-aadconnect-topologies.md)一文。
+> 如需不同的內部部署和 Azure AD 拓撲與 Azure AD Connect 同步處理的詳細資訊，請參閱 [Azure AD Connect 的拓撲](connect/active-directory-aadconnect-topologies.md)一文。
 > 
 > 
 
@@ -130,7 +130,7 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 * 如果您有連結的信箱，則不同的樹系中還有另一個帳戶用來登入。
 
 > [!NOTE]
-> 同時存在於內部部署和雲端的物件透過唯一識別碼「連接」。 就「目錄同步作業」而言，這個唯一識別碼稱為 SourceAnchor。 就「單一登入」而言，這稱為 ImmutableId。 [Azure AD Connect 的設計概念](active-directory-aadconnect-design-concepts.md#sourceanchor) 。
+> 同時存在於內部部署和雲端的物件透過唯一識別碼「連接」。 就「目錄同步作業」而言，這個唯一識別碼稱為 SourceAnchor。 就「單一登入」而言，這稱為 ImmutableId。 [Azure AD Connect 的設計概念](connect/active-directory-aadconnect-design-concepts.md#sourceanchor) 。
 > 
 > 
 
@@ -216,6 +216,6 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

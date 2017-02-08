@@ -3,7 +3,7 @@ title: "Azure AD Privileged Identity Management 安全性精靈"
 description: "第一次使用 Azure Active Directory Privileged Identity Management 擴充功能時，您將會看到安全性精靈。 本文說明使用精靈的步驟。"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: billmath
 manager: femila
 editor: 
 ms.assetid: a53a3719-8cc7-4fc7-8164-aafca192871b
@@ -12,8 +12,8 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/01/2016
-ms.author: kgremban
+ms.date: 02/03/2017
+ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 03adc1873e8187a9104f42ba9b50df2ac0d015b5

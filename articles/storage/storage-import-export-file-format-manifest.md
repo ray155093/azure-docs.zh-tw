@@ -1,8 +1,8 @@
 ---
 title: "匯入匯出服務資訊清單檔案格式 | Microsoft Docs"
 description: "深入了解描述 Azure Blob 儲存體中的 Blob 與匯入匯出服務中的匯入或匯出工作中的磁碟機上的檔案之間的對應"
-author: renashahmsft
-manager: aungoo
+author: muralikk
+manager: syadav
 editor: tysonn
 services: storage
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/25/2015
-ms.author: renash
+ms.date: 01/15/2017
+ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 78abb839badf99c6251673ee9914955df8c950bc
-ms.openlocfilehash: c79d4e4b088bab056459ed4add442acfb0176692
+ms.sourcegitcommit: 54b2d4d50cda5c2cdb602bd8d471a8c75f88cd3b
+ms.openlocfilehash: db684f836d5a28c7c6ba188c22029ab84f031bb7
 
 
 ---
@@ -100,7 +100,7 @@ block-list ::=
 |`Drive`|巢狀的 XML 元素|包含每個磁碟機的資訊清單。|  
 |`DriveId`|String|磁碟機的唯一磁碟機識別元。 藉由查詢磁碟機序號，即可找出磁碟機識別元。 磁碟機序號通常也會印在磁碟機外部。 `DriveID` 元素必須顯示在資訊清單檔案中的任何 `BlobList` 元素之前。|  
 |`StorageAccountKey`|String|如果未指定 (且只有在未指定) `ContainerSas` 時，才需為匯入工作指定。 和工作相關聯的 Azure 儲存體帳戶的帳戶金鑰。<br /><br /> 匯出作業的資訊清單中會省略這個元素。|  
-|`ContainerSas`|String|如果未指定 (且只有在未指定) `StorageAccountKey` 時，才需為匯入工作指定。 存取與工作相關聯的 Blob 所用的容器 SAS。 請參閱 [Put Job](/rest/api/storageservices/importexport/Put-Job) 了解其格式。匯出作業的資訊清單中會省略這個元素。|  
+|`ContainerSas`|String|如果未指定 (且只有在未指定) `StorageAccountKey` 時，才需為匯入工作指定。 存取與工作相關聯的 Blob 所用的容器 SAS。 請參閱 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 了解其格式。匯出作業的資訊清單中會省略這個元素。|  
 |`ClientCreator`|String|指定建立 XML 檔案的用戶端。 匯入/匯出服務無法解譯這個值。|  
 |`BlobList`|巢狀的 XML 元素|包含屬於匯入或匯出工作的 Blob 的清單。 Blob 清單中的每個 Blob 會共用相同的中繼資料和屬性。|  
 |`BlobList/MetadataPath`|String|選用。 指定磁碟上的檔案的相對路徑，該檔案包含將在匯入作業的 Blob 清單中的 Blob 設定的預設中繼資料。 您可以選擇以個別的 Blob 為基礎來覆寫此中繼資料。<br /><br /> 匯出作業的資訊清單中會省略這個元素。|  
@@ -131,10 +131,10 @@ block-list ::=
 |`Blob/PropertiesPath/@Hash`|屬性、字串|為 Blob 的屬性檔案指定 Base16 式編碼的 MD5 雜湊。|  
   
 ## <a name="see-also"></a>另請參閱  
-[儲存體匯入/匯出 REST](/rest/api/storageservices/importexport/Storage-Import-Export-Service-REST-API-Reference)
+[儲存體匯入/匯出 REST](/rest/api/storageimportexport/)
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

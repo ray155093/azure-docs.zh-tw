@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b67594033bfa89fc6ff8d80dd064d766c4048a3b
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: 09c4c9d43d6e29872ed6484b27334c8e9aa428b5
 
 
 ---
@@ -43,6 +43,7 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 >
 
 ## <a name="requirements-and-considerations"></a>需求和考量
+
 * 以下是使用 AMS 傳遞以 FairPlay 加密的 HLS，以及傳遞 FairPlay 授權時，需要的項目。
 
   * 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
@@ -162,8 +163,7 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
                 <add key="Audience" value="urn:test"/>
               </appSettings>
         </configuration>
-5. 為您計畫從該處傳遞內容的串流端點至少取得一個串流單元。 如需詳細資訊，請參閱 [設定串流端點](media-services-dotnet-get-started.md#configure-streaming-endpoints-using-the-azure-portal)。
-6. 以本章節中所顯示的程式碼覆寫 Program.cs 檔案中的程式碼。
+7. 以本章節中所顯示的程式碼覆寫 Program.cs 檔案中的程式碼。
 
         using System;
         using System.Collections.Generic;
@@ -566,6 +566,6 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

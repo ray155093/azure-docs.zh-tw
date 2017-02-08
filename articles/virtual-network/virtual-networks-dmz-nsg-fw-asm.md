@@ -15,13 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 02/01/2016
 ms.author: jonor;sivae
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 178771fb235e8b2786e4b6d0ac117d5c90540c67
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: cc0e8a3fa749eb2e6f65ef92c2d3cb404cfc8bc0
 
 
 ---
-# <a name="example-2-build-a-dmz-to-protect-applications-with-a-firewall-and-nsgs"></a>範例 2 – 建置 DMZ 以透過防火牆和 NSG 保護應用程式
-[返回 [安全性界限最佳作法] 頁面][首頁]
+# <a name="example-2--build-a-dmz-to-protect-applications-with-a-firewall-and-nsgs"></a>範例 2 – 建置 DMZ 以透過防火牆和 NSG 保護應用程式
+[返回 [安全性界限最佳作法] 頁面][HOME]
 
 此範例會建立 DMZ，其內含防火牆、四個 Windows 伺服器和網路安全性群組。 此範例也會逐步解說每個相關命令，以讓您更加深入地了解每個步驟。 另外您還會看到＜流量案例＞一節，本節提供深入的逐步說明，讓您知道流量是如何流經 DMZ 內的各個防禦層。 最後則有＜參考＞一節，本節提供完整的程式碼和指示，以供您建置此環境來測試和試驗各種案例。 
 
@@ -79,9 +79,9 @@ ms.openlocfilehash: 178771fb235e8b2786e4b6d0ac117d5c90540c67
 
 這些規則繫結至每個子網路後，如果有從網際網路到 Web 伺服器的輸入 HTTP 要求，規則 3 (允許) 和規則 5 (拒絕) 皆適用，但由於規則 3 具有較高的優先順序，所以只會適用規則 3，規則 5 則不會派上用場。 因此會允許 HTTP 要求送往防火牆。 如果相同的流量嘗試抵達 DNS01 伺服器，規則 5 (拒絕) 會先適用，因此不會允許流量傳遞給伺服器。 規則 6 (拒絕) 會阻止 Frontend 子網路與 Backend 子網路交談 (規則 1 和 4 允許的流量除外)，這可在攻擊者入侵 Frontend 上的 Web 應用程式時保護 Backend 網路，攻擊者只能對 Backend 的「受保護」網路進行有限度的存取 (只能存取 AppVM01 伺服器上公開的資源)。
 
-有一個預設輸出規則可允許流量外流到網際網路。 在此範例中，我們會允許輸出流量，並不會修改任何輸出規則。 如果兩個方向的流量都要鎖定，則需要使用者定義的路由，這個部分是在不同範例中探討，您可以在[主要安全性界限文件]中找到相關資訊[首頁]。
+有一個預設輸出規則可允許流量外流到網際網路。 在此範例中，我們會允許輸出流量，並不會修改任何輸出規則。 如果兩個方向的流量都要鎖定，則需要使用者定義的路由，這個部分是在不同範例中探討，您可以在[主要安全性界限文件][HOME]中找到相關資訊。
 
-上面討論的 NSG 規則非常類似[範例 1 - 建置具有 NSG 的簡單 DMZ] 中的 NSG 規則[範例1]。 請檢閱該文件中的 NSG 說明，以清楚了解每個 NSG 規則和它的屬性。
+上面討論的 NSG 規則非常類似[範例 1 - 建置具有 NSG 的簡單 DMZ][Example1] 中的 NSG 規則。 請檢閱該文件中的 NSG 說明，以清楚了解每個 NSG 規則和它的屬性。
 
 ## <a name="firewall-rules"></a>防火牆規則
 電腦上必須安裝管理用戶端，才能管理防火牆和建立所需的組態。 請參閱防火牆 (或其他 NVA) 廠商提供的說明文件，以了解如何管理裝置。 本節剩餘部分將說明如何透過廠商的管理用戶端 (亦即不是使用 Azure 入口網站或 PowerShell) 設定防火牆本身。
@@ -218,7 +218,7 @@ Web 伺服器、IIS01 和防火牆都在相同的雲端服務中，因此共用�
 ## <a name="conclusion"></a>結論
 這種使用防火牆保護應用程式並隔離後端子網路與輸入流量的方式相當直接簡單。
 
-您可以在[這裡]找到更多範例和網路安全性界限的概觀。[首頁]
+您可以在[這裡][HOME]找到更多範例和網路安全性界限的概觀。
 
 ## <a name="references"></a>參考
 ### <a name="main-script-and-network-config"></a>主要的指令碼和網路組態
@@ -567,7 +567,7 @@ Web 伺服器、IIS01 和防火牆都在相同的雲端服務中，因此共用�
     </NetworkConfiguration>
 
 #### <a name="sample-application-scripts"></a>範例應用程式指令碼
-如果您想要為此範例和其他 DMZ 範例安裝範例應用程式，下列連結中有提供一個：[範例應用程式指令碼][範例應用程式]
+如果您想要為此範例和其他 DMZ 範例安裝範例應用程式，下列連結中有提供一個：[範例應用程式指令碼][SampleApp]
 
 <!--Image References-->
 [1]: ./media/virtual-networks-dmz-nsg-fw-asm/example2design.png "具有 NSG 的輸入 DMZ"
@@ -576,12 +576,12 @@ Web 伺服器、IIS01 和防火牆都在相同的雲端服務中，因此共用�
 [4]: ./media/virtual-networks-dmz-nsg-fw-asm/firewallruleactivate.png "防火牆規則啟用"
 
 <!--Link References-->
-[首頁]: ../best-practices-network-security.md
-[範例應用程式]: ./virtual-networks-sample-app.md
-[範例1]: ./virtual-networks-dmz-nsg-asm.md
+[HOME]: ../best-practices-network-security.md
+[SampleApp]: ./virtual-networks-sample-app.md
+[Example1]: ./virtual-networks-dmz-nsg-asm.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

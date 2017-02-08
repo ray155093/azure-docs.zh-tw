@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/16/2016
+ms.date: 01/31/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: cf081967fa7a9f37e124fdbfd9a97a71566238a0
+ms.sourcegitcommit: 2024560bed719471627503198601e057274463ff
+ms.openlocfilehash: 606cf38664e849d3ecc30ed0f3c385cc4492d0c4
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: cf081967fa7a9f37e124fdbfd9a97a71566238a0
 ## <a name="next-steps"></a>後續步驟
 若要深入了解如何保護您的 IoT 解決方案，請參閱︰
 
-* [IoT 安全性最做法][lnk-security-best-practices]
+* [IoT 安全性最佳做法][lnk-security-best-practices]
 * [IoT 安全性架構][lnk-security-architecture]
 * [保護您的 IoT 部署][lnk-security-deployment]
 
@@ -36,7 +36,7 @@ ms.openlocfilehash: cf081967fa7a9f37e124fdbfd9a97a71566238a0
 
 您也可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
 
-* [預先設定的預測性維護解決方案概觀][lnk-predictive-overview]
+* [預先設定的預防性維護解決方案概觀][lnk-predictive-overview]
 * [IoT 套件的常見問題集][lnk-faq]
 
 [lnk-predictive-overview]: iot-suite-predictive-overview.md
@@ -44,6 +44,6 @@ ms.openlocfilehash: cf081967fa7a9f37e124fdbfd9a97a71566238a0
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

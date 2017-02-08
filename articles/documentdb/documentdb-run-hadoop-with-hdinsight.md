@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/20/2016
 ms.author: denlee
 translationtype: Human Translation
-ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
-ms.openlocfilehash: 2409bd1bedf0da2aabbd847312322e6360aa2265
+ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
+ms.openlocfilehash: 35eb6b7c8a2aa3ddfb1723eebdb92dc47a49f65a
 
 
 ---
@@ -50,7 +50,7 @@ ms.openlocfilehash: 2409bd1bedf0da2aabbd847312322e6360aa2265
     <tr><th>指令碼 URI</th>
         <td>https://portalcontent.blob.core.windows.net/scriptaction/documentdb-hadoop-installer-v04.ps1</td></tr>
     <tr><th>修改日期</th>
-        <td>2016 年 4 月 26 日</td></tr>
+        <td>2016 年&4; 月&26; 日</td></tr>
     <tr><th>支援的 HDInsight 版本</th>
         <td>3.1、3.2</td></tr>
     <tr><th>變更記錄檔</th>
@@ -63,10 +63,10 @@ ms.openlocfilehash: 2409bd1bedf0da2aabbd847312322e6360aa2265
 在依照本教學課程中的指示進行之前，請先確定您已備妥下列項目：
 
 * DocumentDB 帳戶、資料庫和包含文件的集合。 如需詳細資訊，請參閱[開始使用 DocumentDB][getting-started]。 使用 [DocumentDB 匯入工具][documentdb-import-data]將範例資料匯入至您的 DocumentDB 帳戶。
-* 輸送量。 從 HDInsight 讀取和寫入將會計入您的集合的配置要求單位。 如需詳細資訊，請參閱[佈建輸送量、要求單位和資料庫作業][documentdb-manage-throughput]。
-* 每個輸出集合額內額外預存程序的容量。 預存程序可用來傳送產生的文件。 如需詳細資訊，請參閱[集合及佈建的輸送量][documentdb-manage-document-storage]。
-* 由 Hive、Pig 或 MapReduce 工作產生的文件容量。 如需詳細資訊，請參閱[管理 DocumentDB 容量和效能][documentdb-manage-collections]。
-* [*選擇性*] 額外集合的容量。 如需詳細資訊，請參閱[佈建的文件儲存體和索引額外負荷][documentdb-manage-document-storage]。
+* 輸送量。 從 HDInsight 讀取和寫入將會計入您的集合的配置要求單位。
+* 每個輸出集合額內額外預存程序的容量。 預存程序可用來傳送產生的文件。
+* 由 Hive、Pig 或 MapReduce 工作產生的文件容量。
+* [*選擇性*] 額外集合的容量。
 
 > [!WARNING]
 > 為避免在任何工作期間建立新的集合，您可以將結果列印至 stdout、將輸出儲存到您的 WASB 容器，或指定現有的集合。 如果是指定現有的集合，則會在集合內部建立新的文件，且只有當 *ids* 發生衝突時，現有的文件才會受到影響。 **連接器會自動覆寫發生識別碼衝突的現有文件**。 將更新插入選項設定為 false 便可關閉這項功能。 如果更新插入為 false，但發生衝突，則 Hadoop 工作將會失敗。回報識別碼衝突錯誤。
@@ -416,9 +416,6 @@ ms.openlocfilehash: 2409bd1bedf0da2aabbd847312322e6360aa2265
 [documentdb-hdinsight-samples]: http://portalcontent.blob.core.windows.net/samples/documentdb-hdinsight-samples.zip
 [documentdb-github]: https://github.com/Azure/azure-documentdb-hadoop
 [documentdb-java-application]: documentdb-java-application.md
-[documentdb-manage-collections]: documentdb-manage.md#database-collections
-[documentdb-manage-document-storage]: documentdb-manage.md#provisioned-document-storage-and-index-overhead
-[documentdb-manage-throughput]: documentdb-manage.md#request-units-and-database-operations
 [documentdb-import-data]: documentdb-import-data.md
 
 [hdinsight-custom-provision]: ../hdinsight/hdinsight-provision-clusters.md
@@ -439,6 +436,6 @@ ms.openlocfilehash: 2409bd1bedf0da2aabbd847312322e6360aa2265
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

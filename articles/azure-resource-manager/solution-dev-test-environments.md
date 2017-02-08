@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 01/22/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
-ms.openlocfilehash: e5a090acb88db0139ad1cea627060e5076ece1b4
+ms.sourcegitcommit: 0782000e87bed0d881be5238c1b91f89a970682c
+ms.openlocfilehash: 01a554815a48cf1b81037eaa2f55bc4f07838721
 
 
 ---
@@ -46,7 +46,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 1. 您可以在 [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/) GitHub 儲存機制中瀏覽現有的的範本。 在清單中，您會看到 "[201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-sql-database)" 資料夾。 由於許多自訂應用程式包含 web 應用程式和 SQL 資料庫，此範本可做為這篇文章其餘部分的範例，協助您了解如何使用範本。 完整說明此範本建立與設定的所有內容已超出本文的範圍，但是如果您打算使用它來建立組織中的實際環境，您會想要藉由閱讀 [佈建 Web 應用程式與 SQL Database](../app-service-web/app-service-web-arm-with-sql-database-provision.md) 一文來完全了解它。
    注意︰此文章是針對 2015 年 12 月版本的 [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) 範本。 下面連結指向會用於該版本範本的範本和參數檔案。
 2. 按一下 201-web-app-sql-database 資料夾中的 [azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json) 檔案以檢視其中的內容。 這是 Azure 資源管理員範本檔案。 
-3. 在檢視模式中，按一下 [原始][](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json)按鈕。 
+3. 在檢視模式中，按一下 [原始](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json)按鈕。 
 4. 利用您的滑鼠選取此檔案的內容，並將它以 "TestApp1-Template.json" 的檔案名稱儲存到您的電腦。 
 5. 檢查範本的內容，並注意下列項目：
    * **資源**區段：此區段會定義由此範本建立的 Azure 資源類型。 在其他資源類型中，此範本會建立 [Azure Web 應用程式](../app-service-web/app-service-web-overview.md)和 [Azure SQL Database](../sql-database/sql-database-technical-overview.md) 資源。 如果您偏好在虛擬機器中執行並管理網頁和 SQL 伺服器，可以使用 "[iis-2vm-sql-1vm](https://github.com/Azure/azure-quickstart-templates/tree/master/iis-2vm-sql-1vm)" 或 "[lamp-app](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app)" 範本；但本文中的說明是依 [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) 範本為主。
@@ -58,7 +58,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 雖然您可能會想在每個環境中建立「相同」的 Azure 資源，但您也可能會想要在每個環境中的資源有「不同」的組態。  這是參數檔案的由來。 完成以下步驟，在每個環境中建立包含唯一值的參數檔案。   
 
 1. 檢視 201-web-app-sql-database 資料夾中的 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json) 檔案內容。 這是您在之前章節中所儲存之範本檔案的參數檔案。 
-2. 在檢視模式中，按一下 [原始][](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json)按鈕。 
+2. 在檢視模式中，按一下 [原始](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json)按鈕。 
 3. 用滑鼠選取此檔案的全部內容，並將它以下列名稱分別儲存至電腦上的三個檔案：
    
    * TestApp1-Parameters-Development.json
@@ -235,7 +235,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
     data:    requestedServiceObjectiveName  String        S0
     info:    group deployment create command OKx
 
-如果命令未成功，請解決任何錯誤訊息並再試一次。  常見的問題為使用未遵守 Azure 資源命名限制的參數值。 其他疑難排解秘訣可在 [在 Azure 中疑難排解資源群組部署](resource-manager-troubleshoot-deployments-cli.md) 一文中找到。
+如果命令未成功，請解決任何錯誤訊息並再試一次。  常見的問題為使用未遵守 Azure 資源命名限制的參數值。 其他疑難排解秘訣可在 [在 Azure 中疑難排解資源群組部署](resource-manager-common-deployment-errors.md) 一文中找到。
 
 從 CLI 命令列，輸入下列命令將資源部署至您為測試環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
 
@@ -278,7 +278,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
     Outputs           :
 
-  如果命令未成功，請解決任何錯誤訊息並再試一次。  常見的問題為使用未遵守 Azure 資源命名限制的參數值。 其他疑難排解秘訣可在 [在 Azure 中疑難排解資源群組部署](resource-manager-troubleshoot-deployments-powershell.md) 一文中找到。
+  如果命令未成功，請解決任何錯誤訊息並再試一次。  常見的問題為使用未遵守 Azure 資源命名限制的參數值。 其他疑難排解秘訣可在 [在 Azure 中疑難排解資源群組部署](resource-manager-common-deployment-errors.md) 一文中找到。
 
   從 PowerShell 命令提示字元，輸入下列命令將資源部署至您為測試環境建立的資源群組，將 [路徑] 取代為您在先前步驟中儲存的檔案路徑。
 
@@ -300,7 +300,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 1. 開啟 [Azure 入口網站](https://portal.azure.com)以變更環境。 
 2. 以您用來完成上述步驟所使用的相同帳戶登入。 
-3. 如下圖所示，按一下 [瀏覽] --> [資源群組] (您可能需要向下捲動才會看到資源群組)。
+3. 如下圖所示，按一下 瀏覽 --> 資源群組 (您可能需要向下捲動才會看到資源群組)。
    ![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
 4. 按一下上圖中的 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及您在上一個步驟中建立的三個資源群組，如上圖所示。 按一下 [TestApp1-Development 資源群組] 之後，您會看到刀鋒視窗，列出範本在您於上一個步驟完成的 TestApp1-Development 資源群組部署中所建立的資源。  按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 TestApp1DevApp，刪除 TestApp1DevApp Web 應用程式資源，再按一下 [TestApp1DevApp Web 應用程式] 刀鋒視窗中的 [刪除]。
    ![入口網站](./media/solution-dev-test-environments/portal2.png)
@@ -364,6 +364,6 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

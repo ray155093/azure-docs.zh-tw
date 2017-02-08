@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: tdykstra
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 358895cac7f261eb6bc50519e0bf3e11e4b0aa97
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 64e2ed7a625aec59f68411d93a5942a546919abb
 
 
 ---
@@ -33,10 +33,10 @@ Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能
 ## <a name="a-namegetstartedagetting-started-with-webjobs-and-the-webjobs-sdk"></a><a name="getstarted"></a>開始使用 WebJob 和 WebJobs SDK
 * [Azure WebJobs 簡介 (英文)](http://www.hanselman.com/blog/IntroducingWindowsAzureWebJobs.aspx)
 * [Azure WebJobs 太酷了，趕快使用，不要猶豫！](http://www.troyhunt.com/2015/01/azure-webjobs-are-awesome-and-you.html) (取自 Troy Hunt 的部落格文章，英文。)
-* [Azure WebJobs 功能 (英文)](/blog/2014/10/22/webjobs-goes-into-full-production/)
+* [Azure WebJobs 功能 (英文)](https://azure.microsoft.com/blog/2014/10/22/webjobs-goes-into-full-production/)
 * [什麼是 Azure WebJobs SDK (英文)](websites-dotnet-webjobs-sdk.md)
 * [Microsoft Patterns and Practices 提供的背景工作指引 (英文)](/documentation/articles/best-practices-background-jobs/)
-* [宣佈推出 Microsoft Azure WebJobs SDK 的 1.1.0 RTM (英文)](/blog/azure-webjobs-sdk-1-1-0-rtm/)
+* [宣佈推出 Microsoft Azure WebJobs SDK 的 1.1.0 RTM (英文)](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)
 * [開始使用 Azure WebJobs SDK (英文)](websites-dotnet-webjobs-sdk-get-started.md)
 * [如何透過 WebJobs SDK 使用 Azure 佇列儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)
 * [如何透過 WebJobs SDK 使用 Azure Blob 儲存體 (英文)](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)
@@ -137,6 +137,6 @@ Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

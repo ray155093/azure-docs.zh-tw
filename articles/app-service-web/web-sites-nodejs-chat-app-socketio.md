@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 81398cf3cc134ccd451a7173613c595f61cd2c23
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 0fcb0e2d8feea3c72688aace6d53edca728dd48b
 
 
 ---
@@ -283,7 +283,7 @@ Azure Web Apps 可用於多個 SKU，SKU 可以決定您網站適用的資源。
 [App Service Web Apps]: http://go.microsoft.com/fwlink/?LinkId=529714
 [Web Apps 定價]: http://go.microsoft.com/fwlink/?LinkId=511643
 [在 Azure 雲端服務上使用 Socket.IO 建立 Node.js 聊天應用程式]: ../cloud-services/cloud-services-nodejs-chat-app-socketio.md
-[安裝和設定 Azure CLI]: ../xplat-cli-install.md
+[Install and Configure the Azure CLI]: ../xplat-cli-install.md
 [Azure App Service 及其對現有 Azure 服務的影響]: http://go.microsoft.com/fwlink/?LinkId=529714
 [Node.js 開發人員中心]: /develop/nodejs/
 [試用 App Service]: http://go.microsoft.com/fwlink/?LinkId=523751
@@ -302,6 +302,6 @@ Azure Web Apps 可用於多個 SKU，SKU 可以決定您網站適用的資源。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

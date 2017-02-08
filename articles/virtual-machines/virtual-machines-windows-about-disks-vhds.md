@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 11/18/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: a800d23208c190a381689a2417bbe9952343bc16
+ms.sourcegitcommit: 3549272a74ebf7b5e37a70dbb8d7ce3b539c8103
+ms.openlocfilehash: b5161e7e4b8b0127d63804161bfd82e3b057e3f0
 
 
 ---
@@ -69,6 +69,23 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 > 
 > 
 
+## <a name="use-trim-with-standard-storage"></a>搭配使用 TRIM 與標準儲存體
+
+如果您使用標準儲存體 (HDD)，您應該啟用 TRIM。 TRIM 會捨棄磁碟上未使用的區塊，因此您只需支付實際使用的儲存體。 如果您建立大型檔案，然後將它們刪除，這便可節省成本。 
+
+您可以執行此命令來檢查 TRIM 設定。 在您的 Windows VM 上開啟命令提示字元並輸入︰
+
+```
+fsutil behavior query DisableDeleteNotify
+```
+
+如果命令傳回 0，則已正確啟用 TRIM。 如果傳回 1，請執行下列命令來啟用 TRIM：
+```
+fsutil behavior set DisableDeleteNotify 0
+```
+
+
+
 ## <a name="next-steps"></a>後續步驟
 * [連接磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來為您的 VM 新增額外的儲存空間。
 * [將 Windows VM 映像上傳至 Azure](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，以在建立新的 VM 時使用。
@@ -77,6 +94,6 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

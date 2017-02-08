@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/22/2016
+ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -35,8 +35,8 @@ Azure Active Directory (Azure AD) B2C 支援 OpenID Connect 與 OAuth 2.0 兩種
 註冊您的 app 之後，該 app 即會向 v2.0 端點傳送要求以與 Azure AD 通訊：
 
 ```
-https://login.microsoftonline.com/common/oauth2/v2.0/authorize
-https://login.microsoftonline.com/common/oauth2/v2.0/token
+https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
+https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
 ```
 
 幾乎在所有的 OAuth 和 OpenID Connect 流程中，都包含四個參與交換的合作對象：

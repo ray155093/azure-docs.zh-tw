@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/16/2016
+ms.date: 11/16/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8ec86ebefccaf74c67cb7917ccf7d538bc95ae07
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f86a70a5207f19063e9992325c8f8d696ca7823e
 
 
 ---
@@ -112,7 +112,7 @@ Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合
     ![從新裝置檢視遙測][img-runningnew-2]
 
 ## <a name="edit-the-device-metadata"></a>編輯裝置中繼資料
-裝置第一次連接至解決方案時，會將其中繼資料傳送至解決方案。 當您透過解決方案儀表板編輯裝置中繼資料時，它會將新的中繼資料值傳送至裝置，並將新的值儲存在解決方案的 DocumentDB 資料庫。 如需詳細資訊，請參閱[裝置身分識別登錄和 DocumentDB][lnk-devicemetadata]。
+裝置第一次連接至解決方案時，會將其中繼資料傳送至解決方案。 當您透過解決方案儀表板編輯裝置中繼資料時，它會將新的中繼資料值傳送至裝置，並將新的值儲存在解決方案的 DocumentDB 資料庫。 如需詳細資訊，請參閱 [裝置身分識別登錄和 DocumentDB][lnk-devicemetadata]。
 
 1. 瀏覽回到裝置清單。
 2. 在 [裝置清單] 中選取您的新裝置，然後按一下 [編輯] 來編輯 [裝置屬性]：
@@ -180,7 +180,7 @@ Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合
 完成之後，您可以從 [azureiotsuite.com][lnk-azureiotsuite] 網站上的 Azure 訂用帳戶中刪除預先設定解決方案。 這個網站可讓您輕鬆刪除在建立預先設定解決方案時已佈建的所有資源。
 
 > [!NOTE]
-> 若要確保您刪除與預先設定解決方案相關的所有項目，請在 [azureiotsuite.com][lnk-azureiotsuite] 網站上進行刪除，而不只是刪除入口網站中的資源群組。
+> 若要確保您刪除與預先設定解決方案相關的所有項目，請在 [azureiotsuite.com][lnk-azureiotsuite] 網站上進行刪除，而不是刪除入口網站中的資源群組。
 > 
 > 
 
@@ -229,6 +229,6 @@ Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

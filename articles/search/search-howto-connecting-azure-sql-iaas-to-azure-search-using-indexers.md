@@ -15,8 +15,8 @@ ms.tgt_pltfrm: na
 ms.date: 09/26/2016
 ms.author: jackma
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: cfd53c8240244ffbcf34380acb25657fcc8c9562
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: 2150735fbf1e1438feeef70f0ea92ed041d0cd24
 
 
 ---
@@ -50,8 +50,8 @@ Azure 搜尋服務會針對透過公用網際網路連接的所有索引子要�
 ## <a name="configure-sql-server-connectivity-in-the-vm"></a>在 VM 中設定 SQL Server 連線
 在您設定由 Azure 搜尋服務所要求的加密連接之後，Azure VM 上的 SQL Server 內建函式會有額外設定步驟。 如果您尚未這麼做，則下一個步驟是使用這些文件其中之一來完成設定︰
 
-* 若為 **Resource Manager** VM，請參閱 [使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-sql-connect.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
-* 若為 **傳統** VM，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-classic-sql-connect.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+* 若為 **Resource Manager** VM，請參閱 [使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/sql/virtual-machines-windows-sql-connect.md)。 
+* 若為 **傳統** VM，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-sql-connect.md)。
 
 特別是，檢閱每個文章中的「透過網際網路連接」一節。
 
@@ -91,6 +91,6 @@ IP 位址可能會造成一些挑戰，如果您知道問題和可能的因應�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

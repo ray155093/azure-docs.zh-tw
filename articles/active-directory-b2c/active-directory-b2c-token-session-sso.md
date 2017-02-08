@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/24/2016
+ms.date: 12/06/2016
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b37d419f799e5a56c67344ca634bdecec2f3c1f2
+ms.sourcegitcommit: 9cc0081588f54f77a69ded336d063651b12c8dd8
+ms.openlocfilehash: a185e802a2713c6b6d4101477f0fc61bca0bf29c
 
 
 ---
@@ -25,7 +25,8 @@ ms.openlocfilehash: b37d419f799e5a56c67344ca634bdecec2f3c1f2
 
 1. Azure Active Directory (Azure AD) B2C 所發出之安全性權杖的存留期。
 2. 由 Azure AD B2C 管理之 Web 應用程式工作階段的存留期。
-3. B2C 租用戶中跨越多個應用程式和原則的單一登入 (SSO) 行為。
+3. Azure AD B2C 所發出之安全性權杖中的重要宣告格式。
+4. B2C 租用戶中跨越多個應用程式和原則的單一登入 (SSO) 行為。
 
 您可以在 B2C 租用戶中使用這項功能，如下所示︰
 
@@ -37,8 +38,6 @@ ms.openlocfilehash: b37d419f799e5a56c67344ca634bdecec2f3c1f2
 6. 變更需要的項目。 了解後續章節中的可用屬性。
 7. 按一下 [確定] 。
 8. 按一下刀鋒視窗頂端的 [儲存]  。
-
-![權杖、工作階段及單一登入組態的螢幕擷取畫面](./media/active-directory-b2c-token-session-sso/token-session-sso.png)
 
 ## <a name="token-lifetimes-configuration"></a>權杖存留期組態
 Azure AD B2C 支援以 [OAuth 2.0 授權通訊協定](active-directory-b2c-reference-protocols.md) 來啟用受保護資源的安全存取。 為了實作這項支援，Azure AD B2C 會發出各種 [安全性權杖](active-directory-b2c-reference-tokens.md)。 以下是可用來管理 Azure AD B2C 所發出之安全性權杖存留期的屬性︰
@@ -61,7 +60,20 @@ Azure AD B2C 支援以 [OAuth 2.0 授權通訊協定](active-directory-b2c-refer
 * 只要使用者在行動應用程式中持續保持作用狀態，便允許他們無限期地維持應用程式的登入狀態。 透過在登入原則中將 [重新整理權杖滑動視窗存留期 (天)] 參數設定為 [無限制]，您可以實現此案例。
 * 請設定適當的存取權杖存留期，以滿足業界的安全性和循規規範。
 
-## <a name="session-configuration"></a>工作階段組態
+## <a name="token-compatibility-settings"></a>權杖相容性設定
+我們對 Azure AD B2C 所發出之安全性權杖中的重要宣告進行了格式變更。 這都是為了改善我們的標準通訊協定支援，以及獲得更佳的協力廠商身分識別程式庫互通性。 不過，為了避免破壞現有的應用程式，我們建立了下列可讓客戶視需要選擇加入的屬性︰
+
+* **簽發者 (iss) 宣告**︰這會識別發出權杖的 Azure AD B2C 租用戶。
+  * `https://login.microsoftonline.com/{B2C tenant GUID}/v2.0/`︰這是預設值。
+  * `https://login.microsoftonline.com/tfp/{B2C tenant GUID}/{Policy ID}/v2.0/`︰此值包括 B2C 租用戶和權杖要求中所用原則的識別碼。 如果您的應用程式或程式庫需要符合 Azure AD B2C 與 [OpenID Connect Discovery 1.0 規格](http://openid.net/specs/openid-connect-discovery-1_0.html)，請使用此值。
+* **主體 (子) 宣告**：這可識別權杖判斷提示其相關資訊的主體，亦即使用者。
+  * **ObjectID**：這是預設值。 它會將目錄中使用者的物件識別碼填入權杖中的 `sub` 宣告。
+  * **不支援**︰這僅針對回溯相容性提供，我們建議您儘可能切換到 **ObjectID**。
+* **代表原則識別碼的宣告**︰這會識別其中填入權杖要求中所用原則識別碼的宣告類型。
+  * **tfp**︰這是預設值。
+  * **acr**︰這僅針對回溯相容性提供，我們建議您儘可能切換到 `tfp`。
+
+## <a name="session-behavior"></a>工作階段行為
 Azure AD B2C 支援以 [OpenID Connect 驗證通訊協定](active-directory-b2c-reference-oidc.md) 啟用 Web 應用程式的安全登入。 以下是可用來管理 Web 應用程式工作階段的屬性︰
 
 * **Web 應用程式工作階段存留期 (分鐘)**︰在成功通過驗證時，儲存於使用者瀏覽器上的 Azure AD B2C 工作階段 Cookie 存留期。
@@ -86,6 +98,6 @@ Azure AD B2C 支援以 [OpenID Connect 驗證通訊協定](active-directory-b2c-
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO5-->
 
 

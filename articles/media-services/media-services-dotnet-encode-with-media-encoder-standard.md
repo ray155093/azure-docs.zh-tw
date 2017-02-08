@@ -1,12 +1,12 @@
 ---
-title: 使用 .NET 透過 Media Encoder Standard 為資產編碼 | Microsoft Docs
-description: 本主題說明如何使用 .NET 來使用 Media Encoder Standard 為資產編碼。
+title: "使用 .NET 透過媒體編碼器標準為資產編碼 | Microsoft Docs"
+description: "本主題說明如何使用 .NET 來使用 Media Encoder Standard 為資產編碼。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 03431b64-5518-478a-a1c2-1de345999274
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,47 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/19/2016
 ms.author: juliako;anilmur
+translationtype: Human Translation
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 775578cb4e89f561449eea10b21a300f20646424
+
 
 ---
-# 使用 .NET 透過 Media Encoder Standard 為資產編碼
-編碼工作是媒體服務中最常見的處理作業。您建立編碼工作以將媒體檔案從一種編碼轉換成另一種編碼。編碼時，您可以使用媒體服務內建的 Media Encoder。您也可以使用媒體服務合作夥伴提供的編碼器；第三方編碼器可透過 Azure Marketplace 取得。
+# <a name="encode-an-asset-with-media-encoder-standard-using-net"></a>使用 .NET 透過 Media Encoder Standard 為資產編碼
+編碼工作是媒體服務中最常見的處理作業。 您建立編碼工作以將媒體檔案從一種編碼轉換成另一種編碼。 編碼時，您可以使用媒體服務內建的 Media Encoder。 您也可以使用媒體服務合作夥伴提供的編碼器；第三方編碼器可透過 Azure Marketplace 取得。 
 
-本主題說明如何使用 .NET 透過 Media Encoder Standard (MES) 將您的資產編碼。Media Encoder Standard 使用[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
+本主題說明如何使用 .NET 透過 Media Encoder Standard (MES) 將您的資產編碼。 Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
 
-建議一律將夾層檔編碼為調適性位元速率 MP4 集，然後使用[動態封裝](media-services-dynamic-packaging-overview.md)將該集合轉換為所要的格式。若要利用動態封裝，您必須先取得至少一個串流端點的隨選串流單位，您打算從中傳遞您的內容。如需詳細資訊，請參閱[如何調整媒體服務](media-services-portal-manage-streaming-endpoints.md)。
+建議一律將夾層檔編碼為調適性位元速率 MP4 集，然後使用 [動態封裝](media-services-dynamic-packaging-overview.md)將該集合轉換為所要的格式。 
 
-如果您的輸出資產是儲存體加密，必須設定資產傳遞原則。如需詳細資訊，請參閱[設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)。
+如果您的輸出資產是儲存體加密，必須設定資產傳遞原則。 如需詳細資訊，請參閱 [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)。
 
 > [!NOTE]
-> MES 會產生一個輸出檔案，其名稱包含輸入檔案名稱的前 32 個字元。名稱是以預設檔案中指定的名稱為基礎。例如，"FileName": "{Basename}\_{Index}{Extension}"。{Basename} 會由輸入檔案名稱的前 32 個字元取代。
+> MES 會產生一個輸出檔案，其名稱包含輸入檔案名稱的前 32 個字元。 名稱是以預設檔案中指定的名稱為基礎。 例如，"FileName": "{Basename}_{Index}{Extension}"。 {Basename} 會由輸入檔案名稱的前 32 個字元取代。
 > 
 > 
 
-### MES 格式
+### <a name="mes-formats"></a>MES 格式
 [格式和轉碼器](media-services-media-encoder-standard-formats.md)
 
-### MES 預設值
-Media Encoder Standard 使用[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
+### <a name="mes-presets"></a>MES 預設值
+Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
 
-### 輸入和輸出中繼資料
-如果您使用 MES 為輸入資產 (或資產) 編碼，在該編碼工作完成時，您便能取得輸出資產。輸出資產包含視訊、音訊、縮圖、資訊清單等等，依據您所使用的編碼預設格式而定。
+### <a name="input-and-output-metadata"></a>輸入和輸出中繼資料
+如果您使用 MES 為輸入資產 (或資產) 編碼，在該編碼工作完成時，您便能取得輸出資產。 輸出資產包含視訊、音訊、縮圖、資訊清單等等，依據您所使用的編碼預設格式而定。
 
-輸出資產也包含隨附關於輸入資產中繼資料的檔案。中繼資料 XML 檔案的名稱具備下列格式︰<asset\_id>\_metadata.xml (例如：41114ad3-eb5e-4c57-8d92-5354e2b7d4a4\_metadata.xml)，其中的 <asset\_id> 是輸入資產的 AssetId 值。[這裡](http://msdn.microsoft.com/library/azure/dn783120.aspx)說明了此輸入中繼資料 XML 的結構描述。
+輸出資產也包含隨附關於輸入資產中繼資料的檔案。 中繼資料 XML 檔案的名稱具備下列格式︰<asset_id>_metadata.xml (例如：41114ad3-eb5e-4c57-8d92-5354e2b7d4a4_metadata.xml)，其中的 <asset_id> 是輸入資產的 AssetId 值。 [這裡](media-services-input-metadata-schema.md)說明了此輸入中繼資料 XML 的結構描述。
 
-輸出資產也包含隨附關於輸出資產中繼資料的檔案。中繼資料 XML 檔案的名稱具備下列格式︰<source_file_name>\_manifest.xml (例如：BigBuckBunny\_manifest.xml)。[這裡](http://msdn.microsoft.com/library/azure/dn783217.aspx)說明了此輸出中繼資料 XML 的結構描述。
+輸出資產也包含隨附關於輸出資產中繼資料的檔案。 中繼資料 XML 檔案的名稱具備下列格式︰<source_file_name>_manifest.xml (例如：BigBuckBunny_manifest.xml)。 [這裡](media-services-output-metadata-schema.md)說明了此輸出中繼資料 XML 的結構描述。
 
-如果您想要檢查這兩個中繼資料檔案的任一個，可以建立 SAS 定位器並將檔案下載到您的本機電腦。您可以找到關於如何建立 SAS 定位器的範例，並且下載使用媒體服務 .NET SDK 擴充功能的檔案。
+如果您想要檢查這兩個中繼資料檔案的任一個，可以建立 SAS 定位器並將檔案下載到您的本機電腦。 您可以找到關於如何建立 SAS 定位器的範例，並且下載使用媒體服務 .NET SDK 擴充功能的檔案。
 
-## 下載範例
-從[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/)取得並執行範例。
+## <a name="download-sample"></a>下載範例
+從 [這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/)取得並執行範例。
 
-## 範例
+## <a name="example"></a>範例
 下列程式碼範例使用媒體服務 .NET SDK 執行下列工作：
 
 * 建立編碼工作。
 * 取得對 Media Encoder Standard 編碼器的參考
-* 指定要使用「H264 多重位元速率 720p」預設值。您可以在[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)看到所有預設值。您也可以在[這裡](https://msdn.microsoft.com/library/mt269962.aspx)的主題檢查這些預設值必須符合的結構描述。
-* 將單一編碼工作加入工作。
+* 指定要使用「H264 多重位元速率 720p」預設值。 您可以在 [這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)看到所有預設值。 您也可以在 [這裡](https://msdn.microsoft.com/library/mt269962.aspx) 的主題檢查這些預設值必須符合的結構描述。
+* 將單一編碼工作加入工作。 
 * 指定要編碼的輸入資產。
 * 建立將包含已編碼資產的輸出資產。
 * 加入事件處理常式來檢查工作進度。
@@ -133,13 +137,19 @@ Media Encoder Standard 使用[這裡](http://go.microsoft.com/fwlink/?linkid=618
         }
 
 
-## 媒體服務學習路徑
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## 另請參閱
-[如何使用 Media Encoder Standard 搭配 .NET 產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md) [媒體服務編碼概觀](media-services-encode-asset.md)
+## <a name="see-also"></a>另請參閱
+[如何使用媒體編碼器標準搭配 .NET 產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md)
+[媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Jan17_HO2-->
+
+

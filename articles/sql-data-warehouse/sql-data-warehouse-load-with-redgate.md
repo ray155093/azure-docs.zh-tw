@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: mausher;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 804b0ba72ca73da1a076bd4dbca8bbca33cb76b1
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: dd77457bfa7ebfc701750e090778f2976d82b141
 
 
 ---
@@ -120,8 +120,8 @@ DPS 會顯示視覺效果，顯示從內部部署 SQL Server 擷取和上傳資�
 ## <a name="next-steps"></a>後續步驟
 若要瀏覽您在 SQL 資料倉儲內的資料，請先檢視︰
 
-* [查詢 Azure SQL 資料倉儲 (Visual Studio)][查詢 Azure SQL 資料倉儲 (Visual Studio)]
-* [使用 Power BI 視覺化資料][使用 Power BI 視覺化資料]
+* [查詢 Azure SQL 資料倉儲 (Visual Studio)][Query Azure SQL Data Warehouse (Visual Studio)]
+* [使用 Power BI 視覺化資料][Visualize data with Power BI]
 
 若要深入了解 Redgate 的資料平台 Studio：
 
@@ -130,7 +130,7 @@ DPS 會顯示視覺效果，顯示從內部部署 SQL Server 擷取和上傳資�
 
 如需在 SQL 資料倉儲中移轉及載入資料之其他方式的概觀，請參閱︰
 
-* [將您的解決方案移轉至 SQL 資料倉儲][將您的解決方案移轉至 SQL 資料倉儲]
+* [將您的解決方案移轉至 SQL 資料倉儲][Migrate your solution to SQL Data Warehouse]
 * [將資料載入 Azure SQL 資料倉儲](sql-data-warehouse-overview-load.md)
 
 如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀](sql-data-warehouse-overview-develop.md)。
@@ -146,14 +146,14 @@ DPS 會顯示視覺效果，顯示從內部部署 SQL Server 擷取和上傳資�
 [8]: media/sql-data-warehouse-redgate/2016-10-05_12-57-10.png
 
 <!--Article references-->
-[查詢 Azure SQL 資料倉儲 (Visual Studio)]: ./sql-data-warehouse-query-visual-studio.md
-[使用 Power BI 視覺化資料]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
-[將您的解決方案移轉至 SQL 資料倉儲]: ./sql-data-warehouse-overview-migrate.md
-[將資料載入 Azure SQL 資料倉儲]: ./sql-data-warehouse-overview-load.md
-[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[Query Azure SQL Data Warehouse (Visual Studio)]: ./sql-data-warehouse-query-visual-studio.md
+[Visualize data with Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
+[Migrate your solution to SQL Data Warehouse]: ./sql-data-warehouse-overview-migrate.md
+[Load data into Azure SQL Data Warehouse]: ./sql-data-warehouse-overview-load.md
+[SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

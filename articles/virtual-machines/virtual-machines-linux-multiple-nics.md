@@ -15,8 +15,8 @@ ms.workload: infrastructure
 ms.date: 10/27/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: b2cd533ab24feb3ce521db5f8406576f86e460d9
+ms.sourcegitcommit: d4fa4187b25dcbb7cf3b75cb9186b5d245c89227
+ms.openlocfilehash: 12da49e49782869153dcecbf6e4ca0ec24fa5960
 
 
 ---
@@ -145,7 +145,7 @@ Azure Resource Manager 範本會使用宣告式 JSON 檔案來定義您的環境
 }
 ```
 
-深入了解[使用 *copy* 建立多個執行個體](../resource-group-create-multiple.md)。 
+深入了解[使用 *copy* 建立多個執行個體](../azure-resource-manager/resource-group-create-multiple.md)。 
 
 您也可以使用 `copyIndex()`，然後在資源名稱後面附加一個數字，讓您能夠建立 `myNic1`、`myNic2`，依此類推。以下顯示附加索引值的範例：
 
@@ -163,6 +163,6 @@ Azure Resource Manager 範本會使用宣告式 JSON 檔案來定義您的環境
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

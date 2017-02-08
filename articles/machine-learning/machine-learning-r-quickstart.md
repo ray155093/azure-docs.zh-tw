@@ -1,24 +1,29 @@
 ---
-title: 機器學習適用之 R 語言的快速入門教學課程 | Microsoft Docs
-description: 請透過此 R 程式設計教學課程快速開始搭配 Azure Machine Learning Studio 使用 R 語言來建立預測解決方案。
-keywords: 快速入門,r 語言,r 程式設計語言,r 程式設計教學課程
+title: "機器學習適用之 R 語言的快速入門教學課程 | Microsoft Docs"
+description: "請透過此 R 程式設計教學課程快速開始搭配 Azure Machine Learning Studio 使用 R 語言來建立預測解決方案。"
+keywords: "快速入門,r 語言,r 程式設計語言,r 程式設計教學課程"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 99a3a0fd-b359-481a-b236-66868deccd96
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2016
+ms.date: 01/06/2017
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: 2d9feed054fb4641e660c685d396260246ed1d54
+ms.openlocfilehash: 6a02bb20ff2ed10ed528bfe2a3aae51ab20e4a60
+
 
 ---
 # <a name="quickstart-tutorial-for-the-r-programming-language-for-azure-machine-learning"></a>Azure Machine Learning 之 R 程式設計語言的快速入門教學課程
-Stephen F Elston 博士
+
+<!-- Stephen F Elston, Ph.D. -->
 
 ## <a name="introduction"></a>簡介
 本快速入門教學課程將協助您使用 R 程式設計語言來快速開始擴充 Azure Machine Learning。 請跟著 R 程式設計教學課程來於 Azure Machine Learning 中建立、測試及執行 R 程式碼。 在您隨著此教學課程進行的過程中，您將在 Azure Machine Learning 中使用 R 語言來建立一個完整的預測解決方案。  
@@ -45,7 +50,7 @@ Microsoft Azure Machine Learning 包含許多功能強大的機器學習和資�
 * 在備妥資料後，我們將執行資料集內數個變數之間的相互關聯分析。
 * 最後，我們將針對牛奶產量建立季節性的時間序列預測模型。
 
-## <a name="<a-id="mlstudio"></a>interact-with-r-language-in-machine-learning-studio"></a><a id="mlstudio"></a>與 Machine Learning Studio 中的 R 語言互動
+## <a name="a-idmlstudioainteract-with-r-language-in-machine-learning-studio"></a><a id="mlstudio"></a>與 Machine Learning Studio 中的 R 語言互動
 本節將帶領您了解在 Machine Learning Studio 環境中與 R 程式設計語言互動的一些基本概念。 R 語言提供一個功能強大的工具，可在 Azure Machine Learning 環境內建立自訂的分析和資料操作模組。
 
 我將使用 RStudio 來進行小規模的 R 程式碼開發、測試及偵錯。 然後，將此程式碼剪下並貼到 Machine Learning Studio 中已準備好要執行的[執行 R 指令碼][execute-r-script]模組中。  
@@ -57,7 +62,7 @@ Microsoft Azure Machine Learning 包含許多功能強大的機器學習和資�
 
 *圖 1.顯示已選取 [執行 R 指令碼] 模組的 Machine Learning Studio 環境。*
 
-參照圖 1，讓我們看看 Machine Learning Studio 環境的一些與[執行 R 指令碼][execute-r-script]模組搭配運作的主要部分。
+參照圖 1，讓我們看看 ML Studio 環境的一些與[執行 R 指令碼][execute-r-script]模組搭配運作的主要部分。
 
 * 實驗中的模組會顯示在中間的窗格。
 * 右窗格的上半部包含一個可檢視和編輯 R 指令碼的視窗。  
@@ -76,13 +81,13 @@ Microsoft Azure Machine Learning 包含許多功能強大的機器學習和資�
 如果您需要更完整的 R 例外狀況處理方式，建議您閱讀 [附錄 B - 進階閱讀](#appendixb)列出之 Wickham 所著書籍中適用的小節。
 
 #### <a name="debug-and-test-r-in-machine-learning-studio"></a>在 Machine Learning Studio 中進行 R 程式碼偵錯和測試
-再次提醒您，建議您在 RStudio 中進行小規模的 R 程式碼測試和偵錯。 不過，在某些情況下，您必須探究[執行 R 指令碼][execute-r-script]本身的 R 程式碼問題。 此外，在 Machine Learning Studio 中檢查結果也是相當好的做法。
+再次提醒您，建議您在 RStudio 中進行小規模的 R 程式碼測試和偵錯。 不過，會有一些您將必須探究[執行 R 指令碼][execute-r-script]本身 R 程式碼問題的情況。 此外，在 Machine Learning Studio 中檢查結果也是相當好的做法。
 
 R 程式碼的執行及在 Azure Machine Learning 平台上的執行所產生的輸出主要都在 output.log 中。 有些其他資訊會顯示在 error.log 中。  
 
 如果在執行 R 程式碼時，Machine Learning Studio 中發生錯誤，您的第一個行動方針應該是查看 error.log。 此檔案可能包含可協助您了解並更正錯誤的實用錯誤訊息。 若要檢視 error.log，請針對包含錯誤的[執行 R 指令碼][execute-r-script]，按一下 [屬性] 窗格上的 [檢視錯誤記錄檔]。
 
-例如，我在[執行 R 指令碼][execute-r-script]模組中執行下列 R 程式碼，其中含有未定義的變數 y：
+例如，我執行了[執行 R 指令碼][execute-r-script]模組中含有未定義之變數 y 的 下列 R 程式碼：
 
     x <- 1.0
     z <- x + y
@@ -108,7 +113,7 @@ R 程式碼的執行及在 Azure Machine Learning 平台上的執行所產生的
 若要檢查 R 中任何物件的值，您可以將這些值列印至 output.log 檔案中。 檢查物件值的規則基本上與在互動式 R 工作階段中相同。 例如，如果您在一行輸入變數名稱，物件的值就會列印至 output.log 檔案中。  
 
 #### <a name="packages-in-machine-learning-studio"></a>Machine Learning Studio 中的封裝
-Azure Machine Learning 附有超過 350 個預先安裝的 R 語言封裝。 您可以在[執行 R 指令碼][execute-r-script]模組中使用下列程式碼，以擷取預先安裝的套件清單。
+Azure Machine Learning 附有超過 350 個預先安裝的 R 語言封裝。 您可以使用[執行 R 指令碼][execute-r-script]模組中的下列程式碼，來擷取預先安裝的封裝清單。
 
     data.set <- data.frame(installed.packages())
     maml.mapOutputPort("data.set")
@@ -126,13 +131,13 @@ https://support.rstudio.com/hc/sections/200107586-Using-RStudio 有提供 RStudi
 
 我在[附錄 A][appendixa] 中提供了一些使用 RStudio 的其他相關資訊。  
 
-## <a name="<a-id="scriptmodule"></a>get-data-in-and-out-of-the-execute-r-script-module"></a><a id="scriptmodule"></a>將資料輸入執行 R 指令碼模組及從此模組輸出
-在本節中，我們將討論如何在[執行 R 指令碼][execute-r-script]模組中輸入及輸出資料。 我們將回顧如何處理在[執行 R 指令碼][execute-r-script]模組中讀入及讀出的各種資料類型。
+## <a name="a-idscriptmoduleaget-data-in-and-out-of-the-execute-r-script-module"></a><a id="scriptmodule"></a>將資料輸入執行 R 指令碼模組及從此模組輸出
+在本節中，我們將討論如何將資料輸入[執行 R 指令碼][execute-r-script]模組及從此模組輸出。 我們將回顧如何處理讀入[執行 R 指令碼][execute-r-script]模組及從此模組讀出的各種資料類型。
 
 您稍早下載的 Zip 檔案中有本節的完整程式碼。
 
 ### <a name="load-and-check-data-in-machine-learning-studio"></a>在 Machine Learning Studio 中載入和檢查資料
-#### <a name="<a-id="loading"></a>load-the-dataset"></a><a id="loading"></a>載入資料集
+#### <a name="a-idloadingaload-the-dataset"></a><a id="loading"></a>載入資料集
 我們將從把 **csdairydata.csv** 檔案載入到 Azure Learning Studio 中開始。
 
 * 啟動 Azure Machine Learning Studio 環境。
@@ -150,8 +155,8 @@ https://support.rstudio.com/hc/sections/200107586-Using-RStudio 有提供 RStudi
 * 在實驗頁面左側展開 [儲存的資料集]，然後選取 [我的資料集]。 您應該會看到先前上傳的 **cadairydata.csv** 檔案。
 * 將 [ **csdairydata.csv 資料集** ] 拖放到實驗上。
 * 在左窗格頂端的 [搜尋實驗項目] 方塊中，輸入[執行 R 指令碼][execute-r-script]。 您會看到該模組出現在搜尋清單中。
-* 將[執行 R 指令碼][execute-r-script]模組拖放到您的平板上。  
-* 將 [csdairydata.csv 資料集] 的輸出連接到[執行 R 指令碼][execute-r-script]最左邊的輸入 ([資料集1])。
+* 將[執行 R 指令碼][execute-r-script]模組拖放到您的選盤上。  
+* 將 [csdairydata.csv 資料集] 的輸出連接到[執行 R 指令碼][execute-r-script]最左邊的輸入 (**資料集1**)。
 * **別忘了按一下 [儲存]！**  
 
 此時，您的實驗應該會看起來像圖 3。
@@ -221,7 +226,7 @@ https://support.rstudio.com/hc/sections/200107586-Using-RStudio 有提供 RStudi
 3. 將您的檔案新增到 Machine Learning Studio 中的 [資料集]，並將類型指定為 **zip**。 您現在應該會在您的資料集內看到的此 Zip 檔案。
 4. 將此 Zip 檔案從 [資料集] 拖放到 **ML Studio 畫布**上。
 5. 將 [Zip 資料] 圖示的輸出連接到[執行 R 指令碼][execute-r-script]模組的 [指令碼組合] 輸入。
-6. 在[執行 R 指令碼][execute-r-script]模組的程式碼視窗中，輸入 `source()` 函式並提供您的 Zip 檔案名稱。 在我的案例中，我鍵入了 `source("src/simpleplot.R")`。  
+6. 在[執行 R 指令碼][execute-r-script]模組的程式碼視窗中，輸入含有您 Zip 檔案名稱的 `source()` 函式。 在我的案例中，我鍵入了 `source("src/simpleplot.R")`。  
 7. 確定按一下 [ **儲存**]。
 
 完成這些步驟之後，[執行 R 指令碼][execute-r-script]模組就會在實驗執行時，執行 Zip 檔案中的 R 指令碼。 此時，您的實驗應該會看起來像圖 5。
@@ -273,7 +278,7 @@ https://support.rstudio.com/hc/sections/200107586-Using-RStudio 有提供 RStudi
 這些結果大致上如預期，資料框架中有 228 個觀察值和 9 個資料行。 我們可以看到資料行名稱、R 資料類型及每個資料行的範例。
 
 > [!NOTE]
-> 從[執行 R 指令碼][execute-r-script]模組的 [R 裝置] 輸出，可以很方便取得這個相同的列印輸出。 我們將在下一節中討論[執行 R 指令碼][execute-r-script]模組的輸出。  
+> 從[執行 R 指令碼][execute-r-script]模組的 [R 裝置] 輸出可以便利地取得這個相同的列印輸出。 我們將在下一節中討論[執行 R 指令碼][execute-r-script]模組的輸出。  
 > 
 > 
 
@@ -309,7 +314,7 @@ https://support.rstudio.com/hc/sections/200107586-Using-RStudio 有提供 RStudi
 
 *圖 8.來自 [R 裝置] 連接埠的圖形輸出。*  
 
-## <a name="<a-id="filtering"></a>data-filtering-and-transformation"></a><a id="filtering"></a>資料篩選和轉換
+## <a name="a-idfilteringadata-filtering-and-transformation"></a><a id="filtering"></a>資料篩選和轉換
 在本節中，我們將對加州乳製品資料執行一些基本的資料篩選和轉換操作。 在本節的結尾，我們將會以適用於建置分析模型的格式備妥資料。  
 
 更具體來說，在本節中，我們將會執行數個常見的資料清除和轉換工作：類型轉換、依據資料框架進行篩選、新增新的計算資料行，以及值轉換。 此背景應該可以協助您處理在真實世界問題中遇到的許多變化。
@@ -334,7 +339,7 @@ R 是動態指定類型的語言，這表示會視需要強制將資料類型從
 
 看看我們在上一節中輸入之資料行的資料類型：除了標示為 'Month' 的資料行為字元類型之外，所有資料行的類型都是數值。 讓我們將其轉換成因素，然後測試結果。  
 
-我已經刪除建立散佈圖矩陣的程式碼行，並新增將 'Month' 資料行轉換成因素的程式碼行。 在我的實驗中，我只是將 R 程式碼剪下並貼到[執行 R 指令碼][execute-r-script]模組的程式碼視窗中。 您也可以更新 Zip 檔案，然後將它上傳到 Azure Machine Learning Studio，但這需要數個步驟。  
+我已經刪除建立散佈圖矩陣的程式碼行，並新增將 'Month' 資料行轉換成因素的程式碼行。 在我的實驗中，我將只是把 R 程式碼剪下並貼到[執行 R 指令碼][execute-r-script]模組的程式碼視窗中。 您也可以更新 Zip 檔案，然後將它上傳到 Azure Machine Learning Studio，但這需要數個步驟。  
 
     ## Only one of the following two lines should be used
     ## If running in Machine Learning Studio, use the first line with maml.mapInputPort()
@@ -592,7 +597,7 @@ R 資料框架支援強大的篩選功能。 藉由在資料列或資料行使�
 
 此時會清除我們的資料，而我們已經準備好進行一些建立模型工作。 看看[執行 R 指令碼][execute-r-script]模組之 [結果資料集] 輸出的視覺化摘要，您會看到 'Month' 資料行是 'Categorical' 並具有 12 個唯一值，這又再次是我們所想要的。
 
-## <a name="<a-id="timeseries"></a>time-series-objects-and-correlation-analysis"></a><a id="timeseries"></a>時間序列物件和相互關聯分析
+## <a name="a-idtimeseriesatime-series-objects-and-correlation-analysis"></a><a id="timeseries"></a>時間序列物件和相互關聯分析
 在本節中，我們將探討一些基本的 R 時間序列物件，並分析一些變數之間的相互關聯。 我們的目標是要輸出資料框架，此框架中包含數段延隔時間的成對相互關聯資訊。
 
 您稍早下載的 Zip 檔中有本節的完整 R 程式碼。
@@ -604,7 +609,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 <!-- Additional information on R time series objects is provided in the references in Section 5.7. [commenting because this section doesn't exist, even in the original] -->
 
 ### <a name="time-series-object-example"></a>時間序列物件範例
-讓我們開始進行我們的範例。 請將**新的**[執行 R 指令碼][execute-r-script]模組拖放到您的實驗中。 將現有[執行 R 指令碼][execute-r-script]模組的 [結果資料集1] 輸出連接埠，連接到新的[執行 R 指令碼][execute-r-script]模組的 [資料集1] 輸入連接埠。
+讓我們開始進行我們的範例。 請將**新的**[執行 R 指令碼][execute-r-script]模組拖放到您的實驗中。 將現有[執行 R 指令碼][execute-r-script]模組的 [結果資料集&1;] 輸出連接埠連接到新的[執行 R 指令碼][execute-r-script]模組的 [資料集&1;] 輸入連接埠。
 
 如同我為前幾個範例所做的，隨著我們循序進行此範例，在某些點，我將只會示範在每個步驟累加的額外 R 程式碼行。  
 
@@ -709,7 +714,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
                     'ERROR: ts.detrend has encountered a Time argument not of class POSIXct',
                     'ERROR: Detrend regression has failed in ts.detrend',
                     'ERROR: Exception occurred in ts.detrend while standardizing time series in function ts.detrend'
-    )
+      )
       # Create a vector of zeros to return as a default in some cases
       zerovec  <- rep(length(ts), 0.0)
 
@@ -873,7 +878,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 
 *圖 19.來自相互關聯分析的結果輸出。*
 
-## <a name="<a-id="seasonalforecasting"></a>time-series-example:-seasonal-forecasting"></a><a id="seasonalforecasting"></a>時間序列範例：季節性預測
+## <a name="a-idseasonalforecastingatime-series-example-seasonal-forecasting"></a><a id="seasonalforecasting"></a>時間序列範例：季節性預測
 我們的資料現在是適用於分析的形式，而我們已判斷出變數之間沒有重大的相互關聯。 讓我們繼續來建立時間序列預測模型。 我們將使用此模型預測 2013 年 12 個月的加州牛奶產量。
 
 我們的預測模型將會有兩個元件，亦即趨勢元件和季節性元件。 這兩個元件的乘積即是完整預測。 這種模型稱為乘法模型。 替代模型是加法模型。 我們已經將對數轉換套用到感興趣的變數，以便控制這項分析。
@@ -981,7 +986,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ##
     ## Residual standard error: 0.0418 on 212 degrees of freedom
-    ## Multiple R-squared:  0.941,  Adjusted R-squared:  0.94
+    ## Multiple R-squared:  0.941,    Adjusted R-squared:  0.94
     ## F-statistic: 1.12e+03 on 3 and 212 DF,  p-value: <2e-16
 
 從這個輸出的 P 值 (Pr(>|t|))，我們可以看出平方項可能沒有意義。 我將使用 `update()` 函式來卸除平方項，以修改此模型。
@@ -1065,7 +1070,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ##
     ## Residual standard error: 0.0263 on 202 degrees of freedom
-    ## Multiple R-squared:     1,   Adjusted R-squared:     1
+    ## Multiple R-squared:     1,    Adjusted R-squared:     1
     ## F-statistic: 1.42e+06 on 14 and 202 DF,  p-value: <2e-16
 
 我們會看到模型不再具有截距項，並且擁有 12 個重要的月份因素。 這就是我們想要看到的。
@@ -1148,7 +1153,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
         return(NA)}
 
       if((length(series1) != length(series2))) {
-        warning(messages[3])
+           warning(messages[3])
         return(NA)}
 
       ## If is.log is TRUE exponentiate the values, else just copy
@@ -1203,7 +1208,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 
 我們可以從這些結果看出，將季節性因素新增到模型中可大幅降低 RMS 誤差。 不出所料，訓練資料的 RMS 誤差比預測的 RMS 誤差小一些。
 
-## <a name="<a-id="appendixa"></a>appendix-a:-guide-to-rstudio"></a><a id="appendixa"></a>附錄 A：RStudio 指南
+## <a name="a-idappendixaaappendix-a-guide-to-rstudio"></a><a id="appendixa"></a>附錄 A：RStudio 指南
 RStudio 已經有相當充分的說明，因此在本附錄中，我將提供一些 RStudio 文件中重要小節的連結，讓您能夠輕鬆上手。
 
 1. 建立專案
@@ -1220,7 +1225,7 @@ RStudio 已經有相當充分的說明，因此在本附錄中，我將提供一
    
    下列網址提供中斷點疑難排解功能的相關文件：https://support.rstudio.com/hc/articles/200534337-Breakpoint-Troubleshooting。
 
-## <a name="<a-id="appendixb"></a>appendix-b:-further-reading"></a><a id="appendixb"></a>附錄 B：進階閱讀
+## <a name="a-idappendixbaappendix-b-further-reading"></a><a id="appendixb"></a>附錄 B：進階閱讀
 此 R 程式設計教學課程涵蓋您搭配 Azure Machine Learning Studio 使用 R 語言時所需的基本知識。 如果您不熟悉 R，CRAN 有提供兩本簡介：
 
 * Emmanuel Paradis 所著的《R for Beginners》是初學者的首選，網址為 http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf。  
@@ -1242,7 +1247,7 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 
 * DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。 最新 R 技巧和封裝均有互動式教學課程。 請至 https://www.datacamp.com/courses/introduction-to-r 觀看免費的互動式 R 教學課程  
 * Clarkson 大學 Kelly Black 提供的快速 R 教學課程：http://www.cyclismo.org/tutorial/R/
-* http://www.computerworld.com/article/2497464/business-intelligence-60-r-resources-to-improve-your-data-skills.html 列出 60 個以上的 R 資源
+* http://www.computerworld.com/article/2497464/business-intelligence-60-r-resources-to-improve-your-data-skills.html 列出&60; 個以上的 R 資源
 
 <!--Image references-->
 [1]: ./media/machine-learning-r-quickstart/fig1.png
@@ -1280,6 +1285,6 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

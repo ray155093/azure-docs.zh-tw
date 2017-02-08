@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 08/11/2016
 ms.author: chkuhtz
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 0cedf46bd0b8c352c8a8d87407ed7fbbc58e3b46
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: e9ffa674363b250a5e286c6e34200fa2b3323173
 
 ---
 
@@ -65,8 +65,8 @@ DIP 是輸入流量的目的地。 在後端集區中，每個 VM 會公開 DIP 
 
 | 規則 | 對應前端 | 至後端集區 |
 | --- | --- | --- |
-| 1 |![VIP](./media/load-balancer-multivip-overview/load-balancer-rule-green.png)  VIP1:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-green.png) DIP1:80, ![後端](./media/load-balancer-multivip-overview/load-balancer-rule-green.png)  DIP2:80 |
-| 2 |![VIP](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png)  VIP2:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png) DIP1:81, ![後端](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png)  DIP2:81 |
+| 1 |![VIP](./media/load-balancer-multivip-overview/load-balancer-rule-green.png) VIP1:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-green.png) DIP1:80, ![後端](./media/load-balancer-multivip-overview/load-balancer-rule-green.png) DIP2:80 |
+| 2 |![VIP](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png) VIP2:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png) DIP1:81, ![後端](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png) DIP2:81 |
 
 現在 Azure Load Balancer 的完整對應如下︰
 
@@ -113,8 +113,8 @@ Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，�
 
 | 規則 | 對應前端 | 至後端集區 |
 | --- | --- | --- |
-| 1 |![規則](./media/load-balancer-multivip-overview/load-balancer-rule-green.png)  VIP1:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-green.png)  VIP1:80 (在 VM1 和 VM2) |
-| 2 |![規則](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png)  VIP2:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png)  VIP2:80 (在 VM1 和 VM2) |
+| 1 |![規則](./media/load-balancer-multivip-overview/load-balancer-rule-green.png) VIP1:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-green.png) VIP1:80 (在 VM1 和 VM2) |
+| 2 |![規則](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png) VIP2:80 |![後端](./media/load-balancer-multivip-overview/load-balancer-rule-purple.png) VIP2:80 (在 VM1 和 VM2) |
 
 下表顯示負載平衡器的完整對應︰
 
@@ -127,7 +127,7 @@ Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，�
 
 請注意，此範例沒有變更目的地連接埠。 雖然這是浮動 IP 案例，Azure Load Balancer 也支援定義規則來重寫後端的目的地連接埠，使其和前端的目的地連接埠不同。
 
-浮動 IP 規則類型是數種負載平衡器設定模式的基礎。 [具有多個接聽程式的 SQL AlwaysOn](../virtual-machines/virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 設定是目前可看到其運用的範例。 經過一段時間，我們會記載更多這類案例。
+浮動 IP 規則類型是數種負載平衡器設定模式的基礎。 [具有多個接聽程式的 SQL AlwaysOn](../virtual-machines/windows/sql/virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md) 設定是目前可看到其運用的範例。 經過一段時間，我們會記載更多這類案例。
 
 ## <a name="limitations"></a>限制
 
@@ -138,6 +138,6 @@ Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

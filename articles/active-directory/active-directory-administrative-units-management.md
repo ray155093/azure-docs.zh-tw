@@ -1,19 +1,23 @@
 ---
-title: 在 Azure Active Directory 中的管理單位管理
-description: 使用管理單位在 Azure Active Directory 中進行更細微的權限委派
+title: "在 Azure Active Directory 中的管理單位管理"
+description: "使用管理單位在 Azure Active Directory 中進行更細微的權限委派"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: curtand
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 8464cd6b-1d1a-470d-a4fb-ee29b8eab4c4
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 08/23/2016
+ms.date: 11/09/2016
 ms.author: curtand
+translationtype: Human Translation
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: b30ed9727229c082bff65023bfe4900640caa995
+
 
 ---
 # <a name="administrative-units-management-in-azure-ad---public-preview"></a>在 Azure AD (公用預覽版) 中的管理單位管理
@@ -23,8 +27,8 @@ ms.author: curtand
 
 > [!IMPORTANT]
 > 您僅能在啟用 Azure Active Directory Premium 時才可以建立和使用管理單位。 如需詳細資訊，請參閱〈 [開始使用 Azure AD Premium](active-directory-get-started-premium.md)〉。
-> 
-> 
+>
+>
 
 從管理中心的觀點來看，管理單位是可以建立並填入資源的目錄物件。 **在此版本中，這些資源僅能為使用者。**  一旦建立並填入，管理單位可用作為範圍，以限制僅能針對管理單位中所包含的資源來授與權限。
 
@@ -36,6 +40,8 @@ ms.author: curtand
 ## <a name="next-steps"></a>後續步驟
 [Azure Active Directory 版本](active-directory-editions.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Dec16_HO5-->
 
 

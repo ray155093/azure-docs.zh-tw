@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 12/09/2016
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: f946ef41f0fc5ab39351d85c37ed24715b92b882
-ms.openlocfilehash: cd58f24c356e6d1ec0ebe77b1c336ee8370a4a9a
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: 32d26fa811f1b5b34981e40d20e6c941d5f08477
 
 
 ---
@@ -84,7 +84,7 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 Azure 稽核記錄檔和屬性定義，請參閱︰
 
-* [使用 Resource Manager 來稽核作業](../resource-group-audit.md)
+* [使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md)
 * [列出訂用帳戶中的管理事件](https://msdn.microsoft.com/library/azure/dn931934.aspx) - 以擷取稽核記錄檔事件。
 
 如要深入了解資訊安全中心，請參閱下列主題：
@@ -95,6 +95,6 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

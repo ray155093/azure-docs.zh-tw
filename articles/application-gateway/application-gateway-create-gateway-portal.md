@@ -4,7 +4,7 @@ description: "了解如何使用入口網站來建立「應用程式閘道」"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: 54dffe95-d802-4f86-9e2e-293f49bd1e06
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/21/2016
+ms.date: 12/12/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 919b0b945f463bdf840faa6b244e1ba0c12c7cc3
-ms.openlocfilehash: dedb4064f7c42f4e2f8d55c623168a7faf9a3d27
+ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
+ms.openlocfilehash: f7036e8e629e78c5346688556a5aa5794bde3955
 
 
 ---
@@ -29,8 +29,6 @@ ms.openlocfilehash: dedb4064f7c42f4e2f8d55c623168a7faf9a3d27
 > * [Azure 傳統 PowerShell](application-gateway-create-gateway.md)
 > * [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 > * [Azure CLI](application-gateway-create-gateway-cli.md)
-> 
-> 
 
 Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
 
@@ -71,7 +69,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 基本設定所需的資訊為︰
 
 * **名稱** - 應用程式閘道的名稱。
-* **層** - 這是應用程式閘道層。 有 **WAF** 和**標準**兩層可供使用。 WAF 可啟用 Web 應用程式防火牆功能。
+* **層** - 此設定是應用程式閘道層。 有 **WAF** 和**標準**兩層可供使用。 WAF 可啟用 Web 應用程式防火牆功能。
 * **SKU 大小** - 此設定是應用程式閘道的大小，可用的選項為 (**小型**、**中型**及**大型**)。 選擇 WAF 層時無法使用小型。
 * **執行個體計數** - 執行個體數目，此值應該是介於 2 到 10 之間的數字。
 * **資源群組** - 保存應用程式閘道的資源群組，它可以是現有的資源群組或新的資源群組。
@@ -151,11 +149,11 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 ## <a name="add-servers-to-backend-pools"></a>將伺服器新增到後端集區
 
-建立應用程式閘道後，將裝載要進行負載平衡之應用程式的系統仍必須新增至應用程式閘道。 這些伺服器的 IP 位址或 FQDN 值會新增至後端位址集區。
+建立應用程式閘道後，裝載要進行負載平衡之應用程式的系統仍必須新增至應用程式閘道。 這些伺服器的 IP 位址或 FQDN 值會新增至後端位址集區。
 
 ### <a name="step-1"></a>步驟 1
 
-在您所建立的應用程式閘道上按一下，按一下 [後端集區]，然後選取目前的後端集區。
+按一下您所建立的應用程式閘道，按一下 [後端集區]，然後選取目前的後端集區。
 
 ![應用程式閘道後端集區][11]
 
@@ -165,11 +163,11 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 ![將值新增至應用程式閘道後端集區][12]
 
-這會將值儲存在後端集區中。 更新應用程式閘道後，進入應用程式閘道的流量會路由傳送至在此步驟中新增的後端位址。
+此動作會將值儲存在後端集區中。 更新應用程式閘道後，進入應用程式閘道的流量會路由傳送至在此步驟中新增的後端位址。
 
 ## <a name="next-steps"></a>後續步驟
 
-此案例會建立預設應用程式閘道。 後續步驟用於設定應用程式閘道，方法是修改設定，以及調整閘道中的規則。 瀏覽下列文章即可找到這些步驟。
+此案例會建立預設應用程式閘道。 後續步驟用於設定應用程式閘道，方法是修改設定，以及調整閘道中的規則。 瀏覽下列文章即可找到這些步驟：
 
 參閱 [建立自訂健康狀態探查](application-gateway-create-probe-portal.md)
 
@@ -194,6 +192,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -14,10 +14,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/11/2016
-ms.author: aguilaaj
+ms.author: araguila
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6cca62c7245304bf49b47c1548aa3352b7c2a76e
+ms.sourcegitcommit: 45fd461defc00c5dc018496b85b8bf85614f03dd
+ms.openlocfilehash: 0037b9e28b20c9a85f810cba45aa5b4cbcf6ab6b
 
 
 ---
@@ -59,7 +59,7 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 ## <a name="customizing-devices"></a>自訂裝置
 最常見的擴充功能活動之一是使用案例特定的裝置。 使用裝置的方法有數種。 這些方法包括變更模擬裝置以符合您的案例，或使用 [IoT Device SDK][IoT Device SDK] 將實體裝置連接到解決方案。
 
-如需將裝置新增至遠端監視預先設定解決方案的逐步指南，請參閱 [Iot 套件連接裝置](iot-suite-connecting-devices.md)和[遠端監視 C SDK 範例](https://github.com/Azure/azure-iot-sdks/tree/master/c/serializer/samples/remote_monitoring)，其設計是要搭配遠端監視預先設定解決方案。
+如需將裝置新增至遠端監視預先設定解決方案的逐步指南，請參閱 [Iot 套件連接裝置](iot-suite-connecting-devices.md)和[遠端監視 C SDK 範例](https://github.com/Azure/azure-iot-sdk-c/tree/master/serializer/samples/remote_monitoring)，其設計是要搭配遠端監視預先設定解決方案。
 
 ### <a name="creating-your-own-simulated-device"></a>建立自己的模擬裝置
 之前提及的遠端監視解決方案原始程式碼中包含 .NET 模擬器。 此模擬器是解決方案中佈建的模擬器，並且可以變更以傳送不同的中繼資料、遙測或回應給不同的命令。
@@ -80,7 +80,7 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 預設值為 200。 您可以在 [TelemetryApiController.cs][lnk-telemetry-api-controller-01] 變更這個數字。
 
 ### <a name="time-period-of-telemetry-graph"></a>遙測圖形的期間
-預設值是 10 分鐘。 您可以在 [TelmetryApiController.cs][lnk-telemetry-api-controller-02] 變更這個數字。
+預設值是 10 分鐘。 您可以在 [TelmetryApiController.cs][lnk-telemetry-api-controller-02] 變更此值。
 
 ## <a name="manually-setting-up-application-roles"></a>手動設定應用程式角色
 以下程序描述如何將 **Admin** 和 **ReadOnly** 應用程式角色新增至預先設定的解決方案中。 請注意，從 azureiotsuite.com 網站佈建的預先設定解決方案已經包含 **Admin** 和 **ReadOnly** 角色。
@@ -137,7 +137,7 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 * [將邏輯應用程式連接至 Azure IoT 套件遠端監視預先設定解決方案][lnk-logicapp]
 * [搭配使用動態遙測與遠端監視預先設定解決方案][lnk-dynamic]
-* [遠端監視預先設定解決方案中的裝置資訊中繼資料][lnk-devinfo]
+* [遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]
 
 [lnk-logicapp]: iot-suite-logic-apps-tutorial.md
 [lnk-dynamic]: iot-suite-dynamic-telemetry.md
@@ -153,6 +153,6 @@ Azure IoT Suite 提供的預先設定解決方案能夠示範套件中共同運�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -15,13 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 11/21/2016
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 98f5a017221f0aaba04e2b90afc674e4c42d1bb3
-ms.openlocfilehash: 1c768e4e09f2b452804c65f751963a8d0c312c64
+ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
+ms.openlocfilehash: 687da15bdaf854254321b59350f47549781676f5
 
 
 ---
 # <a name="migrate-automation-account-and-resources"></a>移轉自動化帳戶和資源
-對於您在 Azure 入口網站中建立並且想要在資源群組或訂用帳戶之間移轉的自動化帳戶及其相關資源 (例如資產、Runbook、模組等)，您可以使用 Azure 入口網站中可用的[移動資源](../resource-group-move-resources.md)功能，輕鬆完成這項作業。 不過，在繼續此動作之前，您應該先檢閱下列[檢查清單再移動資源](../azure-resource-manager/resource-group-move-resources.md#checklist-before-moving-resources)，此外，還需檢閱以下自動化專用的清單。   
+對於您在 Azure 入口網站中建立並且想要在資源群組或訂用帳戶之間移轉的自動化帳戶及其相關資源 (例如資產、Runbook、模組等)，您可以使用 Azure 入口網站中可用的[移動資源](../azure-resource-manager/resource-group-move-resources.md)功能，輕鬆完成這項作業。 不過，在繼續此動作之前，您應該先檢閱下列[檢查清單再移動資源](../azure-resource-manager/resource-group-move-resources.md#checklist-before-moving-resources)，此外，還需檢閱以下自動化專用的清單。   
 
 1. 目的地訂用帳戶/資源群組必須位於與來源相同的區域。  這表示，無法跨區域移動自動化帳戶。
 2. 移動資源 (如 Runbook、作業等) 時，會在作業期間鎖定來源群組和目標群組。 群組上的寫入和刪除作業將會封鎖，直到移動完成。  
@@ -61,13 +61,13 @@ ms.openlocfilehash: 1c768e4e09f2b452804c65f751963a8d0c312c64
 如同上述範例，系統會提示您確認移動。  
 
 ## <a name="next-steps"></a>後續步驟
-* 如需將資源移到新的資源群組或訂用帳戶的詳細資訊，請參閱[將資源移到新的資源群組或訂用帳戶](../resource-group-move-resources.md)
+* 如需將資源移到新的資源群組或訂用帳戶的詳細資訊，請參閱[將資源移到新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)
 * 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](automation-role-based-access-control.md)。
-* 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)
-* 若要了解用於管理訂用帳戶的入口網站功能，請參閱 [使用 Azure 入口網站來管理資源](../azure-portal/resource-group-portal.md)。
+* 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](../azure-resource-manager/powershell-azure-resource-manager.md)
+* 若要了解用於管理訂用帳戶的入口網站功能，請參閱 [使用 Azure 入口網站來管理資源](../azure-resource-manager/resource-group-portal.md)。
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

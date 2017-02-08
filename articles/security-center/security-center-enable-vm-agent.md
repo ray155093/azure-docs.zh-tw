@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/17/2016
+ms.date: 02/02/2017
 ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
@@ -27,8 +27,8 @@ VM 代理程式必須安裝在虛擬機器 (VM) 上，才能 [啟用資料收集
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。 這不是逐步指南。
-> 
-> 
+>
+>
 
 ## <a name="implement-the-recommendation"></a>實作建議
 1. 在 [建議] 刀鋒視窗中，選取 [啟用 VM 代理程式]。

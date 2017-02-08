@@ -1,23 +1,27 @@
 ---
-title: 在 HDInsight 叢集上搭配使用 Hadoop Pig 與 SSH | Microsoft Docs
-description: 學習如何使用 SSH 連線到以 Linux 為基礎的 Hadoop 叢集，然後使用 Pig 命令以互動方式或批次工作形式執行 Pig Latin 陳述式。
+title: "在 HDInsight 叢集上搭配使用 Hadoop Pig 與 SSH | Microsoft Docs"
+description: "學習如何使用 SSH 連線到以 Linux 為基礎的 Hadoop 叢集，然後使用 Pig 命令以互動方式或批次工作形式執行 Pig Latin 陳述式。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: b646a93b-4c51-4ba4-84da-3275d9124ebe
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/11/2016
+ms.date: 01/17/2017
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 93990e342f6bd8fcfe9781bcb021aabfd33e8572
+ms.openlocfilehash: 271a15d258177c98ad72be007c20ae278df6236b
+
 
 ---
-# <a name="run-pig-jobs-on-a-linux-based-cluster-with-the-pig-command-(ssh)"></a>使用 Pig 命令 (SSH) 在以 Linux 為基礎的叢集上執行 Pig 工作
+# <a name="run-pig-jobs-on-a-linux-based-cluster-with-the-pig-command-ssh"></a>使用 Pig 命令 (SSH) 在以 Linux 為基礎的叢集上執行 Pig 工作
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
 在本文件中，將逐步解說如何使用安全殼層 (SSH) 連線至以 Linux 為基礎的 Azure HDInsight 叢集，然後使用 Pig 命令以互動方式或批次工作形式執行 Pig Latin 陳述式等程序。
@@ -26,16 +30,19 @@ Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要�
 
 > [!NOTE]
 > 如果您已熟悉使用以 Linux 為基礎的 Hadoop 伺服器，但剛接觸 HDInsight，請參閱 [以 Linux 為基礎的 HDInsight 秘訣](hdinsight-hadoop-linux-information.md)。
-> 
-> 
 
-## <a name="<a-id="prereq"></a>prerequisites"></a><a id="prereq"></a>必要條件
+
+## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目。
 
 * 以 Linux 為基礎的 HDInsight (HDInsight 上的 Hadoop) 叢集。
+
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * SSH 用戶端。 Linux、Unix 和 Mac OS 應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
-## <a name="<a-id="ssh"></a>connect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
+## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
 使用 SSH 命令，連線至 HDInsight 叢集的完整網域名稱 (FQDN)。 FQDN 將是您提供給叢集的名稱，然後是 **.azurehdinsight.net**。 例如，下列命令會連線至名為 **myhdinsight**的叢集。
 
     ssh admin@myhdinsight-ssh.azurehdinsight.net
@@ -48,12 +55,12 @@ Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要�
 
 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱 [從 Linux、OS X 和 Unix 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-### <a name="putty-(windows-based-clients)"></a>PuTTY (Windows 架構用戶端)
+### <a name="putty-windows-based-clients"></a>PuTTY (Windows 架構用戶端)
 Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從下列位置下載： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 如需使用 PuTTY 的詳細資訊，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop ](hdinsight-hadoop-linux-use-ssh-windows.md)。
 
-## <a name="<a-id="pig"></a>use-the-pig-command"></a><a id="pig"></a>使用 Pig 命令
+## <a name="a-idpigause-the-pig-command"></a><a id="pig"></a>使用 Pig 命令
 1. 連線之後，使用下列命令來啟動 Pig 命令列介面 (CLI)。
    
         pig
@@ -130,10 +137,10 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
         (ERROR,6)
         (FATAL,2)
 
-## <a name="<a-id="summary"></a>summary"></a><a id="summary"></a>摘要
+## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
 如您所見，Pig 命令可讓您使用 Pig Latin 以互動方式執行 MapReduce 作業，以及執行批次檔中所儲存的陳述式。
 
-## <a name="<a-id="nextsteps"></a>next-steps"></a><a id="nextsteps"></a>接續步驟
+## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 Pig 的一般資訊。
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
@@ -143,6 +150,9 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO3-->
 
 

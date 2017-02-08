@@ -16,15 +16,16 @@ ms.workload: big-compute
 ms.date: 07/22/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 002fd2007758a268c205db95475ad7e691284b15
+ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
+ms.openlocfilehash: 3cd3c847eb476c783d09f5f18a5a54a75ade6c5f
 
 
 ---
 # <a name="manage-the-number-and-availability-of-compute-nodes-in-an-hpc-pack-cluster-in-azure"></a>在 Azure 的 HPC Pack 叢集中管理計算節點的數目和可用性
 如果您已在 Azure VM 中建立 HPC Pack 叢集，您可能會需要可輕易地在叢集中新增、移除、啟動 (佈建) 或停止 (解除佈建) 多個計算節點 VM 的方法。 若要執行這些工作，請執行安裝在前端節點 VM 上的 Azure PowerShell 指令碼。 這些指令碼可協助您控制 HPC Pack 叢集資源的數目和可用性，讓您得以控制成本。
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 ## <a name="prerequisites"></a>必要條件
 * **Azure VM 中的 HPC Pack 叢集** - 使用 HPC Pack 2012 R2 Update 1 或更新版本，在傳統部署模型中建立 HPC Pack 叢集。 例如，您可以使用 Azure Marketplace 中的目前 HPC Pack VM 映像和 Azure PowerShell 指令碼，將部署自動化。 如需相關資訊和必要條件，請參閱[使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
@@ -66,7 +67,7 @@ Add-HPCIaaSNode.ps1 [-ServiceName] <String> [-ImageName] <String>
 * **InstanceSize** - 計算節點 VM 的大小。
 * **DomainUserName** - 網域使用者名稱，會用來將新的 VM 加入網域中。
 * **DomainUserPassword** - 網域使用者的密碼。
-* **NodeNameSeries** (選用) - 計算節點的命名模式。 格式必須是 &lt;*根\_名稱*&gt;&lt;*啟動\_數目*&gt;%。 例如，MyCN%10% 表示從 MyCN11 開始的一系列計算節點名稱。 如果未指定，指令碼會使用 HPC 叢集中已設定的節點命名序列。
+* **NodeNameSeries** (選用) - 計算節點的命名模式。 格式必須為 &lt;*Root\_Name*&gt;&lt;*Start\_Number*&gt;%。 例如，MyCN%10% 表示從 MyCN11 開始的一系列計算節點名稱。 如果未指定，指令碼會使用 HPC 叢集中已設定的節點命名序列。
 
 ### <a name="example"></a>範例
 下列範例會根據 VM 映像 *hpccnimage1*，在雲端服務 *hpcservice1* 中新增 20 個大型計算節點 VM。
@@ -149,6 +150,6 @@ Stop-HPCIaaSNode.ps1 –Name HPCNodeCN-* -Force
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

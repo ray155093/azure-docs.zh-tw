@@ -1,13 +1,12 @@
-
 ---
-title: Azure Active Directory 混合式身分識別設計考量 - 判斷混合式身分識別生命週期採用策略 | Microsoft Docs
-description: 協助根據每個生命週期階段可用的選項，定義混合式身分識別管理工作。
-documentationcenter: ''
+title: "Azure Active Directory 混合式身分識別設計考量 - 判斷混合式身分識別生命週期採用策略 | Microsoft Docs"
+description: "協助根據每個生命週期階段可用的選項，定義混合式身分識別管理工作。"
+documentationcenter: 
 services: active-directory
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 420b6046-bd9b-4fce-83b0-72625878ae71
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -15,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/08/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
+ms.openlocfilehash: 14e78eca1e03125143b8814c5652c43f3f3fd3a8
+
 
 ---
 # <a name="determine-hybrid-identity-lifecycle-adoption-strategy"></a>判斷混合式身分識別生命週期採用策略
@@ -97,6 +100,9 @@ Azure Active Directory 為數千個 SaaS 應用程式和內部部署 Web 應用�
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 

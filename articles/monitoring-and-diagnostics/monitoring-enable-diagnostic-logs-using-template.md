@@ -1,23 +1,27 @@
 ---
-title: 使用 Resource Manager 範本自動啟用診斷設定 | Microsoft Docs
-description: 了解如何使用 Resource Manager 範本來建立診斷設定，以讓您將診斷記錄檔串流至事件中樞，或將它們儲存在儲存體帳戶中。
+title: "使用 Resource Manager 範本自動啟用診斷設定 | Microsoft Docs"
+description: "了解如何使用 Resource Manager 範本來建立診斷設定，以讓您將診斷記錄檔串流至事件中樞，或將它們儲存在儲存體帳戶中。"
 author: johnkemnetz
 manager: rboucher
-editor: ''
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: a8a88a8c-4a48-4df6-8f7e-d90634d39c57
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 11/22/2016
 ms.author: johnkem
+translationtype: Human Translation
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: 00f4ddd7173affb9e557e8c993c9f7432a3152cd
+
 
 ---
 # <a name="automatically-enable-diagnostic-settings-at-resource-creation-using-a-resource-manager-template"></a>使用 Resource Manager 範本在建立資源時自動啟用診斷設定
-在本文中，我們示範如何在建立資源時使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md) 設定診斷設定。 這可讓您在建立資源時，自動開始將您的診斷記錄檔和度量串流至事件中樞、將它們封存在儲存體帳戶中，或將它們傳送至 Log Analytics。
+在本文中，我們示範如何在建立資源時使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md) 設定診斷設定。 這可讓您在建立資源時，自動開始將您的診斷記錄檔和度量串流至事件中樞、將它們封存在儲存體帳戶中，或將它們傳送至 Log Analytics。
 
 使用 Resource Manager 範本啟用診斷記錄檔的方法，取決於資源類型。
 
@@ -29,7 +33,7 @@ ms.author: johnkem
 基本步驟如下：
 
 1. 建立一個描述如何建立資源的 JSON 檔案做為範本，然後啟用診斷功能。
-2. [使用任何部署方法部署範本](../resource-group-template-deploy.md)。
+2. [使用任何部署方法部署範本](../azure-resource-manager/resource-group-template-deploy.md)。
 
 以下提供產生非計算和計算資源所需的範本 JSON 檔案的範例。
 
@@ -82,13 +86,23 @@ ms.author: johnkem
                 "enabled": false
               }
             }
+          ],
+          "metrics": [
+            {
+              "timeGrain": "PT1M",
+              "enabled": true,
+              "retentionPolicy": {
+                "enabled": false,
+                "days": 0
+              }
+            }
           ]
         }
       }
     ]
     ```
 
-診斷設定的屬性 blob 遵循 [這篇文章中所述的格式](https://msdn.microsoft.com/library/azure/dn931931.aspx)。
+診斷設定的屬性 blob 遵循 [這篇文章中所述的格式](https://msdn.microsoft.com/library/azure/dn931931.aspx)。 加入 `metrics` 屬性可讓您同時傳送資源度量到這些相同的輸出。
 
 以下的完整範例會建立網路安全性群組，並開啟串流至事件中樞和儲存體帳戶中的儲存體。
 
@@ -162,6 +176,16 @@ ms.author: johnkem
                   "enabled": false
                 }
               }
+            ],
+            "metrics": [
+              {
+                "timeGrain": "PT1M",
+                "enabled": true,
+                "retentionPolicy": {
+                  "enabled": false,
+                  "days": 0
+                }
+              }
             ]
           }
         }
@@ -185,12 +209,15 @@ ms.author: johnkem
 > 
 > 
 
-在 [本文件中](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)中會說明整個程序，包括範例。
+在 [本文件中](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中會說明整個程序，包括範例。
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解 Azure 診斷記錄檔](monitoring-overview-of-diagnostic-logs.md)
 * [將 Azure 診斷記錄檔串流至事件中樞](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO4-->
 
 

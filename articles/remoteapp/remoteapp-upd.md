@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 40874984ca29f6a284270e743b7cf70a396f81d1
+ms.sourcegitcommit: dd281ead7d2c06af98ea0baea31d897b5be0d9d7
+ms.openlocfilehash: 04d8031a4c5f06d56afc1d08d4a4fa5fb50f8a25
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: 40874984ca29f6a284270e743b7cf70a396f81d1
 > 
 > 
 
-Azure RemoteApp 跨越裝置和工作階段儲存使用者身分識別和自訂。 此使用者資料會依每個使用者和每個集合磁碟 (也稱為使用者設定檔磁碟 (UPD)) 儲存。 不論使用者登入的位置為何，此磁碟都會追蹤使用者並確保使用者擁有一致的經驗。 儲存 
+Azure RemoteApp 跨越裝置和工作階段儲存使用者身分識別和自訂。 此使用者資料會依每個使用者和每個集合磁碟 (也稱為使用者設定檔磁碟 (UPD)) 儲存。 不論使用者登入的位置為何，此磁碟都會追蹤使用者並確保使用者擁有一致的經驗。
 
 對使用者而言，使用者設定檔磁碟是完全透明的 — 使用者會將文件儲存至其 Documents 資料夾 (似乎是本機磁碟機) 並如往常般變更其應用程式設定。 同時，從任何裝置連線到 Azure RemoteApp 時會保存所有的個人設定。 使用者會在相同的位置看到其資料。
 
@@ -149,6 +149,6 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。 若
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

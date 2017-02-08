@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/06/2016
 ms.author: sewatson
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: bd378c8dedd3d2bfed540be0fa009f751bcc5d1c
+ms.sourcegitcommit: ebc5dbf790ca6012cfe9a7ea9ccee9fdacb46ffd
+ms.openlocfilehash: dc5b6f194a7e34d5061b9fa2e4a6123f54f6c14a
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: bd378c8dedd3d2bfed540be0fa009f751bcc5d1c
 
 ![建立儀表板](./media/azure-portal-dashboards/new-dashboard.png)
 
-這個動作會建立全新的空白私人儀表板並讓您進入自訂模式，供您為儀表板命名並新增或重新排列圖格。  處於此模式時，可摺疊的圖格庫會接管左側導覽功能表。  圖格庫可讓您以各種方式尋找 Azure 資源的圖格︰您可以依[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)、資源類型、[標籤](../resource-group-using-tags.md)進行瀏覽，或依名稱搜尋資源。  
+這個動作會建立全新的空白私人儀表板並讓您進入自訂模式，供您為儀表板命名並新增或重新排列圖格。  處於此模式時，可摺疊的圖格庫會接管左側導覽功能表。  圖格庫可讓您以各種方式尋找 Azure 資源的圖格︰您可以依[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)、資源類型、[標籤](../azure-resource-manager/resource-group-using-tags.md)進行瀏覽，或依名稱搜尋資源。  
 
 ![自訂儀表板](./media/azure-portal-dashboards/customize-dashboard.png)
 
@@ -97,12 +97,12 @@ ms.openlocfilehash: bd378c8dedd3d2bfed540be0fa009f751bcc5d1c
 ![管理存取控制](./media/azure-portal-dashboards/manage-access.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 若要管理資源，請參閱 [透過入口網站管理 Azure 資源](resource-group-portal.md)。
-* 若要部署資源，請參閱 [使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
+* 若要管理資源，請參閱 [透過入口網站管理 Azure 資源](../azure-resource-manager/resource-group-portal.md)。
+* 若要部署資源，請參閱 [使用 Resource Manager 範本與 Azure 入口網站來部署資源](../azure-resource-manager/resource-group-template-deploy-portal.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

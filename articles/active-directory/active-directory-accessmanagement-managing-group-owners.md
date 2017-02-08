@@ -1,13 +1,12 @@
-
 ---
-title: 使用群組存取管理的後續步驟 | Microsoft Docs
-description: 管理安全性群組，以及如何使用這些群組管理資源的存取權的進階說明。
+title: "使用群組存取管理的後續步驟 | Microsoft Docs"
+description: "管理安全性群組，以及如何使用這些群組管理資源的存取權的進階說明。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: curtand
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 44350a3c-8ea1-4da1-aaac-7fc53933dd21
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/22/2016
 ms.author: curtand
+translationtype: Human Translation
+ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
+ms.openlocfilehash: 8c4920107b5d05716021bcef80d3c52c25f6eade
+
 
 ---
 # <a name="managing-owners-for-a-group"></a>管理群組的擁有者
@@ -44,6 +47,9 @@ ms.author: curtand
 * [什麼是 Azure Active Directory？](active-directory-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO5-->
 
 

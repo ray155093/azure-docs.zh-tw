@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 01/09/2017
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7e9b100a041934e6512a83c936effb48c2cba53b
+ms.sourcegitcommit: 77fd7b5b339a8ede8a297bec96f91f0a243cc18d
+ms.openlocfilehash: 9ddd871a845af1169337480804b216a9a4fc9a06
 
 
 ---
@@ -60,65 +60,69 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 上述範例在開發人員入口網站中顯示了兩項產品，擷取自 [範本資料]  窗格顯示的資料，如下例所示。
 
-    {
-        "Paging": {
-            "Page": 1,
-            "PageSize": 10,
-            "TotalItemCount": 2,
-            "ShowAll": false,
-            "PageCount": 1
+```json
+{
+    "Paging": {
+        "Page": 1,
+        "PageSize": 10,
+        "TotalItemCount": 2,
+        "ShowAll": false,
+        "PageCount": 1
+    },
+    "Filtering": {
+        "Pattern": null,
+        "Placeholder": "Search products"
+    },
+    "Products": [
+        {
+            "Id": "56ec64c380ed850042060001",
+            "Title": "Starter",
+            "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
+            "Terms": "",
+            "ProductState": 1,
+            "AllowMultipleSubscriptions": false,
+            "MultipleSubscriptionsCount": 1
         },
-        "Filtering": {
-            "Pattern": null,
-            "Placeholder": "Search products"
-        },
-        "Products": [
-            {
-                "Id": "56ec64c380ed850042060001",
-                "Title": "Starter",
-                "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
-                "Terms": "",
-                "ProductState": 1,
-                "AllowMultipleSubscriptions": false,
-                "MultipleSubscriptionsCount": 1
-            },
-            {
-                "Id": "56ec64c380ed850042060002",
-                "Title": "Unlimited",
-                "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
-                "Terms": null,
-                "ProductState": 1,
-                "AllowMultipleSubscriptions": false,
-                "MultipleSubscriptionsCount": 1
-            }
-        ]
-    }
+        {
+            "Id": "56ec64c380ed850042060002",
+            "Title": "Unlimited",
+            "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
+            "Terms": null,
+            "ProductState": 1,
+            "AllowMultipleSubscriptions": false,
+            "MultipleSubscriptionsCount": 1
+        }
+    ]
+}
+```
 
-**產品清單** 範本中的標記會處理資料，逐一查看產品集合，顯示每項個別產品的資訊和連結，來提供所需的輸出。 請注意標記中的 `<search-control>` 和 `<page-control>` 元素。 這些控制項會顯示頁面的搜尋和分頁控制項。 `ProductsStrings|PageTitleProducts` 是當地語系化的字串參考，其中包含頁面的 `h2` 標頭文字。 如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
+**產品清單** 範本中的標記會處理資料，逐一查看產品集合，顯示每項個別產品的資訊和連結，來提供所需的輸出。 請注意標記中的 `<search-control>` 和 `<page-control>` 元素。 這些控制項會顯示頁面的搜尋和分頁控制項。 `ProductsStrings|PageTitleProducts` 是當地語系化的字串參考，其中包含頁面的 `h2` 標頭文字。 如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](api-management-developer-portal-templates-reference.md)。
 
-    <search-control></search-control>
-    <div class="row">
-        <div class="col-md-9">
-            <h2>{% localized "ProductsStrings|PageTitleProducts" %}</h2>
-        </div>
+```html
+<search-control></search-control>
+<div class="row">
+    <div class="col-md-9">
+        <h2>{% localized "ProductsStrings|PageTitleProducts" %}</h2>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-        {% if products.size > 0 %}
-        <ul class="list-unstyled">
-        {% for product in products %}
-            <li>
-                <h3><a href="/products/{{product.id}}">{{product.title}}</a></h3>
-                {{product.description}}
-            </li>    
-        {% endfor %}
-        </ul>
-        <paging-control></paging-control>
-        {% else %}
-        {% localized "CommonResources|NoItemsToDisplay" %}
-        {% endif %}
-        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+    {% if products.size > 0 %}
+    <ul class="list-unstyled">
+    {% for product in products %}
+        <li>
+            <h3><a href="/products/{{product.id}}">{{product.title}}</a></h3>
+            {{product.description}}
+        </li>    
+    {% endfor %}
+    </ul>
+    <paging-control></paging-control>
+    {% else %}
+    {% localized "CommonResources|NoItemsToDisplay" %}
+    {% endif %}
     </div>
+</div>
+```
 
 ## <a name="to-save-a-template"></a>儲存範本
 若要儲存範本，請按一下範本編輯器的 [儲存]。
@@ -174,15 +178,9 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 已還原的範本必須個別發佈，或依照 [發佈範本](#to-publish-a-template)的步驟一次全部發佈。
 
-## <a name="developer-portal-templates-reference"></a>開發人員入口網站範本參考
-如需開發人員入口網站範本、字串資源、圖示和頁面控制項的參考資訊，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
+## <a name="next-steps"></a>後續步驟
+如需開發人員入口網站範本、字串資源、圖示和頁面控制項的參考資訊，請參閱 [API 管理開發人員入口網站範本參考](api-management-developer-portal-templates-reference.md)。
 
-## <a name="watch-a-video-overview"></a>觀看影片概觀
-請觀看以下影片，了解如何使用範本在開發人員入口網站的 API 和操作頁面中加入討論區和評等。
-
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Adding-Developer-Portal-functionality-using-Templates-in-Azure-API-Management/player]
-> 
-> 
 
 [api-management-customize-menu]: ./media/api-management-developer-portal-templates/api-management-customize-menu.png
 [api-management-templates-menu]: ./media/api-management-developer-portal-templates/api-management-templates-menu.png
@@ -212,6 +210,6 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

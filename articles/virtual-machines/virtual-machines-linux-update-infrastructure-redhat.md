@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 10/14/2016
+ms.date: 12/01/2016
 ms.author: borisb
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 8b00d3c4461494d35665c976e0e1098a246abb68
+ms.sourcegitcommit: 7ad71094cafb3d401797e8a8b3dd48a9aeeded9e
+ms.openlocfilehash: 34c4198c0b1b975caf2c198634bb18e0c4f2ab5b
 
 
 ---
@@ -50,6 +50,10 @@ RHUI 所管理的 yum 儲存機至清單，會於佈建期間設定在您的 RHE
 
 # Azure US Government
 13.72.186.193
+
+# Azure Germany
+51.5.243.77
+51.4.228.145
 ```
 
 ### <a name="manual-update-procedure-to-use-the-new-azure-rhui-servers"></a>使用新 Azure RHUI 伺服器的手動更新程序
@@ -178,7 +182,7 @@ sudo rpm -U azureclient.rpm
 [Red Hat Update Infrastructure](https://access.redhat.com/products/red-hat-update-infrastructure) 提供一個可靈活調整的解決方案，可以針對裝載在 Red Hat 認證雲端提供者上的 Red Hat Enterprise Linux 雲端執行個體，管理 yum 儲存機制內容。 根據上游 Pulp 專案，RHUI 可讓雲端提供者在本機建立 Red Hat 所裝載儲存機制內容的鏡像、以其內容建立自定儲存機制，並透過具流量負載平衡的內容傳遞系統，讓儲存機制可供大量使用者使用。
 
 ## <a name="regions-where-rhui-is-available"></a>可以使用 RHUI 的區域
-在所有可使用 RHEL 隨選映像的地區，皆可使用 RHUI。 目前包含 [Azure 狀態儀表板](https://azure.microsoft.com/status/) 頁面中列出的所有公用區域和 Azure 美國政府區域。 從 RHEL 隨選映像佈建之 VM 的 RHUI 存取包含在其價格中。 額外區域/國家的雲端可用性將會更新，因為我們將在未來擴大 RHEL 隨選的可用性。
+在所有可使用 RHEL 隨選映像的地區，皆可使用 RHUI。 目前包含 [Azure 狀態儀表板](https://azure.microsoft.com/status/) 頁面上所列的所有公用區域 (Azure 美國政府和 Azure 德國區域)。 從 RHEL 隨選映像佈建之 VM 的 RHUI 存取包含在其價格中。 額外區域/國家的雲端可用性將會更新，因為我們將在未來擴大 RHEL 隨選的可用性。
 
 > [!NOTE]
 > 只有 [Microsoft Azure Datacenter IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中的 VM 能夠存取 Azure 代管的 RHUI。
@@ -212,6 +216,6 @@ sudo rpm -U azureclient.rpm
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

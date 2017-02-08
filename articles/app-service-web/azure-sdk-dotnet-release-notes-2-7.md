@@ -1,13 +1,12 @@
-
 ---
-title: Azure SDK for .NET 2.7 和 .NET 2.7.1 版本資訊
-description: Azure SDK for .NET 2.7 和 .NET 2.7.1 版本資訊
+title: "Azure SDK for .NET 2.7 和 .NET 2.7.1 版本資訊"
+description: "Azure SDK for .NET 2.7 和 .NET 2.7.1 版本資訊"
 services: app-service\web
 documentationcenter: .net
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 877d070a-9bd5-49b3-8fac-6bb5f65c3554
 ms.service: app-service
 ms.devlang: multiple
 ms.topic: article
@@ -15,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/17/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
+ms.openlocfilehash: 877fb34d2fe5d4b85157a8338e180358d2226ef1
+
 
 ---
-# <a name="azure-sdk-for-.net-2.7-and-.net-2.7.1-release-notes"></a>Azure SDK for .NET 2.7 和 .NET 2.7.1 版本資訊
+# <a name="azure-sdk-for-net-27-and-net-271-release-notes"></a>Azure SDK for .NET 2.7 和 .NET 2.7.1 版本資訊
 ## <a name="overview"></a>概觀
 本文件包含 Azure SDK for .NET 2.7 版的版本資訊。 
 
@@ -27,7 +30,7 @@ ms.author: juliako
 
 如需此版本的詳細資訊，請參閱 [Azure SDK 2.7 公告文章](https://azure.microsoft.com/blog/2015/07/20/announcing-the-azure-sdk-2-7-for-net/)和 [Azure SDK 2.7.1 公告文章](http://go.microsoft.com/fwlink/?LinkId=623850)。
 
-## <a name="azure-sdk-for-.net-2.7"></a>Azure SDK for .NET 2.7
+## <a name="azure-sdk-for-net-27"></a>Azure SDK for .NET 2.7
 ### <a name="sign-in-improvements-for-visual-studio-2015"></a>Visual Studio 2015 的登入增強功能
 Visual Studio 2015 的 Azure SDK 2.7 支援 Visual Studio 2015 新的身分識別管理功能。  這包括支援透過角色型存取控制、雲端解決方案提供者、DreamSpark 以及其他帳戶和訂用帳戶類型存取 Azure 的帳戶。
 
@@ -61,7 +64,7 @@ Azure SDK 2.7 隨附的登入增強功能只有在 Visual Studio 2015 中才能�
 #### <a name="known-issues"></a>已知問題
 伺服器總管的 [位置] 節點下方沒有出現 Web App 部署位置節點，而雲端總管下方沒有載入 Web App 部署位置的子節點。 這個問題已經解決，下一個 SDK 版本將不再發生。 
 
-### <a name="<a-name="cloud_explorer"></a>cloud-explorer-for-visual-studio-2015"></a><a name="cloud_explorer"></a>適用 Visual Studio 2015 的雲端總管
+### <a name="a-namecloudexploreracloud-explorer-for-visual-studio-2015"></a><a name="cloud_explorer"></a>適用 Visual Studio 2015 的雲端總管
 Azure SDK 2.7 包含適用 Visual Studio 2015 的雲端總管，可讓您從 Visual Studio 中檢視您的 Azure 資源、檢查其屬性，以及執行重要的開發人員動作。 
 
 雲端總管支援下列功能：
@@ -95,7 +98,7 @@ Azure 資源管理員工具已更新為使用角色型存取控制 (RBAC) 和新
 * **多重環境發佈**：藉由為每個環境建立不同的設定檔，將撰寫的管線發佈到開發、測試或生產環境。
 * **支援以 Pig、Hive 和 .Net 為基礎的資料處理**：支援在 Data Factory 專案中使用 Pig 和 Hive 指令碼。 支援參考 C# 專案來管理 .Net 活動。
 
-## <a name="azure-sdk-for-.net-2.7.1"></a>Azure SDK for .NET 2.7.1
+## <a name="azure-sdk-for-net-271"></a>Azure SDK for .NET 2.7.1
 下節包含使用 Azure SDK for.NET 2.7.1 版本所導入的更新。
 
 ### <a name="hdinsight-tools"></a>HDInsight 工具
@@ -135,6 +138,9 @@ LightSwitch 專案與這個版本不相容。 這個問題將在下個 SDK 版�
 
 [Azure SDK for .NET 和 API 的支援和停用資訊](https://msdn.microsoft.com/library/azure/dn479282.aspx/)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 
