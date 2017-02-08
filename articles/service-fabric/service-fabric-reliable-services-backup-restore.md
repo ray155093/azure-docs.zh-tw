@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/18/2016
 ms.author: mcoskun
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a063d7ec6759bb9890d9b541088a8190dfd79aef
+ms.sourcegitcommit: 615e7ea84aae45f384edb671a28e4ff98b4ade3a
+ms.openlocfilehash: 9cb940a07bf9a5d624669816161450b33e862626
 
 
 ---
@@ -177,15 +177,62 @@ protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, C
 * 當您還原時，還原的備份很有可能是早於資料遺失之前的分割區狀態。 因此，您應該只能將還原當成最後手段，盡可能復原最多資料。
 * 根據 FabricDataRoot 路徑和應用程式類型名稱的長度而定，代表備份資料夾路徑與備份資料夾內檔案路徑的字串可以大於 255 個字元。 這會造成一些像是 **Directory.Move** 的 .NET 方法擲回 **PathTooLongException** 例外狀況。 有個解決方法是直接呼叫 kernel32 API，例如 **CopyFile**。
 
-## <a name="backup-and-restore-reliable-actors"></a>備份與還原 Reliable Actors
-Reliable Actors 的備份和還原是以 Reliable Services 所提供的備份和還原功能為基礎。 服務擁有者應建立一個衍生自 **ActorService** (這是裝載動作項目的 Service Fabric Reliable Services) 的自訂動作項目服務，然後進行備份/還原，其類似於前面幾節所述的 Reliable Services。 因為會在每個分割區上進行備份，這表示該特定分割區中的所有動作項目都會進行備份 (而還原也一樣會在每個分割區上進行)。
 
-* 當您建立自訂動作項目服務時，您必須在註冊動作項目時註冊自訂動作項目服務。 請參閱 **ActorRuntime.RegistorActorAsync**。
-* **KvsActorStateProvider** 目前僅支援完整備份。 而且 **KvsActorStateProvider** 會忽略 **RestorePolicy.Safe** 選項。
+
+
+## <a name="backup-and-restore-reliable-actors"></a>備份與還原 Reliable Actors
+
+
+Reliable Actors 架構以 Reliable Services 為基礎。 裝載動作項目的 ActorService 是具狀態可靠服務。 因此，Reliable Services 中可用的所有備份和還原功能，也可用於 Reliable Actors (狀態供應器特定的行為除外)。 因為是依個別分割區進行備份，將會備份該分割區中所有動作項目的狀態 (還原也一樣依個別分割區進行)。 若要執行備份/還原，服務擁有者應該建立一個衍生自 ActorService 類別的自訂動作項目服務類別，然後進行備份/還原，類似於前面幾節所述的 Reliable Services。
+
+```
+class MyCustomActorService : ActorService
+{
+     public MyCustomActorService(StatefulServiceContext context, ActorTypeInformation actorTypeInfo)
+            : base(context, actorTypeInfo)
+     {                  
+     }
+    
+    //
+   // Method overrides and other code.
+    //
+}
+```
+
+當您建立自訂動作項目服務類別時，您也必須在註冊動作項目時註冊該類別。
+
+```
+ActorRuntime.RegisterActorAsync<MyActor>(
+   (context, typeInfo) => new MyCustomActorService(context, typeInfo)).GetAwaiter().GetResult();
+```
+
+Reliable Actors 的預設狀態供應器是 **KvsActorStateProvider**。 **KvsActorStateProvider** 依預設不啟用增量備份。 您可以建立 **KvsActorStateProvider** 並於建構函式中指定適當的設定，然後傳給 ActorService 建構函式，以啟用增量備份，如下列程式碼片段所示︰
+
+```
+class MyCustomActorService : ActorService
+{
+     public MyCustomActorService(StatefulServiceContext context, ActorTypeInformation actorTypeInfo)
+            : base(context, actorTypeInfo, null, null, new KvsActorStateProvider(true)) // Enable incremental backup
+     {                  
+     }
+    
+    //
+   // Method overrides and other code.
+    //
+}
+```
+
+啟用增量備份之後，進行增量備份可能會因為下列原因之一而失敗，結果傳回 FabricMissingFullBackupException，您將需要先進行完整備份，再進行增量備份︰
+
+* 複本自從變成主要以來從未進行完整備份。
+* 自上次備份以來，某些記錄檔記錄已被截斷。
+
+啟用增量備份時，**KvsActorStateProvider** 未使用循環緩衝區來管理記錄檔記錄，也未定期截斷。 如果使用者已有 45 分鐘沒有進行備份，系統會自動截斷記錄檔記錄。 您可以在 **KvsActorStateProvider** 建構函式中指定 **logTrunctationIntervalInMinutes**來設定此間隔 (類似於啟用增量備份時)。 如果主要複本需要傳送其所有資料來建立另一個複本，也可能會截斷記錄檔記錄。
+
+從備份鏈結還原時，類似於 Reliable Services，BackupFolderPath 應該包含一些子目錄，其中一個子目錄包含完整備份，而其他子目錄包含增量備份。 如果備份鏈結驗證失敗，還原 API 會擲回 FabricException 並傳回適當的錯誤訊息。 
 
 > [!NOTE]
-> 預設的 ActorStateProvider (即 **KvsActorStateProvider**) **不會**自行清除備份資料夾 (位於透過 ICodePackageActivationContext.WorkDirectory 取得的應用程式工作資料夾下方)。 這樣可能會填滿您的工作資料夾。 將備份移到外部儲存體之後，應該明確地清除備份回呼中的備份資料夾。
-> 
+> **KvsActorStateProvider** 目前會忽略 RestorePolicy.Safe 選項。 即將推出的版本已規劃支援這項功能。
 > 
 
 ## <a name="testing-backup-and-restore"></a>測試備份和還原
@@ -230,6 +277,6 @@ Reliable Actors 的備份和還原是以 Reliable Services 所提供的備份和
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 
