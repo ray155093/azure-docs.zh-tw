@@ -1,12 +1,12 @@
 ---
-title: 在 Log Analytics 中使用 Service Fabric 解決方案進行環境最佳化 | Microsoft Docs
-description: 您可以使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。
+title: "在 Log Analytics 中使用 Service Fabric 解決方案進行環境最佳化 | Microsoft Docs"
+description: "您可以使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: niniikhena
 manager: jochan
-editor: ''
-
+editor: 
+ms.assetid: 2047b3fa-96b1-4230-af5d-a4c331d973ce
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/21/2016
 ms.author: nini
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e6697c85194e18fcaac0f6d55bf00c3b005f6f00
+
 
 ---
 # <a name="service-fabric-solution-in-log-analytics"></a>Service Fabric Solution in Log Analytics (Log Analytics 中的 Service Fabric 方案)
@@ -633,6 +637,9 @@ foreach($storageAccount in $storageAccountsToCheck)
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，檢視詳細的 Service Fabric 事件資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

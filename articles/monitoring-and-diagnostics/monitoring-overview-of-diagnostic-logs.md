@@ -1,12 +1,12 @@
 ---
-title: Azure 診斷記錄檔概觀 | Microsoft Docs
-description: 認識 Azure 診斷記錄檔，並了解如何利用它們來了解 Azure 資源內發生的事件。
+title: "Azure 診斷記錄檔概觀 | Microsoft Docs"
+description: "認識 Azure 診斷記錄檔，並了解如何利用它們來了解 Azure 資源內發生的事件。"
 author: johnkemnetz
 manager: rboucher
-editor: ''
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: fe8887df-b0e6-46f8-b2c0-11994d28e44f
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: johnkem; magoedte
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 61a54b3cb170b7961a4900d2c353bea48ae83d64
+
 
 ---
 # <a name="overview-of-azure-diagnostic-logs"></a>Azure 診斷記錄檔概觀
@@ -35,7 +39,7 @@ ms.author: johnkem; magoedte
 * 傳送何種類別的記錄檔。
 * 診斷記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。 否則，此值範圍介於 1 到 2147483647 之間。 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
 
-透過 Azure 入口網站中資源的 [診斷] 刀鋒視窗、透過 Azure PowerShell 和 CLI 命令、或是透過 [Insights REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx)，可以輕鬆地設定這些設定。
+透過 Azure 入口網站中資源的 [診斷] 刀鋒視窗、透過 Azure PowerShell 和 CLI 命令、或是透過 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx)，可以輕鬆地設定這些設定。
 
 > [!WARNING]
 > 計算資源 (例如，VM 或 Service Fabric) 的診斷記錄檔和度量使用 [不同機制](../azure-diagnostics.md)來進行設定與選取輸出。
@@ -43,7 +47,7 @@ ms.author: johnkem; magoedte
 > 
 
 ## <a name="how-to-enable-collection-of-diagnostic-logs"></a>如何啟用診斷記錄檔的收集
-您可以在建立資源的過程中啟用收集診斷記錄檔，或是在資源建立之後透過入口網站中資源的刀鋒視窗啟用收集。 您也可以在任何時間點使用 Azure PowerShell 或 CLI 命令，或使用 Insights REST API 啟用診斷記錄檔。
+您可以在建立資源的過程中啟用收集診斷記錄檔，或是在資源建立之後透過入口網站中資源的刀鋒視窗啟用收集。 您也可以在任何時間點使用 Azure PowerShell 或 CLI 命令，或使用 Azure 監視器 REST API 啟用診斷記錄檔。
 
 > [!TIP]
 > 這些指示可能無法直接套用於每個資源。 請透過此頁面底部的結構描述連結，來了解適用於特定資源類型的特殊步驟。
@@ -53,7 +57,7 @@ ms.author: johnkem; magoedte
 [本文將說明如何使用資源範本在建立資源時啟用診斷設定](monitoring-enable-diagnostic-logs-using-template.md)
 
 ### <a name="enable-diagnostic-logs-in-the-portal"></a>在入口網站中啟用診斷記錄檔
-當您透過下列方式建立某些資源類型時，您可以在 Azure 入口網站中啟用診斷記錄檔︰
+當您以啟用 Windows 或 Linux Azure 診斷擴充功能的方式建立資源類型時，可以在 Azure 入口網站中啟用診斷記錄檔︰
 
 1. 移至 [ **新增** ] 並選擇您感興趣的資源。
 2. 設定基本設定並選取大小之後，在 [監視] 底下的 [設定] 刀鋒視窗中，選取 [啟用]，然後選擇您想要儲存診斷記錄檔的儲存體帳戶。 將診斷傳送至儲存體帳戶時，您將需要支付儲存和交易的一般數據傳輸費用。
@@ -61,7 +65,7 @@ ms.author: johnkem; magoedte
    ![在資源建立期間啟用診斷記錄檔](./media/monitoring-overview-of-diagnostic-logs/enable-portal-new.png)
 3. 按一下 [ **確定** ]，並建立資源。
 
-若在資源建立之後要在 Azure 入口網站中啟用診斷記錄檔，可執行下列作業︰
+針對非計算資源，若要在資源建立之後在 Azure 入口網站中啟用診斷記錄檔，可執行下列作業︰
 
 1. 移至資源的刀鋒視窗，開啟 [診斷]  刀鋒視窗。
 2. 按一下 [開啟]  並選取儲存體帳戶和/或事件中樞。
@@ -70,7 +74,7 @@ ms.author: johnkem; magoedte
 3. 在 [記錄] 下，選取您要收集或資料流哪些 [記錄檔分類]。
 4. 按一下 [儲存] 。
 
-### <a name="enable-diagnostic-logs-programmatically"></a>以程式設計方式啟用診斷記錄檔
+### <a name="enable-diagnostic-logs-via-powershell"></a>透過 PowerShell 啟用診斷記錄檔
 若要透過 Azure PowerShell Cmdlet 啟用診斷記錄檔，請使用下列命令。
 
 若要啟用儲存體帳戶中的診斷記錄檔的儲存體，使用下列命令︰
@@ -98,6 +102,7 @@ ms.author: johnkem; magoedte
 
 您可以結合這些參數讓多個輸出選項。
 
+### <a name="enable-diagnostic-logs-via-cli"></a>透過 CLI 啟用診斷記錄檔
 若要透過 Azure CLI 啟用診斷記錄檔，使用下列命令：
 
 若要啟用儲存體帳戶中的診斷記錄檔的儲存體，使用下列命令︰
@@ -125,7 +130,8 @@ ms.author: johnkem; magoedte
 
 您可以結合這些參數讓多個輸出選項。
 
-若要使用 Insights REST API 變更診斷設定，請參閱 [這份文件](https://msdn.microsoft.com/library/azure/dn931931.aspx)。
+### <a name="enable-diagnostic-logs-via-rest-api"></a>透過 REST API 啟用診斷記錄檔
+若要使用 Azure 監視器 REST API 變更診斷設定，請參閱[這份文件](https://msdn.microsoft.com/library/azure/dn931931.aspx)。
 
 ## <a name="manage-diagnostic-settings-in-the-portal"></a>在入口網站中管理診斷設定
 為確保所有資源皆以診斷設定正確設定，您可以瀏覽至入口網站中的 [監視] 刀鋒視窗，並開啟 [診斷記錄檔] 刀鋒視窗。
@@ -146,6 +152,8 @@ ms.author: johnkem; magoedte
 > 僅在您已設定診斷設定，將它們儲存到儲存體帳戶，診斷記錄檔才會出現在此檢視中並可供下載。
 > 
 > 
+
+按一下連結的**診斷設定**會顯示 [診斷設定] 刀鋒視窗，您可以在其中啟用、停用、修改所選取資源的診斷設定。
 
 ## <a name="supported-services-and-schema-for-diagnostic-logs"></a>支援的服務以及診斷記錄檔的結構描述
 診斷記錄檔的結構描述會根據資源和記錄類別而有所不同。 以下是支援的服務和其結構描述。
@@ -196,9 +204,12 @@ ms.author: johnkem; magoedte
 
 ## <a name="next-steps"></a>後續步驟
 * [將診斷記錄串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
-* [使用 Insights REST API 變更診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+* [使用 Azure 監視器 REST API 變更診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 * [以 OMS Log Analytics 分析記錄檔](../log-analytics/log-analytics-azure-storage-json.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

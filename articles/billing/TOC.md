@@ -1,7 +1,5 @@
-# 開始使用
-## [建立免費帳戶](https://azure.microsoft.com/free/)
+# [開始使用](billing-getting-started.md)
 ## [使用 Office 365 帳戶註冊](../billing-use-existing-office-365-account-azure-subscription.md)
-## [訂用帳戶價格](https://azure.microsoft.com/pricing/)
 ## [支援的國家/地區與貨幣](../billing-countries-and-currencies.md)
 ## [限制和配額](../azure-subscription-service-limits.md)
 ## [常見問題集](../billing-subscription-faq.md)
@@ -17,7 +15,7 @@
 ### [移轉訂用帳戶擁有權](../billing-subscription-transfer.md)
 ### [重新啟動已停用的訂用帳戶](../billing-subscription-become-disable.md)
 ### [升級免費訂用帳戶](../billing-upgrade-azure-subscription.md)
-### [切換成其他訂用帳戶](../billing-how-to-switch-azure-offer.md)
+### [切換訂用帳戶優惠](../billing-how-to-switch-azure-offer.md)
 ### [取消訂用帳戶](../billing-how-to-cancel-azure-subscription.md)
 ## 管理帳戶
 ### [編輯設定檔](../billing-how-to-change-azure-account-profile.md)
@@ -37,6 +35,6 @@
 # 資源
 ## [請連絡支援人員](../billing-how-to-create-billing-support-ticket.md)
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

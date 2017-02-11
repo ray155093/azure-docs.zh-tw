@@ -1,12 +1,12 @@
 ---
-title: Media Encoder Standard 格式和轉碼器
-description: 本主題提供媒體編碼器標準格式和轉碼器的概觀。
+title: "Media Encoder Standard 格式和轉碼器"
+description: "本主題提供媒體編碼器標準格式和轉碼器的概觀。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: f334b1ce-2f56-4968-a019-f0a2b0016d9f
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,17 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: juliako;anilmur
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 382913f0501c692cc1ee460d2264118414ad20c3
+
 
 ---
 # <a name="media-encoder-standard-formats-and-codecs"></a>Media Encoder Standard 格式和轉碼器
 本文件包含您可以在 Media Encoder Standard 中使用的常見匯入和匯出檔案格式清單。
 
-## <a name="input-container/file-formats"></a>輸入容器/檔案格式
+## <a name="input-containerfile-formats"></a>輸入容器/檔案格式
 | 檔案格式 (副檔名) | 支援 |
 | --- | --- | --- | --- |
-| FLV (使用 H.264 和 AAC 轉碼器) (.flv) |是 |
-| MXF (.mxf) |是 |
-| GXF (.gxf) |是 |
+| FLV (使用 H.264 和 AAC 轉碼器) (.flv) |yes |
+| MXF    (.mxf) |yes |
+| GXF    (.gxf) |yes |
 | MPEG2-PS、MPEG2-TS、3GP (.ts、.ps、.3gp、.3gpp、.mpg) |是 |
 | Windows Media 視訊 (WMV)/ASF (.wmv、.asf) |是 |
 | AVI (未壓縮 8 位元/10 位元) (.avi) |是 |
@@ -108,6 +112,9 @@ Media Encoder Standard 支援在輸入容器中帶有下列音訊格式：
 
 [如何使用 Media Encoder Standard 進行編碼](media-services-dotnet-encode-with-media-encoder-standard.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

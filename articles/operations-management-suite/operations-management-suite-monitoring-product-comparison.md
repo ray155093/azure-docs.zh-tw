@@ -1,12 +1,12 @@
 ---
-title: Microsoft 監視產品比較 | Microsoft Docs
-description: Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。
+title: "Microsoft 監視產品比較 | Microsoft Docs"
+description: "Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。"
 services: operations-management-suite
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: a63ca0ad-61f8-425d-a48c-d87ba518c104
 ms.service: operations-management-suite
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/27/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d7325b0bb900dcaf789c01e1a9b534d7f72c8c43
+
 
 ---
 # <a name="microsoft-monitoring-product-comparison"></a>Microsoft 監視產品比較
@@ -168,6 +172,9 @@ Log Analytics 中的查詢也是其他功能的基礎。  您可以儲存查詢�
 * 部署 [System Center Operations Manager (SCOM)](https://technet.microsoft.com/library/hh205987.aspx)。
 * 註冊 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics)。  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

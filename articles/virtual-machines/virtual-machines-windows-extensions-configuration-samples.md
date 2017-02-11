@@ -1,13 +1,13 @@
 ---
-title: Windows VM 延伸模組的範例組態 | Microsoft Docs
-description: 編寫延伸模組與範本的範例組態
+title: "Windows VM 延伸模組的範例組態 | Microsoft Docs"
+description: "編寫延伸模組與範本的範例組態"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: kundanap
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 0a1cee6c-51ea-4c03-b607-f158586d7175
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 380778b28a233e28c93f1ae8b16ac01a9f72ca20
+
 
 ---
-# Azure Windows VM 延伸模組組態範例
+# <a name="azure-windows-vm-extension-configuration-samples"></a>Azure Windows VM 延伸模組組態範例
 > [!div class="op_single_selector"]
-> * [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
-> * [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md)
+> * [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 > 
 > 
 
@@ -28,13 +32,13 @@ ms.author: kundanap
 
 本文提供範例組態，可用來設定 Windows VM 的 Azure VM 延伸模組。
 
-若要深入了解這些延伸模組，請參閱 [Azure VM 延伸模組概觀](virtual-machines-windows-extensions-features.md)。
+若要深入了解這些延伸模組，請參閱 [Azure VM 延伸模組概觀](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-若要深入了解如何撰寫延伸模組範本，請參閱[撰寫延伸模組範本](virtual-machines-windows-extensions-authoring-templates.md)。
+若要深入了解如何撰寫延伸模組範本，請參閱 [撰寫延伸模組範本](virtual-machines-windows-extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 本文列出部分 Windows 延伸模組所需的組態值。
 
-## VM 擴充功能與 IaaS VM 的範例範本程式碼片段。
+## <a name="sample-template-snippet-for-vm-extensions-with-iaas-vms"></a>VM 擴充功能與 IaaS VM 的範例範本程式碼片段。
 用於部署延伸模組的範本程式碼片段如下所示：
 
       {
@@ -55,7 +59,7 @@ ms.author: kundanap
       }
       }
 
-## VM 擴充功能與 VM 調整集的範例範本程式碼片段。
+## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets"></a>VM 擴充功能與 VM 調整集的範例範本程式碼片段。
     {
      "type":"Microsoft.Compute/virtualMachineScaleSets",
     ....
@@ -82,7 +86,7 @@ ms.author: kundanap
 
 部署延伸模組之前，請檢查最新的延伸模組版本，並以目前最新版本取代 "typeHandlerVersion"。
 
-### CustomScript 擴充功能 1.4。
+### <a name="customscript-extension-14"></a>CustomScript 擴充功能 1.4。
       {
           "publisher": "Microsoft.Compute",
           "type": "CustomScriptExtension",
@@ -99,14 +103,14 @@ ms.author: kundanap
           }
       }
 
-#### 參數說明︰
-* fileUris︰擴充功能將在 VM 上下載之檔案的 URL 清單 (以逗號分隔)。如果未指定，則不會下載任何檔案。如果檔案是在 Azure 儲存體中，則可以將 fileURLs 標示為私用，而且對應的 storageAccountName 和 storageAccountKey 可以傳遞為私用參數來存取這些檔案。
+#### <a name="parameter-description"></a>參數說明︰
+* fileUris︰擴充功能將在 VM 上下載之檔案的 URL 清單 (以逗號分隔)。 如果未指定，則不會下載任何檔案。 如果檔案是在 Azure 儲存體中，則可以將 fileURLs 標示為私用，而且對應的 storageAccountName 和 storageAccountKey 可以傳遞為私用參數來存取這些檔案。
 * commandToExecute：[必要參數]：這是擴充功能將執行的命令。
 * storageAccountName：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶名稱。
 * storageAccountKey：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶金鑰。
 
-### CustomScript 擴充功能 1.7。
-請參閱 CustomScript 1.4 版的參數說明。1.7 版支援將指令碼參數 (commandToExecute) 傳送為 protectedSettings，在此情況下，它們會在傳送之前進行加密。'commandToExecute' 參數可以指定於 settings 或 protectedSettings，但不能同時指定於兩者。
+### <a name="customscript-extension-17"></a>CustomScript 擴充功能 1.7。
+請參閱 CustomScript 1.4 版的參數說明。 1.7 版支援將指令碼參數 (commandToExecute) 傳送為 protectedSettings，在此情況下，它們會在傳送之前進行加密。 'commandToExecute' 參數可以指定於 settings 或 protectedSettings，但不能同時指定於兩者。
 
         {
             "publisher": "Microsoft.Compute",
@@ -125,7 +129,7 @@ ms.author: kundanap
             }
         }
 
-### VMAccess 延伸模組。
+### <a name="vmaccess-extension"></a>VMAccess 延伸模組。
       {
           "publisher": "Microsoft.Compute",
           "type": "VMAccessAgent",
@@ -138,7 +142,7 @@ ms.author: kundanap
           }
       }
 
-### DSC 延伸模組。
+### <a name="dsc-extension"></a>DSC 延伸模組。
       {
           "publisher": "Microsoft.Powershell",
           "type": "DSC",
@@ -170,7 +174,7 @@ ms.author: kundanap
       }
 
 
-### Symantec Endpoint Protection。
+### <a name="symantec-endpoint-protection"></a>Symantec Endpoint Protection。
       {
         "publisher": "SymantecEndpointProtection",
         "type": "Symantec",
@@ -178,13 +182,13 @@ ms.author: kundanap
         "settings": {}
       }
 
-### Trend Micro Deep Security Agent。
+### <a name="trend-micro-deep-security-agent"></a>Trend Micro Deep Security Agent。
       {
         "publisher": "TrendMicro.DeepSecurity",
         "type": "TrendMicroDSA",
         "typeHandlerVersion": "9.6",
         "settings": {
-          "ManagerAddress" : "Enter the externally accessible DNS name or IP address of the Deep Security Manager. Please enter "agents.deepsecurity.trendmicro.com" if using Deep Security as a Service",
+          "ManagerAddress" : "Enter the externally accessible DNS name or IP address of the Deep Security Manager. Please enter \"agents.deepsecurity.trendmicro.com\" if using Deep Security as a Service",
 
           "ActivationPort" : "Enter the port number of the Deep Security Manager, default value - 443",
 
@@ -196,7 +200,7 @@ ms.author: kundanap
         }
       }
 
-### Vormertric Transparent Encryption Agent。
+### <a name="vormertric-transparent-encryption-agent"></a>Vormertric Transparent Encryption Agent。
             {
               "publisher": "Vormetric",
               "type": "VormetricTransparentEncryptionAgent",
@@ -205,7 +209,7 @@ ms.author: kundanap
               }
             }
 
-### Puppet Enterprise Agent。
+### <a name="puppet-enterprise-agent"></a>Puppet Enterprise Agent。
             {
               "publisher": "PuppetLabs",
               "type": "PuppetEnterpriseAgent",
@@ -215,7 +219,7 @@ ms.author: kundanap
               }
             }  
 
-### Microsoft Monitoring Agent for Azure Operational Insights
+### <a name="microsoft-monitoring-agent-for-azure-operational-insights"></a>Microsoft Monitoring Agent for Azure Operational Insights
             {
               "publisher": "Microsoft.EnterpriseCloud.Monitoring",
               "type": "MicrosoftMonitoringAgent",
@@ -229,7 +233,7 @@ ms.author: kundanap
               }
             }
 
-### McAfee EndpointSecurity
+### <a name="mcafee-endpointsecurity"></a>McAfee EndpointSecurity
             {
               "publisher": "McAfee.EndpointSecurity",
               "type": "McAfeeEndpointSecurity",
@@ -243,7 +247,7 @@ ms.author: kundanap
               }
             }
 
-### Azure IaaS Antimalware
+### <a name="azure-iaas-antimalware"></a>Azure IaaS Antimalware
           {
             "publisher": "Microsoft.Azure.Security",
             "type": "IaaSAntimalware",
@@ -261,7 +265,7 @@ ms.author: kundanap
             }
           }
 
-### ESET File Security
+### <a name="eset-file-security"></a>ESET File Security
           {
             "publisher": "ESET",
             "type": "FileSecurity",
@@ -270,7 +274,7 @@ ms.author: kundanap
             }
           }
 
-### Datadog Agent
+### <a name="datadog-agent"></a>Datadog Agent
           {
             "publisher": "Datadog.Agent",
             "type": "DatadogWindowsAgent",
@@ -280,7 +284,7 @@ ms.author: kundanap
             }
           }
 
-### Azure 適用的 Confer 進階威脅防禦及事件回應
+### <a name="confer-advanced-threat-prevention-and-incident-response-for-azure"></a>Azure 適用的 Confer 進階威脅防禦及事件回應
           {
             "publisher": "Confer",
             "type": "ConferForAzure",
@@ -291,7 +295,7 @@ ms.author: kundanap
             }
           }
 
-### CloudLink SecureVM Agent
+### <a name="cloudlink-securevm-agent"></a>CloudLink SecureVM Agent
           {
             "publisher": "CloudLinkEMC.SecureVM",
             "type": "CloudLinkSecureVMWindowsAgent",
@@ -301,7 +305,7 @@ ms.author: kundanap
             }
           }
 
-### Microsoft Azure 的 Barracuda VPN 連線代理程式
+### <a name="barracuda-vpn-connectivity-agent-for-microsoft-azure"></a>Microsoft Azure 的 Barracuda VPN 連線代理程式
           {
             "publisher": "Barracuda.Azure.ConnectivityAgent",
             "type": "BarracudaConnectivityAgent",
@@ -314,7 +318,7 @@ ms.author: kundanap
             }
           }
 
-### Alert Logic Log Manager
+### <a name="alert-logic-log-manager"></a>Alert Logic Log Manager
           {
             "publisher": "AlertLogic.Extension",
             "type": "AlertLogicLM",
@@ -324,7 +328,7 @@ ms.author: kundanap
             }
           }
 
-### Chef Agent
+### <a name="chef-agent"></a>Chef Agent
           {
             "publisher": "Chef.Bootstrap.WindowsAzure",
             "type": "ChefClient",
@@ -336,8 +340,8 @@ ms.author: kundanap
             }
           }
 
-### Azure 診斷
-如需有關如何設定診斷功能的詳細資訊，請參閱 [Azure 診斷延伸模組](virtual-machines-windows-extensions-diagnostics-template.md)
+### <a name="azure-diagnostics"></a>Azure 診斷
+如需有關如何設定診斷功能的詳細資訊，請參閱 [Azure 診斷延伸模組](virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
           {
             "publisher": "Microsoft.Azure.Diagnostics",
@@ -361,4 +365,9 @@ ms.author: kundanap
 
 [Windows VM 上的自訂指令碼延伸模組](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,13 +1,13 @@
 ---
-title: 使用 HDInsight 開發 Python MapReduce 工作 | Microsoft Docs
-description: 了解如何在以 Linux 為基礎的 HDInsight 叢集上建立和執行 Python MapReduce 工作。
+title: "使用 HDInsight 開發 Python MapReduce 工作 | Microsoft Docs"
+description: "了解如何在以 Linux 為基礎的 HDInsight 叢集上建立和執行 Python MapReduce 工作。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 7631d8d9-98ae-42ec-b9ec-ee3cf7e57fb3
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 729550243e18c7a9f514aa18d1f4fdd8142d141b
+
 
 ---
 # <a name="develop-python-streaming-programs-for-hdinsight"></a>開發適用於 HDInsight 的 Python 串流程式
@@ -46,7 +50,7 @@ Hadoop 為 MapReduce 提供一個串流 API，可讓您以 Java 以外的語言�
 
 ![Map Reduce 的插圖](./media/hdinsight-hadoop-streaming-python/HDI.WordCountDiagram.png)
 
-## <a name="why-python?"></a>為何使用 Python？
+## <a name="why-python"></a>為何使用 Python？
 Python 是一般用途的高階程式設計語言，可讓您以少於許多其他語言的程式碼行數快速表達概念。 資料科學家最近很喜歡用它做為原型語言，因為它的解譯本質、動態型別和簡潔語法讓它非常適合用於快速開發應用程式。
 
 Python 會安裝在所有 HDInsight 叢集上。
@@ -63,7 +67,7 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 ## <a name="create-the-mapper-and-reducer"></a>建立對應器和歸納器
 對應器和歸納器是文字檔案，在此案例中為 **mapper.py** 和 **reducer.py** (以便清楚知道各自的功用)。 您可以使用自行選擇的編輯器建立這些檔案。
 
-### <a name="mapper.py"></a>Mapper.py
+### <a name="mapperpy"></a>Mapper.py
 建立名為 **mapper.py** 的新檔案並使用下列程式碼做為內容：
 
     #!/usr/bin/env python
@@ -92,7 +96,7 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 
 請花一點時間仔細閱讀程式碼，以便了解它的功用。
 
-### <a name="reducer.py"></a>reducer.py
+### <a name="reducerpy"></a>reducer.py
 建立名為 **reducer.py** 的新檔案並使用下列程式碼做為內容：
 
     #!/usr/bin/env python
@@ -204,6 +208,9 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

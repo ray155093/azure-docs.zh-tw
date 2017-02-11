@@ -1,5 +1,5 @@
 ---
-title: ".NET 多層應用程式 | Microsoft Docs"
+title: "使用 Azure 服務匯流排佇列的 .NET 多層應用程式 | Microsoft Docs"
 description: "協助您在 Azure 中開發多層式應用程式，以使用服務匯流排佇列在各層之間進行通訊的 .NET 教學課程。"
 services: service-bus-messaging
 documentationcenter: .net
@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: get-started-article
-ms.date: 09/01/2016
+ms.date: 01/10/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 9ace119de3676bcda45d524961ebea27ab093415
-ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
+ms.sourcegitcommit: cab2edc0d065dc8d5ac20ed41ccd0eed7a664895
+ms.openlocfilehash: 8d0730d50330b9093734adb1c503dd975606b7c3
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-在本教學課程中，您將在 Azure 雲端服務中建置和執行多層式應用程式。 前端將為 ASP.NET MVC Web 角色，而後端將為使用服務匯流排佇列的背景工作角色。 您可以建立相同的多層應用程式，並使其前端作為部署至 Azure 網站而非雲端服務的 Web 專案。 如需在 Azure 網站前端上進行不同作法的指示，請參閱[後續步驟](#nextsteps)一節。 您也可以試試 [.NET 內部部署/雲端混合式應用程式](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md)教學課程。
+在本教學課程中，您將在 Azure 雲端服務中建置和執行多層式應用程式。 前端為 ASP.NET MVC Web 角色，而後端為使用服務匯流排佇列的背景工作角色。 您可以建立相同的多層應用程式，並使其前端作為部署至 Azure 網站而非雲端服務的 Web 專案。 如需在 Azure 網站前端上進行不同作法的指示，請參閱[後續步驟](#nextsteps)一節。 您也可以試試 [.NET 內部部署/雲端混合式應用程式](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md)教學課程。
 
 下列螢幕擷取畫面顯示完成的應用程式：
 
@@ -57,15 +57,6 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
   ![][2]
 
 下列幾節討論實作此架構的程式碼。
-
-## <a name="set-up-the-development-environment"></a>設定開發環境
-在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
-
-1. 在[取得工具和 SDK][取得工具和 SDK] 安裝 Azure SDK for .NET。
-2. 按一下您所使用 Visual Studio 版本的 [安裝 SDK]。 本教學課程中的步驟使用 Visual Studio 2015。
-3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
-4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
-5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。 如果您未安裝 Visual Studio，則 SDK 也會安裝免費的 Visual Studio Express。
 
 ## <a name="create-a-namespace"></a>建立命名空間
 下一步是建立服務命名空間，並取得共用存取簽章 (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立命名空間時，系統會產生 SAS 金鑰。 命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
@@ -109,7 +100,7 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 
 1. 在 Visual Studio 的 OnlineOrder.cs 檔案中，將現有的命名空間定義取代為下列程式碼：
    
-   ```
+   ```csharp
    namespace FrontendWebRole.Models
    {
        public class OnlineOrder
@@ -121,14 +112,14 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
    ```
 2. 在 [方案總管] 中，按兩下 [Controllers\HomeController.cs]。 在檔案頂端新增下列 **using** 陳述式，以納入您剛建立之模型的命名空間，以及服務匯流排。
    
-   ```
+   ```csharp
    using FrontendWebRole.Models;
    using Microsoft.ServiceBus.Messaging;
    using Microsoft.ServiceBus;
    ```
 3. 同時在 Visual Studio 的 HomeController.cs 檔案中，也將現有的命名空間定義取代為下列程式碼。 此程式碼包含將項目提交給佇列的處理方法。
    
-   ```
+   ```csharp
    namespace FrontendWebRole.Controllers
    {
        public class HomeController : Controller
@@ -193,7 +184,7 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
     ![][28]
 11. 最後，修改提交頁面，以納入佇列的一些相關資訊。 在 [方案總管] 中，按兩下 [Views\Home\Submit.cshtml] 檔案以在 Visual Studio 編輯器中開啟。 在 `<h2>Submit</h2>` 後面新增下列一行。 目前 `ViewBag.MessageCount` 是空的。 稍後您將在其中填入資料。
     
-    ```
+    ```html
     <p>Current number of orders in queue waiting to be processed: @ViewBag.MessageCount</p>
     ```
 12. 您現在已實作 UI。 您可以按 **F5** 執行應用程式，確認它的外觀與預期一樣。
@@ -207,7 +198,7 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 2. 將類別命名為 **QueueConnector.cs**。 按一下 [新增] 以建立類別。
 3. 現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。 以下列程式碼取代 QueueConnector.cs 的整個內容，並將值輸入 `your Service Bus namespace` (命名空間名稱) 和 `yourKey`，後者是先前取自 Azure 入口網站的**主要金鑰**。
    
-   ```
+   ```csharp
    using System;
    using System.Collections.Generic;
    using System.Linq;
@@ -269,13 +260,13 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 4. 現在，請確定會呼叫您的 **Initialize** 方法。 在 [方案總管] 中，按兩下 [Global.asax\Global.asax.cs]。
 5. 在 **Application_Start** 方法的結尾新增下列程式碼行。
    
-   ```
+   ```csharp
    FrontendWebRole.QueueConnector.Initialize();
    ```
 6. 最後，更新稍早建立的 Web 程式碼，以提交項目給佇列。 在 [方案總管] 中，按兩下 [Controllers\HomeController.cs]。
 7. 如下所示更新 `Submit()` 方法 (未採用任何參數的多載)，以取得佇列的訊息計數。
    
-   ```
+   ```csharp
    public ActionResult Submit()
    {
        // Get a NamespaceManager which allows you to perform management and
@@ -291,7 +282,7 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
    ```
 8. 如下所示更新 `Submit(OnlineOrder order)` 方法 (採用一個參數的多載)，以提交訂單資訊給佇列。
    
-   ```
+   ```csharp
    public ActionResult Submit(OnlineOrder order)
    {
        if (ModelState.IsValid)
@@ -334,18 +325,18 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 10. 瀏覽至 **FrontendWebRole\Models** 的子資料夾，並按兩下 [OnlineOrder.cs]，以將其新增至此專案。
 11. 在 **WorkerRole.cs** 中，將 **QueueName** 變數值從 `"ProcessingQueue"` 變更為 `"OrdersQueue"`，如下列程式碼所示。
     
-    ```
+    ```csharp
     // The name of your queue.
     const string QueueName = "OrdersQueue";
     ```
 12. 在 WorkerRole.cs 檔案頂端新增下列 using 陳述式。
     
-    ```
+    ```csharp
     using FrontendWebRole.Models;
     ```
 13. 在 `Run()` 函式的 `OnMessage()` 呼叫內，以下列程式碼取代 `try` 子句的內容。
     
-    ```
+    ```csharp
     Trace.WriteLine("Processing", receivedMessage.SequenceNumber.ToString());
     // View the message as an OnlineOrder.
     OnlineOrder order = receivedMessage.GetBody<OnlineOrder>();
@@ -362,8 +353,8 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 若要深入了解服務匯流排，請參閱下列資源：  
 
 * [Azure 服務匯流排][sbmsdn]  
-* [服務匯流排服務頁面][sbwacom]  
-* [如何使用服務匯流排佇列][sbwacomqhowto]  
+* [服務匯流排服務頁面][sbacom]  
+* [如何使用服務匯流排佇列][sbacomqhowto]  
 
 若要深入了解多層式案例，請參閱︰  
 
@@ -372,19 +363,6 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 [0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-01.png
 [1]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-100.png
 [2]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-101.png
-[取得工具和 SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
-
-
-[GetSetting]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.getsetting.aspx
-[Microsoft.WindowsAzure.Configuration.CloudConfigurationManager]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.aspx
-[NamespaceMananger]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx
-
-[QueueClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx
-
-[TopicClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicclient.aspx
-
-[EventHubClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.aspx
-
 [9]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-10.png
 [10]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-11.png
 [11]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-02.png
@@ -404,12 +382,12 @@ ms.openlocfilehash: c90454109c2fcfe69d512b84d411e4fd4e810f65
 [28]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-40.png
 
 [sbmsdn]: http://msdn.microsoft.com/library/azure/ee732537.aspx  
-[sbwacom]: /documentation/services/service-bus/  
-[sbwacomqhowto]: service-bus-dotnet-get-started-with-queues.md  
+[sbacom]: https://azure.microsoft.com/services/service-bus/  
+[sbacomqhowto]: service-bus-dotnet-get-started-with-queues.md  
 [mutitierstorage]: https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

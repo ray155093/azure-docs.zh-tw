@@ -10,12 +10,15 @@
 ## [Visual Studio](data-lake-analytics-data-lake-tools-get-started.md)
 ## [Azure CLI](data-lake-analytics-get-started-cli.md)
 ## [REST API](data-lake-analytics-get-started-rest-api.md)
+## [Python](data-lake-analytics-get-started-python.md)
 
 # 作法
 ## 開發
 ### [U-SQL](data-lake-analytics-u-sql-get-started.md)
 ### [U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
 ### [U-SQL 使用者定義的運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
+### [U-SQL Python 延伸模組](data-lake-analytics-u-sql-python-extensions.md)
+### [U-SQL 辨識功能](data-lake-analytics-u-sql-cognitive.md)
 
 ## 建立解決方案
 ### [分析網站記錄](data-lake-analytics-analyze-weblogs.md)
@@ -52,6 +55,6 @@
 ## [Azure Data Lake 部落格](https://blogs.msdn.microsoft.com/azuredatalake/)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

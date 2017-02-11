@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何使用事件中樞，從一組廣泛平台上連接的 IoT 裝置和應用程式，每秒擷取數百萬個事件。"
 translationtype: Human Translation
-ms.sourcegitcommit: bedc8c16671de6071383659697ecd932e14cf3ba
-ms.openlocfilehash: 3d404f115c9a21c7ea62fb485a2129bca9de5c6c
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 29d6165596d3e98264285b6471c8f54b66aa2c3a
 
 ---
 #<a name="event-hubs-documentation"></a>事件中樞文件
@@ -116,13 +116,7 @@ ms.openlocfilehash: 3d404f115c9a21c7ea62fb485a2129bca9de5c6c
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/event-hubs.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載事件中樞文件 </div>
-    </a>
-</div>
+
 
 
 

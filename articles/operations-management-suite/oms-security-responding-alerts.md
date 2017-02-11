@@ -1,25 +1,30 @@
 ---
-title: 在 Operations Management Suite 安全性和稽核解決方案內監視及回應安全性警示 | Microsoft Docs
-description: 這份文件可協助您使用 OMS 安全性和稽核中可用的 [威脅情報] 選項來監視及回應安全性警示。
+title: "在 Operations Management Suite 安全性和稽核解決方案內監視及回應安全性警示 | Microsoft Docs"
+description: "這份文件可協助您使用 OMS 安全性和稽核中可用的 [威脅情報] 選項來監視及回應安全性警示。"
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
 manager: swadhwa
-editor: ''
-
+editor: 
+ms.assetid: 7d45a32b-1341-4bb5-a436-1f42a8a2590a
 ms.service: operations-management-suite
+ms.custom: oms-security
 ms.topic: article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/02/2016
+ms.date: 12/01/2016
 ms.author: yurid
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 7161cacfd371aa73974e635a343793bbec76d858
+
 
 ---
 # <a name="monitoring-and-responding-to-security-alerts-in-operations-management-suite-security-and-audit-solution"></a>在 Operations Management Suite 安全性和稽核解決方案內監視及回應安全性警示
 這份文件可協助您使用 OMS 安全性和稽核中可用的威脅情報選項來監視及回應安全性警示。
 
-## <a name="what-is-oms?"></a>何謂 OMS？
+## <a name="what-is-oms"></a>何謂 OMS？
 Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。 如需 OMS 的詳細資訊，請閱讀 [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx)一文。
 
 ## <a name="threat-intelligence"></a>威脅情報
@@ -74,6 +79,11 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 
 ![威脅情報對應](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig5.png)
 
+> [!NOTE]
+> 您可以觀看 Microsoft Ignite 所提供的簡報[使用 Operations Management Suite 以引導式調查減輕資料中心的安全性威脅](https://myignite.microsoft.com/videos/5000)，查看如何在事件回應程序期間使用這項功能的示範。
+> 
+> 
+
 ## <a name="see-also"></a>另請參閱
 在這份文件中，您了解到如何使用 OMS 安全性和稽核解決方案中的 [威脅情報]  選項來回應安全性警示。 若要深入了解 OMS 安全性，請參閱下列文章：
 
@@ -81,6 +91,9 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 * [開始使用 Operations Management Suite 安全性和稽核解決方案](oms-security-getting-started.md)
 * [在 Operations Management Suite 安全性和稽核解決方案內監視資源](oms-security-monitoring-resources.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

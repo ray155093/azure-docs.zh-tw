@@ -1,12 +1,12 @@
 ---
-title: 將 Log Analytics 資料匯出至 Power BI | Microsoft Docs
-description: Power BI 是 Microsoft 的雲端架構商務分析服務，能提供豐富的視覺效果和不同資料集的分析報告。  Log Analytics 可以持續將資料從 OMS 儲存機制匯出到 Power BI，讓您可以利用其視覺效果和分析工具。  本文說明如何在 Log Analytics 中設定查詢，自動定期匯出至 Power BI。
+title: "將 Log Analytics 資料匯出至 Power BI | Microsoft Docs"
+description: "Power BI 是 Microsoft 的雲端架構商務分析服務，能提供豐富的視覺效果和不同資料集的分析報告。  Log Analytics 可以持續將資料從 OMS 儲存機制匯出到 Power BI，讓您可以利用其視覺效果和分析工具。  本文說明如何在 Log Analytics 中設定查詢，自動定期匯出至 Power BI。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: 83edc411-6886-4de1-aadd-33982147b9c3
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 7870e2aebf6c142b0f3103a500ca73d691e6d3e6
+
 
 ---
 # <a name="export-log-analytics-data-to-power-bi"></a>將 Log Analytics 資料匯出至 Power BI
@@ -114,6 +118,9 @@ ms.author: bwren
 * 深入了解 [記錄檔搜尋](log-analytics-log-searches.md) ，建置可以匯出至 Power BI 的查詢。
 * 深入了解 [Power BI](http://powerbi.microsoft.com)，建置以 Log Analytics 匯出為基礎的視覺效果。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何使用監視和診斷服務來追蹤效能、維護安全性及找出趨勢。 API 參考、最佳作法等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: edf493f70b08bdf5545127a90d7a13ea49b668c1
-ms.openlocfilehash: 0ee9faf763dbedd4046547764c5ad5ad9e3d2d07
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: e59d88dbd538aad3e21a31fd721361cd9ffd4919
 
 ---
 
@@ -146,13 +146,7 @@ ms.openlocfilehash: 0ee9faf763dbedd4046547764c5ad5ad9e3d2d07
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/monitoring-and-diagnostics.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載監視和診斷文件 </div>
-    </a>
-</div>
+
 
 
 

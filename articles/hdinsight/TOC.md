@@ -61,10 +61,13 @@
 ### [預測 HVAC 效能](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
 ### [預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 ### [分析網站記錄](hdinsight-apache-spark-custom-library-website-log-analysis.md)
+### [使用 Zeppelin notebook](hdinsight-apache-spark-zeppelin-notebook.md)
 ### [Jupyter Notebook 核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
-### [Jupyter Notebook 的套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+### [使用儲存格魔術搭配 Jupyter 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+### [使用指令碼動作搭配 Jupyter 使用外部套件](hdinsight-apache-spark-python-package-installation.md)
 ### [使用本機 Jupyter Notebook](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 ### [使用 Livy 的遠端工作](hdinsight-apache-spark-livy-rest-interface.md)
+### [使用 Eclipse 開發應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
 ### [使用 IntelliJ 開發應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
 ### [使用 IntelliJ 進行遠端偵錯](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 ### [管理資源](hdinsight-apache-spark-resource-manager.md)
@@ -156,6 +159,7 @@
 #### [使用 Azure CLI](hdinsight-administer-use-command-line.md)
 ### [使用 Ambari Web UI 管理叢集](hdinsight-hadoop-manage-ambari.md)
 #### [使用 Ambari REST API](hdinsight-hadoop-manage-ambari-rest-api.md)
+### [新增儲存體帳戶](hdinsight-hadoop-add-storage.md)
 ### [上傳 Hadoop 工作的資料](hdinsight-upload-data.md)
 ### [使用 Sqoop 匯入和匯出資料](hdinsight-use-sqoop.md)
 #### [使用 SSH 連線](hdinsight-use-sqoop-mac-linux.md)
@@ -224,6 +228,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure 媒體視訊縮圖建立視訊摘要 | Microsoft Docs
-description: 視訊摘要可自動選取來源視訊的有趣片段，協助您建立較長視訊的摘要。 針對片長較長的視訊，如果您想要提供精彩內容的快速概觀，這非常有用。
+title: "使用 Azure 媒體影片縮圖建立視訊摘要 | Microsoft Docs"
+description: "視訊摘要可自動選取來源視訊的有趣片段，協助您建立較長視訊的摘要。 針對片長較長的視訊，如果您想要提供精彩內容的快速概觀，這非常有用。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a245529f-3150-4afc-93ec-e40d8a6b761d
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: milanga;juliako;
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0c6f4a020430f464a97b0716dea2a40719c0b064
+
 
 ---
 # <a name="use-azure-media-video-thumbnails-to-create-a-video-summarization"></a>使用 Azure 媒體視訊縮圖建立視訊摘要
@@ -33,7 +37,7 @@ ms.author: milanga;juliako;
 ### <a name="video-thumbnail-result"></a>視訊縮圖的結果
 [視訊縮圖的結果](http://ampdemo.azureedge.net/azuremediaplayer.html?url=http%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Ff5c91052-4232-41d4-b531-062e07b6a9ae%2FHololens%2520Demo_VideoThumbnails_MotionThumbnail.mp4)
 
-## <a name="task-configuration-(preset)"></a>工作設定 (預設)
+## <a name="task-configuration-preset"></a>工作設定 (預設)
 以 **Azure 媒體視訊縮圖**建立視訊縮圖工作時，您必須指定設定預設值。 上述縮圖是使用下列基本 JSON 組態建立的範例︰
 
     {"version":"1.0"}
@@ -70,7 +74,7 @@ ms.author: milanga;juliako;
 1. 建立資產並將媒體檔案上傳到資產。
 2. 根據包含下列 JSON 預設值的組態檔案，建立執行視訊縮圖工作的工作。 
    
-        {               
+        {                
             "version": "1.0",
             "options": {
                 "outputAudio": "true",
@@ -80,7 +84,7 @@ ms.author: milanga;juliako;
         }
 3. 下載輸出檔案。 
 
-### <a name=".net-code"></a>.NET 程式碼
+### <a name="net-code"></a>.NET 程式碼
     using System;
     using System.Configuration;
     using System.IO;
@@ -259,6 +263,9 @@ ms.author: milanga;juliako;
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

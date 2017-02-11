@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-ios
 ms.devlang: objective-c
 ms.topic: article
-ms.date: 09/14/2016
+ms.date: 12/13/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 090f653da4825d7953dde27740d219bf40a4bd97
+ms.sourcegitcommit: c8bb1161e874a3adda4a71ee889ca833db881e20
+ms.openlocfilehash: 7e24bbc1832c6a85181c943e4e1c705785358527
 
 
 ---
@@ -182,12 +182,15 @@ ms.openlocfilehash: 090f653da4825d7953dde27740d219bf40a4bd97
         [[EngagementAgent shared] applicationDidReceiveRemoteNotification:userInfo fetchCompletionHandler:handler];
     }
 
-### <a name="if-you-have-your-own-unusernotificationcenterdelegate-implementation"></a>如果您有自己的 UNUserNotificationCenterDelegate 實作
-SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SDK 會用它來監視在 iOS 10 或更新版本上執行的裝置中的 Engagement 通知生命週期。 如果 SDK 偵測到您的委派則不會使用它自己的實作，因為每個應用程式只可以有一個 UNUserNotificationCenter 委派。 這表示您必須將 Engagement 邏輯加入到您自己的委派。
+### <a name="resolve-unusernotificationcenter-delegate-conflicts"></a>解決 UNUserNotificationCenter 委派衝突
+
+如果您的應用程式或其中一個協力廠商程式庫都未實作 `UNUserNotificationCenterDelegate`，則可以略過這個部分。
+
+SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本上執行的裝置中的 Engagement 通知生命週期。 SDK 會實作自己的 `UNUserNotificationCenterDelegate` 通訊協定，但每個應用程式只能有一個 `UNUserNotificationCenter` 委派。 新增至 `UNUserNotificationCenter` 物件的任何其他委派會與 Engagement one 發生衝突。 如果 SDK 偵測到您的委派或任何其他協力廠商的委派，則不會使用它自己的實作來讓您有機會解決衝突。 您必須將 Engagement 邏輯新增至您自己的委派，以便解決衝突。
 
 有兩種方式可以達到這個目的。
 
-藉由直接將委派呼叫轉送給 SDK：
+提案 1，直接將委派呼叫轉送給 SDK：
 
     #import <UIKit/UIKit.h>
     #import "EngagementAgent.h"
@@ -214,7 +217,7 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SD
     }
     @end
 
-或藉由繼承自 `AEUserNotificationHandler` 類別
+或提案 2，繼承自 `AEUserNotificationHandler` 類別
 
     #import "AEUserNotificationHandler.h"
     #import "EngagementAgent.h"
@@ -242,8 +245,16 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SD
 
 > [!NOTE]
 > 您可以藉由將通知的 `userInfo` 字典傳遞給代理程式的 `isEngagementPushPayload:` 類別方法，來決定通知是否來自 Engagement。
-> 
-> 
+
+請確定 `UNUserNotificationCenter` 物件的委派已設為您在 `application:willFinishLaunchingWithOptions:` 內的委派或應用程式委派的 `application:didFinishLaunchingWithOptions:` 方法。
+例如，如果您實作了上述提案 1：
+
+      - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+        // Any other code
+  
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        return YES;
+      }
 
 ## <a name="how-to-customize-campaigns"></a>如何自訂活動
 ### <a name="notifications"></a>通知
@@ -504,6 +515,6 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SD
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

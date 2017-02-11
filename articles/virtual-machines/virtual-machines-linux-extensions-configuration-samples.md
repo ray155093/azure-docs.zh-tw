@@ -1,13 +1,13 @@
 ---
-title: Linux VM 延伸模組的範例組態 | Microsoft Docs
-description: 編寫 Linux VM 之延伸模組與範本的範例組態
+title: "Linux VM 延伸模組的範例組態 | Microsoft Docs"
+description: "編寫 Linux VM 之延伸模組與範本的範例組態"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: kundanap
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 4f50e6b2-fce0-41ef-823d-df433957601a
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 09/13/2016
 ms.author: kundanap
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 7f08d711a7d45c48fab5aab272b0446cff61e163
+
 
 ---
 # <a name="linux-vm-extension-configuration-samples"></a>Linux VM 延伸模組組態範例
 > [!div class="op_single_selector"]
-> * [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
-> * [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md)
+> * [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 > 
 > 
 
@@ -28,13 +32,13 @@ ms.author: kundanap
 
 本文提供範例組態，可用來設定 Linux VM 的 Azure VM 延伸模組。
 
-若要深入了解這些延伸模組，請按一下這裡： [Azure VM 延伸模組概觀](virtual-machines-windows-extensions-features.md)
+若要深入了解這些延伸模組，請按一下這裡： [Azure VM 延伸模組概觀](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-若要深入了解如何撰寫延伸模組範本，請按一下這裡： [撰寫延伸模組範本](virtual-machines-windows-extensions-authoring-templates.md)
+若要深入了解如何撰寫延伸模組範本，請按一下這裡： [撰寫延伸模組範本](virtual-machines-windows-extensions-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 本文列出部分 Linux 延伸模組所需的組態值。
 
-## <a name="sample-template-snippet-for-vm-extensions."></a>VM 延伸模組的範例範本程式碼片段。
+## <a name="sample-template-snippet-for-vm-extensions"></a>VM 延伸模組的範例範本程式碼片段。
 用於部署延伸模組的範本程式碼片段如下所示：
 
       {
@@ -55,7 +59,7 @@ ms.author: kundanap
       }
       }
 
-## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets."></a>VM 擴充功能與 VM 調整集的範例範本程式碼片段。
+## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets"></a>VM 擴充功能與 VM 調整集的範例範本程式碼片段。
           {
            "type":"Microsoft.Compute/virtualMachineScaleSets",
           ....
@@ -90,7 +94,7 @@ ms.author: kundanap
             }
           }
 
-### <a name="customscript-extension-for-linux."></a>CustomScript Extension for Linux
+### <a name="customscript-extension-for-linux"></a>CustomScript Extension for Linux
     {
         "publisher": " Microsoft.Azure.Extensions",
         "type": "CustomScript",
@@ -127,7 +131,7 @@ ms.author: kundanap
           }
         }
 
-### <a name="vm-access-extension-(password-reset)"></a>VM 存取延伸模組 (密碼重設)
+### <a name="vm-access-extension-password-reset"></a>VM 存取延伸模組 (密碼重設)
 關於更新的結構描述，請參閱 [VMAccessForLinux 文件](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)
 
         {
@@ -217,6 +221,9 @@ ms.author: kundanap
 
 [Linux VM 上的自訂指令碼延伸模組](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/mongodb-on-ubuntu/azuredeploy.json/)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

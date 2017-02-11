@@ -1,22 +1,26 @@
 ---
 title: Operations Management Suite (OMS) SDK | Microsoft Docs
-description: 本文列出可供存取 OMS 和 Azure 入口網站外部 OMS 服務的文件和其他可用的資源。  這包括從各種程式設計介面和 PowerShell 等指令碼引擎進行存取的 REST API
+description: "本文列出可供存取 OMS 和 Azure 入口網站外部 OMS 服務的文件和其他可用的資源。  這包括從各種程式設計介面和 PowerShell 等指令碼引擎進行存取的 REST API"
 services: operations-management-suite
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: aac9c627-4060-4aa9-a2ea-85248e25d5ce
 ms.service: operations-management-suite
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/26/2016
+ms.date: 12/08/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 5d1ace8c6dab1655b0c2b512376b69444434f1ad
+ms.openlocfilehash: 414699ef94a6679f1b3bc777669674247a3449e9
+
 
 ---
-# <a name="operations-management-suite-(oms)-sdk"></a>Operations Management Suite (OMS) SDK
+# <a name="operations-management-suite-oms-sdk"></a>Operations Management Suite (OMS) SDK
 [Operations Management Suite (OMS)](operations-management-suite-overview.md) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文列出可供存取 OMS 和 Azure 入口網站外部 OMS 服務的文件和其他可用的資源。  這包括從各種程式設計介面和 PowerShell 等指令碼引擎進行存取的 REST API。 
 
 ## <a name="automation"></a>自動化
@@ -39,7 +43,10 @@ ms.author: bwren
 * [Log Analytics PowerShell Cmdlet](https://msdn.microsoft.com/library/mt188224.aspx)
 * [Log Analytics .NET 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.OperationalInsights/0.16.0-preview)
 
-## <a name="site-recovery"></a>站台復原
+## <a name="service-map"></a>服務對應
+* [服務對應文件](operations-management-suite-service-map.md)
+
+## <a name="site-recovery"></a>Site Recovery
 * [Site Recovery PowerShell Cmdlet](https://msdn.microsoft.com/library/mt637930.aspx)
 * [Site Recovery REST API](https://msdn.microsoft.com/library/azure/mt750497.aspx)
 * [將 Azure 自動化 Runbook 新增至復原計劃](../site-recovery/site-recovery-runbook-automation.md)
@@ -49,6 +56,9 @@ ms.author: bwren
 * 閱讀關於[與 OMS 服務進行整合](operations-management-suite-integration.md)的各種選項。
 * 在 OMS 中建立自訂解決方案 (即將推出)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 

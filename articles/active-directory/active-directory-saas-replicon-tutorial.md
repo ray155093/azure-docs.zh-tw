@@ -1,11 +1,11 @@
 ---
-title: 教學課程：Azure Active Directory 與 Replicon 整合 | Microsoft Docs
-description: 了解如何使用 Replicon 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 Replicon 整合 | Microsoft Docs"
+description: "了解如何使用 Replicon 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: 02a62f15-917c-417c-8d80-fe685e3fd601
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 1dfd8edcae7d54d4ba8456a424a3fbc40d45c777
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-replicon"></a>教學課程：Azure Active Directory 與 Replicon 整合
+# <a name="tutorial-azure-active-directory-integration-with-replicon"></a>教學課程：Azure Active Directory 與 Replicon 整合
 本教學課程的目的是要示範 Azure 與 Replicon 的整合。 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂用帳戶
@@ -35,7 +39,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-replicon"></a>啟用 Replicon 的應用程式整合
 本節的目的是要說明如何啟用 Replicon 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-replicon,-perform-the-following-steps:"></a>若要啟用 Replicon 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-replicon-perform-the-following-steps"></a>若要啟用 Replicon 的應用程式整合，請執行下列步驟：
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-replicon-tutorial/IC700993.png "Active Directory")
@@ -60,7 +64,7 @@ ms.author: jeedes
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Replicon。
 
-### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
+### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [Replicon] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-replicon-tutorial/IC777801.png "Configure single sign-on")
@@ -75,7 +79,7 @@ ms.author: jeedes
    2. 在 [Replicon 回覆 URL] 文字方塊中，輸入您的 Replicon **AssertionConsumerService** URL (例如：https://global.replicon.com/!/saml2/company/sso/post)。  
       
       > [!NOTE]
-      > 您可以從以下位置的 Replicon 中繼資料取得 URL：        **https://global.replicon.com/!/saml2/\<YourCompanyKey\>**。
+      > 您可以從以下位置的 Replicon 中繼資料取得 URL：**https://global.replicon.com/!/saml2/\<YourCompanyKey\>**。
       > 
       > 
    3. 依序按一下 [ **下一步**
@@ -103,7 +107,7 @@ ms.author: jeedes
 若要讓 Azure AD 使用者可以登入 Replicon，則必須將他們佈建至 Replicon。  
 在 Replicon 的情況下，需以手動的方式佈建。
 
-### <a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>若要設定使用者佈建，請執行下列步驟：
+### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>若要設定使用者佈建，請執行下列步驟：
 1. 在 Web 瀏覽器視窗中，以系統管理員身分登入您的 Replicon 公司網站。
 2. 移至 [管理] \> [使用者]。
    
@@ -129,7 +133,7 @@ ms.author: jeedes
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-replicon,-perform-the-following-steps:"></a>若要將使用者指派給 Replicon，請執行下列步驟：
+### <a name="to-assign-users-to-replicon-perform-the-following-steps"></a>若要將使用者指派給 Replicon，請執行下列步驟：
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Replicon] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -140,6 +144,9 @@ ms.author: jeedes
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

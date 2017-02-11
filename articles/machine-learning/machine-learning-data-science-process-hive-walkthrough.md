@@ -1,12 +1,12 @@
 ---
-title: Team Data Science Process 實務：使用 Hadoop 叢集 | Microsoft Docs
-description: 對採用 HDInsight Hadoop 叢集來建置和部署使用公開可用資料集模型的端對端案例使用 Team Data Science Process。
+title: "Team Data Science Process 實務：使用 Hadoop 叢集 | Microsoft Docs"
+description: "對採用 HDInsight Hadoop 叢集來建置和部署使用公開可用資料集模型的端對端案例使用 Team Data Science Process。"
 services: machine-learning,hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: e9e76c91-d0f6-483d-bae7-2d3157b86aa0
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,16 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/19/2016
 ms.author: hangzh;bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 6eb9fd3750eaf03547f93462d97bc30d30a9a8bc
+
 
 ---
-# <a name="the-team-data-science-process-in-action:-using-hdinsight-hadoop-clusters"></a>Team Data Science Process 實務：使用 HDInsight Hadoop 叢集
+# <a name="the-team-data-science-process-in-action-using-hdinsight-hadoop-clusters"></a>Team Data Science Process 實務：使用 HDInsight Hadoop 叢集
 在這個逐步解說中，我們會在採用 [Azure HDInsight Hadoop 叢集](https://azure.microsoft.com/services/hdinsight/)的端對端案例中使用 [Team Data Science Process (TDSP)](data-science-process-overview.md)，以對 [NYC Taxi Trips (NYC 計程車車程)](http://www.andresmh.com/nyctaxitrips/) 資料集內可公開使用的資料進行儲存、探索和特徵工程設計，並縮減取樣資料。 資料的模型是使用 Azure Machine Learning 建置，以處理二元和多元分類和迴歸預測工作。
 
 如需示範如何使用 HDInsight Hadoop 叢集，針對類似的案例處理更大 (1 TB) 資料集資料的逐步解說，請參閱 [Team Data Science Process - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-criteo-walkthrough.md)。
 
 此外，也可以使用 1 TB 資料集，使用 IPython Notebook 來完成本逐步解說中說明的工作。 想要嘗試這種方法的使用者，應該查閱 [使用 Hive ODBC 連線的 Criteo 逐步解說](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-hive-walkthrough-criteo.ipynb) 主題。
 
-## <a name="<a-name="dataset"></a>nyc-taxi-trips-dataset-description"></a><a name="dataset"></a>NYC 計程車車程資料集說明
+## <a name="a-namedatasetanyc-taxi-trips-dataset-description"></a><a name="dataset"></a>NYC 計程車車程資料集說明
 「NYC 計程車車程」資料大約是 20GB 以逗號分隔值 (CSV) 的壓縮檔 (未壓縮時可達 48GB)，其中包含超過 1 億 7300 萬筆個別車程及針對每趟車程支付的費用。 每趟車程記錄包括上車和下車的位置與時間、匿名的計程車司機駕照號碼，以及圓形徽章 (計程車的唯一識別碼) 號碼。 資料涵蓋 2013 年的所有車程，並且每月會在下列兩個資料集中加以提供：
 
 1. 'trip_data' CSV 檔案包含車程詳細資訊，例如乘客數、上車和下車地點、車程持續時間，以及車程長度。 以下是一些範例記錄：
@@ -49,7 +53,7 @@ ms.author: hangzh;bradsev
 
 稍後將這些資料儲存至 Hive 資料表時，我們將更詳細地加以說明。
 
-## <a name="<a-name="mltasks"></a>examples-of-prediction-tasks"></a><a name="mltasks"></a>預測工作的範例
+## <a name="a-namemltasksaexamples-of-prediction-tasks"></a><a name="mltasks"></a>預測工作的範例
 處理資料時，根據分析來決定您想要進行的預測種類，有助於釐清您必須在程序中包含的工作。
 以下是三個預測問題的範例，我們將在本逐步解說中說明哪一個構想是以 tip\_amount 為基礎：
 
@@ -66,7 +70,7 @@ ms.author: hangzh;bradsev
         Class 4 : tip_amount > $20
 3. **迴歸工作**：預測已針對某趟車程支付的小費金額。  
 
-## <a name="<a-name="setup"></a>set-up-an-hdinsight-hadoop-cluster-for-advanced-analytics"></a><a name="setup"></a>設定進階分析的 HDInsight Hadoop 叢集
+## <a name="a-namesetupaset-up-an-hdinsight-hadoop-cluster-for-advanced-analytics"></a><a name="setup"></a>設定進階分析的 HDInsight Hadoop 叢集
 > [!NOTE]
 > 這通常是 **管理** 工作。
 > 
@@ -81,7 +85,7 @@ ms.author: hangzh;bradsev
    * 建立叢集之後，請對叢集的前端節點啟用遠端存取。 巡覽至 [組態] 索引標籤，然後按一下 [啟用遠端]。 這個步驟可指定使用於遠端登入的使用者認證。
 3. [建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)：這個 Azure Machine Learning 工作區可用來建置機器學習服務模型。 使用 HDInsight 叢集完成初始資料探索和縮小取樣之後，會處理這項工作。
 
-## <a name="<a-name="getdata"></a>get-the-data-from-a-public-source"></a><a name="getdata"></a>從公用來源取得資料
+## <a name="a-namegetdataaget-the-data-from-a-public-source"></a><a name="getdata"></a>從公用來源取得資料
 > [!NOTE]
 > 這通常是 **管理** 工作。
 > 
@@ -97,7 +101,7 @@ ms.author: hangzh;bradsev
 
 1. 複製完成時，總共 24 個壓縮檔會位於選擇的資料夾中。 將下載的檔案解壓縮到您本機電腦上的相同目錄。 記下未壓縮檔案所在的資料夾。 接下來會將這個資料夾稱為 <path\_to\_unzipped_data\_files\>。
 
-## <a name="<a-name="upload"></a>upload-the-data-to-the-default-container-of-azure-hdinsight-hadoop-cluster"></a><a name="upload"></a>將資料上傳至 Azure HDInsight Hadoop 叢集的預設容器
+## <a name="a-nameuploadaupload-the-data-to-the-default-container-of-azure-hdinsight-hadoop-cluster"></a><a name="upload"></a>將資料上傳至 Azure HDInsight Hadoop 叢集的預設容器
 > [!NOTE]
 > 這通常是 **管理** 工作。
 > 
@@ -122,7 +126,7 @@ ms.author: hangzh;bradsev
 
 資料現在應該位於 Azure Blob 儲存體，而且準備好在 HDInsight 叢集內使用。
 
-## <a name="<a-name="#download-hql-files"></a>log-into-the-head-node-of-hadoop-cluster-and-and-prepare-for-exploratory-data-analysis"></a><a name="#download-hql-files"></a>登入 Hadoop 叢集的前端節點，並準備進行探索資料分析
+## <a name="a-namedownload-hql-filesalog-into-the-head-node-of-hadoop-cluster-and-and-prepare-for-exploratory-data-analysis"></a><a name="#download-hql-files"></a>登入 Hadoop 叢集的前端節點，並準備進行探索資料分析
 > [!NOTE]
 > 這通常是 **管理** 工作。
 > 
@@ -140,7 +144,7 @@ ms.author: hangzh;bradsev
 
 這兩個命令會將本逐步解說中所需的所有 .hql 檔案，下載到前端節點的本機目錄 C:\temp&#92;。
 
-## <a name="<a-name="#hive-db-tables"></a>create-hive-database-and-tables-partitioned-by-month"></a><a name="#hive-db-tables"></a>建立依月份分割的 Hive 資料庫和資料表
+## <a name="a-namehive-db-tablesacreate-hive-database-and-tables-partitioned-by-month"></a><a name="#hive-db-tables"></a>建立依月份分割的 Hive 資料庫和資料表
 > [!NOTE]
 > 這通常是 **管理** 工作。
 > 
@@ -208,7 +212,7 @@ ms.author: hangzh;bradsev
 
 如果您需要這些程序的任何額外協助，或想要調查替代程序，請參閱[從 Hadoop 命令列直接提交 Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)一節。
 
-## <a name="<a-name="#load-data"></a>load-data-to-hive-tables-by-partitions"></a><a name="#load-data"></a>依資料分割將資料載入 Hive 資料表
+## <a name="a-nameload-dataaload-data-to-hive-tables-by-partitions"></a><a name="#load-data"></a>依資料分割將資料載入 Hive 資料表
 > [!NOTE]
 > 這通常是 **管理** 工作。
 > 
@@ -225,12 +229,12 @@ sample\_hive\_load\_data\_by\_partitions.hql 檔案包含下列 **LOAD** 命令�
 
 請注意，我們在這裡使用於探索程序中的許多 Hive 查詢，只會查看單一資料分割或幾個資料分割。 但這些查詢可跨整個資料執行。
 
-### <a name="<a-name="#show-db"></a>show-databases-in-the-hdinsight-hadoop-cluster"></a><a name="#show-db"></a>顯示 HDInsight Hadoop 叢集中的資料庫
+### <a name="a-nameshow-dbashow-databases-in-the-hdinsight-hadoop-cluster"></a><a name="#show-db"></a>顯示 HDInsight Hadoop 叢集中的資料庫
 若要在 Hadoop 命令列視窗內顯示在 HDInsight Hadoop 叢集中建立的資料庫，可在 Hadoop 命令列中執行下列命令：
 
     hive -e "show databases;"
 
-### <a name="<a-name="#show-tables"></a>show-the-hive-tables-in-the-nyctaxidb-database"></a><a name="#show-tables"></a>顯示 nyctaxidb 資料庫中的 Hive 資料表
+### <a name="a-nameshow-tablesashow-the-hive-tables-in-the-nyctaxidb-database"></a><a name="#show-tables"></a>顯示 nyctaxidb 資料庫中的 Hive 資料表
 若要顯示 nyctaxidb 資料庫中的資料表，可在 Hadoop 命令列中執行下列命令：
 
     hive -e "show tables in nyctaxidb;"
@@ -275,7 +279,7 @@ sample\_hive\_load\_data\_by\_partitions.hql 檔案包含下列 **LOAD** 命令�
     month=9
     Time taken: 1.887 seconds, Fetched: 12 row(s)
 
-## <a name="<a-name="#explore-hive"></a>data-exploration-and-feature-engineering-in-hive"></a><a name="#explore-hive"></a>Hive 中的資料探索和特徵工程
+## <a name="a-nameexplore-hiveadata-exploration-and-feature-engineering-in-hive"></a><a name="#explore-hive"></a>Hive 中的資料探索和特徵工程
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -289,7 +293,7 @@ sample\_hive\_load\_data\_by\_partitions.hql 檔案包含下列 **LOAD** 命令�
 * 根據 **tip\_amount** 產生二進位和多類別分類標籤。
 * 藉由計算車程的直線距離來產生功能。
 
-### <a name="exploration:-view-the-top-10-records-in-table-trip"></a>探索：檢視 trip 資料表中的前 10 筆記錄
+### <a name="exploration-view-the-top-10-records-in-table-trip"></a>探索：檢視 trip 資料表中的前 10 筆記錄
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -309,7 +313,7 @@ sample\_hive\_load\_data\_by\_partitions.hql 檔案包含下列 **LOAD** 命令�
 
     hive -e "select * from nyctaxidb.fare where month=1 limit 10;" > C:\temp\testoutput
 
-### <a name="exploration:-view-the-number-of-records-in-each-of-the-12-partitions"></a>探索：檢視 12 個資料分割中每一個資料分割的記錄數目。
+### <a name="exploration-view-the-number-of-records-in-each-of-the-12-partitions"></a>探索：檢視 12 個資料分割中每一個資料分割的記錄數目。
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -379,7 +383,7 @@ sample\_hive\_load\_data\_by\_partitions.hql 檔案包含下列 **LOAD** 命令�
 
 兩個資料表中的記錄總數也會相同。 這會提供資料已正確載入的第二次驗證。
 
-### <a name="exploration:-trip-distribution-by-medallion"></a>探索：依據 medallion 的車程分佈
+### <a name="exploration-trip-distribution-by-medallion"></a>探索：依據 medallion 的車程分佈
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -413,7 +417,7 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。 我們可�
 
     hive -f "C:\temp\sample_hive_trip_count_by_medallion.hql" > C:\temp\queryoutput.tsv
 
-### <a name="exploration:-trip-distribution-by-medallion-and-hack_license"></a>探索：依據 medallion 和 hack_license 的車程分佈
+### <a name="exploration-trip-distribution-by-medallion-and-hacklicense"></a>探索：依據 medallion 和 hack_license 的車程分佈
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -438,7 +442,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 
 查詢結果會寫入本機檔案 C:\temp\queryoutput.tsv。
 
-### <a name="exploration:-assessing-data-quality-by-checking-for-invalid-longitude/latitude-records"></a>探索：藉由檢查無效的經度/緯度記錄來評估資料品質
+### <a name="exploration-assessing-data-quality-by-checking-for-invalid-longitudelatitude-records"></a>探索：藉由檢查無效的經度/緯度記錄來評估資料品質
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -462,7 +466,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 
 這個命令中包含的 *-S* 引數會隱藏 Hive Map/Reduce 工作的狀態畫面顯示。 這非常有用，因為它讓 Hive 查詢輸出的螢幕顯示更容易閱讀。
 
-### <a name="exploration:-binary-class-distributions-of-trip-tips"></a>探索：車程小費的二元類別分佈
+### <a name="exploration-binary-class-distributions-of-trip-tips"></a>探索：車程小費的二元類別分佈
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -488,7 +492,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
     hive -f "C:\temp\sample_hive_tipped_frequencies.hql"
 
 
-### <a name="exploration:-class-distributions-in-the-multiclass-setting"></a>探索：多元設定中的類別分佈
+### <a name="exploration-class-distributions-in-the-multiclass-setting"></a>探索：多元設定中的類別分佈
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -511,7 +515,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 
     hive -f "C:\temp\sample_hive_tip_range_frequencies.hql"
 
-### <a name="exploration:-compute-direct-distance-between-two-longitude-latitude-locations"></a>探索：計算兩個經度-緯度位置之間的直線距離
+### <a name="exploration-compute-direct-distance-between-two-longitude-latitude-locations"></a>探索：計算兩個經度-緯度位置之間的直線距離
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -568,7 +572,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 
 將此資料放在 Azure Blob 中的主要優點是，我們可以使用[匯入資料][import-data]模組來探索 Azure Machine Learning 中的資料。
 
-## <a name="<a-name="#downsample"></a>down-sample-data-and-build-models-in-azure-machine-learning"></a><a name="#downsample"></a>在 Azure Machine Learning 中縮小取樣和建置模型
+## <a name="a-namedownsampleadown-sample-data-and-build-models-in-azure-machine-learning"></a><a name="#downsample"></a>在 Azure Machine Learning 中縮小取樣和建置模型
 > [!NOTE]
 > 這通常是 **資料科學家** 工作。
 > 
@@ -750,7 +754,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 
 資料集現在可做為建置機器學習服務模型的起點。
 
-### <a name="<a-name="mlmodel"></a>build-models-in-azure-machine-learning"></a><a name="mlmodel"></a>在 Azure Machine Learning 中建置模型
+### <a name="a-namemlmodelabuild-models-in-azure-machine-learning"></a><a name="mlmodel"></a>在 Azure Machine Learning 中建置模型
 我們現在可在 [Azure Machine Learning](https://studio.azureml.net)中繼續建置和部署模型。 資料已就緒，可用來解決以上指出的預測問題：
 
 **1.二元分類**：預測是否已支付某趟車程的小費。
@@ -818,9 +822,9 @@ b. 對於迴歸問題，我們會藉由查看預測中的平方誤差、決定�
 此範例逐步解說及其隨附的指令碼是在 MIT 授權下由 Microsoft 所共用。 如需詳細資訊，請檢查 GitHub 上程式碼範例目錄中的 LICENSE.txt 檔案。
 
 ## <a name="references"></a>參考
-•   [Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/)  
-•   [FOILing NYC 的計程車車程資料 (作者為 Chris Whong)](http://chriswhong.com/open-data/foil_nyc_taxi/)   
-• [NYC 計程車和禮車委託研究和統計資料](https://www1.nyc.gov/html/tlc/html/about/statistics.shtml)
+•    [Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/)  
+•    [FOILing NYC 的計程車車程資料 (作者為 Chris Whong)](http://chriswhong.com/open-data/foil_nyc_taxi/)   
+•    [NYC 計程車和禮車委託研究和統計資料](https://www1.nyc.gov/html/tlc/html/about/statistics.shtml)
 
 [2]: ./media/machine-learning-data-science-process-hive-walkthrough/output-hive-results-3.png
 [11]: ./media/machine-learning-data-science-process-hive-walkthrough/hive-reader-properties.png
@@ -835,6 +839,6 @@ b. 對於迴歸問題，我們會藉由查看預測中的平方誤差、決定�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

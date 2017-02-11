@@ -1,12 +1,12 @@
 ---
-title: 媒體編碼器高階工作流程格式和轉碼器 | Microsoft Docs
-description: 本主題提供 Media Encoder Premium Workflow 格式和轉碼器的概觀
+title: "媒體編碼器高階工作流程格式和轉碼器 | Microsoft Docs"
+description: "本主題提供 Media Encoder Premium Workflow 格式和轉碼器的概觀"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erik43
-editor: ''
-
+editor: 
+ms.assetid: b197fce8-3b9b-4189-8d08-486810c0426f
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako;anilmur
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d7e3bc0ac0c1f0c6bbce0cc25fe7a8df2cc53836
+
 
 ---
 # <a name="media-encoder-premium-workflow-formats-and-codecs"></a>媒體編碼器高階工作流程格式和轉碼器
@@ -32,10 +36,10 @@ ms.author: juliako;anilmur
 
 **Media Encoder Premium Workflow** 支援 [本](#closed_captioning) 章節所述的隱藏式字幕。 
 
-## <a name="<a-id="input_formats"></a>media-encoder-premium-workflow-input-formats-and-codecs"></a><a id="input_formats"></a>Media Encoder Premium Worflow 輸入格式和轉碼器
+## <a name="a-idinputformatsamedia-encoder-premium-workflow-input-formats-and-codecs"></a><a id="input_formats"></a>Media Encoder Premium Worflow 輸入格式和轉碼器
 下節列出此媒體處理器支援做為輸入的轉碼器和檔案格式。
 
-### <a name="input-container/file-formats"></a>輸入容器/檔案格式
+### <a name="input-containerfile-formats"></a>輸入容器/檔案格式
 * Adobe® Flash® F4V
 * MXF/SMPTE 377M
 * GXF
@@ -64,10 +68,10 @@ ms.author: juliako;anilmur
 * Windows Media 音訊
 * WAV/PCM
 
-## <a name="<a-id="output_format"></a>media-encoder-premium-workflow-output-formats-and-codecs"></a><a id="output_format"></a>Media Encoder Premium Worflow 輸出格式和轉碼器
+## <a name="a-idoutputformatamedia-encoder-premium-workflow-output-formats-and-codecs"></a><a id="output_format"></a>Media Encoder Premium Worflow 輸出格式和轉碼器
 下節列出此媒體處理器支援做為輸出的轉碼器和檔案格式。
 
-### <a name="output-container/file-formats"></a>輸出容器/檔案格式
+### <a name="output-containerfile-formats"></a>輸出容器/檔案格式
 * Adobe® Flash® F4V
 * MXF (OP1a、XDCAM 和 AS02)
 * DPP (包括 AS11)
@@ -96,7 +100,7 @@ ms.author: juliako;anilmur
 * MP3 (MPEG-1 音訊層 3)
 * Windows Media 音訊
 
-## <a name="<a-id="closed_captioning"></a>support-for-closed-captioning"></a><a id="closed_captioning"></a>支援隱藏式字幕
+## <a name="a-idclosedcaptioningasupport-for-closed-captioning"></a><a id="closed_captioning"></a>支援隱藏式字幕
 內嵌時， **Media Encoder Premium Workflow** 支援：
 
 1. SCC 檔案
@@ -124,6 +128,9 @@ ms.author: juliako;anilmur
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

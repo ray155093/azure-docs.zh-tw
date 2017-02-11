@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/21/2016
-ms.author: darosa,sethm
+ms.date: 1/06/2016
+ms.author: darosa,sethm,jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: d36b40444af4ba68b016351f9ff016351e9fe58c
-ms.openlocfilehash: a4ccfdbc079a989477a80af7ac701dc77dce5a4f
+ms.sourcegitcommit: ed1469b7d12af84970d0675ac2af29580e319042
+ms.openlocfilehash: 11bac0e1877fa2c1cacc9a0a6e6d7870a17a44a2
 
 
 ---
@@ -31,9 +31,9 @@ ms.openlocfilehash: a4ccfdbc079a989477a80af7ac701dc77dce5a4f
 | --- | --- |
 | 高輸送量 |變動輸送量 |
 | 可預測的效能 |變動延遲 |
-| 可預測的價格 |隨用隨付變動價格 |
+| 固定價格 |隨用隨付變動價格 |
 | 相應增加和相應減少工作負載的能力 |N/A |
-| 訊息大小 > 256 KB |訊息大小為 256 KB |
+| 訊息大小上限為 1 MB |訊息大小上限為 256 KB |
 
 **服務匯流排進階傳訊**提供 CPU 和記憶體層級的資源隔離，讓每個客戶工作負載能隔離執行。 此資源容器稱為「傳訊單位」 。 每個進階命名空間都會被配置至少一個傳訊單位。 您可以為每個服務匯流排進階命名空間購買 1、2 或 4 個傳訊單位。 單一工作負載或實體可以跨越多個傳訊單位，而傳訊單位數目可以隨意變更，雖然計費是依 24 小時或每日費率收費。 結果是您的服務匯流排方案的效能可預測並可重複。
 
@@ -43,10 +43,19 @@ ms.openlocfilehash: a4ccfdbc079a989477a80af7ac701dc77dce5a4f
 以下是進階和標準傳訊層之間的一些差異。
 
 ### <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
-分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，不一定需要資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
+分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，效能不一定需要進行資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
 
 ### <a name="express-entities"></a>快速實體
 因為進階傳訊在完全隔離的執行階段環境中執行，所以在進階命名空間中不支援快速實體。 如需快速功能的詳細資訊，請參閱 [QueueDescription.EnableExpress](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性。
+
+## <a name="get-started-with-premium-messaging"></a>開始使用進階傳訊
+
+開始使用進階訊息非常簡單，其程序類似於標準傳訊。 首先[建立命名空間](service-bus-create-namespace-portal.md)。 請務必選取 [定價層] 之下的 [進階]。
+
+![create-premium-namespace][create-premium-namespace]
+
+您也可以[使用 Azure Resource Manager 範本建立進階命名空間](https://azure.microsoft.com/en-us/resources/templates/101-servicebus-pn-ar/)。
+
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解服務匯流排訊息，請參閱下列主題。
@@ -56,9 +65,12 @@ ms.openlocfilehash: a4ccfdbc079a989477a80af7ac701dc77dce5a4f
 * [服務匯流排訊息概觀](service-bus-messaging-overview.md)
 * [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
+<!--Image references-->
+
+[create-premium-namespace]: ./media/service-bus-premium-messaging/select-premium-tier.png
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO2-->
 
 

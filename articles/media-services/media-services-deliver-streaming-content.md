@@ -1,12 +1,12 @@
 ---
-title: 使用 .NET 發佈 Azure 媒體服務內容
-description: 了解如何建立定位器，用來建置串流 URL。程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。
+title: "使用 .NET 發佈 Azure 媒體服務內容"
+description: "了解如何建立定位器，用來建置串流 URL。 程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。"
 author: juliako
 manager: erikre
-editor: ''
+editor: 
 services: media-services
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: c53b1f83-4cb1-4b09-840f-9c145b7d6f8d
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f566b8f75d26e3d786ce3396dd133478af38da76
+
 
 ---
-# 使用 .NET 發佈 Azure 媒體服務內容
+# <a name="publish-azure-media-services-content-using-net"></a>使用 .NET 發佈 Azure 媒體服務內容
 > [!div class="op_single_selector"]
 > * [REST](media-services-rest-deliver-streaming-content.md)
 > * [.NET](media-services-deliver-streaming-content.md)
@@ -24,30 +28,30 @@ ms.author: juliako
 > 
 > 
 
-## Overview
-您可以建立隨選串流定位器及建置串流 URL，串流處理調適性位元速率 MP4 集。[為資產編碼](media-services-encode-asset.md)主題說明如何編碼為調適性位元速率 MP4 集。
+## <a name="overview"></a>Overview
+您可以建立隨選串流定位器及建置串流 URL，串流處理調適性位元速率 MP4 集。 [為資產編碼](media-services-encode-asset.md) 主題說明如何編碼為調適性位元速率 MP4 集。 
 
 > [!NOTE]
-> 如果您的內容已加密，請在建立定位器之前設定資產傳遞原則 (如[這個](media-services-dotnet-configure-asset-delivery-policy.md)主題中所述)。
+> 如果您的內容已加密，請在建立定位器之前設定資產傳遞原則 (如 [這個](media-services-dotnet-configure-asset-delivery-policy.md) 主題中所述)。 
 > 
 > 
 
-您也可以使用隨選串流定位器來建置指向可漸進式下載之 MP4 檔案的 URL。
+您也可以使用隨選串流定位器來建置指向可漸進式下載之 MP4 檔案的 URL。  
 
-本主題說明如何建立隨選串流定位器以發佈資產及建置 Smooth、MPEG DASH 和 HLS 串流 URL。它也會示範如何建置漸進式下載 URL。
+本主題說明如何建立隨選串流定位器以發佈資產及建置 Smooth、MPEG DASH 和 HLS 串流 URL。 它也會示範如何建置漸進式下載 URL。 
 
-## 建立隨選串流定位器
+## <a name="create-an-ondemand-streaming-locator"></a>建立隨選串流定位器
 若要建立隨選串流定位器並取得 URL，您需要執行下列動作：
 
 1. 如果內容已加密，請定義存取原則。
 2. 建立隨選串流定位器。
-3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。
+3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。 
    
-   如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。
-4. 建置資訊清單檔或 MP4 檔案的 URL。
+   如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。  
+4. 建置資訊清單檔或 MP4 檔案的 URL。 
 
-### 使用 Media Services .NET SDK
-建置串流 URL
+### <a name="use-media-services-net-sdk"></a>使用 Media Services .NET SDK
+建置串流 URL 
 
     private static void BuildStreamingURLs(IAsset asset)
     {
@@ -97,11 +101,11 @@ ms.author: juliako
 
 
 > [!NOTE]
-> 您也可以透過 SSL 連線串流您的內容。若要這樣做，請確定您的串流 URL 以 HTTPS 開頭。
+> 您也可以透過 SSL 連線串流您的內容。 若要這樣做，請確定您的串流 URL 以 HTTPS 開頭。 
 > 
 > 
 
-建置漸進式下載 URL
+建置漸進式下載 URL 
 
     private static void BuildProgressiveDownloadURLs(IAsset asset)
     {
@@ -140,7 +144,7 @@ ms.author: juliako
 
     . . . 
 
-### 使用 Media Services .NET SDK 延伸模組
+### <a name="use-media-services-net-sdk-extensions"></a>使用 Media Services .NET SDK 延伸模組
 下列程式碼會呼叫 .NET SDK 延伸模組方法，以針對調適性串流建立定位器並產生 Smooth Streaming、HLS 和 MPEG-DASH URL。
 
     // Create a loctor.
@@ -160,13 +164,19 @@ ms.author: juliako
     Console.WriteLine(mpegDashUri);
 
 
-## 媒體服務學習路徑
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## 另請參閱
-[下載資產](media-services-deliver-asset-download.md) [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)
+## <a name="see-also"></a>另請參閱
+[下載資產](media-services-deliver-asset-download.md)
+[設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

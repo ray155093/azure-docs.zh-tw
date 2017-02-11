@@ -1,19 +1,23 @@
 ---
-title: 使用增量快照備份和復原 Azure 虛擬機器 | Microsoft Docs
-description: 使用增量快照，建立備份和復原 Azure 虛擬機器磁碟的自訂解決方案。
+title: "使用增量快照備份和復原 Azure 虛擬機器 | Microsoft Docs"
+description: "使用增量快照，建立備份和復原 Azure 虛擬機器磁碟的自訂解決方案。"
 services: storage
 documentationcenter: na
 author: aungoo-msft
 manager: tadb
 editor: tysonn
-
+ms.assetid: 3524b987-bd65-4e35-83e7-fbc2136643e5
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/18/2016
+ms.date: 11/17/2016
 ms.author: aungoo
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 9ade78c954ca6443354b198c7141b6fb5c88afdb
+
 
 ---
 # <a name="back-up-azure-virtual-machine-disks-with-incremental-snapshots"></a>使用增量快照集備份 Azure 虛擬機器磁碟
@@ -22,7 +26,7 @@ Azure 儲存體提供拍攝 Blob 快照的功能。 快照會擷取該時間點�
 
 Azure 虛擬機器磁碟在 Azure 儲存體中會儲存為分頁 Blob。 本文中我們所討論的是虛擬機器磁碟的備份策略，因此，我們指的是分頁 Blob 內容中的快照。 若要深入了解快照，請參閱 [建立 Blob 的快照](https://msdn.microsoft.com/library/azure/hh488361.aspx)。
 
-## <a name="what-is-a-snapshot?"></a>什麼是快照？
+## <a name="what-is-a-snapshot"></a>什麼是快照？
 Blob 快照是在某個時間點擷取的 Blob 唯讀版本。 一旦建立快照集後，即可加以讀取、複製或刪除，但不能修改。 快照集提供在某個時間點備份 Blob 的方法。 在 REST 2015-04-05 版之前，您可以複製完整快照集。 使用 REST 2015-07-08 版或更新版本時，您也可以複製增量快照集。
 
 ## <a name="full-snapshot-copy"></a>完整快照複製
@@ -116,6 +120,9 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。 一旦建立快�
 * [建立 Blob 的快照集](https://msdn.microsoft.com/library/azure/hh488361.aspx)
 * [規劃 VM 備份基礎結構](../backup/backup-azure-vms-introduction.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

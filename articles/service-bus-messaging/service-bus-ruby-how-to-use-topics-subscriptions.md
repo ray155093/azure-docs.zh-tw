@@ -1,22 +1,26 @@
 ---
-title: 如何使用服務匯流排主題 (Ruby) | Microsoft Docs
-description: 了解如何在 Azure 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 Ruby 應用程式撰寫。
-services: service-bus
+title: "如何使用服務匯流排主題 (Ruby) | Microsoft Docs"
+description: "了解如何在 Azure 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 Ruby 應用程式撰寫。"
+services: service-bus-messaging
 documentationcenter: ruby
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 3ef2295e-7c5f-4c54-a13b-a69c8045d4b6
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: ruby
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a033aee05db1a837e0891256db26d63fe80e05a2
+
 
 ---
-# <a name="how-to-use-service-bus-topics/subscriptions"></a>如何使用服務匯流排主題/訂用帳戶
+# <a name="how-to-use-service-bus-topicssubscriptions"></a>如何使用服務匯流排主題/訂用帳戶
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
 本文說明如何從 Ruby 應用程式使用服務匯流排主題和訂用帳戶。 涵蓋的案例包括**建立主題和訂用帳戶、建立訂用帳戶篩選器、傳送訊息**至主題、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。 如需主題和訂用帳戶的詳細資訊，請參閱[後續步驟](#next-steps)一節。
@@ -59,7 +63,7 @@ ms.author: sethm
 > 
 
 ## <a name="create-a-ruby-application"></a>建立 Ruby 應用程式
-如需指示，請參閱[在 Azure 上建立 Ruby 應用程式](../virtual-machines/virtual-machines-linux-classic-ruby-rails-web-app.md)。
+如需指示，請參閱[在 Azure 上建立 Ruby 應用程式](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
 若要使用服務匯流排，請下載並使用 Ruby Azure 套件，其中包含一組能與儲存體 REST 服務通訊的便利程式庫。
@@ -112,7 +116,7 @@ topic = azure_service_bus_service.create_topic(topic)
 
 訂用帳戶是持續性的，它們會持續存在，直到本身或相關的主題遭到刪除為止。 如果應用程式含有建立訂用帳戶的邏輯，它應該會先使用 getSubscription 方法檢查訂用帳戶是否存在。
 
-### <a name="create-a-subscription-with-the-default-(matchall)-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
+### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
 如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「all-messages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
 ```
@@ -221,6 +225,6 @@ azure_service_bus_service.delete_subscription("test-topic", "high-messages")
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,56 +1,57 @@
 ---
-title: 使用 Maven 建置 HBase 應用程式，並部署到以 Windows 為基礎的 HDInsight | Microsoft Docs
-description: 了解如何使用 Apache Maven 建置以 Java 為基礎的 Apache HBase 應用程式，然後部署至以 Windows 為基礎的 Azure HDInsight 叢集。
+title: "使用 Maven 建置 HBase 應用程式，並部署到以 Windows 為基礎的 HDInsight | Microsoft Docs"
+description: "了解如何使用 Apache Maven 建置以 Java 為基礎的 Apache HBase 應用程式，然後部署至以 Windows 為基礎的 Azure HDInsight 叢集。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 7f4a4e02-45ab-40dd-842b-3ec034f256c9
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/25/2016
+ms.date: 10/03/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
+
 
 ---
-# 使用 Maven 建置搭配使用 HBase 和以 Window 為基礎的 HDInsight (Hadoop) 的 Java 應用程式
-了解如何使用 Apache Maven 以 Java 建立和建置 [Apache HBase](http://hbase.apache.org/) 應用程式。然後在 Azure HDInsight (Hadoop) 中使用此應用程式。
+# <a name="use-maven-to-build-java-applications-that-use-hbase-with-windows-based-hdinsight-hadoop"></a>使用 Maven 建置搭配使用 HBase 和以 Window 為基礎的 HDInsight (Hadoop) 的 Java 應用程式
+了解如何使用 Apache Maven 以 Java 建立和建置 [Apache HBase](http://hbase.apache.org/) 應用程式。 然後在 Azure HDInsight (Hadoop) 中使用此應用程式。
 
-[Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。在本文中，您將了解如何用它來建立基本的 Java 應用程式，以便在 Azure HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
+[Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。 在本文中，您會了解如何用它來建立基本的 Java 應用程式，以便在 Azure HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
 
 > [!NOTE]
-> 本文件中的步驟是假設您使用以 Windows 為基礎的 HDInsight 叢集。如需使用以 Linux 為基礎的 HDInsight 叢集資訊，請參閱 [使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight 之 Java 應用程式](hdinsight-hbase-build-java-maven-linux.md)
+> 本文件中的步驟是假設您使用以 Windows 為基礎的 HDInsight 叢集。 如需使用以 Linux 為基礎的 HDInsight 叢集資訊，請參閱 [使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight 之 Java 應用程式](hdinsight-hbase-build-java-maven-linux.md)
 > 
 > 
 
-## 需求
+## <a name="requirements"></a>需求
 * [Java platform JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 7 或更新版本
 * [Maven](http://maven.apache.org/)
-* [搭配使用 HBase 和以 Windows 為基礎的 HDInsight 叢集](hdinsight-hbase-get-started.md#create-hbase-cluster)
-  
-  > [!NOTE]
-  > 這份文件中的步驟已經過 HDInsight 叢集 3.2 版和 3.3 版的測試.在範例中提供的預設值是 HDInsight 3.3 叢集。
-  > 
-  > 
+* [搭配使用 HBase 和以 Windows 為基礎的 HDInsight 叢集](hdinsight-hbase-tutorial-get-started.md#create-hbase-cluster)
 
-## 建立專案
-1. 從開發環境的命令列中，將目錄變更至您想要建立專案的位置，例如 `cd code\hdinsight`
+    > [AZURE.NOTE] 這份文件中的步驟已經過 HDInsight 叢集 3.2 版和 3.3 版的測試. 在範例中提供的預設值是 HDInsight 3.3 叢集。
+
+## <a name="create-the-project"></a>建立專案
+1. 從開發環境的命令列中，將目錄變更至您想要建立專案的位置，例如 `cd code\hdinsight`。
 2. 使用隨 Maven 一起安裝的 **mvn** 命令來產生專案的結構。
    
         mvn archetype:generate -DgroupId=com.microsoft.examples -DartifactId=hbaseapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
    
-    這會在目前的目錄中建立新目錄，其名稱由 **artifactID** 參數指定 (此範例中為 **hbaseapp**)。 此目錄將包含下列項目：
+    此命令會在目前的位置建立目錄，其名稱由 **artifactID** 參數指定 (此範例中為 **hbaseapp**)。此目錄包含下列項目：
    
    * **pom.xml**：專案物件模型 ([POM](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)) 包含用來建置專案之資訊和組態的詳細資料。
-   * **src**：您將在含有 **main\\java\\com\\microsoft\\examples** 目錄的目錄處撰寫應用程式。
-3. 刪除 **src\\test\\java\\com\\microsoft\\examples\\apptest.java** 檔案，因為此範例中不會用到。
+   * **src**：含有 **main\java\com\microsoft\examples** 目錄的目錄，您將在此處撰寫應用程式。
+3. 刪除 **src\test\java\com\microsoft\examples\apptest.java** 檔案，因為此範例中不會用到。
 
-## 更新專案物件模型
-1. 編輯 **pom.xml** 檔案，並在 `<dependencies>` 區段內加入下列程式碼。
+## <a name="update-the-project-object-model"></a>更新專案物件模型
+1. 編輯 **pom.xml** 檔案，並在 `<dependencies>` 區段內加入下列程式碼：
    
         <dependency>
           <groupId>org.apache.hbase</groupId>
@@ -58,17 +59,17 @@ ms.author: larryfr
           <version>1.1.2</version>
         </dependency>
    
-    如此會告知 Maven，表示專案需要 **hbase-client** 版本 **1.1.2**。編譯時，將會從預設 Maven 儲存機制下載此版本。您可以使用 [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar)，進一步了解此相依性的詳細資訊。
+    此區段會告知 Maven，表示專案需要 **hbase-client** 版本 **1.1.2**。 編譯時，將會從預設 Maven 儲存機制下載此相依性。 您可以使用 [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar) ，進一步了解此相依性的詳細資訊。
    
    > [!IMPORTANT]
-   > 版本號碼必須符合隨附於 HDInsight 叢集的 HBase 版本。您可以使用下表來尋找正確的版本號碼。
+   > 版本號碼必須符合隨附於 HDInsight 叢集的 HBase 版本。 您可以使用下表來尋找正確的版本號碼。
    > 
    > 
    
    | HDInsight 叢集版本 | 要使用的 HBase 版本 |
    | --- | --- |
-   | 3\.2 |0\.98.4-hadoop2 |
-   | 3\.3 |1\.1.2 |
+   | 3.2 |0.98.4-hadoop2 |
+   | 3.3 |1.1.2 |
    
     如需 HDInsight 版本和元件的詳細資訊，請參閱 [HDInsight 提供的 Hadoop 元件有什麼不同](hdinsight-component-versioning.md)。
 2. 如果您使用 HDInsight 3.3 叢集，也必須將下列內容加入 `<dependencies>` 區段︰
@@ -79,8 +80,8 @@ ms.author: larryfr
             <version>4.4.0-HBase-1.1</version>
         </dependency>
    
-    此動作會載入 Phoenix 核心元件，可供 Hbase 1.1.x 版使用。
-3. 將下列程式碼加入 **pom.xml** 檔案。這必須在檔案中的 `<project>...</project>` 標籤內，例如在 `</dependencies>` 和 `</project>`之間。
+    此相依性會載入 Phoenix 核心元件，可供 Hbase 1.1.x 版使用。
+3. 將下列程式碼加入 **pom.xml** 檔案。 此區段必須在檔案中的 `<project>...</project>` 標籤內，例如在 `</dependencies>` 和 `</project>` 之間。
    
         <build>
           <sourceDirectory>src</sourceDirectory>
@@ -125,18 +126,18 @@ ms.author: larryfr
           </plugins>
         </build>
    
-    這會設定 HBase 組態資訊的資源 (**conf\\hbase-site.xml**,)。
+    `<resources>` 區段會設定包含 HBase 組態資訊的資源 (**conf\hbase-site.xml**)。
    
    > [!NOTE]
-   > 您也可以透過程式碼來設定組態值。相關作法請參閱接下來 **CreateTable** 範例中的註解。
+   > 您也可以透過程式碼來設定組態值。 相關作法請參閱接下來 **CreateTable** 範例中的註解。
    > 
    > 
    
-    這也會設定 [Maven Compiler 外掛程式](http://maven.apache.org/plugins/maven-compiler-plugin/)和 [Maven Shade 外掛程式](http://maven.apache.org/plugins/maven-shade-plugin/)。Compiler 外掛程式用來編譯拓撲。Shade 外掛程式用來防止以 Maven 所建置的 JAR 封裝發生授權重複。使用此項目的理由在於，重複的授權檔會導致 HDInsight 叢集在執行階段發生錯誤。使用 maven-shade-plugin 搭配 `ApacheLicenseResourceTransformer` 實作可防止此錯誤。
+    此 `<plugins>` 區段會設定 [Maven Compiler 外掛程式](http://maven.apache.org/plugins/maven-compiler-plugin/)和 [Maven Shade 外掛程式](http://maven.apache.org/plugins/maven-shade-plugin/)。 Compiler 外掛程式用來編譯拓撲。 Shade 外掛程式用來防止以 Maven 所建置的 JAR 封裝發生授權重複。 使用此項目的理由在於，重複的授權檔會導致 HDInsight 叢集在執行階段發生錯誤。 使用 maven-shade-plugin 搭配 `ApacheLicenseResourceTransformer` 實作可防止此錯誤。
    
     maven-shade-plugin 也會產生 uber jar (或 fat jar)，其含有應用程式需要的所有相依性。
 4. 儲存 **pom.xml** 檔案。
-5. 在 **hbaseapp** 目錄中建立名為 **conf** 的新目錄。在 **conf** 目錄中，建立名為 **hbase-site.xml** 的新檔案，並使用下列項目做為內容：
+5. 在 **conf** in the **hbaseapp** 的新目錄。 在 **conf** 目錄中，建立名為 **hbase-site.xml** 的檔案。 使用下列項目做為檔案的內容：
    
         <?xml version="1.0"?>
         <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -179,13 +180,13 @@ ms.author: larryfr
     此檔案用來載入 HDInsight 叢集的 HBase 組態。
    
    > [!NOTE]
-   > 這是一個極小的 hbase-site.xml 檔案，其包含 HDInsight 叢集最低限度的設定。
+   > 這是最小的 hbase-site.xml 檔案，其包含 HDInsight 叢集最低限度的設定。
    > 
    > 
 6. 儲存 **hbase-site.xml** 檔案。
 
-## 建立應用程式
-1. 移至 **hbaseapp\\src\\main\\java\\com\\microsoft\\examples** 目錄，並將 app.java 檔案重新命名為 **CreateTable.java**。
+## <a name="create-the-application"></a>建立應用程式
+1. 移至 **hbaseapp\src\main\java\com\microsoft\examples** 目錄，並將 app.java 檔案重新命名為 **CreateTable.java**。
 2. 開啟 **CreateTable.java** 檔案，並以下列程式碼取代現有的內容：
    
         package com.microsoft.examples;
@@ -254,7 +255,7 @@ ms.author: larryfr
    
     這是 **CreateTable** 類別，將會建立名為 **people** 的資料表，並填入一些預先定義的使用者。
 3. 儲存 **CreateTable.java** 檔案。
-4. 在 **hbaseapp\\src\\main\\java\\com\\microsoft\\examples** 目錄中，建立名為 **SearchByEmail.java** 的新檔案。使用下列項目做為此檔案的內容：
+4. 在 **hbaseapp\src\main\java\com\microsoft\examples** 目錄中，建立名為 **SearchByEmail.java** 的新檔案。 使用下列程式碼做為此檔案的內容：
    
         package com.microsoft.examples;
         import java.io.IOException;
@@ -327,9 +328,9 @@ ms.author: larryfr
           }
         }
    
-    **SearchByEmail** 類別可用來依電子郵件地址查詢資料列。因為此類別使用規則運算式篩選器，您可以在使用此類別時提供字串或規則運算式。
+    **SearchByEmail** 類別可用來依電子郵件地址查詢資料列。 因為此類別使用規則運算式篩選器，您可以在使用此類別時提供字串或規則運算式。
 5. 儲存 **SearchByEmail.java** 檔案。
-6. 在 **hbaseapp\\src\\main\\hava\\com\\microsoft\\examples** 目錄中，建立名為 **DeleteTable.java** 的新檔案。使用下列項目做為此檔案的內容：
+6. 在 **hbaseapp\src\main\hava\com\microsoft\examples** 目錄中，建立名為 **DeleteTable.java** 的新檔案。 使用下列程式碼做為此檔案的內容：
    
         package com.microsoft.examples;
         import java.io.IOException;
@@ -354,26 +355,26 @@ ms.author: larryfr
     此類別是用來清理此範例，作法是停用並卸除 **CreateTable** 類別所建立的資料表。
 7. 儲存 **DeleteTable.java** 檔案。
 
-## 建置和封裝應用程式
+## <a name="build-and-package-the-application"></a>建置和封裝應用程式
 1. 開啟命令提示字元，切換至 **hbaseapp** 目錄。
 2. 使用下列命令來建置含有應用程式的 JAR：
    
         mvn clean package
    
     這會清除任何先前的組建成品、下載任何尚未安裝的相依性，然後建置並封裝應用程式。
-3. 指令完成時，**hbaseapp\\target** 目錄將包含一個名為 **hbaseapp-1.0-SNAPSHOT.jar** 的檔案。
+3. 指令完成後，**hbaseapp\target** 目錄會包含一個名為 **hbaseapp-1.0-SNAPSHOT.jar** 的檔案。
    
    > [!NOTE]
    > **hbaseapp-1.0-SNAPSHOT.jar** 檔案是一個 uber jar (有時稱為 fat jar)，內含執行應用程式所需的所有相依性。
    > 
    > 
 
-## 上傳 JAR 檔案並啟動工作
-有許多方法可將檔案上傳至 HDInsight 叢集，如[在 HDInsight 中將 Hadoop 工作的資料上傳](hdinsight-upload-data.md)中所述。下列步驟會使用 Azure PowerShell。
+## <a name="upload-the-jar-file-and-start-a-job"></a>上傳 JAR 檔案並啟動工作
+有許多方法可將檔案上傳至 HDInsight 叢集，如 [在 HDInsight 中將 Hadoop 工作的資料上傳](hdinsight-upload-data.md)中所述。 下列步驟會使用 Azure PowerShell。
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-1. 安裝並設定 Azure PowerShell 之後，建立名為 **hbase-runner.psm1** 的新檔案。使用下列項目做為此檔案的內容：
+1. 安裝並設定 Azure PowerShell 之後，建立名為 **hbase-runner.psm1** 的新檔案。 使用下列項目做為此檔案的內容：
    
         <#
         .SYNOPSIS
@@ -588,26 +589,26 @@ ms.author: larryfr
    
         PS C:\ Import-Module c:\path\to\hbase-runner.psm1
    
-    將路徑變更為稍早建立的 **hbase-runner.psm1** 檔案的位置。這會為此 Azure PowerShell 工作階段註冊模組。
+    將路徑變更為稍早建立的 **hbase-runner.psm1** 檔案的位置。 這會為此 Azure PowerShell 工作階段註冊模組。
 4. 使用下列命令將 **hbaseapp-1.0-SNAPSHOT.jar** 上傳至 HDInsight 叢集。
    
         Add-HDInsightFile -localPath target\hbaseapp-1.0-SNAPSHOT.jar -destinationPath example/jars/hbaseapp-1.0-SNAPSHOT.jar -clusterName hdinsightclustername
    
-    將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。此命令會接著將 **hbaseapp-1.0-SNAPSHOT.jar** 上傳至 HDInsight 叢集主要儲存體中的 **example/jars** 位置。
-5. 檔案上傳之後使用以下程式碼，建立一個用 **hbaseapp** 的新資料表：
+    將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。 此命令會將 **hbaseapp-1.0-SNAPSHOT.jar** 上傳至 HDInsight 叢集主要儲存體中的 **example/jars** 位置。
+5. 檔案上傳之後，使用以下程式碼建立使用 **hbaseapp** 的資料表：
    
         Start-HBaseExample -className com.microsoft.examples.CreateTable -clusterName hdinsightclustername
    
     將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。
    
-    此命令會在 HDInsight 叢集中建立名為 **people** 的新資料表。此命令不會在主控台視窗中顯示任何輸出。
+    此命令會在 HDInsight 叢集中建立名為 **people** 的新資料表。 此命令不會在主控台視窗中顯示任何輸出。
 6. 若要在資料表中搜尋項目，請使用下列命令：
    
         Start-HBaseExample -className com.microsoft.examples.SearchByEmail -clusterName hdinsightclustername -emailRegex contoso.com
    
     將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。
    
-    此命令會使用 **SearchByEmail** 類別來搜尋資料行系列 **contactinformation**、資料行 **email** 包含字串 **contoso.com** 的任何資料列。您應該會得到下列結果：
+    此命令會使用 **SearchByEmail** 類別來搜尋資料行系列 **contactinformation**、資料行 **email** 包含字串 **contoso.com** 的任何資料列。 您應該會得到下列結果：
    
           Franklin Holtz - ID: 2
           Franklin Holtz - franklin@contoso.com - ID: 2
@@ -616,17 +617,22 @@ ms.author: larryfr
           Gabriela Ingram - ID: 6
           Gabriela Ingram - gabriela@contoso.com - ID: 6
    
-    使用 **fabrikam.com** 做為 `-emailRegex` 值會傳回電子郵件欄位中含有 **fabrikam.com** 的使用者。因為此搜尋是以規則運算式篩選器來實作，您也可以輸入像是 **^r** 這樣的規則運算式，其將傳回電子郵件以字母 'r' 開頭的項目。
+    使用 **fabrikam.com** 做為 `-emailRegex` 值會傳回電子郵件欄位中含有 **fabrikam.com** 的使用者。 因為此搜尋是以規則運算式篩選器來實作，您也可以輸入像是 **^r** 這樣的規則運算式，其會傳回電子郵件以字母 'r' 開頭的項目。
 
-## 刪除資料表
+## <a name="delete-the-table"></a>刪除資料表
 練習完範例之後，請從 Azure PowerShell 工作階段中使用下列命令，以刪除此範例所使用的 **people** 資料表：
 
     Start-HBaseExample -className com.microsoft.examples.DeleteTable -clusterName hdinsightclustername
 
 將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。
 
-## 疑難排解
-### 使用 Start-HBaseExample 時沒有結果或傳回非預期的結果
+## <a name="troubleshooting"></a>疑難排解
+### <a name="no-results-or-unexpected-results-when-using-start-hbaseexample"></a>使用 Start-HBaseExample 時沒有結果或傳回非預期的結果
 請使用 `-showErr` 參數，以檢視執行工作時所產生的標準錯誤 (STDERR)。
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

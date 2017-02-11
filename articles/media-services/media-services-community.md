@@ -1,12 +1,12 @@
 ---
-title: Azure 媒體服務社群概觀 | Microsoft Docs
-description: 'Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、查看新的影片和播客、提出問題並提供意見反應的不同方式。 '
+title: "Azure 媒體服務社群概觀 | Microsoft Docs"
+description: "Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、查看新的影片和播客、提出問題並提供意見反應的不同方式。 "
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 0df020f4-8297-4f31-92bf-de098283e997
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 735f8d81ce089727b14b8b67de7233ab71fc5abd
+
 
 ---
 # <a name="azure-media-services-community"></a>Azure 媒體服務社群
@@ -56,6 +60,9 @@ Azure 媒體服務的主要電子郵件是： **mediaservices@microsoft.com**。
 | Azure 媒體瀏覽器 |amse@microsoft.com |
 | 工作流程設計工具 |mepd@microsoft.com |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

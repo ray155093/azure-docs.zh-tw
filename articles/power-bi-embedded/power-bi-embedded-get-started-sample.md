@@ -1,13 +1,13 @@
 ---
-title: 以範例作為起始
-description: 對於 Power BI Embedded，使用 SDK 將互動式 Power BI 報告加入您的商務智慧應用程式中
+title: "以範例作為起始"
+description: "對於 Power BI Embedded，使用 SDK 將互動式 Power BI 報告加入您的商務智慧應用程式中"
 services: power-bi-embedded
-documentationcenter: ''
+documentationcenter: 
 author: guyinacube
 manager: erikre
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: d8a9ef78-ad4e-4bc7-9711-89172dc5c548
 ms.service: power-bi-embedded
 ms.devlang: NA
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 10/04/2016
 ms.author: asaxton
+translationtype: Human Translation
+ms.sourcegitcommit: 830eb6627cae71f358b9790791b1d86f7c82c566
+ms.openlocfilehash: 90207623273c3c8f959a07425e1bdf7324649067
+
 
 ---
 # <a name="get-started-with-power-bi-embedded-sample"></a>開始使用 Power BI Embedded 範例
@@ -28,8 +32,8 @@ ms.author: asaxton
 
 > [!NOTE]
 > 在您可以設定及執行 Power BI Embedded 開始使用範例之前，您需要在您的 Azure 訂用帳戶中至少建立一個「工作區集合」。 若要了解如何在 Azure 入口網站中建立**工作區集合**，請參閱[開始使用 Power BI Embedded](power-bi-embedded-get-started.md)。
-> 
-> 
+>
+>
 
 ## <a name="configure-the-sample-app"></a>設定範例應用程式
 讓我們逐步引導您設定 Visual Studio 開發環境，以存取執行範例應用程式時所需的元件。
@@ -39,15 +43,15 @@ ms.author: asaxton
 3. 建置方案。
 4. 執行 **ProvisionSample** 主控台應用程式。 您可以在範例主控台應用程式中，佈建工作區並匯入 PBIX 檔案。
 5. 若要佈建新的**工作區**，請選取選項 5，[在現有的工作區集合中佈建新的工作區]。
-   
+
     ![](media\\powerbi-embedded-get-started-sample\\console-option-5.png)
-6. 輸入您的 [工作區集合] 名稱，以及 [存取金鑰]。 您可以在「Azure 入口網站」 中取得這些項目。 若要深入了解如何取得存取金鑰 ，請參閱＜開始使用 Microsoft Power BI Embedded＞中的 [檢視 Power BI API 存取金鑰](power-bi-embedded-get-started-sample.md#view-access-keys) 。
-   
+6. 輸入您的 [工作區集合] 名稱，以及 [存取金鑰]。 您可以在「Azure 入口網站」 中取得這些項目。 若要深入了解如何取得存取金鑰 ，請參閱＜開始使用 Microsoft Power BI Embedded＞中的 [檢視 Power BI API 存取金鑰](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) 。
+
     ![](media\\powerbi-embedded-get-started-sample\\azure-portal.png)
 7. 複製並儲存新建立的「工作區識別碼」  ，以供稍後在此文章中使用。 「工作區識別碼」建立之後，您就可以在「Azure 入口網站」中找到它。
-   
+
     ![](media\\powerbi-embedded-get-started-sample\\workspace-id.png)
-8. 若要將 PBIX 檔案匯入到您的**工作區**，請選取選項** 6。**\[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您還沒有 PBIX 檔案，您可以下載 [零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
+8. 若要將 PBIX 檔案匯入到您的**工作區**，請選取選項** 6。**\[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您現在沒有 PBIX 檔案，可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
 9. 如果出現提示，請輸入易記名稱做為您「資料集」 的名稱。
 
 您應該會看到像這樣的回應：
@@ -59,8 +63,8 @@ Checking import state... Succeeded
 
 > [!NOTE]
 > If your PBIX file contains any direct query connections, run option 7 to update the connection strings.
-> 
-> 
+>
+>
 
 At this point, you have a Power BI PBIX report imported into your **Workspace**. Now, let's look at how to run the **Power BI Embedded** get started sample web app.
 
@@ -69,7 +73,7 @@ The web app sample is a sample dashboard that renders reports imported into your
 
 1. In the **PowerBI-embedded** Visual Studio solution, right click the **EmbedSample** web application, and choose **Set as StartUp project**.
 2. In **web.config**, in the **EmbedSample** web application, edit the **appSettings**: **AccessKey**, **WorkspaceCollection** name, and **WorkspaceId**.
-   
+
     ```
     <appSettings>
         <add key="powerbi:AccessKey" value="" />
@@ -95,8 +99,8 @@ The **Microsoft Power BI Embedded** sample code is separated as follows. Each se
 
 > [!NOTE]
 > This section is a summary of the sample code that shows how the code was written. To view the complete sample, please load the PowerBI-embedded.sln solution in Visual Studio.
-> 
-> 
+>
+>
 
 ### Model
 The sample has a **ReportsViewModel** and **ReportViewModel**.
@@ -231,13 +235,15 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 
 > [!NOTE]
 > {tableName/fieldName} cannot include spaces or special characters. The {fieldValue} accepts a single categorical value.  
-> 
-> 
+>
+>
 
 ## See also
 * [Common Microsoft Power BI Embedded scenarios](power-bi-embedded-scenarios.md)
 * [Authenticating and authorizing in Power BI Embedded](power-bi-embedded-app-token-flow.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

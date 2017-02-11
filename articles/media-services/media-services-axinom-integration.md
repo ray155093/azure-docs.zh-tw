@@ -1,12 +1,12 @@
 ---
-title: 使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs
-description: 本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 Axinom 授權伺服器傳遞。
+title: "使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs"
+description: "本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 Axinom 授權伺服器傳遞。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: willzhan
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 9c93fa4e-b4da-4774-ab6d-8b12b371631d
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: willzhan;Mingfeiy;rajputam;Juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: c02b75dc2c783b96dc9e1256051b8c6df290d425
+
 
 ---
 # <a name="using-axinom-to-deliver-widevine-licenses-to-azure-media-services"></a>使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務
@@ -197,6 +201,9 @@ Axinom Widevine 授權伺服器
 ### <a name="acknowledgments"></a>通知
 我們想要向下列為建立此文件貢獻心力的人員致謝：Kristjan Jõgi of Axinom、Mingfei Yan 及 Amit Rajput。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

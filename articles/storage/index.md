@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何使用 Azure 儲存體 - 雲端中的 Blob、資料表、佇列、檔案和虛擬機器磁碟儲存體。 教學課程、API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3cd1ef210c363fc280cefca3c0697eb66da85a1d
-ms.openlocfilehash: 426166d22b721d45853f3f578d39e14966c57c50
+ms.sourcegitcommit: df6bc6a92950efeed61db2f2ef7fd5f65189e0fa
+ms.openlocfilehash: 130a9a105ac7ff50fbc3b5baefd080f272e77d0b
 
 ---
 
@@ -130,8 +130,9 @@ ms.openlocfilehash: 426166d22b721d45853f3f578d39e14966c57c50
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference">REST：匯入/匯出</a></p>
+                        <p><a href="/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference">Blob、佇列、資料表和檔案</a></p>
                         <p><a href="/rest/api/storagerp">REST：資源提供者</a></p>
+                        <p><a href="/rest/api/storageimportexport">REST：匯入/匯出</a></p>
                    </div>
                 </div>
             </div>
@@ -149,6 +150,6 @@ ms.openlocfilehash: 426166d22b721d45853f3f578d39e14966c57c50
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

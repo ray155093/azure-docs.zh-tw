@@ -1,12 +1,12 @@
 ---
-title: 使用 Spark 進階資料探索和模型化 | Microsoft Docs
-description: 使用 HDInsight Spark 並透過交叉驗證和超參數最佳化定型模型，執行資料探索和二進位分類和迴歸模型化。
+title: "使用 Spark 進階資料探索和模型化 | Microsoft Docs"
+description: "使用 HDInsight Spark 並透過交叉驗證和超參數最佳化定型模型，執行資料探索和二進位分類和迴歸模型化。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: f90d9a80-4eaf-437b-a914-23514390cd60
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: deguhath;bradsev;gokuma
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: c844eeb0e01422dac468484a8458f243a2afb87d
+
 
 ---
 # <a name="advanced-data-exploration-and-modeling-with-spark"></a>使用 Spark 進階資料探索和模型化
@@ -51,7 +55,7 @@ ms.author: deguhath;bradsev;gokuma
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="setup:-storage-locations,-libraries,-and-the-preset-spark-context"></a>安裝程式︰儲存體位置、程式庫和預設 Spark 內容
+## <a name="setup-storage-locations-libraries-and-the-preset-spark-context"></a>安裝程式︰儲存體位置、程式庫和預設 Spark 內容
 Spark 可以讀取和寫入 Azure 儲存體 Blob (也稱為 WASB)。 如此可使用 Spark 處理該處儲存的任何現有資料，並在 WASB 中再次儲存結果。
 
 若要在 WASB 中儲存模型或檔案，必須正確指定路徑。 可以使用以「wasb:///」開頭的路徑，參考連接到 Spark 叢集的預設容器。 其他位置由「wasb://」參考。
@@ -109,7 +113,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 如需關於 Jupyter Notebook 核心，以及其所提供的預先定義 "magics" 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
-## <a name="data-ingestion-from-public-blob:"></a>來自公用 Blob 的資料擷取：
+## <a name="data-ingestion-from-public-blob"></a>來自公用 Blob 的資料擷取：
 資料科學程序的第一個步驟，是將要分析的資料從其來源位置內嵌到您的資料探索和模型化環境。 這種環境在本逐步解說中是 Spark。 本節包含程式碼來完成一系列的工作︰
 
 * 擷取要模型化的資料範例
@@ -180,7 +184,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 執行上述儲存格所花費的時間︰276.62 秒
 
-## <a name="data-exploration-&-visualization"></a>資料探索和虛擬化
+## <a name="data-exploration--visualization"></a>資料探索和虛擬化
 一旦將資料引進 Spark，資料科學程序的下一個步驟是透過探索和虛擬化以更深入瞭解資料。 在本節中，我們會使用 SQL 查詢檢查計程車資料，並繪製目標變數和潛在功能以進行視覺檢查。 具體來說，我們會繪製計程車車程中的乘客計數頻率、小費金額的頻率，及小費如何隨付款金額和類型而異。
 
 ### <a name="plot-a-histogram-of-passenger-count-frequencies-in-the-sample-of-taxi-trips"></a>在計程車車程範例中繪製乘客計數頻率的長條圖
@@ -236,7 +240,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 在 Notebook 內使用 [類型]  功能表按鈕，您可以選擇幾種不同類型的視覺效果 (資料表、圓形圖、折線圖、區域圖或橫條圖)。 橫條圖繪製結果會在此顯示。
 
-### <a name="plot-a-histogram-of-tip-amounts-and-how-tip-amount-varies-by-passenger-count-and-fare-amounts."></a>繪製小費金額，和小費金額如何隨乘客計數和費用金額變化的長條圖。
+### <a name="plot-a-histogram-of-tip-amounts-and-how-tip-amount-varies-by-passenger-count-and-fare-amounts"></a>繪製小費金額，和小費金額如何隨乘客計數和費用金額變化的長條圖。
 使用 SQL 查詢來取樣資料。
 
     # SQL SQUERY
@@ -291,7 +295,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ![按費用金額排列的小費金額](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/tip-amount-by-fare-amount.png)
 
-## <a name="feature-engineering,-transformation-and-data-preparation-for-modeling"></a>模型化的功能工程、轉換和資料準備
+## <a name="feature-engineering-transformation-and-data-preparation-for-modeling"></a>模型化的功能工程、轉換和資料準備
 本節描述並提供程序的程式碼，可用來準備資料以供 ML 模型化使用。 它示範如何執行下列工作：
 
 * 將小時納入流量時間值區以建立新功能
@@ -791,7 +795,7 @@ predictionAndLabelsDF 已在先前的儲存格中已註冊為 tmp_results 資料
 
 執行上述儲存格所花費的時間︰34.57 秒
 
-### <a name="use-mllib's-crossvalidator-pipeline-function-with-logistic-regression-(elastic-regression)-model"></a>搭配使用 MLlib 的 CrossValidator 管線函式與 LogisticRegression (彈性迴歸) 模型
+### <a name="use-mllibs-crossvalidator-pipeline-function-with-logistic-regression-elastic-regression-model"></a>搭配使用 MLlib 的 CrossValidator 管線函式與 LogisticRegression (彈性迴歸) 模型
 本節的程式碼顯示如何定型、評估及使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。 模型是使用交叉驗證 (CV) 和超參數掃掠定型，這兩種方法是使用 CV 的 MLlib CrossValidator 管線函式和參數掃掠進行實作。   
 
 > [!NOTE]
@@ -978,7 +982,7 @@ ROC 下的領域 = 0.985336538462
 
 執行上述儲存格所花費的時間︰28.13 秒
 
-## <a name="predict-tip-amount-with-regression-models-(not-using-cv)"></a>使用迴歸模型預測小費金額 (非使用 CV)
+## <a name="predict-tip-amount-with-regression-models-not-using-cv"></a>使用迴歸模型預測小費金額 (非使用 CV)
 本節說明如何使用三種迴歸工作模型，根據其他小費功能預測支付的計程車車程的小費金額。 顯示模型如下︰
 
 * 正規化線性迴歸
@@ -1191,7 +1195,7 @@ tmp_results 已在先前的儲存格中註冊為 Hive 資料表。 來自資料�
 
 ![Actual-vs-predicted-tip-amounts](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/actual-vs-predicted-tips.png)
 
-## <a name="appendix:-additional-regression-tasks-using-cross-validation-with-parameter-sweeps"></a>附錄︰使用交叉驗證與參數掃掠的額外迴歸工作
+## <a name="appendix-additional-regression-tasks-using-cross-validation-with-parameter-sweeps"></a>附錄︰使用交叉驗證與參數掃掠的額外迴歸工作
 本附錄包含程式碼，示範如何針對線性迴歸使用彈性 net 以執行 CV，以及如何針對隨機樹系迴歸使用自訂程式碼，以參數掃掠執行 CV。
 
 ### <a name="cross-validation-using-elastic-net-for-linear-regression"></a>針對線性迴歸使用彈性 net 進行交叉驗證
@@ -1428,11 +1432,14 @@ BoostedTreeClassificationFileLoc = modelDir + "GradientBoostingTreeClassificatio
 
 BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-05-0316_52_18.827237"
 
-## <a name="what's-next?"></a>後續步驟
+## <a name="whats-next"></a>後續步驟
 現在已使用 Spark MlLib 建立迴歸和分類模型，您已瞭解如何評分及評估這些模型。
 
 **模型耗用量︰** 若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱 [評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Evidence.com 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Evidence.com 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Evidence.com 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Evidence.com 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser-msft
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: f9a7cb7c-ff67-40dc-872c-1fa35f9dd03b
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/23/2016
 ms.author: asmalser
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 5d5183b136a0ceca939f754f67130d1179f6f4f7
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-evidence.com"></a>教學課程：Azure Active Directory 與 Evidence.com 整合
+# <a name="tutorial-azure-active-directory-integration-with-evidencecom"></a>教學課程：Azure Active Directory 與 Evidence.com 整合
 本教學課程的目的是要示範如何設定 Azure Active Directory (AAD) 與 Evidence.com 之間的單一登入。 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Microsoft Azure 訂用帳戶
@@ -24,7 +28,7 @@ ms.author: asmalser
 
 完成本教學課程之後，您已指派 Evidence.com 存取權的 AAD 使用者將能夠使用 [AAD 存取面板] 單一登入應用程式。
 
-## <a name="add-evidence.com-to-your-directory"></a>將 Evidence.com 新增到目錄
+## <a name="add-evidencecom-to-your-directory"></a>將 Evidence.com 新增到目錄
 本節概述如何將 Evidence.com 新增為 Azure Active Directory 中的整合式應用程式。
 
 **若要啟用 Evidence 的應用程式整合：**
@@ -54,7 +58,7 @@ ms.author: asmalser
 11. 在 Azure 傳統入口網站中，核取 [確認您已如上所述設定單一登入] 。 核取此項可讓目前的憑證開始使用此應用程式核取方塊。
 12. 在 [單一登入確認] 頁面上，按一下 [完成] 。  
 
-## <a name="creating-an-evidence.com-test-user"></a>建立 Evidence.com 測試使用者
+## <a name="creating-an-evidencecom-test-user"></a>建立 Evidence.com 測試使用者
 必須先針對 Evidence.com 應用程式內的存取佈建 Azure AD 使用者，才可以讓他們登入。 本節描述如何建立 Evidence.com 內的 Azure AD 使用者帳戶。
 
 **若要在 Evidence.com 中佈建使用者帳戶：**
@@ -65,7 +69,7 @@ ms.author: asmalser
 4. 按一下 [新增]  按鈕。
 5. 所新增之使用者的 [電子郵件地址]  必須符合 Azure AD 中想要允許存取的使用者名稱。 如果使用者名稱和電子郵件地址不是您組織中的相同值，您可以使用 Azure 傳統入口網站的 [Evidence.com] > [屬性] > [單一登入] 區段，將傳送至 Evidence.com 的 nameidenitifer 變更為電子郵件地址。
 
-## <a name="assigning-users-to-evidence.com"></a>將使用者指派給 Evidence.com
+## <a name="assigning-users-to-evidencecom"></a>將使用者指派給 Evidence.com
 若要讓佈建的 AAD 使用者能夠在其存取面板上看見 Evidence.com，它們必須獲得 Azure 傳統入口網站內的存取權。
 
 **若要將使用者指派給 Evidence.com：**
@@ -75,6 +79,9 @@ ms.author: asmalser
 3. 在 [使用者]  清單中，選取您要指派 Evidence.com 的使用者或群組。
 4. 在頁面頁尾中，按一下 [指派]  按鈕。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

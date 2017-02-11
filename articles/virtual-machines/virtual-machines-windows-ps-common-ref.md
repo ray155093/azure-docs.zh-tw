@@ -16,15 +16,15 @@ ms.workload: infrastructure-services
 ms.date: 09/27/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 39739902815dacd40d4d57d503344217d4fa112d
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: d86db0f0487c8c3627fa91b656db6a4c1576348c
 
 
 ---
 # <a name="common-powershell-commands-for-creating-and-managing-vms"></a>用於建立及管理 VM 的常用 PowerShell 命令
 本文涵蓋一些 Azure PowerShell 命令，您可用來建立及管理您的 Azure 訂用帳戶中的虛擬機器。  如需特定命令列參數和選項的詳細說明，您可以使用 **Get-Help** *命令*。
 
-如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="create-a-vm"></a>建立 VM
 | Task | 命令 |
@@ -66,6 +66,6 @@ ms.openlocfilehash: 39739902815dacd40d4d57d503344217d4fa112d
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

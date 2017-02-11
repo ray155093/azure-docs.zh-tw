@@ -1,22 +1,26 @@
 ---
-title: 適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援 | Microsoft Docs
-description: 了解如何使用 AMQP 通訊協定 (AMQP) 1.0 搭配服務匯流排分割的佇列和主題。
-services: service-bus
+title: "適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援 | Microsoft Docs"
+description: "了解如何使用 AMQP 通訊協定 (AMQP) 1.0 搭配服務匯流排分割的佇列和主題。"
+services: service-bus-messaging
 documentationcenter: .net
 author: hillaryc
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: e2549ad3-41eb-47e5-b25f-20043a7ffa2a
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 07/08/2016
+ms.date: 10/14/2016
 ms.author: hillaryc;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2f343c1f087b516c35eb75fc9a1e61c5cf6d1e93
+
 
 ---
-# <a name="amqp-1.0-support-for-service-bus-partitioned-queues-and-topics"></a>適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援
+# <a name="amqp-10-support-for-service-bus-partitioned-queues-and-topics"></a>適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援
 Azure 服務匯流排現在針對服務匯流排**分割的佇列和主題**，支援進階訊息佇列通訊協定 (**AMQP**) 1.0。
 
 **AMQP** 是一套開放的標準訊息佇列通訊協定，可讓您使用不同的程式設計語言開發跨平台的應用程式。 如需服務匯流排中 AMQP 支援的一般資訊，請參閱[服務匯流排中的 AMQP 1.0 支援](service-bus-amqp-overview.md)。
@@ -115,6 +119,6 @@ receivedMessage.Complete();
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

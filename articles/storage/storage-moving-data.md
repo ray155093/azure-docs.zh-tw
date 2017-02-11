@@ -1,19 +1,23 @@
 ---
-title: 從 Azure 儲存體來回移動資料 | Microsoft Docs
-description: 這篇文章提供從 Azure 儲存體來回移動資料之不同方法的概觀。
+title: "從 Azure 儲存體來回移動資料 | Microsoft Docs"
+description: "這篇文章提供從 Azure 儲存體來回移動資料之不同方法的概觀。"
 services: storage
-documentationcenter: ''
+documentationcenter: 
 author: micurd
 manager: jahogg
 editor: tysonn
-
+ms.assetid: 5e3947a9-d99b-4108-9d57-3eb67c03e7ba
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
+ms.date: 11/18/2016
 ms.author: micurd
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 26dc2d2269855bcb31bc8f6faf2277ac059b81f5
+
 
 ---
 # <a name="moving-data-to-and-from-azure-storage"></a>從 Azure 儲存體來回移動資料
@@ -28,7 +32,7 @@ Azure 儲存體提供 .NET、iOS、Java、Android、通用 Windows 平台 (UWP)�
 
 此外，我們也提供 [Azure 儲存體資料移動程式庫](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement) ，這是專為在 Azure 中高效能來回複製資料所設計。 若要深入了解，請參閱我們的資料移動程式庫 [文件](https://github.com/Azure/azure-storage-net-data-movement) 。 
 
-## <a name="quickly-viewing/interacting-with-your-data"></a>快速檢視/和資料互動
+## <a name="quickly-viewinginteracting-with-your-data"></a>快速檢視/和資料互動
 如果您想要輕鬆地檢視 Azure 儲存體資料，同時有上傳和下載資料的能力，請考慮使用 Azure 儲存體總管。
 
 若要深入了解，請參閱我們的 [Azure 儲存體總管](storage-explorers.md) 清單。
@@ -71,6 +75,9 @@ Azure CLI 提供您一組開放原始碼的跨平台命令，供您使用 Azure 
 
 若要深入了解，請參閱 [Azure Site Recovery](../site-recovery/site-recovery-overview.md) 。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

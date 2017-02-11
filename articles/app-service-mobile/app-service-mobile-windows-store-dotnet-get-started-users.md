@@ -1,39 +1,43 @@
 ---
-title: 將驗證新增至您的通用 Windows 平台 (UWP) 應用程式 | Microsoft Docs
-description: 了解如何使用 Azure App Service Mobile Apps，透過眾多識別提供者驗證通用 Windows 平台 (UWP) 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。
+title: "將驗證新增至您的通用 Windows 平台 (UWP) 應用程式 | Microsoft Docs"
+description: "了解如何使用 Azure App Service Mobile Apps，透過眾多識別提供者驗證通用 Windows 平台 (UWP) 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。"
 services: app-service\mobile
 documentationcenter: windows
-author: ggailey777
+author: adrianhall
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 6cffd951-893e-4ce5-97ac-86e3f5ad9466
 ms.service: app-service-mobile
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 05/14/2016
-ms.author: glenga
+ms.date: 10/01/2016
+ms.author: adrianha
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 17ced2fb19b2beb057b67a0aff2f67fb2bfe49e9
+
 
 ---
-# 將驗證新增至您的 Windows 應用程式
+# <a name="add-authentication-to-your-windows-app"></a>將驗證新增至您的 Windows 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-本主題說明如何將雲端式驗證加入到您的行動應用程式。在本教學課程中，您會使用 Azure App Service 所支援的身分識別提供者，將驗證新增至 Mobile Apps 的通用 Windows 平台 (UWP) 快速入門專案。由行動應用程式後端成功驗證並授權之後，就會顯示使用者識別碼值。
+本主題說明如何將雲端式驗證加入到您的行動應用程式。 在本教學課程中，您會使用 Azure App Service 所支援的身分識別提供者，將驗證新增至 Mobile Apps 的通用 Windows 平台 (UWP) 快速入門專案。 由行動應用程式後端成功驗證並授權之後，就會顯示使用者識別碼值。
 
-本教學課程以 Azure Mobile Apps 快速入門為基礎。您必須先完成[開始使用 Mobile Apps ](app-service-mobile-windows-store-dotnet-get-started.md)教學課程。
+本教學課程以 Azure Mobile Apps 快速入門為基礎。 您必須先完成 [開始使用 Mobile Apps](app-service-mobile-windows-store-dotnet-get-started.md)教學課程。
 
-## <a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
+## <a name="a-nameregisteraregister-your-app-for-authentication-and-configure-the-app-service"></a><a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="permissions"></a>限制只有通過驗證的使用者具有權限
+## <a name="a-namepermissionsarestrict-permissions-to-authenticated-users"></a><a name="permissions"></a>限制只有通過驗證的使用者具有權限
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-現在，您可以驗證是否已停用後端的匿名存取。將 UWP 應用程式專案設定為啟始專案，部署並執行應用程式；應用程式啟動後，確認會引發狀態碼為 401 (未經授權) 的未處理例外狀況。這是因為應用程式嘗試以未驗證的使用者身分存取您的行動應用程式程式碼，但 *TodoItem* 資料表現在需要驗證。
+現在，您可以驗證是否已停用後端的匿名存取。 將 UWP 應用程式專案設定為啟始專案，部署並執行應用程式；應用程式啟動後，確認會引發狀態碼為 401 (未經授權) 的未處理例外狀況。 這是因為應用程式嘗試以未驗證的使用者身分存取您的行動應用程式程式碼，但 *TodoItem* 資料表現在需要驗證。
 
 接下來，您要將應用程式更新為在要求 App Service 的資源之前必須驗證使用者。
 
-## <a name="add-authentication"></a>將驗證新增至應用程式
+## <a name="a-nameadd-authenticationaadd-authentication-to-the-app"></a><a name="add-authentication"></a>將驗證新增至應用程式
 1. 在 UWP 應用程式專案檔案 MainPage.cs 中，將下列程式碼片段新增至 MainPage 類別：
    
         // Define a member variable for storing the signed-in user. 
@@ -67,8 +71,8 @@ ms.author: glenga
             return success;
         }
    
-    此程式碼會使用 Facebook 登入來驗證使用者。如果您打算使用除了 Facebook 以外的識別提供者，請將上方的 **MobileServiceAuthenticationProvider** 值變更成您提供者。
-2. 將現有 **OnNavigatedTo** 方法覆寫中的 **ButtonRefresh\_Click** 方法 (或 **InitLocalStoreAsync** 方法) 呼叫註解化或刪除。如此能避免在使用者通過驗證之前載入資料。接下來，將 [登入] 按鈕新增至觸發驗證的應用程式。
+    此程式碼會使用 Facebook 登入來驗證使用者。 如果您打算使用除了 Facebook 以外的識別提供者，請將上方的 **MobileServiceAuthenticationProvider** 值變更成您提供者。
+2. 將現有 **OnNavigatedTo** 方法覆寫中的 **ButtonRefresh_Click** 方法 (或 **InitLocalStoreAsync** 方法) 呼叫註解化或刪除。 如此能避免在使用者通過驗證之前載入資料。 接下來，將 [登入]  按鈕新增至觸發驗證的應用程式。
 3. 將下列程式碼片段新增至 MainPage 類別：
    
         private async void ButtonLogin_Click(object sender, RoutedEventArgs e)
@@ -83,7 +87,7 @@ ms.author: glenga
                 await RefreshTodoItems();
             }
         }
-4. 開啟 MainPage.xaml 專案檔案，找到定義**儲存**按鈕的項目，並將它取代為下列程式碼︰
+4. 開啟 MainPage.xaml 專案檔案，找到定義 **儲存** 按鈕的項目，並將它取代為下列程式碼︰
    
         <Button Name="ButtonSave" Visibility="Collapsed" Margin="0,8,8,0" 
                 Click="ButtonSave_Click">
@@ -99,25 +103,32 @@ ms.author: glenga
                 <TextBlock Margin="5">Sign in</TextBlock> 
             </StackPanel>
         </Button>
-5. 按 F5 鍵以執行應用程式、按一下 [登入] 按鈕，然後以您選擇的身分識別提供者登入應用程式。當您成功登入之後，應用程式應會正確無誤地執行，而且您應能夠查詢後端並更新資料。
+5. 按 F5 鍵以執行應用程式、按一下 [登入]  按鈕，然後以您選擇的身分識別提供者登入應用程式。 當您成功登入之後，應用程式應會正確無誤地執行，而且您應能夠查詢後端並更新資料。
 
-## <a name="tokens"></a>將驗證權杖儲存在用戶端上
-先前範例所示範的標準登入，在每次應用程式啟動時，皆需要用戶端連絡身分識別提供者和 App Service。這個方法不只效率不彰，而且如果同時有許多用戶試圖啟用您的應用程式時，還可能遇到使用量相關的問題。更好的方法就是快取 App Service 傳回的授權權杖，然後嘗試在使用提供者形式登入前先使用此方法。
+## <a name="a-nametokensastore-the-authentication-token-on-the-client"></a><a name="tokens"></a>將驗證權杖儲存在用戶端上
+先前範例所示範的標準登入，在每次應用程式啟動時，皆需要用戶端連絡身分識別提供者和 App Service。 這個方法不只效率不彰，而且如果同時有許多用戶試圖啟用您的應用程式時，還可能遇到使用量相關的問題。 更好的方法就是快取 App Service 傳回的授權權杖，然後嘗試在使用提供者形式登入前先使用此方法。
 
 > [!NOTE]
-> 無論您使用用戶端管理型或服務管理型驗證，皆可以快取 App Services 發行的權杖。本教學課程使用服務管理驗證。
+> 無論您使用用戶端管理型或服務管理型驗證，皆可以快取 App Services 發行的權杖。 本教學課程使用服務管理驗證。
 > 
 > 
 
 [!INCLUDE [mobile-windows-universal-dotnet-authenticate-app-with-token](../../includes/mobile-windows-universal-dotnet-authenticate-app-with-token.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 現在您已經完成了這個基本驗證的教學課程，可以考慮繼續進行下列其中一個教學課程：
 
-* [將推播通知新增至應用程式](app-service-mobile-windows-store-dotnet-get-started-push.md)：了解如何將推播通知支援新增至應用程式，並設定行動應用程式後端以使用 Azure 通知中樞傳送推播通知。
-* [啟用應用程式的離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
+* [將推播通知新增至應用程式](app-service-mobile-windows-store-dotnet-get-started-push.md)  
+  了解如何將推播通知支援新增至應用程式，並設定行動應用程式後端以使用 Azure 通知中樞傳送推播通知。
+* [啟用應用程式的離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)  
+  了解如何使用行動應用程式後端，將離線支援新增至應用程式。 離線同步處理可讓使用者與行動應用程式進行互動&mdash;檢視、新增或修改資料&mdash;即使沒有網路連線進也可行。
 
 <!-- URLs. -->
-[Get started with your mobile app]: app-service-mobile-windows-store-dotnet-get-started.md
+[開始使用行動應用程式]: app-service-mobile-windows-store-dotnet-get-started.md
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

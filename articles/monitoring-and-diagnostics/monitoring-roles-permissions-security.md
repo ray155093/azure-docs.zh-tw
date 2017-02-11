@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Azure 監視器的角色、權限和安全性 | Microsoft Docs
-description: 了解如何使用 Azure 監視器的內建角色和權限來限制存取監視資源。
+title: "開始使用 Azure 監視器的角色、權限和安全性 | Microsoft Docs"
+description: "了解如何使用 Azure 監視器的內建角色和權限來限制存取監視資源。"
 author: johnkemnetz
 manager: rboucher
-editor: ''
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 2686e53b-72f0-4312-bcd3-3dc1b4a9b912
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: johnkem
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 26e12a27693fe94ae88b70328ed5dd0d9d5b4c10
+
 
 ---
-# <a name="get-started-with-roles,-permissions,-and-security-with-azure-monitor"></a>開始使用 Azure 監視器的角色、權限和安全性
+# <a name="get-started-with-roles-permissions-and-security-with-azure-monitor"></a>開始使用 Azure 監視器的角色、權限和安全性
 許多團隊需要嚴格規範對監視資料及設定的存取。 例如，如果您擁有專門從事監視 (技術支援工程師、devops 工程師) 的團隊成員，或如果您使用受管理的服務提供者，則您可能只要授與他們監視資料的存取權，同時限制他們建立、修改或刪除資源的能力。 本文說明如何在 Azure 中快速將內建的監視 RBAC 角色套用到使用者，或針對需要有限監視權限的使用者建置您自己的自訂角色。 接著會討論 Azure 監視器相關資源的安全性考量，以及如何限制對這些資源所包含的資料進行存取。
 
 ## <a name="built-in-monitoring-roles"></a>內建的監視角色
@@ -57,6 +61,7 @@ Azure 監視器的內建角色是專為協助限制存取訂用帳戶中的資�
 * 啟用或停用 Log Analytics (OMS) 智慧套件。
 * 建立及刪除及執行 Log Analytics (OMS) 已儲存的搜尋。
 * 建立及刪除 Log Analytics (OMS) 儲存體組態。
+
 * 使用者也必須在目標資源上個別授與 ListKeys 權限 (儲存體帳戶或事件中樞命名空間)，以設定記錄檔設定檔或診斷設定。
 
 > [!NOTE]
@@ -165,6 +170,9 @@ New-AzureRmRoleDefinition -Role $role
 * [深入了解 RBAC 和 Resource Manager 中的權限](../active-directory/role-based-access-control-what-is.md)
 * [閱讀 Azure 中的監視概觀](monitoring-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

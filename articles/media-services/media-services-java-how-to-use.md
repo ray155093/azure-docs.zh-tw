@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: get-started-article
-ms.date: 12/20/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 18054a72c3ead02311465d97dc13b7b5e4d87321
-ms.openlocfilehash: 401b3c931fa046ee2bdf0a12e9e837b820ec5464
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: b36dc7bc2d4d1a8565bc6eb823e830a62d36bf34
 
 
 ---
@@ -24,9 +24,9 @@ ms.openlocfilehash: 401b3c931fa046ee2bdf0a12e9e837b820ec5464
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
 ## <a name="setting-up-an-azure-account-for-media-services"></a>設定媒體服務的 Azure 帳戶
-若要設定媒體服務帳戶，請使用 Azure 入口網站。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。 當您在 Azure 入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
 
-## <a name="setting-up-for-media-services-development"></a>設定媒體服務開發
+若要設定媒體服務帳戶，請使用 Azure 入口網站。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。 當您在 Azure 入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
+ 
 本節包含使用 Media Services SDK for Java 進行媒體服務開發的一般必要條件。
 
 ### <a name="prerequisites"></a>必要條件
@@ -34,6 +34,10 @@ ms.openlocfilehash: 401b3c931fa046ee2bdf0a12e9e837b820ec5464
 * Azure Libraries for Java，可從 [Azure Java 開發人員中心][Azure Java Developer Center]進行安裝。
 
 ## <a name="how-to-use-media-services-with-java"></a>如何：搭配使用媒體服務和 Java
+
+>[!NOTE]
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
+
 下列程式碼將示範如何建立資產、上傳媒體檔案到資產、使用工作 (Task) 執行作業 (Job) 來轉換此資產，以及建立定位器以便串流您的影片。
 
 使用此程式碼前，您必須先設定媒體服務帳戶。 如需設定帳戶的相關資訊，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
@@ -270,6 +274,6 @@ ms.openlocfilehash: 401b3c931fa046ee2bdf0a12e9e837b820ec5464
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

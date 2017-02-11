@@ -1,12 +1,24 @@
 ---
-layout: LandingPage
+title: "VPN 閘道文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何設定虛擬私人網路 (VPN) 閘道，以管理雲端虛擬網路與內部部署之間的流量或雲端 VNet 之間的流量。"
+services: vpn-gateway
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: vpn-gateway
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: a826f96cd679bb26b8a6cf9bb6bf55e93ba4e346
-ms.openlocfilehash: 99843baf9989378aa3d4ff6325a399dae0b632b6
+ms.sourcegitcommit: 2e7486833ae23cdfed037aa1afb930997586a158
+ms.openlocfilehash: e3179c060380c07dde9058597b0d77861d14d848
+
 
 ---
-#<a name="vpn-gateway-documentation"></a>VPN 閘道文件
+# <a name="vpn-gateway-documentation"></a>VPN 閘道文件
 
 了解如何設定 VPN 閘道、虛擬私人網路閘道。 文件會示範如何傳送 Azure 虛擬網路與內部部署位置或其他 Azure 虛擬網路 (VNet) 之間的網路流量。
 
@@ -153,16 +165,10 @@ ms.openlocfilehash: 99843baf9989378aa3d4ff6325a399dae0b632b6
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/vpn-gateway.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure VPN 閘道文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Jan17_HO3-->
+
+<!--HONumber=Jan17_HO4-->
 
 

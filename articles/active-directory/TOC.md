@@ -139,12 +139,15 @@
 
 ### [提供應用程式的遠端存取權](active-directory-application-proxy-get-started.md)
 #### [啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
-#### [發佈應用程式](active-directory-application-proxy-publish.md)
+#### 發佈應用程式
+##### [Azure 入口網站](application-proxy-publish-azure-portal.md)
+##### [傳統入口網站](active-directory-application-proxy-publish.md)
 #### 在不同網路上發佈
 ##### [Azure 入口網站](active-directory-application-proxy-connectors-azure-portal.md)
 ##### [傳統入口網站](active-directory-application-proxy-connectors.md)
 #### [自訂網域](active-directory-application-proxy-custom-domains.md)
 #### [單一登入](active-directory-application-proxy-sso-using-kcd.md)
+##### [Azure 入口網站](application-proxy-sso-azure-portal.md)
 #### [宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
 #### [原生用戶端應用程式](active-directory-application-proxy-native-client.md)
 #### [條件式存取](active-directory-application-proxy-conditional-access.md)
@@ -212,7 +215,7 @@
 #### [CSV 檔案格式](active-directory-b2b-references-csv-file-format.md)
 #### [使用者物件](active-directory-b2b-references-external-user-object-attribute-changes.md)
 #### [使用者權杖](active-directory-b2b-references-external-user-token-format.md)
-### [使用 Azure AD Connect 整合內部部署身分識別](active-directory-aadconnect.md?toc=%2fazure%2factive-directory%2fconnect%2ftoc.json)
+### [使用 Azure AD Connect 整合內部部署身分識別](./connect/active-directory-aadconnect.md)
 
 
 ## 委派資源存取
@@ -237,12 +240,12 @@
 ## 保護您的身分識別
 ### [Azure AD Identity Protection](active-directory-identityprotection.md)
 #### [啟用](active-directory-identityprotection-enable.md)
-#### [登入體驗](active-directory-identityprotection-flows.md)
-#### [解除封鎖使用者](active-directory-identityprotection-unblock-howto.md)
 #### [偵測弱點](active-directory-identityprotection-vulnerabilities.md)
-#### [風險事件類型](active-directory-identityprotection-risk-events-types.md)
-#### [模擬風險事件](active-directory-identityprotection-playbook.md)
+#### [風險事件](active-directory-identity-protection-risk-events.md)
 #### [Notifications](active-directory-identityprotection-notifications.md)
+#### [登入體驗](active-directory-identityprotection-flows.md)
+#### [模擬風險事件](active-directory-identityprotection-playbook.md)
+#### [解除封鎖使用者](active-directory-identityprotection-unblock-howto.md)
 #### [詞彙](active-directory-identityprotection-glossary.md)
 #### [Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 ### [Privileged Identity Management](./privileged-identity-management/active-directory-securing-privileged-access.md)
@@ -284,7 +287,8 @@
 
 # 相關參考
 ## [Multi-Factor Authentication](/azure/multi-factor-authentication/)
-## [Azure AD Connect](active-directory-aadconnect.md?toc=%2fazure%2factive-directory%2fconnect%2ftoc.json)
+## [Azure AD Connect](./connect/active-directory-aadconnect.md)
+## [Azure AD Connect Health](./connect-health/active-directory-aadconnect-health.md)
 ## [開發人員適用的 Azure AD](./develop/active-directory-how-to-integrate.md)
 ## [Azure AD Privileged Identity Management](./privileged-identity-management/active-directory-securing-privileged-access.md)
 
@@ -297,6 +301,6 @@
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -8,11 +8,8 @@
 ### [開始使用 IoT 中樞 (.NET)](iot-hub-csharp-csharp-getstarted.md)
 ### [開始使用 IoT 中樞 (Java)](iot-hub-java-java-getstarted.md)
 ### [開始使用 IoT 中樞 (節點)](iot-hub-node-node-getstarted.md)
-## 開始使用 IoT 裝置 SDK
-### [C 適用的 Azure IoT 裝置 SDK 簡介](iot-hub-device-sdk-c-intro.md)
-### [C 適用的 IoT 裝置 SDK - 深入了解 IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
-### [C 適用的 IoT 裝置 SDK - 深入了解序列化程式](iot-hub-device-sdk-c-serializer.md)
-## 開始使用 Raspberry Pi
+
+## 開始使用 Raspberry Pi (Node)
 ### [開始使用 Raspberry Pi 3](iot-hub-raspberry-pi-kit-node-get-started.md)
 ### 第 1 課：設定裝置
 #### [設定裝置](iot-hub-raspberry-pi-kit-node-lesson1-configure-your-device.md)
@@ -33,10 +30,123 @@
 #### [執行範例應用程式以接收訊息](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md)
 #### [選擇性︰變更 LED 行為](iot-hub-raspberry-pi-kit-node-lesson4-change-led-behavior.md)
 ### [疑難排解](iot-hub-raspberry-pi-kit-node-troubleshooting.md)
+
+## 開始使用 Raspberry Pi (C)
+### [開始使用 Raspberry Pi 3](iot-hub-raspberry-pi-kit-c-get-started.md)
+### 第 1 課：設定裝置
+#### [設定裝置](iot-hub-raspberry-pi-kit-c-lesson1-configure-your-device.md)
+#### [取得工具 (Windows 7+)](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
+#### [取得工具 (Ubuntu 16.04)](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-ubuntu.md)
+#### [1.2 取得工具 (macOS 10.10)](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-mac.md)
+#### [1.3 建立並部署閃爍應用程式](iot-hub-raspberry-pi-kit-c-lesson1-deploy-blink-app.md)
+### 第 2 課：建立 IoT 中樞
+#### [取得 Azure 工具 (Windows 7+)](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-win32.md)
+#### [取得 Azure 工具 (Ubuntu 16.04)](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-ubuntu.md)
+#### [取得 Azure 工具 (MacOS 10.10)](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-mac.md)
+#### [建立 IoT 中樞並登錄您的 Raspberry Pi](iot-hub-raspberry-pi-kit-c-lesson2-prepare-azure-iot-hub.md)
+### 第 3 課：傳送裝置到雲端訊息
+#### [建立 Azure 函式應用程式與儲存體帳戶](iot-hub-raspberry-pi-kit-c-lesson3-deploy-resource-manager-template.md)
+#### [執行範例應用程式以傳送訊息](iot-hub-raspberry-pi-kit-c-lesson3-run-azure-blink.md)
+#### [讀取保留在儲存體中的訊息](iot-hub-raspberry-pi-kit-c-lesson3-read-table-storage.md)
+### 第 4 課：傳送雲端到裝置訊息
+#### [執行範例應用程式以接收訊息](iot-hub-raspberry-pi-kit-c-lesson4-send-cloud-to-device-messages.md)
+#### [選擇性︰變更 LED 行為](iot-hub-raspberry-pi-kit-c-lesson4-change-led-behavior.md)
+### [疑難排解](iot-hub-raspberry-pi-kit-c-troubleshooting.md)
+
+## 開始使用 Intel Edison (Node)
+### [開始使用 Intel Edison](iot-hub-intel-edison-kit-node-get-started.md)
+### 第 1 課：設定裝置
+#### [設定裝置](iot-hub-intel-edison-kit-node-lesson1-configure-your-device.md)
+#### [取得工具 (Windows 7+)](iot-hub-intel-edison-kit-node-lesson1-get-the-tools-win32.md)
+#### [取得工具 (Ubuntu 16.04)](iot-hub-intel-edison-kit-node-lesson1-get-the-tools-ubuntu.md)
+#### [1.2 取得工具 (macOS 10.10)](iot-hub-intel-edison-kit-node-lesson1-get-the-tools-mac.md)
+#### [1.3 建立並部署閃爍應用程式](iot-hub-intel-edison-kit-node-lesson1-deploy-blink-app.md)
+### 第 2 課：建立 IoT 中樞
+#### [取得 Azure 工具 (Windows 7+)](iot-hub-intel-edison-kit-node-lesson2-get-azure-tools-win32.md)
+#### [取得 Azure 工具 (Ubuntu 16.04)](iot-hub-intel-edison-kit-node-lesson2-get-azure-tools-ubuntu.md)
+#### [取得 Azure 工具 (MacOS 10.10)](iot-hub-intel-edison-kit-node-lesson2-get-azure-tools-mac.md)
+#### [建立 IoT 中樞並登錄您的 Raspberry Pi](iot-hub-intel-edison-kit-node-lesson2-prepare-azure-iot-hub.md)
+### 第 3 課：傳送裝置到雲端訊息
+#### [建立 Azure 函式應用程式與儲存體帳戶](iot-hub-intel-edison-kit-node-lesson3-deploy-resource-manager-template.md)
+#### [執行範例應用程式以傳送訊息](iot-hub-intel-edison-kit-node-lesson3-run-azure-blink.md)
+#### [讀取保留在儲存體中的訊息](iot-hub-intel-edison-kit-node-lesson3-read-table-storage.md)
+### 第 4 課：傳送雲端到裝置訊息
+#### [執行範例應用程式以接收訊息](iot-hub-intel-edison-kit-node-lesson4-send-cloud-to-device-messages.md)
+#### [選擇性︰變更 LED 行為](iot-hub-intel-edison-kit-node-lesson4-change-led-behavior.md)
+### [疑難排解](iot-hub-intel-edison-kit-node-troubleshooting.md)
+
+## 開始使用 Intel Edison (C)
+### [開始使用 Intel Edison](iot-hub-intel-edison-kit-c-get-started.md)
+### 第 1 課：設定裝置
+#### [設定裝置](iot-hub-intel-edison-kit-c-lesson1-configure-your-device.md)
+#### [取得工具 (Windows 7+)](iot-hub-intel-edison-kit-c-lesson1-get-the-tools-win32.md)
+#### [取得工具 (Ubuntu 16.04)](iot-hub-intel-edison-kit-c-lesson1-get-the-tools-ubuntu.md)
+#### [1.2 取得工具 (macOS 10.10)](iot-hub-intel-edison-kit-c-lesson1-get-the-tools-mac.md)
+#### [1.3 建立並部署閃爍應用程式](iot-hub-intel-edison-kit-c-lesson1-deploy-blink-app.md)
+### 第 2 課：建立 IoT 中樞
+#### [取得 Azure 工具 (Windows 7+)](iot-hub-intel-edison-kit-c-lesson2-get-azure-tools-win32.md)
+#### [取得 Azure 工具 (Ubuntu 16.04)](iot-hub-intel-edison-kit-c-lesson2-get-azure-tools-ubuntu.md)
+#### [取得 Azure 工具 (MacOS 10.10)](iot-hub-intel-edison-kit-c-lesson2-get-azure-tools-mac.md)
+#### [建立 IoT 中樞並登錄您的 Raspberry Pi](iot-hub-intel-edison-kit-c-lesson2-prepare-azure-iot-hub.md)
+### 第 3 課：傳送裝置到雲端訊息
+#### [建立 Azure 函式應用程式與儲存體帳戶](iot-hub-intel-edison-kit-c-lesson3-deploy-resource-manager-template.md)
+#### [執行範例應用程式以傳送訊息](iot-hub-intel-edison-kit-c-lesson3-run-azure-blink.md)
+#### [讀取保留在儲存體中的訊息](iot-hub-intel-edison-kit-c-lesson3-read-table-storage.md)
+### 第 4 課：傳送雲端到裝置訊息
+#### [執行範例應用程式以接收訊息](iot-hub-intel-edison-kit-c-lesson4-send-cloud-to-device-messages.md)
+#### [選擇性︰變更 LED 行為](iot-hub-intel-edison-kit-c-lesson4-change-led-behavior.md)
+### [疑難排解](iot-hub-intel-edison-kit-c-troubleshooting.md)
+
 ## [開始使用閘道器 SDK (Linux)](iot-hub-linux-gateway-sdk-get-started.md)
 ## [開始使用閘道器 SDK (Windows)](iot-hub-windows-gateway-sdk-get-started.md)
 
+## 開始使用 IoT 閘道入門套件
+### 模擬裝置
 
+#### [開始使用模擬裝置](iot-hub-gateway-kit-c-sim-get-started.md)
+#### 第 1 課：設定 NUC
+##### [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-sim-lesson1-set-up-nuc.md)
+
+#### 第 2 課：建立 IoT 中樞
+##### [取得工具 (Windows 7+)](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-win32.md)
+##### [取得工具 (Ubuntu 16.04)](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-ubuntu.md)
+##### [1.2 取得工具 (macOS 10.10)](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-mac.md)
+##### [建立 IoT 中樞並登錄您的裝置](iot-hub-gateway-kit-c-sim-lesson2-register-device.md)
+
+#### 第 3 課：從模擬裝置接收訊息
+##### [設定和執行 BLE 範例應用程式](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md)
+##### [讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-sim-lesson3-read-messages-from-hub.md)
+
+#### 第 4 課︰將訊息儲存到 Azure 資料表儲存體
+##### [建立 Azure 函式應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md)
+##### [讀取保存在 Azure 表格儲存體中的訊息](iot-hub-gateway-kit-c-sim-lesson4-read-table-storage.md)
+
+#### [疑難排解](iot-hub-gateway-kit-c-sim-troubleshooting.md)
+
+### SensorTag 裝置
+#### [開始使用 SensorTag 裝置](iot-hub-gateway-kit-c-get-started.md)
+#### 第 1 課：設定 NUC
+##### [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
+
+#### 第 2 課：建立 IoT 中樞
+##### [取得工具 (Windows 7+)](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md)
+##### [取得工具 (Ubuntu 16.04)](iot-hub-gateway-kit-c-lesson2-get-the-tools-ubuntu.md)
+##### [1.2 取得工具 (macOS 10.10)](iot-hub-gateway-kit-c-lesson2-get-the-tools-mac.md)
+##### [建立 IoT 中樞並登錄您的裝置](iot-hub-gateway-kit-c-lesson2-register-device.md)
+
+#### 第 3 課：從模擬裝置接收訊息
+##### [設定和執行 BLE 範例應用程式](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md)
+##### [讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)
+
+#### 第 4 課︰將訊息儲存到 Azure 資料表儲存體
+##### [建立 Azure 函式應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md)
+##### [讀取保存在 Azure 表格儲存體中的訊息](iot-hub-gateway-kit-c-lesson4-read-table-storage.md)
+
+##### [疑難排解](iot-hub-gateway-kit-c-troubleshooting.md)
+## 開始使用 IoT 裝置 SDK
+### [C 適用的 Azure IoT 裝置 SDK 簡介](iot-hub-device-sdk-c-intro.md)
+### [C 適用的 IoT 裝置 SDK - 深入了解 IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
+### [C 適用的 IoT 裝置 SDK - 深入了解序列化程式](iot-hub-device-sdk-c-serializer.md)
 # 作法
 ## [處理裝置到雲端訊息教學課程 (.NET)](iot-hub-csharp-csharp-process-d2c.md)
 ## [處理裝置到雲端訊息教學課程 (Java)](iot-hub-java-java-process-d2c.md)
@@ -130,6 +240,6 @@
 ## [Azure IoT 認證裝置目錄](https://catalog.azureiotsuite.com/)
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

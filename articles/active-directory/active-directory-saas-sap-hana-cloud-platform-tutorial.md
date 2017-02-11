@@ -1,11 +1,11 @@
 ---
-title: 教學課程：Azure Active Directory 與 SAP HANA 雲端平台整合 | Microsoft Docs
-description: 了解如何使用 SAP HANA 雲端平台搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 SAP HANA 雲端平台整合 | Microsoft Docs"
+description: "了解如何使用 SAP HANA 雲端平台搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: bd398225-8bd8-4697-9a44-af6e6679113a
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: dae115c597e3a86c954eafcdd322954774fd55a5
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-sap-hana-cloud-platform"></a>教學課程：Azure Active Directory 與 SAP HANA 雲端平台整合
+# <a name="tutorial-azure-active-directory-integration-with-sap-hana-cloud-platform"></a>教學課程：Azure Active Directory 與 SAP HANA 雲端平台整合
 本教學課程的目的是要示範 Azure 與 SAP HANA 雲端平台的整合。  
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -41,7 +45,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-sap-hana-cloud-platform"></a>啟用 SAP HANA 雲端平台的應用程式整合
 本節的目的是要說明如何啟用 SAP HANA 雲端平台的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-sap-hana-cloud-platform,-perform-the-following-steps:"></a>若要啟用 SAP HANA 雲端平台的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-sap-hana-cloud-platform-perform-the-following-steps"></a>若要啟用 SAP HANA 雲端平台的應用程式整合，請執行下列步驟：
 1. 在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC700993.png "Active Directory")
@@ -68,7 +72,7 @@ ms.author: jeedes
 在此程序中，您需要將 base-64 編碼憑證上傳到您的 SAP HANA 雲端平台租用戶。  
 如果您不熟悉這個程序，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
+### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [SAP HANA 雲端平台] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-sap-hana-cloud-platform-tutorial/IC778552.png "Configure single sign-on")
@@ -164,7 +168,7 @@ ms.author: jeedes
 ## <a name="assigning-a-role-to-a-user"></a>將角色指派給使用者
 若要讓 Azure AD 使用者能夠登入 SAP HANA 雲端平台，您必須將 SAP HANA 雲端平台中的角色指派給他們。
 
-### <a name="to-assign-a-role-to-a-user,-perform-the-following-steps:"></a>若要指派角色給使用者，請執行下列步驟：
+### <a name="to-assign-a-role-to-a-user-perform-the-following-steps"></a>若要指派角色給使用者，請執行下列步驟：
 1. 登入您的 **SAP HANA 雲端平台** 駕駛艙。
 2. 執行下列步驟：
    
@@ -179,7 +183,7 @@ ms.author: jeedes
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-sap-hana-cloud-platform,-perform-the-following-steps:"></a>若要將使用者指派給 SAP HANA 雲端平台，請執行下列步驟：
+### <a name="to-assign-users-to-sap-hana-cloud-platform-perform-the-following-steps"></a>若要將使用者指派給 SAP HANA 雲端平台，請執行下列步驟：
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [SAP HANA 雲端平台] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -190,6 +194,9 @@ ms.author: jeedes
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

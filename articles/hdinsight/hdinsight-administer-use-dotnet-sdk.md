@@ -1,13 +1,13 @@
 ---
-title: 使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集 | Microsoft Docs
-description: 了解如何使用 HDInsight .NET SDK 對 HDInsight 中的 Hadoop 叢集執行管理工作。
+title: "使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集 | Microsoft Docs"
+description: "了解如何使用 HDInsight .NET SDK 對 HDInsight 中的 Hadoop 叢集執行管理工作。"
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
 tags: azure-portal
 author: mumian
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: fd134765-c2a0-488a-bca6-184d814d78e9
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,20 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/02/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: aa0f2dd07ffa8437ff224c278135744202adcd73
+
 
 ---
-# 使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集
-[!INCLUDE [選取器](../../includes/hdinsight-portal-management-selector.md)]
+# <a name="manage-hadoop-clusters-in-hdinsight-by-using-net-sdk"></a>使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集
+[!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-了解如何使用 [HDInsight.NET SDK](https://msdn.microsoft.com/library/mt271028.aspx) 管理 HDInsight 叢集。
+了解如何使用 [HDInsight.NET SDK](https://msdn.microsoft.com/library/mt271028.aspx)管理 HDInsight 叢集。
 
 **必要條件**
 
 開始閱讀本文之前，您必須符合下列必要條件：
 
-* **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
-## 連接至 Azure HDInsight
+## <a name="connect-to-azure-hdinsight"></a>連接至 Azure HDInsight
 您需要下列 Nuget 封裝：
 
     Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
@@ -106,12 +110,12 @@ ms.author: jgao
         }
     }
 
-當您執行此程式時，應該會看到提示。如果您不想要看到提示，請參閱[建立非互動式驗證 .NET HDInsight 應用程式](hdinsight-create-non-interactive-authentication-dotnet-applications.md)。
+當您執行此程式時，應該會看到提示。  如果您不想要看到提示，請參閱 [建立非互動式驗證 .NET HDInsight 應用程式](hdinsight-create-non-interactive-authentication-dotnet-applications.md)。
 
-## 建立叢集
-請參閱[使用 .NET SDK 在 HDInsight 中建立 Linux 型叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md)。
+## <a name="create-clusters"></a>建立叢集
+請參閱 [使用 .NET SDK 在 HDInsight 中建立 Linux 型叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md)
 
-## 列出叢集
+## <a name="list-clusters"></a>列出叢集
 下列程式碼片段列出叢集和一些屬性︰
 
     var results = _hdiManagementClient.Clusters.List();
@@ -122,17 +126,17 @@ ms.author: jgao
         Console.WriteLine("\t Cluster version: " + name.Properties.ClusterVersion);
     }
 
-## 刪除叢集
-使用下列程式碼片段，同步或非同步地刪除叢集︰
+## <a name="delete-clusters"></a>刪除叢集
+使用下列程式碼片段，同步或非同步地刪除叢集︰ 
 
     _hdiManagementClient.Clusters.Delete("<Resource Group Name>", "<Cluster Name>");
     _hdiManagementClient.Clusters.DeleteAsync("<Resource Group Name>", "<Cluster Name>");
 
-## 調整叢集
+## <a name="scale-clusters"></a>調整叢集
 叢集調整功能可讓您變更在 Azure HDInsight 中執行的叢集所用的背景工作節點數目，而不需要重新建立叢集。
 
 > [!NOTE]
-> 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。請參閱[列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)。
+> 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。 如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。  請參閱 [列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)。
 > 
 > 
 
@@ -140,26 +144,26 @@ ms.author: jgao
 
 * Hadoop
   
-    您可以順暢地增加正在執行的 Hadoop 叢集中背景工作節點數目，而不會影響任何擱置或執行中的工作。您也可以在作業進行當中提交新工作。系統會順暢處理失敗的調整作業，讓叢集永保正常運作狀態。
+    您可以順暢地增加正在執行的 Hadoop 叢集中背景工作節點數目，而不會影響任何擱置或執行中的工作。 您也可以在作業進行當中提交新工作。 系統會順暢處理失敗的調整作業，讓叢集永保正常運作狀態。
   
-    減少資料節點數目以縮減 Hadoop 叢集時，系統會重新啟動叢集中的部分服務。這會導致所有執行中和擱置的工作在調整作業完成時失敗。但您可以在作業完成後重新提交這些工作。
+    減少資料節點數目以縮減 Hadoop 叢集時，系統會重新啟動叢集中的部分服務。 這會導致所有執行中和擱置的工作在調整作業完成時失敗。 但您可以在作業完成後重新提交這些工作。
 * HBase
   
-    您可以順暢地在 HBase 叢集運作時對其新增或移除資料節點。區域伺服器會在完成調整作業的數分鐘之內自動取得平衡。但是，您也可以手動平衡區域伺服器，方法是登入叢集的前端節點，然後從命令提示字元視窗執行下列命令：
+    您可以順暢地在 HBase 叢集運作時對其新增或移除資料節點。 區域伺服器會在完成調整作業的數分鐘之內自動取得平衡。 但是，您也可以手動平衡區域伺服器，方法是登入叢集的前端節點，然後從命令提示字元視窗執行下列命令：
   
         >pushd %HBASE_HOME%\bin
         >hbase shell
         >balancer
 * Storm
   
-    您可以順暢地在 Storm 叢集運作時對其新增或移除資料節點。但在調整作業順利完成後，您需要重新平衡拓撲。
+    您可以順暢地在 Storm 叢集運作時對其新增或移除資料節點。 但在調整作業順利完成後，您需要重新平衡拓撲。
   
     您可以使用兩種方式來完成重新平衡作業：
   
   * Storm Web UI
   * 命令列介面 (CLI) 工具
     
-    如需詳細資訊，請參閱 [Apache Storm 文件](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
+    如需詳細資訊，請參閱 [Apache Storm 文件](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) 。
     
     HDInsight 叢集上有提供 Storm Web UI：
     
@@ -167,9 +171,9 @@ ms.author: jgao
     
     以下是如何使用 CLI 命令重新平衡 Storm 拓撲的範例：
     
-    ## Reconfigure the topology "mytopology" to use 5 worker processes,
-    ## the spout "blue-spout" to use 3 executors, and
-    ## the bolt "yellow-bolt" to use 10 executors
+    ## <a name="reconfigure-the-topology-mytopology-to-use-5-worker-processes"></a>重新設定拓撲 "mytopology" 來使用 5 個背景工作處理序、
+    ## <a name="the-spout-blue-spout-to-use-3-executors-and"></a>spout "blue-spout" 來使用 3 個執行程式，以及
+    ## <a name="the-bolt-yellow-bolt-to-use-10-executors"></a>bolt "yellow-bolt" 來使用 10 個執行程式
       $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
 
 下列程式碼片段示範如何同步或非同步地調整叢集大小︰
@@ -178,7 +182,7 @@ ms.author: jgao
     _hdiManagementClient.Clusters.ResizeAsync("<Resource Group Name>", "<Cluster Name>", <New Size>);   
 
 
-## 授與/撤銷存取權
+## <a name="grantrevoke-access"></a>授與/撤銷存取權
 HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful 端點)：
 
 * ODBC
@@ -187,7 +191,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 * Oozie
 * Templeton
 
-預設會授與這些服務的存取權。您可以撤銷/授與存取權。撤銷：
+預設會授與這些服務的存取權。 您可以撤銷/授與存取權。 撤銷：
 
     var httpParams = new HttpSettingsParameters
     {
@@ -213,12 +217,12 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 > 
 > 
 
-這也可以透過入口網站完成。請參閱[使用 Azure 入口網站管理 HDInsight][hdinsight-admin-portal]。
+這也可以透過入口網站完成。 請參閱[使用 Azure 入口網站管理 HDInsight][hdinsight-admin-portal]。
 
-## 更新 HTTP 使用者認證
-與[授與/撤銷 HTTP 存取權](#grant/revoke-access)程序一樣。若已授與叢集 HTTP 存取權，則必須先將其撤銷。然後再使用新的 HTTP 使用者認證授與存取權。
+## <a name="update-http-user-credentials"></a>更新 HTTP 使用者認證
+與[授與/撤銷 HTTP 存取權](#grant/revoke-access)程序一樣。若已授與叢集 HTTP 存取權，則必須先將其撤銷。  然後再使用新的 HTTP 使用者認證授與存取權。
 
-## 尋找預設的儲存體帳戶
+## <a name="find-the-default-storage-account"></a>尋找預設的儲存體帳戶
 下列程式碼片段示範如何取得叢集的預設儲存體帳戶名稱和預設儲存體帳戶金鑰。
 
     var results = _hdiManagementClient.Clusters.GetClusterConfigurations(<Resource Group Name>, <Cluster Name>, "core-site");
@@ -228,31 +232,31 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
     }
 
 
-## 提交工作
+## <a name="submit-jobs"></a>提交工作
 **提交 MapReduce 作業**
 
-請參閱[在 HDInsight 中執行 Hadoop MapReduce 範例](hdinsight-hadoop-run-samples-linux.md)。
+請參閱 [在 HDInsight 中執行 Hadoop MapReduce 範例](hdinsight-hadoop-run-samples-linux.md)。
 
-**提交 Hive 作業**
+**提交 Hive 作業** 
 
-請參閱[使用 .NET SDK 執行 Hive 查詢](hdinsight-hadoop-use-hive-dotnet-sdk.md)。
+請參閱 [使用 .NET SDK 執行 Hive 查詢](hdinsight-hadoop-use-hive-dotnet-sdk.md)。
 
 **提交 Pig 作業**
 
-請參閱[使用 .NET SDK 執行 Pig 作業](hdinsight-hadoop-use-pig-dotnet-sdk.md)。
+請參閱 [使用 .NET SDK 執行 Pig 作業](hdinsight-hadoop-use-pig-dotnet-sdk.md)。
 
 **提交 Sqoop 作業**
 
-請參閱[在 HDInsight 上使用 Sqoop](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)。
+請參閱 [在 HDInsight 上使用 Sqoop](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)。
 
 **提交 Oozie 作業**
 
-請參閱[在 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程](hdinsight-use-oozie-linux-mac.md)。
+請參閱 [在 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程](hdinsight-use-oozie-linux-mac.md)。
 
-## 將資料上傳至 Azure Blob 儲存體
+## <a name="upload-data-to-azure-blob-storage"></a>將資料上傳至 Azure Blob 儲存體
 請參閱[將資料上傳至 HDInsight][hdinsight-upload-data]。
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [HDInsight .NET SDK 參考文件](https://msdn.microsoft.com/library/mt271028.aspx)
 * [使用 Azure 入口網站管理 HDInsight][hdinsight-admin-portal]
 * [使用命令列介面管理 HDInsight][hdinsight-admin-cli]
@@ -277,4 +281,10 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-flight]: hdinsight-analyze-flight-delay-data.md
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,12 +1,12 @@
 ---
-title: Encrypt disks on a Linux VM | Microsoft Docs
-description: How to encrypt disks on a Linux VM using the Azure CLI and the Resource Manager deployment model
+title: "將 Linux VM 上的磁碟加密 | Microsoft Docs"
+description: "如何使用 Azure CLI 和 Resource Manager 部署模型將 Linux VM 上的磁碟加密"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: iainfoulds
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 2a23b6fa-6941-4998-9804-8efe93b647b3
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
@@ -14,79 +14,83 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 10/11/2016
 ms.author: iainfou
+translationtype: Human Translation
+ms.sourcegitcommit: 5dd20630580f09049c88ffd9107f7fa8e8e43816
+ms.openlocfilehash: 15b3c7c910f5f55da31a8a7113b4d66714f1c908
+
 
 ---
-# <a name="encrypt-disks-on-a-linux-vm-using-the-azure-cli"></a>Encrypt disks on a Linux VM using the Azure CLI
-For enhanced virtual machine (VM) security and compliance, virtual disks in Azure can be encrypted at rest. Disks are encrypted using cryptographic keys that are secured in an Azure Key Vault. You control these cryptographic keys and can audit their use. This article details how to encrypt virtual disks on a Linux VM using the Azure CLI and the Resource Manager deployment model.
+# <a name="encrypt-disks-on-a-linux-vm-using-the-azure-cli"></a>使用 Azure CLI 將 Linux VM 上的磁碟加密
+如需強化虛擬機器 (VM) 安全性與法規遵循，可以將 Azure 中的待用虛擬磁碟加密。 磁碟會使用 Azure 金鑰保存庫中受保護的密碼編譯金鑰進行加密。 您可控制這些密碼編譯金鑰，並可稽核其使用情況。 本文詳細說明如何使用 Azure CLI 和 Resource Manager 部署模型將 Linux VM 上的虛擬磁碟加密。
 
-## <a name="quick-commands"></a>Quick commands
-If you need to quickly accomplish the task, the following section details the base commands to encrypt virtual disks on your VM. More detailed information and context for each step can be found the rest of the document, [starting here](#overview-of-disk-encryption).
+## <a name="quick-commands"></a>快速命令
+如果您需要快速完成工作，下列章節詳細說明將 VM 上的虛擬磁碟加密的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](#overview-of-disk-encryption)。
 
-You need the [latest Azure CLI](../xplat-cli-install.md) installed and logged in using the Resource Manager mode as follows:
+您需要使用 Resource Manager 模式安裝和登入[最新的 Azure CLI](../xplat-cli-install.md)，如下所示：
 
-```
+```azurecli
 azure config mode arm
 ```
 
-In the following examples, replace example parameter names with your own values. Example parameter names include `myResourceGroup`, `myKeyVault`, and `myVM`.
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myKeyVault` 和 `myVM`。
 
-First, enable the Azure Key Vault provider within your Azure subscription and create a resource group. The following example creates a resource group name `myResourceGroup` in the `WestUS` location:
+首先，啟用您的 Azure 訂用帳戶中的 Azure 金鑰保存庫提供者，以及建立資源群組。 下列範例會在 `WestUS` 位置建立名為 `myResourceGroup` 的資源群組：
 
-```bash
+```azurecli
 azure provider register Microsoft.KeyVault
 azure group create myResourceGroup --location WestUS
 ```
 
-Create an Azure Key Vault. The following example creates a Key Vault named `myKeyVault`:
+建立 Azure 金鑰保存庫。 下列範例會建立名為 `myKeyVault` 的金鑰保存庫：
 
-```bash
+```azurecli
 azure keyvault create --vault-name myKeyVault --resource-group myResourceGroup \
   --location WestUS
 ```
 
-Create a cryptographic key in your Key Vault and enable it for disk encryption. The following example creates a key named `myKey`:
+在您的金鑰保存庫中建立密碼編譯金鑰，並針對磁碟加密加以啟用。 下列範例會建立名為 `myKey` 的金鑰：
 
-```bash
+```azurecli
 azure keyvault key create --vault-name myKeyVault --key-name myKey \
   --destination software
 azure keyvault set-policy --vault-name myKeyVault --resource-group myResourceGroup \
   --enabled-for-disk-encryption true
 ```
 
-Create an endpoint using Azure Active Directory for handling the authentication and exchanging of cryptographic keys from Key Vault. The `--home-page` and `--identifier-uris` do not need to be actual routable address. For the highest level of security, client secrets should be used instead of passwords. The Azure CLI cannot currently generate client secrets. Client secrets can only be generated in the Azure portal. The following example creates an Azure Active Directory endpoint named `myAADApp` and uses a password of `myPassword`:
+使用 Azure Active Directory 建立端點，以便處理金鑰保存庫中密碼編譯金鑰的驗證和交換。 `--home-page` 和 `--identifier-uris` 不必是實際的可路由傳送位址。 如需最高等級的安全性，則應使用用戶端密碼 (Secret) 而非使用密碼 (Password)。 Azure CLI 目前無法產生用戶端密碼。 用戶端密碼只能在 Azure 入口網站中產生。 下列範例會建立名為 `myAADApp` 的 Azure Active Directory 端點，並使用 `myPassword` 的密碼。 指定您自己的密碼，如下所示︰
 
-```bash
+```azurecli
 azure ad app create --name myAADApp \
   --home-page http://testencrypt.contoso.com \
   --identifier-uris http://testencrypt.contoso.com \
   --password myPassword
 ```
 
-Note the `applicationId` shown in the output from the preceding command. This application ID is used in the following steps:
+請記下先前命令的輸出中顯示的 `applicationId`。 此應用程式識別碼會使用於下列步驟：
 
-```bash
+```azurecli
 azure ad sp create --applicationId myApplicationID
 azure keyvault set-policy --vault-name myKeyVault --spn myApplicationID \
   --perms-to-keys [\"all\"] --perms-to-secrets [\"all\"]
 ```
 
-Add a data disk to an existing VM. The following example adds a data disk to a VM named `myVM`:
+將資料磁碟新增至現有的 VM。 下列範例會將資料磁碟新增至名為 `myVM` 的 VM：
 
-```bash
+```azurecli
 azure vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
   --size-in-gb 5
 ```
 
-Review the details for your Key Vault and the key you created. You need the Key Vault ID, URI, and key URL in the final step. The following example reviews the details for a Key Vault named `myKeyVault` and key named `myKey`:
+檢閱您的金鑰保存庫和您所建立的金鑰詳細資料。 您需要最後一個步驟中的金鑰保存庫識別碼、URI 和金鑰 URL。 下列範例會檢閱名為 `myKeyVault` 的金鑰保存庫和名為 `myKey` 的金鑰詳細資料：
 
-```bash
+```azurecli
 azure keyvault show myKeyVault
 azure keyvault key show myKeyVault myKey
 ```
 
-Encrypt your disks as follows, entering your own parameter names throughout:
+如下所示，始終輸入您自己的參數名稱，將您的磁碟加密︰
 
-```bash
+```azurecli
 azure vm enable-disk-encryption --resource-group myResourceGroup --vm-name myVM \
   --aad-client-id myApplicationID --aad-client-secret myApplicationPassword \
   --disk-encryption-key-vault-url myKeyVaultVaultURI \
@@ -96,9 +100,9 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --vm-name myVM 
   --volume-type Data
 ```
 
-The Azure CLI doesn't provide verbose errors during the encryption process. For additional troubleshooting information, review `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log`. As the preceding command has many variables and you may not get much indication as to why the process fails, a complete command example would be as follows:
+Azure CLI 不會在加密過程中提供詳細資訊錯誤。 如需其他疑難排解資訊，請檢閱 `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log`。 由於上述命令有許多變數，而且您可能未得到很多有關程序為何失敗的指示，其完整命令範例如下所示︰
 
-```bash
+```azurecli
 azure vm enable-disk-encryption -g myResourceGroup -n MyVM \
   --aad-client-id 147bc426-595d-4bad-b267-58a7cbd8e0b6 \
   --aad-client-secret P@ssw0rd! \
@@ -109,78 +113,78 @@ azure vm enable-disk-encryption -g myResourceGroup -n MyVM \
   --volume-type Data
 ```
 
-Finally, review the encryption status again to confirm that your virtual disks have now been encrypted. The following example checks the status of a VM named `myVM` in the `myResourceGroup` resource group:
+最後，再次檢閱加密狀態，確認您的虛擬磁碟現在已加密。 下列範例會檢查 `myResourceGroup` 資源群組中名為 `myVM` 的 VM 狀態：
 
-```bash
+```azurecli
 azure vm show-disk-encryption-status --resource-group myResourceGroup --name myVM
 ```
 
-## <a name="overview-of-disk-encryption"></a>Overview of disk encryption
-Virtual disks on Linux VMs are encrypted at rest using [dm-crypt](https://wikipedia.org/wiki/Dm-crypt). There is no charge for encrypting virtual disks in Azure. Cryptographic keys are stored in Azure Key Vault using software-protection, or you can import or generate your keys in Hardware Security Modules (HSMs) certified to FIPS 140-2 level 2 standards. You retain control of these cryptographic keys and can audit their use. These cryptographic keys are used to encrypt and decrypt virtual disks attached to your VM. An Azure Active Directory endpoint provides a secure mechanism for issuing these cryptographic keys as VMs are powered on and off.
+## <a name="overview-of-disk-encryption"></a>磁碟加密概觀
+Linux VM 上的待用虛擬磁碟會使用 [dm-crypt](https://wikipedia.org/wiki/Dm-crypt) 進行加密。 將 Azure 中的虛擬磁碟加密完全免費。 密碼編譯金鑰會使用軟體保護功能儲存在 Azure 金鑰保存庫中，或者您可以在 FIPS 140-2 第 2 級標準認證的硬體安全性模組 (HSM) 中匯入或產生金鑰。 您可保留這些密碼編譯金鑰的控制權，並可稽核其使用情況。 這些密碼編譯金鑰用來加密及解密連接到 VM 的虛擬磁碟。 Azure Active Directory 端點提供一個安全機制，以便在 VM 開機或關機時發出這些密碼編譯金鑰。
 
-The process for encrypting a VM is as follows:
+將 VM 加密的程序如下所示：
 
-1. Create a cryptographic key in an Azure Key Vault.
-2. Configure the cryptographic key to be usable for encrypting disks.
-3. To read the cryptographic key from the Azure Key Vault, create an endpoint using Azure Active Directory with the appropriate permissions.
-4. Issue the command to encrypt your virtual disks, specifying the Azure Active Directory endpoint and appropriate cryptographic key to be used.
-5. The Azure Active Directory endpoint requests the required cryptographic key from Azure Key Vault.
-6. The virtual disks are encrypted using the provided cryptographic key.
+1. 在 Azure 金鑰保存庫中建立密碼編譯金鑰。
+2. 將密碼編譯金鑰設定為可用於磁碟加密。
+3. 若要讀取 Azure 金鑰保存庫中的密碼編譯金鑰，請使用 Azure Active Directory 並以適當權限建立端點。
+4. 發出命令將您的虛擬磁碟加密，並指定要使用的 Azure Active Directory 端點和適當密碼編譯金鑰。
+5. Azure Active Directory 端點會向 Azure 金鑰保存庫要求所需的密碼編譯金鑰。
+6. 虛擬磁碟會使用所提供的密碼編譯金鑰進行加密。
 
-## <a name="supporting-services-and-encryption-process"></a>Supporting services and encryption process
-Disk encryption relies on the following additional components:
+## <a name="supporting-services-and-encryption-process"></a>支援服務和加密程序
+磁碟加密依賴下列其他元件︰
 
-* **Azure Key Vault** - used to safeguard cryptographic keys and secrets used for the disk encryption/decryption process. 
-  * If one exists, you can use an existing Azure Key Vault. You do not have to dedicate a Key Vault to encrypting disks.
-  * To separate administrative boundaries and key visibility, you can create a dedicated Key Vault.
-* **Azure Active Directory** - handles the secure exchanging of required cryptographic keys and authentication for requested actions. 
-  * You can typically use an existing Azure Active Directory instance for housing your application. 
-  * The application is more of an endpoint for the Key Vault and Virtual Machine services to request and get issued the appropriate cryptographic keys. You are not developing an actual application that integrates with Azure Active Directory.
+* **Azure 金鑰保存庫** - 用來保護磁碟加密/解密程序所使用的密碼編譯金鑰和密碼。 
+  * 如果有的話，您可以使用現有的 Azure 金鑰保存庫。 您沒有專門用來加密磁碟的金鑰保存庫。
+  * 若要區分系統管理界限和金鑰可視性，您可以建立專用的金鑰保存庫。
+* **Azure Active Directory** - 處理必要密碼編譯金鑰的安全交換以及所要求動作的驗證。 
+  * 您通常使用現有的 Azure Active Directory 執行個體來裝載您的應用程式。 
+  * 對金鑰保存庫和虛擬機器服務而言，此應用程式不僅只是個端點，還可要求和取得已發出的適當密碼編譯金鑰。 您並未開發與 Azure Active Directory 整合的實際應用程式。
 
-## <a name="requirements-and-limitations"></a>Requirements and limitations
-Supported scenarios and requirements for disk encryption:
+## <a name="requirements-and-limitations"></a>需求和限制
+磁碟加密支援的案例和需求：
 
-* The following Linux server SKUs - Ubuntu, CentOS, SUSE and SUSE Linux Enterprise Server (SLES), and Red Hat Enterprise Linux.
-* All resources (such as Key Vault, Storage account, and VM) must be in the same Azure region and subscription.
-* Standard A, D, DS, G, and GS series VMs.
+* 下列 Linux 伺服器 SKU - Ubuntu、CentOS、SUSE、SUSE Linux Enterprise Server (SLES) 和 Red Hat Enterprise Linux。
+* 所有資源 (例如金鑰保存庫、儲存體帳戶、VM) 必須位於相同的 Azure 區域和訂用帳戶。
+* 標準 A、D、DS、G 和 GS 系列 VM。
 
-Disk encryption is not currently supported in the following scenarios:
+下列案例目前不支援磁碟加密︰
 
-* Basic tier VMs.
-* VMs created using the Classic deployment model.
-* Disabling OS disk encryption on Linux VMs.
-* Updating the cryptographic keys on an already encrypted Linux VM.
+* 基本層 VM。
+* 使用傳統部署模型建立的 VM。
+* 在 Linux VM 上停用作業系統磁碟加密。
+* 在已經加密的 Linux VM 上更新密碼編譯金鑰。
 
-## <a name="create-the-azure-key-vault-and-keys"></a>Create the Azure Key Vault and keys
-To complete the remainder of this guide, you need the [latest Azure CLI](../xplat-cli-install.md) installed and logged in using the Resource Manager mode as follows:
+## <a name="create-the-azure-key-vault-and-keys"></a>建立 Azure 金鑰保存庫和金鑰
+若要完成本指南的其餘部分，您需要使用 Resource Manager 模式安裝和登入[最新的 Azure CLI](../xplat-cli-install.md)，如下所示：
 
-```
+```azurecli
 azure config mode arm
 ```
 
-Throughout the command examples, replace all example parameters with your own names, location, and key values. The following examples use a convention of `myResourceGroup`, `myKeyVault`, `myAADApp`, etc.
+在整個命令範例中，以您自己的名稱、位置和金鑰值取代所有的範例參數。 下列範例使用 `myResourceGroup`、`myKeyVault`、`myAADApp` 等的慣例。
 
-The first step is to create an Azure Key Vault to store your cryptographic keys. Azure Key Vault can store keys, secrets, or passwords that allow you to securely implement them in your applications and services. For virtual disk encryption, you use Key Vault to store a cryptographic key that is used to encrypt or decrypt your virtual disks. 
+建立 Azure 金鑰保存庫的第一個步驟是儲存您的密碼編譯金鑰。 Azure 金鑰保存庫儲存可讓您安全地在應用程式和服務中實作的金鑰和密碼 (Secret 或 Password)。 如需虛擬磁碟加密，您可使用金鑰保存庫來儲存用來加密或解密虛擬磁碟的密碼編譯金鑰。 
 
-Enable the Azure Key Vault provider in your Azure subscription, then create a resource group as follows:
+啟用您的 Azure 訂用帳戶中的 Azure 金鑰保存庫提供者，然後建立資源群組。 下列範例會在 `WestUS` 位置建立名為 `myResourceGroup` 的資源群組：
 
-```bash
+```azurecli
 azure provider register Microsoft.KeyVault
 azure group create myResourceGroup --location WestUS
 ```
 
-The Azure Key Vault containing the cryptographic keys and associated compute resources such as storage and the VM itself must reside in the same region. Create an Azure Key Vault as follows:
+包含密碼編譯金鑰和相關聯計算資源 (例如儲存體和 VM) 的 Azure 金鑰保存庫本身必須位於相同的區域中。 下列範例會建立名為 `myKeyVault` 的 Azure 金鑰保存庫：
 
-```bash
+```azurecli
 azure keyvault create --vault-name myKeyVault --resource-group myResourceGroup \
-  --location  <WestUS>
+  --location WestUS
 ```
 
-You can store cryptographic keys using software or Hardware Security Model (HSM) protection. Using an HSM requires a premium Key Vault. There is an additional cost to creating a premium Key Vault rather than standard Key Vault that stores software-protected keys. To create a premium Key Vault, in the preceding step add `--sku Premium` to the command. The following example uses software-protected keys since we created a standard Key Vault. 
+您可以使用軟體或硬體安全性模型 (HSM) 保護功能來儲存密碼編譯金鑰。 使用 HSM 時需要進階金鑰保存庫。 建立進階金鑰保存庫 (而非用來儲存軟體保護金鑰的標準金鑰保存庫) 會有額外的成本。 若要建立進階金鑰保存庫，在前一個步驟中將 `--sku Premium` 新增至命令。 下列範例會使用軟體保護的金鑰，因為我們建立了標準金鑰保存庫。 
 
-For both protection models, the Azure platform needs to be granted access to request the cryptographic keys when the VM boots to decrypt the virtual disks. Create an encryption key within your Key Vault, then enable it for use with virtual disk encryption as follows:
+在兩種保護模型中，Azure 平台都必須獲得存取權，才能在 VM 開機時要求密碼編譯金鑰來將虛擬磁碟解密。 在您的金鑰保存庫中建立加密金鑰，然後加以啟用以便用於虛擬磁碟加密。 下列範例會建立名為 `myKey` 的金鑰，然後加以啟用以便用於磁碟加密︰
 
-```bash
+```azurecli
 azure keyvault key create --vault-name myKeyVault --key-name myKey \
   --destination software
 azure keyvault set-policy --vault-name myKeyVault --resource-group myResourceGroup \
@@ -188,64 +192,64 @@ azure keyvault set-policy --vault-name myKeyVault --resource-group myResourceGro
 ```
 
 
-## <a name="create-the-azure-active-directory-application"></a>Create the Azure Active Directory application
-When virtual disks are encrypted or decrypted, you use an endpoint to handle the authentication and exchanging of cryptographic keys from Key Vault. This endpoint, an Azure Active Directory application, allows the Azure platform to request the appropriate cryptographic keys on behalf of the VM. A default Azure Active Directory instance is available in your subscription, though many organizations have dedicated Azure Active Directory directories.
+## <a name="create-the-azure-active-directory-application"></a>建立 Azure Active Directory 應用程式
+加密或解密虛擬磁碟時，您可以使用端點來處理金鑰保存庫中密碼編譯金鑰的驗證和交換。 此端點 (Azure Active Directory 應用程式) 可讓 Azure 平台代表 VM 要求適當的密碼編譯金鑰。 雖然許多組織都有專用的 Azure Active Directory 目錄，但您的訂用帳戶中會有預設 Azure Active Directory 執行個體。
 
-As you are not creating a full Azure Active Directory application, the `--home-page` and `--identifier-uris` parameters in the following example do not need to be actual routable address. The following example also specifies a password-based secret rather than generating keys from within the Azure portal. As this time, generating keys cannot be done from the Azure CLI. 
+因為您不想建立完整的 Azure Active Directory 應用程式，所以下列範例中的 `--home-page` 和 `--identifier-uris` 參數不必是實際可路由傳送的位址。 下列範例也會指定以密碼 (password) 為基礎的密碼 (secret)，而不是在 Azure 入口網站中產生金鑰。 此時，無法從 Azure CLI 產生金鑰。 
 
-Create your Azure Active Directory application as follows:
+建立 Azure Active Directory 應用程式。 下列範例會建立名為 `myAADApp` 的應用程式，並使用 `myPassword` 的密碼。 指定您自己的密碼，如下所示︰
 
-```bash
+```azurecli
 azure ad app create --name myAADApp \
   --home-page http://testencrypt.contoso.com \
   --identifier-uris http://testencrypt.contoso.com \
   --password myPassword
 ```
 
-Make a note of the `applicationId` that is returned in the output from the preceding command. This application ID is used in some of the remaining steps. Next, create a service principal name (SPN) so that the application is accessible within your environment. To successfully encrypt or decrypt virtual disks, permissions on the cryptographic key stored in Key Vault must be set to permit the Azure Active Directory application to read the keys. 
+請記下先前命令的輸出中傳回的 `applicationId`。 此應用程式識別碼會使用於剩餘的某些步驟。 接下來，建立服務主體名稱 (SPN)，以便在您的環境中存取應用程式。 若要成功加密或解密虛擬磁碟，金鑰保存庫中所儲存之密碼編譯金鑰的權限必須設定為允許 Azure Active Directory 應用程式讀取機碼。 
 
-Create the SPN and set the appropriate permissions as follows:
+建立 SPN 並設定適當的權限，如下所示︰
 
-```bash
+```azurecli
 azure ad sp create --applicationId myApplicationID
 azure keyvault set-policy --vault-name myKeyVault --spn myApplicationID \
   --perms-to-keys [\"all\"] --perms-to-secrets [\"all\"]
 ```
 
 
-## <a name="add-a-virtual-disk-and-review-encryption-status"></a>Add a virtual disk and review encryption status
-To actually encrypt some virtual disks, lets add a disk to an existing VM. Add a 5Gb data disk to an existing VM as follows:
+## <a name="add-a-virtual-disk-and-review-encryption-status"></a>新增虛擬磁碟並檢閱加密狀態
+若要實際加密某些虛擬磁碟，請將磁碟新增至現有的 VM。 將 5Gb 資料磁碟新增至現有的 VM，如下所示︰
 
-```bash
+```azurecli
 azure vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
   --size-in-gb 5
 ```
 
-The virtual disks are not currently encrypted. Review the current encryption status of your VM as follows:
+虛擬磁碟目前並未加密。 檢閱 VM 的目前加密狀態，如下所示︰
 
-```bash
+```azurecli
 azure vm show-disk-encryption-status --resource-group myResourceGroup --name myVM
 ```
 
 
-## <a name="encrypt-virtual-disks"></a>Encrypt virtual disks
-To now encrypt the virtual disks, you bring together all the previous components:
+## <a name="encrypt-virtual-disks"></a>將虛擬磁碟加密
+若要現在將虛擬磁碟加密，您可結合所有先前的元件︰
 
-1. Specify the Azure Active Directory application and password.
-2. Specify the Key Vault to store the metadata for your encrypted disks.
-3. Specify the cryptographic keys to use for the actual encryption and decryption.
-4. Specify whether you want to encrypt the OS disk, the data disks, or all.
+1. 指定 Azure Active Directory 應用程式和密碼。
+2. 指定金鑰保存庫以儲存已加密磁碟的中繼資料。
+3. 指定要用於實際加密和解密的密碼編譯金鑰。
+4. 指定是否要將作業系統磁碟、資料磁碟或所有磁碟加密。
 
-Lets review the details for your Azure Key Vault and the key you created, as you need the Key Vault ID, URI, and then key URL in the final step:
+請檢閱 Azure 金鑰保存庫的詳細資料和您建立的金鑰，因為您在最後一個步驟中需要金鑰保存庫識別碼、URI 和 URL︰
 
-```bash
+```azurecli
 azure keyvault show myKeyVault
 azure keyvault key show myKeyVault myKey
 ```
 
-Encrypt your virtual disks using the output from the `azure keyvault show` and `azure keyvault key show` commands as follows:
+使用 `azure keyvault show` 和 `azure keyvault key show` 命令的輸出將您的虛擬磁碟加密，如下所示︰
 
-```bash
+```azurecli
 azure vm enable-disk-encryption --resource-group myResourceGroup --vm-name myVM \
   --aad-client-id myApplicationID --aad-client-secret myApplicationPassword \
   --disk-encryption-key-vault-url myKeyVaultVaultURI \
@@ -255,9 +259,9 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --vm-name myVM 
   --volume-type Data
 ```
 
-As the preceding command has many variables, the following example is the complete command for reference:
+由於上述命令有許多變數，下列範例是供您參考的完整命令︰
 
-```bash
+```azurecli
 azure vm enable-disk-encryption -g myResourceGroup -n MyVM \
   --aad-client-id 147bc426-595d-4bad-b267-58a7cbd8e0b6 \
   --aad-client-secret P@ssw0rd! \
@@ -268,28 +272,28 @@ azure vm enable-disk-encryption -g myResourceGroup -n MyVM \
   --volume-type Data
 ```
 
-The Azure CLI doesn't provide verbose errors during the encryption process. For additional troubleshooting information, review `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log` on the VM you are encrypting.
+Azure CLI 不會在加密過程中提供詳細資訊錯誤。 如需其他疑難排解資訊，請檢閱您所加密之 VM 上的 `/var/log/azure/Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux/0.x.x.x/extension.log`。
 
-Finally, lets review the encryption status again to confirm that your virtual disks have now been encrypted:
+最後，再次檢閱加密狀態，確認您的虛擬磁碟現在已加密：
 
-```bash
+```azurecli
 azure vm show-disk-encryption-status --resource-group myResourceGroup --name myVM
 ```
 
 
-## <a name="add-additional-data-disks"></a>Add additional data disks
-Once you have encrypted your data disks, you can later add additional virtual disks to your VM and also encrypt them. When you run the `azure vm enable-disk-encryption` command, increment the sequence version using the `--sequence-version` parameter. This sequence version parameter allows you to perform repeated operations on the same VM.
+## <a name="add-additional-data-disks"></a>新增其他資料磁碟
+一旦將資料磁碟加密，您稍後即可將其他虛擬磁碟新增至您的 VM，而且予以加密。 當您執行 `azure vm enable-disk-encryption` 命令時，請使用 `--sequence-version` 參數遞增順序版本。 此順序版本參數可讓您在相同的 VM 上執行重複的作業。
 
-For example, lets add a second virtual disk to your VM as follows:
+例如，將第二個虛擬磁碟新增至您的 VM，如下所示︰
 
-```bash
+```azurecli
 azure vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
   --size-in-gb 5
 ```
 
-Rerun the command to encrypt the virtual disks, this time adding the `--sequence-version` parameter, and incrementing the value from our first run as follows:
+重新執行命令來加密虛擬磁碟，這次新增 `--sequence-version` 參數，並從第一次執行遞增此值，如下所示︰
 
-```bash
+```azurecli
 azure vm enable-disk-encryption --resource-group myResourceGroup --vm-name myVM \
   --aad-client-id myApplicationID --aad-client-secret myApplicationPassword \
   --disk-encryption-key-vault-url myKeyVaultVaultURI \
@@ -301,10 +305,13 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --vm-name myVM 
 ```
 
 
-## <a name="next-steps"></a>Next steps
-* For more information about managing Azure Key Vault, including deleting cryptographic keys and vaults, see [Manage Key Vault using CLI](../key-vault/key-vault-manage-with-cli.md).
-* For more information about disk encryption, such as preparing an encrypted custom VM to upload to Azure, see [Azure Disk Encryption](../security/azure-security-disk-encryption.md).
+## <a name="next-steps"></a>後續步驟
+* 如需有關管理 Azure 金鑰保存庫 (包括刪除密碼編譯金鑰和保存庫) 的詳細資訊，請參閱[使用 CLI 管理金鑰保存庫](../key-vault/key-vault-manage-with-cli.md)。
+* 如需有關磁碟加密 (例如準備加密的自訂 VM 以上傳至 Azure) 的詳細資訊，請參閱 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

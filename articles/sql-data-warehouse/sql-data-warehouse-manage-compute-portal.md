@@ -1,12 +1,12 @@
 ---
-title: Manage compute power in Azure SQL Data Warehouse (Azure portal) | Microsoft Docs
-description: Azure portal tasks to manage compute power. Scale compute resources by adjusting DWUs. Or, pause and resume compute resources to save costs.
+title: "管理 Azure SQL 資料倉儲中的計算能力 (Azure 入口網站) | Microsoft Docs"
+description: "管理計算能力的 Azure 入口網站工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 233b0da5-4abd-4d1d-9586-4ccc5f50b071
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,86 +14,87 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: c1c23ab46d9b4e43154a62080cb8865b246489f9
+ms.openlocfilehash: 2e11486203f04d671548b6132e61f804acb7f90a
+
 
 ---
-# <a name="manage-compute-power-in-azure-sql-data-warehouse-azure-portal"></a>Manage compute power in Azure SQL Data Warehouse (Azure portal)
+# <a name="manage-compute-power-in-azure-sql-data-warehouse-azure-portal"></a>管理 Azure SQL 資料倉儲中的計算能力 (Azure 入口網站)
 > [!div class="op_single_selector"]
-> * [Overview](sql-data-warehouse-manage-compute-overview.md)
-> * [Portal](sql-data-warehouse-manage-compute-portal.md)
+> * [概觀](sql-data-warehouse-manage-compute-overview.md)
+> * [入口網站](sql-data-warehouse-manage-compute-portal.md)
 > * [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 > * [REST](sql-data-warehouse-manage-compute-rest-api.md)
 > * [TSQL](sql-data-warehouse-manage-compute-tsql.md)
-> 
-> 
+>
+>
 
-Scale performance by scaling out compute resources and memory to meet the changing demands of your workload. Save costs by scaling back resources during non-peak times or pausing compute altogether. 
+透過相應放大計算資源和記憶體來調整效能，以滿足工作負載不斷改變的需求。 透過在非尖峰時間縮減資源或直接暫停計算以節省成本。
 
-This collection of tasks uses the Azure portal to:
+這個工作集合會使用 Azure 入口網站來：
 
-* Scale compute
-* Pause compute
-* Resume compute
+* 調整計算
+* 暫停計算
+* 繼續計算
 
-For more information, see [Manage compute overview][Manage compute overview].
+如需詳細資訊，請參閱[管理計算概觀][管理計算概觀]。
 
-<a name="scale-performance-bk"></a>
-<a name="scale-compute-bk"></a>
-
-## <a name="scale-compute-power"></a>Scale compute power
+## <a name="scale-compute-power"></a>調整計算能力
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-To change compute resources:
+若要變更計算資源︰
 
-1. Open the [Azure portal][Azure portal], open your database, and click **Scale**.
-   
-    ![Click Scale][1]
-2. In the Scale blade, move the slider left or right to change the DWU setting.
-   
-    ![Move Slider][2]
-3. Click **Save**. A confirmation message appears. Click **yes** to confirm or **no** to cancel.
-   
-    ![Click Save][3]
+1. 開啟 [Azure 入口網站][Azure 入口網站]，開啟您的資料庫，然後按一下 [調整]。
+
+    ![按一下 [調整]][1]
+2. 在 [調整] 刀鋒視窗中，將滑桿向左或右移動來變更 DWU 設定。
+
+    ![移動滑桿][2]
+3. 按一下 [儲存] 。 確認訊息隨即出現。 按一下 [是] 以確認或 [否] 以取消。
+
+    ![按一下 [Save] (儲存)。][3]
 
 <a name="pause-compute-bk"></a>
 
-## <a name="pause-compute"></a>Pause compute
+## <a name="pause-compute"></a>暫停計算
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-To pause a database:
+若要暫停資料庫︰
 
-1. Open the [Azure portal][Azure portal] and open your database. Notice that the Status is **Online**. 
-   
-    ![Online status][6]
-2. To suspend compute and memory resources, click **Pause**, and then a confirmation message appears. Click **yes** to confirm or **no** to cancel.
-   
-    ![Confirm pause][7]
-3. While SQL Data Warehouse is starting the database, the status is **Pausing**.
-4. When the status is **Paused**, the pause operation is done and you are no longer being charged for DWUs.
-   
-    ![Pause status][4]
+1. 開啟 [Azure 入口網站][Azure 入口網站]，並開啟您的資料庫。 請注意，狀態為 **線上**。
+
+    ![線上狀態][6]
+2. 若要暫停計算和記憶體資源，請按一下 [暫停] ，接著就會出現確認訊息。 按一下 [是] 以確認或 [否] 以取消。
+
+    ![確認暫停][7]
+3. 當「SQL 資料倉儲」啟動資料庫時，狀態會是 [暫停中] 。
+4. 當狀態為 [已暫停] 時，即表示暫停作業完成，不會再對您收取 DWU 費用。
+
+    ![暫停狀態][4]
 
 <a name="resume-compute-bk"></a>
 
-## <a name="resume-compute"></a>Resume compute
+## <a name="resume-compute"></a>繼續計算
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-To resume a database:
+若要繼續資料庫︰
 
-1. Open the [Azure portal][Azure portal] and open your database. Notice that the Status is **Paused**. 
-   
-    ![Pause database][4]
-2. To resume the database click **Start**, and then a confirmation message appears. Click **yes** to confirm or **no** to cancel.
-   
-    ![Confirm resume][5]
-3. While SQL Data Warehouse is starting the database, the status is "Resuming".
-4. When the status is **online**, the database is ready.
-   
-    ![Online status][6]
+1. 開啟 [Azure 入口網站][Azure 入口網站]，並開啟您的資料庫。 請注意，狀態為 **已暫停**。
+
+    ![暫停資料庫][4]
+2. 若要繼續資料庫，請按一下 [啟動] ，接著就會出現確認訊息。 按一下 [是] 以確認或 [否] 以取消。
+
+    ![確認繼續][5]
+3. 當「SQL 資料倉儲」啟動資料庫時，狀態會是 [恢復中]。
+4. 當狀態為 [線上] 時，即表示資料庫已就緒。
+
+    ![線上狀態][6]
 
 <a name="next-steps-bk"></a>
 
-## <a name="next-steps"></a>Next steps
-For more information, see [Management overview][Management overview].
+## <a name="next-steps"></a>後續步驟
+如需詳細資訊，請參閱[管理概觀][管理概觀]。
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-manage-compute-portal/click-scale.png
@@ -105,18 +106,18 @@ For more information, see [Management overview][Management overview].
 [7]: ./media/sql-data-warehouse-manage-compute-portal/pause-confirm.png
 
 <!--Article references-->
-[Management overview]: ./sql-data-warehouse-overview-manage.md
-[Manage compute overview]: ./sql-data-warehouse-manage-compute-overview.md
+[管理概觀]: ./sql-data-warehouse-overview-manage.md
+[管理計算概觀]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
 
 
 <!--Other Web references-->
 
-[Azure portal]: http://portal.azure.com/
+[Azure 入口網站]: http://portal.azure.com/
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Managing partner solutions in Azure Security Center | Microsoft Docs
-description: This document walks you through how Azure Security Center lets you monitor at a glance the health status of your partner solutions integrated with your Azure subscription.
+title: "在 Azure 資訊安全中心管理合作夥伴解決方案 | Microsoft Docs"
+description: "本文件逐步引導您使用 Azure 資訊安全中心，讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健康狀態，一目了然。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: ''
-
+editor: 
+ms.assetid: 70c076ef-3ad4-4000-a0c1-0ac0c9796ff1
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
@@ -14,51 +14,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/26/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f469d0e17f874244539b05579598d35aa7dd01d5
+
 
 ---
-# <a name="monitoring-partner-solutions-with-azure-security-center"></a>Monitoring partner solutions with Azure Security Center
-This document walks you through how to monitor the health status of your partner solutions in Azure Security Center.
+# <a name="monitoring-partner-solutions-with-azure-security-center"></a>使用 Azure 資訊安全中心監視合作夥伴解決方案
+本文件逐步引導您在 Azure 資訊安全中心監視合作夥伴解決方案的健康狀態。
 
 > [!NOTE]
-> This document introduces the service by using an example deployment. This is not a step-by-step guide.
+> 本文件將使用範例部署來介紹服務。 這不是逐步指南。
 > 
 > 
 
-## <a name="monitoring-partner-solutions"></a>Monitoring partner solutions
-The **Partner solutions** tile on the **Security Center** blade lets you monitor at a glance the health status of your partner solutions integrated with your Azure subscription.
-![Partner solutions tile][1]
+## <a name="monitoring-partner-solutions"></a>監視合作夥伴解決方案
+[資訊安全中心] 刀鋒視窗上的 [合作夥伴解決方案] 圖格可讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健全狀況，一目了然。
+![合作夥伴解決方案圖格][1]
 
-The **Partner solutions** tile displays the number of partner solutions and a status summary for those solutions.
+[合作夥伴解決方案]  圖格會顯示合作夥伴解決方案的數目以及這些解決方案的狀態摘要。
 
-The **STATUS** of a partner solution can be:
+合作夥伴解決方案的 [狀態]  可以是︰
 
-* Protected (green) - there is no health issue.
-* Unhealthy (red) - there is a health issue that requires immediate attention.
-* Stopped reporting (orange) - the solution has stopped reporting its health.
-* Unknown protection status (orange) - the health of the solution is unknown at this time due to a failed process of adding a new resource to the existing solution.
-* Not reported (gray) - the solution has not reported anything yet, a solution's status may be unreported if it has just been connected and is still deploying.
+* 受保護 (綠色) - 沒有任何健康問題。
+* 狀況不良 (紅色) - 有需要立即注意的健康狀態問題。
+* 停止報告 (橘色) - 解決方案已停止報告其健康狀態。
+* 未知保護狀態 (橘色) - 此時解決方案的健康狀態因為將新資源加入至現有解決方案的程序失敗，而呈現未知狀態
+* 未報告 (灰色) - 解決方案尚未報告任何狀態，如果解決方案才剛連接且仍在部署中，則可能未報告解決方案的狀態
 
-If there are no solutions integrated with your subscription the tile will state that there are no solutions. Selecting the **Partner solutions** tile will enable you to open the **Recommendations** blade to deploy partner security solutions.
-![No partner solutions][2]
+如果沒有任何與您的訂用帳戶整合的解決方案，此圖格會表示沒有任何解決方案。 選取 [合作夥伴解決方案] 圖格可讓您開啟 [建議] 刀鋒視窗，以部署合作夥伴安全性解決方案。
+![沒有合作夥伴解決方案][2]
 
-To view the health of your partner solutions:
+若要檢視合作夥伴解決方案的健康狀態：
 
-1. Select the **Partner solutions** tile. A blade opens displaying a list of your partner solutions connected to Security Center.
-   ![Partner solutions][3]
-2. Select a partner solution. In this example, lets select the **F5-WAF2** solution.  A blade opens showing you the status of the partner solution and the solution's associated resources. Select **Solution console** to open the partner management experience for this solution.
-   ![Partner solution detail][4]
-3. Go back to the **F5-WAF2** blade and select **Link app**. The **Link Applications** blade opens. Here you can connect resources to the partner solution.
-   ![Link resources to partner solution][5]
+1. 選取 [合作夥伴解決方案]  圖格。 隨即開啟一個刀鋒視窗，其中顯示已連接到資訊安全中心的合作夥伴解決方案清單。
+   ![][3]
+2. 選取合作夥伴解決方案。 在此範例中，選取 **F5 WAF2** 解決方案。  隨即開啟一個刀鋒視窗，其中顯示合作夥伴解決方案的狀態和解決方案相關聯的資源。 選取 [解決方案主控台]  以開啟此解決方案的合作夥伴管理體驗。
+   ![合作夥伴解決方案詳細資料][4]
+3. 返回至 [F5-WAF2] 刀鋒視窗，然後選取 [連結應用程式]。 [連結應用程式]  刀鋒視窗隨即開啟。 您可以在這裡將資源連接到合作夥伴解決方案。
+   ![將資源連結至第三方解決方案][5]
 
-## <a name="see-also"></a>See also
-In this document, you were introduced to the **Partner Solutions** tile in Security Center. To learn more about Security Center, see the following:
+## <a name="see-also"></a>另請參閱
+在本文件中，已向您介紹「資訊安全中心」的 [合作夥伴解決方案]  圖格。 如要深入了解資訊安全中心，請參閱下列主題：
 
-* [Setting security policies in Azure Security Center](security-center-policies.md) — Learn how to configure security policies for your Azure subscriptions and resource groups.
-* [Managing security recommendations in Azure Security Center](security-center-recommendations.md) — Learn how recommendations help you protect your Azure resources.
-* [Security health monitoring in Azure Security Center](security-center-monitoring.md) — Learn how to monitor the health of your Azure resources.
-* [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) — Learn how to manage and respond to security alerts.
-* [Azure Security Center FAQ](security-center-faq.md) — Find frequently asked questions about using the service.
-* [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) — Get the latest Azure security news and information.
+* [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) — 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+* [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) — 了解建議如何協助保護您的 Azure 資源。
+* [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) — 了解如何監視 Azure 資源的健全狀況。
+* [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示。
+* [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
+* [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
 [1]: ./media/security-center-partner-solutions/partner-solutions-tile.png
@@ -69,6 +73,6 @@ In this document, you were introduced to the **Partner Solutions** tile in Secur
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

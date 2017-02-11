@@ -1,19 +1,23 @@
 ---
-title: 如何將 Web 服務部署到多個區域 | Microsoft Docs
-description: 將新的 Web 服務部署 (複製) 到其他區域的步驟。
+title: "如何將 Web 服務部署到多個區域 | Microsoft Docs"
+description: "將新的 Web 服務部署 (複製) 到其他區域的步驟。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: vDonGlover
 manager: raymondl
 editor: cgronlun
-
+ms.assetid: 36c60411-f2db-4ee2-9b66-b1f1d77a8f44
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 01/11/2017
 ms.author: v-donglo
+translationtype: Human Translation
+ms.sourcegitcommit: 0b7c4c95328eb3ca573694b8eca0b0abda646fc5
+ms.openlocfilehash: ba27d4adf73b4d5d3747567b54aeb5f0d06f8243
+
 
 ---
 # <a name="how-to-deploy-a-web-service-to-multiple-regions"></a>如何將 Web 服務部署到多個區域
@@ -27,7 +31,7 @@ ms.author: v-donglo
 3. 在方案概觀頁面上，按一下 [新增] 。
 4. 從 [訂用帳戶]  下拉式清單中，選取新方案所在的訂用帳戶。
 5. 從 [區域]  下拉式清單中，選取新方案的區域。 所選區域的「方案選項」會顯示在頁面的 [方案選項]  區段中。
-6. 從 [資源群組]  下拉式清單中，選取方案的資源群組。 如需資源群組的詳細資訊，請參閱 [透過入口網站管理 Azure 資源](../azure-portal/resource-group-portal.md)。
+6. 從 [資源群組]  下拉式清單中，選取方案的資源群組。 如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 7. 在 [方案名稱]  中，輸入方案的名稱。
 8. 在 [方案選項] 下，按一下新方案的計費層級。
 9. 按一下 [建立] 。
@@ -39,12 +43,15 @@ ms.author: v-donglo
 4. 在 [Web 服務名稱] 中，輸入 Web 服務的新名稱。
 5. 在 [Web 服務描述] 中，輸入 Web 服務的描述。
 6. 從 [訂用帳戶]  下拉式清單中，選取新 Web 服務所在的訂用帳戶。
-7. 從 [資源群組]  下拉式清單中，選取 Web 服務的資源群組。 如需資源群組的詳細資訊，請參閱 [透過入口網站管理 Azure 資源](../azure-portal/resource-group-portal.md)。
+7. 從 [資源群組]  下拉式清單中，選取 Web 服務的資源群組。 如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 8. 從 [區域]  下拉式清單中，選取要部署 Web 服務的區域。
 9. 從 [儲存體帳戶]  下拉式清單中，選取要儲存 Web 服務的儲存體帳戶。
 10. 從 [價格方案]  下拉式清單中，在您在步驟 8 選取的區域中選取方案。
 11. 按一下 [複製] 。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

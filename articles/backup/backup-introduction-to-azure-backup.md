@@ -1,10 +1,10 @@
 ---
 title: "何謂 Azure 備份？ | Microsoft Docs"
-description: "您可以使用 Azure 備份和復原服務，從 Windows Server、Windows 用戶端電腦、System Center DPM 伺服器和 Azure 虛擬機器備份和還原資料與應用程式。"
+description: "您可以使用 Azure 備份和復原服務，從 Windows Server、Windows 電腦、System Center DPM 伺服器和 Azure 虛擬機器備份和還原資料與應用程式。"
 services: backup
 documentationcenter: 
 author: markgalioto
-manager: cfreeman
+manager: carmonm
 editor: 
 keywords: "備份與還原；復原服務；備份解決方案"
 ms.assetid: 0d2a7f08-8ade-443a-93af-440cbf7c36c4
@@ -13,11 +13,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/6/2016
+ms.date: 1/4/2017
 ms.author: jimpark; trinadhk
 translationtype: Human Translation
-ms.sourcegitcommit: b9737c3da308aecf25d5f18088f96c319edeafd5
-ms.openlocfilehash: 76ec51a75240710b24c0e91042d6229e60eeada9
+ms.sourcegitcommit: 0eb7b5c283c95503d076da486ba08df833f1acbd
+ms.openlocfilehash: 5235a09822dc14040ca6d4353d00e938fefd0e43
 
 
 ---
@@ -35,8 +35,9 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 
 **多個儲存體選項** - 高可用性的其中一環是儲存體複寫。 Azure 備份提供兩種複寫類型：[本地備援儲存體](../storage/storage-redundancy.md#locally-redundant-storage)和[異地備援儲存體](../storage/storage-redundancy.md#geo-redundant-storage)。 可根據需求選擇備份儲存體：
 
-* 本地備援儲存體 (LRS) 會複製資料至相同區域的配對資料中心三次 (建立三個資料複本)。 LRS 這個經濟型選項非常適合注重價格的客戶，因為它能夠提供本機硬體資料故障防護。
-* 異地複寫儲存體 (GRS) 會將資料複寫到次要區域 (與來源資料主要區域距離數百英哩)。 GRS 的價格高於 LRS，但它為您的資料提供更高層級的持久性，即使遭受區域性停電也不影響。
+* 本地備援儲存體 (LRS) 會複製資料至相同區域的配對資料中心三次 (建立三個資料複本)。 LRS 是保護資料免於本機硬體失敗的低成本選項。
+
+* 異地備援儲存體 (GRS) 會將資料複寫到次要地區 (與來源資料主要區域距離數百英哩)。 GRS 的價格高於 LRS，但它為您的資料提供更高層級的持久性，即使遭受區域性停電也不影響。
 
 **無限制的資料傳輸** -Azure 備份不會限制輸入或輸出資料的傳輸。 Azure 備份也不會對傳輸資料收取費用。 不過，如果您使用 Azure 匯入/匯出服務匯入大量的資料，會有與輸入資料關聯的費用。 如需這項成本的詳細資訊，請參閱 [Azure Backup 中的離線備份工作流程](backup-azure-backup-import-export.md)。 輸出資料是指還原作業期間傳輸自備份保存庫的資料。
 
@@ -52,8 +53,8 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 | 元件 | 優點 | 限制 | 什麼會受到保護？ | 備份會儲存在哪裡？ |
 | --- | --- | --- | --- | --- |
 | Azure 備份 (MARS) 代理程式 |<li>備份的檔案和資料夾儲存在實體或虛擬 Windows OS (VM 可以位於內部部署或 Azure 中)<li>不需任何個別的備份伺服器。 |<li>每天備份 3 次 <li>不會感知應用程式；僅有檔案、資料夾和磁碟區層級還原， <li>  不支援 Linux。 |<li>檔案、 <li>資料夾 |Azure 備份保存庫 |
-| System Center DPM |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Hyper-V 和 VMware VM 的 Linux 支援 <li>使用 DPM 2012 R2 保護 VMware VM |無法備份 Oracle 工作負載。|<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟、<li>  磁帶 (僅限內部部署) |
-| Azure 備份伺服器 |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Linux 支援 (如果裝載於 Hyper-V)<li>使用 DPM 2012 R2 保護 VMware VM<li>不需要 System Center 授權 |<li>無法備份 Oracle 工作負載。<li>一律需要即時 Azure 訂用帳戶<li>不支援磁帶備份 |<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟 |
+| System Center DPM |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Hyper-V 和 VMware VM 的 Linux 支援 <li>使用 DPM 2012 R2 備份並還原 VMware VM |無法備份 Oracle 工作負載。|<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟、<li>  磁帶 (僅限內部部署) |
+| Azure 備份伺服器 |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Hyper-V 和 VMware VM 的 Linux 支援<li>備份和還原 VMware VM <li>不需要 System Center 授權 |<li>無法備份 Oracle 工作負載。<li>一律需要即時 Azure 訂用帳戶<li>不支援磁帶備份 |<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟 |
 | Azure IaaS VM 備份 |<li>適用於 Windows/Linux 的原生備份<li>不需使用特定代理程式安裝<li>不需要備份基礎結構的網狀架構層級備份 |<li>VM 每天備份一次 <li>只在磁碟層級還原 VM<li>無法備份內部部署 |<li>VM、 <li>所有磁碟 (使用 PowerShell) |<p>Azure 備份保存庫</p> |
 
 ## <a name="what-are-the-deployment-scenarios-for-each-component"></a>每個元件的部署案例為何？
@@ -176,17 +177,26 @@ Azure 備份代理程式提供網路節流，可讓您控制在資料傳輸期�
 
 ### <a name="backup-and-retention"></a>備份和保留
 
-Azure 備份每個備份保存庫的上限為 9999 個復原點 (也稱為備份複本或快照集)。 下表顯示每個元件的最大備份頻率 (至保存庫)。 備份原則設定決定您多快會用完復原點。 比方說，如果您每天建立復原點，則在用完之前可以保留復原點 27 年。 如果您採取每月建立復原點，則在用完之前可以保留復原點 833 年。 備份服務不會對復原點設定到期時間限制。
+Azure 備份每個*受保護的執行個體*上限為 9999 個復原點 (也稱為備份複本或快照集)。 受保護的執行個體可以是電腦、(實體或虛擬) 伺服器，或設定為將資料備份至 Azure 的工作負載。 如需詳細資訊，請參閱〈[什麼是受保護的執行個體](backup-introduction-to-azure-backup.md#what-is-a-protected-instance)〉。 儲存資料的備份複本之後，執行個體就會受到保護。 資料的備份複本就是保護。 如果來源資料已遺失或損毀，備份可以還原來源資料。 下表顯示每個元件的最大備份頻率。 備份原則設定決定您多快會用完復原點。 比方說，如果您每天建立復原點，則在用完之前可以保留復原點 27 年。 如果您採取每月建立復原點，則在用完之前可以保留復原點 833 年。 備份服務不會對復原點設定到期時間限制。
 
 |  | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure IaaS VM 備份 |
 | --- | --- | --- | --- | --- |
 | 備份頻率<br/> (至備份保存庫) |每天備份 3 次 |每天備份 2 次 |每天備份 2 次 |每天備份 1 次 |
 | 備份頻率<br/> (至磁碟) |不適用 |<li>每隔 15 分鐘 (SQL Server) <li>每隔 1 小時 (其他工作負載) |<li>每隔 15 分鐘 (SQL Server) <li>每隔 1 小時 (其他工作負載)</p> |不適用 |
 | 保留選項 |每日、每週、每月、每年 |每日、每週、每月、每年 |每日、每週、每月、每年 |每日、每週、每月、每年 |
-| 每個伺服器的最大復原點 |9999|9999|9999|9999|
+| 每個受保護執行個體的最大復原點 |9999|9999|9999|9999|
 | 最大保留期間 |依照備份頻率而定 |依照備份頻率而定 |依照備份頻率而定 |依照備份頻率而定 |
 | 本機磁碟上的復原點 |不適用 |<li>64 (檔案伺服器)、<li>448 (應用程式伺服器) |<li>64 (檔案伺服器)、<li>448 (應用程式伺服器) |不適用 |
 | 磁帶上的復原點 |不適用 |無限 |不適用 |不適用 |
+
+## <a name="what-is-a-protected-instance"></a>什麼是受保護的執行個體
+受保護的執行個體一般是指 Windows 電腦、(實體或虛擬) 伺服器，或已設定為備份至 Azure 的 SQL 資料庫。 一旦您設定電腦、伺服器或資料庫的備份原則，並建立資料的備份複本之後，執行個體就會受到保護。 受保護執行個體備份資料後續的複本 (稱為復原點)，會增加取用的儲存體數量。 針對一個受保護的執行個體，您可以建立最多 9999 個復原點。 如果您從儲存體將復原點刪除，就不會算入 9999 的復原點總數。
+受保護執行個體的常見範例是虛擬機器、應用程式伺服器、資料庫，以及執行 Windows 作業系統的個人電腦。 例如：
+
+* 執行 Hyper-V 或 Azure IaaS Hypervisor 網狀架構的虛擬機器。 虛擬機器的客體作業系統可以是 Windows Server 或 Linux。
+* 應用程式伺服器︰應用程式伺服器可以是需要備份其資料，且執行 Windows Server 和工作負載的實體或虛擬機器。 一般工作負載為 Microsoft SQL Server、Microsoft Exchange Server、Microsoft SharePoint Server、Microsoft Dynamics 及 Windows Server 的檔案伺服器角色。 若要備份這些工作負載，您需要 System Center Data Protection Manager (DPM) 或 Azure 備份伺服器。
+* 執行 Windows 作業系統的個人電腦或膝上型電腦。
+
 
 ## <a name="what-is-the-vault-credential-file"></a>什麼是保存庫認證檔？
 保存庫認證檔是入口網站針對每個備份保存庫所產生的憑證。 入口網站接著會將公開金鑰上傳至「存取控制服務」(ACS)。 並在下載認證時，提供私密金鑰給您。 使用它來註冊您要保護的電腦。 私密金鑰是可讓您驗證伺服器或電腦，以將備份資料傳送至特定的備份保存庫。
@@ -224,6 +234,6 @@ Azure 備份會在內部部署和雲端保護資料。 Azure Site Recovery 可�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

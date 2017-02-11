@@ -1,14 +1,14 @@
 ---
-title: 建立 VM 可用性設定組 | Microsoft Docs
-description: 了解如何針對您使用 Azure 入口網站的虛擬機器或使用 Resource Manager 部署模型的 PowerShell 建立可用性設定組。
-keywords: 可用性設定組
+title: "建立 VM 可用性設定組 | Microsoft Docs"
+description: "了解如何針對您使用 Azure 入口網站的虛擬機器或使用 Resource Manager 部署模型的 PowerShell 建立可用性設定組。"
+keywords: "可用性設定組"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: a3db8659-ace8-4e78-8b8c-1e75c04c042c
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -16,12 +16,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 19f22b9e38e472b56fc9abecc6c14b63b521a58b
+
 
 ---
 # <a name="create-an-availability-set"></a>建立可用性設定組
 使用入口網站時，如果您希望您的 VM 是可用性設定組的一部分，您必須先建立可用性設定組。
 
-如需建立和使用可用性設定組的詳細資訊，請參閱 [管理虛擬機器可用性](virtual-machines-windows-manage-availability.md)。
+如需建立和使用可用性設定組的詳細資訊，請參閱 [管理虛擬機器可用性](virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ## <a name="use-the-portal-to-create-an-availability-set-before-creating-your-vms"></a>建立 VM 之前，請使用入口網站建立可用性設定組
 1. 在 [中樞] 功能表中，按一下 [瀏覽]，並選取 [可用性設定組]。
@@ -61,8 +65,11 @@ ms.author: cynthn
 * 當您建立 VM 時，如果您想要的可用性設定組不在入口網站的下拉式清單中，您有可能將它建立在另一個資源群組中。 如果您不清楚您的可用性設定組的資源群組， 請移至 [中樞] 功能表，並按一下 [瀏覽] > [可用性設定組]，以查看可用性設定組清單及其所屬的資源群組。
 
 ## <a name="next-steps"></a>後續步驟
-透過新增額外 [資料磁碟](virtual-machines-windows-attach-disk-portal.md)，將額外的存放裝置新增到您的 VM。
+透過新增額外 [資料磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，將額外的存放裝置新增到您的 VM。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

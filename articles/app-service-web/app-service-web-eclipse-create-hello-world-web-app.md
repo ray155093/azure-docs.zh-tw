@@ -1,19 +1,23 @@
 ---
-title: 在 Eclipse 中建立 Azure 的 Hello World Web 應用程式 | Microsoft Docs
-description: 本教學課程將示範如何使用適用於 Eclipse 的 Azure 工具組來建立 Azure Hello World Web 應用程式。
+title: "在 Eclipse 中建立 Azure 的 Hello World Web 應用程式 | Microsoft Docs"
+description: "本教學課程將示範如何使用適用於 Eclipse 的 Azure 工具組來建立 Azure Hello World Web 應用程式。"
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
-manager: wpickett
-editor: ''
-
+manager: erikre
+editor: 
+ms.assetid: 20d41e88-9eab-462e-8ee3-89da71e7a33f
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 08/26/2016
+ms.date: 11/01/2016
 ms.author: robmcm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d3549bca22266aab2deca1d9fcaabfc4034956cf
+
 
 ---
 # <a name="create-a-hello-world-web-app-for-azure-in-eclipse"></a>在 Eclipse 中建立 Azure Hello World Web 應用程式
@@ -41,7 +45,7 @@ ms.author: robmcm
 4. 在 Eclipse 的 [專案總管] 檢視中，展開 [MyWebApp]。 在 [WebContent] 上按一下滑鼠右鍵、按一下 [新增]，然後按一下 [JSP 檔案]。
 5. 在 [新增 JSP 檔案] 對話方塊中，將檔案命名為 **index.jsp**、將父資料夾保留為 **MyWebApp/WebContent**，然後按 [下一步]。
 6. 在 [選取 JSP 範本] 對話方塊中，基於本教學課程的目的，選取 [新增 JSP 檔案 (html)]，然後按一下 [完成]。
-7. 當 index.jsp 檔案在 Eclipse 中開啟時，於現有的 `<body>` 元素中新增文字以動態顯示 **Hello World!** 。 您已更新的 `<body>` 內容看起來應該與下列範例類似：
+7. 當 index.jsp 檔案在 Eclipse 中開啟時，新增文字以動態顯示 **Hello World!** (在現有 `<body>` 元素內)。 您已更新的 `<body>` 內容看起來應該與下列範例類似：
    
     `<body><b><% out.println("Hello World!"); %></b></body>` 
 8. 儲存 index.jsp。
@@ -111,7 +115,7 @@ ms.author: robmcm
       * 在 [位置]  下拉式功能表中，為該方案選取適當的 Azure 資料中心位置。
       * 在 [定價層]  下拉式功能表中，為方案選取適當的價格。 針對測試用途，您可以選擇 [免費] 。
       * 在 [執行個體大小]  下拉式功能表中，為方案選取適當的執行個體大小。 針對測試用途，您可以選擇 [小型] 。
-   9. 一旦您完成所有上述步驟之後，[New Web App Container](新增 Web 應用程式容器.md) 對話方塊看起來應該如下圖所示：
+   9. 一旦您完成所有上述步驟之後，[New Web App Container] (新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
       
        ![[新增 Web 應用程式容器] 對話方塊][10]
    10. 按一下 [確定]  來完成建立新的 Web 應用程式容器。
@@ -181,7 +185,7 @@ ms.author: robmcm
 [適用於 Eclipse 的 Azure 工具組]: ../azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij.md
 [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web-eclipse-create-hello-world-web-app.md
-[在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式]: ./app-service-web-intellij-create-hello-world-web-app.md
+[在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web-intellij-create-hello-world-web-app.md
 [安裝 Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse-installation.md
 [安裝 Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-installation.md
 [適用於 Eclipse 的 Azure 工具組的新功能]: ../azure-toolkit-for-eclipse-whats-new.md
@@ -211,6 +215,6 @@ ms.author: robmcm
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,21 +1,25 @@
 ---
-title: 使用 Azure 入口網站建立虛擬機器擴展集 | Microsoft Docs
-description: 使用 Azure 入口網站部署擴展集。
-keywords: 虛擬機器擴展集
+title: "使用 Azure 入口網站建立虛擬機器擴展集 | Microsoft Docs"
+description: "使用 Azure 入口網站部署擴展集。"
+keywords: "虛擬機器擴展集"
 services: virtual-machine-scale-sets
-documentationcenter: ''
+documentationcenter: 
 author: gatneil
 manager: madhana
 editor: tysonn
 tags: azure-resource-manager
-
+ms.assetid: 9c1583f0-bcc7-4b51-9d64-84da76de1fda
 ms.service: virtual-machine-scale-sets
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm
 ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
-ms.author: gatneil
+ms.author: negat
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 8c4248077626cba2f1ace3c119d301b99247e19f
+
 
 ---
 # <a name="create-a-virtual-machine-scale-set-using-the-azure-portal"></a>使用 Azure 入口網站建立虛擬機器擴展集
@@ -64,6 +68,9 @@ ms.author: gatneil
 
 如需一般資訊，請參閱 [擴展集的主要登陸頁面](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

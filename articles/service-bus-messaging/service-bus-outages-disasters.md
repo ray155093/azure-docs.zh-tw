@@ -1,102 +1,106 @@
 ---
-title: Insulating Service Bus applications against outages and disasters | Microsoft Docs
-description: Describes techniques you can use to protect applications against a potential Service Bus outage.
-services: service-bus
+title: "將服務匯流排應用程式與服務匯流排中斷和災害隔絕 | Microsoft Docs"
+description: "說明您可用來保護應用程式，避免潛在服務匯流排中斷的技巧。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
 editor: tysonn
-
-ms.service: service-bus
+ms.assetid: fd9fa8ab-f4c4-43f7-974f-c876df1614d4
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/02/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a76ebad52b8b08311b488cd5bbdb909628d43ec3
+
 
 ---
-# <a name="best-practices-for-insulating-applications-against-service-bus-outages-and-disasters"></a>Best practices for insulating applications against Service Bus outages and disasters
-Mission-critical applications must operate continuously, even in the presence of unplanned outages or disasters. This topic describes techniques you can use to protect Service Bus applications against a potential service outage or disaster.
+# <a name="best-practices-for-insulating-applications-against-service-bus-outages-and-disasters"></a>將應用程式與服務匯流排中斷和災難隔絕的最佳做法
+關鍵任務應用程式必須持續作業，即使發生非預期的中斷或災害亦然。 本主題說明您可用來保護服務匯流排應用程式，避免潛在的服務中斷或災害的技巧。
 
-An outage is defined as the temporary unavailability of Azure Service Bus. The outage can affect some components of Service Bus, such as a messaging store, or even the entire datacenter. After the problem has been fixed, Service Bus becomes available again. Typically, an outage does not cause loss of messages or other data. An example of a component failure is the unavailability of a particular messaging store. An example of a datacenter-wide outage is a power failure of the datacenter, or a faulty datacenter network switch. An outage can last from a few minutes to a few days.
+中斷的定義是暫時無法使用 Azure 服務匯流排。 中斷可能會影響服務匯流排的否些元件，例如訊息存放區或甚至整個資料中心。 修正問題之後，服務匯流排可再次使用。 中斷通常不會導致訊息或其他資料遺失。 元件失敗的範例是特定的訊息存放區無法使用。 資料中心全面中斷的範例是資料中心電源中斷、或錯誤的資料中心網路交換器。 中斷可能持續數分鐘到數天。
 
-A disaster is defined as the permanent loss of a Service Bus scale unit or datacenter. The datacenter may or may not become available again. Typically a disaster causes loss of some or all messages or other data. Examples of disasters are fire, flooding, or earthquake.
+災害的定義是服務匯流排縮放單位或資料中心永久遺失。 資料中心不一定能再次使用。 災害通常會造成部分或所有訊息或其他資料遺失。 災害的範例包括火災、水災或地震。
 
-## <a name="current-architecture"></a>Current architecture
-Service Bus uses multiple messaging stores to store messages that are sent to queues or topics. A non-partitioned queue or topic is assigned to one messaging store. If this messaging store is unavailable, all operations on that queue or topic will fail.
+## <a name="current-architecture"></a>目前架構
+服務匯流排使用多個訊息存放區來儲存傳送至佇列或主題的訊息。 非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。
 
-All Service Bus messaging entities (queues, topics, relays) reside in a service namespace, which is affiliated with a datacenter. Service Bus does not enable automatic geo-replication of data, nor does it allow a namespace to span multiple datacenters.
+所有服務匯流排訊息實體 (佇列、主題、轉送) 都位於附屬於資料中心的服務命名空間中。 服務匯流排不會啟用自動資料異地複寫，也不會允許跨多個資料中心的命名空間。
 
-## <a name="protecting-against-acs-outages"></a>Protecting against ACS outages
-If you are using ACS credentials, and ACS becomes unavailable, clients can no longer obtain tokens. Clients that have a token at the time ACS goes down can continue to use Service Bus until the tokens expire. The default token lifetime is 3 hours.
+## <a name="protecting-against-acs-outages"></a>保護 ACS 免於中斷
+如果您使用 ACS 認證，ACS 會無法使用，用戶端也無法再取得權杖。 在 ACS 停機時擁有權杖的用戶端可以繼續使用服務匯流排直到權杖到期。 預設權杖存留期為 3 小時。
 
-To protect against ACS outages, use Shared Access Signature (SAS) tokens. In this case, the client authenticates directly with Service Bus by signing a self-minted token with a secret key. Calls to ACS are no longer required. For more information about SAS tokens, see [Service Bus authentication][Service Bus authentication].
+若要保護 ACS 免於中斷，請使用共用存取簽章 (SAS) 權杖。 在此情況下，用戶端會藉由使用秘密金鑰簽署自行決策權杖的方式，直接使用服務匯流排進行驗證。 不再需要呼叫 ACS。 如需有關 SAS 權杖的詳細資訊，請參閱[服務匯流排驗證][服務匯流排驗證]。
 
-## <a name="protecting-queues-and-topics-against-messaging-store-failures"></a>Protecting queues and topics against messaging store failures
-A non-partitioned queue or topic is assigned to one messaging store. If this messaging store is unavailable, all operations on that queue or topic will fail. A partitioned queue, on the other hand, consists of multiple fragments. Each fragment is stored in a different messaging store. When a message is sent to a partitioned queue or topic, Service Bus assigns the message to one of the fragments. If the corresponding messaging store is unavailable, Service Bus writes the message to a different fragment, if possible. For more information about partitioned entities, see [Partitioned messaging entities][Partitioned messaging entities].
+## <a name="protecting-queues-and-topics-against-messaging-store-failures"></a>保護佇列和主題免於發生訊息存放區失敗
+非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。 另一方面，分割佇列包含多個片段。 每個片段都儲存在不同的訊息存放區。 當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。 如果對應的訊息存放區無法使用，服務匯流排會盡可能將訊息寫入至不同的片段。 如需分割實體的詳細資訊，請參閱[分割的傳訊實體][分割的傳訊實體]。
 
-## <a name="protecting-against-datacenter-outages-or-disasters"></a>Protecting against datacenter outages or disasters
-To allow for a failover between two datacenters, you can create a Service Bus service namespace in each datacenter. For example, the Service Bus service namespace **contosoPrimary.servicebus.windows.net** might be located in the United States North/Central region, and **contosoSecondary.servicebus.windows.net** might be located in the US South/Central region. If a Service Bus messaging entity must remain accessible in the presence of a datacenter outage, you can create that entity in both namespaces.
+## <a name="protecting-against-datacenter-outages-or-disasters"></a>保護資料中心免於中斷或災害
+若要允許兩個資料中心之間的容錯移轉，您可以在每個資料中心建立服務匯流排服務命名空間。 例如，服務匯流排服務命名空間 **contosoPrimary.servicebus.windows.net** 可能位於美國北部/中部區域，而 **contosoSecondary.servicebus.windows.net** 可能位於美國南部/中部區域。 如果服務匯流排訊息實體必須在資料中心發生中斷時保持可存取狀態，您可以在這兩個命名空間建立該實體。
 
-For more information, see the "Failure of Service Bus within an Azure datacenter" section in [Asynchronous messaging patterns and high availability][Asynchronous messaging patterns and high availability].
+如需詳細資訊，請參閱 [非同步傳訊模式和高可用性][非同步傳訊模式和高可用性]中的「Azure 資料中心內服務匯流排的失敗」一節。
 
-## <a name="protecting-relay-endpoints-against-datacenter-outages-or-disasters"></a>Protecting relay endpoints against datacenter outages or disasters
-Geo-replication of relay endpoints allows a service that exposes a relay endpoint to be reachable in the presence of Service Bus outages. To achieve geo-replication, the service must create two relay endpoints in different namespaces. The namespaces must reside in different datacenters and the two endpoints must have different names. For example, a primary endpoint can be reached under **contosoPrimary.servicebus.windows.net/myPrimaryService**, while its secondary counterpart can be reached under **contosoSecondary.servicebus.windows.net/mySecondaryService**.
+## <a name="protecting-relay-endpoints-against-datacenter-outages-or-disasters"></a>保護轉送端點免於發生資料中心中斷或災害
+轉送端點的異地複寫會讓公開轉送端點的服務可在服務匯流排中斷時使用。 若要達到異地複寫，服務必須在不同的命名空間中建立兩個轉送端點。 命名空間必須位於不同的資料中心而兩個端點必須具有不同的名稱。 比方說，主要端點在 **contosoPrimary.servicebus.windows.net/myPrimaryService** 之下達到，而其次要的對應項目可以在 **contosoSecondary.servicebus.windows.net/mySecondaryService** 之下達到。
 
-The service then listens on both endpoints, and a client can invoke the service via either endpoint. A client application randomly picks one of the relays as the primary endpoint, and sends its request to the active endpoint. If the operation fails with an error code, this failure indicates that the relay endpoint is not available. The application opens a channel to the backup endpoint and reissues the request. At that point the active and the backup endpoints switch roles: the client application considers the old active endpoint to be the new backup endpoint, and the old backup endpoint to be the new active endpoint. If both send operations fail, the roles of the two entities remain unchanged and an error is returned.
+然後服務會接聽這兩個端點，且用戶端可以透過任一端點叫用服務。 用戶端應用程式會隨機挑選其中一個轉送做為主要端點，並將其要求傳送至作用中的端點。 如果作業失敗並出現錯誤代碼，此失敗代表轉送端點無法使用。 應用程式會開啟備份端點的通道並重新發出要求。 作用中和備份端點會在這一點交換角色：用戶端應用程式會將舊的使用中端點視為新的備份端點，而將舊的備份端點視為新的作用中端點。 如果這兩個傳送作業都失敗，兩個實體的角色會保持不變並傳回錯誤。
 
-The [Geo-replication with Service Bus Relayed Messages][Geo-replication with Service Bus Relayed Messages] sample demonstrates how to replicate relays.
+[搭配服務匯流排轉送訊息的異地複寫][搭配服務匯流排轉送訊息的異地複寫]範例會示範如何複寫轉送。
 
-## <a name="protecting-queues-and-topics-against-datacenter-outages-or-disasters"></a>Protecting queues and topics against datacenter outages or disasters
-To achieve resilience against datacenter outages when using brokered messaging, Service Bus supports two approaches: *active* and *passive* replication. For each approach, if a given queue or topic must remain accessible in the presence of a datacenter outage, you can create it in both namespaces. Both entities can have the same name. For example, a primary queue can be reached under **contosoPrimary.servicebus.windows.net/myQueue**, while its secondary counterpart can be reached under **contosoSecondary.servicebus.windows.net/myQueue**.
+## <a name="protecting-queues-and-topics-against-datacenter-outages-or-disasters"></a>保護佇列和主題免於發生資料中心中斷或災害
+若要在使用代理傳訊時達成對資料中心中斷的恢復能力，服務匯流排支援兩種方法：*主動*和*被動*複寫。 無論使用哪個方法，如果特定佇列或主題必須在資料中心發生中斷時保持可存取狀態，您可以在這兩個命名空間建立該佇列或主題。 這兩個實體可以具有相同的名稱。 比方說，主要佇列在 **contosoPrimary.servicebus.windows.net/myQueue** 之下達到，而其次要的對應項目可以在 **contosoSecondary.servicebus.windows.net/myQueue** 之下達到。
 
-If the application does not require permanent sender-to-receiver communication, the application can implement a durable client-side queue to prevent message loss and to shield the sender from any transient Service Bus errors.
+如果應用程式不需要永久的傳送者至接收者通訊，應用程式可以實作持續的用戶端佇列，以防止訊息遺失並避免傳送者發生任何暫時性服務匯流排錯誤。
 
-## <a name="active-replication"></a>Active replication
-Active replication uses entities in both namespaces for every operation. Any client that sends a message sends two copies of the same message. The first copy is sent to the primary entity (for example, **contosoPrimary.servicebus.windows.net/sales**), and the second copy of the message is sent to the secondary entity (for example, **contosoSecondary.servicebus.windows.net/sales**).
+## <a name="active-replication"></a>主動複寫
+主動複寫會針對每個作業使用兩個命名空間中的實體。 傳送訊息的任何用戶端會傳送相同訊息的兩個複本。 第一個複本傳送至主要實體 (例如 **contosoPrimary.servicebus.windows.net/sales**)，而訊息的第二個複本傳送至次要實體 (例如 **contosoSecondary.servicebus.windows.net/sales**)。
 
-A client receives messages from both queues. The receiver processes the first copy of a message, and the second copy is suppressed. To suppress duplicate messages, the sender must tag each message with a unique identifier. Both copies of the message must be tagged with the same identifier. You can use the [BrokeredMessage.MessageId][BrokeredMessage.MessageId] or [BrokeredMessage.Label][BrokeredMessage.Label] properties, or a custom property to tag the message. The receiver must maintain a list of messages that it has already received.
+用戶端會從這兩個佇列接收訊息。 接收者會處理訊息的第一個複本，並隱藏第二個複本。 若要隱藏重複的訊息，傳送者必須利用唯一的識別碼標記每個訊息。 訊息的兩個複本必須以相同的識別碼標記。 您可以使用 [BrokeredMessage.MessageId][BrokeredMessage.MessageId] 或 [BrokeredMessage.Label][BrokeredMessage.Label] 屬性，或自訂屬性來標記訊息。 接收者必須維護其已收到的訊息清單。
 
-The [Geo-replication with Service Bus Brokered Messages][Geo-replication with Service Bus Brokered Messages] sample demonstrates active replication of messaging entities.
+[搭配服務匯流排代理訊息的異地複寫][搭配服務匯流排代理訊息的異地複寫]範例示範訊息實體的主動複寫。
 
 > [!NOTE]
-> The active replication approach doubles the number of operations, therefore this approach can lead to higher cost.
+> 主動複寫方法會讓作業數目加倍，因此這個方法會導致更高的成本。
 > 
 > 
 
-## <a name="passive-replication"></a>Passive replication
-In the fault-free case, passive replication uses only one of the two messaging entities. A client sends the message to the active entity. If the operation on the active entity fails with an error code that indicates the datacenter that hosts the active entity might be unavailable, the client sends a copy of the message to the backup entity. At that point the active and the backup entities switch roles: the sending client considers the old active entity to be the new backup entity, and the old backup entity is the new active entity. If both send operations fail, the roles of the two entities remain unchanged and an error is returned.
+## <a name="passive-replication"></a>被動複寫
+在沒有錯誤的情況下，被動複寫只會使用兩個訊息實體的其中之一。 用戶端會傳送訊息至作用中的實體。 如果作用中實體上的作業失敗，並出現錯誤碼指出裝載作用中實體的資料中心可能會無法使用，用戶端會傳送訊息的複本至備份實體。 作用中和備份實體會在這一點交換角色：傳送用戶端會將舊的使用中實體視為新的備份實體，而將舊的備份實體視為新的作用中實體。 如果這兩個傳送作業都失敗，兩個實體的角色會保持不變並傳回錯誤。
 
-A client receives messages from both queues. Because there is a chance that the receiver receives two copies of the same message, the receiver must suppress duplicate messages. You can suppress duplicates in the same way as described for active replication.
+用戶端會從這兩個佇列接收訊息。 因為接收者可能會收到相同訊息的兩個複本，所以接收者必須隱藏重複的訊息。 您可以主動複寫所描述的相同方式隱藏重複訊息。
 
-In general, passive replication is more economical than active replication because in most cases only one operation is performed. Latency, throughput, and monetary cost are identical to the non-replicated scenario.
+一般而言，被動複寫比主動複寫更具經濟效益，因為大部分的情形只會執行一項作業。 延遲、輸送量和成本與非複寫案例相同。
 
-When using passive replication, in the following scenarios messages can be lost or received twice:
+使用被動複寫時，訊息可能會在下列案例中遺失或收到兩次：
 
-* **Message delay or loss**: Assume that the sender successfully sent a message m1 to the primary queue, and then the queue becomes unavailable before the receiver receives m1. The sender sends a subsequent message m2 to the secondary queue. If the primary queue is temporarily unavailable, the receiver receives m1 after the queue becomes available again. In case of a disaster, the receiver may never receive m1.
-* **Duplicate reception**: Assume that the sender sends a message m to the primary queue. Service Bus successfully processes m but fails to send a response. After the send operation times out, the sender sends an identical copy of m to the secondary queue. If the receiver is able to receive the first copy of m before the primary queue becomes unavailable, the receiver receives both copies of m at approximately the same time. If the receiver is not able to receive the first copy of m before the primary queue becomes unavailable, the receiver initially receives only the second copy of m, but then receives a second copy of m when the primary queue becomes available.
+* **訊息延遲或遺失**：假設傳送者成功傳送訊息 m1 至主要佇列，佇列在接收者收到 m1 之前無法使用。 傳送者會將後續的訊息 m2 傳送至次要佇列。 如果主要佇列暫時無法使用，接收者會在佇列可再次使用之後收到 m1。 若發生災害，接收者可能永遠無法收到 m1。
+* **重複接收**：假設傳送者傳送訊息 m 到主要佇列。 服務匯流排已成功處理 m 但無法傳送回應。 傳送作業逾時之後，傳送者會將 m 的相同複本傳送至次要佇列。 如果接收者可以在主要佇列無法使用之前收到 m 的第一個複本，接收者會幾乎同時接收 m 的兩個複本。 如果接收者無法在主要佇列無法使用之前收到 m 的第一個複本，接收者一開始只會收到 m 的第二個複本，但會接著在主要佇列可以使用時會收到 m 的第二個複本。
 
-The [Geo-replication with Service Bus Brokered Messages][Geo-replication with Service Bus Brokered Messages] sample demonstrates passive replication of messaging entities.
+[搭配服務匯流排代理訊息的異地複寫][搭配服務匯流排代理訊息的異地複寫]範例示範訊息實體的被動複寫。
 
-## <a name="next-steps"></a>Next steps
-To learn more about disaster recovery, see these articles:
+## <a name="next-steps"></a>後續步驟
+若要深入了解災害復原，請參閱這些文章：
 
-* [Azure SQL Database Business Continuity][Azure SQL Database Business Continuity]
-* [Azure resiliency technical guidance][Azure resiliency technical guidance]
+* [Azure SQL Database 商務持續性][Azure SQL Database 商務持續性]
+* [Azure 復原技術指導][Azure 復原技術指導]
 
 [Service Bus Authentication]: service-bus-authentication-and-authorization.md
-[Partitioned messaging entities]: service-bus-partitioning.md
-[Asynchronous messaging patterns and high availability]: service-bus-async-messaging.md#failure-of-service-bus-within-an-azure-datacenter
-[Geo-replication with Service Bus Relayed Messages]: http://code.msdn.microsoft.com/Geo-replication-with-16dbfecd
+[分割的傳訊實體]: service-bus-partitioning.md
+[非同步傳訊模式和高可用性]: service-bus-async-messaging.md#failure-of-service-bus-within-an-azure-datacenter
+[搭配服務匯流排轉送訊息的異地複寫]: http://code.msdn.microsoft.com/Geo-replication-with-16dbfecd
 [BrokeredMessage.MessageId]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx
 [BrokeredMessage.Label]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx
-[Geo-replication with Service Bus Brokered Messages]: http://code.msdn.microsoft.com/Geo-replication-with-f5688664
-[Azure SQL Database Business Continuity]: ../sql-database/sql-database-business-continuity.md
-[Azure resiliency technical guidance]: ../resiliency/resiliency-technical-guidance.md
+[搭配服務匯流排代理訊息的異地複寫]: http://code.msdn.microsoft.com/Geo-replication-with-f5688664
+[Azure SQL Database 商務持續性]: ../sql-database/sql-database-business-continuity.md
+[Azure 復原技術指導]: ../resiliency/resiliency-technical-guidance.md
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

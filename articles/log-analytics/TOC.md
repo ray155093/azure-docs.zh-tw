@@ -10,7 +10,7 @@
 ## [Log Analytics 常見問題集](log-analytics-faq.md)
 
 # 作法
-## 整合
+## 收集資料
 ### 連接的來源
 #### [Windows 代理程式](log-analytics-windows-agents.md)
 #### [Linux 代理程式](log-analytics-linux-agents.md)
@@ -27,11 +27,15 @@
 #### [IIS 記錄檔](log-analytics-data-sources-iis-logs.md)
 #### [自訂的記錄檔](log-analytics-data-sources-custom-logs.md)
 #### [自訂欄位](log-analytics-custom-fields.md)
-## 開發
+## 查詢資料
 ### [記錄檔搜尋概觀](log-analytics-log-searches.md)
 ### [搜尋參考](log-analytics-search-reference.md)
 ### [電腦群組](log-analytics-computer-groups.md)
 ### [警示](log-analytics-alerts.md)
+## 分析資料
+### [儀表板](log-analytics-dashboards.md)
+### [檢視設計工具](log-analytics-view-designer.md)
+### [Power BI](log-analytics-powerbi.md)
 ### 解決方案
 #### [解決方案概觀](log-analytics-add-solutions.md)
 #### [AD 評估](log-analytics-ad-assessment.md)
@@ -52,11 +56,7 @@
 #### [VMware](log-analytics-vmware.md)
 #### [連線資料](log-analytics-wire-data.md)
 #### [SCOM 評估](log-analytics-scom-assessment.md)
-## 分析
-### [儀表板](log-analytics-dashboards.md)
-### [檢視設計工具](log-analytics-view-designer.md)
-### [Power BI](log-analytics-powerbi.md)
-## 自動化
+## 開發
 ### [資料收集器 API](log-analytics-data-collector-api.md)
 ### [PowerShell Cmdlet](log-analytics-powershell-workspace-configuration.md)
 ### [記錄檔搜尋 API](log-analytics-log-search-api.md)

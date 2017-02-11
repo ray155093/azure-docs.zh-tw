@@ -1,12 +1,12 @@
 ---
-title: 輪詢長時間執行的作業 | Microsoft Docs
-description: 本主題說明如何輪詢長時間執行的作業。
+title: "輪詢長時間執行的作業 | Microsoft Docs"
+description: "本主題說明如何輪詢長時間執行的作業。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 9a68c4b1-6159-42fe-9439-a3661a90ae03
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2a24c683b66878e4404a6baf879890453755bc0c
+
 
 ---
 # <a name="delivering-live-streaming-with-azure-media-services"></a>利用 Azure 媒體服務提供即時資料流
@@ -187,6 +191,9 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

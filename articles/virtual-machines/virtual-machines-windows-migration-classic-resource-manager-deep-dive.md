@@ -1,13 +1,13 @@
 ---
-title: Technical deep dive on platform-supported migration from classic to Azure Resource Manager | Microsoft Docs
-description: This article does a technical deep dive on platform-supported migration of resources from classic to Azure Resource Manager
+title: "平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討 | Microsoft Docs"
+description: "這篇文章提供平台支援之資源移轉 (從傳統移轉至 Azure Resource Manager) 的技術深入探討"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: singhkays
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 1ee40d32-a5e8-42a2-97d0-3232fd3cbb98
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,53 +15,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2016
 ms.author: kasing
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 63d8270811797db5283870e4b4d3482271b97793
+
 
 ---
-# <a name="technical-deep-dive-on-platform-supported-migration-from-classic-to-azure-resource-manager"></a>Technical deep dive on platform-supported migration from classic to Azure Resource Manager
-Let's take a deep-dive on migrating from the Azure classic deployment model to the Azure Resource Manager deployment model. We look at resources at a resource and feature level to help you understand how the Azure platform migrates resources between the two deployment models. For more information, please read the service announcement article: [Platform-supported migration of IaaS resources from classic to Azure Resource Manager](virtual-machines-windows-migration-classic-resource-manager.md).
+# <a name="technical-deep-dive-on-platform-supported-migration-from-classic-to-azure-resource-manager"></a>平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討
+讓我們深入探討如何從 Azure 傳統部署模型移轉至 Azure Resource Manager 部署模型。 我們會就資源和功能層級來探討資源，以協助您了解 Azure 平台如何在這兩種部署模型之間移轉資源。 如需詳細資訊，請閱讀服務公告文章： [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)。
 
-## <a name="detailed-guidance-on-migration"></a>Detailed guidance on migration
-You can find the classic and Resource Manager representations of the resources in the following table. Other features and resources are not currently supported.
+## <a name="detailed-guidance-on-migration"></a>詳細的移轉指導方針
+下表提供傳統和 Resource Manager 的資源表示法。 目前不支援其他功能和資源。
 
-| Classic representation | Resource Manager representation | Detailed notes |
+| 傳統表示法 | Resource Manager 表示法 | 詳細資訊 |
 | --- | --- | --- |
-| Cloud service name |DNS name |During migration, a new resource group is created for every cloud service with the naming pattern `<cloudservicename>-migrated`. This resource group contains all your resources. The cloud service name becomes a DNS name that is associated with the public IP address. |
-| Virtual machine |Virtual machine |VM-specific properties are migrated unchanged. Certain osProfile information, like computer name, is not stored in the classic deployment model and remains empty after migration. |
-| Disk resources attached to VM |Implicit disks attached to VM |Disks are not modeled as top-level resources in the Resource Manager deployment model. They are migrated as implicit disks under the VM. Only disks that are attached to a VM are currently supported. Resource Manager VMs can now use classic storage accounts, which allows the disks to be easily migrated without any updates. |
-| VM extensions |VM extensions |All the resource extensions, except XML extensions, are migrated from the classic deployment model. |
-| Virtual machine certificates |Certificates in Azure Key Vault |If a cloud service contains service certificates, a new Azure key vault per cloud service and moves the certificates into the key vault. The VMs are updated to reference the certificates from the key vault. |
-| WinRM configuration |WinRM configuration under osProfile |Windows Remote Management configuration is moved unchanged, as part of the migration. |
-| Availability-set property |Availability-set resource |Availability-set specification was a property on the VM in the classic deployment model. Availability sets become a top-level resource as part of the migration. The following configurations are not supported: multiple availability sets per cloud service, or one or more availability sets along with VMs that are not in any availability set in a cloud service. |
-| Network configuration on a VM |Primary network interface |Network configuration on a VM is represented as the primary network interface resource after migration. For VMs that are not in a virtual network, the internal IP address changes during migration. |
-| Multiple network interfaces on a VM |Network interfaces |If a VM has multiple network interfaces associated with it, each network interface becomes a top-level resource as part of the migration in the Resource Manager deployment model, along with all the properties. |
-| Load-balanced endpoint set |Load balancer |In the classic deployment model, the platform assigned an implicit load balancer for every cloud service. During migration, a new load-balancer resource is created, and the load-balancing endpoint set becomes load-balancer rules. |
-| Inbound NAT rules |Inbound NAT rules |Input endpoints defined on the VM are converted to inbound network address translation rules under the load balancer during the migration. |
-| VIP address |Public IP address with DNS name |The virtual IP address becomes a public IP address and is associated with the load balancer. |
-| Virtual network |Virtual network |The virtual network is migrated, with all its properties, to the Resource Manager deployment model. A new resource group is created with the name `-migrated`. There are [unsupported configurations](virtual-machines-windows-migration-classic-resource-manager.md). |
-| Reserved IPs |Public IP address with static allocation method |Reserved IPs associated with the load balancer are migrated, along with the migration of the cloud service or the virtual machine. Unassociated reserved IP migration is not currently supported. |
-| Public IP address per VM |Public IP address with dynamic allocation method |The public IP address associated with the VM is converted as a public IP address resource, with the allocation method set to static. |
-| NSGs |NSGs |Network security groups associated with a subnet are cloned as part of the migration to the Resource Manager deployment model. The NSG in the classic deployment model is not removed during the migration. However, the management-plane operations for the NSG are blocked when the migration is in progress. |
-| DNS servers |DNS servers |DNS servers associated with a virtual network or the VM are migrated as part of the corresponding resource migration, along with all the properties. |
-| UDRs |UDRs |User-defined routes associated with a subnet are cloned as part of the migration to the Resource Manager deployment model. The UDR in the classic deployment model is not removed during the migration. The management-plane operations for the UDR are blocked when the migration is in progress. |
-| IP forwarding property on a VM's network configuration |IP forwarding property on the NIC |The IP forwarding property on a VM is converted to a property on the network interface during the migration. |
-| Load balancer with multiple IPs |Load balancer with multiple public IP resources |Every public IP associated with the load balancer is converted to a public IP resource and associated with the load balancer after migration. |
-| Internal DNS names on the VM |Internal DNS names on the NIC |During migration, the internal DNS suffixes for the VMs are migrated to a read-only property named “InternalDomainNameSuffix” on the NIC. The suffix remains unchanged after migration and VM resolution should continue to work as previously. |
+| 雲端服務名稱 |DNS 名稱 |在移轉期間，會以命名樣式 `<cloudservicename>-migrated`為每個雲端服務建立新的資源群組。 此資源群組包含您的所有資源。 雲端服務名稱會成為與公用 IP 位址關聯的 DNS 名稱。 |
+| 虛擬機器 |虛擬機器 |VM 特定屬性會原封不動地移轉過去。 有些 osProfile 資訊 (例如電腦名稱) 不會儲存在傳統部署模型中，因此移轉後會保留空白。 |
+| 連接至 VM 的磁碟資源 |連接至 VM 的隱含磁碟 |在 Resource Manager 部署模型中，並未將磁碟塑造成最上層資源。 這些磁碟是被當作 VM 底下的隱含磁碟來移轉。 目前只支援連接至 VM 的磁碟。 Resource Manager VM 現在可以使用傳統儲存體帳戶，這可讓您不須進行任何更新，即可輕鬆移轉磁碟。 |
+| VM 擴充功能 |VM 擴充功能 |所有資源擴充功能 (XML 擴充功能除外) 都會從傳統部署模型移轉出來。 |
+| 虛擬機器憑證 |Azure 金鑰保存庫中的憑證 |如果雲端服務包含服務憑證，系統就會為每個雲端服務建立一個新的 Azure 金鑰保存庫，然後將憑證移至該金鑰保存庫。 VM 將會更新為參照該金鑰保存庫中的憑證。 <br><br> **注意︰**請不要刪除金鑰保存庫，因為它可能會造成 VM 進入失敗狀態。 我們正努力提升後端中的項目，因此可以放心刪除或移動金鑰保存庫與 VM 至新的訂用帳戶。 |
+| WinRM 組態 |osProfile 下的 WinRM 組態 |「Windows 遠端管理」組態在移轉過程中會原封不動地移過去。 |
+| 可用性設定組屬性 |可用性設定組資源 |可用性設定組規格是傳統部署模型中 VM 上的屬性。 在移轉過程中，可用性設定組會變成最上層資源。 不支援下列組態：每個雲端服務有多個可用性設定組，或是一或多個可用性設定組帶有不屬於雲端服務中任何可用性設定組的 VM。 |
+| VM 上的網路組態 |主要網路介面 |移轉之後，VM 上的網路組態就會顯示為主要網路介面資源。 VM 如果不在虛擬網路中，其內部 IP 位址在移轉期間將會變更。 |
+| VM 上的多個網路介面 |網路介面 |如果 VM 有多個關聯的網路介面，則在移轉至 Resource Manager 部署模型的過程中，每個網路介面以及所有的屬性都會成為最上層資源。 |
+| 負載平衡的端點集 |負載平衡器 |在傳統部署模型中，平台已為每個雲端服務指派一個隱含的負載平衡器。 在移轉期間，會建立新的負載平衡器資源，而負載平衡端點集則會成為負載平衡器規則。 |
+| 傳入的 NAT 規則 |傳入的 NAT 規則 |在移轉期間，VM 上定義的輸入端點會轉換成負載平衡器下的輸入網路位址轉譯規則。 |
+| VIP 位址 |具 DNS 名稱的公用 IP 位址 |虛擬 IP 位址會變成公用 IP 位址並與負載平衡器產生關聯。 |
+| 虛擬網路 |虛擬網路 |虛擬網路會與其所有屬性一起移轉至 Resource Manager 部署模型。 將會建立名為 `-migrated`的新資源群組。 有 [不支援的組態](virtual-machines-windows-migration-classic-resource-manager.md)。 |
+| 保留的 IP |搭配靜態配置方法的公用 IP 位址 |與負載平衡器關聯的保留 IP 會隨著雲端服務或虛擬機器的移轉一併移轉。 目前不支援移轉未關聯的保留 IP。 |
+| 每一個 VM 的公用 IP 位址 |搭配動態配置方法的公用 IP 位址 |與 VM 關聯的公用 IP 位址會轉換成公用 IP 位址資源，且配置方法會設定為靜態。 |
+| NSG |NSG |在移轉至 Resource Manager 部署模型的過程中，會複製與子網路關聯的網路安全性群組。 在移轉期間不會移除傳統部署模型中的 NSG。 不過，在移轉進行時，會封鎖 NSG 的管理平面作業。 |
+| DNS 伺服器 |DNS 伺服器 |與虛擬網路或 VM 關聯的 DNS 伺服器，會在對應的資源移轉過程中，與其所有屬性一起移轉。 |
+| UDR |UDR |在移轉至 Resource Manager 部署模型的過程中，會複製與子網路關聯的使用者定義路由。 在移轉期間不會移除傳統部署模型中的 UDR。 不過，移轉進行時，會封鎖 UDR 的管理平面作業。 |
+| VM 網路組態上的 IP 轉送屬性 |NIC 上的 IP 轉送屬性 |在移轉期間，VM 上的 IP 轉送屬性會轉換成網路介面上的屬性。 |
+| 具有多個 IP 的負載平衡器 |具有多個公用 IP 資源的負載平衡器 |與負載平衡器關聯的每個公用 IP 在移轉後都會轉換成公用 IP 資源，並與負載平衡器產生關聯。 |
+| VM 上的內部 DNS 名稱 |NIC 上的內部 DNS 名稱 |在移轉期間，VM 的內部 DNS 尾碼會移轉至 NIC 上名為 "InternalDomainNameSuffix" 的唯讀屬性。 尾碼在移轉後保持不變，VM 解析應該會像之前一樣繼續運作。 |
+| 虛擬網路閘道 |虛擬網路閘道 |不變更虛擬網路閘道內容下進行移轉。 與閘道相關聯的 VIP 也不會變更。 |
+| 區域網路網站 |區域網路閘道 |不變更區域網路網站的內容下移轉到稱為本機網路閘道的新資源。 這表示內部部署位址首碼與遠端閘道的 IP。 |
+| 連線參考 |連線 |閘道和網路組態中的區域網路網站之間的連線參考在移轉之後會以資源管理員中稱為連線的新建立資源代表。 網路組態檔中連線參考的所有屬性都會在不變更下複製到新建立的連線資源。 傳統 VNet 對 VNet 連線能力的實現方式為建立兩個區域網路網站的 IPsec 通道以代表 Vnet。 這會在資源管理員模型中轉換為 Vnet2Vnet 連線類型，而不需要區域網路閘道。 |
 
-## <a name="illustration-of-a-simple-migration-walkthrough"></a>Illustration of a simple migration walkthrough
-The following screenshot shows an existing cloud service with a VM (not in a virtual network) after the preparation phase:
+## <a name="illustration-of-a-simple-migration-walkthrough"></a>簡單的移轉逐步解說圖解
+下列螢幕擷取畫面顯示在完成準備階段後帶有一部 VM (不在虛擬網路中) 的現有雲端服務：
 
-![Classic representation after prepare](./media/virtual-machines-windows-migration-classic-resource-manager/classic-migration-prepare-portal.png)
+![傳統模型在準備就緒後的樣子](./media/virtual-machines-windows-migration-classic-resource-manager/classic-migration-prepare-portal.png)
 
-After the migration process has completed, the following screenshots show that the new resources have been created in a new resource group: ![Resource Manager representation after prepare](./media/virtual-machines-windows-migration-classic-resource-manager/resourcemanager-migration-prepare-portal.png)
+在移轉程序完成之後，下列螢幕擷取畫面顯示新資源已在新的資源群組中建立︰![Resource Manager 模型在準備就緒後的樣子](./media/virtual-machines-windows-migration-classic-resource-manager/resourcemanager-migration-prepare-portal.png)
 
-## <a name="next-steps"></a>Next steps
-Now that you understand the migration of classic IaaS resources to Resource Manager, you can start migrating resources.
+## <a name="next-steps"></a>後續步驟
+既然您已了解如何將傳統 IaaS 資源移轉至 Resource Manager，您便可以開始移轉資源。
 
-* [Use PowerShell to migrate IaaS resources from classic to Azure Resource Manager](virtual-machines-windows-ps-migration-classic-resource-manager.md)
-* [Use CLI to migrate IaaS resources from classic to Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
-* [Platform-supported migration of IaaS resources from classic to Azure Resource Manager](virtual-machines-windows-migration-classic-resource-manager.md)
-* [Clone a classic virtual machine to Azure Resource Manager by using community PowerShell scripts](virtual-machines-windows-migration-scripts.md)
+* [使用 PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-windows-ps-migration-classic-resource-manager.md)
+* [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
+* [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)
+* [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [檢閱最常見的移轉錯誤](virtual-machines-migration-errors.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

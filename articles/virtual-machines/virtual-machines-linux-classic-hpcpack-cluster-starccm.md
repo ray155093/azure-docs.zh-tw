@@ -1,13 +1,13 @@
 ---
-title: 使用 HPC Pack 在 Linux VM 上執行 STAR-CCM+ | Microsoft Docs
-description: 在 Azure 上部署 Microsoft HPC Pack 叢集，並且跨 RDMA 網路在多個 Linux 計算節點上執行 STAR-CCM+ 作業。
+title: "使用 HPC Pack 在 Linux VM 上執行 STAR-CCM+ | Microsoft Docs"
+description: "在 Azure 上部署 Microsoft HPC Pack 叢集，並且跨 RDMA 網路在多個 Linux 計算節點上執行 STAR-CCM+ 作業。"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: xpillons
 manager: timlt
-editor: ''
+editor: 
 tags: azure-service-management,azure-resource-manager,hpc-pack
-
+ms.assetid: 75523406-d268-4623-ac3e-811c7b74de4b
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
@@ -15,21 +15,25 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: big-compute
 ms.date: 09/13/2016
 ms.author: xpillons
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 666b9e47953674b17be6cc84dbc6aeec28e28b57
+
 
 ---
-# 在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 STAR-CCM+
+# <a name="run-star-ccm-with-microsoft-hpc-pack-on-a-linux-rdma-cluster-in-azure"></a>在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 STAR-CCM+
 本文將說明如何在 Azure 上部署 Microsoft HPC Pack 叢集，並在與 InfiniBand 相互連接的多個 Linux 計算節點上執行 [CD-adapco STAR-CCM+](http://www.cd-adapco.com/products/star-ccm%C2%AE) 作業。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程式，包括 Microsoft Azure 虛擬機器的叢集上的 MPI 應用程式。HPC Pack 也支援在 HPC Pack 叢集中部署的 Linux 計算節點 VM 上，執行 Linux HPC 應用程式。如需搭配使用 Linux 計算節點與 HPC Pack 的簡介，請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
+Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程式，包括 Microsoft Azure 虛擬機器的叢集上的 MPI 應用程式。 HPC Pack 也支援在 HPC Pack 叢集中部署的 Linux 計算節點 VM 上，執行 Linux HPC 應用程式。 如需搭配使用 Linux 計算節點與 HPC Pack 的簡介，請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
-## 設定 HPC Pack 叢集
-從[下載中心](https://www.microsoft.com/zh-TW/download/details.aspx?id=44949)下載 HPC Pack IaaS 部署指令碼，並將它們解壓縮到本機。
+## <a name="set-up-an-hpc-pack-cluster"></a>設定 HPC Pack 叢集
+從[下載中心](https://www.microsoft.com/en-us/download/details.aspx?id=44949)下載 HPC Pack IaaS 部署指令碼，並將它們解壓縮到本機。
 
-Azure PowerShell 是必要條件。如果未在本機電腦上設定 PowerShell，請閱讀本文：[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+Azure PowerShell 是必要條件。 如果未在本機電腦上設定 PowerShell，請閱讀本文： [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-撰寫本文時，來自 Azure Marketplace 的 Linux 映像 (其包含 Azure InfiniBand 驅動程式) 適用於 SLES 12、CentOS 6.5 和 CentOS 7.1。這篇文章根據 SLES 12 的使用方式。若要擷取 Marketplace 中支援 HPC 的所有 Linux 映像的名稱，您可以執行下列 PowerShell 命令︰
+撰寫本文時，來自 Azure Marketplace 的 Linux 映像 (其包含 Azure InfiniBand 驅動程式) 適用於 SLES 12、CentOS 6.5 和 CentOS 7.1。 這篇文章根據 SLES 12 的使用方式。 若要擷取 Marketplace 中支援 HPC 的所有 Linux 映像的名稱，您可以執行下列 PowerShell 命令︰
 
 ```
     get-azurevmimage | ?{$_.ImageName.Contains("hpc") -and $_.OS -eq "Linux" }
@@ -37,7 +41,7 @@ Azure PowerShell 是必要條件。如果未在本機電腦上設定 PowerShell�
 
 輸出會列出提供這些映像的位置以及稍後會在部署範本中使用的映像名稱 (**ImageName**)。
 
-部署叢集之前，必須建置 HPC Pack 部署範本檔案。因為我們的目標是小型叢集，所以前端節點是網域控制站，並裝載本機 SQL Database。
+部署叢集之前，必須建置 HPC Pack 部署範本檔案。 因為我們的目標是小型叢集，所以前端節點是網域控制站，並裝載本機 SQL Database。
 
 下列範本會部署這類前端節點、建立名為 **MyCluster.xml** 的 XML 檔案，並將 **SubscriptionId**、**StorageAccount**、**Location**、**VMName** 和 **ServiceName** 的值取代成您的值。
 
@@ -81,18 +85,18 @@ Azure PowerShell 是必要條件。如果未在本機電腦上設定 PowerShell�
     .\New-HPCIaaSCluster.ps1 -ConfigFile MyCluster.xml
 ```
 
-20 到 30 分鐘之後，前端節點應該會就緒。從 Azure 入口網站上按一下虛擬機器的 [連接] 圖示，即可連接到它。
+20 到 30 分鐘之後，前端節點應該會就緒。 從 Azure 入口網站上按一下虛擬機器的 [連接]  圖示，即可連接到它。
 
-您最終可能必須修正 DNS 轉寄站。若要這樣做，請啟動 [DNS 管理員]。
+您最終可能必須修正 DNS 轉寄站。 若要這樣做，請啟動 [DNS 管理員]。
 
 1. 在 [DNS 管理員] 中以滑鼠右鍵按一下伺服器名稱，並選取 [內容]，然後按一下 [轉寄站] 索引標籤。
 2. 按一下 [編輯] 按鈕來移除任何轉寄站，然後按一下 [確定]。
 3. 確定已選取 [如果沒有可用的轉寄站，則使用根目錄提示] 核取方塊，然後按一下 [確定]。
 
-## 設定 Linux 計算節點
+## <a name="set-up-linux-compute-nodes"></a>設定 Linux 計算節點
 部署 Linux 計算節點，方法是使用用來建立前端節點的相同部署範本。
 
-將檔案 **MyCluster.xml** 從本機電腦的複製到前端節點，並以您想要部署的節點數目 (<= 20) 更新 **NodeCount** 標記。您的 Azure 配額中務必要有足夠的可用核心，因為每個 A9 執行個體將會使用您訂用帳戶中的 16 個核心。如果您想要在相同的預算中使用更多的 VM，您可以使用 A8 執行個體 (8 核心) 而不是 A9。
+將檔案 **MyCluster.xml** 從本機電腦的複製到前端節點，並以您想要部署的節點數目 (<= 20) 更新 **NodeCount** 標籤。 您的 Azure 配額中務必要有足夠的可用核心，因為每個 A9 執行個體將會使用您訂用帳戶中的 16 個核心。 如果您想要在相同的預算中使用更多的 VM，您可以使用 A8 執行個體 (8 核心) 而不是 A9。
 
 在前端節點上，複製 HPC Pack IaaS 部署指令碼。
 
@@ -101,24 +105,24 @@ Azure PowerShell 是必要條件。如果未在本機電腦上設定 PowerShell�
 1. 執行 **Add-AzureAccount** 以連接到您的 Azure 訂用帳戶。
 2. 如果您有多個訂用帳戶，請執行 **Get-AzureSubscription** 來列出這些訂用帳戶。
 3. 執行 **Select-AzureSubscription -SubscriptionName xxxx -Default** 命令來設定預設訂用帳戶。
-4. 執行 **.\\New-HPCIaaSCluster.ps1 -ConfigFile MyCluster.xml** 以開始部署 Linux 計算節點。
+4. 執行 **.\New-HPCIaaSCluster.ps1 -ConfigFile MyCluster.xml** 以開始部署 Linux 計算節點。
    
    ![前端節點部署實務][hndeploy]
 
-開啟 [HPC Pack 叢集管理員] 工具。幾分鐘後，Linux 計算節點會定期出現在叢集計算節點的清單中。使用傳統部署模式，會循序建立 IaaS VM。因此，如果節點數目十分重要，則部署所有節點可能需要很長的時間。
+開啟 [HPC Pack 叢集管理員] 工具。 幾分鐘後，Linux 計算節點會定期出現在叢集計算節點的清單中。 使用傳統部署模式，會循序建立 IaaS VM。 因此，如果節點數目十分重要，則部署所有節點可能需要很長的時間。
 
 ![HPC Pack 叢集管理員中的 Linux 節點][clustermanager]
 
 現在，叢集中的所有節點都已啟動並執行，還有其他可進行的基礎結構設定。
 
-## 為 Windows 和 Linux 節點設定 Azure 檔案共用
-您可以使用 Azure 檔案服務來儲存指令碼、應用程式封裝和資料檔案。Azure 檔案提供 Azure Blob 儲存體的 CIFS 功能，以當成持續性存放區。請注意，這不是最具調整性的解決方案，但它是最簡單且不需要專用 VM 的解決方案。
+## <a name="set-up-an-azure-file-share-for-windows-and-linux-nodes"></a>為 Windows 和 Linux 節點設定 Azure 檔案共用
+您可以使用 Azure 檔案服務來儲存指令碼、應用程式封裝和資料檔案。 Azure 檔案提供 Azure Blob 儲存體的 CIFS 功能，以當成持續性存放區。 請注意，這不是最具調整性的解決方案，但它是最簡單且不需要專用 VM 的解決方案。
 
 依照文章[在 Windows 上開始使用 Azure 檔案儲存體](../storage/storage-dotnet-how-to-use-files.md)的指示來建立 Azure 檔案共用。
 
 將儲存體帳戶名稱保持為 **saname**、將檔案共用名稱保持為 **sharename** 以及將儲存體帳戶金鑰保持為 **sakey**。
 
-### 在前端節點上裝載 Azure 檔案共用
+### <a name="mount-the-azure-file-share-on-the-head-node"></a>在前端節點上裝載 Azure 檔案共用
 開啟提升權限的命令提示字元，然後執行下列命令，將認證儲存在本機電腦保存庫中：
 
 ```
@@ -128,11 +132,12 @@ Azure PowerShell 是必要條件。如果未在本機電腦上設定 PowerShell�
 然後，若要裝載 Azure 檔案共用，請執行：
 
 ```
-    net use Z: \<saname>.file.core.windows.net<sharename> /persistent:yes
+    net use Z: \\<saname>.file.core.windows.net\<sharename> /persistent:yes
 ```
 
-### 在 Linux 計算節點上裝載 Azure 檔案共用
-HPC Pack 隨附的一個實用工具是 clusrun 工具。您可以使用此命令列工具，在一組計算節點上同時執行相同的命令。在本例中，它用來裝載 Azure 檔案共用，然後將它保存以避免重新開機。在前端節點的提高權限命令提示字元中，執行下列命令。
+### <a name="mount-the-azure-file-share-on-linux-compute-nodes"></a>在 Linux 計算節點上裝載 Azure 檔案共用
+HPC Pack 隨附的一個實用工具是 clusrun 工具。 您可以使用此命令列工具，在一組計算節點上同時執行相同的命令。 在本例中，它用來裝載 Azure 檔案共用，然後將它保存以避免重新開機。
+在前端節點的提高權限命令提示字元中，執行下列命令。
 
 建立裝載目錄：
 
@@ -152,16 +157,16 @@ HPC Pack 隨附的一個實用工具是 clusrun 工具。您可以使用此命�
     clusrun /nodegroup:LinuxNodes "echo //<saname>.file.core.windows.net/<sharename> /hpcdata cifs vers=2.1,username=<saname>,password='<sakey>',dir_mode=0777,file_mode=0777 >> /etc/fstab"
 ```
 
-## 安裝 STAR-CCM+
-Azure VM 執行個體 A8 和 A9 提供 InfiniBand 支援與 RDMA 功能。啟用這些功能的核心驅動程式都適用於 Azure Marketplace 中的 Windows Server 2012 R2、SUSE 12、CentOS 6.5 和 CentOS 7.1 映像。Microsoft MPI 和 Intel MPI (5.x 版) 是 Azure 中可支援這些驅動程式的兩個 MPI 程式庫。
+## <a name="install-star-ccm"></a>安裝 STAR-CCM+
+Azure VM 執行個體 A8 和 A9 提供 InfiniBand 支援與 RDMA 功能。 啟用這些功能的核心驅動程式都適用於 Azure Marketplace 中的 Windows Server 2012 R2、SUSE 12、CentOS 6.5 和 CentOS 7.1 映像。 Microsoft MPI 和 Intel MPI (5.x 版) 是 Azure 中可支援這些驅動程式的兩個 MPI 程式庫。
 
 CD-adapco STAR-CCM+ 發行 11.x 和更新版本隨附 Intel MPI 5.x 版，因此含有 Azure 的 InfiniBand 支援。
 
-從 [CD-adapco 入口網站](https://steve.cd-adapco.com)取得 Linux64 STAR-CCM+ 封裝。在我們的案例中，以混合精確度使用版本 11.02.010。
+從 [CD-adapco 入口網站](https://steve.cd-adapco.com)取得 Linux64 STAR-CCM+ 封裝。 在我們的案例中，以混合精確度使用版本 11.02.010。
 
-在前端節點上，於 **/hpcdata** Azure 檔案共用中，使用下列內容建立名為 **setupstarccm.sh** 的殼層指令碼。此指令碼將會在每個計算節點上執行，以在本機上設定 STAR-CCM+。
+在前端節點上，於 **/hpcdata** Azure 檔案共用中，使用下列內容建立名為 **setupstarccm.sh** 的殼層指令碼。 此指令碼將會在每個計算節點上執行，以在本機上設定 STAR-CCM+。
 
-#### 範例 setupstarcm.sh 指令碼
+#### <a name="sample-setupstarcmsh-script"></a>範例 setupstarcm.sh 指令碼
 ```
     #!/bin/bash
     # setupstarcm.sh to set up STAR-CCM+ locally
@@ -188,26 +193,26 @@ CD-adapco STAR-CCM+ 發行 11.x 和更新版本隨附 Intel MPI 5.x 版，因此
     clusrun /nodegroup:LinuxNodes bash /hpcdata/setupstarccm.sh
 ```
 
-執行命令時，您可以使用叢集管理員的熱圖來監視 CPU 使用量。幾分鐘後，所有節點應該都會正確設定。
+執行命令時，您可以使用叢集管理員的熱圖來監視 CPU 使用量。 幾分鐘後，所有節點應該都會正確設定。
 
-## 執行 STAR-CCM+ 作業
-HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要這樣做，我們需要用來開始作業和執行 STAR-CCM+ 的一些指令碼的支援。為了簡單起見，輸入資料會先保留在 Azure 檔案共用上。
+## <a name="run-star-ccm-jobs"></a>執行 STAR-CCM+ 作業
+HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。 若要這樣做，我們需要用來開始作業和執行 STAR-CCM+ 的一些指令碼的支援。 為了簡單起見，輸入資料會先保留在 Azure 檔案共用上。
 
-下列 PowerShell 指令碼用於將 STAR-CCM+ 作業放入佇列。它會採用三個引數︰
+下列 PowerShell 指令碼用於將 STAR-CCM+ 作業放入佇列。 它會採用三個引數︰
 
 * 模型名稱
 * 要使用的節點數目
 * 要在每個節點上使用的核心數目
 
-因為 STAR-CCM+ 可以填入記憶體頻寬，一般來說，最好每個計算節點使用較少的核心，並新增新節點。每個節點的確切核心數目取決於處理器系列和相互連接速度。
+因為 STAR-CCM+ 可以填入記憶體頻寬，一般來說，最好每個計算節點使用較少的核心，並新增新節點。 每個節點的確切核心數目取決於處理器系列和相互連接速度。
 
-會對節點配置專用的作業，而且不能與其他作業共用。作業未直接啟動為 MPI 作業。**runstarccm.sh** 殼層指令碼會啟動 MPI 啟動器。
+會對節點配置專用的作業，而且不能與其他作業共用。 作業未直接啟動為 MPI 作業。 **runstarccm.sh** 殼層指令碼會啟動 MPI 啟動器。
 
 輸入模型和 **runstarccm.sh** 指令碼會儲存在先前掛接的 **/hpcdata** 共用中。
 
 記錄檔會以工作識別碼來命名，並與 STAR-CCM+ 輸出檔案一起儲存在 **/hpcdata 共用**中。
 
-#### 範例 SubmitStarccmJob.ps1 指令碼
+#### <a name="sample-submitstarccmjobps1-script"></a>範例 SubmitStarccmJob.ps1 指令碼
 ```
     Add-PSSnapin Microsoft.HPC -ErrorAction silentlycontinue
     $scheduler="headnodename"
@@ -233,7 +238,7 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 ```
 將 **runner.java** 取代成您偏好的 STAR-CCM+ Java 模型啟動程式與記錄程式碼。
 
-#### 範例 runstarccm.sh 指令碼
+#### <a name="sample-runstarccmsh-script"></a>範例 runstarccm.sh 指令碼
 ```
     #!/bin/bash
     echo "start"
@@ -279,11 +284,11 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
     exit ${RTNSTS}
 ```
 
-在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。針對該權杖，您必須將 **$CDLMD\_LICENSE\_FILE** 環境變數設定為 **1999@flex.cd-adapco.com**，以及命令列 **-podkey** 選項中的索引鍵。
+在我們的測試中，我們使用的是 Power-One-Demand 授權權杖。 針對該權杖，您必須將 **$CDLMD_LICENSE_FILE** 環境變數設定為 **1999@flex.cd-adapco.com**，以及命令列 **-podkey** 選項中的索引鍵。
 
-在進行一些初始化之後，指令碼會從 HPC Pack 設定的 **$CCP\_NODES\_CORES** 環境變數中，擷取節點清單來建置 MPI 啟動器使用的 hostfile。此 hostfile 將包含用於作業的計算節點名稱的清單，一行一個名稱。
+在進行一些初始化之後，指令碼會從 HPC Pack 設定的 **$CCP_NODES_CORES** 環境變數中，擷取節點清單來建置 MPI 啟動器使用的 hostfile。 此 hostfile 將包含用於作業的計算節點名稱的清單，一行一個名稱。
 
-**$CCP\_NODES\_CORES** 的格式會遵循下列模式：
+**$CCP_NODES_CORES** 的格式會遵循下列模式：
 
 ```
 <Number of nodes> <Name of node1> <Cores of node1> <Name of node2> <Cores of node2>...`
@@ -305,13 +310,13 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 * `-mppflags "-ppn $NBCORESPERNODE -genv I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -genv I_MPI_DAPL_UD=0 -genv I_MPI_DYNAMIC_CONNECTION=0"` 可讓 Intel MPI 與 Azure InfiniBand 搭配運作，並可設定每個節點的必要核心數目。
 * `-batch` 可以用批次模式啟動 STAR-CCM+ (無使用者介面)。
 
-最後，若要開始作業，請確定您的節點啟動並執行，並且在叢集管理員中處於線上狀態。然後從 PowerShell 命令提示字元中，執行此作業︰
+最後，若要開始作業，請確定您的節點啟動並執行，並且在叢集管理員中處於線上狀態。 然後從 PowerShell 命令提示字元中，執行此作業︰
 
 ```
     .\ SubmitStarccmJob.ps1 <model> <nbNodes> <nbCoresPerNode>
 ```
 
-## 停止節點
+## <a name="stop-nodes"></a>停止節點
 之後，當您完成測試之後，您可以使用下列 HPC Pack PowerShell 命令來停止和啟動節點︰
 
 ```
@@ -319,14 +324,18 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
     Start-HPCIaaSNode.ps1 -Name <prefix>-00*
 ```
 
-## 後續步驟
-嘗試執行其他 Linux 工作負載。例如，請參閱︰
+## <a name="next-steps"></a>後續步驟
+嘗試執行其他 Linux 工作負載。 例如，請參閱︰
 
-* [在 Azure 中的 Linux 運算節點以 Microsoft HPC Pack 執行 NAMD](virtual-machines-linux-classic-hpcpack-cluster-namd.md)
-* [在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)
+* [在 Azure 中的 Linux 運算節點以 Microsoft HPC Pack 執行 NAMD](virtual-machines-linux-classic-hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 <!--Image references-->
 [hndeploy]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/hndeploy.png
 [clustermanager]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/ClusterManager.png
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

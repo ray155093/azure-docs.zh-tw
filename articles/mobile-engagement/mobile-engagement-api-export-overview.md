@@ -1,29 +1,33 @@
 ---
-title: Mobile Engagement 匯出 API 概觀
-description: 了解匯出使用者裝置所產生之原始資料，以運用在自己工具中的基本概念。
+title: "Mobile Engagement 匯出 API 概觀"
+description: "了解匯出使用者裝置所產生之原始資料，以運用在自己工具中的基本概念。"
 services: mobile-engagement
 documentationcenter: mobile
 author: kpiteira
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 9380d47b-d7fa-4d4c-888f-97e6482196bb
 ms.service: mobile-engagement
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 04/26/2016
-ms.author: kpiteira
+ms.author: kapiteir
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9c17a1cb33616ad297d0fad9b8ea674de75bd8fb
+
 
 ---
-# Mobile Engagement 匯出 API 概觀
-## 簡介
+# <a name="mobile-engagement-export-api-overview"></a>Mobile Engagement 匯出 API 概觀
+## <a name="introduction"></a>簡介
 在本文件中，您將了解匯出使用者裝置所產生之原始資料，以運用在自己工具中的基本概念。
 
-## 必要條件
+## <a name="pre-requisites"></a>必要條件
 從 Mobile Engagement 匯出原始資料需要︰
 
-* 設定 API 驗證，以便能夠使用 API (請參閱[驗證手動設定](mobile-engagement-api-authentication-manual.md))、
+* 設定 API 驗證，以便能夠使用 API (請參閱 [驗證手動設定](mobile-engagement-api-authentication-manual.md))、
 * 使用 REST API 或 [.net SDK](mobile-engagement-dotnet-sdk-service-api.md)、
 * Azure 儲存體帳戶。
 
@@ -32,10 +36,11 @@ ms.author: kpiteira
 > 
 > 
 
-## 您可以匯出什麼？
-Mobile Engagement 可讓其使用者收集許多類型的資料，因此有幾種類型的匯出適合這些不同的資料類型。有 2 種基本類型的匯出︰
+## <a name="what-can-be-exported"></a>您可以匯出什麼？
+Mobile Engagement 可讓其使用者收集許多類型的資料，因此有幾種類型的匯出適合這些不同的資料類型。
+有 2 種基本類型的匯出︰
 
-* 快照集︰通常用來匯出代表狀態且 Mobile Engagement 沒有其歷程記錄的資料。比方說，這包括標籤 (應用程式資訊)、權杖或推播宣傳活動的意見反應。因此，這些類型的匯出與日期無關。
+* 快照集︰通常用來匯出代表狀態且 Mobile Engagement 沒有其歷程記錄的資料。 比方說，這包括標籤 (應用程式資訊)、權杖或推播宣傳活動的意見反應。 因此，這些類型的匯出與日期無關。
 * 歷程記錄︰此匯出類型用於會隨一段時間累積的資料，例如事件或活動。
 
 下表完整地描述所有可能的匯出︰
@@ -51,8 +56,9 @@ Mobile Engagement 可讓其使用者收集許多類型的資料，因此有幾�
 | 歷程記錄 |Job |產生在指定的時間內，每個裝置之所有工作的匯出 |
 | 歷程記錄 |錯誤 |產生在指定的時間內，每個裝置的所有錯誤的匯出 |
 
-## 運作方式
-匯出是長時間執行的工作，可能會產生大型資料檔案。因此，無法叫用它們來立即傳回要下載的檔案。若要從 Mobile Engagement 匯出資料，您必須透過 API 建立**匯出工作**，在 API 中您一般會指定：
+## <a name="how-does-it-work"></a>運作方式
+匯出是長時間執行的工作，可能會產生大型資料檔案。 因此，無法叫用它們來立即傳回要下載的檔案。
+若要從 Mobile Engagement 匯出資料，您必須透過 API 建立 **匯出工作** ，在 API 中您一般會指定：
 
 * 匯出的類型 (快照或歷程記錄)、
 * 資料類型、
@@ -64,4 +70,9 @@ Mobile Engagement 可讓其使用者收集許多類型的資料，因此有幾�
 
 工作成功之後，產生的資料檔案會在提供的儲存體容器上。
 
-<!---HONumber=AcomDC_0504_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

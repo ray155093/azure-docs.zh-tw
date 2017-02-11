@@ -1,26 +1,30 @@
 ---
-title: 使用 Azure Resource Manager 範本部署計算資源 | Microsoft Docs
-description: Azure 虛擬機器 DotNet 核心教學課程
+title: "使用 Azure Resource Manager 範本部署計算資源 | Microsoft Docs"
+description: "Azure 虛擬機器 DotNet 核心教學課程"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: neilpeterson
 manager: timlt
 editor: tysonn
 tags: azure-service-management
-
+ms.assetid: 1c4d419e-ba0e-45e4-a9dd-7ee9975a86f9
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 09/21/2016
+ms.date: 11/21/2016
 ms.author: nepeters
+translationtype: Human Translation
+ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
+ms.openlocfilehash: 17aa03a3fef2bf3b4d933e7653656d58994321e7
+
 
 ---
 # <a name="application-architecture-with-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本的應用程式架構
 開發 Azure Resource Manager 部署時，必須將計算需求與 Azure 資源和服務對應。 如果應用程式是由數個 http 端點、一個資料庫及一個資料快取服務所組成，就必須將裝載這當中每個元件的 Azure 資源合理化。 例如，範例「音樂市集」應用程式包含一個裝載於虛擬機器上的 Web 應用程式，以及一個裝載於 Azure SQL Database 中的 SQL Database。 
 
-本文件詳細說明範例 Azure Resource Manager 範本中如何設定「音樂市集」計算資源。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 為了獲得最佳體驗，請將一個解決方案執行個體預先部署到您的 Azure 訂用帳戶，然後與 Azure Resource Manager 範本搭配運作。 您可以在下列連結找到完整的範本 – [Ubuntu 上的音樂市集部署](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。
+本文件詳細說明範例 Azure Resource Manager 範本中如何設定「音樂市集」計算資源。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 為了獲得最佳體驗，請將一個解決方案執行個體預先部署到您的 Azure 訂用帳戶，然後與 Azure Resource Manager 範本搭配運作。 您可以在下列連結找到完整的範本 – [Ubuntu 上的音樂市集部署](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。 
 
 ## <a name="virtual-machine"></a>虛擬機器
 「音樂市集」應用程式包含一個可供客戶瀏覽和購買音樂的 Web 應用程式。 雖然有好幾個 Azure 服務可以裝載 Web 應用程式，但是這個範例是使用「虛擬機器」。 使用範例「音樂市集」範本時，會部署虛擬機器、安裝 Web 伺服器，以及安裝並設定「音樂市集」網站。 針對本文，只會詳細說明虛擬機器部署。 Web 伺服器和應用程式的組態在稍後的文章中會有詳細說明。
@@ -29,7 +33,7 @@ ms.author: nepeters
 
 請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [虛擬機器 JSON](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L295)。
 
-```none
+```json
 {
   "apiVersion": "2015-06-15",
   "type": "Microsoft.Compute/virtualMachines",
@@ -64,7 +68,7 @@ ms.author: nepeters
 
 請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [儲存體帳戶](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L109)。
 
-```none
+```json
 {
   "apiVersion": "2015-06-15",
   "type": "Microsoft.Storage/storageAccounts",
@@ -76,14 +80,14 @@ ms.author: nepeters
   "properties": {
     "accountType": "[variables('vhdStorageType')]"
   }
-},
+}
 ```
 
 儲存體帳戶會在虛擬機器的 Resource Manager 範本宣告內與虛擬機器關聯。 
 
 請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [虛擬機器與儲存體帳戶關聯](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L341)。
 
-```none
+```json
 "osDisk": {
   "name": "osdisk",
   "vhd": {
@@ -109,7 +113,7 @@ ms.author: nepeters
 
 請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [虛擬網路和子網路](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L136)。
 
-```none
+```json
 {
   "apiVersion": "2015-06-15",
   "type": "Microsoft.Network/virtualNetworks",
@@ -151,7 +155,7 @@ ms.author: nepeters
 
  請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [網路介面](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L166)。
 
-```none
+```json
 {
   "apiVersion": "2015-06-15",
   "type": "Microsoft.Network/networkInterfaces",
@@ -200,7 +204,7 @@ ms.author: nepeters
 
 請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [虛擬機器網路設定檔](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L350)。
 
-```none
+```json
 "networkProfile": {
   "networkInterfaces": [
     {
@@ -221,9 +225,9 @@ ms.author: nepeters
 
 您可以透過使用 Visual Studio 的「加入新資源」精靈或在範本中插入有效的 JSON，來新增 Azure SQL Database。 SQL Server 資源包括已獲授與 SQL 執行個體上系統管理權限的使用者名稱和密碼。 此外，也會新增 SQL 防火牆資源。 裝載在 Azure 中的應用程式預設即能夠與 SQL 執行個體連線。 若要允許外部應用程式 (例如 SQL Server Management Studio) 連線到 SQL 執行個體，就必須設定防火牆。 就「音樂市集」示範而言，無須變更預設組態。 
 
-進入這個連結，參閱 Resource Manager 範本內的 JSON 範例 – [Azure SQL 資料庫](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L401。
+請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [Azure SQL DB](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L401)。
 
-```none
+```json
 {
   "apiVersion": "2014-04-01-preview",
   "type": "Microsoft.Sql/servers",
@@ -265,8 +269,11 @@ Azure 入口網站中所示的 SQL Server 和 MusicStore 資料庫檢視。
 ## <a name="next-step"></a>後續步驟
 <hr>
 
-[步驟 2 - Azure Resource Manager 範本中的存取和安全性](virtual-machines-linux-dotnet-core-3-access-security.md)
+[步驟 2 - Azure Resource Manager 範本中的存取和安全性](virtual-machines-linux-dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

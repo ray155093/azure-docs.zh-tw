@@ -1,13 +1,13 @@
 ---
-title: Azure 入口網站中 Azure 搜尋服務的服務管理
-description: 使用 Azure 入口網站來管理 Azure 搜尋服務 (Microsoft Azure 上的雲端託管搜尋服務)。
+title: "Azure 入口網站中 Azure 搜尋服務的服務管理"
+description: "使用 Azure 入口網站來管理 Azure 搜尋服務 (Microsoft Azure 上的雲端託管搜尋服務)。"
 services: search
-documentationcenter: ''
+documentationcenter: 
 author: HeidiSteen
 manager: jhubbard
-editor: ''
+editor: 
 tags: azure-portal
-
+ms.assetid: c87d1fdd-b3b8-4702-a753-6d7e29dbe0a2
 ms.service: search
 ms.devlang: rest-api
 ms.workload: search
@@ -15,6 +15,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 10/17/2016
 ms.author: heidist
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 71cfd2ea327cad22cdb1085558658934804c15f1
+
 
 ---
 # <a name="service-administration-for-azure-search-in-the-azure-portal"></a>Azure 入口網站中 Azure 搜尋服務的服務管理
@@ -35,9 +39,11 @@ Azure 搜尋服務是完全受管理、以雲端為基礎的搜尋服務，用�
 
  (或索引管理) 是指搜尋流量分析以了解查詢磁碟區等作業、找出使用者所搜尋的詞彙，以及搜尋結果將客戶引導至您索引中特定文件的成功率。 內容管理已超出本文的範圍。 如需有關如何深入了解索引層級內部作業的指示，請參閱 [搜尋 Azure 搜尋服務的流量分析](search-traffic-analytics.md)。
 
- 也已超出本文的範圍。 如需詳細資訊，請參閱 [Azure 搜尋服務中的效能和最佳化](search-performance-optimization.md)。
+ 也已超出本文的範圍。 如需詳細資訊，請參閱[監視使用量和查詢度量](search-monitor-usage.md)和[效能和最佳化](search-performance-optimization.md)。
 
-Azure 搜尋服務不提供災害復原或備份與還原的內建解決方案。 針對將物件和資料推送至其服務的客戶，如果您不小心將索引刪除，則用來建立及擴展索引的原始程式碼為現行的還原選項。 針對災害復原，客戶可透過不同區域資料中心內的其他服務選擇加入以取得備援性。 如需詳細資訊，請參閱 [Azure 搜尋服務中的效能和最佳化](search-performance-optimization.md)。
+如果中斷，Azure 搜尋服務將會容錯移轉至其他叢集和資料中心，但如果惡意或不慎刪除索引或服務，則不會提供內建解決方案來進行手動備份和還原作業。 針對將物件和資料推送至其服務的客戶，如果您不小心將索引刪除，則用來建立及擴展索引的原始程式碼為現行的還原選項。 
+
+Azure 搜尋服務未提供對跨服務的索引進行異地複寫。 如果您的解決方案為全球性的，請考慮透過不同地區資料中心內的其他服務來新增備援，將所有應用程式元件裝載在同一個地方。 如需詳細資訊，請參閱 [Azure 搜尋服務中的效能和最佳化](search-performance-optimization.md)。
 
 <a id="admin-rights"></a>
 
@@ -156,7 +162,7 @@ Azure 特別為透過入口網站或 Resource Manager API 管理的所有服務�
 
 <a id="advanced-deployment"></a>
 
-## <a name="best-practices-on-scale-and-deployment-(video)"></a>調整和部署的最佳作法 (影片)
+## <a name="best-practices-on-scale-and-deployment-video"></a>調整和部署的最佳作法 (影片)
 在這段 30 分鐘的影片中，會檢閱進階部署案例的最佳作法，包括地理位置分散工作負載。 您也可以查看 [Azure 搜尋服務中的效能和最佳化](search-performance-optimization.md) ，以取得涵蓋相同要點的說明頁面。
 
 > [!VIDEO https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON319/player]
@@ -184,6 +190,6 @@ Azure 特別為透過入口網站或 Resource Manager API 管理的所有服務�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

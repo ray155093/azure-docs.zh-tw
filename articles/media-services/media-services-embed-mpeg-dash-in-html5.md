@@ -1,12 +1,12 @@
 ---
-title: 透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式 | Microsoft Docs
-description: 本主題示範如何使用 DASH.js 在 HTML5 應用程式中嵌入 MPEG-DASH 彈性資料流視訊。
+title: "透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式 | Microsoft Docs"
+description: "本主題示範如何使用 DASH.js 在 HTML5 應用程式中嵌入 MPEG-DASH 彈性資料流視訊。"
 author: Juliako
 manager: erikre
-editor: ''
+editor: 
 services: media-services
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 5aa0e7b6-f5c3-4cc1-aa33-ed16ea4780c2
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 35ba9161f70a27a215685830d1a9e7c1881cc3bb
+
 
 ---
-# <a name="embedding-a-mpeg-dash-adaptive-streaming-video-in-an-html5-application-with-dash.js"></a>透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式
+# <a name="embedding-a-mpeg-dash-adaptive-streaming-video-in-an-html5-application-with-dashjs"></a>透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式
 ## <a name="overview"></a>Overview
 MPEG-DASH 符合 ISO 的視訊內容彈性資料流標準，能為想要傳遞高品質彈性視訊資料流輸出的人帶來相當大的幫助。 透過 MPEG-DASH，視訊資料流在網路擁塞時會自動降至低畫質的內容。 這會減少檢視者在播放程式下載接下來數秒的播放內容 (亦即緩衝) 時，看到視訊「暫停」的可能性。 當網路不再擁塞，視訊播放程式會改為高品質的資料流。 這種調整所需頻寬的能力也會讓視訊的開始時間變快。 這表示會在快速下載但低品質區段中播放頭幾秒的內容，一旦已緩衝足夠的內容，就會升級為高品質內容。
 
@@ -46,7 +50,7 @@ Dash.js 是以 JavaScript 撰寫的開放原始碼 MPEG-DASH 視訊播放程式�
       </body>
     </html>
 
-## <a name="adding-the-dash.js-player"></a>新增 DASH.js 播放程式
+## <a name="adding-the-dashjs-player"></a>新增 DASH.js 播放程式
 若要將 dash.js 參考實作新增至該應用程式，您必須從 1.0 版的 dash.js 專案捕捉 dash.all.js 檔案。 這應該儲存在您應用程式的 JavaScript 資料夾中。 此檔案可讓您很方便地將所有必要的 dash.js 程式碼提取到一個檔案中。 如果您瀏覽過 dash.js 存放庫，就能發現各個檔案、測試程式碼等等，但如果您只是要使用 dash.js，那麼 dash.all.js 就是您所需的檔案。
 
 若要在應用程式中新增 dash.js 播放程式，請將指令碼標記新增到 basicPlayer.html 的標頭區段：
@@ -102,6 +106,9 @@ Dash.js 是以 JavaScript 撰寫的開放原始碼 MPEG-DASH 視訊播放程式�
 
 [GitHub dash.js 存放庫](https://github.com/Dash-Industry-Forum/dash.js) 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

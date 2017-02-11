@@ -2,6 +2,7 @@
 ## [什麼是 DocumentDB？](documentdb-introduction.md)
 ## [核心概念](documentdb-resources.md)
 ## [全球發佈](documentdb-distribute-data-globally.md)
+## [NoSQL TCO 分析](https://aka.ms/documentdb-tco-paper)
 ## 案例
 ### [一般使用案例](documentdb-use-cases.md)
 ### [使用 DocumentDB 進行社交活動](documentdb-social-media-apps.md)
@@ -10,6 +11,7 @@
 ## 撰寫您的第一個應用程式
 ### [.NET 主控台應用程式](documentdb-get-started.md)
 ### [.NET 核心主控台應用程式](documentdb-dotnetcore-get-started.md)
+### [Java 主控台應用程式](documentdb-java-get-started.md)
 ### [控台應用程式](documentdb-nodejs-get-started.md)
 ### [C++ 主控台應用程式](documentdb-cpp-get-started.md)
 ## 建置 Web 應用程式
@@ -24,7 +26,6 @@
 # 作法
 
 ## 規劃
-### [儲存體與效能](documentdb-manage.md)
 ### [資料分割與調整規模](documentdb-partition-data.md)
 ### [一致性](documentdb-consistency-levels.md)
 ### [NoSQL 與 SQL](documentdb-nosql-vs-sql.md)
@@ -39,8 +40,6 @@
 ### [安全存取資料](documentdb-secure-access-to-data.md)
 ### [備份與還原](documentdb-online-backup-and-restore.md)
 ### [效能層級](documentdb-performance-levels.md)
-### [資源配額](documentdb-limits.md)
-### [增加配額](documentdb-increase-limits.md)
 ### [要求單位](documentdb-request-units.md)
 ### Azure CLI
 #### [建立帳戶](documentdb-automation-resource-manager-cli.md)
@@ -120,6 +119,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

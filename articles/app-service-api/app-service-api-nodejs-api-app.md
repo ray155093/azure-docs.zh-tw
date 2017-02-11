@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 05/26/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e8a1ac3df5225fdcfe2717c2cf50bfc5b7cfda36
+ms.sourcegitcommit: c700bfbd4f50a892e182124eb596159d2eb63feb
+ms.openlocfilehash: b6f97d299b1c100e4bae111d7f95c9619c6c9399
 
 
 ---
@@ -41,7 +41,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
    
     範例 API 提供兩個端點︰針對 `/contacts` 的 Get 要求會傳回內有名稱和電子郵件地址的 JSON 格式清單，而 `/contacts/{id}` 只會傳回選取的連絡人。
 
-## <a name="scaffold-autogenerate-nodejs-code-based-on-swagger-metadata"></a>根據 Swagger 中繼資料建立 (自動產生) Node.js 程式碼的結構
+## <a name="scaffold-auto-generate-nodejs-code-based-on-swagger-metadata"></a>根據 Swagger 中繼資料建立 (自動產生) Node.js 程式碼的結構
 [Swagger](http://swagger.io/) 是描述 RESTful API 之中繼資料的檔案格式。 Azure App Service 已 [內建支援 Swagger 中繼資料](app-service-api-metadata.md)。 在教學課程的這一節當中，會建立 API 開發工作流程的模型，以供您在其中先建立 Swagger 中繼資料，再以此建立 (自動產生) API 伺服器程式碼的結構。 
 
 > [!NOTE]
@@ -131,7 +131,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
         app.use(bodyParser.json());
    
         app.use(swaggerize({
-            api: path.resolve('./config/api.json'), // third change
+            api: path.resolve('./config/swagger.json'), // third change
             handlers: path.resolve('./handlers'),
             docspath: '/swagger' // fourth change
         }));
@@ -275,6 +275,6 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

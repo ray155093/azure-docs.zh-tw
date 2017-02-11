@@ -1,19 +1,23 @@
 ---
-title: 如何將服務匯流排佇列搭配 PHP 使用 | Microsoft Docs
-description: 了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 PHP 撰寫。
-services: service-bus
+title: "如何將服務匯流排佇列搭配 PHP 使用 | Microsoft Docs"
+description: "了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 PHP 撰寫。"
+services: service-bus-messaging
 documentationcenter: php
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: e29c829b-44c5-4350-8f2e-39e0c380a9f2
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1d89a2f0a7f36bf9e2052682e931ac5c3596721f
+
 
 ---
 # <a name="how-to-use-service-bus-queues"></a>如何使用服務匯流排佇列
@@ -84,7 +88,7 @@ $connectionString = "Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer]
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 ```
 
-## <a name="how-to:-create-a-queue"></a>如何建立佇列
+## <a name="how-to-create-a-queue"></a>如何建立佇列
 您可以透過 **ServiceBusRestProxy** 類別來執行服務匯流排佇列的管理作業。 **ServiceBusRestProxy** 物件可透過 **ServicesBuilder::createServiceBusService** Factory 方法，使用含有權杖權限加以管理的適當連接字串來建構。
 
 下列範例將說明如何具現化 **ServiceBusRestProxy** 並呼叫 **ServiceBusRestProxy->createQueue**，以在 `MySBNamespace` 服務命名空間內建立名為 `myqueue` 的佇列：
@@ -99,7 +103,7 @@ use WindowsAzure\ServiceBus\Models\QueueInfo;
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 
-try {
+try    {
     $queueInfo = new QueueInfo("myqueue");
 
     // Create queue.
@@ -120,7 +124,7 @@ catch(ServiceException $e){
 > 
 > 
 
-## <a name="how-to:-send-messages-to-a-queue"></a>如何傳送訊息至佇列
+## <a name="how-to-send-messages-to-a-queue"></a>如何傳送訊息至佇列
 若要傳送訊息至服務匯流排佇列，應用程式會呼叫 **ServiceBusRestProxy->sendQueueMessage** 方法。 下列程式碼示範如何將訊息傳送至先前在 `MySBNamespace` 服務命名空間中建立的 `myqueue` 佇列。
 
 ```
@@ -133,7 +137,7 @@ use WindowsAzure\ServiceBus\Models\BrokeredMessage;
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 
-try {
+try    {
     // Create message.
     $message = new BrokeredMessage();
     $message->setBody("my message");
@@ -174,7 +178,7 @@ use WindowsAzure\ServiceBus\Models\ReceiveMessageOptions;
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 
-try {
+try    {
     // Set the receive mode to PeekLock (default is ReceiveAndDelete).
     $options = new ReceiveMessageOptions();
     $options->setPeekLock();
@@ -202,7 +206,7 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="how-to:-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
 服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以在已接收的訊息上呼叫 **unlockMessage** 方法 (而不是 **deleteMessage** 方法)。 這將導致服務匯流排將佇列中的訊息解除鎖定，讓此訊息可以被相同取用應用程式或其他取用應用程式重新接收。
 
 與在佇列內鎖定之訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
@@ -221,6 +225,6 @@ catch(ServiceException $e){
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -19,10 +19,10 @@
 ### [原始檔控制整合](automation-source-control-integration.md)
 ## 自動 Runbook
 ### [啟動 Runbook](automation-starting-a-runbook.md)
-### [從 Web 呼叫啟動 Runbook](automation-webhooks.md)
-### [排程 Runbook](automation-scheduling-a-runbook.md)
+### [從 webhook 啟動 Runbook](automation-webhooks.md)
 ### [在資料中心中執行 Runbook](automation-hybrid-runbook-worker.md)
 ### [設定 Runbook 輸入參數](automation-runbook-input-parameters.md)
+### [處理圖形化 runbook 時發生錯誤](automation-runbook-graphical-error-handling.md)
 ### [追蹤 Runbook 作業](automation-runbook-execution.md)
 ### [變更 Runbook 設定](automation-runbook-settings.md)
 ### [管理 Azure 自動化資料](automation-managing-data.md)
@@ -59,7 +59,7 @@
 ### [移動自動化帳戶](automation-migrate-account-subscription.md)
 ## 疑難排解
 ### [針對常見錯誤進行疑難排解](automation-troubleshooting-automation-errors.md)
-### [Runbook 作業已暫停](automation-troubleshooting-hrw-runbook-terminates-suspended.md)
+### [混合式 Runbook 背景工作的疑難排解](automation-troubleshooting-hybrid-runbook-worker.md)
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.automation/v2.3.0/azurerm.automation)
 ## [PowerShell (傳統)](/powershell/servicemanagement/azure.automation/v3.1.0/azure.automation)
@@ -78,6 +78,6 @@
 ## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

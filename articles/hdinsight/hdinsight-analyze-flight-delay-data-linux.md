@@ -1,13 +1,13 @@
 ---
-title: 在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料 | Microsoft Docs
-description: 了解如何在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班資料，然後使用 Sqoop 將資料匯出至 SQL Database。
+title: "在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料 | Microsoft Docs"
+description: "了解如何在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班資料，然後使用 Sqoop 將資料匯出至 SQL Database。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 0c23a079-981a-4079-b3f7-ad147b4609e5
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 266891083fa0d2a33ef8fd7e533b036e99b00208
+
 
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-in-hdinsight"></a>在 HDInsight 上使用 Hadoop 分析航班延誤資料
@@ -75,9 +79,9 @@ ms.author: larryfr
     hdfs dfs -mkdir -p /tutorials/flightdelays/data  hdfs dfs -put FILENAME.csv /tutorials/flightdelays/data/
 
 ## <a name="create-and-run-the-hiveql"></a>建立並執行 HiveQL
-使用下列步驟將 CSV 檔案的資料匯入到名為 __Delays__的 Hive 資料表。
+使用下列步驟將 CSV 檔案的資料匯入到名為 **Delays**的 Hive 資料表。
 
-1. 使用以下命令建立並編輯名為 __flightdelays.hql__的新檔案：
+1. 使用以下命令建立並編輯名為 **flightdelays.hql**的新檔案：
    
         nano flightdelays.hql
    
@@ -200,7 +204,7 @@ ms.author: larryfr
         ([origin_city_name] ASC))
         GO
    
-    輸入 `GO` 陳述式後，將評估先前的陳述式。 這會建立名為 __delays__的新資料表，包含叢集索引 (SQL Database 所需)。
+    輸入 `GO` 陳述式後，將評估先前的陳述式。 這會建立名為 **delays**的新資料表，包含叢集索引 (SQL Database 所需)。
    
     使用下列命令來確認已建立資料表：
    
@@ -235,7 +239,7 @@ ms.author: larryfr
    
     您應會看到資料表中的資料清單。 輸入 `exit` 以結束 tsql 公用程式。
 
-## <a name="<a-id="nextsteps"></a>-next-steps"></a><a id="nextsteps"></a> 後續步驟
+## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
 現在您已了解如何將檔案上傳至 Azure Blob 儲存體、如何使用 Azure Blob 儲存體中的資料填入 Hive 資料表、如何執行 Hive 查詢，以及如何使用 Sqoop 將資料從 HDFS 匯出至 Azure SQL Database。 若要深入了解，請參閱下列文章：
 
 * [開始使用 HDInsight][hdinsight-get-started]
@@ -274,6 +278,6 @@ ms.author: larryfr
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

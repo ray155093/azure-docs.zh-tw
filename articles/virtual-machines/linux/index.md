@@ -1,13 +1,25 @@
 ---
 layout: LandingPage
+description: "了解如何使用您所選的 Linux 散發版本建立虛擬機器。 文件會示範不同的建立 VM 範本方式。"
+title: "適用於 Linux 的 Azure 虛擬機器文件、教學課程和 API 參考 | Microsoft Docs"
+services: virtual-machines-linux
+author: carolz
+manager: carolz
+ms.assetid: 
+ms.service: virtual-machines-linux
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: f368f2700bd349e106169d1828af7a148daa5cc2
-ms.openlocfilehash: f87947ed5f072ba4f0927ade1b1d3ec0e1424f3c
+ms.sourcegitcommit: 9bb4fb611c4f936317460040c4fbeff1a01f2c5c
+ms.openlocfilehash: 2728b18011e712d9f23f7645f8c83b053b3cf381
 
 ---
-#<a name="linux-virtual-machine-documentation"></a>Linux 虛擬機器文件
+# <a name="linux-virtual-machine-documentation"></a>Linux 虛擬機器文件
 
-使用 Azure 虛擬機器，在 Azure 的計算、網路及儲存體基礎結構建立並執行 Linux 虛擬機器。  擴充至上千台機器進行網際網路範圍的部署，或是執行一部機器在幾分鐘內解決一些重大數字：讓您速度與一致性兼得。
+了解如何使用您所選的 Linux 散發版本在 Azure 上執行虛擬機器。 文件、API 參考和範例會示範不同的建立及部署 VM 範本方式。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -130,16 +142,10 @@ ms.openlocfilehash: f87947ed5f072ba4f0927ade1b1d3ec0e1424f3c
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/virtual-machines/linux.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Linux 虛擬機器文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Jan17_HO4-->
 
 

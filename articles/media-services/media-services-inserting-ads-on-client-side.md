@@ -1,12 +1,12 @@
 ---
-title: 在用戶端插入廣告 | Microsoft Docs
-description: 本主題說明如何在用戶端上插入廣告。
+title: "在用戶端插入廣告 | Microsoft Docs"
+description: "本主題說明如何在用戶端上插入廣告。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 65c9c747-128e-497e-afe0-3f92d2bf7972
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: aaa0e2757875d8f9ac6a19f218bfb19bf9870b0d
+ms.openlocfilehash: 54cf700463ff0a08f5f28a3d2b66c8814ab0a764
+
 
 ---
 # <a name="inserting-ads-on-the-client-side"></a>在用戶端插入廣告
@@ -26,7 +30,7 @@ ms.author: juliako
 > 
 > 
 
-## <a name="<a-id="insert_ads_into_media"></a>inserting-ads-into-your-media"></a><a id="insert_ads_into_media"></a>將廣告插入您的媒體
+## <a name="a-idinsertadsintomediaainserting-ads-into-your-media"></a><a id="insert_ads_into_media"></a>將廣告插入您的媒體
 Azure 媒體服務允許透過 Windows Media 平台插入廣告：Player Framework。 具備廣告支援的播放器架構都適用於 Windows 8、Silverlight、Windows Phone 8 和 iOS 裝置。 每一個播放器架構都有範例程式碼，教您如何實作播放器應用程式。目前有三種不同的廣告可以插入 media:list 中：
 
 * **線性** – 可暫停主要影片的完整框架廣告。
@@ -42,7 +46,7 @@ Azure 媒體服務允許透過 Windows Media 平台插入廣告：Player Framewo
 * 傳回 MAST 檔案 (有內嵌 VAST)
 * 傳回 VAST 檔案 (有 VPAID 廣告)
 
-### <a name="using-a-video-ad-service-template-(vast)-file"></a>使用 Video Ad Service Template (VAST) 檔案
+### <a name="using-a-video-ad-service-template-vast-file"></a>使用 Video Ad Service Template (VAST) 檔案
 VAST 檔案會指定要顯示的廣告。 下列 XML 是線性廣告的 VAST 檔案範例：
 
     <VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="oxml.xsd">
@@ -87,7 +91,7 @@ VAST 檔案會指定要顯示的廣告。 下列 XML 是線性廣告的 VAST 檔
       </Ad>
     </VAST>
 
-線性廣告如 **<Linear>** 元素所述。 它會指定廣告的持續時間、追蹤事件、點選連結、點選追蹤和許多 **<MediaFile>** 元素。 追蹤事件是在 **<TrackingEvents>** 元素中指定，並允許廣告伺服器追蹤在檢視廣告時所發生的各種事件。 在此案例中會追蹤開始、中間點、完成及展開事件。 當顯示廣告時，就會發生開始事件。 當至少已經檢視 50% 的廣告時間軸時，就會發生中間點事件。 當廣告播放到結尾時，就會發生完成事件。 當使用者將視訊播放器展開至全螢幕時，就會發生展開事件。 點選連結是以 **<ClickThrough>** 元素內的 **<VideoClicks>** 元素指定，並且會指定當使用者按一下廣告時，要顯示的資源的 URI。 點選追蹤是在一樣是 **<ClickTracking>** 元素內的 **<VideoClicks>** 元素中指定，並且會在使用者按一下廣告時追蹤使用者要求的資源。**<MediaFile>** 元素會指定廣告特定編碼的相關資訊。 當有一個以上的 **<MediaFile>** 元素時，視訊播放器可以選擇對於平台最佳的編碼。 
+線性廣告是利用 <**Linear**> 元素來說明。 它會指定廣告的持續時間、追蹤事件、點選連結、點選追蹤，以及許多 **MediaFile** 元素。 追蹤事件是在 <**TrackingEvents**> 元素中指定，並允許廣告伺服器追蹤在檢視廣告時所發生的各種事件。 在此案例中會追蹤開始、中間點、完成及展開事件。 當顯示廣告時，就會發生開始事件。 當至少已經檢視 50% 的廣告時間軸時，就會發生中間點事件。 當廣告播放到結尾時，就會發生完成事件。 當使用者將視訊播放器展開至全螢幕時，就會發生展開事件。 點選連結是以 <**VideoClicks**> 元素內的 <**ClickThrough**> 元素指定，並指定當使用者按一下廣告時要顯示資源的 URI。 點選追蹤是在 <**ClickTracking**> 元素 (同樣位於 <**VideoClicks**> 元素內) 中指定，並指定在使用者按一下廣告時播放器要求的追蹤資源。<**MediaFile**> 元素會指定廣告特定編碼的相關資訊。 若有一個以上的 <**MediaFile**> 元素，視訊播放器就可以選擇最適合平台的編碼。 
 
 線性廣告可以依照指定的順序顯示。 若要這樣做，請將其他 <Ad> 元素加入至 VAST 檔案，並使用順序屬性指定順序。 下列範例會加以說明：
 
@@ -150,19 +154,19 @@ VAST 檔案會指定要顯示的廣告。 下列 XML 是線性廣告的 VAST 檔
     </Creative>
 
 
-**<NonLinearAds>** 元素可以包含一或多個 **<NonLinear>** 元素，其中每一個元素可以說明非線性廣告。 **<NonLinear>** 元素會指定非線性廣告的資源。 資源可以是 **<StaticResouce>**、**<IFrameResource>** 或 **<HTMLResouce>**。**<StaticResource>** 會說明非 HTML 資源，並且定義 creativeType 屬性，該屬性會指定資源的顯示方式：
+<**NonLinearAds**> 元素可以包含一或多個 <**NonLinear**> 元素，其中每一個元素都可說明一個非線性廣告。 <**NonLinear**> 元素會指定非線性廣告的資源。 資源可以是 <**StaticResouce**>、<**IFrameResource**> 或 <**HTMLResouce**>。 <**StaticResource**> 會說明非 HTML 資源，並且定義 creativeType 屬性，該屬性會指定資源的顯示方式：
 
-image/gif、image/jpeg、image/png – 資源在 HTML **<img>** 標記中顯示。
+image/gif、image/jpeg、image/png – 資源在 HTML <**img**> 標記中顯示。
 
 Application/x-javascript – 資源在 HTML <**script**> 標籤中顯示。
 
 Application/x-shockwave-flash – 資源在 Flash Player 中顯示。
 
-**<IFrameResource>** 說明可在 IFrame 中顯示的 HTML 資源。 **<HTMLResource>** 說明可插入網頁的 HTML 程式碼片段。 **<TrackingEvents>** 指定追蹤事件以及當發生事件時要求的 URI。 在此範例中，會追蹤 acceptInvitation 和 collapse 事件。 如需有關 **<NonLinearAds>** 元素和其子系的詳細資訊，請參閱 IAB.NET/VAST。 請注意，**<TrackingEvents>** 元素是位於 ** <NonLinearAds>** 元素內，而非 **<NonLinear>** 元素。
+**IFrameResource** 說明可在 IFrame 中顯示的 HTML 資源。 **HTMLResource** 說明可插入網頁的 HTML 程式碼片段。 **TrackingEvents** 指定追蹤事件以及當發生事件時要求的 URI。 在此範例中，會追蹤 acceptInvitation 和 collapse 事件。 如需有關 **NonLinearAds** 元素和其子系的詳細資訊，請參閱 IAB.NET/VAST。 請注意，**TrackingEvents** 元素位於 **NonLinearAds** 元素內，而不是 **NonLinear** 元素中。
 
 隨播廣告會在 <CompanionAds> 元素內定義。 <CompanionAds> 元素可以包含一或多個 <Companion> 元素。 每個 <Companion> 元素都會說明隨播廣告，而且可以包含 <StaticResource>、<IFrameResource> 或 <HTMLResource>，其指定方式與非線性廣告相同。 VAST 檔案可以包含多個隨播廣告，而且播放器應用程式可以選擇要顯示的最適當廣告。 如需 VAST 的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。
 
-### <a name="using-a-digital-video-multiple-ad-playlist-(vmap)-file"></a>使用 Digital Video Multiple Ad Playlist (VMAP) 檔案
+### <a name="using-a-digital-video-multiple-ad-playlist-vmap-file"></a>使用 Digital Video Multiple Ad Playlist (VMAP) 檔案
 VMAP 檔案可讓您指定何時插播廣告、每個插播多久、插播中可以顯示多少廣告，以及插播期間可以顯示哪些類型的廣告。 範例 VMAP 檔案中的下列項目會定義單一廣告插播：
 
     <vmap:VMAP xmlns:vmap="http://www.iab.net/vmap-1.0" version="1.0">
@@ -264,7 +268,7 @@ VMAP 檔案開頭為 <VMAP> 元素，包含一或多個 <AdBreak> 元素，每�
 
 如需 <**TrackingEvents**> 元素及其子系的詳細資訊，請參閱 http://iab.org/VMAP.pdf
 
-### <a name="using-a-media-abstract-sequencing-template-(mast)-file"></a>使用 Media Abstract Sequencing Template (MAST) 檔案
+### <a name="using-a-media-abstract-sequencing-template-mast-file"></a>使用 Media Abstract Sequencing Template (MAST) 檔案
 MAST 檔案可讓您指定觸發程序，定義何時顯示廣告。 以下是範例 MAST 檔案，其中包含片頭廣告、片中廣告和片尾廣告的觸發程序。
 
     <MAST xsi:schemaLocation="http://openvideoplayer.sf.net/mast http://openvideoplayer.sf.net/mast/mast.xsd" xmlns="http://openvideoplayer.sf.net/mast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -310,16 +314,16 @@ MAST 檔案可讓您指定觸發程序，定義何時顯示廣告。 以下是�
 
 
 
-MAST 檔案開頭為 **<MAST>** 元素，包含一個 **<triggers>** 元素。 <triggers> 元素包含一個或多個 **<trigger>** 元素，定義何時應該播放廣告。 
+MAST 檔案開頭為 **MAST** 元素，其中包含一個 **triggers** 元素。 <triggers> 元素包含一或多個 **trigger** 元素，定義何時應該播放廣告。 
 
-**<trigger>** 元素包含 **<startConditions>** 元素，定義何時應該播放廣告。 **<startConditions>** 元素包含一或多個 <condition> 元素。 當每個 <condition> 評估為 true 時，會起始或撤銷觸發程序，取決於 <condition> 是分別內含於 **<startConditions**> 或 **<endConditions>** 元素。 當多個 <condition> 元素都存在時，則會視為隱含 OR，任何評估為 true 的條件都會導致起始觸發程序。 <condition> 元素可以為巢狀。 當預設子系 <condition> 元素時，它們會被視為隱含 AND，所有條件必須評估為 true，才會起始觸發程序。 <condition> 元素包含會定義條件的下列屬性： 
+**trigger** 元素包含 **startConditions** 元素，定義何時應該開始播放廣告。 **startConditions** 元素包含一或多個 <condition> 元素。 當每個 <condition> 評估為 true 時，會起始或撤銷觸發程序，取決於 <condition> 是分別內含於 **startConditions** 或 **endConditions** 元素。 當多個 <condition> 元素都存在時，則會視為隱含 OR，任何評估為 true 的條件都會導致起始觸發程序。 <condition> 元素可以為巢狀。 當預設子系 <condition> 元素時，它們會被視為隱含 AND，所有條件必須評估為 true，才會起始觸發程序。 <condition> 元素包含會定義條件的下列屬性： 
 
 1. **type** – 指定條件、事件或屬性的類型
 2. **name** – 要在評估期間使用之屬性或事件的名稱
 3. **value** – 屬性將會針對其進行評估的值
 4. **operator** – 要在評估期間使用的運算：EQ (等於)、NEQ (不等於)、GTR (大於)、GEQ (大於或等於)、LT (小於)、LEQ (小於或等於)、MOD (模數)
 
-**<endConditions>** 也包含 <condition> 元素。 當條件評估為 true 時，會重設觸發程序。<trigger> 元素也包含 <sources> 元素，該元素包含一或多個 <source> 元素。 <source> 元素定義廣告回應的 URI 與廣告回應的類型。 在此範例中，會對 VAST 回應指定 URI。 
+**endConditions** 也會包含 <condition> 元素。 當條件評估為 true 時，會重設觸發程序。<trigger> 元素也包含 <sources> 元素，該元素包含一或多個 <source> 元素。 <source> 元素定義廣告回應的 URI 與廣告回應的類型。 在此範例中，會對 VAST 回應指定 URI。 
 
     <trigger id="postroll" description="postroll"  >
       <startConditions>
@@ -333,7 +337,7 @@ MAST 檔案開頭為 **<MAST>** 元素，包含一個 **<triggers>** 元素。 <
     </trigger>
 
 
-### <a name="using-video-player-ad-interface-definition-(vpaid)"></a>使用 Video Player-Ad Interface Definition (VPAID)
+### <a name="using-video-player-ad-interface-definition-vpaid"></a>使用 Video Player-Ad Interface Definition (VPAID)
 VPAID 是 API，用於啟用可執行廣告單元，以便與視訊播放器通訊。 如此可提供高度互動性與體驗。 使用者可以與廣告互動，而且廣告可以回應檢視者採取的動作。 例如，廣告可能會顯示按鈕，讓使用者檢視更多詳細資訊或廣告的加長版。 視訊播放器必須支援 VPAID API，可執行廣告必須實作 API。 當播放器向廣告伺服器要求廣告時，該伺服器可能會以包含 VPAID 廣告的 VAST 回應進行回應。
 
 必須在如 Adobe Flash™ 或可以在網頁瀏覽器中執行的 JavaScript 執行階段環境中執行的程式碼中建立可執行廣告。 當廣告伺服器傳回包含 VPAID 廣告的 VAST 回應時，<MediaFile> 元素中屬性 apiFramework 的值必須是 "VPAID"。 這個屬性會指定包含的廣告是 VPAID 可執行廣告。 類型屬性必須設定為可執行的 MIME 類型，例如 “application/x-shockwave-flash” 或 “application/x-javascript”。 下列 XML 程式碼片段顯示來自包含 VPAID 可執行廣告之 VAST 回應的 <MediaFile> 元素。 
@@ -788,6 +792,9 @@ Microsoft 媒體平台：Player Framework for iOS 包含範例應用程式集合
 ## <a name="see-also"></a>另請參閱
 [開發視訊播放程式應用程式](media-services-develop-video-players.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

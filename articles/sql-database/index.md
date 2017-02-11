@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解 SQL Database，其為雲端中的資料庫即服務。 教學課程、影片和其他文件會示範如何設定、連接和管理關聯式資料庫。"
 translationtype: Human Translation
-ms.sourcegitcommit: e4df0029db106923e3d28f16b3dfe239cae5b032
-ms.openlocfilehash: 4c148d62e435f063810c096069c4020ef78568d8
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 2dfb79cc8f2aa2e2ca63b905666f519e083aa69d
 
 ---
 
@@ -153,13 +153,7 @@ ms.openlocfilehash: 4c148d62e435f063810c096069c4020ef78568d8
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/sql-database.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure SQL Database 文件 </div>
-    </a>
-</div>
+
 
 
 

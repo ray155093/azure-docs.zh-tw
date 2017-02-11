@@ -1,27 +1,31 @@
 ---
-title: 排程器 PowerShell Cmdlet 參考
-description: 排程器 PowerShell Cmdlet 參考
+title: "排程器 PowerShell Cmdlet 參考"
+description: "排程器 PowerShell Cmdlet 參考"
 services: scheduler
 documentationcenter: .NET
-author: krisragh
-manager: dwrede
-editor: ''
-
+author: derek1ee
+manager: kevinlam1
+editor: 
+ms.assetid: 9a26c457-d7a1-4e4a-bc79-f26592155218
 ms.service: scheduler
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
-ms.author: krisragh
+ms.author: deli
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e36a52f44bc30662a01299d2d4a2f3c36d9033a7
+
 
 ---
-# 排程器 PowerShell Cmdlet 參考
+# <a name="scheduler-powershell-cmdlets-reference"></a>排程器 PowerShell Cmdlet 參考
 下表說明並連結至 Azure 排程器中每個主要 Cmdlet 的參考頁面。
 
-若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 
 
-如需有關 [Azure PowerShell Cmdlet](https://msdn.microsoft.com/library/mt125356\(v=azure.200\).aspx) 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。
+如需 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356\(v=azure.200\).aspx) 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。
 
 | Cmdlet | Cmdlet 說明 |
 | --- | --- |
@@ -43,7 +47,7 @@ ms.author: krisragh
 | [Set-AzureRmSchedulerServiceBusTopicJob](https://msdn.microsoft.com/library/mt490137\(v=azure.200\).aspx) |修改服務匯流排主題工作。 |
 | [Set-AzureRmSchedulerStorageQueueJob](https://msdn.microsoft.com/library/mt490128\(v=azure.200\).aspx) |修改儲存體佇列工作。 |
 
-如需更多詳細資訊，您可以執行下列任何 Cmdlet：
+如需更多詳細資訊，您可以執行下列任何 Cmdlet： 
 
 ```
 Get-Help <cmdlet name> -Detailed
@@ -55,7 +59,7 @@ Get-Help <cmdlet name> -Examples
 Get-Help <cmdlet name> -Full
 ```
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
  [排程器是什麼？](scheduler-intro.md)
 
  [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
@@ -72,4 +76,9 @@ Get-Help <cmdlet name> -Full
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,12 +1,12 @@
 ---
-title: Azure Mobile Engagement Android SDK 整合
-description: Android SDK for Azure Mobile Engagement 的最新更新和程序
+title: "Azure Mobile Engagement Android SDK 整合"
+description: "Android SDK for Azure Mobile Engagement 的最新更新和程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: d72b5014-a22b-4a7f-a470-d2b8145b5b86
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
@@ -14,6 +14,10 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0282abbf44406cac89c13520bc2a4e375817ed1f
+
 
 ---
 # <a name="how-to-integrate-gcm-with-mobile-engagement"></a>如何整合 GCM 與 Mobile Engagement
@@ -81,6 +85,6 @@ ms.author: piyushjo
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

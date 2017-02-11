@@ -1,13 +1,13 @@
 ---
-title: 使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Docs
-description: 了解如何使用 .NET SDK 建立 Azure HDInsight 的 HDInsight 叢集。
+title: "使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Docs"
+description: "了解如何使用 .NET SDK 建立 Azure HDInsight 的 HDInsight 叢集。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 tags: azure-portal
 author: mumian
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 134fbcdf-8f62-492f-84fd-8e2a3e0cd896
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
@@ -15,25 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 09/02/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 21f2a14c1514c3f70787613c5f0962dc3eabd7b1
+
 
 ---
-# 使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集
-[!INCLUDE [選取器](../../includes/hdinsight-selector-create-clusters.md)]
+# <a name="create-windows-based-hadoop-clusters-in-hdinsight-using-net-sdk"></a>使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集
+[!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-了解如何使用 .NET SDK 建立 HDInsight 叢集。如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱[叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
+了解如何使用 .NET SDK 建立 HDInsight 叢集。 如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱 [叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
 
-## 必要條件：
+## <a name="prerequisites"></a>必要條件：
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 開始執行本文中的指示之前，您必須擁有以下項目：
 
-* Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * Visual Studio 2013 或 2015。
 
-## 建立叢集
-HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NET Framework 應用程式使用 HDInsight。請遵循下列指示建立 Visual Studio 主控台應用程式，並貼上建立叢集的程式碼。
+### <a name="access-control-requirements"></a>存取控制需求
+[!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
-應用程式需要 Azure 資源群組，以及預設儲存體帳戶。[附錄 A](#appx-a-create-dependent-components) 提供用來建立相依元件的 PowerShell 指令碼。
+## <a name="create-clusters"></a>建立叢集
+HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NET Framework 應用程式使用 HDInsight。 請遵循下列指示建立 Visual Studio 主控台應用程式，並貼上建立叢集的程式碼。
+
+應用程式需要 Azure 資源群組，以及預設儲存體帳戶。  [附錄 A](#appx-a-create-dependent-components) 提供用來建立相依元件的 PowerShell 指令碼。
 
 **建立 Visual Studio 主控台應用程式**
 
@@ -146,10 +153,10 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
             }
         }
 
-1. 按 **F5** 鍵執行應用程式。主控台視窗會開啟並顯示應用程式的狀態。系統也會提示您輸入 Azure 帳戶認證。建立 HDInsight 叢集可能需要幾分鐘的時間。
+1. 按 **F5** 鍵執行應用程式。 主控台視窗會開啟並顯示應用程式的狀態。 系統也會提示您輸入 Azure 帳戶認證。 建立 HDInsight 叢集可能需要幾分鐘的時間。
 
-## 後續步驟
-在本文中，您學到幾種建立 HDInsight 叢集的方法。若要深入了解，請參閱下列文章：
+## <a name="next-steps"></a>後續步驟
+在本文中，您學到幾種建立 HDInsight 叢集的方法。 若要深入了解，請參閱下列文章：
 
 * [開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md) - 了解如何開始使用 HDInsight 叢集
 * [使用 .NET SDK 在 HDInsight 中執行 Hive 工作](hdinsight-hadoop-use-hive-dotnet-sdk.md)
@@ -166,7 +173,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 [ssisclusterdelete]: http://msdn.microsoft.com/library/mt146778(v=sql.120).aspx
 
 
-## 附錄 A：建立相依元件
+## <a name="appx-a-create-dependent-components"></a>附錄 A：建立相依元件
 下列 PowerShell 指令碼可用來建立本教學課程中的 .NET 應用程式所需的相依元件。
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
@@ -236,4 +243,8 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
     Write-host "Default Storage Account Key: $defaultStorageAccountKey"
     Write-host "Default Blob Container Name: $defaultBlobContainerName"
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

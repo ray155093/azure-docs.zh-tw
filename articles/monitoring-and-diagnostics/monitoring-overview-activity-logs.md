@@ -1,118 +1,131 @@
 ---
-title: Overview of the Azure Activity Log | Microsoft Docs
-description: Learn what the Azure Activity Log is and how you can use it to understand events occurring within your Azure subscription.
+title: "Azure 活動記錄檔概觀 | Microsoft Docs"
+description: "認識 Azure 活動記錄檔，並了解如何使用它來了解您的 Azure 訂用帳戶內發生的事件。"
 author: johnkemnetz
 manager: rboucher
-editor: ''
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: c274782f-039d-4c28-9ddb-f89ce21052c7
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/17/2016
+ms.date: 12/09/2016
 ms.author: johnkem
+translationtype: Human Translation
+ms.sourcegitcommit: 5a73ee6865a09af68a9ab55f17c85136608c4d84
+ms.openlocfilehash: cfe10bc9c86835d228b09550cc98a846ee1a78ad
+
 
 ---
-# <a name="overview-of-the-azure-activity-log"></a>Overview of the Azure Activity Log
-The **Azure Activity Log** is a log that provides insight into the operations that were performed on resources in your subscription. The Activity Log was previously known as “Audit Logs” or “Operational Logs,” since it reports control-plane events for your subscriptions. Using the Activity Log, you can determine the ‘what, who, and when’ for any write (PUT, POST, DELETE) operations taken on the resources in your subscription, plus understand the status of the operation and other relevant properties. The Activity Log does not include read (GET) operations.
+# <a name="overview-of-the-azure-activity-log"></a>Azure 活動記錄檔概觀
+**Azure 活動記錄檔** (Activity Log) 能為您提供訂用帳戶中的資源所執行之作業的深入解析。 活動記錄檔之前叫做「稽核記錄」或「作業記錄」，因為它會報告訂用帳戶中控制層面的事件。 您可以使用活動記錄檔來判斷訂用帳戶中的資源上任何寫入作業 (PUT、POST、DELETE) 的「內容、對象和時間」。 您也可以了解作業的狀態和其他相關屬性。 活動記錄檔不包含讀取作業 (GET)。
 
-The Activity Log differs from [Diagnostic Logs](monitoring-overview-of-diagnostic-logs.md), which are all logs emitted by a resource. These logs provide data about the operation of that resource, rather than operations on that resource. 
+活動記錄檔不同於 [診斷記錄](monitoring-overview-of-diagnostic-logs.md)，是由資源發出的所有記錄檔。 這些記錄檔提供有關該資源的作業資料，而不是該資源上的作業。
 
-You can retrieve events from your Activity Log using the Azure portal, CLI, PowerShell cmdlets, and Insights REST API.
+您可以使用 Azure 入口網站、CLI、PowerShell Cmdlet、Azure 監視器 REST API 從活動記錄檔擷取事件。
 
-## <a name="what-you-can-do-with-the-activity-log"></a>What you can do with the Activity Log
-Here are some of the things you can do with the Activity Log:
+檢視此[活動記錄檔簡介影片](https://channel9.msdn.com/Blogs/Seth-Juarez/Logs-John-Kemnetz)。  
 
-* Query and view it in the **Azure portal**.
-* Query it via REST API, PowerShell Cmdlet, or CLI.
-* [Create an email or webhook alert that triggers off an Activity Log event.](insights-auditlog-to-webhook-email.md)
-* [Save it to a **Storage Account** for archival or manual inspection](monitoring-archive-activity-log.md). You can specify the retention time (in days) using **Log Profiles**.
-* Analyze it in PowerBI using the [**PowerBI content pack**](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-audit-logs/).
-* [Stream it to an **Event Hub**](monitoring-stream-activity-logs-event-hubs.md) for ingestion by a third party service or custom analytics solution such as PowerBI.
+## <a name="what-you-can-do-with-the-activity-log"></a>Azure 活動記錄檔的用途
+以下是您可以利用活動記錄檔進行的事：
 
-## <a name="export-the-activity-log-with-log-profiles"></a>Export the Activity Log with Log Profiles
-A **Log Profile** controls how your Activity Log is exported. Using a Log Profile, you can configure:
+* 在 **Azure 入口網站**中查詢和檢視活動記錄檔。
+* 透過 REST API、PowerShell Cmdlet 或 CLI 查詢活動記錄檔。
+* [建立電子郵件或可觸發關閉活動記錄檔事件的 webhook 警示。](insights-auditlog-to-webhook-email.md)
+* [將活動記錄檔儲存到**儲存體帳戶**以供封存或手動檢查](monitoring-archive-activity-log.md)。 您可以使用 **記錄檔設定檔**指定保留時間 (以天為單位)。
+* 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
+* [將活動記錄檔串流至**事件中樞**](monitoring-stream-activity-logs-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
 
-* Where the Activity Log should be sent (Storage Account or Event Hubs)
-* Which event categories (eg. Write, Delete, Action) should be sent
-* Which regions (locations) should be exported
-* How long the Activity Log should be retained in a Storage Account – a retention of zero days means logs are kept forever. Otherwise, the value can be any number of days between 1 and 2147483647. If retention policies are set but storing logs in a Storage Account is disabled (eg. if only Event Hubs or OMS options are selected), the retention policies have no effect.
+儲存體帳戶或事件中樞命名空間不一定要和訂用帳戶發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
 
-These settings can be configured via the “Export” option in the Activity Log blade in the portal, or programmatically [using the REST API](https://msdn.microsoft.com/library/azure/dn931927.aspx), PowerShell cmdlets, or CLI. A subscription can only have one log profile.
+## <a name="export-the-activity-log-with-log-profiles"></a>匯出活動記錄檔與記錄檔設定檔
+**記錄檔設定檔** 控制活動記錄檔的匯出方式。 使用記錄檔設定檔，您可以設定︰
 
-### <a name="configure-log-profiles-using-the-azure-portal"></a>Configure log profiles using the Azure portal
-You can stream the Activity Log to an Event Hub or store them in a Storage Account by using the “Export” option in the Azure portal.
+* 活動記錄檔應該要傳送至何處 (儲存體帳戶或事件中樞)
+* 應該要傳送何種事件分類 (Write、Delete、Action)
+* 應該要匯出哪一個區域 (Locations)
+* 活動記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。 否則，此值可以是 1 到 2147483647 之間的任意天數。 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄檔將被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
 
-1. Navigate to the **Activity Log** blade using the menu on the left side of the portal.
+這些設定可透過入口網站中 [活動記錄檔] 刀鋒視窗中的 [匯出] 選項來設定。 也可以[使用 Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931927.aspx)、PowerShell Cmdlet 或 CLI 以程式設計方式設定。 一個訂用帳戶只能有一個記錄檔的設定檔。
+
+### <a name="configure-log-profiles-using-the-azure-portal"></a>使用 Azure 入口網站設定記錄檔設定檔
+您可以將活動記錄檔串流至事件中樞，或在 Azure 入口網站中使用 [匯出] 選項將它們儲存在儲存體帳戶。
+
+1. 使用入口網站左側的功能表，瀏覽至 [活動記錄檔]  刀鋒視窗。
    
-    ![Navigate to Activity Log in portal](./media/monitoring-overview-activity-logs/activity-logs-portal-navigate.png)
-2. Click the **Export** button at the top of the blade.
+    ![在入口網站中瀏覽至活動記錄檔](./media/monitoring-overview-activity-logs/activity-logs-portal-navigate.png)
+2. 按一下刀鋒視窗頂端的 [匯出]  按鈕。
    
-    ![Export button in portal](./media/monitoring-overview-activity-logs/activity-logs-portal-export.png)
-3. In the blade that appears, you can select the regions for which you would like to export events, the Storage Account to which you would like to save events (as well as the number of days you want to retain these events in storage--0 days will retain the logs forever), and the Service Bus Namespace in which you would like an Event Hub to be created for streaming these events.
+    ![入口網站中的匯出按鈕](./media/monitoring-overview-activity-logs/activity-logs-portal-export.png)
+3. 在出現的刀鋒視窗中，您可以選取︰  
    
-    ![Export Activity Log blade](./media/monitoring-overview-activity-logs/activity-logs-portal-export-blade.png)
-4. Click **Save** to save these settings. The settings are immediately be applied to your subscription.
+   * 您要匯出事件的區域
+   * 您要儲存事件的儲存體帳戶
+   * 您想要在儲存體中保留這些事件的天數。 如果設定為 0 天會永遠保留記錄檔。
+   * 服務匯流排命名空間，您要在其中建立事件中樞以對這些事件進行串流處理。
+     
+     ![匯出活動記錄檔刀鋒視窗](./media/monitoring-overview-activity-logs/activity-logs-portal-export-blade.png)
+4. 按一下 [儲存]  來儲存這些設定。 您的訂用帳戶時會立即套用設定。
 
-### <a name="configure-log-profiles-using-the-azure-powershell-cmdlets"></a>Configure log profiles using the Azure PowerShell Cmdlets
-#### <a name="get-existing-log-profile"></a>Get existing log profile
+### <a name="configure-log-profiles-using-the-azure-powershell-cmdlets"></a>使用 Azure PowerShell Cmdlet 設定記錄檔設定檔
+#### <a name="get-existing-log-profile"></a>取得現有的記錄檔設定檔
 ```
 Get-AzureRmLogProfile
 ```
 
-#### <a name="add-a-log-profile"></a>Add a log profile
+#### <a name="add-a-log-profile"></a>新增記錄檔設定檔
 ```
 Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Locations global,westus,eastus -RetentionInDays 90 -Categories Write,Delete,Action
 ```
 
-| Property | Required | Description |
+| 屬性 | 必要 | 說明 |
 | --- | --- | --- |
-| Name |Yes |Name of your log profile. |
-| StorageAccountId |No |Resource ID of the Storage Account to which the Activity Log should be saved. |
-| serviceBusRuleId |No |Service Bus Rule ID for the Service Bus namespace you would like to have event hubs created in. Will be a string with this format: `{service bus resource ID}/authorizationrules/{key name}`. |
-| Locations |Yes |Comma-separated list of regions for which you would like to collect Activity Log events. |
-| RetentionInDays |Yes |Number of days for which events should be retained, between 1 and 2147483647. A value of zero will store the logs indefinitely (forever). |
-| Categories |No |Comma-separated list of event categories that should be collected. Possible values are Write, Delete, and Action. |
+| Name |是 |記錄檔設定檔的名稱。 |
+| StorageAccountId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
+| serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。 將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
+| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| 類別 |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
-#### <a name="remove-a-log-profile"></a>Remove a log profile
+#### <a name="remove-a-log-profile"></a>移除記錄檔設定檔
 ```
 Remove-AzureRmLogProfile -name my_log_profile
 ```
 
-### <a name="configure-log-profiles-using-the-azure-cross-platform-cli"></a>Configure log profiles Using the Azure Cross-Platform CLI
-#### <a name="get-existing-log-profile"></a>Get existing log profile
+### <a name="configure-log-profiles-using-the-azure-cross-platform-cli"></a>使用 Azure 跨平台 CLI 設定記錄檔設定檔
+#### <a name="get-existing-log-profile"></a>取得現有的記錄檔設定檔
 ```
 azure insights logprofile list
 ```
 ```
 azure insights logprofile get --name my_log_profile
 ```
-The `name` property should be the name of your log profile.
+`name` 屬性應該是您的記錄檔設定檔的名稱。
 
-#### <a name="add-a-log-profile"></a>Add a log profile
-``` 
+#### <a name="add-a-log-profile"></a>新增記錄檔設定檔
+```
 azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey --locations global,westus,eastus,northeurope --retentionInDays 90 –categories Write,Delete,Action
 ```
 
-| Property | Required | Description |
+| 屬性 | 必要 | 說明 |
 | --- | --- | --- |
-| name |Yes |Name of your log profile. |
-| storageId |No |Resource ID of the Storage Account to which the Activity Log should be saved. |
-| serviceBusRuleId |No |Service Bus Rule ID for the Service Bus namespace you would like to have event hubs created in. Will be a string with this format: `{service bus resource ID}/authorizationrules/{key name}`. |
-| locations |Yes |Comma-separated list of regions for which you would like to collect Activity Log events. |
-| retentionInDays |Yes |Number of days for which events should be retained, between 1 and 2147483647. A value of zero stores the logs indefinitely (forever). |
-| categories |No |Comma-separated list of event categories that should be collected. Possible values are Write, Delete, and Action. |
+| 名稱 |是 |記錄檔設定檔的名稱。 |
+| storageId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
+| serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。 將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
+| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| 類別 |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
-#### <a name="remove-a-log-profile"></a>Remove a log profile
+#### <a name="remove-a-log-profile"></a>移除記錄檔設定檔
 ```
 azure insights logprofile delete --name my_log_profile
 ```
 
-## <a name="event-schema"></a>Event schema
-Each event in the Activity Log has a JSON blob like this one:
+## <a name="event-schema"></a>結構描述
+活動記錄檔中的每個事件都有像此範例的 JSON blob︰
 
 ```
 {
@@ -195,34 +208,37 @@ Each event in the Activity Log has a JSON blob like this one:
 }
 ```
 
-| Element Name | Description |
+| 元素名稱 | 說明 |
 | --- | --- |
-| authorization |Blob of RBAC properties of the event. Usually includes the “action”, “role” and “scope” properties. |
-| caller |Email address of the user who has performed the operation, UPN claim, or SPN claim based on availability. |
-| channels |One of the following values: “Admin”, “Operation” |
-| correlationId |Usually a GUID in the string format. Events that share a correlationId belong to the same uber action. |
-| description |Static text description of an event. |
-| eventDataId |Unique identifier of an event. |
-| eventSource |Name of the Azure service or infrastructure that has generated this event. |
-| httpRequest |Blob describing the Http Request. Usually includes the “clientRequestId”, “clientIpAddress” and “method” (HTTP method e.g. PUT). |
-| level |Level of the event. One of the following values: “Critical”, “Error”, “Warning”, “Informational” and “Verbose” |
-| resourceGroupName |Name of the resource group for the impacted resource. |
-| resourceProviderName |Name of the resource provider for the impacted resource |
-| resourceUri |Resource id of the impacted resource. |
-| operationId |A GUID shared among the events that correspond to a single operation. |
-| operationName |Name of the operation. |
-| properties |Set of `<Key, Value>` pairs (i.e. Dictionary) describing the details of the event. |
-| status |String describing the status of the operation. Some common values are: Started, In Progress, Succeeded, Failed, Active, Resolved. |
-| subStatus |Usually the HTTP status code of the corresponding REST call, but can also include other strings describing a substatus, such as these common values: OK (HTTP Status Code: 200), Created (HTTP Status Code: 201), Accepted (HTTP Status Code: 202), No Content (HTTP Status Code: 204), Bad Request (HTTP Status Code: 400), Not Found (HTTP Status Code: 404), Conflict (HTTP Status Code: 409), Internal Server Error (HTTP Status Code: 500), Service Unavailable (HTTP Status Code: 503), Gateway Timeout (HTTP Status Code: 504). |
-| eventTimestamp |Timestamp when the event was generated by the Azure service processing the request corresponding the event. |
-| submissionTimestamp |Timestamp when the event became available for querying. |
-| subscriptionId |Azure Subscription Id. |
-| nextLink |Continuation token to fetch the next set of results when they are broken up into multiple responses. This is usually the case if there are more than 200 records. |
+| 授權 |事件的 RBAC 屬性的 blob。 通常包括 action、role 和 scope 屬性。 |
+| 呼叫者 |已執行作業的使用者的電子郵件地址，根據可用性的 UPN 宣告或 SPN 宣告。 |
+| 通道 |為下列其中一個值：Admin、Operation |
+| correlationId |通常是字串格式的 GUID。 具有相同 correlationId、屬於同一 uber 動作的事件。 |
+| 說明 |事件的靜態文字描述。 |
+| eventDataId |事件的唯一識別碼。 |
+| eventSource |產生此事件的 Azure 服務或基礎結構的名稱。 |
+| httpRequest |描述 HTTP 要求的 blob。 通常包括 “clientRequestId”、“clientIpAddress”和 “method” (HTTP 方法。 例如，PUT)。 |
+| 層級 |事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
+| resourceGroupName |受影響資源的資源群組的名稱。 |
+| resourceProviderName |受影響資源的資源提供者的名稱。 |
+| resourceUri |受影響資源的資源識別碼。 |
+| operationId |對應至單一作業的事件共用的 GUID。 |
+| operationName |作業名稱。 |
+| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
+| status |字串，描述作業的狀態。 常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
+| 子狀態 |通常包含對應 REST 呼叫的 HTTP 狀態碼，但也可以包含其他描述子狀態的字串，常見的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)。 |
+| eventTimestamp |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
+| submissionTimestamp |當事件變成可供查詢時的時間戳記。 |
+| subscriptionId |Azure 訂用帳戶識別碼。 |
+| nextLink |結果被分成多個回應時，用於提取下一組結果的接續權杖。 通常超過 200 個記錄時就需要。 |
 
-## <a name="next-steps"></a>Next Steps
-* [Learn more about the Activity Log (formerly Audit Logs)](../resource-group-audit.md)
-* [Stream the Azure Activity Log to Event Hubs](monitoring-stream-activity-logs-event-hubs.md)
+## <a name="next-steps"></a>後續步驟
+* [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
+* [將 Azure 活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 

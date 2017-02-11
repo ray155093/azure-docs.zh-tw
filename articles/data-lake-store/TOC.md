@@ -44,6 +44,7 @@
 ## 管理
 ### [存取診斷記錄檔](data-lake-store-diagnostic-logs.md)
 ### [高可用性規劃](data-lake-store-troubleshooting-guidance.md)
+### [效能微調指導方針](data-lake-store-performance-tuning-guidance.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.datalakestore/v3.1.0/azurerm.datalakestore)
@@ -64,6 +65,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=data-lake-store)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

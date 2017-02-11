@@ -3,7 +3,7 @@ title: "Azure Batch 中的簡易應用程式安裝和管理功能 | Microsoft Do
 description: "使用 Azure Batch 的應用程式封裝功能輕鬆地管理多個應用程式和版本，以便安裝在 Batch 計算節點。"
 services: batch
 documentationcenter: .net
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 ms.assetid: 3b6044b7-5f65-4a27-9d43-71e1863d16cf
@@ -13,17 +13,17 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 10/21/2016
-ms.author: marsma
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: de20208ebc796d22de26280d73be94dfb0cb04dc
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: 8bd78e80347175161053b28e4350fdeb78b3299b
 
 
 ---
 # <a name="application-deployment-with-azure-batch-application-packages"></a>使用 Azure Batch 應用程式封裝部署應用程式
 Azure Batch 的應用程式套件功能可讓您輕鬆管理工作應用程式並將其部署到集區中的計算節點。 透過應用程式套件，您可以上傳和管理工作所執行的多個應用程式版本，包括其支援檔案。 接著，您可以將一或多個這種類型的應用程式自動部署到集區中的計算節點。
 
-在本文中，您將了解如何使用 Azure 入口網站上傳和管理應用程式套件。 然後，您會了解如何使用 [Batch .NET][api_net] 程式庫將套件安裝在集區的計算節點上。
+在本文中，您將了解如何使用 Azure 入口網站上傳和管理應用程式套件。 然後，您將了解如何使用 [Batch .NET][api_net] 程式庫將套件安裝在集區的計算節點上。
 
 > [!NOTE]
 > 此處所述的應用程式封裝功能取代了舊版服務中的「Batch Apps」功能。
@@ -45,7 +45,7 @@ Azure Batch 的應用程式套件功能可讓您輕鬆管理工作應用程式�
 ## <a name="about-applications-and-application-packages"></a>關於應用程式和應用程式封裝
 在 Azure Batch 中，「應用程式」  是指一組已建立版本的二進位檔，這些檔案可自動下載到集區中的計算節點。 「應用程式套件」指的是這些二進位檔的「特定組合」，其代表應用程式的特定「版本」。
 
-![應用程式和應用程式封裝的高階圖表][1]
+![應用程式和應用程式套件的高階圖表][1]
 
 ### <a name="applications"></a>應用程式
 Batch 中的應用程式包含一或多個應用程式封裝，並且會指定應用程式的組態選項。 例如，應用程式可以指定要安裝在計算節點上的預設應用程式套件版本，以及應用程式的套件是否可以更新或刪除。
@@ -75,7 +75,7 @@ Batch 中的應用程式包含一或多個應用程式封裝，並且會指定�
 集區的啟動工作不需要指定在節點上安裝一長串的個別資源檔案。 您不需要在 Azure 儲存體中或在節點上手動管理應用程式檔案的多個版本。 再者，您也不必費心產生 [SAS URL](../storage/storage-dotnet-shared-access-signature-part-1.md) 來提供這些檔案在儲存體帳戶中的存取權限。 Batch 會在背景中與 Azure 儲存體合作來儲存應用程式套件，並將其部署到計算節點。
 
 ## <a name="upload-and-manage-applications"></a>上傳及管理應用程式
-您可以使用 [Azure 入口網站][portal] 或 [Batch 管理 .NET](batch-management-dotnet.md) 程式庫來管理 Batch 帳戶中的應用程式套件。 在接下來的幾節中，我們會先連結儲存體帳戶，接著討論如何使用入口網站來新增應用程式和套件以及管理它們。
+您可以使用 [Azure 入口網站][portal]或 [Batch 管理 .NET](batch-management-dotnet.md) 程式庫來管理 Batch 帳戶中的應用程式套件。 在接下來的幾節中，我們會先連結儲存體帳戶，接著討論如何使用入口網站來新增應用程式和套件以及管理它們。
 
 ### <a name="link-a-storage-account"></a>連結儲存體帳戶
 若要使用應用程式封裝，您必須先將 Azure 儲存體帳戶連結到 Batch 帳戶。 如果您還沒有為 Batch 帳戶設定儲存體帳戶，Azure 入口網站會在您第一次按一下 [Batch 帳戶] 刀鋒視窗中的 [應用程式] 圖格時顯示警告。
@@ -94,7 +94,7 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 我們建議您建立「專門」  用來與 Batch 帳戶搭配使用的儲存體帳戶，並在此處選取它。 如需如何建立儲存體帳戶的詳細資訊，請參閱 [關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的＜建立儲存體帳戶＞。 在建立儲存體帳戶之後，您可以使用 [儲存體帳戶]  刀鋒視窗，將它連結到 Batch 帳戶。
 
 > [!WARNING]
-> 由於 Batch 會使用 Azure 儲存體來儲存應用程式套件，所以我們會針對區塊 Blob 資料向您[收取標準費用][storage_pricing]。 請務必考量應用程式封裝的大小和數目，並定期移除過時的封裝以降低成本。
+> 由於 Batch 會使用 Azure 儲存體來儲存應用程式套件，所以我們會針對區塊 Blob 資料向您收取[標準費用][storage_pricing]。 請務必考量應用程式封裝的大小和數目，並定期移除過時的封裝以降低成本。
 > 
 > 
 
@@ -165,26 +165,26 @@ Batch 服務會在應用程式封裝的儲存和擷取作業中使用相關聯�
 ### <a name="add-a-new-application-package"></a>加入新應用程式封裝
 若要為現有的應用程式新增應用程式套件版本，請在 [應用程式] 刀鋒視窗中選取應用程式，然後依序按一下 [套件] 和 [新增] 以開啟 [新增套件] 刀鋒視窗。
 
-![Azure 入口網站中的加入應用程式封裝刀鋒視窗][8]
+![Azure 入口網站中的新增應用程式套件刀鋒視窗][8]
 
 如您所見，欄位與 [新增應用程式] 刀鋒視窗中的欄位相符，但 [應用程式識別碼] 方塊已停用。 依照和新增應用程式相同的方式，指定新套件的 [版本]，瀏覽至您的**應用程式套件** .zip 檔案，然後按一下 [確定] 以上傳套件。
 
 ### <a name="update-or-delete-an-application-package"></a>更新或刪除應用程式封裝
 若要更新或刪除現有的應用程式套件，請開啟應用程式的詳細資料刀鋒視窗，按一下 [套件] 以開啟 [套件] 刀鋒視窗，按一下要修改之應用程式套件資料列中的**省略符號**，然後選取要執行的動作。
 
-![在 Azure 入口網站中更新或刪除封裝][7]
+![在 Azure 入口網站中更新或刪除套件][7]
 
-**更新**
+更新
 
 當您按一下 [更新] 時，[更新套件] 刀鋒視窗隨即出現。 此刀鋒視窗與 [新增應用程式套件]  刀鋒視窗相似，只不過已啟用套件選取欄位，因此您可以指定要上傳的新 ZIP 檔案。
 
-![Azure 入口網站中的更新封裝刀鋒視窗][11]
+![Azure 入口網站中的更新套件刀鋒視窗][11]
 
 **刪除**
 
 當您按一下 [刪除] 時，系統會要求您確認要刪除套件版本，隨後 Batch 會從 Azure 儲存體中刪除該套件。 如果您刪除應用程式的預設版本，系統會移除應用程式的 [預設版本]  設定。
 
-![刪除應用程式 ][12]
+![刪除應用程式][12]
 
 ## <a name="install-applications-on-compute-nodes"></a>將應用程式安裝在計算節點上
 您已了解如何使用 Azure 入口網站管理應用程式套件，接下來我們可以討論如何使用 Batch 工作將它們部署到計算節點並加以執行。
@@ -313,7 +313,7 @@ foreach (ApplicationSummary app in applications)
 透過應用程式封裝，您可以協助客戶選取其作業適用的應用程式，以及指定在以啟用 Batch 功能的服務處理作業時所要使用的確切版本。 您也可以在服務中提供讓客戶上傳及追蹤其應用程式的功能。
 
 ## <a name="next-steps"></a>後續步驟
-* [Batch REST API][api_rest] 也提供應用程式套件的使用支援。 例如，請參閱[將集區新增至帳戶][rest_add_pool] 中的 [applicationPackageReferences][rest_add_pool_with_packages] 元素，以取得如何使用 REST API 來指定要安裝之套件的相關資訊。 如需如何使用 Batch REST API 來取得應用程式資訊的詳細資料，請參閱[應用程式][rest_applications]。
+* [Batch REST API][api_rest] 也提供應用程式套件的使用支援。 例如，請參閱[將集區新增至帳戶][rest_add_pool]中的 [applicationPackageReferences][rest_add_pool_with_packages] 項目，以取得如何使用 REST API 來指定要安裝之套件的相關資訊。 如需如何使用 Batch REST API 來取得應用程式資訊的詳細資料，請參閱[應用程式][rest_applications]。
 * 了解如何以程式設計方式 [使用 Batch Management .NET 管理 Azure Batch 帳戶和配額](batch-management-dotnet.md)。 [Batch Management .NET][api_net_mgmt] 程式庫可以啟用 Batch 應用程式或服務的帳戶建立和刪除功能。
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
@@ -349,6 +349,6 @@ foreach (ApplicationSummary app in applications)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

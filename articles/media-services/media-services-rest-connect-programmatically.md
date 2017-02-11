@@ -1,12 +1,12 @@
 ---
-title: 使用 REST API 連接到媒體服務帳戶 | Microsoft Docs
-description: 本主題示範如何使用 REST API 連接到媒體服務。
+title: "使用 REST API 連接到媒體服務帳戶 | Microsoft Docs"
+description: "本主題示範如何使用 REST API 連接到媒體服務。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 79dc64f1-15d8-4a81-b9d9-3d3c44d2e1e8
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9ec07aacbde3f218d7a1bbddadad7552e737e1ea
+
 
 ---
 # <a name="connecting-to-media-services-account-using-media-services-rest-api"></a>使用媒體服務 REST API 連接到媒體服務帳戶
@@ -179,6 +183,9 @@ ms.author: juliako
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

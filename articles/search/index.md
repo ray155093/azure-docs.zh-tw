@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何將強大的搜尋功能 (包括活動監視) 新增至自訂 Web 或行動應用程式。 API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 8a89b85795c0707d7fda9480c53db4a3469560d7
-ms.openlocfilehash: 324584a63e6f76b9a2aed98d11f2a66fefac69c3
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: c99d4b8d8db7739f615d566afa4617221b1c34a0
 
 ---
 # <a name="azure-search-documentation"></a>Azure 搜尋服務文件
@@ -132,8 +132,8 @@ ms.openlocfilehash: 324584a63e6f76b9a2aed98d11f2a66fefac69c3
                     <div class="cardText">
                         <h3>語言</h3>
                         <p><a href="/dotnet/api/microsoft.azure.search">.NET</a></p>
-                        <p><a href="/dotnet/api/microsoft.azure.management.search">.NET 管理</a></p>
-                        <p><a href="/java/api/com.microsoft.azure.management.search">Java</a></p>
+                        <p><a href="/dotnet/api/microsoft.azure.management.search">.NET (管理)</a></p>
+                        <p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.search.html">Python (管理)</a></p>
                    </div>
                 </div>
             </div>
@@ -154,13 +154,7 @@ ms.openlocfilehash: 324584a63e6f76b9a2aed98d11f2a66fefac69c3
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/search.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure 搜尋服務文件 </div>
-    </a>
-</div>
+
 
 
 

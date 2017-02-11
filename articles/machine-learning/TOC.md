@@ -192,7 +192,7 @@
 ### [自訂模組](machine-learning-gallery-custom-modules.md)
 ## Cortana Analytics
 ### API
-#### [異常偵測](machine-learning-apps-anomaly-detection.md)
+#### [異常偵測](machine-learning-apps-anomaly-detection-api.md)
 #### [文字分析](machine-learning-apps-text-analytics.md)
 #### [辨識服務](https://azure.microsoft.com/services/cognitive-services/)
 #### 建議
@@ -222,6 +222,6 @@
 ## [從即時聊天取得協助](machine-learning-live-chat.md)
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

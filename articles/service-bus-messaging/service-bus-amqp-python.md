@@ -1,22 +1,26 @@
 ---
-title: 服務匯流排和 Python 與 AMQP 1.0 | Microsoft Docs
-description: 搭配使用 Python 的服務匯流排與 AMQP。
-services: service-bus
+title: "服務匯流排和 Python 與 AMQP 1.0 |Microsoft Docs"
+description: "搭配使用 Python 的服務匯流排與 AMQP。"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 375396e7-cbec-4d25-9b98-63ef8de75fef
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/29/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 97e90f5429fe4f2535a246db8dfbe81c772b3c88
+
 
 ---
-# <a name="using-service-bus-from-python-with-amqp-1.0"></a>搭配使用 Python 的服務匯流排與 AMQP 1.0
+# <a name="using-service-bus-from-python-with-amqp-10"></a>搭配使用 Python 的服務匯流排與 AMQP 1.0
 [!INCLUDE [service-bus-selector-amqp](../../includes/service-bus-selector-amqp.md)]
 
 Proton-Python 是繫結至 Proton-C 的 Python 語言；也就是說，Proton-Python 會當作以 C 實作之引擎的包裝函式實作。
@@ -26,7 +30,7 @@ Proton-Python 是繫結至 Proton-C 的 Python 語言；也就是說，Proton-Py
 
 請注意，在撰寫本文時，Proton-C 中的 SSL 支援只適用於 Linux 作業系統。 因為 Azure 服務匯流排需要使用 SSL，所以 Proton-C (和語言繫結) 此時僅可用來從 Linux 存取服務匯流排。 在 Windows 上啟用 Proton-C 與 SSL 正在進行中，請經常檢查更新。
 
-## <a name="working-with-service-bus-queues,-topics,-and-subscriptions-from-python"></a>從 Python 使用服務匯流排佇列、主題和訂用帳戶
+## <a name="working-with-service-bus-queues-topics-and-subscriptions-from-python"></a>從 Python 使用服務匯流排佇列、主題和訂用帳戶
 下列程式碼示範如何從服務匯流排傳訊實體傳送和接收訊息。
 
 ### <a name="send-messages-using-proton-python"></a>使用 Proton-Python 傳送訊息
@@ -58,9 +62,9 @@ if messenger.incoming:
 messenger.stop()
 ```
 
-## <a name="messaging-between-.net-and-proton-python"></a>在 .NET 與 Proton-Python 之間傳訊
+## <a name="messaging-between-net-and-proton-python"></a>在 .NET 與 Proton-Python 之間傳訊
 ### <a name="application-properties"></a>應用程式屬性
-#### <a name="proton-python-to-service-bus-.net-apis"></a>Proton-Python 至服務匯流排 .NET API
+#### <a name="proton-python-to-service-bus-net-apis"></a>Proton-Python 至服務匯流排 .NET API
 Proton-Python 訊息支援下列類型的應用程式屬性︰**int**、**long**、**float**、**uuid**、**bool**、**string**。 下列 Python 程式碼示範如何使用每一個屬性類型來設定訊息的屬性。
 
 ```
@@ -71,7 +75,7 @@ message.properties[u"TestFloat"] = 1.5
 message.properties[u"TestGuid"] = uuid.uuid1()    
 ```
 
-在服務匯流排 .NET API 中，訊息應用程式屬性位於 [BrokeredMessage][BrokeredMessage] 的 **Properties** 集合中。 下列程式碼示範如何讀取從 Python 用戶端接收之訊息的應用程式屬性。
+在服務匯流排 .NET API 中，訊息應用程式屬性包含在 [BrokeredMessage][BrokeredMessage] 的 **Properties** 集合中。 下列程式碼示範如何讀取從 Python 用戶端接收之訊息的應用程式屬性。
 
 ```
 if (message.Properties.Keys.Count > 0)
@@ -96,8 +100,8 @@ if (message.Properties.Keys.Count > 0)
 | 布林 |布林 |
 | string |string |
 
-#### <a name="service-bus-.net-apis-to-proton-python"></a>服務匯流排 .NET API 至 Proton-Python
-[BrokeredMessage][BrokeredMessage] 類型支援下列類型的應用程式屬性：**byte**、**sbyte**、**char**、**short**、**ushort**、**int**、**uint**、**long**、**ulong**、**float**、**double**、**decimal**、**bool**、**Guid**、**string**、**Uri**、**DateTime**、**DateTimeOffset** 和 **TimeSpan**。 下列 .NET 程式碼示範如何使用每一個屬性類型來設定 [BrokeredMessage][BrokeredMessage] 物件的屬性。
+#### <a name="service-bus-net-apis-to-proton-python"></a>服務匯流排 .NET API 至 Proton-Python
+[BrokeredMessage][BrokeredMessage] 類型支援下列類型的應用程式屬性：**byte****sbyte**、**char**、**short**、**ushort**、**int**、**uint**、**long**、**ulong**、**float****double****decimal****bool****Guid****string****Uri****DateTime****DateTimeOffset** 和 **TimeSpan**。 下列 .NET 程式碼示範如何使用每一個屬性類型來設定 [BrokeredMessage][BrokeredMessage] 物件的屬性。
 
 ```
 message.Properties["TestByte"] = (byte)128;
@@ -157,7 +161,7 @@ if message.properties != None:
 ### <a name="standard-properties"></a>標準屬性
 下表顯示 Proton-Python 標準訊息屬性與 [BrokeredMessage][BrokeredMessage] 標準訊息屬性之間的對應。
 
-#### <a name="proton-python-to-service-bus-.net-apis"></a>Proton-Python 至服務匯流排 .NET API
+#### <a name="proton-python-to-service-bus-net-apis"></a>Proton-Python 至服務匯流排 .NET API
 | Proton-Python | 服務匯流排 .NET | 注意事項 |
 | --- | --- | --- |
 | 持久 |n/a |服務匯流排僅支援持久的訊息。 |
@@ -207,6 +211,6 @@ if message.properties != None:
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

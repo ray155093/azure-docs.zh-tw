@@ -1,13 +1,13 @@
 ---
-title: Windows VM 上使用範本的自訂指令碼 | Microsoft Docs
-description: 使用自訂指令碼擴充功能搭配資源管理員範本，將 Windows VM 組態工作自動化
+title: "Windows VM 上使用範本的自訂指令碼 | Microsoft Docs"
+description: "使用自訂指令碼擴充功能搭配資源管理員範本，將 Windows VM 組態工作自動化"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: kundanap
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: f4181fee-7a9d-4a1c-b517-52956f5b7fa1
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: ac63fd346f158d52b359f2d6b398d0d00ea0c67e
+
 
 ---
-# 與 Azure Resource Manager 範本搭配的 Windows VM 自訂指令碼擴充功能
+# <a name="windows-vm-custom-script-extensions-with-azure-resource-manager-templates"></a>與 Azure Resource Manager 範本搭配的 Windows VM 自訂指令碼擴充功能
 [!INCLUDE [virtual-machines-common-extensions-customscript](../../includes/virtual-machines-common-extensions-customscript.md)]
 
-## Windows VM 的範本範例
+## <a name="template-example-for-a-windows-vm"></a>Windows VM 的範本範例
 在範本的「資源」區段中定義下列資源。
 
        {
@@ -45,11 +49,12 @@ ms.author: kundanap
        }
      }
 
-在上述範例中，請以您自己的設定取代檔案 URL 和檔案名稱。編寫範本之後，您可以使用 Azure PowerShell 來部署它。
+在上述範例中，請以您自己的設定取代檔案 URL 和檔案名稱。
+編寫範本之後，您可以使用 Azure PowerShell 來部署它。
 
-如果您想要將指令碼 URL 和參數保持為私用，您可以將指令碼 URL 設定為 **private**。如果將指令碼 URL 設定為 **private**，將只有使用儲存體帳戶名稱和金鑰 (以受保護的設定形式傳送) 才能存取它。使用 1.7 版或更新版的「自訂指令碼」擴充功能時，也可以用受保護的設定形式來提供指令碼參數。
+如果您想要將指令碼 URL 和參數保持為私用，您可以將指令碼 URL 設定為 **private**。 如果將指令碼 URL 設定為 **private**，將只有使用儲存體帳戶名稱和金鑰 (以受保護的設定形式傳送) 才能存取它。 使用 1.7 版或更新版的「自訂指令碼」擴充功能時，也可以用受保護的設定形式來提供指令碼參數。
 
-## 搭配受保護設定的 Windows VM 範本範例
+## <a name="template-example-for-a-windows-vm-with-protected-settings"></a>搭配受保護設定的 Windows VM 範本範例
         {
         "publisher": "Microsoft.Compute",
         "type": "CustomScriptExtension",
@@ -65,8 +70,13 @@ ms.author: kundanap
         "storageAccountKey": "yourStorageAccountKey"
         }
         }
-如需有關最新版「自訂指令碼」擴充功能之結構描述的資訊，請參閱 [Azure Windows VM 擴充功能組態範例](virtual-machines-windows-extensions-configuration-samples.md)。
+如需有關最新版「自訂指令碼」擴充功能之結構描述的資訊，請參閱 [Azure Windows VM 擴充功能組態範例](virtual-machines-windows-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 如需有關使用「自訂指令碼」擴充功能的 VM 上應用程式組態範例，請參閱 [Windows VM 上的自訂指令碼擴充功能](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)。
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

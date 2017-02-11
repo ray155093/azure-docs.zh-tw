@@ -1,12 +1,12 @@
 ---
-title: Azure 應用程式的高可用性 | Microsoft Docs
-description: 在 Microsoft Azure 上針對高可用性設計和建置應用程式的技術概觀和深度資訊。
-services: ''
+title: "Azure 應用程式的高可用性 | Microsoft Docs"
+description: "在 Microsoft Azure 上針對高可用性設計和建置應用程式的技術概觀和深度資訊。"
+services: 
 documentationcenter: na
 author: adamglick
 manager: saladki
-editor: ''
-
+editor: 
+ms.assetid: 8be4f323-ca00-4025-9356-c9bbc998eef3
 ms.service: resiliency
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: aglick
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f7289c969184b518a6ff836cbb9ed7e20841206b
+
 
 ---
 # <a name="high-availability-for-applications-built-on-microsoft-azure"></a>建置在 Microsoft Azure 上之應用程式的高可用性
@@ -134,6 +138,9 @@ Web 角色會不同於基礎結構的其餘部分而變成是自發性的。 其
 ## <a name="next-steps"></a>後續步驟
 本文屬於著重 [在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。 這一系列中的下一篇文章是 [在 Microsoft Azure 上建置的應用程式的災害復原](resiliency-disaster-recovery-azure-applications.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
