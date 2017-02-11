@@ -13,7 +13,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
@@ -26,8 +26,8 @@ ms.openlocfilehash: 4f12fdf6732d44903fb1e971f05d0233d7aff08e
 > * [Azure 入口網站](active-directory-groups-create-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-accessmanagement-manage-groups.md)
 > * [PowerShell](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
-> 
-> 
+>
+>
 
 下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。  其中也提供有關如何使用 Azure AD PowerShell Preview 模組完成設定的資訊。 首先，您必須 [下載 Azure AD PowerShell 模組](http://go.microsoft.com/fwlink/p/?LinkId=828627)。
 
@@ -229,7 +229,6 @@ Cmdlet 將會傳回所指定群組的擁有者清單︰
 
 * [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
 
 
 

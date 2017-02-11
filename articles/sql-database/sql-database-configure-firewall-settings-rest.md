@@ -91,6 +91,6 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

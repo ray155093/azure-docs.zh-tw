@@ -197,6 +197,6 @@ SendGrid 提供的網頁式 API 可供從 Azure 應用程式運用其他 SendGri
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

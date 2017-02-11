@@ -150,6 +150,6 @@ Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=61
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

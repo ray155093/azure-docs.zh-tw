@@ -365,6 +365,6 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

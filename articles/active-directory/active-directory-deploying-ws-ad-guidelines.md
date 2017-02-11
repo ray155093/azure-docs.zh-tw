@@ -501,6 +501,6 @@ Windows Server AD FS 同盟伺服器 (STS) 的組態一部分取決於您想要�
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

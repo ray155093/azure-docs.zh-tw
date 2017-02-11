@@ -99,6 +99,6 @@ AlwaysOn 可用性群組可以在混合式 IT 環境中使用，在該環境中�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

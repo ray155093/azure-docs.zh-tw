@@ -132,6 +132,6 @@ Azure 媒體分析可讓開發人員在有限規模下快速開始使用視訊�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

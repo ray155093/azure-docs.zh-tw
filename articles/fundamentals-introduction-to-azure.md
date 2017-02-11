@@ -540,6 +540,6 @@ SendGrid 是 Azure Store 中可讓您傳送電子郵件的應用程式。 它提
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

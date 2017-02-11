@@ -247,6 +247,6 @@ StreamType | 作業串流的類型。 可能的值包括：<br>-Progress (進度
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -249,6 +249,6 @@ Beeline 也可以用來執行包含 HiveQL 陳述式的檔案。 使用下列步
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 
