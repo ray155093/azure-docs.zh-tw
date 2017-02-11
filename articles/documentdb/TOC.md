@@ -35,6 +35,7 @@
 ### [模型化資料](documentdb-modeling-data.md)
 ### [使用地理空間資料](documentdb-geospatial.md)
 ### [多重區域開發](documentdb-developing-with-multiple-regions.md)
+### [區域容錯移轉](documentdb-regional-failovers.md)
 ### [讓資料自動到期](documentdb-time-to-live.md)
 ### [自訂索引](documentdb-indexing-policies.md)
 ### [安全存取資料](documentdb-secure-access-to-data.md)
@@ -54,6 +55,9 @@
 ### [以變更摘要追蹤變更](documentdb-change-feed.md)
 ### [效能測試](documentdb-performance-testing.md)
 ### [效能秘訣](documentdb-performance-tips.md)
+### 最佳作法
+#### [部主機設定](documentdb-multi-region-writers.md)
+#### [日期時間](documentdb-working-with-dates.md)
 
 ## 使用 MongoDB 的 DocumentDB 支援
 ### [MongoDB 的通訊協定支援](documentdb-protocol-mongodb.md)
@@ -78,10 +82,10 @@
 
 ## 整合
 ### [以 Azure App Service 部署網站](documentdb-create-documentdb-website.md)
-### [使用 Logic Apps 進行應用程式記錄](../app-service-logic/app-service-logic-scenario-error-and-exception-handling.md)
+### [使用 Logic Apps 進行應用程式記錄](../logic-apps/logic-apps-scenario-error-and-exception-handling.md)
 ### [繫結至 Azure Functions](../azure-functions/functions-bindings-documentdb.md)
 ### [以 Hadoop 分析資料](documentdb-run-hadoop-with-hdinsight.md)
-### [與 Azure 搜尋服務整合](documentdb-search-indexer.md)
+### [與 Azure 搜尋服務整合](../search/search-howto-index-documentdb.md)
 ### [使用 Azure Data Factory 移動資料](../data-factory/data-factory-azure-documentdb-connector.md)
 ### [使用 Azure 串流分析來分析即時資料](../stream-analytics/stream-analytics-define-outputs.md#documentdb)
 ### [使用 Logic Apps 取得通知](documentdb-change-notification.md)
@@ -119,6 +123,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

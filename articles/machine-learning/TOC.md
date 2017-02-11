@@ -128,7 +128,6 @@
 #### [部署 Web 服務](machine-learning-publish-a-machine-learning-web-service.md)
 #### [使用外部資料](machine-learning-web-services-that-use-import-export-modules.md)
 #### [在多個區域中部署](machine-learning-how-to-deploy-to-multiple-regions.md)
-#### [發佈至 Marketplace](machine-learning-publish-web-service-to-azure-marketplace.md)
 #### [使用 Web 服務參數](machine-learning-web-service-parameters.md)
 #### [啟用記錄](machine-learning-web-services-logging.md)
 ### 管理 Web 服務
@@ -157,23 +156,10 @@
 #### [使用含 1TB 的 Hadoop](machine-learning-data-science-process-hive-criteo-walkthrough.md)
 #### [使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
 #### [使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
-### Web 服務範例
-#### [使用 R 的範例](machine-learning-r-csharp-web-service-examples.md)
-#### [二元分類器](machine-learning-r-csharp-binary-classifier.md)
-#### [叢集模型](machine-learning-r-csharp-cluster-model.md)
-#### [多變量線性迴歸](machine-learning-r-csharp-multivariate-linear-regression.md)
-#### [預測 - 指數平滑法](machine-learning-r-csharp-forecasting-exponential-smoothing.md)
-#### [預測 - ETS + STL](machine-learning-r-csharp-retail-demand-forecasting.md)
-#### [預測 - ARIMA](machine-learning-r-csharp-arima.md)
-#### [存活分析](machine-learning-r-csharp-survival-analysis.md)
-#### [語彙型情感分析](machine-learning-r-csharp-lexicon-based-sentiment-analysis.md)
-#### [比例差異測試](machine-learning-r-csharp-difference-in-two-proportions.md)
-#### [常態分佈套件](machine-learning-r-csharp-normal-distribution.md)
-#### [二項分配套件](machine-learning-r-csharp-binomial-distribution.md)
-#### [Marketplace 常見問題集](machine-learning-marketplace-faq.md)
 
 # 參考
-## [PowerShell](machine-learning-powershell-module.md)
+## [PowerShell 模組 (新型)](/powershell/resourcemanager/azurerm.machinelearning/v0.11.1/azurerm.machinelearning)
+## [PowerShell 模組 (傳統)](machine-learning-powershell-module.md)
 ## [演算法和模組參考](https://msdn.microsoft.com/library/azure/dn905974.aspx)
 ## [REST](/rest/api/machinelearning)
 
@@ -222,6 +208,6 @@
 ## [從即時聊天取得協助](machine-learning-live-chat.md)
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

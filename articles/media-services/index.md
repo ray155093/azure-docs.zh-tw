@@ -1,15 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何利用媒體服務 (可延伸的雲端平台) 安全地串流處理隨選或即時廣播品質的影片。 教學課程、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: 78433e8f6d66d55f7917e4abbbbe1c24e662a400
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 3e029a72b1918636ede33db1445ce0550d40ede6
 
 ---
 # <a name="media-services-documentation"></a>媒體服務文件
 
-Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置可擴充的媒體管理和傳遞應用程式。 媒體服務是以 REST API 為基礎，可讓您安全地上傳、儲存、編碼和封裝視訊或音訊內容，以用於隨選和即時資料流傳遞給各種用戶端 (例如電視、電腦和行動裝置)。
-
-您可以建置完全採用媒體服務的端對端工作流程。 您也可以選擇在工作流程的某些部分採用第三方元件。 例如，您可以使用協力廠商編碼器來進行編碼，然後使用媒體服務進行上傳、保護、封裝和傳遞。
+了解如何利用媒體服務 (可延伸的雲端平台) 串流處理廣播品質的影片。 教學課程、API 參考和其他文件會示範如何安全地提供可針對數百萬位使用者調整的隨選和即時視訊或音訊串流。
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -200,16 +199,9 @@ Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置�
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/media-services.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure 媒體服務文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

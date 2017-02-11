@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何使用 Azure 儲存體 - 雲端中的 Blob、資料表、佇列、檔案和虛擬機器磁碟儲存體。 教學課程、API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: df6bc6a92950efeed61db2f2ef7fd5f65189e0fa
-ms.openlocfilehash: 130a9a105ac7ff50fbc3b5baefd080f272e77d0b
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 1e9cc940d681893abbc351ef440c90f579e6c40a
 
 ---
 
@@ -130,9 +130,9 @@ ms.openlocfilehash: 130a9a105ac7ff50fbc3b5baefd080f272e77d0b
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/storageservices/importexport/storage-import-export-service-rest-api-reference">Blob、佇列、資料表和檔案</a></p>
-                        <p><a href="/rest/api/storagerp">REST：資源提供者</a></p>
-                        <p><a href="/rest/api/storageimportexport">REST：匯入/匯出</a></p>
+                        <p><a href="/rest/api/storageservices/fileservices/azure-storage-services-rest-api-reference">Blob、佇列、資料表和檔案</a></p>
+                        <p><a href="/rest/api/storagerp">資源提供者</a></p>
+                        <p><a href="/rest/api/storageimportexport">匯入/匯出</a></p>
                    </div>
                 </div>
             </div>
@@ -140,16 +140,10 @@ ms.openlocfilehash: 130a9a105ac7ff50fbc3b5baefd080f272e77d0b
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/storage.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載儲存體文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Jan17_HO1-->
+
+<!--HONumber=Jan17_HO3-->
 
 

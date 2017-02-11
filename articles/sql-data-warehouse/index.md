@@ -1,14 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何使用 SQL 資料倉儲，其結合了 SQL Server 與大量平行處理。 文件會示範如何載入、分析、管理和匯出資料。"
 translationtype: Human Translation
-ms.sourcegitcommit: 511d15cc48b17bd65bedc2c1cd9602d868ffa724
-ms.openlocfilehash: 6c949e62406f2d9029c00e87dfc3ca5530a5497f
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 66f83d1e36ecafdfb3337ae03b22ba48d3ccb1b4
 
 ---
 
 # <a name="sql-data-warehouse-documentation"></a>SQL 資料倉儲文件
 
-Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應放大功能。  SQL 資料倉儲是以我們的巨量平行處理 (MPP) 架構為基礎，可以處理您的企業工作負載。
+了解如何使用 SQL 資料倉儲，其結合了 SQL Server 關聯式資料庫與大量平行處理。 教學課程和其他文件示範如何將資料載入資料倉儲，然後加以分析、管理及匯出。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -54,7 +55,8 @@ Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/portal.svg" alt="" />
+
+<img src="media/index/portal.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -75,7 +77,8 @@ Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
-                    <div class="Command-Line</h3>
+                    <div class="cardText">
+                        <h3>命令列</h3>
                         <p><a href="/azure/sql-data-warehouse/sql-data-warehouse-reference-powershell-cmdlets">PowerShell Cmdlet</a></p>
                     </div>
                 </div>
@@ -99,16 +102,10 @@ Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/sql-data-warehouse.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 SQL 資料倉儲文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Jan17_HO3-->
 
 
