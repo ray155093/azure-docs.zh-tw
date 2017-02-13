@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/30/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -27,15 +27,15 @@ ms.openlocfilehash: b38a613a1f93d9c36254f7642655f716e048e9e3
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入 **Azure Active Directory**，然後選取 **Enter**。
 3. 在 [Azure Active Directory - *directoryname*]**** 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]****。
-   
+
     ![開啟企業應用程式](./media/active-directory-coreapps-remove-assignment-user-azure-portal/open-enterprise-apps.png)
 4. 在 [企業應用程式] 刀鋒視窗上，選取 [所有應用程式]。 您將會看到一份您可以管理的應用程式清單。
 5. 在 [企業應用程式 - 所有應用程式]  刀鋒視窗上，選取一個應用程式。
 6. 在 [***appname***] 刀鋒視窗 (亦即標題中含有所選應用程式名稱的刀鋒視窗) 上，選取 [使用者和群組]。
-   
+
     ![選取使用者或群組](./media/active-directory-coreapps-remove-assignment-user-azure-portal/remove-app-users.png)
 7. 在 [***appname*** - 使用者和群組指派] 刀鋒視窗上，選取一或多個使用者或群組，然後選取 [移除] 命令。 出現提示時，請確認您的決定。
-   
+
     ![選取 [移除] 命令](./media/active-directory-coreapps-remove-assignment-user-azure-portal/remove-users.png)
 
 ## <a name="next-steps"></a>後續步驟
@@ -43,7 +43,6 @@ ms.openlocfilehash: b38a613a1f93d9c36254f7642655f716e048e9e3
 * [將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md)
 * [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)
 * [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-user-azure-portal.md)
-
 
 
 

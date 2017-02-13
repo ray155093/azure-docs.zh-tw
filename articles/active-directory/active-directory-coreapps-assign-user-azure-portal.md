@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/03/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -27,16 +27,16 @@ ms.openlocfilehash: 18330aa5e0fe8e3bbad6c266f823a4969b9b8b6c
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入 Azure Active Directory，然後選取 **Enter**。
 3. 在 [Azure Active Directory - *directoryname*]**** 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]****。
-   
+
     ![開啟企業應用程式](./media/active-directory-coreapps-assign-user-azure-portal/open-enterprise-apps.png)
 4. 在 [企業應用程式] 刀鋒視窗上，選取 [所有應用程式]。 您將會看到一份您可以管理的應用程式清單。
 5. 在 [企業應用程式 - 所有應用程式]  刀鋒視窗上，選取一個應用程式。
 6. 在 [***appname***] 刀鋒視窗 (亦即標題中含有所選應用程式名稱的刀鋒視窗) 上，選取 [使用者和群組]。
-   
+
     ![選取所有應用程式命令](./media/active-directory-coreapps-assign-user-azure-portal/select-app-users.png)
 7. 在 [***appname*** - 使用者和群組指派] 刀鋒視窗上，選取 [新增] 命令。
 8. 在 [新增指派] 刀鋒視窗上，選取 [使用者和群組]。
-   
+
     ![將使用者或群組指派給應用程式](./media/active-directory-coreapps-assign-user-azure-portal/assign-users.png)
 9. 在 [使用者和群組] 刀鋒視窗上，從清單中選取一或多個使用者或群組，然後選取刀鋒視窗底部的 [選取] 按鈕。
 10. 在 [新增指派] 刀鋒視窗上，選取 [角色]。 然後，在 [選取角色] 刀鋒視窗上，選取要套用到所選使用者或群組的角色，然後選取刀鋒視窗底部的 [確定] 按鈕。
@@ -47,7 +47,6 @@ ms.openlocfilehash: 18330aa5e0fe8e3bbad6c266f823a4969b9b8b6c
 * [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)
 * [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-user-azure-portal.md)
-
 
 
 
