@@ -12,19 +12,20 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/13/2016
 ms.author: jeannt
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: aff024314d3e0d6c50c321b0a058fa02c01c566a
+ms.sourcegitcommit: 8ea727f7b8d93401b35a7b9dbd2f00a5534c3072
+ms.openlocfilehash: e54c37f688e8d107f5323125ea42d63ec91a4c84
 
 
 ---
 # <a name="guide-to-net-neural-network-specification-language-for-azure-machine-learning"></a>適用於 Azure Machine Learning 的 Net# 類神經規格語言指南
-## <a name="overview"></a>Overview
-Net# 是由 Microsoft 所開發的語言，用來定義 Microsoft Azure Machine Learning 中的類神經網路模組所使用的類神經網路架構。 在本文中，您將了解：  
+## <a name="overview"></a>概觀
+Net# 是由 Microsoft 所開發的語言，可用來定義類神經網路架構。 您可以在 Microsoft Azure Machine Learning 的類神經網路模組或在 [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml) 的 `rxNeuralNetwork()` 函式中使用 Net#。 
 
-* 類神經網路的相關基本概念
+在本文中，您將了解開發自訂類神經網路所需的基本概念︰ 
+
 * 類神經網路的需求和主要元件的定義方式
 * Net# 規格語言的語法和關鍵字
 * 使用下列方法建立自訂類神經網路的範例：Net# 
@@ -411,6 +412,6 @@ Net# 可選擇性地支援以共用加權定義多個套組的作業。 任何�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

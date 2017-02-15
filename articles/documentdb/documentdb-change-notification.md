@@ -1,13 +1,13 @@
 ---
-title: 使用 Logic Apps 的 DocumentDB 變更通知 | Microsoft Docs
-description: 。
-keywords: 變更通知
+title: "使用 Logic Apps 的 DocumentDB 變更通知 | Microsoft Docs"
+description: "。"
+keywords: "變更通知"
 services: documentdb
 author: hedidin
 manager: jhubbard
 editor: mimig
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 58925d95-dde8-441b-8142-482b487e4bdd
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,78 +15,82 @@ ms.devlang: rest-api
 ms.topic: article
 ms.date: 09/23/2016
 ms.author: b-hoedid
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 115d35bd56918ad8e93a9032cbff6e84a7b70e0c
+
 
 ---
-# 使用 Logic Apps 的新增或已變更 DocumentDB 資源的通知
-這篇文章的靈感來自我在某一個 Azure DocumentDB 社群論壇上看到的一個問題。這個問題是 **DocumentDB 是否支援已修改資源的通知？**
+# <a name="notifications-for-new-or-changed-documentdb-resources-using-logic-apps"></a>使用 Logic Apps 的新增或已變更 DocumentDB 資源的通知
+這篇文章的靈感來自我在某一個 Azure DocumentDB 社群論壇上看到的一個問題。 這個問題是 **DocumentDB 是否支援已修改資源的通知？**
 
-我已使用 BizTalk Server 許多年，這是使用 [WCF LOB 配接器](https://msdn.microsoft.com/library/bb798128.aspx)時非常常見的案例。因此我決定查看是否可以在新增和/或已修改過文件的 DocumentDB 中複製此功能。
+我已使用 BizTalk Server 許多年，這是使用 [WCF LOB 配接器](https://msdn.microsoft.com/library/bb798128.aspx)時非常常見的案例。 因此我決定查看是否可以在新增和/或已修改過文件的 DocumentDB 中複製此功能。
 
-本文提供變更通知解決方案的元件概觀，其中包含[觸發程序](documentdb-programming.md#trigger)和[邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)。重要程式碼片段會以內嵌方式提供，並可在 [GitHub](https://github.com/HEDIDIN/DocDbNotifications) 上取得整個解決方案。
+本文提供變更通知解決方案的元件概觀，其中包含[觸發程序](documentdb-programming.md#trigger)和[邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)。 重要程式碼片段會以內嵌方式提供，並可在 [GitHub](https://github.com/HEDIDIN/DocDbNotifications)上取得整個解決方案。
 
-## 使用案例
+## <a name="use-case"></a>使用案例
 下列案例是這篇文章的使用案例。
 
-DocumentDB 是 Health Level Seven International (HL7) Fast Healthcare Interoperability Resources (FHIR) 文件的儲存機制。假設您的 DocumentDB 資料庫與您的 API 和邏輯應用程式一起構成 HL7 FHIR Server。醫療保健機構會將病患的資料儲存在 DocumentDB 的 "Patients" 資料庫。病患資料庫中有數個集合：Clinical、Identification 等。病患資訊位於識別之下。您具有名為 "Patient" 的集合。
+DocumentDB 是 Health Level Seven International (HL7) Fast Healthcare Interoperability Resources (FHIR) 文件的儲存機制。 假設您的 DocumentDB 資料庫與您的 API 和邏輯應用程式一起構成 HL7 FHIR Server。  醫療保健機構會將病患的資料儲存在 DocumentDB 的 "Patients" 資料庫。 病患資料庫中有數個集合：Clinical、Identification 等。病患資訊位於識別之下。  您具有名為 "Patient" 的集合。
 
-Cardiology 部門會追蹤個人健康和練習資料。搜尋新增或已修改的病患記錄相當耗時。他們詢問 IT 部門是否有辦法讓他們收到新增或已修改病患記錄的通知。
+Cardiology 部門會追蹤個人健康和練習資料。 搜尋新增或已修改的病患記錄相當耗時。 他們詢問 IT 部門是否有辦法讓他們收到新增或已修改病患記錄的通知。  
 
-IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文件推送至 [Azure Blob 儲存體](https://azure.microsoft.com/services/storage/)，以便 Cardiology 部門存取。
+IT 部門表示他們可以輕鬆提供此通知。 他們還表示可以將文件推送至 [Azure Blob 儲存體](https://azure.microsoft.com/services/storage/) ，以便 Cardiology 部門存取。
 
-## IT 部門如何解決此問題
-為了建立此應用程式，IT 部門決定先建立其模型。使用「商務程序模型和標記法 (BPMN)」的好處就是技術和非技術人員均可輕鬆瞭解。這整個通知程序會被視為商務程序。
+## <a name="how-the-it-department-solved-the-problem"></a>IT 部門如何解決此問題
+為了建立此應用程式，IT 部門決定先建立其模型。  使用「商務程序模型和標記法 (BPMN)」的好處就是技術和非技術人員均可輕鬆瞭解。 這整個通知程序會被視為商務程序。 
 
-## 通知程序的高階檢視
-1. 從具有計時器觸發程序的邏輯應用程式開始。根據預設，每小時都會執行觸發程序。
+## <a name="high-level-view-of-notification-process"></a>通知程序的高階檢視
+1. 從具有計時器觸發程序的邏輯應用程式開始。 根據預設，每小時都會執行觸發程序。
 2. 接下來，您可以對邏輯應用程式執行 HTTP POST。
 3. 邏輯應用程式會執行所有的工作。
 
 ![高階檢視](./media/documentdb-change-notification/high-level-view.png)
 
-### 讓我們看一下此邏輯應用程式的作用
+### <a name="lets-take-a-look-at-what-this-logic-app-does"></a>讓我們看一下此邏輯應用程式的作用
 如果查看下圖，LogicApp 工作流程中會有幾個步驟。
 
 ![主要邏輯程序](./media/documentdb-change-notification/main-logic-app-process.png)
 
 步驟如下：
 
-1. 您需要從 API 應用程式取得目前的 UTC 日期時間。預設值為一小時前。
-2. UTC 日期時間會轉換成 Unix 時間戳記格式。這是 DocumentDB 中時間戳記的預設格式。
-3. 您將此值 POST 至 API 應用程式，這會進行 DocumentDB 查詢。此值使用於查詢中。
+1. 您需要從 API 應用程式取得目前的 UTC 日期時間。  預設值為一小時前。
+2. UTC 日期時間會轉換成 Unix 時間戳記格式。 這是 DocumentDB 中時間戳記的預設格式。
+3. 您將此值 POST 至 API 應用程式，這會進行 DocumentDB 查詢。 此值使用於查詢中。
    
     ```SQL
          SELECT * FROM Patients p WHERE (p._ts >= @unixTimeStamp)
     ```
    
    > [!NOTE]
-   > \_ts 表示所有 DocumentDB 資源的時間戳記中繼資料。
+   > _ts 表示所有 DocumentDB 資源的時間戳記中繼資料。
    > 
    > 
 4. 如果已找到文件，則回應主體會傳送至 Azure Blob 儲存體。
    
    > [!NOTE]
-   > Blob 儲存體需要 Azure 儲存體帳戶。您必須佈建 Azure Blob 儲存體帳戶，並加入名為 patients 的新 Blob。如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)和[開始使用 Azure Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)。
+   > Blob 儲存體需要 Azure 儲存體帳戶。 您必須佈建 Azure Blob 儲存體帳戶，並加入名為 patients 的新 Blob。 如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)和[開始使用 Azure Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)。
    > 
    > 
-5. 最後會傳送電子郵件，通知收件者已找到的文件數目。如果找不到任何文件，電子郵件本文會是「找到 0 份文件」。
+5. 最後會傳送電子郵件，通知收件者已找到的文件數目。 如果找不到任何文件，電子郵件本文會是「找到 0 份文件」。 
 
 您現在已了解工作流程的作用，讓我們看看其實作方式。
 
-### 我們從主要邏輯應用程式開始討論。
+### <a name="lets-start-with-the-main-logic-app"></a>我們從主要邏輯應用程式開始討論。
 如果您不熟悉 Logic Apps，可以在 [Azure Marketplace](https://portal.azure.com/) 加以取得，而且您可以在[什麼是 Logic Apps？](../app-service-logic/app-service-logic-what-are-logic-apps.md)中進一步了解
 
-當您建立新的邏輯應用程式時，系統會詢問您「您要如何開始？」
+當您建立新的邏輯應用程式時，系統會詢問您**您要如何開始？**
 
-當您按一下文字方塊內部時，您有各種事件可供選擇。對於此邏輯應用程式，選取 [手動 - 收到 HTTP 要求時]，如下所示。
+當您按一下文字方塊內部時，您有各種事件可供選擇。 對於此邏輯應用程式，選取 [手動 - 收到 HTTP 要求時]  ，如下所示。
 
 ![開始進行](./media/documentdb-change-notification/starting-off.png)
 
-### 完整邏輯應用程式的設計檢視
+### <a name="design-view-of-your-completed-logic-app"></a>完整邏輯應用程式的設計檢視
 讓我們往前跳並查看邏輯應用程式 (名為 DocDB ) 的完整設計檢視。
 
 ![邏輯應用程式工作流程](./media/documentdb-change-notification/workflow-expanded.png)
 
-在邏輯應用程式設計工具中編輯動作時，您可以選取來自 HTTP 要求或來自前一個動作的 [輸出]，如以下 sendMail 動作所示。
+在邏輯應用程式設計工具中編輯動作時，您可以選取來自 HTTP 要求或來自前一個動作的 [輸出]  ，如以下 sendMail 動作所示。
 
 ![選擇輸出](./media/documentdb-change-notification/choose-outputs.png)
 
@@ -94,7 +98,7 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 ![進行決策](./media/documentdb-change-notification/add-action-or-condition.png)
 
-如果您選取 [新增條件]，即會出現如下圖所示的表單，以便輸入您的邏輯。基本上，這是商務規則。如果您按一下欄位內部，您可以選取來自前一個動作的參數。您也可以直接輸入值。
+如果您選取 [新增條件] ，即會出現如下圖所示的表單，以便輸入您的邏輯。  基本上，這是商務規則。  如果您按一下欄位內部，您可以選取來自前一個動作的參數。 您也可以直接輸入值。
 
 ![新增條件](./media/documentdb-change-notification/condition1.png)
 
@@ -103,7 +107,7 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 > 
 > 
 
-讓我們在程式碼檢視中看一下完整的邏輯應用程式。
+讓我們在程式碼檢視中看一下完整的邏輯應用程式。  
 
 ```JSON
 
@@ -242,9 +246,9 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 ```
 
-如果您不熟悉程式碼中各區段所代表的意義，您可以檢視[邏輯應用程式工作流程定義語言](http://aka.ms/logicappsdocs)文件。
+如果您不熟悉程式碼中各區段所代表的意義，您可以檢視 [邏輯應用程式工作流程定義語言](http://aka.ms/logicappsdocs) 文件。
 
-在此工作流程中，您會使用 [HTTP Webhook 觸發程序](https://sendgrid.com/blog/whats-webhook/)。如果您查看上述程式碼，您會看到以下範例所示的參數。
+在此工作流程中，您會使用 [HTTP Webhook 觸發程序](https://sendgrid.com/blog/whats-webhook/)。 如果您查看上述程式碼，您會看到以下範例所示的參數。
 
 ```C#
 
@@ -252,14 +256,15 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 ```
 
-`triggerBody()` 代表邏輯應用程式 REST API 的 REST POST 主體中包含的參數。`()['Subject']` 代表此欄位。這些參數會構成 JSON 格式的主體。
+`triggerBody()` 代表邏輯應用程式 REST API 的 REST POST 主體中包含的參數。 `()['Subject']` 代表此欄位。 這些參數會構成 JSON 格式的主體。 
 
 > [!NOTE]
-> 使用 Webhook，您可以完整存取觸發程序的要求標頭和主體。在此應用程式中，您會想要主體。
+> 使用 Webhook，您可以完整存取觸發程序的要求標頭和主體。 在此應用程式中，您會想要主體。
 > 
 > 
 
-如先前所述，您可以使用設計工具來指派參數，或在程式碼檢視中指派參數。如果您在程式碼檢視中指派參數，您會接著定義需有值的屬性，如下列程式碼範例所示。
+如先前所述，您可以使用設計工具來指派參數，或在程式碼檢視中指派參數。
+如果您在程式碼檢視中指派參數，您會接著定義需有值的屬性，如下列程式碼範例所示。 
 
 ```JSON
 
@@ -284,12 +289,13 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
         }
 ```
 
-您正在建立將從 HTTP POST 主體傳入的 JSON 結構描述。若要引發觸發程序，您需要回呼 URL。您將在稍後的教學課程中了解如何產生回呼 URL。
+您正在建立將從 HTTP POST 主體傳入的 JSON 結構描述。
+若要引發觸發程序，您需要回呼 URL。  您將在稍後的教學課程中了解如何產生回呼 URL。  
 
-## 動作
+## <a name="actions"></a>動作
 我們來看一下在我們的邏輯應用程式中每個動作的作用。
 
-### GetUTCDate
+### <a name="getutcdate"></a>GetUTCDate
 **設計工具檢視**
 
 ![](./media/documentdb-change-notification/getutcdate.png)
@@ -315,11 +321,11 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 ```
 
-此 HTTP 動作會執行 GET 作業。它會呼叫 API 應用程式 GetUtcDate 方法。Uri 會使用傳遞至觸發程序主體的 'GetUtcDate\_HoursBack' 屬性。'GetUtcDate\_HoursBack' 值會設定於第一個邏輯應用程式中。您將在稍後的教學課程中深入了解觸發程序邏輯應用程式。
+此 HTTP 動作會執行 GET 作業。  它會呼叫 API 應用程式 GetUtcDate 方法。 Uri 會使用傳遞至觸發程序主體的 'GetUtcDate_HoursBack' 屬性。  'GetUtcDate_HoursBack' 值會設定於第一個邏輯應用程式中。 您將在稍後的教學課程中深入了解觸發程序邏輯應用程式。
 
 這個動作會呼叫 API 應用程式以傳回 UTC 日期字串值。
 
-#### Operations
+#### <a name="operations"></a>Operations
 **要求**
 
 ```JSON
@@ -355,11 +361,11 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 下一個步驟是將 UTC 日期時間值轉換為 Unix 時間戳記，這是 .NET double 類型。
 
-### 轉換
-##### 設計工具檢視
+### <a name="conversion"></a>轉換
+##### <a name="designer-view"></a>設計工具檢視
 ![轉換](./media/documentdb-change-notification/conversion.png)
 
-##### 程式碼檢視
+##### <a name="code-view"></a>程式碼檢視
 ```JSON
 
     "Conversion": {
@@ -383,12 +389,12 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 ```
 
-在此步驟中，您會傳入從 GetUTCDate 傳回的值。會有 dependsOn 條件，這表示 GetUTCDate 動作必須順利完成。如果未順利完成，就會略過這個動作。
+在此步驟中，您會傳入從 GetUTCDate 傳回的值。  會有 dependsOn 條件，這表示 GetUTCDate 動作必須順利完成。 如果未順利完成，就會略過這個動作。 
 
 這個動作會呼叫 API 應用程式以處理轉換。
 
-#### Operations
-##### 要求
+#### <a name="operations"></a>Operations
+##### <a name="request"></a>要求
 ```JSON
 
     {
@@ -400,7 +406,7 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
     }   
 ```
 
-##### Response
+##### <a name="response"></a>回應
 ```JSON
 
     {
@@ -419,11 +425,11 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 在下一個動作中，您可以對我們的 API 應用程式執行 POST 作業。
 
-### GetDocuments
-##### 設計工具檢視
+### <a name="getdocuments"></a>GetDocuments
+##### <a name="designer-view"></a>設計工具檢視
 ![取得文件](./media/documentdb-change-notification/getdocuments.png)
 
-##### 程式碼檢視
+##### <a name="code-view"></a>程式碼檢視
 ```JSON
 
     "GetDocuments": {
@@ -447,7 +453,7 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 ```
 
-對於 GetDocuments 動作，您將會傳入來自 Conversion 動作的回應主體。這是 Uri 中的參數︰
+對於 GetDocuments 動作，您將會傳入來自 Conversion 動作的回應主體。 這是 Uri 中的參數︰
 
 ```C#
 
@@ -455,12 +461,12 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 ```
 
-QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
+QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。 
 
 呼叫的方法為 **QueryForNewPatientDocuments**。
 
-#### Operations
-##### 要求
+#### <a name="operations"></a>Operations
+##### <a name="request"></a>要求
 ```JSON
 
     {
@@ -472,7 +478,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
     }
 ```
 
-##### Response
+##### <a name="response"></a>回應
 ```JSON
 
     {
@@ -491,7 +497,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
             "_rid": "vCYLAP2k6gAXAAAAAAAAAA==",
             "_self": "dbs/vCYLAA==/colls/vCYLAP2k6gA=/docs/vCYLAP2k6gAXAAAAAAAAAA==/",
             "_ts": 1454874620,
-            "_etag": ""00007d01-0000-0000-0000-56b79ffc0000"",
+            "_etag": "\"00007d01-0000-0000-0000-56b79ffc0000\"",
             "resourceType": "Patient",
             "text": {
             "status": "generated",
@@ -533,18 +539,18 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 ```
 
-下一個動作是將文件儲存至 [Azure Blog 儲存體](https://azure.microsoft.com/services/storage/)。
+下一個動作是將文件儲存至 [Azure Blog 儲存體](https://azure.microsoft.com/services/storage/)。 
 
 > [!NOTE]
-> Blob 儲存體需要 Azure 儲存體帳戶。您必須佈建 Azure Blob 儲存體帳戶，並加入名為 patients 的新 Blob。如需詳細資訊，請參閱[開始使用 Azure Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)。
+> Blob 儲存體需要 Azure 儲存體帳戶。 您必須佈建 Azure Blob 儲存體帳戶，並加入名為 patients 的新 Blob。 如需詳細資訊，請參閱 [開始使用 Azure Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)。
 > 
 > 
 
-### 建立檔案
-##### 設計工具檢視
+### <a name="create-file"></a>建立檔案
+##### <a name="designer-view"></a>設計工具檢視
 ![建立檔案](./media/documentdb-change-notification/createfile.png)
 
-##### 程式碼檢視
+##### <a name="code-view"></a>程式碼檢視
 ```JSON
 
     {
@@ -568,7 +574,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
             "_rid": "vCYLAP2k6gAXAAAAAAAAAA==",
             "_self": "dbs/vCYLAA==/colls/vCYLAP2k6gA=/docs/vCYLAP2k6gAXAAAAAAAAAA==/",
             "_ts": 1454874620,
-            "_etag": ""00007d01-0000-0000-0000-56b79ffc0000"",
+            "_etag": "\"00007d01-0000-0000-0000-56b79ffc0000\"",
             "resourceType": "Patient",
             "text": {
                 "status": "generated",
@@ -610,12 +616,12 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 ```
 
-程式碼是從設計工具中的動作產生而來。您不需要修改程式碼。
+程式碼是從設計工具中的動作產生而來。 您不需要修改程式碼。
 
-如果您不熟悉如何使用 Azure Blob API，請參閱[開始使用 Azure Blob 儲存體 API](../connectors/connectors-create-api-azureblobstorage.md)。
+如果您不熟悉如何使用 Azure Blob API，請參閱 [開始使用 Azure Blob 儲存體 API](../connectors/connectors-create-api-azureblobstorage.md)。
 
-#### Operations
-##### 要求
+#### <a name="operations"></a>Operations
+##### <a name="request"></a>要求
 ```JSON
 
     "host": {
@@ -638,7 +644,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
             "_rid": "vCYLAP2k6gAXAAAAAAAAAA==",
             "_self": "dbs/vCYLAA==/colls/vCYLAP2k6gA=/docs/vCYLAP2k6gAXAAAAAAAAAA==/",
             "_ts": 1454874620,
-            "_etag": ""00007d01-0000-0000-0000-56b79ffc0000"",
+            "_etag": "\"00007d01-0000-0000-0000-56b79ffc0000\"",
             "resourceType": "Patient",
             "text": {
                 "status": "generated",
@@ -681,7 +687,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 ```
 
-##### Response
+##### <a name="response"></a>回應
 ```JSON
 
     {
@@ -705,7 +711,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
         "Size": 65647,
         "MediaType": "application/octet-stream",
         "IsFolder": false,
-        "ETag": ""c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/MTQ1NjUwMTY1NjIxNQ"",
+        "ETag": "\"c-g_a-1OtaH-kNQ4WBoXLp3Zv9s/MTQ1NjUwMTY1NjIxNQ\"",
         "FileLocator": "0B0nBzHyMV-_NRGRDcDNMSFAxWFE"
         }
     }
@@ -713,11 +719,11 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 最後一個步驟是傳送電子郵件通知
 
-### sendEmail
-##### 設計工具檢視
+### <a name="sendemail"></a>sendEmail
+##### <a name="designer-view"></a>設計工具檢視
 ![傳送電子郵件](./media/documentdb-change-notification/sendemail.png)
 
-##### 程式碼檢視
+##### <a name="code-view"></a>程式碼檢視
 ```JSON
 
 
@@ -739,13 +745,13 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
     }
 ```
 
-在這個動作中，您會傳送電子郵件通知。您會使用 [SendGrid](https://sendgrid.com/marketing/sendgrid-services?cvosrc=PPC.Bing.sendgrib&cvo_cid=SendGrid%20-%20US%20-%20Brand%20-%20&mc=Paid%20Search&mcd=BingAds&keyword=sendgrib&network=o&matchtype=e&mobile=&content=&search=1&utm_source=bing&utm_medium=cpc&utm_term=%5Bsendgrib%5D&utm_content=%21acq%21v2%2134335083397-8303227637-1649139544&utm_campaign=SendGrid+-+US+-+Brand+-+%28English%29)。
+在這個動作中，您會傳送電子郵件通知。  您會使用 [SendGrid](https://sendgrid.com/marketing/sendgrid-services?cvosrc=PPC.Bing.sendgrib&cvo_cid=SendGrid%20-%20US%20-%20Brand%20-%20&mc=Paid%20Search&mcd=BingAds&keyword=sendgrib&network=o&matchtype=e&mobile=&content=&search=1&utm_source=bing&utm_medium=cpc&utm_term=%5Bsendgrib%5D&utm_content=%21acq%21v2%2134335083397-8303227637-1649139544&utm_campaign=SendGrid+-+US+-+Brand+-+%28English%29)。   
 
 其程式碼是使用邏輯應用程式的範本以及 [101-logic-app-sendgrid Github 儲存機制](https://github.com/Azure/azure-quickstart-templates/tree/master/101-logic-app-sendgrid)中的 SendGrid 所產生。
 
-HTTP 作業是一個 POST。
+HTTP 作業是一個 POST。 
 
-authorization 參數位於觸發程序屬性中
+ authorization 參數位於觸發程序屬性中
 
 ```JSON
 
@@ -774,12 +780,12 @@ authorization 參數位於觸發程序屬性中
 
 ```
 
-emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 "Records Found"。其餘的參數會從觸發程序參數設定。
+emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 "Records Found"。 其餘的參數會從觸發程序參數設定。
 
 這個動作取決於 **GetDocuments** 動作。
 
-#### Operations
-##### 要求
+#### <a name="operations"></a>Operations
+##### <a name="request"></a>要求
 ```JSON
 
     {
@@ -793,7 +799,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-##### Response
+##### <a name="response"></a>回應
 ```JSON
 
     {
@@ -811,7 +817,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
     }
 ```
 
-最後，您要能夠在 Azure 入口網站上看到邏輯應用程式的結果。若要這麼做，請將參數加入至 outputs 區段。
+最後，您要能夠在 Azure 入口網站上看到邏輯應用程式的結果。 若要這麼做，請將參數加入至 outputs 區段。
 
 ```JSON
 
@@ -823,16 +829,16 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-這會傳回在電子郵件本文中傳送的相同值。下圖顯示「找到 29 筆記錄」的範例。
+這會傳回在電子郵件本文中傳送的相同值。 下圖顯示「找到 29 筆記錄」的範例。
 
 ![結果](./media/documentdb-change-notification/logic-app-run.png)
 
-## 度量
-您可以在入口網站中設定主要邏輯應用程式的監視。這可讓您檢視 [執行延遲] 和其他事件，如下圖所示。
+## <a name="metrics"></a>度量
+您可以在入口網站中設定主要邏輯應用程式的監視。 這可讓您檢視 [執行延遲] 和其他事件，如下圖所示。
 
 ![](./media/documentdb-change-notification/metrics.png)
 
-## DocDb 觸發程序
+## <a name="docdb-trigger"></a>DocDb 觸發程序
 此邏輯應用程式是在主要邏輯應用程式上啟動工作流程的觸發程序。
 
 下圖顯示 [設計工具檢視]。
@@ -881,10 +887,10 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-觸發程序已設定為 24 個小時的週期。此動作是 HTTP POST，其使用主要邏輯應用程式的回呼 URL。主體包含 JSON 結構描述中所指定的參數。
+觸發程序已設定為 24 個小時的週期。 此動作是 HTTP POST，其使用主要邏輯應用程式的回呼 URL。 主體包含 JSON 結構描述中所指定的參數。 
 
-#### Operations
-##### 要求
+#### <a name="operations"></a>Operations
+##### <a name="request"></a>要求
 ```JSON
 
     {
@@ -901,7 +907,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-##### Response
+##### <a name="response"></a>回應
 ```JSON
 
     {
@@ -919,14 +925,14 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 讓我們現在查看 API 應用程式。
 
-## DocDBNotificationApi
+## <a name="docdbnotificationapi"></a>DocDBNotificationApi
 雖然應用程式中有數個作業，但您只會使用三個。
 
-* GetUtcDate
+* GetUTCDate
 * ConvertToTimeStamp
 * QueryForNewPatientDocuments
 
-### DocDBNotificationApi 作業
+### <a name="docdbnotificationapi-operations"></a>DocDBNotificationApi 作業
 讓我們查看 Swagger 文件
 
 > [!NOTE]
@@ -936,18 +942,18 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ![Cors 組態](./media/documentdb-change-notification/cors.png)
 
-#### GetUtcDate
+#### <a name="getutcdate"></a>GetUTCDate
 ![G](./media/documentdb-change-notification/getutcdateswagger.png)
 
-#### ConvertToTimeStamp
+#### <a name="converttotimestamp"></a>ConvertToTimeStamp
 ![取得 UTC 日期](./media/documentdb-change-notification/converion-swagger.png)
 
-#### QueryForNewPatientDocuments
+#### <a name="queryfornewpatientdocuments"></a>QueryForNewPatientDocuments
 ![查詢](./media/documentdb-change-notification/patientswagger.png)
 
 讓我們看看這項作業背後的程式碼。
 
-#### GetUtcDate
+#### <a name="getutcdate"></a>GetUTCDate
 ```C#
 
     /// <summary>
@@ -970,7 +976,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 這項作業只會傳回目前的 UTC 日期時間減去 HoursBack 值。
 
-#### ConvertToTimeStamp
+#### <a name="converttotimestamp"></a>ConvertToTimeStamp
 ``` C#
 
         /// <summary>
@@ -1011,7 +1017,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 這項作業會將 GetUtcDate 作業的回應轉換為雙精度值。
 
-#### QueryForNewPatientDocuments
+#### <a name="queryfornewpatientdocuments"></a>QueryForNewPatientDocuments
 ```C#
 
         /// <summary>
@@ -1048,26 +1054,26 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-這項作業會使用 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 建立文件查詢。
+這項作業會使用 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 建立文件查詢。 
 
 ```C#
      CreateDocumentQuery<Document>(collectionLink, filterQuery, options).AsEnumerable();
 ```
 
-會傳入 ConvertToTimeStamp 作業 (unixTimeStamp) 的回應。此作業會傳回文件清單 `IList<Document>`。
+會傳入 ConvertToTimeStamp 作業 (unixTimeStamp) 的回應。 此作業會傳回文件清單 `IList<Document>`。
 
-我們先前曾談論 CallbackURL。若要在主要邏輯應用程式中啟動工作流程，您必須使用 CallbackURL 呼叫它。
+我們先前曾談論 CallbackURL。 若要在主要邏輯應用程式中啟動工作流程，您必須使用 CallbackURL 呼叫它。
 
-## CallbackURL
-若要開始進行，您將需要 Azure AD 權杖。取得此權杖可能很困難。我曾尋找簡單的方法和 Jeff Hollan，他是 Azure Logic App 的程式管理員，建議在 PowerShell 中使用 [armclient](http://blog.davidebbo.com/2015/01/azure-resource-manager-client.html)。您可以依照所提供的指示進行安裝。
+## <a name="callbackurl"></a>CallbackURL
+若要開始進行，您將需要 Azure AD 權杖。  取得此權杖可能很困難。 我曾尋找簡單的方法和 Jeff Hollan，他是 Azure Logic App 的程式管理員，建議在 PowerShell 中使用 [armclient](http://blog.davidebbo.com/2015/01/azure-resource-manager-client.html) 。  您可以依照所提供的指示進行安裝。
 
 您想要使用的作業為「登入」和「呼叫 ARM API」。
 
-登入：您使用相同的認證登入 Azure 入口網站。
+登入：您使用相同的認證登入 Azure 入口網站。 
 
 「呼叫 ARM API」作業將會產生您的 CallBackURL。
 
-在 PowerShell 中，您會如下呼叫它︰
+在 PowerShell 中，您會如下呼叫它︰    
 
 ```powershell
 
@@ -1085,28 +1091,28 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 您可以使用 [postman](http://www.getpostman.com/) 等工具來測試您的主要邏輯應用程式，如下圖所示。
 
-![Postman](./media/documentdb-change-notification/newpostman.png)
+![postman](./media/documentdb-change-notification/newpostman.png)
 
 下表列出的觸發程序參數會構成 DocDB 觸發程序邏輯應用程式的主體。
 
 | 參數 | 說明 |
 | --- | --- |
-| GetUtcDate\_HoursBack |用來設定搜尋開始日期的時數 |
+| GetUtcDate_HoursBack |用來設定搜尋開始日期的時數 |
 | sendgridUsername |用來設定搜尋開始日期的時數 |
 | sendgridPassword |Send Grid 電子郵件的使用者名稱 |
 | EmailTo |將會收到電子郵件通知的電子郵件地址 |
 | 主旨 |電子郵件的主旨 |
 
-## 在 Azure Blob 服務中檢視病患資料
+## <a name="viewing-the-patient-data-in-the-azure-blob-service"></a>在 Azure Blob 服務中檢視病患資料
 請移至您的 Azure 儲存體帳戶，並選取 [服務] 之下的 Blob，如下圖所示。
 
-![儲存體帳戶](./media/documentdb-change-notification/docdbstorageaccount.png)
+![儲存體帳戶](./media/documentdb-change-notification/docdbstorageaccount.png) 
 
 您將可檢視 Patient Blob 檔案資訊，如下所示。
 
 ![Blob 服務](./media/documentdb-change-notification/blobservice.png)
 
-## 摘要
+## <a name="summary"></a>摘要
 在本逐步解說中，您會了解下列各項：
 
 * 有可能在 DocumentDB 中實作通知。
@@ -1118,9 +1124,14 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 重點在於事先規劃並建立您的工作流程模型。
 
-## 後續步驟
-請下載並使用 [Github](https://github.com/HEDIDIN/DocDbNotifications) 上提供的邏輯應用程式程式碼。竭誠邀請您建置應用程式，並將變更提交至儲存機制。
+## <a name="next-steps"></a>後續步驟
+請下載並使用 [Github](https://github.com/HEDIDIN/DocDbNotifications)上提供的邏輯應用程式程式碼。 竭誠邀請您建置應用程式，並將變更提交至儲存機制。 
 
-若要深入了解 DocumentDB，請瀏覽[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
+若要深入了解 DocumentDB，請瀏覽 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

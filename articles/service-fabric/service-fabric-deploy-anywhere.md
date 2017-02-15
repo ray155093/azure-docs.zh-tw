@@ -12,11 +12,11 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/22/2016
+ms.date: 12/06/2016
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3885733b67933f331f65760474649fba18adce12
+ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
+ms.openlocfilehash: 140bee520dd8de0d9303a7d80e10cae407c8b10d
 
 
 ---
@@ -30,7 +30,7 @@ Azure Service Fabric 可讓您在執行 Windows Server 或 Linux 的任何 VM �
 您可以在執行下列作業系統的 VM 上建立叢集：
 
 * Windows Server 2012 R2
-* Windows Server 2016 (在宣佈正式推出之後)
+* Windows Server 2016 
 * Linux Ubuntu 16.04 (公開預覽中) 
 
 ## <a name="create-service-fabric-standalone-clusters-on-premise-or-with-any-cloud-provider"></a>在內部部署或透過任何雲端提供者建立 Service Fabric 獨立叢集
@@ -53,7 +53,7 @@ Service Fabric 提供安裝套件，讓您在內部部署或任何雲端提供�
 您可以在執行下列作業系統的 VM 或電腦上建立叢集：
 
 * Windows Server 2012 R2
-* Windows Server 2016 (在宣佈正式推出之後)
+* Windows Server 2016 
 * Linux (敬請期待)
 
 ## <a name="advantages-of-service-fabric-clusters-on-azure-over-standalone-service-fabric-clusters-created-on-premises"></a>Azure 上的 Service Fabric 叢集的優點勝於在內部部署建立的獨立 Service Fabric 叢集
@@ -67,13 +67,14 @@ Service Fabric 提供安裝套件，讓您在內部部署或任何雲端提供�
 * **自動調整：** 對於 Azure 上的叢集，我們會提供虛擬機器調整集產生的內建自動調整功能。 在內部部署與其他雲端環境中，您必須建置您自己的自動調整規模功能，或使用 Service Fabric 針對調整叢集規模顯示的 API 來手動調整規模。
 
 ## <a name="next-steps"></a>後續步驟
-在執行 Windows Server 的 VM 或電腦上建立叢集： [建立適用於 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
 
-在執行 Linux 的 VM 或電腦上建立叢集︰ [Linux 上的 Service Fabric](service-fabric-linux-overview.md)
+* 在執行 Windows Server 的 VM 或電腦上建立叢集： [建立適用於 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
+* 在執行 Linux 的 VM 或電腦上建立叢集︰ [Linux 上的 Service Fabric](service-fabric-linux-overview.md)
+* 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

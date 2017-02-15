@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/02/2017
+ms.date: 01/06/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b78199a672528c475f4f299faaf6406089e95d01
+ms.sourcegitcommit: 6862723b774951fe4cca0303ee2a39a0d5f2089d
+ms.openlocfilehash: eec688e33ff55334ebe0c1bc6d08e4753aadb85c
 
 
 ---
@@ -60,7 +60,7 @@ ms.openlocfilehash: b78199a672528c475f4f299faaf6406089e95d01
 
 #### <a name="view-workspace-information-the-azure-portal"></a>在 Azure 入口網站中檢視工作區資訊
 
-1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com) 。
+1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上按一下 [更多服務]，然後在資源清單中輸入 **Log Analytics**。 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 按一下 [Log Analytics]。  
     ![Azure 中樞](./media/log-analytics-manage-access/hub.png)  
 3. 在 [Log Analytics 訂用帳戶] 刀鋒視窗中選取工作區。
@@ -242,6 +242,24 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 6. 重新整理您在 Azure 入口網站中的檢視時，會看到所選取方案的 [定價層] 已更新。  
     ![更新的方案](./media/log-analytics-manage-access/manage-access-change-plan04.png)
 
+## <a name="change-how-long-log-analytics-stores-data"></a>變更 Log Analytics 儲存資料的時間長度
+
+在免費定價層，Log Analytics 會提供過去七天的資料。
+在標準定價層，Log Analytics 會提供過去 30 天的資料。
+在進階定價層，Log Analytics 會提供過去 365 天的資料。
+在獨立和 OMS 定價層，Log Analytics 預設會提供過去 31 天的資料。
+
+當您使用獨立和 OMS 定價層時，您最多可以保留 2 年的資料 (730 天)。 儲存超過預設值 31 天的資料會產生資料保留費用。 如需價格的詳細資訊，請參閱[超額費用](https://azure.microsoft.com/pricing/details/log-analytics/)。
+
+若要變更資料保留的長度：
+
+1. 登入 [Azure 入口網站](http://portal.azure.com)。
+2. 瀏覽 **Log Analytics**，然後加以選取。
+3. 您會看到現有工作區清單。 選取工作區。  
+4. 在 [工作區] 刀鋒視窗的 [一般] 下方，按一下 [保留]。  
+5. 使用滑桿來增加或減少保留天數，然後按一下 [儲存]****
+![變更保留](./media/log-analytics-manage-access/manage-access-change-retention01.png)
+
 ## <a name="change-an-azure-active-directory-organization-for-a-workspace"></a>變更工作區的 Azure Active Directory 組織
 
 您可以變更工作區的 Azure Active Directory 組織。 變更 Azure Active Directory 組織可讓您將該目錄中的使用者和群組新增至工作區。
@@ -275,6 +293,6 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

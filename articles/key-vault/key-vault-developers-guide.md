@@ -1,12 +1,12 @@
 ---
-title: 金鑰保存庫開發人員指南 | Microsoft Docs
-description: '開發人員可以使用 Azure 金鑰保存庫來管理 Microsoft Azure 環境中的密碼編譯金鑰。 '
+title: "金鑰保存庫開發人員指南 | Microsoft Docs"
+description: "開發人員可以使用 Azure 金鑰保存庫來管理 Microsoft Azure 環境中的密碼編譯金鑰。 "
 services: key-vault
-documentationcenter: ''
+documentationcenter: 
 author: BrucePerlerMS
 manager: mbaldwin
 editor: bruceper
-
+ms.assetid: b2b1bd28-e149-4d69-b08b-97f6c50ebe30
 ms.service: key-vault
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/03/2016
 ms.author: bruceper
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3b4664cdfebad63307c0e964527fc5ecf6500348
+
 
 ---
-# <a name="azure-key-vault-developer's-guide"></a>Azure 金鑰保存庫開發人員指南
+# <a name="azure-key-vault-developers-guide"></a>Azure 金鑰保存庫開發人員指南
 透過金鑰保存庫，您可以從應用程式內安全地存取機密資訊，進而達到以下效果︰
 
 * 不需要自行撰寫程式碼即可保護金鑰和密碼，而且也能輕易地從應用程式加以使用。
@@ -102,6 +106,9 @@ ms.author: bruceper
 * [Key Vault Blog (金鑰保存庫部落格)](http://aka.ms/kvblog)
 * [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

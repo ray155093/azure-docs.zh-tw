@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: f59615ce37aa83a99a058775d4e1705e016baf07
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: ceade1ccba2d1328faf548f43f51b4fa3a5343b0
 
 ---
 # <a name="iot-suite-documentation"></a>IoT 套件文件
@@ -77,7 +77,7 @@ ms.openlocfilehash: f59615ce37aa83a99a058775d4e1705e016baf07
                     <div class="cardText">
                         <h3>資源</h3>
                         <p><a href="/azure/iot-suite/iot-security-architecture">安全性架構</a></p>
-                        <p><a href="/azure/iot-suite/iot-security-best-practices">安全性最佳作法</a></p>
+                        <p><a href="/azure/iot-suite/iot-security-best-practices">安全性最佳做法</a></p>
                         <p><a href="/azure/iot-suite/iot-suite-security-deployment">保護您的 IoT 部署</a></p>
                         <p><a href="/azure/iot-suite/securing-iot-ground-up">從頭建立安全性</a></p>
                    </div>
@@ -87,15 +87,7 @@ ms.openlocfilehash: f59615ce37aa83a99a058775d4e1705e016baf07
     </li>
 </ul>
 
----
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/iot-suite.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 IoT Suite 文件 </div>
-    </a>
-</div>
 
 
 

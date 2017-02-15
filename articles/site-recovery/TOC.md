@@ -17,8 +17,9 @@
 ### [網路對應 (VMM)](site-recovery-network-mapping.md)
 ### [內部部署網站之間的儲存體對應](site-recovery-storage-mapping.md)
 ## 複寫
-### [VMWare VM 與伺服器至 Azure](site-recovery-vmware-to-azure.md)
-### [VMware VM與伺服器至次要站台](site-recovery-vmware-to-vmware.md)
+### [Azure 的 VMware VM 和實體伺服器](site-recovery-vmware-to-azure.md)
+### [次要網站的 VMware VM 和實體伺服器](site-recovery-vmware-to-vmware.md)
+### [使用 CSP 計畫進行 Azure 的 VMware VM 搭配多租用戶支援](site-recovery-multi-tenant-support-vmware-using-csp.md)
 ### [Hyper-V VM 至 Azure (具有 VMM)](site-recovery-vmm-to-azure.md)
 ### [Hyper-V VM 至 Azure (沒有 VMM)](site-recovery-hyper-v-site-to-azure.md)
 ### [Hyper-V VM 至次要站台](site-recovery-vmm-to-vmm.md)
@@ -64,6 +65,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=site-recovery)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用 App Service Web Apps 來建置及裝載網站和 Web 應用程式。 教學課程、影片、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 95b54199c307efea21666c774525a9a539472131
-ms.openlocfilehash: d6fc4fe4f47571cbb8114b3de5ed9bc9466123fe
+ms.sourcegitcommit: 74579a5e96c26f130c0c1cc59e8cf4d6975ea89d
+ms.openlocfilehash: e5bb9e8ea35411f159ddf342fe0fda0ba1759fb5
 
 ---
 # <a name="azure-web-apps-documentation"></a>Azure Web Apps 文件
 
-App Service Web Apps 是受到完整管理的計算平台，非常適合用來裝載網站和 Web Apps。 Microsoft Azure 的這項平台即服務 (PaaS) 產品可讓您專注於商務邏輯，而讓 Azure 負責處理用來執行及調整應用程式的基礎結構。
+了解如何使用 App Service Web Apps 來建置及裝載網站和 Web 應用程式。 教學課程、影片、API 參考和其他文件會示範如何在這個完全受管理的計算平台上進行開發。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -65,7 +66,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
         </a>
     </li>
     <li>
-        <a href="/azure/app-service-web/web-sites-dotnet-get-started">
+        <a href="/azure/app-service-web/app-service-web-get-started-dotnet">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -83,7 +84,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
         </a>
     </li> 
      <li>
-        <a href="/azure/app-service-web/web-sites-java-get-started">
+        <a href="/azure/app-service-web/app-service-web-get-started-java">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -101,7 +102,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
         </a>
     </li>
     <li>
-        <a href="/azure/app-service-web/app-service-web-nodejs-get-started">
+        <a href="/azure/app-service-web/app-service-web-get-started-nodejs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -119,7 +120,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
         </a>
     </li>
     <li>
-        <a href="/azure/app-service-web/web-sites-python-ptvs-django-mysql">
+        <a href="/azure/app-service-web/app-service-web-get-started-python">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -138,7 +139,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
     </li>
    
      <li>
-        <a href="/azure/app-service-web/app-service-web-php-get-started">
+        <a href="/azure/app-service-web/app-service-web-get-started-php">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -186,7 +187,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/cli/azure/appservice">Azure CLI 2.0 預覽</a></p>
+                        <p><a href="/cli/azure/appservice">Azure CLI 2.0 Preview</a></p>
                     </div>
                 </div>
             </div>
@@ -219,16 +220,10 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service-web.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Web Apps 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Jan17_HO4-->
 
 

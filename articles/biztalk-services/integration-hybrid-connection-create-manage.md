@@ -154,6 +154,6 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

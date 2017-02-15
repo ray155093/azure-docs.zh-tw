@@ -1,11 +1,11 @@
 ---
-title: Azure 計算選項 - 雲端服務 | Microsoft Docs
-description: 了解 Azure 計算裝載選項以及其運作方式：App Service、雲端服務和虛擬機器
+title: "Azure 計算選項 - 雲端服務 | Microsoft Docs"
+description: "了解 Azure 計算裝載選項以及其運作方式：App Service、雲端服務和虛擬機器"
 services: cloud-services
-documentationcenter: ''
+documentationcenter: 
 author: Thraka
 manager: timlt
-
+ms.assetid: ed7ad348-6018-41bb-a27d-523accd90305
 ms.service: multiple
 ms.workload: multiple
 ms.tgt_pltfrm: na
@@ -13,9 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2016
 ms.author: adegeo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: db55f505d499fdb60f8a9d99509a68a1fd487eae
+
 
 ---
-# <a name="should-i-choose-cloud-services-or-something-else?"></a>我該選擇雲端服務還是其他服務？
+# <a name="should-i-choose-cloud-services-or-something-else"></a>我該選擇雲端服務還是其他服務？
 Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同的裝載模型。 每個模型都提供不同的服務集，因此請根據您要執行的工作選擇服務集。
 
 [!INCLUDE [compute-table](../../includes/compute-options-table.md)]
@@ -38,7 +42,7 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 * **背景工作角色**  
   執行不含 IIS 的 Windows Server。
 
-例如，簡單的應用程式可以只使用 Web 角色，而較複雜的應用程式可以使用 Web 角色處理使用者的連入要求，然後將這些要求產生的工作傳送給背景工作角色進行處理。 (此通訊會使用[服務匯流排](../service-bus/service-bus-fundamentals-hybrid-solutions.md)或 [Azure 佇列](../storage/storage-introduction.md))。
+例如，簡單的應用程式可以只使用 Web 角色，而較複雜的應用程式可以使用 Web 角色處理使用者的連入要求，然後將這些要求產生的工作傳送給背景工作角色進行處理。 (此通訊會使用[服務匯流排](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)或 [Azure 佇列](../storage/storage-introduction.md))。
 
 如上圖所示，單一應用程式中的所有 VM 都會在同一個雲端服務中執行。 因此，使用者可以透過單一公用 IP 位址存取應用程式，並且可在應用程式的 VM 之間自動進行要求的負載平衡。 該平台會在雲端服務應用程式中 [調整和部署](cloud-services-how-to-scale.md) 所有VM，藉此避免發生單一硬體失敗點。
 
@@ -60,6 +64,9 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 [在 PHP 中建立雲端服務應用程式](../cloud-services-php-create-web-role.md)  
 [在 Python 中建立雲端服務應用程式](cloud-services-python-ptvs.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

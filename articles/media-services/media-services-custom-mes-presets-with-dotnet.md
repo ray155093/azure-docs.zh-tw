@@ -1,12 +1,12 @@
 ---
-title: 使用 Media Encoder Standard 進行進階編碼 | Microsoft Docs
-description: 本主題說明如何透過自訂 Media Encoder Standard 工作預設值執行進階編碼。 本主題說明如何使用媒體服務 .NET SDK 建立編碼工作與作業。 本主題也會說明如何提供自訂預設值給編碼作業。
+title: "使用媒體編碼器標準進行進階編碼 | Microsoft Docs"
+description: "本主題說明如何透過自訂 Media Encoder Standard 工作預設值執行進階編碼。 本主題說明如何使用媒體服務 .NET SDK 建立編碼工作與作業。 本主題也會說明如何提供自訂預設值給編碼作業。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: ec95392f-d34a-4c22-a6df-5274eaac445b
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e85bc8a1e9193474fa3c9ef3f19ead25f314ecac
+
 
 ---
 # <a name="advanced-encoding-with-media-encoder-standard"></a>使用 Media Encoder Standard 進行進階編碼
@@ -29,7 +33,7 @@ ms.author: juliako
 * [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
 * [純音訊預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
 
-## <a name="<a-id="encoding_with_dotnet"></a>encoding-with-media-services-.net-sdk"></a><a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
+## <a name="a-idencodingwithdotnetaencoding-with-media-services-net-sdk"></a><a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 下列程式碼範例使用媒體服務 .NET SDK 執行下列工作：
 
 * 建立編碼工作。
@@ -230,7 +234,7 @@ ms.author: juliako
         }
 
 
-## <a name="<a-id="thumbnails"></a>generate-thumbnails"></a><a id="thumbnails"></a>產生縮圖
+## <a name="a-idthumbnailsagenerate-thumbnails"></a><a id="thumbnails"></a>產生縮圖
 本節說明如何自訂產生縮圖的預設值。 下面定義的預設值包含有關如何將檔案編碼的資訊，以及產生縮圖時所需的資訊。 您可以使用 [這裡](https://msdn.microsoft.com/library/mt269960.aspx) 記載的任何 MES 預設值，並加入可產生縮圖的程式碼。  
 
 > [!NOTE]
@@ -242,7 +246,7 @@ ms.author: juliako
 
 請務必閱讀 [考量](media-services-custom-mes-presets-with-dotnet.md#considerations) 一節。
 
-### <a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON 預設值
+### <a name="a-idjsonajson-preset"></a><a id="json"></a>JSON 預設值
     {
       "Version": 1.0,
       "Codecs": [
@@ -342,7 +346,7 @@ ms.author: juliako
     }
 
 
-### <a name="<a-id="xml"></a>xml-preset"></a><a id="xml"></a>XML 預設值
+### <a name="a-idxmlaxml-preset"></a><a id="xml"></a>XML 預設值
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
       <Encoding>
@@ -427,16 +431,16 @@ ms.author: juliako
     
     您可以隨意混合使用標記法。
     
-    此外，Start 也支援特殊的巨集 (即 {Best})，它會嘗試判斷第一個「有趣」的內容畫面。附註：(Start 設為 {Best} 時，會忽略 Step 與 Range)
+    此外， Start 也支援特殊的巨集 (即 {Best})，它會嘗試判斷第一個「 有趣 」的內容畫面。附註：(Start 設為 {Best} 時，會忽略 Step 與 Range)
   * 預設值：Start:{Best}
 * 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。 顯示時，AMS 會讓 JpgVideo 與 JpgFormat 相符，依此類推。 OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
 
-## <a name="<a-id="trim_video"></a>trim-a-video-(clipping)"></a><a id="trim_video"></a>修剪視訊 (裁剪)
+## <a name="a-idtrimvideoatrim-a-video-clipping"></a><a id="trim_video"></a>修剪視訊 (裁剪)
 本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。 編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 – [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
 
 若要修剪您的影片，您可以使用 [這裡](https://msdn.microsoft.com/library/mt269960.aspx) 記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。 StartTime 值必須符合輸入視訊的絕對時間戳記。 例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。 在下列範例中，我們假設輸入視訊的開始時間戳記為零。 請注意， **Sources** 應位於結構描述頂端。 
 
-### <a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON 預設值
+### <a name="a-idjsonajson-preset"></a><a id="json"></a>JSON 預設值
     {
       "Version": 1.0,
       "Sources": [
@@ -673,7 +677,7 @@ ms.author: juliako
       </Outputs>
     </Preset>
 
-## <a name="<a-id="overlay"></a>create-an-overlay"></a><a id="overlay"></a>建立疊加層
+## <a name="a-idoverlayacreate-an-overlay"></a><a id="overlay"></a>建立疊加層
 Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援下列格式：png、jpg、gif 及 bmp。 下面定義的預設值為視訊疊加層的基本範例。
 
 除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。 視訊檔案必須是「主要」  檔案。 
@@ -827,7 +831,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
       </Outputs>
     </Preset>
 
-## <a name="<a-id="silent_audio"></a>insert-a-silent-audio-track-when-input-has-no-audio"></a><a id="silent_audio"></a>在輸入不含音訊時插入靜音曲目
+## <a name="a-idsilentaudioainsert-a-silent-audio-track-when-input-has-no-audio"></a><a id="silent_audio"></a>在輸入不含音訊時插入靜音曲目
 依照預設，如果您傳送僅包含視訊不含音訊的輸入到編碼器，輸出資產將包含僅含視訊資料的檔案。 某些播放器可能無法處理此類型輸出資料流。 您可以在該案例中使用此設定來強制編碼器將靜音曲目新增至輸出。
 
 若要強制編碼器在輸入不含音訊時產生包含靜音曲目的資產，請指定 "InsertSilenceIfNoAudio" 值。
@@ -850,7 +854,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
       <Bitrate>96</Bitrate>
     </AACAudio>
 
-## <a name="<a-id="deinterlacing"></a>disable-auto-de-interlacing"></a><a id="deinterlacing"></a>停用自動去交錯
+## <a name="a-iddeinterlacingadisable-auto-de-interlacing"></a><a id="deinterlacing"></a>停用自動去交錯
 如果客戶想要將交錯內容自動去交錯，就不需要採取任何動作。 當自動去交錯開啟 (預設) 時，MES 會自動偵測交錯式畫面，並且只會將標示為交錯式的畫面去交錯。
 
 您可以關閉自動去交錯。 但不建議您這樣做。
@@ -878,7 +882,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
     </Sources>
 
 
-## <a name="<a-id="audio_only"></a>audio-only-presets"></a><a id="audio_only"></a>純音訊預設值
+## <a name="a-idaudioonlyaaudio-only-presets"></a><a id="audio_only"></a>純音訊預設值
 本節示範兩個純音訊的 MES 預設值︰AAC 音訊和 AAC 好品質音訊。
 
 ### <a name="aac-audio"></a>AAC 音訊
@@ -934,6 +938,9 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
 ## <a name="see-also"></a>另請參閱
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

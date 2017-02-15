@@ -1,13 +1,13 @@
 ---
-title: 使用 Windows VM 擴充功能編寫範本 | Microsoft Docs
-description: 了解如何使用 Windows VM 擴充功能編寫 Azure Resource Manager 範本
+title: "使用 Windows VM 擴充功能編寫範本 | Microsoft Docs"
+description: "了解如何使用 Windows VM 擴充功能編寫 Azure Resource Manager 範本"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: kundanap
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 418dd1f7-ded8-45ab-9a5a-a59d245e2555
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: article
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: cc2e3c234ef9219d1b836771dbbc456d73a13ac8
+
 
 ---
-# 使用 Windows VM 擴充功能編寫 Azure Resource Manager 範本
+# <a name="authoring-azure-resource-manager-templates-with-windows-vm-extensions"></a>使用 Windows VM 擴充功能編寫 Azure Resource Manager 範本
 [!INCLUDE [virtual-machines-common-extensions-authoring-templates](../../includes/virtual-machines-common-extensions-authoring-templates.md)]
 
 從 Azure PowerShell，執行下列 Azure PowerShell Cmdlet：
@@ -38,10 +42,10 @@ ms.author: kundanap
 > 
 > 
 
-## 識別擴充功能組態參數的結構描述
-編寫擴充功能範本的下一個步驟是識別用於提供組態參數的格式。每個延伸模組都支援自己的參數集。
+## <a name="identifying-the-schema-for-the-extension-configuration-parameters"></a>識別擴充功能組態參數的結構描述
+編寫擴充功能範本的下一個步驟是識別用於提供組態參數的格式。 每個延伸模組都支援自己的參數集。
 
-若要查看 Windows 擴充功能的範例組態，請按一下 [Windows 擴充功能範例](virtual-machines-windows-extensions-configuration-samples.md)。
+若要查看 Windows 擴充功能的範例組態，請按一下 [Windows 擴充功能範例](virtual-machines-windows-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 請參閱下列項目以取得 VM 擴充功能的完整範本。
 
@@ -49,4 +53,9 @@ ms.author: kundanap
 
 編寫範本之後，您可以使用 Azure PowerShell 部署它。
 
-<!---HONumber=AcomDC_0601_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

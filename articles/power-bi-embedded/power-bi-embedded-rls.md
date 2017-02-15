@@ -1,13 +1,13 @@
 ---
-title: 資料列層級安全性與 Power BI Embedded
-description: 資料列層級安全性與 Power BI Embedded 的詳細資料
+title: "資料列層級安全性與 Power BI Embedded"
+description: "資料列層級安全性與 Power BI Embedded 的詳細資料"
 services: power-bi-embedded
-documentationcenter: ''
+documentationcenter: 
 author: guyinacube
 manager: erikre
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 7936ade5-2c75-435b-8314-ea7ca815867a
 ms.service: power-bi-embedded
 ms.devlang: NA
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 10/04/2016
 ms.author: asaxton
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a98185bf44af2271f5ded04c05d3134321db536a
+
 
 ---
 # <a name="row-level-security-with-power-bi-embedded"></a>Power BI Embedded 的資料列層級安全性
 資料列層級安全性 (RLS) 可以用來限制使用者對於報告或資料集內特定資料的存取，讓多個不同使用者在查看不同資料的同時，能夠使用相同的報告。 Power BI Embedded 現在支援使用 RLS 設定資料集。
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-flow-1.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-flow-1.png)
 
 為了利用 RLS，了解三個主要概念很重要：使用者、角色和規則。 讓我們仔細看看每個概念：
 
@@ -33,13 +37,13 @@ ms.author: asaxton
 ### <a name="example"></a>範例
 對於這篇文章的其餘部分，我們將提供撰寫 RLS，然後在內嵌應用程式中使用的範例。 我們的範例會使用 [零售分析範例](http://go.microsoft.com/fwlink/?LinkID=780547) PBIX 檔案。
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-scenario-2.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-scenario-2.png)
 
 我們的零售分析範例會顯示特定零售鏈中所有商店的銷售額。 沒有 RLS，不論哪一個區域的經理登入及檢視報告，都會看到相同的資料。 資深管理階層決定每個區域經理只能看到他們所管理的商店的銷售額，為了達成這個目的，我們可以使用 RLS。
 
 RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們可以切換至圖表檢視來查看結構描述︰
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-diagram-view-3.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-diagram-view-3.png)
 
 以下是一些對於此結構描述要注意的事項：
 
@@ -48,34 +52,34 @@ RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們
 * 關聯線的箭號表示篩選條件可以從一個資料表流向另一個資料表的方向。 例如，如果篩選條件置於目前結構描述中的**時間[日期]**，它只會往下篩選**銷售**資料表中的值。 其他資料表都不會受到此篩選條件的影響，因為關聯線的所有箭號都指向銷售資料表，不會指向其他方向。
 * **區域** 資料表表示誰是每個區域的經理︰
   
-  ![](media\\power-bi-embedded-rls\\pbi-embedded-rls-district-table-4.png)
+  ![](media/power-bi-embedded-rls/pbi-embedded-rls-district-table-4.png)
 
 根據此結構描述，如果我們將篩選條件套用至區域資料表中的 [區域經理] 資料行，且如果該篩選條件符合檢視報告的使用者，則該篩選條件也會往下篩選**商店**和**銷售**資料表，只顯示該特定區域經理的資料。
 
 方式如下：
 
 1. 在 [模型] 索引標籤中，按一下 [管理角色] 。  
-   ![](media\\power-bi-embedded-rls\\pbi-embedded-rls-modeling-tab-5.png)
+   ![](media/power-bi-embedded-rls/pbi-embedded-rls-modeling-tab-5.png)
 2. 建立新的角色，稱為 [經理] 。  
-   ![](media\\power-bi-embedded-rls\\pbi-embedded-rls-manager-role-6.png)
+   ![](media/power-bi-embedded-rls/pbi-embedded-rls-manager-role-6.png)
 3. 在 [區域] 資料表中輸入下列 DAX 運算式︰**[District Manager] = USERNAME()**  
-   ![](media\\power-bi-embedded-rls\\pbi-embedded-rls-manager-role-7.png)
+   ![](media/power-bi-embedded-rls/pbi-embedded-rls-manager-role-7.png)
 4. 若要確保規則都能運作，在 [模型] 索引標籤上，按一下 [以角色身分檢視]，然後輸入下列項目︰  
-   ![](media\\power-bi-embedded-rls\\pbi-embedded-rls-view-as-roles-8.png)
+   ![](media/power-bi-embedded-rls/pbi-embedded-rls-view-as-roles-8.png)
    
    報告隨即會顯示資料，如同您已登入為 **Andrew Ma**。
 
 像我們在這裡所做的一樣套用篩選條件，將會往下篩選**區域**、**商店**和**銷售**資料表中的所有記錄。 不過，由於**銷售**和**時間**之間的關聯的篩選方向，**銷售**和**項目**與**項目**和**時間**資料表將不會向下篩選。
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-diagram-view-9.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-diagram-view-9.png)
 
 對於此需求可能沒問題，但是，如果我們不想要讓經理查看他們沒有任何銷售的項目，我們可以針對關聯性開啟雙向交叉篩選，讓安全性篩選條件同時流向兩個方向。 這可以藉由編輯**銷售**和**項目**之間的關聯性來完成，如下所示：
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-edit-relationship-10.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-edit-relationship-10.png)
 
 現在，篩選條件可以從銷售資料表流向 **項目** 資料表：
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-diagram-view-11.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-diagram-view-11.png)
 
 **注意** 如果您針對資料使用 DirectQuery 模式，您必須啟用雙向交叉篩選，方法是選取這兩個選項︰
 
@@ -93,15 +97,18 @@ RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們
 
 完整的應用程式權杖看起來如下：
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-app-token-string-12.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-app-token-string-12.png)
 
 現在，所有項目都聚合在一起，當有人登入我們的應用程式以檢視此報告，他們將只能夠看到他們獲得允許可以看到的資料，如同我們的資料列層級安全性所定義。
 
-![](media\\power-bi-embedded-rls\\pbi-embedded-rls-dashboard-13.png)
+![](media/power-bi-embedded-rls/pbi-embedded-rls-dashboard-13.png)
 
 ## <a name="see-also"></a>另請參閱
 [資料列層級安全性 (RLS) 與 Power](https://powerbi.microsoft.com/en-us/documentation/powerbi-admin-rls/)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

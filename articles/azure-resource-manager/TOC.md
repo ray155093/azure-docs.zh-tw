@@ -28,6 +28,7 @@
 ### [入口網站](resource-group-template-deploy-portal.md)
 ### [REST API](resource-group-template-deploy-rest.md)
 ### [開發與測試環境](solution-dev-test-environments.md)
+### [持續與 Visual Studio Team Services 整合](../vs-azure-tools-resource-groups-ci-in-vsts.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## 管理
 ### [PowerShell](powershell-azure-resource-manager.md)
 ### [Azure CLI](xplat-cli-azure-resource-manager.md)
@@ -41,7 +42,7 @@
 ### [使用 PowerShell 建立服務主體](resource-group-authenticate-service-principal.md)
 ### [使用 Azure CLI 建立服務主體](resource-group-authenticate-service-principal-cli.md)
 ### [使用入口網站建立服務主體](resource-group-create-service-principal-portal.md)
-### [訂用帳戶的應用程式存取](resource-manager-api-authentication.md)
+### [驗證 API 以存取訂閱帳戶](resource-manager-api-authentication.md)
 ### [設定管理原則](resource-manager-policy.md)
 ### [鎖定資源](resource-group-lock-resources.md)
 ### [安全性考量](best-practices-resource-manager-security.md)
@@ -69,6 +70,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

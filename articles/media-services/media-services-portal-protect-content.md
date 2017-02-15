@@ -1,19 +1,23 @@
 ---
-title: 使用 Azure 入口網站設定內容保護原則 | Microsoft Docs
-description: 本文章示範如何使用 Azure 入口網站設定內容保護原則。 文章也會說明如何啟用資產的動態加密。
+title: "使用 Azure 入口網站設定內容保護原則 | Microsoft Docs"
+description: "本文章示範如何使用 Azure 入口網站設定內容保護原則。 文章也會說明如何啟用資產的動態加密。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 270b3272-7411-40a9-ad42-5acdbba31154
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/12/2016
+ms.date: 10/24/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0f9b0cf4e88a1ab27546063ae89cde8de7761609
+
 
 ---
 # <a name="configuring-content-protection-policies-using-the-azure-portal"></a>使用 Azure 入口網站設定內容保護原則
@@ -30,7 +34,7 @@ AMS 提供一種服務，將 DRM 授權和 AES 純文字金鑰傳遞給授權用
 本文章示範如何使用 Azure 入口網站設定內容保護原則。 文章也會說明如何將動態加密套用到資產。
 
 > [!NOTE]
-> 如果您是使用 Azure 傳統入口網站建立保護原則，原則可能不會出現在 [Azure 入口網站](https://portal.azure.com/)。 不過，所有舊的原則仍然存在。 您可以使用 Azure 媒體服務 .NET SDK 或 [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer/releases) 工具來檢查這些原則 (若要參閱原則，請以滑鼠右鍵按一下 [資產] -> [顯示資訊](F4.md) -> 按一下 [內容金鑰] 索引標籤 -> 按一下金鑰)。 
+> 如果您是使用 Azure 傳統入口網站建立保護原則，原則可能不會出現在 [Azure 入口網站](https://portal.azure.com/)。 不過，所有舊的原則仍然存在。 您可以使用 Azure 媒體服務 .NET SDK 或 [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer/releases) 工具來檢查這些原則 (若要參閱原則，請以滑鼠右鍵按一下 [資產] -> [顯示資訊] (F4) -> 按一下 [內容金鑰] 索引標籤 -> 按一下金鑰)。 
 > 
 > 如果您想要使用新的原則加密資產，請使用 Azure 入口網站設定它們、按一下 [儲存]，然後重新套用動態加密。 
 > 
@@ -39,12 +43,12 @@ AMS 提供一種服務，將 DRM 授權和 AES 純文字金鑰傳遞給授權用
 ## <a name="start-configuring-content-protection"></a>開始設定內容保護
 若要使用入口網站開始設定內容保護，對 AMS 帳戶設為全域，執行下列動作：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 Azure 媒體服務帳戶。
 2. 選取 [設定] > [內容保護]。
 
 ![保護內容](./media/media-services-portal-content-protection/media-services-content-protection001.png)
 
-## <a name="key/license-authorization-policy"></a>金鑰/授權的授權原則
+## <a name="keylicense-authorization-policy"></a>金鑰/授權的授權原則
 AMS 支援多種方式來驗證提出金鑰或授權要求的使用者。 內容金鑰授權原則必須由您設定，而且您的用戶端必須符合條件，才能將金鑰/授權傳遞給用戶端。 內容金鑰授權原則可能會有一個或多個授權限制：**open** 或 **token** 限制。
 
 Azure 入口網站可讓您針對所有加密類型建立一個 **金鑰/授權的授權原則** 。
@@ -130,6 +134,9 @@ AES 清除金鑰加密將會在所有串流通訊協定上啟用︰Smooth Stream
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

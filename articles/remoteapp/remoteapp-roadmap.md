@@ -1,23 +1,27 @@
 ---
-title: Azure RemoteApp 中的新內容 | Microsoft Docs
-description: 了解何時將提供 Azure RemoteApp 的新功能
+title: "Azure RemoteApp 中的新內容 | Microsoft Docs"
+description: "了解何時將提供 Azure RemoteApp 的新功能"
 services: remoteapp
-documentationcenter: ''
-author: lizap
+documentationcenter: 
+author: msmbaldwin
 manager: mbaldwin
-
+ms.assetid: b4aedf83-dd93-4573-b432-abbbabaee07a
 ms.service: remoteapp
 ms.workload: compute
 ms.tgt_pltfrm: NA
 ms.devlang: NA
 ms.topic: article
-ms.date: 09/19/2016
-ms.author: elizapo
+ms.date: 01/07/2017
+ms.author: mbaldwin
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 4bfc5ac853833b8e51e7e3a556ed6208f22884d3
+
 
 ---
-# Azure RemoteApp 中的新內容
+# <a name="whats-coming-in-azure-remoteapp"></a>Azure RemoteApp 中的新內容
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -49,4 +53,9 @@ ms.author: elizapo
 * 使用 CSV 檔案佈建大量使用者
 * 澳大利亞資料中心的可用性
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

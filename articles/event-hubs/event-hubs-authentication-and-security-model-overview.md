@@ -1,12 +1,12 @@
 ---
-title: 事件中樞驗證和安全性模型概觀 | Microsoft Docs
-description: 事件中樞驗證和安全性模型概觀。
+title: "事件中樞驗證和安全性模型概觀 | Microsoft Docs"
+description: "事件中樞驗證和安全性模型概觀。"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 93841e30-0c5c-4719-9dc1-57a4814342e7
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/16/2016
 ms.author: sethm;clemensv
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9447b863b62fc71d2619591f78be0494711dc6a3
+
 
 ---
 # <a name="event-hubs-authentication-and-security-model-overview"></a>事件中樞驗證和安全性模型概觀
@@ -24,7 +28,7 @@ ms.author: sethm;clemensv
 * 可封鎖惡意裝置，避免該裝置將資料傳送到事件中樞。
 
 ## <a name="device-authentication"></a>裝置驗證
-事件中樞安全性模型是以 [共用存取簽章 (SAS)](../service-bus/service-bus-shared-access-signature-authentication.md) 權杖和「事件發行者」的組合為基礎。 事件發佈者能定義事件中樞的虛擬端點。 發佈者只能用來將訊息傳送到事件中樞。 您無法接收來自發佈者的訊息。
+事件中樞安全性模型是以 [共用存取簽章 (SAS)](../service-bus-messaging/service-bus-shared-access-signature-authentication.md) 權杖和「事件發行者」的組合為基礎。 事件發佈者能定義事件中樞的虛擬端點。 發佈者只能用來將訊息傳送到事件中樞。 您無法接收來自發佈者的訊息。
 
 一般而言，事件中樞會針對每個裝置採用一個發佈者。 系統會將所有傳送到事件中樞之任何發佈行者的訊息排入該事件中樞內的佇列。 發行者會啟用更細緻的存取控制和節流。
 
@@ -39,7 +43,7 @@ ms.author: sethm;clemensv
 
 以下範例會在建立事件中樞時建立僅限傳送的金鑰：
 
-```
+```csharp
 // Create namespace manager.
 string serviceNamespace = "YOUR_NAMESPACE";
 string namespaceManageKeyName = "RootManageSharedAccessKey";
@@ -60,7 +64,7 @@ nm.CreateEventHub(ed);
 ### <a name="generate-tokens"></a>產生權杖
 您可以使用 SAS 金鑰來產生權杖。 您只能為每個裝置產生一個權杖。 您可以使用下列方法來產生權杖。 所有權杖都是以 **EventHubSendKey** 金鑰產生。 每個權杖均有一個指派的唯一 URI。
 
-```
+```csharp
 public static string SharedAccessSignatureTokenProvider.GetSharedAccessSignature(string keyName, string sharedAccessKey, string resource, TimeSpan tokenTimeToLive)
 ```
 
@@ -68,13 +72,13 @@ public static string SharedAccessSignatureTokenProvider.GetSharedAccessSignature
 
 這個方法會產生具有下列結構的權杖：
 
-```
+```csharp
 SharedAccessSignature sr={URI}&sig={HMAC_SHA256_SIGNATURE}&se={EXPIRATION_TIME}&skn={KEY_NAME}
 ```
 
 以秒數為單位指定的權杖到期 (從 1970 年 1 月 1 日 開始)。 以下是權杖的範例：
 
-```
+```csharp
 SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFmBHG77A%3d&se=1403130337&skn=RootManageSharedAccessKey
 ```
 
@@ -109,6 +113,6 @@ SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFm
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

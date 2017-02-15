@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 9f97aee1d257c97d6ff4f1b6bf941599eade2376
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: ce08e9dcd0585e00bdd42b8aa34ac2c597a53a6e
 
 
 ---
 # <a name="common-network-azure-powershell-commands-for-vms"></a>VM 的常用網路 Azure PowerShell 命令
 如果您想要建立虛擬機器，您需要建立 [虛擬網路](../virtual-network/virtual-networks-overview.md) 或了解可以加入 VM 的現有虛擬網路。 一般而言，當您建立 VM 時，您也需要考慮建立本文中所述的資源。
 
-如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="create-network-resources"></a>建立網路資源
 | Task | 命令 |
@@ -70,6 +70,6 @@ ms.openlocfilehash: 9f97aee1d257c97d6ff4f1b6bf941599eade2376
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

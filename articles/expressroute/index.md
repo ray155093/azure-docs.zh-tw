@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何設定和管理從內部部署基礎結構或共置設備到 Microsoft 雲端服務的私人 ExpressRoute 連線。"
 translationtype: Human Translation
-ms.sourcegitcommit: e8ae00040354ca800d893bc3d73ec96fc9356b39
-ms.openlocfilehash: f27eeb74d07064c616e1a77200b56a7aee154f48
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: ecb42e7a0abc5a0438bff39bddddac25d005eb77
 
 ---
 #<a name="expressroute-documentation"></a>ExpressRoute 文件
@@ -98,13 +98,7 @@ ms.openlocfilehash: f27eeb74d07064c616e1a77200b56a7aee154f48
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/expressroute.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 ExpressRoute 文件 </div>
-    </a>
-</div>
+
 
 
 

@@ -1,13 +1,13 @@
 ---
-title: 在 HDInsight 上使用 Apache Hive 分析 Twitter 資料 | Microsoft Docs
-description: 了解如何使用 Python 來儲存包含特定關鍵字的推文，然後在 HDInsight 上使用 Hive 和 Hadoop 將未經處理的 TWitter 資料轉換成可搜尋的 Hive 資料表。
+title: "使用 HDInsight 上的 Apache Hive 分析 Twitter 資料 | Microsoft Docs"
+description: "了解如何使用 Python 來儲存包含特定關鍵字的推文，然後在 HDInsight 上使用 Hive 和 Hadoop 將未經處理的 TWitter 資料轉換成可搜尋的 Hive 資料表。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: e1e249ed-5f57-40d6-b3bc-a1b4d9a871d3
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 660524509b523ae2edb72cb8c80d75437730c119
+
 
 ---
 # <a name="analyze-twitter-data-using-hive-in-hdinsight"></a>在 HDInsight 中使用 Hive 分析 Twitter 資料
@@ -61,7 +65,7 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
 > 
 
 ### <a name="download-tweets"></a>下載的推文
-下列 Python 程式碼會從 Twitter 下載 10,000 則推文，並儲存到名為 __tweets.txt__的檔案。
+下列 Python 程式碼會從 Twitter 下載 10,000 則推文，並儲存到名為 **tweets.txt**的檔案。
 
 > [!NOTE]
 > 由於已安裝 Python，下列步驟會在 HDInsight 叢集上執行。
@@ -94,7 +98,7 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
    > Tweepy 3.2.0 版是用來避免處理推文時可能發生的 [錯誤](https://github.com/tweepy/tweepy/issues/576) (英文)。
    > 
    > 
-4. 使用以下命令建立名為 __gettweets.py__的新檔案：
+4. 使用以下命令建立名為 **gettweets.py**的新檔案：
    
         nano gettweets.py
 5. 使用以下命令做為 **gettweets.py** 檔案的內容。 使用您的 Twitter 應用程式資訊，取代 **consumer\_secret**、**consumer\_key**、**access/\_token** 和 **access\_token\_secret** 的預留位置資訊。
@@ -231,7 +235,7 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
             concat(substr (get_json_object(json_response, '$.created_at'),1,10),' ',
             substr (get_json_object(json_response, '$.created_at'),27,4)),
             substr (get_json_object(json_response, '$.created_at'),27,4),
-            case substr (get_json_object(json_response, '$.created_at'),5,3)
+            case substr (get_json_object(json_response,    '$.created_at'),5,3)
                 when "Jan" then "01"
                 when "Feb" then "02"
                 when "Mar" then "03"
@@ -312,6 +316,6 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

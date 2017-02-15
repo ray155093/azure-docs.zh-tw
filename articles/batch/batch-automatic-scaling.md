@@ -3,7 +3,7 @@ title: "自動調整 Azure Batch 集區中的計算節點 | Microsoft Docs"
 description: "在雲端集區上啟用自動調整，以動態調整集區中的計算節點數目。"
 services: batch
 documentationcenter: 
-author: mmacy
+author: tamram
 manager: timlt
 editor: tysonn
 ms.assetid: c624cdfc-c5f2-4d13-a7d7-ae080833b779
@@ -13,10 +13,10 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: multiple
 ms.date: 10/14/2016
-ms.author: marsma
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d2c142291b48210014597b9c0efbe1e0f2886fdf
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: 75cb029e61006636de91e945404e38fd6d955697
 
 
 ---
@@ -138,8 +138,8 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 | doubleVec 運算子  doubleVec |+、-、*、/ |doubleVec |
 | timeinterval 運算子  double |*、/ |timeinterval |
 | timeinterval 運算子  timeinterval |+、- |timeinterval |
-| timeinterval 運算子  timestamp |+ | timestamp |
-| timestamp 運算子  timeinterval |+ | timestamp |
+| timeinterval 運算子  timestamp |+ |timestamp |
+| timestamp 運算子  timeinterval |+ |timestamp |
 | timestamp  timestamp |- |timeinterval |
 | double |-、! |double |
 | timeinterval |- |timeinterval |
@@ -173,7 +173,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 | std(doubleVecList) |double |傳回 doubleVecList 中值的標準差範例。 |
 | stop() | |停止評估自動調整運算式。 |
 | sum(doubleVecList) |double |傳回 doubleVecList 所有元件的總和。 |
-| time(string dateTime="") | timestamp |如果未傳遞參數，則傳回目前時間的時間戳記，如果有傳遞參數，則為 dateTime 字串的時間戳記。 支援的 dateTime 格式為 W3C-DTF 和 RFC 1123。 |
+| time(string dateTime="") |timestamp |如果未傳遞參數，則傳回目前時間的時間戳記，如果有傳遞參數，則為 dateTime 字串的時間戳記。 支援的 dateTime 格式為 W3C-DTF 和 RFC 1123。 |
 | val(doubleVec v, double i) |double |傳回向量 v 中位置 i 的元素值，起始索引為零。 |
 
 上表中所述的某些函式可以接受清單做為引數。 逗號分隔清單是 *double* 和 *doubleVec* 的任意組合。 例如：
@@ -355,7 +355,7 @@ pool.Commit();
 除了 Batch REST API 和 .NET SDK，您可以使用任何其他 [Batch SDK](batch-technical-overview.md#batch-development-apis)、[Batch PowerShell Cmdlet](batch-powershell-cmdlets-get-started.md) 和 [Batch CLI](batch-cli-get-started.md) 來搭配自動調整運作。
 
 > [!IMPORTANT]
-> 當您建立已啟用自動調整的集區時，您**不得** 指定 `targetDedicated` 參數。 而且，如果您想要對已啟用自動調整的集區手動調整大小 (例如使用 [BatchClient.PoolOperations.ResizePool][net_poolops_resizepool])，則必須先在集區**停用**自動調整，然後調整其大小。
+> 當您建立已啟用自動調整的集區時，您**不得** 指定 `targetDedicated` 參數。 此外，如果您想要對已啟用自動調整的集區手動調整大小 (例如使用 [BatchClient.PoolOperations.ResizePool][net_poolops_resizepool])，則必須先在集區**停用**自動調整，然後調整其大小。
 > 
 > 
 
@@ -376,7 +376,7 @@ pool.Commit();
 如果您已經使用 targetDedicated  參數建立具有指定計算節點數目的集區，您仍可以在現有集區啟用自動調整。 每個 Batch SDK 都會提供「啟用自動調整」作業，例如︰
 
 * [BatchClient.PoolOperations.EnableAutoScale][net_enableautoscale] (Batch .NET)
-* [Enable automatic scaling on a pool][rest_enableautoscale] (REST API)
+* [在自動調整中啟用集區][rest_enableautoscale] (REST API)
 
 當您在現有集區啟用自動調整時，適用下列各項：
 
@@ -646,6 +646,6 @@ string formula = string.Format(@"
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,19 +1,23 @@
 ---
-title: Azure SQL 資料倉儲服務的所有主題 | Microsoft Docs
-description: http://azure.microsoft.com/documentation/articles/ 上名為「SQL 資料倉儲」的 Azure 服務的所有主題表格 (標題與說明)。
+title: "Azure SQL 資料倉儲服務的所有主題 | Microsoft Docs"
+description: "http://azure.microsoft.com/documentation/articles/ 上名為「SQL 資料倉儲」的 Azure 服務的所有主題表格 (標題與說明)。"
 services: sql-data-warehouse
-documentationcenter: ''
+documentationcenter: 
 author: barbkess
 manager: jhubbard
-editor: MightyPen
-
+editor: 
+ms.assetid: a26a6dec-9c08-4415-8f58-4ee1dd41f718
 ms.service: sql-data-warehouse
 ms.workload: sql-data-warehouse
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ab5b0c283d1bd3fd1b734082d5ccffa4125f6de4
+
 
 ---
 # <a name="all-topics-for-azure-sql-data-warehouse-service"></a>Azure SQL 資料倉儲服務的所有主題
@@ -22,9 +26,9 @@ ms.author: barbkess
 ## <a name="new"></a>新增
 | &nbsp; | 課程名稱 | 說明 |
 | ---:|:--- |:--- |
-| 1 |[SQL 資料倉儲備份](sql-data-warehouse-backup.md) |了解 SQL 資料倉儲內建資料庫備份，它可以讓您將 Azure SQL 資料倉儲還原到還原點或不同的地理區域。 |
+| 1 |[SQL 資料倉儲備份](sql-data-warehouse-backups.md) |了解 SQL 資料倉儲內建資料庫備份，它可以讓您將 Azure SQL 資料倉儲還原到還原點或不同的地理區域。 |
 
-## <a name="updated-articles,-sql-data-warehouse"></a>更新的文章, SQL 資料倉儲
+## <a name="updated-articles-sql-data-warehouse"></a>更新的文章, SQL 資料倉儲
 本節列出具有重大更新內容的最近更新文章。 針對每篇更新的文章，會顯示一段新增的 Markdown 文字概略程式碼片段。 文章的更新日期範圍是在 **2016-08-22** 到 **2016-10-05**。
 
 | &nbsp; | 文章 | 更新的文字、程式碼片段 | 更新時機 |
@@ -160,6 +164,9 @@ ms.author: barbkess
 | 86 |[SQL 資料倉儲容量限制](sql-data-warehouse-service-capacity-limits.md) |SQL 資料倉儲的連接、資料庫、資料表及查詢最大值。 |
 | 87 |[針對 Azure SQL 資料倉儲問題進行疑難排解](sql-data-warehouse-troubleshoot.md) |針對 Azure SQL 資料倉儲問題進行疑難排解。 |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

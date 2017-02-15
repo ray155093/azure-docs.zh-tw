@@ -1,24 +1,28 @@
 ---
-title: 使用 Azure Media Indexer 2 Preview 編製媒體檔案索引 | Microsoft Docs
-description: Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生隱藏式字幕和關鍵字的全文檢索記錄。 本主題說明如何使用 Media Indexer 2 Preview。
+title: "使用Azure 媒體索引器 2 Preview 編製媒體檔案索引 | Microsoft Docs"
+description: "Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生隱藏式字幕和關鍵字的全文檢索記錄。 本主題說明如何使用 Media Indexer 2 Preview。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 85d25525-a498-44eb-ae3a-2ca5ceb8e53d
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 12/07/2016
 ms.author: adsolank;juliako;
+translationtype: Human Translation
+ms.sourcegitcommit: 7065d5e87dbf47153bc89b37b56af81927b8b92b
+ms.openlocfilehash: 902e872b224b267c989f741345efdd8ef3fa8ce3
+
 
 ---
 # <a name="indexing-media-files-with-azure-media-indexer-2-preview"></a>使用 Azure Media Indexer 2 Preview 編製媒體檔案索引
 ## <a name="overview"></a>Overview
-**Azure Media Indexer 2 Preview** 媒體處理器 (MP) 可讓您將媒體檔案和內容設為可供搜尋，並產生隱藏式輔助字幕追蹤。 相較於舊版的 [Azure Media Indexer](media-services-index-content.md)， **Azure Media Indexer 2 Preview** 編製索引速度更快，並提供更廣泛的語言支援。 支援的語言包括英文、西班牙文、法文、德文、義大利文、中文、葡萄牙文和阿拉伯文。
+**Azure Media Indexer 2 Preview** 媒體處理器 (MP) 可讓您將媒體檔案和內容設為可供搜尋，並產生隱藏式輔助字幕追蹤。 相較於舊版的 [Azure Media Indexer](media-services-index-content.md)， **Azure Media Indexer 2 Preview** 編製索引速度更快，並提供更廣泛的語言支援。 支援的語言包括英文、西班牙文、法文、德文、義大利文、中文 (國語、簡體)、葡萄牙文、阿拉伯文和日文。
 
 **Azure Media Indexer 2 Preview** MP 目前為預覽功能。
 
@@ -28,8 +32,6 @@ ms.author: adsolank;juliako;
 > 您必須考量下列事項：
 > 
 > Azure China 和 Azure Government 不支援 Indexer 2。
-> 
-> Preview 有 ~10 分鐘處理的限制，但對所有客戶均免費。
 > 
 > 在編製內容索引時，請務必使用語音非常清楚的媒體檔案 (不含背景音樂、噪音、效果或麥克風雜音)。 適當內容的一些範例有：錄製的會議、演講或簡報。 下列內容可能不適合用來編製索引：電影、電視節目、任何具有混合音訊與音效的內容、錄製效果不良有背景噪音 (雜音) 的內容。
 > 
@@ -50,7 +52,7 @@ ms.author: adsolank;juliako;
 
 這些格式的隱藏式輔助字幕 (CC) 檔案可以用來讓具有聽力障礙的人存取音訊和視訊檔案。
 
-## <a name="task-configuration-(preset)"></a>工作設定 (預設)
+## <a name="task-configuration-preset"></a>工作設定 (預設)
 以 **Azure 媒體索引器 2 預覽**建立索引工作時，您必須指定設定預設值。
 
 下列 JSON 會設定可用的參數。
@@ -74,14 +76,16 @@ Azure Media Indexer 2 Preview 支援下列語言的語音轉文字 (在工作設
 
 * 英文 [EnUs]
 * 西班牙文 [EsEs]
-* 中文 [ZhCn]
+* 中文 (國語、簡體) [ZhCn]
 * 法文 [FrFr]
 * 德文 [DeDe]
 * 義大利文 [ItIt]
 * 葡萄牙文 [PtBr]
 * 阿拉伯文 (埃及) [ArEg]
+* 日文 [JaJp]
 
 ## <a name="sample-code"></a>範例程式碼
+
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
@@ -275,6 +279,9 @@ Azure Media Indexer 2 Preview 支援下列語言的語音轉文字 (在工作設
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 

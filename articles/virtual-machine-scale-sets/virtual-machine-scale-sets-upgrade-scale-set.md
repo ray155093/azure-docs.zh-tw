@@ -1,13 +1,13 @@
 ---
-title: 在虛擬機器擴展集上部署應用程式 | Microsoft Docs
-description: 在虛擬機器擴展集上部署應用程式
+title: "在虛擬機器擴展集上部署應用程式| Microsoft Docs"
+description: "在虛擬機器擴展集上部署應用程式"
 services: virtual-machine-scale-sets
-documentationcenter: ''
+documentationcenter: 
 author: gbowerman
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: e229664e-ee4e-4f12-9d2e-a4f456989e5d
 ms.service: virtual-machine-scale-sets
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/13/2016
 ms.author: guybo
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a5158c51149e75952eaf91af14f3fcf2dd1ed2af
+
 
 ---
 # <a name="upgrade-a-virtual-machine-scale-set"></a>升級虛擬機器擴展集
@@ -39,7 +43,7 @@ ms.author: guybo
 
 將此背景資訊謹記在心，讓我們看看如何在 PowerShell 中使用 REST API 來更新擴展集的版本。 這些範例涵蓋平台映像的案例，但本文所提供的資訊已足以讓您將此程序應用在自訂映像上。
 
-## <a name="powershell##"></a>PowerShell
+## <a name="powershell"></a>PowerShell
 此範例會將 Windows 虛擬機器擴展集更新成新版本 4.0.20160229。 更新完模型之後，它會一次更新一個虛擬機器執行個體。
 
 ```powershell
@@ -90,6 +94,9 @@ $vmss.virtualMachineProfile.storageProfile.osDisk.image.uri= $newURI
 
 ![顯示更新進行中的 vmsseditor](./media/virtual-machine-scale-sets-upgrade-scale-set/vmssEditor2.png)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

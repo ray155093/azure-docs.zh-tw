@@ -12,11 +12,11 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 12/15/2016
-ms.author: ryanwi, mikhegn
+ms.date: 12/13/2016
+ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: d9050347434a22fa79f5e751c676f77bf025d176
-ms.openlocfilehash: e2919b07b8fc6e9dff6823cb6995f52106612b8a
+ms.sourcegitcommit: 04092b735fa77c72ffe6c492a3fc975eac2e99fd
+ms.openlocfilehash: a71b77a320e9321eaa857acfcfae8822de0ac9e5
 
 
 ---
@@ -37,7 +37,6 @@ ms.openlocfilehash: e2919b07b8fc6e9dff6823cb6995f52106612b8a
 * Windows 7
 * Windows 8/Windows 8.1
 * Windows Server 2012 R2
-* Windows Server 2016
 * Windows 10
 
 > [!NOTE]
@@ -45,21 +44,17 @@ ms.openlocfilehash: e2919b07b8fc6e9dff6823cb6995f52106612b8a
 > 
 > 
 
-## <a name="install-the-sdk-and-tools"></a>安裝 SDK 和工具
-### <a name="to-use-visual-studio-2017-rc"></a>若要使用 Visual Studio 2017 RC
-Service Fabric 工具屬於 Visual Studio 2017 RC 中的 Azure 開發和管理工作負載。 您必須啟用此工作負載作為 Visual Studio 安裝的一部分。
-此外，您必須使用 Web Platform Installer 來安裝 Microsoft Azure Service Fabric SDK。
+## <a name="install-the-runtime-sdk-and-tools"></a>安裝執行階段、SDK 和工具
+Web Platform Installer 針對 Service Fabric 開發提供兩個組態。
 
-* [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
+Visual Studio 2017 (需安裝 Azure 開發和管理工作負載)：
 
-### <a name="to-use-visual-studio-2015-requires-visual-studio-2015-update-2-or-later"></a>若要使用 Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)
-在 Visual Studio 2015 中，使用 Web Platform Installer，Service Fabric 工具會與 SDK 一起安裝︰
+* [安裝 Service Fabric 執行階段和 SDK (不安裝 Visual Studio 工具)][core-sdk]
 
-* [安裝 Microsoft Azure Service Fabric SDK 和工具][full-bundle-vs2015]
+Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)：
 
-### <a name="sdk-installation-only"></a>僅限 SDK 安裝
-如果您只需要 SDK，您可以安裝此套件︰
-* [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
+* [安裝 Service Fabric 執行階段、SDK 和工具)][full-bundle-vs2015]
+* [僅安裝 Service Fabric 執行階段和 SDK (不安裝 Visual Studio 工具)][core-sdk]
 
 > [!WARNING]
 > 客戶使用這些啟動連結或在 Chrome 瀏覽器中使用這些連結時，在安裝期間回報錯誤。 這些在 Web Platform Installer 是已知問題並已特別處理。  請嘗試下列動作做為因應措施︰
@@ -102,6 +97,6 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

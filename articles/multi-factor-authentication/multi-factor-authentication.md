@@ -1,13 +1,13 @@
 ---
-title: Azure MFA 概觀 | Microsoft Docs
-description: '何謂 Azure Multi-factor Authentication、為什麼使用 MFA，還有 Multi-Factor Authentication 用戶端、不同的方法及可用版本的詳細資訊。 '
-keywords: MFA 的簡介, mfa 概觀, 什麼是 mfa
+title: "Azure MFA 概觀 | Microsoft Docs"
+description: "何謂 Azure Multi-factor Authentication、為什麼使用 MFA，還有 Multi-Factor Authentication 用戶端、不同的方法及可用版本的詳細資訊。 "
+keywords: "MFA 的簡介, mfa 概觀, 什麼是 mfa"
 services: multi-factor-authentication
-documentationcenter: ''
+documentationcenter: 
 author: kgremban
 manager: femila
 editor: yossib
-
+ms.assetid: c40d7a34-1274-4496-96b0-784850c06e9b
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/13/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a510763fe70d90a328c835cb123e78f455796850
+
 
 ---
-# <a name="what-is-azure-multi-factor-authentication?"></a>什麼是 Azure Multi-Factor Authentication？
+# <a name="what-is-azure-multi-factor-authentication"></a>什麼是 Azure Multi-Factor Authentication？
 雙步驟驗證是需要多種驗證方法，並在使用者登入和交易中新增重要的第二層安全性的驗證方法。 其運作方式需要下列其中任何二或多個驗證方法：
 
 * 您知道的某些資訊 (通常是密碼)
@@ -32,7 +36,7 @@ Azure Multi-Factor Authentication (MFA) 是 Microsoft 的雙步驟驗證解決�
 > 
 > 
 
-## <a name="why-use-azure-multi-factor-authentication?"></a>為何使用 Azure Multi-Factor Authentication？
+## <a name="why-use-azure-multi-factor-authentication"></a>為何使用 Azure Multi-Factor Authentication？
 與以前比較起來，現今人們連線網路的時間越來越長。 透過智慧型手機、平板電腦、膝上型電腦以及電腦，人們有幾種不同選擇可隨時用來連線網路並維持連線。 人們可以從任何地方存取他們的帳戶與應用程式，這表示他們可以完成更多工作並為客戶提供更好的服務。
 
 Azure Multi-Factor Authentication 是一個容易使用、可調整且可靠的解決方案，可提供第二種驗證方法讓您的使用者永遠受到保護。
@@ -122,6 +126,9 @@ Azure Multi-Factor Authentication 為雲端與伺服器提供可選取的驗證�
 ## <a name="next-steps"></a>後續步驟
 若要開始使用 Azure Multi-Factor Authentication，您的第一個步驟是 [從雲端或內部部署的 MFA 選擇其一](multi-factor-authentication-get-started.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

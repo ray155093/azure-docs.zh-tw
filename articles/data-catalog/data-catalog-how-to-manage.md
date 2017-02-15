@@ -1,13 +1,13 @@
 ---
-title: 如何管理資料資產 | Microsoft Docs
-description: 專門說明如何控制 Azure 資料目錄中註冊資料資產之可見性和擁有權的操作說明文章。
+title: "如何管理資料資產 | Microsoft Docs"
+description: "專門說明如何控制 Azure 資料目錄中註冊資料資產之可見性和擁有權的操作說明文章。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: steelanddata
 manager: NA
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 623f5ed4-8da7-48f5-943a-448d0b7cba69
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 10/04/2016
 ms.author: maroche
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 49d939205c85bad8bf7422ef4d9fa02501bb8df7
+
 
 ---
 # <a name="how-to-manage-data-assets"></a>如何管理資料資產
@@ -70,6 +74,9 @@ ms.author: maroche
 ## <a name="summary"></a>摘要
 資料目錄用於中繼資料和資料資產探索的群眾外包模型可讓所有目錄使用者參與和探索。 標準版的資料目錄有提供擁有權和管理方面的功能，可限制特定資料資產的可見性和使用。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

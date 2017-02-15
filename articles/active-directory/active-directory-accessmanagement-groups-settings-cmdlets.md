@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/22/2016
+ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
@@ -35,23 +35,23 @@ ms.openlocfilehash: c18ef38661e31e16114b88bdfad36320776ef12b
 這些步驟會建立目錄層級的設定，其會套用至目錄中的所有 Office 群組。
 
 1. 如果您不知道要使用哪一個 SettingTemplate，這個 Cmdlet 會傳回設定範本的清單：
-   
+
     `Get-MsolAllSettingTemplate`
-   
+
     ![設定範本的清單](./media/active-directory-accessmanagement-groups-settings-cmdlets/list-of-templates.png)
 2. 若要新增使用方針 URL，首先您需要取得 SettingsTemplate 物件，此物件會定義使用方針 URL 值；也就是 Group.Unified 範本：
-   
+
     `$template = Get-MsolSettingTemplate –TemplateId 62375ab9-6b52-47ed-826b-58e47e0e304b`
 3. 接下來，根據該範本建立新的設定物件：
-   
+
     `$setting = $template.CreateSettingsObject()`
 4. 然後更新使用方針值：
-   
+
     `$setting["UsageGuidelinesUrl"] = "<https://guideline.com>"`
 5. 最後，套用設定：
-   
+
     `New-MsolSettings –SettingsObject $setting`
-   
+
     ![新增使用方針 URL](./media/active-directory-accessmanagement-groups-settings-cmdlets/add-usage-guideline-url.png)
 
 以下是 Group.Unified SettingsTemplate 中定義的設定。
@@ -67,31 +67,31 @@ ms.openlocfilehash: c18ef38661e31e16114b88bdfad36320776ef12b
 這些步驟會讀取目錄層級的設定，其會套用至目錄中的所有 Office 群組。
 
 1. 讀取所有現有的目錄設定：
-   
+
     `Get-MsolAllSettings`
 2. 讀取特定群組的所有設定：
-   
+
     `Get-MsolAllSettings -TargetType Groups -TargetObjectId <groupObjectId>`
 3. 使用 SettingId GUID 讀取特定的目錄設定：
-   
+
     `Get-MsolSettings –SettingId dbbcb0ea-a6ff-4b44-a1f3-9d7cef74984c`
-   
+
     ![設定識別碼 GUID](./media/active-directory-accessmanagement-groups-settings-cmdlets/settings-id-guid.png)
 
 ## <a name="update-settings-at-the-directory-level"></a>更新目錄層級的設定
 這些步驟會更新目錄層級的設定，其會套用至目錄中的所有 Office 群組。
 
 1. 取得現有的 Settings 物件：
-   
+
     `$setting = Get-MsolSettings –SettingId dbbcb0ea-a6ff-4b44-a1f3-9d7cef74984c`
 2. 取得您想要更新的值：
-   
+
     `$value = $Setting.GetSettingsValue()`
 3. 更新值：
-   
+
     `$value["AllowToAddGuests"] = "false"`
 4. 更新設定：
-   
+
     `Set-MsolSettings –SettingId dbbcb0ea-a6ff-4b44-a1f3-9d7cef74984c –SettingsValue $value`
 
 ## <a name="remove-settings-at-the-directory-level"></a>移除目錄層級的設定
@@ -122,7 +122,6 @@ ms.openlocfilehash: c18ef38661e31e16114b88bdfad36320776ef12b
 
 * [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
 
 
 

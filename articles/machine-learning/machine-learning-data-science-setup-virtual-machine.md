@@ -137,6 +137,6 @@ Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

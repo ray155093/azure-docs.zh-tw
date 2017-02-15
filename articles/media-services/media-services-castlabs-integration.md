@@ -1,12 +1,12 @@
 ---
-title: 使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs
-description: 本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。
+title: "使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs"
+description: "本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Mingfeiy
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 2a9a408a-a995-49e1-8d8f-ac5b51e17d40
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: Mingfeiy;willzhan;Juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 30bd93e54da4b8e7fcb58fcdc1f5c1bb5240fa53
+
 
 ---
 # <a name="using-castlabs-to-deliver-widevine-licenses-to-azure-media-services"></a>使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務
@@ -76,7 +80,7 @@ castLabs 與 AMS 皆支援使用 JWT (JSON Web Token) 權杖格式進行授權�
 2. 將資產上傳到 AMS。
 3. 從已上傳的資產中取得 UUID，然後變更 Program.cs 檔中的行 32：
    
-        var objIAsset = _context.Assets.Where(x => x.Id == "nb:cid:UUID:dac53a5d-1500-80bd-b864-f1e4b62594cf").FirstOrDefault();
+      var objIAsset = _context.Assets.Where(x => x.Id == "nb:cid:UUID:dac53a5d-1500-80bd-b864-f1e4b62594cf").FirstOrDefault();
 4. 使用 AssetId 命名 castLabs 系統中的資產 (Program.cs 檔中的行 44)。
    
    您必須設定 **castLabs**的 AssetId；必須是唯一的英數字元字串。
@@ -108,6 +112,9 @@ castLabs 與 AMS 皆支援使用 JWT (JSON Web Token) 權杖格式進行授權�
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

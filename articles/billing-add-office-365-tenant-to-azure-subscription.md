@@ -1,20 +1,24 @@
 ---
-title: 搭配使用 Office 365 租用戶與 Azure 訂用帳戶 | Microsoft Docs
-description: 了解如何將 Office 365 目錄 (租用戶) 加入至 Azure 訂用帳戶，以便建立關聯。
-services: ''
-documentationcenter: ''
+title: "搭配使用 Office 365 租用戶與 Azure 訂用帳戶 | Microsoft Docs"
+description: "了解如何將 Office 365 目錄 (租用戶) 加入至 Azure 訂用帳戶，以便建立關聯。"
+services: 
+documentationcenter: 
 author: JiangChen79
 manager: mbaldwin
-editor: ''
+editor: 
 tags: billing,top-support-issue
-
+ms.assetid: cc9c57c6-7bfd-4dea-9027-c75ef3737589
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 12/16/2016
 ms.author: cjiang
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 36cd9eac7be2d99971d8d2e227cd4b761df82d08
+
 
 ---
 # <a name="associate-an-office-365-tenant-with-an-azure-subscription"></a>將 Office 365 租用戶與 Azure 訂用帳戶產生關聯
@@ -100,7 +104,7 @@ ms.author: cjiang
     ![儀表板的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s314_office-365-tenant-appear-in-azure.png)
 4. 請變更與 Azure 訂用帳戶相關聯的目錄。
    
-    a. 選取 [Settings](設定.md) 。
+    a. 選取 [Settings] (設定) 。
    
     ![Azure 傳統入口網站設定圖示的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s315_azure-classic-portal-settings-icon.png)
    
@@ -161,6 +165,9 @@ ms.author: cjiang
 
 若要了解如何完成這些工作，請參閱 [搭配使用現有的 Office 365 帳戶與 Azure 訂用帳戶，反之亦然](billing-use-existing-office-365-account-azure-subscription.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

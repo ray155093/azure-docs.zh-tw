@@ -1,23 +1,20 @@
 ---
-title: "待提交 |Microsoft Azure"
-description: "待提交。"
-services: 
-documentationcenter: 
-author: squillace
-manager: timlt
-editor: 
-tags: billing
-ms.assetid: 642849b2-d752-4d0b-9e83-976c06259af9
-ms.service: value
-ms.devlang: na
-ms.topic: article
+layout: LandingPage
+description: "了解如何使用 Linux 搭配傳統的部署建立虛擬機器。"
+title: "適用於 Linux 的 Azure 虛擬機器 (傳統部署) 文件 | Microsoft Docs"
+services: virtual-machines-linux
+author: carolz
+manager: carolz
+ms.assetid: 
+ms.service: virtual-machines-linux
 ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 10/21/2016
-ms.author: tysonn
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 3f93555ba158778acc3fd67ed63ef8c3b7f7a5e6
-ms.openlocfilehash: 1ea564d8014061c41527d3d55d3e3852c5a96124
+ms.sourcegitcommit: 0b803da9d1cfefababd18b48fd39efc9895331bf
+ms.openlocfilehash: a219f68c3cb214bb5b3b8cbbb36112e880a7d2d1
 
 
 ---
@@ -25,6 +22,6 @@ ms.openlocfilehash: 1ea564d8014061c41527d3d55d3e3852c5a96124
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

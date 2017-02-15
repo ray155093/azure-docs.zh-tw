@@ -1,13 +1,13 @@
 ---
-title: Create a copy of your Windows VM | Microsoft Docs
-description: Learn how to create a copy of your specialized Azure VM running Windows, in the Resource Manager deployment model.
+title: "建立 Windows VM 的複本 | Microsoft Docs"
+description: "了解在 Resource Manager 部署模型中，如何建立在執行 Windows 之特製化 Azure VM 的複本。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 3b7d3cd5-e3d7-4041-a2a7-0290447458ea
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,51 +15,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/21/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: a779f084e0ad6de71ad3e2de86a2fb85738b8fe6
+
 
 ---
-# <a name="create-a-vm-from-a-specialized-vhd"></a>Create a VM from a specialized VHD
-Create a new VM by attaching a specialized VHD as the OS disk using Powershell. A specialized VHD maintains the user accounts, applications and other state data from your original VM. 
+# <a name="create-a-vm-from-a-specialized-vhd"></a>從特製化 VHD 建立 VM
+藉由使用 Powershell 附加特製化的 VHD 做為 OS 磁碟來建立新的 VM。 特製化的 VHD 會從原始的 VM 維護使用者帳戶、應用程式和其他狀態資料。 
 
-If you want to create a VM from a generalized VHD, see [Create a VM from a generalized VHD image](virtual-machines-windows-create-vm-generalized.md).
+如果您想要從一般化的 VHD 建立 VM，請參閱[從一般化 VHD 建立 VM 映像](virtual-machines-windows-create-vm-generalized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-## <a name="create-the-subnet-and-vnet"></a>Create the subNet and vNet
-Create the vNet and subNet of the [virtual network](../virtual-network/virtual-networks-overview.md).
+## <a name="create-the-subnet-and-vnet"></a>建立子網路和 VNet
+建立 [虛擬網路](../virtual-network/virtual-networks-overview.md)的 vNet 和 subNet。
 
-1. Create the subNet. This example creates a subnet named **mySubNet**, in the resource group **myResourceGroup**, and sets the subnet address prefix to **10.0.0.0/24**.
+1. 建立子網路。 此範例會在資源群組 **myResourceGroup** 中建立名為 **mySubnet** 的子網路，並將子網路位址首碼設定為 **10.0.0.0/24**。
    
     ```powershell
     $rgName = "myResourceGroup"
     $subnetName = "mySubNet"
     $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
     ```
-2. Create the vNet. This example sets the virtual network name to be **myVnetName**, the location to **West US**, and the address prefix for the virtual network to **10.0.0.0/16**. 
+2. 建立 vNet。 此範例會將虛擬網路名稱設定為 **myVnetName**、位置設定為 **美國西部**，及虛擬網路的位址首碼設定為 **10.0.0.0/16**。 
    
     ```powershell
     $location = "West US"
     $vnetName = "myVnetName"
-    $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName -Location $location -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
+    $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName -Location $location `
+        -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
     ```    
 
-## <a name="create-a-public-ip-address-and-nic"></a>Create a public IP address and NIC
-To enable communication with the virtual machine in the virtual network, you need a [public IP address](../virtual-network/virtual-network-ip-addresses-overview-arm.md) and a network interface.
+## <a name="create-a-public-ip-address-and-nic"></a>建立公用 IP 位址和 NIC
+若要能夠與虛擬網路中的虛擬機器進行通訊，您需要 [公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md) 和網路介面。
 
-1. Create the public IP. In this example, the public IP address name is set to **myIP**.
+1. 建立公用 IP。 在此範例中，公用 IP 位址名稱會設定為 **myIP**。
    
     ```powershell
     $ipName = "myIP"
-    $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $location -AllocationMethod Dynamic
+    $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $location `
+        -AllocationMethod Dynamic
     ```       
-2. Create the NIC. In this example, the NIC name is set to **myNicName**.
+2. 建立 NIC。 在此範例中，NIC 名稱會設定為 **myNicName**。
    
     ```powershell
     $nicName = "myNicName"
-    $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $location -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
+    $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $location `
+        -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
     ```
 
-## <a name="create-the-network-security-group-and-an-rdp-rule"></a>Create the network security group and an RDP rule
-To be able to log in to your VM using RDP, you need to have an security rule that allows RDP access on port 3389. Because the VHD for the new VM was created from an existing specialized VM, after the VM is created you can use an existing account from the source virtual machine that had permission to log on using RDP.
+## <a name="create-the-network-security-group-and-an-rdp-rule"></a>建立網路安全性群組和 RDP 規則
+若要能夠使用 RDP 登入 VM，您必須有可在連接埠 3389 上允許 RDP 存取的安全性規則。 因為新 VM 的 VHD 是從現有的特製化 VM 所建立，在建立 VM 之後，您可以從具有使用 RDP 之登入權限的來源虛擬機器使用現有帳戶。
 
-This example sets the NSG name to **myNsg** and the RDP rule name to **myRdpRule**.
+此範例會將 NSG 名稱設定為 **myNsg** 以及將 RDP 規則名稱設定為 **myRdpRule**。
 
 ```powershell
 $nsgName = "myNsg"
@@ -73,66 +80,73 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $rgName -Location $loc
     -Name $nsgName -SecurityRules $rdpRule
 ```
 
-For more information about endpoints and NSG rules, see [Opening ports to a VM in Azure using PowerShell](virtual-machines-windows-nsg-quickstart-powershell.md).
+如需端點和 NSG 規則的詳細資訊，請參閱[使用 PowerShell 對 Azure 中的 VM 開啟連接埠](virtual-machines-windows-nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-## <a name="create-the-vm-configuration"></a>Create the VM configuration
-Set up the VM configuration to attach the copied VHD as the OS VHD.
+## <a name="create-the-vm-configuration"></a>建立 VM 組態
+設定 VM 組態以附加複製的 VHD 做為作業系統 VHD。
 
 ```powershell
-    # Set the URI for the VHD that you want to use. In this example, the VHD file named "myOsDisk.vhd" is kept in a storage account named "myStorageAccount" in a container named "myContainer".
-    $osDiskUri = "https://myStorageAccount.blob.core.windows.net/myContainer/myOsDisk.vhd"
+# Set the URI for the VHD that you want to use. In this example, the VHD file named "myOsDisk.vhd" is kept 
+# in a storage account named "myStorageAccount" in a container named "myContainer".
+$osDiskUri = "https://myStorageAccount.blob.core.windows.net/myContainer/myOsDisk.vhd"
 
-    #Set the VM name and size. This example sets the VM name to "myVM" and the VM size to "Standard_A2".
-    $vmName = "myVM"
-    $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A2"
+# Set the VM name and size. This example sets the VM name to "myVM" and the VM size to "Standard_A2".
+$vmName = "myVM"
+$vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A2"
 
-    #Add the NIC
-    $vm = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
+# Add the NIC
+$vm = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
 
-    #Add the OS disk by using the URL of the copied OS VHD. In this example, when the OS disk is created, the term "osDisk" is appened to the VM name to create the OS disk name. This example also specifies that this Windows-based VHD should be attached to the VM as the OS disk.
-    $osDiskName = $vmName + "osDisk"
-    $vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption attach -Windows
+# Add the OS disk by using the URL of the copied OS VHD. In this example, when the OS disk is created, the 
+# term "osDisk" is appened to the VM name to create the OS disk name. This example also specifies that this 
+# Windows-based VHD should be attached to the VM as the OS disk.
+$osDiskName = $vmName + "osDisk"
+$vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption attach -Windows
 ```
 
 
-If you have data disks that need to be attached to the VM, you should also add the following: 
+如果您有需要連接至 VM 的資料磁碟，您還應該加入下列項目︰ 
 
 ```powershell
-    # Optional: Add data disks by using the URLs of the copied data VHDs at the appropriate Logical Unit Number (Lun).
-    $dataDiskName = $vmName + "dataDisk"
-    $vm = Add-AzureRmVMDataDisk -VM $vm -Name $dataDiskName -VhdUri $dataDiskUri -Lun 0 -CreateOption attach
+# Optional: Add data disks by using the URLs of the copied data VHDs at the appropriate Logical Unit 
+# Number (Lun).
+$dataDiskName = $vmName + "dataDisk"
+$vm = Add-AzureRmVMDataDisk -VM $vm -Name $dataDiskName -VhdUri $dataDiskUri -Lun 0 -CreateOption attach
 ```
 
-The data and operating system disk URLs look something like this: `https://StorageAccountName.blob.core.windows.net/BlobContainerName/DiskName.vhd`. You can find this on the portal by browsing to the target storage container, clicking the operating system or data VHD that was copied, and then copying the contents of the URL.
+資料和作業系統磁碟的 URL 近似於︰ `https://StorageAccountName.blob.core.windows.net/BlobContainerName/DiskName.vhd`。 您可以藉由下列方法在入口網站上找到它：瀏覽至目標儲存體容器，按一下複製的作業系統或資料 VHD，然後複製 URL 的內容。
 
-## <a name="create-the-vm"></a>Create the VM
-Create the VM using the configurations that we just created.
+## <a name="create-the-vm"></a>建立 VM
+使用我們剛才建立的組態建立 VM。
 
 ```powershell
 #Create the new VM
 New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vm
 ```
 
-If this command was successful, you'll see output like this:
+如果此命令成功，您會看到如下的輸出︰
 
-```
+```powershell
 RequestId IsSuccessStatusCode StatusCode ReasonPhrase
 --------- ------------------- ---------- ------------
                          True         OK OK   
 
 ```
 
-## <a name="verify-that-the-vm-was-created"></a>Verify that the VM was created
-You should see the newly created VM either in the [Azure portal](https://portal.azure.com), under **Browse** > **Virtual machines**, or by using the following PowerShell commands:
+## <a name="verify-that-the-vm-was-created"></a>確認已建立 VM
+從 [Azure 入口網站](https://portal.azure.com)的 [瀏覽] > [虛擬機器]下，或是使用下列 PowerShell 命令，應可看到新建立的 VM：
 
 ```powershell
-    $vmList = Get-AzureRmVM -ResourceGroupName $rgName
-    $vmList.Name
+$vmList = Get-AzureRmVM -ResourceGroupName $rgName
+$vmList.Name
 ```
 
-## <a name="next-steps"></a>Next steps
-To sign in to your new virtual machine, browse to the VM in the [portal](https://portal.azure.com), click **Connect**, and open the Remote Desktop RDP file. Use the account credentials of your original virtual machine to sign in to your new virtual machine. For more information, see [How to connect and log on to an Azure virtual machine running Windows](virtual-machines-windows-connect-logon.md).
+## <a name="next-steps"></a>後續步驟
+若要登入新的虛擬機器，請瀏覽至[入口網站](https://portal.azure.com)中的 VM，按一下 [連接] 並開啟遠端桌面 RDP 檔案。 使用原始虛擬機器的帳戶認證來登入新的虛擬機器。 如需詳細資訊，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

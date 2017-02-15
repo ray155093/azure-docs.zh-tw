@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何使用金鑰保存庫來建立及維護金鑰，以便存取和加密您的雲端資源、應用程式和解決方案。 教學課程、API 參考等等。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 09d20c4c035a072d78118cb0e2184773f4642c81
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 0c53b569e45569fd7a7c56142d66fbab8d8b0a05
 
 ---
 # <a name="key-vault-documentation"></a>金鑰保存庫文件
 
-Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密碼編譯金鑰和密碼。 使用金鑰保存庫之後，您可以加密金鑰和密碼 (例如驗證金鑰、儲存體帳戶金鑰、資料加密金鑰、.PFX 檔案和密碼)，方法是使用受硬體安全模組 (HSM) 保護的金鑰。 為了加強保證，您可以在 HSM 中匯入或產生金鑰。
+了解如何使用 Azure 金鑰保存庫來保護及管理雲端應用程式和服務所使用的密碼編譯金鑰和密碼。 教學課程、API 參考和其他文件會示範如何建立及維護金鑰，以便存取和加密您的資源和解決方案。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -150,16 +151,9 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 
 ---
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/key-vault.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載金鑰保存庫文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

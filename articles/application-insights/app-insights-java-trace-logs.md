@@ -1,21 +1,21 @@
 ---
-title: "在 Application Insights 中探索 Java 追蹤記錄"
+title: "在 Azure Application Insights 中探索 Java 追蹤記錄 | Microsoft Docs"
 description: "在 Application Insights 中搜尋 Log4J 或 Logback 追蹤"
 services: application-insights
 documentationcenter: java
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: fc0a9e2f-3beb-4f47-a9fe-3f86cd29d97a
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2016
+ms.date: 12/12/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7a9c40081f52b2ffe918f4612f790f7fd08acc5a
-ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
+ms.sourcegitcommit: 086091bb3be6659436ec8e371acbe4b8e86bfacb
+ms.openlocfilehash: 3ef5f6240d7e4704118b86fb0cfee8cf502859ff
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
 
 ## <a name="install-the-java-sdk"></a>安裝 Java SDK
 
-如果您尚未安裝 [Application Insights SDK for Java][java]，請安裝。
+安裝 [Java 適用的 Application Insights SDK][java]，如果您還未完成的話。
 
 (如果您不想要追蹤 HTTP 要求，您可以省略大多數 .xml 組態檔，但必須至少包含 `InstrumentationKey` 元素。 您還應該呼叫 `new TelemetryClient()` 來將 SDK 初始化)。
 
@@ -39,6 +39,8 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
 
 *Logback*
 
+```XML
+
     <dependencies>
        <dependency>
           <groupId>com.microsoft.azure</groupId>
@@ -46,8 +48,11 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
           <version>[1.0,)</version>
        </dependency>
     </dependencies>
+```
 
 *Log4J v2.0*
+
+```XML
 
     <dependencies>
        <dependency>
@@ -56,8 +61,11 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
           <version>[1.0,)</version>
        </dependency>
     </dependencies>
+```
 
 *Log4J v1.2*
+
+```XML
 
     <dependencies>
        <dependency>
@@ -66,6 +74,7 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
           <version>[1.0,)</version>
        </dependency>
     </dependencies>
+```
 
 #### <a name="if-youre-using-gradle"></a>如果您使用 Gradle...
 如果您的專案已設定為使用 Gradle 來建置，請將下列其中一行加入至 build.gradle 檔案中的 `dependencies` 群組：
@@ -74,15 +83,22 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
 
 **Logback**
 
+```
+
     compile group: 'com.microsoft.azure', name: 'applicationinsights-logging-logback', version: '1.0.+'
+```
 
 **Log4J v2.0**
 
+```
     compile group: 'com.microsoft.azure', name: 'applicationinsights-logging-log4j2', version: '1.0.+'
+```
 
 **Log4J v1.2**
 
+```
     compile group: 'com.microsoft.azure', name: 'applicationinsights-logging-log4j1_2', version: '1.0.+'
+```
 
 #### <a name="otherwise-"></a>否則...
 下載並擷取適當的附加器，然後加入適當的程式庫至您的專案：
@@ -98,15 +114,19 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
 
 *Logback*
 
+```XML
+
     <appender name="aiAppender" 
       class="com.microsoft.applicationinsights.logback.ApplicationInsightsAppender">
     </appender>
     <root level="trace">
       <appender-ref ref="aiAppender" />
     </root>
-
+```
 
 *Log4J v2.0*
+
+```XML
 
     <Configuration packages="com.microsoft.applicationinsights.Log4j">
       <Appenders>
@@ -118,9 +138,11 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
         </Root>
       </Loggers>
     </Configuration>
-
+```
 
 *Log4J v1.2*
+
+```XML
 
     <appender name="aiAppender" 
          class="com.microsoft.applicationinsights.log4j.v1_2.ApplicationInsightsAppender">
@@ -129,11 +151,12 @@ ms.openlocfilehash: 1f16fb273261892bdcb8780c3ef1954d00951c5a
       <priority value ="trace" />
       <appender-ref ref="aiAppender" />
     </root>
+```
 
 Application Insights 附加器可由任何設定的記錄器參考，而不一定是根記錄器 (如以上程式碼範例所示)。
 
 ## <a name="explore-your-traces-in-the-application-insights-portal"></a>在 Application Insights 入口網站中探索您的追蹤
-既然您已設定讓專案將追蹤傳送給 Application Insights，您便可以在 Application Insights 入口網站的 [[診斷][diagnostic]] 刀鋒視窗中，檢視及搜尋這些追蹤。
+既然已將專案設定為傳送追蹤至 Application Insights，您可以在 Application Insights 入口網站的[搜尋][diagnostic]刀鋒視窗中檢視及搜尋這些追蹤。
 
 ![在 Application Insights 入口網站中，開啟 [搜尋]](./media/app-insights-java-trace-logs/10-diagnostics.png)
 
@@ -149,6 +172,6 @@ Application Insights 附加器可由任何設定的記錄器參考，而不一�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

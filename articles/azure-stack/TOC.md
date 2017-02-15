@@ -16,6 +16,7 @@
 ## [建立儲存體帳戶](azure-stack-provision-storage-account.md)
 ## [使用 CLI 連線](azure-stack-connect-cli.md)
 ## [使用 PowerShell 連線](azure-stack-connect-powershell.md)
+## [安裝 Visual Studio](azure-stack-install-visual-studio.md)
 ## [常見問題集](azure-stack-faq.md)
 
 # 為租用戶提供服務
@@ -28,6 +29,7 @@
 # 使用範本
 ## [範本概觀](azure-stack-arm-templates.md)
 ## [開發範本](azure-stack-develop-templates.md)
+## [檢查範本](azure-stack-validate-templates.md)
 ## [使用入口網站部署範本](azure-stack-deploy-template-portal.md)
 ## [使用 PowerShell 部署範本](azure-stack-deploy-template-powershell.md)
 ## [使用 Visual Studio 部署範本](azure-stack-deploy-template-visual-studio.md)
@@ -86,6 +88,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-stack)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

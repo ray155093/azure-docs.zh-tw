@@ -146,7 +146,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 * [如何更新自己的密碼](active-directory-passwords-update-your-own-password.md)
 
-#### <a name="connect-sync-engine-that-extends-on-premises-directories-to-azure-active-directory"></a>Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎)
+#### <a name="connect--sync-engine-that-extends-on-premises-directories-to-azure-active-directory"></a>Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎)
 **類型：** 常用功能
 
 **可用性：**
@@ -273,7 +273,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 * [什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 
 
-#### <a name="a-namemim-cal-mim-serveramim-cal-mim-server"></a><a name="mim-cal-mim-server"></a>MIM CAL + MIM 伺服器
+#### <a name="a-namemim-cal-mim-serveramim-cal--mim-server"></a><a name="mim-cal-mim-server"></a>MIM CAL + MIM 伺服器
 Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 (任何版本) 一起授與。 因為 Microsoft Identity Manager 會在 Windows Server 作業系統上執行，因此只要伺服器執行有效且經過授權的 Windows Server 複本，就可以在該伺服器上安裝並使用 Microsoft Identity Manager。 Microsoft Identity Manager Server 不需要其他個別授權。
 
 **類型：** 進階功能
@@ -333,7 +333,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 |:---:|:---:|:---:|:---:|
 | &nbsp; | &nbsp; | ![勾選][12] | &nbsp; |
 
-## <a name="azure-active-directory-join-windows-10-only-related-features"></a>Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
+## <a name="azure-active-directory-join--windows-10-only--related-features"></a>Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
 #### <a name="join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery"></a>將裝置加入 Azure AD、Desktop SSO、適用於 Azure AD 的 Microsoft Passport、系統管理員 Bitlocker 復原
 **類型：**Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
 
@@ -387,6 +387,6 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

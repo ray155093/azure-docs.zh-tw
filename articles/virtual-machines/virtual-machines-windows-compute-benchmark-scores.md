@@ -73,6 +73,6 @@ Windows 數字是藉由在 Windows Server 上執行 [SPECint 2006](https://www.s
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

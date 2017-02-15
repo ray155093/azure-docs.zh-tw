@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何使用 Log Analytics 來收集和分析雲端和內部部署環境 (不論實體位置為何) 中的資源所產生的資料。"
 translationtype: Human Translation
-ms.sourcegitcommit: edbf9890b63219e7d87256be3600a1d41c87e295
-ms.openlocfilehash: 31726ed708006d504eea1e948561c108d39622f2
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: ffb5ebc79807a81e53c2bca3fa5672a11e777663
 
 ---
 
@@ -86,13 +86,7 @@ ms.openlocfilehash: 31726ed708006d504eea1e948561c108d39622f2
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/log-analytics.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Log Analytics 文件 </div>
-    </a>
-</div>
+
 
 
 

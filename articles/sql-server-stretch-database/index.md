@@ -1,13 +1,15 @@
 ---
 layout: LandingPage
+description: "了解如何使用 SQL Server Stretch Database，在無需變更佇列或應用程式的情況下安全地將原始資料移轉至 Azure。 教學課程和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: d237f5116f81d0977a96a325ee66f2e7c3ee5c41
-ms.openlocfilehash: bf45461eafbb010d99b61f2f67a763e25f374b30
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 3dad35a38c753988615a4c1f2b439de9f95baf0e
 
 ---
 #<a name="sql-server-stretch-database-documentation"></a>SQL Server Stretch Database 文件
 
-SQL Server Stretch Database 能以無訊息方式安全地將冷資料移轉到 Microsoft Azure 雲端。 SQL Server Stretch Database 為您不常使用的資料提供符合成本效益的可用性，不需要變更您的查詢或應用程式，並甚至在移轉期間保持您的資料安全。 Stretch Database 的目標是擁有大量不常使用的資料，且通常儲存在少量資料表中的交易資料庫。
+了解如何使用 SQL Server Stretch Database 明確地將原始資料安全地移轉到 Azure 雲端。 教學課程及其他文件可協助您搭配不常使用的資料來設定資料庫可用性以節省成本，無需變更現有的佇列或應用程式。
+
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -86,16 +88,10 @@ SQL Server Stretch Database 能以無訊息方式安全地將冷資料移轉到 
 
 ---
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/sql-server-stretch-database.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 SQL Server Stretch Database 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Nov16_HO4-->
+
+<!--HONumber=Jan17_HO3-->
 
 

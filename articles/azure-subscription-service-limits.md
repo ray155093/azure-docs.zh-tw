@@ -1,23 +1,27 @@
 ---
-title: Microsoft Azure 訂用帳戶和服務限制、配額與限制
-description: 提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。 這包括如何增加限制和最大值的詳細資訊。
-services: ''
-documentationcenter: ''
+title: "Microsoft Azure 訂用帳戶和服務限制、配額與限制"
+description: "提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。 這包括如何增加限制和最大值的詳細資訊。"
+services: 
+documentationcenter: 
 author: rothja
 manager: jeffreyg
-editor: ''
+editor: 
 tags: billing
-
+ms.assetid: 60d848f9-ff26-496e-a5ec-ccf92ad7d125
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 08/29/2016
-ms.author: btardif
+ms.author: byvinyal
+translationtype: Human Translation
+ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
+ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
+
 
 ---
-# <a name="azure-subscription-and-service-limits,-quotas,-and-constraints"></a>Azure 訂用帳戶和服務限制、配額與限制
+# <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 訂用帳戶和服務限制、配額與限制
 ## <a name="overview"></a>Overview
 本文件說明一些最常見的 Microsoft Azure 限制。 這目前未涵蓋所有 Azure 服務。 這些限制將隨著時間擴展並更新以涵蓋更多平台。
 
@@ -29,7 +33,7 @@ ms.author: btardif
 > 
 
 ## <a name="limits-and-the-azure-resource-manager"></a>限制和 Azure 資源管理員
-現在您可以結合多個 Azure 中的資源到單一的 Azure 資源群組。 使用資源群組時的限制是，在全域時會使用 Azure 資源管理員在地區層級管理。 如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](resource-group-overview.md)。
+現在您可以結合多個 Azure 中的資源到單一的 Azure 資源群組。 使用資源群組時的限制是，在全域時會使用 Azure 資源管理員在地區層級管理。 如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](azure-resource-manager/resource-group-overview.md)。
 
 在以下的限制中，已加入了新資料表，以反映在使用 Azure 資源管理員時的限制方面的任何差異。 例如，有**訂用帳戶限制**資料表和**訂用帳戶限制 - Azure Resource Manager** 資料表。 當某個限制同時適用於這兩個案例時，只會顯示在第一個資料表中。 除非另有說明，限制在所有區域中全域適用。
 
@@ -44,6 +48,7 @@ ms.author: btardif
 * [Active Directory](#active-directory-limits)
 * [API 管理](#api-management-limits)
 * [App Service](#app-service-limits)
+* [應用程式閘道](#application-gateway-limits)
 * [Application Insights](#application-insights-limits)
 * [自動化](#automation-limits)
 * [Azure Redis 快取](#azure-redis-cache-limits)
@@ -71,7 +76,7 @@ ms.author: btardif
 * [資源群組](#resource-group-limits)
 * [排程器](#scheduler-limits)
 * [Search](#search-limits)
-* [服務匯流排 (英文)](#service-bus-limits)
+* [服務匯流排](#service-bus-limits)
 * [站台復原](#site-recovery-limits)
 * [SQL Database](#sql-database-limits)
 * [儲存體](#storage-limits)
@@ -114,6 +119,9 @@ ms.author: btardif
 #### <a name="networking-limits"></a>網路限制
 [!INCLUDE [azure-virtual-network-limits](../includes/azure-virtual-network-limits.md)]
 
+#### <a name="application-gateway-limits"></a>應用程式閘道限制
+[!INCLUDE [application-gateway-limits](../includes/application-gateway-limits.md)]
+
 #### <a name="traffic-manager-limits"></a>流量管理員限制
 [!INCLUDE [traffic-manager-limits](../includes/traffic-manager-limits.md)]
 
@@ -129,7 +137,7 @@ ms.author: btardif
 #### <a name="virtual-machine-disk-limits"></a>虛擬機器磁碟限制
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
-如需其他詳細資訊，請參閱 [虛擬機器大小](virtual-machines/virtual-machines-linux-sizes.md) 。
+如需其他詳細資訊，請參閱 [虛擬機器大小](virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
 
 **標準儲存體帳戶**
 
@@ -172,9 +180,9 @@ ms.author: btardif
 ### <a name="search-limits"></a>搜尋限制
 定價層會決定搜尋服務的容量和限制。 層級包括：
 
-* 多租用戶服務，與其他 Azure 訂戶共用，適用於評估及小型開發專案。
-* 可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多 3 個複本。
-* 適用於較大型生產工作負載。 標準層內具有多個層級，如此就能讓您針對特定案例選擇資源組態。
+*  多租用戶服務，與其他 Azure 訂戶共用，適用於評估及小型開發專案。
+*  可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多 3 個複本。
+*  適用於較大型生產工作負載。 標準層內具有多個層級，如此就能讓您選擇最符合工作負載設定檔的資源設定。
 
 **每一訂用帳戶的限制**
 
@@ -184,7 +192,7 @@ ms.author: btardif
 
 [!INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-如需其他限制的更細微資訊，包括文件大小、每秒的查詢數、金鑰、要求和回應，請參閱 [Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
+若要深入了解更細微的限制，例如文件大小、每秒的查詢數、金鑰、要求和回應，請參閱 [Azure 搜尋服務的服務限制](search/search-limits-quotas-capacity.md)。
 
 ### <a name="media-services-limits"></a>媒體服務限制
 [!INCLUDE [azure-mediaservices-limits](../includes/azure-mediaservices-limits.md)]
@@ -261,10 +269,13 @@ ms.author: btardif
 ## <a name="see-also"></a>另請參閱
 [了解 Azure 限制和增加](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
 
-[Azure 的虛擬機器和雲端服務大小](virtual-machines/virtual-machines-linux-sizes.md)
+[Azure 的虛擬機器和雲端服務大小](virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

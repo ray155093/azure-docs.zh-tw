@@ -70,6 +70,6 @@ OData 服務不再只是需要仰賴後端的資料庫。 OData 支援各種儲�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

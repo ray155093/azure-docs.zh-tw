@@ -1,40 +1,44 @@
 ---
-title: 開始在 Xamarin Android 中使用行動應用程式的驗證
-description: 了解如何使用行動應用程式透過眾多識別提供者驗證 Xamarin Android 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。
+title: "開始在 Xamarin Android 中使用行動應用程式的驗證"
+description: "了解如何使用行動應用程式透過眾多識別提供者驗證 Xamarin Android 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。"
 services: app-service\mobile
 documentationcenter: xamarin
-author: mattchenderson
+author: adrianhall
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 570fc12b-46a9-4722-b2e0-0d1c45fb2152
 ms.service: app-service-mobile
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-xamarin-android
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 06/28/2016
-ms.author: mahender
+ms.date: 10/01/2016
+ms.author: adrianha
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 4c0ba82ca010f1ee571424fa3d650718e5acdd8b
+
 
 ---
-# 將驗證新增至 Xamarin.Android 應用程式
+# <a name="add-authentication-to-your-xamarinandroid-app"></a>將驗證新增至 Xamarin.Android 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-本主題說明如何從用戶端應用程式驗證行動應用程式的使用者。在本教學課程中，您會使用 Azure 行動應用程式所支援的身分識別提供者將驗證新增至快速入門專案。在行動應用程式中成功驗證並授權之後，就會顯示使用者識別碼值。
+本主題說明如何從用戶端應用程式驗證行動應用程式的使用者。 在本教學課程中，您會使用 Azure 行動應用程式所支援的身分識別提供者將驗證新增至快速入門專案。 在行動應用程式中成功驗證並授權之後，就會顯示使用者識別碼值。
 
-本教學課程以行動應用程式快速入門為基礎。您也必須先完成[建立 Xamarin.Android 應用程式教學課程]。如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+本教學課程以行動應用程式快速入門為基礎。 您也必須先完成 [建立 Xamarin.Android 應用程式教學課程]。 如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-## <a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
+## <a name="a-nameregisteraregister-your-app-for-authentication-and-configure-app-services"></a><a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="permissions"></a>限制只有通過驗證的使用者具有權限
+## <a name="a-namepermissionsarestrict-permissions-to-authenticated-users"></a><a name="permissions"></a>限制只有通過驗證的使用者具有權限
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案。確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。這是因為應用程式嘗試以未驗證的使用者身分存取您的行動應用程式程式碼。*TodoItem* 資料表現在需要驗證。
+在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案。 確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。 這是因為應用程式嘗試以未驗證的使用者身分存取您的行動應用程式程式碼。 *TodoItem* 資料表現在需要驗證。
 
 接下來，您將會更新用戶端應用程式，利用已驗證的使用者身分來要求行動應用程式後端的資源。
 
-## <a name="add-authentication"></a>將驗證新增至應用程式
-應用程式已更新，要求使用者在資料顯示前點選 [登入] 按鈕並驗證。
+## <a name="a-nameadd-authenticationaadd-authentication-to-the-app"></a><a name="add-authentication"></a>將驗證新增至應用程式
+應用程式已更新，要求使用者在資料顯示前點選 [登入]  按鈕並驗證。
 
 1. 將下列程式碼加入 **TodoActivity** 類別：
    
@@ -74,16 +78,16 @@ ms.author: mahender
             }
         }
    
-    這會建立一個新方法以驗證使用者，以及建立新 [登入] 按鈕的方法處理常式。上述範例程式碼中的使用者是使用 Facebook 登入進行驗證。對話方塊會在驗證後用來顯示使用者識別碼。
+    這會建立一個新方法以驗證使用者，以及建立新 [登入]  按鈕的方法處理常式。 上述範例程式碼中的使用者是使用 Facebook 登入進行驗證。 對話方塊會在驗證後用來顯示使用者識別碼。
    
    > [!NOTE]
-   > 如果您使用的身分識別提供者不是 Facebook，請將傳遞給上述 **LoginAsync** 的值變更為下列其中之一：*MicrosoftAccount*、*Twitter*、*Google* 或 *WindowsAzureActiveDirectory*。
+   > 如果您使用的身分識別提供者不是 Facebook，請將傳遞給上述 **LoginAsync** 的值變更為下列其中之一：MicrosoftAccount、Twitter、Google 或 WindowsAzureActiveDirectory。
    > 
    > 
 2. 在 **OnCreate** 方法中，刪除或註解下列程式碼行：
    
         OnRefreshItemsSelected ();
-3. 在 Activity\_To\_Do.axml 檔案中，在現有的*AddItem* 按鈕之前加入下列 *LoginUser* 按鈕定義：
+3. 在 Activity_To_Do.axml 檔案中，在現有的 AddItem 按鈕之前加入下列 LoginUser 按鈕定義：
    
           <Button
             android:id="@+id/buttonLoginUser"
@@ -96,9 +100,13 @@ ms.author: mahender
         <string name="login_button_text">Sign in</string>
 5. 在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案，並使用您選擇的身分識別提供者登入。
    
-       當您成功登入後，應用程式將會顯示您的登入識別碼以及 todo 項目的清單，您可以對資料進行更新。
+       When you are successfully logged-in, the app will display your login ID and the list of todo items, and you can make updates to the data.
 
 <!-- URLs. -->
 [建立 Xamarin.Android 應用程式教學課程]: app-service-mobile-xamarin-android-get-started.md
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

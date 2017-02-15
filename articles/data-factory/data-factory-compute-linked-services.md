@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/22/2016
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 357e149121d4cd9b56dd17e7a7429b11e4f192db
-ms.openlocfilehash: f30e31a11ee08601b1c1d8db84031c8db5a15a71
+ms.sourcegitcommit: e651c6f081c14044602c1dc8f8e6d34ffddbf4ea
+ms.openlocfilehash: 7ce4151189eb6aaba3509878fb2e18d04f0c3e59
 
 
 ---
@@ -58,18 +58,20 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 ### <a name="example"></a>範例
 下列 JSON 會定義以 Linux 為基礎的隨選 HDInsight 連結服務。 Data Factory 服務會在處理資料配量時自動建立 **以 Linux 為基礎的** HDInsight 叢集。 
 
-    {
-        "name": "HDInsightOnDemandLinkedService",
-        "properties": {
-            "type": "HDInsightOnDemand",
-            "typeProperties": {
-                "clusterSize": 4,
-                "timeToLive": "00:05:00",
-                "osType": "linux",
-                "linkedServiceName": "StorageLinkedService"
-            }
+```json
+{
+    "name": "HDInsightOnDemandLinkedService",
+    "properties": {
+        "type": "HDInsightOnDemand",
+        "typeProperties": {
+            "clusterSize": 4,
+            "timeToLive": "00:05:00",
+            "osType": "linux",
+            "linkedServiceName": "StorageLinkedService"
         }
     }
+}
+```
 
 若要使用以 Windows 為基礎的 HDInsight 叢集，請將 **osType** 設為 **windows**，或者不要使用此屬性，因為預設值是︰windows。  
 
@@ -93,10 +95,13 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | hcatalogLinkedServiceName |指向 HCatalog 資料庫的 Azure SQL 連結服務名稱。 會使用 Azure SQL 資料庫作為中繼存放區，建立隨選 HDInsight 叢集。 |否 |
 
 #### <a name="additionallinkedservicenames-json-example"></a>additionalLinkedServiceNames JSON 範例
-    "additionalLinkedServiceNames": [
-        "otherLinkedServiceName1",
-        "otherLinkedServiceName2"
-      ]
+
+```json
+"additionalLinkedServiceNames": [
+    "otherLinkedServiceName1",
+    "otherLinkedServiceName2"
+  ]
+```
 
 ### <a name="advanced-properties"></a>進階屬性
 您也可以針對隨選 HDInsight 叢集的細微組態指定下列屬性。
@@ -112,39 +117,42 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | stormConfiguration |指定 HDInsight 叢集的 Storm 組態參數 (storm-site.xml)。 |否 |
 | yarnConfiguration |指定 HDInsight 叢集的 Yarn 組態參數 (yarn-site.xml)。 |否 |
 
-#### <a name="example-on-demand-hdinsight-cluster-configuration-with-advanced-properties"></a>範例 – 包含進階屬性的隨選 HDInsight 叢集組態
-    {
-      "name": " HDInsightOnDemandLinkedService",
-      "properties": {
-        "type": "HDInsightOnDemand",
-        "typeProperties": {
-          "clusterSize": 16,
-          "timeToLive": "01:30:00",
-          "linkedServiceName": "adfods1",
-          "coreConfiguration": {
-            "templeton.mapper.memory.mb": "5000"
-          },
-          "hiveConfiguration": {
-            "templeton.mapper.memory.mb": "5000"
-          },
-          "mapReduceConfiguration": {
-            "mapreduce.reduce.java.opts": "-Xmx4000m",
-            "mapreduce.map.java.opts": "-Xmx4000m",
-            "mapreduce.map.memory.mb": "5000",
-            "mapreduce.reduce.memory.mb": "5000",
-            "mapreduce.job.reduce.slowstart.completedmaps": "0.8"
-          },
-          "yarnConfiguration": {
-            "yarn.app.mapreduce.am.resource.mb": "5000",
-            "mapreduce.map.memory.mb": "5000"
-          },
-          "additionalLinkedServiceNames": [
-            "datafeeds",
-            "adobedatafeed"
-          ]
-        }
-      }
+#### <a name="example--on-demand-hdinsight-cluster-configuration-with-advanced-properties"></a>範例 – 包含進階屬性的隨選 HDInsight 叢集組態
+
+```json
+{
+  "name": " HDInsightOnDemandLinkedService",
+  "properties": {
+    "type": "HDInsightOnDemand",
+    "typeProperties": {
+      "clusterSize": 16,
+      "timeToLive": "01:30:00",
+      "linkedServiceName": "adfods1",
+      "coreConfiguration": {
+        "templeton.mapper.memory.mb": "5000"
+      },
+      "hiveConfiguration": {
+        "templeton.mapper.memory.mb": "5000"
+      },
+      "mapReduceConfiguration": {
+        "mapreduce.reduce.java.opts": "-Xmx4000m",
+        "mapreduce.map.java.opts": "-Xmx4000m",
+        "mapreduce.map.memory.mb": "5000",
+        "mapreduce.reduce.memory.mb": "5000",
+        "mapreduce.job.reduce.slowstart.completedmaps": "0.8"
+      },
+      "yarnConfiguration": {
+        "yarn.app.mapreduce.am.resource.mb": "5000",
+        "mapreduce.map.memory.mb": "5000"
+      },
+      "additionalLinkedServiceNames": [
+        "datafeeds",
+        "adobedatafeed"
+      ]
     }
+  }
+}
+```
 
 ### <a name="node-sizes"></a>節點大小
 您可使用下列屬性指定前端、資料和的 zookeeper 節點的大小： 
@@ -156,12 +164,14 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | zookeeperNodeSize |指定 Zoo Keeper 節點的大小。 預設值為：Standard_D3。 |否 |
 
 #### <a name="specifying-node-sizes"></a>指定節點大小
-如需了解需為上方屬性指定的字串值，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md#size-tables?toc=%2fazure%2fdata-factory%2ftoc.json)一文。 值必須符合本文件中所參考的 **CMDLET 與 APIS**。 如您在文中所見，若資料節點的大小設定為大 (預設值)，則記憶體大小為 7 GB，其可能不適用於您的案例。 
+如需了解需為上方屬性指定的字串值，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fdata-factory%2ftoc.json#size-tables)一文。 值必須符合本文件中所參考的 **CMDLET 與 APIS**。 如您在文中所見，若資料節點的大小設定為大 (預設值)，則記憶體大小為 7 GB，其可能不適用於您的案例。 
 
 若想要建立 D4 大小的前端節點與背景工作節點，必須指定 **Standard_D4** 作為 headNodeSize 與 dataNodeSize 屬性的值。 
 
-    "headNodeSize": "Standard_D4",    
-    "dataNodeSize": "Standard_D4",
+```json
+"headNodeSize": "Standard_D4",    
+"dataNodeSize": "Standard_D4",
+```
 
 如果您為這些屬性指定錯誤的值，可能會顯示下列 **錯誤：**無法建立叢集。 例外狀況：無法完成叢集建立作業。 作業失敗，錯誤碼為 '400'。 叢集剩餘狀態：「錯誤」。 訊息：「PreClusterCreationValidationFailure」。 若顯示此錯誤，請確認您使用來自前述文章中資料表的 **CMDLET 與 APIS** 名稱。  
 
@@ -178,18 +188,21 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 您可以建立 Azure HDInsight 連結服務，以向 Data Factory 註冊自己的 HDInsight 叢集。
 
 ### <a name="example"></a>範例
-    {
-      "name": "HDInsightLinkedService",
-      "properties": {
-        "type": "HDInsight",
-        "typeProperties": {
-          "clusterUri": " https://<hdinsightclustername>.azurehdinsight.net/",
-          "userName": "admin",
-          "password": "<password>",
-          "linkedServiceName": "MyHDInsightStoragelinkedService"
-        }
-      }
+
+```json
+{
+  "name": "HDInsightLinkedService",
+  "properties": {
+    "type": "HDInsight",
+    "typeProperties": {
+      "clusterUri": " https://<hdinsightclustername>.azurehdinsight.net/",
+      "userName": "admin",
+      "password": "<password>",
+      "linkedServiceName": "MyHDInsightStoragelinkedService"
     }
+  }
+}
+```
 
 ### <a name="properties"></a>屬性
 | 屬性 | 說明 | 必要 |
@@ -210,27 +223,34 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 * [New-AzureBatchPool](https://msdn.microsoft.com/library/mt125936.aspx) Cmdlet 可建立 Azure Batch 集區。
 
 ### <a name="example"></a>範例
-    {
-      "name": "AzureBatchLinkedService",
-      "properties": {
-        "type": "AzureBatch",
-        "typeProperties": {
-          "accountName": "<Azure Batch account name>",
-          "accessKey": "<Azure Batch account key>",
-          "poolName": "<Azure Batch pool name>",
-          "linkedServiceName": "<Specify associated storage linked service reference here>"
-        }
-      }
+
+```json
+{
+  "name": "AzureBatchLinkedService",
+  "properties": {
+    "type": "AzureBatch",
+    "typeProperties": {
+      "accountName": "<Azure Batch account name>",
+      "accessKey": "<Azure Batch account key>",
+      "poolName": "<Azure Batch pool name>",
+      "linkedServiceName": "<Specify associated storage linked service reference here>"
     }
+  }
+}
+```
 
 將 "**.<地區名稱**" 附加至為 **accountName** 屬性所用的 Batch 帳戶名稱。 範例：
 
-            "accountName": "mybatchaccount.eastus"
+```json
+"accountName": "mybatchaccount.eastus"
+```
 
 另一個選項是提供 batchUri 端點，如下所示。  
 
-            "accountName": "adfteam",
-            "batchUri": "https://eastus.batch.azure.com",
+```json
+"accountName": "adfteam",
+"batchUri": "https://eastus.batch.azure.com",
+```
 
 ### <a name="properties"></a>屬性
 | 屬性 | 說明 | 必要 |
@@ -245,16 +265,19 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 您可建立 Azure Machine Learning 連結服務，以向 Data Factory 註冊 Machine Learning 批次評分端點。
 
 ### <a name="example"></a>範例
-    {
-      "name": "AzureMLLinkedService",
-      "properties": {
-        "type": "AzureML",
-        "typeProperties": {
-          "mlEndpoint": "https://[batch scoring endpoint]/jobs",
-          "apiKey": "<apikey>"
-        }
-      }
+
+```json
+{
+  "name": "AzureMLLinkedService",
+  "properties": {
+    "type": "AzureML",
+    "typeProperties": {
+      "mlEndpoint": "https://[batch scoring endpoint]/jobs",
+      "apiKey": "<apikey>"
     }
+  }
+}
+```
 
 ### <a name="properties"></a>屬性
 | 屬性 | 說明 | 必要 |
@@ -268,21 +291,22 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 
 下列範例提供 Azure 資料湖分析連結服務的 JSON 定義。
 
-    {
-        "name": "AzureDataLakeAnalyticsLinkedService",
-        "properties": {
-            "type": "AzureDataLakeAnalytics",
-            "typeProperties": {
-                "accountName": "adftestaccount",
-                "dataLakeAnalyticsUri": "datalakeanalyticscompute.net",
-                "authorization": "<authcode>",
-                "sessionId": "<session ID>",
-                "subscriptionId": "<subscription id>",
-                "resourceGroupName": "<resource group name>"
-            }
+```json
+{
+    "name": "AzureDataLakeAnalyticsLinkedService",
+    "properties": {
+        "type": "AzureDataLakeAnalytics",
+        "typeProperties": {
+            "accountName": "adftestaccount",
+            "dataLakeAnalyticsUri": "datalakeanalyticscompute.net",
+            "authorization": "<authcode>",
+            "sessionId": "<session ID>",
+            "subscriptionId": "<subscription id>",
+            "resourceGroupName": "<resource group name>"
         }
     }
-
+}
+```
 
 下表提供 JSON 定義中所使用之屬性的描述：
 
@@ -308,28 +332,31 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 ### <a name="to-programmatically-generate-sessionid-and-authorization-values"></a>若要以程式設計方式產生 sessionId 與 authorization 的值
 下列程式碼會產生 **sessionId** 與 **authorization** 值。  
 
-    if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
-        linkedService.Properties.TypeProperties is AzureDataLakeAnalyticsLinkedService)
+```CSharp
+
+if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
+    linkedService.Properties.TypeProperties is AzureDataLakeAnalyticsLinkedService)
+{
+    AuthorizationSessionGetResponse authorizationSession = this.Client.OAuth.Get(this.ResourceGroupName, this.DataFactoryName, linkedService.Properties.Type);
+
+    WindowsFormsWebAuthenticationDialog authenticationDialog = new WindowsFormsWebAuthenticationDialog(null);
+    string authorization = authenticationDialog.AuthenticateAAD(authorizationSession.AuthorizationSession.Endpoint, new Uri("urn:ietf:wg:oauth:2.0:oob"));
+
+    AzureDataLakeStoreLinkedService azureDataLakeStoreProperties = linkedService.Properties.TypeProperties as AzureDataLakeStoreLinkedService;
+    if (azureDataLakeStoreProperties != null)
     {
-        AuthorizationSessionGetResponse authorizationSession = this.Client.OAuth.Get(this.ResourceGroupName, this.DataFactoryName, linkedService.Properties.Type);
-
-        WindowsFormsWebAuthenticationDialog authenticationDialog = new WindowsFormsWebAuthenticationDialog(null);
-        string authorization = authenticationDialog.AuthenticateAAD(authorizationSession.AuthorizationSession.Endpoint, new Uri("urn:ietf:wg:oauth:2.0:oob"));
-
-        AzureDataLakeStoreLinkedService azureDataLakeStoreProperties = linkedService.Properties.TypeProperties as AzureDataLakeStoreLinkedService;
-        if (azureDataLakeStoreProperties != null)
-        {
-            azureDataLakeStoreProperties.SessionId = authorizationSession.AuthorizationSession.SessionId;
-            azureDataLakeStoreProperties.Authorization = authorization;
-        }
-
-        AzureDataLakeAnalyticsLinkedService azureDataLakeAnalyticsProperties = linkedService.Properties.TypeProperties as AzureDataLakeAnalyticsLinkedService;
-        if (azureDataLakeAnalyticsProperties != null)
-        {
-            azureDataLakeAnalyticsProperties.SessionId = authorizationSession.AuthorizationSession.SessionId;
-            azureDataLakeAnalyticsProperties.Authorization = authorization;
-        }
+        azureDataLakeStoreProperties.SessionId = authorizationSession.AuthorizationSession.SessionId;
+        azureDataLakeStoreProperties.Authorization = authorization;
     }
+
+    AzureDataLakeAnalyticsLinkedService azureDataLakeAnalyticsProperties = linkedService.Properties.TypeProperties as AzureDataLakeAnalyticsLinkedService;
+    if (azureDataLakeAnalyticsProperties != null)
+    {
+        azureDataLakeAnalyticsProperties.SessionId = authorizationSession.AuthorizationSession.SessionId;
+        azureDataLakeAnalyticsProperties.Authorization = authorization;
+    }
+}
+```
 
 請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 您必須針對 WindowsFormsWebAuthenticationDialog 類別將參考新增至：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
 
@@ -345,6 +372,6 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

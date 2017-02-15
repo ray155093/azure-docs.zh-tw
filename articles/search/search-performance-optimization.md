@@ -116,6 +116,6 @@ STA 是可從 Azure 搜尋服務觀點了解延遲率的寶貴工具。  由於�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

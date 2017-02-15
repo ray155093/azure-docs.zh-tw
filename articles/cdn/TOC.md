@@ -50,7 +50,11 @@
 ## [REST](/rest/api/cdn/)
 
 # 資源
-## [Azure CDN 的 POP 位置](cdn-pop-locations.md)
+##  [規則引擎參考](cdn-rules-engine-reference.md)
+### [規則引擎條件式運算式](cdn-rules-engine-reference-conditional-expressions.md)
+### [規則引擎比對條件](cdn-rules-engine-reference-match-conditions.md)
+### [規則引擎功能](cdn-rules-engine-reference-features.md)
+## [Azure CDN POP 位置](cdn-pop-locations.md)
 ## [服務更新](https://azure.microsoft.com/updates/?product=cdn)
 ## [價格](https://azure.microsoft.com/pricing/details/cdn/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurecdn)
@@ -58,6 +62,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

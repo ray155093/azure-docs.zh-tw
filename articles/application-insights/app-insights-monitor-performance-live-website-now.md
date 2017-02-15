@@ -14,15 +14,15 @@ ms.topic: get-started-article
 ms.date: 10/24/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: b70c8baab03703bc00b75c2c611f69e3b71d6cd7
-ms.openlocfilehash: 5159e7fc47d320d52eb7b94b5775158a3f09c769
+ms.sourcegitcommit: ee9ebc23ce805bb4665669077a4d3fddf4c43e32
+ms.openlocfilehash: a190b1990a4ae4e7ad52cc1a7e802c8002522917
 
 
 ---
 # <a name="instrument-web-apps-at-runtime-with-application-insights"></a>在執行階段使用 Application Insights 檢測 Web 應用程式
-*Application Insights 目前僅供預覽。*
 
-您可以使用 Visual Studio Application Insights 檢測即時 Web 應用程式，而不需修改或重新部署您的程式碼。 如果您的應用程式是由內部部署 IIS 伺服器裝載，請安裝「狀態監視器」；或者，如果它們是 Azure Web 應用程式或在 Azure VM 中執行，您可以安裝 Application Insights 延伸模組。 (我們還提供有關檢測[即時 J2EE Web 應用程式](app-insights-java-live.md)和 [Azure 雲端服務](app-insights-cloudservices.md)的個別文章)。
+
+您可以使用 Azure Application Insights 檢測即時 Web 應用程式，而不需修改或重新部署您的程式碼。 如果您的應用程式是由內部部署 IIS 伺服器裝載，請安裝「狀態監視器」；或者，如果它們是 Azure Web 應用程式或在 Azure VM 中執行，您可以安裝 Application Insights 延伸模組。 (我們還提供有關檢測[即時 J2EE Web 應用程式](app-insights-java-live.md)和 [Azure 雲端服務](app-insights-cloudservices.md)的個別文章)。
 
 ![範例圖表](./media/app-insights-monitor-performance-live-website-now/10-intro.png)
 
@@ -38,9 +38,9 @@ ms.openlocfilehash: 5159e7fc47d320d52eb7b94b5775158a3f09c769
 | --- | --- | --- |
 | 要求和例外狀況 |是 |是 |
 | [更詳細的例外狀況](app-insights-asp-net-exceptions.md) | |是 |
-| [相依性診斷](app-insights-asp-net-dependencies.md) |在 .NET 4.6+ 上 |是 |
-| [系統效能計數器](app-insights-performance-counters.md) | |IIS 或 Azure 雲端服務，而非 Azure Web 應用程式 |
-| [自訂遙測][api] |是 | |
+| [相依性診斷](app-insights-asp-net-dependencies.md) |在 .Net 4.6 + 上，但較少細節 |是，完整詳細資料︰結果碼，SQL 命令文字，HTTP 動詞|
+| [系統效能計數器](app-insights-performance-counters.md) |是 |是 |
+| [自訂遙測的 API][api] |是 | |
 | [追蹤記錄檔整合](app-insights-asp-net-trace-logs.md) |是 | |
 | [頁面檢視和使用者資料](app-insights-javascript.md) |是 | |
 | 不需要重建程式碼 |否 | |
@@ -55,29 +55,23 @@ ms.openlocfilehash: 5159e7fc47d320d52eb7b94b5775158a3f09c769
 
 ### <a name="if-your-app-is-hosted-on-your-iis-server"></a>如果您的應用程式裝載於您的 IIS 伺服器
 1. 在 IIS Web 伺服器上，以系統管理員認證登入。
-2. 下載並執行 [狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648)。
-3. 在安裝精靈中，登入 Microsoft Azure。
-
-    ![使用 Microsoft 帳戶認證登入 Azure](./media/app-insights-monitor-performance-live-website-now/appinsights-035-signin.png)
-
-    *連接錯誤？請參閱[疑難排解](#troubleshooting)。*
-4. 挑選您想要監視的已安裝 Web 應用程式或網站，然後設定您在 Application Insights 入口網站中查看結果時想要使用的資源。
+2. 下載並執行 [狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648)。  
+3. 挑選您想要監視的已安裝 Web 應用程式或網站，然後設定您在 Application Insights 入口網站中查看結果時想要使用的資源。 您應該登入 Microsoft Azure。
 
     ![選擇應用程式和資源。](./media/app-insights-monitor-performance-live-website-now/appinsights-036-configAIC.png)
 
     一般來說，您可以選擇設定新的資源和[資源群組][roles]。
 
-    否則，如果您已經為網站設定 [Web 測試][availability]，或設定 [Web 用戶端監視][]，請使用現有的資源。
-5. 重新啟動 IIS。
+    否則，如果您已經為網站設定 [Web 測試][availability]，或設定 [Web 用戶端監視][client]，請使用現有的資源。
+4. 重新啟動 IIS。
 
     ![選擇對話方塊頂端的 [重新啟動]。](./media/app-insights-monitor-performance-live-website-now/appinsights-036-restart.png)
 
     您的 Web 服務將會中斷一小段時間。
-6. 請注意，ApplicationInsights.config 已插入至您想要監視的 Web 應用程式。
+5. 請注意，ApplicationInsights.config 已插入至您想要監視的 Web 應用程式。
 
     ![在 Web 應用程式的程式碼檔案旁找到 .config 檔案。](./media/app-insights-monitor-performance-live-website-now/appinsights-034-aiconfig.png)
-
-   web.config 也有一些變動。
+   
 
 #### <a name="want-to-reconfigure-later"></a>稍後再 (重新) 設定嗎？
 完成精靈之後，您隨時都可以重新設定代理程式。 如果已安裝代理程式，但初始設定有一些問題，則您也可以這樣做。
@@ -105,7 +99,7 @@ ms.openlocfilehash: 5159e7fc47d320d52eb7b94b5775158a3f09c769
 ![相依性](./media/app-insights-monitor-performance-live-website-now/23-dep.png)
 
 ## <a name="performance-counters"></a>效能計數器
-(不適用於 Azure Web 應用程式。)在 [概觀] 刀鋒視窗中按一下 [伺服器]，以查看伺服器效能計數器的圖表，例如 CPU 佔用和記憶體使用量。
+在 [概觀] 刀鋒視窗中按一下 [伺服器]，以查看伺服器效能計數器的圖表，例如 CPU 佔用和記憶體使用量。
 
 如果您有數個伺服器執行個體，您可能想要編輯圖表以便依角色執行個體分組。
 
@@ -146,10 +140,11 @@ ms.openlocfilehash: 5159e7fc47d320d52eb7b94b5775158a3f09c769
 * Windows Server 2008 R2
 * Windows Server 2012
 * Windows Server 2012 R2
+* Windows Server 2016
 
-(含最新版 SP 和 .NET Framework 4.0 和 4.5)
+(含最新版 SP 和 .NET Framework 4.5)
 
-在用戶端 Windows 7、8 和 8.1 上，一樣需含有 .NET Framework 4.0 和 4.5
+在用戶端 Windows 7、8、8.1 和 10 上，一樣需含有 .NET Framework 4.5
 
 IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 
@@ -214,7 +209,7 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 * 將最新的 Application Insights SDK 下載至伺服器。
 
 ## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
-* [建立 Web 測試][]，確定您的網站保持即時狀態。
+* [建立 Web 測試][availability]，確定您的網站保持即時狀態。
 * [搜尋事件和記錄][diagnostic]以協助診斷問題。
 * [新增 Web 用戶端遙測][usage]，以查看網頁程式碼中的例外狀況，並讓您插入追蹤呼叫。
 * [將 Application Insights SDK 新增至您的 Web 服務程式碼][greenbrown]，便可以將追蹤和記錄呼叫插入至伺服器程式碼中。
@@ -232,6 +227,6 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

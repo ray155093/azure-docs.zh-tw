@@ -238,6 +238,6 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

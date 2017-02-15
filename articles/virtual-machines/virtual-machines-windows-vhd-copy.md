@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/20/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 1f8a4d6fec12aabf4055fea39bf37d76362ab059
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: e516d3cea9a53dec209a51fc8729f2cca934d3cd
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: 1f8a4d6fec12aabf4055fea39bf37d76362ab059
 請確定您︰
 
 * 已取得**來源和目的地儲存體帳戶**的相關資訊。 針對來源 VM，您需要儲存體帳戶和容器名稱。 容器名稱通常會是 **vhd**。 您也需要有一個目的地儲存體帳戶。 如果您還沒有，可以使用入口網站 ([更多服務] > [儲存體帳戶[ > [新增])，或使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 建立一個。 
-* 已安裝 Azure [PowerShell 1.0](../powershell-install-configure.md) (或更新版本)。
+* 已安裝 Azure [PowerShell 1.0](/powershell/azureps-cmdlets-docs) (或更新版本)。
 * 已下載並安裝 [AzCopy 工具](../storage/storage-use-azcopy.md)。 
 
 ## <a name="deallocate-the-vm"></a>解除配置 VM
@@ -101,6 +101,6 @@ Elapsed time:            00.00:13:07
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

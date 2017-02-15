@@ -23,7 +23,7 @@ ms.openlocfilehash: 330fab68efedee0e6e56459289f94beb88a5fdd5
 當您有 [Azure Application Insights](app-insights-overview.md) 相關的技術問題時，以下是可取得協助的選項：
 
 ## <a name="1-check-the-documents"></a>1.查看文件
-* 遺漏資料？ 查看：[取樣][](app-insights-sampling.md)、[配額和節流][](app-insights-pricing.md)。
+* 遺漏資料？ 查看：[取樣](app-insights-sampling.md)、[配額和節流](app-insights-pricing.md)。
 * 疑難排解：[ASP.NET](app-insights-troubleshoot-faq.md) | [Java](app-insights-java-troubleshoot.md)
 
 ## <a name="2-search-the-forums"></a>2.搜尋論壇

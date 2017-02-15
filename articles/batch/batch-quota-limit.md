@@ -3,7 +3,7 @@ title: "Batch 服務配額和限制 | Microsoft Docs"
 description: "了解預設的 Azure Batch 配額、限制和條件約束，以及如何要求增加配額"
 services: batch
 documentationcenter: 
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 ms.assetid: 28998df4-8693-431d-b6ad-974c2f8db5fb
@@ -12,11 +12,11 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/10/2016
-ms.author: marsma
+ms.date: 01/05/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3433ce8b664fb02c5c267ea4b21e678fdc1accfe
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: 1a530bf6e9afca9a7cdc1f68e8eefdbf077dc516
 
 
 ---
@@ -75,11 +75,11 @@ ms.openlocfilehash: 3433ce8b664fb02c5c267ea4b21e678fdc1accfe
     按 [下一步] 。
 4. 在 [問題]  刀鋒視窗上：
    
-    a. 根據您的[商業影響][support_sev]選取 [嚴重性]。
+    a. 根據[商業影響][support_sev]選取 [嚴重性]。
    
-    b. 在 [詳細資料] 中，指定每個您想要變更的配額、Batch 帳戶名稱和新限制。
+    b.這是另一個 C# 主控台應用程式。 在 [詳細資料] 中，指定每個您想要變更的配額、Batch 帳戶名稱和新限制。
    
-    按一下頁面底部的 [新增] 來單一登入應用程式。
+    按 [下一步] 。
 5. 在 [連絡資訊]  刀鋒視窗上：
    
     a. 選取 [偏好的連絡方式]。
@@ -103,6 +103,6 @@ ms.openlocfilehash: 3433ce8b664fb02c5c267ea4b21e678fdc1accfe
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

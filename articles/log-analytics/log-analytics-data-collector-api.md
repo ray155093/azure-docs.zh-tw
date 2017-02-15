@@ -1,19 +1,23 @@
 ---
-title: Log Analytics HTTP 資料收集器 API | Microsoft Docs
-description: 您可以使用 Log Analytics HTTP 資料收集器 API，將 POST JSON 資料從任何可呼叫 REST API 的用戶端新增至 Log Analytics 存放庫。 本文說明如何使用此 API，並提供如何使用不同的程式設計語言來發佈資料的範例。
+title: "Log Analytics HTTP 資料收集器 API | Microsoft Docs"
+description: "您可以使用 Log Analytics HTTP 資料收集器 API，將 POST JSON 資料從任何可呼叫 REST API 的用戶端新增至 Log Analytics 存放庫。 本文說明如何使用此 API，並提供如何使用不同的程式設計語言來發佈資料的範例。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: a831fd90-3f55-423b-8b20-ccbaaac2ca75
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/11/2016
+ms.date: 10/26/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f574a3cd837e4fc9cf292d672432a7960cae177b
+
 
 ---
 # <a name="log-analytics-http-data-collector-api"></a>Log Analytics HTTP 資料收集器 API
@@ -26,7 +30,7 @@ ms.author: bwren
 | 屬性 | 屬性 |
 |:--- |:--- |
 | 方法 |POST |
-| URI |https://<WorkspaceID>.ods.opinsights.azure.com/api/logs?api-version=2016-04-01 |
+| URI |https://\<CustomerId\>.ods.opinsights.azure.com/api/logs?api-version=2016-04-01 |
 | 內容類型 |application/json |
 
 ### <a name="request-uri-parameters"></a>要求 URI 參數
@@ -59,10 +63,10 @@ WorkspaceID是 Microsoft Operations Management Suite 工作區的唯一識別碼
 
 ```
 StringToSign = VERB + "\n" +
-               Content-Length + "\n" +
+                  Content-Length + "\n" +
                Content-Type + "\n" +
-               x-ms-date + "\n" +
-               "/api/logs";
+                  x-ms-date + "\n" +
+                  "/api/logs";
 ```
 
 以下是簽章字串的範例︰
@@ -143,6 +147,13 @@ Log Analytics 用於每個屬性的資料類型取決於新記錄的記錄類型
 如果您再提交以下項目，則在記錄類型建立前，Log Analytics 會建立具有 **number_s**、**boolean_s** 和 **string_s** 三個屬性的記錄。 在此項目中，每個初始值都格式化為字串︰
 
 ![範例記錄 4](media/log-analytics-data-collector-api/record-04.png)
+
+## <a name="data-limits"></a>資料限制
+在張貼至 Log Analytics 資料收集 API 的資料上有一些限制。
+
+* 可張貼至 Log Analytics 資料收集 API 的每個張貼項目大小上限為 30 MB。 這是單一張貼項目的大小限制。 如果資料是來自超出 30 MB 的單一張貼項目，您應該將資料分割成較小區塊，然後同時傳送它們。 
+* 欄位值的大小上限為 32 KB。 如果欄位值大於 32 KB，資料將會被截斷。 
+* 指定類型欄位的建議數目上限為 50。 對於使用性和搜尋體驗觀點而言，這是一個實際的限制。  
 
 ## <a name="return-codes"></a>傳回碼
 HTTP 狀態碼 202 表示要求已經被接受且正在處理，但處理尚未完成。 這表示作業已順利完成。
@@ -263,7 +274,7 @@ Function Post-OMSData($customerId, $sharedKey, $body, $logType)
 Post-OMSData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.Encoding]::UTF8.GetBytes($json)) -logType $logType  
 ```
 
-### <a name="c#-sample"></a>C# 範例
+### <a name="c-sample"></a>C# 範例
 ```
 using System;
 using System.Net;
@@ -383,7 +394,7 @@ def build_signature(customer_id, shared_key, date, content_length, method, conte
     string_to_hash = method + "\n" + str(content_length) + "\n" + content_type + "\n" + x_headers + "\n" + resource
     bytes_to_hash = bytes(string_to_hash).encode('utf-8')  
     decoded_key = base64.b64decode(shared_key)
-    encoded_hash = base64.b64encode(hmac.new(decoded_key, string_to_hash, digestmod=hashlib.sha256).digest())
+    encoded_hash = base64.b64encode(hmac.new(decoded_key, bytes_to_hash, digestmod=hashlib.sha256).digest())
     authorization = "SharedKey {}:{}".format(customer_id,encoded_hash)
     return authorization
 
@@ -416,6 +427,9 @@ post_data(customer_id, shared_key, body, log_type)
 ## <a name="next-steps"></a>後續步驟
 * 使用[檢視設計工具](log-analytics-view-designer.md)，對您所提交的資料建置自訂檢視。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

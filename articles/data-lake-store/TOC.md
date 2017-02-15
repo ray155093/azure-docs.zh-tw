@@ -29,6 +29,13 @@
 ### [服務對服務驗證](data-lake-store-authenticate-using-active-directory.md)
 ### [使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)
 
+## 效能
+### [Azure Data Lake Store 的效能微調方針](data-lake-store-performance-tuning-guidance.md)
+### [HDInsight 和 Azure Data Lake Store 上的 Spark 效能微調方針](data-lake-store-performance-tuning-spark.md)
+### [HDInsight 和 Azure Data Lake Store 上的 Hive 效能微調方針](data-lake-store-performance-tuning-hive.md)
+### [HDInsight 和 Azure Data Lake Store 上的 MapReduce 效能微調方針](data-lake-store-performance-tuning-mapreduce.md)
+### [HDInsight 和 Azure Data Lake Store 上的 Storm 效能微調方針](data-lake-store-performance-tuning-storm.md)
+
 ## 與 Azure 服務整合
 ### [從 Azure VNET 內的 VM 存取](data-lake-store-connectivity-from-vnets.md)
 ### [使用 Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
@@ -64,6 +71,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=data-lake-store)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

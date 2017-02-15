@@ -1,9 +1,12 @@
 ---
 layout: LandingPage
 description: "Machine Learning 的文件、影片和範例模型，專為那些在應用程式中使用預測性分析的資料科學家和開發人員所設計的雲端服務。"
+author: garyericson
+ms.date: 01/18/2017
+ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 12f9d75f252d8b05fdcded9d3fb6c12e4c2a304e
-ms.openlocfilehash: d51cb36ce676ac6d2e7c7b3313db75308d4cca3b
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 3247e45c44f63c529c84de5dd31eadc5a9552952
 
 ---
 #<a name="azure-machine-learning-documentation"></a>Azure Machine Learning 文件
@@ -95,8 +98,8 @@ ms.openlocfilehash: d51cb36ce676ac6d2e7c7b3313db75308d4cca3b
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/azure/machine-learning/machine-learning-powershell-module">PowerShell</a></p>
-                        <p><a href="/azure/machine-learning/machine-learning-powershell-module">適用於 Machine Learning 的 PowerShell 模組</a></p>
+                        <p><a href="/powershell/resourcemanager/azurerm.machinelearning/v0.11.1/azurerm.machinelearning">PowerShell (新型)</a></p>
+                        <p><a href="/azure/machine-learning/machine-learning-powershell-module">PowerShell (傳統)</a></p>
                     </div>
                 </div>
             </div>
@@ -108,7 +111,7 @@ ms.openlocfilehash: d51cb36ce676ac6d2e7c7b3313db75308d4cca3b
                 <div class="card">
                     <div class="cardText">
                         <h3>語言</h3>
-                        <p><a href="https://msdn.microsoft.com/library/azure/dn905974.aspx">演算法 &amp; 模組參考</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/azure/dn905974.aspx">演算法&amp;模組參考</a></p>
                    </div>
                 </div>
             </div>
@@ -128,13 +131,7 @@ ms.openlocfilehash: d51cb36ce676ac6d2e7c7b3313db75308d4cca3b
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/machine-learning.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Machine Learning 文件 </div>
-    </a>
-</div>
+
 
 
 

@@ -1,13 +1,13 @@
 ---
-title: 建立、設定和部署 PHP Web 應用應式至 Azure
-description: 示範如何在 Azure App Service 中執行 PHP (Laravel) Web 應用程式的教學課程。 了解如何設定 Azure App Service，以符合您所選擇的 PHP 架構的需求。
+title: "建立、設定和部署 PHP Web 應用應式至 Azure"
+description: "示範如何在 Azure App Service 中執行 PHP (Laravel) Web 應用程式的教學課程。 了解如何設定 Azure App Service，以符合您所選擇的 PHP 架構的需求。"
 services: app-service\web
 documentationcenter: php
 author: cephalin
 manager: wpickett
-editor: ''
+editor: 
 tags: mysql
-
+ms.assetid: cb73859d-48aa-470a-b486-d984746d6d26
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 06/03/2016
 ms.author: cephalin
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
+
 
 ---
-# <a name="create,-configure,-and-deploy-a-php-web-app-to-azure"></a>建立、設定和部署 PHP Web 應用應式至 Azure
+# <a name="create-configure-and-deploy-a-php-web-app-to-azure"></a>建立、設定和部署 PHP Web 應用應式至 Azure
 [!INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
 
 本教學課程說明如何建立、設定和部署 Azure 的 PHP Web 應用程式，以及如何設定 Azure App Service，以符合 PHP Web 應用程式的需求。 本教學課程結束時，您將擁有一個實際在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中運作的 [Laravel](https://www.laravel.com/) Web 應用程式。
@@ -48,7 +52,7 @@ ms.author: cephalin
 > 
 > 
 
-## <a name="create-a-php-(laravel)-app-on-your-dev-machine"></a>在開發電腦上建立 PHP (Laravel) 應用程式
+## <a name="create-a-php-laravel-app-on-your-dev-machine"></a>在開發電腦上建立 PHP (Laravel) 應用程式
 1. 開啟新的 Windows 命令提示字元、PowerShell 視窗、Linux Shell 或 OS X 終端機。 執行下列命令來確認您的電腦上正確安裝所需的工具。 
    
         php --version
@@ -114,7 +118,8 @@ ms.author: cephalin
 * 設定 PHP 5.5.9 或更高版本。 如需得完整的伺服器需求清單，請參閱 [最新的 Laravel 5.2 伺服器需求](https://laravel.com/docs/5.2#server-requirements) 。 清單的其餘部分是 Azure 的 PHP 安裝已啟用的擴充功能。 
 * 設定應用程式需要的環境變數。 Laravel 使用 `.env` 檔案來輕鬆設定環境變數。 不過，因為不會認可到原始檔控制 (請參閱 [Laravel 環境組態](https://laravel.com/docs/5.2/configuration#environment-configuration)，您將改以設定 Azure Web 應用程式的應用程式設定。
 * 請確定最先載入 Laravel 應用程式的進入點： `public/index.php`。 請參閱 [Laravel 生命週期概觀](https://laravel.com/docs/5.2/lifecycle#lifecycle-overview)。 換句話說，您必須設定 Web 應用程式的根目錄 URL 以指向 `public` 目錄。
-* 由於您有 composer.json，請在 Azure 中啟用編輯器擴充。 如此一來，當您使用 `git push`部署時，編輯器會替您取得所需的封裝。 這樣比較方便。 如果您未啟用編輯器自動化，則只需要從 `.gitignore` 檔案中移除 `/vendor`，在認可及部署程式碼時，Git 就會包含 ("un-ignores") `vendor` 目錄中的所有項目。
+* 由於您有 composer.json，請在 Azure 中啟用編輯器擴充。 如此一來，當您使用 `git push`部署時，編輯器會替您取得所需的封裝。 這樣比較方便。 
+  如果您未啟用編輯器自動化，則只需要從 `.gitignore` 檔案中移除 `/vendor`，在認可及部署程式碼時，Git 就會包含 ("un-ignores") `vendor` 目錄中的所有項目。
 
 我們將依序設定這些工作。
 
@@ -134,13 +139,11 @@ ms.author: cephalin
     您已完成設定環境變數！
    
    > [!NOTE]
-   > 等一下，我們稍微放慢腳步，說明 Laravel 和 Azure 在這裡的運作情形。 Laravel 使用 `.env` 根目錄來提供環境變數給應用程式，您可以在其中找到 `APP_DEBUG=true` (以及 `APP_KEY=...`) 這一行。 這個變數在 `config/app.php` 是透過程式碼     `'debug' => env('APP_DEBUG', false),` 存取。 [env()](https://laravel.com/docs/5.2/helpers#method-env) 是 Laravel 協助程式方法，在幕後使用 PHP [getenv()](http://php.net/manual/en/function.getenv.php)。
+   > 等一下，我們稍微放慢腳步，說明 Laravel 和 Azure 在這裡的運作情形。 Laravel 使用 `.env` 根目錄來提供環境變數給應用程式，您可以在其中找到 `APP_DEBUG=true` (以及 `APP_KEY=...`) 這一行。 這個變數在 `config/app.php` 是透過程式碼 `'debug' => env('APP_DEBUG', false),` 存取。 [env()](https://laravel.com/docs/5.2/helpers#method-env) 是 Laravel 協助程式方法，在幕後使用 PHP [getenv()](http://php.net/manual/en/function.getenv.php)。
    > 
-   > 不過，Git 會忽略 `.env`，因為根目錄中的 `.gitignore` 檔案會呼叫它。 簡單地說，本機 Git 存放庫中的 `.env` 
-   > 不會隨著其餘檔案一起推送至 Azure。 當然，您可以從 `.gitignore`中移除該行，但我們已聲明不建議將此檔案認可到原始檔控制。 您還是需要設法在 Azure 中指定這些環境變數。 
+   > 不過，Git 會忽略 `.env`，因為根目錄中的 `.gitignore` 檔案會呼叫它。 簡單地說，本機 Git 儲存機制中的 `.env` 不會隨著其餘檔案一起推送至 Azure。 當然，您可以從 `.gitignore`中移除該行，但我們已聲明不建議將此檔案認可到原始檔控制。 您還是需要設法在 Azure 中指定這些環境變數。 
    > 
-   > 好消息是，Azure App Service 中的應用程式設定在 PHP 中支援 [getenv()](http://php.net/manual/en/function.getenv.php) 
-   > 。 因此，雖然您可以使用 FTP 或其他方式手動將 `.env` 檔案上傳到 Azure，但您也可以直接將您想要的變數指定為 Azure 應用程式設定，而不需要 Azure 中的 `.env`，如同您剛才的做法一樣。 此外，如果變數同時存在於 `.env` 檔案和 Azure 應用程式設定中，則以 Azure 應用程式設定為優先。     
+   > 好消息是，Azure App Service 中的應用程式設定在 PHP 中支援 [getenv()](http://php.net/manual/en/function.getenv.php) 。 因此，雖然您可以使用 FTP 或其他方式手動將 `.env` 檔案上傳到 Azure，但您也可以直接將您想要的變數指定為 Azure 應用程式設定，而不需要 Azure 中的 `.env`，如同您剛才的做法一樣。 此外，如果變數同時存在於 `.env` 檔案和 Azure 應用程式設定中，則以 Azure 應用程式設定為優先。     
    > 
    > 
 4. 最後兩項工作 (設定虛擬目錄及啟用編輯器) 需要 [Azure 入口網站](https://portal.azure.com)，請以您的 Azure 帳戶登入[入口網站](https://portal.azure.com)。
@@ -149,12 +152,11 @@ ms.author: cephalin
     ![Enable Composer for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-composer-tools.png)
    
    > [!TIP]
-   > 如果您按一下 [設定]**** 而不是 [工具]****，您將能夠存取 [應用程式設定]**** 
-   > 刀鋒視窗，在其中設定 PHP 版本、應用程式設定和虛擬目錄，如同您剛才的做法一樣。 
+   > 如果您按一下 [設定] 而不是 [工具]，您將能夠存取 [應用程式設定] 刀鋒視窗，在其中設定 PHP 版本、應用程式設定和虛擬目錄，如同您剛才的做法一樣。 
    > 
    > 
 6. 按一下 [擴充功能]  >  ，新增擴充功能。
-7. 在 [選擇擴充功能] [刀鋒視窗](../azure-portal-overview.md)中，選取 [編輯器](*刀鋒視窗*：水平開啟的入口網站頁面.md)。
+7. 在 [選擇擴充功能] [刀鋒視窗](../azure-portal-overview.md)中，選取 [編輯器] (*刀鋒視窗*：水平開啟的入口網站頁面)。
 8. 在 [接受法律條款] 刀鋒視窗中按一下 [確定]。 
 9. 在 [新增擴充功能] 刀鋒視窗中按一下 [確定]。
    
@@ -181,7 +183,7 @@ ms.author: cephalin
     
      您已完成設定虛擬目錄！ 
 
-## <a name="deploy-your-web-app-with-git-(and-setting-environment-variables)"></a>使用 Git (和設定環境變數) 部署 Web 應用程式
+## <a name="deploy-your-web-app-with-git-and-setting-environment-variables"></a>使用 Git (和設定環境變數) 部署 Web 應用程式
 您現在可以開始部署程式碼。 您將回到命令提示字元或終端機來執行此工作。
 
 1. 認可所有變更，並將程式碼部署至 Azure Web 應用程式，如同在任何 Git 儲存機制中的做法一樣︰
@@ -211,7 +213,7 @@ ms.author: cephalin
 
 <a name="clierror"></a>
 
-### <a name="azure-cli-shows-"'site'-is-not-an-azure-command""></a>Azure CLI 顯示「'site' 不是 azure 命令」
+### <a name="azure-cli-shows-site-is-not-an-azure-command"></a>Azure CLI 顯示「'site' 不是 azure 命令」
 在命令列終端機中執行 `azure site *` 時，您看到錯誤：`error:   'site' is not an azure command. See 'azure help'.` 
 
 這通常是因為切換到 "ARM" (Azure Resource Manager) 模式。 若要解決此問題，請執行 `azure config mode asm`以切回到 "ASM" (Azure 服務管理) 模式。
@@ -225,14 +227,14 @@ ms.author: cephalin
 
 <a name="whoops"></a>
 
-### <a name="web-app-shows-"whoops,-looks-like-something-went-wrong.""></a>Web 應用程式顯示「糟糕！似乎發生錯誤。」
+### <a name="web-app-shows-whoops-looks-like-something-went-wrong"></a>Web 應用程式顯示「糟糕！似乎發生錯誤。」
 您已成功將 Web 應用程式部署至 Azure，但在瀏覽至 Azure Web 應用程式時，卻出現怪異的訊息： `Whoops, looks like something went wrong.`
 
 若要取得更具描述性的錯誤，請將 `APP_DEBUG` 環境變數設為 `true`，以啟用 Laravel 偵錯 (請參閱[設定 Azure Web 應用程式](#configure))。
 
 <a name="encryptor"></a>
 
-### <a name="web-app-shows-"no-supported-encryptor-found.""></a>Web 應用程式顯示「找不到支援的加密程式。」
+### <a name="web-app-shows-no-supported-encryptor-found"></a>Web 應用程式顯示「找不到支援的加密程式。」
 您已成功將 Web 應用程式部署至 Azure，但在瀏覽至 Azure Web 應用程式時，卻出現下列錯誤訊息：
 
 ![APP_KEY missing in your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/laravel-error-APP_KEY.png)
@@ -248,6 +250,9 @@ ms.author: cephalin
 * [在 Azure App Service 中將 WordPress 轉換成多站台](web-sites-php-convert-wordpress-multisite.md)
 * [Azure App Service 上的企業級 WordPress](web-sites-php-enterprise-wordpress.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

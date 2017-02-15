@@ -1,12 +1,12 @@
 ---
-title: 使用範圍篩選器進行以屬性為基礎的應用程式佈建 | Microsoft Docs
-description: 了解如果某個物件無法滿足您的業務需求，如何使用範圍篩選器來防止實際佈建 App 中支援使用者佈建自動化的物件。
+title: "使用範圍篩選器進行以屬性為基礎的應用程式佈建 | Microsoft Docs"
+description: "了解如果某個物件無法滿足您的業務需求，如何使用範圍篩選器來防止實際佈建 App 中支援使用者佈建自動化的物件。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: bcfbda74-e4d4-4859-83bc-06b104df3918
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: markusvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 003e75d1b3576a6b882c220cded0c30dea44c78f
+
 
 ---
-# <a name="attributebased-app-provisioning-with-scoping-filters"></a>含範圍篩選器的屬性型 App 佈建
+# <a name="attribute-based-app-provisioning-with-scoping-filters"></a>含範圍篩選器的屬性型 App 佈建
 本節的目標在於說明如何使用範圍篩選器定義將會決定哪些使用者將佈建到應用程式的屬性型規則。
 
 ## <a name="clauses-and-scope-groups"></a>子句和範圍群組
@@ -63,6 +67,6 @@ ms.author: markusvi
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

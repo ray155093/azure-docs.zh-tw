@@ -108,6 +108,6 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -232,7 +232,7 @@ ADP GlobalView 應用程式需要特定格式的 SAML 判斷提示，要求您�
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-a-adp-globalview-test-user"></a>建立 ADP GlobalView 測試使用者
 本節目標是在 ADP GlobalView 中建立名為 Britta Simon 的使用者。 請與 ADP GlobalView 支援小組合作，在 ADP GlobalView 帳戶中加入使用者。 

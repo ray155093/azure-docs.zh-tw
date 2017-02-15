@@ -1,12 +1,12 @@
 ---
-title: Azure Toolkit for IntelliJ | Microsoft Docs
-description: 了解 Azure Toolkit for IntelliJ。
-services: ''
+title: "適用於 IntelliJ 的 Azure 工具組 | Microsoft Docs"
+description: "了解 Azure Toolkit for IntelliJ。"
+services: 
 documentationcenter: java
 author: rmcmurray
 manager: wpickett
-editor: ''
-
+editor: 
+ms.assetid: 115a095d-1b70-41d6-adb4-78f24b2a4451
 ms.service: multiple
 ms.workload: na
 ms.tgt_pltfrm: multiple
@@ -14,32 +14,36 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 09/20/2016
 ms.author: robmcm;asirveda
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6b23f7c1185544cfb37d208abfe00523166e4de5
+
 
 ---
-# Azure Toolkit for IntelliJ
-Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 IntelliJ 開發環境來建立、開發、測試及部署 Azure 應用程式。它是開放原始碼專案，您可以從專案網站，透過 MIT License 取得其原始程式碼：
+# <a name="azure-toolkit-for-intellij"></a>Azure Toolkit for IntelliJ
+Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 IntelliJ 開發環境來建立、開發、測試及部署 Azure 應用程式。 它是開放原始碼專案，您可以從專案網站，透過 MIT License 取得其原始程式碼：
 
 * <https://github.com/microsoft/azure-tools-for-java>
 
 > [!NOTE]
-> 另外還有適用於 Eclipse IDE 的 Azure 工具組。如需詳細資訊，請參閱[適用於 Eclipse 的 Azure 工具組]。
+> 另外還有適用於 Eclipse IDE 的 Azure 工具組。 如需詳細資訊，請參閱 [適用於 Eclipse 的 Azure 工具組]。
 > 
 > 
 
-## 開始使用 Azure Toolkit for IntelliJ
+## <a name="getting-started-with-the-azure-toolkit-for-intellij"></a>開始使用 Azure Toolkit for IntelliJ
 下列文章可協助您開始使用 Azure Toolkit for IntelliJ：
 
 * [適用於 IntelliJ 的 Azure 工具組新增功能]
 * [安裝 Azure Toolkit for IntelliJ]
 * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
 
-## 使用適用於 IntelliJ 的 Azure 工具組
+## <a name="using-the-azure-toolkit-for-intellij"></a>使用適用於 IntelliJ 的 Azure 工具組
 下列文章會示範如何使用 Azure Toolkit for IntelliJ 將 Azure 的功能加入您的 Java 專案：
 
 * [在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯]
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式][HDInsight Tools Plugin for IntelliJ]
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式][IntelliJ 的 HDInsight Tools 外掛程式]
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
 
 * [適用於 Eclipse 的 Azure 工具組]
@@ -67,6 +71,10 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
 
 [在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯]: ./app-service-web/app-service-web-debug-java-web-app-in-intellij.md
-[HDInsight Tools Plugin for IntelliJ]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md
+[IntelliJ 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -1,19 +1,23 @@
 ---
-title: 加入自訂 Service Fabric 健康狀態報告 | Microsoft Docs
-description: 描述如何將自訂健康狀態報告傳送給 Azure Service Fabric 健康狀態實體。 提供設計和實作高品質健康狀態報告的建議。
+title: "加入自訂 Service Fabric 健康狀態報告 | Microsoft Docs"
+description: "描述如何將自訂健康狀態報告傳送給 Azure Service Fabric 健康狀態實體。 提供設計和實作高品質健康狀態報告的建議。"
 services: service-fabric
 documentationcenter: .net
 author: oanapl
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 0a00a7d2-510e-47d0-8aa8-24c851ea847f
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/28/2016
+ms.date: 01/12/2017
 ms.author: oanapl
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d986275612b3e5c97636936a5e448dd6d0fcfc4e
+
 
 ---
 # <a name="add-custom-service-fabric-health-reports"></a>新增自訂 Service Fabric 健康狀態報告
@@ -156,7 +160,7 @@ GatewayInformation   : {
 
 不過，在上述情況報告已完成，則評估過健康狀態後，會擷取應用程式健康狀態的報告。
 
-## <a name="report-periodically-vs.-on-transition"></a>定期報告與轉換時報告
+## <a name="report-periodically-vs-on-transition"></a>定期報告與轉換時報告
 使用健康狀態報告模型，監視程式可以定期或於轉換時傳送報告。 使用看門狗報告的建議方式是定期報告，因為程式碼較為簡單且比較不容易發生錯誤。 監視程式必須盡可能越簡單越好，以避免觸發誤報的錯誤。 不正確的狀況不良  報告將會影響健康狀態評估以及需依據健康狀態的情況，包括升級。 不正確的狀況良好  報告會隱藏叢集中的問題，我們不希望發生此情況。
 
 針對定期報告，您可以用計時器實作監視程式。 計時器回呼時，監視程式可以檢查狀態並依照目前情況傳送報告。 不需要查看先前已傳送的報告或在傳訊方面進行任何最佳化。 健康狀態用戶端具有批次邏輯，有助於提高效能。 只要健康狀態用戶端持續作用，就會在內部重試，直到報告被健康狀態資料存放區認可，或是監視程式產生具有相同實體、屬性與來源的較新報告時。
@@ -303,6 +307,9 @@ HealthEvents          :
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

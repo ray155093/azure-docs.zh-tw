@@ -466,7 +466,7 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
 
 [QuickCreate]: ./media/cache-dotnet-how-to-use-service/CacheServiceQuickCreate.png
 
-[端點
+[端點]: ./media/cache-dotnet-how-to-use-service/CacheServiceEndpoint.png
 
 [AccessKeys]: ./media/cache-dotnet-how-to-use-service/CacheServiceManageAccessKeys.png
 

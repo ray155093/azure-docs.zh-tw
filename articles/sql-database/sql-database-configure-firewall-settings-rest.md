@@ -1,6 +1,6 @@
 ---
-title: "使用 REST API 的 Azure SQL Database 伺服器層級防火牆規則 | Microsoft Docs"
-description: "了解如何設定存取 Azure SQL Database 之 IP 位址的防火牆。"
+title: "REST API：Azure SQL Database 伺服器層級防火牆規則 | Microsoft Docs"
+description: "了解如何使用 REST API 設定可存取 Azure SQL Database 之 IP 位址的伺服器層級防火牆。"
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 08/09/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: a9b48f149427e5ceb69bcaa97b1bf08519499b6f
-ms.openlocfilehash: cc0faa49daaafe19c71d2c765b8e865be04f81e2
+ms.sourcegitcommit: 86bc7d89bb5725add8ba05b6f0978467147fd3ca
+ms.openlocfilehash: 6ac9bdf34e8cf0a8ca8e06ae3ed6cd2dd1cf408b
 
 
 ---
@@ -91,6 +91,6 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

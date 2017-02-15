@@ -1,13 +1,13 @@
 ---
-title: 使用 Bootstrap 自訂 HDInsight 叢集 | Microsoft Docs
-description: 了解如何使用 Bootstrap 自訂 HDInsight 叢集。
+title: "使用 Bootstrap 自訂 HDInsight 叢集 | Microsoft Docs"
+description: "了解如何使用 Bootstrap 自訂 HDInsight 叢集。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: mumian
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: ab2ebf0c-e961-4e95-8151-9724ee22d769
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/02/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a83b4e910dbb8421d80416286c3d1eadcbf7bba7
+
 
 ---
-# 使用 Bootstrap 自訂 HDInsight 叢集
+# <a name="customize-hdinsight-clusters-using-bootstrap"></a>使用 Bootstrap 自訂 HDInsight 叢集
 有時候，您需要設定包含下列項目的組態檔：
 
 * clusterIdentity.xml
@@ -36,7 +40,7 @@ ms.author: jgao
 * webhcat-site.xml
 * yarn-site.xml
 
-叢集無法保留重新製作映像所造成的變更。如需重新製作映像的詳細資訊，請參閱 [Role Instance Restarts Due to OS Upgrades (角色執行個體因作業系統升級而重新啟動)](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx)。若要在叢集存留期間保留變更，您可以在建立程序期間使用 HDInsight 叢集自訂。我們建議您用這個方法來變更叢集的組態，並讓組態在這些 Azure 重新安裝映像、重新啟動、重新開始事件的過程中，都能保持不變。這些組態變更會在服務啟動之前套用，因此服務不需要重新啟動。
+叢集無法保留重新製作映像所造成的變更。 如需重新製作映像的詳細資訊，請參閱 [Role Instance Restarts Due to OS Upgrades (角色執行個體因作業系統升級而重新啟動)](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx)。 若要在叢集存留期間保留變更，您可以在建立程序期間使用 HDInsight 叢集自訂。 我們建議您用這個方法來變更叢集的組態，並讓組態在這些 Azure 重新安裝映像、重新啟動、重新開始事件的過程中，都能保持不變。 這些組態變更會在服務啟動之前套用，因此服務不需要重新啟動。 
 
 有 3 個方法可以使用 Bootstrap：
 
@@ -51,7 +55,7 @@ ms.author: jgao
 * [使用指令碼動作來自訂 HDInsight 叢集| Azure (Linux)](hdinsight-hadoop-customize-cluster-linux.md)
 * [使用指令碼動作來自訂 HDInsight 叢集 (Windows)](hdinsight-hadoop-customize-cluster.md)
 
-## 使用 Azure PowerShell
+## <a name="use-azure-powershell"></a>使用 Azure PowerShell
 下列 PowerShell 程式碼會自訂 Hive 組態：
 
     # hive-site.xml configuration
@@ -75,21 +79,21 @@ ms.author: jgao
         -HttpCredential $httpCredential `
         -Config $config 
 
-可完整運作的 PowerShell 指令碼可在[附錄 A](#hdinsight-hadoop-customize-cluster-bootstrap.md/appx-a:-powershell-sample) 中找到。
+可完整運作的 PowerShell 指令碼可在 [附錄 A](#hdinsight-hadoop-customize-cluster-bootstrap.md/appx-a:-powershell-sample)中找到。
 
 **若要確認變更：**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在左窗格上按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
 3. 按一下您剛才使用 PowerShell 指令碼建立的叢集。
-4. 在刀鋒視窗頂端按一下 [儀表板]，以開啟 Ambari UI。
-5. 按一下左側功能表中的 [Hive]。
+4. 在刀鋒視窗頂端按一下 [儀表板]  ，以開啟 Ambari UI。
+5. 按一下左側功能表中的 [Hive]  。
 6. 按一下 [Summary (摘要)] 中的 [HiveServer2]。
-7. 按一下 [Configs (設定)] 索引標籤。
-8. 按一下左側功能表中的 [Hive]。
-9. 按一下 [Advanced (進階)] 索引標籤。
-10. 向下捲動，然後展開 [Advanced hive-site (進階 Hive 網站)]。
-11. 在此區段中尋找 **hive.metastore.client.socket.timeout**。
+7. 按一下 [Configs (設定)]  索引標籤。
+8. 按一下左側功能表中的 [Hive]  。
+9. 按一下 [Advanced (進階)]  索引標籤。
+10. 向下捲動，然後展開 [Advanced hive-site (進階 Hive 網站)] 。
+11. 在此區段中尋找 **hive.metastore.client.socket.timeout** 。
 
 以下是更多自訂其他組態檔的範例：
 
@@ -105,12 +109,12 @@ ms.author: jgao
     # oozie-site.xml configuration
     $OozieConfigValues = @{ "oozie.service.coord.normal.default.timeout"="150" }  # default 120
 
-如需詳細資訊，請參閱 Azim Uddin 的部落格中，標題為「[自訂 HDInsight 叢集建立](http://blogs.msdn.com/b/bigdatasupport/archive/2014/04/15/customizing-hdinsight-cluster-provisioning-via-powershell-and-net-sdk.aspx)」的文章。
+如需詳細資訊，請參閱 Azim Uddin 的部落格中，標題為「 [自訂 HDInsight 叢集建立](http://blogs.msdn.com/b/bigdatasupport/archive/2014/04/15/customizing-hdinsight-cluster-provisioning-via-powershell-and-net-sdk.aspx)」的文章。
 
-## 使用 .NET SDK
-請參閱[在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)。
+## <a name="use-net-sdk"></a>使用 .NET SDK
+請參閱 [在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)。
 
-## 使用 Resource Manager 範本
+## <a name="use-resource-manager-template"></a>使用 Resource Manager 範本
 Resource Manager 範本中，您可以使用啟動程序︰
 
     "configurations": {
@@ -125,7 +129,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
 
 ![hdinsight hadoop 自訂叢集 bootstrap azure resource manager 範本](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision-cluster]說明如何使用其他自訂選項建立 HDInsight 叢集。
 * [開發 HDInsight 的指令碼動作指令碼][hdinsight-write-script]
 * [在 HDInsight 叢集上安裝及使用 Spark][hdinsight-install-spark]
@@ -142,7 +146,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster/HDI-Cluster-state.png "叢集建立期間的階段"
 
-## 附錄 A：PowerShell 範例
+## <a name="appx-a-powershell-sample"></a>附錄 A：PowerShell 範例
 此 PowerShell 指令碼會建立 HDInsight 叢集，並自訂 Hive 設定：
 
     ####################################
@@ -252,4 +256,8 @@ Resource Manager 範本中，您可以使用啟動程序︰
 
     #endregion
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

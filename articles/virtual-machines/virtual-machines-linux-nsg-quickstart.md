@@ -1,6 +1,6 @@
 ---
-title: "針對 Linux VM 開啟連接埠和端點 | Microsoft Docs"
-description: "了解如何使用 Azure Resource Manager 部署模型和 Azure CLI 對 Linux VM 開啟連接埠 / 建立端點"
+title: "在 Azure 中針對 Linux VM 開啟連接埠和端點 | Microsoft Docs"
+description: "了解如何使用 Azure Resource Manager 部署模型和 Azure CLI 2.0 (預覽) 對 Linux VM 開啟連接埠 / 建立端點"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -12,55 +12,59 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 10/27/2016
+ms.date: 12/8/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 5dd20630580f09049c88ffd9107f7fa8e8e43816
-ms.openlocfilehash: 0e5e7b2c0637db3d20cbe2e6f00a23cb9d7fb51f
+ms.sourcegitcommit: e4512dd4d818b1c7bea7e858a397728ce48a5362
+ms.openlocfilehash: 40f399c339e31d9d008230449d7f559ae01afba3
 
 
 ---
 # <a name="opening-ports-and-endpoints-to-a-linux-vm-in-azure"></a>在 Azure 中針對 Linux VM 開啟連接埠和端點
-您可以透過在子網路或 VM 網路介面上建立網路篩選，對 Azure 中的虛擬機器 (VM) 開啟連接埠或建立端點。 您可將控制輸入和輸出流量的這些篩選器放在可接收流量的資源所附加的網路安全性群組上。 讓我們使用連接埠 80 上的 Web 流量的常見範例。
+您可以透過在子網路或 VM 網路介面上建立網路篩選，對 Azure 中的虛擬機器 (VM) 開啟連接埠或建立端點。 您可將控制輸入和輸出流量的這些篩選器放在可接收流量的資源所附加的網路安全性群組上。 讓我們使用連接埠 80 上的 Web 流量的常見範例。 這篇文章說明如何使用 Azure CLI 2.0 (預覽) 來開啟連接埠至 VM。
+
+
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
+
+- [Azure CLI 1.0](virtual-machines-linux-nsg-quickstart-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
+- [Azure CLI 2.0 (預覽)](#quick-commands) - 適用於資源管理部署模型的新一代 CLI (本文章)
+
 
 ## <a name="quick-commands"></a>快速命令
-若要建立「網路安全性群組」和規則，您需要安裝 [Azure CLI](../xplat-cli-install.md) 和使用 Resource Manager 模式：
-
-```azurecli
-azure config mode arm
-```
+若要建立網路安全性群組和規則，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myNetworkSecurityGroup` 和 `myVnet`。
 
-適當地輸入您自己的名稱和位置來建立「網路安全性群組」。 下列範例會在 `WestUS` 位置建立名為 `myNetworkSecurityGroup` 的網路安全性群組：
+使用 [az network nsg create](/cli/azure/network/nsg#create) 建立網路安全性群組。 下列範例會在 `westus` 位置建立名為 `myNetworkSecurityGroup` 的網路安全性群組：
 
 ```azurecli
-azure network nsg create --resource-group myResourceGroup --location westus \
+az network nsg create --resource-group myResourceGroup --location westus \
     --name myNetworkSecurityGroup
 ```
 
-新增規則以允許流向您 Web 伺服器的 HTTP 流量 (或針對自己的案例 (例如 SSH 存取或資料庫連接) 進行調整)。 下列範例會建立名為 `myNetworkSecurityGroupRule` 的規則以允許連接埠 80 上的 TCP 流量︰
+使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create)新增規則以允許流向您 Web 伺服器的 HTTP 流量 (或針對自己的案例 (例如 SSH 存取或資料庫連接) 進行調整)。 下列範例會建立名為 `myNetworkSecurityGroupRule` 的規則以允許連接埠 80 上的 TCP 流量︰
 
 ```azurecli
-azure network nsg rule create --resource-group myResourceGroup \
+az network nsg rule create --resource-group myResourceGroup \
     --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRule \
     --protocol tcp --direction inbound --priority 1000 \
-    --destination-port-range 80 --access allow
+    --source-address-prefix '*' --source-port-range '*' \
+    --destination-address-prefix '*' --destination-port-range 80 --access allow
 ```
 
-將「網路安全性群組」與 VM 的網路介面 (NIC) 建立關聯。 下列範例將名為 `myNic` 的現有 NIC 與名為 `myNetworkSecurityGroup` 的網路安全性群組建立關聯：
+使用 [az network nic update](/cli/azure/network/nic#update)將「網路安全性群組」與 VM 的網路介面 (NIC) 建立關聯。 下列範例將名為 `myNic` 的現有 NIC 與名為 `myNetworkSecurityGroup` 的網路安全性群組建立關聯：
 
 ```azurecli
-azure network nic set --resource-group myResourceGroup \
-    --network-security-group-name myNetworkSecurityGroup --name myNic
+az network nic update --resource-group myResourceGroup --name myNic \
+    --network-security-group myNetworkSecurityGroup
 ```
 
-或者，您也可以將「網路安全性群組」與虛擬網路的子網路建立關聯，而不是只與單一 VM 上的網路介面建立關聯。 下列範例將 `myVnet`虛擬網路中名為 `mySubnet` 的現有子網路與名為 `myNetworkSecurityGroup` 的網路安全性群組建立關聯：
+或者，您也可以使用 [az network vnet subnet update](/cli/azure/network/vnet/subnet#update)將「網路安全性群組」與虛擬網路的子網路建立關聯，而不是只與單一 VM 上的網路介面建立關聯。 下列範例將 `myVnet`虛擬網路中名為 `mySubnet` 的現有子網路與名為 `myNetworkSecurityGroup` 的網路安全性群組建立關聯：
 
 ```azurecli
-azure network vnet subnet set --resource-group myResourceGroup \
-    --network-security-group-name myNetworkSecurityGroup \
-    --vnet-name myVnet --name mySubnet
+az network vnet subnet update --resource-group myResourceGroup \
+    --vnet-name myVnet --name mySubnet --network-security-group myNetworkSecurityGroup
 ```
 
 ## <a name="more-information-on-network-security-groups"></a>網路安全性群組的詳細資訊
@@ -80,6 +84,6 @@ azure network vnet subnet set --resource-group myResourceGroup \
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

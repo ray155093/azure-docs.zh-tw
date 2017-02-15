@@ -1,13 +1,13 @@
 ---
-title: 在 HDInsight 上啟用 Hadoop 服務的堆積傾印 | Microsoft Docs
-description: 在以 Linux 為基礎的 HDInsight 叢集上啟用 Hadoop 服務的堆積傾印，以進行偵錯和分析。
+title: "在 HDInsight 上啟用 Hadoop 服務的堆積傾印 | Microsoft Docs"
+description: "在以 Linux 為基礎的 HDInsight 叢集上啟用 Hadoop 服務的堆積傾印，以進行偵錯和分析。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 8f151adb-f687-41e4-aca0-82b551953725
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 4bbd6f0033fd148832e56d0e0abef50c84a8422f
+
 
 ---
-# <a name="enable-heap-dumps-for-hadoop-services-on-linux-based-hdinsight-(preview)"></a>在以 Linux 為基礎的 HDInsight 上啟用 Hadoop 服務的堆積傾印 (預覽)
+# <a name="enable-heap-dumps-for-hadoop-services-on-linux-based-hdinsight-preview"></a>在以 Linux 為基礎的 HDInsight 上啟用 Hadoop 服務的堆積傾印 (預覽)
 [!INCLUDE [heapdump-selector](../../includes/hdinsight-selector-heap-dump.md)]
 
 堆積傾印含有應用程式記憶體的快照，其中包括建立傾印時的變數值。 因此堆積傾印非常有助於診斷在執行階段發生的問題。
@@ -27,7 +31,7 @@ ms.author: larryfr
 > 
 > 
 
-## <a name="<a-name="whichservices"></a>services"></a><a name="whichServices"></a>服務
+## <a name="a-namewhichservicesaservices"></a><a name="whichServices"></a>服務
 您可以啟用下列服務的堆積傾印：
 
 * **hcatalog** - tempelton
@@ -38,7 +42,7 @@ ms.author: larryfr
 
 您也可以針對 HDInsight 所執行的 map 和 reduce 處理序來啟用堆積傾印。
 
-## <a name="<a-name="configuration"></a>understanding-heap-dump-configuration"></a><a name="configuration"></a>了解堆積傾印組態
+## <a name="a-nameconfigurationaunderstanding-heap-dump-configuration"></a><a name="configuration"></a>了解堆積傾印組態
 堆積傾印的啟用方式，是在服務啟動時將選項 (有時稱為參數) 傳遞至 JVM。 就大部分的 Hadoop 服務而言，修改啟動服務所使用的 Shell 指令碼即可完成這項作業。
 
 在每個指令碼中，有一項 **\*\_OPTS** 匯出，其中含有傳遞至 JVM 的選項。 例如，在 **hadoop-env.sh** 指令碼中，以 `export HADOOP_NAMENODE_OPTS=` 為開頭的那一行即含有 NameNode 服務的選項。
@@ -127,6 +131,9 @@ map 和 reduce 處理序會稍有不同，因為它們是 MapReduce 服務的子
    > 
 8. 重新啟動服務後，請使用 [服務動作] 按鈕**關閉維護模式**。 這麼做可讓 Ambari 繼續監視服務是否有警示。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

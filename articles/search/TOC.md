@@ -44,7 +44,7 @@
 ### [Azure Blob 儲存體索引子](search-howto-indexing-azure-blob-storage.md)
 ### [Azure 資料表儲存體索引子](search-howto-indexing-azure-tables.md)
 ### [Azure SQL 索引子](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-### [Azure DocumentDB 索引子](../documentdb/documentdb-search-indexer.md?toc=%2fazure%2fsearch%2ftoc.json)
+### [Azure DocumentDB 索引子](search-howto-index-documentdb.md)
 ### [索引 CSV blob](search-howto-index-csv-blobs.md)
 ### [索引 JSON blob](search-howto-index-json-blobs.md)
 ### [在 Azure VM 上設定連接至 SQL Server 的索引子](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
@@ -61,14 +61,13 @@
 
 # 參考
 ## [.NET](/dotnet/api/microsoft.azure.search)
-## [.NET 管理](/dotnet/api/microsoft.azure.management.search)
-## [Java](/java/api/com.microsoft.azure.management.search)
+## [.NET (管理)](/dotnet/api/microsoft.azure.management.search)
+## [Python (管理)](http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.search.html)
 ## [REST](/rest/api/searchservice)
 ## [REST (管理)](/rest/api/searchmanagement)
 
 # 資源
 ## [服務更新](https://azure.microsoft.com/updates/?product=search)
-## 使用搜尋 API
 ## [API 版本](search-api-versions.md)
 ## [服務 REST (預覽)](search-api-2015-02-28-preview.md)
 ## [價格](https://azure.microsoft.com/pricing/details/search/)
@@ -87,6 +86,6 @@
 ### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

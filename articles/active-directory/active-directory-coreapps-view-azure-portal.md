@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/30/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -27,7 +27,7 @@ ms.openlocfilehash: 33b036537211e3bdeacba7f388aca334404385cb
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入 **Azure Active Directory**，然後選取 **Enter**。
 3. 在 [Azure Active Directory - ***directoryname***] 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]。
-   
+
     ![開啟企業應用程式](./media/active-directory-coreapps-view-azure-portal/open-enterprise-apps.png)
 4. 在 [企業應用程式] 刀鋒視窗上，選取 [所有應用程式]。 從這個刀鋒視窗中，您可以選取要管理的應用程式、變更顯示的資料行，或篩選清單以尋找您想要的應用程式 (例如，只檢視已停用的應用程式)。
 
@@ -36,7 +36,6 @@ ms.openlocfilehash: 33b036537211e3bdeacba7f388aca334404385cb
 * [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-azure-portal.md)
 * [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)
 * [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-user-azure-portal.md)
-
 
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流 | Microsoft Docs
-description: 本主題列出的內部部署即時編碼器可用來擷取即時事件，並傳送單一位元速率即時串流到 AMS 通道 (啟用即時編碼) 以供進一步處理。 本主題列出示範如何設定列出之編碼器的教學課程連結。
+title: "使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流 | Microsoft Docs"
+description: "本主題列出的內部部署即時編碼器可用來擷取即時事件，並傳送單一位元速率即時串流到 AMS 通道 (啟用即時編碼) 以供進一步處理。 本主題列出示範如何設定列出之編碼器的教學課程連結。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 0ec6f046-0841-4673-9057-883bdbc30d5c
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6ae703cd1edcfca58aea40376e3b961e3e77d5ee
+
 
 ---
 # <a name="how-to-configure-on-premise-encoders-when-using-azure-media-services-to-create-multi-bitrate-streams"></a>使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流
@@ -40,6 +44,9 @@ ms.author: juliako
 ## <a name="see-also"></a>另請參閱
 [使用 Azure 媒體服務執行即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

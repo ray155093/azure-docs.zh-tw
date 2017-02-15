@@ -1,12 +1,12 @@
 ---
-title: 設定雲端服務的 SSL (傳統) | Microsoft Docs
-description: 了解如何為 Web 角色指定 HTTPS 端點，以及如何上傳 SSL 憑證來保護應用程式的安全。
+title: "設定雲端服務的 SSL (傳統) | Microsoft Docs"
+description: "了解如何為 Web 角色指定 HTTPS 端點，以及如何上傳 SSL 憑證來保護應用程式的安全。"
 services: cloud-services
 documentationcenter: .net
 author: Thraka
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 4cbb7f38-7994-454d-b4f0-7259b558c766
 ms.service: cloud-services
 ms.workload: tbd
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: adegeo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1bfb0841ce6ad151d863d4635cb10d3ef1b1e06b
+
 
 ---
 # <a name="configuring-ssl-for-an-application-in-azure"></a>在 Azure 設定應用程式的 SSL
@@ -36,7 +40,7 @@ ms.author: adegeo
 
 [!INCLUDE [websites-cloud-services-css-guided-walkthrough](../../includes/websites-cloud-services-css-guided-walkthrough.md)]
 
-## <a name="step-1:-get-an-ssl-certificate"></a>步驟 1：取得 SSL 憑證
+## <a name="step-1-get-an-ssl-certificate"></a>步驟 1：取得 SSL 憑證
 若要設定應用程式的 SSL，首先您需要取得已由憑證授權單位 (CA) (專門核發憑證的受信任第三方) 簽署的 SSL 憑證。 如果您還沒有此類憑證，則必須向銷售 SSL 憑證的公司取得。
 
 憑證必須符合 Azure 中對於 SSL 憑證的下列要求：
@@ -50,7 +54,7 @@ ms.author: adegeo
 
 接下來，您必須在服務定義檔與服務組態檔中加入憑證的相關資訊。
 
-## <a name="step-2:-modify-the-service-definition-and-configuration-files"></a>步驟 2：修改服務定義檔和組態檔
+## <a name="step-2-modify-the-service-definition-and-configuration-files"></a>步驟 2：修改服務定義檔和組態檔
 您的應用程式必須已設定為使用憑證，而且您必須新增 HTTPS 端點。 因此，您需要更新服務定義檔與服務組態檔。
 
 1. 在開發環境中，開啟服務定義檔 (CSDEF)、在 [WebRole] 區段內新增 [Certificates] 區段，並新增下列憑證 (及中繼憑證) 相關資訊：
@@ -129,7 +133,7 @@ ms.author: adegeo
 
 您已更新服務定義檔與服務組態檔，現在請封裝您的部署，以上傳至 Azure。 如果您是使用 **cspack**，請確定未使用 **/generateConfigurationFile** 旗標，因為如此會將覆寫您剛插入的憑證資訊。
 
-## <a name="step-3:-upload-a-certificate"></a>步驟 3：上傳憑證
+## <a name="step-3-upload-a-certificate"></a>步驟 3：上傳憑證
 您的部署套件已更新為使用該憑證，而且您已新增 HTTPS 端點。 現在您可以利用 Azure 傳統入口網站將套件和憑證上傳至 Azure。
 
 1. 登入 [Azure 傳統入口網站][Azure 傳統入口網站]。 
@@ -141,9 +145,9 @@ ms.author: adegeo
 5. 按一下 [上傳]  按鈕。
    
     ![上傳](./media/cloud-services-configure-ssl-certificate/upload-button.png)
-6. 提供 [檔案]、[密碼]，然後按一下 [完成](核取記號.md)。
+6. 提供 [檔案]、[密碼]，然後按一下 [完成] (核取記號)。
 
-## <a name="step-4:-connect-to-the-role-instance-by-using-https"></a>步驟 4：使用 HTTPS 來連線至角色執行個體
+## <a name="step-4-connect-to-the-role-instance-by-using-https"></a>步驟 4：使用 HTTPS 來連線至角色執行個體
 您的部署已在 Azure 啟動並執行，現在您可以使用 HTTPS 來與其連線。
 
 1. 在 Azure 傳統入口網站中，選取您的部署，然後按一下 [網站 URL] 下的連結。
@@ -175,6 +179,6 @@ ms.author: adegeo
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

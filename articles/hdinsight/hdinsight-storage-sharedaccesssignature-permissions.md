@@ -257,6 +257,6 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

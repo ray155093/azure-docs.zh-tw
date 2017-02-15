@@ -4,7 +4,7 @@ description: "了解如何使用 Resource Manager 中的 Azure CLI 建立應用�
 services: application-gateway
 documentationcenter: na
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: c2f6516e-3805-49ac-826e-776b909a9104
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/12/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 3a8e5583f213c6d35f8e41dd31fe2ccad7389977
-ms.openlocfilehash: 3e3e563f941ad4ad58f96b03e98f49a7d99844d9
+ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
+ms.openlocfilehash: 165289acd1d2a5bc098e9a83f43613d16a023045
 
 
 ---
@@ -40,8 +40,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 > [!NOTE]
 > 如果您沒有 Azure 帳戶，就需要申請一個。 請 [在此處註冊免費試用](../active-directory/sign-up-organization.md)。
-> 
-> 
 
 ## <a name="scenario"></a>案例
 
@@ -58,8 +56,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 > [!NOTE]
 > 其他應用程式閘道組態 (包括自訂健康狀況探查、後端集區位址及其他規則) 會在設定應用程式閘道設定之後才進行設定，而不會在初始部署期間設定。
-> 
-> 
 
 ## <a name="before-you-begin"></a>開始之前
 
@@ -125,8 +121,6 @@ azure network application-gateway create -n AdatumAppGateway -l eastus -g Adatum
 
 > [!NOTE]
 > 如需可在建立期間提供的參數清單，請執行下列命令︰**azure network application-gateway create --help**。
-> 
-> 
 
 此範例會建立一個具有接聽程式、後端集區、後端 http 設定及規則之預設設定的基本應用程式閘道。 也會設定 SSL 卸載。 佈建成功之後，您可以依據您的部署需求修改這些設定。
 如果在先前步驟中已經以後端集區定義 Web 應用程式，一旦建立之後，負載平衡即開始。
@@ -146,6 +140,6 @@ azure network application-gateway create -n AdatumAppGateway -l eastus -g Adatum
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

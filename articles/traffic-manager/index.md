@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何管理連入流量，以獲得最佳的應用程式效能。 文件會示範如何將流量分散至 Azure 或外部服務端點。"
 translationtype: Human Translation
-ms.sourcegitcommit: 3123dc992bb821e79edceef01d2654aaff2468c1
-ms.openlocfilehash: a10c68140066de5be6690f30c89f4f6f2fad0825
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: a915eb8aca8a547036a13f3cc2128d205e83fdf2
 
 ---
 #<a name="traffic-manager-documentation"></a>流量管理員文件
@@ -120,13 +120,7 @@ ms.openlocfilehash: a10c68140066de5be6690f30c89f4f6f2fad0825
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/traffic-manager.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載流量管理員文件 </div>
-    </a>
-</div>
+
 
 
 

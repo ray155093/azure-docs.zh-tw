@@ -1,26 +1,30 @@
 ---
-title: 列出 Azure 上市的國家/地區以及支援的貨幣 | Microsoft Docs
-description: Microsoft Azure 上市的國家/地區和區域，以及可以用來購買 Azure 的對應貨幣。
-services: ''
-documentationcenter: ''
+title: "列出 Azure 上市的國家/區域以及支援的貨幣 | Microsoft Docs"
+description: "Microsoft Azure 上市的國家/區域，以及可以用來購買 Azure 的對應貨幣。"
+services: 
+documentationcenter: 
 author: genlin
-manager: msmbaldwin
-editor: ''
+manager: mbaldwin
+editor: 
 tags: billing
-
+ms.assetid: 31a5c698-2041-45b5-9299-884f305cebbc
 ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/13/2016
+ms.date: 11/10/2016
 ms.author: genli
+translationtype: Human Translation
+ms.sourcegitcommit: 72d750dfd8c0044ee845a9feb9b8f4d2a4761cf0
+ms.openlocfilehash: a7d83d9d098de41a65581a5924453d311b6203f5
+
 
 ---
-# Microsoft Azure 在那些國家/地區和區域上市，以及可以使用哪些貨幣購買 Azure？
-您可以在全球超過 140 個國家/地區購買 Microsoft Azure，並且支援許多不同貨幣。以下是一份清單，其中列出您可以購買 Azure 的國家/地區，以及可用來支付 Azure 帳單的貨幣。
+# <a name="in-which-countriesregions-is-microsoft-azure-commercially-available-and-what-currencies-can-be-used-to-purchase-azure"></a>Microsoft Azure 在那些國家/區域上市，以及可以使用哪些貨幣購買 Azure？
+您可以在全球超過 140 個國家/區域購買 Microsoft Azure，並且支援許多不同貨幣。 以下是一份清單，其中列出您可以購買 Azure 的國家/區域，以及可用來支付 Azure 帳單的貨幣。
 
-| 國家 (地區) | 貨幣代碼 |
+| 國家/區域 | 貨幣代碼 |
 | --- | --- |
 | 阿富汗 |美元 |
 | 阿爾巴尼亞 |美元 |
@@ -170,4 +174,8 @@ ms.author: genli
 | 尚比亞 |美元 |
 | 辛巴威 |美元 |
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

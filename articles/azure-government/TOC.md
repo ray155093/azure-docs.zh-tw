@@ -18,6 +18,9 @@
 ### [資源管理員](documentation-government-manage-azure-resource-manager.md)
 ### [Operations Management Suite](documentation-government-manage-oms.md)
 ### [訂用帳戶](documentation-government-manage-subscriptions.md)
+## 部署
+### Web + 行動
+#### [應用程式服務](documentation-government-howto-deploy-webandmobile.md)
 
 # 參考
 ## [服務](documentation-government-services.md)
@@ -32,8 +35,10 @@
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/)
 ## [試用版](https://azuregov.microsoft.com/trial/azuregovtrial)
+## [部落格](https://blogs.msdn.microsoft.com/azuregov/)
+## [Azure Government 網站](https://azure.microsoft.com/overview/clouds/government/)
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

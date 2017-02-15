@@ -12,26 +12,26 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3ffeeb2e96510342abb0c0f8718273f41729cc2d
+ms.sourcegitcommit: 5137ccfd2c809fe17cc7fdf06941ebd797288d81
+ms.openlocfilehash: 496c3c1cc0f203a58a6f81476393b369e6a76215
 
 
 ---
 # <a name="tutorial-get-started-with-azure-data-lake-analytics-u-sql-language"></a>教學課程：開始使用 Azure 資料湖分析 U-SQL 語言
-U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。 U-SQL 的可調整分散式查詢功能可讓您有效率地分析存放區中的資料，以及跨 Azure SQL Database 等關聯式存放區分析資料。  它可讓您藉由套用「讀取時的結構描述」(Schema-on-Read) 處理非結構化資料、插入自訂邏輯和 UDF，並可經由擴充功能來對如何大規模執行資料分析進行更細緻的掌控。 若要深入了解 U-SQL 背後的設計原理，請參閱此 [Visual Studio 部落格文章](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
+U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。 U-SQL 的可調整分散式查詢功能可讓您有效率地分析各關聯式存放區 (Azure SQL Database) 中的資料。  它可讓您在讀取、插入自訂邏輯和 UDF 上套用結構描述，以處理非結構化資料，而且包含擴充性，可精細控制如何大規模執行。 若要深入了解 U-SQL 背後的設計原理，請參閱此 [Visual Studio 部落格文章](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
 
 U-SQL 與 ANSI SQL 或 T-SQL 有一些差異。 例如，其關鍵字 (像是 SELECT) 一定要全是大寫字。
 
 select 子句內部是型別系統和運算式語言，在這裡面述詞等項目是以 C# 來撰寫。
-這表示資料型別是屬於 C# 型別且資料型別使用 C# NULL 語意，而述詞內的比較作業會遵循 C# 語法 (例如 == "foo")。  這也表示值全都是 .NET 物件，可讓您輕鬆地使用任何方法來操作物件 (例如 "f o o o".Split(' ') )。
+這表示資料型別是屬於 C# 型別且資料型別使用 C# NULL 語意，而述詞內的比較作業會遵循 C# 語法 (例如 == "foo")。  這也表示值全都是 .NET 物件，可讓您輕鬆地使用任何方法來操作物件 (例如 "f o o o".Split(' '))。
 
 如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
 ### <a name="prerequisites"></a>必要條件
-您必須完成 [教學課程：使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+請完成[教學課程：使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
 
 在此教學課程中，您使用下列 U-SQL 指令碼執行了資料湖分析作業：
 
@@ -151,7 +151,7 @@ WHERE 子句使用 [C# 布林運算式](https://msdn.microsoft.com/library/6a71f
 ## <a name="aggregate-rowsets"></a>彙總資料列集
 U-SQL 提供您已熟悉使用的 **ORDER BY**、**GROUP BY** 和各種彙總語法。
 
-下列查詢會尋找每個區域的總持續時間，然後按順序輸出前 5 大持續時間。
+下列查詢會尋找每個區域的總持續時間，然後按順序輸出前五大持續時間。
 
 U-SQL 資料列集不會保留它們的順序以供下一次查詢使用。 因此，若要對輸出排序，您需要將 ORDER BY 加入 OUTPUT 陳述式，如下所示：
 
@@ -404,7 +404,7 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
 * [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
 * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
 * [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
-* [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
+* [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
 ## <a name="let-us-know-what-you-think"></a>讓我們知道您的想法
 * [提交要求功能](http://aka.ms/adlafeedback)
@@ -414,6 +414,6 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

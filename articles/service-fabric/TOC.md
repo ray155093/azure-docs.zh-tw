@@ -4,6 +4,7 @@
 ## [應用程式案例](service-fabric-application-scenarios.md)
 ## [架構](service-fabric-architecture.md)
 ## [術語](service-fabric-technical-overview.md)
+## [內容藍圖](service-fabric-content-roadmap.md)
 
 # 開始使用
 ## 設定開發環境
@@ -18,17 +19,23 @@
 
 # 作法
 ## 建置應用程式
+### [模式和案例](service-fabric-patterns-and-scenarios.md)
 ### 基本概念
 #### [程式設計模型](service-fabric-choose-framework.md)
 #### [應用程式模型](service-fabric-application-model.md)
 #### [服務通訊](service-fabric-connect-and-communicate-with-services.md)
+#### [服務資訊清單資源](service-fabric-service-manifest-resources.md)
 #### [工具](service-fabric-manage-application-in-visual-studio.md)
-#### [偵錯](service-fabric-debugging-your-application.md)
+#### 偵錯
+##### [在 VS 的 C# 服務中進行偵錯](service-fabric-debugging-your-application.md)
+##### [在 Eclipse 中的Java 服務中進行偵錯](service-fabric-debugging-your-application-java.md)
 #### 監視與診斷
 ##### [Windows](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 ##### [Linux](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)
-#### [設定應用程式的安全性原則](service-fabric-application-runas-security.md)
-#### [針對多種環境設定您的應用程式](service-fabric-manage-multiple-environment-app-configuration.md)
+#### [管理應用程式密碼](service-fabric-application-secret-management.md)  
+#### [設定應用程式的安全性原則](service-fabric-application-runas-security.md)  
+#### [針對多種環境設定您的應用程式](service-fabric-manage-multiple-environment-app-configuration.md)  
+#### [常見錯誤及例外狀況](service-fabric-errors-and-exceptions.md) 
 
 ### Reliable Services 應用程式
 #### [概觀](service-fabric-reliable-services-introduction.md)
@@ -36,12 +43,14 @@
 ##### [Windows 上的 C# ](service-fabric-reliable-services-quick-start.md)
 ##### [在 Linux 上使用 Java](service-fabric-reliable-services-quick-start-java.md)
 #### [架構](service-fabric-reliable-services-platform-architecture.md)
+#### [Reliable Services lifecycle](service-fabric-reliable-services-lifecycle.md)
 #### [可靠集合](service-fabric-reliable-services-reliable-collections.md)
 #### [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)
 #### [設定](service-fabric-reliable-services-configuration.md)
 #### [通知](service-fabric-reliable-services-notifications.md)
 #### [備份與還原](service-fabric-reliable-services-backup-restore.md)
 #### [與 Reliable Services 通訊](service-fabric-reliable-services-communication.md)
+#### [使用 Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
 ##### [ASP.NET](service-fabric-reliable-services-communication-webapi.md)
 ##### [服務遠端處理](service-fabric-reliable-services-communication-remoting.md)
 ##### [WCF](service-fabric-reliable-services-communication-wcf.md)
@@ -62,6 +71,7 @@
 #### [狀態管理](service-fabric-reliable-actors-state-management.md)
 #### [設定狀態供應器](service-fabric-reliable-actors-kvsactorstateprovider-configuration.md)
 #### [類型序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)
+#### [設定通訊設定](service-fabric-reliable-actors-fabrictransportsettings.md) 
 
 ### 來賓可執行檔應用程式
 #### [部署來賓可執行檔](service-fabric-deploy-existing-app.md)
@@ -84,6 +94,7 @@
 #### [容量規劃](service-fabric-cluster-capacity.md)
 #### [視覺化叢集](service-fabric-visualizing-your-cluster.md)
 #### [連線到安全的叢集](service-fabric-connect-to-secure-cluster.md)
+#### [使用 Azure CLI 管理叢集](service-fabric-azure-cli.md) 
 #### [安全性](service-fabric-cluster-security.md)
 #### [災害復原](service-fabric-disaster-recovery.md)
 
@@ -97,15 +108,19 @@
 #### [刪除叢集](service-fabric-cluster-delete.md)
 #### [存取控制](service-fabric-cluster-security-roles.md)
 #### [設定叢集](service-fabric-cluster-fabric-settings.md)
+#### [新增或變換叢集憑證](service-fabric-cluster-security-update-certs-azure.md) 
 #### [免費試用 Party Cluster](http://aka.ms/tryservicefabric)
 
 ### 獨立叢集
 #### [建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)
+#### [在 Azure 虛擬機器建立獨立叢集](service-fabric-cluster-creation-with-windows-azure-vms.md)
 #### [調整叢集](service-fabric-cluster-windows-server-add-remove-nodes.md)
 #### [升級叢集](service-fabric-cluster-upgrade-windows-server.md)
 #### [保護叢集](service-fabric-windows-cluster-x509-security.md)
 #### [存取控制](service-fabric-cluster-security-roles.md)
 #### [設定叢集](service-fabric-cluster-manifest.md)
+#### [使用憑證保護叢集](service-fabric-windows-cluster-x509-security.md)  
+#### [使用 Windows 安全性保護叢集](service-fabric-windows-cluster-windows-security.md) 
 
 ## 管理和組織叢集資源
 ### [叢集資源管理員概觀](service-fabric-cluster-resource-manager-introduction.md)
@@ -137,7 +152,6 @@
 ### [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)
 ### [應用程式升級的資料序列化](service-fabric-application-upgrade-data-serialization.md)
 ### [應用程式升級進階主題](service-fabric-application-upgrade-advanced.md)
-### [REST 架構應用程式生命週期範例](service-fabric-rest-based-application-lifecycle-sample.md)
 
 ## 檢查應用程式與叢集健全狀況
 ### [監視 Service Fabric 健全狀況](service-fabric-health-introduction.md)
@@ -153,7 +167,7 @@
 ### Azure 診斷記錄檔
 #### [Windows](service-fabric-diagnostics-how-to-setup-wad.md)
 #### [Linux](service-fabric-diagnostics-how-to-setup-lad.md)
-### [Service Fabric 應用程式追蹤](service-fabric-diagnostic-how-to-use-elasticsearch.md)
+### [從服務處理程序中收集記錄](service-fabric-diagnostic-collect-logs-without-an-agent.md)
 ### [Reliable Actors 中的診斷](service-fabric-reliable-actors-diagnostics.md)
 ### [可設定狀態 Reliable Services 中的診斷](service-fabric-reliable-services-diagnostics.md)
 ### [針對本機叢集進行疑難排解](service-fabric-troubleshoot-local-cluster-setup.md)
@@ -174,6 +188,7 @@
 #### [工作負載期間](service-fabric-testability-workload-tests.md)
 #### [藉由叫用資料遺失](service-fabric-use-data-loss-api.md)
 #### [使用測試案例](service-fabric-testability-scenarios.md)
+#### [使用節點轉換 API](service-fabric-node-transition-apis.md)
 ### [進行應用程式負載測試](service-fabric-vso-load-test.md)
 
 # 參考
@@ -183,6 +198,8 @@
 ## [REST](/rest/api/servicefabric)
 
 # 資源
+## [Service Fabric 的常見問題](service-fabric-common-questions.md)
+## [Service Fabric 支援選項](service-fabric-support.md)
 ## [範例程式碼](http://aka.ms/servicefabricsamples)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/service-fabric/)
 ## [價格](https://azure.microsoft.com/pricing/details/service-fabric/)

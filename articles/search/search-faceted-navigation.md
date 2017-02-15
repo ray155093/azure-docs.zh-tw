@@ -374,6 +374,6 @@ Azure Search 透過提供兩種方法進行範圍運算，來簡化範圍建構�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

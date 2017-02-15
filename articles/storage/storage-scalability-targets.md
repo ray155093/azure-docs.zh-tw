@@ -1,19 +1,23 @@
 ---
-title: Azure 儲存體延展性和效能目標 | Microsoft Docs
-description: 了解 Azure 儲存體的延展性和效能目標，包括標準和進階儲存體帳戶的容量、要求率以及輸入和輸出頻寬。 了解每一項 Azure 儲存體服務內分割的效能目標。
+title: "Azure 儲存體延展性和效能目標 | Microsoft Docs"
+description: "了解 Azure 儲存體的延展性和效能目標，包括標準和進階儲存體帳戶的容量、要求率以及輸入和輸出頻寬。 了解每一項 Azure 儲存體服務內分割的效能目標。"
 services: storage
 documentationcenter: na
 author: robinsh
-manager: carmonm
+manager: timlt
 editor: tysonn
-
+ms.assetid: be721bd3-159f-40a1-88c1-96418537fe75
 ms.service: storage
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage
-ms.date: 08/03/2016
+ms.date: 12/08/2016
 ms.author: robinsh
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 70f73577fdaf6efa74fe1516a8486c45ef76db31
+
 
 ---
 # <a name="azure-storage-scalability-and-performance-targets"></a>Azure 儲存體延展性和效能目標
@@ -32,13 +36,13 @@ ms.author: robinsh
 
 如果您的應用程式需求超出單一儲存體帳戶的延展性目標，您可以建置可使用多個儲存體帳戶的應用程式，並將資料物件分割到那些儲存體帳戶中。 如需批量價格的詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/) 。
 
-## <a name="scalability-targets-for-blobs,-queues,-tables,-and-files"></a>Blob、佇列、資料表和檔案的延展性目標
+## <a name="scalability-targets-for-blobs-queues-tables-and-files"></a>Blob、佇列、資料表和檔案的延展性目標
 [!INCLUDE [azure-storage-limits](../../includes/azure-storage-limits.md)]
 
 ## <a name="scalability-targets-for-virtual-machine-disks"></a>虛擬機器磁碟的延展性目標
 [!INCLUDE [azure-storage-limits-vm-disks](../../includes/azure-storage-limits-vm-disks.md)]
 
-如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md)。
+如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ### <a name="standard-storage-accounts"></a>標準儲存體帳戶
 [!INCLUDE [azure-storage-limits-vm-disks-standard](../../includes/azure-storage-limits-vm-disks-standard.md)]
@@ -75,6 +79,9 @@ ms.author: robinsh
 * [Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)
 * [Microsoft Azure 儲存體：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

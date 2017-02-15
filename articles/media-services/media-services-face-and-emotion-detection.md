@@ -1,19 +1,23 @@
 ---
-title: 使用 Azure 媒體分析偵測臉部和情緒 | Microsoft Docs
-description: 本主題示範如何使用 Azure 媒體分析偵測臉部和情緒。
+title: "使用 Azure 媒體分析偵測臉部和情緒 | Microsoft Docs"
+description: "本主題示範如何使用 Azure 媒體分析偵測臉部和情緒。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 5ca4692c-23f1-451d-9d82-cbc8bf0fd707
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 11/15/2016
 ms.author: milanga;juliako;
+translationtype: Human Translation
+ms.sourcegitcommit: 48a4cdf7d50e765ee42cb44d12d1dafd49c13795
+ms.openlocfilehash: 3147eba8bd31d3d05bd990571a986316d6f5093f
+
 
 ---
 # <a name="detect-face-and-emotion-with-azure-media-analytics"></a>使用 Azure 媒體分析偵測臉部和情緒
@@ -44,7 +48,7 @@ ms.author: milanga;juliako;
 
 已偵測並追蹤的臉部將會搭配能以像素為單位表示臉部在影像中位置的座標 (左側、上方、寬度和高度)，以及表示對該人員進行追蹤的臉部識別碼。 臉部識別碼很容易在正面臉部長時間於畫面中遺失或重疊的情況下重設，導致某些人員被指派多個識別碼。
 
-### <a name="<a-id="output_elements"></a>elements-of-the-output-json-file"></a><a id="output_elements"></a>輸出 JSON 檔案的元素
+### <a name="a-idoutputelementsaelements-of-the-output-json-file"></a><a id="output_elements"></a>輸出 JSON 檔案的元素
 針對臉部偵測和追蹤作業，輸出結果會以 JSON 格式包含指定檔案內臉部的中繼資料。
 
 臉部偵測和追蹤 JSON 包括下列屬性：
@@ -70,18 +74,11 @@ ms.author: milanga;juliako;
 * 開始/時幅 = 2.1 秒
 * 秒數 x (畫面播放速率/時幅) = 63 個畫面
 
-下列為針對臉部偵測和追蹤，將 JSON 擷取為每一畫面之格式的簡單範例：
-
-    var faceDetectionResultJsonString = operationResult.ProcessingResult;
-    var faceDetecionTracking = 
-         JsonConvert.DeserializeObject<FaceDetectionResult>(faceDetectionResultJsonString, settings);
-
-
 ## <a name="face-detection-input-and-output-example"></a>臉部偵測輸入和輸出範例
 ### <a name="input-video"></a>輸入影片
 [輸入影片](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
-### <a name="task-configuration-(preset)"></a>工作設定 (預設)
+### <a name="task-configuration-preset"></a>工作設定 (預設)
 以 **Azure 媒體臉部偵測器**建立工作時，您必須指定設定預設值。 下列設定預設值僅適用於臉部偵測。
 
     {"version":"1.0"}
@@ -140,7 +137,7 @@ ms.author: milanga;juliako;
 ### <a name="input-video"></a>輸入影片
 [輸入影片](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
-### <a name="task-configuration-(preset)"></a>工作設定 (預設)
+### <a name="task-configuration-preset"></a>工作設定 (預設)
 以 **Azure 媒體臉部偵測器**建立工作時，您必須指定設定預設值。 下列設定預設值指定以情緒偵測為基礎建立 JSON。
 
     {
@@ -514,6 +511,9 @@ ms.author: milanga;juliako;
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

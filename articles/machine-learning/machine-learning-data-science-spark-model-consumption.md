@@ -1,12 +1,12 @@
 ---
-title: 評分 Spark 建置機器學習模型 | Microsoft Docs
-description: 如何評分已儲存在 Azure Blob 儲存體 (WASB) 中的學習模型。
+title: "評分 Spark 建置機器學習模型 | Microsoft Docs"
+description: "如何評分已儲存在 Azure Blob 儲存體 (WASB) 中的學習模型。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 626305a2-0abf-4642-afb0-dad0f6bd24e9
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: deguhath;bradsev;gokuma
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 2387baad5737998d2ba7f289e0a4fcdd6dd04245
+
 
 ---
 # <a name="score-spark-built-machine-learning-models"></a>評分 Spark 建置機器學習模型
@@ -27,7 +31,7 @@ ms.author: deguhath;bradsev;gokuma
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="setup:-storage-locations,-libraries,-and-the-preset-spark-context"></a>安裝程式︰儲存體位置、程式庫和預設 Spark 內容
+## <a name="setup-storage-locations-libraries-and-the-preset-spark-context"></a>安裝程式︰儲存體位置、程式庫和預設 Spark 內容
 Spark 也可以讀取和寫入 Azure 儲存體 Blob (WASB)。 如此可使用 Spark 處理該處儲存的任何現有資料，並在 WASB 中再次儲存結果。
 
 若要在 WASB 中儲存模型或檔案，必須正確指定路徑。 可以使用以「wasb//」 開頭的路徑，參考連接到 Spark 叢集的預設容器。 下列程式碼範例會指定要讀取資料的位置，和將儲存模型輸出的模型儲存體目錄的路徑。 
@@ -174,7 +178,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 ## <a name="prepare-data-for-scoring-in-spark"></a>準備資料在 Spark 中評分
 本節說明如何索引、編碼及調整分類功能，準備將其用於分類和迴歸的 MLlib 監督式學習演算法中。
 
-### <a name="feature-transformation:-index-and-encode-categorical-features-for-input-into-models-for-scoring"></a>功能轉換：索引並編碼分類功能以輸入至模型進行評分。
+### <a name="feature-transformation-index-and-encode-categorical-features-for-input-into-models-for-scoring"></a>功能轉換：索引並編碼分類功能以輸入至模型進行評分。
 本節說明如何使用 `StringIndexer` 來為分類資料編製索引，並利用 `OneHotEncoder` 輸入將特徵編碼至模組中。
 
 [StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) 會將標籤的字串資料行編碼至標籤索引的資料行。 索引是按標籤頻率排序。 
@@ -393,7 +397,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
     # RECORD START TIME
     timestart = datetime.datetime.now()
 
-    #IMPORT MLLIB LIBRARIES 
+    #IMPORT MLLIB LIBRARIES    
     from pyspark.mllib.tree import RandomForest, RandomForestModel
 
 
@@ -573,9 +577,12 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
 
 ![](./media/machine-learning-data-science-spark-model-consumption/spark-logica-app-client.png)
 
-## <a name="what's-next?"></a>後續步驟
+## <a name="whats-next"></a>後續步驟
 **交叉驗證和超參數掃掠**：如需如何使用交叉驗證和超參數掃掠訓練模型的相關資訊，請參閱 [使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

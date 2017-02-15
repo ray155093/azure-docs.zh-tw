@@ -1,36 +1,44 @@
 ---
-title: Azure 儲存體複寫 | Microsoft Docs
-description: 系統會 複製Microsoft Azure 儲存體帳戶中的資料，以維持持久性和高可用性。 複寫選項包括本地備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。
+title: "Azure 儲存體複寫 | Microsoft Docs"
+description: "系統會 複製Microsoft Azure 儲存體帳戶中的資料，以維持持久性和高可用性。 複寫選項包括本地備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。"
 services: storage
-documentationcenter: ''
+documentationcenter: 
 author: tamram
 manager: carmonm
 editor: tysonn
-
+ms.assetid: 86bdb6d4-da59-4337-8375-2527b6bdf73f
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
-ms.author: jutang;tamram
+ms.date: 10/25/2016
+ms.author: tamram
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 53c96db06a16be454e8205bc7cd81e063df6facd
+
 
 ---
 # <a name="azure-storage-replication"></a>Azure 儲存體複寫
-Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久性及高可用性，即使在面對暫時性的硬體故障時，仍可滿足 [Azure 儲存體 SLA](https://azure.microsoft.com/support/legal/sla/storage) 。
+Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久性及高可用性。 複寫會將資料複製於相同資料中心內，或複製到第二個資料中心，依您所選的複寫選項而定。 複寫會保護您的資料，並在暫時性硬體故障時保留您應用程式的正常運作時間。 如果您的資料複寫至第二個資料中心，則也會保護資料免於在主要位置發生嚴重失敗。
 
-建立儲存體帳戶時，您必須選取下列其中一個複寫選項：  
+複寫可確保您的儲存體帳戶符合[儲存體的服務等級協定 (SLA)](https://azure.microsoft.com/support/legal/sla/storage/) 即使遇到失敗時也一樣。 請參閱 SLA 以取得 Azure 儲存體持續性和可用性保證的相關資訊。 
+
+建立儲存體帳戶時，您可以選取下列其中一個複寫選項：  
 
 * [本地備援儲存體 (LRS)](#locally-redundant-storage)
 * [區域備援儲存體 (ZRS)](#zone-redundant-storage)
 * [異地備援儲存體 (GRS)](#geo-redundant-storage)
 * [讀取權限異地備援儲存體 (RA-GRS)](#read-access-geo-redundant-storage)
 
+建立新的儲存體帳戶時，讀取權限異地備援儲存體 (RA-GRS) 是預設選項。
+
 下表提供 LRS、ZRS、GRS 和 RA-GRS 之間差異的快速概觀，而後續各節將詳細說明每種複寫類型。
 
 | 複寫策略 | LRS | ZRS | GRS | RA-GRS |
 |:--- |:--- |:--- |:--- |:--- |
-| 可跨多個設備複寫資料。 |否 |是 |是 |是 |
+| 可跨多個資料中心複寫資料。 |否 |是 |是 |是 |
 | 可從次要位置及主要位置讀取資料。 |否 |否 |否 |是 |
 | 可在不同的節點上維護的資料副本數量。 |3 |3 |6 |6 |
 
@@ -42,31 +50,40 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 > 
 
 ## <a name="locally-redundant-storage"></a>本地備援儲存體
-本地備援儲存體 (LRS) 會在您建立儲存體帳戶的區域內複寫資料。 若要達到最高持久性，針對儲存體帳戶資料所提出的每個要求都會複寫三次。 這三個複本會各自位於不同的容錯網域和升級網域中。 故障網域 (FD) 是一組代表故障實體單元的節點，並且可被視為屬於相同實體機架的節點。 升級網域 (UD) 是一組在服務升級 (首度發行) 過程中一起升級的節點。 這三個複本會分散到 UD 和 FD 之間，以確保即使硬體故障而影響單一機架，以及首展期間升級節點時，資料仍然可以使用。 只有當要求已寫入這三個複本時，系統才會成功傳回該要求。
+本地備援儲存體 (LRS) 會在儲存體縮放單位 (裝載於您建立儲存體帳戶所在區域的資料中心) 內複寫您的資料三次。 只有當要求已寫入這三個複本時，系統才會成功傳回寫入要求。 這三個複本會各自位於一個儲存體縮放單位不同的容錯網域和升級網域中。 
 
-雖然建議大部分的應用程式使用異地備援儲存體 (GRS)，但在某些情況下本地備援儲存體可能反而有利：  
+儲存體縮放單位是儲存體節點機架的集合。 故障網域 (FD) 是一組代表故障實體單元的節點，並且可被視為屬於相同實體機架的節點。 升級網域 (UD) 是一組在服務升級 (首度發行) 過程中一起升級的節點。 這三個複本會分散到一個儲存體縮放單位的 UD 和 FD 之間，以確保即使硬體故障而影響單一機架，或首展期間升級節點時，資料仍然可以使用。 
 
-* LRS 比 GRS 便宜，而且提供更高的輸送量。 如果您的應用程式儲存可以輕鬆重新建構的資料，則您可能會選擇使用 LRS。
-* 由於資料控管需求，某些應用程式限制只能在單一區域中複寫資料。
-* 如果您的應用程式有它自己的異地複寫策略，則它可能不需要 GRS。
+LRS 相較於其他選項是最低的成本選項，並提供最少的持久性。 在資料中心層級損毀 (觸發、氾濫等) 事件中所有三個複本可能遺失或無法復原。 若要降低此風險，針對大部分應用程式建議使用異地備援儲存體 (GRS)。
+
+在某些情況下仍可能需要本地備援儲存體︰ 
+
+* 提供最高的 Azure 儲存體複寫選項的最大頻寬。
+* 如果您的應用程式儲存可以輕鬆重新建構的資料，則您可能會選擇使用 LRS。
+* 由於資料控管需求，某些應用程式限制只能在國家/地區中複寫資料。 配對的區域可能是在另一個國家/地區。請參閱 [Azure 區域](https://azure.microsoft.com/regions/)以取得區域配對的詳細資訊。
 
 ## <a name="zone-redundant-storage"></a>區域備援儲存體
-區域備援儲存體 (ZRS) 會在單一區域，或兩個區域內的二或三個設備中複寫資料，以提供比 LRS 更高的持久性。 如果您的儲存體帳戶已啟用 ZRS，則即使其中一個設備發生故障，您的資料仍會是永久性。
+區域備援儲存體 (ZRS) 跨一或兩個區域內的資料中心以非同步的方式複寫資料，此外，儲存三個類似 LRS 的複本，因此，它提供比 LRS 更高的持久性。 ZRS 中儲存的資料有耐久性，即使主要資料中心無法使用或無法復原。
+計劃使用 ZRS 的客戶應該要注意︰ 
 
-> [!NOTE]
-> ZRS 目前僅適用於區塊 Blob，且僅為 2014年 2 月 14 日版和以上版本支援。 請注意，建立儲存體帳戶並選取區域備援複寫後，您無法轉換為採用任何其他類型的複寫，反之亦然。
-> 
-> 
+* ZRS 只適用於一般用途儲存體帳戶中的區塊 Blob，且僅支援儲存體服務版本 2014-02-14 及更新版本。 
+* 由於非同步方式複寫會涉及到延遲，在發生本機災難的情況下，如果資料無法從主要區域復原，則很有可能會遺失尚未複寫到次要區域的變更。
+* 除非 Microsoft 起始容錯移轉至次要區域，否則複本可能無法使用。
+* ZRS 帳戶稍後無法轉換成 LRS 或 GRS。 同樣地，現有 LRS 或 GRS 帳戶無法轉換為 ZRS 帳戶。
+* ZRS 帳戶並沒有度量或記錄功能。 
 
 ## <a name="geo-redundant-storage"></a>異地備援儲存體
 異地備援儲存體 (GRS) 會將資料複寫到與主要區域距離數百英哩的次要區域。 如果您的儲存體帳戶已啟用 GRS，即使發生主要區域因全區中斷或嚴重損壞而無法復原的情況，您的資料仍會是永久性。
 
-在已啟用 GRS 的儲存體帳戶中，更新會先交付到主要區域，並在此複寫三次。 然後更新會複寫到跨不同容錯網域和升級網域的次要區域，並同樣在此複寫三次。
+在已啟用 GRS 的儲存體帳戶中，更新會先交付到主要區域，並在此複寫三次。 然後更新會以非同步的方式複寫到次要地區，並同樣在此複寫三次。 
 
-> [!NOTE]
-> 使用 GRS 時，寫入資料的要求會以非同步方式複寫到次要區域。 請務必注意，選擇 GRS 並不會影響對主要區域提出要求的延遲。 不過，由於非同步方式複寫會涉及到延遲，在發生地區性災難的情況下，如果資料無法從主要區域復原，則很有可能會遺失尚未複寫到次要區域的變更。
-> 
-> 
+使用 GRS 時主要和次要地區會管理分散在儲存體縮放單位不同容錯網域和升級網域內的複本，如同 LRS 的描述。
+
+考量：
+
+* 由於非同步方式複寫會涉及到延遲，在發生地區性災難的情況下，如果資料無法從主要區域復原，則很有可能會遺失尚未複寫到次要地區的變更。
+* 除非 Microsoft 起始容錯移轉至次要區域，否則複本無法使用。
+* 如果應用程式想要從次要區域讀取，使用者應該啟用 RA-GRS。 
 
 建立儲存體帳戶時，您可以為帳戶選取主要區域。 次要區域會視主要區域而定，且無法變更。 下表顯示主要和次要區域配對：
 
@@ -105,9 +122,14 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 如需 Azure 支援地區的相關最新資訊，請參閱 [Azure 地區](https://azure.microsoft.com/regions/)。
 
 ## <a name="read-access-geo-redundant-storage"></a>讀取權限異地備援儲存體
-除了 GRS 所提供的跨兩個區域複寫之外，讀取權限異地備援儲存體 (RA-GRS) 會透過提供次要位置資料的唯讀權限，最大化儲存體帳戶的可用性。 如果發生在主要區域中無法使用資料的情況，您的應用程式可以從次要區域讀取資料。
+除了 GRS 所提供的跨兩個區域複寫之外，讀取權限異地備援儲存體 (RA-GRS) 會透過提供次要位置資料的唯讀權限，最大化儲存體帳戶的可用性。 
 
 啟用次要區域資料的唯讀權限時，除了儲存體帳戶的主要端點以外，您的資料還可以在次要端點中使用。 次要端點與主要端點類似，但會在帳戶名稱中附加尾碼 `–secondary` 。 例如，如果 Blob 服務的主要端點是 `myaccount.blob.core.windows.net`，則次要端點會是 `myaccount-secondary.blob.core.windows.net`。 主要和次要端點會有相同的儲存體帳戶存取金鑰。
+
+考量：
+
+* 您的應用程式必須管理在使用 RA-GRS 時，與哪一個端點進行互動。 
+* RA-GRS 適用於高可用性目的。 如需擴充性的指引，請檢閱[效能檢查清單](storage-performance-checklist.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)
@@ -116,6 +138,9 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 * [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體 ](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)  
 * [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

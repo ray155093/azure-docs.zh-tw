@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/06/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 289f6e91458a1a4799941ccea46f7ee6d1a296c4
+ms.sourcegitcommit: 86711ba89442c3569b570bbf3ea2d1661a469011
+ms.openlocfilehash: 34be29749075b9953950ffd64d2526430307d33e
 
 
 ---
@@ -148,7 +148,9 @@ ms.openlocfilehash: 289f6e91458a1a4799941ccea46f7ee6d1a296c4
 3. 從 [使用者] 刀鋒視窗中，按一下 [新增]。
 4. 選取角色並新增使用者，然後按一下 [ **確認**]。
 
-**注意：如果此使用者或安全性群組需要提交工作，他們也必須被賦予 Data Lake Store 的權限。如需詳細資訊，請參閱[保護儲存在 Data Lake Store 中的資料](../data-lake-store/data-lake-store-secure-data.md)。**
+>[!NOTE]
+>如果此使用者或安全性群組需要提交工作，他們也必須被賦予 Data Lake Store 的權限。 如需詳細資訊，請參閱[保護儲存在 Data Lake Store 中的資料](../data-lake-store/data-lake-store-secure-data.md)
+>
 
 <!-- ################################ -->
 <!-- ################################ -->
@@ -248,6 +250,6 @@ ms.openlocfilehash: 289f6e91458a1a4799941ccea46f7ee6d1a296c4
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

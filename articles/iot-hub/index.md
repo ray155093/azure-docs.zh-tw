@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何使用 IoT 中樞來連接、監視及控制數百萬個物聯網資產。 教學課程、API 參考、影片和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 771a82342a40b62cbb4b31316f08e474a797ff34
-ms.openlocfilehash: 9dd5f81cacf774eff651597e1a4920466e5c6fa3
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: da0387255c538afd5490f313c10509a1b40e6dd9
 
 ---
 #<a name="iot-hub-documentation"></a>IoT 中樞文件
@@ -142,9 +142,10 @@ ms.openlocfilehash: 9dd5f81cacf774eff651597e1a4920466e5c6fa3
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/iothub/resourceprovider/iot-hub-resource-provider-rest">REST API (資源提供者)</a></p>
-                        <p><a href="/rest/api/iothub/device-identities-rest">REST API (裝置身分識別)</a></p>
-                        <p><a href="/rest/api/iothub/device-messaging-rest-apis">REST API (裝置傳訊)</a></p>
+                        <p><a href="/rest/api/iothub/iothubresource">REST (資源提供者)</a></p>
+                        <p><a href="/rest/api/iothub/deviceapi">REST (裝置身分識別)</a></p>
+                        <p><a href="/rest/api/iothub/httpruntime">REST (裝置通訊)</a></p>
+                        <p><a href="/rest/api/iothub/jobapi">REST (作業)</a></p>
                     </div>
                 </div>
             </div>
@@ -152,13 +153,7 @@ ms.openlocfilehash: 9dd5f81cacf774eff651597e1a4920466e5c6fa3
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/iot-hub.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 IoT 中樞文件 </div>
-    </a>
-</div>
+
 
 
 

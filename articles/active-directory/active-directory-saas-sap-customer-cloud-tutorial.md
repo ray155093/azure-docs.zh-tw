@@ -316,6 +316,6 @@ SAP Cloud for Customer 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

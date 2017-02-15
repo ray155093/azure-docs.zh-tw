@@ -265,6 +265,6 @@ Azure 入口網站中所示的一個範例輸入 NAT 規則樣子。 在部署�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

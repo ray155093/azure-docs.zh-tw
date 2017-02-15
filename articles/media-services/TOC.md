@@ -24,7 +24,9 @@
 ### 以程式設計方式連線
 #### [.NET](media-services-dotnet-connect-programmatically.md)
 #### [REST](media-services-rest-connect-programmatically.md)
-### [在入口網站中管理串流端點](media-services-portal-manage-streaming-endpoints.md)
+### [管理串流端點](media-services-streaming-endpoints-overview.md)
+#### [入口網站](media-services-portal-manage-streaming-endpoints.md)
+#### [.NET](media-services-dotnet-manage-streaming-endpoints.md)
 ### [如何：更換儲存體存取金鑰之後更新媒體服務](media-services-roll-storage-access-keys.md)
 ### [配額和限制](media-services-quotas-and-limitations.md)
 
@@ -92,6 +94,9 @@
 
 ## [即時串流](media-services-manage-channels-overview.md)
 ### [內部部署編碼器](media-services-live-streaming-with-onprem-encoders.md)
+#### [入口網站](media-services-portal-live-passthrough-get-started.md)
+#### [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
+#### [REST](https://docs.microsoft.com/rest/api/media/operations/channel)
 ### [使用雲端編碼器即時串流](media-services-manage-live-encoder-enabled-channels.md)
 ### 雲端編碼器教學課程
 #### [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
@@ -207,6 +212,6 @@
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=media-services)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

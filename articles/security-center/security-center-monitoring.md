@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/03/2017
+ms.date: 01/10/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 7f074883c2330c5814eef415f193e1775caec432
-ms.openlocfilehash: ddb38f99adef288958fd3828cb685912bf35f218
+ms.sourcegitcommit: b0694222548e39718f6626c1b1666584445f8398
+ms.openlocfilehash: 246b322378d581f6f263fd0adb96ef32f6962906
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: ddb38f99adef288958fd3828cb685912bf35f218
 
 您可在 [資源安全性健康情況] 圖格上監視資源的安全性狀態。 在下列範例中，您會看到一些需要注意的高度或中度嚴重性問題。 已啟用的安全性原則將會影響受監督的控制項類型。
 
-![資源安全性健康情況圖格](./media/security-center-monitoring/security-center-monitoring-fig1-new4.png)
+![資源安全性健康情況圖格](./media/security-center-monitoring/security-center-monitoring-fig1-new4-2017.png)
 
 如果資訊安全中心找出必須處理的弱點 (例如遺失了安全性更新的虛擬機器或沒有[網路安全性群組](/virtual-network/virtual-networks-nsg.md)的子網路)，將會在這裡列出。
 
@@ -169,7 +169,8 @@ ms.openlocfilehash: ddb38f99adef288958fd3828cb685912bf35f218
 此刀鋒視窗的下半部有此虛擬機器的建議 (類似上面所述)。 您可以按一下建議以深入了解或套用所需的安全性控制或組態。
 
 ### <a name="monitor-data"></a>監視資料
-當您按一下 [資源安全性健康情況] 圖格中的 [資料] 時，[資料資源] 刀鋒視窗會隨即開啟，其中會有針對 SQL 和儲存體的建議。 它也具有資料庫的一般健全狀況狀態 [建議](security-center-sql-service-recommendations.md) 。 如需儲存體加密的詳細資訊，請在 Azure 資訊安全中心閱讀「啟用 Azure 儲存體帳戶的加密」。
+
+當您按一下 [資源安全性健康情況] 圖格中的 [SQL 與資料] 時，[資料資源] 刀鋒視窗會隨即開啟，其中會有針對 SQL 和儲存體的建議。 它也具有資料庫的一般健全狀況狀態 [建議](security-center-sql-service-recommendations.md) 。 如需儲存體加密的詳細資訊，請閱讀[在 Azure 資訊安全中心啟用 Azure 儲存體帳戶的加密](security-center-enable-encryption-for-storage-account.md)。
 
 ![資料資源](./media/security-center-monitoring/security-center-monitoring-fig13-ga-new.png)
 
@@ -217,6 +218,6 @@ ms.openlocfilehash: ddb38f99adef288958fd3828cb685912bf35f218
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

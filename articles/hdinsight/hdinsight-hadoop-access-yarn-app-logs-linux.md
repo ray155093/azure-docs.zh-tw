@@ -1,13 +1,13 @@
 ---
-title: 存取以 Linux 為基礎之 HDInsight 上的 Hadoop YARN 應用程式記錄 | Microsoft Docs
-description: 了解如何使用命令列和網頁瀏覽器存取以 Linux 為基礎之 HDInsight (Hadoop) 叢集上的 YARN 應用程式記錄檔。
+title: "存取以 Linux 為基礎之 HDInsight 上的 Hadoop YARN 應用程式記錄 | Microsoft Docs"
+description: "了解如何使用命令列和網頁瀏覽器存取以 Linux 為基礎之 HDInsight (Hadoop) 叢集上的 YARN 應用程式記錄檔。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 tags: azure-portal
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 3ec08d20-4f19-4a8e-ac86-639c04d2f12e
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/21/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f03c595977f098f19d396cc460c73e27163f070c
+
 
 ---
 # <a name="access-yarn-application-logs-on-linux-based-hdinsight"></a>存取以 Linux 為基礎之 HDInsight 上的 YARN 應用程式記錄
@@ -29,7 +33,7 @@ ms.author: larryfr
 * 以 Linux 為基礎的 HDInsight 叢集。
 * 您必須 [建立 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md) ，才能存取 ResourceManager 記錄 web UI。
 
-## <a name="<a-name="yarntimelineserver"></a>yarn-timeline-server"></a><a name="YARNTimelineServer"></a>YARN Timeline Server
+## <a name="a-nameyarntimelineserverayarn-timeline-server"></a><a name="YARNTimelineServer"></a>YARN Timeline Server
 [YARN Timeline Server](http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html) 透過兩個不同的介面，提供完整應用程式的一般資訊，以及架構的特定應用程式資訊。 具體而言：
 
 * 儲存及擷取 HDInsight 叢集上泛型應用程式資訊的功能已在版本 3.1.1.374 或更新版本上啟用。
@@ -42,7 +46,7 @@ ms.author: larryfr
 * 為完成應用程式而進行之嘗試的相關資訊
 * 任何指定之應用程式嘗試所使用的容器
 
-## <a name="<a-name="yarnappsandlogs"></a>yarn-applications-and-logs"></a><a name="YARNAppsAndLogs"></a>YARN 應用程式和記錄檔
+## <a name="a-nameyarnappsandlogsayarn-applications-and-logs"></a><a name="YARNAppsAndLogs"></a>YARN 應用程式和記錄檔
 YARN 藉由將資源管理從應用程式排程/監視分離，支援多種程式設計模型 (MapReduce 為其中之一)。 這是透過全域 *ResourceManager* (RM)、每一背景工作節點 *ResourceManager* (NM) 及每一應用程式 *ResourceManager* (AM) 來達成。 每一應用程式 AM 會與 RM 交涉用來執行您應用程式的資源 (CPU、記憶體、磁碟、網路)。 RM 會與 NM 合作來授與這些資源 (以「 *容器*」的形式授與)。 AM 則是負責追蹤 RM 指派給它之容器的進度。 視應用程式的本質而定，一個應用程式可能會需要許多容器。
 
 此外，每個應用程式可能包含多個「 *應用程式嘗試* 」，以在應用程式發生當機時，或因 AM 與 RM 之間通訊中斷時，完成應用程式。 因此，容器是被授與應用程式的特定嘗試。 就某方面來說，容器會提供 YARN 應用程式所執行之基本工作單位的內容，而在容器的內容中完成的所有工作，都是在配置給該容器的單一背景工作節點上執行。 請參閱 [YARN 概念][YARN-concepts]，以取得進一步的參考資料。
@@ -91,6 +95,6 @@ YARN ResourceManager UI 會在叢集前端節點上執行，且您可透過 Amba
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

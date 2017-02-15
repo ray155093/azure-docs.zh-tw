@@ -1,5 +1,5 @@
 ---
-title: " 使用 Azure 入口網站建立 Azure 媒體服務帳戶 | Microsoft Docs"
+title: " 使用 Azure 入口網站建立 Azure 媒體服務帳戶 | Microsoft Docss"
 description: "本教學課程逐步引導您完成使用 Azure 入口網站建立 Azure 媒體服務帳戶的步驟。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/24/2016
+ms.date: 01/10/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 312231f395f19fde98431c24b71ce7cec3061eaf
-ms.openlocfilehash: 4a1d5d706cbfb5c42a36fd03033aa361ef3d4d11
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: 01c1297a6b107f91d8e6e73f17d76499d67849de
 
 
 ---
@@ -54,10 +54,10 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下 [+新增] > [Web + 行動] > [媒體服務]。
    
-    ![建立媒體服務](./media/media-services-portal-vod-get-started/media-services-new1.png)
+    ![建立媒體服務](./media/media-services-create-account/media-services-new1.png)
 3. 在 [建立媒體服務帳戶]  中輸入必要的值。
    
-    ![建立媒體服務](./media/media-services-portal-vod-get-started/media-services-new3.png)
+    ![建立媒體服務](./media/media-services-create-account/media-services-new3.png)
    
    1. 在 [帳戶名稱] 中，輸入新 AMS 帳戶的名稱。 媒體服務帳戶名稱為全部小寫且不含空格的數字或字母，且長度是 3 到 24 個字元。
    2. 在訂用帳戶中，從您可存取的不同 Azure 訂用帳戶中進行選取。
@@ -69,9 +69,12 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
    6. 選取 **[釘選到儀表板] ** 以查看帳戶部署的進度。
 4. 按一下表單底部的 [建立]  。
    
-    成功建立帳戶之後，狀態會變更為 [執行中] 。 
+    成功建立帳戶後，隨即載入概觀頁面。 在串流端點資料表中，此帳戶將具有 [已停止] 狀態的預設串流端點。 
+
+    >[!NOTE]
+    >建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
    
-    ![媒體服務設定](./media/media-services-portal-vod-get-started/media-services-settings.png)
+    ![媒體服務設定](./media/media-services-create-account/media-services-settings.png)
    
     若要管理 AMS 帳戶 (例如，上傳視訊、為資產編碼、監視作業進度)，請使用 [設定]  視窗。
 
@@ -86,7 +89,7 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
     [管理金鑰]  視窗會顯示帳戶名稱以及主要和次要金鑰。 
 3. 按複製按鈕以複製這些值。
    
-    ![媒體服務金鑰](./media/media-services-portal-vod-get-started/media-services-keys.png)
+    ![媒體服務金鑰](./media/media-services-create-account/media-services-keys.png)
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以將檔案上傳到 AMS 帳戶。 如需詳細資訊，請參閱 [上傳檔案](media-services-portal-upload-files.md)。
@@ -100,6 +103,6 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 

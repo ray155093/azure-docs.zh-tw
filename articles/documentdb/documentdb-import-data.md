@@ -13,16 +13,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 12/08/2016
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 2d833a559b72569983340972ba3b905b9e42e61d
-ms.openlocfilehash: 8c295a4207e9d12eb0cb978205a75d536d6a55e7
+ms.sourcegitcommit: 5a9b3e94faee1db7c38b9f60045637640d820208
+ms.openlocfilehash: b11d9d67234c85af8f9fcb9992864ef9e1662a79
 
 
 ---
 # <a name="import-data-to-documentdb-with-the-database-migration-tool"></a>使用資料庫移轉工具來將資料匯入 DocumentDB
 此文章將說明如何使用官方開放原始碼 DocumentDB 資料移轉工具，將資料從各種來源 (包括 JSON 檔案、CSV 檔案、SQL、MongoDB、Azure 資料表儲存體、Amazon DynamoDB，以及 DocumentDB 集合) 匯入到 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)。
+
+如果您要將資料匯入到具有 MongoDB 支援的 DocumentDB 帳戶，請依照[將資料移轉至具有 MongoDB 通訊協定支援的 DocumentDB](documentdb-mongodb-migrate.md) 中的指示進行。
 
 閱讀本文後，您將能夠回答下列問題：  
 
@@ -78,6 +80,12 @@ JSON 檔案來源匯入工具選項可讓您匯入一或多個單一文件 JSON 
     dt.exe /s:JsonFile /s.Files:D:\\CompanyData\\Companies.json /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:comp[1-4] /t.PartitionKey:name /t.CollectionThroughput:2500
 
 ## <a name="a-idmongodbaimport-from-mongodb"></a><a id="MongoDB"></a>從 MongoDB 匯入
+
+> [!IMPORTANT]
+> 如果您要匯入到具有 MongoDB 支援的 DocumentDB 帳戶，請遵循這些[指示](documentdb-mongodb-migrate.md)。
+> 
+> 
+
 MongoDB 來源匯入工具選項可讓您從個別的 MongoDB 集合匯入，並使用查詢來選擇性地篩選文件，及/或使用投影來修改文件結構。  
 
 ![MongoDB 來源選項的螢幕擷取畫面 - documentdb 與 mongodb 的比較](./media/documentdb-import-data/mongodbsource.png)
@@ -102,6 +110,12 @@ MongoDB 來源匯入工具選項可讓您從個別的 MongoDB 集合匯入，並
     dt.exe /s:MongoDB /s.ConnectionString:mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database> /s.Collection:zips /s.Query:{pop:{$gt:50000}} /s.Projection:{loc:0} /t:DocumentDBBulk /t.ConnectionString:"AccountEndpoint=<DocumentDB Endpoint>;AccountKey=<DocumentDB Key>;Database=<DocumentDB Database>;" /t.Collection:BulkZipsTransform /t.IdField:_id/t.CollectionThroughput:2500
 
 ## <a name="a-idmongodbexportaimport-mongodb-export-files"></a><a id="MongoDBExport"></a>匯入 MongoDB 匯出檔案
+
+> [!IMPORTANT]
+> 如果您要匯入到具有 MongoDB 支援的 DocumentDB 帳戶，請遵循這些[指示](documentdb-mongodb-migrate.md)。
+> 
+> 
+
 MongoDB 匯出 JSON 檔案來源匯入工具選項可讓您匯入從 mongoexport 公用程式產生的一或多個 JSON 檔案。  
 
 ![MongoDB 匯出來源選項的螢幕擷取畫面 - documentdb 與 mongodb 的比較](./media/documentdb-import-data/mongodbexportsource.png)
@@ -512,6 +526,6 @@ DocumentDB JSON 匯出工具可讓您將任何可用的來源選項匯出至包�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

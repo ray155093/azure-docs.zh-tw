@@ -10,22 +10,25 @@ tags: azure-resource-manager
 ms.assetid: 8c2a7ed2-ae5c-4e49-81f6-77cf9f2b2ac9
 ms.service: expressroute
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 12/13/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1d78bdb6cbb9870298b050207fd1fa9c5e71d674
+ms.sourcegitcommit: ec5e547b88bedd50f451997616c7d72b0b1b4bd4
+ms.openlocfilehash: 879207512b7c61d48dcd25342ab88121258ba853
 
 
 ---
 # <a name="create-and-modify-routing-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 電路的路由
 > [!div class="op_single_selector"]
-> [Azure 入口網站 - Resource Manager](expressroute-howto-routing-portal-resource-manager.md)
-> [PowerShell - Resource Manager](expressroute-howto-routing-arm.md)
-> [PowerShell - 傳統](expressroute-howto-routing-classic.md)
+> * [Resource Manager - Azure 入口網站](expressroute-howto-routing-portal-resource-manager.md)
+> * [Resource Manager - PowerShell](expressroute-howto-routing-arm.md)
+> * [傳統 - PowerShell](expressroute-howto-routing-classic.md)
+> * [視訊 - 私用對等互連](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit)
+> * [視訊 - 公用對等互連](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-public-peering-for-your-expressroute-circuit)
+> * [視訊 - Microsoft 對等互連](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-microsoft-peering-for-your-expressroute-circuit)
 > 
 > 
 
@@ -72,7 +75,7 @@ ms.openlocfilehash: 1d78bdb6cbb9870298b050207fd1fa9c5e71d674
    
     ![](./media/expressroute-howto-routing-portal-resource-manager/rprivate3.png)
 
-### <a name="to-view-azure-private-peering-details"></a>檢視 Azure 私用對等詳細資料
+### <a name="to-view-azure-private-peering-details"></a>檢視 Azure 私用對等詳細資訊
 選取 Azure 私用對等，即可檢視該對等的屬性。
 
 ![](./media/expressroute-howto-routing-portal-resource-manager/rprivate3.png)
@@ -112,7 +115,7 @@ ms.openlocfilehash: 1d78bdb6cbb9870298b050207fd1fa9c5e71d674
    
     ![](./media/expressroute-howto-routing-portal-resource-manager/rpublic3.png)
 
-### <a name="to-view-azure-public-peering-details"></a>檢視 Azure 公用對等詳細資料
+### <a name="to-view-azure-public-peering-details"></a>檢視 Azure 公用對等詳細資訊
 選取 Azure 公用對等，即可檢視該對等的屬性。
 
 ![](./media/expressroute-howto-routing-portal-resource-manager/rpublic3.png)
@@ -134,7 +137,7 @@ ms.openlocfilehash: 1d78bdb6cbb9870298b050207fd1fa9c5e71d674
 1. 設定 ExpressRoute 電路。 先確定連線提供者已完整佈建電路，再繼續作業。
    
     ![](./media/expressroute-howto-routing-portal-resource-manager/listprovisioned.png)
-2. 設定線路的 Microsoft 對等。 繼續之前，請確定您擁有下列資訊：
+2. 設定線路的 Microsoft 對等。 繼續之前，請確定您擁有下列資訊。
    
    * 主要連結的 /30 子網路。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
    * 次要連結的 /30 子網路。 這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
@@ -156,7 +159,7 @@ ms.openlocfilehash: 1d78bdb6cbb9870298b050207fd1fa9c5e71d674
    
     ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft5.png)
 
-    您可以直接從入口網站開啟支援票證，如下所示。     
+    您可以直接從入口網站開啟支援票證，如下所示     
 
     ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft6.png)
 
@@ -190,6 +193,6 @@ ms.openlocfilehash: 1d78bdb6cbb9870298b050207fd1fa9c5e71d674
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

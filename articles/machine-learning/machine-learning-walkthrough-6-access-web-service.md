@@ -1,12 +1,12 @@
 ---
-title: 步驟 6：存取 Machine Learning Web 服務 | Microsoft Docs
-description: 開發預測解決方案逐步解說步驟 6：存取使用中的 Azure Machine Learning Web 服務
+title: "步驟 6：存取 Machine Learning Web 服務 | Microsoft Docs"
+description: "開發預測解決方案逐步解說步驟 6：存取使用中的 Azure Machine Learning Web 服務"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 6a65c89a-40ab-4673-8dd8-8eee0a150e3b
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 80f722c536c822189c1ab2a8160f560a78e7ca01
+
 
 ---
-# <a name="walkthrough-step-6:-access-the-azure-machine-learning-web-service"></a>逐步解說步驟 6：存取 Azure Machine Learning Web 服務
+# <a name="walkthrough-step-6-access-the-azure-machine-learning-web-service"></a>逐步解說步驟 6：存取 Azure Machine Learning Web 服務
 這是 [在 Azure Machine Learning 中為信用風險評估開發預測性分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [建立機器學習服務工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
@@ -42,6 +46,9 @@ ms.author: garye
 您也可以使用以 R、C# 和 Python 程式語言為您提供的起始程式碼來開發自訂應用程式以存取 Web 服務。
 您可以在 [如何使用已從機器學習實驗發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)找到完整詳細資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

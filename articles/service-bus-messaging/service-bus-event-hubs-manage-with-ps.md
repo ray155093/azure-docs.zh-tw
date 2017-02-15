@@ -1,19 +1,23 @@
 ---
-title: 使用 PowerShell 來管理服務匯流排和事件中樞資源 | Microsoft Docs
-description: 使用 PowerShell 來建立及管理服務匯流排和事件中樞資源
-services: service-bus,event-hubs
+title: "使用 PowerShell 來管理服務匯流排和事件中樞資源 | Microsoft Docs"
+description: "使用 PowerShell 來建立及管理服務匯流排和事件中樞資源"
+services: service-bus-messaging,event-hubs
 documentationcenter: .NET
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: f6436f6f-2156-41ea-a4ca-08cfaecbb778
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 95068f046c57bd65b5258771a272e70124f3dd12
+
 
 ---
 # <a name="use-powershell-to-manage-service-bus-and-event-hubs-resources"></a>使用 PowerShell 來管理服務匯流排和事件中樞資源
@@ -23,10 +27,10 @@ Microsoft Azure PowerShell 是一種指令碼環境，可讓您用來控制及�
 在開始之前，您將需要下列項目：
 
 * Azure 訂用帳戶。 Azure 是訂閱型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項][購買選項]、[成員優惠][成員優惠]或[免費帳戶][免費帳戶]。
-* 具備 Azure PowerShell 的電腦。 如需指示，請參閱 [安裝並設定 Azure PowerShell][安裝並設定 Azure PowerShell]。
+* 具備 Azure PowerShell 的電腦。 如需指示，請參閱[安裝並設定 Azure PowerShell][安裝並設定 Azure PowerShell]。
 * 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
 
-## <a name="include-a-reference-to-the-.net-assembly-for-service-bus"></a>包括對服務匯流排之 .NET 組件的參考
+## <a name="include-a-reference-to-the-net-assembly-for-service-bus"></a>包括對服務匯流排之 .NET 組件的參考
 可用於管理服務匯流排的 PowerShell Cmdlet 數目有限。 若要佈建不是透過現有 Cmdlet 公開的實體，您可以藉由參考[服務匯流排 NuGet 封裝]，從 PowerShell 中使用服務匯流排的 .NET 用戶端。
 
 首先，請確定指令碼可以找到與 NuGet 封裝一起安裝的 **Microsoft.ServiceBus.dll** 組件。 為了要有使用彈性，指令碼會執行這些步驟：
@@ -267,6 +271,6 @@ catch [System.Exception]
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

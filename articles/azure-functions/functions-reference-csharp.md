@@ -1,14 +1,14 @@
 ---
-title: Azure Functions 開發人員參考 | Microsoft Docs
-description: 了解如何使用 C# 開發 Azure Functions。
+title: "Azure Functions 開發人員參考 | Microsoft Docs"
+description: "了解如何使用 C# 開發 Azure Functions。"
 services: functions
 documentationcenter: na
 author: christopheranderson
 manager: erikre
-editor: ''
-tags: ''
-keywords: azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構
-
+editor: 
+tags: 
+keywords: "azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"
+ms.assetid: f28cda01-15f3-4047-83f3-e89d5728301c
 ms.service: functions
 ms.devlang: dotnet
 ms.topic: reference
@@ -16,9 +16,13 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/13/2016
 ms.author: chrande
+translationtype: Human Translation
+ms.sourcegitcommit: da9da90e7ccd5d324b8f87a3585555ea5d5ed475
+ms.openlocfilehash: d587ff744fea5393a34d5a576e6af32cac5d2b44
+
 
 ---
-# Azure Functions C# 開發人員參考
+# <a name="azure-functions-c-developer-reference"></a>Azure Functions C# 開發人員參考
 > [!div class="op_single_selector"]
 > * [C# 指令碼](functions-reference-csharp.md)
 > * [F# 指令碼](functions-reference-fsharp.md)
@@ -26,15 +30,15 @@ ms.author: chrande
 > 
 > 
 
-Azure Functions 的 C# 體驗是以 Azure WebJobs SDK 為基礎。資料會透過方法引數流入您的 C# 函式。引數名稱會指定於 `function.json` 中，而且有預先定義的名稱可用來存取函式記錄器和取消權杖等項目。
+Azure Functions 的 C# 體驗是以 Azure WebJobs SDK 為基礎。 資料會透過方法引數流入您的 C# 函式。 引數名稱會指定於 `function.json`中，而且有預先定義的名稱可用來存取函式記錄器和取消權杖等項目。
 
 本文假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)。
 
-## .csx 的運作方式
-`.csx` 格式允許撰寫較少「重複使用」文字，只專注於撰寫 C# 函式。在 Azure Functions 中，您只要如往常般包含您所需的組件參考和命名空間，而不是在命名空間和類別中包裝所有項目，您可以只定義您的 `Run` 方法。如果您需要包含任何類別，例如若要定義 POCO 物件，您可以包含相同檔案內的類別。
+## <a name="how-csx-works"></a>.csx 的運作方式
+`.csx` 格式允許撰寫較少「重複使用」文字，只專注於撰寫 C# 函式。 在 Azure Functions 中，您只要如往常般包含您所需的組件參考和命名空間，而不是在命名空間和類別中包裝所有項目，您可以只定義您的 `Run` 方法。 如果您需要包含任何類別，例如若要定義純舊 CLR 物件 (POCO) 物件，您可以包含相同檔案內的類別。   
 
-## 繫結至引數
-各種繫結會透過 function.json 組態中的 `name` 屬性繫結至 C# 函式。每個繫結都有自己支援的類型 (已依照繫結記載)；例如，Blob 觸發程序可以支援字串、POCO 或數個其他類型。您可以使用最符合您需求的類型。
+## <a name="binding-to-arguments"></a>繫結至引數
+各種繫結會透過 *function.json* 組態中的 `name` 屬性繫結至 C# 函式。 每個繫結都有自己支援的類型 (已依照繫結記載)；例如，Blob 觸發程序可以支援字串、POCO 或數個其他類型。 您可以使用最符合您需求的類型。 POCO 物件的每個屬性必須定義 getter 和 setter。 
 
 ```csharp
 public static void Run(string myBlob, out MyClass myQueueItem)
@@ -49,8 +53,8 @@ public class MyClass
 }
 ```
 
-## 記錄
-若要在 C# 中將輸出記錄至串流記錄檔，您可以包含 `TraceWriter` 具類型引數。建議您將它命名為 `log`。建議您避免在 Azure Functions 中使用 `Console.Write`。
+## <a name="logging"></a>記錄
+若要在 C# 中將輸出記錄至串流記錄檔，您可以包含 `TraceWriter` 具類型引數。 建議您將它命名為 `log`。 建議您避免在 Azure Functions 中使用 `Console.Write` 。
 
 ```csharp
 public static void Run(string myBlob, TraceWriter log)
@@ -59,7 +63,7 @@ public static void Run(string myBlob, TraceWriter log)
 }
 ```
 
-## 非同步處理
+## <a name="async"></a>非同步處理
 若要讓函式變成非同步，請使用 `async` 關鍵字並傳回 `Task` 物件。
 
 ```csharp
@@ -72,8 +76,8 @@ public async static Task ProcessQueueMessageAsync(
     }
 ```
 
-## 取消權杖
-在某些情況下，您可能會有易受關閉影響的作業。雖然最好能撰寫可以處理當機的程式碼，但是當您想要處理順利關機要求時，您可以定義 [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) 具類型引數。如果觸發主機關機，則會提供 `CancellationToken`。
+## <a name="cancellation-token"></a>取消權杖
+在某些情況下，您可能會有易受關閉影響的作業。 雖然撰寫能夠處理當機情況的程式碼一律是最理想的做法，但是如果您想要處理順利關機要求，您可以定義 [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) 具類型引數。  如果觸發主機關機，則會提供 `CancellationToken` 。 
 
 ```csharp
 public async static Task ProcessQueueMessageAsyncCancellationToken(
@@ -86,7 +90,7 @@ public async static Task ProcessQueueMessageAsyncCancellationToken(
     }
 ```
 
-## 匯入命名空間
+## <a name="importing-namespaces"></a>匯入命名空間
 如果您需要匯入命名空間，可以如往常一樣利用 `using` 子句。
 
 ```csharp
@@ -107,7 +111,7 @@ public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter 
 * `Microsoft.Azure.WebJobs`
 * `Microsoft.Azure.WebJobs.Host`。
 
-## 參考外部組件
+## <a name="referencing-external-assemblies"></a>參考外部組件
 若為架構組件，請使用 `#r "AssemblyName"` 指示詞加入參考。
 
 ```csharp
@@ -139,12 +143,13 @@ Azure Functions 裝載環境會自動加入下列組件︰
 * `Microsoft.WindowsAzure.Storage`
 * `Microsoft.ServiceBus`
 * `Microsoft.AspNet.WebHooks.Receivers`
-* `Microsoft.AspNEt.WebHooks.Common`。
+* `Microsoft.AspNet.WebHooks.Common`
+* `Microsoft.Azure.NotificationHubs`
 
-如果您需要參考私用組件，可以將組件檔案上傳至相對於您函式的 `bin` 資料夾並使用檔案名稱 (例如 `#r "MyAssembly.dll"`) 來參考它。如需如何將檔案上傳至函數資料夾的資訊，請參閱以下的＜封裝管理＞小節。
+如果您需要參考私用組件，您可以將組件檔案上傳至您函式的相對 `bin` 資料夾，然後使用檔案名稱來參考它 (例如 `#r "MyAssembly.dll"`)。 如需如何將檔案上傳至函數資料夾的資訊，請參閱以下的＜封裝管理＞小節。
 
-## 封裝管理
-若要在 C# 函式中使用 NuGet 封裝，請將 project.json 檔案上傳至函式應用程式檔案系統中的函式資料夾。以下是範例 project.json 檔案，該檔案會加入對 Microsoft.ProjectOxford.Face 1.1.0 版的參考：
+## <a name="package-management"></a>封裝管理
+若要在 C# 函式中使用 NuGet 封裝，請將 project.json  檔案上傳至函式應用程式檔案系統中的函式資料夾。 以下是範例 project.json  檔案，該檔案會加入對 Microsoft.ProjectOxford.Face 1.1.0 版的參考：
 
 ```json
 {
@@ -158,16 +163,16 @@ Azure Functions 裝載環境會自動加入下列組件︰
 }
 ```
 
-只支援 .NET Framework 4.6，因此請確認您的 project.json 檔案會指定 `net46`，如下所示。
+只支援 .NET Framework 4.6，因此請確認您的 *project.json* 檔案指定 `net46`，如以下所示。
 
-當您上傳 project.json 檔案時，執行階段會取得封裝並自動加入對封裝組件的參考。您不需要加入 `#r "AssemblyName"` 指示詞。只要將所需的 `using` 陳述式加入至 run.csx 檔案，即可使用 NuGet 封裝中定義的類型。
+當您上傳 project.json  檔案時，執行階段會取得封裝並自動加入對封裝組件的參考。 您不需要加入 `#r "AssemblyName"` 指示詞。 只要將所需的 `using` 陳述式新增到 *run.csx* 檔案，即可使用 NuGet 套件中定義的類型。
 
-### 如何上傳 project.json 檔案
-1. 首先，在 Azure 入口網站中開啟您的函式，以確定函式應用程式正在執行中。
+### <a name="how-to-upload-a-projectjson-file"></a>如何上傳 project.json 檔案
+1. 首先，在 Azure 入口網站中開啟您的函式，以確定函式應用程式正在執行中。 
    
-    這也可供存取將要顯示封裝安裝輸出的串流記錄檔。
-2. 若要上傳 project.json 檔案，請使用 [Azure Functions 開發人員參考主題](functions-reference.md#fileupdate)中**如何更新函式應用程式檔案**一節所述的其中一個方法。
-3. 上傳 project.json 檔案之後，您會在函式的串流記錄檔中看到如下列範例所示的輸出：
+    這也可供存取將要顯示封裝安裝輸出的串流記錄檔。 
+2. 若要上傳 project.json 檔案，請使用 **Azure Functions 開發人員參考主題** 中 [如何更新函式應用程式檔案](functions-reference.md#fileupdate)一節所述的其中一個方法。 
+3. 上傳 project.json  檔案之後，您會在函式的串流記錄檔中看到如下列範例所示的輸出：
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -186,7 +191,7 @@ Azure Functions 裝載環境會自動加入下列組件︰
 2016-04-04T19:02:57.455 Packages restored.
 ```
 
-## 環境變數
+## <a name="environment-variables"></a>環境變數
 若要取得環境變數或應用程式設定值，請使用 `System.Environment.GetEnvironmentVariable`，如下列程式碼範例所示：
 
 ```csharp
@@ -204,10 +209,10 @@ public static string GetEnvironmentVariable(string name)
 }
 ```
 
-## 重複使用 .csx 程式碼
-您可以在您的 run.csx 檔案中使用其他 .csx 檔案中定義的類別和方法。若要這樣做，請在您的 run.csx 檔案中使用 `#load` 指示詞，如下列範例所示。
+## <a name="reusing-csx-code"></a>重複使用 .csx 程式碼
+您可以在您的 *run.csx* 檔案中使用其他 *.csx* 檔案中定義的類別和方法。 若要這樣做，請在您的 *run.csx* 檔案中使用 `#load` 指示詞。 在下列範例中，名為 `MyLogger` 的記錄常式已在 *myLogger.csx* 中共用，並使用 `#load` 指示詞載入至 *run.csx*︰ 
 
-範例 run.csx：
+範例 run.csx ：
 
 ```csharp
 #load "mylogger.csx"
@@ -219,7 +224,7 @@ public static void Run(TimerInfo myTimer, TraceWriter log)
 }
 ```
 
-範例 mylogger.csx：
+範例 mylogger.csx ：
 
 ```csharp
 public static void MyLogger(TraceWriter log, string logtext)
@@ -228,20 +233,91 @@ public static void MyLogger(TraceWriter log, string logtext)
 }
 ```
 
+當您想要在使用一個 POCO 物件的函式之間使引數成為強式類型，使用共用的 *.csx* 是常見的模式。 在下列簡化的範例中，HTTP 觸發程序和佇列觸發程序共用一個名為 `Order` 的 POCO 物件，來使排序資料成為強式類型︰
+
+HTTP 觸發程序的範例 *run.csx*︰
+
+```cs
+#load "..\shared\order.csx"
+
+using System.Net;
+
+public static async Task<HttpResponseMessage> Run(Order req, IAsyncCollector<Order> outputQueueItem, TraceWriter log)
+{
+    log.Info("C# HTTP trigger function received an order.");
+    log.Info(req.ToString());
+    log.Info("Submitting to processing queue.");
+
+    if (req.orderId == null)
+    {
+        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+    }
+    else
+    {
+        await outputQueueItem.AddAsync(req);
+        return new HttpResponseMessage(HttpStatusCode.OK);
+    }
+}
+```
+
+佇列觸發程序的範例 *run.csx*︰
+
+```cs
+#load "..\shared\order.csx"
+
+using System;
+
+public static void Run(Order myQueueItem, out Order outputQueueItem,TraceWriter log)
+{
+    log.Info($"C# Queue trigger function processed order...");
+    log.Info(myQueueItem.ToString());
+
+    outputQueueItem = myQueueItem;
+}
+```
+
+範例 *order.csx*： 
+
+```cs
+public class Order
+{
+    public string orderId {get; set; }
+    public string custName {get; set;}
+    public string custAddress {get; set;}
+    public string custEmail {get; set;}
+    public string cartId {get; set; }
+
+    public override String ToString()
+    {
+        return "\n{\n\torderId : " + orderId + 
+                  "\n\tcustName : " + custName +             
+                  "\n\tcustAddress : " + custAddress +             
+                  "\n\tcustEmail : " + custEmail +             
+                  "\n\tcartId : " + cartId + "\n}";             
+    }
+}
+```
+
 您可以使用包含 `#load` 指示詞的相對路徑：
 
 * `#load "mylogger.csx"` 會載入位於函式資料夾中的檔案。
 * `#load "loadedfiles\mylogger.csx"` 會載入位於函式資料夾的資料夾中的檔案。
-* `#load "..\shared\mylogger.csx"` 會載入位於與函式資料夾相同層級的資料夾中的檔案 (也就是在 wwwroot 的正下方)。
+* `#load "..\shared\mylogger.csx"` 會載入位於與函式資料夾相同層級的資料夾中的檔案 (也就是在 [wwwroot] 的正下方)。
 
-`#load` 指示詞只適用於 .csx (C# 指令碼) 檔案，不適用於 .cs 檔案。
+`#load` 指示詞只適用於 *.csx* (C# 指令碼) 檔案，不適用於 *.cs* 檔案。 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱下列資源：
 
+* [Azure Functions 的最佳作法](functions-best-practices.md)
 * [Azure Functions 開發人員參考](functions-reference.md)
-* [Azure Functions NodeJS 開發人員參考](functions-reference-fsharp.md)
+* [Azure Functions F# 開發人員參考](functions-reference-fsharp.md)
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

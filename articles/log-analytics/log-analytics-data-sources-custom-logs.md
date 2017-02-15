@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 中的自訂記錄檔 | Microsoft Docs
-description: Log Analytics 可從 Windows 和 Linux 電腦上的文字檔收集事件。  本文說明如何定義新的自訂記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。
+title: "Log Analytics 中的自訂記錄檔 | Microsoft Docs"
+description: "Log Analytics 可從 Windows 和 Linux 電腦上的文字檔收集事件。  本文說明如何定義新的自訂記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: aca7f6bb-6f53-4fd4-a45c-93f12ead4ae1
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 25c63021160e5259bc72a4f7bbfc248b7ac717aa
+
 
 ---
 # <a name="custom-logs-in-log-analytics"></a>Log Analytics 中的自訂記錄檔
@@ -33,15 +37,15 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 ## <a name="defining-a-custom-log"></a>定義自訂記錄檔
 使用下列程序來定義自訂記錄檔。  如需新增自訂記錄檔之範例的逐步解說，請捲動到本文結尾處。
 
-### <a name="step-1.-open-the-custom-log-wizard"></a>步驟 1. 開啟自訂記錄檔精靈
+### <a name="step-1-open-the-custom-log-wizard"></a>步驟 1. 開啟自訂記錄檔精靈
 自訂記錄檔精靈會在 OMS 入口網站中執行，並可讓您定義要收集的新自訂記錄檔。
 
 1. 在 OMS 入口網站中，移至 [設定] 。
 2. 按一下 [資料]，然後按一下 [自訂記錄檔]。
-3. 根據預設，所有設定變更都會自動發送給所有代理程式。  若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。  如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 [Apply below configuration to my Linux machines](將下列設定套用至我的 Linux 機器.md) 方塊即可。
+3. 根據預設，所有設定變更都會自動發送給所有代理程式。  若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。  如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 [Apply below configuration to my Linux machines] (將下列設定套用至我的 Linux 機器) 方塊即可。
 4. 按一下 [新增+]  開啟自訂記錄檔精靈。
 
-### <a name="step-2.-upload-and-parse-a-sample-log"></a>步驟 2. 上傳和剖析範例記錄檔
+### <a name="step-2-upload-and-parse-a-sample-log"></a>步驟 2. 上傳和剖析範例記錄檔
 一開始您要上傳自訂記錄檔的範例。  精靈會剖析並顯示此檔案中的項目以供您驗證。  Log Analytics 會使用您指定的分隔符號來識別每一筆記錄。
 
 **新行字元** 是預設的分隔符號，並且會用於每行一個項目的記錄檔。  如果一行的開頭是其中一種可用格式的日期和時間，則您可以指定 **時間戳記** 分隔符號，其可支援跨越多行的多個項目。 
@@ -57,9 +61,9 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 2. 按 [下一步] 。 
 3. 自訂記錄檔精靈會上傳檔案並列出其識別的記錄。
 4. 變更用來識別新記錄的分隔符號，並選取最能識別記錄檔中的記錄的分隔符號。
-5. 按一下頁面底部的 [新增] ****來單一登入應用程式。
+5. 按一下頁面底部的 [新增] 來單一登入應用程式。
 
-### <a name="step-3.-add-log-collection-paths"></a>步驟 3. 新增記錄檔收集路徑
+### <a name="step-3-add-log-collection-paths"></a>步驟 3. 新增記錄檔收集路徑
 您必須在代理程式上定義一個或多個它可以在其中找到自訂記錄檔的路徑。  您可以提供該記錄檔的特定路徑和名稱，或者您可以使用萬用字元為該名稱指定路徑。  這可支援每天會建立一個新檔案的應用程式或在一個檔案到達特定大小時提供支援。  您也可以為單一記錄檔提供多個路徑。
 
 例如，應用程式可能會每天建立一個記錄檔，且名稱中會包含日期，如同 log20100316.txt。 這類記錄檔的模式可能是 *log\*.txt*，而這會套用到任何遵循應用程式命名配置的記錄檔。
@@ -77,14 +81,14 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 2. 輸入路徑並按一下 [+] **+** 按鈕。
 3. 針對任何其他路徑重複此程序。
 
-### <a name="step-4.-provide-a-name-and-description-for-the-log"></a>步驟 4. 提供記錄檔的名稱和描述
+### <a name="step-4-provide-a-name-and-description-for-the-log"></a>步驟 4. 提供記錄檔的名稱和描述
 您指定的名稱將用於如上所述的記錄檔類型。  它一定會以 _CL 結尾以將自己辨別為自訂記錄檔。
 
 1. 輸入記錄檔的名稱。  **\__CL** 尾碼會自動提供。
 2. 新增選擇性的 [描述] 。
 3. 按 [下一步]  來儲存自訂記錄檔的定義。
 
-### <a name="step-5.-validate-that-the-custom-logs-are-being-collected"></a>步驟 5。 驗證會收集自訂記錄檔
+### <a name="step-5-validate-that-the-custom-logs-are-being-collected"></a>步驟 5。 驗證會收集自訂記錄檔
 最多可能需要一小時的時間，新的自訂記錄檔中的初始資料才會出現在 Log Analytics 中。  從您定義自訂記錄檔之後，它就會開始從您指定的路徑中所找到的記錄檔收集項目。  它不會保留您在建立自訂記錄檔期間上傳的項目，但它會收集它所找出之記錄檔中既有的項目。
 
 一旦 Log Analytics 開始從自訂記錄檔收集，就能透過「記錄檔搜尋」取得其記錄。  請使用您提供給自訂記錄檔的名稱來做為查詢中的 [類型]  。
@@ -94,7 +98,7 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 > 
 > 
 
-### <a name="step-6.-parse-the-custom-log-entries"></a>步驟 6. 剖析自訂記錄檔項目
+### <a name="step-6-parse-the-custom-log-entries"></a>步驟 6. 剖析自訂記錄檔項目
 整個記錄檔項目會儲存在稱為 **RawData**的單一屬性中。  您很可能會想要將每個項目中的不同資訊片段，分成儲存在記錄中的個別屬性。  您可以使用 Log Analytics 的 [自訂欄位](log-analytics-custom-fields.md) 功能來這麼做。
 
 這裡並未提供用來剖析自訂記錄檔項目的詳細步驟。  如需這項資訊，請參閱 [自訂欄位](log-analytics-custom-fields.md) 文件。
@@ -170,6 +174,9 @@ Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將自訂記錄檔中的項目剖析至個別欄位。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

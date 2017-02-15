@@ -1,12 +1,12 @@
 ---
-title: 如何識別案例和規劃進階分析資料處理 | Microsoft Docs
-description: 考慮一系列重要問題來規劃進階分析環境。
+title: "如何識別案例和規劃進階分析資料處理 | Microsoft Docs"
+description: "考慮一系列重要問題來規劃進階分析環境。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 421520dd-7728-4d29-889c-ebe6a0a6fb07
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/19/2016
 ms.author: bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3b9cd8f5f0f65b84863e27abda0f3e4ca25d2e15
+
 
 ---
 # <a name="how-to-identify-scenarios-and-plan-for-advanced-analytics-data-processing"></a>如何識別案例和規劃進階分析資料處理
@@ -21,7 +25,7 @@ ms.author: bradsev
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="logistic-questions:-data-locations-and-movement"></a>邏輯問題：資料位置和移動
+## <a name="logistic-questions-data-locations-and-movement"></a>邏輯問題：資料位置和移動
 邏輯問題是關於**資料來源**的位置、Azure 中的**目標目的地**，以及移動資料的需求，包括排程、數量和涉及的資源。 在分析程序期間，資料可能需要移動數次。 常見的案例是將本機資料移到 Azure 上的某種儲存體，再移至 Machine Learning Studio。
 
 1. **資料來源是什麼？**  在本機還是在雲端？ 例如：
@@ -45,7 +49,7 @@ ms.author: bradsev
 4. **資料是否需要定期移動或在移轉期間修改？**  當資料需要持續移轉時，特別是在涉及同時存取內部部署和雲端資源的混合式案例中，或當資料為交易式或在移轉過程中需要修改或新增商務邏輯時，請考慮使用 Azure Data Factory (ADF)。 如需進一步資訊，請參閱 [使用 Azure Data Factory 從內部部署 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)
 5. **有多少資料要移至 Azure？**  非常大的資料集可能會超過某些環境的儲存體容量。 如需相關範例，請參閱下一節關於 Machine Learning studio 大小限制的討論。 在這種情況下，分析期間可能使用資料樣本。 如需如何在各種 Azure 環境中縮減取樣資料集的詳細資訊，請參閱 [在 Team Data Science Process 中進行資料取樣](machine-learning-data-science-sample-data.md)。
 
-## <a name="data-characteristics-questions:-type,-format-and-size"></a>資料特性問題：類型、格式和大小
+## <a name="data-characteristics-questions-type-format-and-size"></a>資料特性問題：類型、格式和大小
 這些問題是規劃儲存體和處理環境的關鍵，各適用於不同類型的資料，也各有其特定的限制。
 
 1. **資料類型是什麼？** 例如：
@@ -74,10 +78,10 @@ ms.author: bradsev
 
 如需分析程序中使用的其他 Azure 服務限制的相關資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)。
 
-## <a name="data-quality-questions:-exploration-and-pre-processing"></a>資料品質問題：探索和前置處理
+## <a name="data-quality-questions-exploration-and-pre-processing"></a>資料品質問題：探索和前置處理
 1. **您對資料的熟悉程度為何？**  當您需要了解資料的基本特性時，請探索資料。 資料呈現什麼模式或趨勢、有什麼極端值或遺漏多少值。 這個步驟很重要，將會決定所需的前置處理程度、形成假設來建議最適合的功能分析類型，以及擬定計劃來收集其他資料。 計算描述性統計資料和繪製視覺效果是很有用的資料檢查技術。 如需如何在各種 Azure 環境中探索資料集的詳細資訊，請參閱 [在 Team Data Science Process 中探索資料](machine-learning-data-science-explore-data.md)。
 2. **資料是否需要前置處理或清除？**
-   前置處理和清除資料是很重要的工作，必須先執行這些工作，才能有效地將資料集用於機器學習服務。 未經處理的資料通常會有雜訊且不可靠，還可能會有遺漏值。 使用這類資料進行模型化可能會產生誤導的結果。 如需說明，請參閱 [準備增強機器學習服務的資料的工作](machine-learning-data-science-prepare-data.md)。
+    前置處理和清除資料是很重要的工作，必須先執行這些工作，才能有效地將資料集用於機器學習服務。 未經處理的資料通常會有雜訊且不可靠，還可能會有遺漏值。 使用這類資料進行模型化可能會產生誤導的結果。 如需說明，請參閱 [準備增強機器學習服務的資料的工作](machine-learning-data-science-prepare-data.md)。
 
 ## <a name="tools-and-languages-questions"></a>工具和語言的問題
 根據您需要或最喜歡使用的語言和開發環境或工具而定，這裡有許多選項可選擇。
@@ -95,12 +99,15 @@ ms.author: bradsev
    * [RStudio](http://www.rstudio.com)
    * [Python Tools for Visual Studio](http://microsoft.github.io/PTVS/)
    * [Anaconda](https://www.continuum.io/why-anaconda)
-   * [Jupiter notebooks](http://jupyter.org/)
+   * [Jupyter 筆記本](http://jupyter.org/)
    * [Microsoft Power BI](http://powerbi.microsoft.com)
 
 ## <a name="identify-your-advanced-analytics-scenario"></a>識別您的進階分析案例
 一旦回答上一區段中的問題之後，您便已準備好決定哪個案例最符合您的情況。 [Azure 機器學習服務中的進階分析案例](machine-learning-data-science-plan-sample-scenarios.md)中概述範例案例。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

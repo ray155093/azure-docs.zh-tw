@@ -1,5 +1,5 @@
 ---
-title: "針對 Azure Data Lake Analytics 工作使用 U-SQL 視窗函式 | Microsoft Docs"
+title: "針對 Azure Data Lake Analytics 作業使用 U-SQL 視窗函式 | Microsoft Docs"
 description: "了解如何使用 U-SQL 視窗函式。 "
 services: data-lake-analytics
 documentationcenter: 
@@ -11,12 +11,12 @@ ms.service: data-lake-analytics
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: big-data
-ms.date: 05/16/2016
+ms.workload: big-data`
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 22aafaa80d8d7a5d7e57819acadc6c7985bf2c93
-ms.openlocfilehash: fde657c6c59852a07fd8f565572732f7a25d9e55
+ms.sourcegitcommit: 5137ccfd2c809fe17cc7fdf06941ebd797288d81
+ms.openlocfilehash: 7afbd2de08b5702371ef7dc8676fcd8d75d5e7fd
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: fde657c6c59852a07fd8f565572732f7a25d9e55
 
 * [報告彙總函式](#reporting-aggregation-functions)，如 SUM 或 AVG
 * [排名函式](#ranking-functions)，例如 DENSE_RANK、ROW_NUMBER、NTILE 和 RANK
-* [分析函式](#analytic-functions)，例如累加分配、百分位數，或從相同結果集中的前一個資料列存取資料，而不使用自我聯結
+* [分析函式](#analytic-functions)，例如累加分配或百分位數，從相同結果集中的前一個資料列存取資料，而不使用自我聯結
 
 **必要條件：**
 
@@ -70,7 +70,7 @@ ms.openlocfilehash: fde657c6c59852a07fd8f565572732f7a25d9e55
         AS T(Query,Latency,Vertical);
     ```
 
-    在實務上，資料最有可能儲存在資料檔中。 您將使用下列程式碼，在定位點分隔符號檔案內存取該資料： 
+    在實務上，資料通常儲存在檔案中。 您可使用下列程式碼，存取定位字元分隔檔案中的資料： 
   
     ```
     @querylog = 
@@ -120,7 +120,7 @@ ms.openlocfilehash: fde657c6c59852a07fd8f565572732f7a25d9e55
 
 當您測試教學課程中的範例時，您必須包含資料列集定義。 使用 U-SQL 時，您必須僅定義所使用的資料列集。 有些範例只需要一個資料列集。
 
-您也必須新增下列陳述式，以將結果資料列集輸出到資料檔：
+新增下列陳述式，將結果資料列集輸出到資料檔：
 
     OUTPUT @result TO "/wfresult.csv" 
         USING Outputters.Csv();
@@ -154,14 +154,14 @@ ms.openlocfilehash: fde657c6c59852a07fd8f565572732f7a25d9e55
 > 
 > 
 
-下列陳述式使用 GROUP BY 子句來計算每個部門薪資總計：
+下列陳述式使用 GROUP BY 子句來計算每個部門的薪資總計：
 
     @result=
         SELECT DeptName, SUM(Salary) AS SalaryByDept
         FROM @employees
         GROUP BY DeptName;
 
-結果為： 
+結果為：
 
 | DeptName | SalaryByDept |
 | --- | --- |
@@ -175,10 +175,10 @@ SalaryByDept 資料行的總和為 $165000，符合最後一個指令碼中的�
 在這兩個案例中，輸出資料列的數字都少於輸入資料列：
 
 * 未使用 GROUP BY 時，彙總會將所有資料列摺疊成單一資料列。 
-* 使用 GROUP BY 時會有 N 個輸出資料列，其中，N 是出現在資料中的相異值。在此情況下，輸出中將會有 4 個資料列。
+* 使用 GROUP BY 時會有 N 個輸出資料列，其中 N 是出現在資料中的相異值。  在此情況下，輸出中有 4 個資料列。
 
 ### <a name="use-a-window-function"></a>使用視窗函式
-下列範例中的 OVER 子句是空的。 這會將「視窗」定義為包含所有資料列。 在此範例中的 SUM 會套用到它前面的 OVER 子句。
+下列範例中的 OVER 子句是空的，所以視窗包含所有資料列。 在此範例中的 SUM 會套用到它前面的 OVER 子句。
 
 您可以將此查詢解讀為：「所有資料列視窗內的薪資總和」。
 
@@ -316,10 +316,10 @@ SalaryByDept 資料行的總和為 $165000，符合最後一個指令碼中的�
 | 8 |Ava |行銷 |400 |15000 |10000 |
 | 9 |Ethan |行銷 |400 |10000 |10000 |
 
-將 MIN 取代為 MAX，然後再試一次。
+若要查看每個部門的最高薪資，請以 MAX 取代 MIN 並重新執行查詢。
 
 ## <a name="ranking-functions"></a>排名函式
-排名函式會依照 PARTITION BY 和 OVER 子句的定義，針對每個分割中的每個資料列傳回排名值 (長數值)。 排名的順序由 OVER 子句中的 ORDER BY 所控制。
+排名函式會依照 PARTITION BY 和 OVER 子句的定義，針對每個分割中的每個資料列傳回排名值 (LONG)。 排名的順序由 OVER 子句中的 ORDER BY 所控制。
 
 支援的排名函式如下：
 
@@ -336,10 +336,10 @@ SalaryByDept 資料行的總和為 $165000，符合最後一個指令碼中的�
             [ORDER BY <identifier, > …[n] [ASC|DESC]] 
     ) AS <alias>
 
-* ORDER BY 子句對於排名函式是選擇性的。 如果已指定 ORDER BY，它將會決定排名的順序。 如果未指定 ORDER BY，U-SQL 將會根據它會讀取記錄的順序來指派值。 因此，在未指定 ORDER BY 子句的情況下，會導致資料列號碼、排名或密度排名的值不具決定性。
+* ORDER BY 子句對於排名函式是選擇性的。 如果未指定 ORDER BY，則 U-SQL 會根據它讀取記錄的順序來指派值，以致產生 ROW_NUMBER、RANK 或 DENSE_RANK 不具決定性的值。
 * NTILE 需要評估為正整數的運算式。 此數字會指定每個分割必須劃分成的群組數目。 此識別碼只會與 NTILE 排名函式一起使用。 
 
-如需 OVER 子句的詳細資訊，請參閱 [U-SQL 參考]()。
+如需 OVER 子句的詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
 ROW_NUMBER、RANK 和 DENSE_RANK 都會指派數字給視窗中的資料列。 與其個別加以檢視，查看它們如何回應相同的輸入，會更加一目瞭然。
 
@@ -353,7 +353,7 @@ ROW_NUMBER、RANK 和 DENSE_RANK 都會指派數字給視窗中的資料列。 �
 
 請注意，OVER 子句都相同。 結果：
 
-| 查詢 | Latency:int | Vertical | RowNumber | RANK | DenseRank |
+| 查詢 | 延遲：INT | Vertical | RowNumber | RANK | DenseRank |
 | --- | --- | --- | --- | --- | --- |
 | Banana |300 |映像 |1 |1 |1 |
 | Cherry |300 |映像 |2 |1 |1 |
@@ -371,20 +371,20 @@ ROW_NUMBER、RANK 和 DENSE_RANK 都會指派數字給視窗中的資料列。 �
 ![U-SQL 視窗函式 ROW_NUMBER](./media/data-lake-analytics-use-windowing-functions/u-sql-windowing-function-row-number-result.png)
 
 ### <a name="rank"></a>RANK
-不同於 ROW_NUMBER()，RANK() 會考量視窗的 ORDER BY 子句中所指定的 Latency 值。
+不同於 ROW_NUMBER()，RANK() 會使用在視窗的 ORDER BY 子句中所指定的 Latency 值。
 
-RANK 從 (1,1,3) 開始，因為 Latency 的頭兩個值是相同的。 下一個值是 3，因為 Latency 值已到達 500。 關鍵點在於，即使重複的值指定了相同的排名，RANK 數值仍將「跳至」下一個 ROW_NUMBER 值。 您可以在 Web 垂直中看到這種模式以 (2,2,4) 的序列重複。
+RANK 從 (1、1、3) 開始，因為 Latency 的頭兩個值是相同的。 下一個值是 3，因為 Latency 值已到達 500。 關鍵點在於，即使重複的值指定了相同的排名，RANK 數值仍會跳至下一個 ROW_NUMBER 值。 您可以在 Web 垂直中看到這種模式以 (2、2、4) 的序列重複。
 
 ![U-SQL 視窗函式 RANK](./media/data-lake-analytics-use-windowing-functions/u-sql-windowing-function-rank-result.png)
 
 ### <a name="denserank"></a>DENSE_RANK
-DENSE_RANK 類似於 RANK，唯一差別在於它不會「跳至」下一個 ROW_NUMBER，而是會移至序列中的下一個數字。 請注意範例中的序列 (1,1,2) 和 (2,2,3)。
+DENSE_RANK 類似於 RANK，唯一差別在於它不會跳至下一個 ROW_NUMBER。 DENSE_RANK 會移至序列中的下一個數字。 請注意範例中的序列 (1、1、2) 和 (2、2、3)。
 
 ![U-SQL 視窗函式 DENSE_RANK](./media/data-lake-analytics-use-windowing-functions/u-sql-windowing-function-dense-rank-result.png)
 
 ### <a name="remarks"></a>備註
-* 如果未指定 ORDER BY，則會將排名函式套用到資料列集，不含任何排序。 這會導致套用排名函式的行為不具決定性
-* 除非下列條件成立，否則無法保證使用 ROW_NUMBER 的查詢所傳回的資料列在每次執行時都會有完全相同的排序。
+* 如果未指定 ORDER BY，則會將排名函式套用到資料列集 (不含任何排序)，以致產生不具決定性的行為。
+* 下列條件必須成立，才能保證查詢使用 ROW_NUMBER 所傳回的資料列在每次執行時會有相同的排序。
   
   * 分割資料行的值是唯一的。
   * ORDER BY 資料行的值是唯一的。
@@ -393,11 +393,11 @@ DENSE_RANK 類似於 RANK，唯一差別在於它不會「跳至」下一個 ROW
 ### <a name="ntile"></a>NTILE
 NTILE 會將已排序分割中的資料列分配到指定數目的群組中。 群組會編號，從 1 開始。 
 
-下列範例會依據查詢延遲的順序，將每個分割中的資料列集分割為 4 個群組，並傳回每個資料列的群組號碼。 
+下列範例會將每個分割中的資料列集 (垂直) 分割為四個群組 (依延遲排序)，並傳回每個資料列的群組號碼。 
 
-Image 垂直有 3 個資料列，因此它有 3 個群組。 
+Image 垂直有三個資料列，所以有三個群組。 
 
-Web 垂直有 6 個資料列，兩個額外的資料列會分配到前兩個群組。 這就是為什麼群組 1 和群組 2 中會有 2 個資料列，而群組 3 和群組 4 中只有 1 個資料列。  
+Web 垂直有六個資料列。  兩個額外的資料列會分配到前兩個群組。 這就是為什麼群組 1 和群組 2 中會有兩個資料列，而群組 3 和群組 4 中只有一個資料列。  
 
     @result =
         SELECT 
@@ -430,7 +430,7 @@ NTILE 會使用參數 ("numgroups")。 Numgroups 是一個正整數或長常數�
 * 102 個資料列分割成 4 個群組：[ 26, 26, 25, 25 ]
 
 ### <a name="top-n-records-per-partition-via-rank-denserank-or-rownumber"></a>每個分割的前 N 筆記錄 (使用 RANK、DENSE_RANK 或 ROW_NUMBER)
-許多使用者只想要選取每個群組的前 n 個資料列。 傳統的 GROUP BY 無法達到此目的。 
+許多使用者只想要選取每個群組的前 n 個資料列，這無法使用傳統 GROUP BY 達成。 
 
 您在「排名函式」一節的開頭已看過下列範例。 其中並未顯示每個分割的前 n 筆記錄：
 
@@ -457,7 +457,7 @@ NTILE 會使用參數 ("numgroups")。 Numgroups 是一個正整數或長常數�
 | Durian |500 |Web |6 |5 |6 |
 
 ### <a name="top-n-with-dense-rank"></a>前 N 個 (使用 DENSE RANK)
-下列範例會從每個群組中傳回前 3 筆記錄，且每個視窗化分割中的資料列沒有循序排名編號的間距。
+下列範例會從每個群組中傳回前三筆記錄，且每個分割中的資料列沒有循序排名編號的間距。
 
     @result =
     SELECT 
@@ -529,7 +529,7 @@ NTILE 會使用參數 ("numgroups")。 Numgroups 是一個正整數或長常數�
 | Papaya |200 |Web |3 |
 
 ### <a name="assign-globally-unique-row-number"></a>指派全域唯一資料列號碼
-為每個資料列指派全域唯一號碼，通常會很有用。 這用在排名函式上十分方便 (並且比使用歸納器更有效率)。
+為每個資料列指派全域唯一號碼，通常會很有用。 排名函式比較簡單，而且比使用歸納器更有效率。
 
     @result =
         SELECT 
@@ -549,9 +549,9 @@ NTILE 會使用參數 ("numgroups")。 Numgroups 是一個正整數或長常數�
 * PERCENTILE_DISC
 
 ### <a name="cumedist"></a>CUME_DIST
-CUME_DIST 會計算指定的值在值群組中的相對位置。 它會計算延遲小於或等於目前的查詢延遲 (具有相同垂直) 之查詢的百分比。 就採用遞增排序的資料列 R 而言，R 的 CUME_DIST 是值小於或等於 R 之值的資料列數目，除以分割或查詢結果集所評估的資料列數目所得之數。 CUME_DIST 會傳回 0 < x <= 1 範圍內的數值。
+CUME_DIST 會計算指定的值在值群組中的相對位置。 它會計算延遲小於或等於目前的查詢延遲 (具有相同垂直) 之查詢的百分比。 資料列 R (採用遞增排序) 的 CUME_DIST 是值小於或等於 R 之值的資料列數目，除以分割中評估的資料列數目所得之數。 CUME_DIST 會傳回 0 < x <= 1 範圍內的數值。
 
-** 語法**
+**語法：**
 
     CUME_DIST() 
         OVER (
@@ -581,27 +581,27 @@ CUME_DIST 會計算指定的值在值群組中的相對位置。 它會計算延
 | Papaya |200 |Web |0.5 |
 | Apple |100 |Web |0.166666666666667 |
 
-分割索引鍵為 “Web” 的分割中有 6 個資料列 (第 4 個資料列和以下)：
+分割索引鍵為 “Web” 的分割中有六個資料列 (第 4 個資料列和以下)：
 
-* 有 6 個資料列的值等於或小於 500，因此 CUME_DIST 等於 6/6=1
-* 有 5 個資料列的值等於或小於 400，因此 CUME_DIST 等於 5/6=0.83
-* 有 4 個資料列的值等於或小於 300，因此 CUME_DIST 等於 4/6=0.66
-* 有 3 個資料列的值等於或小於 200，因此 CUME_DIST 等於 3/6=0.5。 有兩個資料列具有相同的延遲值。
-* 有 1 個資料列的值等於或小於 100，因此 CUME_DIST 等於 1/6=0.16。 
+* 有六個資料列的值等於或小於 500，因此 CUME_DIST 等於 6/6=1
+* 有五個資料列的值等於或小於 400，因此 CUME_DIST 等於 5/6=0.83
+* 有四個資料列的值等於或小於 300，因此 CUME_DIST 等於 4/6=0.66
+* 有三個資料列的值等於或小於 200，因此 CUME_DIST 等於 3/6=0.5。 有兩個資料列具有相同的延遲值。
+* 有一個資料列的值等於或小於 100，因此 CUME_DIST 等於 1/6=0.16。 
 
 **使用注意事項：**
 
 * 相等值一律會評估為相同的累加分配值。
 * NULL 值會被視為最低的可能值。
-* 您必須指定 ORDER BY 子句來計算 CUME_DIST。
+* 需要 ORDER BY 子句才能計算 CUME_DIST。
 * CUME_DIST 類似於 PERCENT_RANK 函式
 
-附註：如果 SELECT 陳述式後面沒有 OUTPUT，則不允許 ORDER BY 子句。 因此，OUTPUT 陳述式中的 ORDER BY 子句會決定結果資料列集的顯示順序。
+附註：如果 SELECT 陳述式後面沒接著 OUTPUT，則不允許 ORDER BY 子句。
 
 ### <a name="percentrank"></a>PERCENT_RANK
 PERCENT_RANK 會計算資料列群組內某資料列的相對排名。 PERCENT_RANK 可用來評估某值在資料列集或分割內的相對位置。 PERCENT_RANK 傳回的值範圍會大於 0 且小於或等於 1。 不同於 CUME_DIST，PERCENT_RANK 的第一個資料列一律為 0。
 
-** 語法**
+**語法︰**
 
     PERCENT_RANK() 
         OVER (
@@ -613,7 +613,7 @@ PERCENT_RANK 會計算資料列群組內某資料列的相對排名。 PERCENT_R
 
 * 任何集合中第一個資料列的 PERCENT_RANK 皆為 0。
 * NULL 值會被視為最低的可能值。
-* 您必須指定 ORDER BY 子句來計算 PERCENT_RANK。
+* PERCENT_RANK 需要 ORDER BY 子句。
 * CUME_DIST 類似於 PERCENT_RANK 函式 
 
 下列範例使用 PERCENT_RANK 函式來計算垂直中每個查詢的延遲百分位數。 
@@ -630,7 +630,7 @@ PERCENT_RANK 函式所傳回的值代表查詢在垂直內的延遲排名 (以�
 
 結果：
 
-| 查詢 | Latency:int | Vertical | PercentRank |
+| 查詢 | 延遲：INT | Vertical | PercentRank |
 | --- | --- | --- | --- |
 | Banana |300 |映像 |0 |
 | Cherry |300 |映像 |0 |
@@ -642,10 +642,10 @@ PERCENT_RANK 函式所傳回的值代表查詢在垂直內的延遲排名 (以�
 | Cherry |400 |Web |0.8 |
 | Durian |500 |Web |1 |
 
-### <a name="percentilecont-percentiledisc"></a>PERCENTILE_CONT 和 PERCENTILE_DISC
+### <a name="percentilecont--percentiledisc"></a>PERCENTILE_CONT 和 PERCENTILE_DISC
 這兩個函式會根據資料行值的連續或離散分佈來計算百分位數。
 
-**語法**
+**語法：**
 
     [PERCENTILE_CONT | PERCENTILE_DISC] ( numeric_literal ) 
         WITHIN GROUP ( ORDER BY <identifier> [ ASC | DESC ] )
@@ -679,7 +679,7 @@ OVER ([ PARTITION BY <識別碼,>…[n] ] ) - 根據套用百分位數函式的�
 
 結果：
 
-| 查詢 | Latency:int | Vertical | PercentileCont50 | PercentilDisc50 |
+| 查詢 | 延遲：INT | Vertical | PercentileCont50 | PercentilDisc50 |
 | --- | --- | --- | --- | --- |
 | Banana |300 |映像 |300 |300 |
 | Cherry |300 |映像 |300 |300 |
@@ -697,19 +697,19 @@ PERCENTILE_DISC 不會插補值，因此 Web 的中間值是 200 - 也就是在�
 
 ## <a name="see-also"></a>另請參閱
 * [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
-* [使用 Azure 入口網站開始使用資料湖分析](data-lake-analytics-get-started-portal.md)
+* [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
 * [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
 * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
 * [使用 Azure 資料湖分析互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
 * [使用 Azure 資料湖分析來分析網站記錄](data-lake-analytics-analyze-weblogs.md)
 * [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
-* [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)
+* [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)
 * [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
-* [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
+* [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

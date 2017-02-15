@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 12/15/2015
 ms.author: saurabh
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 79728621afcf1cfc744499160c07130eb4555d7f
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: 8c4bc48c6ddb9bc03198f0f6c630b05d987a4b43
 
 
 ---
 # <a name="use-powershell-to-enable-azure-diagnostics-in-a-virtual-machine-running-windows"></a>使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-Azure 診斷是 Azure 中可對部署的應用程式啟用診斷資料收集的功能。 您可以使用診斷延伸模組，從執行 Windows 的 Azure 虛擬機器 (VM) 收集診斷資料 (例如應用程式記錄檔或效能計數器)。 本文描述如何使用 Windows PowerShell 啟用 VM 的診斷延伸模組。 如需這篇文章所需要的必要條件，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
+Azure 診斷是 Azure 中可對部署的應用程式啟用診斷資料收集的功能。 您可以使用診斷延伸模組，從執行 Windows 的 Azure 虛擬機器 (VM) 收集診斷資料 (例如應用程式記錄檔或效能計數器)。 本文描述如何使用 Windows PowerShell 啟用 VM 的診斷延伸模組。 如需這篇文章所需要的必要條件，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 
 ## <a name="enable-the-diagnostics-extension-if-you-use-the-resource-manager-deployment-model"></a>如果您使用資源管理員部署模型，請啟用診斷延伸模組
 將延伸模組組態新增至資源管理員範本，即可在透過 Azure 資源管理員部署模型建立 Windows VM 時啟用診斷延伸模組。 請參閱 [使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器](virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
@@ -201,6 +201,6 @@ Cmdlet 所傳回的 *PublicSettings*包含 Base64 編碼格式的 XML 組態。 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

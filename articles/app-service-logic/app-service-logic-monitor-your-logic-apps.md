@@ -1,12 +1,12 @@
 ---
-title: 在 Azure App Service 中監視 Logic Apps | Microsoft Docs
-description: 如何查看邏輯應用程式的完成項目
+title: "在 Azure App Service 中監視 Logic Apps | Microsoft Docs"
+description: "如何查看邏輯應用程式的完成項目"
 author: jeffhollan
 manager: erikre
-editor: ''
+editor: 
 services: logic-apps
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 5c1b1e15-3b6c-49dc-98a6-bdbe7cb75339
 ms.service: logic-apps
 ms.workload: integration
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: jehollan
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: cc73caf6ffdc47199369112a5310a3f4dd0cc9bf
+
 
 ---
 # <a name="monitor-your-logic-apps"></a>監視邏輯應用程式
@@ -27,9 +31,9 @@ ms.author: jehollan
 此刀鋒視窗上有幾個很實用的區段︰
 
 * [摘要] 會列出 [所有執行] 和 [觸發程序記錄]
-  * 會列出最新的邏輯應用程式執行。  您可以按一下任何資料列以取得該次執行的詳細資料，或按一下圖格以列出更多執行。
-  * 會列出此邏輯應用程式的所有觸發程序活動。  觸發程序活動可能會是「略過」的新資料檢查 (例如想要查看 FTP 是否已新增新的檔案)、「成功」(表示已傳回資料而引發邏輯應用程式) 或「失敗」(對應到設定錯誤)。
-* 可讓您檢視執行階段詳細資料和事件，並訂閱 [Azure 警示](#adding-azure-alerts)
+  *  會列出最新的邏輯應用程式執行。  您可以按一下任何資料列以取得該次執行的詳細資料，或按一下圖格以列出更多執行。
+  *  會列出此邏輯應用程式的所有觸發程序活動。  觸發程序活動可能會是「略過」的新資料檢查 (例如想要查看 FTP 是否已新增新的檔案)、「成功」(表示已傳回資料而引發邏輯應用程式) 或「失敗」(對應到設定錯誤)。
+*  可讓您檢視執行階段詳細資料和事件，並訂閱 [Azure 警示](#adding-azure-alerts)
 
 > [!NOTE]
 > 在邏輯應用程式服務中，所有執行階段詳細資料和事件都會以靜止狀態加密。 只有在使用者要求檢視時，才會將其解密。 這些事件的存取權也可以 Azure 角色型存取控制 (RBAC) 來控制。
@@ -134,6 +138,9 @@ ms.author: jehollan
 * [建立邏輯應用程式部署範本](app-service-logic-create-deploy-template.md)
 * [企業整合功能](app-service-logic-enterprise-integration-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

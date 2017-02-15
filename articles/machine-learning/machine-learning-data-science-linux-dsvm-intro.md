@@ -1,19 +1,23 @@
 ---
-title: 佈建 Linux 資料科學虛擬機器 | Microsoft Docs
-description: 在 Azure 上設定和建立 Linux 資料科學虛擬機器以進行分析和機器學習服務。
+title: "佈建 Linux 資料科學虛擬機器 | Microsoft Docs"
+description: "在 Azure 上設定和建立 Linux 資料科學虛擬機器以進行分析和機器學習服務。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 3bab0ab9-3ea5-41a6-a62a-8c44fdbae43b
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/09/2016
 ms.author: bradsev
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3d5c5d6ae177b6f662df261f3254816b20bac764
+
 
 ---
 # <a name="provision-the-linux-data-science-virtual-machine"></a>佈建 Linux 資料科學虛擬機器
@@ -341,6 +345,9 @@ Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI
 * 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)，以系統化方式建置端對端分析方案。
 * 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) ，以取得使用 Cortana Analytics Suite 的機器學習和資料分析範例。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

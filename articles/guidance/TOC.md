@@ -11,7 +11,7 @@
 #### [高可用性檢查清單](..\resiliency\resiliency-high-availability-checklist.md)
 #### [Azure 服務專用復原指引](..\resiliency\resiliency-service-guidance-index.md)
 #### [從資料損毀或意外刪除復原](..\resiliency\resiliency-technical-guidance-recovery-data-corruption.md)
-#### [從本機失敗復原](..\resiliency\resiliency-technical-guidance-recovery-local-failures.md)。
+#### [從本機失敗復原](..\resiliency\resiliency-technical-guidance-recovery-local-failures.md)
 #### [從區域全面性服務中斷復原](..\resiliency\resiliency-technical-guidance-recovery-loss-azure-region.md)
 #### [從內部部署復原到 Azure](..\resiliency\resiliency-technical-guidance-recovery-on-premises-azure.md)
 #### [Azure 復原技術指導](..\resiliency\resiliency-technical-guidance.md)

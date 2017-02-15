@@ -1,12 +1,12 @@
 ---
-title: Overview of autoscale in Microsoft Azure Virtual Machines, Cloud Services, and Web Apps | Microsoft Docs
-description: Overview of autoscale in Microsoft Azure. Applies to Virtual Machines, Cloud Services and Web Apps.
+title: "Microsoft Azure 虛擬機器、雲端服務和 Web Apps 的自動調整概觀 | Microsoft Docs"
+description: "Microsoft Azure 的自動調整概觀。 適用於虛擬機器、雲端服務和 Web Apps。"
 author: rboucher
-manager: ''
-editor: ''
+manager: carolz
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 74bf03be-e658-4239-a214-c12424b53e4c
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,101 +14,108 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: robb
+translationtype: Human Translation
+ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
+ms.openlocfilehash: e4ea8b18a9aba44906ed9085fa046859cc186aa1
+
 
 ---
-# <a name="overview-of-autoscale-in-microsoft-azure-virtual-machines,-cloud-services,-and-web-apps"></a>Overview of autoscale in Microsoft Azure Virtual Machines, Cloud Services, and Web Apps
-This article describes what Microsoft Azure autoscale is, its benefits, and how to get started using it.  
+# <a name="overview-of-autoscale-in-microsoft-azure-virtual-machines-cloud-services-and-web-apps"></a>Microsoft Azure 虛擬機器、雲端服務和 Web Apps 的自動調整概觀
+本文說明何謂 Microsoft Azure 自動調整、其優點，以及如何開始使用它。  
 
-Azure Insights autoscale applies only to [Virtual Machine Scale Sets](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Cloud Services](https://azure.microsoft.com/services/cloud-services/), and [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/). 
+Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)、[雲端服務](https://azure.microsoft.com/services/cloud-services/)和 [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)。
 
 > [!NOTE]
-> Azure has two autoscale methods. An older version of autoscale applies to Virtual Machines (availability sets). This feature has limited support and we recommend migrating to VM Scale Sets for faster and more reliable autoscale support. A link on how to use the older technology is included in this article.  
+> Azure 有兩種自動調整方法。 舊版自動調整適用於虛擬機器 (可用性設定組)。 這項功能的支援能力有限，建議您移轉至 VM 擴展集，以獲得更快、更可靠的自動調整支援。 本文包含如何使用舊版技術的連結。  
 > 
 > 
 
-## <a name="what-is-autoscale?"></a>What is autoscale?
-Autoscale allows you to have the right amount of resources running to handle the load on your application. It allows you to add resources to handle increases in load and also save money by removing resources which are sitting idle. You specify a minimum and maximum number of instances to run and add or remove VMs automatically based on a set of rules. Having a minimum makes sure your application is always running even under no load. Having a maximum limits your total possible hourly cost. You automatically scale between these two extremes using rules you create. 
+## <a name="what-is-autoscale"></a>何謂自動調整？
+自動調整可讓您執行適當數量的資源來處理應用程式的負載。 它可讓您新增資源來處理增加的負載，並可藉由移除閒置資源來節省成本。 您必須指定要執行的執行個體數目下限和上限，並根據一組規則自動新增或移除 VM。 設定下限可確保即使沒有負載應用程式也會一直執行。 設定上限則可限制每小時可能產生的總成本。 您可以使用您所建立的規則自動在這兩個極端值之間進行調整。
 
- ![Autoscale explained. Add and remove VMs](./media/monitoring-autoscale-overview/AutoscaleConcept.png)
+ ![說明自動調整。 新增和移除 VM](./media/monitoring-autoscale-overview/AutoscaleConcept.png)
 
-When rule conditions are met, one or more autoscale actions is triggered. You can add and remove VMs, or perform other actions. The following conceptual diagram shows this process.  
+符合規則條件時，就會觸發一個或多個自動調整動作。 您可以新增和移除 VM，或執行其他動作。 以下概念圖會顯示此程序。  
 
- ![Conceptual Autoscale Flow Diagram](./media/monitoring-autoscale-overview/AutoscaleOverview3.png)
+ ![概念性的自動調整流程圖](./media/monitoring-autoscale-overview/AutoscaleOverview3.png)
 
-## <a name="autoscale-process-explained"></a>Autoscale Process Explained
-The following explanation apply to the pieces of the previous diagram.   
+## <a name="autoscale-process-explained"></a>自動調整程序說明
+以下說明適用於先前的圖表項目。   
 
-### <a name="resource-metrics"></a>Resource metrics
-Resources emit metrics, which are later processed by rules. Metrics come via different methods.
-VM Scale Sets uses telemetry data from Azure diagnostics agents whereas telemetry for Web apps and Cloud services comes directly from the Azure Infrastructure. Some commonly used statistics include CPU Usage, memory usage, thread counts, queue length, and disk usage. For a list of what telemetry data you can use, see [Autoscale Common Metrics](insights-autoscale-common-metrics.md). 
+### <a name="resource-metrics"></a>資源度量
+資源會發出度量，並於稍後由規則處理。 度量來自不同的方法。
+VM 擴展集使用來自 Azure 診斷代理程式的遙測資料，而 Web 應用程式和雲端服務的遙測則直接來自 Azure 基礎結構。 一些常用的統計資料包括 CPU 使用率、記憶體使用量、執行緒計數、佇列長度和磁碟使用量。 如需可使用哪些遙測資料的清單，請參閱 [自動調整的常用度量](insights-autoscale-common-metrics.md)。
 
-### <a name="time"></a>Time
-Schedule-based rules are based on UTC. You must set your time zone properly when setting up your rules.  
+### <a name="time"></a>時間
+排程型規則是以 UTC 為基礎。 設定規則時必須正確設定時區。  
 
-### <a name="rules"></a>Rules
-The diagram shows only one autoscale rule, but you can have many of them. You can create complex overlapping rules as needed for your situation.  Rule types include  
+### <a name="rules"></a>規則
+圖中只顯示一個自動調整規則，但您可以擁有多個。 您可以視情況需要建立複雜的重疊規則。  規則類型包含  
 
-* **Metric-based** - For example, do this action when CPU usage is above 50%. 
-* **Time-based** - For example, trigger a webhook every 8am on Saturday in a given time zone.
+* **度量型** - 例如，當 CPU 使用率高於 50% 時執行此動作。
+* **時間型** - 例如，在指定時區的每星期六上午 8 點觸發 Webhook。
 
-Metric-based rules measure application load and add or remove VMs based on that load. Schedule-based rules allow you to scale when you see time patterns in your load and want to scale before a possible load increase or decrease occurs.  
+度量型規則會測量應用程式負載，並根據該負載新增或移除 VM。 排程型規則可讓您在觀察到負載有時間模式，因而想要在可能的負載增加或減少發生之前做出因應時進行調整。  
 
-### <a name="actions-and-automation"></a>Actions and automation
-Rules can trigger one or more types of actions.
+### <a name="actions-and-automation"></a>動作與自動化
+規則可以觸發一個或多個類型的動作。
 
-* **Scale** - Scale VMs in or out
-* **Email** - Send email to subscription admins, co-admins, and/or additional email address you specify
-* **Automate via webhooks** - Call webhooks, which can trigger multiple complex actions inside or outside Azure. Inside Azure, you can start an Azure Automation runbook, Azure Function, or Azure Logic App. Example 3rd party URL outside Azure include services like Slack and Twilio. 
+* **調整** - 將 VM 相應放大或相應縮小
+* **電子郵件** - 傳送電子郵件給訂用帳戶的管理員、共同管理員和 (或) 您指定的其他電子郵件地址
+* **透過 Webhook 自動執行** - 呼叫 Webhook，以觸發 Azure 內部或外部的多個複雜動作。 在 Azure 內部，您可以啟動 Azure 自動化 Runbook、Azure 函數或 Azure 邏輯應用程式。 Azure 外部的範例第三方 URL 包含 Slack 和 Twilio 等服務。
 
-## <a name="autoscale-settings"></a>Autoscale Settings
-Autoscale use the following terminology and structure. 
+## <a name="autoscale-settings"></a>自動調整設定
+自動調整使用下列術語和結構。
 
-* An **autoscale setting** is read by the autoscale engine to determine whether to scale up or down. It contains one or more profiles, information about the target resource, and notification settings.
-  * An **autoscale profile** is a combination of a capacity setting, a set of rules governing the triggers, and scale actions for the profile, and a recurrence. You can have multiple profiles, which allow you to take care of different overlapping requirements. 
-    * A **capacity setting** indicates the minimum, maximum, and default values for number of instances. [appropriate place to use fig 1]
-    * A **rule** includes a trigger—either a metric trigger or a time trigger—and a scale action, indicating whether autoscale should scale up or down when that rule is satisfied. 
-    * A **recurrence** indicates when autoscale should put this profile into effect. You can have different autoscale profiles for different times of day or days of the week, for example.
-* A **notification setting** defines what notifications should occur when an autoscale event occurs based on satisfying the criteria of one of the autoscale setting’s profiles. Autoscale can notify one or more email addresses or make calls to one or more webhooks.
+* **自動調整設定** 會被自動調整引擎讀取來判斷是要相應增加或相應減少。 它包含一個或多個設定檔、關於目標資源的資訊，以及通知設定。
+  * **自動調整設定檔** 是容量設定、一組用來管理觸發程序的規則，以及設定檔之調整動作和循環的組合。 您可以擁有多個設定檔，以便處理不同的重疊需求。
+    * **容量設定** 會指出執行個體數目的最小值、最大值和預設值。 [使用圖 1 的適當位置]
+    * **規則** 包含觸發程序 (度量觸發程序或時間觸發程序) 和調整動作 (指出符合該規則時自動調整應該相應增加或減少)。
+    * **循環** 會指出自動調整應該在何時讓此設定檔生效。 舉例來說，您可以針對一天當中的不同時間或一週當中的不同日子擁有不同的自動調整設定檔。
+* **通知設定** 會定義當自動調整事件發生時，根據滿足其中一個自動調整設定之設定檔的準則，所應該發生的通知。 自動調整可以通知一或多個電子郵件地址，或呼叫一或多個 Webhook。
 
-![Azure autoscale setting, profile, and rule structure](./media/monitoring-autoscale-overview/AzureResourceManagerRuleStructure3.png)
+![Azure 自動調整設定、設定檔和規則結構](./media/monitoring-autoscale-overview/AzureResourceManagerRuleStructure3.png)
 
-The full list of configurable fields and descriptions is available in the [Autoscale REST API](https://msdn.microsoft.com/library/dn931928.aspx).
+可設定之欄位和說明的完整清單可在 [自動調整 REST API](https://msdn.microsoft.com/library/dn931928.aspx)中取得。
 
-For code examples, see
+如需程式碼範例，請參閱
 
-* [Advanced Autoscale configuration using Resource Manager templates for VM Scale Sets](insights-advanced-autoscale-virtual-machine-scale-sets.md)  
-* [Autoscale REST API](https://msdn.microsoft.com/library/dn931953.aspx) 
+* [針對 VM 擴展集使用 Resource Manager 範本進行進階自動調整設定](insights-advanced-autoscale-virtual-machine-scale-sets.md)  
+* [自動調整 REST API](https://msdn.microsoft.com/library/dn931953.aspx)
 
-## <a name="horizontal-vs-vertical-scaling"></a>Horizontal vs vertical scaling
-Autoscale increases resources in only scales horizontally, which is an increase ("out") or decrease ("in") in the number of VM instances.  Horizontal scaling, which is more flexible in a cloud situation as it allows you to run potentially thousands of VMs to handle load. Vertical scaling is different. It keeps the same number of VMs, but makes the VM more ("up") or less ("down") powerful. Power is measured in memory, CPU speed, disk space, etc.  Vertical scaling has more limitations. It's dependent on the availability of larger hardware, which can vary by region and quickly hits and upper limit. Vertical scaling also usually requires a VM stop and start. For more information, see [Vertically scale Azure virtual machine with Azure Automation](../virtual-machines/virtual-machines-linux-vertical-scaling-automation.md). 
+## <a name="horizontal-vs-vertical-scaling"></a>水平和垂直調整
+自動調整只會以水平方式增加資源規模，亦即增加 (相應放大) 或減少 (相應縮小) VM 執行個體數目。  在雲端的情況下，水平調整會更有彈性，因為它可讓您有機會執行數千台 VM 來處理負載。 垂直調整則不同。 它會保持相同數量的 VM，但會讓 VM 的能力變強 (相應增加) 或變弱 (相應減少)。 能力是以記憶體、CPU 速度、磁碟空間等項目來加以測量。垂直調整有更多限制。 它取決於是否可以使用較大的硬體，因此會依區域而異，而且很快就會達到上限。 垂直調整通常也需要 VM 停止和啟動。 如需詳細資訊，請參閱[使用 Azure 自動化垂直調整 Azure 虛擬機器](../virtual-machines/virtual-machines-linux-vertical-scaling-automation.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-## <a name="methods-of-access"></a>Methods of access
-You can set up autoscale via 
+## <a name="methods-of-access"></a>存取方法
+您可以透過下列途徑設定自動調整
 
-* [Azure portal](../azure-portal/insights-how-to-scale.md)
-* [PowerShell](insights-powershell-samples.md#create-and-manage-autoscale-settings) 
-* [Cross-platform Command Line Interface (CLI)](insights-cli-samples.md#autoscale)
-* [Insights REST API](https://msdn.microsoft.com/library/azure/dn931953.aspx)
+* [Azure 入口網站](insights-how-to-scale.md)
+* [PowerShell](insights-powershell-samples.md#create-and-manage-autoscale-settings)
+* [跨平台命令列介面 (CLI)](insights-cli-samples.md#autoscale)
+* [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931953.aspx)
 
-## <a name="supported-services-for-autoscale"></a>Supported services for autoscale
-| Service | Schema & Docs |
+## <a name="supported-services-for-autoscale"></a>支援的自動調整服務
+| 服務 | 結構描述與文件 |
 | --- | --- |
-| Web Apps |[Scaling Web Apps](../azure-portal/insights-how-to-scale.md) |
-| Cloud Services |[Autoscale a Cloud Service](../cloud-services/cloud-services-how-to-scale.md) |
-| Virtual Machines : Classic |[Scaling Classic Virtual Machine Availability Sets](https://blogs.msdn.microsoft.com/kaevans/2015/02/20/autoscaling-azurevirtual-machines/) |
-| Virtual Machines : Windows Scale Sets |[Scaling VM Scale Sets in Windows](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) |
-| Virtual Machines : Linux Scale Sets |[Scaling VM Scale Sets in Linux](../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) |
-| Virtual Machines : Windows Example |[Advanced Autoscale configuration using Resource Manager templates for VM Scale Sets](insights-advanced-autoscale-virtual-machine-scale-sets.md) |
+| Web Apps |[調整 Web Apps](insights-how-to-scale.md) |
+| 雲端服務 |[自動調整雲端服務](../cloud-services/cloud-services-how-to-scale.md) |
+| 虛擬機器：傳統 |[調整傳統的虛擬機器可用性設定組](https://blogs.msdn.microsoft.com/kaevans/2015/02/20/autoscaling-azurevirtual-machines/) |
+| 虛擬機器：Windows 擴展集 |[在 Windows 中調整 VM 擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) |
+| 虛擬機器：Linux 擴展集 |[在 Linux 中調整 VM 擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) |
+| 虛擬機器：Windows 範例 |[針對 VM 擴展集使用 Resource Manager 範本進行進階自動調整設定](insights-advanced-autoscale-virtual-machine-scale-sets.md) |
 
-## <a name="next-steps"></a>Next steps
-To learn more about autoscale, use the Autoscale Walkthroughs listed previously or refer to the following resources: 
+## <a name="next-steps"></a>後續步驟
+若要深入了解自動調整，請使用先前所列的＜自動調整逐步解說＞或參閱下列資源︰
 
-* [Azure Insights autoscale common metrics](insights-autoscale-common-metrics.md)
-* [Best practices for Azure Insights autoscale](insights-autoscale-best-practices.md)
-* [Use autoscale actions to send email and webhook alert notifications](insights-autoscale-to-webhook-email.md)
-* [Autoscale REST API](https://msdn.microsoft.com/library/dn931953.aspx)
-* [Troubleshooting Virtual Machine Scale Sets Autoscale](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md) 
+* [Azure 監視器自動調整的常用度量](insights-autoscale-common-metrics.md)
+* [Azure 監視器自動調整的最佳作法](insights-autoscale-best-practices.md)
+* [使用自動調整動作傳送電子郵件和 Webhook 警示通知](insights-autoscale-to-webhook-email.md)
+* [自動調整 REST API](https://msdn.microsoft.com/library/dn931953.aspx)
+* [排解虛擬機器擴展集自動調整的問題](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

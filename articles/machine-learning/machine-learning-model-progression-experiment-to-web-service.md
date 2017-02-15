@@ -1,12 +1,12 @@
 ---
-title: Machine Learning 模型如何從實驗進展為實際運作的 Web 服務 | Microsoft Docs
-description: 機制的概觀，說明 Azure Machine Learning 模型如何從開發實驗進展為實際運作的 Web 服務。
+title: "機器學習模型如何從實驗進展為實際運作的 Web 服務 | Microsoft Docs"
+description: "機制的概觀，說明 Azure Machine Learning 模型如何從開發實驗進展為實際運作的 Web 服務。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 25e0c025-f8b0-44ab-beaf-d0f2d485eb91
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 452cfc0f35810ffa6bdd8c36f8f5e0cf0814e563
+
 
 ---
 # <a name="how-a-machine-learning-model-progresses-from-an-experiment-to-an-operationalized-web-service"></a>Machine Learning 模型如何從實驗進展為實際運作的 Web 服務
@@ -40,7 +44,7 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 ## <a name="developing-and-deploying-a-predictive-web-service"></a>開發及部署預測性 Web 服務
 以下是使用 Machine Learning Studio 進行開發及部署時一般解決方案所遵循的階段：
 
-![部署流程](media\\machine-learning-model-progression-experiment-to-web-service\\model-stages-from-experiment-to-web-service.png)
+![部署流程](media/machine-learning-model-progression-experiment-to-web-service/model-stages-from-experiment-to-web-service.png)
 
 *圖 1 - 一般預測性分析模型的階段*
 
@@ -68,7 +72,7 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 ### <a name="the-web-service"></a>Web 服務
 一旦您認為您的預測實驗已經就緒，您就可以根據 Azure Resource Manager，將服務部署為傳統 Web 服務或新式 Web 服務。 若要將您的模型部署為*傳統 Machine Learning Web 服務*來運作，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]]。 若要部署為*新式 Machine Learning Web 服務*，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 使用者現在可以使用 Web 服務 REST API 將資料傳送至您的模型中並收回結果。 如需詳細資訊，請參閱[如何使用已從機器學習服務實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
-## <a name="the-non-typical-case:-creating-a-non-predictive-web-service"></a>非一般的情況：建立非預測性 Web 服務
+## <a name="the-non-typical-case-creating-a-non-predictive-web-service"></a>非一般的情況：建立非預測性 Web 服務
 如果實驗不會訓練預測性分析模型，則您不需要同時建立訓練實驗和評分實驗 - 只有一個實驗，而您可以將它部署為 Web 服務。 Machine Learning Studio 可分析您所使用的模組，以偵測您的實驗是否包含預測性模型。
 
 逐一查看實驗並滿足於該實驗之後：
@@ -115,6 +119,9 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 * [機器學習教學課程：在 Azure Machine Learning Studio 中建立您的第一個實驗](machine-learning-create-experiment.md)
 * [逐步解說：在 Azure Machine Learning 中為信用風險評估開發預測性分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Widevine 授權範本概觀 | Microsoft Docs
-description: 本主題提供了用來設定 Widevine 授權之 Widevine 授權範本的概觀。
+title: "Widevine 授權範本概觀 | Microsoft Docs"
+description: "本主題提供了用來設定 Widevine 授權之 Widevine 授權範本的概觀。"
 author: juliako
 manager: erikre
-editor: ''
+editor: 
 services: media-services
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 0e6f1f05-7ed6-4ed6-82a0-0cc2182b075a
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a90e56bb2b7db0bb964684f9cac04096a6577adc
+
 
 ---
 # <a name="widevine-license-template-overview"></a>Widevine 授權範本概觀
@@ -102,10 +106,10 @@ Widevine 授權要求會格式化為 JSON 訊息。
 | provider_client_token |Base64 編碼的字串 |要在授權回應中傳回的用戶端權杖。  如果授權要求包含用戶端權杖，則會忽略此值。 用戶端權杖會在授權工作階段之外保存。 |
 | override_provider_client_token |布林值。 true 或 false |如果為 false 並且授權要求包含用戶端權杖，請使用來自要求的權杖，即使此結構中已指定用戶端權杖亦然。  如果為 true，則一律使用這個結構中指定的權杖。 |
 
-## <a name="configure-your-widevine-licenses-using-.net-types"></a>使用 .NET 型別設定您的 Widevine 授權
+## <a name="configure-your-widevine-licenses-using-net-types"></a>使用 .NET 型別設定您的 Widevine 授權
 媒體服務提供可讓您設定 Widevine 授權的 .NET API。 
 
-### <a name="classes-as-defined-in-the-media-services-.net-sdk"></a>媒體服務 .NET SDK 中所定義的類別
+### <a name="classes-as-defined-in-the-media-services-net-sdk"></a>媒體服務 .NET SDK 中所定義的類別
 以下是這些類型的定義。
 
     public class WidevineMessage
@@ -194,6 +198,9 @@ Widevine 授權要求會格式化為 JSON 訊息。
 ## <a name="see-also"></a>另請參閱
 [使用 PlayReady 和/或 Widevine 動態 Common Encryption](media-services-protect-with-drm.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

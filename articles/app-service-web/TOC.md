@@ -7,12 +7,13 @@
 # 開始使用
 
 ## Web Apps
-### [.NET](web-sites-dotnet-get-started.md)
-### [Node.js](app-service-web-nodejs-get-started.md)
-### [Python](web-sites-python-ptvs-django-mysql.md)
-### [Java](web-sites-java-get-started.md)
+### [HTML](app-service-web-get-started-html.md)
+### [.NET](app-service-web-get-started-dotnet.md)
+### [Node.js](app-service-web-get-started-nodejs.md)
+### [Python](app-service-web-get-started-python.md)
+### [Java](app-service-web-get-started-java.md)
 ### [Marketplace 應用程式](web-sites-php-web-site-gallery.md)
-### [PHP](app-service-web-php-get-started.md)   
+### [PHP](app-service-web-get-started-php.md)   
 
 ## API Apps
 ### [.NET](../app-service-api/app-service-api-dotnet-get-started.md)
@@ -60,11 +61,12 @@
 ### [WebJob SDK](websites-dotnet-webjobs-sdk-get-started.md)
 
 ### ASP.NET 應用程式
-#### [在 5 分鐘內，將您的第一個 .NET Web 應用程式部署到 Azure](app-service-web-get-started-dotnet.md)
+#### [使用 Visual Studio 在 Azure 中建立 ASP.NET 應用程式](web-sites-dotnet-get-started.md)
 #### [使用 ASP.NET Web API 建立 REST 服務](web-sites-dotnet-rest-service-aspnet-api-sql-database.md)
 #### [在 Visual Studio Code 中建立 ASP.NET 5 Web 應用程式](web-sites-create-web-app-using-vscode.md)
 
 ### Node.js 應用程式
+#### [為 App Service 開發 Node.js](app-service-web-nodejs-get-started.md)
 #### [建立 Node.js Web 應用程式](web-sites-nodejs-develop-deploy-mac.md)
 #### [使用 Socket.IO 建立 Node.js 交談應用程式](web-sites-nodejs-chat-app-socketio.md)
 #### [如何使用 io.js 與 Web Apps](web-sites-nodejs-iojs.md)
@@ -72,14 +74,13 @@
 #### [使用 WebMatrix 建置和部署](web-sites-nodejs-use-webmatrix.md)
 
 ### PHP 應用程式
-#### [在 5 分鐘內，將您的第一個 PHP Web 應用程式部署到 Azure](app-service-web-get-started-php.md)
+#### [為 App Service 開發 PHP 應用程式](app-service-web-php-get-started.md) 
 #### [使用 Git 建立 PHP-SQL Web 應用程式和部署](web-sites-php-sql-database-deploy-use-git.md)
 #### [在 Azure App Service 中建立 WordPress Web 應用程式](web-sites-php-web-site-gallery.md)
 #### [在 Azure 中建立 MySQL 資料庫並連接到此資料庫](../store-php-create-mysql-database.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 #### [Azure App Service 上的企業級 WordPress](web-sites-php-enterprise-wordpress.md)
 
 ### Java 應用程式
-#### [在 5 分鐘內，將您的第一個 Java Web 應用程式部署到 Azure](web-sites-java-get-started.md)
 #### 建立 Hello World 應用程式
 ##### [Eclipse](app-service-web-eclipse-create-hello-world-web-app.md)
 ##### [IntelliJ](app-service-web-intellij-create-hello-world-web-app.md)
@@ -98,7 +99,7 @@
 #### [Azure 上使用 Python Tools 2.2 for Visual Studio 的 Django 和 MySQL](web-sites-python-ptvs-django-mysql.md)
 #### [Azure 上使用 Python Tools 2.2 for Visual Studio 的 Django 和 SQL Database](web-sites-python-ptvs-django-sql.md)
 
-### [在 5 分鐘內，將您的第一個基本 Web 應用程式部署到 Azure](app-service-web-get-started-html.md)
+### [在&5; 分鐘內，將您的第一個基本 Web 應用程式部署到 Azure](app-service-web-get-started-html.md)
 ### [開始使用 Web Apps 的生產測試](app-service-web-test-in-production-get-start.md)
 
 ### [Web Job](../app-service/app-service-webjobs-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)

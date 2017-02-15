@@ -162,7 +162,7 @@ CREATE CLUSTERED INDEX [pvTblIdx] ON [dbo].[PageViewsTable]
 #### <a name="set-path-prefix-pattern"></a>設定路徑前置詞模式
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/47-sa-wizard3.png)
 
-請務必將 [日期格式] 設定為 [YYYY-MM-DD] (含「虛線」)。
+請務必將 [日期格式] 設定為 [YYYY-MM-DD] \(含「虛線」)。
 
 [路徑前置詞模式] 會指定串流分析在儲存體中尋找輸入檔案的方式。 您需要將它設定為與連續匯出儲存資料的方式相對應。 請設定如下：
 
