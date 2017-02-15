@@ -59,13 +59,13 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 
 ## <a name="prepare-windows-configuration-for-upload"></a>準備要上傳的 Windows 組態
 > [!NOTE]
-> 利用 [系統管理權限](https://technet.microsoft.com/library/cc947813.aspx)執行下列所有命令。
+> 在準備要上傳的虛擬機器上，使用 [系統管理權限](https://technet.microsoft.com/library/cc947813.aspx) 從命令提示字元執行下列所有命令。
 > 
 > 
 
 1. 在路由表上移除任何靜態持續路由：
    
-   * 若要檢視路由表，請執行 `route print`。
+   * 若要檢視路由表，請在命令提示字元視窗中執行 `route print`。
    * 檢查 [持續路由]  區段。 如果有持續的路由，請使用 [route delete](https://technet.microsoft.com/library/cc739598.apx) 加以移除。
 2. 移除 WinHTTP Proxy：
    
@@ -74,13 +74,19 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
     ```
 3. 將磁碟 SAN 原則設為 [Onlineall](https://technet.microsoft.com/library/gg252636.aspx)：
    
+   
+   
+   
     ```
-    diskpart san policy=onlineall
+    diskpart san policy=onlineall 
     ```
+    
 4. 使用適用於 Windows 的國際標準時間 (UTC)，並將 Windows 時間 (w32time) 服務的啟動類型設為 [自動] ：
    
     ```
     REG ADD HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+    ```
+    ```
     sc config w32time start= auto
     ```
 
