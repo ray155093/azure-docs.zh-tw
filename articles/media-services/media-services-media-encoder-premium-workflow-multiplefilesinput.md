@@ -1,12 +1,12 @@
 ---
-title: 搭配進階編碼器使用多個輸入檔案和元件屬性 | Microsoft Docs
-description: 本主題說明如何使用 setRuntimeProperties 來使用多個輸入檔案，並將自訂資料傳遞給「媒體編碼器高階工作流程」媒體處理器。
+title: "搭配進階編碼器使用多個輸入檔案和元件屬性 | Microsoft Docs"
+description: "本主題說明如何使用 setRuntimeProperties 來使用多個輸入檔案，並將自訂資料傳遞給「媒體編碼器高階工作流程」媒體處理器。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: xpouyat
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 7fb35bdd-9891-4401-a65b-ef3cc8190e8a
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: xpouyat;anilmur;juliako
+translationtype: Human Translation
+ms.sourcegitcommit: f8b0917b6eb0295641360c4e0a80e81100809f6e
+ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
+
 
 ---
 # <a name="using-multiple-input-files-and-component-properties-with-premium-encoder"></a>搭配進階編碼器使用多個輸入檔案和元件屬性
@@ -105,8 +109,8 @@ ms.author: xpouyat;anilmur;juliako
 
 > [!NOTE]
 > 在 `<![CDATA[` 後面請務必不要放入歸位字元。
-> 
-> 
+>
+>
 
 ### <a name="propertypath-value"></a>propertyPath 值
 在上一個範例中，propertyPath 是 "/Media File Input/filename" 或 "/inactiveTimeout" 或 "clipListXml"。
@@ -262,8 +266,8 @@ ms.author: xpouyat;anilmur;juliako
 
 > [!NOTE]
 > 視訊檔案名稱會傳送至 primarySourceFile 屬性。 其原因是要在工作流程中使用這個屬性，以便 (舉例來說) 使用運算式建置正確的輸出檔案名稱。
-> 
-> 
+>
+>
 
 ### <a name="step-by-step-workflow-creation-that-overlays-a-logo-on-top-of-the-video"></a>在視訊頂端覆疊標誌的工作流程建立逐步說明
 以下步驟會建立工作流程來將兩個檔案做為輸入︰視訊和影像。 它會在視訊頂端覆疊影像。
@@ -304,7 +308,7 @@ ms.author: xpouyat;anilmur;juliako
 
 ![配置類型 = 可設定平面](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture12_formatconverter2.png)
 
-<bpt id="p1">*</bpt>Layout type is Configurable Planar<ept id="p1">*</ept>
+*Layout type is Configurable Planar*
 
 接下來，新增視訊覆疊元件，並將 (未壓縮的) 視訊接點連接至媒體檔案輸入的 (未壓縮的) 視訊接點。
 
@@ -354,8 +358,8 @@ ms.author: xpouyat;anilmur;juliako
 
 > [!NOTE]
 > 請務必在資產中設定主要檔案 (主要的視訊檔案)。
-> 
-> 
+>
+>
 
 ![AMSE 中的資產檔案](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture18_assetinamse.png)
 
@@ -399,7 +403,7 @@ ms.author: xpouyat;anilmur;juliako
 ## <a name="see-also"></a>另請參閱
 * [介紹 Azure 媒體服務中的 Premium 編碼](http://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services)
 * [How to use Premium Encoding in Azure Media Services (如何使用 Azure 媒體服務中的 Premium 編碼)](http://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services)
-* [使用 Azure 媒體服務編碼隨選內容](media-services-encode-asset.md#media_encoder_premium_workflow)
+* [使用 Azure 媒體服務編碼隨選內容](media-services-encode-asset.md#media-encoder-premium-workflow)
 * [媒體編碼器高階工作流程格式和轉碼器](media-services-premium-workflow-encoder-formats.md)
 * [範例工作流程檔案](https://github.com/AzureMediaServicesSamples/Encoding-Presets/tree/master/VoD/MediaEncoderPremiumWorkfows)
 * [Azure 媒體服務總管工具](http://aka.ms/amse)
@@ -410,6 +414,8 @@ ms.author: xpouyat;anilmur;juliako
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

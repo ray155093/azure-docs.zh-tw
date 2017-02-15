@@ -4,7 +4,7 @@ description: "本文討論雲端環境中執行的多租用戶資料庫應用程
 keywords: 
 services: sql-database
 documentationcenter: 
-author: srinia
+author: CarlRabeler
 manager: jhubbard
 editor: 
 ms.assetid: 1dd20c6b-ddbb-40ef-ad34-609d398d008a
@@ -14,11 +14,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: sqldb-design
-ms.date: 02/01/2017
-ms.author: srinia
+ms.date: 11/08/2016
+ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 7ee06d20ba56402fad86adf321c7c5a4996d7e19
-ms.openlocfilehash: 92dd94db5885bc24655cf2af3247528901f10720
+ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
+ms.openlocfilehash: 63f94dc3b648486fe7c2e14661b5f5f02a147149
 
 
 ---
@@ -66,7 +66,7 @@ ms.openlocfilehash: 92dd94db5885bc24655cf2af3247528901f10720
 
 ![多租用戶應用程式資料模型](./media/sql-database-design-patterns-multi-tenancy-saas-applications/sql-database-multi-tenant-data-models.png)
 
- 圖 1︰多租用戶資料模型的常見設計做法
+圖 1︰多租用戶資料模型的常見設計做法
 
 * **租用戶各有資料庫**。 每個租用戶都有自己的資料庫。 租用戶特定的所有資料都封閉在租用戶的資料庫內，與其他租用戶及其資料隔離。
 * **共用資料庫 - 分區化**。 多個租用戶會共用多個資料庫的其中一個。 使用資料分割策略 (例如雜湊、範圍或清單分割)，可將一組不同的租用戶指派給每個資料庫。 此資料分散策略通常稱為分區化。
@@ -88,9 +88,9 @@ ms.openlocfilehash: 92dd94db5885bc24655cf2af3247528901f10720
 
 ![受歡迎的租用戶應用程式設計模式](./media/sql-database-design-patterns-multi-tenancy-saas-applications/sql-database-popular-application-patterns.png)
 
- 圖 2︰受歡迎的多租用戶資料模型
+圖 2︰受歡迎的多租用戶資料模型
 
-圖 2 的右下方象限顯示使用可能很大、共用單一資料庫和共用資料表 (或另一個結構描述) 方法的應用程式模式。 因為所有租用戶都使用單一資料庫中相同的資料庫資源 (CPU、記憶體、輸入/輸出)，所以適合進行資源共用。 但租用戶隔離有限。 您可能需要採取額外步驟來保護應用程式層的各租用戶。 這些額外步驟可能會大幅增加開發和管理應用程式的 DevOps 成本。 延展性受限於用來裝載資料庫的硬體規模。
+圖 2 的右下方象限顯示使用可能很大、共用獨立資料庫和共用資料表 (或另一個結構描述) 方法的應用程式模式。 因為所有租用戶都使用單一資料庫中相同的資料庫資源 (CPU、記憶體、輸入/輸出)，所以適合進行資源共用。 但租用戶隔離有限。 您可能需要採取額外步驟來保護應用程式層的各租用戶。 這些額外步驟可能會大幅增加開發和管理應用程式的 DevOps 成本。 延展性受限於用來裝載資料庫的硬體規模。
 
 圖 2 左下方象限說明跨多個資料庫分區的多個租用戶 (通常為不同的硬體縮放單位)。 每個資料庫會裝載一部分的租用戶，以處理其他模式的延展性考量。 如果需要更多容量來因應更多租用戶，您可將租用戶輕鬆放在配置給新硬體縮放單位的新資料庫上。 不過，共用資源的數量會降低。 只有放在相同縮放單位上的租用戶會共用資源。 這種方法也無助於改善租用戶隔離，因為仍有許多租用戶共置，自然無法免於彼此動作的干擾。 應用程式複雜度仍然很高。
 
@@ -109,7 +109,7 @@ Azure SQL Database 支援圖 2 所示的所有多租用戶應用程式模式。 
 
 ![Azure SQL Database 中的模式](./media/sql-database-design-patterns-multi-tenancy-saas-applications/sql-database-patterns-sqldb.png)
 
- 圖 3：Azure SQL Database 中的多租用戶應用程式模式
+圖 3：Azure SQL Database 中的多租用戶應用程式模式
 
 ## <a name="database-per-tenant-model-with-elastic-pools-and-tools"></a>租用戶各有資料庫模型與彈性集區和工具
 SQL Database 中的彈性集區會結合租用戶隔離與租用戶資料庫之間的資源共用，以加強支援「租用戶各有資料庫」方法。 SQL Database 是資料層方案，可供建置多租用戶應用程式的 SaaS 提供者使用。 在租用戶之間共用資源的負擔會從應用程式層轉移至資料庫服務層。 彈性作業、彈性查詢、彈性交易和彈性資料庫用戶端程式庫可簡化跨資料庫大規模管理和查詢的複雜性。
@@ -124,7 +124,7 @@ SQL Database 中的彈性集區會結合租用戶隔離與租用戶資料庫之�
 | [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)︰管理資料分佈並將租用戶對應到資料庫。 | |
 
 ## <a name="shared-models"></a>共用的模型
-如先前所述，大多數 SaaS 提供者的共用模型方法可能會引起租用戶隔離問題，以及應用程式開發和維護的複雜性。 然而，對於直接提供服務給取用者的多租用戶應用程式，租用戶隔離需求的優先性可能敵不過降低成本。 他們能夠以高密度將租用戶封裝在一或多個資料庫中以降低成本。 使用單一資料庫或多個分區化資料庫的共用資料庫模型，可以提高資源共用和整體成本的效率。 Azure SQL Database 會提供一些功能，幫助取用者在資料層大規模建置隔離，以強化安全性和管理。
+如先前所述，大多數 SaaS 提供者的共用模型方法可能會引起租用戶隔離問題，以及應用程式開發和維護的複雜性。 然而，對於直接提供服務給取用者的多租用戶應用程式，租用戶隔離需求的優先性可能敵不過降低成本。 他們能夠以高密度將租用戶封裝在一或多個資料庫中以降低成本。 使用獨立資料庫或多個分區化資料庫的共用資料庫模型，可以提高資源共用和整體成本的效率。 Azure SQL Database 會提供一些功能，幫助取用者在資料層大規模建置隔離，以強化安全性和管理。
 
 | 應用程式需求 | SQL Database 功能 |
 | --- | --- |
@@ -168,6 +168,6 @@ SQL Database 中的彈性集區會結合租用戶隔離與租用戶資料庫之�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

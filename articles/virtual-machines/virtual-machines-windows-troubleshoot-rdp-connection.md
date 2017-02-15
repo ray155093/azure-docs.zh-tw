@@ -17,8 +17,8 @@ ms.topic: support-article
 ms.date: 10/26/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 5ec7286f577f7a822a29839ce246c6140fad6280
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: 592d6b0168b9ebb47ed841f7e2b55d55a07500aa
 
 
 ---
@@ -113,7 +113,7 @@ ms.openlocfilehash: 5ec7286f577f7a822a29839ce246c6140fad6280
 如果您仍然遇到 RDP 問題，可以[開啟支援要求](https://azure.microsoft.com/support/options/)或閱讀[更詳細的 RDP 疑難排解概念和步驟](virtual-machines-windows-detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ## <a name="troubleshoot-using-azure-powershell"></a>使用 Azure PowerShell 進行疑難排解
-如果您尚未這樣做，請參閱 [安裝並設定最新的 Azure PowerShell](../powershell-install-configure.md)。
+如果您尚未這樣做，請參閱 [安裝並設定最新的 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 下列範例使用 `myResourceGroup``myVM` 和 `myVMAccessExtension` 等變數。 以您自己的值取代這些變數名稱和位置。
 
@@ -256,6 +256,6 @@ ms.openlocfilehash: 5ec7286f577f7a822a29839ce246c6140fad6280
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

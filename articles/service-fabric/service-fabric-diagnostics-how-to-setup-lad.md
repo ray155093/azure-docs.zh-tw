@@ -1,12 +1,12 @@
 ---
-title: 使用 Linux Azure 診斷收集記錄檔 | Microsoft Docs
-description: 本文將說明如何設定 Azure 診斷，以便從 Azure 中執行的 Service Fabric Linux 叢集收集記錄檔。
+title: "使用 Linux Azure 診斷收集記錄檔 | Microsoft Docs"
+description: "本文將說明如何設定 Azure 診斷，以便從 Azure 中執行的 Service Fabric Linux 叢集收集記錄檔。"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: a160d469-8b7d-4560-82dd-8500db34a44a
 ms.service: service-fabric
 ms.devlang: dotNet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/28/2016
 ms.author: subramar
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 3416511777ff006d0aa933cd45e50f1d200bcad4
+
 
 ---
 # <a name="collect-logs-by-using-azure-diagnostics"></a>使用 Azure 診斷收集記錄檔
@@ -34,7 +38,7 @@ ms.author: subramar
 
 若要在建立叢集過程中將診斷擴充功能部署至叢集中的 VM，請將 [診斷] 設為 [開啟]。 建立叢集之後，您就無法使用入口網站變更這項設定。
 
-接著，設定 Linux Azure 診斷 (LAD) 來收集檔案，並將它們放入您的儲存體帳戶中。 [使用 LAD 監視 Linux VM 的效能和診斷資料](../virtual-machines/virtual-machines-linux-classic-diagnostic-extension.md)一文中的案例 3 (＜上傳您自己的記錄檔＞) 將會說明這個程序。 遵循這個程序就可以存取追蹤。 您可以將追蹤上傳到所選擇的視覺化檢視。
+接著，設定 Linux Azure 診斷 (LAD) 來收集檔案，並將它們放入您的儲存體帳戶中。 [使用 LAD 監視 Linux VM 的效能和診斷資料](../virtual-machines/virtual-machines-linux-classic-diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)一文中的案例 3 (＜上傳您自己的記錄檔＞) 將會說明這個程序。 遵循這個程序就可以存取追蹤。 您可以將追蹤上傳到所選擇的視覺化檢視。
 
 您也可以使用 Azure Resource Manager 來部署診斷擴充功能。 此程序在 Windows 及 Linux 上都很類似，而[如何利用 Azure 診斷收集記錄檔](service-fabric-diagnostics-how-to-setup-wad.md)中將針對 Windows 叢集提供相關說明。
 
@@ -43,8 +47,11 @@ ms.author: subramar
 完成此設定之後，LAD 代理程式就會監視指定的記錄檔。 每當新的一行附加至檔案時，系統就會建立 syslog 項目並傳送至您所指定的儲存體。
 
 ## <a name="next-steps"></a>後續步驟
-若要更仔細了解您在進行問題的疑難排解時應該調查哪些事件，請參閱 [LTTng 文件](http://lttng.org/docs)和[使用 LAD](../virtual-machines/virtual-machines-linux-classic-diagnostic-extension.md)。
+若要更仔細了解您在進行問題的疑難排解時應該調查哪些事件，請參閱 [LTTng 文件](http://lttng.org/docs)和[使用 LAD](../virtual-machines/virtual-machines-linux-classic-diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

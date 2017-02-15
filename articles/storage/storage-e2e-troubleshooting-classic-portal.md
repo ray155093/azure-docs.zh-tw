@@ -1,11 +1,11 @@
 ---
-title: 使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解 | Microsoft Docs
-description: 示範使用 Azure Storage Analytics、AzCopy 和 Microsoft Message Analyzer 進行端對端疑難排解的教學課程
+title: "使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解 | Microsoft Docs"
+description: "示範使用 Azure Storage Analytics、AzCopy 和 Microsoft Message Analyzer 進行端對端疑難排解的教學課程"
 services: storage
 documentationcenter: dotnet
 author: robinsh
 manager: carmonm
-
+ms.assetid: 6b23cba5-0d53-439e-870b-de8e406107d8
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
@@ -13,9 +13,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/03/2016
 ms.author: robinsh
+translationtype: Human Translation
+ms.sourcegitcommit: f2032f3a4fa559b9772ee63d39d66408b3f92175
+ms.openlocfilehash: 5a07c355259c61cfde9f2c1e5f056a0b7f794861
+
 
 ---
-# <a name="end-to-end-troubleshooting-using-azure-storage-metrics-and-logging,-azcopy,-and-message-analyzer"></a>使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解
+# <a name="end-to-end-troubleshooting-using-azure-storage-metrics-and-logging-azcopy-and-message-analyzer"></a>使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解
 [!INCLUDE [storage-selector-portal-e2e-troubleshooting](../../includes/storage-selector-portal-e2e-troubleshooting.md)]
 
 ## <a name="overview"></a>Overview
@@ -103,29 +107,32 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 
 1. 使用 [Add-AzureAccount](http://msdn.microsoft.com/library/azure/dn722528.aspx) Cmdlet 將您的 Azure 使用者帳戶新增至 PowerShell 視窗：
    
+    ```powershell
+     Add-AzureAccount
     ```
-    Add-AzureAccount
-    ```
+
 2. 在 [登入 Microsoft Azure]  視窗中，輸入電子郵件地址以及與您的帳戶相關聯的密碼。 Azure 會驗證並儲存認證資訊，然後關閉視窗。
 3. 在 PowerShell 視窗中執行下列命令，將預設儲存體帳戶設定為您在本教學課程中使用的儲存體帳戶：
    
-    ```
+    ```powershell
     $SubscriptionName = 'Your subscription name'
     $StorageAccountName = 'yourstorageaccount' 
     Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName 
     ```
+
 4. 啟用 Blob 服務的儲存體記錄： 
    
-    ```
+    ```powershell
     Set-AzureStorageServiceLoggingProperty -ServiceType Blob -LoggingOperations Read,Write,Delete -PassThru -RetentionDays 7 -Version 1.0 
     ```
+
 5. 啟用 Blob 服務的儲存體度量，並確定將 -**-MetricsType`Minute` 設定為 **：
    
-    ```
+    ```powershell
     Set-AzureStorageServiceMetricsProperty -ServiceType Blob -MetricsType Minute -MetricsLevel ServiceAndApi -PassThru -RetentionDays 7 -Version 1.0 
     ```
 
-### <a name="configure-.net-client-side-logging"></a>設定 .NET 用戶端記錄
+### <a name="configure-net-client-side-logging"></a>設定 .NET 用戶端記錄
 若要設定 .NET 應用程式的用戶端的記錄，請在應用程式的組態檔 (web.config 或 app.config) 中啟用 .NET 診斷。 如需詳細資訊，請參閱[使用 .NET 儲存體用戶端程式庫的用戶端記錄](http://msdn.microsoft.com/library/azure/dn782839.aspx)和[使用 Microsoft Azure Storage SDK for Java 的用戶端記錄](http://msdn.microsoft.com/library/azure/dn782844.aspx)。
 
 用戶端記錄檔包含用戶端如何準備要求及如何接收和處理回應的詳細資訊。
@@ -150,10 +157,11 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 4. 選取 [Microsoft-Pef-WebProxy] ETW 提供者右邊的 [設定] 連結。
 5. 在 [進階設定] 對話方塊中，按一下 [提供者] 索引標籤。
 6. 在 [主機名稱篩選條件]  欄位中，指定您的儲存體端點 (以空格分隔)。 例如，您可以如下指定您的端點；將 `storagesample` 變更為儲存體帳戶的名稱：
-   
-    ``` 
+
+    ```   
     storagesample.blob.core.windows.net storagesample.queue.core.windows.net storagesample.table.core.windows.net 
     ```
+   
 7. 結束對話方塊，然後按一下 [重新啟動]  以開始使用主機名稱篩選條件來收集追蹤，以便追蹤中只包含 Azure 儲存體網路流量。
 
 > [!NOTE]
@@ -188,7 +196,9 @@ Azure 儲存體會將伺服器記錄檔資料寫入至 Blob，而度量會寫入
 
 您可以使用 AzCopy 命令列工具，將這些伺服器端記錄檔下載至您在本機電腦上選擇的位置。 例如，您可以使用下列命令，將發生於 2015 年 1 月 2 日的 Blob 作業的記錄檔下載至 `C:\Temp\Logs\Server` 資料夾；以您的儲存體帳戶名稱取代 `<storageaccountname>`，並以您的帳戶存取金鑰取代 `<storageaccountkey>`：
 
-    AzCopy.exe /Source:http://<storageaccountname>.blob.core.windows.net/$logs /Dest:C:\Temp\Logs\Server /Pattern:"blob/2015/01/02" /SourceKey:<storageaccountkey> /S /V
+```azcopy
+AzCopy.exe /Source:http://<storageaccountname>.blob.core.windows.net/$logs /Dest:C:\Temp\Logs\Server /Pattern:"blob/2015/01/02" /SourceKey:<storageaccountkey> /S /V
+```
 
 在 [Azure 下載](https://azure.microsoft.com/downloads/) 頁面可以下載 AzCopy。 如需使用 AzCopy 的詳細資訊，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
 
@@ -280,8 +290,10 @@ Azure 儲存體用戶端程式庫會自動為每一項要求產生唯一的用�
 2. 接著，在 **ClientRequestId** 資料行上進行分組。 您會看到分析方格中的資料現在依狀態碼和用戶端要求識別碼排列。
 3. 如果 [檢視篩選條件] 工具視窗尚未顯示，請予以顯示 。 在工具列功能區中，選取 [工具視窗]，然後選取 [檢視篩選條件]。
 4. 若要篩選記錄檔資料而僅顯示 400 範圍的錯誤，請將下列篩選準則加入至 [檢視篩選條件] 視窗，然後按一下 [套用]：
-   
-        (AzureStorageLog.StatusCode >= 400 && AzureStorageLog.StatusCode <=499) || (HTTP.StatusCode >= 400 && HTTP.StatusCode <= 499)
+
+    ```   
+    (AzureStorageLog.StatusCode >= 400 && AzureStorageLog.StatusCode <=499) || (HTTP.StatusCode >= 400 && HTTP.StatusCode <= 499)
+    ```
 
 下圖顯示這個群組和篩選的結果。 展開狀態碼 409 的群組下方的 **ClientRequestID** 欄位，例如，顯示導致該狀態碼的作業。
 
@@ -306,9 +318,11 @@ Azure 儲存體用戶端程式庫會自動為每一項要求產生唯一的用�
 3. 再次顯示 [程式庫] 功能表，然後找出並選取 [全域時間篩選條件]。
 4. 將篩選條件中顯示的時間戳記編輯成您想要檢視的範圍。 這有助於縮小要分析的資料範圍。
 5. 您的篩選條件看起來應類似下列範例。 按一下 [套用]  將篩選條件套用到 [分析方格]。
-   
-        ((AzureStorageLog.StatusCode == 404 || HTTP.StatusCode == 404)) And 
-        (#Timestamp >= 2014-10-20T16:36:38 and #Timestamp <= 2014-10-20T16:36:39)
+
+    ```   
+    ((AzureStorageLog.StatusCode == 404 || HTTP.StatusCode == 404)) And 
+    (#Timestamp >= 2014-10-20T16:36:38 and #Timestamp <= 2014-10-20T16:36:39)
+    ```
 
 ![Azure 儲存體檢視版面配置](./media/storage-e2e-troubleshooting-classic-portal/404-filtered-errors1.png)
 
@@ -325,8 +339,10 @@ Azure 儲存體用戶端程式庫會自動為每一項要求產生唯一的用�
 2. 在工具列功能區中，選取 [新增檢視器]，然後選取 [分析方格] 以開啟新的索引標籤。 新索引標籤會顯示您記錄檔中的所有資料，而不分組、篩選或套用色彩規則。 
 3. 在工具列功能區中，選取 [檢視版面配置]，然後選取 [Azure 儲存體] 區段下的 [所有 .NET 用戶端資料行]。 此檢視版面配置會顯示用戶端記錄檔中的資料，以及伺服器和網路追蹤記錄檔中的資料。 預設會依 **MessageNumber** 資料行排序。
 4. 接下來，搜尋用戶端記錄檔中的用戶端要求識別碼。 在工具列功能區中，選取 [尋找訊息]，然後在 [尋找] 欄位中指定用戶端要求識別碼的自訂篩選條件。 將此語法用於篩選，並指定自己的用戶端要求識別碼：
-   
-        *ClientRequestId == "398bac41-7725-484b-8a69-2a9e48fc669a"
+
+    ```  
+    *ClientRequestId == "398bac41-7725-484b-8a69-2a9e48fc669a"
+    ```
 
 Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的第一個記錄檔項目。 在用戶端記錄檔中，每個用戶端要求識別碼都有數個項目，您可以依照 **ClientRequestId** 欄位加以分組，以便輕鬆地一起查看這些項目。 下圖顯示用戶端記錄檔中指定之用戶端要求識別碼的所有訊息。 
 
@@ -366,6 +382,7 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 * [Microsoft Message Analyzer 操作指南](http://technet.microsoft.com/library/jj649776.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

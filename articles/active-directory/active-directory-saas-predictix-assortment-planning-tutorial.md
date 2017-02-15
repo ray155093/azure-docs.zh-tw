@@ -235,6 +235,6 @@ Predictix Assortment Planning 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

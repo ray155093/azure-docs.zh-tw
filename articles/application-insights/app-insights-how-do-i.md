@@ -19,13 +19,13 @@ ms.openlocfilehash: fdd41039fdb59597e3a0a2903fadbbc73eb85654
 
 
 ---
-# <a name="how-do-i-in-application-insights"></a>我如何在 Application Insights 中...？
+# <a name="how-do-i--in-application-insights"></a>我如何在 Application Insights 中...？
 ## <a name="get-an-email-when-"></a>... 時收到電子郵件
 ### <a name="email-if-my-site-goes-down"></a>我的網站當機時寄送電子郵件
 設定 [可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
 
 ### <a name="email-if-my-site-is-overloaded"></a>我的網站多載時寄送電子郵件
-針對 [伺服器回應時間] [](app-insights-alerts.md) 設定 **警示**。 介於 1 到 2 秒之間的閾值應該會運作。
+針對 [伺服器回應時間](app-insights-alerts.md) 設定 **警示**。 介於 1 到 2 秒之間的閾值應該會運作。
 
 ![](./media/app-insights-how-do-i/030-server.png)
 

@@ -3,7 +3,7 @@ title: "Azure Batch 中的有效清單查詢 |Microsoft Docs"
 description: "藉由在要求集區、作業、工作和計算節點等 Batch 資源的資訊時篩選查詢，以提高效能。"
 services: batch
 documentationcenter: .net
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 ms.assetid: 031fefeb-248e-4d5a-9bc2-f07e46ddd30d
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 10/25/2016
-ms.author: marsma
+ms.date: 01/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fb91797d2f5f1b27b20bcc88da192dc14038e2b8
+ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
+ms.openlocfilehash: 62487d3d26ba66ce2ba88ae1a71858d68e68544c
 
 
 ---
@@ -146,14 +146,14 @@ List<CloudPool> testPools =
 | .NET 清單方法 | REST 清單要求 |
 | --- | --- |
 | [CertificateOperations.ListCertificates][net_list_certs] |[列出帳戶中的憑證][rest_list_certs] |
-| [CloudTask.ListNodeFiles][net_list_task_files] |[列出與工作相關聯的檔案][rest_list_task_files] |
-| [JobOperations.ListJobPreparationAndReleaseTaskStatus][net_list_jobprep_status] |[列出作業的作業準備和作業釋放工作的狀態][rest_list_jobprep_status] |
+| [CloudTask.ListNodeFiles][net_list_task_files] |[列出與作業相關聯的檔案][rest_list_task_files] |
+| [JobOperations.ListJobPreparationAndReleaseTaskStatus][net_list_jobprep_status] |[列出作業準備和工作解除作業的狀態][rest_list_jobprep_status] |
 | [JobOperations.ListJobs][net_list_jobs] |[列出帳戶中的作業][rest_list_jobs] |
 | [JobOperations.ListNodeFiles][net_list_nodefiles] |[列出節點上的檔案][rest_list_nodefiles] |
-| [JobOperations.ListTasks][net_list_tasks] |[列出與作業相關聯的工作][rest_list_tasks] |
+| [JobOperations.ListTasks][net_list_tasks] |[列出與工作相關聯的作業][rest_list_tasks] |
 | [JobScheduleOperations.ListJobSchedules][net_list_job_schedules] |[列出帳戶中的作業排程][rest_list_job_schedules] |
 | [JobScheduleOperations.ListJobs][net_list_schedule_jobs] |[列出與作業排程相關聯的作業][rest_list_schedule_jobs] |
-| [PoolOperations.ListComputeNodes][net_list_compute_nodes] |[列出集區中的計算節點][rest_list_compute_nodes] |
+| [PoolOperations.ListComputeNodes][net_list_compute_nodes] |[列出集區中的運算節點][rest_list_compute_nodes] |
 | [PoolOperations.ListPools][net_list_pools] |[列出帳戶中的集區][rest_list_pools] |
 
 ### <a name="mappings-for-select-strings"></a>選取字串的對應
@@ -167,10 +167,10 @@ List<CloudPool> testPools =
 | [CloudJobSchedule][net_schedule] |[取得作業排程的相關資訊][rest_get_schedule] |
 | [ComputeNode][net_node] |[取得節點的相關資訊][rest_get_node] |
 | [CloudPool][net_pool] |[取得集區的相關資訊][rest_get_pool] |
-| [CloudTask][net_task] |[取得工作的相關資訊][rest_get_task] |
+| [CloudTask][net_task] |[取得作業的相關資訊][rest_get_task] |
 
 ## <a name="example-construct-a-filter-string"></a>範例：建構篩選字串
-建構 [ODATADetailLevel.FilterClause][odata_filter] 的篩選字串時，請參閱「篩選字串的對應」下方的資料表，找出與您想要執行的清單作業相對應的 REST API 文件頁面。 在該頁面的第一個含有多資料列的資料表中，您可以找到可篩選的屬性及其支援的運算子。 假設您想要擷取結束碼不為零的所有工作，[列出與作業相關聯的工作][rest_list_tasks]中的這一列會指定適用的屬性字串和允許的運算子：
+建構 [ODATADetailLevel.FilterClause][odata_filter] 的篩選字串時，請參閱「篩選字串的對應」下方的資料表，找出與您想要執行的清單作業相對應的 REST API 文件頁面。 在該頁面的第一個含有多資料列的資料表中，您可以找到可篩選的屬性及其支援的運算子。 假設您想要擷取結束碼不為零的所有作業，[與作業相關聯的清單作業][rest_list_tasks]中的這一列指定適用的屬性字串和允許的運算子：
 
 | 屬性 | 允許的作業 | 類型 |
 |:--- |:--- |:--- |
@@ -181,7 +181,7 @@ List<CloudPool> testPools =
 `(executionInfo/exitCode lt 0) or (executionInfo/exitCode gt 0)`
 
 ## <a name="example-construct-a-select-string"></a>範例：建構選取字串
-如果要建構 [ODATADetailLevel.SelectClause][odata_select]，請參閱「選取字串的對應」下方的資料表，瀏覽至與您要列出的實體類型相對應的 REST API 頁面。 在該頁面的第一個含有多資料列的資料表中，您可以找到可選取的屬性及其支援的運算子。 假設您只想要擷取清單中每個工作的識別碼和命令列，您可以在[取得工作的相關資訊][rest_get_task]中的適當資料表找到這幾列：
+如果要建構 [ODATADetailLevel.SelectClause][odata_select]，請參閱「選取字串的對應」下方的資料表，瀏覽至與您要列出的實體類型相對應的 REST API 頁面。 在該頁面的第一個含有多資料列的資料表中，您可以找到可選取的屬性及其支援的運算子。 假設您只想要擷取清單中每個作業的識別碼和命令列，您可以在[取得作業的相關資訊][rest_get_task]中的適當資料表找到這幾列：
 
 | 屬性 | 類型 | 注意事項 |
 |:--- |:--- |:--- |
@@ -215,7 +215,7 @@ Sample complete, hit ENTER to continue...
 ### <a name="batchmetrics-library-and-code-sample"></a>BatchMetrics 程式庫和程式碼範例
 除了上述的 EfficientListQueries 程式碼範例，您還可以在 [azure-batch-samples][github_samples] GitHub 儲存機制中找到 [BatchMetrics][batch_metrics] 專案。 BatchMetrics 範例專案會示範如何使用 Batch API 有效率地監視 Azure Batch 作業進度。
 
-[BatchMetrics][batch_metrics] 範例包含可加入到您自己專案的 .NET 類別庫專案，以及用來運作和示範如何使用程式庫的簡單命令列程式。
+[BatchMetrics][batch_metrics] 範例包含可併入自己專案的 .NET 類別庫專案，以及用來運作和示範如何使用程式庫的簡單命令列程式。
 
 專案內的範例應用程式會示範下列作業：
 
@@ -239,7 +239,7 @@ internal static ODATADetailLevel OnlyChangedAfter(DateTime time)
 [使用並行節點工作最大化 Azure Batch 計算資源使用量](batch-parallel-node-tasks.md) 是另一篇與 Batch 應用程式效能有關的文章。 某些類型的工作負載可以受益於在規模較大但數量較少的計算節點上執行平行工作。 如需這類案例的詳細資訊，請查看 [範例案例](batch-parallel-node-tasks.md#example-scenario) 。
 
 ### <a name="batch-forum"></a>Batch 論壇
-MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 Batch 和詢問有關服務的問題。 請前去查看很有幫助的「便利貼」文章，在建立 Batch 解決方案時，出現問題就張貼。
+MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 Batch 和詢問有關此服務的問題。 請前去查看很有幫助的「便利貼」文章，在建立 Batch 解決方案時，出現問題就張貼。
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_listjobs]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.joboperations.listjobs.aspx
@@ -292,6 +292,6 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

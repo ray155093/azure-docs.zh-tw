@@ -24,7 +24,7 @@ ms.openlocfilehash: 7c6365b729d73f1c5b9bc57952b1723255d9e9f0
 ## <a name="summary"></a>摘要
 Runbook 在嘗試執行三次後會馬上暫止。 在某些情況下，Runbook 可能會因為受到干擾而無法順利完成，而相關的錯誤訊息卻不含任何指出原因的詳細資訊。 本文提供 Hybrid Runbook Worker Runbook 執行失敗之相關問題的疑難排解步驟。
 
-若本文中未提及您的 Azure 問題，請造訪 [MSDN 及 Stack Overflow 上的 Azure 論壇](https://azure.microsoft.com/support/forums/)。 您可以在這些論壇上張貼您的問題，或將問題貼到 Twitter ](https://twitter.com/AzureSupport)上的 [@AzureSupport。 此外，您也可以選取 [Azure 支援](https://azure.microsoft.com/support/options/)網站上的 [取得支援]，來提出 Azure 支援要求。
+若本文中未提及您的 Azure 問題，請造訪 [MSDN 及 Stack Overflow 上的 Azure 論壇](https://azure.microsoft.com/support/forums/)。 您可以在這些論壇上張貼您的問題，或將問題貼到 [@AzureSupportTwitter ](https://twitter.com/AzureSupport)上的 。 此外，您也可以選取 [Azure 支援](https://azure.microsoft.com/support/options/)網站上的 [取得支援]，來提出 Azure 支援要求。
 
 ## <a name="symptom"></a>徵狀
 Runbook 執行失敗且傳回的錯誤是「作業動作 'Activate' 無法執行，因為處理序意外停止。 作業動作已嘗試 3 次」。

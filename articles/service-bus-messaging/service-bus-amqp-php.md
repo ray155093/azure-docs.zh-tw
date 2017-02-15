@@ -1,22 +1,26 @@
 ---
-title: 服務匯流排和 PHP 與 AMQP 1.0 | Microsoft Docs
-description: 搭配使用 PHP 的服務匯流排與 AMQP
-services: service-bus
+title: "服務匯流排和 PHP 與 AMQP 1.0 |Microsoft Docs"
+description: "搭配使用 PHP 的服務匯流排與 AMQP"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: dfb26c2b-41d3-4ed6-936b-b8d2f1dbd470
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/29/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 122865f056d6bd7fc8c75665d29753542a83405c
+
 
 ---
-# <a name="using-service-bus-from-php-with-amqp-1.0"></a>搭配使用 PHP 的服務匯流排與 AMQP 1.0
+# <a name="using-service-bus-from-php-with-amqp-10"></a>搭配使用 PHP 的服務匯流排與 AMQP 1.0
 [!INCLUDE [service-bus-selector-amqp](../../includes/service-bus-selector-amqp.md)]
 
 Proton-PHP 是繫結至 Proton-C 的 PHP 語言；也就是說，Proton-PHP 會當作以 C 實作之引擎的包裝函式實作。
@@ -29,7 +33,7 @@ Proton-PHP 是繫結至 Proton-C 的 PHP 語言；也就是說，Proton-PHP 會�
 > 
 > 
 
-## <a name="working-with-service-bus-queues,-topics,-and-subscriptions-from-php"></a>從 PHP 使用服務匯流排佇列、主題和訂用帳戶
+## <a name="working-with-service-bus-queues-topics-and-subscriptions-from-php"></a>從 PHP 使用服務匯流排佇列、主題和訂用帳戶
 下列程式碼示範如何從服務匯流排傳訊實體傳送和接收訊息。
 
 ### <a name="sending-messages-using-proton-php"></a>使用 Proton-PHP 傳送訊息
@@ -65,9 +69,9 @@ if($messenger->incoming())
 $messenger->stop();
 ```
 
-## <a name="messaging-between-.net-and-proton-php"></a>在 .NET 與 Proton-PHP 之間傳訊
+## <a name="messaging-between-net-and-proton-php"></a>在 .NET 與 Proton-PHP 之間傳訊
 ### <a name="application-properties"></a>應用程式屬性
-#### <a name="protonphp-to-service-bus-.net-apis"></a>ProtonPHP 至服務匯流排 .NET API
+#### <a name="protonphp-to-service-bus-net-apis"></a>ProtonPHP 至服務匯流排 .NET API
 Proton-PHP 訊息支援下列類型的應用程式屬性︰**integer**、**double**、**Boolean**、**string** 和 **object**。 下列 PHP 程式碼示範如何使用每一個屬性類型來設定訊息的屬性。
 
 ```
@@ -110,8 +114,8 @@ Console.WriteLine();
 | string |string |
 | 物件 |Object |
 
-#### <a name="service-bus-.net-apis-to-php"></a>服務匯流排 .NET API 至 PHP
-[BrokeredMessage][BrokeredMessage] 類型支援下列類型的應用程式屬性：**byte**、**sbyte**、**char**、**short**、**ushort**、**int**、**uint**、**long**、**ulong**、**float**、**double**、**decimal**、**bool**、**Guid**、**string**、**Uri**、**DateTime**、**DateTimeOffset** 和 **TimeSpan**。 下列 .NET 程式碼示範如何使用每一個屬性類型來設定 [BrokeredMessage][BrokeredMessage] 物件的屬性。
+#### <a name="service-bus-net-apis-to-php"></a>服務匯流排 .NET API 至 PHP
+[BrokeredMessage][BrokeredMessage] 類型支援下列類型的應用程式屬性：**byte****sbyte**、**char**、**short**、**ushort**、**int**、**uint**、**long**、**ulong**、**float****double****decimal****bool****Guid****string****Uri****DateTime****DateTimeOffset** 和 **TimeSpan**。 下列 .NET 程式碼示範如何使用每一個屬性類型來設定 [BrokeredMessage][BrokeredMessage] 物件的屬性。
 
 ```
 message.Properties["TestByte"] = (byte)128;
@@ -196,7 +200,7 @@ if ($message->properties != null)
 | reply\_to\_group\_id |Message.ReplyToSessionId |- |
 | 格式 |n/a |- |
 
-#### <a name="service-bus-.net-apis-to-proton-php"></a>服務匯流排 .NET API 至 PROTON-PHP
+#### <a name="service-bus-net-apis-to-proton-php"></a>服務匯流排 .NET API 至 PROTON-PHP
 | 服務匯流排 .NET | Proton-PHP | 注意事項 |
 | --- | --- | --- |
 | ContentType |Message-\>content\_type |- |
@@ -223,6 +227,6 @@ if ($message->properties != null)
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

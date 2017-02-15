@@ -1,22 +1,26 @@
 ---
 title: Azure Active Directory B2C | Microsoft Docs
-description: 使用 Azure Active Directory 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。
+description: "使用 Azure Active Directory 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。"
 services: active-directory-b2c
-documentationcenter: ''
+documentationcenter: 
 author: dstrockis
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: c371aaab-813a-4317-97df-b62e2f53d865
 ms.service: active-directory-b2c
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/22/2016
+ms.date: 01/07/2017
 ms.author: dastrock
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 51061199e4929406c3ac77a26e2f972686236bd4
+
 
 ---
-# <a name="azure-active-directory-b2c:-oauth-2.0-authorization-code-flow"></a>Azure Active Directory B2C：OAuth 2.0 授權碼流程
+# <a name="azure-active-directory-b2c-oauth-20-authorization-code-flow"></a>Azure Active Directory B2C：OAuth 2.0 授權碼流程
 OAuth 2.0 授權碼授與可用於裝置上所安裝的應用程式中，以存取受保護的資源，例如 Web API。 只要使用 Azure Active Directory (Azure AD) B2C 的 OAuth 2.0 實作，您就可以在自己的行動及桌面應用程式中，新增註冊、登入及其他身分識別管理工作。 本指南與語言無關， 而是在說明如何傳送和接收 HTTP 訊息，但不使用我們的任何開放原始碼程式庫。
 
 <!-- TODO: Need link to libraries -->
@@ -30,7 +34,7 @@ Azure AD B2C 擴充標準的 OAuth 2.0 流程，功能更強大，而不僅止�
 下面的範例 HTTP 要求將使用我們的範例 B2C 目錄 **fabrikamb2c.onmicrosoft.com**，以及我們的範例應用程式和原則。 您可以隨意使用這些值來自行試驗要求，也可以把它們換成您自己的值。
 了解如何 [取得您自己的 B2C 目錄、應用程式和原則](#use-your-own-b2c-directory)。
 
-## <a name="1.-get-an-authorization-code"></a>1.取得授權碼
+## <a name="1-get-an-authorization-code"></a>1.取得授權碼
 授權碼流程始於用戶端將使用者導向 `/authorize` 端點。 這是流程的互動部分，使用者將會實際地採取動作。 在這項要求中，用戶端會在 `scope` 參數中指出它需要向使用者要求的權限，以及在 `p` 參數中指出它要執行的原則。 以下提供三個範例 (插入換行以提高可讀性)，各使用不同的原則。
 
 #### <a name="use-a-sign-in-policy"></a>使用登入原則
@@ -112,7 +116,7 @@ error=access_denied
 | error_description |特定的錯誤訊息，可協助開發人員辨識驗證錯誤的根本原因。 |
 | state |如需完整說明，請參閱本節的第一個表格。 如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應該要確認要求中的狀態值，與回應中的完全相同。 |
 
-## <a name="2.-get-a-token"></a>2.取得權杖
+## <a name="2-get-a-token"></a>2.取得權杖
 您已經取得 authorization_code，因此可以藉由傳送 `POST` 要求給 `/token` 端點，把權杖的 `code` 兌換成所需的資源。 在 Azure AD B2C 中，您唯一可以要求權杖的資源，就是應用程式本身的後端 Web API。 用來為您自己要求權杖的慣例是使用應用程式的用戶端識別碼做為範圍：
 
 ```
@@ -168,7 +172,7 @@ grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&sco
 | 錯誤 |錯誤碼字串，可用來為發生的錯誤類型分類，以針對錯誤做出反應。 |
 | error_description |特定的錯誤訊息，可協助開發人員辨識驗證錯誤的根本原因。 |
 
-## <a name="3.-use-the-token"></a>3.使用權杖
+## <a name="3-use-the-token"></a>3.使用權杖
 您已經成功取得 `access_token`，因此您可以在對後端 Web API 發出的要求中使用該權杖，方法是在 `Authorization` 標頭中加入該權杖：
 
 ```
@@ -177,7 +181,7 @@ Host: https://mytaskwebapi.com
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZnl0aEV1Q...
 ```
 
-## <a name="4.-refresh-the-token"></a>4.重新整理權杖
+## <a name="4-refresh-the-token"></a>4.重新整理權杖
 存取權杖和 ID 權杖只會短暫存在。 因此在該權杖過期之後，您必須重新整理權杖，才能繼續存取資源。 方法是向 `/token` 端點送出另一個 `POST` 要求， 但這次要提供 `refresh_token`，而不是 `code`：
 
 ```
@@ -239,6 +243,9 @@ grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=90
 * [建立應用程式](active-directory-b2c-app-registration.md)來取得應用程式識別碼和 redirect_uri。 您可以在應用程式中加入 **原生用戶端** 。
 * [建立您的原則](active-directory-b2c-reference-policies.md) 來取得原則名稱。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

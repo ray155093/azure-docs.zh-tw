@@ -1,12 +1,12 @@
 ---
-title: 適用於 SQL 資料倉儲的驅動程式 | Microsoft Docs
-description: 適用於 SQL 資料倉儲的連接字串和驅動程式
+title: "適用於 SQL 資料倉儲的驅動程式 | Microsoft Docs"
+description: "適用於 SQL 資料倉儲的連接字串和驅動程式"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 5c91f423-b550-4734-8094-c7f2c418ac8d
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,10 +14,14 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 99be9d9b840e3d8cfbb24a76fc3dc8d5e041f63d
+
 
 ---
 # <a name="drivers-for-azure-sql-data-warehouse"></a>適用於 Azure SQL 資料倉儲的驅動程式
-您可以使用數個不同的應用程式通訊協定 (例如[ADO.NET][ADO.NET]、[ODBC][ODBC]、[PHP][PHP] 及 [JDBC][JDBC]) 連線到 SQL 資料倉儲。 以下是每個通訊協定連接字串的一些範例。  您也可以使用 Azure 入口網站來建立連接字串。  若要使用 Azure 入口網站建置連接字串，請瀏覽至您資料庫的刀鋒視窗，在 [程式集] 底下，按一下 [顯示資料庫連接字串]。
+您可以使用數個不同的應用程式通訊協定 (例如 [ADO.NET][ADO.NET]、[ODBC][ODBC]、[PHP][PHP] 及 [JDBC][JDBC]) 連線到 SQL 資料倉儲。 以下是每個通訊協定連接字串的一些範例。  您也可以使用 Azure 入口網站來建立連接字串。  若要使用 Azure 入口網站建置連接字串，請瀏覽至您資料庫的刀鋒視窗，在 [程式集] 底下，按一下 [顯示資料庫連接字串]。
 
 ## <a name="sample-adonet-connection-string"></a>範例 ADO.NET 連接字串
 ```C#
@@ -62,6 +66,6 @@ jdbc:sqlserver://yourserver.database.windows.net:1433;database=yourdatabase;user
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

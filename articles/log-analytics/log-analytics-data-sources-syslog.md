@@ -1,19 +1,23 @@
 ---
-title: Log Analytics 中的 Syslog 訊息 | Microsoft Docs
-description: Syslog 是通用於 Linux 的事件記錄通訊協定。   本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。
+title: "Log Analytics 中的 Syslog 訊息 | Microsoft Docs"
+description: "Syslog 是通用於 Linux 的事件記錄通訊協定。   本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: f1d5bde4-6b86-4b8e-b5c1-3ecbaba76198
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/06/2016
+ms.date: 12/09/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 724567b853bec19cb41ef6a78b7d25a665830897
+
 
 ---
 # <a name="syslog-data-sources-in-log-analytics"></a>Log Analytics 中的 Syslog 資料來源
@@ -36,7 +40,7 @@ OMS Agent for Linux 只會收集具有其組態中指定之設備和嚴重性的
 
 ![設定 Syslog](media/log-analytics-data-sources-syslog/configure.png)
 
-根據預設，所有設定變更都會自動發送給所有代理程式。  如果您想在每個 Linux 代理程式上手動設定 Syslog，則可取消核取 [Apply below configuration to my Linux machines](將下列設定套用至我的 Linux 機器.md) 方塊。
+根據預設，所有設定變更都會自動發送給所有代理程式。  如果您想在每個 Linux 代理程式上手動設定 Syslog，則可取消核取 [Apply below configuration to my Linux machines] (將下列設定套用至我的 Linux 機器) 方塊。
 
 ### <a name="configure-syslog-on-linux-agent"></a>在 Linux 代理程式上設定 Syslog
 當 [OMS 代理程式安裝於 Linux 用戶端](log-analytics-linux-agents.md)時，它會安裝預設的 syslog 組態檔，其中會定義所收集之資訊的設備和嚴重性。  您可以修改此檔案來變更組態。  組態檔會根據用戶端已安裝的 Syslog 精靈而有所不同。
@@ -69,7 +73,7 @@ Rsyslog 的組態檔位於 **/etc/rsyslog.d/95-omsagent.conf**。  其預設內�
 
 您可以藉由移除組態檔的設備區段來移除該設備。  您可以藉由修改特定設備的項目，來限制針對該設備所收集的嚴重性。  例如，若要將使用者設備限制為嚴重性為錯誤或以上的訊息，您要將組態檔的那一行修改為下列內容：
 
-    user.error  @127.0.0.1:25224
+    user.error    @127.0.0.1:25224
 
 
 #### <a name="syslog-ng"></a>syslog-ng
@@ -175,6 +179,9 @@ Syslog 記錄具有 **Syslog** 類型，以及下表中的屬性。
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將來自 syslog 記錄的資料剖析至個別欄位。
 * [設定 Linux 代理程式](log-analytics-linux-agents.md) ，以收集其他類型的資料。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

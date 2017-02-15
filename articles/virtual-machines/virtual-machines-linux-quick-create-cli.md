@@ -15,24 +15,24 @@ ms.workload: infrastructure
 ms.date: 09/26/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 2bd363e3c22f4cf4daf2e0fa352fd4a131d1675f
-ms.openlocfilehash: 89db2c9f388b8a5496a306ba0a152ab57481ea50
+ms.sourcegitcommit: 95b924257c64a115728c66956d5ea38eb8764a35
+ms.openlocfilehash: 70592ac773aced0bfcec5c7418a6dc53555fab33
 
 
 ---
 
-# <a name="create-a-linux-vm-using-the-azure-cli-20-preview"></a>使用 Azure CLI 2.0 建立 Linux VM (預覽)
+# <a name="create-a-linux-vm-using-the-azure-cli-20-preview-azpy"></a>使用 Azure CLI 2.0 建立 Linux VM 預覽 (az.py)
 本文示範如何使用 Azure CLI 2.0 (預覽) 中的 [az vm create](/cli/azure/vm#create) 命令，在 Azure 上快速部署 Linux 虛擬機器 (VM)。 
 
 > [!NOTE] 
-> Azure CLI 2.0 Preview 是我們的新一代多重平台 CLI。 試試看，告訴我們您對於 [GitHub 專案頁面](https://github.com/Azure/azure-cli)的想法。
+> Azure CLI 2.0 Preview 是我們的新一代多重平台 CLI。 [立即試用。](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)
 >
-> 我們的文件的其餘部分使用現有 Azure CLI。 若要使用現有的 Azure CLI 而不是 CLI 2.0 Preview 建立 VM，請參閱[使用 Azure CLI 建立 VM](virtual-machines-linux-quick-create-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> 我們的文件的其餘部分使用現有 Azure CLI。 若要使用現有的 Azure CLI 1.0 而不是 CLI 2.0 Preview 建立 VM，請參閱[使用 Azure CLI 建立 VM](virtual-machines-linux-quick-create-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 若要建立 VM，您需要： 
 
 * 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))
-* 安裝 [Azure CLI v.2.0 (預覽)](https://github.com/Azure/azure-cli#installation)
+* 安裝 [Azure CLI v.2.0 (預覽)](/cli/azure/install-az-cli2)
 * 以登入您的 Azure 帳戶 (類型 [az login](/cli/azure/#login))
 
 您也可以使用 [Azure 入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)來快速部署 Linux VM。
@@ -41,10 +41,10 @@ ms.openlocfilehash: 89db2c9f388b8a5496a306ba0a152ab57481ea50
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
-首先，請輸入 [az resource group create](/cli/azure/resource/group#create) 以建立資源群組，其中包含所有已部署的資源︰
+首先，請輸入 [az group create](/cli/azure/group#create) 以建立資源群組，其中包含所有已部署的資源︰
 
 ```azurecli
-az resource group create -n myResourceGroup -l westus
+az group create -n myResourceGroup -l westus
 ```
 
 輸出看起來如下所示 (您可以視需要選擇不同的 `--output` 選項)：
@@ -127,6 +127,6 @@ bin  boot  dev  etc  home  initrd.img  lib  lib64  lost+found  media  mnt  opt  
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

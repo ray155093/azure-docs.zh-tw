@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 7455d6f99ed8ceb401224f98105f7b651f55c724
-ms.openlocfilehash: fd5ca2dfb12b7527f49d32d9642a91df9e590b14
+ms.sourcegitcommit: a762a0e4753b73b11b2c903fa97c67176199b8d9
+ms.openlocfilehash: 5a1845ac32d2e7454a94d6678521b5e74561933a
 
 
 ---
@@ -59,7 +59,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在 [中樞] 功能表上，選取 [新增] -> [資料+儲存體] -> [儲存體帳戶]。
+2. 在 [中樞] 功能表上，選取 [新增] -> [儲存體] -> [儲存體帳戶]。
 3. 輸入儲存體帳戶的名稱。 請參閱 [儲存體帳戶端點](#storage-account-endpoints) 以深入了解此儲存體帳戶名稱如何用來解析 Azure 儲存體中的物件。
    
    > [!NOTE]
@@ -162,6 +162,6 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

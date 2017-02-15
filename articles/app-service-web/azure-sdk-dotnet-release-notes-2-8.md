@@ -1,13 +1,12 @@
-
 ---
-title: Azure SDK for .NET 2.8 版本資訊
-description: Azure SDK for .NET 2.8 版本資訊
+title: "Azure SDK for .NET 2.8 版本資訊"
+description: "Azure SDK for .NET 2.8 版本資訊"
 services: app-service\web
 documentationcenter: .net
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: de7207ff-ba4f-4008-9141-8742fcaa3254
 ms.service: app-service
 ms.devlang: multiple
 ms.topic: article
@@ -15,21 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/17/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
+ms.openlocfilehash: 81772fb5801ec620d1c1996509a275e4bb29fb12
+
 
 ---
-# <a name="azure-sdk-for-.net-2.8,-2.8.1-and-2.8.2"></a>Azure SDK for .NET 2.8、2.8.1 和 2.8.2
+# <a name="azure-sdk-for-net-28-281-and-282"></a>Azure SDK for .NET 2.8、2.8.1 和 2.8.2
 ## <a name="overview"></a>概觀
 本文包含 Azure SDK for .NET 2.8、2.8.1 和 2.8.2 版本的版本資訊 (包含已知問題和重大變更)。 
 
 如需這一版中的新功能和更新的完整清單，請參閱 [Azure SDK 2.8 for Visual Studio 2013 and Visual Studio 2015](https://azure.microsoft.com/blog/announcing-the-azure-sdk-2-8-for-net/) 公告。 
 
-## <a name="azure-sdk-for-.net-2.8"></a>Azure SDK for .NET 2.8
-### <a name="download-azure-sdk-for-.net-2.8"></a>下載 Azure SDK for .NET 2.8
+## <a name="azure-sdk-for-net-28"></a>Azure SDK for .NET 2.8
+### <a name="download-azure-sdk-for-net-28"></a>下載 Azure SDK for .NET 2.8
 [Azure SDK for .NET 2.8 for Visual Studio 2015](http://go.microsoft.com/fwlink/?LinkId=699285) 
 
 [Azure SDK for .NET 2.8 for Visual Studio 2013](http://go.microsoft.com/fwlink/?LinkId=699287)
 
-### <a name=".net-4.5.2-support"></a>.NET 4.5.2 支援
+### <a name="net-452-support"></a>.NET 4.5.2 支援
 #### <a name="known-issues"></a>已知問題
 Azure.NET SDK 2.8 可讓您建立 .NET 4.5.2 雲端服務套件。 不過，.NET 4.5.2 Framework 要到 2016 年 1 月的客體作業系統版本，才會安裝在預設的客體作業系統映像上。 在這之前，可以透過獨立的客體作業系統版本 November 2015-02 取得 .NET 4.5.2 Framework。 請參閱 [Azure 客體 OS 版本與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md) 頁面以追蹤該映像何時發行。  一旦 November 2015-02 映像發行，您便可選擇透過更新您的雲端服務組態檔 (.cscfg) 來使用該映像。 在服務組態檔中，將 ServiceConfiguration 項目的 osVersion 屬性設定為字串 "WA-GUEST-OS-4.26_201511-02"。 如果您選擇加入以使用此映像，那麼您將不會再收到客體 OS 的自動更新。 若要取得自動更新，osVersion 必須設為 “*”，且 .NET 4.5.2 將只能在 2016 年 1 月透過自動更新取得。
 
@@ -61,13 +64,13 @@ Azure 資源群組專案提供的 PowerShell 指令碼在這個版本中已更�
 
 如需詳細資訊，請參閱 [適用於 Visual Studio 2013 和 Visual Studio 2015 的 Azure SDK 2.8](https://azure.microsoft.com/blog/announcing-the-azure-sdk-2-8-for-net/)。 
 
-## <a name="azure-sdk-for-.net-2.8.1"></a>Azure SDK for .NET 2.8.1
+## <a name="azure-sdk-for-net-281"></a>Azure SDK for .NET 2.8.1
 ### <a name="known-issues-for-visual-studio-2013-and-visual-studio-2015"></a>Visual Studio 2013 和 Visual Studio 2015 的已知問題
 1. 以位置為目標的觸發 WebJob 發佈會顯示錯誤，並且不會設定排程，不過它會將 WebJob 推送到 Azure。 需要已排程工作的客戶可以使用 Azure 入口網站來設定 WebJob 的排程。 
 2. Python 客戶可能會遭遇到偵錯工具問題。 服務小組即將推出此問題的修正，不過如果客戶受到影響，請透過論壇、公告部落格或版本資訊意見區段知會 Microsoft。 
 3. 某些區域 (如印度南部) 的客戶將遭遇 App Service 佈建錯誤。 這個情況與入口網站相符，遭遇這個問題的客戶可以使用 Azure 入口網站來要求這些地理區域的發佈權限。 一旦使用 Azure 入口網站來要求這些區域的存取權限後，佈建應該能正常運作。 
 
-## <a name="azure-sdk-for-.net-2.8.2"></a>Azure SDK for .NET 2.8.2
+## <a name="azure-sdk-for-net-282"></a>Azure SDK for .NET 2.8.2
 在安裝 2.8.2 工具之後，客戶可能會遇到下列問題。         
 
 * 如果您使用 Windows 10，且尚未安裝 Internet Explorer，您可能會收到「找不到 Internet Explorer」的錯誤。
@@ -85,6 +88,9 @@ Azure 資源群組專案提供的 PowerShell 指令碼在這個版本中已更�
 
 [Azure SDK for .NET 和 API 的支援和停用資訊](https://msdn.microsoft.com/library/azure/dn479282.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 

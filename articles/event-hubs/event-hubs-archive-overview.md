@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 12/13/2016
 ms.author: darosa;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c21d4fbcfef17c204d74850f740fd8ee18d65856
+ms.sourcegitcommit: 539c04ef95804cc0af9924db8b1d2d1f2ea6eef3
+ms.openlocfilehash: 37d8ff4c2e95fddc1daefa650f2407236bc9cda5
 
 
 ---
@@ -36,11 +36,11 @@ Azure 事件中樞封存可讓您在相同串流上處理即時和批次型的�
 事件中樞封存可讓您設定要控制封存的範圍。 此範圍是具有「先者勝出原則」的最小大小和時間組態，這表示所遇到的第一個觸發會導致封存作業。 如果您有 15 分鐘/100 MB 封存範圍且傳送速率為 1 MB/秒，大小範圍會比時間範圍更早觸發。 每個資料分割都會獨立封存，並在封存時寫入已完成的區塊 Blob，而且會以遇到封存間隔的時間命名。 命名慣例如下︰
 
 ```
-<Namespace>/<EventHub>/<Partition>/<YYYY>/<MM>/<DD>/<HH>/<mm>/<ss>
+[Namespace]/[EventHub]/[Partition]/[YYYY]/[MM]/[DD]/[HH]/[mm]/[ss]
 ```
 
 ### <a name="scaling-to-throughput-units"></a>調整至輸送量單位
-事件中樞的流量會受到 [輸送量單位](event-hubs-overview.md#capacity-and-security)控制。 單一輸送量單位可允許 1 MB/秒或每秒 1000 個事件的輸入，輸出則為此數量的兩倍。 標準事件中樞可以設定 1-20 個輸送量單位，並可透過增加配額的[支援要求][支援要求]購買更多單位。 超過所購買輸送量單位的使用量將遭到節流。 事件中樞封存會直接從內部的事件中樞儲存體複製資料，略過輸送量單位輸出配額，並將輸出節省下來以供串流分析或 Spark 等其他處理讀取器使用。
+事件中樞的流量會受到 [輸送量單位](event-hubs-overview.md#capacity-and-security)控制。 單一輸送量單位可允許每秒 1 MB 或每秒 1000 個事件的輸入，輸出則為此數量的兩倍。 標準事件中樞可以設定 1-20 個輸送量單位，您可以透過增加配額的[支援要求][support request]購買更多單位。 超過所購買輸送量單位的使用量將遭到節流。 事件中樞封存會直接從內部的事件中樞儲存體複製資料，略過輸送量單位輸出配額，並將輸出節省下來以供串流分析或 Spark 等其他處理讀取器使用。
 
 事件中樞封存在經過設定之後，就會自動在您傳送第一個事件時立即執行。 它會一直保持執行。 為了讓下游處理更輕鬆地知道處理程序正在運作，事件中樞會在沒有資料時寫入空白檔案。 這會提供可預測的頻率和標記，以供饋送給批次處理器。
 
@@ -52,14 +52,14 @@ Azure 事件中樞封存可讓您在相同串流上處理即時和批次型的�
 ![][1]
 
 ## <a name="adding-archive-to-an-existing-event-hub"></a>將封存功能新增至現有事件中樞
-您可以在位於事件中樞命名空間的現有事件中樞上設定封存功能。 此功能無法在舊版的傳訊或混合類型命名空間上使用。 若要在現有事件中樞啟用封存功能，或變更您的封存設定，請按一下您的命名空間以載入 [基本功能]  刀鋒視窗，然後按一下您要啟用或變更封存設定的事件中樞。 最後，如下圖所示按一下開啟之刀鋒視窗的 [屬性]  區段。
+您可以在位於事件中樞命名空間的現有事件中樞上設定封存功能。 此功能無法在舊版的**傳訊**或**混合**類型命名空間上使用。 若要在現有事件中樞啟用封存功能，或變更您的封存設定，請按一下您的命名空間以載入 [基本功能] 刀鋒視窗，然後按一下您要啟用或變更封存設定的事件中樞。 最後，如下圖所示按一下開啟之刀鋒視窗的 [屬性]  區段。
 
 ![][2]
 
 您也可以透過 Azure Resource Manager 範本來設定事件中樞封存。 如需詳細資訊，請參閱 [本篇文章](event-hubs-resource-manager-namespace-event-hub-enable-archive.md)。
 
 ## <a name="exploring-the-archive-and-working-with-avro"></a>瀏覽封存並使用 Avro
-事件中樞封存在設定之後，會在所設定的時間範圍內提供的 Azure 儲存體帳戶和容器中建立檔案。 您可以在任何工具 (例如 [Azure 儲存體總管][Azure 儲存體總管]) 檢視這些檔案。 您可以在本機下載檔案，以對其進行處理。
+事件中樞封存在設定之後，會在所設定的時間範圍內提供的 Azure 儲存體帳戶和容器中建立檔案。 您可以在任何工具 (例如 [Azure 儲存體總管][Azure Storage Explorer]) 檢視這些檔案。 您可以在本機下載檔案，以對其進行處理。
 
 事件中樞封存所產生的檔案會有下列 Avro 結構描述︰
 
@@ -99,30 +99,30 @@ Apache Avro 已完成適用於 [Java][Java] 和 [Python][Python] 的快速入門
 ## <a name="how-event-hubs-archive-is-charged"></a>事件中樞封存的收費方式
 事件中樞封存的計量方式類似輸送量單位，屬於每小時的費用。 其費用與命名空間所購買的輸送量單位數目成正比。 當輸送量單位增加和減少時，事件中樞封存也會增加和減少以提供相符的效能。 計量會一起發生。 事件中樞封存的費用是每小時每輸送量單位 0.10 美元，預覽期間享有 50% 折扣。
 
-事件中樞封存確實是將資料送入 Azure 的最簡單方式。 使用 Azure Data Lake、Azure Data Factory 和 Azure HDInsight，即可使用熟悉的工具和平台，以您需要的規模執行您所選擇的批次處理和其他分析。
+事件中樞封存是將資料送入 Azure 的最簡單方式。 使用 Azure Data Lake、Azure Data Factory 和 Azure HDInsight，即可使用熟悉的工具和平台，以您需要的規模執行您所選擇的批次處理和其他分析。
 
 ## <a name="next-steps"></a>後續步驟
 您可以造訪下列連結以深入了解事件中樞︰
 
-* 完整的[使用「事件中樞」的範例應用程式][使用「事件中樞」的範例應用程式]。
-* [使用「事件中樞」相應放大事件處理][使用「事件中樞」相應放大事件處理]範例。
-* [事件中心概觀][事件中心概觀]
+* [使用事件中樞的完整範例應用程式][sample application that uses Event Hubs]。
+* [使用事件中樞相應放大事件處理][Scale out Event Processing with Event Hubs]範例。
+* [事件中樞概觀][Event Hubs overview]
 
 [Apache Avro]: http://avro.apache.org/
-[支援要求]: https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade
+[support request]: https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade
 [1]: ./media/event-hubs-archive-overview/event-hubs-archive1.png
 [2]: media/event-hubs-archive-overview/event-hubs-archive2.png
-[Azure 儲存體總管]: http://azurestorageexplorer.codeplex.com/
+[Azure Storage Explorer]: http://azurestorageexplorer.codeplex.com/
 [3]: ./media/event-hubs-archive-overview/event-hubs-archive3.png
 [Avro Tools]: http://www-us.apache.org/dist/avro/avro-1.8.1/java/avro-tools-1.8.1.jar
 [Java]: http://avro.apache.org/docs/current/gettingstartedjava.html
 [Python]: http://avro.apache.org/docs/current/gettingstartedpython.html
-[事件中心概觀]: event-hubs-overview.md
-[使用「事件中樞」的範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
-[使用「事件中樞」相應放大事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
+[Event Hubs overview]: event-hubs-overview.md
+[sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[Scale out Event Processing with Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

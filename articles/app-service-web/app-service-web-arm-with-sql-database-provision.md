@@ -1,12 +1,12 @@
 ---
-title: 佈建使用 SQL Database 的 Web 應用程式
-description: 使用 Azure 資源管理員範本來部署 Web 應用程式，其中包含 SQL Database。
+title: "佈建使用 SQL Database 的 Web 應用程式"
+description: "使用 Azure 資源管理員範本來部署 Web 應用程式，其中包含 SQL Database。"
 services: app-service
-documentationcenter: ''
+documentationcenter: 
 author: cephalin
 manager: wpickett
-editor: ''
-
+editor: 
+ms.assetid: fb9648e1-9bf2-4537-bc4a-ab8d4953168c
 ms.service: app-service
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,20 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2016
 ms.author: cephalin
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 461b97b56058620202a5f7f69171ffa0f2cb25cb
+
 
 ---
-# 佈建 Web 應用程式與 SQL Database
-在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Web 應用程式與 SQL Database。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+# <a name="provision-a-web-app-with-a-sql-database"></a>佈建 Web 應用程式與 SQL Database
+在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Web 應用程式與 SQL Database。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
-如需關於建立範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
+如需關於建立範本的詳細資訊，請參閱 [編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
 
-如需有關部署應用程式的詳細資訊，請參閱[透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。
+如需有關部署應用程式的詳細資訊，請參閱 [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。
 
 如需完整的範本，請參閱 [Web 應用程式與 SQL Database 範本](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-sql-database/azuredeploy.json)。
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## 部署內容
+## <a name="what-you-will-deploy"></a>部署內容
 在此範本中，您將部署：
 
 * Web 應用程式
@@ -41,24 +45,24 @@ ms.author: cephalin
 
 [![部署至 Azure](./media/app-service-web-arm-with-sql-database-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-sql-database%2Fazuredeploy.json)
 
-## 要指定的參數
+## <a name="parameters-to-specify"></a>要指定的參數
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
-### administratorLogin
+### <a name="administratorlogin"></a>administratorLogin
 資料庫伺服器系統管理員要使用的帳戶名稱。
 
     "administratorLogin": {
       "type": "string"
     }
 
-### administratorLoginPassword
+### <a name="administratorloginpassword"></a>administratorLoginPassword
 資料庫伺服器系統管理員要使用的密碼。
 
     "administratorLoginPassword": {
       "type": "securestring"
     }
 
-### databaseName
+### <a name="databasename"></a>databaseName
 要建立之新資料庫的名稱。
 
     "databaseName": {
@@ -66,7 +70,7 @@ ms.author: cephalin
       "defaultValue": "sampledb"
     }
 
-### collation
+### <a name="collation"></a>collation
 用來管理字元適當用法的資料庫定序。
 
     "collation": {
@@ -74,7 +78,7 @@ ms.author: cephalin
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
     }
 
-### edition
+### <a name="edition"></a>edition
 要建立的資料庫類型。
 
     "edition": {
@@ -90,7 +94,7 @@ ms.author: cephalin
       }
     }
 
-### maxSizeBytes
+### <a name="maxsizebytes"></a>maxSizeBytes
 資料庫的大小上限 (位元組)。
 
     "maxSizeBytes": {
@@ -98,8 +102,8 @@ ms.author: cephalin
       "defaultValue": "1073741824"
     }
 
-### requestedServiceObjectiveName
-與版本的效能等級對應的名稱。
+### <a name="requestedserviceobjectivename"></a>requestedServiceObjectiveName
+與版本的效能等級對應的名稱。 
 
     "requestedServiceObjectiveName": {
       "type": "string",
@@ -118,8 +122,8 @@ ms.author: cephalin
       }
     }
 
-## 名稱的變數
-這個範本包括建構範本所用名稱的變數。變數值會使用 **uniqueString** 函式從資源群組識別碼產生名稱。
+## <a name="variables-for-names"></a>名稱的變數
+這個範本包括建構範本所用名稱的變數。 變數值會使用 **uniqueString** 函式從資源群組識別碼產生名稱。
 
     "variables": {
         "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -128,9 +132,9 @@ ms.author: cephalin
     },
 
 
-## 要部署的資源
-### SQL Server 和資料庫
-建立新的 SQL Server 和資料庫。伺服器名稱指定於 **serverName** 參數，位置指定於 **serverLocation** 參數。在建立新的伺服器時，您必須提供資料庫伺服器系統管理員的登入名稱和密碼。
+## <a name="resources-to-deploy"></a>要部署的資源
+### <a name="sql-server-and-database"></a>SQL Server 和資料庫
+建立新的 SQL Server 和資料庫。 **serverName** 參數中指定伺服器名稱，**serverLocation** 參數中指定位置。 在建立新的伺服器時，您必須提供資料庫伺服器系統管理員的登入名稱和密碼。 
 
     {
       "name": "[variables('sqlserverName')]",
@@ -181,7 +185,7 @@ ms.author: cephalin
 
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
-### Web 應用程式
+### <a name="web-app"></a>Web 應用程式
     {
       "apiVersion": "2015-08-01",
       "name": "[variables('webSiteName')]",
@@ -217,7 +221,7 @@ ms.author: cephalin
     },
 
 
-### 自動調整
+### <a name="autoscale"></a>自動調整
     {
       "apiVersion": "2014-04-01",
       "name": "[concat(variables('hostingPlanName'), '-', resourceGroup().name)]",
@@ -286,7 +290,7 @@ ms.author: cephalin
     },
 
 
-### 狀態碼 403、狀態碼 500、高 CPU 和 HTTP 佇列長度的警示規則
+### <a name="alert-rules-for-status-codes-403-and-500s-high-cpu-and-http-queue-length"></a>狀態碼 403、狀態碼 500、高 CPU 和 HTTP 佇列長度的警示規則
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('ServerErrors ', variables('webSiteName'))]",
@@ -424,7 +428,7 @@ ms.author: cephalin
       }
     },
 
-### 應用程式情資
+### <a name="app-insights"></a>應用程式情資
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('AppInsights', variables('webSiteName'))]",
@@ -442,16 +446,20 @@ ms.author: cephalin
       }
     }
 
-## 執行部署的命令
+## <a name="commands-to-run-deployment"></a>執行部署的命令
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### PowerShell
+### <a name="powershell"></a>PowerShell
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
 
-### Azure CLI
+### <a name="azure-cli"></a>Azure CLI
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
 
 
 
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Nov16_HO3-->
+
+

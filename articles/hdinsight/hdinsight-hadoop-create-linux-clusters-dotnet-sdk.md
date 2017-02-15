@@ -1,13 +1,13 @@
 ---
-title: 在 Linux 上使用 HDInsight .NET SDK 在 HDInsight 中建立 Hadoop、HBase、Storm 或 Spark 叢集 | Microsoft Docs
-description: 了解如何在 Linux 上使用 HDInsight .NET SDK 為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。
+title: "在 Linux 上使用 HDInsight .NET SDK 在 HDInsight 中建立 Hadoop、HBase、Storm 或 Spark 叢集 | Microsoft Docs"
+description: "了解如何在 Linux 上使用 HDInsight .NET SDK 為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: mumian
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 9c74e3dc-837f-4c90-bbb1-489bc7124a3d
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
@@ -15,27 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 09/02/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3e24077da1ffef084fc028164a8526d29472b176
+
 
 ---
-# 在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集
-[!INCLUDE [選取器](../../includes/hdinsight-selector-create-clusters.md)]
+# <a name="create-linux-based-clusters-in-hdinsight-using-the-net-sdk"></a>在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集
+[!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NET Framework 應用程式使用 HDInsight。這份文件示範如何使用 .NET SDK 建立以 Linux 為基礎的 HDInsight 叢集。
+HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NET Framework 應用程式使用 HDInsight。 這份文件示範如何使用 .NET SDK 建立以 Linux 為基礎的 HDInsight 叢集。
 
 > [!IMPORTANT]
-> 本文中的步驟會建立具有一個背景工作節點的叢集。如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB ram 的前端節點大小。
+> 本文中的步驟會建立具有一個背景工作節點的叢集。 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB ram 的前端節點大小。
 > 
 > 如需節點大小和相關成本的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
 > 
 > 
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-* **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * **Visual Studio 2013 或 2015**
 
-## 建立叢集
+### <a name="access-control-requirements"></a>存取控制需求
+[!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
+
+## <a name="create-clusters"></a>建立叢集
 1. 開啟 Visual Studio 2013 或 2015。
 2. 使用下列設定建立新的 Visual Studio 專案
    
@@ -174,12 +181,12 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
             }
         }
 6. 取代類別成員值。
-7. 按 **F5** 鍵執行應用程式。主控台視窗會開啟並顯示應用程式的狀態。系統也會提示您輸入 Azure 帳戶認證。建立 HDInsight 叢集可能需要幾分鐘的時間，通常約 15 分鐘。
+7. 按 **F5** 鍵執行應用程式。 主控台視窗會開啟並顯示應用程式的狀態。 系統也會提示您輸入 Azure 帳戶認證。 建立 HDInsight 叢集可能需要幾分鐘的時間，通常約 15 分鐘。
 
-## 使用 Bootstrap
-如需詳細資訊，請參閱[使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md)。
+## <a name="use-bootstrap"></a>使用 Bootstrap
+如需詳細資訊，請參閱 [使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md)。
 
-修改[建立叢集](#create-clusters)中的範例，以設定 Hive 設定：
+修改 [建立叢集](#create-clusters) 中的範例，以設定 Hive 設定：
 
     static void Main(string[] args)
     {
@@ -303,10 +310,10 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
     }
 
 
-## 使用指令碼動作
-如需詳細資訊，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+## <a name="use-script-action"></a>使用指令碼動作
+如需詳細資訊，請參閱 [使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-修改[建立叢集](#create-clusters)中的範例，以呼叫用來安裝 R 的指令碼動作：
+修改 [建立叢集](#create-clusters) 中的範例，以呼叫用來安裝 R 的指令碼動作：
 
     static void Main(string[] args)
     {
@@ -350,34 +357,39 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
         System.Console.ReadLine();
     }
 
-## 後續步驟
-既然您已成功建立 HDInsight 叢集，請使用下列內容來了解如何使用您的叢集。
+## <a name="next-steps"></a>後續步驟
+既然您已成功建立 HDInsight 叢集，請使用下列內容來了解如何使用您的叢集。 
 
-### Hadoop 叢集
+### <a name="hadoop-clusters"></a>Hadoop 叢集
 * [〈搭配 HDInsight 使用 Hivet〉](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-### HBase 叢集
+### <a name="hbase-clusters"></a>HBase 叢集
 * [開始在 HDInsight 上使用 HBase](hdinsight-hbase-tutorial-get-started-linux.md)
 * [在 HDInsight 上開發適用於 HBase 的 Java 應用程式](hdinsight-hbase-build-java-maven-linux.md)
 
-### Storm 叢集
+### <a name="storm-clusters"></a>Storm 叢集
 * [在 HDInsight 上開發適用於 Storm 的 Java 拓撲](hdinsight-storm-develop-java-topology.md)
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-### Spark 叢集
+### <a name="spark-clusters"></a>Spark 叢集
 * [使用 Scala 來建立獨立的應用程式](hdinsight-apache-spark-create-standalone-application.md)
 * [利用 Livy 在 Spark 叢集上遠端執行工作](hdinsight-apache-spark-livy-rest-interface.md)
 * [Spark 和 BI：搭配 BI 工具來使用 HDInsight 中的 Spark 以執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark 和機器學習：使用 HDInsight 中的 Spark 來預測食物檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 
-### 執行工作
+### <a name="run-jobs"></a>執行工作
 * [使用 .NET SDK 在 HDInsight 中執行 Hive 工作](hdinsight-hadoop-use-hive-dotnet-sdk.md)
 * [使用 .NET SDK 在 HDInsight 中執行 Pig 工作](hdinsight-hadoop-use-pig-dotnet-sdk.md)
 * [使用 .NET SDK 在 HDInsight 中執行 Sqoop 工作](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
 * [在 HDInsight 中執行 Oozie 工作](hdinsight-use-oozie.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

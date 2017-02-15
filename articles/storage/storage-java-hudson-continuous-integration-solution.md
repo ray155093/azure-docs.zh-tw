@@ -1,19 +1,23 @@
 ---
-title: 如何使用 Hudson 與 Blob 儲存體 | Microsoft Docs
-description: 說明如何使用 Hudson 與 Azure Blob 儲存體作為組建成品的存放庫。
+title: "如何使用 Hudson 與 Blob 儲存體 | Microsoft Docs"
+description: "說明如何使用 Hudson 與 Azure Blob 儲存體作為組建成品的存放庫。"
 services: storage
 documentationcenter: java
 author: dineshmurthy
 manager: jahogg
 editor: tysonn
-
+ms.assetid: 119becdd-72c4-4ade-a439-070233c1e1ac
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
 ms.date: 10/18/2016
-ms.author: dinesh
+ms.author: dineshm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 37ad86ce34d7f9ed6642e6f0fa98cf5fbf26e8bc
+
 
 ---
 # <a name="using-azure-storage-with-a-hudson-continuous-integration-solution"></a>使用 Azure 儲存體與 Hudson 連續整合解決方案
@@ -46,6 +50,7 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
   2. 在命令提示字元中，會開啟至包含 Hudson WAR 的資料夾，並執行 Hudson WAR。 例如，如果您已下載 3.1.2 版：
      
       `java -jar hudson-3.1.2.war`
+
   3. 在瀏覽器中開啟 `http://localhost:8080/`。 這將會開啟 Hudson 儀表板。
   4. 第一次使用 Hudson 時，請到 `http://localhost:8080/`完成初始設定。
   5. 在完成初始設定之後，取消執行中的 Hudson WAR 執行個體，重新啟動 Hudson WAR，並重新開啟 Hudson 儀表板：`http://localhost:8080/`，您可以使用此儀表板來安裝與設定 Azure 儲存體外掛程式。
@@ -91,12 +96,15 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
 2. 將此工作命名為 **MyJob**，按一下 [Build a free-style software job]，然後按一下 [確定]。
 3. 在工作組態的 [Build] 區段中，按一下 [Add build step] 並選擇 [Execute Windows batch command]。
 4. 在 [Command] 中，使用下列命令：
-   
+
+    ```   
         md text
         cd text
         echo Hello Azure Storage from Hudson > hello.txt
         date /t > date.txt
         time /t >> date.txt
+    ```
+
 5. 在工作組態的 [Post-build Actions] 區段中，按一下 [Upload artifacts to Microsoft Azure Blob storage]。
 6. 在 [儲存體帳戶名稱] 中，選取要使用的儲存體帳戶。
 7. 在 [容器名稱] 中，指定容器名稱。 (如果上傳組建成品時該容器尚未存在，將會建立該容器。)您可以使用環境變數，就這個範例而言，請輸入 **${JOB_NAME}** 作為容器名稱。
@@ -105,7 +113,7 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
    
     在您為 [Execute Windows batch command] 輸入指令碼的 [命令] 區段下方是個連結，可連結到 Hudson 認可的環境變數。 按一下該連結即可了解各環境變數名稱和描述。 請注意，含有特殊字元的環境變數 (例如 **BUILD_URL** 環境變數) 不能當做容器名稱或共同虛擬路徑。
 8. 在此範例中，請按一下 [Make new container public by default]。 (如果您想要使用私用容器，則需要建立共用存取簽章來允許存取。 這已超出本文的範圍。 若要深入了解共用存取簽章，請參閱[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。)
-9. [選擇性] 如果您要在上傳組建成品之前清除容器的內容，請按一下 [Clean container before uploading](若不想清除容器的內容，請維持不核取.md)。
+9. [選擇性] 如果您要在上傳組建成品之前清除容器的內容，請按一下 [Clean container before uploading]  (若不想清除容器的內容，請維持不核取)。
 10. 在 [List of Artifacts to upload]，輸入 **text/*.txt**。
 11. 在 [Common virtual path for uploaded artifacts]，輸入 **${BUILD\_ID}/${BUILD\_NUMBER}**。
 12. 按一下 [Save]  儲存您的設定。
@@ -162,6 +170,7 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
 
 如需詳細資訊，另請參閱 [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

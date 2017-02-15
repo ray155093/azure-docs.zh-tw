@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 12/09/2016
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6c9e285834707b668086ceab7fdde582f0cd87cc
+ms.sourcegitcommit: d9f6c8c73cb7803547053ec495812f993eb44c43
+ms.openlocfilehash: b2f8683be1dea938cba84766efe32287eeebb712
 
 
 ---
@@ -108,7 +108,7 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 
 您也可以使用相同的技術，以延後方式來處理貼文的點數和按讚數，建立最終一致的環境。
 
-至於粉絲，則需要有更多的技巧來處理。 DocumentDB 的文件大小限制為 512 Kb，因此您可能會考慮使用下列結構，以文件形式儲存粉絲：
+至於粉絲，則需要有更多的技巧來處理。 DocumentDB 擁有最大的文件大小限制，在讀取/寫入大型文件時可能會影響應用程式的延展性。 因此，您可能會考慮使用下列結構，以文件形式儲存粉絲：
 
     {
         "id":"234d-sd23-rrf2-552d",
@@ -121,7 +121,7 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
         ]
     }
 
-這可能適用於有數千位粉絲的使用者，但是，如果有一些名人加入我們的行列，這個處理方法最終將會觸達文件大小上限。
+這可能適用於有數千位粉絲的使用者，但是，如果有一些名人加入我們的行列，這個處理方法會導致產生大型文件，因此最終可能會觸達文件大小上限。
 
 為了解決這個問題，我們可以使用混合的處理方法。 我們可以在使用者統計資料文件中儲存粉絲人數：
 
@@ -234,6 +234,6 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

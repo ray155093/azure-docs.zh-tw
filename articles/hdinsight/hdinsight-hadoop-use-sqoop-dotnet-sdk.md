@@ -1,13 +1,13 @@
 ---
-title: 在 HDInsight 上使用 Hadoop Sqoop | Microsoft Docs
-description: 了解如何在 Hadoop 叢集與 Azure SQL Database 之間使用 HDInsight .NET SDK 執行 Sqoop 匯入和匯出。
+title: "在 HDInsight 上使用 Hadoop Sqoop | Microsoft Docs"
+description: "了解如何在 Hadoop 叢集與 Azure SQL Database 之間使用 HDInsight .NET SDK 執行 Sqoop 匯入和匯出。"
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 tags: azure-portal
 author: mumian
-
+ms.assetid: 87bacd13-7775-4b71-91da-161cb6224a96
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
@@ -15,25 +15,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/14/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 027ac136d4c4f242c75e8a25605ace646624d64d
+
 
 ---
-# 在 HDInsight 中使用 .NET SDK for Hadoop 執行 Sqoop 工作
+# <a name="run-sqoop-jobs-using-net-sdk-for-hadoop-in-hdinsight"></a>在 HDInsight 中使用 .NET SDK for Hadoop 執行 Sqoop 工作
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
 了解如何在 HDInsight 上使用 HDInsight .NET SDK for Hadoop 執行 Sqoop 工作，以進行 HDInsight 叢集與 Azure SQL Database 或 SQL Server Database 之間的匯入和匯出作業。
 
 > [!NOTE]
-> 本文中的步驟可以與 Windows 架構或 Linux 架構的 HDInsight 叢集搭配使用。不過，這些步驟只能從 Windows 用戶端運作。您可使用本文頂端的索引標籤選取器，以選擇其他方法。
+> 本文中的步驟可以與 Windows 架構或 Linux 架構的 HDInsight 叢集搭配使用。不過，這些步驟只能從 Windows 用戶端運作。 您可使用本文頂端的索引標籤選取器，以選擇其他方法。
 > 
 > 
 
-### 必要條件
+### <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
 
-* **HDInsight 中的 Hadoop 叢集**。請參閱[建立叢集與 SQL Database](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
+* **HDInsight 中的 Hadoop 叢集**。 請參閱 [建立叢集與 SQL Database](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
 
-## 使用 .NET SDK 執行 Sqoop
-HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。在本節中，您會建立 C# 主控台應用程式，將 hivesampletable 匯出至您稍早在本教學課程中建立的 SQL Database 資料表。
+## <a name="run-sqoop-using-net-sdk"></a>使用 .NET SDK 執行 Sqoop
+HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。 在本節中，您會建立 C# 主控台應用程式，將 hivesampletable 匯出至您稍早在本教學課程中建立的 SQL Database 資料表。
 
 **提交 Sqoop 工作**
 
@@ -104,17 +108,22 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
                 }
             }
         }
-4. 按 **F5** 鍵執行程式。
+4. 按 **F5** 鍵執行程式。 
 
-## 限制
+## <a name="limitations"></a>限制
 * 大量匯出 - 使用 Linux 型 HDInsight，用來將資料匯出至 Microsoft SQL Server 或 Azure SQL Database 的 Sqoop 連接器目前不支援大量插入。
 * 批次處理 - 使用 Linux 型 HDInsight，執行插入時若使用 `-batch` 參數，Sqoop 將會執行多個插入，而不是批次處理插入作業。
 
-## 後續步驟
-現在，您已了解如何使用 Sqoop。若要深入了解，請參閱：
+## <a name="next-steps"></a>後續步驟
+現在，您已了解如何使用 Sqoop。 若要深入了解，請參閱：
 
 * [搭配 HDInsight 使用 Oozie](hdinsight-use-oozie.md)：在 Oozie 工作流程中使用 Sqoop 動作。
 * [使用 HDInsight 分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)：使用 Hive 分析航班誤點資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
 * [將資料上傳至 HDInsight](hdinsight-upload-data.md)：尋找可將資料上傳至 HDInsight/Azure Blob 儲存體的其他方法。
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

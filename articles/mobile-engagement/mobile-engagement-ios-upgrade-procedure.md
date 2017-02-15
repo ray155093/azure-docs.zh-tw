@@ -1,19 +1,23 @@
 ---
-title: Azure Mobile Engagement iOS SDK 升級程序 | Microsoft Docs
-description: Azure Mobile Engagement iOS SDK 的最新更新與程序
+title: "Azure Mobile Engagement iOS SDK 升級程序 | Microsoft Docs"
+description: "Azure Mobile Engagement iOS SDK 的最新更新與程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 72a9e493-3f14-4e52-b6e2-0490fd04b184
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-ios
 ms.devlang: objective-c
 ms.topic: article
-ms.date: 09/14/2016
+ms.date: 12/13/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: c4b5b8bc05365ddc63b0d7a6a3c63eaee31af957
+ms.openlocfilehash: 37c7f133d079186f828d58cabce0d2a259efd085
+
 
 ---
 # <a name="upgrade-procedures"></a>升級程序
@@ -21,7 +25,7 @@ ms.author: piyushjo
 
 針對每個新版 SDK，您必須先取代 (在 xcode 中移除並重新匯入) EngagementSDK 與 EngagementReach 資料夾。
 
-## <a name="from-3.0.0-to-4.0.0"></a>從 3.0.0 到 4.0.0
+## <a name="from-300-to-400"></a>從 3.0.0 到 4.0.0
 ### <a name="xcode-8"></a>XCode 8
 從 SDK 4.0.0 版開始就必須要有 XCode 8。
 
@@ -85,12 +89,15 @@ XCode 8 可能會重設您的應用程式推播功能，請在您選取的目標
             [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
         }
 
-### <a name="if-you-already-have-your-own-unusernotificationcenterdelegate-implementation"></a>如果您已有自己的 UNUserNotificationCenterDelegate 實作
-SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SDK 會用它來監視在 iOS 10 或更新版本上執行的裝置中的 Engagement 通知生命週期。 如果 SDK 偵測到您的委派則不會使用它自己的實作，因為每個應用程式只可以有一個 UNUserNotificationCenter 委派。 這表示您必須將 Engagement 邏輯加入到您自己的委派。
+### <a name="resolve-unusernotificationcenter-delegate-conflicts"></a>解決 UNUserNotificationCenter 委派衝突
+
+如果您的應用程式或其中一個協力廠商程式庫都未實作 `UNUserNotificationCenterDelegate`，則可以略過這個部分。
+
+SDK 會用 `UNUserNotificationCenter` 委派來監視在 iOS 10 或更新版本上執行的裝置中的 Engagement 通知生命週期。 SDK 會實作自己的 `UNUserNotificationCenterDelegate` 通訊協定，但每個應用程式只能有一個 `UNUserNotificationCenter` 委派。 新增至 `UNUserNotificationCenter` 物件的任何其他委派會與 Engagement one 發生衝突。 如果 SDK 偵測到您的委派或任何其他協力廠商的委派，則不會使用它自己的實作來讓您有機會解決衝突。 您必須將 Engagement 邏輯新增至您自己的委派，以便解決衝突。
 
 有兩種方式可以達到這個目的。
 
-藉由直接將委派呼叫轉送給 SDK：
+提案 1，直接將委派呼叫轉送給 SDK：
 
     #import <UIKit/UIKit.h>
     #import "EngagementAgent.h"
@@ -117,7 +124,7 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SD
     }
     @end
 
-或藉由繼承自 `AEUserNotificationHandler` 類別
+或提案 2，繼承自 `AEUserNotificationHandler` 類別
 
     #import "AEUserNotificationHandler.h"
     #import "EngagementAgent.h"
@@ -145,10 +152,18 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SD
 
 > [!NOTE]
 > 您可以藉由將通知的 `userInfo` 字典傳遞給代理程式的 `isEngagementPushPayload:` 類別方法，來決定通知是否來自 Engagement。
-> 
-> 
 
-## <a name="from-2.0.0-to-3.0.0"></a>從 2.0.0 到 3.0.0
+請確定 `UNUserNotificationCenter` 物件的委派已設為您在 `application:willFinishLaunchingWithOptions:` 內的委派或應用程式委派的 `application:didFinishLaunchingWithOptions:` 方法。
+例如，如果您實作了上述提案 1：
+
+      - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+        // Any other code
+  
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        return YES;
+      }
+
+## <a name="from-200-to-300"></a>從 2.0.0 到 3.0.0
 停止支援 iOS 4.X。 從此版本開始，您的應用程式部署目標必須至少為 iOS 6。
 
 如果您在應用程式中使用 Reach，必須將`remote-notification` 值新增至 Info.plist 檔案中的 `UIBackgroundModes` 陣列，以接收遠端通知。
@@ -161,7 +176,7 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。 SD
     -(void)didFailToRetrieveLaunchMessage;
     -(void)didReceiveLaunchMessage:(AEPushMessage*)launchMessage;
 
-## <a name="from-1.16.0-to-2.0.0"></a>從 1.16.0 到 2.0.0
+## <a name="from-1160-to-200"></a>從 1.16.0 到 2.0.0
 以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。
 如果您是從較早版本移轉，請參閱 Capptain 網站，先移轉到 1.16 後再套用以下程序。
 
@@ -200,6 +215,9 @@ SmartAd 追蹤已從 SDK 移除，因此您必須移除 `AETrackModule` 類別�
 * `CapptainUtils` 類別已重新命名為 `EngagementUtils`。
 * `CapptainViewController` 類別已重新命名為 `EngagementViewController`。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 

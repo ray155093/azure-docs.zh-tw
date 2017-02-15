@@ -1,13 +1,13 @@
 ---
-title: 何謂 Microsoft Power BI Embedded？
-description: Power BI Embedded 可讓您將 Power BI 報表整合到 Web 或行動應用程式中，您就不需要建立自訂解決方案來為您的使用者將資料視覺化
+title: "何謂 Microsoft Power BI Embedded？"
+description: "Power BI Embedded 可讓您將 Power BI 報表整合到 Web 或行動應用程式中，您就不需要建立自訂解決方案來為您的使用者將資料視覺化"
 services: power-bi-embedded
-documentationcenter: ''
+documentationcenter: 
 author: guyinacube
 manager: erikre
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 03649b72-b7d7-40ca-b077-12356d72d4f3
 ms.service: power-bi-embedded
 ms.devlang: NA
 ms.topic: article
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 10/04/2016
 ms.author: asaxton
+translationtype: Human Translation
+ms.sourcegitcommit: 830eb6627cae71f358b9790791b1d86f7c82c566
+ms.openlocfilehash: 75994d06c147fe0554dc5549df5816e6faaf8fb6
+
 
 ---
-# <a name="what-is-microsoft-power-bi-embedded?"></a>何謂 Microsoft Power BI Embedded？
+# <a name="what-is-microsoft-power-bi-embedded"></a>何謂 Microsoft Power BI Embedded？
 運用 **Power BI Embedded**，您可以將 Power BI 報告整合至您的 Web 應用程式或行動應用程式。
 
 ![](media\\powerbi-embedded-whats-is\\what-is.png)
@@ -25,7 +29,7 @@ ms.author: asaxton
 Power BI Embedded 是一個 **Azure 服務** ，可讓 ISV 和應用程式開發人員在其應用程式中呈現 Power BI 資料體驗。 身為開發人員，您已建置應用程式，這些應用程式有它們自己的使用者和個別的功能集。 這些應用程式也可能已經內建一些資料元素，例如現在可以由 Microsoft Power BI Embedded 提供的圖表和報表。 使用者不需要 Power BI 帳戶就可以使用您的應用程式。 他們可以像以前一樣繼續登入您的應用程式，以及在不需要任何額外授權的情況下，檢視 Power BI 記錄體驗並與它們互動。
 
 ## <a name="licensing-for-microsoft-power-bi-embedded"></a>Microsoft Power BI Embedded 授權
-在 **Microsoft Power BI Embedded** 使用模型中，Power BI 的授權並不是使用者的責任。  而是由使用視覺效果之應用程式的開發人員購買 **轉譯器** ，並向擁有那些資源的訂用帳戶收費。
+在 **Microsoft Power BI Embedded** 使用模型中，Power BI 的授權並不是使用者的責任。  而是由使用視覺效果之應用程式的開發人員購買**工作階段**，並向擁有那些資源的訂用帳戶收費。 其他資訊請見定價頁面 (https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/)。
 
 ## <a name="microsoft-power-bi-embedded-conceptual-model"></a>Microsoft Power BI Embedded 概念模型
 ![](media\\powerbi-embedded-whats-is\\model.png)
@@ -49,7 +53,7 @@ Power BI Embedded 是一個 **Azure 服務** ，可讓 ISV 和應用程式開發
 預覽版中可以使用快取的資料集  但是，在資料已載入 **Microsoft Power BI Embedded** 之後，您無法重新整理快取的資料。
 
 ## <a name="authentication-and-authorization-with-app-tokens"></a>應用程式權杖中的驗證與授權
-**Microsoft Power BI Embedded** 會延遲到您的應用程式執行所有必要的使用者驗證和授權。 並沒有明確要求您的使用者必須是 Azure Active Directory (Azure AD) 的客戶。  您的應用程式會透過使用「應用程式驗證權杖」(應用程式權杖)，將轉譯 Power BI 報表的授權出示給 **Microsoft Power BI Embedded**。  這些 **應用程式權杖** 會在您的應用程式想要轉譯報表時視需要建立。  請參閱 [應用程式權杖](power-bi-embedded-get-started-sample.md#key-flow)。
+**Microsoft Power BI Embedded** 會延遲到您的應用程式執行所有必要的使用者驗證和授權。 並沒有明確要求您的使用者必須是 Azure Active Directory (Azure AD) 的客戶。  您的應用程式會透過使用「應用程式驗證權杖」(應用程式權杖)，將轉譯 Power BI 報表的授權出示給 **Microsoft Power BI Embedded**。  這些 **應用程式權杖** 會在您的應用程式想要轉譯報表時視需要建立。
 
 ![](media\\powerbi-embedded-whats-is\\app-tokens.png)
 
@@ -65,6 +69,8 @@ Power BI Embedded 是一個 **Azure 服務** ，可讓 ISV 和應用程式開發
 * [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 * [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

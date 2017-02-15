@@ -14,11 +14,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 11/16/2016
+ms.date: 01/03/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 22156a9f3c5a57e10cad96661f50531b309c3a04
-ms.openlocfilehash: a25d394e83d7945f0ea50de1fc65a68a96190a34
+ms.sourcegitcommit: 425637599df40ac3be23984785e4f3292d72978d
+ms.openlocfilehash: 7c7a300b620b1e7bd0cd1b816e575f2d57fee80a
 
 
 ---
@@ -28,28 +28,32 @@ ms.openlocfilehash: a25d394e83d7945f0ea50de1fc65a68a96190a34
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 
 ## <a name="choose-the-vm-image-from-the-marketplace"></a>從 Marketplace 選擇 VM 映像
-我們使用 Windows Server 2012 R2 資料中心映像做為範例，這只是 Azure 提供眾多映像中的一種。 您的映像選擇取決於訂用帳戶。 例如，某些桌面映像可供 [MSDN 訂閱者](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)使用。
+我們使用 Windows Server 2016 資料中心映像做為範例，這只是 Azure 提供眾多映像中的一種。 您的映像選擇取決於訂用帳戶。 例如，某些桌面映像可供 [MSDN 訂閱者](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)使用。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在中樞功能表上，依序按一下 [新增] > [計算] > [Windows Server 2012 R2 資料中心]。
+2. 從左上角開始，按一下 [新增] > [計算] > [Windows Server 2016 資料中心]。
    
     ![顯示在入口網站中可用 Azure VM 映像的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/marketplace-new.png)
-3. 在 [Windows Server 2012 R2 資料中心] 刀鋒視窗的 [選取部署模型] 中，驗證是否已選取 [Resource Manager]。 按一下 [建立] 。
+3. 在 [Windows Server 2016 資料中心] 刀鋒視窗的 [選取部署模型] 中，驗證是否已選取 [Resource Manager]。 按一下 [建立] 。
    
     ![顯示可針對 VM 選取的部署模型的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/deployment-model.png)
 
 ## <a name="create-the-windows-virtual-machine"></a>建立 Windows 虛擬機器
 選取映像之後，您可以使用預設設定並快速建立虛擬機器。
 
-1. 在 [基本概念] 刀鋒視窗上，輸入虛擬機器的 [名稱]。 名稱必須為 1-15 個字元，不能包含特殊字元。
-2. 輸入將用來在 VM 上建立本機帳戶的 [使用者名稱] 及強式 [密碼]。 此本機帳戶用來登入及管理 VM。 
+1. 在 [基本概念] 刀鋒視窗上，輸入虛擬機器的 [名稱]。 在此範例中，HeroVM 是虛擬機器的名稱。 名稱必須為 1-15 個字元，不能包含特殊字元。
+2. 輸入將用來在 VM 上建立本機帳戶的 [使用者名稱] 及強式 [密碼]。 此本機帳戶用來登入及管理 VM。 在此範例中，azureuser 是使用者名稱。
    
     密碼長度必須是 8-123 個字元，且符合下列四個複雜性需求的其中三項：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。 進一步了解 [使用者名稱和密碼需求](virtual-machines-windows-faq.md#what-are-the-username-requirements-when-creating-a-vm)。
-3. 選取現有的[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)，或輸入新群組的名稱。 輸入 Azure 資料中心的 [位置]，例如 [美國西部]。 
+
+3. 選取現有的[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)，或輸入新群組的名稱。 在此範例中，HeroVMRG 是資源群組的名稱。
+
+4. 選取 Azure 資料中心的 [位置]。 在此範例中，[美國東部] 是位置。 
+
 4. 當您完成時，按一下 [確定]  繼續下一個區段。 
    
     ![顯示用於設定 Azure VM 之 **[基本概念]** 刀鋒視窗上的設定的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/basics-blade.png)
-5. 選擇 VM [大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，然後按一下 [選取] 以繼續。 
+5. 選擇 VM [大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，然後按一下 [選取] 以繼續。 在此範例中，[DS1_V2 標準] 是 VM 大小。
    
     ![顯示您可以選取之 Azure VM 大小的 [大小] 刀鋒視窗的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/size-blade.png)
 6. 在 [設定]  刀鋒視窗上，您可以變更儲存體和網路選項。 在本教學課程中，接受預設設定。 如果您選取支援的虛擬機器大小，可以藉由選取 [磁碟類型] 中的 [進階 (SSD)] 嘗試 Azure 進階儲存體。 當您完成變更時，請按一下 [確定] 。
@@ -58,10 +62,10 @@ ms.openlocfilehash: a25d394e83d7945f0ea50de1fc65a68a96190a34
 7. 按一下 [摘要]  以檢閱您的選擇。 當您看到 [通過驗證] 訊息時，請按一下 [確定]。
    
     ![顯示針對 Azure VM 所做之設定選擇的 [摘要] 頁面的螢幕擷取畫面](./media/virtual-machines-windows-hero-tutorial/summary-blade.png)
-8. 當 Azure 建立虛擬機器時，您可以在 [中樞] 功能表的 [虛擬機器]  中追蹤進度。 
+8. 當 Azure 建立虛擬機器時，您可以按一下左邊的 [虛擬機器] 來追蹤進度。 建立 VM 後，狀態會變更為 [執行中]。
 
 ## <a name="connect-to-the-virtual-machine-and-sign-on"></a>連線至虛擬機器並登入
-1. 在 [中樞] 功能表上，按一下 [虛擬機器] 。
+1. 按一下左邊的 [虛擬機器]。
 2. 然後從清單中選取虛擬機器。
 3. 在虛擬機器的刀鋒視窗中，按一下 [ **連線**]。 這會建立並下載遠端桌面通訊協定檔案 (.rdp 檔案)，該檔案就像是用來連接到您的電腦的捷徑。 您可能想要將此檔案儲存至桌面，以便存取。 **開啟** 此檔案以連接到您的 VM。
    
@@ -95,6 +99,6 @@ ms.openlocfilehash: a25d394e83d7945f0ea50de1fc65a68a96190a34
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

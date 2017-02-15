@@ -1,12 +1,12 @@
 ---
-title: 從 Azure 區域遺失中復原的復原技術指導 | Microsoft Docs
-description: 了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原的相關文章
-services: ''
+title: "從 Azure 區域遺失中復原的復原技術指導 | Microsoft Docs"
+description: "了解和設計復原性、高可用性、容錯的應用程式及規劃災害復原的相關文章"
+services: 
 documentationcenter: na
 author: adamglick
 manager: saladki
-editor: ''
-
+editor: 
+ms.assetid: f2f750aa-9305-487e-8c3f-1f8fbc06dc47
 ms.service: resiliency
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: aglick
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 15f0183d8ada59227a412788f1d53a9db0e712c8
+
 
 ---
-# <a name="azure-resiliency-technical-guidance:-recovery-from-a-region-wide-service-disruption"></a>Azure 復原技術指導：從全區域服務中斷復原
+# <a name="azure-resiliency-technical-guidance-recovery-from-a-region-wide-service-disruption"></a>Azure 復原技術指導：從全區域服務中斷復原
 Azure 在實體和邏輯上劃分單位，稱為區域。 區域由一或多個非常接近的資料中心組成。 本文撰寫時，Azure 在全球各地有 24 個區域。
 
 在罕見的情況下，整個區域內的設施可能變得無法存取 (例如，由於網路故障)。 或者，設施可能完全喪失 (例如，因為天然災害)。 本節說明 Azure 可用來建立跨區域分散之應用程式的能力。 這樣的分散有助於將某個區域失常而波及其他區域的可能性降到最低。
@@ -53,7 +57,7 @@ Azure 在實體和邏輯上劃分單位，稱為區域。 區域由一或多個�
 * **請留意異地容錯移轉多個 VM 磁碟之後潛在的一致性問題**。 VM 磁碟會實作成 Azure 儲存體 Blob，並具有相同的異地複寫特性。 除非使用 [Azure 備份](https://azure.microsoft.com/services/backup/) ，否則不能保證磁碟之間的一致性，因為異地複寫並非同步，而且會獨立複寫。 異地容錯移轉後，保證個別 VM 磁碟處於當機時保持一致狀態，但不保證跨磁碟維持一致。 這在某些情況下會造成問題 (例如，磁碟串接的情況)。
 
 ## <a name="storage"></a>儲存體
-### <a name="recovery-by-using-geo-redundant-storage-of-blob,-table,-queue-and-vm-disk-storage"></a>使用 Blob、資料表、佇列和 VM 磁碟儲存體的異地備援儲存體來復原
+### <a name="recovery-by-using-geo-redundant-storage-of-blob-table-queue-and-vm-disk-storage"></a>使用 Blob、資料表、佇列和 VM 磁碟儲存體的異地備援儲存體來復原
 在 Azure 中，blob、資料表、佇列和 VM 磁碟都預設為異地複寫。 這稱為異地備援儲存體 (GRS)。 GRS 會將儲存體資料複寫至特定地理區域內數百英哩遠的配對資料中心。 GRS 目的是在資料中心重大災害情況下提供額外的持久性。 Microsoft 會控制容錯移轉時機，只有在確定原始主要位置不可能於合理時間內復原的重大災害下，才會進行容錯移轉。 在某些情況下，這可能需要好幾天。 雖然服務等級協定尚未涵蓋同步處理間隔，但通常幾分鐘之內就會複寫資料。
 
 進行異地容錯移轉時，不會變更帳戶的存取方式 (URL 和帳戶金鑰不會變更)。 不過，儲存體帳戶在容錯移轉之後會移至不同區域。 這可能會影響儲存體帳戶需要有地緣性的應用程式。 即使服務和應用程式不要求儲存體帳戶必須在相同資料中心內，由於跨資料中心的延遲和頻寬費用，仍可能不得已必須暫時將流量移至容錯移轉區域。 這個因素需要納入整體災害復原策略中。
@@ -62,12 +66,12 @@ Azure 在實體和邏輯上劃分單位，稱為區域。 區域由一或多個�
 
 如需 GRS 和 RA-GRS 儲存體的詳細資訊，請參閱 [Azure 儲存體複寫](../storage/storage-redundancy.md)。
 
-### <a name="geo-replication-region-mappings:"></a>異地複寫區域對應︰
+### <a name="geo-replication-region-mappings"></a>異地複寫區域對應︰
 必須知道資料異地複寫到何處，才能知道需要儲存體地緣性的其他資料執行個體要部署到何處。 下表顯示主要和次要位置配對：
 
 [!INCLUDE [paired-region-list](../../includes/paired-region-list.md)]
 
-### <a name="geo-replication-pricing:"></a>異地複寫價格：
+### <a name="geo-replication-pricing"></a>異地複寫價格：
 Azure 儲存體的目前價格包含異地複寫。 這稱為異地備援儲存體 (GRS)。 如果您不想異地複寫您的資料，您可以在帳戶中停用異地複寫。 這稱為本地備援儲存體，按照 GRS 的折扣價收費。
 
 ### <a name="determining-if-a-geo-failover-has-occurred"></a>判斷是否發生異地容錯移轉
@@ -93,7 +97,7 @@ Azure SQL Database 提供兩種復原：異地還原和作用中異地複寫。
 [作用中異地複寫](../sql-database/sql-database-geo-replication-overview.md) 適用於所有資料庫層。 其設計是針對比異地還原需要更主動復原的應用程式。 透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。 您可以起始容錯移轉至任何次要資料庫。 此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。 如需詳細資訊，請參閱[設定異地複寫](../sql-database/sql-database-geo-replication-portal.md)和[容錯移轉至次要資料庫](../sql-database/sql-database-geo-replication-failover-portal.md)。 請參閱[使用 SQL Database 的主動式異地複寫設計雲端災害復原應用程式](../sql-database/sql-database-designing-cloud-solutions-for-disaster-recovery.md)和[使用 SQL Database 主動式異地複寫管理雲端應用程式的輪流升級](../sql-database/sql-database-manage-application-rolling-upgrade.md)，以取得如何設計和實作應用程式以及在不停機情況下升級應用程式的詳細說明。
 
 ### <a name="sql-server-on-virtual-machines"></a>虛擬機器上的 SQL Server
-Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項可進行復原和維持高可用性。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。
+Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項可進行復原和維持高可用性。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ## <a name="other-azure-platform-services"></a>其他 Azure 平台服務
 嘗試在多個 Azure 區域執行您的雲端服務時，您必須考量每個相依性的含意。 在下列各節中，特定服務的指引假設您必須在替代的 Azure 資料中心內使用相同的 Azure 服務。 這牽涉到組態和資料複寫工作。
@@ -104,13 +108,10 @@ Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項
 > 
 
 ### <a name="service-bus"></a>服務匯流排
-Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。 不過，還需要考量佇列訊息的持久性。 跨 Azure 區域複寫訊息有幾種策略。 如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱 [將應用程式與服務匯流排中斷和災害隔絕的最佳作法](../service-bus/service-bus-outages-disasters.md)。 關於其他可用性考量，請參閱 [服務匯流排 (可用性)](resiliency-technical-guidance-recovery-local-failures.md#other-azure-platform-services)。
+Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。 因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。 不過，還需要考量佇列訊息的持久性。 跨 Azure 區域複寫訊息有幾種策略。 如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱 [將應用程式與服務匯流排中斷和災害隔絕的最佳作法](../service-bus-messaging/service-bus-outages-disasters.md)。 關於其他可用性考量，請參閱 [服務匯流排 (可用性)](resiliency-technical-guidance-recovery-local-failures.md#other-azure-platform-services)。
 
-### <a name="web-apps"></a>Web Apps
-若要將 Azure Web 應用程式移轉到次要 Azure 區域，您必須有可發佈的網站備份。 如果運作中斷未波及整個 Azure 資料中心，或許可以使用 FTP 下載網站內容的最新備份。 然後，在替代區域建立新的 Web 應用程式，除非您先前為了保留容量而已經這樣做。 將網站發佈到新的區域，並進行任何必要的組態變更。 這些變更可能包括資料庫連接字串或區域專用的其他設定。 如有需要，新增網站的 SSL 憑證，並變更 DNS CNAME 記錄，使自訂網域名稱指向重新部署的 Azure Web 應用程式 URL。
-
-### <a name="mobile-services"></a>行動服務
-在次要 Azure 區域，建立應用程式的備份行動服務。 同時，將 Azure SQL Database 還原至替代區域。 接著，使用 Azure 命令列工具，將行動服務移至替代區域。 最後，設定行動服務來使用已還原的資料庫。 如需此程序的詳細資訊，請參閱 [發生災害時回復行動服務](../mobile-services/mobile-services-disaster-recovery.md)。 關於其他可用性考量，請參閱 [行動服務 (可用性)](resiliency-technical-guidance-recovery-local-failures.md#mobile-services)。
+### <a name="app-service"></a>App Service
+若要將 Azure App Service 應用程式，例如 Web Apps 或 Mobile Apps 移轉到次要 Azure 區域，您必須有可供發佈的網站備份。 如果運作中斷未波及整個 Azure 資料中心，或許可以使用 FTP 下載網站內容的最新備份。 然後，在替代區域建立新的應用程式，除非您先前為了保留容量而已經這樣做。 將網站發佈到新的區域，並進行任何必要的組態變更。 這些變更可能包括資料庫連接字串或區域專用的其他設定。 如有需要，新增網站的 SSL 憑證，並變更 DNS CNAME 記錄，使自訂網域名稱指向重新部署的 Azure Web 應用程式 URL。
 
 ### <a name="hdinsight"></a>HDInsight
 根據預設，與 HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。 HDInsight 要求 Hadoop 叢集處理 MapReduce 作業，以及包含要分析之資料的儲存體帳戶，必須並存於相同的區域。 假設您使用 Azure 儲存體可用的異地複寫功能，如果主要區域因為某些原因而無法再使用，您可以在已複寫資料的次要地區存取您的資料。 您可以在已複寫資料的區域建立新的 Hadoop 叢集，然後繼續處理資料。 關於其他可用性考量，請參閱 [HDInsight (可用性)](resiliency-technical-guidance-recovery-local-failures.md#other-azure-platform-services)。
@@ -155,18 +156,12 @@ Azure 媒體服務在編碼和串流處理方面有不同的復原方法。 一�
 2. 在替代區域中設定服務匯流排命名空間。
 3. 針對跨區域訊息考慮採用自訂的複寫策略。
 
-## <a name="web-apps-checklist"></a>Web Apps 檢查清單
-1. 檢閱此文件的＜Web Apps＞一節。
+## <a name="app-service-checklist"></a>App Service 檢查清單
+1. 檢閱此文件的＜App Service＞一節。
 2. 在主要區域外部維護網站備份。
 3. 如果是局部性中斷運作，嘗試使用 FTP 擷取目前站台。
 4. 規劃將網站部署到替代區域中的新網站或現有網站。
 5. 規劃應用程式與 DNS CNAME 記錄的設定變更。
-
-## <a name="mobile-services-checklist"></a>行動服務檢查清單
-1. 檢閱此文件的＜行動服務＞一節。
-2. 在替代區域建立備份行動服務。
-3. 管理相關聯 Azure SQL Database 的備份供容錯移轉期間還原。
-4. 使用 Azure 命令列工具來移動行動服務。
 
 ## <a name="hdinsight-checklist"></a>HDInsight 檢查清單
 1. 檢閱此文件的＜HDInsight＞一節。
@@ -190,6 +185,9 @@ Azure 媒體服務在編碼和串流處理方面有不同的復原方法。 一�
 ## <a name="next-steps"></a>後續步驟
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](resiliency-technical-guidance.md)。 這一系列的下一篇文章著重於 [從內部部署資料中心復原到 Azure](resiliency-technical-guidance-recovery-on-premises-azure.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

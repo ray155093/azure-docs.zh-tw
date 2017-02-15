@@ -1,34 +1,36 @@
 ---
-title: 資料轉換︰處理和轉換資料 | Microsoft Docs
-description: 了解如何使用 Hadoop、Machine Learning 或 Azure Data Lake Analytics 在 Azure Data Factory 中轉換資料或處理資料。
-keywords: 資料轉換, 處理資料, 轉換資料, 轉換活動
+title: "資料轉換︰處理和轉換資料 | Microsoft Docs"
+description: "了解如何使用 Hadoop、Machine Learning 或 Azure Data Lake Analytics 在 Azure Data Factory 中轉換資料或處理資料。"
+keywords: "資料轉換, 處理資料, 轉換資料, 轉換活動"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: sharonlo101
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 39786731-1e4b-40a4-81b7-d06e127427aa
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/23/2016
+ms.date: 01/25/2017
 ms.author: shlo
+translationtype: Human Translation
+ms.sourcegitcommit: a4121f8857fa9eaeb1cf1bca70e29666f6a04f63
+ms.openlocfilehash: 2714bfbf2bf35b11ca1ba6ab8b7e4e6bf5431f45
+
 
 ---
 # <a name="transform-data-in-azure-data-factory"></a>Azure Data Factory 中的資料轉換
 > [!div class="op_single_selector"]
-> [Hive](data-factory-hive-activity.md)  
-> [Pig](data-factory-pig-activity.md)  
-> [MapReduce](data-factory-map-reduce.md)  
-> [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
-> [Machine Learning](data-factory-azure-ml-batch-execution-activity.md) 
-> [預存程序](data-factory-stored-proc-activity.md)
-> [Data Lake Analytics U-SQL](data-factory-usql-activity.md)
-> [.NET 自訂](data-factory-use-custom-activities.md)
-> 
-> 
+> * [Hive](data-factory-hive-activity.md)  
+> * [Pig](data-factory-pig-activity.md)  
+> * [MapReduce](data-factory-map-reduce.md)  
+> * [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
+> * [機器學習服務](data-factory-azure-ml-batch-execution-activity.md) 
+> * [預存程序](data-factory-stored-proc-activity.md)
+> * [資料湖分析 U-SQL](data-factory-usql-activity.md)
+> * [.NET 自訂](data-factory-use-custom-activities.md)
 
 ## <a name="overview"></a>概觀
 本文說明 Azure Data Factory 中的資料轉換活動，您可用來轉換未經處理資料，並將其處理為預測和見解。 轉換活動會在計算環境中執行，例如 Azure HDInsight 叢集或 Azure Batch。 它會提供每個轉換活動的詳細資訊文章連結。
@@ -67,7 +69,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 Azure Mac
 ## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL 活動
 Data Lake Analytics U-SQL 活動會在 Azure Data Lake Analytics 叢集上執行 U-SQL 指令碼。 如需詳細資料，請參閱 [U-SQL 活動](data-factory-usql-activity.md) 。 
 
-## <a name=".net-custom-activity"></a>.NET 自訂活動
+## <a name="net-custom-activity"></a>.NET 自訂活動
 如果您需要以 Data Factory 不支援的方法轉換資料，可以利用自己的資料處理邏輯建立自訂活動，然後在管線中使用活動。 您可以將自訂 .NET 活動設定為使用 Azure Batch 服務或 Azure HDInsight 叢集來執行。 如需詳細資訊請參閱 [使用自訂活動](data-factory-use-custom-activities.md) 。 
 
 您可以建立自訂活動，以便在已安裝 R 的 HDInsight 叢集上執行 R 指令碼。 請參閱 [使用 Azure Data Factory 執行 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。 
@@ -94,6 +96,9 @@ Azure Data Factory 支援下列資料轉換活動和活動計算環境。 可將
 | [資料湖分析 U-SQL](data-factory-usql-activity.md) |Azure 資料湖分析 |
 | [DotNet](data-factory-use-custom-activities.md) |HDInsight [Hadoop] 或 Azure Batch |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

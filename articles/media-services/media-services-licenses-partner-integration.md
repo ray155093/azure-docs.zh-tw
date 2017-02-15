@@ -1,12 +1,12 @@
 ---
-title: 使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs
-description: 本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。
+title: "使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs"
+description: "本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 5bcad5a4-c0bb-4871-9cce-808a913c53e6
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b4211cef3b4f3ffa2c0c97fd7650606f3eef7008
+
 
 ---
 # <a name="using-partners-to-deliver-widevine-licenses-to-azure-media-services"></a>使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務
@@ -39,6 +43,9 @@ Microsoft Azure 媒體服務可讓您提供受 Widevine DRM 保護的 MPEG-DASH�
 
 [Mingfei 的部落格](https://azure.microsoft.com/blog/azure-media-services-adds-google-widevine-packaging-for-delivering-multi-drm-stream/)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: Cloud Cruiser 和 Microsoft Azure 計費 API 整合 | Microsoft Docs
-description: 提供 Microsoft Azure 計費合作夥伴 Cloud Cruiser 將 Azure 計費 API 整合至其產品的經驗所得來的獨特觀點。  這特別適用於有興趣使用/嘗試將 Cloud Cruiser 用於 Microsoft Azure Pack 的客戶。
-services: ''
-documentationcenter: ''
+title: "Cloud Cruiser 和 Microsoft Azure 計費 API 整合 | Microsoft Docs"
+description: "提供 Microsoft Azure 計費合作夥伴 Cloud Cruiser 將 Azure 計費 API 整合至其產品的經驗所得來的獨特觀點。  這特別適用於有興趣使用/嘗試將 Cloud Cruiser 用於 Microsoft Azure Pack 的客戶。"
+services: 
+documentationcenter: 
 author: BryanLa
 manager: mbaldwin
-editor: ''
+editor: 
 tags: billing
-
+ms.assetid: b65128cf-5d4d-4cbd-b81e-d3dceab44271
 ms.service: billing
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 09/08/2016
 ms.author: mobandyo;sirishap;bryanla
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b1783823218a883fc9fdec05e835fb7249eed97d
+
 
 ---
 # <a name="cloud-cruiser-and-microsoft-azure-billing-api-integration"></a>Cloud Cruiser 和 Microsoft Azure 計費 API 整合
@@ -40,7 +44,7 @@ RateCard API 提供來自 Azure 的費率資訊。 以適當的認證進行驗�
         "MeterStatus": "Active"
     },
 
-### <a name="cloud-cruiser’s-interface-to-azure-ratecard-api"></a>Azure RateCard API 的 Cloud Cruiser 介面
+### <a name="cloud-cruisers-interface-to-azure-ratecard-api"></a>Azure RateCard API 的 Cloud Cruiser 介面
 Cloud Cruiser 可以用不同的方式運用 RateCard API 資訊。 在這篇文章中，我們將說明如何使用它進行 IaaS 工作負載成本模擬及分析。
 
 為了示範這個使用案例，請想像執行於 Microsoft Azure Pack (WAP) 之數個執行個體的工作負載。 目標是要在 Azure 上模擬相同的工作負載，並評估這類移轉的成本。 若要建立這個模擬，有兩個主要的工作要執行：
@@ -201,7 +205,7 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 Usage API �
 * 如果您想要探究範例程式碼，請查看 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?term=billing)上的＜Microsoft Azure 計費 API 程式碼範例＞。
 
 ### <a name="learn-more"></a>詳細資訊
-* 請參閱 [Azure 資源管理員概觀](resource-group-overview.md) 一文，以深入了解 Azure 資源管理員。
+* 請參閱 [Azure 資源管理員概觀](azure-resource-manager/resource-group-overview.md) 一文，以深入了解 Azure 資源管理員。
 
 <!--Image references-->
 
@@ -222,6 +226,6 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 Usage API �
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

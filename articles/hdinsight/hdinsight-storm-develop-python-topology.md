@@ -1,12 +1,12 @@
 ---
-title: 在 HDinsight 上於 Storm 拓撲中使用 Python 元件 | Microsoft Docs
-description: 了解如何在 Azure HDInsight 上從 Apache Storm 中Python 元件。 您將了解如何從 Java 和 Clojure 型 Storm 拓撲中使用 Python 元件。
+title: "在 HDinsight 上於 Storm 拓撲中使用 Python 元件 | Microsoft Docs"
+description: "了解如何在 Azure HDInsight 上從 Apache Storm 中Python 元件。 您將了解如何從 Java 和 Clojure 型 Storm 拓撲中使用 Python 元件。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: edd0ec4f-664d-4266-910c-6ecc94172ad8
 ms.service: hdinsight
 ms.devlang: python
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 09/27/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 4b667dda33c61c44090cf89ebeebece0b19c84ea
+
 
 ---
 # <a name="develop-apache-storm-topologies-using-python-on-hdinsight"></a>在 HDInsight 上使用 Python 開發 Apache Storm 拓撲
@@ -39,7 +43,7 @@ Storm 模組 (https://github.com/apache/storm/blob/master/storm-multilang/python
 
 另外，因為 Storm 叢集是以分散式方式執行，您必須確定任何 Python 元件所需的任何模組，可供叢集的所有背景工作角色節點使用。 對於多語言的資源，Storm 沒有辦法輕鬆完成此工作，您必須將所有相依性納入拓撲的 jar 檔案中，或在叢集的每一個背景工作角色節點上手動安裝相依性。
 
-### <a name="java-vs.-clojure-topology-definition"></a>Java 與Clojure 拓撲定義的比較
+### <a name="java-vs-clojure-topology-definition"></a>Java 與Clojure 拓撲定義的比較
 在兩種定義拓撲的方法，Clojure 是目前為止最簡單/最乾淨的方法，因為您可以在拓樸定義中直接參考 python 元件。 對於 Java 型拓樸定義，您也必須定義 Java 元件來處理一些工作，例如在 Python 元件傳回的 Tuple 中宣告欄位。
 
 本文件說明這兩種方法，並附上範例專案。
@@ -174,6 +178,9 @@ Java 在這裡叫用 Python，並執行含有實際 blot 邏輯的指令碼。 J
 * [如何使用 Python 串流處理 MapReduce 工作](hdinsight-hadoop-streaming-python.md)
 * [如何在 Pig 和 Hive 中使用 Python 使用者定義函數 (UDF)](hdinsight-python.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

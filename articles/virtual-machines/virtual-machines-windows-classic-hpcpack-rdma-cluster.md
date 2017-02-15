@@ -187,7 +187,7 @@ Microsoft HPC Pack 是免費提供的工具，可在內部部署環境中或 Azu
 * 如果您想要執行可存取 Azure RDMA 網路的 Linux MPI 應用程式，請參閱 [設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 <!--Image references-->
-[將暴增的工作負載移至 Azure]: ./media/virtual-machines-windows-classic-hpcpack-rdma-cluster/burst.png
+[burst]: ./media/virtual-machines-windows-classic-hpcpack-rdma-cluster/burst.png
 [iaas]: ./media/virtual-machines-windows-classic-hpcpack-rdma-cluster/iaas.png
 [pingpong1]: ./media/virtual-machines-windows-classic-hpcpack-rdma-cluster/pingpong1.png
 [pingpong2]: ./media/virtual-machines-windows-classic-hpcpack-rdma-cluster/pingpong2.png

@@ -1,12 +1,12 @@
 ---
-title: Configure webhooks on Azure metric alerts | Microsoft Docs
-description: Reroute Azure alerts to other non-Azure systems.
+title: "針對 Azure 度量警示設定 Webhook | Microsoft Docs"
+description: "重設 Azure 警示的路徑到其他非 Azure 系統。"
 author: kamathashwin
-manager: ''
-editor: ''
+manager: carolz
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 8b3ae540-1d19-4f3d-a635-376042f8a5bb
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,30 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
 ms.author: ashwink
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 62d6c15b9c360c74dc5d9436833bb4666048e523
+
 
 ---
-# <a name="configure-a-webhook-on-an-azure-metric-alert"></a>Configure a webhook on an Azure metric alert
-Webhooks allow you to route an Azure alert notification to other systems for post-processing or custom actions. You can use a webhook on an alert to route it to services that send SMS, log bugs, notify a team via chat/messaging services, or do any number of other actions. This article describes how to set a webhook on an Azure metric alert and what the payload for the HTTP POST to a webhook looks like. For information on the setup and schema for an Azure Activity Log alert (alert on events), [see this page instead](insights-auditlog-to-webhook-email.md).
+# <a name="configure-a-webhook-on-an-azure-metric-alert"></a>針對 Azure 度量警示設定 Webhook
+Webhook 可讓您將 Azure 警示通知路由到其他系統以進行後處理或自訂動作。 您可以針對警示使用 Webhook，以將警示路由到會傳送簡訊、記錄錯誤、透過聊天/傳訊服務通知小組，或進行任意數量之其他動作的服務。 本文說明如何針對 Azure 度量警示設定 Webhook，並說明 HTTP POST 對 Webhook 之承載的樣貌。 如需有關 Azure 活動記錄警示 (事件警示) 之設定和結構描述的資訊， [請改為參閱本頁](insights-auditlog-to-webhook-email.md)。
 
-Azure alerts HTTP POST the alert contents in JSON format, schema defined below, to a webhook URI that you provide when creating the alert. This URI must be a valid HTTP or HTTPS endpoint. Azure posts one entry per request when an alert is activated.
+Azure 警示會將警示內容以 JSON 格式 (定義如下的結構描述) HTTP POST 到您在建立警示時提供的 Webhook URI。 此 URI 必須是有效的 HTTP 或 HTTPS 端點。 當警示啟動時，Azure 會針對每個要求張貼一個項目。
 
-## <a name="configuring-webhooks-via-the-portal"></a>Configuring webhooks via the portal
-You can add or update the webhook URI in the Create/Update Alerts screen in the [portal](https://portal.azure.com/).
+## <a name="configuring-webhooks-via-the-portal"></a>透過入口網站設定 Webhook
+您可以在 [入口網站](https://portal.azure.com/)的 [建立/更新警示] 畫面中新增或更新 Webhook URI。
 
-![Add an alert Rule](./media/insights-webhooks-alerts/Alertwebhook.png)
+![新增警示規則](./media/insights-webhooks-alerts/Alertwebhook.png)
 
-You can also configure an alert to post to a webhook URI using the [Azure PowerShell Cmdlets](insights-powershell-samples.md#create-alert-rules), [Cross-Platform CLI](insights-cli-samples.md#work-with-alerts), or [Insights REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+您也可以使用 [Azure PowerShell Cmdlet](insights-powershell-samples.md#create-alert-rules)、[跨平台 CLI](insights-cli-samples.md#work-with-alerts) 或 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx) 設定警示以張貼至 Webhook URI。
 
-## <a name="authenticating-the-webhook"></a>Authenticating the webhook
-The webhook can authenticate using either of these methods:
+## <a name="authenticating-the-webhook"></a>驗證 Webhook
+Webhook 可使用下列其中一種方法來進行驗證︰
 
-1. **Token-based authorization** - The webhook URI is saved with a token ID, eg. `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
-2. **Basic authorization** - The webhook URI is saved with a username and password, eg. `https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar`
+1. **權杖型授權** - 所儲存的 Webhook URI 具有權杖識別碼，例如  `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
+2. **基本授權** - 所儲存的 Webhook URI 具有使用者名稱和密碼，例如  `https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar`
 
-## <a name="payload-schema"></a>Payload schema
-The POST operation contains the following JSON payload and schema for all metric-based alerts.
+## <a name="payload-schema"></a>承載結構描述
+POST 作業對於所有以計量為基礎的警示會包含下列 JSON 承載和結構描述。
 
-```
+```JSON
 {
 "status": "Activated",
 "context": {
@@ -71,44 +75,47 @@ The POST operation contains the following JSON payload and schema for all metric
 ```
 
 
-| Field | Mandatory | Fixed Set of Values | Notes |
+| 欄位 | 強制 | 一組固定值 | 注意事項 |
 |:--- |:--- |:--- |:--- |
-| status |Y |“Activated”, “Resolved” |Status for the alert based off of the conditions you have set. |
-| context |Y | |The alert context. |
-| timestamp |Y | |The time at which the alert was triggered. |
-| id |Y | |Every alert rule has a unique id. |
-| name |Y | |The alert name. |
-| description |Y | |Description of the alert. |
-| conditionType |Y |“Metric”, “Event” |Two types of alerts are supported. One based on a metric condition and the other based on an event in the Activity Log. Use this value to check if the alert is based on metric or event. |
-| condition |Y | |The specific fields to check for based on the conditionType. |
-| metricName |for Metric alerts | |The name of the metric that defines what the rule monitors. |
-| metricUnit |for Metric alerts |"Bytes", "BytesPerSecond", "Count", "CountPerSecond", "Percent", "Seconds" |The unit allowed in the metric. [Allowed values are listed here](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx). |
-| metricValue |for Metric alerts | |The actual value of the metric that caused the alert. |
-| threshold |for Metric alerts | |The threshold value at which the alert is activated. |
-| windowSize |for Metric alerts | |The period of time that is used to monitor alert activity based on the threshold. Must be between 5 minutes and 1 day. ISO 8601 duration format. |
-| timeAggregation |for Metric alerts |"Average", "Last", "Maximum", "Minimum", "None", "Total" |How the data that is collected should be combined over time. The default value is Average. [Allowed values are listed here](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx). |
-| operator |for Metric alerts | |The operator used to compare the current metric data to the set threshold. |
-| subscriptionId |Y | |Azure subscription ID. |
-| resourceGroupName |Y | |Name of the resource group for the impacted resource. |
-| resourceName |Y | |Resource name of the impacted resource. |
-| resourceType |Y | |Resource type of the impacted resource. |
-| resourceId |Y | |Resource ID of the impacted resource. |
-| resourceRegion |Y | |Region or location of the impacted resource. |
-| portalLink |Y | |Direct link to the portal resource summary page. |
-| properties |N |Optional |Set of `<Key, Value>` pairs (i.e. `Dictionary<String, String>`) that includes details about the event. The properties field is optional. In a custom UI or Logic app-based workflow, users can enter key/values that can be passed via the payload. The alternate way to pass custom properties back to the webhook is via the webhook uri itself (as query parameters) |
+| status |Y |“Activated”、“Resolved” |以您設定的條件為基礎的警示狀態。 |
+| context |Y | |警示內容。 |
+| timestamp |Y | |警示觸發的時間。 |
+| id |Y | |每個警示規則都有唯一的識別碼。 |
+| 名稱 |Y | |警示名稱。 |
+| 說明 |Y | |警示的描述。 |
+| conditionType |Y |“Metric”、“Event” |支援兩種類型的警示。 一種根據度量條件，另一種根據活動記錄中的事件。 使用此值來檢查警示是根據度量或事件。 |
+| condition |Y | |根據 conditionType 所要檢查的特定欄位。 |
+| metricName |用於計量警示 | |定義規則所監視的計量名稱。 |
+| metricUnit |用於計量警示 |"Bytes"、"BytesPerSecond"、"Count"、"CountPerSecond"、"Percent"、"Seconds" |計量允許的單位。 [允許的值在此列出](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx)。 |
+| metricValue |用於計量警示 | |造成警示的計量實際值。 |
+| threshold |用於計量警示 | |會啟動警示的臨界值。 |
+| windowSize |用於計量警示 | |根據 threshold 用來監視警示活動的時間長度。 必須介於 5 分鐘到 1 天之間。 ISO 8601 持續時間格式。 |
+| timeAggregation |用於計量警示 |"Average"、"Last"、"Maximum"、"Minimum"、"None"、"Total" |收集的資料應如何隨著時間結合。 預設值為 Average。 [允許的值在此列出](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx)。 |
+| operator |用於計量警示 | |用來比較目前之度量資料與設定之臨界值的運算子。 |
+| subscriptionId |Y | |Azure 訂用帳戶識別碼。 |
+| resourceGroupName |Y | |受影響資源的資源群組的名稱。 |
+| resourceName |Y | |受影響資源的資源名稱。 |
+| resourceType |Y | |受影響資源的資源類型。 |
+| resourceId |Y | |受影響資源的資源識別碼。 |
+| resourceRegion |Y | |受影響資源的區域或位置。 |
+| portalLink |Y | |入口網站資源摘要頁面的直接連結。 |
+| 屬性 |N |選用 |一組包含事件相關詳細資料的 `<Key, Value>` 配對 (也就是 `Dictionary<String, String>`)。 properties 欄位是選擇性的。 在自訂 UI 或邏輯應用程式的工作流程中，使用者可以輸入可透過承載傳遞的索引鍵/值。 另一種將自訂屬性傳回給 Webhook 的替代方式是透過 Webhook URI 本身 (做為查詢參數) |
 
 > [!NOTE]
-> The properties field can only be set using the [Insights REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+> 屬性欄位只能使用 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx) 設定。
 > 
 > 
 
-## <a name="next-steps"></a>Next steps
-* Learn more about Azure alerts and webhooks in the video [Integrate Azure Alerts with PagerDuty](http://go.microsoft.com/fwlink/?LinkId=627080)
-* [Execute Azure Automation scripts (Runbooks) on Azure alerts](http://go.microsoft.com/fwlink/?LinkId=627081)
-* [Use Logic App to send an SMS via Twilio from an Azure alert](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
-* [Use Logic App to send a Slack message from an Azure alert](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
-* [Use Logic App to send a message to an Azure Queue from an Azure alert](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
+## <a name="next-steps"></a>後續步驟
+* 請觀賞 [使用 PagerDuty 整合 Azure 警示](http://go.microsoft.com/fwlink/?LinkId=627080)
+* [對 Azure 警示執行 Azure 自動化指令碼 (Runbook)](http://go.microsoft.com/fwlink/?LinkId=627081)
+* [使用邏輯應用程式透過 Twilio 從 Azure 警示傳送簡訊](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
+* [使用邏輯應用程式從 Azure 警示傳送 Slack 訊息](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
+* [使用邏輯應用程式從 Azure 警示傳送訊息到 Azure 佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用 Java 在事件中樞內透過 Storm on HDInsight 處理事件 | Microsoft Docs
-description: 了解如何使用 Maven 建立的 Java Storm 拓撲處理事件中樞資料。
+title: "使用 Java 在事件中樞內透過 Storm on HDInsight 處理事件 | Microsoft Docs"
+description: "了解如何使用 Maven 建立的 Java Storm 拓撲處理事件中樞資料。"
 services: hdinsight,notification hubs
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 453fa7b0-c8a6-413e-8747-3ac3b71bed86
 ms.service: hdinsight
 ms.devlang: dotnet
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: eaa86b706a538543816b59d8cd09ee54df43b26d
+
 
 ---
-# <a name="process-events-from-azure-event-hubs-with-storm-on-hdinsight-(java)"></a>使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)
+# <a name="process-events-from-azure-event-hubs-with-storm-on-hdinsight-java"></a>使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)
 Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料。 事件中樞 Spout 可讓您輕鬆地使用 Apache Storm on HDInsight 來即時分析資料。 您也可以使用事件中樞 Bolt 將資料從 Storm 寫入事件中樞。
 
 在本教學課程中，您將了解如何使用事件中樞 Spout 和 Bolt 在以 Java 為基礎的 Storm 拓撲中讀取和寫入資料。
@@ -385,7 +389,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
         d7c7f96c-581a-45b1-b66c-e32de6d47fce,543829859
         9a692795-e6aa-4946-98c1-2de381b37593,1857409996
         3c8d199b-0003-4a79-8d03-24e13bde7086,-1271260574
-8. 選取頁面頂端的 [Storm 儀表板]，然後選取 [Storm UI]。 從 [Storm UI] 選取__讀取器__拓撲的連結，然後使用 [刪除] 按鈕以停止拓撲。 針對__寫入器__拓撲重複此程序。
+8. 選取頁面頂端的 [Storm 儀表板]，然後選取 [Storm UI]。 從 [Storm UI] 選取**讀取器**拓撲的連結，然後使用 [刪除] 按鈕以停止拓撲。 針對**寫入器**拓撲重複此程序。
 
 ### <a name="checkpointing"></a>檢查點
 EventHubSpout 會定期將其狀態設定檢查點到 Zookeeper 節點，這會儲存目前從佇列讀取之訊息的位移。 如此可允許元件在下列狀況中，從儲存的位移處開始接收訊息：
@@ -429,6 +433,9 @@ EventHubSpout 會定期將其狀態設定檢查點到 Zookeeper 節點，這會�
 ## <a name="next-steps"></a>後續步驟
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,19 +1,23 @@
 ---
-title: 如何搭配使用服務匯流排主題與 Python | Microsoft Docs
-description: 了解如何從 Python 使用 Azure 服務匯流排主題和訂用帳戶。
-services: service-bus
+title: "如何搭配使用服務匯流排主題與 Python | Microsoft Docs"
+description: "了解如何從 Python 使用 Azure 服務匯流排主題和訂用帳戶。"
+services: service-bus-messaging
 documentationcenter: python
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: c4f1d76c-7567-4b33-9193-3788f82934e4
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 86fa1e1cc5db31bdbec216e1c1f20c2b07cf68d9
+
 
 ---
 # <a name="how-to-use-service-bus-topics-and-subscriptions"></a>如何使用服務匯流排主題和訂用帳戶
@@ -23,7 +27,7 @@ ms.author: sethm
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
-**注意：**如果您需要安裝 Python 或 [Python Azure 封裝][Python Azure 封裝]，請參閱《[Python 安裝指南](../python-how-to-install.md)》。
+**注意**：如果您需要安裝 Python 或 [Python Azure 封裝][Python Azure 封裝]，請參閱 [Python 安裝指南](../python-how-to-install.md)。
 
 ## <a name="create-a-topic"></a>建立主題
 **ServiceBusService** 物件可讓您使用主題。 將下列內容新增至您想要在其中以程式設計方式存取服務匯流排之任何 Python 檔案內的頂端附近：
@@ -65,7 +69,7 @@ bus_service.create_topic('mytopic', topic_options)
 > 
 > 
 
-### <a name="create-a-subscription-with-the-default-(matchall)-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
+### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
 如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「AllMessages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
 ```
@@ -75,7 +79,7 @@ bus_service.create_subscription('mytopic', 'AllMessages')
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
 您也可以定義篩選器，讓您指定傳送至主題的哪些訊息應顯示在特定主題訂用帳戶中。
 
-在訂用帳戶支援的篩選器中，實作 SQL92 子集的 **SqlFilter** 是最具彈性的類型。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用的運算式詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
+在訂用帳戶支援的篩選器中，實作 SQL92 子集的 **SqlFilter** 是最具彈性的類型。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用之運算式的詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
 
 您可以使用 **ServiceBusService** 物件的 **create\_rule** 方法將篩選器新增至訂用帳戶。 此方法可讓您將篩選器新增至現有的訂用帳戶中。
 
@@ -123,7 +127,7 @@ for i in range(5):
     bus_service.send_topic_message('mytopic', msg)
 ```
 
-服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。 如需有關配額的詳細資訊，請參閱[服務匯流排配額][服務匯流排配額]。
+服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。 如需服務匯流排中配額的詳細資訊，請參閱[服務匯流排配額][服務匯流排配額]。
 
 ## <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
 您可以使用 **ServiceBusService** 物件的 **receive\_subscription\_message** 方法接收來自訂用帳戶的訊息：
@@ -180,6 +184,6 @@ bus_service.delete_subscription('mytopic', 'HighMessages')
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

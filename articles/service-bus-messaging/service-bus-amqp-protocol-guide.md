@@ -1,22 +1,26 @@
 ---
-title: Azure 服務匯流排和事件中樞的 AMQP 1.0 通訊協定指南 | Microsoft Docs
-description: Azure 服務匯流排和事件中樞的 AMQP 1.0 運算式和說明的通訊協定指南
-services: service-bus,event-hubs
+title: "Azure 服務匯流排和事件中樞的 AMQP 1.0 通訊協定指南 | Microsoft Docs"
+description: "Azure 服務匯流排和事件中樞的 AMQP 1.0 運算式和說明的通訊協定指南"
+services: service-bus-messaging,event-hubs
 documentationcenter: .net
 author: clemensv
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: d2d3d540-8760-426a-ad10-d5128ce0ae24
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/01/2016
 ms.author: clemensv;jotaub;hillaryc;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 946384b5986ee56f16f5b3fe3be07d09f9837076
+
 
 ---
-# <a name="amqp-1.0-in-azure-service-bus-and-event-hubs-protocol-guide"></a>Azure 服務匯流排和事件中樞的 AMQP 1.0 通訊協定指南
+# <a name="amqp-10-in-azure-service-bus-and-event-hubs-protocol-guide"></a>Azure 服務匯流排和事件中樞的 AMQP 1.0 通訊協定指南
 進階訊息佇列通訊協定 1.0 是標準化框架處理和傳輸通訊協定，可以非同步、安全且可靠的方式傳輸兩方之間的訊息。 它是 Azure 服務匯流排訊息和 Azure 事件中樞的主要通訊協定。 這兩項服務也支援 HTTPS。 同時支援的專屬 SBMP 通訊協定會慢慢被淘汰，以利採用 AMQP。
 
 AMQP 1.0 是產業共同作業的結果，由中介軟體廠商 (例如 Microsoft 和 Red Hat) 與許多傳訊中介軟體使用者 (例如代表金融服務產業的 JP Morgan Chase) 攜手合作。 OASIS 是 AMQP 通訊協定和擴充規格的技術標準化論壇，它已獲得 ISO/IEC 19494 國際標準的正式核准。
@@ -32,7 +36,7 @@ AMQP 1.0 是產業共同作業的結果，由中介軟體廠商 (例如 Microsof
 
 討論 Azure 服務匯流排的進階功能 (例如訊息瀏覽或工作階段管理) 時，將會以 AMQP 詞彙說明這些功能，但也可做為以這個假設 API 抽象概念為基礎的多層式虛擬實作。
 
-## <a name="what-is-amqp?"></a>AMQP 是什麼？
+## <a name="what-is-amqp"></a>AMQP 是什麼？
 AMQP 是框架處理和傳輸通訊協定。 框架處理表示它會為以網路連線的任一方向流入的二進位資料串流提供結構。 此結構會針對要在已連線方之間交換的不同資料區塊 (框架) 提供略圖。 傳輸功能會確定通訊雙方都可以對於何時應傳送框架以及傳輸何時應視為完成，建立起共識。
 
 與 AMQP 工作群組所產生且稍早過期的草稿版本 (仍有一些訊息代理程式在使用) 不同，工作群組的最終標準化 AMQP 1.0 通訊協定並未規定要存在訊息代理程式或訊息代理人內實體的任何特定拓撲。
@@ -57,7 +61,7 @@ Azure 服務匯流排隨時都需要使用 TLS。 它支援透過 TCP 連接埠 
 
 在設定連線和 TLS 之後，服務匯流排會提供兩個 SASL 機制選項︰
 
-* SASL PLAIN 常用於將使用者名稱和密碼認證傳送至伺服器。 服務匯流排沒有帳戶，但是有具名的[共用存取安全性規則](../service-bus/service-bus-shared-access-signature-authentication.md)，這些規則可授予權限並與某個金鑰相關聯。 規則名稱可做為使用者名稱，而金鑰 (如 base64 編碼文字) 可做為密碼。 與所選規則相關聯的權限會控管允許在連接上進行的作業。
+* SASL PLAIN 常用於將使用者名稱和密碼認證傳送至伺服器。 服務匯流排沒有帳戶，但是有具名的[共用存取安全性規則](service-bus-shared-access-signature-authentication.md)，這些規則可授予權限並與某個金鑰相關聯。 規則名稱可做為使用者名稱，而金鑰 (如 base64 編碼文字) 可做為密碼。 與所選規則相關聯的權限會控管允許在連接上進行的作業。
 * 當用戶端想要使用稍後說明的宣告型安全性 (CBS) 模型時，SASL ANONYMOU 可用來略過 SASL 授權。 使用此選項，即可以匿名方式建立短期的用戶端連線，在此連線期間，用戶端只能與 CBS 端點互動，而且 CBS 交握必須完成。
 
 建立傳輸連線之後，容器會各自宣告它們願意處理的框架大小上限，而在閒置逾時後，如果連線上沒有任何活動，它們就會單方面中斷連線。
@@ -141,25 +145,25 @@ Azure 服務匯流排不支援連結復原；如果用戶端失去對服務匯�
 | --> attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**sender**,<br/>source={client link id},<br/>target={entity name}<br/>) |沒有動作 |
 | 沒有動作 |<-- attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**receiver**,<br/>source={client link id},<br/>target={entity name}<br/>) |
 
-#### <a name="create-message-sender-(error)"></a>建立訊息傳送者 (錯誤)
+#### <a name="create-message-sender-error"></a>建立訊息傳送者 (錯誤)
 | 用戶端 | 服務匯流排 |
 | --- | --- |
 | --> attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**sender**,<br/>source={client link id},<br/>target={entity name}<br/>) |沒有動作 |
 | 沒有動作 |<-- attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**receiver**,<br/>source=null,<br/>target=null<br/>)<br/><br/><-- detach(<br/>handle={numeric handle},<br/>closed=**true**,<br/>error={error info}<br/>) |
 
-#### <a name="close-message-receiver/sender"></a>關閉訊息接收者/傳送者
+#### <a name="close-message-receiversender"></a>關閉訊息接收者/傳送者
 | 用戶端 | 服務匯流排 |
 | --- | --- |
 | --> detach(<br/>handle={numeric handle},<br/>closed=**true**<br/>) |沒有動作 |
 | 沒有動作 |<-- detach(<br/>handle={numeric handle},<br/>closed=**true**<br/>) |
 
-#### <a name="send-(success)"></a>傳送 (成功)
+#### <a name="send-success"></a>傳送 (成功)
 | 用戶端 | 服務匯流排 |
 | --- | --- |
 | --> transfer(<br/>delivery-id={numeric handle},<br/>delivery-tag={binary handle},<br/>settled=**false**,,more=**false**,<br/>state=**null**,<br/>resume=**false**<br/>) |沒有動作 |
 | 沒有動作 |<-- disposition(<br/>role=receiver,<br/>first={delivery id},<br/>last={delivery id},<br/>settled=**true**,<br/>state=**accepted**<br/>) |
 
-#### <a name="send-(error)"></a>傳送 (錯誤)
+#### <a name="send-error"></a>傳送 (錯誤)
 | 用戶端 | 服務匯流排 |
 | --- | --- |
 | --> transfer(<br/>delivery-id={numeric handle},<br/>delivery-tag={binary handle},<br/>settled=**false**,,more=**false**,<br/>state=**null**,<br/>resume=**false**<br/>) |沒有動作 |
@@ -308,6 +312,7 @@ CBS 會定義由傳訊基礎結構所提供的虛擬管理節點 (名為 *$cbs*)
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

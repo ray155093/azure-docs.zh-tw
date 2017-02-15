@@ -1,68 +1,77 @@
 ---
-title: 將推播通知加入 Xamarin.Android 應用程式中 | Microsoft Docs
-description: 了解如何使用 Azure App Service 及 Azure 通知中樞將推播通知傳送到 Xamarin.Android 應用程式
+title: "將推播通知新增至 Xamarin.Android 應用程式 | Microsoft Docs"
+description: "了解如何使用 Azure App Service 及 Azure 通知中樞將推播通知傳送到 Xamarin.Android 應用程式"
 services: app-service\mobile
 documentationcenter: xamarin
-author: ggailey777
+author: ysxu
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 6f7e8517-e532-4559-9b07-874115f4c65b
 ms.service: app-service-mobile
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-xamarin-android
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/12/2016
-ms.author: glenga
+ms.date: 10/12/2016
+ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: c9f8c46fa5fba1e69382a383ff94700de07db4ab
+
 
 ---
-# 將推播通知新增至 Xamarin.Android 應用程式
+# <a name="add-push-notifications-to-your-xamarinandroid-app"></a>將推播通知新增至 Xamarin.Android 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-## Overview
-在本教學課程中，您會將推播通知新增至[建立 Xamarin.Android 應用程式]專案，以便在每次插入一筆記錄時傳送推播通知。本教學課程以 [建立 Xamarin.Android 應用程式]教學課程為基礎，您必須先完成該教學課程。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+## <a name="overview"></a>Overview
+在本教學課程中，您會將推播通知新增至 [Xamarin.Android 快速入門](app-service-mobile-windows-store-dotnet-get-started.md)專案，以便在每次插入一筆記錄時傳送推播通知至裝置。
 
-## 必要條件
+如果您不要使用下載的快速入門伺服器專案，將需要推播通知擴充套件。 如需詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+
+## <a name="prerequisites"></a>必要條件
 本教學課程需要下列各項：
 
-* 有效的 Google 帳戶。您可以在 [accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302) 註冊 Google 帳戶。
-* [Google Cloud Messaging 用戶端元件](http://components.xamarin.com/view/GCMClient/)。您在教學課程中會新增此元件。
+* 有效的 Google 帳戶。 您可以在 [accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302)註冊 Google 帳戶。
+* [Google Cloud Messaging 用戶端元件](http://components.xamarin.com/view/GCMClient/)。
 
-## <a name="create-hub"></a>建立通知中樞
-[!INCLUDE [app-service-mobile-create-notification-hub](../../includes/app-service-mobile-create-notification-hub.md)]
+## <a name="a-nameconfigure-hubaconfigure-a-notification-hub"></a><a name="configure-hub"></a>設定通知中樞
+[!INCLUDE [app-service-mobile-configure-notification-hub](../../includes/app-service-mobile-configure-notification-hub.md)]
 
-## <a id="register"></a>啟用 Google Cloud Messaging
-[!INCLUDE [啟用 GCM](../../includes/mobile-services-enable-google-cloud-messaging.md)]
+## <a name="a-idregisteraenable-firebase-cloud-messaging"></a><a id="register"></a>啟用 Firebase 雲端傳訊
+[!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
 
-## 設定行動應用程式後端以傳送推播要求
-[!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push.md)]
+## <a name="configure-azure-to-send-push-requests"></a>設定 Azure 來傳送推播要求
+[!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push-for-firebase.md)]
 
-## <a id="update-server"></a>更新伺服器專案以傳送推播通知
+## <a name="a-idupdate-serveraupdate-the-server-project-to-send-push-notifications"></a><a id="update-server"></a>更新伺服器專案以傳送推播通知
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-## <a id="configure-app"></a>設定用於推播通知的用戶端專案
+## <a name="a-idconfigure-appaconfigure-the-client-project-for-push-notifications"></a><a id="configure-app"></a>設定用於推播通知的用戶端專案
 [!INCLUDE [mobile-services-xamarin-android-push-configure-project](../../includes/mobile-services-xamarin-android-push-configure-project.md)]
 
-## <a id="add-push"></a>將推播通知程式碼新增至應用程式
+## <a name="a-idadd-pushaadd-push-notifications-code-to-your-app"></a><a id="add-push"></a>將推播通知程式碼新增至應用程式
 [!INCLUDE [app-service-mobile-xamarin-android-push-add-to-app](../../includes/app-service-mobile-xamarin-android-push-add-to-app.md)]
 
-## <a name="test"></a>在應用程式中測試推播通知
-您可以在模擬器中使用虛擬裝置來測試應用程式。在模擬器上執行時，您需要採取其他設定步驟。
+## <a name="a-nametestatest-push-notifications-in-your-app"></a><a name="test"></a>在應用程式中測試推播通知
+您可以在模擬器中使用虛擬裝置來測試應用程式。 在模擬器上執行時，您需要採取其他設定步驟。
 
 1. 針對您要部署的目的地虛擬裝置或偵錯的所在虛擬裝置，請確認該裝置具有已設定為目標的 Google API，如以下 Android 虛擬裝置管理員 (AVD) 所示。
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/google-apis-avd-settings.png)
-2. 按一下 [應用程式] > [設定] > [加入帳戶] 將 Google 帳戶加入 Android 裝置，然後依照提示使用裝置現有的 Google 帳戶來建立新帳戶。
+2. 按一下 [應用程式] > [設定] > [新增帳戶] 將 Google 帳戶加入 Android 裝置，然後遵循提示。
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/add-google-account.png)
-3. 按照先前的方法執行 todolist 應用程式，然後插入新的 todo 項目。這次，通知圖示會顯示在通知區域中。您可以開啟通知抽屜來檢視通知的完整內容。
+3. 按照先前的方法執行 todolist 應用程式，然後插入新的 todo 項目。 這次，通知圖示會顯示在通知區域中。 您可以開啟通知抽屜來檢視通知的完整內容。
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/android-notifications.png)
 
 <!-- URLs. -->
-[Xamarin.Android quickstart]: app-service-mobile-xamarin-android-get-started.md
-[建立 Xamarin.Android 應用程式]: app-service-mobile-xamarin-android-get-started.md
-[Google Cloud Messaging Client Component]: http://components.xamarin.com/view/GCMClient/
-[Azure Mobile Services Component]: http://components.xamarin.com/view/azure-mobile-services/
+[Xamarin.Android 快速入門]: app-service-mobile-xamarin-android-get-started.md
+[Google Cloud Messaging 用戶端元件]: http://components.xamarin.com/view/GCMClient/
+[Azure 行動服務元件]: http://components.xamarin.com/view/azure-mobile-services/
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

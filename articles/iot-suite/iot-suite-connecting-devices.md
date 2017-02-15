@@ -1,47 +1,51 @@
 ---
-title: 在 Windows 上使用 C 連接裝置 | Microsoft Docs
-description: 描述如何在 Windows 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。
-services: ''
+title: "在 Windows 上使用 C 連接裝置 | Microsoft Docs"
+description: "描述如何在 Windows 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。"
+services: 
 suite: iot-suite
 documentationcenter: na
 author: dominicbetts
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 34e39a58-2434-482c-b3fa-29438a0c05e8
 ms.service: iot-suite
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/14/2016
+ms.date: 10/05/2016
 ms.author: dobett
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: af83b55210d1e31c548b9b178272f7e75be7b98e
+
 
 ---
-# 將裝置連接至遠端監視預先設定方案 (Windows)
+# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-windows"></a>將裝置連接至遠端監視預先設定方案 (Windows)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## 在 Windows 上建立 C 範例方案
-下列步驟示範如何使用 Visual Studio 建立以 C 撰寫的簡單用戶端應用程式，來與遠端監視預先設定的方案進行通訊。
+## <a name="create-a-c-sample-solution-on-windows"></a>在 Windows 上建立 C 範例方案
+下列步驟示範如何使用 Visual Studio 建立以 C 撰寫的用戶端應用程式，來與遠端監視預先設定的解決方案進行通訊。
 
 在 Visual Studio 2015 中建立入門專案，並新增 IoT 中樞的裝置用戶端 NuGet 封裝︰
 
-1. 在 Visual Studio 2015 中使用 Visual C++ **Win32 主控台應用程式**範本建立新的 C 主控台應用程式。將專案命名為 **RMDevice**。
+1. 在 Visual Studio 2015 中使用 Visual C++ **Win32 主控台應用程式** 範本建立 C 主控台應用程式。 將專案命名為 **RMDevice**。
 2. 在 [Win32 應用程式精靈] 的 [應用程式設定] 頁面中，確定已選取 [主控台應用程式]，並取消核取 [預先編譯的標頭] 和 [安全性開發生命週期 (SDL) 檢查]。
 3. 在 [方案總管] 中刪除檔案 stdafx.h、targetver.h 和 stdafx.cpp。
 4. 在 [方案總管] 中將檔案 RMDevice.cpp 重新命名為 RMDevice.c。
-5. 在 [方案總管] 中以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [管理 NuGet 封裝]。按一下 [瀏覽]，然後搜尋下列 NuGet 封裝並將其安裝到專案中︰
+5. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [管理 NuGet 套件]。 按一下 [瀏覽] ，然後搜尋下列 NuGet 封裝並將其安裝到專案中︰
    
    * Microsoft.Azure.IoTHub.Serializer
    * Microsoft.Azure.IoTHub.IoTHubClient
    * Microsoft.Azure.IoTHub.HttpTransport
-6. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [屬性] 開啟專案的 [屬性頁] 對話方塊。如需詳細資訊，請參閱[設定 Visual C++ 專案屬性][lnk-c-project-properties]。
-7. 按一下 [連結器] 資料夾，然後按一下 [輸入] 屬性頁。
-8. 將 **crypt32.lib** 新增至 [其他相依性] 屬性。按一下 [確定]，然後再按一下 [確定] 以儲存專案屬性值。
+6. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [屬性] 開啟專案的 [屬性頁] 對話方塊。 如需詳細資訊，請參閱[設定 Visual C++ 專案屬性][lnk-c-project-properties]。 
+7. 按一下 [連結器]資料夾，然後按一下 [輸入] 屬性頁。
+8. 將 **crypt32.lib** 新增至 [其他相依性] 屬性。 按一下 [確定]，然後再按一下 [確定] 以儲存專案屬性值。
 
-## 指定 IoT 中樞裝置的行為
-IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之訊息，或裝置所回應之 IoT 中樞命令的格式。
+## <a name="specify-the-behavior-of-the-iot-hub-device"></a>指定 IoT 中樞裝置的行為
+IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之訊息的格式，或裝置接收自 IoT 中樞之命令的格式。
 
-1. 在 Visual Studio 中，開啟 RMDevice.c 檔案。以下列程式碼取代現有 `#include` 陳述式：
+1. 在 Visual Studio 中，開啟 RMDevice.c 檔案。 以下列程式碼取代現有 `#include` 陳述式：
    
     ```
     #include "iothubtransporthttp.h"
@@ -52,7 +56,7 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     #include "azure_c_shared_utility/threadapi.h"
     #include "azure_c_shared_utility/platform.h"
     ```
-2. 在 `#include` 陳述式之後新增下列變數宣告。從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
+2. 在 `#include` 陳述式之後新增下列變數宣告。 從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。 使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
    
     ```
     static const char* deviceId = "[Device Id]";
@@ -60,7 +64,7 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     static const char* hubName = "[IoTHub Name]";
     static const char* hubSuffix = "azure-devices.net";
     ```
-3. 新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。此模型指定裝置會傳送溫度、外部溫度、濕度和裝置識別碼做為遙測。裝置也會傳送與該裝置有關的中繼資料到 IoT 中樞，包括裝置支援的命令清單。這個裝置會回應 **SetTemperature** 和 **SetHumidity** 命令：
+3. 新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。 此模型指定裝置會傳送溫度、外部溫度、濕度和裝置識別碼做為遙測。 裝置也會傳送與該裝置有關的中繼資料到 IoT 中樞，包括裝置支援的命令清單。 這個裝置會回應 **SetTemperature** 和 **SetHumidity** 命令：
    
     ```
     // Define the Model
@@ -99,8 +103,8 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     END_NAMESPACE(Contoso);
     ```
 
-## 實作裝置的行為
-您現在必須新增程式碼來實作模型中所定義的行為。
+## <a name="implement-the-behavior-of-the-device"></a>實作裝置的行為
+現在，請新增程式碼來實作模型中所定義的行為。
 
 1. 新增下列當裝置收到來自 IoT 中樞的 **SetTemperature** 和 **SetHumidity** 命令時執行的函式：
    
@@ -182,7 +186,7 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
       return result;
     }
     ```
-4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。請注意，裝置一旦連線就會將與本身有關的中繼資料 (包括其支援的命令) 傳送到 IoT 中樞 - 這可讓方案將儀表板上的裝置狀態更新為 [執行中]：
+4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。 請注意裝置如何在連接時將其中繼資料 (包含它支援的命令) 傳送至 IoT 中樞。 這個中繼資料可讓解決方案將儀表板上的裝置狀態更新成 [執行中]︰
    
     ```
     void remote_monitoring_run(void)
@@ -336,7 +340,7 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
       "Parameters":{"humidity":23}
     }
     ```
-5. 將 **main** 函式取代為下列程式碼以叫用 **remote\_monitoring\_run** 函式︰
+5. 將 **main** 函式取代為下列程式碼以叫用 **remote_monitoring_run** 函式︰
    
     ```
     int main()
@@ -346,10 +350,14 @@ IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之�
     }
     ```
 6. 依序按一下 [建置] 和 [建置方案] 以建置裝置應用程式。
-7. 在 [方案總管] 中，以滑鼠右鍵按一下 **RMDevice** 專案，按一下 [偵錯]，然後按一下 [開始新執行個體] 來執行範例。當應用程式將範例遙測傳送到 IoT 中樞並收到命令時，主控台會顯示訊息。
+7. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，並按一下 [偵錯]，然後按一下 [開始新執行個體] 來執行範例。 當應用程式將範例遙測傳送到 IoT 中樞並收到命令時，主控台會顯示訊息。
 
 [!INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 
 [lnk-c-project-properties]: https://msdn.microsoft.com/library/669zx6zc.aspx
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

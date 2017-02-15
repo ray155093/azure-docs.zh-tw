@@ -1,41 +1,49 @@
 ---
-title: 在 Linux 上使用 Azure PowerShell 在 HDInsight 中建立 Hadoop、HBase、Storm 或 Spark 叢集 | Microsoft Docs
-description: 了解如何在 Linux 上使用 Azure PowerShell 為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。
+title: "在 Linux 上使用 Azure PowerShell 在 HDInsight 中建立 Hadoop、HBase、Storm 或 Spark 叢集 | Microsoft Docs"
+description: "了解如何在 Linux 上使用 Azure PowerShell 為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: nitinme
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 4208deca-d64a-45e1-8948-2673d5d7678c
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 07/08/2016
+ms.date: 10/05/2016
 ms.author: nitinme
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 71f1ca77180c7b06f8c883c8c227bda63f28ed1c
+
 
 ---
-# 使用 Azure PowerShell 在 HDInsight 中建立以 Linux 為基礎的叢集
-[!INCLUDE [選取器](../../includes/hdinsight-selector-create-clusters.md)]
+# <a name="create-linux-based-clusters-in-hdinsight-by-using-azure-powershell"></a>使用 Azure PowerShell 在 HDInsight 中建立以 Linux 為基礎的叢集
+[!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azure 中控制和自動化工作量的部署與管理。本文件提供如何使用 Azure PowerShell 建立以 Linux 為基礎之 HDInsight 叢集的相關資訊。其中也包含一個範例指令碼。
+Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azure 中控制和自動化工作量的部署與管理。 本文件提供如何使用 Azure PowerShell 建立以 Linux 為基礎之 HDInsight 叢集的相關資訊。 其中也包含一個範例指令碼。
 
 > [!NOTE]
-> Azure PowerShell 僅適用於 Windows 用戶端。如果您使用 Linux、Unix 或 Mac OS X 用戶端，請參閱 [使用 Azure CLI 建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-azure-cli.md)，以取得使用 Azure CLI 建立叢集的相關資訊。
+> Azure PowerShell 僅適用於 Windows 用戶端。 如果您使用 Linux、Unix 或 Mac OS X 用戶端，請參閱 [使用 Azure CLI 建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-azure-cli.md) ，以取得使用 Azure CLI 建立叢集的相關資訊。
 > 
 > 
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 開始進行此程序之前，您必須先具備下列項目：
 
-* Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* Azure PowerShell。如需搭配使用 Azure PowerShell 與 HDInsight 的詳細資訊，請參閱[使用 PowerShell 管理 HDInsight](hdinsight-administer-use-powershell.md)。如需 HDInsight Windows PowerShell Cmdlet 的清單，請參閱 [HDInsight Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/dn858087.aspx)。
+* Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Azure PowerShell。
+    如需搭配使用 Azure PowerShell 與 HDInsight 的詳細資訊，請參閱 [使用 PowerShell 管理 HDInsight](hdinsight-administer-use-powershell.md)。 如需 HDInsight Windows PowerShell Cmdlet 的清單，請參閱 [HDInsight Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/dn858087.aspx)。
   
     [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-## 建立叢集
+### <a name="access-control-requirements"></a>存取控制需求
+[!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
+
+## <a name="create-clusters"></a>建立叢集
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 若要使用 Azure PowerShell 建立 HDInsight 叢集，您必須完成下列程序：
@@ -48,7 +56,7 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
 建立 Linux 叢集時所必須設定的兩個最重要的參數，是用來指定 OS 類型和 SSH 使用者詳細資料的參數：
 
 * 請務必將 **-OSType** 參數指定為 **Linux**。
-* 若要對叢集上的遠端工作階段使用 SSH，您可以指定 SSH 使用者密碼或 SSH 公開金鑰。如果您同時指定 SSH 使用者密碼或 SSH 公開金鑰，系統會忽略公開金鑰。如果您想要對遠端工作階段使用 SSH 金鑰，您必須在出現密碼提示時指定空白的 SSH 密碼。如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
+* 若要對叢集上的遠端工作階段使用 SSH，您可以指定 SSH 使用者密碼或 SSH 公開金鑰。 如果您同時指定 SSH 使用者密碼或 SSH 公開金鑰，系統會忽略公開金鑰。 如果您想要對遠端工作階段使用 SSH 金鑰，您必須在出現密碼提示時指定空白的 SSH 密碼。 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
   
   * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
   * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
@@ -105,12 +113,12 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
         -Version "3.4" `
         -SshCredential $sshCredentials
 
-您對 **$clusterCredentials** 指定的值會用來建立叢集的 Hadoop 使用者帳戶。使用此帳戶來連線到叢集。
+您對 **$clusterCredentials** 指定的值會用來建立叢集的 Hadoop 使用者帳戶。 使用此帳戶來連線到叢集。
 
-您對 **$sshCredentials** 指定的值會用來建立叢集的 SSH 使用者。使用此帳戶在叢集上啟動遠端 SSH 工作階段並執行工作。
+您對 **$sshCredentials** 指定的值會用來建立叢集的 SSH 使用者。 使用此帳戶在叢集上啟動遠端 SSH 工作階段並執行工作。
 
 > [!IMPORTANT]
-> 在這個指令碼中，您必須指定將位於叢集中的背景工作節點數目。如果您規劃使用 32 個以上的背景工作角色節點 (在建立叢集時或在建立後調整叢集時)，則您也必須指定具有至少 8 個核心和 14 GB RAM 的前端節點大小。
+> 在這個指令碼中，您必須指定將位於叢集中的背景工作節點數目。 如果您規劃使用 32 個以上的背景工作角色節點 (在建立叢集時或在建立後調整叢集時)，則您也必須指定具有至少 8 個核心和 14 GB RAM 的前端節點大小。
 > 
 > 如需節點大小和相關成本的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
 > 
@@ -144,35 +152,40 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
         -SshCredential $sshCredentials `
         -Config $config
 
-## 自訂叢集
-* 請參閱[使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md#use-azure-powershell)。
-* 請參閱[使用指令碼動作自訂 Windows 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。
+## <a name="customize-clusters"></a>自訂叢集
+* 請參閱 [使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md#use-azure-powershell)。
+* 請參閱 [使用指令碼動作自訂 Windows 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。
 
-## 刪除叢集
+## <a name="delete-the-cluster"></a>刪除叢集
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 既然您已成功建立 HDInsight 叢集，請使用下列資源來了解如何使用您的叢集。
 
-### Hadoop 叢集
+### <a name="hadoop-clusters"></a>Hadoop 叢集
 * [〈搭配 HDInsight 使用 Hivet〉](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-### HBase 叢集
+### <a name="hbase-clusters"></a>HBase 叢集
 * [開始在 HDInsight 上使用 HBase](hdinsight-hbase-tutorial-get-started-linux.md)
 * [在 HDInsight 上開發適用於 HBase 的 Java 應用程式](hdinsight-hbase-build-java-maven-linux.md)
 
-### Storm 叢集
+### <a name="storm-clusters"></a>Storm 叢集
 * [在 HDInsight 上開發適用於 Storm 的 Java 拓撲](hdinsight-storm-develop-java-topology.md)
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-### Spark 叢集
+### <a name="spark-clusters"></a>Spark 叢集
 * [使用 Scala 來建立獨立的應用程式](hdinsight-apache-spark-create-standalone-application.md)
 * [利用 Livy 在 Spark 叢集上遠端執行工作](hdinsight-apache-spark-livy-rest-interface.md)
 * [Spark 和 BI：搭配 BI 工具來使用 HDInsight 中的 Spark 以執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark 和機器學習：使用 HDInsight 中的 Spark 來預測食物檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

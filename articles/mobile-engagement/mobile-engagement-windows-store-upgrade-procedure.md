@@ -1,12 +1,12 @@
 ---
-title: Windows 通用 app SDK 升級程序
-description: 適用於 Azure Mobile Engagement 的 Windows 通用 app SDK 升級程序
+title: "Windows 通用 app SDK 升級程序"
+description: "適用於 Azure Mobile Engagement 的 Windows 通用 app SDK 升級程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 4c898175-2cd6-43db-b350-bb408332f24d
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-store
@@ -14,43 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: c7b3441892484cf54e2055e9153858171d738e85
+
 
 ---
-# Windows 通用 app SDK 升級程序
+# <a name="windows-universal-apps-sdk-upgrade-procedures"></a>Windows 通用 app SDK 升級程序
 如果您已經整合舊版 Engagement 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
 
-如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。例如，如果您要從 0.10.1 移轉到 0.11.0，必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
+如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。 例如，如果您要從 0.10.1 移轉到 0.11.0，必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
 
-## 從 3.3.0 到 3.4.0
-### 測試記錄檔
-SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
+## <a name="from-330-to-340"></a>從 3.3.0 到 3.4.0
+### <a name="test-logs"></a>測試記錄檔
+SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。 若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();
 
-### 資源
-已改善 Reach 重疊。它是 SDK NuGet 封裝資源的一部分。
+### <a name="resources"></a>資源
+已改善 Reach 重疊。 它是 SDK NuGet 封裝資源的一部分。
 
 當您升級到新版的 SDK，可以選擇是否要保留資源之重疊資料夾中的現有檔案︰
 
-* 如果先前的重疊對您而言可以運作，或是您要手動整合 `WebView` 元素，則您可以決定保留現有檔案，這樣仍然可以運作。
-* 如果您想要更新為新的重疊，那麼只要將資源的整個 `overlay` 資料夾取代為來自 SDK 封裝的新資料夾 (UWP 應用程式︰升級後，您可以從 %USERPROFILE%\\.nuget\\packages\\MicrosoftAzure.MobileEngagement\\3.4.0\\content\\win81\\Resources 取得新的重疊資料夾)。
+* 如果先前的重疊對您而言可以運作，或是您要手動整合 `WebView` 元素，則您可以決定保留現有檔案，這樣仍然可以運作。 
+* 如果您想要更新為新的重疊，那麼只要將資源的整個 `overlay` 資料夾取代為來自 SDK 封裝的新資料夾 (UWP 應用程式︰升級後，您可以從 %USERPROFILE%\\.nuget\packages\MicrosoftAzure.MobileEngagement\3.4.0\content\win81\Resources 取得新的重疊資料夾)。
 
 > [!WARNING]
 > 使用新的重疊會覆寫先前版本上所做的任何自訂。
 > 
 > 
 
-## 從 3.2.0 到 3.3.0
-### 資源
-此步驟僅涉及自訂資源。如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
+## <a name="from-320-to-330"></a>從 3.2.0 到 3.3.0
+### <a name="resources"></a>資源
+此步驟僅涉及自訂資源。 如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
 
-## 從 3.1.0 到 3.2.0
-### 資源
-此步驟僅涉及自訂資源。如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
+## <a name="from-310-to-320"></a>從 3.1.0 到 3.2.0
+### <a name="resources"></a>資源
+此步驟僅涉及自訂資源。 如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
 
-### Web 檢視整合
-部分改善以符合此版本中引進的其他裝置版型規格。確認您的 Web 檢視符合下列條件：
+### <a name="webview-integration"></a>Web 檢視整合
+部分改善以符合此版本中引進的其他裝置版型規格。 確認您的 Web 檢視符合下列條件：
 
 在您的 XAML page () 中：
 
@@ -164,33 +168,33 @@ SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。若要自�
             }
     }
 
-## 從 2.0.0 到 3.0.0
-### 資源
-此步驟僅涉及自訂資源。如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
+## <a name="from-200-to-300"></a>從 2.0.0 到 3.0.0
+### <a name="resources"></a>資源
+此步驟僅涉及自訂資源。 如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
 
-## 從 1.1.1 到 2.0.0
-以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。
+## <a name="from-111-to-200"></a>從 1.1.1 到 2.0.0
+以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。 
 
 > [!IMPORTANT]
-> Capptain 和 Mobile Engagement 是不同的服務，而以下程序只適用於移轉用戶端應用程式。移轉應用程式中的 SDK「不會」將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器
+> Capptain 和 Mobile Engagement 是不同的服務，而以下程序只適用於移轉用戶端應用程式。 移轉應用程式中的 SDK「不會」將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器
 > 
 > 
 
 如果您要從舊版移轉，請先參閱 Capptain 網站以移轉到 1.1.1，然後再遵循以下程序
 
-### Nuget 封裝
-以 **MicrosoftAzure.MobileEngagement** Nuget 封裝取代 **Capptain.WindowsPhone**。
+### <a name="nuget-package"></a>Nuget 封裝
+以 **MicrosoftAzure.MobileEngagement** Nuget 套件取代 **Capptain.WindowsPhone**。
 
-### 套用 Mobile Engagement
-SDK 使用 `Engagement` 一詞。您需要更新您的專案，以符合此變更。
+### <a name="applying-mobile-engagement"></a>套用 Mobile Engagement
+SDK 使用 `Engagement`一詞。 您需要更新您的專案，以符合此變更。
 
-您需要解除安裝目前的 Capptain nuget 封裝。請考慮您在 [Capptain Resources] 資料夾中所有的變更將會移除。如果您想要保留這些檔案，請將它們複製一份。
+您需要解除安裝目前的 Capptain nuget 封裝。 請考慮您在 [Capptain Resources] 資料夾中所有的變更將會移除。 如果您想要保留這些檔案，請將它們複製一份。
 
-接下來，在您的專案上安裝新的 Microsoft Azure Engagement nuget 封裝。您可以直接在 [nuget 網站] 或此處的索引找到它。此動作會取代所有 Engagement 使用的資源檔，並將新的 Engagement DLL 新增到您專案的「參考」。
+接下來，在您的專案上安裝新的 Microsoft Azure Engagement nuget 封裝。 您可以直接在 [nuget 網站]上找到。 或此處的索引。 此動作會取代所有 Engagement 使用的資源檔，並將新的 Engagement DLL 新增到您專案的「參考」。
 
-您必須刪除 Capptain DLL 參考來清除您專案的參考。如果沒有這樣做，Capptain 的版本會有衝突並發生錯誤。
+您必須刪除 Capptain DLL 參考來清除您專案的參考。 如果沒有這樣做，Capptain 的版本會有衝突並發生錯誤。
 
-若您有自訂的 Capptain 資源，請複製您舊檔案的內容，並在新的 Engagement 檔案中貼上它們。請注意，xaml 和 cs 檔案兩者都必須更新。
+若您有自訂的 Capptain 資源，請複製您舊檔案的內容，並在新的 Engagement 檔案中貼上它們。 請注意，xaml 和 cs 檔案兩者都必須更新。
 
 完成這些步驟之後，您只需要用新的 Engagement 參考取代舊的 Capptain 參考。
 
@@ -247,7 +251,7 @@ SDK 使用 `Engagement` 一詞。您需要更新您的專案，以符合此變�
 4. 重疊項目頁面變更
    
    > [!IMPORTANT]
-   > 重疊項目也會變更。它的新命名空間為 `Microsoft.Azure.Engagement.Overlay`。在 xaml 和 cs 檔案中都必須使用它。此外，`CapptainGrid` 命名為 `EngagementGrid`，`capptain_notification_content` 和 `capptain_announcement_content` 命名為 `engagement_notification_content` 和 `engagement_announcement_content`。
+   > 重疊項目也會變更。 它的新命名空間為 `Microsoft.Azure.Engagement.Overlay`。 在 xaml 和 cs 檔案中都必須使用它。 此外，`CapptainGrid` 命名為 `EngagementGrid`，`capptain_notification_content` 和 `capptain_announcement_content` 命名為 `engagement_notification_content` 和 `engagement_announcement_content`。
    > 
    > 
    
@@ -266,14 +270,14 @@ SDK 使用 `Engagement` 一詞。您需要更新您的專案，以符合此變�
         </engagement:EngagementPageOverlay>
 5. 針對其他資源，例如 Capptain 圖片和 HTML 檔案，請注意它們也已重新命名使用 "Engagement"。
 
-### 專案宣告
+### <a name="project-declaration"></a>專案宣告
 Package.appxmanifest 上的 `File Type Associations` 已經更新自：
 
-* capptain\_reach\_content 至 engagement\_reach\_content
-* capptain\_log\_file 至 engagement\_log\_file
+* capptain\_reach\_content to engagement\_reach\_content
+* capptain\_log\_file to engagement\_log\_file
 
-### 應用程式 ID / SDK 金鑰
-Engagement 使用連接字串。您不需要為 Mobile Engagement 指定應用程式 ID 和 SDK 金鑰，您只需要指定連接字串。您可以在您的 EngagementConfiguration 檔案中設定它。
+### <a name="application-id--sdk-key"></a>應用程式 ID / SDK 金鑰
+Engagement 使用連接字串。 您不需要為 Mobile Engagement 指定應用程式 ID 和 SDK 金鑰，您只需要指定連接字串。 您可以在您的 EngagementConfiguration 檔案中設定它。
 
 您可以在專案的 `Resources\EngagementConfiguration.xml` 檔案中設定 Engagement 組態。
 
@@ -292,8 +296,8 @@ Engagement 使用連接字串。您不需要為 Mobile Engagement 指定應用�
 
 應用程式的連接字串會顯示在 Azure 傳統入口網站中。
 
-### 項目名稱變更
-所有名為 *capptain* 的項目已命名為 *engagement* 。同樣地， *Capptain* 也已命名為 *Engagement* 。
+### <a name="items-name-change"></a>項目名稱變更
+所有名為 capptain 的項目已命名為 engagement。 同樣地，Capptain 也已命名為 Engagement。
 
 常用 Capptain 項目的範例：
 
@@ -305,4 +309,9 @@ Engagement 使用連接字串。您不需要為 Mobile Engagement 指定應用�
 
 請注意，重新命名也會影響覆寫方法。
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

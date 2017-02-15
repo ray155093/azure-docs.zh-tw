@@ -215,6 +215,6 @@ ORC (最佳化的資料列單欄式) 格式是儲存 Hive 資料的高效率方�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

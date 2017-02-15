@@ -1,19 +1,23 @@
 ---
-title: 將 Linux 電腦連接到 Log Analytics | Microsoft Docs
-description: 使用 Log Analytics，您可以收集和處理從 Linux 電腦所產生的資料。
+title: "將 Linux 電腦連接到 Log Analytics | Microsoft Docs"
+description: "使用 Log Analytics，您可以收集和處理從 Linux 電腦所產生的資料。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
-manager: jwhit
-editor: ''
-
+manager: carmonm
+editor: 
+ms.assetid: ab5b76d8-9ab5-406e-8768-76fb0632d830
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/02/2017
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 218ffec4601c5b0b4ee9872b5bbd03489cb3ddcf
+
 
 ---
 # <a name="connect-linux-computers-to-log-analytics"></a>將 Linux 電腦連接到 Log Analytics
@@ -83,8 +87,8 @@ Operations Management Suite Agent for Linux 包含多個封裝。 發行檔案�
 
 > [!NOTE]
 > 需要有 rsyslog 或 syslog-ng，才能收集 syslog 訊息。 Red Hat Enterprise Linux 第 5 版、CentOS 和 Oracle Linux 版本 (sysklog) 不支援預設 syslog 精靈，進行 syslog 事件收集。 若要從此版的這些散發套件收集 syslog 資料，rsyslog 精靈應該安裝和設定為取代 sysklog。
-> 
-> 
+>
+>
 
 ## <a name="quick-install"></a>快速安裝
 執行下列命令來下載 omsagent、驗證總和檢查碼，然後安裝代理程式並將之登入。 命令是針對 64 位元。 工作區識別碼和主要金鑰位於 [連接的來源] 索引標籤上 [設定] 下的 OMS 入口網站。
@@ -211,8 +215,8 @@ Linux 效能計數器類似於 Windows 效能計數器 (兩者的運作方式類
 
 > [!NOTE]
 > omsagent 帳戶必須可讀取認證檔案。 建議以 omsgent 身分執行 mycimprovauth 命令。
-> 
-> 
+>
+>
 
 ```
 sudo su omsagent -c '/opt/microsoft/mysql-cimprov/bin/mycimprovauth default 127.0.0.1 <username> <password>'
@@ -276,8 +280,8 @@ Syslog-ng：/etc/syslog-ng/syslog-ng.conf
 
 > [!NOTE]
 > 如果您編輯 syslog 組態，則必須重新啟動 syslog 精靈，變更才會生效。
-> 
-> 
+>
+>
 
 OMS 的 OMS Agent for Linux 的預設 syslog 組態如下：
 
@@ -327,12 +331,12 @@ log { source(src); filter(f_warning_oms); destination(warning_oms); };
 若要收集來自 Nagios 伺服器的警示，您需要進行下列組態變更。
 
 1. 將 Nagios 記錄檔 (即 /var/log/nagios/nagios.log/var/log/nagios/nagios.log) 的 **omsagent** 讀取權授與使用者。 假設 nagios.log 檔案是由 **nagios** 群組所擁有，您可以將使用者 **omsagent** 新增至 **nagios** 群組。
-   
+
     ```
     sudo usermod –a -G nagios omsagent
     ```
 2. 修改 omsagent.confconfiguration 檔案 (/etc/opt/microsoft/omsagent/conf/omsagent.conf)。 確定下列項目存在且未標成註解︰
-   
+
     ```
     <source>
     type tail
@@ -341,13 +345,13 @@ log { source(src); filter(f_warning_oms); destination(warning_oms); };
     format none
     tag oms.nagios
     </source>
-   
+
     <filter oms.nagios>
     type filter_nagios_log
     </filter>
     ```
 3. 重新啟動 omsagent 精靈：
-   
+
     ```
     sudo service omsagent restart
     ```
@@ -379,7 +383,7 @@ Type=Alert
 #### <a name="to-view-all-nagios-alerts-with-log-analytics"></a>使用 Log Analytics 檢視所有 Nagios 警示
 1. 在 Operations Management Suite 入口網站中，按一下 [記錄檔搜尋]  磚。
 2. 在查詢列中，輸入下列搜尋查詢：
-   
+
     ```
     Type=Alert SourceSystem=Nagios
     ```
@@ -390,7 +394,7 @@ Type=Alert
 ### <a name="to-view-all-zabbix-alerts-with-log-analytics"></a>使用 Log Analytics 檢視所有 Zabbix 警示
 1. 在 Operations Management Suite 入口網站中，按一下 [記錄檔搜尋]  磚。
 2. 在查詢列中，輸入下列搜尋查詢：
-   
+
     ```
     Type=Alert SourceSystem=Zabbix
     ```
@@ -403,14 +407,14 @@ OMS Agent for Linux 會與 System Center Operations Manager 代理程式共用�
 
 > [!NOTE]
 > 如果 OMS Agent for Linux 安裝到 Operations Manager 目前未管理的電腦，而且您之後想要使用 Operations Manager 管理電腦，則必須先修改 OMI 組態，再探索到電腦。 **如果先安裝 Operations Manager 代理程式，再安裝 OMS Agent for Linux，則不需要這個步驟。**
-> 
-> 
+>
+>
 
 ### <a name="to-enable-the-oms-agent-for-linux-to-communicate-with-operations-manager"></a>啟用 OMS Agent for Linux 以與 Operations Manager 通訊
 1. 編輯 /etc/opt/omi/conf/omiserver.conf 檔案
 2. 確認開頭為 **httpsport=** 的行定義連接埠 1270。 例如 `httpsport=1270`
 3. 重新啟動 OMI 伺服器：
-   
+
     ```
     service omiserver restart or systemctl restart omiserver
     ```
@@ -537,8 +541,8 @@ OMI 和 SCX 元件的記錄檔 (其提供效能計量資料) 位於：
 
 > [!NOTE]
 > 編輯效能計數器的組態檔，而若已啟用 OMS 入口網站組態，則會覆寫 syslog。 您可以在 OMS 入口網站中停用組態 (適用於所有節點)，或對單一節點執行下列命令︰
-> 
-> 
+>
+>
 
 ```
 sudo su omsagent -c /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py --disable
@@ -674,7 +678,7 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 ```
 
 
-### <a name="linux-data-doesn't-appear-in-the-oms-portal"></a>Linux 資料不會顯示在 OMS 入口網站中
+### <a name="linux-data-doesnt-appear-in-the-oms-portal"></a>Linux 資料不會顯示在 OMS 入口網站中
 #### <a name="probable-causes"></a>可能的原因
 * 上架至 OMS 服務失敗
 * 對 OMS 服務的連線遭到封鎖
@@ -697,11 +701,11 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 
 * 在某些情況下，OMS Agent for Linux 設定代理程式可能無法與入口網站組態服務進行通訊，以致未套用最新的組態。
 * 確認已利用下列項目安裝 `omsconfig` 代理程式︰
-  
+
   * `dpkg --list omsconfig` 或 `rpm -qi omsconfig`
   * 若未安裝，請重新安裝最新版的 OMS Agent for Linux
 * 確認 `omsconfig` 代理程式可以與 OMS 服務進行通訊
-  
+
   * 執行 `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/GetDscConfiguration.py'` 命令
     * 上述命令會傳回代理程式從入口網站擷取的組態，包括 Syslog 設定、Linux 效能計數器以及自訂記錄檔
     * 如果上述命令失敗，請執行 `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/PerformRequiredConfigurationChecks.py` 命令。 此命令會強制 omsconfig 代理程式與 OMS 服務進行通訊，以擷取最新的組態。
@@ -722,7 +726,7 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 * 在 OMS 入口網站中，於 [資料] 索引標籤的 [設定] 之下，確定已選取 [將下列組態套用至我的 Linux 伺服器] 設定。  
   ![套用組態](./media/log-analytics-linux-agents/customloglinuxenabled.png)
 * 確認 `omsconfig` 代理程式可以與 OMS 服務進行通訊
-  
+
   * 執行 `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/GetDscConfiguration.py'` 命令
   * 上述命令會傳回代理程式從入口網站擷取的組態，包括 Syslog 設定、Linux 效能計數器以及自訂記錄檔
   * 如果上述命令失敗，請執行 `sudo su omsagent -c 'python /opt/microsoft/omsconfig/Scripts/PerformRequiredConfigurationChecks.py` 命令。 此命令會強制 omsconfig 代理程式與 OMS 服務進行通訊，以擷取最新的組態。
@@ -779,6 +783,8 @@ azure vm extension set <resource-group> <vm-name> LinuxDiagnostic Microsoft.OSTC
 * 熟悉 [記錄檔搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
 * 使用 [儀表板](log-analytics-dashboards.md) 以儲存和顯示您自己的自訂搜尋。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure Media Packager 完成靜態封裝工作 | Microsoft Docs
-description: 本主題說明使用 Azure Media Packager 完成的各種工作。
+title: "使用 Azure Media Packager 完成靜態封裝工作 | Microsoft Docs"
+description: "本主題說明使用 Azure Media Packager 完成的各種工作。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 0582628e-a525-4a78-90ac-9f7fc1cd909f
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4f05f188633e2d5103e29ae4501f7ea9a832acba
+
 
 ---
 # <a name="using-azure-media-packager-to-accomplish-static-packaging-tasks"></a>使用 Azure Media Packager 完成靜態封裝工作
@@ -1455,6 +1459,9 @@ ms.author: juliako
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

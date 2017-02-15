@@ -1,34 +1,38 @@
 ---
-title: 使用 REST API 存取 Azure Mobile Engagement 服務 API
-description: 描述如何使用 Mobile Engagement REST API 存取 Azure Mobile Engagement 服務 API
+title: "使用 REST API 存取 Azure Mobile Engagement 服務 API"
+description: "描述如何使用 Mobile Engagement REST API 存取 Azure Mobile Engagement 服務 API"
 services: mobile-engagement
 documentationcenter: mobile
 author: wesmc7777
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: e8df4897-55ee-45df-b41e-ff187e3d9d12
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/07/2016
+ms.date: 10/05/2016
 ms.author: wesmc;ricksal
+translationtype: Human Translation
+ms.sourcegitcommit: 555342e88c912a3f43c578a40dc34933996ade4c
+ms.openlocfilehash: 512276d151833ab5c65b663d8f2af43153e1d55b
+
 
 ---
-# 使用 REST 存取 Azure Mobile Engagement 服務 API
-Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.microsoft.com/library/azure/mt683754.aspx)，讓您可以管理裝置、觸達/推送活動等。此範例會直接使用 REST API 來建立公告行銷活動，然後將其啟用並推送給一組裝置。
+# <a name="using-rest-to-access-azure-mobile-engagement-service-apis"></a>使用 REST 存取 Azure Mobile Engagement 服務 API
+Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.microsoft.com/library/azure/mt683754.aspx)，讓您可以管理裝置、觸達/推送活動等。此範例會直接使用 REST API 來建立公告行銷活動，然後將其啟用並推送給一組裝置。 
 
-如果您不想直接使用 REST API，我們也提供 [Swagger 檔案](https://github.com/Azure/azure-rest-api-specs/blob/master/arm-mobileengagement/2014-12-01/swagger/mobile-engagement.json)，可以與工具搭配使用來針對您慣用的語言產生 SDK。我們建議使用 [AutoRest](https://github.com/Azure/AutoRest) 工具從我們的 Swagger 檔案產生 SDK。我們已經以類似的方式建立 .NET SDK，可讓您使用 C# 包裝函式與這些 API 互動，且您不需要自行執行驗證權杖交涉和重新整理。如果您想要逐步了解使用這個包裝函式的類似範例，請參閱[服務 API.NET SDK 範例](mobile-engagement-dotnet-sdk-service-api.md)
+如果您不想直接使用 REST API，我們也提供 [Swagger 檔案](https://github.com/Azure/azure-rest-api-specs/blob/master/arm-mobileengagement/2014-12-01/swagger/mobile-engagement.json) ，可以與工具搭配使用來針對您慣用的語言產生 SDK。 我們建議使用 [AutoRest](https://github.com/Azure/AutoRest) 工具從我們的 Swagger 檔案產生 SDK。 我們已經以類似的方式建立 .NET SDK，可讓您使用 C# 包裝函式與這些 API 互動，且您不需要自行執行驗證權杖交涉和重新整理。 如果您想要逐步了解使用這個包裝函式的類似範例，請參閱 [服務 API.NET SDK 範例](mobile-engagement-dotnet-sdk-service-api.md)
 
-此範例會直接使用 REST API 來建立與啟用公告行銷活動。
+此範例會直接使用 REST API 來建立與啟用公告行銷活動。 
 
-## 將 user\_name 應用程式資訊新增至 Mobile Engagement 應用程式
-這個範例需要將應用程式資訊標記新增至 Mobile Engagement 應用程式。在應用程式的 engagement 入口網站中，您可以藉由按一下 [設定] > [標記 (應用程式資訊)] > [新增標記 (應用程式資訊)] 來新增標記。新增名為 **user\_name** 的新標記做為**字串**類型。
+## <a name="adding-a-username-appinfo-to-the-mobile-engagement-app"></a>將 user_name 應用程式資訊新增至 Mobile Engagement 應用程式
+這個範例需要將應用程式資訊標記新增至 Mobile Engagement 應用程式。 在應用程式的 engagement 入口網站中，您可以藉由按一下 [設定]  >  [標記 (應用程式資訊)]  >  [新增標記 (應用程式資訊)] 來新增標記。 新增名為 **user_name** 的新標記做為**字串**類型。
 
 ![](./media/mobile-engagement-dotnet-rest-service-api/user-name-app-info.png)
 
-如果您遵循[開始使用 Windows 通用 App 的 Azure Mobile Engagement](mobile-engagement-windows-store-dotnet-get-started.md)，您就可以只藉由覆寫 `MainPage` 類別中的 `OnNavigatedTo()` 來測試傳送 **user\_name**，以便傳送類似下列程式碼的應用程式資訊標記︰
+如果您遵循[開始使用 Windows 通用 App 的 Azure Mobile Engagement](mobile-engagement-windows-store-dotnet-get-started.md)，您就可以只藉由覆寫 `MainPage` 類別中的 `OnNavigatedTo()` 來測試傳送 **user_name**，以便傳送類似下列程式碼的應用程式資訊標記︰
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
@@ -43,9 +47,9 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
 
 
 
-## 建立服務 API 應用程式
-1. 首先，您需要用於此範例的四個驗證參數。這些參數是 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。若要取得這些驗證參數，建議您使用[驗證](mobile-engagement-api-authentication.md#authentication)教學課程中單次設定 (使用指令碼) 一節下所述的 PowerShell 指令碼方法。
-2. 我們將使用簡單的 Windows 主控台應用程式，示範使用 REST Service API 建立與啟用新的公告行銷活動。開啟 Visual Studio，建立新的 [主控台應用程式]。
+## <a name="creating-the-service-api-app"></a>建立服務 API 應用程式
+1. 首先，您需要用於此範例的四個驗證參數。 這些參數是 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。 若要取得這些驗證參數，建議您使用[驗證](mobile-engagement-api-authentication.md#authentication)教學課程中「單次設定 (使用指令碼)」一節下所述的 PowerShell 指令碼方法。 
+2. 我們將使用簡單的 Windows 主控台應用程式，示範使用 REST Service API 建立與啟用新的公告行銷活動。 開啟 Visual Studio，建立新的 [主控台應用程式] 。   
 3. 接下來，將 **Newtonsoft.Json** NuGet 封裝新增至您的專案。
 4. 在 `Program.cs` 檔案中，新增下列 `using` 陳述式做為下列命名空間︰
    
@@ -53,7 +57,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
         using System.Net;
         using Newtonsoft.Json.Linq;
         using Newtonsoft.Json;
-5. 接下來您必須在 `Program` 類別中定義下列常數。我們將使用這些常數來驗證您正在建立公告行銷活動之 Mobile Engagement 應用程式並與其互動：
+5. 接下來您必須在 `Program` 類別中定義下列常數。 我們將使用這些常數來驗證您正在建立公告行銷活動之 Mobile Engagement 應用程式並與其互動：
 
         // Parameters needed for authentication of API calls.
         // These are returned from the PowerShell script in the authentication tutorial. 
@@ -67,7 +71,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
         static String Token = null;
 
         // This is the Azure Resource group concept for grouping together resources 
-        // See: https://azure.microsoft.com/zh-TW/documentation/articles/resource-group-portal/
+        // See: https://azure.microsoft.com/en-us/documentation/articles/resource-group-portal/
         static String ResourceGroup = "MobileEngagement";
 
         // For Mobile Engagement operations
@@ -86,7 +90,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
         static List<String> deviceList = new List<String>();
 
 
-1. 將下列兩個方法加入至 `Program` 類別。這些方法將用於執行 REST API 並顯示對主控台的回應。
+1. 將下列兩個方法加入至 `Program` 類別。 這些方法將用於執行 REST API 並顯示對主控台的回應。
    
         private static async Task<HttpWebResponse> ExecuteREST(string httpMethod, string uri, string authToken, WebHeaderCollection headers = null, string body = null, string contentType = "application/json")
         {
@@ -182,11 +186,11 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
             Console.WriteLine("*** Failed to get authorization token. Check your parameters for API calls.\n");
             return;
         }
-2. 既然我們已經有有效的驗證權杖，我們就可以使用[建立活動](https://msdn.microsoft.com/library/azure/mt683742.aspx) REST API 建立新的觸達活動。新的活動會是簡單的**隨時**及**僅通知**公告行銷活動，包含標題和訊息。這將會是手動推送活動，如下列螢幕擷取畫面所示。這表示它將只會使用 API 推送。
+2. 既然我們已經有有效的驗證權杖，我們就可以使用 [建立活動](https://msdn.microsoft.com/library/azure/mt683742.aspx) REST API 建立新的觸達活動。 新的活動會是簡單的**隨時**  &  **僅通知**公告行銷活動，包含標題和訊息。 這將會是手動推送活動，如下列螢幕擷取畫面所示。 這表示它將只會使用 API 推送。
 
     ![](./media/mobile-engagement-dotnet-rest-service-api/manual-push.png)
 
-    將下列程式碼新增至您的 `Main` 方法，以建立公告行銷活動︰
+    將下列程式碼新增至您的 `Main` 方法，以建立公告行銷活動︰ 
 
         //*****************************************************************************
         //*** Create a campaign to send a notification using the user-name app-info ***
@@ -196,13 +200,13 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
                "resourcegroups/" + ResourceGroup + "/providers/Microsoft.MobileEngagement/appcollections/" +
                Collection + "/apps/" + AppName + "/campaigns/announcements?api-version=2014-12-01";
 
-        String campaignRequestBody = "{ "name": "BirthdayCoupon", " +
-                                        ""type": "only_notif", " +
-                                        ""deliveryTime": "any", " +
-                                        ""notificationType": "popup", " +
-                                        ""pushMode":"manual", " +
-                                        ""notificationTitle": "Happy Birthday ${user_name}", " +
-                                        ""notificationMessage": "Take extra 10% off on your orders today!"}";
+        String campaignRequestBody = "{ \"name\": \"BirthdayCoupon\", " +
+                                        "\"type\": \"only_notif\", " +
+                                        "\"deliveryTime\": \"any\", " +
+                                        "\"notificationType\": \"popup\", " +
+                                        "\"pushMode\":\"manual\", " +
+                                        "\"notificationTitle\": \"Happy Birthday ${user_name}\", " +
+                                        "\"notificationMessage\": \"Take extra 10% off on your orders today!\"}";
 
         Console.WriteLine("Creating new campaign...\n");
         HttpWebResponse newCampaignResponse = ExecuteREST("POST", newCampaignMethodUrl, Token, null, campaignRequestBody).Result;
@@ -226,9 +230,9 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
         }
 
 
-1. 在活動推送至任何裝置之前，必須先將其啟用。我們在 `NewCampaignID` 變數中為新的活動儲存識別碼。我們會用它做為 URI 路徑參數，以使用[啟動活動](https://msdn.microsoft.com/library/azure/mt683745.aspx) REST API 來啟用活動。即使活動只能利用 API 手動推送，這樣應該會將活動狀態變更為**已排程**。
+1. 在活動推送至任何裝置之前，必須先將其啟用。 我們在 `NewCampaignID` 變數中為新的活動儲存識別碼。 我們會用它做為 URI 路徑參數，以使用 [啟動活動](https://msdn.microsoft.com/library/azure/mt683745.aspx) REST API 來啟用活動。 即使活動只能利用 API 手動推送，這樣應該會將活動狀態變更為 **已排程** 。
    
-    將下列程式碼新增至您的 `Main` 方法，以啟用公告行銷活動︰
+    將下列程式碼新增至您的 `Main` 方法，以啟用公告行銷活動︰ 
    
         //******************************************
         //*** Activate the new birthday campaign ***
@@ -258,7 +262,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
             Console.WriteLine("*** Failed to activate birthday campaign.\n");
             return;
         }
-2. 若要推送活動，我們必須提供我們想要接收通知的裝置識別碼給使用者。我們將使用[查詢裝置](https://msdn.microsoft.com/library/azure/mt683826.aspx) REST API 來取得所有裝置識別碼。如果清單有相關聯的 **user\_name** 應用程式資訊，我們會將每個裝置識別碼新增至清單。
+2. 若要推送活動，我們必須提供我們想要接收通知的裝置識別碼給使用者。 我們將使用 [查詢裝置](https://msdn.microsoft.com/library/azure/mt683826.aspx) REST API 來取得所有裝置識別碼。 如果清單有相關聯的 **user_name** 應用程式資訊，我們會將每個裝置識別碼新增至清單。
    
    將下列程式碼新增至您的 `Main` 方法，以取得所有裝置識別碼，並填入 deviceList：
    
@@ -301,7 +305,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
            Console.WriteLine("*** Failed to get devices.\n");
            return;
        }
-3. 最後，我們會使用[推送活動](https://msdn.microsoft.com/library/azure/mt683734.aspx) REST API 將活動推送至清單中的所有裝置識別碼。這是**應用程式內**通知。因此應用程式必須在裝置上執行才能讓使用者接收它。
+3. 最後，我們會使用 [推送活動](https://msdn.microsoft.com/library/azure/mt683734.aspx) REST API 將活動推送至清單中的所有裝置識別碼。 這是 **應用程式內** 通知。 因此應用程式必須在裝置上執行才能讓使用者接收它。
    
    將下列程式碼新增至您的 `Main` 方法，以將活動推送到 deviceList 中的裝置︰
    
@@ -315,7 +319,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
                   "/push?api-version=2014-12-01";
    
        Console.WriteLine("Triggering push for new campaign (ID : " + NewCampaignID + ")...\n");
-       String deviceIds = "{"deviceIds":" + JsonConvert.SerializeObject(deviceList) + "}";
+       String deviceIds = "{\"deviceIds\":" + JsonConvert.SerializeObject(deviceList) + "}";
        Console.WriteLine("\n" + deviceIds + "\n");
        HttpWebResponse pushDevicesResponse = ExecuteREST("POST", pushCampaignUrl, Token, null, deviceIds).Result;
        Stream pushDevicesStream = pushDevicesResponse.GetResponseStream();
@@ -333,7 +337,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
        {
            Console.WriteLine("*** Failed to push campaign to the device list.\n");
        }
-4. 建置並執行您的主控台應用程式。您的輸出應該類似如下範例：
+4. 建置並執行您的主控台應用程式。 您的輸出應該類似如下範例：
 
         C:\Users\Wesley\AzME_Service_API_Rest\test.exe
 
@@ -425,8 +429,7 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
         user_name    : Wesley
 
         Triggering push for new campaign (ID : 24)...
-
-
+        
         {"deviceIds":["1d6208b8f281203ecb49431e2e5ce6b3","302486644890e26045884ee5aa0619ec"]}
 
         HTTP Status 200 : OK
@@ -442,4 +445,8 @@ Azure Mobile Engagement 提供 [Azure Mobile Engagement REST API](https://msdn.m
 
 [1]: ./media/mobile-engagement-dotnet-sdk-service-api/include-prerelease.png
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

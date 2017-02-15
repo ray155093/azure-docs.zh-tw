@@ -1,19 +1,23 @@
 ---
-title: Log Analytics 中的記錄檔搜尋 | Microsoft Docs
-description: 記錄檔搜尋可讓您結合和相互關聯您環境內多個來源的任何電腦資料。
+title: "Log Analytics 中的記錄檔搜尋 | Microsoft Docs"
+description: "記錄檔搜尋可讓您結合和相互關聯您環境內多個來源的任何電腦資料。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
-manager: jwhit
-editor: ''
-
+manager: carmonm
+editor: 
+ms.assetid: 0d7b6712-1722-423b-a60f-05389cde3625
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/02/2017
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3e1810850651cff4680ea558178ebf92aeac4faa
+
 
 ---
 # <a name="log-searches-in-log-analytics"></a>Log Analytics 中的記錄檔搜尋
@@ -176,8 +180,8 @@ Type=Event EventLog="Operations Manager" EventID:[2100..2199]
 
 > [!NOTE]
 > 您必須使用的範圍語法是冒號 (:) field:value 分隔符號，「不」是等號 (=)。 用方括號括住範圍的下限和上限結尾，並使用兩個句點 (..) 隔開它們。
-> 
-> 
+>
+>
 
 ## <a name="manipulate-search-results"></a>操控搜尋結果
 當您在搜尋資料時，您會想要精簡搜尋查詢，並已經對結果有相當程度的控制。 擷取結果時，您可以套用命令以將其轉換。
@@ -246,7 +250,7 @@ SELECT 命令的行為類似 PowerShell 中的 Select-Object。 它會傳回不�
 ## <a name="use-the-measure-command"></a>使用 measure 命令
 MEASURE 是 Log Analytics 搜尋中最具彈性的命令之一。 它可讓您將統計「函數」  套用至資料，並依照指定的欄位分組來彙總結果。 Measure 支援多個統計函數。
 
-### <a name="measure-count()"></a>Measure count()
+### <a name="measure-count"></a>Measure count()
 第一個要使用的統計函數，也是最容易了解的統計函數就是「count()」  函數。
 
 來自任何搜尋查詢 (例如 `Type=Event`) 的結果會在搜尋結果的左邊顯示篩選，又稱為 Facet。 篩選器會在執行的搜尋中透過指定的結果欄位顯示值的分佈。
@@ -571,6 +575,8 @@ Type=WireData | measure avg(ReceivedBytes), avg(SentBytes) by Direction interval
 * 使用 [Log Analytics 中的自訂欄位](log-analytics-custom-fields.md) 來延伸記錄檔搜尋。
 * 檢閱 [Log Analytics 記錄檔搜尋參考資料](log-analytics-search-reference.md) ，以檢視 Log Analytics 中提供的所有搜尋欄位和 Facet。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

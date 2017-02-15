@@ -146,6 +146,6 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。 請使用下表決�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

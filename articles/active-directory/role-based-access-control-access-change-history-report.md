@@ -1,12 +1,12 @@
 ---
-title: 建立存取權變更歷程記錄報告 | Microsoft Docs
-description: 產生一份報告，其中列出您的 Azure 訂用帳戶 (採用角色型存取控制) 在過去 90 天內的所有存取權變更。
+title: "建立存取權變更歷程記錄報告 | Microsoft Docs"
+description: "產生一份報告，其中列出您的 Azure 訂用帳戶 (採用角色型存取控制) 在過去 90 天內的所有存取權變更。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: kgremban
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 2bc68595-145e-4de3-8b71-3a21890d13d9
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,13 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/03/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 44295ff647cbfd2d63ffe08d101da66b83a924f6
+
 
 ---
-# 建立存取權變更歷程記錄報告
-每當有人授與或撤銷您訂用帳戶中的存取權時，變更就會記錄在 Azure 事件中。您可以建立存取權變更歷程記錄報告，以查看過去 90 天內的所有變更。
+# <a name="create-an-access-change-history-report"></a>建立存取權變更歷程記錄報告
+每當有人授與或撤銷您訂用帳戶中的存取權時，變更就會記錄在 Azure 事件中。 您可以建立存取權變更歷程記錄報告，以查看過去 90 天內的所有變更。
 
-## 使用 Azure PowerShell 建立報告
-若要在 PowerShell 中建立存取權變更歷程記錄報告，請使用 `Get-AzureRMAuthorizationChangeLog` 命令。[PowerShell 資源庫](https://www.powershellgallery.com/packages/AzureRM.Storage/1.0.6/Content/ResourceManagerStartup.ps1)中有提供關於此 Cmdlet 的更多詳細資料。
+## <a name="create-a-report-with-azure-powershell"></a>使用 Azure PowerShell 建立報告
+若要在 PowerShell 中建立存取權變更歷程記錄報告，請使用 `Get-AzureRMAuthorizationChangeLog` 命令。 [PowerShell 資源庫](https://www.powershellgallery.com/packages/AzureRM.Storage/1.0.6/Content/ResourceManagerStartup.ps1)中有提供關於此 Cmdlet 的更多詳細資料。
 
 呼叫此命令時，您可以指定要列出哪一個指派屬性，其中包括下列屬性︰
 
@@ -47,16 +51,21 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 
 ![PowerShell Get-AzureRMAuthorizationChangeLog - 螢幕擷取畫面](./media/role-based-access-control-configure/access-change-history.png)
 
-## 使用 Azure CLI 建立報告
+## <a name="create-a-report-with-azure-cli"></a>使用 Azure CLI 建立報告
 若要在 Azure 命令列介面 (CLI) 中建立存取權變更歷程記錄報告，請使用 `azure role assignment changelog list` 命令。
 
-## 匯出為試算表
-若要儲存報告或處理此資料，請將存取權變更匯出為 .csv 檔案。您即可在試算表中檢閱此報告。
+## <a name="export-to-a-spreadsheet"></a>匯出為試算表
+若要儲存報告或處理此資料，請將存取權變更匯出為 .csv 檔案。 您即可在試算表中檢閱此報告。
 
 ![以試算表形式來檢視的變更記錄 - 螢幕擷取畫面](./media/role-based-access-control-configure/change-history-spreadsheet.png)
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)
 * 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

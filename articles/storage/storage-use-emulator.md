@@ -1,19 +1,23 @@
 ---
-title: 使用 Azure 儲存體模擬器進行開發和測試 | Microsoft Docs
-description: Azure 儲存體模擬器提供免費的本機開發環境，針對 Azure 儲存體進行開發和測試。 了解儲存體模擬器，包括如何驗證要求、如何從應用程式連接到模擬器，以及如何使用命令列工具。
+title: "使用 Azure 儲存體模擬器進行開發和測試 | Microsoft Docs"
+description: "Azure 儲存體模擬器提供免費的本機開發環境，針對 Azure 儲存體進行開發和測試。 了解儲存體模擬器，包括如何驗證要求、如何從應用程式連接到模擬器，以及如何使用命令列工具。"
 services: storage
-documentationcenter: ''
+documentationcenter: 
 author: tamram
 manager: carmonm
 editor: tysonn
-
+ms.assetid: f480b059-df8a-4a63-b05a-7f2f5d1f5c2a
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 11/28/2016
 ms.author: tamram
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 94de2ce77328cc9902b054200d52d78fb5ccf5ec
+
 
 ---
 # <a name="use-the-azure-storage-emulator-for-development-and-testing"></a>使用 Azure 儲存體模擬器進行開發和測試
@@ -49,14 +53,16 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 1. 如果尚未安裝 Azure PowerShell，請先安裝。 建議使用最新版的 Azure PowerShell Cmdlet。 如需安裝指示，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md#Install) 。
 2. 開啟 Azure PowerShell 並執行下列命令。 請務必以您自己的認證取代 *ACCOUNT_NAME* 和 *ACCOUNT_KEY==*。 以您選擇的名稱取代 *CONTAINER_NAME*。
-   
-        $context = New-AzureStorageContext -StorageAccountName "ACCOUNT_NAME" -StorageAccountKey "ACCOUNT_KEY=="
-   
-        New-AzureStorageContainer CONTAINER_NAME -Permission Off -Context $context
-   
-        $now = Get-Date 
-   
-        New-AzureStorageContainerSASToken -Name CONTAINER_NAME -Permission rwdl -ExpiryTime $now.AddDays(1.0) -Context $context -FullUri
+
+```powershell
+$context = New-AzureStorageContext -StorageAccountName "ACCOUNT_NAME" -StorageAccountKey "ACCOUNT_KEY=="
+
+New-AzureStorageContainer CONTAINER_NAME -Permission Off -Context $context
+
+$now = Get-Date 
+
+New-AzureStorageContainerSASToken -Name CONTAINER_NAME -Permission rwdl -ExpiryTime $now.AddDays(1.0) -Context $context -FullUri
+```
 
 針對新容器產生的共用存取簽章 URI 應該類似下列項目：
 
@@ -122,7 +128,7 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
     Queue Service: http://127.0.0.1:10001/<account-name>/<resource-path>
     Table Service: http://127.0.0.1:10002/<account-name>/<resource-path>
 
-### <a name="addressing-the-account-secondary-with-ragrs"></a>使用 RA-GRS 為帳戶次要位址定址
+### <a name="addressing-the-account-secondary-with-ra-grs"></a>使用 RA-GRS 為帳戶次要位址定址
 從 3.1 版開始，儲存體模擬器帳戶就支援讀取存取地理備援複寫 (RA-GRS)。 針對同時位於雲端和本機模擬器中的儲存體資源，您可以藉由將 -secondary 附加到帳戶名稱來存取次要位置。 例如，下列位址可能會用於在儲存體模擬器中使用唯讀的次要位置來存取 Blob：
 
     http://127.0.0.1:10000/myaccount-secondary/mycontainer/myblob.txt 
@@ -132,7 +138,7 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 > 
 > 
 
-## <a name="storage-emulator-commandline-tool-reference"></a>儲存體模擬器命令列工具參考
+## <a name="storage-emulator-command-line-tool-reference"></a>儲存體模擬器命令列工具參考
 從 3.0 版開始，在您啟動儲存體模擬器時，命令列視窗隨即出現。 使用命令列視窗啟動和停止模擬器，以及查詢狀態和執行其他作業。
 
 > [!NOTE]
@@ -219,6 +225,9 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 * 儲存體模擬器圖形化使用者介面已由可編寫指令碼的命令列介面取代。 如需有關命令列介面的詳細資訊，請參閱儲存體模擬器命令列工具參考。 3.0 版仍將提供圖形化介面，除非在系統匣圖示按一下滑鼠右鍵並選取 [顯示儲存體模擬器 UI] 的方式安裝計算模擬器，否則無法存取圖形化介面。
 * 現在完全支援 2013-08-15 版的 Azure 儲存體服務。 (先前只有儲存體模擬器 2.2.1 版預覽才支援此版本)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

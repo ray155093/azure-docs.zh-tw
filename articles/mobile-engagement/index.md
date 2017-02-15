@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何深入解析行動應用程式使用量和即時使用者區隔，以及如何啟用內容感知的推播通知及應用程式內的傳訊功能。"
 translationtype: Human Translation
-ms.sourcegitcommit: 2dbe8c3bf665249af4a1626e38f6465d2db32a0b
-ms.openlocfilehash: fed0048ab3a7101c4461ffa14511a26ecd7a36eb
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 37f08d8a03845b86d382d4c0b49b58f633cc1b0c
 
 ---
 # <a name="mobile-engagement-documentation"></a>Mobile Engagement 文件
@@ -195,13 +195,6 @@ ms.openlocfilehash: fed0048ab3a7101c4461ffa14511a26ecd7a36eb
 
 ---
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/mobile-engagement.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure Mobile Engagement 文件 </div>
-    </a>
-</div>
 
 
 

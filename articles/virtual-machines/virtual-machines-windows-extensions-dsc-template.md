@@ -302,6 +302,6 @@ VMSS 節點具有 "properties" 區段以及 "VirtualMachineProfile"、"extension
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

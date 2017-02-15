@@ -1,12 +1,12 @@
 ---
-title: MyDriving Azure IoT 範例 - 建置 | Microsoft Docs
-description: 建置應用程式，以完整示範如何使用 Microsoft Azure 建立 IoT 系統的架構，包括串流分析、機器學習服務和事件中樞。
-services: ''
+title: "MyDriving Azure IoT 範例 - 建置 | Microsoft Docs"
+description: "建置應用程式，以完整示範如何使用 Microsoft Azure 建立 IoT 系統的架構，包括串流分析、機器學習服務和事件中樞。"
+services: 
 documentationcenter: .net
-suite: ''
+suite: 
 author: harikmenon
 manager: douge
-
+ms.assetid: c2fcd6ee-3bbe-43d1-a066-dce52cc3a53d
 ms.service: multiple
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/25/2016
 ms.author: harikm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 012bfc7d8431e2edb2b1056fb465421fad58193a
+
 
 ---
 # <a name="build-and-deploy-the-mydriving-solution-to-your-environment"></a>建置 MyDriving 方案並部署至您的環境
@@ -192,7 +196,7 @@ HockeyApp 可管理 Android、iOS 或 Windows 應用程式散發以測試使用�
 
 Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式。 雖然您可以個別使用許多服務 (例如 App Service/Web Apps)，但這些服務與整合式系統 (例如在 MyDriving 中使用的整合式系統) 互連時的效果最佳。
 
-您可以手動建立 Azure 服務並與其互連，但使用 Azure Resource Manager 範本的速度和可靠性均較高。 [Resource Manager](../resource-group-overview.md) 可自動化方案的資源部署，並互相連接這些資源。
+您可以手動建立 Azure 服務並與其互連，但使用 Azure Resource Manager 範本的速度和可靠性均較高。 [Resource Manager](../azure-resource-manager/resource-group-overview.md) 可自動化方案的資源部署，並互相連接這些資源。
 
 您可以在 GitHub 儲存機制中的 [scripts/ARM](https://github.com/Azure-Samples/MyDriving/tree/master/scripts/ARM)下，找到 MyDriving 系統的範本。 此範本可讓您詳盡且精簡地檢視架構中不同服務的互連方式。 我們在 [MyDriving 參考指南](http://aka.ms/mydrivingdocs)中將詳細說明，不過光是閱讀範本本身，就能了解許多資訊。
 
@@ -364,7 +368,7 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 | [Application Insights](https://azure.microsoft.com/pricing/details/application-insights/) <br/>監視 Web 服務和網站的效能和使用狀況 |免費層。 |美金 $0 元 |
 | [HockeyApp](http://hockeyapp.net/pricing/) <br/>  散發 Beta 版應用程式，以及收集意見反應、使用狀況和當機資料 |新使用者有兩個免費的應用程式。<br/> 之後每月美金 $30 元。 |美金 $0 元 |
 | [Xamarin](https://store.xamarin.com/)<br/>  多部裝置之統一平台上的程式碼 |免費試用版。 <br/>之後每月美金 $25 元。 |美金 $0 元 |
-| [SQL Database](https://azure.microsoft.com/pricing/details/sql-database/) |基本層；單一資料庫模型。 |美金 $5 元 |
+| [SQL Database](https://azure.microsoft.com/pricing/details/sql-database/)  |基本層；單一資料庫模型。 |美金 $5 元 |
 | [Service Fabric](https://azure.microsoft.com/pricing/details/service-fabric/) (選擇性) |執行本機叢集。 |美金 $0 元 |
 | [Power BI](https://powerbi.microsoft.com/pricing/)<br/>  對串流處理的靜態資料進行多元顯示及調查 |免費層：1GB，每小時 10,000 列，每天重新整理。 <br/> 針對 [更高限制](https://powerbi.microsoft.com/documentation/powerbi-power-bi-pro-content-what-is-it/)、更多連接選項和共同作業，則為每月每位使用者美金 $10 元。 |美金 $0 元 |
 | [儲存體](https://azure.microsoft.com/pricing/details/storage/) |L (本機備援) &lt; 100 G 美金 $0.024 元/GB。 |美金 $3 元 |
@@ -376,7 +380,7 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 
 如需詳細資訊，請參閱：
 
-* [Azure 服務配額與限制](../azure-subscription-service-limits.md#iot-hub-limits)
+*  [Azure 服務配額與限制](../azure-subscription-service-limits.md#iot-hub-limits)
 * [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)
 
 ## <a name="send-us-your-feedback"></a>將您的意見反應傳給我們
@@ -394,6 +398,9 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 ## <a name="next-steps"></a>後續步驟
 我們所建議的 [MyDriving 參考指南](http://aka.ms/mydrivingdocs)完整說明系統及其元件的設計。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

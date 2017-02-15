@@ -1,27 +1,31 @@
 ---
-title: 服務匯流排和 Java 與 AMQP 1.0 | Microsoft Docs
-description: 搭配使用 Java 的服務匯流排與 AMQP
-services: service-bus
+title: "服務匯流排和 Java 與 AMQP 1.0 | Microsoft Docs"
+description: "搭配使用 Java 的服務匯流排與 AMQP"
+services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 1848f58d-1b40-43e0-89c4-ab14ba34c032
+ms.service: service-bus-messaging
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/29/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: eb41df70551bc327473caea4fab95cd269bc0175
+
 
 ---
-# <a name="use-service-bus-from-java-with-amqp-1.0"></a>搭配使用 Java 的服務匯流排與 AMQP 1.0
+# <a name="use-service-bus-from-java-with-amqp-10"></a>搭配使用 Java 的服務匯流排與 AMQP 1.0
 [!INCLUDE [service-bus-selector-amqp](../../includes/service-bus-selector-amqp.md)]
 
 Java 訊息服務 (JMS) 是在 Java 平台上搭配訊息導向中介軟體一起使用的標準 API。 我們已根據 Apache Qpid 專案開發的 JMS 用戶端程式庫，使用 AMQP 1.0 測試過 Microsoft Azure 服務匯流排。 此程式庫支援完整的 JMS 1.1 API，可以搭配 AMQP 1.0 相容的任何訊息服務一起使用。 在 [Windows Server 服務匯流排](https://msdn.microsoft.com/library/dn282144.aspx) (內部部署服務匯流排) 中也支援這種情況。 如需詳細資訊，請參閱 [Windows Server 服務匯流排中的 AMQP][Windows Server 服務匯流排中的 AMQP]。
 
-## <a name="download-the-apache-qpid-amqp-1.0-jms-client-library"></a>下載 Apache Qpid AMQP 1.0 JMS 用戶端程式庫
+## <a name="download-the-apache-qpid-amqp-10-jms-client-library"></a>下載 Apache Qpid AMQP 1.0 JMS 用戶端程式庫
 如需有關下載最新版 Apache Qpid JMS AMQP 1.0 用戶端程式庫的資訊，請造訪 [http://people.apache.org/~rgodfrey/qpid-java-amqp-1-0-client-jms.html](http://people.apache.org/~rgodfrey/qpid-java-amqp-1-0-client-jms.html)。
 
 您使用服務匯流排建立和執行 JMS 應用程式時，必須從 Apache Qpid JMS AMQP 1.0 散發封裝將下列 4 個 JAR 檔加入 Java CLASSPATH：
@@ -31,8 +35,8 @@ Java 訊息服務 (JMS) 是在 Java 平台上搭配訊息導向中介軟體一�
 * qpid-amqp-1-0-client-jms-[version].jar
 * qpid-amqp-1-0-common-[version].jar
 
-## <a name="work-with-service-bus-queues,-topics,-and-subscriptions-from-jms"></a>從 JMS 使用服務匯流排佇列、主題和訂用帳戶
-### <a name="java-naming-and-directory-interface-(jndi)"></a>Java 命名及目錄介面 (JNDI)
+## <a name="work-with-service-bus-queues-topics-and-subscriptions-from-jms"></a>從 JMS 使用服務匯流排佇列、主題和訂用帳戶
+### <a name="java-naming-and-directory-interface-jndi"></a>Java 命名及目錄介面 (JNDI)
 JMS 使用 Java 命名及目錄介面 (JNDI) 建立邏輯名稱與實際名稱之間的區別。 使用 JNDI 可以解析兩種 JMS 物件：**ConnectionFactory** 和 **Destination**。 JNDI 使用提供者模型，您可以在其中插入不同的目錄服務處理名稱解析作業。 Apache Qpid JMS AMQP 1.0 程式庫隨附一個簡單的屬性檔 JNDI 提供者，可使用文字檔來設定。
 
 Qpid 屬性檔 JNDI 提供者是透過下列格式的屬性檔來設定：
@@ -174,11 +178,11 @@ JMS 規格定義如何撰寫 API 方法和應用程式碼的例外狀況合約�
   1. 如果問題是因為服務匯流排拒絕讓特定訊息進行傳送而造成的，便會引發 **MessageRejectedException** 例外狀況。 這個錯誤可能是暫時性，或由於訊息的某些問題而引起。 建議是動作是以某種後退邏輯來多次重試作業。 如果問題持續發生，就應該放棄訊息並在本機記錄錯誤。 在此情況下，不需要重新建立 **JMS Connection**、**Session** 或 **MessageProducer** 物件。 
   2. 如果問題是因為服務匯流排關閉 AMQP 連結而造成的，將引發 **InvalidDestinationException** 例外狀況。 這可能是因為暫時性問題或已刪除訊息實體。 無論是哪一種狀況，都應該重新建立 **JMS Connection**、**Session** 及 **MessageProducer** 物件。 如果錯誤狀況是暫時性，此作業最終還是會成功。 如果已刪除實體，則為永久失敗。
 
-## <a name="messaging-between-.net-and-jms"></a>在 .NET 與 JMS 之間傳訊
+## <a name="messaging-between-net-and-jms"></a>在 .NET 與 JMS 之間傳訊
 ### <a name="message-bodies"></a>訊息主體
 JMS 可定義五種不同的訊息類型：**BytesMessage**、**MapMessage**、**ObjectMessage**、**StreamMessage** 和 **TextMessage**。 服務匯流排 .NET API 只有一種訊息類型：[BrokeredMessage][BrokeredMessage]。
 
-#### <a name="jms-to-service-bus-.net-api"></a>JMS 至服務匯流排 .NET API
+#### <a name="jms-to-service-bus-net-api"></a>JMS 至服務匯流排 .NET API
 下列各節顯示如何從 .NET 取用每一種 JMS 訊息類型的訊息。 尚未包含 **ObjectMessage** 範例，因為 **ObjectMessage** 的主體包含採用 Java 程式設計語言中的可序列化物件，但 .NET 應用程式無法解譯此物件。
 
 ##### <a name="bytesmessage"></a>BytesMessage
@@ -233,7 +237,7 @@ foreach (Object item in list)
 Console.WriteLine("Text: " + message.GetBody<String>());
 ```
 
-#### <a name="service-bus-.net-apis-to-jms"></a>服務匯流排 .NET API 至 JMS
+#### <a name="service-bus-net-apis-to-jms"></a>服務匯流排 .NET API 至 JMS
 下列各節以每一種不同的 JMS 訊息類型示範 .NET 應用程式如何建立 JMS 中接收的訊息。 尚未包含 **ObjectMessage** 範例，因為 **ObjectMessage** 的主體包含採用 Java 程式設計語言中的可序列化物件，但 .NET 應用程式無法解譯此物件。
 
 ##### <a name="bytesmessage"></a>BytesMessage
@@ -264,7 +268,7 @@ message = new BrokeredMessage("this is a text string");
 ```
 
 ### <a name="application-properties"></a>應用程式屬性
-#### <a name="jms-to-service-bus-.net-apis"></a>JMS 至服務匯流排 .NET API
+#### <a name="jms-to-service-bus-net-apis"></a>JMS 至服務匯流排 .NET API
 JMS 訊息支援下列類型的應用程式屬性︰**boolean**、**byte**、**short**、**int**、**long**、**float**、**double** 和 **String**。 下列 Java 程式碼使用以上每一種屬性類型示範如何設定訊息的屬性。
 
 ```
@@ -299,9 +303,9 @@ if (message.Properties.Keys.Count > 0)
 | Float |float |
 | Double |double |
 | Boolean |布林 |
-| String |字串 |
+| String |string |
 
-[BrokeredMessage][BrokeredMessage] 類型支援下列類型的應用程式屬性：**byte**、**sbyte**、**char**、**short**、**ushort**、**int**、**uint**、**long**、**ulong**、**float**、**double**、**decimal**、**bool**、**Guid**、**string**、**Uri**、**DateTime**、**DateTimeOffset** 和 **TimeSpan**。 下列 .NET 程式碼示範如何使用每一個屬性類型來設定 [BrokeredMessage][BrokeredMessage] 物件的屬性。
+[BrokeredMessage][BrokeredMessage] 類型支援下列類型的應用程式屬性：**byte****sbyte**、**char**、**short**、**ushort**、**int**、**uint**、**long**、**ulong**、**float****double****decimal****bool****Guid****string****Uri****DateTime****DateTimeOffset** 和 **TimeSpan**。 下列 .NET 程式碼示範如何使用每一個屬性類型來設定 [BrokeredMessage][BrokeredMessage] 物件的屬性。
 
 ```
 message.Properties["TestByte"] = (byte)128;
@@ -364,7 +368,7 @@ while (propertyNames.hasMoreElements())
 ### <a name="standard-headers"></a>標準標頭
 下表顯示如何使用 AMQP 1.0 對應 JMS 標準標頭和 [BrokeredMessage][BrokeredMessage] 標準屬性。
 
-#### <a name="jms-to-service-bus-.net-apis"></a>JMS 至服務匯流排 .NET API
+#### <a name="jms-to-service-bus-net-apis"></a>JMS 至服務匯流排 .NET API
 | JMS | 服務匯流排 .NET | 注意事項 |
 | --- | --- | --- |
 | JMSCorrelationID |Message.CorrelationID |- |
@@ -378,7 +382,7 @@ while (propertyNames.hasMoreElements())
 | JMSTimestamp |Message.EnqueuedTimeUtc |轉換 |
 | JMSType |Message.Properties[“jms-type”] |- |
 
-#### <a name="service-bus-.net-apis-to-jms"></a>服務匯流排 .NET API 至 JMS
+#### <a name="service-bus-net-apis-to-jms"></a>服務匯流排 .NET API 至 JMS
 | 服務匯流排 .NET | JMS | 注意事項 |
 | --- | --- | --- |
 | ContentType |- |目前無法使用 |
@@ -417,6 +421,6 @@ JMS over AMQP 1.0 和服務匯流排一起使用時有下列限制：
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

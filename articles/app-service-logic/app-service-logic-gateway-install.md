@@ -1,12 +1,12 @@
 ---
-title: Logic Apps 安裝內部部署資料閘道 | Microsoft Docs
-description: 如何安裝內部部署資料閘道用於邏輯應用程式的相關資訊。
+title: "Logic Apps 安裝內部部署資料閘道 | Microsoft Docs"
+description: "如何安裝內部部署資料閘道用於邏輯應用程式的相關資訊。"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 47e3024e-88a0-4017-8484-8f392faec89d
 ms.service: logic-apps
 ms.devlang: multiple
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 07/05/2016
 ms.author: jehollan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: ddd62d3112a2c93ea3c935ce89ff387049899c09
+
 
 ---
 # <a name="install-the-on-premises-data-gateway-for-logic-apps"></a>安裝 Logic Apps 的內部部署資料閘道
@@ -82,7 +86,7 @@ TcpTestSucceeded       : True
 ### <a name="configure-ports"></a>設定連接埠
 閘道會建立 Azure 服務匯流排的輸出連接。 閘道會與下列輸出連接埠進行通訊︰TCP 443 (預設)、5671、5672、9350 到 9354。 閘道不需要輸入連接埠。
 
-深入了解[混合式解決方案](../service-bus/service-bus-fundamentals-hybrid-solutions.md)。
+深入了解[混合式解決方案](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)。
 
 | 網域名稱 | 輸出連接埠 | 描述 |
 | --- | --- | --- |
@@ -142,7 +146,7 @@ TcpTestSucceeded       : True
 **問**︰我的認證儲存在哪裡？ <br/>
 **答**：您針對資料來源輸入的認證會以加密方式儲存在閘道雲端服務中。 認證會在閘道內部部署進行解密。
 
-### <a name="high-availability/disaster-recovery"></a>高可用性/災害復原
+### <a name="high-availabilitydisaster-recovery"></a>高可用性/災害復原
 **問**︰有計劃針對閘道啟用高可用性案例嗎？ <br/>
 **答**：我們正在規劃中，但是還沒有時間表。
 
@@ -175,7 +179,7 @@ TcpTestSucceeded       : True
 ### <a name="update-to-the-latest-version"></a>更新為最新版本
 閘道版本過期時，可能會出現很多問題。  一般最好的方法就是先確定您使用的是最新版本。  如果有一個月以上未更新閘道，您可能要考慮安裝最新版的閘道，並看看是否能重現問題。
 
-### <a name="error:-failed-to-add-user-to-group.-(-2147463168-pbiegwservice-performance-log-users-)"></a>錯誤︰無法將使用者新增到群組。 (-2147463168 PBIEgwService Performance Log Users)
+### <a name="error-failed-to-add-user-to-group--2147463168-pbiegwservice-performance-log-users-"></a>錯誤︰無法將使用者新增到群組。 (-2147463168 PBIEgwService Performance Log Users)
 如果您嘗試在不支援的網域控制站上安裝閘道，可能會收到這個錯誤。 您必須在不是網域控制站的電腦上部署閘道。
 
 ## <a name="tools"></a>工具
@@ -202,6 +206,9 @@ TcpTestSucceeded       : True
 * [企業整合功能](app-service-logic-enterprise-integration-overview.md)
 * [Logic Apps 連接器](../connectors/apis-list.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 雲端服務中角色的通訊 | Microsoft Docs
-description: 您可以為雲端服務中的角色執行個體定義端點 (http、https、tcp、udp)，以便與外部或在其他角色執行個體之間通訊。
+title: "雲端服務中角色的通訊 | Microsoft Docs"
+description: "您可以為雲端服務中的角色執行個體定義端點 (http、https、tcp、udp)，以便與外部或在其他角色執行個體之間通訊。"
 services: cloud-services
-documentationcenter: ''
+documentationcenter: 
 author: Thraka
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 7008a083-acbe-4fb8-ae60-b837ef971ca1
 ms.service: cloud-services
 ms.workload: tbd
 ms.tgt_pltfrm: na
@@ -14,15 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: adegeo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: fe034613c537ce0940f7220e4695727bdc2277c2
+
 
 ---
-# 啟用 Azure 中角色執行個體的通訊
-雲端服務角色透過內部和外部連線通訊。外部連線稱為「輸入端點」，而內部連線稱為「內部端點」。本主題描述如何修改[服務定義](cloud-services-model-and-package.md#csdef)以建立端點。
+# <a name="enable-communication-for-role-instances-in-azure"></a>啟用 Azure 中角色執行個體的通訊
+雲端服務角色透過內部和外部連線通訊。 外部連接稱為**輸入端點**，而內部連接稱為**內部端點**。 本主題描述如何修改 [服務定義](cloud-services-model-and-package.md#csdef) 以建立端點。
 
-## 輸入端點
-輸入端點是在您要對外公開連接埠時使用。您可以指定通訊協定類型端點連接埠，稍後這些連接埠將套用至端點的外部和內部連接埠。您也可以使用 [localPort](https://msdn.microsoft.com/library/azure/gg557552.aspx#InputEndpoint) 屬性為端點指定不同的內部連接埠。
+## <a name="input-endpoint"></a>輸入端點
+輸入端點是在您要對外公開連接埠時使用。 您可以指定通訊協定類型端點連接埠，稍後這些連接埠將套用至端點的外部和內部連接埠。 您也可以使用 [localPort](https://msdn.microsoft.com/library/azure/gg557552.aspx#InputEndpoint) 屬性為端點指定不同的內部連接埠。
 
-輸入端點可以使用下列通訊協定：**http、https、tcp、udp**。
+輸入端點可以使用下列通訊協定： **http、https、tcp、udp**。
 
 若要建立輸入端點，請將 **InputEndpoint** 子元素新增至 Web 或背景工作角色的 **Endpoints** 元素。
 
@@ -32,8 +36,8 @@ ms.author: adegeo
 </Endpoints> 
 ```
 
-## 執行個體輸入端點
-執行個體輸入端點與輸入端點類似，但可讓您使用負載平衡器上的連接埠轉送，來針對各角色執行個體對應特定的公眾連接埠。您可以指定單一公眾連接埠，或某個範圍內的連接埠。
+## <a name="instance-input-endpoint"></a>執行個體輸入端點
+執行個體輸入端點與輸入端點類似，但可讓您使用負載平衡器上的連接埠轉送，來針對各角色執行個體對應特定的公眾連接埠。 您可以指定單一公眾連接埠，或某個範圍內的連接埠。
 
 執行個體輸入端點只能使用 **tcp** 或 **udp** 作為通訊協定。
 
@@ -49,10 +53,10 @@ ms.author: adegeo
 </Endpoints>
 ```
 
-## 內部端點
-內部端點可供執行個體對執行個體通訊時使用。該連接埠是選擇性的，如果省略，將指派動態連接埠至端點。可以使用連接埠範圍。每個角色的限制為五個內部端點。
+## <a name="internal-endpoint"></a>內部端點
+內部端點可供執行個體對執行個體通訊時使用。 該連接埠是選擇性的，如果省略，將指派動態連接埠至端點。 可以使用連接埠範圍。 每個角色的限制為五個內部端點。
 
-內部端點可以使用下列通訊協定：**http、tcp、udp、any**。
+內部端點可以使用下列通訊協定： **http、tcp、udp、any**。
 
 若要建立內部輸入端點，請將 **InternalEndpoint** 子元素新增至 Web 或背景工作角色的 **Endpoints** 元素。
 
@@ -73,8 +77,8 @@ ms.author: adegeo
 ```
 
 
-## 背景工作角色與Web 角色
-使用背景工作角色和 Web 角色二者時端點會有一個很小的差異。Web 角色必須至少要有一個輸入端點使用 **HTTP** 通訊協定。
+## <a name="worker-roles-vs-web-roles"></a>背景工作角色與Web 角色
+使用背景工作角色和 Web 角色二者時端點會有一個很小的差異。 Web 角色必須至少要有一個輸入端點使用 **HTTP** 通訊協定。
 
 ```xml
 <Endpoints>
@@ -83,30 +87,30 @@ ms.author: adegeo
 </Endpoints>
 ```
 
-## 使用 .NET SDK 存取端點
-Azure 受管理程式庫提供讓角色執行個體在執行階段通訊的方法。藉由在角色執行個體內執行的程式碼，您可以抓取角色執行個體及其端點之存在的相關資訊，以及目前角色執行個體的相關資訊。
+## <a name="using-the-net-sdk-to-access-an-endpoint"></a>使用 .NET SDK 存取端點
+Azure 受管理程式庫提供讓角色執行個體在執行階段通訊的方法。 藉由在角色執行個體內執行的程式碼，您可以抓取角色執行個體及其端點之存在的相關資訊，以及目前角色執行個體的相關資訊。
 
 > [!NOTE]
-> 您只能抓取在您的雲端服務中執行，且至少定義一個內部端點之角色執行個體的相關資訊。您無法取得在其他服務中執行之角色執行個體的相關資料。
+> 您只能抓取在您的雲端服務中執行，且至少定義一個內部端點之角色執行個體的相關資訊。 您無法取得在其他服務中執行之角色執行個體的相關資料。
 > 
 > 
 
-您可以使用 [Instances](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.role.instances.aspx) 屬性抓取角色的執行個體。先使用 [CurrentRoleInstance](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.currentroleinstance.aspx) 以傳回對目前角色執行個體的參照，然後使用 [Role](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.role.aspx) 屬性來傳回對角色本身的參照。
+您可以使用 [Instances](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.role.instances.aspx) 屬性抓取角色的執行個體。 先使用 [CurrentRoleInstance](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.currentroleinstance.aspx) 以傳回對目前角色執行個體的參考，然後使用 [Role](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.role.aspx) 屬性來傳回對角色本身的參考。
 
-當您以程式設計方式透過 .NET SDK 連接到角色執行個體時，存取端點資訊就相對較簡單。例如，當您連接到特定的角色環境後，即可使用此程式碼取得特定端點的連接埠：
+當您以程式設計方式透過 .NET SDK 連接到角色執行個體時，存取端點資訊就相對較簡單。 例如，當您連接到特定的角色環境後，即可使用此程式碼取得特定端點的連接埠：
 
 ```csharp
 int port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["StandardWeb"].IPEndpoint.Port;
 ```
 
-**Instances** 屬性會傳回 **RoleInstance** 物件的集合。這個集合一律會包含目前的執行個體。如果該角色沒有定義內部端點，則該集合只包含目前的執行個體，沒有其他執行個體。在沒有為角色定義內部端點的情況下，集合中的角色執行個體數量一律為 1。如果該角色定義了一個內部端點，就可以在執行階段中探索其執行個體，而且集合中執行個體的數量將與服務組態檔中為該角色指定的執行個體數量相對應。
+**Instances** 屬性會傳回 **RoleInstance** 物件的集合。 這個集合一律會包含目前的執行個體。 如果該角色沒有定義內部端點，則該集合只包含目前的執行個體，沒有其他執行個體。 在沒有為角色定義內部端點的情況下，集合中的角色執行個體數量一律為 1。 如果該角色定義了一個內部端點，就可以在執行階段中探索其執行個體，而且集合中執行個體的數量將與服務組態檔中為該角色指定的執行個體數量相對應。
 
 > [!NOTE]
-> Azure 設管理程式庫沒有提供判斷其他角色執行個體健康狀態的方法，但是如果您的服務需要這類功能，您可以自行實作此健康狀態評估。您可以使用 [Azure 診斷](cloud-services-dotnet-diagnostics.md)來取得執行中角色執行個體的相關資訊。
+> Azure 設管理程式庫沒有提供判斷其他角色執行個體健康狀態的方法，但是如果您的服務需要這類功能，您可以自行實作此健康狀態評估。 您可以使用 [Azure 診斷](cloud-services-dotnet-diagnostics.md) 來取得執行中角色執行個體的相關資訊。
 > 
 > 
 
-若要判斷角色執行個體上內部端點的連接埠號碼，您可以使用 [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx) 屬性，以傳回包含端點名稱及其對應 IP 位址與連接埠的 Dictionary 物件。[IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx) 屬性會傳回指定端點的 IP 位址和連接埠。**PublicIPEndpoint** 屬性會傳回負載平衡端點的連接埠。未使用 **PublicIPEndpoint** 屬性的 IP 位址部分。
+若要判斷角色執行個體上內部端點的連接埠號碼，您可以使用 [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx) 屬性，以傳回包含端點名稱及其對應 IP 位址與連接埠的 Dictionary 物件。 [IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx) 屬性會傳回指定端點的 IP 位址和連接埠。 **PublicIPEndpoint** 屬性會傳回負載平衡端點的連接埠。 未使用 **PublicIPEndpoint** 屬性的 IP 位址部分。
 
 以下是逐一查看角色執行個體的範例。
 
@@ -124,7 +128,7 @@ foreach (RoleInstance roleInst in RoleEnvironment.CurrentRoleInstance.Role.Insta
 以下是可取得透過服務定義所公開的端點並開始接聽連線之背景工作角色的範例。
 
 > [!WARNING]
-> 這個程式碼只適用於已部署的服務。在 Azure 計算模擬器中執行時，會忽略建立直接連接埠 (**InstanceInputEndpoint** 元素) 的服務組態元素。
+> 這個程式碼只適用於已部署的服務。 在 Azure 計算模擬器中執行時，會忽略建立直接連接埠 (**InstanceInputEndpoint** 元素) 的服務組態元素。
 > 
 > 
 
@@ -212,12 +216,12 @@ namespace WorkerRole1
 }
 ```
 
-## 用網路流量規則控制角色通訊
-定義內部端點之後，您可以新增網路流量規則 (根據建立的端點) 來控制角色之間通訊的方式。下圖顯示一些控制角色通訊的常見案例：
+## <a name="network-traffic-rules-to-control-role-communication"></a>用網路流量規則控制角色通訊
+定義內部端點之後，您可以新增網路流量規則 (根據建立的端點) 來控制角色之間通訊的方式。 下圖顯示一些控制角色通訊的常見案例：
 
-![網路流量規則案例](./media/cloud-services-enable-communication-role-instances/scenarios.png "網路流量規則案例")
+![網路流量規則案例](./media/cloud-services-enable-communication-role-instances/scenarios.png "Network Traffic Rules Scenarios")
 
-以下程式碼範例顯示上圖中角色的角色定義。每個角色定義都包含至少一個內部端點定義：
+以下程式碼範例顯示上圖中角色的角色定義。 每個角色定義都包含至少一個內部端點定義：
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -253,9 +257,9 @@ namespace WorkerRole1
 > 
 > 
 
-根據預設，定義內部端點之後，來自任何角色的通訊都可以在沒有任何限制的情況下流向角色的內部端點。若要限制通訊，您必須在服務定義檔中將 **NetworkTrafficRules** 元素新增至 **ServiceDefinition** 元素。
+根據預設，定義內部端點之後，來自任何角色的通訊都可以在沒有任何限制的情況下流向角色的內部端點。 若要限制通訊，您必須在服務定義檔中將 **NetworkTrafficRules** 元素新增至 **ServiceDefinition** 元素。
 
-### 案例 1
+### <a name="scenario-1"></a>案例 1
 只允許從 **WebRole1** 至 **WorkerRole1** 的網路流量。
 
 ```xml
@@ -274,7 +278,7 @@ namespace WorkerRole1
 </ServiceDefinition>
 ```
 
-### 案例 2
+### <a name="scenario-2"></a>案例 2
 只允許從 **WebRole1** 至 **WorkerRole1** 和 **WorkerRole2** 的網路流量。
 
 ```xml
@@ -293,7 +297,7 @@ namespace WorkerRole1
 </ServiceDefinition>
 ```
 
-### 案例 3
+### <a name="scenario-3"></a>案例 3
 只允許從 **WebRole1** 至 **WorkerRole1**，以及從 **WorkerRole1** 至 **WorkerRole2** 的網路流量。
 
 ```xml
@@ -322,7 +326,7 @@ namespace WorkerRole1
 </ServiceDefinition>
 ```
 
-### 案例 4
+### <a name="scenario-4"></a>案例 4
 只允許從 **WebRole1** 至 **WorkerRole1**、從 **WebRole1** 至 **WorkerRole2**，以及從 **WorkerRole1** 至 **WorkerRole2** 的網路流量。
 
 ```xml
@@ -365,7 +369,12 @@ namespace WorkerRole1
 
 [這裡](https://msdn.microsoft.com/library/azure/gg557551.aspx)有上數範例中使用之元素的 XML 結構描述參考。
 
-## 後續步驟
-深入了解雲端服務[模型](cloud-services-model-and-package.md)。
+## <a name="next-steps"></a>後續步驟
+深入了解雲端服務 [模型](cloud-services-model-and-package.md)。
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

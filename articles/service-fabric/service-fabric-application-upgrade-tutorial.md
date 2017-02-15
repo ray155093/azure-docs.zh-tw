@@ -59,7 +59,7 @@ Azure Service Fabric 藉由確保只升級已變更的服務，並且在整個�
 
 儲存變更，然後立即核取 [升級應用程式]  方塊。
 
-## <a name="step-3-upgrade-your-application"></a>步驟 3：升級應用程式
+## <a name="step-3--upgrade-your-application"></a>步驟 3：升級應用程式
 請您熟悉[應用程式升級參數](service-fabric-application-upgrade-parameters.md)和[升級程序](service-fabric-application-upgrade.md)，以了解可以套用的各種升級參數、逾時和健康狀態準則。 針對此逐步解說，服務健康狀態評估準則會設定為預設值 (未受監視的模式)。 您可以選取 [設定升級設定]  ，然後視需要修改參數，來設定這些設定。
 
 現在，我們已經準備好選取 [發佈] 來啟動應用程式升級。 此選項會將您的應用程式升級到其中物件會旋轉的版本 2.0.0。 Service Fabric 會一次升級一個更新網域 (某些物件會先更新，其他物件再接著更新)，在升級期間仍可存取服務。 透過您的用戶端 (瀏覽器) 可檢查服務的存取權。  

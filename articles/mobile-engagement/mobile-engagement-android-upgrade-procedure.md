@@ -1,12 +1,12 @@
 ---
-title: Azure Mobile Engagement Android SDK 整合
-description: Android SDK for Azure Mobile Engagement 的最新更新和程序
+title: "Azure Mobile Engagement Android SDK 整合"
+description: "Android SDK for Azure Mobile Engagement 的最新更新和程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 11618586-c709-49ca-bcd8-745323ff1af6
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
@@ -14,21 +14,25 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 97ce7f4d682ec12470db4248d046a8367840f0bd
+
 
 ---
-# 升級程序
+# <a name="upgrade-procedures"></a>升級程序
 如果您已經整合我們的舊版 SDK 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
 
-如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。例如，如果您要從 1.4.0 移轉到 1.6.0，必須先遵循「從 1.4.0 到 1.5.0」的程序，然後再依照「從 1.5.0 到 1.6.0」的程序進行。
+如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。 例如，如果您要從 1.4.0 移轉到 1.6.0，必須先遵循「從 1.4.0 到 1.5.0」的程序，然後再依照「從 1.5.0 到 1.6.0」的程序進行。
 
 不論您升級開始的版本為何，都必須將 `mobile-engagement-VERSION.jar` 替換為新的。
 
-## 從 4.2.0 到 4.2.1
+## <a name="from-420-to-421"></a>從 4.2.0 到 4.2.1
 此步驟其實可以任何版本的 SDK 上完成，這是您在整合觸達活動時的安全性改善。
 
 現在您應該新增 `exported="false"` 至所有觸達活動中。
 
-在您的 `AndroidManifest.xml` 中，現在觸達活動應該看起來如下：
+在您的 `AndroidManifest.xml`中，現在觸達活動應該看起來如下：
 
             <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
               <intent-filter>
@@ -57,12 +61,13 @@ ms.author: piyushjo
               </intent-filter>
             </activity>
 
-## 從 4.0.0 到 4.1.0
+## <a name="from-400-to-410"></a>從 4.0.0 到 4.1.0
 SDK 現在處理 Android M 新的權限模型。
 
-如果您使用定位功能或大型圖片通知，請閱讀[本章節](mobile-engagement-android-integrate-engagement.md#android-m-permissions)。
+如果您使用定位功能或大型圖片通知，請閱讀 [本章節](mobile-engagement-android-integrate-engagement.md#android-m-permissions)。
 
-除了新的權限模型，現在支援在執行階段設定定位功能。定位的資訊清單參數仍然相容，但現在已經被取代。若要使用執行階段設定，請從您的 ``AndroidManifest.xml`` 移除下列區段：
+除了新的權限模型，現在支援在執行階段設定定位功能。
+定位的資訊清單參數仍然相容，但現在已經被取代。 若要使用執行階段設定，請從您的 ``AndroidManifest.xml``移除下列區段：
 
     <meta-data
       android:name="engagement:locationReport:lazyArea"
@@ -77,16 +82,16 @@ SDK 現在處理 Android M 新的權限模型。
       android:name="engagement:locationReport:realTime:fine"
       android:value="true"/>
 
-並請閱讀[此更新的程序](mobile-engagement-android-integrate-engagement.md#location-reporting)，以改用執行階段設定。
+並請閱讀 [此更新的程序](mobile-engagement-android-integrate-engagement.md#location-reporting) ，以改用執行階段設定。
 
-## 從 3.0.0 到 4.0.0
-### 原生推播
+## <a name="from-300-to-400"></a>從 3.0.0 到 4.0.0
+### <a name="native-push"></a>原生推播
 原生推播 (GCM/ADM) 現在也用於應用程式通知，因此您必須為任何類型的推播行銷活動設定原生推播認證。
 
-如果尚未完成，請遵循[此程序](mobile-engagement-android-integrate-engagement-reach.md#native-push)。
+如果尚未完成，請遵循 [此程序](mobile-engagement-android-integrate-engagement-reach.md#native-push)。
 
-### AndroidManifest.xml
-``AndroidManifest.xml`` 中的 Reach 整合已修改。
+### <a name="androidmanifestxml"></a>AndroidManifest.xml
+``AndroidManifest.xml``中的 Reach 整合已修改。
 
 取代下列項目：
 
@@ -124,7 +129,8 @@ SDK 現在處理 Android M 新的權限模型。
       </intent-filter>
     </receiver>
 
-現在當您按一下公告 (具有文字/網頁內容) 或輪詢，可能是載入畫面。您必須加入此項目，這些行銷活動才能在 4.0.0 中運作：
+現在當您按一下公告 (具有文字/網頁內容) 或輪詢，可能是載入畫面。
+您必須加入此項目，這些行銷活動才能在 4.0.0 中運作：
 
     <activity
       android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity"
@@ -135,26 +141,26 @@ SDK 現在處理 Android M 新的權限模型。
       </intent-filter>
     </activity>
 
-### 資源
+### <a name="resources"></a>資源
 內嵌新的 `res/layout/engagement_loading.xml` 檔案到您的專案。
 
-## 從 2.4.0 到 3.0.0
-以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。如果您是從較早版本移轉，請參閱 Capptain 網站，先移轉到 2.4.0 後再套用以下程序。
+## <a name="from-240-to-300"></a>從 2.4.0 到 3.0.0
+以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。 如果您是從較早版本移轉，請參閱 Capptain 網站，先移轉到 2.4.0 後再套用以下程序。
 
 > [!IMPORTANT]
-> Capptain 和 Mobile Engagement 是不同的服務，而以下程序只適用於移轉用戶端應用程式。移轉應用程式中的 SDK「不會」將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器。
+> Capptain 和 Mobile Engagement 是不同的服務，而以下程序只適用於移轉用戶端應用程式。 移轉應用程式中的 SDK「不會」將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器。
 > 
 > 
 
-### JAR 檔案
+### <a name="jar-file"></a>JAR 檔案
 將 `libs` 資料夾中的 `capptain.jar` 以 `mobile-engagement-VERSION.jar`取代。
 
-### 資源檔
+### <a name="resource-files"></a>資源檔
 我們提供的每個資源檔 (前置詞為 `capptain_`) 都必須替換為新的資源檔 (前置詞為 `engagement_`)。
 
-如果您已自訂這些檔案，則必須在新的檔案上重新套用自訂，資源檔中的所有識別碼也已重新命名。
+如果您已自訂這些檔案，則必須在新的檔案上重新套用自訂， 資源檔中的所有識別碼也已重新命名。
 
-### 應用程式識別碼
+### <a name="application-id"></a>應用程式識別碼
 現在 Engagement 使用連接字串來設定 SDK 識別碼，例如應用程式識別碼。
 
 您必須在啟動程式活動中使用 `EngagementAgent.init` 方法，如下所示：
@@ -173,14 +179,14 @@ SDK 現在處理 Android M 新的權限模型。
 
             <meta-data android:name="capptain:appId" android:value="<YOUR_APPID>"/>
 
-### Java API
+### <a name="java-api"></a>Java API
 對 SDK 任何 Java 類別的各個呼叫都必須重新命名，例如 `CapptainAgent.getInstance(this)` 必須重新命名為 `EngagementAgent.getInstance(this)`、`extends CapptainActivity` 必須重新命名為 `extends EngagementActivity`，以此類推...
 
 如果您已整合預設代理程式喜好設定檔，現在預設檔案名稱是 `engagement.agent`，而索引鍵為 `engagement:agent`。
 
 建立 Web 公告時，Javascript 繫結器現在是 `engagementReachContent`。
 
-### AndroidManifest.xml
+### <a name="androidmanifestxml"></a>AndroidManifest.xml
 這裡有許多變更，服務不再共用，且許多接收器也不再能匯出。
 
 服務宣告現在更為簡單，移除意圖篩選及其內所有中繼資料，然後加入 `exportable=false`。
@@ -293,7 +299,7 @@ Reach 活動現在宣告如下：
 
 如果您有自訂的 Reach 活動，只需要變更意圖動作，以符合 `com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT` 或 `com.microsoft.azure.engagement.reach.intent.action.POLL`。
 
-廣播接收器已重新命名，此外我們現在也已加入 `exported=false`。以下是新規格之接收器的完整清單 (當然，請只重新命名您所使用的項目)：
+廣播接收器已重新命名，此外我們現在也已加入 `exported=false`。 以下是新規格之接收器的完整清單 (當然，請只重新命名您所使用的項目)：
 
             <receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachReceiver"
               android:exported="false">
@@ -381,7 +387,7 @@ Reach 活動現在宣告如下：
             </intent-filter>
           </receiver>
 
-請注意，您的廣播接收器 **EngagementMessageReceiver** 實作的宣告已在 `AndroidManifest.xml` 中變更。這是因為已經移除從任意 XMPP 實體傳送和接收任意 XMPP 訊息的 API，以及在裝置之間傳送和接收訊息的 API。因此，您也必須從您的 **EngagementMessageReceiver** 實作刪除下列回呼：
+請注意，您的廣播接收器 **EngagementMessageReceiver** 實作的宣告已在 `AndroidManifest.xml` 中變更。 這是因為已經移除從任意 XMPP 實體傳送和接收任意 XMPP 訊息的 API，以及在裝置之間傳送和接收訊息的 API。 因此，您也必須從您的 **EngagementMessageReceiver** 實作刪除下列回呼：
 
             protected void onDeviceMessageReceived(android.content.Context context, java.lang.String deviceId, java.lang.String payload)
 
@@ -397,7 +403,7 @@ Reach 活動現在宣告如下：
 
             sendXMPPMessage(android.os.Bundle msg)
 
-### Proguard
+### <a name="proguard"></a>Proguard
 Proguard 組態受到品牌重新命名的影響，規則現在類似：
 
             -dontwarn android.**
@@ -409,4 +415,8 @@ Proguard 組態受到品牌重新命名的影響，規則現在類似：
             }
 
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

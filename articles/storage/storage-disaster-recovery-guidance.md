@@ -1,19 +1,23 @@
 ---
-title: Azure 儲存體發生中斷時該怎麼辦 | Microsoft Docs
-description: Azure 儲存體發生中斷時該怎麼辦
+title: "Azure 儲存體發生中斷時該怎麼辦 | Microsoft Docs"
+description: "Azure 儲存體發生中斷時該怎麼辦"
 services: storage
 documentationcenter: .net
 author: robinsh
-manager: carmonm
+manager: timlt
 editor: tysonn
-
+ms.assetid: 8f040b0f-8926-4831-ac07-79f646f31926
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/03/2016
+ms.date: 12/08/2016
 ms.author: robinsh
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 14997080496adfd363fee249c858ed9a0b553066
+
 
 ---
 # <a name="what-to-do-if-an-azure-storage-outage-occurs"></a>如果 Azure 儲存體發生中斷怎麼辦
@@ -34,10 +38,10 @@ ms.author: robinsh
 ## <a name="what-to-do-if-a-storage-outage-occurs"></a>如果儲存體發生中斷怎麼辦
 若一或多個儲存體服務，暫時無法在一或多個區域供使用，您有兩個選項可以考慮。 如果您希望立刻存取您的資料，請考慮「選項 2」。
 
-### <a name="option-1:-wait-for-recovery"></a>選項 1︰等待復原
+### <a name="option-1-wait-for-recovery"></a>選項 1︰等待復原
 在此情況下，您不需要採取任何動作。 我們正在努力還原 Azure 服務的可用性。 您可以在 [Azure 服務健康狀態儀表板](https://azure.microsoft.com/status/)上監視目前的服務狀態。
 
-### <a name="option-2:-copy-data-from-secondary"></a>選項 2︰從次要區域複製資料
+### <a name="option-2-copy-data-from-secondary"></a>選項 2︰從次要區域複製資料
 如果您為儲存體帳戶選取 [讀取權限異地備援儲存體(RA-GRS)](storage-redundancy.md#read-access-geo-redundant-storage) (建議)，您將會有從次要地區讀取資料的權限。 您可以使用 [AzCopy](storage-use-azcopy.md)、[Azure PowerShell](storage-powershell-guide-full.md) 及 [Azure Data Movement 程式庫](https://azure.microsoft.com/blog/introducing-azure-storage-data-movement-library-preview-2/)，將資料從次要地區複製到其他未受影響之區域內的儲存體帳戶，然後將應用程式的讀取和寫入可用性都指向該儲存體帳戶。
 
 ## <a name="what-to-expect-if-a-storage-failover-occurs"></a>如果發生儲存體容錯移轉該預期什麼
@@ -62,6 +66,9 @@ ms.author: robinsh
 * 資料表 – 使用 [AzCopy](storage-use-azcopy.md) 將資料表資料匯出到位於其他區域的其他儲存體帳戶。
 * 檔案 – 使用 [AzCopy](storage-use-azcopy.md) 或 [Azure PowerShell](storage-powershell-guide-full.md) 將您的檔案複製到位於其他區域的其他儲存體帳戶。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

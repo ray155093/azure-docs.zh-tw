@@ -1,12 +1,12 @@
 ---
-title: 利用 Media Encoder Premium Workflow 進行進階編碼 | Microsoft Docs
-description: 了解如何使用 Media Encoder Premium Workflow 進行編碼。 程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。
+title: "利用 Media Encoder Premium Workflow 進行進階編碼 | Microsoft Docs"
+description: "了解如何使用 Media Encoder Premium Workflow 進行編碼。 程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 0f4c87ac-810a-4d42-8df8-923dff2016c6
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4e86a871222def32f7779f07eab5668d366ecec4
+
 
 ---
 # <a name="advanced-encoding-with-media-encoder-premium-workflow"></a>使用 Media Encoder Premium Workflow 進行進階編碼
@@ -59,12 +63,13 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
    
     b. 第二個 – 視訊資產。
    
-    **注意**：加入媒體資產前，必須先加入工作流程資產至工作 (Task)。 這項工作 (Task) 的組態字串應該是空的。 
+    **注意**：加入媒體資產前，必須先加入工作流程資產至工作 (Task)。 
+   這項工作 (Task) 的組態字串應該是空的。 
 6. 提交編碼工作 (Job)。
 
 以下是完整的範例。 如需如何使用媒體服務 .NET 開發進行設定的相關資訊，請參閱 [使用 .NET 進行媒體服務開發](media-services-dotnet-how-to-use.md)。
 
-    using System; 
+     using System; 
     using System.Linq;
     using System.Configuration;
     using System.IO;
@@ -272,6 +277,9 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

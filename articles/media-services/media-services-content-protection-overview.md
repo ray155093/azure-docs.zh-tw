@@ -1,12 +1,12 @@
 ---
-title: 保護內容概觀 | Microsoft Docs
-description: 此文章簡介如何利用 Media Services 保護內容。
+title: "保護內容概觀 | Microsoft Docs"
+description: "此文章簡介如何利用 Media Services 保護內容。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 81bc00e1-dcda-4d69-b9ab-8768b793422b
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: ff663f40507547ba561053b5c9a7a8ce93fbf213
+ms.openlocfilehash: 9d3718cf80e023f4c5b9c523375b77083a9d7be7
+
 
 ---
 # <a name="protecting-content-overview"></a>保護內容概觀
@@ -33,7 +37,7 @@ Microsoft Azure 媒體服務可讓您保護媒體從離開電腦到進行儲存�
 ## <a name="dynamic-encryption"></a>動態加密
 Microsoft Azure 媒體服務可讓您傳遞使用 AES 清除金鑰或 DRM 加密：Microsoft PlayReady、Google Widevine 和 Apple FairPlay 所動態加密的內容。
 
-目前，您可以加密下列串流格式：HLS、MPEG DASH 和 Smooth Streaming。 無法加密 HDS 串流格式，或漸進式下載。
+目前，您可以加密下列串流格式：HLS、MPEG DASH 和 Smooth Streaming。 您無法加密漸進式下載。
 
 如果您想要媒體服務加密資產，則需要建立加密金鑰 (CommonEncryption 或 EnvelopeEncryption) 與資產的關聯，同時設定金鑰的授權原則。
 
@@ -51,7 +55,7 @@ Microsoft Azure 媒體服務可讓您傳遞使用 AES 清除金鑰或 DRM 加密
 
 若要傳遞儲存體加密資產，您必須設定資產的傳遞原則，讓媒體服務知道您的內容傳遞方式。 串流處理資產之前，串流伺服器會移除儲存體加密，並使用指定的傳遞原則來串流處理您的內容 (例如，AES、一般加密或不加密)。
 
-## <a name="common-encryption-(cenc)"></a>一般加密 (CENC)
+## <a name="common-encryption-cenc"></a>一般加密 (CENC)
 當使用 PlayReady 或/及 Widewine 加密您的內容時會使用一般加密。
 
 ## <a name="using-cbcs-aapl-encryption"></a>使用 cbcs-aapl 加密
@@ -115,6 +119,6 @@ Microsoft Azure 媒體服務可讓您傳遞使用 AES 清除金鑰或 DRM 加密
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

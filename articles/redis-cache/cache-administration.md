@@ -1,19 +1,23 @@
 ---
-title: 如何管理 Azure Redis 快取 | Microsoft Docs
-description: 了解如何執行管理工作，例如重新啟動以及排程 Azure Redis 快取更新
+title: "如何管理 Azure Redis 快取 | Microsoft Docs"
+description: "了解如何執行管理工作，例如重新啟動以及排程 Azure Redis 快取更新"
 services: redis-cache
 documentationcenter: na
 author: steved0x
 manager: douge
 editor: tysonn
-
+ms.assetid: 8c915ae6-5322-4046-9938-8f7832403000
 ms.service: cache
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 09/27/2016
+ms.date: 01/06/2017
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: c0a0c113c73c1d77a79989d9cddef90cd370fd19
+
 
 ---
 # <a name="how-to-administer-azure-redis-cache"></a>如何管理 Azure Redis 快取
@@ -62,10 +66,10 @@ Azure Redis 快取 **管理** 設定可讓您針對進階快取執行下列管�
 * [我可以使用 PowerShell、CLI 或其他管理工具重新啟動我的快取嗎？](#can-i-reboot-my-cache-using-powershell-cli-or-other-management-tools)
 * [哪些定價層可以使用重新啟動功能？](#what-pricing-tiers-can-use-the-reboot-functionality)
 
-### <a name="which-node-should-i-reboot-to-test-my-application?"></a>若要測試我的應用程式，我應該重新啟動哪一個節點？
+### <a name="which-node-should-i-reboot-to-test-my-application"></a>若要測試我的應用程式，我應該重新啟動哪一個節點？
 若要針對快取的主要節點失敗測試應用程式復原功能，重新啟動 **主要** 節點。 若要針對次要節點失敗測試應用程式復原功能，重新啟動 **從屬** 節點。 若要針對整體快取失敗測試應用程式復原功能，重新啟動 **這兩個** 節點。
 
-### <a name="can-i-reboot-the-cache-to-clear-client-connections?"></a>我可以重新啟動快取來清除用戶端連線嗎？
+### <a name="can-i-reboot-the-cache-to-clear-client-connections"></a>我可以重新啟動快取來清除用戶端連線嗎？
 是，如果您重新啟動快取，即會清除所有用戶端連線。 若發生所有用戶端連線都已用盡的情況 (例如，因為發生邏輯錯誤或用戶端應用程式中發生錯誤)，則這非常實用。 每個定價層對於各種不同大小都有不同的 [用戶端連線限制](cache-configure.md#default-redis-server-configuration) ，一旦觸達這些限制之後，就無法再接受任何用戶端連線。 重新啟動快取提供一種方式來清除所有用戶端連線。
 
 > [!IMPORTANT]
@@ -73,15 +77,15 @@ Azure Redis 快取 **管理** 設定可讓您針對進階快取執行下列管�
 > 
 > 
 
-### <a name="will-i-lose-data-from-my-cache-if-i-do-a-reboot?"></a>如果我重新啟動，將會遺失快取中的資料嗎？
+### <a name="will-i-lose-data-from-my-cache-if-i-do-a-reboot"></a>如果我重新啟動，將會遺失快取中的資料嗎？
 如果您重新啟動**主要**和**從屬**節點，快取中 (或者，如果您使用的是已啟用叢集的進階快取，則是在該分區中) 的所有資料都會遺失。 如果您已設定 [資料持續性](cache-how-to-premium-persistence.md)，則當快取恢復連線時，將會還原最近一次備份。 請注意，在製作備份之後所發生的任何快取寫入都會遺失。
 
 如果您只重新啟動這其中一個節點，通常不會遺失資料，但仍有可能發生。 例如，如果重新啟動主要節點且快取寫入正在進行中，則來自快取寫入的資料即會遺失。 如果您重新啟動一個節點，而另一個節點剛好同時因為失敗而當機，也有可能造成資料遺失。 如需深入了解資料遺失的可能原因，請參閱 [我在 Redis 中的資料怎麼了？](https://gist.github.com/JonCole/b6354d92a2d51c141490f10142884ea4#file-whathappenedtomydatainredis-md)。
 
-### <a name="can-i-reboot-my-cache-using-powershell,-cli,-or-other-management-tools?"></a>我可以使用 PowerShell、CLI 或其他管理工具重新啟動我的快取嗎？
+### <a name="can-i-reboot-my-cache-using-powershell-cli-or-other-management-tools"></a>我可以使用 PowerShell、CLI 或其他管理工具重新啟動我的快取嗎？
 是，如需 PowerShell 指示，請參閱 [重新啟動 Redis 快取](cache-howto-manage-redis-cache-powershell.md#to-reboot-a-redis-cache)。
 
-### <a name="what-pricing-tiers-can-use-the-reboot-functionality?"></a>哪些定價層可以使用重新啟動功能？
+### <a name="what-pricing-tiers-can-use-the-reboot-functionality"></a>哪些定價層可以使用重新啟動功能？
 重新啟動僅適用於進階定價層。
 
 ## <a name="schedule-updates"></a>排程更新
@@ -102,13 +106,13 @@ Azure Redis 快取 **管理** 設定可讓您針對進階快取執行下列管�
 * [我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？](#can-i-managed-scheduled-updates-using-powershell-cli-or-other-management-tools)
 * [哪些定價層可以使用排程更新功能？](#what-pricing-tiers-can-use-the-schedule-updates-functionality)
 
-### <a name="when-do-updates-occur-if-i-don't-use-the-schedule-updates-feature?"></a>如果我未使用排程更新功能，更新會在何時發生？
+### <a name="when-do-updates-occur-if-i-dont-use-the-schedule-updates-feature"></a>如果我未使用排程更新功能，更新會在何時發生？
 如果您未指定維護期間，隨時都可進行更新。
 
-### <a name="what-type-of-updates-are-made-during-the-scheduled-maintenance-window?"></a>在排程維護期間，會進行何種類型的更新？
+### <a name="what-type-of-updates-are-made-during-the-scheduled-maintenance-window"></a>在排程維護期間，會進行何種類型的更新？
 在排程維護期間，只會進行 Redis 伺服器更新。 維護期間不適用於 Azure 更新或 VM 作業系統的更新。
 
-### <a name="can-i-managed-scheduled-updates-using-powershell,-cli,-or-other-management-tools?"></a>我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？
+### <a name="can-i-managed-scheduled-updates-using-powershell-cli-or-other-management-tools"></a>我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？
 是，您可以使用下列 PowerShell Cmdlet 管理排程更新。
 
 * [Get-AzureRmRedisCachePatchSchedule](https://msdn.microsoft.com/library/azure/mt763835.aspx)
@@ -116,12 +120,15 @@ Azure Redis 快取 **管理** 設定可讓您針對進階快取執行下列管�
 * [New-AzureRmRedisCacheScheduleEntry](https://msdn.microsoft.com/library/azure/mt763833.aspx)
 * [Remove-AzureRmRedisCachePatchSchedule](https://msdn.microsoft.com/library/azure/mt763837.aspx)
 
-### <a name="what-pricing-tiers-can-use-the-schedule-updates-functionality?"></a>哪些定價層可以使用排程更新功能？
+### <a name="what-pricing-tiers-can-use-the-schedule-updates-functionality"></a>哪些定價層可以使用排程更新功能？
 排程更新僅適用於進階定價層。
 
 ## <a name="next-steps"></a>後續步驟
 * 瀏覽 [Azure Redis 快取進階層](cache-premium-tier-intro.md) 功能。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何設定 Azure 資源的安全性監視和原則管理。 教學課程、REST API 參考和其他文件。"
 translationtype: Human Translation
-ms.sourcegitcommit: 4488a052681c0c146bf6efaf44f8ecebc400fecc
-ms.openlocfilehash: 92eb080a7234cb25a5560127edadfafeafc0253a
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: 5600b20d3c04547e2002a779fde70769bb6a5e59
 
 ---
 # <a name="security-center-documentation"></a>資訊安全中心文件
@@ -85,13 +85,7 @@ ms.openlocfilehash: 92eb080a7234cb25a5560127edadfafeafc0253a
     </li>
 </ul>   
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/security-center.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載資訊安全中心文件 </div>
-    </a>
-</div>
+
 
 
 

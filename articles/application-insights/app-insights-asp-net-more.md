@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/27/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5b7f1533aca3b5391252e4195e2edeb6443827fd
+ms.sourcegitcommit: e1f9c62765e414e194330419f26c2b7437da21b3
+ms.openlocfilehash: 79cfe90bb883b5cadf707272d31a990c8886dbe4
 
 
 ---
@@ -63,7 +63,7 @@ ms.openlocfilehash: 5b7f1533aca3b5391252e4195e2edeb6443827fd
 將 Application Insights JavaScript 程式碼片段新增到每個網頁，以從用戶端瀏覽器取得遙測。
 
 1. 在 Azure 中，為您的應用程式開啟 Application Insights 資源。
-2. 開啟 [開始使用]、[監視用戶端]，然後複製程式碼片段。
+2. 開啟 [開始使用]、監視與診斷用戶端應用程式，然後複製程式碼片段。
 3. 張貼程式碼片段，使其出現在每個網頁的標頭中 - 通常您可以張貼到主要版面配置頁面來達到這個目的。
 
 ![在 Azure 中擴充](./media/app-insights-asp-net-more/100.png)
@@ -133,6 +133,6 @@ ms.openlocfilehash: 5b7f1533aca3b5391252e4195e2edeb6443827fd
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

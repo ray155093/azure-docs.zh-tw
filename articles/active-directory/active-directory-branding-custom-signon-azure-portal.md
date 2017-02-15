@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/30/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
@@ -45,10 +45,10 @@ ms.openlocfilehash: 48f85fd7e50c1cb3ece7f8b75779fe7cde92c7da
 > [!NOTE]
 > * 在您已設定商標之 Azure 入口網站的 [網域]  部分，您的網域名稱必須顯示為 [作用中]。 如需詳細資訊，請參閱 [新增自訂網域名稱](active-directory-domains-add-azure-portal.md)。
 > * 登入頁面商標不會延續到 Microsoft 的消費者登入頁面。 如果您使用 Microsoft 帳戶進行登入，您可能會看到 Azure AD 所呈現且已加上商標的使用者磚清單，但是您組織的商標不會套用到 Microsoft 帳戶登入頁面。
-> 
-> 
+>
+>
 
-登入頁面上的 [讓我保持登入] 核取方塊，可讓使用者在關閉並重新開啟其瀏覽器時保持登入狀態。 
+登入頁面上的 [讓我保持登入] 核取方塊，可讓使用者在關閉並重新開啟其瀏覽器時保持登入狀態。
 
    ![讓我保持登入](./media/active-directory-branding-custom-signon-azure-portal/01.png)
 
@@ -57,22 +57,22 @@ ms.openlocfilehash: 48f85fd7e50c1cb3ece7f8b75779fe7cde92c7da
 
    ![讓我保持登入](./media/active-directory-branding-custom-signon-azure-portal/02.png)
 
-若要隱藏此核取方塊，請將此設定設為 [是]。 
+若要隱藏此核取方塊，請將此設定設為 [是]。
 
 > [!NOTE]
 > SharePoint Online 和 Office 2010 的某些功能取決於能夠核取此方塊的使用者。 如果您將此設定設為隱藏，使用者可能會在登入時看見其他和非預期的提示。
-> 
-> 
+>
+>
 
 **將公司商標新增到您的目錄：**
 
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
-   
+
    ![開啟使用者管理](./media/active-directory-branding-custom-signon-azure-portal/user-management.png)
 3. 在 [使用者和群組] 刀鋒視窗上，選取 [公司商標]。
 4. 在 [使用者和群組 - 公司商標] 刀鋒視窗上，選取 [編輯] 命令。
-   
+
     ![編輯自訂商標](./media/active-directory-branding-custom-signon-azure-portal/edit-branding.png)
 5. 修改您想要自訂的元素。 所有元素都是選用的。
 6. 按一下 [儲存] 。
@@ -84,7 +84,6 @@ ms.openlocfilehash: 48f85fd7e50c1cb3ece7f8b75779fe7cde92c7da
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

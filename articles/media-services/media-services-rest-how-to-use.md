@@ -1,12 +1,12 @@
 ---
-title: 媒體服務 REST API 概觀 | Microsoft Docs
-description: 媒體服務 REST API 概觀
+title: "媒體服務 REST API 概觀 | Microsoft Docs"
+description: "媒體服務 REST API 概觀"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a5f1c5e7-ec52-4e26-9a44-d9ea699f68d9
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 900c8fe2710d02d117c1b8155623ed911796203b
+
 
 ---
 # <a name="media-services-rest-api-overview"></a>媒體服務 REST API 概觀
@@ -107,6 +111,9 @@ Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

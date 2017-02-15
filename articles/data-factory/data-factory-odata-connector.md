@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/07/2016
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 5e6a61011e201dad2220d2851212ac04bed1342c
+ms.sourcegitcommit: 4521a236bfc13e6aca7e13e7400c11d353bc3a66
+ms.openlocfilehash: 9c385adfa3da73bef2d05352049d1f71aa5c5847
 
 
 ---
@@ -49,7 +49,7 @@ ms.openlocfilehash: 5e6a61011e201dad2220d2851212ac04bed1342c
 
 範例會每隔一小時依照 OData 來源，把查詢來的資料複製到 Azure Blob 中。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-**OData 連結服務** 此範例會使用基本驗證。 請參閱 [OData 連結服務](#odata-linked-service-properties) 一節，來了解您可以使用的不同驗證類型。
+**OData 連結服務** 此範例會使用匿名驗證。 請參閱 [OData 連結服務](#odata-linked-service-properties) 一節，來了解您可以使用的不同驗證類型。
 
     {
         "name": "ODataLinkedService",
@@ -332,6 +332,6 @@ ms.openlocfilehash: 5e6a61011e201dad2220d2851212ac04bed1342c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 使用 DMV 監視工作負載 | Microsoft Docs
-description: 了解如何使用 DMV 監視工作負載。
+title: "使用 DMV 監視工作負載 | Microsoft Docs"
+description: "了解如何使用 DMV 監視工作負載。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 69ecd479-0941-48df-b3d0-cf54c79e6549
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6877a54f77a4c0137e4f6a8b2b2fcff41664a4b5
+
 
 ---
 # <a name="monitor-your-workload-using-dmvs"></a>使用 DMV 監視工作負載
@@ -67,7 +71,7 @@ WHERE   [label] = 'My Query';
 
 從前述的查詢結果中，記下您想要調查之查詢的 **要求 ID** 。
 
- 狀態的查詢會因為並行限制而進入佇列。 這些查詢也會顯示在 sys.dm_pdw_waits 等候查詢中，類型為 UserConcurrencyResourceType。 如需並行限制的詳細資訊，請參閱 [並行和工作負載管理][並行和工作負載管理] 。 查詢也會因其他原因 (例如物件鎖定) 而等候。  如果您的查詢正在等候資源，請參閱本文稍後的 [檢查查詢是否正在等候資源][檢查查詢是否正在等候資源] 。
+ 狀態的查詢會因為並行限制而進入佇列。 這些查詢也會顯示在 sys.dm_pdw_waits 等候查詢中，類型為 UserConcurrencyResourceType。 如需並行限制的詳細資訊，請參閱[並行和工作負載管理][並行和工作負載管理]。 查詢也會因其他原因 (例如物件鎖定) 而等候。  如果您的查詢正在等候資源，請參閱本文稍後的[檢查查詢是否正在等候資源][檢查查詢是否正在等候資源]。
 
 若要簡化 sys.dm_pdw_exec_requests 資料表中查詢的查詢方式，請使用可在 sys.dm_pdw_exec_requests 檢視中查詢的[標籤][標籤]為您的查詢指派註解。
 
@@ -80,7 +84,7 @@ OPTION (LABEL = 'My Query')
 ```
 
 ### <a name="step-2-investigate-the-query-plan"></a>步驟 2︰ 調查查詢計劃
-使用要求 ID，從 [sys.dm_pdw_request_steps][sys.dm_pdw_request_steps] 擷取查詢的分散式 SQL (DSQL) 計劃。
+使用要求識別碼，從 [sys.dm_pdw_request_steps][sys.dm_pdw_request_steps] 擷取查詢的分散式 SQL (DSQL) 計劃。
 
 ```sql
 -- Find the distributed query plan steps for a specific query.
@@ -91,7 +95,7 @@ WHERE request_id = 'QID####'
 ORDER BY step_index;
 ```
 
-當 DSQL 計劃所花的時間超出預期時，有可能是含有許多 DSQL 步驟的複雜計劃所導致，或只是某個步驟需要長時間處理。  如果計劃是含有數個移動作業的許多步驟，請考慮最佳化您的資料表散發以減少資料移動。 [資料表散發][資料表散發] 一文說明為何需要移動資料才能解決查詢，並說明最小化資料移動的一些散發策略。
+當 DSQL 計劃所花的時間超出預期時，有可能是含有許多 DSQL 步驟的複雜計劃所導致，或只是某個步驟需要長時間處理。  如果計劃是含有數個移動作業的許多步驟，請考慮最佳化您的資料表散發以減少資料移動。 [資料表散發][資料表散發]一文說明為何需要移動資料才能解決查詢，並說明最小化資料移動的一些散發策略。
 
 進一步調查單一步驟 (長時間執行查詢步驟的 *operation_type* 資料行) 的詳細資料，並且記下**步驟索引**：
 
@@ -99,7 +103,7 @@ ORDER BY step_index;
 * 針對下列 **資料移動作業**繼續執行步驟 3b：ShuffleMoveOperation、BroadcastMoveOperation、TrimMoveOperation、PartitionMoveOperation、MoveOperation、CopyOperation。
 
 ### <a name="step-3a-investigate-sql-on-the-distributed-databases"></a>步驟 3a︰調查分散式資料庫上的 SQL
-使用要求 ID 及步驟索引，從 [sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests] 擷取詳細資料，其中包含所有分散式資料庫上查詢步驟的執行資訊。
+使用要求識別碼及步驟索引，從 [sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests] 擷取詳細資料，其中包含所有分散式資料庫上查詢步驟的執行資訊。
 
 ```sql
 -- Find the distribution run times for a SQL step.
@@ -170,7 +174,7 @@ ORDER BY waits.object_name, waits.object_type, waits.state;
 
 ## <a name="next-steps"></a>後續步驟
 請參閱[系統檢視][系統檢視]了解更多 DMV 相關資訊。
-若要深入了解最佳做法，請參閱 [SQL 資料倉儲最佳做法][]
+如需最佳做法的詳細資訊，請參閱 [SQL 資料倉儲最佳作法][SQL 資料倉儲最佳作法]。
 
 <!--Image references-->
 
@@ -194,6 +198,6 @@ ORDER BY waits.object_name, waits.object_type, waits.state;
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

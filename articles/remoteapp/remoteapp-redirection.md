@@ -119,6 +119,6 @@ RemoteApp 會利用遠端桌面通訊協定 (RDP) 與 RemoteFX 來提供重新�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

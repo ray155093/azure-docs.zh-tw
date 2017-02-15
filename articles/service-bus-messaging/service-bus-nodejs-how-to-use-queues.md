@@ -1,19 +1,23 @@
 ---
-title: 如何使用 Node.js 中的服務匯流排佇列 | Microsoft Docs
-description: 了解如何從 Node.js 應用程式，在 Azure 中使用服務匯流排佇列。
-services: service-bus
+title: "如何使用 Node.js 中的服務匯流排佇列 | Microsoft Docs"
+description: "了解如何從 Node.js 應用程式，在 Azure 中使用服務匯流排佇列。"
+services: service-bus-messaging
 documentationcenter: nodejs
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: a87a00f9-9aba-4c49-a0df-f900a8b67b3f
+ms.service: service-bus-messaging
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
+ms.openlocfilehash: d36d806d14fbaa813ea9e8e6ec132fda998bb22c
+
 
 ---
 # <a name="how-to-use-service-bus-queues"></a>如何使用服務匯流排佇列
@@ -23,16 +27,16 @@ ms.author: sethm
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
-## <a name="create-a-node.js-application"></a>建立 Node.js 應用程式
-建立空白的 Node.js 應用程式。 如需建立 Node.js 應用程式的相關指示，請參閱使用 Windows PowerShell [建立 Node.js 應用程式並將其部署到 Azure 網站][]或 [Node.js 雲端服務][Node.js 雲端服務]。
+## <a name="create-a-nodejs-application"></a>建立 Node.js 應用程式
+建立空白的 Node.js 應用程式。 如需建立 Node.js 應用程式的相關指示，請參閱使用 Windows PowerShell [建立 Node.js 應用程式並部署到 Azure 網站][建立 Node.js 應用程式並部署到 Azure 網站]或 [Node.js 雲端服務][Node.js 雲端服務]。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
 若要使用 Azure 服務匯流排，請下載及使用 Node.js Azure 套件。 此封裝含有一組能與服務匯流排 REST 服務通訊的便利程式庫。
 
-### <a name="use-node-package-manager-(npm)-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
+### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
 1. 使用 **Windows PowerShell for Node.js** 命令視窗巡覽至已建立範例應用程式的 **c:\\node\\sbqueues\\WebRole1** 資料夾。
 2. 在命令視窗中輸入 **npm install azure**，這應該會產生類似下列內容的輸出：
-   
+
     ```
     azure@0.7.5 node_modules\azure
         ├── dateformat@1.0.2-1.2.3
@@ -134,7 +138,7 @@ serviceBusService.sendQueueMessage('myqueue', message, function(error){
 });
 ```
 
-服務匯流排佇列支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。 此佇列大小會在建立時定義，上限是 5 GB。 如需有關配額的詳細資訊，請參閱 [服務匯流排配額][服務匯流排配額]。
+服務匯流排佇列支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。 此佇列大小會在建立時定義，上限是 5 GB。 如需服務匯流排中配額的詳細資訊，請參閱[服務匯流排配額][服務匯流排配額]。
 
 ## <a name="receive-messages-from-a-queue"></a>從佇列接收訊息
 對於 **ServiceBusService** 物件使用 **receiveQueueMessage** 方法即可從佇列接收訊息。 預設會從佇列刪除唯讀的訊息，不過，您可以將 **isPeekLock** 設定為 **true**，不需要從佇列刪除訊息，即可讀取 (查看) 並鎖定訊息。
@@ -183,13 +187,12 @@ serviceBusService.receiveQueueMessage('myqueue', { isPeekLock: true }, function(
 [Node.js 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
 [建立 Node.js 應用程式並部署到 Azure 網站]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
-[使用儲存體的 Node.js 雲端服務]: ../cloud-services/storage-nodejs-use-table-storage-cloud-service-app.md
+[使用儲存體的 Node.js 雲端服務]: ../storage/storage-nodejs-use-table-storage-cloud-service-app.md
 [使用儲存體的 Node.js Web 應用程式]: ../storage/storage-nodejs-how-to-use-table-storage.md
 [服務匯流排配額]: service-bus-quotas.md
 
 
 
-
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

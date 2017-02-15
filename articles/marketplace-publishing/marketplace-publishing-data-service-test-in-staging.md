@@ -1,12 +1,12 @@
 ---
-title: Testing your Data Service offer for the Marketplace | Microsoft Docs
-description: Understand how to test your Data Service offer for the Azure Marketplace.
+title: "測試要發行到 Marketplace 的資料服務 | Microsoft Docs"
+description: "了解如何測試要發行到 Azure Marketplace 的資料服務。"
 services: marketplace-publishing
-documentationcenter: ''
+documentationcenter: 
 author: HannibalSII
 manager: hascipio
-editor: ''
-
+editor: 
+ms.assetid: e861bd11-f74d-4d77-b4b5-23fb463644ad
 ms.service: marketplace
 ms.devlang: na
 ms.topic: article
@@ -14,85 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: daf2017bfbab4250e3f1481f592e0e858c77f121
+
 
 ---
-# <a name="testing-your-data-service-offer-in-staging"></a>Testing your Data Service offer in Staging
+# <a name="testing-your-data-service-offer-in-staging"></a>在預備環境中測試您的資料服務產品
 > [!IMPORTANT]
-> **At this time we are no longer onboarding any new Data Service publishers. New dataservices will not get approved for listing.** If you have a SaaS business application you would like to publish on AppSource you can find more information [here](https://appsource.microsoft.com/partners). If you have an IaaS applications or developer service you would like to publish on Azure Marketplace you can find more information [here](https://azure.microsoft.com/marketplace/programs/certified/).
+> 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。 如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
 > 
 > 
 
-After completing the first two steps of [Creating your Microsoft Developer account](marketplace-publishing-accounts-creation-registration.md) and [Creating your Data Service Offer in Publishing Portal](marketplace-publishing-data-service-creation.md) you’re ready for making your offer available in the Azure Marketplace. This topic will walk you through the first, intermediate, step called “Staging”
+完成[建立 Microsoft 開發人員帳戶](marketplace-publishing-accounts-creation-registration.md)及[在發佈入口網站中建立您的資料服務產品](marketplace-publishing-data-service-creation.md)這兩個步驟之後，您就可以開始準備在 Azure Marketplace 中銷售您的產品。 本主題將逐步引導您執行第一個中繼步驟，稱為「預備環境」
 
-Staging means deploying your offer in a private "sandbox" where you can test and verify its functionality before pushing it to production. The offer will appear in staging just as it would to a customer who has deployed it.
+預備環境代表將您的供應項目部署在私人的「沙箱」中，您可以在推送到生產環境之前在沙箱中測試與驗證其功能。 供應項目會出現在預備環境中，就如同客戶已部署該項目一樣。
 
-## <a name="step-1.-pushing-your-offer-to-staging"></a>Step 1. Pushing your offer to staging
-Pushing your offer to staging allows you to test the offer before it becomes available to future subscribers.  You can see how your offer will appear and function for those subscribing to your data.  
+## <a name="step-1-pushing-your-offer-to-staging"></a>步驟 1. 將您的產品發送到預備環境
+將產品發送到預備環境可讓您先測試您的產品，然後再將其提供給日後的訂閱者。  您可以從資料訂閱者的角度來看您的產品，並了解其功能的運作狀況。  
 
-  ![drawing](media/marketplace-publishing-data-service-test-in-staging/step-1.1.png)
+  ![繪圖](media/marketplace-publishing-data-service-test-in-staging/step-1.1.png)
 
-1. Login into the [Publishing Portal](https://publish.windowsazure.com)
-2. Select **Data Services** in the left navigation window
-3. Select your offer you want to push to staging. You will see the above screen.
-4. Click **Push To Staging** button.  
-5. If there are issues with the offer that needed to be completed prior to pushing to staging, you will see a list displayed.  Correct these items by clicking on each item in the list. When all corrections made, click **Push to Staging** button again.
+1. 登入 [發行入口網站](https://publish.windowsazure.com)
+2. 選取左導覽視窗中的 [資料服務]  。
+3. 選取要推送到預備環境的產品。 您將會看到上列畫面。
+4. 按一下 [推送至預備環境]  按鈕。  
+5. 您的產品如有任何問題必須在推送到預備環境之前解決，將顯示問題清單。  按一下清單中每個項目，以更正這些項目。 當所有的更正作業完成之後，請再按一下 [推送至預備環境]  按鈕。
 
-If there are no issues with your offer you will see the popup window below.  
+您的產品若無任何問題，將會顯示下列快顯視窗。  
 
-If you’re not planning/not approved to surface your offer in Azure Portal (currently has limited capacity), then just close the pop-up window.
+若您不打算在 Azure 入口網站 (目前容量有限) 中提供您的產品，或此舉未獲核准，只需關閉快顯視窗即可。
 
-To test your Data Service in Azure Portal (in addition to the DataMarket portal), you will need an Azure Subscription ID to test with.  This Subscription ID will identify the account that will be allowed to test your offer.  
+除了 DataMarket 入口網站之外，若還要在 Azure 入口網站中測試您的資料服務，您必須要有可供測試的 Azure 訂用帳戶 ID。  此訂用帳戶 ID 將會識別能夠測試您產品的帳戶。  
 
-Cut and paste your Subscription ID and click the checkmark to continue.
+剪下並貼上您的訂用帳戶 ID，然後按一下核取記號以繼續。
 
-  ![drawing](media/marketplace-publishing-data-service-test-in-staging/step-1.2.png)
+  ![繪圖](media/marketplace-publishing-data-service-test-in-staging/step-1.2.png)
 
 > [!NOTE]
-> These Azure subscriptions IDs are only required for testing and staging in the [Azure Management Portal](https://manage.windowsazure.com). They are not required to test in Azure Marketplace.
+> 只有在 [Azure 管理入口網站](https://manage.windowsazure.com)的測試及預備環境中，才需要這些 Azure 訂用帳戶 ID。 在 Azure Marketplace 測試不需要這些 ID。
 > 
 > 
 
-The next screen that appears shows that publishing is taking place by displaying the “In progress” icon highlighted yellow below. Pushing to staging takes between 10 to 15 minutes.  If it takes longer, first refresh your browser (press F5 in IE).  In the rare cases where your offer is still pushing to staging after an hour, click the contact us link to let us know that there is an issue.
+接下來的畫面會顯示進行中圖示，以指出發行正在進行中，如下圖中的黃色強調顯示所示。 推送到預備環境約需 10 到 15 分鐘的時間完成。  若時間過長，請先重新整理您的瀏覽器 (在 IE 中請按 F5 鍵)。  在極少數的情況下，您的產品可以持續推送了一小時以上的時間還在推送，此時，請按一下 [與我們連絡] 連結，通知我們發生此問題。
 
-  ![drawing](media/marketplace-publishing-data-service-test-in-staging/step-1.3.png)
+  ![繪圖](media/marketplace-publishing-data-service-test-in-staging/step-1.3.png)
 
-When the Push to Staging completes the “In progress” icon will stop moving and the status will be updated to “Staged”.  You are now ready to test your offer.  
+當推送到預備環境作業完成時，進行中圖示會停止移動，且狀態會更新成 [已推送到預備環境]。  您現在已可開始測試您的產品。  
 
-## <a name="step-2.-test-your-staged-offer-in-datamarket"></a>Step 2. Test your staged offer in DataMarket
-Click the link following the text **“See Your service offer at…”** to display the screen that the subscriber will see when your offer goes to production and will appear in DataMarket.
+## <a name="step-2-test-your-staged-offer-in-datamarket"></a>步驟 2. 在 DataMarket 中測試已推送到預備環境中的產品
+按一下在 **在...中檢視您的服務產品** 之後顯示的連結，可顯示您的產品在生產環境及 DataMarket 中時，訂閱者會見到的畫面。
 
-  ![drawing](media/marketplace-publishing-data-service-test-in-staging/step-2.2.png)
+  ![繪圖](media/marketplace-publishing-data-service-test-in-staging/step-2.2.png)
 
-Test or verify each of the 12 items marked above to ensure all logos, prices/transactions, text, images, documentation, and links are correct and working properly.  This is a good time to ensure any test values you entered when creating your offer have been replaced with actual values.
+測試或驗證上列標記的 12 個項目，確認所有標誌、價格/交易、文字、影像、文件及連結均正確，並能正常運作。  此時也很適合確認您在建立產品時所輸入的測試值，也全由實際值所代。
 
-1. Offer logo
-2. Offer name
-3. Publisher name/link to your company's website
-4. Search categories for your offer
-5. Your offer's support link to assist subscribers
-6. Contextual description for your offer
-7. Offer plan depicting billing details
-8. Link to implementation code
-9. Sample images that illustrate use of offer data
-10. Input/Output metadata for each service within the offer
-11. Offer's Terms of Use
-12. Preview of the offer's data
+1. 產品標誌
+2. 產品名稱
+3. 發行者名稱/您公司網站的連結
+4. 您產品的搜尋類別
+5. 您產品的支援連結 (用於協助訂閱者)
+6. 您產品的的內容描述
+7. 描述計費詳細資料的產品方案
+8. 實作程式碼的連結
+9. 示範如何使用產品資料的範例影像
+10. 產品中每項服務的輸入/輸出中繼資料
+11. 產品的使用規定
+12. 產品資料預覽
 
-Finally, check the service will work through the Datamarket by clicking the link “EXPLORE THIS DATASET”.  A new window will open in the tool we call “Service Explorer” so you can preview the results of a query against your service.  In this window, you can enter the parameters needed and see the results displayed from a query against your service.   Also, displayed is the URL for your Query.  
+最後，請按一下 [探索此資料集]，確認服務在 Datamarket 中能夠正常運作。  新視窗會隨即在工具 (稱為「服務總管」) 中開啟，讓您可以預覽對服務的執行的查詢結果。  您可以在此視窗中輸入所需的參數，然後檢視您對服務執行查詢所得的結果。   此外，顯示的內容會是查詢的 URL。  
 
 > [!NOTE]
-> Be sure to review the textual description of the service displayed at the top.  And if your offer consists of more than one service call, click the tabs at the bottom to switch to the next service to review and test.
+> 請務必檢閱視窗最上方所顯示的服務文字描述。  您的產品若由多個服務呼叫組成，請按一下視窗底部的各個索引標籤記切換到下一項服務，以進行檢閱及測試。
 > 
 > 
 
-## <a name="next-step"></a>Next step
-If you are having issues and need help resolving them please contact [Azure Publisher Support](http://go.microsoft.com/fwlink/?LinkId=272975).
+## <a name="next-step"></a>後續步驟
+您如有問題需要協助解決，請連絡 [Azure 發行者支援](http://go.microsoft.com/fwlink/?LinkId=272975)。
 
-If you are satisfied and ready to publish your offer please read the [Request Approval to Push To Production](marketplace-publishing-push-to-production.md) documentation.
+若您對一切結果感到滿意，並準備好發行您的產品，請閱讀 [申請核准發行到生產環境](marketplace-publishing-push-to-production.md) 文件。
 
-## <a name="see-also"></a>See Also
-* [Getting Started: How to publish an offer to the Azure Marketplace](marketplace-publishing-getting-started.md)
+## <a name="see-also"></a>另請參閱
+* [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

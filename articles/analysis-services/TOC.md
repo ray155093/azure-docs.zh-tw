@@ -4,20 +4,21 @@
 ##[建立伺服器](analysis-services-create-server.md)
 
 # 作法 
-## [部署](analysis-services-deploy.md)
-## 管理
-###[連接到伺服器](analysis-services-connect.md)
-###[管理伺服器](analysis-services-manage.md)
-## 整合
-###[內部部署資料閘道](analysis-services-gateway.md)
+##[部署至伺服器](analysis-services-deploy.md)
+##[從用戶端連線](analysis-services-connect.md)
+##[管理伺服器](analysis-services-manage.md)
+##[管理使用者](analysis-services-manage-users.md)
+##[整合內部部署資料閘道](analysis-services-gateway.md)
 
 # 參考
-##[PowerShell](/powershell/resourcemanager)
-##[REST](/rest/api/analysisservices/)
+##[PowerShell](analysis-services-powershell.md)
+##[REST](/rest/api/analysisservices)
 
-# 相關參考
+# 資源
 ##[資料來源連線](analysis-services-datasource.md)
+##[資料提供者](analysis-services-data-providers.md) 
 
-<!--HONumber=Dec16_HO1-->
+
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,49 +1,58 @@
 ---
-title: 了解 Azure 上的 Docker VM 擴充功能 | Microsoft Docs
-description: 了解如何使用 Docker VM 擴充功能在 Azure 中快速而安全地部署 Docker 環境
+title: "使用 Azure Docker VM 延伸模組 | Microsoft Docs"
+description: "了解如何使用 Resource Manager 範本，在 Azure 中使用 Docker VM 延伸模組快速而安全地部署 Docker 環境。"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: iainfoulds
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 936d67d7-6921-4275-bf11-1e0115e66b7f
 ms.service: virtual-machines-linux
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 10/10/2016
+ms.date: 02/09/2017
 ms.author: iainfou
+translationtype: Human Translation
+ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
+ms.openlocfilehash: e97981118cb8f2c4c2821ed9db50095f2385342c
+
 
 ---
-# <a name="using-the-docker-vm-extension-to-deploy-your-environment"></a>使用 Docker VM 擴充功能來部署您的環境
-Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上 (和 Windows 上) 快速地操作容器。 透過 Azure，您可以根據需求利用幾個不同的方式彈性地部署 Docker︰
+# <a name="create-a-docker-environment-in-azure-using-the-docker-vm-extension"></a>使用 Docker VM 延伸模組在 Azure 中建立 Docker 環境
+Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上 (和 Windows 上) 快速地操作容器。 在 Azure 中，您可以根據您的需求使用幾個方式來部署 Docker。 本文著重於使用 Docker VM 延伸模組與 Azure Resource Manager 範本。 
 
-* 若要快速建立應用程式原型，您可以 [使用 Docker Machine Azure 驅動程式](virtual-machines-linux-docker-machine.md) 在 Azure 內部署 Docker 主機。
-* 適用於 Azure 虛擬機器的 Docker VM 擴充功能可用來進行以範本為基礎的部署。 這種做法可以與 Azure Resource Manager 範本部署整合，而且包含所有相關的優點，例如角色型存取、診斷及部署後設定。
-* Docker VM 擴充功能也支援 Docker Compose。 Docker Compose 使用宣告式 YAML 檔案來取得任何環境的開發人員模型化應用程式並產生一致的部署。
-* 對於使用 Swarm 所提供之其他排程和管理工具的實際執行準備就緒、可調整部署，您也可以 [在 Azure 容器服務上部署完整的 Docker Swarm 叢集](../container-service/container-service-deployment.md) 。
+如需不同部署方法的詳細資訊，包括使用 Docker 電腦和 Azure Container Service，請參閱下列文章︰
 
-本文將焦點放在使用 Resource Manager 範本，在您定義的自訂、實際執行準備就緒環境中，部署「Docker VM 擴充功能」。
+* 如需快速應用程式原型，您可以使用 [Docker 電腦](virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)建立單一 Docker 主機。
+* 對於較大且更穩定的環境，您可以使用 Azure Docker VM 延伸模組，其也支援 [Docker Compose](https://docs.docker.com/compose/overview/)，以產生一致的容器部署。 本文詳細說明使用 Azure Docker VM 延伸模組。
+* 如需建置提供其他排程和管理工具的生產就緒、可調整環境，您可以[在 Azure Container Service 上部署 Docker Swarm 叢集](../container-service/container-service-deployment.md)。
 
-## <a name="azure-docker-vm-extension-for-template-deployments"></a>適用於範本部署的 Azure Docker VM 擴充功能
-Azure Docker VM 擴充功能會在您的 Linux 虛擬機器中安裝並設定 Docker 精靈、Docker 用戶端和 Docker Compose。 此擴充功能也可用來透過 Docker Compose 定義及部署容器應用程式。 您可以額外控制是要使用 Docker Machine 還是自行建立 Docker 主機，使其適合更健全的開發人員環境或生產環境。
+## <a name="azure-docker-vm-extension-overview"></a>Azure Docker VM 延伸模組概觀
+Azure Docker VM 擴充功能會在您的 Linux 虛擬機器 (VM) 中安裝並設定 Docker 精靈、Docker 用戶端和 Docker Compose。 相較於只使用 Docker 電腦或自行建立 Docker 主機，您使用 Azure Docker VM 延伸模組會有更多控制權和功能。 這些額外功能，例如 [Docker Compose](https://docs.docker.com/compose/overview/)，讓 Azure Docker VM 延伸模組適用於更穩固的開發人員或生產環境。
 
-在使用 Azure Resource Manager 的情況下，您可以建立及部署定義整個環境結構的範本。 範本可讓您定義 Docker 主機、儲存體、角色型存取控制 (RBAC)、診斷等。您可以[閱讀更多有關資源管理員](../resource-group-overview.md)和範本的資訊，以充分了解其中的一些優點。 透過使用 Resource Manager 範本，您未來也將能夠視需要重現部署。
+Azure Resource Manager 範本會定義您環境的整個結構。 範本可讓您建立和設定資源，例如 Docker 主機 VM、儲存體、以角色為基礎的存取控制 (RBAC) 以及診斷。 您可以重複使用這些範本，以一致的方式建立其他部署方式。 如需 Azure Resource Manager 和範本的詳細資訊，請參閱 [Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。 
 
-## <a name="deploy-a-template-with-the-docker-vm-extension:"></a>使用 Docker VM 擴充功能部署範本︰
-讓我們使用現有的快速啟動範本來示範如何部署已安裝「Docker VM 擴充功能」的 Ubuntu VM。 您可以在這裡檢視範本︰ [使用 Docker 簡易部署 Ubuntu VM](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)。 您還需要處於資源管理員模式的[最新 Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。
+## <a name="deploy-a-template-with-the-azure-docker-vm-extension"></a>使用 Azure Docker VM 擴充功能部署範本
+使用現有的快速入門範本建立使用 Azure Docker VM 延伸模組的 Ubuntu VM，以安裝及設定 Docker 主機。 您可以在這裡檢視範本︰ [使用 Docker 簡易部署 Ubuntu VM](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)。 
 
-使用 Azure CLI 部署範本，並指定新資源群組 (即範例中的 `myDockerResourceGroup`) 的名稱和範本 URI：
+您需要使用 Resource Manager 模式安裝和登入[最新的 Azure CLI](../xplat-cli-install.md)，如下所示：
 
+```azurecli
+azure config mode arm
 ```
+
+使用 Azure CLI 部署範本，指定範本 URI。 下列範例會在 `WestUS` 位置建立名為 `myResourceGroup` 的資源群組。 使用您自己的資源群組名稱和位置，如下所示︰
+
+```azurecli
 azure group create --name myResourceGroup --location "West US" \
   --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
 ```
 
-請回答提示來指定您的儲存體帳戶、使用者名稱和密碼，以及 DNS 名稱。 您應該會看到類似於以下範例的輸出：
+請回答提示來為您的儲存體帳戶命名、提供使用者名稱和密碼，並提供 DNS 名稱。 輸出類似於下列範例：
 
-```
+```azurecli
 info:    Executing command group create
 + Getting resource group myResourceGroup
 + Updating resource group myResourceGroup
@@ -63,20 +72,24 @@ data:    Provisioning State:  Succeeded
 data:    Tags: null
 data:
 info:    group create command OK
-
 ```
 
-Azure CLI 只在幾秒之後就會讓您回到提示，但會在背景中將範本部署到您所建立的資源群組。 請等候幾分鐘讓部署完成，然後再嘗試透過 SSH 連線到 VM。
+Azure CLI 僅在幾秒鐘後讓您回到提示，但仍會由 Azure Docker VM 延伸模組建立並設定您的 Docker 主機。 需要幾分鐘的時間才能完成部署。 您可以使用 `azure vm show` 命令檢視關於 Docker 主機狀態的詳細資訊。
 
-您可以使用 `azure vm show` 命令來取得部署的相關詳細資料，以及 VM 的 DNS 名稱。 在下列範例中，以您在上一個步驟中指定的名稱 (範本中預設的 VM 名稱是 `myDockerVM`，因此維持該名稱不變) 取代 `myResourceGroup`：
+下列範例會在名為 `myResourceGroup` 的資源群組中檢查名為 `myDockerVM` 的 VM 狀態 (範本的預設名稱 - 請勿變更這個名稱)。 輸入您在上一個步驟中建立的資源群組名稱︰
 
-```bash
+```azurecli
 azure vm show -g myResourceGroup -n myDockerVM
+```
+
+`azure vm show` 命令的輸出類似下列範例：
+
+```azurecli
 info:    Executing command vm show
 + Looking up the VM "myDockerVM"
 + Looking up the NIC "myVMNicD"
 + Looking up the public ip "myPublicIPD"
-data:    Id                              :/subscriptions/guid/resourceGroups/mydockerresourcegroup/providers/Microsoft.Compute/virtualMachines/MyDockerVM
+data:    Id                              :/subscriptions/guid/resourceGroups/myresourcegroup/providers/Microsoft.Compute/virtualMachines/MyDockerVM
 data:    ProvisioningState               :Succeeded
 data:    Name                            :MyDockerVM
 data:    Location                        :westus
@@ -100,24 +113,24 @@ info:    vm show command OK
 
 在接近輸出頂端的地方，您會看到 VM 的 `ProvisioningState` 。 當這顯示為 `Succeeded`時，即表示部署已完成，您可以透過 SSH 連線到 VM。
 
-在接近輸出結尾的地方， `FQDN` 會根據您所提供的 DNS 名稱和所選取的位置，顯示完整的網域名稱。 此 FQDN 就是您在剩餘的步驟中透過 SSH 連線到 VM 時所使用的 FQDN。
+在輸出的結尾，`FQDN` 會顯示 Docker 主機的完整網域名稱。 此 FQDN 就是您在剩餘的步驟中透過 SSH 連線到 Docker 主機時所使用的 FQDN。
 
 ## <a name="deploy-your-first-nginx-container"></a>部署您的第一個 nginx 容器
-部署完成之後，使用在部署期間提供的 DNS 名稱透過 SSH 連接新 Docker 主機：
+一旦部署完成之後，SSH 會從本機電腦連線到新的 Docker 主機。 請輸入您自己的使用者名稱和 FQDN，如下所示︰
 
 ```bash
 ssh ops@mypublicip.westus.cloudapp.azure.com
 ```
 
-讓我們嘗試執行 nginx 容器︰
+一旦登入 Docker 主機後，請執行 nginx 容器︰
 
-```
+```bash
 sudo docker run -d -p 80:80 nginx
 ```
 
-您應該會看到類似於以下範例的輸出：
+下載 nginx 影像和啟動容器時，輸出類似下列的範例︰
 
-```
+```bash
 Unable to find image 'nginx:latest' locally
 latest: Pulling from library/nginx
 efd26ecc9548: Pull complete
@@ -129,23 +142,27 @@ Status: Downloaded newer image for nginx:latest
 b6ed109fb743a762ff21a4606dd38d3e5d35aff43fa7f12e8d4ed1d920b0cd74
 ```
 
-使用 `sudo docker ps`來檢查在您主機上執行的容器：
+檢查您的 Docker 主機上執行的容器狀態，如下所示︰
 
+```bash
+sudo docker ps
 ```
+
+輸出類似下列的範例，會顯示 nginx 容器正在執行，且正在轉送 TCP 連接埠 80 和 443︰
+
+```bash
 CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                         NAMES
 b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp, 443/tcp   adoring_payne
 ```
 
-若要查看容器實際運作的情況，請開啟網頁瀏覽器，然後輸入您在部署期間指定的 DNS 名稱︰
+若要查看容器實際運作的情況，請開啟網頁瀏覽器，然後輸入 Docker 主機的 FQDN 名稱︰
 
 ![執行 ngnix 容器](./media/virtual-machines-linux-dockerextension/nginxrunning.png)
 
-您可能會想要使用 Docker Compose 來設定 Docker 精靈 TCP 連接埠、安全性或部署容器。 如需詳細資訊，請參閱 [適用於 Docker 的 Azure 虛擬機器擴充功能 GitHub 專案](https://github.com/Azure/azure-docker-extension/)。
+## <a name="azure-docker-vm-extension-template-reference"></a>Azure Docker VM 延伸模組範本參考
+前一個範例使用現有的快速入門範本。 您也可以使用您自己的 Resource Manager 範本來部署 Azure Docker VM 延伸模組。 若要這樣做，請將下列項目新增至 Resource Manager 範本，適當地定義 VM 的 `vmName`︰
 
-## <a name="docker-vm-extension-json-template-reference"></a>Docker VM 擴充功能 JSON 範本參考
-此範例使用快速啟動範本。 若要使用您自己的 Resource Manager 範本來部署 Azure Docker VM 擴充功能，請新增下列 JSON：
-
-```
+```json
 {
   "type": "Microsoft.Compute/virtualMachines/extensions",
   "name": "[concat(variables('vmName'), '/DockerExtension'))]",
@@ -165,16 +182,20 @@ b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute 
 }
 ```
 
-如需更詳細的 Resource Manager 範本使用逐步解說，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)
+如需更詳細的 Resource Manager 範本使用逐步解說，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 
 ## <a name="next-steps"></a>後續步驟
-閱讀不同部署選項的詳細步驟：
+您可能會想要使用 [Docker Compose](https://docs.docker.com/compose/overview/) 來[設定 Docker 精靈 TCP 連接埠](https://docs.docker.com/engine/reference/commandline/dockerd/#/bind-docker-to-another-hostport-or-a-unix-socket)、了解[Docker 安全性](https://docs.docker.com/engine/security/security/)或部署容器。 如需有關 Azure Docker VM 延伸模組本身的詳細資訊，請參閱 [GitHub 專案](https://github.com/Azure/azure-docker-extension/)。
 
-1. [使用 Docker 電腦搭配 Azure 驅動程式](virtual-machines-linux-docker-machine.md)  
-2. [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](virtual-machines-linux-classic-cli-use-docker.md)  
-3. [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式](virtual-machines-linux-docker-compose-quickstart.md)。
-4. [部署 Azure 容器服務叢集](../container-service/container-service-deployment.md)
+閱讀有關 Azure 中其他 Docker 部署選項的詳細資訊︰
 
-<!--HONumber=Oct16_HO2-->
+* [使用 Docker 電腦搭配 Azure 驅動程式](virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)  
+* [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式](virtual-machines-linux-docker-compose-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+* [部署 Azure 容器服務叢集](../container-service/container-service-deployment.md)
+
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

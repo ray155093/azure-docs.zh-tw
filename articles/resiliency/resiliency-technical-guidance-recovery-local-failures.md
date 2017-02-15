@@ -197,6 +197,6 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。 所有
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

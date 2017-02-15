@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
@@ -26,16 +26,16 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 ## <a name="to-create-the-advanced-rule"></a>建立進階規則
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
-   
+
    ![開啟使用者管理](./media/active-directory-groups-dynamic-membership-azure-portal/search-user-management.png)
 3. 在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
-   
+
    ![開啟群組刀鋒視窗](./media/active-directory-groups-dynamic-membership-azure-portal/view-groups-blade.png)
 4. 在 [使用者和群組 - 所有群組] 刀鋒視窗上，選取 [新增]。
-   
+
    ![Add new group](./media/active-directory-groups-dynamic-membership-azure-portal/add-group-type.png)
 5. 在 [群組]  刀鋒視窗上，輸入新群組的名稱和描述。 依據您是要為使用者還是裝置建立規則，在 [成員資格類型] 選取 [動態使用者] 或 [動態裝置]，然後選取 [新增動態查詢]。 如需了解有哪些用於裝置規則的屬性，請參閱 [使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
-   
+
    ![新增動態成員資格規則](./media/active-directory-groups-dynamic-membership-azure-portal/add-dynamic-group-rule.png)
 6. 在 [動態成員資格規則] 刀鋒視窗上，於 [新增動態成員資格進階規則] 方塊中輸入您的規則、按 Enter，然後選取刀鋒視窗底部的 [建立]。
 7. 選取 [更多服務]  on the  來建立群組。
@@ -61,8 +61,8 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 > [!NOTE]
 > 字串和 regex 運算都不區分大小寫。 您也可以使用 $null 做為常數，執行 Null 檢查，例如，user.department-eq $null。
 > 包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq \`"Sales"。
-> 
-> 
+>
+>
 
 ## <a name="supported-expression-rule-operators"></a>支援的運算式規則運算子
 下表列出所有支援的運算式規則運算子及其用於進階規則主體中的語法：
@@ -174,11 +174,11 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 
 1. 依照[建立進階規則](#to-create-the-advanced-rule)中的步驟 1-5 操作，然後在 [成員資格類型] 選取 [動態使用者]。
 2. 在 [動態成員資格規則]  刀鋒視窗上，使用下列語法來輸入規則：
-   
+
     *Direct Reports for {obectID_of_manager}* 的 Direct Reports。 以下是 Direct Reports 的有效規則範例：
-   
+
                     Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
-   
+
     其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。 您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔]  索引標籤上找到物件識別碼。
 3. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。 一開始填入群組可能需要幾分鐘的時間。
 
@@ -202,7 +202,6 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 * [管理群組的設定](active-directory-groups-settings-azure-portal.md)
 * [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
 * [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
-
 
 
 

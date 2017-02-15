@@ -1,12 +1,12 @@
 ---
-title: 自訂測試案例 | Microsoft Docs
-description: 如何針對非失誤性和失誤性失敗強化服務。
+title: "自訂測試案例 | Microsoft Docs"
+description: "如何針對非失誤性和失誤性失敗強化服務。"
 services: service-fabric
 documentationcenter: .net
 author: anmolah
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 44af01f0-ed73-4c31-8ac0-d9d65b4ad2d6
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
@@ -14,15 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 05/17/2016
 ms.author: anmola
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ebdffa2a9270fb19ab80fac234e8c5edcfbaa49e
+
 
 ---
-# 模擬服務工作負載期間的失敗案例
-Azure Service Fabric 中的可測試性案例讓開發人員在處理個別錯誤時無需擔心。不過還是有些案例，可能會需要明確的用戶端工作負載和失敗交錯。用戶端工作負載和錯誤的交錯，可確保服務在發生失敗時確實執行某些動作。假設可測試性提供的控制層級，可能是工作負載執行的精確時間點。此應用程式中不同狀態的錯誤引發可以找到錯誤，並提升品質。
+# <a name="simulate-failures-during-service-workloads"></a>模擬服務工作負載期間的失敗案例
+Azure Service Fabric 中的可測試性案例讓開發人員在處理個別錯誤時無需擔心。 不過還是有些案例，可能會需要明確的用戶端工作負載和失敗交錯。 用戶端工作負載和錯誤的交錯，可確保服務在發生失敗時確實執行某些動作。 假設可測試性提供的控制層級，可能是工作負載執行的精確時間點。 此應用程式中不同狀態的錯誤引發可以找到錯誤，並提升品質。
 
-## 範例自訂案例
-此測試說明了使用[非失誤性和失誤性失敗](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions)商務工作負載交錯的案例。為了獲得最佳結果，應該在服務作業或計算過程中引發錯誤。
+## <a name="sample-custom-scenario"></a>範例自訂案例
+此測試說明了使用 [非失誤性和失誤性失敗](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions)商務工作負載交錯的案例。 為了獲得最佳結果，應該在服務作業或計算過程中引發錯誤。
 
-我們來逐一解說某個服務範例，此範例公開四個工作負載：A、B、C 和 D。每個均對應至一組工作流程，且可能是計算、儲存體或混合。為了簡單起見，我們會在範例中擷取出工作負載。在此範例中執行的不同錯誤如下︰
+我們來逐一解說某個服務範例，此範例公開四個工作負載：A、B、C 和 D。每個均對應至一組工作流程，且可能是計算、儲存體或混合。 為了簡單起見，我們會在範例中擷取出工作負載。 在此範例中執行的不同錯誤如下︰
 
 * RestartNode︰模擬機器重新啟動的失誤性錯誤。
 * RestartDeployedCodePackage︰模擬服務主機處理序當機。
@@ -155,4 +159,8 @@ class Test
 }
 ```
 
-<!---HONumber=AcomDC_0518_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

@@ -16,14 +16,14 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 9671e22d6c027c589e229ae2ecbbda71f0bb7e1c
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: 63e822de6ae50be33590048140e06e89526282ee
 
 
 ---
 # <a name="manage-azure-virtual-machines-using-resource-manager-and-powershell"></a>使用 Resource Manager 和 PowerShell 管理 Azure 虛擬機器
 ## <a name="install-azure-powershell"></a>安裝 Azure PowerShell
-如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="set-variables"></a>設定變數
 本文中的所有命令都需要虛擬機器所在資源群組的名稱以及要管理之虛擬機器的名稱。 使用包含虛擬機器之資源群組的名稱取代 **$rgName** 的值。 使用 VM 名稱取代 **$vmName** 的值。 建立變數。
@@ -223,6 +223,6 @@ ms.openlocfilehash: 9671e22d6c027c589e229ae2ecbbda71f0bb7e1c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

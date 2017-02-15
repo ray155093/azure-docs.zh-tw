@@ -1,11 +1,11 @@
 ---
-title: 教學課程：Azure Active Directory 與 Picturepark 整合 | Microsoft Docs
-description: 了解如何使用 Picturepark 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！
+title: "教學課程：Azure Active Directory 與 Picturepark 整合 | Microsoft Docs"
+description: "了解如何使用 Picturepark 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！"
 services: active-directory
 author: jeevansd
 documentationcenter: na
 manager: femila
-
+ms.assetid: 31c21cd4-9c00-4cad-9538-a13996dc872f
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -13,9 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 98f2e5596a0af2fc9e633e005642cc3cd21621ce
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-picturepark"></a>教學課程：Azure Active Directory 與 Picturepark 整合
+# <a name="tutorial-azure-active-directory-integration-with-picturepark"></a>教學課程：Azure Active Directory 與 Picturepark 整合
 本教學課程的目的是要示範 Azure 與 Picturepark 的整合。  
 本教學課程中說明的案例假設您已經具有下列項目：
 
@@ -36,7 +40,7 @@ ms.author: jeedes
 ## <a name="enabling-the-application-integration-for-picturepark"></a>啟用 Picturepark 的應用程式整合
 本節的目的是要說明如何啟用 Picturepark 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-picturepark,-perform-the-following-steps:"></a>若要啟用 Picturepark 的應用程式整合，請執行下列步驟：
+### <a name="to-enable-the-application-integration-for-picturepark-perform-the-following-steps"></a>若要啟用 Picturepark 的應用程式整合，請執行下列步驟：
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-picturepark-tutorial/IC700993.png "Active Directory")
@@ -62,7 +66,7 @@ ms.author: jeedes
 設定 Picturepark 的單一登入需要您從憑證抓取憑證指紋值。  
 如果您不熟悉這個程序，請參閱 [如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-### <a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
+### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [Picturepark] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-picturepark-tutorial/IC795058.png "Configure Single Sign-On")
@@ -98,7 +102,7 @@ ms.author: jeedes
       > 
    6. 按一下 [JoinDefaultUsersGroup] 。
    7. 若要在 [宣告] 文字方塊中設定 [Emailaddress] 屬性，請輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。
-      ![組態](./media/active-directory-saas-picturepark-tutorial/IC795065.png "組態")
+      ![組態](./media/active-directory-saas-picturepark-tutorial/IC795065.png "Configuration")
    8. 按一下 [儲存] 。
 9. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
@@ -108,7 +112,7 @@ ms.author: jeedes
 若要讓 Azure AD 使用者能夠登入 Picturepark，必須將他們佈建到 Mindflash。  
 Picturepark 需以手動的方式佈建。
 
-### <a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>若要佈建使用者帳戶，請執行下列步驟：
+### <a name="to-provision-a-user-accounts-perform-the-following-steps"></a>若要佈建使用者帳戶，請執行下列步驟：
 1. 登入您的 **Picturepark** 租用戶。
 2. 在最上面的工具列中，按一下 [系統管理工具]，然後按一下 [使用者]。
    
@@ -132,7 +136,7 @@ Picturepark 需以手動的方式佈建。
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-picturepark,-perform-the-following-steps:"></a>若要指派使用者給 Picturepark，請執行下列步驟：
+### <a name="to-assign-users-to-picturepark-perform-the-following-steps"></a>若要指派使用者給 Picturepark，請執行下列步驟：
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Picturepark] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -143,6 +147,9 @@ Picturepark 需以手動的方式佈建。
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

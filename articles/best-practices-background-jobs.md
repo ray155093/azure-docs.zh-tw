@@ -1,13 +1,13 @@
 ---
-title: 背景作業指引 | Microsoft Docs
-description: 獨立於使用者介面之外執行的背景工作指引。
-services: ''
+title: "背景作業指引 | Microsoft Docs"
+description: "獨立於使用者介面之外執行的背景工作指引。"
+services: 
 documentationcenter: na
 author: dragon119
 manager: christb
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: f6040f8c-4cbb-4c21-a886-8d54a5868421
 ms.service: best-practice
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/21/2016
 ms.author: masashin
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 3bc7d30a8d702fd219c7fccfc241f32147c90009
+
 
 ---
 # <a name="background-jobs-guidance"></a>背景作業指引
@@ -175,7 +179,7 @@ Azure WebJobs 具有下列特性：
 
 ### <a name="more-information"></a>詳細資訊
 * [虛擬機器](https://azure.microsoft.com/services/virtual-machines/) 
-* [Azure 虛擬機器常見問題集](virtual-machines/virtual-machines-linux-classic-faq.md)
+* [Azure 虛擬機器常見問題集](virtual-machines/virtual-machines-linux-classic-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ## <a name="design-considerations"></a>設計考量
 當您設計背景工作時，有幾個基本的因素需要考慮。 下列章節會討論分割、衝突和協調。
@@ -209,7 +213,7 @@ Azure WebJobs 具有下列特性：
 * **管理工作的步驟執行**。 應用程式可能會執行包含數個步驟 (其中有些可能會叫用遠端服務或存取遠端資源) 的工作。 個別的步驟可能會彼此獨立，但是它們會由實作工作的應用程式邏輯進行協調。 如需詳細資訊，請參閱 [排程器代理程式監督員模式](http://msdn.microsoft.com/library/dn589780.aspx)(英文)。
 * **管理失敗工作步驟的復原**。 如果一個或多個步驟失敗，應用程式可能需要對執行一系列步驟的工作進行復原 (它們會共同定義最終的一致作業)。 如需詳細資訊，請參閱 [補償交易模式](http://msdn.microsoft.com/library/dn589804.aspx)(英文)。
 
-## <a name="lifecycle-(cloud-services)"></a>生命週期 (雲端服務)
+## <a name="lifecycle-cloud-services"></a>生命週期 (雲端服務)
  如果您決定使用 **RoleEntryPoint** 類別，為使用 Web 和背景工作角色的雲端服務應用程式實作背景工作，請務必瞭解這個類別的生命週期以正確使用。
 
 Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的階段。 **RoleEntryPoint** 類別會公開在發生這些階段時所指示的一系列事件。 您使用這些來初始化、執行並停止您的自訂背景工作。 完整的週期是：
@@ -241,7 +245,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
     if (freeze != null)
     {
      if (Boolean.Parse(freeze))
-     {
+       {
          Thread.Sleep(System.Threading.Timeout.Infinite);
      }
     }
@@ -293,6 +297,9 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 * [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 * [如何在雲端服務中啟用診斷](cloud-services/cloud-services-dotnet-diagnostics.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

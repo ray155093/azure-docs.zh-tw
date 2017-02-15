@@ -12,22 +12,22 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 1/6/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a582941b06fa7f81d7db188f2a9feba837b9bfd8
+ms.sourcegitcommit: f408e65abcb92308a19a37816c206d822e932f24
+ms.openlocfilehash: 18fccf1ce6b4d2a6fa46e6db9e1a38eb998b9d64
 
 
 ---
-# <a name="expressroute-prerequisites-checklist"></a>ExpressRoute 必要條件和檢查清單
+# <a name="expressroute-prerequisites--checklist"></a>ExpressRoute 必要條件和檢查清單
 若要使用 ExpressRoute 連線到 Microsoft 雲端服務，您必須確認是否符合以下各節中所列的下列需求。
 
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
 ## <a name="azure-account"></a>Azure 帳戶
 * 使用中的有效 Microsoft Azure 帳戶。 需要有此帳戶才能設定 ExpressRoute 循環。 ExpressRoute 循環是 Azure 訂用帳戶內的資源。 即使連線只限於非 Azure Microsoft 雲端服務 (例如 Office 365 服務和線上 CRM)，Azure 訂用帳戶還是一項需求。
-* 使用中的 Office 365 訂用帳戶 (如果使用的是 Office 365 服務)。 如需詳細資訊，請參閱本文的 [Office 365 的特定需求](#office-365-specific-requirements) 一節。
+* 使用中的 Office 365 訂用帳戶 (如果使用的是 Office 365 服務)。 如需詳細資訊，請參閱本文的 [Office 365 特定需求](#office-365-specific-requirements)一節。
 
 ## <a name="connectivity-provider"></a>連線提供者
 * 您可以與 [ExpressRoute 連線合作夥伴](expressroute-locations.md#partners) 合作來連線到 Microsoft Cloud。 您可以透過 [三種方法](expressroute-introduction.md#howtoconnect)在內部部署網路與 Microsoft 之間設定連線。 
@@ -38,7 +38,7 @@ ms.openlocfilehash: a582941b06fa7f81d7db188f2a9feba837b9bfd8
 * **路由**︰根據您連線到 Microsoft Cloud 的方式，您或您的提供者需要設定及管理用於 [路由網域](expressroute-circuit-peerings.md)的 BGP 工作階段。 某些乙太網路連線服務提供者或雲端交換服務提供者可能會提供 BGP 管理功能做為附加價值服務。
 * **NAT**：Microsoft 只接受透過 Microsoft 對等互連的公用 IP 位址。 如果您在內部部署網路中使用私人 IP 位址，您或您的提供者必須 [使用 NAT](expressroute-nat.md)將私人 IP 位址轉譯成公用 IP 位址。
 * **QoS**：商務用 Skype 具有各種服務 (例如語音、視訊、文字)，其所要求的 QoS 處理方式各有差異。 您和您的提供者應該遵循 [QoS 需求](expressroute-qos.md)。
-* **網路安全性**︰透過 ExpressRoute 連線到 Microsoft Cloud 時，您應該考慮 [網路安全性](../best-practices-network-security.md) 。
+* **網路安全性**︰透過 ExpressRoute 連線到 Microsoft Cloud 時，請考慮[網路安全性](../best-practices-network-security.md)。
 
 ## <a name="office-365"></a>Office 365
 如果您打算在 ExpressRoute 上啟用 Office 365，請檢閱下列文件以取得 Office 365 需求的詳細資訊。
@@ -49,6 +49,7 @@ ms.openlocfilehash: a582941b06fa7f81d7db188f2a9feba837b9bfd8
 * [Office 365 的網路規劃與效能調整](https://support.office.com/en-us/article/Network-planning-and-performance-tuning-for-Office-365-e5f1228c-da3c-4654-bf16-d163daee8848)
 * [網路頻寬計算機和工具](https://support.office.com/en-us/article/Network-and-migration-planning-for-Office-365-f5ee6c33-bcd7-4b0b-b0f8-dc1d9fb8d132)
 * [整合 Office 365 與內部部署環境](https://support.office.com/en-us/article/Office-365-integration-with-on-premises-environments-263faf8d-aa21-428b-aed3-2021837a4b65)
+* [Office 365 上的 ExpressRoute 進階訓練影片](https://channel9.msdn.com/series/aer/)
 
 ## <a name="crm-online"></a>CRM Online
 如果您打算在 ExpressRoute 上啟用 CRM Online，請檢閱下列文件以取得 CRM Online 的詳細資訊
@@ -67,6 +68,6 @@ ms.openlocfilehash: a582941b06fa7f81d7db188f2a9feba837b9bfd8
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

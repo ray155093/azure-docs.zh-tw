@@ -11,12 +11,14 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 09/12/2016
+ms.topic: deprecated
+ms.date: 01/18/2017
 ms.author: zhangya;bradsev
+ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: machine-learning-data-science-create-features
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1d29f416fe7d5ef3f74cf64122a84acc4a4535da
+ms.sourcegitcommit: ba61d00f277af579c87a130336ead9879b82a6de
+ms.openlocfilehash: c6b88355df430e78594fc1283c9df01ad6e27e20
 
 
 ---
@@ -36,7 +38,7 @@ ms.openlocfilehash: 1d29f416fe7d5ef3f74cf64122a84acc4a4535da
 * 模型建構
 * 後處理
 
-工程設計和選取構成機器學習服務的資料增強步驟。 此程序的三個層面主要有四個目的：
+工程設計和選取構成了機器學習服務的資料增強步驟。 此程序的三個層面主要有四個目的：
 
 * **資料前處理**：此程序嘗試確保收集的資料乾淨而一致。 其中包含下列工作：例如整合多個資料集、處理不一致的資料，以及轉換資料類型。
 * **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
@@ -52,7 +54,7 @@ ms.openlocfilehash: 1d29f416fe7d5ef3f74cf64122a84acc4a4535da
 從 Azure 機器學習著手時，最簡單的方式是透過 Machine Learning Studio 中提供的範例具體地領會此程序。 以下呈現兩個範例：
 
 * 在已知目標值的監督實驗中的 ([單車租用數量預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)) 迴歸範例
-* 使用 [特性雜湊][feature-hashing]
+* 使用[特性雜湊][feature-hashing]的文字採礦分類範例
 
 ### <a name="example-1-adding-temporal-features-for-a-regression-model"></a>範例 1：新增迴歸模型的暫時特性
 為了示範如何為迴歸工作的特徵進行工程設計，讓我們在 Azure Machine Learning Studio 中使用「單車的需求預測」實驗。 這項實驗的目標在於預測單車需求，也就是再特定月份、日期或小時內單車租用的數量。 資料集**單車租用 UCI 資料集**作為原始輸入資料使用。
@@ -81,7 +83,7 @@ ms.openlocfilehash: 1d29f416fe7d5ef3f74cf64122a84acc4a4535da
 
 為了達成此工作，會套用名為特性雜湊的技術，有效地將任意文字特性變成索引。 此方法不會將每個文字特性 (文字或片語) 關聯至特定索引，而是將雜湊函數套用至特性並直接使用其雜湊值作為索引。
 
-Azure 機器學習中有一個[特性雜湊][feature-hashing] 模組，會建立這些文字或片語特性。 下圖顯示使用此模組的範例。 輸入資料集包含兩個資料行：1 至 5 的書籍評比，以及實際評論內容。 此[特性雜湊][feature-hashing] 模組的目標在於擷取新特性，以顯示特定書籍評論中對應文字或片語的發生次數。 若要使用此模組，您必須完成下列步驟：
+Azure 機器學習中有一個[特性雜湊][feature-hashing]模組，會建立這些文字或片語特性。 下圖顯示使用此模組的範例。 輸入資料集包含兩個資料行：1 至 5 的書籍評比，以及實際評論內容。 此[特性雜湊][feature-hashing]模組的目標在於擷取新特性，以顯示特定書籍評論中對應文字或片語的發生次數。 若要使用此模組，您必須完成下列步驟：
 
 1. 選取包含輸入文字的資料行 (此例中的 **Col2**)。
 2. 將 Hashing bitsize 設定為 8，表示將建立 2^8=256 個特徵。 所有文字中的文字或片語接著會雜湊至 256 個索引。 Hashing bitsize 參數的範圍是 1 至 31。 如果參數設定為較大的數字，則單字或片語較不會雜湊至相同的索引。
@@ -103,11 +105,11 @@ Azure 機器學習中有一個[特性雜湊][feature-hashing] 模組，會建立
 
 監督環境中有一個廣泛應用的特性選取方法類別為以篩選為基礎的特性選取。 這些方法會評估每個特性與目標屬性之間的相關性，套用統計量值以將評分指派給每個特性。 接著會依分數將特性排名，而分數可供您用來設定保留或排除特定特性的臨界值。 這些方法中使用的統計量值範例包含皮耳森相關、相互資訊和卡方檢定。
 
-Azure Machine Learning Studio 針對特性選取提供模組。 如下圖所示，這些模組包含[以篩選為基礎的功能選取][filter-based-feature-selection]和[費雪線性判別分析][fisher-linear-discriminant-analysis]。
+Azure Machine Learning Studio 針對特性選取提供模組。 如下圖所示，這些模組包含[以篩選為基礎的特性選取][filter-based-feature-selection]和[費雪線性判別分析][fisher-linear-discriminant-analysis]。
 
 ![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection.png)
 
-例如，使用 [篩選為基礎的特徵選取][filter-based-feature-selection] 模組與先前所述的文字採礦範例。 假設在透過[特徵雜湊][feature-hashing]模組建立一組 256 個特性之後，您想要建立一個迴歸模型，其應變數為 **Col1** 並代表 1 至 5 的書籍評論評比。 將 [特性評分方法] 設定為 [皮耳森相關]，則 [目標欄] 會是 **Col1**，而 [所需的特性數] 會是 **50**。 [以篩選為基礎的功能選取][filter-based-feature-selection]模組隨後會產生一個包含 50 個特性且目標屬性為 **Col1** 的資料集。 下圖顯示此實驗的流程以及輸入參數。
+例如，使用[篩選為基礎的特徵選取][filter-based-feature-selection]模組與先前所述的文字採礦範例。 假設在透過[特徵雜湊][feature-hashing]模組建立一組 256 個特性之後，您想要建立一個迴歸模型，其應變數為 **Col1** 並代表 1 至 5 的書籍評論評比。 將 [特性評分方法] 設定為 [皮耳森相關]，則 [目標欄] 會是 **Col1**，而 [所需的特性數] 會是 **50**。 然後，[以篩選器為基礎的特徵選取][filter-based-feature-selection]模組會產生一個包含 50 個特徵且目標屬性為 **Col1** 的資料集。 下圖顯示此實驗的流程以及輸入參數。
 
 ![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection1.png)
 
@@ -119,7 +121,7 @@ Azure Machine Learning Studio 針對特性選取提供模組。 如下圖所示�
 
 ![選取的特性分數](./media/machine-learning-feature-selection-and-engineering/feature-Selection3.png)
 
-套用[以篩選為基礎的功能選取][filter-based-feature-selection]模組，以選取 256 個特性中的 50 個特性，因為根據「皮耳森相關」評分方法，其具有最多與目標變數 **Col1** 相關的特性。
+套用這個[以篩選為基礎的特性選取][filter-based-feature-selection]模組，則會選取 256 個特性中的 50 個特性，因為根據**皮耳森相關**評分方法，其具有最多個與目標變數 **Col1** 相互關聯的特性。
 
 ## <a name="conclusion"></a>結論
 建立機器學習模型時，常會執行特性工程設計和特性選取這兩個步驟來預備定型資料。 通常會先套用特性工程設計以產生其他特定，然後執行特性選取步驟以排除不相關、多餘或高度相關的特性。
@@ -134,6 +136,6 @@ Azure Machine Learning Studio 針對特性選取提供模組。 如下圖所示�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -215,6 +215,6 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

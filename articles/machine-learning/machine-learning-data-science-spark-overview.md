@@ -1,12 +1,12 @@
 ---
-title: 在 Azure HDInsight 上使用 Spark 的資料科學概觀 | Microsoft Docs
-description: Spark MLlib 工具組將可觀的機器學習模型化功能引進分散式 HDInsight 環境中。
+title: "在 Azure HDInsight 上使用 Spark 的資料科學概觀 | Microsoft Docs"
+description: "Spark MLlib 工具組將可觀的機器學習模型化功能引進分散式 HDInsight 環境中。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: a4e1de99-a554-4240-9647-2c6d669593c8
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,6 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: deguhath;bradsev;gokuma
+translationtype: Human Translation
+ms.sourcegitcommit: ca799d03076175d6a7193c0e58b349a6cb61693b
+ms.openlocfilehash: 35f07fba1421af1db9c8b6190737c3c220a911e1
+
+
 
 ---
 # <a name="overview-of-data-science-using-spark-on-azure-hdinsight"></a>在 Azure HDInsight 上使用 Spark 的資料科學概觀
@@ -29,6 +34,7 @@ ms.author: deguhath;bradsev;gokuma
 
 ## <a name="prerequisites"></a>必要條件
 1. 您必須擁有 Azure 訂用帳戶。 如果還沒有訂用帳戶，請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+
 2. 您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。 若要建立該項目，請參閱 [開始使用：在 Azure HDInsight 上建立 Apache Spark](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md)所提供的指示。 叢集類型和版本是由 [選取叢集類型]  功能表來指定。 
 
 ![](./media/machine-learning-data-science-spark-overview/spark-cluster-on-portal.png)
@@ -136,7 +142,7 @@ ms.author: deguhath;bradsev;gokuma
 
 ![泛型方法的羅吉斯迴歸 ROC 曲線](./media/machine-learning-data-science-spark-overview/pyspark-jupyter-autovisualization.png)
 
-## <a name="what's-next?"></a>後續步驟
+## <a name="whats-next"></a>後續步驟
 現在您已使用 HDInsight Spark 叢集進行設定，並已上傳 Jupyter 筆記本，您已準備要逐步執行對應至這三個 PySpark Notebook 的主題。 這些主題示範如何瀏覽資料、建立和取用模型。 進階的資料探索和模型化 Notebook 顯示如何包括交叉驗證、超參數清除和模型評估。 
 
 **使用 Spark 資料探索和模型化：**：遵循[使用 Spark MLlib 工具組來建立資料的二進位分類和迴歸模型](machine-learning-data-science-spark-data-exploration-modeling.md)主題的內容，來探索資料集，以及建立、評分、評估 Machine Learning 模型。
@@ -145,6 +151,9 @@ ms.author: deguhath;bradsev;gokuma
 
 **交叉驗證和超參數清除**：請參閱 [使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md) 有關如何使用交叉驗證和超參數清除訓練模型
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

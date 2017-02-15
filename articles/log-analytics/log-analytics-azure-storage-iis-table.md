@@ -1,19 +1,23 @@
 ---
-title: 對 IIS 使用 Blob 儲存體，對事件使用表格儲存體 | Microsoft Docs
-description: Log Analytics 可以讀取 Azure 服務 (將診斷寫入表格儲存體) 的記錄，或讀取寫入 Blob 儲存體的 IIS 記錄。
+title: "對 IIS 使用 Blob 儲存體，對事件使用表格儲存體 | Microsoft Docs"
+description: "Log Analytics 可以讀取 Azure 服務 (將診斷寫入表格儲存體) 的記錄，或讀取寫入 Blob 儲存體的 IIS 記錄。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
-manager: jwhit
-editor: ''
-
+manager: carmonm
+editor: 
+ms.assetid: bf444752-ecc1-4306-9489-c29cb37d6045
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/02/2017
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 950b6de5b579cac1a2b10db299e6f7bcfd8c7b04
+
 
 ---
 # <a name="using-blob-storage-for-iis-and-table-storage-for-events"></a>對 IIS 使用 Blob 儲存體，對事件使用表格儲存體
@@ -43,22 +47,22 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
 
 > [!NOTE]
 > 的 IIS 記錄檔，以啟用額外的見解。
-> 
-> 
+>
+>
 
-若為虛擬機器，您也可以選擇將 [Microsoft Monitoring Agent](http://go.microsoft.com/fwlink/?LinkId=517269) 安裝於虛擬機器以啟用其他見解。 除了分析 IIS 記錄檔和事件記錄檔之外，您也能夠執行其他分析，包括組態變更追蹤、SQL 評估及更新評估。
+若為虛擬機器，您可以選擇將 [Log Analytics agent](log-analytics-azure-vm-extension.md) 安裝到虛擬機器中以啟用其他見解。 除了分析 IIS 記錄檔和事件記錄檔之外，您也可以執行其他分析，包括組態變更追蹤、SQL 評估及更新評估。
 
 ## <a name="enable-azure-diagnostics-in-a-virtual-machine-for-event-log-and-iis-log-collection"></a>為事件記錄檔和 IIS 記錄檔集合啟用虛擬機器中的 Azure 診斷
-您可以搭配使用下列程序與 Microsoft Azure 管理入口網站，為事件記錄檔和 IIS 記錄檔集合啟用虛擬機器中的 Azure 診斷。
+您可以搭配使用下列程序與 Microsoft Azure 入口網站，為事件記錄檔和 IIS 記錄檔集合啟用虛擬機器中的 Azure 診斷。
 
-### <a name="to-enable-azure-diagnostics-in-a-virtual-machine-with-the-azure-management-portal"></a>使用 Azure 管理入口網站啟用虛擬機器中的 Azure 診斷
+### <a name="to-enable-azure-diagnostics-in-a-virtual-machine-with-the-azure-portal"></a>使用 Azure 入口網站啟用虛擬機器中的 Azure 診斷
 1. 建立虛擬機器時安裝 VM 代理程式。 如果虛擬機器已經存在，請確認已安裝 VM 代理程式。
-   
-   * 在 Azure 管理入口網站中，瀏覽至虛擬機器，依序選取 [選擇性組態] 及 [診斷]，並將 [狀態] 設為 [開啟]。
-     
-     完成時，VM 會自動安裝和執行 Azure 診斷擴充功能以負責收集診斷資料。
+
+   * 在 Azure 入口網站中，瀏覽至虛擬機器，依序選取 [選擇性組態] 及 [診斷]，並將 [狀態] 設為 [開啟]。
+
+     完成時，VM 中就會安裝好 Azure 診斷擴充功能並執行。 此擴充功能會負責收集您的診斷資料。
 2. 在現有的 VM 上啟用監視和設定事件記錄。 您可以在 VM 層級上啟用診斷。 若要啟用診斷然後設定事件記錄，請執行下列步驟：
-   
+
    1. 選取 VM。
    2. 按一下 [監視] 。
    3. 按一下 [診斷] 。
@@ -69,7 +73,7 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
 您可以使用 Azure PowerShell，更精確地指定寫入至 Azure 儲存體的事件。 請參閱[使用 Azure 診斷收集寫入表格儲存體的資料或寫入 blob 的 IIS 記錄](log-analytics-azure-storage-json.md)。
 
 ## <a name="enable-azure-diagnostics-in-a-web-role-for-iis-log-and-event-collection"></a>在 Web 角色中針對 IIS 記錄檔和事件集合啟用 Azure 診斷
-請參閱[如何在雲端服務中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。 您將使用該處的基本資訊，並在這裡自訂用於 Log Analytics 的步驟。
+請參閱[如何在雲端服務中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)瞭解啟用 Azure 診斷的一般步驟。 下面的指示會使用此資訊並自訂它來與 Log Analytics 搭配使用。
 
 啟用 Azure 診斷時：
 
@@ -111,7 +115,7 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
     </ConfigurationSettings>
 ```
 
-**AccountName** 和 **AccountKey** 值可在 Azure 管理入口網站的儲存體帳戶儀表板的 [管理存取金鑰] 下找到。 連接字串的通訊協定必須為 **https**。
+**AccountName** 和 **AccountKey** 值可在 Azure 入口網站中儲存體帳戶儀表板的 [管理存取金鑰] 底下找到。 連接字串的通訊協定必須為 **https**。
 
 將更新的診斷組態套用至雲端服務，且該服務已開始將診斷寫入 Azure 儲存體時，您即可設定 Log Analytics。
 
@@ -129,8 +133,8 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
 3. 選取包含診斷記錄的儲存體帳戶
    * 這可以是傳統儲存體帳戶或 Azure Resource Manager 儲存體帳戶
 4. 選取您想要收集記錄的資料類型
-   * 這會是 IIS 記錄、事件、Syslog (Linux)、ETW 記錄檔、Service Fabric 事件之一
-5. 將會根據資料類型而自動填入「來源」的值，無法變更
+   * 可以選擇的項目為 IIS 記錄、事件、Syslog (Linux)、ETW 記錄檔、Service Fabric 事件
+5. 「來源」的值會根據資料類型自動填入且無法變更
 6. 按一下 [確定] 以儲存組態
 
 針對您想要 Log Analytics 收集的其他儲存體帳戶及資料類型，重複步驟 2-6。
@@ -139,17 +143,19 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
 
 > [!NOTE]
 > 入口網站不會驗證「來源」是否存在於儲存體帳戶，或是否已寫入新的資料。
-> 
-> 
+>
+>
 
 ## <a name="enable-azure-diagnostics-in-a-virtual-machine-for-event-log-and-iis-log-collection-using-powershell"></a>在虛擬機器中使用 PowerShell 來啟用 Azure 診斷以收集事件記錄檔和 IIS 記錄檔
-您可以使用 Azure PowerShell，更精確地指定寫入至 Azure 儲存體的事件。
-如需詳細資訊，請參閱 [在 Azure 虛擬機器中啟用診斷](../virtual-machines-dotnet-diagnostics.md) 。
+使用[設定 Log Analytics 來為 Azure 診斷編製索引](log-analytics-powershell-workspace-configuration.md#configuring-log-analytics-to-index-azure-diagnostics) 中的步驟，以使用 PowerShell 從寫入表格儲存體的 Azure 診斷讀取資料。
 
-您可以使用下列 PowerShell 指令碼啟用和更新代理程式。
+您可以使用 Azure PowerShell，更精確地指定寫入至 Azure 儲存體的事件。
+如需詳細資訊，請參閱[在 Azure 虛擬機器中啟用診斷](../virtual-machines-dotnet-diagnostics.md)。
+
+您可以使用下列 PowerShell 指令碼啟用和更新 Azure 診斷。
 您也可以搭配使用此指令碼與自訂記錄組態。
-您必須修改指令碼來設定儲存體帳戶、服務名稱和虛擬機器名稱。
-使用適用於傳統虛擬機器之 Cmdlet 的指令碼。
+請修改指令碼來設定儲存體帳戶、服務名稱和虛擬機器名稱。
+指令碼會使用適用於傳統虛擬機器的 Cmdlet。
 
 檢閱下列指令碼範例、複製它、視需要修改它、將範例儲存為 PowerShell 指令碼檔案，然後再執行指令碼。
 
@@ -184,11 +190,14 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
     (Get-AzureVM -ServiceName $service_name -Name $vm_name) | Set-AzureVMExtension -ExtensionName $wad_extension_name -Publisher $wad_publisher -PublicConfiguration $wad_public_config -PrivateConfiguration $wad_private_config -Version $wad_version | Update-AzureVM
 ```
 
+
 ## <a name="next-steps"></a>後續步驟
 * [使用 Blob 儲存體中的 JSON 檔案](log-analytics-azure-storage-json.md)，從 Azure 服務讀取記錄，這些服務以 JSON 格式將 Azure 診斷記錄寫入 Blob 儲存體。
 * [啟用解決方案](log-analytics-add-solutions.md) 以提供資料的深入見解。
 * [使用搜尋查詢](log-analytics-log-searches.md) 以分析資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

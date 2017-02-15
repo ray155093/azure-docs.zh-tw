@@ -1,12 +1,12 @@
 ---
-title: 實作容錯移轉串流案例 | Microsoft Docs
-description: 本主題說明如何實作容錯移轉串流案例。
+title: "實作容錯移轉串流案例 | Microsoft Docs"
+description: "本主題說明如何實作容錯移轉串流案例。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: fc45d849-eb0d-4739-ae91-0ff648113445
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 95447f7b77297fbcdf5b01408543b0787fc42081
+
 
 ---
 # <a name="implementing-failover-streaming-scenario"></a>實作容錯移轉串流案例
@@ -96,7 +100,7 @@ ms.author: juliako
           <add key="MediaServicesStorageAccountKeyTarget" value=" Media-Services-Storage-Account-Key-Target" />
         </appSettings>
 
-## <a name="add-code-that-handles-redundancy-for-on-demand-streaming."></a>新增可處理隨選資料流處理備援的程式碼。
+## <a name="add-code-that-handles-redundancy-for-on-demand-streaming"></a>新增可處理隨選資料流處理備援的程式碼。
 1. 將下列類別層級欄位加入至 Program 類別。
    
         // Read values from the App.config file.
@@ -957,6 +961,9 @@ ms.author: juliako
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

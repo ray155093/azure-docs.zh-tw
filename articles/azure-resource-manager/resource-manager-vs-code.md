@@ -32,7 +32,7 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 2. 開啟快速開啟 (Ctrl+P) 
 3. 執行以下命令： 
    
-        ext install azurerm-vscode-tools
+        ext install msazurermtools.azurerm-vscode-tools
 4. 在系統提示時重新啟動 VS Code 以啟用擴充功能。 
    
    作業完成！

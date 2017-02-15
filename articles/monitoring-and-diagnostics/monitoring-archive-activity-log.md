@@ -1,84 +1,88 @@
 ---
-title: Archive the Azure Activity Log | Microsoft Docs
-description: Learn how to archive your Azure Activity Log for long-term retention in a storage account.
+title: "封存 Azure 活動記錄檔 | Microsoft Docs"
+description: "了解如何封存 Azure 活動記錄檔以在儲存體帳戶中長期保存。"
 author: johnkemnetz
 manager: rboucher
-editor: ''
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: d37d3fda-8ef1-477c-a360-a855b418de84
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/23/2016
+ms.date: 12/09/2016
 ms.author: johnkem
+translationtype: Human Translation
+ms.sourcegitcommit: aaa162df8a6cd60cb174242e6a353439f2da58b4
+ms.openlocfilehash: eb3a0ad811a4286df1bac963904bd9154c0ccfa3
+
 
 ---
-# <a name="archive-the-azure-activity-log"></a>Archive the Azure Activity Log
-In this article, we show how you can use the Azure portal, PowerShell Cmdlets, or Cross-Platform CLI to archive your [**Azure Activity Log**](monitoring-overview-activity-logs.md) in a storage account. This option is useful if you would like to retain your Activity Log longer than 90 days (with full control over the retention policy) for audit, static analysis, or backup. If you only need to retain your events for 90 days or less you do not need to set up archival to a storage account, since Activity Log events are retained in the Azure platform for 90 days without enabling archival.
+# <a name="archive-the-azure-activity-log"></a>封存 Azure 活動記錄檔
+在本文中，我們示範如何使用 Azure 入口網站、PowerShell Cmdlet 或跨平台 CLI 封存儲存體帳戶中的 [**Azure 活動記錄檔**](monitoring-overview-activity-logs.md)。 如果您想要保留活動記錄檔超過 90 天 (而且對保留原則有完全的控制)，以便稽核、靜態分析或備份，這個選項非常有用。 如果您只需要保留事件 90 天或更短，則不需要設定封存至儲存體帳戶，因為在不啟用封存的情況下，活動記錄檔就會在 Azure 平台保留 90 天。
 
-## <a name="prerequisites"></a>Prerequisites
-Before you begin, you need to [create a storage account](../storage/storage-create-storage-account.md#create-a-storage-account) to which you can archive your Activity Log. We highly recommend that you do not use an existing storage account that has other, non-monitoring data stored in it so that you can better control access to monitoring data. However, if you are also archiving Diagnostic Logs and metrics to a storage account, it may make sense to use that storage account for your Activity Log as well to keep all monitoring data in a central location. The storage account you use must be a general purpose storage account, not a blob storage account.
+## <a name="prerequisites"></a>必要條件
+在開始之前，您需要 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account) ，以便將活動記錄檔封存至此。 我們強烈建議您不要使用已儲存了其他非監視資料的現有儲存體帳戶，這樣您對監視資料才能有更好的存取控制。 不過，如果您也要封存診斷記錄檔和度量至儲存體帳戶，則將同一儲存體帳戶用於活動記錄檔合情合理，因為可以將所有監視資料集中在一個位置。 您使用的儲存體帳戶必須是一般用途的儲存體帳戶，不可以是 blob 儲存體帳戶。 儲存體帳戶不一定要和訂用帳戶發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
 
-## <a name="log-profile"></a>Log Profile
-To archive the Activity Log using any of the methods below, you set the **Log Profile** for a subscription. The Log Profile defines the type of events that are stored or streamed and the outputs—storage account and/or event hub. It also defines the retention policy (number of days to retain) for events stored in a storage account. If the retention policy is set to zero, events are stored indefinitely. Otherwise, this can be set to any value between 1 and 2147483647. [You can read more about log profiles here](monitoring-overview-activity-logs.md#export-the-activity-log-with-log-profiles).
+## <a name="log-profile"></a>記錄檔設定檔
+若要使用下列任一方法封存活動記錄檔，請設定訂用帳戶的 **記錄檔設定檔** 。 記錄檔的設定檔定義了要儲存或串流的事件類型以及輸出 — 儲存體帳戶和/或事件中樞。 它也定義事件儲存在儲存體帳戶中的保留原則 (保留的天數)。 如果保留原則設定為零，則會無限期地儲存事件。 否則，這可以設為介於 1 到 2147483647 之間的任何值。 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄檔將被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。 [您可以至此處閱讀記錄檔設定檔的相關資訊](monitoring-overview-activity-logs.md#export-the-activity-log-with-log-profiles)。 
 
-## <a name="archive-the-activity-log-using-the-portal"></a>Archive the Activity Log using the portal
-1. In the portal, click the **Activity Log** link on the left-side navigation. If you don’t see a link for the Activity Log, click the **More Services** link first.
+## <a name="archive-the-activity-log-using-the-portal"></a>使用入口網站封存活動記錄檔
+1. 在入口網站中，按一下左側導覽中的 [活動記錄檔]  連結。 如果您沒有看到活動記錄檔的連結，先按一下 [更多服務]  連結。
    
-    ![Navigate to Activity Log blade](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
-2. At the top of the blade, click **Export**.
+    ![瀏覽至活動記錄檔刀鋒視窗](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
+2. 在刀鋒視窗頂端，按一下 [匯出] 。
    
-    ![Click the Export button](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
-3. In the blade that appears, check the box for **Export to a storage account** and select a storage account.
+    ![按一下匯出按鈕](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
+3. 在出現的刀鋒視窗中，勾選 [匯出至儲存體帳戶]  方塊，選取儲存體帳戶。
    
-    ![Set a storage account](media/monitoring-archive-activity-log/act-log-portal-export-blade.png)
-4. Using the slider or text box, define a number of days for which Activity Log events should be kept in your storage account. If you prefer to have your data persisted in the storage account indefinitely, set this number to zero.
-5. Click **Save**.
+    ![設定儲存體帳戶](media/monitoring-archive-activity-log/act-log-portal-export-blade.png)
+4. 使用滑桿或文字方塊，定義活動記錄事件應該在儲存體帳戶中保留的天數。 如果您想要讓您的資料無限期保存在儲存體帳戶，將此數目設定為零。
+5. 按一下 [儲存] 。
 
-## <a name="archive-the-activity-log-via-powershell"></a>Archive the Activity Log via PowerShell
+## <a name="archive-the-activity-log-via-powershell"></a>透過 PowerShell 封存活動記錄檔
 ```
 Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus -RetentionInDays 180 -Categories Write,Delete,Action
 ```
 
-| Property | Required | Description |
+| 屬性 | 必要 | 說明 |
 | --- | --- | --- |
-| StorageAccountId |No |Resource ID of the Storage Account to which Activity Logs should be saved. |
-| Locations |Yes |Comma-separated list of regions for which you would like to collect Activity Log events. You can view a list of all regions [by visiting this page](https://azure.microsoft.com/en-us/regions) or by using [the Azure Management REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| RetentionInDays |Yes |Number of days for which events should be retained, between 1 and 2147483647. A value of zero stores the logs indefinitely (forever). |
-| Categories |Yes |Comma-separated list of event categories that should be collected. Possible values are Write, Delete, and Action. |
+| StorageAccountId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
+| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/en-us/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| 類別 |是 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
-## <a name="archive-the-activity-log-via-cli"></a>Archive the Activity Log via CLI
+## <a name="archive-the-activity-log-via-cli"></a>透過 CLI 封存活動記錄檔
 ```
 azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --locations global,westus,eastus,northeurope --retentionInDays 180 –categories Write,Delete,Action
 ```
 
-| Property | Required | Description |
+| 屬性 | 必要 | 說明 |
 | --- | --- | --- |
-| name |Yes |Name of your log profile. |
-| storageId |No |Resource ID of the Storage Account to which Activity Logs should be saved. |
-| locations |Yes |Comma-separated list of regions for which you would like to collect Activity Log events. You can view a list of all regions [by visiting this page](https://azure.microsoft.com/en-us/regions) or by using [the Azure Management REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| retentionInDays |Yes |Number of days for which events should be retained, between 1 and 2147483647. A value of zero will store the logs indefinitely (forever). |
-| categories |Yes |Comma-separated list of event categories that should be collected. Possible values are Write, Delete, and Action. |
+| 名稱 |是 |記錄檔設定檔的名稱。 |
+| storageId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
+| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/en-us/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| 類別 |是 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
-## <a name="storage-schema-of-the-activity-log"></a>Storage schema of the Activity Log
-Once you have set up archival, a storage container will be created in the storage account as soon as an Activity Log event occurs. The blobs within the container follow the same format across the Activity Log and Diagnostic Logs. The structure of these blobs is:
+## <a name="storage-schema-of-the-activity-log"></a>活動記錄檔的儲存體結構描述
+一旦您已經設定封存，只要一發生活動記錄檔事件，就會在儲存體帳戶中建立儲存體容器。 在容器內的 blob 的活動記錄檔和診斷記錄檔會遵循相同的格式。 這些 blob 的結構為：
 
 > insights-operational-logs/name=default/resourceId=/SUBSCRIPTIONS/{subscription ID}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json
 > 
 > 
 
-For example, a blob name might be:
+例如，blob 名稱可能是︰
 
 > insights-operational-logs/name=default/resourceId=/SUBSCRIPTIONS/s1id1234-5679-0123-4567-890123456789/y=2016/m=08/d=22/h=18/m=00/PT1H.json
 > 
 > 
 
-Each PT1H.json blob contains a JSON blob of events that occurred within the hour specified in the blob URL (e.g. h=12). During the present hour, events are appended to the PT1H.json file as they occur. The minute value (m=00) is always 00, since Activity Log events are broken into individual blobs per hour.
+每個 PT1H.json blob 有一個 JSON blob，包含在 blob URL 指定時數內 (例如 h = 12) 發生的事件。 在目前這一小時，事件一發生就會附加到 PT1H.json 檔案。 分鐘值 (m = 00) 一定是 00，因為活動記錄檔事件是分成每小時的個別 blob。
 
-Within the PT1H.json file, each event is stored in the “records” array, following this format:
+在 PT1H.json 檔案中，每個事件會以下列格式儲存在 “records” 陣列︰
 
 ```
 {
@@ -137,33 +141,36 @@ Within the PT1H.json file, each event is stored in the “records” array, foll
 ```
 
 
-| Element name | Description |
+| 元素名稱 | 說明 |
 | --- | --- |
-| time |Timestamp when the event was generated by the Azure service processing the request corresponding the event. |
-| resourceId |Resource ID of the impacted resource. |
-| operationName |Name of the operation. |
-| category |Category of the action, eg. Write, Read, Action. |
-| resultType |The type of the result, eg. Success, Failure, Start |
-| resultSignature |Depends on the resource type. |
-| durationMs |Duration of the operation in milliseconds |
-| callerIpAddress |IP address of the user who has performed the operation, UPN claim, or SPN claim based on availability. |
-| correlationId |Usually a GUID in the string format. Events that share a correlationId belong to the same uber action. |
-| identity |JSON blob describing the authorization and claims. |
-| authorization |Blob of RBAC properties of the event. Usually includes the “action”, “role” and “scope” properties. |
-| level |Level of the event. One of the following values: “Critical”, “Error”, “Warning”, “Informational” and “Verbose” |
-| location |Region in which the location occurred (or global). |
-| properties |Set of `<Key, Value>` pairs (i.e. Dictionary) describing the details of the event. |
+| 分析 |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
+| ResourceId |受影響資源的資源識別碼。 |
+| operationName |作業名稱。 |
+| category |事件的類別，例如 寫入、讀取、動作。 |
+| resultType |結果的類型，例如 成功、失敗、開始 |
+| resultSignature |取決於資源類型。 |
+| durationMs |作業的持續時間 (以毫秒為單位) |
+| callerIpAddress |已執行作業的使用者的 IP 地址，根據可用性的 UPN 宣告或 SPN 宣告。 |
+| correlationId |通常是字串格式的 GUID。 具有相同 correlationId、屬於同一 uber 動作的事件。 |
+| 身分識別 |描述授權和宣告的 JSON blob。 |
+| 授權 |事件的 RBAC 屬性的 blob。 通常包括 action、role 和 scope 屬性。 |
+| 層級 |事件的層級。 下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
+| location |在 location 發生 (或全球) 的區域。 |
+| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
 
 > [!NOTE]
-> The properties and usage of those properties can vary depending on the resource.
+> 屬性和這些屬性的使用方式，依資源而異。
 > 
 > 
 
-## <a name="next-steps"></a>Next steps
-* [Download blobs for analysis](../storage/storage-dotnet-how-to-use-blobs.md#download-blobs)
-* [Stream the Activity Log to Event Hubs](monitoring-stream-activity-logs-event-hubs.md)
-* [Read more about the Activity Log](monitoring-overview-activity-logs.md)
+## <a name="next-steps"></a>後續步驟
+* [下載 blob 以供分析](../storage/storage-dotnet-how-to-use-blobs.md#download-blobs)
+* [將活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
+* [深入了解活動記錄檔](monitoring-overview-activity-logs.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Dec16_HO2-->
 
 

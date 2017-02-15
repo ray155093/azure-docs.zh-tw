@@ -1,19 +1,23 @@
 ---
-title: 在 Log Analytics 中使用 Active Directory 評估方案進行環境最佳化 | Microsoft Docs
-description: 您可以使用 Active Directory 評估方案定期評估伺服器環境的風險和健全狀況。
+title: "在 Log Analytics 中使用 Active Directory 評估方案進行環境最佳化 | Microsoft Docs"
+description: "您可以使用 Active Directory 評估方案定期評估伺服器環境的風險和健全狀況。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
-manager: jwhit
-editor: ''
-
+manager: carmonm
+editor: 
+ms.assetid: 81eb41b8-eb62-4eb2-9f7b-fde5c89c9b47
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/02/2017
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 58eee787b54122380b48f1c7a96dbe2e79e4bcef
+
 
 ---
 # <a name="optimize-your-environment-with-the-active-directory-assessment-solution-in-log-analytics"></a>在 Log Analytics 中使用 Active Directory 評估方案進行環境最佳化
@@ -37,11 +41,11 @@ ms.author: banders
 * 代理程式必須安裝在隸屬於要評估之網域成員的網域控制站上。
 * Active Directory 評估方案需要具有 OMS 代理程式的每部電腦上都安裝 .NET Framework 4。
 * 使用 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)中的程序，將 Active Directory 評估方案加入您的 OMS 工作區中。  不需要進一步的組態。
-  
+
   > [!NOTE]
   > 您加入方案之後，AdvisorAssessment.exe 檔案會以代理程式加入伺服器中。 組態資料會先讀取後再傳送至雲端中的 OMS 服務，以便進行處理。 會將邏輯套用至接收的資料，且雲端服務會記錄資料。
-  > 
-  > 
+  >
+  >
 
 ## <a name="active-directory-assessment-data-collection-details"></a>Active Directory 評估資料收集詳細資訊
 Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資料、登錄資料及效能資料。
@@ -73,7 +77,7 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
 
 **升級、移轉和部署** - 這個焦點區域顯示建議來協助您升級、移轉和部署 Active Directory 到您的現有基礎結構。
 
-### <a name="should-you-aim-to-score-100%-in-every-focus-area?"></a>我應該為每個焦點區域訂定 100% 的分數嗎？
+### <a name="should-you-aim-to-score-100-in-every-focus-area"></a>我應該為每個焦點區域訂定 100% 的分數嗎？
 不一定。 建議乃源自 Microsoft 工程師上千次客戶拜訪所得到的知識和經驗。 然而，世界上沒有兩個一模一樣的伺服器基礎結構，因此特定建議與您的關聯性可能會有所增減。 例如，如果您的虛擬機器並未暴露在網際網路中，某些安全性建議的關聯性就會降低。 對於提供低優先順序臨機操作資料收集和報告的服務來說，某些可用性建議的關聯性就會降低。 會對成熟企業造成重大影響的問題，不見得會對新公司造成同等嚴重的影響。 因此，建議您先找出自己的優先焦點區域，然後觀察一段時間內的分數變化。
 
 每項建議都包含其重要性的指引。 在已知 IT 服務之本質和組織之商務需求的情況下，您應使用該指引來評估實作建議的適當性。
@@ -95,15 +99,15 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
 
 ### <a name="to-identify-recommendations-that-you-will-ignore"></a>識別您將忽略的建議
 1. 登入您的工作區，並開啟記錄檔搜尋。 使用下列查詢來列出您環境中電腦的失敗建議。
-   
+
    ```
    Type=ADAssessmentRecommendation RecommendationResult=Failed | select  Computer, RecommendationId, Recommendation | sort  Computer
    ```
-   
+
    以下是顯示記錄檔搜尋查詢的螢幕擷取畫面︰![失敗的建議](./media/log-analytics-ad-assessment/ad-failed-recommendations.png)
 2. 選擇您想要忽略的建議。 您將使用下一個程序中的 RecommendationId 值。
 
-### <a name="to-create-and-use-an-ignorerecommendations.txt-text-file"></a>建立及使用 IgnoreRecommendations.txt 文字檔案
+### <a name="to-create-and-use-an-ignorerecommendationstxt-text-file"></a>建立及使用 IgnoreRecommendations.txt 文字檔案
 1. 建立名為 IgnoreRecommendations.txt 的檔案。
 2. 在個別行上貼上或輸入您想要 Log Analytics 忽略之每個建議的各個 RecommendationId，然後儲存並關閉檔案。
 3. 將檔案放在您想要 OMS 忽略建議之每一部電腦的下列資料夾中。
@@ -114,7 +118,7 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
 在執行下一個排定的評估之後，依預設是每隔 7 天執行一次，指定的建議會標示為「忽略」  ，且不會出現在評估儀表板上。
 
 1. 您可以使用下列記錄搜尋查詢列出所有已忽略的建議。
-   
+
     ```
     Type=ADAssessmentRecommendation RecommendationResult=Ignored | select  Computer, RecommendationId, Recommendation | sort  Computer
     ```
@@ -167,6 +171,8 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md) ，可檢視詳細的 AD 評估資料和建議。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

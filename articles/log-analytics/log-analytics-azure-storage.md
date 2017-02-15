@@ -1,19 +1,23 @@
 ---
-title: 在 Log Analytics 中收集 Azure 儲存體資料概觀 | Microsoft Docs
-description: Azure 資源可以將記錄檔和度量寫入 Azure 儲存體帳戶，通常是使用 Azure 診斷。 Log Analytics 可以編製此資料的索引，將它變成可搜尋的資料。
+title: "在 Log Analytics 中收集 Azure 儲存體資料概觀 | Microsoft Docs"
+description: "Azure 資源可以將記錄檔和度量寫入 Azure 儲存體帳戶，通常是使用 Azure 診斷。 Log Analytics 可以編製此資料的索引，將它變成可搜尋的資料。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 84105740-3697-4109-bc59-2452c1131bfe
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 10/31/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2a160030ab51799199fc6df08133f811d4987feb
+
 
 ---
 # <a name="collecting-azure-storage-data-in-log-analytics-overview"></a>在 Log Analytics 中收集 Azure 儲存體資料概觀
@@ -40,7 +44,6 @@ Log Analytics 可以收集下列 Azure 資源的資料︰
 | 資源類型 | 記錄檔 (診斷類別) | Log Analytics 解決方案 |
 | --- | --- | --- |
 | Application Insights |Availability <br> 自訂事件 <br> 例外狀況 <br> 要求 <br> |Application Insights (預覽) |
-| API 管理 | |無 (預覽) |
 | 自動化 <br> Microsoft.Automation/AutomationAccounts |JobLogs <br> JobStreams |AzureAutomation (預覽) |
 | 金鑰保存庫 <br> Microsoft.KeyVault/vaults |AuditEvent |KeyVault (預覽) |
 | 應用程式閘道 <br> Microsoft.Network/ApplicationGateways |ApplicationGatewayAccessLog <br> ApplicationGatewayPerformanceLog |AzureNetworking (預覽) |
@@ -67,14 +70,15 @@ Log Analytics 可以收集下列 Azure 資源的資料︰
   * 背景工作角色
   * 虛擬機器
 
-Application Insights 尚在私人預覽階段，它會連續匯出至 Blob 儲存體。 若要加入私人預覽，請連絡您的 Microsoft 帳戶小組，或請參閱[意見反應網站](https://feedback.azure.com/forums/267889-log-analytics/suggestions/6519248-integration-with-app-insights)上的詳細資料。
-
 ## <a name="next-steps"></a>後續步驟
 * [使用 Log Analytics 分析 Azure 診斷記錄](log-analytics-azure-storage-json.md)，從 Azure 服務讀取記錄，這些服務以 JSON 格式將診斷寫入 Blob 儲存體。
 * [對 IIS 使用 Blob 儲存體，對事件使用表格儲存體](log-analytics-azure-storage-iis-table.md)，以讀取 Azure 服務 (將診斷寫入表格儲存體) 的記錄，或讀取寫入 Blob 儲存體的 IIS 記錄。
 * [啟用解決方案](log-analytics-add-solutions.md) 以提供資料的深入見解。
 * [使用搜尋查詢](log-analytics-log-searches.md) 以分析資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

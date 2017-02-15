@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 37d240f9ec27cf3004ceb1ef54088e278e494b11
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: b75ed253a47b5f4ad0d95ef29c30f3d5ba3cb5fb
 
 
 ---
@@ -44,7 +44,7 @@ ms.openlocfilehash: 37d240f9ec27cf3004ceb1ef54088e278e494b11
 ## <a name="step-2-install-the-latest-version-of-azure-powershell"></a>步驟 2：安裝最新版的 Azure PowerShell
 Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)或 [Web Platform Installer (WebPI)](http://aka.ms/webpi-azps)。 WebPI 接收每月更新。 PowerShell 資源庫則是持續接收更新。 本文是以 Azure PowerShell 2.1.0 為基礎。
 
-如需安裝指示，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需安裝指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 <br>
 
@@ -274,6 +274,6 @@ Get-AzureRmVMUsage -Location "West US"
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,43 +1,47 @@
 ---
-title: 在 HDInsight 上使用 Hadoop Sqoop | Microsoft Docs
-description: 了解如何從工作站使用 Azure PowerShell，在 HDInsight 叢集與 Azure SQL Database 之間執行 Sqoop 匯入和匯出。
+title: "在 HDInsight 上使用 Hadoop Sqoop | Microsoft Docs"
+description: "了解如何從工作站使用 Azure PowerShell，在 HDInsight 叢集與 Azure SQL Database 之間執行 Sqoop 匯入和匯出。"
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 tags: azure-portal
 author: mumian
-
+ms.assetid: 2fdcc6b7-6ad5-4397-a30b-e7e389b66c7a
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/02/2016
+ms.date: 11/15/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: a13152d5322b81f722f59a524f6c8ca495659b75
+ms.openlocfilehash: 1166f88cc10cd53dc53ee6830ef15b3efde6ad23
+
 
 ---
-# 在 HDInsight 上將 Sqoop 與 Hadoop 搭配使用
+# <a name="use-sqoop-with-hadoop-in-hdinsight"></a>在 HDInsight 上將 Sqoop 與 Hadoop 搭配使用
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
 了解如何在 HDInsight 上使用 Sqoop，以進行 HDInsight 叢集與 Azure SQL Database 或 SQL Server Database 之間的匯入和匯出作業。
 
 雖然在處理非結構化資料和半結構化資料時 (例如記錄和檔案)，很自然地會選擇 Hadoop，但有時也需要處理儲存在關聯式資料庫中的結構化資料。
 
-[Sqoop][sqoop-user-guide-1.4.4] 是一種可在 Hadoop 叢集和關聯式資料庫之間傳送資料的工具。此工具可讓您從 SQL Server、MySQL 或 Oracle 等關聯式資料庫管理系統 (RDBMS)，將資料匯入 Hadoop 分散式檔案系統 (HDFS)，使用 MapReduce 或 Hive 轉換 Hadoop 中的資料，然後將資料匯回 RDBMS。在本教學課程中，您將使用 SQL Server Database 做為關聯式資料庫。
+[Sqoop][sqoop-user-guide-1.4.4] 是一種可在 Hadoop 叢集和關聯式資料庫之間傳送資料的工具。 此工具可讓您從 SQL Server、MySQL 或 Oracle 等關聯式資料庫管理系統 (RDBMS)，將資料匯入 Hadoop 分散式檔案系統 (HDFS)，使用 MapReduce 或 Hive 轉換 Hadoop 中的資料，然後將資料匯回 RDBMS。 在本教學課程中，您將使用 SQL Server Database 做為關聯式資料庫。
 
 如需 HDInsight 叢集支援的 Sqoop 版本，請參閱 [HDInsight 所提供叢集版本的新功能][hdinsight-versions]。
 
-## 了解案例
-HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
+## <a name="understand-the-scenario"></a>了解案例
+HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
 
-* 位於 */example/data/sample.log* 的 log4j 記錄檔。下列記錄擷取自此檔案：
+* 位於 */example/data/sample.log*的 log4j 記錄檔。 下列記錄擷取自此檔案：
   
         2012-02-03 18:35:34 SampleClass6 [INFO] everything normal for id 577725851
         2012-02-03 18:35:34 SampleClass4 [FATAL] system problem at id 1991281254
         2012-02-03 18:35:34 SampleClass3 [DEBUG] detail for id 1304807656
         ...
-* 參考位於 */hive/warehouse/hivesampletable* 之資料檔案的 Hive 資料表 *hivesampletable*。此資料表包含某些行動裝置資料。
+* 參考位於 /hive/warehouse/hivesampletable 之資料檔案的 Hive 資料表 hivesampletable。 此資料表包含某些行動裝置資料。 
   
   | 欄位 | 資料類型 |
   | --- | --- |
@@ -53,29 +57,35 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
   | sessionid |bigint |
   | sessionpagevieworder |bigint |
 
-您必須先將 *sample.log* 和 *hivesampletable* 匯出至 Azure SQL Database 或 SQL Server，再使用下列路徑，將包含行動裝置資料的資料表匯回 HDInsight：
+您必須先將 sample.log 和 hivesampletable 匯出至 Azure SQL Database 或 SQL Server，再使用下列路徑，將包含行動裝置資料的資料表匯回 HDInsight：
 
     /tutorials/usesqoop/importeddata
 
-## 建立叢集與 SQL Database
-本節說明如何建立叢集和 SQL 資料庫結構描述，以使用 Azure 入口網站和 Azure Resource Manager 範本來執行本教學課程。如果您偏好使用 Azure PowerShell，請參閱[附錄 A](#appendix-a---a-powershell-sample)。
-
-1. 按一下以下影像，以在 Azure 入口網站中開啟 Resource Manager 範本。
-   
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fusesqoop%2Fcreate-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
-   
-    Resource Manager 範本位於公用 Blob 容器中，*https://hditutorialdata.blob.core.windows.net/usesqoop/create-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json*。
-   
-    Resource Manager 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。Bacpac 套件也位於公用 Blob 容器 https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac 中。如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
+## <a name="create-cluster-and-sql-database"></a>建立叢集與 SQL Database
+本節說明如何建立叢集、SQL Database 和 SQL Database 結構描述，以使用 Azure 入口網站和 Azure Resource Manager 範本來執行本教學課程。 範本可在 [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-sql-database/)中找到。 Resource Manager 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。  Bacpac 套件位於公用 Blob 容器中，https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac。 如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
    
         "storageKeyType": "Primary",
         "storageKey": "<TheAzureStorageAccountKey>",
-2. 從 [參數] 刀鋒視窗，輸入下列項目：
+
+如果您想要使用 Azure PowerShell 來建立叢集與 SQL Database，請參閱[附錄 A](#appendix-a---a-powershell-sample)。
+
+1. 按一下以下影像，以在 Azure 入口網站中開啟 Resource Manager 範本。         
    
-   * **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
-   * 叢集登入名稱和密碼：預設登入名稱是 admin。
-   * **SSH 使用者名稱和密碼**。
-   * **SQL Database 伺服器登入名稱和密碼**。
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-sql-database%2Fazuredeploy.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+   
+
+2. 輸入下列屬性：
+
+    - **訂用帳戶**：輸入您的 Azure 訂用帳戶。
+    - **資源群組**：建立新的 Azure 資源群組，或選取現有的資源群組。  資源群組是為了管理之用。  它是物件的容器。
+    - **位置**：選取區域。
+    - **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
+    - 叢集登入名稱和密碼：預設登入名稱是 admin。
+    - **SSH 使用者名稱和密碼**。
+    - **SQL Database 伺服器登入名稱和密碼**。
+    - **_artifacts 位置**︰除非您想要使用位於不同位置的自有 backpac 檔案，否則請使用預設值。
+    - **_artifacts 位置 SAS 權杖**︰保留為空白。
+    - **Bacpac 檔案名稱**︰除非您想要使用自有 backpac 檔案，否則請使用預設值。
      
      變數區段中的下列值為硬式編碼︰
      
@@ -84,22 +94,22 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
      | Azure SQL Database 伺服器名稱 |<ClusterName>dbserver |
      | Azure SQL Database 名稱 |<ClusterName>db |
      
-     請記下這些值。稍後在教學課程中需要這些資訊。
+     請記下這些值。  稍後在教學課程中需要這些資訊。
 
-3\. 按一下 [確定] 儲存參數。
+3. 按一下 [確定] 儲存參數。
 
-4\. 在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按一下 [新增] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
+4. 在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按一下 [新增] 來建立新的資源群組。 資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
 
-5\. 按一下 [法律條款]，然後按一下 [建立]。
+5. 按一下 [法律條款]，然後按一下 [建立]。
 
-6\. 按一下 [建立]。您將會看到新的圖格，標題為「提交範本部署的部署」。大約需要 20 分鐘的時間來建立叢集和 SQL Database。
+6. 按一下 [建立]。 您將會看到新的圖格，標題為「提交範本部署的部署」。 大約需要 20 分鐘的時間來建立叢集和 SQL Database。
 
 如果您選擇使用現有的 Azure SQL Database 或 Microsoft SQL Server
 
-* **Azure SQL Database**：您必須設定 Azure SQL Database 伺服器的防火牆規則，以允許從您的工作站存取。如需關於建立 Azure SQL Database 和設定防火牆的指示，請參閱[開始使用 Azure SQL Database][sqldatabase-get-started]。
+* **Azure SQL Database**：您必須設定 Azure SQL Database 伺服器的防火牆規則，以允許從您的工作站存取。 如需關於建立 Azure SQL Database 和設定防火牆的指示，請參閱[開始使用 Azure SQL Database][sqldatabase-get-started]。 
   
   > [!NOTE]
-  > 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。如需關於建立 Azure SQL Database 和設定防火牆規則的指示，請參閱[建立和設定 SQL Database][sqldatabase-create-configue]。
+  > 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。 如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。 如需建立 Azure SQL 資料庫和設定防火牆規則的相關指示，請參閱[建立和設定 SQL Database][sqldatabase-create-configue]。
   > 
   > 
 * **SQL Server**：如果您的 HDInsight 叢集與 SQL Server 位於同一個 Azure 虛擬網路上，您可以使用本文中的步驟在 SQL Server Database 上匯入和匯出資料。
@@ -109,37 +119,37 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
   > 
   > 
   
-  * 若要建立及設定虛擬網路，請參閱[虛擬網路組態工作](../services/virtual-machines.md)。
+  * 若要建立和設定虛擬網路，請參閱[使用 Azure 入口網站建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。
     
-    * 在您的資料中心裡使用 SQL Server 時，必須將虛擬網路設定為*站對站*或*點對站*。
+    * 在您的資料中心裡使用 SQL Server 時，必須將虛擬網路設定為「站對站」或「點對站」。
       
       > [!NOTE]
       > 使用**點對站**虛擬網路時，SQL Server 必須執行 VPN 用戶端組態應用程式；您可從 Azure 虛擬網路組態的 [儀表板] 存取此應用程式。
       > 
       > 
     * 在 Azure 虛擬機器中使用 SQL Server 時，只要主控 SQL Server 的虛擬機器與 HDInsight 在同一個虛擬網路中，即可使用任何虛擬網路組態。
-  * 若要在虛擬網路上建立 HDInsight 叢集，請參閱[使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)。
+  * 若要在虛擬網路上建立 HDInsight 叢集，請參閱 [使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)
     
     > [!NOTE]
-    > SQL Server 也必須允許驗證。您必須使用 SQL Server 登入來完成本文中的步驟。
+    > SQL Server 也必須允許驗證。 您必須使用 SQL Server 登入來完成本文中的步驟。
     > 
     > 
 
-## 執行 Sqoop 工作
-HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適合您的方法，然後跟著連結逐項閱讀介紹。
+## <a name="run-sqoop-jobs"></a>執行 Sqoop 工作
+HDInsight 可以使用各種方法執行 Sqoop 工作。 請使用下表決定適合您的方法，然後跟著連結逐項閱讀介紹。
 
-| 如果您想要...，請**使用此方法** | ...一個**互動式**殼層 | ...**批次**處理 | ...搭配此**叢集作業系統** | ...從此**用戶端作業系統** |
+| **使用此方法**  | ...一個 **互動式** 殼層 | ...**批次** 處理 | ...搭配此 **叢集作業系統** | ...從此 **用戶端作業系統** |
 |:--- |:---:|:---:|:--- |:--- |
 | [SSH](hdinsight-use-sqoop-mac-linux.md) |✔ |✔ |Linux |Linux、Unix、Mac OS X 或 Windows |
 | [.NET SDK for Hadoop](hdinsight-hadoop-use-sqoop-dotnet-sdk.md) |&nbsp; |✔ |Linux 或 Windows |Windows (目前) |
 | [Azure PowerShell](hdinsight-hadoop-use-sqoop-powershell.md) |&nbsp; |✔ |Linux 或 Windows |Windows |
 
-## 限制
+## <a name="limitations"></a>限制
 * 大量匯出 - 使用 Linux 型 HDInsight，用來將資料匯出至 Microsoft SQL Server 或 Azure SQL Database 的 Sqoop 連接器目前不支援大量插入。
 * 批次處理 - 使用 Linux 型 HDInsight，執行插入時若使用 `-batch` 參數，Sqoop 將會執行多個插入，而不是批次處理插入作業。
 
-## 後續步驟
-現在，您已了解如何使用 Sqoop。若要深入了解，請參閱：
+## <a name="next-steps"></a>後續步驟
+現在，您已了解如何使用 Sqoop。 若要深入了解，請參閱：
 
 * [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
@@ -147,12 +157,12 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 * [使用 HDInsight 分析航班延誤資料][hdinsight-analyze-flight-data]：使用 Hive 分析航班誤點資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
 * [將資料上傳至 HDInsight][hdinsight-upload-data]：尋找可將資料上傳至 HDInsight/Azure Blob 儲存體的其他方法。
 
-## 附錄 A - PowerShell 範例
+## <a name="appendix-a---a-powershell-sample"></a>附錄 A - PowerShell 範例
 這些 PowerShell 範例會執行下列步驟：
 
 1. 連接到 Azure。
-2. 建立 Azure 資源群組。如需詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)。
-3. 建立 Azure SQL Database 伺服器、Azure SQL Database 和兩個資料表。
+2. 建立 Azure 資源群組。 如需詳細資訊，請參閱 [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)
+3. 建立 Azure SQL Database 伺服器、Azure SQL Database 和兩個資料表。 
    
     如果您改為使用 SQL Server，請使用下列陳述式來建立資料表：
    
@@ -178,38 +188,38 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
          [sessionid] [bigint],
          [sessionpagevieworder][bigint])
    
-    檢查資料庫和資料表的最簡單方式是使用 Visual Studio。可以使用 Azure 入口網站檢查資料庫伺服器和資料庫。
+    檢查資料庫和資料表的最簡單方式是使用 Visual Studio。 可以使用 Azure 入口網站檢查資料庫伺服器和資料庫。
 4. 建立 HDInsight 叢集。
    
     若要檢查叢集，您可以使用 Azure 入口網站或 Azure PowerShell。
 5. 前置處理來源資料檔。
    
-    在本教學課程中，您會將 log4j 記錄檔 (使用分隔符號的檔案) 和 Hive 資料表匯出至 Azure SQL Database。使用分隔符號的檔案稱為 */example/data/sample.log*。在本教學課程先前的內容中，您已看過 log4j 記錄檔的幾個範例。記錄檔中有某些空白行，且有幾行類似以下內容：
+    在本教學課程中，您會將 log4j 記錄檔 (使用分隔符號的檔案) 和 Hive 資料表匯出至 Azure SQL Database。 使用分隔符號的檔案稱為 */example/data/sample.log*。 在本教學課程先前的內容中，您已看過 log4j 記錄檔的幾個範例。 記錄檔中有某些空白行，且有幾行類似以下內容：
    
         java.lang.Exception: 2012-02-03 20:11:35 SampleClass2 [FATAL] unrecoverable system problem at id 609774657
             at com.osa.mocklogger.MockLogger$2.run(MockLogger.java:83)
    
-    這在使用此資料的其他範例中並沒有問題，但我們必須移除這些例外狀況，才能將資料匯入 Azure SQL Database 或 SQL Server 中。如果有空白字串，或某一行的項目數少於 Azure SQL Database 資料表中定義的欄位數，Sqoop 匯出就會失敗。log4jlogs 資料表有 7 個字串類型欄位。
+    這在使用此資料的其他範例中並沒有問題，但我們必須移除這些例外狀況，才能將資料匯入 Azure SQL Database 或 SQL Server 中。 如果有空白字串，或某一行的項目數少於 Azure SQL Database 資料表中定義的欄位數，Sqoop 匯出就會失敗。 log4jlogs 資料表有 7 個字串類型欄位。
    
-    此程序會在叢集上建立新檔案：tutorials/usesqoop/data/sample.log。若要檢查已修改的資料檔案，可以使用 Azure 入口網站、Azure 儲存體總管工具或 Azure PowerShell。[開始使用 HDInsight][hdinsight-get-started] 提供了使用 Azure PowerShell 來下載檔案及顯示檔案內容的程式碼範例。
+    此程序會在叢集上建立新檔案：tutorials/usesqoop/data/sample.log。 若要檢查已修改的資料檔案，可以使用 Azure 入口網站、Azure 儲存體總管工具或 Azure PowerShell。 [開始使用 HDInsight][hdinsight-get-started] 提供了使用 Azure PowerShell 來下載檔案及顯示檔案內容的程式碼範例。
 6. 將資料檔案匯出至 Azure SQL Database。
    
-    來源檔案為 tutorials/usesqoop/data/sample.log。將資料匯至其中的資料表稱為 log4jlogs。
+    來源檔案為 tutorials/usesqoop/data/sample.log。 將資料匯至其中的資料表稱為 log4jlogs。
    
    > [!NOTE]
-   > 除了連接字串資訊以外，本節中的步驟應該可運用在 Azure SQL Database 或 SQL Server 上。這些步驟已使用下列組態進行測試：
+   > 除了連接字串資訊以外，本節中的步驟應該可運用在 Azure SQL Database 或 SQL Server 上。 這些步驟已使用下列組態進行測試：
    > 
-   > * **Azure 虛擬網路點對站組態**：在私人資料中心裡將 HDInsight 叢集連接到 SQL Server 的虛擬網路。如需詳細資訊，請參閱[使用管理入口網站設定點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md)。
-   > * **Azure HDInsight 3.1**：如需有關在虛擬網路上建立叢集的資訊，請參閱[使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)。
+   > * **Azure 虛擬網路點對站組態**：在私人資料中心裡將 HDInsight 叢集連接到 SQL Server 的虛擬網路。 如需詳細資訊，請參閱 [使用管理入口網站設定點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) 。
+   > * **Azure HDInsight 3.1**：如需有關在虛擬網路上建立叢集的資訊，請參閱 [使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md) 。
    > * **SQL Server 2014**：已設定成允許驗證，以及執行 VPN 用戶端組態套件以安全地連接到虛擬網路。
    > 
    > 
 7. 將 Hive 資料表匯出至 Azure SQL Database。
 8. 將 mobiledata 資料表匯入 HDInsight 叢集。
    
-    若要檢查已修改的資料檔案，可以使用 Azure 入口網站、Azure 儲存體總管工具或 Azure PowerShell。[開始使用 HDInsight][hdinsight-get-started] 提供了使用 Azure PowerShell 來下載檔案及顯示檔案內容的程式碼範例。
+    若要檢查已修改的資料檔案，可以使用 Azure 入口網站、Azure 儲存體總管工具或 Azure PowerShell。  [開始使用 HDInsight][hdinsight-get-started] 提供了有關使用 Azure PowerShell 來下載檔案及顯示檔案內容的程式碼範例。
 
-### PowerShell 範例
+### <a name="the-powershell-sample"></a>PowerShell 範例
     # Prepare an Azure SQL database to be used by the Sqoop tutorial
 
     #region - provide the following values
@@ -604,7 +614,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 
 [azure-management-portal]: https://portal.azure.com/
 
-[hdinsight-versions]: hdinsight-component-versioning.md
+[hdinsight-versions]:  hdinsight-component-versioning.md
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
 [hdinsight-storage]: ../hdinsight-hadoop-use-blob-storage.md
@@ -614,7 +624,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 [hdinsight-submit-jobs]: hdinsight-submit-hadoop-jobs-programmatically.md
 
 [sqldatabase-get-started]: ../sql-database/sql-database-get-started.md
-[sqldatabase-create-configue]: ../sql-database-create-configure.md
+[sqldatabase-create-configue]: ../sql-database/sql-database-get-started.md
 
 [powershell-start]: http://technet.microsoft.com/library/hh847889.aspx
 [powershell-install]: powershell-install-configure.md
@@ -622,4 +632,8 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

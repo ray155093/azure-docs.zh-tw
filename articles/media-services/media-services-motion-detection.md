@@ -1,12 +1,12 @@
 ---
-title: 使用 Azure 媒體分析偵測動作 | Microsoft Docs
-description: 「Azure 媒體動作偵測器」媒體處理器 (MP) 能讓您在冗長且平淡的影片中，有效識別出感興趣的區段。
+title: "使用 Azure 媒體分析偵測動作 | Microsoft Docs"
+description: "「Azure 媒體動作偵測器」媒體處理器 (MP) 能讓您在冗長且平淡的影片中，有效識別出感興趣的區段。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: d144f813-1a55-442f-a895-5c4cb6d0aeae
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: milanga;juliako;
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 7b92e9290396009e59bfadb2eb3f75cf4952a45d
+
 
 ---
 # <a name="detect-motions-with-azure-media-analytics"></a>使用 Azure 媒體分析偵測動作
@@ -29,7 +33,7 @@ ms.author: milanga;juliako;
 ## <a name="motion-detector-input-files"></a>動作偵測器輸入檔案
 影片檔案。 目前支援下列格式：MP4、MOV 及 WMV。
 
-## <a name="task-configuration-(preset)"></a>工作組態 (預設)
+## <a name="task-configuration-preset"></a>工作組態 (預設)
 以 **Azure 媒體動作偵測器**建立工作時，您必須指定設定預設值。 
 
 ### <a name="parameters"></a>參數
@@ -45,28 +49,28 @@ ms.author: milanga;juliako;
 
 ### <a name="json-example"></a>JSON 範例
     {
-      'version': '1.0',
-      'options': {
-        'sensitivityLevel': 'medium',
-        'frameSamplingValue': 1,
-        'detectLightChange': 'False',
+      "version": "1.0",
+      "options": {
+        "sensitivityLevel": "medium",
+        "frameSamplingValue": 1,
+        "detectLightChange": "False",
         "mergeTimeThreshold":
-        '00:00:02',
-        'detectionZones': [
+        "00:00:02",
+        "detectionZones": [
           [
-            {'x': 0, 'y': 0},
-            {'x': 0.5, 'y': 0},
-            {'x': 0, 'y': 1}
+            {"x": 0, "y": 0},
+            {"x": 0.5, "y": 0},
+            {"x": 0, "y": 1}
            ],
           [
-            {'x': 0.3, 'y': 0.3},
-            {'x': 0.55, 'y': 0.3},
-            {'x': 0.8, 'y': 0.3},
-            {'x': 0.8, 'y': 0.55},
-            {'x': 0.8, 'y': 0.8},
-            {'x': 0.55, 'y': 0.8},
-            {'x': 0.3, 'y': 0.8},
-            {'x': 0.3, 'y': 0.55}
+            {"x": 0.3, "y": 0.3},
+            {"x": 0.55, "y": 0.3},
+            {"x": 0.8, "y": 0.3},
+            {"x": 0.8, "y": 0.55},
+            {"x": 0.8, "y": 0.8},
+            {"x": 0.55, "y": 0.8},
+            {"x": 0.3, "y": 0.8},
+            {"x": 0.3, "y": 0.55}
           ]
         ]
       }
@@ -78,7 +82,7 @@ ms.author: milanga;juliako;
 
 動作偵測器 API 會在物件於固定背景的影片 (例如監視影片) 中移動時提供指示器。 動作偵測器已針對降低誤判 (例如光源和陰影變化) 進行調整。 目前演算法的限制包括夜視影片、半透明物件及小型物件。
 
-### <a name="<a-id="output_elements"></a>elements-of-the-output-json-file"></a><a id="output_elements"></a>輸出 JSON 檔案的元素
+### <a name="a-idoutputelementsaelements-of-the-output-json-file"></a><a id="output_elements"></a>輸出 JSON 檔案的元素
 > [!NOTE]
 > 在最新版本中，輸出 JSON 格式已變更，而且對某些客戶來說可能代表著重大變更。
 > 
@@ -161,28 +165,28 @@ ms.author: milanga;juliako;
 2. 根據包含下列 JSON 預設值的設定檔案，建立執行影片動作偵測工作的工作。 
    
         {
-          'Version': '1.0',
-          'Options': {
-            'SensitivityLevel': 'medium',
-            'FrameSamplingValue': 1,
-            'DetectLightChange': 'False',
+          "Version": "1.0",
+          "Options": {
+            "SensitivityLevel": "medium",
+            "FrameSamplingValue": 1,
+            "DetectLightChange": "False",
             "MergeTimeThreshold":
-            '00:00:02',
-            'DetectionZones': [
+            "00:00:02",
+            "DetectionZones": [
               [
-                {'x': 0, 'y': 0},
-                {'x': 0.5, 'y': 0},
-                {'x': 0, 'y': 1}
+                {"x": 0, "y": 0},
+                {"x": 0.5, "y": 0},
+                {"x": 0, "y": 1}
                ],
               [
-                {'x': 0.3, 'y': 0.3},
-                {'x': 0.55, 'y': 0.3},
-                {'x': 0.8, 'y': 0.3},
-                {'x': 0.8, 'y': 0.55},
-                {'x': 0.8, 'y': 0.8},
-                {'x': 0.55, 'y': 0.8},
-                {'x': 0.3, 'y': 0.8},
-                {'x': 0.3, 'y': 0.55}
+                {"x": 0.3, "y": 0.3},
+                {"x": 0.55, "y": 0.3},
+                {"x": 0.8, "y": 0.3},
+                {"x": 0.8, "y": 0.55},
+                {"x": 0.8, "y": 0.8},
+                {"x": 0.55, "y": 0.8},
+                {"x": 0.3, "y": 0.8},
+                {"x": 0.3, "y": 0.55}
               ]
             ]
           }
@@ -365,6 +369,9 @@ ms.author: milanga;juliako;
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: 部署和管理 HDInsight 上的 Apache Storm 拓撲 | Microsoft Docs
-description: 使用 Storm Dashboard on HDInsight，了解如何部署、監視和管理 Apache Storm 拓撲。 使用適用於 Visual Studio 的 Hadoop 工具。
+title: "部署和管理 HDInsight 上的 Apache Storm 拓撲 | Microsoft Docs"
+description: "使用 Storm Dashboard on HDInsight，了解如何部署、監視和管理 Apache Storm 拓撲。 使用適用於 Visual Studio 的 Hadoop 工具。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 5e542072-f014-42aa-82d6-2694a76df520
 ms.service: hdinsight
 ms.devlang: java
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 1160dbc2f2a6b8e427c5280b2eaa06307ecac80c
+ms.openlocfilehash: 9b22dc671cd63f77ad6076404069c271455dc61e
+
 
 ---
 # <a name="deploy-and-manage-apache-storm-topologies-on-windows-based-hdinsight"></a>部署和管理以 Windows 為基礎的 HDInsight 上的 Apache Storm 拓撲
@@ -24,24 +28,24 @@ HDInsight Tools 的 Storm Dashboard 和 Storm 功能依賴 Storm REST API，此 
 
 > [!IMPORTANT]
 > 本文件中的步驟需要 HDInsight 叢集上以 Windows 為基礎的 Storm。 如需使用 Linux 叢集的相關資訊，請參閱 [部署和管理以 Linux 為基礎之 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
-> 
-> 
+>
+>
 
 ## <a name="prerequisites"></a>必要條件
-* **Apache Storm on HDInsight** - 請參閱<a href="../hdinsight-storm-getting-started/" target="_blank">開始使用 Apache Storm on HDInsight</a>，以取得建立叢集的步驟
+* **Apache Storm on HDInsight** - 請參閱<a href="hdinsight-apache-storm-tutorial-get-started.md" target="_blank">開始使用 Apache Storm on HDInsight</a>，以取得建立叢集的步驟
 * 針對 **Storm Dashboard**：支援 HTML5 的新型網頁瀏覽器
-* 針對 **Visual Studio** - Azure SDK 2.5.1 或更新版本，以及 HDInsight Tools for Visual Studio。 請參閱<a href="../hdinsight-hadoop-visual-studio-tools-get-started/" target="_blank">開始使用 HDInsight Tools for Visual Studio</a> 以安裝及設定 HDInsight Tools for Visual Studio。
-  
+* 針對 **Visual Studio** - Azure SDK 2.5.1 或更新版本，以及 HDInsight Tools for Visual Studio。 請參閱<a href="hdinsight-hadoop-visual-studio-tools-get-started.md" target="_blank">開始使用 HDInsight Tools for Visual Studio</a> 以安裝及設定 HDInsight Tools for Visual Studio。
+
     下列其中一個 Visual Studio 版本：
-  
+
   * Visual Studio 2012 <a href="http://www.microsoft.com/download/details.aspx?id=39305" target="_blank">(含 Update 4)</a>
   * Visual Studio 2013 <a href="http://www.microsoft.com/download/details.aspx?id=44921" target="_blank">(含 Update 4)</a> 或 <a href="http://go.microsoft.com/fwlink/?LinkId=517284" target="_blank">Visual Studio 2013 Community</a>
   * <a href="http://visualstudio.com/downloads/visual-studio-2015-ctp-vs" target="_blank">Visual Studio 2015 CTP6</a>
-    
+
     > [!NOTE]
     > HDInsight Tools for Visual Studio 目前只支援 Storm on HDInsight 叢集 3.2 版。
-    > 
-    > 
+    >
+    >
 
 ## <a name="storm-dashboard"></a>Storm Dashboard
 Storm Dashboard 是可以在 Storm 叢集上使用的網頁。 URL 是 **https://&lt;clustername>.azurehdinsight.net/**，其中 **clustername** 是 Storm on HDInsight 叢集的名稱。
@@ -57,8 +61,8 @@ Storm Dashboard 是可以在 Storm 叢集上使用的網頁。 URL 是 **https:/
 
 > [!NOTE]
 > 在 Internet Explorer 的某些版本中，您可能會發現 Storm UI 在您最初到訪之後不會重新整理。 例如，可能不會顯示您提交的新拓撲，或是可能將先前已停用的拓撲顯示為使用中。 Microsoft 知道這個問題，並正在找出解決方案。
-> 
-> 
+>
+>
 
 #### <a name="main-page"></a>主頁面
 Storm UI 的主頁面會提供下列資訊：
@@ -73,11 +77,11 @@ Storm UI 的主頁面會提供下列資訊：
 
 * **拓撲摘要**：拓撲的基本資訊。
 * **拓撲動作**：您可以針對拓撲執行的管理動作。
-  
+
   * **啟用**：繼續處理已停用的拓撲。
   * **停用**：暫停執行中的拓撲。
   * **重新平衡**：調整拓撲的平行處理原則。 變更叢集中的節點數目之後，您應該重新平衡執行中拓撲。 這可讓拓撲調整平行處理原則，以彌補叢集中增加或減少的節點數目。
-    
+
       如需詳細資訊，請參閱<a href="http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html" target="_blank">了解 Storm 拓撲的平行處理原則</a>。
   * **終止**：在指定的逾時之後結束 Storm 拓撲。
 * **拓撲統計資料**：拓撲的統計資料。 使用 [視窗]  資料行中的連結，以設定頁面上其餘項目的時間範圍。
@@ -100,39 +104,39 @@ HDInsight Tools 可以用來將 C# 或混合式拓撲提交至 Storm 叢集。 �
 
 使用下列步驟，將範例部署至 Storm on HDInsight 叢集，然後檢視和管理拓撲。
 
-1. 如果您尚未安裝最新版本的 HDInsight Tools for Visual Studio，請參閱<a href="../hdinsight-hadoop-visual-studio-tools-get-started/" target="_blank">開始使用 HDInsight Tools for Visual Studio</a>。
+1. 如果您尚未安裝最新版本的 HDInsight Tools for Visual Studio，請參閱<a href="hdinsight-hadoop-visual-studio-tools-get-started.md" target="_blank">開始使用 HDInsight Tools for Visual Studio</a>。
 2. 開啟 Visual Studio，選取 [檔案]  >  [新增]  >  [專案]。
 3. 在 [新增專案] 對話方塊中，依序展開 [已安裝]  >  [範本]，然後選取 [HDInsight]。 從範本清單中，選取 [Storm 範例] 。 在對話方塊底部，輸入應用程式的名稱。
-   
+
     ![image](./media/hdinsight-storm-deploy-monitor-topology/sample.png)
 4. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，然後選取 [提交至 Storm on HDInsight]。
-   
+
    > [!NOTE]
    > 如果出現提示，請輸入您 Azure 訂閱的登入認證。 如果您有多個訂用帳戶，請登入包含 Storm on HDInsight 叢集的訂用帳戶。
-   > 
-   > 
+   >
+   >
 5. 從 [Storm 叢集] 下拉式清單中選取 Storm on HDInsight 叢集，然後選取 [提交]。 您可以使用 [輸出]  視窗監視提交是否成功。
 6. 順利提交拓撲時，應該會出現叢集的 [Storm 拓撲]  。 從清單中選取拓撲，以檢視執行中拓撲的詳細資訊。
-   
+
     ![Visual Studio 監視器](./media/hdinsight-storm-deploy-monitor-topology/vsmonitor.png)
-   
+
    > [!NOTE]
    > 您也可以透過展開 [Azure]  >  [HDInsight]，並在 Storm on HDInsight 叢集上按一下滑鼠右鍵，然後選取 [檢視 Storm 拓撲] 以從**伺服器總管**中檢視 [Storm 拓撲]。
-   > 
-   > 
-   
+   >
+   >
+
     選取 Spout 或 Bolt 的圖形以檢視這些元件的資訊。 將會針對每個選取的項目開啟新的視窗。
-   
+
    > [!NOTE]
    > 拓撲的名稱是拓撲的類別名稱 (在此案例中為 `HelloWord`) 加上時間戳記。
-   > 
-   > 
+   >
+   >
 7. 從 [拓撲摘要] 檢視中，選取 [終止] 停止拓撲。
-   
+
    > [!NOTE]
    > 除非停止 Storm 拓撲或刪除叢集，否則 Storm 拓撲會繼續執行。
-   > 
-   > 
+   >
+   >
 
 ## <a name="rest-api"></a>REST API
 Storm UI 是以 REST API 為建置基礎，因此您可以使用 REST API 執行類似的管理和監視功能。 您可以使用 REST API 建立自訂工具來管理和監視 Storm 拓撲。
@@ -147,8 +151,8 @@ REST API 的要求必須使用 **基本驗證**，因此請使用 HDInsight 叢�
 
 > [!NOTE]
 > 因為使用純文字傳送基本驗證，所以您應該 **一律** 使用 HTTPS 來保護與叢集通訊的安全。
-> 
-> 
+>
+>
 
 ### <a name="return-values"></a>傳回值
 從 REST API 傳回的資訊只能從叢集或與叢集相同之 Azure 虛擬網路上的虛擬機器內使用。 例如，無法從網際網路存取針對 Zookeeper 伺服器所傳回的完整網域名稱 (FQDN)。
@@ -167,6 +171,6 @@ REST API 的要求必須使用 **基本驗證**，因此請使用 HDInsight 叢�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

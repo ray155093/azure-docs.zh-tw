@@ -12,11 +12,11 @@ ms.devlang: java
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/04/2016
+ms.date: 01/05/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 2cf98a0ef478a058c03122d3e027ef37e2404a09
-ms.openlocfilehash: 8a7b100a531ea1dd5420451064fdfb1eb3f21782
+ms.sourcegitcommit: 381d372b549fa0ed0900d97c03b9584b21624b25
+ms.openlocfilehash: 4a8fb3499ec55e451b54a05d5642bdf9a924294f
 
 
 ---
@@ -25,17 +25,21 @@ ms.openlocfilehash: 8a7b100a531ea1dd5420451064fdfb1eb3f21782
 > * [C# - Windows](service-fabric-create-your-first-application-in-visual-studio.md)
 > * [Java - Linux](service-fabric-create-your-first-linux-application-with-java.md)
 > * [C# - Linux](service-fabric-create-your-first-linux-application-with-csharp.md)
-> 
-> 
+>
+>
 
-Service Fabric 提供了在 Linux 上建置服務的 .NET Core 和 Java SDK。 在本教學課程中，我們將建立適用於 Linux 的應用程式以及使用 Java 建置服務。  下列 Microsoft Virtual Academy 影片也會引導您完成在 Linux 上建立 Java 應用程式的程序︰  
-<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=DOX8K86yC_206218965">  
-<img src="./media/service-fabric-create-your-first-linux-application-with-java/LinuxVid.png" WIDTH="360" HEIGHT="244">  
-</a></center>
+Service Fabric 提供了在 Linux 上建置服務的 .NET Core 和 Java SDK。 在本教學課程中，我們將建立適用於 Linux 的應用程式以及使用 Java 建置服務。  
 
 > [!NOTE]
 > 以 Java 做為首選內建程式設計語言只會在 Linux 預覽版中支援 (Windows 支援已在規劃中)。 不過，任何應用程式 (包括 Java 應用程式) 皆可執行做為來賓可執行檔或在 Windows 或 Linux 上的容器內執行。 如需詳細資訊，請參閱[將現有的可執行檔部署至 Azure Service Fabric](service-fabric-deploy-existing-app.md) 和[將容器部署至 Service Fabric](service-fabric-deploy-container.md)。
-> 
+>
+
+## <a name="video-tutorial"></a>影片教學課程
+
+下列 Microsoft Virtual Academy 影片會引導您完成在 Linux 上建立 Java 應用程式的程序︰  
+<center><a target="\_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=DOX8K86yC_206218965">  
+<img src="./media/service-fabric-create-your-first-linux-application-with-java/LinuxVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
 
 
 ## <a name="prerequisites"></a>必要條件
@@ -47,12 +51,12 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 1. 在終端機中，輸入 ``yo azuresfjava``。
 2. 為您的應用程式命名。
 3. 選擇第一個服務的類型並加以命名。 基於本教學課程的用途，我們會選擇 Reliable Actor 服務。
-   
+
    ![適用於 Java 的 Service Fabric Yeoman 產生器][sf-yeoman]
 
 > [!NOTE]
 > 如需選項的詳細資訊，請參閱 [Service Fabric 程式設計模型概觀](service-fabric-choose-framework.md)。
-> 
+>
 
 ## <a name="build-the-application"></a>建置應用程式
 Service Fabric Yeoman 範本包含 [Gradle](https://gradle.org/)的建置指令碼，可用來從終端機建置應用程式。
@@ -66,13 +70,13 @@ Service Fabric Yeoman 範本包含 [Gradle](https://gradle.org/)的建置指令�
 建置應用程式後，可以使用 Azure CLI 將它部署到本機叢集。
 
 1. 連接到本機 Service Fabric 叢集。
-   
+
     ```bash
     azure servicefabric cluster connect
     ```
 
 2. 使用範本中所提供的安裝指令碼，將應用程式套件複製到叢集的映像存放區、註冊應用程式類型，以及建立應用程式的執行個體。
-   
+
     ```bash
     ./install.sh
     ```
@@ -85,14 +89,14 @@ Service Fabric Yeoman 範本包含 [Gradle](https://gradle.org/)的建置指令�
 動作項目專案沒有任何屬於自己的項目。 它們需要其他服務或用戶端傳送訊息給它們。 動作項目範本包含簡單的測試指令碼，您可以用來與動作項目服務互動。
 
 1. 使用監看式公用程式執行指令碼，以查看動作項目服務的輸出。
-   
+
     ```bash
     cd myactorsvcTestClient
     watch -n 1 ./testclient.sh
     ```
 
 2. 在 Service Fabric Explorer 中，找出裝載動作項目服務主要複本的節點。 在以下的螢幕擷取畫面中是節點 3。
-   
+
     ![在 Service Fabric Explorer 中尋找主要複本][sfx-primary]
 
 3. 按一下您在上一個步驟中找到的節點，然後從 [動作] 功能表選取 [停用 (重新啟動)]  。 此動作會重新啟動本機叢集中五個節點的其中一個，並強制容錯移轉至在另一個節點上執行的其中一個次要複本。 當您執行這個動作時，請留意測試用戶端的輸出，並注意儘管是容錯移轉，計數器仍會繼續增加。
@@ -106,7 +110,7 @@ Service Fabric Yeoman 範本包含 [Gradle](https://gradle.org/)的建置指令�
 Service Fabric 外掛程式可透過 Eclipse 擴充功能取得。
 
 1. 在 Eclipse 中，選擇 [檔案] > [其他] > [Service Fabric]。 您會看到一組選項，包括 [動作項目] 和 [容器]。
-   
+
     ![Eclipse 中的 Service Fabric 範本][sf-eclipse-templates]
 
 2. 在此情況下，選擇 [無狀態服務]。
@@ -114,7 +118,7 @@ Service Fabric 外掛程式可透過 Eclipse 擴充功能取得。
 3. 系統會要求您確認使用的 Service Fabric 層面，以最佳化搭配 Service Fabric 專案使用的 Eclipse。 選擇 [是]。
 
 ### <a name="deploy-the-application"></a>部署應用程式
-Service Fabric 範本包含一組用來建置和部署應用程式的 Gradle 工作，您可以透過 Eclipse 觸發這些工作。 
+Service Fabric 範本包含一組用來建置和部署應用程式的 Gradle 工作，您可以透過 Eclipse 觸發這些工作。
 
 1. 選擇 [執行] > [執行組態]。
 2. 指定 [本機] 或 [雲端]。 預設設定是 [本機]。 若是部署至遠端叢集，請選取 [雲端]。
@@ -125,7 +129,7 @@ Service Fabric 範本包含一組用來建置和部署應用程式的 Gradle 工
 
 ## <a name="adding-more-services-to-an-existing-application"></a>將更多服務新增至現有的應用程式
 
-若要將其他服務新增至已使用 `yo` 建立的應用程式，請執行下列步驟︰ 
+若要將其他服務新增至已使用 `yo` 建立的應用程式，請執行下列步驟︰
 1. 將目錄變更為現有應用程式的根目錄。  例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
 2. 執行 `yo azuresfjava:AddService`
 

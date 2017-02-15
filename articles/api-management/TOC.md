@@ -39,16 +39,32 @@
 ### [管理使用者帳戶](api-management-howto-create-or-invite-developers.md)
 ### [使用自動化管理](automation-manage-api-management.md)
 ### [使用 Git 進行設定](api-management-configuration-repository-git.md)
-
 # 參考
 ## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [REST](/rest/api/apimanagement/)
-## [REST (原始)](/rest/api/apimanagement/ApiManagementREST/API-Management-REST)
-
-
+## [REST (原始)](/rest/api/apimanagement/ApiManagementREST/api-management-REST)
+## [原則](api-management-policies.md)
+### 原則參考文件
+#### [存取限制原則](api-management-access-restriction-policies.md)
+#### [進階原則](api-management-advanced-policies.md)
+#### [驗證原則](api-management-authentication-policies.md)
+#### [快取原則](api-management-caching-policies.md)
+#### [跨網域原則](api-management-cross-domain-policies.md)
+#### [轉換原則](api-management-transformation-policies.md)
+### [錯誤處理](api-management-error-handling-policies.md)
+### [原則運算式](api-management-policy-expressions.md)
+## [範本](api-management-developer-portal-templates-reference.md)
+### 範本參考
+#### [API](api-management-api-templates.md)
+#### [產品](api-management-product-templates.md)
+#### [應用程式](api-management-application-templates.md)
+#### [問題](api-management-issue-templates.md)
+#### [使用者個人檔案](api-management-user-profile-templates.md)
+#### [頁面](api-management-page-templates.md)
+### [資料模型參考](api-management-template-data-model-reference.md)
+### [頁面控制](api-management-page-controls.md)
+### [範本資源](api-management-template-resources.md)
 # 資源
-## [原則](https://msdn.microsoft.com/library/azure/dn894081)
-## [範本](https://msdn.microsoft.com/library/azure/mt697540)
 ## [價格](https://azure.microsoft.com/pricing/details/api-management/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureapimgmt)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-api-management)
@@ -66,6 +82,6 @@
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 將現有的 blob 複製到媒體服務資產 | Microsoft Docs
-description: 本主題說明如何將現有的 blob 複製到媒體服務資產。
+title: "將現有的 blob 複製到媒體服務資產 | Microsoft Docs"
+description: "本主題說明如何將現有的 blob 複製到媒體服務資產。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 6a63823f-f3c9-424c-91b8-566f70bec346
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 10/13/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 62e675d3e87e40a09d67eb5d00b58ea8857e9610
+
 
 ---
 # <a name="copying-an-existing-blob-into-a-media-services-asset"></a>將現有的 blob 複製到媒體服務資產
@@ -156,7 +160,8 @@ ms.author: juliako
    
             externalMediaBlobContainer.CreateIfNotExists();
    
-            // Upload files to the blob container.  
+            // Upload files to the block blob container. 
+            // Page blobs are not supported by Azure Media Services. 
             DirectoryInfo uploadDirectory = new DirectoryInfo(localPath);
             foreach (var file in uploadDirectory.EnumerateFiles())
             {
@@ -317,6 +322,9 @@ ms.author: juliako
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

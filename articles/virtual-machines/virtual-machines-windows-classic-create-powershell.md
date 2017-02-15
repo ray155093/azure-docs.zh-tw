@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 4abaa2009d7f46d1c0b1c888577b7cd74446877b
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: d9da484755041ca13410db84447576145bc7308f
 
 
 ---
@@ -30,15 +30,14 @@ ms.openlocfilehash: 4abaa2009d7f46d1c0b1c888577b7cd74446877b
 
 <br>
 
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 下列步驟將示範如何使用建置組塊自訂一組 Azure PowerShell 命令，建立和預先設定以 Windows 為基礎的 Azure 虛擬機器。 您可以使用此程序，對於以 Windows 為基礎的新虛擬機器建立命令集合，並擴充現有部署，或建立快速建置自訂開發/測試或 IT 專業環境的多個命令集。
 
 這些步驟遵循建立 Azure PowerShell 命令集合的填空方法。 如果您剛使用 PowerShell 或只想知道可指定哪些值來成功設定組態，這個方法相當實用。 進階的 PowerShell 使用者可以使用命令並取代本身的變數值 (以「$」為開頭的行)。
 
-如果您尚未這樣做，請按照 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的操作方法，在本機電腦安裝 Azure PowerShell。 然後，開啟 Windows PowerShell 命令提示字元。
+如果您尚未這樣做，請按照 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的操作方法，在本機電腦安裝 Azure PowerShell。 然後，開啟 Windows PowerShell 命令提示字元。
 
 ## <a name="step-1-add-your-account"></a>步驟 1︰加入您的帳戶
 1. 在 PowerShell 提示字元中，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。 
@@ -264,6 +263,6 @@ ms.openlocfilehash: 4abaa2009d7f46d1c0b1c888577b7cd74446877b
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

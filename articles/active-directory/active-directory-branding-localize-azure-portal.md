@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
@@ -35,11 +35,11 @@ ms.openlocfilehash: fece49df6a35f09ee73bb4b9ec4c33a0529a9f59
 
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
-   
+
    ![開啟使用者管理](./media/active-directory-branding-localize-azure-portal/user-management.png)
 3. 在 [使用者和群組] 刀鋒視窗上，選取 [公司商標]。
 4. 在 [使用者和群組 - 公司商標] 刀鋒視窗上，選取 [新增語言] 命令。
-   
+
     ![新增語言特定商標元素](./media/active-directory-branding-localize-azure-portal/add-language.png)
 5. 修改您想要自訂的元素。 所有元素都是選用的。
 6. 按一下 [儲存] 。
@@ -48,7 +48,6 @@ ms.openlocfilehash: fece49df6a35f09ee73bb4b9ec4c33a0529a9f59
 
 ## <a name="next-steps"></a>後續步驟
 [將公司商標新增到您的登入頁面](active-directory-branding-custom-signon-azure-portal.md)
-
 
 
 

@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/20/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 689f413ebcab734024322d4c6f46c0c824840017
+ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
+ms.openlocfilehash: dc0753faefa59eef42046e0297a58276db086d18
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 689f413ebcab734024322d4c6f46c0c824840017
 
 ## <a name="prerequisites"></a>必要條件
 * 您必須擁有[一般化 VM](virtual-machines-windows-generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 將 VM 一般化會移除您的所有個人帳戶資訊，以及其他項目，並準備電腦作為映像。
-* 您需要安裝 Azure PowerShell 1.0.x 版或更新版本。 如果您尚未安裝 PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 以了解安裝步驟。
+* 您需要安裝 Azure PowerShell 1.0.x 版或更新版本。 如果您尚未安裝 PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 以了解安裝步驟。
 
 ## <a name="log-in-to-azure-powershell"></a>登入 Azure PowerShell
 1. 開啟 Azure PowerShell，並登入您的 Azure 帳戶。
@@ -86,6 +86,6 @@ ms.openlocfilehash: 689f413ebcab734024322d4c6f46c0c824840017
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -13,21 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 12/13/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6a3604b95179d1a88f832ed45d9a6b85931187b1
+ms.sourcegitcommit: b3a8cdab9e609994b1c4c4d50e9571718e8091de
+ms.openlocfilehash: 8043f0d5a4c9fbd301e7565e7d62be09dd77abd8
 
 
 ---
-# <a name="link-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連結到 ExpressRoute 電路
+# <a name="connect-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連線到 ExpressRoute 電路
 > [!div class="op_single_selector"]
-> * [Azure 入口網站 - Resource Manager](expressroute-howto-linkvnet-portal-resource-manager.md)
-> * [PowerShell - 資源管理員](expressroute-howto-linkvnet-arm.md)
-> * [PowerShell - 傳統](expressroute-howto-linkvnet-classic.md)
+> * [Resource Manager - Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
+> * [Resource Manager - PowerShell](expressroute-howto-linkvnet-arm.md)
+> * [傳統 - PowerShell](expressroute-howto-linkvnet-classic.md)
+> * [視訊 - Azure 入口網站](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit)
 > 
-> 
+>  
 
 本文會協助您使用 Resource Manager 部署模型和 Azure 入口網站將虛擬網路 (VNet) 連結到 Azure ExpressRoute 線路。 虛擬網路可以位於相同的訂用帳戶中，或屬於另一個訂用帳戶。
 
@@ -77,6 +78,6 @@ ms.openlocfilehash: 6a3604b95179d1a88f832ed45d9a6b85931187b1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

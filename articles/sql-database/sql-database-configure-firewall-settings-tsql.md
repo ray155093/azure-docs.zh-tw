@@ -1,6 +1,6 @@
 ---
-title: "使用 T-SQL 的 Azure SQL Database 伺服器層級和資料庫層級防火牆規則 | Microsoft Docs"
-description: "了解如何設定存取 Azure SQL Database 之 IP 位址的防火牆。"
+title: "T-SQL：Azure SQL Database 防火牆規則 | Microsoft Docs"
+description: "了解如何使用 Transact-SQL 設定可存取 Azure SQL Database 之 IP 位址的伺服器層級和資料庫層級防火牆。"
 services: sql-database
 documentationcenter: 
 author: BYHAM
@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 08/30/2016
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: a49bc9cd8fb50dcc753fbb04bf7f2d96cf79f3ab
+ms.sourcegitcommit: 86bc7d89bb5725add8ba05b6f0978467147fd3ca
+ms.openlocfilehash: 0f91e59a72b033c0a0dc52b4f127478b73c66ff1
 
 
 ---
@@ -94,6 +94,6 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

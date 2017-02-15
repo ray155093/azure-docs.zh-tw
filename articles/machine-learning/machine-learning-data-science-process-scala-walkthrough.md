@@ -1,45 +1,49 @@
 ---
-title: 在 Azure 上使用 Scala 與 Spark 的資料科學 | Microsoft Docs
-description: 如何使用 Scala 搭配 Spark 可調整 MLlib 和 Azure HDInsight Spark 叢集上的 SparkML 封裝，處理受監督的機器學習工作。
+title: "在 Azure 上使用 Scala 與 Spark 的資料科學 | Microsoft Docs"
+description: "如何使用 Scala 搭配 Spark 可調整 MLlib 和 Azure HDInsight Spark 叢集上的 SparkML 封裝，處理受監督的機器學習工作。"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: bradsev
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: a7c97153-583e-48fe-b301-365123db3780
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/01/2016
+ms.date: 12/09/2016
 ms.author: bradsev;deguhath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 99f12dc1ea65d4b9be3249ea5d5c7452f5a8d72e
+
 
 ---
-# 在 Azure 上使用 Scala 與 Spark 的資料科學
-本文章說明如何使用 Scala 搭配 Spark 可調整 MLlib 和 Azure HDInsight Spark 叢集上的 SparkML 封裝，處理受監督的機器學習工作。它會引導您進行構成[資料科學程序](http://aka.ms/datascienceprocess)的各項工作︰資料擷取和探索、視覺化、特徵設計、模型化和模型取用。本文中的模型除了兩個常見受監督的機器學習工作之外，還包括羅吉斯和線性迴歸、隨機樹系和梯度推進樹 (GBT)︰
+# <a name="data-science-using-scala-and-spark-on-azure"></a>在 Azure 上使用 Scala 與 Spark 的資料科學
+本文章說明如何使用 Scala 搭配 Spark 可調整 MLlib 和 Azure HDInsight Spark 叢集上的 SparkML 封裝，處理受監督的機器學習工作。 它會引導您進行構成 [資料科學程序](http://aka.ms/datascienceprocess)的各項工作︰資料擷取和探索、視覺化、特徵設計、模型化和模型取用。 本文中的模型除了兩個常見受監督的機器學習工作之外，還包括羅吉斯和線性迴歸、隨機樹系和梯度推進樹 (GBT)︰
 
 * 迴歸問題︰計程車車程的小費金額 ($) 預測
 * 二進位分類︰計程車車程的小費或不給小費 (1/0) 預測
 
-模型化程序需要訓練和評估測試資料集和相關精確度計量。在本文中，您會了解如何在 Azure Blob 儲存體中儲存這些模型，以及如何評分及評估模型的預測效能。本文也涵蓋如何使用交叉驗證和超參數掃掠來最佳化模型等更進階的主題。所使用的資料是 GitHub 上 2013 年紐約市計程車車程和費用資料集的抽樣樣本。
+模型化程序需要訓練和評估測試資料集和相關精確度計量。 在本文中，您會了解如何在 Azure Blob 儲存體中儲存這些模型，以及如何評分及評估模型的預測效能。 本文也涵蓋如何使用交叉驗證和超參數掃掠來最佳化模型等更進階的主題。 所使用的資料是 GitHub 上 2013 年紐約市計程車車程和費用資料集的抽樣樣本。
 
-[Scala](http://www.scala-lang.org/) 是一種以 Java 虛擬機器為基礎的語言，整合物件導向與函式型語言的概念。這是一種可調整的語言，非常適合用於雲端中的分散式處理以及在 Azure Spark 叢集上執行。
+[Scala](http://www.scala-lang.org/)是一種以 Java 虛擬機器為基礎的語言，整合物件導向與函式型語言的概念。 這是一種可調整的語言，非常適合用於雲端中的分散式處理以及在 Azure Spark 叢集上執行。
 
-[Spark](http://spark.apache.org/) 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。Spark 處理引擎是專為速度、易用性及精密分析打造的產品。Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇。[Spark.ml](http://spark.apache.org/docs/latest/ml-guide.html) 封裝提供一組以資料框架為基礎的統一高階 API，可協助您建立及微調實際的機器學習管線。[MLlib](http://spark.apache.org/mllib/) 是 Spark 的可調整機器學習程式庫，將模型化功能引進此分散式環境。
+[Spark](http://spark.apache.org/) 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇。 [Spark.ml](http://spark.apache.org/docs/latest/ml-guide.html) 封裝提供一組以資料框架為基礎的統一高階 API，可協助您建立及微調實際的機器學習管線。 [MLlib](http://spark.apache.org/mllib/) 是 Spark 的可調整機器學習程式庫，將模型化功能引進此分散式環境。
 
-[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) 是開放原始碼 Spark 的 Azure 託管服務。它也支援 Spark 叢集上的 Jupyter Scala Notebook，可執行 Spark SQL 互動式查詢以轉換、篩選和視覺化 Azure Blob 儲存體中儲存的資料。本文中的 Scala 程式碼片段提供解決方案，並且顯示相關的繪圖，將安裝在 Spark 叢集上的 Jupyter Notebook 資料加以視覺化。這些主題中的模型化步驟有程式碼向您示範如何訓練、評估、儲存和使用各類模型。
+[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) 是開放原始碼 Spark 的 Azure 託管服務。 它也支援 Spark 叢集上的 Jupyter Scala Notebook，可執行 Spark SQL 互動式查詢以轉換、篩選和視覺化 Azure Blob 儲存體中儲存的資料。 本文中的 Scala 程式碼片段提供解決方案，並且顯示相關的繪圖，將安裝在 Spark 叢集上的 Jupyter Notebook 資料加以視覺化。 這些主題中的模型化步驟有程式碼向您示範如何訓練、評估、儲存和使用各類模型。
 
-本文中的設定步驟與程式碼適用於 Azure HDInsight 3.4 Spark 1.6。不過，本文與 [Scala Jupyter Notebook](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Scala/Exploration%20Modeling%20and%20Scoring%20using%20Scala.ipynb) 中的程式碼皆屬泛型程式碼，應該能在任何 Spark 叢集上運作。若未使用 HDInsight Spark，叢集設定和管理步驟可能與本文顯示的稍有不同。
+本文中的設定步驟與程式碼適用於 Azure HDInsight 3.4 Spark 1.6。 不過，本文與 [Scala Jupyter Notebook](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Scala/Exploration%20Modeling%20and%20Scoring%20using%20Scala.ipynb) 中的程式碼皆屬泛型程式碼，應該能在任何 Spark 叢集上運作。 若未使用 HDInsight Spark，叢集設定和管理步驟可能與本文顯示的稍有不同。
 
 > [!NOTE]
-> 如需示範如何使用 Python 而非 Scala 來完成端對端資料科學程序工作的主題，請參閱[在 Azure HDInsight 上使用 Spark 的資料科學](machine-learning-data-science-spark-overview.md)。
+> 如需示範如何使用 Python 而非 Scala 來完成端對端資料科學程序工作的主題，請參閱 [在 Azure HDInsight 上使用 Spark 的資料科學](machine-learning-data-science-spark-overview.md)。
 > 
 > 
 
-## 必要條件
-* 您必須擁有 Azure 訂用帳戶。如果還沒有，[請取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* 您需要 Azure HDInsight 3.4 Spark 1.6 叢集來完成下列程序。若要建立叢集，請參閱[開始使用：在 Azure HDInsight 上建立 Apache Spark](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md) 中的指示。在 [選取叢集類型] 功能表上設定叢集類型和版本。
+## <a name="prerequisites"></a>必要條件
+* 您必須擁有 Azure 訂用帳戶。 如果還沒有， [請取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* 您需要 Azure HDInsight 3.4 Spark 1.6 叢集來完成下列程序。 若要建立叢集，請參閱 [開始使用：在 Azure HDInsight 上建立 Apache Spark](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md)中的指示。 在 [選取叢集類型]  功能表上設定叢集類型和版本。
 
 ![HDInsight 叢集類型組態](./media/machine-learning-data-science-process-scala-walkthrough/spark-cluster-on-portal.png)
 
@@ -47,44 +51,44 @@ ms.author: bradsev;deguhath
 > 
 > 
 
-如需紐約市計程車車程資料的說明以及如何在 Spark 叢集上從 Jupyter Notebook 執行程式碼的指示，請參閱[在 Azure HDInsight 上使用 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)中的相關章節。
+如需紐約市計程車車程資料的說明以及如何在 Spark 叢集上從 Jupyter Notebook 執行程式碼的指示，請參閱 [在 Azure HDInsight 上使用 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)中的相關章節。  
 
-## 在 Spark 叢集上從 Jupyter Notebook 執行 Scala 程式碼
-您可以從 Azure 入口網站啟動 Jupyter Notebook。在儀表板上尋找 Spark 叢集，然後按一下該項目以進入您的叢集管理頁面。接著按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook] 來開啟與 Spark 叢集相關聯的 Notebook。
+## <a name="execute-scala-code-from-a-jupyter-notebook-on-the-spark-cluster"></a>在 Spark 叢集上從 Jupyter Notebook 執行 Scala 程式碼
+您可以從 Azure 入口網站啟動 Jupyter Notebook。 在儀表板上尋找 Spark 叢集，然後按一下該項目以進入您的叢集管理頁面。 接著按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook] 來開啟與 Spark 叢集相關聯的 Notebook。
 
 ![叢集儀表板和 Jupyter Notebook](./media/machine-learning-data-science-process-scala-walkthrough/spark-jupyter-on-portal.png)
 
-您也可以存取位於 https://&lt;clustername&gt;.azurehdinsight.net/jupyter 的 Jupyter Notebook。將 *clustername* 取代為您叢集的名稱。您需要有系統管理員帳戶的密碼才能存取 Jupyter Notebook。
+您也可以在 https://&lt;clustername&gt;.azurehdinsight.net/jupyter 存取 Jupyter Notebook。 將 *clustername* 取代為您叢集的名稱。 您需要有系統管理員帳戶的密碼才能存取 Jupyter Notebook。
 
 ![使用叢集名稱移至 Jupyter Notebook](./media/machine-learning-data-science-process-scala-walkthrough/spark-jupyter-notebook.png)
 
-選取 [Scala] 會看到一個目錄，當中有一些使用 PySpark API 的預先封裝 Notebook 的範例。[GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/Scala) 上有使用 Scala.ipynb Notebook 的探勘模型化和評分，其中包含此 Spark 主題套件的程式碼範例。
+選取 [Scala]  會看到一個目錄，當中有一些使用 PySpark API 的預先封裝 Notebook 的範例。 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/Scala)上有使用 Scala.ipynb Notebook 的探勘模型化和評分，其中包含此 Spark 主題套件的程式碼範例。
 
-您可以將 Notebook 直接從 GitHub 上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。在 Jupyter 首頁上，按一下 [上傳] 按鈕。在檔案總管中，貼上 Scala Notebook 的 GitHub (原始內容) URL，然後按一下 [開啟]。下列 URL 有 Scala Notebook 可供使用：
+您可以將 Notebook 直接從 GitHub 上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。 在 Jupyter 首頁上，按一下 [上傳]  按鈕。 在檔案總管中，貼上 Scala Notebook 的 GitHub (原始內容) URL，然後按一下 [開啟] 。 下列 URL 有 Scala Notebook 可供使用：
 
 [Exploration-Modeling-and-Scoring-using-Scala.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Scala/Exploration-Modeling-and-Scoring-using-Scala.ipynb)
 
-## 安裝程式︰預設的 Spark 和 Hive 內容、Spark Magic 和 Spark 程式庫
-### 預設的 Spark 和 Hive 內容
+## <a name="setup-preset-spark-and-hive-contexts-spark-magics-and-spark-libraries"></a>安裝程式︰預設的 Spark 和 Hive 內容、Spark Magic 和 Spark 程式庫
+### <a name="preset-spark-and-hive-contexts"></a>預設的 Spark 和 Hive 內容
     # SET THE START TIME
     import java.util.Calendar
     val beginningTime = Calendar.getInstance().getTime()
 
 
-Jupyter Notebook 所提供的 Spark 核心有預設的內容。您不必明確設定 Spark 或 Hive 內容，就能開始使用您所開發的應用程式。預設內容為：
+Jupyter Notebook 所提供的 Spark 核心有預設的內容。 您不必明確設定 Spark 或 Hive 內容，就能開始使用您所開發的應用程式。 預設內容為：
 
 * `sc` 代表 SparkContext
 * `sqlContext` 代表 HiveContext
 
-### Spark Magic
-Spark 核心提供一些預先定義的 “Magic”，這是您可以使用 `%%` 呼叫的特殊命令。下列程式碼範例會使用兩個命令。
+### <a name="spark-magics"></a>Spark Magic
+Spark 核心提供一些預先定義的 “Magic”，這是您可以使用 `%%`呼叫的特殊命令。 下列程式碼範例會使用兩個命令。
 
-* `%%local` 指定後續行所列的程式碼，將在本機執行。程式碼必須是有效的 Scala 程式碼。
-* `%%sql -o <variable name>` 針對 `sqlContext` 執行 Hive 查詢。如果傳遞 `-o` 參數，則查詢的結果會當做 Spark 資料框架，保存在 `%%local` Scala 內容中。
+* `%%local` 指定後續行所列的程式碼，將在本機執行。 程式碼必須是有效的 Scala 程式碼。
+* `%%sql -o <variable name>` 針對 `sqlContext` 執行 Hive 查詢。 如果傳遞 `-o` 參數，則查詢的結果會當做 Spark 資料框架，保存在 `%%local` Scala 內容中。
 
 如需關於 Jupyter Notebook 核心，以及使用 `%%` (例如 `%%local`) 呼叫其預先定義的 "Magic" 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
-### 匯入程式庫
+### <a name="import-libraries"></a>匯入程式庫
 使用下列程式碼匯入 Spark、MLlib 和其他所需的程式庫。
 
     # IMPORT SPARK AND JAVA LIBRARIES
@@ -121,8 +125,8 @@ Spark 核心提供一些預先定義的 “Magic”，這是您可以使用 `%%`
     val sqlContext = new SQLContext(sc)
 
 
-## 資料擷取
-資料科學程序的第一步是內嵌您想要分析的資料。您要從資料所在的外部來源或系統，將資料帶入資料探索和模型化環境。在本文中，您要內嵌的資料是聯結 0.1% 取樣的計程車車程和資費檔案 (儲存為 .tsv 檔案)。資料探索和模型化環境為 Spark。本節包含程式碼來完成下列的工作系列︰
+## <a name="data-ingestion"></a>資料擷取
+資料科學程序的第一步是內嵌您想要分析的資料。 您要從資料所在的外部來源或系統，將資料帶入資料探索和模型化環境。 在本文中，您要內嵌的資料是聯結 0.1% 取樣的計程車車程和資費檔案 (儲存為 .tsv 檔案)。 資料探索和模型化環境為 Spark。 本節包含程式碼來完成下列的工作系列︰
 
 1. 設定資料和模型儲存體的目錄路徑。
 2. 讀取輸入資料集 (儲存為 .tsv 檔案)。
@@ -131,10 +135,10 @@ Spark 核心提供一些預先定義的 “Magic”，這是您可以使用 `%%`
 5. 在 SQLContext 中將資料註冊為暫存資料表。
 6. 查詢資料表並將結果匯入資料框架。
 
-### 在 Azure Blob 儲存體中設定儲存位置的目錄路徑
-Spark 可以讀取和寫入 Azure Blob 儲存體。您可以使用 Spark 來處理任何現有的資料，然後在 Blob 儲存體中再次儲存結果。
+### <a name="set-directory-paths-for-storage-locations-in-azure-blob-storage"></a>在 Azure Blob 儲存體中設定儲存位置的目錄路徑
+Spark 可以讀取和寫入 Azure Blob 儲存體。 您可以使用 Spark 來處理任何現有的資料，然後在 Blob 儲存體中再次儲存結果。
 
-若要在 Blob 儲存體中儲存模型或檔案，您必須正確指定路徑。使用以 `wasb:///`開頭的路徑，參考附加至 Spark 叢集的預設容器。使用 `wasb://` 參考其他位置。
+若要在 Blob 儲存體中儲存模型或檔案，您必須正確指定路徑。 使用以 `wasb:///`開頭的路徑，參考附加至 Spark 叢集的預設容器。 使用 `wasb://`參考其他位置。
 
 下列程式碼範例指定要讀取輸入資料的位置，以及附加至 Spark 叢集 (將會儲存模型) 的 Blob 儲存體路徑。
 
@@ -148,7 +152,7 @@ Spark 可以讀取和寫入 Azure Blob 儲存體。您可以使用 Spark 來處�
     val modelDir = "wasb:///user/remoteuser/NYCTaxi/Models/";
 
 
-### 根據結構描述匯入資料、建立 RDD 並定義資料框架
+### <a name="import-data-create-an-rdd-and-define-a-data-frame-according-to-the-schema"></a>根據結構描述匯入資料、建立 RDD 並定義資料框架
     # RECORD THE START TIME
     val starttime = Calendar.getInstance().getTime()
 
@@ -226,7 +230,7 @@ Spark 可以讀取和寫入 Azure Blob 儲存體。您可以使用 Spark 來處�
 
 執行資料格的時間︰8 秒。
 
-### 查詢資料表並將結果匯入資料框架
+### <a name="query-the-table-and-import-results-in-a-data-frame"></a>查詢資料表並將結果匯入資料框架
 接著，查詢資料表中的資費、乘客和小費資料，篩選出損毀和離群資料，並列印數個資料列。
 
     # QUERY THE DATA
@@ -245,36 +249,36 @@ Spark 可以讀取和寫入 Azure Blob 儲存體。您可以使用 Spark 來處�
 
 **輸出：**
 
-| fare\_amount | passenger\_count | tip\_amount | tipped |
+| fare_amount | passenger_count | tip_amount | tipped |
 | --- | --- | --- | --- |
-|  13\.5 |1\.0 |2\.9 |1\.0 |
-|  16\.0 |2\.0 |3\.4 |1\.0 |
-|  10\.5 |2\.0 |1\.0 |1\.0 |
+|        13.5 |1.0 |2.9 |1.0 |
+|        16.0 |2.0 |3.4 |1.0 |
+|        10.5 |2.0 |1.0 |1.0 |
 
-## 資料探索和虛擬化
-將資料帶入 Spark 之後，資料科學程序的下一個步驟是透過探索和視覺化以更深入瞭解資料。本節中，您可以使用 SQL 查詢檢查計程車資料。然後將結果匯入資料框架，以使用 Jupyter 的自動視覺化特徵繪製目標變數和潛在特徵以便進行視覺檢查。
+## <a name="data-exploration-and-visualization"></a>資料探索和虛擬化
+將資料帶入 Spark 之後，資料科學程序的下一個步驟是透過探索和視覺化以更深入瞭解資料。 本節中，您可以使用 SQL 查詢檢查計程車資料。 然後將結果匯入資料框架，以使用 Jupyter 的自動視覺化特徵繪製目標變數和潛在特徵以便進行視覺檢查。
 
-### 使用本機和 SQL magic 來繪製資料
-根據預設，在背景工作節點上保存的工作階段內容中，可取得您從 Jupyter Notebook 執行之任何程式碼片段的輸出。如果您想要將車程儲存至每個計算的背景工作節點，而且如果在 Jupyter 伺服器節點 (此為前端節點) 的本機上可取得計算所需的所有資料，您可以使用 `%%local` Magic 在 Jupyter 伺服器上執行程式碼片段。
+### <a name="use-local-and-sql-magic-to-plot-data"></a>使用本機和 SQL magic 來繪製資料
+根據預設，在背景工作節點上保存的工作階段內容中，可取得您從 Jupyter Notebook 執行之任何程式碼片段的輸出。 如果您想要將車程儲存至每個計算的背景工作節點，而且如果在 Jupyter 伺服器節點 (此為前端節點) 的本機上可取得計算所需的所有資料，您可以使用 `%%local` Magic 在 Jupyter 伺服器上執行程式碼片段。
 
-* **SQL magic** (`%%sql`)。HDInsight Spark 核心支援針對 SQLContext 進行簡單的內嵌 HiveQL 查詢。(`-o VARIABLE_NAME`) 引數會將 SQL 查詢的輸出，保存為 Jupyter 伺服器上的 Pandas 資料框架。這代表會在本機模式中使用此引數。
-* `%%local` **magic**。`%%local` magic 在 Jupyter 伺服器本機 (HDInsight 叢集的前端節點) 上執行程式碼。一般而言，您會使用 `%%local` magic 來搭配含有 `-o` 參數的 `%%sql` magic。`-o` 參數會保存本機 SQL 查詢的輸出，然後 `%%local` magic 會針對已保存在本機上的 SQL 查詢輸出，觸發下一組要在本機上執行的程式碼片段。
+* **SQL magic** (`%%sql`)。 HDInsight Spark 核心支援針對 SQLContext 進行簡單的內嵌 HiveQL 查詢。 (`-o VARIABLE_NAME`) 引數會將 SQL 查詢的輸出，保存為 Jupyter 伺服器上的 Pandas 資料框架。 這代表會在本機模式中使用此引數。
+* `%%local` **magic**。 `%%local` magic 在 Jupyter 伺服器本機 (HDInsight 叢集的前端節點) 上執行程式碼。 一般而言，您會使用 `%%local` magic 來搭配含有 `-o` 參數的 `%%sql` magic。 `-o` 參數會保存本機 SQL 查詢的輸出，然後 `%%local` magic 會針對已保存在本機上的 SQL 查詢輸出，觸發下一組要在本機上執行的程式碼片段。
 
-### 使用 SQL 查詢資料
+### <a name="query-the-data-by-using-sql"></a>使用 SQL 查詢資料
 此查詢會依照費用金額、乘客計數和小費金額擷取計程車車程。
 
     # RUN THE SQL QUERY
     %%sql -q -o sqlResults
     SELECT fare_amount, passenger_count, tip_amount, tipped FROM taxi_train WHERE passenger_count > 0 AND passenger_count < 7 AND fare_amount > 0 AND fare_amount < 200 AND payment_type in ('CSH', 'CRD') AND tip_amount > 0 AND tip_amount < 25
 
-在下列程式碼中，`%%local` magic 會建立本機資料框架 sqlResults。您可以使用 sqlResults 透過 matplotlib 繪圖。
+在下列程式碼中， `%%local` magic 會建立本機資料框架 sqlResults。 您可以使用 sqlResults 透過 matplotlib 繪圖。
 
 > [!TIP]
-> 本文中會多次使用本機 magic。如果資料集很大，請進行取樣以建立可容納於本機記憶體的資料框架。
+> 本文中會多次使用本機 magic。 如果資料集很大，請進行取樣以建立可容納於本機記憶體的資料框架。
 > 
 > 
 
-### 繪製資料
+### <a name="plot-the-data"></a>繪製資料
 資料框架以 Pandas 資料框架形式出現在本機內容之後，您就可以使用 Python 程式碼進行繪圖。
 
     # RUN THE CODE LOCALLY ON THE JUPYTER SERVER
@@ -285,7 +289,7 @@ Spark 可以讀取和寫入 Azure Blob 儲存體。您可以使用 Spark 來處�
     sqlResults
 
 
- 在您執行程式碼之後，Spark 核心會將 SQL (HiveQL) 查詢的輸出自動視覺化。您可以選擇數種類型的視覺效果︰
+ 在您執行程式碼之後，Spark 核心會將 SQL (HiveQL) 查詢的輸出自動視覺化。 您可以選擇數種類型的視覺效果︰
 
 * 資料表
 * 圓形圖
@@ -333,17 +337,17 @@ Spark 可以讀取和寫入 Azure Blob 儲存體。您可以使用 Spark 來處�
 
 ![按費用金額排列的小費金額](./media/machine-learning-data-science-process-scala-walkthrough/plot-tip-amount-by-fare-amount.png)
 
-## 建立特徵和轉換特徵，然後準備資料輸入模型化函式
-如需 Spark ML 和 MLlib 中以樹狀結構為基礎的模型化函式，您必須使用各種技術 (例如分類收納、索引編製、one-hot 編碼和向量化) 備妥目標和特徵。以下是本節要遵循的程序︰
+## <a name="create-features-and-transform-features-and-then-prep-data-for-input-into-modeling-functions"></a>建立特徵和轉換特徵，然後準備資料輸入模型化函式
+如需 Spark ML 和 MLlib 中以樹狀結構為基礎的模型化函式，您必須使用各種技術 (例如分類收納、索引編製、one-hot 編碼和向量化) 備妥目標和特徵。 以下是本節要遵循的程序︰
 
-1. 將小時**納入**流量時間值區以建立新特徵。
-2. 對分類特徵套用**索引編製和 one-hot 編碼**。
-3. **取樣並將資料集分割**成訓練和測試部分。
+1. 將小時 **納入** 流量時間值區以建立新特徵。
+2. 對分類特徵套用 **索引編製和 one-hot 編碼** 。
+3. **取樣並將資料集分割** 成訓練和測試部分。
 4. **指定訓練變數和特徵**，然後建立已編製索引或已進行 one-hot 編碼的訓練和測試輸入標示點彈性分散式資料集 (RDD) 或資料框架。
-5. 自動**分類及向量化特徵和目標**以做為機器學習模型的輸入。
+5. 自動 **分類及向量化特徵和目標** 以做為機器學習模型的輸入。
 
-### 將小時納入流量時間值區以建立新特徵
-此程式碼示範如何將小時納入流量時間值區以建立新特徵，以及如何從記憶體快取產生的資料框架。在重複使用 RDD 和資料框架的位置，快取可改善執行時間。因此，您會在下列程序中的幾個階段快取 RDD 和資料框架。
+### <a name="create-a-new-feature-by-binning-hours-into-traffic-time-buckets"></a>將小時納入流量時間值區以建立新特徵
+此程式碼示範如何將小時納入流量時間值區以建立新特徵，以及如何從記憶體快取產生的資料框架。 在重複使用 RDD 和資料框架的位置，快取可改善執行時間。 因此，您會在下列程序中的幾個階段快取 RDD 和資料框架。
 
     # CREATE FOUR BUCKETS FOR TRAFFIC TIMES
     val sqlStatement = """
@@ -363,14 +367,14 @@ Spark 可以讀取和寫入 Azure Blob 儲存體。您可以使用 Spark 來處�
     taxi_df_train_with_newFeatures.count()
 
 
-### 索引和 one-hot 編碼分類功能
-MLlib 的模型化和預測函式需要先執行功能來分類要索引或編碼的分類輸入資料，才能使用這些資料。本節示範如何索引或編碼分類特徵，以輸入模型化函式。
+### <a name="indexing-and-one-hot-encoding-of-categorical-features"></a>索引和 one-hot 編碼分類功能
+MLlib 的模型化和預測函式需要先執行功能來分類要索引或編碼的分類輸入資料，才能使用這些資料。 本節示範如何索引或編碼分類特徵，以輸入模型化函式。
 
-根據模型，您需要以不同方式索引或編碼它們。例如，羅吉斯和線性迴歸模型需要 one-hot 編碼。例如，有三個類別的特徵可展開成三個特徵資料行。根據觀察值的分類，每個資料行包含 0 或 1。MLlib 為 one-hot 編碼提供 [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 函式。此編碼器會將標籤索引資料行對應到二進位向量資料行，最多有一個單一值。使用這種編碼方式，可將預期數值特徵的演算法 (例如羅吉斯迴歸) 套用至分類特徵。
+根據模型，您需要以不同方式索引或編碼它們。 例如，羅吉斯和線性迴歸模型需要 one-hot 編碼。 例如，有三個類別的特徵可展開成三個特徵資料行。 根據觀察值的分類，每個資料行包含 0 或 1。 MLlib 為 one-hot 編碼提供 [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 函式。 此編碼器會將標籤索引資料行對應到二進位向量資料行，最多有一個單一值。 使用這種編碼方式，可將預期數值特徵的演算法 (例如羅吉斯迴歸) 套用至分類特徵。
 
-您在此只會轉換四個變數 (其為字元字串) 來顯示範例。您也可以將其他以數值表示的變數 (例如工作日) 編製索引為類別變數。
+您在此只會轉換四個變數 (其為字元字串) 來顯示範例。 您也可以將其他以數值表示的變數 (例如工作日) 編製索引為類別變數。
 
-如需編製索引，請使用 `StringIndexer()`，如需進行 one-hot 編碼，請使用 MLlib 中的 `OneHotEncoder()` 函式。以下是要索引及編碼分類功能的程式碼︰
+如需編製索引，請使用 `StringIndexer()`，如需進行 one-hot 編碼，請使用 MLlib 中的 `OneHotEncoder()` 函式。 以下是要索引及編碼分類功能的程式碼︰
 
     # CREATE INDEXES AND ONE-HOT ENCODED VECTORS FOR SEVERAL CATEGORICAL FEATURES
 
@@ -411,8 +415,8 @@ MLlib 的模型化和預測函式需要先執行功能來分類要索引或編�
 
 執行資料格的時間︰4 秒。
 
-### 取樣並將資料集分割成訓練和測試部分
-此程式碼會建立隨機取樣資料 (此範例中為 25%)。雖然此範例因為資料集的大小而不需要取樣，但是本文會示範如何取樣，讓您了解需要時如何使用它來自行解決問題。如果樣本數較大，這可以在訓練模型時節省大量時間。接下來將樣本數分割成訓練部分 (此範例中為 75%) 和測試部分 (此範例中為 25%)，以便在分類和迴歸模型化中使用。
+### <a name="sample-and-split-the-data-set-into-training-and-test-fractions"></a>取樣並將資料集分割成訓練和測試部分
+此程式碼會建立隨機取樣資料 (此範例中為 25%)。 雖然此範例因為資料集的大小而不需要取樣，但是本文會示範如何取樣，讓您了解需要時如何使用它來自行解決問題。 如果樣本數較大，這可以在訓練模型時節省大量時間。 接下來將樣本數分割成訓練部分 (此範例中為 75%) 和測試部分 (此範例中為 25%)，以便在分類和迴歸模型化中使用。
 
 在 ("rand" 資料行中) 的每一列加入一個隨機數字 (介於 0 與 1 之間)，可用來在訓練期間選取交叉驗證摺疊數。
 
@@ -450,10 +454,10 @@ MLlib 的模型化和預測函式需要先執行功能來分類要索引或編�
 
 執行資料格的時間︰2 秒。
 
-### 指定訓練變數和特徵，然後建立已編製索引或已進行 one-hot 編碼的訓練和測試輸入標示點 RDD 或資料框架
-本節包含的程式碼示範如何將分類的文字資料索引為標示點資料類型並加以編碼，您可以用來訓練及測試 MLlib 羅吉斯迴歸和其他分類模型。標示點物件是 RDD，其格式化成適合 MLlib 中大部分機器學習演算法所需的輸入資料。[標示點](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point)是本機向量 (密集或疏鬆)，與標籤/回應相關聯。
+### <a name="specify-training-variable-and-features-and-then-create-indexed-or-one-hot-encoded-training-and-testing-input-labeled-point-rdds-or-data-frames"></a>指定訓練變數和特徵，然後建立已編製索引或已進行 one-hot 編碼的訓練和測試輸入標示點 RDD 或資料框架
+本節包含的程式碼示範如何將分類的文字資料索引為標示點資料類型並加以編碼，您可以用來訓練及測試 MLlib 羅吉斯迴歸和其他分類模型。 標示點物件是 RDD，其格式化成適合 MLlib 中大部分機器學習演算法所需的輸入資料。 [標示點](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point) 是本機向量 (密集或疏鬆)，與標籤/回應相關聯。
 
-在此程式碼中，您指定目標 (相依) 變數和要用來訓練模型的特徵。然後，建立已編製索引或已進行 one-hot 編碼的訓練和測試輸入標示點 RDD 或資料框架。
+在此程式碼中，您指定目標 (相依) 變數和要用來訓練模型的特徵。 然後，建立已編製索引或已進行 one-hot 編碼的訓練和測試輸入標示點 RDD 或資料框架。
 
     # RECORD THE START TIME
     val starttime = Calendar.getInstance().getTime()
@@ -493,11 +497,11 @@ MLlib 的模型化和預測函式需要先執行功能來分類要索引或編�
 
 執行資料格的時間︰4 秒。
 
-### 自動分類及向量化特徵和目標，以做為機器學習模型的輸入
-使用 Spark ML 分類目標和特徵，以便在以樹狀結構為基礎的模型化函式中使用。程式碼會完成兩項工作︰
+### <a name="automatically-categorize-and-vectorize-features-and-targets-to-use-as-inputs-for-machine-learning-models"></a>自動分類及向量化特徵和目標，以做為機器學習模型的輸入
+使用 Spark ML 分類目標和特徵，以便在以樹狀結構為基礎的模型化函式中使用。 程式碼會完成兩項工作︰
 
 * 使用臨界值 0.5，將值 0 或 1 指派給介於 0 和 1 之間的每個資料點，以建立分類的二進位目標。
-* 自動將功能分類。如果任何特徵的相異數值的數目小於 32，該特徵就會進行分類。
+* 自動將功能分類。 如果任何特徵的相異數值的數目小於 32，該特徵就會進行分類。
 
 以下是這兩項工作的程式碼。
 
@@ -530,21 +534,21 @@ MLlib 的模型化和預測函式需要先執行功能來分類要索引或編�
 
 
 
-## 二進位分類模型：預測是否應支付小費
+## <a name="binary-classification-model-predict-whether-a-tip-should-be-paid"></a>二進位分類模型：預測是否應支付小費
 在本節中，您會建立三種類型的二進位分類模型來預測是否應支付小費：
 
 * 使用 Spark ML `LogisticRegression()` 函式的**羅吉斯迴歸模型**
-* 使用 SparkML `RandomForestClassifier()` 函式的**隨機樹系分類模型**
+* 使用 Spark ML `RandomForestClassifier()` 函式的**隨機樹系分類模型**
 * 使用 MLlib `GradientBoostedTrees()` 函式的**梯度推進樹分類模型**
 
-### 建立羅吉斯迴歸模型
-接著，使用 Spark ML `LogisticRegression()`函式建立羅吉斯迴歸模型。您會在一系列步驟中建立模型建置程式碼︰
+### <a name="create-a-logistic-regression-model"></a>建立羅吉斯迴歸模型
+接著，使用 Spark ML `LogisticRegression()` 函式建立羅吉斯迴歸模型。 您會在一系列步驟中建立模型建置程式碼︰
 
-1. 使用一個參數集**訓練模型**資料。
-2. 在含計量的測試資料集上**評估模型**。
-3. 在 Blob 儲存體中**儲存模型**供未來取用。
-4. 針對測試資料**評分模型**。
-5. 使用接收者操作特性 (ROC) 曲線**繪製結果**。
+1. **訓練模型** 資料。
+2. **評估模型** 。
+3. **儲存模型** 供未來取用。
+4. **評分模型** 。
+5. **繪製結果** 。
 
 以下是這些程序的程式碼：
 
@@ -634,7 +638,7 @@ MLlib 的模型化和預測函式需要先執行功能來分類要索引或編�
 
 ![小費或沒有小費的 ROC 曲線](./media/machine-learning-data-science-process-scala-walkthrough/plot-roc-curve-tip-or-not.png)
 
-### 建立隨機樹系分類模型
+### <a name="create-a-random-forest-classification-model"></a>建立隨機樹系分類模型
 接著，使用 SparkML `RandomForestClassifier()` 函式建立隨機樹系分類模型，然後對測試資料評估模型。
 
     # RECORD THE START TIME
@@ -667,7 +671,7 @@ MLlib 的模型化和預測函式需要先執行功能來分類要索引或編�
 
 測試資料的 ROC = 0.9847103571552683
 
-### 建立 GBT 分類模型
+### <a name="create-a-gbt-classification-model"></a>建立 GBT 分類模型
 接著，使用 MLlib 的 `GradientBoostedTrees()` 函式建立 GBT 分類模型，然後對測試資料評估模型。
 
     # TRAIN A GBT CLASSIFICATION MODEL BY USING MLLIB AND A LABELED POINT
@@ -723,13 +727,13 @@ MLlib 的模型化和預測函式需要先執行功能來分類要索引或編�
 
 ROC 曲線夏的領域 = 0.9846895479241554
 
-## 迴歸模型：預測小費金額
+## <a name="regression-model-predict-tip-amount"></a>迴歸模型：預測小費金額
 在本節中，您會建立兩種類型的迴歸模型來預測小費金額︰
 
-* 使用 Spark ML `LinearRegression()` 函式的**正規化線性迴歸模型**。您將儲存模型，並對測試資料評估模型。
+* 使用 Spark ML `LinearRegression()` 函式的**正規化線性迴歸模型**。 您將儲存模型，並對測試資料評估模型。
 * 使用 Spark ML `GBTRegressor()` 函式的**梯度推進樹迴歸模型**。
 
-### 建立正則化線性迴歸模型
+### <a name="create-a-regularized-linear-regression-model"></a>建立正則化線性迴歸模型
     # RECORD THE START TIME
     val starttime = Calendar.getInstance().getTime()
 
@@ -819,10 +823,10 @@ ROC 曲線夏的領域 = 0.9846895479241554
     # CLICK THE TYPE OF PLOT TO GENERATE (LINE, AREA, BAR, AND SO ON)
     sqlResults
 
-此程式碼從查詢輸出中建立本機資料框架，以及繪製資料。`%%local` magic 建立本機資料框架 `sqlResults`，您可以用來搭配 matplotlib 進行繪製。
+此程式碼從查詢輸出中建立本機資料框架，以及繪製資料。 `%%local` magic 建立本機資料框架 `sqlResults`，您可以用來搭配 matplotlib 進行繪製。
 
 > [!NOTE]
-> 本文中會多次使用此 Spark magic。如果資料總量很大，您應該取樣以建立可容納於本機記憶體的資料框架。
+> 本文中會多次使用此 Spark magic。 如果資料總量很大，您應該取樣以建立可容納於本機記憶體的資料框架。
 > 
 > 
 
@@ -848,10 +852,10 @@ ROC 曲線夏的領域 = 0.9846895479241554
 
 ![小費金額︰實際與預測](./media/machine-learning-data-science-process-scala-walkthrough/plot-actual-vs-predicted-tip-amount.png)
 
-### 建立 GBT 迴歸模型
+### <a name="create-a-gbt-regression-model"></a>建立 GBT 迴歸模型
 使用 SparkML `GBTRegressor()` 函式建立 GBT 迴歸模型，然後對測試資料評估模型。
 
-[梯度推進樹](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 集合了所有決策樹。GBT 反覆地訓練決策樹以盡可能降低遺失函式。您可以使用 GBT 進行迴歸和分類。GBT 可以處理分類特徵、不需要調整特徵，而且可以擷取非線性和特徵互動。您也可以在多類別分類設定中使用 GBT。
+[梯度推進樹](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 集合了所有決策樹。 GBT 反覆地訓練決策樹以盡可能降低遺失函式。 您可以使用 GBT 進行迴歸和分類。 GBT 可以處理分類特徵、不需要調整特徵，而且可以擷取非線性和特徵互動。 您也可以在多類別分類設定中使用 GBT。
 
     # RECORD THE START TIME
     val starttime = Calendar.getInstance().getTime()
@@ -881,20 +885,20 @@ ROC 曲線夏的領域 = 0.9846895479241554
 
 測試 R-sqr：0.7655383534596654
 
-## 可供最佳化的進階模型化公用程式
-在本節中，您將使用開發人員經常使用的機器學習公用程式來最佳化模型。具體來說，您可以使用參數掃掠和交叉驗證，以三種不同的方式來最佳化機器學習模型︰
+## <a name="advanced-modeling-utilities-for-optimization"></a>可供最佳化的進階模型化公用程式
+在本節中，您將使用開發人員經常使用的機器學習公用程式來最佳化模型。 具體來說，您可以使用參數掃掠和交叉驗證，以三種不同的方式來最佳化機器學習模型︰
 
 * 將資料分為訓練集和驗證集，對訓練集使用超參數掃掠來最佳化模型，然後對驗證集進行評估 (線性迴歸)
 * 利用 Spark ML 的 CrossValidator 函式 (二進位分類)，使用交叉驗證和超參數掃掠來最佳化模型
 * 使用自訂交叉驗證和參數掃掠程式碼，利用任何機器學習函式和參數集來最佳化模型 (線性迴歸)
 
-**交叉驗證**是一種技術，評估已對一組已知資料訓練過的模型將能多廣泛地預測尚未對其訓練過的資料集特徵。這種技術背後的基本概念是模型已針對已知資料的資料集訓練，然後針對獨立的資料集測試其預測的精確度。常見的實作是將資料集分割成 *k* 個摺疊，然後以循環配置資源方式對除了一個摺疊的所有摺疊訓練模型。
+**交叉驗證** 是一種技術，評估已對一組已知資料訓練過的模型將能多廣泛地預測尚未對其訓練過的資料集特徵。 這種技術背後的基本概念是模型已針對已知資料的資料集訓練，然後針對獨立的資料集測試其預測的精確度。 常見的實作是將資料集分割成 *k*個摺疊，然後以循環配置資源方式對除了一個摺疊的所有摺疊訓練模型。
 
-**超參數最佳化**的問題是要選擇一組超參數來學習演算法，目標通常是要最佳化獨立資料集上演算法效能的測量。超參數是您在模型訓練程序之外必須指定的值。對於超參數值的假設可能會影響模型的彈性和精確度。決策樹有超參數，例如想要的樹深度和葉數目等。您必須為支援向量機器 (SVM) 設定分類誤判損失詞彙。
+**超參數最佳化** 的問題是要選擇一組超參數來學習演算法，目標通常是要最佳化獨立資料集上演算法效能的測量。 超參數是您在模型訓練程序之外必須指定的值。 對於超參數值的假設可能會影響模型的彈性和精確度。 決策樹有超參數，例如想要的樹深度和葉數目等。 您必須為支援向量機器 (SVM) 設定分類誤判損失詞彙。
 
-執行超參數最佳化一個常見的方法是使用格線搜尋，也稱為**參數掃掠**。在格線搜尋中，會對某個學習演算法的超參數空間指定子集的所有值執行詳盡搜尋。交叉驗證可以提供效能度量，挑出格線搜尋演算法所產生的最佳結果。如果您使用交叉驗證超參數掃掠，可以協助限制例如將模型過度擬合到訓練資料的問題。如此一來，模型會保留空間來套用到擷取訓練資料的一般資料集。
+執行超參數最佳化一個常見的方法是使用格線搜尋，也稱為 **參數掃掠**。 在格線搜尋中，會對某個學習演算法的超參數空間指定子集的所有值執行詳盡搜尋。 交叉驗證可以提供效能度量，挑出格線搜尋演算法所產生的最佳結果。 如果您使用交叉驗證超參數掃掠，可以協助限制例如將模型過度擬合到訓練資料的問題。 如此一來，模型會保留空間來套用到擷取訓練資料的一般資料集。
 
-### 利用超參數掃掠來最佳化線性迴歸模型
+### <a name="optimize-a-linear-regression-model-with-hyper-parameter-sweeping"></a>利用超參數掃掠來最佳化線性迴歸模型
 接著，將資料分為訓練集和驗證集，對訓練集使用超參數掃掠來最佳化模型，然後對驗證集進行評估 (線性迴歸)。
 
     # RECORD THE START TIME
@@ -938,8 +942,8 @@ ROC 曲線夏的領域 = 0.9846895479241554
 
 測試 R-sqr：0.6226484708501209
 
-### 使用交叉驗證和超參數掃掠來最佳化二進位分類模型
-本節示範如何使用交叉驗證和超參數掃掠來最佳化二進位分類模型。這會使用 Spark ML `CrossValidator` 函式。
+### <a name="optimize-the-binary-classification-model-by-using-cross-validation-and-hyper-parameter-sweeping"></a>使用交叉驗證和超參數掃掠來最佳化二進位分類模型
+本節示範如何使用交叉驗證和超參數掃掠來最佳化二進位分類模型。 這會使用 Spark ML `CrossValidator` 函式。
 
     # RECORD THE START TIME
     val starttime = Calendar.getInstance().getTime()
@@ -982,8 +986,8 @@ ROC 曲線夏的領域 = 0.9846895479241554
 
 執行資料格的時間︰33 秒。
 
-### 使用自訂交叉驗證和參數掃掠程式碼來最佳化線性迴歸模型
-接著，使用自訂程式碼來最佳化模型，並使用最精確的準則來找出最佳的模型參數。然後，建立最終模型、對測試資料評估模型，以及在 Blob 儲存體中儲存模型。最後，載入模型、對測試資料進行評分，以及評估精確度。
+### <a name="optimize-the-linear-regression-model-by-using-custom-cross-validation-and-parameter-sweeping-code"></a>使用自訂交叉驗證和參數掃掠程式碼來最佳化線性迴歸模型
+接著，使用自訂程式碼來最佳化模型，並使用最精確的準則來找出最佳的模型參數。 然後，建立最終模型、對測試資料評估模型，以及在 Blob 儲存體中儲存模型。 最後，載入模型、對測試資料進行評分，以及評估精確度。
 
     # RECORD THE START TIME
     val starttime = Calendar.getInstance().getTime()
@@ -1097,11 +1101,16 @@ ROC 曲線夏的領域 = 0.9846895479241554
 
 執行資料格的時間︰61 秒。
 
-## 透過 Scala 自動取用 Spark 建置的機器學習模型
+## <a name="consume-spark-built-machine-learning-models-automatically-with-scala"></a>透過 Scala 自動取用 Spark 建置的機器學習模型
 如需能引導您完成在 Azure 中構成資料科學程序之工作的主題概觀，請參閱 [Team Data Science Process](http://aka.ms/datascienceprocess)。
 
-[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)說明的其他端對端逐步解說示範 Team Data Science Process 針對特定案例的步驟。這些逐步解說也示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。
+[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md) 說明的其他端對端逐步解說示範 Team Data Science Process 針對特定案例的步驟。 這些逐步解說也示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。
 
-[評分 Spark 建置的機器學習模型](machine-learning-data-science-spark-model-consumption.md)示範如何利用 Spark 內建並儲存於 Azure Blob 儲存體的機器學習模型，使用 Scala 程式碼來自動載入及評分新資料集。您可以遵循此處提供的指示，只要將本文中的 Python 程式碼取代為 Scala 程式碼，即可自動取用。
+[評分 Spark 建置的機器學習模型](machine-learning-data-science-spark-model-consumption.md) 示範如何利用 Spark 內建並儲存於 Azure Blob 儲存體的機器學習模型，使用 Scala 程式碼來自動載入及評分新資料集。 您可以遵循此處提供的指示，只要將本文中的 Python 程式碼取代為 Scala 程式碼，即可自動取用。
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

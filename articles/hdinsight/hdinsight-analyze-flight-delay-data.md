@@ -1,84 +1,88 @@
 ---
-title: 在 HDInsight 上使用 Hadoop 分析航班延誤資料 | Microsoft Docs
-description: 了解如何使用一個 Windows PowerShell 指令碼建立 HDInsight 叢集、執行 Hive 工作、執行 Sqool 工作和刪除叢集。
+title: "在 HDInsight 上使用 Hadoop 分析航班延誤資料 | Microsoft Docs"
+description: "了解如何使用一個 Windows PowerShell 指令碼建立 HDInsight 叢集、執行 Hive 工作、執行 Sqool 工作和刪除叢集。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: mumian
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 00e26aa9-82fb-4dbe-b87d-ffe8e39a5412
 ms.service: hdinsight
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/25/2016
+ms.date: 10/19/2016
 ms.author: jgao
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ff9c3e16c043293db016e94113201ba99eaab769
+
 
 ---
-# 在 HDInsight 上使用 Hadoop 分析航班延誤資料
+# <a name="analyze-flight-delay-data-by-using-hive-in-hdinsight"></a>在 HDInsight 上使用 Hadoop 分析航班延誤資料
 Hive 可透過一種稱為 *[HiveQL][hadoop-hiveql]* 的 SQL 式指令碼語言來執行 Hadoop MapReduce 工作，可用來彙總、查詢和分析大量資料。
 
 > [!NOTE]
-> 此文件中的步驟需要以 Windows 為基礎的 HDInsight 叢集。如需與 Linux 叢集搭配使用的步驟，請參閱[在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)。
+> 此文件中的步驟需要以 Windows 為基礎的 HDInsight 叢集。 如需與 Linux 叢集搭配使用的步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)。
 > 
 > 
 
-Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。HDInsight 會使用 Azure Blob 儲存體來儲存資料。典型的工作包含 3 個部分：
+Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。 HDInsight 使用 Azure Blob 儲存體來儲存資料。 典型的工作包含三個部分：
 
-1. **將資料儲存在 Azure Blob 儲存體中。** 這可能是持續的程序。例如，將天氣資料、感應器資料、Web 記錄，以及此案例中的航班延誤資料儲存到 Azure Blob 儲存體中。
-2. **執行工作。** 在處理該資料時，您就要執行 Windows PowerShell 指令碼 (或用戶端應用程式) 來建立 HDInsight 叢集、執行工具，然後刪除叢集。工作會將輸出資料儲存至 Azure Blob 儲存體。即使在刪除叢集之後，輸出資料仍會保留。因此，您只需要對已耗用的部分付費。
+1. **將資料儲存在 Azure Blob 儲存體中。**  例如，將天氣資料、感應器資料、Web 記錄，以及此案例中的航班延誤資料儲存到 Azure Blob 儲存體中。
+2. **執行工作。**  在處理該資料時，您就要執行 Windows PowerShell 指令碼 (或用戶端應用程式) 來建立 HDInsight 叢集、執行工具，然後刪除叢集。 工作會將輸出資料儲存至 Azure Blob 儲存體。 即使在刪除叢集之後，輸出資料仍會保留。 因此，您只需要對已耗用的部分付費。
 3. **從 Azure Blob 儲存體擷取輸出**，或在此教學課程中將資料匯出至 Azure SQL Database。
 
 下圖說明本教學課程的案例和結構：
 
 ![HDI.FlightDelays.flow][img-hdi-flightdelays-flow]
 
-**注意**：圖表中的號碼對應至章節標題。**M** 代表主要程序。**A** 代表附錄中的內容。
+**注意**：圖表中的號碼對應至章節標題。 **M** 代表主要程序。 **A** 代表附錄中的內容。
 
-教學課程的主要部分將顯示如何使用某個 Windows PowerShell 指令碼執行下列：
+教學課程的主要部分將顯示如何使用某個 Windows PowerShell 指令碼執行下列工作：
 
 * 建立 HDInsight 叢集。
-* 在叢集上執行 Hive 工作，以計算機場的平均延遲。航班延誤資料會儲存在 Azure Blob 儲存體帳戶
+* 在叢集上執行 Hive 工作，以計算機場的平均延遲。 航班延誤資料會儲存在 Azure Blob 儲存體帳戶
 * 執行 Sqoop 工作來匯出 Hive 工作輸出至 Azure SQL Database。
 * 刪除 HDInsight 叢集。
 
 在附錄中，您可以找到上傳航班延誤資料、建立/上傳 Hive 查詢字串和針對 Sqoop 工作準備 Azure SQL Database 的指示。
 
 > [!NOTE]
-> 此文件中的步驟是針對以 Windows 為基礎的 HDInsight 叢集。如需與 Linux 叢集搭配使用的步驟，請參閱[在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)
+> 此文件中的步驟是針對以 Windows 為基礎的 HDInsight 叢集。 如需與 Linux 叢集搭配使用的步驟，請參閱[在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)
 > 
 > 
 
-### 必要條件
-開始進行本教學課程之前，您必須具備下列條件：
+### <a name="prerequisites"></a>必要條件
+開始進行本教學課程之前，您必須具備下列項目：
 
-* **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * **具有 Azure PowerShell 的工作站**。
   
     [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 **本教學課程中使用的檔案**
 
-本教學課程使用取自[創新技術研究管理部運輸統計處或 RITA][rita-website] 的飛行航班準點率資料。資料複本已上傳至具有「公用」Blob 存取權限的 Azure Blob 儲存體容器。PowerShell 指令碼其中一部分會將資料從公用 Blob 容器複製到叢集的預設 Blob 容器。HiveQL 指令碼也會複製到相同的 Blob 容器。如需了解如何將資料放入/上傳至您自己的儲存體帳戶，以及如何建立/上傳 HiveQL 指令碼檔案，請參閱[附錄 A](#appendix-a) 和[附錄 B](#appendix-b)。
+本教學課程使用取自[創新技術研究管理部運輸統計處或 RITA][rita-website] 的飛行航班準點率資料。 資料複本已上傳至具有「公用」Blob 存取權限的 Azure Blob 儲存體容器。 PowerShell 指令碼其中一部分會將資料從公用 Blob 容器複製到叢集的預設 Blob 容器。 HiveQL 指令碼也會複製到相同的 Blob 容器。 如需了解如何將資料放入/上傳至您自己的儲存體帳戶，以及如何建立/上傳 HiveQL 指令碼檔案，請參閱[附錄 A](#appendix-a) 和[附錄 B](#appendix-b)。
 
 下表列出本教學課程中使用的檔案：
 
 <table border="1">
 <tr><th>檔案</th><th>說明</th></tr>
-<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>您將執行的 Hive 工作所用的 HiveQL 指令碼檔案。此指令碼已上傳至具有公用存取的 Azure Blob 儲存體帳戶。<a href="#appendix-b">附錄 B</a> 具有準備和上傳此檔案至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
-<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Hive 工作的輸入資料。此資料已上傳至具有公用存取的 Azure Blob 儲存體帳戶。<a href="#appendix-a">附錄 A</a> 具有取得資料和上傳資料至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
-<tr><td>\tutorials\flightdelays\output</td><td>Hive 工作的輸出路徑。預設容器用來儲存輸出資料。</td></tr>
+<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/flightdelays.hql</td><td>Hive 工作所用的 HiveQL 指令碼檔案。 此指令碼已上傳至具有公用存取的 Azure Blob 儲存體帳戶。 <a href="#appendix-b">附錄 B</a> 具有準備和上傳此檔案至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
+<tr><td>wasbs://flightdelay@hditutorialdata.blob.core.windows.net/2013Data</td><td>Hive 工作的輸入資料。 此資料已上傳至具有公用存取的 Azure Blob 儲存體帳戶。 <a href="#appendix-a">附錄 A</a> 具有取得資料和上傳資料至您自己的 Azure Blob 儲存體帳戶的相關指示。</td></tr>
+<tr><td>\tutorials\flightdelays\output</td><td>Hive 工作的輸出路徑。 預設容器用來儲存輸出資料。</td></tr>
 <tr><td>\tutorials\flightdelays\jobstatus</td><td>預設容器上的 Hive 工作狀態資料夾。</td></tr>
 </table>
 
 
-## 建立叢集和執行 Hive/Sqoop 工作
-Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的方法是建立工作的叢集，並於工作完成之後刪除工作。下列指令碼涵蓋整個程序。如需有關建立 HDInsight 叢集和執行 Hive 工作的詳細資訊，請參閱[在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision]和[搭配 HDInsight 使用 Hive][hdinsight-use-hive]。
+## <a name="create-cluster-and-run-hivesqoop-jobs"></a>建立叢集和執行 Hive/Sqoop 工作
+Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益的方法是建立工作的叢集，並於工作完成之後刪除工作。 下列指令碼涵蓋整個程序。 如需有關建立 HDInsight 叢集和執行 Hive 工作的詳細資訊，請參閱[在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision]和[搭配 HDInsight 使用 Hive][hdinsight-use-hive]。
 
 **使用 Azure PowerShell 執行 Hive 查詢**
 
-1. 使用[附錄 C](#appendix-c) 中的指示，為 Sqoop 工作輸出建立 Azure SQL Database 和資料表。
+1. 使用 [附錄 C](#appendix-c)中的指示，為 Sqoop 工作輸出建立 Azure SQL Database 和資料表。
 2. 開啟 Windows PowerShell ISE 並執行下列指令碼：
    
         $subscriptionID = "<Azure Subscription ID>"
@@ -93,7 +97,7 @@ Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的
         $existingSqlDatabasePassword = "<Azure SQL Database Server login password>"
         $existingSqlDatabaseName = "<Azure SQL Database name>"
    
-        $localFolder = "E:\Tutorials\Downloads" # A temp location for copying files. 
+        $localFolder = "E:\Tutorials\Downloads\" # A temp location for copying files. 
         $azcopyPath = "C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy" # depends on the version, the folder can be different
    
         ###########################################
@@ -234,14 +238,14 @@ Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的
     ![HDI.FlightDelays.AvgDelays.Dataset][image-hdi-flightdelays-avgdelays-dataset]
 
 - - -
-## <a id="appendix-a"></a>附錄 A - 將航班誤點資料上傳至 Azure Blob 儲存體
-上傳資料檔案和 HiveQL 指令碼檔案之前 (請參閱[附錄 B](#appendix-b)) 需要一些規劃。作法是在建立 HDInsight 叢集之前儲存資料檔案和 HiveQL 檔案，並執行 Hive 工作。您有兩個選擇：
+## <a name="a-idappendix-aaappendix-a---upload-flight-delay-data-to-azure-blob-storage"></a><a id="appendix-a"></a>附錄 A - 將航班誤點資料上傳至 Azure Blob 儲存體
+上傳資料檔案和 HiveQL 指令碼檔案之前 (請參閱 [附錄 B](#appendix-b)) 需要一些規劃。 作法是在建立 HDInsight 叢集之前儲存資料檔案和 HiveQL 檔案，並執行 Hive 工作。 您有兩個選擇：
 
-* **使用 HDInsight 將使用的相同 Azure 儲存體帳戶，作為預設檔案系統。** 由於 HDInsight 叢集將具有儲存體帳戶存取金鑰，您將不需進行任何額外的變更。
-* **使用與 HDInsight 叢集預設檔案系統不同的 Azure 儲存體帳戶。** 如果是這樣，您必須修改 Windows PowerShell 指令碼的建立部分 (可在[建立 HDInsight 叢集和執行 Hive/Sqoop 工作](#runjob)中找到)，以將儲存體帳戶納入為額外的儲存體帳戶。如需指示，請參閱[在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision]。HDInsight 叢集便會知道儲存體帳戶的存取金鑰。
+* **使用 HDInsight 將使用的相同 Azure 儲存體帳戶，作為預設檔案系統。**  由於 HDInsight 叢集將具有儲存體帳戶存取金鑰，您將不需進行任何額外的變更。
+* **使用與 HDInsight 叢集預設檔案系統不同的 Azure 儲存體帳戶。** 如果是這樣，您必須修改 Windows PowerShell 指令碼的建立部分 (可在 [建立 HDInsight 叢集和執行 Hive/Sqoop 工作](#runjob) 中找到)，以將儲存體帳戶納入為額外的儲存體帳戶。 如需指示，請參閱[在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision]。 HDInsight 叢集便會知道儲存體帳戶的存取金鑰。
 
 > [!NOTE]
-> 資料檔案的 Blob 儲存體路徑會在 HiveQL 指令碼檔案中硬式編碼。您必須據以更新。
+> 資料檔案的 Blob 儲存體路徑會在 HiveQL 指令碼檔案中硬式編碼。 您必須據以更新。
 > 
 > 
 
@@ -256,10 +260,10 @@ Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的
     <tr><td>篩選期間</td><td>一月</td></tr>
     <tr><td>欄位</td><td>*Year*、*FlightDate*、*UniqueCarrier*、*Carrier*、*FlightNum*、*OriginAirportID*、*Origin*、*OriginCityName*、*OriginState*、*DestAirportID*、*Dest*、*DestCityName*、*DestState*、*DepDelayMinutes*、*ArrDelay*、*ArrDelayMinutes*、*CarrierDelay*、*WeatherDelay*、*NASDelay*、*SecurityDelay*、*LateAircraftDelay* (請清除其餘所有欄位)</td></tr>
     </table>
-3. 按一下 [下載]。
-4. 將檔案解壓縮至 **C:\\Tutorials\\FlightDelay\\2013Data** 資料夾。每個檔案皆為 CSV 檔案，大小約為 60 GB。
-5. 將檔案重新命名為檔案資料所屬月份的名稱。例如，包含一月份資料的檔案，應命名為 *January.csv*。
-6. 重複步驟 2 到 5，以下載 2013 年 12 個月份的檔案。至少要有一個檔案，才能執行此教學課程。
+3. 按一下 [下載] 。
+4. 將檔案解壓縮至 **C:\Tutorials\FlightDelay\2013Data** 資料夾。 每個檔案皆為 CSV 檔案，大小約為 60 GB。
+5. 將檔案重新命名為檔案資料所屬月份的名稱。 例如，包含一月份資料的檔案，應命名為 *January.csv*。
+6. 重複步驟 2 到 5，以下載 2013 年 12 個月份的檔案。 至少要有一個檔案，才能執行此教學課程。  
 
 **將航班誤點資料上傳至 Azure Blob 儲存體**
 
@@ -341,32 +345,32 @@ Hadoop MapReduce 是批次處理。執行 Hive 工作時，最具成本效益的
         #EndRegion
 4. 按 **F5** 以執行指令碼。
 
-如果您選擇使用不同的方法來上傳檔案，請確定檔案路徑為 tutorials/flightdelay/data。存取檔案的語法為：
+如果您選擇使用不同的方法來上傳檔案，請確定檔案路徑為 tutorials/flightdelay/data。 存取檔案的語法為：
 
     wasbs://<ContainerName>@<StorageAccountName>.blob.core.windows.net/tutorials/flightdelay/data
 
-tutorials/flightdelay/data 路徑是您在上傳檔案時所建立的虛擬資料夾。請確認共有 12 個檔案，每個月份各一個。
+tutorials/flightdelay/data 路徑是您在上傳檔案時所建立的虛擬資料夾。 請確認共有 12 個檔案，每個月份各一個。
 
 > [!NOTE]
 > 您必須更新 Hive 查詢，以從新位置讀取。
 > 
-> 您必須設定容器存取權限，使其成為公用，或將儲存體帳戶繫結至 HDInsight 叢集。否則，Hive 查詢字串將無法存取資料檔案。
+> 您必須設定容器存取權限，使其成為公用，或將儲存體帳戶繫結至 HDInsight 叢集。 否則，Hive 查詢字串將無法存取資料檔案。
 > 
 > 
 
 - - -
-## <a id="appendix-b"></a>附錄 B - 建立及上傳 HiveQL 指令碼
-使用 Azure PowerShell 可讓您逐一執行多個 HiveQL 陳述式，或將 HiveQL 陳述式封裝到指令碼檔案中。本節說明如何建立 HiveQL 指令碼，以及使用 Azure PowerShell 將指令碼上傳至 Azure Blob 儲存體。Hive 要求 HiveQL 指令碼必須儲存在 Azure Blob 儲存體中。
+## <a name="a-idappendix-baappendix-b---create-and-upload-a-hiveql-script"></a><a id="appendix-b"></a>附錄 B - 建立及上傳 HiveQL 指令碼
+使用 Azure PowerShell 可讓您逐一執行多個 HiveQL 陳述式，或將 HiveQL 陳述式封裝到指令碼檔案中。 本節說明如何建立 HiveQL 指令碼，以及使用 Azure PowerShell 將指令碼上傳至 Azure Blob 儲存體。 Hive 要求 HiveQL 指令碼必須儲存在 Azure Blob 儲存體中。
 
 HiveQL 指令碼將執行下列作業：
 
-1. **捨棄 delays\_raw 資料表** (若此資料表已存在)。
-2. **建立 delays\_raw 外部 Hive 資料表** (指向含有航班誤點檔案的 Blob 儲存體位置)。此查詢會指定欄位將以 "," 分隔，且每一行都會以 "\\n" 結尾。如此，當欄位值含有逗號時，就會產生問題，因為 Hive 無法區分作為欄位分隔符號的逗號，與屬於欄位值的逗號 (在 ORIGIN\_CITY\_NAME 和 DEST\_CITY\_NAME 的欄位值中，就會出現此狀況)。為解決此問題，查詢會建立 TEMP 資料行來放置不當分割為資料行的資料。
-3. **捨棄 delays 資料表** (若此資料表已存在)。
-4. **建立 delays 資料表**。此資料表有助於您在進一步處理之前先清除資料。此查詢會從 delays\_raw 資料表建立新資料表 *delays*。請注意，TEMP 資料行 (如前所述) 並不會複製，並且會使用 **substring** 函數來移除資料中的引號。
-5. **計算天候誤點平均值，並依城市名稱將結果分組。** 此作業也會將結果輸出至 Blob 儲存體。請注意，查詢將會移除資料中的上標號並將排除 **weather\_delay** 值為 null 的資料列。這是必要動作，因為 Sqoop (稍後使用於本教學課程) 預設不會正常處理這些值。
+1. **捨棄 delays_raw 資料表** (若此資料表已存在)。
+2. **建立 delays_raw 外部 Hive 資料表** (指向含有航班誤點檔案的 Blob 儲存體位置)。 此查詢會指定欄位將以 "," 分隔，且每一行都會以 "\n" 結尾。 如此，當欄位值含有逗號時，就會產生問題，因為 Hive 無法區分作為欄位分隔符號的逗號，與屬於欄位值的逗號 (在 ORIGIN\_CITY\_NAME 和 DEST\_CITY\_NAME 的欄位值中，就會出現此狀況)。 為解決此問題，查詢會建立 TEMP 資料行來放置不當分割為資料行的資料。  
+3. **捨棄 delays 資料表**(若此資料表已存在)。
+4. **建立 delays 資料表**。 此資料表有助於您在進一步處理之前先清除資料。 此查詢會從 delays_raw 資料表建立新資料表 *delays*。 請注意，TEMP 資料行 (如前所述) 並不會複製，並且會使用 **substring** 函數來移除資料中的引號。
+5. **計算天候誤點平均值，並依城市名稱將結果分組。**  此作業也會將結果輸出至 Blob 儲存體。 請注意，查詢將會移除資料中的上標號並將排除 **weather_delay** 值為 null 的資料列。 這是必要動作，因為 Sqoop (稍後使用於本教學課程) 預設不會正常處理這些值。
 
-如需 HiveQL 命令的完整清單，請參閱 [Hive 資料定義語言][hadoop-hiveql]。每個 HiveQL 命令都必須以分號結尾。
+如需 HiveQL 命令的完整清單，請參閱 [Hive 資料定義語言][hadoop-hiveql]。 每個 HiveQL 命令都必須以分號結尾。
 
 **建立 HiveQL 指令碼檔案**
 
@@ -547,23 +551,23 @@ HiveQL 指令碼將執行下列作業：
    
     以下是指令碼中使用的三個變數：
    
-   * **$hqlLocalFileName** - 指令碼會先將 HiveQL 指令碼檔案儲存在本機，然後才上傳至 Blob 儲存體。這是檔名。預設值為 <u>C:\\tutorials\\flightdelay\\flightdelays.hql</u>。
-   * **$hqlBlobName** - 這是 Azure Blob 儲存體中使用的 HiveQL 指令碼檔案 Blob 名稱。預設值為 tutorials/flightdelay/flightdelays.hql。因為檔案會直接寫入 Azure Blob 儲存體，所以 Blob 名稱開頭「沒有」"/"。如果您要從 Blob 儲存體存取檔案，則必須在檔名開頭加上 "/"。
+   * **$hqlLocalFileName** - 指令碼會先將 HiveQL 指令碼檔案儲存在本機，然後才上傳至 Blob 儲存體。 這是檔名。 預設值為 <u>C:\tutorials\flightdelay\flightdelays.hql</u>。
+   * **$hqlBlobName** - 這是 Azure Blob 儲存體中使用的 HiveQL 指令碼檔案 Blob 名稱。 預設值為 tutorials/flightdelay/flightdelays.hql。 因為檔案會直接寫入 Azure Blob 儲存體，所以 Blob 名稱開頭「沒有」"/"。 如果您要從 Blob 儲存體存取檔案，則必須在檔名開頭加上 "/"。
    * **$srcDataFolder** 和 **$dstDataFolder** - = "tutorials/flightdelay/data" = "tutorials/flightdelay/output"
 
 - - -
-## <a id="appendix-c"></a>附錄 C - 針對 Sqoop 工作輸出準備 Azure SQL Database
+## <a name="a-idappendix-caappendix-c---prepare-an-azure-sql-database-for-the-sqoop-job-output"></a><a id="appendix-c"></a>附錄 C - 針對 Sqoop 工作輸出準備 Azure SQL Database
 **準備 SQL 資料庫 (將這部分與 Sqoop 指令碼合併)**
 
 1. 準備參數：
    
     <table border="1">
     <tr><th>變數名稱</th><th>注意事項</th></tr>
-    <tr><td>$sqlDatabaseServerName</td><td>Azure SQL Database 伺服器的名稱。不輸入則會建立新的伺服器。</td></tr>
-    <tr><td>$sqlDatabaseUsername</td><td>Azure SQL Database 的登入名稱。如果 $sqlDatabaseServerName 是現有的伺服器，登入和登入密碼會用來向伺服器驗證。否則會建立新的伺服器。</td></tr>
+    <tr><td>$sqlDatabaseServerName</td><td>Azure SQL Database 伺服器的名稱。 不輸入則會建立新的伺服器。</td></tr>
+    <tr><td>$sqlDatabaseUsername</td><td>Azure SQL Database 的登入名稱。 如果 $sqlDatabaseServerName 是現有的伺服器，登入和登入密碼會用來向伺服器驗證。 否則會建立新的伺服器。</td></tr>
     <tr><td>$sqlDatabasePassword</td><td>Azure SQL Database 的登入密碼。</td></tr>
     <tr><td>$sqlDatabaseLocation</td><td>只有在建立新的 Azure 資料庫伺服器時才會使用此值。</td></tr>
-    <tr><td>$sqlDatabaseName</td><td>用來建立 Sqoop 工作的 AvgDelays 資料表的 SQL Database。保留空白會建立名為 HDISqoop 的資料庫。Sqooop 工作輸出的資料表名稱為 AvgDelays。</td></tr>
+    <tr><td>$sqlDatabaseName</td><td>用來建立 Sqoop 工作的 AvgDelays 資料表的 SQL Database。 保留空白會建立名為 HDISqoop 的資料庫。 Sqooop 工作輸出的資料表名稱為 AvgDelays。 </td></tr>
     </table>
 2. 開啟 Azure PowerShell ISE。
 3. 將下列指令碼複製並貼到指令碼窗格中：
@@ -689,25 +693,25 @@ HiveQL 指令碼將執行下列作業：
         Write-host "`nEnd of the PowerShell script" -ForegroundColor Green
    
    > [!NOTE]
-   > 指令碼使用具象狀態傳輸 (REST) 服務 (http://bot.whatismyipaddress.com) 來擷取外部 IP 位址。IP 位址用來建立 SQL Database 伺服器的防火牆規則。
+   > 指令碼使用具象狀態傳輸 (REST) 服務 http://bot.whatismyipaddress.com 來擷取外部 IP 位址。 IP 位址用來建立 SQL Database 伺服器的防火牆規則。  
    > 
    > 
    
     以下是指令碼中使用的一些常數：
    
-   * **$ipAddressRestService** - 預設值為 http://bot.whatismyipaddress.com這是用來取得外部 IP 位址的公用 IP 位址 REST 服務。想要的話，您可以使用其他服務。透過此服務所擷取的外部 IP 位址將用來建立 Azure SQL Database 伺服器的防火牆規則，讓您能夠從工作站存取資料庫 (使用 Windows PowerShell 指令碼)。
-   * **$fireWallRuleName** - 這是 Azure SQL Database 伺服器的防火牆規則名稱。預設名稱為 <u>FlightDelay</u>。想要的話，您可以將它重新命名。
-   * **$sqlDatabaseMaxSizeGB** - 只有在建立新的 Azure SQL Database 伺服器時才會使用此值。預設值為 10GB。10GB 足夠供本教學課程使用。
-   * **$sqlDatabaseName** - 只有在建立新的 Azure SQL Database 時才會使用此值。預設值為 HDISqoop。如果將它重新命名，則必須相應地更新 Sqoop Windows PowerShell 指令碼。
+   * **$ipAddressRestService** - 預設值為 http://bot.whatismyipaddress.com。 這是用來取得外部 IP 位址的公用 IP 位址 REST 服務。 想要的話，您可以使用其他服務。 透過此服務所擷取的外部 IP 位址將用來建立 Azure SQL Database 伺服器的防火牆規則，讓您能夠從工作站存取資料庫 (使用 Windows PowerShell 指令碼)。
+   * **$fireWallRuleName** - 這是 Azure SQL Database 伺服器的防火牆規則名稱。 預設名稱為 <u>FlightDelay</u>。 想要的話，您可以將它重新命名。
+   * **$sqlDatabaseMaxSizeGB** - 只有在建立新的 Azure SQL Database 伺服器時才會使用此值。 預設值為 10GB。 10GB 足夠供本教學課程使用。
+   * **$sqlDatabaseName** - 只有在建立新的 Azure SQL Database 時才會使用此值。 預設值為 HDISqoop。 如果將它重新命名，則必須相應地更新 Sqoop Windows PowerShell 指令碼。
 4. 按 **F5** 以執行指令碼。
-5. 驗證指令碼輸出。請確定指令碼已成功執行。
+5. 驗證指令碼輸出。 請確定指令碼已成功執行。
 
-## <a id="nextsteps"></a> 後續步驟
-現在您已了解如何將檔案上傳至 Azure Blob 儲存體、如何使用 Azure Blob 儲存體中的資料填入 Hive 資料表、如何執行 Hive 查詢，以及如何使用 Sqoop 將資料從 HDFS 匯出至 Azure SQL Database。若要深入了解，請參閱下列文章：
+## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
+現在您已了解如何將檔案上傳至 Azure Blob 儲存體、如何使用 Azure Blob 儲存體中的資料填入 Hive 資料表、如何執行 Hive 查詢，以及如何使用 Sqoop 將資料從 HDFS 匯出至 Azure SQL Database。 若要深入了解，請參閱下列文章：
 
 * [開始使用 HDInsight][hdinsight-get-started]
-* [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
-* [在 HDInsight 上使用 Oozie][hdinsight-use-oozie]
+* [搭配 HDInsight 使用 Hive][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Oozie][hdinsight-use-oozie]
 * [搭配 HDInsight 使用 Sqoop][hdinsight-use-sqoop]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
 * [開發 HDInsight 的 Java MapReduce 程式][hdinsight-develop-mapreduce]
@@ -739,4 +743,8 @@ HiveQL 指令碼將執行下列作業：
 [img-hdi-flightdelays-run-hive-job-output]: ./media/hdinsight-analyze-flight-delay-data/HDI.FlightDelays.RunHiveJob.Output.png
 [img-hdi-flightdelays-flow]: ./media/hdinsight-analyze-flight-delay-data/HDI.FlightDelays.Flow.png
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

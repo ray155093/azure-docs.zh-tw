@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 08/31/2016
+ms.date: 12/13/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e5f0062d630a3b54b6c493f19877606e85f52eaa
+ms.sourcegitcommit: 52f2bf14c60dbb062a6f4aec26403c5064bba036
+ms.openlocfilehash: 3dc513e99ad3ac0f4f18f70666ee299a95ee9294
 
 
 ---
@@ -71,7 +71,7 @@ ms.openlocfilehash: e5f0062d630a3b54b6c493f19877606e85f52eaa
 
 <sup>2</sup> 如果多個連接埠都有閘道器設定，將會根據下列[連接埠路由](#routing-metric)所述的連接埠路由順序，決定輸出路由的流量順序。
 
-<sup>3</sup> StorSimple 裝置上的控制器固定 IP 必須可路由傳送，且能夠連線到網際網路。 固定的 IP 位址用來為裝置更新提供服務。 如果裝置控制器無法透過固定 IP 連線到網際網路，您將無法更新您的 StorSimple 裝置。
+<sup>3</sup> StorSimple 裝置上的控制器固定 IP 必須可路由傳送，且能夠直接連線到網際網路或透過設定的 Web Proxy。 固定的 IP 位址用來為裝置更新提供服務。 如果裝置控制器無法透過固定 IP 連線到網際網路，您將無法更新您的 StorSimple 裝置。
 
 > [!IMPORTANT]
 > 請確定防火牆不會修改或解密 StorSimple 裝置和 Azure 之間的任何 SSL 流量。
@@ -241,7 +241,7 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 ### <a name="high-availability-recommendations-for-your-host-computers"></a>主機電腦的高可用性建議
 仔細檢閱這些最佳作法，以確保連接至 StorSimple 裝置之主機的高可用性。
 
-* 使用[二節點檔案伺服器叢集組態]設定 StorSimple[1]。 藉由移除失敗的單點，以及在主機端上建置備援，整個解決方案會變得高度可用。
+* 使用[二節點檔案伺服器叢集組態][1]設定 StorSimple。 藉由移除失敗的單點，以及在主機端上建置備援，整個解決方案會變得高度可用。
 * 使用 Windows Server 2012 (SMB 3.0) 持續可用的 (CA) 共用，以在儲存體控制器的容錯移轉期間獲得高可用性。 如需設定檔案伺服器叢集和 Windows Server 2012 持續可用的共用之其他資訊，請參閱此 [影片示範](http://channel9.msdn.com/Events/IT-Camps/IT-Camps-On-Demand-Windows-Server-2012/DEMO-Continuously-Available-File-Shares)。
 
 ## <a name="next-steps"></a>後續步驟
@@ -253,6 +253,6 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

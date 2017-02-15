@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 中的自訂欄位 | Microsoft Docs
-description: Log Analytics 的自訂欄位功能，可讓您從新增到所收集記錄之屬性的 OMS 資料建立自己的可搜尋欄位。  本文說明用來建立自訂欄位的程序，並透過範例事件提供詳細的逐步解說。
+title: "Log Analytics 中的自訂欄位 | Microsoft Docs"
+description: "Log Analytics 的自訂欄位功能，可讓您從新增到所收集記錄之屬性的 OMS 資料建立自己的可搜尋欄位。  本文說明用來建立自訂欄位的程序，並透過範例事件提供詳細的逐步解說。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: 31572b51-6b57-4945-8208-ecfc3b5304fc
 ms.service: log-analytics
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/18/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b98dcbcf219276bb9a7fd24e7f8c8c8eba806cf0
+
 
 ---
 # <a name="custom-fields-in-log-analytics"></a>Log Analytics 中的自訂欄位
@@ -40,7 +44,7 @@ Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋
 > 
 > 
 
-### <a name="step-1-identify-records-that-will-have-the-custom-field"></a>步驟 1 – 識別將會具有自訂欄位的記錄
+### <a name="step-1--identify-records-that-will-have-the-custom-field"></a>步驟 1 – 識別將會具有自訂欄位的記錄
 第一個步驟是識別會取得自訂欄位的記錄。  一開始您可以先進行 [標準的記錄檔搜尋](log-analytics-log-searches.md) ，然後再選取要做為 Log Analytics 將從中了解之模型的記錄。  當您指定您要將資料擷取到自訂欄位時，便會開啟 [欄位擷取精靈]  供您驗證及精簡準則。
 
 1. 移至 [記錄檔搜尋]  ，然後使用 [查詢來擷取將會具有自訂欄位的記錄](log-analytics-log-searches.md) 。
@@ -49,14 +53,14 @@ Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋
 4. [欄位擷取精靈] 會隨即開啟，而您選取的記錄會顯示在 [主要範例] 資料行。  這些記錄的自訂欄位將會以所選屬性中的相同值來定義。  
 5. 如果已選取的項目未完全符合您想要選取的項目，請選取其他欄位以縮小準則範圍。  若要變更準則的欄位值，您必須先取消，再選取符合您所需準則的不同記錄。
 
-### <a name="step-2-perform-initial-extract"></a>步驟 2 - 執行初始擷取。
+### <a name="step-2---perform-initial-extract"></a>步驟 2 - 執行初始擷取。
 一旦您識別出將會具有自訂欄位的記錄，您就已識別您想要擷取的資料。  Log Analytics 會使用這項資訊來識別類似記錄中的類似模式。  在這之後的步驟中，您將可以驗證結果，並提供更進一步的詳細資料以供 Log Analytics 用於其分析中。
 
 1. 在範例記錄中醒目提示您想要填入自訂欄位的文字。  然後您會看到一個對話方塊，供您提供欄位名稱和執行初始擷取。  字元 **\__CF** 會自動附加上去。
 2. 按一下 [擷取]  以對收集的記錄進行分析。  
 3. [摘要] 和 [搜尋結果] 區段會顯示擷取結果，以供您檢查其正確性。   會顯示用來識別記錄的準則，以及每個所識別之資料值的計數。   會提供符合準則之記錄的詳細清單。
 
-### <a name="step-3-verify-accuracy-of-the-extract-and-create-custom-field"></a>步驟 3 – 驗證擷取的正確性並建立自訂欄位
+### <a name="step-3--verify-accuracy-of-the-extract-and-create-custom-field"></a>步驟 3 – 驗證擷取的正確性並建立自訂欄位
 一旦您執行過初始擷取，Log Analytics 就會根據收集到的資料顯示其結果。  如果結果看起來是正確的，您就可以建立自訂欄位，無須再進行其他工作。  如果不正確，則可以精簡結果以便讓 Log Analytics 提升其邏輯。
 
 1. 如果初始擷取中有任何值不正確，則請按一下錯誤記錄旁的 [編輯] 圖示，然後選取 [修改此醒目提示] 以修改選取項目。
@@ -138,6 +142,9 @@ Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，以使用自訂欄位作為準則來建立查詢。
 * 監視可利用自訂欄位來剖析的[自訂記錄檔](log-analytics-data-sources-custom-logs.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

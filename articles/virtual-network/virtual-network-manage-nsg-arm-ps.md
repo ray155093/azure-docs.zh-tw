@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 93e806457de136d773de2c8121b91491c0cf3de1
-ms.openlocfilehash: f25daf68920c6fe54e739104233173b14bc27f84
+ms.sourcegitcommit: 8ecda7d59b3631b07e807ee018017c75b963dac5
+ms.openlocfilehash: 8eaca4e52363e577c015d9d183f200abedbf4d43
 
 
 ---
@@ -379,25 +379,19 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
 ### <a name="dissociate-an-nsg-from-a-nic"></a>中斷 NSG 與 NIC 的關聯
 若要中斷 **NSG-FrontEnd** NSG 與 **TestNICWeb1** NIC 的關聯，請完成下列步驟：
 
-1. 執行下列命令來擷取現有的 NSG，並將其儲存在變數中：
-
-    ```powershell
-    $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
-    ```
-
-2. 執行下列命令來擷取現有的 NIC，並將其儲存在變數中：
+1. 執行下列命令來擷取現有的 NIC，並將其儲存在變數中：
 
     ```powershell
     $nic = Get-AzureRmNetworkInterface -ResourceGroupName RG-NSG -Name TestNICWeb1
     ```
 
-3. 執行下列命令，將 **NIC** 變數的 **NetworkSecurityGroup** 屬性設定為 **$null**：
+2. 執行下列命令，將 **NIC** 變數的 **NetworkSecurityGroup** 屬性設定為 **$null**：
 
     ```powershell
     $nic.NetworkSecurityGroup = $null
     ```
 
-4. 若要儲存對 NIC 所進行的變更，請執行下列命令：
+3. 若要儲存對 NIC 所進行的變更，請執行下列命令：
 
     ```powershell
     Set-AzureRmNetworkInterface -NetworkInterface $nic
@@ -523,6 +517,6 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

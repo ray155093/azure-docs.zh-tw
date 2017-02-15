@@ -1,19 +1,23 @@
 ---
-title: Azure Monitor 合作夥伴整合 | Microsoft Docs
-description: 了解 Azure Monitor 的監視合作夥伴以及如何存取與合作夥伴進行整合的文件。
+title: "Azure 監視器合作夥伴整合 | Microsoft Docs"
+description: "了解 Azure Monitor 的監視合作夥伴以及如何存取與合作夥伴進行整合的文件。"
 author: johnkemnetz
 manager: rboucher
-editor: ''
+editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
-
+ms.assetid: 01ee13ac-66fc-4edc-8b0c-32f69b986a26
 ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 10/31/2016
 ms.author: johnkem
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8a971b0dc1f216deaa93045857d6220d0fcbf8c1
+
 
 ---
 # <a name="azure-monitor-partner-integrations"></a>Azure 監視器合作夥伴整合
@@ -25,17 +29,19 @@ ms.author: johnkem
 | [![合作夥伴標誌][pagerduty-logo]<br/>**PagerDuty**][pagerduty-anchor] |[![合作夥伴標誌][splunk-logo]<br/>**Splunk**][splunk-anchor] |[![合作夥伴標誌][sumologic-logo]<br/>**Sumo Logic**][sumologic-anchor] |
 
 ## <a name="alertlogic-log-manager"></a>AlertLogic Log Manager
-Alert Logic Log Manager 會收集 VM、應用程式和 Azure 平台記錄檔以進行安全分析和保留。 這包括透過 Azure Insights API 的 Azure 稽核記錄檔。  這項資訊用於偵測 malfeasance 及符合法務遵循需求。
+Alert Logic Log Manager 會收集 VM、應用程式和 Azure 平台記錄檔以進行安全分析和保留。 這包括透過 Azure 監視器 API 的 Azure 稽核記錄檔。  這項資訊用於偵測 malfeasance 及符合法務遵循需求。
 
 [請移至文件。][alertlogic-doc]
 
 ## <a name="appdynamics"></a>AppDynamics
-AppDynamics 應用程式效能管理 (APM) 可讓應用程式擁有者快速針對效能瓶頸進行疑難排解，並將其在 Azure 環境中執行的應用程式效能進行最佳化。 AppDynamics APM 與 Azure Marketplace 順暢地進行整合，並可供監視 Azure 雲端服務 (PaaS) (包括 web 和背景工作角色)、虛擬機器 (IaaS)、遠端服務偵測 (Microsoft Azure 服務匯流排)、Microsoft Azure 佇列 Microsoft Azure 遠端服務 (Azure Blob)、Azure 佇列 (Microsoft 服務匯流排)、資料儲存體及 Microsoft Azure Blob 儲存體使用。 
+AppDynamics 應用程式效能管理 (APM) 可讓應用程式擁有者快速針對效能瓶頸進行疑難排解，並將其在 Azure 環境中執行的應用程式效能進行最佳化。 AppDynamics APM 與 Azure Marketplace 順暢地進行整合，並可供監視 Azure 雲端服務 (PaaS) (包括 web 和背景工作角色)、虛擬機器 (IaaS)、遠端服務偵測 (Microsoft Azure 服務匯流排)、Microsoft Azure 佇列 Microsoft Azure 遠端服務 (Azure Blob)、Azure 佇列 (Microsoft 服務匯流排)、資料儲存體及 Microsoft Azure Blob 儲存體使用。
 
 [請移至文件。][appdynamics-doc]
 
 ## <a name="atlassian-jira"></a>Atlassian JIRA
-敬請期待！
+您可以對 Azure 監視器警示建立 JIRA 票證。
+
+[請移至文件。][atlassian-doc]
 
 ## <a name="cloudmonix"></a>CloudMonix
 CloudMonix 提供 Microsoft Azure 平台的監視、自動化和自我修復服務。
@@ -53,7 +59,8 @@ Datadog 是全球領先的雲端規模應用程式監視服務，將伺服器、
 [請移至文件。][datadog-doc]
 
 ## <a name="dynatrace"></a>Dynatrace
-Dynatrace OneAgent 透過所依據的 Azure 擴充機制與 Azure VM 和應用程式服務進行整合。 如此一來，我們便可以收集有關主機、網路和服務的效能度量。
+Dynatrace OneAgent 透過所依據的 Azure 擴充機制與 Azure VM 和應用程式服務進行整合。
+如此一來，我們便可以收集有關主機、網路和服務的效能度量。
 除了只顯示度量之外，我們還會針對環境進行端對端視覺化，顯示從用戶端至資料庫層級的交易。
 以 AI 為基礎的問題相互關連與完全整合式根本原因分析，包括程式碼和資料庫的方法層級深入見解，讓疑難排解和效能最佳化工作更輕鬆。
 
@@ -68,14 +75,12 @@ OpsGenie 作為由 Azure 所產生警示發送器。 OpsGenie 會根據值勤排
 [請移至文件。][opsgenie-doc]
 
 ## <a name="pagerduty"></a>PagerDuty
-PagerDuty 是業界領先的事件管理解決方案，針對 Azure 度量警示提供第一級支援。 如今，PagerDuty 除了 Azure 服務的平台層級度量通知之外，還支援 Azure Application Insights 警示的通知、自動調整通知與稽核記錄檔事件。 這些增強功能讓使用者能進一步地掌握核心 Azure 平台，同時讓他們充分利用 PagerDuty 的即時回應事件管理功能。 我們透過 webhook 實現擴充的 Azure 整合，以供快速且輕鬆的設定與自訂。
+PagerDuty 是業界領先的事件管理解決方案，針對 Azure 度量警示提供第一級支援。 如今，PagerDuty 除了 Azure 服務的平台層級度量通知之外，還支援 Azure Applications、Azure 監視器警示、自動調整與稽核記錄檔事件的通知。 這些增強功能讓使用者能進一步地掌握核心 Azure 平台，同時讓他們充分利用 PagerDuty 的即時回應事件管理功能。 我們透過 webhook 實現擴充的 Azure 整合，以供快速且輕鬆的設定與自訂。
 
 [請移至文件。][pagerduty-doc]
 
-## <a name="splunk-add-on-for-microsoft-azure"></a>Microsoft Azure 的 Splunk 附加元件
-Microsoft Azure 的 Splunk 附加元件會針對基礎結構和 Microsoft Azure 中執行的網站，收集重要的診斷、效能、稽核及安全性資料。 
-
-效能和診斷資訊是從 Azure 儲存體資料表與 Azure 儲存體 Blob 進行收集。 稽核資料是從 Azure Insights 事件 API 進行收集。 網路安全性群組資料是從 Azure 儲存體 Blob 進行收集。 這個附加元件會包含數個預先建置的面板。 
+## <a name="splunk-add-on-for-microsoft-cloud-services"></a>Microsoft 雲端服務的 Splunk 附加元件
+Microsoft 雲端服務的 Splunk 附加元件[可在這裡的 Splunkbase 取得](https://splunkbase.splunk.com/app/3110/)。
 
 [請移至文件。][splunk-doc]
 
@@ -97,7 +102,7 @@ Microsoft Azure 的 Splunk 附加元件會針對基礎結構和 Microsoft Azure 
 [newrelic-anchor]: #newrelic "NewRelic"
 [opsgenie-anchor]: #opsgenie "OpsGenie"
 [pagerduty-anchor]: #pagerduty "PagerDuty"
-[splunk-anchor]: #splunk-add-on-for-microsoft-azure "Splunk"
+[splunk-anchor]: #splunk-add-on-for-microsoft-cloud-services "Splunk"
 [sumologic-anchor]: #sumologic "Sumo Logic"
 
 <!--Icon references-->
@@ -117,6 +122,7 @@ Microsoft Azure 的 Splunk 附加元件會針對基礎結構和 Microsoft Azure 
 <!--Partner Documentation-->
 [alertlogic-doc]: https://docs.alertlogic.com/userGuides/log-manager-collection-sources.htm "AlertLogic 文件。"
 [appdynamics-doc]: https://docs.appdynamics.com/display/PRO42/Register+for+AppDynamics+for+Windows+Azure "AppDynamics 文件。"
+[atlassian-doc]: https://azure.microsoft.com/blog/automated-notifications-from-azure-monitor-for-atlassian-jira/
 [cloudmonix-doc]: http://cloudmonix.com/features/azure-management/ "CloudMonix 簡介。"
 [cloudyn-doc]: https://www.cloudyn.com/azure-monitoring "Cloudyn 簡介。"
 [datadog-doc]: http://docs.datadoghq.com/integrations/azure/ "DataDog 文件。"
@@ -124,11 +130,11 @@ Microsoft Azure 的 Splunk 附加元件會針對基礎結構和 Microsoft Azure 
 [newrelic-doc]: https://newrelic.com/azure "NewRelic 文件。"
 [opsgenie-doc]: https://www.opsgenie.com/docs/integrations/azure-integration "OpsGenie 文件。"
 [pagerduty-doc]: https://www.pagerduty.com/docs/guides/azure-integration-guide/ "PagerDuty 文件"
-[splunk-doc]: https://splunkbase.splunk.com/app/3084/#/details "Splunk 文件。"
+[splunk-doc]: http://docs.splunk.com/Documentation/AddOns/released/MSCloudServices/About "Splunk 文件。"
 [sumologic-doc]: https://www.sumologic.com/azure "SumoLogic 文件"
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

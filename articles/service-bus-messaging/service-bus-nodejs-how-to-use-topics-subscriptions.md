@@ -1,19 +1,23 @@
 ---
-title: 如何搭配使用服務匯流排主題與 Node.js | Microsoft Docs
-description: 了解如何從 Node.js 應用程式，在 Azure 中使用服務匯流排主題和訂用帳戶。
-services: service-bus
+title: "如何搭配使用服務匯流排主題與 Node.js | Microsoft Docs"
+description: "了解如何從 Node.js 應用程式，在 Azure 中使用服務匯流排主題和訂用帳戶。"
+services: service-bus-messaging
 documentationcenter: nodejs
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: b9f5db85-7b6c-4cc7-bd2c-bd3087c99875
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
+ms.openlocfilehash: d956c392a209522dd6535297316f9ed695207b00
+
 
 ---
 # <a name="how-to-use-service-bus-topics-and-subscriptions"></a>如何使用服務匯流排主題和訂閱
@@ -23,16 +27,16 @@ ms.author: sethm
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
-## <a name="create-a-node.js-application"></a>建立 Node.js 應用程式
+## <a name="create-a-nodejs-application"></a>建立 Node.js 應用程式
 建立空白的 Node.js 應用程式。 如需建立 Node.js 應用程式的相關指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站]、[Node.js 雲端服務][Node.js 雲端服務] (使用 Windows PowerShell) 或使用 WebMatrix 的網站。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
 若要使用服務匯流排，請下載 Node.js Azure 封裝。 此封裝含有一組能與服務匯流排 REST 服務通訊的便利程式庫。
 
-### <a name="use-node-package-manager-(npm)-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
+### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
 1. 使用命令列介面，例如 **PowerShell** (Windows)、**終端機** (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
 2. 在命令視窗中輸入 **npm install azure**，這應該會產生下列輸出：
-   
+
    ```
        azure@0.7.5 node_modules\azure
    ├── dateformat@1.0.2-1.2.3
@@ -120,11 +124,11 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 
 > [!NOTE]
 > 訂用帳戶是持續性的，它們會持續存在，直到本身或相關的主題遭到刪除為止。 如果應用程式含有建立訂用帳戶的邏輯，它應該會先使用 **getSubscription** 方法檢查訂用帳戶是否存在。
-> 
-> 
+>
+>
 
-### <a name="create-a-subscription-with-the-default-(matchall)-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
-如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為 ‘AllMessages’ 的訂閱，並使用預設的 **MatchAll** 篩選器。
+### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
+如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「AllMessages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
 ```
 serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
@@ -143,8 +147,8 @@ serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
 
 > [!NOTE]
 > 由於預設篩選器會自動套用至所有新的訂用帳戶，因此您必須先移除預設篩選器，否則 **MatchAll** 將會覆寫您指定的任何其他篩選器。 您可以使用 **ServiceBusService** 物件的 **deleteRule** 方法移除預設規則。
-> 
-> 
+>
+>
 
 以下範例將建立名為 `HighMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取自訂 **messagenumber** 屬性大於 3 的訊息：
 
@@ -158,8 +162,8 @@ serviceBusService.createSubscription('MyTopic', 'HighMessages', function (error)
 var rule={
     deleteDefault: function(){
         serviceBusService.deleteRule('MyTopic',
-            'HighMessages', 
-            azure.Constants.ServiceBusConstants.DEFAULT_RULE_NAME, 
+            'HighMessages',
+            azure.Constants.ServiceBusConstants.DEFAULT_RULE_NAME,
             rule.handleError);
     },
     create: function(){
@@ -167,10 +171,10 @@ var rule={
             sqlExpressionFilter: 'messagenumber > 3'
         };
         rule.deleteDefault();
-        serviceBusService.createRule('MyTopic', 
-            'HighMessages', 
-            'HighMessageFilter', 
-            ruleOptions, 
+        serviceBusService.createRule('MyTopic',
+            'HighMessages',
+            'HighMessageFilter',
+            ruleOptions,
             rule.handleError);
     },
     handleError: function(error){
@@ -193,8 +197,8 @@ serviceBusService.createSubscription('MyTopic', 'LowMessages', function (error){
 var rule={
     deleteDefault: function(){
         serviceBusService.deleteRule('MyTopic',
-            'LowMessages', 
-            azure.Constants.ServiceBusConstants.DEFAULT_RULE_NAME, 
+            'LowMessages',
+            azure.Constants.ServiceBusConstants.DEFAULT_RULE_NAME,
             rule.handleError);
     },
     create: function(){
@@ -202,10 +206,10 @@ var rule={
             sqlExpressionFilter: 'messagenumber <= 3'
         };
         rule.deleteDefault();
-        serviceBusService.createRule('MyTopic', 
-            'LowMessages', 
-            'LowMessageFilter', 
-            ruleOptions, 
+        serviceBusService.createRule('MyTopic',
+            'LowMessages',
+            'LowMessageFilter',
+            ruleOptions,
             rule.handleError);
     },
     handleError: function(error){
@@ -307,7 +311,7 @@ serviceBusService.receiveSubscriptionMessage('MyTopic', 'HighMessages', { isPeek
 
 * 請參閱[佇列、主題和訂用帳戶][佇列、主題和訂用帳戶]。
 * [SqlFilter][SqlFilter] 的 API 參考資料。
-* 請造訪 GitHub 上的 [Azure SDK for Node][Azure SDK for Node] 儲存機制 (英文)。
+* 請造訪 GitHub 上的 [Azure SDK for Node][Azure SDK for Node] 儲存機制。
 
 [Azure SDK for Node]: https://github.com/Azure/azure-sdk-for-node
 [Azure 傳統入口網站]: https://manage.windowsazure.com
@@ -317,11 +321,10 @@ serviceBusService.receiveSubscriptionMessage('MyTopic', 'HighMessages', { isPeek
 [Node.js 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [建立 Node.js 應用程式並將其部署到 Azure 網站]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
 [使用儲存體的 Node.js 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
-[使用儲存體的 Node.js Web 應用程式]: ../cloud-services/storage-nodejs-use-table-storage-cloud-service-app.md
+[使用儲存體的 Node.js Web 應用程式]: ../storage/storage-nodejs-use-table-storage-cloud-service-app.md
 
 
 
-
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

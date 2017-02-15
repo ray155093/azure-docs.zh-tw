@@ -1,19 +1,23 @@
 ---
-title: 如何將服務匯流排佇列搭配 Ruby 使用 | Microsoft Docs
-description: 了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 Ruby 撰寫。
-services: service-bus
+title: "如何將服務匯流排佇列搭配 Ruby 使用 | Microsoft Docs"
+description: "了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 Ruby 撰寫。"
+services: service-bus-messaging
 documentationcenter: ruby
 author: sethmanheim
 manager: timlt
-editor: ''
-
-ms.service: service-bus
+editor: 
+ms.assetid: 0a11eab2-823f-4cc7-842b-fbbe0f953751
+ms.service: service-bus-messaging
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: ruby
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: bde6cfe0daa95fc64e18be308798263544119b9f
+
 
 ---
 # <a name="how-to-use-service-bus-queues"></a>如何使用服務匯流排佇列
@@ -21,7 +25,7 @@ ms.author: sethm
 
 本指南將說明如何使用服務匯流排佇列。 這些範例均以 Ruby 撰寫，並使用 Azure gem。 本文說明的案例包括**建立佇列、傳送並接收訊息**，以及**刪除佇列**。 如需服務匯流排佇列的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
-## <a name="what-are-service-bus-queues?"></a>什麼是服務匯流排佇列？
+## <a name="what-are-service-bus-queues"></a>什麼是服務匯流排佇列？
 服務匯流排佇列支援*代理傳訊*通訊模型。 使用佇列時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色的佇列來交換訊息。 訊息產生者 (傳送者) 會將訊息遞交給佇列，然後繼續其處理工作。
 訊息取用者 (接收者) 非同步地從佇列中提取訊息並處理。 產生者不必等待取用者的回覆，即可繼續處理及傳送其他訊息。 如果有一或多個競爭取用者，佇列會採取 **先進先出 (FIFO)** 訊息傳遞機制。 亦即，通常由接收者依訊息加入佇列的順序來接收和處理訊息，而且每則訊息只能由一個訊息取用者接收和處理。
 
@@ -154,6 +158,9 @@ azure_service_bus_service.delete_queue_message(message)
 
 若要比較本文所討論的 Azure 服務匯流排佇列與[如何使用 Ruby 的佇列儲存體](../storage/storage-ruby-how-to-use-queue-storage.md)一文中討論的 Azure 佇列，請參閱 [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對照](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

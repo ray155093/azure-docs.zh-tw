@@ -2,8 +2,8 @@
 layout: LandingPage
 description: "了解如何藉由部署和管理複寫，設定實體伺服器和虛擬機器的雲端災害復原和商務持續性。"
 translationtype: Human Translation
-ms.sourcegitcommit: 13d77644673b86be22bf7be40f77d6ebfb1f8baa
-ms.openlocfilehash: d815422edd036711525d8c2f1eea0348295416d5
+ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
+ms.openlocfilehash: b8fe2704e7c68c1fe815d204d424f28fcbdfe75c
 
 ---
 # <a name="site-recovery-documentation"></a>Site Recovery 文件
@@ -80,13 +80,7 @@ ms.openlocfilehash: d815422edd036711525d8c2f1eea0348295416d5
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/site-recovery.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Site Recovery 文件 </div>
-    </a>
-</div>
+
 
 
 
