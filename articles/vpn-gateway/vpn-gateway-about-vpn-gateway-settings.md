@@ -1,10 +1,10 @@
 ---
-title: "關於虛擬網路閘道的 VPN 閘道設定 |Microsoft Docs"
-description: "了解 Azure 虛擬網路的 VPN 閘道設定。"
+title: "交叉部署 Azure 連線的 VPN 閘道設定 | Microsoft Docs"
+description: "了解 Azure 虛擬網路閘道的 VPN 閘道設定。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager,azure-service-management
 ms.assetid: ae665bc5-0089-45d0-a0d5-bc0ab4e79899
@@ -13,18 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/18/2016
+ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fc3c8469657b50e4e09a1849d9c63f4ef1e0c414
+ms.sourcegitcommit: bf262073b46daa8b7dcf50fabf5f455d7d5850e7
+ms.openlocfilehash: 7a4efebcfc1ed38e9efdac293845f4be632e5b08
 
 
 ---
 # <a name="about-vpn-gateway-settings"></a>關於 VPN 閘道設定
-VPN 閘道連線解決方案仰賴多重資源的組態，以在虛擬網路和內部部署位置之間傳送網路流量。 每個資源都包含可設定的設定。 資源和設定的組合決定連線結果。
+VPN 閘道是一種虛擬網路閘道，可透過公用連線在您的虛擬網路和內部部署位置之間傳送加密流量。 您也可以使用 VPN 閘道在虛擬網路之間傳送流量。
 
-本文各節將討論與 **Resource Manager** 部署模型中的 VPN 閘道相關的資源和設定。 您可能會發現使用連線拓撲圖會有助於檢視可用的組態。 您可以在 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) 一文中找到每個連線解決方案的描述和拓撲圖。 
+VPN 閘道連線依賴多個資源的設定，每一個都包含可設定的設定值。 本文中的各節會討論在 **Resource Manager** 部署模型中所建立之虛擬網路 VPN 閘道相關的資源和設定。 您可以在[關於 VPN 閘道](vpn-gateway-about-vpngateways.md) 一文中找到每個連線解決方案的描述和拓撲圖。  
 
 ## <a name="a-namegwtypeagateway-types"></a><a name="gwtype"></a>閘道類型
 每個虛擬網路只能有一個各類型的虛擬網路閘道。 建立虛擬網路閘道時，您必須確定組態的閘道類型是正確的。
@@ -145,6 +145,6 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

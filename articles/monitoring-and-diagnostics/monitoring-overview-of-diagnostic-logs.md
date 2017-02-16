@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/12/2016
+ms.date: 12/20/2016
 ms.author: johnkem; magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 61a54b3cb170b7961a4900d2c353bea48ae83d64
+ms.sourcegitcommit: 142aa206431d05505c7990c5e5b07b3766fb0a37
+ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 
 ---
@@ -26,18 +26,20 @@ ms.openlocfilehash: 61a54b3cb170b7961a4900d2c353bea48ae83d64
 ![診斷記錄檔的邏輯位置](./media/monitoring-overview-of-diagnostic-logs/logical-placement-chart.png)
 
 ## <a name="what-you-can-do-with-diagnostic-logs"></a>診斷記錄檔的用途
-以下是您可以利用診斷檔進行的事：
+以下是您可以利用診斷記錄檔進行的事：
 
-* 將診斷記錄檔儲存到 **儲存體帳戶** 以利稽核或手動檢查。 您可以使用 **診斷設定**指定保留時間 (以天為單位)。
+* 將診斷記錄檔儲存到[**儲存體帳戶**](monitoring-archive-diagnostic-logs.md)以利稽核或手動檢查。 您可以使用 **診斷設定**指定保留時間 (以天為單位)。
 * [將診斷記錄檔串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)，以供第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
-* 以 [OMS Log Analytics](../log-analytics/log-analytics-azure-storage-json.md)
+* 以 [OMS Log Analytics](../log-analytics/log-analytics-azure-storage-json.md) 分析記錄檔
+
+儲存體帳戶或事件中樞命名空間不一定要和資源發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
 
 ## <a name="diagnostic-settings"></a>診斷設定
 非計算資源的診斷記錄檔要使用「診斷設定」來設定。 **診斷設定** ：
 
 * 診斷記錄檔傳送至何處 (儲存體帳戶、事件中樞和/或 OMS Log Analytics)。
 * 傳送何種類別的記錄檔。
-* 診斷記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。 否則，此值範圍介於 1 到 2147483647 之間。 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
+* 診斷記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。 否則，此值範圍介於 1 到 2147483647 之間。 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄檔將被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
 
 透過 Azure 入口網站中資源的 [診斷] 刀鋒視窗、透過 Azure PowerShell 和 CLI 命令、或是透過 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx)，可以輕鬆地設定這些設定。
 
@@ -91,14 +93,13 @@ ms.openlocfilehash: 61a54b3cb170b7961a4900d2c353bea48ae83d64
 
 若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
 
-    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [log analytics workspace id] -Enabled $true
+    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of the log analytics workspace] -Enabled $true
 
-> [!NOTE]
-> 10 月版本的 WorkspaceID 參數無法使用。 它會在 11 月版本中提供使用。
-> 
-> 
+您可以使用下列命令取得 Log Analytics 工作區的資源識別碼︰
 
-您可以在 Azure 入口網站中取得 Log Analytics 工作區識別碼。
+```powershell
+(Get-AzureRmOperationalInsightsWorkspace).ResourceId
+```
 
 您可以結合這些參數讓多個輸出選項。
 
@@ -119,14 +120,7 @@ ms.openlocfilehash: 61a54b3cb170b7961a4900d2c353bea48ae83d64
 
 若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
 
-    azure insights diagnostic set --resourceId <resourceId> --workspaceId <workspaceId> --enabled true
-
-> [!NOTE]
-> 10 月版本的 WorkspaceID 參數無法使用。 它會在 11 月版本中提供使用。
-> 
-> 
-
-您可以在 Azure 入口網站中取得 Log Analytics 工作區識別碼。
+    azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of the log analytics workspace> --enabled true
 
 您可以結合這些參數讓多個輸出選項。
 
@@ -160,7 +154,7 @@ ms.openlocfilehash: 61a54b3cb170b7961a4900d2c353bea48ae83d64
 
 | 服務 | 結構描述與文件 |
 | --- | --- |
-| 軟體負載平衡器 |[Azure 負載平衡器的記錄檔分析 (預覽)](../load-balancer/load-balancer-monitor-log.md) |
+| 負載平衡器 |[Azure 負載平衡器的記錄檔分析 (預覽)](../load-balancer/load-balancer-monitor-log.md) |
 | 網路安全性群組 |[網路安全性群組 (NSG) 的記錄檔分析](../virtual-network/virtual-network-nsg-manage-log.md) |
 | 應用程式閘道 |[應用程式閘道的診斷記錄功能](../application-gateway/application-gateway-diagnostics.md) |
 | 金鑰保存庫 |[Azure 金鑰保存庫記錄](../key-vault/key-vault-logging.md) |
@@ -175,41 +169,42 @@ ms.openlocfilehash: 61a54b3cb170b7961a4900d2c353bea48ae83d64
 | 串流分析 |沒有可用的結構描述。 |
 
 ## <a name="supported-log-categories-per-resource-type"></a>每個資源類型支援的記錄檔類別
-| 資源類型 | 類別 | 類別顯示名稱 |
-| --- | --- | --- |
-| Microsoft.Automation/automationAccounts |JobLogs |作業記錄檔 |
-| Microsoft.Automation/automationAccounts |JobStreams |作業串流 |
-| Microsoft.Batch/batchAccounts |ServiceLog |服務記錄檔 |
-| Microsoft.DataLakeAnalytics/accounts |稽核 |稽核記錄檔 |
-| Microsoft.DataLakeAnalytics/accounts |要求 |要求記錄檔 |
-| Microsoft.DataLakeStore/accounts |稽核 |稽核記錄檔 |
-| Microsoft.DataLakeStore/accounts |要求 |要求記錄檔 |
-| Microsoft.EventHub/namespaces |ArchiveLogs |封存記錄檔 |
-| Microsoft.EventHub/namespaces |OperationalLogs |作業記錄 |
-| Microsoft.KeyVault/vaults |AuditEvent |稽核記錄檔 |
-| Microsoft.Logic/workflows |WorkflowRuntime |工作流程執行階段診斷事件 |
-| Microsoft.Network/networksecuritygroups |NetworkSecurityGroupEvent |網路安全性群組事件 |
-| Microsoft.Network/networksecuritygroups |NetworkSecurityGroupRuleCounter |網路安全性群組規則計數器 |
-| Microsoft.Network/networksecuritygroups |NetworkSecurityGroupFlowEvent |網路安全性群組規則流程事件 |
-| Microsoft.Network/loadBalancers |LoadBalancerAlertEvent |負載平衡器警示事件 |
-| Microsoft.Network/loadBalancers |LoadBalancerProbeHealthStatus |負載平衡器探查健全狀況狀態 |
-| Microsoft.Network/applicationGateways |ApplicationGatewayAccessLog |應用程式閘道存取記錄檔 |
-| Microsoft.Network/applicationGateways |ApplicationGatewayPerformanceLog |應用程式閘道效能記錄檔 |
-| Microsoft.Network/applicationGateways |ApplicationGatewayFirewallLog |應用程式閘道防火牆記錄檔 |
-| Microsoft.Search/searchServices |OperationLogs |作業記錄 |
-| Microsoft.ServerManagement/nodes |RequestLogs |要求記錄檔 |
-| Microsoft.ServiceBus/namespaces |OperationalLogs |作業記錄 |
-| Microsoft.StreamAnalytics/streamingjobs |執行 |執行 |
-| Microsoft.StreamAnalytics/streamingjobs |編寫 |編寫 |
+|資源類型|類別|類別顯示名稱|
+|---|---|---|
+|Microsoft.Automation/automationAccounts|JobLogs|作業記錄檔|
+|Microsoft.Automation/automationAccounts|JobStreams|作業串流|
+|Microsoft.Batch/batchAccounts|ServiceLog|服務記錄檔|
+|Microsoft.DataLakeAnalytics/accounts|稽核|稽核記錄檔|
+|Microsoft.DataLakeAnalytics/accounts|要求|要求記錄檔|
+|Microsoft.DataLakeStore/accounts|稽核|稽核記錄檔|
+|Microsoft.DataLakeStore/accounts|要求|要求記錄檔|
+|Microsoft.EventHub/namespaces|ArchiveLogs|封存記錄檔|
+|Microsoft.EventHub/namespaces|OperationalLogs|作業記錄|
+|Microsoft.KeyVault/vaults|AuditEvent|稽核記錄檔|
+|Microsoft.Logic/workflows|WorkflowRuntime|工作流程執行階段診斷事件|
+|Microsoft.Logic/integrationAccounts|IntegrationAccountTrackingEvents|整合帳戶追蹤事件|
+|Microsoft.Network/networksecuritygroups|NetworkSecurityGroupEvent|網路安全性群組事件|
+|Microsoft.Network/networksecuritygroups|NetworkSecurityGroupRuleCounter|網路安全性群組規則計數器|
+|Microsoft.Network/networksecuritygroups|NetworkSecurityGroupFlowEvent|網路安全性群組規則流程事件|
+|Microsoft.Network/loadBalancers|LoadBalancerAlertEvent|負載平衡器警示事件|
+|Microsoft.Network/loadBalancers|LoadBalancerProbeHealthStatus|負載平衡器探查健全狀況狀態|
+|Microsoft.Network/applicationGateways|ApplicationGatewayAccessLog|應用程式閘道存取記錄檔|
+|Microsoft.Network/applicationGateways|ApplicationGatewayPerformanceLog|應用程式閘道效能記錄檔|
+|Microsoft.Network/applicationGateways|ApplicationGatewayFirewallLog|應用程式閘道防火牆記錄檔|
+|Microsoft.Search/searchServices|OperationLogs|作業記錄|
+|Microsoft.ServerManagement/nodes|RequestLogs|要求記錄檔|
+|Microsoft.ServiceBus/namespaces|OperationalLogs|作業記錄|
+|Microsoft.StreamAnalytics/streamingjobs|執行|執行|
+|Microsoft.StreamAnalytics/streamingjobs|編寫|編寫|
 
 ## <a name="next-steps"></a>後續步驟
 * [將診斷記錄串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 * [使用 Azure 監視器 REST API 變更診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
-* [以 OMS Log Analytics 分析記錄檔](../log-analytics/log-analytics-azure-storage-json.md)
+* [以 OMS Log Analytics 分析記錄檔](../log-analytics/log-analytics-azure-storage.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

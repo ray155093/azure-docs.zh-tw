@@ -4,7 +4,7 @@ description: "本文提供使用 Azure 傳統部署模型建立具有 SSL 卸載
 documentationcenter: na
 services: application-gateway
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: 63f28d96-9c47-410e-97dd-f5ca1ad1b8a4
 ms.service: application-gateway
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 1cb291817462a2af59a17693a29b8667750c877f
-ms.openlocfilehash: b4fc6b09069022967b572327647dd5d848712932
+ms.sourcegitcommit: 1506729fb346a8a67930a5a2cd4c15f375c52e3f
+ms.openlocfilehash: 0f565431f03527c4fac463f93c5664504a90662f
 
 
 ---
@@ -26,8 +26,6 @@ ms.openlocfilehash: b4fc6b09069022967b572327647dd5d848712932
 > * [Azure 入口網站](application-gateway-ssl-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-ssl-arm.md)
 > * [Azure 傳統 PowerShell](application-gateway-ssl.md)
-> 
-> 
 
 Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) 工作階段，以避免 Web 伺服陣列發生高成本的 SSL 解密工作。 SSL 卸載也可以簡化 Web 應用程式的前端伺服器設定和管理。
 
@@ -92,8 +90,6 @@ State..........: Provisioned
 
 > [!NOTE]
 > 憑證密碼必須由 4 到 12 個字元、字母或數字所組成。 不接受使用特殊字元。
-> 
-> 
 
 ## <a name="configure-the-gateway"></a>設定閘道
 
@@ -218,6 +214,6 @@ DnsName       : appgw-4c960426-d1e6-4aae-8670-81fd7a519a43.cloudapp.net
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

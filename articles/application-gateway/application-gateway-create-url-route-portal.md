@@ -4,7 +4,7 @@ description: "了解如何使用入口網站為應用程式閘道建立路徑型
 services: application-gateway
 documentationcenter: na
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: 87bd93bc-e1a6-45db-a226-555948f1feb7
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/13/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0cae4172b9317784e7ed6f671c5722304e2f0e92
+ms.sourcegitcommit: 09aeb63d4c2e68f22ec02f8c08f5a30c32d879dc
+ms.openlocfilehash: 2889716d6b5b6079c311d6a7f1eb97b001098b45
 
 
 ---
@@ -26,8 +26,6 @@ ms.openlocfilehash: 0cae4172b9317784e7ed6f671c5722304e2f0e92
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-create-url-route-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-url-route-arm-ps.md)
-> 
-> 
 
 URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。 它會檢查是否有路由連至針對應用程式閘道中的 URL 清單設定的後端集區，並將網路流量傳送至定義的後端集區。 URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
 
@@ -46,7 +44,7 @@ URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘
 
 ### <a name="step-1"></a>步驟 1
 
-瀏覽到 http://portal.azure.com，然後選取現有的應用程式閘道。 按一下 [規則] 
+瀏覽到 [Azure 入口網站](http://portal.azure.com)，然後選取現有的應用程式閘道。 按一下 [規則] 
 
 ![應用程式閘道概觀][1]
 
@@ -74,8 +72,6 @@ URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘
 
 > [!IMPORTANT]
 > 路徑︰要比對的路徑模式清單。 每個路徑都必須以 / 開頭，而且只有結尾允許使用 "\*"。 有效範例包括 /xyz、/xyz* 或 /xyz/*。  
-> 
-> 
 
 ![已填入資訊的新增路徑型規則刀鋒視窗][2]
 
@@ -90,10 +86,10 @@ URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘
 [1]: ./media/application-gateway-create-url-route-portal/figure1.png
 [2]: ./media/application-gateway-create-url-route-portal/figure2.png
 [3]: ./media/application-gateway-create-url-route-portal/figure3.png
-[案例]: ./media/application-gateway-create-url-route-portal/scenario.png
+[scenario]: ./media/application-gateway-create-url-route-portal/scenario.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

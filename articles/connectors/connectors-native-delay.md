@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e4281c70dc0edd45ff485c64a499291b23ad51b7
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: 5f4f7052d48b4ca4ed91212d970551141e78e852
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: e4281c70dc0edd45ff485c64a499291b23ad51b7
 * 等到工作日再透過電子郵件傳送狀態更新。
 * 延遲工作流程，直到 HTTP 呼叫有時間來完成，才繼續進行並擷取結果。
 
-若要開始在邏輯應用程式中使用延遲動作，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要開始在邏輯應用程式中使用延遲動作，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="use-the-delay-actions"></a>使用延遲動作
 動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](connectors-overview.md)。
@@ -72,11 +72,11 @@ ms.openlocfilehash: e4281c70dc0edd45ff485c64a499291b23ad51b7
 <br>
 
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
+立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

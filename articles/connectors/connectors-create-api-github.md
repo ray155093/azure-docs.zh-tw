@@ -16,8 +16,8 @@ ms.workload: integration
 ms.date: 08/18/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e6468b7e9cde47ca4caf9be14d0ad780a431e6f2
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: 6f336db8c8719b99420b353dca82e36a0d837769
 
 
 ---
@@ -29,7 +29,7 @@ GitHub 是 Web 架構的 Git 儲存機制裝載服務。 它提供所有 Git 分
 > 
 > 
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="triggers-and-actions"></a>觸發程序及動作
 GitHub 連接器可當成動作使用，它有觸發程序。 所有連接器都支援 JSON 和 XML 格式的資料。 
@@ -167,11 +167,11 @@ GitHub 連接器可當成動作使用，它有觸發程序。 所有連接器都
 | repository_url |string |否 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

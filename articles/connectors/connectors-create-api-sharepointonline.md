@@ -16,15 +16,15 @@ ms.workload: integration
 ms.date: 07/19/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 76a37a567ae077e3d0fee7a1bc7f763d4d1c7cf2
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: 3ecf3e30fe2fcb9d6473d7eda450536cddfa97f4
 
 
 ---
 # <a name="get-started-with-the-sharepoint-online-connector"></a>開始使用 SharePoint Online 連接器
 使用 SharePoint Online 連接器來管理 SharePoint 清單。  
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
+若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)來開始。
 
 ## <a name="connect-to-sharepoint-online"></a>連接至 SharePoint Online
 您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
@@ -35,14 +35,14 @@ ms.openlocfilehash: 76a37a567ae077e3d0fee7a1bc7f763d4d1c7cf2
 > 
 
 ## <a name="use-a-sharepoint-online-trigger"></a>使用 SharePoint Online 觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。  
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。  
 
 > [!INCLUDE [Steps to create a SharePoint Online trigger](../../includes/connectors-create-api-sharepointonline-trigger.md)]
 > 
 > 
 
 ## <a name="use-a-sharepoint-online-action"></a>使用 SharePoint Online 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。  
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。  
 
 > [!INCLUDE [Steps to create a SharePoint Online action](../../includes/connectors-create-api-sharepointonline-action.md)]
 > 
@@ -524,11 +524,11 @@ TablesList
 | 預設值 |作業失敗。 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 06/13/2016
 ms.author: dariagrigoriu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3ed0a436b88a0fb3746ba9db75a6af8231f44980
+ms.sourcegitcommit: 4edd2696c9a5709ded6e2a3e352090775335f0d2
+ms.openlocfilehash: 5c101a3eb29e36813f27d6b677f2fd4033eb119a
 
 
 ---
@@ -150,21 +150,21 @@ App Service 支援以各種程式設計語言建立的應用程式。
 * [Git 文件](http://git-scm.com/documentation)
 * [專案 Kudu 文件](https://github.com/projectkudu/kudu/wiki)
 * [持續部署至 Azure App Service](app-service-continuous-deployment.md)
-* [如何使用適用於 Azure 的 PowerShell](../powershell-install-configure.md)
+* [如何使用適用於 Azure 的 PowerShell](/powershell/azureps-cmdlets-docs)
 * [如何使用 Azure 命令列介面](../xplat-cli-install.md)
 
 [Azure App Service]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
-[Azure 開發人員中心]: http://www.windowsazure.com/en-us/develop/overview/
+[Azure Developer Center]: http://www.windowsazure.com/en-us/develop/overview/
 [Azure 入口網站]: https://portal.azure.com
-[Git 網站]: http://git-scm.com
-[安裝 Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
+[Git website]: http://git-scm.com
+[Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
 [Azure 命令列介面]: https://azure.microsoft.com/en-us/documentation/articles/xplat-cli-azure-resource-manager/
 
-[使用 Git 與 CodePlex]: http://codeplex.codeplex.com/wikipage?title=Using%20Git%20with%20CodePlex&referringTitle=Source%20control%20clients&ProjectName=codeplex
-[快速入門 - Mercurial]: http://mercurial.selenic.com/wiki/QuickStart
+[Using Git with CodePlex]: http://codeplex.codeplex.com/wikipage?title=Using%20Git%20with%20CodePlex&referringTitle=Source%20control%20clients&ProjectName=codeplex
+[Quick Start - Mercurial]: http://mercurial.selenic.com/wiki/QuickStart
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

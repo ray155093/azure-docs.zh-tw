@@ -17,8 +17,8 @@ ms.date: 10/04/2016
 ms.author: rasquill
 "\"/": 
 translationtype: Human Translation
-ms.sourcegitcommit: 03d93ac0416a947d43dca66297588c4c5b656a1d
-ms.openlocfilehash: 18ea4ab3ab6b82fd43ee290ece790d61cabf16a4
+ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
+ms.openlocfilehash: 88414392c4ee03e0b140bba0f73e44b6886c4038
 
 
 ---
@@ -162,12 +162,12 @@ Azure CLI 提供兩種命令模式來使用具備不同命令集的 Azure 資源
 如果與帳戶關聯的訂用帳戶僅能對 Active Directory 驗證，進行登出時就會從本機設定檔中刪除訂用帳戶資訊。 不過，如果也已匯入訂用帳戶的發佈設定檔，則進行登出時只會從本機設定檔中刪除 Active Directory 相關的資訊。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要使用 Azure CLI 命令，請參閱 [Resource Manager 模式中的 Azure CLI 命令](virtual-machines/azure-cli-arm-commands.md)和[服務管理模式中的 Azure CLI 命令](virtual-machines-command-line-tools.md)。
+* 若要使用 Azure CLI 命令，請參閱 [Resource Manager 模式中的 Azure CLI 命令](virtual-machines/azure-cli-arm-commands.md)和[服務管理模式中的 Azure CLI 命令](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
 * 若要深入了解 Azure CLI、下載來源程式碼、回報問題，或是參與專案，請造訪 [Azure CLI 的 GitHub 儲存機制](https://github.com/azure/azure-xplat-cli)。
 * 如果您在使用 Azure CLI 或 Azure 方面遇到問題，請造訪 [Azure 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting)(英文)。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

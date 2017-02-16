@@ -1,6 +1,7 @@
 ---
-title: "使用 SqlPackage.exe 判斷 SQL Database 相容性 | Microsoft Docs"
-description: "Microsoft Azure SQL Database, 資料庫移轉, SQL Database 相容性, SqlPackage"
+title: "SQLPackage： Azure SQL Server 資料庫相容性 | Microsoft Docs"
+description: "在本文中，您將學習使用 SqlPackage 來判斷 SQL Server 資料庫是否相容，以將其移轉到 SQL Database"
+keywords: "Microsoft Azure SQL Database, 資料庫移轉, SQL Database 相容性, SqlPackage"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -8,6 +9,7 @@ manager: jhubbard
 editor: 
 ms.assetid: ebe2cf3e-9561-4ede-8fb9-f3e6ce3fb7a6
 ms.service: sql-database
+ms.custom: migrate and move
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
@@ -15,8 +17,8 @@ ms.workload: sqldb-migrate
 ms.date: 11/08/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: e8bb9e5a02a7caf95dae0101c720abac1c2deff3
-ms.openlocfilehash: a3e43c6cb8e26daf7359f935816648bf498407ec
+ms.sourcegitcommit: 6728693290e2c1d6c970c60c7d8ef674764e053c
+ms.openlocfilehash: 834dae604fa87f753e8d050ce7cdfa7e9613f462
 
 
 ---
@@ -32,11 +34,13 @@ ms.openlocfilehash: a3e43c6cb8e26daf7359f935816648bf498407ec
 
 ## <a name="using-sqlpackageexe"></a>使用 SqlPackage.exe
 1. 開啟命令提示字元並變更包含最新版 sqlpackage.exe 的目錄。 此公用程式隨附於最新版的 [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 和 [SQL Server Data Tools for Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx)，或者您也可以直接從 Microsoft 下載中心下載最新版的 [SqlPackage](https://www.microsoft.com/en-us/download/details.aspx?id=53876)。
+
 2. 以環境的下列引數執行下列 SqlPackage 命令：
 
-```   
+   ```   
     sqlpackage.exe /Action:Export /ssn:< server_name > /sdn:< database_name > /tf:< target_file > /p:TableData=< schema_name.table_name > > < output_file > 2>&1
-```   
+   ```   
+
    | 引數 | 說明 |
    | --- | --- |
    | < server_name > |來源伺服器名稱 |
@@ -45,9 +49,10 @@ ms.openlocfilehash: a3e43c6cb8e26daf7359f935816648bf498407ec
    | < schema_name.table_name > |其資料要輸出到目標檔案的資料表 |
    | < output_file > |具有錯誤的輸出檔案的檔案名稱和位置 (若有的話) |
    
-    The reason for the /p:TableName argument is that we only want to test for database compatibility for export to Azure SQL DB V12 rather than export the data from all tables. Unfortunately, the export argument for sqlpackage.exe does not support extracting zero tables. You need to specify at least one table, such as a single small table. The < output_file > contains the report of any errors. The "> 2>&1" string pipes both the standard output and the standard error resulting from the command execution to specified output file.
+    之所以使用 /p:TableData 引數，是因為我們只想要測試資料庫相容性來了解是否能夠匯出到 Azure SQL DB V12，而不想要從所有資料表匯出資料。 遺憾的是，sqlpackage.exe 的匯出引數不支援不擷取任何資料表。 您必須指定至少一個資料表，例如單一的小型資料表。 < output_file > 包含任何錯誤的報告。 "2>&1" 字串會將從命令執行產生的標準輸出和標準錯誤透過管道傳送到指定的輸出檔。
    
-    ![Export a data-tier application from the Tasks menu](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSQLPackage01.png)
+    ![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSQLPackage01.png)
+
 3. 開啟輸出檔案並檢視相容性錯誤 (如果有的話)。 
    
     ![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSQLPackage02.png)
@@ -66,6 +71,6 @@ ms.openlocfilehash: a3e43c6cb8e26daf7359f935816648bf498407ec
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO2-->
 
 

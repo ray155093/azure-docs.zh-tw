@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/16/2016
+ms.date: 12/06/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d47c43201b15a3452871d662038a1246ea403f02
+ms.sourcegitcommit: 3205077236dd44253b3fa36d6eace36fb307871e
+ms.openlocfilehash: 11754bbe534638d8321f509d7d82e025c667176c
 
 
 ---
@@ -60,8 +60,8 @@ Azure Data Factory 的 [複製精靈] 可讓您輕鬆快速地建立管線，以
    2. 選取您的 Azure **訂用帳戶**。
    3. 針對資源群組，請執行下列其中一個步驟︰ 
       
-      1. 選取 [使用現有的] 以選取現有的資源群組。
-      2. 選取 [建立新的] 以輸入資源群組的名稱。
+      - 選取 [使用現有的] 以選取現有的資源群組。
+      - 選取 [建立新的] 以輸入資源群組的名稱。
          
           本教學課程的某些步驟是假設您使用 **ADFTutorialResourceGroup** 做為資源群組名稱。 若要了解資源群組，請參閱 [使用資源群組管理您的 Azure 資源](../azure-resource-manager/resource-group-overview.md)。
    4. 選取 Data Factory 的 [位置]。
@@ -163,6 +163,6 @@ Azure Data Factory 的 [複製精靈] 可讓您輕鬆快速地建立管線，以
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

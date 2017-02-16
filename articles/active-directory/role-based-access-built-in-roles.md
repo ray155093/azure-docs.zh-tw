@@ -1,5 +1,5 @@
 ---
-title: "RBAC：內建角色 | Microsoft Docs"
+title: "Actions 和 NotActions - Azure RBAC 中的角色 | Microsoft Docs"
 description: "本主題說明角色型存取控制 (RBAC) 的內建角色。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 08/25/2016
+ms.date: 01/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 386e8479a64af20469e3e03180348f674b08ef8f
+ms.sourcegitcommit: d00ba4e6d1abd62e5a0d5a9d5bb229d3fa64b473
+ms.openlocfilehash: 8df9faed82a6cf11001e083b7849dd7654bf3c24
 
 
 ---
@@ -28,8 +28,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 > [!NOTE]
 > Azure 角色定義不斷地演變。 本文盡可能保持最新內容，但您永遠可以在 Azure PowerShell 中找到最新的角色定義。 適用時，請使用 Cmdlet `(get-azurermroledefinition "<role name>").actions` 或 `(get-azurermroledefinition "<role name>").notactions`。
-> 
-> 
+>
+>
 
 | 角色名稱 | 說明 |
 | --- | --- |
@@ -555,7 +555,6 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

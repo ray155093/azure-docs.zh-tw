@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: bbe3370442ad4117a1a08d0b23595dd98aaba5b5
+ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
+ms.openlocfilehash: 16e8c4ba332cbaba86a13d7b815d0561618cb28b
 
 
 ---
@@ -66,12 +66,12 @@ ms.openlocfilehash: bbe3370442ad4117a1a08d0b23595dd98aaba5b5
 
     "User ID=<yourusername>; Password=<youruserpassword>; Trusted_Connection=False; Encrypt=True; Connection Timeout=30;”  
 
-在系統管理員認證中，請勿使用 "username@server". 格式的值，而是使用 "username"。  另請注意，連接字串不包含伺服器名稱和資料庫名稱。 這是因為 **OpenConnectionForKey** 呼叫會根據索引鍵自動將連接導向至正確的分區。 因此，不會提供資料庫名稱和伺服器名稱。 
+與系統管理員認證情況相同，請勿使用 "username@server" 格式的值。 請改為只使用 "username"。  另請注意，連接字串不包含伺服器名稱和資料庫名稱。 這是因為 **OpenConnectionForKey** 呼叫會根據索引鍵自動將連接導向至正確的分區。 因此，不會提供資料庫名稱和伺服器名稱。 
 
 ## <a name="see-also"></a>另請參閱
 [管理 Azure SQL Database 的資料庫和登入](sql-database-manage-logins.md)
 
-[保護您的 SQL Database](sql-database-security.md)
+[保護您的 SQL Database](sql-database-security-overview.md)
 
 [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)
 
@@ -80,6 +80,6 @@ ms.openlocfilehash: bbe3370442ad4117a1a08d0b23595dd98aaba5b5
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

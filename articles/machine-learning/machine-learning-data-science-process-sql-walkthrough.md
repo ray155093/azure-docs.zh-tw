@@ -12,16 +12,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/19/2016
 ms.author: fashah;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e9ceeecb3a603cd029117e1b7003aed16628f04f
+ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
+ms.openlocfilehash: 76fe2f70ca297be153d1223a219c9a2b18203a96
 
 
 ---
 # <a name="the-team-data-science-process-in-action-using-sql-server"></a>Team Data Science Process 實務：使用 SQL Server
-在這個教學課程中，您可以遵循逐步解說，使用 SQL Server 和可公開取得的資料集 ( [NYC Taxi Trips (NYC 計程車車程)](http://www.andresmh.com/nyctaxitrips/) 資料集) 建置和部署機器學習服務模型。 程序會遵循標準的資料科學工作流程︰包括擷取和瀏覽資料，以及設計功能以加快學習，接著建置和部署模型。
+在這個教學課程中，您將遵循逐步解說，使用 SQL Server 和可公開取得的資料集 ([NYC Taxi Trips (NYC 計程車車程)](http://www.andresmh.com/nyctaxitrips/) 資料集)，完成建置和部署機器學習服務模型的程序。 程序會遵循標準的資料科學工作流程︰包括擷取和瀏覽資料，以及設計功能以加快學習，接著建置和部署模型。
 
 ## <a name="a-namedatasetanyc-taxi-trips-dataset-description"></a><a name="dataset"></a>NYC 計程車車程資料集
 「NYC 計程車車程」資料大約是 20GB 的 CSV 壓縮檔 (未壓縮時可達 48GB)，其中包含超過 1 億 7300 萬筆個別車程及針對每趟車程支付的費用。 每趟車程記錄包括上車和下車的位置與時間、匿名的計程車司機駕照號碼，以及圓形徽章 (計程車的唯一識別碼) 號碼。 資料涵蓋 2013 年的所有車程，並且每月會在下列兩個資料集中加以提供：
@@ -591,7 +591,7 @@ ms.openlocfilehash: e9ceeecb3a603cd029117e1b7003aed16628f04f
 > [!IMPORTANT]
 > 在前幾節中提供的模型化資料擷取和取樣查詢範例中， **這三個模型化練習的所有標籤都包含於此查詢中**。 每一個模型化練習的重要 (必要) 步驟都是針對其他兩個問題**排除**不需要的標籤，以及任何其他的**目標流失**。 例如，使用二進位分類時，請用 **tipped** 標籤，並排除 **tip\_class**、**tip\_amount** 和 **total\_amount** 欄位。 後者為目標流失，因為它們意指支付的小費。
 > 
-> 若要排除不必要的資料行和 (或) 目標流失，您可以使用[選取資料集中的資料行][select-columns]模組或[編輯中繼資料][edit-metadata]。 如需詳細資訊，請參閱[選取資料集中的資料行][select-columns] 和[編輯中繼資料][edit-metadata]參考頁面。
+> 若要排除不必要的資料行和 (或) 目標流失，您可以使用[選取資料集中的資料行][select-columns]模組或[編輯中繼資料][edit-metadata]。 如需詳細資訊，請參閱[選取資料集中的資料行][select-columns]和[編輯中繼資料][edit-metadata]參考頁面。
 > 
 > 
 
@@ -613,7 +613,7 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。 �
 2. 識別邏輯 **輸入連接埠** ，表示預期的輸入資料結構描述。
 3. 識別邏輯 **輸出連接埠** ，表示預期的 Web 服務輸出結構描述。
 
-建立計分實驗時，請檢閱它，並視需要進行調整。 典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。 若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。 針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，只包含**評分標籤**和**評分機率**。
+建立計分實驗時，請檢閱它，並視需要進行調整。 典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。 若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。 針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，只包含**計分標籤**和**計分機率**。
 
 下圖為計分實驗範例。 準備部署時，請按下方動作列中的 [發佈 Web 服務]  按鈕。
 
@@ -656,6 +656,6 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。 �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

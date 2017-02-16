@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/02/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c90fe9e9f088e8af80b5d9dcf7ab5b970034122f
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a1d30c77dd29a134017be7deec6bb50991e6a698
 
 
 ---
@@ -42,10 +42,10 @@ Azure 資料湖存放區是與 Hadoop 分散式檔案系統 (HDFS) 相容的 Apa
 ### <a name="unlimited-storage-petabyte-files"></a>無限制的儲存空間、PB 檔案
 Azure 資料湖存放區提供無限制的儲存空間，適合用來儲存各種資料以供分析。 對於帳戶大小、檔案大小，或資料湖中可儲存的資料量，均無任何限制。 個別檔案的大小可從 KB 到 PB，很適合用來儲存任何類型的資料。 藉由製作多個複本來長期儲存資料，而資料可以儲存在資料湖中的持續時間並沒有限制。
 
-### <a name="performancetuned-for-big-data-analytics"></a>針對巨量資料分析調整效能
+### <a name="performance-tuned-for-big-data-analytics"></a>針對巨量資料分析調整效能
 Azure 資料湖存放區專為執行大型分析系統而建置，而這類系統需要龐大輸送量才能查詢及分析大量資料。 資料湖會將檔案的各個部分散於數個個別的儲存體伺服器。 這可改善以平行方式讀取檔案以便執行資料分析時的輸送量。
 
-### <a name="enterpriseready-highlyavailable-and-secure"></a>符合企業需求：高度可用且安全
+### <a name="enterprise-ready-highly-available-and-secure"></a>符合企業需求：高度可用且安全
 Azure 資料湖存放區提供符合業界標準的可用性和可靠性。 您的資料資產可藉由製作備援複本來長期儲存，以防範任何未預期的失敗。 企業可以在其解決方案中使用 Azure 資料湖，以成為其現有資料平台的重要部分。
 
 資料湖存放區也可對預存資料提供企業級安全性。 如需詳細資訊，請參閱 [在 Azure 資料湖中保護資料](#DataLakeStoreSecurity)。
@@ -105,6 +105,6 @@ Azure Data Lake Store 與 Hadoop 生態系統中的大多數開放原始碼元�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

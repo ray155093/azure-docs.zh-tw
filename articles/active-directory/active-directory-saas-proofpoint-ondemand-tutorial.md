@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/05/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5c6129050dacf098fa60439175b91b3a2d219182
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 7aa746b8c6f4b747a7dca0e9bf75e61b2707b7e1
 
 
 ---
@@ -169,7 +169,7 @@ Proofpoint on Demand 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 方塊中的值。
    
-    b. 按一下 [完成]。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="create-a-proofpoint-on-demand-test-user"></a>建立 Proofpoint on Demand 測試使用者
 在本節中，您會在 Proofpoint on Demand 中建立名為 Britta Simon 的使用者。 請與 Proofpoint on Demand 支援小組合作，在 Proofpoint on Demand 平台中新增使用者。
@@ -222,6 +222,6 @@ Proofpoint on Demand 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

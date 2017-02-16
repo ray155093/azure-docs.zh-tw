@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/04/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 95068f046c57bd65b5258771a272e70124f3dd12
+ms.sourcegitcommit: a957a70be915459baa8c687c92e251c6011b6172
+ms.openlocfilehash: 41bef0e62c86e5cc3c27d02702a1b330fc76c915
 
 
 ---
@@ -26,8 +26,8 @@ Microsoft Azure PowerShell 是一種指令碼環境，可讓您用來控制及�
 ## <a name="prerequisites"></a>必要條件
 在開始之前，您將需要下列項目：
 
-* Azure 訂用帳戶。 Azure 是訂閱型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項][購買選項]、[成員優惠][成員優惠]或[免費帳戶][免費帳戶]。
-* 具備 Azure PowerShell 的電腦。 如需指示，請參閱[安裝並設定 Azure PowerShell][安裝並設定 Azure PowerShell]。
+* Azure 訂用帳戶。 Azure 是訂閱型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項][purchase options]、[成員優惠][member offers]或[免費帳戶][free account]。
+* 具備 Azure PowerShell 的電腦。 如需指示，請參閱[安裝和設定 Azure PowerShell][Install and configure Azure PowerShell]。
 * 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
 
 ## <a name="include-a-reference-to-the-net-assembly-for-service-bus"></a>包括對服務匯流排之 .NET 組件的參考
@@ -113,7 +113,7 @@ catch [System.Exception]
     ```
 
 ## <a name="provisioning-other-service-bus-entities"></a>佈建其他服務匯流排實體
-若要佈建其他實體 (例如佇列、主題和事件中樞)，您可以使用[服務匯流排的 .NET API][服務匯流排的 .NET API]。 本文結尾處會參考更多詳細的範例 (包括其他實體)。
+若要佈建其他實體 (例如佇列、主題和事件中樞)，您可以使用[服務匯流排的 .NET API][.NET API for Service Bus]。 本文結尾處會參考更多詳細的範例 (包括其他實體)。
 
 ### <a name="create-an-event-hub"></a>建立事件中心
 這部分的指令碼會再建立四個區域變數。 這些變數可用來具現化 `EventHubDescription` 物件。 指令碼會執行下列作業：
@@ -259,18 +259,18 @@ catch [System.Exception]
 
 <!--Anchors-->
 
-[購買選項]: http://azure.microsoft.com/pricing/purchase-options/
-[成員優惠]: http://azure.microsoft.com/pricing/member-offers/
-[免費帳戶]: http://azure.microsoft.com/pricing/free-trial/
+[purchase options]: http://azure.microsoft.com/pricing/purchase-options/
+[member offers]: http://azure.microsoft.com/pricing/member-offers/
+[free account]: http://azure.microsoft.com/pricing/free-trial/
 [服務匯流排 NuGet 封裝]: http://www.nuget.org/packages/WindowsAzure.ServiceBus/
 [Get-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495122.aspx
 [New-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495165.aspx
 [Get-AzureSBAuthorizationRule]: https://msdn.microsoft.com/library/azure/dn495113.aspx
-[服務匯流排的 .NET API]: https://msdn.microsoft.com/en-us/library/azure/mt419900.aspx
-[安裝並設定 Azure PowerShell]: ../powershell-install-configure.md
+[.NET API for Service Bus]: https://msdn.microsoft.com/en-us/library/azure/mt419900.aspx
+[Install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

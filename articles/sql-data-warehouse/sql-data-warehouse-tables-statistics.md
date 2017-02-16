@@ -15,20 +15,20 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: fb76a6b58a88b2c80958c867f02a0f43d3b0fe25
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: b2b99ec031ea26b4ab19e7327da035788661a0a8
 
 
 ---
 # <a name="managing-statistics-on-tables-in-sql-data-warehouse"></a>管理 SQL 資料倉儲中的資料表的統計資料
 > [!div class="op_single_selector"]
-> * [概觀][概觀]
-> * [資料類型][資料類型]
-> * [散發][散發]
-> * [Index][Index]
-> * [資料分割][資料分割]
-> * [統計資料][統計資料]
-> * [暫存][暫存]
+> * [概觀][Overview]
+> * [資料類型][Data Types]
+> * [散發][Distribute]
+> * [索引][Index]
+> * [資料分割][Partition]
+> * [統計資料][Statistics]
+> * [暫存][Temporary]
 > 
 > 
 
@@ -95,7 +95,7 @@ WHERE
 
 例如，資料倉儲中的日期資料行通常需要經常更新統計資料。 每次有新資料列載入資料倉儲時，就會加入新的載入日期或交易日期。 這些會改變資料散發情況並使統計資料過時。  相反地，客戶資料表上性別資料行的統計資料可能永遠不需要更新。 假設客戶間的散發固定不變，將新資料列加入至資料表變化並不會改變資料散發情況。 不過，如果資料倉儲只包含一種性別，而新的需求導致多種性別，您肯定需要更新性別資料行的統計資料。
 
-如需進一步說明，請參閱 MSDN 上的[統計資料][統計資料]。
+如需進一步說明，請參閱 MSDN 上的[統計資料][Statistics]。
 
 ## <a name="implementing-statistics-management"></a>實作統計資料管理
 擴充您的資料載入程序通常是個不錯的主意，可確保在載入結束時更新統計資料。 當資料表變更其大小和/或其值散發時，資料載入最為頻繁。 因此，這是實作某些管理程序的合理位置。
@@ -113,7 +113,7 @@ WHERE
 > 
 > 
 
-如需進一步說明，請參閱 MSDN 上的[基數估計][基數估計]。
+如需進一步說明，請參閱 MSDN 上的[基數估計][Cardinality Estimation]。
 
 ## <a name="examples-create-statistics"></a>範例：建立統計資料
 下列範例顯示如何使用各種選項來建立統計資料。 您用於每個資料行的選項取決於您的資料特定以及在查詢中使用資料行的方式。
@@ -350,9 +350,9 @@ UPDATE STATISTICS dbo.table1;
 > 
 > 
 
-如需 `UPDATE STATISTICS` 程序的實作，請參閱 [暫存資料表][暫存] 一文。 實作方法與上述的 `CREATE STATISTICS` 程序有點不同，但最終結果相同。
+如需 `UPDATE STATISTICS` 程序的實作，請參閱[暫存資料表][Temporary]一文。 實作方法與上述的 `CREATE STATISTICS` 程序有點不同，但最終結果相同。
 
-如需完整語法，請參閱 MSDN 上的[更新統計資料][更新統計資料]。
+如需完整語法，請參閱 MSDN 上的[更新統計資料][Update Statistics]。
 
 ## <a name="statistics-metadata"></a>統計資料中繼資料
 您可利用數個系統檢視和函式來尋找統計資料相關資訊。 例如，使用 stats-date 函式來查看最後建立或更新統計資料的時間，即可查看統計資料物件是否可能過期。
@@ -464,25 +464,25 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1) WITH histogram, density_vector
 7. 不支援自訂錯誤 2767
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱 MSDN 上的 [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS]。  若要深入了解，請參閱[資料表概觀][概觀]、[資料表資料類型][資料類型]、[散發資料表][散發]、[編製資料表的索引][Index]、[分割資料表][資料分割]及[暫存資料表][暫存]等文章。  如需最佳做法的詳細資訊，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data 資料倉儲最佳做法]。  
+如需詳細資訊，請參閱 MSDN 上的 [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS]。  若要深入了解，請參閱[資料表概觀][Overview]、[資料表的資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]和[暫存資料表][Temporary]等文章。  若要深入了解最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][SQL Data Warehouse Best Practices]。  
 
 <!--Image references-->
 
 <!--Article references-->
-[概觀]: ./sql-data-warehouse-tables-overview.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[散發]: ./sql-data-warehouse-tables-distribute.md
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
-[資料分割]: ./sql-data-warehouse-tables-partition.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[暫存]: ./sql-data-warehouse-tables-temporary.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->  
-[基數估計]: https://msdn.microsoft.com/library/dn600374.aspx
+[Cardinality Estimation]: https://msdn.microsoft.com/library/dn600374.aspx
 [CREATE STATISTICS]: https://msdn.microsoft.com/library/ms188038.aspx
 [DBCC SHOW_STATISTICS]:https://msdn.microsoft.com/library/ms174384.aspx
-[統計資料]: https://msdn.microsoft.com/library/ms190397.aspx
+[Statistics]: https://msdn.microsoft.com/library/ms190397.aspx
 [STATS_DATE]: https://msdn.microsoft.com/library/ms190330.aspx
 [sys.columns]: https://msdn.microsoft.com/library/ms176106.aspx
 [sys.objects]: https://msdn.microsoft.com/library/ms190324.aspx
@@ -497,6 +497,6 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1) WITH histogram, density_vector
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "IoT 安全性最佳做法 | Microsoft Docs"
-description: "保護您 IoT 基礎結構的安全性最佳作法"
+title: "Azure IoT 安全性最佳做法 | Microsoft Docs"
+description: "保護 IoT 基礎結構的 IoT 安全性最佳做法。 包含適用於解決方案開發人員、解決方案部署人員和解決方案操作員的建議。"
 services: iot-hub
 documentationcenter: 
 author: YuriDio
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/17/2016
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3cb4764b6c824790bf5864d2446435168db4d708
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: b5c3257f6e2134a3e7e7eb9b4a12b95ebb70535e
 
 
 ---
@@ -30,7 +30,7 @@ ms.openlocfilehash: 3cb4764b6c824790bf5864d2446435168db4d708
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [使用 IoT 閘道器 SDK 來模擬裝置][lnk-gateway]
+* [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
 
 [lnk-security-architecture]: iot-hub-security-architecture.md
 [lnk-security-deployment]: iot-hub-security-deployment.md
@@ -39,6 +39,6 @@ ms.openlocfilehash: 3cb4764b6c824790bf5864d2446435168db4d708
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/23/2016
 ms.author: b-hoedid
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 115d35bd56918ad8e93a9032cbff6e84a7b70e0c
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: 5f3e1f264d126ab5b1fdda312f8e4f47d0b114e7
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 115d35bd56918ad8e93a9032cbff6e84a7b70e0c
 
 我已使用 BizTalk Server 許多年，這是使用 [WCF LOB 配接器](https://msdn.microsoft.com/library/bb798128.aspx)時非常常見的案例。 因此我決定查看是否可以在新增和/或已修改過文件的 DocumentDB 中複製此功能。
 
-本文提供變更通知解決方案的元件概觀，其中包含[觸發程序](documentdb-programming.md#trigger)和[邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)。 重要程式碼片段會以內嵌方式提供，並可在 [GitHub](https://github.com/HEDIDIN/DocDbNotifications)上取得整個解決方案。
+本文提供變更通知解決方案的元件概觀，其中包含[觸發程序](documentdb-programming.md#trigger)和[邏輯應用程式](../logic-apps/logic-apps-what-are-logic-apps.md)。 重要程式碼片段會以內嵌方式提供，並可在 [GitHub](https://github.com/HEDIDIN/DocDbNotifications)上取得整個解決方案。
 
 ## <a name="use-case"></a>使用案例
 下列案例是這篇文章的使用案例。
@@ -72,12 +72,12 @@ IT 部門表示他們可以輕鬆提供此通知。 他們還表示可以將文�
    > Blob 儲存體需要 Azure 儲存體帳戶。 您必須佈建 Azure Blob 儲存體帳戶，並加入名為 patients 的新 Blob。 如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)和[開始使用 Azure Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)。
    > 
    > 
-5. 最後會傳送電子郵件，通知收件者已找到的文件數目。 如果找不到任何文件，電子郵件本文會是「找到 0 份文件」。 
+5. 最後會傳送電子郵件，通知收件者已找到的文件數目。 如果找不到任何文件，電子郵件本文會是「找到&0; 份文件」。 
 
 您現在已了解工作流程的作用，讓我們看看其實作方式。
 
 ### <a name="lets-start-with-the-main-logic-app"></a>我們從主要邏輯應用程式開始討論。
-如果您不熟悉 Logic Apps，可以在 [Azure Marketplace](https://portal.azure.com/) 加以取得，而且您可以在[什麼是 Logic Apps？](../app-service-logic/app-service-logic-what-are-logic-apps.md)中進一步了解
+如果您不熟悉 Logic Apps，可以在 [Azure Marketplace](https://portal.azure.com/) 加以取得，而且您可以在[什麼是 Logic Apps？](../logic-apps/logic-apps-what-are-logic-apps.md)中進一步了解
 
 當您建立新的邏輯應用程式時，系統會詢問您**您要如何開始？**
 
@@ -751,7 +751,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 HTTP 作業是一個 POST。 
 
- authorization 參數位於觸發程序屬性中
+authorization 參數位於觸發程序屬性中
 
 ```JSON
 
@@ -829,7 +829,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-這會傳回在電子郵件本文中傳送的相同值。 下圖顯示「找到 29 筆記錄」的範例。
+這會傳回在電子郵件本文中傳送的相同值。 下圖顯示「找到&29; 筆記錄」的範例。
 
 ![結果](./media/documentdb-change-notification/logic-app-run.png)
 
@@ -887,7 +887,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-觸發程序已設定為 24 個小時的週期。 此動作是 HTTP POST，其使用主要邏輯應用程式的回呼 URL。 主體包含 JSON 結構描述中所指定的參數。 
+觸發程序已設定為&24; 個小時的週期。 此動作是 HTTP POST，其使用主要邏輯應用程式的回呼 URL。 主體包含 JSON 結構描述中所指定的參數。 
 
 #### <a name="operations"></a>Operations
 ##### <a name="request"></a>要求
@@ -1132,6 +1132,6 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

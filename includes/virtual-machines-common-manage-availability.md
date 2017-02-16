@@ -44,17 +44,17 @@
 
 1. **將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中**
 2. 將更多 VHD 加入至儲存體帳戶時，應將**儲存體帳戶[限制](../articles/storage/storage-scalability-targets.md)納入考量**
-3. **針對每個可用性設定組使用多個儲存體帳戶。** 針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。 位於相同可用性設定組的多個 VM 絕對不能共用相同的儲存體帳戶。 只要遵循上述最佳做法，便可以讓位於不同可用性設定組的 VM 共用儲存體帳戶
+3. **針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。** 位於相同可用性設定組的多個 VM 絕對不能共用相同的儲存體帳戶。 只要遵循上述最佳做法，便可以讓位於不同可用性設定組的 VM 共用儲存體帳戶
 
 <!-- Link references -->
 [針對備援在可用性設定組中設定多部虛擬機器]: #configure-multiple-virtual-machines-in-an-availability-set-for-redundancy
 [將每個應用程式層設定至不同的可用性設定組中]: #configure-each-application-tier-into-separate-availability-sets
 [將負載平衡器與可用性設定組結合]: #combine-a-load-balancer-with-availability-sets
-[避免可用性設定組中只有一部執行個體虛擬機器]: #avoid-single-instance-virtual-machines-in-availability-sets
+[Avoid single instance virtual machines in availability sets]: #avoid-single-instance-virtual-machines-in-availability-sets
 [針對每個可用性設定組使用多個儲存體帳戶]: #use-multiple-storage-accounts-for-each-availability-set
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

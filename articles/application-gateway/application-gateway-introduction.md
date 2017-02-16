@@ -4,7 +4,7 @@ description: "此頁面提供第 7 層負載平衡的應用程式閘道服務的
 documentationcenter: na
 services: application-gateway
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: b37a2473-4f0e-496b-95e7-c0594e96f83e
 ms.service: application-gateway
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/14/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 93dab7804e03ba55ed17c3160420f2aec029c9ef
-ms.openlocfilehash: e3d36b50ed1253e40dc7a40f0611b840bb5498be
+ms.sourcegitcommit: 3c1fda0661d577e3042f1ad7103017eed74704ad
+ms.openlocfilehash: bb979cde449a7e6d8038f6ea392c3529ced29853
 
 
 ---
@@ -75,9 +75,7 @@ Microsoft Azure 應用程式閘道會以服務形式提供應用程式傳遞控�
 | 100K |35 Mbps |100 Mbps |200 Mbps |
 
 > [!NOTE]
-> 這些值是應用程式閘道輸送量的近似值。 實際的輸送量會依據不同的環境詳細資料而有所不同，例如平均頁面大小、後端執行個體位置，以及提供一個頁面所需的處理時間。 如需實際效能數字，您需自行執行測試，這些值僅供容量規劃指引使用。
->
->
+> 這些值是應用程式閘道輸送量的近似值。 實際的輸送量會依據不同的環境詳細資料而有所不同，例如平均頁面大小、後端執行個體位置，以及提供一個頁面所需的處理時間。 如需實際效能數字，您需自行執行測試。 這些值僅供容量規劃指引使用。
 
 ## <a name="health-monitoring"></a>健康狀況監視
 
@@ -97,6 +95,6 @@ Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

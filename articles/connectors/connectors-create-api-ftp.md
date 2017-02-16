@@ -16,15 +16,15 @@ ms.workload: integration
 ms.date: 07/22/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f08180c196a1f573529c9fed52c7ae5c3869da6d
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: 2634d0101c1cd4535922e8844f0beb6b523e2dea
 
 
 ---
 # <a name="get-started-with-the-ftp-connector"></a>開始使用 FTP 連接器
 使用 FTP 連接器在 FTP 伺服器上監視、管理和建立檔案。 
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
+若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)來開始。
 
 ## <a name="connect-to-ftp"></a>連接至 FTP
 您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
@@ -35,7 +35,7 @@ ms.openlocfilehash: f08180c196a1f573529c9fed52c7ae5c3869da6d
 > 
 
 ## <a name="use-a-ftp-trigger"></a>使用 FTP 觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。  
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。  
 
 > [!IMPORTANT]
 > FTP 連接器需要可從網際網路存取且設定為以「被動」模式運作的 FTP 伺服器。 此外，FTP 連接器**與隱含 FTPS (FTP over SSL) 不相容**。 FTP 連接器只支援明確 FTPS (FTP over SSL)。  
@@ -61,7 +61,7 @@ ms.openlocfilehash: f08180c196a1f573529c9fed52c7ae5c3869da6d
 > 
 
 ## <a name="use-a-ftp-action"></a>使用 FTP 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。  
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。  
 
 您現已新增觸發程序，請遵循下列步驟來新增動作，該動作將會取得觸發程序所找到之新的或修改過檔案的內容。    
 
@@ -370,11 +370,11 @@ BlobMetadata
 | 預設值 |作業失敗。 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

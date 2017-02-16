@@ -1,6 +1,6 @@
 ---
 title: "步驟 6：存取 Machine Learning Web 服務 | Microsoft Docs"
-description: "開發預測解決方案逐步解說步驟 6：存取使用中的 Azure Machine Learning Web 服務"
+description: "開發預測解決方案的逐步解說步驟 6：存取使用中的 Azure Machine Learning Web 服務。"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 12/16/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 80f722c536c822189c1ab2a8160f560a78e7ca01
+ms.sourcegitcommit: a9ebbbdc431a34553de04e920efbbc8c2496ce5f
+ms.openlocfilehash: 4953b9cb4db2fe0f5bf75589145fde39a6f35a68
 
 
 ---
@@ -31,24 +31,24 @@ ms.openlocfilehash: 80f722c536c822189c1ab2a8160f560a78e7ca01
 6. **存取 Web 服務**
 
 - - -
-在此逐步解說先前的步驟中，我們已經部署一個使用我們的信用風險預測模型的 Web 服務。 現在使用者必須能夠將資料傳送至服務並接收結果。 
+在此逐步解說先前的步驟中，我們已經部署一個使用我們的信用風險預測模型的 Web 服務。 現在使用者能夠將資料傳送至服務並接收結果。 
 
-此 Web 服務是一個使用 REST API，有兩種方式來接收和傳回資料的 Azure Web 服務：  
+此 Web 服務是一個使用 REST API，有兩種方式可接收和傳回資料的 Azure Web 服務：  
 
 * **要求/回應** - 使用者以 HTTP 通訊協定，將一或多列的信用資料傳送給服務，然後服務回應一或多組結果。
 * **批次執行** - 使用者在 Azure Blob 中儲存一或多列信用資料，然後將 Blob 位置傳送給服務。 服務會給輸入 Blob 中的所有資料列評分，將結果儲存在另一個 Blob 中，再傳回該容器的 URL。  
 
-最簡單快速存取 Web 服務的方式是透過 [Azure Web 應用程式 Marketplace](https://azure.microsoft.com/marketplace/web-applications/all/)中提供的 Web 應用程式範本。
+存取 Web 服務最簡單快速的方式，是透過 [Azure ML 要求-回應服務 Web 應用程式](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/)或 [Azure ML Batch Execution 服務 Web 應用程式範本](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)。
 這些 Web 應用程式範本可以建立自訂的 Web 應用程式，該應用程式知道您的 Web 服務輸入資料和將傳回的內容。 您所需要做的就是提供 Web 服務和資料的存取權限，範本會執行其餘部分。
 
-如需使用 Web 應用程式範本的詳細資訊，請參閱 [使用 Azure Machine Learning Web 服務與 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)。
+如需使用 Web 應用程式範本的詳細資訊，請參閱[使用 Azure Machine Learning Web 服務與 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)。
 
 您也可以使用以 R、C# 和 Python 程式語言為您提供的起始程式碼來開發自訂應用程式以存取 Web 服務。
-您可以在 [如何使用已從機器學習實驗發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)找到完整詳細資料。
+您可以在[如何使用已從機器學習實驗發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)中找到完整詳細資料。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

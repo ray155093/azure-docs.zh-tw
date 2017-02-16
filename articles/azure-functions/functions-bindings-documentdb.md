@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 11/10/2016
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
-ms.openlocfilehash: 3c406de579e3f09b521b60861230106c952f4357
+ms.sourcegitcommit: c9e736f7ce5330823f3890c669da40e2bb1ecf43
+ms.openlocfilehash: 13b69118c6732ed872bec11e880737db3b8fa3c5
 
 
 ---
@@ -159,6 +159,24 @@ DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。
 
 在函式中寫入輸出參數時，依預設會在資料庫中產生新文件，使用自動產生的 GUID 做為文件識別碼。 您可以藉由在輸出參數中指定 `id` JSON 屬性來指定輸出文件的文件識別碼。 如果已存在具有該識別碼的文件，輸出文件會覆寫它。 
 
+您可以使用下列任何類型來寫入輸出︰
+
+* 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化。
+  如果您宣告自訂輸出類型 (例如 `out FooType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 null，則函式的執行階段會建立 blob 作為 null 物件。
+* 字串 - (`out string paramName`) 適用於文字 blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
+
+在 C# 函式中，您也可以輸出至下列任何類型︰
+
+* `TextWriter`
+* `Stream`
+* `CloudBlobStream`
+* `ICloudBlob`
+* `CloudBlockBlob` 
+* `CloudPageBlob` 
+
+如果要輸出多個文件，您也可以繫結至 `ICollector<T>` 或 `IAsyncCollector<T>`，`T` 表示其中一種支援的類型。
+
+
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>輸出範例
@@ -290,6 +308,7 @@ module.exports = function (context) {
 ```
 
 
-<!--HONumber=Nov16_HO3-->
+
+<!--HONumber=Dec16_HO1-->
 
 

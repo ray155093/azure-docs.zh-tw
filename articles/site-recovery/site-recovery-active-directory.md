@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 11/16/2016
+ms.date: 12/19/2016
 ms.author: pratshar
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8e9b7dcc2c7011a616d96c8623335c913f647a9b
+ms.sourcegitcommit: c5e80c3cd3caac07e250d296c61fb3813e0000dd
+ms.openlocfilehash: 9f3d87fe08b13f08622b4bd169240a2ec0683b00
 
 
 ---
@@ -75,17 +75,21 @@ Site Recovery 是一項 Azure 服務，可藉由協調虛擬機器的複寫、�
 大部分應用程式也需要網域控制站和 DNS 伺服器的存在，因此在應用程式容錯移轉之前，必須在隔離的網路中建立網域控制站以用於測試容錯移轉。 若要這麼做，最簡單的方式是在執行應用程式復原計劃的測試容錯移轉之前，先使用 Site Recovery 在網域控制站/DNS 虛擬機器上啟用保護，並執行虛擬機器的測試容錯移轉。 以下是做法：
 
 1. 在 Site Recovery 中啟用網域控制站/DNS 虛擬機器的保護。
-2. 建立隔離的網路。 在 Azure 中建立的任何虛擬網路預設是與其他網路隔離。 建議此網路的 IP 範圍使用與您的生產網路相同的 IP 範圍。 請勿在此網路上啟用網站對網站連線能力。
-3. 提供建立之網站的 DNS IP 位址，做為您預期 DNS 虛擬機器取得的 IP 位址。 如果您是複寫到 Azure，則請在 VM 屬性的 [目標 IP]  設定中，提供將用於容錯移轉的 VM IP 位址。 如果您是複寫到其他內部部署網站，且您是使用 DHCP，請遵循指示來 [針對測試容錯移轉設定 DNS 和 DHCP](site-recovery-failover.md#prepare-dhcp)
+1. 建立隔離的網路。 在 Azure 中建立的任何虛擬網路預設是與其他網路隔離。 建議此網路的 IP 範圍使用與您的生產網路相同的 IP 範圍。 請勿在此網路上啟用網站對網站連線能力。
+1. 提供建立之網站的 DNS IP 位址，做為您預期 DNS 虛擬機器取得的 IP 位址。 如果您是複寫到 Azure，則請在 VM 屬性的 [目標 IP]  設定中，提供將用於容錯移轉的 VM IP 位址。 如果您是複寫到其他內部部署網站，且您是使用 DHCP，請遵循指示來 [針對測試容錯移轉設定 DNS 和 DHCP](site-recovery-failover.md#prepare-dhcp)
 
-> [!NOTE]
-> 在測試容錯移轉期間配置給虛擬機器的 IP 位址如果是測試容錯移轉網路中可用的 IP 位址，就會與虛擬機器在計劃性或非計劃性容錯移轉時將得到的 IP 位址相同。 如果該位址不可用，虛擬機器就會收到測試容錯移轉網路中一個可用的其他 IP 位址。
-> 
-> 
+    > [!NOTE]
+    > 在測試容錯移轉期間配置給虛擬機器的 IP 位址如果是測試容錯移轉網路中可用的 IP 位址，就會與虛擬機器在計劃性或非計劃性容錯移轉時將得到的 IP 位址相同。 如果該位址不可用，虛擬機器就會收到測試容錯移轉網路中一個可用的其他 IP 位址。
+    > 
+    > 
 
-1. 在網域控制站虛擬機器上，在隔離網路中執行它的測試容錯移轉。 請使用網域控制站虛擬機器的最新可用應用程式一致復原點來執行測試容錯移轉。 
-2. 執行應用程式復原計畫的測試容錯移轉。
-3. 測試完成之後，在 Site Recovery 入口網站的 [作業]  索引標籤上，將網域控制站虛擬機器和復原方案的測試容錯移轉作業標示為 [完成]。
+1. 在網域控制站虛擬機器上，在隔離網路中執行它的測試容錯移轉。 請使用網域控制站虛擬機器的最新可用**應用程式一致**復原點來執行測試容錯移轉。 
+1. 執行應用程式復原計畫的測試容錯移轉。
+1. 測試完成之後，在 Site Recovery 入口網站的 [作業]  索引標籤上，將網域控制站虛擬機器和復原方案的測試容錯移轉作業標示為 [完成]。
+
+### <a name="removing-reference-to-other-domain-controllers"></a>移除對其他網域控制器的參考
+在執行測試容錯移轉時，不會納入測試網路中的所有網域控制器。 若要將存在生產環境中其他網域控制器的參考移除，必須[拿取 FSMO Active Directory 角色，並針對遺漏的網域控制器執行中繼資料清理](http://aka.ms/ad_seize_fsmo)。 
+
 
 ### <a name="dns-and-domain-controller-on-different-machines"></a>不同電腦上的 DNS 和網域控制站
 如果 DNS 與網域控制站不在相同的虛擬機器上，您必須為測試容錯移轉建立 DNS VM。 如果它們在相同的 VM 上，您可以略過本節。
@@ -114,6 +118,6 @@ Site Recovery 是一項 Azure 服務，可藉由協調虛擬機器的複寫、�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

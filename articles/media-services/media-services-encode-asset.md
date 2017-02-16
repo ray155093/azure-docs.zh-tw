@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 0124c884d3d805a407041e8ecbc5961209a9653d
-ms.openlocfilehash: 84754f5ef9da99b489fd6d50ddcfe8494b57b396
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 6aecea32361166d363a412b4e8f2b01d421da5cf
 
 
 ---
@@ -27,12 +27,12 @@ Azure 媒體服務提供多個用於將雲端中之媒體編碼的選項。
 開始使用媒體服務時，請務必了解轉碼器和檔案格式之間的差異。
 轉碼器是實作壓縮/解壓縮演算法的軟體，而檔案格式是保存已壓縮視訊的容器。
 
-媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
+「媒體服務」提供動態封裝，這可讓您以「媒體服務」支援的串流格式 (MPEG DASH、HLS、Smooth Streaming) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
 
-若要利用 [動態封裝](media-services-dynamic-packaging-overview.md)，您需要執行下列動作：
-
-* 將您的夾層 (來源) 檔編碼為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (編碼步驟稍後示範於本教學課程中)。
-* 為您計畫從該處傳遞內容的串流端點取得至少一個隨選串流單元。 如需詳細資訊，請參閱 [如何調整隨選串流保留單元](media-services-portal-manage-streaming-endpoints.md)。
+>[!NOTE]
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 若要利用 [動態封裝](media-services-dynamic-packaging-overview.md)，您需要執行下列動作：
+>
+>此外，請將您的來源檔案編碼成一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (本教學課程稍後會示範編碼步驟)。
 
 媒體服務支援本文中所描述的下列隨選編碼器：
 
@@ -54,18 +54,18 @@ Azure 媒體服務提供多個用於將雲端中之媒體編碼的選項。
 Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
 
 ### <a name="input-and-output-metadata"></a>輸入和輸出中繼資料
-[這裡](http://msdn.microsoft.com/library/azure/dn783120.aspx)說明編碼器輸入中繼資料。
+[這裡](media-services-input-metadata-schema.md)說明編碼器輸入中繼資料。
 
-[這裡](http://msdn.microsoft.com/library/azure/dn783217.aspx)說明編碼器輸出中繼資料。
+[這裡](media-services-output-metadata-schema.md)說明編碼器輸出中繼資料。
 
 ### <a name="generate-thumbnails"></a>產生縮圖
-如需相關資訊，請參閱 [如何使用媒體編碼器標準產生縮圖](media-services-custom-mes-presets-with-dotnet.md#thumbnails)。
+如需相關資訊，請參閱 [如何使用媒體編碼器標準產生縮圖](media-services-advanced-encoding-with-mes.md#thumbnails)。
 
 ### <a name="trim-videos-clipping"></a>修剪視訊 (裁剪)
-如需相關資訊，請參閱 [如何使用媒體編碼器標準修剪視訊](media-services-custom-mes-presets-with-dotnet.md#trim_video)。
+如需相關資訊，請參閱 [如何使用媒體編碼器標準修剪視訊](media-services-advanced-encoding-with-mes.md#trim_video)。
 
 ### <a name="create-overlays"></a>建立疊加層
-如需相關資訊，請參閱 [如何使用媒體編碼器標準建立覆疊](media-services-custom-mes-presets-with-dotnet.md#overlay)。
+如需相關資訊，請參閱 [如何使用媒體編碼器標準建立覆疊](media-services-advanced-encoding-with-mes.md#overlay)。
 
 ### <a name="see-also"></a>另請參閱
 [媒體服務部落格](https://azure.microsoft.com/blog/2015/07/16/announcing-the-general-availability-of-media-encoder-standard/)
@@ -80,7 +80,7 @@ Media Encoder Premium Workflow 使用複雜的工作流程設定。 您可以使
 [如何使用 Azure 媒體服務中的 Premium 編碼](https://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services/)
 
 ### <a name="known-issues"></a>已知問題
-如果您的輸入視訊不包含隱藏式字幕，輸出資產仍然會包含空白 TTML 檔案。 
+如果您的輸入視訊不包含隱藏式字幕，輸出資產仍然會包含空白 TTML 檔案。
 
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
@@ -98,6 +98,6 @@ Media Encoder Premium Workflow 使用複雜的工作流程設定。 您可以使
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 

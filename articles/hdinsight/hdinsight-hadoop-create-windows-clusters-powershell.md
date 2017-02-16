@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 08/10/2016
+ms.date: 11/15/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 823ba08cfc805000871e0c2a6375306f435b7910
+ms.sourcegitcommit: 94531215a1385d82febb405815dc9ebb044f83eb
+ms.openlocfilehash: cf805b8e674d8765d4495b9701a2db0952a5459f
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 823ba08cfc805000871e0c2a6375306f435b7910
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * Azure PowerShell。
 
-    [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
+[!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 ### <a name="access-control-requirements"></a>存取控制需求
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
@@ -131,8 +131,8 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
     ####################################
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
 
-## <a name="create-clusters-using-arm-template"></a>使用 ARM 範本建立叢集
-您可以使用 Azure PowerShell 來部署可建立 HDInsight 叢集的 ARM 範本。  請參閱[使用 Azure PowerShell 呼叫範本](hdinsight-hadoop-create-windows-clusters-arm-templates.md#deploy-with-powershell)。
+## <a name="create-clusters-using-resource-management-template"></a>使用資源管理範本建立叢集
+您可以使用 Azure PowerShell 來部署可建立 HDInsight 叢集的 Azure Resource Management 範本。  請參閱[使用 Azure PowerShell 呼叫範本](hdinsight-hadoop-create-windows-clusters-arm-templates.md#deploy-with-powershell)。
 
 ## <a name="customize-clusters"></a>自訂叢集
 * 請參閱 [使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md#use-azure-powershell)。

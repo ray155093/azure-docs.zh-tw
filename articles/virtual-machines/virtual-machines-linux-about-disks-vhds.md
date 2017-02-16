@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 06/16/2016
+ms.date: 11/18/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: b39a1959496a6705e3ca8c7a86b9ce8072eb768e
+ms.sourcegitcommit: eaacffd5c8a0364631fd49b3fed33036a493eea4
+ms.openlocfilehash: da7443f3bd38ec41ad2d6b0ce6f573525678e6bd
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: b39a1959496a6705e3ca8c7a86b9ce8072eb768e
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="operating-system-disk"></a>作業系統磁碟
-每個虛擬機器都有一個連接的作業系統磁碟。 它是註冊為 SATA 磁碟機，並預設標示為 C: 磁碟機。 此磁碟的最大容量為 1023 GB。 
+每個虛擬機器都有一個連接的作業系統磁碟。 它會註冊為 SATA 磁碟機，並預設標示為 /dev/sda。 此磁碟的最大容量為 1023 GB。 
 
 ## <a name="temporary-disk"></a>暫存磁碟
 系統會自動為您建立暫存磁碟。 在 Linux 虛擬機器上，這個磁碟通常是 /dev/sdb，且由 Azure Linux 代理程式格式化並裝載至 /mnt/resource。
@@ -80,6 +80,6 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO5-->
 
 

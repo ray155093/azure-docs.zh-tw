@@ -1,5 +1,5 @@
 ---
-title: "為什麼會收到 Azure 訂用帳戶有逾期未付帳款的通知 | Microsoft Docs"
+title: "來自 Azure 的逾期未付帳款電子郵件 | Microsoft Docs"
 description: "描述如果 Azure 訂用帳戶有逾期未付帳款要如何付款"
 services: 
 documentationcenter: 
@@ -13,27 +13,22 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/18/2016
+ms.date: 01/24/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7eabdc787322b64dca77022d1f36cc403e3f0a29
+ms.sourcegitcommit: c5a8d378802dfdc0e0a764399f5bb6655e174619
+ms.openlocfilehash: b9f0bdac445c37090bc82218950624b4336c88f0
 
 
 ---
 # <a name="why-have-you-received-a-notification-that-your-azure-subscription-has-a-past-due-balance"></a>為什麼會收到 Azure 訂用帳戶有逾期未付帳款的通知?
-如果您是 Azure 訂用帳戶的帳戶管理員，且帳戶沒有準時付款，您會收到一封逾期未付帳款的電子郵件通知，或在 [https://account.windowsazure.com](https://account.windowsazure.com) 或 [https://portal.azure.com](https://portal.azure.com) 上看到警示。
-
-> [!NOTE]
-> 如果您對於本文任何內容有需要進一步的協助，請 [連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 以快速解決您的問題。
-> 
-> 
+如果您是 Azure 訂用帳戶的帳戶管理員，且帳戶沒有準時付款，您會收到一封逾期未付帳款的電子郵件通知，或者您會在 [Azure 帳戶中心](https://account.windowsazure.com)或 [Azure 入口網站](https://portal.azure.com)上看到警示。
 
 如果我們因為某些原因無法處理您的付款，則您可能會收到一封電子郵件，並含有類似如下的訊息：
 
 **我們已無法針對您的訂用帳戶向您的信用卡收取費用。若要避免服務發生中斷，請更新您的付款資訊。**
 
-請確定您會收到通知電子郵件。 如果您未收到通知電子郵件，則可以使用不同的登入和帳戶管理員電子郵件地址。 帳戶管理員設定檔中的電子郵件地址可供 Microsoft 通知您與訂用帳戶計費相關的重要更新。 建議您指定會定期收信的連絡人電子郵件地址。
+請確定您會收到通知電子郵件。 如果您未收到通知電子郵件，則可以針對登入和帳戶管理員使用不同的電子郵件地址。 帳戶管理員設定檔中的電子郵件地址可供 Microsoft 通知您與訂用帳戶計費相關的重要更新。 建議您指定會定期收信的連絡人電子郵件地址。
 
 ## <a name="what-will-happen-if-you-forget-to-pay"></a>如果您忘記付款會發生什麼事?
 服務將取消，您將無法使用資源。 服務終止 90 天後，將會刪除任何資料。
@@ -51,15 +46,13 @@ ms.openlocfilehash: 7eabdc787322b64dca77022d1f36cc403e3f0a29
 
 > [!NOTE]
 > 如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它： [如果我的 Azure 訂用帳戶被停用，該怎麼辦？](billing-subscription-become-disable.md)
-> 
-> [!NOTE]
-> 如果您仍有其他問題，請 [連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 以快速解決您的問題。
-> 
-> 
+>
+
+## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
+如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

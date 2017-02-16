@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2e38c7dba04c1402a227fe0a65d637667fd73aa2
+ms.sourcegitcommit: 5d7eed340d2021c58f68c69100be5a9e13655146
+ms.openlocfilehash: 7d4b322cd6528fa4798362d2ee620dae4291b956
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 2e38c7dba04c1402a227fe0a65d637667fd73aa2
 
 本文中描述的所有內容都是根據「序列化程式」SDK 範例。 如果您想要依照這些內容，請參閱包含在「適用於 C 的 Azure IoT 裝置 SDK」中的 **simplesample\_amqp** 和 **simplesample\_http** 應用程式。
 
-您可以在 [Azure IoT SDK](https://github.com/Azure/azure-iot-sdks) GitHub 儲存機制中尋找「適用於 C 的 Azure IoT 裝置 SDK」，然後在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
+您可以尋找[**適用於 C 的 Azure IoT 裝置 SDK**](https://github.com/Azure/azure-iot-sdk-c) GitHub 儲存機制，然後在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
 
 ## <a name="the-modeling-language"></a>模型化語言
 本系列中的[簡介文章](iot-hub-device-sdk-c-intro.md)透過 **simplesample\_amqp** 應用程式中提供的範例介紹了「適用於 C 的 Azure IoT 裝置 SDK」模型化語言：
@@ -530,10 +530,10 @@ EXECUTE_COMMAND_RESULT SetAirResistance(ContosoAnemometer* device, int Position)
 
 ## <a name="macro-configuration"></a>巨集組態
 如果您使用 **序列化程式** 程式庫，需注意的 SDK 重點位於 azure-c-shared-utility 程式庫中。
-如果您已經利用 --recursive 選項，從 GitHub 複製 Azure-iot-sdks 儲存機制，您將可在以下位置找到這個共用公用程式庫：
+如果您已經利用 --recursive 選項，從 GitHub 複製 Azure-iot-sdk-c 儲存機制，您就可以在以下位置找到這個共用公用程式庫：
 
 ```
-.\\c\\azure-c-shared-utility
+.\\c-utility
 ```
 
 如果您尚未複製程式庫，可以在 [這裡](https://github.com/Azure/azure-c-shared-utility)找到。
@@ -658,7 +658,7 @@ serializer_deinit();
 ## <a name="next-steps"></a>後續步驟
 本文詳細說明「適用於 C 的 Azure IoT 裝置 SDK」中所含「序列化程式」程式庫的獨特層面。透過文中提供的資訊，您應該能充分了解如何使用模型來傳送事件和接收來自 IoT 中樞的訊息。
 
-這也結束了有關如何使用「適用於 C 的 Azure IoT 裝置 SDK」來開發應用程式的三部曲系列。這些資訊應該不僅足以讓您入門，還能讓您徹底了解 API 的運作方式。 如需其他資訊，還有一些 SDK 中的範例未涵蓋在本文中。 除此之外， [SDK 文件](https://github.com/Azure/azure-iot-sdks) 也是取得其他資訊的絕佳資源。
+這也結束了有關如何使用「適用於 C 的 Azure IoT 裝置 SDK」來開發應用程式的三部曲系列。這些資訊應該不僅足以讓您入門，還能讓您徹底了解 API 的運作方式。 如需其他資訊，還有一些 SDK 中的範例未涵蓋在本文中。 除此之外， [SDK 文件](https://github.com/Azure/azure-iot-sdk-c) 也是取得其他資訊的絕佳資源。
 
 若要深入了解如何開發 IoT 中樞，請參閱 [Azure IoT SDK][lnk-sdks]。
 
@@ -672,6 +672,6 @@ serializer_deinit();
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

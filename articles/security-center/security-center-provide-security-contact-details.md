@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/17/2016
+ms.date: 02/02/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9921bce954186ba5d3fa21312aa596dcddfe827f
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f4ae3395c44f175603556711bfe2f90f0f987c94
 
 
 ---
@@ -27,8 +27,8 @@ Azure 資訊安全中心會建議您針對您的 Azure 訂用帳戶提供安全�
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。  這不是逐步指南。
-> 
-> 
+>
+>
 
 ## <a name="implement-the-recommendation"></a>實作建議
 1. 在 [建議] 刀鋒視窗中，選取 [提供安全性連絡人詳細資料]。
@@ -36,7 +36,7 @@ Azure 資訊安全中心會建議您針對您的 Azure 訂用帳戶提供安全�
 2. [提供安全性連絡人詳細資料] 刀鋒視窗隨即開啟。 選取要提供連絡人資訊的 Azure 訂用帳戶。
    ![][2]
 3. 第二個 [提供安全性連絡人詳細資料]  刀鋒視窗隨即開啟。
-   
+
    * 輸入安全性連絡人的電子郵件地址，若有多個則以逗號分隔。 您可以輸入的電子郵件地址數沒有限制。
    * 輸入一個安全性連絡人國際電話號碼。
    * 若要接收有關高嚴重性警示的電子郵件，請開啟 [傳送給我有關警示的電子郵件] 選項。
@@ -60,6 +60,6 @@ Azure 資訊安全中心會建議您針對您的 Azure 訂用帳戶提供安全�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

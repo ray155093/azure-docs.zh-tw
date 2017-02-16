@@ -16,12 +16,12 @@ ms.workload: infrastructure-services
 ms.date: 09/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: a5e0ba0128b7f20d6307f5dea784de007e71321c
+ms.sourcegitcommit: bc3921003bf3b91de88e70ff18b5c397687c288c
+ms.openlocfilehash: 6f4a825faac413652b1dc3880d899e0e40caedbc
 
 
 ---
-# <a name="different-ways-to-create-a-windows-virtual-machine-with-resource-manager"></a>使用資源管理員建立 Windows 虛擬機器的不同方式
+# <a name="different-ways-to-create-a-windows-vm"></a>建立 Windows VM 的不同方式
 Azure 提供建立虛擬機器的不同方式，因為虛擬機器適用於不同的使用者和用途。 這表示您需要針對虛擬機器以及建立方式進行一些選擇。 本文提供這些選項及指示連結的摘要說明。
 
 ## <a name="azure-portal"></a>Azure 入口網站
@@ -47,6 +47,6 @@ Azure 提供建立虛擬機器的不同方式，因為虛擬機器適用於不�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO5-->
 
 

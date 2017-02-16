@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/09/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 53346b6f9e7b5a172ecc343883f55409d5ca8057
+ms.sourcegitcommit: 70fbc8f973a341f818cb5958931a199021b7dc46
+ms.openlocfilehash: 4e63cb94d9bd39f0621eb0dc07c60335a91324d8
 
 
 ---
@@ -71,11 +71,13 @@ ms.openlocfilehash: 53346b6f9e7b5a172ecc343883f55409d5ca8057
 2. 在下一個視窗中，提供專案詳細資料。
    
    * 提供專案名稱和專案位置。
-   * 對於 [專案 SDK] ，請確定您提供的 Java 版本大於 7。
-   * 對於 **Scala SDK**，請依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。 **確定您不是使用 2.11.x 版**。 此範例使用 **2.10.6** 版。
-     
-       ![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-scala-version.png)
-   * 對於 **Spark SDK**，請從 [這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。 您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark) ，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。 (例如，您需要先確定您有安裝 Spark Streaming 組件，如果您使用 Spark Streaming 的話；也請確定您使用標示為 Scala 2.10 的儲存機制 - 請勿使用標示為 Scala 2.11 的儲存機制)。
+   * 對於 [專案 SDK]，Java 1.7 或以上適用於 Spark 1.6 叢集，Java 1.8 適用於 Spark 2.0 叢集。
+   * 對於 **Scala SDK**，請依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。
+   * * 如果您意願將作業提交至 Spark 2.0 叢集，請選擇 **JDK 1.8 和 Scala 2.11.x**。
+   * * 如果您意願將作業提交至 Spark 1.6 叢集，請選擇 **JDK 1.7 或以上及 Scala 2.10.x**。
+
+        ![](./media/hdinsight-apache-spark-intellij-tool-plugin/show-scala2.11.x-select.png)
+   * 對於 [Spark SDK]，請從[這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409) 下載和使用 SDK (spark-assembly-2.0.0-hadoop2.7.0-SNAPSHOT.jar 適用於 Spark 2.0 叢集，spark-assembly-x.jar 適用於 Spark 1.6 叢集)。 您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark) ，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。 (例如，如果您使用 Spark Streaming，必須確定您已安裝 Spark Streaming 組件；也請確定您使用的儲存機制，標示為 Scala 2.10 適用於 Spark 1.6 叢集，標示為 Scala 2.11 適用於 Spark 2.0 叢集)。
      
        ![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-scala-project-details.png)
    * 按一下 [完成] 。
@@ -87,7 +89,7 @@ ms.openlocfilehash: 53346b6f9e7b5a172ecc343883f55409d5ca8057
        ![建立 JAR](./media/hdinsight-apache-spark-intellij-tool-plugin/default-artifact.png)
       
       您也可以建立自己的構件，方法是按一下上圖中強調顯示的 [+] **+** 圖示。
-4. 在 [專案結構] 對話方塊中，按一下 [專案]。 如果 [專案 SDK] 設定為 1.8，請確定 [專案語言層級] 設為 [7 - Diamonds、ARM、Multi-Catch 等]。
+4. 在 [專案結構] 對話方塊中，按一下 [專案]。 如果 [專案 SDK] 設定為 1.8，請確定 [專案語言層級] 設為 [7 - Diamonds、ARM、Multi-Catch 等] (對 Spark 2.0 叢集而言為選擇性)。
    
     ![設定專案語言層級](./media/hdinsight-apache-spark-intellij-tool-plugin/set-project-language-level.png)
 5. 新增應用程式的原始程式碼。
@@ -180,10 +182,10 @@ ms.openlocfilehash: 53346b6f9e7b5a172ecc343883f55409d5ca8057
    
    * 提供專案名稱和專案位置。
    * 對於 [專案 SDK] ，請確定您提供的 Java 版本大於 7。
-   * 對於 **Scala SDK**，請依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。 **確定您不是使用 2.11.x 版**。 此範例使用 **2.10.6** 版。
+   * 對於 [Scala SDK]，請依序按一下 [建立]、[下載]，然後選取要使用的 Scala 版本。**Scala 2.11.x 適用於 Spark 2.0，Scala 2.10.x 適用於 Spark 1.6**
      
        ![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-scala-version.png)
-   * 對於 **Spark SDK**，請從 [這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。 您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark) ，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。 (例如，您需要先確定您有安裝 Spark Streaming 組件，如果您使用 Spark Streaming 的話；也請確定您使用標示為 Scala 2.10 的儲存機制 - 請勿使用標示為 Scala 2.11 的儲存機制)。
+   * 對於 **Spark SDK**，請從 [這裡](http://go.microsoft.com/fwlink/?LinkID=723585&clcid=0x409)下載並使用 SDK。 您也可以略過此項，並改用 [Spark Maven Repository](http://mvnrepository.com/search?q=spark) ，不過請確定您已安裝正確的 Maven 儲存機制，以便開發 Spark 應用程式。 (例如，如果您使用 Spark Streaming，必須確定您已安裝 Spark Streaming 組件；也請確定您使用的儲存機制，標示為 Scala 2.10 適用於 Spark 1.6 叢集，標示為 Scala 2.11 適用於 Spark 2.0 叢集)。
      
        ![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-local-create-project.png)
    * 按一下 [完成] 。
@@ -265,6 +267,6 @@ ms.openlocfilehash: 53346b6f9e7b5a172ecc343883f55409d5ca8057
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

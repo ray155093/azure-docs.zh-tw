@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 09/12/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f2e607924f17b42bba73672a2d24257e672e1134
+ms.sourcegitcommit: 29c4c2a2818468a2fa8360eebd4b653bdcbbde19
+ms.openlocfilehash: 0749d371466226343227c79db544a8e3dca0cca8
 
 
 ---
@@ -39,9 +39,8 @@ ms.openlocfilehash: f2e607924f17b42bba73672a2d24257e672e1134
    1. 輸入新實驗室的 **實驗室名稱** 。
    2. 選取要與實驗室關聯的 **訂用帳戶** 。
    3. 選取用來儲存實驗室的 [位置]  。
-   4. 選取 [自動關機]  來指定是否要啟用所有實驗室 VM 的自動關閉，以及定義其參數。
-   5. 選取 [儲存體類型]  ，指出實驗室 VM 的儲存體磁碟類型。 
-   6. 選取 [ **建立**]。
+   4. 選取 [自動關機]  來指定是否要啟用所有實驗室 VM 的自動關閉，以及定義其參數。 
+   5. 選取 [建立] 。
       
       ![建立實驗室刀鋒視窗](./media/devtest-lab-create-lab/create-devtestlab-blade.png)
 
@@ -59,6 +58,6 @@ ms.openlocfilehash: f2e607924f17b42bba73672a2d24257e672e1134
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

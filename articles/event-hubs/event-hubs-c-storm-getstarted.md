@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: c
 ms.devlang: java
 ms.topic: article
-ms.date: 08/16/2016
+ms.date: 11/30/2016
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 1b4573db5c4e03aba8b98408765e7c2debfb9a30
+ms.sourcegitcommit: 33a960ae39ab8fa89126201fd67f13e5536413ef
+ms.openlocfilehash: 7bad4df26d10ba8edae311b41d0c07be2db374f4
 
 
 ---
@@ -52,30 +52,28 @@ ms.openlocfilehash: 1b4573db5c4e03aba8b98408765e7c2debfb9a30
 
 > [!NOTE]
 > 本教學課程中只使用本機模式的 Storm 進行開發。 如需 Storm 部署和模式的詳細資訊，請參閱 [HDInsight Storm 概觀]和 [Apache Storm] 官方文件。
-> 
-> 
 
 ## <a name="next-steps"></a>後續步驟
 下列資源可供開發整合事件中心和 Storm 的應用程式。
 
-* [使用 Storm 和 HDInsight 分析感應器資料][使用 Storm 和 HDInsight 分析感應器資料]是一個完整案例教學課程，該課程使用事件中心、Storm 和 HBase 擷取 Hadoop 叢集中的感應器資料。
-* [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式][在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式]教學課程說明如何使用 C# 撰寫 Storm 管線。
+* [使用 Storm 和 HDInsight 分析感應器資料][Analyzing sensor data with Storm and HDInsight]是完整的案例教學課程，其中使用事件中樞、Storm 和 HBase 將感應器資料內嵌至 Hadoop 叢集。
+* [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式][Develop streaming data processing applications with SCP.NET and C# on Storm and HDInsight]教學課程說明如何使用 C# 撰寫 Storm 管線。
 
 <!-- Images. -->
 [23]: ./media/event-hubs-c-storm-getstarted/receive-storm3.png
 
 <!-- Links -->
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
-[事件處理器主機]: https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost
+[Azure classic portal]: https://manage.windowsazure.com/
+[Event Processor Host]: https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost
 [事件中樞概觀]: event-hubs-overview.md
 
 [Apache Storm]: https://storm.incubator.apache.org
 [HDInsight Storm 概觀]: ../hdinsight/hdinsight-storm-overview.md
-[使用 Storm 和 HDInsight 分析感應器資料]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
-[在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式]: ../hdinsight/hdinsight-storm-develop-csharp-visual-studio-topology.md
+[Analyzing sensor data with Storm and HDInsight]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
+[Develop streaming data processing applications with SCP.NET and C# on Storm and HDInsight]: ../hdinsight/hdinsight-storm-develop-csharp-visual-studio-topology.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

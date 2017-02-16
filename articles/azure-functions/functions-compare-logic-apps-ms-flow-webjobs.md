@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 09/08/2016
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: a06126707ad9942ba3b269b0e2e2a52f9cf0c61e
-ms.openlocfilehash: 4d6735772ff36a730ccb369f7fce653a91bc9d4f
+ms.sourcegitcommit: ee94e074c574bc2e6e1a52dbfd6bd0ae102cb342
+ms.openlocfilehash: 0d007bf2a0f5a40fcb7ac6dfe5beff05a4310701
 
 
 ---
@@ -48,8 +48,8 @@ Flow 可讓任何辦公室工作人員有能力執行簡單的整合 (例如取�
 | --- | --- | --- |
 | 觀眾 |辦公室工作人員、商務使用者 |IT 專家、開發人員 |
 | 案例 |自助服務 |關鍵任務 |
-| 設計工具 |瀏覽器中、僅限 UI |有瀏覽器內和 [Visual Studio](../app-service-logic/app-service-logic-deploy-from-vs.md)、[程式碼檢視](../app-service-logic/app-service-logic-author-definitions.md)可用 |
-| DevOps |特定、在生產環境中開發 |在 [Azure 資源管理](../app-service-logic/app-service-logic-arm-provision.md) |
+| 設計工具 |瀏覽器中、僅限 UI |有瀏覽器內和 [Visual Studio](../logic-apps/logic-apps-deploy-from-vs.md)、[程式碼檢視](../logic-apps/logic-apps-author-definitions.md)可用 |
+| DevOps |特定、在生產環境中開發 |在 [Azure 資源管理](../logic-apps/logic-apps-arm-provision.md) |
 | 管理員體驗 |[https://flow.microsoft.com](https://flow.microsoft.com) |[https://portal.azure.com](https://portal.azure.com) |
 | 安全性 |標準做法︰[資料主權](https://wikipedia.org/wiki/Technological_Sovereignty)、敏感資料的[待用加密](https://wikipedia.org/wiki/Data_at_rest#Encryption)等。 |Azure 的安全性保證︰[Azure 安全性](https://www.microsoft.com/trustcenter/Security/AzureSecurity)、[資訊安全中心](https://azure.microsoft.com/services/security-center/)、[稽核記錄檔](https://azure.microsoft.com/blog/azure-audit-logs-ux-refresh/)等。 |
 
@@ -107,7 +107,7 @@ Functions 是 WebJobs 的自然進化，因為它採用有關 WebJobs 的最佳�
 建立您的第一個流程、邏輯應用程式、函數應用程式或 WebJob 來開始使用每一項服務。 按一下下列任何連結︰
 
 * [開始使用 Microsoft Flow](https://flow.microsoft.com/en-us/documentation/getting-started/)
-* [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+* [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 * [建立您的第一個 Azure 函式](functions-create-first-azure-function.md)
 * [使用 Visual Studio 部署 WebJob](../app-service-web/websites-dotnet-deploy-webjobs.md)
 
@@ -122,6 +122,6 @@ Functions 是 WebJobs 的自然進化，因為它採用有關 WebJobs 的最佳�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

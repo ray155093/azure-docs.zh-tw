@@ -1,5 +1,5 @@
 ---
-title: "車輛遙測分析方案範本 PowerBI 儀表板安裝指示 | Microsoft Docs"
+title: "車輛遙測分析方案範本 Power BI 儀表板安裝指示 | Microsoft Docs"
 description: "使用 Cortana Intelligence 具備的強大功能，取得關於車輛健全狀態與駕駛習慣的即時預測情資。"
 services: machine-learning
 documentationcenter: 
@@ -12,26 +12,26 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/16/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b47865edef7246612826bf442b221d7e903260d5
+ms.sourcegitcommit: 66a2375d7560b41f0fddef3c8c32e41917eb1649
+ms.openlocfilehash: 925222e5e11c96b1b8f851dbc3679d0f6b25b99c
 
 
 ---
-# <a name="vehicle-telemetry-analytics-solution-template-powerbi-dashboard-setup-instructions"></a>車輛遙測分析方案範本 PowerBI 儀表板安裝指示
+# <a name="vehicle-telemetry-analytics-solution-template-power-bi-dashboard-setup-instructions"></a>車輛遙測分析方案範本 Power BI 儀表板安裝指示
 此 **功能表** 連結至此腳本的章節。 
 
 [!INCLUDE [cap-vehicle-telemetry-playbook-selector](../../includes/cap-vehicle-telemetry-playbook-selector.md)]
 
-「車輛遙測分析」方案示範汽車經銷商、汽車製造商和保險公司如何運用 Cortana Intelligence 功能，取得車輛健全狀態與駕駛習慣的即時預測情資，以改善客戶體驗、R&D 和行銷活動等方面。 本文件包含在您的訂用帳戶中部署方案之後，如何設定 PowerBI 報告和儀表板的逐步指示。 
+「車輛遙測分析」方案示範汽車經銷商、汽車製造商和保險公司如何運用 Cortana Intelligence 功能，取得車輛健全狀態與駕駛習慣的即時預測情資，以改善客戶體驗、R&D 和行銷活動等方面。 本文件包含在您的訂用帳戶中部署方案之後，如何設定 Power BI 報告和儀表板的逐步指示。 
 
 ## <a name="prerequisites"></a>必要條件
 1. 瀏覽至 [https://gallery.cortanaanalytics.com/SolutionTemplate/Vehicle-Telemetry-Analytics-3](https://gallery.cortanaanalytics.com/SolutionTemplate/Vehicle-Telemetry-Analytics-3)  
 2. [安裝 Microsoft Power BI Desktop](http://www.microsoft.com/download/details.aspx?id=45331)
 3. [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)。 如果您沒有 Azure 訂用帳戶，請立即取得免費的 Azure 訂用帳戶
-4. Microsoft PowerBI 帳戶
+4. Microsoft Power BI 帳戶
 
 ## <a name="cortana-intelligence-suite-components"></a>Cortana Intelligence Suite 元件
 「車輛遙測分析」方案範本會在您的訂用帳戶中部署下列 Cortana Intelligence 服務。
@@ -50,57 +50,58 @@ ms.openlocfilehash: b47865edef7246612826bf442b221d7e903260d5
 
 「車輛類別目錄」是包含 VIN 至車型對應的參考資料集
 
-## <a name="powerbi-dashboard-preparation"></a>PowerBI 儀表板的準備工作
+## <a name="power-bi-dashboard-preparation"></a>Power BI 儀表板準備
 ### <a name="deployment"></a>部署
 完成部署後，您應該會看到下圖，其中以「綠色」標示所有這些元件。 
 
 * 若要瀏覽至對應的服務，以驗證是否已成功部署所有這些元件，請按一下綠色節點右上方的箭號。
 * 若要下載資料模擬器封裝，請按一下 [車輛遠程資訊服務模擬器]  節點右上方的箭號。 將檔案儲存在本機電腦上並解壓縮。 
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/1-deployed-components.png)
+![已部署的元件](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/1-deployed-components.png)
 
-現在，您可以使用豐富的視覺效果來設定 PowerBI 儀表板，以取得車輛健全狀況和駕駛習慣的即時預測性情資。 建立所有報告和設定儀表板大約需要 45 分鐘至一小時。 
+現在，您可以使用豐富的視覺效果來設定 Power BI 儀表板，以取得車輛健全狀況和駕駛習慣的即時預測性情資。 建立所有報告和設定儀表板大約需要 45 分鐘至一小時。 
 
 ### <a name="setup-power-bi-real-time-dashboard"></a>設定 Power BI 即時儀表板
 **產生模擬資料**
 
-1. 在本機電腦上，移至您解壓縮「車輛遠程資訊服務模擬器」封裝的資料夾 ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/2-vehicle-telematics-simulator-folder.png)
+1. 在本機電腦上，移至您解壓縮「車輛遠程資訊服務模擬器」封裝的資料夾。
+  ![模擬器資料夾](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/2-vehicle-telematics-simulator-folder.png)
 2. 執行應用程式 ***CarEventGenerator.exe***。
 3. 它會在指定時間點發出對應於車輛狀態與駕駛模式的診斷資訊和訊號。 這會發佈至您在部署時所設定的 Azure 事件中樞執行個體。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/3-vehicle-telematics-diagnostics.png)
+![診斷](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/3-vehicle-telematics-diagnostics.png)
 
 **啟動即時儀表板應用程式**
 
-這個方案包含會在 PowerBI 中產生即時儀表板的應用程式。 此應用程式接聽事件中樞執行個體，串流分析會從中持續發佈事件。 針對此應用程式收到的每一個事件，它會使用機器學習服務要求-回應評分端點來處理資料。 產生的資料集會發佈至 PowerBI 推送 API 來呈現視覺效果。 
+這個方案包含會在 Power BI 中產生即時儀表板的應用程式。 此應用程式接聽事件中樞執行個體，串流分析會從中持續發佈事件。 針對此應用程式收到的每一個事件，它會使用機器學習服務要求-回應評分端點來處理資料。 產生的資料集會發佈至 Power BI 推送 API 來呈現視覺效果。 
 
 若要下載應用程式：
 
-1. 按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載即時儀表板應用程式] 連結。![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard-new1.png)
-2. 在本機擷取並儲存應用程式 ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/4-real-time-dashboard-application.png)
+1. 按一下圖表檢視上的 Power BI 節點，然後按一下屬性窗格上的 [下載即時儀表板應用程式] 連結。![儀表板](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard-new1.png)
+2. 在本機擷取並儲存應用程式 ![儀表板應用程式](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/4-real-time-dashboard-application.png)
 3. 執行應用程式 **RealtimeDashboardApp.exe**
 4. 提供有效的 Power BI 認證、登入，然後按一下 [接受] 
    
-   ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/5-sign-into-powerbi.png)
+   ![登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/5-sign-into-powerbi.png)
    
-   ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/6-powerbi-dashboard-permissions.png)
+   ![Power BI 儀表板權限](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/6-powerbi-dashboard-permissions.png)
 
-### <a name="configure-powerbi-reports"></a>設定 PowerBI 報告
+### <a name="configure-power-bi-reports"></a>設定 Power BI 報告
 即時報告和儀表板需要大約 30-45 分鐘的時間才能完成。 瀏覽至 [http://powerbi.com](http://powerbi.com) 並登入。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/6-1-powerbi-signin.png)
+![登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/6-1-powerbi-signin.png)
 
 Power BI 中會產生新的資料集。 按一下 **ConnectedCarsRealtime** 資料集。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/7-select-connected-cars-realtime-dataset.png)
+![選取連接的汽車即時資料集](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/7-select-connected-cars-realtime-dataset.png)
 
 使用 **Ctrl + s**儲存空白報告。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/8-save-blank-report.png)
+![儲存空白報告](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/8-save-blank-report.png)
 
 提供報告名稱「車輛遙測分析即時 - 報告」 。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/9-provide-report-name.png)
+![提供報告名稱](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/9-provide-report-name.png)
 
 ## <a name="real-time-reports"></a>即時報告
 此解決方案有三份即時報告：
@@ -315,50 +316,50 @@ Power BI 中會產生新的資料集。 按一下 **ConnectedCarsRealtime** 資�
 > 
 > 
 
-**下載 PowerBI 設計工具檔案**
+**下載 Power BI 設計工具檔案**
 
-* 預先設定的 PowerBI 設計工具檔案會包含於部署中
-* 按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載 PowerBI 設計工具檔案] 連結 ![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/9.5-download-powerbi-designer.png)
+* 預先設定的 Power BI 設計工具檔案會包含於部署中
+* 按一下圖表檢視上的 Power BI 節點，然後按一下屬性窗格上的 [下載 Power BI 設計工具檔案] 連結![下載 Power BI 設計工具](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/9.5-download-powerbi-designer.png)
 * 儲存在本機
 
-**設定 PowerBI 報告**
+**設定 Power BI 報告**
 
-* 使用 PowerBI Desktop 開啟設計工具檔案 ‘VehicleTelemetryAnalytics - Desktop Report.pbix’。 如果您還沒有安裝 PowerBI Desktop，請從 [PowerBI Desktop 安裝](http://www.microsoft.com/download/details.aspx?id=45331)進行安裝。 
+* 使用 Power BI Desktop 開啟設計工具檔案 ‘VehicleTelemetryAnalytics - Desktop Report.pbix’。 如果您還沒有安裝 Power BI Desktop，請從 [Power BI Desktop 安裝](http://www.microsoft.com/download/details.aspx?id=45331)進行安裝。 
 * 按一下 [編輯查詢] 。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/10-edit-powerbi-query.png)
+![編輯 Power BI 查詢](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/10-edit-powerbi-query.png)
 
 * 按兩下 [來源] 。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/11-set-powerbi-source.png)
+![設定 Power BI 來源](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/11-set-powerbi-source.png)
 
 * 以佈建為部署一部分的 Azure SQL Server 更新伺服器連接字串。 按一下圖表上的 Azure SQL 節點，然後檢視 [屬性] 窗格的伺服器名稱。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/11.5-view-server-name.png)
+![檢視伺服器名稱](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/11.5-view-server-name.png)
 
 * 將 [資料庫]  保留為 *connectedcar*。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/12-set-powerbi-database.png)
+![設定 Power BI 資料庫](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/12-set-powerbi-database.png)
 
 * 按一下 [確定] 。
 * 依預設會選取 [Windows 認證] 索引標籤，請按一下右邊的 [資料庫] 索引標籤，將它變更為 [資料庫認證]。
 * 提供在 Azure SQL Database 部署安裝過程中提供的 [使用者名稱] 和 [密碼]。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/13-provide-database-credentials.png)
+![提供資料庫認證](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/13-provide-database-credentials.png)
 
 * 按一下 [連接] 
 * 針對右窗格中出現的其餘三個查詢各重複上述步驟，然後更新資料來源連接詳細資料。
 * 按一下 [關閉並載入] 。 Power BI Desktop 檔案資料集會連接到 SQL Azure 資料庫資料表。
 * **關閉** Power BI Desktop 檔案。
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/14-close-powerbi-desktop.png)
+![關閉 Power BI Desktop](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/14-close-powerbi-desktop.png)
 
 * 按一下 [儲存]  按鈕以儲存變更。 
 
 您現在已設定對應至解決方案中的批次處理路徑的所有報告。 
 
 ## <a name="upload-to-powerbicom"></a>上傳至 *powerbi.com*
-1. 瀏覽至 PowerBI Web 入口網站 (http://powerbi.com) 並且登入。
+1. 瀏覽至 Power BI Web 入口網站 (http://powerbi.com) 並且登入。
 2. 按一下 [取得資料]   
 3. 上傳 Power BI Desktop 檔案。  
 4. 若要上傳，請按一下 [取得資料] -> [檔案取得]-> [本機檔案]  
@@ -369,23 +370,23 @@ Power BI 中會產生新的資料集。 按一下 **ConnectedCarsRealtime** 資�
 
 將圖表釘選至 **Power BI** 中的現有儀表板 [車輛遙測分析儀表板]。 按一下上面建立的空白儀表板，然後瀏覽至剛才上傳的報告上的 [報告]  區段。  
 
-![車輛遙測 PowerBI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard1.png) 
+![車輛遙測 Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard1.png) 
 
 **注意報告有六頁：**  
 第 1 頁︰車輛密度  
 第 2 頁︰即時車輛健全狀況  
-第 3 頁︰激進駕駛的車輛   
+第 3 頁︰危險駕駛的車輛   
 第 4 頁︰召回的車輛  
 第 5 頁︰省油的車輛  
 第 6 頁︰Contoso 標誌  
 
-![Connected Cars PowerBI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard2.png)
+![連接的車輛 Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard2.png)
 
 **從第 3 頁**，釘選下列項目：  
 
 1. VIN 的計數  
-   ![Connected Cars PowerBI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard3.png) 
-2. 激進駕駛的車輛 (依車型) – 瀑布圖   
+   ![連接的車輛 Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard3.png) 
+2. 危險駕駛的車輛 (依車型) – 瀑布圖   
    ![車輛遙測 - 釘選圖表 4](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard4.png)
 
 **從第 5 頁**，釘選下列項目： 
@@ -412,7 +413,7 @@ Power BI 中會產生新的資料集。 按一下 **ConnectedCarsRealtime** 資�
 1. 瀏覽至儀表板
 2. 將滑鼠暫留在每個圖表，根據下列完整儀表板影像中提供的名稱來重新命名。 另外也將圖表排列成如下列儀表板所示。  
    ![車輛遙測 - 組織儀表板 2](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-organize-dashboard2.png)  
-   ![車輛遙測 PowerBI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard.png)
+   ![車輛遙測 Power BI.com](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-dashboard.png)
 3. 如果您已建立本文件中提到的所有報報，則最終完成的儀表板應該看起來如下圖。 
 
 ![車輛遙測 - 組織儀表板 2](./media/cortana-analytics-playbook-vehicle-telemetry-powerbi-dashboard/vehicle-telemetry-organize-dashboard3.png)
@@ -422,6 +423,6 @@ Power BI 中會產生新的資料集。 按一下 **ConnectedCarsRealtime** 資�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

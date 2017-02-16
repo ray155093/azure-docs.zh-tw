@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 12/05/2016
+ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: ae368cd3b406bbf4fa4b7a48d1473b49d023f5f5
+ms.sourcegitcommit: 20880eccbf28cabfb594bb8129cb0a5a3beeb224
+ms.openlocfilehash: e62e4f6c208f5506108b2ef5f6c1aabe43f086a2
 
 
 ---
@@ -68,11 +68,11 @@ DocumentDB 集合可在 3 個不同的效能層級 (S1、S2 或 S3) 建立，以
 * **集合名稱模式**：要使用之集合的集合名稱或其模式。 您可以使用選用的 {partition} 語彙基元來建構集合名稱的格式，其中的資料分割會從 0 開始。 以下是有效的範例輸入：  
   1\) MyCollection – 必須要有一個名為 “MyCollection” 的集合存在。  
   2\) MyCollection{partition} – 這些集合必須存在 – "MyCollection0”、“MyCollection1”、“MyCollection2” 等，依此類推。  
-* **資料分割索引鍵** – 只有您在集合名稱模式中使用 {parition} 語彙基元時，才需要此索引鍵。 輸出事件中的欄位名稱會用來為跨集合的資料分割輸出指定索引鍵。 若為單一集合輸出，則可使用任何任意的輸出欄，例如 PartitionId。  
+* **資料分割索引鍵** - 選擇性。 只有當您在集合名稱模式中使用 {parition} 語彙基元時，才需要此索引鍵。 輸出事件中的欄位名稱會用來為跨集合的資料分割輸出指定索引鍵。 若為單一集合輸出，則可使用任何任意的輸出欄，例如 PartitionId。  
 * **文件識別碼** ：可省略。 輸出事件中的欄位名稱會用來指定主索引鍵，此為插入或更新作業的依據。  
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

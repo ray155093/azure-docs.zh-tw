@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 10/10/2016
+ms.date: 12/13/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: 06be4297bd805a77c2901296071bfa344d076c82
+ms.sourcegitcommit: 1832e584c599384948e7174b377552703ce8bbcd
+ms.openlocfilehash: 11a03d932fc70164640c30acb9808c08e3354de8
 
 
 ---
@@ -86,6 +86,13 @@ Site Recovery 已通過 ISO 27001:2013、27018、HIPAA、DPA 認證，並且正�
 就虛擬機器和實體伺服器而言，在內部部署站台之間進行複寫時，支援傳輸中加密。 在將虛擬機器和實體伺服器複寫至 Azure 時，則同時支援傳輸中加密和靜態加密 (在 Azure 中)。
 
 ## <a name="replication"></a>複寫
+
+### <a name="can-i-replicate-over-a-site-to-site-vpn-to-azure"></a>我可以透過站對站 VPN 複寫至 Azure 嗎？
+Azure Site Recovery 會透過公用端點，將資料複製到 Azure 儲存體帳戶。 因此，不會透過站對站 VPN 複寫。 您可以使用 Azure 虛擬網路建立站對站 VPN，這並不會干擾 ASR 複寫。 
+
+### <a name="can-i-use-expressroute-to-replicate-virtual-machines-to-azure"></a>可以使用 ExpressRoute 將虛擬機器複寫到 Azure 嗎？
+是的，ExpressRoute 可用來將虛擬機器複寫至 Azure。 Azure Site Recovery 會透過公用端點，將資料複製到 Azure 儲存體帳戶。 您必須安裝[公用對等互連](../expressroute/expressroute-circuit-peerings.md#public-peering)才能使用 ASR 複寫的 ExpressRoute。 在虛擬機器容錯移轉到 Azure 虛擬網路之後，您可以 Azure 虛擬網路使用[私人對等互連](../expressroute/expressroute-circuit-peerings.md#private-peering)安裝來存取這些虛擬機器。 
+
 ### <a name="are-there-any-prerequisites-for-replicating-virtual-machines-to-azure"></a>將虛擬機器複寫至 Azure 有任何先決條件嗎？
 您想要複寫至 Azure 的虛擬機器應該要符合 [Azure 需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
 
@@ -191,6 +198,6 @@ Azure 是針對復原能力而設計的。 Site Recovery 已經設計成可根�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

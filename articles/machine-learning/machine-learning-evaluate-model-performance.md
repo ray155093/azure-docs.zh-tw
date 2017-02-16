@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/19/2016
 ms.author: bradsev;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 45238ac71d722176a79adf6c9842b2bdc3b67df6
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 53c84ff1e99236343585ff31ef1bcb57e0250fdc
 
 
 ---
@@ -31,14 +31,14 @@ ms.openlocfilehash: 45238ac71d722176a79adf6c9842b2bdc3b67df6
 
 評估模型的效能是資料科學流程中的核心階段之一。 它會指出定型模型如何成功地為資料集評分 (預測)。 
 
-Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組進行模型評估：[評估模型][evaluate-model]和[交叉驗證模型][cross-validate-model]。 這些模組可讓您根據 Machine Learning 和統計資料中常用的一些度量，查看您模型的運作方式。
+Azure Machine Learning 支援透過兩個主要的機器學習服務模組來評估模型：[評估模型][evaluate-model]和[交叉驗證模型][cross-validate-model]。 這些模組可讓您根據 Machine Learning 和統計資料中常用的一些度量，查看您模型的運作方式。
 
 ## <a name="evaluation-vs-cross-validation"></a>評估與交叉驗證
 評估與交叉驗證是測量模型效能的標準方式。 它們都會產生您可以對照其他模型的度量檢查或比較的評估度量。
 
-[評估模型][evaluate-model]必須輸入一個已評分的資料集 (如果您想要比較 2 個不同模型的效能，則輸入 2 個資料集)。 也就是說，您需要先使用[訓練模型][train-model]模組訓練您的模組，並使用[評分模型][score-model]模組針對特定資料集進行預測，然後才可以評估結果。 評估是以評分標籤/機率以及真正的標籤為基礎，這些全都是由[評分模型][score-model]模組所輸出。
+[評估模型][evaluate-model]需要一個計分資料集作為輸入 (如果您想要比較 2 個不同模型的效能，則需要 2 個計分資料集)。 這表示，您需要先使用[訓練模型][train-model]模組來訓練模型，並使用[計分模型][score-model]模組在一些資料集上進行預測，然後才能評估結果。 評估是以評分標籤/機率及真實性標籤為基礎，這些全都由[評分模型][score-model]模組來輸出。
 
-或者，您可以使用交叉驗證，對不同的輸入資料子集自動執行一「訓練-評分-評估」作業 (10 次交疊)。 輸入資料會分割成 10 個部分，其中 1 個部分保留供測試之用，其他 9 個部分則供訓練之用。 此程序會重複 10 次，然後取得評估度量的平均值。 這有助於判斷將模型一般化為新資料集的程度。 [交叉驗證模型][cross-validate-model]模組會採用非訓練模型和一些標示的資料集，而且除了平均的結果之外，還會輸出 10 次交疊的每個評估結果。
+或者，您可以使用交叉驗證，對不同的輸入資料子集自動執行一「訓練-評分-評估」作業 (10 次交疊)。 輸入資料會分割成 10 個部分，其中 1 個部分保留供測試之用，其他 9 個部分則供訓練之用。 此程序會重複 10 次，然後取得評估度量的平均值。 這有助於判斷將模型一般化為新資料集的程度。 [交叉驗證模型][cross-validate-model]模組接受非定型模型和一些標註的資料集，除了輸出平均結果，還會輸出各有 10 次交疊的評估結果。
 
 在以下幾節中，我們將同時使用[評估模型][evaluate-model]和[交叉驗證模型][cross-validate-model]模組，建置簡單的迴歸和分類模型，並評估其效能。
 
@@ -51,10 +51,10 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 * 汽車價格資料 (原始)
 * [線性迴歸][linear-regression]
 * [訓練模型][train-model]
-* [評分模型][score-model]
+* [計分模型][score-model]
 * [評估模型][evaluate-model]
 
-如下方圖 1 所示連接連接埠，並將[訓練模型][train-model]模組的 [標籤] 資料行設定為 [價格]。
+如下圖 1 所示連接連接埠，並將[訓練模型][train-model]模組的 [標籤] 資料行設定為 [價格]。
 
 ![評估迴歸模型](media/machine-learning-evaluate-model-performance/1.png)
 
@@ -72,13 +72,13 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 圖 2. 線性迴歸評估度量。
 
 ### <a name="using-cross-validation"></a>使用交叉驗證
-如先前所述，您可以使用[交叉驗證模型][cross-validate-model]模組，自動執行重複的訓練、評分和評估。 在這種情況下，您只需要一個資料集，一個非訓練模型，以及一個[交叉驗證模型][cross-validate-model]模組 (請參閱下圖)。 請注意，您必須在[交叉驗證模型][cross-validate-model]模組的屬性中，將 [標籤] 資料行設定為 [價格]。
+如先前所述，您可以使用[交叉驗證模型][cross-validate-model]模組，自動執行反覆的訓練、計分和評估。 在這種情況下，您只需要一個資料集、一個非定型模型，以及一個[交叉驗證模型][cross-validate-model]模組 (請參閱下圖)。 請注意，您必須在[交叉驗證模型][cross-validate-model]模組的屬性中，將 [標籤] 資料行設定為 [價格]。
 
 ![交叉驗證迴歸模型](media/machine-learning-evaluate-model-performance/3.png)
 
 圖 3. 交叉驗證迴歸模型。
 
-執行實驗之後，您可以按一下[交叉驗證模型][cross-validate-model]模組右側的輸出連接埠以查看評估結果。 這將為每個反覆項目 (交疊) 提供度量的詳細檢視，以及每個度量的平均結果 (圖 4)。
+執行實驗之後，您可以按一下[交叉驗證模型][cross-validate-model]模組右側的輸出連接埠，以查看評估結果。 這將為每個反覆項目 (交疊) 提供度量的詳細檢視，以及每個度量的平均結果 (圖 4)。
 
 ![迴歸模型的交叉驗證結果](media/machine-learning-evaluate-model-performance/4.png)
 
@@ -93,10 +93,10 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 * 成人收入普查二進位分類資料集
 * [二元羅吉斯迴歸][two-class-logistic-regression]
 * [訓練模型][train-model]
-* [評分模型][score-model]
+* [計分模型][score-model]
 * [評估模型][evaluate-model]
 
-如下方圖 5 所示連接連接埠，並將[訓練模型][train-model]模組的 [標籤] 資料行設定為 [收入]。
+如下圖 5 所示連接連接埠，並將[訓練模型][train-model]模組的 [標籤] 資料行設定為 [收入]。
 
 ![評估二進位分類模型](media/machine-learning-evaluate-model-performance/5.png)
 
@@ -122,7 +122,7 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 此外，您還可以在**受測者操作特徵 (ROC)** 曲線及對應的**曲線下面積 (AUC)** 值中，查看真肯定比率與誤肯定比率的比較。 此曲線越接近左上角，分類器的效能越好 (亦即，將真肯定比率提至最高，同時將誤肯定比率降至最低)。 接近繪圖對角線的曲線是因為分類器想要進行接近隨機猜測的預測所造成。
 
 ### <a name="using-cross-validation"></a>使用交叉驗證
-如同在迴歸範例中，我們可以執行交叉驗證以自動重複訓練、評分和評估不同的資料子集。 同樣地，我們可以使用[交叉驗證模型][cross-validate-model]模組、非訓練羅吉斯迴歸模型和資料集。 在[交叉驗證模型][cross-validate-model]模型的屬性中，[標籤] 資料行必須設定為 [收入]。 執行實驗並按一下[交叉驗證模型][cross-validate-model]模組右側的輸出連接埠之後，除了每次交疊的平均值和標準差之外，我們還可以看到每次交疊的二元分類度量值。 
+如同在迴歸範例中，我們可以執行交叉驗證以自動重複訓練、評分和評估不同的資料子集。 同樣地，我們可以使用[交叉驗證模型][cross-validate-model]模組、非定型的羅吉斯迴歸模型和資料集。 在[交叉驗證模型][cross-validate-model]模組的屬性中，[標籤] 資料行必須設定為 [收入]。 執行實驗並按一下[交叉驗證模型][cross-validate-model]模組右側的輸出連接埠之後，除了每次交疊的平均值和標準差，我們還可以看到每次交疊的二元分類度量值。 
 
 ![交叉驗證二元分類模型](media/machine-learning-evaluate-model-performance/8.png)
 
@@ -133,7 +133,7 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 圖 9. 二進位分類器的交叉驗證結果。
 
 ## <a name="evaluating-a-multiclass-classification-model"></a>評估多元分類模型
-在這個實驗中，我們將使用熱門的[鳶尾](http://archive.ics.uci.edu/ml/datasets/Iris "鳶尾")資料集，其中包含 3 種不同類型 (類別) 鳶尾屬植物的案例。 每個案例有 4 個特性值 (萼片長度/寬度和花瓣長度/寬度)。 在上一個實驗中，我們使用相同的資料集訓練並測試模型。 在此，我們將使用[分割資料][split]模組建立 2 個資料子集，並訓練第一個子集，然後評分和評估第二個子集。 鳶尾資料集可以在 [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/index.html) 中公開取得，而且可以使用[匯入資料][import-data]模組下載。
+在這個實驗中，我們將使用熱門的[鳶尾](http://archive.ics.uci.edu/ml/datasets/Iris "鳶尾")資料集，其中包含 3 種不同類型 (類別) 鳶尾屬植物的案例。 每個案例有 4 個特性值 (萼片長度/寬度和花瓣長度/寬度)。 在上一個實驗中，我們使用相同的資料集訓練並測試模型。 在此，我們將使用[分割資料][split]模組建立 2 個資料子集，訓練第一個子集，然後計分和評估第二個子集。 [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/index.html) 上公開提供鳶尾資料集，可透過[匯入資料][import-data]模組來下載。
 
 ### <a name="creating-the-experiment"></a>建立實驗
 將下列模組加入至您在 Azure Machine Learning Studio 中的工作區：
@@ -142,7 +142,7 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 * [多元決策樹系][multiclass-decision-forest]
 * [分割資料][split]
 * [訓練模型][train-model]
-* [評分模型][score-model]
+* [計分模型][score-model]
 * [評估模型][evaluate-model]
 
 連接連接埠，如以下圖 10 中所示。
@@ -151,7 +151,7 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 
 按一下[匯入資料][import-data]模組，然後將 [資料來源] 屬性設定為 [透過 HTTP 的 Web URL]，並將 [URL] 設定為 http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data。
 
-在[分割資料][split]模組中，設定用於訓練的執行個體分數 (例如 0.7)。
+在[分割資料][split]模組中，設定要用於訓練的執行個體分數 (例如 0.7)。
 
 ![評估多元分類器](media/machine-learning-evaluate-model-performance/10.png)
 
@@ -165,7 +165,7 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 圖 11. 多元分類評估結果。
 
 ### <a name="using-cross-validation"></a>使用交叉驗證
-如先前所述，您可以使用[交叉驗證模型][cross-validate-model]模組，自動執行重複的訓練、評分和評估。 您需要一個資料集、一個非訓練模型以及一個[交叉驗證模型][cross-validate-model]模組 (請參閱下圖)。 同樣地，您必須設定[交叉驗證模型][cross-validate-model]模組的 [標籤] 資料行 (在本例中為資料行索引 5)。 執行實驗並按一下[交叉驗證模型][cross-validate-model]右側的輸出連接埠之後，您可以查看每次交疊的度量值，以及平均值和標準差。 在此顯示的度量類似於在二進位分類案例中討論的度量。 但是請注意，在多元分類中，運算真肯定/否定以及誤肯定/否定是透過根據每個類別計算來完成，因為沒有整體的正或負類別。 例如，運算 ‘Iris-setosa’ 類別的精確度或回收時，假設這是正類別，其他所有類別則是負類別。
+如先前所述，您可以使用[交叉驗證模型][cross-validate-model]模組，自動執行反覆的訓練、計分和評估。 您需要一個資料集、一個非定型模型，以及一個[交叉驗證模型][cross-validate-model]模組 (請參閱下圖)。 同樣地，您必須設定[交叉驗證模型][cross-validate-model]模組的 [標籤] 資料行 (在本例中為資料行索引 5)。 執行實驗並按一下[交叉驗證模型][cross-validate-model]右側的輸出連接埠之後，您可以查看每次交疊的度量值，以及平均值和標準差。 在此顯示的度量類似於在二進位分類案例中討論的度量。 但是請注意，在多元分類中，運算真肯定/否定以及誤肯定/否定是透過根據每個類別計算來完成，因為沒有整體的正或負類別。 例如，運算 ‘Iris-setosa’ 類別的精確度或回收時，假設這是正類別，其他所有類別則是負類別。
 
 ![交叉驗證多元分類模型](media/machine-learning-evaluate-model-performance/12.png)
 
@@ -189,6 +189,6 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

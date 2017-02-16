@@ -16,8 +16,8 @@ ms.workload: big-data
 ms.date: 11/08/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 1589b1150df47aa5e436aa5d538b6a98706f97ae
-ms.openlocfilehash: 3e53aa3ed3c1612c76aec349e4dabfc064842cb9
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: 477c766afbfaccd70313e73e5d2ec5873c12d105
 
 
 ---
@@ -35,6 +35,10 @@ ms.openlocfilehash: 3e53aa3ed3c1612c76aec349e4dabfc064842cb9
 若要完成本文中的步驟，您需要下列項目。
 
 * Linux 型 HDInsight (HDInsight 上的 Hadoop) 叢集
+
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * SSH 用戶端。 Linux、Unix 和 Mac 作業系統應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 ## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
@@ -116,6 +120,6 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

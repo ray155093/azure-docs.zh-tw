@@ -1,5 +1,5 @@
 ---
-title: "媒體服務 REST API 概觀 | Microsoft Docs"
+title: "媒體服務作業 REST API 概觀 | Microsoft Docs"
 description: "媒體服務 REST API 概觀"
 services: media-services
 documentationcenter: 
@@ -12,20 +12,24 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 10/12/2016
+ms.date: 11/29/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 900c8fe2710d02d117c1b8155623ed911796203b
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8b6e19e3c495eec4e16187524df0b13e4ffce9de
 
 
 ---
-# <a name="media-services-rest-api-overview"></a>媒體服務 REST API 概觀
+# <a name="media-services-operations-rest-api-overview"></a>媒體服務作業 REST API 概觀
 [!INCLUDE [media-services-selector-setup](../../includes/media-services-selector-setup.md)]
+
+**媒體服務作業 REST** API 用於建立作業、資產、存取原則，以及媒體服務帳戶中物件上的其他作業。 如需詳細資訊，請參閱[媒體服務作業 REST API 參考](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)。
 
 Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且可以使用詳細資訊 JSON 或 atom+pub 回應。 由於媒體服務符合 Azure 設計指導方針，因此在連線到媒體服務時，每個用戶端都必須使用一組必要的 HTTP 標頭，以及一組可以使用的選擇性標頭。 下列章節描述建立要求及接收來自媒體服務的回應時可以使用的標頭和 HTTP 指令動詞。
 
+
 ## <a name="considerations"></a>注意事項
+
 使用 REST 時須考量下列事項：
 
 * 查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 您需要使用 **Skip** 和 **Take** (.NET)/ **top** (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
@@ -66,7 +70,7 @@ Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且
 | 頁首 | 類型 | 值 |
 | --- | --- | --- |
 | Date |RFC 1123 日期 |要求的時間戳記 |
-| Accept |內容類型 |如下所示的回應要求內容類型：<p> -application/json;odata=verbose<p> - application/atom+xml<p>  回應可能會有不同的內容類型，例如 Blob 擷取，成功的回應會在其中包含 Blob 資料流做為裝載。 |
+| Accept |內容類型 |如下所示的回應要求內容類型：<p> -application/json;odata=verbose<p> - application/atom+xml<p> 回應可能會有不同的內容類型，例如 Blob 擷取，成功的回應會在其中包含 Blob 資料流做為裝載。 |
 | Accept-Encoding |Gzip、deflate |GZIP 和 DEFLATE 編碼 (適用時)。 注意：若是大型資源，媒體服務可能會忽略此標頭，並傳回未壓縮的資料。 |
 | Accept-Language |"en"、"es" 等。 |指定回應的慣用語言。 |
 | Accept-Charset |字元集類型，如 "UTF-8" |預設值為 UTF-8。 |
@@ -114,6 +118,6 @@ Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

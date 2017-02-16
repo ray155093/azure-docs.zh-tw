@@ -13,11 +13,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/18/2016
+ms.date: 11/21/2016
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a50ac3b7fe76dd44887fb197f685c1311d9dc04c
+ms.sourcegitcommit: 822bace005a6244a47c9484487dab85b1aec9d9a
+ms.openlocfilehash: e20b1ca582c56da7b4fb1e2df3be90bd1c29a8b6
 
 
 ---
@@ -28,6 +28,7 @@ ms.openlocfilehash: a50ac3b7fe76dd44887fb197f685c1311d9dc04c
 
 * 當您刪除 VM 時，磁碟和 VHD 不會自動刪除。 這可能是儲存體帳戶刪除失敗的原因。 我們不會刪除磁碟，所以您可以使用磁碟來裝載另一個 VM。
 * 磁碟上仍有租用或有與磁碟相關聯的 blob。
+* 仍有正在使用 Blob、容器或儲存體帳戶的 VM 映像。
 
 若本文中未提及您的 Azure 問題，請造訪 [MSDN 及 Stack Overflow 上的 Azure 論壇](https://azure.microsoft.com/support/forums/)。 您可以在這些論壇上張貼您的問題，或將問題貼到 Twitter 上的 @AzureSupport。 此外，您也可以選取 [Azure 支援](https://azure.microsoft.com/support/options/)網站上的 [取得支援]，來提出 Azure 支援要求。
 
@@ -64,39 +65,69 @@ ms.openlocfilehash: a50ac3b7fe76dd44887fb197f685c1311d9dc04c
 
 無法刪除儲存體容器 <container name>。*錯誤：「目前容器上沒有租用，且要求中沒有指定任何租用識別碼*。
 
+或
+
+「下列虛擬機器磁碟使用這個容器中的 Blob，因此無法刪除容器: VirtualMachineDiskName1, VirtualMachineDiskName2, ...」
+
 ### <a name="scenario-3-unable-to-delete-a-vhd"></a>案例 3：無法刪除 VHD
 在您刪除 VM，然後嘗試刪除相關聯的 blob 之後，您可能會收到下列訊息︰
 
 *無法刪除 blob 'path/XXXXXX-XXXXXX-os-1447379084699.vhd'。錯誤：「目前 blob 上沒有租用，且要求中沒有指定任何租用識別碼。*
 
+或
+
+「Blob ‘BlobName.vhd’ 正當作虛擬機器磁碟 ‘VirtualMachineDiskName’ 使用，因此無法刪除。」
+
 ## <a name="solution"></a>方案
 若要解決最常見的問題，請嘗試下列方法︰
 
-### <a name="step-1-delete-any-os-disks-that-are-preventing-deletion-of-the-storage-account-container-or-vhd"></a>步驟 1︰刪除任何會阻止您刪除儲存體帳戶、容器或 VHD 的 OS 磁碟
+### <a name="step-1-delete-any-disks-that-are-preventing-deletion-of-the-storage-account-container-or-vhd"></a>步驟 1︰刪除任何會阻止您刪除儲存體帳戶、容器或 VHD 的磁碟
 1. 切換至 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
 2. 選取 [虛擬機器] > [磁碟]。
-   
+
     ![Azure 傳統入口網站上虛擬機器上的磁碟影像。](./media/storage-cannot-delete-storage-account-container-vhd/VMUI.png)
 3. 找出與您想要刪除的儲存體帳戶、容器或 VHD 相關聯的磁碟。 檢查磁碟的位置時，您會發現相關聯的儲存體帳戶、容器或 VHD。
-   
+
     ![顯示 Azure 傳統入口網站上磁碟的位置資訊的影像](./media/storage-cannot-delete-storage-account-container-vhd/DiskLocation.png)
-4. 確認磁碟的 [連接到]  欄位上沒有列出 VM，然後再刪除磁碟。
-   
+4. 使用下列其中一種方法刪除磁碟：
+
+  - 如果在磁碟的 [已連接到] 欄位上沒有列出 VM，您可以直接刪除磁碟。
+
+  - 如果磁碟是資料磁碟，請遵循下列步驟：
+
+    1. 檢查磁碟所連接之 VM 的名稱。
+    2. 移至 [虛擬機器] > [執行個體]，然後尋找 VM。
+    3. 確定沒有任何項目會主動使用磁碟。
+    4. 選取入口網站底部的 [卸離磁碟] 以卸離磁碟。
+    5. 移至 [虛擬機器] > [磁碟]，並等候 [已連接到] 欄位轉為空白。 這表示磁碟已成功從 VM 卸離。
+    6. 選取 [虛擬機器] > [磁碟] 底部的 [刪除] 來刪除磁碟。
+
+  - 如果磁碟是作業系統磁碟 ([包含作業系統] 欄位有值，例如 Windows) 並已連接到 VM，請遵循下列步驟來刪除 VM。 作業系統磁碟無法卸離，因此我們必須刪除 VM 才能釋放租用。
+
+    1. 檢查 [資料磁碟] 所連接到的虛擬機器名稱。  
+    2. 移至 [虛擬機器] > [執行個體]，然後選取磁碟所連接到的 VM。
+    3. 確定沒有正在使用虛擬機器的項目，而且您不再需要虛擬機器。
+    4. 選取磁碟所連接到的 VM，然後選取 [刪除] > [刪除已連接磁碟]。
+    5. 移至 [虛擬機器] > [磁碟]，並等候磁碟消失。  這可能需要幾分鐘才會完成，且您可能需要重新整理頁面。
+    6. 如果磁碟沒有消失，請等候 [已連接到] 欄位轉為空白。 這表示磁碟已完全從 VM 卸離。  接著，選取磁碟，然後選取頁面底部的 [刪除] 以刪除磁碟。
+
+
    > [!NOTE]
    > 如果磁碟連接到 VM，您將無法刪除它。 磁碟會以非同步的方式中斷連接已刪除的 VM。 刪除 VM 之後，可能需要幾分鐘，此欄位才能清除。
-   > 
-   > 
+   >
+   >
+
 
 ### <a name="step-2-delete-any-vm-images-that-are-preventing-deletion-of-the-storage-account-or-container"></a>步驟 2︰刪除任何會阻止您刪除儲存體帳戶或容器的 VM 映像
 1. 切換至 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
 2. 選取 [虛擬機器] > [映像]，然後刪除與儲存體帳戶、容器或 VHD 相關聯的映像。
-   
+
     接下來，嘗試再次刪除儲存體帳戶、容器或 VHD。
 
 > [!WARNING]
 > 請務必先備份您想要儲存的任何資料，再刪除帳戶。 您無法還原已刪除的儲存體帳戶，也無法擷取刪除之前所包含的任何內容。 這也適用於帳戶中的任何資源：一旦刪除 VHD、Blob、資料表、佇列或檔案，就是永久刪除。 確定資源不在使用中。
-> 
-> 
+>
+>
 
 ## <a name="about-the-stopped-deallocated-status"></a>關於已停止 (已解除配置) 狀態
 已在傳統部署模型中建立並已保留的 VM 將在 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](https://manage.windowsazure.com/)上具有 [已停止 (已解除配置)] 狀態。
@@ -117,7 +148,6 @@ ms.openlocfilehash: a50ac3b7fe76dd44887fb197f685c1311d9dc04c
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

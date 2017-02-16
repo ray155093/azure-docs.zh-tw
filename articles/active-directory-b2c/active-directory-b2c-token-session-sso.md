@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/06/2016
+ms.date: 01/26/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 9cc0081588f54f77a69ded336d063651b12c8dd8
-ms.openlocfilehash: a185e802a2713c6b6d4101477f0fc61bca0bf29c
+ms.sourcegitcommit: 351149296a6d7dfa801b295ec21fc04215c7b051
+ms.openlocfilehash: 766ba894ba2643dec06757a133f8e716aa856161
 
 
 ---
@@ -60,6 +60,11 @@ Azure AD B2C 支援以 [OAuth 2.0 授權通訊協定](active-directory-b2c-refer
 * 只要使用者在行動應用程式中持續保持作用狀態，便允許他們無限期地維持應用程式的登入狀態。 透過在登入原則中將 [重新整理權杖滑動視窗存留期 (天)] 參數設定為 [無限制]，您可以實現此案例。
 * 請設定適當的存取權杖存留期，以滿足業界的安全性和循規規範。
 
+    > [!NOTE]
+    > 這些設定不適用於密碼重設原則。
+    > 
+    > 
+
 ## <a name="token-compatibility-settings"></a>權杖相容性設定
 我們對 Azure AD B2C 所發出之安全性權杖中的重要宣告進行了格式變更。 這都是為了改善我們的標準通訊協定支援，以及獲得更佳的協力廠商身分識別程式庫互通性。 不過，為了避免破壞現有的應用程式，我們建立了下列可讓客戶視需要選擇加入的屬性︰
 
@@ -87,6 +92,11 @@ Azure AD B2C 支援以 [OpenID Connect 驗證通訊協定](active-directory-b2c-
 * 請設定適當的 Web 應用程式工作階段存留期，以滿足業界的安全性和循規規範。
 * 當使用者與 Web 應用程式之高度安全組件的互動達到設定期間後，請強制他們重新驗證。 
 
+    > [!NOTE]
+    > 這些設定不適用於密碼重設原則。
+    > 
+    > 
+
 ## <a name="single-sign-on-sso-configuration"></a>單一登入組態
 如果您的 B2C 租用戶中有多個應用程式和原則，可以使用 **單一登入設定** 屬性來管理使用者與它們之間的互動。 您可以將屬性配置為以下任一設定︰
 
@@ -95,9 +105,14 @@ Azure AD B2C 支援以 [OpenID Connect 驗證通訊協定](active-directory-b2c-
 * **原則**︰可讓您保留原則專用的使用者工作階段，不論使用該使用者工作階段的應用程式為何。 例如，如果使用者已登入並完成多重要素驗證 (MFA) 步驟，只要與原則繫結的工作階段未過期，他們就可以取得多個應用程式較高安全性之組件的存取權限。
 * **已停用**︰強制使用者在每次原則執行時都必須完成整個使用者旅程。 例如，這可讓多位使用者登入您的應用程式 (在共用桌面案例中)，即使有一位使用者在整段期間都保持登入狀態，也不受影響。
 
+    > [!NOTE]
+    > 這些設定不適用於密碼重設原則。
+    > 
+    > 
 
 
 
-<!--HONumber=Dec16_HO5-->
+
+<!--HONumber=Jan17_HO4-->
 
 

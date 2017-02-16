@@ -1,5 +1,5 @@
 ---
-title: "如何搭配使用服務匯流排主題與 Node.js | Microsoft Docs"
+title: "如何搭配 Node.js 使用 Azure 服務匯流排主題和訂用帳戶 | Microsoft Docs"
 description: "了解如何從 Node.js 應用程式，在 Azure 中使用服務匯流排主題和訂用帳戶。"
 services: service-bus-messaging
 documentationcenter: nodejs
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/12/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
-ms.openlocfilehash: d956c392a209522dd6535297316f9ed695207b00
+ms.sourcegitcommit: 56094202673416320e5a8801ee2275881ccfc8fb
+ms.openlocfilehash: 4e28b47a1ce1a3bf69a57382a5ec6c2a8a161efe
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: d956c392a209522dd6535297316f9ed695207b00
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 ## <a name="create-a-nodejs-application"></a>建立 Node.js 應用程式
-建立空白的 Node.js 應用程式。 如需建立 Node.js 應用程式的相關指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站]、[Node.js 雲端服務][Node.js 雲端服務] (使用 Windows PowerShell) 或使用 WebMatrix 的網站。
+建立空白的 Node.js 應用程式。 如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站]、[Node.js 雲端服務][Node.js Cloud Service] (使用 Windows PowerShell) 或使用 WebMatrix 的網站。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
 若要使用服務匯流排，請下載 Node.js Azure 封裝。 此封裝含有一組能與服務匯流排 REST 服務通訊的便利程式庫。
@@ -55,27 +55,27 @@ ms.openlocfilehash: d956c392a209522dd6535297316f9ed695207b00
 ### <a name="import-the-module"></a>匯入模組
 使用記事本或其他文字編輯器將以下內容新增至應用程式 **server.js** 檔案的頂端：
 
-```
+```javascript
 var azure = require('azure');
 ```
 
 ### <a name="set-up-a-service-bus-connection"></a>設定服務匯流排連接
 Azure 模組會讀取環境變數 AZURE\_SERVICEBUS\_NAMESPACE 和 AZURE\_SERVICEBUS\_ACCESS\_KEY，以取得連接服務匯流排所需的資訊。 如果您未設定這些環境變數，必須在呼叫 **createServiceBusService** 時指定帳戶資訊。
 
-如需在 Azure 雲端服務組態檔中設定環境變數的範例，請參閱[使用儲存體的 Node.js 雲端服務][使用儲存體的 Node.js 雲端服務]。
+如需在「Azure 雲端服務」組態檔中設定環境變數的範例，請參閱[使用儲存體的 Node.js 雲端服務][Node.js Cloud Service with Storage]。
 
-如需在 Azure 網站的 [Azure 傳統入口網站][Azure 傳統入口網站]中設定環境變數的範例，請參閱[使用儲存體的 Node.js Web 應用程式][使用儲存體的 Node.js Web 應用程式]。
+如需在 [Azure 傳統入口網站][Azure classic portal]中設定 Azure 網站環境變數的範例，請參閱[使用儲存體的 Node.js Web 應用程式][Node.js Web Application with Storage]。
 
 ## <a name="create-a-topic"></a>建立主題
 **ServiceBusService** 物件可讓您使用主題。 下列程式碼將建立 **ServiceBusService** 物件。 請將程式碼新增至 **server.js** 檔案的頂端附近，放置在匯入 azure 模型的陳述式後方：
 
-```
+```javascript
 var serviceBusService = azure.createServiceBusService();
 ```
 
 藉由在 **ServiceBusService** 物件上呼叫 **createTopicIfNotExists**，系統將傳回指定的主題 (若有的話) 或建立具有指定名稱的新主題。 以下程式碼使用 **createTopicIfNotExists** 來建立或連接名為 'MyTopic' 的主題：
 
-```
+```javascript
 serviceBusService.createTopicIfNotExists('MyTopic',function(error){
     if(!error){
         // Topic was created or exists
@@ -86,7 +86,7 @@ serviceBusService.createTopicIfNotExists('MyTopic',function(error){
 
 **createServiceBusService** 也支援其他選項，如此讓您能夠覆寫訊息存留時間或主題大小上限等預設主題設定。 下列範例會將主題大小上限設為 5GB，並將存留時間設為 1 分鐘：
 
-```
+```javascript
 var topicOptions = {
         MaxSizeInMegabytes: '5120',
         DefaultMessageTimeToLive: 'PT1M'
@@ -102,13 +102,13 @@ serviceBusService.createTopicIfNotExists('MyTopic', topicOptions, function(error
 ### <a name="filters"></a>篩選器
 您可以將選用的篩選作業套用至使用 **ServiceBusService** 執行的作業。 篩選作業可包括記錄、自動重試等等。篩選器是使用簽章實作方法的物件：
 
-```
+```javascript
 function handle (requestOptions, next)
 ```
 
 對要求選項執行前置處理之後，方法會呼叫 `next`，並傳遞具有下列簽章的回呼：
 
-```
+```javascript
 function (returnObject, finalCallback, next)
 ```
 
@@ -116,8 +116,10 @@ function (returnObject, finalCallback, next)
 
 Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**ExponentialRetryPolicyFilter** 和 **LinearRetryPolicyFilter**。 下列程式碼將建立使用 **ExponentialRetryPolicyFilter** 的 **ServiceBusService** 物件：
 
-    var retryOperations = new azure.ExponentialRetryPolicyFilter();
-    var serviceBusService = azure.createServiceBusService().withFilter(retryOperations);
+```javascript
+var retryOperations = new azure.ExponentialRetryPolicyFilter();
+var serviceBusService = azure.createServiceBusService().withFilter(retryOperations);
+```
 
 ## <a name="create-subscriptions"></a>建立訂用帳戶
 **ServiceBusService** 物件也能用來建立主題訂閱。 訂閱是具名的，它們能擁有選用的篩選器，以限制傳遞至訂閱之虛擬佇列的訊息集合。
@@ -130,7 +132,7 @@ Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**Exponent
 ### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
 如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「AllMessages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
-```
+```javascript
 serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
     if(!error){
         // subscription created
@@ -141,7 +143,7 @@ serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
 您也可以建立篩選器，讓您界定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。
 
-訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 **SqlFilter**。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用之運算式的詳細資訊，請檢閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
+訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 **SqlFilter**。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需有關可與 SQL 篩選器搭配使用的運算式詳細資料，請檢閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
 
 您可以使用 **ServiceBusService** 物件的 **createRule** 方法將篩選器新增至訂用帳戶。 此方法可讓您將篩選器新增至現有的訂用帳戶中。
 
@@ -152,7 +154,7 @@ serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
 
 以下範例將建立名為 `HighMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取自訂 **messagenumber** 屬性大於 3 的訊息：
 
-```
+```javascript
 serviceBusService.createSubscription('MyTopic', 'HighMessages', function (error){
     if(!error){
         // subscription created
@@ -187,7 +189,7 @@ var rule={
 
 同樣地，下列範例將建立名為 `LowMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取 **messagenumber** 屬性小於或等於 3 的訊息：
 
-```
+```javascript
 serviceBusService.createSubscription('MyTopic', 'LowMessages', function (error){
     if(!error){
         // subscription created
@@ -225,11 +227,11 @@ var rule={
 ## <a name="how-to-send-messages-to-a-topic"></a>如何將訊息傳送至主題
 若要將訊息傳送至服務匯流排主題，應用程式必須使用 **ServiceBusService** 物件的 **sendTopicMessage** 方法。
 傳送至服務匯流排主題的訊息是 **BrokeredMessage** 物件。
-**BrokeredMessage** 物件具有一組標準屬性 (例如 **Label** 和 **TimeToLive**)、一個用來保存自訂應用程式特定屬性的字典，以及字串資料的主體。 應用程式能將字串值傳遞至 **sendTopicMessage** 以設定訊息本文，系統會將預設值填入任何需要的標準屬性中。
+**BrokeredMessage** 物件具有一組標準屬性 (例如 **Label** 和 **TimeToLive**)、一個用來保存自訂應用程式特定屬性的字典，以及一堆字串資料。 應用程式能將字串值傳遞至 **sendTopicMessage** 以設定訊息本文，系統會將預設值填入任何需要的標準屬性中。
 
 下列範例示範如何將五個測試訊息傳送至 'MyTopic'。 請注意，迴圈反覆運算上每個訊息的 **messagenumber** 屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)：
 
-```
+```javascript
 var message = {
     body: '',
     customProperties: {
@@ -260,7 +262,7 @@ for (i = 0;i < 5;i++) {
 
 以下範例示範如何使用 **receiveSubscriptionMessage** 來接收與處理訊息。 此範例會先接收來自 'LowMessages' 訂閱的訊息並加以刪除，然後再使用設定為 true 的 **isPeekLock** 接收來自 'HighMessages' 訂用帳戶的訊息。 接著再使用 **deleteMessage** 刪除訊息：
 
-```
+```javascript
 serviceBusService.receiveSubscriptionMessage('MyTopic', 'LowMessages', function(error, receivedMessage){
     if(!error){
         // Message received and deleted
@@ -289,42 +291,46 @@ serviceBusService.receiveSubscriptionMessage('MyTopic', 'HighMessages', { isPeek
 如果應用程式在處理訊息之後，尚未呼叫 **deleteMessage** 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為**至少處理一次**，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **MessageId** 屬性來達到此目的，該屬性將在各個傳遞嘗試中會保持不變。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
-主題和訂用帳戶是持續性的，您必須透過[Azure 傳統入口網站][Azure 傳統入口網站]或程式設計明確地加以刪除。
+主題和訂用帳戶是持續性的，您必須透過 [Azure 傳統入口網站][Azure classic portal]或以程式設計方式明確地刪除它們。
 下列範例示範如何刪除名為 `MyTopic` 的主題：
 
-    serviceBusService.deleteTopic('MyTopic', function (error) {
-        if (error) {
-            console.log(error);
-        }
-    });
+```javascript
+serviceBusService.deleteTopic('MyTopic', function (error) {
+    if (error) {
+        console.log(error);
+    }
+});
+```
 
 刪除主題也將會刪除對主題註冊的任何訂用帳戶。 您也可以個別刪除訂用帳戶。 下列範例示範如何從 `MyTopic` 主題刪除名為 `HighMessages` 的訂用帳戶：
 
-    serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error) {
-        if(error) {
-            console.log(error);
-        }
-    });
+```javascript
+serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error) {
+    if(error) {
+        console.log(error);
+    }
+});
+```
 
 ## <a name="next-steps"></a>後續步驟
 了解基本的服務匯流排主題之後，請參考下列連結以取得更多資訊。
 
-* 請參閱[佇列、主題和訂用帳戶][佇列、主題和訂用帳戶]。
+* 請參閱[佇列、主題和訂用帳戶][Queues, topics, and subscriptions]。
 * [SqlFilter][SqlFilter] 的 API 參考資料。
-* 請造訪 GitHub 上的 [Azure SDK for Node][Azure SDK for Node] 儲存機制。
+* 瀏覽 GitHub 上的 [Azure SDK for Node][Azure SDK for Node] 儲存機制。
 
 [Azure SDK for Node]: https://github.com/Azure/azure-sdk-for-node
-[Azure 傳統入口網站]: https://manage.windowsazure.com
-[SqlFilter.SqlExpression]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
-[佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
-[SqlFilter]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx
-[Node.js 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
+[Azure classic portal]: https://manage.windowsazure.com
+[SqlFilter.SqlExpression]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sqlfilter#Microsoft_ServiceBus_Messaging_SqlFilter_SqlExpression
+[Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
+[SqlFilter]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sqlfilter
+[Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [建立 Node.js 應用程式並將其部署到 Azure 網站]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
-[使用儲存體的 Node.js 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
-[使用儲存體的 Node.js Web 應用程式]: ../storage/storage-nodejs-use-table-storage-cloud-service-app.md
+[Node.js Cloud Service with Storage]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
+[Node.js Web Application with Storage]: ../storage/storage-nodejs-use-table-storage-cloud-service-app.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

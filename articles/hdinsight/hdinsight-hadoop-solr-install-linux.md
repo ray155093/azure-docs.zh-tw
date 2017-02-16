@@ -13,21 +13,19 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/03/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cf3df8eb82fa0aa7c5848ea5da91734226a62b3e
+ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
+ms.openlocfilehash: e270f3dfdaf248ed40d539fa1d2e69a3930d03c6
 
 
 ---
 # <a name="install-and-use-solr-on-hdinsight-hadoop-clusters"></a>在 HDInsight Hadoop 叢集上安裝和使用 Solr
 在本主題中，您將了解如何使用指令碼動作，在 Azure HDInsight 上安裝 Solr。 Solr 是強大的搜尋平台，可對 Hadoop 管理的資料執行企業級搜尋功能。 在 HDInsight 叢集上安裝 Solr 之後，您也將學習如何使用 Solr 搜尋資料。
 
-> [!NOTE]
-> 此文件中的步驟需要以 Linux 為基礎的 HDInsight 叢集。 如需搭配以 Windows 為基礎的叢集使用 Solr 的詳細資訊，請參閱 [在 HDInsight Hadoop 叢集上安裝和使用 Solr (Windows)](hdinsight-hadoop-solr-install.md)
-> 
-> 
+> [!IMPORTANT]
+> 本文件中的步驟需要一個使用 Linux 的 HDInsight 叢集。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 本主題中使用的範例指令碼會以特定組態建立 Solr 叢集。 如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須相應修改指令碼和 Solr 二進位檔。
 
@@ -312,6 +310,6 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。 Solr 儀
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

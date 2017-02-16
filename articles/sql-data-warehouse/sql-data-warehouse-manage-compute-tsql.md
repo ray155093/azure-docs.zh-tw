@@ -1,5 +1,5 @@
 ---
-title: "管理 Azure SQL 資料倉儲中的計算能力 (REST) | Microsoft Docs"
+title: "在 Azure SQL 資料倉儲中暫停、繼續、使用 T-SQL 調整 | Microsoft Docs"
 description: "透過調整 DWU 以相應放大效能的 Transact-SQL (T-SQL) 工作。 透過在非尖峰時間進行縮減以節省成本。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 41ab1c4b2709c2ea6890ca526db1dea177b7da1b
+ms.sourcegitcommit: f589111d3a4da061e1cc3313632dd0b5403dc278
+ms.openlocfilehash: f93e5802141b16862f5e37126196069bd32c1f19
 
 
 ---
@@ -29,17 +29,6 @@ ms.openlocfilehash: 41ab1c4b2709c2ea6890ca526db1dea177b7da1b
 > * [TSQL](sql-data-warehouse-manage-compute-tsql.md)
 > 
 > 
-
-透過相應放大計算資源和記憶體來調整效能，以滿足工作負載不斷改變的需求。 透過在非尖峰時間縮減資源或直接暫停計算以節省成本。 
-
-這個工作集合會使用 T-SQL 來：
-
-* 檢視目前的 DWU 設定
-* 調整 DWU 以變更計算資源
-
-若要暫停或繼續資料庫，請在這篇文章頂端選擇其中一個其他平台選項。
-
-若要深入了解，請參閱[管理計算能力概觀][管理計算能力概觀]。
 
 <a name="current-dwu-bk"></a>
 
@@ -80,14 +69,14 @@ MODIFY (SERVICE_OBJECTIVE = 'DW1000')
 <a name="next-steps-bk"></a>
 
 ## <a name="next-steps"></a>後續步驟
-如需其他管理工作的詳細資訊，請參閱[管理概觀][管理概觀]。
+如需其他管理工作的詳細資訊，請參閱[管理概觀][Management overview]。
 
 <!--Image references-->
 
 <!--Article references-->
-[服務容量限制]: ./sql-data-warehouse-service-capacity-limits.md
-[管理概觀]: ./sql-data-warehouse-overview-manage.md
-[管理計算能力概觀]: ./sql-data-warehouse-manage-compute-overview.md
+[Service capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
+[Management overview]: ./sql-data-warehouse-overview-manage.md
+[Manage compute power overview]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
 
@@ -96,10 +85,10 @@ MODIFY (SERVICE_OBJECTIVE = 'DW1000')
 
 <!--Other Web references-->
 
-[Azure 入口網站]: http://portal.azure.com/
+[Azure portal]: http://portal.azure.com/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

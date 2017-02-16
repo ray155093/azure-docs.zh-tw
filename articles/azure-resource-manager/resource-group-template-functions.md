@@ -12,18 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/11/2016
+ms.date: 11/22/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: e841c21a15c47108cbea356172bffe766003a145
-ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
+ms.sourcegitcommit: 33e6b9ba880f56d967b49d0b89e61d1b531e8376
+ms.openlocfilehash: 1d8cb6894399a7863392a7f11bde69d75d4685c3
 
 
 ---
 # <a name="azure-resource-manager-template-functions"></a>Azure 資源管理員範本函數
 本主題描述您可以在Azure Resource Manager 範本中使用的所有函式。
 
-範本函數和其參數不區分大小寫。 例如，資源管理員在解析 **variables('var1')** 和 **VARIABLES('VAR1')** 時，會將它們視為相同。 評估時，除非函式明確修改大小寫 (例如 toUpper 或 toLower)，否則函式將會保留大小寫。 特定資源類型可能有與評估函式方式無關的大小寫需求。
+範本函數和其參數不區分大小寫。 例如，Resource Manager 在解析 **variables('var1')** 和 **VARIABLES('VAR1')** 時，會將它們視為相同。 評估時，除非函式明確修改大小寫 (例如 toUpper 或 toLower)，否則函式將會保留大小寫。 特定資源類型可能有與評估函式方式無關的大小寫需求。
 
 ## <a name="numeric-functions"></a>數值函式
 資源管理員提供下列函式以使用整數：
@@ -39,14 +39,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="add" />
 
 ### <a name="add"></a>新增
-**add(operand1, operand2)**
+`add(operand1, operand2)`
 
 傳回兩個所提供整數加總後的數字。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| operand1 |是 |要新增的第一個整數。 |
-| operand2 |是 |要新增的第二個整數。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- | 
+|operand1 |是 |Integer |要新增的第一個數字。 |
+|operand2 |是 |Integer |要新增的第二個數字。 |
 
 下列範例會新增兩個參數。
 
@@ -75,15 +75,15 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="copyindex" />
 
 ### <a name="copyindex"></a>copyIndex
-**copyIndex(offset)**
+`copyIndex(offset)`
 
-傳回反覆項目迴圈目前的索引。 
+傳回反覆項目迴圈的索引。 
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| Offset |否 |要新增目前反覆運算值的數量。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| Offset |否 |Integer |要加入到以零為起始之反覆項目值的數字。 |
 
-這個函式一律搭配 **copy** 物件使用。 如需如何使用 **copyIndex**的完整範例，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。
+這個函式一律搭配 **copy** 物件使用。 如果未針對 **offset** 提供任何值，則會傳回目前的反覆項目值。 反覆項目值是從零開始。 如需如何使用 **copyIndex**的完整範例，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。
 
 下列範例顯示複製迴圈以及名稱中所包含的索引值。 
 
@@ -103,14 +103,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="div" />
 
 ### <a name="div"></a>div
-**div(operand1, operand2)**
+`div(operand1, operand2)`
 
 傳回兩個所提供整數相除後的商。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| operand1 |是 |被除數 (整數)。 |
-| operand2 |是 |除數 (整數)。 不能為 0。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| operand1 |是 |Integer |被除數。 |
+| operand2 |是 |Integer |除數。 不能為 0。 |
 
 下列範例會使用一個參數除以另一個參數。
 
@@ -139,13 +139,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="int" />
 
 ### <a name="int"></a>int
-**int(valueToConvert)**
+`int(valueToConvert)`
 
 將指定的值轉換成整數。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| valueToConvert |是 |要轉換成整數的值。 值的類型只能是字串或整數。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| valueToConvert |是 |字串或整數 |要轉換成整數的值。 |
 
 下列範例會將使用者提供的參數值轉換成整數。
 
@@ -160,14 +160,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="mod" />
 
 ### <a name="mod"></a>mod
-**mod(operand1, operand2)**
+`mod(operand1, operand2)`
 
 傳回兩個所提供整數相除後的餘數。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| operand1 |是 |被除數 (整數)。 |
-| operand2 |是 |除數不得為 0。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| operand1 |是 |Integer |被除數。 |
+| operand2 |是 |Integer |除數，不能為 0。 |
 
 下列範例傳回的是一個參數除以另一個參數的餘數。
 
@@ -196,14 +196,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="mul" />
 
 ### <a name="mul"></a>mul
-**mul(operand1, operand2)**
+`mul(operand1, operand2)`
 
 傳回兩個所提供整數相乘後的數字。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| operand1 |是 |要相乘的第一個整數。 |
-| operand2 |是 |要相乘的第二個整數。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| operand1 |是 |Integer |要相乘的第一個數字。 |
+| operand2 |是 |Integer |要相乘的第二個數字。 |
 
 下列範例會使用一個參數乘以另一個參數。
 
@@ -232,14 +232,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="sub" />
 
 ### <a name="sub"></a>sub
-**sub(operand1, operand2)**
+`sub(operand1, operand2)`
 
 傳回兩個所提供整數相減後的數字。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| operand1 |是 |被減數 (整數)。 |
-| operand2 |是 |減數 (整數)。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| operand1 |是 |Integer |減數。 |
+| operand2 |是 |Integer |被減數。 |
 
 下列範例會對一個參數減去另一個參數。
 
@@ -287,13 +287,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="base64" />
 
 ### <a name="base64"></a>base64
-**base64 (inputString)**
+`base64 (inputString)`
 
 傳回輸入字串的 base64 表示法。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| inputString |是 |要以 base64 表示法傳回的字串值。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| inputString |是 |String |要以 base64 表示法傳回的值。 |
 
 下列範例顯示如何使用 base64 函式。
 
@@ -305,14 +305,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="concat" />
 
 ### <a name="concat---string"></a>concat - 字串
-**concat (string1、string2、string3、…)**
+`concat (string1, string2, string3, ...)`
 
 結合多個字串值，並傳回串連的字串。 
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| string1 |是 |要串連的字串值。 |
-| 其他字串 |否 |要串連的字串值。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| string1 |是 |String |串連的第一個值。 |
+| 其他字串 |否 |String |串連的其他值 (循序順序)。 |
 
 此函式可以接受任意數目的引數，並且可針對參數接受字串或陣列。 如需串連陣列的範例，請參閱 [concat - 陣列](#concatarray)。
 
@@ -329,13 +329,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="lengthstring" />
 
 ### <a name="length---string"></a>length - 字串
-**length(string)**
+`length(string)`
 
 傳回字串中的字元數。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| 字串 |是 |取得字元數所用的字串值。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| 字串 |是 |String |取得字元數所用的值。 |
 
 如需 length 與陣列搭配使用的範例，請參閱 [length - 陣列](#length)。
 
@@ -352,15 +352,15 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="padleft" />
 
 ### <a name="padleft"></a>padLeft
-**padLeft(valueToPad, totalLength, paddingCharacter)**
+`padLeft(valueToPad, totalLength, paddingCharacter)`
 
 藉由將字元新增至左邊，直到到達指定的總長度，以傳回靠右對齊的字串。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| valueToPad |是 |要靠右對齊的字串或 int。 |
-| totalLength |是 |傳回字串中的字元總數。 |
-| paddingCharacter |否 |要用於左側填補直到達到總長度的字元。 預設值是空格。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| valueToPad |是 |字串或整數 |要靠右對齊的值。 |
+| totalLength |是 |Integer |傳回字串中的字元總數。 |
+| paddingCharacter |否 |單一字元 |要用於左側填補直到達到總長度的字元。 預設值是空格。 |
 
 下列範例顯示如何藉由新增零個字元，直到字傳達到 10 個字元，以填補使用者提供的參數值。 如果原始參數值超過 10 個字元，就不新增任何字元。
 
@@ -373,16 +373,16 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 
 <a id="replace" />
 
-### <a name="replace"></a>replace
-**replace(originalString, oldCharacter, newCharacter)**
+### <a name="replace"></a>取代
+`replace(originalString, oldCharacter, newCharacter)`
 
 在由另一個字元取代的指定字串中，傳回具備一個字元的所有執行個體的新字串。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| originalString |是 |具有由另一個字元取代之某個字元的所有執行個體的字串。 |
-| oldCharacter |是 |要從原始字串中移除的字元。 |
-| newCharacter |是 |要新增來取代移除字元的字元。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| originalString |是 |String |具有由另一個字元取代之某個字元的所有執行個體的值。 |
+| oldCharacter |是 |String |要從原始字串中移除的字元。 |
+| newCharacter |是 |String |要新增來取代移除字元的字元。 |
 
 下列範例顯示如何從使用者提供的字串中移除所有的連字號。
 
@@ -396,14 +396,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="skipstring" />
 
 ### <a name="skip---string"></a>skip - 字串
-**skip(originalValue, numberToSkip)**
+`skip(originalValue, numberToSkip)`
 
 傳回在字串中指定數字之後之所有字元的字串。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| originalValue |是 |略過所用的字串。 |
-| numberToSkip |是 |要略過的字元數。 如果此值為 0 或更小，則會傳回字串中的所有字元。 如果此值大於字串的長度，則會傳回空白陣列。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| originalValue |是 |String |略過所用的字串。 |
+| numberToSkip |是 |Integer |要略過的字元數。 如果此值為 0 或更小，則會傳回字串中的所有字元。 如果此值大於字串的長度，則會傳回空白陣列。 |
 
 如需 skip 和陣列搭配使用的範例，請參閱 [skip - 陣列](#skip)。
 
@@ -435,17 +435,17 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 
 <a id="split" />
 
-### <a name="split"></a>分割
-**split(inputString, delimiterString)**
+### <a name="split"></a>split
+`split(inputString, delimiterString)`
 
-**split(inputString, delimiterString)**
+`split(inputString, delimiterArray)`
 
 傳回包含輸入字串之子字串的字串陣列，其中的子字串已使用指定的分隔符號分隔。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| inputString |是 |要分割的字串。 |
-| 分隔符號 |是 |使用的分隔符號可以是單一字串或字串的陣列。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| inputString |是 |String |要分割的字串。 |
+| 分隔符號 |是 |字串或字串陣列 |用於分割字串的分隔符號。 |
 
 下列範例會使用逗號來分割輸入字串。
 
@@ -472,14 +472,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 
 <a id="string" />
 
-### <a name="string"></a>字串
-**string(valueToConvert)**
+### <a name="string"></a>string
+`string(valueToConvert)`
 
 將指定的值轉換成字串。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| valueToConvert |是 |要轉換成字串的值。 任何類型的值均可轉換，包括物件和陣列。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| valueToConvert |是 | 任意 |要轉換成字串的值。 任何類型的值均可轉換，包括物件和陣列。 |
 
 下列範例會將使用者提供的參數值轉換成字串。
 
@@ -509,15 +509,15 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="substring" />
 
 ### <a name="substring"></a>substring
-**substring(stringToParse, startIndex, length)**
+`substring(stringToParse, startIndex, length)`
 
 傳回起始於指定字元位置的子字串，其中包含指定的字元數。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| stringToParse |是 |要用來擷取子字串的原始字串。 |
-| startIndex |否 |起始字元位置為零的子字串。 |
-| length |否 |子字串的字元數。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| stringToParse |是 |String |要用來擷取子字串的原始字串。 |
+| startIndex |否 |Integer |起始字元位置為零的子字串。 |
+| length |否 |Integer |子字串的字元數。 |
 
 下列範例擷取了參數的前三個字元。
 
@@ -531,14 +531,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="takestring" />
 
 ### <a name="take---string"></a>take - 字串
-**take(originalValue, numberToTake)**
+`take(originalValue, numberToTake)`
 
 傳回字串開頭之指定字元數目的字串。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| originalValue |是 |要從其中擷取字元的字串。 |
-| numberToTake |是 |要擷取的字元數。 如果此值為 0 或更小，則會傳回空白字串。 如果此值大於指定字串的長度，則會傳回字串中的所有字元。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| originalValue |是 |String |要從中擷取字元的值。 |
+| numberToTake |是 |Integer |要擷取的字元數。 如果此值為 0 或更小，則會傳回空白字串。 如果此值大於指定字串的長度，則會傳回字串中的所有字元。 |
 
 如需 take 和陣列搭配使用的範例，請參閱 [- 陣列](#take)。
 
@@ -570,13 +570,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="tolower" />
 
 ### <a name="tolower"></a>toLower
-**toLower(stringToChange)**
+`toLower(stringToChange)`
 
 將指定的字串轉換為小寫。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| stringToChange |是 |要轉換成小寫的字串。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| stringToChange |是 |String |要轉換成小寫字母的值。 |
 
 下列範例會將使用者提供的參數值轉換為小寫。
 
@@ -590,13 +590,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="toupper" />
 
 ### <a name="toupper"></a>toUpper
-**toUpper(stringToChange)**
+`toUpper(stringToChange)`
 
 將指定的字串轉換為大寫。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| stringToChange |是 |要轉換成大寫的字串。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| stringToChange |是 |String |要轉換成大寫字母的值。 |
 
 下列範例會將使用者提供的參數值轉換為大寫。
 
@@ -610,13 +610,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="trim" />
 
 ### <a name="trim"></a>修剪
-**trim (stringToTrim)**
+`trim (stringToTrim)`
 
 從指定的字串中移除所有開頭和尾端空白字元。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| stringToTrim |是 |要修剪的字串。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| stringToTrim |是 |String |要修剪的值。 |
 
 下列範例會修剪由使用者提供之參數值的空白字元。
 
@@ -630,18 +630,18 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="uniquestring" />
 
 ### <a name="uniquestring"></a>uniqueString
-**uniqueString (baseString, ...)**
+`uniqueString (baseString, ...)`
 
 根據當作參數提供的值，建立具決定性的雜湊字串。 
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| baseString |是 |雜湊函式中用來建立唯一字串的字串。 |
-| 視需要，也會使用其他參數 |否 |您可以視需要新增多個字串，來建立指定唯一性層級的值。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| baseString |是 |String |雜湊函式中用來建立唯一字串的值。 |
+| 視需要，也會使用其他參數 |否 |String |您可以視需要新增多個字串，來建立指定唯一性層級的值。 |
 
 當您需要建立資源的唯一名稱時，這個函式很有幫助。 您提供限制結果唯一性範圍的參數值。 您可以指定名稱對於訂用帳戶、資源群組或部署是否唯一。 
 
-傳回的值不是隨機字串，而是雜湊函式的結果。 傳回的值為 13 個字元長。 它不是全域唯一的。 建議您將值與來自命名慣例的前置詞結合，建立有意義的名稱。 下列範例顯示傳回值的格式。 當然，實際值會根據提供的參數而有所不同。
+傳回的值不是隨機字串，而是雜湊函式的結果。 傳回的值為 13 個字元長。 它不是全域唯一的。 建議您將值與來自命名慣例的前置詞結合，建立有意義的名稱。 下列範例顯示傳回值的格式。 依提供的參數而改變的實際值。
 
     tcvhiyu5h2o5o
 
@@ -659,7 +659,7 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 
     "[uniqueString(resourceGroup().id, deployment().name)]"
 
-下列範例示範如何根據資源群組建立儲存體帳戶的唯一名稱 (若以相同方式建構，則在此資源群組內名稱不是唯一的)。
+下列範例顯示如何根據您的資源群組建立儲存體帳戶的唯一名稱。 在資源群組內，如果名稱是以相同方式建構，就不是唯一的名稱。
 
     "resources": [{ 
         "name": "[concat('storage', uniqueString(resourceGroup().id))]", 
@@ -671,16 +671,16 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="uri" />
 
 ### <a name="uri"></a>uri
-**uri (baseUri, relativeUri)**
+`uri (baseUri, relativeUri)`
 
 藉由結合 baseUri 和 relativeUri 字串建立絕對 URI。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| baseUri |是 |基底 uri 的字串。 |
-| relativeUri |是 |要加入至基底 uri 字串的相對 uri 字串。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| baseUri |是 |String |基底 uri 的字串。 |
+| relativeUri |是 |String |要加入至基底 uri 字串的相對 uri 字串。 |
 
-**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。 例如，傳遞 **http://contoso.com/resources/azuredeploy.json** 做為 baseUri 參數會導致 **http://contoso.com/resources/** 的基底 URI。
+**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。 例如，將 `http://contoso.com/resources/azuredeploy.json` 作為 baseUri 參數傳遞時，會產生 `http://contoso.com/resources/` 的基底 URI。
 
 下列範例顯示如何根據上層範本的值建構巢狀範本的連結。
 
@@ -699,14 +699,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="concatarray" />
 
 ### <a name="concat---array"></a>concat - 陣列
-**concat (array1, array2, array3, ...)**
+`concat (array1, array2, array3, ...)`
 
 結合多個陣列，並傳回串連的陣列。 
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| array1 |是 |要串連的陣列。 |
-| 其他的陣列 |否 |要串連的陣列。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| array1 |是 |陣列 |串連的第一個陣列。 |
+| 其他的陣列 |否 |陣列 |串連的其他陣列 (循序順序)。 |
 
 此函式可以接受任意數目的引數，並且可針對參數接受字串或陣列。 如需串連字串值的範例，請參閱 [concat - 字串](#concat)。
 
@@ -728,13 +728,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="length" />
 
 ### <a name="length---array"></a>length - 陣列
-**length(array)**
+`length(array)`
 
 傳回陣列中的元素數目。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| array |是 |取得元素數目所用的陣列。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| array |是 |陣列 |取得元素數目所用的陣列。 |
 
 建立資源時，您可在陣列中使用此函式指定反覆運算的數量。 下列範例中，參數 **siteNames** 會參考在建立網站時要使用的名稱陣列。
 
@@ -750,14 +750,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="skip" />
 
 ### <a name="skip---array"></a>skip - 陣列
-**skip(originalValue, numberToSkip)**
+`skip(originalValue, numberToSkip)`
 
 傳回陣列中指定的元素數之後的所有元素的陣列。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| originalValue |是 |用於略過的陣列。 |
-| numberToSkip |是 |要略過的元素數目。 如果此值為 0 或更小，則會傳回陣列中的所有元素。 如果此值大於陣列的長度，則會傳回空白陣列。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| originalValue |是 |陣列 |用於略過的陣列。 |
+| numberToSkip |是 |Integer |要略過的元素數目。 如果此值為 0 或更小，則會傳回陣列中的所有元素。 如果此值大於陣列的長度，則會傳回空白陣列。 |
 
 如需 skip 和字串搭配使用的範例，請參閱 [skip - 陣列](#skipstring)。
 
@@ -790,14 +790,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="take" />
 
 ### <a name="take---array"></a> - 陣列
-**take(originalValue, numberToTake)**
+`take(originalValue, numberToTake)`
 
 傳回其中包含從陣列開頭算起指定的元素數目的陣列。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| originalValue |是 |要從其中擷取元素的陣列。 |
-| numberToTake |是 |要擷取的元素數目。 如果此值為 0 或更小，則會傳回空白陣列。 如果此值大於指定陣列的長度，則會傳回陣列中的所有元素。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| originalValue |是 |陣列 |要從其中擷取元素的陣列。 |
+| numberToTake |是 |Integer |要擷取的元素數目。 如果此值為 0 或更小，則會傳回空白陣列。 如果此值大於指定陣列的長度，則會傳回陣列中的所有元素。 |
 
 如需 take 和字串搭配使用的範例，請參閱 [- 字串](#takestring)。
 
@@ -839,7 +839,7 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="deployment" />
 
 ### <a name="deployment"></a>部署
-**deployment()**
+`deployment()`
 
 傳回目前部署作業的相關資訊。
 
@@ -896,13 +896,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="parameters" />
 
 ### <a name="parameters"></a>參數
-**parameters (parameterName)**
+`parameters (parameterName)`
 
 傳回參數值。 指定的參數名稱必須定義於範本的 parameters 區段中。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| parameterName |是 |要傳回的參數名稱。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| parameterName |是 |String |要傳回的參數名稱。 |
 
 下列範例顯示 parameters 函數的簡化用法。
 
@@ -923,13 +923,13 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="variables" />
 
 ### <a name="variables"></a>變數
-**variables (variableName)**
+`variables (variableName)`
 
 傳回變數的值。 指定的變數名稱必須定義於範本的 variables 區段中。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| 變數名稱 |是 |要傳回的變數名稱。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| variableName |是 |String |要傳回的變數名稱。 |
 
 下列範例會使用變數值。
 
@@ -960,18 +960,18 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="list" />
 
 ### <a name="listkeys-and-listvalue"></a>listKeys 和 list{Value}
-**listKeys (resourceName or resourceIdentifier, apiVersion)**
+`listKeys (resourceName or resourceIdentifier, apiVersion)`
 
-**list{Value} (resourceName or resourceIdentifier, apiVersion)**
+`list{Value} (resourceName or resourceIdentifier, apiVersion)`
 
 對支援 list 作業的任何資源類型傳回值。 最常見的用法是 **listKeys**。 
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| resourceName 或 resourceIdentifier |是 |資源的唯一識別碼。 |
-| apiVersion |是 |資源執行階段狀態的 API 版本。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| resourceName 或 resourceIdentifier |是 |String |資源的唯一識別碼。 |
+| apiVersion |是 |String |資源執行階段狀態的 API 版本。 一般而言，格式為 **yyyy-mm-dd**。 |
 
-開頭為 **list** 的任何作業都可在您的範本中用為函式。 可用作業不只包含 **listKeys**、還可包含像 **list**、**listAdminKeys** 和 **listStatus** 等作業。 為判斷哪一個資源類型具有清單作業，請使用以下 PowerShell 命令。
+開頭為 **list** 的任何作業都可在您的範本中用為函式。 可用作業不只包含 **listKeys**、還可包含像 **list**、**listAdminKeys** 和 **listStatus** 等作業。 為判斷哪一個資源類型具有清單作業，請使用以下 PowerShell 命令：
 
     Get-AzureRmProviderOperation -OperationSearchString *  | where {$_.Operation -like "*list*"} | FT Operation
 
@@ -1010,14 +1010,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="providers" />
 
 ### <a name="providers"></a>提供者
-**providers (providerNamespace, [resourceType])**
+`providers (providerNamespace, [resourceType])`
 
 傳回資源提供者和其所支援資源類型的相關資訊。 如果未提供資源類型，則函式會傳回資源提供者所有的支援類型。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| providerNamespace |是 |提供者的命名空間 |
-| resourceType |否 |所指定命名空間內的資源類型。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| providerNamespace |是 |String |提供者的命名空間 |
+| resourceType |否 |String |所指定命名空間內的資源類型。 |
 
 每個支援類型都會以下列格式傳回。 不保證陣列排序。
 
@@ -1039,14 +1039,14 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="reference" />
 
 ### <a name="reference"></a>reference
-**reference (resourceName or resourceIdentifier, [apiVersion])**
+`reference (resourceName or resourceIdentifier, [apiVersion])`
 
 傳回代表另一個資源執行階段狀態的物件。
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| resourceName 或 resourceIdentifier |是 |資源的名稱或唯一識別碼。 |
-| apiVersion |否 |指定的資源的 API 版本。 如果在相同的範本內未供應資源，則請包含此參數。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| resourceName 或 resourceIdentifier |是 |String |資源的名稱或唯一識別碼。 |
+| apiVersion |否 |String |指定的資源的 API 版本。 如果在相同的範本內未供應資源，則請包含此參數。 一般而言，格式為 **yyyy-mm-dd**。 |
 
 **reference** 函數會從執行階段狀態衍生其值，因此不能用在 variables 區段中。 它可以用於範本的 outputs 區段中。
 
@@ -1070,7 +1070,7 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
         }
     }
 
-您可以從傳回的物件 (例如 blob 端點 URI) 擷取特定的值，如下範例所示。
+您可以從傳回的物件 (例如 blob 端點 URI) 擷取特定的值，如以下範例所示：
 
     "outputs": {
         "BlobUri": {
@@ -1093,7 +1093,7 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="resourcegroup" />
 
 ### <a name="resourcegroup"></a>resourceGroup
-**resourceGroup()**
+`resourceGroup()`
 
 傳回代表目前資源群組的物件。 
 
@@ -1125,17 +1125,17 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="resourceid" />
 
 ### <a name="resourceid"></a>resourceId
-**resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)**
+`resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)`
 
 傳回資源的唯一識別碼。 
 
-| 參數 | 必要 | 說明 |
-|:---:|:---:|:--- |
-| subscriptionId |否 |預設值為目前的訂用帳戶。 需要擷取另一個訂用帳戶中的資源群組時，請指定此值。 |
-| resourceGroupName |否 |預設值為目前資源群組。 需要擷取另一個訂用帳戶中的資源群組時，請指定此值。 |
-| resourceType |是 |資源的類型 (包括資源提供者命名空間)。 |
-| resourceName1 |是 |資源的名稱。 |
-| resourceName2 |否 |如果是巢狀資源，則為下一個資源名稱區段。 |
+| 參數 | 必要 | 類型 | 說明 |
+|:--- |:--- |:--- |:--- |
+| subscriptionId |否 |字串 (GUID 格式) |預設值為目前的訂用帳戶。 需要擷取另一個訂用帳戶中的資源群組時，請指定此值。 |
+| resourceGroupName |否 |String |預設值為目前資源群組。 需要擷取另一個訂用帳戶中的資源群組時，請指定此值。 |
+| resourceType |是 |String |資源的類型 (包括資源提供者命名空間)。 |
+| resourceName1 |是 |String |資源的名稱。 |
+| resourceName2 |否 |String |如果是巢狀資源，則為下一個資源名稱區段。 |
 
 如果資源名稱不確定或未佈建在相同的範本內，請使用此函數。 識別碼會以下列格式傳回：
 
@@ -1192,9 +1192,9 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 <a id="subscription" />
 
 ### <a name="subscription"></a>訂用帳戶
-**subscription()**
+`subscription()`
 
-以下列格式傳回訂用帳戶的詳細資料。
+以下列格式傳回訂用帳戶的詳細資料：
 
     {
         "id": "/subscriptions/#####",
@@ -1221,6 +1221,6 @@ ms.openlocfilehash: 971a154170c5deb08e4aa5f061a53d120e6dead6
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

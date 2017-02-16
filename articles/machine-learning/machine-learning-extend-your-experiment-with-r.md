@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 08/19/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7ed3d5ddbbdff9ec568f513d15ecb1ea28ba8855
+ms.sourcegitcommit: 045e40bccad59586987c0a18253dafff2f955a93
+ms.openlocfilehash: 7cc5c4a1e688253c507b38253e95c4248a342052
 
 
 ---
 # <a name="extend-your-experiment-with-r"></a>透過 R 擴展您的經驗
 您可以利用[執行 R 指令碼][execute-r-script]模組，透過 R 語言擴充 ML Studio 的功能。
 
-此模組接受多個輸入資料集，並產生單一資料集作為輸出。 您可以將 R 指令碼輸入至[執行 R 指令碼][execute-r-script]模組的 **R 指令碼**參數。
+此模組接受多個輸入資料集，並產生單一資料集作為輸出。 您可以將 R 指令碼輸入[執行 R 指令碼][execute-r-script]模組的 **R 指令碼**參數中。
 
 您可使用類似下面的程式碼，存取模組的每個輸入連接埠：
 
@@ -38,16 +38,16 @@ ms.openlocfilehash: 7ed3d5ddbbdff9ec568f513d15ecb1ea28ba8855
     maml.mapOutputPort("out")
 
 這會將套件的清單傳送至[執行 R 指令碼][execute-r-script]模組的輸出連接埠。
-若要檢視套件清單，請將轉換模組 (例如[轉換為 CSV][convert-to-csv]) 連接至[執行 R 指令碼][execute-r-script]模組的左輸出，並執行實驗，然後按一下轉換模組的輸出並選取 [下載]。 
+若要檢視套件清單，請將轉換模組 (例如[轉換為 CSV][convert-to-csv]) 連接至[執行 R 指令碼][execute-r-script]模組的左輸出，執行實驗，然後按一下轉換模組的輸出並選取 [下載]。 
 
-![](./media/machine-learning-extend-your-experiment-with-r/download-package-list.png)
+![下載「轉換為 CSV」模組的輸出](./media/machine-learning-extend-your-experiment-with-r/download-package-list.png)
 
 <!--
 For convenience, here is the [current full list with version numbers in Excel format](http://az754797.vo.msecnd.net/docs/RPackages.xlsx).
 -->
 
 ## <a name="importing-packages"></a>匯入封裝
-您也可以使用[執行 R 指令碼][execute-r-script]模組和已壓縮套件封存檔中的下列命令，匯入尚未從分段 ML Studio 儲存機制安裝的套件：
+您也可以在[執行 R 指令碼][execute-r-script]模組和已壓縮套件封存檔中使用下列命令，匯入尚未從分段 ML Studio 儲存機制安裝的套件：
 
     install.packages("src/my_favorite_package.zip", lib = ".", repos = NULL, verbose = TRUE)
     success <- library("my_favorite_package", lib.loc = ".", logical.return = TRUE, verbose = TRUE)
@@ -514,6 +514,6 @@ To get the complete list of packages that are currently available, see the secti
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

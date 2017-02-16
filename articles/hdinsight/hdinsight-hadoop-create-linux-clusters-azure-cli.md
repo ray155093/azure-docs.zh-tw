@@ -16,17 +16,17 @@ ms.workload: big-data
 ms.date: 09/20/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f322b95e3ade4318ccd64f5e2222194bd2fb9361
+ms.sourcegitcommit: 4f8d2956e9f0240392ba839b076d632ccc45d728
+ms.openlocfilehash: df8a5124b35ee00fcbe2c25a032443a1a55b7b1d
 
 
 ---
 # <a name="create-linux-based-clusters-in-hdinsight-using-the-azure-cli"></a>使用 Azure CLI 建立 HDInsight 上的 Linux 型叢集
 [!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-Azure CLI 是可讓您管理 Azure 服務的跨平台命令列公用工具。 它可搭配 Azure 資源管理範本用來建立 HDInsight 叢集，以及相關聯的儲存體帳戶和其他服務。
+Azure CLI 是可讓您管理 Azure 服務的跨平台命令列公用工具。 它可搭配 Azure Resource Manager 範本用來建立 HDInsight 叢集，以及相關聯的儲存體帳戶和其他服務。
 
-Azure 資源管理範本是描述**資源群組**與其中所有資源 (例如 HDInsight) 的 JSON 文件。此範本型方法可讓您在一個範本中定義 HDInsight 所需的所有資源。 它也可讓您透過 **部署**來整體管理群組的變更，以將變更套用至整個群組。
+Azure Resource Manager 範本是描述**資源群組**與其中所有資源 (例如 HDInsight) 的 JSON 文件。此範本型方法可讓您在一個範本中定義 HDInsight 所需的所有資源。 它也可讓您透過 **部署**來整體管理群組的變更，以將變更套用至整個群組。
 
 本文件中的步驟將逐步完成使用 Azure CLI 和範本建立新 HDInsight 叢集的程序。
 
@@ -38,12 +38,13 @@ Azure 資源管理範本是描述**資源群組**與其中所有資源 (例如 H
 > 
 
 ## <a name="prerequisites"></a>必要條件
+
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * **Azure CLI**。 這份文件中的步驟最近一次是以 Azure CLI 版本 0.10.1 來測試。
   
-    [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)] 
+[!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)] 
 
 ### <a name="access-control-requirements"></a>存取控制需求
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
@@ -130,6 +131,6 @@ Azure 資源管理範本是描述**資源群組**與其中所有資源 (例如 H
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

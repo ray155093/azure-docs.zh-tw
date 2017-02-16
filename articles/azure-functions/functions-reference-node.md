@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 05/13/2016
 ms.author: chrande
 translationtype: Human Translation
-ms.sourcegitcommit: 4544629c47326d448cd99b5d96d79666a56f0274
-ms.openlocfilehash: 116b0fd67701e69a81b7f736bbd241427eb33e34
+ms.sourcegitcommit: 6f558761f85bd0f9f4e8be38192df1c1ccf16c4e
+ms.openlocfilehash: d4d43e646734d3496cd9d35d1d7aa6a39852533a
 
 
 ---
@@ -138,8 +138,8 @@ if(context.req.body.emoji === ':pizza:') context.log('Yay!');
 context.res = { status: 202, body: 'You successfully ordered more coffee!' };   
 ```
 
-## <a name="node-version-package-management"></a>Node 版本和封裝管理
-Node 版本目前鎖定在 `5.9.1`。 我們正在調查加入更多版本並允許設定的支援。
+## <a name="node-version--package-management"></a>Node 版本和封裝管理
+Node 版本目前鎖定在 `6.5.0`。 我們正在調查加入更多版本並允許設定的支援。
 
 您可以在您的函式中加入封裝，做法是將 project.json  檔案上傳至函式應用程式檔案系統中的函式資料夾。 如需檔案上傳指示，請參閱 **Azure Functions 開發人員參考主題** 中的 [如何更新函式應用程式檔案](functions-reference.md#fileupdate)一節。 
 
@@ -155,7 +155,7 @@ Node 版本目前鎖定在 `5.9.1`。 我們正在調查加入更多版本並允
 ```javascript
 // Import the underscore.js library
 var _ = require('underscore');
-var version = process.version; // version === 'v5.9.1'
+var version = process.version; // version === 'v6.5.0'
 
 module.exports = function(context) {
     // Using our imported underscore.js library
@@ -198,6 +198,6 @@ function GetEnvironmentVariable(name)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

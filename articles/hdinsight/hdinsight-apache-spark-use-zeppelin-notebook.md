@@ -1,5 +1,5 @@
 ---
-title: "為 HDInsight Linux 上的 Apache Spark 叢集安裝 Zeppelin Notebook | Microsoft Docs"
+title: "使用指令碼動作在 Azure HDInsight  上安裝 Spark 叢集的 Zeppelin Notebook | Microsoft Docs"
 description: "如何在 HDInsight Linux 上對 Spark 叢集安裝和使用 Zeppelin Notebook 的逐步指示。"
 services: hdinsight
 documentationcenter: 
@@ -12,26 +12,27 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/28/2016
+ms.date: 01/04/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: eadf0611ca46a975c364a1b073828c6c3faf5f77
 
 
 ---
-# <a name="install-zeppelin-notebooks-for-apache-spark-cluster-on-hdinsight-linux"></a>為 HDInsight Linux 上的 Apache Spark 叢集安裝 Zeppelin Notebook
+# <a name="install-zeppelin-notebooks-for-apache-spark-cluster-on-hdinsight"></a>為 HDInsight 上的 Apache Spark 叢集安裝 Zeppelin Notebook
+
 了解如何在 Apache Spark 叢集上安裝 Zeppelin Notebook，以及如何使用 Zeppelin Notebook 來執行 Spark 作業。
 
 > [!IMPORTANT]
-> Spark 叢集現在預設會提供 Zeppelin Notebook。 您不再需要明確地將其安裝在 Spark 叢集上。 如需詳細資訊，請參閱[在 HDInsight Linux 上搭配使用 Zeppelin Notebook 和 Apache Spark 叢集](hdinsight-apache-spark-zeppelin-notebook.md)。
+> 如果您已在 HDInsight 3.5 佈建 Spark 1.6 叢集， 您可以使用[在 HDInsight Linux 上搭配使用 Zeppelin Notebook 和 Apache Spark 叢集](hdinsight-apache-spark-zeppelin-notebook.md)的指示來存取預設 Zeppelin Notebook。 如果您想要在 HDInsight 叢集版本 3.3、3.4 上或在 HDInsight 3.5 上的 Spark 2.0 使用 Zeppelin，您必須遵循本文中的指示來安裝 Zeppelin。
 >
 >
 
 **必要條件：**
 
 * 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * SSH 用戶端。 若為 Linux 和 Unix 發佈或 Macintosh OS X， `ssh` 命令會隨作業系統提供。 若為 Windows，我們建議使用 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
   > [!NOTE]
@@ -107,110 +108,23 @@ ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
 
     New-AzureRMHDInsightCluster -Config $azureHDInsightConfigs -OSType Linux -HeadNodeSize "Standard_D12" -WorkerNodeSize "Standard_D12" -ClusterSizeInNodes 2 -Location $location -ResourceGroupName $resourceGroupName -ClusterName $clusterName -HttpCredential $clusterCredential -DefaultStorageContainer $clusterContainerName -SshCredential $clusterSshCredential -Version "3.3"
 
-## <a name="set-up-ssh-tunneling-to-access-a-zeppelin-notebook"></a>設定 SSH 通道以存取 Zeppelin Notebook
-您將使用 SSH 通道來存取在 HDInsight Linux 上的 Spark 叢集上執行的 Zeppelin Notebook。 下列步驟示範如何使用 ssh 命令列 (Linux) 和 PuTTY (Windows) 建立 SSH 通道。
-
-### <a name="create-a-tunnel-using-the-ssh-command-linux"></a>使用 SSH 命令建立通道 (Linux)
-使用下列命令，利用 `ssh` 命令建立 SSH 通道。 以您 HDInsight 叢集的 SSH 使用者取代 **USERNAME**，並以您 HDInsight 叢集的名稱取代 **CLUSTERNAME**。
-
-    ssh -C2qTnNf -D 9876 USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
-
-這會建立透過 SSH 將流量由本機連接埠 9876 路由傳送至叢集的連線。 可用選項包括：
-
-* **D 9876** - 會透過通道路由傳送流量的本機連接埠。
-* **C** - 壓縮所有資料，因為網路流量大多是文字。
-* **2** - 強制 SSH 僅嘗試通訊協定第 2 版。
-* **q** - 無訊息模式。
-* **T** - 停用虛擬 tty 配置，因為我們只是轉送連接埠。
-* **n** - 防止讀取 STDIN，因為我們只是轉送連接埠。
-* **N** - 不執行遠端命令，因為我們只是轉送連接埠。
-* **f** - 在背景中執行。
-
-如果您使用 SSH 金鑰設定叢集，您可能需要使用 `-i` 參數並指定 SSH 私密金鑰的路徑。
-
-在命令完成後，傳送至本機電腦上連接埠 9876 的流量將透過安全通訊端層 (SSL) 路由傳送至叢集前端節點，看起來就像是在該處產生。
-
-### <a name="create-a-tunnel-using-putty-windows"></a>使用 PuTTY 建立通道 (Windows)
-使用下列步驟，利用 PuTTY 建立 SSH 通道。
-
-1. 開啟 PuTTY，並輸入連線資訊。 如果您不熟悉 PuTTY，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md) ，以取得如何搭配 HDInsight 使用 PuTTY 的資訊。
-2. 在對話方塊左側的 [類別] 區段中，依序展開 [連接] 和 [SSH]，最後選取 [通道]。
-3. 在 [ **控制 SSH 連接埠轉送的選項** ] 表單中提供下列資訊：
-
-   * **來源連接埠** - 您想要轉送之用戶端上的連接埠。 例如， **9876**。
-   * **目的地** - 以 Linux 為基礎的 HDInsight 叢集的 SSH 位址。 例如， **mycluster-ssh.azurehdinsight.net**。
-   * **動態** - 啟用動態 SOCKS Proxy 路由。
-
-     ![通道處理選項的影像](./media/hdinsight-apache-spark-use-zeppelin-notebook/puttytunnel.png)
-4. 按一下 [新增] 以新增設定，然後按一下 [開啟] 開啟 SSH 連線。
-5. 出現提示時，登入伺服器。 這會建立 SSH 工作階段，並啟用通道。
-
-### <a name="use-the-tunnel-from-your-browser"></a>從瀏覽器使用通道
-> [!NOTE]
-> 本節中的步驟使用 FireFox 瀏覽器，因為它在 Linux、Unix、Macintosh OS X 和 Windows 系統上均可隨意運用。 其他最新的瀏覽器，如 Google Chrome、Microsoft Edge 或 Apple Safari 等應該也可以運作；不過，某些步驟中所使用的 FoxyProxy 外掛程式可能無法適用於所有瀏覽器。
->
->
-
-1. 將瀏覽器設定為使用 **localhost:9876** 做為 **SOCKS v5 Proxy**。 Firefox 的設定如下所示。 如果您使用與 9876 不同的連接埠，請將連接埠變更為您所用的連接埠：
-
-    ![Firefox 設定的影像](./media/hdinsight-apache-spark-use-zeppelin-notebook/socks.png)
-
-   > [!NOTE]
-   > 選取 [ **遠端 DNS** ] 會使用 HDInsight 叢集解析網域名稱系統 (DNS) 要求。 若未選取，則會在本機解析 DNS。
-   >
-   >
-2. 在 Firefox 中啟用和停用 Proxy 設定的情況下造訪網站，例如 [http://www.whatismyip.com/](http://www.whatismyip.com/) ，即可驗證是否透過通道路由傳送流量。 在啟用設定時，是使用 Microsoft Azure 資料中心內之機器的 IP 位址。
-
-### <a name="browser-extensions"></a>瀏覽器延伸模組
-當設定瀏覽器使用通道的功能在運作時，您通常不會想透過通道傳送所有流量。 [FoxyProxy](http://getfoxyproxy.org/) 等瀏覽器延伸模組支援 URL 要求的模式比對 (僅限 FoxyProxy Standard 或 Plus)，以便只有特定 URL 的要求會透過通道傳送。
-
-如果您已安裝 FoxyProxy Standard，請使用下列步驟將它設定為只透過通道轉送 HDInsight 的流量。
-
-1. 在您的瀏覽器中開啟 FoxyProxy 延伸模組。 比方說，在 Firefox 中選取 [位址] 欄位旁的 FoxyProxy 圖示。
-
-    ![foxyproxy 圖示](./media/hdinsight-apache-spark-use-zeppelin-notebook/foxyproxy.png)
-2. 選取 [新增 Proxy]、選取 [一般] 索引標籤，然後輸入 **HDInsightProxy** 的 Proxy 名稱。
-
-    ![foxyproxy 一般](./media/hdinsight-apache-spark-use-zeppelin-notebook/foxygeneral.png)
-3. 選取 [ **Proxy 詳細資料** ] 索引標籤並填入下列欄位：
-
-   * **主機或 IP 位址** - 這是 localhost，因為我們使用本機電腦上的 SSH 通道。
-   * **連接埠** - 這是用於 SSH 通道的連接埠。
-   * **SOCKS Proxy** - 選取此選項讓瀏覽器使用通道做為 Proxy。
-   * **SOCKS v5** - 選取此選項以設定 Proxy 的要求版本。
-
-     ![foxyproxy proxy](./media/hdinsight-apache-spark-use-zeppelin-notebook/foxyproxyproxy.png)
-4. 選取 [URL 模式] 索引標籤，然後選取 [新增模式]。 使用下列欄位定義模式，然後按一下 [ **確定**]：
-
-   * **模式名稱** - **zeppelinnotebook** - 這是易記的模式名稱。
-   * **URL 模式****\***hn0 - * - 這會定義符合 Zeppelin Notebook 裝載所在端點內部完整網域名稱的模式。因為 Zeppelin Notebook 僅適用於叢集的 headnode0，而且端點通常是 `http://hn0-<string>.internal.cloudapp.net`，所以使用模式 **hn0** 可確保要求會重新導向至 Zeppelin 端點。
-
-       ![foxyproxy 模式](./media/hdinsight-apache-spark-use-zeppelin-notebook/foxypattern.png)
-5. 選取 [確定] 以新增 Proxy 並關閉 [Proxy 設定]。
-6. 在 FoxyProxy 對話方塊頂端，將 [選取模式] 變更為 [根據預先定義的模式和優先順序使用 Proxy]，然後按一下 [關閉]。
-
-    ![foxyproxy 選取模式](./media/hdinsight-apache-spark-use-zeppelin-notebook/selectmode.png)
-
-在執行這些步驟後，只有包含 **hn0** 字串的 URL 要求會透過 SSL 通道路由傳送。
-
 ## <a name="access-the-zeppelin-notebook"></a>存取 Zeppelin Notebook
-設定 SSH 通道之後，您可以遵循下列步驟，在 Spark 叢集上存取 Zeppelin Notebook。 在本節中，您將了解如何執行 %sql 和 %hive 陳述式。
+
+使用指令碼動作成功安裝 Zeppelin 之後，您可以遵循下列步驟，在 Spark 叢集上存取 Zeppelin Notebook。 在本節中，您將了解如何執行 %sql 和 %hive 陳述式。
 
 1. 從網頁瀏覽器開啟下列端點：
 
-        http://hn0-myspar:9995
+        https://CLUSTERNAME.azurehdinsight.net/zeppelin
 
-   * **hn0** 代表 headnode0
-   * **myspar** 是 Spark 叢集名稱的前六個字母。
-   * **9995** 是 Zeppelin Notebook 可存取的連接埠。
+   
 2. 建立新的 Notebook。 按一下標頭窗格中的 [Notebook]，然後按一下 [建立新 Note]。
 
-    ![建立新的 Zeppelin Notebook](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.createnewnote.png "Create a new Zeppelin notebook")
+    ![建立新的 Zeppelin Notebook](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.createnewnote.png "建立新的 Zeppelin Notebook")
 
     在同一個頁面的 [Notebook] 標頭下方，您應該會看到名稱開頭為 **Note XXXXXXXXX** 的新 Notebook。 按一下新的 Notebook。
 3. 在新 Notebook 的網頁上按一下標題，需要的話可以變更 Notebook 的名稱。 按下 ENTER 以儲存名稱變更。 此外，請確定 Notebook 標頭的右上角顯示 [已連線]  狀態。
 
-    ![Zeppelin Notebook 狀態](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.newnote.connected.png "Zeppelin notebook status")
+    ![Zeppelin Notebook 狀態](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.newnote.connected.png "Zeppelin Notebook 狀態")
 
 ### <a name="run-sql-statements"></a>執行 SQL 陳述式
 1. 將範例資料載入暫存資料表。 當您在 HDInsight 中建立 Spark 叢集時，系統會將範例資料檔案 **hvac.csv** 複製到相關聯的儲存體帳戶中 (位於 **\HdiSamples\SensorSampleData\hvac**)。
@@ -238,7 +152,7 @@ ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
 
     按下 **SHIFT + ENTER**，或是按一下 [播放] 按鈕來讓段落執行程式碼片段。 段落右上角的狀態應該會從「準備就緒」逐一轉變成「擱置」、「執行中」及「已完成」。 輸出會顯示在同一個段落的底部。 螢幕擷取畫面如下所示：
 
-    ![從原始資料建立暫存資料表](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.loaddDataintotable.png "Create a temporary table from raw data")
+    ![從未經處理資料建立暫存資料表](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.loaddDataintotable.png "從未經處理資料建立暫存資料表")
 
     您也可以為每個段落提供標題。 按一下右下角的 [設定] 圖示，然後按一下 [顯示標題]。
 2. 現在，您可以針對 **hvac** 資料表執行 Spark SQL 陳述式。 將以下查詢貼入新段落。 此查詢會擷取建築物識別碼，以及在指定日期當天每棟建築物之目標溫度與實際溫度間的差異。 按下 **SHIFT + ENTER**。
@@ -252,7 +166,7 @@ ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
 
     以下螢幕擷取畫面顯示輸出。
 
-    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.sparksqlquery1.png "Run a Spark SQL statement using the notebook")
+    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.sparksqlquery1.png "使用 Notebook 執行 Spark SQL 陳述式")
 
      按一下顯示選項 (以矩形反白顯示) 以針對相同輸出切換不同的表示法。 按一下 [設定] 以選擇構成輸出中索引鍵和值的項目。 在上方的螢幕擷取畫面中，索引鍵為 **buildingID**，而值為 **temp_diff** 的平均值。
 3. 您也可以在查詢中使用變數來執行 Spark SQL 陳述式。 下一個程式碼片段示範如何利用您想要查詢的可能值，來定義查詢中的變數 **Temp**。 當您第一次執行查詢時，下拉式清單會自動填入您指定的變數值。
@@ -264,20 +178,20 @@ ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
 
     將此程式碼片段貼到新的段落中，然後按下 **SHIFT + ENTER**。 以下螢幕擷取畫面顯示輸出。
 
-    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.sparksqlquery2.png "Run a Spark SQL statement using the notebook")
+    ![使用 Notebook 執行 Spark SQL 陳述式](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.note.sparksqlquery2.png "使用 Notebook 執行 Spark SQL 陳述式")
 
     對於後續的查詢，您可以從下拉式清單選取新的值，然後再次執行查詢。 按一下 [設定] 以選擇構成輸出中索引鍵和值的項目。 上述螢幕擷取畫面使用 **buildingID** 做為索引鍵、平均 **temp_diff** 做為值，而 **targettemp** 做為群組。
 4. 重新啟動 Spark SQL 解譯器以結束應用程式。 按一下頂端的 [解譯器] 索引標籤，然後針對 Spark 解譯器按一下 [重新啟動]。
 
-    ![重新啟動 Zeppelin 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.zeppelin.restart.interpreter.png "Restart the Zeppelin intepreter")
+    ![重新啟動 Zeppelin 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/hdispark.zeppelin.restart.interpreter.png "重新啟動 Zeppelin 解譯器")
 
 ### <a name="run-hive-statements"></a>執行 hive 陳述式
 1. 從 Zeppelin Notebook，按一下 [解譯器]  按鈕。
 
-    ![更新 Hive 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-1.png "Update Hive interpreter")
+    ![更新 Hive 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-1.png "更新 Hive 解譯器")
 2. 針對 **hive** 解譯器，按一下 [編輯]。
 
-    ![更新 Hive 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-2.png "Update Hive interpreter")
+    ![更新 Hive 解譯器](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-2.png "更新 Hive 解譯器")
 
     更新下列屬性。
 
@@ -292,7 +206,7 @@ ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
 
     根據預設，HDInsight 叢集有稱為 **hivesampletable** 的範例資料表，所以您應該會看到以下輸出。
 
-    ![Hive 輸出](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-3.png "Hive output")
+    ![Hive 輸出](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-3.png "Hive 輸出")
 5. 執行下列陳述式，以列出資料表中的記錄。
 
         %hive
@@ -300,7 +214,7 @@ ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
 
     您應該會看到如下所示的輸出。
 
-    ![Hive 輸出](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-4.png "Hive output")
+    ![Hive 輸出](./media/hdinsight-apache-spark-use-zeppelin-notebook/zeppelin-update-hive-interpreter-4.png "Hive 輸出")
 
 ## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
@@ -339,6 +253,6 @@ ms.openlocfilehash: 3fb67d1ecbaa9fd36bb88212e1a3fcd5208cb169
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

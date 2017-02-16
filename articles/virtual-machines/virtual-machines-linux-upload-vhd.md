@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 9f944edcafb55634c9338bc8dd518a5f032f56e0
-ms.openlocfilehash: edab3b3058a2e28ce74e62434b85b1643f267493
+ms.sourcegitcommit: 2d31365c7de59fc50da9b4d675dc5cf64302ea6a
+ms.openlocfilehash: 4041cc528f07b678bd6a6daebc44007cad095d6e
 
 
 ---
@@ -68,7 +68,7 @@ azure storage blob upload --blobtype page --account-name mystorageaccount \
     --account-key key1 --container myimages /path/to/disk/mydisk.vhd
 ```
 
-您現在可以 [使用 Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd)，從上傳的虛擬磁碟建立 VM。 您也可以藉由指定磁碟 (`--image-urn`) 的 URI 來使用 CLI。 下列範例會使用先前上傳的虛擬磁碟來建立名為 `myVM` 的 VM：
+您現在可以 [使用 Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd)，從上傳的虛擬磁碟建立 VM。 您也可以藉由指定磁碟 (`--image-urn`) 的 URI 來使用 CLI。 下列範例會使用先前上傳的虛擬磁碟來建立名為 `myVM` 的 VM：
 
 ```bash
 azure vm create myVM -l "WestUS" --resource-group myResourceGroup \
@@ -243,6 +243,6 @@ azure group deployment create --resource-group myResourceGroup
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

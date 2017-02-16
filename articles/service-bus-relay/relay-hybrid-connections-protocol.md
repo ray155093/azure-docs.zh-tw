@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/16/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 16071ba6c99e41af9fe7614fcc3254cd7e786e89
-ms.openlocfilehash: 497f54903bef564bab687103a763c7a7b58da074
+ms.sourcegitcommit: 9919cd4735f1f915ba77d41d8b9e92b3411fef3f
+ms.openlocfilehash: 38d9eca04780493d03bb5ceb79e5b59fab0a93d2
 
 
 ---
@@ -31,7 +31,7 @@ Azure 轉送是 Azure 服務匯流排平台的重要功能支柱。 轉送的新
 有接聽程式會先指出已準備好可以處理連入連線，接著在連線抵達時予以接受。 而在另一端，則有連線用戶端會連線到接聽程式，並預期該連線會被接受，以便能夠建立雙向通訊路徑。
 您可在大部分通訊端 API 中發現「連線」、「接聽」、「接受」等同義詞彙。
 
-任何轉送的通訊模型皆會讓任一方對服務端點建立輸出連線，在口語上，這會讓「接聽程式」也變成「用戶端」，並可能造成術語承載其他意義；因此，我們對混合式連線所下的精確術語如下︰
+任何轉送的通訊模型皆會讓任一方對服務端點建立輸出連線「Azure 轉送混合式連線通訊協定指南」，在口語上，這會讓「接聽程式」也變成「用戶端」，並可能造成術語承載其他意義；因此，我們對「混合式連線」所下的精確術語如下︰
 
 連線兩端的程式稱為「用戶端」，因為兩者皆為服務的用戶端。 等候並接受連線的用戶端為「接聽程式」，或稱為擔任「接聽程式角色」。 透過服務對接聽程式起始新連線的用戶端則稱為「傳送者」或擔任「傳送者角色」。
 
@@ -231,7 +231,7 @@ wss://{namespace-address}/$hc/{path}?sb-hc-action=...&sb-hc-id=...&sbc-hc-token=
 
 | 參數 | 必要？ | 說明 |
 | --- | --- | --- |
-| sb-hc-action |yes |接聽程式角色的參數必須是 `action=connect`。 |
+| sb-hc-action |是 |傳送者角色的參數必須是 `action=connect`。 |
 | {path} |yes |(請參閱下列段落) |
 | sb-hc-token |是\* |針對授予**傳送**權限的命名空間或混合式連線，接聽程式必須提供有效且以 URL 編碼的服務匯流排共用存取權杖。 |
 | sb-hc-id |否 |選擇性的識別碼，允許進行端對端診斷追蹤，並可供接聽程式在接受交握期間使用。 |
@@ -271,6 +271,6 @@ wss://{namespace-address}/$hc/hyco/suffix?param=value&sb-hc-action=...[&sb-hc-id
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

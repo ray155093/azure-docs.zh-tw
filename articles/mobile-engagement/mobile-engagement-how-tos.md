@@ -115,7 +115,7 @@ ms.openlocfilehash: 67f6427ab8dec58778c75b9b3826853c84ab7fe6
 當您選取「僅限應用程式外」時，您必須已提供應用程式建置所在平台 (APN 或 GCM) 上的憑證。
 
 ### <a name="see-also"></a>另請參閱
-* [Apple Push Notification Service – 憑證](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9)、Google Cloud Messaging – 憑證 (http://developer.android.com/google/gcm/index.html) 
+* [Apple Push Notification Service – 憑證](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9)、Google Cloud Messaging – 憑證] (http://developer.android.com/google/gcm/index.html) 
 
 ### <a name="in-app-only-delivery-mode"></a>「僅限應用程式內」傳遞模式
 ![Differentiate3][17]

@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1bc391f5be5e41c6b6691950241ba5f3abdbf538
+ms.sourcegitcommit: d8b2f91a4d47513572fc5a56c60524d8338c8df4
+ms.openlocfilehash: 4527e27f760a7a0685f92a7108c4e8ff9759d33c
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: 1bc391f5be5e41c6b6691950241ba5f3abdbf538
 
 ![發行者入口網站][api-management-management-console]
 
-> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 > 
 > 
 
@@ -47,6 +47,8 @@ ms.openlocfilehash: 1bc391f5be5e41c6b6691950241ba5f3abdbf538
 <a name="url-template"></a>
 
 輸入 URL 片段 (由一或多個 URL 路徑區段及零個以上的查詢字串參數組成)，以定義 URL 範本。 URL 範本 (附加至 API 的基礎 URL) 可識別單一 HTTP 操作。 可能包含一或多個以大括弧識別的具名變數部分。 這些變數部分稱為範本參數，當 API 管理平台處理要求時，就會動態地指派從要求的 URL 中擷取的值給這些變數。
+
+> URL 範本可以包含萬用字元模式。 例如，指定 `/*` 會將該 HTTP 方法的所有要求轉遞至後端服務。
 
 ![URL template][api-management-url-template]
 
@@ -75,7 +77,7 @@ ms.openlocfilehash: 1bc391f5be5e41c6b6691950241ba5f3abdbf538
 
 快取索引鍵用來區分回應，以便讓對應至每一個不同快取索引鍵的回應取得各自的快取值。 選擇性地，在 [依查詢字串參數改變] 和 [依標頭改變] 文字方塊中，分別輸入用來計算快快取金鑰值的特定查詢字串參數及/或 HTTP 標頭。 未指定時，則會使用完整要求 URL 和下列 HTTP 標頭值來產生快取金鑰：**Accept** 和 **Accept-Charset**。
 
-> 如需有關快取功能和快取原則的詳細資訊，請參閱[如何在 Azure API 管理中快取操作結果][如何在 Azure API 管理中快取操作結果]。
+> 如需快取和快取原則的詳細資訊，請參閱[如何在 Azure API 管理中快取操作結果][How to cache operation results in Azure API Management]。
 > 
 > 
 
@@ -129,7 +131,7 @@ ms.openlocfilehash: 1bc391f5be5e41c6b6691950241ba5f3abdbf538
 ## <a name="next-steps"> </a>後續步驟
 當操作加入至 API 之後，下一步是將 API 與產品建立關聯並發佈，讓開發人員可呼叫其操作。
 
-* [如何建立和發佈產品][如何建立和發佈產品]
+* [如何建立和發佈產品][How to create and publish a product]
 
 [api-management-management-console]: ./media/api-management-howto-add-operations/api-management-management-console.png
 [api-management-operations]: ./media/api-management-howto-add-operations/api-management-operations.png
@@ -154,22 +156,22 @@ ms.openlocfilehash: 1bc391f5be5e41c6b6691950241ba5f3abdbf538
 [api-management-api-summary]: ./media/api-management-howto-add-operations/api-management-api-summary.png
 [api-management-echo-operations]: ./media/api-management-howto-add-operations/api-management-echo-operations.png
 
-[新增作業]: #add-operation
-[作業快取]: #operation-caching
-[要求參數]: #request-parameters
-[要求本文]: #request-body
-[回應]: #responses
-[後續步驟]: #next-steps
+[Add an operation]: #add-operation
+[Operation caching]: #operation-caching
+[Request parameters]: #request-parameters
+[Request body]: #request-body
+[Responses]: #responses
+[Next steps]: #next-steps
 
-[建立 API 管理服務執行個體]: api-management-get-started.md
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
+[Get started with Azure API Management]: api-management-get-started.md
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[如何將作業加入至 API]: api-management-howto-add-operations.md
-[如何建立和發佈產品]: api-management-howto-add-products.md
-[如何在 Azure API 管理中快取操作結果]: api-management-howto-cache.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to create and publish a product]: api-management-howto-add-products.md
+[How to cache operation results in Azure API Management]: api-management-howto-cache.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

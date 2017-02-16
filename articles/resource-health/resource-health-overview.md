@@ -15,8 +15,8 @@ ms.workload: Supportability
 ms.date: 06/01/2016
 ms.author: BernardoAMunoz
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6de24842669e29ea7d6796f63fa2a8ae36930531
+ms.sourcegitcommit: d777bc6bd477c5b6645fc8bd7b6d57a5d2f89e22
+ms.openlocfilehash: e465e2c1503add186a4b134e85bd9aab61d5c0ad
 
 
 ---
@@ -43,7 +43,7 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健�
 在登入 Azure 入口網站之後，有兩種方式可以存取 [資源健康狀態] 刀鋒視窗︰ 
 
 ### <a name="open-the-resource-blade"></a>開啟資源刀鋒視窗
-開啟指定資源的 [資源] 刀鋒視窗。 在 [資源] 刀鋒視窗旁邊所開啟的 [設定] 刀鋒視窗中，按一下 [資源健康狀態] 以開啟 [資源健康狀態] 刀鋒視窗。 
+開啟指定資源的 [資源] 刀鋒視窗。 在於 [資源] 刀鋒視窗左側開啟的刀鋒視窗上，按一下 [支援與疑難排解] 底下的 [資源健康狀態] 以開啟 [資源健康狀態] 刀鋒視窗。 
 
 ![資源健康狀態刀鋒視窗](./media/resource-health-overview/resourceBladeAndResourceHealth.png)
 
@@ -54,7 +54,7 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健�
 
 ![說明 + 支援](./media/resource-health-overview/HelpAndSupport.png)
 
-按一下磚會開啟 [資源健康狀態訂用帳戶] 刀鋒視窗，其中會列出訂用帳戶中的所有資源。 每個資源旁邊各有一個圖示會指出其健康狀態。 按一下每個資源就會開啟 [資源健康狀態] 刀鋒視窗。
+在於 [說明 + 支援] 刀鋒視窗左側開啟的刀鋒視窗上，按一下 [支援與疑難排解] 底下的 [資源健康狀態]。 按一下後會開啟 [資源健康狀態訂用帳戶] 刀鋒視窗，其中會列出訂用帳戶中的所有資源。 每個資源旁邊各有一個圖示會指出其健康狀態。 按一下每個資源就會開啟 [資源健康狀態] 刀鋒視窗。
 
 **資源健康狀態圖格**
 
@@ -110,6 +110,6 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

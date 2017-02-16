@@ -16,13 +16,16 @@ ms.topic: article
 ms.date: 05/17/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7038ba5e4229f65125efffb1d403364fc36a3783
+ms.sourcegitcommit: c9e3c1d2a1f5b83c59fa2a22f3cb4d89df203384
+ms.openlocfilehash: 503c8a98ea5437d24ff69f3b8f44c4bfb13e391e
 
 
 ---
-# <a name="use-hive-with-hdinsight-to-analyze-logs-from-websites"></a>使用 HDInsight 上的 Hive 分析網站的記錄
+# <a name="use-hive-with-windows-based-hdinsight-to-analyze-logs-from-websites"></a>使用 Windows 型 HDInsight 上的 Hive 分析網站的記錄
 了解如何使用 HDInsight 上的 HiveQL 來分析網站的記錄。 網站記錄分析可用於根據類似活動來區隔對象、依人口統計將網站造訪者分類，以及找出他們檢視的內容、他們來自的網站等。
+
+> [!IMPORTANT]
+> 本文件的步驟只適用於 Windows HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 在此範例中，您將使用 HDInsight 叢集來分析網站記錄檔，以深入了解一天內從外部網站的網站造訪頻率。 也將產生使用者遇到的網站錯誤摘要。 您將了解如何：
 
@@ -34,7 +37,7 @@ ms.openlocfilehash: 7038ba5e4229f65125efffb1d403364fc36a3783
 ![HDI.Samples.Website.Log.Analysis][img-hdi-weblogs-sample]
 
 ## <a name="prerequisites"></a>必要條件
-* 您必須已在 Azure HDInsight 上佈建 Hadoop 叢集。 如需指示，請參閱[佈建 HDInsight 叢集][hdinsight-provision]。 
+* 您必須已在 Azure HDInsight 上佈建 Hadoop 叢集。 如需指示，請參閱 [佈建 HDInsight 叢集][hdinsight-provision]。 
 * 您必須已安裝 Microsoft Excel 2013 或 Excel 2010。
 * 您必須有 [Microsoft Hive ODBC 驅動程式](http://www.microsoft.com/download/details.aspx?id=40886) ，才能從 Hive 將資料匯入 Excel 中。
 
@@ -59,6 +62,6 @@ ms.openlocfilehash: 7038ba5e4229f65125efffb1d403364fc36a3783
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

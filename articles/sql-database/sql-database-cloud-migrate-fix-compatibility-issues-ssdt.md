@@ -1,6 +1,7 @@
 ---
-title: "在移轉至 SQL Database 之前修正 SQL Server 資料庫相容性問題 | Microsoft Docs"
-description: "Microsoft Azure SQL Database, 資料庫移轉, 資料庫相容性, SQL Azure 移轉精靈, SSDT"
+title: "SSDT：修正 Azure SQL Database 相容性移轉問題 | Microsoft Docs"
+description: "在這篇文章中，您將了解如何在移轉至 Azure SQL Database 之前，先使用「適用於 Visual Studio 的 SQL Server Data Tools」來偵測並修正 SQL Server 資料庫相容性問題。"
+keywords: "Microsoft Azure SQL Database, 資料庫移轉, 資料庫相容性, SQL Azure 移轉精靈, SSDT"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -16,8 +17,8 @@ ms.workload: sqldb-migrate
 ms.date: 11/08/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: e8bb9e5a02a7caf95dae0101c720abac1c2deff3
-ms.openlocfilehash: e09c60111286681928ee1dd0b08fade7a102d6f2
+ms.sourcegitcommit: 2b55b6b4475abdbc1985d8ac370b3b612b77eb0e
+ms.openlocfilehash: ea4248a5ff16e6dd8e754aa0f1be480d08aa47f3
 
 
 ---
@@ -97,6 +98,6 @@ ms.openlocfilehash: e09c60111286681928ee1dd0b08fade7a102d6f2
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

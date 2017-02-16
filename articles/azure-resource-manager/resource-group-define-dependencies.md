@@ -12,18 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/12/2016
+ms.date: 11/28/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: e841c21a15c47108cbea356172bffe766003a145
-ms.openlocfilehash: 1499ddf06dda6740ccfe1e7b6832998bb33cb1c4
+ms.sourcegitcommit: 5f810a46db4deed9c31db4f7c072c48b0817ebc4
+ms.openlocfilehash: 35ce1f12a3de0a41d400cceebe6aefbadbe51528
 
 
 ---
 # <a name="defining-dependencies-in-azure-resource-manager-templates"></a>定義 Azure 資源管理員範本中的相依性
 針對指定的資源，可能會有部署資源之前必須存在的其他資源。 例如，SQL Server 必須存在，才能嘗試部署 SQL 資料庫。 您可以將一個資源標示為相依於其他資源，來定義此關聯性。 通常，您會使用 **dependsOn** 元素來定義相依性，但也可以透過 **reference** 函式予以定義。 
 
-資源管理員會評估資源之間的相依性，並依其相依順序進行部署。 資源若不互相依賴，資源管理員就會平行部署資源。
+資源管理員會評估資源之間的相依性，並依其相依順序進行部署。 資源若不互相依賴，資源管理員就會平行部署資源。 您只需要針對部署在相同範本中的資源定義相依性。 
 
 ## <a name="dependson"></a>dependsOn
 在您的範本內，dependsOn 元素可讓您定義一個資源作為一或多個資源的相依項目。 其值可以是以逗號分隔的資源名稱清單。 
@@ -40,13 +40,20 @@ ms.openlocfilehash: 1499ddf06dda6740ccfe1e7b6832998bb33cb1c4
       },
       "dependsOn": [
         "storageLoop",
-        "[concat('Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+        "[variables('loadBalancerName')]",
+        "[variables('virtualNetworkName')]"
       ],
       ...
     }
 
-若要定義某項資源與透過複製迴圈所建立之資源之間的相依性，請將 dependsOn 元素設定為迴圈的名稱。 例如，請參閱 [在 Azure 資源管理員中建立多個資源的執行個體](resource-group-create-multiple.md)。
+在上述範例中，相依性是包含在透過名為 **storageLoop**複製迴圈所建立的資源上。 例如，請參閱 [在 Azure 資源管理員中建立多個資源的執行個體](resource-group-create-multiple.md)。
+
+當定義相依性時，您可以包含資源提供者命名空間和資源類型，以避免模稜兩可。 比方說，若要釐清可能有和其他資源名稱相同的負載平衡器和虛擬網路，請使用下列格式：
+
+    "dependsOn": [
+      "[concat('Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]",
+      "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+    ] 
 
 雖然您可能比較傾向於使用 dependsOn 來對應資源之間的關聯性，但是請務必了解為什麼您要這麼做，因為這可能會影響您部署的效能。 例如，若是要記載資源互連的方式，dependsOn 並不是適當的方法。 在部署之後，您便無法查詢 dependsOn 元素中定義了哪些資源。 使用 dependsOn 可能會影響部署時間，因為 Resource Manager 不會平行部署具有相依性的兩個資源。 若要記載資源之間的關聯性，請改用 [資源連結](resource-group-link-resources.md)。
 
@@ -110,6 +117,6 @@ resources 屬性可讓您指定與所定義的資源相關的子資源。 定義
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 06/09/2016
 ms.author: thmullan;jackr
 translationtype: Human Translation
-ms.sourcegitcommit: f4712d70c0323e607ddcc021809f8097a621730d
-ms.openlocfilehash: 9ebf3cd290151449c05c89307500fa5679de3b09
+ms.sourcegitcommit: 69faa86ddbc43793146653fc8d8dc2bf35c40aa1
+ms.openlocfilehash: f3a7bcbc80580232f2704087eb529ee9ec8ead46
 
 
 ---
@@ -71,9 +71,14 @@ SQL Database 可藉由提供稽核和威脅偵測功能來保護您的資料。
 ### <a name="auditing"></a>稽核
 SQL Database 稽核會將資料庫事件記錄到 Azure 儲存體帳戶中的稽核記錄檔，藉此追蹤資料庫活動並協助您維護法規相符性。 稽核可讓您了解進行中的資料庫活動，以及分析和調查歷史活動，以找出潛在威脅或可疑的濫用和安全性違規。 如需其他資訊，請參閱[開始使用 SQL Database 稽核](sql-database-auditing-get-started.md)。  
 
-### <a name="threat-detection"></a>威脅偵測
+### <a name="auditing--threat-detection"></a>稽核與威脅偵測 
+SQL Database 稽核會將資料庫事件記錄到 Azure 儲存體帳戶中的稽核記錄檔，藉此追蹤資料庫活動並協助您維護法規相符性。 稽核可讓您了解進行中的資料庫活動，以及分析和調查歷史活動，以找出潛在威脅或可疑的濫用和安全性違規。 如需其他資訊，請參閱[開始使用 SQL Database 稽核](sql-database-auditing-get-started.md)。  
+ 
 威脅偵測會提供 Azure SQL Database 服務內建的額外安全情報層，以補充稽核的不足之處。 這項功能全天候運作，以了解、剖析及偵測異常資料庫活動。 系統會警示您有關可疑活動、潛在弱點、SQL 插入式攻擊和異常資料庫存取模式。 您可以依照所提供的資訊式和可動作指示來回應警示。 如需詳細資訊，請參閱 [開始使用 SQL Database 威脅偵測](sql-database-threat-detection-get-started.md)。  
-
+ 
+### <a name="data-masking"></a>資料遮罩 
+SQL Database 動態資料遮罩可藉由遮罩處理，使不具權限的使用者無法看見機密資料。 動態資料遮罩會自動探索 Azure SQL Database 中的可能敏感性資料，並提供可動作的建議來為這些欄位加上遮罩，盡量避免對應用程式層造成影響。 其運作方式為針對指定的資料庫欄位隱匿查詢結果集中的敏感性資料，而不變更資料庫中的資料。 如需詳細資訊，請參閱[開始使用 SQL Database 動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)
+ 
 ## <a name="compliance"></a>法規遵循
 除了上述可協助您的應用程式符合各種安全法規需求的特色和功能之外，Azure SQL Database 也定期參與稽核，並且經過認證符合許多法規標準。 如需詳細資訊，請參閱 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)，您可以在當中找到 [SQL Database 法規認證](https://azure.microsoft.com/support/trust-center/services/)的最新清單。
 
@@ -84,6 +89,7 @@ SQL Database 稽核會將資料庫事件記錄到 Azure 儲存體帳戶中的稽
 - 如需主動式監視的討論，請參閱[開始使用 SQL Database 稽核](sql-database-auditing-get-started.md)和[開始使用 SQL Database 威脅偵測](sql-database-threat-detection-get-started.md)。
 
 
-<!--HONumber=Dec16_HO4-->
+
+<!--HONumber=Jan17_HO2-->
 
 

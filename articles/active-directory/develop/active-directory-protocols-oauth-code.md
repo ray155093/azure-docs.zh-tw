@@ -1,5 +1,5 @@
 ---
-title: "Azure AD .NET 通訊協定概觀 | Microsoft Docs"
+title: "了解 Azure AD 中的 OAuth 2.0 授權碼流程 | Microsoft Docs"
 description: "本文說明如何使用 HTTP 訊息來使用 Azure Active Directory 和 OAuth 2.0 授權存取租用戶中的 Web 應用程式和 Web API。"
 services: active-directory
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: priyamo
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: 080fec35d0e303ad652d90f6bbb6da5350495cc7
+ms.sourcegitcommit: 312aff4d85b2ec8f1ef78704950311c19cb21cdf
+ms.openlocfilehash: b96b0770179b7317af1e9fcf8798eb9cc1b7e3bb
 
 
 ---
@@ -379,6 +379,6 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "在 Eclipse 中建立 Azure 的 Hello World Web 應用程式 | Microsoft Docs"
+title: "使用 Eclipse 建立基本的 Azure Web 應用程式 | Microsoft Docs"
 description: "本教學課程將示範如何使用適用於 Eclipse 的 Azure 工具組來建立 Azure Hello World Web 應用程式。"
 services: app-service\web
 documentationcenter: java
@@ -12,16 +12,16 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
-ms.author: robmcm
+ms.date: 12/22/2016
+ms.author: robmcm;asirveda
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d3549bca22266aab2deca1d9fcaabfc4034956cf
+ms.sourcegitcommit: 9bb0b5fa32cd6dabd6c41106db38a587b0a55eed
+ms.openlocfilehash: 18299966173f030f615049eaf11a55a1f71305a0
 
 
 ---
-# <a name="create-a-hello-world-web-app-for-azure-in-eclipse"></a>在 Eclipse 中建立 Azure Hello World Web 應用程式
-本教學課程示範如何使用 [適用於 Eclipse 的 Azure 工具組]，建立基本的 Hello World 應用程式，並部署到 Azure 做為 Web 應用程式。 下文所示的基本 JSP 範例乃力求簡潔，不過只要與 Azure 部署相關，幾乎類似的步驟皆適用於 Java servlet。
+# <a name="create-a-basic-azure-web-app-using-eclipse"></a>使用 Eclipse 建立基本的 Azure Web 應用程式
+本教學課程示範如何使用 [適用於 Eclipse 的 Azure 工具組]，建立基本的 Hello World 應用程式，並部署到 Azure 做為 Web 應用程式。 以下所示的基本 JSP 範例乃力求簡潔，不過只要與 Azure 部署相關，類似的步驟皆適用於 Java servlet。
 
 當您完成本教學課程，在網頁瀏覽器中檢視您的應用程式時，看起來會如下圖所示：
 
@@ -30,9 +30,9 @@ ms.openlocfilehash: d3549bca22266aab2deca1d9fcaabfc4034956cf
 ## <a name="prerequisites"></a>必要條件
 * Java Developer Kit (JDK) 1.8 版或更新版本。
 * Eclipse IDE for Java EE Developers (Luna 或更新版本)。 這可透過 <http://www.eclipse.org/downloads/> 下載。
-* Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat 或 Jetty。
+* Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 [Apache Tomcat] 或 [Jetty]。
 * Azure 訂用帳戶，可以透過 <https://azure.microsoft.com/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
-* 適用於 Eclipse 的 Azure 工具組。 如需詳細資訊，請參閱 [安裝 Azure Toolkit for Eclipse]。
+* [適用於 Eclipse 的 Azure 工具組]。 如需安裝 Azure 工具組的相關資訊，請參閱[安裝 Azure Toolkit for Eclipse]。
 
 ## <a name="to-create-a-hello-world-application"></a>建立 Hello World 應用程式
 首先，我們將從建立 Java 專案開始。
@@ -148,17 +148,17 @@ ms.openlocfilehash: d3549bca22266aab2deca1d9fcaabfc4034956cf
 
 幾秒鐘之後，[Azure 活動記錄檔] 檢視將會將您已更新的部署顯示為 [已發佈]，而您將可以在網頁瀏覽器中確認已更新的應用程式。
 
-## <a name="stopping-an-existing-web-app"></a>停止現有的 Web 應用程式
-若要停止現有的 Azure Web 應用程式容器 (包括其中所有已部署的 Java 應用程式)，您可以使用 [Azure 總管]  檢視。
+## <a name="starting-stopping-or-restarting-an-existing-web-app"></a>啟動、停止或重新啟動現有的 Web 應用程式
+若要啟動或停止現有的 Azure Web 應用程式容器 (包括其中所有已部署的 Java 應用程式)，您可以使用 [Azure 總管]  檢視。
 
 如果 **Azure Explorer** 檢視尚未開啟，您可以依序按一下 Eclipse 中的 [視窗] 功能表、[顯示檢視]、[其他...]、[Azure]，然後按一下 [Azure Explorer] 來開啟。 如果您之前尚未登入，系統將會提示您登入。
 
-顯示 [Azure 總管]  之後，使用下列這些步驟來停止您的 Web 應用程式： 
+顯示 [Azure 總管]  之後，使用下列這些步驟來啟動或停止您的 Web 應用程式： 
 
 1. 展開 [Azure]  節點。
 2. 展開 [Web Apps]  節點。 
 3. 以滑鼠右鍵按一下所需的 Web 應用程式。
-4. 操作功能表出現時，按一下 [停止] 。
+4. 當操作功能表出現時，按一下 [啟動]、[停止] 或 [重新啟動]。 請注意，功能表選項是內容感知的，因此您只能停止執行中的 Web 應用程式，或是啟動目前尚未執行的 Web 應用程式。
    
     ![停止現有的 Web 應用程式][13]
 
@@ -184,7 +184,7 @@ ms.openlocfilehash: d3549bca22266aab2deca1d9fcaabfc4034956cf
 
 [適用於 Eclipse 的 Azure 工具組]: ../azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij.md
-[Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web-eclipse-create-hello-world-web-app.md
+[Create a Hello World Web App for Azure in Eclipse]: ./app-service-web-eclipse-create-hello-world-web-app.md
 [在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web-intellij-create-hello-world-web-app.md
 [安裝 Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse-installation.md
 [安裝 Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-installation.md
@@ -193,6 +193,8 @@ ms.openlocfilehash: d3549bca22266aab2deca1d9fcaabfc4034956cf
 
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
 [Web 應用程式概觀]: ./app-service-web-overview.md
+[Apache Tomcat]: http://tomcat.apache.org/
+[Jetty]: http://www.eclipse.org/jetty/
 
 <!-- IMG List -->
 
@@ -215,6 +217,6 @@ ms.openlocfilehash: d3549bca22266aab2deca1d9fcaabfc4034956cf
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

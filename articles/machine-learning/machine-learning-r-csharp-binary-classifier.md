@@ -1,6 +1,6 @@
 ---
-title: "二元分類器 |Microsoft Docs"
-description: "二元分類器"
+title: "(已過時) 二元分類器 - Azure | Microsoft Docs"
+description: "(已過時) 二元分類器"
 services: machine-learning
 documentationcenter: 
 author: jaymathe
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 11/21/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: jaymathe
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: db2fc1df586f925277026a418a073917978c0718
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: d1d4f35a7e77a5fac1e8ecb1a82c14cca3406676
 
 
 ---
-# <a name="binary-classifier"></a>二元分類器
+# <a name="deprecated-binary-classifier"></a>(已過時) 二元分類器
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 假設您有一個資料集，並想要根據獨立變更來預測二元相依變數。 「羅吉斯迴歸」是適用於此類預測的普遍統計技術。 這裡的相依變數是二元或二分類變數，而 p 是感興趣特性的存在機率。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -77,7 +84,7 @@ ms.openlocfilehash: db2fc1df586f925277026a418a073917978c0718
 > 
 > 
 
-Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R 指令碼][execute-r-script]模組提取到工作區。 這項 Web 服務使用基礎 R 指令碼來執行 Azure Machine Learning 實驗。 這項實驗有兩個部分：結構描述定義，以及定型模型 + 計分。 第一個模組會定義輸入資料集的預期結構，其中第一個變數是相依變數，而其餘變數是獨立變數。 第二個模組會將輸入資料套入一般羅吉斯迴歸模型。    
+從 Azure Machine Learning 中，已建立一個新的空白實驗，並將兩個[執行 R 指令碼][execute-r-script]模組提取到工作區。 這項 Web 服務使用基礎 R 指令碼來執行 Azure Machine Learning 實驗。 這項實驗有兩個部分：結構描述定義，以及定型模型 + 計分。 第一個模組會定義輸入資料集的預期結構，其中第一個變數是相依變數，而其餘變數是獨立變數。 第二個模組會將輸入資料套入一般羅吉斯迴歸模型。    
 
 ![實驗流程][2]
 
@@ -126,6 +133,6 @@ Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

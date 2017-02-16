@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e0057a5e8ab3d2fa3c9f201ec88246db7a53cc4a
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: c0c9362f1c2e15c947aaaf7187f3383ad243140f
 
 
 ---
@@ -28,22 +28,22 @@ ms.openlocfilehash: e0057a5e8ab3d2fa3c9f201ec88246db7a53cc4a
 
 完成步驟 1 [帳戶建立及註冊](marketplace-publishing-accounts-creation-registration.md)之後，我們會透過 Azure Marketplace 上資料服務優惠的[一般非技術性](marketplace-publishing-pre-requisites.md)和[技術性需求](marketplace-publishing-data-service-creation-prerequisites.md)來引導您。 現在，我們將逐步引導您在 Azure Marketplace 的[發佈入口網站][link-pubportal]上建立資料服務優惠。
 
-## <a name="1-login-to-the-publishing-portal"></a>1.  登入發佈入口網站。
+## <a name="1----login-to-the-publishing-portal"></a>1.  登入發佈入口網站。
 移至 [https://publish.windowsazure.com](https://publish.windowsazure.com.)
 
-**如果是第一次登入發佈入口網站，請使用與貴公司在開發人員中心上註冊的賣方設定檔相同的帳戶**   (稍後您可以在發佈入口網站中，將公司的任何員工新增為共同管理員)。
+**如果是第一次登入發佈入口網站，請使用與貴公司在開發人員中心上註冊的賣方設定檔相同的帳戶**  (稍後您可以在發佈入口網站中，將公司的任何員工新增為共同管理員)。
 
 如果這是第一次登入發佈入口網站，請按一下 [發佈資料服務]  磚。
 
-## <a name="2-choose-data-services-in-the-navigation-menu-on-the-left-side"></a>2.  在左邊導覽功能表中，選擇 [資料服務]。
+## <a name="2----choose-data-services-in-the-navigation-menu-on-the-left-side"></a>2.  在左邊導覽功能表中，選擇 [資料服務]。
   ![繪圖](media/marketplace-publishing-data-service-creation/pubportal-main-nav.png)
 
-## <a name="3-create-a-new-data-service"></a>3.  建立新的資料服務
+## <a name="3----create-a-new-data-service"></a>3.  建立新的資料服務
 針對您的新資料服務優惠填入標題，然後按一下右邊的「+」。
 
   ![繪圖](media/marketplace-publishing-data-service-creation/step-3.png)
 
-## <a name="4-review-the-sub-menu-under-the-newly-created-data-service-in-the-navigation-menu"></a>4.  檢閱導覽功能表中新建資料服務下方的子功能表。
+## <a name="4----review-the-sub-menu-under-the-newly-created-data-service-in-the-navigation-menu"></a>4.  檢閱導覽功能表中新建資料服務下方的子功能表。
 按一下 [逐步解說]  索引標籤，然後檢閱在 Azure Marketplace 上正常發佈資料服務所需的所有必要步驟。
 
 > [!TIP]
@@ -51,7 +51,7 @@ ms.openlocfilehash: e0057a5e8ab3d2fa3c9f201ec88246db7a53cc4a
 > 
 > 
 
-## <a name="5-create-a-new-plan"></a>5.  建立新的方案。
+## <a name="5----create-a-new-plan"></a>5.  建立新的方案。
 ### <a name="offers-plans-transactions"></a>優惠、方案、交易。
 每個優惠都可以有多個方案，但至少必須有一 (1) 個方案。 當使用者訂閱您的優惠時，他們會訂閱其中一個優惠方案。 每個方案都會定義使用者將如何使用您的服務。
 
@@ -110,10 +110,10 @@ Azure Marketplace 服務層必須負責監視每個查詢所取用的交易量 (
 | **這個方案需要促銷代碼才能購買嗎？** |發佈者會提供選項，藉由為特定的客戶提供名為「促銷代碼」的特殊代碼來限制對其服務方案的存取。 只有具備這個促銷代碼的使用者能夠訂閱該方案。 如果您選擇 [否]，則表示您同意所有來自可使用該優惠之區域的人 (如需詳細資訊，請參閱 [市場行銷內容指南](marketplace-publishing-push-to-staging.md) ) 都能訂閱此方案。 系統將不會進一步詢問任何問題。 |
 | **此外，也會向不具有效促銷方案的人隱藏此方案嗎？** |如果上一個問題的答案為「是」，則發佈者會提供選項來完全移除此方案，使其不會出現在 Marketplace 的 UI 中。 這表示，客戶將不會在優惠的詳細資料頁面中看見此方案。 若使用者收到促銷代碼來進行購買，就能使用這個促銷代碼來訂閱該方案。 |
 
-## <a name="6-create-your-marketplace-marketing-content"></a>6.  建立 Marketplace 行銷內容
+## <a name="6----create-your-marketplace-marketing-content"></a>6.  建立 Marketplace 行銷內容
 如需如何提供 [行銷、定價、支援和類別]  索引標籤中所需資訊的方法，請參閱 [市場行銷內容指南](marketplace-publishing-push-to-staging.md) ，此指南通用於 Azure Marketplace 中發佈的所有成品。  
 
-## <a name="7-connect-your-offer-to-your-service-sql-azure-based-or-web-service-based"></a>7.  將您的優惠連接到您的服務 (以 SQL Azure 為基礎或以 Web 服務為基礎)。
+## <a name="7----connect-your-offer-to-your-service-sql-azure-based-or-web-service-based"></a>7.  將您的優惠連接到您的服務 (以 SQL Azure 為基礎或以 Web 服務為基礎)。
 按一下 [資料服務]  子功能表。
 
 系統將在頁面上半部要求您提供優惠的 **命名空間**。  
@@ -162,6 +162,6 @@ Azure Marketplace 服務層必須負責監視每個查詢所取用的交易量 (
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

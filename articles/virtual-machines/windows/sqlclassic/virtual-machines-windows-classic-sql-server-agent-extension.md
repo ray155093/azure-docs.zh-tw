@@ -8,16 +8,16 @@ manager: jhubbard
 editor: 
 tags: azure-service-management
 ms.assetid: a9bda2e7-cdba-427c-bc30-77cde4376f3a
-ms.service: virtual-machines-windows
+ms.service: virtual-machines-sql
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
-ms.workload: infrastructure-services
-ms.date: 10/27/2016
+ms.workload: iaas-sql-server
+ms.date: 01/18/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: c34684760f8de856c64565e8859b31dc73554e00
+ms.sourcegitcommit: 6494f8bd610c26ceda718a38faf32d0346a063d7
+ms.openlocfilehash: 73187757207eef345f262dfc16780e7a6dbfb739
 
 
 ---
@@ -82,7 +82,7 @@ SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
 > 
 
 ## <a name="status"></a>狀態
-驗證已安裝擴充功能的其中一項方法，是在 Azure 入口網站中檢視代理程式狀態。 請選取虛擬機器刀鋒視窗中的 [所有設定]，然後按一下 [擴充功能]。 您應該會看到其中列出 **SQLIaaSAgent** 擴充功能。
+驗證已安裝擴充功能的其中一項方法，是在 Azure 入口網站中檢視代理程式狀態。 請選取虛擬機器刀鋒視窗中所列的一部虛擬機器，然後按一下 [擴充功能]。 您應該會看到其中列出 **SQLIaaSAgent** 擴充功能。
 
 ![Azure 入口網站中的 SQL Server IaaS 代理程式擴充功能](./media/virtual-machines-windows-classic-sql-server-agent-extension/azure-sql-server-iaas-agent-portal.png)
 
@@ -91,7 +91,7 @@ SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
     Get-AzureVM –ServiceName "service" –Name "vmname" | Get-AzureVMSqlServerExtension
 
 ## <a name="removal"></a>移除
-在「Azure 入口網站」中，您可以按一下虛擬機器屬性 [擴充功能]  刀鋒視窗上的省略符號，來將擴充功能解除安裝。 然後按一下 [刪除] 。
+在「Azure 入口網站」中，您可以按一下虛擬機器屬性 [擴充功能]  刀鋒視窗上的省略符號，來將擴充功能解除安裝。 然後按一下 [解除安裝]。
 
 ![將 Azure 入口網站中的 SQL Server IaaS 代理程式擴充功能解除安裝](./media/virtual-machines-windows-classic-sql-server-agent-extension/azure-sql-server-iaas-agent-uninstall.png)
 
@@ -107,6 +107,6 @@ SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

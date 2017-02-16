@@ -12,17 +12,17 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 55bfd5b283e6159e0a06b3107de31d1722796bf1
-ms.openlocfilehash: b87bfb70171e79b7a4cec537874a57dc0cce2899
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: 63e51feb8c88c6c294fb7b712c3cede10e7253d8
 
 
 ---
 
 # <a name="h264-multiple-bitrate-16x9-sd-audio-51"></a>H264 多重位元速率 16x9 SD 音訊 5.1
-`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。 您可以使用 `preset name` 來指定您想要將媒體檔案編碼成哪一種格式。 或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。 然後，您會將自訂預設傳遞給編碼器。 如需這個 `Media Encoder Standard` 編碼器支援的所有預設名稱清單，請參閱[媒體編碼器標準的工作預設](media-services-mes-presets-overview.md)。  
+`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。 您可以使用 `preset name` 來指定您想要將媒體檔案編碼成哪一種格式。 或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。 然後，您要將自訂預設傳遞給編碼器。 如需這個 `Media Encoder Standard` 編碼器支援的所有預設名稱清單，請參閱[媒體編碼器標準的工作預設](media-services-mes-presets-overview.md)。  
   
  本主題說明 XML 和 JSON 格式的 `H264 Multiple Bitrate 16x9 SD Audio 5.1` 預設。  
   
@@ -31,7 +31,7 @@ ms.openlocfilehash: b87bfb70171e79b7a4cec537874a57dc0cce2899
 > [!NOTE]
 >  跨層修改 `Width` 和 `Height` 值時，請確定長寬比保持一致。 例如︰1920x1080、1280x720、1080x576、640x360。 請勿使用混合的長寬比，例如︰1280x720、720x480、640x360。  
   
- SML  
+ XML  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -235,6 +235,7 @@ ms.openlocfilehash: b87bfb70171e79b7a4cec537874a57dc0cce2899
 ```
 
 
-<!--HONumber=Nov16_HO5-->
+
+<!--HONumber=Jan17_HO2-->
 
 

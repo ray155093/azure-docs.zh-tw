@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0bcb8473b2f7fb381ba9f12fb8458e14b4d82c58
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: 7418595e6f070f15c9ebeac759bffe692da5d143
 
 
 ---
@@ -53,7 +53,7 @@ ms.openlocfilehash: 0bcb8473b2f7fb381ba9f12fb8458e14b4d82c58
 
 若要建立記錄器，請使用下列 URL 範本提出 HTTP PUT 要求。
 
-    https://{your service}.management.azure-api.net/loggers/{new logger name}?api-version=2014-02-14-preview
+`https://{your service}.management.azure-api.net/loggers/{new logger name}?api-version=2014-02-14-preview`
 
 * 以 API 管理服務執行個體的名稱取代 `{your service}` 。
 * 以您想要的新記錄器名稱取代 `{new logger name}` 。 當您設定 [log-to-eventhub](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub) 原則時，將會參考此名稱。
@@ -66,14 +66,16 @@ ms.openlocfilehash: 0bcb8473b2f7fb381ba9f12fb8458e14b4d82c58
 
 使用下列範本指定要求本文。
 
-    {
-      "type" : "AzureEventHub",
-      "description" : "Sample logger description",
-      "credentials" : {
-        "name" : "Name of the Event Hub from the Azure Classic Portal",
-        "connectionString" : "Endpoint=Event Hub Sender connection string"
-        }
+```json
+{
+  "type" : "AzureEventHub",
+  "description" : "Sample logger description",
+  "credentials" : {
+    "name" : "Name of the Event Hub from the Azure Classic Portal",
+    "connectionString" : "Endpoint=Event Hub Sender connection string"
     }
+}
+```
 
 * `type` 必須設為 `AzureEventHub`。
 * `description` 提供記錄器的選擇性描述，如有需要，可以是零長度字串。
@@ -101,9 +103,11 @@ ms.openlocfilehash: 0bcb8473b2f7fb381ba9f12fb8458e14b4d82c58
 
 ![Policy editor][event-hub-policy]
 
-    <log-to-eventhub logger-id ='logger-id'>
-      @( string.Join(",", DateTime.UtcNow, context.Deployment.ServiceName, context.RequestId, context.Request.IpAddress, context.Operation.Name))
-    </log-to-eventhub>
+```xml
+<log-to-eventhub logger-id ='logger-id'>
+  @( string.Join(",", DateTime.UtcNow, context.Deployment.ServiceName, context.RequestId, context.Request.IpAddress, context.Operation.Name))
+</log-to-eventhub>
+```
 
 以您在上一個步驟中所設定的 API 管理記錄器名稱取代 `logger-id` 。
 
@@ -143,6 +147,6 @@ ms.openlocfilehash: 0bcb8473b2f7fb381ba9f12fb8458e14b4d82c58
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

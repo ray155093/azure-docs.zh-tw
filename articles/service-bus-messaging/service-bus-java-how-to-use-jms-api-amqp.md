@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/11/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7f9bd4484a4cb9cbb01524b55d72524554cc6822
+ms.sourcegitcommit: f0b0c3bc9daf1e44dfebecedf628b09c97394f94
+ms.openlocfilehash: eb22b8e8c2d2b4a619e50b94321d4f819764bdaa
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: 7f9bd4484a4cb9cbb01524b55d72524554cc6822
 本文說明如何利用常用的 Java 訊息服務 (JMS) API 標準，從 Java 應用程式使用服務匯流排傳訊功能 (佇列和發佈/訂閱主題)。 這是說明如何使用服務匯流排 .NET API 達到相同效用的[附屬文章](service-bus-dotnet-advanced-message-queuing.md)。 您可以同時使用這兩個指南了解使用 AMQP 1.0 的跨平台訊息。
 
 ## <a name="get-started-with-service-bus"></a>開始使用服務匯流排
-本指南假設您已經有服務匯流排命名空間，其中包含名稱為 **queue1** 的佇列。 如果沒有，您可以使用 [Azure 入口網站](service-bus-create-namespace-portal.md)建立[命名空間和佇列](https://portal.azure.com)。 如需有關如何建立服務匯流排命名空間和佇列的相關詳細資訊，請參閱[如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)。
+本指南假設您已經有服務匯流排命名空間，其中包含名稱為 **queue1** 的佇列。 如果沒有，您可以使用 [Azure 入口網站](service-bus-create-namespace-portal.md)建立[命名空間和佇列](https://portal.azure.com)。 如需有關如何建立服務匯流排命名空間和佇列的相關詳細資訊，請參閱[開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)。
 
 > [!NOTE]
 > 分割的佇列和主題也支援 AMQP。 如需詳細資訊，請參閱[分割傳訊實體](service-bus-partitioning.md)及[服務匯流排分割佇列和主題的 AMQP 1.0 支援](service-bus-partitioned-queues-and-topics-amqp-overview.md)。
@@ -63,7 +63,7 @@ queue.QUEUE = queue1
 ```
 
 #### <a name="configure-the-connectionfactory"></a>設定 ConnectionFactory
-在 Qpid 內容檔案 JNDI 提供者中用來定義 **ConnectionFactory** 的項目使用下列格式：
+在 Qpid 屬性檔案 JNDI 提供者中用來定義 **ConnectionFactory** 的項目使用下列格式：
 
 ```
 connectionfactory.[jndi_name] = [ConnectionURL]
@@ -91,7 +91,7 @@ amqps://[SASPolicyName]:[SASPolicyKey]@[namespace].servicebus.windows.net
 > 
 
 #### <a name="configure-destinations"></a>設定目的地
-在 Qpid 內容檔案 JNDI 提供者中用來定義目的地的項目使用下列格式：
+在 Qpid 屬性檔案 JNDI 提供者中用來定義目的地的項目使用下列格式：
 
 ```
 queue.[jndi_name] = [physical_name]
@@ -119,7 +119,7 @@ topic.[jndi_name] = [physical_name]
 #### <a name="configure-the-jndi-initialcontext"></a>設定 JNDI InitialContext
 將組態資訊的雜湊表傳遞到 javax.naming.InitialContext 類別的建構函式，將設定 JNDI 環境。 雜湊表中的兩個所需項目是 Initial Context Factory 和 Provider URL 的類別名稱。 下列程式碼顯示如何使用名稱為 **servicebus.properties** 的內容檔案，設定 JNDI 環境使用 Qpid 內容檔案型 JNDI 提供者。
 
-```
+```java
 Hashtable<String, String> env = new Hashtable<String, String>(); 
 env.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.qpid.amqp_1_0.jms.jndi.PropertiesFileInitialContextFactory"); 
 env.put(Context.PROVIDER_URL, "servicebus.properties"); 
@@ -129,7 +129,7 @@ InitialContext context = new InitialContext(env);
 ### <a name="a-simple-jms-application-using-a-service-bus-queue"></a>使用服務匯流排佇列的簡單 JMS 應用程式
 下列範例程式將 JMS TextMessages 傳送到 JNDI 邏輯名稱為 QUEUE 的服務匯流排佇列，並收到傳回的訊息。
 
-```
+```java
 // SimpleSenderReceiver.java
 
 import javax.jms.*;
@@ -325,12 +325,12 @@ exit
 * [Azure 服務匯流排中的 AMQP 1.0 支援](service-bus-amqp-overview.md)
 * [如何透過服務匯流排 .NET API 使用 AMQP 1.0](service-bus-dotnet-advanced-message-queuing.md)
 * [服務匯流排 AMQP 1.0 開發人員指南](service-bus-amqp-dotnet.md)
-* [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
-* [Java 開發人員中心](/develop/java/)。
+* [開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
+* [Java 開發人員中心](https://azure.microsoft.com/develop/java/)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

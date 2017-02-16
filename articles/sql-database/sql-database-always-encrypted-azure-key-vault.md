@@ -9,6 +9,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 6ca16644-5969-497b-a413-d28c3b835c9b
 ms.service: sql-database
+ms.custom: secure and protect
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,8 +17,8 @@ ms.topic: article
 ms.date: 07/18/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6a14169076eeb26749d6d1e362fe0301c4da77f2
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 6b4cf5a1c6b764280488b07cf2dc98ecf78fda21
 
 
 ---
@@ -49,7 +50,7 @@ ms.openlocfilehash: 6a14169076eeb26749d6d1e362fe0301c4da77f2
 * [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 13.0.700.242 版或更新版本。
 * [.NET Framework 4.6](https://msdn.microsoft.com/library/w0x726c2.aspx) 或更新版本 (於用戶端電腦上)。
 * [Visual Studio](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)。
-* [Azure PowerShell](../powershell-install-configure.md) 1.0 或更新版本。 請輸入 **(Get-Module azure -ListAvailable).Version** 來查看您正在執行的 PowerShell 版本。
+* [Azure PowerShell](/powershell/azureps-cmdlets-docs) 1.0 或更新版本。 請輸入 **(Get-Module azure -ListAvailable).Version** 來查看您正在執行的 PowerShell 版本。
 
 ## <a name="enable-your-client-application-to-access-the-sql-database-service"></a>讓用戶端應用程式能夠存取 SQL Database 服務
 您必須讓用戶端應用程式能夠存取 SQL Database 服務，方法是設定必要的驗證，並取得在接下來的程式碼中驗證應用程式所需的「用戶端識別碼」和「密碼」。
@@ -649,6 +650,6 @@ SSMS 提供一個精靈，可為您設定資料行主要金鑰、資料行加密
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

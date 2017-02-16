@@ -13,23 +13,23 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/29/2016
+ms.date: 12/19/2016
 ms.author: byvinyal
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
+ms.sourcegitcommit: 18c8997d8ee77c9c3005aa765a64ae82dce8c70c
+ms.openlocfilehash: fc519c242b2676e20c1b19bfb2b5edae73b0b926
 
 
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 訂用帳戶和服務限制、配額與限制
-## <a name="overview"></a>Overview
-本文件說明一些最常見的 Microsoft Azure 限制。 這目前未涵蓋所有 Azure 服務。 這些限制將隨著時間擴展並更新以涵蓋更多平台。
+本文件列出一些最常見的 Microsoft Azure 限制，有時也稱為配額。 本文件目前未涵蓋所有 Azure 服務。 清單將隨著時間擴展並更新以涵蓋更多平台。
 
 請瀏覽 [Azure 定價一覽](https://azure.microsoft.com/pricing/) 以深入了解 Azure 定價。 您可以在那裡使用[定價計算機](https://azure.microsoft.com/pricing/calculator/)或透過瀏覽服務 (例如，[Windows VM](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)) 的定價詳細資料頁面來估計成本。
 
 > [!NOTE]
-> 如果您想要將限制提升到 **預設限制**以上，您可以 [免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 您無法將限制提升到高於下表中所示的 **上限** 值。 如果沒有 **上限** 欄，指定的資源即沒有可調整的限制。
+> 如果您想要將限制或配額提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 您無法將限制提升到高於下表中所示的**上限**值。 如果沒有**上限**欄，資源即沒有可調整的限制。 
 > 
+> 免費試用訂用帳戶無法增加限制或配額。 如果您有免費試用，則可以升級到 [隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/) 訂用帳戶。 如需詳細資訊，請參閱[將 Azure 免費試用版升級至隨收隨付](billing-upgrade-azure-subscription.md)。
 > 
 
 ## <a name="limits-and-the-azure-resource-manager"></a>限制和 Azure 資源管理員
@@ -170,9 +170,7 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 [!INCLUDE [biztalk-services-service-limits](../includes/biztalk-services-service-limits.md)]
 
 ### <a name="documentdb-limits"></a>DocumentDB 限制
-[!INCLUDE [azure-documentdb-limits](../includes/azure-documentdb-limits.md)]
-
-以星號 (*) 列出的配額 [可以透過聯絡 Azure 支援人員來進行調整](documentdb/documentdb-increase-limits.md)。
+DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於「DocumentDB 調整」的問題，請傳送電子郵件至 askdocdb@microsoft.com。
 
 ### <a name="mobile-engagement-limits"></a>Mobile Engagement 限制
 [!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
@@ -276,6 +274,6 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

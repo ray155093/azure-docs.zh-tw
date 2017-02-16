@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 02/20/2016
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d8824001526565e64f398b8f1e520d82d29d2f58
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 4480366f620ccd8397aa4264ab7f0cc1c5b37c7d
 
 
 ---
@@ -24,10 +24,10 @@ ms.openlocfilehash: d8824001526565e64f398b8f1e520d82d29d2f58
 如需有關 Azure 診斷的背景資訊，請參閱 [Azure 診斷概觀](azure-diagnostics.md) 。
 
 ## <a name="how-to-enable-diagnostics-in-a-virtual-machine"></a>如何在虛擬機器中啟用診斷
-本逐步解說說明如何從遠端的開發電腦將診斷安裝至 Azure 虛擬機器。 您也將了解如何實作在該 Azure 虛擬機器上執行，並使用 .NET [EventSource 類別][EventSource 類別]發出遙測資料的應用程式。 Azure 診斷可用來收集遙測資料，並將資料儲存在 Azure 儲存體帳戶。
+本逐步解說說明如何從遠端的開發電腦將診斷安裝至 Azure 虛擬機器。 您也將了解如何實作在該 Azure 虛擬機器上執行，並使用 .NET [EventSource 類別][EventSource Class]發出遙測資料的應用程式。 Azure 診斷可用來收集遙測資料，並將資料儲存在 Azure 儲存體帳戶。
 
 ### <a name="pre-requisites"></a>必要條件
-本逐步解說假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio 2013。 如果您沒有 Azure 訂用帳戶，可以註冊 [免費試用版][免費試用版]。 請確定[安裝及設定 Azure PowerShell 0.8.7 版或更新版本][安裝及設定 Azure PowerShell 0.8.7 版或更新版本]。
+本逐步解說假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio 2013。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][Free Trial]。 請務必[安裝並設定 Azure PowerShell 0.8.7 版或更新版本][Install and configure Azure PowerShell version 0.8.7 or later]。
 
 ### <a name="step-1-create-a-virtual-machine"></a>步驟 1：建立虛擬機器
 1. 在您的開發電腦上，啟動 Visual Studio 2013。
@@ -160,15 +160,15 @@ ms.openlocfilehash: d8824001526565e64f398b8f1e520d82d29d2f58
 ## <a name="next-steps"></a>後續步驟
 [請參閱虛擬機器相關的 Azure 診斷文章清單](azure-diagnostics.md#virtual-machines-using-azure-diagnostics) ，以變更您收集的資料、進行問題疑難排解，或深入了解一般的診斷。
 
-[EventSource 類別]: http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource(v=vs.110).aspx
+[EventSource Class]: http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource(v=vs.110).aspx
 
-[偵錯 Azure 應用程式]: http://msdn.microsoft.com/library/windowsazure/ee405479.aspx   
-[使用 Microsoft Azure 診斷收集記錄資料]: http://msdn.microsoft.com/library/windowsazure/gg433048.aspx
-[免費試用版]: http://azure.microsoft.com/pricing/free-trial/
-[安裝及設定 Azure PowerShell 0.8.7 版或更新版本]: http://azure.microsoft.com/documentation/articles/install-configure-powershell/
+[Debugging an Azure Application]: http://msdn.microsoft.com/library/windowsazure/ee405479.aspx   
+[Collect Logging Data by Using Azure Diagnostics]: http://msdn.microsoft.com/library/windowsazure/gg433048.aspx
+[Free Trial]: http://azure.microsoft.com/pricing/free-trial/
+[Install and configure Azure PowerShell version 0.8.7 or later]: http://azure.microsoft.com/documentation/articles/install-configure-powershell/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

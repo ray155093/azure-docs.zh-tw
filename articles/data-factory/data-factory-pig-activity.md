@@ -1,5 +1,5 @@
 ---
-title: "Pig 活動"
+title: "使用 Azure Data Factory 中的 Pig 活動轉換資料 | Microsoft Docs"
 description: "了解如何使用 Azure 資料處理站中的 Pig 活動，以在隨選/您自己的 HDInsight 叢集上執行 Pig 指令碼。"
 services: data-factory
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 01/23/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: ab5923ffeac5e86eaf643ba79c56fb57a34f9f87
-ms.openlocfilehash: 3ee61c0a1bb3ff72017768337773373df50ef927
+ms.sourcegitcommit: dd8a68029449ad013c4df9a46c558efaefd20e96
+ms.openlocfilehash: 1f9900218dc64b9a11e30335db234108859a2d2d
 
 
 ---
-# <a name="pig-activity"></a>Pig 活動
+# <a name="transform-data-using-pig-activity-in-azure-data-factory"></a>使用 Azure Data Factory 中的 Pig 活動轉換資料
 > [!div class="op_single_selector"]
 > * [Hive](data-factory-hive-activity.md)  
 > * [Pig](data-factory-pig-activity.md)  
@@ -218,6 +218,6 @@ Store PigSampleOut into 'wasb://adfwalkthrough@anandsub14.blob.core.windows.net/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

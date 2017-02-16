@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 01/12/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: ec32e3937d08d912c8f96987b0c5ebbf73060258
-ms.openlocfilehash: d9915ecbfca1eab7515b4879ae2b947c59f3ea2b
+ms.sourcegitcommit: fc82aaf3300a8d40fe00a2ae4dc008ccee6e2a66
+ms.openlocfilehash: 66cdc1fbe5afea4790e5c8ef34b4fcf2d7e89d84
 
 
 ---
@@ -50,7 +50,7 @@ ms.openlocfilehash: d9915ecbfca1eab7515b4879ae2b947c59f3ea2b
    > 建議您為每個訂用帳戶開啟資料收集功能，以確保安全性監視可用於所有現有的 VM 和新的 VM。 如果啟用資料收集，將會安裝監視代理程式。 如果您不想現在從這個位置開啟資料收集，可以稍後從 [健全狀況] 和 [建議] 檢視開啟。 您也可以只針對訂用帳戶或特定 VM 啟用資料收集。 若要深入了解支援的 VM，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md) 。
    > 
    > 
-5. 如果尚未設定儲存體帳戶，則當您開啟 [安全性原則] 時，可能會看到類似下列螢幕擷取畫面中的警告：
+5. 如果尚未設定儲存體帳戶，則當您開啟 [安全性原則] 時，可能會看到類似下列螢幕擷取畫面中的警告。 如不為每個區域選擇儲存體帳戶，系統會為您建立。
    
     ![儲存體選擇](./media/security-center-policies/security-center-policies-fig2.png)
 6. 如果您看到這個警告，請按一下此選項並選取如下列螢幕擷取畫面所示的區域：
@@ -111,6 +111,6 @@ ms.openlocfilehash: d9915ecbfca1eab7515b4879ae2b947c59f3ea2b
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

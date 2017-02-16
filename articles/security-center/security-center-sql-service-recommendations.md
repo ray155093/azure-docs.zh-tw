@@ -1,34 +1,39 @@
 ---
-title: 保護 Azure 資訊安全中心內的 Azure SQL 服務 | Microsoft Docs
-description: 本文件說明可協助您保護 Azure SQL 服務及遵守安全性原則的 Azure 資訊安全中心建議。
+title: "保護 Azure 資訊安全中心內的  Azure SQL 服務和資料 | Microsoft Docs"
+description: "本文件說明「Azure 資訊安全中心」中的建議，這些建議可協助您保護您的資料和 Azure SQL 服務，以及遵守安全性原則。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
 manager: MBaldwin
-editor: ''
-
+editor: 
+ms.assetid: bcae6987-05d0-4208-bca8-6a6ce7c9a1e3
 ms.service: security-center
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/04/2016
+ms.date: 12/20/2016
 ms.author: terrylan
+translationtype: Human Translation
+ms.sourcegitcommit: 7b5df25f46a2824acb361401ab90c960b8e5978f
+ms.openlocfilehash: 8ce47dd649d1d945df506ed65c871cf3afe2f004
+
 
 ---
-# 保護 Azure 資訊安全中心內的 Azure SQL 服務
-「Azure 資訊安全中心」會分析 Azure 資源的安全性狀態。當資訊安全中心發現潛在的安全性弱點時，它會建立可引導您完成所需控制之設定程序的建議。這些建議適用於下列 Azure 資源類型︰虛擬機器 (VM)、網路、SQL 和應用程式。
+# <a name="protecting-azure-sql-service-and-data-in-azure-security-center"></a>保護 Azure 資訊安全中心內的 Azure SQL 服務和資料
+「Azure 資訊安全中心」會分析 Azure 資源的安全性狀態。 當資訊安全中心發現潛在的安全性弱點時，它會建立可引導您完成所需控制之設定程序的建議。  這些建議適用於下列 Azure 資源類型︰虛擬機器 (VM)、網路、SQL 和資料，以及應用程式。
 
-本文說明適用於 Azure SQL 服務的建議。Azure SQL 服務建議圍繞在為 Azure SQL 伺服器和資料庫啟用稽核以及為 SQL 資料庫啟用加密。請使用下表做為參考，以協助您了解可用的 SQL 服務建議，以及如果套用建議，每一個建議將產生的作用。
+本文說明適用於 Azure SQL 服務和資料的建議。 這些建議是以下列主題為中心：為 Azure SQL 伺服器和資料庫啟用稽核、為 SQL 資料庫啟用加密，以及啟用 Azure 儲存體帳戶加密。  請使用下表作為參考來協助您了解可用的 SQL 服務和資料建議，以及每一項建議在套用後將產生的作用。
 
-## 可用的 SQL 服務建議
+## <a name="available-sql-service-and-data-recommendations"></a>可用的 SQL 服務和資料建議
 | 建議 | 說明 |
 | --- | --- |
 | [啟用伺服器 SQL 稽核](security-center-enable-auditing-on-sql-servers.md) |建議您針對 Azure SQL 伺服器開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
 | [啟用資料庫 SQL 稽核](security-center-enable-auditing-on-sql-databases.md) |建議您針對 Azure SQL 資料庫開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
 | [在 SQL 資料庫上啟用透明資料加密](security-center-enable-transparent-data-encryption.md) |建議您針對 SQL 資料庫啟用加密 (僅適用於 Azure SQL 服務)。 |
+| [為 Azure 儲存體帳戶啟用加密](security-center-enable-encryption-for-storage-account.md) | 建議您為待用資料啟用「Azure 儲存體服務加密」。 「儲存體服務加密」(SSE) 會在資料被寫入 Azure 儲存體時加密資料，並於擷取資料之前將其解密。 SSE 目前僅適用於 Azure Blob 服務，可用於區塊 Blob、分頁 Blob 和附加 Blob。 若要深入了解，請參閱[待用資料的儲存體服務加密](../storage/storage-service-encryption.md)。</br>只有在 Resource Manager 儲存體帳戶上才支援 SSE。 目前不支援傳統儲存體帳戶。 若要了解傳統和 Resource Manager 部署模型，請參閱 [Azure 部署模型](../azure-classic-rm.md)。 |
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 若要深入了解適用於其他 Azure 資源類型的建議，請參閱下列文章︰
 
 * [保護 Azure 資訊安全中心內的虛擬機器](security-center-virtual-machine-recommendations.md)
@@ -41,4 +46,8 @@ ms.author: terrylan
 * [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Jan17_HO1-->
+
+

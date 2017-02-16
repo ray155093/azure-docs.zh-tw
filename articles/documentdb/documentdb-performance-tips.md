@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB 效能秘訣 | Microsoft Docs"
+title: "效能秘訣 - Azure DocumentDB NoSQL | Microsoft Docs"
 description: "了解用以改善 Azure DocumentDB 資料庫效能的用戶端設定選項"
 keywords: "如何改善資料庫效能"
 services: documentdb
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 2d833a559b72569983340972ba3b905b9e42e61d
-ms.openlocfilehash: 5b4efb2d6dedb43436745f5e8055cae44e4a58ac
+ms.sourcegitcommit: 25c48bbd0edafa4c6e4e478c471e11b6d69e00c7
+ms.openlocfilehash: e34571efac5d1a5e75d5e5d2cab75c91dbce71c8
 
 
 ---
@@ -37,6 +37,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
    2. 直接模式
 
       所有 SDK 平台都支援閘道模式並設為預設值。  如果您的應用程式在有嚴格防火牆限制的公司網路中執行，則閘道模式會是最佳的選擇，因為它會使用標準 HTTPS 連接埠與單一端點。 不過，對於效能的影響是每次讀取或寫入 DocumentDB 資料時，閘道模式都會涉及額外的網路躍點。   因此，直接模式因為網路躍點較少，所以可提供較佳的效能。
+<a id="use-tcp"></a>
 2. **連接原則︰使用 TCP 通訊協定**
 
     運用直接模式時，有兩個可用的通訊協定選項︰
@@ -111,7 +112,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
     在進行效能測試期間，您應該增加負載，直到系統對小部分要求進行節流處理為止。 如果進行節流處理，用戶端應用程式應該在節流時降速，且持續時間達伺服器指定的重試間隔。 採用降速可確保您在重試之間花費最少的等待時間。 重試原則支援包含於 DocumentDB [.NET](documentdb-sdk-dotnet.md) 和 [Java](documentdb-sdk-java.md) 的版本 1.8.0 和以上版本中，[Node.js](documentdb-sdk-node.md) 和 [Python](documentdb-sdk-python.md) 的版本 1.9.0 或以上版本中，以及 [.NET 核心](documentdb-sdk-dotnet-core.md) SDK 所有支援的版本。 如需詳細資訊，請參閱[超過保留的輸送量限制](documentdb-request-units.md#RequestRateTooLarge)和 [RetryAfter](https://msdn.microsoft.com/library/microsoft.azure.documents.documentclientexception.retryafter.aspx)。
 7. **相應放大用戶端工作負載**
 
-    如果您是以高輸送量層級 (> 50,000 RU/秒) 進行測試，用戶端應用程式可能會成為瓶頸，因為電腦對 CPU 或網路的使用率將達到上限。 如果您達到這個點，您可以將用戶端應用程式向外延展至多部伺服器，以繼續將 DocumentDB 帳戶再往前推進一步。
+    如果您是以高輸送量層級 (>&50;,000 RU/秒) 進行測試，用戶端應用程式可能會成為瓶頸，因為電腦對 CPU 或網路的使用率將達到上限。 如果您達到這個點，您可以將用戶端應用程式向外延展至多部伺服器，以繼續將 DocumentDB 帳戶再往前推進一步。
 8. **快取較低讀取延遲的文件 URI**
 
     盡可能快取文件 URI 以達到最佳讀取效能。
@@ -173,6 +174,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
              }
 
     在此標頭中傳回的要求費用是佈建輸送量的一小部分 (也就是 2000 RU / 秒)。 例如，如果上述查詢傳回 1000 份 1KB 文件，則作業成本會是 1000。 因此在一秒內，伺服器在節流後續要求前，只會接受兩個這類要求。 如需詳細資訊，請參閱[要求單位](documentdb-request-units.md)和[要求單位計算機](https://www.documentdb.com/capacityplanner)。
+<a id="429"></a>
 2. **處理速率限制/要求速率太大**
 
     當用戶端嘗試超過帳戶保留的輸送量時，伺服器的效能不會降低，而且不會使用超過保留層級的輸送量容量。 伺服器將預先使用 RequestRateTooLarge (HTTP 狀態碼 429) 來結束要求，並傳回 x-ms-retry-after-ms 標頭，以指出使用者重試要求之前必須等候的時間量 (毫秒)。
@@ -197,6 +199,6 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

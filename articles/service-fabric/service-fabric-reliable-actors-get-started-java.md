@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Service Fabric Reliable Actors | Microsoft Docs"
+title: "使用 Java 建立您的第一個動作項目型 Azure 微服務 | Microsoft Docs"
 description: "本教學課程將引導您使用 Service Fabric Reliable Actors，建立、偵錯及部署簡易動作項目型服務的步驟。"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 01/04/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3e349d0c76078889b6e41340ee8bb2f599819ba3
+ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
+ms.openlocfilehash: 8ecc5208237d846d0e81914eee8874ea97744bc3
 
 
 ---
@@ -191,6 +191,6 @@ $ ./install.sh
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

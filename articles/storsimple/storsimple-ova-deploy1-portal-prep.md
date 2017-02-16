@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 05/24/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d42b76d4d03e6ac841f90e236b6ba0bfad1306f1
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 842ea26941a1141cde7db4e6ebff07d52aed9450
 
 
 ---
@@ -38,8 +38,8 @@ ms.openlocfilehash: d42b76d4d03e6ac841f90e236b6ba0bfad1306f1
 
 | **#** | **在此步驟中** | **您將會進行...** | **請使用這些文件。** |
 | --- | --- | --- | --- |
-| 1. |**設定 Azure 傳統入口網站** |請在佈建 StorSimple 虛擬裝置之前，先建立並設定 StorSimple Manager 服務。 |[Prepare the portal (準備入口網站)](storsimple-ova-deploy1-portal-prep.md) |
-| 2. |**佈建 Virtual Array** |針對 Hyper-V，在於 Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 執行 Hyper-V 的主機系統上，佈建 StorSimple 虛擬裝置並連接到此虛擬裝置。 <br></br> <br></br> 對於 VMware，請佈建及連線到執行 VMware ESXi 5.5 及更新版本之主機系統上的 StorSimple 內部部署虛擬裝置。<br></br> |[在 Hyper-V 中佈建 Virtual Array](storsimple-ova-deploy2-provision-hyperv.md) <br></br> <br></br> [在 VMware 中佈建虛擬陣列](storsimple-ova-deploy2-provision-vmware.md) |
+| 1. |**設定 Azure 傳統入口網站** |請在佈建 StorSimple 虛擬裝置之前，先建立並設定 StorSimple Manager 服務。 |[準備入口網站](storsimple-ova-deploy1-portal-prep.md) |
+| 2. |**佈建 Virtual Array** |針對 Hyper-V，在於 Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 執行 Hyper-V 的主機系統上，佈建 StorSimple 虛擬裝置並連接到此虛擬裝置。 <br></br> <br></br> 對於 VMware，請佈建及連線到執行 VMware ESXi 5.5 及更新版本之主機系統上的 StorSimple 內部部署虛擬裝置。<br></br> |[在 Hyper-V 中佈建虛擬陣列](storsimple-ova-deploy2-provision-hyperv.md) <br></br> <br></br> [在 VMware 中佈建虛擬陣列](storsimple-ova-deploy2-provision-vmware.md) |
 | 3. |**設定 Virtual Array** |對於檔案伺服器，請執行初始安裝程序、註冊 StorSimple 檔案伺服器，以及完成裝置安裝程序。 接下來，您可以佈建 SMB 共用。 <br></br> <br></br> 對於 iSCSI 伺服器，請執行初始安裝、註冊 StorSimple iSCSI 伺服器，並完成裝置安裝程序。 接下來，您可以佈建 iSCSI 磁碟區。 |[將虛擬陣列設定為檔案伺服器](storsimple-ova-deploy3-fs-setup.md)<br></br> <br></br>[將虛擬陣列設定為 iSCSI 伺服器](storsimple-ova-deploy3-iscsi-setup.md) |
 
 #### <a name="deployment-videos"></a>部署相關影片
@@ -137,7 +137,7 @@ ms.openlocfilehash: d42b76d4d03e6ac841f90e236b6ba0bfad1306f1
 
 請觀賞說明如何開始使用 StorSimple Virtual Array 的逐步指示影片。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Get-Started-with-the-StorSimple-Virtual-Array/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Get-Started-with-the-StorSimple-Virtual-Array/player]
 > 
 > 
 
@@ -164,12 +164,12 @@ ms.openlocfilehash: d42b76d4d03e6ac841f90e236b6ba0bfad1306f1
 ## <a name="next-step"></a>後續步驟
 下一個步驟是為 StorSimple 虛擬裝置來佈建虛擬機器。 請根據您的主機作業系統，來參閱下列其中一個詳細指示：
 
-* [Provision a StorSimple Virtual Array in Hyper-V (在 Hyper-V 中佈建 StorSimple Virtual Array)](storsimple-ova-deploy2-provision-hyperv.md)
-* [Provision a Virtual Array in VMware (在 VMware 中佈建 Virtual Array)](storsimple-ova-deploy2-provision-vmware.md)
+* [在 Hyper-V 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-hyperv.md)
+* [在 VMware 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-vmware.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

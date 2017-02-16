@@ -1,5 +1,5 @@
 ---
-title: "使用範本部署配置有 IPv6 的網際網路面向負載平衡器解決方案 | Microsoft Docs"
+title: "使用 IPv6 部署網際網路對向負載平衡器 - Azure 範本 | Microsoft Docs"
 description: "如何部署 Azure Load Balancer 和負載平衡 VM 的 IPv6 支援。"
 services: load-balancer
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/14/2016
+ms.date: 01/23/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: bec4f89556a2daa41e19b0ecb2ab9bbbed849107
-ms.openlocfilehash: f031fb76e225248a6d0535106b846dc3bef10e76
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: 752793ed481b0b69203fa13b214add32e9129dfd
 
 ---
 
@@ -29,7 +29,7 @@ ms.openlocfilehash: f031fb76e225248a6d0535106b846dc3bef10e76
 > * [Azure CLI](load-balancer-ipv6-internet-cli.md)
 > * [範本](load-balancer-ipv6-internet-template.md)
 
-Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。 Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
+Azure 負載平衡器是第&4; 層 (TCP、UDP) 負載平衡器。 此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。 Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
 
 ## <a name="example-deployment-scenario"></a>範例部署案例
 
@@ -135,6 +135,6 @@ Azure Resource Manager 範本可包含多個變數和參數，讓您自訂自己
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

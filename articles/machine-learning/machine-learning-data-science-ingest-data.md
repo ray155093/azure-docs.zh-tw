@@ -1,5 +1,5 @@
 ---
-title: "將資料載入至儲存體環境以便進行分析 | Microsoft Docs"
+title: "將資料載入至 Azure 儲存體環境以便進行分析 | Microsoft Docs"
 description: "從 Azure Blob 儲存體來回移動資料"
 services: machine-learning,storage
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 01/29/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e132bf59575928dfab34905730b5acc29d6754d5
+ms.sourcegitcommit: e899487e9445955cea3a9387c73ea7c5dca37ddc
+ms.openlocfilehash: 7fbf3bfedca8fa57a5e9428c9399558992b4acbd
 
 
 ---
@@ -32,6 +32,6 @@ Team Data Science Process 要求將資料內嵌或載入至各種不同的儲存
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

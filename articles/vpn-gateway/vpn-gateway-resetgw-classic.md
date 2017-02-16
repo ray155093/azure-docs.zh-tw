@@ -1,10 +1,10 @@
 ---
-title: "重設 Azure VPN 閘道 | Microsoft Docs"
-description: "本文將引導您重設您的 Azure VPN 閘道。 本文章適用於傳統，和 Resource Manager 部署模型兩者的 VPN 閘道。"
+title: "重設 Azure VPN 閘道以重新建立 IPsec 通道：PowerShell | Microsoft Docs"
+description: "本文將逐步引導您重設「Azure VPN 閘道」以重新建立 IPsec 通道。 本文章適用於傳統，和 Resource Manager 部署模型兩者的 VPN 閘道。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager,azure-service-management
 ms.assetid: 79d77cb8-d175-4273-93ac-712d7d45b1fe
@@ -13,20 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/23/2016
+ms.date: 01/25/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 97ee3599f2eded9800dbb441af7299547c502397
+ms.sourcegitcommit: 691afc6aca6efe074e76eab5129d109cb2e7163f
+ms.openlocfilehash: ce6d77b8ad4a5b81f7a1237267accaa617f0dcf7
 
 
 ---
 # <a name="reset-an-azure-vpn-gateway-using-powershell"></a>使用 PowerShell 重設 Azure VPN 閘道
+
+如果您遺失一或多個 S2S VPN 通道上的跨單位 VPN 連線，重設 Azure VPN 閘道會很有幫助。 在此情況下，您的所有內部部署 VPN 裝置都會運作正常，但無法使用 Azure VPN 閘道建立 IPsec 通道。
+
 本文逐步引導您使用 PowerShell cmdlet 重設 Azure VPN 閘道。 這些指示包含傳統部署模型和 Resource Manager 部署模型兩者。
 
-如果您遺失一或多個 S2S VPN 通道上的跨單位 VPN 連線，重設 Azure VPN 閘道會很有幫助。 在此情況下，您的所有內部部署 VPN 裝置都會運作正常，但無法使用 Azure VPN 閘道建立 IPsec 通道。 
-
-每個 Azure VPN 閘道都是由在作用中待命組態中執行的兩個 VM 執行個體組成。 當您使用 PowerShell Cmdlet 來重設閘道時，它會重新啟動閘道，然後將跨單位組態重新套用至閘道。 閘道會保留它永遠擁有的公用 IP 位址。 這表示您不需要利用 Azure VPN 閘道的新公用 IP 位址更新 VPN 路由器組態。  
+每個 Azure VPN 閘道都是一個虛擬網路閘道，由兩個在「作用中-待命」組態中執行的 VM 執行個體所組成。 當您使用 PowerShell Cmdlet 來重設閘道時，它會重新啟動閘道，然後將跨單位組態重新套用至閘道。 閘道會保留它永遠擁有的公用 IP 位址。 這表示您不需要利用 Azure VPN 閘道的新公用 IP 位址更新 VPN 路由器組態。  
 
 一旦發出此命令，會立即重新啟動 Azure VPN 閘道目前作用中的執行個體。 從作用中執行個體 (正在重新啟動) 容錯移轉到待命執行個體期間，會有短暫的間隔。 此間隔應該不超過一分鐘。
 
@@ -43,14 +44,16 @@ ms.openlocfilehash: 97ee3599f2eded9800dbb441af7299547c502397
 * 預先共用的金鑰在 Azure 和內部部署 VPN 閘道上必須是相同的。
 * 如果您套用特定的 IPsec/IKE 組態，例如加密、雜湊演算法和 PFS (完整轉寄密碼)，確定 Azure 和內部部署 VPN 閘道都具有相同組態。
 
-## <a name="reset-a-vpn-gateway-using-the-resource-management-deployment-model"></a>使用 Resource Management 部署模型重設 VPN 閘道
-用於重設閘道器的 PowerShell Resource Manager Cmdlet 是 `Reset-AzureRmVirtualNetworkGateway`。 以下範例會重設資源群組 "TestRG1" 中的 Azure VPN 閘道 "VNet1GW"。
+## <a name="reset---resource-manager"></a>重設 - Resource Manager
+
+您將需要最新版的 PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 用於重設閘道器的 PowerShell Resource Manager Cmdlet 是 `Reset-AzureRmVirtualNetworkGateway`。 以下範例會重設資源群組 "TestRG1" 中的 Azure VPN 閘道 "VNet1GW"。
 
     $gw = Get-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroup TestRG1
     Reset-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw
 
-## <a name="reset-a-vpn-gateway-using-the-classic-deployment-model"></a>使用傳統部署模型重設 VPN 閘道
-用於重設 Azure VPN 閘道的 PowerShell Cmdlet 是 `Reset-AzureVNetGateway`。 下列範例會重設稱為 "ContosoVNet" 的虛擬網路的 Azure VPN 閘道。
+## <a name="reset---classic"></a>重設 - 傳統
+
+您將需要最新版的 PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 用於重設 Azure VPN 閘道的 PowerShell Cmdlet 是 `Reset-AzureVNetGateway`。 下列範例會重設稱為 "ContosoVNet" 的虛擬網路的 Azure VPN 閘道。
 
     Reset-AzureVNetGateway –VnetName “ContosoVNet” 
 
@@ -70,6 +73,6 @@ ms.openlocfilehash: 97ee3599f2eded9800dbb441af7299547c502397
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

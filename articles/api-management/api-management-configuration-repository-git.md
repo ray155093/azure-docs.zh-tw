@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b3cec0fd2547b68ff3795fd7a4c22fe927eb2a4f
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: 96d100d69a7f4989153b293d1fa1ab249a82c1c2
 
 
 ---
@@ -109,42 +109,58 @@ ms.openlocfilehash: b3cec0fd2547b68ff3795fd7a4c22fe927eb2a4f
 
 在想要的資料夾中開啟 Git 工具，然後執行下列命令，使用發佈者入口網站提供的命令，將 git 儲存機制複製到本機電腦。
 
-    git clone https://bugbashdev4.scm.azure-api.net/ 
+```
+git clone https://bugbashdev4.scm.azure-api.net/
+```
 
 出現提示時，請提供使用者名稱和密碼。
 
 如果您收到任何錯誤，請嘗試修改您的 `git clone` 命令以包含使用者名稱和密碼，如下列範例所示。
 
-    git clone https://username:password@bugbashdev4.scm.azure-api.net/
+```
+git clone https://username:password@bugbashdev4.scm.azure-api.net/
+```
 
 如果發生錯誤，請嘗試 URL 編碼命令的密碼部分。 完成這項操作的其中一個快速方法是開啟 Visual Studio，並且在 [即時運算視窗] 發出下列命令。 若要開啟 [即時運算視窗]，請在 Visual Studio 中開啟任何解決方案或專案 (或建立新的空白主控台應用程式)，然後從 [偵錯] 功能表選擇 [視窗]、[即時運算]。
 
-    ?System.NetWebUtility.UrlEncode("password from publisher portal")
+```
+?System.NetWebUtility.UrlEncode("password from publisher portal")
+```
 
 使用編碼的密碼以及使用者名稱和儲存機制位置以建構 git 命令。
 
-    git clone https://username:url encoded password@bugbashdev4.scm.azure-api.net/
+```
+git clone https://username:url encoded password@bugbashdev4.scm.azure-api.net/
+```
 
 複製儲存機制之後，您可以在您的本機檔案系統中檢視及使用它。 如需詳細資訊，請參閱 [本機 Git 儲存機制的檔案和資料夾結構參考](#file-and-folder-structure-reference-of-local-git-repository)。
 
 ## <a name="to-update-your-local-repository-with-the-most-current-service-instance-configuration"></a>使用最新的服務執行個體組態更新本機儲存機制
 如果您在發佈者入口網站中或使用 REST API 變更您的 API 管理服務執行個體，您必須先將這些變更儲存至儲存機制，才能使用最新的變更來更新本機儲存機制。 若要這樣做，請按一下發佈者入口網站中 [組態儲存機制] 索引標籤上的 [將組態儲存至儲存機制]，然後在本機儲存機制中發出下列命令。
 
-    git pull
+```
+git pull
+```
 
 在執行 `git pull` 之前，請確認您是位於本機儲存機制的資料夾中。 如果您已完成 `git clone` 命令，則必須執行類似下列的命令，將目錄變更為您的儲存機制。
 
-    cd bugbashdev4.scm.azure-api.net/
+```
+cd bugbashdev4.scm.azure-api.net/
+```
 
 ## <a name="to-push-changes-from-your-local-repo-to-the-server-repo"></a>將變更從您的本機儲存機制推送至伺服器儲存機制
 若要將變更從本機儲存機制推送至伺服器儲存機制，必須認可您的變更，然後再將其推送至伺服器儲存機制。 若要認可變更，請開啟您的 Git 命令工具，切換至您的本機儲存機制的目錄，然後發出下列命令。
 
-    git add --all
-    git commit -m "Description of your changes"
+```
+git add --all
+git commit -m "Description of your changes"
+```
 
 若要將所有認可推送至伺服器，請執行下列命令。
 
-    git push
+```
+git push
+```
 
 ## <a name="to-deploy-any-service-configuration-changes-to-the-api-management-service-instance"></a>將服務組態變更部署至 API 管理服務執行個體
 一旦您的本機變更被認可並且推送至伺服器儲存機制，您可以將它們部署到您的 API 管理服務執行個體。
@@ -190,19 +206,21 @@ ms.openlocfilehash: b3cec0fd2547b68ff3795fd7a4c22fe927eb2a4f
 ### <a name="root-api-management-folder"></a>根 api 管理資料夾
 根 `api-management` 資料夾包含 `configuration.json` 檔案，其中包含服務執行個體的最上層資訊，格式如下。
 
-    {
-      "settings": {
-        "RegistrationEnabled": "True",
-        "UserRegistrationTerms": null,
-        "UserRegistrationTermsEnabled": "False",
-        "UserRegistrationTermsConsentRequired": "False",
-        "DelegationEnabled": "False",
-        "DelegationUrl": "",
-        "DelegatedSubscriptionEnabled": "False",
-        "DelegationValidationKey": ""
-      },
-      "$ref-policy": "api-management/policies/global.xml"
-    }
+```json
+{
+  "settings": {
+    "RegistrationEnabled": "True",
+    "UserRegistrationTerms": null,
+    "UserRegistrationTermsEnabled": "False",
+    "UserRegistrationTermsConsentRequired": "False",
+    "DelegationEnabled": "False",
+    "DelegationUrl": "",
+    "DelegatedSubscriptionEnabled": "False",
+    "DelegationValidationKey": ""
+  },
+  "$ref-policy": "api-management/policies/global.xml"
+}
+```
 
 前四個設定 (`RegistrationEnabled`、`UserRegistrationTerms`、`UserRegistrationTermsEnabled` 和 `UserRegistrationTermsConsentRequired`) 對應至 [安全性] 區段的 [身分識別] 索引標籤中的下列設定。
 
@@ -303,6 +321,6 @@ ms.openlocfilehash: b3cec0fd2547b68ff3795fd7a4c22fe927eb2a4f
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

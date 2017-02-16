@@ -1,6 +1,6 @@
 ---
 title: "適用於 C 的 Azure IoT 裝置 SDK - IoTHubClient | Microsoft Docs"
-description: "深入了解在適用於 C 的 Azure IoT 裝置 SDK 中使用 IoTHubClient 程式庫"
+description: "如何使用適用於 C 的 Azure IoT 裝置 SDK 中的 IoTHubClient 程式庫，以建立與 IoT 中樞通訊的裝置應用程式。"
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -15,13 +15,13 @@ ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 4ab5a1a25b009cef3cf85bdb773e7b3ecd119b89
+ms.sourcegitcommit: e3e4ad430d8941a09543ce2dc97f8e449a39bced
+ms.openlocfilehash: dd398e258cd1634e187a5c258158d5bc01e5a943
 
 
 ---
-# <a name="microsoft-azure-iot-device-sdk-for-c--more-about-iothubclient"></a>適用於 C 的 Microsoft Azure IoT 裝置 SDK - 深入了解 IoTHubClient
-本系列中的[第一篇文章](iot-hub-device-sdk-c-intro.md)介紹了**適用於 C 的 Microsoft Azure IoT 裝置 SDK**。該文章已說明 SDK 中有兩個架構層。 在基底的是 **IoTHubClient** 程式庫，可直接管理與 IoT 中樞的通訊。 還有 **序列化程式** 庫，此程式庫建置於其頂部以提供序列化服務。 在本文中，我們將提供 **IoTHubClient** 程式庫的其他詳細資料。
+# <a name="azure-iot-device-sdk-for-c--more-about-iothubclient"></a>適用於 C 的 Azure IoT 裝置 SDK - 深入了解 IoTHubClient
+本系列的[第一篇文章](iot-hub-device-sdk-c-intro.md)介紹了「適用於 C 的 Azure IoT 裝置 SDK」。該文章已說明 SDK 中有兩個架構層。 在基底的是 **IoTHubClient** 程式庫，可直接管理與 IoT 中樞的通訊。 還有 **序列化程式** 庫，此程式庫建置於其頂部以提供序列化服務。 在本文中，我們將提供 **IoTHubClient** 程式庫的其他詳細資料。
 
 前一篇文章描述如何使用 **IoTHubClient** 程式庫傳送事件到 IoT 中樞及接收訊息。 本文將向您介紹「較低層級 API」，以說明如何更精確地管理傳送和接收資料的「時機」來延伸該討論。 我們也將說明如何使用 **IoTHubClient** 程式庫中的屬性處理功能，將屬性附加到事件 (並從訊息將其擷取)。 最後，我們將提供其他說明，以不同的方式來處理從 IoT 中樞接收的訊息。
 
@@ -29,7 +29,7 @@ ms.openlocfilehash: 4ab5a1a25b009cef3cf85bdb773e7b3ecd119b89
 
 我們將使用 **IoTHubClient** SDK 範例來說明這些主題。 如果您想要依照這些內容，請參閱「適用於 C 的 Azure IoT 裝置 SDK」中隨附的 **iothub\_client\_sample\_http** 和 **iothub\_client\_sample\_amqp** 應用程式。這些範例會示範下列各節中所述的所有內容。
 
-您可以在 [Azure IoT SDK](https://github.com/Azure/azure-iot-sdks) GitHub 儲存機制中尋找「適用於 C 的 Azure IoT 裝置 SDK」，然後在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
+您可以尋找[**適用於 C 的 Azure IoT 裝置 SDK**](https://github.com/Azure/azure-iot-sdk-c) GitHub 儲存機制，然後在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
 
 ## <a name="the-lower-level-apis"></a>較低層級的 API
 前一篇文章描述了 **iothub\_client\_sample\_amqp** 應用程式內容中 **IotHubClient** 的基本作業。 比方說，該文說明如何使用下列程式碼初始化程式庫。
@@ -225,7 +225,7 @@ IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-**IoTHubClient\_CreateFromConnectionString** 的引數是裝置的連接字串，以及指出我們用來與「IoT 中樞」通訊之通訊協定的參數。 此連接字串的格式如下所示：
+**IoTHubClient\_CreateFromConnectionString** 的引數是裝置連接字串和一個參數，此參數指出用來與 IoT 中樞通訊的通訊協定。 裝置連接字串的格式如下所示：
 
 ```
 HostName=IOTHUBNAME.IOTHUBSUFFIX;DeviceId=DEVICEID;SharedAccessKey=SHAREDACCESSKEY
@@ -233,7 +233,7 @@ HostName=IOTHUBNAME.IOTHUBSUFFIX;DeviceId=DEVICEID;SharedAccessKey=SHAREDACCESSK
 
 這個字串中包含四項資訊：IoT 中樞名稱、IoT 中樞尾碼、裝置識別碼和共用存取金鑰。 當您在 Azure 入口網站中建立 IoT 中樞執行個體時，可以取得 IoT 中樞的完整網域名稱 (FQDN) - 這可為您提供 IoT 中樞名稱 (FQDN 的第一個部分) 和 IoT 中樞尾碼 (FQDN 的其餘部分)。 您會在使用 IoT 中樞註冊裝置時，取得裝置識別碼和共用存取金鑰 (如[前一篇文章](iot-hub-device-sdk-c-intro.md)所述)。
 
-**IoTHubClient\_CreateFromConnectionString** 提供您一個方法來初始化程式庫。 您也可以視需要，藉由使用這些個別的參數而不是連接字串來建立新的 **IOTHUB\_CLIENT\_HANDLE**。 使用下列程式碼即可達成：
+**IoTHubClient\_CreateFromConnectionString** 提供您一個方法來初始化程式庫。 喜歡的話，您也可以使用這些個別的參數 (而不是裝置連接字串) 建立新的 **IOTHUB\_CLIENT\_HANDLE**。 使用下列程式碼即可達成：
 
 ```
 IOTHUB_CLIENT_CONFIG iotHubClientConfig;
@@ -247,7 +247,7 @@ IOTHUB_CLIENT_HANDLE iotHubClientHandle = IoTHubClient_LL_Create(&iotHubClientCo
 
 其作用與 **IoTHubClient\_CreateFromConnectionString** 相同。
 
-顯而易見，您會想要使用 **IoTHubClient\_CreateFromConnectionString**，而不是這個較冗長的初始化方法。 但請記住，當您在 IoT 中樞註冊裝置時，您得到的是裝置識別碼和裝置金鑰 (不是連接字串)。 [前一篇文章](iot-hub-device-sdk-c-intro.md)中介紹的「裝置管理員」SDK 工具會使用「Azure IoT 服務 SDK」中的程式庫，從裝置識別碼、裝置金鑰及「IoT 中樞」主機名稱建立連接字串。 因此，呼叫 **IoTHubClient\_LL\_Create** 可能是較慣用的做法，因為它可以為您省下產生連接字串的步驟。 使用任何方法都很方便。
+顯而易見，您會想要使用 **IoTHubClient\_CreateFromConnectionString**，而不是這個較冗長的初始化方法。 但請記住，當您在 IoT 中樞註冊裝置時，您得到的是裝置識別碼和裝置金鑰 (不是連接字串)。 [前一篇文章](iot-hub-device-sdk-c-intro.md)介紹的「裝置總管」SDK 工具會使用 **Azure IoT 服務 SDK** 中的程式庫，從裝置識別碼、裝置金鑰及 IoT 中樞主機名稱建立裝置連接字串。 因此，呼叫 **IoTHubClient\_LL\_Create** 可能是較慣用的做法，因為它可以為您省下產生連接字串的步驟。 使用任何方法都很方便。
 
 ## <a name="configuration-options"></a>組態選項
 到目前為止，有關 **IoTHubClient** 程式庫運作方式的所有描述內容都反映其預設行為。 不過，您可以設定幾個選項來變更程式庫的運作方式。 這可以藉由運用 **IoTHubClient\_LL\_SetOption** API 來完成。 請思考此範例：
@@ -279,6 +279,6 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 

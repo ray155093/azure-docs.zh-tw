@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/19/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 39ac484419371344452dbe9042791b85d36618e3
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a92b33ddae70867e163f6af16fc56f82c4baf4cc
 
 
 ---
@@ -123,7 +123,7 @@ ms.openlocfilehash: 39ac484419371344452dbe9042791b85d36618e3
    
     a. 按一下 [下載憑證]，然後將 Base-64 編碼的憑證檔案儲存在您的電腦上。
    
-    b.這是另一個 C# 主控台應用程式。 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b. 按 [下一步] 。
 3. 若要取得為應用程式設定的 SSO，您必須以系統管理員身分登入 RightScale 租用戶。
    
     a. 在頂端的功能表中，按一下 [設定] 索引標籤，然後選取 [單一登入]。
@@ -214,7 +214,7 @@ ms.openlocfilehash: 39ac484419371344452dbe9042791b85d36618e3
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-a-rightscale-test-user"></a>建立 RightScale 測試使用者
 在本節中，您會在 RightScale 中建立名為 Britta Simon 的使用者。 請透過 support@rightscale.com 與 RightScale 支援小組合作，在 RightScale 平台中新增使用者。
@@ -268,6 +268,6 @@ ms.openlocfilehash: 39ac484419371344452dbe9042791b85d36618e3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

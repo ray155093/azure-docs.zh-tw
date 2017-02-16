@@ -3,7 +3,7 @@ title: "如何搭配 Linux 使用 Azure 檔案 | Microsoft Docs"
 description: "使用此逐步解說教學課程，在雲端中建立 Azure 檔案共用。 管理您的檔案共用內容，並從執行 Linux 的 Azure 虛擬機器 (VM) 或支援 SMB 3.0 的內部部署應用程式掛接檔案共用。"
 services: storage
 documentationcenter: na
-author: mine-msft
+author: RenaShahMSFT
 manager: aungoo
 editor: tysonn
 ms.assetid: 6edc37ce-698f-4d50-8fc1-591ad456175d
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/18/2016
-ms.author: minet
+ms.date: 1/18/2017
+ms.author: renash
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 26e74cada6186239c58011de155662c3e2a24978
+ms.sourcegitcommit: e296e468309b53338231e283ac62e4d917e0834b
+ms.openlocfilehash: 8cb98eb721d5769125926a6c75f776a9d510376e
 
 
 ---
@@ -38,7 +38,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 ## <a name="video-using-azure-file-storage-with-linux"></a>影片：搭配 Linux 使用 Azure 檔案儲存體
 以下影片示範如何在 Linux 上建立和使用 Azure 檔案共用。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-File-Storage-with-Linux/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-File-Storage-with-Linux/player]
 > 
 > 
 
@@ -108,6 +108,17 @@ Filesystem  Size  Used Avail Use% Mounted on
 //myaccountname.file.core.windows.net/mysharename  5.0T   64K  5.0T   1% /mnt/mountpoint
 ```
 
+如果您使用 RHEL 7.3，可以依下列方式掛接檔案：
+
+```
+azureuser@AzureconRedhat:~> sudo yum install cifs-utils
+azureuser@AzureconRedhat:~> sudo mkdir /mnt/mountpoint
+azureuser@AzureconRedhat:~> sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+azureuser@AzureconRedhat:~> df -h /mnt/mountpoint
+Filesystem  Size  Used Avail Use% Mounted on
+//myaccountname.file.core.windows.net/mysharename  5.0T   64K  5.0T   1% /mnt/mountpoint
+```
+
 ## <a name="manage-the-file-share"></a>管理檔案共用
 [Azure 入口網站](https://portal.azure.com) 提供可管理 Azure 檔案儲存體的使用者介面。 您可以從網路瀏覽器執行下列動作：
 
@@ -150,6 +161,7 @@ Linux 使用者群組的 Azure 檔案儲存體提供論壇，讓您在 Linux 上
 * [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
 
-<!--HONumber=Nov16_HO3-->
+
+<!--HONumber=Jan17_HO3-->
 
 

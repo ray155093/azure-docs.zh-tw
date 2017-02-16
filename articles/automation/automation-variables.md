@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 11/14/2016
 ms.author: magoedte;bwren
 translationtype: Human Translation
-ms.sourcegitcommit: dac32c62f34dea958754fe9e85ed02b2221bd81c
-ms.openlocfilehash: a2f953961cb372677b3204046825b84027653c95
+ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
+ms.openlocfilehash: 299b419c0271bbe7355a491cddf32dc922090621
 
 
 ---
@@ -53,7 +53,7 @@ ms.openlocfilehash: a2f953961cb372677b3204046825b84027653c95
 
 ## <a name="cmdlets-and-workflow-activities"></a>Cmdlet 和工作流程活動
 
-下表中的 Cmdlet 是用來使用 Windows PowerShell 建立和管理自動化變數。 它們是隨著 [Azure PowerShell 模組](../powershell-install-configure.md) 的一部分推出，可供在自動化 Runbook 和 DSC 設定中使用。
+下表中的 Cmdlet 是用來使用 Windows PowerShell 建立和管理自動化變數。 它們是隨著 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs) 的一部分推出，可供在自動化 Runbook 和 DSC 設定中使用。
 
 |Cmdlet|說明|
 |:---|:---|
@@ -189,6 +189,6 @@ ms.openlocfilehash: a2f953961cb372677b3204046825b84027653c95
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

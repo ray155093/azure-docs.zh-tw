@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 11/01/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 01867f283678171eda8fb9798ea996cae605665a
 
 
 ---
@@ -559,12 +559,12 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 <!-- URLs -->
 
 [在 Azure App Service 中建置和部署 Node.js Web 應用程式]: web-sites-nodejs-develop-deploy-mac.md
-[Azure 開發人員中心]: /develop/nodejs/
+[Azure Developer Center]: /develop/nodejs/
 
 [node]: http://nodejs.org
 [Git]: http://git-scm.com
 [Express]: http://expressjs.com
-[免費]: http://windowsazure.com
+[for free]: http://windowsazure.com
 [Git 遠端]: http://git-scm.com/docs/git-remote
 
 [Azure CLI]: ../xplat-cli-install.md
@@ -574,9 +574,9 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 [nconf]: https://www.npmjs.com/package/nconf
 [async]: https://www.npmjs.com/package/async
 
-[Azure 入口網站]: https://portal.azure.com
+[Azure Portal]: https://portal.azure.com
 
-[建立 Node.js 應用程式並將其部署到 Azure 網站]: web-sites-nodejs-develop-deploy-mac.md
+[Create and deploy a Node.js application to an Azure Web Site]: web-sites-nodejs-develop-deploy-mac.md
 
 <!-- Image References -->
 
@@ -594,6 +594,6 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

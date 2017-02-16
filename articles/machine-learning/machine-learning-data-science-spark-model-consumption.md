@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/07/2016
 ms.author: deguhath;bradsev;gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2387baad5737998d2ba7f289e0a4fcdd6dd04245
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 4aa61eb5fb6c441bdfebd8bcc46ad62fbaf78548
 
 
 ---
@@ -575,7 +575,7 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
 * 若要引進 引進 **Logic Apps Designer**，請輸入邏輯應用程式和 App Service 方案的名稱。
 * 選取 HTTP 動作，然後輸入下圖顯示的參數︰
 
-![](./media/machine-learning-data-science-spark-model-consumption/spark-logica-app-client.png)
+![Logic Apps 設計工具](./media/machine-learning-data-science-spark-model-consumption/spark-logica-app-client.png)
 
 ## <a name="whats-next"></a>後續步驟
 **交叉驗證和超參數掃掠**：如需如何使用交叉驗證和超參數掃掠訓練模型的相關資訊，請參閱 [使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
@@ -583,6 +583,6 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

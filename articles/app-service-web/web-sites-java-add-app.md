@@ -12,16 +12,16 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/19/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 09640b2e259e7d7ccab938df649085a0903b9384
+ms.sourcegitcommit: 627930ca68a94ecc56e7ef9ac9435f4b5f3f41c7
+ms.openlocfilehash: 61466be17a52f1f230207b71bb94e10f88ee075c
 
 
 ---
 # <a name="add-a-java-application-to-azure-app-service-web-apps"></a>將 Java 應用程式新增至 Azure App Service Web Apps
-當您依照[在 Azure App Service 中建立 Java Web 應用程式](web-sites-java-get-started.md)所述在 [Azure App Service][Azure App Service] 初始化 Java Web 應用程式之後，就可以將 WAR 放在 **webapps** 資料夾中以便上傳您的應用程式。
+在您已依照[在 Azure App Service 中建立 Java Web 應用程式](web-sites-java-get-started.md)所述，在 [Azure App Service][Azure App Service] 中將 Java Web 應用程式初始化之後，就可以將 WAR 放在 [webapps] 資料夾中來上傳您的應用程式。
 
 **webapps** 資料夾的導覽路徑會根據 Web Apps 執行個體的設定方式而有所不同。
 
@@ -37,6 +37,8 @@ Tomcat Web 應用程式注意事項：將 WAR 檔案上傳至 **webapps** 資料
 ## <a name="see-also"></a>另請參閱
 如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
 
+[!INCLUDE [application-insights-app-insights-java-get-started](../application-insights/app-insights-java-get-started.md)]
+
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
 [!INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
@@ -49,6 +51,6 @@ Tomcat Web 應用程式注意事項：將 WAR 檔案上傳至 **webapps** 資料
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

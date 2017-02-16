@@ -1,0 +1,90 @@
+---
+title: "DocumentDB .NET Core API 和 SDK | Microsoft Docs"
+description: "全面了解 .NET Core API 和 SDK，包括發行日期、停用日期及 DocumentDB .NET Core SDK 每個版本之間的變更。"
+services: documentdb
+documentationcenter: .net
+author: rnagpal
+manager: jhubbard
+editor: cgronlun
+ms.assetid: f899b314-26ac-4ddb-86b2-bfdf05c2abf2
+ms.service: documentdb
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 01/12/2017
+ms.author: rnagpal
+translationtype: Human Translation
+ms.sourcegitcommit: 855fd05d9addc2e57568067e4d434836ceeed570
+ms.openlocfilehash: 21a5f321bd1a3b45cd87c2c9274139c47562cee7
+
+
+---
+# <a name="documentdb-apis-and-sdks"></a>DocumentDB API 和 SDK
+> [!div class="op_single_selector"]
+> * [.NET](documentdb-sdk-dotnet.md)
+> * [.NET Core](documentdb-sdk-dotnet-core.md)
+> * [Node.js](documentdb-sdk-node.md)
+> * [Java](documentdb-sdk-java.md)
+> * [Python](documentdb-sdk-python.md)
+> * [REST](https://docs.microsoft.com/en-us/rest/api/documentdb/)
+> * [REST 資源提供者](https://docs.microsoft.com/rest/api/documentdbresourceprovider/)
+> * [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
+> 
+> 
+
+## <a name="documentdb-net-core-api-and-sdk"></a>DocumentDB .NET Core API 和 SDK
+<table>
+
+<tr><td>**SDK 下載**</td><td>[NuGet](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/)</td></tr>
+
+<tr><td>**API 文件**</td><td>[.NET API 參考文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)</td></tr>
+
+<tr><td>**範例**</td><td>[.NET 程式碼範例](documentdb-dotnet-samples.md)</td></tr>
+
+<tr><td>**開始使用**</td><td>[開始使用 DocumentDB .NET Core SDK](documentdb-dotnetcore-get-started.md)</td></tr>
+
+<tr><td>**Web 應用程式教學課程**</td><td>[使用 DocumentDB 開發 Web 應用程式](documentdb-dotnet-application.md)</td></tr>
+
+<tr><td>**目前支援的架構**</td><td>[.NET Standard 1.6](https://www.nuget.org/packages/NETStandard.Library)</td></tr>
+</table></br>
+
+## <a name="release-notes"></a>版本資訊
+
+DocumentDB .NET Core SDK 有與最新版 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 類似的功能。
+
+> [!NOTE] 
+> DocumentDB .NET Core SDK 與「通用 Windows 平台」(UWP) 應用程式尚未相容。 如需可支援 UWP 應用程式的 .NET Core SDK 預覽版本，請傳送電子郵件至 [askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
+
+### <a name="a-name100100httpswwwnugetorgpackagesmicrosoftazuredocumentdbcore100"></a><a name="1.0.0"/>[1.0.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/1.0.0)
+
+DocumentDB .NET Core SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，以在 Windows、Mac 和 Linux 上執行。 最新版 DocumentDB .NET Core SDK 與 [Xamarin](https://www.xamarin.com) 完全相容，可用來建置以 iOS、Android 及 Mono (Linux) 為目標的應用程式。  
+
+### <a name="a-name010-preview010-previewhttpswwwnugetorgpackagesmicrosoftazuredocumentdbcore010-preview"></a><a name="0.1.0-preview"/>[0.1.0-preview](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/0.1.0-preview)
+
+DocumentDB .NET Core Preview SDK 可讓您建置快速、跨平台的 [ASP.NET Core](https://www.asp.net/core) 和 [.NET Core](https://www.microsoft.com/net/core#windows) 應用程式，在 Windows、Mac 和 Linux 上執行。
+
+DocumentDB .NET Core Preview SDK 有與最新版本 [DocumentDB .NET SDK](documentdb-sdk-dotnet.md) 的功能類似的功能，並且支援下列項目︰
+* 所有[連接模式](documentdb-performance-tips.md#networking)︰閘道器模式、直接 TCP 和 Direct HTTPs。 
+* 所有[一致性層級](documentdb-consistency-levels.md)︰強式、工作階段、限定過期和最終。
+* [資料分割的集合](documentdb-partition-data.md)。 
+* [多重區域資料庫帳戶和異地複寫](documentdb-distribute-data-globally.md)。
+
+如果您有與此 SDK 相關的問題，請張貼至 [StackOverflow](http://stackoverflow.com/questions/tagged/azure-documentdb)，或是在 [Github 儲存機制](https://github.com/Azure/azure-documentdb-dotnet/issues)中提出問題。 
+
+## <a name="release--retirement-dates"></a>發行和停用日期
+
+| 版本 | 發行日期 | 停用日期 |
+| --- | --- | --- |
+| [1.0.0](#1.0.0) |2016 年 12 月 21 日 |--- |
+| [0.1.0-preview](#0.1.0-preview) |2016 年 11 月 15 日 |2016 年 12 月 31 日 |
+
+## <a name="see-also"></a>另請參閱
+若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。 
+
+
+
+
+<!--HONumber=Jan17_HO2-->
+
+

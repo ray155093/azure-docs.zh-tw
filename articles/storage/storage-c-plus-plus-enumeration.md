@@ -1,5 +1,5 @@
 ---
-title: "使用 Microsoft Azure Storage Client Library for C++ 列出 Azure 儲存體資源 |Microsoft Docs"
+title: "使用 Storage Client Library for C++ 列出 Azure 儲存體資源 | Microsoft Docs"
 description: "了解如何使用 Microsoft Azure Storage Client Library for C++ 中的列表 API 來列舉容器、Blob、佇列、資料表和實體。"
 documentationcenter: .net
 services: storage
@@ -12,15 +12,15 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/17/2016
+ms.date: 01/23/2017
 ms.author: dineshm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 085796493df86a2e86a88266d9b3aacf12cb6541
+ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
+ms.openlocfilehash: f14ed08473ba9c424acf39d3fe98d4a11adf9948
 
 
 ---
-# <a name="list-azure-storage-resources-in-c"></a>使用 C++ 列出 Azure 儲存體資源
+# <a name="list-azure-storage-resources-in-c"></a>以 C++ 列出 Azure 儲存體資源
 列表作業是許多使用 Azure 儲存體的開發案例的關鍵。 本文說明如何使用 Microsoft Azure Storage Client Library for C++ 中提供的列表 API，以最有效率的方式列舉 Azure 儲存體中的物件。
 
 > [!NOTE]
@@ -57,7 +57,7 @@ list_blob_item_segment list_blobs_segmented(const continuation_token& token) con
 如果您正在使用多個執行緒的應用程式或服務，建議您直接使用非同步 API，而不是建立執行緒來呼叫同步 API，這會大幅影響您的效能。
 
 ## <a name="segmented-listing"></a>分段列表
-雲端儲存體的級別需要分段列表。 例如，在 Azure blob 容器中可有超過 100 萬個 Blob，或在 Azure 資料表中可有超過 10 億個實體。 這些不是理論上的數字，而是實際的客戶使用量案例。
+雲端儲存體的級別需要分段列表。 例如，在 Azure blob 容器中可有超過&100; 萬個 Blob，或在 Azure 資料表中可有超過&10; 億個實體。 這些不是理論上的數字，而是實際的客戶使用量案例。
 
 因此，列出單一回應中的所有物件並不切實際。 反而，您可以使用分頁列出物件。 每個列表 API 都有 *分段* 多載。
 
@@ -206,6 +206,6 @@ for (auto it = container.list_blobs(); it != end_of_results; ++it)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

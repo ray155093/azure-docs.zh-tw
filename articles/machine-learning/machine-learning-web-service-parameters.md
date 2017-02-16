@@ -12,18 +12,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/12/2017
 ms.author: raymondl;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 07e124f41662759cc93efa2ee0c24f6a367573ac
+ms.sourcegitcommit: 045e3a6869880be6e7b2c5abf5f0869ed157600d
+ms.openlocfilehash: 38adf31dda1c36d0573142eacda6453ccd2b4f90
 
 
 ---
 # <a name="use-azure-machine-learning-web-service-parameters"></a>使用 Azure Machine Learning Web 服務參數
 藉由發行包含可設定參數模組的試驗，來建立 Azure Machine Learning Web 服務。 在某些情況下，您可能想要在執行 Web 服務時之際，變更模組的行為。 「Web 服務參數」可讓您執行這項工作。 
 
-常見的範例是設定[匯入資料][reader]模組，讓已發佈之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。 或者，設定[匯出資料][writer]模組，以便能夠指定不同的目的地。 部分其他範例包括變更[特徵雜湊][feature-hashing]模組的位元數，或變更[以篩選為基礎的功能選取][filter-based-feature-selection]模組的所需功能數。 
+常見的範例是設定[匯入資料][reader]模組，讓已發佈之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。 或者，設定[匯出資料][writer]模組，以便能夠指定不同的目的地。 部分其他範例包括變更[特徵雜湊][feature-hashing]模組的位元數，或變更[以篩選器為基礎的特徵選取][filter-based-feature-selection]模組的所需特徵數。 
 
 您可以設定 Web 服務參數，並使其與實驗中的一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。 然後 Web 服務的使用者就可以在呼叫 Web 服務時，提供這些參數的值。 
 
@@ -46,7 +46,7 @@ Web 服務的 API 文件會包含 Web 服務使用者在存取 Web 服務時，�
 ## <a name="example"></a>範例
 舉例來說，假設我們有一個[匯出資料][writer]模組實驗，該模組會傳送資訊給 Azure Blob 儲存體。 我們將會定義名為 Blob path 的 Web 服務參數，以在服務被存取時允許 Web 服務使用者將路徑變更至 Blob 儲存體。
 
-1. 在 Machine Learning Studio 中，按一下[匯出資料][writer]模組來選取它。 其屬性會顯示在試驗畫布右邊的 [屬性] 窗格中。
+1. 在 Machine Learning Studio 中，按一下 [[匯出資料][writer]] 模組來選取它。 其屬性會顯示在試驗畫布右邊的 [屬性] 窗格中。
 2. 指定儲存體類型：
    
    * 在 **[請指定資料目的地]**底下，選取 [Azure Blob 儲存體]。
@@ -67,7 +67,7 @@ Web 服務的 API 文件會包含 Web 服務使用者在存取 Web 服務時，�
 6. 按一下 **[執行]**。 
 7. 按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]] 可部署 Web 服務。
 
-Web 服務的使用者現在存取 Web 服務時，可以為[匯出資料][writer]模組指定新的目的地。
+Web 服務的使用者現在即可在存取 Web 服務時，為[匯出資料][writer]模組指定新的目的地。
 
 ## <a name="more-information"></a>詳細資訊
 如需更詳細的範例，請參閱 [Machine Learning Blog](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) 中的 [Web 服務參數](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx)項目。
@@ -88,6 +88,6 @@ Web 服務的使用者現在存取 Web 服務時，可以為[匯出資料][write
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

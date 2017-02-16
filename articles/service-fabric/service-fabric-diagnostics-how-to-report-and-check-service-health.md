@@ -15,20 +15,21 @@ ms.workload: NA
 ms.date: 01/04/2017
 ms.author: toddabel
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e3c63c8f92c860ed28bfc4dac395c1d5abf131ae
+ms.sourcegitcommit: bb93d4dac1853a317bbd6ac70946753f35be264e
+ms.openlocfilehash: bc1dd1d2c378e628094fe717d9c89298aca1f7b4
 
 
 ---
 # <a name="report-and-check-service-health"></a>回報和檢查服務健康情況
 當您的服務發生問題時，您回應並修正事件和中斷的能力，取決於您快速偵測問題的能力。 如果您從服務程式碼向 Azure Service Fabric 健全狀況管理員回報問題和失敗，您便可以使用 Service Fabric 提供的標準健全狀況監視工具來檢查健全狀況。
 
-有兩種方式可讓您回報服務的健全狀況：
+有三種方式可讓您回報服務的健全狀況：
 
 * 使用 [Partition](https://msdn.microsoft.com/library/system.fabric.istatefulservicepartition.aspx) 或 [CodePackageActivationContext](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.aspx) 物件。  
   您可以使用 `Partition` 和 `CodePackageActivationContext` 物件在屬於目前內容一部分的項目中回報健全狀況。 比方說，做為複本一部分執行的程式碼只能回報該複本、其所屬的分割區，以及其所屬應用程式的健全狀況。
 * 使用 `FabricClient`。   
   當叢集不是[安全的](service-fabric-cluster-security.md)或者服務是以系統管理員權限執行時，您才能使用 `FabricClient`，從服務程式碼回報健全狀況。 在大部分的真實案例中都不會發生此情況。 您可以使用 `FabricClient`，回報任何屬於叢集一部分之實體的健全狀況。 然而在理想的情況下，服務程式碼應該只會傳送與其本身健全狀況相關的報告。
+* 使用位於叢集、應用程式、已部署的應用程式、服務、服務封裝、資料分割、副本或節點層級的 REST API。 這可用來從容器內部回報健全狀況。
 
 這篇文章會引導您完成從服務程式碼回報健全狀況的範例。 此範例也示範如何使用 Service Fabric 提供的工具檢查健全狀態。 本文旨在快速介紹 Service Fabric 的健全狀況監視功能。 如需更詳細的資訊，您可以閱讀一系列有關健全狀況的深入文章，從本文結尾的連結開始。
 
@@ -49,7 +50,7 @@ ms.openlocfilehash: e3c63c8f92c860ed28bfc4dac395c1d5abf131ae
    
     ![建立與具狀態服務搭配使用的 Service Fabric 應用程式](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/create-stateful-service-application-dialog.png)
 3. 按 **F5** 以在偵錯模式中執行應用程式。 應用程式將會部署至本機叢集。
-4. 應用程式執行之後，在通知區域中的本機叢集管理員圖示上按一下滑鼠右鍵，然後從捷徑功能表選取 [管理本機叢集]  ，以開啟 [Service Fabric 總管。
+4. 應用程式執行之後，在通知區域中的本機叢集管理員圖示上按一下滑鼠右鍵，然後從捷徑功能表選取 管理本機叢集  ，以開啟 Service Fabric 總管。
    
     ![從通知區域開啟 Service Fabric 總管](./media/service-fabric-diagnostics-how-to-report-and-check-service-health/LaunchSFX.png)
 5. 應用程式健全狀況應該會如此圖所示。 此時，應用程式應該狀況良好而沒有任何錯誤。
@@ -106,8 +107,8 @@ Visual Studio 中的 Service Fabric 專案範本包含範例程式碼。 以下�
     if (!result.HasValue)
     {
        var replicaHealthReport = new StatefulServiceReplicaHealthReport(
-            this.ServiceInitializationParameters.PartitionId,
-            this.ServiceInitializationParameters.ReplicaId,
+            this.Context.PartitionId,
+            this.Context.ReplicaId,
             new HealthInformation("ServiceCode", "StateDictionary", HealthState.Error));
         fabricClient.HealthManager.ReportHealth(replicaHealthReport);
     }
@@ -147,11 +148,13 @@ activationContext.ReportApplicationHealth(healthInformation);
 ```
 
 ## <a name="next-steps"></a>後續步驟
-[深入了解 Service Fabric 健康情況](service-fabric-health-introduction.md)
+* [深入了解 Service Fabric 健康情況](service-fabric-health-introduction.md)
+* [回報服務健全狀況的 REST API](https://docs.microsoft.com/rest/api/servicefabric/report-the-health-of-a-service)
+* [回報應用程式健全狀況的 REST API](https://docs.microsoft.com/rest/api/servicefabric/report-the-health-of-an-application)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 03/31/2016
 ms.author: mattrow
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 45cfb660db9ea1d93d136d223d65602f3a373574
+ms.sourcegitcommit: c9730b553e59d12b8720bbf3a06cc956912e27de
+ms.openlocfilehash: c920a206d6f3288f6cba0d2658d556749fc4d574
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 45cfb660db9ea1d93d136d223d65602f3a373574
 當您在開發人員電腦上執行服務時，很方便就能使用 [Visual Studio 的偵錯工具](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)。 對於遠端叢集而言，建議一律從 [健康情況報表](service-fabric-view-entities-aggregated-health.md) 開始。 存取這些報表最簡單的方式，是透過 PowerShell 或 [SFX](service-fabric-visualizing-your-cluster.md)。 本文假設您要對遠端叢集執行偵錯，而且對於如何使用這些工具已有基本的認識。
 
 ## <a name="application-crash"></a>應用程式損毀
-「分割低於目標複本或執行個體數目」報告是指出您服務將要損毀的最佳指標。 若要找出您服務發生損毀的位置，需要進行深入一點的調查。 當大規模執行服務時，最好有一套詳實的追蹤資料。  我們建議您試著使用 [Azure 診斷](service-fabric-diagnostics-how-to-setup-wad.md)來收集這些追蹤，並使用 [Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等解決方案來檢視和搜尋追蹤。
+「分割低於目標複本或執行個體數目」報告是指出您服務將要損毀的最佳指標。 若要找出您服務發生損毀的位置，需要進行深入一點的調查。 當大規模執行服務時，最好有一套詳實的追蹤資料。  建議您嘗試使用 [Azure 診斷](service-fabric-diagnostics-how-to-setup-wad.md)來收集這些追蹤，並使用 [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) 之類的解決方案來檢視和搜尋追蹤。
 
 ![SFX 資料分割健康情況](./media/service-fabric-diagnostics-troubleshoot-common-scenarios/crashNewApp.png)
 
@@ -55,6 +55,6 @@ System.IO.FileNotFoundException
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

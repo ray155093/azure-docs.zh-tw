@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL 資料庫索引建議程式"
+title: "Azure SQL Database 的效能建議 |Microsoft Docs"
 description: "Azure SQL Database 建議程式會提供可改善現有 SQL Database 查詢效能的建議。"
 services: sql-database
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 09/30/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f7bffa4f13d7a4fa0ea3c120a826638ee5d6c65a
+ms.sourcegitcommit: 5df30f24a8e7370ac33c72641f05138776e24bb0
+ms.openlocfilehash: 55502f346eaf5ccf76d6f1c03487e95f0b93e3f5
 
 
 ---
@@ -79,6 +79,6 @@ Azure SQL Database 會學習和配合您的應用程式，並提供自訂的建�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 10/25/2016
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: eba5adfcbba4800632e197d3f25760a857137a88
+ms.sourcegitcommit: 7814e02df5c6aa0ea9c38e3a048dd52e39436c3c
+ms.openlocfilehash: 349a7d82a96868f65598597c1db192484da9b34d
 
 
 ---
-# <a name="what-is-microsoft-azure-diagnostics"></a>什麼是 Microsoft Azure 診斷？
+# <a name="what-is-azure-diagnostics"></a>什麼是 Azure 診斷
 Azure 診斷是 Azure 中可對部署的應用程式啟用診斷資料收集的功能。 您可以使用來自許多不同來源的診斷延伸模組。 目前支援的有 Azure 雲端服務 Web 和背景工作角色、執行 Microsoft Windows 的 Azure 虛擬機器，以及 Service Fabric。 其他 Azure 服務都有自己個別的診斷。
 
 ## <a name="data-you-can-collect"></a>您可以收集的資料
@@ -82,6 +82,6 @@ Azure 診斷擴充可以將這項資料傳送到 Azure 儲存體帳戶，或傳�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

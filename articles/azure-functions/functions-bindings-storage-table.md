@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
 translationtype: Human Translation
-ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
-ms.openlocfilehash: 768de7b221474f9143ba8e960581893229dca051
+ms.sourcegitcommit: 0d37eb09a6c8a0bb39a331e51a8993c114202b91
+ms.openlocfilehash: 88858cffa5ddc6ba83152d3430f5400a1c66a26a
 
 
 ---
@@ -47,7 +47,7 @@ Azure 儲存體資料表輸入繫結可讓您在您的函式中使用儲存資�
 {
     "name": "<Name of input parameter in function signature>",
     "type": "table",
-    "direction": "in"
+    "direction": "in",
     "tableName": "<Name of Storage table>",
     "partitionKey": "<PartitionKey of table entity to read - see below>",
     "rowKey": "<RowKey of table entity to read - see below>",
@@ -59,8 +59,8 @@ Azure 儲存體資料表輸入繫結可讓您在您的函式中使用儲存資�
 
 請注意： 
 
-* 一起使用 `partitionKey` 和 `rowKey` 來讀取單一實體。 這些屬性是選擇性的。
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定]()。 
+* 一起使用 `partitionKey` 和 `rowKey` 來讀取單一實體。 這些屬性是選擇性的。 
+* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 您也可以[手動進行此應用程式設定](functions-how-to-use-azure-function-app-settings.md#application-settings)。  
 
 <a name="inputusage"></a>
 
@@ -167,7 +167,7 @@ Azure 儲存體資料表輸出繫結可讓您在函式中將實體寫入儲存�
 {
     "name": "<Name of input parameter in function signature>",
     "type": "table",
-    "direction": "out"
+    "direction": "out",
     "tableName": "<Name of Storage table>",
     "partitionKey": "<PartitionKey of table entity to write - see below>",
     "rowKey": "<RowKey of table entity to write - see below>",
@@ -178,7 +178,7 @@ Azure 儲存體資料表輸出繫結可讓您在函式中將實體寫入儲存�
 請注意： 
 
 * 一起使用 `partitionKey` 和 `rowKey` 來寫入單一實體。 這些屬性是選擇性的。 在您的函式程式碼中建立實體物件時，您也可以指定 `PartitionKey` 和 `RowKey`。
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定]()。 
+* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 您也可以[手動進行此應用程式設定](functions-how-to-use-azure-function-app-settings.md#application-settings)。 
 
 <a name="outputusage"></a>
 
@@ -190,6 +190,7 @@ Azure 儲存體資料表輸出繫結可讓您在函式中將實體寫入儲存�
 * 實作 `ITableEntity` 的任何類型
 * `ICollector<T>` (可輸出多個實體。 請參閱[範例](#outcsharp)。)
 * `IAsyncCollector<T>` (`ICollector<T>` 的非同步版本)
+* `CloudTable` (使用「Azure 儲存體 SDK」。 請參閱[範例](#readmulti)。)
 
 <a name="outputsample"></a>
 
@@ -342,6 +343,6 @@ public class Person : TableEntity
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

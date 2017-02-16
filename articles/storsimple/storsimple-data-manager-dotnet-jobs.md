@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 11/22/2016
 ms.author: vidarmsft
 translationtype: Human Translation
-ms.sourcegitcommit: 9bfc1a281bb63a9fd7528106d7bdbc808371c5fb
-ms.openlocfilehash: 5791527b39a24643bcd6f7d0c0aa1dd169f2d1b7
+ms.sourcegitcommit: 37f795fe59496b0267120537115cf56d44cc5325
+ms.openlocfilehash: 60cde851a466a5b4b0752908f11272eedb246b0a
 
 ---
 
@@ -30,7 +30,7 @@ ms.openlocfilehash: 5791527b39a24643bcd6f7d0c0aa1dd169f2d1b7
 
 開始之前，請確定您有︰
 *   已安裝 Visual Studio 2012、2013 或 2015 的系統。
-*   也已安裝 [azure Powershell]。 [下載 Azure Powershell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/)。
+*   已安裝 Azure Powershell。 [下載 Azure Powershell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/)。
 *   用於初始化資料轉換作業的組態設定 (這裡包含取得這些設定的指示)。
 *   已在資源群組內的混合式資料資源中正確設定的作業定義。
 *   所有必要的 dll。 從 [GitHub 儲存機制](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls)下載這些 dll。
@@ -62,27 +62,27 @@ ms.openlocfilehash: 5791527b39a24643bcd6f7d0c0aa1dd169f2d1b7
     5. 選取 **C:\DataTransformation** 做為 [位置]。
     6. 按一下 [確定]  以建立專案。
 
-3.  現在，在您建立的專案中，將 [dlls](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) 資料夾中出現的所有 DLL 新增為 [參考]。 若要下載 dll 檔，請執行下列步驟︰
+4.  現在，在您建立的專案中，將 [dlls](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) 資料夾中出現的所有 DLL 新增為 [參考]。 若要下載 dll 檔，請執行下列步驟︰
 
     1. 在 Visual Studio 中，移至 [檢視] > [方案總管]。
     1. 按一下資料轉換應用程式專案左邊的箭號。 按一下 [參考]，然後按一下滑鼠右鍵以 [新增參考]。
     2. 瀏覽至套件資料夾的位置，選取所有 DLL，按一下 [新增]，然後按一下 [確定]。
 
-4. 將下列 **using** 陳述式加入專案的原始程式檔 (Program.cs) 中。
+5. 將下列 **using** 陳述式加入專案的原始程式檔 (Program.cs) 中。
 
-    ````
+    ```
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using Microsoft.Azure.Management.HybridData.Models;
     using Microsoft.Internal.Dms.DmsWebJob;
     using Microsoft.Internal.Dms.DmsWebJob.Contracts;
-    ````
+    ```
 
 
-5. 下列程式碼會初始化資料轉換作業執行個體。 請將這段程式碼新增至 **Main 方法** 中。 取代先前取得的設定參數值。 插入**資源群組名稱**和**混合式資料資源名稱**的值。 **資源群組名稱**裝載用於設定作業定義的混合式資料資源。
+6. 下列程式碼會初始化資料轉換作業執行個體。 請將這段程式碼新增至 **Main 方法** 中。 取代先前取得的設定參數值。 插入**資源群組名稱**和**混合式資料資源名稱**的值。 **資源群組名稱**裝載用於設定作業定義的混合式資料資源。
 
-    ````
+    ```
     // Setup the configuration parameters.
     var configParams = new ConfigurationParams
     {
@@ -97,24 +97,23 @@ ms.openlocfilehash: 5791527b39a24643bcd6f7d0c0aa1dd169f2d1b7
     // Initialize the Data Transformation Job instance.
     DataTransformationJob dataTransformationJob = new DataTransformationJob(configParams);
 
-    ````
+    ```
 
-6. 指定執行作業定義所需的參數
+7. 指定執行作業定義所需的參數
 
-    ````
+    ```
     string jobDefinitionName = "job-definition-name";
 
     DataTransformationInput dataTransformationInput = dataTransformationJob.GetJobDefinitionParameters(jobDefinitionName);
 
-    ````
+    ```
 
     (或)
 
     如果您想要在執行階段變更作業定義參數，請新增下列程式碼︰
 
+    ```
     string jobDefinitionName = "job-definition-name";
-
-    ````
     // Must start with a '\'
     var rootDirectories = new List<string> {@"\root"};
 
@@ -136,23 +135,24 @@ ms.openlocfilehash: 5791527b39a24643bcd6f7d0c0aa1dd169f2d1b7
         // Name of the volume on StorSimple device on which the relevant data is present. 
         VolumeNames = volumeNames
     };
-    ````
+    
+    ```
 
-7. 初始化之後，在作業定義上新增下列程式碼來觸發資料轉換作業。 插入適當的**作業定義名稱**。
+8. 初始化之後，在作業定義上新增下列程式碼來觸發資料轉換作業。 插入適當的**作業定義名稱**。
 
-    ````
+    ```
     // Trigger a job, retrieve the jobId and the retry interval for polling.
     int retryAfter;
     string jobId = dataTransformationJob.RunJobAsync(jobDefinitionName, 
     dataTransformationInput, out retryAfter);
 
-    ````
+    ```
 
-8. 這項作業會將 StorSimple 磁碟區的根目錄底下相符的檔案上傳至指定的容器。 上傳檔案時，佇列 (位於與容器相同的儲存體帳戶) 中會放入一則與作業定義同名的訊息。 此訊息可做為觸發程序，以起始檔案的任何進一步處理。
+9. 這項作業會將 StorSimple 磁碟區的根目錄底下相符的檔案上傳至指定的容器。 上傳檔案時，佇列 (位於與容器相同的儲存體帳戶) 中會放入一則與作業定義同名的訊息。 此訊息可做為觸發程序，以起始檔案的任何進一步處理。
 
-9. 觸發作業後，請新增下列程式碼來追蹤作業是否完成。
+10. 觸發作業後，請新增下列程式碼來追蹤作業是否完成。
 
-    ````
+    ```
     Job jobDetails = null;
 
     // Poll the job.
@@ -171,7 +171,7 @@ ms.openlocfilehash: 5791527b39a24643bcd6f7d0c0aa1dd169f2d1b7
     // To hold the console before exiting.
     Console.Read();
 
-    ````
+    ```
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -179,6 +179,7 @@ ms.openlocfilehash: 5791527b39a24643bcd6f7d0c0aa1dd169f2d1b7
 [使用 StorSimple Data Manager UI 來轉換資料](storsimple-data-manager-ui.md)。
 
 
-<!--HONumber=Nov16_HO4-->
+
+<!--HONumber=Dec16_HO4-->
 
 

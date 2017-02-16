@@ -1,6 +1,6 @@
 ---
 title: "在 Azure VM 中建立 HPC Pack 前端節點 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站和資源管理員部署模型，在 Azure VM 中建立 Microsoft HPC Pack 前端節點。"
+description: "了解如何使用 Azure 入口網站和 Resource Manager 部署模型，在 Azure VM 中建立 Microsoft HPC Pack 2012 R2 前端節點。"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 08/17/2016
+ms.date: 12/29/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: c07837fb7eb050f57a73d5bd217bd0dc73bac5f1
+ms.sourcegitcommit: 3d8300bbb54bd88e6ff3844208ec5d5fa25c5e8d
+ms.openlocfilehash: d935f45f87558dd7f9838ad3b370de0d9a7870a1
 
 
 ---
 # <a name="create-the-head-node-of-an-hpc-pack-cluster-in-an-azure-vm-with-a-marketplace-image"></a>使用 Marketplace 映像在 Azure VM 中建立 HPC Pack 叢集的前端節點
-您可以使用來自 Azure Marketplace 的 [Microsoft HPC Pack 虛擬機器映像](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) 和 Azure 入口網站，來建立 HPC 叢集的前端節點。 此 HPC Pack VM 映像是基於已預先安裝 HPC Pack 2012 R2 Update 3 的 Windows Server 2012 R2 Datacenter。 使用此前端節點當作 Azure 中 HPC Pack 的概念證明部署。 然後您可以將計算節點加入叢集以執行 HPC 工作負載。
+您可以使用來自 Azure Marketplace 的 [Microsoft HPC Pack 2012 R2 虛擬機器映像](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) 和 Azure 入口網站，來建立 HPC 叢集的前端節點。 此 HPC Pack VM 映像是基於已預先安裝 HPC Pack 2012 R2 Update 3 的 Windows Server 2012 R2 Datacenter。 使用此前端節點當作 Azure 中 HPC Pack 的概念證明部署。 然後您可以將計算節點加入叢集以執行 HPC 工作負載。
 
 > [!TIP]
-> 若要在 Azure 中部署包含前端節點和計算節點的完整 HPC Pack 叢集，建議您使用自動化的方法。 選項包括 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)和 [HPC Pack cluster for Windows workloads](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterwindowscn/) (適用於 Windows 工作負載的 HPC Pack 叢集) Resource Manager 範本。 如需其他範本，請參閱 [Azure 中的 HPC Pack 叢集選項](virtual-machines-windows-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。 
+> 若要在 Azure 中部署包含前端節點和計算節點的完整 HPC Pack 2012 R2 叢集，建議您使用自動化方法。 選項包括 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)和 Resource Manager 範本，例如[適用於 Windows 工作負載的 HPC Pack 叢集](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterwindowscn/)。 此外，也有 [Microsoft HPC Pack 2016 叢集](https://github.com/MsHpcPack/HPCPack2016/tree/master/newcluster-templates)的 Resource Manager 範本可供使用。 
 > 
 > 
 
@@ -34,13 +34,16 @@ ms.openlocfilehash: c07837fb7eb050f57a73d5bd217bd0dc73bac5f1
 
 ![HPC Pack 前端節點][headnode]
 
-* **Active Directory 網域** - 在您啟動 VM 上的 HPC 服務之前，HPC Pack 前端節點必須先加入 Azure 中的 Active Directory 網域。 如本文中所示，針對概念證明部署，您可以在啟動 HPC 服務之前，將您為前端節點建立的 VM 升級為網域控制站。 另一個選項則是在 Azure 中部署您要將前端節點 VM 加入其中的個別網域控制站和樹系。
-* **Azure 虛擬網路** - 當您使用 Resource Manager 部署模型來部署前端節點時，您會指定或建立 Azure 虛擬網路。 如果您需要將前端節點加入現有的 Active Directory 網域中，您就會用到虛擬網路。 您稍後也需要使用它來將計算節點 VM 新增到叢集中。
+* **Active Directory 網域**：在您啟動 VM 上的 HPC 服務之前，HPC Pack 2012 R2 前端節點必須先加入 Azure 中的 Active Directory 網域。 如本文中所示，針對概念證明部署，您可以在啟動 HPC 服務之前，將您為前端節點建立的 VM 升級為網域控制站。 另一個選項則是在 Azure 中部署您要將前端節點 VM 加入其中的個別網域控制站和樹系。
+
+* **部署模型**：針對大多數新的部署，Microsoft 建議您使用 Resource Manager 部署模型。 本文假設您使用此部署模型。
+
+* **Azure 虛擬網路**：當您使用 Resource Manager 部署模型來部署前端節點時，您需指定或建立 Azure 虛擬網路。 如果您需要將前端節點加入現有的 Active Directory 網域中，您就會用到虛擬網路。 您稍後也需要使用它來將計算節點 VM 新增到叢集中。
 
 ## <a name="steps-to-create-the-head-node"></a>建立前端節點的步驟
 以下是使用 Azure 入口網站，利用 Resource Manager 部署模型為 HPC Pack 前端節點建立 Azure VM 的概略步驟。 
 
-1. 如果您想要以個別的網域控制站 VM 在 Azure 中建立新的 Active Directory 樹系，其中一個選項是使用 [Resource Manager 範本](https://azure.microsoft.com/documentation/templates/active-directory-new-domain-ha-2-dc/)。 若要進行簡單的概念驗證部署，則可以略過此步驟，而將前端節點 VM 本身設定為網域控制站。 本文稍後將說明此選項。
+1. 如果您想要以個別的網域控制站 VM 在 Azure 中建立新的 Active Directory 樹系，其中一個選項是使用 [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc)。 若要進行簡單的概念驗證部署，則可以略過此步驟，而將前端節點 VM 本身設定為網域控制站。 本文稍後將說明此選項。
 2. 在 Azure Marketplace 的 [HPC Pack 2012 R2 on Windows Server 2012 R2 (Windows Server 2012 R2 上的 HPC Pack 2012 R2) 頁面](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/)上，按一下 [建立虛擬機器]。 
 3. 在入口網站中，於 **HPC Pack 2012 R2 on Windows Server 2012 R2 (Windows Server 2012 R2 上的 HPC Pack 2012 R2)** 頁面上，選取 [Resource Manager] 部署模型，然後按一下 [建立]。
    
@@ -52,7 +55,7 @@ ms.openlocfilehash: c07837fb7eb050f57a73d5bd217bd0dc73bac5f1
    > 
    > 
 5. 建立 VM 且 VM 開始執行之後，請透過「遠端桌面」 [連接到 VM](virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
-6. 將 VM 加入現有的網域樹系，或是在 VM 本身建立網域樹系。
+6. 選擇下列其中一個選項以將 VM 加入 Active Directory 網域樹系：
    
    * 如果您是在具有現有網域樹系的 Azure 虛擬網路中建立了 VM，請使用標準的「伺服器管理員」或 Windows PowerShell 工具將該 VM 加入網域樹系中。 然後重新啟動。
    * 如果您是在無現有網域樹系的新虛擬網路中建立了 VM，則請將該 VM 升級為網域控制站。 請使用標準步驟在前端節點上安裝並設定「Active Directory 網域服務」角色。 如需詳細步驟，請參閱 [安裝新的 Windows Server 2012 Active Directory 樹系](https://technet.microsoft.com/library/jj574166.aspx)。
@@ -62,7 +65,7 @@ ms.openlocfilehash: c07837fb7eb050f57a73d5bd217bd0dc73bac5f1
    
     b. 針對預設前端節點組態，請以系統管理員身分啟動 Windows PowerShell，並輸入下列命令：
    
-    ```
+    ```PowerShell
     & $env:CCP_HOME\bin\HPCHNPrepare.ps1 –DBServerInstance ".\ComputeCluster"
     ```
    
@@ -81,6 +84,6 @@ ms.openlocfilehash: c07837fb7eb050f57a73d5bd217bd0dc73bac5f1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/08/2016
+ms.date: 11/28/2016
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4ff5fb57cba6dea1bee9d2e2d25f6fcf8354ce79
+ms.sourcegitcommit: 65f89e775b61ff1ac1c859262634812641efb84d
+ms.openlocfilehash: 434e34dbd045391fc771cff013dada612156cf80
 
 
 ---
@@ -77,7 +77,7 @@ azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serv
 
 ![在入口網站中匯出至事件中樞](./media/monitoring-stream-diagnostic-logs-to-event-hubs/portal-export.png)
 
-若要進行設定，請選取現有的服務匯流排命名空間。 選取的命名空間將會是事件中樞的建立所在 (如果這是您第一次的串流診斷記錄) 或串流處理的目的地 (如果已存在將該記錄檔分類串流至此命名空間的資源)，而原則會定義串流機制擁有的權限。 目前，串流到事件中樞需要 管理、閱讀和傳送權限。 您可以在傳統入口網站 [設定] 索引標籤下，為您的服務匯流排命名空間建立或修改服務匯流排命名空間共用存取原則。 若要更新其中一個診斷設定，用戶端必須擁有服務匯流排授權規則的 ListKey 權限。
+若要進行設定，請選取現有的服務匯流排命名空間。 選取的命名空間將會是事件中樞的建立所在 (如果這是您第一次的串流診斷記錄) 或串流處理的目的地 (如果已存在將該記錄檔分類串流至此命名空間的資源)，而原則會定義串流機制擁有的權限。 目前，將事件串流到中樞需要管理、傳送和接聽的權限。 您可以在傳統入口網站 [設定] 索引標籤下，為您的服務匯流排命名空間建立或修改服務匯流排命名空間共用存取原則。 若要更新其中一個診斷設定，用戶端必須擁有服務匯流排授權規則的 ListKey 權限。
 
 ## <a name="how-do-i-consume-the-log-data-from-event-hubs"></a>我要如何透過事件中樞取用記錄檔資料？
 此處是來自事件中樞的範例輸出資料：
@@ -162,6 +162,6 @@ azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serv
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO5-->
 
 

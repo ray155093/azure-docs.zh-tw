@@ -19,7 +19,7 @@
 ## <a name="ways-to-contribute"></a>參與方法
 您可以將更新提交到 [Azure 文件](http://docs.microsoft.com/azure)，如下所示︰
 
-* 您可以在 GitHub 使用者介面輕鬆地參與技術文件。 在此儲存機制中尋找文章，或造訪 [http://docs.microsoft.com/azur](http://docs.microsoft.com/azur) 瀏覽此文章，然後按一下文章中的連結以前往文章的 GitHub 來源。
+* 您可以在 GitHub 使用者介面輕鬆地參與技術文件。 在此存放庫中尋找文章，或瀏覽 [http://docs.microsoft.com/azure](http://docs.microsoft.com/azure) 上的文章，然後按一下文章中的連結以前往文章的 GitHub 來源。
 * 如果要大幅變更現有文章、新增或變更圖片或是參與編輯新文章，您還需要先取用其儲存機制、安裝 Git Bash 和 MarkdownPad，並學習一些 Git 命令才行。
 
 ## <a name="code-of-conduct"></a>管理辦法
@@ -87,6 +87,6 @@ azure-docs 儲存機制中的內容會遵循 http://docs.microsoft.com/azure 上
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO5-->
 
 

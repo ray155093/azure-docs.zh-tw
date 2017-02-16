@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions 觸發程序和繫結 | Microsoft Docs"
-description: "瞭解如何在 Azure Functions 中使用觸發程序和繫結。"
+title: "在 Azure Functions 中使用觸發程序和繫結 | Microsoft Docs"
+description: "了解如何在 Azure Functions 中使用觸發程序和繫結，將您的程式碼執行連接到線上事件和雲端服務。"
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -14,17 +14,17 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/30/2016
+ms.date: 01/23/2017
 ms.author: chrande
 translationtype: Human Translation
-ms.sourcegitcommit: ee24bcff625c5ea28dbf3cbc5332078721544ddc
-ms.openlocfilehash: ef6f3de0da6e051826bcb9bf4a6ebaa78fbaac7c
+ms.sourcegitcommit: b7ea1e3a72a9dc6f4f9ca9d2d9d6f8c9b1564972
+ms.openlocfilehash: 947f1f5e6d9bebe6708e6d29d3b71efc09573537
 
 
 ---
 
-# <a name="azure-functions-triggers-and-bindings-developer-reference"></a>Azure Functions 觸發程序和繫結開發人員參考
-本主題提供觸發程序和繫結的一般參考。 它包含一些進階繫結功能及所有繫結類型都支援的語法。  
+# <a name="learn-how-to-work-with-triggers-and-bindings-in-azure-functions"></a>了解如何在 Azure Functions 中使用觸發程序和繫結 
+本主題說明如何在 Azure Functions 中使用觸發程序和繫結，將您的程式碼連接到各種不同的觸發程序和 Azure 服務，以及其他雲端服務。 它具備一些進階繫結功能及所有繫結類型都支援的語法。  
 
 如需有關使用特定類型的觸發程序或繫結的詳細資訊，請參閱下列其中一個參考主題︰
 
@@ -389,6 +389,6 @@ public static async Task Run(string input, Binder binder)
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO5-->
 
 

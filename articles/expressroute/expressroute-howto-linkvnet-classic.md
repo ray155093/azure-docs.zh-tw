@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: 99d5facce236b82ea84c708edf5e934a0d69919c
-ms.openlocfilehash: 1c0891c79081f068fd6e4a60a05a6b58ebdc9598
+ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
+ms.openlocfilehash: 7b0eef9e6ec4bc8da9e68eabbc515f78001bc9d6
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: 1c0891c79081f068fd6e4a60a05a6b58ebdc9598
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-prerequisites"></a>組態必要條件
-1. 您需要最新版的 Azure PowerShell 模組。 您可以從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)的 PowerShell 區段下載最新的 PowerShell 模組。 請遵循 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
+1. 您需要最新版的 Azure PowerShell 模組。 您可以從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)的 PowerShell 區段下載最新的 PowerShell 模組。 請遵循 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
 2. 開始設定之前，請務必檢閱[必要條件](expressroute-prerequisites.md)、[路由需求](expressroute-routing.md)和[工作流程](expressroute-workflows.md)。
 3. 您必須擁有作用中的 ExpressRoute 線路。
    * 遵循指示來 [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md) ，並由您的連線提供者來啟用該線路。
@@ -162,6 +162,6 @@ ms.openlocfilehash: 1c0891c79081f068fd6e4a60a05a6b58ebdc9598
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

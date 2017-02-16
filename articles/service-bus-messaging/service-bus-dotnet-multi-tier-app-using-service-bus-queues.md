@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 01/10/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: cab2edc0d065dc8d5ac20ed41ccd0eed7a664895
-ms.openlocfilehash: 8d0730d50330b9093734adb1c503dd975606b7c3
+ms.sourcegitcommit: 9849b15115de5b17a50e0f46781c8aa16a53d297
+ms.openlocfilehash: c68125afe8979c595ae0f6e78fa90f6a365c435f
 
 
 ---
@@ -57,6 +57,15 @@ ms.openlocfilehash: 8d0730d50330b9093734adb1c503dd975606b7c3
   ![][2]
 
 下列幾節討論實作此架構的程式碼。
+
+## <a name="set-up-the-development-environment"></a>設定開發環境
+在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
+
+1. 安裝位於[取得工具和 SDK](https://azure.microsoft.com/downloads/) 的 Azure SDK for .NET。
+2. 在 **.NET** 資料行中，按一下您所使用的 Visual Studio 版本。 本教學課程中的步驟使用 Visual Studio 2015。
+3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
+4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
+5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。 如果您未安裝 Visual Studio，則 SDK 也會安裝免費的 Visual Studio Express。
 
 ## <a name="create-a-namespace"></a>建立命名空間
 下一步是建立服務命名空間，並取得共用存取簽章 (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立命名空間時，系統會產生 SAS 金鑰。 命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。

@@ -1,0 +1,139 @@
+---
+title: "Azure 隨選媒體編碼器的比較 | Microsoft Docs"
+description: "本主題比較**媒體編碼器標準**和**媒體編碼器高階工作流程**的編碼功能。"
+services: media-services
+documentationcenter: 
+author: juliako
+manager: erikre
+editor: 
+ms.assetid: a79437c0-4832-423a-bca8-82632b2c47cc
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/05/2017
+ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: dca8087230b261f14e876e49b9b0fb12579b96d0
+
+
+---
+
+# <a name="comparison-of-azure-on-demand-media-encoders"></a>Azure 隨選媒體編碼器的比較
+
+本主題比較**媒體編碼器標準**和**媒體編碼器高階工作流程**的編碼功能。
+
+### <a name="a-idbillingabilling-meter-used-by-each-encoder"></a><a id="billing"></a>每個編碼器所使用的計費計量表
+| 媒體處理器名稱 | 適用的價格 | 注意事項 |
+| --- | --- | --- |
+| **Media Encoder Standard** |ENCODER |在 ENCODER 資料行底下，「編碼工作」會以[這裡][1]指定的費率，根據所有產生來輸出之媒體檔案的總持續時間 (以分鐘為單位) 計費。 |
+| **媒體編碼器高階工作流程** |PREMIUM ENCODER |在 PREMIUM ENCODER 資料行底下，「編碼工作」會以[這裡][1]指定的費率，根據所有產生來輸出之媒體檔案的總持續時間 (以分鐘為單位) 計費。 |
+
+### <a name="input-containerfile-formats"></a>輸入容器/檔案格式
+| 輸入容器/檔案格式 | Media Encoder Standard | Media Encoder Premium Workflow |
+| --- | --- | --- |
+| Adobe® Flash® F4V |是 |是 |
+| MXF/SMPTE 377M |是 |是 |
+| GXF |是 |是 |
+| MPEG-2 傳輸資料流 |是 |是 |
+| MPEG-2 程式資料流 |是 |是 |
+| MPEG-4/MP4 |是 |是 |
+| Windows Media/ASF |是 |是 |
+| AVI (未壓縮 8 位元/10 位元) |是 |是 |
+| 3GPP/3GPP2 |是 |否 |
+| Smooth Streaming 檔案格式 (PIFF 1.3) |是 |否 |
+| [Microsoft Digital Video Recording(DVR-MS)](https://msdn.microsoft.com/library/windows/desktop/dd692984) |是 |否 |
+| Matroska/WebM |是 |否 |
+| QuickTime (.mov) |是 |否 |
+
+### <a name="input-video-codecs"></a>輸入視訊轉碼器
+| 輸入視訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
+| --- | --- | --- |
+| AVC 8 位元/10 位元，高達 4:2:2，包括 AVCIntra |8 位元 4:2:0 和 4:2:2 |是 |
+| Avid DNxHD (使用 MXF) |是 |是 |
+| DVCPro/DVCProHD (使用 MXF) |是 |是 |
+| JPEG2000 |是 |是 |
+| MPEG-2 (高達 422 Profile 和 High Level，包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs ® 和 D10 等變種) |最高 422 設定檔 |是 |
+| MPEG-1 |是 |是 |
+| Windows Media 視訊/VC-1 |是 |是 |
+| Canopus HQ/HQX |否 |否 |
+| Mpeg-4 第 2 部分 |是 |否 |
+| [Theora](https://en.wikipedia.org/wiki/Theora) |是 |否 |
+| Apple ProRes 422 |是 |否 |
+| Apple ProRes 422 LT |是 |否 |
+| Apple ProRes 422 HQ |是 |否 |
+| Apple ProRes Proxy |是 |否 |
+| Apple ProRes 4444 |是 |否 |
+| Apple ProRes 4444 XQ |是 |否 |
+
+### <a name="input-audio-codecs"></a>輸入音訊轉碼器
+| 輸入音訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
+| --- | --- | --- |
+| AES (SMPTE 331M 和 302M，AES3-2003) |否 |是 |
+| Dolby® E |否 |是 |
+| Dolby® Digital (AC3) |否 |是 |
+| Dolby® Digital Plus (E-AC3) |否 |是 |
+| AAC (AAC-LC、AAC-HE 和 AAC-HEv2；高達 5.1) |是 |是 |
+| MPEG Layer 2 |是 |是 |
+| MP3 (MPEG-1 音訊層 3) |是 |是 |
+| Windows Media 音訊 |是 |是 |
+| WAV/PCM |是 |是 |
+| [FLAC](https://en.wikipedia.org/wiki/FLAC)</a> |是 |否 |
+| [Opus](https://en.wikipedia.org/wiki/Opus_\(audio_format\)) |是 |否 |
+| [Vorbis](https://en.wikipedia.org/wiki/Vorbis)</a> |是 |否 |
+
+### <a name="output-containerfile-formats"></a>輸出容器/檔案格式
+| 輸出容器/檔案格式 | Media Encoder Standard | Media Encoder Premium Workflow |
+| --- | --- | --- |
+| Adobe® Flash® F4V |否 |是 |
+| MXF (OP1a、XDCAM 和 AS02) |否 |是 |
+| DPP (包括 AS11) |否 |是 |
+| GXF |否 |是 |
+| MPEG-4/MP4 |是 |是 |
+| MPEG-TS |是 |是 |
+| Windows Media/ASF |否 |是 |
+| AVI (未壓縮 8 位元/10 位元) |否 |是 |
+| Smooth Streaming 檔案格式 (PIFF 1.3) |否 |是 |
+
+### <a name="output-video-codecs"></a>輸出視訊轉碼器
+| 輸出視訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
+| --- | --- | --- |
+| AVC (H.264；8 位元；高達 High Profile、Level 5.2；4K Ultra HD；AVC Intra) |僅限 8 位元 4:2:0 |是 |
+| Avid DNxHD (使用 MXF) |否 |是 |
+| MPEG-2 (高達 422 Profile 和 High Level，包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs ® 和 D10 等變種) |否 |是 |
+| MPEG-1 |否 |是 |
+| Windows Media 視訊/VC-1 |否 |是 |
+| JPEG 縮圖建立 |否 |是 |
+
+### <a name="output-audio-codecs"></a>輸出音訊轉碼器
+| 輸出音訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
+| --- | --- | --- |
+| AES (SMPTE 331M 和 302M，AES3-2003) |否 |是 |
+| Dolby® Digital (AC3) |否 |是 |
+| Dolby® Digital Plus (E-AC3) 高達 7.1 |否 |是 |
+| AAC (AAC-LC、AAC-HE 和 AAC-HEv2；高達 5.1) |是 |是 |
+| MPEG Layer 2 |否 |是 |
+| MP3 (MPEG-1 音訊層 3) |否 |是 |
+| Windows Media 音訊 |否 |是 |
+
+
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
+
+## <a name="provide-feedback"></a>提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+
+## <a name="related-articles"></a>相關文章
+* [透過自訂 Media Encoder Standard 預設值來執行進階編碼工作](media-services-custom-mes-presets-with-dotnet.md)
+* [配額和限制](media-services-quotas-and-limitations.md)
+
+<!--Reference links in article-->
+[1]: http://azure.microsoft.com/pricing/details/media-services/
+
+
+
+<!--HONumber=Jan17_HO2-->
+
+

@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/29/2016
+ms.date: 1/05/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 4917f58f9e179b6adca0886e7d278055e5c3d281
-ms.openlocfilehash: 4218b8e066d8323444695aca3c970f4f21fadea4
+ms.sourcegitcommit: 62374d57829067b27bb5876e6bbd9f869cff9187
+ms.openlocfilehash: 4991992f15b941ab9250705e20ff5f37defc30d0
 
 
 ---
@@ -52,7 +52,7 @@ ms.openlocfilehash: 4218b8e066d8323444695aca3c970f4f21fadea4
 ## <a name="describe-a-service"></a>描述服務
 服務資訊清單以宣告方式定義服務類型和版本。 它會指定如服務類型的服務中繼資料、健康狀態屬性、負載平衡度量、服務二進位檔和組態檔。  換句話說，它會描述組成服務封裝的程式碼、組態和資料封裝，以支援一或多個服務類型。 以下是簡單的範例服務資訊清單：
 
-~~~
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <ServiceManifest Name="MyServiceManifest" Version="SvcManifestVersion1" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Description>An example service manifest</Description>
@@ -70,11 +70,15 @@ ms.openlocfilehash: 4218b8e066d8323444695aca3c970f4f21fadea4
         <Program>MyServiceHost.exe</Program>
       </ExeHost>
     </EntryPoint>
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="MyEnvVariable" Value=""/>
+      <EnvironmentVariable Name="HttpGatewayPort" Value="19080"/>
+    </EnvironmentVariables>
   </CodePackage>
   <ConfigPackage Name="MyConfig" Version="ConfigVersion1" />
   <DataPackage Name="MyData" Version="DataVersion1" />
 </ServiceManifest>
-~~~
+```
 
 **版本** 屬性為非結構化字串，不是由系統剖析。 這些是用於每個元件的版本以進行升級。
 
@@ -82,18 +86,20 @@ ms.openlocfilehash: 4218b8e066d8323444695aca3c970f4f21fadea4
 
 **SetupEntryPoint** 是以與 Service Fabric 相同的認證執行的特殊權限進入點 (通常 *LocalSystem* 帳戶)，優先於任何其他進入點。 **EntryPoint** 指定的可執行檔通常是長時間執行的服務主機。 有個別設定的進入點，就不需要使用較高權限來長時間執行服務主機。 **EntryPoint** 指定的可執行檔是在 **SetupEntryPoint** 成功結束之後執行。 如果曾經終止或當機，產生的程序會監視並重新啟動 (以 **SetupEntryPoint**再次開始)。
 
+**EnvironmentVariables** 提供針對此程式碼封裝設定的環境變數清單。 您可以在 `ApplicationManifest.xml` 中覆寫這些環境變數，以針對不同的服務執行個體提供不同的值。 
+
 **DataPackage** 宣告 **Name** 屬性所命名的資料夾，包含由程序在執行階段使用的任意靜態資料。
 
 **ConfigPackage** 宣告 **Name** 屬性所命名的資料夾，其中包含 *Settings.xml* 檔案。 此檔案包含程序可以在執行階段讀回的使用者定義、成對的索引鍵/值設定等區段。 在升級期間，如果只有 **ConfigPackage** **版本**已變更，則不會重新啟動執行中程序。 相反地，回呼會通知程序組態設定已變更，因此它們可以動態方式重新載入。 以下是 Settings.xml 檔案的範例：
 
-~~~
+```xml
 <Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Section Name="MyConfigurationSecion">
     <Parameter Name="MySettingA" Value="Example1" />
     <Parameter Name="MySettingB" Value="Example2" />
   </Section>
 </Settings>
-~~~
+```
 
 > [!NOTE]
 > 服務資訊清單可以包含多個程式碼、組態和資料封裝。 每個皆可獨立建立版本。
@@ -115,7 +121,7 @@ For more information about other features supported by service manifests, refer 
 
 因此，應用程式資訊清單描述應用程式層級的元素，並參考用來組成應用程式類型的一個或多個服務資訊清單。 以下是簡單的範例應用程式資訊清單：
 
-~~~
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <ApplicationManifest
       ApplicationTypeName="MyApplicationType"
@@ -125,6 +131,8 @@ For more information about other features supported by service manifests, refer 
   <Description>An example application manifest</Description>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="MyServiceManifest" ServiceManifestVersion="SvcManifestVersion1"/>
+    <ConfigOverrides/>
+    <EnvironmentOverrides CodePackageRef="MyCode"/>
   </ServiceManifestImport>
   <DefaultServices>
      <Service Name="MyService">
@@ -134,11 +142,12 @@ For more information about other features supported by service manifests, refer 
      </Service>
   </DefaultServices>
 </ApplicationManifest>
-~~~
+```
 
 如同服務資訊清單， **版本** 屬性為非結構化字串，不是由系統剖析。 這些也用於每個元件的版本以進行升級。
 
-**ServiceManifestImport** 包含組成此應用程式類型之服務資訊清單的參考。 匯入的服務資訊清單會決定此應用程式類型中哪些服務類型有效。
+**ServiceManifestImport** 包含組成此應用程式類型之服務資訊清單的參考。 匯入的服務資訊清單會決定此應用程式類型中哪些服務類型有效。 在 ServiceManifestImport 內，您可以覆寫 Settings.xml 中的組態值和 ServiceManifest.xml 檔案中的環境變數。 
+
 
 **DefaultServices** 宣告服務執行個體，該執行個體會在每次應用程式針對此應用程式類型具現化時建立。 預設服務只是為了方便起見，在建立之後，其行為在每個方面就像正常的服務。 它們會與應用程式執行個體中的其他任何服務一起升級，也可以一起移除。
 
@@ -161,7 +170,7 @@ For more information about other features supported by application manifests, re
 ### <a name="package-layout"></a>封裝版面配置
 應用程式資訊清單、服務資訊清單和其他必要封裝檔案必須以特定版面配置組織，才能部署至 Service Fabric 叢集。 在本文中的範例資訊清單必須組織成下列目錄結構：
 
-~~~
+```
 PS D:\temp> tree /f .\MyApplicationType
 
 D:\TEMP\MYAPPLICATIONTYPE
@@ -178,7 +187,7 @@ D:\TEMP\MYAPPLICATIONTYPE
     │
     └───MyData
             init.dat
-~~~
+```
 
 命名資料夾以符合每個對應元素的 **名稱** 屬性。 例如，如果服務資訊清單包含名稱為 **MyCodeA** 和 **MyCodeB** 的兩個程式碼封裝，則同名的兩個資料夾會包含每個程式碼封裝所需的二進位檔。
 
@@ -188,6 +197,9 @@ D:\TEMP\MYAPPLICATIONTYPE
 * 設定及初始化服務可執行檔需要的環境變數。 這不限於透過 Service Fabric 程式設計模型撰寫的執行檔。 例如，npm.exe 部署 node.js 應用程式，需要設定某些環境變數。
 * 透過安裝安全性憑證設定存取控制。
 
+如需有關如何設定 **SetupEntryPoint** 的更多詳細資料，請參閱[設定服務安裝程式進入點的原則](service-fabric-application-runas-security.md)  
+
+### <a name="configure"></a>設定 
 ### <a name="build-a-package-by-using-visual-studio"></a>使用 Visual Studio 建置封裝
 如果您使用 Visual Studio 2015 來建立您的應用程式，您可以使用 [封裝] 命令來自動建立符合上述版面配置的封裝。
 
@@ -197,19 +209,26 @@ D:\TEMP\MYAPPLICATIONTYPE
 
 封裝完成時，您會在 [輸出]  視窗中發現封裝的位置。 請注意，當您在 Visual Studio 中部署或偵錯應用程式時，封裝步驟會自動進行。
 
+### <a name="build-a-package-by-command-line"></a>透過命令列建置封裝
+使用 `msbuild.exe` 以程式設計方式封裝您的應用程式也是可行的。 深入探究，這就是 Visual Studio 的實際執行內容，因此輸出將會相同。
+
+```shell
+D:\Temp> msbuild HelloWorld.sfproj /t:Package
+```
+
 ### <a name="test-the-package"></a>測試封裝
 您可以使用 **Test-ServiceFabricApplicationPackage** 命令，透過 PowerShell 在本機上驗證封裝結構。 這個命令會檢查有無資訊清單剖析問題，並驗證所有參考。 請注意，這個命令只會驗證封裝中檔案與目錄的結構正確性。 除了檢查所有必要檔案都在之外，它不會驗證任何程式碼或資料封裝內容。
 
-~~~
+```
 PS D:\temp> Test-ServiceFabricApplicationPackage .\MyApplicationType
 False
 Test-ServiceFabricApplicationPackage : The EntryPoint MySetup.bat is not found.
 FileName: C:\Users\servicefabric\AppData\Local\Temp\TestApplicationPackage_7195781181\nrri205a.e2h\MyApplicationType\MyServiceManifest\ServiceManifest.xml
-~~~
+```
 
 這個錯誤顯示程式碼封裝中遺漏服務資訊清單 *SetupEntryPoint* 中參考的 **MySetup.bat** 檔案。 加入遺漏的檔案之後，應用程式驗證就會通過：
 
-~~~
+```
 PS D:\temp> tree /f .\MyApplicationType
 
 D:\TEMP\MYAPPLICATIONTYPE
@@ -231,16 +250,16 @@ D:\TEMP\MYAPPLICATIONTYPE
 PS D:\temp> Test-ServiceFabricApplicationPackage .\MyApplicationType
 True
 PS D:\temp>
-~~~
+```
 
 一旦應用程式正確封裝並通過驗證，就可供部署。
 
 ## <a name="next-steps"></a>後續步驟
-[部署與移除應用程式][10]
+[部署與移除應用程式][10]說明如何使用 PowerShell 來管理應用程式執行個體。
 
-[管理多個環境的應用程式參數][11]
+[管理多個環境的應用程式參數][11]說明如何為不同的應用程式執行個體設定參數和環境變數。
 
-[RunAs：使用不同的安全性權限執行 Service Fabric 應用程式][12]
+[設定應用程式的安全性原則][12]說明如何依據安全性原則執行服務來限制存取。
 
 <!--Image references-->
 [appmodel-diagram]: ./media/service-fabric-application-model/application-model.png
@@ -255,6 +274,6 @@ PS D:\temp>
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

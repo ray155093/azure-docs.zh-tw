@@ -1,5 +1,5 @@
 ---
-title: "用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Docs"
+title: "使用 Docker 電腦在 Azure 中建立 Linux 主機 | Microsoft Docs"
 description: "說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 07/22/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 8fe34e543d8860d80016d35d27159298c17e486e
+ms.sourcegitcommit: 1a1d5a3e7f39477e06540a980ccbbdc789cefaf1
+ms.openlocfilehash: dd66b244b3fcb7fe22937dbbc6e284bdd93625f2
 
 
 ---
@@ -132,6 +132,6 @@ d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago  
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

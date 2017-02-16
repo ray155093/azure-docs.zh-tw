@@ -1,5 +1,5 @@
 ---
-title: "在 Linux 上使用 Azure PowerShell 在 HDInsight 中建立 Hadoop、HBase、Storm 或 Spark 叢集 | Microsoft Docs"
+title: "使用 PowerShell 建立 Azure HDInsight (Hadoop) | Microsoft Docs"
 description: "了解如何在 Linux 上使用 Azure PowerShell 為 HDInsight 建立 Hadoop、HBase、Storm 或 Spark 叢集。"
 services: hdinsight
 documentationcenter: 
@@ -16,13 +16,13 @@ ms.workload: big-data
 ms.date: 10/05/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 71f1ca77180c7b06f8c883c8c227bda63f28ed1c
+ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
+ms.openlocfilehash: b3589dd3424d7723351165c103a2b1b122ff44cc
 
 
 ---
-# <a name="create-linux-based-clusters-in-hdinsight-by-using-azure-powershell"></a>使用 Azure PowerShell 在 HDInsight 中建立以 Linux 為基礎的叢集
-[!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
+# <a name="create-linux-based-clusters-in-hdinsight-using-azure-powershell"></a>使用 Azure PowerShell 在 HDInsight 中建立以 Linux 為基礎的叢集
+[!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
 Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azure 中控制和自動化工作量的部署與管理。 本文件提供如何使用 Azure PowerShell 建立以 Linux 為基礎之 HDInsight 叢集的相關資訊。 其中也包含一個範例指令碼。
 
@@ -58,8 +58,8 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
 * 請務必將 **-OSType** 參數指定為 **Linux**。
 * 若要對叢集上的遠端工作階段使用 SSH，您可以指定 SSH 使用者密碼或 SSH 公開金鑰。 如果您同時指定 SSH 使用者密碼或 SSH 公開金鑰，系統會忽略公開金鑰。 如果您想要對遠端工作階段使用 SSH 金鑰，您必須在出現密碼提示時指定空白的 SSH 密碼。 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
   
-  * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-  * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+  * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
+  * [從 Windows 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)
 
 下列指令碼示範如何建立新叢集：
 
@@ -154,7 +154,7 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
 
 ## <a name="customize-clusters"></a>自訂叢集
 * 請參閱 [使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md#use-azure-powershell)。
-* 請參閱 [使用指令碼動作自訂 Windows 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。
+* 請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
 ## <a name="delete-the-cluster"></a>刪除叢集
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -186,6 +186,6 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

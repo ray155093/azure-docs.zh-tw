@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/07/2016
+ms.date: 01/27/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 18c3400063097cdf70398a95e9e39e9097e27992
+ms.sourcegitcommit: 76987a6e91ae688b3856567073a7d27472e5ba09
+ms.openlocfilehash: 34f84de82cbd6c15bd62abedd05e0eff6ce2dc2f
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: 18c3400063097cdf70398a95e9e39e9097e27992
 * **使用公司認證/密碼：** Azure AD 租用戶中使用者的密碼可以與 Azure AD 網域服務搭配使用。 使用者可以使用其公司認證來將機器加入網域，以互動方式或透過遠端桌面登入，以及對受管理的網域進行驗證。
 * **LDAP 繫結與 LDAP 讀取支援：**您可以使用依賴 LDAP 繫結的應用程式，在 Azure AD 網域服務所服務的網域中驗證使用者。 此外，使用 LDAP 讀取作業來從目錄查詢使用者/電腦屬性的應用程式也可以針對 Azure AD 網域服務運作。
 * **安全 LDAP (LDAPS)：** 透過安全 LDAP (LDAPS) 啟用目錄的存取。 預設可在虛擬網路內使用安全 LDAP 存取。 不過，您也可以選擇為網際網路啟用安全 LDAP 存取。
-* **群組原則：** 您可以對每個使用者和電腦容器使用單一內建的 GPO，以針對使用者帳戶和已加入網域的電腦強制採用符合安全性原則的規範。
+* **群組原則：** 您可以對每個使用者和電腦容器使用單一內建的 GPO，以針對使用者帳戶和已加入網域的電腦強制採用符合安全性原則的規範。 您也可以建立自己的自訂 GPO，然後將它們指派給自訂組織單位來管理群組原則。
 * **管理 DNS：**「AAD DC 系統管理員」群組成員可以使用熟悉的 DNS 系統管理工具 (例如 DNS 系統管理 MMC 嵌入式管理單元)，來管理您的受管理網域的 DNS。
 * **建立自訂的組織單位 (OU)：**「AAD DC 系統管理員」群組成員可以在受管理網域中建立自訂的 OU。 這些使用者會被授與自訂 OU 的完整系統管理權限，讓他們可以在這些自訂的 OU 內新增或移除服務帳戶、電腦、群組等。
 * **可在多個 Azure 區域中使用：** 請參閱 [依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/) 頁面，以了解可使用 Azure AD 網域服務的 Azure 區域。
@@ -42,7 +42,6 @@ ms.openlocfilehash: 18c3400063097cdf70398a95e9e39e9097e27992
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

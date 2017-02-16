@@ -1,10 +1,10 @@
 ---
-title: "規劃與設計 VPN 閘道| Microsoft Docs"
+title: "跨單位連線的規劃和設計：Azure VPN 閘道| Microsoft Docs"
 description: "深入了解跨單位、混合式和 VNet 對 VNet 連線的 VPN 閘道規劃與設計"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management,azure-resource-manager
 ms.assetid: d5aaab83-4e74-4484-8bf0-cc465811e757
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/18/2016
+ms.date: 01/25/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 03f9294b558a075705fca4bd647a2154e155a1ea
+ms.sourcegitcommit: d2087d4a1844379ae642c9ce5b08d62edef2fccf
+ms.openlocfilehash: 21723b3c8ab636f6c4a497abece59ce83a46d65f
 
 
 ---
@@ -117,7 +117,7 @@ ms.openlocfilehash: 03f9294b558a075705fca4bd647a2154e155a1ea
 
 **強制通道圖表**
 
-![強制通道連線](./media/vpn-gateway-plan-design/forced-tunnel.png "forced tunneling")
+![Azure VPN 閘道強制通道圖表](./media/vpn-gateway-plan-design/forced-tunneling-diagram.png)
 
 可以在這兩種部署模型中使用不同的工具，設定強制通道的連線。 如需詳細資訊，請參閱下列表格。 當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。 當文章可用時，我們會直接從資料表連結至該文章。
 
@@ -131,6 +131,6 @@ ms.openlocfilehash: 03f9294b558a075705fca4bd647a2154e155a1ea
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -12,11 +12,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/14/2016
+ms.date: 02/10/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4753f54d319475e8d1a87e5497ab9e03765f8546
-ms.openlocfilehash: b0e28cdc4ac8abd8dae7d9c08731664a03a44b2e
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: 6eb692f7c3374f9073944b8c4c0f34af2ed35b3c
 
 
 ---
@@ -24,10 +24,8 @@ ms.openlocfilehash: b0e28cdc4ac8abd8dae7d9c08731664a03a44b2e
 
 指令碼動作是自訂 Azure HDInsight 叢集的方式，方法是指定叢集組態設定，或者在叢集上安裝額外服務、工具或其他軟體。 您可以在叢集建立期間或在執行中的叢集上使用指令碼動作。
 
-> [!NOTE]
-> 本文件的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。 如需有關搭配以 Windows 為基礎的叢集使用指令碼動作的詳細資訊，請參閱 [使用 HDInsight 進行指令碼動作開發 (Windows)](hdinsight-hadoop-script-actions.md)。
-> 
-> 
+> [!IMPORTANT]
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="what-are-script-actions"></a>什麼是指令碼動作？
 
@@ -75,32 +73,34 @@ HDInsight 3.4 和 3.5 之間的另一個重要差異在於，`JAVA_HOME` 現在�
 
 您可以使用 `lsb_release` 檢查 OS 版本。 下列來自 Hue 安裝指令碼的程式碼片段會示範如何判斷指令碼執行於 Ubuntu 14 或 16：
 
-    OS_VERSION=$(lsb_release -sr)
-    if [[ $OS_VERSION == 14* ]]; then
-        echo "OS verion is $OS_VERSION. Using hue-binaries-14-04."
-        HUE_TARFILE=hue-binaries-14-04.tgz
-    elif [[ $OS_VERSION == 16* ]]; then
-        echo "OS verion is $OS_VERSION. Using hue-binaries-16-04."
-        HUE_TARFILE=hue-binaries-16-04.tgz
-    fi
-    ...
-    if [[ $OS_VERSION == 16* ]]; then
-        echo "Using systemd configuration"
-        systemctl daemon-reload
-        systemctl stop webwasb.service    
-        systemctl start webwasb.service
-    else
-        echo "Using upstart configuration"
-        initctl reload-configuration
-        stop webwasb
-        start webwasb
-    fi
-    ...
-    if [[ $OS_VERSION == 14* ]]; then
-        export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-    elif [[ $OS_VERSION == 16* ]]; then
-        export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    fi
+```bash
+OS_VERSION=$(lsb_release -sr)
+if [[ $OS_VERSION == 14* ]]; then
+    echo "OS verion is $OS_VERSION. Using hue-binaries-14-04."
+    HUE_TARFILE=hue-binaries-14-04.tgz
+elif [[ $OS_VERSION == 16* ]]; then
+    echo "OS verion is $OS_VERSION. Using hue-binaries-16-04."
+    HUE_TARFILE=hue-binaries-16-04.tgz
+fi
+...
+if [[ $OS_VERSION == 16* ]]; then
+    echo "Using systemd configuration"
+    systemctl daemon-reload
+    systemctl stop webwasb.service    
+    systemctl start webwasb.service
+else
+    echo "Using upstart configuration"
+    initctl reload-configuration
+    stop webwasb
+    start webwasb
+fi
+...
+if [[ $OS_VERSION == 14* ]]; then
+    export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+elif [[ $OS_VERSION == 16* ]]; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+fi
+```
 
 您可以在 https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh 找到包含這些程式碼片段的完整指令碼。
 
@@ -142,7 +142,9 @@ HDInsight 3.4 和 3.5 之間的另一個重要差異在於，`JAVA_HOME` 現在�
 
 例如，以下會將 giraph-examples.jar 檔案從本機檔案系統複製到 WASB：
 
-    hadoop fs -copyFromLocal /usr/hdp/current/giraph/giraph-examples.jar /example/jars/
+```bash
+hdfs dfs -put /usr/hdp/current/giraph/giraph-examples.jar /example/jars/
+```
 
 ### <a name="a-namebps7awrite-information-to-stdout-and-stderr"></a><a name="bPS7"></a>將資訊寫入至 STDOUT 和 STDERR
 
@@ -153,11 +155,15 @@ HDInsight 3.4 和 3.5 之間的另一個重要差異在於，`JAVA_HOME` 現在�
 
 大部分的公用程式和安裝套件已經將資訊寫入 STDOUT 和 STDERR，不過您可能想要新增其他記錄。 若要將文字傳送到 STDOUT，請使用 `echo`。 例如：
 
-    echo "Getting ready to install Foo"
+```bash
+echo "Getting ready to install Foo"
+```
 
 根據預設， `echo` 會將字串傳送至 STDOUT。 若要將其導向至 STDERR，請在 `echo` 之前加入 `>&2`。 例如：
 
-    >&2 echo "An error occurred installing Foo"
+```bash
+>&2 echo "An error occurred installing Foo"
+```
 
 這會將傳送到 STDOUT (1，這是預設值，因此未在此處列出) 的資訊重新導向至 STDERR (2)。 如需 IO 重新導向的詳細資訊，請參閱 [http://www.tldp.org/LDP/abs/html/io-redirection.html](http://www.tldp.org/LDP/abs/html/io-redirection.html)。
 
@@ -167,8 +173,10 @@ HDInsight 3.4 和 3.5 之間的另一個重要差異在於，`JAVA_HOME` 現在�
 
 Bash 指令碼應該儲存為 ASCII 格式，該格式以 LF 做為行尾結束符號。 如果檔案儲存為 UTF-8，可能在檔案開頭包含位元組順序標記，或者以 CRLF 做為行尾結束符號，這對於 Windows 編輯器很常見，則指令碼將會失敗，且具有如下的錯誤：
 
-    $'\r': command not found
-    line 1: #!/usr/bin/env: No such file or directory
+```
+$'\r': command not found
+line 1: #!/usr/bin/env: No such file or directory
+```
 
 ### <a name="a-namebps9a-use-retry-logic-to-recover-from-transient-errors"></a><a name="bps9"></a> 使用重試邏輯從暫時性錯誤復原
 
@@ -176,40 +184,46 @@ Bash 指令碼應該儲存為 ASCII 格式，該格式以 LF 做為行尾結束�
 
 若要讓您的指令碼從暫時性錯誤中復原，可以實作重試邏輯。 以下是函式的範例，其會執行任何傳遞給函式的命令，並且 (如果命令失敗) 重試三次。 每次重試之間會等待兩秒。
 
-    #retry
-    MAXATTEMPTS=3
+```bash
+#retry
+MAXATTEMPTS=3
 
-    retry() {
-        local -r CMD="$@"
-        local -i ATTMEPTNUM=1
-        local -i RETRYINTERVAL=2
+retry() {
+    local -r CMD="$@"
+    local -i ATTMEPTNUM=1
+    local -i RETRYINTERVAL=2
 
-        until $CMD
-        do
-            if (( ATTMEPTNUM == MAXATTEMPTS ))
-            then
-                    echo "Attempt $ATTMEPTNUM failed. no more attempts left."
-                    return 1
-            else
-                    echo "Attempt $ATTMEPTNUM failed! Retrying in $RETRYINTERVAL seconds..."
-                    sleep $(( RETRYINTERVAL ))
-                    ATTMEPTNUM=$ATTMEPTNUM+1
-            fi
-        done
-    }
+    until $CMD
+    do
+        if (( ATTMEPTNUM == MAXATTEMPTS ))
+        then
+                echo "Attempt $ATTMEPTNUM failed. no more attempts left."
+                return 1
+        else
+                echo "Attempt $ATTMEPTNUM failed! Retrying in $RETRYINTERVAL seconds..."
+                sleep $(( RETRYINTERVAL ))
+                ATTMEPTNUM=$ATTMEPTNUM+1
+        fi
+    done
+}
+```
 
 以下是使用此函式的範例。
 
-    retry ls -ltr foo
+```bash
+retry ls -ltr foo
 
-    retry wget -O ./tmpfile.sh https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh
+retry wget -O ./tmpfile.sh https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh
+```
 
 ## <a name="a-namehelpermethodsahelper-methods-for-custom-scripts"></a><a name="helpermethods"></a>自訂指令碼的協助程式方法
 
 指令碼動作協助程式方法是您在撰寫字訂指令碼時可以使用的公用程式。 這些協助程式方法會定義在 [https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh)中，並且可以使用以下方式包含至您的指令碼中：
 
-    # Import the helper method module.
-    wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh && source /tmp/HDInsightUtilities-v01.sh && rm -f /tmp/HDInsightUtilities-v01.sh
+```bash
+# Import the helper method module.
+wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh && source /tmp/HDInsightUtilities-v01.sh && rm -f /tmp/HDInsightUtilities-v01.sh
+```
 
 這樣可讓下列協助程式可用於您的指令碼：
 
@@ -252,7 +266,9 @@ Bash 指令碼應該儲存為 ASCII 格式，該格式以 LF 做為行尾結束�
 
 在指令碼中設定的環境變數只會存在於指令碼的範圍內。 在某些情況下，您可能需要新增整個系統的環境變數，這些變數在指令碼完成之後仍然會保存。 通常這就是為何透過 SSH 連線至叢集的使用者可以使用您的指令碼所安裝的元件。 您可以藉由將環境變數加入 `/etc/environment`來完成這個動作。 例如，以下會新增 **HADOOP\_CONF\_DIR**：
 
-    echo "HADOOP_CONF_DIR=/etc/hadoop/conf" | sudo tee -a /etc/environment
+```bash
+echo "HADOOP_CONF_DIR=/etc/hadoop/conf" | sudo tee -a /etc/environment
+```
 
 ### <a name="access-to-locations-where-the-custom-scripts-are-stored"></a>存取自訂指令碼儲存所在位置
 
@@ -282,14 +298,16 @@ Bash 指令碼應該儲存為 ASCII 格式，該格式以 LF 做為行尾結束�
 
 若要檢查 OS 版本，請使用 `lsb_release`。 例如，以下會示範如何根據 OS 版本參考不同的 tar 檔案︰
 
-    OS_VERSION=$(lsb_release -sr)
-    if [[ $OS_VERSION == 14* ]]; then
-        echo "OS verion is $OS_VERSION. Using hue-binaries-14-04."
-        HUE_TARFILE=hue-binaries-14-04.tgz
-    elif [[ $OS_VERSION == 16* ]]; then
-        echo "OS verion is $OS_VERSION. Using hue-binaries-16-04."
-        HUE_TARFILE=hue-binaries-16-04.tgz
-    fi
+```bash
+OS_VERSION=$(lsb_release -sr)
+if [[ $OS_VERSION == 14* ]]; then
+    echo "OS verion is $OS_VERSION. Using hue-binaries-14-04."
+    HUE_TARFILE=hue-binaries-14-04.tgz
+elif [[ $OS_VERSION == 16* ]]; then
+    echo "OS verion is $OS_VERSION. Using hue-binaries-16-04."
+    HUE_TARFILE=hue-binaries-16-04.tgz
+fi
+```
 
 ## <a name="a-namedeployscriptachecklist-for-deploying-a-script-action"></a><a name="deployScript"></a>指令碼動作的部署檢查清單
 
@@ -357,6 +375,6 @@ Microsoft 提供了在 HDInsight 叢集上安裝元件的範例指令碼。 您�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

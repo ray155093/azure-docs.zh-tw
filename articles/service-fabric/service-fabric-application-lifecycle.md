@@ -12,16 +12,20 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/14/2016
+ms.date: 11/15/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 9b2744f3f76a7253928a4248f6915eee0e7f8e9a
-ms.openlocfilehash: ba8d22f564a2736600054576a554cbc2037a1302
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 87a303fc04b2a528928eed5ce8f65a19700e0bc0
 
 
 ---
 # <a name="service-fabric-application-lifecycle"></a>Service Fabric 應用程式生命週期
 如同其他平台，Azure Service Fabric 上的應用程式通常會經歷下列階段：設計、開發、測試、部署、升級、維護和移除。 從開發到部署、到每日管理、維護，以及最終的解除委任，Service Fabric 為雲端應用程式的完整應用程式生命週期提供第一等的支援。 服務模型可以啟用數個不同的角色，在應用程式生命週期中獨立參與。 本文章提供 API 的概觀以及其使用方式，這些 API 是由不同的角色在 Service Fabric 應用程式生命週期的各個階段使用。
+
+下列 Microsoft Virtual Academy 影片說明如何管理應用程式生命週期︰<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=My3Ka56yC_6106218965">
+<img src="./media/service-fabric-application-lifecycle/AppLifecycleVid.png" WIDTH="360" HEIGHT="244">
+</a></center>
 
 ## <a name="service-model-roles"></a>服務模型角色
 服務模型角色是：
@@ -98,6 +102,6 @@ ms.openlocfilehash: ba8d22f564a2736600054576a554cbc2037a1302
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/07/2016
 ms.author: byvinyal
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 8f119626aff7a7826e61f4534de686d2c22ed5d7
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: d779170030b61540de2c0459e574a72cdc77f342
 
 
 ---
@@ -39,11 +39,11 @@ App Service 中裝載的應用程式都必須遵守其可用資源的某些「�
 * **CPU (短期)**
   * 此應用程式在 3 分鐘間隔內允許的 CPU 數量。 此配額會每 3 分鐘重設一次。
 * **CPU (天)**
-  * 此應用程式在 1 天內允許的 CPU 總量。 此配額會每隔 24 小時在午夜 (UTC) 重設一次。
+  * 此應用程式在&1; 天內允許的 CPU 總量。 此配額會每隔 24 小時在午夜 (UTC) 重設一次。
 * **記憶體**
   * 此應用程式允許的記憶體總量。
 * **頻寬**
-  * 此應用程式在 1 天內允許的連出頻寬總量。
+  * 此應用程式在&1; 天內允許的連出頻寬總量。
     此配額會每隔 24 小時在午夜 (UTC) 重設一次。
 * **Filesystem**
   * 允許的儲存體總量。
@@ -152,7 +152,7 @@ App Service 中裝載的應用程式都必須遵守其可用資源的某些「�
 基本、標準或進階 App Service 方案中裝載的 App Service 應用程式支援 **自動調整**。 這可讓您設定相關規則來監視 App Service 方案計量，而且可以增加或減少執行個體計數，並視需要提供其他資源，或在應用程式過度佈建時節省金錢。 您可以在此進一步了解自動調整︰[如何調整](../monitoring-and-diagnostics/insights-how-to-scale.md)以及這裡的[Azure 監視器自動調整的最佳做法](../monitoring-and-diagnostics/insights-autoscale-best-practices.md)
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -171,6 +171,6 @@ App Service 中裝載的應用程式都必須遵守其可用資源的某些「�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

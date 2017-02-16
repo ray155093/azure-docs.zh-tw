@@ -16,8 +16,8 @@ ms.workload: integration
 ms.date: 11/07/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: 317d146dec09cf3239a72c9af471257ce98c458d
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: a1ea6c09621aeeb1e98bbbf5edf1d5deb5e4b721
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 317d146dec09cf3239a72c9af471257ce98c458d
 > 
 > 
 
-若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../logic-apps/logic-apps-what-are-logic-apps.md)以及[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="connect-to-dynamics-crm-online"></a>連接至 Dynamics CRM Online
 您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。 連線可讓邏輯應用程式與另一個服務連線。 例如，若要連線到 Dynamics，您必須先有 Dynamics CRM Online *連線*。 若要建立連線，請輸入平常用來存取所要連線之服務的認證。 因此，在 Dynamics 中，請輸入 Dynamics CRM Online 帳戶的認證以建立連線。
@@ -45,7 +45,7 @@ ms.openlocfilehash: 317d146dec09cf3239a72c9af471257ce98c458d
 > 
 
 ## <a name="use-a-trigger"></a>使用觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 觸發程序會以您想要的間隔和頻率「輪詢」服務。 [深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 觸發程序會以您想要的間隔和頻率「輪詢」服務。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
 
 1. 在邏輯應用程式中，輸入 "dynamics" 以取得觸發程序的清單︰  
    
@@ -66,7 +66,7 @@ ms.openlocfilehash: 317d146dec09cf3239a72c9af471257ce98c458d
 4. **儲存**您的變更 (工具列的左上角)。 邏輯應用程式將會儲存，而且可能會自動啟用。
 
 ## <a name="use-an-action"></a>使用動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
 
 1. 選取加號。 您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
    
@@ -258,11 +258,11 @@ ItemsList
 | 預設值 |作業失敗。 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

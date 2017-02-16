@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/28/2016
 ms.author: casoper
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3d5c371c8753b4ddaffcbf373d078b819fd2d687
+ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
+ms.openlocfilehash: 750488e2855546418dd27ca511b9f8b3d06aa1da
 
 
 ---
@@ -50,8 +50,8 @@ ms.openlocfilehash: 3d5c371c8753b4ddaffcbf373d078b819fd2d687
 > [!NOTE]
 > 要完成此教學課程，您必須要有 Azure 帳戶：
 > 
-> * 您可以 [免費申請 Azure 帳戶](/pricing/free-trial/) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。
-> * 您可以 [啟用 MSDN 訂戶權益](/pricing/member-offers/msdn-benefits-details/) - 您的 MSDN 訂閱每月會提供您額度，您可以用在 Azure 付費服務。
+> * 您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。
+> * 您可以 [啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) - 您的 MSDN 訂閱每月會提供您額度，您可以用在 Azure 付費服務。
 > 
 > 
 
@@ -603,6 +603,6 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

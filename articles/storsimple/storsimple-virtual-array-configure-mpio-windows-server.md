@@ -1,5 +1,5 @@
 ---
-title: "在 Microsoft Azure StorSimple Virtual Array 主機上設定 MPIO| Microsoft Docs"
+title: "設定連接至 StorSimple Virtual Array 之主機上的 MPIO | Microsoft Docs"
 description: "說明如何針對與執行 Windows Server 2012 R2 的主機連接的 StorSimple Virtual Array 設定多重路徑 I/O (MPIO)。"
 services: storsimple
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 11/21/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: ae076d52b532f5181868b2ab24ee8f2ffa887af7
-ms.openlocfilehash: 53308da656f46a43332a204d9d49e972d8c1799c
+ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
+ms.openlocfilehash: 24c2670394c2873b333f41c081a8134710d16d54
 
 ---
 # <a name="configure-multipath-io-on-windows-server-host-for-the-storsimple-virtual-array"></a>在 Windows Server 主機上設定 StorSimple Virtual Array 的多重路徑 I/O
@@ -62,7 +62,7 @@ Windows Server 中的 MPIO 功能可協助建置高可用性、容錯的儲存�
     ![在 1200 上啟用的網路介面](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio9.png)
   
     請記下啟用之網路介面 (乙太網路，預設為乙太網路 2) 的 IPv4 位址，並加以儲存供稍後在主機上使用。
-* Windows Server 主機已啟用 2 個網路介面。 如果主機和陣列的連接介面位於相同的子網路上，將會有 4 個路徑可用。 在此程序中是這個情況。 不過，如果陣列和主機介面上的每個網路介面位於不同的 IP 子網路上 (且不可路由傳送)，則只有 2 個路徑可用。
+* Windows Server 主機已啟用&2; 個網路介面。 如果主機和陣列的連接介面位於相同的子網路上，將會有 4 個路徑可用。 在此程序中是這個情況。 不過，如果陣列和主機介面上的每個網路介面位於不同的 IP 子網路上 (且不可路由傳送)，則只有 2 個路徑可用。
 
 ## <a name="step-1-install-mpio-on-the-windows-server-host"></a>步驟 1：在 Windows Server 主機上安裝 MPIO
 MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。 您應該透過伺服器管理員將它安裝為功能。 若要在 Windows Server 主機上安裝這項功能，請完成下列程序。
@@ -160,6 +160,6 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。 您應該透�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

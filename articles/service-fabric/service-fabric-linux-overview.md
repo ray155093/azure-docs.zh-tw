@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 09/26/2016
 ms.author: SubramaR
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f52903801c53a50d149fe8732bf514194aae0478
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 175edd2c45319f197d1df65ae22853ca0dc3d310
 
 
 ---
@@ -25,7 +25,7 @@ Linux 上的 Service Fabric 預覽版可讓您如同在 Windows 上一樣，在 
 
 Linux 上的 Service Fabric 在概念上相當於 Windows 上的 Service Fabric (除了作業系統細節和程式設計語言支援)。 因此，我們大部分的 [現有文件](http://aka.ms/servicefabricdocs) 都可協助您熟悉這項技術。
 
-> [!影片 https://channel9.msdn.com/Blogs/Windows-Azure/Service-Fabric-Linux-Preview/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Service-Fabric-Linux-Preview/player]
 > 
 > 
 
@@ -50,6 +50,6 @@ Linux 上的 Service Fabric 在概念上相當於 Windows 上的 Service Fabric 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "如何從同質群組移轉至區域虛擬網路 (VNet)"
-description: "了解如何從同質群組移轉至區域 VNet"
+title: "將 Azure 虛擬網路從同質群組移轉至區域 | 傳統 | Microsoft Docs"
+description: "了解如何將虛擬網路從同質群組移轉至區域。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,12 +15,12 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 198a726229f4950906e79272da6913f1a1afd15d
+ms.sourcegitcommit: f74379c3e310a7bbcf659ef610727bff19639022
+ms.openlocfilehash: c495af3e818758cc5fe99af9b5f07506a16b59ef
 
 
 ---
-# <a name="how-to-migrate-from-affinity-groups-to-a-regional-virtual-network-vnet"></a>如何從同質群組移轉至區域虛擬網路 (VNet)
+# <a name="how-to-migrate-a-virtual-network-from-an-affinity-group-to-a-region"></a>如何將虛擬網路從同質群組移轉至區域
 您可以使用同質群組，以確保在相同同質群組內建立的資源由伺服器所實際主控，這些伺服器彼此鄰近，可讓這些資源進行更快速的通訊。 在過去，建立虛擬網路 (VNet) 需要同質群組。 當時，管理 VNet 的網路管理員服務僅能在一組實體伺服器或縮放單位內工作。 架構改進則增加區域的網路管理範圍。
 
 因為這些架構的改進，造成同質群組不再建議使用，或虛擬網路不再需要。 針對 VNet 使用的同質群組現在已取代為區域。 與區域相關聯的 VNet 稱為區域 VNet。
@@ -74,6 +74,6 @@ ms.openlocfilehash: 198a726229f4950906e79272da6913f1a1afd15d
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

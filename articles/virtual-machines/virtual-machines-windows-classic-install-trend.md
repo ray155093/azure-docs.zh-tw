@@ -32,7 +32,7 @@ ms.openlocfilehash: 3b55595eb59fb085450eb0d82cc1e93ad1c57f77
 如果您已有 Trend Micro 的內部部署解決方案現有訂用帳戶，您可以用它來協助保護 Azure 虛擬機器的安全。 如果您還不是 Symantec 客戶，您可以註冊試用訂用帳戶。 如需有關此解決方案的詳細資訊，請參閱 Trend Micro 部落格文章 [適用於 Deep Security 的 Microsoft Azure VM 代理程式延伸模組](http://go.microsoft.com/fwlink/p/?LinkId=403945)。
 
 ## <a name="install-the-deep-security-agent-on-a-new-vm"></a>在新的 VM 上安裝 Deep Security 代理程式
-當您使用 [從主機庫] [](http://manage.windowsazure.com) 選項建立虛擬機器時， **Azure 傳統入口網站** 可讓您安裝 VM 代理程式和 Trend Micro 安全性擴充功能。 如果您打算建立單一虛擬機器，使用此入口網站可輕易地新增 Trend Micro 的防護。
+當您使用 [[從主機庫]](http://manage.windowsazure.com) 選項建立虛擬機器時， **Azure 傳統入口網站** 可讓您安裝 VM 代理程式和 Trend Micro 安全性擴充功能。 如果您打算建立單一虛擬機器，使用此入口網站可輕易地新增 Trend Micro 的防護。
 
 此 [From Gallery]  選項會開啟可協助您設定虛擬機器的精靈。 您可以使用精靈的最後一個頁面，來安裝 VM 代理程式和 Trend Micro 安全性延伸模組。 如需一般指示，請參閱[在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器](virtual-machines-windows-classic-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 當您進入精靈的最後一個頁面時，請執行下列步驟：
 

@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/08/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 1589b1150df47aa5e436aa5d538b6a98706f97ae
-ms.openlocfilehash: 42ef05571b77267dd2ba2522acf9bc21619f26e3
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: 4ebe010ab1f3d9df8bef1a6fc2ac5c24a7d1f5ee
 
 
 ---
@@ -28,7 +28,11 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。 在這份文�
 
 * Azure 訂用帳戶。
 * Azure HDInsight 叢集 (以 Linux 或 Windows 為基礎)
-*  [在 HDInsight 使用 Pig](hdinsight-use-pig.md)
+
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
+* [在 HDInsight 使用 Pig](hdinsight-use-pig.md)
 
 ## <a name="install-datafu-on-linux-based-hdinsight"></a>在以 Linux 為基礎的 HDInsight 上安裝 DataFu
 
@@ -116,6 +120,6 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。 在這份文�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

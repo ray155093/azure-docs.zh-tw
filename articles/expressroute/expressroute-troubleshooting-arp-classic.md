@@ -1,5 +1,5 @@
 ---
-title: "ExpressRoute 疑難排解指南：取得 ARP 表格 | Microsoft Docs"
+title: "取得 ARP 表格：傳統：Azure ExpressRoute 疑難排解 | Microsoft Docs"
 description: "此頁面提供取得適用於 ExpressRoute 線路之 ARP 表格的相關指示。"
 documentationcenter: na
 services: expressroute
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/11/2016
+ms.date: 01/30/2017
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: e7931f1b08d09fbe1fa5a5a2d4a11da01e736462
-ms.openlocfilehash: 49f7eae7184fda3ea73c8a85e354d0e41df039c7
+ms.sourcegitcommit: 1a4206c80bc3581034b140de0003c64556b90303
+ms.openlocfilehash: fcc847b7e30fd55ca759830e0254ab7542e7663e
 
 
 ---
-# <a name="expressroute-troubleshooting-guide-getting-arp-tables-in-the-classic-deployment-model"></a>ExpressRoute 疑難排解指南：取得傳統部署模型中的 ARP 表格
+# <a name="getting-arp-tables-in-the-classic-deployment-model"></a>在傳統部署模型中取得 ARP 表格
 > [!div class="op_single_selector"]
 > * [PowerShell - 資源管理員](expressroute-troubleshooting-arp-resource-manager.md)
 > * [PowerShell - 傳統](expressroute-troubleshooting-arp-classic.md)
@@ -172,6 +172,6 @@ ARP 表格可協助您驗證第 2 層組態，並針對基本的第 2 層連線�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

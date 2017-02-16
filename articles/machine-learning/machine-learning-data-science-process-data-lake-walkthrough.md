@@ -12,15 +12,15 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 01/30/2017
 ms.author: bradsev;weig
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8c625752b40cffd0e7f791bd3a360f4bfb4622e7
+ms.sourcegitcommit: 34441f27e842214d009d64fbc658ff5b7c05df5d
+ms.openlocfilehash: e2aab1363c6a2ffef529f0708cb3bec9c095cf59
 
 
 ---
-# <a name="scalable-data-science-in-azure-data-lake-an-end-to-end-walkthrough"></a>Azure Data Lake 中的可調整資料科學︰端對端逐步解說
+# <a name="scalable-data-science-with-azure-data-lake-an-end-to-end-walkthrough"></a>Azure Data Lake 中可調整的資料科學︰完整的逐步解說
 本逐步解說示範如何使用 Azure Data Lake，在 NYC 計程車車程和車費資料集上執行資料探索和二元分類，以預測一趟車程是否收費。 其中，從取得資料開始，經過模型訓練，然後部署 Web 服務來發佈模型，從頭到尾逐步引導您完成 [Team Data Science Process](http://aka.ms/datascienceprocess)。
 
 ### <a name="azure-data-lake-analytics"></a>Azure 資料湖分析
@@ -53,14 +53,6 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。 這是使�
 > 
 > 
 
-* 註冊 Azure Data Lake 預覽
-
-> [!NOTE]
-> Azure Data Lake Store (ADLS) 和 Azure Data Lake Analytics (ADLA) 服務都在預覽階段，您需要經過核准才能使用。 當您建立第一個 ADLS 或 ADLA 時會提示您註冊。 若要註冊，按一下 [註冊以預覽]，並閱讀合約，然後按一下 [確定]。 例如，以下是 ADLS 註冊頁面︰
-> 
-> 
-
- ![2](./media/machine-learning-data-science-process-data-lake-walkthrough/2-ADLA-preview-signup.PNG)
 
 ## <a name="prepare-data-science-environment-for-azure-data-lake"></a>準備 Azure Data Lake 的資料科學環境
 若要準備本逐步解說的資料科學環境，請建立下列資源︰
@@ -72,13 +64,15 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。 這是使�
 * Azure Data Lake Tools for Visual Studio (建議)
 
 本節提供如何建立這些資源的指示。 如果您選擇搭配 Azure Machine Learning 使用 Hive 資料表 (而不是 Python) 來建置模型，您也必須佈建 HDInsight (Hadoop) 叢集。 這個替代程序將於後續的適當小節中加以說明。
-<br/>
 
-> AZURE.NOTE **Azure Data Lake Store** 可以個別建立，或者當您建立 **Azure Data Lake Analytics** 做為預設儲存體時加以建立。 以下的參考指示會個別建立這其中的每一個資源，但不需要個別建立 Data Lake 儲存體帳戶。
-> <br/>
+
+> [!NOTE]
+> **Azure Data Lake Store** 可以個別建立，或者當您建立 **Azure Data Lake Analytics** 做為預設儲存體時加以建立。 以下的參考指示會個別建立這其中的每一個資源，但不需要個別建立 Data Lake 儲存體帳戶。
+>
 > 
-> ### <a name="create-an-azure-data-lake-store"></a>建立 Azure 資料湖存放區
-> 
+
+### <a name="create-an-azure-data-lake-store"></a>建立 Azure 資料湖存放區
+
 
 從 [Azure 入口網站](http://portal.azure.com)建立 ADLS。 如需詳細資訊，請參閱 [使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。 請務必依該文件所述，在 [選擇性組態] 刀鋒視窗的 [資料來源] 刀鋒視窗中設定 [叢集 AAD 身分識別]。 
 
@@ -695,6 +689,6 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

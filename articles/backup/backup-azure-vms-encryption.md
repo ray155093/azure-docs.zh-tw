@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 10/25/2016
+ms.date: 01/18/2017
 ms.author: markgal; jimpark; trinadhk
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fd65e7acc10b3e750025279820bddbdef5de5498
+ms.sourcegitcommit: 152285bee4631acca7610eb5bd9167ec37296a26
+ms.openlocfilehash: d1ec8112b9fc347d9de5901c4b39a3291701da45
 
 
 ---
@@ -26,7 +26,8 @@ ms.openlocfilehash: fd65e7acc10b3e750025279820bddbdef5de5498
 ## <a name="supported-scenarios"></a>支援的案例
 > [!NOTE]
 > 1. 只有 Resource Manager 部署的虛擬機器支援備份及還原加密的 VM。 傳統虛擬機器不提供支援。 <br>
-> 2. 只有使用「BitLocker 加密金鑰」和「金鑰加密金鑰」加密的虛擬機器才提供支援。 只使用「BitLocker 加密金鑰」加密的虛擬機器不提供支援。 <br>
+> 2. 使用 Azure 磁碟加密的 Windows 和 Linux 虛擬機器均可提供支援，Azure 磁碟加密會運用業界標準的 Windows BitLocker 功能與 Linux 的 DM-Crypt 功能來提供磁碟加密。 <br>
+> 3. 只有使用「BitLocker 加密金鑰」和「金鑰加密金鑰」加密的虛擬機器才提供支援。 只使用「BitLocker 加密金鑰」加密的虛擬機器不提供支援。 <br>
 > 
 > 
 
@@ -80,7 +81,7 @@ ms.openlocfilehash: fd65e7acc10b3e750025279820bddbdef5de5498
 使用[將 Azure VM 備份至復原服務保存庫](backup-azure-arm-vms.md)一文中所述的步驟來觸發備份作業。
 
 ## <a name="restore-encrypted-vm"></a>還原已加密的 VM
-還原已加密和未加密虛擬機器的經驗相同。 使用[在 Azure 入口網站中還原虛擬機器](backup-azure-arm-restore-vms.md)中所述的步驟來還原已加密的 VM。 如果您需要還原金鑰和密碼，您必須確定要用於還原的金鑰保存庫已經存在。
+若要還原加密的 VM，請先使用[選擇 VM 還原組態](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration)的＜還原備份的磁碟＞一節中所述的步驟來還原磁碟。 之後，使用[從還原的磁碟建立 VM](backup-azure-vms-automation.md#create-a-vm-from-restored-disks) 中所述的 PowerShell 步驟，從還原的磁碟建立完整的 VM。
 
 ## <a name="troubleshooting-errors"></a>錯誤疑難排解
 | 作業 | 錯誤詳細資料 | 解決方案 |
@@ -88,10 +89,11 @@ ms.openlocfilehash: fd65e7acc10b3e750025279820bddbdef5de5498
 | 備份 |驗證失敗，因為虛擬機器單獨以 BEK 進行加密。 只會對同時使用 BEK 和 KEK 加密的虛擬機器啟用備份。 |應該使用 BEK 和 KEK 來加密虛擬機器。 之後，應該啟用備份。 |
 | 還原 |您無法還原這部已加密的 VM，因為與此 VM 相關聯的金鑰保存庫不存在。 |利用[開始使用 Azure 金鑰保存庫](../key-vault/key-vault-get-started.md)，建立金鑰保存庫。 請參閱[使用 Azure 備份來還原金鑰保存庫金鑰和密碼](backup-azure-restore-key-secret.md)文章來還原金鑰和密碼 (如果不存在)。 |
 | 還原 |您無法還原這部已加密的 VM，因為與此 VM 相關聯的金鑰和密碼不存在。 |請參閱[使用 Azure 備份來還原金鑰保存庫金鑰和密碼](backup-azure-restore-key-secret.md)文章來還原金鑰和密碼 (如果不存在)。 |
+| 還原 |備份服務無權存取您訂用帳戶中的資源。 |如前所述，請先使用[選擇 VM 還原組態](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration)的＜還原備份的磁碟＞一節中所述的步驟來還原磁碟。 之後，使用 PowerShell 來[從還原的磁碟建立 VM](backup-azure-vms-automation.md#create-a-vm-from-restored-disks)。 
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

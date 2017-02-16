@@ -4,7 +4,7 @@ description: "提供 Microsoft Azure 計費合作夥伴 Cloudyn 將 Azure 計費
 services: 
 documentationcenter: 
 author: BryanLa
-manager: mbaldwin
+manager: ruchic
 editor: 
 tags: billing
 ms.assetid: f1397397-7e92-4c20-9862-ab6b93afefb7
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: billing
-ms.date: 08/16/2016
+ms.date: 01/07/2017
 ms.author: mobandyo;bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e04e9997ff04039678229732196d2be44f579eb0
+ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
+ms.openlocfilehash: b1ba5617296019106aa1b236483ae26b8063b1d8
 
 
 ---
@@ -67,7 +67,7 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 ## <a name="video"></a>影片
 以下短片顯示 Azure 客戶如何使用 Azure 和 Azure 計費 API 的 Cloudyn，從 Azure 耗用量資料取得見解。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Cloudyn-Provides-Cloud-ITFM-Tools-Via-Microsoft-Azure-APIs/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Cloudyn-Provides-Cloud-ITFM-Tools-Via-Microsoft-Azure-APIs/player]
 > 
 > 
 
@@ -93,6 +93,6 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

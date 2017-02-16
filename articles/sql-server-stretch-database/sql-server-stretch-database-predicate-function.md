@@ -1,5 +1,5 @@
 ---
-title: "使用篩選函式來選取要移轉的資料列 (Stretch Database) | Microsoft Docs"
+title: "針對 Stretch Database 選取要移轉的資料列 - Azure | Microsoft Docs"
 description: "了解如何使用篩選函數來選取要移轉的資料列。"
 services: sql-server-stretch-database
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 06/28/2016
 ms.author: douglasl
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 76af756316523935cf04e19f12a3a1380d0f3a42
+ms.sourcegitcommit: bcb0a66425439522e0c9a353798ac70505b91e39
+ms.openlocfilehash: fc27cd6e25de8e5c3e6b50a0d887755f70d634fd
 
 
 ---
@@ -25,8 +25,8 @@ ms.openlocfilehash: 76af756316523935cf04e19f12a3a1380d0f3a42
 
 > [!NOTE]
 > 如果您提供執行不良的篩選函數，則資料移轉也會執行不良。 Stretch Database 使用 CROSS APPLY 運算子，將篩選函數套用至資料表。
-> 
-> 
+>
+>
 
 如果您未指定篩選函數，便會移轉整個資料表。
 
@@ -53,7 +53,7 @@ RETURN    SELECT 1 AS is_eligible
 需要結構描述繫結，以避免篩選函數使用的資料行遭到卸除或改變。
 
 ### <a name="return-value"></a>傳回值
-如果函式傳回非空白結果，則該資料列便符合移轉資格。 否則 \- 在函式未傳回結果的情況下 \- 便代表該資料列不符合移轉資格。
+如果函式傳回非空白結果，則該資料列便符合移轉資格。 否則，在函式未傳回結果的情況下，便代表該資料列不符合移轉資格。
 
 ### <a name="conditions"></a>條件
 <predicate>&lt;&gt; 可以包含一個條件，或是包含以 AND 邏輯運算子結合的數個條件。
@@ -80,9 +80,9 @@ RETURN    SELECT 1 AS is_eligible
 ```
 
 * 比較函式參數及常數運算式。 例如， `@column1 < 1000`。
-  
+
   以下範例會檢查 date 資料行的值是否 &lt; 1/1/2016。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_stretchpredicate(@column1 datetime)
   RETURNS TABLE
@@ -91,7 +91,7 @@ RETURN    SELECT 1 AS is_eligible
   RETURN    SELECT 1 AS is_eligible
           WHERE @column1 < CONVERT(datetime, '1/1/2016', 101)
   GO
-  
+
   ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
       FILTER_PREDICATE = dbo.fn_stretchpredicate(date),
       MIGRATION_STATE = OUTBOUND
@@ -99,9 +99,9 @@ RETURN    SELECT 1 AS is_eligible
   ```
 * 將 IS NULL 或 IS NOT NULL 運算子套用至函式參數。
 * 使用 IN 運算子來比較函式參數及常數值清單。
-  
+
   以下範例會檢查 shipment\_status 資料行的值是否為 `IN (N'Completed', N'Returned', N'Cancelled')`。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_stretchpredicate(@column1 nvarchar(15))
   RETURNS TABLE
@@ -110,7 +110,7 @@ RETURN    SELECT 1 AS is_eligible
   RETURN    SELECT 1 AS is_eligible
           WHERE @column1 IN (N'Completed', N'Returned', N'Cancelled')
   GO
-  
+
   ALTER TABLE table1 SET ( REMOTE_DATA_ARCHIVE = ON (
       FILTER_PREDICATE = dbo.fn_stretchpredicate(shipment_status),
       MIGRATION_STATE = OUTBOUND
@@ -140,7 +140,7 @@ RETURN    SELECT 1 AS is_eligible
 您不能使用子查詢或不具決定性的函式，例如 RAND() 或 GETDATE()。
 
 ## <a name="add-a-filter-function-to-a-table"></a>將篩選函數新增至資料表
-透過執行 **ALTER TABLE** 陳述式並將現有的嵌入資料表值函式指定為 **FILTER\_PREDICATE** 參數值，來將篩選函式新增到資料表。 例如：
+透過執行 **ALTER TABLE** 陳述式並將現有的嵌入資料表值函數指定為 **FILTER\_PREDICATE** 參數值，來將篩選函數新增到資料表。 例如：
 
 ```tsql
 ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
@@ -157,8 +157,8 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 
 > [!NOTE]
 > 若要改善篩選函數的效能，請在函數使用的資料行上建立索引。
-> 
-> 
+>
+>
 
 ### <a name="passing-column-names-to-the-filter-function"></a>將資料行名稱傳遞給篩選函數
 當您指派篩選函數給資料表時，請使用一段式名稱來指定傳遞給篩選函數的資料行名稱。 如果您在傳遞資料行名稱時指定的是三段式名稱，後續針對已啟用延展功能之資料表的查詢將會失敗。
@@ -187,7 +187,7 @@ ALTER TABLE SensorTelemetry
 如果您想要使用無法在 **啟用資料庫的延展功能** 精靈中建立的函數，您可以在結束精靈後，執行 ALTER TABLE 陳述式來指定函數。 不過，您必須先停止已經在進行中的資料移轉並回復已移轉的資料，才能套用函數。 (如需為什麼必須這麼做的詳細資訊，請參閱 [取代現有的篩選函數](#replacePredicate)。  
 
 1. 反轉移轉方向並回復已經移轉的資料。 開始這項作業之後，即無法將其取消。 您也會因輸出資料傳輸 \(輸出\) 而在 Azure 上產生費用。 如需詳細資訊，請參閱 [Azure 定價機制](https://azure.microsoft.com/pricing/details/data-transfers/)。  
-   
+
     ```tsql  
     ALTER TABLE <table name>  
          SET ( REMOTE_DATA_ARCHIVE ( MIGRATION_STATE = INBOUND ) ) ;   
@@ -195,7 +195,7 @@ ALTER TABLE SensorTelemetry
 2. 等待移轉完成。 您可以在 SQL Server Management Studio 的 [Stretch Database 監視] 中或查詢 **sys.dm_db_rda_migration_status** 檢視，來查看狀態。 如需詳細資訊，請參閱[資料移轉的監視及疑難排解](sql-server-stretch-database-monitor.md)或 [sys.dm_db_rda_migration_status](https://msdn.microsoft.com/library/dn935017.aspx)。  
 3. 建立您想要套用到資料表的篩選函數。  
 4. 將函數新增到資料表，然後重新啟動資料移轉來移轉到 Azure。  
-   
+
     ```tsql  
     ALTER TABLE <table name>  
         SET ( REMOTE_DATA_ARCHIVE  
@@ -298,7 +298,7 @@ COMMIT ;
 
 ## <a name="more-examples-of-valid-filter-functions"></a>更多的有效篩選函數範例
 * 下列範例使用 AND 邏輯運算子結合兩個基本條件。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_stretchpredicate((@column1 datetime, @column2 nvarchar(15))
   RETURNS TABLE
@@ -307,14 +307,14 @@ COMMIT ;
   RETURN    SELECT 1 AS is_eligible
     WHERE @column1 < N'20150101' AND @column2 IN (N'Completed', N'Returned', N'Cancelled')
   GO
-  
+
   ALTER TABLE table1 SET ( REMOTE_DATA_ARCHIVE = ON (
       FILTER_PREDICATE = dbo.fn_stretchpredicate(date, shipment_status),
       MIGRATION_STATE = OUTBOUND
   ) )
   ```
 * 下列範例使用數個條件和使用 CONVERT 之具決定性的轉換。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_stretchpredicate_example1(@column1 datetime, @column2 int, @column3 nvarchar)
   RETURNS TABLE
@@ -325,7 +325,7 @@ COMMIT ;
   GO
   ```
 * 下列範例使用數學運算子和函式。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_stretchpredicate_example2(@column1 float)
   RETURNS TABLE
@@ -336,7 +336,7 @@ COMMIT ;
   GO
   ```
 * 下列範例使用 BETWEEN 和 NOT BETWEEN 運算子。 此使用方法有效，因為在您將 BETWEEN 和 NOT BETWEEN 運算子取代為對等的 AND 和 OR 運算式之後，所產生的函數符合此處所述的規則。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_stretchpredicate_example3(@column1 int, @column2 int)
   RETURNS TABLE
@@ -348,7 +348,7 @@ COMMIT ;
   GO
   ```
   在您將 BETWEEN 和 NOT BETWEEN 運算子取代為對等的 AND 和 OR 運算式之後，前面的函式與後面的函式相等。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_stretchpredicate_example4(@column1 int, @column2 int)
   RETURNS TABLE
@@ -361,7 +361,7 @@ COMMIT ;
 
 ## <a name="examples-of-filter-functions-that-arent-valid"></a>無效篩選函數的範例
 * 下列函式無效，因為它包含不具決定性的轉換。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_example5(@column1 datetime)
   RETURNS TABLE
@@ -372,7 +372,7 @@ COMMIT ;
   GO
   ```
 * 下列函式無效，因為它包含不具決定性的函式呼叫。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_example6(@column1 datetime)
   RETURNS TABLE
@@ -383,7 +383,7 @@ COMMIT ;
   GO
   ```
 * 下列函式無效，因為它包含子查詢。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_example7(@column1 int)
   RETURNS TABLE
@@ -394,7 +394,7 @@ COMMIT ;
   GO
   ```
 * 下列函式無效，因為使用代數運算子或內建函式的運算式必須在您定義函式時評估為常數。 您無法包含以代數運算式或函式呼叫呈現的資料欄參考。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_example8(@column1 int)
   RETURNS TABLE
@@ -403,7 +403,7 @@ COMMIT ;
   RETURN    SELECT 1 AS is_eligible
           WHERE @column1 % 2 =  0
   GO
-  
+
   CREATE FUNCTION dbo.fn_example9(@column1 int)
   RETURNS TABLE
   WITH SCHEMABINDING
@@ -413,7 +413,7 @@ COMMIT ;
   GO
   ```
 * 下列函式無效，因為它在您將 BETWEEN 運算子取代為對等的 AND 運算式之後，違反此處所述的規則。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_example10(@column1 int, @column2 int)
   RETURNS TABLE
@@ -424,7 +424,7 @@ COMMIT ;
   GO
   ```
   在您將 BETWEEN 運算子取代為對等的 AND 運算式之後，前面的函式與後面的函式相等。 此含式無效，因為主要條件只能使用 OR 邏輯運算子。
-  
+
   ```tsql
   CREATE FUNCTION dbo.fn_example11(@column1 int, @column2 int)
   RETURNS TABLE
@@ -549,7 +549,6 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

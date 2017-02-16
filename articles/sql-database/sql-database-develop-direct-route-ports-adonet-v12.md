@@ -16,25 +16,16 @@ ms.topic: article
 ms.date: 08/17/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fa3f1215c809fe2b45293c56cdca4496fa352afb
+ms.sourcegitcommit: 1df9f3549db8417445a5a012d31ed662977a9990
+ms.openlocfilehash: 961b8b4eeeb8543c2adec60ff958a7f420c785b5
 
 
 ---
-# <a name="ports-beyond-1433-for-adonet-45-and-sql-database-v12"></a>針對 ADO.NET 4.5 及 SQL Database V12 的 1433 以外的連接埠
-本主題說明 Azure SQL Database V12 對於使用 ADO.NET 4.5 或更新版本的用戶端的連接行為所帶來的變更。
+# <a name="ports-beyond-1433-for-adonet-45"></a>ADO.NET 4.5 超過 1433 以外的連接埠
+本主題針對使用 ADO.NET 4.5 或更新版本的用戶端，說明 Azure SQL Database 的連接行為。
 
-## <a name="v11-of-sql-database-port-1433"></a>SQL Database V11：連接埠 1433
-當用戶端程式使用 ADO.NET 4.5 來連接並查詢 SQL Database V11 時，內部順序如下：
-
-1. ADO.NET 嘗試連線到 SQL Database。
-2. ADO.NET 使用連接埠 1433 來呼叫中介軟體模組，中介軟體會連線至 SQL Database。
-3. SQL Database 會將其回應傳回給中介軟體，中介軟體將回應轉送給 ADO.NET 連接埠 1433。
-
-**術語：** 我們使用 *proxy 路由*來說明 ADO.NET 與 SQL Database 互動的上述順序。 如果沒有牽涉到中介軟體，我們會說使用的是「直接路由」  。
-
-## <a name="v12-of-sql-database-outside-vs-inside"></a>SQL Database V12：內部與外部
-對於連線到 V12，我們必須詢問您的用戶端程式是在 Azure 雲端界限「外部」或「內部」執行。 這些小節將討論兩種常見案例。
+## <a name="outside-vs-inside"></a>比較內部與外部
+對於連到 Azure SQL Database 的連線，必須先了解您的用戶端程式是在 Azure 雲端界限「外部」或「內部」執行。 這些小節將討論兩種常見案例。
 
 #### <a name="outside-client-runs-on-your-desktop-computer"></a>*外部：* 在桌上型電腦上執行的用戶端
 連接埠 1433 是裝載您的 SQL Database 用戶端應用程式的桌上型電腦上唯一必須開啟的連接埠。
@@ -64,11 +55,6 @@ ms.openlocfilehash: fa3f1215c809fe2b45293c56cdca4496fa352afb
 * ADO.NET 4.0 支援 TDS 7.3 通訊協定，但不支援 7.4。
 * ADO.NET 4.5 和更新版本支援 TDS 7.4 通訊協定。
 
-#### <a name="sql-database-v11-and-v12"></a>SQL Database V11 和 V12
-SQL Database V11 和 V12 之間的用戶端連線差異是本主題中的重點。
-
-*注意︰*TRANSACT-SQL 陳述式 `SELECT @@version;` 傳回的值是以例如 '11' 的數字開頭。 或者 '12'，以及與 SQL Database V11 和 V12 版本名稱相符的數字。
-
 ## <a name="related-links"></a>相關連結
 * ADO.NET 4.6 於 2015 年 7 月 20 日發行。 您可以在 [這裡](http://blogs.msdn.com/b/dotnet/archive/2015/07/20/announcing-net-framework-4-6.aspx)查看 .NET 小組的部落格公告。
 * ADO.NET 4.5 於 2012 年 8 月 15 日發行。 您可以在 [這裡](http://blogs.msdn.com/b/dotnet/archive/2012/08/15/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code.aspx)查看 .NET 小組的部落格公告。
@@ -82,6 +68,6 @@ SQL Database V11 和 V12 之間的用戶端連線差異是本主題中的重點�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

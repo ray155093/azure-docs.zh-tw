@@ -1,10 +1,10 @@
 ---
-title: "從 Azure 儲存體來回移動資料 | Microsoft Docs"
-description: "這篇文章提供從 Azure 儲存體來回移動資料之不同方法的概觀。"
+title: "從 Azure 中的雲端儲存體來回移動大量資料 | Microsoft Docs"
+description: "從 Azure 儲存體來回移動資料之不同方法的概觀。"
 services: storage
 documentationcenter: 
-author: micurd
-manager: jahogg
+author: JarrettRenshaw
+manager: msmets
 editor: tysonn
 ms.assetid: 5e3947a9-d99b-4108-9d57-3eb67c03e7ba
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
-ms.author: micurd
+ms.date: 01/30/2017
+ms.author: jarrettr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 26dc2d2269855bcb31bc8f6faf2277ac059b81f5
+ms.sourcegitcommit: 3203358dce9cba95d325ec786e7ba12dd45f5ca1
+ms.openlocfilehash: 8b21bcbea774f7a5107da54081f75db331459b5f
 
 
 ---
@@ -78,6 +78,6 @@ Azure CLI 提供您一組開放原始碼的跨平台命令，供您使用 Azure 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

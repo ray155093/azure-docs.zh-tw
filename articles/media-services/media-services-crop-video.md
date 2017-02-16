@@ -1,5 +1,5 @@
 ---
-title: "如何裁剪影片 | Microsoft Docs"
+title: "如何利用媒體編碼器標準裁剪影片 - Azure | Microsoft Docs"
 description: "本文說明如何利用 Media Encoder Standard 裁剪影片。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/23/2017
 ms.author: anilmur;juliako;
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 7b0d7469e9c3688092bf7f98962ede0e4d7ef951
+ms.sourcegitcommit: bdf41edfa6260749a91bc52ec0a2b62fcae99fb0
+ms.openlocfilehash: 5be8472e242db6d17306ba086e4fe06e769018d7
 
 
 ---
@@ -145,6 +145,6 @@ MES 中的裁剪是前置處理階段，因此編碼預設值中的裁剪參數�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

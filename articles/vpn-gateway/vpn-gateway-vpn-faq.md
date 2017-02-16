@@ -1,10 +1,10 @@
 ---
 title: "虛擬網路 VPN 閘道常見問題集 | Microsoft Docs"
-description: "VPN 閘道常見問題集。 Microsoft Azure 虛擬網路跨單位連線、混合式組態連線和 VPN 閘道的常見問題集"
+description: "VPN 閘道常見問題集。 Microsoft Azure 虛擬網路跨單位連線、混合式組態連線和 VPN 閘道的常見問題集。"
 services: vpn-gateway
 documentationcenter: na
-author: yushwang
-manager: rossort
+author: cherylmc
+manager: timlt
 editor: 
 ms.assetid: 6ce36765-250e-444b-bfc7-5f9ec7ce0742
 ms.service: vpn-gateway
@@ -12,18 +12,18 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/10/2016
-ms.author: yushwang
+ms.date: 01/10/2017
+ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5528e1c53e58d4b9c70f022290160ac9d6a1a986
+ms.sourcegitcommit: 2dda1cd384cf365504811a260872703f2c5c484e
+ms.openlocfilehash: ccb0dc6172b234412558b9175f3872d690d4ea3a
 
 
 ---
 # <a name="vpn-gateway-faq"></a>VPN 閘道常見問題集
 ## <a name="connecting-to-virtual-networks"></a>連接到虛擬網路
 ### <a name="can-i-connect-virtual-networks-in-different-azure-regions"></a>是否可以連接不同 Azure 區域中的虛擬網路？
-是。 事實上，沒有區域限制。 一個虛擬網路可以連接到相同區域或不同 Azure 區域中的另一個虛擬網路。
+是。 事實上，沒有區域限制。 一個虛擬網路可以連接到相同區域或不同 Azure 區域中的另一個虛擬網路。 
 
 ### <a name="can-i-connect-virtual-networks-in-different-subscriptions"></a>是否可以使用不同訂用帳戶連接虛擬網路？
 是。
@@ -31,7 +31,7 @@ ms.openlocfilehash: 5528e1c53e58d4b9c70f022290160ac9d6a1a986
 ### <a name="can-i-connect-to-multiple-sites-from-a-single-virtual-network"></a>是否可以從單一虛擬網路連接到多個網站？
 您可以使用 Windows PowerShell 和 Azure REST API 連接到多個網站。 請參閱＜ [多網站和 VNet 對 VNet 連線能力](#multi-site-and-vnet-to-vnet-connectivity) ＞常見問題集一節。
 
-## <a name="what-are-my-crosspremises-connection-options"></a>有哪些跨單位連線選項？
+## <a name="what-are-my-cross-premises-connection-options"></a>有哪些跨單位連線選項？
 支援下列跨單位連線：
 
 * [網站間](vpn-gateway-site-to-site-create.md) – 透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線。 此類型的連線需要 VPN 裝置或 RRAS。
@@ -42,10 +42,10 @@ ms.openlocfilehash: 5528e1c53e58d4b9c70f022290160ac9d6a1a986
 
 如需連線詳細資訊，請參閱 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
 
-### <a name="what-is-the-difference-between-a-sitetosite-connection-and-pointtosite"></a>網站間連線和點對站台之間的差異為何？
+### <a name="what-is-the-difference-between-a-site-to-site-connection-and-point-to-site"></a>網站間連線和點對站台之間的差異為何？
 **網站間** 連線可讓您在任何位於您內部部署的電腦之間連接到虛擬網路內的任何虛擬機器或角色執行個體，視您選擇如何設定路由而定。 對於永遠可用的跨單位連線而言，這是不錯的選項，而且非常適合於混合式組態。 這種類型的連線依賴 IPsec VPN 應用裝置 (硬體或軟體應用裝置)，而此應用裝置必須部署在網路的邊緣。 若要建立此類型的連線，您必須擁有必要的 VPN 硬體以及對外公開的 IPv4 位址。
 
-**點對站台** 連線可讓您從任何地方的單一電腦連線到位於虛擬網路的任何項目。 並會使用 Windows 內建的 VPN 用戶端。 做為點對站台組態的一部分，您會安裝憑證和 VPN 用戶端組態封裝，其中包含可讓您的電腦連接到虛擬網路內任何虛擬機器或角色執行個體的設定。 當您想要連接到不在內部部署的虛擬網路時，這樣做很有用。 當您無權存取 VPN 硬體或對外公開的 IPv4 位址時也是不錯的選項，因為這兩者都是網站間連線的必要項目。 
+**點對站台** 連線可讓您從任何地方的單一電腦連線到位於虛擬網路的任何項目。 並會使用 Windows 內建的 VPN 用戶端。 做為點對站台組態的一部分，您會安裝憑證和 VPN 用戶端組態封裝，其中包含可讓您的電腦連接到虛擬網路內任何虛擬機器或角色執行個體的設定。 當您想要連接到不在內部部署的虛擬網路時，這樣做很有用。 當您無權存取 VPN 硬體或對外公開的 IPv4 位址時也是不錯的選項，因為這兩者都是網站間連線的必要項目。
 
 您可以將虛擬網路設定為同時使用網站間和點對站台，前提是您使用路由式 VPN 類型來為閘道建立網站間連線。 路由式 VPN 類型在傳統部署模型中稱為「動態閘道」。
 
@@ -56,14 +56,14 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 
 如需詳細資訊，請參閱〈 [ExpressRoute 常見問題集](../expressroute/expressroute-faqs.md) 〉。
 
-## <a name="sitetosite-connections-and-vpn-devices"></a>網站間連線和 VPN 裝置
+## <a name="site-to-site-connections-and-vpn-devices"></a>網站間連線和 VPN 裝置
 ### <a name="what-should-i-consider-when-selecting-a-vpn-device"></a>選取 VPN 裝置時應該考慮什麼？
 我們已與裝置廠商合作驗證一組標準網站間 VPN 裝置。 可在 [這裡](vpn-gateway-about-vpn-devices.md)找到已知的相容 VPN 裝置、其對應組態指示或範例和裝置規格的清單。 裝置系列中列為已知相容裝置的所有裝置應該使用虛擬網路。 為了協助設定 VPN 裝置，請參閱裝置組態範例或對應到適當裝置系列的連結。
 
 ### <a name="what-do-i-do-if-i-have-a-vpn-device-that-isnt-in-the-known-compatible-device-list"></a>如果我有不在已知相容裝置清單的 VPN 裝置，該怎麼辦？
-如果未看到您的裝置列為已知的相容 VPN 裝置，而且想要使用它進行 VPN 連線，則您將需要確認其符合支援的 IPsec/IKE 組態選項和參數 (在 [這裡](vpn-gateway-about-vpn-devices.md#devices-not-on-the-compatible-list)列出)。 符合最低需求的裝置也應該適合使用 VPN 閘道。 如需額外支援和設定指示，請連絡裝置製造商。
+如果未看到您的裝置列為已知的相容 VPN 裝置，而且想要使用它進行 VPN 連線，則您將需要確認其符合支援的 IPsec/IKE 組態選項和參數 (在 [這裡](vpn-gateway-about-vpn-devices.md)列出)。 符合最低需求的裝置也應該適合使用 VPN 閘道。 如需額外支援和設定指示，請連絡裝置製造商。
 
-### <a name="why-does-my-policybased-vpn-tunnel-go-down-when-traffic-is-idle"></a>為什麼我的原則型 VPN 通道會在流量閒置時終止？
+### <a name="why-does-my-policy-based-vpn-tunnel-go-down-when-traffic-is-idle"></a>為什麼我的原則型 VPN 通道會在流量閒置時終止？
 這是原則型 (也稱為靜態路由) VPN 閘道的預期行為。 當通道上的流量閒置超過 5 分鐘時，通道就會終止。 當流量開始流向任何一個方向時，便會立即重新建立通道。
 
 ### <a name="can-i-use-software-vpns-to-connect-to-azure"></a>可以使用軟體 VPN 連接到 Azure 嗎？
@@ -71,8 +71,8 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 
 其他軟體 VPN 解決方案只要符合業界標準 IPsec 實作，應該就能使用我們的閘道。 如需設定和支援指示，請連絡軟體供應商。
 
-## <a name="pointtosite-connections"></a>點對站連接
-### <a name="what-operating-systems-can-i-use-with-pointtosite"></a>可以使用哪些作業系統搭配點對站台？
+## <a name="point-to-site-connections"></a>點對站連接
+### <a name="what-operating-systems-can-i-use-with-point-to-site"></a>可以使用哪些作業系統搭配點對站台？
 以下為支援的作業系統：
 
 * Windows 7 (32 位元和 64 位元)
@@ -83,39 +83,39 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 * Windows Server 2012 R2 (僅限 64 位元)
 * Windows 10
 
-### <a name="can-i-use-any-software-vpn-client-for-pointtosite-that-supports-sstp"></a>是否可以對支援 SSTP 的點對站台使用任何軟體 VPN 用戶端？
+### <a name="can-i-use-any-software-vpn-client-for-point-to-site-that-supports-sstp"></a>是否可以對支援 SSTP 的點對站台使用任何軟體 VPN 用戶端？
 否。 支援只限於上面所列的 Windows 作業系統版本。
 
-### <a name="how-many-vpn-client-endpoints-can-i-have-in-my-pointtosite-configuration"></a>在我的點對站台組態中可以有多少個 VPN 用戶端端點？
+### <a name="how-many-vpn-client-endpoints-can-i-have-in-my-point-to-site-configuration"></a>在我的點對站台組態中可以有多少個 VPN 用戶端端點？
 我們最多支援 128 個 VPN 用戶端可以同時連線到虛擬網路。
 
-### <a name="can-i-use-my-own-internal-pki-root-ca-for-pointtosite-connectivity"></a>是否可以使用自己的內部 PKI 根 CA 進行點對站台連線？
+### <a name="can-i-use-my-own-internal-pki-root-ca-for-point-to-site-connectivity"></a>是否可以使用自己的內部 PKI 根 CA 進行點對站台連線？
 是。 先前只能使用自我簽署的根憑證。 您仍然可以上傳 20 個根憑證。
 
-### <a name="can-i-traverse-proxies-and-firewalls-using-pointtosite-capability"></a>是否可以使用點對站台功能周遊 Proxy 和防火牆？
+### <a name="can-i-traverse-proxies-and-firewalls-using-point-to-site-capability"></a>是否可以使用點對站台功能周遊 Proxy 和防火牆？
 是。 我們使用 SSTP (安全通訊端通道通訊協定) 穿過防火牆。 此通道將會顯示為 HTTPs 連線。
 
-### <a name="if-i-restart-a-client-computer-configured-for-pointtosite-will-the-vpn-automatically-reconnect"></a>如果我重新啟動針對點對站台設定的用戶端電腦，VPN 將自動重新連線嗎？
+### <a name="if-i-restart-a-client-computer-configured-for-point-to-site-will-the-vpn-automatically-reconnect"></a>如果我重新啟動針對點對站台設定的用戶端電腦，VPN 將自動重新連線嗎？
 用戶端電腦預設為不會自動重新建立 VPN 連線。
 
-### <a name="does-pointtosite-support-autoreconnect-and-ddns-on-the-vpn-clients"></a>在 VPN 用戶端上點對站台支援自動重新連接和 DDNS 嗎？
+### <a name="does-point-to-site-support-auto-reconnect-and-ddns-on-the-vpn-clients"></a>在 VPN 用戶端上點對站台支援自動重新連接和 DDNS 嗎？
 點對站台 VPN 目前不支援自動重新連接和 DDNS。
 
-### <a name="can-i-have-sitetosite-and-pointtosite-configurations-coexist-for-the-same-virtual-network"></a>對於相同的虛擬網路，網站間和點對站台組態是否可以同時存在？
-是。 如果閘道是路由式 VPN 類型，這兩個解決方案都可正常運作。 如果是傳統部署模型，則需要動態閘道。 靜態路由 VPN 閘道或使用 -VpnType PolicyBased 的閘道不支援點對站。
+### <a name="can-i-have-site-to-site-and-point-to-site-configurations-coexist-for-the-same-virtual-network"></a>對於相同的虛擬網路，網站間和點對站台組態是否可以同時存在？
+是。 如果閘道是路由式 VPN 類型，這兩個解決方案都可正常運作。 如果是傳統部署模型，則需要動態閘道。 靜態路由 VPN 閘道或使用 `-VpnType PolicyBased` cmdlet 的閘道不支援點對站。
 
-### <a name="can-i-configure-a-pointtosite-client-to-connect-to-multiple-virtual-networks-at-the-same-time"></a>是否可以將點對站台用戶端設定為同時連接到多個虛擬網路？
+### <a name="can-i-configure-a-point-to-site-client-to-connect-to-multiple-virtual-networks-at-the-same-time"></a>是否可以將點對站台用戶端設定為同時連接到多個虛擬網路？
 是，可以的。 但是虛擬網路不能有重疊的 IP 前置詞，而且點對站台位址空間在虛擬網路之間不得重疊。
 
-### <a name="how-much-throughput-can-i-expect-through-sitetosite-or-pointtosite-connections"></a>透過網站間或點對站台連線可以獲得多少輸送量？
+### <a name="how-much-throughput-can-i-expect-through-site-to-site-or-point-to-site-connections"></a>透過網站間或點對站台連線可以獲得多少輸送量？
 很難維護 VPN 通道的確切輸送量。 IPsec 和 SSTP 為加密嚴謹的 VPN 通訊協定。 輸送量也會受限於內部部署與網際網路之間的延遲和頻寬。
 
 ## <a name="gateways"></a>閘道
-### <a name="what-is-a-policybased-staticrouting-gateway"></a>什麼是以原則為基礎的 (靜態路由) 閘道？
+### <a name="what-is-a-policy-based-static-routing-gateway"></a>什麼是以原則為基礎的 (靜態路由) 閘道？
 以原則為基礎的閘道會實作原則式 VPN。 原則式 VPN 會根據內部部署網路與 Azure VNet 之間的位址首碼組合，透過 IPsec 通道加密和直接封包。 原則 (或流量選取器) 通常定義為 VPN 組態中的存取清單。
 
-### <a name="what-is-a-routebased-dynamicrouting-gateway"></a>什麼是以路由為基礎的 (動態路由) 閘道？
-路由式閘道實作路由式 VPN。 路由式 Vpn 會使用 IP 轉送或路由表中的「路由」，直接封包至其對應的通道介面。 然後，通道介面會加密或解密輸入和輸出通道的封包。 路由式 VPN 的原則或流量選取器會設定為任何對任何 (或萬用字元)。
+### <a name="what-is-a-route-based-dynamic-routing-gateway"></a>什麼是以路由為基礎的 (動態路由) 閘道？
+路由式閘道實作路由式 VPN。 路由式 VPN 會使用 IP 轉送或路由表中的「路由」，直接封包至其對應的通道介面。 然後，通道介面會加密或解密輸入和輸出通道的封包。 路由式 VPN 的原則或流量選取器會設定為任何對任何 (或萬用字元)。
 
 ### <a name="can-i-get-my-vpn-gateway-ip-address-before-i-create-it"></a>在建立之前是否可以取得我的 VPN 閘道 IP 位址？
 否。 您必須先建立閘道才能取得 IP 位址。 如果您刪除並重新建立 VPN 閘道，IP 位址就會變更。
@@ -123,29 +123,36 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 ### <a name="how-does-my-vpn-tunnel-get-authenticated"></a>我的 VPN 通道如何獲得驗證？
 Azure VPN 使用 PSK (預先共用金鑰) 驗證。 當建立 VPN 通道時，就會產生預先共用金鑰 (PSK)。 您可以使用設定預先共用金鑰 PowerShell Cmdlet 或 REST API，將自動產生的 PSK 變更為您自己的。
 
-### <a name="can-i-use-the-set-preshared-key-api-to-configure-my-policybased-static-routing-gateway-vpn"></a>是否可以使用「設定預先共用金鑰 API」來設定我的原則式 (靜態路由) 閘道 VPN？
+### <a name="can-i-use-the-set-pre-shared-key-api-to-configure-my-policy-based-static-routing-gateway-vpn"></a>是否可以使用「設定預先共用金鑰 API」來設定我的原則式 (靜態路由) 閘道 VPN？
 是，設定預先共用金鑰 API 和 PowerShell Cmdlet 可用來同時設定 Azure 原則式 (靜態) VPN 和路由式 (動態) 路由 VPN。
 
 ### <a name="can-i-use-other-authentication-options"></a>是否可以使用其他驗證選項？
 我們受限於只能使用預先共用的金鑰 (PSK) 進行驗證。
 
-### <a name="what-is-the-gateway-subnet-and-why-is-it-needed"></a>什麼是「閘道子網路」，以及為何需要它？
-我們具有為了啟用跨單位連線能力而執行的閘道服務。 
+### <a name="what-is-the-gatewaysubnet-and-why-is-it-needed"></a>什麼是「閘道子網路」，以及為何需要它？
+我們具有為了啟用跨單位連線能力而執行的閘道服務。
 
 您必須為 VNet 建立閘道子網路以設定 VPN 閘道。 所有閘道子網路都必須命名為 GatewaySubnet 才能正常運作。 請勿將閘道子網路命名為其他名稱。 請勿對閘道子網路部署 VM 或任何其他項目。
 
-閘道子網路的最小大小完全取決於您想要建立的組態。 雖然某些組態的閘道子網路最小可以建立為 /29，但建議您建立 /28 或更大 (/28、/27、/26 等) 的閘道子網路。 
+閘道子網路的最小大小完全取決於您想要建立的組態。 雖然某些組態的閘道子網路最小可以建立為 /29，但建議您建立 /28 或更大 (/28、/27、/26 等) 的閘道子網路。
 
 ### <a name="can-i-deploy-virtual-machines-or-role-instances-to-my-gateway-subnet"></a>是否可以將虛擬機器或角色執行個體部署到閘道子網路？
 否。
 
 ### <a name="how-do-i-specify-which-traffic-goes-through-the-vpn-gateway"></a>如何指定通過 VPN 閘道的流量？
-如果您使用 Azure 傳統入口網站，請在 [網路] 頁面的 [區域網路] 下，新增每一個您想要虛擬網路透過閘道傳送的範圍。
+
+####<a name="resource-manager-deployment-model"></a>資源管理員部署模型。
+* PowerShell：使用 "AddressPrefix" 以指定本機網路閘道的流量。
+* Azure 入口網站：瀏覽至 [本機網路閘道] > [組態] > [位址空間]。
+
+####<a name="classic-deployment-model"></a>傳統部署模型
+* Azure 入口網站︰瀏覽至傳統虛擬網路 > VPN 連線 > 站對站 VPN 連線 > 本機網站名稱 > 本機網站 > 用戶端位址空間。 
+* 傳統入口網站：在 [網路] 頁面的 [區域網路] 下，新增每一個您想要虛擬網路透過閘道傳送的範圍。 
 
 ### <a name="can-i-configure-forced-tunneling"></a>是否可以設定強制通道？
 是。 請參閱 [設定強制通道](vpn-gateway-about-forced-tunneling.md)。
 
-### <a name="can-i-set-up-my-own-vpn-server-in-azure-and-use-it-to-connect-to-my-onpremises-network"></a>是否可以在 Azure 中設定自己的 VPN 伺服器，並用來連接到內部部署網路？
+### <a name="can-i-set-up-my-own-vpn-server-in-azure-and-use-it-to-connect-to-my-on-premises-network"></a>是否可以在 Azure 中設定自己的 VPN 伺服器，並用來連接到內部部署網路？
 是，您可以從 Azure Marketplace 或建立自己的 VPN 路由器，在 Azure 中部署自己的 VPN 閘道或伺服器。 您將需要在虛擬網路中設定使用者定義的路由，以確保在您的內部部署網路與虛擬網路子網路之間適當地路由傳送流量。
 
 ### <a name="why-are-certain-ports-opened-on-my-vpn-gateway"></a>為什麼 VPN 閘道上的某些連接埠已開啟？
@@ -156,41 +163,43 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 ### <a name="more-information-about-gateway-types-requirements-and-throughput"></a>閘道類型、需求和輸送量的詳細資訊
 如需詳細資訊，請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。
 
-## <a name="multisite-and-vnettovnet-connectivity"></a>多網站和 VNet 對 VNet 連線能力
-### <a name="which-type-of-gateways-can-support-multisite-and-vnettovnet-connectivity"></a>哪一種類型的閘道可以支援多網站和 VNet 對 VNet 連線能力？
+## <a name="multi-site-and-vnet-to-vnet-connectivity"></a>多網站和 VNet 對 VNet 連線能力
+### <a name="which-type-of-gateways-can-support-multi-site-and-vnet-to-vnet-connectivity"></a>哪一種類型的閘道可以支援多網站和 VNet 對 VNet 連線能力？
 只有路由式 (動態路由) VPN 可以支援。
 
 ### <a name="can-i-connect-a-vnet-with-a-routebased-vpn-type-to-another-vnet-with-a-policybased-vpn-type"></a>是否可以將 RouteBased VPN 類型的 VNet 連線到另一個 PolicyBased VPN 類型的 VNet？
 否，這兩個虛擬網路必須使用路由式 (動態路由) VPN。
 
-### <a name="is-the-vnettovnet-traffic-secure"></a>VNet 對 VNet 流量是否安全？
+### <a name="is-the-vnet-to-vnet-traffic-secure"></a>VNet 對 VNet 流量是否安全？
 是，它是由 IPsec/IKE 加密保護。
 
-### <a name="does-vnettovnet-traffic-travel-over-the-azure-backbone"></a>VNet 對 VNet 流量會經過 Azure 的骨幹嗎？
-是。
+### <a name="does-vnet-to-vnet-traffic-travel-over-the-azure-backbone"></a>VNet 對 VNet 流量會經過 Azure 的骨幹嗎？
+是，此流量會經過 Azure 骨幹。 不經過網際網路。
 
-### <a name="how-many-onpremises-sites-and-virtual-networks-can-one-virtual-network-connect-to"></a>一個虛擬網路可以連接多少內部部署網站和虛擬網路？
+### <a name="how-many-on-premises-sites-and-virtual-networks-can-one-virtual-network-connect-to"></a>一個虛擬網路可以連接多少內部部署網站和虛擬網路？
 最大 合計 10 (若為基本和標準的動態路由閘道)；30 (若為高效能 VPN 閘道)。
 
-### <a name="can-i-use-pointtosite-vpns-with-my-virtual-network-with-multiple-vpn-tunnels"></a>是否可以使用點對站台 VPN 搭配具有多個 VPN 通道的虛擬網路？
+### <a name="can-i-use-point-to-site-vpns-with-my-virtual-network-with-multiple-vpn-tunnels"></a>是否可以使用點對站台 VPN 搭配具有多個 VPN 通道的虛擬網路？
 是，點對站台 (P2S) VPN 可以與連接到多個內部部署網站和其他虛擬網路的 VPN 閘道搭配使用。
 
-### <a name="can-i-configure-multiple-tunnels-between-my-virtual-network-and-my-onpremises-site-using-multisite-vpn"></a>是否可以使用多網站 VPN，在我的虛擬網路與內部部署網站之間設定多個通道？
-否，不支援 Azure 虛擬網路與內部部署網站之間的備援通道。
+### <a name="can-i-configure-multiple-tunnels-between-my-virtual-network-and-my-on-premises-site-using-multi-site-vpn"></a>是否可以使用多網站 VPN，在我的虛擬網路與內部部署網站之間設定多個通道？
+是，但您必須將這兩個通道上的 BGP 設定為相同的位置。
 
-### <a name="can-there-be-overlapping-address-spaces-among-the-connected-virtual-networks-and-onpremises-local-sites"></a>在連接的虛擬網路和內部部署本機網站之間是否可以有重疊的位址空間？
+### <a name="can-there-be-overlapping-address-spaces-among-the-connected-virtual-networks-and-on-premises-local-sites"></a>在連接的虛擬網路和內部部署本機網站之間是否可以有重疊的位址空間？
 否。 重疊的位址空間會造成網路組態檔上傳或「建立虛擬網路」失敗。
 
-### <a name="do-i-get-more-bandwidth-with-more-sitetosite-vpns-than-for-a-single-virtual-network"></a>比起單一虛擬網路，是否可以使用更多的網站間 VPN，取得更多的頻寬？
+### <a name="do-i-get-more-bandwidth-with-more-site-to-site-vpns-than-for-a-single-virtual-network"></a>比起單一虛擬網路，是否可以使用更多的網站間 VPN，取得更多的頻寬？
 否，所有 VPN 通道 (包括點對站 VPN) 都共用相同的 Azure VPN 閘道與可用的頻寬。
 
-### <a name="can-i-use-azure-vpn-gateway-to-transit-traffic-between-my-onpremises-sites-or-to-another-virtual-network"></a>是否可以使用 Azure VPN 閘道，在我的內部部署網站之間傳輸流量，或將流量傳輸到另一個虛擬網路？
-**傳統部署模型**<br>
-使用傳統部署模型即可透過 Azure VPN 閘道傳輸流量，但其依賴網路組態檔中靜態定義的位址空間。 使用傳統部署模型的 Azure 虛擬網路和 VPN 閘道尚未支援 BGP。 若沒有 BGP，手動定義傳輸位址空間很容易出錯，因此並不建議。<br>
-**Resource Manager 部署模型**<br>
-如果您使用 Resource Manager 部署模型，如需詳細資訊，請參閱 [BGP](#bgp) 一節。
+### <a name="can-i-use-azure-vpn-gateway-to-transit-traffic-between-my-on-premises-sites-or-to-another-virtual-network"></a>是否可以使用 Azure VPN 閘道，在我的內部部署網站之間傳輸流量，或將流量傳輸到另一個虛擬網路？
 
-### <a name="does-azure-generate-the-same-ipsecike-preshared-key-for-all-my-vpn-connections-for-the-same-virtual-network"></a>Azure 是否針對相同虛擬網路的所有我的 VPN 連線產生相同的 IPsec/IKE 預先共用金鑰？
+####<a name="resource-manager-deployment-model"></a>資源管理員部署模型。
+是。 如需詳細資訊，請參閱 [BGP](#bgp) 一節。
+
+####<a name="classic-deployment-model"></a>傳統部署模型
+使用傳統部署模型即可透過 Azure VPN 閘道傳輸流量，但其依賴網路組態檔中靜態定義的位址空間。 使用傳統部署模型的 Azure 虛擬網路和 VPN 閘道尚未支援 BGP。 若沒有 BGP，手動定義傳輸位址空間很容易出錯，因此並不建議。<br>
+
+### <a name="does-azure-generate-the-same-ipsecike-pre-shared-key-for-all-my-vpn-connections-for-the-same-virtual-network"></a>Azure 是否針對相同虛擬網路的所有我的 VPN 連線產生相同的 IPsec/IKE 預先共用金鑰？
 否，Azure 預設會針對不同 VPN 連線產生不同的預先共用金鑰。 不過，您可以使用設定 VPN 閘道金鑰 REST API 或 PowerShell Cmdlet 來設定您偏好的金鑰值。 金鑰必須是長度介於 1 到 128 個字元的英數字串。
 
 ### <a name="does-azure-charge-for-traffic-between-virtual-networks"></a>Azure 會對虛擬網路之間的流量收費嗎？
@@ -202,13 +211,13 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 ## <a name="a-namebgpabgp"></a><a name="bgp"></a>BGP
 [!INCLUDE [vpn-gateway-bgp-faq-include](../../includes/vpn-gateway-bpg-faq-include.md)]
 
-## <a name="crosspremises-connectivity-and-vms"></a>跨單位連線與 VM
-### <a name="if-my-virtual-machine-is-in-a-virtual-network-and-i-have-a-crosspremises-connection-how-should-i-connect-to-the-vm"></a>如果我的虛擬機器在虛擬網路中，而且我有跨單位連線，應該如何連接至 VM？
+## <a name="cross-premises-connectivity-and-vms"></a>跨單位連線與 VM
+### <a name="if-my-virtual-machine-is-in-a-virtual-network-and-i-have-a-cross-premises-connection-how-should-i-connect-to-the-vm"></a>如果我的虛擬機器在虛擬網路中，而且我有跨單位連線，應該如何連接至 VM？
 您有幾個選項。 如果您已啟用 RDP，並且已建立端點，則可以使用 VIP 連接到您的虛擬機器。 在此情況下，您將指定 VIP 和您想要連接到的通訊埠。 您將需要在虛擬機器上設定流量的連接埠。 一般而言，您會移至 Azure 傳統入口網站，並將 RDP 連線的設定儲存到電腦。 這些設定包含必要的連線資訊。
 
 如果您有已設定跨單位連線的虛擬網路，則可以使用內部 DIP 或私人 IP 位址連接到您的虛擬機器。 您也可以從位於相同虛擬網路的另一部虛擬機器透過內部 DIP 連接到您的虛擬機器。 如果您是從虛擬網路外的位置連接，則無法使用 DIP 來 RDP 到虛擬機器。 例如，如果您已設定點對站台虛擬網路，而且未從您的電腦建立連線，則無法透過 DIP 連線到虛擬機器。
 
-### <a name="if-my-virtual-machine-is-in-a-virtual-network-with-crosspremises-connectivity-does-all-the-traffic-from-my-vm-go-through-that-connection"></a>如果我的虛擬機器位於具有跨單位連線能力的虛擬網路，所有來自我的 VM 的流量是否都會通過該連線？
+### <a name="if-my-virtual-machine-is-in-a-virtual-network-with-cross-premises-connectivity-does-all-the-traffic-from-my-vm-go-through-that-connection"></a>如果我的虛擬機器位於具有跨單位連線能力的虛擬網路，所有來自我的 VM 的流量是否都會通過該連線？
 否。 只有目地的 IP 包含在您指定之虛擬網路區域網路 IP 位址範圍的流量，才會通過虛擬網路閘道。 目的地 IP 位於虛擬網路內的流量仍會留在虛擬網路內。 其他流量是透過負載平衡器傳送至公用網路，或者如果使用強制通道，則透過 Azure VPN 閘道傳送。 如果您進行疑難排解時，務必確定您有列在區域網路中，想要透過閘道傳送的所有範圍。 請確認區域網路位址範圍不會與虛擬網路中的任何位址範圍重疊。 此外，您也會想要驗證您所使用的 DNS 伺服器是否將名稱解析為適當的 IP 位址。
 
 ## <a name="virtual-network-faq"></a>虛擬網路常見問題集
@@ -216,7 +225,6 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

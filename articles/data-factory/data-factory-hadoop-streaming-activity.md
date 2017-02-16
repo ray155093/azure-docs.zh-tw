@@ -1,6 +1,6 @@
 ---
-title: "Hadoop 串流活動"
-description: "了解如何使用 Azure Data Factory 中的 Hadoop 串流活動，以在隨選/您自己的 HDInsight 叢集上執行 Hadoop 串流程式。"
+title: "使用 Hadoop 資料流活動轉換資料 - Azure | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 中的 Hadoop 資料流活動，以在隨選/您自己的 HDInsight 叢集上執行 Hadoop 資料流程式來轉換資料。"
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 12/05/2016
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: a4121f8857fa9eaeb1cf1bca70e29666f6a04f63
-ms.openlocfilehash: 58c0e0cfd862bc421c3b4a9ad042283a22656460
+ms.sourcegitcommit: 49545648a069f25820f6a6e483072be8410b091e
+ms.openlocfilehash: 56754bde961708f04477be74e1ae80acddf2c0cd
 
 
 ---
-# <a name="hadoop-streaming-activity"></a>Hadoop 串流活動
+# <a name="transform-data-using-hadoop-streaming-activity-in-azure-data-factory"></a>使用 Azure Data Factory 中的 Hadoop 資料流活動轉換資料
 > [!div class="op_single_selector"]
 > * [Hive](data-factory-hive-activity.md)  
 > * [Pig](data-factory-pig-activity.md)  
@@ -224,6 +224,6 @@ HDInsight 叢集會使用範例程式 (wc.exe 和 cat.exe) 和資料 (將 davinc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

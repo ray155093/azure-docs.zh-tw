@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 09/24/2016
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: caf6dd414bd8f8180c90835dd9744dcd98f7709c
+ms.sourcegitcommit: 615e7ea84aae45f384edb671a28e4ff98b4ade3a
+ms.openlocfilehash: d61b7a9c8199b15c8bb24e7146ea93a2f67fb0a7
 
 
 ---
@@ -98,16 +98,16 @@ azure servicefabric cluster connect --connection-endpoint http://ip:19080 --clie
 ```
 如果您有多個 CA，請使用逗號做為分隔符號。
 
-如果憑證中的一般名稱不符合連接端點，您可以使用 `--strict-ssl` 參數略過驗證，如下列命令所示︰ 
+如果憑證中的一般名稱不符合連接端點，您可以使用 `--strict-ssl-false` 參數略過驗證，如下列命令所示︰ 
 
 ```
-azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl false 
+azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl-false 
 ```
 
-如果您想要跳過 CA 驗證，您可以新增 --reject-unauthorized 參數，如下列命令所示︰ 
+如果您想要略過 CA 驗證，您可以新增 --reject-unauthorized-false 參數，如下列命令所示︰ 
 
 ```
-azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized false 
+azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized-false 
 ```
 
 連線之後，您應該能夠執行其他 CLI 命令來與叢集互動。 
@@ -168,6 +168,7 @@ openssl pkcs12 -in certificate.pfx -out mycert.pem -nodes
 
 請參閱[OpenSSL 文件](https://www.openssl.org/docs/man1.0.1/apps/pkcs12.html)以取得詳細資訊。
 
+<a id="troubleshooting"></a>
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="copying-of-the-application-package-does-not-succeed"></a>未成功複製應用程式封裝
 檢查是否已安裝 `openssh` 。 根據預設，Ubuntu 桌面不會安裝此軟體。 使用下列命令安裝它：
@@ -203,6 +204,6 @@ openssl pkcs12 -in certificate.pfx -out mycert.pem -nodes
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

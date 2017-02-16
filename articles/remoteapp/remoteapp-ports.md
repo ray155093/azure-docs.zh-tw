@@ -1,49 +1,57 @@
-
 ---
-title: 加入客戶虛擬網路中部署的 Azure RemoteApp 白名單的連接埠和 URL 清單 | Microsoft Docs
-description: 了解您必須設定哪些連接埠及 URL，才能透過 Azure RemoteApp 進行通訊。
+title: "加入客戶虛擬網路中部署的 Azure RemoteApp 白名單的連接埠和 URL 清單 | Microsoft Docs"
+description: "了解您必須設定哪些連接埠及 URL，才能透過 Azure RemoteApp 進行通訊。"
 services: remoteapp
-documentationcenter: ''
+documentationcenter: 
 author: mghosh1616
 manager: mbaldwin
-
+ms.assetid: 5a001ff7-14c9-47fa-9b39-78fd5a5f0250
 ms.service: remoteapp
 ms.workload: compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/15/2016
-ms.author: elizapo
+ms.date: 12/16/2016
+ms.author: mbaldwin
+translationtype: Human Translation
+ms.sourcegitcommit: 79f6398b861597e3303231bc17f69be1bde947ae
+ms.openlocfilehash: ef052d074b593e4bbecfdbfb3af76d1ba1249e33
+
 
 ---
-# 允許存取客戶虛擬網路中部署的 Azure RemoteApp 的連接埠和 URL 清單
+# <a name="list-of-ports-and-urls-to-permit-access-for-azure-remoteapp-deployed-in-customer-virtual-network"></a>允許存取客戶虛擬網路中部署的 Azure RemoteApp 的連接埠和 URL 清單
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
-以下適用於雲端或混合式集合 Azure RemoteApp (如果您要在虛擬網路 (VNET) 中部署它)。如需虛擬網路的詳細資訊，請閱讀[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。如果您已經建立網路安全性群組 (NSG) 來限制流向您針對 Azure RemoteApp 選擇的虛擬網路資源的流量，請確定可透過虛擬網路上的安全性原則存取並允許以下項目。如需網路安全性群組的詳細資訊，請參閱[什麼是網路安全性群組？ (NSG)？](../virtual-network/virtual-networks-nsg.md)。
+如果您要在虛擬網路 (VNET) 中部署 Azure RemoteApp 雲端或混合式集合，請看以下的連接埠資訊。 如需虛擬網路的詳細資訊，請參閱 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。 如果您已經建立網路安全性群組 (NSG) 來限制流向您的集合中虛擬網路資源的流量，請確定可透過虛擬網路上的安全性原則存取並允許使用以下連接埠。 如需網路安全性群組的詳細資訊，請參閱[什麼是網路安全性群組？(NSG)？](../virtual-network/virtual-networks-nsg.md)。
 
-## Azure RemoteApp 子網路必須存取以下端點和 URL：
+## <a name="azure-remoteapp-subnet-needs-access-to-these-endpoints-and-urls"></a>Azure RemoteApp 子網路必須存取以下端點和 URL：
 * *.servicebus.windows.net
 * *.servicebus.net
-* https://*.remoteapp.windwsazure.com
-* https://www.remoteapp.windowsazure.com
-* https://*remoteapp.windowsazure.com
-* https://*.core.windows.net
-* 輸出：TCP：443、TCP：10101-10175
-* 選用 – UDP：10201-10275
+* https://*.remoteapp.windowsazure.com  
+* https://www.remoteapp.windowsazure.com 
+* https://*remoteapp.windowsazure.com  
+* https://*.core.windows.net  
+* 輸出：TCP：443、TCP：10101-10175 
+* 選用 – UDP：10201-10275  
 
-## Azure RemoteApp 用戶端必須存取以下端點和 URL：
+## <a name="azure-remoteapp-clients-need-access-to-these-endpoints-and-urls"></a>Azure RemoteApp 用戶端必須存取以下端點和 URL：
 這裡的用戶端指的是使用者用來連線到 Azure RemoteApp 集合中部署應用程式的桌上型電腦、裝置等等。
 
-* https://telemetry.remoteapp.windowsazure.com
-* https://*.remoteapp.windowsazure.com (選用的 UDP 連接埠就是供此位址使用)
-* https://login.windows.net
-* https://login.microsoftonline.com
-* https://www.remoteapp.windowsazure.com
-* https://*.core.windows.net
-* 輸出：TCP：443
-* 選用 - UDP：3391
+* https://telemetry.remoteapp.windowsazure.com  
+* https://*.remoteapp.windowsazure.com (選用的 UDP 連接埠是供此位址使用) 
+* https://login.windows.net  
+* https://login.microsoftonline.com  
+* https://www.remoteapp.windowsazure.com 
+* https://*.core.windows.net  
+* 輸出：TCP：443  
+* 選用 - UDP：3391 
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Dec16_HO3-->
+
+

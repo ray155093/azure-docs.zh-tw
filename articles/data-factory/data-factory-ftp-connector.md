@@ -1,5 +1,5 @@
 ---
-title: "從 FTP 伺服器移動資料 | Microsoft Docs"
+title: "使用 Azure Data Factory 從 FTP 伺服器移動資料 | Microsoft Docs"
 description: "了解如何使用 Azure Data Factory 從 FTP 伺服器移動資料。"
 services: data-factory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/22/2017
+ms.date: 01/24/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: f27d978eab3aba52ee9a51a5f284b592e3edd6af
+ms.sourcegitcommit: 5e7abf7b5cd6042ce64e6e09683b259bac82d6df
+ms.openlocfilehash: 492c383865e86a19e56af816a77e02922adbc790
 
 
 ---
@@ -323,6 +323,6 @@ Data Factory 目前只支援將資料從 FTP 伺服器移到其他資料存放�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/04/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 366642a753223aec116ebd87751dfce0c393f7a7
+ms.sourcegitcommit: 93990e342f6bd8fcfe9781bcb021aabfd33e8572
+ms.openlocfilehash: 6971e3d36629640d3a550539b29ba7cc4c0da6b7
 
 
 ---
@@ -27,14 +27,17 @@ ms.openlocfilehash: 366642a753223aec116ebd87751dfce0c393f7a7
 在本文中，您將學習如何使用安全殼層 (SSH) 連線至 Azure HDInsight 叢集上的 Hadoop，然後使用 Hive 命令列介面 (CLI) 以互動方式提交 Hive 查詢。
 
 > [!IMPORTANT]
-> 當以 Linux 為基礎的 HDInsight 叢集上有提供 Hive 命令時，您應考慮使用 Beeline。 Beeline 是可搭配 Hive 使用的較新用戶端，隨附於您的 HDInsight 叢集中。 如需有關如何使用它的詳細資訊，請參閱 [使用 Beeline 搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-beeline.md)。
-> 
-> 
+> 雖然 HDInsight 叢集上有提供 Hive 命令，但是您應該考慮使用 Beeline。 Beeline 是可搭配 Hive 使用的較新用戶端，隨附於您的 HDInsight 叢集中。 如需有關如何使用它的詳細資訊，請參閱 [使用 Beeline 搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-beeline.md)。
+
 
 ## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目：
 
 * HDInsight 叢集上以 Linux 為基礎的 Hadoop。
+
+  > [!IMPORTANT]
+  > Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * SSH 用戶端。 Linux、Unix 和 Mac OS 應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 ## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
@@ -73,7 +76,7 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
    * **CREATE EXTERNAL TABLE** - 在 Hive 中建立新的「外部」資料表。 外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置。
    * **ROW FORMAT** - 告訴 Hive 如何格式化資料。 在此情況下，每個記錄中的欄位會以空格隔開。
    * **STORED AS TEXTFILE LOCATION** - 將資料的儲存位置告訴 Hive (example/data 目錄)，且資料儲存為文字。
-   * **SELECT** - 選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。 這應該會傳回值 **3** ，因為有 3 個資料列包含此值。
+   * **SELECT** - 選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。 這應該會傳回值 **3** ，因為有&3; 個資料列包含此值。
    * **INPUT__FILE__NAME LIKE '%.log'** - 告訴 Hive 我們只應該從檔名以 log 結尾的檔案中傳回資料。 這將限制包含此資料的 sample.log 檔案搜尋，對於不符合我們所定義結構描述的其他範例資料檔案，會防止其傳回資料。
      
      > [!NOTE]
@@ -154,6 +157,6 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

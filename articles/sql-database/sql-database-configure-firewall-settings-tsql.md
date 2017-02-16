@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 08/30/2016
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 86bc7d89bb5725add8ba05b6f0978467147fd3ca
-ms.openlocfilehash: 0f91e59a72b033c0a0dc52b4f127478b73c66ff1
+ms.sourcegitcommit: 2f24c1c43300a3c5035fbb4e90c3d13f73c1bc74
+ms.openlocfilehash: ef51f63984d342422ee5f2a93acfee6357df57ca
 
 
 ---
@@ -76,6 +76,11 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 如需這些預存程序的詳細資訊，請參閱 [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) 和 [sp_delete_database_firewall_rule](https://msdn.microsoft.com/library/dn270030.aspx)。
 
+> [!NOTE]
+> 如需示範如何使用資料庫層級防火牆的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
+>
+
+
 ## <a name="next-steps"></a>後續步驟
 如需使用其他方法建立伺服器層級防火牆規則的做法文章，請參閱： 
 
@@ -94,6 +99,6 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

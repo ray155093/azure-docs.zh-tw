@@ -14,42 +14,50 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/24/2016
+ms.date: 01/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 74d50642911d59d13bed27324c3fca1867f2fa2d
+ms.sourcegitcommit: 1618ed7971ffef0eae55b73b4bdd04f3f14195ba
+ms.openlocfilehash: a070df78bf95173aa48da60d24d14d08d9be8d9a
 
 
 ---
-# <a name="get-started-in-the-hadoop-ecosystem-with-a-hadoop-sandbox-on-a-virtual-machine"></a>透過虛擬機器的 Hadoop 沙箱開始使用 Hadoop 生態系統
-了解如何在虛擬機器上從 Hortonworks 安裝 Hadoop 沙箱，以了解 Hadoop 生態系統。 沙箱提供本機開發環境，讓您了解 Hadoop、Hadoop 分散式檔案系統 (HDFS)，以及作業提交。
+# <a name="get-started-in-the-hadoop-ecosystem-with-a-hadoop-sandbox-on-a-virtual-machine"></a>透過虛擬機器上的 Hadoop 沙箱開始使用 Hadoop 生態系統
+
+了解如何在虛擬機器上從 Hortonworks 安裝 Hadoop 沙箱，以了解 Hadoop 生態系統。 沙箱提供本機開發環境，讓您了解 Hadoop、Hadoop 分散式檔案系統 (HDFS)，以及作業提交。 熟悉 Hadoop 之後，您就可以開始在 Azure 中使用 Hadoop 建立 HDInsight 叢集。 有關如何開始使用的詳細資訊，請參閱 [開始在 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
 ## <a name="prerequisites"></a>必要條件
-* [Oracle VirtualBox](https://www.virtualbox.org/)
+* [Oracle VirtualBox](https://www.virtualbox.org/)。 請從[這裡](https://www.virtualbox.org/wiki/Downloads)下載並安裝。
 
-熟悉 Hadoop 之後，您就可以開始在 Azure 中使用 Hadoop 建立 HDInsight 叢集。 有關如何開始使用的詳細資訊，請參閱 [開始在 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
+
 
 ## <a name="download-and-install-the-virtual-machine"></a>下載並安裝虛擬機器
-1. 從 [http://hortonworks.com/downloads/#sandbox](http://hortonworks.com/downloads/#sandbox) 在 Hortonworks 沙箱選取 HDP 2.4 的**為 VirtualBox 下載**項目。 系統會提示您向 Hortonworks 註冊，然後才能開始下載。
+1. 瀏覽至 [Hortonworks 下載](http://hortonworks.com/downloads/#sandbox)。
+2. 按一下 [DOWNLOAD FOR VIRTUALBOX] (適用於 VIRTUALBOX 的下載項目)，以下載最新的 VM 上「Hrotonworks 沙箱」。 系統會提示您向 Hortonworks 註冊，然後才能開始下載。 下載需要一到兩個小時的時間，視您的網路速度而定。
    
     ![用於下載 VirtualBox 之 Hortonworks 沙箱的連結影像](./media/hdinsight-hadoop-emulator-get-started/download-sandbox.png)
-2. 從相同的網頁，在 Hortonworks 沙箱選取 HDP 2.4 的 **VirtualBox 安裝手冊**。 這會下載內含虛擬機器安裝指示的 PDF。
-   
-    ![檢視安裝指南](./media/hdinsight-hadoop-emulator-get-started/view-install-guide.png)
+3. 從相同網頁中，按一下 [Import on Virtual Box] (在 Virtual Box 上匯入) 連結，以下載包含虛擬機器安裝指示的 PDF。
+
+若要下載舊版 HDP 沙箱，請展開封存：
+
+![Hortonworks 沙箱封存](./media/hdinsight-hadoop-emulator-get-started/hortonworks-sandbox-archive.png)
+
 
 ## <a name="start-the-virtual-machine"></a>啟動虛擬機器
-1. 啟動 VirtualBox、選取 [Hortonworks 沙箱]、選取 [啟動]，然後選取 [正常啟動]。
+
+1. 開啟 [Oracle VM VirtualBox]。
+2. 從 [檔案] 功能表中，按一下 [匯入設備]，然後指定「Hortonworks 沙箱」映像。
+1. 選取「Hortonworks 沙箱」、按一下 [啟動]，然後選取 [正常啟動]。 虛擬機器完成開機程序後會顯示登入指示。
    
     ![正常啟動](./media/hdinsight-hadoop-emulator-get-started/normal-start.png)
-2. 虛擬機器完成開機程序後會顯示登入指示。 開啟網頁瀏覽器，並瀏覽至顯示的 URL (通常是 http://127.0.0.1:8888)。
+2. 開啟網頁瀏覽器，並瀏覽至顯示的 URL (通常是 http://127.0.0.1:8888)。
 
-## <a name="set-passwords"></a>設定密碼
+## <a name="set-sandbox-passwords"></a>設定沙箱密碼
+
 1. 從 [Hortonworks 沙箱] 頁面的 [入門] 步驟選取 [檢視進階選項]。 在此頁面上使用該資訊，以透過 SSH 登入沙箱。 使用提供的名稱和密碼。
    
    > [!NOTE]
    > 如果您未安裝 SSH 用戶端，您可以使用虛擬機器在 **http://localhost:4200/** 所提供的網頁型 SSH。
-   > 
    > 
    
     第一次使用 SSH 連線時，系統會提示您變更根帳戶的密碼。 請輸入新密碼，以供日後使用 SSH 登入時使用。
@@ -59,7 +67,8 @@ ms.openlocfilehash: 74d50642911d59d13bed27324c3fca1867f2fa2d
    
     出現提示時，提供 Ambari 系統管理員帳戶的密碼。 當您存取 Ambari Web UI 時將會用到。
 
-## <a name="use-the-hive-command"></a>使用 Hive 命令
+## <a name="use-hive-commands"></a>使用 Hive 命令
+
 1. 在連往沙箱的 SSH 連線中，使用下列命令啟動 Hive 殼層：
    
         hive
@@ -78,6 +87,6 @@ ms.openlocfilehash: 74d50642911d59d13bed27324c3fca1867f2fa2d
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/06/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 56bee9c0a2da3e522290c2274b6d0301defe3f71
+ms.sourcegitcommit: 52153526fb5b127823316b86fa05c0528151e18f
+ms.openlocfilehash: 2dfcdf2207d1437a917c493075e3245bd58381ac
 
 
 ---
@@ -44,7 +44,7 @@ Azure Machine Learning 有兩種類型的服務：
 ## <a name="get-an-azure-machine-learning-authorization-key"></a>取得 Azure Machine Learning 授權金鑰
 當您部署實驗時，會為 Web 服務產生 API 金鑰。 您可以從數個位置擷取金鑰。
 
-## <a name="from-the-microsoft-azure-machine-learning-web-services-portal"></a>透過 Microsoft Azure Machine Learning Web 服務入口網站
+### <a name="from-the-microsoft-azure-machine-learning-web-services-portal"></a>透過 Microsoft Azure Machine Learning Web 服務入口網站
 登入 [Microsoft Azure Machine Learning Web 服務](https://services.azureml.net)入口網站。
 
 若要擷取新 Machine Learning Web 服務的 API 金鑰︰
@@ -62,14 +62,14 @@ Azure Machine Learning 有兩種類型的服務：
 4. 在頂端功能表上，按一下 [取用] 。
 5. 複製並儲存 [主要金鑰] 。
 
-## <a name="classic-web-service"></a>傳統 Web 服務
- 您也可以從 Machine Learning Studio 或 Azure 入口網站擷取傳統 Web 服務的金鑰。
+### <a name="classic-web-service"></a>傳統 Web 服務
+ 您也可以從 Machine Learning Studio 或 Azure 傳統入口網站擷取傳統 Web 服務的金鑰。
 
-### <a name="machine-learning-studio"></a>Machine Learning Studio
+#### <a name="machine-learning-studio"></a>Machine Learning Studio
 1. 在 Machine Learning Studio 中，按一下左側的 [Web 服務]  。
 2. 按一下某個 Web 服務。 [API 金鑰] 位於 [儀表板] 索引標籤上。
 
-### <a name="azure-portal"></a>Azure 入口網站
+#### <a name="azure-classic-portal"></a>Azure 傳統入口網站
 1. 按一下左側的 [機器學習]  。
 2. 按一下您的 Web 服務所在的工作區。
 3. 按一下 [Web 服務] 。
@@ -127,6 +127,6 @@ Azure Machine Learning 有兩種類型的服務：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

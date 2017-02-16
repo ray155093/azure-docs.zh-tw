@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a63d15e7b7954fa63d04facc7d440092e24459da
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f3b75c10ed0012d682562eb943cb67fc8176ddbb
 
 
 ---
@@ -44,7 +44,7 @@ ms.openlocfilehash: a63d15e7b7954fa63d04facc7d440092e24459da
 * (適用於 .NET) 運用 ASP.NET 的任何功能，包括 MVC
 * (適用於 Node.js) 運用 Node 生態系統的任何純 JavaScript 程式庫，包含一般 MVC 程式庫。
 
-## <a name="access-onpremises-data-using-vnet"></a>使用 VNet 存取內部部署資料
+## <a name="access-on-premises-data-using-vnet"></a>使用 VNet 存取內部部署資料
 現今有了行動服務，您已可使用混合式連線來存取內部部署資源。 不過，有些情況還是慣用 VPN 解決方案。 透過 *Azure App Service* ，您可以將 Azure VNet 用於您的行動應用程式後端程式碼。
 
 ## <a name="use-your-favorite-backend-language"></a>使用您最愛的後端語言
@@ -67,6 +67,6 @@ ms.openlocfilehash: a63d15e7b7954fa63d04facc7d440092e24459da
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

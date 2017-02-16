@@ -4,7 +4,7 @@ description: "了解 Azure Toolkit for IntelliJ。"
 services: 
 documentationcenter: java
 author: rmcmurray
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 115a095d-1b70-41d6-adb4-78f24b2a4451
 ms.service: multiple
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 09/20/2016
+ms.date: 12/22/2016
 ms.author: robmcm;asirveda
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6b23f7c1185544cfb37d208abfe00523166e4de5
+ms.sourcegitcommit: d58166140c5de03462df07ea6ea83eb78ffa54ba
+ms.openlocfilehash: 623ec422684fc881cc94d247756e006d4d5dc53a
 
 
 ---
@@ -41,7 +41,7 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 下列文章會示範如何使用 Azure Toolkit for IntelliJ 將 Azure 的功能加入您的 Java 專案：
 
 * [在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯]
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式][IntelliJ 的 HDInsight Tools 外掛程式]
+* [使用適用於 IntelliJ IDEA 的 HDInsight 工具外掛程式建立 HDInsight Spark Linux 叢集的 Spark 應用程式][HDInsight Tools Plugin for IntelliJ]
 
 ## <a name="see-also"></a>另請參閱
 如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
@@ -55,7 +55,7 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
   * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
   * [適用於 IntelliJ 的 Azure 工具組新增功能]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+如需有關使用 Azure 搭配 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]和[適用於 Visual Studio Team Services 的 Java 工具]。
 
 <!-- URL List -->
 
@@ -69,12 +69,13 @@ Azure Toolkit for IntelliJ 提供範本和功能，可讓您輕鬆地使用 Inte
 [適用於 IntelliJ 的 Azure 工具組新增功能]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
+[適用於 Visual Studio Team Services 的 Java 工具]: https://java.visualstudio.com/
 
 [在 IntelliJ 中對 Azure 上的 Java Web 應用程式進行偵錯]: ./app-service-web/app-service-web-debug-java-web-app-in-intellij.md
-[IntelliJ 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md
+[HDInsight Tools Plugin for IntelliJ]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

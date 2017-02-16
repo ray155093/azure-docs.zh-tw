@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/05/2016
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 7ae3af29a21611a4c6e7c8630d8fcea4f2baaf0b
+ms.sourcegitcommit: 02d810db5433370802b866424c24464d64171ef0
+ms.openlocfilehash: 6921965c3286209e024ba59637da0c485b4a0c71
 
 
 ---
@@ -30,7 +30,7 @@ Data Factory 可讓您建立資料導向工作流程，不僅可透過計算服�
 如需詳細資訊，請參閱[概觀與重要概念](data-factory-introduction.md)。
 
 ### <a name="where-can-i-find-pricing-details-for-azure-data-factory"></a>哪裡可以找到 Azure 資料處理站的定價詳細資料？
-請參閱 [Data Factory 定價詳細資料頁面][adf-pricing-details]以了解 Azure Data Factory 的定價詳細資料。  
+請參閱 [Data Factory 定價詳細資料頁面][adf-pricing-details]，以了解 Azure Data Factory 的定價詳細資料。  
 
 ### <a name="how-do-i-get-started-with-azure-data-factory"></a>如何開始使用 Azure Data Factory？
 * 如需 Azure Data Factory 的概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
@@ -101,7 +101,7 @@ Data Factory 可在**美國西部**和**北歐**地區使用。 資料處理站�
 
 ## <a name="hdinsight-activity---faq"></a>HDInsight 活動 - 常見問題集
 ### <a name="what-regions-are-supported-by-hdinsight"></a>HDInsight 支援哪些區域？
-請參閱下列文章中的＜各區域上市情況＞一節：或 [HDInsight 定價詳細資料][hdinsight-supported-regions]。
+請參閱下列文章中的＜各地區上市情況＞一節：或 [HDInsight 定價詳細資料][hdinsight-supported-regions]。
 
 ### <a name="what-region-is-used-by-an-on-demand-hdinsight-cluster"></a>隨選 HDInsight 叢集使用哪一個區域？
 隨選 HDInsight 叢集會建立在存有您指定用來使用叢集之儲存體的位置。    
@@ -114,20 +114,21 @@ Data Factory 可在**美國西部**和**北歐**地區使用。 資料處理站�
 
 如果您使用的是 Data Factory 服務所建立的隨選叢集，請為 HDInsight 連結服務指定額外的儲存體帳戶，以便讓 Data Factory 服務代表您註冊它們。 在隨選連結服務的 JSON 定義中，請使用 **additionalLinkedServiceNames** 屬性指定替代的儲存體帳戶，如下列 JSON 片段所示：
 
+```JSON
+{
+    "name": "MyHDInsightOnDemandLinkedService",
+    "properties":
     {
-        "name": "MyHDInsightOnDemandLinkedService",
-        "properties":
-        {
-            "type": "HDInsightOnDemandLinkedService",
-            "typeProperties": {
-                "clusterSize": 1,
-                "timeToLive": "00:01:00",
-                "linkedServiceName": "LinkedService-SampleData",
-                "additionalLinkedServiceNames": [ "otherLinkedServiceName1", "otherLinkedServiceName2" ]
-            }
+        "type": "HDInsightOnDemandLinkedService",
+        "typeProperties": {
+            "clusterSize": 1,
+            "timeToLive": "00:01:00",
+            "linkedServiceName": "LinkedService-SampleData",
+            "additionalLinkedServiceNames": [ "otherLinkedServiceName1", "otherLinkedServiceName2" ]
         }
     }
-
+}
+```
 在上述範例中，otherLinkedServiceName1 和 otherLinkedServiceName2 連結服務的定義，包含 HDInsight 叢集存取替代儲存體帳戶所需的認證。
 
 ## <a name="slices---faq"></a>配量 - 常見問題集
@@ -148,24 +149,26 @@ Pipeline 1: dataset4->activity4->dataset5
 ### <a name="how-to-run-a-slice-at-another-time-than-midnight-when-the-slice-is-being-produced-daily"></a>每日產生配量時，如何在午夜以外的其他時間執行配量？
 請使用 **offset** 屬性來指定要產生配量的時間。 如需有關此屬性的詳細資料，請參閱 [資料集可用性](data-factory-create-datasets.md#Availability) 一節。 以下是一個簡短的範例：
 
-    "availability":
-    {
-        "frequency": "Day",
-        "interval": 1,
-        "offset": "06:00:00"
-    }
-
-每日配量於 **上午 6 點** (而非預設的午夜) 開始。     
+```json
+"availability":
+{
+    "frequency": "Day",
+    "interval": 1,
+    "offset": "06:00:00"
+}
+```
+每日配量於 **上午&6; 點** (而非預設的午夜) 開始。     
 
 ### <a name="how-can-i-rerun-a-slice"></a>如何重新執行配量？
 您可以利用下列方式之一來重新執行配量：
 
-* 使用「監視及管理應用程式」來重新執行活動時段或配量。 如需相關指示，請參閱 [重新執行已選取的活動時段](data-factory-monitor-manage-app.md#performing-batch-actions) 。   
+* 使用「監視及管理應用程式」來重新執行活動時段或配量。 如需相關指示，請參閱 [重新執行已選取的活動時段](data-factory-monitor-manage-app.md#perform-batch-actions) 。   
 * 在 Azure 入口網站中，於該配量的 [資料配量] 刀鋒視窗上，按一下命令列中的 [執行]。
 * 在配量的 Status 設定為 **Waiting** 的情況下，執行 **Set-AzureRmDataFactorySliceStatus** Cmdlet。   
 
-        Set-AzureRmDataFactorySliceStatus -Status Waiting -ResourceGroupName $ResourceGroup -DataFactoryName $df -TableName $table -StartDateTime "02/26/2015 19:00:00" -EndDateTime "02/26/2015 20:00:00"
-
+    ```PowerShell
+    Set-AzureRmDataFactorySliceStatus -Status Waiting -ResourceGroupName $ResourceGroup -DataFactoryName $df -TableName $table -StartDateTime "02/26/2015 19:00:00" -EndDateTime "02/26/2015 20:00:00"
+    ```
 如需 Cmdlet 的詳細資料，請參閱 [Set-AzureRmDataFactorySliceStatus][set-azure-datafactory-slice-status]。
 
 ### <a name="how-long-did-it-take-to-process-a-slice"></a>處理配量需要多久的時間？
@@ -186,12 +189,12 @@ Pipeline 1: dataset4->activity4->dataset5
 如果真的想要立即停止所有執行作業，唯一的方法就是刪除管線，然後再重新建立。 如果您選擇刪除管線，則「不」需要刪除管線所使用的資料表和連結服務。
 
 [create-factory-using-dotnet-sdk]: data-factory-create-data-factories-programmatically.md
-[msdn-class-library-reference]: https://msdn.microsoft.com/library/dn883654.aspx
-[msdn-rest-api-reference]: https://msdn.microsoft.com/library/dn906738.aspx
+[msdn-class-library-reference]: /dotnet/api/microsoft.azure.management.datafactories.models
+[msdn-rest-api-reference]: /rest/api/datafactory/
 
-[adf-powershell-reference]: https://msdn.microsoft.com/library/dn820234.aspx
+[adf-powershell-reference]: /powershell/resourcemanager/azurerm.datafactories/v2.3.0/azurerm.datafactories
 [azure-portal]: http://portal.azure.com
-[set-azure-datafactory-slice-status]: https://msdn.microsoft.com/library/mt603522.aspx
+[set-azure-datafactory-slice-status]: /powershell/resourcemanager/azurerm.datafactories/v2.3.0/set-azurermdatafactoryslicestatus
 
 [adf-pricing-details]: http://go.microsoft.com/fwlink/?LinkId=517777
 [hdinsight-supported-regions]: http://azure.microsoft.com/pricing/details/hdinsight/
@@ -200,6 +203,6 @@ Pipeline 1: dataset4->activity4->dataset5
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

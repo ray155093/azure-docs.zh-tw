@@ -1,6 +1,6 @@
 ---
-title: "Azure 儲存體安全性概觀 | Microsoft Docs"
-description: " Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。 本文提供可用於 Azure 儲存體的核心 Azure 安全性功能概觀。 "
+title: "可用於 Azure 儲存體的安全性功能 | Microsoft Docs"
+description: " 本文提供可用於 Azure 儲存體的核心 Azure 安全性功能概觀. "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/16/2016
+ms.date: 01/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 488fe9c38d2e8ca26c1d0cf4d3f937e0c3faa902
+ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
+ms.openlocfilehash: 2db6effdaf2e23d00eefdde82d074dd5d47857d7
 
 
 ---
@@ -101,7 +101,6 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

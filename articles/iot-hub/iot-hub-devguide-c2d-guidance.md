@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT 中樞雲端到裝置通訊指引 |Microsoft Docs"
-description: "Azure IoT 中樞開發人員指南 - 直接方法、裝置對應項的所需屬性或雲端到裝置訊息的使用時機指引。"
+title: "Azure IoT 中樞雲端到裝置選項 | Microsoft Docs"
+description: "開發人員指南 - 針對雲端到裝置通訊，提供直接方法、裝置對應項的所需屬性或雲端到裝置訊息的使用時機指引。"
 services: iot-hub
 documentationcenter: 
 author: fsautomata
@@ -15,13 +15,13 @@ ms.workload: na
 ms.date: 11/09/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: 53f14e6fe115ed5f96d25b9ec5ab04abe23712d5
-ms.openlocfilehash: 83801ce4a5450b220f305518cd38025e56adafd8
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: 17b338ab15ae7cf46f6732e7e7a1005eec98990b
 
 
 ---
-# <a name="cloud-to-device-communications-guidance"></a>雲端到裝置通訊指引
-IoT 中樞提供三個選項以便裝置應用程式對後端公開功能︰
+# <a name="cloud-to-device-communications-guidance"></a>Cloud-to-device communications guidance
+IoT 中樞提供三個選項以便裝置應用程式對後端應用程式公開功能︰
 
 * [直接方法][lnk-methods]，適用於需要立即確認其結果的通訊，通常是裝置的互動式控制，例如開啟風扇；
 * [對應項的所需屬性][lnk-twins]，適用於可讓裝置進入特定所需狀態的長時間執行命令。 例如，將遙測傳送間隔設定為 30 分鐘；
@@ -32,7 +32,7 @@ IoT 中樞提供三個選項以便裝置應用程式對後端公開功能︰
 |  | 直接方法 | 對應項的所需屬性 | D2C 訊息 |
 | ---- | ------- | ---------- | ---- |
 | 案例 | 需要立即確認的命令，例如開啟風扇。 | 可讓裝置進入特定所需狀態的長時間執行命令。 例如，將遙測傳送間隔設定為 30 分鐘。 | 對裝置應用程式的單向通知。 |
-| 資料流 | 雙向。 裝置應用程式可以立即回應方法。 後端會接收到根據要求上下文的結果。 | 單向。 裝置應用程式會收到屬性變更的通知。 | 單向。 裝置應用程式接收訊息
+| 資料流 | 雙向。 裝置應用程式可以立即回應方法。 解決方案後端會接收到根據要求上下文的結果。 | 單向。 裝置應用程式會收到屬性變更的通知。 | 單向。 裝置應用程式接收訊息
 | 耐久性 | 無法聯繫已中斷連接的裝置。 後端會收到裝置未連線的通知。 | 屬性值會保留在裝置對應項中。 裝置會在下一次重新連線時讀取它。 使用 [IoT 中樞查詢語言][lnk-query]可擷取屬性值。 | IoT 中樞可以保留訊息長達 48 小時。 |
 | 目標 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 依照 **deviceId** 的單一裝置。 |
 | 大小 | 最多 8KB 要求和 8KB 回應。 | 所需屬性大小上限為 8KB。 | 最多 256KB 的訊息。 |
@@ -42,7 +42,7 @@ IoT 中樞提供三個選項以便裝置應用程式對後端公開功能︰
 在下列教學課程中，了解如何使用直接方法、所需屬性和雲端到裝置訊息︰
 
 * [使用直接方法][lnk-methods-tutorial]，適用於直接方法；
-* [使用所需屬性來設定裝置][lnk-twin-properties]，適用於對應項的所需屬性； 
+* [使用所需屬性來設定裝置][lnk-twin-properties]，適用於裝置對應項的所需屬性； 
 * [傳送雲端到裝置訊息][lnk-c2d-tutorial]，適用於雲端到裝置訊息。
 
 [lnk-twins]: iot-hub-devguide-device-twins.md
@@ -56,6 +56,6 @@ IoT 中樞提供三個選項以便裝置應用程式對後端公開功能︰
 [lnk-c2d-tutorial]: iot-hub-node-node-c2d.md
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

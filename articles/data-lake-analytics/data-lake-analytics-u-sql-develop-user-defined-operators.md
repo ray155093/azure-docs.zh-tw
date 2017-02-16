@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure Data Lake Analytics工作開發 U-SQL 使用者定義運算子 | Microsoft Docs"
-description: "深入了解如何開發使用者定義運算子，以在資料湖分析工作中使用和重複使用。 "
+title: "針對 Azure Data Lake Analytics 作業開發 U-SQL 使用者定義的運算子 | Microsoft Docs"
+description: "了解如何開發使用者定義的運算子，以用於和重複用於 Data Lake Analytics 作業中。 "
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -12,26 +12,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 73d3e5577d0702a93b7f4edf3bf4e29f55a053ed
-ms.openlocfilehash: 88a00c2b0a5aac85bbcaef5b21b10f44121c7d38
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: ef0fa131cc665df68e13ee7be58330f571f3ac90
 
 
 ---
-# <a name="develop-u-sql-user-defined-operators-for-azure-data-lake-analytics-jobs"></a>針對 Azure 資料湖分析工作開發 U-SQL 使用者定義運算子
-深入了解如何開發使用者定義運算子，以在資料湖分析工作中使用和重複使用。 您將開發自訂運算子以轉換國家/地區名稱。
+# <a name="develop-u-sql-user-defined-operators-for-azure-data-lake-analytics-jobs"></a>針對 Azure Data Lake Analytics 作業開發 U-SQL 使用者定義的運算子
+了解如何開發使用者定義的運算子，以用於和重複用於 Data Lake Analytics 作業中。 您將開發自訂運算子以轉換國家/地區名稱。
+
+如需有關開發 U-SQL 一般用途組件的指示，請參閱[針對 Azure Data Lake Analytics 作業開發 U-SQL 組件](data-lake-analytics-u-sql-develop-assemblies.md)
 
 ## <a name="prerequisites"></a>必要條件
 * 已安裝 Visual Studio 2015、Visual Studio 2013 更新 4，或具有 Visual C++ 的 Visual Studio 2012
 * Microsoft Azure SDK for .NET 2.5 版或更新版本。  使用 Web Platform Installer 來進行安裝。
-* 資料湖分析帳戶。  請參閱 [使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md)。
+* 資料湖分析帳戶。  請參閱[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md)。
 * 請參閱 [開始使用 Azure 資料湖分析 U-SQL Studio](data-lake-analytics-u-sql-get-started.md) 教學課程。
 * 連接到 Azure。
 * 上傳來源資料，請參閱[開始使用 Azure Data Lake Analytics U-SQL Studio](data-lake-analytics-u-sql-get-started.md)。 
 
-## <a name="define-and-use-user-defined-operator-in-u-sql"></a>在 U-SQL 中定義和使用使用者定義運算子
+## <a name="define-and-use-user-defined-operator-in-u-sql"></a>在 U-SQL 中定義和使用使用者定義的運算子
 **建立和提交 U-SQL 工作**
 
 1. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
@@ -144,6 +146,6 @@ ms.openlocfilehash: 88a00c2b0a5aac85bbcaef5b21b10f44121c7d38
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業 | Microsoft Docs"
+title: "對 Azure HDInsight 中 Apache Spark 叢集上執行的作業進行偵錯 | Microsoft Docs"
 description: "使用 YARN UI、Spark UI 和 Spark 歷程記錄伺服器，追蹤和偵錯在 Azure HDInsight 中的 Spark 叢集上執行的作業"
 services: hdinsight
 documentationcenter: 
@@ -13,22 +13,23 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/25/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 849e883a707cd84564a5cfae76f31494057ab181
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: d6d7c0d112778172633fa068a119ba075c0fd900
 
 
 ---
-# <a name="track-and-debug-jobs-running-on-apache-spark-cluster-in-hdinsight-linux"></a>追蹤和偵錯在 HDInsight Linux 中的 Apache Spark 叢集上執行的作業
+# <a name="track-and-debug-jobs-running-on-apache-spark-cluster-in-hdinsight"></a>對 HDInsight 中 Apache Spark 叢集上執行的作業進行追蹤和偵錯
+
 在這篇文章中，您將學習如何使用 YARN UI、Spark UI 和 Spark 歷程記錄伺服器，追蹤和偵錯 Spark 作業。 在本文中，我們會使用 Spark 叢集中可用的 Notebook 啟動 Spark 作業， **機器學習服務︰使用 MLLib 對食物檢查資料進行預測分析**。 您可以使用下列步驟來追蹤您使用任何其他方法提交的應用程式，例如， **spark-submit**。
 
 ## <a name="prerequisites"></a>必要條件
 您必須滿足以下條件：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * 您應該開始執行 Notebook， **[機器學習服務︰使用 MLLib 對食物檢查資料進行預測分析](hdinsight-apache-spark-machine-learning-mllib-ipython.md)**。 如需有關如何執行此 Notebook 的指示，請依照下列連結。  
 
 ## <a name="track-an-application-in-the-yarn-ui"></a>追蹤 YARN UI 中的應用程式
@@ -132,6 +133,6 @@ ms.openlocfilehash: 849e883a707cd84564a5cfae76f31494057ab181
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

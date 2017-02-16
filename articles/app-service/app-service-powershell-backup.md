@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/10/2016
 ms.author: nicking
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d2095543e6cb964c9f1aa036c62e9ff6f80dc7c3
+ms.sourcegitcommit: 4edd2696c9a5709ded6e2a3e352090775335f0d2
+ms.openlocfilehash: 172b55a68662dd98c4af946d51f3ece51f7835e1
 
 
 ---
@@ -49,7 +49,7 @@ ms.openlocfilehash: d2095543e6cb964c9f1aa036c62e9ff6f80dc7c3
         $sasUrl = New-AzureStorageContainerSASToken -Name $blobContainerName -Permission rwdl -Context $context -ExpiryTime (Get-Date).AddMonths(1) -FullUri
 
 ## <a name="install-azure-powershell-132-or-greater"></a>安裝 Azure PowerShell 1.3.2 或更新版本
-如需安裝和使用 Azure PowerShell 的指示，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-install-configure.md) 。
+如需安裝和使用 Azure PowerShell 的指示，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](/powershell/azureps-cmdlets-docs) 。
 
 ## <a name="create-a-backup"></a>建立備份
 使用 New-AzureRmWebAppBackup Cmdlet 來建立 Web 應用程式的備份。
@@ -154,6 +154,6 @@ Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

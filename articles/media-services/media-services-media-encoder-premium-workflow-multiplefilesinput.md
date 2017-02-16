@@ -1,5 +1,5 @@
 ---
-title: "搭配進階編碼器使用多個輸入檔案和元件屬性 | Microsoft Docs"
+title: "使用進階編碼器的多個輸入檔案和元件屬性 - Azure | Microsoft Docs"
 description: "本主題說明如何使用 setRuntimeProperties 來使用多個輸入檔案，並將自訂資料傳遞給「媒體編碼器高階工作流程」媒體處理器。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/23/2017
 ms.author: xpouyat;anilmur;juliako
 translationtype: Human Translation
-ms.sourcegitcommit: f8b0917b6eb0295641360c4e0a80e81100809f6e
-ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
+ms.sourcegitcommit: bdf41edfa6260749a91bc52ec0a2b62fcae99fb0
+ms.openlocfilehash: c789a5518575706992c8719c1927a8566c504fbb
 
 
 ---
@@ -27,32 +27,51 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 * 在每個輸入視訊的執行階段在視訊上覆疊文字並設定文字值 (例如，目前的日期)。
 * 自訂剪輯清單 XML (以指定一或多個包含或不含修剪的來源檔案等)。
 * 視訊編碼時在輸入視訊上覆疊標誌影像。
+* 多重音訊語言編碼。
 
 若要在建立工作或傳送多個輸入檔案時，讓**「媒體編碼器高階工作流程」**知道您要變更工作流程中的某些屬性，您必須使用包含 **setRuntimeProperties** 及/或 **transcodeSource** 的組態字串。 本主題說明如何使用它們。
 
 ## <a name="configuration-string-syntax"></a>組態字串語法
 在編碼工作中設定的組態字串會使用類似下面的 XML 文件︰
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <transcodeRequest>
-      <transcodeSource>
-      </transcodeSource>
-      <setRuntimeProperties>
-        <property propertyPath="Media File Input/filename" value="MyInputVideo.mp4" />
-      </setRuntimeProperties>
-    </transcodeRequest>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<transcodeRequest>
+  <transcodeSource>
+  </transcodeSource>
+  <setRuntimeProperties>
+    <property propertyPath="Media File Input/filename" value="VideoFileName.mp4" />
+  </setRuntimeProperties>
+</transcodeRequest>
+```
 
+下列 C# 程式碼會從檔案讀取 XML 設定、使用正確的視訊檔名加以更新，並以作業的形式傳遞給工作：
 
-以下 C# 程式碼從檔案讀取 XML 設定，並以作業的形式傳遞給工作︰
+```c#
+string premiumConfiguration = ReadAllText(@"D:\home\site\wwwroot\Presets\SetRuntime.xml").Replace("VideoFileName", myVideoFileName);
 
-    XDocument configurationXml = XDocument.Load(xmlFileName);
-    IJob job = _context.Jobs.CreateWithSingleTask(
-                                                  "Media Encoder Premium Workflow",
-                                                  configurationXml.ToString(),
-                                                  myAsset,
-                                                  "Output asset",
-                                                  AssetCreationOptions.None);
+// Declare a new job.
+IJob job = _context.Jobs.Create("Premium Workflow encoding job");
 
+// Get a media processor reference, and pass to it the name of the 
+// processor to use for the specific task.
+IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Premium Workflow");
+
+// Create a task with the encoding details, using a string preset.
+ITask task = job.Tasks.AddNew("Premium Workflow encoding task",
+                              processor,
+                              premiumConfiguration,
+                              TaskOptions.None);
+
+// Specify the input assets
+task.InputAssets.Add(workflow); // workflow asset
+task.InputAssets.Add(video); // video asset with multiple files
+
+// Add an output asset to contain the results of the job. 
+// This output is specified as AssetCreationOptions.None, which 
+// means the output asset is not encrypted. 
+task.OutputAssets.AddNew("Output asset", AssetCreationOptions.None);
+```
 
 ## <a name="customizing-component-properties"></a>自訂元件屬性
 ### <a name="property-with-a-simple-value"></a>具有簡單值的屬性
@@ -64,53 +83,53 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 
 範例：
 
-    <?xml version="1.0" encoding="utf-8"?>
-      <transcodeRequest>
-        <setRuntimeProperties>
-          <property propertyPath="Media File Input/filename" value="MyInputVideo.mp4" />
-          <property propertyPath="/primarySourceFile" value="MyInputVideo.mp4" />
-          <property propertyPath="Optional Overlay/Overlay/filename" value="MyLogo.png"/>
-          <property propertyPath="Optional Text Overlay/Text To Image Converter/text" value="Today is Friday the 13th of May, 2016"/>
-      </setRuntimeProperties>
-    </transcodeRequest>
-
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+  <transcodeRequest>
+    <setRuntimeProperties>
+      <property propertyPath="Media File Input/filename" value="MyInputVideo.mp4" />
+      <property propertyPath="/primarySourceFile" value="MyInputVideo.mp4" />
+      <property propertyPath="Optional Text Overlay/Text To Image Converter/text" value="Today is Friday the 13th of May, 2016"/>
+  </setRuntimeProperties>
+</transcodeRequest>
+```
 
 ### <a name="property-with-an-xml-value"></a>具有 XML 值的屬性
 若要設定預期會有 XML 值的屬性，請使用 `<![CDATA[ and ]]>`進行封裝。
 
 範例：
 
-    <?xml version="1.0" encoding="utf-8"?>
-      <transcodeRequest>
-        <setRuntimeProperties>
-          <property propertyPath="/primarySourceFile" value="start.mxf" />
-          <property propertyPath="/inactiveTimeout" value="65" />
-          <property propertyPath="clipListXml" value="xxx">
-          <extendedValue><![CDATA[<clipList>
-            <clip>
-              <videoSource>
-                <mediaFile>
-                  <file>start.mxf</file>
-                </mediaFile>
-              </videoSource>
-              <audioSource>
-                <mediaFile>
-                  <file>start.mxf</file>
-                </mediaFile>
-              </audioSource>
-            </clip>
-            <primaryClipIndex>0</primaryClipIndex>
-            </clipList>]]>
-          </extendedValue>
-          </property>
-          <property propertyPath="Media File Input Logo/filename" value="logo.png" />
-        </setRuntimeProperties>
-      </transcodeRequest>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+  <transcodeRequest>
+    <setRuntimeProperties>
+      <property propertyPath="/primarySourceFile" value="start.mxf" />
+      <property propertyPath="/inactiveTimeout" value="65" />
+      <property propertyPath="clipListXml" value="xxx">
+      <extendedValue><![CDATA[<clipList>
+        <clip>
+          <videoSource>
+            <mediaFile>
+              <file>start.mxf</file>
+            </mediaFile>
+          </videoSource>
+          <audioSource>
+            <mediaFile>
+              <file>start.mxf</file>
+            </mediaFile>
+          </audioSource>
+        </clip>
+        <primaryClipIndex>0</primaryClipIndex>
+        </clipList>]]>
+      </extendedValue>
+      </property>
+      <property propertyPath="Media File Input Logo/filename" value="logo.png" />
+    </setRuntimeProperties>
+  </transcodeRequest>
+```
 
 > [!NOTE]
 > 在 `<![CDATA[` 後面請務必不要放入歸位字元。
->
->
 
 ### <a name="propertypath-value"></a>propertyPath 值
 在上一個範例中，propertyPath 是 "/Media File Input/filename" 或 "/inactiveTimeout" 或 "clipListXml"。
@@ -152,99 +171,106 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 ### <a name="clip-list-xml-customization"></a>剪輯清單 XML 自訂
 您可以在組態字串 XML 中使用 **transcodeSource** ，以在執行階段於工作流程中指定剪輯清單 XML。 這需要剪輯清單 XML 接點才能連接到工作流程中的媒體來源元件。
 
-    <?xml version="1.0" encoding="utf-16"?>
-      <transcodeRequest>
-        <transcodeSource>
-          <clipList>
-            <clip>
-              <videoSource>
-                <mediaFile>
-                  <file>video-part1.mp4</file>
-                </mediaFile>
-              </videoSource>
-              <audioSource>
-                <mediaFile>
-                  <file>video-part1.mp4</file>
-                </mediaFile>
-              </audioSource>
-            </clip>
-            <primaryClipIndex>0</primaryClipIndex>
-          </clipList>
-        </transcodeSource>
-        <setRuntimeProperties>
-          <property propertyPath="Media File Input Logo/filename" value="logo.png" />
-        </setRuntimeProperties>
-      </transcodeRequest>
+```xml
+<?xml version="1.0" encoding="utf-16"?>
+  <transcodeRequest>
+    <transcodeSource>
+      <clipList>
+        <clip>
+          <videoSource>
+            <mediaFile>
+              <file>video-part1.mp4</file>
+            </mediaFile>
+          </videoSource>
+          <audioSource>
+            <mediaFile>
+              <file>video-part1.mp4</file>
+            </mediaFile>
+          </audioSource>
+        </clip>
+        <primaryClipIndex>0</primaryClipIndex>
+      </clipList>
+    </transcodeSource>
+    <setRuntimeProperties>
+      <property propertyPath="Media File Input Logo/filename" value="logo.png" />
+    </setRuntimeProperties>
+  </transcodeRequest>
+```
 
 如果您想要指定 /primarySourceFile 使用此屬性，以使用 'Expressions' 來命名輸出檔案，我們建議在 /primarySourceFile 屬性「之後」  將剪輯清單 XML 傳遞為屬性，以避免剪輯清單遭到 /primarySourceFile 設定覆寫。
 
-    <?xml version="1.0" encoding="utf-8"?>
-      <transcodeRequest>
-        <setRuntimeProperties>
-          <property propertyPath="/primarySourceFile" value="c:\temp\start.mxf" />
-          <property propertyPath="/inactiveTimeout" value="65" />
-          <property propertyPath="clipListXml" value="xxx">
-          <extendedValue><![CDATA[<clipList>
-            <clip>
-              <videoSource>
-                <mediaFile>
-                  <file>c:\temp\start.mxf</file>
-                </mediaFile>
-              </videoSource>
-              <audioSource>
-                <mediaFile>
-                  <file>c:\temp\start.mxf</file>
-                </mediaFile>
-              </audioSource>
-            </clip>
-            <primaryClipIndex>0</primaryClipIndex>
-            </clipList>]]>
-          </extendedValue>
-          </property>
-          <property propertyPath="Media File Input Logo/filename" value="logo.png" />
-        </setRuntimeProperties>
-      </transcodeRequest>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+  <transcodeRequest>
+    <setRuntimeProperties>
+      <property propertyPath="/primarySourceFile" value="c:\temp\start.mxf" />
+      <property propertyPath="/inactiveTimeout" value="65" />
+      <property propertyPath="clipListXml" value="xxx">
+      <extendedValue><![CDATA[<clipList>
+        <clip>
+          <videoSource>
+            <mediaFile>
+              <file>c:\temp\start.mxf</file>
+            </mediaFile>
+          </videoSource>
+          <audioSource>
+            <mediaFile>
+              <file>c:\temp\start.mxf</file>
+            </mediaFile>
+          </audioSource>
+        </clip>
+        <primaryClipIndex>0</primaryClipIndex>
+        </clipList>]]>
+      </extendedValue>
+      </property>
+      <property propertyPath="Media File Input Logo/filename" value="logo.png" />
+    </setRuntimeProperties>
+  </transcodeRequest>
+```
 
 具有其他框架精確修剪︰
 
-    <?xml version="1.0" encoding="utf-8"?>
-      <transcodeRequest>
-        <setRuntimeProperties>
-          <property propertyPath="/primarySourceFile" value="start.mxf" />
-          <property propertyPath="/inactiveTimeout" value="65" />
-          <property propertyPath="clipListXml" value="xxx">
-          <extendedValue><![CDATA[<clipList>
-            <clip>
-              <videoSource>
-                <trim>
-                  <inPoint fps="25">00:00:05:24</inPoint>
-                  <outPoint fps="25">00:00:10:24</outPoint>
-                </trim>
-                <mediaFile>
-                  <file>start.mxf</file>
-                </mediaFile>
-              </videoSource>
-              <audioSource>
-               <trim>
-                  <inPoint fps="25">00:00:05:24</inPoint>
-                  <outPoint fps="25">00:00:10:24</outPoint>
-                </trim>
-                <mediaFile>
-                  <file>start.mxf</file>
-                </mediaFile>
-              </audioSource>
-            </clip>
-            <primaryClipIndex>0</primaryClipIndex>
-            </clipList>]]>
-          </extendedValue>
-          </property>
-          <property propertyPath="Media File Input Logo/filename" value="logo.png" />
-        </setRuntimeProperties>
-      </transcodeRequest>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+  <transcodeRequest>
+    <setRuntimeProperties>
+      <property propertyPath="/primarySourceFile" value="start.mxf" />
+      <property propertyPath="/inactiveTimeout" value="65" />
+      <property propertyPath="clipListXml" value="xxx">
+      <extendedValue><![CDATA[<clipList>
+        <clip>
+          <videoSource>
+            <trim>
+              <inPoint fps="25">00:00:05:24</inPoint>
+              <outPoint fps="25">00:00:10:24</outPoint>
+            </trim>
+            <mediaFile>
+              <file>start.mxf</file>
+            </mediaFile>
+          </videoSource>
+          <audioSource>
+            <trim>
+              <inPoint fps="25">00:00:05:24</inPoint>
+              <outPoint fps="25">00:00:10:24</outPoint>
+            </trim>
+            <mediaFile>
+              <file>start.mxf</file>
+            </mediaFile>
+          </audioSource>
+        </clip>
+        <primaryClipIndex>0</primaryClipIndex>
+        </clipList>]]>
+      </extendedValue>
+      </property>
+      <property propertyPath="Media File Input Logo/filename" value="logo.png" />
+    </setRuntimeProperties>
+  </transcodeRequest>
+```
 
+## <a name="example-1--overlay-an-image-on-top-of-the-video"></a>範例 1：在視訊頂端覆疊影像
 
-## <a name="example"></a>範例
-請設想視訊編碼時要在輸入視訊上覆疊標誌影像的範例。 在此範例中，輸入視訊名為 "MyInputVideo.mp4"，標誌名為 "MyLogo.png"。 您應執行下列步驟：
+### <a name="presentation"></a>展示
+請設想視訊編碼時要在輸入視訊上覆疊標誌影像的範例。 在此範例中，輸入視訊的名稱為 "Microsoft_HoloLens_Possibilities_816p24.mp4"，而標誌的名稱為 "logo.png"。 您應執行下列步驟：
 
 * 使用工作流程檔案建立工作流程資產 (參閱下列範例)。
 * 建立媒體資產，其中包含兩個檔案︰MyInputVideo.mp4 (主要檔案) 和 MyLogo.png。
@@ -252,24 +278,23 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 
 組態:
 
-    <?xml version="1.0" encoding="utf-8"?>
-      <transcodeRequest>
-        <setRuntimeProperties>
-          <property propertyPath="Media File Input/filename" value="MyInputVideo.mp4" />
-          <property propertyPath="/primarySourceFile" value="MyInputVideo.mp4" />
-          <property propertyPath="Media File Input Logo/filename" value="MyLogo.png" />
-        </setRuntimeProperties>
-      </transcodeRequest>
-
+```xml
+<?xml version="1.0" encoding="utf-16"?>
+  <transcodeRequest>
+    <setRuntimeProperties>
+      <property propertyPath="Media File Input/filename" value="Microsoft_HoloLens_Possibilities_816p24.mp4" />
+      <property propertyPath="/primarySourceFile" value="Microsoft_HoloLens_Possibilities_816p24.mp4" />
+      <property propertyPath="Media File Input Logo/filename" value="logo.png" />
+    </setRuntimeProperties>
+  </transcodeRequest>
+```
 
 在上述範例中，視訊檔案的名稱會傳送至媒體檔案輸入元件及 primarySourceFile 屬性。 標誌檔案的名稱會傳送至另一個連接至圖形覆疊元件的媒體檔案輸入。
 
 > [!NOTE]
 > 視訊檔案名稱會傳送至 primarySourceFile 屬性。 其原因是要在工作流程中使用這個屬性，以便 (舉例來說) 使用運算式建置正確的輸出檔案名稱。
->
->
 
-### <a name="step-by-step-workflow-creation-that-overlays-a-logo-on-top-of-the-video"></a>在視訊頂端覆疊標誌的工作流程建立逐步說明
+### <a name="step-by-step-workflow-creation"></a>逐步建立工作流程
 以下步驟會建立工作流程來將兩個檔案做為輸入︰視訊和影像。 它會在視訊頂端覆疊影像。
 
 開啟**工作流程設計工具**，然後選取 [檔案] > [新增工作區] > [轉碼藍圖]。
@@ -358,8 +383,6 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 
 > [!NOTE]
 > 請務必在資產中設定主要檔案 (主要的視訊檔案)。
->
->
 
 ![AMSE 中的資產檔案](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture18_assetinamse.png)
 
@@ -375,14 +398,16 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 
 然後，貼上下列 XML 資料。 您必須指定媒體檔案輸入和 primarySourceFile 的視訊檔案名稱。 也請指定標誌的檔案名稱。
 
-    <?xml version="1.0" encoding="utf-16"?>
-      <transcodeRequest>
-        <setRuntimeProperties>
-          <property propertyPath="Media File Input/filename" value="Microsoft_HoloLens_Possibilities_816p24.mp4" />
-          <property propertyPath="/primarySourceFile" value="Microsoft_HoloLens_Possibilities_816p24.mp4" />
-          <property propertyPath="Media File Input Logo/filename" value="logo.png" />
-        </setRuntimeProperties>
-      </transcodeRequest>
+```xml
+<?xml version="1.0" encoding="utf-16"?>
+  <transcodeRequest>
+    <setRuntimeProperties>
+      <property propertyPath="Media File Input/filename" value="Microsoft_HoloLens_Possibilities_816p24.mp4" />
+      <property propertyPath="/primarySourceFile" value="Microsoft_HoloLens_Possibilities_816p24.mp4" />
+      <property propertyPath="Media File Input Logo/filename" value="logo.png" />
+    </setRuntimeProperties>
+  </transcodeRequest>
+```
 
 ![setRuntimeProperties](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture20_amsexmldata.png)
 
@@ -390,7 +415,9 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 
 如果您使用 .NET SDK 來建立和執行工作，必須將此 XML 資料傳遞為組態字串。
 
-    public ITask AddNew(string taskName, IMediaProcessor mediaProcessor, string configuration, TaskOptions options);
+```c#
+public ITask AddNew(string taskName, IMediaProcessor mediaProcessor, string configuration, TaskOptions options);
+```
 
 作業完成之後，輸出資產中的 MP4 檔案就會顯示覆疊！
 
@@ -399,6 +426,43 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 *視訊上的覆疊*
 
 您可以從 [GitHub](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows/)下載範例工作流程。
+
+## <a name="example-2--multiple-audio-language-encoding"></a>範例 2：多重音訊語言編碼
+
+您可以在 [GitHub](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows/MultilanguageAudioEncoding) 上取得多重音訊語言編碼工作流程的範例。
+
+此資料夾包含一個範例工作流程，可用來將 MXF 檔案編碼為具有多重曲目的多重 MP4 檔案資產。
+
+此工作流程假設 MXF 檔案包含一個曲目；應將其他曲目當成個別音訊檔來傳遞 (WAV 或 MP4...)。
+
+若要編碼，請遵循下列步驟：
+
+* 建立具有 MXF 檔案與音訊檔 (0 到 18 個音訊檔) 的媒體服務資產。
+* 確定已將 MXF 檔案設為主要檔案。
+* 使用「高階工作流程編碼器」處理器來建立一個作業和一個工作。 使用提供的工作流程 (MultiMP4-1080p-19audio-v1.workflow)。
+* 將 setruntime.xml 資料傳遞至工作 (如果您使用 Azure 媒體服務總管，請使用 [將 xml 資料傳遞至工作流程] 按鈕)。
+  * 請更新 XML 資料，以指定正確的檔案名稱和語言標記。
+  * 工作流程具有名為「音訊 1」到「音訊 18」的音訊元件。
+  * 語言標記支援 RFC5646。
+
+```xml
+<?xml version="1.0" encoding="utf-16"?>
+<transcodeRequest>
+  <setRuntimeProperties>
+    <property propertyPath="Media File Input Video/filename" value="MainVideo.mxf" />
+    <property propertyPath="Language/language_code" value="en" />
+    <property propertyPath="/primarySourceFile" value="MainVideo.mxf" />
+    <property propertyPath="Audio 1/Media File Input/filename" value="french-audio.wav" />
+    <property propertyPath="Audio 1/Language/language_code" value="fr" />
+    <property propertyPath="Audio 2/Media File Input/filename" value="german-audio.wav" />
+    <property propertyPath="Audio 2/Language/language_code" value="de" />
+    <property propertyPath="Audio 3/Media File Input/filename" value="japanese-audio.wav" />
+    <property propertyPath="Audio 3/Language/language_code" value="ja" />
+  </setRuntimeProperties>
+</transcodeRequest>
+```
+
+* 編碼的資產將會包含多種語言的曲目，而這些曲目應該可在 Azure 媒體播放器中加以選取。
 
 ## <a name="see-also"></a>另請參閱
 * [介紹 Azure 媒體服務中的 Premium 編碼](http://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services)
@@ -416,6 +480,6 @@ ms.openlocfilehash: 1d7f5aeb5fcdb6b80289bbd77c12957148d03732
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,7 @@
 ---
-title: "在移轉至 SQL Database 之前，使用 SQL Server Management Studio 修正 SQL Server 資料庫相容性問題 | Microsoft Docs"
-description: "Microsoft Azure SQL Database, 資料庫移轉, 資料庫相容性, SQL Azure 移轉精靈"
+title: "SSMS：修正 Azure SQL Database 相容性移轉問題 | Microsoft Docs"
+description: "本文將介紹如何在移轉至 Azure SQL Database 之前，先使用 SQL Server Management Studio 來修正 SQL Server 資料庫相容性問題。"
+keywords: "Microsoft Azure SQL Database, 資料庫移轉, 資料庫相容性, SQL Azure 移轉精靈"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -16,18 +17,17 @@ ms.workload: sqldb-migrate
 ms.date: 11/08/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: e8bb9e5a02a7caf95dae0101c720abac1c2deff3
-ms.openlocfilehash: 355353fb15a00860573699cc652543b61c62c2c1
+ms.sourcegitcommit: 2b55b6b4475abdbc1985d8ac370b3b612b77eb0e
+ms.openlocfilehash: 841c4d644c6b096251e1ecefac17a8254b5ca712
 
 
 ---
 # <a name="fix-sql-server-database-compatibility-issues-using-sql-server-management-studio-before-migration-to-sql-database"></a>在移轉至 SQL Database 之前，使用 SQL Server Management Studio 修正 SQL Server 資料庫相容性問題
 > [!div class="op_single_selector"]
-> * 使用 [SQL Azure 移轉精靈](sql-database-cloud-migrate-fix-compatibility-issues.md)
+> * 使用 [SAMW](sql-database-cloud-migrate-fix-compatibility-issues.md)
 > * 使用 [SSDT](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)
 > * 使用 [SSMS](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)
-> 
-> 
+>  
 
 進階使用者在移轉至 Azure SQL Database 之前，可以先使用 SQL Server Management Studio 來修正 SQL Server 資料庫相容性問題。
 
@@ -52,6 +52,6 @@ ms.openlocfilehash: 355353fb15a00860573699cc652543b61c62c2c1
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

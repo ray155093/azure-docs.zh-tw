@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 11/02/2016
 ms.author: wesmc
 translationtype: Human Translation
-ms.sourcegitcommit: 96f253f14395ffaf647645176b81e7dfc4c08935
-ms.openlocfilehash: bfe0f796c8a15d655f1c5686a0e1e422fee6fbc1
+ms.sourcegitcommit: 593f97bf0fc855e2d122e093961013f923e2e053
+ms.openlocfilehash: b7b6dc01c996527c4ada974cc28b774b30e6b853
 
 
 ---
@@ -132,6 +132,15 @@ module.exports = function (context, myEventHubMessage) {
 
 `connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。 按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串必須具有傳送權限，才能將訊息傳送至事件資料流。
 
+## <a name="output-usage"></a>輸出使用方式
+本節說明如何在您的函式程式碼中使用「事件中樞」輸出繫結。
+
+您可以使用下列參數類型，將訊息輸出至已設定的事件中樞︰ 
+
+* `out string`
+* `ICollector<string>` (輸出多個訊息)
+* `IAsyncCollector<string>` (`ICollector<T>` 的非同步版本)
+
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>輸出範例
@@ -168,6 +177,18 @@ public static void Run(TimerInfo myTimer, out string outputEventHubMessage, Trac
 }
 ```
 
+或者，若要建立多個訊息：
+
+```cs
+public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessage, TraceWriter log)
+{
+    string message = $"Event Hub message created at: {DateTime.Now}";
+    log.Info(message); 
+    outputEventHubMessage.Add("1 " + message);
+    outputEventHubMessage.Add("2 " + message);
+}
+```
+
 <a name="outfsharp"></a>
 
 ### <a name="output-sample-in-f"></a>F 中的輸出範例# #
@@ -186,8 +207,23 @@ let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWrit
 ```javascript
 module.exports = function (context, myTimer) {
     var timeStamp = new Date().toISOString();
-    context.log('TimerTriggerNodeJS1 function ran!', timeStamp);   
-    context.bindings.outputEventHubMessage = "TimerTriggerNodeJS1 ran at : " + timeStamp;
+    context.log('Event Hub message created at: ', timeStamp);   
+    context.bindings.outputEventHubMessage = "Event Hub message created at: " + timeStamp;
+    context.done();
+};
+```
+
+或者，若要傳送多個訊息，
+
+```javascript
+module.exports = function(context) {
+    var timeStamp = new Date().toISOString();
+    var message = 'Event Hub message created at: ' + timeStamp;
+
+    context.bindings.outputEventHubMessage = [];
+
+    context.bindings.outputEventHubMessage.push("1 " + message);
+    context.bindings.outputEventHubMessage.push("2 " + message);
     context.done();
 };
 ```
@@ -198,6 +234,6 @@ module.exports = function (context, myTimer) {
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

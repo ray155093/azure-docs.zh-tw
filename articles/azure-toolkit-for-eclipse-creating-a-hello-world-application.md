@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c9f062f1cc855a47bb75668e99330e98bb2395b2
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: b7a74df9bfcf75b00af5aaf21e9f74610712ab47
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: c9f062f1cc855a47bb75668e99330e98bb2395b2
 * Eclipse IDE for Java EE Developers (Indigo 或更新版本)。 這可透過 <http://www.eclipse.org/downloads/> 下載。
 * Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat、GlassFish、JBoss Application Server、Jetty 或 IBM® WebSphere® Application Server Liberty Core。
 * Azure 訂用帳戶，可從 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
-* 適用於 Eclipse 的 Azure 工具組。 如需詳細資訊，請參閱[安裝適用於 Eclipse 的 Azure 工具組][安裝適用於 Eclipse 的 Azure 工具組]。
+* 適用於 Eclipse 的 Azure 工具組。 如需詳細資訊，請參閱[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse]。
 
 ## <a name="to-create-a-hello-world-application"></a>建立 Hello World 應用程式
 首先，我們將從建立 Java 專案開始。
@@ -74,13 +74,13 @@ ms.openlocfilehash: c9f062f1cc855a47bb75668e99330e98bb2395b2
    5. 針對 [目標作業系統] ，選取您想要用於部署的作業系統版本。
    6. 針對 [目標環境]，基於本教學課程的目的，請選取 [預備]。 (當您準備好部署至生產網站時，您會將此選項變更為 [生產])。
    7. 選用：若要讓新部署自動覆寫先前的部署，請確實核取 [覆寫先前部署]  。 當您啟用此選項時，發佈至相同的位置時不會出現「409 衝突」問題。
-       請注意，[發佈至 Azure] 對話方塊包含 [遠端存取] 的區段。 根據預設，不會啟用遠端存取，而且我們不會針對此範例啟用它。 若要啟用遠端存取，您需要在遠端登入時輸入要使用的使用者名稱和密碼。 如需有關遠端存取的詳細資訊，請參閱[在 Eclipse 中啟用 Azure 部署的遠端存取][在 Eclipse 中啟用 Azure 部署的遠端存取]。
+       請注意，[發佈至 Azure] 對話方塊包含 [遠端存取] 的區段。 根據預設，不會啟用遠端存取，而且我們不會針對此範例啟用它。 若要啟用遠端存取，您需要在遠端登入時輸入要使用的使用者名稱和密碼。 如需有關遠端存取的詳細資訊，請參閱[在 Eclipse 中啟用 Azure 部署的遠端存取][Enabling Remote Access for Azure Deployments in Eclipse]。
        將會出現類似下面的 [發佈至 Azure] 對話方塊： ![][ic719488]
 5. 按一下 [發佈]  發佈至預備環境。
     當系統提示您執行完整建置時，請按一下 [是] 。 第一次建置時可能需要幾分鐘的時間。
     [Azure 活動記錄檔]  會顯示在 Eclipse 索引標籤式的檢視區段。
     ![][ic719489]
-    您可以使用這個記錄檔，以及 [主控台]**** 檢視，以查看部署進度。 替代方法是登入 [Azure 管理入口網站][Azure 管理入口網站]，並使用 [雲端服務] 區段以監視狀態。
+    您可以使用這個記錄檔，以及 [主控台]**** 檢視，以查看部署進度。 替代方法是登入[ Azure 管理入口網站][Azure Management Portal]，然後使用 [雲端服務] 區段來監視狀態。
 6. 成功部署後，[Azure 活動記錄檔] 將顯示 [已發佈] 狀態。 按一下 [已發佈] (如下圖所示)，瀏覽器隨即會開啟部署的執行個體。
     ![][ic719490]
 
@@ -115,7 +115,7 @@ ms.openlocfilehash: c9f062f1cc855a47bb75668e99330e98bb2395b2
 3. 展開內容功能表中的 [Azure]  子功能表
 4. 按一下 [伺服器組態] 
 
-不論您啟動這些伺服器組態步驟的方式為何 (如上所示編輯現有的 Azure 部署專案，還是從頭開始建立新專案)，您都會看到相同類型的對話方塊，可讓您設定您的 JDK、伺服器和應用程式元件。 若要深入了解如何在這些對話方塊中變更設定，例如變更 JDK、應用程式伺服器，以及新增或移除部署中的應用程式，請參閱[伺服器組態屬性][伺服器組態屬性]文章。
+不論您啟動這些伺服器組態步驟的方式為何 (如上所示編輯現有的 Azure 部署專案，還是從頭開始建立新專案)，您都會看到相同類型的對話方塊，可讓您設定您的 JDK、伺服器和應用程式元件。 若要深入了解如何在這些對話方塊中變更設定，例如若要變更 JDK、應用程式伺服器，以及新增或移除部署中的應用程式，請參閱[伺服器組態屬性][Server configuration properties]文章。
 
 ## <a name="windows-only-to-deploy-your-application-to-the-compute-emulator"></a>僅限 Windows：將應用程式部署至計算模擬器
 > [!NOTE]
@@ -155,24 +155,24 @@ ms.openlocfilehash: c9f062f1cc855a47bb75668e99330e98bb2395b2
 (另有一個使用工具組來刪除部署的替代方案，那就是使用 Azure 管理入口網站的 [雲端服務] 區段：瀏覽至您的部署，加以選取，然後按一下 [刪除] 按鈕。 這樣就會停止並刪除部署。 如果您只是想停止部署而不要加以刪除，請按一下 [停止] 按鈕而不要按 [刪除] 按鈕 (但如前所述，若未刪除部署，即便部署已停止也會繼續累算費用)。
 
 ## <a name="see-also"></a>另請參閱
-[適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]
+[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]
 
-[安裝適用於 Eclipse 的 Azure 工具組][安裝適用於 Eclipse 的 Azure 工具組] 
+[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse] 
 
-[適用於 Eclipse 的 Azure 工具組的新功能][適用於 Eclipse 的 Azure 工具組的新功能]
+[適用於 Eclipse 的 Azure 工具組的新功能][What's New in the Azure Toolkit for Eclipse]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java 開發人員中心]。
+如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java Developer Center]。
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Azure 管理入口網站]: http://go.microsoft.com/fwlink/?LinkID=512959
-[Azure 角色屬性]: http://go.microsoft.com/fwlink/?LinkID=699525
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[在 Eclipse 中啟用 Azure 部署的遠端存取]: http://go.microsoft.com/fwlink/?LinkID=699538
-[安裝適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkId=699546
-[伺服器組態屬性]: http://go.microsoft.com/fwlink/?LinkID=699525#server_configuration_properties
-[適用於 Eclipse 的 Azure 工具組的新功能]: http://go.microsoft.com/fwlink/?LinkID=699552
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
+[Azure Role Properties]: http://go.microsoft.com/fwlink/?LinkID=699525
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Enabling Remote Access for Azure Deployments in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699538
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Server configuration properties]: http://go.microsoft.com/fwlink/?LinkID=699525#server_configuration_properties
+[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
 
@@ -197,6 +197,6 @@ ms.openlocfilehash: c9f062f1cc855a47bb75668e99330e98bb2395b2
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

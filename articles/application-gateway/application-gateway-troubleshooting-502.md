@@ -13,19 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/16/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: 7b7bcc8d73796908f02c77f2df2f2a7c96e1ba47
-ms.openlocfilehash: 38388ead8e80217b44ec5d103c35d6eb5c13d0d3
+ms.sourcegitcommit: ce40a93372205a4b7c6b0c753ebf30c2b3d51d7a
+ms.openlocfilehash: 86cd149d351cc957577d213d77db732bd5e16658
 
 
 ---
+
 # <a name="troubleshooting-bad-gateway-errors-in-application-gateway"></a>疑難排解應用程式閘道中閘道不正確的錯誤
 
 ## <a name="overview"></a>Overview
 
-設定 Azure 應用程式閘道之後，使用者可能遇到的其中一個錯誤是「伺服器錯誤︰502 - 網頁伺服器做為閘道器或 Proxy 伺服器時收到無效的回應」。 這可能是由於下列主要原因所導致：
+設定 Azure 應用程式閘道之後，使用者可能遇到的其中一個錯誤是「伺服器錯誤︰502 - 網頁伺服器做為閘道器或 Proxy 伺服器時收到無效的回應」。 此錯誤可能是由於下列主要原因所導致：
 
 * Azure 應用程式閘道的後端集區並未設定或空白。
 * VM 擴展集中沒有任何狀況良好的 VM 或執行個體。
@@ -142,7 +143,9 @@ BackendAddressPoolsText：
 
 應用程式閘道允許使用者透過 BackendHttpSetting 設定此組態，接著可將之套用到其他集區。 不同的後端集區可以有不同的 BackendHttpSetting，因此可設定不同的要求逾時。
 
+```powershell
     New-AzureRmApplicationGatewayBackendHttpSettings -Name 'Setting01' -Port 80 -Protocol Http -CookieBasedAffinity Enabled -RequestTimeout 60
+```
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -151,6 +154,6 @@ BackendAddressPoolsText：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

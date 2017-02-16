@@ -1,5 +1,5 @@
 ---
-title: "程式碼範例：剖析從 Application Insights 匯出的資料 | Microsoft Docs"
+title: "範例：剖析從 Azure Application Insights 匯出的資料 | Microsoft Docs"
 description: "使用連續匯出功能，在 Application Insights 中自行撰寫遙測資料分析的程式碼。 將資料儲存至 SQL。"
 services: application-insights
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7a9c40081f52b2ffe918f4612f790f7fd08acc5a
-ms.openlocfilehash: b0782ed5675e5256694f7b9f4e98750e57d23e0a
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: fedd078402bbd220bce9b71cd035508d46f92f82
 
 
 ---
 # <a name="code-sample-parse-data-exported-from-application-insights"></a>程式碼範例：剖析從 Application Insights 匯出的資料
-本文說明如何撰寫程式碼，以使用[連續匯出][export]來處理從 [Azure Application Insights][start] 匯出的資料。 連續匯出會將您的遙測資料以 JSON 格式移入 Azure 儲存體，因此我們要撰寫一些程式碼來剖析 JSON 物件，並在資料庫資料表中建立資料列。
+本文說明如何撰寫程式碼，以使用[連續匯出][export]處理從 [Azure Application Insights][start] 匯出的資料。 連續匯出會將您的遙測資料以 JSON 格式移入 Azure 儲存體，因此我們要撰寫一些程式碼來剖析 JSON 物件，並在資料庫資料表中建立資料列。
 
 舉例來說，我們將撰寫程式碼將您的遙測資料從 Application Insights 移到 SQL Database 中。
 
@@ -30,14 +30,14 @@ ms.openlocfilehash: b0782ed5675e5256694f7b9f4e98750e57d23e0a
 * 在此範例中，我們會透過以 Azure 背景工作角色執行程式碼，將資料移到 Azure 資料庫中。 但是您可以將此程式碼調整成在內部部署伺服器上執行，以將資料提取到內部部署 SQL 伺服器中。
 * 您可以在 Application Insights 中[撰寫程式碼來直接存取遙測](http://dev.applicationinsights.io/)，而不需匯出。
 
-如果您尚未開始使用 Application Insights 來監視您的 Web 應用程式，[請立即進行][start]。
+如果您尚未開始使用 Application Insights 監視您的 Web 應用程式，[請立即進行][start]。
 
 
 
 ## <a name="create-storage-in-azure"></a>在 Azure 中建立儲存體
 來自 Application Insights 的資料一律會以 JSON 格式匯出到 Azure 儲存體帳戶。 您的程式碼會讀取這個儲存體中的資料。
 
-1. 在您的 [Azure 入口網站][portal]訂用帳戶中，建立「傳統」儲存體帳戶。
+1. 在 [Azure 入口網站][portal]的訂用帳戶中建立「傳統」儲存體帳戶。
    
     ![在 Azure 入口網站中，依序選擇 [新增]、[資料]、[儲存體]](./media/app-insights-code-sample-export-telemetry-sql-database/040-store.png)
 2. 建立容器
@@ -493,7 +493,7 @@ ms.openlocfilehash: b0782ed5675e5256694f7b9f4e98750e57d23e0a
 
 [diagnostic]: app-insights-diagnostic-search.md
 [export]: app-insights-export-telemetry.md
-[計量]: app-insights-metrics-explorer.md
+[metrics]: app-insights-metrics-explorer.md
 [portal]: http://portal.azure.com/
 [start]: app-insights-overview.md
 
@@ -501,6 +501,6 @@ ms.openlocfilehash: b0782ed5675e5256694f7b9f4e98750e57d23e0a
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

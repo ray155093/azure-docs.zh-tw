@@ -1,5 +1,5 @@
 ---
-title: "使用 Site Recovery 在內部部署 Hyper-V 虛擬機器與 Azure (沒有 VMM) 之間複寫 | Microsoft Docs"
+title: "在傳統入口網站中將 Hyper-V VM 複寫至 Azure | Microsoft Docs"
 description: "本文說明如何使用 Azure Site Recovery，將不在 VMM 雲端中管理的 Hyper-V 虛擬機器複寫至 Azure。"
 services: site-recovery
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: storage-backup-recovery
 ms.date: 11/23/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: ea89244efea6afa7d7b9d60f400117284fb5d1e1
-ms.openlocfilehash: 3c5e51c562d9251f2ad40eeb1939d1651c845391
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: b991b27304a4f65485b30431c5eb29461f60984d
 
 
 ---
@@ -223,12 +223,12 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
        * 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
        * 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
        * 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。 如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。
-       
+
      * **Azure 網路**：指定應將虛擬機器容錯移轉到其中的目標網路。 如果虛擬機器具有多張網路介面卡，則所有的介面卡都應該連接到同一個 Azure 網路。
      * **子網路** ：針對虛擬機器上的每張網路介面卡，請選取 Azure 網路中的子網路，機器在容錯移轉之後應會連接到該子網路。
      * **目標 IP 位址**：如果來源虛擬機器的網路介面卡已設定為使用靜態 IP 位址，則您可以指定目標虛擬機器的 IP 位址，以確保機器在容錯移轉後會有相同的 IP 位址。  如果您未指定 IP 位址，則系統將在容錯移轉期間指派任何可用的位址。 如果您指定了使用中的位址，則容錯移轉將會失敗。
 
-     > [!NOTE] 
+     > [!NOTE]
      > 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉網路](../azure-resource-manager/resource-group-move-resources.md)。
      >
 
@@ -286,6 +286,6 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -1,23 +1,22 @@
 ---
 title: "Azure Government 訂用帳戶 | Microsoft Docs"
 description: "在 Azure Government 中管理訂用帳戶的相關資訊"
-services: Azure-Government
+services: azure-government
 cloud: gov
 documentationcenter: 
 author: zakramer
 manager: liki
-editor: 
 ms.assetid: d3375e84-a37d-4e44-9040-70dbe08eabfc
-ms.service: multiple
+ms.service: azure-government
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: azure-government
-ms.date: 10/21/2016
+ms.date: 01/12/2017
 ms.author: zakramer
 translationtype: Human Translation
-ms.sourcegitcommit: 40432290f50ce08320fef1604e764b5a93a9eb0b
-ms.openlocfilehash: a49552a68a0f1f077d4416cb2ba70fe2f7a632ff
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 398abc29328adc179b860ab2cde5e6122f81779d
 
 
 ---
@@ -36,7 +35,7 @@ Azure Government 具有用於管理環境的唯一 URL 和端點。 請務必使
 * 區域名稱
 
 > [!NOTE]
-> 如果您尚未使用 PowerShell，請參閱 [Azure PowerShell 簡介](../powershell-install-configure.md)。
+> 如果您尚未使用 PowerShell，請參閱 [Azure PowerShell 簡介](/powershell/azureps-cmdlets-docs)。
 > 
 > 
 
@@ -138,6 +137,6 @@ Visual Studio 可供開發人員在建置解決方案時輕鬆地管理其 Azure
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

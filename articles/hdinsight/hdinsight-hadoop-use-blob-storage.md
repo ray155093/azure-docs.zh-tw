@@ -17,12 +17,12 @@ ms.topic: get-started-article
 ms.date: 09/06/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7baf1aa756221df62a36cd975ffb92fc8cd27232
+ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
+ms.openlocfilehash: 74416d2740c4eaa49d508468df68fdb786ea2902
 
 
 ---
-# <a name="use-hdfscompatible-azure-blob-storage-with-hadoop-in-hdinsight"></a>在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體
+# <a name="use-hdfs-compatible-azure-blob-storage-with-hadoop-in-hdinsight"></a>在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體
 了解如何搭配 HDInsight 使用低成本的 Azure Blob 儲存體，建立 Azure 儲存體帳戶和 Blob 儲存體容器，然後處理其中的資料。
 
 Azure Blob 儲存體是強大的一般用途儲存體解決方案，其完美整合了 HDInsight。 透過 Hadoop 分散式檔案系統 (HDFS) 介面，HDInsight 中的完整元件集可直接處理 Blob 儲存體中的結構化或非結構化資料。
@@ -34,12 +34,12 @@ Azure Blob 儲存體是強大的一般用途儲存體解決方案，其完美整
 > 
 > 
 
-如需建立 HDInsight 叢集的相關資訊，請參閱[開始使用 HDInsight][hdinsight-get-started] 或[建立 HDInsight 叢集][hdinsight-creation]。
+如需關於建立 HDInsight 叢集的資訊，請參閱[開始使用 HDInsight][hdinsight-get-started] 或[建立 HDInsight 叢集][hdinsight-creation]。
 
 ## <a name="hdinsight-storage-architecture"></a>HDInsight 儲存架構
 下圖提供 HDInsight 儲存架構的摘要檢視：
 
-![Hadoop 叢集會使用 HDFS API 來存取和儲存 Blob 儲存體中的結構化和非結構化資料。](./media/hdinsight-hadoop-use-blob-storage/HDI.WASB.Arch.png "HDInsight Storage Architecture")
+![Hadoop 叢集會使用 HDFS API 來存取和儲存 Blob 儲存體中的結構化和非結構化資料。](./media/hdinsight-hadoop-use-blob-storage/HDI.WASB.Arch.png "HDInsight 儲存體架構")
 
 HDInsight 可以存取本機連接至計算節點的分散式檔案系統。 可使用完整 URI 來存取此檔案系統，例如：
 
@@ -92,7 +92,7 @@ Blob 儲存體可使用於結構化和非結構化資料。 Blob 儲存容器以
 > 
 
 ## <a name="create-blob-containers"></a>建立 Blob 容器
-若要使用 Blob，首先要建立 [Azure 儲存體帳戶][azure-storage-create]。 在這過程中，需要指定 Azure 區域來儲存您以此帳戶所建立的物件。 叢集與儲存體帳戶必須在相同區域內託管。 Hive 中繼存放區 SQL Server 資料庫和 Oozie 中繼存放區 SQL Server 資料庫也必須位在相同的區域內。
+若要使用 Blob，您必須先建立 [Azure 儲存體帳戶][azure-storage-create]。 在這過程中，需要指定 Azure 區域來儲存您以此帳戶所建立的物件。 叢集與儲存體帳戶必須在相同區域內託管。 Hive 中繼存放區 SQL Server 資料庫和 Oozie 中繼存放區 SQL Server 資料庫也必須位在相同的區域內。
 
 您所建立的每個 Blob 不論位於何處，都屬於 Azure 儲存體帳戶中的某個容器。 此容器可能是在 HDInsight 外建立的現有 Blob，也可能是為 HDInsight 叢集建立的容器。
 
@@ -284,12 +284,12 @@ $clusterName = "<HDInsightClusterName>"
 
 * [開始使用 Azure HDInsight][hdinsight-get-started]
 * [將資料上傳至 HDInsight][hdinsight-upload-data]
-* [搭配 HDInsight 使用 Hive][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
 * [使用 Azure 儲存體共用存取簽章來限制使用 HDInsight 對資料的存取][hdinsight-use-sas]
 
 [hdinsight-use-sas]: hdinsight-storage-sharedaccesssignature-permissions.md
-[powershell-install]: ../powershell-install-configure.md
+[powershell-install]: /powershell/azureps-cmdlets-docs
 [hdinsight-creation]: hdinsight-provision-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-tutorial-get-started-windows.md
 [hdinsight-upload-data]: hdinsight-upload-data.md
@@ -305,6 +305,6 @@ $clusterName = "<HDInsightClusterName>"
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

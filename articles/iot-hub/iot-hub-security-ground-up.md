@@ -1,6 +1,6 @@
 ---
-title: "徹底保護您的 IoT 解決方案 | Microsoft Docs"
-description: "本文說明 Microsoft Azure IoT 套件的內建安全性功能"
+title: "徹底保護您的 Azure IoT 解決方案 | Microsoft Docs"
+description: "如何使用 Microsoft Azure IoT 中樞和套件的內建安全性功能。"
 services: iot-hub
 documentationcenter: 
 author: YuriDio
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/17/2016
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 896cec2befa3f8f681ecb4e14687300a90b5fc24
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: a4452dee2beec650f84dff4083e91684fe61d8b6
 
 
 ---
@@ -25,13 +25,13 @@ ms.openlocfilehash: 896cec2befa3f8f681ecb4e14687300a90b5fc24
 ## <a name="see-also"></a>另請參閱
 若要深入了解如何保護您的 IoT 解決方案，請參閱︰
 
-* [IoT 安全性最做法][lnk-security-best-practices]
+* [IoT 安全性最佳做法][lnk-security-best-practices]
 * [IoT 安全性架構][lnk-security-architecture]
 * [保護您的 IoT 部署][lnk-security-deployment]
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [使用 IoT 閘道器 SDK 來模擬裝置][lnk-gateway]
+* [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
 
 [lnk-security-best-practices]: iot-hub-security-best-practices.md
 [lnk-security-architecture]: iot-hub-security-architecture.md
@@ -41,6 +41,6 @@ ms.openlocfilehash: 896cec2befa3f8f681ecb4e14687300a90b5fc24
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

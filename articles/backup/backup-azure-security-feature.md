@@ -15,17 +15,17 @@ ms.topic: article
 ms.date: 11/24/2016
 ms.author: pajosh
 translationtype: Human Translation
-ms.sourcegitcommit: 9b3686a5dfb4fa2cc1f5711830f90fc44b036673
-ms.openlocfilehash: bd8e7ea5663df4c75e8c1a549b5b8d0207770c93
+ms.sourcegitcommit: 4a846e86fa8cefbee04e1e30078a0d2aabdd834d
+ms.openlocfilehash: 1b7df71f103e8284bdcc7bc3a27fe44815b12305
 
 
 ---
 # <a name="security-features-for-protecting-hybrid-backups-using-azure-backup"></a>使用 Azure 備份保護混合式備份的安全性功能
 越來越多客戶會遇到惡意軟體、勒索軟體、入侵等安全性問題。這些安全性問題會導致資料遺失，並不斷增加每個安全性缺口的成本。 為了防範這類攻擊，Azure 備份現在提供安全性功能來保護混合式備份。 本文討論如何透過 Microsoft Azure 復原服務代理程式和 Microsoft Azure 備份伺服器來啟用和利用這些功能。 這些功能是以三大安全性要件為基礎︰
 
-1. **防護** - 每當執行重要作業 (如變更複雜密碼) 時，就會新增額外的驗證。 這項驗證用來確保只有具備有效 Azure 認證的使用者可以執行這類作業。 
+1. **防護** - 每當執行重要作業 (如變更複雜密碼) 時，就會新增額外的驗證。 這項驗證用來確保只有具備有效 Azure 認證的使用者可以執行這類作業。
 2. **警示** - 每當執行重要作業 (如刪除備份資料) 時，就會傳送電子郵件通知給訂用帳戶管理員。 這封電子郵件可確保使用者及時獲知這類動作。
-3. **復原** - 已刪除的備份資料會額外保留 14 天 (從刪除日期算起)。 這可確保指定時間週期內的資料復原能力，所以即使發生攻擊，也不會遺失任何資料。 而且會維護更多的復原點，以防範資料損毀。 
+3. **復原** - 已刪除的備份資料會額外保留 14 天 (從刪除日期算起)。 這可確保指定時間週期內的資料復原能力，所以即使發生攻擊，也不會遺失任何資料。 而且會維護更多的復原點，以防範資料損毀。
 
 > [!NOTE]
 > 只有當您使用下列項目，才應該啟用安全性功能︰ <br/>
@@ -36,33 +36,33 @@ ms.openlocfilehash: bd8e7ea5663df4c75e8c1a549b5b8d0207770c93
 > * 一旦啟用，您即可取得所有向保存庫註冊之 Azure 復原服務代理程式 (MARS) 電腦和 Azure 備份伺服器的安全性功能。 <br/>
 > * 啟用此設定是一次性動作，啟用之後便無法停用這些功能。 <br/>
 > * 這項功能僅適用於復原服務保存庫。
-> 
-> 
+>
+>
 
 ## <a name="enabling-security-features"></a>啟用安全性功能
 建立復原服務保存庫的使用者能夠使用所有的安全性功能。 對於現有的復原服務保存庫，應使用下列步驟來啟用這些功能︰
 
 1. 使用 Azure 認證登入 Azure 入口網站
-2. 在中樞功能表中輸入 Recovery Services，以瀏覽至復原服務清單。 
-   
+2. 在中樞功能表中輸入 Recovery Services，以瀏覽至復原服務清單。
+
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-security-feature/browse-to-rs-vaults.png) <br/>
-   
-    復原服務保存庫清單隨即出現。 從此清單中選取保存庫。 
-   
+
+    復原服務保存庫清單隨即出現。 從此清單中選取保存庫。
+
     選取的保存庫儀表板隨即開啟。
 3. 從保存庫下顯示的項目清單中，按一下 [設定] 之下的 [屬性]。
-   
+
     ![開啟保存庫屬性](./media/backup-azure-security-feature/vault-list-properties.png)
 4. 按一下 [安全性設定] 之下的 [更新]。
-   
+
     ![開啟安全性設定](./media/backup-azure-security-feature/security-settings-update.png)
-   
+
     [更新] 連結會開啟 [安全性設定] 刀鋒視窗，以便您啟用這些功能並提供功能的摘要。
-5. 從 [是否已設定 Azure Multi-Factor Authentication？] 的下拉式清單中選取一個值，確認您是否已啟用 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)。 如果已啟用，系統會要求您在登入 Azure 入口網站時從另一個裝置 (例如行動電話) 進行驗證。 
-   
+5. 從 [是否已設定 Azure Multi-Factor Authentication？] 的下拉式清單中選取一個值，確認您是否已啟用 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)。 如果已啟用，系統會要求您在登入 Azure 入口網站時從另一個裝置 (例如行動電話) 進行驗證。
+
    在 Azure 備份中執行重要作業時，您必須輸入 Azure 入口網站上可用的 [安全性 PIN 碼]，這是安全性功能的一部分。 啟用 Azure Multi-Factor Authentication 可多加一層安全性，確保只有獲得授權且具備有效 Azure 認證並從第二個裝置進行驗證的使用者可以存取 Azure 入口網站並執行這類重要作業。
 6. 使用切換按鈕來 [啟用] 並按一下頂端的 [儲存] 來儲存安全性設定，如下圖所示。 您只能在從 [是否已設定 Azure Multi-Factor Authentication？] 的下拉式清單中選取值之後， 選取 [啟用]。
-   
+
     ![啟用安全性設定](./media/backup-azure-security-feature/enable-security-settings.png)
 
 ## <a name="recovering-deleted-backup-data"></a>復原已刪除的備份資料
@@ -70,8 +70,8 @@ ms.openlocfilehash: bd8e7ea5663df4c75e8c1a549b5b8d0207770c93
 
 若為 **Microsoft 復原服務代理程式 (MARS)** 使用者：
 
-1. 如果發生備份的電腦仍可使用，請使用 MARS 中的[將資料復原到相同電腦](backup-azure-restore-windows-server.md#recover-data-to-the-same-machine)，以便從舊的復原點復原資料。
-2. 如果無法使用上述的電腦，請使用[復原到其他電腦](backup-azure-restore-windows-server.md#recover-to-an-alternate-machine)，以使用另一部 MARS 電腦來取得此資料。
+1. 如果發生備份的電腦仍可使用，請使用 MARS 中的[將資料復原到相同電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-the-same-machine)，以便從舊的復原點復原資料。
+2. 如果無法使用上述的電腦，請使用[復原到其他電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-an-alternate-machine)，以使用另一部 MARS 電腦來取得此資料。
 
 若為 **Azure 備份伺服器**使用者：
 
@@ -82,13 +82,13 @@ ms.openlocfilehash: bd8e7ea5663df4c75e8c1a549b5b8d0207770c93
 這項功能已新增各種檢查，確保只有有效的使用者可以執行各種作業。
 
 ### <a name="authentication-to-perform-critical-operations"></a>用來執行重要作業的驗證
-針對重要作業新增額外一層驗證時，系統會提示您在執行「停止保護並刪除資料」和「變更複雜密碼」作業時輸入 [安全性 PIN 碼]。 
+針對重要作業新增額外一層驗證時，系統會提示您在執行「停止保護並刪除資料」和「變更複雜密碼」作業時輸入 [安全性 PIN 碼]。
 
 若要接收 [安全性 PIN 碼]，請使用下列步驟：
 
 1. 登入 Azure 入口網站。
 2. 瀏覽至 [復原服務保存庫] > [設定] > [屬性]。
-3. 按一下 [安全性 PIN 碼] 底下的 [產生]。 [產生] 連結會開啟一個刀鋒視窗，其中包含要在 Azure 復原服務代理程式 UI 中輸入的 [安全性 PIN 碼]。 
+3. 按一下 [安全性 PIN 碼] 底下的 [產生]。 [產生] 連結會開啟一個刀鋒視窗，其中包含要在 Azure 復原服務代理程式 UI 中輸入的 [安全性 PIN 碼]。
     此 PIN 碼的有效時間只有 5 分鐘，而且會在該期間後自動產生。
 
 ### <a name="maintaining-minimum-retention-range"></a>維護最小的保留範圍
@@ -111,6 +111,6 @@ ms.openlocfilehash: bd8e7ea5663df4c75e8c1a549b5b8d0207770c93
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

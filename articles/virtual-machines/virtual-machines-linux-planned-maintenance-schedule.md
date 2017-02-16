@@ -1,5 +1,5 @@
 ---
-title: "如何排定 Azure VM 的計劃性維護 | Microsoft Docs"
+title: "如何為 Azure 中的 Linux VM 排定計劃性維護 | Microsoft Docs"
 description: "了解如何排定在 Azure VM 上的計劃性維護。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 02/13/2016
 ms.author: igalf
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 2f4e32f48ed26ffe1d1cb6bf7cdbd99bc56688a2
+ms.sourcegitcommit: 746ed119239d5a0a71a0663e81d9c5b259354419
+ms.openlocfilehash: 54b15a13d29eb1921cc1264456c5f746b550386c
 
 
 ---
@@ -30,6 +30,6 @@ ms.openlocfilehash: 2f4e32f48ed26ffe1d1cb6bf7cdbd99bc56688a2
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

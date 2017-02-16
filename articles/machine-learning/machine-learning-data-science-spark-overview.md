@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/07/2016
 ms.author: deguhath;bradsev;gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: ca799d03076175d6a7193c0e58b349a6cb61693b
-ms.openlocfilehash: 35f07fba1421af1db9c8b6190737c3c220a911e1
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 091a753c8a183975c7aa340fa2f089adf4fe5574
 
 
 
@@ -37,7 +37,7 @@ ms.openlocfilehash: 35f07fba1421af1db9c8b6190737c3c220a911e1
 
 2. 您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。 若要建立該項目，請參閱 [開始使用：在 Azure HDInsight 上建立 Apache Spark](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md)所提供的指示。 叢集類型和版本是由 [選取叢集類型]  功能表來指定。 
 
-![](./media/machine-learning-data-science-spark-overview/spark-cluster-on-portal.png)
+![設定叢集](./media/machine-learning-data-science-spark-overview/spark-cluster-on-portal.png)
 
 <!-- -->
 
@@ -107,11 +107,11 @@ ms.openlocfilehash: 35f07fba1421af1db9c8b6190737c3c220a911e1
 ## <a name="execute-code-from-a-jupyter-notebook-on-the-spark-cluster"></a>從 Spark 叢集的 Jupyter Notebook 中執行程式碼
 您可以從 Azure 入口網站啟動 Jupyter Notebook。 在儀表板上尋找 Spark 叢集，並按一下該項目以進入您的叢集管理頁面。 若要開啟與 Spark 叢集相關聯的 Notebook，按一下 [叢集儀表板]  ->  [Jupyter Notebook]。
 
-![](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
+![叢集儀表板](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
 
 您也可以瀏覽至 ***https://CLUSTERNAME.azurehdinsight.net/jupyter*** 存取 Jupyter Notebook。 以您的叢集名稱來取代此 URL 內的 CLUSTERNAME 部分。 您需要有系統管理員帳戶的密碼才能存取 Notebook。
 
-![](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
+![瀏覽 Jupyter Notebooks](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 
 選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於這組 Spark 主題的 Notebook (包含程式碼範例) 可在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到。
 
@@ -154,6 +154,6 @@ ms.openlocfilehash: 35f07fba1421af1db9c8b6190737c3c220a911e1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

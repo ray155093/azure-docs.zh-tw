@@ -15,21 +15,21 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 388d733b52d32d77fa441c4045d4bce863c41866
-ms.openlocfilehash: 7558c41cbc9cde6748e1706a095598ea03e9ab6a
+ms.sourcegitcommit: 614038da2384b3efa48cd46ade347392ffef9d44
+ms.openlocfilehash: 2cb7b5aff47a81ae53d1ce68426b085eba4c96fc
 
 
 ---
 # <a name="how-to-use-ios-client-library-for-azure-mobile-apps"></a>如何使用適用於 Azure Mobile Apps 的 iOS 用戶端程式庫
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-本指南說明如何使用最新的 [Azure Mobile Apps iOS SDK 執行一般案例][1]。 如果您是 Azure Mobile Apps 的新手，請先完成 [Azure Mobile Apps 快速入門] 以建立後端、建立資料表及下載預先建置的 iOS Xcode 專案。 在本指南中，我們會著重於用戶端 iOS SDK。 若要深入了解後端的伺服器端 SDK，請參閱伺服器 SDK 做法。
+本指南說明如何使用最新的 [Azure Mobile Apps iOS SDK][1] 執行常見案例。 如果您是 Azure Mobile Apps 的新手，請先完成 [Azure Mobile Apps 快速入門] 以建立後端、建立資料表及下載預先建置的 iOS Xcode 專案。 在本指南中，我們會著重於用戶端 iOS SDK。 若要深入了解後端的伺服器端 SDK，請參閱伺服器 SDK 做法。
 
 ## <a name="reference-documentation"></a>參考文件
 iOS 用戶端 SDK 的參考文件位於此處：[Azure Mobile Apps iOS 用戶端參考資料][2]。
 
 ## <a name="supported-platforms"></a>支援的平台
-IOS SDK 支援 Objective-C 專案、Swift 2.2 專案，以及適用於 iOS 8.0 版或更新版本的 Swift 2.3 專案。
+iOS SDK 支援 Objective-C 專案、Swift 2.2 專案，以及適用於 iOS 8.0 版或更新版本的 Swift 2.3 專案。
 
 「伺服器流程」驗證在呈現的 UI 中使用 WebView。  如果裝置無法呈現 WebView UI，您需要本產品無法提供的其他驗證方法。  
 因此，此 SDK 不適用於手錶類型或受到類似限制的裝置。
@@ -497,7 +497,7 @@ NSDictionary *iOSTemplate = @{ @"templateName": @{ @"body": @{ @"aps": @{ @"aler
 let iOSTemplate = ["templateName": ["body": ["aps": ["alert": "$(message)"]]]]
 ```
 
-所有標記都將因安全性而移除。  若要在安裝中將標籤新增至安裝或範本，請參閱[使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK][4]。  若要利用這些已註冊的範本傳送通知，請使用[通知中樞 API][3]。
+所有標記都將因安全性而移除。  若要將標籤新增至安裝中或安裝內的範本，請參閱[使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK][4]。  若要使用這些已註冊的範本來傳送通知，請使用[通知中樞 API][3]。
 
 ## <a name="a-nameerrorsahow-to-handle-errors"></a><a name="errors"></a>作法：處理錯誤
 呼叫 Azure App Service行動後端時，completion 區塊會包含 `NSError` 參數。 發生錯誤時，此參數便會傳回非 Nil。 您應檢查程式碼中的此參數，並視需要處理錯誤，如上述的程式碼片段所示。
@@ -533,7 +533,7 @@ if (error.code == MSErrorPreconditionFailed) {
 ## <a name="a-nameadalahow-to-authenticate-users-with-the-active-directory-authentication-library"></a><a name="adal"></a>如何：使用 Active Directory Authentication Library 驗證使用者
 您可以使用 Active Directory Authentication Library (ADAL)，利用 Azure Active Directory 將使用者登入應用程式。 相較於使用 `loginWithProvider:completion:` 方法，較建議使用身分識別提供者 SDK 的用戶端流程驗證。  用戶端流程驗證能提供較原生的 UX 風格，並允許進行其他自訂。
 
-1. 依照[如何設定 App Service 來進行 Active Directory 登入][7] 教學課程的說明，設定您的行動應用程式後端來進行 AAD 登入。 請務必完成註冊原生用戶端應用程式的選擇性步驟。 若是 iOS，我們建議採用 `<app-scheme>://<bundle-id>` 形式的重新導向 URI。 如需詳細資訊，請參閱 [ADAL iOS 快速入門][8]。
+1. 依照[如何設定 App Service 來進行 Active Directory 登入][7]教學課程的說明，設定您的行動應用程式後端來進行 AAD 登入。 請務必完成註冊原生用戶端應用程式的選擇性步驟。 若是 iOS，我們建議採用 `<app-scheme>://<bundle-id>` 形式的重新導向 URI。 如需詳細資訊，請參閱 [ADAL iOS 快速入門][8]。
 2. 使用 Cocoapods 安裝 ADAL。 編輯您的 Podfile 以納入下列定義，並以您的 Xcode 專案名稱取代 **YOUR-PROJECT** ：
 
         source 'https://github.com/CocoaPods/Specs.git'
@@ -615,8 +615,8 @@ if (error.code == MSErrorPreconditionFailed) {
 ## <a name="a-namefacebook-sdkahow-to-authenticate-users-with-the-facebook-sdk-for-ios"></a><a name="facebook-sdk"></a>作法：使用 Facebook SDK for iOS 來驗證使用者
 您可以使用 Facebook SDK for iOS，利用 Facebook 將使用者登入應用程式。  相較於使用 `loginWithProvider:completion:` 方法，較建議使用用戶端流程驗證。  用戶端流程驗證能提供較原生的 UX 風格，並允許進行其他自訂。
 
-1. 依照[如何設定 App Service 來進行 Facebook 登入][9] 教學課程的說明，設定您的行動應用程式後端來進行 Facebook 登入。
-2. 依照 [Facebook SDK for iOS - 開始使用][10] 文件來安裝 Facebook SDK for iOS。 您可以在現有註冊中新增 iOS 平台，而不必建立應用程式。
+1. 依照[如何設定 App Service 來進行 Facebook 登入][9]教學課程的說明，設定您的行動應用程式後端來進行 Facebook 登入。
+2. 依照 [Facebook SDK for iOS - 開始使用][10]文件來安裝 Facebook SDK for iOS。 您可以在現有註冊中新增 iOS 平台，而不必建立應用程式。
 3. Facebook 的文件包含應用程式委派中的某些 Objective-C 程式碼。 如果您要使用 **Swift**，您可以使用 AppDelegate.swift 的下列轉譯：
 
         // Add the following import to your bridging header:
@@ -818,54 +818,54 @@ if (error.code == MSErrorPreconditionFailed) {
 
 <!-- Anchors. -->
 
-[什麼是行動服務]: #what-is
-[概念]: #concepts
-[設定和必要條件]: #Setup
-[作法：建立行動服務用戶端]: #create-client
-[作法：建立資料表參考]: #table-reference
-[作法：查詢行動服務中的資料]: #querying
-[篩選傳回的資料]: #filtering
-[排序傳回的資料]: #sorting
-[以分頁方式傳回資料]: #paging
-[選取特定資料欄]: #selecting
-[作法：將資料繫結到使用者介面]: #binding
-[作法：將資料插入行動服務]: #inserting
-[作法：修改行動服務中的資料]: #modifying
-[作法：驗證使用者]: #authentication
-[快取驗證權杖]: #caching-tokens
-[作法：上傳影像和大型檔案]: #blobs
-[作法：處理錯誤]: #errors
-[作法：設計單位測試]: #unit-testing
-[作法：自訂用戶端]: #customizing
-[自訂要求標頭]: #custom-headers
-[自訂資料型別序列化]: #custom-serialization
+[What is Mobile Services]: #what-is
+[Concepts]: #concepts
+[Setup and Prerequisites]: #Setup
+[How to: Create the Mobile Services client]: #create-client
+[How to: Create a table reference]: #table-reference
+[How to: Query data from a mobile service]: #querying
+[Filter returned data]: #filtering
+[Sort returned data]: #sorting
+[Return data in pages]: #paging
+[Select specific columns]: #selecting
+[How to: Bind data to the user interface]: #binding
+[How to: Insert data into a mobile service]: #inserting
+[How to: Modify data in a mobile service]: #modifying
+[How to: Authenticate users]: #authentication
+[Cache authentication tokens]: #caching-tokens
+[How to: Upload images and large files]: #blobs
+[How to: Handle errors]: #errors
+[How to: Design unit tests]: #unit-testing
+[How to: Customize the client]: #customizing
+[Customize request headers]: #custom-headers
+[Customize data type serialization]: #custom-serialization
 [Next Steps]: #next-steps
-[作法：使用 MSQuery]: #query-object
+[How to: Use MSQuery]: #query-object
 
 <!-- Images. -->
 
 <!-- URLs. -->
 [Azure Mobile Apps 快速入門]: app-service-mobile-ios-get-started.md
 
-[將行動服務新增至現有的應用程式]: /develop/mobile/tutorials/get-started-data
-[開始使用行動服務]: /develop/mobile/tutorials/get-started-ios
-[使用伺服器指令碼驗證及修改行動服務中的資料]: /develop/mobile/tutorials/validate-modify-and-augment-data-ios
+[Add Mobile Services to Existing App]: /develop/mobile/tutorials/get-started-data
+[Get started with Mobile Services]: /develop/mobile/tutorials/get-started-ios
+[Validate and modify data in Mobile Services by using server scripts]: /develop/mobile/tutorials/validate-modify-and-augment-data-ios
 [Mobile Services SDK]: https://go.microsoft.com/fwLink/p/?LinkID=266533
-[驗證]: /develop/mobile/tutorials/get-started-with-users-ios
+[Authentication]: /develop/mobile/tutorials/get-started-with-users-ios
 [iOS SDK]: https://developer.apple.com/xcode
 
-[處理過期權杖]: http://go.microsoft.com/fwlink/p/?LinkId=301955
+[Handling Expired Tokens]: http://go.microsoft.com/fwlink/p/?LinkId=301955
 [Live Connect SDK]: http://go.microsoft.com/fwlink/p/?LinkId=301960
-[權限]: http://msdn.microsoft.com/library/windowsazure/jj193161.aspx
-[伺服器端授權]: mobile-services-javascript-backend-service-side-authorization.md
-[使用指令碼來授權使用者]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
+[Permissions]: http://msdn.microsoft.com/library/windowsazure/jj193161.aspx
+[Service-side Authorization]: mobile-services-javascript-backend-service-side-authorization.md
+[Use scripts to authorize users]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
 [動態結構描述]: http://go.microsoft.com/fwlink/p/?LinkId=296271
-[作法：存取自訂參數]: /develop/mobile/how-to-guides/work-with-server-scripts#access-headers
-[建立資料表]: http://msdn.microsoft.com/library/windowsazure/jj193162.aspx
-[NSDictionary 物件]: http://go.microsoft.com/fwlink/p/?LinkId=301965
-[ASCII 控制碼 C0 和 C1]: http://en.wikipedia.org/wiki/Data_link_escape_character#C1_set
-[使用 CLI 管理行動服務資料表]: ../virtual-machines-command-line-tools.md#Mobile_Tables
-[衝突處理常式]: mobile-services-ios-handling-conflicts-offline-data.md#add-conflict-handling
+[How to: access custom parameters]: /develop/mobile/how-to-guides/work-with-server-scripts#access-headers
+[Create a table]: http://msdn.microsoft.com/library/windowsazure/jj193162.aspx
+[NSDictionary object]: http://go.microsoft.com/fwlink/p/?LinkId=301965
+[ASCII control codes C0 and C1]: http://en.wikipedia.org/wiki/Data_link_escape_character#C1_set
+[CLI to manage Mobile Services tables]: /cli/azure/get-started-with-az-cli2
+[Conflict-Handler]: mobile-services-ios-handling-conflicts-offline-data.md#add-conflict-handling
 
 [網狀架構儀表板]: https://www.fabric.io/home
 [Fabric for iOS - 開始使用]: https://docs.fabric.io/ios/fabric/getting-started.html
@@ -882,6 +882,6 @@ if (error.code == MSErrorPreconditionFailed) {
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

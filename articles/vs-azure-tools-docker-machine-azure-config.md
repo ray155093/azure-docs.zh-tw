@@ -15,8 +15,8 @@ ms.workload: multiple
 ms.date: 06/08/2016
 ms.author: mlearned
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e34cb21da7d08db0cd65db211102788232ac422f
+ms.sourcegitcommit: c327fc0f8175f3fe62f9a0975b7fbad1437bbbe0
+ms.openlocfilehash: 4309d2dffacb9baf2563c8a4fcd1984beabdeef0
 
 
 ---
@@ -24,9 +24,9 @@ ms.openlocfilehash: e34cb21da7d08db0cd65db211102788232ac422f
 執行 [Docker](https://www.docker.com/) 容器時需要執行 Docker 精靈的主機 VM。
 本主題說明如何使用 [docker-machine](https://docs.docker.com/machine/) 命令，來建立在 Azure 中執行並使用 Docker 精靈所設定的新 Linux VM。 
 
-**注意：** 
+**附註：** 
 
-* *本文根據 docker-machine 0.7.0 版或更新版本*
+* *本文是依據 docker-machine 0.9.0-rc2 版或更新版本*
 * *在不久的未來，將透過 docker-machine 支援 Windows Containers*
 
 ## <a name="create-vms-with-docker-machine"></a>使用 Docker 電腦建立 VM
@@ -45,10 +45,15 @@ Azure 驅動程式將需要您的訂用帳戶識別碼。 您可以使用 [Azure
 輸入 `docker-machine create --driver azure` 以查看選項和其預設值。
 您也可以查看 [Docker Azure 驅動程式文件](https://docs.docker.com/machine/drivers/azure/) ，以取得詳細資訊。 
 
-下列範例依賴預設值，但會選擇性地開啟 VM 上的連接埠 80 來進行網際網路存取。 
+下列範例採用[預設值](https://github.com/docker/machine/blob/master/drivers/azure/azure.go#L22)，但會視需要設定下列值： 
+
+* 與所產生的公用 IP 位址和憑證關聯之名稱的 azure-dns。  VM 可以接著安全地停止、釋出動態 IP，然後提供在 VM 以新 IP 重新啟動後重新連線的功能。  名稱前置詞對該區域 UNIQUE_DNSNAME_PREFIX.westus.cloudapp.azure.com 而言必須是唯一的。
+* VM 上用以進行對外網際網路存取的開啟連接埠 80
+* 用以使用更快速進階儲存體的 VM 大小
+* 用來作為 VM 磁碟的進階儲存體
 
 ```
-docker-machine create -d azure --azure-subscription-id <Your AZURE_SUBSCRIPTION_ID> --azure-open-port 80 mydockerhost
+docker-machine create -d azure --azure-subscription-id <Your AZURE_SUBSCRIPTION_ID> --azure-dns <Your UNIQUE_DNSNAME_PREFIX> --azure-open-port 80 --azure-size Standard_DS1_v2 --azure-storage-type "Premium_LRS" mydockerhost 
 ```
 
 ## <a name="choose-a-docker-host-with-docker-machine"></a>使用 docker-machine 選擇 Docker 主機
@@ -119,6 +124,6 @@ PS C:\> docker-machine ip MyDockerHost
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

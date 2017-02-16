@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/17/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4cfe4af2d7e4ef030faff8493b95e632bb5b095c
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8194e0d72bd8547595b15d5e1dcba5771d7b11c8
 
 
 ---
@@ -190,7 +190,7 @@ ms.openlocfilehash: 4cfe4af2d7e4ef030faff8493b95e632bb5b095c
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下 [完成]。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-an-reward-gateway-test-user"></a>建立 Reward Gateway 測試使用者
 在本節中，您會在 Reward Gateway 中建立名為 Britta Simon 的使用者。 請與 Reward Gateway [支援小組](mailTo:clientsupport@rewardgateway.com)合作以在 Reward Gateway 平台中新增使用者。
@@ -245,6 +245,6 @@ ms.openlocfilehash: 4cfe4af2d7e4ef030faff8493b95e632bb5b095c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

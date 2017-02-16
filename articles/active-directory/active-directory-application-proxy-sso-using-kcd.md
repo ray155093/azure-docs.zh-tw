@@ -97,7 +97,7 @@ Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體
 
 |  |  |
 | --- | --- |
-| 內部驗證方法 |如果您使用 Azure AD 進行預先驗證，您可以設定內部驗證方法，讓使用者從單一登入 (SSO) 到此應用程式受益。 <br><br> 如果您的應用程式使用 IWA，請選取 [整合式 Windows 驗證] (IWA)，然後您可以設定「Kerberos 限制委派」(KCD) 以針對此應用程式啟用 SSO。 使用 IWA 的應用程式必須設為使用 KCD，否則「應用程式 Proxy」無法發佈這些應用程式。 <br><br> 如果您的應用程式不是使用 IWA，請選取 [無]。 |
+| 內部驗證方法 |如果您使用 Azure AD 進行預先驗證，您可以設定內部驗證方法，讓使用者從單一登入 (SSO) 到此應用程式受益。 <br><br> 如果您的應用程式使用 IWA，請選取 [整合式 Windows 驗證] \(IWA)，然後您可以設定「Kerberos 限制委派」(KCD) 以針對此應用程式啟用 SSO。 使用 IWA 的應用程式必須設為使用 KCD，否則「應用程式 Proxy」無法發佈這些應用程式。 <br><br> 如果您的應用程式不是使用 IWA，請選取 [無]。 |
 | 內部應用程式 SPN |這是在內部部署 Azure AD 中所設定的內部應用程式「服務主體名稱」(SPN)。 「應用程式 Proxy 連接器」會使用 SPN，以針對使用 KCD 的應用程式擷取 Kerberos 權杖。 |
 
 ## <a name="sso-for-non-windows-apps"></a>非 Windows 應用程式的 SSO
@@ -130,7 +130,7 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 它也有助於不接受電子郵件地址形式位址的應用程式，這對於非 Windows 後端伺服器是很常見的案例。
 
 ### <a name="setting-sso-for-different-cloud-and-on-prem-identities"></a>設定不同雲端和內部部署身分識別的 SSO
-1. 設定 Azure AD Connect 設定，讓主要的身分識別會是電子郵件地址 (郵件)。 這是在自訂程序中完成 (透過變更同步設定中的 [使用者主體名稱] 欄位)。 這些設定也決定使用者如何登入 Office 365、Windows 10 裝置與其他使用 Azure AD 作為其身分識別存放區的應用程式。  
+1. 設定 Azure AD Connect 設定，讓主要的身分識別會是電子郵件地址 (郵件)。 這是在自訂程序中完成 (透過變更同步設定中的 [使用者主體名稱] 欄位)。 這些設定也決定使用者如何登入 Office&365;、Windows&10; 裝置與其他使用 Azure AD 作為其身分識別存放區的應用程式。  
    ![識別使用者螢幕擷取畫面 - [使用者主體名稱] 下拉式清單](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_connect_settings.png)  
 2. 在您想要修改之應用程式的應用程式組態設定中，選取要使用的 [委派的登入識別]  ：
 

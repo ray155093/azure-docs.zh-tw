@@ -1,5 +1,8 @@
 ---
-title: "Team Data Science Process 實務：使用 Hadoop 叢集 | Microsoft Docs"
+
+
+
+title: "瀏覽 Hadoop 叢集中的資料，並在 Azure Machine Learning 中建立模型 | Microsoft Docs"
 description: "對採用 HDInsight Hadoop 叢集來建置和部署使用公開可用資料集模型的端對端案例使用 Team Data Science Process。"
 services: machine-learning,hdinsight
 documentationcenter: 
@@ -12,15 +15,15 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 01/29/2017
 ms.author: hangzh;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6eb9fd3750eaf03547f93462d97bc30d30a9a8bc
+ms.sourcegitcommit: 2b7f4b5743945738f801dc26a60d00892c33d809
+ms.openlocfilehash: 91ff5546a954b91585e5ae93f910caffe3b392e1
 
 
 ---
-# <a name="the-team-data-science-process-in-action-using-hdinsight-hadoop-clusters"></a>Team Data Science Process 實務：使用 HDInsight Hadoop 叢集
+# <a name="the-team-data-science-process-in-action-use-azure-hdinsight-hadoop-clusters"></a>Team Data Science Process 實務：使用 Azure HDInsight Hadoop 叢集
 在這個逐步解說中，我們會在採用 [Azure HDInsight Hadoop 叢集](https://azure.microsoft.com/services/hdinsight/)的端對端案例中使用 [Team Data Science Process (TDSP)](data-science-process-overview.md)，以對 [NYC Taxi Trips (NYC 計程車車程)](http://www.andresmh.com/nyctaxitrips/) 資料集內可公開使用的資料進行儲存、探索和特徵工程設計，並縮減取樣資料。 資料的模型是使用 Azure Machine Learning 建置，以處理二元和多元分類和迴歸預測工作。
 
 如需示範如何使用 HDInsight Hadoop 叢集，針對類似的案例處理更大 (1 TB) 資料集資料的逐步解說，請參閱 [Team Data Science Process - 在 1 TB 資料集上使用 Azure HDInsight Hadoop 叢集](machine-learning-data-science-process-hive-criteo-walkthrough.md)。
@@ -570,7 +573,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 > 
 > 
 
-將此資料放在 Azure Blob 中的主要優點是，我們可以使用[匯入資料][import-data]模組來探索 Azure Machine Learning 中的資料。
+將此資料放在 Azure Blob 中的主要優點在於，我們可以使用[匯入資料][import-data]模組在 Azure Machine Learning 內探索資料。
 
 ## <a name="a-namedownsampleadown-sample-data-and-build-models-in-azure-machine-learning"></a><a name="#downsample"></a>在 Azure Machine Learning 中縮小取樣和建置模型
 > [!NOTE]
@@ -578,12 +581,12 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 > 
 > 
 
-在探索資料分析階段之後，我們現在已準備好縮小取樣資料，以便在 Azure Machine Learning 中建置模型。 在本節中，我們將示範如何使用 Hive 查詢來縮小資料取樣，然後從 Azure Machine Learning 中的[匯入資料][import-data]模組存取此資料。
+在探索資料分析階段之後，我們現在已準備好縮小取樣資料，以便在 Azure Machine Learning 中建置模型。 在本節中，我們將示範如何使用 Hive 查詢來縮小取樣資料，然後從 Azure Machine Learning 中的[匯入資料][import-data]模組存取此資料。
 
 ### <a name="down-sampling-the-data"></a>縮小取樣資料
 這個程序包含兩個步驟。 首先我們在所有記錄都會出現的三個索引鍵("medallion"、"hack\_license"、"pickup\_datetime") 上加入 **nyctaxidb.trip** 和 **nyctaxidb.fare** 資料表。 接著產生二元分類標籤 **tipped** 和多元分類標籤 **tip\_class**。
 
-為了能夠直接從 Azure Machine Learning 中的[匯入資料][import-data]模組使用縮小取樣的資料，必須將上述查詢的結果儲存到內部的 Hive 資料表。 接下來我們將建立內部 Hive 資料表，並以加入和縮小取樣的資料來填入其內容。
+為了能夠直接從 Azure Machine Learning 中的[匯入資料][import-data]模組使用縮小取樣的資料，必須將上述查詢的結果儲存至內部 Hive 資料表。 接下來我們將建立內部 Hive 資料表，並以加入和縮小取樣的資料來填入其內容。
 
 查詢會直接套用標準 Hive 函式，以從 "pickup\_datetime" 欄位產生時間、週數和工作日 (1 代表星期一，7 代表星期日)，以及上車和下車位置之間的直線距離。 使用者可以參考 [LanguageManual UDF](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) 以取得這類函數的完整清單。
 
@@ -721,7 +724,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 ### <a name="use-the-import-data-module-in-azure-machine-learning-to-access-the-down-sampled-data"></a>使用 Azure Machine Learning 中的「匯入資料」模組來存取縮小取樣的資料
 若要在 Azure Machine Learning 的[匯入資料][import-data]模組中發出 Hive 查詢，先決條件是要能夠存取 Azure Machine Learning 工作區，以及要能夠存取叢集及其相關儲存體帳戶的認證。
 
-以下是[匯入資料][import-data]模組及要輸入之參數的一些詳細資料：
+以下是[匯入資料][import-data]模組及輸入參數的一些詳細資料：
 
 **HCatalog 伺服器 URI**：如果叢集名稱是 abc123，則為：https://abc123.azurehdinsight.net
 
@@ -736,7 +739,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 **Azure 容器名稱** ：這是叢集的預設容器名稱，且通常與叢集名稱相同。 如果叢集為 "abc123"，即為 abc123。
 
 > [!IMPORTANT]
-> **任何我們想要使用 Azure Machine Learning 中的[匯入資料][import-data]模組來查詢的資料表都必須是內部資料表。**  以下是判斷資料庫 D.db 中的資料表 T 是否為內部資料表的秘訣。
+> **任何我們想要使用 Azure Machine Learning 中的[匯入資料][import-data]模組來查詢的資料表都必須是內部資料表。** 以下是判斷資料庫 D.db 中的資料表 T 是否為內部資料表的秘訣。
 > 
 > 
 
@@ -748,7 +751,7 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 
 以下是 Hive 查詢和[匯入資料][import-data]模組的快照：
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/1eTYf52.png)
+![匯入資料模組的 Hive 查詢](./media/machine-learning-data-science-process-hive-walkthrough/1eTYf52.png)
 
 請注意，由於縮小取樣的資料位於預設容器中，因此從 Azure Machine Learning 產生的 Hive 查詢會很簡單，只會是 "SELECT * FROM nyctaxidb.nyctaxi\_downsampled\_data"。
 
@@ -761,39 +764,39 @@ sample\_hive\_trip\_count\_by\_medallion\_license.hql 檔案會將費用資料�
 
 **已使用學習者：** 二元羅吉斯迴歸
 
-a. 對於這個問題，我們的目標 (或類別) 標籤是 "tipped"。 縮小取樣的原始資料集有幾個資料行會顯示這個分類實驗目標。 特別是 tip\_class、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。 我們會使用[選取資料集中的資料行][select-columns]模組，從考量範圍中移除這些資料行。
+a. 對於這個問題，我們的目標 (或類別) 標籤是 "tipped"。 縮小取樣的原始資料集有幾個資料行會顯示這個分類實驗目標。 特別是 tip\_class、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。 我們使用[選取資料集中的資料行][select-columns]模組，從考量範圍中移除這些資料行。
 
 以下快照顯示我們的實驗，目的是預測是否會支付指定車程的小費。
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/QGxRz5A.png)
+![實驗快照](./media/machine-learning-data-science-process-hive-walkthrough/QGxRz5A.png)
 
-b. 對於這項實驗，我們的目標標籤分佈大約是 1:1。
+b.這是另一個 C# 主控台應用程式。 對於這項實驗，我們的目標標籤分佈大約是 1:1。
 
 以下快照顯示二元分類問題之 tip 類別標籤的分佈。
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/9mM4jlD.png)
+![類別標籤的分佈](./media/machine-learning-data-science-process-hive-walkthrough/9mM4jlD.png)
 
 因此，我們將取得 0.987 的 AUC，如下圖所示。
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/8JDT0F8.png)
+![AUC 值](./media/machine-learning-data-science-process-hive-walkthrough/8JDT0F8.png)
 
 **2.多元分類**：若要預測針對該趟車程支付的小費金額範圍，請使用先前定義的類別。
 
 **已使用學習者：** 多元羅吉斯迴歸
 
-a. 對於這個問題，我們的目標 (或類別) 標籤是 "tip\_class"，可能採用五個值 (0、1、2、3、4) 的其中一個。 如二元分類案例所示，我們有幾個資料行會顯示這個實驗的目標。 特別是 tipped、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。 我們會使用[選取資料集中的資料行][select-columns]模組移除這些資料行。
+a. 對於這個問題，我們的目標 (或類別) 標籤是 "tip\_class"，可能採用五個值 (0、1、2、3、4) 的其中一個。 如二元分類案例所示，我們有幾個資料行會顯示這個實驗的目標。 特別是 tipped、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。 我們使用[選取資料集中的資料行][select-columns]模組來移除這些資料行。
 
 以下快照顯示我們的實驗預測小費可能落在哪個分類收納組中 (類別 0：小費 = 美金 $0 元，類別 1：小費 > 美金 $0 元且 <= 美金 $5 元，類別 2：小費 > 美金 $5 元且 <= 美金 $10 元，類別 3：小費 > 美金 $10 元且 <= 美金 $20 元，類別 4：小費 > 美金 $20 元)
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/5ztv0n0.png)
+![實驗快照](./media/machine-learning-data-science-process-hive-walkthrough/5ztv0n0.png)
 
 現在會顯示實際的測試類別分佈。 我們看到類別 0 和類別 1 很普遍，其他類別則很罕見。
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/Vy1FUKa.png)
+![測試類別分佈](./media/machine-learning-data-science-process-hive-walkthrough/Vy1FUKa.png)
 
-b. 對於這項實驗，我們使用混淆矩陣來查看預測精確度。 如下所示。
+b.這是另一個 C# 主控台應用程式。 對於這項實驗，我們使用混淆矩陣來查看預測精確度。 如下所示。
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/cxFmErM.png)
+![混淆矩陣](./media/machine-learning-data-science-process-hive-walkthrough/cxFmErM.png)
 
 請注意，雖然常見類別上的類別精確度很高，但模型對較罕見類別沒有很好的「學習」效果。
 
@@ -801,15 +804,15 @@ b. 對於這項實驗，我們使用混淆矩陣來查看預測精確度。 如�
 
 **已使用學習者：** 推進式決策樹
 
-a. 對於這個問題，我們的目標 (或類別) 標籤是 "tip\_amount"。 在本例中，我們的顯示目標是：tipped、tip\_class、total\_amount；所有變數都會揭示測試時通常不會提供之小費金額的相關資訊。 我們會使用[選取資料集中的資料行][select-columns]模組移除這些資料行。
+a. 對於這個問題，我們的目標 (或類別) 標籤是 "tip\_amount"。 在本例中，我們的顯示目標是：tipped、tip\_class、total\_amount；所有變數都會揭示測試時通常不會提供之小費金額的相關資訊。 我們使用[選取資料集中的資料行][select-columns]模組來移除這些資料行。
 
 以下快照顯示我們用來預測指定小費金額的實驗。
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/11TZWgV.png)
+![實驗快照](./media/machine-learning-data-science-process-hive-walkthrough/11TZWgV.png)
 
-b. 對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係數等，來測量預測的精確度。 以下將進行示範。
+b.這是另一個 C# 主控台應用程式。 對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係數等，來測量預測的精確度。 以下將進行示範。
 
-![](./media/machine-learning-data-science-process-hive-walkthrough/Jat9mrz.png)
+![預測統計資料](./media/machine-learning-data-science-process-hive-walkthrough/Jat9mrz.png)
 
 我們看到決定係數是 0.709，其中隱含的變異大約有 71% 是由我們的模型係數所造成。
 
@@ -839,6 +842,6 @@ b. 對於迴歸問題，我們會藉由查看預測中的平方誤差、決定�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

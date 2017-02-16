@@ -13,19 +13,25 @@ ms.workload: multiple
 ms.tgt_pltfrm: vm-multiple
 ms.devlang: na
 ms.topic: article
-ms.date: 09/22/2016
+ms.date: 01/03/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: cff4e05de2a9e2f0603fd4beebe26e44b4652dc8
-ms.openlocfilehash: d168c6e477eff07b8f499c1be869f85506c2fabc
+ms.sourcegitcommit: 9a2ab28a2dc456d5f21242ded1d348f411d3d994
+ms.openlocfilehash: c8cc44cf132bb82c217a81ab94f27ed391a4248d
 
 
 ---
 # <a name="azure-cli-commands-in-azure-service-management-asm-mode"></a>Azure 服務管理 (asm) 模式中的 Azure CLI 命令
-> [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../articles/azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 您也可以[了解所有 Resource Manager 模型命令](virtual-machines/azure-cli-arm-commands.md)，並使用 CLI 從傳統模型[移轉資源](virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)到 Resource Manager 模型。
+
 
 本文提供傳統部署模型中您通常用來建立和管理 Azure 資源的 Azure CLI 命令的語法和選項。 您可以在 Azure 服務管理 (asm) 模式下執行 CLI 來存取這些命令。 這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。 
+
+> [!IMPORTANT]
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../articles/azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 您也可以[了解 Resource Manager 模型 CLI 命令](virtual-machines/azure-cli-arm-commands.md)，並使用 CLI 從傳統模型將[資源移轉](virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)到 Resource Manager 模型。
+>
+>若要在 Resource Manager 模型中工作，您也可以嘗試 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，這是我們的新一代多平台 CLI。
+>
+
 
 若要開始使用，請先[安裝 Azure CLI](xplat-cli-install.md)，並[連線到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
 
@@ -2353,6 +2359,6 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

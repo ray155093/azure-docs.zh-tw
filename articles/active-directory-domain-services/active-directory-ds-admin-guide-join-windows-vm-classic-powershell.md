@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 4eb9a5c4087fc7e91d79a7789a261d590485555a
+ms.sourcegitcommit: fdc53ee24c623218e218cdda1c24dffbbec50bc5
+ms.openlocfilehash: e7c7e9504985fa98185286ee9a28cec80fb87df6
 
 
 ---
@@ -119,7 +119,7 @@ ms.openlocfilehash: 4eb9a5c4087fc7e91d79a7789a261d590485555a
 
 * 使用 Windows Server 2012 R2 Datacenter 映像。
 * 是超小的虛擬機器。
-* 具有名稱 contoso-test。
+* 名稱為 Contoso100-test。
 * 會自動加入 contoso100 受管理的網域。
 * 和受管理的網域加入相同的虛擬網路。
 
@@ -160,6 +160,6 @@ ms.openlocfilehash: 4eb9a5c4087fc7e91d79a7789a261d590485555a
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -16,8 +16,8 @@ ms.workload: integration
 ms.date: 09/26/2016
 ms.author: plarsen
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1b9ea0593e0ae6dc9e1b6b07665fc3b3fad264bf
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: 614400a8787fdd2081fa8e981c0fc6b6dd794a58
 
 
 ---
@@ -40,7 +40,7 @@ Microsoft Connector for Informix 可將 Logic Apps 連接至 IBM Informix 資料
 
 本主題說明如何在邏輯應用程式中使用連接器來處理資料庫作業。
 
-若要深入了解 Logic Apps，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要深入了解 Logic Apps，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="available-actions"></a>可用動作
 連接器支援下列邏輯應用程式動作：
@@ -404,11 +404,11 @@ TablesList
 * IBM Informix 11.7
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

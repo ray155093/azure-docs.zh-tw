@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/02/2016
+ms.date: 11/15/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: aa0f2dd07ffa8437ff224c278135744202adcd73
+ms.sourcegitcommit: ec710057c2016175f65578a9d6884f7273b65169
+ms.openlocfilehash: f2a762ad64feeef91802429cdd959cec67b73473
 
 
 ---
@@ -33,7 +33,8 @@ ms.openlocfilehash: aa0f2dd07ffa8437ff224c278135744202adcd73
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
 ## <a name="connect-to-azure-hdinsight"></a>連接至 Azure HDInsight
-您需要下列 Nuget 封裝：
+
+您需要下列 Nuget 套件：
 
     Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
     Install-Package Microsoft.Azure.Management.ResourceManager -Pre
@@ -79,10 +80,6 @@ ms.openlocfilehash: aa0f2dd07ffa8437ff224c278135744202adcd73
             /// <summary>
             /// Authenticate to an Azure subscription and retrieve an authentication token
             /// </summary>
-            /// <param name="TenantId">The AAD tenant ID</param>
-            /// <param name="ClientId">The AAD client ID</param>
-            /// <param name="SubscriptionId">The Azure subscription ID</param>
-            /// <returns></returns>
             static TokenCloudCredentials Authenticate(string TenantId, string ClientId, string SubscriptionId)
             {
                 var authContext = new AuthenticationContext("https://login.microsoftonline.com/" + TenantId);
@@ -136,7 +133,7 @@ ms.openlocfilehash: aa0f2dd07ffa8437ff224c278135744202adcd73
 叢集調整功能可讓您變更在 Azure HDInsight 中執行的叢集所用的背景工作節點數目，而不需要重新建立叢集。
 
 > [!NOTE]
-> 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。 如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。  請參閱 [列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)。
+> 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。 如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。  請參閱[列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)。
 > 
 > 
 
@@ -167,14 +164,14 @@ ms.openlocfilehash: aa0f2dd07ffa8437ff224c278135744202adcd73
     
     HDInsight 叢集上有提供 Storm Web UI：
     
-    ![hdinsight storm scale rebalance](./media/hdinsight-administer-use-management-portal/hdinsight.portal.scale.cluster.storm.rebalance.png)
+    ![HDInsight Storm 調整重新平衡](./media/hdinsight-administer-use-management-portal/hdinsight.portal.scale.cluster.storm.rebalance.png)
     
     以下是如何使用 CLI 命令重新平衡 Storm 拓撲的範例：
     
-    ## <a name="reconfigure-the-topology-mytopology-to-use-5-worker-processes"></a>重新設定拓撲 "mytopology" 來使用 5 個背景工作處理序、
-    ## <a name="the-spout-blue-spout-to-use-3-executors-and"></a>spout "blue-spout" 來使用 3 個執行程式，以及
-    ## <a name="the-bolt-yellow-bolt-to-use-10-executors"></a>bolt "yellow-bolt" 來使用 10 個執行程式
-      $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
+        ## Reconfigure the topology "mytopology" to use 5 worker processes,
+        ## the spout "blue-spout" to use 3 executors, and
+        ## the bolt "yellow-bolt" to use 10 executors
+        $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
 
 下列程式碼片段示範如何同步或非同步地調整叢集大小︰
 
@@ -285,6 +282,6 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

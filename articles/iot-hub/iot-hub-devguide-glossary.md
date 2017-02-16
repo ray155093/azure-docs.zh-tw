@@ -1,6 +1,6 @@
 ---
-title: "開發人員指南 - 詞彙 | Microsoft Docs"
-description: "IoT 中樞相關常見術語詞彙"
+title: "Azure IoT 中樞詞彙 | Microsoft Docs"
+description: "開發人員指南 - Azure IoT 中樞相關的常用術語詞彙表。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: d4bf4e03321255385dbb15d7559ea94f191183b5
+ms.sourcegitcommit: 1f795dd5b3d99731b2e683085d889ed7943d6281
+ms.openlocfilehash: 3661ad7374fd91cf7bbc485b8ce0805b78518899
 
 
 ---
@@ -42,7 +42,7 @@ ms.openlocfilehash: d4bf4e03321255385dbb15d7559ea94f191183b5
 [Microsoft Azure 入口網站](https://portal.azure.com)是一個可以佈建和管理 Azure 資源的中央位置。 它會使用_刀鋒視窗_來組織其內容。 某些 IoT 中樞教學課程可能會要求您使用 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 
 ## <a name="azure-powershell"></a>Azure PowerShell
-[Azure PowerShell](../powershell-install-configure.md) 是 Cmdlet 集合，可用於透過 Windows PowerShell 管理 Azure。 您可以使用 Cmdlet 來建立、測試、部署和管理透過 Azure 平台傳遞的解決方案和服務。
+[Azure PowerShell](/powershell/azureps-cmdlets-docs) 是 Cmdlet 集合，可用於透過 Windows PowerShell 管理 Azure。 您可以使用 Cmdlet 來建立、測試、部署和管理透過 Azure 平台傳遞的解決方案和服務。
 
 ## <a name="azure-resource-manager"></a>Azure Resource Manager
 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將方案中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除方案的資源。
@@ -63,7 +63,9 @@ ms.openlocfilehash: d4bf4e03321255385dbb15d7559ea94f191183b5
 意指從 IoT 中樞傳送到連線裝置的訊息。 這些訊息通常是指示裝置採取行動的命令。 如需詳細資訊，請參閱[使用 IoT 中樞傳送及接收訊息](iot-hub-devguide-messaging.md)。
 
 ## <a name="connection-string"></a>連接字串
-您可以在應用程式程式碼中使用連接字串，以封裝連接至端點所需的資訊。 連接字串通常包含端點位址和安全性資訊，但連接字串的格式會因服務間而異。
+您可以在應用程式程式碼中使用連接字串，以封裝連接至端點所需的資訊。 連接字串通常包含端點位址和安全性資訊，但連接字串的格式會因服務而不同。 IoT 中樞服務有兩種相關的連接字串︰
+- 「裝置連接字串」可讓裝置連接至 IoT 中樞上的裝置對向端點。
+- 「IoT 中樞連接字串」可讓後端應用程式連接至 IoT 中樞上的服務對向端點。
 
 ## <a name="custom-gateway"></a>自訂閘道
 閘道可讓無法直接連接到 [IoT 中樞](#iot-hub)的裝置能夠連線。 您可以使用 [Azure IoT 閘道 SDK](#azure-iot-gateway-sdk) 來建立自訂閘道，以實作自訂邏輯來處理訊息和自訂通訊協定轉換。
@@ -147,13 +149,13 @@ IoT 中樞會公開多個[端點](iot-hub-devguide-endpoints.md)，讓您的應�
 [身分識別登錄](iot-hub-devguide-identity-registry.md)是內建的 IoT 中樞元件，可存放允許連線到 IoT 中樞的個別裝置相關資訊。
 
 ## <a name="interactive-message"></a>互動式訊息
-互動式訊息是[雲端到裝置](#cloud-to-device)訊息，可在應用程式後端觸發立即的行動。 例如，裝置可能會傳送有關失敗的警示，並應該自動記錄到 CRM 系統。
+互動式訊息是[雲端到裝置](#cloud-to-device)訊息，可在解決方案後端觸發立即的行動。 例如，裝置可能會傳送有關失敗的警示，並應該自動記錄到 CRM 系統。
 
 ## <a name="iot-hub"></a>IoT 中樞
 IoT 中樞是一項完全受管理的 Azure 服務，可在數百萬個裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 如需詳細資訊，請參閱[何謂 Azure IoT 中樞？](iot-hub-what-is-iot-hub.md) 使用 [Azure 訂用帳戶](#subscription)，您可以建立 IoT 中樞來處理 IoT 傳訊工作負載。
 
 ## <a name="iot-hub-metrics"></a>IoT 中樞計量
-[IoT 中樞計量](iot-hub-metrics.md)可提供 [Azure 訂用帳戶](#subscription)中 IoT 中樞的狀態相關資料。 度量可讓您評估服務以及連接到服務之裝置的整體健全狀況。 計量可協助您了解 IoT 中樞的情況以及調查根本問題，而不需要連絡 Azure 支援人員。
+[IoT 中樞計量](iot-hub-metrics.md)可提供 [Azure 訂用帳戶](#subscription)中 IoT 中樞的狀態相關資料。 IoT 中樞度量可讓您評估服務及其連接之裝置的整體健全狀況。 IoT 中樞度量可協助您了解 IoT 中樞的情況並調查根本問題，而不需要連絡 Azure 支援人員。
 
 ## <a name="iot-hub-query-language"></a>IoT 中樞查詢語言
 [IoT 中樞查詢語言](iot-hub-devguide-query-language.md)是一種類似 SQL 的語言，可讓您查詢[作業](#job)和裝置對應項。
@@ -225,7 +227,7 @@ Azure 訂用帳戶是發生帳單的地方。 您建立的每個 Azure 資源，
 在[裝置對應項](iot-hub-devguide-device-twins.md)的內容中，系統屬性是唯讀屬性，內含關於裝置使用方式的資訊，例如上次活動時間和連線狀態。
 
 ## <a name="tags"></a>標記
-在[裝置對應項](iot-hub-devguide-device-twins.md)的內容中，標籤是應用程式後端所儲存和擷取的裝置中繼資料，其形式為 JSON 文件。 裝置上的應用程式看不到標籤。
+在[裝置對應項](iot-hub-devguide-device-twins.md)的內容中，標籤是解決方案後端以 JSON 文件形式儲存和擷取的裝置中繼資料。 裝置上的應用程式看不到標籤。
 
 ## <a name="telemetry"></a>遙測
 裝置可收集遙測資料 (例如風速或溫度)，並使用[資料點訊息](#data-point-messages)將遙測傳送到 IoT 中樞。
@@ -237,6 +239,6 @@ Azure 訂用帳戶是發生帳單的地方。 您建立的每個 Azure 資源，
 裝置可以使用 X.509 憑證向 [IoT 中樞](#iot-hub)進行驗證。 使用 X.509 憑證是使用 [SAS 權杖](#shared-access-signature)的替代方式。
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

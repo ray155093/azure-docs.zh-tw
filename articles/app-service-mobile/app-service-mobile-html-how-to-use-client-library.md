@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: html
 ms.devlang: javascript
 ms.topic: article
-ms.date: 10/01/2016
+ms.date: 10/30/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7705670592c353032740bd80d03bc8f174028e39
+ms.sourcegitcommit: d6e68497cf0a4c48e6f611834089224b50b9bd5e
+ms.openlocfilehash: 79743cab91f8c22d06796803eb7e31681a581233
 
 
 ---
@@ -39,12 +39,6 @@ ms.openlocfilehash: 7705670592c353032740bd80d03bc8f174028e39
 npm install azure-mobile-apps-client --save
 ```
 
-安裝之後，程式庫位於 `node_modules/azure-mobile-apps-client/dist/MobileServices.Web.min.js`。  將這個檔案複製到您的網站區域。
-
-```
-<script src="path/to/MobileServices.Web.min.js"></script>
-```
-
 程式庫也可在 CommonJS 環境 (例如 Browserify 和 Webpack) 內部做為 ES2015 模組和 AMD 程式庫使用。  例如：
 
 ```
@@ -52,6 +46,12 @@ npm install azure-mobile-apps-client --save
 var WindowsAzure = require('azure-mobile-apps-client');
 # For ES2015 modules
 import * as WindowsAzure from 'azure-mobile-apps-client';
+```
+
+您也可以直接從我們 CDN 下載預先建置 SDK 版本來使用︰
+
+```html
+<script src="https://zumo.blob.core.windows.net/sdk/azure-mobile-apps-client.min.js"></script>
 ```
 
 [!INCLUDE [app-service-mobile-html-js-library](../../includes/app-service-mobile-html-js-library.md)]
@@ -101,15 +101,15 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 <!-- URLs. -->
 [Azure 行動應用程式快速入門]: app-service-mobile-cordova-get-started.md
 [開始使用驗證]: app-service-mobile-cordova-get-started-users.md
-[將驗證新增至您的應用程式]: app-service-mobile-cordova-get-started-users.md
+[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
 
 [Azure 入口網站]: https://portal.azure.com/
 [適用於 Azure Mobile Apps 的 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client
-[Query 物件文件]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx
+[Query object documentation]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

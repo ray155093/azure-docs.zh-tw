@@ -14,11 +14,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: support-article
-ms.date: 09/01/2016
+ms.date: 11/28/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 9333062851e070a93afc6935e58594711b741f48
+ms.sourcegitcommit: 2df9b83132711e199b58fa92841a3dca74c7282a
+ms.openlocfilehash: 0164ad801b11a6c6124df8106bd7b71b737f81f1
 
 
 ---
@@ -36,13 +36,14 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 
 在 [Azure 入口網站](https://portal.azure.com)：
 
-1. 針對使用傳統部署模型來建立的 VM，選取 [瀏覽] > [虛擬機器 (傳統)]VM 名稱 > 。
+1. 針對使用 Resource Manager 模型來建立的 VM，選取 [虛擬機器] > VM 名稱。
    
     -或-
    
-    針對使用 Resource Manager 模型來建立的 VM，選取 [瀏覽] > [虛擬機器]VM 名稱 > 。
+    針對使用傳統部署模型來建立的 VM，選取 [虛擬機器 (傳統)] > VM 名稱。
    
     VM 的狀態窗格應該會顯示 [正在執行] 。 向下捲動以顯示計算、儲存體和網路資源的近期活動。
+
 2. 選取 [設定]  以檢查端點、IP 位址和其他設定。
    
     若要識別使用 Resource Manager 來建立之 VM 中的端點，請確認是否已定義 [網路安全性群組](../virtual-network/virtual-networks-nsg.md) 。 另外，也請確認是否已將規則套用至網路安全性群組，以及子網路中是否有參考這些規則。
@@ -59,7 +60,7 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 在這些步驟之後，請再試一次 SSH 連線。
 
 ## <a name="find-the-source-of-the-issue"></a>找出問題來源
-您電腦上的 SSH 用戶端若不能連線至 Azure VM 上的 SSH 服務，可能為下列問題或錯誤設定所造成：
+如果下列方面發生問題或設定錯誤，您電腦上的 SSH 用戶端可能就無法連線到 Azure VM 上的 SSH 服務：
 
 * [SSH 用戶端電腦](#source-1-ssh-client-computer)
 * [組織邊緣裝置](#source-2-organization-edge-device)
@@ -72,7 +73,7 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 
 ![強調 SSH 用戶端電腦元件的圖表](./media/virtual-machines-linux-detailed-troubleshoot-ssh-connection/ssh-tshoot2.png)
 
-如果連線失敗，請檢查您電腦上是否有下列因素：
+如果連線失敗，請檢查您電腦上是否有下列問題：
 
 * 正封鎖輸入或輸出 SSH 流量的本機防火牆設定 (TCP 22)
 * 正阻止 SSH 連線的本機安裝用戶端 Proxy 軟體
@@ -106,21 +107,19 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 ## <a name="source-3-cloud-service-endpoint-and-acl"></a>來源 3：雲端服務端點和 ACL
 > [!NOTE]
 > 此來源僅適用於使用傳統部署模型所建立的 VM。 針對使用 Resource Manager 來建立的 VM，請跳到 [來源 4：網路安全性群組](#nsg)。
-> 
-> 
 
 若要排除雲端服務端點和 ACL 為失敗來源的可能性，請確認同一個虛擬網路中的其他 Azure VM 是否能 SSH 連線至您的 VM。
 
 ![強調雲端服務端點和 ACL 的圖表](./media/virtual-machines-linux-detailed-troubleshoot-ssh-connection/ssh-tshoot4.png)
 
-如果在相同的虛擬網路中沒有其他 VM，您可以輕鬆建立一部新的 VM。 如需詳細資訊，請參閱 [使用 CLI 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 當您完成測試後，請刪除額外的 VM。
+如果您在相同的虛擬網路中沒有其他 VM，您可以輕鬆建立一部 VM。 如需詳細資訊，請參閱 [使用 CLI 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 當您完成測試後，請刪除額外的 VM。
 
-如果您可以 SSH 連線到相同虛擬網路中的 VM，請檢查下列項目：
+如果您可以與相同虛擬網路中的 VM 建立 SSH 連線，請檢查下列方面：
 
-* **目標 VM 上的 SSH 流量端點組態。** 此端點的私用 TCP 連接埠應符合 VM 上 SSH 服務正在接聽的 TCP 連接埠， 預設連接埠為 22。 針對使用 Resource Manager 部署模型來建立的 VM，請在 Azure 入口網站中選取 [瀏覽] > [虛擬機器 (v2)] > VM 名稱 > [設定] > [端點]。
-* **目標虛擬機器上的 SSH 流量端點 ACL。**  ACL 可讓您指定要根據來源 IP 位址允許或拒絕來自網際網路的連入流量。 設定錯誤的 ACL 會阻止送至端點的連入 SSH 流量。 檢查您的 ACL，確保允許來自您的 Proxy 或其他邊緣伺服器之公用 IP 位址的連入流量。 如需詳細資訊，請參閱 [關於網路存取控制清單 (ACL)](../virtual-network/virtual-networks-acl.md)。
+* **目標 VM 上的 SSH 流量端點組態。** 此端點的私用 TCP 連接埠應符合 VM 上 SSH 服務正在接聽的 TCP 連接埠， 預設連接埠為 22。 針對使用 Resource Manager 部署模型來建立的 VM，請選取 [虛擬機器] > VM 名稱 > [設定] > [端點]，以驗證 Azure 入口網站中的 SSH TCP 連接埠號碼。
+* **目標虛擬機器上的 SSH 流量端點 ACL。** ACL 可讓您指定要根據來源 IP 位址允許或拒絕來自網際網路的連入流量。 設定錯誤的 ACL 會阻止送至端點的連入 SSH 流量。 檢查您的 ACL，確保允許來自您的 Proxy 或其他邊緣伺服器之公用 IP 位址的連入流量。 如需詳細資訊，請參閱 [關於網路存取控制清單 (ACL)](../virtual-network/virtual-networks-acl.md)。
 
-若要排除端點為問題來源的可能性，請移除目前的端點，建立一個新端點，再指定 SSH 名稱 (TCP 連接埠 22 作為公用及私用連接埠號碼)。 如需詳細資訊，請參閱 [在 Azure 中設定虛擬機器的端點](virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+若要排除端點是問題來源的可能性，請移除目前的端點、建立另一個端點，然後指定 SSH 名稱 (TCP 連接埠 22 作為公用及私用連接埠號碼)。 如需詳細資訊，請參閱 [在 Azure 中設定虛擬機器的端點](virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 <a id="nsg"></a>
 
@@ -138,7 +137,7 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 再次嘗試從您的電腦連線。 如果仍然失敗，以下是一些可能的問題：
 
 * SSH 服務未在目標虛擬機器上執行。
-* SSH 服務未在 TCP 連接埠 22 上接聽。 若要測試這種情況，請在本機電腦上安裝 telnet 用戶端，並執行 "telnet *cloudServiceName*.cloudapp.net 22"。 這樣可以判斷虛擬機器是否允許對 SSH 端點進行輸入和輸出通訊。
+* SSH 服務未在 TCP 連接埠 22 上接聽。 若要進行測試，請在本機電腦上安裝 telnet 用戶端，然後執行 "telnet *cloudServiceName*.cloudapp.net 22"。 此步驟可判斷虛擬機器是否允許對 SSH 端點進行輸入和輸出通訊。
 * 目標虛擬機器上的本機防火牆具有防止輸入或輸出 SSH 流量的規則。
 * 在 Azure 虛擬機器上執行的入侵偵測或網路監視軟體正在阻止 SSH 連線。
 
@@ -148,6 +147,6 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO5-->
 
 

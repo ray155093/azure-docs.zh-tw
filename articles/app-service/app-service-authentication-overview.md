@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/29/2016
 ms.author: mahender
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b3a588465a7abfb1f121a93de9e4613559ea5ca2
+ms.sourcegitcommit: b75f7aa757679a29a42cdfc04799873ee30bab2e
+ms.openlocfilehash: e89ba5613c615c41af93e8f63b3703da8395095c
 
 
 ---
@@ -30,7 +30,7 @@ App Service 使用同盟身分識別，由第三方識別提供者儲存帳戶�
 
 * [將驗證新增至 iOS 應用程式][iOS] (或 [Android]、[Windows]、[Xamarin.iOS]、[Xamarin.Android]、[Xamarin.Forms] 或 [Cordova])
 * [Azure App Service 中 API Apps 的使用者驗證][apia-user]
-* 請參閱[開始使用 Azure App Service -第 2 部分][web-getstarted]
+* [開始使用 Azure App Service - 第 2 部分][web-getstarted]
 
 ## <a name="how-authentication-works-in-app-service"></a>App Service 中驗證的運作方式
 若要使用其中一個識別提供者進行驗證，您首先需要設定讓識別提供者了解您的應用程式。 識別提供者接著會提供識別碼和密碼，讓您提供給 App Service。 這樣就完成信任關係，讓 App Service 能夠驗證來自識別提供者的使用者判斷提示，例如驗證權杖。
@@ -73,14 +73,14 @@ App Service 會驗證您的應用程式核發來驗證使用者的任何 Cookie 
 
 如果您想要使用 App Service 驗證來處理服務對服務案例，您可以使用用戶端憑證或基本驗證。 如需 Azure 中用戶端憑證的詳細資訊，請參閱 [如何設定 Web Apps 的 TLS 相互驗證](../app-service-web/app-service-web-configure-tls-mutual-auth.md)。 如需 ASP.NET 中基本驗證的詳細資訊，請參閱 [ASP.NET Web API 2 中的驗證篩選](http://www.asp.net/web-api/overview/security/authentication-filters)。
 
-App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特殊案例，在 [將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../app-service-logic/app-service-logic-custom-hosted-api.md)中有詳細說明。
+App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特殊案例，在 [將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../logic-apps/logic-apps-custom-hosted-api.md)中有詳細說明。
 
 ## <a name="a-nameauthorizationahow-authorization-works-in-app-service"></a><a name="authorization"></a>App Service 中授權的運作方式
 您可以完整控制哪些要求可存取您的應用程式。 可以使用下列任何一個行為對 App Service 驗證 / 授權進行設定︰
 
 * 只允許通過驗證的要求進入您的應用程式。
   
-    如果瀏覽器收到匿名要求，App Service 會重新導向至您選擇的識別提供者頁面，讓使用者能夠登入。 如果要求來自行動裝置，則傳回的回應是「HTTP 401 未經授權」回應。
+    如果瀏覽器收到匿名要求，App Service 會重新導向至您選擇的識別提供者頁面，讓使用者能夠登入。 如果要求來自行動裝置，則傳回的回應是「HTTP&401; 未經授權」回應。
   
     使用此選項，您完全不需要在應用程式撰寫任何驗證程式碼。 如果需要更細部的授權，您的程式碼可取得使用者的相關資訊。
 * 允許所有要求抵達您的應用程式，但只接受通過驗證的要求，並在 HTTP 標頭中傳遞驗證資訊。
@@ -108,23 +108,23 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 ### <a name="identity-providers"></a>識別提供者
 下列教學課程示範如何設定 App Service 來使用不同的驗證提供者：
 
-* [如何設定您的 App 以使用 Azure Active Directory 登入][AAD]
-* [如何設定 App 以使用 Facebook 登入][Facebook]
-* [如何設定 App 以使用 Google 登入][Google]
-* [如何設定 App 以使用 Microsoft 帳戶登入][MSA]
-* [如何設定 App 以使用 Twitter 登入][Twitter]
+* [如何設定 App 使用 Azure Active Directory 登入][AAD]
+* [如何設定 App 使用 Facebook 登入][Facebook]
+* [如何設定 App 使用 Google 登入][Google]
+* [如何設定 App 使用 Microsoft 帳戶登入][MSA]
+* [如何設定 App 使用 Twitter 登入][Twitter]
 
 如果您想要使用不同於這裡提供的身分識別系統，則您也可以利用 [Mobile Apps .NET 伺服器 SDK 中的預覽自訂驗證支援][custom-auth]，此支援可用於 Web 應用程式、行動應用程式或 API 應用程式。
 
 ### <a name="web-applications"></a>Web 應用程式
 下列教學課程示範如何將驗證新增至 Web 應用程式：
 
-* 請參閱[開始使用 Azure App Service -第 2 部分][web-getstarted]
+* [開始使用 Azure App Service - 第 2 部分][web-getstarted]
 
 ### <a name="mobile-applications"></a>行動應用程式
 下列教學課程示範如何使用伺服器導向流程，將驗證新增至您的行動用戶端︰
 
-* [將驗證新增至 iOS 應用程式][iOS]
+* [將驗證新增至您的 iOS 應用程式][iOS]
 * [將驗證新增至 Android 應用程式][Android]
 * [將驗證新增至 Windows 應用程式][Windows]
 * [將驗證新增至 Xamarin.iOS 應用程式][Xamarin.iOS]
@@ -136,7 +136,7 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 
 * [使用 Active Directory Authentication Library for iOS][ADAL-iOS]
 * [使用 Active Directory Authentication Library for Android][ADAL-Android]
-* [使用 Active Directory Authentication Library for Windows and Xamarin][ADAL-dotnet]
+* [使用 Active Directory Authentication Library for Windows 和 Xamarin][ADAL-dotnet]
 
 如果您想要使用適用於 Facebook 的用戶端導向流程，請參考下列資源︰
 
@@ -183,6 +183,6 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

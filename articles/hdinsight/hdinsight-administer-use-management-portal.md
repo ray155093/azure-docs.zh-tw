@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/14/2016
+ms.date: 11/15/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: b52cf6f7c472d169608bc3e40096e1891f9a687b
+ms.sourcegitcommit: 59288709e706ba7f0162f5f857019ce2972e2743
+ms.openlocfilehash: 55193e8570f480b9c6b2ef9a0785ddb538749cb5
 
 
 ---
@@ -102,10 +102,10 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
 
      **使用量**：
 
-     ![Azure 入口網站 hdinsight 叢集使用量](./media/hdinsight-administer-use-management-portal/hdinsight-portal-cluster-usage.png)
+     ![Azure 入口網站 HDInsight 叢集使用量](./media/hdinsight-administer-use-management-portal/hdinsight-portal-cluster-usage.png)
 5. 按一下 [設定] 。
 
-    ![Azure 入口網站 hdinsight 叢集使用量](./media/hdinsight-administer-use-management-portal/hdinsight.portal.cluster.settings.png)
+    ![Azure 入口網站 HDInsight 叢集使用量](./media/hdinsight-administer-use-management-portal/hdinsight.portal.cluster.settings.png)
 
    * **屬性**：檢視叢集屬性。
    * **叢集 AAD 身分識別**：
@@ -188,10 +188,10 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
 
     以下是如何使用 CLI 命令重新平衡 Storm 拓撲的範例：
 
-    ## <a name="reconfigure-the-topology-mytopology-to-use-5-worker-processes"></a>重新設定拓撲 "mytopology" 來使用 5 個背景工作處理序、
-    ## <a name="the-spout-blue-spout-to-use-3-executors-and"></a>spout "blue-spout" 來使用 3 個執行程式，以及
-    ## <a name="the-bolt-yellow-bolt-to-use-10-executors"></a>bolt "yellow-bolt" 來使用 10 個執行程式
-      $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
+        ## Reconfigure the topology "mytopology" to use 5 worker processes,
+        ## the spout "blue-spout" to use 3 executors, and
+        ## the bolt "yellow-bolt" to use 10 executors
+        $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
 
 **調整叢集**
 
@@ -327,7 +327,7 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 3. 在頂端功能表按一下 [設定]，然後按一下 [遠端桌面]。
 4. 輸入 [到期日]、[遠端桌面使用者名稱] 和 [遠端桌面密碼]，然後按一下 [啟用]。
 
-    ![hdinsight enable disable configure remote desktop](./media/hdinsight-administer-use-management-portal/hdinsight.portal.remote.desktop.png)
+    ![HDInsight 啟用停用設定遠端桌面](./media/hdinsight-administer-use-management-portal/hdinsight.portal.remote.desktop.png)
 
     [到期日] 的預設值是一週。
 

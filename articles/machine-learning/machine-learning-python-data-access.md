@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/09/2016
 ms.author: huvalo;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b1efa86208ef45f84de5143a6a906c871d958e9d
+ms.sourcegitcommit: 045e40bccad59586987c0a18253dafff2f955a93
+ms.openlocfilehash: ea5005e7cff775c798b030748324781ef7dcfe7d
 
 
 ---
@@ -78,7 +78,7 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
 
 * 向擁有者要求權杖。 擁有者能夠在 Studio 中，從他們工作區的 [設定] 頁面存取其授權權杖。 選取左窗格中的 [設定]，然後按一下 [授權權杖]，即可看到主要與次要權杖。  雖然主要或次要授權權杖都能用於程式碼片段，但建議擁有者只共用次要授權權杖。
 
-![](./media/machine-learning-python-data-access/ml-python-access-settings-tokens.png)
+![授權權杖](./media/machine-learning-python-data-access/ml-python-access-settings-tokens.png)
 
 * 要求升級成擁有者角色。  若要這樣做，工作區目前的擁有者必須先將您從工作區中移除，再重新邀請您成為其擁有者。
 
@@ -115,11 +115,11 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
 
 您可以將滑鼠停留在模組輸出節點上方來判斷其格式。 其會與節點名稱一同顯示在工具提示中。
 
-有些模組 (例如[分割][split]模組) 輸出的格式稱為 `Dataset`，Python 用戶端程式碼不支援該格式。
+有些模組 (例如[分割][split]模組) 輸出的格式稱為 `Dataset`，但 Python 用戶端程式碼不支援這種格式。
 
 ![資料集格式][dataset-format]
 
-您必須使用轉換模組 (例如，[轉換成 CSV][convert-to-csv])，以讓輸出變成支援的格式。
+您必須使用轉換模組 (例如，[轉換成 CSV][convert-to-csv])，才能將輸出變成支援的格式。
 
 ![GenericCSV 格式][csv-format]
 
@@ -127,10 +127,10 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
 
 1. 建立新實驗。
 2. 插入 [成人收入普查二進位分類資料集]  模組。
-3. 插入 [分割][split] 模組，然後將其輸入連接到資料集模組輸出。
-4. 插入[轉換成 CSV][convert-to-csv] 模組，然後將其輸入連接到其中一個[分割][split]模組輸出。
+3. 插入[分割][split]模組，然後將其輸入連接至資料集模組輸出。
+4. 插入[轉換成 CSV][convert-to-csv] 模組，然後將其輸入連接至其中一個[分割][split]模組輸出。
 5. 儲存此實驗、加以執行，然後等待執行完成。
-6. 按一下[轉換成 CSV][convert-to-csv] 模組上的輸出節點。
+6. 按一下 [轉換成 CSV 模組][][convert-to-csv] 上的輸出節點。
 7. 在隨即出現內容功能表，選取 [產生資料存取程式碼]。
    
     ![內容功能表][experiment]
@@ -339,6 +339,6 @@ Python 用戶端程式碼能夠將 Pandas DataFrame 序列化為下列格式 (�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

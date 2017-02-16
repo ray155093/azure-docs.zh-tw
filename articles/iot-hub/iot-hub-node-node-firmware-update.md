@@ -1,6 +1,6 @@
 ---
-title: "如何進行韌體更新 | Microsoft 文件"
-description: "本教學課程說明如何進行韌體更新"
+title: "使用 Azure IoT 中樞進行裝置韌體更新 | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞上的裝置管理來起始裝置韌體更新。 您可以使用適用於 Node.js 的 Azure IoT SDK，實作模擬裝置應用程式和服務應用程式，以觸發韌體更新。"
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -15,18 +15,18 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 632b9b38808e033b1fee2676b353f2649c4a282c
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: fdc8dca46f5bd0feb8e6ce24af32327be4c8ebb6
 
 
 ---
-# <a name="tutorial-how-to-do-a-firmware-update"></a>教學課程：如何進行韌體更新
+# <a name="use-device-management-to-initiate-a-device-firmware-update-node"></a>使用裝置管理來起始裝置韌體更新 (Node)
 ## <a name="introduction"></a>簡介
 在[開始使用裝置管理][lnk-dm-getstarted]教學課程中，您已了解如何使用[裝置對應項][lnk-devtwin]和[直接方案][lnk-c2dmethod]基礎，從遠端重新啟動裝置。 本教學課程會使用相同的 IoT 中樞基礎，並且提供指引和示範如何進行端對端模擬韌體更新。  此模式用於 Intel Edison 裝置範例的韌體更新實作。
 
 本教學課程說明如何：
 
-* 建立主控台應用程式，以透過您的 IoT 中樞在模擬裝置應用程式中呼叫 firmwareUpdate 直接方法。
+* 建立 Node.js 主控台應用程式，以透過您的 IoT 中樞在模擬裝置應用程式中呼叫 firmwareUpdate 直接方法。
 * 建立模擬裝置應用程式，實作 firmwareUpdate 直接方法，該方法會經過多重階段的處理，等待下載韌體映像、下載韌體映像，最後套用韌體映像。  在執行每個階段時，裝置會使用報告屬性來更新進度。
 
 在本教學課程結尾處，您會有兩個 Node.js 主控台應用程式：
@@ -40,7 +40,7 @@ ms.openlocfilehash: 632b9b38808e033b1fee2676b353f2649c4a282c
 * Node.js 0.12.x 版或更新版本， <br/>  [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
-請依照[開始使用裝置管理](iot-hub-node-node-device-management-get-started.md)文件，以建立 IoT 中樞及取得連接字串。
+請依照[開始使用裝置管理](iot-hub-node-node-device-management-get-started.md)文件，以建立 IoT 中樞及取得 IoT 中樞連接字串。
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
@@ -72,7 +72,7 @@ ms.openlocfilehash: 632b9b38808e033b1fee2676b353f2649c4a282c
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。  
+5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myDeviceId;SharedAccessKey={yourdevicekey}';
@@ -342,7 +342,7 @@ ms.openlocfilehash: 632b9b38808e033b1fee2676b353f2649c4a282c
     ```
     node dmpatterns_fwupdate_device.js
     ```
-2. 在 **triggerfwupdateondevice** 資料夾中，於命令提示字元中執行下列命令以觸發裝置 twin 的遠端重新啟動和查詢以尋找最後的重新啟動時間。
+2. 在命令提示字元中，於 **triggerfwupdateondevice** 資料夾執行下列命令以觸發裝置對應項的遠端重新啟動，以及查詢裝置對應項來尋找上次重新啟動時間。
    
     ```
     node dmpatterns_fwupdate_service.js
@@ -359,12 +359,12 @@ ms.openlocfilehash: 632b9b38808e033b1fee2676b353f2649c4a282c
 [lnk-dm-getstarted]: iot-hub-node-node-device-management-get-started.md
 [lnk-tutorial-jobs]: iot-hub-node-node-schedule-jobs.md
 
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

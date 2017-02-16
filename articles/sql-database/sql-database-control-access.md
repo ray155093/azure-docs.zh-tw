@@ -17,8 +17,8 @@ ms.workload: data-management
 ms.date: 10/18/2016
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: f4712d70c0323e607ddcc021809f8097a621730d
-ms.openlocfilehash: 82508d01f9f1aaee11ebb5a5f936dfc71ace9cad
+ms.sourcegitcommit: 356cc4c6d8e25d36880e4b12bf471326e61990c3
+ms.openlocfilehash: f12ed9d76e7c6db5e14ed3c00d7d4087dbd4069c
 
 
 ---
@@ -26,7 +26,8 @@ ms.openlocfilehash: 82508d01f9f1aaee11ebb5a5f936dfc71ace9cad
 為了提供安全性，SQL Database 會透過以下機制來控制存取：依 IP 位址限制連線的防火牆規則、要求使用者證明其身分識別的驗證機制，以及將使用者限制在特定動作和資料的授權機制。 
 
 > [!IMPORTANT]
-> 如需 SQL Database 安全性功能的概觀，請參閱 [SQL 安全性概觀](sql-database-security-overview.md)。
+> 如需 SQL Database 安全性功能的概觀，請參閱 [SQL 安全性概觀](sql-database-security-overview.md)。 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [SQL Database 教學課程︰AAD 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-aad-authentication-get-started.md)。
+
 >
 
 ## <a name="firewall-and-firewall-rules"></a>防火牆與防火牆規則
@@ -51,7 +52,7 @@ SQL Database 支援兩種驗證類型：
 
 ## <a name="authorization"></a>Authorization
 
-授權是指使用者可以在 Azure SQL Database 內執行的動作，這是由使用者帳戶的資料庫[角色成員資格](https://msdn.microsoft.com/library/ms189121)和[物件層級權限](https://msdn.microsoft.com/library/ms191291.aspx)所控制。 最好的作法是，您應該授與使用者所需的最低權限。 您所連線的伺服器管理員帳戶是 db_owner 的成員，有權限在資料庫中執行任何動作。 請儲存此帳戶，以便部署結構描述升級及其他管理作業。 請使用具更多有限權限的 "ApplicationUser" 帳戶，從應用程式連線到具應用程式所需之最低權限的資料庫。 如需詳細資訊，請參閱[管理登入](sql-database-manage-logins.md)。
+授權是指使用者可以在 Azure SQL Database 內執行的動作，這是由使用者帳戶的資料庫[角色成員資格](https://msdn.microsoft.com/library/ms189121)和[物件層級權限](https://msdn.microsoft.com/library/ms191291.aspx)所控制。 最好的作法是，您應該授與使用者所需的最低權限。 您所連線的伺服器管理帳戶是 db_owner 的成員，有權限在資料庫中執行任何動作。 請儲存此帳戶，以便部署結構描述升級及其他管理作業。 請使用具更多有限權限的 "ApplicationUser" 帳戶，從應用程式連線到具應用程式所需之最低權限的資料庫。 如需詳細資訊，請參閱[管理登入](sql-database-manage-logins.md)。
 
 通常，只有系統管理員需要存取 master 資料庫。 對每個使用者資料庫的例行存取，應該透過每個資料庫中建立的非系統管理員的自主資料庫使用者來存取。 當您使用自主資料庫使用者時，您不需要在 master 資料庫中建立登入。 如需詳細資訊，請參閱 [自主資料庫使用者 - 讓資料庫具有可攜性](https://msdn.microsoft.com/library/ff929188.aspx)。
 
@@ -69,10 +70,11 @@ SQL Database 支援兩種驗證類型：
 - 若要了解使用者和登入，請參閱[管理登入](sql-database-manage-logins.md)。 
 - 如需在 SQL Database 中使用資料保護功能的討論，請參閱[資料保護和安全性](sql-database-protect-data.md)。
 - 如需主動式監視的討論，請參閱[開始使用 SQL Database 稽核](sql-database-auditing-get-started.md)和[開始使用 SQL Database 威脅偵測](sql-database-threat-detection-get-started.md)。
+- 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
+- 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [SQL Database 教學課程︰AAD 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-aad-authentication-get-started.md)。
 
 
 
-
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 

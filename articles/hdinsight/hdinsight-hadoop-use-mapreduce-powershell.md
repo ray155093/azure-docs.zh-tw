@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/15/2016
+ms.date: 01/19/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 3c3944118ca986009711aee032b45c302b63e63b
-ms.openlocfilehash: 9b852d1ca82c85e40c4f33da8c6380ffd48dd222
+ms.sourcegitcommit: f3be777497d842f019c1904ec1990bd1f1213ba2
+ms.openlocfilehash: c2bed4f1fddf99183faa0730f052ee79cf77f9f8
 
 
 ---
@@ -29,12 +29,14 @@ ms.openlocfilehash: 9b852d1ca82c85e40c4f33da8c6380ffd48dd222
 
 ## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 
-若要完成本文中的步驟，您需要下列項目。
+若要完成本文中的步驟，您需要下列項目：
 
-* **Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 型或 Linux 型)**
+* **Azure HDInsight (HDInsight 上的 Hadoop) 叢集**
+
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * **具有 Azure PowerShell 的工作站**。
-  
-[!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 ## <a name="a-idpowershellarun-a-mapreduce-job-using-azure-powershell"></a><a id="powershell"></a>使用 Azure PowerShell 執行 MapReduce 工作
 
@@ -54,22 +56,21 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Ma
 
 下列步驟示範如何使用這些 Cmdlet，在您的 HDInsight 叢集中執行工作。
 
-1. 使用編輯器，將下列程式碼儲存為 **mapreducejob.ps1**。 您必須將 **CLUSTERNAME** 取代為 HDInsight 叢集的名稱。
+1. 使用編輯器，將下列程式碼儲存為 **mapreducejob.ps1**。
     
     ```powershell
-    #Specify the values
-    $clusterName = "CLUSTERNAME"
-
     # Login to your Azure subscription
     # Is there an active Azure subscription?
     $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
     if(-not($sub))
     {
-        Login-AzureRmAccount
+        Add-AzureRmAccount
     }
 
-    #Get HTTPS/Admin credentials for submitting the job later
-    $creds = Get-Credential
+    # Get cluster info
+    $clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
+    $creds=Get-Credential -Message "Enter the login for the cluster"
+
     #Get the cluster info so we can get the resource group, storage, etc.
     $clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
     $resourceGroup = $clusterInfo.ResourceGroup
@@ -90,11 +91,11 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Ma
     # -ClassName = the class of the application
     # -Arguments = The input file, and the output directory
     $wordCountJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
-        -JarFile "wasbs:///example/jars/hadoop-mapreduce-examples.jar" `
+        -JarFile "wasb:///example/jars/hadoop-mapreduce-examples.jar" `
         -ClassName "wordcount" `
         -Arguments `
-            "wasbs:///example/data/gutenberg/davinci.txt", `
-            "wasbs:///example/data/WordCountOutput"
+            "wasb:///example/data/gutenberg/davinci.txt", `
+            "wasb:///example/data/WordCountOutput"
 
     #Submit the job to the cluster
     Write-Host "Start the MapReduce job..." -ForegroundColor Green
@@ -115,13 +116,10 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Ma
         -Container $container `
         -Destination output.txt `
         -Context $context
-    # Print the output
+    # Print the output of the job.
     Get-AzureRmHDInsightJobOutput `
         -Clustername $clusterName `
         -JobId $wordCountJob.JobId `
-        -DefaultContainer $container `
-        -DefaultStorageAccountName $storageAccountName `
-        -DefaultStorageAccountKey $storageAccountKey `
         -HttpCredential $creds
     ```
 
@@ -129,7 +127,7 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Ma
    
         .\mapreducejob.ps1
    
-    當您執行指令碼時，系統會提示您驗證 Azure 訂用帳戶。 您還必須提供 HDInsight 叢集的 HTTPS/系統管理帳戶名稱和密碼。
+    當您執行指令碼時，系統會提示您的 HDInsight 叢集名稱和 HTTPS/管理帳戶名稱以及叢集的密碼。 系統可能也會提示您驗證 Azure 訂用帳戶。
 
 3. 工作完成之後，您應該會收到與下列類似的輸出：
     
@@ -167,9 +165,6 @@ Write-Host "Display the standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
         -Clustername $clusterName `
         -JobId $wordCountJob.JobId `
-        -DefaultContainer $container `
-        -DefaultStorageAccountName $storageAccountName `
-        -DefaultStorageAccountKey $storageAccountKey `
         -HttpCredential $creds `
         -DisplayOutputType StandardError
 ```
@@ -194,6 +189,6 @@ Get-AzureRmHDInsightJobOutput `
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

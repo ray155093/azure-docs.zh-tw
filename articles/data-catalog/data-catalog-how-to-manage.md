@@ -1,5 +1,5 @@
 ---
-title: "如何管理資料資產 | Microsoft Docs"
+title: "如何管理 Azure 資料目錄中的資料資產 | Microsoft Docs"
 description: "專門說明如何控制 Azure 資料目錄中註冊資料資產之可見性和擁有權的操作說明文章。"
 services: data-catalog
 documentationcenter: 
@@ -13,15 +13,15 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 10/04/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 49d939205c85bad8bf7422ef4d9fa02501bb8df7
+ms.sourcegitcommit: cd3184059a0970bb7c9b59803cf37125abbbd879
+ms.openlocfilehash: 45a7b2df88a2edf2bccdfc9d2aaea932f2096f24
 
 
 ---
-# <a name="how-to-manage-data-assets"></a>如何管理資料資產
+# <a name="how-to-manage-data-assets-in-azure-data-catalog"></a>如何管理 Azure 資料目錄中的資料資產
 ## <a name="introduction"></a>簡介
 **Azure 資料目錄** 提供資料來源探索功能，讓使用者能夠輕鬆地探索和了解要執行分析和做出決策所需的資料來源。 當所有使用者都能找到並了解最大範圍的可用資料來源時，這些探索功能將能發揮最大效果。 有鑑於此，資料目錄的預設行為是要讓所有目錄使用者都能看見並找到所有已註冊的資料來源。
 
@@ -31,8 +31,8 @@ ms.openlocfilehash: 49d939205c85bad8bf7422ef4d9fa02501bb8df7
 
 > [!NOTE]
 > 本文所描述的功能只適用於標準版 Azure 資料目錄。 免費版不提供擁有和限制資料資產可見性的功能。
-> 
-> 
+>
+>
 
 ## <a name="managing-ownership-of-data-assets"></a>管理資料資產的擁有權
 根據預設，資料目錄中的註冊資料資產並無擁有者，只要是有權存取目錄的使用者就能探索這些資產並加上註解。 使用者可以取得無人擁有之資料資產的擁有權，並可接著限制其擁有之資產的可見性。
@@ -41,8 +41,8 @@ ms.openlocfilehash: 49d939205c85bad8bf7422ef4d9fa02501bb8df7
 
 > [!NOTE]
 > 資料目錄中的擁有權只會影響目錄中儲存的中繼資料。 它不會授與任何關於基礎資料來源的權限。
-> 
-> 
+>
+>
 
 ### <a name="taking-ownership"></a>取得擁有權
 使用者只要在資料目錄入口網站中選取 [取得擁有權] 選項就能取得資料資產的擁有權。 想要取得無人擁有之資料資產的擁有權並不需要任何特殊權限，任何使用者都能這麼做。
@@ -52,8 +52,8 @@ ms.openlocfilehash: 49d939205c85bad8bf7422ef4d9fa02501bb8df7
 
 > [!NOTE]
 > 已有擁有者的資料資產最好至少有兩個人擔任擁有者。
-> 
-> 
+>
+>
 
 ### <a name="removing-owners"></a>移除擁有者
 資產擁有者既然能新增共同擁有者，當然也能移除共同擁有者。
@@ -65,8 +65,8 @@ ms.openlocfilehash: 49d939205c85bad8bf7422ef4d9fa02501bb8df7
 
 > [!NOTE]
 > 請盡可能將資產的擁有權和可見性權限指派給安全性群組而非個別使用者。
-> 
-> 
+>
+>
 
 ## <a name="catalog-administrators"></a>目錄管理員
 資料目錄管理員都是目錄中所有資產的隱含共同擁有者。 資產擁有者無法移除目錄管理員的可見性，而且管理員可以管理目錄中所有資料資產的擁有權和可見性。
@@ -76,7 +76,6 @@ ms.openlocfilehash: 49d939205c85bad8bf7422ef4d9fa02501bb8df7
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

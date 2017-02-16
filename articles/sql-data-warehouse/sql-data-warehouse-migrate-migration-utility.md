@@ -15,14 +15,14 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 560bcd1acb0fa06d7800da9670686a43fbb7111b
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 61adb7ae8fddc3cf423ee4558308eb9ded11fea3
 
 
 ---
 # <a name="data-warehouse-migration-utility-preview"></a>資料倉儲移轉公用程式 (預覽)
 > [!div class="op_single_selector"]
-> * [下載移轉公用程式][下載移轉公用程式]
+> * [下載移轉公用程式][Download Migration Utility]
 > 
 > 
 
@@ -41,7 +41,7 @@ ms.openlocfilehash: 560bcd1acb0fa06d7800da9670686a43fbb7111b
 完成驗證後，工具會顯示已連接伺服器中現有的資料庫清單。 您可以選取想要移轉的資料庫，然後按一下 [移轉選取項目]，開始移轉程序。
 
 ## <a name="migration-report"></a>移轉報告
-在工具中選取 [檢查資料庫相容性] 會產生一份報告，針對您已要求移轉的資料庫，摘要說明所有的物件不相容問題。 未列在 SQL 資料倉儲中的部分 SQL Server 功能清單，可以在我們的[移轉文件][移轉文件]中找到。 報告產生後，您可以在 Excel 中儲存並開啟該報告。
+在工具中選取 [檢查資料庫相容性] 會產生一份報告，針對您已要求移轉的資料庫，摘要說明所有的物件不相容問題。 未列在 SQL 資料倉儲中的部分 SQL Server 功能清單，可以在我們的[移轉文件][migration documentation]中找到。 報告產生後，您可以在 Excel 中儲存並開啟該報告。
 
 請注意，產生移轉結構描述時，大部分識別為「物件」的問題將會經過調整，以便立即移轉該資料。 請檢閱變更的項目，確保您對所有調整項皆感到滿意後，再套用結構描述。
 
@@ -56,19 +56,19 @@ ms.openlocfilehash: 560bcd1acb0fa06d7800da9670686a43fbb7111b
 填妥上述參數之後，您只需要按一下 [執行移轉]，系統就會在您指定的位置產生兩個封裝。 執行匯出檔案，以將移轉來源的資料匯出至一般檔案，接著執行匯入檔案，將資料匯入 SQL 資料倉儲。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已成功移轉部分資料，請繼續了解如何[開發][開發]。
+現在您已成功移轉部分資料，請繼續了解如何[開發][develop]。
 
 <!--Image references-->
 
 <!--Article references-->
-[移轉文件]: sql-data-warehouse-overview-migrate.md
-[開發]: sql-data-warehouse-overview-develop.md
+[migration documentation]: sql-data-warehouse-overview-migrate.md
+[develop]: sql-data-warehouse-overview-develop.md
 
 <!--Other Web references--> 
-[下載移轉公用程式]: https://migrhoststorage.blob.core.windows.net/sqldwsample/DataWarehouseMigrationUtility.zip
+[Download Migration Utility]: https://migrhoststorage.blob.core.windows.net/sqldwsample/DataWarehouseMigrationUtility.zip
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 將 StorSimple 上檔案共用的 DR 自動化| Microsoft Docs"
-description: "說明針對 StorSimple 儲存體上裝載的檔案共用建立災害復原解決方案的步驟與最佳做法。"
+title: "使用 Azure Site Recovery 自動化 StorSimple 檔案共用災害復原 | Microsoft Docs"
+description: "說明針對 Microsoft Azure StorSimple 儲存體上裝載的檔案共用建立災害復原解決方案的步驟與最佳做法。"
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 05/16/2016
 ms.author: vidarmsft
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf39b922e51dd60b5b2c51cb7030436c60232a5
-ms.openlocfilehash: d454c138b75bbf3227dd1d5f52594e3c78e15766
+ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
+ms.openlocfilehash: a0817ac21afb83745ec2cc213fc6029fa395d479
 
 
 ---
@@ -88,13 +88,13 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
       > 視版本不同，檔案名稱可能會改變。
       >
       >
-3. 按一下 [下一步]。
+3. 按 [下一步] 。
 4. 接受 [合約條款] 然後按一下 [下一步]。
-5. 按一下 [完成] 。
+5. 按一下 [完成]。
 6. 使用從 StorSimple 儲存體劃分出來的磁碟區建立檔案共用。 如需詳細資訊，請參閱 [使用 StorSimple Manager 服務管理磁碟區](storsimple-manage-volumes.md)。
 
    1. 在您的內部部署 VM 上，按 Windows 鍵 +Q 並搜尋 **iSCSI**。
-   2. 選取 [iSCCI 啟動器] 。
+   2. 選取 [iSCSI 啟動器]。
    3. 選取 [組態]  索引標籤並複製啟動器名稱。
    4. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
    5. 選取 [StorSimple]  索引標籤，然後選取包含實體裝置的 StorSimple Manager 服務。
@@ -183,7 +183,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
 
    a.  指定名稱並選取適當的 [保護群組]。
 
-   b.這是另一個 C# 主控台應用程式。  從保護群組中選取您要在復原計劃中包含的 VM。
+   b.  從保護群組中選取您要在復原計劃中包含的 VM。
 
    c.  建立復原計劃之後，選取該復原計劃來開啟復原計劃自訂檢視。
 
@@ -261,7 +261,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
 使用 [使用者容量規劃工具](http://www.microsoft.com/download/details.aspx?id=39057) 來為您的 Hyper-V 複本環境設計伺服器、儲存體及網路基礎結構。
 
 #### <a name="azure"></a>Azure
-您可以在 VM 上執行 [Azure 虛擬機器整備評估工具](http://azure.microsoft.com/downloads/vm-readiness-assessment/) ，以確保它們相容於 Azure VM 與 Azure Site Recovery 服務整備評估工具會檢查 VM　組態，並在組態與 Azure 不相容時提出警告。 例如，如果 C: 磁碟大小超過 127 GB，它就會提出警告。 .
+您可以在 VM 上執行 [Azure 虛擬機器整備評估工具](http://azure.microsoft.com/downloads/vm-readiness-assessment/)，以確保它們相容於 Azure VM 與 Azure Site Recovery 服務。 整備評估工具會檢查 VM 組態，並在組態與 Azure 不相容時提出警告。 例如，如果 C: 磁碟大小超過 127 GB，它就會提出警告。
 
 容量規劃至少包含兩個重要程序：
 
@@ -304,6 +304,6 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

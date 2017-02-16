@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: d93b7b67ee0727f45c3f4b93459b013b16805bf6
-ms.openlocfilehash: 15abce4dfd2af3146dedc1c63d8cdd37fadcc57b
+ms.sourcegitcommit: 7fbf21434952ece22468df6873e10e6f3eae1724
+ms.openlocfilehash: cf1abb14f5a9e5658fdfb348c867b5c4097b68eb
 
 
 ---
@@ -40,7 +40,7 @@ ms.openlocfilehash: 15abce4dfd2af3146dedc1c63d8cdd37fadcc57b
 * 有效的 Azure 訂用帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費試用帳戶](http://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="install-the-azure-cli"></a>安裝 Azure CLI
-Azure CLI 能為 Azure 提供多平台的命令列體驗，使您可以直接從命令列進行資源的佈建及管理。
+Azure CLI 針對 Azure 提供多平台命令列體驗，可讓您直接從命令列佈建和管理資源。
 
 若要安裝最新的 Azure CLI，請遵循下列步驟：
 
@@ -74,6 +74,6 @@ Azure CLI 能為 Azure 提供多平台的命令列體驗，使您可以直接從
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

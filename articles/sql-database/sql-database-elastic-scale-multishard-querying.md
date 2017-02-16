@@ -1,5 +1,5 @@
 ---
-title: "多分區查詢 |Microsoft Docs"
+title: "查詢分區化 Azure SQL Database | Microsoft Docs"
 description: "使用彈性資料庫用戶端程式跨分區執行查詢。"
 services: sql-database
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 04/12/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d616160e8547e256da7f445e79f0949496ca943f
+ms.sourcegitcommit: 873df52da976597ddfaa8f777b90382bfa7723fc
+ms.openlocfilehash: aa54ec3d982ea4422422bd4e520d2211aad57159
 
 
 ---
@@ -25,7 +25,6 @@ ms.openlocfilehash: d616160e8547e256da7f445e79f0949496ca943f
 ## <a name="overview"></a>概觀
 使用[彈性資料庫工具](sql-database-elastic-scale-introduction.md)，您可以建立分區化資料庫解決方案。 **多分區查詢**用於資料收集/報告等工作，這些工作需要跨越數個分區執行查詢。 (這與在單一分區上執行所有工作的[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)相反。) 
 
-## <a name="overview"></a>概觀
 1. 使用 [**TryGetRangeShardMap**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.trygetrangeshardmap.aspx)[**TryGetListShardMap**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.trygetlistshardmap.aspx) 或 [**GetShardMap**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getshardmap.aspx) 方法，取得 [**RangeShardMap**](https://msdn.microsoft.com/library/azure/dn807318.aspx) 或 [**ListShardMap**](https://msdn.microsoft.com/library/azure/dn807370.aspx)。 請參閱[**建構 ShardMapManager**](sql-database-elastic-scale-shard-map-management.md#constructing-a-shardmapmanager) 和[**取得 RangeShardMap 或 ListShardMap**](sql-database-elastic-scale-shard-map-management.md#get-a-rangeshardmap-or-listshardmap)。
 2. 建立 **[MultiShardConnection](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.multishardconnection.aspx)** 物件。
 3. 建立 **[MultiShardCommand](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.multishardcommand.aspx)**。 
@@ -80,6 +79,6 @@ ms.openlocfilehash: d616160e8547e256da7f445e79f0949496ca943f
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

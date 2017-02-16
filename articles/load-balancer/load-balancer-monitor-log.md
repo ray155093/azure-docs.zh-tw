@@ -15,12 +15,12 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 8827793d771a2982a3dccb5d5d1674af0cd472ce
-ms.openlocfilehash: b7d141e8fc7f7580b5b17b2152dfe418a0ca130e
+ms.sourcegitcommit: ca52a8cfdc4262f55a1fed439f29631966211a00
+ms.openlocfilehash: c605b2f0b49fcc26955e73c931192ada5e407525
 
 ---
 
-# <a name="log-analytics-for-azure-load-balancer-preview"></a>Azure 負載平衡器的記錄檔分析 (預覽)
+# <a name="log-analytics-for-azure-load-balancer"></a>Azure 負載平衡器的記錄檔分析
 
 您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解負載平衡器。 透過入口網站可以存取其中一些記錄檔。 從 Azure Blob 儲存體可以擷取所有記錄檔，並且在不同的工具中進行檢視 (例如 Excel 和 PowerBI)。 您可以從下列清單進一步了解不同類型的記錄檔。
 
@@ -29,7 +29,7 @@ ms.openlocfilehash: b7d141e8fc7f7580b5b17b2152dfe418a0ca130e
 * **健全狀況探查記錄檔：** 您可以使用此記錄檔檢查探查的健全狀況檢查狀態、負載平衡器後端中有多少個執行個體在線上，以及從負載平衡器接收網路流量之虛擬機器的百分比。 探查狀態事件發生變更時，便會寫入此記錄檔。
 
 > [!IMPORTANT]
->  記錄檔分析目前僅適用於網際網路面向的負載平衡器。 記錄檔僅適用於在資源管理員部署模型中部署的資源。 您無法將記錄檔使用於傳統部署模型中的資源。 如需這些部署模型的詳細資訊，請參閱[了解 Resource Manager 部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
+> 記錄檔分析目前僅適用於網際網路面向的負載平衡器。 記錄檔僅適用於在資源管理員部署模型中部署的資源。 您無法將記錄檔使用於傳統部署模型中的資源。 如需這些部署模型的詳細資訊，請參閱[了解 Resource Manager 部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
 
 ## <a name="enable-logging"></a>啟用記錄
 
@@ -148,6 +148,6 @@ JSON 輸出在屬性欄位中顯示了探查健全狀況狀態的基本資訊。
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO5-->
 
 

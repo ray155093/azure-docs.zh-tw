@@ -1,5 +1,5 @@
 ---
-title: "編碼錯誤碼 | Microsoft Docs"
+title: "Azure 媒體服務編碼錯誤代碼 | Microsoft Docs"
 description: "本主題列出在編碼工作執行期間發生錯誤時下可能傳回的錯誤碼。"
 services: media-services
 documentationcenter: 
@@ -12,16 +12,16 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 0124c884d3d805a407041e8ecbc5961209a9653d
-ms.openlocfilehash: 7c5281bd3e846a78ef7e602219df6566fb032f72
+ms.sourcegitcommit: b341416f837d03e0532b4f8c0a3f3f85641a8995
+ms.openlocfilehash: d1e6421404d9c8845eb3ccd30d84c0c8cf5930b8
 
 
 ---
 
-## <a name="encoding-error-codes"></a>編碼錯誤碼
+# <a name="encoding-error-codes"></a>編碼錯誤碼
 
 下表列出在編碼工作執行期間發生錯誤的情況下可能傳回的錯誤碼。  若要取得 .NET 程式碼中的錯誤詳細資料，請使用 [ErrorDetails](http://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx) 類別。 若要取得 REST 程式碼中的錯誤詳細資料，請使用 [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API。
 
@@ -55,6 +55,6 @@ ms.openlocfilehash: 7c5281bd3e846a78ef7e602219df6566fb032f72
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

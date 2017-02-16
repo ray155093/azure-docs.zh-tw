@@ -7,6 +7,7 @@ manager: jhubbard
 author: torsteng
 ms.assetid: 84c261f2-9edc-42f4-988c-cf2f251f5eff
 ms.service: sql-database
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -14,8 +15,8 @@ ms.topic: article
 ms.date: 05/27/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 76a9208938f0c55e5301c2612b8dd82eb5975679
+ms.sourcegitcommit: 77b8b8960fb0e5e5340b65dae03f95b456832a07
+ms.openlocfilehash: cb649d3f6ead507582f587d112e43a89e659c757
 
 
 ---
@@ -29,7 +30,10 @@ ms.openlocfilehash: 76a9208938f0c55e5301c2612b8dd82eb5975679
 * 需有 ALTER ANY EXTERNAL DATA SOURCE 權限，才能參考基礎資料來源。
 
 ## <a name="overview"></a>概觀
-**請注意**：與水平資料分割不同的是，這些 DDL 陳述式不會依靠透過彈性資料庫用戶端程式庫定義資料層與分區對應。
+
+> [!NOTE]
+> 與水平資料分割不同，這些 DDL 陳述式並不倚賴透過彈性資料庫用戶端程式庫來定義帶有分區對應的資料層。
+>
 
 1. [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx)
 2. [建立資料庫範圍認證](https://msdn.microsoft.com/library/mt270260.aspx)
@@ -44,7 +48,9 @@ ms.openlocfilehash: 76a9208938f0c55e5301c2612b8dd82eb5975679
     SECRET = '<password>'
     [;]
 
-**注意**︰請確定 *<username>* 不含任何 *"@servername"* 後置詞。 
+> [!NOTE]
+> 請確定 `<username>` 不包含任何 **"@servername"** 後置詞。 
+>
 
 ## <a name="create-external-data-sources"></a>建立外部資料來源
 語法：
@@ -57,7 +63,9 @@ ms.openlocfilehash: 76a9208938f0c55e5301c2612b8dd82eb5975679
                 CREDENTIAL = <credential_name> 
                 ) [;] 
 
-**重要事項**：TYPE 參數必須設為 **RDBMS**。 
+> [!IMPORTANT]
+> TYPE 參數必須設定為 **RDBMS**。 
+>
 
 ### <a name="example"></a>範例
 下列範例說明對外部資料來源使用 CREATE 陳述式。 
@@ -117,7 +125,7 @@ ms.openlocfilehash: 76a9208938f0c55e5301c2612b8dd82eb5975679
 
 DATA_SOURCE 子句會定義用於外部資料表的外部資料來源 (亦即垂直資料分割情形中的遠端資料庫)。  
 
-SCHEMA_NAME 和 OBJECT_NAME 子句提供的功能可將外部資料表定義分別對應至遠端資料庫上不同結構描述中的資料表，或對應至不同名稱的資料表。 如果您想要為目錄檢視或是在遠端資料庫上的 DMV 定義外部資料表 – 或在遠端資料表名稱已在本機被使用的任何情況中，這個方法都很實用。  
+SCHEMA_NAME 和 OBJECT_NAME 子句提供的功能可將外部資料表定義分別對應至遠端資料庫上不同結構描述中的資料表，或對應至不同名稱的資料表。 不論是您想要為目錄檢視或遠端資料庫上的 DMV 定義外部資料表，還是在遠端資料表名稱在本機已被使用的任何其他情況下，這個方法都很實用。  
 
 下列 DDL 陳述式會從本機目錄卸除現有的外部資料表定義。 它不會影響遠端資料庫。 
 
@@ -184,6 +192,6 @@ sp\_execute\_remote 會使用叫用參數中提供的外部資料來源，在遠
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

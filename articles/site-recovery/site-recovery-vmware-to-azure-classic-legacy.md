@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure (舊版) | Microsoft Docs"
+title: "將 VMware VM 與實體伺服器複寫到 Azure (舊版傳統) | Microsoft Docs"
 description: "描述在 Azure 入口網站中，如何在舊版部署中使用 Azure Site Recovery，將內部部署 VM 和 Windows/Linux 實體伺服器複寫至 Azure。"
 services: site-recovery
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: c8daa813758f2b0b420bc146d942d56f90f0d526
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: aeaf8d06749d63d19e02573b5bf66ceac644cb3e
 
 
 ---
@@ -105,7 +105,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 | **主要目標伺服器** |Azure 虛擬機器 - 以 Windows Server 2012 R2 資源庫映像為基礎的 Windows 伺服器 (用以保護 Windows 機器)，或以 OpenLogic CentOS 6.6 資源庫映像為基礎的 Linux 伺服器 (用以保護 Linux 機器)。<br/><br/> 有三種大小選項可供使用 - 標準 A4、標準 D14 和標準 DS4。<br/><br/> 此伺服器可與相同的 Azure 網路連接，以做為設定伺服器。<br/><br/> 您在 Site Recovery 入口網站中設定 |它會使用在您 Azure 儲存體帳戶中 Blob 儲存體上建立之連結的 VHD，從您的受保護機器接收和保留複寫的資料。<br/><br/> 特別針對設定工作負載的保護選取標準 DS4，該工作負載需要使用進階儲存體帳戶的一致高效能和低延遲。 |
 | **處理序伺服器** |執行 Windows Server 2012 R2 的內部部署虛擬或實體伺服器<br/><br/> 建議您將它放置在與您要保護之機器相同的網路與 LAN 區段上，只要受保護的機器具有 L3 網路可見性，它就可以在不同的網路上運作。<br/><br/> 您會在 Site Recovery 入口網站中設定它，並向組態伺服器註冊。 |受保護的機器會傳送複寫資料給內部部署處理序伺服器。 它具有磁碟快取功能，可快取本身接收的複寫資料。 它會對該資料執行一些動作。<br/><br/> 在將資料傳送至主要目標伺服器之前，它會藉由快取、壓縮及加密資料，將資料最佳化。<br/><br/> 它會處理「行動服務」的推送安裝。<br/><br/> 它會執行 VMware 虛擬機器的自動探索。 |
 | **內部部署機器** |內部部署 VMware 虛擬機器，或執行 Windows 或 Linux 的實體伺服器。 |您設定要套用至一或多部機器的複寫設定。 您可以將容錯移轉個別機器，或者，更常見的是您聚集到復原方案的多部機器。 |
-| **行動服務** |安裝在您想要保護的每個虛擬機器或實體伺服器上<br/><br/>  可手動安裝，或當您為機器啟用複寫時，由處理伺服器自動推送並安裝。 |行動服務會在初始複寫期間將資料傳送到處理序伺服器。 當機器處於受保護的狀態後 (重新同步處理完成之後)，行動服務會擷取記憶體中的磁碟寫入，並傳送到處理序伺服器。 Windows 伺服器的應用程式一致性是利用 VSS 來達成。 |
+| **行動服務** |安裝在您想要保護的每個虛擬機器或實體伺服器上<br/><br/> 可手動安裝，或當您為機器啟用複寫時，由處理伺服器自動推送並安裝。 |行動服務會在初始複寫期間將資料傳送到處理序伺服器。 當機器處於受保護的狀態後 (重新同步處理完成之後)，行動服務會擷取記憶體中的磁碟寫入，並傳送到處理序伺服器。 Windows 伺服器的應用程式一致性是利用 VSS 來達成。 |
 | **Azure Site Recovery 保存庫** |您使用 Azure 訂用帳戶來建立 Site Recovery 保存庫，並在保存庫中註冊伺服器。 |保存庫可在您的內部部署網站與 Azure 之間協調資料複寫、容錯移轉及復原等作業。 |
 | **複寫機制** |**透過網際網路** - 透過網際網路使用安全 SSL/TLS 通道，從受保護的內部部署伺服器到 Azure 進行通訊和資料複寫。 這是預設選項。<br/><br/> **VPN/ExpressRoute** - 透過 VPN 連線，在內部部署伺服器與 Azure 之間進行通訊和資料複寫。 您將必須在內部部署站台與 Azure 網路之間設定站對站 VPN 或 ExpressRoute 連接。<br/><br/> 您將選擇在 Site Recovery 部署期間想要如何複寫。 設定此機制之後，如果變更機制，一定會影響現有機器的複寫。 |這些選項都不需要在受保護機器上開啟任何輸入網路連接埠。 所有的網路通訊是從內部部署站台起始。 |
 
@@ -119,7 +119,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 * **磁碟最大大小**—可以連接至虛擬機器的磁碟的目前大小上限為 1 TB。 因此，可以複寫的來源磁碟的最大大小也是限制為 1 TB。
 * **每一來源的最大大小**—單一來源機器的最大大小是 31 TB (含 31 個磁碟)，以及對主要目標伺服器佈建一個 D14 執行個體。
 * **每一主要目標伺服器的來源數目**—可以使用單一主要目標伺服器保護的多個來源機器。 不過，無法跨多個主要目標伺服器保護單一來源機器，因為在磁碟複寫時，會在 Azure Blob 儲存體上建立可反映磁碟大小的 VHD，並將其附加至主要目標伺服器做為資料磁碟。  
-* **每一來源每日變更率上限**—考慮每一來源建議的變更率時，有三個需要考量的因素。 針對目標式考量，來源上每個作業的目標磁碟需要兩個 IOP。 這是因為目標磁碟上將會發生舊資料的讀取和新資料的寫入。 
+* **每一來源每日變更率上限**—考慮每一來源建議的變更率時，有三個需要考量的因素。 針對目標式考量，來源上每個作業的目標磁碟需要兩個 IOP。 這是因為目標磁碟上將會發生舊資料的讀取和新資料的寫入。
   * **處理序伺服器支援的每日變更率**—來源機器不能跨越多個處理序伺服器。 單一處理序伺服器可以支援多達 1 TB 的每日變更率。 因此 1 TB 是來源機器支援的每日資料變更率上限。
   * **目標磁碟支援的最大輸送量**—每一來源磁碟的最大變換不能超過 144 GB/天 (以 8K 寫入大小)。 請參閱主要目標小節中的資料表，以取得各種寫入大小的目標的輸送量和 IOP。 必須將此數字除以 2，因為每個來源 IOP 會在目標磁碟上產生 2 個 IOP。 設定進階儲存體帳戶的目標時，請參閱 [Azure 延展性和效能目標](../storage/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) 。
   * **儲存體帳戶支援的最大輸送量**—來源不能跨越多個儲存體帳戶。 假設某個儲存體帳戶每秒可接受最多 20,000 個要求，並且每個來源 IOP 會在主要目標伺服器上產生 2 個 IOP，建議您將來源的 IOP 數目保留為 10,000。 設定進階儲存體帳戶的來源時，請參閱 [Azure 延展性和效能目標](../storage/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) 。
@@ -192,7 +192,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
   * 在保留磁碟區上，這會變成 120 * 5 = 600 個 IOP，而這可能會變成瓶頸。 在此案例中，加入更多磁碟到保留的磁碟區，並跨越以做為 RAID 等量磁碟區設定是不錯的策略。 因為 IOP 會分散到多個磁碟機，這將可改進效能。 要加入至保留磁碟區的磁碟機數目如下所示：
     * 來自來源環境的 IOP 總計 / 500
     * 每日來自來源環境的變換總計 (未壓縮) / 287 GB。 287 GB 是每日的目標磁碟支援的最大輸送量。 此度量會隨著寫入大小 8K 的因數而異，因為在此情況下，8K 是假設的寫入大小。 例如，如果寫入大小是 4K，則輸送量會是 287/2。 而且如果寫入大小為 16K，那麼輸送量會是 287*2。
-* 儲存體帳戶所需的數目 = 來源 IOP 總計 / 10000。
+* 儲存體帳戶所需的數目 = 來源 IOP 總計 /&10000;。
 
 ## <a name="before-you-start"></a>開始之前
 | **元件** | **需求** | **詳細資料** |
@@ -420,7 +420,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 6. 在 [伺服器模式] 頁面上，選取 [處理序伺服器]。
 7. 在 [環境詳細資料]  頁面執行下列動作：
 
-    - 如果您想要保護 VMware 虛擬機器，請按一下 [ **是**
+    - 如果您想要保護 VMware 虛擬機器，請按一下  **是**
     - 如果您只想要保護實體伺服器，因此不需要在處理序伺服器上安裝 VMware vCLI。 按一下 [否]  並繼續。
 
 1. 安裝 VMware vCLI 時，請注意下列事項：
@@ -470,10 +470,10 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 3. 如果是執行已安裝行動服務的虛擬機器或實體伺服器，您可以取得服務的更新，如下所示：
 
    * **選項 1**：下載更新：
-     * [Windows Server (僅限 64 位元)](http://download.microsoft.com/download/8/4/8/8487F25A-E7D9-4810-99E4-6C18DF13A6D3/Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe)
+     * [Windows Server (僅限&64; 位元)](http://download.microsoft.com/download/8/4/8/8487F25A-E7D9-4810-99E4-6C18DF13A6D3/Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe)
      * [CentOS 6.4、6.5、6.6 (僅限 64 位元)](http://download.microsoft.com/download/7/E/D/7ED50614-1FE1-41F8-B4D2-25D73F623E9B/Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz)
      * [Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元)](http://download.microsoft.com/download/5/2/6/526AFE4B-7280-4DC6-B10B-BA3FD18B8091/Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz)
-     * [SUSE Linux Enterprise Server SP3 (僅限 64 位元)](http://download.microsoft.com/download/B/4/2/B4229162-C25C-4DB2-AD40-D0AE90F92305/Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz)
+     * [SUSE Linux Enterprise Server SP3 (僅限&64; 位元)](http://download.microsoft.com/download/B/4/2/B4229162-C25C-4DB2-AD40-D0AE90F92305/Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz)
      * 在更新處理序伺服器之後，處理序伺服器上的 C:\pushinstallsvc\repository 資料夾中就有更新版本的行動服務可用。
    * **選項 2**：如果您有一部安裝了舊版行動服務的機器，則您可以從管理入口網站自動升級該機器上的行動服務。
 
@@ -566,7 +566,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 
 | 來源作業系統 | 處理序伺服器上的行動服務封裝 |
 | --- | --- |
-| Windows Server (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe` |
+| Windows Server (僅限&64; 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe` |
 | CentOS 6.4、6.5、6.6 (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz` |
 | SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz` |
 | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz` |
@@ -628,7 +628,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 * 系統會每隔 15 分鐘探索虛擬機器一次，而且在探索之後，需要最多 15 分鐘的時間，虛擬機器才會會出現在 Azure Site Recovery 中。
 * 虛擬機器上的環境變更 (例如 VMware 工具安裝) 也可能需要最多 15 分鐘的時間，才能在 Site Recovery 中更新。
 * 您可以在 [組態伺服器] 頁面上 vCenter 伺服器/ESXi 主機的 [上次連絡時間] 欄位中檢查上次探索的時間。
-* 如果您已建立保護群組，並新增 vCenter Server 或 ESXi 主機之後，需要 15 分鐘，Azure Site Recovery 入口網站才會重新整理並且在 [將機器加入至保護群組]  對話方塊中列出虛擬機器。
+* 如果您已建立保護群組，並新增 vCenter Server 或 ESXi 主機之後，需要&15; 分鐘，Azure Site Recovery 入口網站才會重新整理並且在 [將機器加入至保護群組]  對話方塊中列出虛擬機器。
 * 如果您想要立即繼續將機器加入至保護群組，而不想等候排程的探索，請反白顯示設定伺服器 (不要按它)，然後按一下 [重新整理]  按鈕。
 * 當您將虛擬機器或實體機器加入保護群組時，處理序伺服器會自動推入行動服務並在來源伺服器上安裝 (如果尚未安裝)。
 * 若要讓自動推入機制運作，請確認已將受保護機器如上一個步驟所述進行設定。
@@ -742,6 +742,6 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

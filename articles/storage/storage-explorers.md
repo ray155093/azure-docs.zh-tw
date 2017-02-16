@@ -1,9 +1,9 @@
 ---
-title: "Azure 儲存體用戶端工具 | Microsoft Docs"
+title: "與 Azure 儲存體搭配使用的工具 | Microsoft Docs"
 description: "可讓您檢視 Azure 儲存體資料並與其互動的工具清單。"
 services: storage
 documentationcenter: 
-author: micurd
+author: seguler
 manager: jahogg
 editor: tysonn
 ms.assetid: e4748642-98c4-437e-b0ed-4f9641c2e894
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/17/2016
-ms.author: micurd
+ms.date: 01/30/2017
+ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6d2c365a271428a55e484939a2cce5ce5f7348d8
+ms.sourcegitcommit: 3203358dce9cba95d325ec786e7ba12dd45f5ca1
+ms.openlocfilehash: eb7e798120ea9075dba92da76826ff621882c32a
 
 
 ---
@@ -43,7 +43,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td>Web</td>
     <td>Windows</td>
     <td>OSX</td>
-    <td> Linux</td>
+    <td>Linux</td>
   </tr>
   <tr>
     <td><a href="https://azure.microsoft.com/features/azure-portal/">Microsoft Azure 入口網站</a></td>
@@ -109,10 +109,10 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td>Web</td>
     <td>Windows</td>
     <td>OSX</td>
-    <td> Linux</td>
+    <td>Linux</td>
   </tr>
   <tr>
-    <td><a href="http://www.cloudportam.com/">Cloud Portam</a></td>
+    <td><a href="http://www.cloudportam.com/">Cloud Portam (英文)</a></td>
     <td>X</td>
     <td>X</td>
     <td>X</td>
@@ -126,7 +126,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://www.cerebrata.com/products/azure-management-studio/introduction">Cerabrata：Azure Management Studio</a></td>
+    <td><a href="http://www.cerebrata.com/products/azure-management-studio/introduction">Cerabrata：Azure Management Studio (英文)</a></td>
     <td>X</td>
     <td>X</td>
     <td>X</td>
@@ -140,7 +140,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://www.cerebrata.com/products/azure-explorer/introduction">Cerabrata：Azure 總管</a></td>
+    <td><a href="http://www.cerebrata.com/products/azure-explorer/introduction">Cerabrata：Azure 總管 (英文)</a></td>
     <td>X</td>
     <td>X</td>
     <td>X</td>
@@ -168,7 +168,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">CloudBerry 總管</a></td>
+    <td><a href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">CloudBerry 總管 (英文)</a></td>
     <td>X</td>
     <td>X</td>
     <td></td>
@@ -182,7 +182,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://www.gapotchenko.com/cloudcombine">Cloud Combine</a></td>
+    <td><a href="http://www.gapotchenko.com/cloudcombine">Cloud Combine (英文)</a></td>
     <td>X</td>
     <td>X</td>
     <td></td>
@@ -196,7 +196,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://clumsyleaf.com">ClumsyLeaf：AzureXplorer、CloudXplorer、TableXplorer</a></td>
+    <td><a href="http://clumsyleaf.com">ClumsyLeaf：AzureXplorer、CloudXplorer、TableXplorer (英文)</a></td>
     <td>X</td>
     <td>X</td>
     <td>X</td>
@@ -210,7 +210,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://www.gladinet.com/Azure-Storage/index.htm">Gladinet Cloud</a></td>
+    <td><a href="http://www.gladinet.com/Azure-Storage/index.htm">Gladinet Cloud (英文)</a></td>
     <td>X</td>
     <td></td>
     <td></td>
@@ -224,7 +224,7 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://storageexplorer.codeplex.com/">Azure Web 儲存體總管</a></td>
+    <td><a href="http://storageexplorer.codeplex.com/">Azure Web 儲存體總管 (英文)</a></td>
     <td>X</td>
     <td>X</td>
     <td></td>
@@ -255,6 +255,6 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

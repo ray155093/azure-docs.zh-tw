@@ -12,11 +12,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-multiple
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/15/2016
+ms.date: 11/18/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 0ea8060b13fe7e2e974d4d5c7fe3dd58c2daf32e
+ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
+ms.openlocfilehash: d9f325c515e0a8e2cdbcbde657c3f7d6b793a9da
 
 
 ---
@@ -40,7 +40,7 @@ ms.openlocfilehash: 0ea8060b13fe7e2e974d4d5c7fe3dd58c2daf32e
 1. 建立 Azure 虛擬機器。 請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[在 Visual Studio 中建立及管理 Azure 虛擬機器](../virtual-machines/virtual-machines-windows-classic-manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 2. 在 [Azure 傳統入口網站頁面](http://go.microsoft.com/fwlink/p/?LinkID=269851)，檢視虛擬機器儀表板來查看虛擬機器的 **RDP 憑證指紋**。 此值是用於延伸模組組態中的 `ServerThumbprint` 值。
 3. 建立用戶端憑證，如 [Azure 雲端服務憑證概觀](cloud-services-certs-create.md) 中所述 (保留 .pfx 和 RDP 憑證指紋)。
-4. 如 [如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)中所述安裝 Azure Powershell (0.7.4 版或更新版本)
+4. 如 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)中所述安裝 Azure Powershell (0.7.4 版或更新版本)
 5. 執行下列指令碼來啟用 RemoteDebug 延伸模組。 將路徑和個人資料替換成您自己的路徑和個人資料，例如您的訂用帳戶、服務名稱和指紋。
    
    > [!NOTE]
@@ -77,6 +77,6 @@ ms.openlocfilehash: 0ea8060b13fe7e2e974d4d5c7fe3dd58c2daf32e
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

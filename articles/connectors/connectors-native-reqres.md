@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 48c9453ac0435a6180f8b322897439bf1964fae9
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: e45b07d709927af64cfba28dfb0d8ee9cb8893b3
 
 
 ---
@@ -30,7 +30,7 @@ ms.openlocfilehash: 48c9453ac0435a6180f8b322897439bf1964fae9
 * 從外部 Webhook 事件觸發邏輯應用程式。
 * 從另一個邏輯應用程式內使用要求和回應動作呼叫邏輯應用程式。
 
-若要使用邏輯應用程式中的要求和回應動作來開始作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要使用邏輯應用程式中的要求和回應動作來開始作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="use-the-http-request-trigger"></a>使用 HTTP 要求觸發程序
 觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序](connectors-overview.md)。
@@ -109,11 +109,11 @@ HTTP 回應動作只適用於在 HTTP 要求所觸發的工作流程中使用時
 | 內文 |內文 |回應本文 |
 
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
+立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -16,13 +16,13 @@ ms.workload: NA
 ms.date: 07/16/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cc256d2a164445a4ebbbaec9876d3fa86b56f65c
+ms.sourcegitcommit: 16f4e287a955b787a08cc6949094bd0f5224421a
+ms.openlocfilehash: 26a3e54b00b37d4488a3f1c787c44bbbb5078268
 
 
 ---
-# <a name="disaster-recovery-strategies-for-applications-using-sql-database-elastic-pool"></a>使用 SQL Database 彈性集區之應用程式的災害復原策略
-多年來，我們已了解雲端服務不是萬無一失的做法，可能會發生災難性事件。 SQL Database 提供許多功能，以在這些事件發生時提供應用程式的商務持續性。 [彈性集區](sql-database-elastic-pool.md) 和獨立資料庫支援相同類型的災害復原功能。 本文說明利用這些 SQL Database 商務持續性功能之彈性集區的數種 DR 策略。
+# <a name="disaster-recovery-strategies-for-applications-using-sql-database-elastic-pools"></a>使用 SQL Database 彈性集區之應用程式的災害復原策略
+多年來，我們已了解雲端服務不是萬無一失的做法，可能會發生災難性事件。 SQL Database 提供許多功能，以在這些事件發生時提供應用程式的商務持續性。 [彈性集區](sql-database-elastic-pool.md)和單一資料庫支援相同類型的災害復原功能。 本文說明利用這些 SQL Database 商務持續性功能之彈性集區的數種 DR 策略。
 
 基於本文的目的，我們將使用 Canonical SaaS ISV 應用程式模式︰
 
@@ -33,7 +33,7 @@ ms.openlocfilehash: cc256d2a164445a4ebbbaec9876d3fa86b56f65c
 ## <a name="scenario-1-cost-sensitive-startup"></a>案例 1. 成本導向創業
 <i>我想要創業，而且成本極為有限。我想要簡化應用程式的部署和管理，並且願意讓個別客戶具有有限的 SLA。但是我想要確保整個應用程式絕不會離線。</i>
 
-若要滿足簡單性需求，您應該將所有租用戶資料庫部署到您所選擇 Azure 區域中的一個彈性集區，並將管理資料庫部署為異地複寫的獨立資料庫。 對於租用戶的災害復原，請使用異地還原，這不需要額外成本。 若要確保管理資料庫的可用性，應該將它們異地複寫到另一個區域 (步驟 1)。 此案例中災害復原組態的持續成本等於次要資料庫的總成本。 下圖說明此組態。
+若要滿足簡單性需求，您應該將所有租用戶資料庫部署到您所選擇 Azure 區域中的單一彈性集區，並將管理資料庫部署為異地複寫的單一資料庫。 對於租用戶的災害復原，請使用異地還原，這不需要額外成本。 若要確保管理資料庫的可用性，應該將它們異地複寫到另一個區域 (步驟 1)。 此案例中災害復原組態的持續成本等於次要資料庫的總成本。 下圖說明此組態。
 
 ![圖 1](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-1.png)
 
@@ -71,7 +71,7 @@ ms.openlocfilehash: cc256d2a164445a4ebbbaec9876d3fa86b56f65c
 
 ![圖 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-4.png)
 
-與第一個案例相同，管理資料庫將會相當活躍，以讓您使用其獨立異地複寫的資料庫 (1)。 這將確保新客戶訂用帳戶、設定檔更新和其他管理作業的可預測效能。 主要管理資料庫複本所在區域將是主要區域，而次要管理資料庫複本所在區域將是 DR 區域。
+與第一個案例相同，管理資料庫將會相當活躍，因此針對它使用單一異地複寫的資料庫 (1)。 這將確保新客戶訂用帳戶、設定檔更新和其他管理作業的可預測效能。 主要管理資料庫複本所在區域將是主要區域，而次要管理資料庫複本所在區域將是 DR 區域。
 
 在主要區域中所佈建的「付費」集區中，付費客戶的租用戶資料庫會有使用中資料庫。 您應該在 DR 區域中佈建同名的次要集區。 每個租用戶都會異地複寫到次要集區 (2)。 這將使用容錯移轉來快速復原所有租用戶資料庫。 
 
@@ -116,7 +116,7 @@ ms.openlocfilehash: cc256d2a164445a4ebbbaec9876d3fa86b56f65c
 
 ![圖 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-7.png)
 
-與先前的案例相同，管理資料庫將會相當活躍，因此應該將它們設定為獨立異地複寫的資料庫 (1)。 這將確保新客戶訂用帳戶、設定檔更新和其他管理作業的可預測效能。 區域 A 是管理資料庫的主要區域，而區域 B 將用於復原管理資料庫。
+與先前的案例相同，管理資料庫將會相當活躍，因此應該將它們設定為單一異地複寫的資料庫 (1)。 這將確保新客戶訂用帳戶、設定檔更新和其他管理作業的可預測效能。 區域 A 是管理資料庫的主要區域，而區域 B 將用於復原管理資料庫。
 
 付費客戶的租用戶資料庫會也會一併異地複寫，但在區域 A 與區域 B (2) 之間有分割的主要複本和次要複本。 因此，中斷所影響的租用戶主要資料庫可以容錯移轉到其他區域，並變成可用。 完全不會影響另一半的租用戶資料庫。 
 
@@ -176,6 +176,6 @@ ms.openlocfilehash: cc256d2a164445a4ebbbaec9876d3fa86b56f65c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

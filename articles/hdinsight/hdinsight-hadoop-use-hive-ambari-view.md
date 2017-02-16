@@ -16,8 +16,8 @@ ms.workload: big-data
 ms.date: 10/28/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4cdc1f0a8958edd23f8df02c4d16d3f60fe648bd
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: 688decb3e01b8de1f5c1047b4b9cdeff38b05552
 
 
 ---
@@ -33,6 +33,9 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 
 ## <a name="prerequisites"></a>必要條件
 * 以 Linux 為基礎的 HDInsight 叢集。 如需建立新叢集的相關資訊，請參閱 [開始使用以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)。
+
+> [!IMPORTANT]
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="open-the-hive-view"></a>開啟 Hive 檢視
 您可以從 Azure 入口網站存取 Ambari 檢視，選取您的 HDInsight 叢集，然後從 [快速連結] 區段選取 [Ambari 檢視]。
@@ -200,6 +203,6 @@ Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 Hive
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

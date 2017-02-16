@@ -13,16 +13,24 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 10/04/2016
+ms.date: 01/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 86c4f2b6ab4ff9dfba429acfcfbd0cd2bac7b42c
+ms.sourcegitcommit: 2f0f36e7ffeec52bacc35ac5039cd183976dc3aa
+ms.openlocfilehash: fd2649f9936da9f86d4fe24b4fa87ca1733d1f3c
 
 
 ---
 # <a name="whats-new-in-power-bi-embedded"></a>Power BI Embedded 新功能
 **Power BI Embedded** 的更新會定期發行。 但是，並非所有發行版本都會包含供使用者使用的新功能，某些版本著重在後端服務功能。 我們將會在這裡反白顯示對於使用者的功能。 請務必經常回來查看。
+
+## <a name="december-2016"></a>2016 年 12 月
+
+* [新的 JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)
+
+## <a name="october-2016"></a>2016 年 10 月
+
+* [使用 Power BI Embedded 和 R 進行進階分析 (英文)](https://powerbi.microsoft.com/blog/r-in-pbie/)
 
 ## <a name="august-31st-2016"></a>2016 年 8 月 31 日
 這個版本中包含︰
@@ -33,7 +41,7 @@ ms.openlocfilehash: 86c4f2b6ab4ff9dfba429acfcfbd0cd2bac7b42c
 ## <a name="july-11th-2016"></a>2016 年 7 月 11 日
 這個版本中包含︰
 
-* **好消息！**  Power BI Embedded service 不再是預覽 - 現在已 GA (正式推出)。  
+* **好消息！** Power BI Embedded service 不再是預覽 - 現在已 GA (正式推出)。  
 * 所有 REST API 已從 **/beta** 移至 **/v1.0**。
 * .NET 和 JavaScript SDK 已針對 **v1.0**更新。
 * 現在可以直接使用 API 金鑰來驗證 power BI API 呼叫。 只有內嵌需要應用程式權杖。 在這個過程中，佈建和開發權杖已在 v1.0 API 中被取代，但是它們會繼續在 Beta 版中運作，直到 12/30/2016 為止。 若要深入了解，請參閱 [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)。
@@ -46,6 +54,6 @@ ms.openlocfilehash: 86c4f2b6ab4ff9dfba429acfcfbd0cd2bac7b42c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

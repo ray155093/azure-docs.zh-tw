@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/16/2015
 ms.author: naziml
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4c9f70e87b6020afbb7411ff20f4fc5e2459fa0b
+ms.sourcegitcommit: 115505a2819a3e4c65353ac53676004ed288ce39
+ms.openlocfilehash: 7d26d52ad04bd4158a1450ae0f49fc7c1f8a04e8
 
 
 ---
@@ -25,11 +25,11 @@ Azure App Service 符合產業對於安全性和可靠性的重要標準，可�
 
 [!INCLUDE [app-service-blueprint-security](../../includes/app-service-blueprint-security.md)]
 
-Azure App Service 會使用 Azure 雲端服務和虛擬機器使用的相同反惡意程式碼方案。 若要深入了解此方案，請參閱 [反惡意程式碼文件](../security/azure-security-antimalware.md) 
+Azure App Service 會使用 Azure 雲端服務和虛擬機器使用的相同反惡意程式碼方案。 若要深入了解此方案，請參閱 [反惡意程式碼文件](../security/azure-security-antimalware.md)。 
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

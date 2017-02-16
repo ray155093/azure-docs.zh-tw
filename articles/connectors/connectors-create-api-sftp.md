@@ -16,15 +16,15 @@ ms.workload: integration
 ms.date: 07/20/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 93b77197d69d8c6261ea786aecb653c69129dc9d
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: 2977404fb408ea5301c88caa7ce6767a906ca9c7
 
 
 ---
 # <a name="get-started-with-the-sftp-connector"></a>開始使用 SFTP 連接器
 使用 SFTP 連接器存取 SFTP 帳戶來傳送及接收檔案。 您可以執行各種作業，例如建立、更新、取得或刪除檔案。  
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
+若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)來開始。
 
 ## <a name="connect-to-sftp"></a>連接至 SFTP
 您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
@@ -35,7 +35,7 @@ ms.openlocfilehash: 93b77197d69d8c6261ea786aecb653c69129dc9d
 > 
 
 ## <a name="use-an-sftp-trigger"></a>使用 SFTP 觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。  
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。  
 
 在此範例中，我將告訴您如何使用 **SFTP - 新增或修改檔案時**觸發程序，在檔案新增或修改於 SFTP 伺服器時起始邏輯應用程式工作流程。 在範例中，您也將學習如何新增會檢查新的或修改檔案內容的條件，並在使用內容之前如果檔案指出它應該要解壓縮時，決定將檔案解壓縮。 最後，您將學習如何新增動作以解壓縮檔案的內容，並將解壓縮的內容放在 SFTP 伺服器上的資料夾。 
 
@@ -51,7 +51,7 @@ ms.openlocfilehash: 93b77197d69d8c6261ea786aecb653c69129dc9d
 > 
 
 ## <a name="use-an-sftp-action"></a>使用 SFTP 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。  
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。  
 
 > [!INCLUDE [Steps to create an SFTP action](../../includes/connectors-create-api-sftp-action.md)]
 > 
@@ -341,11 +341,11 @@ BlobMetadata
 | 預設值 |作業失敗。 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

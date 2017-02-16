@@ -1,142 +1,148 @@
 ---
-title: Developer guide - device identity registry | Microsoft Docs
-description: Azure IoT Hub developer guide - description of the device identity registry and how to use it to manage your devices
+title: "了解 Azure IoT 中樞身分識別登錄 | Microsoft Docs"
+description: "開發人員指南 - 說明 IoT 中樞身分識別登錄和如何用來管理裝置。 包含大量匯入和匯出裝置識別身分的相關資訊。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 0706eccd-e84c-4ae7-bbd4-2b1a22241147
 ms.service: iot-hub
 ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 01/04/2017
 ms.author: dobett
+translationtype: Human Translation
+ms.sourcegitcommit: 9ded95283b52f0fc21ca5b99df8e72e1e152fe1c
+ms.openlocfilehash: 08ebf8f6f5a2adab90c7de1084bfb5e4aed77fd3
+
 
 ---
-# <a name="manage-device-identities-in-iot-hub"></a>Manage device identities in IoT Hub
-## <a name="overview"></a>Overview
-Every IoT hub has a device identity registry that stores information about the devices that are permitted to connect to the hub. Before a device can connect to a hub, there must be an entry for that device in the hub's device identity registry. A device must also authenticate with the hub based on credentials stored in the device identity registry.
+# <a name="identity-registry"></a>身分識別登錄
+## <a name="overview"></a>概觀
+每個 IoT 中樞都有身分識別登錄，可儲存允許連線至 IoT 中樞之裝置的相關資訊。 若要讓裝置可以連線到 IoT 中樞，IoT 中樞的身分識別登錄中必須先有該裝置的項目。 裝置也必須根據身分識別登錄中儲存的認證，向 IoT 中樞進行驗證。
 
-At a high level, the device identity registry is a REST-capable collection of device identity resources. When you add an entry to the registry, IoT Hub creates a set of per-device resources in the service such as the queue that contains in-flight cloud-to-device messages.
+總括來說，身分識別登錄是支援 REST 的裝置身分識別資源集合。 當您在身分識別登錄中新增項目時，IoT 中樞會在服務 (例如，包含傳遞中雲端到裝置訊息的佇列) 中建立一組每一裝置資源。
 
-### <a name="when-to-use"></a>When to use
-Use the device identity registry when you need to provision devices that connect to you IoT hub and when you need to control per-device access to the device-facing endpoints in your hub.
-
-> [!NOTE]
-> The device identity registry does not contain any application-specific metadata.
-> 
-> 
-
-## <a name="device-identity-registry-operations"></a>Device identity registry operations
-The IoT Hub device identity registry exposes the following operations:
-
-* Create device identity
-* Update device identity
-* Retrieve device identity by ID
-* Delete device identity
-* List up to 1000 identities
-* Export all identities to blob storage
-* Import identities from blob storage
-
-All these operations can use optimistic concurrency, as specified in [RFC7232][lnk-rfc7232].
-
-> [!IMPORTANT]
-> The only way to retrieve all identities in a hub's identity registry is to use the [Export][lnk-export] functionality.
-> 
-> 
-
-An IoT Hub device identity registry:
-
-* Does not contain any application metadata.
-* Can be accessed like a dictionary, by using the **deviceId** as the key.
-* Does not support expressive queries.
-
-An IoT solution typically has a separate solution-specific store that contains application-specific metadata. For example, the solution-specific store in a smart building solution would record the room in which a temperature sensor is deployed.
-
-> [!IMPORTANT]
-> Only use the device identity registry for device management and provisioning operations. High throughput operations at run time should not depend on performing operations in the device identity registry. For example, checking the connection state of a device before sending a command is not a supported pattern. Make sure to check the [throttling rates][lnk-quotas] for the device identity registry, and the [device heartbeat][lnk-guidance-heartbeat] pattern.
-> 
-> 
-
-## <a name="disable-devices"></a>Disable devices
-You can disable devices by updating the **status** property of an identity in the registry. Typically, you use this property in two scenarios:
-
-* During a provisioning orchestration process. For more information, see [Device Provisioning][lnk-guidance-provisioning].
-* If, for any reason, you consider a device is compromised or has become unauthorized.
-
-## <a name="import-and-export-device-identities"></a>Import and export device identities
-You can export device identities in bulk from an IoT hub's identity registry, by using asynchronous operations on the [IoT Hub Resource Provider endpoint][lnk-endpoints]. Exports are long-running jobs that use a customer-supplied blob container to save device identity data read from the identity registry.
-
-You can import device identities in bulk to an IoT hub's identity registry, by using asynchronous operations on the [IoT Hub Resource Provider endpoint][lnk-endpoints]. Imports are long-running jobs that use data in a customer-supplied blob container to write device identity data into the device identity registry.
-
-* For detailed information about the import and export APIs, see [Azure IoT Hub - Resource Provider APIs][lnk-resource-provider-apis].
-* To learn more about running import and export jobs, see [Bulk management of IoT Hub device identities][lnk-bulk-identity].
-
-## <a name="device-provisioning"></a>Device provisioning
-The device data that a given IoT solution stores depends on the specific requirements of that solution. But, as a minimum, a solution must store device identities and authentication keys. Azure IoT Hub includes an identity registry that can store values for each device such as IDs, authentication keys, and status codes. A solution can use other Azure services such as tables, blobs, or Azure DocumentDB to store any additional device data.
-
-*Device provisioning* is the process of adding the initial device data to the stores in your solution. To enable a new device to connect to your hub, you must add a new device ID and keys to the IoT Hub identity registry. As part of the provisioning process, you might need to initialize device-specific data in other solution stores.
-
-## <a name="device-heartbeat"></a>Device heartbeat
-The IoT Hub identity registry contains a field called **connectionState**. You should only use the **connectionState** field during development and debugging, IoT solutions should not query the field at run time (for example, to check if a device is connected in order to decide whether to send a cloud-to-device message or an SMS).
-
-If your IoT solution needs to know if a device is connected (either at run time, or with more accuracy than the **connectionState** property provides), your solution should implement the *heartbeat pattern*.
-
-In the heartbeat pattern, the device sends device-to-cloud messages at least once every fixed amount of time (for example, at least once every hour). This means that even if a device does not have any data to send, it still sends an empty device-to-cloud message (usually with a property that identifies it as a heartbeat). On the service side, the solution maintains a map with the last heartbeat received for each device, and assumes that there is a problem with a device if it does not receive a heartbeat message within the expected time.
-
-A more complex implementation could include the information from [operations monitoring][lnk-devguide-opmon] to identify devices that are trying to connect or communicate but failing. When you implement the heartbeat pattern, make sure to check [IoT Hub Quotas and Throttles][lnk-quotas].
+### <a name="when-to-use"></a>使用時機
+當您需要佈建連線到 IoT 中樞的裝置，以及當您需要控制每一裝置對中樞之裝置面向端點的存取權時，請使用身分識別登錄。
 
 > [!NOTE]
-> If an IoT solution needs the device connection state solely to determine whether to send cloud-to-device messages, and messages are not broadcast to large sets of devices, a much simpler pattern to consider is to use a short Expiry time. This achieves the same result as maintaining a device connection state registry using the heartbeat pattern, while being significantly more efficient. It is also possible, by requesting message acknowledgements, to be notified by IoT Hub of which devices are able to receive messages and which are not online or are failed.
+> 身分識別登錄不包含任何應用程式特有中繼資料。
 > 
 > 
 
-## <a name="reference"></a>Reference
-### <a name="device-identity-properties"></a>Device identity properties
-Device identities are represented as JSON documents with the following properties.
+## <a name="identity-registry-operations"></a>身分識別登錄作業
+IoT 中樞身分識別登錄會公開下列作業︰
 
-| Property | Options | Description |
+* 建立裝置身分識別
+* 更新裝置身分識別
+* 依照 ID 擷取裝置身分識別別
+* 刪除裝置身分識別
+* 列出多達 1000 個識別
+* 將所有身分識別匯出至 Azure Blob 儲存體
+* 從 Azure Blob 儲存體匯入身分識別
+
+上述所有作業均可使用 [RFC7232][lnk-rfc7232] 中指定的開放式並行存取。
+
+> [!IMPORTANT]
+> 如果要擷取 IoT 中樞的身分識別登錄中的所有身分識別，唯一方法是使用[匯出][lnk-export]功能。
+> 
+> 
+
+IoT 中樞身分識別登錄：
+
+* 不包含任何應用程式中繼資料。
+* 可以將 **deviceId** 做為索引鍵來存取，就像字典一樣。
+* 不支援表達式查詢。
+
+IoT 方案通常具有不同的方案專屬存放區，其中包含應用程式特定的中繼資料。 例如，智慧建置方案中的解決方案專用存放區會記錄部署溫度感應器的空間。
+
+> [!IMPORTANT]
+> 只能將身分識別登錄用於裝置管理和佈建作業。 執行階段的高輸送量作業不應該仰賴在身分識別登錄中執行作業。 例如，在傳送命令前先檢查裝置的連線狀態就不是支援的模式。 請務必檢查身分識別登錄的[節流速率][lnk-quotas]以及[裝置活動訊號][lnk-guidance-heartbeat]模式。
+> 
+> 
+
+## <a name="disable-devices"></a>停用裝置
+您可以在身分識別登錄中更新身分識別的 [狀態] 屬性來停用裝置。 您通常會在兩種情況下使用此屬性：
+
+* 在佈建協調程序期間。 如需詳細資訊，請參閱[裝置佈建][lnk-guidance-provisioning]。
+* 如果因為任何原因，您認為裝置遭到入侵，或變成未經授權。
+
+## <a name="import-and-export-device-identities"></a>匯入和匯出裝置身分識別
+您可以使用 [IoT 中樞資源提供者端點][lnk-endpoints]上的非同步作業，從 IoT 中樞的身分識別登錄大量匯出裝置身分識別。 匯出是長時間執行的作業，其使用客戶提供的 Blob 容器來儲存讀取自身分識別登錄的裝置身分識別資料。
+
+您可以使用 [IoT 中樞資源提供者端點][lnk-endpoints]上的非同步作業，將裝置身分識別大量匯入 IoT 中樞的身分識別登錄。 匯入是長時間執行的作業，其使用客戶提供的 Blob 容器中的資料，將裝置身分識別資料寫入至身分識別登錄。
+
+* 如須匯入和匯出 API 的詳細資訊，請參閱 [IoT 中樞資源提供者 REST API][lnk-resource-provider-apis]。
+* 若要深入了解如何執行匯入和匯出作業，請參閱[大量管理 IoT 中樞的裝置身分識別][lnk-bulk-identity]。
+
+## <a name="device-provisioning"></a>裝置佈建
+給定的 IoT 解決方案儲存的裝置資料取決於該解決方案的特定需求。 但是解決方案至少必須儲存裝置身分識別和驗證金鑰。 Azure IoT 中樞包含身分識別登錄，其可以儲存每個裝置的值，例如識別碼、驗證金鑰和狀態碼。 解決方案可以使用其他 Azure 服務 (例如 Azure 表格儲存體、Azure Blob 儲存體或 Azure DocumentDB) 來儲存任何其他裝置資料。
+
+*裝置佈建* 是將初始裝置資料加入至解決方案中存放區的程序。 若要讓新裝置能夠連接到您的中樞，必須將裝置識別碼和金鑰新增至「IoT 中樞」身分識別登錄。 做為佈建程序的一部分，您可能需要初始化其他解決方案存放區中的裝置特定資料。
+
+## <a name="device-heartbeat"></a>裝置活動訊號
+IoT 中樞身分識別登錄包含稱為 **connectionState** 的欄位。 請只在進行開發和偵錯時才使用 **connectionState**。 IoT 解決方案不應該在執行階段查詢該欄位 (例如，檢查裝置是否已連接，以便決定是要傳送雲端到裝置訊息還是 SMS)。
+
+如果 IoT 解決方案需要知道裝置是否已連接 (不論是在執行階段，還是需要比 **connectionState** 屬性所提供的資訊更精確時)，您應該實作「活動訊號模式」。
+
+在活動訊號模式中，裝置每隔固定時間就會至少傳送一次裝置到雲端的訊息 (例如，每小時至少一次)。 因此，即使裝置沒有任何要傳送的資料，它仍會傳送空的裝置到雲端的訊息 (通常具有可識別它是活動訊號的屬性)。 此解決方案會在服務端保有一份對應，其中有針對每個裝置收到的最後一次活動訊號。 如果裝置沒有在預期時間內收到活動訊號訊息，此解決方案就會假設該裝置發生問題。
+
+更複雜的實作可以包含來自[作業監視][lnk-devguide-opmon]的資訊，以便識別嘗試連接或通訊但失敗的裝置。 當您實作活動訊號模式時，請務必檢查 [IoT 中樞配額與節流][lnk-quotas]。
+
+> [!NOTE]
+> 如果 IoT 解決方案只需要裝置連線狀態來判斷是否要傳送雲端到裝置訊息，而且訊息不會廣播到大量的裝置組合，則要考慮使用的較簡單模式就是使用較短的到期時間。 此模式所達到的效果與使用活動訊號模式來維護裝置連線狀態登錄相同，但更有效率。 它也能夠藉由要求訊息收條，收到 IoT 中樞的通知，告知哪些裝置能夠收到訊息，而哪些裝置不在線上或故障。
+> 
+> 
+
+## <a name="reference-topics"></a>參考主題：
+下列參考主題會提供您關於身分識別登錄的詳細資訊。
+
+## <a name="device-identity-properties"></a>裝置身分識別屬性
+裝置身分識別會以具有下列屬性的 JSON 文件表示：
+
+| 屬性 | 選項 | 說明 |
 | --- | --- | --- |
-| deviceId |required, read-only on updates |A case-sensitive string (up to 128 characters long) of ASCII 7-bit alphanumeric characters + `{'-', ':', '.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`. |
-| generationId |required, read-only |A hub-generated, case-sensitive string up to 128 characters long. This is used to distinguish devices with the same **deviceId**, when they have been deleted and re-created. |
-| etag |required, read-only |A string representing a weak etag for the device identity, as per [RFC7232][lnk-rfc7232]. |
-| auth |optional |A composite object containing authentication information and security materials. |
-| auth.symkey |optional |A composite object containing a primary and a secondary key, stored in base64 format. |
-| status |required |An access indicator. Can be **Enabled** or **Disabled**. If **Enabled**, the device is allowed to connect. If **Disabled**, this device cannot access any device-facing endpoint. |
-| statusReason |optional |A 128 character-long string that stores the reason for the device identity status. All UTF-8 characters are allowed. |
-| statusUpdateTime |read-only |A temporal indicator, showing the date and time of the last status update. |
-| connectionState |read-only |A field indicating connection status: either **Connected** or **Disconnected**. This field represents the IoT Hub view of the device connection status. **Important**: This field should be used only for development/debugging purposes. The connection state is updated only for devices using MQTT or AMQP. Also, it is based on protocol-level pings (MQTT pings, or AMQP pings), and it can have a maximum delay of only 5 minutes. For these reasons, there can be false positives, such as devices reported as connected but that are actually disconnected. |
-| connectionStateUpdatedTime |read-only |A temporal indicator, showing the date and last time the connection state was updated. |
-| lastActivityTime |read-only |A temporal indicator, showing the date and last time the device connected, received, or sent a message. |
+| deviceId |必要，只能讀取更新 |區分大小寫的字串，最長為 128 個字元，可使用 ASCII 7 位元英數字元和 `{'-', ':', '.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`。 |
+| generationId |必要，唯讀 |IoT 中樞產生的區分大小寫字串，最長為 128 個字元。 此值可用來在刪除並重建裝置時，區分具有相同 **deviceId** 的裝置。 |
+| etag |必要，唯讀 |依據 [RFC7232][lnk-rfc7232]，此字串代表裝置身分識別的弱式 etag。 |
+| auth |選用 |包含驗證資訊和安全性資料的複合物件。 |
+| auth.symkey |選用 |包含主要和次要金鑰 (以 base64 格式儲存) 的複合物件。 |
+| status |必要 |存取指示器。 可以是 [已啟用] 或 [已停用]。 如果為 [已啟用] ，則允許連接裝置。 如果為 [已停用] ，此裝置無法存取任何裝置面向的端點。 |
+| statusReason |選用 |長度為 128 個字元的字串，用來儲存裝置身分識別狀態的原因。 允許所有 UTF-8 字元。 |
+| statusUpdateTime |唯讀 |暫時指示器，顯示上次狀態更新的日期和時間。 |
+| connectionState |唯讀 |指出連線狀態的欄位︰**已連線**或**已中斷連線**。 這個欄位代表裝置連線狀態的 IoT 中樞檢視。 **重要事項**：此欄位只應用於開發/偵錯用途。 只有針對使用 MQTT 或 AMQP 的裝置才會更新連線狀態。 此外，它是以通訊協定層級的偵測 (MQTT 偵測或 AMQP 偵測) 為基礎，而且最多只能有 5 分鐘的延遲。 基於這些理由，其中可能會有誤判的情形，例如將裝置回報為已連線，但卻已中斷連線。 |
+| connectionStateUpdatedTime |唯讀 |暫時指示器，顯示上次更新連線狀態的日期和時間。 |
+| lastActivityTime |唯讀 |暫時指示器，顯示裝置上次連接、接收或傳送訊息的日期和時間。 |
 
 > [!NOTE]
-> Connection state can only represent the IoT Hub view of the status of the connection. Updates to this state may be delayed, depending on network conditions and configurations.
+> 連線狀態只能代表連線狀態的 IoT 中樞檢視。 根據網路狀況和組態而定，可能會延遲此狀態的更新。
 > 
 > 
 
-### <a name="additional-reference-material"></a>Additional reference material
-Other reference topics in the Developer Guide include:
+## <a name="additional-reference-material"></a>其他參考資料
+IoT 中樞開發人員指南中的其他參考主題包括︰
 
-* [IoT Hub endpoints][lnk-endpoints] describes the various endpoints that each IoT hub exposes for runtime and management operations.
-* [Throttling and quotas][lnk-quotas] describes the quotas that apply to the IoT Hub service and the throttling behavior to expect when you use the service.
-* [IoT Hub device and service SDKs][lnk-sdks] lists the various language SDKs you an use when you develop both device and service applications that interact with IoT Hub.
-* [Query language for twins, methods, and jobs][lnk-query] describes the query language you can use to retrieve information from IoT Hub about your device twins, methods and jobs.
-* [IoT Hub MQTT support][lnk-devguide-mqtt] provides more information about IoT Hub support for the MQTT protocol.
+* [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
+* [節流和配額][lnk-quotas]說明適用於 IoT 中樞服務的配額，和使用服務時所預期的節流行為。
+* [Azure IoT 裝置和服務 SDK][lnk-sdks] 列出各種語言 SDK，可供您在開發與「IoT 中樞」互動的裝置和服務應用程式時使用。
+* [裝置對應項和作業的 IoT 中樞查詢語言][lnk-query]說明的 IoT 中樞查詢語言可用來從 IoT 中樞擷取有關裝置對應項和作業的資訊。
+* [IoT 中樞 MQTT 支援][lnk-devguide-mqtt]針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
 
-## <a name="next-steps"></a>Next steps
-Now you have learned how to use the IoT Hub device identity registry, you may be interested in the following Developer Guide topics:
+## <a name="next-steps"></a>後續步驟
+現在您已了解如何使用 IoT 中樞身分識別登錄，接下來您可能對下列 IoT 中樞開發人員指南主題感興趣︰
 
-* [Control access to IoT Hub][lnk-devguide-security]
-* [Use device twins to synchronize state and configurations][lnk-devguide-device-twins]
-* [Invoke a direct method on a device][lnk-devguide-directmethods]
-* [Schedule jobs on multiple devices][lnk-devguide-jobs]
+* [控制 IoT 中樞的存取權][lnk-devguide-security]
+* [使用裝置對應項同步處理狀態和組態][lnk-devguide-device-twins]
+* [在裝置上叫用直接方法][lnk-devguide-directmethods]
+* [排程多個裝置上的作業][lnk-devguide-jobs]
 
-If you would like to try out some of the concepts described in this article, you may be interested in the following IoT Hub tutorial:
+如果您想要嘗試本文章所述的概念，您可能會對下列 IoT 中樞教學課程感興趣：
 
-* [Get started with Azure IoT Hub][lnk-getstarted-tutorial]
+* [開始使用 Azure IoT 中樞][lnk-getstarted-tutorial]
 
 <!-- Links and images -->
 
@@ -161,6 +167,7 @@ If you would like to try out some of the concepts described in this article, you
 [lnk-getstarted-tutorial]: iot-hub-csharp-csharp-getstarted.md
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Jan17_HO1-->
 
 

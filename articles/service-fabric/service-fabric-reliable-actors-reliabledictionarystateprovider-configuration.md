@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric Reliable Actors 的 ReliableDictionaryActorStateProvider 組態概觀 | Microsoft Docs"
+title: "變更 Azure 微服務中的 ReliableDictionaryActorStateProvider 設定 | Microsoft Docs"
 description: "了解設定 ReliableDictionaryActorStateProvider 類型的 Azure Service Fabric 可設定狀態的動作項目。"
 services: Service-Fabric
 documentationcenter: .net
@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 07/18/2016
+ms.date: 02/8/2017
 ms.author: sumukhs
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 59c8a1a09580161593639d01cc8a3d8d8ef0f6f4
+ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
+ms.openlocfilehash: e787f48f14539dff3035c51e14243c7bd9dcbb73
 
 
 ---
@@ -128,6 +128,6 @@ SharedLogId 和 SharedLogPath 設定永遠會一起使用，以便讓服務使�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

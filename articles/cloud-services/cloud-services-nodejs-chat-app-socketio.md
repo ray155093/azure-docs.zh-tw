@@ -1,5 +1,5 @@
 ---
-title: "使用 Socket.io 的 Node.js 應用程式 | Microsoft Docs"
+title: "使用 Socket.io 的 ode.js 應用程式 | Microsoft Docs"
 description: "學習如何在裝載於 Azure 的 node.js 應用程式中使用 socket.io。"
 services: cloud-services
 documentationcenter: nodejs
@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 226134e11a87f6bd847192661d3120b78ea6cf7c
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: ba6129382b6ec367428aa451ee74d5bceaa4ad35
 
 
 ---
@@ -145,28 +145,28 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。 本教學
 [chatwebsite]: /develop/nodejs/tutorials/website-using-socketio/
 
 [Azure SLA]: http://www.windowsazure.com/support/sla/
-[Azure SDK for Node.js GitHub 儲存機制]: https://github.com/WindowsAzure/azure-sdk-for-node
+[Azure SDK for Node.js GitHub repository]: https://github.com/WindowsAzure/azure-sdk-for-node
 [completed-app]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-10.png
 [Azure SDK for Node.js]: https://www.windowsazure.com/develop/nodejs/
-[Node.js Web 應用程式]: https://www.windowsazure.com/develop/nodejs/tutorials/getting-started/
+[Node.js Web Application]: https://www.windowsazure.com/develop/nodejs/tutorials/getting-started/
 [Socket.IO GitHub 儲存機制]: https://github.com/LearnBoost/socket.io/tree/0.9.14
-[Azure 考量]: #windowsazureconsiderations
-[將交談範例裝載在背景工作角色中]: #hostingthechatexampleinawebrole
-[摘要和後續步驟]: #summary
+[Azure Considerations]: #windowsazureconsiderations
+[Hosting the Chat Example in a Worker Role]: #hostingthechatexampleinawebrole
+[Summary and Next Steps]: #summary
 [powershell-menu]: ./media/cloud-services-nodejs-chat-app-socketio/azure-powershell-start.png
 
-[交談範例]: https://github.com/LearnBoost/socket.io/tree/master/examples/chat
+[chat example]: https://github.com/LearnBoost/socket.io/tree/master/examples/chat
 [chat-example-view]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-22.png
 
 
 [chat-contents]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-5.png
 [The-output-of-the-npm-install-command]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-7.png
-[Publish-AzureService 命令的輸出]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-9.png
+[The output of the Publish-AzureService command]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-9.png
 
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

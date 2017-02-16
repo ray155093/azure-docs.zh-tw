@@ -4,7 +4,7 @@ description: "HTTP 動作與屬性的概觀"
 services: 
 documentationcenter: 
 author: jeffhollan
-manager: erikre
+manager: anneta
 editor: 
 tags: connectors
 ms.assetid: e11c6b4d-65a5-4d2d-8e13-38150db09c0b
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/15/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 522624ccb14d295359ff5585e1b46b618b45c305
+ms.sourcegitcommit: 9c74b25a2ac5e2088a841d97920035376b7f3f11
+ms.openlocfilehash: d3514dad84bea024ad6215711877a9784a8d8ffd
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 522624ccb14d295359ff5585e1b46b618b45c305
 * 建立會在您管理的網站故障時啟動 (觸發程序) 的邏輯應用程式工作流程。
 * 透過 HTTP 與任何端點通訊，將工作流程延伸至其他服務。
 
-若要使用邏輯應用程式中的 HTTP 動作來開始作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要使用邏輯應用程式中的 HTTP 動作來開始作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="use-the-http-trigger"></a>使用 HTTP 觸發程序
 觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序](connectors-overview.md)。
@@ -125,7 +125,7 @@ HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 根據預設，任何�
 | Status Code |整數 |HTTP 狀態碼 |
 
 ## <a name="authentication"></a>驗證
-Azure App Service 的 Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您可以將此驗證搭配 **HTTP**、**[HTTP + Swagger](connectors-native-http-swagger.md)** 及 **[HTTP Webhook](connectors-native-webhook.md)** 連接器使用。 下列是可設定的驗證類型︰
+Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您可以將此驗證搭配 **HTTP**、**[HTTP + Swagger](connectors-native-http-swagger.md)** 及 **[HTTP Webhook](connectors-native-webhook.md)** 連接器使用。 下列是可設定的驗證類型︰
 
 * [基本驗證](#basic-authentication)
 * [用戶端憑證驗證](#client-certificate-authentication)
@@ -162,7 +162,7 @@ Azure App Service 的 Logic Apps 功能可讓您針對 HTTP 端點使用不同�
 | 屬性名稱 | 資料類型 | 說明 |
 | --- | --- | --- |
 | 類型* |type |驗證類型 (若為 SSL 用戶端憑證，必須是 `ClientCertificate` ) |
-| PFX* |pfx |Base 64 編碼的個人資訊交換 (PFX) 檔案內容 |
+| PFX* |pfx |Base&64; 編碼的個人資訊交換 (PFX) 檔案內容 |
 | 密碼* |password |存取 PFX 檔案的密碼 |
 
 > [!TIP]
@@ -209,11 +209,11 @@ Azure App Service 的 Logic Apps 功能可讓您針對 HTTP 端點使用不同�
 ```
 
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索 Logic Apps 中其他可用的連接器。
+立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索 Logic Apps 中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

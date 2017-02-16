@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/13/2016
+ms.date: 01/06/2017
 ms.author: roopalik;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a0d44e625d3898f014a9723ff005c00b3aaedcf1
+ms.sourcegitcommit: 262ee4f092efa11150de61168e6b03c0477f0543
+ms.openlocfilehash: 1573ae126f8b76983abe98b37b9ac4072e70d9d0
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: a0d44e625d3898f014a9723ff005c00b3aaedcf1
  [[Jupyter Notebook](https://gallery.cortanaintelligence.com/notebooks)]****
  頁面會顯示最受歡迎的 Notebook 清單。
 按一下 **See all** (查看全部) 即可檢視所有 Notebook。
-在這個頁面上，您可以瀏覽 Gallery 中的所有 Notebook，或者選取頁面左側的篩選條件並在頂端輸入搜尋字詞進行搜尋。
+您可以從此頁面瀏覽 Gallery 中的所有 Notebook。 您也可以選取頁面左側的篩選條件，然後在頂端輸入搜尋字詞來進行搜尋。
 
  按一下任何一個 Notebook 即可開啟 Notebook 的詳細資料頁面，並讀取更多資訊。 在此頁面上，您可以留言、提供意見反應，或透過留言區段提問。 您甚至可以使用 LinkedIn 或 Twitter 的分享功能，與朋友或同事分享該集合。 您也可以用電子郵件寄出 Notebook 連結，以邀請其他使用者檢視該頁面。
 
@@ -75,6 +75,6 @@ Notebook 複本會下載到 Machine Learning Studio 的 [Jupyter Notebook] 區�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "將您的應用程式部署至 Azure App Service"
+title: "將您的應用程式部署至 Azure App Service | Microsoft Docs"
 description: "了解如何將您的應用程式部署至 Azure App Service。"
 services: app-service
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/19/2016
+ms.date: 01/05/2017
 ms.author: cephalin;dariac
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1473f805bdb87a6c5e85174b1c7a91b67ca446b2
+ms.sourcegitcommit: 283b1cfda82b4f96ad5148c522a4c9833cb4c381
+ms.openlocfilehash: 4b3b96e9c5d7a4ff99c803aa356dcb5ad6997978
 
 
 ---
@@ -26,10 +26,10 @@ ms.openlocfilehash: 1473f805bdb87a6c5e85174b1c7a91b67ca446b2
 ## <a name="a-nameoverviewaazure-app-service-deployment-overview"></a><a name="overview"></a>Azure App Service 部署概觀
 Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等等)。 有些架構會依預設啟用，而其他架構 (如 Java 和 Python) 則需要簡單的核取記號組態資訊才能啟用。 此外，您可以自訂您的應用程式架構，例如 PHP 版本或執行階段位元。 如需詳細資訊，請參閱 [在 Azure App Service 中設定您的應用程式](web-sites-configure.md)。
 
-由於您不需要擔心 Web 伺服器或應用程式架構，因此若要將您的應用程式部署至 App Service，只要將程式碼、二進位檔、內容檔案和其個別的目錄結構部署至 Azure 的 [**/site/wwwroot** 目錄](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure)即可 (或 WebJobs 的 **/site/wwwroot/App_Data/Jobs/** 目錄)。 App Service 支援下列部署選項： 
+由於您不需要擔心 Web 伺服器或應用程式架構，因此若要將您的應用程式部署至 App Service，只要將程式碼、二進位檔、內容檔案和其個別的目錄結構部署至 Azure 的 [**/site/wwwroot** 目錄](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure)即可 (或 WebJobs 的 **/site/wwwroot/App_Data/Jobs/** 目錄)。 App Service 支援三種不同的部署程序。 本文中的所有部署方法皆使用下列其中一種程序： 
 
 * [FTP 或 FTPS](https://en.wikipedia.org/wiki/File_Transfer_Protocol)：使用您最喜愛的 FTP 或 FTPS 啟用工具將您的檔案移至 Azure，從 [FileZilla](https://filezilla-project.org) 到功能完整的整合式開發環境 (IDE) (例如 [NetBeans](https://netbeans.org))。 這完全是檔案上傳程序。 App Service 不會提供其他服務，例如版本控制、檔案結構管理等等。 
-* [Kudu (Git/Mercurial 或 OneDrive/Dropbox)](https://github.com/projectkudu/kudu/wiki/Deployment)：使用 App Service 中的[部署引擎](https://github.com/projectkudu/kudu/wiki)。 將您的程式碼直接從任何儲存機制推送到 Kudu。 Kudu 也會在程式碼推入時提供新增的服務，包括版本控制、封裝還原、MSBuild 和 [Web 勾點](https://github.com/projectkudu/kudu/wiki/Web-hooks) 以連續部署和其他自動化工作。 Kudu 部署引擎支援 3 種不同類型的部署來源：   
+* [Kudu (Git/Mercurial 或 OneDrive/Dropbox)](https://github.com/projectkudu/kudu/wiki/Deployment)：Kudu 是 App Service 中的[部署引擎](https://github.com/projectkudu/kudu/wiki)。 將您的程式碼直接從任何儲存機制推送到 Kudu。 Kudu 也會在程式碼推入時提供新增的服務，包括版本控制、封裝還原、MSBuild 和 [Web 勾點](https://github.com/projectkudu/kudu/wiki/Web-hooks) 以連續部署和其他自動化工作。 Kudu 部署引擎支援 3 種不同類型的部署來源：   
   
   * OneDrive 和 Dropbox 的內容同步處理   
   * 以儲存機制為基礎的持續部署，其使用 GitHub、Bitbucket 和 Visual Studio Team Services 的自動同步處理  
@@ -39,11 +39,11 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 熱門的 Web 開發工具支援一或多個這些部署程序。 雖然您選擇的工具會決定可以利用的部署程序，但可供您使用的實際 DevOps 功能取決於部署程序的組合以及且您選擇的特定工具。 例如，如果您從 [Visual Studio 搭配 Azure SDK](#vspros)執行 Web Deploy，即使您未從 Kudu 獲得自動化，仍可在 Visual Studio 中獲得套件還原和 MSBuild 自動化。 
 
 > [!NOTE]
-> 這些部署程序並不會實際 [佈建 Azure 資源](../resource-group-template-deploy-portal.md) ，但這些資源可能是您的應用程式需要的。 然而，大部分連結的作法文章會說明如何以端對端的方式佈建應用程式及將程式碼部署到應用程式。 您也可以在 [使用命令列工具自動化部署](#automate) 一節中找到佈建 Azure 資源的其他選項。
+> 這些部署程序並不會實際 [佈建 Azure 資源](../azure-resource-manager/resource-group-template-deploy-portal.md) ，但這些資源可能是您的應用程式需要的。 然而，大部分連結的作法文章會說明如何以端對端的方式佈建應用程式及將程式碼部署到應用程式。 您也可以在 [使用命令列工具自動化部署](#automate) 一節中找到佈建 Azure 資源的其他選項。
 > 
 > 
 
-## <a name="a-nameftpadeploy-via-ftp-by-copying-files-to-azure-manually"></a><a name="ftp"></a>手動將檔案複製到 Azure 以透過 FTP 進行部署
+## <a name="a-nameftpadeploy-manually-by-uploading-files-with-ftp"></a><a name="ftp"></a>透過 FTP 上傳檔案來手動部署
 如果您習慣以手動方式將網站內容複製到 Web 伺服器，則可以使用 [FTP](http://en.wikipedia.org/wiki/File_Transfer_Protocol) 公用程式來複製檔案，例如 Windows 檔案總管或 [FileZilla](https://filezilla-project.org/)。
 
 手動複製檔案的優點如下：
@@ -59,20 +59,10 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 * 沒有內建的部署歷程記錄可針對部署問題進行疑難排解。
 * 部署時間可能會較長，因為有許多 FTP 工具不提供僅限差異比對的複製，而會複製所有檔案。  
 
-### <a name="a-namehowtoftpahow-to-deploy-by-copying-files-to-azure-manually"></a><a name="howtoftp"></a>如何將檔案手動複製到 Azure 以進行部署
-將檔案複製到 Azure 需要幾個簡單步驟：
+### <a name="a-namehowtoftpahow-to-upload-files-with-ftp"></a><a name="howtoftp"></a>如何透過 FTP 上傳檔案
+[Azure 入口網站](https://portal.azure.com)會提供您使用 FTP 或 FTPS 來連接到應用程式目錄時所需的一切資訊。
 
-1. 假設您已建立部署認證，若要取得 FTP 連線資訊，請前往 [設定] > [屬性]，然後複製 **FTP/部署使用者**、**FTP 主機名稱**和 **FTPS 主機名稱**的值。 請複製 Azure 入口網站顯示的 **FTP/部署使用者** 的使用者值，包括應用程式名稱，以針對 FTP 伺服器提供適當的內容。
-   
-    ![FTP 連線資訊](./media/web-sites-deploy/FTP-Connection-Info.PNG)
-    ![FTP 部署認證](./media/web-sites-deploy/FTP-UID-PWD.PNG)
-2. 從您的 FTP 用戶端，使用您所蒐集的連接資訊以連接到您的應用程式。
-3. 將您的檔案和其個別的目錄結構複製到 Azure 中的 [**/site/wwwroot** 目錄](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure) (或 WebJobs 的 **/site/wwwroot/App_Data/Jobs/** 目錄)。
-4. 瀏覽至您的應用程式 URL，以確認應用程式運作正常。 
-
-如需詳細資訊，請參閱下列資源：
-
-* [建立 PHP-MySQL Web 應用程式並使用 FTP 部署](web-sites-php-mysql-deploy-use-ftp.md)。
+* [使用 FTP 將您的應用程式部署至 Azure App Service](app-service-deploy-ftp.md)
 
 ## <a name="a-namedropboxadeploy-by-syncing-with-a-cloud-folder"></a><a name="dropbox"></a>與雲端資料夾同步處理以進行部署
 如果不想 [手動複製檔案](#ftp) ，理想替代方法是從雲端儲存空間 (例如 OneDrive 和 Dropbox)，將檔案和資料夾同步處理到 App Service。 與雲端資料夾同步處理時，會利用 Kudu 程序來進行部署 (請參閱 [部署程序概觀](#overview))。
@@ -111,6 +101,8 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 在 [Azure 入口網站](https://portal.azure.com)中，您可以透過 GitHub、Bitbucket 和 Visual Studio Team Services 設定持續部署。
 
 * [持續部署至 Azure App Service](app-service-continuous-deployment.md)。 
+
+若要了解如何從 Azure 入口網站未列出的雲端存放庫中手動設定連續部署 (例如 [GitLab](https://gitlab.com/))，請參閱[使用手動步驟設定連續部署](https://github.com/projectkudu/kudu/wiki/Continuous-deployment#setting-up-continuous-deployment-using-manual-steps)。
 
 ## <a name="a-namelocalgitdeploymentadeploy-from-local-git"></a><a name="localgitdeployment"></a>從本機 Git 進行部署
 如果開發團隊使用以 Git 為基礎的內部部署本機原始程式碼管理 (SCM) 服務，則您可將其設為 App Service 的部署來源。 
@@ -168,58 +160,21 @@ Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolki
 * [在 IntelliJ 中建立 Azure Hello World Web 應用程式](app-service-web-intellij-create-hello-world-web-app.md)。 本教學課程示範如何使用「適用於 IntelliJ 的 Azure 工具組」來建立與部署 Azure 的 Hello World Web 應用程式。
 
 ## <a name="a-nameautomateaautomate-deployment-by-using-command-line-tools"></a><a name="automate"></a>使用命令列工具進行自動化部署
-* [使用 MSBuild 自動化部署](#msbuild)
-* [使用 FTP 工具和指令碼複製檔案](#ftp)
-* [使用 Windows PowerShell 自動化部署](#powershell)
-* [使用 .NET 管理 API 自動化部署](#api)
-* [從 Azure 命令列介面 (Azure CLI) 部署](#cli)
-* [從 Web Deploy 命令列部署](#webdeploy)
-* [使用 FTP 批次指令碼](http://support.microsoft.com/kb/96269)。
+如果您偏好使用命令列終端機作為選擇的開發環境，您可以使用命令列工具為 App Service 應用程式編寫部署工作指令碼。 
 
-另一個部署選項是使用雲端式服務，例如 [Octopus Deploy](http://en.wikipedia.org/wiki/Octopus_Deploy)。 如需詳細資訊，請參閱 [將 ASP.NET Web 應用程式部署至 Azure 網站](https://octopusdeploy.com/blog/deploy-aspnet-applications-to-azure-websites)。
+使用命令列工具進行部署的優點如下：
 
-### <a name="a-namemsbuildaautomate-deployment-with-msbuild"></a><a name="msbuild"></a>使用 MSBuild 自動化部署
-如果您使用 [Visual Studio IDE](#vs) 進行開發，您將可使用 [MSBuild](http://msbuildbook.com/) 將任何您可在 IDE 中執行的工作自動化。 您可以設定 MSBuild，以使用 [Web Deploy](#webdeploy) 或 [FTP/FTPS](#ftp) 來複製檔案。 Web Deploy 也可自動化其他多種部署相關工作，例如部署資料庫。
+* 啟用指令碼式部署案例。
+* 整合 Azure 資源與程式碼部署的佈建。
+* 將 Azure 部署整合至現有的連續整合指令碼。
 
-如需使用 MSBuild 進行命令列部署的詳細資訊，請參閱下列資源：
+使用命令列工具進行部署的缺點如下：
 
-* [使用 Visual Studio 的 ASP.NET Web 部署：命令列部署](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/command-line-deployment)。 這是系列中的第十個教學課程，討論如何使用 Visual Studio 部署至 Azure。 此課程說明在 Visual Studio 中設定發佈設定檔後，如何使用命令列進行部署。
-* [深入瞭解 Microsoft Build Engine： 使用 MSBuild 和 Team Foundation Build](http://msbuildbook.com/)。 這是實體書籍，其中有幾章會說明如何使用 MSBuild 進行部署。
+* 不適用於偏好 GUI 的開發人員。
 
-### <a name="a-namepowershellaautomate-deployment-with-windows-powershell"></a><a name="powershell"></a>使用 Windows PowerShell 自動化部署
-您可以從 [Windows PowerShell](http://msdn.microsoft.com/library/dd835506.aspx)(英文) 執行 MSBuild 或 FTP 部署功能。 如果您這麼做，則您也可以使用 Windows PowerShell Cmdlet 的集合，使 Azure REST 管理 API 更容易呼叫。
+### <a name="a-nameautomatehowahow-to-automate-deployment-with-command-line-tools"></a><a name="automatehow"></a>如何使用命令列工具進行自動化部署
 
-如需詳細資訊，請參閱下列資源：
-
-* [部署連結至 GitHub 儲存機制的 Web 應用程式](app-service-web-arm-from-github-provision.md)
-* [佈建 Web 應用程式與 SQL Database](app-service-web-arm-with-sql-database-provision.md)
-* [透過可預測方式在 Azure 中佈建和部署微服務](app-service-deploy-complex-application-predictably.md)
-* [使用 Azure 建置真實世界的雲端應用程式 - 自動化各個項目](http://asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything)。 這是電子書的其中一章，說明電子書中的範例應用程式如何使用 Windows PowerShell 指令碼建立 Azure 測試環境，並加以部署。 如需其他 Azure PowerShell 文件的連結，請參閱 [資源](http://asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything#resources) 一節。
-* [使用 Windows PowerShell 指令碼來發行至開發和測試環境](../vs-azure-tools-publishing-using-powershell-scripts.md)。 如何使用 Visual Studio 產生的 Windows PowerShell 部署指令碼。
-
-### <a name="a-nameapiaautomate-deployment-with-net-management-api"></a><a name="api"></a>使用 .NET 管理 API 自動化部署
-您可以撰寫 C# 程式碼，以執行部署所需的 MSBuild 或 FTP 功能。 如果您這麼做，您將可存取 Azure 管理 REST API，以執行網站管理功能。
-
-如需詳細資訊，請參閱下列資源：
-
-* [使用 Azure 管理庫和 .NET 將一切自動化](http://www.hanselman.com/blog/PennyPinchingInTheCloudAutomatingEverythingWithTheWindowsAzureManagementLibrariesAndNET.aspx)。 這是 .NET 管理 API 的簡介，並提供相關文件的連結。
-
-### <a name="a-namecliadeploy-from-azure-command-line-interface-azure-cli"></a><a name="cli"></a>從 Azure 命令列介面 (Azure CLI) 部署
-您可以透過 FTP，使用 Windows、Mac 或 Linux 機器中的命令列進行部署。 如果您這麼做，也可以使用 Azure CLI 存取 Azure REST 管理 API。
-
-如需詳細資訊，請參閱下列資源：
-
-* [Azure 命令列工具](/downloads/#cmd-line-tools)。 Azure.com 中提供命令列工具資訊的入口網站頁面。
-
-### <a name="a-namewebdeployadeploy-from-web-deploy-command-line"></a><a name="webdeploy"></a>從 Web Deploy 命令列部署
-[Web Deploy](http://www.iis.net/downloads/microsoft/web-deploy) 是一項用於 IIS 部署的 Microsoft 軟體，不僅提供智慧型檔案同步功能，也可執行或協調其他許多無法在您使用 FTP 時自動化的部署相關工作。 例如，Web Deploy 可對您的 Web 應用程式部署新的資料庫或資料庫更新。 Web Deploy 也可儘量縮短更新現有網站所需的時間，因為它具有智慧功能，可僅複製有所變更的檔案。 Microsoft Visual Studio 和 Team Foundation Server 皆內建支援 Web Deploy ，但您也可直接從命令列使用 Web Deploy，將部署自動化。 Web Deploy 命令的功能十分強大，但學習起來較為困難。
-
-如需詳細資訊，請參閱下列資源：
-
-* [簡單的 Web 應用程式：部署](https://azure.microsoft.com/blog/2014/07/28/simple-azure-websites-deployment/)。 David Ebbo 所撰寫使 Web Deploy 更容易使用之工具的部落格。
-* [Web 部署工具](http://technet.microsoft.com/library/dd568996)。 這是 Microsoft TechNet 網站上的正式文件。 雖已過時，但仍適合入門使用。
-* [使用 Web Deploy](http://www.iis.net/learn/publish/using-web-deploy)。 這是 Microsoft IIS.NET 網站上的正式文件。 同樣也已過時，但仍適合入門使用。
-* [使用 Visual Studio 的 ASP.NET Web 部署：命令列部署](http://www.asp.net/mvc/tutorials/deployment/visual-studio-web-deployment/command-line-deployment)。 MSBuild 是 Visual Studio 所使用的建置引擎，您也可以從命令列加以使用，來將 Web 應用程式部署至 Web Apps。 這是系列中的教學課程之一，主要與 Visual Studio 部署有關。
+如需命令列工具清單和教學課程連結，請參閱[使用命令列工具來自動部署 Azure 應用程式](app-service-deploy-command-line.md)。 
 
 ## <a name="a-namenextstepsanext-steps"></a><a name="nextsteps"></a>後續步驟
 在某些情況中，您可能想要輕鬆地在預備版本和生產版本的應用程式之間來回切換。 [如需詳細資訊，請參閱 Web Apps 上的預備部署](web-sites-staged-publishing.md)。
@@ -228,17 +183,9 @@ Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolki
 
 如需了解如何使用 Azure「角色型存取控制」來管理對 App Service 部署的存取，請參閱 [RBAC 和 Web 應用程式發行](https://azure.microsoft.com/blog/2015/01/05/rbac-and-azure-websites-publishing/)。
 
-<a name="see-also"></a>
-
-## <a name="see-also"></a>另請參閱
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
-
-<!-- URL List -->
-
-[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

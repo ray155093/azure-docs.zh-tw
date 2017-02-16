@@ -1,5 +1,5 @@
 ---
-title: "使用 Application Insights 進行使用量分析"
+title: "使用 Azure Application Insights 進行使用量分析 | Microsoft Docs"
 description: "使用 Application Insights 進行使用量分析的概觀"
 services: application-insights
 documentationcenter: 
@@ -11,11 +11,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 04/08/2016
+ms.date: 12/02/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ff52467bb9634de2c58a7e87323abe4014cc4a29
+ms.sourcegitcommit: 75b651bd3e77ac19e22dcc3442870469fe2aaca1
+ms.openlocfilehash: 94b619cfce15f93bc50f10266c6dc21da78e3481
 
 
 ---
@@ -27,7 +27,7 @@ Application Insights 可提供應用程式使用量的清楚檢視，幫助您�
 Application Insights 適用於獨立應用程式 (在 iOS、Android 和 Windows 上) 及 web 應用程式 (裝載於.NET 或 J2EE)。 
 
 ## <a name="add-application-insights-to-your-project"></a>將 Application Insights 加入至專案
-首先，請先取得 [Microsoft Azure](https://azure.com)免費帳戶。 (試用期過後，您可以繼續使用服務的免費層)。
+首先，請至 [Microsoft Azure](https://azure.com) 取得帳戶。 (您只需要按使用量付費，有一定額度的實驗使用量不計費。)
 
 在 [Azure 入口網站](https://portal.azure.com)中，建立 Application Insights 資源。 您會在其中看到應用程式的使用情況和效能資料。
 
@@ -201,7 +201,7 @@ Web 工作階段在 30 分鐘無活動後會被計入。 在電話或其他裝�
 
 ![在 [搜尋] 欄位中輸入值](./media/app-insights-overview-usage/12-searchEvents.png)
 
-## <a name="a-b-testing"></a>A | B 測試
+## <a name="a--b-testing"></a>A | B 測試
 如果您不知道哪個功能的變數將更可能成功，請兩者都釋出，讓兩者都可供不同使用者存取。 測量每一個的成功，然後移至整合的版本。
 
 針對此技術，您會附加獨特的標記到每個應用程式版本所傳送的所有遙測。 您可以在作用中 TelemetryContext 中定義屬性來執行該動作。 這些預設屬性會加入到應用程式傳送的每個遙測訊息 - 不只是您的自訂訊息，還有標準遙測。
@@ -271,6 +271,6 @@ Web 工作階段在 30 分鐘無活動後會被計入。 在電話或其他裝�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -125,10 +125,10 @@ ms.openlocfilehash: 18479c3680aa46113e59d25b6e034830f78a1859
 
 ![電腦群組 - SCCM 索引標籤](./media/log-analytics-sccm/sccm-computer-groups02.png)
 
-當您按一下其中一項時，[搜尋] 會開啟，顯示所有匯入的群組或是屬於每個群組的所有電腦。 使用 [記錄檔搜尋][](log-analytics-log-searches.md)，您就可以開始深入分析 Configuration Manager 資料。
+當您按一下其中一項時，[搜尋] 會開啟，顯示所有匯入的群組或是屬於每個群組的所有電腦。 使用 [記錄檔搜尋](log-analytics-log-searches.md)，您就可以開始深入分析 Configuration Manager 資料。
 
 ## <a name="next-steps"></a>後續步驟
-* 請使用 [記錄檔搜尋][](log-analytics-log-searches.md)，檢視有關 Configuration Manager 資料的詳細資訊。
+* 請使用 [記錄檔搜尋](log-analytics-log-searches.md)，檢視有關 Configuration Manager 資料的詳細資訊。
 
 
 

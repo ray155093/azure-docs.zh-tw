@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: c157517124d8c4c17cff6e8701135e16d41ee194
-ms.openlocfilehash: b1c7f3951d8865feb1cd7600f3bb6d1741d7cde0
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 596bcd2f38a39cc1404d422214ab49ae79df744c
 
 
 ---
@@ -260,21 +260,21 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 [Azure 入口網站]: https://portal.azure.com/
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [何謂 Mobile Apps？]: app-service-mobile-value-prop.md
-[我已經使用網站和行動服務 – App Service 對我有何幫助？]: /en-us/documentation/articles/app-service-mobile-value-prop-migration-from-mobile-services
+[I already use web sites and mobile services – how does App Service help me?]: /en-us/documentation/articles/app-service-mobile-value-prop-migration-from-mobile-services
 [行動應用程式伺服器 SDK]: http://www.nuget.org/packages/microsoft.azure.mobile.server
-[建立行動應用程式]: app-service-mobile-xamarin-ios-get-started.md
-[將推播通知新增至行動應用程式]: app-service-mobile-xamarin-ios-get-started-push.md
-[將驗證新增至您行動應用程式]: app-service-mobile-xamarin-ios-get-started-users.md
+[Create a Mobile App]: app-service-mobile-xamarin-ios-get-started.md
+[Add push notifications to your mobile app]: app-service-mobile-xamarin-ios-get-started-push.md
+[Add authentication to your mobile app]: app-service-mobile-xamarin-ios-get-started-users.md
 [Azure 排程器]: /en-us/documentation/services/scheduler/
 [Web 工作]: ../app-service-web/websites-webjobs-resources.md
 [如何使用 .NET 伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
-[從行動服務移轉至 App Service 行動應用程式]: app-service-mobile-migrating-from-mobile-services.md
-[將您現有的行動服務移轉至 App Service]: app-service-mobile-migrating-from-mobile-services.md
+[Migrate from Mobile Services to an App Service Mobile App]: app-service-mobile-migrating-from-mobile-services.md
+[Migrate your existing Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
 [App Service 定價]: https://azure.microsoft.com/en-us/pricing/details/app-service/
 [.NET 伺服器 SDK 概觀]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

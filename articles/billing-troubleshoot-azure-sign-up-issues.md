@@ -4,7 +4,7 @@ description: "說明如何疑難排解一些常見 Azure 登入問題。"
 services: 
 documentationcenter: 
 author: JiangChen79
-manager: felixwu
+manager: adpick
 editor: 
 tags: billing,top-support-issue
 ms.assetid: a0907da1-cb2d-41d1-a97f-43841fabe355
@@ -13,16 +13,32 @@ ms.workload: na
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
+ms.date: 01/24/2016
 ms.author: cjiang
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e2e22b767ce1d54e7b90158fb6adb877e3a165b8
+ms.sourcegitcommit: 73c4ff6fdbde09dd08d1bcacf0ec87c7fa43f3b2
+ms.openlocfilehash: 7ded94f432f8e61153ee8dfbf2508b288a4ad5fd
 
 
 ---
 # <a name="i-cant-sign-up-for-azure"></a>我無法註冊 Azure
 如果您無法註冊 Azure，您可以檢查幾個項目來對問題進行疑難排解。
+
+## <a name="progress-bar-hangs-in-identity-verification-by-card-section"></a>[依據卡片進行身分識別驗證] 區段中的進度列停止回應
+
+進行 Azure 註冊時，有一個稱為 [依據卡片進行身分識別驗證] 的區段。 如果進度列停止回應：
+
+![註冊時 [依據卡片進行身分識別驗證] 區段停止回應的螢幕擷取畫面](./media/billing-troubleshoot-azure-sign-up-issues/identity-verification-hangs.PNG)
+
+當您的瀏覽器封鎖協力廠商 Cookie 時便會發生此問題。
+
+### <a name="suggestion"></a>建議
+
+1. 在您的瀏覽器設定中允許協力廠商 Cookie。
+  * 在 Edge 中，移至 [設定] -> [檢視進階設定] -> [Cookie]，選取 [不要封鎖 Cookie]。
+  * 在 Chrome 中，移至 [設定] -> [顯示進階設定] -> [隱私權] -> [內容設定]，將 [封鎖第三方 Cookie 和網站資料] 取消勾選。
+2. 重新整理 Azure 登入頁面，然後檢查問題是否已獲得解決。
+3. 如果重新整理並未解決問題，請結束瀏覽器並重新啟動，然後再試一次。
 
 ## <a name="no-text-messages-or-calls-during-sign-up-account-verification"></a>註冊帳戶驗證期間沒有文字訊息或呼叫
 * 請確認您的電話號碼可以接收簡訊。
@@ -39,8 +55,8 @@ ms.openlocfilehash: e2e22b767ce1d54e7b90158fb6adb877e3a165b8
 
 > [!NOTE]
 > 您可以在稍後更新 [設定檔資訊](billing-how-to-change-azure-account-profile.md)，以變更您的慣用電話號碼。
-> 
-> 
+>
+>
 
 ## <a name="credit-card-declined-or-not-accepted"></a>信用卡被拒絕或不被接受
 請確定註冊時使用的付款方法是 Azure 啟用或付款所支援的方法。
@@ -77,15 +93,14 @@ ms.openlocfilehash: e2e22b767ce1d54e7b90158fb6adb877e3a165b8
 過去曾使用 Azure 訂用帳戶嗎？ Azure 使用規定協議限制免費試用啟動僅適用 Azure 的新使用者。 如果您有任何其他類型的 Azure 訂用帳戶，會無法啟用免費試用。
 
 ### <a name="suggestion"></a>建議
-* 如果您過去已啟用 Azure 訂用帳戶，以致於免費試用啟用失敗，請考慮「隨用隨付」訂用帳戶。 
+* 如果您過去已啟用 Azure 訂用帳戶，以致於免費試用啟用失敗，請考慮「隨用隨付」訂用帳戶。
 * 請檢查您是否有資格獲得權益優惠。 請在 [Microsoft Azure 優惠詳細資料頁面](https://azure.microsoft.com/support/legal/offer-details/) 深入了解。 權益方案需要特定的必要條件。
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
-如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。 
+如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

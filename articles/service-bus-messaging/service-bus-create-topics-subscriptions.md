@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/04/2016
+ms.date: 01/10/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 75f2cddad471c89fd826097831362d9d51a6dccf
+ms.sourcegitcommit: 994a379129bffd7457912bc349f240a970aed253
+ms.openlocfilehash: 799ef33c924a0067bb5e8da9d1b4e50091dbabf6
 
 
 ---
@@ -52,11 +52,11 @@ Azure 服務匯流排支援一套以雲端為基礎、訊息導向的中介軟�
 [建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)文章中說明如何註冊 Azure 帳戶，並建立服務命名空間。 若要使用服務匯流排命名空間，應用程式必須參考服務匯流排組件，也就是 Microsoft.ServiceBus.dll。 參考服務匯流排相依性的最簡單方式是，安裝服務匯流排 [Nuget 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)。 您也可以在 Azure SDK 中找到此組件。 您可以在 [Azure SDK 下載頁面](https://azure.microsoft.com/downloads/)中下載。
 
 ### <a name="create-the-topic-and-subscriptions"></a>建立主題和訂用帳戶
-服務匯流排傳訊實體的管理作業 (佇列和發佈/訂閱主題) 是透過 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別來執行。 需要有適當的認證，才能建立特定命名空間的 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 執行個體。 服務匯流排會使用以[共用存取簽章 (SAS)](service-bus-sas-overview.md) 為基礎的安全性模型。 [TokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.aspx) 類別代表安全性權杖提供者，其具有內建 Factory 方法，可傳回部分已知的權杖提供者。 我們將使用 [CreateSharedAccessSignatureTokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.createsharedaccesssignaturetokenprovider.aspx) 方法來保存 SAS 認證。 接著使用服務匯流排命名空間和權杖提供者的基底位址建構 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 執行個體。
+服務匯流排傳訊實體的管理作業 (佇列和發佈/訂閱主題) 是透過 [NamespaceManager](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 類別來執行。 需要有適當的認證，才能建立特定命名空間的 **NamespaceManager** 執行個體。 服務匯流排會使用以[共用存取簽章 (SAS)](service-bus-sas-overview.md) 為基礎的安全性模型。 [TokenProvider](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) 類別代表安全性權杖提供者，其具有內建 Factory 方法，可傳回部分已知的權杖提供者。 我們將使用 [CreateSharedAccessSignatureTokenProvider](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) 方法來保存 SAS 認證。 接著使用服務匯流排命名空間和權杖提供者的基底位址建構 [NamespaceManager](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 執行個體。
 
-[NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別提供用以建立、列舉及刪除傳訊實體的方法。 此處的程式碼會示範如何建立 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 執行個體，並用來建立 **DataCollectionTopic** 主題。
+[NamespaceManager](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 類別提供用以建立、列舉及刪除傳訊實體的方法。 此處的程式碼會示範如何建立 **NamespaceManager** 執行個體，並用來建立 **DataCollectionTopic** 主題。
 
-```
+```csharp
 Uri uri = ServiceBusEnvironment.CreateServiceUri("sb", "test-blog", string.Empty);
 string name = "RootManageSharedAccessKey";
 string key = "abcdefghijklmopqrstuvwxyz";
@@ -67,42 +67,42 @@ NamespaceManager namespaceManager = new NamespaceManager(uri, tokenProvider);
 namespaceManager.CreateTopic("DataCollectionTopic");
 ```
 
-請注意，您可使用 [CreateTopic](https://msdn.microsoft.com/library/azure/hh293080.aspx) 方法的多載來設定主題的屬性。 例如，您可以為傳送到主題的訊息，設定預設的存留時間 (TTL) 值。 接下來，新增 **Inventory** 和 **Dashboard** 訂用帳戶。
+請注意，您可使用 [CreateTopic](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) 方法的多載來設定主題的屬性。 例如，您可以為傳送到主題的訊息，設定預設的存留時間 (TTL) 值。 接下來，新增 **Inventory** 和 **Dashboard** 訂用帳戶。
 
-```
+```csharp
 namespaceManager.CreateSubscription("DataCollectionTopic", "Inventory");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard");
 ```
 
 ### <a name="send-messages-to-the-topic"></a>將訊息傳送到主題
-對於服務匯流排實體上的執行階段作業 (例如，傳送和接收訊息)，應用程式必須先建立 [MessagingFactory](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx) 物件。 [MessagingFactory](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx) 執行個體類似於 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別，是從服務命名空間和權杖提供者的基底位址建立的。
+對於服務匯流排實體上的執行階段作業 (例如，傳送和接收訊息)，應用程式必須先建立 [MessagingFactory](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactory#microsoft_servicebus_messaging_messagingfactory) 物件。 **MessagingFactory** 執行個體類似於 [NamespaceManager](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 類別，是從服務命名空間和權杖提供者的基底位址建立的。
 
 ```
 MessagingFactory factory = MessagingFactory.Create(uri, tokenProvider);
 ```
 
-傳送至 (和接收自) 服務匯流排主題的訊息是 [BrokeredMessage](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx) 類別的執行個體。 此類別包含一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存應用程式屬性的字典，以及任意應用程式資料的主體。 應用程式可以傳入任何可序列化物件來設定主體 (以下範例傳入 **SalesData** 物件代表 POS 終端機的銷售資料)，藉此利用 [DataContractSerializer](https://msdn.microsoft.com/library/azure/system.runtime.serialization.datacontractserializer.aspx) 將物件序列化。 或者，也可以提供 [Stream](https://msdn.microsoft.com/library/azure/system.io.stream.aspx) 物件。
+傳送至 (和接收自) 服務匯流排主題的訊息是 [BrokeredMessage](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) 類別的執行個體。 此類別包含一組標準屬性 (例如 [Label](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) 和 [TimeToLive](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive))、一個用來保存應用程式屬性的字典，以及任意應用程式資料的主體。 應用程式可以傳入任何可序列化物件來設定主體 (以下範例傳入 **SalesData** 物件代表 POS 終端機的銷售資料)，藉此利用 [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx) 將物件序列化。 或者，也可以提供 [Stream](https://msdn.microsoft.com/library/system.io.stream.aspx) 物件。
 
-```
+```csharp
 BrokeredMessage bm = new BrokeredMessage(salesData);
 bm.Label = "SalesReport";
 bm.Properties["StoreName"] = "Redmond";
 bm.Properties["MachineID"] = "POS_1";
 ```
 
-將訊息傳送至主題的最簡單方式是使用 [CreateMessageSender](https://msdn.microsoft.com/library/azure/hh322659.aspx)，直接從 [MessagingFactory](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx) 執行個體建立 [MessageSender](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesender.aspx) 物件。
+將訊息傳送至主題的最簡單方式是使用 [CreateMessageSender](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageSender_System_String_)，直接從 [MessagingFactory](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactory) 執行個體建立 [MessageSender](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesender) 物件。
 
-```
+```csharp
 MessageSender sender = factory.CreateMessageSender("DataCollectionTopic");
 sender.Send(bm);
 ```
 
 ### <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
-與使用佇列類似，您可以使用 [MessageReceiver](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.aspx) 物件 (可使用 [CreateMessageReceiver](https://msdn.microsoft.com/library/azure/hh322642.aspx) 從 [MessagingFactory](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx) 直接建立)，接收來自訂用帳戶的訊息。 您可以使用兩種不同接收模式的其中之一 (**ReceiveAndDelete** 和 **PeekLock**)，如[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)中所述。
+與使用佇列類似，您可以使用 [MessageReceiver](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagereceiver) 物件 (可使用 [CreateMessageReceiver](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageReceiver_System_String_) 從 [MessagingFactory](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactory) 直接建立)，接收來自訂用帳戶的訊息。 您可以使用兩種不同接收模式的其中之一 (**ReceiveAndDelete** 和 **PeekLock**)，如[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)中所述。
 
-請注意，當您建立訂用帳戶的 [MessageReceiver](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.aspx) 時，*entityPath* 參數的形式會是 `topicPath/subscriptions/subscriptionName`。 因此，若要為 **DataCollectionTopic** 主題的 **Inventory** 訂用帳戶建立 [MessageReceiver](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagereceiver.aspx)，*entityPath* 必須設為 `DataCollectionTopic/subscriptions/Inventory`。 程式碼看起來會像下面這樣：
+請注意，當您建立訂用帳戶的 **MessageReceiver** 時，*entityPath* 參數的形式會是 `topicPath/subscriptions/subscriptionName`。 因此，若要為 **DataCollectionTopic** 主題的 **Inventory** 訂用帳戶建立 **MessageReceiver**，*entityPath* 必須設為 `DataCollectionTopic/subscriptions/Inventory`。 程式碼看起來會像下面這樣：
 
-```
+```csharp
 MessageReceiver receiver = factory.CreateMessageReceiver("DataCollectionTopic/subscriptions/Inventory");
 BrokeredMessage receivedMessage = receiver.Receive();
 try
@@ -117,7 +117,7 @@ catch (Exception e)
 ```
 
 ## <a name="subscription-filters"></a>訂用帳戶篩選
-到目前為止，此案例中傳送至主題的所有訊息，都會提供給所有已註冊的訂用帳戶。 請注意「都會提供」這幾個字。 雖然服務匯流排訂用帳戶可看見所有傳送至主題的訊息，但您只能將部分訊息複製到虛擬訂用帳戶佇列。 這項工作可透過訂用帳戶「篩選」來進行。 當您建立訂用帳戶時，可以用 SQL92 樣式的述詞形式，提供依訊息屬性運作的篩選運算式，這之中包括系統屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx)) 和應用程式屬性 (例如上一個範例中的 **StoreName**)。
+到目前為止，此案例中傳送至主題的所有訊息，都會提供給所有已註冊的訂用帳戶。 請注意「都會提供」這幾個字。 雖然服務匯流排訂用帳戶可看見所有傳送至主題的訊息，但您只能將部分訊息複製到虛擬訂用帳戶佇列。 這項工作可透過訂用帳戶「篩選」來進行。 當您建立訂用帳戶時，可以用 SQL92 樣式的述詞形式，提供依訊息屬性運作的篩選運算式，這之中包括系統屬性 (例如 [Label](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label)) 和應用程式屬性 (例如上一個範例中的 **StoreName**)。
 
 若要演變案例來說明這點，要將第二間商店加入我們的零售案例。 兩間商店的所有 POS 終端機的銷售資料，還是必須路由傳送至集中的庫存管理系統，但使用儀表板工具的店經理只注意到商店的銷售業績。 您可以用訂用帳戶篩選來達到此目的。 請注意，當 POS 終端機發佈訊息時，會在訊息上設定 **StoreName** 應用程式屬性。 假設有兩間商店，例如 **Redmond** 和 **Seattle**，Redmond 商店中的 POS 終端機將其銷售資料訊息戳記了 **StoreName** 等於 **Redmond**，而 Seattle 商店的 POS 終端機則使用 **StoreName** 等於 **Seattle**。 Redmond 商店的店經理只想要查看其 POS 終端機的資料。 系統看起來會像下面這樣：
 
@@ -125,12 +125,12 @@ catch (Exception e)
 
 若要設定此路由傳送，您必須建立 **Dashboard** 訂用帳戶，如下所示：
 
-```
+```csharp
 SqlFilter dashboardFilter = new SqlFilter("StoreName = 'Redmond'");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard", dashboardFilter);
 ```
 
-使用此訂用帳戶篩選時，只有 **StoreName** 屬性設為 **Redmond** 的訊息才會複製到 **Dashboard** 訂用帳戶的虛擬佇列。 但還有更多其他訂用帳戶篩選。 除了能夠在訊息傳遞到訂用帳戶的虛擬佇列時修改訊息屬性外，應用程式還可以在每個訂用帳戶中擁有多個篩選規則。
+使用此[訂用帳戶篩選](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sqlfilter)時，只有 **StoreName** 屬性設定為 **Redmond** 的訊息才會複製到 **Dashboard** 訂用帳戶的虛擬佇列。 但還有更多其他訂用帳戶篩選。 除了能夠在訊息傳遞到訂用帳戶的虛擬佇列時修改訊息屬性外，應用程式還可以在每個訂用帳戶中擁有多個篩選規則。
 
 ## <a name="summary"></a>摘要
 在[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)中所有使用佇列的原因說明，具體上也適用於使用主題的原因：
@@ -146,6 +146,6 @@ namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard", dashboar
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

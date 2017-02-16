@@ -12,21 +12,23 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/15/2016
+ms.date: 01/20/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6feeeaef2bd5e5ff665ca870b61036365d75f53d
+ms.sourcegitcommit: ec9e12667bc82043fbdc0b3f113533cf518f39be
+ms.openlocfilehash: 66907ccb97dedc176c5fe76826abd3b31f4ccdb9
 
 
 ---
 # <a name="how-to-use-azure-managed-cache-service"></a>如何使用 Azure 受管理快取服務
-本指南示範如何開始使用 **Azure 受管理的快取服務**。 這些範例均以 C\# 程式碼撰寫，並使用 .NET API。 涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**、**新增和移除快取中的物件、將 ASP.NET 工作階段狀態儲存在快取中**，以及**使用快取啟用 ASP.NET 頁面輸出快取**。 如需使用 Azure 快取的詳細資訊，請參閱[Next Steps][Next Steps]一節。
-
 > [!IMPORTANT]
-> 根據去年的 [公告](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)，Azure 受管理的快取服務和 Azure In-Role Cache 服務都將在 2016 年 11 月 30 日淘汰。 我們建議使用 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)。 如需有關移轉的資訊，請參閱 [從受管理的快取服務移轉至 Azure Redis 快取](../redis-cache/cache-migrate-to-redis.md)。
+> 根據去年的 [公告](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)，Azure 受管理的快取服務和 Azure In-Role Cache 已在 2016 年 11 月 30 日**淘汰**。 我們建議使用 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)。 如需有關移轉的資訊，請參閱 [從受管理的快取服務移轉至 Azure Redis 快取](../redis-cache/cache-migrate-to-redis.md)。
 > 
 > 
+
+本指南示範如何開始使用 **Azure 受管理的快取服務**。 這些範例均以 C\# 程式碼撰寫，並使用 .NET API。 涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**、**新增和移除快取中的物件、將 ASP.NET 工作階段狀態儲存在快取中**，以及**使用快取啟用 ASP.NET 頁面輸出快取**。 如需使用 Azure 快取的詳細資訊，請參閱 [後續步驟][Next Steps] 一節。
+
+
 
 <a name="what-is"></a>
 
@@ -47,37 +49,37 @@ Azure 受管理快取服務是一種分散式、記憶體內的可擴充解決�
 * 標準 - 大小從 1GB 到 10GB 的快取
 * 高級 - 大小從 5GB 到 150GB 的快取
 
-每一個階層都有不同的功能和價格。 本指南稍後將探討這些功能，如需定價的詳細資訊，請參閱[快取定價詳細資料][快取定價詳細資料]。
+每一個階層都有不同的功能和價格。 本指南稍後將探討這些功能，如需定價的詳細資訊，請參閱 [快取定價詳細資料][Cache Pricing Details]。
 
-本指南提供開始使用受管理的快取服務的概觀。 如需本入門指南涵蓋範圍外之功能的詳細資訊，請參閱 [Azure 受管理快取服務概觀][Azure 受管理快取服務概觀]。
+本指南提供開始使用受管理的快取服務的概觀。 如需本入門指南涵蓋範圍外之功能的詳細資訊，請參閱 [Azure 受管理的快取服務概觀][Overview of Azure Managed Cache Service]。
 
 <a name="getting-started-cache-service"></a>
 
 ## <a name="getting-started-with-cache-service"></a>開始使用快取服務
 開始使用受管理的快取服務相當簡單。 若要開始，請佈建並設定快取。 接著，設定快取用戶端，以便它們可以存取快取。 一旦設定了快取用戶端，就可以開始使用它們。
 
-* [建立快取][建立快取]
-* [設定快取][設定快取]
-* [設定快取用戶端][設定快取用戶端]
+* [建立快取][Create the cache]
+* [設定快取][Configure the cache]
+* [設定快取用戶端][Configure the cache clients]
 
 <a name="create-cache"></a>
 
 ## <a name="create-a-cache"></a>建立快取
 您可以使用 PowerShell Cmdlet，在受管理的快取服務中建立快取執行個體。 
 
-> 一旦使用 PowerShell Cmdlet 來建立受管理的快取服務執行個體，就能在 [Azure 傳統入口網站][Azure 傳統入口網站]中檢視這些執行個體。
+> 一旦使用 PowerShell Cmdlet 來建立受管理的快取服務執行個體，就能在 [Azure 傳統入口網站][Azure Classic Portal]中檢視這些執行個體。
 > 
 > 
 
 若要建立受管理的快取服務執行個體，請開啟 Azure PowerShell 命令視窗。
 
-> 如需安裝和使用 Azure PowerShell 的指示，請參閱 [如何安裝和設定 Azure PowerShell][如何安裝和設定 Azure PowerShell]。
+> 如需安裝和使用 Azure PowerShell 的指示，請參閱 [如何安裝和設定 Azure PowerShell][How to install and configure Azure PowerShell]。
 > 
 > 
 
 叫用 [Add-AzureAccount][Add-AzureAccount] Cmdlet，然後輸入與您帳戶相關聯的電子郵件地址和密碼。 預設會選擇某一個訂用帳戶並在您叫用 [Add-AzureAccount][Add-AzureAccount] Cmdlet 之後顯示。 若要變更該訂用帳戶，請叫用 [Select-AzureSubscription][Select-AzureSubscription] Cmdlet。
 
-> 如果您已使用帳戶的憑證來設定 Azure PowerShell，那麼就可以跳過此步驟。 如需將 Azure PowerShell 與 Azure 帳戶連接的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell][如何安裝和設定 Azure PowerShell]。
+> 如果您已使用帳戶的憑證來設定 Azure PowerShell，那麼就可以跳過此步驟。 如需將 Azure PowerShell 與 Azure 帳戶連接的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell][How to install and configure Azure PowerShell]。
 > 
 > 
 
@@ -85,7 +87,7 @@ Azure 受管理快取服務是一種分散式、記憶體內的可擴充解決�
 
 叫用 [New-AzureManagedCache][New-AzureManagedCache] Cmdlet，然後指定快取的名稱、區域、快取提供項目和大小。
 
-在 [名稱] 中輸入要用於快取端點的子網域名稱。 端點必須是介於 6 到 20 個字元之間的字串、僅包含小寫數字和字母，而且必須以字母開頭。
+在 [名稱] 中輸入要用於快取端點的子網域名稱。 端點必須是介於&6; 到&20; 個字元之間的字串、僅包含小寫數字和字母，而且必須以字母開頭。
 
 針對 [位置] ，請指定快取的地區。 為獲得最佳效能，請在與快取用戶端應用程式相同的區域中建立快取。
 
@@ -95,7 +97,7 @@ Azure 受管理快取服務是一種分散式、記憶體內的可擴充解決�
 * 標準 - 大小從 1GB 到 10GB 的快取 (每次增量 1GB)，支援通知和最多 10 個具名快取
 * 高級 - 大小從 5GB 到 150GB 的快取 (每次增量 5GB)，支援通知、高可用性和最多 10 個具名快取
 
-請選擇符合應用程式需求的 [Sku] 和 [記憶體]。 請注意，有些快取功能 (例如通知和高可用性) 只有特定快取提供項目才會提供。 如需選擇應用程式最適用的快取提供項目和大小的詳細資訊，請參閱 [快取提供項目][快取提供項目]。
+請選擇符合應用程式需求的 [Sku] 和 [記憶體]。 請注意，有些快取功能 (例如通知和高可用性) 只有特定快取提供項目才會提供。 如需選擇應用程式最適用的快取提供項目和大小的詳細資訊，請參閱 [快取提供項目][Cache offerings]。
 
  在下列範例中，基本 128MB 快取是透過位於美國中南部地理區域、名稱為 contosocache 所建立。
 
@@ -105,9 +107,9 @@ Azure 受管理快取服務是一種分散式、記憶體內的可擴充解決�
 > 
 > 
 
-叫用 PowerShell Cmdlet 之後，可能需要數分鐘的時間建立快取。 建立快取之後，您的新快取的狀態將是 `Running`，且適用於預設設定，還可透過 [Azure 傳統入口網站][Azure 傳統入口網站]檢視和設定。 若要自訂快取的組態，請參閱下面的[設定快取][設定快取]一節。
+叫用 PowerShell Cmdlet 之後，可能需要數分鐘的時間建立快取。 建立快取之後，您的新快取的狀態將是 `Running` ，且適用於預設設定，還可透過 [Azure 傳統入口網站][Azure Classic Portal]檢視和設定。 若要自訂快取的組態，請參閱下面的 [設定快取][Configure the cache] 一節。
 
-您可以在 Azure PowerShell 視窗中監視建立進度。 快取可供使用之後，[New-AzureManagedCache][New-AzureManagedCache] Cmdlet 會顯示快取資訊，如下列範例所示。
+您可以在 Azure PowerShell 視窗中監視建立進度。 快取可供使用之後， [New-AzureManagedCache][New-AzureManagedCache] Cmdlet 會顯示快取資訊，如下列範例所示。
 
     PS C:\> Add-AzureAccount
     VERBOSE: Account "user@domain.com" has been added.
@@ -138,7 +140,7 @@ Azure 受管理快取服務是一種分散式、記憶體內的可擴充解決�
 <a name="enable-caching"></a>
 
 ## <a name="configure-the-cache"></a>設定快取
-Azure 傳統入口網站中快取的 [設定] 索引標籤可供您設定快取的選項。 每個快取都有**預設**具名快取，而且標準和高級快取提供項目最多支援 9 個額外的具名快取，總共可支援 10 個。 每個具名快取都有自己的選項集，可讓您以高度彈性方式設定快取。
+Azure 傳統入口網站中快取的 [設定] 索引標籤可供您設定快取的選項。 每個快取都有**預設**具名快取，而且標準和高級快取提供項目最多支援&9; 個額外的具名快取，總共可支援&10; 個。 每個具名快取都有自己的選項集，可讓您以高度彈性方式設定快取。
 
 ![NamedCaches][NamedCaches]
 
@@ -155,21 +157,21 @@ Azure 傳統入口網站中快取的 [設定] 索引標籤可供您設定快取�
 
 [絕對] 為預設到期原則，其 [時間 (分鐘)] 的預設設定為 10 分鐘。 具名快取中每個項目的到期原則都是固定的，但是可對每個項目自訂 [時間 (分鐘)]，方法為使用 **Add** 和 **Put** 超載來採用逾時參數。
 
-如需收回和到期原則的詳細資訊，請參閱[Microsoft Azure 快取服務 (預覽) 到期與收回][Microsoft Azure 快取服務 (預覽) 到期與收回]。
+如需收回和到期原則的詳細資訊，請參閱 [Microsoft Azure 快取服務 (預覽) 到期與收回][Expiration and Eviction]。
 
 ## <a name="notifications"></a>通知
-快取通知可讓應用程式在快取叢集發生各種快取作業時，收到非同步通知。 快取通知也提供使本機快取的物件自動失效的功能。 如需詳細資訊，請參閱[通知][通知]。
+快取通知可讓應用程式在快取叢集發生各種快取作業時，收到非同步通知。 快取通知也提供使本機快取的物件自動失效的功能。 如需詳細資訊，請參閱 [Microsoft Azure 快取服務 (預覽) 通知][Notifications]。
 
-> 標準和高級快取提供項目才會提供通知功能，基本快取提供項目並不會提供。 如需詳細資訊，請參閱[快取提供項目][快取提供項目]。
+> 標準和高級快取提供項目才會提供通知功能，基本快取提供項目並不會提供。 如需詳細資訊，請參閱 [Microsoft Azure 快取服務 (預覽) 快取提供項目][Cache offerings]。
 > 
 > 
 
 ## <a name="high-availability"></a>高可用性
 啟用高可用性時，會由每一個新增至快取的項目組成備份複本。 如果項目的主要複本發生非預期的失敗，則仍有備份複本可用。
 
-依定義，使用高可用性時，每個快取項目所需的記憶體數量會翻倍。 請在進行容量計劃時將此記憶體影響納入考量。 如需詳細資訊，請參閱[高可用性][高可用性]。
+依定義，使用高可用性時，每個快取項目所需的記憶體數量會翻倍。 請在進行容量計劃時將此記憶體影響納入考量。 如需詳細資訊，請參閱 [Microsoft Azure 快取服務 (預覽) 高可用性][High Availability]。
 
-> 高級快取提供項目才會提供高可用性功能，基本或標準快取提供項目並不會提供。 如需詳細資訊，請參閱[快取提供項目][快取提供項目]。
+> 高級快取提供項目才會提供高可用性功能，基本或標準快取提供項目並不會提供。 如需詳細資訊，請參閱 [Microsoft Azure 快取服務 (預覽) 快取提供項目][Cache offerings]。
 > 
 > 
 
@@ -177,7 +179,7 @@ Azure 傳統入口網站中快取的 [設定] 索引標籤可供您設定快取�
 為了保持快取內可用的記憶體容量，因此會支援最近最少使用的 (LRU) 收回。 當記憶體耗用量超出記憶體臨界值時，無論物件是否過期，都會從記憶體收回物件，直到記憶體壓力舒緩為止。
 依預設會啟用收回功能。 如果停用收回功能，則在到達容量上限時，將不會從快取中收回項目，Put 和 Add 作業將會因此失敗。
 
-如需收回和到期原則的詳細資訊，請參閱[Microsoft Azure 快取服務 (預覽) 到期與收回][Microsoft Azure 快取服務 (預覽) 到期與收回]。
+如需收回和到期原則的詳細資訊，請參閱 [Microsoft Azure 快取服務 (預覽) 到期與收回][Expiration and Eviction]。
 
 一旦設定了快取，您可以設定快取用戶端，以允許存取快取。
 
@@ -190,14 +192,14 @@ Azure 傳統入口網站中快取的 [設定] 索引標籤可供您設定快取�
 
 ![NuGetPackageMenu][NuGetPackageMenu]
 
-在 [線上搜尋] 文字方塊中鍵入 **WindowsAzure.Caching**，然後從結果中選取 [Windows   
-Azure 快取]。 按一下 [安裝]，然後按一下 [我接受]。
+在 線上搜尋 文字方塊中鍵入 **WindowsAzure.Caching**，然後從結果中選取 Windows   
+Azure 快取。 按一下 [安裝]，然後按一下 [我接受]。
 
 ![NuGetPackage][NuGetPackage]
 
 NuGet 會執行數項工作：它會將必要的組態新增至應用程式的組態檔，以及新增必要的組件參考。 若為雲端服務專案，也會將快取用戶端診斷層級設定新增至雲端服務的 ServiceConfiguration.cscfg 檔案。
 
-> 針對 ASP.NET Web 專案，Cache NuGet 封裝也會將兩個已標成註解的區段新增至 web.config 中。 第一個區段可讓工作階段儲存在快取中，第二個區段則可讓 ASP.NET 頁面輸出快取處理。 如需詳細資訊，請參閱[做法：將 ASP.NET 工作階段狀態儲存在快取中]和[做法：將 ASP.NET 頁面輸出快取儲存在快取中][做法：將 ASP.NET 頁面輸出快取儲存在快取中]。
+> 針對 ASP.NET Web 專案，Cache NuGet 封裝也會將兩個已標成註解的區段新增至 web.config 中。 第一個區段可讓工作階段儲存在快取中，第二個區段則可讓 ASP.NET 頁面輸出快取處理。 如需詳細資訊，請參閱 [做法：將 ASP.NET 工作階段狀態儲存在快取中]和[做法：將 ASP.NET 頁面輸出快取儲存在快取中][How To: Store ASP.NET Page Output Caching in the Cache]。
 > 
 > 
 
@@ -242,7 +244,7 @@ NuGet 封裝會將下列組態元素新增至應用程式的 web.config 或 app.
 
 1. 將 **[Cache role name or Service Endpoint]** 取代為 Azure 傳統入口網站中儀表板上顯示的端點。
    
-    ![端點][Endpoint]
+    ![Endpoint][Endpoint]
 2. 取消註解 securityProperties 區段，並將 [Authentication Key] 取代為驗證金鑰，您可在 Azure 傳統入口網站從快取儀表板按一下 [管理金鑰]，來找到此驗證金鑰。
    
     ![AccessKeys][AccessKeys]
@@ -262,7 +264,7 @@ NuGet 封裝會將下列組態元素新增至應用程式的 web.config 或 app.
       </ConfigurationSettings>
     </Role>
 
-> 用戶端診斷層級會設定為每一個快取用戶端收集的快取診斷資訊的層級。 如需詳細資訊，請參閱[關於 Microsoft Azure 快取服務 (預覽) 的 ClientDiagnosticLevel][關於 Microsoft Azure 快取服務 (預覽) 的 ClientDiagnosticLevel]
+> 用戶端診斷層級會設定為每一個快取用戶端收集的快取診斷資訊的層級。 如需詳細資訊，請參閱 [疑難排解和診斷][Troubleshooting and Diagnostics]
 > 
 > 
 
@@ -286,11 +288,11 @@ NuGet 套件也會新增下列組件的參考：
 ## <a name="working-with-caches"></a>使用快取
 本節中的步驟描述如何利用快取執行常見工作。
 
-* [做法：建立 DataCache 物件][做法：建立 DataCache 物件]
-* [做法：從快取新增和擷取物件][做法：從快取新增和擷取物件]
-* [做法：指定快取中物件的到期時間][做法：指定快取中物件的到期時間]
+* [做法：建立 DataCache 物件][How To: Create a DataCache Object]
+* [做法：從快取新增和擷取物件][How To: Add and Retrieve an Object from the Cache]
+* [做法：指定快取中物件的到期時間][How To: Specify the Expiration of an Object in the Cache]
 * [做法：將 ASP.NET 工作階段狀態儲存在快取中][做法：將 ASP.NET 工作階段狀態儲存在快取中]
-* [做法：將 ASP.NET 頁面輸出快取儲存在快取中][做法：將 ASP.NET 頁面輸出快取儲存在快取中]
+* [做法：將 ASP.NET 頁面輸出快取儲存在快取中][How To: Store ASP.NET Page Output Caching in the Cache]
 
 <a name="create-cache-object"></a>
 
@@ -299,7 +301,7 @@ NuGet 套件也會新增下列組件的參考：
 
     using Microsoft.ApplicationServer.Caching;
 
-> 即使在安裝 Caching NuGet 套件，新增必要參考之後，如果 Visual Studio 還是無法辨識 using 陳述式中的類型，請確定專案的目標設定檔為 .NET Framework 4 或更高版本，並務必選取其中一個未指定「 **用戶端設定檔**」的設定檔。 如需設定快取用戶端的指示，請參閱[設定快取用戶端][設定快取用戶端]。
+> 即使在安裝 Caching NuGet 套件，新增必要參考之後，如果 Visual Studio 還是無法辨識 using 陳述式中的類型，請確定專案的目標設定檔為 .NET Framework 4 或更高版本，並務必選取其中一個未指定「 **用戶端設定檔**」的設定檔。 如需設定快取用戶端的指示，請參閱 [設定快取用戶端][Configure the cache clients]。
 > 
 > 
 
@@ -378,7 +380,7 @@ NuGet 套件也會新增下列組件的參考：
 <a name="store-session"></a>
 
 ## <a name="how-to-store-aspnet-session-state-in-the-cache"></a>做法：將 ASP.NET 工作階段狀態儲存在快取中
-Azure 快取的工作階段狀態提供者為 ASP.NET 應用程式的程序外儲存體機制。 此提供者可讓您將工作階段狀態儲存在 Azure 快取中，而不是記憶體內或 SQL Server Database 中。 若要使用快取工作階段狀態供應器，請先設定快取，然後依照[開始使用受管理的快取服務][開始使用受管理的快取服務]中所述的方法透過 Cache NuGet 封裝設定 ASP.NET 應用程式的快取功能。 在安裝 Caching NuGet 套件時，它會在 web.config 新增已標成註解的區段，其中包含讓 ASP.NET 應用程式對 Azure 快取使用工作階段狀態提供者所需的組態。
+Azure 快取的工作階段狀態提供者為 ASP.NET 應用程式的程序外儲存體機制。 此提供者可讓您將工作階段狀態儲存在 Azure 快取中，而不是記憶體內或 SQL Server Database 中。 若要使用快取工作階段狀態供應器，請先設定快取，然後依照[開始使用受管理的快取服務][Getting Started with Managed Cache Service]中所述的方法透過 Cache NuGet 封裝設定 ASP.NET 應用程式的快取功能。 在安裝 Caching NuGet 套件時，它會在 web.config 新增已標成註解的區段，其中包含讓 ASP.NET 應用程式對 Azure 快取使用工作階段狀態提供者所需的組態。
 
     <!--Uncomment this section to use Azure Caching for session state caching
     <system.web>
@@ -393,18 +395,18 @@ Azure 快取的工作階段狀態提供者為 ASP.NET 應用程式的程序外�
       </sessionState>
     </system.web>-->
 
-> 在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][NuGet Package Manager 安裝]中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
+> 在安裝 Cache NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][NuGet Package Manager Installation] 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
 > 
 > 
 
 若要對 Azure 快取啟用工作階段狀態提供者，請將指定的區段取消註解。 預設快取是在提供的片段中指定。 若要使用不同快取，請在 **cacheName** 屬性中指定所需的快取。
 
-如需使用受管理的快取服務工作階段狀態供應器的詳細資訊，請參閱 [Azure 快取的工作階段狀態提供者][Azure 快取的工作階段狀態提供者]。
+如需有關使用「受管理的快取服務」工作階段狀態供應器的詳細資訊，請參閱 [Azure 快取的工作階段狀態供應器][Session State Provider for Azure Cache]。
 
 <a name="store-page"></a>
 
 ## <a name="how-to-store-aspnet-page-output-caching-in-the-cache"></a>做法：將 ASP.NET 頁面輸出快取儲存在快取中
-Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體機制。 此資料特別適用於完整 HTTP 回應 (頁面輸出快取)。 提供者插入 ASP.NET 4 中導入的新輸出快取提供者擴充點。 若要使用輸出快取提供者，請先設定快取叢集，然後依照[開始使用受管理的快取服務][開始使用受管理的快取服務]中所述的方法透過 Cache NuGet 封裝設定 ASP.NET 應用程式的快取功能。 在安裝 Caching NuGet 套件時，它會在 web.config 新增下列已標成註解的區段，其中包含讓 ASP.NET 應用程式對 Azure 快取使用輸出快取提供者所需的組態。
+Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體機制。 此資料特別適用於完整 HTTP 回應 (頁面輸出快取)。 提供者插入 ASP.NET 4 中導入的新輸出快取提供者擴充點。 若要使用輸出快取提供者，請先設定快取叢集，然後依照 [開始使用受管理的快取服務][Getting Started with Managed Cache Service] 中所述的方法使用 Cache NuGet 封裝設定 ASP.NET 應用程式進行快取。 在安裝 Caching NuGet 套件時，它會在 web.config 新增下列已標成註解的區段，其中包含讓 ASP.NET 應用程式對 Azure 快取使用輸出快取提供者所需的組態。
 
     <!--Uncomment this section to use Azure Caching for output caching
     <caching>
@@ -419,7 +421,7 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
       </outputCache>
     </caching>-->
 
-> 在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][NuGet Package Manager 安裝]中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
+> 在安裝 Cache NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][NuGet Package Manager Installation] 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
 > 
 > 
 
@@ -429,44 +431,44 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
 
     <%@ OutputCache Duration="60" VaryByParam="*" %>
 
-在此範例中，已快取的頁面資料會留在快取中 60 秒，而且會對每一個參數組合快取不同版本的頁面。 如需可用選項的詳細資訊，請參閱 [@ OutputCache][@ OutputCache]。
+在此範例中，已快取的頁面資料會留在快取中 60 秒，而且會對每一個參數組合快取不同版本的頁面。 如需可用選項的詳細資訊，請參閱 [OutputCache 指示詞][OutputCache Directive]。
 
-如需對 Azure 快取使用輸出快取提供者的詳細資訊，請參閱 [建立 Microsoft Azure 快取服務 (預覽) 頁面輸出快取提供者][建立 Microsoft Azure 快取服務 (預覽) 頁面輸出快取提供者]。
+如需對 Azure 快取使用輸出快取提供者的詳細資訊，請參閱 [Azure 快取的輸出快取提供者][Output Cache Provider for Azure Cache]。
 
 <a name="next-steps"></a>
 
 ## <a name="next-steps"></a>後續步驟
 了解「受管理的快取服務」的基本概念之後，請參考下列連結以了解如何執行更複雜的快取工作。
 
-* 請參閱 MSDN 參考資料：[受管理的快取服務][受管理的快取服務]
-* 了解如何移轉至受管理的快取服務：[移轉至 Azure 受管理的快取服務][移轉至 Azure 受管理的快取服務]
-* 查看範例：[受管理的快取服務範例][受管理的快取服務範例]
+* 請參閱 MSDN 參考資料：[受管理的快取服務][Managed Cache Service]
+* 了解如何移轉至受管理的快取服務：[移轉至受管理的快取服務][Migrate to Managed Cache Service]
+* 查看範例：[受管理的快取服務範例][Managed Cache Service Samples]
 
 <!-- INTRA-TOPIC LINKS -->
 [Next Steps]: #next-steps
-[何謂 Azure 受管理快取服務？]: #what-is
-[建立 Azure 快取]: #create-cache
-[哪一種快取最適合我？]: #choosing-cache
-[準備 Visual Studio 專案來使用 Azure 快取]: #prepare-vs
-[設定應用程式以使用快取]: #configure-app
-[開始使用受管理的快取服務]: #getting-started-cache-service
-[建立快取]: #create-cache
-[設定快取]: #enable-caching
-[設定快取用戶端]: #NuGet
-[使用快取]: #working-with-caches
-[做法：建立 DataCache 物件]: #create-cache-object
-[做法：從快取新增和擷取物件]: #add-object
-[做法：指定快取中物件的到期時間]: #specify-expiration
+[What is Azure Managed Cache Service?]: #what-is
+[Create an Azure Cache]: #create-cache
+[Which type of caching is right for me?]: #choosing-cache
+[Prepare Your Visual Studio Project to Use Azure Caching]: #prepare-vs
+[Configure Your Application to Use Caching]: #configure-app
+[Getting Started with Managed Cache Service]: #getting-started-cache-service
+[Create the cache]: #create-cache
+[Configure the cache]: #enable-caching
+[Configure the cache clients]: #NuGet
+[Working with Caches]: #working-with-caches
+[How To: Create a DataCache Object]: #create-cache-object
+[How To: Add and Retrieve an Object from the Cache]: #add-object
+[How To: Specify the Expiration of an Object in the Cache]: #specify-expiration
 [做法：將 ASP.NET 工作階段狀態儲存在快取中]: #store-session
-[做法：將 ASP.NET 頁面輸出快取儲存在快取中]: #store-page
-[以支援的 .NET Framework 設定檔做為目標]: #prepare-vs-target-net
+[How To: Store ASP.NET Page Output Caching in the Cache]: #store-page
+[Target a Supported .NET Framework Profile]: #prepare-vs-target-net
 
 <!-- IMAGES -->
 [NewCacheMenu]: ./media/cache-dotnet-how-to-use-service/CacheServiceNewCacheMenu.png
 
 [QuickCreate]: ./media/cache-dotnet-how-to-use-service/CacheServiceQuickCreate.png
 
-[端點]: ./media/cache-dotnet-how-to-use-service/CacheServiceEndpoint.png
+[Endpoint]: ./media/cache-dotnet-how-to-use-service/CacheServiceEndpoint.png
 
 [AccessKeys]: ./media/cache-dotnet-how-to-use-service/CacheServiceManageAccessKeys.png
 
@@ -478,43 +480,43 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
 
 
 <!-- LINKS -->
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
-[作法：以程式設計方式設定快取用戶端]: http://msdn.microsoft.com/library/windowsazure/gg618003.aspx
-[Azure 快取的工作階段狀態提供者]: http://go.microsoft.com/fwlink/?LinkId=320835
-[Azure AppFabric 快取︰快取工作階段狀態]: http://www.microsoft.com/showcase/details.aspx?uuid=87c833e9-97a9-42b2-8bb1-7601f9b5ca20
-[建立 Microsoft Azure 快取服務 (預覽) 頁面輸出快取提供者]: http://go.microsoft.com/fwlink/?LinkId=320837
-[Azure 共用快取]: http://msdn.microsoft.com/library/windowsazure/gg278356.aspx
-[小組部落格]: http://blogs.msdn.com/b/windowsazure/
-[Azure 快取]: http://www.microsoft.com/showcase/Search.aspx?phrase=azure+caching
-[設定雲端服務的大小]: http://go.microsoft.com/fwlink/?LinkId=164387
-[Azure 快取容量規劃考量]: http://go.microsoft.com/fwlink/?LinkId=320167
-[Azure 快取]: http://go.microsoft.com/fwlink/?LinkId=252658
-[作法：以宣告方式設定 ASP.NET 網頁的快取性]: http://msdn.microsoft.com/library/zd1ysf1y.aspx
-[作法：以程式設計方式設定頁面的快取性]: http://msdn.microsoft.com/library/z852zf6b.aspx
-[Azure 受管理快取服務概觀]: http://go.microsoft.com/fwlink/?LinkId=320830
-[受管理的快取服務]: http://go.microsoft.com/fwlink/?LinkId=320830
-[@ OutputCache]: http://go.microsoft.com/fwlink/?LinkId=251979
-[關於 Microsoft Azure 快取服務 (預覽) 的 ClientDiagnosticLevel]: http://go.microsoft.com/fwlink/?LinkId=320839
-[NuGet Package Manager 安裝]: http://go.microsoft.com/fwlink/?LinkId=240311
-[快取定價詳細資料]: http://www.windowsazure.com/pricing/details/cache/
-[快取提供項目]: http://go.microsoft.com/fwlink/?LinkId=317277
-[容量規劃]: http://go.microsoft.com/fwlink/?LinkId=320167
-[Microsoft Azure 快取服務 (預覽) 到期與收回]: http://go.microsoft.com/fwlink/?LinkId=317278
-[高可用性]: http://go.microsoft.com/fwlink/?LinkId=317329
-[通知]: http://go.microsoft.com/fwlink/?LinkId=317276
-[移轉至 Azure 受管理的快取服務]: http://go.microsoft.com/fwlink/?LinkId=317347
-[受管理的快取服務範例]: http://go.microsoft.com/fwlink/?LinkId=320840
+[Azure Classic Portal]: https://manage.windowsazure.com/
+[How to: Configure a Cache Client Programmatically]: http://msdn.microsoft.com/library/windowsazure/gg618003.aspx
+[Session State Provider for Azure Cache]: http://go.microsoft.com/fwlink/?LinkId=320835
+[Azure AppFabric Cache: Caching Session State]: http://www.microsoft.com/showcase/details.aspx?uuid=87c833e9-97a9-42b2-8bb1-7601f9b5ca20
+[Output Cache Provider for Azure Cache]: http://go.microsoft.com/fwlink/?LinkId=320837
+[Azure Shared Caching]: http://msdn.microsoft.com/library/windowsazure/gg278356.aspx
+[Team Blog]: http://blogs.msdn.com/b/windowsazure/
+[Azure Caching]: http://www.microsoft.com/showcase/Search.aspx?phrase=azure+caching
+[How to Configure Virtual Machine Sizes]: http://go.microsoft.com/fwlink/?LinkId=164387
+[Azure Caching Capacity Planning Considerations]: http://go.microsoft.com/fwlink/?LinkId=320167
+[Azure Caching]: http://go.microsoft.com/fwlink/?LinkId=252658
+[How to: Set the Cacheability of an ASP.NET Page Declaratively]: http://msdn.microsoft.com/library/zd1ysf1y.aspx
+[How to: Set a Page's Cacheability Programmatically]: http://msdn.microsoft.com/library/z852zf6b.aspx
+[Overview of Azure Managed Cache Service]: http://go.microsoft.com/fwlink/?LinkId=320830
+[Managed Cache Service]: http://go.microsoft.com/fwlink/?LinkId=320830
+[OutputCache Directive]: http://go.microsoft.com/fwlink/?LinkId=251979
+[Troubleshooting and Diagnostics]: http://go.microsoft.com/fwlink/?LinkId=320839
+[NuGet Package Manager Installation]: http://go.microsoft.com/fwlink/?LinkId=240311
+[Cache Pricing Details]: http://www.windowsazure.com/pricing/details/cache/
+[Cache offerings]: http://go.microsoft.com/fwlink/?LinkId=317277
+[Capacity planning]: http://go.microsoft.com/fwlink/?LinkId=320167
+[Expiration and Eviction]: http://go.microsoft.com/fwlink/?LinkId=317278
+[High Availability]: http://go.microsoft.com/fwlink/?LinkId=317329
+[Notifications]: http://go.microsoft.com/fwlink/?LinkId=317276
+[Migrate to Managed Cache Service]: http://go.microsoft.com/fwlink/?LinkId=317347
+[Managed Cache Service Samples]: http://go.microsoft.com/fwlink/?LinkId=320840
 [New-AzureManagedCache]: http://go.microsoft.com/fwlink/?LinkId=400495
-[Azure 受管理的快取 Cmdlet]: http://go.microsoft.com/fwlink/?LinkID=398555
-[如何安裝和設定 Azure PowerShell]: http://go.microsoft.com/fwlink/?LinkId=400494
+[Azure Managed Cache Cmdlets]: http://go.microsoft.com/fwlink/?LinkID=398555
+[How to install and configure Azure PowerShell]: http://go.microsoft.com/fwlink/?LinkId=400494
 [Add-AzureAccount]: http://msdn.microsoft.com/library/dn495128.aspx
 [Select-AzureSubscription]: http://msdn.microsoft.com/library/dn495203.aspx
 
-[我適合使用哪個 Azure 快取服務？]: cache-faq.md#which-azure-cache-offering-is-right-for-me
+[Which Azure Cache offering is right for me?]: cache-faq.md#which-azure-cache-offering-is-right-for-me
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

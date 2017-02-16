@@ -16,8 +16,8 @@ ms.workload: integration
 ms.date: 08/18/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 13d0a71762d3cba05c3dccb647d0890862307327
-ms.openlocfilehash: 9593804ba5baa4ffe4cf49e21b5698c5fd3d157e
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: 409e1a104fa73d911ea508cbff311cb48fc20f9f
 
 
 ---
@@ -29,7 +29,7 @@ Outlook.com 連接器可讓您管理您的郵件、行事曆和連絡人。 您�
 >
 >
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="triggers-and-actions"></a>觸發程序及動作
 Outlook.com 連接器可當成動作使用，它有觸發程序。 所有連接器都支援 JSON 和 XML 格式的資料。
@@ -746,10 +746,10 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。 所有連接�
 | DisplayName |string |否 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

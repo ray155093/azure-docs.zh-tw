@@ -1,5 +1,5 @@
 ---
-title: "在 Azure App Service 中使用 ASP.NET Web API 和 SQL Database 建立 REST 服務"
+title: "使用 ASP.NET 和 SQL DB 在 Azure 中建立 REST API | Microsoft Docs"
 description: "指導如何使用 Visual Studio，將使用 ASP.NET Web API 的應用程式部署至 Azure Web 應用程式的教學課程。"
 services: app-service\web
 documentationcenter: .net
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 02/29/2016
 ms.author: riande
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2188a56fee942cd58b20b92fb77891708ab62d24
+ms.sourcegitcommit: 3f6bb2604d6f20e299ae5583a0ad215f02b9b803
+ms.openlocfilehash: 016d44cb57d5ad76dc0b115be6fbac6835d84396
 
 
 ---
@@ -493,7 +493,7 @@ ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更�
 
     ![Web API 儲存對話方塊][addwebapi007]
 
-    **安全性警告**：此時您的應用程式並未受到保護，且容易遭受 CSRF 攻擊。 在本教學課程稍後的內容中，我們將移除這項弱點。 如需詳細資訊，請參閱[避免跨網站偽造要求 (CSRF) 攻擊][prevent-csrf-attacks] (英文)。
+    **安全性警告**：此時您的應用程式並未受到保護，且容易遭受 CSRF 攻擊。 在本教學課程稍後的內容中，我們將移除這項弱點。 如需詳細資訊，請參閱[避免跨網站偽造要求 (CSRF) 攻擊][prevent-csrf-attacks]。
 ## <a name="add-xsrf-protection"></a>新增 XSRF 保護
 跨網站偽造要求 (亦稱為 XSRF 或 CSRF) 為以 Web 主控之應用程式為目標的攻擊，惡意網站能藉此影響用戶端瀏覽器和該瀏覽器信任之網站間的互動。 這些攻擊之所以能得逞，是因為網頁瀏覽器會隨著對網站的每個要求自動傳送驗證權杖。 ASP.NET 的 Forms Authentication 票證即是驗證 Cookie 的標準範例。 然而，使用任何持續驗證機制 (如 Windows 驗證、基本驗證等等) 的網站都可能成為這些攻擊的目標。
 
@@ -663,7 +663,7 @@ XSRF 攻擊與網路釣魚攻擊不同。 網路釣魚攻擊需要與受害者�
 應用程式現已在雲端運作，並使用 SQL Database 來儲存資料。 在 Azure 中完成應用程式測試後，請將應用程式刪除。 應用程式已處於公開狀態且不具有限制存取權限的機制。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -685,10 +685,10 @@ XSRF 攻擊與網路釣魚攻擊不同。 網路釣魚攻擊需要與受害者�
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- bookmarks -->
-[新增 OAuth 提供者]: #addOauth
-[新增角色至成員資格資料庫]:#mbrDB
-[建立資料部署指令碼]:#ppd
-[更新成員資格資料庫]:#ppd2
+[Add an OAuth Provider]: #addOauth
+[Add Roles to the Membership Database]:#mbrDB
+[Create a Data Deployment Script]:#ppd
+[Update the Membership Database]:#ppd2
 [setupdbenv]: #bkmk_setupdevenv
 [setupwindowsazureenv]: #bkmk_setupwindowsazure
 [createapplication]: #bkmk_createmvc4app
@@ -742,9 +742,9 @@ XSRF 攻擊與網路釣魚攻擊不同。 網路釣魚攻擊需要與受害者�
 [addwebapi004]: ./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/dntutmobile-webapi-added-contact.png
 [addwebapi006]: ./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/dntutmobile-webapi-save-returned-contacts.png
 [addwebapi007]: ./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/dntutmobile-webapi-contacts-in-notepad.png
-[新增 XSRF 保護]: #xsrf
+[Add XSRF Protection]: #xsrf
 [WebPIAzureSdk20NetVS12]: ./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/WebPIAzureSdk20NetVS12.png
-[新增 XSRF 保護]: #xsrf
+[Add XSRF Protection]: #xsrf
 [ImportPublishSettings]: ./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/ImportPublishSettings.png
 [ImportPublishProfile]: ./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/ImportPublishProfile.png
 [PublishVSSolution]: ./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/PublishVSSolution.png
@@ -755,6 +755,6 @@ XSRF 攻擊與網路釣魚攻擊不同。 網路釣魚攻擊需要與受害者�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

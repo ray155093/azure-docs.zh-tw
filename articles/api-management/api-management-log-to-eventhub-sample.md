@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: darrmi
+ms.date: 12/19/2016
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0aff583146736eb90e9940ca26be24da84bc4a14
+ms.sourcegitcommit: 7fafc85fe2997841b01ded693c532fea527f90de
+ms.openlocfilehash: 678f1aa97a4cfe93f2db569d4ddf20fcaf6fa39f
 
 
 ---
@@ -48,29 +48,31 @@ Azure 事件中樞已設計用來輸入大量資料，其能夠處理的事件�
 
 為了能夠建立此訊息，我們需要在 Azure API 管理中利用以 C# 為基礎的 [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx) 。 以下是可將 HTTP 要求訊息傳送到 Azure 事件中樞的原則。
 
-       <log-to-eventhub logger-id="conferencelogger" partition-id="0">
-       @{
-           var requestLine = string.Format("{0} {1} HTTP/1.1\r\n",
-                                                       context.Request.Method,
-                                                       context.Request.Url.Path + context.Request.Url.QueryString);
+```xml
+<log-to-eventhub logger-id="conferencelogger" partition-id="0">
+@{
+   var requestLine = string.Format("{0} {1} HTTP/1.1\r\n",
+                                               context.Request.Method,
+                                               context.Request.Url.Path + context.Request.Url.QueryString);
 
-           var body = context.Request.Body?.As<string>(true);
-           if (body != null && body.Length > 1024)
-           {
-               body = body.Substring(0, 1024);
-           }
+   var body = context.Request.Body?.As<string>(true);
+   if (body != null && body.Length > 1024)
+   {
+       body = body.Substring(0, 1024);
+   }
 
-           var headers = context.Request.Headers
-                                  .Where(h => h.Key != "Authorization" && h.Key != "Ocp-Apim-Subscription-Key")
-                                  .Select(h => string.Format("{0}: {1}", h.Key, String.Join(", ", h.Value)))
-                                  .ToArray<string>();
+   var headers = context.Request.Headers
+                          .Where(h => h.Key != "Authorization" && h.Key != "Ocp-Apim-Subscription-Key")
+                          .Select(h => string.Format("{0}: {1}", h.Key, String.Join(", ", h.Value)))
+                          .ToArray<string>();
 
-           var headerString = (headers.Any()) ? string.Join("\r\n", headers) + "\r\n" : string.Empty;
+   var headerString = (headers.Any()) ? string.Join("\r\n", headers) + "\r\n" : string.Empty;
 
-           return "request:"   + context.Variables["message-id"] + "\n"
-                               + requestLine + headerString + "\r\n" + body;
-       }
-       </log-to-eventhub>
+   return "request:"   + context.Variables["message-id"] + "\n"
+                       + requestLine + headerString + "\r\n" + body;
+}
+</log-to-eventhub>
+```
 
 ### <a name="policy-declaration"></a>原則宣告
 此原則運算式有一些值得一提的特別之處。 log-to-eventhub 原則有一個名為 logger-id 的屬性，這是指已在 API 管理服務中建立的記錄器名稱。 在 [如何在 Azure API 管理中將事件記錄至 Azure 事件中樞](api-management-howto-log-event-hubs.md)文件中可以找到如何在 API 管理服務中設定事件中樞記錄器的詳細資訊。 第二個屬性是一個選擇性參數，其指示事件中樞要在哪個資料分割中儲存訊息。 事件中樞使用資料分割來達到延展性，而且需要至少兩個資料分割。 只保證在一個資料分割內的訊息會依序傳遞。 如果我們未指示事件中樞要在哪一個資料分割中放置訊息，它會使用循環配置資源演算法來分散負載。 不過，這可能導致一些訊息未依順序處理。  
@@ -87,67 +89,71 @@ HTTP 標頭可以直接轉換成採用簡單索引鍵/值組格式的訊息格�
 ### <a name="message-metadata"></a>訊息中繼資料
 建立要傳送至事件中樞的完整訊息時，第一行實際上不屬於 `application/http` 訊息。 第一行是額外的中繼資料，由訊息是要求或回應訊息以及用來使回應與要求相互關聯的訊息識別碼所組成。 使用如下所示的另一個原則，即可建立訊息識別碼：
 
-    <set-variable name="message-id" value="@(Guid.NewGuid())" />
+```xml
+<set-variable name="message-id" value="@(Guid.NewGuid())" />
+```
 
 我們可能已建立要求訊息，將它儲存在變數中，直到傳回回應為止，然後只不過將要求和回應當作單一訊息傳送。 不過，獨立傳送要求和回應並使用訊息識別碼讓兩者相互關聯，我們便可取得訊息大小方面的更多彈性，還能夠利用多個資料分割並同時維護訊息順序，而要求將會更快出現在我們的記錄儀表板中。 在某些情況下，有效的回應也可能永遠不會傳送到事件中樞，這可能是因為 API 管理服務發生嚴重要求錯誤，但我們仍有這一筆要求記錄。
 
 用於傳送回應 HTTP 訊息的原則看起來非常類似要求，所以完整的原則組態如下所示：
 
-      <policies>
-          <inbound>
-              <set-variable name="message-id" value="@(Guid.NewGuid())" />
-              <log-to-eventhub logger-id="conferencelogger" partition-id="0">
-              @{
-                  var requestLine = string.Format("{0} {1} HTTP/1.1\r\n",
-                                                              context.Request.Method,
-                                                              context.Request.Url.Path + context.Request.Url.QueryString);
+```xml
+<policies>
+  <inbound>
+      <set-variable name="message-id" value="@(Guid.NewGuid())" />
+      <log-to-eventhub logger-id="conferencelogger" partition-id="0">
+      @{
+          var requestLine = string.Format("{0} {1} HTTP/1.1\r\n",
+                                                      context.Request.Method,
+                                                      context.Request.Url.Path + context.Request.Url.QueryString);
 
-                  var body = context.Request.Body?.As<string>(true);
-                  if (body != null && body.Length > 1024)
-                  {
-                      body = body.Substring(0, 1024);
-                  }
+          var body = context.Request.Body?.As<string>(true);
+          if (body != null && body.Length > 1024)
+          {
+              body = body.Substring(0, 1024);
+          }
 
-                  var headers = context.Request.Headers
-                                       .Where(h => h.Key != "Authorization" && h.Key != "Ocp-Apim-Subscription-Key")
-                                       .Select(h => string.Format("{0}: {1}", h.Key, String.Join(", ", h.Value)))
-                                       .ToArray<string>();
+          var headers = context.Request.Headers
+                               .Where(h => h.Key != "Authorization" && h.Key != "Ocp-Apim-Subscription-Key")
+                               .Select(h => string.Format("{0}: {1}", h.Key, String.Join(", ", h.Value)))
+                               .ToArray<string>();
 
-                  var headerString = (headers.Any()) ? string.Join("\r\n", headers) + "\r\n" : string.Empty;
+          var headerString = (headers.Any()) ? string.Join("\r\n", headers) + "\r\n" : string.Empty;
 
-                  return "request:"   + context.Variables["message-id"] + "\n"
-                                      + requestLine + headerString + "\r\n" + body;
-              }
-          </log-to-eventhub>
-          </inbound>
-          <backend>
-              <forward-request follow-redirects="true" />
-          </backend>
-          <outbound>
-              <log-to-eventhub logger-id="conferencelogger" partition-id="1">
-              @{
-                  var statusLine = string.Format("HTTP/1.1 {0} {1}\r\n",
-                                                      context.Response.StatusCode,
-                                                      context.Response.StatusReason);
+          return "request:"   + context.Variables["message-id"] + "\n"
+                              + requestLine + headerString + "\r\n" + body;
+      }
+  </log-to-eventhub>
+  </inbound>
+  <backend>
+      <forward-request follow-redirects="true" />
+  </backend>
+  <outbound>
+      <log-to-eventhub logger-id="conferencelogger" partition-id="1">
+      @{
+          var statusLine = string.Format("HTTP/1.1 {0} {1}\r\n",
+                                              context.Response.StatusCode,
+                                              context.Response.StatusReason);
 
-                  var body = context.Response.Body?.As<string>(true);
-                  if (body != null && body.Length > 1024)
-                  {
-                      body = body.Substring(0, 1024);
-                  }
+          var body = context.Response.Body?.As<string>(true);
+          if (body != null && body.Length > 1024)
+          {
+              body = body.Substring(0, 1024);
+          }
 
-                  var headers = context.Response.Headers
-                                                  .Select(h => string.Format("{0}: {1}", h.Key, String.Join(", ", h.Value)))
-                                                  .ToArray<string>();
+          var headers = context.Response.Headers
+                                          .Select(h => string.Format("{0}: {1}", h.Key, String.Join(", ", h.Value)))
+                                          .ToArray<string>();
 
-                  var headerString = (headers.Any()) ? string.Join("\r\n", headers) + "\r\n" : string.Empty;
+          var headerString = (headers.Any()) ? string.Join("\r\n", headers) + "\r\n" : string.Empty;
 
-                  return "response:"  + context.Variables["message-id"] + "\n"
-                                      + statusLine + headerString + "\r\n" + body;
-             }
-          </log-to-eventhub>
-          </outbound>
-      </policies>
+          return "response:"  + context.Variables["message-id"] + "\n"
+                              + statusLine + headerString + "\r\n" + body;
+     }
+  </log-to-eventhub>
+  </outbound>
+</policies>
+```
 
 `set-variable` 原則會建立一個可供 `<inbound>` 區段和 `<outbound>` 區段中的 `log-to-eventhub` 原則存取的值。  
 
@@ -160,40 +166,45 @@ HTTP 標頭可以直接轉換成採用簡單索引鍵/值組格式的訊息格�
 ### <a name="ieventprocessor"></a>IEventProcessor
 使用 `EventProcessorHost` 時的中心概念是建立 `IEventProcessor` 介面的實作，其中包含 `ProcessEventAsync` 方法。 該方法的本質如下所示：
 
-  async Task IEventProcessor.ProcessEventsAsync(PartitionContext context, IEnumerable<EventData> messages) {
+```c#
+async Task IEventProcessor.ProcessEventsAsync(PartitionContext context, IEnumerable<EventData> messages)
+{
 
-           foreach (EventData eventData in messages)
-           {
-               _Logger.LogInfo(string.Format("Event received from partition: {0} - {1}", context.Lease.PartitionId,eventData.PartitionKey));
+   foreach (EventData eventData in messages)
+   {
+       _Logger.LogInfo(string.Format("Event received from partition: {0} - {1}", context.Lease.PartitionId,eventData.PartitionKey));
 
-               try
-               {
-                   var httpMessage = HttpMessage.Parse(eventData.GetBodyStream());
-                   await _MessageContentProcessor.ProcessHttpMessage(httpMessage);
-               }
-               catch (Exception ex)
-               {
-                   _Logger.LogError(ex.Message);
-               }
-           }
-            ... checkpointing code snipped ...
-        }
+       try
+       {
+           var httpMessage = HttpMessage.Parse(eventData.GetBodyStream());
+           await _MessageContentProcessor.ProcessHttpMessage(httpMessage);
+       }
+       catch (Exception ex)
+       {
+           _Logger.LogError(ex.Message);
+       }
+   }
+    ... checkpointing code snipped ...
+}
+```
 
 系統會將 EventData 物件清單傳遞至此方法，而我們會逐一查看該清單。 每個方法的位元組會被剖析為 HttpMessage 物件，而該物件會傳遞至 IHttpMessageProcessor 的執行個體。
 
 ### <a name="httpmessage"></a>HttpMessage
 `HttpMessage` 執行個體包含三個資料片段：
 
-      public class HttpMessage
-       {
-           public Guid MessageId { get; set; }
-           public bool IsRequest { get; set; }
-           public HttpRequestMessage HttpRequestMessage { get; set; }
-           public HttpResponseMessage HttpResponseMessage { get; set; }
+```c#
+public class HttpMessage
+{
+   public Guid MessageId { get; set; }
+   public bool IsRequest { get; set; }
+   public HttpRequestMessage HttpRequestMessage { get; set; }
+   public HttpResponseMessage HttpResponseMessage { get; set; }
 
-        ... parsing code snipped ...
+... parsing code snipped ...
 
-      }
+}
+```
 
 `HttpMessage` 執行個體包含 `MessageId` GUID，它可讓我們將 HTTP 要求連接到對應的 HTTP 回應和一個布林值 (以識別物件是否包含 HttpRequestMessage 和 HttpResponseMessage 的執行個體)。 從 `System.Net.Http` 使用內建 HTTP 類別，我才能夠利用 `System.Net.Http.Formatting` 內含的 `application/http` 剖析程式碼。  
 
@@ -205,46 +216,48 @@ HTTP 標頭可以直接轉換成採用簡單索引鍵/值組格式的訊息格�
 
 `IHttpMessageProcessor` 實作如下所示：
 
-      public class RunscopeHttpMessageProcessor : IHttpMessageProcessor
+```c#
+public class RunscopeHttpMessageProcessor : IHttpMessageProcessor
+{
+   private HttpClient _HttpClient;
+   private ILogger _Logger;
+   private string _BucketKey;
+   public RunscopeHttpMessageProcessor(HttpClient httpClient, ILogger logger)
+   {
+       _HttpClient = httpClient;
+       var key = Environment.GetEnvironmentVariable("APIMEVENTS-RUNSCOPE-KEY", EnvironmentVariableTarget.User);
+       _HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", key);
+       _HttpClient.BaseAddress = new Uri("https://api.runscope.com");
+       _BucketKey = Environment.GetEnvironmentVariable("APIMEVENTS-RUNSCOPE-BUCKET", EnvironmentVariableTarget.User);
+       _Logger = logger;
+   }
+
+   public async Task ProcessHttpMessage(HttpMessage message)
+   {
+       var runscopeMessage = new RunscopeMessage()
        {
-           private HttpClient _HttpClient;
-           private ILogger _Logger;
-           private string _BucketKey;
-           public RunscopeHttpMessageProcessor(HttpClient httpClient, ILogger logger)
-           {
-               _HttpClient = httpClient;
-               var key = Environment.GetEnvironmentVariable("APIMEVENTS-RUNSCOPE-KEY", EnvironmentVariableTarget.User);
-               _HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", key);
-               _HttpClient.BaseAddress = new Uri("https://api.runscope.com");
-               _BucketKey = Environment.GetEnvironmentVariable("APIMEVENTS-RUNSCOPE-BUCKET", EnvironmentVariableTarget.User);
-               _Logger = logger;
-           }
+           UniqueIdentifier = message.MessageId
+       };
 
-           public async Task ProcessHttpMessage(HttpMessage message)
-           {
-               var runscopeMessage = new RunscopeMessage()
-               {
-                   UniqueIdentifier = message.MessageId
-               };
-
-               if (message.IsRequest)
-               {
-                   _Logger.LogInfo("Sending HTTP request " + message.MessageId.ToString());
-                   runscopeMessage.Request = await RunscopeRequest.CreateFromAsync(message.HttpRequestMessage);
-               }
-               else
-               {
-                   _Logger.LogInfo("Sending HTTP response " + message.MessageId.ToString());
-                   runscopeMessage.Response = await RunscopeResponse.CreateFromAsync(message.HttpResponseMessage);
-               }
-
-               var messagesLink = new MessagesLink() { Method = HttpMethod.Post };
-               messagesLink.BucketKey = _BucketKey;
-               messagesLink.RunscopeMessage = runscopeMessage;
-               var runscopeResponse = await _HttpClient.SendAsync(messagesLink.CreateRequest());
-               _Logger.LogDebug("Request sent to Runscope");
-           }
+       if (message.IsRequest)
+       {
+           _Logger.LogInfo("Sending HTTP request " + message.MessageId.ToString());
+           runscopeMessage.Request = await RunscopeRequest.CreateFromAsync(message.HttpRequestMessage);
        }
+       else
+       {
+           _Logger.LogInfo("Sending HTTP response " + message.MessageId.ToString());
+           runscopeMessage.Response = await RunscopeResponse.CreateFromAsync(message.HttpResponseMessage);
+       }
+
+       var messagesLink = new MessagesLink() { Method = HttpMethod.Post };
+       messagesLink.BucketKey = _BucketKey;
+       messagesLink.RunscopeMessage = runscopeMessage;
+       var runscopeResponse = await _HttpClient.SendAsync(messagesLink.CreateRequest());
+       _Logger.LogDebug("Request sent to Runscope");
+   }
+}
+```
 
 我能夠利用 [Runscope 的現有用戶端程式庫](http://www.nuget.org/packages/Runscope.net.hapikit/0.9.0-alpha)，所以可輕鬆地將 `HttpRequestMessage` 和 `HttpResponseMessage` 執行個體推送到它們的服務中。 若要存取 Runscope API，您需有一個帳戶和 API 金鑰。 在 [建立應用程式來存取 Runscope API](http://blog.runscope.com/posts/creating-applications-to-access-the-runscope-api) 螢幕錄製影片中可找到取得 API 金鑰的指示。
 
@@ -273,6 +286,6 @@ Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

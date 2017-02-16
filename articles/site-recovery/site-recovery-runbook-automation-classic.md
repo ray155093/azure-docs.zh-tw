@@ -1,5 +1,5 @@
 ---
-title: "將 Azure 自動化 Runbook 加入至復原計劃 | Microsoft Docs"
+title: "在傳統入口網站中將 Azure 自動化 Runbook 新增至復原方案 | Microsoft Docs"
 description: "本文說明 Azure Site Recovery 現在讓您使用 Azure 自動化擴充復原計畫，以便在復原至 Azure 期間，完成複雜的工作"
 services: site-recovery
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.devlang: powershell
 ms.tgt_pltfrm: na
 ms.topic: article
 ms.workload: required
-ms.date: 10/23/2016
+ms.date: 02/06/2017
 ms.author: ruturajd@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: ce018e8057a19f1b21081b9fae4b33c3e791a000
+ms.sourcegitcommit: 44b6ff6e588d529fd833a4a7fdd61df7e933ddd8
+ms.openlocfilehash: b4105e98323b5161a22fa65707d376a7155611d6
 
 
 ---
-# <a name="add-azure-automation-runbooks-to-recovery-plans---classic"></a>將 Azure 自動化 Runbook 新增至復原計劃 - 傳統
+# <a name="add-azure-automation-runbooks-to-recovery-plans-in-the-classic-portal"></a>在傳統入口網站中將 Azure 自動化 Runbook 新增至復原方案
 本教學課程說明如何將 Azure Site Recovery 與 Azure 自動化整合在一起，以提供復原計畫的擴充性。 復原計畫可以協調使用 Azure Site Recovery 保護的虛擬機器復原，以便同時複寫至次要雲端和 Azure 案例。 復原方案也有助於讓復原「保持一致精確」、「可重複執行」及「自動化」。 如果您要將虛擬機器容錯移轉至 Azure，與 Azure 自動化整合可擴充復原計畫，並讓您能夠執行 Runbook，進而允許進行功能強大的自動化工作。
 
 如果您還沒聽過「Azure 自動化」，請在[這裡](https://azure.microsoft.com/services/automation/)註冊，然後從[這裡](https://azure.microsoft.com/documentation/scripts/)下載其範例指令碼。 使用[這裡](https://azure.microsoft.com/blog/?p=166264)的復原計劃進一步了解 [Azure Site Recovery](https://azure.microsoft.com/services/site-recovery/)，以及如何將復原協調至 Azure。
@@ -67,10 +67,10 @@ ms.openlocfilehash: ce018e8057a19f1b21081b9fae4b33c3e791a000
 1. 在 Azure 自動化資產中加入新的設定 ![](media/site-recovery-runbook-automation/04.png)，然後選擇 ![](media/site-recovery-runbook-automation/05.png)
 2. 將變數類型選取為 [字串] 
 3. 將變數名稱指定為 **AzureSubscriptionName**
-   
+
    ![](media/site-recovery-runbook-automation/06.png)
 4. 將您實際的 Azure 訂用帳戶名稱指定為變數值。
-   
+
    ![](media/site-recovery-runbook-automation/07_1.png)
 
 您可以從 Azure 入口網站上您帳戶的 [設定] 頁面識別您的訂用帳戶名稱。
@@ -82,7 +82,7 @@ Azure 自動化使用 Azure PowerShell 連線到訂用帳戶，並在該處的�
 1. 在 Azure 自動化資產中加入新的設定 ![](media/site-recovery-runbook-automation/04.png)，然後選取 ![](media/site-recovery-runbook-automation/09.png)
 2. 將 [認證類型] 選取為 [Windows PowerShell 認證] 
 3. 將名稱指定為 **AzureCredential**
-   
+
    ![](media/site-recovery-runbook-automation/10.png)
 4. 指定用於登入的使用者名稱和密碼。
 
@@ -139,31 +139,31 @@ ASR 將內容變數傳遞至 Runbook，以協助您撰寫具有決定性的指�
 現在建立 Runbook，以開放前端虛擬機器上的連接埠 80。
 
 1. 在 Azure 自動化帳戶中，使用名稱 **OpenPort80**
-   
+
    ![](media/site-recovery-runbook-automation/14.png)
 2. 瀏覽至 Runbook 的 [撰寫] 檢視，然後進入草稿模式。
 3. 首先，指定要當做復原計畫內容使用的變數
-   
+
    ```
        param (
            [Object]$RecoveryPlanContext
        )
-   
+
    ```
 4. 接下來，使用認證和訂用帳戶名稱，連線到訂用帳戶
-   
+
    ```
        $Cred = Get-AutomationPSCredential -Name 'AzureCredential'
-   
+
        # Connect to Azure
        $AzureAccount = Add-AzureAccount -Credential $Cred
        $AzureSubscriptionName = Get-AutomationVariable –Name ‘AzureSubscriptionName’
        Select-AzureSubscription -SubscriptionName $AzureSubscriptionName
    ```
-   
+
    請注意，您在這裡使用的是 Azure 的資產 – **AzureCredential** 和 **AzureSubscriptionName**。
 5. 現在，指定端點詳細資料以及您要公開端點所在虛擬機器的 GUID。 在這個案例中為前端虛擬機器。
-   
+
    ```
        # Specify the parameters to be used by the script
        $AEProtocol = "TCP"
@@ -172,22 +172,22 @@ ASR 將內容變數傳遞至 Runbook，以協助您撰寫具有決定性的指�
        $AEName = "Port 80 for HTTP"
        $VMGUID = "7a1069c6-c1d6-49c5-8c5d-33bfce8dd183"
    ```
-   
+
    這會指定 Azure 端點通訊協定、VM 上的本機連接埠及其對應的公用連接埠。 這些變數是將端點加入至 VM 的 Azure 命令所需的參數。 VMGUID 保留您操作所需的虛擬機器的 GUID。
 6. 此指令碼現在會針對給定的 VM GUID 擷取內容，並在所參考的虛擬機器上建立端點。
-   
+
    ```
        #Read the VM GUID from the context
        $VM = $RecoveryPlanContext.VmMap.$VMGUID
-   
+
        if ($VM -ne $null)
        {
            # Invoke pipeline commands within an InlineScript
-   
+
            $EndpointStatus = InlineScript {
                # Invoke the necessary pipeline commands to add a Azure Endpoint to a specified Virtual Machine
                # Commands include: Get-AzureVM | Add-AzureEndpoint | Update-AzureVM (including parameters)
-   
+
                $Status = Get-AzureVM -ServiceName $Using:VM.CloudServiceName -Name $Using:VM.RoleName | `
                    Add-AzureEndpoint -Name $Using:AEName -Protocol $Using:AEProtocol -PublicPort $Using:AEPublicPort -LocalPort $Using:AELocalPort | `
                    Update-AzureVM
@@ -262,10 +262,10 @@ ASR 將內容變數傳遞至 Runbook，以協助您撰寫具有決定性的指�
 
 1. 選取復原計畫，並起始測試容錯移轉。
 2. 在執行計劃期間，您可以透過其狀態查看 Runbook 是否已執行。
-   
+
    ![](media/site-recovery-runbook-automation/17.png)
 3. 您也可以在 Runbook 的 [Azure 自動化工作] 頁面上查看詳細的 Runbook 執行狀態。
-   
+
    ![](media/site-recovery-runbook-automation/18.png)
 4. 完成容錯移轉之後，除了 Runbook 執行結果之後，您還可以瀏覽 Azure 虛擬機器頁面並查看端點，以了解查看執行是否成功。
 
@@ -281,7 +281,6 @@ ASR 將內容變數傳遞至 Runbook，以協助您撰寫具有決定性的指�
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

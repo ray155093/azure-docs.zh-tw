@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 08/18/2016
 ms.author: aglick
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 15f0183d8ada59227a412788f1d53a9db0e712c8
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: 0062dc90d8e1a823e17183e96a91a9f224e8cf48
 
 
 ---
@@ -97,7 +97,7 @@ Azure SQL Database 提供兩種復原：異地還原和作用中異地複寫。
 [作用中異地複寫](../sql-database/sql-database-geo-replication-overview.md) 適用於所有資料庫層。 其設計是針對比異地還原需要更主動復原的應用程式。 透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。 您可以起始容錯移轉至任何次要資料庫。 此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。 如需詳細資訊，請參閱[設定異地複寫](../sql-database/sql-database-geo-replication-portal.md)和[容錯移轉至次要資料庫](../sql-database/sql-database-geo-replication-failover-portal.md)。 請參閱[使用 SQL Database 的主動式異地複寫設計雲端災害復原應用程式](../sql-database/sql-database-designing-cloud-solutions-for-disaster-recovery.md)和[使用 SQL Database 主動式異地複寫管理雲端應用程式的輪流升級](../sql-database/sql-database-manage-application-rolling-upgrade.md)，以取得如何設計和實作應用程式以及在不停機情況下升級應用程式的詳細說明。
 
 ### <a name="sql-server-on-virtual-machines"></a>虛擬機器上的 SQL Server
-Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項可進行復原和維持高可用性。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項可進行復原和維持高可用性。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/windows/sql/virtual-machines-windows-sql-high-availability-dr.md)。
 
 ## <a name="other-azure-platform-services"></a>其他 Azure 平台服務
 嘗試在多個 Azure 區域執行您的雲端服務時，您必須考量每個相依性的含意。 在下列各節中，特定服務的指引假設您必須在替代的 Azure 資料中心內使用相同的 Azure 服務。 這牽涉到組態和資料複寫工作。
@@ -188,6 +188,6 @@ Azure 媒體服務在編碼和串流處理方面有不同的復原方法。 一�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

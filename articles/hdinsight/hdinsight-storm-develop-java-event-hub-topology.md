@@ -15,12 +15,13 @@ ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: eaa86b706a538543816b59d8cd09ee54df43b26d
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: abeafaaabb7449916313ee3805b18e9ec0da765e
 
 
 ---
 # <a name="process-events-from-azure-event-hubs-with-storm-on-hdinsight-java"></a>使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)
+
 Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料。 事件中樞 Spout 可讓您輕鬆地使用 Apache Storm on HDInsight 來即時分析資料。 您也可以使用事件中樞 Bolt 將資料從 Storm 寫入事件中樞。
 
 在本教學課程中，您將了解如何使用事件中樞 Spout 和 Bolt 在以 Java 為基礎的 Storm 拓撲中讀取和寫入資料。
@@ -28,15 +29,11 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 ## <a name="prerequisites"></a>必要條件
 * Apache Storm on HDInsight 叢集。 使用下列其中一個使用者入門文章以建立叢集：
   
-  * [HDInsight 叢集上以 Linux 為基礎的 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)：如果您想要使用 SSH 與來自 Linux、Unix、OS X 或 Windows 用戶端的叢集搭配運作，請選取此選項
-  * [HDInsight 叢集上以 Windows 為基礎的 Storm](hdinsight-apache-storm-tutorial-get-started.md)：如果您想要使用 PowerShell 與來自 Windows 用戶端的叢集搭配運作，請選取此選項
+  * HDInsight 叢集。 如需建立新叢集的相關資訊，請參閱[開始在 HDInsight 叢集中使用 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)。
     
-    > [!NOTE]
-    > 本文件中的步驟是以在 HDInsight 叢集 3.3 或 3.4 使用 Storm 為基礎。 這些叢集提供 Storm 0.10.0 和 Hadoop 2.7，可減少為了讓此範例運作所需進行的步驟數目。
-    > 
-    > 如需能在 HDInsight 3.2 上與 Storm 0.9.3 搭配運作的此範例版本，請參閱範例儲存機制的 [Storm v0.9.3](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub/tree/Storm_v0.9.3) 分支。
-    > 
-    > 
+    > [!IMPORTANT]
+    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * [Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 * [Oracle Java Developer Kit (JDK) 第 7版](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)或同等版本，例如 [OpenJDK](http://openjdk.java.net/)
 * [Maven](https://maven.apache.org/download.cgi)：Maven 是 Java 專案的專案建置系統。
@@ -44,8 +41,6 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
   
   > [!NOTE]
   > 您的編輯器或 IDE 可能具有處理 Maven 的特定功能，但未記載在這份文件中。 如需編輯環境功能的詳細資訊，請參閱所使用產品的文件。
-  > 
-  > 
   
   * SSH 用戶端。 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列其中一篇文章：
     
@@ -185,7 +180,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 
 這是用來將解決方案封裝至 uber jar，它包含專案程式碼和必要的相依性。 它也用來：
 
-* 重新命名相依性的授權檔案：若尚未完成，則會在以 Windows 為基礎的 HDInsight 叢集上的執行階段造成錯誤。
+* 重新命名相依性的授權檔案：若尚未完成，則會在執行階段造成錯誤。
 * 排除安全性/簽章：如果沒有這麼做，則會在執行階段於 HDInsight 叢集上造成錯誤。
 * 請確定介面相同的多個實作會合併成一個項目。 如果沒有這麼做，您將會收到 Storm-HDFS bolt 不知道如何與 WASB 檔案系統進行通訊的錯誤。
 
@@ -362,7 +357,11 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
         storm kill reader
         storm kill writer
 
-### <a name="if-using-a-windows-based-cluster"></a>如果使用以 Windows 為基礎的叢集
+### <a name="if-using-a-windows-based-hdinsight-cluster"></a>如果使用 Windows 型的 HDInsight 叢集
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 1. 開啟瀏覽器並瀏覽至 https://CLUSTERNAME.azurehdinsight.net。 出現提示時，輸入 HDInsight 叢集的系統管理員認證。 您會進入 Storm 儀表板。
 2. 使用 [Jar 檔案]  下拉式清單以瀏覽並且從您的建置環境選取 EventHubExample-1.0-SNAPSHOT.jar 檔案。
 3. 針對 [類別名稱]，輸入 `com.mirosoft.example.EventHubWriter`。
@@ -436,6 +435,6 @@ EventHubSpout 會定期將其狀態設定檢查點到 Zookeeper 節點，這會�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

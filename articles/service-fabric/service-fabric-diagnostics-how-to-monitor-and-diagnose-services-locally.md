@@ -1,5 +1,5 @@
 ---
-title: "在本機監視和診斷使用 Azure Service Fabric 所撰寫的服務 | Microsoft Docs"
+title: "在 Windows 中針對 Azure 微服務進行偵錯 | Microsoft Docs"
 description: "了解如何監視和診斷在本機開發電腦上使用 Microsoft Azure Service Fabric 所撰寫的服務。"
 services: service-fabric
 documentationcenter: .net
@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/06/2016
+ms.date: 01/04/2017
 ms.author: toddabel
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 57e281b5e3a86b2a7bc78d47163b0475898869f0
+ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
+ms.openlocfilehash: 5421cf66449892bb7bbc46cd8727a0642b7d66f3
 
 
 ---
@@ -27,14 +27,14 @@ ms.openlocfilehash: 57e281b5e3a86b2a7bc78d47163b0475898869f0
 > 
 > 
 
-監視、偵測、診斷和疑難排解可讓服務繼續順利執行，盡可能減少服務中斷的使用者經驗。 雖然監視和診斷在實際部署的生產環境中相當重要，然而效率將取決於服務開發期間所採用的類似模型服務，以便在您移動至實際設定時能確保其正常運作。 Service Fabric 可讓服務開發人員輕鬆實作診斷，可以在單一電腦本機開發設定和實際生產叢集設定上順暢地工作。
+監視、偵測、診斷和疑難排解可讓服務繼續順利執行，盡可能減少服務中斷的使用者經驗。 雖然監視和診斷在實際部署的生產環境中相當重要，但是效率會取決於在服務開發期間採用相似的模型，以確保它們能夠在您移至實際設定時正常運作。 Service Fabric 可讓服務開發人員輕鬆實作診斷，可以在單一電腦本機開發設定和實際生產叢集設定上順暢地工作。
 
 ## <a name="the-benefits-of-event-tracing-for-windows"></a>Windows 事件追蹤的優點
 [Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) (ETW) 是我們建議的技術，可用於追蹤 Service Fabric 中的訊息。 這樣做的原因是：
 
-* **ETW 相當快速。**  其是以一種追蹤技術建置而成，並對您程式碼執行時間的影響降到最低。
+* **ETW 相當快速。** 其是以一種追蹤技術建置而成，並對您程式碼執行時間的影響降到最低。
 * **ETW 會在本機開發環境以及實際叢集設定順暢地進行追蹤。** 這表示當您準備好將程式碼部署至實際叢集時，您不需要重寫追蹤程式碼。
-* **Service Fabric 系統程式碼也會將 ETW 用於內部追蹤。**  這可讓您檢視與 Service Fabric 系統追蹤交錯的應用程式追蹤。 同時協助您更輕鬆了解在基礎系統中應用程式程式碼與事件之間的序列和相互關係。
+* **Service Fabric 系統程式碼也會將 ETW 用於內部追蹤。** 這可讓您檢視與 Service Fabric 系統追蹤交錯的應用程式追蹤。 同時協助您更輕鬆了解在基礎系統中應用程式程式碼與事件之間的序列和相互關係。
 * **內建支援的 Service Fabric Visual Studio 工具可供您檢視 ETW 事件。**
 
 ## <a name="view-service-fabric-system-events-in-visual-studio"></a>在 Visual Studio 中檢視 Service Fabric 系統事件
@@ -65,11 +65,11 @@ Service Fabric Visual Studio 專案範本包含範例程式碼。 程式碼示�
 在 Azure 叢集上執行應用程式時，您針對本機診斷在上方應用程式所新增的相同追蹤程式碼，將會使用可以用來檢視這些事件的工具。 請參閱下列文章，其中討論各種適用於工具的選項，並說明如何設定它們。
 
 * [如何利用 Azure 診斷收集記錄檔](service-fabric-diagnostics-how-to-setup-wad.md)
-* [使用 ElasticSearch 做為 Service Fabric 應用程式追蹤存放區](service-fabric-diagnostic-how-to-use-elasticsearch.md)
+* [從服務處理程序直接收集記錄檔](service-fabric-diagnostic-collect-logs-without-an-agent.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

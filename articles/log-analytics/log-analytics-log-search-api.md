@@ -4,7 +4,7 @@ description: "本指南提供基本教學課程，說明如何使用 Operations 
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: b4e9ebe8-80f0-418e-a855-de7954668df7
 ms.service: log-analytics
@@ -12,44 +12,54 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 81dd7d9dc799f6f4c0dd54a12409724c182a0349
+ms.sourcegitcommit: b12f823d723b013755fc868b883faefa2072eb75
+ms.openlocfilehash: 9b21fed003f96dbf7ebd72d6f46fff91acbf039e
 
 
 ---
 # <a name="log-analytics-log-search-rest-api"></a>Log Analytics 記錄檔搜尋 REST API
-本指南提供基本教學課程，說明如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 REST API，並提供使用命令的範例。 本文中的部分範例參考 Operational Insights，這是舊版 Log Analytics 的名稱。
+本指南提供基本教學課程 (包括範例)，說明如何使用 Log Analytics 搜尋 REST API。 Log Analytics 是 Operations Management Suite (OMS) 的一部分。
+
+> [!NOTE]
+> Log Analytics 在以前稱為 Operational Insights，這也是資源提供者中使用此名稱的原因。
+>
+>
 
 ## <a name="overview-of-the-log-search-rest-api"></a>記錄檔搜尋 REST API 概觀
-Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來存取。 在這份文件中，您會發現可在其中透過 [ARMClient](https://github.com/projectkudu/ARMClient)存取 API 的範例，以及簡化叫用 Azure 資源管理員 API 的開放原始碼命令列工具。 使用 ARMClient 和 PowerShell 是存取 Log Analytics 搜尋 API 的許多選項之一。 另一個選項是使用 OperationalInsights 的 Azure PowerShell 模組，其中包含可存取搜尋的 Cmdlet。 透過這些工具，您可以利用 RESTful Azure Resource Manager API 呼叫 OMS 工作區並在其中執行搜尋命令。 API 會以 JSON 格式向您輸出搜尋結果，讓您以程式設計方式透過許多不同的方法使用搜尋結果。
+Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來存取。 本文件提供透過 [ARMClient](https://github.com/projectkudu/ARMClient) 存取 API 的範例，這是可簡化叫用 Azure Resource Manager API 的開放原始碼命令列工具。 使用 ARMClient 是存取 Log Analytics 搜尋 API 的許多選項之一。 另一個選項是使用 OperationalInsights 的 Azure PowerShell 模組，其中包含可存取搜尋的 Cmdlet。 這些工具可讓您利用 Azure Resource Manager API 呼叫 OMS 工作區，並在其中執行搜尋命令。 API 會以 JSON 格式來輸出搜尋結果，可讓您以程式設計方式將搜尋結果用在許多不同用途上。
 
-您可以透過 [Library for.NET](https://msdn.microsoft.com/library/azure/dn910477.aspx) 以及 [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx) 來使用 Azure Resource Manager。 檢閱連結的網頁以深入了解。
+您可以透過 [Library for .NET](https://msdn.microsoft.com/library/azure/dn910477.aspx) 和 [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx) 來使用 Azure Resource Manager。 若要深入了解，請檢閱連結的網頁。
+
+> [!NOTE]
+> 如果您使用彙總命令，例如 `|measure count()` 或 `distinct`，則每次呼叫搜尋最多可傳回 500,000 筆記錄。 不含彙總命令的搜尋最多傳回 5,000 筆記錄。
+>
+>
 
 ## <a name="basic-log-analytics-search-rest-api-tutorial"></a>基本 Log Analytics 搜尋 REST API 教學課程
-### <a name="to-use-the-arm-client"></a>使用 ARM 用戶端
+### <a name="to-use-armclient"></a>使用 ARMClient
 1. 安裝 [Chocolatey](https://chocolatey.org/)，這是適用於 Windows 的開放原始碼封裝管理員。 以系統管理員身分開啟命令提示字元視窗，然後執行下列命令：
-   
+
     ```
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
     ```
 2. 執行下列命令來安裝 ARMClient：
-   
+
     ```
     choco install armclient
     ```
 
-### <a name="to-perform-a-simple-search-using-the-armclient"></a>使用 ARMClient 執行簡單搜尋
-1. 登入 Microsoft 或 OrgID 帳戶：
-   
+### <a name="to-perform-a-search-using-armclient"></a>使用 ARMClient 執行搜尋
+1. 使用您的 Microsoft 帳戶、公司帳戶或學校帳戶登入：
+
     ```
     armclient login
     ```
-   
+
     成功登入會列出繫結至指定帳戶的所有訂用帳戶：
-   
+
     ```
     PS C:\Users\SampleUserName> armclient login
     Welcome YourEmail@ORG.com (Tenant: zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz)
@@ -60,13 +70,13 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 3)
     ```
 2. 取得 Operations Management Suite 工作區：
-   
+
     ```
     armclient get /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces?api-version=2015-03-20
     ```
-   
+
     成功的 Get 呼叫會輸出繫結至訂用帳戶的所有工作區：
-   
+
     ```
     {
     "value": [
@@ -84,12 +94,12 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     }
     ```
 3. 建立您的搜尋變數：
-   
+
     ```
     $mySearch = "{ 'top':150, 'query':'Error'}";
     ```
 4. 使用新的搜尋變數來搜尋：
-   
+
     ```
     armclient post /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces/{WORKSPACE NAME}/search?api-version=2015-03-20 $mySearch
     ```
@@ -191,11 +201,11 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 ```
 
 > [!NOTE]
-> 如果搜尋會傳回「擱置中」狀態，則輪詢更新的結果可以透過此 API 完成。 6 分鐘後，搜尋的結果將會從快取卸除，並將傳回 HTTP Gone。 如果初始搜尋要求立即傳回「成功」狀態，它就不會加入至快取，使 API在被查詢時傳回 HTTP Gone。 HTTP 200 結果內容的格式將會和更新值相同，都是初始搜尋要求。
-> 
-> 
+> 如果搜尋會傳回「擱置中」狀態，則輪詢更新的結果可以透過此 API 完成。 6 分鐘後，搜尋的結果將會從快取卸除，並將傳回 HTTP Gone。 如果初始搜尋要求立即傳回「成功」狀態，則結果不會新增至快取，導致在查詢此 API 時會傳回 HTTP Gone。 HTTP 200 結果內容的格式與初始搜尋要求相同，只是會有更新的值。
+>
+>
 
-### <a name="saved-searches---rest-only"></a>已儲存的搜尋 - 僅限於 REST
+### <a name="saved-searches"></a>已儲存的搜尋
 **已儲存搜尋的要求清單：**
 
 ```
@@ -213,13 +223,13 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 | 識別碼 |唯一識別碼。 |
 | Etag |**修補程式的必要項目**。 每次寫入時由伺服器進行更新。 值必須等於目前儲存的值或 ‘*’ 才能進行更新。 舊值/無效值時會傳回 409。 |
 | properties.query |**必要**。 搜尋查詢。 |
-| properties.displayName |**必要**。 使用者定義的查詢顯示名稱。 如果模型化為 Azure 資源，則這會是標記。 |
-| properties.category |**必要**。 使用者定義的查詢類別。 如果模型化為 Azure 資源，則這會是標記。 |
+| properties.displayName |**必要**。 使用者定義的查詢顯示名稱。 |
+| properties.category |**必要**。 使用者定義的查詢類別。 |
 
 > [!NOTE]
-> 目前，當 Log Analytics 搜尋 API 輪詢工作區的儲存搜尋時，其會傳回使用者建立的儲存搜尋。 API 不會傳回目前解決方案所提供的儲存搜尋。 這項功能將會在之後加入。
-> 
-> 
+> 目前，當 Log Analytics 搜尋 API 輪詢工作區的儲存搜尋時，其會傳回使用者建立的儲存搜尋。 此 API 不會傳回解決方案所提供之已儲存的搜尋。
+>
+>
 
 ### <a name="create-saved-searches"></a>建立已儲存的搜尋
 **要求：**
@@ -245,7 +255,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 ```
 
 ### <a name="metadata---json-only"></a>中繼資料 - 僅限 JSON
-以下的方法可讓您看到工作區中所收集資料的所有記錄類型欄位。 例如，如果您想知道事件類型是否具有名為「電腦」的欄位，這會是一個查詢和確認的方法。
+以下的方法可讓您看到工作區中所收集資料的所有記錄類型欄位。 比方說，如果您想知道事件類型是否具有名為 Computer 的欄位，此查詢可作為一種檢查方法。
 
 **欄位要求：**
 
@@ -345,13 +355,14 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     }
 ```
 
-請注意，上述結果包含已具有前置詞及附加詞的錯誤訊息。
+請注意，上述結果包含已加上前置詞和附加詞的錯誤訊息。
 
 ## <a name="computer-groups"></a>電腦群組
 電腦群組是一種特殊的已儲存搜尋，其會傳回一組電腦。  您可以在其他查詢中使用電腦群組，以將結果限制為該群組中的電腦。  電腦群組會實作為已儲存的搜尋，其含有 Group 標籤與 Computer 值。
 
 以下是電腦群組的回應範例。
 
+```
     "etag": "W/\"datetime'2016-04-01T13%3A38%3A04.7763203Z'\"",
     "properties": {
         "Category": "My Computer Groups",
@@ -363,21 +374,23 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
           }],
     "Version": 1
     }
+```
 
 ### <a name="retrieving-computer-groups"></a>擷取電腦群組
-使用 Get 方法與群組識別碼，擷取電腦群組。
+若要擷取電腦群組，請使用 Get 方法搭配群組識別碼。
 
 ```
 armclient get /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/{Group ID}`?api-version=2015-03-20
 ```
 
 ### <a name="creating-or-updating-a-computer-group"></a>建立或更新電腦群組
-使用 Put 方法與單一的已儲存搜尋識別碼，建立新的電腦群組。 如果您使用現有的電腦群組識別碼，則將會修改它。 當您在 OMS 主控台中建立電腦群組時，即會依據群組與名稱來建立識別碼。
+若要建立電腦群組，請使用 Put 方法搭配已儲存的唯一搜尋識別碼。 如果您使用現有的電腦群組識別碼，則系統會修改它。 當您在 Log Analytics 入口網站中建立電腦群組時，將會依據群組和名稱來建立識別碼。
 
-用於群組定義的查詢必須傳回一組電腦，群組才能正確運作。  建議您使用 *| Distinct Computer* 結束您的查詢，以確保傳回正確的資料。
+用於群組定義的查詢必須傳回一組電腦，群組才能正確運作。  建議您在查詢的結尾加上 `| Distinct Computer`，以確保傳回正確的資料。
 
 已儲存搜尋的定義必須包含 Group 標籤與 Computer 值，才能將搜尋分類為電腦群組。
 
+```
     $etag=Get-Date -Format yyyy-MM-ddThh:mm:ss.msZ
     $groupName="My Computer Group"
     $groupQuery = "Computer=srv* | Distinct Computer"
@@ -387,9 +400,10 @@ armclient get /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Na
     $groupJson = "{'etag': 'W/`"datetime\'" + $etag + "\'`"', 'properties': { 'Category': '" + $groupCategory + "', 'DisplayName':'"  + $groupName + "', 'Query':'" + $groupQuery + "', 'Tags': [{'Name': 'Group', 'Value': 'Computer'}], 'Version':'1'  }"
 
     armclient put /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/$groupId`?api-version=2015-03-20 $groupJson
+```
 
 ### <a name="deleting-computer-groups"></a>刪除電腦群組
-使用 Delete 方法與群組識別碼，刪除電腦群組。
+若要刪除電腦群組，請使用 Delete 方法搭配群組識別碼。
 
 ```
 armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/$groupId`?api-version=2015-03-20
@@ -401,7 +415,6 @@ armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

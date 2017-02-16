@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 07/27/2016
 ms.author: hascipio; v-divte
 translationtype: Human Translation
-ms.sourcegitcommit: 602f86f17baffe706f27963e8d9963f082971f54
-ms.openlocfilehash: 59e10d7b5762b07447f20ed03557b5f09f9b2277
+ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
+ms.openlocfilehash: 64c7486ae24c31ef2a1116fdfd3cab9b813a09af
 
 
 ---
@@ -60,7 +60,7 @@ ms.openlocfilehash: 59e10d7b5762b07447f20ed03557b5f09f9b2277
 
 * VM 映像： [關於 Azure 中的虛擬機器映像](https://msdn.microsoft.com/library/azure/dn790290.aspx)
 * VM 延伸模組：[VM 代理程式與 VM 延伸模組概觀](https://msdn.microsoft.com/library/azure/dn832621.aspx)及 [Azure VM 延伸模組與功能](https://msdn.microsoft.com/library/azure/dn606311.aspx)
-* Azure Resource Manager：[撰寫 Azure ARM 範本](../resource-group-authoring-templates.md)和[簡單 ARM 範本範例](https://github.com/rjmax/ArmExamples)
+* Azure Resource Manager：[撰寫 Azure Resource Manager 範本 (英文)](../azure-resource-manager/resource-group-authoring-templates.md)和[簡單範本範例](https://github.com/rjmax/ArmExamples)
 * 儲存體帳戶節流：[如何監視儲存體帳戶節流](http://blogs.msdn.com/b/mast/archive/2014/08/02/how-to-monitor-for-storage-account-throttling.aspx)和[進階儲存體](../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)
 
 [img-pubportal-menu-sol-templ]:media/marketplace-publishing-solution-template-creation/pubportal-menu-solution-templates.png
@@ -70,6 +70,6 @@ ms.openlocfilehash: 59e10d7b5762b07447f20ed03557b5f09f9b2277
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: e7931f1b08d09fbe1fa5a5a2d4a11da01e736462
-ms.openlocfilehash: 5fb3200bb2a21624f8718bd50e4c7bb2fc607ba9
+ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
+ms.openlocfilehash: 5c803ff58a1f0e058c2f219320219c1cbf3ebfe7
 
 
 ---
@@ -40,7 +40,7 @@ ms.openlocfilehash: 5fb3200bb2a21624f8718bd50e4c7bb2fc607ba9
 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。  
 
 ### <a name="2-install-the-latest-versions-of-the-azure-powershell-modules"></a>2.安裝最新版的 Azure PowerShell 模組
-請遵循 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
+請遵循 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
 
 ### <a name="3-log-in-to-your-azure-account-and-select-a-subscription"></a>3.登入您的 Azure 帳戶並選取訂用帳戶
 1. 使用提升權限的 Windows PowerShell 命令提示字元，執行下列 Cmdlet：
@@ -332,6 +332,6 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

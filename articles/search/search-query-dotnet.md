@@ -14,8 +14,8 @@ ms.tgt_pltfrm: na
 ms.date: 12/08/2016
 ms.author: brjohnst
 translationtype: Human Translation
-ms.sourcegitcommit: 455c4847893175c1091ae21fa22215fd1dd10c53
-ms.openlocfilehash: e862002a5b1406196516e5ddd786790da7bd5a4d
+ms.sourcegitcommit: 7d45759915f38ba4337b745eb2b28dcbc72dbbe0
+ms.openlocfilehash: 88d5148806e58d61b7b64327e07809eea5126211
 
 
 ---
@@ -34,10 +34,10 @@ ms.openlocfilehash: e862002a5b1406196516e5ddd786790da7bd5a4d
 
 請注意，本文中的所有範例程式碼均以 C# 撰寫。 您可以 [在 GitHub](http://aka.ms/search-dotnet-howto)找到完整的原始程式碼。
 
-## <a name="i-identify-your-azure-search-services-query-api-key"></a>I. 識別 Azure 搜尋服務的查詢 API 金鑰
+## <a name="identify-your-azure-search-services-query-api-key"></a>識別 Azure 搜尋服務的查詢 API 金鑰
 現在您已建立 Azure 搜尋服務索引，便差不多可以使用 .NET SDK 發出查詢。 首先，必須取得一個為您佈建的搜尋服務所產生的查詢 API 金鑰。 .NET SDK 將會在每個要求上將此 API 金鑰傳送給您的服務。 擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
 
-1. 若要尋找服務的 API 金鑰，您必須登入 [Azure 入口網站](https://portal.azure.com/)
+1. 若要尋找服務的 API 金鑰，您可以登入 [Azure 入口網站](https://portal.azure.com/)
 2. 前往 Azure 搜尋服務的刀鋒視窗。
 3. 按一下 [金鑰] 圖示。
 
@@ -48,7 +48,7 @@ ms.openlocfilehash: e862002a5b1406196516e5ddd786790da7bd5a4d
 
 若要查詢索引，您可以使用其中一個查詢金鑰。 系統管理金鑰也可以用於進行查詢，但是您應該在應用程式的程式碼中使用查詢金鑰，因為查詢金鑰更加符合 [最低權限準則](https://en.wikipedia.org/wiki/Principle_of_least_privilege)。
 
-## <a name="ii-create-an-instance-of-the-searchindexclient-class"></a>II. 建立 SearchIndexClient 類別的執行個體
+## <a name="create-an-instance-of-the-searchindexclient-class"></a>建立 SearchIndexClient 類別的執行個體
 若要使用 Azure 搜尋服務 .NET SDK 來發出查詢，您必須建立 `SearchIndexClient` 類別的執行個體。 這個類別有數個建構函式。 您需要的建構函式會取得您的搜尋服務名稱和 `SearchCredentials` 物件作為參數。 `SearchCredentials` 會包裝您的 API 金鑰。
 
 下方程式碼會使用搜尋服務名稱的值，以及儲存於應用程式設定檔中的 API 金鑰 (`app.config` 或 `web.config`)，為 "hotels" 索引 (建立於[使用 .NET SDK 建立 Azure 搜尋服務索引](search-create-index-dotnet.md)) 建立新的 `SearchIndexClient`：
@@ -62,7 +62,7 @@ SearchIndexClient indexClient = new SearchIndexClient(searchServiceName, "hotels
 
 `SearchIndexClient` 具有 `Documents` 屬性。 此屬性會提供您查詢 Azure 搜尋服務索引所需的所有方法。
 
-## <a name="iii-query-your-index"></a>III. 查詢您的索引
+## <a name="query-your-index"></a>查詢您的索引
 使用 .NET SDK 進行搜尋就和在您的 `SearchIndexClient` 呼叫 `Documents.Search` 方法一樣簡單。 此方法會採用一些參數，包括搜尋文字，以及可進一步縮小查詢範圍的 `SearchParameters` 物件。
 
 #### <a name="types-of-queries"></a>查詢類型
@@ -127,7 +127,7 @@ results = indexClient.Documents.Search<Hotel>("motel", parameters);
 WriteDocuments(results);
 ```
 
-## <a name="iv-handle-search-results"></a>IV. 處理搜尋結果
+## <a name="handle-search-results"></a>處理搜尋結果
 `Documents.Search` 方法會傳回包含查詢結果的 `DocumentSearchResult` 物件。 前一章節中的範例使用稱為 `WriteDocuments` 的方法將搜尋結果輸出到主控台：
 
 ```csharp
@@ -169,6 +169,6 @@ ID: 2   Base rate: 79.99        Description: Cheapest hotel in town     Descript
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

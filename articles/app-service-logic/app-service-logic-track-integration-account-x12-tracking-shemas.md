@@ -1,5 +1,5 @@
 ---
-title: "x12 追蹤結構描述 | Microsoft Docs"
+title: "X12 追蹤結構描述 | Microsoft Docs"
 description: "深入了解 X12 追蹤結構描述"
 author: padmavc
 manager: erikre
@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: padmavc
 translationtype: Human Translation
-ms.sourcegitcommit: 63ba6e8fec8df1cdbc9928b011130f47c5facf89
-ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
+ms.sourcegitcommit: c4c1d4b27c8cfbcdf96f263525b09d20ed782dc4
+ms.openlocfilehash: 6d8a1ef2a4e9c551663b65cb72bb80f630d2e5f5
 
 
 ---
 # <a name="x12-tracking-schemas"></a>X12 追蹤結構描述
-支援的 X12 追蹤結構描述為
+您可以在 Azure 整合帳戶中使用這些 X12 追蹤結構描述，協助您監視企業對企業 (B2B) 交易︰
 
 * X12 交易集追蹤結構描述
 * X12 交易集通知追蹤結構描述
@@ -48,7 +48,7 @@ ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
                 "interchangeControlNumber": "",
                 "functionalGroupControlNumber": "",
                 "transactionSetControlNumber": "",
-                "CorrelationMessageId": "", 
+                "CorrelationMessageId": "",
                 "messageType": "",
                 "isMessageFailed": "",
                 "isTechnicalAcknowledgmentExpected": "",
@@ -59,26 +59,26 @@ ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
     }
 ````
 
-| 屬性 | 說明 |
-| --- | --- |
-| senderPartnerName |選用，字串。  指出 X12 訊息傳送夥伴名稱 |
-| receiverPartnerName |選用，字串。  指出 X12 訊息接收夥伴名稱 |
-| senderQualifier |必要，字串。  指出傳送夥伴限定詞 |
-| senderIdentifier |必要，字串。  指出傳送夥伴識別碼 |
-| receiverQualifier |必要，字串。  指出接收夥伴限定詞 |
-| receiverQualifier |必要，字串。  指出接收夥伴識別碼 |
-| agreementName |選用，字串。  據以解析訊息的 X12 合約名稱 |
-| direction |必要，列舉。  指出訊息流程的方向。  允許的值為 receive 或 send |
-| interchangeControlNumber |選用，字串。  指出交換控制編號 |
-| functionalGroupControlNumber |選用，字串。  指出功能控制編號 |
-| transactionSetControlNumber |選用，字串。  指出交易集控制編號 |
-| CorrelationMessageId |選用，字串。  指出相互關聯訊息識別碼。  相互關聯識別碼是 {AgreementName}{GroupControlNumber}{TransactionSetControlNumber} 組合 |
-| messageType |選用，字串。 指出交易集或文件類型 |
-| isMessageFailed |必要，布林值。  指出 X12 訊息是成功或失敗 |
-| isTechnicalAcknowledgmentExpected |必要，布林值。  指出 X12 合約中是否設定技術通知 |
-| isFunctionalAcknowledgmentExpected |必要，布林值。  指出 X12 合約中是否設定功能通知 |
-| needAk2LoopForValidMessages |必要，布林值。  - 有效的訊息是否需要 AK2 迴圈。 - 布林值類型 |
-| segmentsCount |選用，整數。  指出 X12 交易集的區段數目 |
+| 屬性 | 類型 | 說明 |
+| --- | --- | --- |
+| senderPartnerName | String | X12 訊息傳送者的夥伴名稱。 (選用) |
+| receiverPartnerName | String | X12 訊息接收者的夥伴名稱。 (選用) |
+| senderQualifier | String | 傳送合作夥伴辨識符號。 (必要) |
+| senderIdentifier | String | 傳送合作夥伴識別碼。 (必要) |
+| receiverQualifier | String | 接收合作夥伴辨識符號。 (必要) |
+| receiverQualifier | String | 接收合作夥伴識別碼。 (必要) |
+| agreementName | String | 據以解析訊息的 X12 合約名稱。 (選用) |
+| direction | 例舉 | 訊息流程的方向，接收或傳送。 (必要) |
+| interchangeControlNumber | String | 交換控制編號。 (選用) |
+| functionalGroupControlNumber | String | 功能的控制編號。 (選用) |
+| transactionSetControlNumber | String | 交易集控制編號。 (選用) |
+| CorrelationMessageId | String | 相互關聯訊息識別碼。 {AgreementName}{*GroupControlNumber*}{TransactionSetControlNumber} 組合。 (選用) |
+| messageType | String | 交易集或文件類型。 (選用) |
+| isMessageFailed | Boolean | X12 訊息是否失敗。 (必要) |
+| isTechnicalAcknowledgmentExpected | Boolean | X12 合約中是否設定技術通知。 (必要) |
+| isFunctionalAcknowledgmentExpected | Boolean | X12 合約中是否設定功能通知。 (必要) |
+| needAk2LoopForValidMessages | Boolean | 有效的訊息是否需要 AK2 迴圈。 (必要) |
+| segmentsCount | Integer | X12 交易集的區段數目。 (選用) |
 
 ## <a name="x12-transaction-set-acknowledgement-tracking-schema"></a>X12 交易集通知追蹤結構描述
 ````java
@@ -114,32 +114,32 @@ ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
     }
 ````
 
-| 屬性 | 說明 |
-| --- | --- |
-| senderPartnerName |選用，字串。  指出 X12 訊息傳送者的夥伴名稱 |
-| receiverPartnerName |選用，字串。  指出 X12 訊息接收者的夥伴名稱 |
-| senderQualifier |必要，字串。  指出傳送夥伴限定詞 |
-| senderIdentifier |必要，字串。  指出傳送夥伴識別碼 |
-| receiverQualifier |必要，字串。  指出接收夥伴限定詞 |
-| receiverQualifier |必要，字串。  指出接收夥伴識別碼 |
-| agreementName |選用，字串。  據以解析訊息的 X12 合約名稱 |
-| direction |必要，列舉。  指出訊息流程的方向。  允許的值為 receive 或 send |
-| interchangeControlNumber |選用，字串。  指出功能通知的交換控制編號。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值 |
-| functionalGroupControlNumber |選用，字串。  指出功能通知的功能群組控制編號。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值 |
-| isaSegment |選用，字串。  指出訊息的 ISA 區段。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值 |
-| isaSegment |選用，字串。  指出訊息的 GS 區段。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值 |
-| respondingfunctionalGroupControlNumber |選用，字串。  指出回應交換控制編號 |
-| respondingFunctionalGroupId |選用，字串。 指出回應功能群組識別碼，在通知中對應至 AK101 |
-| respondingtransactionSetControlNumber |選用，字串。  指出回應交易集控制編號 |
-| respondingTransactionSetId |選用，字串。  指出回應交易集識別碼，在通知中對應至 AK201 |
-| StatusCode |必要，布林值。  指出交易集通知狀態碼 |
-| segmentsCount |必要，列舉。  指出通知狀態碼。  允許的值為 Accepted、Rejected 或 AcceptedWithErrros |
-| processingStatus |必要，列舉。  指出通知的處理狀態。  允許的值為 Received、Generated 或 Sent |
-| CorrelationMessageId |選用，字串。  指出相互關聯訊息識別碼。  相互關聯識別碼是 {AgreementName}{GroupControlNumber}{TransactionSetControlNumber} 組合 |
-| isMessageFailed |必要，布林值。  指出 X12 訊息是成功或失敗 |
-| ak2Segment |選用，字串。 指出 ak2 區段。 ak2 區段指出接收的功能群組內交易集的通知 |
-| ak3Segment |選用，字串。 指出 ak3 區段。  ak3 區段報告資料區段中的錯誤 |
-| ak5Segment |選用，字串。 指出 ak5 區段。  ak5 區段報告是否接受或拒絕 AK2 區段中識別的交易集，以及原因 |
+| 屬性 | 類型 | 說明 |
+| --- | --- | --- |
+| senderPartnerName | String | X12 訊息傳送者的夥伴名稱。 (選用) |
+| receiverPartnerName | String | X12 訊息接收者的夥伴名稱。 (選用) |
+| senderQualifier | String | 傳送合作夥伴辨識符號。 (必要) |
+| senderIdentifier | String | 傳送合作夥伴識別碼。 (必要) |
+| receiverQualifier | String | 接收合作夥伴辨識符號。 (必要) |
+| receiverQualifier | String | 接收合作夥伴識別碼。 (必要) |
+| agreementName | String | 據以解析訊息的 X12 合約名稱。 (選用) |
+| direction | 例舉 | 訊息流程的方向，接收或傳送。 (必要) |
+| interchangeControlNumber | String | 功能通知的交換控制編號。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值。 (選用) |
+| functionalGroupControlNumber | String | 功能群組的交換控制編號。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值。 (選用) |
+| isaSegment | String | 訊息的 ISA 區段。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值。 (選用) |
+| isaSegment | String | 訊息的 GS 區段。 僅針對傳送至夥伴的訊息而接收功能通知的傳送端，才填入值。 (選用) |
+| respondingfunctionalGroupControlNumber | String | 回應交換控制編號。 (選用) |
+| respondingFunctionalGroupId | String | 回應功能群組識別碼，在通知中對應至 AK101。 (選用) |
+| respondingtransactionSetControlNumber | String | 回應交易集控制編號。 (選用) |
+| respondingTransactionSetId | String | 回應交易集識別碼，在通知中對應至 AK201。 (選用) |
+| StatusCode | Boolean | 交易集通知狀態碼。 (必要) |
+| segmentsCount | 例舉 | 通知狀態碼。 允許的值為 **Accepted**、**Rejected** 和 **AcceptedWithErrors**。 (必要) |
+| processingStatus | 例舉 | 通知的處理狀態。 允許的值為 **Received**、**Generated** 和 **Sent**。 (必要) |
+| CorrelationMessageId | String | 相互關聯訊息識別碼。 {AgreementName}{*GroupControlNumber*}{TransactionSetControlNumber} 組合。 (選用) |
+| isMessageFailed | Boolean | X12 訊息是否失敗。 (必要) |
+| ak2Segment | String | 接收的功能群組內交易集的通知。 (選用) |
+| ak3Segment | String | 報告資料區段中的錯誤。 (選用) |
+| ak5Segment | String | 報告是否接受或拒絕 AK2 區段中識別的交易集，以及原因。 (選用) |
 
 ## <a name="x12-interchange-tracking-schema"></a>X12 交換追蹤結構描述
 ````java
@@ -171,27 +171,27 @@ ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
     }
 ````
 
-| 屬性 | 說明 |
-| --- | --- |
-| senderPartnerName |選用，字串。  指出 X12 訊息傳送者的夥伴名稱 |
-| receiverPartnerName |選用，字串。  指出 X12 訊息接收者的夥伴名稱 |
-| senderQualifier |必要，字串。  指出傳送夥伴限定詞 |
-| senderIdentifier |必要，字串。  指出傳送夥伴識別碼 |
-| receiverQualifier |必要，字串。  指出接收夥伴限定詞 |
-| receiverQualifier |必要，字串。  指出接收夥伴識別碼 |
-| agreementName |選用，字串。  據以解析訊息的 X12 合約名稱 |
-| direction |必要，列舉。  指出訊息流程的方向。  允許的值為 receive 或 send |
-| interchangeControlNumber |選用，字串。  指出交換控制編號 |
-| isaSegment |選用，字串。  指出訊息 ISA 區段 |
-| isTechnicalAcknowledgmentExpected |必要，布林值。  指出 X12 合約中是否設定技術通知 |
-| isMessageFailed |必要，布林值。  指出 X12 訊息是成功或失敗 |
-| isa09 |選用，字串。  指出 X12 文件交換日期 |
-| isa10 |選用，字串。 指出 X12 文件交換時間 |
-| isa11 |選用，字串。 指出 X12 交換控制標準識別碼 |
-| isa12 |選用，字串。  指出 X12 交換控制版本號碼 |
-| isa14 |選用，字串。  指出已要求 X12 通知 |
-| isa15 |選用，字串。  指出用於測試或生產的指標 |
-| isa16 |選用，字串。 指出元素分隔符號 |
+| 屬性 | 類型 | 說明 |
+| --- | --- | --- |
+| senderPartnerName | String | X12 訊息傳送者的夥伴名稱。 (選用) |
+| receiverPartnerName | String | X12 訊息接收者的夥伴名稱。 (選用) |
+| senderQualifier | String | 傳送合作夥伴辨識符號。 (必要) |
+| senderIdentifier | String | 傳送合作夥伴識別碼。 (必要) |
+| receiverQualifier | String | 接收合作夥伴辨識符號。 (必要) |
+| receiverQualifier | String | 接收合作夥伴識別碼。 (必要) |
+| agreementName | String | 據以解析訊息的 X12 合約名稱。 (選用) |
+| direction | 例舉 | 訊息流程的方向，接收或傳送。 (必要) |
+| interchangeControlNumber | String | 交換控制編號。 (選用) |
+| isaSegment | String | 訊息 ISA 區段。 (選用) |
+| isTechnicalAcknowledgmentExpected | Boolean | X12 合約中是否設定技術通知。 (必要) |
+| isMessageFailed | Boolean | X12 訊息是否失敗。 (必要) |
+| isa09 | String | X12 文件交換日期。 (選用) |
+| isa10 | String | X12 文件交換時間。 (選用) |
+| isa11 | String | X12 交換控制標準識別碼。 (選用) |
+| isa12 | String | X12 交換控制版本號碼。 (選用) |
+| isa14 | String | 已要求 X12 通知。 (選用) |
+| isa15 | String | 用於測試或生產的指標。 (選用) |
+| isa16 | String | 元素分隔符號。 (選用) |
 
 ## <a name="x12-interchange-acknowledgement-tracking-schema"></a>X12 交換通知追蹤結構描述
 ````java
@@ -220,25 +220,25 @@ ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
     }
 ````
 
-| 屬性 | 說明 |
-| --- | --- |
-| senderPartnerName |選用，字串。  指出 X12 訊息傳送者的夥伴名稱 |
-| receiverPartnerName |選用，字串。  指出 X12 訊息接收者的夥伴名稱 |
-| senderQualifier |必要，字串。  指出傳送夥伴限定詞 |
-| senderIdentifier |必要，字串。  指出傳送夥伴識別碼 |
-| receiverQualifier |必要，字串。  指出接收夥伴限定詞 |
-| receiverQualifier |必要，字串。  指出接收夥伴識別碼 |
-| agreementName |選用，字串。  據以解析訊息的 X12 合約名稱 |
-| direction |必要，列舉。  指出訊息流程的方向。  允許的值為 receive 或 send |
-| interchangeControlNumber |選用，字串。  指出技術通知的交換控制編號。 從夥伴收到的技術通知有這個值 |
-| isaSegment |選用，字串。  指出技術通知的 ISA 區段。 從夥伴收到的技術通知有這個值 |
-| respondingInterchangeControlNumber |選用，字串。  指出技術通知的交換控制編號。 從夥伴收到的技術通知有這個值 |
-| isMessageFailed |必要，布林值。  指出 X12 訊息是成功或失敗 |
-| StatusCode |必要，列舉。  指出交換通知狀態碼。  允許的值為 Accepted/Rejected/AcceptedWithErrros |
-| processingStatus |必要，列舉。  指出通知狀態。  允許的值為 Received/Generated/Sent |
-| ta102 |選用，字串。 指出交換日期 |
-| ta103 |選用，字串。 指出交換時間 |
-| ta105 |選用，字串。 指出交換說明碼 |
+| 屬性 | 類型 | 說明 |
+| --- | --- | --- |
+| senderPartnerName | String | X12 訊息傳送者的夥伴名稱。 (選用) |
+| receiverPartnerName | String | X12 訊息接收者的夥伴名稱。 (選用) |
+| senderQualifier | String | 傳送合作夥伴辨識符號。 (必要) |
+| senderIdentifier | String | 傳送合作夥伴識別碼。 (必要) |
+| receiverQualifier | String | 接收合作夥伴辨識符號。 (必要) |
+| receiverQualifier | String | 接收合作夥伴識別碼。 (必要) |
+| agreementName | String | 據以解析訊息的 X12 合約名稱。 (選用) |
+| direction | 例舉 | 訊息流程的方向，接收或傳送。 (必要) |
+| interchangeControlNumber | String | 從合作夥伴收到的技術通知交換控制編號。 (選用) |
+| isaSegment | String | 從合作夥伴收到的技術通知 ISA 區段。 (選用) |
+| respondingInterchangeControlNumber |String | 從合作夥伴收到的技術通知交換控制編號。 (選用) |
+| isMessageFailed | Boolean | X12 訊息是否失敗。 (必要) |
+| StatusCode | 例舉 | 交換通知狀態碼。 允許的值為 **Accepted**、**Rejected** 和 **AcceptedWithErrors**。 (必要) |
+| processingStatus | 例舉 | 通知狀態。 允許的值為 **Received**、**Generated** 和 **Sent**。 (必要) |
+| ta102 | String | 交換日期。 (選用) |
+| ta103 | String | 交換時間。 (選用) |
+| ta105 | String | 交換說明碼。 (選用) |
 
 ## <a name="x12-functional-group-tracking-schema"></a>X12 功能群組追蹤結構描述
 ````java
@@ -272,29 +272,29 @@ ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
     }
 ````
 
-| 屬性 | 說明 |
-| --- | --- |
-| senderPartnerName |選用，字串。  指出 X12 訊息傳送者的夥伴名稱 |
-| receiverPartnerName |選用，字串。  指出 X12 訊息接收者的夥伴名稱 |
-| senderQualifier |必要，字串。  指出傳送夥伴限定詞 |
-| senderIdentifier |必要，字串。  指出傳送夥伴識別碼 |
-| receiverQualifier |必要，字串。  指出接收夥伴限定詞 |
-| receiverQualifier |必要，字串。  指出接收夥伴識別碼 |
-| agreementName |選用，字串。  據以解析訊息的 X12 合約名稱 |
-| direction |必要，列舉。  指出訊息流程的方向。  允許的值為 receive 或 send |
-| interchangeControlNumber |選用，字串。 指出交換控制編號 |
-| functionalGroupControlNumber |選用 - 功能控制編號 - 字串類型 |
-| isaSegment |選用，字串。  指出訊息 GS 區段 |
-| isTechnicalAcknowledgmentExpected |必要，布林值。  指出 X12 合約中是否設定技術通知 |
-| isFunctionalAcknowledgmentExpected |必要，布林值。  指出 X12 合約中是否設定功能通知 |
-| isMessageFailed |必要，布林值。  指出 X12 訊息是成功或失敗 |
-| gs01 |選用，字串。 指出功能識別碼 |
-| gs02 |選用，字串。 指出應用程式傳送者的代碼 |
-| gs03 |選用，字串。 指出應用程式接收者的代碼 |
-| gs04 |選用，字串。 指出功能群組日期 |
-| gs05 |選用，字串。 指出功能群組時間 |
-| gs07 |選用，字串。 指出負責單位代碼 |
-| gs08 |選用，字串。 指出版本/版次/產業識別碼 - 字串類型 |
+| 屬性 | 類型 | 說明 |
+| --- | --- | --- |
+| senderPartnerName | String | X12 訊息傳送者的夥伴名稱。 (選用) |
+| receiverPartnerName | String | X12 訊息接收者的夥伴名稱。 (選用) |
+| senderQualifier | String | 傳送合作夥伴辨識符號。 (必要) |
+| senderIdentifier | String | 傳送合作夥伴識別碼。 (必要) |
+| receiverQualifier | String | 接收合作夥伴辨識符號。 (必要) |
+| receiverQualifier | String | 接收合作夥伴識別碼。 (必要) |
+| agreementName | String | 據以解析訊息的 X12 合約名稱。 (選用) |
+| direction | 例舉 | 訊息流程的方向，接收或傳送。 (必要) |
+| interchangeControlNumber | String | 交換控制編號。 (選用) |
+| functionalGroupControlNumber | String | 功能的控制編號。 (選用) |
+| isaSegment | String | 訊息 GS 區段。 (選用) |
+| isTechnicalAcknowledgmentExpected | Boolean | X12 合約中是否設定技術通知。 (必要) |
+| isFunctionalAcknowledgmentExpected | Boolean | X12 合約中是否設定功能通知。 (必要) |
+| isMessageFailed | Boolean | X12 訊息是否失敗。 (必要)|
+| gs01 | String | 功能識別碼。 (選用) |
+| gs02 | String | 應用程式寄件者的代碼。 (選用) |
+| gs03 | String | 應用程式接收者的代碼。 (選用) |
+| gs04 | String | 功能群組的日期。 (選用) |
+| gs05 | String | 功能群組的時間。 (選用) |
+| gs07 | String | 負責單位的代碼。 (選用) |
+| gs08 | String | 版本/版次/產業識別碼。 (選用) |
 
 ## <a name="x12-functional-group-acknowledgement-tracking-schema"></a>X12 功能群組通知追蹤結構描述
 ````java
@@ -326,39 +326,38 @@ ms.openlocfilehash: 48dfc8327b7e2dfb16b0392fd6d44e83bdfb1177
     }
 ````
 
-| 屬性 | 說明 |
-| --- | --- |
-| senderPartnerName |選用，字串。  指出 X12 訊息傳送者的夥伴名稱 |
-| receiverPartnerName |選用，字串。  指出 X12 訊息接收者的夥伴名稱 |
-| senderQualifier |必要，字串。  指出傳送夥伴限定詞 |
-| senderIdentifier |必要，字串。  指出傳送夥伴識別碼 |
-| receiverQualifier |必要，字串。  指出接收夥伴限定詞 |
-| receiverQualifier |必要，字串。  指出接收夥伴識別碼 |
-| agreementName |選用，字串。  據以解析訊息的 X12 合約名稱 |
-| direction |必要，列舉。  指出訊息流程的方向。  允許的值為 receive 或 send |
-| interchangeControlNumber |選用，字串。 指出交換控制編號。 從夥伴收到技術通知時，傳送端會填入此值 |
-| functionalGroupControlNumber |選用，字串。 指出技術通知的功能群組控制編號。 從夥伴收到技術通知時，傳送端會填入此值 |
-| isaSegment |選用 - 同上，只在特定情況下才會填入交換控制編號。 - 字串類型 |
-| isaSegment |選用 - 同上，只在特定情況下才會填入功能群組控制編號。 - 字串類型 |
-| respondingfunctionalGroupControlNumber |選用 - 原始功能群組的控制編號 - 字串類型 |
-| respondingFunctionalGroupId |選用 - 在 ack 中對應到 AK101 - 功能群組識別碼 - 字串類型 |
-| isMessageFailed |必要，布林值。  指出 X12 訊息是成功或失敗 |
-| StatusCode |必要，列舉。  指出通知狀態碼。 允許的值為 Accepted/Rejected/AcceptedWithErrros |
-| processingStatus |必要，列舉。  指出通知的處理狀態。 允許的值為 Received/Generated/Sent |
-| ak903 |選用，字串。 指出收到的交易集數目 |
-| ak904 |選用，字串。 指出所識別的功能群組中接受的交易集數目 |
-| ak9Segment |選用，字串。  Ak9 區段指出是否接受或拒絕 AK1 區段中識別的功能群組，以及原因 |
+| 屬性 | 類型 | 說明 |
+| --- | --- | --- |
+| senderPartnerName | String | X12 訊息傳送者的夥伴名稱。 (選用) |
+| receiverPartnerName | String | X12 訊息接收者的夥伴名稱。 (選用) |
+| senderQualifier | String | 傳送合作夥伴辨識符號。 (必要) |
+| senderIdentifier | String | 傳送合作夥伴識別碼。 (必要) |
+| receiverQualifier | String | 接收合作夥伴辨識符號。 (必要) |
+| receiverQualifier | String | 接收合作夥伴識別碼。 (必要) |
+| agreementName | String | 據以解析訊息的 X12 合約名稱。 (選用) |
+| direction | 例舉 | 訊息流程的方向，接收或傳送。 (必要) |
+| interchangeControlNumber | String | 從合作夥伴收到技術通知時，傳送端會填入的交換控制編號。 (選用) |
+| functionalGroupControlNumber | String | 從合作夥伴收到技術通知時，傳送端會填入的技術通知功能群組控制編號。 (選用) |
+| isaSegment | String | 同交換控制編號，但只在特定情況下才會填入。 (選用) |
+| isaSegment | String | 同功能群組控制編號，但只在特定情況下才會填入。 (選用) |
+| respondingfunctionalGroupControlNumber | String | 原始功能群組的控制編號。 (選用) |
+| respondingFunctionalGroupId | String | 在通知功能群組識別碼中對應至 AK101。 (選用) |
+| isMessageFailed | Boolean | X12 訊息是否失敗。 (必要) |
+| StatusCode | 例舉 | 通知狀態碼。 允許的值為 **Accepted**、**Rejected** 和 **AcceptedWithErrors**。 (必要) |
+| processingStatus | 例舉 | 通知的處理狀態。 允許的值為 **Received**、**Generated** 和 **Sent**。 (必要) |
+| ak903 | String | 已接收交易集數目。 (選用) |
+| ak904 | String | 所識別的功能群組中接受的交易集數目。 (選用) |
+| ak9Segment | String | 是否接受或拒絕 AK1 區段中識別的功能群組，以及原因。 (選用) |
 
 ## <a name="next-steps"></a>後續步驟
-[深入了解監視 B2B 訊息](app-service-logic-monitor-b2b-message.md "Learn more about tracking B2B messages")   
-[在 OMS 入口網站中追蹤 B2B 訊息](app-service-logic-track-b2b-messages-omsportal.md "Tracking B2B messages")   
-[深入了解自訂追蹤結構描述](app-service-logic-track-integration-account-custom-tracking-shema.md "Learn about Custom Schema")   
-[深入了解 AS2 追蹤結構描述](app-service-logic-track-integration-account-as2-tracking-shemas.md "Learn about AS2 Schema")   
-[深入了解企業整合套件](app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack")  
+* [深入了解監視 B2B 訊息](app-service-logic-monitor-b2b-message.md)。
+* 深入了解 [AS2 追蹤結構描述](app-service-logic-track-integration-account-as2-tracking-shemas.md)。
+* [深入了解 B2B 自訂追蹤結構描述](app-service-logic-track-integration-account-custom-tracking-shema.md)。
+* 了解[在 Operations Management Suite 入口網站中追蹤 B2B 訊息](app-service-logic-track-b2b-messages-omsportal.md)。
+* [深入了解企業整合套件](app-service-logic-enterprise-integration-overview.md)。  
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

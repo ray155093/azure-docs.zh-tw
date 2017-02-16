@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 12/16/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4a2d71016eee5dfee1085be0380d79ba4a4f8d8f
+ms.sourcegitcommit: a9ebbbdc431a34553de04e920efbbc8c2496ce5f
+ms.openlocfilehash: 116dbf0ee30497d82c984b10e61ae02301e820a4
 
 
 ---
@@ -35,17 +35,25 @@ ms.openlocfilehash: 4a2d71016eee5dfee1085be0380d79ba4a4f8d8f
 
 若要使用 Machine Learning Studio，您需要有 Microsoft Azure Machine Learning 工作區。 此工作區包含您建立、管理及發行實驗所需的工具。  
 
-## <a name="to-create-a-workspace"></a>建立工作區
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 在 Azure 服務面板中，按一下 [機器學習服務]。  
-   ![建立工作區][1]
-3. 按一下 [建立 ML 工作區] 。
-4. 在 [快速建立] 頁面上，輸入您的工作區資訊，然後按一下 [建立 ML 工作區]。
+<!--
+## To create a workspace
+1. Sign in to the [Azure classic portal](https://manage.windowsazure.com).
+2. In the  Azure services panel, click **MACHINE LEARNING**.  
+   ![Create workspace][1]
+3. Click **CREATE AN ML WORKSPACE**.
+4. On the **QUICK CREATE** page, enter your workspace information and then click **CREATE AN ML WORKSPACE**.
+-->
 
-機器學習服務工作區建立後，您會看見它列在 Azure 傳統入口網站中的 [機器學習服務]  頁面上。 如需建立工作區的更多詳細資料，請參閱 [建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)。
+Azure 訂用帳戶的系統管理員將必須建立工作區，然後將您新增為擁有者或參與者。 如需詳細資訊，請參閱[建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)。
+
+建立工作區後，開啟 Machine Learning Studio ([https://studio.azureml.net](https://studio.azureml.net))。 如果這是您的工作區，Studio 會自動開啟它。 否則，您可以在視窗右上角的工具列中選取工作區。
+
+![在 Studio 中選取工作區][2]
 
 > [!TIP]
-> 您可以邀請其他人到您的工作區，以分享您正在執行的實驗。 您可以在 Machine Learning Studio 中的 [ **設定** ] 頁面上執行此動作。 您只需要每個使用者的 Microsoft 帳戶或組織帳戶。
+> 如果您是工作區的擁有者，您可以邀請他人到您的工作區，共用您正在執行的實驗。 您可以在 Machine Learning Studio 中的 [ **設定** ] 頁面上執行此動作。 您只需要每個使用者的 Microsoft 帳戶或組織帳戶。
+> 
+> 在 [設定] 頁面上，按一下 [使用者]，然後按一下視窗底部的 [邀請使用者]。
 > 
 > 
 
@@ -53,9 +61,10 @@ ms.openlocfilehash: 4a2d71016eee5dfee1085be0380d79ba4a4f8d8f
 **下一步：[上傳現有資料](machine-learning-walkthrough-2-upload-data.md)**
 
 [1]: ./media/machine-learning-walkthrough-1-create-ml-workspace/create1.png
+[2]: ./media/machine-learning-walkthrough-1-create-ml-workspace/open-workspace.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

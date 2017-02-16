@@ -1,6 +1,6 @@
 ---
 title: "事件中樞常見問題集 (FAQ) | Microsoft Docs"
-description: "事件中樞常見問題集。"
+description: "事件中樞常見問題集"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/01/2016
+ms.date: 12/07/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: eb8a1f5b46ed5bfbdc61789ffc48a79927d9c19d
+ms.sourcegitcommit: a584086e459c5446a814bbca3e50ac343fa9201e
+ms.openlocfilehash: f7b3974bf789df8c87254cc4186d8c7c85282aaa
 
 
 ---
@@ -71,16 +71,8 @@ ms.openlocfilehash: eb8a1f5b46ed5bfbdc61789ffc48a79927d9c19d
 事件中樞標準層提供事件中樞基本層和一些競爭系統未提供的功能。 這些功能包括超過 24 小時的保留期間，以及在延遲時間少於一秒的情況下使用單一 AMQP 連線將命令傳送到大量裝置，外加從這些裝置將遙測傳送到事件中樞等能力。 如需功能清單，請參閱 [事件中樞定價詳細資訊](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
 ## <a name="geographic-availability"></a>各地區上市情況
-事件中樞可在以下區域取得：
 
-| 地理區域 | 區域 |
-| --- | --- |
-| 美國 |美國中部、美國東部、美國東部 2、美國中南部、美國西部 |
-| 歐洲 |北歐、西歐 |
-| 亞太地區 |東亞、東南亞 |
-| 日本 |日本東部、日本西部 |
-| 巴西 |巴西南部 |
-| 澳大利亞 |澳大利亞東部、澳大利亞東南部 |
+在所有支援的 Azure 區域皆可提供Azure 事件中樞。 如需清單，請瀏覽 [Azure 區域][]頁面。  
 
 ## <a name="support-and-sla"></a>支援與 SLA
 事件中樞的技術支援可透過 [社群論壇](https://social.msdn.microsoft.com/forums/azure/home)取得。 計費及訂用帳戶管理支援均為免費提供。
@@ -90,14 +82,15 @@ ms.openlocfilehash: eb8a1f5b46ed5bfbdc61789ffc48a79927d9c19d
 ## <a name="next-steps"></a>後續步驟
 若要深入了解事件中樞，請參閱下列文章：
 
-* [事件中樞概觀][事件中樞概觀]。
-* 完整的[使用事件中樞的完整範例應用程式][使用事件中樞的完整範例應用程式]。
+* [事件中樞概觀][Event Hubs overview]。
+* [使用事件中樞的完整範例應用程式][sample application that uses Event Hubs]。
 
-[事件中樞概觀]: event-hubs-overview.md
-[使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[Event Hubs overview]: event-hubs-overview.md
+[sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[Azure 區域]: https://azure.microsoft.com/regions/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

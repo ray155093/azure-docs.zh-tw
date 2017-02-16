@@ -1,5 +1,5 @@
 ---
-title: "調整傳統 Windows VM 大小 | Microsoft Docs"
+title: "針對以傳統部署模型建立的 Windows VM 調整大小 - Azure | Microsoft Docs"
 description: "使用 Azure Powershell 可調整以傳統部署模型建立的 Windows 虛擬機器大小。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: drewm
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 9e874689e15fa1cd289a01c7781e3c9d1ad7ac67
+ms.sourcegitcommit: 3352e5d17777a213a91911440274419f2058940b
+ms.openlocfilehash: 381cf34b9e65a46a8033880a95e94446bd01edf1
 
 
 ---
@@ -72,6 +72,6 @@ ms.openlocfilehash: 9e874689e15fa1cd289a01c7781e3c9d1ad7ac67
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO5-->
 
 

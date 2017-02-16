@@ -8,7 +8,7 @@ author: ddove
 editor: 
 ms.assetid: d15a2e3f-5adf-41f0-95fa-4b945448e184
 ms.service: sql-database
-ms.custom: sharded databases
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: aa234364a8277154e486b8eca79ec30ccaa9fb0d
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: 83eb96e8e9d1d5ff31d87141fe7270c0db8867bd
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: aa234364a8277154e486b8eca79ec30ccaa9fb0d
 
 1. 一組 **Azure SQL 資料庫** 使用分區化架構裝載於 Azure 中。
 2. **彈性資料庫用戶端程式庫** 用來管理分區集。
-3. 一個資料庫子集放入 **彈性資料庫集區**中。 (請參閱 [何謂集區？](sql-database-elastic-pool.md))。
+3. 一個資料庫子集被放入「彈性集區」中。 (請參閱 [何謂集區？](sql-database-elastic-pool.md))。
 4. **彈性資料庫工作** 會針對所有資料庫執行排定的或 ad-hoc T-SQL 指令碼。
 5. **分割合併工具** 用來將資料移到另一個的分區。
 6. **彈性資料庫查詢** 可讓您撰寫一個跨分區集所有資料庫的查詢。
@@ -48,7 +48,7 @@ ms.openlocfilehash: aa234364a8277154e486b8eca79ec30ccaa9fb0d
 已簡單達成雲端應用程式在 VM和 Blob 儲存體方面的彈性和縮放 -- 增加或減少單位，或增加電源即可。 但對於關聯式資料庫中可設定狀態的資料處理，仍然是個挑戰。 在這些情況下出現的挑戰：
 
 * 針對工作負載的關聯式資料庫部分放大和縮小容量。
-* 管理可能會影響特定資料子集的作用點 - 例如特別忙碌的終端客戶 (租用戶)。
+* 管理可能會影響特定資料子集的作用區 - 例如特別忙碌的終端客戶 (租用戶)。
 
 傳統上，要解決這類情況，都是經由投資更大型的資料庫伺服器來支援應用程式。 不過，此選項在雲端有其限制，因為所有處理都發生在預先定義的商用硬體上。 相反地，將資料和處理分散至許多相同結構的資料庫 (一種稱為「分區化」的相應放大模式)，不論在成本或彈性上，都是超越傳統相應增加方法的另一種選擇。
 
@@ -83,7 +83,7 @@ ms.openlocfilehash: aa234364a8277154e486b8eca79ec30ccaa9fb0d
 
 ![單一租用戶與多租用戶][4]
 
-其他案例將多個租用戶一起放入資料庫中，而不是將它們隔離至個別的資料庫。 這就是一般的 **多租用戶分區化模式** – 可能是因為應用程式管理大量非常小的租用戶。 在多租用戶分區化中，資料庫資料表中的資料列都設計成具有索引鍵 (識別租用戶識別碼) 或分區化索引鍵。 同樣地，應用程式層負責將租用戶的要求遞送至適當的資料庫，而彈性資料庫用戶端程式庫支援此功能。 此外，資料列層級安全性可用於篩選每個租用戶可以存取的資料列 – 如需詳細資訊，請參閱 [使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)。 多租用戶分區化模式可能需要在資料庫之間重新分配資料，而彈性資料庫分割合併工具可協助達成此工作。 若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+其他案例將多個租用戶一起放入資料庫中，而不是將它們隔離至個別的資料庫。 這就是典型的**多租用戶分區化模式** - 這可能是因為應用程式管理大量非常小的租用戶所致。 在多租用戶分區化中，資料庫資料表中的資料列都設計成具有索引鍵 (識別租用戶識別碼) 或分區化索引鍵。 同樣地，應用程式層負責將租用戶的要求遞送至適當的資料庫，而彈性資料庫用戶端程式庫支援此功能。 此外，資料列層級安全性可用來篩選每個租用戶可以存取的資料列 - 如需詳細資訊，請參閱[使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)。 多租用戶分區化模式可能需要在資料庫之間重新分配資料，而彈性資料庫分割合併工具可協助達成此工作。 若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 ### <a name="move-data-from-multiple-to-single-tenancy-databases"></a>將資料從多租用戶資料庫移到單一租用戶資料庫
 當建立 SaaS 應用程式時，通常會提供試用版軟體給潛在客戶。 在此情況下，使用多租用戶資料庫來處理資料較符合成本效益。 不過，當潛在客戶變成真正客戶時，單一租用戶資料庫就比較好，因為提供更好的效能。 如果客戶已在試用期間建立資料，請使用 [分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md) ，將資料從多租用戶資料庫移到新的單一租用戶資料庫。
@@ -93,7 +93,7 @@ ms.openlocfilehash: aa234364a8277154e486b8eca79ec30ccaa9fb0d
 
 若要將現有的資料庫轉換為使用該工具，請參閱 [移轉現有的資料庫以相應放大](sql-database-elastic-convert-to-use-elastic-tools.md)。
 
-若要查看彈性資料庫集區的細節，請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)，或透過[教學課程](sql-database-elastic-pool-create-portal.md)建立新的集區。  
+若要查看彈性集區的細節，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)，或透過[教學課程](sql-database-elastic-pool-create-portal.md)建立新的集區。  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
@@ -107,6 +107,6 @@ ms.openlocfilehash: aa234364a8277154e486b8eca79ec30ccaa9fb0d
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

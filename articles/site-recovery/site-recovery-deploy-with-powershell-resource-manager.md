@@ -1,6 +1,6 @@
 ---
-title: "透過 Azure Resource Manager 使用 Azure PowerShell 保護 Azure 伺服器 | Microsoft Docs"
-description: "使用 PowerShell 和 Azure Resource Manager，透過 Azure Site Recovery 自動化 Azure 伺服器保護。"
+title: "使用 PowerShell 與 Azure Resource Manager 來複寫 Hyper-V VM | Microsoft Docs"
+description: "使用 PowerShell 和 Azure Resource Manager，透過 Azure Site Recovery 將 Hyper-V VM 至 Azure 的複寫自動化。"
 services: site-recovery
 documentationcenter: 
 author: bsiva
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: backup-recovery
-ms.date: 09/27/2016
+ms.date: 02/06/2017
 ms.author: bsiva
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: 555f61f76a8d6f1564e7ca736bcdd0dec7d594df
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: ec08ab30003994f3e60c3f37d39bb5b4ef498173
 
 
 ---
@@ -247,6 +247,6 @@ Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell C
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

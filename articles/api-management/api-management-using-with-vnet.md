@@ -13,10 +13,10 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
-ms.author: antonba
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: d2c9961e67fd1380ba734b6fa6f5fa859144e8ae
-ms.openlocfilehash: 1e814f0db36c9cad1b4f4f062b1e235994054621
+ms.sourcegitcommit: 40d9b0ee5a24e5503de19daa030bf1e8169dec24
+ms.openlocfilehash: 58be070ea5d5f4ea9f6d9453a1adcc23c4b9b2a2
 
 
 ---
@@ -51,6 +51,11 @@ ms.openlocfilehash: 1e814f0db36c9cad1b4f4f062b1e235994054621
 
 您現在會看見佈建 API 管理服務所在的所有區域的清單。 為每個區域選取 VNET 和子網路。 此清單中會同時填入傳統和 Resource Manager 虛擬網路，這些您要設定之區域中所設定 Azure 訂用帳戶可用的虛擬網路。
 
+> [!NOTE]
+> 上圖中的「服務端點」包括「閘道/Proxy」、「發行者入口網站」、「開發人員入口網站」、GIT 及「直接管理端點」。
+> 上圖中的「管理端點」是裝載在服務上以透過 Azure 入口網站和 Powershell 來管理組態的端點。
+> 此外，請注意，即使此圖顯示其各種端點的「IP 位址」，「API 管理」服務仍然「只」會在其已設定的「主機名稱」上回應。
+
 > [!IMPORTANT]
 > 將 Azure API 管理執行個體部署至 Resource Manager VNET 時，服務必須在除了 Azure API 管理執行個體之外不包含其他資源的專用子網路中。 如果嘗試將 Azure API 管理執行個體部署到含有其他資源的 Resource Manager VNET 子網路，則部署將會失敗。
 > 
@@ -64,6 +69,10 @@ ms.openlocfilehash: 1e814f0db36c9cad1b4f4f062b1e235994054621
 > 「API 管理」執行個體的 VIP 位址在每次啟用或停用 VNET 時都會變更。  
 > 將 API 管理中**外部**移動至**內部**或反之時，也會變更的 VIP 位址
 > 
+
+
+> [!IMPORTANT] 
+> 如果您將「API 管理」從 VNET 中移除或變更其部署所在的 VNET，則先前使用的 VNET 將保持鎖定狀態最長達 4 小時。 在這段期間，將無法刪除該 VNET 或在其中部署新的資源。
 
 ## <a name="enable-vnet-powershell"> </a>使用 PowerShell cmdlet 來啟用 VNET 連線
 您也可以使用 PowerShell cmdlet 啟用 VNET 連線能力
@@ -82,6 +91,10 @@ ms.openlocfilehash: 1e814f0db36c9cad1b4f4f062b1e235994054621
 
 * **自訂 DNS 伺服器安裝**：API 管理服務相依於數個 Azure 服務。 當「API 管理」是裝載於具有自訂 DNS 伺服器的 VNET 中時，它必須要解析這些 Azure 服務的主機名稱。 請遵循 [這份](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server) 有關自訂 DNS 設定的指引。 請參閱下方的連接埠資料表和參考的其他網路需求。
 
+> [!IMPORTANT]
+> 如果您針對 VNET 使用「自訂 DNS 伺服器」，建議您在將「API 管理」服務部署到該伺服器「之前」，先將該伺服器設定妥當。 否則，我們將必須重新啟動裝載該服務的 CloudService，才能讓它套用新的「DNS 伺服器」設定。
+> 
+
 * **API 管理所需的連接埠**︰使用[網路安全性群組][Network Security Group]可以控制到 API 管理部署於其中的子網路之輸入和輸出流量。 如果這些連接埠中有任何一個無法使用，「API 管理」可能就無法正常運作而可能變成無法存取。 搭配 VNET 使用 API 管理時，封鎖這其中一或多個連接埠是另一個常見的錯誤組態問題。
 
 當 API 管理服務執行個體裝載於 VNET 時，會使用下表中的連接埠。
@@ -89,7 +102,7 @@ ms.openlocfilehash: 1e814f0db36c9cad1b4f4f062b1e235994054621
 | 來源 / 目的地連接埠 | 方向 | 傳輸通訊協定 | 目的 | 來源 / 目的地 | 存取類型 |
 | --- | --- | --- | --- | --- | --- |
 | 80, 443 / 80, 443 |輸入 |TCP |與 API 管理的用戶端通訊 |INTERNET / VIRTUAL_NETWORK |外部 |
-| * / 3443 |輸入 |TCP |管理端點 |INTERNET / VIRTUAL_NETWORK |外部和內部 |
+| * / 3443 |輸入 |TCP |Azure 入口網站和 PowerShell 的管理端點 |INTERNET / VIRTUAL_NETWORK |外部和內部 |
 | 80, 443 / 80, 443 |輸出 |TCP |與「Azure 儲存體」和「Azure 服務匯流排」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | 1433 / 1433 |輸出 |TCP |與 Azure SQL 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | 9350 - 9354 / 9350 - 9354 |輸出 |TCP |與「服務匯流排」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
@@ -97,7 +110,6 @@ ms.openlocfilehash: 1e814f0db36c9cad1b4f4f062b1e235994054621
 | 6381 - 6383 / 6381 - 6383 |輸入和輸出 |UDP |與「Redis 快取」的相依性 |VIRTUAL_NETWORK / VIRTUAL_NETWORK |外部和內部 |-
 | * / 445 |輸出 |TCP |與「適用於 GIT 的 Azure 檔案共用」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | * / * | 輸入 |TCP |Azure 基礎結構負載平衡器 | AZURE_LOAD_BALANCER / VIRTUAL_NETWORK |外部和內部 |
-| * / * | 輸出 |TCP |Azure 基礎結構負載平衡器 | VIRTUAL_NETWORK / AZURE_LOAD_BALANCER |外部和內部 |
 
 * **SSL 功能**︰若要啟用 SSL 憑證鏈結建立和驗證，API 管理服務需要 ocsp.msocsp.com、mscrl.microsoft.com 和 crl.microsoft.com 的輸出網路連線。
 
@@ -134,12 +146,12 @@ ms.openlocfilehash: 1e814f0db36c9cad1b4f4f062b1e235994054621
 [Connect to a web service behind VPN]: #connect-vpn
 [Related content]: #related-content
 
-[Different topologies to connect to Vpn Gateway]: ../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site
+[Different topologies to connect to Vpn Gateway]: ../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site-connections
 [UDRs]: ../virtual-network/virtual-networks-udr-overview.md
 [Network Security Group]: ../virtual-network/virtual-networks-nsg.md
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "將服務匯流排應用程式與服務匯流排中斷和災害隔絕 | Microsoft Docs"
+title: "將 Azure 服務匯流排應用程式與服務匯流排中斷和災害隔絕 | Microsoft Docs"
 description: "說明您可用來保護應用程式，避免潛在服務匯流排中斷的技巧。"
 services: service-bus-messaging
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/02/2016
+ms.date: 01/10/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a76ebad52b8b08311b488cd5bbdb909628d43ec3
+ms.sourcegitcommit: 994a379129bffd7457912bc349f240a970aed253
+ms.openlocfilehash: 6424d4dabe20514c0e41c6d755d644494afea302
 
 
 ---
@@ -35,22 +35,22 @@ ms.openlocfilehash: a76ebad52b8b08311b488cd5bbdb909628d43ec3
 ## <a name="protecting-against-acs-outages"></a>保護 ACS 免於中斷
 如果您使用 ACS 認證，ACS 會無法使用，用戶端也無法再取得權杖。 在 ACS 停機時擁有權杖的用戶端可以繼續使用服務匯流排直到權杖到期。 預設權杖存留期為 3 小時。
 
-若要保護 ACS 免於中斷，請使用共用存取簽章 (SAS) 權杖。 在此情況下，用戶端會藉由使用秘密金鑰簽署自行決策權杖的方式，直接使用服務匯流排進行驗證。 不再需要呼叫 ACS。 如需有關 SAS 權杖的詳細資訊，請參閱[服務匯流排驗證][服務匯流排驗證]。
+若要保護 ACS 免於中斷，請使用共用存取簽章 (SAS) 權杖。 在此情況下，用戶端會藉由使用秘密金鑰簽署自行決策權杖的方式，直接使用服務匯流排進行驗證。 不再需要呼叫 ACS。 如需有關 SAS 權杖的詳細資訊，請參閱[服務匯流排驗證][Service Bus authentication]。
 
 ## <a name="protecting-queues-and-topics-against-messaging-store-failures"></a>保護佇列和主題免於發生訊息存放區失敗
-非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。 另一方面，分割佇列包含多個片段。 每個片段都儲存在不同的訊息存放區。 當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。 如果對應的訊息存放區無法使用，服務匯流排會盡可能將訊息寫入至不同的片段。 如需分割實體的詳細資訊，請參閱[分割的傳訊實體][分割的傳訊實體]。
+非分割的佇列或主題會指派給一個訊息存放區。 如果此訊息存放區無法使用，該佇列或主題上的所有作業都會失敗。 另一方面，分割佇列包含多個片段。 每個片段都儲存在不同的訊息存放區。 當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。 如果對應的訊息存放區無法使用，服務匯流排會盡可能將訊息寫入至不同的片段。 如需有關已分割實體的詳細資訊，請參閱[分割的傳訊實體][Partitioned messaging entities]。
 
 ## <a name="protecting-against-datacenter-outages-or-disasters"></a>保護資料中心免於中斷或災害
 若要允許兩個資料中心之間的容錯移轉，您可以在每個資料中心建立服務匯流排服務命名空間。 例如，服務匯流排服務命名空間 **contosoPrimary.servicebus.windows.net** 可能位於美國北部/中部區域，而 **contosoSecondary.servicebus.windows.net** 可能位於美國南部/中部區域。 如果服務匯流排訊息實體必須在資料中心發生中斷時保持可存取狀態，您可以在這兩個命名空間建立該實體。
 
-如需詳細資訊，請參閱 [非同步傳訊模式和高可用性][非同步傳訊模式和高可用性]中的「Azure 資料中心內服務匯流排的失敗」一節。
+如需詳細資訊，請參閱[非同步傳訊模式和高可用性][Asynchronous messaging patterns and high availability]中的＜Azure 資料中心內的服務匯流排失敗＞一節。
 
 ## <a name="protecting-relay-endpoints-against-datacenter-outages-or-disasters"></a>保護轉送端點免於發生資料中心中斷或災害
 轉送端點的異地複寫會讓公開轉送端點的服務可在服務匯流排中斷時使用。 若要達到異地複寫，服務必須在不同的命名空間中建立兩個轉送端點。 命名空間必須位於不同的資料中心而兩個端點必須具有不同的名稱。 比方說，主要端點在 **contosoPrimary.servicebus.windows.net/myPrimaryService** 之下達到，而其次要的對應項目可以在 **contosoSecondary.servicebus.windows.net/mySecondaryService** 之下達到。
 
 然後服務會接聽這兩個端點，且用戶端可以透過任一端點叫用服務。 用戶端應用程式會隨機挑選其中一個轉送做為主要端點，並將其要求傳送至作用中的端點。 如果作業失敗並出現錯誤代碼，此失敗代表轉送端點無法使用。 應用程式會開啟備份端點的通道並重新發出要求。 作用中和備份端點會在這一點交換角色：用戶端應用程式會將舊的使用中端點視為新的備份端點，而將舊的備份端點視為新的作用中端點。 如果這兩個傳送作業都失敗，兩個實體的角色會保持不變並傳回錯誤。
 
-[搭配服務匯流排轉送訊息的異地複寫][搭配服務匯流排轉送訊息的異地複寫]範例會示範如何複寫轉送。
+[搭配服務匯流排轉送訊息的異地複寫 (英文)][Geo-replication with Service Bus relayed Messages] 範例示範如何複寫轉送。
 
 ## <a name="protecting-queues-and-topics-against-datacenter-outages-or-disasters"></a>保護佇列和主題免於發生資料中心中斷或災害
 若要在使用代理傳訊時達成對資料中心中斷的恢復能力，服務匯流排支援兩種方法：*主動*和*被動*複寫。 無論使用哪個方法，如果特定佇列或主題必須在資料中心發生中斷時保持可存取狀態，您可以在這兩個命名空間建立該佇列或主題。 這兩個實體可以具有相同的名稱。 比方說，主要佇列在 **contosoPrimary.servicebus.windows.net/myQueue** 之下達到，而其次要的對應項目可以在 **contosoSecondary.servicebus.windows.net/myQueue** 之下達到。
@@ -60,9 +60,9 @@ ms.openlocfilehash: a76ebad52b8b08311b488cd5bbdb909628d43ec3
 ## <a name="active-replication"></a>主動複寫
 主動複寫會針對每個作業使用兩個命名空間中的實體。 傳送訊息的任何用戶端會傳送相同訊息的兩個複本。 第一個複本傳送至主要實體 (例如 **contosoPrimary.servicebus.windows.net/sales**)，而訊息的第二個複本傳送至次要實體 (例如 **contosoSecondary.servicebus.windows.net/sales**)。
 
-用戶端會從這兩個佇列接收訊息。 接收者會處理訊息的第一個複本，並隱藏第二個複本。 若要隱藏重複的訊息，傳送者必須利用唯一的識別碼標記每個訊息。 訊息的兩個複本必須以相同的識別碼標記。 您可以使用 [BrokeredMessage.MessageId][BrokeredMessage.MessageId] 或 [BrokeredMessage.Label][BrokeredMessage.Label] 屬性，或自訂屬性來標記訊息。 接收者必須維護其已收到的訊息清單。
+用戶端會從這兩個佇列接收訊息。 接收者會處理訊息的第一個複本，並隱藏第二個複本。 若要隱藏重複的訊息，傳送者必須利用唯一的識別碼標記每個訊息。 訊息的兩個複本必須以相同的識別碼標記。 您可以使用 [BrokeredMessage.MessageId][BrokeredMessage.MessageId]、[BrokeredMessage.Label][BrokeredMessage.Label] 屬性或自訂屬性來標記訊息。 接收者必須維護其已收到的訊息清單。
 
-[搭配服務匯流排代理訊息的異地複寫][搭配服務匯流排代理訊息的異地複寫]範例示範訊息實體的主動複寫。
+[搭配服務匯流排代理訊息的異地複寫 (英文)][Geo-replication with Service Bus Brokered Messages] 範例示範訊息實體的主動複寫。
 
 > [!NOTE]
 > 主動複寫方法會讓作業數目加倍，因此這個方法會導致更高的成本。
@@ -81,26 +81,26 @@ ms.openlocfilehash: a76ebad52b8b08311b488cd5bbdb909628d43ec3
 * **訊息延遲或遺失**：假設傳送者成功傳送訊息 m1 至主要佇列，佇列在接收者收到 m1 之前無法使用。 傳送者會將後續的訊息 m2 傳送至次要佇列。 如果主要佇列暫時無法使用，接收者會在佇列可再次使用之後收到 m1。 若發生災害，接收者可能永遠無法收到 m1。
 * **重複接收**：假設傳送者傳送訊息 m 到主要佇列。 服務匯流排已成功處理 m 但無法傳送回應。 傳送作業逾時之後，傳送者會將 m 的相同複本傳送至次要佇列。 如果接收者可以在主要佇列無法使用之前收到 m 的第一個複本，接收者會幾乎同時接收 m 的兩個複本。 如果接收者無法在主要佇列無法使用之前收到 m 的第一個複本，接收者一開始只會收到 m 的第二個複本，但會接著在主要佇列可以使用時會收到 m 的第二個複本。
 
-[搭配服務匯流排代理訊息的異地複寫][搭配服務匯流排代理訊息的異地複寫]範例示範訊息實體的被動複寫。
+[搭配服務匯流排代理訊息的異地複寫 (英文)][Geo-replication with Service Bus Brokered Messages] 範例示範訊息實體的被動複寫。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解災害復原，請參閱這些文章：
 
-* [Azure SQL Database 商務持續性][Azure SQL Database 商務持續性]
-* [Azure 復原技術指導][Azure 復原技術指導]
+* [Azure SQL Database 商務持續性][Azure SQL Database Business Continuity]
+* [Azure 復原技術指導][Azure resiliency technical guidance]
 
 [Service Bus Authentication]: service-bus-authentication-and-authorization.md
-[分割的傳訊實體]: service-bus-partitioning.md
-[非同步傳訊模式和高可用性]: service-bus-async-messaging.md#failure-of-service-bus-within-an-azure-datacenter
-[搭配服務匯流排轉送訊息的異地複寫]: http://code.msdn.microsoft.com/Geo-replication-with-16dbfecd
-[BrokeredMessage.MessageId]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx
-[BrokeredMessage.Label]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx
-[搭配服務匯流排代理訊息的異地複寫]: http://code.msdn.microsoft.com/Geo-replication-with-f5688664
-[Azure SQL Database 商務持續性]: ../sql-database/sql-database-business-continuity.md
-[Azure 復原技術指導]: ../resiliency/resiliency-technical-guidance.md
+[Partitioned messaging entities]: service-bus-partitioning.md
+[Asynchronous messaging patterns and high availability]: service-bus-async-messaging.md#failure-of-service-bus-within-an-azure-datacenter
+[Geo-replication with Service Bus Relayed Messages]: http://code.msdn.microsoft.com/Geo-replication-with-16dbfecd
+[BrokeredMessage.MessageId]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId
+[BrokeredMessage.Label]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label
+[Geo-replication with Service Bus Brokered Messages]: http://code.msdn.microsoft.com/Geo-replication-with-f5688664
+[Azure SQL Database Business Continuity]: ../sql-database/sql-database-business-continuity.md
+[Azure resiliency technical guidance]: ../resiliency/resiliency-technical-guidance.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

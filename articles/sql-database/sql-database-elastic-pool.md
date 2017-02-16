@@ -11,14 +11,14 @@ ms.assetid: b46e7fdc-2238-4b3b-a944-8ab36c5bdb8e
 ms.service: sql-database
 ms.custom: multiple databases
 ms.devlang: NA
-ms.date: 01/04/2017
+ms.date: 01/11/2017
 ms.author: CarlRabeler
 ms.workload: data-management
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: ce30d47075636d3b64215d50b81acc09e7ed72f1
-ms.openlocfilehash: d74be42963206c82218bc82ea1bf12e5c0cdb0f3
+ms.sourcegitcommit: 2681dd3792a351fecc0c72eb7fe546113a451d24
+ms.openlocfilehash: 412c3f9c34e399ecdffd939b5b72e687a847b8e1
 
 
 ---
@@ -33,7 +33,7 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 ## <a name="how-it-works"></a>運作方式
 常見的 SaaS 應用程式模式是單一租用戶資料庫模型︰每個客戶會被授與他們自己的資料庫。 每個客戶 (資料庫) 針對記憶體、IO 和 CPU，都有無法預期的資源需求。 由於需求有高有低，您該如何以有效率且符合成本效益的方式配置資源？ 您通常有兩個選項：(1) 根據尖峰使用量額外佈建資源並額外付款，或是 (2) 少量佈建來節省成本，但會降低在尖峰期間的效能和客戶滿意度。 彈性集區可藉由確保資料庫會在需要時取得它們所需的效能資源，來解決此問題。 它們會在可預測的預算內提供簡單的資源配置機制。 若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱 [採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Elastic-databases-helps-SaaS-developers-tame-explosive-growth/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Elastic-databases-helps-SaaS-developers-tame-explosive-growth/player]
 >
 
 在 SQL Database 中，資料庫處理資源需求的能力相對量值就單一資料庫而言是以「資料庫交易單位」(DTU) 表示，就彈性集區中的資料庫而言則是以彈性 DTU (eDTU) 表示。 如需深入了解 DTU 和 eDTU 的資訊，請參閱 [SQL Database 簡介](sql-database-technical-overview.md)。
@@ -106,6 +106,6 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

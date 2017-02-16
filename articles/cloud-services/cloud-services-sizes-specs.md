@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 12/14/2016
+ms.date: 01/12/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 35a295a8c24475de90fc26687ca00024cfba1079
-ms.openlocfilehash: bccdfd49226261699f89ebca0adf437ff63c1cdf
+ms.sourcegitcommit: d18c204617bfa62797a875b379e3fa4a39dd6806
+ms.openlocfilehash: 73d6f352671165a020a0e3ab3b20fba725d99158
 
 
 ---
@@ -58,9 +58,9 @@ ms.openlocfilehash: bccdfd49226261699f89ebca0adf437ff63c1cdf
 
 | SKU 系列 | ACU/核心 |
 | --- | --- |
-| [Standard_A0](#a-series) |50 |
-| [Standard_A1-4](#a-series) |100 |
-| [Standard_A5-7](#a-series) |100 |
+| [ExtraSmall](#a-series) |50 |
+| [Small-ExtraLarge](#a-series) |100 |
+| [A5-7](#a-series) |100 |
 | [Standard_A1-8v2](#av2-series) |100 |
 | [Standard_A2m-8mv2](#av2-series) |100 |
 | [A8-A11](#a-series) |225* |
@@ -80,101 +80,92 @@ ms.openlocfilehash: bccdfd49226261699f89ebca0adf437ff63c1cdf
 * 最大網路頻寬是依據各 VM 類型而配置與指派的最大彙總頻寬。 最大頻寬能指導我們選取正確的 VM 類型，以確保有適當的網路容量可用。 在低、中度、高和極高之間移動時，輸送量將隨之增加。 實際的網路效能將取決於許多因素，包括網路和應用程式負載，以及應用程式的網路設定。
 
 ## <a name="a-series"></a>A 系列
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 HDD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Standard_A0 |1 |0.768 |20 |1 |1x500 |1 / 低 |
-| Standard_A1 |1 |1.75 |70 |2 |2x500 |1 / 中 |
-| Standard_A2 |2 |3.5 GB |135 |4 |4x500 |1 / 中 |
-| Standard_A3 |4 |7 |285 |8 |8x500 |2 / 高 |
-| Standard_A4 |8 |14 |605 |16 |16x500 |4 / 高 |
-| Standard_A5 |2 |14 |135 |4 |4x500 |1 / 中 |
-| Standard_A6 |4 |28 |285 |8 |8x500 |2 / 高 |
-| Standard_A7 |8 |56 |605 |16 |16x500 |4 / 高 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 本機 HDD: GiB       | 最大 NIC / 網路頻寬 |
+|---------------- | --------- | ------------ | -------------------- | ---------------------------- |
+| 特小型      | 1         | 0.768        | 20                   | 1 / 低 |
+| 小型           | 1         | 1.75         | 225                  | 1 / 中 |
+| 中型          | 2         | 3.5 GB       | 490                  | 1 / 中 |
+| 大型           | 4         | 7            | 1000                 | 2 / 高 |
+| 特大型      | 8         | 14           | 2040                 | 4 / 高 |
+| A5              | 2         | 14           | 490                  | 1 / 中 |
+| A6              | 4         | 28           | 1000                 | 2 / 高 |
+| A7              | 8         | 56           | 2040                 | 4 / 高 |
 
 ## <a name="a-series---compute-intensive-instances"></a>A 系列 - 大量計算執行個體
 如需有關使用這些大小的資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 HDD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Standard_A8* |8 |56 |382 |16 |16x500 |2 / 高 |
-| Standard_A9* |16 |112 |382 |16 |16x500 |4 / 非常高 |
-| Standard_A10 |8 |56 |382 |16 |16x500 |2 / 高 |
-| Standard_A11 |16 |112 |382 |16 |16x500 |4 / 非常高 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 本機 HDD: GiB       | 最大 NIC / 網路頻寬 |
+|---------------- | --------- | ------------ | -------------------- | ---------------------------- |
+| A8*             |8          | 56           | 1817                 | 2 / 高 |
+| A9*             |16         | 112          | 1817                 | 4 / 非常高 |
+| A10             |8          | 56           | 1817                 | 2 / 高 |
+| A11             |16         | 112          | 1817                 | 4 / 非常高 |
 
 \*支援 RDMA
 
 ## <a name="av2-series"></a>Av2 系列
 
-| 大小        | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
-|-------------|-----------|--------------|-----------------------|----------------|--------------------|-----------------------|
-| Standard_A1_v2 | 1         | 2            | 10                   | 2              | 2x500              | 1 / 中              |
-| Standard_A2_v2 | 2         | 4            | 20                   | 4              | 4x500              | 2 / 中              |
-| Standard_A4_v2 | 4         | 8            | 40                   | 8              | 8x500              | 4 / 高                  |
-| Standard_A8_v2 | 8         | 16           | 80                   | 16             | 16x500             | 8 / 高                  |
-| Standard_A2m_v2 | 2        | 16           | 20                   | 4              | 4x500              | 2 / 中              |
-| Standard_A4m_v2 | 4        | 32           | 40                   | 8              | 8x500              | 4 / 高                  |
-| Standard_A8m_v2 | 8        | 64           | 80                   | 16             | 16x500             | 8 / 高                  |
+| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+|---------------- | --------- | ------------ | -------------------- | ---------------------------- |
+| Standard_A1_v2  | 1         | 2            | 10                   | 1 / 中                 |
+| Standard_A2_v2  | 2         | 4            | 20                   | 2 / 中                 |
+| Standard_A4_v2  | 4         | 8            | 40                   | 4 / 高                     |
+| Standard_A8_v2  | 8         | 16           | 80                   | 8 / 高                     |
+| Standard_A2m_v2 | 2         | 16           | 20                   | 2 / 中                 |
+| Standard_A4m_v2 | 4         | 32           | 40                   | 4 / 高                     |
+| Standard_A8m_v2 | 8         | 64           | 80                   | 8 / 高                     |
 
 
 ## <a name="d-series"></a>D 系列
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 標準_D1 |1 |3.5 |50 |2 |2x500 |1 / 中 |
-| 標準_D2 |2 |7 |100 |4 |4x500 |2 / 高 |
-| 標準_D3 |4 |14 |200 |8 |8x500 |4 / 高 |
-| 標準_D4 |8 |28 |400 |16 |16x500 |8 / 高 |
-| 標準_D11 |2 |14 |100 |4 |4x500 |2 / 高 |
-| 標準_D12 |4 |28 |200 |8 |8x500 |4 / 高 |
-| 標準_D13 |8 |56 |400 |16 |16x500 |8 / 高 |
-| 標準_D14 |16 |112 |800 |32 |32x500 |8 / 非常高 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+|---------------- | --------- | ------------ | -------------------- | ---------------------------- |
+| 標準_D1     | 1         | 3.5          | 50                   | 1 / 中 |
+| 標準_D2     | 2         | 7            | 100                  | 2 / 高 |
+| 標準_D3     | 4         | 14           | 200                  | 4 / 高 |
+| 標準_D4     | 8         | 28           | 400                  | 8 / 高 |
+| 標準_D11    | 2         | 14           | 100                  | 2 / 高 |
+| 標準_D12    | 4         | 28           | 200                  | 4 / 高 |
+| 標準_D13    | 8         | 56           | 400                  | 8 / 高 |
+| 標準_D14    | 16        | 112          | 800                  | 8 / 非常高 |
 
 ## <a name="dv2-series"></a>Dv2 系列
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Standard_D1_v2 |1 |3.5 |50 |2 |2x500 |1 / 中 |
-| Standard_D2_v2 |2 |7 |100 |4 |4x500 |2 / 高 |
-| Standard_D3_v2 |4 |14 |200 |8 |8x500 |4 / 高 |
-| Standard_D4_v2 |8 |28 |400 |16 |16x500 |8 / 高 |
-| Standard_D5_v2 |16 |56 |800 |32 |32x500 |8 / 極高 |
-| Standard_D11_v2 |2 |14 |100 |4 |4x500 |2 / 高 |
-| Standard_D12_v2 |4 |28 |200 |8 |8x500 |4 / 高 |
-| Standard_D13_v2 |8 |56 |400 |16 |16x500 |8 / 高 |
-| Standard_D14_v2 |16 |112 |800 |32 |32x500 |8 / 極高 |
-| Standard_D15_v2 |20 |140 |1,000 |40 |40x500 |8 / 極高 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+|---------------- | --------- | ------------ | -------------------- | ---------------------------- |
+| Standard_D1_v2  | 1         | 3.5          | 50                   | 1 / 中 |
+| Standard_D2_v2  | 2         | 7            | 100                  | 2 / 高 |
+| Standard_D3_v2  | 4         | 14           | 200                  | 4 / 高 |
+| Standard_D4_v2  | 8         | 28           | 400                  | 8 / 高 |
+| Standard_D5_v2  | 16        | 56           | 800                  | 8 / 極高 |
+| Standard_D11_v2 | 2         | 14           | 100                  | 2 / 高 |
+| Standard_D12_v2 | 4         | 28           | 200                  | 4 / 高 |
+| Standard_D13_v2 | 8         | 56           | 400                  | 8 / 高 |
+| Standard_D14_v2 | 16        | 112          | 800                  | 8 / 極高 |
+| Standard_D15_v2 | 20        | 140          | 1,000                | 8 / 極高 |
 
 ## <a name="g-series"></a>G 系列
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Standard_G1 |2 |28 |384 |4 |4 x 500 |1 / 高 |
-| Standard_G2 |4 |56 |768 |8 |8 x 500 |2 / 高 |
-| Standard_G3 |8 |112 |1,536 |16 |16 x 500 |4 / 非常高 |
-| Standard_G4 |16 |224 |3,072 |32 |32 x 500 |8 / 極高 |
-| Standard_G5 |32 |448 |6,144 |64 |64 x 500 |8 / 極高 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+|---------------- | --------- | ------------ | -------------------- | ---------------------------- |
+| Standard_G1     | 2         | 28           | 384                  |1 / 高 |
+| Standard_G2     | 4         | 56           | 768                  |2 / 高 |
+| Standard_G3     | 8         | 112          | 1,536                |4 / 非常高 |
+| Standard_G4     | 16        | 224          | 3,072                |8 / 極高 |
+| Standard_G5     | 32        | 448          | 6,144                |8 / 極高 |
 
 ## <a name="h-series"></a>H 系列
 Azure H 系列虛擬機器是下一代高效能運算 VM，以高端運算需求為目標，例如分子建模以及運算流體力學。 這些 8 與 16 核心 VM 是以 Intel Haswell E5-2667 V3 處理器技術，搭載 DDR4 記憶體與本機 SSD 型儲存體為基礎建置。
 
 除了大量的 CPU 能力，H 系列使用 FDR InfiniBand 與數個記憶體組態，針對低延遲 RDMA 網路提供不同的選項，以支援記憶體大量運算需求。
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Standard_H8 |8 |56 |1000 |16 |16 x 500 |8 / 高 |
-| Standard_H16 |16 |112 |2000 |32 |32 x 500 |8 / 非常高 |
-| Standard_H8m |8 |112 |1000 |16 |16 x 500 |8 / 高 |
-| Standard_H16m |16 |224 |2000 |32 |32 x 500 |8 / 非常高 |
-| Standard_H16r* |16 |112 |2000 |32 |32 x 500 |8 / 非常高 |
-| Standard_H16mr* |16 |224 |2000 |32 |32 x 500 |8 / 非常高 |
+| 大小            | CPU 核心 | 記憶體：GiB  | 本機 SSD: GiB       | 最大 NIC / 網路頻寬 |
+|---------------- | --------- | ------------ | -------------------- | ---------------------------- |
+| Standard_H8     | 8         | 56           | 1000                 | 8 / 高 |
+| Standard_H16    | 16        | 112          | 2000                 | 8 / 非常高 |
+| Standard_H8m    | 8         | 112          | 1000                 | 8 / 高 |
+| Standard_H16m   | 16        | 224          | 2000                 | 8 / 非常高 |
+| Standard_H16r*  | 16        | 112          | 2000                 | 8 / 非常高 |
+| Standard_H16mr* | 16        | 224          | 2000                 | 8 / 非常高 |
 
 \*支援 RDMA
-
-## <a name="notes-standard-a0---a4-using-cli-and-powershell"></a>注意︰使用 CLI 和 PowerShell 的標準 A0 - A4
-在傳統部署模型中，部分 VM 大小名稱會與 CLI 和 PowerShell 中的稍有不同：
-
-* Standard_A0 是「特小型」
-* Standard_A1 是「小型」
-* Standard_A2 是「中型」
-* Standard_A3 是「大型」
-* Standard_A4 是「特大型」
 
 ## <a name="configure-sizes-for-cloud-services"></a>設定雲端服務大小
 您可以指定角色執行個體的虛擬機器大小，作為 [服務定義檔](cloud-services-model-and-package.md#csdef)所描述之服務模型的一部分。 角色大小決定 CPU 核心數目、記憶體容量，以及配置給執行中執行個體的本機檔案系統大小。 根據您應用程式的資源需求選擇角色大小。
@@ -196,12 +187,19 @@ Azure H 系列虛擬機器是下一代高效能運算 VM，以高端運算需求
 >
 >
 
+## <a name="get-a-list-of-sizes"></a>取得大小清單
+您可以使用 PowerShell 或 REST API 來取得大小清單。 如需 REST API 的相關記載，請參閱[這裡](https://msdn.microsoft.com/library/azure/dn469422.aspx)。 以下程式碼是一個 PowerShell 命令，此命令會列出您「雲端服務」目前可用的所有大小。
+
+```powershell
+Get-AzureRoleSize | where SupportedByWebWorkerRoles -eq $true | select InstanceSize
+```
+
 ## <a name="next-steps"></a>後續步驟
 * 了解 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)。
 * 深入了解適用於高效能運算 (HPC) 這類工作負載的 [H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

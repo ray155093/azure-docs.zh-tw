@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/19/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: f1955e3e1618c6228bfa5439ca66155148ff1cb3
-ms.openlocfilehash: 3eb3ea76fa577dfcc360e209a645b45e0cb4ab34
+ms.sourcegitcommit: e4851e872349fa6483e1f1a340d0968e845a3518
+ms.openlocfilehash: c286b748822d6667f5682c13b7d4c870a3caab65
 
 
 ---
@@ -134,7 +134,7 @@ ms.openlocfilehash: 3eb3ea76fa577dfcc360e209a645b45e0cb4ab34
 
 ## <a name="next-steps"></a>後續步驟
 * 若要檢視活動記錄檔，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
-* 若要針對部署錯誤進行疑難排解，請參閱 [使用 Azure 入口網站對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-portal.md)。
+* 若要檢視有關部署的詳細資料，請參閱[檢視部署作業](resource-manager-deployment-operations.md)。
 * 若要透過入口網站部署資源，請參閱 [使用 Resource Manager 範本與 Azure 入口網站來部署資源](resource-group-template-deploy-portal.md)。
 * 若要管理資源的存取權，請參閱 [使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
@@ -142,6 +142,6 @@ ms.openlocfilehash: 3eb3ea76fa577dfcc360e209a645b45e0cb4ab34
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

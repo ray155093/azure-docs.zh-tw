@@ -8,15 +8,16 @@ manager: jhubbard
 editor: 
 ms.assetid: 89c2a155-c2fb-4b67-bc19-9b4e03c6d3bc
 ms.service: sql-database
+ms.custom: secure and protect
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 10/05/2016
-ms.author: CarlRabeler; ronitr; giladm
+ms.author: ronitr; giladm
 translationtype: Human Translation
-ms.sourcegitcommit: 80680647559fe8b42cfa09985b9da3713b9c9305
-ms.openlocfilehash: cf0152b0cbcc85befa1b753b92f1593af958dd89
+ms.sourcegitcommit: 7b3c6d29ad7ded2ea65f378a1f807235c688d738
+ms.openlocfilehash: 9f51fcdb291021064dc02a71afdf849f1f4a3d85
 
 
 ---
@@ -213,9 +214,9 @@ Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 "**sqldbauditl
 [Azure SQL Database 稽核概觀]: #subheading-1
 [設定資料庫的稽核]: #subheading-2
 [分析稽核記錄和報告]: #subheading-3
-[生產環境中的使用方式作法]: #subheading-5
-[儲存體金鑰重新產生]: #subheading-6
-[自動化 (PowerShell / REST API)]: #subheading-7
+[Practices for usage in production]: #subheading-5
+[Storage Key Regeneration]: #subheading-6
+[Automation (PowerShell / REST API)]: #subheading-7
 
 
 <!--Image references-->
@@ -241,6 +242,6 @@ Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 "**sqldbauditl
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

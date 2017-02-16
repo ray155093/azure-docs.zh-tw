@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 入口網站管理 DNS 記錄 | Microsoft Docs"
+title: "使用 Azure PowerShell 管理 Azure DNS 中的 DNS 記錄 | Microsoft Docs"
 description: "將網域裝載於 Azure DNS 時，在 Azure DNS 管理 DNS 記錄集和記錄。 對記錄集和記錄執行作業的所有 PowerShell 命令。"
 services: dns
 documentationcenter: na
@@ -11,24 +11,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/16/2016
+ms.date: 12/21/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 0244225f0194d35307ad039249ca6e29a860829f
-ms.openlocfilehash: 46549794394f54264c1fdcc4c8f54bec8ea080f8
+ms.sourcegitcommit: f8dcbdb573fb50d32dfdefbb52c7af71bdc1cb95
+ms.openlocfilehash: 2264acb9c78a162adb7b9937568838ab5ec2c720
 
 ---
 
-# <a name="manage-dns-records-and-record-sets-by-using-powershell"></a>使用 PowerShell 管理 DNS 記錄集和記錄集
+# <a name="manage-dns-records-in-azure-dns-using-azure-powershell"></a>使用 Azure PowerShell 管理 Azure DNS 中的 DNS 記錄
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](dns-operations-recordsets-portal.md)
 > * [Azure CLI](dns-operations-recordsets-cli.md)
 > * [PowerShell](dns-operations-recordsets.md)
 
-本文說明如何使用 Azure PowerShell 來管理 DNS 區域的記錄集和記錄。 也可以使用跨平台 [Azure CLI](dns-operations-recordsets-cli.md) 或 [Azure 入口網站](dns-operations-recordsets-portal.md)來管理 DNS 記錄。
+本文說明如何使用 Azure PowerShell 來管理 DNS 區域的 DNS 記錄。 也可以使用跨平台 [Azure CLI](dns-operations-recordsets-cli.md) 或 [Azure 入口網站](dns-operations-recordsets-portal.md)來管理 DNS 記錄。
 
-此文章中的範例假設您已[安裝 Azure PowerShell、登入，並建立 DNS 區域](dns-getstarted-create-dnszone.md)。
+此文章中的範例假設您已[安裝 Azure PowerShell、登入，並建立 DNS 區域](dns-operations-dnszones.md)。
 
 ## <a name="introduction"></a>簡介
 
@@ -49,7 +49,7 @@ ms.openlocfilehash: 46549794394f54264c1fdcc4c8f54bec8ea080f8
 
 將記錄加入至記錄集的參數，根據記錄集的類型而所有不同。 例如，使用 "A" 類型的記錄集時，您需要使用參數 `-IPv4Address` 來指定 IP 位址。 若是其他記錄類型，則使用其他變數。 請參閱[其他記錄類型範例](#additional-record-type-examples)，以了解詳細資訊。
 
-下列範例會在 DNS 區域 "contoso.com" 中建立具有相對名稱 "www" 的新記錄集。 記錄集的完整名稱是 "www.contoso.com"。 記錄類型為 "A"，且 TTL 為 3600 秒。 此記錄集都會包含一筆記錄，其中 IP 位址為 "1.2.3.4"
+下列範例會在 DNS 區域 "contoso.com" 中建立具有相對名稱 "www" 的記錄集。 記錄集的完整名稱是 "www.contoso.com"。 記錄類型為 "A"，且 TTL 為 3600 秒。 此記錄集都會包含一筆記錄，其中 IP 位址為 "1.2.3.4"
 
 ```powershell
 New-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName contoso.com -ResourceGroupName MyResourceGroup -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address 1.2.3.4) 
@@ -61,7 +61,7 @@ New-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName contoso.com -ResourceG
 New-AzureRmDnsRecordSet -Name "@" -RecordType A -ZoneName contoso.com -ResourceGroupName MyResourceGroup -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address 1.2.3.4) 
 ```
 
-如果您需要建立新的記錄集，其中包含多筆記錄，請先建立本機陣列，然後新增記錄，接著如下所示，將陣列傳遞給 `New-AzureRmDnsRecordSet`：
+如果您需要建立包含多筆記錄的記錄集，請先建立本機陣列並新增記錄，然後將陣列傳遞給 `New-AzureRmDnsRecordSet`，如下所示：
 
 ```powershell
 $aRecords = @()
@@ -86,7 +86,7 @@ New-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName contoso.com -ResourceG
 
 參閱如何建立 'A' 記錄的詳細資訊後，下列範例會示範如何建立 Azure DNS 所支援其他記錄類型的記錄。
 
-在每個案例中，我們會說明如何建立包含單一記錄的新記錄集。 可將 'A' 記錄的先前範例加以調整，即可建立含多個記錄的其他類型記錄集、具中繼資料的其他類型記錄集，或建立空的記錄集。
+在每個案例中，我們會說明如何建立包含單一記錄的記錄集。 可將 'A' 記錄的先前範例加以調整，即可建立含多個記錄的其他類型記錄集、具中繼資料的其他類型記錄集，或建立空的記錄集。
 
 我們沒有提供 SOA 記錄集的建立範例，因為已與每一個 DNS 區域完成 SOA 建立與刪除，且無法個別建立或刪除 SOA。 然而，[可以對 SOA 進行修改，如稍後範例所示](#to-modify-an-SOA-record)。
 
@@ -125,7 +125,7 @@ New-AzureRmDnsRecordSet -Name test-ns -RecordType NS -ZoneName contoso.com -Reso
 
 ### <a name="create-a-ptr-record-set-with-a-single-record"></a>建立含有單一記錄的 PTR 記錄集
 
-在此情況下，'my-arpa-zone.com' 代表表示您 IP 範圍的 ARPA 區域。 此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。
+在此情況下，'my-arpa-zone.com' 代表表示您 IP 範圍的 ARPA 區域。 此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。 記錄名稱 '10' 是此記錄所代表的這個 IP 範圍內 IP 位址的最後一個八位元。
 
 ```powershell
 New-AzureRmDnsRecordSet -Name 10 -RecordType PTR -ZoneName my-arpa-zone.com -ResourceGroupName MyResourceGroup -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -Ptrdname myservice.contoso.com) 
@@ -145,7 +145,7 @@ New-AzureRmDnsRecordSet -Name _sip._tls -RecordType SRV -ZoneName contoso.com -R
 下列範例示範如何建立 TXT 記錄。 如需 TXT 記錄中，所支援字串長度上限的相關資訊，請參閱 [TXT 記錄](dns-zones-records.md#txt-records)。
 
 ```powershell
-New-AzureRmDnsRecordSet -Name test-txt -RecordType TXT -ZoneName contoso.com -ResourceGroupName MyResourceGroup -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -Value "This is a TXT record" 
+New-AzureRmDnsRecordSet -Name test-txt -RecordType TXT -ZoneName contoso.com -ResourceGroupName MyResourceGroup -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -Value "This is a TXT record") 
 ```
 
 
@@ -387,6 +387,6 @@ Get-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName contoso.com -ResourceG
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

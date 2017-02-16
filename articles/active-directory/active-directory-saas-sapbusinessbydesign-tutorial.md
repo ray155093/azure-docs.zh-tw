@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/09/2016
+ms.date: 12/02/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6aef2489e8097e467ccca10fe8026b962786b4b9
+ms.sourcegitcommit: f454e7e218764e00cc19ca67b0edade213834b75
+ms.openlocfilehash: e2506fc2fc7802dd0097cbb97687d9d2b0382871
 
 
 ---
@@ -63,19 +63,25 @@ SAP Business ByDesign 與 Azure AD 整合提供下列優點：
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![Active Directory][1]
+
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
+
 4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
+
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
     ![應用程式][4]
+
 6. 在搜尋方塊中，輸入 **SAP Business ByDesign**。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_01.png)
+
 7. 在結果窗格中選取 [SAP Business ByDesign]，然後按一下 [完成] 來新增應用程式。
    
     ![Active Directory](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_02.png)
@@ -105,9 +111,11 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。 請
 1. 在 Azure 傳統入口網站的 [SAP Business ByDesign] 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
    
     ![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_80.png) 
+
 2. 在屬性 SAML Token 屬性清單中，選取 nameidentifier 屬性，然後按一下 [編輯] 。
    
     ![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_84.png) 
+
 3. 在 [編輯使用者屬性] 對話方塊上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_85.png) 
@@ -118,12 +126,15 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。 請
     例如，如果您想要使用 EmployeeID 為唯一的使用者識別碼，而且已在 ExtensionAttribute2 中儲存屬性值，則選取 [user.extensionattribute2]。 
    
     c. 按一下頁面底部的 [新增] 。 
+
 4. 在傳統入口網站的 [SAP Business ByDesign ] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入][6] 
+
 5. 在 [要如何讓使用者登入 SAP Business ByDesign] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
    
     ![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_03.png) 
+
 6. 在 [設定 App 設定]  對話方塊頁面執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_04.png) 
@@ -180,9 +191,11 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。 請
     如果未啟用 SSO，系統會傳送一般系統 URL 給員工。 如果已啟用 SSO，系統會檢查員工是否有密碼。 如果有密碼，便會將 SSO URL 和非 SSO URL 傳送給員工。 但如果員工沒有密碼，則只會傳送 SSO URL 給員工。
    
     k. 儲存您的變更。
+
 9. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
+
 10. 在 [單一登入確認] 頁面上，按一下 [完成]。  
     
     ![Azure AD 單一登入][11]
@@ -197,13 +210,17 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。 請
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_09.png) 
+
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+
 3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_03.png) 
+
 4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_04.png) 
+
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_05.png) 
@@ -213,22 +230,25 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。 請
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
     c. 按 [下一步] 。
+
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_06.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_07.png) 
+
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_08.png) 
@@ -255,13 +275,17 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。 請
 1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![指派使用者][201] 
+
 2. 在應用程式清單中，選取 [SAP Business ByDesign] 。
    
     ![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_50.png) 
+
 3. 在頂端的功能表中，按一下 [使用者] 。
    
     ![指派使用者][203]
+
 4. 在 [使用者] 清單中，選取 [Britta Simon] 。
+
 5. 在底部的工具列中，按一下 [指派] 。
    
     ![指派使用者][205]
@@ -295,6 +319,6 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。 請
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

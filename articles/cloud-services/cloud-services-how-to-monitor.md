@@ -3,7 +3,7 @@ title: "如何監視雲端服務 | Microsoft Docs"
 description: "了解如何使用 Azure 傳統入口網站來監視雲端服務。"
 services: cloud-services
 documentationcenter: 
-author: rboucher
+author: thraka
 manager: timlt
 editor: 
 ms.assetid: 5c48d2fb-b8ea-420f-80df-7aebe2b66b1b
@@ -12,12 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/04/2015
-ms.author: robb
+ms.date: 12/07/2015
+ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a8d581d678d35045d7d27df55ee1e629f259f30c
-
+ms.sourcegitcommit: ab97962175f4498200db428736a1cbd124fac285
+ms.openlocfilehash: aab8f3233191c9b3f839e3358902f72499d93ee5
 
 ---
 # <a name="how-to-monitor-cloud-services"></a>如何監視雲端服務
@@ -34,26 +33,26 @@ Azure 傳統入口網站的監視顯示本身的可設定度相當高。 您可�
 
 您啟用詳細資訊監視後，彙總的監視資料將儲存於您儲存體帳戶中的資料表。 若要啟用角色的詳細資訊監視，您必須設定連結到儲存體帳戶的診斷連線字串。 您可以對於不同的角色使用不同的儲存體帳戶。
 
-請注意，啟用詳細資訊監視將增加資料儲存、資料傳輸和儲存交易相關的儲存成本。 最小監視不需要儲存體帳戶。 即使將監視層級設定為詳細資訊，在最小監視層級顯現的度量資料也不會儲存在您的儲存體帳戶中。
+啟用詳細資訊監視會導致資料儲存體、資料傳輸和儲存體交易相關的儲存成本增加。 最小監視不需要儲存體帳戶。 即使將監視層級設定為詳細資訊，在最小監視層級顯現的度量資料也不會儲存在您的儲存體帳戶中。
 
 ## <a name="how-to-configure-monitoring-for-cloud-services"></a>做法：為雲端服務設定監視功能
 使用下列程序，在 Azure 傳統入口網站中設定詳細資訊或最小監視。 
 
 ### <a name="before-you-begin"></a>開始之前
-* 建立儲存體帳戶儲存監視資料。 您可以對於不同的角色使用不同的儲存體帳戶。 如需詳細資訊，請參閱 **儲存體帳戶**的說明，或參閱 [如何建立儲存體帳戶](/manage/services/storage/how-to-create-a-storage-account/)。
-* 對於雲端服務角色啟用 Azure 診斷。 請參閱「 [為雲端服務設定診斷功能](https://msdn.microsoft.com/library/azure/dn186185.aspx#BK_EnableBefore)」。
+* 建立「傳統」儲存體帳戶來儲存監視資料。 您可以對於不同的角色使用不同的儲存體帳戶。 如需詳細資訊，請參閱[如何建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。
+* 對於雲端服務角色啟用 Azure 診斷。 請參閱「 [為雲端服務設定診斷功能](cloud-services-dotnet-diagnostics.md)」。
 
 確認「角色」組態中出現診斷連接字串。 您必須先啟用 [Azure 診斷]，並在「角色」組態中加入診斷連接字串，才能開啟詳細資訊監視功能。   
 
 > [!NOTE]
-> 目標為 Azure SDK 2.5 的專案不會將診斷連接字串自動加入專案範本。 針對這些專案，您必須手動將診斷連接字串加入「角色」組態。
+> 目標為 Azure SDK 2.5 的專案不會將診斷連接字串自動加入專案範本。 針對這些專案，您必須手動將診斷連接字串新增至「角色」組態。
 > 
 > 
 
 **若要手動將診斷連接字串加入至「角色」組態**
 
 1. 在 Visual Studio 中開啟雲端服務專案
-2. 在 [角色] 上按兩下，開啟「角色」設計工具，並選取 [設定] 索引標籤
+2. 按兩下 [角色] 開啟角色設計工具，然後選取 [設定] 索引標籤
 3. 尋找名為 **Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString**的設定。 
 4. 如果此設定不存在，請按一下 [新增設定] 按鈕，將該設定新增至組態，並將新設定的類型變更為 [ConnectionString]
 5. 按一下 [ **...** ] 按鈕設定連接字串的值。 此動作會開啟對話方塊，讓您選取儲存體帳戶。
@@ -108,7 +107,7 @@ Azure 傳統入口網站的監視顯示本身的可設定度相當高。 您可�
 ### <a name="to-add-custom-metrics-to-the-metrics-table"></a>若要將自訂量度新增至量度資料表
 **詳細資訊** 監視層級提供一份清單，其中包含您可在入口網站上監視的預設計量。 除此之外，您可以監視任何自訂計量，或透過入口網站監視應用程式定義的效能計數器。
 
-下列步驟假設您已開啟 **詳細資訊** 監視層級，且已設定好應用程式，可收集和傳輸自訂效能計數器。 
+下列步驟假設您已開啟**詳細資訊**監視層級，且已設定應用程式來收集和傳輸自訂效能計數器。 
 
 若要顯示在入口網站中顯示自訂效能計數器，您必須更新 WAD 控制容器的組態：
 
@@ -149,6 +148,7 @@ Azure 傳統入口網站的監視顯示本身的可設定度相當高。 您可�
    
    * 若要繪製新的度量，請在圖表標頭中選取度量的核取方塊。 在縮小顯示上，按一下 [n??metrics] 旁邊的向下箭頭，繪製圖表標頭區域無法顯示的度量。
    * 若要刪除圖表上繪製的度量，請清除標頭旁邊的核取方塊。
+   
 3. 切換 [相對] 和 [絕對] 顯示。
 4. 選擇要顯示的 1 小時、24 小時或 7 天資料。
 
@@ -178,6 +178,6 @@ WAD8b7c4233802442b494d0cc9eb9d8dd9fPT1HRITable (hourly aggregations for role ins
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

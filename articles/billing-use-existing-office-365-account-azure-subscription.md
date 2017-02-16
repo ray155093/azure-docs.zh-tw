@@ -1,10 +1,10 @@
 ---
-title: "在 Office 365 和 Azure 訂用帳戶之間共用單一 Azure AD 租用戶 | Microsoft Docs"
+title: "使用 Office 365 帳戶註冊 Azure | Microsoft Docs"
 description: "了解如何與 Azure 訂用帳戶分享 Office 365 Azure AD 租用戶和其使用者，反之亦然"
 services: 
 documentationcenter: 
 author: JiangChen79
-manager: mbaldwin
+manager: vikdesai
 editor: 
 tags: billing,top-support-issue
 ms.assetid: 129cdf7a-2165-483d-83e4-8f11f0fa7f8b
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cjiang
 translationtype: Human Translation
-ms.sourcegitcommit: bf9cf92a53bd2db9970c03463cb417310e78224e
-ms.openlocfilehash: edf236a3c9a28552b8c6831a8c7f57bab73c41ed
+ms.sourcegitcommit: 71240b7bb978ca0831a4e23cafa64a96d64dc3cd
+ms.openlocfilehash: 85db551a80ce6995965aec642f08b3b87248d21b
 
 
 ---
@@ -44,22 +44,19 @@ ms.openlocfilehash: edf236a3c9a28552b8c6831a8c7f57bab73c41ed
 <a id="s1"></a>
 
 ### <a name="scenario-1-office-365-users-who-plan-to-buy-azure"></a>案例 1：計劃購買 Azure 的 Office 365 使用者
-在此案例中，我們假設 Kelley Wall 這位使用者擁有 Office 365 訂用帳戶，並且計劃訂閱 Azure。 除此之外，還有 Jane 和 Tricia 兩位作用中使用者。 Kelley 的帳戶是 Admin@contoso.onmicrosoft.com。
+在此案例中，我們假設 Kelley Wall 這位使用者擁有 Office 365 訂用帳戶，並且計劃訂閱 Azure。 除此之外，還有 Jane 和 Tricia 兩位作用中使用者。 Kelley 的帳戶是 admin@contoso.onmicrosoft.com。
 
 ![Office 365 使用者系統管理中心](./media/billing-use-existing-office-365-account-azure-subscription/1-office365-users-admin-center.png)
 
 若要註冊 Azure，請遵循下列步驟︰
 
-1. 前往 [Azure.com](https://azure.microsoft.com/)註冊 Azure。 按一下 [免費試用]。 在下一頁按一下 [立即開始] 。
+1. 前往 [Azure.com](https://azure.microsoft.com/)註冊 Azure。 按一下 [免費帳戶]。 在下一頁按一下 [開始免費]。
 
     ![免費試用 Azure。](./media/billing-use-existing-office-365-account-azure-subscription/2-azure-signup-try-free.png)
-2. 按一下 [使用組織帳戶登入] 。
-
-    ![登入 Azure。](./media/billing-use-existing-office-365-account-azure-subscription/3-sign-in-to-azure.png)
-3. 登入 Office 365 帳戶。 在本例中，我們應登入 Kelley 的 Office 365 帳戶。
+2. 登入 Office 365 帳戶。 在本例中，我們應登入 Kelley 的 Office 365 帳戶。
 
     ![登入 Office 365 帳戶。](./media/billing-use-existing-office-365-account-azure-subscription/4-sign-in-with-org-account.png)
-4. 填寫資訊並完成註冊程序。
+3. 填寫資訊並完成註冊程序。
 
     ![填寫資訊，然後完成註冊。](./media/billing-use-existing-office-365-account-azure-subscription/5-azure-sign-up-fill-information.png)
 
@@ -81,7 +78,7 @@ ms.openlocfilehash: edf236a3c9a28552b8c6831a8c7f57bab73c41ed
 <a id="s2"></a>
 
 ### <a name="scenario-2-azure-users-who-plan-to-buy-office-365"></a>案例 2：計劃購買 Office 365 的 Azure 使用者
-在此案例中，Kelley Wall 這名使用者的 admin@contoso.onmicrosoft.com. Kelley 想要訂閱 Office 365，並且想要使用與 Azure 相同的目錄。
+在此案例中，Kelley Wall 這名使用者的 admin@contoso.onmicrosoft.com 帳戶名下已擁有 Azure 訂用帳戶。 Kelley 想要訂閱 Office 365，並且想要使用與 Azure 相同的目錄。
 
 > [!NOTE]
 > 若要取得 Office 365 訂用帳戶，登入所用的帳戶必須是 Azure Active Directory 租用戶中全域管理員或帳務管理員目錄角色的成員。 [了解如何得知 Azure Active Directory 中的角色](#how-to-know-your-role-in-your-azure-active-directory)。
@@ -158,6 +155,6 @@ Office 365 和 Azure 均使用 Azure Active Directory 服務來管理使用者�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

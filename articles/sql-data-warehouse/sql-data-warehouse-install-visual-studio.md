@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f7bafc793bf8abddd50b7976733b8fdf389a0366
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 9c44f417d465aedcbbc731757282e18985b0435c
 
 
 ---
@@ -33,8 +33,8 @@ ms.openlocfilehash: f7bafc793bf8abddd50b7976733b8fdf389a0366
 ## <a name="step-1-install-visual-studio-2015"></a>步驟 1：安裝 Visual Studio 2015
 遵循下列連結來下載並安裝 Visual Studio 2015。 如果已安裝 Visual Studio 2013 或 2015，可以跳至步驟 2 安裝 SSDT。
 
-1. [下載 Visual Studio 2015][下載 Visual Studio 2015]。
-2. 依照 MSDN 上的[安裝 Visual Studio][安裝 Visual Studio] 指南並選擇預設組態。
+1. [下載 Visual Studio 2015][Download Visual Studio 2015]。
+2. 依照 MSDN 上的[安裝 Visual Studio][Installing Visual Studio] 指南並選擇預設組態。
 
 ## <a name="step-2-install-ssdt"></a>步驟 2：安裝 SSDT
 若要安裝適用於 Visual Studio 的 SSDT，只需依照下列步驟，從 Visual Studio 檢查 SSDT 更新。
@@ -42,25 +42,25 @@ ms.openlocfilehash: f7bafc793bf8abddd50b7976733b8fdf389a0366
 1. 在 Visual Studio 中，按一下 [工具] / [擴充功能和更新] / [更新]
 2. 選取 [產品更新]，然後尋找 [適用於資料庫工具的 Microsoft SQL Server 更新]
 
-如果找不到更新，表示您應該已安裝最新版本。  若要確認已安裝 SSDT，請按一下 [說明] / [關於 Microsoft Visual Studio]，然後在清單中尋找 SQL Server Data Tools。  SSDT 的最新版本是 14.0.60525.0。  如果無法在 Visual Studio 中使用安裝選項，或者您也可以瀏覽 [SSDT 下載][SSDT 下載]頁面，手動下載和安裝 SSDT。
+如果找不到更新，表示您應該已安裝最新版本。  若要確認已安裝 SSDT，請按一下 [說明] / [關於 Microsoft Visual Studio]，然後在清單中尋找 SQL Server Data Tools。  SSDT 的最新版本是 14.0.60525.0。  如果無法在 Visual Studio 中使用安裝選項，或者您也可以瀏覽 [SSDT 下載][SSDT Download]頁面，手動下載和安裝 SSDT。
 
 ## <a name="next-steps"></a>後續步驟
-既然有了最新版本的 SSDT，您可以開始 [連接][連接]到 SQL 資料倉儲。
+既然有了最新版本的 SSDT，您可以開始 [連接][connect]到 SQL 資料倉儲。
 
 <!--Anchors-->
 
 <!--Image references-->
 
 <!--Articles-->
-[連接]: ./sql-data-warehouse-query-visual-studio.md
+[connect]: ./sql-data-warehouse-query-visual-studio.md
 
 <!--Other-->
-[下載 Visual Studio 2015]: https://www.visualstudio.com/downloads/
-[安裝 Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
-[SSDT 下載]: https://msdn.microsoft.com/library/mt204009.aspx
+[Download Visual Studio 2015]: https://www.visualstudio.com/downloads/
+[Installing Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
+[SSDT Download]: https://msdn.microsoft.com/library/mt204009.aspx
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

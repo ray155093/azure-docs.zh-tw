@@ -3,7 +3,7 @@ title: "使用 PowerShell 建立虛擬機器擴展集 | Microsoft Docs"
 description: "使用 Powershell 建立虛擬機器擴展集"
 services: virtual-machine-scale-sets
 documentationcenter: 
-author: davidmu1
+author: Thraka
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -14,10 +14,10 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/18/2016
-ms.author: davidmu
+ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6d70338ebf918a3f9178a4f633dd46a607d72b1c
+ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
+ms.openlocfilehash: 5abaa31828e624f77b6a9efb4496327977b483e4
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 6d70338ebf918a3f9178a4f633dd46a607d72b1c
 執行本文中的步驟應該大約 30 分鐘的時間。
 
 ## <a name="step-1-install-azure-powershell"></a>步驟 1：安裝 Azure PowerShell
-如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="step-2-create-resources"></a>步驟 2：建立資源
 建立新的擴展集所需要的資源。
@@ -130,7 +130,7 @@ ms.openlocfilehash: 6d70338ebf918a3f9178a4f633dd46a607d72b1c
    
         $vmss = New-AzureRmVmssConfig -Location $locName -SkuCapacity 3 -SkuName "Standard_A0" -UpgradePolicyMode "manual"
    
-    此範例顯示使用三部虛擬機器建立的擴展集。 若要深入了解擴展集的容量，請參閱 [虛擬機器擴展集概觀](virtual-machine-scale-sets-overview.md) 。 這個步驟也包括設定集合中的虛擬機器大小 (稱為 SkuName)。 若要尋找符合您需求的大小，請參閱[虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md)。
+    此範例顯示使用三部虛擬機器建立的擴展集。 若要深入了解擴展集的容量，請參閱 [虛擬機器擴展集概觀](virtual-machine-scale-sets-overview.md) 。 這個步驟也包括設定集合中的虛擬機器大小 (稱為 SkuName)。 若要尋找符合您需求的大小，請參閱[虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 5. 將網路介面組態新增至擴展集組態：
    
         Add-AzureRmVmssNetworkInterfaceConfiguration -VirtualMachineScaleSet $vmss -Name $vmssConfig -Primary $true -IPConfiguration $ipConfig
@@ -172,7 +172,7 @@ ms.openlocfilehash: 6d70338ebf918a3f9178a4f633dd46a607d72b1c
         $imageOffer = "WindowsServer"
         $imageSku = "2012-R2-Datacenter"
    
-    若要尋找要使用的其他映像的資訊，請參閱[使用 Windows PowerShell 和 Azure CLI 巡覽和選取 Azure 虛擬機器映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md)。
+    若要尋找要使用的其他映像的資訊，請參閱[使用 Windows PowerShell 和 Azure CLI 巡覽和選取 Azure 虛擬機器映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 3. 以包含儲存虛擬硬碟所在路徑的清單取代 **$vhdContainers** 的值，例如 "https://mystorage.blob.core.windows.net/vhds"，然後建立變數：
    
         $vhdContainers = @("https://myst1.blob.core.windows.net/vhds","https://myst2.blob.core.windows.net/vhds","https://myst3.blob.core.windows.net/vhds")
@@ -225,6 +225,6 @@ ms.openlocfilehash: 6d70338ebf918a3f9178a4f633dd46a607d72b1c
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

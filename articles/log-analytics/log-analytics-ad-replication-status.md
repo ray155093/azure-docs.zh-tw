@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 01/17/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 49e5cc5045f5bd626826b4992b8b49f886ef7bde
+ms.sourcegitcommit: 744c4bd37b7b1443cf78586aab8ec2661e02254e
+ms.openlocfilehash: c0fc2ae5318068c204296b9e053c2cc7324e84c7
 
 
 ---
@@ -47,7 +47,7 @@ AD 複寫狀態解決方案組件會定期監控您的 Active Directory 環境�
 3. 該該電腦上，設定下列登錄機碼︰
 
    * 機碼：**HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HealthService\Parameters\Management Groups\<ManagementGroupName>\Solutions\ADReplication**
-   * 值：**IsTarge**
+   * 值：**IsTarget**
    * 數值資料︰**true**
 
    > [!NOTE]
@@ -115,31 +115,31 @@ AD 複寫狀態解決方案組件會定期監控您的 Active Directory 環境�
 
 ## <a name="ad-replication-status-faq"></a>AD 複寫狀態常見問題集
 **問︰多久更新一次 AD 複寫狀態資料？**
- 答︰此資訊會每隔 5 天更新一次。
+答︰此資訊會每隔 5 天更新一次。
 
 **問：是否有設定此資料更新頻率的方法？**
- 答：目前沒有。
+答：目前沒有。
 
 **問︰我需要將所有的網域控制站加入至我的 OMS 工作區，才能查看複寫狀態嗎？**
- 答︰否，只需加入單一網域控制站。 如果您的 OMS 工作區中有多個網域控制站，這些網域控制站的資料都會傳送至 OMS。
+答︰否，只需加入單一網域控制站。 如果您的 OMS 工作區中有多個網域控制站，這些網域控制站的資料都會傳送至 OMS。
 
 **問︰我不想要將任何網域控制站新增至我的 OMS 工作區。仍可使用 AD 複寫狀態解決方案嗎？**
 答：是。 您可以設定要啟用此解決方案的登錄機碼值。 請參閱[啟用非網域控制站以將 AD 資料傳送至 OMS](#to-enable-a-non-domain-controller-to-send-ad-data-to-oms)。
 
 **問：負責收集資料之處理序的名稱為何？**
- 答︰AdvisorAssessment.exe
+答︰AdvisorAssessment.exe
 
 **問：收集資料需要花費多少時間？**
- 答︰資料收集時間取決於 Active Directory 環境的大小，但所需時間通常少於 15 分鐘。
+答︰資料收集時間取決於 Active Directory 環境的大小，但所需時間通常少於 15 分鐘。
 
 **問：收集的資料類型為何？**
- 答：複寫資訊是透過 LDAP 收集。
+答：複寫資訊是透過 LDAP 收集。
 
 **問：是否有設定資料收集時間的方法？**
- 答：目前沒有。
+答：目前沒有。
 
 **問︰我需要哪些權限才能收集資料？**
- 答︰Active Directory 的一般使用者權限通常就足夠了。
+答︰Active Directory 的一般使用者權限通常就足夠了。
 
 ## <a name="troubleshoot-data-collection-problems"></a>疑難排解資料收集問題
 為了收集資料，AD 複寫狀態解決方案組件需要至少有一個網域控制站連接至您的 OMS 工作區。 在您執行這項操作後，您會看到訊息指出 **資料仍在收集中**。
@@ -153,6 +153,6 @@ AD 複寫狀態解決方案組件會定期監控您的 Active Directory 環境�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

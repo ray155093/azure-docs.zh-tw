@@ -1,6 +1,6 @@
 ---
-title: "從 Web 資料表移動資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory，來移動網頁上內部部署資料表的資料。"
+title: "使用 Azure Data Factory 從 Web 資料表移動資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory，來移動網頁上資料表的資料。"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/12/2016
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 7b55f6730c6a2bf8637f312c452fe552f82dbaeb
-ms.openlocfilehash: 4adfd82a0dea0aa46607b3cc528c922cd46ab7d5
+ms.sourcegitcommit: dd8a68029449ad013c4df9a46c558efaefd20e96
+ms.openlocfilehash: 88f746a4802e13e062f4414e5d2032dfcee565b7
 
 
 ---
@@ -299,6 +299,6 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

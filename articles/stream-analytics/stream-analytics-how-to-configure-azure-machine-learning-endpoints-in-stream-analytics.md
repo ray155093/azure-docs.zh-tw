@@ -1,5 +1,5 @@
 ---
-title: "如何在串流分析中設定 Azure Machine Learning 端點 | Microsoft Docs"
+title: "在串流分析中使用 Azure Machine Learning 端點 | Microsoft Docs"
 description: "串流分析中的機器語言使用者定義函式"
 keywords: 
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 09/26/2016
+ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ce7dd546ce534ede6901444d5fe441493ac2fc45
+ms.sourcegitcommit: 9afd26024d2aa0d3d732ddc6f54e591715afca69
+ms.openlocfilehash: e99bf516c7a700d15eaefe046f0a2086f4c16a39
 
 
 ---
@@ -207,6 +207,6 @@ PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 01/05/2017
 ms.author: hascipio
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: aed47a7e9aa06e48199a71f67ae6d82bcfe27c9a
+ms.sourcegitcommit: b76185c0a4a0e17b663affee9a02b65f222fedeb
+ms.openlocfilehash: d679096476406831c1fda4f695adff84e63d6ae8
 
 
 ---
@@ -24,63 +24,48 @@ ms.openlocfilehash: aed47a7e9aa06e48199a71f67ae6d82bcfe27c9a
 此文章可協助開發人員建立解決方案、部署並管理他們在 Azure Marketplace 中列出的解決方案，讓其他 Azure 客戶與合作夥伴可進行購買及使用。
 
 ## <a name="what-is-the-azure-marketplace"></a>什麼是 Azure Marketplace？
-Azure 的訂閱者可以在 Azure Marketplace 找到服務，用來協助他們開發內部部署或雲端型解決方案和應用程式。 然後使用 [Azure 認證](http://azure.com/certified) 的服務當做建置組塊，快速開發用於企業營運和其他 Azure 訂用帳戶的創新應用程式或服務。
+身為 Azure 的發佈者，Azure Marketplace 可讓您發佈及販售創新解決方案或服務給其他想要快速開發其雲端應用程式和行動解決方案的開發者、ISV、IT 專業人員。 如果您的解決方案是以商務使用者為目標，則您可能要考慮 [AppSource](http://appsource.microsoft.com) Marketplace。
 
-身為 Azure 的發佈者，Azure Marketplace 可讓您發佈及販售創新解決方案或服務給其他想要快速開發其雲端應用程式和行動解決方案的開發者、ISV、IT 專業人員。
 
-## <a name="supported-types-of-offers"></a>支援的供應項目類型
-首先，您需要以發行者的身分，定義您的公司提供的解決方案類型。 Azure Marketplace 支援三種供應項目：
+## <a name="supported-types-of-solutions"></a>支援的解決方案類型
+首先，您需要以發行者的身分，定義您的公司提供的解決方案類型。 Azure Marketplace 支援下列幾種供應項目：
 
-* **虛擬機器映像** 是預先配置的映像，包含完整安裝的作業系統以及一或多個應用程式。 虛擬機器映像提供在 Azure 虛擬機器服務中建立及部署虛擬機器所需的資訊。
+|解決方案類型|虛擬機器|解決方案範本|
+|---|---|---|
+|定義|預先配置的映像，包含完整安裝的作業系統以及一或多個應用程式。 虛擬機器映像提供在 Azure 虛擬機器服務中建立及部署虛擬機器所需的資訊。|可參考一或多個獨特 Azure 服務的資料結構 (包含由其他賣家發佈的服務)，讓 Azure 訂戶能以單一、協調的方式部署一或多個供應項目。|
+|範例|**例如** ，身為 Azure 的發佈者，您已建立並驗證帶有創新資料庫服務的 VM，此 VM 令人讚賞，使其他 Azure 訂戶願意購買此 VM 並部署至其雲端服務環境。|**例如**，身為 Azure 發佈者，您組合了 Azure 的幾項服務，以便快速部署負載平衡、強化安全性且高可用性的雲端服務。 其他 Azure 訂戶可藉由取得符合其目標的解決方案範本來節省時間，而不必手動尋找、取得、部署及設定相同或類似的 Azure 服務。|
 
-  > [!NOTE]
-  > **例如** ，身為 Azure 的發佈者，您已建立並驗證帶有創新資料庫服務的 VM，此 VM 令人讚賞，使其他 Azure 訂戶願意購買此 VM 並部署至其雲端服務環境。
-  >
-  >
-* **開發人員服務** 是用於應用程式開發或系統管理、完全受管理的服務。 它們提供的功能使得 Azure 上雲端規模的應用程式得以快速開發。
-
-  > [!NOTE]
-  > **例如** ，身為 Azure 的發佈者，您已開發可根據歷史資料提供預測的 API 存取服務 (裝載於 Azure 或其他位置)。 而且這個服務是其他建立解決方案的 Azure 訂閱者人員可能想要使用的服務。 您可以將此服務部署至 Azure Marketplace 供其他人尋找、購買，並用在其各自的服務中。
-  >
-  >
-* **解決方案範本** 是可參考一個或多個獨特 Azure 服務的資料結構 (包含由其他賣家發佈的服務)，讓 Azure 訂戶能以單一、協調的方式部署一或多個供應項目。
-
-  > [!NOTE]
-  > **例如** ，身為 Azure 的發佈者，您組合了 Azure 上的幾個服務，只需按幾下滑鼠便可以更快速地部署安全、高可用性且負載平衡的雲端服務。 其他 Azure 訂戶發現這個解決方案範本的價值，能夠為他們節省時間，不必手動識別和設定相同或類似的 Azure 服務。
-  >
-  >
-
-不同類型的解決方案之間有一些相同的步驟。 本文提供簡短的概觀，讓您了解每種類型的解決方案必須完成哪些步驟。
-
-## <a name="1-pre-requisites"></a>1.必要條件
 > [!NOTE]
-> 開始在 Azure Marketplace 上進行任何工作之前，必須先通過核准 ( [預先核准](http://azure.com/certified))。
->
->
+> 請注意，有些步驟會在不同類型的解決方案間共用，但有些步驟則因解決方案類型而有所不同。 本文提供簡短的概觀，讓您了解每種類型的解決方案必須完成哪些步驟。
 
-1. [適用於 Microsoft Azure 認證的預先核准](marketplace-publishing-azure-certification.md)
-2. [建立與註冊 Microsoft 開發人員帳戶](marketplace-publishing-accounts-creation-registration.md)
-3. [滿足非技術性必要條件](marketplace-publishing-pre-requisites.md)
+## <a name="how-to-publish-a-solution"></a>如何發佈解決方案
+![draw](media/marketplace-publishing-getting-started/img01.png)
 
-## <a name="2-publishing-your-offer"></a>2.發佈您的供應項目
-### <a name="21-complete-offer-specific-technical-pre-requisites"></a>2.1 完成特定供應項目的技術性必要條件
-* [VM 技術性必要條件](marketplace-publishing-vm-image-creation-prerequisites.md)
-* [解決方案範本技術性必要條件](marketplace-publishing-solution-template-creation-prerequisites.md)
+### <a name="1-nominate-your-solution-for-pre-approval"></a>1.提名您的解決方案以供預先核准
+- 在[這裡](https://createopportunity.azurewebsites.net)完成 **Microsoft Azure 虛擬機器認證**解決方案提名表單
 
-### <a name="22-create-your-offer"></a>2.2 建立您的供應項目
-1. 使用下列的特定供應項目指南建立您的供應項目。
-   * [建立您的 VM 供應項目](marketplace-publishing-vm-image-creation.md)
-   * [建立您的解決方案範本供應項目](marketplace-publishing-solution-template-creation.md)
-2. [建立您的供應項目行銷內容](marketplace-publishing-push-to-staging.md)
+>[!NOTE]
+> 如果您與合作夥伴帳戶經理或 DX 夥伴經理接洽，請要求對方在 Azure 認證計劃中提名您的解決方案，或前往 [Microsoft Azure 認證](http://createopportunity.azurewebsites.net)網頁，填妥申請表單並在 [Microsoft 贊助者連絡人] 欄位中輸入您的夥伴客戶經理或 DX 夥伴經理的電子郵件。
 
-### <a name="23-test-your-offer-in-staging"></a>2.3 在預備環境中測試您的供應項目
-* [在預備環境中測試您的 VM 優惠](marketplace-publishing-vm-image-test-in-staging.md)
-* [在預備環境中測試您的解決方案範本供應項目](marketplace-publishing-solution-template-test-in-staging.md)
+如果符合 [Azure Marketplace 參與原則](http://go.microsoft.com/fwlink/?LinkID=526833)的資格條件且您的應用程式獲得核准，我們就會開始與您合作將您的解決方案上架到 Azure Marketplace。
 
-### <a name="24-deploy-your-offer-to-the-marketplace"></a>2.4 將您的供應項目部署至 Marketplace
-* [將您的供應項目部署至 Azure Marketplace](marketplace-publishing-push-to-production.md)
-* [疑難排解 Marketplace 中常見的發佈問題](marketplace-publishing-support-common-issues.md)
-* 若要深入了解使用的入口網站，請參閱 [您需要的入口網站](marketplace-publishing-portals.md)
+### <a name="2-register-your-account-as-a-microsoft-seller"></a>2.將您的帳戶註冊為 Microsoft 賣方
+- [將您的 Microsoft 帳戶註冊為 Microsoft 開發人員帳戶](marketplace-publishing-accounts-creation-registration.md)
+
+### <a name="3-publish-your-solution"></a>3.發佈您的解決方案
+1. 滿足非技術性需求
+  - [滿足非技術性必要條件](marketplace-publishing-pre-requisites.md)
+  - [VM 技術性必要條件](marketplace-publishing-vm-image-creation-prerequisites.md)
+  - [解決方案範本技術性必要條件](marketplace-publishing-solution-template-creation-prerequisites.md)
+2. 建立您的供應項目
+  - [虛擬機器](marketplace-publishing-vm-image-creation.md)
+  - [解決方案範本](marketplace-publishing-solution-template-creation.md)
+3. [建立您的供應項目行銷內容](marketplace-publishing-push-to-staging.md)
+4. 在預備環境中測試您的供應項目
+  - [在預備環境中測試您的 VM 優惠](marketplace-publishing-vm-image-test-in-staging.md)
+  - [在預備環境中測試您的解決方案範本供應項目](marketplace-publishing-solution-template-test-in-staging.md)
+5. [將您的供應項目部署至 Azure Marketplace](marketplace-publishing-push-to-production.md)
+
 
 ### <a name="virtual-machine-image-specific"></a>虛擬機器映像專用
 * [建立內部部署 VM 映像](marketplace-publishing-vm-image-creation-on-premise.md)
@@ -88,7 +73,7 @@ Azure 的訂閱者可以在 Azure Marketplace 找到服務，用來協助他們�
 * [在 Azure 入口網站中建立執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [針對 VHD 建立常見問題進行疑難排解](marketplace-publishing-vm-image-creation-troubleshooting.md)
 
-## <a name="3-post-publishing-management-of-your-offer"></a>3.供應項目的後期發佈管理
+## <a name="how-to-manage-your-solution"></a>如何管理您的解決方案
 * [虛擬機器優惠的後期製作指南](marketplace-publishing-vm-image-post-publishing.md)
 * [如何更新優惠或 SKU 的非技術性詳細資料](marketplace-publishing-vm-image-post-publishing.md#2-how-to-update-the-non-technical-details-of-an-offer-or-a-sku)
 * [如何更新供應項目或 SKU 的技術性詳細資料](marketplace-publishing-vm-image-post-publishing.md#1-how-to-update-the-technical-details-of-a-sku)
@@ -110,6 +95,6 @@ Azure 的訂閱者可以在 Azure Marketplace 找到服務，用來協助他們�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

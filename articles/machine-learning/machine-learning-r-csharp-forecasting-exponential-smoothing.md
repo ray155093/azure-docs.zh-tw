@@ -1,9 +1,9 @@
 ---
-title: "預測 - 指數平滑法 | Microsoft Docs"
-description: "Web 服務：預測 - 指數平滑法"
+title: "(已過時) 預測 - 指數平滑法 - Azure | Microsoft Docs"
+description: "(已過時) Web 服務：預測 - 指數平滑法"
 services: machine-learning
 documentationcenter: 
-author: xueshanz
+author: yijichen
 manager: jhubbard
 editor: cgronlun
 ms.assetid: a4150681-6eac-4145-9eca-0cdf60781dde
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 08/17/2016
-ms.author: xueshzha
+ms.topic: deprecated
+ms.date: 01/06/2017
+ms.author: yijichen
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 712bfc1ec3bf3dcc8ab3de9a3e610ae86b6f4410
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: c3fc7b8d7ba9faf79d80b55514ef09570e0d1655
 
 
 ---
-# <a name="forecasting---exponential-smoothing"></a>預測 - 指數平滑法
+# <a name="deprecated-forecasting---exponential-smoothing"></a>(已過時) 預測 - 指數平滑法
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/ets) 會實作指數平滑法模型 (ETS)，以根據使用者所提供的歷程記錄資料產生預測。 今年的特定產品需求會增加嗎？ 為方便有效地規劃庫存，我可以預測聖誕節的產品銷售嗎？ 預測模型專門處理此類問題。 有了過去的資料，這些模型可以檢查隱藏的趨勢和季節性來預測未來的趨勢。  
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -90,7 +97,7 @@ ms.openlocfilehash: 712bfc1ec3bf3dcc8ab3de9a3e610ae86b6f4410
 > 
 > 
 
-Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定義的資料結構描述上傳範例輸入資料。 資料結構描述會連結至[執行 R 指令碼][execute-r-script]模組，這個模組使用 R 的 ‘auto.arima’ 和 ‘forecast’ 函式來產生 ETS 預測模型。 
+Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定義的資料結構描述上傳範例輸入資料。 已連結至資料結構描述的[執行 R 指令碼][execute-r-script]模組會使用 R 的 ‘ets’ 和 ‘forecast’ 函式，以產生 ETS 預測模型。 
 
 ![實驗流程][2]
 
@@ -143,6 +150,6 @@ Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 IoT 中樞傳送雲端到裝置訊息 | Microsoft Docs"
-description: "請遵循本教學課程，以了解如何搭配 Java 使用 Azure IoT 中樞傳送雲端到裝置的訊息。"
+title: "使用 Azure IoT 中樞傳送雲端到裝置訊息 (Node) | Microsoft Docs"
+description: "如何使用適用於 Node.js 的 Azure IoT SDK，將雲端到裝置訊息從 Azure IoT 中樞傳送至裝置。 您可以修改模擬裝置應用程式，以接收雲端到裝置訊息，也可以修改後端應用程式，以傳送雲端到裝置訊息。"
 services: iot-hub
 documentationcenter: nodejs
 author: dominicbetts
@@ -15,26 +15,26 @@ ms.workload: na
 ms.date: 09/23/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: fdd0a695675aae56d87bb62a3299bbadf1b1676f
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 05ccc7f419a420cb80f9fd71d5c59912468eb8f8
 
 
 ---
-# <a name="tutorial-how-to-send-cloud-to-device-messages-with-iot-hub-and-nodejs"></a>教學課程：如何使用 IoT 中樞和 Node.js 傳送雲端到裝置訊息
+# <a name="send-cloud-to-device-messages-with-iot-hub-node"></a>使用 IoT 中樞 (Node) 傳送雲端到裝置訊息
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
 ## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個應用程式後端進行可靠且安全的雙向通訊。 [IoT 中樞入門] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。
+Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。 [IoT 中樞入門] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。
 
 本教學課程是以 [IoT 中樞入門]為基礎。 這會說明如何：
 
-* 從您的應用程式雲端後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。
+* 從您的解決方案後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。
 * 接收裝置上的雲端到裝置訊息。
-* 從您的應用程式雲端後端，要求確認收到從 IoT 中樞傳送到裝置的訊息 (*意見反應*)。
+* 從您的解決方案後端，要求確認收到從 IoT 中樞傳送到裝置的訊息 (「意見反應」)。
 
-您可以在 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
+您可以在 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
 
-在本教學課程結尾，您會執行兩個 Node.js 主控台應用程式：
+在本教學課程結尾處，您會執行兩個 Node.js 主控台應用程式：
 
 * **SimulatedDevice**， [IoT 中樞入門]中建立之應用程式的修改版本，可連接到您的 IoT 中心，並接收雲端到裝置的訊息。
 * **SendCloudToDeviceMessage**：會透過 IoT 中樞，將雲端到裝置訊息傳送到模擬裝置應用程式，然後接收其傳遞通知。
@@ -78,19 +78,19 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     ```
    
    > [!NOTE]
-   > 如果您使用 HTTP 而非 MQTT 或 AMQP 作為傳輸，**DeviceClient** 執行個體將不會經常 (頻率低於每隔 25 分鐘) 檢查「IoT 中樞」是否傳來訊息。 如需有關 AMQP、AMQP 和 HTTP 支援間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
+   > 如果您使用 HTTP 而非 MQTT 或 AMQP 作為傳輸，**DeviceClient** 執行個體將不會經常 (頻率低於每隔 25 分鐘) 檢查「IoT 中樞」是否傳來訊息。 如需有關 AMQP、AMQP 和 HTTP 支援之間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]。
    > 
    > 
 
 ## <a name="send-a-cloud-to-device-message"></a>傳送雲端到裝置訊息
-在本節中，您會建立 Node.js 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。 您需要您在 [IoT 中樞入門] 教學課程中所新增裝置的裝置識別碼。 您也需要 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
+在本節中，您會建立 Node.js 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。 您需要您在[IoT 中樞入門]教學課程中所新增裝置的裝置識別碼。 您也需要中樞的 IoT 中樞連接字串 (可在 [Azure 入口網站]中找到)。
 
 1. 建立新的名為 **sendcloudtodevicemessage**的空資料夾。 在 **sendcloudtodevicemessage** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
    
     ```
     npm init
     ```
-2. 在命令提示字元下，於 **sendcloudtodevicemessage** 資料夾中執行下列命令以安裝 **azure-iothub** 套件：
+2. 在命令提示字元中，於 **sendcloudtodevicemessage** 資料夾中執行下列命令以安裝 **azure-iothub** 套件：
    
     ```
     npm install azure-iothub --save
@@ -104,7 +104,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     var Client = require('azure-iothub').Client;
     var Message = require('azure-iot-common').Message;
     ```
-5. 在 **SendCloudToDeviceMessage.js** 檔案中新增下列程式碼。 將連接字串預留位置的值替換為您在 [IoT 中樞入門] 教學課程中為 IoT 中樞所建立的連接字串。 將目標裝置預留位置的值替換為您在 [IoT 中樞入門] 教學課程中新增裝置的裝置識別碼：
+5. 在 **SendCloudToDeviceMessage.js** 檔案中新增下列程式碼。 將 IoT 中樞連接字串預留位置的值，替換為您在[IoT 中樞入門]教學課程中所建立中樞的 IoT 中樞連接字串。 將目標裝置預留位置替換為您在[IoT 中樞入門]教學課程中所新增裝置的裝置識別碼：
    
     ```
     var connectionString = '{iot hub connection string}';
@@ -154,14 +154,14 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 ## <a name="run-the-applications"></a>執行應用程式
 現在您已經準備好執行應用程式。
 
-1. 在 **simulateddevice** 資料夾中的命令提示字元，執行下列命令以開始將遙測傳送至 IoT 中樞，並接聽雲端到裝置訊息：
+1. 在命令提示字元中，於 **simulateddevice** 資料夾中執行下列命令，將遙測傳送至 IoT 中樞並接聽雲端到裝置訊息：
    
     ```
     node SimulatedDevice.js 
     ```
    
     ![執行模擬裝置應用程式][img-simulated-device]
-2. 在 **sendcloudtodevicemessage** 資料夾中的命令提示字元，執行下列命令來傳送雲端到裝置訊息並等候通知的意見反應︰
+2. 在命令提示字元中，於 **sendcloudtodevicemessage** 資料夾中執行下列命令，以傳送雲端到裝置訊息並等候通知的意見反應︰
    
     ```
     node SendCloudToDeviceMessage.js 
@@ -188,7 +188,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 <!-- Links -->
 
 [IoT 中樞入門]: iot-hub-node-node-getstarted.md
-[IoT Hub Developer Guide - C2D]: iot-hub-devguide-messaging.md
+[IoT Hub developer guide - C2D]: iot-hub-devguide-messaging.md
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
@@ -199,6 +199,6 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 虛擬機器 DotNet 核心教學課程 1 | Microsoft Docs"
+title: "Azure Linux 虛擬機器 DotNet 核心教學課程 1 | Microsoft Docs"
 description: "Azure 虛擬機器 DotNet 核心教學課程"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,8 +16,8 @@ ms.workload: infrastructure
 ms.date: 11/21/2016
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 11d67e09c25028a66c33020dedfb7acb8699d55f
+ms.sourcegitcommit: 64ad540536dcf3f4d4a73f49d99fb6142b33ea9c
+ms.openlocfilehash: d761bd2cb01d121a3abdd91b59737bece567aba5
 
 
 ---
@@ -73,6 +73,6 @@ Azure Resource Manager 範本需要下列參數值。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

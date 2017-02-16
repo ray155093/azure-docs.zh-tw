@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/25/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5402481a0adc27474f7ddd9b5be1d71dc2c91d44
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a696120a5891f53ee8ff7db80fb53acba213978f
 
 
 ---
@@ -89,7 +89,7 @@ AMQP 和 SBMP 會更有效率，因為只要傳訊處理站存在，它們就會
 ## <a name="client-side-batching"></a>用戶端批次處理
 用戶端批次處理可讓佇列或主題用戶端將訊息的傳送延遲一段時間。 如果用戶端在此期間傳送其他訊息，它將以單一批次傳輸訊息。 用戶端批次處理也會導致佇列/訂用帳戶用戶端將多個**完成**要求整批放入單一要求中處理。 批次處理僅適用於非同步**傳送**及**完成**作業。 同步作業會立即傳送至服務匯流排服務。 查看或接收作業不會進行批次處理，也不會跨用戶端進行。
 
-如果批次超過訊息大小上限，最後一則訊息會從批次移除，而且用戶端會立即傳送批次。 最後一則訊息會成為下一個批次的第一則訊息。 根據預設，用戶端使用的批次間隔為 20 毫秒。 您可以藉由在建立傳訊處理站之前設定 [BatchFlushInterval][BatchFlushInterval] 屬性來變更批次間隔。 這個設定會影響此處理站所建立的所有用戶端。
+根據預設，用戶端使用的批次間隔為 20 毫秒。 您可以藉由在建立傳訊處理站之前設定 [BatchFlushInterval][BatchFlushInterval] 屬性來變更批次間隔。 這個設定會影響此處理站所建立的所有用戶端。
 
 若要停用批次處理，請將 [BatchFlushInterval][BatchFlushInterval] 屬性設為 **TimeSpan.Zero**。 例如：
 
@@ -140,7 +140,7 @@ namespaceManager.CreateTopic(td);
 如果將包含不能遺失之重要資訊的訊息傳送至快速實體，傳送者可以強制服務匯流排立即藉由將 [ForcePersistence][ForcePersistence] 屬性設為 **true** 來將訊息儲存到穩定儲存體。
 
 ## <a name="use-of-partitioned-queues-or-topics"></a>使用分割的佇列或主題
-服務匯流排會在內部使用相同的節點和訊息存放區來處理和儲存傳訊實體 (佇列或主題) 的所有訊息。 另一方面，分割的佇列或主題會在多個節點和訊息存放區中散佈。 分割的佇列和主題不僅會產生比一般佇列和主題更高的輸送量，也會展現較優異的可用性。 若要建立分割的實體，請將 [EnablePartitioning][EnablePartitioning] 屬性設為 **true**，如下列範例所示。 如需分割實體的詳細資訊，請參閱[分割的傳訊實體][分割的傳訊實體]。
+服務匯流排會在內部使用相同的節點和訊息存放區來處理和儲存傳訊實體 (佇列或主題) 的所有訊息。 另一方面，分割的佇列或主題會在多個節點和訊息存放區中散佈。 分割的佇列和主題不僅會產生比一般佇列和主題更高的輸送量，也會展現較優異的可用性。 若要建立分割的實體，請將 [EnablePartitioning][EnablePartitioning] 屬性設為 **true**，如下列範例所示。 如需分割實體的詳細資訊，請參閱[分割的傳訊實體][Partitioned messaging entities]。
 
 ```
 // Create partitioned queue.
@@ -152,7 +152,7 @@ namespaceManager.CreateQueue(qd);
 ## <a name="use-of-multiple-queues"></a>使用多個佇列
 如果您不能使用分割的佇列或主題，或無法由單一分割佇列或主題處理預期的負載，您必須使用多個傳訊實體。 使用多個實體時，請針對每個實體建立專屬用戶端，而不是讓所有實體使用相同的用戶端。
 
-## <a name="development-testing-features"></a>開發與測試功能
+## <a name="development--testing-features"></a>開發與測試功能
 服務匯流排有一項專門用於開發的功能，此功能**永遠不應該用在生產組態**。
 
 [TopicDescription.EnableFilteringMessagesBeforePublishing](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicdescription.enablefilteringmessagesbeforepublishing.aspx)
@@ -241,7 +241,7 @@ namespaceManager.CreateQueue(qd);
 * 將預先擷取設為 20 乘以預期的接收速率 (以秒為單位)。 這會減少服務匯流排用戶端通訊協定傳輸數目。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解最佳化服務匯流排效能，請參閱[分割的傳訊實體][分割的傳訊實體]。
+若要深入了解如何最佳化服務匯流排效能，請參閱[分割的傳訊實體][Partitioned messaging entities]。
 
 [QueueClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx
 [MessageSender]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesender.aspx
@@ -254,10 +254,10 @@ namespaceManager.CreateQueue(qd);
 [SubscriptionClient.PrefetchCount]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.prefetchcount.aspx
 [ForcePersistence]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.forcepersistence.aspx
 [EnablePartitioning]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.enablepartitioning.aspx
-[分割的傳訊實體]: service-bus-partitioning.md
+[Partitioned messaging entities]: service-bus-partitioning.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

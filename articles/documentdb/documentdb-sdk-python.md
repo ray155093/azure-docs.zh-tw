@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB Python API 和 SDK | Microsoft Docs"
+title: "適用於 Azure DocumentDB 的 Python API 和 SDK 資源 | Microsoft Docs"
 description: "了解所有 Python API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Python SDK 每個版本之間的變更。"
 services: documentdb
 documentationcenter: python
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/30/2016
 ms.author: rnagpal
 translationtype: Human Translation
-ms.sourcegitcommit: 5e182811adc29ae00d40355bb4813c30eb0b904c
-ms.openlocfilehash: 6e2ab89f3895edcfb818ad918dfffd597f4905d3
+ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
+ms.openlocfilehash: 377b1c5a5f1a3425f255d227c6d2800b9ec61a33
 
 
 ---
@@ -142,6 +142,6 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

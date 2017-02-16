@@ -8,6 +8,7 @@ manager: jhubbard
 editor: monicar
 ms.assetid: 3f21ad5e-ba99-4010-b244-5e5815074d31
 ms.service: sql-database
+ms.custom: how to
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -15,8 +16,8 @@ ms.topic: article
 ms.date: 11/15/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: a91b60f20394c236d64bfae242f820e56dd3ed79
-ms.openlocfilehash: 83ff32bb99ba0cf08f61ba4f2a97dee74bd6e1c5
+ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
+ms.openlocfilehash: 54000d76fac3f5759f72fe623326324e6c978505
 
 
 ---
@@ -62,7 +63,7 @@ $sqlServer = New-AzureRmSqlServer -ServerName $sqlServerName `
  -ResourceGroupName $resourceGroupName -ServerVersion $sqlServerVersion
 ```
 
-如需詳細資訊，請參閱 [什麼是 SQL Database](sql-database-technical-overview.md)。 如需範例指令碼，請參閱 [建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
+如需伺服器的詳細資訊，請參閱 [SQL Database 功能](sql-database-features.md)。 如需範例指令碼，請參閱 [建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
 
 ## <a name="how-do-i-create-a-sql-database-server-firewall-rule"></a>如何建立 SQL Database 伺服器防火牆規則？
 若要建立存取伺服器的防火牆規則，請使用 [New-AzureRmSqlServerFirewallRule](https://msdn.microsoft.com/library/azure/mt603860\(v=azure.300\).aspx) Cmdlet。 執行以下命令，以您用戶端的有效值取代開頭和結尾 IP 位址。 資源群組和伺服器必須已經存在於您的訂用帳戶中。
@@ -174,6 +175,6 @@ Remove-AzureRmSqlServer -ServerName $sqlServerName -ResourceGroupName $resourceG
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

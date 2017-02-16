@@ -1,8 +1,8 @@
 ---
-title: "使用 Azure 入口網站建立 Azure 服務的警示 | Microsoft Docs"
-description: "使用 Azure 入口網站建立 Azure 警示，在符合指定條件時觸發通知或自動化。"
+title: "建立 Azure 服務的警示 - Azure 入口網站 | Microsoft Docs"
+description: "當符合您指定的條件時，觸發電子郵件、通知、呼叫網站 URL (Webhook) 或自動化。"
 author: rboucher
-manager: carolz
+manager: carmonm
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -15,18 +15,18 @@ ms.topic: article
 ms.date: 09/23/2016
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e8c04dd76c01cc5eaa4cbbcd82a263090894aecf
+ms.sourcegitcommit: 8c9c9dea1248205aa6303e11e1166d5d38786c1b
+ms.openlocfilehash: 530cbb7b53316324f5bc5bcbe9b1b73b9f0b0f9b
 
 
 ---
-# <a name="use-azure-portal-to-create-alerts-for-azure-services"></a>使用 Azure 入口網站建立 Azure 服務的警示
+# <a name="create-alerts-in-azure-monitor-for-azure-services---azure-portal"></a>在 Azure 服務的 Azure 監視器中建立警示 - Azure 入口網站
 > [!div class="op_single_selector"]
 > * [入口網站](insights-alerts-portal.md)
 > * [PowerShell](insights-alerts-powershell.md)
 > * [CLI](insights-alerts-command-line-interface.md)
-> 
-> 
+>
+>
 
 ## <a name="overview"></a>Overview
 本文說明如何使用 Azure 入口網站設定 Azure 警示。   
@@ -53,10 +53,10 @@ ms.openlocfilehash: e8c04dd76c01cc5eaa4cbbcd82a263090894aecf
 ## <a name="create-an-alert-rule-on-a-metric-with-the-azure-portal"></a>使用 Azure 入口網站建立計量的警示規則
 1. 在 [入口網站](https://portal.azure.com/)中，找到您要監視的資源並選取。
 2. 選取 [監視] 區段底下的 [警示] 或 [警示規則]。 不同資源的文字和圖示會有些許不同。  
-   
+
     ![監視](./media/insights-alerts-portal/AlertRulesButton.png)
 3. 選取 [新增警示]  命令，並填寫各欄位。
-   
+
     ![新增警示](./media/insights-alerts-portal/AddAlertOnlyParamsPage.png)
 4. 為您的警示規則命名 ([名稱])，選擇將會顯示在電子郵件通知中的 [描述]。
 5. 選取您要監視的 [計量]，然後為計量選擇 [條件] 和 [臨界值]。 同時選擇警示觸發程序之前，計量規則必須滿足的 [期間]  。 例如，如果您使用「PT5M」期間，且您的警示會尋找高於 80% 的 CPU，當 CPU 已持續 5 分鐘高於 80%，警示就會觸發。 一旦發生第一次觸發，它會在 CPU 持續 5 分鐘低於 80 % 時再次觸發。 CPU 度量每隔 1 分鐘發生一次。   
@@ -84,7 +84,6 @@ ms.openlocfilehash: e8c04dd76c01cc5eaa4cbbcd82a263090894aecf
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

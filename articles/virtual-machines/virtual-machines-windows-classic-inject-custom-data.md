@@ -1,5 +1,5 @@
 ---
-title: "將自訂資料插入虛擬機器 | Microsoft Docs"
+title: "將資料插入 Azure 上的 Windows VM | Microsoft Docs"
 description: "本主題說明如何在建立執行個體時，將自訂資料插入 Azure 虛擬機器，以及如何在 Windows 或 Linux 上尋找自訂資料。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/23/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 0c0db476389611be616cfaa4e470319db8386670
+ms.sourcegitcommit: 746ed119239d5a0a71a0663e81d9c5b259354419
+ms.openlocfilehash: 1732d6126edad7125a3f67c6d6af068422aa9d1f
 
 
 ---
@@ -30,6 +30,6 @@ ms.openlocfilehash: 0c0db476389611be616cfaa4e470319db8386670
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

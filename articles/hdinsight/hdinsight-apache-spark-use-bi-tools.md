@@ -13,24 +13,20 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 01/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 1eaa7e4ec8681c0494c16ce5ebe27c6b00c40641
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 8122ed46a81f84f5b897986b9e69ab112e2079da
 
 
 ---
-# <a name="use-bi-tools-with-apache-spark-cluster-on-hdinsight-linux"></a>在 HDInsight Linux 上搭配使用 BI 工具和 Apache Spark 叢集
+# <a name="use-bi-tools-with-apache-spark-cluster-on-azure-hdinsight"></a>在 Azure HDInsight 上搭配使用 BI 工具和 Apache Spark 叢集
+
 了解如何在 Azure HDInsight 中使用 Apache Spark 來執行下列作業：
 
 * 取得原始範例資料並儲存成 Hive 資料表
 * 使用 Power BI 和 Tableau 之類的 BI 工具來分析及視覺化資料。
-
-> [!NOTE]
-> 本教學課程只適用於在 Azure HDInsight 中建立的 Spark 1.5.2 叢集。
->
->
 
 本教學課程也適用於您在 HDInsight 中所建立 Spark (Linux) 叢集上的 Jupyter Notebook。 Notebook 的體驗能讓您從 Notebook 本身執行 Python 程式碼片段。 如要從 Notebook 中執行本教學課程，請建立 Spark 叢集、啟動 Jupyter Notebook (`https://CLUSTERNAME.azurehdinsight.net/jupyter`)，然後執行 **Python** 資料夾中的 Notebook [搭配 HDInsight.ipynb 上的 Apache Spark 來使用 BI 工具]。
 
@@ -39,7 +35,7 @@ ms.openlocfilehash: 1eaa7e4ec8681c0494c16ce5ebe27c6b00c40641
 您必須滿足以下條件：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * 一台已安裝 Microsoft Spark ODBC 驅動程式的電腦 (HDInsight 上的 Spark 需要此電腦才能使用 Tableau)。 您可以前往 [這裡](http://go.microsoft.com/fwlink/?LinkId=616229)來安裝驅動程式。
 * BI 工具，例如 [Power BI](http://www.powerbi.com/) 或 [Tableau Desktop](http://www.tableau.com/products/desktop)。 您可以從 [http://www.powerbi.com/](http://www.powerbi.com/)取得 Power BI 的免費預覽版訂用帳戶。
 
@@ -59,10 +55,10 @@ ms.openlocfilehash: 1eaa7e4ec8681c0494c16ce5ebe27c6b00c40641
    >
 3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [PySpark]。
 
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-use-bi-tools/hdispark.note.jupyter.createnotebook.png "Create a new Jupyter notebook")
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-use-bi-tools/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 4. 系統隨即會建立新 Notebook，並以 Untitled.pynb 的名稱開啟。 在頂端按一下 Notebook 名稱，然後輸入好記的名稱。
 
-    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-use-bi-tools/hdispark.note.jupyter.notebook.name.png "Provide a name for the notebook")
+    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-use-bi-tools/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
 5. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。 當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。 首先，您可以匯入此案例所需的類型。 若要這樣做，請將游標放在儲存格中，然後按 **SHIFT + ENTER**鍵。
 
         from pyspark.sql import *
@@ -115,19 +111,19 @@ ms.openlocfilehash: 1eaa7e4ec8681c0494c16ce5ebe27c6b00c40641
 1. 登入 [Power BI](http://www.powerbi.com/)。
 2. 在 [歡迎使用] 畫面中，按一下 [資料庫和其他資訊]。
 
-    ![將資料送入 Power BI](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.get.data.png "Get data into Power BI")
+    ![將資料送入 Power BI](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.get.data.png "將資料送入 Power BI")
 3. 在下一個畫面中，按一下 [Azure HDInsight 上的 Spark]，然後按一下 [連線]。 在畫面出現提示時，輸入叢集的 URL (`mysparkcluster.azurehdinsight.net`)，以及要連線到叢集所需的認證。
 
     建立連線之後，Power BI 會開始從 Spark 叢集將資料匯入 HDInsight。。
 4. Power BI 會匯入資料，並在 [資料集]  標頭下方新增 Spark 資料集。 按一下資料集來開啟新的工作表，以便將資料視覺化。 您也可以把工作表儲存成報告。 如要儲存工作表，請按一下 [檔案] 功能表中的 [儲存]。
 
-    ![Power BI 儀表板上的 Spark 磚](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.tile.png "Spark tile on Power BI dashboard")
+    ![Power BI 儀表板上的 Spark 磚](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.tile.png "Power BI 儀表板上的 Spark 磚")
 5. 請注意，右側的 [欄位] 清單會列出您先前建立的 **hvac** 資料表。 展開資料表，查看資料表中的欄位是否與稍早在 Notebook 中定義的欄位相同。
 
-      ![列出 Hive 資料表](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.display.tables.png "List Hive tables")
+      ![列出 Hive 資料表](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.display.tables.png "列出 Hive 資料表")
 6. 建置視覺效果，顯示每棟建築物之目標溫度和實際溫度間的差異。 請選取 **區域圖** 圖示 (在紅色方框中) 來將資料視覺化。 如要定義軸線，請把 [BuildingID] 欄位拖放到 [軸] 的下方，然後把 [ActualTemp]/[TargetTemp] 欄位拖放到 [值] 的下方。
 
-    ![建立視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.visual1.png "Create visualizations")
+    ![建立視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.visual1.png "建立視覺效果")
 7. 根據預設，視覺效果會顯示 **ActualTemp** 和 **TargetTemp** 的總和。 對於這兩個欄位，請選取下拉式清單中的 [平均]  ，來取得這兩棟建築物的實際和目標溫度的平均值。
 
     ![建立視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.visual2.png)
@@ -139,34 +135,40 @@ ms.openlocfilehash: 1eaa7e4ec8681c0494c16ce5ebe27c6b00c40641
    您可以針對同一個資料集加入滿足需求數量的視覺效果，並將它們釘選在儀表板上以取得資料快照。 此外，HDInsight 上的 Spark 叢集已透過直接連線連接 Power BI。 這表示 Power BI 隨時能取得叢集的最新資訊，因此您不需要排程資料集重新整理。
 
 ## <a name="a-nametableauause-tableau-desktop-to-analyze-data-in-the-hive-table"></a><a name="tableau"></a>使用 Tableau Desktop 來分析 Hive 資料表中的資料
+
+> [!NOTE]
+> 本節只適用於在 Azure HDInsight 中建立的 Spark 1.5.2 叢集。
+>
+>
+
 1. 啟動 Tableau Desktop。 在左窗格上可連線的伺服器清單中，按一下 [Spark SQL] 。 如果左窗格沒有預設列出 Spark SQL，您可以按一下 [更多伺服器] 來尋找它。
 2. 在 Spark SQL 連線對話方塊中，提供下圖所示的值，然後按一下 [確定] 。
 
-    ![連接 Spark 叢集](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.connect.png "Connect to a Spark cluster")
+    ![連接 Spark 叢集](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.connect.png "連接 Spark 叢集")
 
     您必須先在電腦上安裝 [Microsoft Spark ODBC 驅動程式](http://go.microsoft.com/fwlink/?LinkId=616229)，驗證下拉式清單中才會出現 **Microsoft Azure HDInsight 服務**。
 3. 在下一個畫面中，按一下 [結構描述] 下拉式清單的 [尋找] 圖示，然後按一下 [預設]。
 
-    ![尋找結構描述](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.find.schema.png "Find schema")
+    ![尋找結構描述](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.find.schema.png "尋找結構描述")
 4. 對於 [資料表] 欄位，再次按一下 [尋找] 圖示以列出叢集中所有可用的 Hive 資料表。 您應該會看到自己先前使用 Notebook 建立的 **hvac** 資料表。
 
-    ![尋找資料表](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.find.table.png "Find tables")
+    ![尋找資料表](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.find.table.png "尋找資料表")
 5. 將資料表拖放到右側頂端的方塊。 Tableau 會匯入資料，並以紅色方塊反白顯示結構描述。
 
-    ![將資料表加入 Tableau](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.drag.table.png "Add tables to Tableau")
+    ![將資料表加入 Tableau](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.drag.table.png "將資料表加入 Tableau")
 6. 按一下左下方的 [Sheet1]  索引標籤。 針對每個日期，製作出顯示所有建築物之平均目標溫度和實際溫度的視覺效果。 請把 [日期] 和 [建築物識別碼] 拖放到 [資料行] 中，然後將 [實際溫度]/[目標溫度] 拖放到 [資料列] 中。 請選取 [標記] 下方的 [區域]，以使用區域對應圖的視覺效果。
 
-     ![新增視覺效果的欄位](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.drag.fields.png "Add fields for visualization")
+     ![新增視覺效果的欄位](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.drag.fields.png "新增視覺效果的欄位")
 7. 根據預設，溫度欄位以彙總形式顯示。 如果您想要改為顯示平均溫度，可以從下拉式清單執行操作，如下所示。
 
-    ![採取平均溫度](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.temp.avg.png "Take average of temperature")
+    ![採取平均溫度](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.temp.avg.png "採取平均溫度")
 8. 您也可以將溫度對應加諸在其他對應之上，凸顯目標溫度和實際溫度之間的差異。 將滑鼠游標移動到區域對應圖下半部的角落，直到控點出現為止 (如紅色圓圈中所示)。 把對應圖拖曳到另一個對應圖的頂端，然後在您看到紅色圓圈中所示的形狀時，放開滑鼠按鍵。
 
-    ![合併對應](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.merge.png "Merge maps")
+    ![合併對應](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.merge.png "合併對應")
 
      資料視覺效果應該出現如下所示的變更：
 
-    ![視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.final.visual.png "Visualization")
+    ![視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.final.visual.png "視覺效果")
 9. 按一下 [儲存]  以儲存工作表。 您可以建立儀表板，並在儀表板中加入一個或多個工作表。
 
 ## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
@@ -207,6 +209,6 @@ ms.openlocfilehash: 1eaa7e4ec8681c0494c16ce5ebe27c6b00c40641
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -14,8 +14,8 @@ ms.workload: big-data
 ms.date: 11/15/2016
 ms.author: mrys
 translationtype: Human Translation
-ms.sourcegitcommit: 8da474fbc9eae750bbd2e1f6908046d2e7e7be55
-ms.openlocfilehash: 42e1d0cdde66f4bf4a6f3b23421e137716d05beb
+ms.sourcegitcommit: 6d05de6ac944b69402583e939d6b498515945461
+ms.openlocfilehash: f8b13b2b39cf0c860ad59f43eb341c5924804dd9
 
 
 ---
@@ -65,7 +65,7 @@ DECLARE @output_file string = @"\usql-programmability\output_file.tsv";
 OUTPUT @rs1 TO @output_file USING Outputters.Text();
 ```
 
-在上述範例中，我們有一個**輸入檔**，也就是 input_file.tsv 檔案，並以**本機變數** @input_file. 加以定義。
+在上述範例中，input_file.tsv 檔案為「輸入檔」，由 **Local Variable** @input_file 定義。
 
 由於上述 U-SQL 指令碼的執行，所以會執行下列動作︰
 
@@ -449,7 +449,7 @@ REFERENCE ASSEMBLY JSONBlog.[NewtonSoft.Json];
 REFERENCE ASSEMBLY JSONBlog.[Microsoft.Analytics.Samples.Formats];
 ```
 
-而如果您想要使用 XML 功能，則需要對已註冊的組件新增系統組件參考和組件︰
+而如果您想要使用 XML 功能，則需要新增系統組件的參考，以及對已註冊組件的參考︰
 
 ```
 REFERENCE SYSTEM ASSEMBLY [System.Xml];
@@ -932,9 +932,9 @@ SqlUserDefinedType 是 UDT 定義的必要屬性 (attribute)。
 `IColumnWriter` 寫入器/`IColumnReader` 讀取器 – 基礎資料行串流。  
 `ISerializationContext` 內容 – 定義一組旗標的列舉，可在序列化期間指定串流的來源或目的地內容。 
  
-    * *中繼* - 指定來源或目的地內容不是持續性存放區
+   * *中繼* - 指定來源或目的地內容不是持續性存放區
 
-    * *持續性* - 指定來源或目的地內容是持續性存放區
+   * *持續性* - 指定來源或目的地內容是持續性存放區
 
 做為一般的 C# 類型，U-SQL UDT 定義可包括 +/==/!= 等運算子的覆寫。可以包含靜態方法等。 例如，如果我們要使用此 UDT 做為 U-SQL MIN 彙總函式的參數，我們必須定義 < 運算子覆寫。
 
@@ -1288,7 +1288,7 @@ var result = new FiscalPeriod(binaryReader.ReadInt16(), binaryReader.ReadInt16()
 ### <a name="udts-from-built-in-types"></a>來自內建類型的 UDT
 敬請期待
 
-## <a name="user-defined-aggregates-udagg"></a>使用者定義彙總 – UDAGG
+## <a name="user-defined-aggregates--udagg"></a>使用者定義彙總 – UDAGG
 使用者定義彙總是指並非 U-SQL 現成提供的彙總相關函式。 其範例包括用來執行自訂數學計算、執行字串串連或使用字串之操作等彙總。
 
 使用者定義彙總的基底類別定義為
@@ -1424,7 +1424,7 @@ OUTPUT @rs1 TO @output_file USING Outputters.Text();
 
 在此使用案例中，我們會串連特定使用者的類別 GUID。
 
-## <a name="user-defined-objects-udo"></a>使用者定義物件 – UDO
+## <a name="user-defined-objects--udo"></a>使用者定義物件 – UDO
 U-SQL 可讓您定義自訂可程式性物件，我們將其稱為使用者定義物件，簡稱 UDO。
 
 以下是 U-SQL 中的 UDO 清單
@@ -2374,7 +2374,7 @@ var myRowset =
     }
 ```
 
-在此使用案例中，我們會建置零售商的分析報告。 目標是要尋找成本超過 20000 美元，且特定時間範圍內透過網際網路網站的銷售速度快過一般零售商的所有產品。
+在此使用案例中，我們會建置零售商的分析報告。 目標是要尋找成本超過&20000; 美元，且特定時間範圍內透過網際網路網站的銷售速度快過一般零售商的所有產品。
 
 以下是基底 U-SQL 指令碼。 您可以比較一般 JOIN 與結合器之間的邏輯︰
 
@@ -2608,6 +2608,6 @@ OUTPUT @rs2 TO @output_file USING Outputters.Text();
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

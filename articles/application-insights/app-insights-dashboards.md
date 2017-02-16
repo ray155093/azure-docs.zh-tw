@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
-ms.openlocfilehash: 531927178699d6534c37dca6616fe8fdaa19e5fe
+ms.sourcegitcommit: 7315e770c3f09a0ba6100cfa0be86817482e2a29
+ms.openlocfilehash: f816de5a0116903f0b58d960f6181f9709b969bb
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: 531927178699d6534c37dca6616fe8fdaa19e5fe
 
 ![檢視您的遙測的主要路由](./media/app-insights-dashboards/010-oview.png)
 
-您可以自訂任何其他圖表，並將它們釘選到儀表板。 如此一來，您可以結合來自不同應用程式的重要圖表。
+您可以自訂任何圖表和格線，並將它們釘選到儀表板。 如此一來，您就可以在中央儀表板上結合來自不同應用程式的重要遙測資料。
 
 ## <a name="dashboards"></a>儀表板
 您登入 [Microsoft Azure 入口網站](https://portal.azure.com) 之後最先看到的是儀表板。 您可以在這裡將所有 Azure 資源中對您最重要的圖表結合在一起，包括來自 [Azure Application Insights](app-insights-overview.md) 的遙測。
@@ -119,7 +119,7 @@ ms.openlocfilehash: 531927178699d6534c37dca6616fe8fdaa19e5fe
 調查
 
 * [**應用程式對應**](app-insights-app-map.md) - 顯示應用程式元件的使用中對應，其衍生自相依性資訊。
-* [**主動診斷**](app-insights-proactive-diagnostics.md) - 檢閱最近的效能警示。
+* [**智慧型偵測**](app-insights-proactive-diagnostics.md) - 檢閱最近的效能警示。
 * [**即時串流**](app-insights-metrics-explorer.md#live-metrics-stream) - 一組固定且幾近即時的計量，在部署新組建或偵錯時非常實用。
 * [**可用性 / Web 測試**](app-insights-monitor-web-app-availability.md) - 從世界各地將一般要求傳送至您的 Web 應用程式。*
 * [**失敗、效能**](app-insights-web-monitor-performance.md) - 對您的應用程式提出的要求和您的應用程式對[相依項目](app-insights-asp-net-dependencies.md)提出的要求，其例外狀況、失敗率和回應時間。
@@ -157,6 +157,6 @@ ms.openlocfilehash: 531927178699d6534c37dca6616fe8fdaa19e5fe
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

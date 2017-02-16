@@ -13,11 +13,11 @@ ms.devlang: java
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 11/02/2016
+ms.date: 11/16/2016
 ms.author: denlee
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 24fa3533be1ce4659e65d924417cb715579b4851
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: d8abb90b19fd3b79324209a2418c414e3b6bb301
 
 
 ---
@@ -47,7 +47,11 @@ ms.openlocfilehash: 24fa3533be1ce4659e65d924417cb715579b4851
 ## <a name="a-idprerequisitesaprerequisites-for-this-java-web-application-tutorial"></a><a id="Prerequisites"></a>針對此 Java Web 應用程式教學課程的必要條件
 開始進行本應用程式開發教學課程之前，您必須具備下列條件：
 
-* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)
+
+    或
+
+    本機安裝的 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)。
 * [Java Development Kit (JDK) 7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。
 * [Eclipse IDE for Java EE Developers。](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunasr1)
 * [已啟用某個 Java Runtime Environment (例如 Tomcat 或 Jetty) 的 Azure 網站。](../app-service-web/web-sites-java-get-started.md)
@@ -55,7 +59,7 @@ ms.openlocfilehash: 24fa3533be1ce4659e65d924417cb715579b4851
 如果您是第一次安裝這些工具，coreservlets.com 提供了安裝程序的的逐步解說，請參閱其 [教學課程：安裝 TomCat7 並與 Eclipse 搭配使用](http://www.coreservlets.com/Apache-Tomcat-Tutorial/tomcat-7-with-eclipse.html) 一文中的 [快速入門] 區段。
 
 ## <a name="a-idcreatedbastep-1-create-a-documentdb-database-account"></a><a id="CreateDB"></a>步驟 1：建立 DocumentDB 資料庫帳戶
-現在就開始建立 DocumentDB 帳戶。 如果您已經擁有帳戶，您可以跳到 [步驟 2：建立新的 Java JSP 應用程式](#CreateJSP)。
+現在就開始建立 DocumentDB 帳戶。 如果您已經擁有帳戶，或如果您正在使用 DocumentDB 模擬器來進行本教學課程，可以跳到[步驟 2：建立 Java JSP 應用程式](#CreateJSP)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
@@ -73,7 +77,7 @@ ms.openlocfilehash: 24fa3533be1ce4659e65d924417cb715579b4851
    
     ![建立新的 JSP 檔案 - Java Web 應用程式教學課程](./media/documentdb-java-application/image11.png)
 5. 在 [選取 JSP 範本] 對話方塊中，基於本教學課程的目的，選取 [新增 JSP 檔案 (html)]，然後按一下 [完成]。
-6. 在 Eclipse 中開啟 index.jsp 檔案時，請加入文字以便在現有的 <body> 元素內顯示 **Hello World!**。 within the existing <body> element. 您已更新的 <body> 內容看起來應該與下列程式碼類似：
+6. 在 Eclipse 中開啟 index.jsp 檔案時，請加入文字以顯示 **Hello World!**。 (在現有 <body> 元素內)。 您已更新的 <body> 內容看起來應該與下列程式碼類似：
    
         <body>
             <% out.println("Hello World!"); %>
@@ -453,7 +457,7 @@ ms.openlocfilehash: 24fa3533be1ce4659e65d924417cb715579b4851
             }
         }
 3. 我們需要一個可對使用者顯示的「Web 使用者介面」。 讓我們重新撰寫稍早建立的 index.jsp：
-   
+    ```html
         <html>
         <head>
           <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -540,6 +544,7 @@ ms.openlocfilehash: 24fa3533be1ce4659e65d924417cb715579b4851
           <script src="assets/todo.js"></script>
         </body>
         </html>
+    ```
 4. 最後，撰寫一些用戶端 Javascript，以將 Web 使用者介面與 Servlet 繫結在一起：
    
         var todoApp = {
@@ -759,6 +764,6 @@ ms.openlocfilehash: 24fa3533be1ce4659e65d924417cb715579b4851
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 11/23/2016
+ms.date: 12/05/2016
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: e5703e7aa26af81a0bf76ec393f124ddc80bf43c
-ms.openlocfilehash: 76adad7bc7f195b04601368fb715e34f5d3d7782
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 3a42093a67fe1ded29e97343affa5df89ea5fd1a
 
 
 ---
@@ -212,6 +212,37 @@ ms.openlocfilehash: 76adad7bc7f195b04601368fb715e34f5d3d7782
 > 
 > 
 
+### <a name="schema-creation"></a>建立結構描述
+如果 Power BI 資料集和資料表尚不存在，則 Azure 串流分析會代表使用者建立一個。 在其他情況下，則會以新的值更新資料表。目前的限制是一個資料集內只能存在一個資料表。
+
+### <a name="data-type-conversion-from-asa-to-power-bi"></a>從 ASA 至 Power BI 的資料類型轉換
+如果輸出結構描述變更，則 Azure 串流分析會在執行階段動態更新資料模型。 所有資料行名稱變更、資料行類型變更以及資料行新增或移除都會加以追蹤。
+
+如果 POWER BI 資料集和資料表不存在，此資料表包含從[串流分析資料類型](https://msdn.microsoft.com/library/azure/dn835065.aspx)至 Power BI [實體資料模型 (EDM) 類型](https://powerbi.microsoft.com/documentation/powerbi-developer-walkthrough-push-data/)的資料類型轉換。
+
+
+從串流分析 | 至 Power BI
+-----|-----|------------
+bigint | Int64
+nvarchar(max) | String
+datetime | DateTime
+float | 兩倍
+記錄陣列 | 字串類型、常數值 “IRecord” 或 “IArray”
+
+### <a name="schema-update"></a>更新結構描述
+串流分析會根據輸出中的第一組事件來推斷資料模型結構描述。 之後會視需要更新資料模型結構描述，以容納原始結構描述放不下的連入事件。
+
+應該避免 `SELECT *` 查詢，以防止跨越資料列的動態結構描述更新。 除了潛在的效能影響以外，也可能導致結果所花費的時間不定。 應選取必須顯示在 Power BI 儀表板上的確切欄位。 此外，資料值應該與所選的資料類型相符。
+
+
+先前/目前 | Int64 | String | DateTime | 兩倍
+-----------------|-------|--------|----------|-------
+Int64 | Int64 | String | String | 兩倍
+兩倍 | 兩倍 | String | String | 兩倍
+String | String | String | String |  | String | 
+DateTime | String | String |  DateTime | String
+
+
 ### <a name="renew-power-bi-authorization"></a>更新 Power BI 授權
 如果您在建立工作之後或上次驗證過後變更了密碼，則需要重新驗證您的 Power BI 帳戶。 如果您在 Azure Active Directory (AAD) 租用戶上設定 Multi-Factor Authentication (MFA)，則也需要每 2 週更新一次 Power BI 授權。 此問題發生時的徵兆就是沒有工作輸出，且作業記錄檔中出現「驗證使用者錯誤」：
 
@@ -329,6 +360,6 @@ ms.openlocfilehash: 76adad7bc7f195b04601368fb715e34f5d3d7782
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -3,7 +3,7 @@ title: "開始使用 Azure Batch PowerShell | Microsoft Docs"
 description: "取得您可以用來管理 Azure Batch 服務之 Azure PowerShell Cmdlet 的快速簡介"
 services: batch
 documentationcenter: 
-author: mmacy
+author: tamram
 manager: timlt
 editor: 
 ms.assetid: f9ad62c5-27bf-4e6b-a5bf-c5f5914e6199
@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: powershell
 ms.workload: big-compute
-ms.date: 10/20/2016
-ms.author: marsma
+ms.date: 01/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9aa49ecfa151b8ab56c0560db47c3b0eb80647a2
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 1ea51f4053ba0d4e08628d29eca7cb7c82a26d61
 
 
 ---
@@ -30,7 +30,7 @@ ms.openlocfilehash: 9aa49ecfa151b8ab56c0560db47c3b0eb80647a2
 ## <a name="prerequisites"></a>必要條件
 執行下列作業，以使用 Azure PowerShell 來管理您的 Batch 資源。
 
-* [安裝並設定 Azure PowerShell](../powershell-install-configure.md)
+* [安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 * 執行 **Login-AzureRmAccount** Cmdlet 以連線到訂用帳戶 (Azure Batch Cmdlet 隨附在 Azure Resource Manager 模組中)：
   
     `Login-AzureRmAccount`
@@ -240,6 +240,6 @@ Batch Cmdlet 可以利用 PowerShell 管線在 Cmdlet 之間傳送資料。 這�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

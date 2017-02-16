@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: byvinyal
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c02e030b442cc150f87945a48660a5ba2987a309
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 41ad9eb4d248b1f3e6c888c3037b121511799193
 
 
 ---
@@ -219,7 +219,7 @@ App Service 方案擴大率的計算方式如下：
 | **冷卻時間 (分鐘)：** 120 |
 
 <!-- IMAGES -->
-[簡介]: ./media/app-service-environment-auto-scale/introduction.png
+[intro]: ./media/app-service-environment-auto-scale/introduction.png
 [settings-scale]: ./media/app-service-environment-auto-scale/settings-scale.png
 [scale-manual]: ./media/app-service-environment-auto-scale/scale-manual.png
 [scale-profile]: ./media/app-service-environment-auto-scale/scale-profile.png
@@ -237,6 +237,6 @@ App Service 方案擴大率的計算方式如下：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

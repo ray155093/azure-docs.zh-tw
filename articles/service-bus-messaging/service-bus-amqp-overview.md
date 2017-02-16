@@ -1,5 +1,5 @@
 ---
-title: "服務匯流排 AMQP 概觀 | Microsoft Docs"
+title: "Azure 服務匯流排的 AMQP 1.0 概觀 | Microsoft Docs"
 description: "了解如何在 Azure 中使用 Advanced Message Queuing Protocol (AMQP)。"
 services: service-bus-messaging
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 61f31c8ad0463776937f366d145595f04cc42d2e
-ms.openlocfilehash: 539ff0d47279b1c551c3ff0a21dff4633a3c0ac8
+ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
+ms.openlocfilehash: 91b138ee9590a66c63e2055eaeace82b4e719ae5
 
 
 ---
@@ -104,6 +104,6 @@ Azure 服務匯流排中的 AMQP 1.0 支援代表您現在能夠從一組平台�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

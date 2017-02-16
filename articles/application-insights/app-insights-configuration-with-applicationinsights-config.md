@@ -1,6 +1,6 @@
 ---
-title: "使用 ApplicationInsights.config 或 .xml 設定 Application Insights SDK | Microsoft Docs"
-description: "啟用或停用資料收集模組，以及加入效能計數器和其他參數"
+title: "ApplicationInsights.config 參考 - Azure | Microsoft Docs"
+description: "啟用或停用資料收集模組，以及加入效能計數器和其他參數。"
 services: application-insights
 documentationcenter: 
 author: OlegAnaniev-MSFT
@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 03/12/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: a7cf17e7c84ca6ec69b8a88b78bb0bbc91db0b5b
-ms.openlocfilehash: 24b8ede9268fb4d821913cfab313c3c7050d8ddb
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: 1a22ff8eff2a9b0f09b6209160ad5e44ff32358c
 
 
 ---
 # <a name="configuring-the-application-insights-sdk-with-applicationinsightsconfig-or-xml"></a>使用 ApplicationInsights.config 或 .xml 設定 Application Insights SDK
 Application Insights .NET SDK 是由數個 NuGet 封裝所組成。 [核心封裝](http://www.nuget.org/packages/Microsoft.ApplicationInsights) 提供 API，用於傳送遙測至 Application Insights。 [其他套件](http://www.nuget.org/packages?q=Microsoft.ApplicationInsights)提供遙測*模組*和*初始設定式*，用於自動從您的應用程式和其內容追蹤遙測。 您可以藉由調整組態檔，來啟用或停用遙測模組和初始設定式，並為其設定一些參數。
 
-組態檔的名稱為 `ApplicationInsights.config` 或 `ApplicationInsights.xml`，端視您的應用程式類型而定。 當您[安裝大部分版本的 SDK][start] 時，系統會自動將組態檔新增至您的專案。 [IIS 伺服器上的狀態監視器][redfield]，或是當您[選取 Azure 網站或 VM 的 Application Insights 擴充功能](app-insights-azure-web-apps.md)時，也會將組態檔新增至 Web 應用程式。
+組態檔的名稱為 `ApplicationInsights.config` 或 `ApplicationInsights.xml`，端視您的應用程式類型而定。 當您[安裝大部分版本的 SDK][start] 時，系統會自動將組態檔加入至您的專案。 [IIS 伺服器上的狀態監視器][redfield]，或是當您[選取 Azure 網站或 VM 的 Application Insights 延伸模組](app-insights-azure-web-apps.md)時，也會將組態檔加入至 Web 應用程式。
 
 沒有同等的檔案可以控制[網頁中的 SDK][client]。
 
@@ -264,6 +264,6 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

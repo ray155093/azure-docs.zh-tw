@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 10/04/2016
+ms.date: 01/05/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 369b7c8775388f641727cb889b406ac60be13d16
+ms.sourcegitcommit: ecb2ab00b56476b4373fa06cb766384cb2fcd514
+ms.openlocfilehash: fceb4254461bd91fd2da8603af4fefa47def72e8
 
 
 ---
@@ -28,22 +28,17 @@ ms.openlocfilehash: 369b7c8775388f641727cb889b406ac60be13d16
 
 * 具備網路連線
 * 具備執行 HTTPS 要求的 SSL 功能
-* 可以剖析 JSON (藉由手動或支援程式庫)
+* 能夠剖析 JSON (直接或藉由支援程式庫)
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-使用 Azure Machine Learning Web 服務有兩種方式，可以做為要求-回應服務或批次執行服務。 在這兩個案例中，一旦部署實驗後，就可以使用透過 RESTFul Web 服務提供的功能。
+Azure Machine Learning Web 服務的使用方式有兩種，可以作為「要求-回應服務」或作為「批次執行服務」。 在這兩個案例中，一旦部署實驗後，就可以使用透過 RESTFul Web 服務提供的功能。
 
 > [!TIP]
 > 如需建立 Web 應用程式以存取您的預測 Web 服務的簡單方式，請參閱 [使用 Azure Machine Learning Web 服務與 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)。
 > 
 > 
-
-<!-- When this article gets published, fix the link and uncomment
-For more information on how to manage Azure Machine Learning Web service endpoints using the REST API, see **Azure machine learning Web service endpoints**.
--->
-
-如需如何建立及部署 Azure Machine Learning Web 服務的相關資訊，請參閱[部署 Azure Machine Learning Web 服務][publish]。 如需建立機器學習實驗和部署實驗的逐步解說，請參閱[使用 Azure Machine Learning 開發預測解決方案][walkthrough]。
+> 如需有關如何建立及部署 Azure Machine Learning Web 服務的資訊，請參閱[部署 Azure Machine Learning Web 服務][publish]。 如需建立 Machine Learning 實驗並部署實驗的逐步解說，請參閱[使用 Azure Machine Learning 來開發預測解決方案][walkthrough]。
 
 ## <a name="request-response-service-rrs"></a>要求回應服務 (RRS)
 「要求回應服務 (RRS)」是一種低延遲、高度可調整的 Web 服務，可用來為從 Azure Machine Learning Studio 實驗建立並部署的無狀態模型提供介面。 此服務能讓消費端應用程式要求即時回應。
@@ -738,6 +733,6 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

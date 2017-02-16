@@ -16,8 +16,8 @@ ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1ea4948b39b4d17cf3661e54415ff94519127a58
+ms.sourcegitcommit: 86a0f6f2bc27f1411652b273325e73144582eee0
+ms.openlocfilehash: 73a2dded23cc91b4574db7734cf79ddb366d6147
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: 1ea4948b39b4d17cf3661e54415ff94519127a58
 
 ![已加入網域的 HDInsight 拓樸](.\\media\\hdinsight-domain-joined-configure\\hdinsight-domain-joined-topology.png)
 
-因為 Azure AD 目前只支援傳統虛擬網路 (VNet)，而 Linux 架構的 HDInsight 叢集僅支援 Azure Resource Manager 架構的 VNet，HDInsight Azure AD 整合需要兩個 VNet 以及在兩者之間的對等互連。 如需兩種部署模型的比較資訊，請參閱 [Azure Resource Manager 與傳統部署比較：了解資源的部署模型和狀態](../resource-manager-deployment-model.md)。 這兩個 VNet 必須位於與 Azure AD DS 相同的區域中。
+因為 Azure AD 目前只支援傳統虛擬網路 (VNet)，而 Linux 架構的 HDInsight 叢集僅支援 Azure Resource Manager 架構的 VNet，HDInsight Azure AD 整合需要兩個 VNet 以及在兩者之間的對等互連。 如需兩種部署模型的比較資訊，請參閱 [Azure Resource Manager 與傳統部署比較：了解資源的部署模型和狀態](../azure-resource-manager/resource-manager-deployment-model.md)。 這兩個 VNet 必須位於與 Azure AD DS 相同的區域中。
 
 > [!NOTE]
 > 本教學課程假設您已沒有 Azure AD。 如果您有的話，可以略過步驟 2 的部分。
@@ -105,7 +105,7 @@ ms.openlocfilehash: 1ea4948b39b4d17cf3661e54415ff94519127a58
 在建立反向 DNS 區域時，指令碼會提示您輸入網路識別碼。 此網路識別碼必須是 Resource Manager 虛擬網路的位址首碼。 例如，如果 Resource Manager 虛擬網路子網路的位址空間是 10.2.0.0/24，則請在工具提示您輸入網路識別碼時輸入 10.2.0.0/24。 
 
 ## <a name="create-hdinsight-cluster"></a>建立 HDInsight 叢集
-在本節中，您會使用 Azure 入口網站或 [Azure Resource Manager 範本](../resource-group-template-deploy.md)，在 HDInsight 中建立 Linux 架構的 Hadoop 叢集。 如需其他叢集建立方法及了解各項設定，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 如需有關使用 Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集的詳細資訊，請參閱[使用 Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-arm-templates.md)。
+在本節中，您會使用 Azure 入口網站或 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)，在 HDInsight 中建立 Linux 架構的 Hadoop 叢集。 如需其他叢集建立方法及了解各項設定，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 如需有關使用 Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集的詳細資訊，請參閱[使用 Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-arm-templates.md)。
 
 **使用 Azure 入口網站建立已加入網域的 HDInsight 叢集**
 
@@ -183,12 +183,13 @@ ms.openlocfilehash: 1ea4948b39b4d17cf3661e54415ff94519127a58
 完成本教學課程之後，您可以刪除叢集。 利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。 您也需支付 HDInsight 叢集的費用 (即使未使用)。 由於叢集費用是儲存體費用的許多倍，所以刪除未使用的叢集符合經濟效益。 如需有關刪除叢集的指示，請參閱[使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-management-portal.md#delete-clusters)。
 
 ## <a name="next-steps"></a>後續步驟
-* 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInsight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
-* 如需使用 SSH 在已加入網域的 HDInsight 叢集上執行 Hive 查詢，請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-domain-joined-hdinsight-cluster)。
+
+* 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInisight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
+* 如需使用 SSH 連線到已加入網域的 HDInsight 叢集，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO5-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "針對 Azure Machine Learning 傳統 Web 服務的重新訓練進行疑難排解 | Microsoft Docs"
+title: "針對重新訓練 Azure Machine Learning Classic Web 服務進行疑難排解 | Microsoft Docs"
 description: "找出您在為 Azure Machine Learning Web 服務重新訓練模型時所遇到的常見問題，並加以修正。"
 services: machine-learning
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/11/2017
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 201b07536bcee58e2b7102379dff1c1c93c4b675
-ms.openlocfilehash: e8d9043630f16fa65902e11f459f85b5821a6a61
+ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
+ms.openlocfilehash: 5bbd1bd74176b67beaecfc9995d16e923e5a40f1
 
 
 ---
@@ -116,6 +116,6 @@ PATCH 說明頁面包含必須使用的 PATCH URL，並提供可用來呼叫它�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

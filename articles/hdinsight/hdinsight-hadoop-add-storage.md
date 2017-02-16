@@ -15,15 +15,15 @@ ms.workload: big-data
 ms.date: 11/28/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 697580da9d7c836655ec64745cfb211beabb84f2
-ms.openlocfilehash: 941d5a8dba421dd5f59bb61af35ac654e42d5910
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: 18545981a21736d9673ce19ae2325ba5e4a67ff6
 
 
 ---
 
 # <a name="add-additional-azure-storage-accounts-to-hdinsight"></a>將其他 Azure 儲存體帳戶新增至 HDInsight
 
-了解如何使用指令碼動作，將其他 Azure 儲存體帳戶新增至現有的 HDInsight 叢集。
+了解如何使用指令碼動作，將其他 Azure 儲存體帳戶新增至使用 Linux 當成作業系統的現有 HDInsight 叢集。
 
 > [!IMPORTANT]
 > 本文件中的資訊是有關如何在建立叢集之後，將其他儲存體新增至叢集。 如需在叢集建立期間新增其他儲存體帳戶的相關資訊，請參閱[建立 Linux 型 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md#use-additional-storage)文件中的__使用其他儲存體__一節。
@@ -134,6 +134,6 @@ __需求__：
 在本文件中，您已了解如何將其他儲存體帳戶新增至現有的 HDInsight 叢集。 如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO3-->
 
 

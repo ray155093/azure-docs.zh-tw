@@ -12,19 +12,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/17/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: e998e8e4c5b3e0ffee0fa66cececc8eb00800153
-ms.openlocfilehash: 04fe259152f0c1013e74cd30c6c8c5ed0bfab9a3
+ms.sourcegitcommit: 015ca80c952110d3289888ed82d7a543be29950c
+ms.openlocfilehash: 3519fcb7621aec61ab35c80558bc0da0e3b2c41e
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-cs-stars"></a>教學課程：Azure Active Directory 與 CS Stars 整合
 本教學課程旨在說明如何整合 CS Stars 與 Azure Active Directory (Azure AD)。  
-CS Stars 與 Azure AD 整合提供下列優點： 
+CS Stars 與 Azure AD 整合提供下列優點：
 
-* 您可以在 Azure AD 中控制可存取 CS Stars 的人員 
+* 您可以在 Azure AD 中控制可存取 CS Stars 的人員
 * 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 CS Stars (單一登入)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
@@ -38,19 +38,19 @@ CS Stars 與 Azure AD 整合提供下列優點：
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
-> 
+>
+>
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 ## <a name="scenario-description"></a>案例描述
 此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。  
 本教學課程中說明的案例由三個主要建置組塊組成：
 
-1. 從資源庫新增 CS Stars 
+1. 從資源庫新增 CS Stars
 2. 設定並測試 Azure AD 單一登入
 
 ## <a name="adding-cs-stars-from-the-gallery"></a>從資源庫新增 CS Stars
@@ -58,24 +58,24 @@ CS Stars 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 Azure AD，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
-   
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+
     ![Active Directory][1]
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
-   
+
     ![應用程式][2]
 4. 按一下頁面底部的 [新增]  。
-   
+
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
-   
+
     ![應用程式][4]
 6. 在搜尋方塊中，輸入 **CS Stars**。
-   
+
     ![應用程式][5]
 7. 在結果窗格中，選取 [CS Stars]，然後按一下 [完成] 以加入應用程式。
-   
+
     ![應用程式][400]
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
@@ -98,30 +98,30 @@ CS Stars 與 Azure AD 整合提供下列優點：
 **若要使用 CS Stars 設定 Azure AD 單一登入，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 [CS Stars] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-   
+
     ![設定單一登入][6]
 2. 在 [您希望使用者如何登入 CS Stars] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
-   
+
     ![Azure AD 單一登入][7]
-3. 在 [設定應用程式設定]  對話方塊頁面上，執行下列步驟： 
-   
+3. 在 [設定應用程式設定]  對話方塊頁面上，執行下列步驟：
+
     ![設定 App 設定][8]
-   
+
     a. 在 [登入 URL] 文字方塊中輸入使用者用來登入您 CS Stars 應用程式的 URL (例如：`https://uat.csstars.com/enterprise/default.cmdx?ssoclient=C234UAT2`)。
-   
+
     > [!NOTE]
     > 如果您不知道正確的值為何，請連絡您的 Marsh ClearSight 代表。
-   
+
     b. 按 [下一步] 。
 4. 於 [在 CS Stars 設定單一登入] 頁面上，按一下 [下載中繼資料]，然後將中繼資料檔儲存在您的本機電腦中。
-   
+
     ![何謂 Azure AD Connect][9]
 5. 若要對 CS Stars 啟用單一登入，請連絡您的 Marsh ClearSight 代表並交出中繼資料檔案。
-6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按 [下一步] 。 
-   
+6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按 [下一步] 。
+
     ![何謂 Azure AD Connect][10]
 7. 在 [單一登入確認] 頁面上，按一下 [完成]。  
-   
+
     ![何謂 Azure AD Connect][11]
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
@@ -132,46 +132,46 @@ CS Stars 與 Azure AD 整合提供下列優點：
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_02.png) 
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_02.png)
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_03.png) 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。 
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_04.png) 
-5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟： 
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_05.png) 
-   
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_03.png)
+4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_04.png)
+5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_05.png)
+
     a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
+
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
+
     c. 按 [下一步] 。
-6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟： 
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_06.png) 
-   
+6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_06.png)
+
     a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
+
     b. 在 [姓氏] 文字方塊中輸入 **Simon**。
-   
+
     c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
+
     d. 在 [角色] 清單中選取 [使用者]。
-   
+
     e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_07.png) 
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_07.png)
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
-   
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_08.png) 
-   
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_08.png)
+
     a. 記下 [新密碼] 的值。
-   
+
     b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-cs-stars-test-user"></a>建立 CS Stars 測試使用者
@@ -187,17 +187,17 @@ CS Stars 與 Azure AD 整合提供下列優點：
 **若要將 Britta Simon 指派到 CS Stars，請執行以下步驟：**
 
 1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
-   
+
     ![指派使用者][201]
 2. 在應用程式清單中，選取 [CS Stars] 。
-   
+
     ![指派使用者][202]
 3. 在頂端的功能表中，按一下 [使用者] 。
-   
+
     ![指派使用者][203]
 4. 在 [使用者] 清單中，選取 [Britta Simon] 。
 5. 在底部的工具列中，按一下 [指派] 。
-   
+
     ![指派使用者][205]
 
 ### <a name="testing-single-sign-on"></a>測試單一登入
@@ -233,8 +233,6 @@ CS Stars 與 Azure AD 整合提供下列優點：
 
 
 
-
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

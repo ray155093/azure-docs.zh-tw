@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/09/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: e1c99bbe9d6317d83cc5e71ca4f79d862223aa0a
-ms.openlocfilehash: 080def517b9a443d33148354226a394494a66e03
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: c6171ad4077e833162bfad31b01abbc9947f8e45
 
 ---
 # <a name="use-apache-kafka-preview-with-storm-on-hdinsight"></a>使用 Apache Kafka (預覽) 搭配 Storm on HDInsight
@@ -29,8 +29,6 @@ Apache Kafka 是適用於 HDInsight 的發佈-訂閱訊息解決方案。 Apache
 > 當您完成本文件中的步驟時，請記得刪除叢集，以避免產生過多的費用。
 
 ## <a name="prerequisites"></a>必要條件
-
-* Azure 訂用帳戶
 
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 1.8 或更新版本。 或同等功能版本，例如 [OpenJDK](http://openjdk.java.net/)。
   
@@ -324,6 +322,6 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

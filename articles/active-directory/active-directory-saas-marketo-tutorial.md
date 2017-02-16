@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/07/2016
+ms.date: 11/30/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2d31f2643ac39fb6227b57d2b064058af1dbe20d
+ms.sourcegitcommit: 1a2ff324cfa65977685f6a0eee9cd398b0717519
+ms.openlocfilehash: 20f3a8b006e45e3a94e95b516bca292a82c5fd03
 
 
 ---
@@ -139,46 +139,47 @@ Marketo 與 Azure AD 整合提供下列優點：
     ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_12.png)
 6. 若要設定應用程式中的 SSO，請遵循下列步驟︰
    
-   a. 使用系統管理員認證登入Marketo 應用程式。
+    a. 使用系統管理員認證登入Marketo 應用程式。
    
-   b. 按一下頂端導覽窗格中的 [管理] 按鈕。
+    b. 按一下頂端導覽窗格中的 [管理] 按鈕。
    
-   ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_06.png) 
+    ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_06.png) 
    
-   c. 瀏覽至 [整合] 功能表，然後按一下 [單一登入] 連結。
+    c. 瀏覽至 [整合] 功能表，然後按一下 [單一登入] 連結。
    
-   ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_07.png) 
+    ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_07.png) 
    
-   d. 若要啟用 SAML 設定，按一下 [編輯] 按鈕。
+    d. 若要啟用 SAML 設定，按一下 [編輯] 按鈕。
    
-   ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_08.png) 
+    ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_08.png) 
    
-   e. **啟用**單一登入設定
+    e. **啟用**單一登入設定
    
-   f. 輸入簽發者識別碼 (從 Azure AD 設定精靈中複製)。
+    f. 輸入簽發者識別碼 (從 Azure AD 設定精靈中複製)。
    
-   g. 在 [實體識別碼] 文字方塊中，輸入 URL **http://saml.marketo.com/sp**
+    g. 在 [實體識別碼] 文字方塊中，輸入 URL **http://saml.marketo.com/sp**
    
-   h. [使用者識別碼位置] 選取 [名稱識別碼元素]
+    h. [使用者識別碼位置] 選取 [名稱識別碼元素]
    
-   ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_09.png)
+    ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_09.png)
    
-   > [!NOTE]
-   > 如果您的使用者識別碼不是 UPN 值，則至 [屬性] 索引標籤中變更其值。
-   > 
-   > 
+    > [!NOTE]
+    > 如果您的使用者識別碼不是 UPN 值，則至 [屬性] 索引標籤中變更其值。
+    > 
+    > 
    
-   i. 上傳您從 Azure AD 設定精靈下載的憑證。 儲存設定。
+    i. 上傳您從 Azure AD 設定精靈下載的憑證。 儲存設定。
    
-   j. 編輯 [重新導向頁面] 設定。
+    j. 編輯 [重新導向頁面] 設定。
    
-   k. 從 Azure AD 設定精靈的 [登入 URL] 文字方塊中複製登入 URL。
+    k. 從 Azure AD 設定精靈的 [登入 URL] 文字方塊中複製登入 URL。
    
-   l. 從 Azure AD 設定精靈的 [登出 URL] 文字方塊中複製登出 URL。
+    l. 從 Azure AD 設定精靈的 [登出 URL] 文字方塊中複製登出 URL。
    
-   m. 在 [錯誤 URL] 中，複製您的 Marketo 執行個體 URL，並按一下 [儲存] 按鈕以儲存設定。
+    m. 在 [錯誤 URL] 中，複製您的 Marketo 執行個體 URL，並按一下 [儲存] 按鈕以儲存設定。
    
-   ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_10.png)
+    ![設定單一登入](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_10.png)
+
 7. 若要啟用使用者的 SSO，完成下列動作：
    
     a. 使用系統管理員認證登入Marketo 應用程式。
@@ -225,17 +226,18 @@ Marketo 與 Azure AD 整合提供下列優點：
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
     c. 按 [下一步] 。
-6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-marketo-tutorial/create_aaduser_06.png) 
+6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-marketo-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-marketo-tutorial/create_aaduser_07.png) 
@@ -329,6 +331,6 @@ Marketo 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 儲存體範例 | Microsoft Docs"
+title: "Azure 儲存體程式碼範例 | Microsoft Docs"
 description: "檢視、下載及執行 Azure 儲存體的範例程式碼和應用程式。 探索使用 .NET、Java、Node.js 和 C++ 的儲存體用戶端程式庫之 Blob、佇列、資料表和檔案的入門範例。"
 services: storage
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage
-ms.date: 12/08/2016
+ms.date: 01/23/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fe7be9085c0f6ad0aa2cf3d7dcb03381efd05f6f
+ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
+ms.openlocfilehash: dc466ed5dbd7ad14dd1c84760d9205b940acf504
 
 
 ---
@@ -24,8 +24,8 @@ ms.openlocfilehash: fe7be9085c0f6ad0aa2cf3d7dcb03381efd05f6f
 ## <a name="overview"></a>Overview
 您可以使用下列連結檢視和下載使用 Azure 儲存體的範例。
 
-## <a name="azure-code-sample-library"></a>Azure 程式碼範例程式庫
-[Azure 程式碼範例程式庫](https://azure.microsoft.com/documentation/samples/?service=storage) 包含您可以下載並在本機執行的 Azure 儲存體的範例。 程式碼範例程式庫會提供 .zip 格式的範例程式碼。 或者，您可以瀏覽並複製每個範例的 GitHub 儲存機制。
+## <a name="azure-code-samples-library"></a>Azure 程式碼範例程式庫
+[Azure 程式碼範例程式庫](https://azure.microsoft.com/documentation/samples/?service=storage)包含您可以下載並在本機執行的 Azure 儲存體範例。 程式碼範例程式庫會提供 .zip 格式的範例程式碼。 或者，您可以瀏覽並複製每個範例的 GitHub 儲存機制。
 
 ## <a name="getting-started-samples"></a>開始使用範例
 * [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
@@ -34,19 +34,12 @@ ms.openlocfilehash: fe7be9085c0f6ad0aa2cf3d7dcb03381efd05f6f
 ## <a name="net-samples"></a>.NET 範例
 若要瀏覽 .NET 範例，請從 NuGet 下載 [.NET 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/) 。 您也可以在 [適用於 .NET 的 Azure SDK](https://azure.microsoft.com/downloads/)中找到 .NET 儲存體用戶端程式庫。
 
-* [Getting Started with Azure Blob Service in .NET (開始使用 .NET 中的 Azure Blob 服務)](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)
-* [Getting Started with Azure Queue Service in .NET (開始使用 .NET 中的 Azure 佇列服務)](https://azure.microsoft.com/documentation/samples/storage-queue-dotnet-getting-started/)
-* [Getting Started with Azure Table Service in .NET (開始使用 .NET 中的 Azure 表格服務)](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)
-* [Getting Started with Azure File Service in .NET (開始使用 .NET 中的 Azure 檔案服務)](https://azure.microsoft.com/documentation/samples/storage-file-dotnet-getting-started/)
-* [Azure Blob Storage Photo Gallery Web Application (Azure Blob 儲存體影像中心 Web 應用程式)](https://azure.microsoft.com/documentation/samples/storage-blobs-dotnet-webapp/)
-* [Managing concurrency using Azure Storage (使用 Azure 儲存體管理並行存取)](https://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)
+* [使用 .NET 的 Azure 儲存體範例 (英文)](storage-samples-dotnet.md)
 
 ## <a name="java-samples"></a>Java 範例
 若要瀏覽 Java 範例，請下載 [Java 儲存體用戶端程式庫](https://github.com/azure/azure-storage-java)。
 
-* [開始使用 Blob](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/blob/gettingstarted)
-* [開始使用資料表](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/table/gettingtstarted)
-* [開始使用佇列](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/queue/gettingstarted)
+* [使用 Java 的 Azure 儲存體範例 (英文)](storage-samples-java.md)
 
 ## <a name="nodejs-samples"></a>Node.js 範例
 若要瀏覽 Node.js 範例，請下載 [Node.js 儲存體用戶端程式庫](https://github.com/Azure/azure-storage-node)。
@@ -66,7 +59,8 @@ ms.openlocfilehash: fe7be9085c0f6ad0aa2cf3d7dcb03381efd05f6f
 * [開始使用資料表](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/TablesGettingStarted)
 * [開始使用佇列](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/QueuesGettingStarted)
 
-## <a name="see-also"></a>另請參閱
+## <a name="next-steps"></a>後續步驟
+
 ### <a name="net-resources"></a>.NET 資源
 * [.NET 儲存體用戶端程式庫的原始程式碼](https://github.com/Azure/azure-storage-net)
 * [.NET 用戶端程式庫參考](https://msdn.microsoft.com/library/azure/dn261237.aspx)
@@ -86,6 +80,6 @@ ms.openlocfilehash: fe7be9085c0f6ad0aa2cf3d7dcb03381efd05f6f
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

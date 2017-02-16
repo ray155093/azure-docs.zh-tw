@@ -1,33 +1,33 @@
 ---
-title: "使用 Azure AD 應用程式 Proxy 連接器 | Microsoft Docs"
+title: "安裝和管理連接器 - Azure AD 應用程式 Proxy |Microsoft 文件"
 description: "涵蓋如何建立和管理「Azure AD 應用程式 Proxy」中的連接器群組。"
 services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: 
+editor: harshja
 ms.assetid: 5404372d-3092-4054-aeee-26afb1399f33
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/09/2016
+ms.date: 01/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ba87b73be45cb0893f418453bc0efb3293772c95
+ms.sourcegitcommit: 7ed296a6773763f7aaae55e9a1667efca7d9e590
+ms.openlocfilehash: c4fd1eb4637c310ff0c012a3aad5f4b8af47d50f
 
 
 ---
-# <a name="publish-applications-on-separate-networks-and-locations-using-connector-groups---public-preview"></a>使用連接器群組在個別的網路和位置上發佈應用程式 - 公開預覽版
+# <a name="publish-applications-on-separate-networks-and-locations-using-connectors---public-preview"></a>使用連接器在個別的網路和位置上發佈應用程式 - 公開預覽版
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-application-proxy-connectors-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-application-proxy-connectors.md)
-> 
-> 
+>
+>
 
-連接器群組可用於多種不同狀況，包括：
+連接器和連接器群組可用於多種不同狀況，包括：
 
 * 具有多個互連資料中心的網站。 在此情況下，您會希望儘量將流量保留在資料中心內，因為跨資料中心的連結既昂貴、速度又慢。 您可以在每個資料中心都部署連接器，來只為資料中心內的應用程式提供服務。 這種方法可將跨資料中心的連結減到最少，讓使用者體驗完全的流暢性。
 * 管理安裝在隔離網路 (不是主要的公司網路的一部分) 上的應用程式。 您可以使用連接器群組將專用連接器安裝在隔離網路上，以同時將應用程式與網路隔離。
@@ -64,7 +64,6 @@ ms.openlocfilehash: ba87b73be45cb0893f418453bc0efb3293772c95
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

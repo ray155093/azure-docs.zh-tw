@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/09/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3d5c5d6ae177b6f662df261f3254816b20bac764
+ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
+ms.openlocfilehash: f355ea88f4d14e48d9523a0ac7aff965171bed4b
 
 
 ---
@@ -216,7 +216,7 @@ R 和 Python 中提供可用於存取資料庫的程式庫。
 ### <a name="azure-tools"></a>Azure 工具
 VM 上安裝了下列 Azure 工具：
 
-* **Azure 命令列介面**：Azure CLI 可讓您透過殼層命令來建立和管理 Azure 資源。 若要叫用 Azure 工具，只需輸入 **azure help**。 如需詳細資訊，請參閱 [Azure CLI 文件頁面](../virtual-machines-command-line-tools.md)。
+* **Azure 命令列介面**：Azure CLI 可讓您透過殼層命令來建立和管理 Azure 資源。 若要叫用 Azure 工具，只需輸入 **azure help**。 如需詳細資訊，請參閱 [Azure CLI 文件頁面](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
 * **Microsoft Azure 儲存體總管**：Microsoft Azure 儲存體總管是一個圖形化工具，可用來瀏覽您在 Azure 儲存體帳戶中所儲存的物件，也可以上傳和下載 Azure Blob 的資料。 您可以從桌面捷徑圖示存取儲存體總管。 從殼層命令提示字元叫用它則是輸入 **StorageExplorer**。 您需要從 X2Go 用戶端登入，或是已設定 X11 轉寄。
 * **Azure 程式庫**：以下是一些預先安裝的程式庫。
   
@@ -348,6 +348,6 @@ Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

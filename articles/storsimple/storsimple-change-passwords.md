@@ -1,5 +1,5 @@
 ---
-title: "變更 StorSimple 密碼 | Microsoft Docs"
+title: "透過 StorSimple 裝置管理員變更密碼 | Microsoft Docs"
 description: "描述如何使用 StorSimple Manager 服務變更 StorSimple Snapshot Manager 與裝置系統管理員密碼。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 43df835da672a7d6584cb91f0837b4e11671c27a
+ms.sourcegitcommit: eb56cae77722268f42e5126c45ad2878af7db94a
+ms.openlocfilehash: d890b59595628ca3eeff1df258847c2bb54d29ff
 
 
 ---
@@ -60,6 +60,6 @@ StorSimple Snapshot Manager 密碼現在應該已更新。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

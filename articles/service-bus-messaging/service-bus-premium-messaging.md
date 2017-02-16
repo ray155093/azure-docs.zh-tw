@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 1/06/2016
-ms.author: darosa,sethm,jotaub
+ms.date: 01/18/2017
+ms.author: darosa;sethm;jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: ed1469b7d12af84970d0675ac2af29580e319042
-ms.openlocfilehash: 11bac0e1877fa2c1cacc9a0a6e6d7870a17a44a2
+ms.sourcegitcommit: dfd1ae52cc56a4d4b4c7ee3f69f0c454be607401
+ms.openlocfilehash: 9dd2696ebf4e2c4749471e5adcbc446c3945babf
 
 
 ---
@@ -43,7 +43,7 @@ ms.openlocfilehash: 11bac0e1877fa2c1cacc9a0a6e6d7870a17a44a2
 以下是進階和標準傳訊層之間的一些差異。
 
 ### <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
-分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，效能不一定需要進行資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
+分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，效能不一定需要進行資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有&2; 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
 
 ### <a name="express-entities"></a>快速實體
 因為進階傳訊在完全隔離的執行階段環境中執行，所以在進階命名空間中不支援快速實體。 如需快速功能的詳細資訊，請參閱 [QueueDescription.EnableExpress](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性。
@@ -71,6 +71,6 @@ ms.openlocfilehash: 11bac0e1877fa2c1cacc9a0a6e6d7870a17a44a2
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

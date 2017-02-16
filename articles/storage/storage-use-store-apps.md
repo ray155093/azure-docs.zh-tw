@@ -3,8 +3,8 @@ title: "在 Windows 市集應用程式中使用 Azure 儲存體 | Microsoft Docs
 description: "了解如何建立使用 Azure Blob、佇列、資料表或檔案儲存體的 Windows 市集應用程式。"
 services: storage
 documentationcenter: 
-author: tamram
-manager: carmonm
+author: mmacy
+manager: timlt
 editor: tysonn
 ms.assetid: 63c4b29d-b2f2-4d7c-b164-a0d38f4d14f6
 ms.service: storage
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: mobile-windows-store
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 10/18/2016
-ms.author: tamram
+ms.date: 12/08/2016
+ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 678592957e5740194e9292393231be111d6067a5
+ms.sourcegitcommit: 5b86154414c7745430af11d59355a937fc525d54
+ms.openlocfilehash: 3284f94b28d814b3442d8088f69a301ef4dabc79
 
 
 ---
@@ -42,16 +42,20 @@ ms.openlocfilehash: 678592957e5740194e9292393231be111d6067a5
 ### <a name="using-the-library-with-the-blob-and-queue-services"></a>使用搭配 Blob 和佇列服務的程式庫
 此時您的應用程式已準備好可呼叫 Azure Blob 和佇列服務。 新增下列 **using** 陳述式，以方便直接參考 Azure 儲存體類型：
 
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Auth;
+```csharp
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+```
 
 接著，新增頁面按鈕。 將下列程式碼加入其 **Click** 事件，並使用 [async 關鍵字](http://msdn.microsoft.com/library/vstudio/hh156513.aspx)來修改事件處理常式方法：
 
-    var credentials = new StorageCredentials(accountName, accountKey);
-    var account = new CloudStorageAccount(credentials, true);
-    var blobClient = account.CreateCloudBlobClient();
-    var container = blobClient.GetContainerReference("container1");
-    await container.CreateIfNotExistsAsync();
+```csharp
+var credentials = new StorageCredentials(accountName, accountKey);
+var account = new CloudStorageAccount(credentials, true);
+var blobClient = account.CreateCloudBlobClient();
+var container = blobClient.GetContainerReference("container1");
+await container.CreateIfNotExistsAsync();
+```
 
 此程式碼假設您有兩個字串變數 *accountName* 和 *accountKey*。 它們代表儲存體帳戶和該帳戶相關聯之帳戶金鑰的名稱。
 
@@ -70,11 +74,13 @@ ms.openlocfilehash: 678592957e5740194e9292393231be111d6067a5
 
 當您參考 WCF 資料服務 NuGet 套件時，請變更按鈕 **Click** 事件中的程式碼：
 
-    var credentials = new StorageCredentials(accountName, accountKey);
-    var account = new CloudStorageAccount(credentials, true);
-    var tableClient = account.CreateCloudTableClient();
-    var table = tableClient.GetTableReference("table1");
-    await table.CreateIfNotExistsAsync();
+```csharp
+var credentials = new StorageCredentials(accountName, accountKey);
+var account = new CloudStorageAccount(credentials, true);
+var tableClient = account.CreateCloudTableClient();
+var table = tableClient.GetTableReference("table1");
+await table.CreateIfNotExistsAsync();
+```
 
 此程式碼會檢查您的帳戶中是否有名為 *table1* 的資料表存在，如果不存在，則會建立該資料表。
 
@@ -86,6 +92,6 @@ ms.openlocfilehash: 678592957e5740194e9292393231be111d6067a5
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure Multi-Factor Authentication 常見問題集"
+title: "Azure Multi-Factor Authentication 常見問題集 | Microsoft Docs"
 description: "提供與 Azure Multi-Factor Authentication 相關的常見問題與答案清單。 Multi-Factor Authentication 是一種驗證使用者身分識別的方法。它除了需要使用者名稱與密碼之外，還需要其他驗證方式。 它可以為使用者登入和交易提供一層額外的安全性。"
 services: multi-factor-authentication
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/13/2016
+ms.date: 01/06/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0c83a7216d9763994fd5006dd9cd40883337ba4a
+ms.sourcegitcommit: 9617cd00ed4a5f8f867542238e5008a9a17663c9
+ms.openlocfilehash: 1e01bdc099af865e01eb2784cf367e482300ade8
 
 
 ---
@@ -61,6 +61,8 @@ ms.openlocfilehash: 0c83a7216d9763994fd5006dd9cd40883337ba4a
 當您使用「每位使用者」或「每次驗證」模型時，Azure MFA 就是消費型資源。 所有費用都是透過組織的 Azure 訂用帳戶支付，例如虛擬機器、網站等。
 
 當您使用授權模型時，需要購買 Azure Multi-Factor Authentication 授權，然後指派給使用者，就像 Office 365 和其他訂用帳戶產品一樣。
+
+若要深入了解您的選項，請參閱[Azure Multi-Factor Authentication 的作用](multi-factor-authentication-how-it-works.md#how-to-get-azure-multi-factor-authentication)
 
 **問：是否有免費版本的 Azure Multi-Factor Authentication 供系統管理員使用？**
 
@@ -160,8 +162,6 @@ Windows Server 2012 R2 中的安全性變更已改變 Azure Multi-Factor Authent
 ## <a name="next-steps"></a>後續步驟
 如果這裡沒有您問題的解答，請將它留在頁面底部的註解中。 或者，以下是取得協助的一些其他選項︰
 
-**問：如何取得 Azure Multi-Factor Authentication 的協助？**
-
 * 在 [Microsoft 支援知識庫](https://www.microsoft.com/en-us/Search/result.aspx?form=mssupport&q=phonefactor&form=mssupport)搜尋常見技術問題的解決方案。
 * 在 [Azure Active Directory 論壇](https://social.msdn.microsoft.com/Forums/azure/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required)中，搜尋及瀏覽來自社群的技術問題與解答，或是提出您的問題。
 * 如果您是舊版 PhoneFactor 的客戶且有問題或需要協助重設密碼，請使用 [重設密碼](mailto:phonefactorsupport@microsoft.com) 連結來建立支援案例。
@@ -170,6 +170,6 @@ Windows Server 2012 R2 中的安全性變更已改變 Azure Multi-Factor Authent
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

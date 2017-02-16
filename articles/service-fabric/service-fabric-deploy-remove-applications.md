@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 11/14/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 4dea75987df0cf05126564d2c7e20d59b842dc1c
-ms.openlocfilehash: a9aa385d8c18600c50797a76e5a67754c695fdf8
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 286a4f46e19b9ed38f9920e169bdadd013186ef6
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: a9aa385d8c18600c50797a76e5a67754c695fdf8
 
 <br/>
 
-[應用程式類型封裝][10]後，即準備好部署至 Azure Service Fabric 叢集。 部署涉及下列三個步驟：
+[封裝應用程式類型][10]後，即可將它部署至 Azure Service Fabric 叢集中。 部署涉及下列三個步驟：
 
 1. 上傳應用程式封裝
 2. 註冊應用程式類型
@@ -248,6 +248,6 @@ PS D:\temp>
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

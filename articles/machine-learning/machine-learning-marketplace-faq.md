@@ -1,6 +1,6 @@
 ---
-title: "常見問題集：在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式 | Microsoft Docs"
-description: "常見問題集"
+title: "(已過時) 常見問題集 - 在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式 | Microsoft Docs"
+description: "(已過時) 有關在 Azure Marketplace 中發佈 Machine Learning 應用程式的常見問題集"
 services: machine-learning
 documentationcenter: 
 author: bharaths
@@ -11,16 +11,24 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 09/11/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: bharaths
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f8ae758a406dfed48968531ae20a9bbd2383db92
+ms.sourcegitcommit: 85a58e09e05fdb50984055ab25c4c2fe520dab4d
+ms.openlocfilehash: 9e2d4a2d46bd461a71217cd2b2d75f5a50e8b617
 
 
 ---
-# <a name="publishing-and-using-machine-learning-apps-in-the-azure-marketplace-faq"></a>在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式：常見問題集
+# <a name="deprecated-publishing-and-using-machine-learning-apps-in-the-azure-marketplace-faq"></a>(已過時) 在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式：常見問題集
+
+> [!NOTE]
+> DataMarket 和「資料服務」已進入淘汰階段，訂用帳戶將自 2017 年 3 月 31 日起淘汰並取消。 因此，這篇文章目前已過時。 
+> 
+> 替代方案是，您可以將 Machine Learning 實驗發佈到 [Cortana Intelligence 資源庫](https://gallery.cortanaintelligence.com/)，以利資料科學社群使用。 如需詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish)。
+
+
 ## <a name="questions-about-consuming-from-marketplace"></a>從 Marketplace 取用的相關問題
 **1.為什麼我輸入 Web 服務的輸入之後，得到下列錯誤訊息：**
 
@@ -72,6 +80,6 @@ Marketplace Web 服務目前不支援批次輸入模式。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

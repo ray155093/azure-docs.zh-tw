@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/05/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 452cfc0f35810ffa6bdd8c36f8f5e0cf0814e563
+ms.sourcegitcommit: b47aa6730aff534b796cfc5427e613defdf69926
+ms.openlocfilehash: 0f0b2a10ae0f16411d9043351064eafe3a26c5aa
 
 
 ---
@@ -35,7 +35,7 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 在本文中我們將提供機制的概觀，說明 Machine Learning 模型如何從開發實驗進展為實際運作的 Web 服務。
 
 > [!NOTE]
-> 有其他方式可開發和部署機器學習模型，但本文著重在如何使用 Machine Learning Studio。 如需如何使用 R 建立傳統預測性 Web 服務的討論，請參閱部落格文章[使用 RStudio 和 Azure ML 建置和部署預測性 Web Apps](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx)。
+> 有其他方式可開發和部署機器學習模型，但本文著重在如何使用 Machine Learning Studio。 例如，若要閱讀如何使用 R 來建立傳統預測性 Web 服務的說明，請參閱部落格文章[使用 RStudio 和 Azure ML 建置和部署預測性 Web Apps (英文)](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx)。
 > 
 > 
 
@@ -122,6 +122,6 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

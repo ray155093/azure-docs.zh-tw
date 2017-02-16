@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/14/2016
+ms.date: 12/16/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: a67f2e77d3bc7da35a03b68d7f32fd3a2a42bfcd
-ms.openlocfilehash: f650555f5ca00ca44426e4d863dd2cf01f14d89c
+ms.sourcegitcommit: 179cac8856cd42cfad4a4d4aaa6301afb2c58329
+ms.openlocfilehash: 6d802148cec5b12004d1d374485f56af8eae64f8
 
 
 ---
@@ -84,7 +84,7 @@ ms.openlocfilehash: f650555f5ca00ca44426e4d863dd2cf01f14d89c
 若要透過 SSIS 將資料從 Azure Blob 儲存體下載到內部部署儲存體，請使用 [Azure Blob 上傳工作](https://msdn.microsoft.com/library/mt146779.aspx)的執行個體。
 
 ## <a name="more-advanced-ssis-azure-scenarios"></a>較進階的 SSIS-Azure 案例
-我們注意到 SSIS 功能封裝允許封裝工作一起處理更複雜的流程。 例如，Blob 資料可直接饋送到 HDInsight 叢集，其輸出可以回頭下載到 Blob，然後下載到內部部署儲存體。 SSIS 可使用其他 SSIS 連接器在 HDInsight 叢集上執行 Hive 與 Pig 工作：
+SSIS 功能套件藉由將工作封裝在一起，處理更複雜的流程。 例如，Blob 資料可直接饋送到 HDInsight 叢集，其輸出可以回頭下載到 Blob，然後下載到內部部署儲存體。 SSIS 可使用其他 SSIS 連接器在 HDInsight 叢集上執行 Hive 與 Pig 工作：
 
 * 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Hive 指令碼，請使用 [Azure HDInsight Hive 工作](https://msdn.microsoft.com/library/mt146771.aspx)。
 * 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Pig 指令碼，請使用 [Azure HDInsight Pig 工作](https://msdn.microsoft.com/library/mt146781.aspx)。
@@ -92,6 +92,6 @@ ms.openlocfilehash: f650555f5ca00ca44426e4d863dd2cf01f14d89c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

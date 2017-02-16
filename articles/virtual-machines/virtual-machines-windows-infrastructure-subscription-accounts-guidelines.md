@@ -1,5 +1,5 @@
 ---
-title: "訂用帳戶和帳戶指導方針 | Microsoft Docs"
+title: "Azure 訂用帳戶和帳戶指導方針 | Microsoft Docs"
 description: "了解 Azure 上訂用帳戶和帳戶的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-windows
@@ -13,15 +13,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b410436de11550aab2160421abfb27107f7874b0
+ms.sourcegitcommit: 310dc34634f7104ddfc7dfab13f09ab945b53cf4
+ms.openlocfilehash: bfa4f4938a52a7a1b9ebe5ee9efd37198468a0a6
 
 
 ---
-# <a name="subscription-and-accounts-guidelines"></a>訂用帳戶和帳戶指導方針
+# <a name="azure-subscription-and-accounts-guidelines"></a>Azure 訂用帳戶和帳戶指導方針
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
 本文著重於了解在環境和使用者群增加的情況下，管理訂用帳戶和帳戶的方法。
@@ -57,7 +57,7 @@ ms.openlocfilehash: b410436de11550aab2160421abfb27107f7874b0
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-組織應看起來如下：
+組織應看起來如下範例所示：
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 
@@ -69,6 +69,6 @@ ms.openlocfilehash: b410436de11550aab2160421abfb27107f7874b0
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

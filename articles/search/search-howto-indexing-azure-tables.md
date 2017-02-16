@@ -12,11 +12,11 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 10/27/2016
+ms.date: 12/15/2016
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: fc2f30569acc49dd383ba230271989eca8a14423
-ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
+ms.sourcegitcommit: 714045750ab16364ecd1095f1f346d3da1d4c4a5
+ms.openlocfilehash: 4bfcf719cb071a28421c64dbb4d6c132f45ba9f9
 
 ---
 
@@ -34,7 +34,7 @@ ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
 
 1. 建立資料來源
    * 將 `type` 參數設定為 `azuretable`
-   * 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
+   * 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定]  >  [索引鍵] (傳統儲存體帳戶)，或 [設定]  >  [存取金鑰] (ARM 儲存體帳戶)。 請注意，Azure 搜尋服務目前不支援共用存取簽章的認證。 如果您不想使用 SAS，請投[這個 UserVoice 建議](https://feedback.azure.com/forums/263029-azure-search/suggestions/12368244-support-shared-access-signature-for-blob-datasourc)一票。
    * 使用 `container.name` 參數指定資料表名稱
    * (選擇性) 使用 `container.query` 參數指定查詢。 可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
 2. 使用與您想要編製索引的資料表中的資料行對應的結構描述，建立搜尋索引。
@@ -48,7 +48,7 @@ ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
     {
         "name" : "table-datasource",
         "type" : "azuretable",
-        "credentials" : { "connectionString" : "<my storage connection string>" },
+        "credentials" : { "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<account key>;" },
         "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
     }   
 
@@ -123,6 +123,6 @@ ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

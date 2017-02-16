@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/18/2016
 ms.author: cawa
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e86afaa9813a45c31d7c1d8725995ba5fc73f574
+ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
+ms.openlocfilehash: 89e517a17417475f975dbaa0cee8517145a7c6c3
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: e86afaa9813a45c31d7c1d8725995ba5fc73f574
 3. 使用 [Add-AzureAccount](https://msdn.microsoft.com/library/dn495128.aspx) 登入。
 
    > [!NOTE]
-   > 如需安裝 Azure PowerShell Cmdlet 及連接至您的 Azure 訂用帳戶的進一步指示，請參閱 [如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)。
+   > 如需安裝 Azure PowerShell Cmdlet 及連接至您的 Azure 訂用帳戶的進一步指示，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
    >
    >
 4. 使用 **New-AzureService** Cmdlet 來建立空白的 Azure 雲端服務容器。
@@ -55,6 +55,6 @@ Get-help New-AzureService
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

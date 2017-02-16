@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 調整 ACS 叢集 | Microsoft Docs"
-description: "如何使用 Azure CLI 來調整 Azure Container Service 叢集。"
+title: "調整 Azure Container Service 叢集 | Microsoft Docs"
+description: "如何使用 Azure CLI 或 Azure 入口網站來調整 Azure Container Service 叢集。"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -14,130 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/03/2016
+ms.date: 01/10/2017
 ms.author: saudas
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9e8df2e68b1b7018d76da89ba9ab332b6ea216fb
+ms.sourcegitcommit: cb3fd28659eb09dfb74496d2aa526736d223631a
+ms.openlocfilehash: d1571aa6191111c46c43b3a424cea415091adfc9
 
 
 ---
-# <a name="scale-an-azure-container-service"></a>調整 Azure Container Service
-您可以使用 Azure CLI 工具相應放大 Azure Container Service (ACS) 所具有的節點數目。 當您使用 Azure CLI 進行調整時，工具會將代表套用至容器之變更的新組態檔傳回給您。
+# <a name="scale-an-azure-container-service-cluster"></a>調整 Azure Container Service 叢集
+在[部署 Azure Container Service 叢集](container-service-deployment.md)之後，您可能需要變更代理程式節點的數目。 例如，您可能需要更多代理程式，以便可以執行更多的容器應用程式或執行個體。 
 
-## <a name="about-the-command"></a>關於命令
-Azure CLI 必須處於 Azure Resource Manager 模式，讓您與 Azure Container 互動。 您可以呼叫 `azure config mode arm`，以切換至 Resource Manager 模式。 `acs` 命令具有名為 `scale` 的子命令，這個子命令會執行容器服務的所有調整作業。 您可以執行 `azure acs scale --help` 來取得 scale 命令中所使用之各種參數的說明，其輸出與下面類似：
+您可以使用 Azure 入口網站或 Azure CLI 2.0 (預覽) 來變更叢集中的代理程式節點數目。 Azure CLI 2.0 (預覽) 是適用於 Resource Manager 部署模型的[新一代 CLI](/cli/azure/old-and-new-clis)。
+
+> [!NOTE]
+> 目前並不支援在容器服務 Kubernetes 叢集中調整代理程式節點。
+
+
+## <a name="scale-with-the-azure-portal"></a>使用 Azure 入口網站進行調整
+
+1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽**容器服務**，然後按一下您想要修改的容器服務。
+2. 在 [容器服務] 刀鋒視窗中，按一下 [代理程式]。
+3. 在 [VM 計數] 中，輸入所需的代理程式節點數目。
+
+    ![在入口網站中調整集區](./media/container-service-scale/container-service-scale-portal.png)
+
+4. 若要儲存組態時，請按一下 [儲存]。
+
+
+
+## <a name="scale-with-the-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽) 進行調整
+
+請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 (預覽) 並登入 Azure 帳戶 (`az login`)。
+
+
+### <a name="see-the-current-agent-count"></a>查看目前的代理程式計數
+若要查看叢集中目前擁有的代理程式數目，請執行 `az acs show` 命令。 這會顯示叢集組態。 例如，下列命令會顯示資源群組 `myResourceGroup` 中名為 `containerservice-myACSName` 之容器服務的組態：
 
 ```azurecli
-azure acs scale --help
-
-help:    The operation to scale a container service.
-help:
-help:    Usage: acs scale [options] <resource-group> <name> <new-agent-count>
-help:
-help:    Options:
-help:      -h, --help                               output usage information
-help:      -v, --verbose                            use verbose output
-help:      -vv                                      more verbose with debug output
-help:      --json                                   use json output
-help:      -g, --resource-group <resource-group>    resource-group
-help:      -n, --name <name>                        name
-help:      -o, --new-agent-count <new-agent-count>  New agent count
-help:      -s, --subscription <subscription>        The subscription identifier
-help:
-help:    Current Mode: arm (Azure Resource Management)
+az acs show -g myResourceGroup -n containerservice-myACSName
 ```
 
-## <a name="use-the-command-to-scale"></a>使用命令進行調整
-若要調整容器服務，您需要先知道**資源群組**和 **Azure Container Service (ACS) 名稱**，同時指定新的代理程式計數。 使用更少或更多的數量，即可分別相應減少或相應增加。
+此命令會在 `AgentPoolProfiles` 底下的 `Count` 值中傳回代理程式數目。
 
-您可能想要先知道容器服務的目前代理程式計數，再進行調整。 使用 `azure acs show <resource group> <ACS name>` 命令傳回 ACS 組態。 請注意 <mark>Count</mark> 結果。
 
-#### <a name="see-current-count"></a>請參閱目前計數
-```azurecli
-azure acs show containers-test containerservice-containers-test
+### <a name="use-the-az-acs-scale-command"></a>使用 az acs scale 命令
+若要變更代理程式節點數目，請執行 `az acs scale` 命令，並提供**資源群組**、**容器服務名稱**及所需的**新代理程式計數**。 藉由使用較少或更高的數字，即可分別相應減少或相應增加。
 
-info:    Executing command acs show
-data:
-data:     Id                 : /subscriptions/<guid>/resourceGroups/containers-test/providers/Microsoft.ContainerService/containerServices/containerservice-containers-test
-data:     Name               : containerservice-containers-test
-data:     Type               : Microsoft.ContainerService/ContainerServices
-data:     Location           : westus
-data:     ProvisioningState  : Succeeded
-data:     OrchestratorProfile
-data:       OrchestratorType : DCOS
-data:     MasterProfile
-data:       Count            : 1
-data:       DnsPrefix        : myprefixmgmt
-data:       Fqdn             : myprefixmgmt.westus.cloudapp.azure.com
-data:     AgentPoolProfiles
-data:       #0
-data:         Name           : agentpools
-data:         <mark>Count          : 1</mark>
-data:         VmSize         : Standard_D2
-data:         DnsPrefix      : myprefixagents
-data:         Fqdn           : myprefixagents.westus.cloudapp.azure.com
-data:     LinuxProfile
-data:       AdminUsername    : azureuser
-data:       Ssh
-data:         PublicKeys
-data:           #0
-data:             KeyData    : ssh-rsa <ENCODED VALUE>
-data:     DiagnosticsProfile
-data:       VmDiagnostics
-data:         Enabled        : true
-data:         StorageUri     : https://<storageid>.blob.core.windows.net/
-```  
-
-#### <a name="scale-to-new-count"></a>調整為新的計數
-因為它可能已經是清楚易懂，所以您可以呼叫 `azure acs scale` 並提供**資源群組**、**ACS 名稱**和**代理程式計數**來調整容器服務。 調整容器服務時，Azure CLI 會傳回 JSON 字串，這個字串代表容器服務的新組態，其中包括新的代理程式計數。
+例如，若要將先前叢集中的代理程式數目變更為 10，請輸入下列命令︰
 
 ```azurecli
-azure acs scale containers-test containerservice-containers-test 10
+azure acs scale -g myResourceGroup -n containerservice-myACSName --new-agent-count 10
+```
 
-info:    Executing command acs scale
-data:    {
-data:        id: '/subscriptions/<guid>/resourceGroups/containers-test/providers/Microsoft.ContainerService/containerServices/containerservice-containers-test',
-data:        name: 'containerservice-containers-test',
-data:        type: 'Microsoft.ContainerService/ContainerServices',
-data:        location: 'westus',
-data:        provisioningState: 'Succeeded',
-data:        orchestratorProfile: { orchestratorType: 'DCOS' },
-data:        masterProfile: {
-data:            count: 1,
-data:            dnsPrefix: 'myprefixmgmt',
-data:            fqdn: 'myprefixmgmt.westus.cloudapp.azure.com'
-data:        },
-data:        agentPoolProfiles: [
-data:            {
-data:                name: 'agentpools',
-data:                <mark>count: 10</mark>,
-data:                vmSize: 'Standard_D2',
-data:                dnsPrefix: 'myprefixagents',
-data:                fqdn: 'myprefixagents.westus.cloudapp.azure.com'
-data:            }
-data:        ],
-data:        linuxProfile: {
-data:            adminUsername: 'azureuser',
-data:            ssh: {
-data:                publicKeys: [
-data:                    { keyData: 'ssh-rsa <ENCODED VALUE>' }
-data:                ]
-data:            }
-data:        },
-data:        diagnosticsProfile: {
-data:            vmDiagnostics: { enabled: true, storageUri: 'https://<storageid>.blob.core.windows.net/' }
-data:        }
-data:    }
-info:    acs scale command OK
-``` 
+Azure CLI 2.0 (預覽) 會傳回 JSON 字串，這個字串代表容器服務的新組態，其中包括新的代理程式計數。
+
+如需更多的命令選項，請執行 `az acs scale --help`。
+
+
+## <a name="scaling-considerations"></a>調整考量
+
+
+* 代理程式節點的數目必須介於 1 到 100 (含) 之間。 
+
+* 核心配額可以限制叢集中的代理程式節點數目。
+
+* 代理程式節點調整作業會套用至包含代理程式集區的 Azure 虛擬機器擴展集。 在 DC/OS 叢集中，只有私人集區中的代理程式節點會受到本文所示作業的調整。
+
+* 您可以根據您在叢集中部署的 Orchestrator，個別地調整在叢集上執行之容器的執行個體數目。 例如，在 DC/OS 叢集中，使用 [Marathon UI](container-service-mesos-marathon-ui.md) 來變更容器應用程式的執行個體數目。
+
+* 目前並不支援在容器服務叢集中自動調整代理程式節點。
+
+
+
+
 
 ## <a name="next-steps"></a>後續步驟
-* [部署叢集](container-service-deployment.md)
+* 請參閱[更多範例](container-service-create-acs-cluster-cli.md)，以了解如何搭配使用 Azure CLI 2.0 (預覽) 命令與 Azure Container Service。
+* 深入了解 Azure Container Service 中的 [DC/OS 代理程式集區](container-service-dcos-agents.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

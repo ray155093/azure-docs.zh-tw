@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 8d7823b6ecbc1a762839fc620f76d0bf4687d8fa
-ms.openlocfilehash: 5b33a36a3415efd2bc4673999806aa797f4a1c9f
+ms.sourcegitcommit: 91e19b321026840a062078d7af2a55967fb3904b
+ms.openlocfilehash: 417c545e34f1d652594c8527a3c8b0a845a4e8fa
 
 
 ---
@@ -30,7 +30,7 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 ## <a name="create-a-function-app"></a>建立函數應用程式
 函式應用程式可在 Azure 中主控函式的執行。 請遵循下列步驟來在 Azure 入口網站中建立函數應用程式。
 
-您必須先具備有效的 Azure 帳戶，才可以建立第一個函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。
+函式應用程式可在 Azure 中主控函式的執行。 如果您沒有 Azure 帳戶，請查看[試用 Functions](https://functions.azure.com/try) 體驗或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 
 
 1. 移至 [Azure 入口網站](https://portal.azure.com) ，然後以您的 Azure 帳戶登入。
 2. 按一下 [+新增]  >  [計算]  >  [函式應用程式]，選取您的 [訂用帳戶]，輸入可識別您函式應用程式的唯一 [應用程式名稱]，然後指定下列設定：
@@ -86,6 +86,6 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

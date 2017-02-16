@@ -1,5 +1,5 @@
 ---
-title: "Azure AD 權杖參考 | Microsoft Docs"
+title: "了解 Azure AD 支援的不同權杖和宣告類型 | Microsoft Docs"
 description: "可供了解及評估 Azure Active Directory (AAD) 所簽發之 SAML 2.0 和 JSON Web Token (JWT) 權杖中的宣告的指南。"
 documentationcenter: na
 author: bryanla
@@ -15,8 +15,8 @@ ms.workload: identity
 ms.date: 01/07/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: 796b892d555ea114af330117365e3d0a0f622f3f
+ms.sourcegitcommit: ba958d029e5bf1bc914a2dff4b6c09282d578c67
+ms.openlocfilehash: 4612c1f516dca51aea925343f79649761448c05d
 
 
 ---
@@ -304,6 +304,6 @@ https://login.microsoftonline.com/common/.well-known/openid-configuration
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

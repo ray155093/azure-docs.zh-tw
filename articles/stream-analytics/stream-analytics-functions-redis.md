@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/26/2016
 ms.author: ryancraw
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 26808d4d73e5b6256b56dd3c5d5ae5d075eaac5a
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e792f8c8b1ffddbd534b1660421e4cc89a63d35a
 
 
 ---
@@ -37,7 +37,7 @@ Azure 串流分析可讓您快速開發及部署低成本的解決方案，即�
 完成[即時詐騙偵測][fraud-detection]教學課程之後，您將會有已設定並正在執行的輸入 (事件中樞)、查詢，以及輸出 (Blob 儲存體)。 在此部落格中，我們將輸出改為使用「服務匯流排佇列」。 接下來，我們將一個 Azure 函式與這個佇列連接。 
 
 ## <a name="create-and-connect-a-service-bus-queue-output"></a>建立並連接服務匯流排佇列輸出
-若要建立服務匯流排佇列，請遵循[開始使用服務匯流排佇列][servicebus-getstarted]中＜.NET＞小節的步驟 1 和 2。
+若要建立服務匯流排佇列，請遵循[開始使用服務匯流排佇列][servicebus-getstarted]中＜.NET＞一節的步驟 1 和 2。
 現在讓我們將佇列連接到先前在詐騙偵測逐步解說中所建立的串流分析工作。
 
 1. 在 Azure 入口網站中，移至工作的 [輸出] 刀鋒視窗，然後選取頁面頂端的 [新增]。
@@ -69,7 +69,7 @@ Azure 串流分析可讓您快速開發及部署低成本的解決方案，即�
     ```
 
 ## <a name="create-an-azure-redis-cache"></a>建立 Azure Redis 快取
-遵循[如何使用 Azure Redis 快取][use-rediscache]中＜.NET＞小節至***設定快取用戶端***小節的內容，來建立 Azure Redis 快取。
+遵循[如何使用 Azure Redis 快取][use-rediscache]中的＜.NET＞一節到＜設定快取用戶端＞一節的內容，建立 Azure Redis 快取。
 完成後，您將具有新的 Redis 快取。 在 [所有設定] 底下，選取 [存取金鑰] 並記下 [主要連接字串] 的內容。
 
 ![架構的螢幕擷取畫面](./media/stream-analytics-functions-redis/redis-cache-keys.png)
@@ -207,6 +207,6 @@ Azure 串流分析可讓您快速開發及部署低成本的解決方案，即�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

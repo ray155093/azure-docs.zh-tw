@@ -9,6 +9,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 3dc9b7a3-4b10-423a-8e44-9174aca5cf3d
 ms.service: sql-database
+ms.custom: sharded databases pool; how to
 ms.devlang: NA
 ms.date: 11/17/2016
 ms.author: ninarn
@@ -16,8 +17,8 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 37249c24c3e74ff9f4fcf9362b6053d1ba7b0cbd
-ms.openlocfilehash: 10bb7d9672824b00a1e3ba02e0e3d1db4260b128
+ms.sourcegitcommit: c17cedb24dacc6aeefa02a963b4dffcf22e246ec
+ms.openlocfilehash: 285be87188be8fa426e42d6ec43cd066100f423d
 
 
 ---
@@ -60,20 +61,21 @@ ms.openlocfilehash: 10bb7d9672824b00a1e3ba02e0e3d1db4260b128
 
 您可以編輯此圖表和 [度量] 刀鋒視窗，以顯示其他度量，例如所用的 CPU 百分比、資料 IO 百分比和記錄 IO 百分比。
 
-2. 在 [度量] 刀鋒視窗上，按一下 [編輯] 。
+1. 在 [度量] 刀鋒視窗上，按一下 [編輯] 。
 
     ![按一下 [編輯]。][6]
 
-- 在 [編輯圖表] 刀鋒視窗中，選取新的時間範圍 (過去 1 小時、今天或上一週)，或按一下 [自訂] 以選取過去兩週內的任何日期範圍。 選取圖表類型 (長條圖或折線圖)，再選取要監視的資源。
+2. 在 [編輯圖表] 刀鋒視窗中，選取新的時間範圍 (過去 1 小時、今天或上一週)，或按一下 [自訂] 以選取過去兩週內的任何日期範圍。 選取圖表類型 (長條圖或折線圖)，再選取要監視的資源。
 
-> [!Note]
-> 圖表中只能同時顯示具有相同測量單位的度量。 比方說，如果您選取「eDTU 百分比」，則只能選取以百分比做為測量單位的其他度量。
->
->
+   > [!Note]
+   > 圖表中只能同時顯示具有相同測量單位的度量。 比方說，如果您選取「eDTU 百分比」，則只能選取以百分比做為測量單位的其他度量。
+   >
 
-    ![Click edit](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
+    ![按一下 [編輯]。](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
 
-- 然後按一下 [確定] 。
+    
+
+3. 然後按一下 [確定] 。
 
 
 ## <a name="elastic-database-monitoring"></a>彈性資料庫監視
@@ -226,6 +228,6 @@ ms.openlocfilehash: 10bb7d9672824b00a1e3ba02e0e3d1db4260b128
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

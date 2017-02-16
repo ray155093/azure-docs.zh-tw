@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/11/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 57df4ab0b2a1df6631eb6e67a90f69cebb1dfe75
-ms.openlocfilehash: 6b0ef7ea076c835a19d6b67aa3b51c975ba21644
+ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
+ms.openlocfilehash: 3cf91abf83359f2157d0f8cd53e0b450bfd58d80
 
 
 ---
@@ -26,7 +26,10 @@ ms.openlocfilehash: 6b0ef7ea076c835a19d6b67aa3b51c975ba21644
 
 本文件逐步解說如何使用 Pig 命令，從連往 Windows 型 HDInsight 叢集的遠端桌面連線執行 Pig Latin 陳述式。 Pig Latin 可讓您透過描述資料轉換來建立 MapReduce 應用程式，而不是建立對應和縮減函數。
 
-在本文中，您將學習如何
+> [!IMPORTANT]
+> 只有在使用 Windows 作為作業系統的 HDInsight 叢集上才能使用「遠端桌面」。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+>
+> 針對 HDInsight 3.4 或更新版本，請參閱[使用 Pig 搭配 HDInsight 和 SSH](hdinsight-hadoop-use-pig-ssh.md)，以了解如何從命令列以互動方式直接在叢集上執行 Pig 工作。
 
 ## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目。
@@ -128,6 +131,6 @@ ms.openlocfilehash: 6b0ef7ea076c835a19d6b67aa3b51c975ba21644
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

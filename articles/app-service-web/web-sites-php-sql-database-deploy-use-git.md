@@ -12,16 +12,16 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 58791f5362182596de8b792c408e392d8d6cbb95
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: c7dbb3ab55607e377abc3c91c7ee3e938248a676
 
 
 ---
 # <a name="create-a-php-sql-web-app-and-deploy-to-azure-app-service-using-git"></a>建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service
-本教學課程會示範如何在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中建立連線到 Azure SQL Database 的 PHP Web 應用程式，以及如何使用 Git 來部署它。 本教學課程假設您已在電腦上安裝 [PHP][install-php]、[SQL Server Express][install-SQLExpress]、[Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098) 和 [Git][install-git]。 完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。
+本教學課程會示範如何在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中建立連線到 Azure SQL Database 的 PHP Web 應用程式，以及如何使用 Git 來部署它。 本教學課程假設您的電腦上已安裝 [PHP][install-php]、[SQL Server Express][install-SQLExpress]、[Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098)，和 [Git][install-git]。 完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。
 
 > [!NOTE]
 > 您可以使用 [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來安裝和設定 PHP、SQL Server Express，和 Microsoft Drivers for SQL Server for PHP。
@@ -40,7 +40,7 @@ ms.openlocfilehash: 58791f5362182596de8b792c408e392d8d6cbb95
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -280,6 +280,6 @@ ms.openlocfilehash: 58791f5362182596de8b792c408e392d8d6cbb95
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

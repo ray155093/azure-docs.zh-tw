@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/15/2016
+ms.date: 12/13/2016
 ms.author: yijichen
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 22a44e1c47748a54950d9ad732a04c08bbcefd87
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: c8d02cdd50c7f44991aeabee1999a81ec18bf59c
 
 
 ---
@@ -88,7 +88,7 @@ ms.openlocfilehash: 22a44e1c47748a54950d9ad732a04c08bbcefd87
 > 
 > 
 
-Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定義的資料結構描述上傳範例輸入資料。 資料結構描述會連結至[執行 R 指令碼][execute-r-script]模組，這個模組使用 R 的 ‘auto.arima’ 和 ‘forecast’ 函式來產生 ARIMA 預測模型。 
+Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定義的資料結構描述上傳範例輸入資料。 連結至資料結構描述的[執行 R 指令碼][execute-r-script]模組會使用 R 的 ‘auto.arima’ 和 ‘forecast’ 函式，以產生 ARIMA 預測模型。 
 
 ### <a name="experiment-flow"></a>實驗流程：
 ![建立工作區][2]
@@ -142,6 +142,6 @@ Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

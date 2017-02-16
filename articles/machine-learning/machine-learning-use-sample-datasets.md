@@ -1,6 +1,6 @@
 ---
 title: "使用 Machine Learning Studio 中的範例資料集 | Microsoft Docs"
-description: "ML Studio 中包含的範例模型所使用之資料集的描述。 您可以為您的實驗使用這些範例資料集。"
+description: "Machine Learning Studio 中包含的範例模型所使用之資料集的描述。 您可以為您的實驗使用這些範例資料集。"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -12,29 +12,24 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 12/14/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0a19e10d9bc4c2d0f6579518583f100b5ca76c23
+ms.sourcegitcommit: 4ebd5dc2da50db93061e92660c97dcca3866c713
+ms.openlocfilehash: c4adae8125a6780ddb4c7c64baf4df6aae139104
 
 
 ---
-# <a name="use-the-sample-data-sets-in-azure-machine-learning-studio"></a>在 Azure Machine Learning Studio 中使用範例資料集
+# <a name="use-the-sample-datasets-in-azure-machine-learning-studio"></a>在 Azure Machine Learning Studio 中使用範例資料集
 [top]: #machine-learning-sample-datasets
 
-在 Azure Machine Learning 中建立新的工作區時，預設會包含一些範例資料集和實驗。 其中的許多範例資料集會由 [Azure Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的範例模型所使用，其他則是包含做為機器學習中經常會使用的各種類型資料的範例。
+在 Azure Machine Learning 中建立新的工作區時，預設會包含一些範例資料集和實驗。 其中許多範例資料集在 [Azure Cortana 智慧資源庫](http://gallery.cortanaintelligence.com/)中的範例模型使用。 其他則是機器學習中經常使用的各種範例。
 
 其中的部分資料集可在 Azure Blob 儲存體中使用。 下表提供這些資料集的直接連結。 您也可以透過[匯入資料][import-data]模組在實驗中使用這些資料集。
 
-在 ML Studio 中開啟或建立新實驗時，實驗畫布左側的模組調色盤中 **儲存的資料集** 底下會列出其餘的範例資料集。
+在 Machine Learning Studio 中開啟或建立新實驗時，您可以在工作區的實驗畫布左側的模組調色盤中 [儲存的資料集] 下找其餘的範例資料集。
 您可以將資料集拖曳到您的實驗畫布上，在自己的實驗中使用任一資料集。
 
-<!--
-For a list of sample experiments available in ML Studio, see [Machine Learning Sample Experiments][sample-experiments].
-
-[sample-experiments]: machine-learning-sample-experiments.md
--->
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
@@ -143,13 +138,13 @@ KDD Cup 2009 客戶關係預測挑戰 (<a href="http://www.sigkdd.org/site/2009/
 <tr>
   <td valign=top>能量效益迴歸資料</td>
   <td valign=top>
-模擬能量分佈曲線的集合，以 12 種不同的建築形狀為基礎。 建築物以 8 項特性區分不同之處，例如玻璃區域、玻璃區域分佈和方向。<p> </p><b>使用方式：</b>使用迴歸或分類，可根據兩個實數值回應的其中之一來預測能量效益評等。 就多類別分類而言，會將回應變數進位至最接近的整數。 <p> </p><b>相關研究：</b>Xifara, A. 和 Tsanas, A.(2012 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
+模擬能量分佈曲線的集合，以 12 種不同的建築形狀為基礎。 建築物有 8 項不同特徵，例如玻璃區域、玻璃區域分佈和方向。<p> </p><b>使用方式：</b>使用迴歸或分類，可根據兩個實數值回應的其中之一來預測能量效益評等。 就多類別分類而言，會將回應變數進位至最接近的整數。 <p> </p><b>相關研究：</b>Xifara, A. 和 Tsanas, A.(2012 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
 </tr>
 
 <tr ID=flight-delays-data>
   <td valign=top>航班誤點資料</td>
   <td valign=top>
-美國交通部收集的 TranStats 資料所包含的客機航班準點率資料(<a href="http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time">準點</a>)。<p> </p>此資料集涵蓋的其間為 2013 年 4 月至 10 月。 上傳至 Azure ML Studio 之前，資料集已經過下列處理：<ul><li>資料集已經過篩選，僅涵蓋美國大陸 70 個最繁忙的機場</li><li>取消的航班已標示為誤點達 15 分鐘以上</li><li>已篩選掉更改路徑的航班</li><li>已選取下列資料行：Year、Month、DayofMonth、DayOfWeek、Carrier、OriginAirportID、DestAirportID、CRSDepTime、DepDelay、DepDel15、CRSArrTime、ArrDelay、ArrDel15、Cancelled</li></ul>
+美國交通部收集的 TranStats 資料所包含的客機航班準點率資料(<a href="http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236&DB_Short_Name=On-Time">準點</a>)。<p> </p>此資料集涵蓋的其間為 2013 年 4 月至 10 月。 上傳至 Azure Machine Learning Studio 之前，資料集已經過下列處理：<ul><li>資料集已經過篩選，僅涵蓋美國大陸 70 個最繁忙的機場</li><li>取消的航班已標示為誤點達 15 分鐘以上</li><li>已篩選掉更改路徑的航班</li><li>已選取下列資料行：Year、Month、DayofMonth、DayOfWeek、Carrier、OriginAirportID、DestAirportID、CRSDepTime、DepDelay、DepDel15、CRSArrTime、ArrDelay、ArrDel15、Canceled</li></ul>
 </td>
 </tr>
 
@@ -177,7 +172,7 @@ UCI Statlog (德國信用卡) 資料集 (<a href="http://archive.ics.uci.edu/ml/
 <tr ID=imdb-movie-titles>
   <td valign=top>IMDB 影片標題</td>
   <td valign=top>
-資料集包含 Twitter 推文中分級影片的資訊：IMDB 影片識別碼、影片名稱和內容類型、生產年份。 資料集中有 1 萬 7 千部影片。 該資料集在論文 "S. Dooms, T. De Pessemier and L. Martens" 中推出。 MovieTweetings：收集自 Twitter 的影片分級資料集。 Workshop on Crowdsourcing and Human Computation for Recommender Systems, CrowdRec at RecSys 2013."
+資料集包含 Twitter 推文中分級影片的資訊：IMDB 影片識別碼、影片名稱、內容類型、製作年份。 資料集中有 1 萬 7 千部影片。 該資料集在論文 "S. Dooms, T. De Pessemier and L. Martens" 中推出。 MovieTweetings：收集自 Twitter 的影片分級資料集。 Workshop on Crowdsourcing and Human Computation for Recommender Systems, CrowdRec at RecSys 2013."
   </td>
 </tr>
 
@@ -230,7 +225,7 @@ National Institute of Diabetes and Digestive and Kidney Diseases 資料庫中的
 <tr>
   <td valign=top>煉鋼多類別資料集</td>
   <td valign=top>
-此資料集包含以產生之鋼鐵類型的實際屬性 (寬度、厚度、類型 (鋼條圈、鋼片等)) 試煉鋼鐵的一系列記錄。<p> </p><b>使用方式：</b>預測任兩個數值類別屬性；硬度或強度。 您也可以分析各屬性之間的關聯。<p> </p>鋼鐵等級會遵循 SAE 和其他組織所定義的一組標準。 您想要尋找特定的「等級」(類別變數)，並了解所需的值。 <p> </p><b>相關研究：</b>Sterling, D. 和 Buntine, W., (NA)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science <p> </p>鋼鐵等級的實用指南可以在這裡找到：<a href="http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf">http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf</a>
+此資料集包含以產生之鋼鐵類型的實際屬性 (寬度、厚度、類型 (鋼條圈、鋼片等)) 試煉鋼鐵的一系列記錄。<p> </p><b>使用方式：</b>預測任兩個數值類別屬性；硬度或強度。 您也可以分析各屬性之間的關聯。<p> </p>鋼鐵等級會遵循 SAE 和其他組織所定義的一組標準。 您想要尋找特定的「等級」(類別變數)，並了解所需的值。 <p> </p><b>相關研究：</b>Sterling, D. 和 Buntine, W.(NA)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science <p> </p>鋼鐵等級的實用指南可以在這裡找到：<a href="http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf">http://www.outokumpu.com/SiteCollectionDocuments/Outokumpu-steel-grades-properties-global-standards.pdf</a>
   </td>
 </tr>
 
@@ -243,14 +238,14 @@ National Institute of Diabetes and Digestive and Kidney Diseases 資料庫中的
 <tr ID=weather-dataset>
   <td valign=top>天氣資料集</td>
   <td valign=top>
-NOAA 提供的每小時起降天候觀測值 (<a href="http://cdo.ncdc.noaa.gov/qclcd_ascii/, merged data from 201304 to 201310">將 201304 的資料合併至 201310</a>)。<p> </p>天氣資料涵蓋從機場天候觀測站進行的觀測，涵蓋期間為 2013 年 4 月至 10 月。 上傳至 Azure ML Studio 之前，資料集已經過下列處理：<ul><li>天候觀測站識別碼已對應至相對應的機場識別碼</li><li>已篩選掉與 70 個最繁忙的機場沒有關聯的天候觀測站</li><li>Date 資料行已分割為個別的 Year、Month 和 Day 資料行</li><li>已選取下列資料行：AirportID、Year、Month、Day、Time、TimeZone、SkyCondition、Visibility、WeatherType、DryBulbFarenheit、DryBulbCelsius、WetBulbFarenheit、WetBulbCelsius、DewPointFarenheit、DewPointCelsius、RelativeHumidity、WindSpeed、WindDirection、ValueForWindCharacter、StationPressure、PressureTendency、PressureChange、SeaLevelPressure、RecordType、HourlyPrecip、Altimeter</li></ul>
+NOAA 提供的每小時起降天候觀測值 (<a href="http://cdo.ncdc.noaa.gov/qclcd_ascii/, merged data from 201304 to 201310">將 201304 的資料合併至 201310</a>)。<p> </p>天氣資料涵蓋從機場天候觀測站進行的觀測，涵蓋期間為 2013 年 4 月至 10 月。 上傳至 Azure Machine Learning Studio 之前，資料集已經過下列處理：<ul><li>天候觀測站識別碼已對應至相對應的機場識別碼</li><li>已篩選掉與 70 個最繁忙的機場沒有關聯的天候觀測站</li><li>Date 資料行已分割為個別的 Year、Month 和 Day 資料行</li><li>已選取下列資料行：AirportID、Year、Month、Day、Time、TimeZone、SkyCondition、Visibility、WeatherType、DryBulbFarenheit、DryBulbCelsius、WetBulbFarenheit、WetBulbCelsius、DewPointFarenheit、DewPointCelsius、RelativeHumidity、WindSpeed、WindDirection、ValueForWindCharacter、StationPressure、PressureTendency、PressureChange、SeaLevelPressure、RecordType、HourlyPrecip、Altimeter</li></ul>
   </td>
 </tr>
 
 <tr ID=wikipedia-sp-500-dataset>
   <td valign=top>Wikipedia SP 500 資料集</td>
   <td valign=top>
-資料是從 Wikipedia (<a href="http://www.wikipedia.org/">http://www.wikipedia.org/</a>) 上每家 S&P 500 公司的文章衍生而來 (儲存為 XML 資料)。<p> </p>上傳至 Azure ML Studio 之前，資料集已經過下列處理：<ul><li>擷取每家特定公司的文字內容</li><li>移除 wiki 格式</li><li>移除非英數字元</li><li>將所有文字轉換為小寫</li><li>新增了知名公司類別</li></ul><p> </p>請注意，對某些公司而言，找不到某篇文章，所以記錄筆數小於 500 筆。
+資料是從 Wikipedia (<a href="http://www.wikipedia.org/">http://www.wikipedia.org/</a>) 上每家 S&P 500 公司的文章衍生而來 (儲存為 XML 資料)。<p> </p>上傳至 Azure Machine Learning Studio 之前，資料集已經過下列處理：<ul><li>擷取每家特定公司的文字內容</li><li>移除 wiki 格式</li><li>移除非英數字元</li><li>將所有文字轉換為小寫</li><li>新增了知名公司類別</li></ul><p> </p>請注意，對某些公司而言，找不到某篇文章，所以記錄筆數小於 500 筆。
   </td>
 </tr>
 
@@ -282,7 +277,7 @@ RCV1-V2 路透社新聞資料集中訓練功能的範例。 資料集有 2 萬 3
 <tr ID=intrusion-detection>
   <td valign=top><a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/network_intrusion_detection.csv">network_intrusion_detection.csv</a><br></td>
   <td valign=top>
-來自 KDD Cup 1999 知識探索和資料探勘工具競賽 (<a href="http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html">kddcup99.html</a>) 的資料集。<p> </p>此資料集已下載並儲存在 Azure Blob 儲存體 (<a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/network_intrusion_detection.csv">network_intrusion_detection.csv</a>) 中，同時包含訓練和測試資料集。 訓練資料集約有 126K 個資料列和 43 個資料行 (包含標籤)；其中 3 個資料行屬於標籤資訊，而 40 個資料行 (包含數值和字串/類別特性) 可用於訓練模型。 測試資料約有 22.5K 個測試範例 (具有與訓練資料相同的 43 個資料行)。
+來自 KDD Cup 1999 知識探索和資料探勘工具競賽 (<a href="http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html">kddcup99.html</a>) 的資料集。<p> </p>此資料集已下載並儲存在 Azure Blob 儲存體 (<a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/network_intrusion_detection.csv">network_intrusion_detection.csv</a>) 中，同時包含訓練和測試資料集。 訓練資料集約有 126K 個資料列和 43 個資料行，內含標籤。 有 3 個資料行屬於標籤資訊，而 40 個資料行 (包含數值和字串/類別特性) 可用於訓練模型。 測試資料約有 22.5K 個測試範例 (具有與訓練資料相同的 43 個資料行)。
 
   </td>
 </tr>
@@ -290,7 +285,7 @@ RCV1-V2 路透社新聞資料集中訓練功能的範例。 資料集有 2 萬 3
 <tr ID=rcv1-v2-topics-qrels>
   <td valign=top><a href="https://azuremlsampleexperiments.blob.core.windows.net/datasets/rcv1-v2.topics.qrels.csv">rcv1-v2.topics.qrels.csv</a></td>
   <td valign=top>
-RCV1-V2 路透社新聞資料集中新聞文章的主題指派。 一篇新聞文章可以指派給數個主題。 每個資料列的格式為 "<topic name> <document id> 1"。 資料集包含 260 萬個主題指派。 資料集由 David. D. Lewis  D. 提供。
+RCV1-V2 路透社新聞資料集中新聞文章的主題指派。 一篇新聞文章可以指派給數個主題。 每個資料列的格式為 "&lt;topic name&gt; &lt;document id&gt; 1"。 資料集包含 260 萬個主題指派。 資料集由 David. D. Lewis  D. 提供。
   </td>
 </tr>
 
@@ -313,6 +308,6 @@ RCV1-V2 路透社新聞資料集中新聞文章的主題指派。 一篇新聞�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

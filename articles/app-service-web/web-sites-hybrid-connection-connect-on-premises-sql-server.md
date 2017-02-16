@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 02/09/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7e3c1440cc2b669c574c2c0160a0d282b5f27bca
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: c940f490908a3b934c108b214b5ef2af44698059
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 7e3c1440cc2b669c574c2c0160a0d282b5f27bca
 在本教學課程中，您將了解如何在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)中建立 App Service Web 應用程式、使用新的「混合式連線」功能將 Web 應用程式連接到您的本機內部部署 SQL Server 資料庫、建立將使用混合式連線的簡易 ASP.NET 應用程式，以及將應用程式部署至 App Service Web 應用程式。 Azure 上已完成的 Web 應用程式會將使用者認證儲存在內部部署的成員資格資料庫中。 本教學課程假設您沒有使用 Azure 或 ASP.NET 的經驗。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 「混合式連線」功能的 Web Apps 部分僅適用於 [Azure 入口網站](https://portal.azure.com)。 若要在 BizTalk 服務中建立連線，請參閱 [混合式連線](http://go.microsoft.com/fwlink/p/?LinkID=397274)。  
 > 
@@ -56,7 +56,7 @@ ms.openlocfilehash: 7e3c1440cc2b669c574c2c0160a0d282b5f27bca
 | 443 |**選用** 可供進行資料連線。 如果無法使用 443 的輸出連線，則使用 TCP 連接埠 80。 |
 | 5671 和 9352 |**建議** 但可供進行資料連線 (選用)。 請注意，此模式通常會產生較高的輸送量。 如果無法使用這些連接埠的輸出連線，則使用 TCP 連接埠 443。 |
 
-* 必須能夠連繫內部部署資源的 hostname上：portnumber 。
+* 必須能夠連繫內部部署資源的 *hostname*上：*portnumber* 。
 
 本文中的步驟假設您使用將主控內部部署混合式連線代理程式之電腦中的瀏覽器。
 
@@ -195,7 +195,7 @@ ms.openlocfilehash: 7e3c1440cc2b669c574c2c0160a0d282b5f27bca
     編譯連接字串時，請留意下列事項：
    
    * 如果您要連接到指定的執行個體而非預設執行個體 (例如 YourServer\SQLEXPRESS)，您必須將 SQL Server 設定成使用靜態連接埠。 如需設定靜態連接埠的相關資訊，請參閱 [如何將 SQL Server 設定成在特定連接埠上接聽](http://support.microsoft.com/kb/823938)。 根據預設，指定的執行個體會使用 UDP 和動態連接埠，而混合式連線並不加以支援。
-   * 建議您在連接字串上指定連接埠 (依預設為 1433，如範例所示)，以確定您的本機 SQL Server 會啟用 TCP 並使用正確的連接埠。
+   * 建議您在連接字串上指定連接埠 (依預設為&1433;，如範例所示)，以確定您的本機 SQL Server 會啟用 TCP 並使用正確的連接埠。
    * 請務必使用 SQL Server 驗證進行連接，以在您的連接字串中指定使用者識別碼和密碼。
 3. 在 Visual Studio 中按一下 [儲存]  ，以儲存 Web.config 檔案。
 
@@ -289,7 +289,7 @@ ms.openlocfilehash: 7e3c1440cc2b669c574c2c0160a0d282b5f27bca
 [SSMScreateNewDB]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/A05SSMScreateNewDBlh.png
 [SSMSprovideDBname]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/A06SSMSprovideDBname.png
 [SSMSMembershipDBCreated]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/A07SSMSMembershipDBCreated.png
-[新增]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/B01New.png
+[New]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/B01New.png
 [NewWebsite]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/B02NewWebsite.png
 [WebsiteCreationBlade]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/B03WebsiteCreationBlade.png
 [WebSiteRunningBlade]:./media/web-sites-hybrid-connection-connect-on-premises-sql-server/B04WebSiteRunningBlade.png
@@ -335,6 +335,6 @@ ms.openlocfilehash: 7e3c1440cc2b669c574c2c0160a0d282b5f27bca
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

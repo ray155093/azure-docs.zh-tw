@@ -15,20 +15,20 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0aad3cb34a3a2656b2aabce9b88d2a0cd275a62b
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 0d2ff3ce90c355ba63f3fb66982baa621091ae6e
 
 
 ---
 # <a name="partitioning-tables-in-sql-data-warehouse"></a>在 SQL 資料倉儲中分割資料表
 > [!div class="op_single_selector"]
-> * [概觀][概觀]
-> * [資料類型][資料類型]
-> * [散發][散發]
-> * [Index][Index]
-> * [資料分割][資料分割]
-> * [統計資料][統計資料]
-> * [暫存][暫存]
+> * [概觀][Overview]
+> * [資料類型][Data Types]
+> * [散發][Distribute]
+> * [索引][Index]
+> * [資料分割][Partition]
+> * [統計資料][Statistics]
+> * [暫存][Temporary]
 > 
 > 
 
@@ -48,10 +48,10 @@ SQL 資料倉儲中資料分割的主要優點是藉由使用分割區刪除、�
 ## <a name="partition-sizing-guidance"></a>磁碟分割大小調整指引
 雖然資料分割可用來改善某些案例的效能，但是在某些情況下，建立具有 **太多** 資料分割的資料表可能會降低效能。  叢集資料行存放區資料表尤其堪慮。  若要讓資料分割有所助益，務必要了解使用資料分割的時機，以及要建立的分割區數目。  多少資料分割才算太多並無硬性規定，這取決於您的資料以及您同時載入多少資料分割。  但依照一般經驗法則，考慮加入 10 到 100 個分割區，而不是 1000 個。
 
-在 **叢集資料行存放區** 資料表上建立資料分割時，請務必考慮每個資料分割中將放入多少資料列。  為了讓叢集資料行存放區資料表達到最佳壓縮和效能，每個散發與分割區都需要至少 100 萬個資料列。  建立分割區之前，SQL 資料倉儲已將每個資料表分割成 60 個分散式資料庫。  除了散發以外，任何加入至資料表的資料分割都是在幕後建立。  依據此範例，如果銷售事實資料表包含 36 個月的分割區，並假設 SQL 資料倉儲有 60 個散發，則銷售事實資料表每個月應包含 6 千萬個資料列，或是在填入所有月份時包含 21 億個資料列。  如果資料表包含的資料列遠少於每個分割區建議的最小資料列數，請考慮使用較少的分割區，以增加每個分割區的資料列數目。  另請參閱 [索引][Index] 一文，其中包含可在 SQL 資料倉儲執行的查詢，以評估叢集資料行存放區索引的品質。
+在 **叢集資料行存放區** 資料表上建立資料分割時，請務必考慮每個資料分割中將放入多少資料列。  為了讓叢集資料行存放區資料表達到最佳壓縮和效能，每個散發與分割區都需要至少 100 萬個資料列。  建立分割區之前，SQL 資料倉儲已將每個資料表分割成 60 個分散式資料庫。  除了散發以外，任何加入至資料表的資料分割都是在幕後建立。  依據此範例，如果銷售事實資料表包含 36 個月的分割區，並假設 SQL 資料倉儲有 60 個散發，則銷售事實資料表每個月應包含 6 千萬個資料列，或是在填入所有月份時包含 21 億個資料列。  如果資料表包含的資料列遠少於每個分割區建議的最小資料列數，請考慮使用較少的分割區，以增加每個分割區的資料列數目。  另請參閱[索引][Index]一文，其中包含可在 SQL 資料倉儲執行的查詢，以評估叢集資料行存放區索引的品質。
 
 ## <a name="syntax-difference-from-sql-server"></a>與 SQL Server 的語法差異
-SQL 資料倉儲引進與 SQL Server 稍有不同的簡化分割定義。  資料分割函式和配置不會如同在 SQL Server 中一樣，使用於 SQL 資料倉儲。  相反地，您只需要識別已分割的資料行和邊界點。  雖然資料分割的語法與 SQL Server 稍有不同，但基本概念是一樣的。  SQL Server 和 SQL 資料倉儲支援每個資料表一個分割資料行，它可以是遠距資料分割。  若要深入了解資料分割，請參閱[分割資料表和索引][分割資料表和索引]。
+SQL 資料倉儲引進與 SQL Server 稍有不同的簡化分割定義。  資料分割函式和配置不會如同在 SQL Server 中一樣，使用於 SQL 資料倉儲。  相反地，您只需要識別已分割的資料行和邊界點。  雖然資料分割的語法與 SQL Server 稍有不同，但基本概念是一樣的。  SQL Server 和 SQL 資料倉儲支援每個資料表一個分割資料行，它可以是遠距資料分割。  若要深入了解資料分割，請參閱[分割資料表和索引][Partitioned Tables and Indexes]。
 
 SQL 資料倉儲分割 [CREATE TABLE][CREATE TABLE] 陳述式的以下範例，會依據 OrderDateKey 資料行分割 FactInternetSales 資料表︰
 
@@ -82,8 +82,8 @@ WITH
 ## <a name="migrating-partitioning-from-sql-server"></a>從 SQL Server 移轉資料分割
 若要將 SQL Server 分割定義移轉至 SQL 資料倉儲，只需：
 
-* 刪除 SQL Server [資料分割配置][資料分割配置]。
-* 將 [資料分割函式][資料分割函式] 定義新增至您的 CREATE TABLE。
+* 刪除 SQL Server [資料分割配置][partition scheme]。
+* 將[資料分割函式][partition function]定義新增至您的 CREATE TABLE。
 
 如果您從 SQL Server 執行個體移轉分割資料表，下面的 SQL 可協助您詢問每個分割區中的資料列數目。  請記住，如果 SQL 資料倉儲上使用相同的資料分割資料細微性，則每個分割區的資料列數目會依 60 的倍數減少。  
 
@@ -122,7 +122,7 @@ GROUP BY    s.[name]
 ```
 
 ## <a name="workload-management"></a>工作負載管理
-要納入資料表分割決策的最後一項資訊是[workload management][workload management]。  SQL 資料倉儲中的工作負載管理主要是記憶體和並行存取管理。  在 SQL 資料倉儲中，資源類別會控管在查詢執行期間配置給每個散發的最大記憶體。  在理想的情況下，會考量建置叢集資料行存放區索引的記憶體需求等其他因素，以調整您的分割大小。  配置更多記憶體給叢集資料行存放區索引時，即可獲得極大的好處。  因此，您會想要確定重建分割索引不會耗盡記憶體。 從預設角色 smallrc 切換到其他角色 (例如 largerc)，即可增加您的查詢可用的記憶體數量。
+要納入資料表分割決策的最後一項資訊是[工作負載管理][workload management]。  SQL 資料倉儲中的工作負載管理主要是記憶體和並行存取管理。  在 SQL 資料倉儲中，資源類別會控管在查詢執行期間配置給每個散發的最大記憶體。  在理想的情況下，會考量建置叢集資料行存放區索引的記憶體需求等其他因素，以調整您的分割大小。  配置更多記憶體給叢集資料行存放區索引時，即可獲得極大的好處。  因此，您會想要確定重建分割索引不會耗盡記憶體。 從預設角色 smallrc 切換到其他角色 (例如 largerc)，即可增加您的查詢可用的記憶體數量。
 
 查詢資源管理員動態管理檢視，即可取得每個散發的記憶體配置資訊。 事實上，記憶體授與會小於下列數據。 不過，這會提供指導方針，以便在針對資料管理作業調整分割大小時使用。  盡量避免將分割大小調整超過超大型資源類別所提供的記憶體授與。 如果分割成長超過此數據，您就會冒著記憶體壓力的風險，進而導致比較不理想的壓縮。
 
@@ -184,7 +184,7 @@ CREATE STATISTICS Stat_dbo_FactInternetSales_OrderDateKey ON dbo.FactInternetSal
 ```
 
 > [!NOTE]
-> 藉由建立統計資料物件，我們確定資料表中繼資料更加精確。 如果我們省略了建立統計資料，SQL 資料倉儲將會使用預設值。 如需統計資料的詳細資訊，請檢閱[統計資料][統計資料]。
+> 藉由建立統計資料物件，我們確定資料表中繼資料更加精確。 如果我們省略了建立統計資料，SQL 資料倉儲將會使用預設值。 如需統計資料的詳細資訊，請檢閱[統計資料][statistics]。
 > 
 > 
 
@@ -349,33 +349,33 @@ DROP TABLE #partitions;
 利用這種方法，原始檔控制中的程式碼會保持靜態，並允許動態的分割界限值；隨著時間與倉儲一起發展。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解，請參閱[資料表概觀][概觀]、[資料表資料類型][資料類型]、[散發資料表][散發]、[編製資料表的索引][Index]、[維護資料表統計資料][統計資料]及[暫存資料表][暫存]等文章。  如需最佳做法的詳細資訊，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data 資料倉儲最佳做法]。
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]等文章。  若要深入了解最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 
 <!--Article references-->
-[概觀]: ./sql-data-warehouse-tables-overview.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[散發]: ./sql-data-warehouse-tables-distribute.md
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
-[資料分割]: ./sql-data-warehouse-tables-partition.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[暫存]: ./sql-data-warehouse-tables-temporary.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
 [workload management]: ./sql-data-warehouse-develop-concurrency.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
 
 <!-- MSDN Articles -->
-[分割資料表和索引]: https://msdn.microsoft.com/library/ms190787.aspx
+[Partitioned Tables and Indexes]: https://msdn.microsoft.com/library/ms190787.aspx
 [ALTER TABLE]: https://msdn.microsoft.com/en-us/library/ms190273.aspx
 [CREATE TABLE]: https://msdn.microsoft.com/library/mt203953.aspx
-[資料分割函式]: https://msdn.microsoft.com/library/ms187802.aspx
-[資料分割配置]: https://msdn.microsoft.com/library/ms179854.aspx
+[partition function]: https://msdn.microsoft.com/library/ms187802.aspx
+[partition scheme]: https://msdn.microsoft.com/library/ms179854.aspx
 
 
 <!-- Other web references -->
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

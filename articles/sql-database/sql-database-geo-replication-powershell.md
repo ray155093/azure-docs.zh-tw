@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 為 Azure SQL Database 設定主動式異地複寫 | Microsoft Docs"
+title: "使用 PowerShell 為 Azure SQL Database 設定作用中異地複寫 | Microsoft Docs"
 description: "使用 PowerShell 為 Azure SQL Database 設定作用中異地複寫"
 services: sql-database
 documentationcenter: 
@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: bc5e50e4-bbb2-4ce1-9ee5-9a632de6fa06
 ms.service: sql-database
-ms.custom: business continuity; how to
+ms.custom: business continuity
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: powershell
@@ -16,12 +16,12 @@ ms.workload: NA
 ms.date: 07/14/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 605f7d33c197af60579e30f0b2823968865c7229
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: 1849e257240a45a6161db524ce53a83cbf29068d
 
 
 ---
-# <a name="configure-geo-replication-for-azure-sql-database-with-powershell"></a>使用 PowerShell 為 Azure SQL Database 設定異地複寫
+# <a name="configure-active-geo-replication-for-azure-sql-database-with-powershell"></a>使用 PowerShell 為 Azure SQL Database 設定作用中異地複寫
 > [!div class="op_single_selector"]
 > * [概觀](sql-database-geo-replication-overview.md)
 > * [Azure 入口網站](sql-database-geo-replication-portal.md)
@@ -30,16 +30,16 @@ ms.openlocfilehash: 605f7d33c197af60579e30f0b2823968865c7229
 > 
 > 
 
-本文說明如何使用 PowerShell 為 SQL Database 設定異地複寫。
+本文說明如何使用 PowerShell 為 SQL Database 設定作用中異地複寫。
 
 若要使用 PowerShell 起始容錯移轉，請參閱 [使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-powershell.md)。
 
 > [!NOTE]
-> 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
+> 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 2017 年 4 月將淘汰不可讀取的次要類型，而現有的不可讀取資料庫將自動升級為可讀取的次要複本。
 > 
 > 
 
-若要使用 PowerShell 設定主動式異地複寫，您需要下列項目：
+若要使用 PowerShell 設定作用中異地複寫，您需要下列項目：
 
 * Azure 訂用帳戶。 
 * Azure SQL Database - 您想要複寫的主要資料庫。
@@ -68,40 +68,40 @@ ms.openlocfilehash: 605f7d33c197af60579e30f0b2823968865c7229
 
 這個 Cmdlet 會將 **Start-AzureSqlDatabaseCopy** 取代為 **-IsContinuous** 參數。  它會輸出可供其他 Cmdlet 用來清楚地識別特定複寫連結的 **AzureRmSqlDatabaseSecondary** 物件。 建立次要資料庫並將其完全植入時，這個 Cmdlet 會傳回。 視資料庫的大小而定，可能需要從數分鐘到數小時的時間。
 
-次要伺服器上的複寫資料庫會具備與主要伺服器上的資料庫相同的名稱，並且預設具有相同的服務層級。 次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性資料庫。 如需詳細資訊，請參閱 [New-AzureRMSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt603689\(v=azure.300\).aspx) 和[服務層](sql-database-service-tiers.md)。
-建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。 下列步驟說明如何使用 PowerShell 完成這項工作，以使用單一資料庫或彈性資料庫來建立不可讀取和可讀取次要複本。
+次要伺服器上的複寫資料庫會具備與主要伺服器上的資料庫相同的名稱，並且預設具有相同的服務層級。 次要資料庫可以是可讀取或不可讀取，並且可以是獨立資料庫或在彈性集區中。 如需詳細資訊，請參閱 [New-AzureRMSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt603689\(v=azure.300\).aspx) 和[服務層](sql-database-service-tiers.md)。
+建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。 下列步驟說明如何使用 PowerShell 以獨立資料庫的形式或在彈性集區中建立不可讀取和可讀取的次要複本，來完成這項工作。
 
 如果夥伴資料庫已經存在 (例如，因終止先前的「異地複寫」關聯性所導致)，命令將會失敗。
 
-### <a name="add-a-non-readable-secondary-single-database"></a>加入不可讀取次要複本 (單一資料庫)
+### <a name="add-a-non-readable-secondary-standalone-database"></a>新增不可讀取的次要複本 (獨立資料庫)
 下列命令會在資源群組 "rg2" 伺服器 "srv2" 中建立資料庫 "mydb" 的不可讀取次要複本：
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
-    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary –PartnerResourceGroupName "rg2" –PartnerServerName "srv2" -AllowConnections "No"
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
+    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary -PartnerResourceGroupName "rg2" -PartnerServerName "srv2" -AllowConnections "No"
 
 
 
-### <a name="add-readable-secondary-single-database"></a>加入可讀取次要複本 (單一資料庫)
+### <a name="add-readable-secondary-standalone-database"></a>新增可讀取的次要複本 (獨立資料庫)
 下列命令會在資源群組 "rg2" 伺服器 "srv2" 中建立資料庫 "mydb" 的可讀取次要複本：
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
-    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary –PartnerResourceGroupName "rg2" –PartnerServerName "srv2" -AllowConnections "All"
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
+    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary -PartnerResourceGroupName "rg2" -PartnerServerName "srv2" -AllowConnections "All"
 
 
 
 
-### <a name="add-a-non-readable-secondary-elastic-database"></a>加入不可讀取次要複本 (彈性資料庫)
-下列命令會在資源群組 "rg2" 伺服器 "srv2" 中名為 "ElasticPool1" 的彈性資料庫集區建立資料庫 "mydb" 的不可讀取次要複本：
+### <a name="add-a-non-readable-secondary-elastic-pool"></a>新增不可讀取次要複本 (彈性集區)
+下列命令會在資源群組 "rg2" 之伺服器 "srv2" 中名為 "ElasticPool1" 的彈性集區內建立資料庫 "mydb" 的不可讀取次要複本：
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
-    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary –PartnerResourceGroupName "rg2" –PartnerServerName "srv2" –SecondaryElasticPoolName "ElasticPool1" -AllowConnections "No"
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
+    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary -PartnerResourceGroupName "rg2" -PartnerServerName "srv2" -SecondaryElasticPoolName "ElasticPool1" -AllowConnections "No"
 
 
-### <a name="add-a-readable-secondary-elastic-database"></a>加入可讀取次要複本 (彈性資料庫)
-下列命令會在資源群組 "rg2" 伺服器 "srv2" 中名為 "ElasticPool1" 的彈性資料庫集區建立資料庫 "mydb" 的可讀取次要複本：
+### <a name="add-a-readable-secondary-elastic-pool"></a>新增可讀取次要複本 (彈性集區)
+下列命令會在資源群組 "rg2" 之伺服器 "srv2" 中名為 "ElasticPool1" 的彈性集區內建立資料庫 "mydb" 的可讀取次要複本：
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
-    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary –PartnerResourceGroupName "rg2" –PartnerServerName "srv2" –SecondaryElasticPoolName "ElasticPool1" -AllowConnections "All"
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
+    $secondaryLink = $database | New-AzureRmSqlDatabaseSecondary -PartnerResourceGroupName "rg2" -PartnerServerName "srv2" -SecondaryElasticPoolName "ElasticPool1" -AllowConnections "All"
 
 
 
@@ -118,8 +118,8 @@ ms.openlocfilehash: 605f7d33c197af60579e30f0b2823968865c7229
 
 以下會移除資源群組 "rg2" 的伺服器 "srv2" 名為 "mydb" 的資料庫複寫連結。 
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
-    $secondaryLink = $database | Get-AzureRmSqlDatabaseReplicationLink –SecondaryResourceGroup "rg2" –PartnerServerName "srv2"
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
+    $secondaryLink = $database | Get-AzureRmSqlDatabaseReplicationLink -SecondaryResourceGroup "rg2" -PartnerServerName "srv2"
     $secondaryLink | Remove-AzureRmSqlDatabaseSecondary 
 
 
@@ -130,17 +130,17 @@ ms.openlocfilehash: 605f7d33c197af60579e30f0b2823968865c7229
 
 下列命令會擷取主要資料庫 "mydb" 與資源群組 "rg2" 上伺服器 "srv2" 上的次要複本之間複寫連結的狀態。
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
-    $secondaryLink = $database | Get-AzureRmSqlDatabaseReplicationLink –PartnerResourceGroup "rg2” –PartnerServerName "srv2”
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg1" -ServerName "srv1"
+    $secondaryLink = $database | Get-AzureRmSqlDatabaseReplicationLink -PartnerResourceGroup "rg2” -PartnerServerName "srv2”
 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解主動式異地複寫，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)
+* 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

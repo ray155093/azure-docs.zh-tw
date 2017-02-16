@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2.0 隱含流程 |Microsoft Docs"
+title: "使用 Azure AD v2.0 隱含流程保護單一頁面應用程式的安全 | Microsoft Docs"
 description: "使用針對單一頁面應用程式的隱含流程的 Azure AD v2.0 實作，建置 Web 應用程式。"
 services: active-directory
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 3e0bb32a6c60011d71606c896cc506f430bc3c27
-ms.openlocfilehash: c38acf898a96b63c348ce28fb315a4e30fdb460f
+ms.sourcegitcommit: ba958d029e5bf1bc914a2dff4b6c09282d578c67
+ms.openlocfilehash: 1ea1f54832a13b57caf3d6783e482fad4ba00781
 
 
 ---
@@ -242,6 +242,6 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
 title: "透過 Azure PowerShell 開始使用 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何透過 Azure PowerShell 建立資料湖存放區帳戶、使用 U-SQL 建立資料湖分析工作，以及提交工作。 "
+description: "了解如何使用 Azure PowerShell 建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 "
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 09/21/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 73d3e5577d0702a93b7f4edf3bf4e29f55a053ed
-ms.openlocfilehash: 59efa050944059c737654a3f039a058c50865ea6
+ms.sourcegitcommit: 0994765e37dd8ee1fa6a639a2ed60c913cb170fe
+ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: 59efa050944059c737654a3f039a058c50865ea6
 開始進行本教學課程之前，您必須具備下列條件：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **具有 Azure PowerShell 的工作站**。 請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* **具有 Azure PowerShell 的工作站**。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="create-data-lake-analytics-account"></a>建立資料湖分析帳戶
 您必須擁有資料湖分析帳戶，才能執行工作。 若要建立資料湖分析帳戶，您必須指定下列項目：
@@ -209,6 +209,6 @@ ms.openlocfilehash: 59efa050944059c737654a3f039a058c50865ea6
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

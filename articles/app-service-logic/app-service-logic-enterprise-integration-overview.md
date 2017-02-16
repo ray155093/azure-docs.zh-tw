@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/08/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 53b827f15fcba26630dd470c2c9e5bbc87919c84
-ms.openlocfilehash: 79270aa5650f4ac149b582204b3c0e41d099765b
+ms.sourcegitcommit: 4faf01ca10f263a5ecc18f51659b5004bf4f7c36
+ms.openlocfilehash: 3ca870da1a01bc216604cdd1142ba68dfd5e96e2
 
 
 ---
@@ -68,12 +68,13 @@ ms.openlocfilehash: 79270aa5650f4ac149b582204b3c0e41d099765b
 * [XML 訊息驗證](app-service-logic-enterprise-integration-xml.md "了解如何使用 Logic Apps 驗證 XML 訊息")
 * [XML 轉換](app-service-logic-enterprise-integration-transform.md "了解企業整合對應")
 * [企業整合連接器](../connectors/apis-list.md "了解企業整合套件連接器")
+* [整合帳戶中繼資料](app-service-logic-enterprise-integration-metadata.md "深入了解整合帳戶中繼資料")
 * [監視 B2B 訊息](app-service-logic-monitor-b2b-message.md "深入了解監視 B2B 訊息")
 * [在 OMS 入口網站中追蹤 B2B 訊息](app-service-logic-track-b2b-messages-omsportal.md "深入了解在 OMS 入口網站中追蹤 B2B 訊息")
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

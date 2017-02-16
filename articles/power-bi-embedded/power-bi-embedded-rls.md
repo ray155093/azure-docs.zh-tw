@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 10/04/2016
+ms.date: 01/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a98185bf44af2271f5ded04c05d3134321db536a
+ms.sourcegitcommit: 2f0f36e7ffeec52bacc35ac5039cd183976dc3aa
+ms.openlocfilehash: c0b3e2de393c53dab4c9e9341269f792603eec18
 
 
 ---
@@ -93,7 +93,15 @@ RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們
 * **username** (選擇性) – 與 RLS 搭配使用，這是字串，可以在套用 RLS 規則時用來協助識別使用者。 請參閱「搭配使用資料列層級安全性和 Power BI Embedded」
 * **角色** – 字串，包含套用資料列層級安全性規則時要選取的角色。 如果傳遞多個角色，應該將它們傳遞為字串陣列。
 
-如果 username 屬性存在，則您也必須在角色中傳遞至少一個值。
+您可以使用 [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#Microsoft_PowerBI_Security_PowerBIToken_CreateReportEmbedToken_System_String_System_String_System_String_System_DateTime_System_String_System_Collections_Generic_IEnumerable_System_String__) 方法來建立權杖。 如果 username 屬性存在，則您也必須在角色中傳遞至少一個值。
+
+例如，您可以變更 EmbedSample。 DashboardController 第 55 行可以從
+
+    var embedToken = PowerBIToken.CreateReportEmbedToken(this.workspaceCollection, this.workspaceId, report.Id);
+
+更新成
+
+    var embedToken = PowerBIToken.CreateReportEmbedToken(this.workspaceCollection, this.workspaceId, report.Id, "Andrew Ma", ["Manager"]);'
 
 完整的應用程式權杖看起來如下：
 
@@ -109,6 +117,6 @@ RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

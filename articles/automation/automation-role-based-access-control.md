@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 09/12/2016
 ms.author: magoedte;sngun
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9fff24dfd2b20a785c6046b6c9700b583c309de4
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 17c7e410a9c5b69ab450eb3affd192f1e3cb6e76
 
 
 ---
-# <a name="rolebased-access-control-in-azure-automation"></a>Azure 自動化中的角色型存取控制
-## <a name="rolebased-access-control"></a>角色型存取控制
+# <a name="role-based-access-control-in-azure-automation"></a>Azure 自動化中的角色型存取控制
+## <a name="role-based-access-control"></a>角色型存取控制
 角色型存取控制 (RBAC) 可以啟用對 Azure 資源的存取權管理。 您可以使用 [RBAC](../active-directory/role-based-access-control-configure.md)來區隔小組內的職責，僅授與使用者、群組和應用程式執行作業所需的存取量。 使用 Azure 入口網站、Azure 命令列工具或 Azure 管理 API 的使用者，可以獲授與角色型存取權。
 
 ## <a name="rbac-in-automation-accounts"></a>自動化帳戶中的 RBAC
@@ -233,6 +233,6 @@ ms.openlocfilehash: 9fff24dfd2b20a785c6046b6c9700b583c309de4
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

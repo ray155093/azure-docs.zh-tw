@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: d7e51bee4b9ec4441a080004f938cdc609fd1250
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e4e8cf878d08aab41426fcebe1c43d7a9a97b57d
 
 
 ---
@@ -99,12 +99,12 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 | 名稱 | 指令碼 |
 | --- | --- |
-| **安裝 Spark** |https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1。 請參閱[在 HDInsight 叢集上安裝及使用 Spark][hdinsight-install-spark]。 |
-| **安裝 R** |https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1。 請參閱[在 HDInsight 叢集上安裝及使用 R][hdinsight-r-scripts]。 |
+| **安裝 Spark** |https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1。 請參閱[在 HDInsight 叢集上安裝和使用 Spark][hdinsight-install-spark]。 |
+| **安裝 R** |https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1。 請參閱[在 HDInsight 叢集上安裝和使用 R][hdinsight-r-scripts]。 |
 | **安裝 Solr** |https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1。 請參閱 [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install.md)。 |
 | - **安裝 Giraph** |https://hdiconfigactions.blob.core.windows.net/giraphconfigactionv01/giraph-installer-v01.ps1。 請參閱 [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install.md)。 |
 
-您可以從 Azure 入口網站、Azure PowerShell 或使用 HDInsight .NET SDK 來部署「指令碼動作」。  如需詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]。
+您可以從 Azure 入口網站、Azure PowerShell 或使用 HDInsight .NET SDK 來部署「指令碼動作」。  如需詳細資訊，請參閱[使用指令碼動作來自訂 HDInsight 叢集][hdinsight-cluster-customize]。
 
 > [!NOTE]
 > 範例指令碼只能與 HDInsight 叢集版本 3.1 或更高版本搭配使用。 如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
@@ -295,8 +295,8 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 ## <a name="see-also"></a>另請參閱
 * [使用指令碼動作來自訂 HDInsight 叢集][hdinsight-cluster-customize]
-* [在 HDInsight 叢集上安裝及使用 Spark][hdinsight-install-spark]
-* [在 HDInsight 叢集上安裝及使用 R][hdinsight-r-scripts]
+* [在 HDInsight 叢集上安裝和使用 Spark][hdinsight-install-spark]
+* [在 HDInsight 叢集上安裝和使用 R][hdinsight-r-scripts]
 * [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install.md)。
 * [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install.md)。
 
@@ -311,6 +311,6 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

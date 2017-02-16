@@ -15,13 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 18234ad720d4e85b50d1871dacf243c65f45be33
+ms.sourcegitcommit: 27df1166a23e3ed89fdc86f861353c80a4a467ad
+ms.openlocfilehash: 2428c707ddeed281fddd1e57bc5574603f0b9b1c
 
 
 ---
 # <a name="network-resource-provider"></a>網路資源提供者
-現今企業成功的基礎是可以使用靈活、具彈性、安全且可重複的方式來建置和管理大規模網路感知應用程式。 Azure 資源管理員 (ARM) 可讓您建立這類應用程式，做為資源群組中的單一資源集合。 這類資源是透過 ARM 下的各種資源提供者進行管理。
+現今企業成功的基礎是可以使用靈活、具彈性、安全且可重複的方式來建置和管理大規模網路感知應用程式。 Azure Resource Manager 可讓您以資源群組中單一資源集合的形式，建立這類應用程式。 管理這類資源時，是透過 Resource Manager 底下的各種資源提供者進行管理。
 
 Azure 資源管理員會仰賴不同的資源提供者來提供資源的存取權。 有三個主要的資源提供者：網路、儲存體和運算。 本文件討論網路資源提供者的特性和優點，包括：
 
@@ -40,7 +40,7 @@ Azure 資源管理員會仰賴不同的資源提供者來提供資源的存取�
   * Java SDK
   * Azure CLI
   * 預覽入口網站
-  * ARM 範本語言
+  * Resource Manager 範本語言
 
 ## <a name="network-resources"></a>網路資源
 您現在可以獨立地管理網路資源，而不是透過單一計算資源 (虛擬機器) 進行管理。 這確保具有較高程度的彈性和靈活性可在資源群組中撰寫複雜且大型的基礎結構。
@@ -103,8 +103,8 @@ Rest API 符合 HTTP 1.1 通訊協定規格。 API 的一般 URI 結構顯示如
 
 要求和回應都符合 JSON 裝載格式。 如需詳細資料，請參閱 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)。
 
-### <a name="arm-template-language"></a>ARM 範本語言
-除了以命令方式 (透過 API 或 SDK) 管理資源之外，您還可以使用宣告式程式設計樣式，利用 ARM 範本語言建置和管理網路資源。
+### <a name="resource-manager-template-language"></a>Resource Manager 範本語言
+除了以命令方式 (透過 API 或 SDK) 管理資源之外，藉由使用「Resource Manager 範本語言」，您還可以使用宣告式程式設計樣式來建置和管理網路資源。
 
 範本的範例表示法提供如下 –
 
@@ -234,13 +234,13 @@ Rest API 符合 HTTP 1.1 通訊協定規格。 API 的一般 URI 結構顯示如
 
 使用範本的主要優點如下：
 
-* 您可以透過宣告樣式在資源群組中建置複雜的基礎結構。 建立資源 (包括相依性管理) 的協調是由 ARM 所處理。
+* 您可以透過宣告樣式在資源群組中建置複雜的基礎結構。 建立資源 (包括相依性管理) 時的協調是由 Resource Manager 負責。
 * 只要變更參數，即可透過可重複的方式在各種區域和某個區域內建立基礎結構。
 * 宣告樣式可讓建置範本以及推出基礎結構的前置時間變短。
 
 如需範例範本，請參閱 [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates)。
 
-如需 ARM 範本語言的詳細資訊，請參閱 [Azure 資源管理員範本語言](../resource-group-authoring-templates.md)。
+如需有關「Resource Manager 範本語言」的詳細資訊，請參閱 [Azure Resource Manager 範本語言](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 上述範例範本使用虛擬網路和子網路資源。 下列是其他您可以使用的網路資源：
 
@@ -258,17 +258,17 @@ Rest API 符合 HTTP 1.1 通訊協定規格。 API 的一般 URI 結構顯示如
 ![範例範本部署](./media/resource-groups-networking/Figure6.png)
 
 ## <a name="next-steps"></a>後續步驟
-[Azure 資源管理員範本語言](../resource-group-authoring-templates.md)
+[Azure 資源管理員範本語言](../azure-resource-manager/resource-group-authoring-templates.md)
 
 [Azure 網路 - 常用範本](https://github.com/Azure/azure-quickstart-templates)
 
-[Azure Resource Manager 與傳統部署](../resource-manager-deployment-model.md)
+[Azure Resource Manager 與傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)
 
 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

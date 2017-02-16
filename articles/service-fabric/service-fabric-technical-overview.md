@@ -12,16 +12,18 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 08/25/2016
+ms.date: 12/01/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b68945157d7b4a5d418c766188ad49229c6f4ab5
+ms.sourcegitcommit: e0efcabbb876e77e5b23537ce023c30f9fd153cd
+ms.openlocfilehash: 884e43e36517c0c894b72ab6f4e8f6aadb1d9bcf
 
 
 ---
 # <a name="service-fabric-terminology-overview"></a>Service Fabric 術語概觀
 Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務。 本主題詳細說明 Service Fabric 中所使用的術語，以利您了解文件中使用的詞彙。
+
+本節所列的概念也會在下列 Microsoft Virtual Academy 影片中討論︰<a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=tbuZM46yC_5206218965">核心概念</a>、<a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=tlkI046yC_2906218965">設計階段概念</a>和<a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=x7CVH56yC_1406218965">執行階段概念</a>。
 
 ## <a name="infrastructure-concepts"></a>基礎結構概念
 **叢集**：由虛擬或實體機器連結組成的網路，微服務可於其中部署和管理。  叢集可擴充至數千部機器。
@@ -59,6 +61,8 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 **組態封裝**：磁碟目錄，包含此服務類型的靜態唯讀組態檔 (通常是文字檔)。 此服務類型的 `ServiceManifest.xml` 檔會參考此組態封裝目錄中的檔案。 建立具名服務時，系統會將組態封裝中的檔案，複製到一或多個選取用來執行具名服務的節點。 接著會開始執行程式碼，此時即可存取組態檔案。
 
+**容器**：根據預設，Service Fabric 會以處理序形式部署和啟動這些服務。 Service Fabric 也可以在容器映像中部署服務。 容器是從應用程式中將基礎作業系統虛擬化的一種虛擬化技術。 應用程式與其執行階段、相依性及系統程式庫在容器內執行時，在其各自於作業系統建構中的獨立範圍內，都具有容器的完整專屬存取權。 Service Fabric 支援 Linux 上的 Docker 容器和 Windows Server 容器。  如需詳細資訊，請參閱 [Service Fabric 和容器](service-fabric-containers-overview.md)。
+
 **分割配置**：建立具名的服務時，要指定分割配置。 含有大量狀態的服務會跨分割切割其資料，所以服務是分散在叢集的節點上。 這使得具名服務的狀態可以擴充。 在分割內，無狀態的具名服務會有執行個體，而具狀態的具名服務則有複本。 通常，無狀態具名服務只會有 1 個分割，因為它們有沒有內部狀態。 分割執行個體提供可用性；如果一個執行個體失敗，其他執行個體會繼續正常運作，接著 Service Fabric 會建立新的執行個體。 具狀態的具名服務會在複本中維持其狀態，且每個分割都有自己的複本集，其中包含保持同步的所有狀態。 複本失敗失敗時，Service Fabric 會從現有複本建立新的複本。
 
 如需詳細資訊，請閱讀 [分割 Service Fabric Reliable Services](service-fabric-concepts-partitioning.md) 。
@@ -94,6 +98,6 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

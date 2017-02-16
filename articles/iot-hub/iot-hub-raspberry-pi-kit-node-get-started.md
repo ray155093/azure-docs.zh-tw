@@ -1,12 +1,14 @@
 ---
-title: "開始使用 Raspberry Pi 3 | Microsoft Docs"
-description: "開始使用 Raspberry Pi 3、建立 Azure IoT 中樞，以及將 Pi 與 IoT 中樞連線。"
+title: "將 Raspberry Pi 3 連接至 Azure IoT 中樞 | Microsoft Docs"
+description: "開始使用 Raspberry Pi 3 裝置、建立 Azure IoT 中樞，以及將 Pi 連接至 IoT 中樞。"
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
 keywords: "azure iot 中樞, 開始使用物聯網, iot 工具組"
+experimental: true
+experiment_id: xshi-happypathemu-20161202
 ms.assetid: b0e14bfa-8e64-440a-a6ec-e507ca0f76ba
 ms.service: iot-hub
 ms.devlang: node
@@ -16,12 +18,15 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: ffcb9214b8fa645a8a2378c5e7054b9f984addbb
-ms.openlocfilehash: e453ad240c7f537ef2d150564996827ebcb9474d
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: d04f9d219451d683b572df43f73944011d686797
 
 
 ---
-# <a name="get-started-with-raspberry-pi-3-nodejs"></a>開始使用 Raspberry Pi 3 (Node.JS)
+# <a name="get-started-with-raspberry-pi-3-nodejs"></a>開始使用 Raspberry Pi 3 (Node.js)
+> [!div class="op_single_selector"]
+> * [Node.JS](iot-hub-raspberry-pi-kit-node-get-started.md)
+> * [C](iot-hub-raspberry-pi-kit-c-get-started.md)
 
 在本教學課程中，您會開始了解執行 Raspbian 的 Raspberry Pi 3 在使用方面的基本知識。 接著會了解如何使用 [Azure IoT 中樞](iot-hub-what-is-iot-hub.md)讓您的裝置順暢地與雲端連線。 如需 Windows 10 IoT 核心範例，請移至 [Windows 開發人員中心](http://www.windowsondevices.com/)。
 
@@ -129,6 +134,6 @@ ms.openlocfilehash: e453ad240c7f537ef2d150564996827ebcb9474d
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

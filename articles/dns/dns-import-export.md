@@ -14,8 +14,8 @@ ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 95ae4f86cb95382eae103c454d209eba4d601adc
-ms.openlocfilehash: cdea2d2ea07c744535bb169e6fd8326a592d5856
+ms.sourcegitcommit: f06bf515accd8507189ecd5f1759f14f4f06fd33
+ms.openlocfilehash: faac9909993895b3e8a27b2cbaa7b62b3e508933
 
 ---
 
@@ -27,7 +27,10 @@ ms.openlocfilehash: cdea2d2ea07c744535bb169e6fd8326a592d5856
 
 DNS 區域檔案是一個文字檔，其中包含區域中每筆網域名稱系統 (DNS) 記錄的詳細資料。 它會遵循標準格式，使其適合於在 DNS 系統之間傳送 DNS 記錄。 使用區域檔案是從 Azure DNS 移入或移出 DNS 區域的快速、可靠又方便的方法。
 
-Azure DNS 支援使用 Azure 命令列介面 (CLI) 匯入和匯出區域檔案。 Azure CLI 是用來管理 Azure 服務的跨平台命令列工具。 它可從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)取得，且適用於 Windows、Mac 及 Linux 平台。 跨平台支援對於匯入和匯出區域檔案特別重要，因為最常見的名稱伺服器軟體 [BIND](https://www.isc.org/downloads/bind/)通常會在 Linux 上執行。
+Azure DNS 支援使用 Azure 命令列介面 (CLI) 匯入和匯出區域檔案。 目前並「不」支援透過 Azure PowerShell 或 Azure 入口網站進行區域檔案匯入。
+
+Azure CLI 是用來管理 Azure 服務的跨平台命令列工具。 它可從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)取得，且適用於 Windows、Mac 及 Linux 平台。 跨平台支援對於匯入和匯出區域檔案特別重要，因為最常見的名稱伺服器軟體 [BIND](https://www.isc.org/downloads/bind/)通常會在 Linux 上執行。
+
 
 ## <a name="obtain-your-existing-dns-zone-file"></a>取得現有的 DNS 區域檔案
 
@@ -210,6 +213,6 @@ azure network dns zone import [options] <resource group> <zone name> <zone file 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

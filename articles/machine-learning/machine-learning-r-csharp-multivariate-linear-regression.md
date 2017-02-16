@@ -1,6 +1,6 @@
 ---
-title: "多變量線性迴歸 | Microsoft Docs"
-description: "多變量線性迴歸"
+title: "(已過時) 多變量線性迴歸 - Azure | Microsoft Docs"
+description: "(已過時) 多變量線性迴歸"
 services: machine-learning
 documentationcenter: 
 author: jaymathe
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 11/21/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: jaymathe
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 01d90591f61920769dbdca360f69156281145517
+ms.sourcegitcommit: b1ee1eae91185c1893b55be2046343d78dd6c48b
+ms.openlocfilehash: 96780fccdf887548b0f6e525736f1d507cf30486
 
 
 ---
-# <a name="multivariate-linear-regression"></a>多變量線性迴歸
+# <a name="deprecated-multivariate-linear-regression"></a>(已過時) 多變量線性迴歸
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。 如需此資源庫的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 假設您有一個資料集，並想要根據獨立變數，快速地預測每個項目 (i) 的相依變數 (y)。 線性迴歸是這類預測的常用統計技術。 這裡假設相依變數 y 是連續值。  
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -121,6 +128,6 @@ Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

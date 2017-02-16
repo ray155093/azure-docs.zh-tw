@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: vs-getting-started
 ms.devlang: na
 ms.topic: article
-ms.date: 12/02/2016
+ms.date: 12/21/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 07f827e13e5f01a373e69b90e8a5a0c72081acd0
-ms.openlocfilehash: 24cfb3217dbadba3a086a8b0251efe5ab0173d1f
+ms.sourcegitcommit: 5840ec74f6af2e373d9ebb34b0f6e13094c33f19
+ms.openlocfilehash: ca603d4833336ddee1474d365d57159bc288303f
 
 
 ---
@@ -27,308 +27,694 @@ ms.openlocfilehash: 24cfb3217dbadba3a086a8b0251efe5ab0173d1f
 
 Azure 資料表儲存體可讓您儲存大量的結構化資料。 此服務是一個 NoSQL 資料存放區，接受來自 Azure 雲端內外經過驗證的呼叫。 Azure 資料表很適合儲存結構化、非關聯式資料。
 
-本文說明如何以程式設計方式管理 Azure 表格儲存體實體，並執行常見工作，例如建立和刪除資料表)，以及使用資料表實體。 
+本教學課程說明如何使用 Azure 表格儲存體實體撰寫一些常見案例的 ASP.NET 程式碼。 這些案例包括建立資料表，以及新增、查詢和刪除資料表實體。 
+
+##<a name="prerequisites"></a>必要條件
+
+* [Microsoft Visual Studio](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
+* [Azure 儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)
+
+[!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
+
+[!INCLUDE [storage-create-account-include](../../includes/vs-storage-aspnet-getting-started-create-azure-account.md)]
+
+[!INCLUDE [storage-development-environment-include](../../includes/vs-storage-aspnet-getting-started-setup-dev-env.md)]
+
+### <a name="create-an-mvc-controller"></a>建立 MVC 控制器 
+
+1. 在 [方案總管] 中，用滑鼠右鍵按一下 [控制器]，然後從內容功能表中選取 [新增] > [控制器]。
+
+    ![將控制器新增至 ASP.NET MVC 應用程式](./media/vs-storage-aspnet-getting-started-tables/add-controller-menu.png)
+
+1. 在 [Add Scaffold] 對話方塊中，按一下 [MVC 5 Controller - Empty]然後選取 [新增]。
+
+    ![指定 MVC 控制器類型](./media/vs-storage-aspnet-getting-started-tables/add-controller.png)
+
+1. 在 [新增控制器] 對話方塊中，將控制器命名為 TablesController，然後選取 [新增]。
+
+    ![命名 MVC 控制器](./media/vs-storage-aspnet-getting-started-tables/add-controller-name.png)
+
+1. 將下列 using 指示詞新增至 `TablesController.cs` 檔案：
+
+    ```csharp
+    using Microsoft.Azure;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Auth;
+    using Microsoft.WindowsAzure.Storage.Table;
+    ```
+
+### <a name="create-a-model-class"></a>建立模型類別
+
+本文中的許多範例使用 **TableEntity**衍生的類別，稱為 **CustomerEntity**。 下列步驟會引導您宣告這個類別做為模型類別︰
+
+1. 在 [方案總管] 中，用滑鼠右鍵按一下 [模型]，然後從內容功能表中選取 [新增] > [類別]。
+
+1. 在 [新增項目] 對話方塊中，將類別命名為 **CustomerEntity**。
+
+1. 開啟 `CustomerEntity.cs` 檔案，並新增下列 using 指示詞：
+
+    ```csharp
+    using Microsoft.WindowsAzure.Storage.Table;
+    ```
+
+1. 修改類別，以便在完成時，這個類別會如下列程式碼所示宣告。 類別使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的，宣告一個稱為 **CustomerEntity** 的實體類別。
+
+    ```csharp
+    public class CustomerEntity : TableEntity
+    {
+        public CustomerEntity(string lastName, string firstName)
+        {
+            this.PartitionKey = lastName;
+            this.RowKey = firstName;
+        }
+
+        public CustomerEntity() { }
+
+        public string Email { get; set; }
+    }
+    ```
+
+## <a name="create-a-table"></a>建立資料表
+
+下列步驟說明如何建立資料表：
 
 > [!NOTE]
 > 
-> 本文中的程式碼區段假設您已使用已連線的服務，連接到 Azure 儲存體帳戶。 開啟 [Visual Studio 方案總管]，以滑鼠右鍵按一下專案，並從內容功能表中選取 [新增] -> [已連線的服務] 選項，即可設定已連線的服務。 從該處，遵循對話方塊的指示，以連接到所需的 Azure 儲存體帳戶。      
+> 本章節假設您已完成[設定開發環境](#set-up-the-development-environment)中的步驟。 
 
-## <a name="create-a-table-in-code"></a>在程式碼中建立資料表
+1. 開啟 `TablesController.cs` 檔案。
 
-下列步驟說明如何以程式設計方式建立資料表。 在 ASP.NET MVC 應用程式中，程式碼會移入控制器中。
+1. 新增名為 **CreateTable** 的方法，其會傳回 **ActionResult**。
 
-1. 新增下列 using 指示詞︰
+    ```csharp
+    public ActionResult CreateTable()
+    {
+        // The code in this section goes here.
 
-         using Microsoft.Azure;
-         using Microsoft.WindowsAzure.Storage;
-         using Microsoft.WindowsAzure.Storage.Auth;
-         using Microsoft.WindowsAzure.Storage.Table;
+        return View();
+    }
+    ```
 
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得儲存體連接字串和儲存體帳戶資訊。 (將 <storage-account-name> 變更為您正在存取的 Azure 儲存體帳戶名稱。)
-
-         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
-
-3. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
-
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-
-
-4. 取得 **CloudTable** 物件，代表所需資料表名稱的參考。 (將 <table-name> 變更為您想要建立的資料表名稱。)
-
-        CloudTable table = tableClient.GetTableReference(<table-name>);
-
-5. 呼叫 **CloudTable.CreateIfNotExists** 方法來建立資料表 (如果尚不存在)。   
+1. 在 **CreateTable** 方法內，取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼從 Azure 服務組態中取得儲存體連接字串和儲存體帳戶資訊：(將 &lt;storage-account-name> 變更為您要存取之 Azure 儲存體帳戶的名稱。)
    
-        table.CreateIfNotExists();
+    ```csharp
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+       CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```
+
+1. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+   
+    ```csharp
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    ```
+
+1. 取得 **CloudTable** 物件，代表所需資料表名稱的參考。 **CloudTableClient.GetTableReference** 方法不會進行對表格儲存體的要求。 無論資料表是否存在都會傳回參考。 
+   
+    ```csharp
+    CloudTable table = tableClient.GetTableReference("TestTable");
+    ```
+
+1. 呼叫 **CloudTable.CreateIfNotExists** 方法來建立資料表 (如果尚不存在)。 如果容器不存在且已成功建立，則 **CloudTable.CreateIfNotExists** 方法會傳回 **true**。 否則，會傳回 **false**。    
+
+    ```csharp
+    ViewBag.Success = table.CreateIfNotExists();
+    ```
+
+1. 使用資料表的名稱更新 **ViewBag**。
+
+    ```csharp
+    ViewBag.TableName = table.Name;
+    ```
+
+1. 在 [方案總管] 中，展開 [檢視] 資料夾、用滑鼠右鍵按一下 [資料表]，然後從內容功能表中選取 [新增] > [檢視]。
+
+1. 在 [新增檢視] 對話方塊中，針對檢視名稱輸入 **CreateTable**，然後選取 [新增]。
+
+1. 開啟 `CreateTable.cshtml` 並加以修改，以便其如下列程式碼片段所示：
+
+    ```csharp
+    @{
+        ViewBag.Title = "Create Table";
+    }
+    
+    <h2>Create Table results</h2>
+
+    Creation of @ViewBag.TableName @(ViewBag.Success == true ? "succeeded" : "failed")
+    ```
+
+1. 在 [方案總管] 中，展開 **檢視-> 共用** 資料夾，然後開啟 `_Layout.cshtml`。
+
+1. 在最後一個 **Html.ActionLink** 之後，新增下列 **Html.ActionLink**：
+
+    ```html
+    <li>@Html.ActionLink("Create table", "CreateTable", "Tables")</li>
+    ```
+
+1. 執行應用程式，並選取 **Create table** 來查看類似下列螢幕擷取畫面的結果︰
+  
+    ![建立資料表](./media/vs-storage-aspnet-getting-started-tables/create-table-results.png)
+
+    如前所述，僅當資料表不存在且已建立時，**CloudTable.CreateIfNotExists** 方法才會傳回 **true**。 因此，如果您在資料表已存在時執行應用程式，此方法會傳回 **false**。 若要多次執行應用程式，您必須先刪除資料表後，才能再次執行應用程式。 可以透過完成 **CloudTable.Delete** 方法來刪除資料表。 您也可以使用 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)或 [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)來刪除資料表。  
 
 ## <a name="add-an-entity-to-a-table"></a>將實體加入至資料表
 
-下列步驟說明如何以程式設計方式將實體新增至資料表。 在 ASP.NET MVC 應用程式中，程式碼會移入控制器中。 
+使用衍生自 **TableEntity** 的自訂類別，將實體對應至 C\# 物件。 若要將實體新增至資料表，請建立一個類別來定義實體的屬性。 在本節中，您將了解如何定義一個使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的實體類別。 實體的資料分割索引鍵和資料列索引鍵共同唯一識別資料表中的實體。 查詢具有相同分割區索引鍵的實體，其速度快於查詢具有不同分割區索引鍵的實體，但使用不同的資料分割索引鍵可提供更佳的延展性或平行作業。 應該儲存在資料表服務中的任何屬性，都必須是公開設定和擷取值之支援類型的公用屬性。
+實體類別必須宣告公用的無參數建構函式。
 
-1. 新增下列 using 指示詞︰
+> [!NOTE]
+> 
+> 本章節假設您已完成[設定開發環境](#set-up-the-development-environment)中的步驟。
 
-         using Microsoft.Azure;
-         using Microsoft.WindowsAzure.Storage;
-         using Microsoft.WindowsAzure.Storage.Auth;
-         using Microsoft.WindowsAzure.Storage.Table;
+1. 開啟 `TablesController.cs` 檔案。
 
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得儲存體連接字串和儲存體帳戶資訊。 (將 <storage-account-name> 變更為您正在存取的 Azure 儲存體帳戶名稱。)
+1. 新增下列指示詞，以便 `TablesController.cs` 檔案中的程式碼可以存取 **CustomerEntity** 類別︰
 
-         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```csharp
+    using StorageAspnet.Models;
+    ```
 
-3. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+1. 新增名為 **AddEntity** 的方法，其會傳回 **ActionResult**。
 
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    ```csharp
+    public ActionResult AddEntity()
+    {
+        // The code in this section goes here.
 
+        return View();
+    }
+    ```
 
-4. 取得 **CloudTable** 物件，代表所需資料表名稱的參考。 (將 <table-name> 變更為您想要新增實體的資料表名稱。)
+1. 在 **AddEntity** 方法內，取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼從 Azure 服務組態中取得儲存體連接字串和儲存體帳戶資訊：(將 &lt;storage-account-name> 變更為您要存取之 Azure 儲存體帳戶的名稱。)
+   
+    ```csharp
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+       CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```
 
-        CloudTable table = tableClient.GetTableReference(<table-name>);
+1. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+   
+    ```csharp
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    ```
 
-5. 若要將實體新增至資料表，您可定義衍生自 **TableEntity** 的類別。 下列程式碼使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的，定義一個稱為 **CustomerEntity** 的實體類別。
+1. 取得 **CloudTable** 物件，其代表您要新增新實體的資料表之參考。 
+   
+    ```csharp
+    CloudTable table = tableClient.GetTableReference("TestTable");
+    ```
 
-        public class CustomerEntity : TableEntity
-        {
-            public CustomerEntity(string lastName, string firstName)
-            {
-                this.PartitionKey = lastName;
-                this.RowKey = firstName;
-            }
+1. 具現化及初始化 **CustomerEntity** 類別。
+
+    ```csharp
+    CustomerEntity customer1 = new CustomerEntity("Harp", "Walter");
+    customer1.Email = "Walter@contoso.com";
+    ```
+
+1. 建立 **TableOperation** 物件，以插入客戶實體。
+
+    ```csharp
+    TableOperation insertOperation = TableOperation.Insert(customer1);
+    ```
+
+1. 呼叫 **CloudTable.Execute** 方法以執行插入作業。 您可以檢查 **TableResult.HttpStatusCode** 屬性，以確認作業的結果。 狀態碼 2xx 表示已成功處理用戶端所要求的動作。 例如，成功插入新實體會造成 HTTP 狀態碼 204，這表示已成功處理作業且伺服器未傳回任何內容。
+
+    ```csharp
+    TableResult result = table.Execute(insertOperation);
+    ```
+
+1. 使用資料表名稱以及插入作業的結果更新 **ViewBag**。
+
+    ```csharp
+    ViewBag.TableName = table.Name;
+    ViewBag.Result = result.HttpStatusCode;
+    ```
+
+1. 在 [方案總管] 中，展開 [檢視] 資料夾、用滑鼠右鍵按一下 [資料表]，然後從內容功能表中選取 [新增] > [檢視]。
+
+1. 在 [新增檢視] 對話方塊中，針對檢視名稱輸入 **AddEntity**，然後選取 [新增]。
+
+1. 開啟 `AddEntity.cshtml` 並加以修改，以便其如下列程式碼片段所示：
+
+    ```csharp
+    @{
+        ViewBag.Title = "Add entity";
+    }
     
-            public CustomerEntity() { }
-    
-            public string Email { get; set; }
-        }
+    <h2>Add entity results</h2>
 
-6. 具現化實體。
+    Insert of entity into @ViewBag.TableName @(ViewBag.Result == 204 ? "succeeded" : "failed")
+    ```
+1. 在 [方案總管] 中，展開 **檢視-> 共用** 資料夾，然後開啟 `_Layout.cshtml`。
 
-        CustomerEntity customer1 = new CustomerEntity("Harp", "Walter");
-        customer1.Email = "Walter@contoso.com";
+1. 在最後一個 **Html.ActionLink** 之後，新增下列 **Html.ActionLink**：
 
-7. 建立 **TableOperation** 物件，以插入客戶實體。
+    ```html
+    <li>@Html.ActionLink("Add entity", "AddEntity", "Tables")</li>
+    ```
 
-        TableOperation insertOperation = TableOperation.Insert(customer1);
+1. 執行應用程式，並選取 **Add entity** 來查看類似下列螢幕擷取畫面的結果︰
+  
+    ![新增實體](./media/vs-storage-aspnet-getting-started-tables/add-entity-results.png)
 
-8. 呼叫 **CloudTable.Execute** 方法以執行插入作業。 您可以檢查 **TableResult.HttpStatusCode** 屬性，以確認作業的結果。 狀態碼 2xx 表示已成功處理用戶端所要求的動作。 例如，成功插入新實體會造成 HTTP 狀態碼 204，這表示已成功處理作業且伺服器未傳回任何內容。
-
-        TableResult result = table.Execute(insertOperation);
-
-        // Inspect result.HttpStatusCode for success/failure.
+    您可以確認實體是由章節[取得單一實體](#get-a-single-entity)中的步驟所新增。 您也可以使用 [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)檢視資料表中的所有實體。
 
 ## <a name="add-a-batch-of-entities-to-a-table"></a>將一批實體新增至資料表
 
-除了能夠一次將一個實體新增至一個資料表，您也可以分批新增實體。 這可減少程式碼與 Azure 資料表服務之間的來回行程次數。 下列步驟說明如何使用單一作業以程式設計方式將多個實體新增至資料表。 在 ASP.NET MVC 應用程式中，程式碼會移入控制器中。
+除了能夠[一次將一個實體新增至一個資料表](#add-an-entity-to-a-table)，您也可以分批新增實體。 在批次中新增實體可減少程式碼與 Azure 資料表服務之間的來回行程次數。 下列步驟說明如何使用單一插入作業將多個實體新增至資料表：
 
-1. 新增下列 using 指示詞︰
+> [!NOTE]
+> 
+> 本章節假設您已完成[設定開發環境](#set-up-the-development-environment)中的步驟。
 
-         using Microsoft.Azure;
-         using Microsoft.WindowsAzure.Storage;
-         using Microsoft.WindowsAzure.Storage.Auth;
-         using Microsoft.WindowsAzure.Storage.Table;
+1. 開啟 `TablesController.cs` 檔案。
 
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得儲存體連接字串和儲存體帳戶資訊。 (將 <storage-account-name> 變更為您正在存取的 Azure 儲存體帳戶名稱。)
+1. 新增名為 **AddEntity** 的方法，其會傳回 **ActionResult**。
 
-         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```csharp
+    public ActionResult AddEntities()
+    {
+        // The code in this section goes here.
 
-3. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+        return View();
+    }
+    ```
 
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+1. 在 **AddEntity** 方法內，取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼從 Azure 服務組態中取得儲存體連接字串和儲存體帳戶資訊：(將 &lt;storage-account-name> 變更為您要存取之 Azure 儲存體帳戶的名稱。)
+   
+    ```csharp
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+       CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```
 
+1. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+   
+    ```csharp
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    ```
 
-4. 取得 **CloudTable** 物件，代表所需資料表名稱的參考。 (將 <table-name> 變更為您想要新增實體的資料表名稱。)
+1. 取得 **CloudTable** 物件，其代表您要新增新實體的資料表之參考。 
+   
+    ```csharp
+    CloudTable table = tableClient.GetTableReference("TestTable");
+    ```
 
-        CloudTable table = tableClient.GetTableReference(<table-name>);
+1. 根據[將實體新增至資料表](#add-an-entity-to-a-table)章節中呈現的 **CustomerEntity** 模型類別具現化某些客戶物件。
 
-5. 若要將實體新增至資料表，您可定義衍生自 **TableEntity** 的類別。 下列程式碼使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的，定義一個稱為 **CustomerEntity** 的實體類別。
+    ```csharp
+    CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
+    customer1.Email = "Jeff@contoso.com";
 
-        public class CustomerEntity : TableEntity
+    CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
+    customer2.Email = "Ben@contoso.com";
+    ```
+
+1. 取得 **TableBatchOperation** 物件。
+
+    ```csharp
+    TableBatchOperation batchOperation = new TableBatchOperation();
+    ```
+
+1. 將實體新增至批次插入作業物件。
+
+    ```csharp
+    batchOperation.Insert(customer1);
+    batchOperation.Insert(customer2);
+    ```
+
+1. 呼叫 **CloudTable.ExecuteBatch** 方法以執行批次插入作業。   
+
+    ```csharp
+    IList<TableResult> results = table.ExecuteBatch(batchOperation);
+    ```
+
+1. **CloudTable.ExecuteBatch** 方法會傳回一份 **TableResult** 物件，可以檢查其中每個 **TableResult** 物件來判定各項操作的成功或失敗。 例如，將清單傳遞到檢視，讓檢視顯示每個作業的結果。 
+ 
+    ```csharp
+    return View(results);
+    ```
+
+1. 在 [方案總管] 中，展開 [檢視] 資料夾、用滑鼠右鍵按一下 [資料表]，然後從內容功能表中選取 [新增] > [檢視]。
+
+1. 在 [新增檢視] 對話方塊中，針對檢視名稱輸入 **AddEntity**，然後選取 [新增]。
+
+1. 開啟 `AddEntities.cshtml` 並加以修改，以便其如下列所示。
+
+    ```csharp
+    @model IEnumerable<Microsoft.WindowsAzure.Storage.Table.TableResult>
+    @{
+        ViewBag.Title = "AddEntities";
+    }
+    
+    <h2>Add-entities results</h2>
+    
+    <table border="1">
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>HTTP result</th>
+        </tr>
+        @foreach (var result in Model)
         {
-            public CustomerEntity(string lastName, string firstName)
-            {
-                this.PartitionKey = lastName;
-                this.RowKey = firstName;
-            }
-    
-            public CustomerEntity() { }
-    
-            public string Email { get; set; }
+        <tr>
+            <td>@((result.Result as StorageAspnet.Models.CustomerEntity).RowKey)</td>
+            <td>@((result.Result as StorageAspnet.Models.CustomerEntity).PartitionKey)</td>
+            <td>@result.HttpStatusCode</td>
+        </tr>
         }
+    </table>
+    ```
 
-6. 具現化實體。
+1. 在 [方案總管] 中，展開 **檢視-> 共用** 資料夾，然後開啟 `_Layout.cshtml`。
 
-        CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
-        customer1.Email = "Jeff@contoso.com";
-    
-        CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
-        customer2.Email = "Ben@contoso.com";
+1. 在最後一個 **Html.ActionLink** 之後，新增下列 **Html.ActionLink**：
 
-7. 取得 **TableBatchOperation** 物件。
+    ```html
+    <li>@Html.ActionLink("Add entities", "AddEntities", "Tables")</li>
+    ```
 
-        TableBatchOperation batchOperation = new TableBatchOperation();
+1. 執行應用程式，並選取 **Add entity** 來查看類似下列螢幕擷取畫面的結果︰
+  
+    ![新增實體](./media/vs-storage-aspnet-getting-started-tables/add-entities-results.png)
 
-8. 將實體新增至批次插入作業。
-
-        batchOperation.Insert(customer1);
-        batchOperation.Insert(customer2);
-
-9. 呼叫 **CloudTable.ExecuteBatch** 方法以執行批次插入作業。 **CloudTable.ExecuteBatch** 方法會傳回 **TableResult** 物件清單。 您可以檢查清單中每個 **TableResult** 物件的 **TableResult.HttpStatusCode** 屬性，以確認批次插入作業的結果。 狀態碼 2xx 表示已成功處理用戶端所要求的動作。 例如，成功插入新實體會造成 HTTP 狀態碼 204，這表示已成功處理作業且伺服器未傳回任何內容。
-    
-        IList<TableResult> results = table.ExecuteBatch(batchOperation);
-
-        // Inspect the HttpStatusCode property of each TableResult object
-        // in the results list for success/failure.
+    您可以確認實體是由章節[取得單一實體](#get-a-single-entity)中的步驟所新增。 您也可以使用 [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)檢視資料表中的所有實體。
 
 ## <a name="get-a-single-entity"></a>取得單一實體
 
-下列步驟說明如何以程式設計方式從資料表取得實體。 在 ASP.NET MVC 應用程式中，程式碼會移入控制器中。 
+本節將說明如何使用實體的資料列索引鍵和資料分割索引鍵，從資料表取得單一實體。 
 
 > [!NOTE]
 > 
-> 本節中的程式碼會參考[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)一節中出現的 **CustomerEntity** 類別和資料。 
+> 本節假設您已完成[設定開發環境](#set-up-the-development-environment)中的步驟，並使用來自[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)的資料。 
 
-1. 新增下列 using 指示詞︰
+1. 開啟 `TablesController.cs` 檔案。
 
-         using Microsoft.Azure;
-         using Microsoft.WindowsAzure.Storage;
-         using Microsoft.WindowsAzure.Storage.Auth;
-         using Microsoft.WindowsAzure.Storage.Table;
+1. 新增名為 **GetSingle** 的方法，其會傳回 **ActionResult**。
 
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得儲存體連接字串和儲存體帳戶資訊。 (將 <storage-account-name> 變更為您正在存取的 Azure 儲存體帳戶名稱。)
+    ```csharp
+    public ActionResult GetSingle()
+    {
+        // The code in this section goes here.
 
-         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+        return View();
+    }
+    ```
 
-3. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+1. 在 **GetSingle** 方法內，取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼從 Azure 服務組態中取得儲存體連接字串和儲存體帳戶資訊：(將 &lt;storage-account-name> 變更為您要存取之 Azure 儲存體帳戶的名稱。)
+   
+    ```csharp
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+       CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```
 
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+1. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+   
+    ```csharp
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    ```
 
+1. 取得 **CloudTable** 物件，其代表您要擷取實體的資料表之參考。 
+   
+    ```csharp
+    CloudTable table = tableClient.GetTableReference("TestTable");
+    ```
 
-4. 取得 **CloudTable** 物件，代表所需資料表名稱的參考。 (將 <table-name> 變更為您想要新增實體的資料表名稱。)
+1. 建立擷取作業物件，其採用衍生自 **TableEntity** 的實體物件。 第一個參數是 partitionKey，而第二個參數是 rowKey。 使用[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)一節中顯示的 **CustomerEntity** 類別和資料，下列程式碼片段可查詢資料表中是否有 *partitionKey* 值為 "Smith" 且 rowKey 值為 "Ben"的 **CustomerEntity** 實體：
 
-        CloudTable table = tableClient.GetTableReference(<table-name>);
+    ```csharp
+    TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
+    ```
 
-5. 建立擷取作業物件，其採用衍生自 **TableEntity** 的實體物件。 第一個參數是 partitionKey，而第二個參數是 rowKey。 使用[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)一節中顯示的 **CustomerEntity** 類別和資料，下列程式碼片段可查詢資料表中是否有 *partitionKey* 值為 "Smith" 且 rowKey 值為 "Ben"的 **CustomerEntity** 實體。  
+1. 執行擷取作業。   
 
-        TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
+    ```csharp
+    TableResult result = table.Execute(retrieveOperation);
+    ```
 
-6. 執行擷取作業。   
+1. 將結果傳遞至顯示的檢視。
 
-        TableResult retrievedResult = table.Execute(retrieveOperation);
+    ```csharp
+    return View(result);
+    ```
 
-7. 檢查 **TableOperation.HttpStatusCode** 屬性以確認作業的結果，其中狀態碼 200 表示已成功處理用戶端所要求的動作。 您也可以檢查 **TableResult.Result** 屬性，如果作業成功，該屬性將包含所傳回的實體。
+1. 在 [方案總管] 中，展開 [檢視] 資料夾、用滑鼠右鍵按一下 [資料表]，然後從內容功能表中選取 [新增] > [檢視]。
 
-        CustomerEntity customer = null;
+1. 在 [新增檢視] 對話方塊中，針對檢視名稱輸入 **GetSingle**，然後選取 [新增]。
 
-        if (retrievedResult.HttpStatusCode == 200 && retrievedResult.Result != null)
-        {
-            // Process the customer entity.
-            customer = retrievedResult.Result as CustomerEntity;
-        }
+1. 開啟 `GetSingle.cshtml` 並加以修改，以便其如下列程式碼片段所示：
+
+    ```csharp
+    @model Microsoft.WindowsAzure.Storage.Table.TableResult
+    @{
+        ViewBag.Title = "GetSingle";
+    }
+    
+    <h2>Get Single results</h2>
+    
+    <table border="1">
+        <tr>
+            <th>HTTP result</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td>@Model.HttpStatusCode</td>
+            <td>@((Model.Result as StorageAspnet.Models.CustomerEntity).RowKey)</td>
+            <td>@((Model.Result as StorageAspnet.Models.CustomerEntity).PartitionKey)</td>
+            <td>@((Model.Result as StorageAspnet.Models.CustomerEntity).Email)</td>
+        </tr>
+    </table>
+    ```
+
+1. 在 [方案總管] 中，展開 **檢視-> 共用** 資料夾，然後開啟 `_Layout.cshtml`。
+
+1. 在最後一個 **Html.ActionLink** 之後，新增下列 **Html.ActionLink**：
+
+    ```html
+    <li>@Html.ActionLink("Get single", "GetSingle", "Tables")</li>
+    ```
+
+1. 執行應用程式，並選取 **Get Single** 來查看類似下列螢幕擷取畫面的結果︰
+  
+    ![取得單一](./media/vs-storage-aspnet-getting-started-tables/get-single-results.png)
 
 ## <a name="get-all-entities-in-a-partition"></a>取得資料分割中的所有實體
 
-下列步驟說明如何以程式設計方式從資料分割取得所有實體。 在 ASP.NET MVC 應用程式中，程式碼會移入控制器中。 
+如[將實體加入至資料表](#add-an-entity-to-a-table)章節中所述，資料分割和資料列索引鍵的組合唯一識別資料表中的實體。 相較於查詢具有不同資料分割索引鍵的實體，查詢具有相同資料分割索引鍵的實體速度會較快。 本節將說明如何從指定的資料分割中查詢所有實體的資料表。  
 
 > [!NOTE]
 > 
-> 本節中的程式碼會參考[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)一節中出現的 **CustomerEntity** 類別和資料。 
+> 本節假設您已完成[設定開發環境](#set-up-the-development-environment)中的步驟，並使用來自[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)的資料。 
 
-1. 新增下列 using 指示詞︰
+1. 開啟 `TablesController.cs` 檔案。
 
-         using Microsoft.Azure;
-         using Microsoft.WindowsAzure.Storage;
-         using Microsoft.WindowsAzure.Storage.Auth;
-         using Microsoft.WindowsAzure.Storage.Table;
+1. 新增名為 **GetPartition** 的方法，其會傳回 **ActionResult**。
 
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得儲存體連接字串和儲存體帳戶資訊。 (將 <storage-account-name> 變更為您正在存取的 Azure 儲存體帳戶名稱。)
+    ```csharp
+    public ActionResult GetPartition()
+    {
+        // The code in this section goes here.
 
-         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+        return View();
+    }
+    ```
 
-3. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+1. 在 **GetPartition** 方法內，取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼從 Azure 服務組態中取得儲存體連接字串和儲存體帳戶資訊：(將 &lt;storage-account-name> 變更為您要存取之 Azure 儲存體帳戶的名稱。)
+   
+    ```csharp
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+       CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```
 
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+1. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+   
+    ```csharp
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    ```
 
+1. 取得 **CloudTable** 物件，其代表您要擷取實體的資料表之參考。 
+   
+    ```csharp
+    CloudTable table = tableClient.GetTableReference("TestTable");
+    ```
 
-4. 取得 **CloudTable** 物件，代表所需資料表名稱的參考。 (將 <table-name> 變更為您想要新增實體的資料表名稱。)
+1. 具現化 **TableQuery** 物件，以在 **Where** 子句中指定查詢。 使用 **CustomerEntity** 類別和[將資料表新增至實體批次](#add-a-batch-of-entities-to-a-table)章節中顯示的資料，下列程式碼片段會查詢所有實體的資料表，其中 **PartitionKey** (客戶的姓氏) 的值為 "Smith":
 
-        CloudTable table = tableClient.GetTableReference(<table-name>);
+    ```csharp
+    TableQuery<CustomerEntity> query = 
+        new TableQuery<CustomerEntity>()
+        .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
+    ```
 
-5. 具現化 **TableQuery** 物件，以在 **Where** 子句中指定查詢。 使用[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)一節中顯示的 **CustomerEntity** 類別和資料，下列程式碼片段可查詢資料表中是否有 **PartitionKey** 值為 "Smith" 的所有實體。
+1. 在迴圈內呼叫 **CloudTable.ExecuteQuerySegmented** 方法，以傳遞您在上一個步驟中具現化的查詢物件。  **CloudTable.ExecuteQuerySegmented** 方法會傳回 **TableContinuationToken** 物件 - 若為 **null**，表示再也沒有要擷取的實體。 在迴圈內，使用另一個迴圈來逐一查看所傳回的實體。 在下列程式碼範例中，每個傳回的實體都會新增至清單。 一旦迴圈結束後，清單會傳遞至檢視顯示︰ 
 
-        TableQuery<CustomerEntity> query = 
-            new TableQuery<CustomerEntity>()
-            .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
+    ```csharp
+    List<CustomerEntity> customers = new List<CustomerEntity>();
+    TableContinuationToken token = null;
+    do
+    {
+        TableQuerySegment<CustomerEntity> resultSegment = table.ExecuteQuerySegmented(query, token);
+        token = resultSegment.ContinuationToken;
 
-6. 在迴圈內呼叫 **CloudTable.ExecuteQuerySegmented** 方法，以傳遞您在上一個步驟中具現化的查詢物件。  **CloudTable.ExecuteQuerySegmented** 方法會傳回 **TableContinuationToken** 物件 - 若為 **null**，表示再也沒有要擷取的實體。 在迴圈內，使用另一個迴圈來逐一查看所傳回的實體。
-
-        TableContinuationToken token = null;
-        do
+        foreach (CustomerEntity customer in resultSegment.Results)
         {
-            TableQuerySegment<CustomerEntity>resultSegment = table.ExecuteQuerySegmented(query, token);
-            token = resultSegment.ContinuationToken;
+            customers.Add(customer);
+        }
+    } while (token != null);
 
-            foreach (CustomerEntity customer in resultSegment.Results)
-            {
-                // Process customer entity.
-            }
-        } while (token != null);
+    return View(customers);
+    ```
+
+1. 在 [方案總管] 中，展開 [檢視] 資料夾、用滑鼠右鍵按一下 [資料表]，然後從內容功能表中選取 [新增] > [檢視]。
+
+1. 在 [新增檢視] 對話方塊中，針對檢視名稱輸入 **GetPartition**，然後選取 [新增]。
+
+1. 開啟 `GetPartition.cshtml` 並加以修改，以便其如下列程式碼片段所示：
+
+    ```csharp
+    @model IEnumerable<StorageAspnet.Models.CustomerEntity>
+    @{
+        ViewBag.Title = "GetPartition";
+    }
+    
+    <h2>Get Partition results</h2>
+    
+    <table border="1">
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+        </tr>
+        @foreach (var customer in Model)
+        {
+        <tr>
+            <td>@(customer.RowKey)</td>
+            <td>@(customer.PartitionKey)</td>
+            <td>@(customer.Email)</td>
+        </tr>
+        }
+    </table>
+    ```
+
+1. 在 [方案總管] 中，展開 **檢視-> 共用** 資料夾，然後開啟 `_Layout.cshtml`。
+
+1. 在最後一個 **Html.ActionLink** 之後，新增下列 **Html.ActionLink**：
+
+    ```html
+    <li>@Html.ActionLink("Get partition", "GetPartition", "Tables")</li>
+    ```
+
+1. 執行應用程式，並選取 **Get Partition** 來查看類似下列螢幕擷取畫面的結果︰
+  
+    ![取得資料分割](./media/vs-storage-aspnet-getting-started-tables/get-partition-results.png)
 
 ## <a name="delete-an-entity"></a>刪除實體
 
-下列步驟說明如何搜尋而後刪除實體。
+本節說明如何從資料表刪除實體。
 
-1. 新增下列 using 指示詞︰
+> [!NOTE]
+> 
+> 本節假設您已完成[設定開發環境](#set-up-the-development-environment)中的步驟，並使用來自[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)的資料。 
 
-         using Microsoft.Azure;
-         using Microsoft.WindowsAzure.Storage;
-         using Microsoft.WindowsAzure.Storage.Auth;
-         using Microsoft.WindowsAzure.Storage.Table;
+1. 開啟 `TablesController.cs` 檔案。
 
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得儲存體連接字串和儲存體帳戶資訊。 (將 <storage-account-name> 變更為您正在存取的 Azure 儲存體帳戶名稱。)
+1. 新增名為 **DeleteEntity** 的方法，其會傳回 **ActionResult**。
 
-         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```csharp
+    public ActionResult DeleteEntity()
+    {
+        // The code in this section goes here.
 
-3. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+        return View();
+    }
+    ```
 
-        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+1. 在 **DeleteEntity** 方法內，取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼從 Azure 服務組態中取得儲存體連接字串和儲存體帳戶資訊：(將 &lt;storage-account-name> 變更為您要存取之 Azure 儲存體帳戶的名稱。)
+   
+    ```csharp
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+       CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+    ```
 
+1. 取得 **CloudTableClient** 物件，代表表格服務用戶端。
+   
+    ```csharp
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+    ```
 
-4. 取得 **CloudTable** 物件，代表所需資料表名稱的參考。 (將 <table-name> 變更為您想要新增實體的資料表名稱。)
+1. 取得 **CloudTable** 物件，其代表您要刪除實體的資料表之參考。 
+   
+    ```csharp
+    CloudTable table = tableClient.GetTableReference("TestTable");
+    ```
 
-        CloudTable table = tableClient.GetTableReference(<table-name>);
+1. 建立刪除作業物件，其採用衍生自 **TableEntity** 的實體物件。 在此案例中，我們使用[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)一節中出現的 **CustomerEntity** 類別和資料。 實體的 **ETag** 必須設為有效的值。  
 
-5. 建立擷取作業物件，其採用衍生自 **TableEntity** 的實體物件。 第一個參數是 partitionKey，而第二個參數是 rowKey。 使用[將一批實體新增至資料表](#add-a-batch-of-entities-to-a-table)一節中顯示的 **CustomerEntity** 類別和資料，下列程式碼片段可查詢資料表中是否有 *partitionKey* 值為 "Smith" 且 rowKey 值為 "Ben"的 **CustomerEntity** 實體。  
+    ```csharp
+    TableOperation deleteOperation = 
+        TableOperation.Delete(new CustomerEntity("Smith", "Ben") { ETag = "*" } );
+    ```
 
-        TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
+1. 執行刪除作業。   
 
-6. 執行擷取作業。   
+    ```csharp
+    TableResult result = table.Execute(deleteOperation);
+    ```
 
-        TableResult retrievedResult = table.Execute(retrieveOperation);
+1. 將結果傳遞至顯示的檢視。
 
-7. 檢查 **TableOperation.HttpStatusCode** 屬性以確認作業的結果，其中狀態碼 200 表示已成功處理用戶端所要求的動作。 您也可以檢查 **TableResult.Result** 屬性，如果作業成功，該屬性將包含所傳回的實體。 在條件式陳述式內，若要確認作業成功，請建立刪除作業 (從查詢傳遞所傳回的實體)，然後執行刪除作業。
+    ```csharp
+    return View(result);
+    ```
 
-        if (retrievedResult.HttpStatusCode == 200 && retrievedResult.Result != null)
-        {
-            CustomerEntity customer = retrievedResult.Result as CustomerEntity;
+1. 在 [方案總管] 中，展開 [檢視] 資料夾、用滑鼠右鍵按一下 [資料表]，然後從內容功能表中選取 [新增] > [檢視]。
 
-            // Create the delete operation.
-            TableOperation deleteOperation = TableOperation.Delete(customer);
+1. 在 [新增檢視] 對話方塊中，針對檢視名稱輸入 **DeleteEntity**，然後選取 [新增]。
 
-            // Execute the delete operation.
-            table.Execute(deleteOperation);
-        }
+1. 開啟 `DeleteEntity.cshtml` 並加以修改，以便其如下列程式碼片段所示：
+
+    ```csharp
+    @model Microsoft.WindowsAzure.Storage.Table.TableResult
+    @{
+        ViewBag.Title = "DeleteEntity";
+    }
+    
+    <h2>Delete Entity results</h2>
+    
+    <table border="1">
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>HTTP result</th>
+        </tr>
+        <tr>
+            <td>@((Model.Result as StorageAspnet.Models.CustomerEntity).RowKey)</td>
+            <td>@((Model.Result as StorageAspnet.Models.CustomerEntity).PartitionKey)</td>
+            <td>@Model.HttpStatusCode</td>
+        </tr>
+    </table>
+
+    ```
+
+1. 在 [方案總管] 中，展開 **檢視-> 共用** 資料夾，然後開啟 `_Layout.cshtml`。
+
+1. 在最後一個 **Html.ActionLink** 之後，新增下列 **Html.ActionLink**：
+
+    ```html
+    <li>@Html.ActionLink("Delete entity", "DeleteEntity", "Tables")</li>
+    ```
+
+1. 執行應用程式，並選取 **Delete entity** 來查看類似下列螢幕擷取畫面的結果︰
+  
+    ![取得單一](./media/vs-storage-aspnet-getting-started-tables/delete-entity-results.png)
 
 ## <a name="next-steps"></a>後續步驟
-[!INCLUDE [vs-storage-dotnet-tables-next-steps](../../includes/vs-storage-dotnet-tables-next-steps.md)]
+如需了解 Azure 中的其他資料儲存選項，請檢視更多功能指南。
+
+  * [開始使用 Azure Blob 儲存體和 Visual Studio 已連接服務 (ASP.NET)](./vs-storage-aspnet-getting-started-blobs.md)
+  * [開始使用 Azure 佇列儲存體和 Visual Studio 已連線的服務 (ASP.NET)](./vs-storage-aspnet-getting-started-queues.md)
 
 
-
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -15,13 +15,13 @@ ms.workload: integration
 ms.date: 10/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6337e171e29e11da14b22fdda0814ac84be7deb1
+ms.sourcegitcommit: a0580f8d303c7ce33a65f0ce6faecf2492f851b0
+ms.openlocfilehash: d0015760fe086b00a264aabd38cc2625f55f4926
 
 
 ---
 # <a name="create-a-logic-app-deployment-template"></a>建立邏輯應用程式部署範本
-建立邏輯應用程式之後，您可能想要將其建立為 Azure Resource Manager 範本。 如此一來，您就可以輕鬆地將邏輯應用程式部署到您可能需要在其中用到它的任何環境或資源群組。 如需 Resource Manager 範本的簡介，請務必查看[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)和[使用 Azure Resource Manager 範本部署資源](../resource-group-template-deploy.md)文章。
+建立邏輯應用程式之後，您可能想要將其建立為 Azure Resource Manager 範本。 如此一來，您就可以輕鬆地將邏輯應用程式部署到您可能需要在其中用到它的任何環境或資源群組。 如需 Resource Manager 範本的簡介，請務必查看[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)和[使用 Azure Resource Manager 範本部署資源](../azure-resource-manager/resource-group-template-deploy.md)文章。
 
 ## <a name="logic-app-deployment-template"></a>邏輯應用程式部署範本
 邏輯應用程式有三個基本元件：
@@ -41,8 +41,8 @@ ms.openlocfilehash: 6337e171e29e11da14b22fdda0814ac84be7deb1
 
 > [!NOTE]
 > 連接必須位於與邏輯應用程式相同的資源群組內。
-> 
-> 
+>
+>
 
 ### <a name="install-the-logic-app-template-powershell-module"></a>安裝邏輯應用程式範本 PowerShell 模組
 最簡單的安裝方式是透過 [PowerShell 資源庫](https://www.powershellgallery.com/packages/LogicAppTemplate/0.1)使用 `Install-Module -Name LogicAppTemplate` 命令。  
@@ -65,7 +65,7 @@ ms.openlocfilehash: 6337e171e29e11da14b22fdda0814ac84be7deb1
 建立邏輯應用程式範本之後，您可以繼續加入或修改您可能需要的參數。 例如，如果您的定義包含您打算在單一部署中部署的 Azure 函數或巢狀工作流程的資源識別碼，您可以將更多資源新增至範本，並視需要將識別碼參數化。 相同情況亦適用於您預計要與各資源群組一起部署的自訂 API 或 Swagger 端點的任何參考。
 
 ## <a name="deploy-a-logic-app-template"></a>部署邏輯應用程式範本
-您可以使用多項工具部署範本，包括 PowerShell、REST API、Visual Studio Release Management 及 Azure 入口網站範本部署。 如需詳細資訊，請參閱這篇關於 [使用 Azure Resource Manager 範本部署資源](../resource-group-template-deploy.md) 的文章。 此外，我們也建議您建立 [參數檔案](../resource-group-template-deploy.md#parameter-file) 來儲存參數值。
+您可以使用多項工具部署範本，包括 PowerShell、REST API、Visual Studio Release Management 及 Azure 入口網站範本部署。 如需詳細資訊，請參閱這篇關於 [使用 Azure Resource Manager 範本部署資源](../azure-resource-manager/resource-group-template-deploy.md) 的文章。 此外，我們也建議您建立 [參數檔案](../azure-resource-manager/resource-group-template-deploy.md#parameters) 來儲存參數值。
 
 ### <a name="authorize-oauth-connections"></a>授權 OAuth 連接
 部署之後，邏輯應用程式就能搭配有效參數端對端運作。 不過，OAuth 連接仍然必須經過授權，才能產生有效的存取權杖。 您可以在設計工具中開啟邏輯應用程式，然後授權連接，藉以執行此動作。 或者，如果您想要自動化，您可以使用指令碼來同意每個 OAuth 連接。 在 GitHub 上的 [LogicAppConnectionAuth](https://github.com/logicappsio/LogicAppConnectionAuth) 專案下方有一個範例指令碼。
@@ -74,7 +74,7 @@ ms.openlocfilehash: 6337e171e29e11da14b22fdda0814ac84be7deb1
 適用於部署和管理環境的常見案例是搭配使用 Visual Studio Release Management 之類的工具與邏輯應用程式部署範本。 Visual Studio Team Services 包含可加入至任何組建或版本管線的 [部署 Azure 資源群組](https://github.com/Microsoft/vsts-tasks/tree/master/Tasks/DeployAzureResourceGroup) 工作。 您必須擁有 [服務主體](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/) 才能授權部署，而後可以產生版本定義。
 
 1. 在 Release Management 中，若要建立新的定義，請選取 [空白]，使用空白定義來開始。
-   
+
     ![建立新的空白定義][1]   
 2. 選擇任何您需要的資源。 這很可能是以手動方式產生或在建置過程中產生的邏輯應用程式範本。
 3. 新增 [Azure 資源群組部署]  工作。
@@ -86,6 +86,6 @@ ms.openlocfilehash: 6337e171e29e11da14b22fdda0814ac84be7deb1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

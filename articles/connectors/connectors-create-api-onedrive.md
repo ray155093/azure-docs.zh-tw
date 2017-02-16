@@ -16,8 +16,8 @@ ms.workload: integration
 ms.date: 10/18/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9c6213f0dcb66ae0c53d716abfe84868b87585f1
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: 60c1d307ede5d66f8e92b048581148d6c7112dac
 
 
 ---
@@ -37,7 +37,7 @@ ms.openlocfilehash: 9c6213f0dcb66ae0c53d716abfe84868b87585f1
 > 
 > 
 
-若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../logic-apps/logic-apps-what-are-logic-apps.md)以及[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="connect-to-onedrive"></a>連線到 OneDrive
 您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。 連線可讓邏輯應用程式與另一個服務連線。 例如，若要連線到 OneDrive，您必須先有 OneDrive「連線」。 若要建立連線，請輸入平常用來存取所要連線之服務的認證。 因此，在 OneDrive 中，請在 OneDrive 帳戶輸入認證以建立連線。
@@ -48,7 +48,7 @@ ms.openlocfilehash: 9c6213f0dcb66ae0c53d716abfe84868b87585f1
 > 
 
 ## <a name="use-a-trigger"></a>使用觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 觸發程序會以您想要的間隔和頻率「輪詢」服務。 [深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 觸發程序會以您想要的間隔和頻率「輪詢」服務。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
 
 1. 在邏輯應用程式中，輸入「onedrive」以取得觸發程序的清單︰  
    
@@ -69,7 +69,7 @@ ms.openlocfilehash: 9c6213f0dcb66ae0c53d716abfe84868b87585f1
 4. **儲存**您的變更 (工具列的左上角)。 邏輯應用程式將會儲存，而且可能會自動啟用。
 
 ## <a name="use-an-action"></a>使用動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
 
 1. 選取加號。 您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
    
@@ -395,11 +395,11 @@ BlobMetadata
 | 預設值 |作業失敗。 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

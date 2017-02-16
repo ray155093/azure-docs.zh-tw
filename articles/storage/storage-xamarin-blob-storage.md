@@ -3,7 +3,7 @@ title: "如何使用 Xamarin 的 Blob 儲存體 | Microsoft Docs"
 description: "適用於 Xamarin 的 Azure 儲存體用戶端程式庫可讓開發人員使用其原生的使用者介面以建立 iOS、Android 和 Windows 市集應用程式。 本教學課程示範如何使用 Xamarin 來建立使用 Azure Blob 儲存體的應用程式。"
 services: storage
 documentationcenter: xamarin
-author: micurd
+author: seguler
 manager: jahogg
 editor: tysonn
 ms.assetid: 44cb845d-cf78-4942-95b8-952da4f9a2c2
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
-ms.author: micurd
+ms.date: 01/30/2017
+ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b438a4c90a5ccbcfb47b24ef85b70ba91fa228d6
+ms.sourcegitcommit: 5e531c6c23c510936fe7e4e844db2ec3afb170dc
+ms.openlocfilehash: 32d79cf050968738764c2239cbd79c73734ee855
 
 
 ---
@@ -36,19 +36,14 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 請遵循下列步驟來建立應用程式：
 
 1. 下載並安裝 [Xamarin for Visual Studio](https://www.xamarin.com/download)(若您尚未這麼做)。
-2. 開啟 Visual Studio，建立一個空白的應用程式 (原生共用)︰[檔案] > [新增] > [專案] > [跨平台] > [空白應用程式 (原生共用)]。
+2. 開啟 Visual Studio，建立一個空的應用程式 (原生可攜式)︰[檔案] > [新增] > [專案] > [跨平台] > [空的應用程式 (原生可攜式)]。
 3. 以滑鼠右鍵按一下 [方案總管] 窗格中的方案，然後選取 [管理方案的 NuGet 套件]。 搜尋 **WindowsAzure.Storage**，將最新穩定版安裝到您方案中的所有專案。
 4. 建置並執行專案。
 
 您現在應該有一個應用程式，在您按一下按鈕時就會遞增計數器。
 
-> [!NOTE]
-> Xamarin 的 Azure 儲存體用戶端程式庫目前支援下列專案類型︰原生共用、Xamarin.Forms 共用、 Xamarin.Android 及 Xamarin.iOS。
-> 
-> 
-
 ## <a name="create-container-and-upload-blob"></a>建立容器並上傳 blob
-接下來，您需要新增一些程式碼到共用類別 `MyClass.cs` 以建立一個容器，並將 blob 上傳到此容器。 `MyClass.cs` 看起來應該如下所示︰
+接下來，在您的 `(Portable)` 專案之下，將一些程式碼加入 `MyClass.cs`。 此程式碼會建立一個容器，並上傳 Blob 到此容器中。 `MyClass.cs` 看起來應該如下所示︰
 
 ```csharp
 using Microsoft.WindowsAzure.Storage;
@@ -63,7 +58,7 @@ namespace XamarinApp
         {
         }
 
-        public static async Task createContainerAndUpload()
+        public static async Task performBlobOperation()
         {
             // Retrieve storage account from connection string.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=your_account_name_here;AccountKey=your_account_key_here");
@@ -87,7 +82,9 @@ namespace XamarinApp
 }
 ```
 
-務必將 "your_account_name_here" 和 "your_account_key_here" 取代為您的實際帳戶名稱和帳戶金鑰。 然後，您可以在您的 iOS、Android 和 Windows Phone 應用程式中使用此共用類別。 您可以直接將 `MyClass.createContainerAndUpload()` 加入每個專案。 例如：
+務必將 "your_account_name_here" 和 "your_account_key_here" 取代為您的實際帳戶名稱和帳戶金鑰。 
+
+您的 iOS、Android 和 Windows Phone 專案都會有可攜式專案的參考，這表示您可以在單一位置撰寫所有的共用程式碼，而且可以在所有專案中使用該程式碼。 您現在可以將下列程式碼行加入每個專案，以開始利用：`MyClass.performBlobOperation()`
 
 ### <a name="xamarinappdroid--mainactivitycs"></a>XamarinApp.Droid > MainActivity.cs
 
@@ -118,7 +115,8 @@ namespace XamarinApp.Droid
                 button.Text = string.Format ("{0} clicks!", count++);
             };
 
-            await MyClass.createContainerAndUpload();
+            await MyClass.performBlobOperation();
+            }
         }
     }
 }
@@ -142,21 +140,30 @@ namespace XamarinApp.iOS
 
         public override async void ViewDidLoad ()
         {
-            base.ViewDidLoad ();
-            // Perform any additional setup after loading the view, typically from a nib.
-            Button.AccessibilityIdentifier = "myButton";
-            Button.TouchUpInside += delegate {
-                var title = string.Format ("{0} clicks!", count++);
-                Button.SetTitle (title, UIControlState.Normal);
-            };
+            int count = 1;
 
-            await MyClass.createContainerAndUpload();
-        }
+            public ViewController (IntPtr handle) : base (handle)
+            {
+            }
 
-        public override void DidReceiveMemoryWarning ()
-        {
-            base.DidReceiveMemoryWarning ();
-            // Release any cached data, images, etc that aren't in use.
+            public override async void ViewDidLoad ()
+            {
+                base.ViewDidLoad ();
+                // Perform any additional setup after loading the view, typically from a nib.
+                Button.AccessibilityIdentifier = "myButton";
+                Button.TouchUpInside += delegate {
+                    var title = string.Format ("{0} clicks!", count++);
+                    Button.SetTitle (title, UIControlState.Normal);
+                };
+
+                await MyClass.performBlobOperation();
+            }
+
+            public override void DidReceiveMemoryWarning ()
+            {
+                base.DidReceiveMemoryWarning ();
+                // Release any cached data, images, etc that aren't in use.
+            }
         }
     }
 }
@@ -193,19 +200,36 @@ namespace XamarinApp.WinPhone
         /// This parameter is typically used to configure the page.</param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            // TODO: Prepare page for display here.
+            int count = 1;
 
-            // TODO: If your application contains multiple pages, ensure that you are
-            // handling the hardware Back button by registering for the
-            // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-            // If you are using the NavigationHelper provided by some templates,
-            // this event is handled for you.
-            Button.Click += delegate {
-                var title = string.Format("{0} clicks!", count++);
-                Button.Content = title;
-            };
+            public MainPage()
+            {
+                this.InitializeComponent();
 
-            await MyClass.createContainerAndUpload();
+                this.NavigationCacheMode = NavigationCacheMode.Required;
+            }
+
+            /// <summary>
+            /// Invoked when this page is about to be displayed in a Frame.
+            /// </summary>
+            /// <param name="e">Event data that describes how this page was reached.
+            /// This parameter is typically used to configure the page.</param>
+            protected override async void OnNavigatedTo(NavigationEventArgs e)
+            {
+                // TODO: Prepare page for display here.
+
+                // TODO: If your application contains multiple pages, ensure that you are
+                // handling the hardware Back button by registering for the
+                // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
+                // If you are using the NavigationHelper provided by some templates,
+                // this event is handled for you.
+                Button.Click += delegate {
+                    var title = string.Format("{0} clicks!", count++);
+                    Button.Content = title;
+                };
+
+                await MyClass.performBlobOperation();
+            }
         }
     }
 }
@@ -229,6 +253,6 @@ namespace XamarinApp.WinPhone
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

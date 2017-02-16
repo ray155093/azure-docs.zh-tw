@@ -1,5 +1,5 @@
 ---
-title: "轉送常見問題集 | Microsoft Docs"
+title: "Azure 轉送常見問題集 (FAQ) | Microsoft Docs"
 description: "回答一些有關 Azure 轉送的常見問題。"
 services: service-bus-relay
 documentationcenter: na
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/28/2016
 ms.author: jotaub,sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 849d7995e9c74bc929c4f791ae9155ca18ddb77b
-ms.openlocfilehash: 12702f585605a88ed6e753a0ff301095e8629e05
+ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
+ms.openlocfilehash: 22781ec965decbfd33923478794a76692151c363
 
 
 ---
@@ -37,7 +37,7 @@ Azure [轉送服務](relay-what-is-it.md)可執行您的混合式應用程式，
 本節提供轉送價格結構的一些常見問題解答。 您也可以造訪 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083) ，以取得一般 Microsoft Azure 價格資訊。 如需轉送價格的完整資訊，請參閱 [服務匯流排價格詳細資料](https://azure.microsoft.com/pricing/details/service-bus/)。
 
 ### <a name="how-do-you-charge-for-hybrid-connections-and-wcf-relay"></a>混合式連接和 WCF 轉送如何收費？
-如需轉送價格的完整資訊，請參閱[服務匯流排價格詳細資料][價格概觀]。 除了註明的價格，您還需支付您的應用程式佈建所在資料中心外部的輸出相關資料傳輸費用。
+如需轉送價格的完整資訊，請參閱[服務匯流排價格詳細資料][Pricing overview]。 除了註明的價格，您還需支付您的應用程式佈建所在資料中心外部的輸出相關資料傳輸費用。
 
 ### <a name="how-am-i-billed-for-hybrid-connections"></a>混合式連接如何計費？
 以下是三個範例案例：
@@ -90,14 +90,17 @@ Azure [轉送服務](relay-what-is-it.md)可執行您的混合式應用程式，
 
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="what-are-some-of-the-exceptions-generated-by-azure-relay-apis-and-their-suggested-actions"></a>Azure 轉送 API 所產生的例外狀況有哪些，其建議的動作為何？
-[轉送例外狀況][轉送例外狀況]一文會說明部分例外狀況和建議的動作。
+[轉送例外狀況][Relay exceptions]一文會說明部分例外狀況和建議的動作。
 
 ### <a name="what-is-a-shared-access-signature-and-which-languages-support-generating-a-signature"></a>什麼是共用存取簽章，何種語言可支援產生簽章？
-共用存取簽章是以 SHA-256 安全雜湊或 URI 為基礎的驗證機制。 如需如何在 Node、PHP、Java 和 C\# 中產生自有簽章的相關資訊，請參閱[共用存取簽章][共用存取簽章]一文。
+共用存取簽章是以 SHA-256 安全雜湊或 URI 為基礎的驗證機制。 如需如何以 Node、PHP、Java 和 C\# 產生自有簽章的相關資訊，請參閱[共用存取簽章][Shared Access Signatures]一文。
 
-[價格概觀]: https://azure.microsoft.com/pricing/details/service-bus/
-[轉送例外狀況]: relay-exceptions.md
-[共用存取簽章]: ../service-bus-messaging/service-bus-sas-overview.md
+[Pricing overview]: https://azure.microsoft.com/pricing/details/service-bus/
+[Relay exceptions]: relay-exceptions.md
+[Shared Access Signatures]: ../service-bus-messaging/service-bus-sas-overview.md
+
+### <a name="is-it-possible-to-whitelist-relay-endpoints"></a>可以將轉送端點列入白名單嗎？
+是。 轉送用戶端會使用完整的網域名稱連線至轉送服務。 這可讓客戶在防火牆上新增 `*.servicebus.windows.net` 項目以支援 DNS 白名單。
 
 ## <a name="next-steps"></a>後續步驟
 * [建立命名空間](relay-create-namespace-portal.md)
@@ -106,6 +109,6 @@ Azure [轉送服務](relay-what-is-it.md)可執行您的混合式應用程式，
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

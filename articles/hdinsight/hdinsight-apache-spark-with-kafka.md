@@ -1,5 +1,5 @@
 ---
-title: "使用 Apache Spark 搭配 Kafka on HDInsight | Microsoft Docs"
+title: "搭配 Kafka 使用 Azure HDInsight 上的 Apache Spark | Microsoft Docs"
 description: "了解如何使用 Spark on HDInsight 來讀取資料並寫入至 Kafka on HDInsight 叢集。 此範例使用 Jupyter Notebook 中的 Scala，將隨機資料寫入 Kafka on HDInsight，然後使用 Spark 串流加以讀回。"
 services: hdinsight
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/14/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2d744e753224e4ce98680d3228914fd89e87eba4
-ms.openlocfilehash: 535e8fc7503e21eea470a1fdb0a10fbc8a18349c
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 52692a21671b48581bba348455f6902935a08fa8
 
 ---
 # <a name="use-apache-spark-with-kafka-preview-on-hdinsight"></a>使用 Apache Spark 搭配 Kafka (預覽) on HDInsight
@@ -187,6 +187,6 @@ Notebook 中的程式碼會執行下列工作：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b75c910312c342c33b7dfb0a3ffa0a86b7192319
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: ea0b54a1041c0008071a9b11afc81e1b91f3e409
 
 
 ---
@@ -57,7 +57,7 @@ XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayR
 
 媒體服務也會定義一組可以用來在 XML 中序列化和還原序列化的 .NET 類別。 對於主要類別的描述，請參閱 [媒體服務 .NET 類別](media-services-playready-license-template-overview.md#classes)。 其作用是設定授權範本。
 
-如需使用 .NET 類別來設定 PlayReady 授權範本的端對端範例，請參閱 [使用 PlayReady 動態加密和授權傳遞服務](https://msdn.microsoft.com/library/azure/dn783467.aspx)。
+如需使用 .NET 類別來設定 PlayReady 授權範本的端對端範例，請參閱 [使用 PlayReady 動態加密和授權傳遞服務](media-services-protect-with-drm.md)。
 
 ## <a name="a-idclassesamedia-services-net-classes-that-are-used-to-configure-license-templates"></a><a id="classes"></a>用來設定授權範本的媒體服務 .NET 類別
 以下是主要的 .NET 類別，可用於設定媒體服務 PlayReady 授權範本。 這些類別對應至 [PlayReady 授權範本 XML 結構描述](media-services-playready-license-template-overview.md#schema)中定義的類型。
@@ -315,6 +315,6 @@ XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayR
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -12,24 +12,22 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
-ms.author: arramac
+ms.date: 12/13/2016
+ms.author: mimig
+redirect_url: https://azure.microsoft.com/services/documentdb/
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: db87e15ceb12238dd7b402cd04cfd36c62e3cab7
+ms.sourcegitcommit: d2728682d4fada23d884d0a6b7e2cf4cda38aa33
+ms.openlocfilehash: 32e8fb12e2b80260f7b4c5c6cf4b1b07ec766aca
 
 
 ---
 # <a name="default-quotas-for-documentdb"></a>DocumentDB 的預設配額
-下表說明 Azure DocumentDB 資料庫資源的預設配額。 
 
-[!INCLUDE [azure-documentdb-limits](../../includes/azure-documentdb-limits.md)]
-
-以星號 (*) 列出的配額 [可以透過聯絡 Azure 支援人員來進行調整](documentdb-increase-limits.md)。 在收到所需的資訊之後，配額增加可能需要多達 24 小時才能完成。 
+DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於「DocumentDB 調整」的問題，請傳送電子郵件至 askdocdb@microsoft.com。
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

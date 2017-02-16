@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/21/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: da4d723e343b47187fd6fef3b7a6eab649ef8a41
+ms.sourcegitcommit: 501c44ff8db2b825b58d98b9b89219ec9fff8b7c
+ms.openlocfilehash: 6384d7b0f4851ce4d1612857203e7c3c1381d6fc
 
 
 ---
@@ -139,7 +139,7 @@ HBase 包含數個將資料載入資料表的方法。 如需詳細資訊，請�
     4761    Caleb Alexander    670-555-0141    230-555-0199    4775 Kentucky Dr.
     16443    Terry Chander    998-555-0171    230-555-0200    771 Northridge Drive
 
-您可以建立文字檔，並將檔案上載至自己的儲存體帳戶 (如果您要的話)。 如需指示，請參閱[在 HDInsight 中將 Hadoop 作業的資料上傳][hdinsight-upload-data]。
+您可以建立文字檔，並將檔案上載至自己的儲存體帳戶 (如果您要的話)。 如需指示，請參閱[在 HDInsight 中將 Hadoop 工作的資料上傳][hdinsight-upload-data]。
 
 > [!NOTE]
 > 此程序會使用您在上一個程序中建立的連絡人 HBase 資料表。
@@ -296,8 +296,8 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，
   HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 * [在 Azure 虛擬網路上建立 HBase 叢集][hdinsight-hbase-provision-vnet]。
   由於 HBase 叢集已與虛擬網路整合，因此能夠部署到與您應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。
-* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-geo-replication.md)。 了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
-* [使用 HDInsight 中的 HBase 分析 Twitter 情緒][hbase-twitter-sentiment]。
+* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-replication.md)。 了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
+* [使用 HDInsight 中的 HBase 分析 Twitter 情感][hbase-twitter-sentiment]。
   了解如何在 HDInsight 中使用 Hadoop 叢集中的 HBase 針對巨量資料進行即時[情感分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
 [hdinsight-manage-portal]: hdinsight-administer-use-management-portal.md
@@ -329,6 +329,6 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

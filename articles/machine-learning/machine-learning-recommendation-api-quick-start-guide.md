@@ -1,56 +1,62 @@
 ---
-title: 快速入門指南：Machine Learning 建議 API | Microsoft Docs
-description: Azure Machine Learning Recommendations - 快速入門手冊
+title: "快速入門指南：Machine Learning Recommendations API | Microsoft Docs"
+description: "Azure Machine Learning Recommendations - 快速入門手冊"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: LuisCabrer
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 5bce1a4a-1ad6-473f-812b-84f800fdc09a
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 11/17/2016
 ms.author: luisca
+translationtype: Human Translation
+ms.sourcegitcommit: 099090d06163f15a08592e25f6171cfacf24b0f1
+ms.openlocfilehash: bf47dd8f88405f2bed31c621e37531e3641ddc6c
+
 
 ---
-# Machine Learning Recommendations API 的快速入門指南
+# <a name="quick-start-guide-for-the-machine-learning-recommendations-api"></a>Machine Learning Recommendations API 的快速入門指南
 > [!NOTE]
-> 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
+> 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。 Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。 它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。
+> 深入了解 [移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
 > 
 > 
 
-本文說明如何準備您的服務或應用程式來開始使用 Microsoft Azure Machine Learning 建議。您可於[資源庫](http://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)中找到有關建議 API 更詳細的資料。
+本文說明如何準備您的服務或應用程式來開始使用 Microsoft Azure Machine Learning 建議。 您可於 [資源庫](http://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)中找到有關建議 API 更詳細的資料。
 
-[!INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## 一般概觀
+## <a name="general-overview"></a>一般概觀
 若要使用 Azure Machine Learning 建議，您需要執行下列步驟：
 
-* 建立模型 - 模型是使用資料、目錄資料和建議模型的容器。
-* 匯入目錄資料 - 目錄包含項目的中繼資料資訊。
-* 匯入使用資料 - 上傳使用資料的方式有 2 種 (使用其中一種或兩種皆用)：
+* 建立模型 - 模型是使用狀況資料、目錄資料和建議模型的容器。
+* 匯入目錄資料 - 目錄包含項目的中繼資料資訊。 
+* 匯入使用狀況資料 - 上傳使用狀況資料的方式有 2 種 (使用其中一種或兩種皆用)：
   * 上傳包含使用資料的檔案。
-  * 傳送資料擷取事件。通常您會上傳使用方式檔案以便建立初始建議模型 (啟動程序)，並使用這個模型，直到系統收集採用資料擷取格式的足夠資料為止。
-* 建置建議模型 - 這是非同步作業，建議系統會接受所有使用資料並建立建議模型。視資料大小和組建組態參數而定，這項作業可能需要數分鐘或數小時的時間。當觸發組建時，您會取得一個組建識別碼。請在開始取用建議之前，使用它來查看建置流程何時結束。
+  * 傳送資料擷取事件。
+    通常您會上傳使用方式檔案以便建立初始建議模型 (啟動程序)，並使用這個模型，直到系統收集採用資料擷取格式的足夠資料為止。
+* 建置建議模型 - 這是非同步作業，建議系統會接受所有使用資料並建立建議模型。 視資料大小和組建組態參數而定，這項作業可能需要數分鐘或數小時的時間。 當觸發組建時，您會取得一個組建識別碼。 請在開始取用建議之前，使用它來查看建置流程何時結束。
 * 取用建議 - 取得特定項目或項目清單的建議。
 
-上述所有步驟都是透過 Azure Machine Learning 建議 API 完成。您可下載也從[資源庫](http://1drv.ms/1xeO2F3)實作每一個步驟的範例應用程式。
+上述所有步驟都是透過 Azure Machine Learning 建議 API 完成。  您可下載也從 [資源庫](http://1drv.ms/1xeO2F3)
 
-## 限制
+## <a name="limitations"></a>限制
 * 每個訂用帳戶的模型數上限是 10。
 * 一個目錄可以保留的項目數上限是 100,000。
-* 保留的使用點數上限是 ~5,000,000。如果將上傳或回報新的點，就會將最舊的點刪除。
-* POST 中可以傳送的資料大小上限 (例如：匯入目錄資料、匯入使用資料) 是 200 MB。
-* 非作用中建議模型組建的每秒交易數目是 ~ 2TPS。作用中建議模型組建可以保留高達 20TPS。
+* 保留的使用點數上限是 ~5,000,000。 如果將上傳或回報新的點，就會將最舊的點刪除。
+* POST 中可以傳送的資料大小上限 (例如，匯入目錄資料、匯入使用狀況資料) 是 200MB。
+* 非作用中建議模型組建的每秒交易數目是 ~ 2TPS。 作用中建議模型組建可以保留高達 20TPS。
 
-## 整合
-### 驗證
-Micosoft Azure Marketplace 可支援基本或 OAuth 驗證方法。巡覽至[帳戶設定](https://datamarket.azure.com/account/keys)下 Marketplace 中的金鑰，即可輕鬆地找到帳戶金鑰。
+## <a name="integration"></a>整合
+### <a name="authentication"></a>驗證
+Microsoft Azure Marketplace 支援基本或 OAuth 驗證方法。 巡覽至 [帳戶設定](https://datamarket.azure.com/account/keys)下 Marketplace 中的金鑰，即可輕鬆地找到帳戶金鑰。 
 
-#### 基本驗證
+#### <a name="basic-authentication"></a>基本驗證
 加入驗證標頭：
 
     Authorization: Basic <creds>
@@ -69,18 +75,18 @@ Micosoft Azure Marketplace 可支援基本或 OAuth 驗證方法。巡覽至[帳
 
 
 
-### 服務 URI
-Azure Machine Learning 建議 API 的服務根 URI 在[這裡。](https://api.datamarket.azure.com/amla/recommendations/v2/)
+### <a name="service-uri"></a>服務 URI
+Azure Machine Learning 建議 API 的服務根 URI 在 [這裡。](https://api.datamarket.azure.com/amla/recommendations/v2/)
 
 完整服務 URI 是使用 OData 規格的元素來表示。
 
-### API 版本
+### <a name="api-version"></a>API 版本
 每個 API 呼叫最後會有名為 apiVersion 的查詢參數 (應設定為 "1.0")。
 
-### 識別碼會區分大小寫
-任何 API 所傳回的識別碼都會區分大小寫，且在後續 API 呼叫中做為參數傳遞時，也應該如此使用。例如，模型識別碼和目錄識別碼都會區分大小寫。
+### <a name="ids-are-case-sensitive"></a>識別碼會區分大小寫
+任何 API 所傳回的識別碼都會區分大小寫，且在後續 API 呼叫中做為參數傳遞時，也應該如此使用。 例如，模型識別碼和目錄識別碼都會區分大小寫。
 
-### 建立模型
+### <a name="create-a-model"></a>建立模型
 建立「製作模型」要求：
 
 | HTTP 方法 | URI |
@@ -89,8 +95,8 @@ Azure Machine Learning 建議 API 的服務根 URI 在[這裡。](https://api.da
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| modelName |只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：20 |
-| apiVersion |1\.0 |
+| modelName |只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br>最大長度：20 |
+| apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
 
@@ -98,7 +104,8 @@ Azure Machine Learning 建議 API 的服務根 URI 在[這裡。](https://api.da
 
 HTTP 狀態碼：200
 
-* `feed/entry/content/properties/id` – 包含模型識別碼。**注意**：模型識別碼會區分大小寫。
+* `feed/entry/content/properties/id` – 包含模型識別碼。
+  請注意，模型識別碼會區分大小寫。
 
 OData XML
 
@@ -131,8 +138,8 @@ OData XML
     </feed>
 
 
-### 匯入目錄資料
-如果您將數個目錄檔案上傳至具有多個呼叫的相同模型，我們只會插入新的目錄項目。現有的項目會保留原始值。
+### <a name="import-catalog-data"></a>匯入目錄資料
+如果您將數個目錄檔案上傳至具有多個呼叫的相同模型，我們只會插入新的目錄項目。 現有的項目會保留原始值。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -141,10 +148,10 @@ OData XML
 | 參數名稱 | 有效值 |
 |:--- |:--- |
 | modelId |模型的唯一識別碼 (區分大小寫) |
-| 檔名 |目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 |
-| apiVersion |1\.0 |
+| 檔名 |目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br> 最大長度：50 |
+| apiVersion |1.0 |
 |  | |
-| 要求本文 |目錄資料。格式：<br>`<Item Id>,<Item Name>,<Item Category>[,<description>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>項目名稱</td><td>是</td><td>英數字元，長度上限 255</td><td>項目名稱</td></tr><tr><td>項目類別</td><td>是</td><td>英數字元，長度上限 255</td><td>這個項目所屬類別 (例如烹飪書籍、戲劇...)</td></tr><tr><td>描述</td><td>否</td><td>英數字元，長度上限 4000</td><td>這個項目的描述</td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book</pre> |
+| 要求本文 |目錄資料。 格式：<br>`<Item Id>,<Item Name>,<Item Category>[,<description>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>說明</th></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，最大長度 50</td><td>項目的唯一識別碼</td></tr><tr><td>項目名稱</td><td>是</td><td>英數字元，最大長度 255</td><td>項目名稱</td></tr><tr><td>項目類別</td><td>是</td><td>英數字元，最大長度 255</td><td>此項目所屬類別 (例如烹飪書籍、劇本...)</td></tr><tr><td>說明</td><td>否</td><td>英數字元，最大長度 4000</td><td>此項目的說明</td></tr></table><br>檔案大小上限為 200MB。<br><br>範例：<br><code>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book</code> |
 
 **回應**：
 
@@ -177,9 +184,9 @@ OData XML
     </feed>
 
 
-### 匯入使用資料
-#### 上傳檔案
-本節試範如何使用檔案上傳使用資料。您可以利用使用資料呼叫此 API 數次。將會針對所有呼叫儲存所有使用狀況資料。
+### <a name="import-usage-data"></a>匯入使用資料
+#### <a name="uploading-a-file"></a>上傳檔案
+本節試範如何使用檔案上傳使用資料。 您可以利用使用資料呼叫此 API 數次。 將會針對所有呼叫儲存所有使用狀況資料。
 
 | HTTP 方法 | URI |
 |:--- |:--- |
@@ -188,10 +195,10 @@ OData XML
 | 參數名稱 | 有效值 |
 |:--- |:--- |
 | modelId |模型的唯一識別碼 (區分大小寫) |
-| 檔名 |目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 |
-| apiVersion |1\.0 |
+| 檔名 |目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (_)。<br> 最大長度：50 |
+| apiVersion |1.0 |
 |  | |
-| 要求本文 |使用狀況資料。格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>使用者識別碼</td><td>是</td><td>英數字元</td><td>使用者的唯一識別碼</td></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間</td></tr><tr><td>事件</td><td>否；如果提供，也必須註明日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Purchase</td><td></td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
+| 要求本文 |使用狀況資料。 格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>說明</th></tr><tr><td>使用者識別碼</td><td>是</td><td>英數字元</td><td>使用者的唯一識別碼</td></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，最大長度 50</td><td>項目的唯一識別碼</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間</td></tr><tr><td>Event</td><td>否，如果提供，必須也提供日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>•    AddShopCart<br>• RemoveShopCart<br>• 購買</td><td></td></tr></table><br>檔案大小上限為 200MB。<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
 
 **回應**：
 
@@ -226,7 +233,7 @@ OData XML
     </feed>
 
 
-#### 使用資料擷取
+#### <a name="using-data-acquisition"></a>使用資料擷取
 本節示範如何將事件即時傳送到 Azure Machine Learning 建議 (通常是從您的網站)。
 
 | HTTP 方法 | URI |
@@ -235,9 +242,9 @@ OData XML
 
 | 參數名稱 | 有效值 |
 |:--- |:--- |
-| apiVersion |1\.0 |
+| apiVersion |1.0 |
 |  | |
-| Request body |您想要傳送的每個事件的事件資料項目。您應該為相同的使用者或瀏覽器工作階段在 SessionId 欄位中傳送相同的識別碼。(請參閱下面的事件本文範例。) |
+| Request body |您想要傳送的每個事件的事件資料項目。 您應該為相同的使用者或瀏覽器工作階段在 SessionId 欄位中傳送相同的識別碼。 (請參閱下面的事件本文範例。) |
 
 * 事件 'Click' 的範例：
   
@@ -326,7 +333,7 @@ OData XML
 
 **回應**：HTTP 狀態碼：200
 
-### 建立建議模型
+### <a name="build-a-recommendation-model"></a>建立建議模型
 | HTTP 方法 | URI |
 |:--- |:--- |
 | POST |`<rootURI>/BuildModel?modelId=%27<modelId>%27&userDescription=%27<description>%27&apiVersion=%271.0%27`<br><br>範例：<br>`<rootURI>/BuildModel?modelId=%27a658c626-2baa-43a7-ac98-f6ee26120a12%27&userDescription=%27First%20build%27&apiVersion=%271.0%27` |
@@ -334,8 +341,8 @@ OData XML
 | 參數名稱 | 有效值 |
 |:--- |:--- |
 | modelId |模型的唯一識別碼 (區分大小寫) |
-| userDescription |目錄的文字識別碼。請注意，如果您使用空格，必須將其編碼改成 %20。請參閱上面的範例。<br>最大長度：50 |
-| apiVersion |1\.0 |
+| userDescription |目錄的文字識別碼。 請注意，如果您使用空格，必須將其編碼改成 %20。 請參閱上面的範例。<br> 最大長度：50 |
+| apiVersion |1.0 |
 |  | |
 | 要求本文 |無 |
 
@@ -343,7 +350,7 @@ OData XML
 
 HTTP 狀態碼：200
 
-這是非同步的 API。您會得到一個組建識別碼做為回應。若要知道組建何時結束，您應該呼叫「取得模型的組建狀態」API，並在回應中找出這個組建識別碼。請注意，組建可能會花數分鐘到數小時的時間，視資料的大小而定。
+這是非同步的 API。 您會得到一個組建識別碼做為回應。 若要知道組建何時結束，您應該呼叫「取得模型的組建狀態」API，並在回應中找出這個組建識別碼。 請注意，組建可能會花數分鐘到數小時的時間，視資料的大小而定。
 
 您無法取用建議直到組建結束。
 
@@ -357,7 +364,7 @@ HTTP 狀態碼：200
 * 已取消 - 組建已取消。
 * 取消中 - 正在取消組建。
 
-請注意，組建識別碼可以在下列路徑下找到：`Feed\entry\content\properties\Id`
+請注意，組建識別碼可以在下列路徑下找到： `Feed\entry\content\properties\Id`
 
 OData XML
 
@@ -398,7 +405,7 @@ OData XML
       </entry>
     </feed>
 
-### 取得模型的組建狀態
+### <a name="get-build-status-of-a-model"></a>取得模型的組建狀態
 | HTTP 方法 | URI |
 |:--- |:--- |
 | GET |`<rootURI>/GetModelBuildsStatus?modelId=%27<modelId>%27&onlyLastBuild=<bool>&apiVersion=%271.0%27`<br><br>範例：<br>`<rootURI>/GetModelBuildsStatus?modelId=%279559872f-7a53-4076-a3c7-19d9385c1265%27&onlyLastBuild=true&apiVersion=%271.0%27` |
@@ -407,21 +414,21 @@ OData XML
 |:--- |:--- |
 | modelId |模型的唯一識別碼 (區分大小寫) |
 | onlyLastBuild |指出是要傳回模型的所有組建歷程記錄，還是只傳回最近一個組建的狀態。 |
-| apiVersion |1\.0 |
+| apiVersion |1.0 |
 
 **回應**：
 
 HTTP 狀態碼：200
 
-回應會包含每個組建的一個項目。每個項目都有下列資料：
+回應會包含每個組建的一個項目。 每個項目都有下列資料：
 
 * `feed/entry/content/properties/UserName` – 使用者的名稱。
 * `feed/entry/content/properties/ModelName` – 模型的名稱。
 * `feed/entry/content/properties/ModelId` – 模型的唯一識別碼。
-* `feed/entry/content/properties/IsDeployed` – 組建是否已部署 (又稱為作用中組建)。
+* `feed/entry/content/properties/IsDeployed` - 組建是否已部署 (又稱為 作用中組建)。
 * `feed/entry/content/properties/BuildId` – 組建的唯一識別碼。
 * `feed/entry/content/properties/BuildType` - 組建類型。
-* `feed/entry/content/properties/Status` – 組建狀態。可以是下列其中之一：錯誤、建置中、已排入佇列、取消中、已取消、成功
+* `feed/entry/content/properties/Status` – 組建狀態。 可以是下列其中之一：錯誤、建置中、已排入佇列、取消中、已取消、成功
 * `feed/entry/content/properties/StatusMessage` – 詳細狀態訊息 (僅適用於特定狀態)。
 * `feed/entry/content/properties/Progress` – 組建進度 (%)。
 * `feed/entry/content/properties/StartTime` – 組建開始時間。
@@ -441,7 +448,7 @@ HTTP 狀態碼：200
 
 組建類型的有效值：
 
-* 排名 - 排名組建。(如需排名組建的詳細資訊，請參閱＜機器學習服務建議 API 文件＞一文)。
+* 排名 - 排名組建。 (如需排名組建的詳細資訊，請參閱＜機器學習服務建議 API 文件＞一文)。
 * 建議 - 建議組建。
 * Fbt - 經常一起購買的組建。
 
@@ -481,7 +488,7 @@ OData XML
     </feed>
 
 
-### 取得建議
+### <a name="get-recommendations"></a>取得建議
 | HTTP 方法 | URI |
 |:--- |:--- |
 | GET |`<rootURI>/ItemRecommend?modelId=%27<modelId>%27&itemIds=%27<itemId>%27&numberOfResults=<int>&includeMetadata=<bool>&apiVersion=%271.0%27`<br><br>範例：<br>`<rootURI>/ItemRecommend?modelId=%272779c063-48fb-46c1-bae3-74acddc8c1d1%27&itemIds=%271003%27&numberOfResults=10&includeMetadata=false&apiVersion=%271.0%27` |
@@ -489,16 +496,16 @@ OData XML
 | 參數名稱 | 有效值 |
 |:--- |:--- |
 | modelId |模型的唯一識別碼 (區分大小寫) |
-| itemIds |要建議項目的清單 (以逗號分隔)。<br>長度上限：1024 |
-| numberOfResults |必要結果的數目 |
+| itemIds |要建議的以逗號分隔項目清單。<br>最大長度：1024 |
+| numberOfResults |必要結果的數目  |
 | includeMetatadata |未來使用，永遠為 false |
-| apiVersion |1\.0 |
+| apiVersion |1.0 |
 
 **回應：**
 
 HTTP 狀態碼：200
 
-回應會包含每個建議項目的一個項目。每個項目都有下列資料：
+回應會包含每個建議項目的一個項目。 每個項目都有下列資料：
 
 * `Feed\entry\content\properties\Id` - 建議項目識別碼。
 * `Feed\entry\content\properties\Name` - 項目的名稱。
@@ -658,9 +665,9 @@ OData XML
       </entry>
     </feed>
 
-### 更新模型
+### <a name="update-model"></a>更新模型
 您可以更新模型描述或作用中組建識別碼。
-*作用中組建識別碼* - 每個模型的每個組建都有組建識別碼。作用中組建識別碼是每個新模型的第一個成功組建。一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。當您取用建議時，如果您未指定想要使用的組建識別碼，則會自動使用預設值。
+*作用中組建識別碼* - 每個模型的每個組建都有組建識別碼。 作用中組建識別碼是每個新模型的第一個成功組建。 一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。 當您取用建議時，如果您未指定想要使用的組建識別碼，則會自動使用預設值。
 
 此機制可讓您在生產環境中有建議模型時建置新模型，並先加以測試，再將其提升至生產環境。
 
@@ -671,9 +678,9 @@ OData XML
 | 參數名稱 | 有效值 |
 |:--- |:--- |
 | id |模型的唯一識別碼 (區分大小寫) |
-| apiVersion |1\.0 |
+| apiVersion |1.0 |
 |  | |
-| 要求本文 |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`   <Description>New Description</Description>`<br>`          <ActiveBuildId>-1</ActiveBuildId>`<br>`</ModelUpdateParams>`<br><br>請注意，XML 標籤說明和 ActiveBuildId 是選擇性的。如果您不想設定 Description 或 ActiveBuildId，請移除整個標記。 |
+| 要求本文 |`<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`   <Description>New Description</Description>`<br>`          <ActiveBuildId>-1</ActiveBuildId>`<br>`</ModelUpdateParams>`<br><br>請注意，XML 標籤說明和 ActiveBuildId 是選擇性的。 如果您不想設定 Description 或 ActiveBuildId，請移除整個標記。 |
 
 **回應**：
 
@@ -690,10 +697,12 @@ OData XML
       <link rel="self" href="https://api.datamarket.azure.com/Data.ashx/amla/recommendations/v2/UpdateModel?id='9559872f-7a53-4076-a3c7-19d9385c1265'&amp;apiVersion='1.0'" />
     </feed>
 
-## 法律
-這份文件依「現狀」提供。本文件中說明的資訊與畫面 (包括 URL 及其他網際網路網站參考資料) 如有變更，恕不另行通知。
-此處描述的一些範例僅供說明之用，純屬虛構。並未影射或關聯任何真實的人、事、物。本文件未提供給您任何 Microsoft 產品中任何智慧財產的任何法定權利。
-您可以複製並使用這份文件，供內部參考之用。
-© 2014 Microsoft.著作權所有，並保留一切權利。
+## <a name="legal"></a>法律
+這份文件依「現狀」提供。 本文件中說明的資訊與畫面 (包括 URL 及其他網際網路網站參考資料) 如有變更，恕不另行通知。 此處描述的一些範例僅供說明之用，純屬虛構。 並未影射或關聯任何真實的人、事、物。 本文件未提供給您任何 Microsoft 產品中任何智慧財產的任何法定權利。 您可以複製並使用這份文件，供內部參考之用。 © 2014 Microsoft. 著作權所有，並保留一切權利。 
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO4-->
+
+

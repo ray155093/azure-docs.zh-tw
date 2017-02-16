@@ -16,28 +16,23 @@ ms.topic: article
 ms.date: 10/11/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 266891083fa0d2a33ef8fd7e533b036e99b00208
+ms.sourcegitcommit: 1ddfbd3b8d9ca695b08739c7f0716a8e8de82725
+ms.openlocfilehash: 23bf15555569c2c2f5ce9db1bead5da539df571d
 
 
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-in-hdinsight"></a>在 HDInsight 上使用 Hadoop 分析航班延誤資料
 了解如何在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料，然後使用 Sqoop 將資料匯出到 Azure SQL Database。
 
-> [!NOTE]
-> 本文章中的個別部分適用於以 Windows 為基礎的 HDInsight 叢集 (例如 Python 與 Hive)，許多步驟則針對以 Linux 為基礎的叢集。 如需適用於以 Windows 為基礎的叢集的步驟，請參閱 [在 HDInsight 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)
-> 
-> 
+> [!IMPORTANT]
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ### <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
 
-* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * **HDInsight 叢集**。 請參閱 [在 Linux 上於 HDInsight 中搭配使用 Hadoop 與 Hive 入門](hdinsight-hadoop-linux-tutorial-get-started.md) ，取得建立新的以 Linux 為基礎的 HDInsight 叢集的步驟。
 * **Azure SQL Database**。 您會使用 Azure SQL Database 做為目的地資料存放區。 如果您還沒有 SQL Database，請參閱 [SQL Database 教學課程：在幾分鐘內建立 SQL Database](../sql-database/sql-database-get-started.md)。
 * **Azure CLI**。 如果您尚未安裝 Azure CLI，請參閱 [安裝與設定 Azure CLI](../xplat-cli-install.md) 的詳細步驟。
-  
-    [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 ## <a name="download-the-flight-data"></a>下載航班資料
 1. 瀏覽至[創新技術研究管理部運輸統計處][rita-website]。
@@ -243,12 +238,12 @@ ms.openlocfilehash: 266891083fa0d2a33ef8fd7e533b036e99b00208
 現在您已了解如何將檔案上傳至 Azure Blob 儲存體、如何使用 Azure Blob 儲存體中的資料填入 Hive 資料表、如何執行 Hive 查詢，以及如何使用 Sqoop 將資料從 HDFS 匯出至 Azure SQL Database。 若要深入了解，請參閱下列文章：
 
 * [開始使用 HDInsight][hdinsight-get-started]
-* [搭配 HDInsight 使用 Hive][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
 * [搭配 HDInsight 使用 Oozie][hdinsight-use-oozie]
 * [搭配 HDInsight 使用 Sqoop][hdinsight-use-sqoop]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
 * [開發 HDInsight 的 Java MapReduce 程式][hdinsight-develop-mapreduce]
-* [開發 HDInsight 的 Python Hadoop 串流程式][hdinsight-develop-streaming]
+* [開發適用於 HDInsight 的 Python Hadoop 串流程式][hdinsight-develop-streaming]
 
 [azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
 [azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
@@ -278,6 +273,6 @@ ms.openlocfilehash: 266891083fa0d2a33ef8fd7e533b036e99b00208
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

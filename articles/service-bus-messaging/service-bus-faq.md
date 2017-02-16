@@ -1,5 +1,5 @@
 ---
-title: "服務匯流排常見問題集 | Microsoft Docs"
+title: "Azure 服務匯流排常見問題集 (FAQ) | Microsoft Docs"
 description: "回答一些有關 Azure 服務匯流排的常見問題。"
 services: service-bus-messaging
 documentationcenter: na
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/04/2016
 ms.author: sethm;juconway
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b350bac36f1d46c97da37a2807ead8c9c732d69a
+ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
+ms.openlocfilehash: ef8fc057ca6b15fe25bcf549ad92ceb6cf5722e4
 
 
 ---
@@ -50,7 +50,7 @@ ms.openlocfilehash: b350bac36f1d46c97da37a2807ead8c9c732d69a
 
 ## <a name="service-bus-best-practices"></a>服務匯流排最佳做法
 ### <a name="what-are-some-azure-service-bus-best-practices"></a>Azure 服務匯流排的最佳做法有哪些？
-* [使用服務匯流排代理傳訊的效能改進最佳作法][使用服務匯流排代理傳訊的效能改進最佳作法] – 這篇文章說明如何在交換代理訊息時將效能最佳化。
+* [使用服務匯流排代理傳訊的效能改進最佳作法][Best practices for performance improvements using Service Bus brokered messaging] - 這篇文章說明如何在交換代理訊息時將效能最佳化。
 
 ### <a name="what-should-i-know-before-creating-messaging-entities"></a>建立訊息實體前的須知事項為何？
 佇列和主題的下列屬性是不可變的。 在佈建實體時請將這一點納入考量，因為若要修改屬性，就必須建立新的替代實體。
@@ -65,16 +65,16 @@ ms.openlocfilehash: b350bac36f1d46c97da37a2807ead8c9c732d69a
 本節提供服務匯流排價格結構的一些常見問題解答。 您也可以造訪 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083) ，以取得一般 Microsoft Azure 價格資訊。 如需服務匯流排價格的完整資訊，請參閱 [服務匯流排價格詳細資料](https://azure.microsoft.com/pricing/details/service-bus/)。
 
 ### <a name="how-do-you-charge-for-service-bus"></a>服務匯流排的收費方式為何？
-如需服務匯流排價格的完整資訊，請參閱[服務匯流排價格詳細資料][價格概觀]。 除了註明的價格，您還需支付您的應用程式佈建所在資料中心外部的輸出相關資料傳輸費用。
+如需服務匯流排價格的完整資訊，請參閱[服務匯流排價格詳細資料][Pricing overview]。 除了註明的價格，您還需支付您的應用程式佈建所在資料中心外部的輸出相關資料傳輸費用。
 
 ### <a name="what-usage-of-service-bus-is-subject-to-data-transfer-what-is-not"></a>何種服務匯流排用法需支付資料傳輸費用？ 何種不需？
-指定的 Azure 區域內的任何資料傳輸都是免費提供。 區域外部的資料傳輸需支付輸出費用，其費率為每 GB 0.15 美元 (從北美洲和歐洲地區) 和每 GB 0.20 美元 (從亞太地區)。 任何輸入資料傳輸都是免費提供。
+指定的 Azure 區域內的任何資料傳輸都是免費提供。 區域外部的資料傳輸需支付輸出費用，其費率為每 GB&0;.15 美元 (從北美洲和歐洲地區) 和每 GB&0;.20 美元 (從亞太地區)。 任何輸入資料傳輸都是免費提供。
 
 ### <a name="does-service-bus-charge-for-storage"></a>服務匯流排是否會收取儲存體費用？
 不會，服務匯流排不會收取儲存體費用。 不過，有配額會限制每個佇列/主題可保存的資料數量上限。 請參閱下一個常見問題。
 
 ## <a name="service-bus-quotas"></a>服務匯流排配額
-如需服務匯流排的限制和配額清單，請參閱[配額概觀][配額概觀]。
+如需服務匯流排的限制和配額清單，請參閱[配額概觀][Quotas overview]。
 
 ### <a name="does-service-bus-have-any-usage-quotas"></a>服務匯流排是否有任何使用量配額？
 根據預設，對於所有雲端服務，Microsoft 會設定針對所有客戶的訂用帳戶計算的彙總每月使用量配額。 因為我們了解您的需求可能超過這些限制，請隨時連絡客戶服務部門，讓我們能夠了解您的需求並適當地調整這些限制。 服務匯流排的彙總使用量配額如下：
@@ -113,10 +113,10 @@ ms.openlocfilehash: b350bac36f1d46c97da37a2807ead8c9c732d69a
 
 ## <a name="subscription-and-namespace-management"></a>訂用帳戶和命名空間管理
 ### <a name="how-do-i-migrate-a-namespace-to-another-azure-subscription"></a>如何將命名空間移轉到另一個 Azure 訂用帳戶？
-您可以使用 PowerShell 命令 (可在[這裡][這裡]的文章中找到) 將命名空間從某個 Azure 訂用帳戶移到另一個 Azure 訂用帳戶。 若要執行此作業，命名空間必須已是作用中。 此外，執行命令的使用者也必須是來源和目標訂用帳戶的系統管理員。
+您可以使用 PowerShell 命令 (可在[這裡][here]的文章中找到) 將命名空間從某個 Azure 訂用帳戶移到另一個 Azure 訂用帳戶。 若要執行此作業，命名空間必須已是作用中。 此外，執行命令的使用者也必須是來源和目標訂用帳戶的系統管理員。
 
 ## <a name="service-bus-troubleshooting"></a>服務匯流排疑難排解
-[例外狀況概觀][例外狀況概觀]
+[例外狀況概觀][Exceptions overview]
 
 ### <a name="what-are-some-of-the-exceptions-generated-by-azure-service-bus-messaging-apis-and-their-suggested-actions"></a>Azure 服務匯流排訊息 API 所產生的例外狀況有哪些，其建議的動作為何？
 訊息 API 可能產生的例外狀況分成下列幾個類別︰
@@ -126,10 +126,10 @@ ms.openlocfilehash: b350bac36f1d46c97da37a2807ead8c9c732d69a
 * 暫時性例外狀況
 * 其他例外狀況
 
-[服務匯流排傳訊例外狀況][例外狀況概觀]一文會說明部分例外狀況和建議的動作。
+[服務匯流排傳訊例外狀況][Exceptions overview]一文會說明部分例外狀況和建議的動作。
 
 ### <a name="what-is-a-shared-access-signature-and-which-languages-support-generating-a-signature"></a>什麼是共用存取簽章，何種語言可支援產生簽章？
-共用存取簽章是以 SHA-256 安全雜湊或 URI 為基礎的驗證機制。 如需如何在 Node、PHP、Java 和 C\# 中產生自有簽章的相關資訊，請參閱[共用存取簽章][共用存取簽章]一文。
+共用存取簽章是以 SHA-256 安全雜湊或 URI 為基礎的驗證機制。 如需如何以 Node、PHP、Java 和 C\# 產生自有簽章的相關資訊，請參閱[共用存取簽章][Shared Access Signatures]一文。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解服務匯流排訊息，請參閱下列主題。
@@ -140,16 +140,16 @@ ms.openlocfilehash: b350bac36f1d46c97da37a2807ead8c9c732d69a
 * [Azure 服務匯流排架構概觀](service-bus-fundamentals-hybrid-solutions.md)
 * [開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
-[使用服務匯流排代理傳訊的效能改進最佳作法]: service-bus-performance-improvements.md
-[將應用程式與服務匯流排中斷和災難隔絕的最佳做法]: service-bus-outages-disasters.md
-[價格概觀]: https://azure.microsoft.com/pricing/details/service-bus/
-[配額概觀]: service-bus-quotas.md
-[這裡]: service-bus-powershell-how-to-provision.md#migrate-a-namespace-to-another-azure-subscription
-[例外狀況概觀]: service-bus-messaging-exceptions.md
-[共用存取簽章]: service-bus-sas-overview.md
+[Best practices for performance improvements using Service Bus brokered messaging]: service-bus-performance-improvements.md
+[Best practices for insulating applications against Service Bus outages and disasters]: service-bus-outages-disasters.md
+[Pricing overview]: https://azure.microsoft.com/pricing/details/service-bus/
+[Quotas overview]: service-bus-quotas.md
+[here]: service-bus-powershell-how-to-provision.md
+[Exceptions overview]: service-bus-messaging-exceptions.md
+[Shared Access Signatures]: service-bus-sas-overview.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

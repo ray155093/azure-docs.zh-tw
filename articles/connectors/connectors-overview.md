@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/15/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3fc0c959f4e0af62a0bcde1b38caa37d8246b9ac
+ms.sourcegitcommit: 44a756ba437b2ce9f625017998d9ae7d09acae1f
+ms.openlocfilehash: 9cbb258ae9e32549669623e6824dd9b18fa1f68f
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: 3fc0c959f4e0af62a0bcde1b38caa37d8246b9ac
 
 每個連接器動作或觸發程序都有需要設定的屬性集。  您可以按一下 [資訊] 按鈕來深入了解動作，或參考其文件以 [深入了解](apis-list.md)。
 
-如果您想要整合還未成為連接器的服務或 API，您也可以透過 [自訂連接器](../app-service-logic/app-service-logic-create-api-app.md) 擴充邏輯應用程式，或直接透過 HTTP 等通訊協定呼叫服務。
+如果您想要整合還未成為連接器的服務或 API，您也可以透過 [自訂連接器](../logic-apps/logic-apps-create-api-app.md) 擴充邏輯應用程式，或直接透過 HTTP 等通訊協定呼叫服務。
 
 ## <a name="triggers"></a>觸發程序
 某些連接器具有觸發程序，這表示該連接器中的事件會引發邏輯應用程式，並傳入任何資料做為觸發程序的一部分。  觸發程序永遠是邏輯應用程式的第一個步驟。  受歡迎的觸發程序所包含的作業如下︰
@@ -56,9 +56,9 @@ ms.openlocfilehash: 3fc0c959f4e0af62a0bcde1b38caa37d8246b9ac
 按一下 [瀏覽]，然後選取 [API 連線]，即可在 Azure 中檢視和管理連線。  在 API 連線資源中，您可以檢視、編輯、更新或重新授權任何已建立的連線。
 
 ## <a name="next-steps"></a>後續步驟
-* [建立第一個邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
-* [了解邏輯應用程式的常見用法和範例](../app-service-logic/app-service-logic-examples-and-scenarios.md)
-* [開始使用企業整合觸發程序和動作](../app-service-logic/app-service-logic-enterprise-integration-overview.md)
+* [建立第一個邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
+* [了解邏輯應用程式的常見用法和範例](../logic-apps/logic-apps-examples-and-scenarios.md)
+* [開始使用企業整合觸發程序和動作](../logic-apps/logic-apps-enterprise-integration-overview.md)
 
 <!--Image References -->
 [1]: ./media/connectors-overview/addAction.png
@@ -66,6 +66,6 @@ ms.openlocfilehash: 3fc0c959f4e0af62a0bcde1b38caa37d8246b9ac
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

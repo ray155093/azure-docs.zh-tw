@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b113eb43148f9085c6e36787cb344050a438f351
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 931954e312b02c7a71acc7a3268b5ee3c0a11708
 
 
 ---
@@ -110,16 +110,19 @@ App Service 中的每個應用程式都會以隨機獨特的低權限背景工�
 
 登錄的寫入存取權已遭封鎖，其中包括任何每一使用者登錄機碼的存取。 從應用程式的觀點來看，因為應用程式可以在不同虛擬機器之間移轉，所以 Azure 環境中的登錄寫入存取權並不可靠。 應用程式唯一可依賴的持續可寫入儲存體，就是儲存在 App Service UNC 共用上的各應用程式內容目錄結構。 
 
+## <a name="more-information"></a>詳細資訊
+
+[Azure Web 應用程式沙箱](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox) - 有關 App Service 執行環境的最新資訊。 本頁面由 App Service 開發團隊直接維護。
+
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
-[!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

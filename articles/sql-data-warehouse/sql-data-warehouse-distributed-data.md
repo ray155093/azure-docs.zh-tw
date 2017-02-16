@@ -1,5 +1,5 @@
 ---
-title: "適用於 SQL 資料倉儲和平行資料倉儲的大量平行處理 (MPP) 系統之分散式資料和分散式資料表選項 | Microsoft Docs"
+title: "分散式資料如何在 Azure SQL 資料倉儲運作 | Microsoft Docs"
 description: "了解大量平行處理 (MPP) 如何分散資料，以及在 Azure SQL 資料倉儲和平行資料倉儲中分散資料表的選項。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1090c2156df11adc6f18dffe00a9d37921c0a3a3
+ms.sourcegitcommit: 2548f779767635865daf790d301d86feff573a29
+ms.openlocfilehash: 195b78a7f634d01f228c90efb34763e4175708ac
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: 1090c2156df11adc6f18dffe00a9d37921c0a3a3
 
 選取發佈資料行有效能考量，例如區分、資料扭曲和在系統上執行的查詢類型。
 
-![分散式資料表](media/sql-data-warehouse-distributed-data/hash-distributed-table.png "Distributed table")  
+![分散式資料表](media/sql-data-warehouse-distributed-data/hash-distributed-table.png "分散式資料表")  
 
 * 每個資料列屬於一種發佈。  
 * 具決定性的雜湊演算法會將每個資料列指派給一個發佈。  
@@ -69,7 +69,7 @@ ms.openlocfilehash: 1090c2156df11adc6f18dffe00a9d37921c0a3a3
 
 下圖顯示儲存在每個計算節點上的複寫資料表。 複寫資料表會儲存在指派給計算節點的所有磁碟。 此磁碟策略會使用 SQL Server 檔案群組來實作。  
 
-![複寫的資料表](media/sql-data-warehouse-distributed-data/replicated-table.png "Replicated table") 
+![複寫的資料表](media/sql-data-warehouse-distributed-data/replicated-table.png "複寫的資料表") 
 
 ## <a name="next-steps"></a>後續步驟
 若要有效使用分散式資料表，請參閱[在 SQL 資料倉儲中散發資料表](sql-data-warehouse-tables-distribute.md)  
@@ -77,6 +77,6 @@ ms.openlocfilehash: 1090c2156df11adc6f18dffe00a9d37921c0a3a3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "搭配 IoT 閘道 SDK 使用實體裝置 | Microsoft Docs"
-description: "「Azure IoT Hub 閘道 SDK」逐步解說，其中使用 Texas Instruments SensorTag 裝置，透過在 Raspberry Pi 3 上執行的閘道，將資料傳送到「IoT 中樞」"
+title: "搭配 Azure IoT 閘道 SDK 使用實體裝置 | Microsoft Docs"
+description: "如何使用 Texas Instruments SensorTag 裝置，透過 Raspberry Pi 3 上執行的閘道器將資料傳送至 IoT 中樞。 閘道器是使用 Azure IoT 閘道 SDK 所建置。"
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: andbuc
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: 9c8ab5b54644c3fa7999e7250825fba5d8532082
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 05c82a87e839a0a95e7050092d6f6867e76fb316
 
 
 ---
-# <a name="azure-iot-gateway-sdk--send-device-to-cloud-messages-with-a-physical-device-using-linux"></a>Azure IoT 閘道 SDK – 使用 Linux 以實體裝置傳送裝置到雲端訊息
+# <a name="use-the-azure-iot-gateway-sdk-to-send-device-to-cloud-messages-with-a-physical-device-linux"></a>使用 Azure IoT 閘道 SDK 搭配實體裝置來傳送裝置到雲端訊息 (Linux)
 這個[藍牙低功耗範例][lnk-ble-samplecode]逐步解說示範如何使用 [Azure IoT 閘道 SDK][lnk-sdk]，將「裝置到雲端」的遙測資料從實體裝置轉送到 IoT 中樞，以及如何將命令從 IoT 中樞路由傳送到實體裝置。
 
 本逐步解說涵蓋下列項目：
@@ -239,7 +239,7 @@ git submodule update --init --recursive
 當您的 Raspberry Pi 3 上擁有「IoT 閘道 SDK」儲存機制的完整複本時，您就可以使用下列命令，從包含該 SDK 的資料夾建置它：
 
 ```
-./tools/build.sh --skip-unittests --skip-e2e-tests
+./tools/build.sh --skip-unittests
 ```
 
 ### <a name="configure-and-run-the-ble-sample-on-your-raspberry-pi-3"></a>在 Raspberry Pi 3 上設定和執行 BLE 範例
@@ -347,7 +347,7 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
 ```
 
 #### <a name="identity-mapping-module-configuration"></a>身分識別對應模組組態
-新增 SensorTag 裝置的 MAC 位址，以及您新增到 IoT 中樞之 **SensorTag_01** 裝置的裝置識別碼和金鑰：
+新增 SensorTag 裝置的 MAC 位址，以及您新增至 IoT 中樞之 **SensorTag_01** 裝置的裝置識別碼和金鑰：
 
 ```json
 {
@@ -426,10 +426,10 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
 
 執行範例之前，您可能需要按下 SensorTag 上的小按鈕，以使其變成可探索的項目。
 
-當您執行範例時，可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，來監視閘道從 SensorTag 裝置轉送的訊息。
+當您執行範例時，可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，監視閘道器從 SensorTag 裝置轉送的訊息。
 
 ## <a name="send-cloud-to-device-messages"></a>傳送雲端到裝置訊息
-BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用 [Azure IoT 中樞裝置總管](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)或 [IoT 中樞總管](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer)傳送 BLE 閘道模組傳要遞給 BLE 裝置的 JSON 訊息。
+BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[裝置總管](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)或 [iothub-explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) 工具來傳送 JSON 訊息，再由 BLE 閘道器模組轉送至 BLE 裝置的 。
 如果您使用 Texas Instruments SensorTag 裝置，則可以從 IoT 中樞傳送命令以開啟紅色 LED、綠色 LED 或警報器。 若要這樣做，請先依序傳送下列兩個 JSON 訊息。 然後，您可以傳送任何命令以開啟燈號或警報器。
 
 1 重設所有的 LED 與警報器 (將其關閉)
@@ -485,7 +485,7 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用 
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [開發人員指南][lnk-devguide]
+* [IoT 中樞開發人員指南][lnk-devguide]
 
 <!-- Links -->
 [lnk-ble-samplecode]: https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/ble_gateway
@@ -501,6 +501,6 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用 
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

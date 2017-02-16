@@ -13,10 +13,10 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
-ms.author: osamazia
+ms.author: osamam
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cebf1a1712b6ba7f1f6125369703694ba19d0244
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 10166e6b8b9144f0a5dde4f2fc10b492120e85d7
 
 
 ---
@@ -64,7 +64,7 @@ ms.openlocfilehash: cebf1a1712b6ba7f1f6125369703694ba19d0244
 
 如果您想要使用 ExpressRoute 進行驗證，請確定您是透過 ExpressRoute (未經 NAT) 通告 ADFS 公用 IP 位址。 如此一來，源自 Microsoft 並前往內部部署 AD FS 伺服器的流量會經過 ExpressRoute 。 從客戶到 Microsoft 的回傳流量會使用 ExpressRoute，因為這是透過網際網路慣用的路由。
 
-### <a name="sourcebased-nat"></a>以來源為基礎的 NAT
+### <a name="source-based-nat"></a>以來源為基礎的 NAT
 解決非對稱式路由問題的另一種方式是使用 NAT。 例如，您尚未透過 ExpressRoute 通告內部部署簡易郵件傳送通訊協定 (SMTP) 伺服器的公用 IP 位址，因為您傾向於使用網際網路進行這類型的通訊。 由 Microsoft 向您的內部部署 SMTP 伺服器提出的要求會周遊網際網路。 您會對內部 IP 位址的連入要求進行 NAT 處理。 來自 SMTP 伺服器的反向流量會前往邊緣防火牆 (您用於進行 NAT)，而不是透過 ExpressRoute。 回傳流量會透過網際網路返回。
 
 ![以來源為基礎的 NAT 網路組態](./media/expressroute-asymmetric-routing/AsymmetricRouting2.png)
@@ -75,6 +75,6 @@ ms.openlocfilehash: cebf1a1712b6ba7f1f6125369703694ba19d0244
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

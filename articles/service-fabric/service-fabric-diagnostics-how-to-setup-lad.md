@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 09/28/2016
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 3416511777ff006d0aa933cd45e50f1d200bcad4
+ms.sourcegitcommit: c9730b553e59d12b8720bbf3a06cc956912e27de
+ms.openlocfilehash: 37063d35e76d03a84f6e4451c2f6c363704607f2
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 3416511777ff006d0aa933cd45e50f1d200bcad4
 > 
 > 
 
-當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。 只要將記錄檔集中在一個位置，不論問題發生在服務、應用程式或叢集本身，都能輕鬆分析問題並進行疑難排解。 上傳和收集記錄檔的方式之一是使用可將記錄檔上傳至 Azure 儲存體的 Azure 診斷擴充功能。 您可以從儲存體讀取事件，並將它們放在 [Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 之類的產品或其他記錄檔剖析解決方案中。
+當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。 只要將記錄檔集中在一個位置，不論問題發生在服務、應用程式或叢集本身，都能輕鬆分析問題並進行疑難排解。 上傳和收集記錄檔的其中一種方式就是使用「Azure 診斷」擴充功能，此擴充功能可將記錄檔上傳到「Azure 儲存體」、Azure Application Insights 或「Azure 事件中樞」。 您也可以從儲存體或「事件中樞」讀取事件，然後將它們放在 [Log Analytics](../log-analytics/log-analytics-service-fabric.md) 之類的產品或其他記錄檔剖析解決方案中。 [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) 隨附完整的記錄搜尋與分析服務內建功能。
 
 ## <a name="log-sources-that-you-might-want-to-collect"></a>您可能想要收集的記錄來源
 * **Service Fabric 記錄檔**︰由平台透過 [LTTng](http://lttng.org) 所發出並上傳至儲存體帳戶。 記錄檔可能是平台所發出的操作事件或執行階段事件。 這些記錄檔會儲存在叢集資訊清單所指定的位置。 (若要取得儲存體帳戶的詳細資訊，請搜尋 **AzureTableWinFabETWQueryable** 標籤並尋找 **StoreConnectionString**)。
@@ -52,6 +52,6 @@ ms.openlocfilehash: 3416511777ff006d0aa933cd45e50f1d200bcad4
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

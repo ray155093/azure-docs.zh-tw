@@ -13,18 +13,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/16/2016
+ms.date: 12/14/2016
 ms.author: garye;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7488faa54481f0f524c2274e7e2575bf0fc02690
+ms.sourcegitcommit: 1738899a271045e37cdcedaaf862553f29ec92f1
+ms.openlocfilehash: b1c06135cf8628197fb9601affd6a7131b41d0ca
 
 
 ---
 # <a name="import-your-data-into-azure-machine-learning-studio-from-another-experiment"></a>從另一個實驗匯入資料到 Azure Machine Learning Studio。
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-有時候您會想要從實驗取得中繼結果，並且使用做為其他實驗的一部分。  若要這樣做，您可以將模組另存為資料集：
+有時候您會想要從實驗取得中繼結果，並且用來做為其他實驗的一部分。 若要這樣做，您可以將模組另存為資料集：
 
 1. 按一下您要儲存為資料集的模組輸出。
 2. 按一下 [ **另存為資料集**]。
@@ -36,6 +36,6 @@ ms.openlocfilehash: 7488faa54481f0f524c2274e7e2575bf0fc02690
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

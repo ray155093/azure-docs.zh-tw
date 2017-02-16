@@ -1,5 +1,5 @@
 ---
-title: "Azure Machine Learning 中進階分析程序和技術的案例 | Microsoft Docs"
+title: "識別 Azure Machine Learning 的進階分析案例 | Microsoft Docs"
 description: "選取適合使用 Team Data Science Process 進行進階預測性分析的案例。"
 services: machine-learning
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 97cadfc4e94e425abf2b6b2268fe3478e92ef47f
+ms.sourcegitcommit: 69bb7e5fb0dafa3a9d0f6ad4eb271ab1af2edc50
+ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 
 
 ---
@@ -268,6 +268,6 @@ ms.openlocfilehash: 97cadfc4e94e425abf2b6b2268fe3478e92ef47f
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

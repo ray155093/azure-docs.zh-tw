@@ -17,75 +17,12 @@ ms.topic: hero-article
 ms.date: 12/08/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 7f26cd0f6c5f9c7a2fe692bfcdc6ef60d1b2200f
-ms.openlocfilehash: d4ea089ed4b5d29c261b25e95f4d304611f9a857
+ms.sourcegitcommit: a9adc82faab977ad5da1c9dc281d45db3101d8c8
+ms.openlocfilehash: 3fb97f80d5012e993f92eb592d877faabc94c43e
 
 
 ---
-<!------------------
-This topic is annotated with TEMPLATE guidelines for TUTORIAL TOPICS.
-
-
-Metadata guidelines
-
-title
-    60 characters or less. Tells users clearly what they will do (deploy an ASP.NET web app to App Service). Not the same as H1. It's 60 characters or fewer including all characters between the quotes and the Microsoft Docs site identifier.
-
-description
-    115-145 characters. Duplicate of the first sentence in the introduction. This is the abstract of the article that displays under the title when searching in Bing or Google. 
-
-    Example: "This tutorial shows how to deploy an ASP.NET web application to a web app in Azure App Service by using Visual Studio 2015."
------------------->
-
-<!----------------
-
-TEMPLATE GUIDELINES for tutorial topics
-
-The tutorial topic shows users how to solve a problem using a product or service. It includes the prerequisites and steps users need to be successful.  
-
-It is a "solve a problem" topic, not a "learn concepts" topic.
-
-DO include this:
-    • What users will do
-    • What they will create or accomplish by the end of the tutorial
-    • Time estimate
-    • Optional but useful: Include a diagram or video. Diagrams help users see the big picture of what they are doing. A video of the steps can be used by customers as an alternative to following the steps in the topic.
-    • Prerequisites: Technical expertise and software requirements
-    • End-to-end steps. At the end, include next steps to deeper or related tutorials so users can learn more about the service
-
-DON'T include this:
-    • Conceptual info about the service. This info is in overview topics that you can link to in the prerequisites section if necessary
-
-------------------->
-
-<!------------------
-GUIDELINES for the H1 
-    
-    The H1 should answer the question "What will I do in this topic?" Write the H1 heading in conversational language and use search keywords as much as possible. Since this is a "solve a problem" topic, make sure the title indicates that. Use a strong, specific verb like "Deploy."  
-        
-    Heading must use an industry standard term. If your feature is a proprietary name like "elastic pools", use a synonym. For example: "Learn about elastic pools for multi-tenant databases." In this case multi-tenant database is the industry-standard term that will be an anchor for finding the topic.
-
--------------------->
-
 # <a name="get-started-with-backup-and-restore-for-data-protection-and-recovery"></a>開始使用備份與還原以保護和修復資料
-
-<!------------------
-    GUIDELINES for introduction
-    
-    The introduction is 1-2 sentences.  It is optimized for search and sets proper expectations about what to expect in the article. It should contain the top keywords that you are using throughout the article.The introduction should be brief and to the point of what users will do and what they will accomplish. 
-
-    In this example:
-     
-
-Sentence #1 Explains what the user will do. This is also the metadata description. 
-    This tutorial shows how to deploy an ASP.NET web application to a web app in Azure App Service by using Visual Studio 2015. 
-
-Sentence #2 Explains what users will learn and the benefit.  
-    When you’re finished, you’ll have a simple web application up and running in the cloud.
-
--------------------->
-
-
 在本入門教學課程裡，您將學習如何使用 Azure 入口網站來：
 
 - 檢視資料庫的現有備份
@@ -95,6 +32,9 @@ Sentence #2 Explains what users will learn and the benefit.
 
 **時間估計**︰完成本教學課程將需要大約 30 分鐘 (假設您已符合先決條件)。
 
+> [!TIP]
+> 您可以使用 [PowerShell](sql-database-get-started-backup-recovery-powershell.md) 來執行入門教學課程中相同的工作。
+>
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -105,11 +45,11 @@ Sentence #2 Explains what users will learn and the benefit.
 * 您已完成[藉由使用 Azure 入口網站和 SQL Server Management Studio 或相同的 [PowerShell 版本](sql-database-get-started-powershell.md)來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started.md)。 如果您尚未安裝，請完成本必要的教學課程或執行 [PowerShell 版本](sql-database-get-started-powershell.md)結尾的 PowerShell 指令碼再繼續本教學課程。
 
 
-> [!TIP]
-> 您可以使用 [PowerShell](sql-database-get-started-backup-recovery-powershell.md) 來執行入門教學課程中相同的工作。
+> [!NOTE]
+> 本教學課程會協助您了解下列學習主題的內容︰[SQL Database 備份](sql-database-automated-backups.md)、[長期備份保留期](sql-database-long-term-retention.md)和[使用自動資料庫備份復原 Azure SQL Database](sql-database-recovery-using-backups.md)。
+>  
 
-
-## <a name="sign-in-by-using-your-existing-account"></a>使用您現有的帳戶登入
+## <a name="sign-in-to-the-azure-portal-using-your-azure-account"></a>使用 Azure 帳戶登入 Azure 入口網站
 使用 [現有的訂用帳戶](https://account.windowsazure.com/Home/Index)，遵循下列步驟來連接到 Azure 入口網站。
 
 1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)。
@@ -117,7 +57,6 @@ Sentence #2 Explains what users will learn and the benefit.
 3. 在 [登入]  頁面上，提供您訂用帳戶的認證。
    
    ![Sign in](./media/sql-database-get-started/login.png)
-
 
 <a name="create-logical-server-bk"></a>
 
@@ -127,15 +66,15 @@ Sentence #2 Explains what users will learn and the benefit.
 
 1. 開啟您資料庫的 [SQL Database] 刀鋒視窗，**sqldbtutorialdb**。
 
-    ![新範例資料庫刀鋒視窗](./media/sql-database-get-started/new-sample-db-blade.png)
+   ![新範例資料庫刀鋒視窗](./media/sql-database-get-started/new-sample-db-blade.png)
 
 2. 在工具列上，按一下 [還原]。
 
-    ![還原工具列](./media/sql-database-get-started-backup-recovery/restore-toolbar.png)
+   ![還原工具列](./media/sql-database-get-started-backup-recovery/restore-toolbar.png)
 
 3. 在 [還原] 刀鋒視窗中，檢閱最早的還原點。
 
-    ![最早的還原點](./media/sql-database-get-started-backup-recovery/oldest-restore-point.png)
+   ![最早的還原點](./media/sql-database-get-started-backup-recovery/oldest-restore-point.png)
 
 ## <a name="restore-a-database-to-a-previous-point-in-time"></a>將資料庫還原至先前的時間點
 
@@ -143,37 +82,37 @@ Sentence #2 Explains what users will learn and the benefit.
 
 1. 在資料庫的 [還原] 刀鋒視窗中，檢閱要用來還原資料庫至先前時間點 (名稱為現有資料庫名稱加上時間戳記) 之新資料庫的預設名稱。 這個名稱會變更以反映您在接下來幾個步驟中指定的時間。
 
-    ![還原的資料庫名稱](./media/sql-database-get-started-backup-recovery/restored-database-name.png)
+   ![還原的資料庫名稱](./media/sql-database-get-started-backup-recovery/restored-database-name.png)
 
 2. 按一下 [還原點 (UTC)] 輸入方塊中的 [行事曆] 圖示。
 
-    ![還原點](./media/sql-database-get-started-backup-recovery/restore-point.png)
+   ![還原點](./media/sql-database-get-started-backup-recovery/restore-point.png)
 
 2. 在行事曆上，選取保留期限內的日期
 
-    ![還原點日期](./media/sql-database-get-started-backup-recovery/restore-point-date.png)
+   ![還原點日期](./media/sql-database-get-started-backup-recovery/restore-point-date.png)
 
 3. 在 [還原點 (UTC)] 輸入方塊中，指定您要從自動資料庫備份還原資料庫資料之選取日期上的時間。
 
-    ![還原點時間](./media/sql-database-get-started-backup-recovery/restore-point-time.png)
+   ![還原點時間](./media/sql-database-get-started-backup-recovery/restore-point-time.png)
 
-    >[!NOTE]
-    >請注意，資料庫名稱已變更，以反映您所選取的時間與日期。 另請注意，您無法變更您要還原至特定點之伺服器。 若要還原至不同的伺服器，請使用[異地還原](sql-database-disaster-recovery.md#recover-using-geo-restore)。 最後請注意，您可以還原至[彈性集區](sql-database-elastic-jobs-overview.md)或不同的定價層。 
-    >
+   >[!NOTE]
+   >請注意，資料庫名稱已變更，以反映您所選取的時間與日期。 另請注意，您無法變更您要還原至特定點之伺服器。 若要還原至不同的伺服器，請使用[異地還原](sql-database-disaster-recovery.md#recover-using-geo-restore)。 最後請注意，您可以還原至[彈性集區](sql-database-elastic-jobs-overview.md)或不同的定價層。 
+   >
 
 4. 按一下 [確定] 將您的資料庫還原到較早的時間點到新的資料庫。
 
 5. 在工具列上，按一下 [通知] 圖示以檢視還原作業的狀態。
 
-    ![還原作業進度](./media/sql-database-get-started-backup-recovery/restore-job-progress.png)
+   ![還原作業進度](./media/sql-database-get-started-backup-recovery/restore-job-progress.png)
 
 6. 完成還原作業之後，開啟 [SQL Database] 刀鋒視窗，以檢視剛還原的資料庫。
 
-    ![還原的資料庫](./media/sql-database-get-started-backup-recovery/restored-database.png)
+   ![還原的資料庫](./media/sql-database-get-started-backup-recovery/restored-database.png)
 
-   > [!NOTE]
-   > 從這裡開始，您可以使用 SQL Server Management Studio 連接到已還原的資料庫來執行所需的工作，例如[從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱](sql-database-recovery-using-backups.md#point-in-time-restore)。
-   >
+> [!NOTE]
+> 從這裡開始，您可以使用 SQL Server Management Studio 連接到已還原的資料庫來執行所需的工作，例如[從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱](sql-database-recovery-using-backups.md#point-in-time-restore)。
+>
 
 ## <a name="configure-long-term-retention-of-automated-backups-in-an-azure-recovery-services-vault"></a>在 Azure 復原服務保存庫中設定自動備份的長期保留 
 
@@ -182,11 +121,11 @@ Sentence #2 Explains what users will learn and the benefit.
 
 > [!TIP]
 > 若要刪除備份，請參閱[刪除長期保留備份](sql-database-long-term-retention-delete.md)。
-
+>
 
 1. 開啟您伺服器的 **SQL Server** 刀鋒視窗，**sqldbtutorialserver**。
 
-    ![SQL Server 刀鋒視窗](./media/sql-database-get-started/sql-server-blade.png)
+   ![SQL Server 刀鋒視窗](./media/sql-database-get-started/sql-server-blade.png)
 
 2. 按一下 [長期備份保留]。
 
@@ -246,9 +185,9 @@ Sentence #2 Explains what users will learn and the benefit.
 
    ![檢視復原服務保存庫](./media/sql-database-get-started-backup-recovery/view-recovery-services-vault.png)
 
-   > [!IMPORTANT]
-   > 設定之後，備份會在接下來七天內顯示於保存庫中。 備份出現在保存庫之前，請勿繼續本教學課程。
-   >
+> [!IMPORTANT]
+> 設定之後，備份會在接下來七天內顯示於保存庫中。 備份出現在保存庫之前，請勿繼續本教學課程。
+>
 
 ## <a name="view-backups-in-long-term-retention"></a>在長期保留期限中檢視備份
 
@@ -260,17 +199,17 @@ Sentence #2 Explains what users will learn and the benefit.
 
 2. 開啟您資料庫的 [SQL Database] 刀鋒視窗，**sqldbtutorialdb**。
 
-    ![新範例資料庫刀鋒視窗](./media/sql-database-get-started/new-sample-db-blade.png)
+   ![新範例資料庫刀鋒視窗](./media/sql-database-get-started/new-sample-db-blade.png)
 
 3. 在工具列上，按一下 [還原]。
 
-    ![還原工具列](./media/sql-database-get-started-backup-recovery/restore-toolbar.png)
+   ![還原工具列](./media/sql-database-get-started-backup-recovery/restore-toolbar.png)
 
 4. 在 [還原] 刀鋒視窗中，按一下 [長期]。
 
 5. 在 Azure 保存庫備份下，按一下 [選取備份]，在長期備份保留中檢視可用的資料庫備份。
 
-    ![保存庫中的備份](./media/sql-database-get-started-backup-recovery/view-backups-in-vault.png)
+   ![保存庫中的備份](./media/sql-database-get-started-backup-recovery/view-backups-in-vault.png)
 
 ## <a name="restore-a-database-from-a-backup-in-long-term-backup-retention"></a>從長期備份保留備份中還原資料庫
 
@@ -278,28 +217,25 @@ Sentence #2 Explains what users will learn and the benefit.
 
 1. 在 [Azure 保存庫備份] 刀鋒視窗中，按一下要還原的備份，然後按一下 [選取]。
 
-    ![選取保存庫中的備份](./media/sql-database-get-started-backup-recovery/select-backup-in-vault.png)
+   ![選取保存庫中的備份](./media/sql-database-get-started-backup-recovery/select-backup-in-vault.png)
 
 2. 在 [資料庫名稱] 文字方塊中，提供還原的資料庫名稱。
 
-    ![新的資料庫名稱](./media/sql-database-get-started-backup-recovery/new-database-name.png)
+   ![新的資料庫名稱](./media/sql-database-get-started-backup-recovery/new-database-name.png)
 
 3. 按一下 [確定]，從保存庫中的備份將資料庫還原到新的資料庫。
 
 4. 在工具列上，按一下 [通知] 圖示以檢視還原作業的狀態。
 
-    ![從保存庫還原作業進度](./media/sql-database-get-started-backup-recovery/restore-job-progress-long-term.png)
+   ![從保存庫還原作業進度](./media/sql-database-get-started-backup-recovery/restore-job-progress-long-term.png)
 
 5. 完成還原作業之後，開啟 [SQL Database] 刀鋒視窗，以檢視剛還原的資料庫。
 
-    ![從保存庫還原的資料庫](./media/sql-database-get-started-backup-recovery/restored-database-from-vault.png)
+   ![從保存庫還原的資料庫](./media/sql-database-get-started-backup-recovery/restored-database-from-vault.png)
 
-   > [!NOTE]
-   > 從這裡開始，您可以使用 SQL Server Management Studio 連接到已還原的資料庫來執行所需的工作，例如[從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱](sql-database-recovery-using-backups.md#point-in-time-restore)。
-   >
-
-
-<!--**Next steps**: *Reiterate what users have done, and give them interesting and useful next steps so they want to go on.*-->
+> [!NOTE]
+> 從這裡開始，您可以使用 SQL Server Management Studio 連接到已還原的資料庫來執行所需的工作，例如[從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱](sql-database-recovery-using-backups.md#point-in-time-restore)。
+>
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -309,6 +245,6 @@ Sentence #2 Explains what users will learn and the benefit.
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO2-->
 
 

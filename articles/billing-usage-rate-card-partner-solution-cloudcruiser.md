@@ -4,7 +4,7 @@ description: "提供 Microsoft Azure 計費合作夥伴 Cloud Cruiser 將 Azure 
 services: 
 documentationcenter: 
 author: BryanLa
-manager: mbaldwin
+manager: ruchic
 editor: 
 tags: billing
 ms.assetid: b65128cf-5d4d-4cbd-b81e-d3dceab44271
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: billing
-ms.date: 09/08/2016
+ms.date: 01/07/2017
 ms.author: mobandyo;sirishap;bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b1783823218a883fc9fdec05e835fb7249eed97d
+ms.sourcegitcommit: f7589fa62dcfedc6f99439f453a40f999ff8d845
+ms.openlocfilehash: fc40c33c7ae28adcd2975e89c395db4cfde90a49
 
 
 ---
@@ -49,7 +49,7 @@ Cloud Cruiser 可以用不同的方式運用 RateCard API 資訊。 在這篇文
 
 為了示範這個使用案例，請想像執行於 Microsoft Azure Pack (WAP) 之數個執行個體的工作負載。 目標是要在 Azure 上模擬相同的工作負載，並評估這類移轉的成本。 若要建立這個模擬，有兩個主要的工作要執行：
 
-1. **匯入和處理從 RateCard API 收集的服務資訊。**  這項工作也會在活頁簿上執行，其中從 RateCard API 擷取的內容會轉換並發佈為新的費率方案。 新的費率方案將在模擬中用來評估 Azure 價格。
+1. **匯入和處理從 RateCard API 收集的服務資訊。** 這項工作也會在活頁簿上執行，其中從 RateCard API 擷取的內容會轉換並發佈為新的費率方案。 新的費率方案將在模擬中用來評估 Azure 價格。
 2. **標準化 WAP 服務和 IaaS 的 Azure 服務。** 根據預設，WAP 服務以個別資源 (CPU、記憶體大小、磁碟大小等) 為基礎，而 Azure 服務以執行個體大小 (A0、A1、A2 等等) 為基礎。 第一個工作可以由 Cloud Cruiser 的 ETL 引擎執行，稱為活頁簿，其中資源整合為執行個體大小，類似 Azure 執行個體服務。
 
 ### <a name="import-data-from-the-ratecard-api"></a>從 RateCard API 匯入資料
@@ -65,7 +65,7 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 RateCard AP
 
 以下螢幕擷取畫面顯示轉換步驟，用來處理從 RateCard API 所收集的資料：
 
-![圖 3 - 處理收集自 RateCard API 之資料的轉換步驟][3]
+![圖 3 - 可處理收集自 RateCard API 之資料的轉換步驟][3]
 
 ### <a name="defining-new-services-and-rate-plans"></a>定義新的服務和費率方案
 有不同的方式可定義 Cloud Cruiser 上的服務。 其中一個選項是從使用情況資料匯入服務。 使用公用雲端，其中的服務已由提供者定義時，通常會使用這個方法。
@@ -76,7 +76,7 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 RateCard AP
 
 在轉換程序結束時，就可以建立新的步驟，並將來自 RateCard API 的資料發佈做為新的服務和費率。
 
-![圖 4- 發佈來自 RateCard API 的資料做為新的服務和費率][4]
+![圖 4- 將來自 RateCard API 的資料發佈為新的服務和費率][4]
 
 ### <a name="verify-azure-services-and-rates"></a>確認 Azure 服務和費率
 發佈服務及費率之後，您可以在 Cloud Cruiser 的 [ *服務* ] 索引標籤中確認匯入服務的清單：
@@ -85,14 +85,14 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 RateCard AP
 
 在 [ *費率方案* ] 索引標籤上，您可以利用匯入自 RateCard API 的費率檢查名為 "AzureSimulation" 的費率方案。
 
-![圖 6- 驗證新的費率方案及相關聯的費率][6]
+![圖 6- 驗證新的費率方案及相關費率][6]
 
 ### <a name="normalize-wap-and-azure-services"></a>標準化 WAP 和 Azure 服務
 根據預設，WAP 會根據計算、記憶體和網路資源等使用情況提供使用情況資訊。 在 Cloud Cruiser 中，您可以直接根據這些資源的配置或計量使用情況來定義服務。 例如，您可以設定每小時 CPU 使用量的基本費率，或為配置給執行個體的 GB 記憶體收費。
 
 以這個範例而言，為了比較 WAP 和 Azure 之間的成本，我們必須將 WAP 上的資源使用情況彙總套組，進而將其對應至 Azure 服務。 此轉換可以在活頁簿中輕鬆地實作：
 
-![圖 7 - 轉換 WAP 資料以正規化服務][7]
+![圖 7 - 轉換 WAP 資料以將服務標準化][7]
 
 活頁簿的最後一個步驟是將資料發佈至 Cloud Cruiser 資料庫。 在此步驟期間，使用情況資料現在整合為服務 (進而對應至 Azure 服務)，並繫結至預設的費率來建立費用。
 
@@ -121,7 +121,7 @@ Cloud Cruiser 可以數種方式運用和 Usage API 的整合。 可透過 API �
 
 最終的目標是要能夠建立和下方報告類似的報告，而且能夠根據標記填入的帳戶結構分析成本和耗用量。
 
-![圖 10 - 具備使用標記之細項的報告][10]
+![圖 10 - 含有使用標記之細項的報告][10]
 
 ### <a name="microsoft-azure-tags"></a>Microsoft Azure 標記
 可透過 Azure Usage API 使用的資料不僅包括耗用量資訊，還包括內含於其相關聯之任何標記的資源中繼資料。 標記可提供簡單的方式組織您的資源，但是為了有效率，您必須確認：
@@ -140,7 +140,7 @@ Cloud Cruiser 可以數種方式運用和 Usage API 的整合。 可透過 API �
 
 以下螢幕擷取畫面顯示具有相關聯標記的範例資源群組。
 
-![圖 11 - 在 Azure 入口網站上具有相關聯標記的資源群組][11]
+![圖 11 - 在 Azure 入口網站上具有相關標記的資源群組][11]
 
 下一步是將資訊從 Usage API 提取到 Cloud Cruiser。 Usage API 目前提供 JSON 格式的回應。 擷取的資料範例如下：
 
@@ -190,7 +190,7 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 Usage API �
 ### <a name="adding-the-tag-information-to-the-consumption-data"></a>將標記資訊加入至消耗量資料
 現在我們可以跳至處理來自 Billing API 之耗用量資訊的 *PublishData* 工作表，並新增從標記擷取的欄位。 此程序的執行方式為查看上一個步驟中建立的查閱資料表，使用 *ResourceGroupName* 做為查閱的金鑰。
 
-![圖 5 - 利用來自查閱的資訊填入帳戶結構中][14]
+![圖 5 - 將來自查閱的資訊填入帳戶結構中][14]
 
 請注意，已套用「網路」服務的適當帳戶結構欄位，利用遺漏標記修正問題。 我們也在目標資源群組已外的帳戶結構欄位中填入「其他」以在報告中區別它們。
 
@@ -211,21 +211,21 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 Usage API �
 
 [1]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Create-New-Workbook-Collection.png "圖 1 - 建立新的集合"
 [2]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Import-Data-From-RateCard.png "圖 2 - 從新集合匯入資料"
-[3]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transformation-Steps-Process-RateCard-Data.png "圖 3 - 處理收集自 RateCard API 之資料的轉換步驟"
-[4]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Publish-RateCard-Data-New-Services-Rates.png "圖 4- 發佈來自 RateCard API 的資料做為新的服務和費率"
+[3]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transformation-Steps-Process-RateCard-Data.png "圖 3 - 可處理收集自 RateCard API 之資料的轉換步驟"
+[4]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Publish-RateCard-Data-New-Services-Rates.png "圖 4- 將來自 RateCard API 的資料發佈為新的服務和費率"
 [5]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Verify-Azure-Services-And-Pricing1.png "圖 5- 驗證新的服務"
-[6]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Verify-Azure-Services-And-Pricing2.png "圖 6- 驗證新的費率方案及相關聯的費率"
-[7]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transforming-WAP-Normalize-Services.png "圖 7 - 轉換 WAP 資料以正規化服務"
+[6]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Verify-Azure-Services-And-Pricing2.png "圖 6- 驗證新的費率方案及相關費率"
+[7]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Transforming-WAP-Normalize-Services.png "圖 7 - 轉換 WAP 資料以將服務標準化"
 [8]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Workbook-Scheduling.png "圖 8 - 活頁簿排程"
 [9]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/Workload-Cost-Simulation-Report.png "圖 9 - 工作負載成本比較案例的範例報告"
-[10]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/1_ReportWithTags.png "圖 10 - 具備使用標籤之細項的報告"
-[11]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/2_ResourceGroupsWithTags.png "圖 11 - 在 Azure 入口網站上具有相關聯標籤的資源群組"
+[10]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/1_ReportWithTags.png "圖 10 - 含有使用標記之細項的報告"
+[11]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/2_ResourceGroupsWithTags.png "圖 11 - 在 Azure 入口網站上具有相關標記的資源群組"
 [12]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/3_ImportIntoUsageAPISheet.png "圖 12 - 匯入至 UsageAPI 工作表的 Usage API 資料"
-[13]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/4_NewTagField.png "圖 13 - 建立新的標籤資訊欄位"
-[14]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/5_PopulateAccountStructure.png "圖 14 - 利用來自查閱的資訊填入帳戶結構中"
+[13]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/4_NewTagField.png "圖 13 - 建立新的標記資訊欄位"
+[14]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/5_PopulateAccountStructure.png "圖 14 - 將來自查閱的資訊填入帳戶結構中"
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

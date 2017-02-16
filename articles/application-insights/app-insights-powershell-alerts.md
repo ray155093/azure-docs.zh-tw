@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: b70c8baab03703bc00b75c2c611f69e3b71d6cd7
-ms.openlocfilehash: ff5e7721e2cdf2f8b034f714b6b58642efcb6368
+ms.sourcegitcommit: 4edd2696c9a5709ded6e2a3e352090775335f0d2
+ms.openlocfilehash: 710663e122bdebff575c762a501a0d261056e1bc
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: ff5e7721e2cdf2f8b034f714b6b58642efcb6368
 * 使用該程式安裝 Microsoft Azure PowerShell
 
 ## <a name="connect-to-azure"></a>連接到 Azure
-啟動 Azure PowerShell 並 [連接至您的訂用帳戶](../powershell-install-configure.md)：
+啟動 Azure PowerShell 並 [連接至您的訂用帳戶](/powershell/azureps-cmdlets-docs)：
 
 ```PowerShell
 
@@ -142,6 +142,6 @@ GUID 是該訂用帳戶的 ID (而非應用程式的檢測金鑰)。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

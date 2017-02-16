@@ -13,18 +13,23 @@ ms.workload: multiple
 ms.tgt_pltfrm: command-line-interface
 ms.devlang: na
 ms.topic: article
-ms.date: 08/05/2016
+ms.date: 01/03/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 028e09c031037f3c4001eccfb4543122eef2c055
+ms.sourcegitcommit: 9a2ab28a2dc456d5f21242ded1d348f411d3d994
+ms.openlocfilehash: ee42c2e4344fe712084208c25fb5c1a062dba1aa
 
 
 ---
 # <a name="azure-cli-commands-in-resource-manager-mode"></a>Resource Manager 模式中的 Azure CLI 命令
 本文提供在 Azure Resource Manager 部署模型中建立和管理 Azure 資源時，常用的 Azure 命令列介面 (CLI) 命令的語法和選項。 您可以在 Resource Manager (ARM) 模式中執行 CLI 來存取這些命令。 這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。 如需 Azure 資源及資源群組的一般概觀，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。  
 
-若要開始，首先[安裝 Azure CLI](../xplat-cli-install.md)，並使用工作或學校帳戶或 Microsoft 帳戶身分識別[連接到 Azure 訂用帳戶](../xplat-cli-connect.md)。
+> [!NOTE]
+> 本文說明 Azure CLI (有時稱為 Azure CLI 1.0) 中的 Resource Manager 模式命令。 若要在 Resource Manager 模型中工作，您也可以嘗試 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，這是我們的新一代多平台 CLI。
+>深入了解[舊版和新版 Azure CLI](/cli/azure/old-and-new-clis)。
+>
+
+若要開始使用，請先[安裝 Azure CLI](../xplat-cli-install.md)，並[連線到您的 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
 如需在資源管理員模式中命令列目前的命令語法和選項，請輸入 `azure help`，或顯示特定命令的說明 `azure help [command]`。 也可以在文件中找到建立和管理特定 Azure 服務的 CLI 範例。
 
@@ -1861,6 +1866,6 @@ ms.openlocfilehash: 028e09c031037f3c4001eccfb4543122eef2c055
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

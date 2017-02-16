@@ -4,7 +4,7 @@ description: "了解如何將 Office 365 目錄 (租用戶) 加入至 Azure 訂�
 services: 
 documentationcenter: 
 author: JiangChen79
-manager: mbaldwin
+manager: vikdesai
 editor: 
 tags: billing,top-support-issue
 ms.assetid: cc9c57c6-7bfd-4dea-9027-c75ef3737589
@@ -16,24 +16,19 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cjiang
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 36cd9eac7be2d99971d8d2e227cd4b761df82d08
+ms.sourcegitcommit: 700724a0905c899039eb05c4fe864e9b304b7192
+ms.openlocfilehash: 7c8ae4895c5ae985851e797ebfb5eed415e3b4d4
 
 
 ---
 # <a name="associate-an-office-365-tenant-with-an-azure-subscription"></a>將 Office 365 租用戶與 Azure 訂用帳戶產生關聯
 如果您在過去分開取得 Azure 和 Office 365 訂用帳戶，而且現在想要能夠從 Azure 訂用帳戶存取 Office 365 租用戶。很簡單。 本文將說明如何做到。
 
-> [!NOTE]
-> 本文不適用於 Enterprise 合約 (EA) 客戶。
-> 
-> 
-
 ## <a name="quick-guidance"></a>簡要指引
 若要將 Office 365 租用戶與您的 Azure 訂用帳戶建立關聯，請使用您的 Azure 帳戶來新增 Office 365 租用戶，然後將您的 Azure 訂用帳戶與 Office 365 租用戶建立關聯。
 
 ## <a name="detailed-steps"></a>詳細步驟
-在此案例中，Kelley Wall 這名使用者的 Azure 訂用帳戶位於 kelley.wall@outlook.com. 帳戶之下。Kelley 也擁有 Office 365 訂用帳戶，其位於 kelley.wall@contoso.onmicrosoft.com. 帳戶之下。現在 Kelley 想要透過 Azure 訂用帳戶存取 Office 365 租用戶。
+在此案例中，Kelley Wall 這名使用者的 kelley.wall@outlook.com 帳戶名下已擁有 Azure 訂用帳戶。 Kelley 在 kelley.wall@contoso.onmicrosoft.com 帳戶之下也有 Office 365 訂用帳戶。 現在 Kelley 想要透過 Azure 訂用帳戶存取 Office 365 租用戶。
 
 ![Azure Active Directory 狀態的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s31_msa-aad-status.png)
 
@@ -42,27 +37,19 @@ ms.openlocfilehash: 36cd9eac7be2d99971d8d2e227cd4b761df82d08
 ### <a name="prerequisites"></a>必要條件
 若要讓關聯正確運作，您必須滿足以下必要條件︰
 
-* 您需要 Azure 訂用帳戶的服務管理員認證。 共同管理員無法執行一部分的步驟。
+* 您需要 Azure 訂用帳戶的服務管理員認證。 共同管理員無法執行一部分的步驟。 若要變更服務管理員，請參閱[如何新增或變更 Azure 管理員角色](./billing-add-change-azure-subscription-administrator.md#how-to-change-service-administrator-for-a-subscription)。
 * 您需要 Office 365 租用戶的全域系統管理員認證。
 * 服務管理員的電子郵件地址不得包含於 Office 365 租用戶中。
 * 服務管理員的電子郵件地址不得符合 Office 365 租用戶的任何全域系統管理員。
 * 如果您目前使用的電子郵件地址同時為 Microsoft 帳戶和組織帳戶，請暫時將 Azure 訂用帳戶的服務管理員變更成使用另一個 Microsoft 帳戶。 您可以在 [Microsoft 帳戶註冊頁面](https://signup.live.com/)建立新的 Microsoft 帳戶。
 
-若要變更您的服務管理員，請遵循下列步驟：
-
-1. 登入[帳戶管理入口網站](https://account.windowsazure.com/subscriptions)。
-2. 選取您想變更的訂用帳戶。
-3. 選取 [編輯訂用帳戶詳細資料]。
-   
-    ![Azure 訂用帳戶資訊的螢幕擷取畫面，其中 [編輯訂用帳戶詳細資料] 已反白顯示](./media/billing-add-office-365-tenant-to-azure-subscription/s33_azure-edit-subscription-details.png)
-4. 在 [服務管理員]  方塊中，輸入新的服務管理員的電子郵件地址。
-   
-    ![[編輯訂用帳戶] 對話方塊的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s34_change-subscription-service-admin.png)
-
 ### <a name="associate-the-office-365-tenant-with-the-azure-subscription"></a>將 Office 365 租用戶與 Azure 訂用帳戶產生關聯
 若要將 Office 365 租用戶與 Azure 訂用帳戶產生關聯，請遵循下列步驟︰
 
-1. 使用服務管理員認證登入[帳戶管理入口網站](https://account.windowsazure.com/subscriptions)。
+1. 使用服務管理員認證登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
+
+    ![Azure 登入的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s313_azure-sign-in-service-admin.png)
+
 2. 在左窗格中選取 [ACTIVE DIRECTORY]。
    
    ![Active Directory 項目的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s35-classic-portal-active-directory-entry.png)
@@ -75,7 +62,7 @@ ms.openlocfilehash: 36cd9eac7be2d99971d8d2e227cd4b761df82d08
    ![Azure Active Directory 預設目錄的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s36-aad-tenant-default.png)
 3. 將 Office 365 租用戶加入至您的 Azure 訂用帳戶。
    
-    a. 選取 [新增] > 目錄] > 自訂建立]。
+    a. 選取 新增 > 目錄 > 自訂建立。
    
     ![Azure Active Directory 自訂建立的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s37-aad-custom-create.png)
    
@@ -95,7 +82,7 @@ ms.openlocfilehash: 36cd9eac7be2d99971d8d2e227cd4b761df82d08
    
     ![登出的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s312_use-contoso-directory-azure-confirm-and-sign-out.png)
    
-    f. 使用服務管理員認證登入[帳戶管理入口網站](https://account.windowsazure.com/subscriptions)。
+    f. 使用服務管理員認證登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
    
     ![Azure 登入的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s313_azure-sign-in-service-admin.png)
    
@@ -145,15 +132,11 @@ ms.openlocfilehash: 36cd9eac7be2d99971d8d2e227cd4b761df82d08
     ![系統管理員索引標籤的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s321_azure-co-administrator-added.png)
 6. 接下來，您可以測試共同管理員的存取。
    
-    a. 登出 [帳戶管理入口網站]。
+    a. 登出 Azure 傳統入口網站。
    
-    b. 開啟[帳戶管理入口網站](https://account.windowsazure.com/subscriptions)或 [Azure 入口網站](https://portal.azure.com/)。
+    b.這是另一個 C# 主控台應用程式。 開啟 [Azure 入口網站](https://portal.azure.com/)。
    
-    c. 如果 Azure 登入頁面有 [使用您的組織帳戶登入] 連結，請選取此連結。 否則，請略過此步驟。
-   
-    ![Azure 登入頁面的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/3-sign-in-to-azure.png)
-   
-    d. 輸入共同管理員的認證，然後選取 [登入] 。
+    c. 輸入共同管理員的認證，然後選取 [登入] 。
    
     ![Azure 登入頁面的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s324_azure-sign-in-with-co-admin.png)
 
@@ -168,6 +151,6 @@ ms.openlocfilehash: 36cd9eac7be2d99971d8d2e227cd4b761df82d08
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

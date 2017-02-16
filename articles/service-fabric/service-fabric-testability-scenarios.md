@@ -1,5 +1,5 @@
 ---
-title: "混亂和容錯移轉測試 | Microsoft Docs"
+title: "針對 Azure 微服務建立混亂與容錯移轉測試 | Microsoft Docs"
 description: "使用 Service Fabric 混亂測試和容錯移轉測試案例來引發錯誤並確認服務的可靠性。"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 01/19/2017
 ms.author: motanv
 translationtype: Human Translation
-ms.sourcegitcommit: 1a9bec270650223cd40b3b60e5bc9fc7e212a207
-ms.openlocfilehash: 2b533be6bc7aa0fac0a6b0e4f5aee1df3714acd7
+ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
+ms.openlocfilehash: 8975df6b0fe594b092c9890352c7b3787733d8db
 
 
 ---
@@ -43,7 +43,7 @@ ms.openlocfilehash: 2b533be6bc7aa0fac0a6b0e4f5aee1df3714acd7
 
 混亂測試會在指定的一段時間中，多次執行反覆的錯誤和叢集驗證。 讓叢集穩定和驗證成功的所需時間也是可設定的。 當您在叢集驗證中發生一次失敗，案例就會失敗。
 
-例如，請考慮將測試設為執行 1 小時，且最多 3 個並行錯誤。 測試會引發 3 個錯誤，然後驗證叢集的健康情況。 上一個步驟的測試會反覆進行，直到叢集變成狀況不佳，或經過了 1 小時為止。 如果任何反覆運算中的叢集變成狀況不佳，也就是在設定的時間內不穩定，則測試就會失敗並產生例外狀況。 此例外狀況表示發生了錯誤，且需要進一步調查。
+例如，請考慮將測試設為執行&1; 小時，且最多&3; 個並行錯誤。 測試會引發&3; 個錯誤，然後驗證叢集的健康情況。 上一個步驟的測試會反覆進行，直到叢集變成狀況不佳，或經過了&1; 小時為止。 如果任何反覆運算中的叢集變成狀況不佳，也就是在設定的時間內不穩定，則測試就會失敗並產生例外狀況。 此例外狀況表示發生了錯誤，且需要進一步調查。
 
 以目前的形式來看，混亂測試的錯誤產生引擎只會引發安全的錯誤。 這表示因為沒有外部錯誤，所以永遠不會發生仲裁或資料遺失。
 
@@ -256,6 +256,6 @@ Invoke-ServiceFabricFailoverTestScenario -TimeToRunMinute $timeToRun -MaxService
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure IoT 中樞 IP 篩選器 | Microsoft Docs"
+title: "Azure IoT 中樞 IP 連線篩選器 | Microsoft Docs"
 description: "如何使用 IP 篩選來封鎖從特定 IP 位址至 Azure IoT 中樞的連接。 您可以封鎖來自個別 IP 位址或 IP 位址範圍的連接。"
 services: iot-hub
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 01/05/2017
 ms.author: boltean
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: 784454c3bc0500ac0896177e843b3c194341cdd1
+ms.sourcegitcommit: ddb729d29072724f691c178967b6181f6ce06df4
+ms.openlocfilehash: a9207d116e9b7360865c950ba00210ed67c3e028
 
 
 ---
@@ -61,6 +61,9 @@ IP 篩選器規則會套用在 IoT 中樞服務層級。 因此，IP 篩選器�
 
 您可以按兩下包含規則的資料列，以編輯現有規則。
 
+> [!NOTE]
+> 拒絕 IP 位址可防止其他 Azure 服務 (例如 Azure 串流分析、Azure 虛擬機器，或入口網站中的裝置總管) 與 IoT 中樞互動。
+
 ## <a name="delete-an-ip-filter-rule"></a>刪除 IP 篩選器規則
 
 若要刪除 IP 篩選器規則，請選取方格中的一個或多個規則，然後按一下 [刪除]。
@@ -71,7 +74,7 @@ IP 篩選器規則會套用在 IoT 中樞服務層級。 因此，IP 篩選器�
 
 IP 篩選器規則會依序套用，第一個符合 IP 位址的規則會決定接受或拒絕動作。
 
-例如，如果您想要接受 192.168.100.0/22 範圍中的位址，並拒絕其他所有位址，則方格中的第一個規則應接受位址範圍 192.168.100.0/22。 下一個規則應使用 0.0.0.0/0 範圍拒絕所有位址。 如果您新增的最後一個規則是拒絕 0.0.0.0/0 範圍，則會將預設行為變更為加入允許清單。
+例如，如果您想要接受 192.168.100.0/22 範圍中的位址，並拒絕其他所有位址，則方格中的第一個規則應接受位址範圍 192.168.100.0/22。 下一個規則應使用 0.0.0.0/0 範圍拒絕所有位址。
 
 按一下資料列前端呈垂直方向的三個點並使用拖放功能，即可變更方格中的 IP 篩選器規則順序。
 
@@ -103,6 +106,6 @@ IP 篩選器規則會依序套用，第一個符合 IP 位址的規則會決定�
 [lnk-metrics]: iot-hub-metrics.md
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

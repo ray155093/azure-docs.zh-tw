@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 09/19/2016
+ms.date: 12/19/2016
 ms.author: pratshar
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: a425de26cacc9525d0dc9a6842b5060f8c37a462
+ms.sourcegitcommit: c5e80c3cd3caac07e250d296c61fb3813e0000dd
+ms.openlocfilehash: 2c19472c93d097f29692af18063404f3bf28b6bd
 
 
 ---
-# <a name="designing-your-network-infrastructure-for-disaster-recovery"></a>設計用於災害復原的網路基礎結構
+# <a name="designing-your-network-for-disaster-recovery"></a>設計用於災害復原的網路
 這篇文章的對象是 IT 專業人員，他們負責架構設計、實作和支援業務持續性和災害復原 (BCDR) 的基礎結構，而且想要利用 Microsoft Azure Site Recovery (ASR) 來支援並增強其 BCDR 服務。 本白皮書將討論 System Center Virtual Machine Manager 伺服器部署的實際考量、自動縮放子網路與子網路容錯移轉的優缺點比較，以及如何架構 Microsoft Azure 中虛擬網站的災害復原。
 
 ## <a name="overview"></a>Overview
@@ -83,9 +83,8 @@ ASR 讓容錯移轉成真，第一步是將指定的虛擬機器從主要資料�
 
 ![保留 IP 位址](./media/site-recovery-network-design/network-design4.png)
 
-圖 5
 
-圖 5 顯示複本虛擬機器的容錯移轉 TCP/IP 設定 (在 Hyper-V 主控台上)。 這些設定會在虛擬機器啟動之前、容錯移轉之後填入。
+上圖顯示複本虛擬機器的容錯移轉 TCP/IP 設定 (在 HYPER-V 主控台上)。 這些設定會在虛擬機器啟動之前、容錯移轉之後填入。
 
 如果找不到相同的 IP，ASR 會配置已定義的 IP 位址集區中一些其他可用的 IP 位址。
 
@@ -137,15 +136,13 @@ Woodgrove 決定將來自 IP 位址範圍 (172.16.1.0/24, 172.16.2.0/24) 的 IP 
 
 ![不同的 IP - 容錯移轉之前](./media/site-recovery-network-design/network-design10.png)
 
-圖 11
 
-在 圖 11 中，有些應用程式裝載在主要網站上的子網路 192.168.1.0/24 中，而且它們已設定為在容錯移轉後出現在子網路 172.16.1.0/24 的復原網站上。 已適當地設定 VPN 連線/網路路由，讓所有的三個站台可以互相存取。
+在上圖中，有些應用程式裝載在主要網站上的子網路 192.168.1.0/24 中，而且它們已設定為在容錯移轉後出現在子網路 172.16.1.0/24 的復原網站上。 已適當地設定 VPN 連線/網路路由，讓所有的三個站台可以互相存取。
 
-如圖 12 所示，在容錯移轉一或多個應用程式之後，它們會在復原子網路中還原。 在此情況下，我們不受同時容錯移轉整個子網路的限制。 不需要進行任何變更來重新設定 VPN 或網路路由。 容錯移轉和某些 DNS 更新會確定應用程式可供存取。 如果 DNS 設定為允許動態更新，則虛擬機器一旦在容錯移轉之後啟動，就會使用新的 IP 自行註冊。
+如下圖所示，在容錯移轉一或多個應用程式之後，它們會在復原子網路中還原。 在此情況下，我們不受同時容錯移轉整個子網路的限制。 不需要進行任何變更來重新設定 VPN 或網路路由。 容錯移轉和某些 DNS 更新會確定應用程式可供存取。 如果 DNS 設定為允許動態更新，則虛擬機器一旦在容錯移轉之後啟動，就會使用新的 IP 自行註冊。
 
 ![不同的 IP - 容錯移轉之後](./media/site-recovery-network-design/network-design11.png)
 
-圖 12
 
 在容錯移轉之後，複本虛擬機器具有的 IP 位址可能與主要虛擬機器的 IP 位址不同。 虛擬機器在啟動後將更新他們正在使用的 DNS 伺服器。 在整個網路中，DNS 項目通常需要變更或排清，而且網路資料表中的快取項目必須更新或排清，因此這些狀態變更發生時面臨停機時間，不是罕見的情況。 減輕這個問題的方法有：
 
@@ -162,7 +159,7 @@ Woodgrove 決定將來自 IP 位址範圍 (172.16.1.0/24, 172.16.2.0/24) 的 IP 
         $newrecord.RecordData[0].IPv4Address  =  $IP
         Set-DnsServerResourceRecord -zonename $zone -OldInputObject $record -NewInputObject $Newrecord
 
-### <a name="changing-the-ip-addresses-dr-to-azure"></a>變更 IP 位址 - DR 到 Azure
+### <a name="changing-the-ip-addresses--dr-to-azure"></a>變更 IP 位址 - DR 到 Azure
 [Microsoft Azure 做為災害復原網站的網路基礎結構設定](http://azure.microsoft.com/blog/2014/09/04/networking-infrastructure-setup-for-microsoft-azure-as-a-disaster-recovery-site/) 部落格文章說明如何在不一定要保留 IP 位址時，設定必要的 Azure 網路基礎結構。 文章一開始描述應用程式，接著探討如何在內部部署及 Azure 設定網路，最後說明如何執行測試容錯移轉和計劃容錯移轉。
 
 ## <a name="next-steps"></a>後續步驟
@@ -170,6 +167,6 @@ Woodgrove 決定將來自 IP 位址範圍 (172.16.1.0/24, 172.16.2.0/24) 的 IP 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

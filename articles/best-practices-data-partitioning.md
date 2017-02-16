@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/14/2016
+ms.date: 01/09/2017
 ms.author: masashin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 738c6ecb40118491dd2e833443c91891e99941d3
+ms.sourcegitcommit: 5f62eef58c8a334013b000176f74cc8f7652f688
+ms.openlocfilehash: 312d1f417df612eee46bb078d784576a438ba0ab
 
 
 ---
@@ -178,7 +178,7 @@ ms.openlocfilehash: 738c6ecb40118491dd2e833443c91891e99941d3
 * **盡可能一併保留每個分割區中最常見資料庫作業的資料，以使跨分割區的資料存取作業減到最少**。 跨分割區查詢可能比只在單一分割區內查詢更費時，但是最佳化一組查詢的分割區可能會對其他組的查詢造成不良影響。 當您無法避免跨分割區查詢時，可以在應用程式內執行平行查詢並彙總結果，來將查詢時間降至最低。 在某些情況下可能無法使用這種方法，例如，必須從某個查詢中取得結果並在下一個查詢使用此結果時。
 * **如果查詢會利用相對靜態的參考資料 (例如，郵遞區號資料表或產品清單)，請考慮將此資料複寫到所有分割區，以減少在不同分割區中個別查閱作業的需求**。 這種方法也會減少參考資料成為「熱門」資料集的可能性，其受限於整個系統中的高流量。 不過，還是會有與同步處理此參考資料的可能發生的任何變更相關聯的其他成本。
 * **盡可能最小化跨垂直和功能分割區之參考完整性的需求**。 在這些配置中，應用程式本身會負責在更新和取用資料時維護跨分割區的參考完整性。 必須跨多個分割區聯結資料的查詢執行速度遠低於只在相同分割區內聯結資料的查詢，因為應用程式通常必須先根據索引鍵，接著根據外部索引鍵來執行連續查詢。 請改為考慮將相關資料複寫或取消正規化。 為了將必須跨分割區聯結的查詢時間降至最低，請在分割區之間執行平行查詢，並在應用程式內聯結資料。
-* **請考慮資料分割配置可能會對跨分割區的資料一致性產生的效果。**  評估強式一致性是否為實際的需求。 相反地，雲端中的常見方法是實作最終一致性。 每個分割區中的資料會個別更新，而應用程式邏輯可確保所有更新都會順利完成。 它也會在執行最終一致性作業時，處理查詢資料所引發的不一致性。 如需實作最終一致性的詳細資訊，請參閱 [Data consistency primer (資料一致性入門)]。
+* **請考慮資料分割配置可能會對跨分割區的資料一致性產生的效果。** 評估強式一致性是否為實際的需求。 相反地，雲端中的常見方法是實作最終一致性。 每個分割區中的資料會個別更新，而應用程式邏輯可確保所有更新都會順利完成。 它也會在執行最終一致性作業時，處理查詢資料所引發的不一致性。 如需實作最終一致性的詳細資訊，請參閱 [Data consistency primer (資料一致性入門)]。
 * **請考慮查詢如何尋找正確的分割區**。 如果查詢必須掃描所有分割區來尋找所需的資料，即使是有多個平行查詢正在執行，還是會對效能產生嚴重的影響。 搭配垂直和功能資料分割策略使用的查詢可以自然能夠指定分割區。 不過，水平資料分割 (分區化) 會使得尋找項目變得困難，因為每個分區都有相同的結構描述。 典型的分區化解決方案是維護對應，用來查閱特定資料項目的分區位置。 此對應會在應用程式的分區化邏輯中實作，或者如果它支援透明的分區化，就會由資料存放區維護。
 * **使用水平資料分割策略時，請考慮定期重新平衡分區**。 這有助於根據大小和工作負載來平均分佈資料，進而最小化作用點、最大化查詢效能，並解決實體的儲存體限制。 不過，這是一個複雜的工作，通常需要使用自訂工具或程序。
 * **如果您複寫每個分割區，就能提供額外的保護以防止發生錯誤**。 如果單一複本失敗，查詢可以導向至可用的複本。
@@ -300,7 +300,7 @@ Azure 表格儲存體是一個索引鍵-值存放區，專為資料分割而設�
 *圖 7.範例儲存體帳戶中的表格和分割區*
 
 > [!NOTE]
-> Azure 資料表儲存體也會將時間戳記欄位加入至每個實體。 時間戳記欄位由資料表儲存體維護，而且會在每次修改實體並寫回分割區時更新。 表格儲存體服務會使用此欄位來實作開放式並行存取  (每次應用程式將實體寫回表格儲存體時，表格儲存體服務會比較正在寫入之實體中的時間戳記值以及保留於表格儲存體中的值。 如果這兩個值不同，就表示另一個應用程式在上次擷取實體之後應該已修改該實體，但寫入作業失敗。 請勿以您自己的程式碼修改此欄位，也不要在建立新實體時指定此欄位的值。
+> Azure 資料表儲存體也會將時間戳記欄位加入至每個實體。 時間戳記欄位由資料表儲存體維護，而且會在每次修改實體並寫回分割區時更新。 表格儲存體服務會使用此欄位來實作開放式並行存取 (每次應用程式將實體寫回表格儲存體時，表格儲存體服務會比較正在寫入之實體中的時間戳記值以及保留於表格儲存體中的值。 如果這兩個值不同，就表示另一個應用程式在上次擷取實體之後應該已修改該實體，但寫入作業失敗。 請勿以您自己的程式碼修改此欄位，也不要在建立新實體時指定此欄位的值。
 >
 >
 
@@ -380,14 +380,7 @@ Azure DocumentDB 是一種可以儲存文件的 NoSQL 資料庫。 DocumentDB �
 
 文件集合會提供自然的機制，可在單一資料庫內分割資料。 在內部，DocumentDB 資料庫可以跨越多部伺服器，而且可能會嘗試跨伺服器分佈集合以分散負載。 實作分區化最簡單的方法是建立每個分區的集合。
 
-> [!NOTE]
-> 每個 DocumentDB 資料庫都有「效能層級」來決定它取得的資源數量。 每個效能層級都會與「要求單位」(RU) 速率限制相關聯。 RU 速率限制會指定要保留且可供該集合獨佔使用的資源量。 集合的成本取決於為該集合選取的效能層級。 效能層級 (和 RU 速率限制) 愈高，費用也愈高。 您可以使用 Azure 入口網站來調整集合的效能層級。 如需詳細資訊，請參閱 Microsoft 網站上的 [DocumentDB 中的效能層級] 頁面。
->
->
-
-所有資料庫都要建立在 DocumentDB 帳戶的內容中。 單一 DocumentDB 帳戶可以包含多個資料庫，而且它會指定要在哪些區域中建立資料庫。 每個 DocumentDB 帳戶也會強制執行它自己的存取控制。 您可以使用 DocumentDB 帳戶異地尋找靠近需要存取帳戶之使用者的地區 (資料庫內的集合)，並強制執行限制，以便只讓使用者和它們連接。
-
-每個 DocumentDB 帳戶都有配額，可限制其包含的資料庫和集合數目，以及可用的文件儲存體數量。 這些限制可能會變更，但會描述在 Microsoft 網站上的 [DocumentDB 限制與配額] 頁面上。 理論上，如果您實作一個系統，其中所有分區都屬於同一個資料庫，就有可能達到帳戶的儲存體容量限制。
+所有資料庫都要建立在 DocumentDB 帳戶的內容中。 單一 DocumentDB 帳戶可以包含數個資料庫，而且它會指定要在哪些區域中建立資料庫。 每個 DocumentDB 帳戶也會強制執行它自己的存取控制。 您可以使用 DocumentDB 帳戶異地尋找靠近需要存取帳戶之使用者的地區 (資料庫內的集合)，並強制執行限制，以便只讓使用者和它們連接。
 
 在此情況下，您可能必須建立其他 DocumentDB 帳戶和資料庫，並跨資料庫分佈分區。 不過，即使您不太可能達到資料庫的儲存體容量，它還是使用多個資料庫的最佳做法。 這是因為每個資料庫都有自己的一組使用者和權限，而您可以使用這項機制，在每個資料庫上隔離集合的存取權。
 
@@ -405,12 +398,10 @@ Azure DocumentDB 是一種可以儲存文件的 NoSQL 資料庫。 DocumentDB �
 
 決定如何利用 DocumentDB 資料庫分割資料時，請考慮下列幾點：
 
-* **DocumentDB 資料庫的可用資源受限於 DocumentDB 帳戶的配額限制**。 每個資料庫可以保留許多集合 (同樣地，有其限制)，每個集合都和控管該集合 RU 速率限制 (保留的輸送量) 的效能層級相關聯。 如需詳細資訊，請瀏覽 Microsoft 網站上的 [DocumentDB 限制與配額] 頁面。
 * **每份文件都必須有一個屬性，可用來在保留該文件之集合內唯一識別該文件**。 這個屬性和定義哪個集合要保留該文件的分區索引鍵不同。 集合可以包含大量文件。 理論上，它只受限於文件識別碼的最大長度。 文件識別碼可多達 255 個字元。
 * **針對文件的所有作業都會在交易的內容中執行。DocumentDB 資料庫中的交易範圍則是包含該文件的集合。** 如果作業失敗，會復原已執行的工作。 當文件受限於某個作業時，所做的任何變更都會受限於快照集層級隔離。 例如，如果建立新文件的要求失敗，此機制可確保另一個同時查詢資料庫的使用者不會看到當時移除的部分文件。
 * **DocumentDB 資料庫查詢的範圍也只限於集合層級**。 單一查詢只能從一個集合擷取資料。 如果您需要從多個集合中擷取資料，您必須個別查詢每個集合，並利用應用程式程式碼來合併結果。
 * **DocumentDB 資料庫支援所有可和文件一起儲存在集合中的可程式化項目**。 這些包括預存程序、使用者定義函式和觸發程序 (以 JavaScript 撰寫)。 這些項目可以在相同的集合內存取任何文件。 此外，這些項目會在環境交易的範圍內執行 (如果是針對文件執行之建立、刪除或取代作業的結果引發了觸發程序)，或啟動新的交易 (如果是明確的用戶端要求結果做為執行的預存程序)。 如果可程式化項目中的程式碼擲回例外狀況，交易就會復原。 您可以使用預存程序和觸發程序來維護文件之間的完整性和一致性，但這些文件都必須屬於相同的集合。
-* **您想要在 DocumentDB 帳戶的資料庫中保留的集合應該不太可能會超過集合的效能層級所定義的輸送量限制**。 如需這些限制的說明，請參閱 Microsoft 網站上的 [管理 DocumentDB 容量需求] 頁面。 如果您預期會達到這些限制，請考慮在不同的 DocumentDB 帳戶中跨資料庫劃分集合，以減少每個集合的負載。
 
 ## <a name="partitioning-strategies-for-azure-search"></a>Azure 搜尋服務的資料分割策略
 搜尋資料的功能通常是許多 Web 應用程式所提供的主要導覽及探索方法。 它可協助使用者根據搜尋準則的組合快速尋找資源 (例如，電子商務應用程式中的產品)。 Azure 搜尋服務提供 web 內容上的全文檢索搜尋功能，並包括預先輸入、根據鄰近符合項目建議查詢，以及多面向導覽等功能。 如需這些功能的完整說明，請參閱 Microsoft 網站上的 [何謂 Azure 搜尋服務？] 頁面。
@@ -547,7 +538,6 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
 * Microsoft 網站上的 [執行實體群組交易] 頁面提供有關透過儲存在 Azure 表格儲存體的實體實作交易式作業的詳細資訊。
 * Microsoft 網站上的 [Azure 儲存體表格設計指南] 一文會包含有關 Azure 表格儲存體中的資料分割的詳細資訊。
 * Microsoft 網站上的 [使用 Azure 的內容傳遞網路] 頁面會說明如何使用 Azure 內容傳遞網路來複寫保留在 Azure Blob 儲存體中的資料。
-* Microsoft 網站上的 [管理 DocumentDB 容量需求] 頁面包含 Azure DocumentDB 資料庫如何配置資源的相關資訊。
 * Microsoft 網站上的 [何謂 Azure 搜尋服務？] 頁面會提供可在 Azure 搜尋服務使用之功能的完整說明。
 * Microsoft 網站上的 [Azure 搜尋中的服務限制] 頁面包含 Azure 搜尋服務之每個執行個體的功能相關資訊。
 * Microsoft 網站上的 [支援的資料類型 (Azure 搜尋服務)] 頁面摘要列出您可以在可搜尋文件和索引中使用的資料類型。
@@ -564,15 +554,13 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
 [Data consistency primer (資料一致性入門)]: http://aka.ms/Data-Consistency-Primer
 [Data Partitioning Guidance]: https://msdn.microsoft.com/library/dn589795.aspx
 [Data Types]: http://redis.io/topics/data-types
-[DocumentDB 限制與配額]: documentdb/documentdb-limits.md
 [彈性資料庫功能概觀]: sql-database/sql-database-elastic-scale-introduction.md
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
 [Index Table Pattern]: http://aka.ms/Index-Table-Pattern
-[管理 DocumentDB 容量需求]: documentdb/documentdb-manage.md
 [Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
 [多分區查詢]: sql-database/sql-database-elastic-scale-multishard-querying.md
 [Partitioning: how to split data among multiple Redis instances (資料分割：如何在多個 Redis 執行個體上分割資料)]: http://redis.io/topics/partitioning
-[DocumentDB 中的效能層級]: documentdb/documentdb-performance-levels.md
+[Performance levels in DocumentDB]: documentdb/documentdb-performance-levels.md
 [Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
 [Redis 叢集教學課程]: http://redis.io/topics/cluster-tutorial
 [在 Azure 中的 CentOS Linux VM 上執行 Redis]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
@@ -588,6 +576,6 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 09/02/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
+ms.sourcegitcommit: 58212ae80ef2b930661e739aeb4779c6f9bd1bec
+ms.openlocfilehash: c1faf24f1f11eba9bfa3042f5d1cd279363e4eca
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 了解如何使用 HDinsight 中的 [Apache Phoenix](http://phoenix.apache.org/) ，以及如何在您的工作站上安裝與設定 SQuirreL 以連線到 HDInsight 中的 HBase 叢集。 如需有關 Phoenix 的詳細資訊，請參閱 [15 分鐘內了解 Phoenix](http://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html)。 如需 Phoenix 文法，請參閱 [Phoenix 文法](http://phoenix.apache.org/language/index.html)。
 
 > [!NOTE]
-> 如需 HDInsight 中的 Phoenix 版本資訊，請參閱 [HDInsight 在 Hadoop 叢集版本中提供什麼新功能？][hdinsight-versions]。
+> 如需 HDInsight 中的 Phoenix 版本資訊，請參閱 [HDInsight 在 Hadoop 叢集版本中提供什麼新功能？](hdinsight-component-versioning.md)
 >
 > 本文件的資訊是 以 Windows 為基礎之 HDInsight 叢集的特定資訊。 如需在以 Linux 為基礎的 HDInsight 上使用 Phoenix 的相關資訊，請參閱 [Use Apache Phoenix with Linux-based HBase clusters in HDinsight (在 HDinsight 中搭配以 Linux 為基礎的 HBase 叢集使用 Apache Phoenix)](hdinsight-hbase-phoenix-squirrel-linux.md)。
 >
@@ -78,7 +78,7 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 ### <a name="prerequisites"></a>必要條件
 遵循程序之前，您必須具備下列項目：
 
-* 將 HBase 叢集部署至具備 DNS 虛擬機器的 Azure 虛擬網路。  如需指示，請參閱[在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]。
+* 將 HBase 叢集部署至具備 DNS 虛擬機器的 Azure 虛擬網路。  如需相關指示，請參閱[在 Azure 虛擬網路上建立 HBase 叢集][hdinsight-hbase-provision-vnet]。
 
   > [!IMPORTANT]
   > 您必須將 DNS 伺服器安裝到虛擬網路。 如需相關指示，請參閱[設定兩個 Azure 虛擬網路之間的 DNS](hdinsight-hbase-geo-replication-configure-dns.md)
@@ -109,7 +109,7 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 3. 按一下您已建立的虛擬網路 (請參閱[在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet])。
 4. 按一下頂端的 [ **設定** ]。
 5. 在 [點對站連線] 區段中，選取 [設定點對站連線]。
-6. 設定**起始 IP** 和 **CIDR** 來指定您的 VPN 用戶端在連線時接收 IP 位址的 IP 位址範圍。 此範圍不能與任何位於內部部署網路及您將連線之 Azure 虛擬網路的範圍重疊。 例如，如果您選取 10.0.0.0/20 做為虛擬網路，您可以選取 10.1.0.0/24 做為用戶端的位址空間。 if you selected 10.0.0.0/20 for the virtual network, you can select 10.1.0.0/24 for the client address space. 如需詳細資訊，請參閱[點對站連線][vnet-point-to-site-connectivity]頁面。
+6. 設定**起始 IP** 和 **CIDR** 來指定您的 VPN 用戶端在連線時接收 IP 位址的 IP 位址範圍。 此範圍不能與任何位於內部部署網路及您將連線之 Azure 虛擬網路的範圍重疊。 例如， 如果您選取 10.0.0.0/20 做為虛擬網路，您可以選取 10.1.0.0/24 做為用戶端的位址空間。 如需詳細資訊，請參閱[點對站連線][vnet-point-to-site-connectivity]頁面。
 7. 在 [虛擬網路位址空間] 區段中，按一下 [ **新增閘道子網路**]。
 8. 按一下頁面底部的 [ **儲存** ]。
 9. 按一下 [ **是** ] 以確認變更。 請等候系統完成變更，才能繼續進行下一個程序。
@@ -199,9 +199,11 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 2. 開啟/執行 jar 檔案。 它需要 [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)。
 3. 按兩下 [ **下一步** ]。
 4. 指定您具有寫入權限的路徑，然後按 [ **下一步**]。
-    >[AZURE.NOTE] 預設的安裝資料夾位於 C:\Program Files\squirrel sql 3.6 資料夾中。  若要寫入此路徑，必須將系統管理員權限授與安裝程式。 您可以系統管理員身分開啟命令提示字元、瀏覽至 Java 的 bin 資料夾，然後再執行
-    >
-    >     java.exe -jar [the path of the SQuirreL jar file]
+
+  > [!NOTE]
+  > 預設的安裝資料夾位於 C:\Program Files\squirrel sql 3.6 資料夾中。  若要寫入此路徑，必須將系統管理員權限授與安裝程式。 您可以系統管理員身分開啟命令提示字元、瀏覽至 Java 的 bin 資料夾，然後再執行：
+  >
+  >     java.exe -jar [the path of the SQuirreL jar file]
 5. 按一下 [ **確定** ] 以確認建立目標目錄。
 6. 預設設定是安裝基底和標準封裝。  按 [下一步] 。
 7. 依序按兩下 [下一步] 和 [完成]。
@@ -267,7 +269,7 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。 此路徑根據版本�
 
 * [HDInsight HBase 概觀][hdinsight-hbase-overview]：HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 * [在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]：由於 HBase 叢集已與虛擬網路整合，因此能夠部署到和應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。
-* [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-geo-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
+* [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
 * [利用 HDInsight 中的 HBase 分析 Twitter 情感][hbase-twitter-sentiment]：了解如何使用 HDInsight 之 Hadoop 叢集中的 HBase，執行巨量資料的即時[情感分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
 [azure-portal]: https://portal.azure.com
@@ -290,6 +292,6 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。 此路徑根據版本�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

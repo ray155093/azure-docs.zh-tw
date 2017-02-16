@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 002e7fe3a0573898fff2552264a318d528eec25c
+ms.sourcegitcommit: 808343035c2554a3cd01cf3fe0ef6ebba2c54e23
+ms.openlocfilehash: 5b4443a8746bc8c88e2c5b58068c200aafc4beea
 
 
 ---
@@ -52,20 +52,9 @@ ms.openlocfilehash: 002e7fe3a0573898fff2552264a318d528eec25c
 1. 重新啟動 VM 之後，再次登入 VM。
 2. 按一下 [開始] 功能表，然後輸入 **diskmgmt.msc** 並按下 Enter 鍵。 隨即會啟動「磁碟管理」。
 3. 使用滑鼠右鍵按一下 **D**、暫存磁碟機，然後選取 [變更磁碟機代號及路徑]。
-4. 在磁碟機代號下方，選取磁碟機 **G**，然後按一下 [確定]。 
+4. 在磁碟機代號下方，選取新的磁碟機 (例如 **T**)，然後按一下 [確定]。 
 5. 使用滑鼠右鍵按一下資料磁碟，然後選取 [變更磁碟機代號及路徑] 。
 6. 在 [磁碟機代號] 下方，選取磁碟機 **D**，然後按一下 [確定]。 
-7. 使用滑鼠右鍵按一下 **G**、暫存磁碟機，然後選取 [變更磁碟機代號及路徑]。
-8. 在磁碟機代號下方，選取磁碟機 **E**，然後按一下 [確定]。 
-
-> [!NOTE]
-> 如果您的 VM 有其他磁碟或磁碟機，請使用相同的方法來為其他磁碟及磁碟機重新指派磁碟機代號。 您希望磁碟組態為︰  
-> 
-> * C: 作業系統磁碟  
-> * D: 資料磁碟  
-> * E: 暫存磁碟
-> 
-> 
 
 ## <a name="move-pagefilesys-back-to-the-temporary-storage-drive"></a>將 pagefile.sys 移回暫存磁碟機
 1. 使用滑鼠右鍵按一下 [開始] 功能表，然後選取 [系統]。
@@ -74,7 +63,7 @@ ms.openlocfilehash: 002e7fe3a0573898fff2552264a318d528eec25c
 4. 選取 [進階]  索引標籤。
 5. 在 [虛擬記憶體] 區段中，選取 [變更]。
 6. 選取作業系統磁碟機 **C**，然後依序按一下 [沒有分頁檔] 和 [設定]。
-7. 選取暫存磁碟機 **E**，然後依序按一下 [系統管理大小] 和 [設定]。
+7. 選取暫存磁碟機 **T**，然後依序按一下 [系統管理大小] 和 [設定]。
 8. 按一下 [Apply (套用)] 。 您將會收到一則警告，表示電腦必須重新啟動，才能讓變更生效。
 9. 重新啟動虛擬機器。
 
@@ -84,6 +73,6 @@ ms.openlocfilehash: 002e7fe3a0573898fff2552264a318d528eec25c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

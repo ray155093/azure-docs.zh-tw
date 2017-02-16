@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Resource Manager 範本部署計算資源 | Microsoft Docs"
+title: "使用 Azure Resource Manager 範本部署 Windows 計算資源 | Microsoft Docs"
 description: "Azure 虛擬機器 DotNet 核心教學課程"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 11/21/2016
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: b746e4218ea505ea5e0a1579608e0ecfa10e87e7
+ms.sourcegitcommit: bd214be3aec3fbfa70fe579447f1e00f17a354c7
+ms.openlocfilehash: 4489cf32a5aa5cfaf29e6e8aa6cf71bf6076ee84
 
 
 ---
@@ -274,6 +274,6 @@ Azure 入口網站中所示的 SQL Server 和 MusicStore 資料庫檢視。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

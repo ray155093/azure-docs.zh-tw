@@ -11,17 +11,21 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 01/20/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 8c5324742e42a1f82bb3031af4380fc5f0241d7f
-ms.openlocfilehash: 1b153af33ef2f7c112336a2de2a3710613ad3887
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: 71cf6cd6e7a33b3aeb3e0e20b9b047377412786d
 
 
 ---
 # <a name="reference-for-analytics"></a>適用於分析的參考
 [分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。 這些頁面說明 Analytics 查詢語言。
 
+其他資訊來源︰
+
+* 當您輸入時，Analytics 中有許多參考資料可用。 只要開始輸入查詢，系統就會提示您可能的完成。
+* [教學課程頁面](app-insights-analytics-tour.md)提供語言功能的逐步介紹。
 * [SQL 使用者的功能提要](https://aka.ms/sql-analytics)會翻譯成最常見的習慣用語。
 * 如果您的應用程式還未將資料傳送至 Application Insights，則[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)。
  
@@ -29,7 +33,7 @@ ms.openlocfilehash: 1b153af33ef2f7c112336a2de2a3710613ad3887
 ## <a name="index"></a>索引
 **Let** [let](#let-clause)
 
-**查詢和運算子** [count](#count-operator) | [evaluate](#evaluate-operator) | [extend](#extend-operator) | [join](#join-operator) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render directive](#render-directive) | [restrict clause](#restrict-clause) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator) | [where-in](#where-in-operator)
+**查詢和運算子** [count](#count-operator) | [evaluate](#evaluate-operator) | [extend](#extend-operator) | [find](#find-operator) | [join](#join-operator) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render directive](#render-directive) | [restrict clause](#restrict-clause) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator) | [where-in](#where-in-operator)
 
 **彙總** [any](#any) | [argmax](#argmax) | [argmin](#argmin) | [avg](#avg) | [buildschema](#buildschema) | [count](#count) | [countif](#countif) | [dcount](#dcount) | [dcountif](#dcountif) | [makelist](#makelist) | [makeset](#makeset) | [max](#max) | [min](#min) | [percentile](#percentile) | [percentiles](#percentiles) | [percentilesw](#percentilesw) | [percentilew](#percentilew) | [stdev](#stdev) | [sum](#sum) | [variance](#variance)
 
@@ -364,6 +368,70 @@ traces
     Age = now() - timestamp
 ```
 
+### <a name="find-operator"></a>尋找運算子
+
+    find in (Table1, Table2, Table3) where id=='42'
+
+尋找整組資料表中符合述詞的資料列。
+
+**語法**
+
+    find in (Table1, ...) 
+    where Predicate 
+    [project Column1, ...]
+
+**引數**
+
+* *Table1* 資料表名稱或查詢。 它可能是 let 定義的資料表，但不是函式。 資料表名稱執行優於查詢。
+* *述詞* 針對指定資料表中每個資料列的評估布林值運算式。
+* *Column1* `project`選項可讓您指定哪些資料欄必須一律出現在輸出中。 
+
+**結果**
+
+根據預設，輸出資料表包含︰
+
+* `source_` - 每個資料列的來源資料表指標。
+* 述詞中明確提及的資料欄
+* 所有輸入資料表通用的非空白資料欄。
+* `pack_` - 包含其他資料欄的資料的屬性包。
+
+請注意，此格式可以隨著輸入資料或述詞中的變更而變更。 若要指定一組固定的資料欄，請使用 `project`。
+
+**範例**
+
+取得所有要求和例外狀況，但不包括來自可用性測試和機器人的部分︰
+
+```AIQL
+
+    find in (requests, exceptions) where isempty(operation_SyntheticSource)
+```
+
+尋找來自英國的所有要求和例外狀況，但不包括來自可用性測試和機器人的部分︰
+
+```AIQL
+
+    let requk = requests
+    | where client_CountryOrRegion == "United Kingdom";
+    let exuk = exceptions
+    | where client_CountryOrRegion == "United Kingdom";
+    find in (requk, exuk) where isempty(operation_SyntheticSource)
+```
+
+尋找任何欄位含有 'test' 一詞的最近遙測：
+
+```AIQL
+
+    find in (traces, requests, pageViews, dependencies, customEvents, availabilityResults, exceptions) 
+    where * has 'test' 
+    | top 100 by timestamp desc
+```
+
+**效能秘訣**
+
+* 將時間型詞彙新增到 `where` 述詞。
+* 使用 `let` 子句，而不是撰寫查詢內嵌。
+
+
 
 ### <a name="join-operator"></a>join 運算子
     Table1 | join (Table2) on CommonColumn
@@ -387,10 +455,10 @@ traces
 
 * 兩個資料表中的每個資料行各自佔據一個資料行，包括用來比對的索引鍵。 如果名稱有衝突，右側的資料行會自動重新命名。
 * 輸入資料表間的每個相符項目各自佔據一個資料列。 其中一個資料表中選取的資料列如果和另一個資料表中的資料列在所有 `on` 欄位的值皆相同，就代表是相符項目。 
-* `Kind` 未指定
+* `Kind` 未指定或 `= innerunique`
   
     左側只會有一個資料列符合 `on` 索引鍵的每個值。 此資料列與右側資料列的每個相符項目都會在輸出中佔有一個資料列。
-* `Kind=inner`
+* `kind=inner`
   
      左側和右側相符資料列的每個組合都會在輸出中佔有一個資料列。
 * `kind=leftouter` (或 `kind=rightouter` 或 `kind=fullouter`)
@@ -399,8 +467,10 @@ traces
 * `kind=leftanti`
   
      傳回左側中與右側不相符的所有記錄。 結果資料表中只有左側的資料行。 
+* `kind=leftsemi` (或 `leftantisemi`)
 
-如果好幾個資料列在這些欄位具有相同的值，每一個組合都會佔有一個資料列。
+    如果右側資料表中有相符 (或沒有相符)，則從左側資料表傳回資料列。 結果不包含來自右邊的資料。
+
 
 **秘訣**
 
@@ -836,12 +906,11 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
 
 `by` 值有多少個不同組合，結果就會有多少個資料列。 如果您想要彙總數值範圍，請使用 `bin()` 來將範圍減少為離散值。
 
-**注意**
-
-雖然您可以為彙總與群組運算式提供任意運算式，但更有效率的方法是使用簡單的資料行名稱，或對數值資料行套用 `bin()` 。
+> [!NOTE]
+> 雖然您可以為彙總與群組運算式提供任意運算式，但更有效率的方法是使用簡單的資料行名稱，或對數值資料行套用 `bin()` 。
 
 ### <a name="take-operator"></a>take 運算子
- [limit](#limit-operator)
+[limit](#limit-operator)
 
 ### <a name="top-operator"></a>top 運算子
     T | top 5 by Name desc nulls first
@@ -937,13 +1006,13 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
 ```AIQL
 
     exceptions
-    | where Timestamp > ago(1d)
+    | where Timestamp > ago(12h)
     | union withsource=SourceTable kind=outer 
-       (Command | where Timestamp > ago(1d))
+       (Command | where Timestamp > ago(12h))
     | summarize dcount(UserId)
 ```
 
-### <a name="forcing-an-order-of-results"></a>強制結果的順序
+#### <a name="forcing-an-order-of-results"></a>強制結果的順序
 
 聯集並不保證結果的資料列有特定順序。
 若要在每次執行查詢時取得相同的順序，請將標籤資料行附加至每個輸入資料表︰
@@ -953,6 +1022,9 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
     let r3 = (pageViews | count | extend tag = 'r3');
     r1 | union r2,r3 | sort by tag
 
+#### <a name="see-also"></a>另請參閱
+
+請考慮 [join 運算子](#join-operator) 做為替代。
 
 ### <a name="where-operator"></a>where 運算子
      requests | where resultCode==200
@@ -964,11 +1036,13 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
 **語法**
 
     T | where Predicate
+    T | where * has Term
 
 **引數**
 
 *  要篩選記錄的表格式輸入。
 * Predicate︰T 之資料行的 `boolean` [運算式](#boolean)。它會針對 T 中的每個資料列進行評估。
+* *詞彙* - 必須與資料欄中的整個字相符的字串。
 
 **傳回**
 
@@ -1224,14 +1298,14 @@ traces
 
 傳回群組中 Expr 所有值的 `dynamic` (JSON) 陣列。 
 
-* MaxListSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 128)。
+* MaxListSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是&128;)。
 
 ### <a name="makeset"></a>makeset
     makeset(Expression [ , MaxSetSize ] )
 
 傳回一組相異值的 `dynamic` (JSON) 陣列，這些是 Expr 在群組中取得的值。 (秘訣︰若只要計算相異值，請使用 [`dcount`](#dcount))。
 
-* MaxSetSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是 128)。
+* MaxSetSize 是所傳回項目數目最大值的選擇性整數限制 (預設值是&128;)。
 
 **範例**
 
@@ -1621,7 +1695,7 @@ true 或 false，取決於值是 null 或不是 null。
 
 低於 value 的 roundTo 最接近倍數。  
 
-    (toint((value/roundTo)-0.5)) * roundTo
+    (toint(value/roundTo)) * roundTo
 
 **範例**
 
@@ -1705,14 +1779,14 @@ true 或 false，取決於值是 null 或不是 null。
 
 ### <a name="toint"></a>toint
     toint(100)        // cast from long
-    toint(20.7) == 21 // nearest int from double
-    toint(20.4) == 20 // nearest int from double
+    toint(20.7) == 20 // nearest int below double
+    toint(20.4) == 20 // nearest int below double
     toint("  123  ")  // parse string
     toint(a[0])       // cast from dynamic
     toint(b.c)        // cast from dynamic
 
 ### <a name="tolong"></a>tolong
-    tolong(20.7) == 21 // conversion from double
+    tolong(20.7) == 20 // conversion from double
     tolong(20.4) == 20 // conversion from double
     tolong("  123  ")  // parse string
     tolong(a[0])       // cast from dynamic
@@ -1988,7 +2062,7 @@ h"hello"
 ```
 
 ### <a name="string-comparisons"></a>字串比較
-|  運算子 | 說明 | 區分大小寫 | 真實範例 |
+| 運算子 | 說明 | 區分大小寫 | 真實範例 |
 | --- | --- | --- | --- |
 | `==` |Equals |是 |`"aBc" == "aBc"` |
 | `<>` `!=` |不等於 |是 |`"abc" <> "ABC"` |
@@ -2607,6 +2681,6 @@ range(1, 8, 3)
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

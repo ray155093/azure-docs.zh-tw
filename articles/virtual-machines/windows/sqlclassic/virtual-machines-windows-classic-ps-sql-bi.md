@@ -8,16 +8,16 @@ manager: erikre
 editor: monicar
 tags: azure-service-management
 ms.assetid: c681e7a7-eeda-48aa-bc35-6277f4828244
-ms.service: virtual-machines-windows
+ms.service: virtual-machines-sql
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
-ms.workload: infrastructure-services
-ms.date: 10/04/2016
+ms.workload: iaas-sql-server
+ms.date: 01/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: 761126cb6a5e119e07d4d8fd7b04f6ea50856f6e
+ms.sourcegitcommit: 4f7527119f0e0955303858a52b638f6dbf483267
+ms.openlocfilehash: 60bd5469b4d22bac87e8794bcb6e1d3713645415
 
 
 ---
@@ -67,11 +67,12 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
 ### <a name="bi-features-installed-on-the-sql-server-virtual-machine-gallery-images"></a>SQL Server 虛擬機器資源庫映像上安裝的 BI 功能
 下表摘要說明常見的 Microsoft Azure 虛擬機器資源庫映像上所安裝 SQL Server 的商務智慧功能
 
-* SQL Server 2016 RC3
-* SQL Server 2014 SP1 Enterprise
-* SQL Server 2014 SP1 Standard
-* SQL Server 2012 SP2 Enterprise
-* SQL Server 2012 SP2 Standard
+* SQL Server 2016 SP1 Enterprise
+* SQL Server 2016 SP1 Standard
+* SQL Server 2014 SP2 Enterprise
+* SQL Server 2014 SP2 Standard
+* SQL Server 2012 SP3 Enterprise
+* SQL Server 2012 SP3 Standard
 
 | SQL Server BI 功能 | 在資源庫映像上安裝 | 注意事項 |
 | --- | --- | --- |
@@ -103,8 +104,6 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
   
   > [!NOTE]
   > 支援的 BI 案例中需要 SQL Server 資料庫引擎。 在單一伺服器 VM 拓撲中，需要資料庫引擎才能在相同的 VM 上執行。
-  > 
-  > 
   
     如需詳細資訊，請參閱下列：[解除安裝 Reporting Services](https://msdn.microsoft.com/library/hh479745.aspx) 和[解除安裝 Analysis Services 的執行個體](https://msdn.microsoft.com/library/ms143687.aspx)。
 * 檢查 **Windows Update** 以取得新的「重要更新」。 Microsoft Azure 虛擬機器映像經常更新；不過，在前一次重新整理 VM 映像之後，重要更新可能可從 **Windows Update** 取得。
@@ -140,8 +139,6 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 > [!NOTE]
 > 如需使用 Windows PowerShell 指令碼來設定報表伺服器的類似內容，請參閱 [使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM](virtual-machines-windows-classic-ps-sql-report.md)。
-> 
-> 
 
 ### <a name="connect-to-the-virtual-machine-and-start-the-reporting-services-configuration-manager"></a>連接到虛擬機器並啟動 Reporting Services 組態管理員
 連接到 Azure 虛擬機器有兩個常見的工作流程：
@@ -160,7 +157,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 **啟動 Reporting Services 組態管理員。**
 
-1. 在 **Windows Server 2012**中：
+1. 在 **Windows Server 2012/2016** 中：
 2. 從 [開始] 畫面上，輸入 **Reporting Services** 來查看應用程式的清單。
 3. 以滑鼠右鍵按一下 [Reporting Services 組態管理員]，然後按一下 [以系統管理員身分執行]。
 4. 在 **Windows Server 2008 R2**中：
@@ -346,8 +343,6 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。 �
 
 > [!NOTE]
 > [透過 Microsoft SQL Server Connect 提交意見和連絡資訊](https://connect.microsoft.com/SQLServer/Feedback)
-> 
-> 
 
 ### <a name="community-content"></a>社群內容
 * [使用 PowerShell 管理 Azure SQL Database](http://blogs.msdn.com/b/windowsazure/archive/2013/02/07/windows-azure-sql-database-management-with-powershell.aspx)
@@ -355,6 +350,6 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。 �
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

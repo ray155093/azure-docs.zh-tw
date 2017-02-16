@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 05/26/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: c700bfbd4f50a892e182124eb596159d2eb63feb
-ms.openlocfilehash: b6f97d299b1c100e4bae111d7f95c9619c6c9399
+ms.sourcegitcommit: 633caca05835aa204d4fec5fe216043a50520000
+ms.openlocfilehash: 87d2792d4f7610c62ed96cb522958844d4dc982b
 
 
 ---
@@ -230,23 +230,29 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
         git init
    
      ![新本機 Git 儲存機制](media/app-service-api-nodejs-api-app/new-local-git-repo.png)
-3. 執行下列命令來新增 API 應用程式儲存機制的 Git 遠端。 
+3. 如果您已完成本教學課程的第一個部分，並已複製 `ContactList` 資料夾，則該複本中可能已包含 `node_modules` 資料夾。 您不會想要在原始檔控制中包含 `node_modules` 資料夾，因為在部署程序進行期間，系統已透過 `package.json` 檔案和 `npm install` 為您建立該資料夾。 因此，請在專案的根目錄中執行下列命令，以新增 `.gitignore` 檔案。
+
+         touch .gitignore
+      
+   開啟 .gitignore 檔案，並在檔案的第一行新增 `node_modules`。 如果您執行 `git status` 卻未在清單中看到目錄，則可以確認原始檔控制將會忽略 `node_modules` 資料夾。 如果您想要新增更多規則，NodeJS 專案中有一個要忽略之建議檔案的 (GitHub 專案)[https://github.com/github/gitignore/blob/master/Node.gitignore]。
+ 
+4. 執行下列命令來新增 API 應用程式儲存機制的 Git 遠端。 
    
         git remote add azure YOUR_GIT_CLONE_URL_HERE
    
     **注意**：請以稍早複製的 Git 複製 URL 取代 "YOUR_GIT_CLONE_URL_HERE" 字串。 
-4. 執行下列命令來建立包含您所有程式碼的認可。 
+5. 執行下列命令來建立包含您所有程式碼的認可。 
    
         git add .
         git commit -m "initial revision"
    
     ![Git 認可輸出](media/app-service-api-nodejs-api-app/git-commit-output.png)
-5. 執行命令以將您的程式碼推送至 Azure。 當系統提示您輸入密碼時，請輸入先前在 Azure 入口網站中建立的密碼。
+6. 執行命令以將您的程式碼推送至 Azure。 當系統提示您輸入密碼時，請輸入先前在 Azure 入口網站中建立的密碼。
    
         git push azure master
    
     這會觸發您 API 應用程式的部署。  
-6. 在瀏覽器中，瀏覽回到 API 應用程式的 [部署]  刀鋒視窗，然後您就會看到部署正在進行。 
+7. 在瀏覽器中，瀏覽回到 API 應用程式的 [部署]  刀鋒視窗，然後您就會看到部署正在進行。 
    
     ![發生的部署](media/app-service-api-nodejs-api-app/deployment-happening.png)
    
@@ -275,6 +281,6 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

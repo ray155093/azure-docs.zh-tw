@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 05/09/2016
 ms.author: szark
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
+ms.sourcegitcommit: 1636286ca77a1cede1f8b60d52f8f634b0a3c312
+ms.openlocfilehash: 4be14950c35b858db5e5ef53a8617fa1bbeec45e
 
 
 ---
@@ -49,20 +49,27 @@ ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
     **注意：** 如果尚未安裝封裝，此命令將會失敗，並出現錯誤訊息。 這是預期行為。
 4. 在 `/etc/sysconfig/` 目錄中，建立名為 **network** 且包含下列文字的檔案：
    
-     NETWORKING=yes   HOSTNAME=localhost.localdomain
+        NETWORKING=yes
+        HOSTNAME=localhost.localdomain
 5. 在 `/etc/sysconfig/network-scripts/` 目錄中，建立名為 **ifcfg-eth0** 且包含下列文字的檔案：
    
-     DEVICE=eth0   ONBOOT=yes   BOOTPROTO=dhcp   TYPE=Ethernet   USERCTL=no   PEERDNS=yes   IPV6INIT=no
+        DEVICE=eth0
+        ONBOOT=yes
+        BOOTPROTO=dhcp
+        TYPE=Ethernet
+        USERCTL=no
+        PEERDNS=yes
+        IPV6INIT=no
 6. 修改 udev 角色可防止產生乙太網路介面的靜態規則。 在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
    
-   # <a name="sudo-ln--s-devnull-etcudevrulesd75-persistent-net-generatorrules"></a>sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
-   # <a name="sudo-rm--f-etcudevrulesd70-persistent-netrules"></a>sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
+        # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
+        # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
 7. 要確保開機時會啟動網路服務，可執行以下命令：
    
         # sudo chkconfig network on
 8. **僅限 CentOS 6.3**：安裝 Linux Integration Services (LIS) 的驅動程式。
    
-    **重要事項：此步驟僅適用於 CentOS 6.3 和較舊的版本。**  在 CentOS 6。4+ 中，Linux Integration Services 已是標準核心中的可用項目。
+    **重要事項：此步驟僅適用於 CentOS 6.3 和較舊的版本。**  在 CentOS 6。4+ 中，Linux Integration Services *已是標準核心中的可用項目*。
    
    * 請遵循 [LIS 下載頁面](https://www.microsoft.com/en-us/download/details.aspx?id=46842)上的安裝指示，並將 RPM 安裝到您的映像上。  
 9. 執行下列命令以安裝 python-pyasn1 封裝：
@@ -115,7 +122,7 @@ ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
     **注意：** 本指南的其他部分將假設您至少會使用 [openlogic] 儲存機制，該儲存機制稍後將用來安裝 Azure Linux 代理程式。
 11. 在 /etc/yum.conf 中加入這一行：
     
-     http_caching=packages
+        http_caching=packages
     
     若是 **CentOS 6.3** ，則加入這一行：
     
@@ -125,19 +132,19 @@ ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
         set enabled=0
 13. 執行下列命令，以清除目前的 yum 中繼資料：
     
-    # <a name="yum-clean-all"></a>yum clean all
+        # yum clean all
 14. **僅限在 CentOS 6.3 上**，使用下列命令更新核心：
     
         # sudo yum --disableexcludes=all install kernel
 15. 修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。 作法是，在文字編輯器中開啟 "/boot/grub/menu.lst"，並確定預設核心包含下列參數：
     
-     console=ttyS0 earlyprintk=ttyS0 rootdelay=300 numa=off
+        console=ttyS0 earlyprintk=ttyS0 rootdelay=300 numa=off
     
     這也將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。 因為 CentOS 6 所使用核心版本的一個錯誤，這將會停用 NUMA。
     
     除了上述以外，我們還建議您 *移除* 下列參數：
     
-     rhgb quiet crashkernel=auto
+        rhgb quiet crashkernel=auto
     
     在雲端環境中，我們會將所有記錄傳送到序列埠，因此不適合使用圖形化和無訊息啟動。
     
@@ -152,12 +159,16 @@ ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
     
     Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。 請注意，資源磁碟是 *暫存* 磁碟，可能會在 VM 取消佈建時清空。 安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 /etc/waagent.conf 中適當修改下列參數：
     
-     ResourceDisk.Format=y  ResourceDisk.Filesystem=ext4  ResourceDisk.MountPoint=/mnt/resource  ResourceDisk.EnableSwap=y  ResourceDisk.SwapSizeMB=2048    ## 注意：將此設為任何您需要的項目。
+        ResourceDisk.Format=y
+        ResourceDisk.Filesystem=ext4
+        ResourceDisk.MountPoint=/mnt/resource
+        ResourceDisk.EnableSwap=y
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 19. 執行下列命令，以取消佈建虛擬機器，並準備將其佈建於 Azure 上：
     
-    # <a name="sudo-waagent--force--deprovision"></a>sudo waagent -force -deprovision
-    # <a name="export-histsize0"></a>export HISTSIZE=0
-    # <a name="logout"></a>logout
+        # sudo waagent -force -deprovision
+        # export HISTSIZE=0
+        # logout
 20. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。 您現在可以將 Linux VHD 上傳至 Azure。
 
 - - -
@@ -176,13 +187,20 @@ ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
 2. 按一下 [連接]  ，以開啟虛擬機器的主控台視窗。
 3. 在 `/etc/sysconfig/` 目錄中，建立名為 **network** 且包含下列文字的檔案：
    
-     NETWORKING=yes   HOSTNAME=localhost.localdomain
+        NETWORKING=yes
+        HOSTNAME=localhost.localdomain
 4. 在 `/etc/sysconfig/network-scripts/` 目錄中，建立名為 **ifcfg-eth0** 且包含下列文字的檔案：
    
-     DEVICE=eth0   ONBOOT=yes   BOOTPROTO=dhcp   TYPE=Ethernet   USERCTL=no   PEERDNS=yes   IPV6INIT=no
+        DEVICE=eth0
+        ONBOOT=yes
+        BOOTPROTO=dhcp
+        TYPE=Ethernet
+        USERCTL=no
+        PEERDNS=yes
+        IPV6INIT=no
 5. 修改 udev 角色可防止產生乙太網路介面的靜態規則。 在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
    
-   # <a name="sudo-ln--s-devnull-etcudevrulesd75-persistent-net-generatorrules"></a>sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
+        # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
 6. 要確保開機時會啟動網路服務，可執行以下命令：
    
         # sudo chkconfig network on
@@ -237,46 +255,50 @@ ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
 
 1. 執行下列命令，以清除目前的 yum 中繼資料並安裝任何更新：
    
-   # <a name="sudo-yum-clean-all"></a>sudo yum clean all
-   # <a name="sudo-yum--y-update"></a>sudo yum -y update
+        # sudo yum clean all
+        # sudo yum -y update
 2. 修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。 若要執行這個動作，請在文字編輯器中開啟 "/etc/default/grub" 並編輯 `GRUB_CMDLINE_LINUX` 參數，例如：
    
-    GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
+        GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
    
    這也將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。 也會關閉新的 CentOS 7 對 NIC 的命名慣例。 除了上述以外，我們還建議您 *移除* 下列參數：
    
-    rhgb quiet crashkernel=auto
+        rhgb quiet crashkernel=auto
    
    在雲端環境中，我們會將所有記錄傳送到序列埠，因此不適合使用圖形化和無訊息啟動。
    
    如有需要，您可以保留 `crashkernel` 選項的設定，但請注意，此參數將會減少 VM 中約 128MB 或以上的可用記憶體數量，這在較小的 VM 中可能會是個問題。
 3. 在您參照上述完成編輯 "/etc/default/grub" 之後，請執行下列命令以重建 grub 組態：
    
-       # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+        # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 4. 確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。  這通常是預設值。
 5. **僅從 VMWare、VirtualBox 或 KVM 建置映像時：** 新增 Hyper-V 模組至 initramfs：
    
    編輯 `/etc/dracut.conf`，新增內容：
    
-    add_drivers+=”hv_vmbus hv_netvsc hv_storvsc”
+        add_drivers+=”hv_vmbus hv_netvsc hv_storvsc”
    
    重建 initramfs：
    
-   # <a name="dracut-f--v"></a>dracut –f -v
+        # dracut –f -v
 6. 執行以下命令來安裝 Azure Linux 代理程式：
    
-       # sudo yum install WALinuxAgent
-       # sudo systemctl enable waagent
+        # sudo yum install WALinuxAgent
+        # sudo systemctl enable waagent
 7. 請勿在作業系統磁碟上建立交換空間。
    
    Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。 請注意，資源磁碟是 *暫存* 磁碟，可能會在 VM 取消佈建時清空。 安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 /etc/waagent.conf 中適當修改下列參數：
    
-    ResourceDisk.Format=y  ResourceDisk.Filesystem=ext4  ResourceDisk.MountPoint=/mnt/resource  ResourceDisk.EnableSwap=y  ResourceDisk.SwapSizeMB=2048    ## 注意：將此設為任何您需要的項目。
+        ResourceDisk.Format=y
+        ResourceDisk.Filesystem=ext4
+        ResourceDisk.MountPoint=/mnt/resource
+        ResourceDisk.EnableSwap=y
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 8. 執行下列命令，以取消佈建虛擬機器，並準備將其佈建於 Azure 上：
    
-   # <a name="sudo-waagent--force--deprovision"></a>sudo waagent -force -deprovision
-   # <a name="export-histsize0"></a>export HISTSIZE=0
-   # <a name="logout"></a>logout
+        # sudo waagent -force -deprovision
+        # export HISTSIZE=0
+        # logout
 9. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。 您現在可以將 Linux VHD 上傳至 Azure。
 
 ## <a name="next-steps"></a>後續步驟
@@ -285,6 +307,6 @@ ms.openlocfilehash: 6919a8c2147db4f8c86230e336540c8c88c714e1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

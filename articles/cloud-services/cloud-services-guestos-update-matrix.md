@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 11/01/2016
+ms.date: 1/17/2017
 ms.author: raiye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
+ms.sourcegitcommit: 6eb3e6a270b0072f86e42139b36bffed52520f6c
+ms.openlocfilehash: 7628eb73068cb52d768901a5fab40ef221d64fc1
 
 
 ---
 # <a name="azure-guest-os-releases-and-sdk-compatibility-matrix"></a>Azure 客體 OS 版次與 SDK 相容性矩陣
-提供適用於雲端服務的最新 Azure 客體作業系統版次的最新資訊。 此資訊協助您在客體 OS停用之前規劃升級路徑。 如果您設定角色來使用「自動化」客體 OS 更新，如 [Azure 客體 OS 更新設定][Azure 客體 OS 更新設定]所述，則不一定要閱讀這一頁。
+提供適用於雲端服務的最新 Azure 客體作業系統版次的最新資訊。 此資訊協助您在客體 OS停用之前規劃升級路徑。 如果您將角色設定成使用「自動」客體 OS 更新 (如 [Azure 客體 OS 更新設定][Azure Guest OS Update Settings]所述)，就不一定要閱讀此頁面。
 
 > [!IMPORTANT]
 > 此頁面適用於客體作業系統上執行的雲端服務 Web 角色和背景工作角色。 不適用  於 IaaS 虛擬機器。 
@@ -31,13 +31,22 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 <!-- -->
 
 > [!TIP]
-> 訂閱[客體作業系統更新 RSS 摘要][rss]，以接收所有客體作業系統變更的最及時性通知。
+> 請訂閱[客體 OS 更新 RSS 摘要][rss]，以接收有關所有客體 OS 變更的最及時性通知。
 > 
 > 
 
 不確定客體 OS 為何或客體 OS 版次如何工作？ 請閱讀 [本節內容](#how-it-works) 。
 
 ## <a name="news-updates"></a>新聞更新
+###### <a name="january-10-2017"></a>**2017 年 1 月 10 日**
+1 月客體 OS 包含只影響 OS 系列 2 (Windows 2008 Server R2) 的修補程式。 因此，這個月我們只發行了「OS 系列 2」映像 (WA-GUEST-OS-2.59_201701-01)。 就所有其他 OS 系列而言，12 月 OS (201612-01) 仍是最新版。
+
+###### <a name="december-14-2016"></a>**2016 年 12 月 14 日**
+12 月客體 OS 的首度發行期間從 2016 年 12 月 14 日開始，預訂的正式發行日為 2017 年 1 月 13 日。
+
+###### <a name="november-20-2016"></a>**2016 年 11 月 20 日**
+11 月客體 OS 的首度發行期間從 2016 年 11 月 8 日開始，預訂的正式發行日為 2016 年 12 月 8 日。
+
 ###### <a name="october-23-2016"></a>**2016 年 10 月 23 日**
 在 2016 年 11 月 1 日，Windows Server 2016 將以作業系統系列 5 的形式發行，並帶有 .NET 4.6 支援。
 
@@ -78,13 +87,16 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 支援 .NET 4.0、4.5、4.5.1、4.5.2、4.6、4.6.1、4.6.2
 
 > [!NOTE]
-> 具有 * 的日期可能會變更
+> 具有 * 的日期可能會變更。 
 > 
-> 
+> 作業系統系列 5 的 RDP 密碼至少需要 10 個字元。
+>
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
-| WA-GUEST-OS-5.2_201610-02 |2016 年 11 月 1 日 |2017 年 1 月 30 日 |TBD |
+| WA-GUEST-OS-5.4_201612-01 |2017 年 1 月 10 日 |在 5.6 版之後 |TBD | 
+| WA-GUEST-OS-5.3_201611-01 |2016 年 12 月 14 日 |在 5.5 版之後 |TBD |
+| WA-GUEST-OS-5.2_201610-02 |2016 年 11 月 1 日 |在 5.4 版之後 |TBD |
 
 ## <a name="family-4-releases"></a>系列 4 版次
 **Windows Server 2012 R2**
@@ -98,9 +110,12 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
-| WA-GUEST-OS-4.36_201609-01 |2016 年 10 月 13 日 |Post 4.38 |TBD |
-| WA-GUEST-OS-4.35_201608-01 |2016 年 9 月 13 日 |Post 4.37 |TBD |
-| WA-GUEST-OS-4.34_201607-01 |2016 年 8 月 8 日 |Post 4.36 |TBD |
+| WA-GUEST-OS-4.39_201612-01 |2017 年 1 月 10 日 |在 4.41 版之後 |TBD |
+| WA-GUEST-OS-4.38_201611-01 |2016 年 12 月 14 日 |在 4.40 版之後 |TBD |
+| WA-GUEST-OS-4.37_201610-02 |2016 年 11 月 16 日 |Post 4.39 |TBD |
+| WA-GUEST-OS-4.36_201609-01 |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
+| WA-GUEST-OS-4.35_201608-01 |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
+| WA-GUEST-OS-4.34_201607-01 |2016 年 8 月 8 日 |2016 年 11 月 13 日 |TBD |
 | WA-GUEST-OS-4.33_201606-01 |2016 年 7 月 13 日 |2016 年 10 月 13 日 |TBD |
 | WA-GUEST-OS-4.32_201605-01 |2016 年 6 月 10 日 |2016 年 9 月 8 日 |TBD |
 | WA-GUEST-OS-4.31_201604-01 |2016 年 5 月 2 日 |2016 年 8 月 13 日 |TBD |
@@ -130,9 +145,12 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
-| WA-GUEST-OS-3.43_201609-01 |2016 年 10 月 13 日 |Post 3.45 |TBD |
-| WA-GUEST-OS-3.42_201608-01 |2016 年 9 月 13 日 |Post 3.44 |TBD |
-| WA-GUEST-OS-3.41_201607-01 |2016 年 8 月 8 日 |Post 3.43 |TBD |
+| WA-GUEST-OS-3.46_201612-01 |2017 年 1 月 10 日 |在 3.48 版之後 |TBD |
+| WA-GUEST-OS-3.45_201611-01 |2016 年 12 月 14 日 |在 3.47 版之後 |TBD |
+| WA-GUEST-OS-3.44_201610-01 |2016 年 11 月 16 日 |Post 3.46 |TBD |
+| WA-GUEST-OS-3.43_201609-01 |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
+| WA-GUEST-OS-3.42_201608-01 |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
+| WA-GUEST-OS-3.41_201607-01 |2016 年 8 月 8 日 |2016 年 11 月 13 日 |TBD |
 | WA-GUEST-OS-3.40_201606-01 |2016 年 7 月 13 日 |2016 年 10 月 13 日 |TBD |
 | WA-GUEST-OS-3.39_201605-01 |2016 年 6 月 10 日 |2016 年 9 月 8 日 |TBD |
 | WA-GUEST-OS-3.38_201604-01 |2016 年 5 月 2 日 |2016 年 8 月 13 日 |TBD |
@@ -162,9 +180,13 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | --- | --- | --- | --- |
-| WA-GUEST-OS-2.55_201609-01 |2016 年 10 月 13 日 |Post 2.57 |TBD |
-| WA-GUEST-OS-2.54_201608-01 |2016 年 9 月 13 日 |Post 2.56 |TBD |
-| WA-GUEST-OS-2.53_201607-01 |2016 年 8 月 8 日 |Post 2.55 |TBD |
+| WA-GUEST-OS-2.59_201701-01 |2017 年 1 月 10 日 |在 2.61 版之後 |TBD |
+| WA-GUEST-OS-2.58_201612-01 |2017 年 1 月 10 日 |在 2.60 版之後 |TBD |
+| WA-GUEST-OS-2.57_201611-01 |2016 年 12 月 14 日 |在 2.59 版之後 |TBD |
+| WA-GUEST-OS-2.56_201610-01 |2016 年 11 月 16 日 |2017 年 2 月 10 日 |TBD |
+| WA-GUEST-OS-2.55_201609-01 |2016 年 10 月 13 日 |2017 年 1 月 14 日 |TBD |
+| WA-GUEST-OS-2.54_201608-01 |2016 年 9 月 13 日 |2016 年 12 月 16 日 |TBD |
+| WA-GUEST-OS-2.53_201607-01 |2016 年 8 月 8 日 |2016 年 11 月 13 日 |TBD |
 | WA-GUEST-OS-2.52_201606-01 |2016 年 7 月 13 日 |2016 年 10 月 13 日 |TBD |
 | WA-GUEST-OS-2.51_201605-01 |2016 年 6 月 10 日 |2016 年 9 月 8 日 |TBD |
 | WA-GUEST-OS-2.50_201604-01 |2016 年 5 月 2 日 |2016 年 8 月 13 日 |TBD |
@@ -183,10 +205,10 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 | ~~WA-GUEST-OS-2.38_201504-01~~ |2015 年 4 月 17 日 |2015 年 8 月 9 日 |TBD |
 
 ## <a name="msrc-patch-updates"></a>MSRC 修補程式更新
-[這裡][patches]提供每月客體作業系統版次隨附的修補程式清單。
+[這裡][patches]提供每月客體 OS 版次隨附的修補程式清單。
 
 ## <a name="sdk-support"></a>SDK 支援
-雖然 [Azure SDK 的淘汰原則][retire policy sdk]表示只支援高於 2.2 的版本，特定客體 OS 系列仍允許您使用較早版本。 您應該一律使用最新版本的支援 SDK。 
+雖然 [Azure SDK 的淘汰原則][retire policy sdk]指出只支援 2.2 以上的版本，但特定客體 OS 系列仍允許您使用更舊的版本。 您應該一律使用最新版本的支援 SDK。 
 
 | 客體作業系統系列 | 相容的 SDK 版本 |
 | --- | --- |
@@ -201,7 +223,7 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 
 **停用**日期和**到期**日期之間的時間範圍，提供一個緩衝區，讓您可以輕鬆從一個客體 OS 轉換到到較新的客體 OS。 如果您使用「自動化」  作為客體 OS，則一律會是最新版本，不必擔心過期問題。 
 
-當 **到期** 日期已過，任何仍在使用該客體 OS 的雲端服務將會遭到停止、刪除或強制升級。 您可以在[這裡][retirepolicy]閱讀更多有關淘汰原則的資訊。
+當 **到期** 日期已過，任何仍在使用該客體 OS 的雲端服務將會遭到停止、刪除或強制升級。 您可以從[這裡][retirepolicy]閱讀更多有關淘汰原則的資訊。
 
 ## <a name="guest-os-family-version-explanation"></a>客體 OS 系列版本說明
 客體作業系統系列以 Microsoft Windows Server 的發行版本為基礎。 客體作業系統是指執行 Azure 雲端服務的基礎作業系統。 每一個客體作業系統都有系列、版本和版次號碼。 
@@ -209,7 +231,7 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 * **Guest OS family**  
   是客體 OS 所根據的 Windows Server 作業系統版次。 例如，「系列 3」  以 Windows Server 2012 為基礎。
 * **客體 OS 版本**  
-  客體作業系統系列映像特定，加上新客體作業系統版本產生當天可用的相關 [Microsoft Security Response Center (MSRC)][msrc] 修補程式。 不一定包含所有修補程式。 
+  客體 OS 系列映像特定，加上新客體 OS 版本產生當天可用的相關 [Microsoft Security Response Center (MSRC)][msrc] 修補程式。 不一定包含所有修補程式。 
   
     編號從 0 開始，每增加一組新的更新就加 1。 必要時才會顯示尾端的零。 亦即，2.10 版是與 2.1 版不同且更新的版本。
 * **客體 OS 版次**  
@@ -226,21 +248,21 @@ ms.openlocfilehash: 46a27d34778b20ba23f406e58189f623e70a5941
 ## <a name="guest-os-system-update-process"></a>客體作業系統的系統更新程序
 此頁面包含即將推出的客體作業系統版次的相關資訊。 客戶表示想要知道何時推出版次，因為他們的雲端服務角色如果設為「自動」更新，將重新啟動。 在每月第二個星期二發行 MSRC 更新後，通常至少 5 天才會推出客體作業系統版次。 新版次包含每個客體作業系統系列的相關 MSRC 修補程式。 
 
-Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的一項更新。 影響版次的因素太多，無法在這裡完整列出。 此外，Azure 實際上是在成千上萬個電腦上執行。 這表示不可能指出您的角色重新啟動的確切日期和時間。 我們會在[客體作業系統更新 RSS 摘要][rss]中隨時提供最新資訊，但請視為大約的時間。 我們知道這對客戶造成困擾，所以正計劃對重新啟動設限或訂定時間。 
+Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的一項更新。 影響版次的因素太多，無法在這裡完整列出。 此外，Azure 實際上是在成千上萬個電腦上執行。 這表示不可能指出您的角色重新啟動的確切日期和時間。 我們會在[客體 OS 更新 RSS 摘要][rss]中隨時提供最新資訊，但請將該時間視為大約的時間。 我們知道這對客戶造成困擾，所以正計劃對重新啟動設限或訂定時間。 
 
 新版次的客體作業系統發行時，需要一段時間才會完全傳播到整個 Azure。 當服務更新到新的客體作業系統時，它們會重新啟動，讓更新網域生效。 設為「自動」更新的服務會最先取得一個版次。 更新之後，您在 Azure 傳統入口網站中會看到您的服務列出新的客體作業系統版本。 此期間可能再度發行版次。 某些版本的部署期間可能很長，而且在官方發行日期之後，可能經過許多個星期都還不會進行自動升級重新啟動。 當客體作業系統推出時，您可以從入口網站或組態檔中明確地選擇該版本。 
 
-關於重新啟動的大量實用資訊，以及客體和主機作業系統更新的更多技術細節的線索，請參閱 MSDN 部落格文章[角色執行個體由於作業系統升級而重新啟動][restarts]。
+如需有關重新啟動的大量實用資訊，以及客體和主機 OS 更新的更多技術細節線索，請參閱標題為[角色執行個體因作業系統升級而重新啟動 (英文)][restarts] 的 MSDN 部落格文章。
 
-如果您手動更新客體作業系統，請參閱[客體作業系統淘汰原則][retirepolicy]。
+如果您手動更新客體 OS，請參閱[客體 OS 淘汰原則][retirepolicy]。
 
 ## <a name="guest-os-supportability-and-retirement-policy"></a>客體作業系統可支援性和淘汰原則
-[這裡][retirepolicy]說明客體作業系統可支援性和淘汰原則。
+如需客體 OS 可支援性和淘汰原則的說明，請參閱[這裡][retirepolicy]。
 
-[在雲端服務角色上安裝 .NET]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
-[Azure 客體 OS 更新設定]: cloud-services-how-to-configure.md
+[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
+[Azure Guest OS Update Settings]: cloud-services-how-to-configure.md
 [rss]: http://sxp.microsoft.com/feeds/3.0/msdntn/WindowsAzureOSUpdates
-[ssl3 通知]: http://azure.microsoft.com/blog/2014/12/09/azure-security-ssl-3-0-update/
+[ssl3 announcement]: http://azure.microsoft.com/blog/2014/12/09/azure-security-ssl-3-0-update/
 [Microsoft Security Advisory 3009008]: https://technet.microsoft.com/library/security/3009008.aspx
 [ssl3-fixit]: http://go.microsoft.com/?linkid=9863266
 [MS14-066]: https://technet.microsoft.com/library/security/ms14-066.aspx
@@ -260,6 +282,6 @@ Microsoft Azure 正持續發行更新。 客體作業系統只是這過程中的
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

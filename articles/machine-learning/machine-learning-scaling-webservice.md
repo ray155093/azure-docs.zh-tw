@@ -1,6 +1,6 @@
 ---
-title: "調整 Web 服務 | Microsoft Docs"
-description: "了解如何藉由增加並行要求和新增新端點的方式調整 Web 服務。"
+title: "如何提高 Azure Machine Learning Web 服務的並行 | Microsoft Docs"
+description: "了解如何藉由新增其他端點來提高 Azure Machine Learning Web 服務的並行。"
 services: machine-learning
 documentationcenter: 
 author: neerajkh
@@ -13,15 +13,15 @@ ms.devlang: NA
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 01/23/2017
 ms.author: neerajkh
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 559db01d2c9f44af17b86f99031a8827dfeb5ab3
+ms.sourcegitcommit: c54b16517b6f08ed8bfddfb6e2c793ec0f292899
+ms.openlocfilehash: 678f747fd1b2e5017d1859fd594c3b4bc465ea41
 
 
 ---
-# <a name="scaling-a-web-service"></a>調整 Web 服務
+# <a name="scaling-an-azure-machine-learning-web-service-by-adding-additional-endpoints"></a>藉由新增其他端點來調整 Azure Machine Learning Web 服務
 > [!NOTE]
 > 本主題描述適用於傳統 Machine Learning Web 服務的技巧。 
 > 
@@ -31,7 +31,6 @@ ms.openlocfilehash: 559db01d2c9f44af17b86f99031a8827dfeb5ab3
 
 如果您打算以超過「並行呼叫數上限」值 200 可支援的負載來呼叫 API，則應該在相同的 Web 服務上建立多個端點。 然後，您就可以將負載隨機分配給所有端點。
 
-## <a name="add-new-endpoints-for-same-web-service"></a>在相同 Web 服務新增新的端點
 調整 Web 服務一件常見的工作。 一些調整理由包括為了支援超過 200 個並行要求、透過多個端點提高可用性，或為 Web 服務提供個別的端點。 您可以透過 [Azure 傳統入口網站](https://manage.windowsazure.com/)[Machine Learning Web 服務](https://services.azureml.net/)新增更多端點來為同一個 Web 服務擴大規模。
 
 如需有關新增端點的詳細資訊，請參閱[建立端點](machine-learning-create-endpoint.md)。
@@ -46,6 +45,6 @@ ms.openlocfilehash: 559db01d2c9f44af17b86f99031a8827dfeb5ab3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

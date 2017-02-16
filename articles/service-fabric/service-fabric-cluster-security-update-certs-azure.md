@@ -1,6 +1,6 @@
 ---
-title: "新增、變換和移除在 Azure 中 Service Fabric 叢集使用的憑證 | Microsoft Docs"
-description: "說明如何上傳次要叢集憑證，然後變換舊的主要憑證。"
+title: "管理 Azure Service Fabric 叢集中的憑證 | Microsoft Docs"
+description: "說明如何在 Service Fabric 叢集新增新的憑證、變換憑證及移除憑證。"
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
@@ -12,124 +12,197 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/15/2016
+ms.date: 01/11/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 829af0b685f07c2e529edf1a0ef72b741d37a14c
+ms.sourcegitcommit: bb27d279396aa7b670187560cebe2ed074576bad
+ms.openlocfilehash: 86df3e74cd0060652a3223cfbd1516643985275e
 
 
 ---
 # <a name="add-or-remove-certificates-for-a-service-fabric-cluster-in-azure"></a>新增或移除 Azure 中 Service Fabric 叢集的憑證
-建議您熟悉 Service Fabric 使用 X.509 憑證的方式，並參閱 [叢集安全性案例](service-fabric-cluster-security.md)。 您必須瞭解什麼是叢集憑證及其用途，方可繼續進行後續作業。
+建議您熟悉 Service Fabric 使用 X.509 憑證的方式，以及熟悉[叢集安全性案例](service-fabric-cluster-security.md)。 您必須瞭解什麼是叢集憑證及其用途，方可繼續進行後續作業。
 
-您在叢集建立期間設定憑證安全性時，Service Fabric 可讓您指定兩個叢集憑證：主要與次要。 如需詳細資訊，請參閱[透過入口網站建立 Azure 叢集](service-fabric-cluster-creation-via-portal.md)或是 [透過 Azure Resource Manager 建立 Azure 叢集](service-fabric-cluster-creation-via-arm.md)。 若您是透過 Resource Manager 部署，且僅指定一個叢集憑證，則會使用該憑證做為主要憑證。 在叢集建立完成後，您可新增憑證做為次要憑證。
-
-> [!NOTE]
-> 針對安全叢集，您一律必須至少部署一個有效 (未撤銷或過期) 的憑證 (主要或次要)，否則叢集將停止運作。 在所有有效憑證到達到期日的 90 天前，系統會針對節點產生警告追蹤與警告健康狀態事件。 目前並無 Service Fabric 針對此主題送出的電子郵件或其他任何通知。 
-> 
-> 
-
-## <a name="add-a-secondary-certificate-using-the-portal"></a>使用入口網站新增次要憑證
-若要新增另一個憑證做為次要憑證，您必須將該憑證上傳到 Azure 金鑰保存庫，然後將它部署到叢集中的 VM。 如需其他資訊，請參閱 [Deploy certificates to VMs from a customer-managed Key Vault (將憑證從客戶管理的金鑰保存庫部署到 VM)](http://blogs.technet.com/b/kv/archive/2015/07/14/vm_2d00_certificates.aspx)。
-
-1. 如需如何操作的詳細資訊，請參閱[將憑證新增至金鑰保存庫](service-fabric-cluster-creation-via-arm.md#add-certificate-to-key-vault)。
-2. 登入 [Azure 入口網站](https://portal.azure.com/) ，然後瀏覽至您想要新增此憑證的叢集資源。
-3. 在 [設定] 下方，按一下 [安全性] 以顯示 [叢集安全性] 刀鋒視窗。
-4. 按一下刀鋒視窗頂端的 [新增憑證]按鈕，以前往 [新增憑證] 刀鋒視窗。
-5. 從下拉式清單中選取「次要憑證指紋」，並為您上傳至金鑰保存庫的次要憑證填寫憑證指紋。
+當您在叢集建立期間設定憑證安全性時，除了用戶端憑證之外，Service Fabric 還可讓您指定兩個叢集憑證：主要與次要。 請參閱[透過入口網站建立 Azure 叢集](service-fabric-cluster-creation-via-portal.md)或[透過 Azure Resource Manager 建立 Azure 叢集](service-fabric-cluster-creation-via-arm.md)，以詳細了解如何在建立這些叢集時進行叢集設定。 如果您在建立時僅指定一個叢集憑證，該憑證就會作為主要憑證。 在叢集建立完成後，您可新增憑證做為次要憑證。
 
 > [!NOTE]
-> 與叢集建立工作流程期間不同之處，在於我們不會在此記錄金鑰保存庫的詳細資訊，因為它會假設您當時已位於此刀鋒視窗並已將憑證部署至 VM，且憑證已在 VMSS 執行個體的本機憑證存放區中提供。
+> 針對安全叢集，您一律必須至少部署一個有效 (未撤銷或過期) 的叢集憑證 (主要或次要)，否則叢集將停止運作。 在所有有效憑證到達到期日的&90; 天前，系統會針對節點產生警告追蹤與警告健康狀態事件。 目前並無 Service Fabric 針對此主題送出的電子郵件或其他任何通知。 
 > 
 > 
 
-按一下 [憑證] 。 系統會開始執行部署，且會在叢集安全性刀鋒視窗顯示藍色狀態列。
+## <a name="add-a-secondary-cluster-certificate-using-the-portal"></a>使用入口網站來新增次要叢集憑證
 
-![入口網站中的憑證指紋螢幕擷取畫面][SecurityConfigurations_02]
+您無法透過 Azure 入口網站新增次要叢集憑證。 必須使用 Azure PowerShell 來執行該操作。 本文件稍後會簡要說明此程序。
 
-在部署順利完成後，您就可以使用主要或次要憑證在叢集上執行管理作業。
+## <a name="swap-the-cluster-certificates-using-the-portal"></a>使用入口網站來交換叢集憑證
 
-![憑證部署正在進行中的螢幕擷取畫面][SecurityConfigurations_03]
+在成功部署次要叢集憑證之後，如果您想要將主要憑證與次要憑證交換，則請瀏覽至 [安全性] 刀鋒視窗，然後從操作功能表中選取 [與主要憑證交換] 選項，以將次要憑證與主要憑證交換。
 
-以下螢幕擷取畫面顯示完成部署後的安全性刀鋒視窗外觀。
+![交換憑證][Delete_Swap_Cert]
 
-![部署後憑證指紋的螢幕擷取畫面][SecurityConfigurations_08]
+## <a name="remove-a-cluster-certificate-using-the-portal"></a>使用入口網站來移除叢集憑證
 
-您現可使用剛剛新增的憑證來連線，並在叢集上執行作業。
+針對安全叢集，您一律必須至少部署一個有效 (未撤銷或過期) 的憑證 (主要或次要)，否則叢集將停止運作。
+
+若要移除次要憑證，使其不用於叢集安全性，請瀏覽至 [安全性] 刀鋒視窗，然後從次要憑證上的操作功能表中選取 [刪除] 選項。
+
+如果您的目的是移除標示為主要的憑證，則您需要先將它與次要憑證交換，然後再於升級完成後刪除次要憑證。
+
+## <a name="add-a-secondary-certificate-using-resource-manager-powershell"></a>使用 Resource Manager Powershell 來新增次要憑證
+
+這些步驟是假設您已熟悉 Resource Manager 的運作方式，並已使用 Resource Manager 範本至少部署一個 Service Fabric 叢集，而且已讓您使用的範本將叢集設定妥當。 此外亦假設您可輕鬆自如地使用 JSON。
 
 > [!NOTE]
-> 目前無法在入口網站上交換主要與次要憑證，此功能正在研發中。 只要具備有效的叢集憑證，叢集就會正常運作。
+> 如果您正在尋找可用來依循或作為起點的範例範本和參數，可從這個 [git 儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)下載。 
 > 
 > 
 
-## <a name="add-a-secondary-certificate-and-swap-it-to-be-the-primary-using-resource-manager-powershell"></a>新增次要憑證，並使用資源管理員 Powershell 將其交換為主要憑證
-這些步驟假設您已熟悉資源管理員的運作方式，並已使用 Resource Manager 範本部署至少一個 Service Fabric 叢集，且已備妥用來設定叢集的範本。 此外亦假設您可輕鬆自如地使用 JSON。
+### <a name="edit-your-resource-manager-template"></a>編輯您的 Resource Manager 範本
 
-> [!NOTE]
-> 若您正在尋找可用來遵循或做為起點的範例範本和參數，可自此 [git-儲存機制] 下載。 (https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample). 
-> 
-> 
+為了便於跟著操作，範例 5-VM-1-NodeTypes-Secure_Step2.JSON 包含我們將進行的所有編輯。 您可以從 [git 儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)取得該範例。
 
-#### <a name="edit-your-resource-manager-template"></a>編輯您的 Resource Manager 範本
-若您曾使用來自 [git-儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)的範例遵循操作，將會在範例 5-VM-1-NodeTypes-Secure_Step2.JSON 中找到這些變更。 使用 5-VM-1-NodeTypes-Secure_Step1.JSON 部署安全叢集
+**務必依照所有步驟操作**
 
-1. 開啟您用來部署叢集的 Resource Manager 範本。
-2. 加入「字串」類型的新參數「secCertificateThumbprint」。 若您使用在建立時透過入口網站下載，或是透過快速入門範本取得的 Resource Manager 範本，則只要搜尋該參數，應會發現它已經定義。  
-3. 尋找「Microsoft.ServiceFabric/clusters」資源定義。 您會在屬性下方找到「憑證」JSON 標籤，看起來應該會像以下 JSON 片段。
+**步驟 1：**開啟您用來部署叢集的 Resource Manager 範本。  (如果您已從上述儲存機制下載該範例，則請使用 5-VM-1-NodeTypes-Secure_Step1.JSON 來部署一個安全的叢集，然後開啟該範本)。
+
+**步驟 2：**將類型為 "string" 的**兩個新參數** "secCertificateThumbprint" 和 "secCertificateUrlValue" 新增到您範本的參數區段。 您可以複製下列程式碼片段並新增到範本中。 視您的範本來源而定，這些有可能已經定義好，如果是這樣，請移至下一個步驟。 
+ 
+```JSON
+   "secCertificateThumbprint": {
+      "type": "string",
+      "metadata": {
+        "description": "Certificate Thumbprint"
+      }
+    },
+    "secCertificateUrlValue": {
+      "type": "string",
+      "metadata": {
+        "description": "Refers to the location URL in your key vault where the certificate was uploaded, it is should be in the format of https://<name of the vault>.vault.azure.net:443/secrets/<exact location>"
+      }
+    },
+
+```
+
+**步驟 3：**對 **Microsoft.ServiceFabric/clusters** 資源進行變更 - 找出您範本中的 "Microsoft.ServiceFabric/clusters" 資源定義。 在該定義的屬性底下，您會發現「憑證」JSON 標籤，看起來應該會像以下 JSON 程式碼片段。
+
    
-   ```JSON
+```JSON
       "properties": {
         "certificate": {
           "thumbprint": "[parameters('certificateThumbprint')]",
           "x509StoreName": "[parameters('certificateStoreValue')]"
-        }
-   ``` 
-4. 加入新標籤「thumbprintSecondary」，並為它提供值「[parameters('secCertificateThumbprint')]」。  
+     }
+``` 
 
-資源定義現在看起來應該像這樣 (視您的範本來源而定，它看起來可能不會和下面的片段完全相同)。 您可在下方看到目前在此執行的作業，是指定新憑證做為主要憑證，並將目前的主要憑證移作次要憑證。  這可讓您在單一部署步驟中，將目前的憑證變換為新憑證。
+加入新標籤「thumbprintSecondary」，並為它提供值「[parameters('secCertificateThumbprint')]」。  
+
+資源定義現在看起來應該像下面這樣 (視您的範本來源而定，可能不會與下面的程式碼片段完全相同)。 
 
 ```JSON
-
       "properties": {
         "certificate": {
-            "thumbprint": "[parameters('certificateThumbprint')]",
-            "thumbprintSecondary": "[parameters('secCertificateThumbprint')]",
-            "x509StoreName": "[parameters('certificateStoreValue')]"
-        },
+          "thumbprint": "[parameters('certificateThumbprint')]",
+          "thumbprintSecondary": "[parameters('secCertificateThumbprint')]",
+          "x509StoreName": "[parameters('certificateStoreValue')]"
+     }
+``` 
+
+如果您想要「變換憑證」，請將新憑證指定為主要憑證，並將目前的主要憑證移轉為次要憑證。  這可讓您透過單一部署步驟，就將目前的主要憑證變換成新憑證。
+
+```JSON
+      "properties": {
+        "certificate": {
+          "thumbprint": "[parameters('secCertificateThumbprint')]",
+          "thumbprintSecondary": "[parameters('certificateThumbprint')]",
+          "x509StoreName": "[parameters('certificateStoreValue')]"
+     }
+``` 
+
+
+**步驟 4：**對「所有」**Microsoft.Compute/virtualMachineScaleSets** 資源定義進行變更 - 找出 Microsoft.Compute/virtualMachineScaleSets 資源定義。 捲動到 "virtualMachineProfile" 底下的 "publisher": "Microsoft.Azure.ServiceFabric"。
+
+在 Service Fabric 發行者設定中，您應該會看到像這樣的畫面。
+
+![Json_Pub_Setting1][Json_Pub_Setting1]
+
+請將新憑證項目新增到其中
+
+```JSON
+               "certificateSecondary": {
+                    "thumbprint": "[parameters('secCertificateThumbprint')]",
+                    "x509StoreName": "[parameters('certificateStoreValue')]"
+                    }
+                  },
 
 ```
 
-#### <a name="edit-your-template-file-to-reflect-the-new-parameters-you-added-above"></a>編輯您的範本檔案，以反映先前加入的新參數
-若您曾使用來自 [git-儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)的範例遵循操作，就可開始在範例 5-VM-1-NodeTypes-Secure.paramters_Step2.JSON 中進行變更 
+屬性現在應該看起來像這樣
 
-編輯 Resource Manager 範本參數檔案，為 secCertificate 加入新參數，然後將現有的主要憑證詳細資料與次要憑證交換，並使用新的憑證詳細資料取代主要憑證詳細資料。 
+![Json_Pub_Setting2][Json_Pub_Setting2]
+
+如果您不想要「變換憑證」，則請將新憑證指定為主要憑證，並將目前的主要憑證移轉為次要憑證。 這可讓您在單一部署步驟中，將目前的憑證變換為新憑證。 
+
+
+```JSON
+               "certificate": {
+                   "thumbprint": "[parameters('secCertificateThumbprint')]",
+                   "x509StoreName": "[parameters('certificateStoreValue')]"
+                     },
+               "certificateSecondary": {
+                    "thumbprint": "[parameters('certificateThumbprint')]",
+                    "x509StoreName": "[parameters('certificateStoreValue')]"
+                    }
+                  },
+
+```
+屬性現在應該看起來像這樣
+
+![Json_Pub_Setting3][Json_Pub_Setting3]
+
+
+**步驟 5：**對「所有」**Microsoft.Compute/virtualMachineScaleSets** 資源定義進行變更 - 找出 Microsoft.Compute/virtualMachineScaleSets 資源定義。 捲動到 "OSProfile" 底下的 "vaultCertificates":。 您應該會看到類似下面的畫面。
+
+
+![Json_Pub_Setting4][Json_Pub_Setting4]
+
+請將 secCertificateUrlValue 新增到其中。 請使用下列程式碼片段：
+
+```Json
+                  {
+                    "certificateStore": "[parameters('certificateStoreValue')]",
+                    "certificateUrl": "[parameters('secCertificateUrlValue')]"
+                  }
+
+```
+產生的 Json 現在應該看起來像這樣。
+![Json_Pub_Setting5][Json_Pub_Setting5]
+
+
+> [!NOTE]
+> 請確定您已針對範本中的所有 Nodetypes/Microsoft.Compute/virtualMachineScaleSets 資源定義重複步驟 4 和 5。 如果您遺漏其中一個，憑證就不會安裝在該 VMSS 上，而您的叢集中將會有無法預測的結果，包括叢集停止運作 (如果您最終沒有任何可供叢集用於安全性的有效憑證)。 因此，在進一步進行之前，請先仔細檢查。
+> 
+> 
+
+
+### <a name="edit-your-template-file-to-reflect-the-new-parameters-you-added-above"></a>編輯您的範本檔案，以反映先前加入的新參數
+如果您是依循來自 [git 儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)的範例進行操作，則可以開始在範例 5-VM-1-NodeTypes-Secure.paramters_Step2.JSON 中進行變更 
+
+請編輯您的 Resource Manager 範本參數檔，新增 secCertificateThumbprint 和 secCertificateUrlValue 的兩個新參數。 
 
 ```JSON
     "secCertificateThumbprint": {
-      "value": "OLD Primary Certificate Thumbprint"
-    },
-   "secSourceVaultValue": {
-      "value": "OLD Primary Certificate Key Vault location"
+      "value": "thumbprint value"
     },
     "secCertificateUrlValue": {
-      "value": "OLD Primary Certificate location in the key vault"
-     },
-    "certificateThumbprint": {
-      "value": "New Certificate Thumbprint"
-    },
-    "sourceVaultValue": {
-      "value": "New Certificate Key Vault location"
-    },
-    "certificateUrlValue": {
-      "value": "New Certificate location in the key vault"
+      "value": "Refers to the location URL in your key vault where the certificate was uploaded, it is should be in the format of https://<name of the vault>.vault.azure.net:443/secrets/<exact location>"
      },
 
 ```
 
 ### <a name="deploy-the-template-to-azure"></a>將範本部署到 Azure
-1. 您現在已可將範本部署至 Azure。 開啟 Azure PS 版本 1+ 命令提示字元。
-2. 登入您的 Azure 帳戶，並選取特定的 Azure 訂用帳戶。 對於擁有多個 Azure 訂用帳戶存取權的使用者而言，這是一個重要步驟。
+
+- 您現在已可將範本部署至 Azure。 開啟 Azure PS 版本 1+ 命令提示字元。
+- 登入您的 Azure 帳戶，並選取特定的 Azure 訂用帳戶。 對於擁有多個 Azure 訂用帳戶存取權的使用者而言，這是一個重要步驟。
 
 ```powershell
 Login-AzureRmAccount
@@ -166,7 +239,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $ResouceGroup2 -TemplatePa
 
 ```
 
-部署完成之後，使用新的憑證連線至叢集，並執行一些查詢。 若您可執行動作。 然後您可以刪除舊的主要憑證。 
+部署完成之後，使用新的憑證連線至叢集，並執行一些查詢。 若您可執行動作。 接著，您可以刪除舊憑證。 
 
 若您是使用自我簽署憑證，請務必將它們匯入至本機 TrustedPeople 憑證存放區。
 
@@ -196,14 +269,32 @@ Connect-serviceFabricCluster -ConnectionEndpoint $ClusterName -KeepAliveInterval
 Get-ServiceFabricClusterHealth 
 ```
 
-## <a name="remove-the-old-certificate-using-the-portal"></a>使用入口網站移除舊憑證
-以下是移除舊憑證的程序，以讓叢集不會使用它：
+## <a name="deploying-application-certificates-to-the-cluster"></a>將應用程式憑證部署到叢集。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/) ，然後瀏覽至您叢集的安全性設定。
-2. 以滑鼠右鍵按一下您想要移除的憑證
-3. 選取 [刪除] 並依照提示執行。 
+您可以使用與上述步驟 5 中所述的相同步驟，將憑證從 Key Vault 部署到節點。 您只需定義和使用不同的參數即可。
 
-[SecurityConfigurations_05]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_05.png
+
+## <a name="adding-or-removing-client-certificates"></a>新增或移除用戶端憑證
+
+除了叢集憑證之外，您還可以新增用戶端憑證以在 Service Fabric 叢集上執行管理作業。
+
+您可以新增兩種用戶端憑證 - 系統管理員或唯讀。 接著這些憑證便可用來控制對叢集上系統管理員作業和查詢作業的存取。 叢集憑證預設會新增到允許的系統管理員憑證清單中。
+
+您可以指定任何數目的用戶端憑證。 每次進行新增/刪除時，都會導致更新 Service Fabric 叢集的組態
+
+
+### <a name="adding-client-certificates---admin-or-read-only-via-portal"></a>透過入口網站新增用戶端憑證 - 系統管理員或唯讀
+
+1. 瀏覽至 [安全性] 刀鋒視窗，然後選取 [安全性] 刀鋒視窗頂端的 [+ 驗證] 按鈕。
+2. 在 [新增驗證] 刀鋒視窗上，選擇 [驗證類型] - [唯讀用戶端] 或 [系統管理員用戶端]
+3. 現在選擇 [驗證方法]。 這會對 Service Fabric 指出其是否應該使用主體名稱或指紋來查詢此憑證。 一般而言，使用主體名稱授權方法不是很好的安全性做法。 
+
+![新增用戶端憑證][Add_Client_Cert]
+
+### <a name="deletion-of-client-certificates---admin-or-read-only-using-the-portal"></a>使用入口網站來刪除用戶端憑證 - 系統管理員或唯讀
+
+若要移除次要憑證，使其不用於叢集安全性，請瀏覽至 [安全性] 刀鋒視窗，然後從特定憑證上的操作功能表中選取 [刪除] 選項。
+
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -213,13 +304,18 @@ Get-ServiceFabricClusterHealth
 * [設定用戶端的角色型存取](service-fabric-cluster-security-roles.md)
 
 <!--Image references-->
-[SecurityConfigurations_02]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_02.png
-[SecurityConfigurations_03]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_03.png
-[SecurityConfigurations_05]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_05.png
-[SecurityConfigurations_08]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_08.png
+[Delete_Swap_Cert]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_09.PNG
+[Add_Client_Cert]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_13.PNG
+[Json_Pub_Setting1]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_14.PNG
+[Json_Pub_Setting2]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_15.PNG
+[Json_Pub_Setting3]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_16.PNG
+[Json_Pub_Setting4]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_17.PNG
+[Json_Pub_Setting5]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_18.PNG
 
 
 
-<!--HONumber=Nov16_HO3-->
+
+
+<!--HONumber=Jan17_HO4-->
 
 

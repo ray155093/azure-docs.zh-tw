@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 032ac0cf678dad3ab544d6e9257b65cf01f36385
-ms.openlocfilehash: 3c4d41689fc3c127c60e6e0988d1efe60d4d71b8
+ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
+ms.openlocfilehash: 291f7d7f8f9addadde95bc30924b040d09c90fc7
 
 
 ---
 # <a name="enable-diagnostics-in-azure-cloud-services-using-powershell"></a>使用 PowerShell 在 Azure 雲端服務中啟用診斷
-您可以使用 Azure 診斷延伸模組，從雲端服務收集診斷資料 (例如應用程式記錄檔、效能計數器等)。 本文描述如何使用 PowerShell 啟用雲端服務的 Azure 診斷延伸模組。  如需這篇文章所需要的必要條件，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
+您可以使用 Azure 診斷延伸模組，從雲端服務收集診斷資料 (例如應用程式記錄檔、效能計數器等)。 本文描述如何使用 PowerShell 啟用雲端服務的 Azure 診斷延伸模組。  如需這篇文章所需要的必要條件，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 
 ## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>啟用診斷延伸模組做為部署雲端服務的一部分
 對於可以啟用診斷擴充來做為雲端服務佈署一部分的連續整合類型案例來說，這種方法是很有用的。 當您建立新的雲端服務部署時，可以啟用診斷擴充，方法是將 *ExtensionConfiguration* 參數傳入 [New-AzureDeployment](https://msdn.microsoft.com/library/azure/mt589089.aspx) Cmdlet。 *ExtensionConfiguration* 參數接受以 [New-AzureServiceDiagnosticsExtensionConfig](https://msdn.microsoft.com/library/azure/mt589168.aspx) Cmdlet 建立的診斷組態陣列。
@@ -98,6 +98,8 @@ $workerrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "Worke
 ## <a name="enable-diagnostics-extension-on-an-existing-cloud-service"></a>在現有的雲端服務上啟用診斷延伸模組
 您可以使用 [Set-AzureServiceDiagnosticsExtension](https://msdn.microsoft.com/library/azure/mt589140.aspx) Cmdlet，在執行中的雲端服務上啟用或更新診斷組態。
 
+[!INCLUDE [cloud-services-wad-warning](../../includes/cloud-services-wad-warning.md)]
+
 ```powershell
 $service_name = "MyService"
 $webrole_diagconfigpath = "MyService.WebRole.PubConfig.xml"
@@ -138,6 +140,6 @@ Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService" -Role "WebRole"
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

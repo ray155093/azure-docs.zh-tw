@@ -1,6 +1,6 @@
 ---
-title: "叢集模型 | Microsoft Docs"
-description: "叢集模型"
+title: "(已過時) 叢集模型 - Azure | Microsoft Docs"
+description: "(已過時) 叢集模型"
 services: machine-learning
 documentationcenter: 
 author: FrancescaLazzeri
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 11/21/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: lazzeri
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8206107550173959021ea69ac533aa046f7e12e3
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: 84c94b83878f851c2ac281fe33afe53e02f8456c
 
 
 ---
-# <a name="cluster-model"></a>叢集模型
+# <a name="deprecated-cluster-model"></a>(已過時) 叢集模型
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 我們可以如何預測多組的信用卡持卡人行為，以降低信用卡發卡機構的壞帳風險？ 我們可以如何定義多組員工的人格特質，以提高員工工作效能？ 醫生可以如何根據疾病特性來將病人分類？ 基本上，叢集分析可以回答所有這些問題。   
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -80,7 +87,7 @@ ms.openlocfilehash: 8206107550173959021ea69ac533aa046f7e12e3
 > 
 > 
 
-Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R 指令碼][execute-r-script]模組提取到工作區。 資料結構描述是採用簡單的[執行 R 指令碼][execute-r-script]所建立。 接著，資料結構描述會連結到同樣也是採用[執行 R 指令碼][execute-r-script]建立的叢集模型區段。 在用於叢集模型的[執行 R 指令碼][execute-r-script]中，Web 服務會接著使用 "k-means" 函數 (已預先建置到 Azure Machine Learning 的[執行 R 指令碼][execute-r-script]中)。    
+從 Azure Machine Learning 中，已建立一個新的空白實驗，並將兩個[執行 R 指令碼][execute-r-script]模組提取到工作區。 資料結構描述是以簡單的[執行 R 指令碼][execute-r-script]建立的。 接著，資料結構描述被連結到叢集模型區段，此區段同樣也是以[執行 R 指令碼][execute-r-script]建立的。 在用於叢集模型的[執行 R 指令碼][execute-r-script]中，Web 服務會接著使用 “k-means” 函數 (已預先建置到 Azure Machine Learning 的[執行 R 指令碼][execute-r-script]中)。    
 
 ![實驗流程][3]
 
@@ -134,6 +141,6 @@ Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

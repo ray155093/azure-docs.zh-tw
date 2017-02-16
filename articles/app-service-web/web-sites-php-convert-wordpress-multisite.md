@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5a0d7d5143879eaf0ee42a70a04d865a33879733
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 45a5c8f16dd70f65967907c18752f4f98ffa75ea
 
 
 ---
@@ -26,9 +26,9 @@ ms.openlocfilehash: 5a0d7d5143879eaf0ee42a70a04d865a33879733
 
 在本教學課程中，您將了解如何將透過 Azure 的資源庫所建立的現有 WordPress Web 應用程式轉換成 WordPress 多網站安裝。 此外，您也將了解如何將自訂網域指派給安裝內的每一個子網站。
 
-本文假設您目前已安裝 WordPress。 如果沒有，請依照[從 Azure 中的組件庫建立 WordPress 網站所提供的指導方針進行][website-from-gallery]。
+本文假設您目前已安裝 WordPress。 如果沒有，請依照 [從 Azure 中的資源庫建立 WordPress 網站][website-from-gallery]所提供的指引進行。
 
-將現有的 WordPress 單一網站安裝轉換成多網站通常相當簡單，以下許多初始步驟都直接取材自 [WordPress Codex](http://codex.wordpress.org) 上的[建立網路][wordpress-codex-create-a-network]頁面。
+將現有的 WordPress 單一網站安裝轉換成多網站通常相當簡單，以下許多初始步驟都直接取材自 [WordPress Codex](http://codex.wordpress.org) 的[建立網站 (英文)][wordpress-codex-create-a-network] 頁面。
 
 現在就開始吧。
 
@@ -36,7 +36,7 @@ ms.openlocfilehash: 5a0d7d5143879eaf0ee42a70a04d865a33879733
 您需要先在 `wp-config.php` 檔案中使用 **WP\_ALLOW\_MULTISITE** 常數來啟用多網站。 有兩種方法可以編輯您的 Web 應用程式檔案：第一種是透過 FTP，第二種是透過 Git。 如果不熟悉如何設定這些方法，請參閱下列教學課程：
 
 * [PHP 網站與 MySQL 和 FTP][website-w-mysql-and-ftp-ftp-setup]
-* [PHP 網站與 MySQL 和 FTP][website-w-mysql-and-git-git-setup]
+* [PHP 網站與 MySQL 和 Git][website-w-mysql-and-git-git-setup]
 
 使用您選擇的編輯器開啟 `wp-config.php` 檔案，然後在 `/* That's all, stop editing! Happy blogging. */` 那一行上方新增下列程式碼。
 
@@ -53,7 +53,7 @@ ms.openlocfilehash: 5a0d7d5143879eaf0ee42a70a04d865a33879733
 
 本教學課程採用「子目錄」  網站結構描述，因為這總是沒有問題，我們將於教學課程稍後設定每一個子網站的自訂網域。 不過，如果您透過 [Azure 入口網站](https://portal.azure.com) 來對應網域，並適當設定萬用字元 DNS，應該就能設定子網域安裝。
 
-如需子網域和子目錄設定的詳細資訊，請參閱 WordPress Codex 上的[多網站網路的類型][wordpress-codex-types-of-networks]文章。
+如需子網域和子目錄設定兩者的詳細資訊，請參閱 WordPress Codex 上的[多網站網路的類型 (英文)][wordpress-codex-types-of-networks] 文章。
 
 ## <a name="enable-the-network"></a>啟用網路
 資料庫中現在已設定網路，還差一步就能啟用網路功能。 請完成 `wp-config.php` 設定，並確定 `web.config` 可適當地路由傳送每一個網站。
@@ -68,7 +68,7 @@ ms.openlocfilehash: 5a0d7d5143879eaf0ee42a70a04d865a33879733
 [WordPress MU Domain Mapping][wordpress-plugin-wordpress-mu-domain-mapping] 外掛程式可讓您輕鬆地將自訂網域加入至網路中的任何網站。 為了讓外掛程式正常運作，您需要在入口網站上執行其他一些設定，也需要在網域註冊機構上這樣做。
 
 ## <a name="enable-domain-mapping-to-the-web-app"></a>允許將網域對應至 Web 應用程式
- **免費** [應用程式服務](http://go.microsoft.com/fwlink/?LinkId=529714) 方案模式不支援將自訂網域新增至 Web Apps。 您需要切換至 [共用] 或 [標準] 模式。 作法：
+**免費** [應用程式服務](http://go.microsoft.com/fwlink/?LinkId=529714) 方案模式不支援將自訂網域新增至 Web Apps。 您需要切換至 [共用] 或 [標準] 模式。 作法：
 
 * 登入 Azure 入口網站，並找出您的 Web 應用程式。 
 * 按一下 [設定] 中的 [相應增加] 索引標籤。
@@ -107,7 +107,7 @@ DNS 變更需要一些時間才會完全生效，如果無法立即執行下列�
 回到 DNS 管理員，設定 A 記錄來指向您在上一步記下的 IP 位址。
 
 ## <a name="install-and-setup-the-plugin"></a>安裝和設定外掛程式
-WordPress 多網站目前沒有內建的方法可對應自訂網域。 不過，有一個名為 [WordPress MU Domain Mapping][wordpress-plugin-wordpress-mu-domain-mapping] 的外掛程式可為您增加此功能。 請登入網站的 [Network Admin] 部分，並安裝 **WordPress MU Domain Mapping** 外掛程式。
+WordPress 多網站目前沒有內建的方法可對應自訂網域。 不過，有一個稱為 [WordPress MU Domain Mapping][wordpress-plugin-wordpress-mu-domain-mapping] 的外掛程式可為您增加此功能。 請登入網站的 [Network Admin] 部分，並安裝 **WordPress MU Domain Mapping** 外掛程式。
 
 安裝並啟動此外掛程式之後，請移至 []  >  來設定外掛程式。 在第一個文字方塊 [Server IP Address] 中，輸入您用來設定網域 A 記錄的 IP 位址。 設定您要的任何 [Domain Options] (預設值通常就很適合)，然後按一下 [Save]。
 
@@ -120,7 +120,7 @@ WordPress 多網站目前沒有內建的方法可對應自訂網域。 不過，
 Azure Web Apps 可讓您將不限數量的網域加入至 Web 應用程式。 若要加入其他網域，您需要對每一個網域執行＜**驗證網域**＞和＜**設定網域 A 記錄**＞兩節。    
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -143,6 +143,6 @@ Azure Web Apps 可讓您將不限數量的網域加入至 Web 應用程式。 �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/13/2016
 ms.author: masashin
 translationtype: Human Translation
-ms.sourcegitcommit: f5bdbd801107650f87993b395338adfb1b26d17e
-ms.openlocfilehash: f4ad13e7674f7af28b22f55dbbb76ccc5d5d26f8
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: ea75a14232c010ebea31273856f21cb0e02067a7
 
 
 ---
@@ -976,7 +976,7 @@ ms.openlocfilehash: f4ad13e7674f7af28b22f55dbbb76ccc5d5d26f8
 
     HTTP 通訊協定支援可用的持續性 HTTP 連線。 HTTP 1.0 規格加入了 Connection:Keep-Alive 標頭，可讓用戶端應用程式向伺服器表示它可以使用相同的連線來傳送後續的要求，而不用開啟新的連線。 如果用戶端未在主機定義的期間內重複使用連線，連線就會自動關閉。 此行為是 HTTP 1.1 中 Azure 服務所使用的預設值，因此不需要在訊息中包含 Keep-alive 標頭。
 
-    讓連線保持開啟可減少延遲和網路壅塞，有助於改善回應能力，但是讓不必要的連線保持開啟的時間超過必要時間，可能會危害到延展性，進而限制其他並行用戶端的連接能力。 如果用戶端應用程式是在行動裝置上執行，這也可能影響電池壽命；如果應用程式只對伺服器提出非經常性要求，維持開啟的連線可能會導致電池更快耗盡。 若要使用 HTTP 1.1 確保連線不會持續，用戶端可以在訊息中包含 Connection:Close 標頭以覆寫預設行為。 同樣地，如果伺服器正在處理非常大量的用戶端，則可以在回應訊息中包含應關閉連線並儲存伺服器資源的 Connection:Close 標頭。
+    讓連接保持開啟可減少延遲和網路壅塞，有助於改善回應能力，但由於讓不必要的連接保持開啟過久，導致其他並行用戶端無法連接，可能不利於延展性。 如果用戶端應用程式是在行動裝置上執行，這也可能影響電池壽命；如果應用程式只偶而向伺服器發出要求，則讓連接保持開啟可能會導致電池更快耗盡。 若要使用 HTTP 1.1 確保連線不會持續，用戶端可以在訊息中包含 Connection:Close 標頭以覆寫預設行為。 同樣地，如果伺服器正在處理非常大量的用戶端，則可以在回應訊息中包含應關閉連線並儲存伺服器資源的 Connection:Close 標頭。
 
   > [!NOTE]
   > 持續性 HTTP 連線純粹是選擇性功能，可減少與重複建立通訊通道相關聯的網路負荷。 Web API 和用戶端應用程式都不應該依賴持續性 HTTP 連線才可使用。 請勿使用持續性 HTTP 連線來實作 Comet 式通知系統；而是應該利用 TCP 層的通訊端 (或可用的 Websocket)。 最後請注意，如果用戶端應用程式透過 Proxy 與伺服器進行通訊，則 Keep-Alive 標頭的使用受限；只有與用戶端和 Proxy 的連線具持續性。
@@ -1150,6 +1150,6 @@ Microsoft 網站上的 [Application Insights - 開始使用 ASP.NET](application
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

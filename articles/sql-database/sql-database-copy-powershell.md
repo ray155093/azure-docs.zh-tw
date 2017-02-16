@@ -8,6 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 6d9839d7-9303-48d2-be0f-21ce84f95a94
 ms.service: sql-database
+ms.custom: migrate and move
 ms.devlang: NA
 ms.date: 09/08/2016
 ms.author: sstein
@@ -15,8 +16,8 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5916e527e078fbd6c6ee6ce0da7707611b20eafc
+ms.sourcegitcommit: a877c17a503e58c49ae781aed61ed120d069c737
+ms.openlocfilehash: 0f2a77892b6ed6c2b1f78e5c6ccefafdca3b5ed5
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: 5916e527e078fbd6c6ee6ce0da7707611b20eafc
 若要完成本文，您需要下列項目：
 
 * Azure SQL Database (要複製的資料庫)。 如果您沒有 SQL Database，請遵循此文章中的步驟來建立： [建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
-* 最新版的 Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* 最新版的 Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 SQL Database 的許多新功能只有在您使用 [Azure Resource Manager 部署模型](../azure-resource-manager/resource-group-overview.md)時才支援，所以範例會使用適用於 Resource Manager 的 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084\(v=azure.300\).aspx)。 現有的傳統部署模型 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723\(v=azure.300\).aspx) 支援回溯相容性，但是建議使用 Resource Manager Cmdlet。
 
@@ -122,6 +123,6 @@ SQL Database 的許多新功能只有在您使用 [Azure Resource Manager 部署
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

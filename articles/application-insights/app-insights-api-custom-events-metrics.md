@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7bd26ffdec185a1ebd71fb88383c2ae4cd6d504f
-ms.openlocfilehash: 460b9e3cf2b4c7a85895c2db872344a1a5bc0ff9
+ms.sourcegitcommit: d809bf7b5e271b8850dc0f2bc6dfd72e3ef8ad0a
+ms.openlocfilehash: 4f9b328968aca2c752b624941ec341a3a936aec3
 
 
 ---
@@ -75,7 +75,7 @@ TelemetryClient 具備執行緒安全。
 我們建議針對您每個應用程式的模組使用 `TelemetryClient` 執行個體。 比方說，您可能在 Web 服務中有一個 `TelemetryClient` 報告傳入的 http 要求，另一個中介類別告報商業邏輯事件。 您可以設定如 `TelemetryClient.Context.User.Id` 的屬性以追蹤使用者和工作階段，或 `TelemetryClient.Context.Device.Id` 來識別電腦。 這項資訊會附加至執行個體所傳送的所有事件。
 
 ## <a name="track-event"></a>追蹤事件
-在 Application Insights 中，「自訂事件」是您可以在[計量瀏覽器][metrics]中顯示為彙總計數，以及在[診斷搜尋][diagnostic]中顯示為個別發生點的資料點。 (它與 MVC 或其他架構的「事件」不相關。)
+在 Application Insights 中，「自訂事件」是您可以在[計量瀏覽器][metrics]顯示為彙總計數，同時在[診斷搜尋][diagnostic] 中顯示為個別發生點的資料點。 (它與 MVC 或其他架構的「事件」不相關。)
 
 在您的程式碼中插入 TrackEvent 呼叫，以計算使用者選擇特定功能的頻率、達成特定目標的頻率，或可能製造特定類型的錯誤。
 
@@ -157,7 +157,6 @@ TelemetryClient 具備執行緒安全。
 
 ![加入新的圖表或選取圖表，並在 [自訂] 底下選取您的度量](./media/app-insights-api-custom-events-metrics/03-track-custom.png)
 
-有一些 [度量的數目限制](#limits) 可供您使用。
 
 ## <a name="page-views"></a>頁面檢視
 在裝置或網頁應用程式中，每個畫面或頁面載入時預設會傳送頁面檢視遙測。 但是，您可以變更為在其他或不同的時間追蹤頁面檢視。 例如，在顯示索引標籤或刀鋒視窗的應用程式中，您可能想要在使用者每次開啟新的刀鋒視窗時追蹤「頁面」。
@@ -261,7 +260,7 @@ TelemetryClient 具備執行緒安全。
 ![相關項目](./media/app-insights-api-custom-events-metrics/21.png)
 
 ## <a name="track-exception"></a>追蹤例外狀況
-將例外狀況傳送至 Application Insights：以[計算它們][metrics]，做為問題頻率的指示，以及[檢查個別發生次數][diagnostic]。 報告包含堆疊追蹤。
+將例外狀況傳送至 Application Insights：以[計算它們][metrics]做為問題頻率的指示，並[檢查個別發生次數][diagnostic]。 報告包含堆疊追蹤。
 
 *C#*
 
@@ -301,7 +300,7 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 ## <a name="track-trace"></a>追蹤
 使用此選項可協助您藉由將 'breadcrumb trail' 傳送至 Application Insights 來診斷問題。 您可以傳送診斷資料區塊，並且在[診斷搜尋][diagnostic]中檢查。
 
-[記錄配接器][trace]會使用此 API 將第三方記錄傳送至入口網站。
+[記錄配接器][trace]使用此 API 將第三方記錄傳送至入口網站。
 
 *C#*
 
@@ -396,7 +395,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 在[計量瀏覽器](app-insights-metrics-explorer.md)中，您可建立可計算**已驗證的使用者**和**使用者帳戶**的圖表。
 
-您亦可[搜尋][diagnostic]具特定使用者名稱和帳戶的用戶端資料點。
+您也可以[搜尋][diagnostic]具有特定使用者名稱和帳戶的用戶端資料點。
 
 ## <a name="a-namepropertiesafilter-search-and-segment-your-data-with-properties"></a><a name="properties"></a>使用屬性來篩選、搜尋和分割您的資料
 您可以將屬性和測量結果附加至您的事件 (同時還有度量，頁面檢視、例外狀況和其他的遙測資料)。
@@ -621,7 +620,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 
 ## <a name="a-namedynamic-ikeya-dynamic-instrumentation-key"></a><a name="dynamic-ikey"></a> 動態檢測金鑰
-若要避免混合來自開發、測試和實際執行環境的遙測，您可以[建立個別 Application Insights 資源][create]，並且依據環境變更其金鑰。
+若要避免混合來自開發、測試和實際執行環境的遙測，您可以[建立個別的 Application Insights 資源][create]，並且依據環境變更其金鑰。
 
 而不是從組態檔取得檢測金鑰，您可以在程式碼中設定。 在初始化方法中設定金鑰，例如 ASP.NET 服務中的 global.aspx.cs：
 
@@ -661,7 +660,7 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
     telemetry.Context.Operation.Name = "MyOperationName";
 
-如果您自行設定這些值，請考慮從 [ApplicationInsights.config][config] 的相關程式碼行移除，如此您的值和標準值才不致混淆。
+如果您自行設定這些值，請考慮從 [ApplicationInsights.config][config] 移除相關的程式碼行，讓您的值和標準值不致混淆。
 
 * **元件** 識別應用程式及其版本
 * **裝置** 應用程式執行所在的裝置的相關資料 (在 Web 應用程式中，這是傳送遙測的伺服器或用戶端裝置)
@@ -684,7 +683,7 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
 *資料保留多久？*
 
-* 請參閱[資料保留和隱私權][資料]。
+* 請參閱[資料保留和隱私權][data]。
 
 ## <a name="reference-docs"></a>參考文件
 * [ASP.NET 參考](https://msdn.microsoft.com/library/dn817570.aspx)
@@ -721,7 +720,7 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 [client]: app-insights-javascript.md
 [config]: app-insights-configuration-with-applicationinsights-config.md
 [create]: app-insights-create-new-resource.md
-[資料]: app-insights-data-retention-privacy.md
+[data]: app-insights-data-retention-privacy.md
 [diagnostic]: app-insights-diagnostic-search.md
 [exceptions]: app-insights-asp-net-exceptions.md
 [greenbrown]: app-insights-asp-net.md
@@ -732,6 +731,6 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 16d3db2737db70119c75991388c8c763208ad1fa
+ms.sourcegitcommit: 5d3bcc3c1434b16279778573ccf3034f9ac28a4d
+ms.openlocfilehash: 6871ab3bc25ab3ec7b3c60852aa06bee047d8e9a
 
 
 ---
@@ -27,32 +27,32 @@ ms.openlocfilehash: 16d3db2737db70119c75991388c8c763208ad1fa
 > * [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 > * [REST](sql-data-warehouse-manage-compute-rest-api.md)
 > * [TSQL](sql-data-warehouse-manage-compute-tsql.md)
-> 
-> 
+>
+>
 
-SQL 資料倉儲的架構分隔儲存體和計算功能，可單獨進行調整。 如此一來，您可以相應放大效能，同時只有在需要時支付效能以便節省成本。 
+SQL 資料倉儲的架構分隔儲存體和計算功能，可單獨進行調整。 如此一來，您可以相應放大效能，同時只有在需要時支付效能以便節省成本。
 
-本概觀說明 SQL 資料倉儲的下列效能相應放大功能，並提供如何及何時使用它們的建議。 
+本概觀說明 SQL 資料倉儲的下列效能相應放大功能，並提供如何及何時使用它們的建議。
 
-* 藉由調整[資料倉儲單位 (DWU)][資料倉儲單位 (DWU)] 來調整計算能力
+* 藉由調整[資料倉儲單位 (DWU)][data warehouse units (DWUs)] 來調整計算能力
 * 暫停或繼續計算資源
 
 <a name="scale-performance-bk"></a>
 
 ## <a name="scale-performance"></a>調整效能
-在 SQL 資料倉儲中，您可以快速地將效能相應放大或調整回來，方法是增加或減少 CPU、記憶體和 I/O 頻寬的計算資源。 若要調整效能，您只需要調整 SQL 資料倉儲配置到您的資料庫的[資料倉儲單位 (DWU)][資料倉儲單位 (DWU)] 的數目。 SQL 資料倉儲會快速進行變更，並處理硬體或軟體的所有基礎變更。
+在 SQL 資料倉儲中，您可以快速地將效能相應放大或調整回來，方法是增加或減少 CPU、記憶體和 I/O 頻寬的計算資源。 若要調整效能，您只需要調整 SQL 資料倉儲配置到您的資料庫的[資料倉儲單位 (DWU)][data warehouse units (DWUs)] 數目。 SQL 資料倉儲會快速進行變更，並處理硬體或軟體的所有基礎變更。
 
-您再也不需要為了獲得優異的資料倉儲效能，而研究處理器類型、需要的記憶體容量或儲存空間類型。 將您的資料倉儲放在雲端，就不再需要處理低階的硬體問題。 相反地，SQL 資料倉儲要問您：您想要多快的資料分析速度？ 
+您再也不需要為了獲得優異的資料倉儲效能，而研究處理器類型、需要的記憶體容量或儲存空間類型。 將您的資料倉儲放在雲端，就不再需要處理低階的硬體問題。 相反地，SQL 資料倉儲要問您：您想要多快的資料分析速度？
 
 ### <a name="how-do-i-scale-performance"></a>如何調整效能？
-若要彈性增加或減少計算能力，只要變更您的資料庫的[資料倉儲單位 (DWU)][資料倉儲單位 (DWU)] 設定。 隨著您新增更多 DWU，效能將呈線性比例上升。  在更高的 DWU 層級，您需要加入超過 100 個 DWU，才能注意到顯著的效能改善。 為了協助您在 DWU 中選取有意義的跳躍點，我們提供的 DWU 層級可提供最佳的結果。
+若要彈性增加或減少計算能力，只要變更您的資料庫的[資料倉儲單位 (DWU)][data warehouse units (DWUs)]。 隨著您新增更多 DWU，效能將呈線性比例上升。  在更高的 DWU 層級，您需要加入超過 100 個 DWU，才能注意到顯著的效能改善。 為了協助您在 DWU 中選取有意義的跳躍點，我們提供的 DWU 層級可提供最佳的結果。
 
 若要調整 DWU，您可以使用任何一種個別的方法。
 
-* [使用 Azure 入口網站調整計算能力][使用 Azure 入口網站調整計算能力]
-* [使用 PowerShell 調整計算能力][使用 PowerShell 調整計算能力]
-* [使用 REST API 調整計算能力][使用 REST API 調整計算能力]
-* [使用 TSQL 調整計算能力][使用 TSQL 調整計算能力]
+* [使用 Azure 入口網站調整計算能力][Scale compute power with Azure portal]
+* [使用 PowerShell 調整計算能力][Scale compute power with PowerShell]
+* [使用 REST API 調整計算能力][Scale compute power with REST APIs]
+* [使用 TSQL 調整計算能力][Scale compute power with TSQL]
 
 ### <a name="how-many-dwus-should-i-use"></a>應該使用多少 DWU 呢？
 SQL 資料倉儲的效能是以線性方式調整，在幾秒內就能從某個計算比例變更為另一個 (例如從 100 個 DWU 至 2000 個 DWU)。 這可讓您彈性地試驗不同的 DWU 設定，直到您決定最適合您的案例的設定。
@@ -68,7 +68,7 @@ SQL 資料倉儲的效能是以線性方式調整，在幾秒內就能從某個�
 5. 繼續進行調整，直到達到您業務需求的最佳效能為止。
 
 ### <a name="when-should-i-scale-dwus"></a>何時調整 DWU？
-當您需要更快的結果時，提升您的 DWU 並且為較高的效能支付款項。  當您需要較小的計算能力時，減少您的 DWU 並且僅針對您需要的項目支付款項。 
+當您需要更快的結果時，提升您的 DWU 並且為較高的效能支付款項。  當您需要較小的計算能力時，減少您的 DWU 並且僅針對您需要的項目支付款項。
 
 DWU 調整時機的建議︰
 
@@ -82,9 +82,9 @@ DWU 調整時機的建議︰
 
 若要暫停資料庫，您可以使用任何一種個別的方法。
 
-* [使用 Azure 入口網站暫停計算][使用 Azure 入口網站暫停計算]
-* [使用 PowerShell 暫停計算][使用 PowerShell 暫停計算]
-* [使用 REST API 暫停計算][使用 REST API 暫停計算]
+* [使用 Azure 入口網站暫停計算][Pause compute with Azure portal]
+* [使用 PowerShell 暫停計算][Pause compute with PowerShell]
+* [使用 REST API 暫停計算][Pause compute with REST APIs]
 
 <a name="resume-compute-bk"></a>
 
@@ -93,65 +93,65 @@ DWU 調整時機的建議︰
 
 若要繼續資料庫，您可以使用任何一種個別的方法。
 
-* [使用 Azure 入口網站繼續計算][使用 Azure 入口網站繼續計算]
-* [使用 PowerShell 繼續計算][使用 PowerShell 繼續計算]
-* [使用 REST API 繼續計算][使用 REST API 繼續計算]
+* [使用 Azure 入口網站繼續計算][Resume compute with Azure portal]
+* [使用 PowerShell 繼續計算][Resume compute with PowerShell]
+* [使用 REST API 繼續計算][Resume compute with REST APIs]
 
 ## <a name="permissions"></a>權限
-調整資料庫需要 [ALTER DATABASE][ALTER DATABASE]所述的權限。  暫停和繼續需要 [SQL DB 參與者][SQL DB 參與者]權限，特別是 Microsoft.Sql/servers/databases/action。
+調整資料庫需要 [ALTER DATABASE][ALTER DATABASE] 中所述的權限。  暫停和繼續需要 [SQL DB 參與者][SQL DB Contributor]權限，特別是 Microsoft.Sql/servers/databases/action。
 
 <a name="next-steps-bk"></a>
 
 ## <a name="next-steps"></a>後續步驟
 請參閱下列文章，以瞭解其他一些關鍵效能概念：
 
-* [工作負載和並行存取管理][工作負載和並行存取管理]
-* [資料表設計概觀][資料表設計概觀]
-* [資料表散發][資料表散發]
-* [索引資料表的編製][索引資料表的編製]
-* [資料表分割][資料表分割]
-* [資料表統計資料][資料表統計資料]
-* [最佳作法][最佳作法]
+* [工作負載和並行存取管理][Workload and concurrency managment]
+* [資料表設計概觀][Table design overview]
+* [資料表散發][Table distribution]
+* [索引資料表的編製][Table indexing]
+* [資料表分割][Table partitioning]
+* [資料表統計資料][Table statistics]
+* [最佳作法][Best practices]
 
 <!--Image reference-->
 
 <!--Article references-->
-[資料倉儲單位 (DWU)]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[data warehouse units (DWUs)]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
 
-[使用 Azure 入口網站調整計算能力]: ./sql-data-warehouse-manage-compute-portal.md#scale-compute-bk
-[使用 PowerShell 調整計算能力]: ./sql-data-warehouse-manage-compute-powershell.md#scale-compute-bk
-[使用 REST API 調整計算能力]: ./sql-data-warehouse-manage-compute-rest-api.md#scale-compute-bk
-[使用 TSQL 調整計算能力]: ./sql-data-warehouse-manage-compute-tsql.md#scale-compute-bk
+[Scale compute power with Azure portal]: ./sql-data-warehouse-manage-compute-portal.md#scale-compute-power
+[Scale compute power with PowerShell]: ./sql-data-warehouse-manage-compute-powershell.md#scale-compute-bk
+[Scale compute power with REST APIs]: ./sql-data-warehouse-manage-compute-rest-api.md#scale-compute-bk
+[Scale compute power with TSQL]: ./sql-data-warehouse-manage-compute-tsql.md#scale-compute-bk
 
-[容量限制]: ./sql-data-warehouse-service-capacity-limits.md
+[capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 
-[使用 Azure 入口網站暫停計算]:  ./sql-data-warehouse-manage-compute-portal.md#pause-compute-bk
-[使用 PowerShell 暫停計算]: ./sql-data-warehouse-manage-compute-powershell.md#pause-compute-bk
-[使用 REST API 暫停計算]: ./sql-data-warehouse-manage-compute-rest-api.md#pause-compute-bk
+[Pause compute with Azure portal]:  ./sql-data-warehouse-manage-compute-portal.md#pause-compute-bk
+[Pause compute with PowerShell]: ./sql-data-warehouse-manage-compute-powershell.md#pause-compute-bk
+[Pause compute with REST APIs]: ./sql-data-warehouse-manage-compute-rest-api.md#pause-compute-bk
 
-[使用 Azure 入口網站繼續計算]:  ./sql-data-warehouse-manage-compute-portal.md#resume-compute-bk
-[使用 PowerShell 繼續計算]: ./sql-data-warehouse-manage-compute-powershell.md#resume-compute-bk
-[使用 REST API 繼續計算]: ./sql-data-warehouse-manage-compute-rest-api.md#resume-compute-bk
+[Resume compute with Azure portal]:  ./sql-data-warehouse-manage-compute-portal.md#resume-compute-bk
+[Resume compute with PowerShell]: ./sql-data-warehouse-manage-compute-powershell.md#resume-compute-bk
+[Resume compute with REST APIs]: ./sql-data-warehouse-manage-compute-rest-api.md#resume-compute-bk
 
-[工作負載和並行存取管理]: ./sql-data-warehouse-develop-concurrency.md
-[資料表設計概觀]: ./sql-data-warehouse-tables-overview.md
-[資料表散發]: ./sql-data-warehouse-tables-distribute.md
-[索引資料表的編製]: ./sql-data-warehouse-tables-index.md
-[資料表分割]: ./sql-data-warehouse-tables-partition.md
-[資料表統計資料]: ./sql-data-warehouse-tables-statistics.md
-[最佳作法]: ./sql-data-warehouse-best-practices.md 
-[開發概觀]: ./sql-data-warehouse-overview-develop.md
+[Workload and concurrency managment]: ./sql-data-warehouse-develop-concurrency.md
+[Table design overview]: ./sql-data-warehouse-tables-overview.md
+[Table distribution]: ./sql-data-warehouse-tables-distribute.md
+[Table indexing]: ./sql-data-warehouse-tables-index.md
+[Table partitioning]: ./sql-data-warehouse-tables-partition.md
+[Table statistics]: ./sql-data-warehouse-tables-statistics.md
+[Best practices]: ./sql-data-warehouse-best-practices.md
+[development overview]: ./sql-data-warehouse-overview-develop.md
 
-[SQL DB 參與者]: ../active-directory/role-based-access-built-in-roles.md#sql-db-contributor
+[SQL DB Contributor]: ../active-directory/role-based-access-built-in-roles.md#sql-db-contributor
 
 <!--MSDN references-->
 [ALTER DATABASE]: https://msdn.microsoft.com/library/mt204042.aspx
 
 <!--Other Web references-->
-[Azure 入口網站]: http://portal.azure.com/
+[Azure portal]: http://portal.azure.com/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

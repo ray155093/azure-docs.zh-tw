@@ -1,24 +1,9 @@
 ---
-title: "了解 Azure 上的 NoSQL 技術 | Microsoft Docs"
-description: "了解 Azure NoSQL 能如何協助您管理不適 	關聯式資料庫的資料。 DocumentDB、表格儲存體、HBase、HDInsight 和 提供認證 (登入和密碼)。"
-editor: cgronlun
-manager: jhubbard
-services: documentdb, storage, hdinsight
-documentationcenter: 
-author: mimig1
-ms.assetid: eb9c081f-7d67-4d60-be77-1181108da30d
-ms.service: multiple
-ms.workload: multiple
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 10/26/2016
-ms.author: mimig
 redirect_url: https://azure.microsoft.com/services/documentdb/
 ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1445c35231274b816df632f2c81f5d102d8a885f
+ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
+ms.openlocfilehash: 48380d1fd5394cc32b4e868a82f456497bc4a915
 
 
 
@@ -40,6 +25,6 @@ ms.openlocfilehash: 1445c35231274b816df632f2c81f5d102d8a885f
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

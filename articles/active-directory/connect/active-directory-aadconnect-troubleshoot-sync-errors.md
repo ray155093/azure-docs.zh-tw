@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: vakarand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b5b7ff810f36b14481572ec2e59f9d4999945c3f
+ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
+ms.openlocfilehash: 24e675ebd63554be0bbc51e1013c4ade94b56abe
 
 
 ---
@@ -35,7 +35,7 @@ Azure AD Connect 會從其保持同步的目錄執行 3 種作業︰匯入、同
 下一節說明使用 Azure AD 連接器匯出至 Azure AD 的作業期間內可能發生的各類型同步處理錯誤。 此連接器可經由 "contoso.onmicrosoft.com" 格式的名稱加以識別。
 匯出至 Azure AD 期間發生的錯誤，表示 Azure AD connect \(同步處理引擎\) 在 Azure Active Directory 上嘗試的\(新增、更新、刪除等\)作業失敗。
 
-![匯出錯誤概觀](.\\media\\active-directory-aadconnect-troubleshoot-sync-errors\\Export_Errors_Overview_01.png)
+![匯出錯誤概觀](./media/active-directory-aadconnect-troubleshoot-sync-errors/Export_Errors_Overview_01.png)
 
 ## <a name="data-mismatch-errors"></a>資料不符錯誤
 ### <a name="invalidsoftmatch"></a>InvalidSoftMatch
@@ -114,7 +114,7 @@ InvalidSoftMatch 錯誤的最常見原因是兩個具有不同 SourceAnchor \(im
 * 在 Office 365 中建立擁有郵件功能的安全性群組。 系統管理員會使用與 Office 365 群組相同的 ProxyAddresses 屬性值，在內部部署 AD (尚未同步處理至 Azure AD) 中新增使用者或連絡人。
 
 #### <a name="example-case"></a>範例案例
-1. 系統管理員在 Office 365 中針對稅務部門建立擁有郵件功能的新安全性群組，並提供其電子郵件地址 tax@contoso.com.。這會指派此群組的 ProxyAddresses 屬性，其值為 **smtp:tax@contoso.com**
+1. 系統管理員在 Office 365 中針對稅務部門建立擁有郵件功能的新安全性群組，並為其提供電子郵件地址 tax@contoso.com。 這會為此群組指派值為 **smtp:tax@contoso.com** 的 ProxyAddresses 屬性
 2. 新使用者會加入 Contoso.com，並針對 proxyAddress 為 **smtp:tax@contoso.com** 的內部部署使用者建立帳戶
 3. 當 Azure AD Connect 將同步處理新的使用者帳戶時，它會收到 "ObjectTypeMismatch" 錯誤。
 
@@ -195,7 +195,7 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 #### <a name="how-to-fix"></a>修正方式
 如果使用者的 PrincipalName suffix 尾碼從 bob@**contoso.com** 更新為 bob@**fabrikam.com**，其中 **contoso.com** 與 **fabrikam.com** 都是**同盟網域**，則遵循下列步驟來修正同步處理錯誤
 
-1. 將 Azure AD 中使用者的 UserPrincipalName 從 bob@contoso.com 更新為 bob@contoso.onmicrosoft.com. 您可以使用下列 PowerShell 命令搭配 Azure AD PowerShell 模組：`Set-MsolUserPrincipalName -UserPrincipalName bob@contoso.com -NewUserPrincipalName bob@contoso.onmicrosoft.com`
+1. 將 Azure AD 中使用者的 UserPrincipalName 從 bob@contoso.com 更新為 bob@contoso.onmicrosoft.com。 您可以使用以下 PowerShell 命令搭配 Azure AD PowerShell 模組：`Set-MsolUserPrincipalName -UserPrincipalName bob@contoso.com -NewUserPrincipalName bob@contoso.onmicrosoft.com`
 2. 允許下一個同步處理週期嘗試進行同步處理。 這次同步處理將會成功，而且 Bob 的 UserPrincipalName 會如預期般更新為 bob@fabrikam.com。
 
 ## <a name="largeobject"></a>LargeObject
@@ -209,7 +209,7 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 ### <a name="possible-scenarios"></a>可能的案例
 1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。
 2. Bob 在 Active Directory 中設定的 thmubnailPhoto 太大，以致無法在 Azure AD 中進行同步處理。
-3. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過 500 個 ProxyAddresses。
+3. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過&500; 個 ProxyAddresses。
 
 ### <a name="how-to-fix"></a>修正方式
 1. 確定造成錯誤的屬性在允許的限制內。
@@ -221,6 +221,6 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

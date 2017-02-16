@@ -13,11 +13,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/29/2016
+ms.date: 12/06/2016
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: a38f4a1742748deb11967b9f06a4726e57963d92
+ms.sourcegitcommit: 7583a1c81802bdedabdb70c125aac536b879204d
+ms.openlocfilehash: 38531c1b3cb7c7de9b832b4fbedd8991f40e3424
 
 
 ---
@@ -145,7 +145,7 @@ Azure 服務等級協定是獨立於我們的內部部署 Microsoft 授權合約
 可能的原因如下：
 
 * 您的 Azure 訂閱不滿 30 天。
-* 您的訂用帳戶是免費試用版，或沒有信用卡或其他相關付款方式的成員優惠之一 (MSDN/Open/BizSpark/DreamSpark)。
+* 您的訂用帳戶類型是免費試用，或是其中一種沒有信用卡或其他相關付款工具的會員優惠 (Visual Studio 訂閱者/Open/BizSpark/Imagine 的每月信用額度)。
 * 還沒到發票產生日期。
 
 ### <a name="i-am-unable-to-log-in-to-the-azure-portal"></a>我無法登入 Azure 入口網站
@@ -195,7 +195,7 @@ Microsoft Azure 帳戶可從 [Azure 帳戶中心](https://account.windowsazure.c
 Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。 您可以使用 RBAC 來區隔開發小組的職責，僅授與使用者作業所需的存取權。 如需詳細資訊，請參閱 [Azure 角色型存取控制](active-directory/role-based-access-control-configure.md)。
 
 ### <a name="how-do-i-transfer-ownership-of-my-subscriptions"></a>如何移轉我的訂用帳戶的擁有權？
-您現在可以針對隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶，輕鬆地在 Microsoft Azure 帳戶中心執行此動作。 我們已經可讓您將您的訂用帳戶轉移給另一位使用者。 換句話說，您現在可以在所擁有的任何隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶上變更帳戶管理員。 請注意，收件者的使用者帳戶必須是在相同的國家/地區，且您無法轉移與 Marketplace 購買相關聯的訂用帳戶。
+您現在可以輕鬆地在 Microsoft Azure 帳戶中心這樣做 - 包括隨用隨付、Visual Studio 訂閱者每月信用額度、Microsoft 合作夥伴網路，或 BizSpark 訂用帳戶。 我們已經可讓您將您的訂用帳戶轉移給另一位使用者。 換句話說，在任何隨用隨付、Visual Studio 訂閱者每月信用額度、Microsoft 合作夥伴網路，或您擁有的 BizSpark 訂用帳戶上，您現在可以變更帳戶管理員。 請注意，收件者的使用者帳戶必須是在相同的國家/地區，且您無法轉移與 Marketplace 購買相關聯的訂用帳戶。
 如需詳細資訊，請參閱 [如何傳輸 Azure 訂用帳戶](billing-subscription-transfer.md)一文。
 
 ### <a name="can-i-use-my-existing-windows-licenses-that-i-bought-outside-of-azure"></a>可以使用在 Azure 外部購買的現有 Windows 授權嗎？
@@ -242,14 +242,14 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 Azure 原本是要供企業用來建置雲端規模的應用程式與服務。 不過，任何人都可以購買 Azure 服務。
 
 ### <a name="can-i-try-azure-for-free-without-any-risk-of-being-charged"></a>我可以免費試用 Azure，不需擔心收費問題嗎？
-是。 我們的 [消費限制功能](https://azure.microsoft.com/pricing/spending-limits/)，可讓註冊免費試用、MSDN、MPN 或 BizSpark 優惠的客戶在使用 Azure 時，只要持續開啟「消費限制」功能，就不會收費。 所有註冊這些服務的新客戶都會開啟 [消費限制]，且其值為 $0。
+是。 透過我們的[消費限制功能](https://azure.microsoft.com/pricing/spending-limits/)，註冊免費試用、Visual Studio 訂閱者每月信用額度、Microsoft 合作夥伴網路或 BizSpark 優惠的客戶，只要將「消費限制」功能保持開啟，就可以免費使用 Azure。 所有註冊這些服務的新客戶都會開啟 [消費限制]，且其值為 $0。
 
 ### <a name="can-i-turn-the-spending-limit-back-on-if-i-turn-off-it"></a>如果我關閉「消費限制」功能，還能再重新開啟嗎？
-使用會員優惠 (如 MSDN) 的人可以在下個計費週期重新啟用「消費限制」功能。 「消費限制」功能一旦停用，就無法在目前計費週期重新啟用。
+如果您是會員權益優惠的使用者 (如 Visual Studio 訂閱者的每月信用額度)，則可以在下一個計費週期開始時重新啟用「消費限制」功能。 「消費限制」功能一旦停用，就無法在目前計費週期重新啟用。
 如需詳細資訊，請參閱 [變更 Azure 消費限制](https://msdn.microsoft.com/library/azure/dn465781.aspx)。
 
 ### <a name="can-i-adjust-the-amount-of-the-spending-limit"></a>我可以調整「消費限制」的金額嗎？
-針對此功能的初始版本，「消費限制」設為 $0 (美金)，而且無法調整。 其設計是要讓享有免費試用、MSDN、MPN 或 BizSpark 優惠的客戶使用 Azure 時，完全不用擔心會被計費。
+針對此功能的初始版本，「消費限制」設為 $0 (美金)，而且無法調整。 目的是讓享有免費試用、Visual Studio 訂閱者每月信用額度、Microsoft 合作夥伴網路或 BizSpark 優惠的客戶，保證完全可免費使用 Azure。
 如需詳細資訊，請參閱 [Azure 消費限制](https://azure.microsoft.com/pricing/spending-limits/)。
 
 ### <a name="in-which-countries-and-regions-is-microsoft-azure-commercially-available-and-what-currencies-can-be-used-to-purchase-azure"></a>Microsoft Azure 在那些國家/地區和區域上市，以及可以使用哪些貨幣購買 Azure？
@@ -297,6 +297,6 @@ Azure 免費試用訂用帳戶是為任何新客戶提供的為期一個月的�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

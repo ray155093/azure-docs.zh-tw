@@ -1,5 +1,5 @@
 ---
-title: "在 HDInsight 上使用 Apache Spark 建置機器學習應用程式 | Microsoft Docs"
+title: "在 Azure HDInsight 上使用 Apache Spark 建置機器學習應用程式 | Microsoft Docs"
 description: "說明如何搭配使用 Notebook 和 Apache Spark 來建置機器學習應用程式的逐步指示"
 services: hdinsight
 documentationcenter: 
@@ -13,15 +13,16 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 59775fc056285b72b1c6e6d5d45f6a9c0ede2d3f
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 94c7aca175543b94742ad57af6949b3fcdda6356
 
 
 ---
-# <a name="build-machine-learning-applications-to-run-on-apache-spark-clusters-on-hdinsight-linux"></a>建置機器學習服務應用程式以在 HDInsight Linux 中的 Apache Spark 叢集上執行
+# <a name="build-machine-learning-applications-to-run-on-apache-spark-clusters-on-hdinsight"></a>建置機器學習服務應用程式以在 HDInsight 中的 Apache Spark 叢集上執行
+
 了解如何在 HDInsight 中使用 Apache Spark 叢集建置機器學習應用程式。 本文說明如何使用叢集隨附的 Jupyter Notebook 來建置及測試應用程式。 應用程式使用所有叢集預設提供的範例 HVAC.csv 資料。
 
 **必要條件：**
@@ -29,14 +30,14 @@ ms.openlocfilehash: 59775fc056285b72b1c6e6d5d45f6a9c0ede2d3f
 您必須滿足以下條件：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。 
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。 
 
 ## <a name="a-namedataashow-me-the-data"></a><a name="data"></a>顯示資料
 在開始建置應用程式之前，我們先來了解資料的結構，以及要針對資料執行哪種分析。 
 
 在本文中，我們使用的範例是 **HVAC.csv** 資料檔案，您可以在與 HDInsight 叢集相關聯的 Azure 儲存體帳戶中取得此檔案。 在儲存體帳戶中，檔案位於 **\HdiSamples\HdiSamples\SensorSampleData\hvac**。 下載及開啟 CSV 檔案，以取得資料的快照。  
 
-![HVAC 資料快照](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.ml.show.data.png "Snapshot of the HVAC data")
+![HVAC 資料快照集](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.ml.show.data.png "HVAC 資料的快照集")
 
 這項資料會顯示安裝 HVAC 系統之建築物的目標溫度和實際溫度。 我們假設 [System] 資料行代表系統識別碼，而 [SystemAge] 資料行代表 HVAC 系統安裝在建築物中的年數。
 
@@ -56,10 +57,10 @@ ms.openlocfilehash: 59775fc056285b72b1c6e6d5d45f6a9c0ede2d3f
    > 
 3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [PySpark]。
    
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.note.jupyter.createnotebook.png "Create a new Jupyter notebook")
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 4. 系統隨即會建立新 Notebook，並以 Untitled.pynb 的名稱開啟。 在頂端按一下 Notebook 名稱，然後輸入好記的名稱。
    
-    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.note.jupyter.notebook.name.png "Provide a name for the notebook")
+    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
 5. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。 當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。 首先，您可以匯入此案例需要的類型。 將下列程式碼片段貼到空白儲存格中，然後按 **SHIFT + ENTER**。 
    
         from pyspark.ml import Pipeline
@@ -78,7 +79,7 @@ ms.openlocfilehash: 59775fc056285b72b1c6e6d5d45f6a9c0ede2d3f
    
     將下列程式碼片段貼到空白儲存格中，然後按下 **SHIFT + ENTER**。
 
-        # List the structure of data for better understanding. Becuase the data will be
+        # List the structure of data for better understanding. Because the data will be
         # loaded as an array, this structure makes it easy to understand what each element
         # in the array corresponds to
 
@@ -156,7 +157,7 @@ ms.openlocfilehash: 59775fc056285b72b1c6e6d5d45f6a9c0ede2d3f
 
     返回並根據原始 CSV 檔案驗證輸出。 例如，CSV 檔案中第一個資料列的資料為：
 
-    ![HVAC 資料快照](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.ml.show.data.first.row.png "Snapshot of the HVAC data")
+    ![HVAC 資料快照集](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.ml.show.data.first.row.png "HVAC 資料的快照集")
 
     請注意，實際溫度比目標溫度低的情況代表建築物處於低溫狀態。 因此在訓練輸出中，第一個資料列的 [label] 值為 [0.0]，這代表建築物不是熱的。
 
@@ -235,6 +236,6 @@ HDInsight 上的 Apache Spark 叢集包含 Anaconda 程式庫。 其中也包含
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

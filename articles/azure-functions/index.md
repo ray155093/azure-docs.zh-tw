@@ -1,13 +1,14 @@
 ---
 layout: LandingPage
+description: "了解如何以您所選的語言開發和部署函式，以在背景中或依照排程執行工作，而不需要特殊的基礎結構。"
 translationtype: Human Translation
-ms.sourcegitcommit: 87316969b7849396c6542decde3257774c35c454
-ms.openlocfilehash: dc15cd4e497135ea9ce07d671020af6df49ad3f6
+ms.sourcegitcommit: 76fed1f753b910007be4d9bb16630483aa225760
+ms.openlocfilehash: 91deffe385997c3e658a7fbfe194c9c2b762df58
 
 ---
 #<a name="azure-functions-documentation"></a>Azure Functions 文件
 
-Azure Functions 是可在雲端輕鬆執行程式碼 (「函式」) 片段的解決方案。 您可以撰寫處理手邊問題所需的程式碼，而不需擔心要執行它的整個應用程式或基礎結構。 您也可以您選擇的語言進行開發，例如 C#、F#、Node.js、Python 或 PHP。
+了解如何使用 Functions，以您所選的語言在雲端開發和部署小段的程式碼，而不需要設定基礎結構。 教學課程、範本和其他文件會示範如何針對您要在背景執行緒中或依照排程執行的工作建立函式。
 
 <ul class="panelContent cardsFTitle">
    <li>
@@ -115,6 +116,6 @@ Azure Functions 是可在雲端輕鬆執行程式碼 (「函式」) 片段的解
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

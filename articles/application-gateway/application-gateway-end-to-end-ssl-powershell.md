@@ -4,7 +4,7 @@ description: "本文說明如何使用 Azure Resource Manager PowerShell 以應�
 services: application-gateway
 documentationcenter: na
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: e6d80a33-4047-4538-8c83-e88876c8834e
 ms.service: application-gateway
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/14/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: ee8cfffdbf054b4251ed269745f6b9ee5a5e6c64
-ms.openlocfilehash: 6f061810b865e7855877bf08b02e758351f3e63c
+ms.sourcegitcommit: 09aeb63d4c2e68f22ec02f8c08f5a30c32d879dc
+ms.openlocfilehash: c76dc14998ebf01a938c67d6c78384e169f83266
 
 
 ---
@@ -29,9 +29,7 @@ ms.openlocfilehash: 6f061810b865e7855877bf08b02e758351f3e63c
 應用程式閘道支援的另一個功能是停用特定 SSL 通訊協定版本。 應用程式閘道支援停用下列通訊協定版本：**TLSv1.0**、**TLSv1.1** 和 **TLSv1.2**。
 
 > [!NOTE]
-> 預設會停用 SSL 2.0 和 SSL 3.0，並且無法啟用。 這些版本被認為並不安全，因此不能搭配應用程式閘道使用
-> 
-> 
+> 預設會停用 SSL 2.0 和 SSL 3.0，並且無法啟用。 這些版本被認為並不安全，因此不能搭配應用程式閘道使用。
 
 ![案例影像][scenario]
 
@@ -135,8 +133,6 @@ $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -Name 'public
 
 > [!IMPORTANT]
 > 應用程式閘道不支援使用以定義之網域標籤建立的公用 IP 位址。 只支援具有動態建立之網域標籤的公用 IP 位址。 如果您需要讓應用程式閘道具有好記的 DNS 名稱，建議您使用 cname 記錄做為別名。
-> 
-> 
 
 ## <a name="create-an-application-gateway-configuration-object"></a>建立應用程式閘道組態物件
 
@@ -167,9 +163,7 @@ $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name 'pool01' -BackendI
 ```
 
 > [!NOTE]
-> 完整網域名稱 (FQDN) 也是可取代後端伺服器 IP 位址 (藉由使用 -BackendFqdns 參數) 的有效值。
-> 
-> 
+> 完整網域名稱 (FQDN) 也是可取代後端伺服器 IP 位址 (藉由使用 -BackendFqdns 參數) 的有效值。 
 
 ### <a name="step-4"></a>步驟 4
 
@@ -189,8 +183,6 @@ $cert = New-AzureRmApplicationGatewaySslCertificate -Name cert01 -CertificateFil
 
 > [!NOTE]
 > 此範例會設定 SSL 連接所使用的憑證。 憑證必須是 .pfx 格式，而密碼則必須介於 4 到 12 個字元。
-> 
-> 
 
 ### <a name="step-6"></a>步驟 6
 
@@ -206,8 +198,6 @@ $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01 -Protocol
 
 > [!NOTE]
 > 預設探查可從後端 IP 位址上的**預設** SSL 繫結取得公開金鑰，並將所收到的公開金鑰值與您在此處提供的公開金鑰值做比較。 **如果**您在後端上使用主機標頭和 SNI，擷取的公開金鑰不一定就是流量要流向的預定網站。 如果不能確定，請在後端造訪 https://127.0.0.1/ 以確認要將哪一個憑證用於**預設** SSL 繫結。 請使用來自本節該要求的公開金鑰。 如果您在 HTTPS 繫結上使用主機標頭和 SNI，且並未從對於後端上 https://127.0.0.1/ 的手動瀏覽器要求收到回應和憑證，您必須在後端上設定預設 SSL 繫結。 如果您未這麼做，探查將會失敗，而且後端不會加入白名單。
-> 
-> 
 
 ```powershell
 $authcert = New-AzureRmApplicationGatewayAuthenticationCertificate -Name 'whitelistcert1' -CertificateFile C:\users\gwallace\Desktop\cert.cer
@@ -215,8 +205,6 @@ $authcert = New-AzureRmApplicationGatewayAuthenticationCertificate -Name 'whitel
 
 > [!NOTE]
 > 在此步驟中所提供的憑證應該是在後端中出示之 pfx 憑證的公開金鑰。 將安裝在後端伺服器上的憑證 (非根憑證) 以 .CER 格式匯出，並將它用於此步驟。 此步驟會將後端加入到應用程式閘道的白名單。
-> 
-> 
 
 ### <a name="step-8"></a>步驟 8
 
@@ -244,8 +232,6 @@ $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Cap
 
 > [!NOTE]
 > 若要進行測試，可以選擇執行個體計數 1。 請務必了解 SLA 不涵蓋任何低於兩個執行個體的執行個體計數，因此不建議使用。 小型閘道適用於開發測試，不適合在生產環境中使用。
-> 
-> 
 
 ### <a name="step-11"></a>步驟 11
 
@@ -337,6 +323,6 @@ DnsSettings              : {
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

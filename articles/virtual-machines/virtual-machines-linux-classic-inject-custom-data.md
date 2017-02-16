@@ -1,5 +1,5 @@
 ---
-title: "將自訂資料插入虛擬機器 | Microsoft Docs"
+title: "將資料插入 Azure 上的 Linux VM | Microsoft Docs"
 description: "本主題說明如何在建立執行個體時，將自訂資料插入 Azure 虛擬機器，以及如何在 Windows 或 Linux 上尋找自訂資料。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,21 +16,20 @@ ms.topic: article
 ms.date: 08/23/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 289b9e0a5cc316952f8fdfa88ab8ec0a9ba44465
+ms.sourcegitcommit: 746ed119239d5a0a71a0663e81d9c5b259354419
+ms.openlocfilehash: c342381d3d1052592c1b771cced104778fe7c84c
 
 
 ---
 # <a name="injecting-custom-data-into-an-azure-virtual-machine"></a>將自訂資料插入 Azure 虛擬機器
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如需搭配使用自訂指令碼擴充與 Resource Manager 模型的詳細資訊，請參閱[這裡](virtual-machines-linux-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需搭配使用自訂指令碼擴充與 Resource Manager 模型的詳細資訊，請參閱[這裡](virtual-machines-linux-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 [!INCLUDE [virtual-machines-common-classic-inject-custom-data](../../includes/virtual-machines-common-classic-inject-custom-data.md)]
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

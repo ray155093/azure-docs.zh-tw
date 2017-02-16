@@ -1,5 +1,5 @@
 ---
-title: "監視和管理 Azure Data Factory 管線"
+title: "使用 Azure 入口網站/PowerShell 監視和管理管線 | Microsoft Docs"
 description: "了解如何使用 Azure 入口網站和 Azure PowerShell 監視並管理您建立的 Azure 資料處理站和管線。"
 services: data-factory
 documentationcenter: 
@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 12/05/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 6a816e56400abe281b0422abbcd3415f3762a96e
-ms.openlocfilehash: 43b828bad5d21fe0f452aa23bbdf6fff758525f2
+ms.sourcegitcommit: eb9126d21c5eaa605a8ca292ab1f444085dd6612
+ms.openlocfilehash: 5bc3a81d82a838f04051fa1cbd6d567532e4824a
 
 
 ---
-# <a name="monitor-and-manage-azure-data-factory-pipelines"></a>監視和管理 Azure Data Factory 管線
+# <a name="monitor-and-manage-azure-data-factory-pipelines-using-azure-portalpowershell"></a>使用 Azure 入口網站/PowerShell，來監視和管理 Azure Data Factory 管線
 > [!div class="op_single_selector"]
 > * [使用 Azure 入口網站/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
 > * [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
@@ -668,6 +668,6 @@ Outputs
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

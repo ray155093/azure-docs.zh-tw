@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/30/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f566b8f75d26e3d786ce3396dd133478af38da76
+ms.sourcegitcommit: cd9a73d1830be132a1176fcb6cdeadedcdc96d04
+ms.openlocfilehash: 98bfdc49524edd5cedc85b5f94a74ca8c29ae2e9
 
 
 ---
@@ -101,7 +101,7 @@ ms.openlocfilehash: f566b8f75d26e3d786ce3396dd133478af38da76
 
 
 > [!NOTE]
-> 您也可以透過 SSL 連線串流您的內容。 若要這樣做，請確定您的串流 URL 以 HTTPS 開頭。 
+> 您也可以透過 SSL 連線串流您的內容。 若要這樣做，請確定您的串流 URL 以 HTTPS 開頭。 請注意，目前 AMS 不支援使用 SSL 搭配自訂網域。  
 > 
 > 
 
@@ -177,6 +177,6 @@ ms.openlocfilehash: f566b8f75d26e3d786ce3396dd133478af38da76
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

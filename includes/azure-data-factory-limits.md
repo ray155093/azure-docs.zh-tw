@@ -8,7 +8,7 @@
 | 每個資料集的並行配量 |10 |10 |
 | 管線物件的每個物件位元組大小<sup>1</sup> |200 KB |200 KB |
 | 資料集和已連結服務的每個物件位元組大小<sup>1</sup> |100 KB |2000 KB |
-| 訂用帳戶中的 HDInsight 隨選叢集核心<sup>2</sup> |48 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
+| 訂用帳戶中的 HDInsight 隨選叢集核心<sup>2</sup> |60 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
 | 雲端資料移動單位 <sup>3</sup> |8 |[請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) |
 | 管線活動執行的重試計數 |1000 |MaxInt (32 位元) |
 
@@ -29,6 +29,6 @@ Azure Resource Manager 有 API 呼叫限制。 您可使用 [Azure 資源管理�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

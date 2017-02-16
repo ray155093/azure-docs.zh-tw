@@ -3,7 +3,7 @@ title: "使用 DocumentDB 全球發佈資料 | Microsoft Docs"
 description: "了解如何從 Azure DocumentDB (可完全管理的 NoSQL 資料庫服務)，使用全域資料庫進行全球規模的異地複寫、容錯移轉及資料復原。"
 services: documentdb
 documentationcenter: 
-author: kiratp
+author: arramac
 manager: jhubbard
 editor: 
 ms.assetid: ba5ad0cc-aa1f-4f40-aee9-3364af070725
@@ -12,21 +12,17 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
-ms.author: kipandya
+ms.date: 12/13/2016
+ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 2d833a559b72569983340972ba3b905b9e42e61d
-ms.openlocfilehash: 4147bf0a5f4a3c41de53ef5b3e05d8409f9a8c87
+ms.sourcegitcommit: 70ccae77af2ace919e01a595a3e61711be2f760d
+ms.openlocfilehash: f7ae58ff1dd500e130aa6a5b362065b1a304b7aa
 
 
 ---
 # <a name="distribute-data-globally-with-documentdb"></a>使用 DocumentDB 全球發佈資料
-> [!NOTE]
-> 對於任何新建的 DocumentDB 帳戶，通常可以使用 DocumentDB 資料庫的全球發佈，而且會自動啟用。 我們正致力於啟用所有現有帳戶的全球發佈，但如果您想在這過渡時期啟用您帳戶的全球發佈，請 [連絡客戶支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) ，我們將立即為您啟用。
-> 
-> 
 
-Azure DocumentDB 的設計目的是符合 IoT 應用程式的需求，這類應用程式是由數百萬個全球發佈裝置和網際網路規模的應用程式所組成，其可為世界各地的使用者提供高度回應性體驗。 如何使用定義完善的資料一致性和可用性保證，來為多個地理區域達成低延遲存取應用程式資料的目標，正是這些資料庫系統所面臨的挑戰。 作為全球發佈資料庫系統，DocumentDB 會簡化資料的全球發佈作業，方法是提供多個可完全管理的區域資料庫帳戶，在一致性、可用性和效能之間進行明確取捨，這一切全都倚靠相對應的保證來完成。 DocumentDB 資料庫帳戶提供下列優點：高可用性、個位數的毫秒延遲、[多個定義完善的一致性層級][consistency]、利用多首頁 API 透明進行的區域性容錯移轉，以及全球輸送量及儲存體的彈性調整能力。 
+Azure DocumentDB 的設計目的是符合 IoT 應用程式的需求，這類應用程式是由數百萬個全球發佈裝置和網際網路規模的應用程式所組成，其可為世界各地的使用者提供高度回應性體驗。 如何使用定義完善的資料一致性和可用性保證，來為多個地理區域達成低延遲存取應用程式資料的目標，正是這些資料庫系統所面臨的挑戰。 作為全球發佈資料庫系統，DocumentDB 會簡化資料的全球發佈作業，方法是提供多個可完全管理的區域資料庫帳戶，在一致性、可用性和效能之間進行明確取捨，這一切全都倚靠相對應的保證來完成。 DocumentDB 資料庫帳戶提供下列優點：高可用性、個位數的毫秒延遲、多個[定義完善的一致性層級][consistency]、利用多首頁 API 透明進行的區域性容錯移轉，以及全球輸送量及儲存體的彈性調整能力。 
 
 我們建議您觀看 Karthik Raman 說明使用 Azure DocumentDB 的地理分佈的下列影片位置來開始。
 
@@ -49,7 +45,7 @@ Azure DocumentDB 能夠透明地在多個 Azure 區域之間為資料庫帳戶�
 ## <a name="scaling-across-the-planet"></a>設定涵蓋全球的範圍
 DocumentDB 可讓您針對每個 DocumentDB 集合單獨佈建任意規模的輸送量和取用儲存體，這會全面橫跨與您資料庫帳戶相關的所有區域。 DocumentDB 集合是全球自動發佈，並且在與您資料庫帳戶相關聯的所有區域中進行管理。 資料庫帳戶內的集合可以在任何[提供 DocumentDB 服務][serviceregions]的 Azure 區域上進行發佈。 
 
-針對每個 DocumentDB 集合購買的輸送量和所取用的儲存體會跨所有區域自動平均佈建。 這可讓您的應用程式可在全球各地順暢地調整規模，只需[支付您每小時內所使用的儲存體與輸送量][pricing]。 比方說，如果您已針對 DocumentDB 集合佈建 2 百萬個 RU，則每個與您資料庫帳戶有關聯的區域都會針對該集合取得 2 百萬個 RU。 請見下圖說明。
+針對每個 DocumentDB 集合購買的輸送量和所取用的儲存體會跨所有區域自動平均佈建。 這可讓您的應用程式可在全球各地順暢地調整規模，[只需支付您每小時內所使用的儲存體與輸送量][pricing]。 比方說，如果您已針對 DocumentDB 集合佈建 2 百萬個 RU，則每個與您資料庫帳戶有關聯的區域都會針對該集合取得 2 百萬個 RU。 請見下圖說明。
 
 ![針對跨越四個區域的 DocumentDB 集合調整輸送量][2]
 
@@ -82,7 +78,7 @@ DocumentDB 在 P99 上保證 < 10 毫秒的讀取延遲和 < 15 毫秒的寫入�
 [manageaccount-consistency]: documentdb-manage-account.md#consistency
 [throughputandstorage]: documentdb-manage.md
 [arm]: documentdb-automation-resource-manager-cli.md
-[區域]: https://azure.microsoft.com/regions/
+[regions]: https://azure.microsoft.com/regions/
 [serviceregions]: https://azure.microsoft.com/en-us/regions/#services 
 [pricing]: https://azure.microsoft.com/pricing/details/documentdb/
 [sla]: https://azure.microsoft.com/support/legal/sla/documentdb/ 
@@ -92,6 +88,6 @@ DocumentDB 在 P99 上保證 < 10 毫秒的讀取延遲和 < 15 毫秒的寫入�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

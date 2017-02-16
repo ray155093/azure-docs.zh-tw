@@ -13,11 +13,11 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 08/30/2016
+ms.date: 11/29/2016
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 47a89987b65b442c7b489984a4fc139eb1b82758
-ms.openlocfilehash: 8efde94c5771212b4549f10882a4e55739231d61
+ms.sourcegitcommit: 44e397c7521ba8f0ba11893c364f51177561bee4
+ms.openlocfilehash: a74fc30480068788f33df092594119253df9487b
 
 
 ---
@@ -34,7 +34,7 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 >
 
 ## <a name="create-a-webhook-triggered-function-from-the-template"></a>從範本建立 Webhook 觸發函式
-函式應用程式可在 Azure 中主控函式的執行。 您必須先具備有效的 Azure 帳戶，才可以建立函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。 
+函式應用程式可在 Azure 中主控函式的執行。 如果您沒有 Azure 帳戶，請查看[試用 Functions](https://functions.azure.com/try) 體驗或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 
 
 1. 移至 [Azure Functions 入口網站](https://functions.azure.com/signin) ，然後以您的 Azure 帳戶登入。
 
@@ -50,9 +50,12 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 
 1. 複製 [函式 URL] 和 [GitHub 密碼] 值。 您需要這些值以在 GitHub 中建立 Webhook。 
 
-2. 向下捲動至 [執行]，注意要求主體中問題註解之預先定義的 JSON 主體，然後按一下 [執行]。 
+2. 按一下 [測試]，注意 [要求主體]中問題註解之預先定義的 JSON 主體，然後按一下 [執行]。 
+
+    ![在入口網站中測試 Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-test-webhook-in-portal.png)
    
-    只要提供所有預期主體的 JSON 資料，然後按一下 [執行] 按鈕，就可以在 [開發] 索引標籤中測試新的範本函式。 這樣範本就有問題註解的預先定義主體。 
+    > [!NOTE]
+    > 只要提供所有預期主體的 JSON 資料，然後按一下 [執行] 按鈕，就可以在 [開發] 索引標籤中測試新的範本函式。 這樣範本就有問題註解的預先定義主體。 
 
 接下來，您要在 GitHub 儲存機制中建立實際的 Webhook。
 
@@ -91,6 +94,6 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

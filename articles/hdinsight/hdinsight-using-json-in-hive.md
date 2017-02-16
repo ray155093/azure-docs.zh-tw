@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 06/22/2015
 ms.author: rashimg
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0a79029fef54dc8beaaa9daea690a67ae1940c44
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 89618f7549d8589d5ac684772832748ab9765d1a
 
 
 ---
@@ -220,7 +220,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 
 ![SerDe 查詢 2][image-hdi-hivejson-serde_query2]
 
-若要尋找特定學生分數超過 80 分的科目，請使用 SELECT jt.StudentClassCollection.ClassId FROM json_table jt lateral view explode(jt.StudentClassCollection.Score) collection as score  where score > 80;  
+若要找出指定學生得分超過 80 分的科目，SELECT  
       jt.StudentClassCollection.ClassId FROM json_table jt lateral view explode(jt.StudentClassCollection.Score) collection as score  where score > 80;
 
 上述查詢傳回的 Hive 陣列與傳回字串的 get\_json\_object 不同。
@@ -260,6 +260,6 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

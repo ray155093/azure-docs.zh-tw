@@ -1,23 +1,27 @@
 ---
-title: 使用 PowerShell 建立和設定 Log Analytics 工作區 | Microsoft Docs
-description: Log Analytics 會使用來自內部部署或雲端基礎結構中之伺服器的資料。 您可以在 Azure 診斷產生電腦資料時，從 Azure 儲存體加以收集。
+title: "使用 PowerShell 建立和設定 Log Analytics 工作區 | Microsoft Docs"
+description: "Log Analytics 會使用來自內部部署或雲端基礎結構中之伺服器的資料。 您可以在 Azure 診斷產生電腦資料時，從 Azure 儲存體加以收集。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: richrundmsft
 manager: jochan
-editor: ''
-
+editor: 
+ms.assetid: 3b9b7ade-3374-4596-afb1-51b695f481c2
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: powershell
 ms.topic: article
-ms.date: 08/15/2016
+ms.date: 11/21/2016
 ms.author: richrund
+translationtype: Human Translation
+ms.sourcegitcommit: b39cd142925be91bd7a90183cada7ba040a344c0
+ms.openlocfilehash: b8ebf6a2b3c8d2e5b173e429f39c9836e7d214ac
+
 
 ---
 # <a name="manage-log-analytics-using-powershell"></a>使用 PowerShell 管理 Log Analytics
-您可以從命令列或在指令碼中，使用 [Log Analytics PowerShell Cmdlet](http://msdn.microsoft.com/library/mt188224.aspx) 在 Log Analytics 中執行各種功能。  您可以使用 PowerShell 執行的工作範例包括︰
+您可以從命令列或在指令碼中，使用 [Log Analytics PowerShell Cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 在 Log Analytics 中執行各種功能。  您可以使用 PowerShell 執行的工作範例包括︰
 
 * 建立工作區
 * 新增或移除方案
@@ -31,7 +35,7 @@ ms.author: richrund
 * 將 Log Analytics 代理程式加入至 Azure 虛擬機器
 * 設定 Log Analytics 將 Azure 診斷所收集的資料編製索引
 
-本文提供兩個程式碼範例，示範您可以從 PowerShell 執行的一些功能。  關於其他功能，您可以參考 [Log Analytics PowerShell Cmdlet 參考文件](http://msdn.microsoft.com/library/mt188224.aspx) 。
+本文提供兩個程式碼範例，示範您可以從 PowerShell 執行的一些功能。  關於其他功能，您可以參考 [Log Analytics PowerShell Cmdlet 參考文件](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 。
 
 > [!NOTE]
 > Log Analytics 在以前稱為 Operational Insights，這也是 Cmdlet 中使用此名稱的原因。
@@ -39,16 +43,8 @@ ms.author: richrund
 > 
 
 ## <a name="prerequisites"></a>必要條件
-若要透過 PowerShell 來使用 Log Analytics 工作區，您必須具有：
+這些範例可與 AzureRm.OperationalInsights 模組的 2.3.0 版或更新版本搭配運作。
 
-* Azure 訂用帳戶，而且 
-* 將您的 Azure Log Analytics 工作區連結到您的 Azure 訂用帳戶。
-
-如果您已建立 OMS 工作區，但它尚未連結到 Azure 訂用帳戶，您可以建立連結︰
-
-* 在 Azure 入口網站
-* 在 OMS 入口網站或 
-* 使用 Get-AzureRmOperationalInsightsLinkTargets 和 New-AzureRmOperationalInsightsWorkspace Cmdlet。
 
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>建立及設定 Log Analytics 工作區
 下列指令碼範例說明如何：
@@ -161,8 +157,12 @@ foreach ($search in $ExportedSearches) {
 # Export Saved Searches
 (Get-AzureRmOperationalInsightsSavedSearch -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName).Value.Properties | ConvertTo-Json 
 
-# Create Computer Group
+# Create Computer Group based on a query
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Web Servers" -DisplayName "Web Servers" -Category "My Saved Searches" -Query "Computer=""web*"" | distinct Computer" -Version 1
+
+# Create a computer group based on names (up to 5000)
+$computerGroup = """servername1.contoso.com"",""servername2.contoso.com"",""servername3.contoso.com"",""servername4.contoso.com"""
+New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Named Servers" -DisplayName "Named Servers" -Category "My Saved Searches" -Query $computerGroup -Version 1
 
 # Enable IIS Log Collection using agent
 Enable-AzureRmOperationalInsightsIISLogCollection -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName
@@ -187,15 +187,49 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 ```
 
 ## <a name="configuring-log-analytics-to-index-azure-diagnostics"></a>設定 Log Analytics 來編製 Azure 診斷的索引
-對於無代理程式監視的 Azure 資源，資源必須啟用及設定 Azure 診斷，以寫入至儲存體帳戶。 然後可以設定 Log Analytics 以從儲存體帳戶收集記錄檔。 您需要進行上述設定的資源包括︰
+若要以無代理程式的方式監視 Azure 資源，資源需要啟用 Azure 診斷並將其設定為寫入至 Log Analytics 工作區。 此方法會將資料直接傳送到 Log Analytics，而且不需要將資料寫入儲存體帳戶。 支援的資源包括：
+
+| 資源類型 | 記錄檔 | 度量 |
+| --- | --- | --- |
+| 應用程式閘道    | 是 | 是 |
+| 自動化帳戶     | 是 | |
+| Batch 帳戶          | 是 | 是 |
+| Data Lake Analytics     | 是 | | 
+| Data Lake Store         | 是 | |
+| SQL 彈性集區        |     | 是 |
+| 事件中樞命名空間     |     | 是 |
+| IoT 中樞                |     | 是 |
+| 金鑰保存庫               | 是 | |
+| 負載平衡器          | 是 | |
+| Logic Apps              | 是 | 是 |
+| 網路安全性群組 | 是 | |
+| Redis 快取             |     | 是 |
+| 搜尋服務         | 是 | 是 |
+| 服務匯流排命名空間   |     | 是 |
+| SQL (v12)               |     | 是 |
+| 網站               |     | 是 |
+| Web 伺服器陣列        |     | 是 |
+
+如需可用度量的詳細資訊，請參閱[支援 Azure 監視器的度量](../monitoring-and-diagnostics/monitoring-supported-metrics.md)。
+
+如需可用記錄檔的詳細資訊，請參閱[支援的服務以及診斷記錄檔的結構描述](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#supported-services-and-schema-for-diagnostic-logs)。
+
+```
+$workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
+
+$resourceId = "/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUPS/DEMO/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/DEMO" 
+
+Set-AzureRmDiagnosticSetting -ResourceId $resourceId -WorkspaceId $workspaceId -Enabled $true
+```
+
+您也可以使用前述 Cmdlet，來收集不同訂用帳戶中之資源的記錄檔。 因為您會提供建立記錄檔之資源和記錄檔所傳送至之工作區這兩個項目的識別碼，因此這個 Cmdlet 可跨訂用帳戶運作。
+
+
+## <a name="configuring-log-analytics-to-index-azure-diagnostics-from-storage"></a>設定 Log Analytics 以對來自儲存體的 Azure 診斷編製索引
+若要從傳統雲端服務或 Service Fabric 叢集的執行中執行個體內收集記錄檔資料，您必須先將資料寫入 Azure 儲存體。 然後，可將 Log Analytics 設定為從儲存體帳戶收集記錄檔。 支援的資源包括：
 
 * 傳統雲端服務 (Web 和背景工作角色)
 * Service Fabric 叢集
-* 網路安全性群組
-* 金鑰保存庫和 
-* 應用程式閘道
-
-您也可以使用 PowerShell 在一個 Azure 訂用帳戶中設定 Log Analytics 工作區，以便從不同的 Azure 訂用帳戶收集記錄檔。
 
 下列範例示範如何執行：
 
@@ -219,16 +253,22 @@ Get-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.Resou
 New-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" -StorageAccountResourceId $storageId -StorageAccountKey $key -Tables @("WADWindowsEventLogsTable") -Containers @("wad-iis-logfiles")
 
 # Update existing insight
-Set-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" -Tables @("WADWindowsEventLogsTable", "WADETWEventTable") -Containers @("wad-iis-logfiles", "insights-logs-networksecuritygroupevent/resourceId=/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUPS/DEMO/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/DEMO")
+Set-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" -Tables @("WADWindowsEventLogsTable", "WADETWEventTable") -Containers @("wad-iis-logfiles")
 
 # Remove the insight
 Remove-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" 
 
 ```
 
-## <a name="next-steps"></a>後續步驟
-* [檢閱 Log Analytics PowerShell Cmdlet](http://msdn.microsoft.com/library/mt188224.aspx) 。
+您也可以使用前述指令碼，來收集不同訂用帳戶中之儲存體帳戶的記錄檔。 因為您會提供儲存體帳戶資源識別碼和對應的存取金鑰，因此指令碼可跨訂用帳戶運作。 當您變更存取金鑰時，您需要更新儲存體深入解析使其擁有新的金鑰。
 
-<!--HONumber=Oct16_HO2-->
+
+## <a name="next-steps"></a>後續步驟
+* [檢閱 Log Analytics PowerShell Cmdlet](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) 。
+
+
+
+
+<!--HONumber=Nov16_HO4-->
 
 

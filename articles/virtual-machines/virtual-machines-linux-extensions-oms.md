@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 12/05/2016
+ms.date: 01/09/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 9f27890e52cb7a9a0d46f2bb84bfe92f7c6fff37
-ms.openlocfilehash: 9864314956d79317785c1c2a4bc87621bc6a3e2d
+ms.sourcegitcommit: 251d7b973426afb50206c428873021144b8bffdf
+ms.openlocfilehash: 2d7592680289d9f222f5e0aa36aa66d12f4fa517
 
 
 ---
@@ -26,10 +26,6 @@ ms.openlocfilehash: 9864314956d79317785c1c2a4bc87621bc6a3e2d
 ## <a name="overview"></a>概觀
 
 Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視、警示和警示補救功能。 Microsoft 已發佈和支援適用於 Linux 的 OMS 代理程式虛擬機器擴充功能。 擴充功能會在 Azure 虛擬機器上安裝 OMS 代理程式，並且在現有的 OMS 工作區中註冊虛擬機器。 本文件詳述適用於 Linux 的 OMS 虛擬機器擴充功能所支援的平台、組態和部署選項。
-
-如需 Azure 虛擬機器擴充功能的一般資訊，請參閱[虛擬機器擴充功能概觀](./virtual-machines-linux-extensions-features.md)。
-
-如需 Operations Management Suite 的詳細資訊，請參閱 [Operations Management Suite 概觀](https://www.microsoft.com/en-us/cloud-platform/operations-management-suite)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -46,49 +42,13 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
 | Ubuntu | 12.04 LTS、14.04 LTS、15.04 |
 | SUSE Linux Enterprise Server | 11 和 12 |
 
-### <a name="connectivity"></a>連線能力
+### <a name="internet-connectivity"></a>網際網路連線
 
 適用於 Linux 的 OMS 代理程式擴充功能會要求目標虛擬機器連接到網際網路。 
 
-## <a name="extension-configuration"></a>擴充功能組態
+## <a name="extension-schema"></a>擴充功能結構描述
 
-適用於 Linux 的 OMS 代理程式虛擬機器擴充功能需要來自目標 OMS 工作區的工作區識別碼和工作區金鑰。 工作區金鑰應被視為敏感性資料，所以會儲存在受保護的組態中。 Azure VM 擴充功能保護的組態資料會經過加密，只會在目標虛擬機器上解密。 公用和私人組態會在部署階段指定，本文件的後續章節有詳細說明。
-
-### <a name="public-configuration"></a>公用組態
-
-公用組態的結構描述︰
-
-- workspaceId：(必要字串) 虛擬機器要上架的 OMS 工作區識別碼。
-
-```json
-{
-  "workspaceId": "myWorkspaceId"
-}
-```
-
-### <a name="private-configuration"></a>私人組態
-
-公用組態的結構描述︰
-
-- workspaceKey：(必要字串) 工作區的主要/次要共用金鑰。
-
-```json
-{
-  "workspaceKey": "myWorkSpaceKey"
-}
-```
-
-## <a name="template-deployment"></a>範本部署
-
-也可以使用 Azure Resource Manager 範本部署 Azure VM 擴充功能。 部署一或多部需要部署後設定的虛擬機器時，很適合使用範本。 在 [Azure 快速啟動資源庫](https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-ubuntu-vm)上可找到包含 OMS 代理程式 VM 擴充功能的範例 Resource Manager 範本。 
-
-使用此按鈕，就可以從這份文件部署這個範例︰
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-oms-extension-ubuntu-vm%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
-用來部署 OMS 代理程式 VM 擴充功能的 JSON 外觀類似以下的 JSON 範例︰
+下列 JSON 顯示 OMS 代理程式擴充功能的結構描述。 此擴充功能需要來自目標 OMS 工作區的工作區識別碼和工作區金鑰，這些在 OMS 入口網站上皆有提供。 由於工作區金鑰應視為敏感性資料，因此應儲存在受保護的設定組態中。 Azure VM 擴充功能的受保護設定資料會經過加密，而只有在目標虛擬機器上才會解密。
 
 ```json
 {
@@ -113,12 +73,28 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
 }
 ```
 
+### <a name="property-values"></a>屬性值
+
+| 名稱 | 值 / 範例 |
+| ---- | ---- |
+| apiVersion | 2015-06-15 |
+| publisher | Microsoft.EnterpriseCloud.Monitoring |
+| 類型 | OmsAgentForLinux |
+| typeHandlerVersion | 1.0 |
+| workspaceId (例如) | 6f680a37-00c6-41c7-a93f-1437e3462574 |
+| workspaceKey (例如) | z4bU3p1/GrnWpQkky4gdabWXAhbWSTz70hm4m2Xt92XI+rSRgE8qVvRhsGo9TXffbrTahyrwv35W0pOqQAU7uQ== |
+
+
+## <a name="template-deployment"></a>範本部署
+
+也可以使用 Azure Resource Manager 範本部署 Azure VM 擴充功能。 部署一或多部需要部署後設定的虛擬機器時，很適合使用範本。 在 [Azure 快速啟動資源庫](https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-ubuntu-vm)上可找到包含 OMS 代理程式 VM 擴充功能的範例 Resource Manager 範本。 
+
 ## <a name="azure-cli-deployment"></a>Azure CLI 部署
 
 Azure CLI 可以用來將 OMS 代理程式 VM 擴充功能部署到現有的虛擬機器。 在部署 OMS 代理程式擴充功能之前，建立 public.json 和 protected.json 檔案。 本文件前面已詳細說明這些檔案的結構描述。
 
 ```azurecli
-azure vm extension set <resource-group> <vm-name> \
+azure vm extension set myResourceGroup myVM \
   OmsAgentForLinux Microsoft.EnterpriseCloud.Monitoring 1.0 \
   --public-config-path public.json  \
   --private-config-path protected.json
@@ -146,6 +122,6 @@ azure vm extension get myResourceGroup myVM
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

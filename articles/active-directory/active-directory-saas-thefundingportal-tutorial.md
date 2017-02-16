@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/02/2016
+ms.date: 11/30/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ba7486f76710095a35d602805876cae0cde8694e
+ms.sourcegitcommit: 82e5a947d48f8a289deb2f6e85bbb47990a9fcd7
+ms.openlocfilehash: 76d52c52489cb3cc85223066fb5821b1b9915b96
 
 
 ---
@@ -128,9 +128,9 @@ The Funding Portal 應用程式預期 SAML 判斷提示會包含名為 "external
    
     ![設定單一登入](./media/active-directory-saas-thefundingportal-tutorial/tutorial_thefundingportal_07.png)
 
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL︰`https://<subdomain>.regenteducation.net/`。
+    a. 在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<subdomain>.regenteducation.net/`。
 
-    b. 按 [下一步] 。
+    b.這是另一個 C# 主控台應用程式。 按 [下一步] 。
 
 1. 在 [設定在 The Funding Portal 單一登入] 頁面上，按一下 [下載中繼資料]，然後將檔案儲存在您的電腦中。
    
@@ -171,17 +171,18 @@ The Funding Portal 應用程式預期 SAML 判斷提示會包含名為 "external
     c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-thefundingportal-tutorial/create_aaduser_06.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-thefundingportal-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-thefundingportal-tutorial/create_aaduser_07.png) 
@@ -249,6 +250,6 @@ The Funding Portal 應用程式預期 SAML 判斷提示會包含名為 "external
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -15,13 +15,19 @@ ms.topic: article
 ms.date: 06/22/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: fe96fb2159a7d0dba0ad391d25f38f79cf8aeeb3
+ms.sourcegitcommit: 3273ec453a78c74d9e492e869eea4186a764e2f2
+ms.openlocfilehash: 30a49b2a546d766a8a826a45b7bbf27059a2cc9d
 
 
 ---
 # <a name="how-to-silently-install-the-azure-ad-application-proxy-connector"></a>如何以無訊息方式安裝 Azure AD 應用程式 Proxy 連接器
 您想要能傳送安裝指令碼至多部 Windows 伺服器，或傳送至未啟用使用者介面的 Windows Server。 本主題說明如何建立 Windows PowerShell 指令碼來啟用自動安裝，以安裝並註冊您的 Azure AD 應用程式 Proxy 連接器。
+
+當您想要執行下列操作時，請使用命令列來安裝連接器而不要使用 UI： 
+* 在沒有 UI 層的電腦上或在無法透過 RDP 連線到電腦的情況下安裝連接器。 
+* 一次安裝並註冊許多連接器。 
+* 將連接器安裝與註冊整合成另一個程序的一部分。 
+* 建立一個包含連接器位元但未註冊的標準伺服器映像。 
 
 ## <a name="enabling-access"></a>啟用存取
 應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。 應用程式 Proxy 連接器必須使用全域系統管理員和密碼向 Azure AD 目錄註冊後才能運作。 通常，這是在連接器安裝期間於一個快顯對話方塊中輸入的。 此外，您也可以使用 Windows PowerShell 來建立認證物件以輸入您的註冊資訊，或者您可以建立自己的語彙基元並使用它來輸入註冊資訊。
@@ -127,6 +133,6 @@ ms.openlocfilehash: fe96fb2159a7d0dba0ad391d25f38f79cf8aeeb3
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

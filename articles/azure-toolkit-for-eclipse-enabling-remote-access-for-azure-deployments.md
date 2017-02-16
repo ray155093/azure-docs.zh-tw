@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 37d0a4b953c51ce244a21d9a67d97df960d4edaf
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 7d547ee39c4fe2bd52dd1fedce9c61d63b4e3011
 
 
 ---
@@ -100,21 +100,21 @@ ms.openlocfilehash: 37d0a4b953c51ce244a21d9a67d97df960d4edaf
 > 
 
 ## <a name="see-also"></a>另請參閱
-[適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]
+[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]
 
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式][在 Eclipse 中為 Azure 建立 Hello World 應用程式]
+[在 Eclipse 中為 Azure 建立 Hello World 應用程式][Creating a Hello World Application for Azure in Eclipse]
 
-[安裝 Azure Toolkit for Eclipse][安裝 Azure Toolkit for Eclipse] 
+[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse] 
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java 開發人員中心]。
+如需有關如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java Developer Center]。
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Azure 管理入口網站]: http://go.microsoft.com/fwlink/?LinkID=512959
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 
@@ -127,6 +127,6 @@ ms.openlocfilehash: 37d0a4b953c51ce244a21d9a67d97df960d4edaf
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "儲存體解決方案指導方針 | Microsoft Docs"
+title: "Azure 儲存體解決方案指導方針 | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中部署儲存體解決方案的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-linux
@@ -13,15 +13,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: ad01dd5585eab70404d476e234b8d2dcee93f2a9
+ms.sourcegitcommit: a99ab839ec9ade0049e1cc59054e333048e0208c
+ms.openlocfilehash: 8b4ee1634981a449d9968f9156df10a9d40baae9
 
 
 ---
-# <a name="storage-infrastructure-guidelines"></a>儲存體基礎結構指導方針
+# <a name="azure-storage-infrastructure-guidelines"></a>Azure 儲存體基礎結構指導方針
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
 本文著重於了解達成最佳虛擬機器 (VM) 效能的儲存體需求及設計考量。
@@ -59,7 +59,7 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 
 作業系統磁碟和資料磁碟的大小上限為 1023 GB。 Blob 的大小上限為 1024 GB 且必須包含 VHD 檔案的中繼資料 (頁尾) (一個 GB 是 1024<sup>3</sup> 個位元組)。 您可以使用邏輯磁碟區管理員 (LVM) 來超越此限制，方法是共用資料磁碟以向 VM 展現大於 1023GB 的邏輯磁碟區。
 
-設計 Azure 儲存體部署時有幾個延展性的限制，請參閱 [Microsoft Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md#storage-limits)以取得詳細資料。 另請參閱〈 [Azure 儲存體的延展性與效能目標](../storage/storage-scalability-targets.md)〉。
+設計 Azure 儲存體部署時有幾個延展性的限制 - 如需詳細資訊，請參閱 [Microsoft Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md#storage-limits)。 另請參閱〈 [Azure 儲存體的延展性與效能目標](../storage/storage-scalability-targets.md)〉。
 
 針對應用程式儲存體，您可以儲存非結構化的物件資料，例如文件、影像、備份、設定資料、記錄檔等等。 使用 Blob 儲存體。 與其讓您的應用程式寫入附加至 VM 的虛擬磁碟，該應用程式可以直接寫入 Azure blob 儲存體。 根據您的可用性需求和成本限制，blob 儲存體也提供[經常性存取與非經常性存取儲存層](../storage/storage-blob-storage-tiers.md)的選項。
 
@@ -88,6 +88,6 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

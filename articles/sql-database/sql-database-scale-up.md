@@ -1,6 +1,6 @@
 ---
-title: "變更 Azure SQL Database 的服務層級和效能等級 | Microsoft Docs"
-description: "變更 Azure SQL Database 的服務層級和效能等級說明如何相應增加或減少您的 SQL Database。 變更 Azure SQL Database 的定價層。"
+title: "Azure 入口網站：變更 Azure SQL Database 定價層 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站來變更 Azure SQL Database 的服務層級和效能等級，以及將 SQL Database 的資源和價格以相應增加或減少的方式調整。"
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -16,16 +16,15 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
-ms.openlocfilehash: a4d68b4365c6c5865b19a0b2e9b78afdb7a04014
+ms.sourcegitcommit: 2b55b6b4475abdbc1985d8ac370b3b612b77eb0e
+ms.openlocfilehash: 88104e0684281f77da497ef4dd608c6a0c64b274
 
 
 ---
 # <a name="change-the-service-tier-and-performance-level-pricing-tier-of-a-sql-database-using-the-azure-portal"></a>使用 Azure 入口網站變更 SQL Database 的服務層級和效能等級 (定價層)
 > [!div class="op_single_selector"]
 > * [**Azure 入口網站**](sql-database-scale-up.md)
-> * [PowerShell](sql-database-scale-up-powershell.md)
-> 
+> * [PowerShell](sql-database-scale-up-powershell.md)> 
 > 
 
 服務層和效能層級描述您的 SQL Database 可用的功能和資源，而且可以視您的應用程式變更進行更新。 如需詳細資訊，請參閱 [服務層](sql-database-service-tiers.md)。
@@ -89,6 +88,6 @@ ms.openlocfilehash: a4d68b4365c6c5865b19a0b2e9b78afdb7a04014
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

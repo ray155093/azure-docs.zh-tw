@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: jodehavi;stgriffi
 translationtype: Human Translation
-ms.sourcegitcommit: 4115a3638519896c3710ddc33dd0caa2e8d9d720
-ms.openlocfilehash: 05e33c56e6aa6bedfa2e6b8ff18fe182d87ed80e
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: cc872e8d9bc0662f46d5f394f9c98885e34fe67a
 
 
 ---
@@ -416,7 +416,7 @@ static string GetContainerSasUri(CloudBlockBlob blob)
 ### <a name="azure-logic-app"></a>Azure 邏輯應用程式
 接下來，您必須建立 Azure 邏輯應用程式，以挑選函式推送至服務匯流排佇列的事件、剖析內容，以及根據符合的條件傳送電子郵件。
 
-移至 [新增] -> [邏輯應用程式] 以[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+移至 [新增] -> [邏輯應用程式] 以[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 建立邏輯應用程式後，請瀏覽到該應用程式，然後選擇 [編輯] 。 在邏輯應用程式編輯器中，選擇 [服務匯流排佇列] 並輸入服務匯流排認證，以將其連接至佇列。
 
@@ -440,6 +440,6 @@ static string GetContainerSasUri(CloudBlockBlob blob)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

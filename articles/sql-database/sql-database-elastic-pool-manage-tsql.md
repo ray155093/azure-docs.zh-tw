@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 4e288e17-bc3e-4255-9fbe-0a2ac0dbd7dd
 ms.service: sql-database
-ms.custom: sharded databases pool; how to
+ms.custom: multiple databases
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
@@ -16,12 +16,12 @@ ms.workload: data-management
 ms.date: 05/27/2016
 ms.author: srinia
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 17ec1ad8218824048179e32ae5059b6a6d77a367
+ms.sourcegitcommit: 75bf523679c8d8ad6fbe4a8aa8a561d03008e59b
+ms.openlocfilehash: 9688c3b402b7961675e06e804a68ff454126d5f3
 
 
 ---
-# <a name="monitor-and-manage-an-elastic-database-pool-with-transact-sql"></a>使用 Transact-SQL 監視和管理彈性資料庫集區
+# <a name="monitor-and-manage-an-elastic-pool-with-transact-sql"></a>使用 Transact-SQL 監視和管理彈性集區
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
 > * [PowerShell](sql-database-elastic-pool-manage-powershell.md)
@@ -74,16 +74,16 @@ ms.openlocfilehash: 17ec1ad8218824048179e32ae5059b6a6d77a367
     ORDER BY end_time DESC;
 
 ## <a name="get-resource-usage-for-an-elastic-database"></a>取得彈性資料庫的資源使用量
-使用 [sys.dm\_ db\_resource\_stats view](https://msdn.microsoft.com/library/dn800981.aspx) 或 [sys.resource\_stats view](https://msdn.microsoft.com/library/dn269979.aspx) 來檢查彈性集區中資料庫的資源使用量統計資料。 此程序類似於查詢任何單一資料庫的資源使用量。
+使用 [sys.dm\_ db\_resource\_stats view](https://msdn.microsoft.com/library/dn800981.aspx) 或 [sys.resource\_stats view](https://msdn.microsoft.com/library/dn269979.aspx) 來檢查彈性集區中資料庫的資源使用量統計資料。 此程序類似於查詢單一資料庫的資源使用量。
 
 ## <a name="next-steps"></a>後續步驟
-建立彈性資料庫集區後，可以藉由建立彈性工作來管理集區中的彈性資料庫。 彈性工作有助於對集區中任意數目的資料庫執行 T-SQL 指令碼。 如需詳細資訊，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。 
+建立彈性集區後，可以藉由建立彈性工作來管理集區中的彈性資料庫。 彈性工作有助於對集區中任意數目的資料庫執行 T-SQL 指令碼。 如需詳細資訊，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。 
 
 請參閱 [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

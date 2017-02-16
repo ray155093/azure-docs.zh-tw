@@ -1,5 +1,5 @@
 ---
-title: "資料倉儲工作負載"
+title: "深入了解 Azure SQL 資料倉儲作業 |Microsoft Docs"
 description: 'SQL Data Warehouse''s elasticity lets you grow, shrink, or pause compute power by using a sliding scale of data warehouse units (DWUs). This article explains the data warehouse metrics and how they relate to DWUs. '
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess;mausher
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 43ee395fab826549ddd9ede3c3aa45aa8e97c7dd
+ms.sourcegitcommit: 43ab6a2f71ab51c50847b1ba5249f51c48e03fea
+ms.openlocfilehash: 79fedaabc438bc4cd884af6b494e43d32361950a
 
 
 ---
@@ -65,13 +65,13 @@ ms.openlocfilehash: 43ee395fab826549ddd9ede3c3aa45aa8e97c7dd
 * 如需進行分析，您可以在資料倉儲建立分析 Cube，然後針對資料倉儲執行分析，或是前置處理資料，然後再匯出到分析伺服器進行進一步分析。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已稍微了解 SQL 資料倉儲，請了解如何快速[建立 SQL 資料倉儲][建立 SQL 資料倉儲]和[載入範例資料][載入範例資料]。
+現在您已稍微了解 SQL 資料倉儲，請了解如何快速[建立 SQL 資料倉儲][create a SQL Data Warehouse]和[載入範例資料][load sample data]。
 
 <!--Image references-->
 
 <!--Article references-->
-[載入範例資料]: ./sql-data-warehouse-load-sample-databases.md
-[建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision.md
+[load sample data]: ./sql-data-warehouse-load-sample-databases.md
+[create a SQL Data Warehouse]: ./sql-data-warehouse-get-started-provision.md
 
 <!--MSDN references-->
 
@@ -79,6 +79,6 @@ ms.openlocfilehash: 43ee395fab826549ddd9ede3c3aa45aa8e97c7dd
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

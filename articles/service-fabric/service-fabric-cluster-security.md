@@ -12,16 +12,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/19/2016
+ms.date: 12/06/2016
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 21f7735767b6655046b354d2a782b2730f117976
+ms.sourcegitcommit: 628df1df8f5de99a5c18d0df5b7ee41e2fb747df
+ms.openlocfilehash: c3ff370b105a1f9bdacd1bdb4b32d6209e150be2
 
 
 ---
 # <a name="service-fabric-cluster-security-scenarios"></a>Service Fabric 叢集安全性案例
-Service Fabric 叢集是您所擁有的資源。 叢集應一律受到安全保護，以防止未經授權使用者連線您的叢集，特別是當叢集上有生產工作負載正在執行時。 雖然可以建立不安全的叢集，但這樣做將會在叢集向公用網際網路公開管理端點時，允許任何匿名使用者連線叢集。 
+Service Fabric 叢集是您所擁有的資源。 叢集必須受到安全保護，以防止未經授權使用者連線您的叢集，特別是當叢集上有生產工作負載正在執行時。 雖然可以建立不安全的叢集，但這樣做會在叢集向公用網際網路公開管理端點時，允許匿名使用者連線叢集。 
 
 本文針對 Azure 或獨立伺服器上執行之叢集的安全性案例，以及用來實作這些案例的各種技術，提供概觀。 叢集安全性案例包括：
 
@@ -109,14 +109,18 @@ X509 數位憑證通常用來驗證用戶端與伺服器，以及加密及數位
 
 
 ## <a name="next-steps"></a>後續步驟
-本文提供與叢集安全性有關的概念資訊。 接下來，[使用 Resource Manager 範本在 Azure 中建立叢集](service-fabric-cluster-creation-via-arm.md)或透過 [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)建立叢集。
+本文提供與叢集安全性有關的概念資訊。 接下來，
+
+
+1.  [使用 Resource Manager 範本在 Azure 中建立叢集](service-fabric-cluster-creation-via-arm.md) 
+2.  [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)。
 
 <!--Image references-->
-[節點對節點]: ./media/service-fabric-cluster-security/node-to-node.png
-[用戶端對節點]: ./media/service-fabric-cluster-security/client-to-node.png
+[Node-to-Node]: ./media/service-fabric-cluster-security/node-to-node.png
+[Client-to-Node]: ./media/service-fabric-cluster-security/client-to-node.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

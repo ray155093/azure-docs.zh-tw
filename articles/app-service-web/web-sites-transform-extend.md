@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 02/25/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2e10b89aecd12dd9eeb91855242421bf8d7c0a0b
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: abd55399ef780df945a2d643940a71425d085692
 
 
 ---
@@ -169,7 +169,7 @@ Web 應用程式擴充功能的程式碼位於 %HOME%\SiteExtensions\[your-exten
 在開發和調查期間，您可以藉由新增索引鍵為 `WEBSITE_PRIVATE_EXTENSIONS` 且值為 `0` 的應用程式，來停用 Web 應用程式的所有私人 (非預先安裝) 擴充功能。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -183,6 +183,6 @@ Web 應用程式擴充功能的程式碼位於 %HOME%\SiteExtensions\[your-exten
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

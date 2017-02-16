@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/20/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d45ada934ad9211dbe8534b210ff06653c40afd1
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: a992fa17a07d6167297c4cf5fe9fb3b58181d7df
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: d45ada934ad9211dbe8534b210ff06653c40afd1
 * 從資料庫建立所有高優先順序記錄的工作。
 * 將電子郵件的所有 PDF 附件儲存到 Azure Blob。
 
-若要開始在邏輯應用程式中使用查詢動作，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要開始在邏輯應用程式中使用查詢動作，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="use-the-query-action"></a>使用查詢動作
 動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](connectors-overview.md)。  
@@ -57,7 +57,7 @@ ms.openlocfilehash: d45ada934ad9211dbe8534b210ff06653c40afd1
 | 篩選陣列 |評估陣列中的每個項目是否符合條件並傳回結果 |
 
 ## <a name="action-details"></a>動作詳細資料
-查詢動作隨附 1 個可能的動作。 下表說明動作的必要與選擇性輸入欄位，以及與使用動作相關聯的對應輸出詳細資料。
+查詢動作隨附&1; 個可能的動作。 下表說明動作的必要與選擇性輸入欄位，以及與使用動作相關聯的對應輸出詳細資料。
 
 ### <a name="filter-array"></a>篩選陣列
 以下是動作的輸入欄位，可進行 HTTP 輸出要求。
@@ -78,11 +78,11 @@ ms.openlocfilehash: d45ada934ad9211dbe8534b210ff06653c40afd1
 | 篩選的陣列 |array |陣列，其中包含每筆篩選結果的物件 |
 
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
+立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 11/30/2016
+ms.date: 01/11/2017
 ms.author: brjohnst
 translationtype: Human Translation
-ms.sourcegitcommit: fef0779516da808324d4080c532c830a8bace2cb
-ms.openlocfilehash: ac55559e3dd0312c679a5b2c43d93c1532330337
+ms.sourcegitcommit: 3e2ad6b466ba4885ae14576b83d4c0f3010bab67
+ms.openlocfilehash: 9782454e3bfc697b63cde8aa28a14be0c393c36b
 
 
 ---
@@ -30,7 +30,7 @@ Azure 搜尋服務 .NET SDK 版本 3 包含一些從舊版所做的變更。 這
 > [!NOTE]
 > 如果您使用 1.0.2 預覽版或更舊版本，請先升級至 1.1 版，再升級至版本 3。 如需指示，請參閱 [附錄：升級至版本 1.1 的步驟](#UpgradeStepsV1) 。
 >
->
+> 您的「Azure 搜尋服務」執行個體支援數個 REST API 版本，包括最新版本。 當一個版本不再是最新版本時，您仍可繼續使用該版本，但建議您將程式碼移轉成使用最新版本。 使用 REST API 時，您必須每個要求中透過 api-version 參數指定 API 版本。 使用 .NET SDK 時，您使用的 SDK 版本會決定對應的 REST API 版本。 如果您使用的是舊版 SDK，則即使服務已升級成支援新版 API 版本，您仍可繼續執行該程式碼而無須變更。
 
 <a name="WhatsNew"></a>
 
@@ -486,6 +486,6 @@ Azure 搜尋服務 .NET SDK 中的每項作業都針對同步和非同步呼叫�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

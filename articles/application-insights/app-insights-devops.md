@@ -1,5 +1,5 @@
 ---
-title: "使用 Application Insights 深入診斷 Web 應用程式和服務 | Microsoft Docs"
+title: "Web 應用程式效能監視 - Azure Application Insights | Microsoft Docs"
 description: "Application Insights 如何融入 DevOps 循環"
 services: application-insights
 documentationcenter: 
@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: dea21a59b189d1d3d474cbc5e67f64df485a1981
-ms.openlocfilehash: 9599f0088647c6f017736f5cab36a04ad6024c1d
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: e5652353d658a5de197d71231f649c75fe3b245b
 
 
 ---
@@ -105,7 +105,7 @@ Web 系統中的失敗通常是由組態問題或其許多元件之間的互動�
 客戶 Samtec 說：「在最近的功能快速轉換期間，我們發現低於調整規模的資料庫已到達它的資源限制並導致逾時。 主動偵測警示會在我們分類問題時逐字顯現，非常接近即時公告。 這個與 Azure 平台相結合的警示，幾乎可協助我們即時修正問題。 總停機時間 < 10 分鐘。」
 
 ## <a name="live-metrics-stream"></a>即時計量串流
-部署最新組建是令人焦慮的體驗。 如果有任何問題，您會希望立即了解它們，讓您能夠在必要時取消部署。 即時計量串流可為您提供大約 1 秒延遲的關鍵計量。
+部署最新組建是令人焦慮的體驗。 如果有任何問題，您會希望立即了解它們，讓您能夠在必要時取消部署。 即時計量串流可為您提供大約&1; 秒延遲的關鍵計量。
 
 ![即時計量](./media/app-insights-devops/040.png)
 
@@ -174,6 +174,6 @@ Visual Studio 和 Eclipse 提供工具，可為您正在開發的專案設定正
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

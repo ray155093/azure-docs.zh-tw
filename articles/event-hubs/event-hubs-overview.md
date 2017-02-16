@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/16/2016
+ms.date: 11/30/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: df9897894a2a2a09735b0947fd335959e81a46cd
+ms.sourcegitcommit: 05ca343cfdfc602759eb3ea30a7186a0bb47bd74
+ms.openlocfilehash: 4dd8331ed2fd30d61b4a653f04cae9049385ce3c
 
 
 ---
@@ -32,7 +32,7 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 ![事件中樞](./media/event-hubs-overview/ehoverview2.png)
 
 ## <a name="conceptual-overview"></a>概念概觀
-事件中樞可透過分割取用者模式提供訊息串流。 佇列和主題使用 [競爭取用者](https://msdn.microsoft.com/library/dn568101.aspx) 模型，在該模型內每一位取用者都會嘗試讀取相同的佇列或資源。 這樣子的資源競爭最終會導致串流處理應用程式過於複雜且規模受限。 事件中樞使用分割取用者模式，在該模式中每位取用者只會讀取訊息串流的特定子集或資料分割。 此模式能水平擴充事件處理規模，並提供佇列和主題缺少的其他串流導向功能。
+事件中樞可透過分割取用者模式提供訊息串流。 佇列和主題使用[競爭取用者](https://msdn.microsoft.com/library/dn568101.aspx)模型，在該模型內每一位取用者都會嘗試讀取相同的佇列或資源。 這樣子的資源競爭最終會導致串流處理應用程式過於複雜且規模受限。 事件中樞使用分割取用者模式，在該模式中每位取用者只會讀取訊息串流的特定子集或資料分割。 此模式能水平擴充事件處理規模，並提供佇列和主題缺少的其他串流導向功能。
 
 ### <a name="partitions"></a>分割數
 資料分割是經過排序且保存在事件中樞內的事件序列。 當較新的事件送達時，系統會將它們加入序列的結尾。 您可以將資料分割視為一種「認可記錄」。
@@ -61,7 +61,7 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 共用存取簽章 (SAS) 是事件中樞的驗證機制。 服務匯流排能在命名空間和事件中樞層級提供 SAS 原則。 SAS 權杖可自 SAS 金鑰產生，它是經過特定格式編碼的 URL SHA 雜湊。 透過金鑰 (原則) 的名稱和權杖，服務匯流排可以重新產生雜湊，藉此驗證傳送者。 一般而言，建立的事件發佈者 SAS 權杖只具備特定事件中樞的 **傳送** 權限。 此 SAS 權杖 URL 機制是導入發佈者原則之發佈者識別的基礎。 如需使用 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus-messaging/service-bus-shared-access-signature-authentication.md)。
 
 #### <a name="publishing-an-event"></a>發佈事件
-您可以透過 AMQP 1.0 或 HTTPS 來發佈事件。 服務匯流排提供 [EventHubClient](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.eventhubclient.aspx) 類別，以供您從 .NET 用戶端將事件發佈到事件中樞。 對於其他執行階段和平台，您可以使用任何 AMQP 1.0 用戶端 (如 [Apache Qpid](http://qpid.apache.org/))。 您可以單獨發佈事件，或以批次方式進行。 不論是單一事件或批次，單次發行 (事件資料執行個體) 的上限為 256KB。 發佈大於此限制的事件會導致錯誤。 發佈者最好別顧慮事件中樞內的資料分割，他們只需要指定 *資料分割索引鍵* (下一節將加以介紹)，或透過其 SAS 權杖指定身分識別即可。
+您可以透過 AMQP 1.0 或 HTTPS 來發佈事件。 服務匯流排提供 [EventHubClient](/dotnet/api/microsoft.servicebus.messaging.eventhubclient?redirectedfrom=MSDN#microsoft_servicebus_messaging_eventhubclient) 類別，以供您從 .NET 用戶端將事件發佈到事件中樞。 對於其他執行階段和平台，您可以使用任何 AMQP 1.0 用戶端 (如 [Apache Qpid](http://qpid.apache.org/))。 您可以單獨發佈事件，或以批次方式進行。 不論是單一事件或批次，單次發行 (事件資料執行個體) 的上限為 256KB。 發佈大於此限制的事件會導致錯誤。 發佈者最好別顧慮事件中樞內的資料分割，他們只需要指定 *資料分割索引鍵* (下一節將加以介紹)，或透過其 SAS 權杖指定身分識別即可。
 
 使用 AMQP 或 HTTPS 的選擇因使用案例而異。 除了傳輸層級安全性 (TLS) 或 SSL/TLS 之外，AMQP 還需要建立持續性的雙向通訊端。 這是需要耗費大量網路流量的作業，不過只會發生在 AMQP 工作階段的開始。 HTTPS 的初始額外負荷較低，但每個要求都需要額外的 SSL 額外負荷。 對於經常發佈事件的發佈者，AMQP 能帶來可觀的效能、延遲及輸送量節約效益。
 
@@ -80,8 +80,10 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 
 以下是取用者群組 URI 慣例的範例：
 
-    //<my namespace>.servicebus.windows.net/<event hub name>/<Consumer Group #1>
-    //<my namespace>.servicebus.windows.net/<event hub name>/<Consumer Group #2>
+```
+//<my namespace>.servicebus.windows.net/<event hub name>/<Consumer Group #1>
+//<my namespace>.servicebus.windows.net/<event hub name>/<Consumer Group #2>
+```
 
 下圖顯示取用者群組內的事件取用者。
 
@@ -119,7 +121,7 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 * 輸入：最高每秒 1MB 或每秒 1000 個事件。
 * 輸出：每秒最多 2 MB。
 
-系統會根據您購買之輸送量單位數目所提供的容量數來調節輸入。 傳送超過以上數量的資料會產生「超出配額」例外狀況。 該數量為每秒 1MB 或 1000 個事件，以先達到的限制為準。 輸出不會產生節流例外狀況，不過須受限於您購買之輸送量單位所提供的資料傳輸數量：每個輸送量單位每秒 2MB。 如果您收到發佈速率例外狀況或輸出速率低於預期，請務必查看針對建立事件中樞之命名空間所購買的輸送量單位數目。 若要取得更多的輸送量單位，您可以在 [Azure 傳統入口網站][Azure 傳統入口網站]中 [級別] 索引標籤的 [命名空間] 頁面上調整設定。 您也可以使用 Azure API 來變更此項設定。
+系統會根據您購買之輸送量單位數目所提供的容量數來調節輸入。 傳送超過以上數量的資料會產生「超出配額」例外狀況。 該數量為每秒 1MB 或 1000 個事件，以先達到的限制為準。 輸出不會產生節流例外狀況，不過須受限於您購買之輸送量單位所提供的資料傳輸數量：每個輸送量單位每秒 2MB。 如果您收到發佈速率例外狀況或輸出速率低於預期，請務必查看針對建立事件中樞之命名空間所購買的輸送量單位數目。 若要取得更多的輸送量單位，您可以在 [Azure 傳統入口網站][Azure classic portal]中 [級別] 索引標籤的 [命名空間] 頁面上調整設定。 您也可以使用 Azure API 來變更此項設定。
 
 雖然資料分割屬於資料組織概念，不過輸送量單位卻純粹是容量概念。 輸送量單位是以每小時計費，採預先購買制。 一經購買，您至少必須支付一個小時的輸送量單位費用。 您最多可以為一個事件中樞命名空間購買 20 個輸送量單位，且 Azure 帳戶有 20 個輸送量單位的限制。 指定命名空間內的所有事件中樞會共用這些輸送量單位。
 
@@ -127,30 +129,32 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 
 建議您謹慎地取得輸送量單位和資料分割之間的平衡，讓事件中樞發揮最佳規模效益。 每個資料分割有一個輸送量單位的規模上限。 輸送量單位的數目應該要小於或等於事件中樞內的資料分割數目。
 
-如需詳細定價資訊，請參閱 [事件中樞定價](https://azure.microsoft.com/pricing/details/event-hubs/)。
+如需詳細定價資訊，請參閱[事件中樞價格](https://azure.microsoft.com/pricing/details/event-hubs/)頁面。
 
 ### <a name="publisher-policy"></a>發佈者原則
 事件中樞可讓您透過發佈者 原則更精確地控制事件發佈者。 發佈者原則是一組執行階段功能，其設計乃是為了促進大量獨立事件發佈者的運作。 有了發佈者原則，當每位發佈者使用下列機制將事件發佈到事件中樞時，都能使用自己的唯一識別碼：
 
-    //<my namespace>.servicebus.windows.net/<event hub name>/publishers/<my publisher name>
+```
+//<my namespace>.servicebus.windows.net/<event hub name>/publishers/<my publisher name>
+```
 
 您不需要事先建立發佈者名稱，不過這些名稱必須符合發佈事件時使用的 SAS 權杖，以確保發佈者身分識別是獨立的。 如需 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus-messaging/service-bus-shared-access-signature-authentication.md)。 在使用發佈者原則時，系統會將 **PartitionKey** 值設定為發佈者名稱。 為了正常運作，這些值必須相符。
 
 ## <a name="summary"></a>摘要
-Azure 事件中樞提供超規模事件和遙測處理服務，該服務適用於任何規模的通用應用程式和使用者工作流程監視。 藉由提供大規模的低延遲發佈訂閱功能，事件中樞能成為引進巨量資料的途徑。 透過以發佈者為基礎的身分識別和撤銷清單，您可以將這些功能延伸到一般的物聯網案例。 如需開發事件中樞應用程式的詳細資訊。請參閱[事件中樞程式設計指南](event-hubs-programming-guide.md)。
+Azure 事件中樞提供超規模事件和遙測處理服務，該服務適用於任何規模的通用應用程式和使用者工作流程監視。 藉由提供大規模的低延遲發佈訂閱功能，事件中樞能成為引進巨量資料的途徑。 透過以發佈者為基礎的身分識別和撤銷清單，您可以將這些功能延伸到一般的[物聯網](https://docs.microsoft.com/azure/#pivot=services&panel=iot)案例。 如需開發事件中樞應用程式的詳細資訊。請參閱[事件中樞程式設計指南](event-hubs-programming-guide.md)。
 
 ## <a name="next-steps"></a>後續步驟
-既然您已了解事件中樞的相關概念，您可以移至下列案例：
+既然您已了解事件中樞概念，您可以移至下列案例：
 
 * 開始使用 [事件中樞教學課程]。
 * [使用事件中樞的完整範例應用程式]。
 
-[Azure 傳統入口網站]: http://manage.windowsazure.com
+[Azure classic portal]: http://manage.windowsazure.com
 [事件中樞教學課程]: event-hubs-csharp-ephcs-getstarted.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/windowsazure/Service-Bus-Event-Hub-286fd097
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

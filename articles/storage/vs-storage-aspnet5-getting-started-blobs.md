@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a5da12320ffbf5c7c5a2bd984d753be53b5ca0fa
+ms.sourcegitcommit: 88e6ce0deeb5dab276b5ae49f6c99391e37495f4
+ms.openlocfilehash: 2a31f6d8aa00e89e8dbbe0089fc76ecbb2102b3c
 
 
 ---
@@ -42,8 +42,10 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
         using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得您的儲存體連接字串和儲存體帳戶資訊。
    
-         CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-           CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
+         CloudStorageAccount storageAccount = new CloudStorageAccount(
+            new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials(
+            "<storage-account-name>",
+            "<access-key>"), true);
    
     **注意：** 請在後續小節中的程式碼前面使用上述所有程式碼。
 3. 使用 **CloudBlobClient** 物件，以取得儲存體帳戶中現有容器的 **CloudBlobContainer** 參考。
@@ -153,6 +155,6 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "透過執行 Stretch Database Advisor 為資料庫和資料表識別 Stretch Database | Microsoft Docs"
+title: "識別適用於 Stretch Database 的資料庫與資料表 - Azure | Microsoft Docs"
 description: "了解如何識別可做為 Stretch Database 候選對象的資料庫和資料表。"
 services: sql-server-stretch-database
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: douglasl
 translationtype: Human Translation
-ms.sourcegitcommit: 47b666a7f2178daebc1b2b442fd1bb8cf31e40bb
-ms.openlocfilehash: 3aef66c7b80ee356faedcaaadacd15aea3438714
+ms.sourcegitcommit: bcb0a66425439522e0c9a353798ac70505b91e39
+ms.openlocfilehash: 0f1a7feea79c73d7b80343fcc9898509268d111c
 
 
 ---
@@ -36,10 +36,10 @@ ms.openlocfilehash: 3aef66c7b80ee356faedcaaadacd15aea3438714
 
 ## <a name="review-the-results"></a>檢閱結果
 1. 當分析完成時，在 [分析資料庫] 刀鋒視窗上，選取您已分析的其中一個資料庫以顯示 [分析結果] 刀鋒視窗。
-   
+
    [分析結果]  刀鋒視窗會列出所選取資料庫中符合預設建議準則的建議資料表。
 2. 在 [分析結果] 刀鋒視窗上的資料表清單中，選取其中一個建議資料表以顯示 [資料表結果] 刀鋒視窗。
-   
+
    如果發生封鎖問題，[資料表結果]  刀鋒視窗就會列出所選取資料表的封鎖問題。 如需 Stretch Database Advisor 所偵測到的封鎖問題相關資訊，請參閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。
 3. 在 [資料表結果]  刀鋒視窗中的封鎖問題清單中，選取其中一個問題以顯示所選取問題的詳細資訊，以及建議的因應步驟。 如果您想要為選取的資料表設定 Stretch Database，請實作建議的風險降低步驟。
 
@@ -58,7 +58,6 @@ ms.openlocfilehash: 3aef66c7b80ee356faedcaaadacd15aea3438714
 
 
 
-
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "比例差異測試 | Microsoft Docs"
-description: "比例差異測試"
+title: "(已過時) 比例差異測試 - Azure | Microsoft Docs"
+description: "(已過時) 比例差異測試"
 services: machine-learning
 documentationcenter: 
 author: aniedea
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 09/12/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: aniedea
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 27e1626e72f9740e73a19e078868a7c4392baf1e
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: 18023b5057d1eeca88a341d62cbeb543102b3abf
 
 
 ---
-# <a name="difference-in-proportions-test"></a>比例差異測試
+# <a name="deprecated-difference-in-proportions-test"></a>(已過時) 比例差異測試
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 兩個比例有統計上的差異嗎？ 假設使用者想要比較兩部電影，以判斷其中一部電影與另一部電影比較起來是否有明顯較高比例的「讚」。 在大型樣本中，在 0.50 和 0.51 比例之間可能會有統計上的顯著差異； 但在小型樣本中，可能沒有足夠的資料可以判斷這些比例是否真有差異。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -129,6 +136,6 @@ Azure Machine Learning 中已建立具有兩個[執行 R 指令碼][execute-r-sc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 42a2b241ed6ac2b13d1fb65f42242b194ef2858b
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 5724a9c66bef01972f41e66a84844aae9b300296
 
 
 ---
@@ -37,10 +37,10 @@ ms.openlocfilehash: 42a2b241ed6ac2b13d1fb65f42242b194ef2858b
 
 其他考量：
 
-建置串流內容的 URL (例如，http://{WAMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 **IAssetFile.Name** 屬性的值。基於這個理由，不允許 percent-encoding。 Name 屬性的值不能有下列任何[保留的百分比編碼字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]". 並且，只能有一個 ‘.’ 在檔案名稱的副檔名。
+建置串流內容的 URL (例如，http://{WAMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 **IAssetFile.Name** 屬性的值。基於這個理由，不允許 percent-encoding。 Name 屬性的值不能有下列任何[百分比編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 此外，只能有一個 ‘.’ 在檔案名稱的副檔名。
 
 ## <a name="to-attach-a-storage-account-with-azure-service-management-rest-api"></a>使用 Azure 服務管理 REST API 附加儲存體帳戶
-目前附加多個儲存體帳戶的唯一方式，是使用 [Azure 服務管理 REST API](http://msdn.microsoft.com/library/azure/dn167014.aspx)。 在＜ [做法：使用媒體服務管理 REST API](https://msdn.microsoft.com/library/azure/dn167656.aspx) ＞主題中的程式碼範例，定義 **AttachStorageAccountToMediaServiceAccount** 方法能將儲存體帳戶附加到指定的媒體服務帳戶。 相同主題中的程式碼定義 **ListStorageAccountDetails** 方法，能列出所有附加到指定的媒體服務帳戶的儲存體帳戶。
+目前附加多個儲存體帳戶的唯一方式，是使用 [Azure 服務管理 REST API](https://docs.microsoft.com/rest/api/media/management/media-services-management-rest)。 在＜ [做法：使用媒體服務管理 REST API](https://msdn.microsoft.com/library/azure/dn167656.aspx) ＞主題中的程式碼範例，定義 **AttachStorageAccountToMediaServiceAccount** 方法能將儲存體帳戶附加到指定的媒體服務帳戶。 相同主題中的程式碼定義 **ListStorageAccountDetails** 方法，能列出所有附加到指定的媒體服務帳戶的儲存體帳戶。
 
 ## <a name="to-manage-media-services-assets-across-multiple-storage-accounts"></a>管理跨多個儲存體帳戶的媒體服務資產
 下列程式碼會使用最新的媒體服務 SDK，執行下列工作：
@@ -257,6 +257,6 @@ ms.openlocfilehash: 42a2b241ed6ac2b13d1fb65f42242b194ef2858b
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

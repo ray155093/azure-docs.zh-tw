@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 09/16/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 29ede770e6e63a50ba398cfb0bc8035cacdea392
-ms.openlocfilehash: 2b00b8206189dbed02e03807658c53f81171b111
+ms.sourcegitcommit: 385eb87ec32f5f605b28cc8c76b1c89c7e90bfec
+ms.openlocfilehash: 0288b0dda9139c28da28fedfe39c4e9156c6c938
 
 
 ---
@@ -52,7 +52,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 ## <a name="set-up-the-development-environment"></a>設定開發環境
 在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
 
-1. 從[取得工具和 SDK][取得工具和 SDK] 頁面安裝 Azure SDK for .NET。
+1. 從[取得工具和 SDK][Get Tools and SDK] 頁面安裝 Azure SDK for .NET。
 2. 按一下您所使用 Visual Studio 版本的 [安裝 SDK]。 本教學課程中的步驟使用 Visual Studio 2015。
 3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
 4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
@@ -72,27 +72,27 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 1. 使用系統管理員權限，啟動 Microsoft Visual Studio。 若要以系統管理員權限啟動 Visual Studio，請在 **Visual Studio** 程式圖示上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。
 2. 在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
 3. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [主控台應用程式]。 在 [名稱] 方塊中，鍵入名稱 **ProductsServer**：
-   
+
    ![][11]
 4. 按一下 [確定] 以建立 **ProductsServer** 專案。
-5. 如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。 否則，請造訪 [NuGet][NuGet] (英文)，然後按一下 [安裝 NuGet][](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。 按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
+5. 如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。 否則，請造訪 [NuGet][NuGet]，然後按一下[安裝 NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)。 按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
 6. 在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsServer** 專案，然後按一下 [管理 NuGet 套件]。
 7. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 按一下 [安裝] 並接受使用條款。
-   
+
    ![][13]
-   
+
    請注意，現在會參考必要的用戶端組件。
 8. 新增產品連絡人的新類別。 在 [方案總管] 的 **ProductsServer** 專案上按一下滑鼠右鍵、按一下 [新增]，然後按一下 [類別]。
 9. 在 [名稱] 方塊中，鍵入名稱 **ProductsContract.cs**。 然後按一下 [ **新增**]。
 10. 在 **ProductsContract.cs** 中，將命名空間定義取代為下列程式碼，以定義服務的連絡人。
-    
+
     ```
     namespace ProductsServer
     {
         using System.Collections.Generic;
         using System.Runtime.Serialization;
         using System.ServiceModel;
-    
+
         // Define the data contract for the service
         [DataContract]
         // Declare the serializable properties.
@@ -105,23 +105,23 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
             [DataMember]
             public string Quantity { get; set; }
         }
-    
+
         // Define the service contract.
         [ServiceContract]
         interface IProducts
         {
             [OperationContract]
             IList<ProductData> GetProducts();
-    
+
         }
-    
+
         interface IProductsChannel : IProducts, IClientChannel
         {
         }
     }
     ```
 11. 在 Program.cs 中，將命名空間定義取代為下列程式碼，為它新增設定檔服務和主機。
-    
+
     ```
     namespace ProductsServer
     {
@@ -129,11 +129,11 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
         using System.Linq;
         using System.Collections.Generic;
         using System.ServiceModel;
-    
+
         // Implement the IProducts interface.
         class ProductsService : IProducts
         {
-    
+
             // Populate array of products for display on website
             ProductData[] products =
                 new []
@@ -147,7 +147,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
                         new ProductData{ Id = "4", Name = "Well",
                                          Quantity = "2500"},
                     };
-    
+
             // Display a message in the service console application
             // when the list of products is retrieved.
             public IList<ProductData> GetProducts()
@@ -155,9 +155,9 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
                 Console.WriteLine("GetProducts called.");
                 return products;
             }
-    
+
         }
-    
+
         class Program
         {
             // Define the Main() function in the service application.
@@ -165,17 +165,17 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
             {
                 var sh = new ServiceHost(typeof(ProductsService));
                 sh.Open();
-    
+
                 Console.WriteLine("Press ENTER to close");
                 Console.ReadLine();
-    
+
                 sh.Close();
             }
         }
     }
     ```
 12. 在 [方案總管] 中，按兩下 **App.config** 檔案，以在 Visual Studio 編輯器中開啟它。 在 **&lt;system.ServiceModel&gt;** 元素的底部 (但仍在 &lt;system.ServiceModel&gt; 內)，新增下列 XML 程式碼。 請務必以您的命名空間名稱取代 yourServiceNamespace，並以您先前從入口網站擷取到的 SAS 金鑰取代 yourKey：
-    
+
     ```
     <system.serviceModel>
     ...
@@ -197,8 +197,8 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
       </behaviors>
     </system.serviceModel>
     ```
-13. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串取代 **&lt;appSettings&gt;** 元素中的連接字串值。 
-    
+13. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串取代 **&lt;appSettings&gt;** 元素中的連接字串值。
+
     ```
     <appSettings>
        <!-- Service Bus specific app settings for messaging connections -->
@@ -215,27 +215,27 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 1. 確定 Visual Studio 是以系統管理員權限來執行。
 2. 在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
 3. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [ASP.NET Web 應用程式]。 將專案命名為 **ProductsPortal**。 然後按一下 [確定] 。
-   
+
    ![][15]
-4. 從 [選取範本] 清單，按一下 [MVC]。 
+4. 從 [選取範本] 清單，按一下 [MVC]。
 5. 勾選 [雲端中的主機] 方塊。
-   
+
    ![][16]
 6. 按一下 [變更驗證] 按鈕。 在 [變更驗證] 對話方塊中，按一下 [不需要驗證]，然後按一下 [確定]。 在本教學課程中，您會部署不需要使用者登入的應用程式。
-   
+
     ![][18]
 7. 在 [新建 ASP.NET 專案] 核取方塊中的 [Microsoft Azure] 區段，確認已選取 [在雲端託管]，並在下拉式清單中選取 [App Service]。
-   
+
    ![][19]
-8. 按一下 [確定] 。 
-9. 您現在必須設定新 Web 應用程式的 Azure 資源。 遵循[設定新 Web 應用程式的 Azure 資源](../app-service-web/web-sites-dotnet-get-started.md#configure-azure-resources-for-a-new-web-app)一節中的所有步驟。 然後，回到本教學課程並繼續進行下一個步驟。
+8. 按一下 [確定] 。
+9. 您現在必須設定新 Web 應用程式的 Azure 資源。 請遵循[建立 Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md#create-a-web-application)和[建立 Azure 資源](../app-service-web/web-sites-dotnet-get-started.md#create-the-azure-resources)中的所有步驟。 然後，回到本教學課程並繼續進行下一個步驟。
 10. 在 [方案總管] 中，於 [模型] 上按一下滑鼠右鍵、按一下 [新增]，再按一下 [類別]。 在 [名稱] 方塊中，鍵入名稱 **Product.cs**。 然後按一下 [ **新增**]。
-    
+
     ![][17]
 
 ### <a name="modify-the-web-application"></a>修改 Web 應用程式
 1. 在 Visual Studio 的 Product.cs 檔案中，將現有的命名空間定義取代為下列程式碼。
-   
+
    ```
    // Declare properties for the products inventory.
     namespace ProductsWeb.Models
@@ -250,14 +250,14 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
    ```
 2. 在 [方案總管] 中展開 **Controllers** 資料夾，然後按兩下 **HomeController.cs** 檔案以在 Visual Studio 中開啟。
 3. 在 **HomeController.cs** 檔案中，以下列程式碼取代現有的命名空間定義。
-   
+
     ```
     namespace ProductsWeb.Controllers
     {
         using System.Collections.Generic;
         using System.Web.Mvc;
         using Models;
-   
+
         public class HomeController : Controller
         {
             // Return a view of the products inventory.
@@ -273,20 +273,20 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 4. 在 [方案總管] 中，展開 Views\Shared 資料夾，然後按兩下 **_Layout.cshtml** 檔案以在 Visual Studio 編輯器中開啟。
 5. 將所有出現的 **My ASP.NET Application** 變更為 **LITWARE's Products**。
 6. 移除 [首頁]、[關於] 和 [連絡人] 連結。 在下列範例中，刪除反白顯示的程式碼。
-   
+
     ![][41]
 7. 在 [方案總管] 中，展開 Views\Home 資料夾，然後按兩下 **Index.cshtml** 以在 Visual Studio 編輯器中開啟。
    將檔案的整個內容取代為下列程式碼。
-   
+
    ```
    @model IEnumerable<ProductsWeb.Models.Product>
-   
+
    @{
             ViewBag.Title = "Index";
    }
-   
+
    <h2>Prod Inventory</h2>
-   
+
    <table>
              <tr>
                  <th>
@@ -297,7 +297,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
                      @Html.DisplayNameFor(model => model.Quantity)
                  </th>
              </tr>
-   
+
    @foreach (var item in Model) {
              <tr>
                  <td>
@@ -308,7 +308,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
                  </td>
              </tr>
    }
-   
+
    </table>
    ```
 8. 若要驗證您的工作到目前為止是否正確無誤，您可以按 **Ctrl+Shift+B** 來建置專案。
@@ -319,7 +319,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 1. 確定 **ProductsPortal** 為作用中專案。 在 [方案總管] 的專案名稱上按一下滑鼠右鍵，然後選取 [設定為啟始專案]。
 2. 在 Visual Studio 中按 F5。
 3. 您的應用程式應該就會出現在瀏覽器中並正在執行。
-   
+
    ![][21]
 
 ## <a name="put-the-pieces-together"></a>組合在一起
@@ -330,10 +330,10 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 3. 搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排]  項目。 然後完成安裝並關閉此對話方塊。
 4. 在 [方案總管] 的 **ProductsPortal** 專案上按一下滑鼠右鍵，再按一下 [新增]，然後按一下 [現有項目]。
 5. 從 **ProductsServer** 主控台專案導覽至 **ProductsContract.cs** 檔案。 按一下以反白顯示 ProductsContract.cs。 按一下 [新增] 旁邊的向下箭頭，然後按一下 [新增做為連結]。
-   
+
    ![][24]
 6. 現在會在 Visual Studio 編輯器中開啟 **HomeController.cs** 檔案，並將命名空間定義取代為下列程式碼。 請務必以服務命名空間名稱取代 *yourServiceNamespace*，並以 SAS 金鑰取代 *yourKey*。 這可讓用戶端呼叫內部部署服務，並傳回呼叫結果。
-   
+
    ```
    namespace ProductsWeb.Controllers
    {
@@ -343,12 +343,12 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
        using Microsoft.ServiceBus;
        using Models;
        using ProductsServer;
-   
+
        public class HomeController : Controller
        {
            // Declare the channel factory.
            static ChannelFactory<IProductsChannel> channelFactory;
-   
+
            static HomeController()
            {
                // Create shared access signature token credentials for authentication.
@@ -358,7 +358,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
                    TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(
                        "RootManageSharedAccessKey", "yourKey") });
            }
-   
+
            public ActionResult Index()
            {
                using (IProductsChannel channel = channelFactory.CreateChannel())
@@ -377,12 +377,12 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 8. 導覽至 **ProductsServer** 專案，然後按兩下 **ProductsServer.csproj** 方案檔來新增它。
 9. **ProductsServer** 必須在執行中，才能在 **ProductsPortal** 上顯示資料。 在 [方案總管] 的 **ProductsPortal** 方案上按一下滑鼠右鍵，然後按一下 [屬性]。 [屬性頁面] 對話方塊隨即出現。
 10. 在左側，按一下 [啟始專案]。 在右側，按一下 [多個啟始專案]。 確定 **ProductsServer** 和 **ProductsPortal** 依序出現，且 [啟動] 設為兩者的動作。
-    
+
       ![][25]
 11. 仍是在 [屬性] 對話方塊中，按一下左側的 [專案相依性]。
 12. 在 [專案] 清單中，按一下 **ProductsServer**。 確定**未**選取 [ProductsPortal]。
-13. 在 [專案] 清單中，按一下 **ProductsPortal**。 確定已選取 [ProductsServer]。 
-    
+13. 在 [專案] 清單中，按一下 **ProductsPortal**。 確定已選取 [ProductsServer]。
+
     ![][26]
 14. 按一下 [屬性頁面] 對話方塊中的 [確定]。
 
@@ -396,16 +396,16 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 先關閉這兩個應用程式，才能繼續下一個步驟。
 
 ## <a name="deploy-the-productsportal-project-to-an-azure-web-app"></a>將 ProductsPortal 專案部署至 Azure Web 應用程式
-下一個步驟是將 **ProductsPortal** 前端轉換為 Azure Web 應用程式。 首先，部署 **ProductsPortal** 專案，遵循[將 Web 專案部署至 Azure Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md#deploy-the-web-project-to-the-azure-web-app)一節中的所有步驟。 部署完成後，回到本教學課程並繼續進行下一個步驟。
+下一個步驟是將 **ProductsPortal** 前端轉換為 Azure Web 應用程式。 首先，部署 **ProductsPortal** 專案，並遵循[將 Web 專案部署至 Azure](../app-service-web/web-sites-dotnet-get-started.md#deploy-the-web-project-to-azure) 一節中的所有步驟。 部署完成後，回到本教學課程並繼續進行下一個步驟。
 
 > [!NOTE]
 > 在部署後自動啟動 **ProductsPortal** Web 專案時，您可在瀏覽器視窗中看到錯誤訊息。 這是預期的，且因為 **ProductsServer** 應用程式尚未執行而出現。
-> 
-> 
+>
+>
 
 請複製已部署 Web 應用程式的 URL，印為您在下一個步驟中需要用到 URL。 您也可以從 Visual Studio 中的 [Azure App Service 活動] 視窗中取得此 URL：
 
-![][9] 
+![][9]
 
 ### <a name="set-productsportal-as-web-app"></a>將 ProductsPortal 設定為 Web 應用程式
 在雲端執行此應用程式之前，您必須確定 **ProductsPortal** 是從 Visual Studio 內以 Web 應用程式的形式啟動。
@@ -413,24 +413,24 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 1. 在 Visual Studio 中，以滑鼠右鍵按一下 **ProjectsPortal** 專案，然後按一下 [屬性]。
 2. 在左側欄中，按一下 [Web]。
 3. 在 [起始動作] 區段中，按一下 [起始 URL] 按鈕，然後在文字方塊中輸入您先前部署的 Web 應用程式的 URL，例如 `http://productsportal1234567890.azurewebsites.net/`。
-   
+
     ![][27]
 4. 從 Visual Studio 的 [檔案] 功能表中，按一下 [全部儲存]。
 5. 在 Visual Studio 的 [建置] 功能表中，按一下 [重建方案]。
 
 ## <a name="run-the-application"></a>執行應用程式
-1. 按 F5 以建置並執行應用程式。 內部部署伺服器 (**ProductsServer** 主控台應用程式) 應該會第一個啟動，然後 **ProductsPortal** 應用程式應該會在瀏覽器視窗中啟動，如下面的螢幕擷取畫面所示。 再次注意，產品庫存清單會列出從產品服務內部部署系統擷取的資料，並在 Web 應用程式中顯示該資訊。 檢查 URL，確定 **ProductsPortal** 正在雲端中以 Azure Web 應用程式的形式執行。 
-   
+1. 按 F5 以建置並執行應用程式。 內部部署伺服器 (**ProductsServer** 主控台應用程式) 應該會第一個啟動，然後 **ProductsPortal** 應用程式應該會在瀏覽器視窗中啟動，如下面的螢幕擷取畫面所示。 再次注意，產品庫存清單會列出從產品服務內部部署系統擷取的資料，並在 Web 應用程式中顯示該資訊。 檢查 URL，確定 **ProductsPortal** 正在雲端中以 Azure Web 應用程式的形式執行。
+
    ![][1]
-   
+
    > [!IMPORTANT]
    > **ProductsServer** 主控台應用程式必須正在執行中，而且能夠提供資料給 **ProductsPortal** 應用程式。 如果瀏覽器顯示錯誤，請等候幾秒，讓 **ProductsServer** 載入並顯示下列訊息。 然後按瀏覽器中的 [重新整理]。
-   > 
-   > 
-   
+   >
+   >
+
    ![][37]
 2. 回到瀏覽器中，按 **ProductsPortal** 頁面上的 [重新整理]。 每次重新整理頁面時，您會看到伺服器應用程式在呼叫來自 **ProductsServer** 的 `GetProducts()` 時顯示一則訊息。
-   
+
     ![][38]
 
 ## <a name="next-steps"></a>後續步驟
@@ -441,7 +441,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 
 [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
 [1]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/App2.png
-[取得工具和 SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
+[Get Tools and SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
 [NuGet]: http://nuget.org
 
 [11]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-con-1.png
@@ -468,7 +468,6 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/07/2016
+ms.date: 11/30/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 48488c180aaa0f8650e6fc10c2c2ec96dbe858ac
+ms.sourcegitcommit: 1a2ff324cfa65977685f6a0eee9cd398b0717519
+ms.openlocfilehash: 9d0d84dabbb8dd8d8bd1e208e54e3858a7661c25
 
 
 ---
@@ -159,17 +159,18 @@ Trakstar 與 Azure AD 整合提供下列優點：
     c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-trakstar-tutorial/create_aaduser_06.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-trakstar-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-trakstar-tutorial/create_aaduser_07.png) 
@@ -238,6 +239,6 @@ Trakstar 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

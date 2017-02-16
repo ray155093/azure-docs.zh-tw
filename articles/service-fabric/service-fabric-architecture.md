@@ -1,5 +1,5 @@
 ---
-title: "Service Fabric 架構 | Microsoft Docs"
+title: "Azure Service Fabric 的架構 | Microsoft Docs"
 description: "Service Fabric 是一種分散式系統平台，用來建置可調整、可靠且輕鬆管理的雲端應用程式。 本文章說明 Service Fabric 的架構。"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 06/09/2016
 ms.author: rsinha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 911e1cedd944d22f9e13c1ec784bae0efb0947e2
+ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
+ms.openlocfilehash: c485e8a3d12e7d2dcbfd6304a67aaa4fc2838b3f
 
 
 ---
@@ -66,6 +66,6 @@ Service Fabric 是使用分層的子系統所建置。 這些子系統可讓您�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

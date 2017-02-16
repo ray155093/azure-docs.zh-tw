@@ -13,19 +13,23 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 11/23/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 6296917393c01d1070482f1711b8d51b4a4b58a6
-ms.openlocfilehash: 195d0db04ebde179c0def69ff52b147db2f4a88e
+ms.sourcegitcommit: ae7407e1293202f7c76da59560efe620dde2ea0a
+ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 
 
 ---
 # <a name="release-notes-for-hadoop-components-on-azure-hdinsight"></a>Azure HDInsight 上 Hadoop 元件的版本資訊
 
+
+##<a name="notes-for-11182016-release-of-spark-201-on-hdinsight-35"></a>HDInsight 3.5 上 Spark 2.0.1 之 2016/11/18 版本的相關資訊
+•   Spark 2.0.1 現已可在 Spark 叢集上取得 (HDInsight 3.5 版)。
+
 ## <a name="notes-for-11162016-release-of-r-server-90-on-hdinsight-35-spark-20"></a>HDInsight 3.5 (Spark 2.0) 的 R 伺服器 9.0 2016/11/16 版本的相關資訊
 *   R 伺服器叢集現在包括適用於下列兩個版本的選項︰HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 和 HDI 3.4 (Spark 1.6) 上的 R 伺服器 8.0。
-*   HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 包含新的 ScaleR 資料來源函式，其名稱為 RxHiveData 和 RxParquetData，可用來將資料從 Hive 和 Parquet 直接載入到 Spark 資料框架供 ScaleR 進行分析。 如需詳細資訊，請透過使用 ?RxHivedata 和 ?RxParquetData 命令參閱 R 中這些函式的內嵌說明。
+*   •   HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 是以 R 3.3.2 為基礎，且包含新的 ScaleR 資料來源函式，其名稱為 RxHiveData 和 RxParquetData，可用來將資料從 Hive 和 Parquet 直接載入到 Spark 資料框架供 ScaleR 進行分析。 如需詳細資訊，請透過使用 ?RxHivedata 和 ?RxParquetData 命令參閱 R 中這些函式的內嵌說明。
 *   RStudio 伺服器 Community 版本現在預設 (具有選擇退出選項) 會在佈建流程中安裝在 [叢集組態] 刀鋒視窗上。  
 
 ## <a name="notes-for-11092016-release-of-spark-20-on-hdinsight"></a>HDInsight 上 Spark 2.0 之 2016/11/09 版本的相關資訊
@@ -457,7 +461,7 @@ ms.openlocfilehash: 195d0db04ebde179c0def69ff52b147db2f4a88e
 
 <tr>
 <td>其他開啟的 HTTPS 連接埠</td>
-<td>雲端服務現在會開啟叢集上的 5 個連接埠 8001 至 8005，例如 https://<clustername>.azurehdinsight.net:8001/。 at https://<clustername>.azurehdinsight.net:8001/. 對這些 URL 的要求會使用相同的基本驗證密碼機制驗證做為連接埠 443。 這些連接埠會繫結至作用中前端節點上的相同連接埠。 使用指令碼動作，可讓客戶服務在前端節點的這些連接埠上接聽並路由傳送到叢集外部。</td>
+<td>雲端服務現在會開啟叢集上的 5 個連接埠 (8001 至 8005)，例如 https://<clustername>.azurehdinsight.net:8001/。 對這些 URL 的要求會使用相同的基本驗證密碼機制驗證做為連接埠 443。 這些連接埠會繫結至作用中前端節點上的相同連接埠。 使用指令碼動作，可讓客戶服務在前端節點的這些連接埠上接聽並路由傳送到叢集外部。</td>
 <td>服務雲端</td>
 <td>全部</td>
 <td>N/A</td>
@@ -1364,7 +1368,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 
 可透過存取 URI http://headnodehost:8188 或執行 YARN 命令：yarn application –list –appStates ALL，從前端節點擷取此應用程式資訊。
 
-也可以透過 REST API (位於 https://{ClusterDnsName}. azurehdinsight.net/ws/v1/applicationhistory/) 從遠端擷取此資訊。 azurehdinsight.net/ws/v1/applicationhistory/.
+此資訊也可以透過 REST API 從 https://{ClusterDnsName}. azurehdinsight.net/ws/v1/applicationhistory/ 遠端擷取。
 
 如需詳細資訊，請參閱 <a href="http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html" target="_blank">YARN Timeline Server</a>。</td>
 <td>服務、YARN</td>
@@ -1688,6 +1692,6 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 05/23/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c644f67c985ef1de13286bc1ef8c2bb84a2939e3
+ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
+ms.openlocfilehash: df2b27fd7016294f14d2ad87325a2acf24c15d85
 
 
 ---
@@ -91,7 +91,7 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 ## <a name="more-information"></a>詳細資訊
 如需 Azure App Service 中的驗證與授權的詳細資訊，請參閱下列資源：
 
-* [擴充 App Service 驗證/授權](/blog/announcing-app-service-authentication-authorization/)
+* [擴充 App Service 驗證/授權](https://azure.microsoft.com/blog/announcing-app-service-authentication-authorization/)
 * [如何設定 App Service 應用程式使用 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md) (頁面頂端有其他驗證提供者的連結)。 
 
 如需 OAuth 2.0、OpenID Connect 和 JSON Web 權杖 (JWT) 的詳細資訊，請參閱下列資源。
@@ -112,6 +112,6 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

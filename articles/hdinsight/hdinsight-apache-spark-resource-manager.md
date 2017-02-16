@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/25/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1a14f8437ed83cb546e3b84072494ceb18cc6c38
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 626fe6fc7a7ee74e8fcfa3b6c38f0cb25dd91da6
 
 
 ---
@@ -97,7 +97,7 @@ ms.openlocfilehash: 1a14f8437ed83cb546e3b84072494ceb18cc6c38
     curl -k -v -H 'Content-Type: application/json' -X POST -d '{"file":"<location of application jar file>", "className":"<the application class to execute>", "args":[<application parameters>], "numExecutors":10, "executorMemory":"2G", "executorCores":5' localhost:8998/batches
 
 ### <a name="how-do-i-change-these-parameters-on-a-spark-thrift-server"></a>如何在 Spark Thrift 伺服器變更這些參數？
-Spark Thrift 伺服器提供對 Spark 叢集的 JDBC/ODBC 存取，並且用來服務 Spark SQL 查詢。 像是 Power BI、Tableau 等等的工具，會使用 ODBC 通訊協定與 Spark Thrift 伺服器通訊，將 Spark SQL 查詢當作 Spark 應用程式執行。 use ODBC protocol to communicate with Spark Thrift Server to execute Spark SQL queries as a Spark Application. 建立 Spark 叢集時，會啟動 Spark Thrift 伺服器的兩個執行個體，每個前端節點上一個執行個體。 每個 Spark Thrift 伺服器會顯示為 YARN UI 中的 Spark 應用程式。 
+Spark Thrift 伺服器提供對 Spark 叢集的 JDBC/ODBC 存取，並且用來服務 Spark SQL 查詢。 Power BI、Tableau 等工具 使用 ODBC 通訊協定與 Spark Thrift 伺服器通訊，將 Spark SQL 查詢當作 Spark 應用程式執行。 建立 Spark 叢集時，會啟動 Spark Thrift 伺服器的兩個執行個體，每個前端節點上一個執行個體。 每個 Spark Thrift 伺服器會顯示為 YARN UI 中的 Spark 應用程式。 
 
 Spark Thrift 伺服器會使用 Spark 動態執行程式配置，因此不會使用 `spark.executor.instances` 。 而是 Spark Thrift 伺服器會使用 `spark.dynamicAllocation.minExecutors` 和 `spark.dynamicAllocation.maxExecutors` 來指定執行程式計數。 會使用組態參數 `spark.executor.cores` 和 `spark.executor.memory` 以修改執行程式大小。 您可以變更這些參數，如下所示。
 
@@ -173,6 +173,6 @@ Spark Thrift 伺服器驅動程式記憶體是設定為前端節點 RAM 大小�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

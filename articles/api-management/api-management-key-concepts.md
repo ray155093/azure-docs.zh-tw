@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dcff834c9d4aff82e8319e6c23a74c2e49902a8c
+ms.sourcegitcommit: b0ead7ecbf9327e9df6846d6e046ed69f25832cf
+ms.openlocfilehash: 872fbd44a9bccf0d6e9f7f3f3bd839e384874ae5
 
 
 ---
@@ -50,14 +50,14 @@ ms.openlocfilehash: dcff834c9d4aff82e8319e6c23a74c2e49902a8c
 ## <a name="apis"> </a>API 和作業
 API 是 API 管理服務執行個體的基礎。 每個 API 都代表可供開發人員使用的一組作業。 每個 API 都包含會實作 API 之後端服務的參考，而其作業會與後端服務實作的作業相對應。 API 管理中的作業可設定度相當高，並可控制 URL 對應、查詢和路徑參數、要求和回應內容，以及作業回應快取。 費率限制、配額和 IP 限制原則亦可在 API 或個別作業層級實作。
 
-如需詳細資訊，請參閱[如何建立 API][如何建立 API] 和[如何將作業新增至 API][如何將作業新增至 API]。
+如需詳細資訊，請參閱[如何建立 API][How to create APIs] 和[如何將作業新增至 API][How to add operations to an API]。
 
 ## <a name="products"> </a> 產品
 產品是將 API 呈現給開發人員的方式。 在 API 管理中的產品包含一或多個 API，並且設定了標題、說明與使用規定。 產品可以是 [開放] 或 [受保護]。 受保護產品必須先擁有訂用帳戶才能使用，開放產品則可以使用而不需訂用帳戶。 當產品可供開發人員使用時，即可將產品發佈。 發佈產品之後，開發人員即可檢視產品 (以及受保護產品訂閱時)。 訂用帳戶核准是在產品層級設定，可能需要管理員核准，或是可自動核准。
 
 群組的作用是管理產品對於開發人員的可見度。 產品會將可見度授與群組，而開發人員可檢視並訂閱其所屬群組可見的產品。 
 
-如需詳細資訊，請參閱[如何建立和發佈產品][如何建立和發佈產品]及下列影片。
+如需詳細資訊，請參閱[如何建立和發佈產品][How to create and publish a product]及下列影片。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Using-Products/player]
 > 
@@ -72,14 +72,14 @@ API 是 API 管理服務執行個體的基礎。 每個 API 都代表可供開�
 
 除了這些系統群組以外，管理員還可以建立自訂群組，或使用 [使用 Azure Active Directory 相關租用戶中的外部群組](api-management-howto-aad.md#how-to-add-an-external-azure-active-directory-group)。 自訂群組和外部群組可以與系統群組一起使用，提供開發人員 API 產品的能見度及存取權。 例如，您可以為與特定夥伴組織有關的開發人員建立一個自訂群組，並只允許他們存取來自含相關 API 之產品的 API。 使用者可以是多個群組的成員。
 
-如需詳細資訊，請參閱[如何建立和使用群組組][如何建立和使用群組組]。
+如需詳細資訊，請參閱[如何建立和使用群組][How to create and use groups]。
 
 ## <a name="developers"> </a> 開發人員
-開發人員代表 API 管理服務執行個體中的使用者帳戶。 開發人員可由管理員建立或邀請加入，也可以透過[開發人員入口網站][開發人員入口網站]註冊。 每個開發人員都是一或多個群組的成員，而且可訂閱對那些群組授與可見度的產品。
+開發人員代表 API 管理服務執行個體中的使用者帳戶。 開發人員可由管理員建立或邀請加入，也可以透過[開發人員入口網站][Developer portal]註冊。 每個開發人員都是一或多個群組的成員，而且可訂閱對那些群組授與可見度的產品。
 
 當開發人員訂閱產品時，將可獲得產品的主要和次要金鑰。 在對產品的 API 進行呼叫時會使用該金鑰。
 
-如需詳細資訊，請參閱[如何建立或邀請開發人員][如何建立或邀請開發人員]和[如何將群組與開發人員建立關聯][如何將群組與開發人員建立關聯]。
+如需詳細資訊，請參閱[如何建立或邀請開發人員][How to create or invite developers]和[如何將群組與開發人員建立關聯][How to associate groups with developers]。
 
 ## <a name="policies"> </a> 原則
 原則是 API 管理的強大功能，可讓發行者透過組態變更 API 的行為。 原則是陳述式的集合，會因 API 的要求或回應循序執行。 常見陳述式包括從 XML 對 JSON 的格式轉換，以及可限制來自開發人員的傳入呼叫數量的呼叫費率限制，而且還有許多原則可供使用。
@@ -90,7 +90,7 @@ API 是 API 管理服務執行個體的基礎。 每個 API 都代表可供開�
 > 
 > 
 
-如需 API 管理原則的完整清單，請參閱[原則參考][原則參考]。 如需使用和設定原則的詳細資訊，請參閱 [API 管理原則][API 管理原則]。 如需建立產品並加上費率限制和配額原則的教學課程，請參閱[如何建立和設定進階產品設定][如何建立和設定進階產品設定]。 如需示範，請參閱下列影片。
+如需 API 管理原則的完整清單，請參閱[原則參考文件][Policy reference]。 如需使用和設定原則的詳細資訊，請參閱[API 管理原則][API Management policies]。 如需建立產品並加上費率限制和配額原則的教學課程，請參閱[如何建立和設定進階產品設定][How create and configure advanced product settings]。 如需示範，請參閱下列影片。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Rate-Limits-and-Quotas/player]
 > 
@@ -108,30 +108,30 @@ API 是 API 管理服務執行個體的基礎。 每個 API 都代表可供開�
 > 
 > 
 
-[API 和作業]: #apis
-[產品]: #products
-[群組]: #groups
-[開發人員]: #developers
-[原則]: #policies
-[開發人員入口網站]: #developer-portal
+[APIs and operations]: #apis
+[Products]: #products
+[Groups]: #groups
+[Developers]: #developers
+[Policies]: #policies
+[Developer portal]: #developer-portal
 
-[如何建立 API]: api-management-howto-create-apis.md
-[如何將作業新增至 API]: api-management-howto-add-operations.md
-[如何建立和發佈產品]: api-management-howto-add-products.md
-[如何建立和使用群組組]: api-management-howto-create-groups.md
-[如何將群組與開發人員建立關聯]: api-management-howto-create-groups.md#associate-group-developer
-[如何建立和設定進階產品設定]: api-management-howto-product-with-rules.md
-[如何建立或邀請開發人員]: api-management-howto-create-or-invite-developers.md
-[原則參考]: api-management-policy-reference.md
-[API 管理原則]: api-management-howto-policies.md
-[建立 API 管理執行個體]: api-management-get-started.md#create-service-instance
-
-
+[How to create APIs]: api-management-howto-create-apis.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to create and publish a product]: api-management-howto-add-products.md
+[How to create and use groups]: api-management-howto-create-groups.md
+[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How create and configure advanced product settings]: api-management-howto-product-with-rules.md
+[How to create or invite developers]: api-management-howto-create-or-invite-developers.md
+[Policy reference]: api-management-policy-reference.md
+[API Management policies]: api-management-howto-policies.md
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+
+
+<!--HONumber=Dec16_HO3-->
 
 

@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 11/13/2016
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: afce238686f5b35a094f0792f8197b686d317fa5
-ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
+ms.sourcegitcommit: 66128b255dac89569ff776cca9ab678c3105f171
+ms.openlocfilehash: 1fddb126c7dbedc11b04dd66d563026f0b3d4f01
 
 
 ---
@@ -75,7 +75,9 @@ ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
 ## <a name="slow-performance-when-accessing-file-storage-from-windows-or-linux"></a>從 Windows 或 Linux 存取 Azure 檔案儲存體時效能緩慢
 * 如果您沒有特定的 I/O 大小需求下限，建議您使用 1 MB 的 I/O 大小以獲得最佳效能。
 * 如果您知道擴充寫入檔案的最終大小，而且當檔案上尚未寫入的結尾中有零時您的軟體沒有相容性問題，則請將事先設定檔案大小，而不是在每次寫入是擴充寫入時設定。
-
+* 使用正確的複製方法：
+      * 針對任何在兩個檔案共用間的傳輸使用 AZCopy。 如需詳細資料，請參閱[使用 AzCopy 命令列公用程式傳輸資料](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy#file-copy)。
+      * 在檔案共用和內部部署電腦之間使用 Robocopy。 如需詳細資料，請參閱[使用多執行緒的 Robocopy 以加快複製 (英文)](https://blogs.msdn.microsoft.com/granth/2009/12/07/multi-threaded-robocopy-for-faster-copies/)。
 <a id="windowsslow"></a>
 
 ## <a name="slow-performance-when-accessing-the-file-storage-from-windows-81-or-windows-server-2012-r2"></a>從 Windows 8.1 或 Windows Server 2012 R2 存取檔案儲存體時效能緩慢
@@ -103,7 +105,7 @@ ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
 
 <a id="error53"></a>
 
-## <a name="error-53-when-you-try-to-mount-or-unmount-an-azure-file-share"></a>當您嘗試掛接或取消掛接 Azure 檔案共用時發生「錯誤 53」
+## <a name="error-53-or-error-67-when-you-try-to-mount-or-unmount-an-azure-file-share"></a>當您嘗試掛接或取消掛接 Azure 檔案共用時發生「錯誤 53」或「錯誤 67」
 這個問題可能是因下列情況而起︰
 
 ### <a name="cause-1"></a>原因 1
@@ -113,7 +115,7 @@ ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
 從符合 Windows 8、Windows Server 2012 和更新版本需求的用戶端進行連線，或是從 Azure 檔案共用所使用的 Azure 儲存體帳戶相同的資料中心上的虛擬機器進行連線。
 
 ### <a name="cause-2"></a>原因 2
-當您掛接 Azure 檔案共用時，如果連接埠 445 至 Azure 檔案資料中心的輸出通訊遭到封鎖，可能會發生「系統錯誤 53」。 按一下[這裡](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx)查看 ISP 是否允許從連接埠 445 進行存取的摘要。
+當您掛接 Azure 檔案共用時，如果連接埠 445 至 Azure 檔案資料中心的輸出通訊遭到封鎖，可能會發生「系統錯誤 53」或「系統錯誤 67」。 按一下[這裡](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx)查看 ISP 是否允許從連接埠 445 進行存取的摘要。
 
 Comcast 和某些 IT 組織會封鎖此連接埠。 若要了解這是否是「系統錯誤 53」訊息的原因，您可以使用 Portqry 查詢 TCP:445 端點。 如果篩選顯示 TCP:445 端點，則 TCP 連接埠會被封鎖。 查詢範例如下：
 
@@ -242,6 +244,6 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

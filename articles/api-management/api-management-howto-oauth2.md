@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5041b2e4102bf8aaf72358e0812a7b045c804048
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: 8650ad41d1d6ef3ee94c2792f435b84676a72d27
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 5041b2e4102bf8aaf72358e0812a7b045c804048
 本指南將示範如何設定 API 管理服務執行個體，以便使用開發人員帳戶適用的 OAuth 2.0 授權，但並未示範如何設定 OAuth 2.0 提供者。 儘管步驟相似，且用來在 API 管理服務執行個體中設定 OAuth 2.0 所需的資訊也相同，但每個 OAuth 2.0 提供者的組態並不相同。 本主題演示的範例將 Azure Active Directory 當做 OAuth 2.0 提供者。
 
 > [!NOTE]
-> 如需有關使用 Azure Active Directory 來設定 OAuth 2.0 的詳細資訊，請參閱 [WebApp-GraphAPI-DotNet][WebApp-GraphAPI-DotNet] 範例。
+> 如需使用 Azure Active Directory 設定 OAuth 2.0 的詳細資訊，請參閱 [WebApp-GraphAPI-DotNet][WebApp-GraphAPI-DotNet] (英文) 範例。
 > 
 > 
 
@@ -37,7 +37,7 @@ ms.openlocfilehash: 5041b2e4102bf8aaf72358e0812a7b045c804048
 ![發行者入口網站][api-management-management-console]
 
 > [!NOTE]
-> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 > 
 > 
 
@@ -66,7 +66,7 @@ ms.openlocfilehash: 5041b2e4102bf8aaf72358e0812a7b045c804048
 
 輸入 [Authorization endpoint URL] 。 對於 Azure Active Directory，此 URL 將與下列 URL 相似；其中， `<client_id>` 將取代為向 OAuth 2.0 伺服器識別應用程式的用戶端識別碼。
 
-    https://login.windows.net/<client_id>/oauth2/authorize
+`https://login.windows.net/<client_id>/oauth2/authorize`
 
 [授權要求方法] 能指定將授權要求傳送到 OAuth 2.0 伺服器的方法。 預設會選取 **GET**。
 
@@ -76,7 +76,7 @@ ms.openlocfilehash: 5041b2e4102bf8aaf72358e0812a7b045c804048
 
 對於 Azure Active Directory OAuth 2.0 伺服器，[權杖端點 URL] 將具有以下格式；其中 `<APPID>` 的格式為 `yourapp.onmicrosoft.com`。
 
-    https://login.windows.net/<APPID>/oauth2/token
+`https://login.windows.net/<APPID>/oauth2/token`
 
 [用戶端驗證方法] 的預設設定是 [基本]，而 [存取權杖傳送方法] 則是 [授權標頭]。 這些值和 [預設範圍] 均是在此表單區段設定的。
 
@@ -155,28 +155,28 @@ ms.openlocfilehash: 5041b2e4102bf8aaf72358e0812a7b045c804048
 [api-management-apis-echo-api]: ./media/api-management-howto-oauth2/api-management-apis-echo-api.png
 
 
-[如何將作業加入至 API]: api-management-howto-add-operations.md
-[如何加入和發佈產品]: api-management-howto-add-products.md
-[監視和分析]: api-management-monitoring.md
-[將 API 新增至產品]: api-management-howto-add-products.md#add-apis
-[發佈產品]: api-management-howto-add-products.md#publish-product
-[建立 API 管理服務執行個體]: api-management-get-started.md
-[API 管理原則參考]: api-management-policy-reference.md
-[快取原則]: api-management-policy-reference.md#caching-policies
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
+[Monitoring and analytics]: api-management-monitoring.md
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Publish a product]: api-management-howto-add-products.md#publish-product
+[Get started with Azure API Management]: api-management-get-started.md
+[API Management policy reference]: api-management-policy-reference.md
+[Caching policies]: api-management-policy-reference.md#caching-policies
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 [http://oauth.net/2/]: http://oauth.net/2/
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
 
-[必要條件]: #prerequisites
-[在 API 管理中設定 OAuth 2.0 授權伺服器]: #step1
-[設定 API 以使用 OAuth 2.0 使用者授權]: #step2
-[在開發人員入口網站中測試 OAuth 2.0 使用者授權]: #step3
-[後續步驟]: #next-steps
+[Prerequisites]: #prerequisites
+[Configure an OAuth 2.0 authorization server in API Management]: #step1
+[Configure an API to use OAuth 2.0 user authorization]: #step2
+[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Next steps]: #next-steps
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

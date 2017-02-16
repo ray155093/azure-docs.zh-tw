@@ -1,10 +1,10 @@
 ---
-title: "OMS 中的網路效能監視器方案 | Microsoft Docs"
-description: "網路效能監視器可協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。"
+title: "OMS 中的網路效能監視器解決方案 | Microsoft Docs"
+description: "「網路效能監視器」可協助您以近乎即時的方式監視網路的效能，以偵測和找出網路效能瓶頸。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 5b9c9c83-3435-488c-b4f6-7653003ae18a
 ms.service: log-analytics
@@ -12,17 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/09/2016
+ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
-ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
+ms.sourcegitcommit: 820a9463c0e58054cf70324b680c5af8fdcacade
+ms.openlocfilehash: 794d9b7d5031730f9ea0f8daae251c825f7b05b0
 
 
 ---
 # <a name="network-performance-monitor-preview-solution-in-oms"></a>OMS 中的網路效能監視器 (預覽) 方案
 > [!NOTE]
-> 這是[預覽解決方案](log-analytics-add-solutions.md#log-analytics-preview-solutions-and-features)。
+> 這是[預覽解決方案](log-analytics-add-solutions.md#preview-management-solutions-and-features)。
 >
 >
 
@@ -158,7 +158,7 @@ ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |TCP 會每 5 秒交握一次，而資料會每 3 分鐘傳送一次 |
 
-此方案會利用綜合交易來評估網路的健康狀態。 安裝於網路中不同點的 OMS 代理程式會彼此交換 TCP 封包，並在過程中了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每 5 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 OMS。
+此方案會利用綜合交易來評估網路的健康狀態。 安裝於網路中不同點的 OMS 代理程式會彼此交換 TCP 封包，並在過程中了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每&5; 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 OMS。
 
 > [!NOTE]
 > 雖然代理程式會經常彼此通訊，但是在進行測試時不會產生大量網路流量。 代理程式只依賴 TCP SYN-SYNACK-ACK 交握封包來判斷遺失和延遲 - 不會交換任何資料封包。 在此過程中，代理程式只會在需要時彼此通訊，而且代理程式通訊拓撲已最佳化以減少網路流量。
@@ -246,6 +246,6 @@ ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

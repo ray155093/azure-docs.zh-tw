@@ -4,7 +4,7 @@ description: "本文提供如何在現有的或新的應用程式閘道上開始
 documentationcenter: na
 services: application-gateway
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: 670b9732-874b-43e6-843b-d2585c160982
 ms.service: application-gateway
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 486ed096bba7accfb3ca54aa97fb0b57b756d291
-ms.openlocfilehash: ba7bff77a52c8e432b175d1db3d9dec66ec36a2b
+ms.sourcegitcommit: ce40a93372205a4b7c6b0c753ebf30c2b3d51d7a
+ms.openlocfilehash: bdfb45de4ca7f4005314115d9cd260029779b3b0
 
 
 ---
@@ -25,8 +25,6 @@ ms.openlocfilehash: ba7bff77a52c8e432b175d1db3d9dec66ec36a2b
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-web-application-firewall-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-web-application-firewall-powershell.md)
-> 
-> 
 
 Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應用程式，不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
 
@@ -148,8 +146,6 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。 此位�
 
 > [!NOTE]
 > 如果您需要為應用程式閘道設定自訂探查，請參閱 [使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。 請參閱 [自訂探查和健全狀況監視](application-gateway-probe-overview.md) 以取得詳細資訊。
-> 
-> 
 
 ### <a name="step-5"></a>步驟 5
 
@@ -161,8 +157,7 @@ $gwSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name 'appgwsubnet' -AddressPr
 
 > [!NOTE]
 > 應用程式的子網路至少應有 28 個遮罩位元。 此值會讓應用程式閘道執行個體的子網路中留有 10 個可用位址。 若使用較小的子網路，您可能無法在日後為應用程式閘道新增更多執行個體。
-> 
-> 
+
 
 ### <a name="step-6"></a>步驟 6
 
@@ -200,8 +195,7 @@ $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name 'appgwp
 
 > [!IMPORTANT]
 > 應用程式閘道不支援使用以定義之網域標籤建立的公用 IP 位址。 只支援具有動態建立之網域標籤的公用 IP 位址。 如果您需要讓應用程式閘道具有好記的 DNS 名稱，建議您使用 cname 記錄做為別名。
-> 
-> 
+
 
 ### <a name="step-10"></a>步驟 10
 
@@ -287,15 +281,13 @@ $sku = New-AzureRmApplicationGatewaySku -Name WAF_Medium -Tier WAF -Capacity 2
 
 > [!NOTE]
 > 您可以選擇 **WAF\_Medium** 或 **WAF\_Large**，使用 WAF 時的層級永遠是 **WAF**。 容量是介於 1 到 10 之間的任何數字。
-> 
-> 
 
 ### <a name="step-20"></a>步驟 20
 
 設定 WAF 的模式，可接受的值為**防止**和**偵測**。
 
 ```powershell
-$config = New-AzureRmApplicationGatewayWafConfig -Enabled $true -WafMode "Prevention"
+$config = New-AzureRmApplicationGatewayWebApplicationFirewallConfiguration -Enabled $true -FirewallMode "Prevention"
 ```
 
 ### <a name="step-21"></a>步驟 21
@@ -340,10 +332,10 @@ DnsSettings              : {
 
 請造訪 [應用程式閘道診斷](application-gateway-diagnostics.md)
 
-[案例]: ./media/application-gateway-web-application-firewall-powershell/scenario.png
+[scenario]: ./media/application-gateway-web-application-firewall-powershell/scenario.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

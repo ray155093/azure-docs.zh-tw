@@ -3,7 +3,7 @@ title: "Azure CDN 中的即時統計資料 | Microsoft Docs"
 description: "將內容傳遞給您的用戶端時，即時統計資料可提供關於 Azure CDN 效能的即時資料。"
 services: cdn
 documentationcenter: 
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: c7989340-1172-4315-acbb-186ba34dd52a
@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 848010306b0946890734a1a7c3c16a91847c1145
+ms.sourcegitcommit: dccb945e170bd3e3f23283359db25e574a2d4296
+ms.openlocfilehash: e9b9522de6b2c54dc794b00100ffe358296ecfdd
 
 
 ---
@@ -96,6 +96,6 @@ HTTP 狀態碼的清單會顯示於圖表正上方。 此清單表示每個可�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

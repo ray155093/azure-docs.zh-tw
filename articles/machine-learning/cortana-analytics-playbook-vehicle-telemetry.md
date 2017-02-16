@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 12/09/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 55c85d95a16e0c0ea7bb11d6f47ae85aeb80577d
+ms.sourcegitcommit: 307ed83dc1f47bb86af4a476acbb51876012ff25
+ms.openlocfilehash: e4311a740ccb4cac2c1d6e7e1197a736d3a4a777
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 55c85d95a16e0c0ea7bb11d6f47ae85aeb80577d
 [!INCLUDE [cap-vehicle-telemetry-playbook-selector](../../includes/cap-vehicle-telemetry-playbook-selector.md)]
 
 ## <a name="overview"></a>Overview
-讓超級電腦步出實驗室並停駐在我們的車庫！ 這些新銳汽車內含大量感應器，每秒可追蹤和監控數以百萬計的事件。 預計在 2020 年前，在上述新銳汽車中，絕大部分的車輛都已能連接至網際網路。 想像一下使用此豐富資料提供頂級安全性、可靠性和駕駛體驗的美好願景！ Microsoft 透過 Cortana Intelligence 讓此一美好想像成真。
+讓超級電腦步出實驗室並停駐在我們的車庫！ 這些新銳汽車內含大量感應器，每秒可追蹤和監控數以百萬計的事件。 預計在 2020 年前，在上述新銳汽車中，絕大部分的車輛都已能連接至網際網路。 想像一下使用此豐富資料提供更好的安全性、可靠性和更佳的駕駛體驗的美好願景！ Microsoft 透過 Cortana Intelligence 讓此一美好想像成真。
 
 Microsoft Cortana Intelligence 是受完整管理的巨量資料與進階分析套件，您可利用其將資料轉換成可採取的智慧行動。 我們在此為您介紹「Cortana Intelligence 車輛遙測分析解決方案範本」。 本解決方案將示範汽車經銷商、汽車製造商和保險公司如何運用 Cortana Intelligence 功能，取得車輛健全狀態與駕駛習慣的即時預測情資。 
 
@@ -41,10 +41,10 @@ Microsoft Cortana Intelligence 是受完整管理的巨量資料與進階分析�
 * 使用 Power BI 為此解決方案提供一個豐富的儀表板，來提供即時資料和預測性分析視覺效果
 
 ## <a name="architecture"></a>架構
-![](./media/cortana-analytics-playbook-vehicle-telemetry/fig1-vehicle-telemetry-annalytics-solution-architecture.png)
+![解決方案架構圖表](./media/cortana-analytics-playbook-vehicle-telemetry/fig1-vehicle-telemetry-annalytics-solution-architecture.png)
 *圖 1 – 車輛遙測分析解決方案架構*
 
-此解決方案包含下列 **Cortana Intelligence 元件** ，並展示端對端整合功能
+此解決方案包含下列 **Cortana Intelligence 元件**，並展示端對端整合功能：
 
 * **事件中樞** 可將數百萬計的車輛遙測事件擷取至 Azure。
 * **串流分析** 」可取得關於車輛健全狀態的即時情資，同時以長期儲存的方式保存這些資料，供日後進行更豐富廣泛的批次分析之用。
@@ -61,6 +61,6 @@ Microsoft Cortana Intelligence 是受完整管理的巨量資料與進階分析�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

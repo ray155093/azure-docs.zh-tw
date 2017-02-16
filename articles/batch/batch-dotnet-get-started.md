@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 11/22/2016
+ms.date: 01/13/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
-ms.openlocfilehash: 8243e2304d846e02ecf0114b79be73c0016941df
+ms.sourcegitcommit: 75fecce3e8b755d250e7d01170368c63d74fd56a
+ms.openlocfilehash: c752187cb5cd83d06d93d51987d2d869c4567cd6
 
 
 ---
@@ -305,46 +305,56 @@ using (BatchClient batchClient = BatchClient.Open(cred))
     ...
 ```
 
-接著，呼叫 `CreatePoolAsync`以在 Batch 帳戶中建立計算節點集區。 `CreatePoolAsync` 會使用 [BatchClient.PoolOperations.CreatePool][net_pool_create] 方法在 Batch 服務中實際建立此集區。
+接著，呼叫 `CreatePoolIfNotExistsAsync`以在 Batch 帳戶中建立計算節點集區。 `CreatePoolIfNotExistsAsync` 會使用 [BatchClient.PoolOperations.CreatePool][net_pool_create] 方法在 Batch 服務中建立集區。
 
 ```csharp
-private static async Task CreatePoolAsync(
-    BatchClient batchClient,
-    string poolId,
-    IList<ResourceFile> resourceFiles)
+private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, string poolId, IList<ResourceFile> resourceFiles)
 {
-    Console.WriteLine("Creating pool [{0}]...", poolId);
-
-    // Create the unbound pool. Until we call CloudPool.Commit() or CommitAsync(),
-    // no pool is actually created in the Batch service. This CloudPool instance is
-    // therefore considered "unbound," and we can modify its properties.
-    CloudPool pool = batchClient.PoolOperations.CreatePool(
-            poolId: poolId,
-            targetDedicated: 3,           // 3 compute nodes
-            virtualMachineSize: "small",  // single-core, 1.75 GB memory, 224 GB disk
-            cloudServiceConfiguration:
-                new CloudServiceConfiguration(osFamily: "4")); // Win Server 2012 R2
-
-    // Create and assign the StartTask that will be executed when compute nodes join
-    // the pool. In this case, we copy the StartTask's resource files (that will be
-    // automatically downloaded to the node by the StartTask) into the shared
-    // directory that all tasks will have access to.
-    pool.StartTask = new StartTask
+    CloudPool pool = null;
+    try
     {
-        // Specify a command line for the StartTask that copies the task application
-        // files to the node's shared directory. Every compute node in a Batch pool
-        // is configured with several pre-defined environment variables that you can
-        // reference by using commands or applications run by tasks.
+        Console.WriteLine("Creating pool [{0}]...", poolId);
 
-        // Since a successful execution of robocopy can return a non-zero exit code
-        // (e.g. 1 when one or more files were successfully copied) we need to
-        // manually exit with a 0 for Batch to recognize StartTask execution success.
-        CommandLine = "cmd /c (robocopy %AZ_BATCH_TASK_WORKING_DIR% %AZ_BATCH_NODE_SHARED_DIR%) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
-        ResourceFiles = resourceFiles,
-        WaitForSuccess = true
-    };
+        // Create the unbound pool. Until we call CloudPool.Commit() or CommitAsync(), no pool is actually created in the
+        // Batch service. This CloudPool instance is therefore considered "unbound," and we can modify its properties.
+        pool = batchClient.PoolOperations.CreatePool(
+            poolId: poolId,
+            targetDedicated: 3,                                                         // 3 compute nodes
+            virtualMachineSize: "small",                                                // single-core, 1.75 GB memory, 225 GB disk
+            cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));   // Windows Server 2012 R2
 
-    await pool.CommitAsync();
+        // Create and assign the StartTask that will be executed when compute nodes join the pool.
+        // In this case, we copy the StartTask's resource files (that will be automatically downloaded
+        // to the node by the StartTask) into the shared directory that all tasks will have access to.
+        pool.StartTask = new StartTask
+        {
+            // Specify a command line for the StartTask that copies the task application files to the
+            // node's shared directory. Every compute node in a Batch pool is configured with a number
+            // of pre-defined environment variables that can be referenced by commands or applications
+            // run by tasks.
+
+            // Since a successful execution of robocopy can return a non-zero exit code (e.g. 1 when one or
+            // more files were successfully copied) we need to manually exit with a 0 for Batch to recognize
+            // StartTask execution success.
+            CommandLine = "cmd /c (robocopy %AZ_BATCH_TASK_WORKING_DIR% %AZ_BATCH_NODE_SHARED_DIR%) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
+            ResourceFiles = resourceFiles,
+            WaitForSuccess = true
+        };
+
+        await pool.CommitAsync();
+    }
+    catch (BatchException be)
+    {
+        // Swallow the specific error code PoolExists since that is expected if the pool already exists
+        if (be.RequestInformation?.BatchError != null && be.RequestInformation.BatchError.Code == BatchErrorCodeStrings.PoolExists)
+        {
+            Console.WriteLine("The pool {0} already existed when we tried to create it", poolId);
+        }
+        else
+        {
+            throw; // Any other exception is unexpected
+        }
+    }
 }
 ```
 
@@ -451,7 +461,7 @@ private static async Task<List<CloudTask>> AddTasksAsync(
 在上述程式碼片段中的 `foreach` 迴圈內，您可以看到已建構工作的命令列，以致有三個命令列引數傳遞至 TaskApplication.exe：
 
 1. **第一個引數** 是要處理之檔案的路徑。 這是節點上現有檔案的本機路徑。 第一次在上述 `UploadFileToContainerAsync` 中建立 ResourceFile 物件時，檔案名稱會用於此屬性 (做為 ResourceFile 建構函式的參數)。 這表示可以在與 TaskApplication.exe 相同的目錄中找到檔案。
-2. **第二個引數**指定最前面 N 個單字應該寫入輸出檔案。 在此範例中，此為硬式編碼，所以前 3 個單字會寫入輸出檔案。
+2. **第二個引數**指定最前面 N 個單字應該寫入輸出檔案。 在此範例中，此為硬式編碼，所以前&3; 個單字會寫入輸出檔案。
 3. **第三個引數**是共用存取簽章 (SAS)，可提供 Azure 儲存體中**輸出**容器的寫入存取權。  將輸出檔上傳至 Azure 儲存體時，會使用此共用存取簽章 URL。 您可以在 TaskApplication 專案的 `Program.cs` 檔案的 `UploadFileToContainer` 方法中找到其程式碼：
 
 ```csharp
@@ -795,6 +805,6 @@ Sample complete, hit ENTER to exit...
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

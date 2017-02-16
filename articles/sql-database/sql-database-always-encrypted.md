@@ -1,6 +1,6 @@
 ---
-title: "一律加密：透過資料庫加密保護 Azure SQL Database 中的機密資料 | Microsoft Docs"
-description: "在數分鐘內開始保護您 SQL 資料庫中的機密資料。"
+title: "一律加密：Azure SQL Database - Windows 憑證存放區 | Microsoft Docs"
+description: "本文說明如何使用 SQL Server Management Studio (SSMS) 中的 [一律加密精靈]，藉由資料庫加密來保護 SQL Database 中的機密資料。 它也會說明如何將您的加密金鑰儲存在 Windows 憑證存放區中。"
 keywords: "加密資料, SQL 加密, 資料庫加密, 機密資料, 一律加密"
 services: sql-database
 documentationcenter: 
@@ -17,8 +17,8 @@ ms.topic: article
 ms.date: 07/18/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 66044ef8353e61f0de5afb8c61d91335ecd6dcbb
+ms.sourcegitcommit: cffa8955cf044398e526b1ad6158eefebbf91b3b
+ms.openlocfilehash: 9cd3d1b2da7f941673003b566cd92b0eb9acf6f4
 
 
 ---
@@ -526,6 +526,6 @@ SSMS 提供一個精靈，可為您設定 CMK、CEK 及加密的資料行，來�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

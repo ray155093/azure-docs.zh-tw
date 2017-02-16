@@ -13,16 +13,16 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7cb11ffd583afa75bfd4e76c7f543a81a6ebdcde
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 1b1da346a253443c0b5eaf6f8a9a5a399923e760
 
 
 ---
 # <a name="create-a-php-mysql-web-app-in-azure-app-service-and-deploy-using-git"></a>在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署
-本教學課程說明如何建立 PHP-MySQL Web 應用程式，以及如何使用 Git 將其部署至 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 。 您會使用 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 裡的一項工具)，以及安裝在您的電腦上的 [Git][install-git]。 本教學課程裡的說明可運用在包括 Windows、Mac 與 Linux 的任何作業系統上。 看完本指南後，您將擁有可在 Azure 上執行的 PHP/MySQL Web 應用程式。
+本教學課程說明如何建立 PHP-MySQL Web 應用程式，以及如何使用 Git 將其部署至 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 。 您會使用 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一部分)，以及安裝在您電腦上的 [Git][install-git]。 本教學課程裡的說明可運用在包括 Windows、Mac 與 Linux 的任何作業系統上。 看完本指南後，您將擁有可在 Azure 上執行的 PHP/MySQL Web 應用程式。
 
 您將了解：
 
@@ -35,7 +35,7 @@ ms.openlocfilehash: 7cb11ffd583afa75bfd4e76c7f543a81a6ebdcde
 ![Azure PHP web site][running-app]
 
 ## <a name="set-up-the-development-environment"></a>設定開發環境
-本教學課程假設您已經具備安裝於電腦上的 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一部分)，以及 [Git][install-git]。
+本教學課程假設您已經具備 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一部分)，以及安裝在您的電腦上的 [Git][install-git]。
 
 <a id="create-web-site-and-set-up-git"></a>
 
@@ -86,7 +86,7 @@ ms.openlocfilehash: 7cb11ffd583afa75bfd4e76c7f543a81a6ebdcde
 
 * **index.php**：顯示註冊表單，以及內含註冊者資訊的資料表。
 
-若要在本機建置與執行應用程式，請遵循下列步驟。 請注意，這些步驟假設您已經在本機電腦上設定 PHP 和 MySQL 命令列工具 (MySQL 的一部分)，且您已經啟用 [MySQL 的 PDO 延伸功能][pdo-mysql]。
+若要在本機建置與執行應用程式，請遵循下列步驟。 請注意，這些步驟假設您已經在本機電腦上設定 PHP 和 MySQL 命令列工具 (MySQL 的一部分)，且您已經啟用了[適用 MySQL 的 PDO 延伸功能][pdo-mysql]。
 
 1. 使用您先前擷取的 `Data Source`、`User Id`、`Password` 和 `Database` 值，連線到遠端 MySQL 伺服器：
    
@@ -234,7 +234,7 @@ ms.openlocfilehash: 7cb11ffd583afa75bfd4e76c7f543a81a6ebdcde
     ![Azure PHP web site][running-app]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -299,6 +299,6 @@ ms.openlocfilehash: 7cb11ffd583afa75bfd4e76c7f543a81a6ebdcde
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "逐步解說：將遙測資料從 Application Insights 匯出至 SQL Database"
+title: "從 Azure Application Insights 匯出至 SQL | Microsoft Docs"
 description: "使用 Stream Analytics 持續將 Application Insights 資料匯出至 SQL。"
 services: application-insights
 documentationcenter: 
@@ -14,13 +14,13 @@ ms.topic: article
 ms.date: 03/06/2015
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
-ms.openlocfilehash: abaeb614e304c4ae78e6a1d43d19c99698e50494
+ms.sourcegitcommit: 96614dd3c0bf9c55ffd81d0912ecb62b71c32b22
+ms.openlocfilehash: fa9b09833f61e372738ff74022ac9fd6a288847f
 
 
 ---
 # <a name="walkthrough-export-to-sql-from-application-insights-using-stream-analytics"></a>逐步解說：使用串流分析從 Application Insights 匯出至 SQL
-本文說明如何使用[連續匯出][export]和 [Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/)，將您的遙測資料從 [Azure Application Insights][start] 移到 Azure SQL Database 中。 
+本文將說明如何使用[連續匯出][export]和 [Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/)，將您的遙測資料從 [Azure Application Insights][start] 移入 Azure SQL Database。 
 
 連續匯出會以 JSON 格式將遙測資料移入 Azure 儲存體。 我們將使用 Azure 串流分析來剖析 JSON 物件，並在資料庫資料表中建立資料列。
 
@@ -41,7 +41,7 @@ ms.openlocfilehash: abaeb614e304c4ae78e6a1d43d19c99698e50494
 ## <a name="create-storage-in-azure"></a>在 Azure 中建立儲存體
 連續匯出一律會將資料輸出至 Azure 儲存體帳戶，因此您必須先建立儲存體。
 
-1. 在您的 [Azure 入口網站][portal]訂用帳戶中，建立儲存體帳戶。
+1. 在 [Azure 入口網站][portal]的訂用帳戶中建立儲存體帳戶。
    
     ![在 Azure 入口網站中，依序選擇 [新增]、[資料]、[儲存體]。 選取 [傳統]，然後選擇 [建立]。 提供儲存體的名稱。](./media/app-insights-code-sample-export-sql-stream-analytics/040-store.png)
 2. 建立容器
@@ -271,13 +271,13 @@ CREATE CLUSTERED INDEX [pvTblIdx] ON [dbo].[PageViewsTable]
 
 [diagnostic]: app-insights-diagnostic-search.md
 [export]: app-insights-export-telemetry.md
-[計量]: app-insights-metrics-explorer.md
+[metrics]: app-insights-metrics-explorer.md
 [portal]: http://portal.azure.com/
 [start]: app-insights-overview.md
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

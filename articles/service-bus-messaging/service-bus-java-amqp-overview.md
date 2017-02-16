@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/12/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6ac7622e14a5341e0559af9e5888a6f65736a12b
+ms.sourcegitcommit: aa641c1324c6075fc24ba091ac7fb785e2156454
+ms.openlocfilehash: ddd7eacc0ba9a63f2d021fed61fd891223918a3e
 
 
 ---
@@ -77,7 +77,7 @@ Azure 服務匯流排中的 AMQP 1.0 支援代表您現在能夠從一組平台�
 
 **圖 2：AMQP 1.0 用戶端程式庫的資料表**
 
-如需有關如何取得及使用這些程式庫與服務匯流排的詳細資訊，請參閱[服務匯流排 AMQP 開發人員指南][服務匯流排 AMQP 開發人員指南]。 請參閱[後續步驟](service-bus-java-amqp-overview.md#next-steps)一節以取得進一步資訊的連結。
+如需有關如何取得這些程式庫並將程式庫與「服務匯流排」搭配使用的詳細資訊，請參閱[服務匯流排 AMQP 開發人員指南][Service Bus AMQP Developer's Guide]。 請參閱[後續步驟](service-bus-java-amqp-overview.md#next-steps)一節以取得進一步資訊的連結。
 
 ## <a name="summary"></a>摘要
 * AMQP 1.0 是一個既開放又可靠的訊息通訊協定，可以用來建置跨平台的混合應用程式。 AMQP 1.0 是一項 OASIS 標準。
@@ -88,16 +88,16 @@ Azure 服務匯流排中的 AMQP 1.0 支援代表您現在能夠從一組平台�
 
 * [如何透過服務匯流排 .NET API 使用 AMQP 1.0](service-bus-dotnet-advanced-message-queuing.md)
 * [如何搭配使用 Java 訊息服務 (JMS) API 與服務匯流排和 AMQP 1.0](service-bus-java-how-to-use-jms-api-amqp.md)
-* [服務匯流排 AMQP 開發人員指南][服務匯流排 AMQP 開發人員指南]
+* [服務匯流排 AMQP 開發人員指南][Service Bus AMQP Developer's Guide]
 * [OASIS 進階訊息佇列通訊協定 (AMQP) 版本 1.0 規格](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf)
 
 [0]: ./media/service-bus-java-amqp-overview/Example1.png
-[服務匯流排 AMQP 開發人員指南]: service-bus-amqp-dotnet.md
+[Service Bus AMQP Developer's Guide]: service-bus-amqp-dotnet.md
 
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 10/12/2016
+ms.date: 01/05/2017
 ms.author: juliako;cenkdin;anilmur
 translationtype: Human Translation
-ms.sourcegitcommit: 602f86f17baffe706f27963e8d9963f082971f54
-ms.openlocfilehash: c3a92451195bb3eab79fd1153678527913ffdefd
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: 93be5aa26cc66d7cfc89b88f9273cb40acaa1b17
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: c3a92451195bb3eab79fd1153678527913ffdefd
 
 ## <a name="prerequisites"></a>必要條件
 * [建立 Azure 媒體服務帳戶](media-services-portal-create-account.md)
-* 請確定執行的串流端點至少有一個配置的串流單位。 如需詳細資訊，請參閱 [在媒體服務帳戶中管理串流端點](media-services-portal-manage-streaming-endpoints.md)
+* 確定有執行中的「串流端點」。 如需詳細資訊，請參閱 [在媒體服務帳戶中管理串流端點](media-services-portal-manage-streaming-endpoints.md)
 * 安裝最新版的 [AMSE](https://github.com/Azure/Azure-Media-Services-Explorer) 工具。
 * 啟動工具並連接到您的 AMS 帳戶。
 
@@ -47,14 +47,15 @@ ms.openlocfilehash: c3a92451195bb3eab79fd1153678527913ffdefd
 ## <a name="create-a-channel"></a>建立通道
 1. 在 AMSE 工具中，瀏覽至 [Live]  索引標籤，然後在通道區域內按一下滑鼠右鍵。 從功能表選取 [建立通道...]  。
 
-![Wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast1.png)
+    ![Wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast1.png)
 
-1. 指定通道名稱，描述欄位為選填。 在 [頻道設定] 下方，針對 [即時編碼] 選項選取 [標準]，並將 [輸入通訊協定] 設定為 [RTMP]。 您可以將所有其他設定保留現狀。
+2. 指定通道名稱，描述欄位為選填。 在 [頻道設定] 下方，針對 [即時編碼] 選項選取 [標準]，並將 [輸入通訊協定] 設定為 [RTMP]。 您可以將所有其他設定保留現狀。
 
-請確認已選取 [ **立即啟動新頻道** ]。
+    請確認已選取 [ **立即啟動新頻道** ]。
 
-1. 按一下 [ **建立頻道**]。
-   ![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
+3. 按一下 [ **建立頻道**]。
+
+   ![Wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast2.png)
 
 > [!NOTE]
 > 通道約需 20 分鐘的時間即可啟動。
@@ -108,7 +109,8 @@ ms.openlocfilehash: c3a92451195bb3eab79fd1153678527913ffdefd
    * 設定檔：主要
    * 畫面間隔：60 個畫面
 
-     **音訊**
+    **音訊**
+
    * 目標位元速率：192 kbit/秒
    * 取樣速率：44.100 kHz
 
@@ -141,9 +143,10 @@ ms.openlocfilehash: c3a92451195bb3eab79fd1153678527913ffdefd
 >
 
 ## <a name="test-playback"></a>測試播放
-1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。 在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。  
 
-    ![Wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast8.png)
+瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。 在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。  
+
+    ![wirecast](./media/media-services-wirecast-live-encoder/media-services-wirecast8.png)
 
 如果播放器中出現串流，則編碼器已妥善設定為連接到 AMS。
 
@@ -157,7 +160,9 @@ ms.openlocfilehash: c3a92451195bb3eab79fd1153678527913ffdefd
 3. 勾選 [現在啟動程式]  方塊。
 4. 按一下 [建立程式] 。  
 
-    注意：建立程式時所使用的時間會比建立通道時更少。    
+   >[!NOTE]
+   >建立程式時所使用的時間會比建立通道時少。
+       
 5. 一旦程式開始執行，請在程式上按一下滑鼠右鍵，並瀏覽至 [播放程式]，然後選取 [使用 Azure 媒體播放器] 確認播放。  
 6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] (或從 [程式資訊和設定] 功能表選項擷取這項資訊)。
 
@@ -174,6 +179,6 @@ ms.openlocfilehash: c3a92451195bb3eab79fd1153678527913ffdefd
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

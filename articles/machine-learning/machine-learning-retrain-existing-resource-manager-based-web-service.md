@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/06/2016
+ms.date: 01/11/2017
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e7eecd1387823100af2e44f918450db3301f55fd
+ms.sourcegitcommit: 201b07536bcee58e2b7102379dff1c1c93c4b675
+ms.openlocfilehash: adf31b2e309e4ec19bb19e5683bd5298d27ad3eb
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: e7eecd1387823100af2e44f918450db3301f55fd
    6. 使用新的 Web 服務定義更新 Web 服務。
 
 ## <a name="deploy-the-training-experiment"></a>部署訓練實驗
-若要將訓練實驗部署為重新定型 Web 服務，您必須將 Web 服務輸入和輸出新增至模型。 藉由將「Web 服務輸出」模組連接至實驗的「定型模型」*[][train-model]*模組，您可以讓訓練實驗產生可在預測實驗中使用的定型模型。 如果您有「評估模型」模組，您也可以附加 Web 服務輸出，以取得評估結果做為輸出。
+若要將訓練實驗部署為重新定型 Web 服務，您必須將 Web 服務輸入和輸出新增至模型。 藉由將「Web 服務輸出」模組連接至實驗的「培訓模型」*[][train-model]*模組，即可讓訓練實驗產生可在預測實驗中使用的定型模型。 如果您有「評估模型」模組，您也可以附加 Web 服務輸出，以取得評估結果做為輸出。
 
 若要更新您的訓練實驗︰
 
@@ -182,7 +182,7 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如，C:\temp\CensusIpnput
 ## <a name="update-the-web-service"></a>更新 Web 服務
 最後，使用 [Update-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) Cmdlet 來更新預測性實驗。
 
-    Update-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -
+    Update-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
 
 [1]: ./media/machine-learning-retrain-existing-arm-web-service/machine-learning-retrain-models-consume-page.png
 [4]: ./media/machine-learning-retrain-existing-arm-web-service/machine-learning-retrain-models-programmatically-IMAGE04.png
@@ -193,6 +193,6 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如，C:\temp\CensusIpnput
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "安裝您的 StorSimple 8600 裝置 | Microsoft Docs"
+title: "安裝 Microsoft Azure StorSimple 8600 裝置 | Microsoft Docs"
 description: "描述如何打開包裝、掛接機架和佈線 StorSimple 8600 裝置，再部署和設定軟體。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 10/24/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5b250358c44e699082c27803027a6a861e206a7d
+ms.sourcegitcommit: eb56cae77722268f42e5126c45ad2878af7db94a
+ms.openlocfilehash: 309ceba2d65c0745ba1acac698acb62526ab8078
 
 
 ---
@@ -66,7 +66,7 @@ ms.openlocfilehash: 5b250358c44e699082c27803027a6a861e206a7d
    * 2 個機架掛接套件 (4 個側軌掛接硬體，主要機箱與 EBOD 機箱各 2 個)，每個箱子中各 1 個
    * 開始使用文件
      
-     如果您未收到任何上述項目， [請連絡 Microsoft 支援](storsimple-contact-microsoft-support.md)。  
+     如果您未收到任何上述項目，請[連絡 Microsoft 支援](storsimple-contact-microsoft-support.md)。  
 
 下一步是利用機架掛接裝置。
 
@@ -103,7 +103,7 @@ ms.openlocfilehash: 5b250358c44e699082c27803027a6a861e206a7d
 提供一組掛接滑軌以用於 19 英吋機櫃。 滑軌已經過測試可以處理最大機箱重量。 這些滑軌也可以進行多個機箱的安裝，而不會損失機櫃內的空間。 先安裝 EBOD 機箱。
 
 #### <a name="to-install-the-ebod-enclosure-on-the-rails"></a>在滑軌上安裝 EBOD 機箱
-1. 只有在您的裝置上未安裝內部滑軌時才執行此步驟。 通常，內部滑軌會在工廠安裝。 如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。 他們是在每一邊使用六個公制螺絲來連接。 為了協助辨識方向，滑軌標示為 [LH – Front] (左邊 – 前) 和 [RH – Front] (右邊 – 前)，接至機箱後端的尾端有錐型結尾。
+1. 只有在內部滑軌未安裝在您的裝置上時才執行此步驟。 通常，內部滑軌會在工廠安裝。 如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。 它們是在每一邊使用六個公制螺絲來連接。 為了協助辨識方向，滑軌標示為 [LH – Front] (左邊 – 前) 和 [RH – Front] (右邊 – 前)，接至機箱後端的尾端有錐型結尾。
    
     ![將滑軌連接至機箱底座](./media/storsimple-8600-hardware-installation/HCSAttachingRailSlidestoEnclosureChassis.png)
    
@@ -171,8 +171,8 @@ ms.openlocfilehash: 5b250358c44e699082c27803027a6a861e206a7d
 開始您的裝置佈線之前，您需要：
 
 * 完全打開您的主要機箱與 EBOD 機箱的包裝
-* 隨附於您的裝置的 4 條電源線 (主要及 EBOD 機箱各 2 條)
-* 裝置隨附的 2 條 SAS 纜線以連接主要機箱與 EBOD 機箱
+* 隨附於您的裝置的&4; 條電源線 (主要及 EBOD 機箱各&2; 條)
+* 裝置隨附的&2; 條 SAS 纜線以連接主要機箱與 EBOD 機箱
 * 可以存取 2 個電源分配單元 (PDU) (建議)
 * 網路纜線
 * 提供的序列纜線
@@ -233,7 +233,7 @@ ms.openlocfilehash: 5b250358c44e699082c27803027a6a861e206a7d
 
 針對高可用性和效能，請記住：
 
-* 可能的話，請在各個控制器上設定一組用於雲端存取 (1 GbE)，和另一組用於 iSCSI (建議 10 GbE) 的網路介面。
+* 可能的話，請在各個控制器上設定一組用於雲端存取 (1 GbE)，和另一組用於 iSCSI (建議&10; GbE) 的網路介面。
 * 可能的話，請將各個控制器的網路介面連接到兩個不同的交換器，以確保交換器發生錯誤時的可用性。 下圖說明兩個從各個控制器連接到兩個不同交換器的 10 GbE 網路介面 (DATA 2 和 DATA 3)。 如需詳細資訊，請參閱 **StorSimple 裝置的高可用性需求** 下的 [網路介面](storsimple-system-requirements.md#high-availability-requirements-for-storsimple)。
 
 > [!NOTE]
@@ -255,7 +255,7 @@ ms.openlocfilehash: 5b250358c44e699082c27803027a6a861e206a7d
    * 8 資料位元
    * 1 停止位元
    * 無同位檢查
-   * 流量控制設為 [ **無**
+   * 流量控制設為  **無**
 6. 藉由在主控台上按下 Enter 鍵，驗證連線是否正在運作。 序列主控台功能表應該會出現。
 
 > [!NOTE]
@@ -271,6 +271,6 @@ ms.openlocfilehash: 5b250358c44e699082c27803027a6a861e206a7d
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "準備 Debian Linux VHD | Microsoft Docs"
+title: "在 Azure 中準備 Debian Linux VHD | Microsoft Docs"
 description: "了解如何建立 Debian 7 和 8 VHD，以供部署於 Azure 中。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 08/24/2016
+ms.date: 02/02/2017
 ms.author: szark
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: e96a2beccf48c8bfd08d0c7ae111219fd4269fcc
+ms.sourcegitcommit: 5b8950619da3f42bc3c92443a7b9e9f2a97067f9
+ms.openlocfilehash: b38edfee4f74ede5fb647001cd64cbe81e941c41
 
 
 ---
@@ -98,6 +98,6 @@ ms.openlocfilehash: e96a2beccf48c8bfd08d0c7ae111219fd4269fcc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

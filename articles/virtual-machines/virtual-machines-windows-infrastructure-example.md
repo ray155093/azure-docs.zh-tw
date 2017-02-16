@@ -1,5 +1,5 @@
 ---
-title: "範例基礎結構逐步解說 | Microsoft Docs"
+title: "範例 Azure 基礎結構逐步解說 | Microsoft Docs"
 description: "了解適合用來在 Azure 中部署範例基礎結構的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-windows
@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 95b8ccfbd88e423f035905204615bebffb6c0c50
+ms.sourcegitcommit: 1e52ae69951b6b1feee6207033a85a583d13bcc2
+ms.openlocfilehash: 851dd4a2a76eff0e2f95c9a0a7280986cfb3e26a
 
 
 ---
@@ -124,6 +124,6 @@ Adventure Works Cycles 決定為其 Azure VM 使用下列名稱：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

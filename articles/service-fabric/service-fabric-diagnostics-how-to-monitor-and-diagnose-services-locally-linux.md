@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 11/14/2016
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: af9f761179896a1acdde8e8b20476b7db33ca772
-ms.openlocfilehash: 03f1dde722025624997adb7c1258b2f24c481209
+ms.sourcegitcommit: 72fcad2957d6fc5466719c1d275ae0f86f7fa302
+ms.openlocfilehash: 1d02402f8d3d3f501a100c1618bcba595f1fedc0
 
 
 ---
@@ -58,7 +58,7 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
 ```
  
  
-此設定會導致在 `/tmp/servicefabric/logs/`中以輪替方式收集記錄檔。 **%u** 和 **%g** 可讓您建立更多檔案，檔名為 mysfapp0.log、mysfapp1.log 等等，依此類推。 依預設，如果未明確設定任何處理常式，則會註冊主控台處理常式。 使用者可以在 /var/log/syslog 下檢視 syslog 中的記錄檔。
+此設定會導致在 `/tmp/servicefabric/logs/`中以輪替方式收集記錄檔。 **%u** 和 **%g** 可讓您建立檔案，檔名為 mysfapp0.log、mysfapp1.log 等等，依此類推。 依預設，如果未明確設定任何處理常式，則會註冊主控台處理常式。 使用者可以在 /var/log/syslog 下檢視 syslog 中的記錄檔。
  
 如需詳細資訊，請參閱 [github 中的程式碼範例](http://github.com/Azure-Samples/service-fabric-java-getting-started)。  
 
@@ -143,6 +143,6 @@ public static TextWriter Out = Console.Out;
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

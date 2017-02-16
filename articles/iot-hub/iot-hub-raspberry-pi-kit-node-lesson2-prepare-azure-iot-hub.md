@@ -1,6 +1,6 @@
 ---
-title: "建立中樞並登錄 Raspberry Pi 3 | Microsoft Docs"
-description: "使用 Azure CLI 建立資源群組、建立 Azure IoT 中樞，並在 IoT 中樞登錄 Pi。"
+title: "建立 Azure IoT 中樞並登錄 Raspberry Pi 3 | Microsoft Docs"
+description: "使用 Azure CLI 建立資源群組、建立 Azure IoT 中樞，並在 IoT 中樞身分識別登錄中登錄 Pi。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: d93b7b67ee0727f45c3f4b93459b013b16805bf6
-ms.openlocfilehash: fcfb90a385a68e863b3c1d3d0fa3bb24fe778291
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: 1f22ab6a97427f3be521c69e308386ad0b1b286b
 
 
 ---
@@ -65,7 +65,7 @@ Azure IoT 中樞可以協助您連接、監視並管理數以百萬計的 IoT �
 4. 執行下列命令來在美國西部區域建立名為 iot-sample 的資源群組：
 
    ```bash
-   az resource group create --name iot-sample --location westus
+   az group create --name iot-sample --location westus
    ```
 
    `westus` 是資源群組建立所在的位置。 如果您想要使用另一個位置，您可以執行 `az account list-locations -o table` 來查看 Azure 支援的所有位置。
@@ -103,6 +103,6 @@ az iot device create --device-id myraspberrypi --hub-name {my hub name} --x509 -
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

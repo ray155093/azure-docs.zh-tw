@@ -1,5 +1,5 @@
 ---
-title: "使用 Maven 建置 HBase 應用程式，並部署到以 Windows 為基礎的 HDInsight | Microsoft Docs"
+title: "建置 Windows 型 Azure HDInsight 的 Java HBase 應用程式 | Microsoft Docs"
 description: "了解如何使用 Apache Maven 建置以 Java 為基礎的 Apache HBase 應用程式，然後部署至以 Windows 為基礎的 Azure HDInsight 叢集。"
 services: hdinsight
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/03/2016
+ms.date: 02/05/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
+ms.sourcegitcommit: b829f21dbc212cd951f5e417ad56f7eb724a9d56
+ms.openlocfilehash: 51a9ebdee38c14eb3dc1148070004e6792369b39
 
 
 ---
@@ -26,17 +26,16 @@ ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
 
 [Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。 在本文中，您會了解如何用它來建立基本的 Java 應用程式，以便在 Azure HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
 
-> [!NOTE]
-> 本文件中的步驟是假設您使用以 Windows 為基礎的 HDInsight 叢集。 如需使用以 Linux 為基礎的 HDInsight 叢集資訊，請參閱 [使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight 之 Java 應用程式](hdinsight-hbase-build-java-maven-linux.md)
-> 
-> 
+> [!IMPORTANT]
+> 此文件中的步驟需要使用 Windows 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="requirements"></a>需求
 * [Java platform JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 7 或更新版本
 * [Maven](http://maven.apache.org/)
 * [搭配使用 HBase 和以 Windows 為基礎的 HDInsight 叢集](hdinsight-hbase-tutorial-get-started.md#create-hbase-cluster)
 
-    > [AZURE.NOTE] 這份文件中的步驟已經過 HDInsight 叢集 3.2 版和 3.3 版的測試. 在範例中提供的預設值是 HDInsight 3.3 叢集。
+    > [!NOTE] 
+    > 這份文件中的步驟已經過 HDInsight 叢集 3.2 版和 3.3 版的測試. 在範例中提供的預設值是 HDInsight 3.3 叢集。
 
 ## <a name="create-the-project"></a>建立專案
 1. 從開發環境的命令列中，將目錄變更至您想要建立專案的位置，例如 `cd code\hdinsight`。
@@ -181,8 +180,7 @@ ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
    
    > [!NOTE]
    > 這是最小的 hbase-site.xml 檔案，其包含 HDInsight 叢集最低限度的設定。
-   > 
-   > 
+
 6. 儲存 **hbase-site.xml** 檔案。
 
 ## <a name="create-the-application"></a>建立應用程式
@@ -366,8 +364,6 @@ ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
    
    > [!NOTE]
    > **hbaseapp-1.0-SNAPSHOT.jar** 檔案是一個 uber jar (有時稱為 fat jar)，內含執行應用程式所需的所有相依性。
-   > 
-   > 
 
 ## <a name="upload-the-jar-file-and-start-a-job"></a>上傳 JAR 檔案並啟動工作
 有許多方法可將檔案上傳至 HDInsight 叢集，如 [在 HDInsight 中將 Hadoop 工作的資料上傳](hdinsight-upload-data.md)中所述。 下列步驟會使用 Azure PowerShell。
@@ -423,10 +419,7 @@ ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
         FindAzure
    
         # Get the login for the HDInsight cluster
-        $creds = Get-Credential
-   
-        # Get storage information
-        $storage = GetStorage -clusterName $clusterName
+        $creds=Get-Credential -Message "Enter the login for the cluster" -UserName "admin"
    
         # The JAR
         $jarFile = "wasbs:///example/jars/hbaseapp-1.0-SNAPSHOT.jar"
@@ -453,9 +446,6 @@ ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
         Get-AzureRmHDInsightJobOutput `
                     -Clustername $clusterName `
                     -JobId $job.JobId `
-                    -DefaultContainer $storage.container `
-                    -DefaultStorageAccountName $storage.storageAccount `
-                    -DefaultStorageAccountKey $storage.storageAccountKey `
                     -HttpCredential $creds `
                     -DisplayOutputType StandardError
         }
@@ -463,9 +453,6 @@ ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
         Get-AzureRmHDInsightJobOutput `
                     -Clustername $clusterName `
                     -JobId $job.JobId `
-                    -DefaultContainer $storage.container `
-                    -DefaultStorageAccountName $storage.storageAccount `
-                    -DefaultStorageAccountKey $storage.storageAccountKey `
                     -HttpCredential $creds
         }
    
@@ -633,6 +620,6 @@ ms.openlocfilehash: 24d9c1d185eef811a37924be184e4e5894dcdb01
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -12,31 +12,35 @@ ms.devlang: dotnet
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 10/27/2016
+ms.date: 01/11/2017
 ms.author: brjohnst
 translationtype: Human Translation
-ms.sourcegitcommit: fc2f30569acc49dd383ba230271989eca8a14423
-ms.openlocfilehash: 66aec5feaa370aef6dc4a9f83119e26ab47d726a
+ms.sourcegitcommit: 7d45759915f38ba4337b745eb2b28dcbc72dbbe0
+ms.openlocfilehash: a14131455ad94cbc4b729077568b12043401c08e
 
 ---
 
 # <a name="api-versions-in-azure-search"></a>Azure 搜尋服務中的 API 版本
-Azure 搜尋服務會定期推出功能更新。 有時候 (但並不一定) 這些更新需要我們發佈新版本的 API，以保留回溯相容性。 發行新版本可讓您控制在程式碼中整合搜尋服務更新的時機與方式。
+「Azure 搜尋服務」會定期推出功能更新。 有時候 (但並不一定)，這些更新會需要我們發佈新版本的 API，以保留回溯相容性。 發行新版本可讓您控制在程式碼中整合搜尋服務更新的時機與方式。
 
 因此，我們嘗試只在必要時發佈新版本，因為這牽涉到需要花費一些心力升級您的程式碼以使用新的 API 版本。 只有在我們需要以破壞回溯相容性的方式變更 API 的某些層面時，才會發佈新版本。 在修正現有的功能，或新功能會變更現有 API 的介面區時，我們就會這樣做。
 
 對於 SDK 更新，我們遵循相同的規則。 Azure 搜尋服務 SDK 會遵循 [semantic versioning (語意化版本控制系統)](http://semver.org/) 規則，這代表其版本具有三個部分：主要、次要和組建編號 (例如 1.1.0)。 只有在變更會破壞回溯相容性時，我們才會發行新的主要版本 SDK。 如果是非重大功能更新，我們將會遞增次要版本，而針對錯誤修正，我們只會遞增組建版本。
 
+> [!NOTE]
+> 您的「Azure 搜尋服務」執行個體支援數個 REST API 版本，包括最新版本。 當一個版本不再是最新版本時，您仍可繼續使用該版本，但建議您將程式碼移轉成使用最新版本。 使用 REST API 時，您必須每個要求中透過 api-version 參數指定 API 版本。 使用 .NET SDK 時，您使用的 SDK 版本會決定對應的 REST API 版本。 如果您使用的是舊版 SDK，則即使服務已升級成支援新版 API 版本，您仍可繼續執行該程式碼而無須變更。
+
 ## <a name="snapshot-of-current-versions"></a>目前版本的快照
-以下是 Azure 搜尋服務所有程式設計介面目前版本的快照。 如需藍圖與其他詳細資訊，可參閱此文件的後續章節。
+以下是 Azure 搜尋服務所有程式設計介面目前版本的快照。
 
 | 介面 | 最新主要版本 | 狀態 |
 | --- | --- | --- |
-| [.NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx) |1.1 |正式推出，2016 年 2 月發行 |
-| [.NET SDK 預覽版](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx) |2.0 預覽版 |預覽版，2016 年 8 月發行 |
-| [服務 REST API](https://msdn.microsoft.com/library/azure/dn798935.aspx) |2016-09-01 |正式推出 |
+| [.NET SDK](https://aka.ms/search-sdk) |3.0 |正式推出，2016 年 11 月發行 |
+| [.NET SDK 預覽版](https://aka.ms/search-sdk-preview) |2.0 預覽版 |預覽版，2016 年 8 月發行 |
+| [服務 REST API](https://docs.microsoft.com/rest/api/searchservice/) |2016-09-01 |正式推出 |
 | [服務 REST API (預覽)](search-api-2015-02-28-preview.md) |2015-02-28-Preview |預覽 |
-| [管理 REST API](https://msdn.microsoft.com/library/azure/dn832684.aspx) |2015-08-19 |正式推出 |
+| [.NET 管理 SDK](https://aka.ms/search-mgmt-sdk) |2015-08-19 |正式推出 |
+| [管理 REST API](https://docs.microsoft.com/rest/api/searchmanagement/) |2015-08-19 |正式推出 |
 
 針對 REST API，必須在每個呼叫中納入 `api-version` 。 這會使將特定版本 (例如預覽 API) 做為目標較為容易。 下列範例說明如何指定 `api-version` 參數：
 
@@ -45,22 +49,9 @@ Azure 搜尋服務會定期推出功能更新。 有時候 (但並不一定) 這
 > [!NOTE]
 > 雖然每個要求都具有 `api-version`，我們仍建議您針對所有的 API 要求使用相同的版本。 特別是當新的 API 版本引入舊版本無法辨識的屬性或作業時更建議您這樣做。 混合的 API 版本可能會有非預期的結果，應該予以避免。
 >
-> 服務 REST API 和管理 REST API 的版本是彼此獨立的。 版本號碼若有任何相似性都只是巧合。
->
->
+> 服務 REST API 和管理 REST API 的版本是彼此獨立的。 版本號碼如有類似，純屬巧合。
 
 正式推出 (或 GA) 的 API 可以用於實際執行，並且受到 Azure 服務等級協定所約束。 預覽版本具有實驗性功能，那些功能並不會都移轉到 GA 版本上。 **我們強烈建議您避免在實際執行的應用程式中使用預覽 API。**
-
-## <a name="sdk-version-roadmap"></a>SDK 版本藍圖
-每個版本的 .NET SDK 均會以特定版本的 服務 REST API 為目標。 功能會先在 REST API 中推出，然後在 SDK 中實作。
-
-.NET SDK 現在已經正式推出，且下一個版本的工作已經在進行中。 下表是未來 SDK 版本的規劃，讓您了解接下來的情況。
-
-| .NET SDK 版本 | REST API 版本 | 特性 | 預計到達時間 |
-| --- | --- | --- | --- |
-| 1.1 |2015-02-28 |Lucene 查詢語法 |2016 年 2 月 |
-| 2.0 預覽版 |2015-02-28-Preview |自訂分析器、Azure Blob 和資料表索引子、欄位對應，ETag |2016 年 8 月 |
-| 3.x |2016-09-01 |與 2.0-preview 相同，但不包含 CSV 和 JSON 檔案的 Blob 索引子支援 |2016 年 11 月 |
 
 ## <a name="about-preview-and-generally-available-versions"></a>關於預覽與正式推出版本
 Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然後再透過 .NET SDK 的發行前版本推出。
@@ -75,6 +66,6 @@ Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

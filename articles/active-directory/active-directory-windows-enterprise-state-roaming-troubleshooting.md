@@ -13,11 +13,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/30/2016
+ms.date: 01/09/2017
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: c5448ef5ad9def86b2deb1736160aa5b7ee6fd15
-ms.openlocfilehash: 4a2f50caa06d383bd41a6e94a2f73f130d7a13e3
+ms.sourcegitcommit: 58a583a761a400d8fa0488fbc4fbfec35ec62c41
+ms.openlocfilehash: ebdf73ad8a7a2f2690a404676e0c81ee01e77357
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: 4a2f50caa06d383bd41a6e94a2f73f130d7a13e3
 如果在進行過下列指導方針後仍無法解決問題，請連絡我們的支援工程師。 當您與他們連絡時，建議您包含下列資訊：
 
 - **錯誤的一般描述** – 使用者已看到錯誤訊息嗎？ 如果沒有任何錯誤訊息，請詳細說明您所注意到的未預期行為。 已啟用哪些功能以同步處理，以及使用者預期同步處理哪些項目？ 是否有多項功能未同步處理，或已將功能隔離以個別同步處理？
--**受影響的使用者** – 某一使用者或多個使用者的同步處理是否成功/失敗？ 每個使用者涉及多少裝置？ 它們是否都沒有同步處理，或它們之間部分已同步處理，部分沒有同步處理？
+- **受影響的使用者** – 是有一位還是多位使用者的同步處理成功/失敗？ 每個使用者涉及多少裝置？ 它們是否都沒有同步處理，或它們之間部分已同步處理，部分沒有同步處理？
 - **使用者相關資訊** – 使用者是使用什麼身分識別登入裝置？ 使用者如何登入裝置？ 它們是否屬於允許同步處理的所選安全性群組中的裝置？ 
 - **裝置相關資訊** – 此裝置是否已經加入 Azure AD 或已經加入網域？ 此裝置使用哪一個組建？ 最新的更新是？
 - **日期/時間/時區** – 您看到錯誤時的精確日期和時間 (包含時區)。
@@ -52,9 +52,7 @@ ms.openlocfilehash: 4a2f50caa06d383bd41a6e94a2f73f130d7a13e3
 1. 將您的 Windows 10 電腦加入已設定為允許企業狀態漫遊的網域之後，使用您的公司帳戶登入。 移至 [設定] > [帳戶] > [同步您的設定]，並確認同步處理和個別設定都已啟用，且設定頁面頂端指示您正使用公司帳戶進行同步處理。 確認您在 [設定] > [帳戶] > [您的資訊] 中也是使用相同帳戶做為登入帳戶。 
 2. 透過在原始電腦上進行一些變更 (例如將工作列移至畫面右側或頂端)，來確認同步處理可跨多部電腦運作。 監看變更是否在 5 分鐘內傳送至第二部電腦。 
  - 鎖定和解除鎖定畫面 (Win + L) 有助於觸發同步處理。
- - 您必須在兩部電腦上使用相同登入帳戶，同步處理才能運作 – 像企業狀態一樣。
-
-## <a name="roaming-is-tied-to-the-user-account-and-not-the-machine-account"></a>漫遊是與使用者帳戶連結，而不是與電腦帳戶連結。
+ - 您必須在兩部電腦上使用相同的登入帳戶，同步處理才能運作 – 因為「企業狀態漫遊」是繫結至使用者帳戶而不是電腦帳戶。
 
 **可能的問題**：設定頁面的切換功能顯示為灰色，且您看不到帳戶，而是看到「只有當您使用 Microsoft 帳戶或公司帳戶時，某些 Windows 功能才能使用。」文字。 已經設定成已加入網域或已在 Azure AD 註冊，但未成功向 Azure AD 驗證的裝置，可能就會發生這個問題。 可能的原因是必須套用裝置原則，但這個套用作業是非同步的，而且可能會延遲幾個小時。 若要確認此問題，請依照確認裝置註冊狀態中的步驟，來檢查是否是因為這個原因。
 
@@ -63,7 +61,7 @@ ms.openlocfilehash: 4a2f50caa06d383bd41a6e94a2f73f130d7a13e3
 
 1.  在未提高權限的情況下開啟命令提示字元。 若要在 Windows 中執行此操作，請開啟「執行」啟動程式 (Win + R) 並輸入 "cmd" 來開啟。
 2.  命令提示字元開啟後，輸入 *dsregcmd.exe /status*。
-3.  針對預期的輸出，AzureAdJoined 欄位值應為 [YES]、WamDefaultSet 欄位值應為 [YES]，且 **WamDefaultGUID** 欄位值應為 GUID 且結尾處包含 “(AzureAd)”。
+3.  若要獲得預期的輸出，[AzureAdJoined] 欄位值應該是 [YES]、[WamDefaultSet] 欄位值應該是 [YES]，而 [WamDefaultGUID] 欄位值則應該是一個結尾為 “(AzureAd)” 的 GUID。
 
 **可能的原因**：**WamDefaultSet** 和 **AzureAdJoined** 的欄位值都是 [NO]，裝置已經加入網域且已經在 Azure AD 註冊，以及裝置沒有同步處理。 如果顯示此問題，表示裝置可能需要等待套用原則，或裝置在連線至 Azure AD 時驗證失敗。 使用者可能需等待幾個小時來等待原則套用。 其他疑難排解步驟可能包括透過登出並重新登入來重試自動註冊，或在工作排程器中啟動工作。 在某些情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
 
@@ -71,7 +69,7 @@ ms.openlocfilehash: 4a2f50caa06d383bd41a6e94a2f73f130d7a13e3
 **可能的原因**：**AzureAdSettingsUrl** 的欄位空白且裝置沒有同步處理。 使用者上次登入裝置的時間可能是在於 Azure Active Directory 入口網站中啟用企業狀態漫遊之前。 請在入口網站中，嘗試停用 IT 系統管理員，然後重新啟用「使用者可以同步設定及企業應用程式資料」。 重新啟用之後，請重新啟動裝置並讓使用者登入。 
 
 ## <a name="enterprise-state-roaming-and-multi-factor-authentication"></a>企業狀態漫遊與 Multi-Factor Authentication 
-在某些情況下，如果設定了 Azure Multi-Factor Authentication，「企業狀態漫遊」可能會無法同步處理資料。 如需這些徵兆的其他詳細資料，請參閱支援文件 KB3193683。 
+在某些情況下，如果設定了 Azure Multi-Factor Authentication，「企業狀態漫遊」可能會無法同步處理資料。 如需有關這些徵兆的其他詳細資料，請參閱支援文件 [KB3193683](https://support.microsoft.com/kb/3193683)。 
 
 **可能的原因**：如果您的裝置已設定為在 Azure Active Directory 入口網站上需要 Multi-Factor Authentication，則使用密碼登入 Windows 10 裝置時，可能無法同步處理設定。 這類型的 Multi-Factor Authentication 組態是用來保護 Azure 系統管理員帳戶。 系統管理員使用者仍然能夠藉由使用 Microsoft Passport for Work PIN 登入他們的 Windows 10 裝置，或藉由在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication，來進行同步處理。
 
@@ -104,6 +102,8 @@ ms.openlocfilehash: 4a2f50caa06d383bd41a6e94a2f73f130d7a13e3
 ### <a name="theme-is-not-syncing-as-well-as-data-protected-with-windows-information-protection"></a>佈景主題和使用「Windows 資訊保護」保護的資料不會同步處理 
 
 爲防止資料外洩，使用 [Windows 資訊保護](https://technet.microsoft.com/itpro/windows/keep-secure/protect-enterprise-data-using-wip)保護的資料不會透過使用 Windows 10 年度更新版之裝置的企業狀態漫遊來進行同步處理。
+
+
 
 **建議的動作**  
 無。 未來的 Windows 更新可能會解決這個問題。
@@ -160,13 +160,21 @@ ms.openlocfilehash: 4a2f50caa06d383bd41a6e94a2f73f130d7a13e3
 
 
 
-##<a name="next-steps"></a>後續步驟
+## <a name="next-steps"></a>後續步驟
 
 - 利用 [使用者心聲論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/158658-enterprise-state-roaming) 來提供意見並提出如何改善企業狀態漫遊的建議。
 
 - 如需詳細資料，請參閱[企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)。 
 
+## <a name="related-topics"></a>相關主題
+* [企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)
+* [在 Azure Active Directory 中啟用企業狀態漫遊](active-directory-windows-enterprise-state-roaming-enable.md)
+* [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
+* [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
+* [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!--HONumber=Dec16_HO1-->
+
+
+<!--HONumber=Jan17_HO2-->
 
 

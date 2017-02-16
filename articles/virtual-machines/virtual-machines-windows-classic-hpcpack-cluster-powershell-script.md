@@ -1,6 +1,6 @@
 ---
 title: "用來部署 Windows HPC 叢集的 PowerShell 指令碼 | Microsoft Docs"
-description: "執行 PowerShell 指令碼，以在 Azure 虛擬機器中部署 Windows HPC Pack 叢集"
+description: "執行 PowerShell 指令碼，以在 Azure 虛擬機器中部署 Windows HPC Pack 2012 R2 叢集"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -13,19 +13,20 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 07/07/2016
+ms.date: 12/29/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 84a18dbe0f6f588c6ace16dda2b84a8aaa056b97
+ms.sourcegitcommit: ff9fb5f0b2229a470ea3f5c736622ee1e9228c93
+ms.openlocfilehash: 6c38e460f9194f0becba46cbdfd85075de00e27d
 
 
 ---
 # <a name="create-a-windows-high-performance-computing-hpc-cluster-with-the-hpc-pack-iaas-deployment-script"></a>使用 HPC Pack IaaS 部署指令碼建立 Windows 高效能運算 (HPC) 叢集
-執行 HPC Pack IaaS 部署 PowerShell 指令碼，在 Azure 虛擬機器中為 Windows 工作負載部署完整的 HPC 叢集。 叢集是由加入 Active Directory、且執行 Windows Server 和 Microsoft HPC Pack 的前端節點，以及您指定的其他 Windows 計算資源所組成。 如果您想要在 Azure 中為 Linux 工作負載部署 HPC Pack 叢集，請參閱 [使用 HPC Pack IaaS 部署指令碼建立 Linux HPC 叢集](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。 您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。 如需範例，請參閱[建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)和[使用自訂的計算節點映像建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)。
+執行 HPC Pack IaaS 部署 PowerShell 指令碼，以在 Azure 虛擬機器中為 Windows 工作負載部署完整的 HPC Pack 2012 R2 叢集。 叢集是由加入 Active Directory、且執行 Windows Server 和 Microsoft HPC Pack 的前端節點，以及您指定的其他 Windows 計算資源所組成。 如果您想要在 Azure 中為 Linux 工作負載部署 HPC Pack 叢集，請參閱 [使用 HPC Pack IaaS 部署指令碼建立 Linux HPC 叢集](virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。 您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。 如需範例，請參閱[建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)和[使用自訂的計算節點映像建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)。
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> 本文中所述的 PowerShell 指令碼會使用傳統部署模型，在 Azure 中建立 Microsoft HPC Pack 2012 R2 叢集。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> 此外，本文中所述的指令碼不支援 HPC Pack 2016。
 
 [!INCLUDE [virtual-machines-common-classic-hpcpack-cluster-powershell-script](../../includes/virtual-machines-common-classic-hpcpack-cluster-powershell-script.md)]
 
@@ -35,7 +36,7 @@ ms.openlocfilehash: 84a18dbe0f6f588c6ace16dda2b84a8aaa056b97
 ### <a name="example-1"></a>範例 1
 下列組態檔會部署一個 HPC Pack 叢集，其中包含一個具有本機資料庫的前端節點，以及五個執行 Windows Server 2012 R2 作業系統的計算節點。 所有雲端服務都直接建立在「美國西部」位置。 前端節點會做為網域樹系的網域控制站。
 
-```
+```Xml
 <?xml version="1.0" encoding="utf-8" ?>
 <IaaSClusterConfig>
   <Subscription>
@@ -73,7 +74,7 @@ ms.openlocfilehash: 84a18dbe0f6f588c6ace16dda2b84a8aaa056b97
 下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中有 1 個具有本機資料庫的前端節點，和 12 個套用了 BGInfo VM 延伸模組的計算節點。
 對於網域樹系中的所有 VM，都會停用 Windows 更新的自動安裝。 所有雲端服務都直接建立在「東亞」位置中。 計算節點會建立在三個雲端服務和三個儲存體帳戶中：*MyHPCCNService01* 和 *mycnstorage01* 中的 *MyHPCCN-0001* 至*MyHPCCN-0005*；*MyHPCCNService02* 和 *mycnstorage02* 中的 *MyHPCCN-0006* 至 *MyHPCCN0010*；以及 *MyHPCCNService03* 和 *mycnstorage03* 中的 *MyHPCCN-0011* 至 *MyHPCCN-0012*)。 計算節點會從擷取自雲端節點的現有私人映像建立。 自動增加和縮減服務會根據預設的增加和縮減間隔來啟用。
 
-```
+```Xml
 <?xml version="1.0" encoding="utf-8" ?>
 <IaaSClusterConfig>
   <Subscription>
@@ -136,7 +137,7 @@ ms.openlocfilehash: 84a18dbe0f6f588c6ace16dda2b84a8aaa056b97
 ### <a name="example-3"></a>範例 3
 下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中包含 1 個前端節點、1 個具有 500 GB 資料磁碟的資料庫伺服器、2 個執行 Windows Server 2012 R2 作業系統的訊息代理程式節點，以及 5 個執行 Windows Server 2012 R2 作業系統的計算節點。 MyHPCCNService 雲端服務會建立在同質群組 *MyIBAffinityGroup* 中，其他雲端服務則是建立在同質群組 *MyAffinityGroup* 中。 前端節點上會啟用 HPC 工作排程器 REST API 和 HPC Web 入口網站。
 
-```
+```Xml
 <?xml version="1.0" encoding="utf-8" ?>
 <IaaSClusterConfig>
   <Subscription>
@@ -189,9 +190,9 @@ ms.openlocfilehash: 84a18dbe0f6f588c6ace16dda2b84a8aaa056b97
 
 
 ### <a name="example-4"></a>範例 4
-下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中包含兩個具有本機資料庫的前端節點、建立了兩個 Azure 節點範本，且針對 Azure 節點範本 *AzureTemplate1*建立了 3 個中型大小的 Azure 節點。 在設定完前端節點之後，指令檔會在前端節點上執行。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中包含兩個具有本機資料庫的前端節點、建立了兩個 Azure 節點範本，且針對 Azure 節點範本 *AzureTemplate1*建立了&3; 個中型大小的 Azure 節點。 在設定完前端節點之後，指令檔會在前端節點上執行。
 
-```
+```Xml
 <?xml version="1.0" encoding="utf-8" ?>
 <IaaSClusterConfig>
   <Subscription>
@@ -275,6 +276,6 @@ ms.openlocfilehash: 84a18dbe0f6f588c6ace16dda2b84a8aaa056b97
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 11/15/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: a13152d5322b81f722f59a524f6c8ca495659b75
-ms.openlocfilehash: 1166f88cc10cd53dc53ee6830ef15b3efde6ad23
+ms.sourcegitcommit: 8056e7ece1942c9090a7c36447a96829febaf1a4
+ms.openlocfilehash: a45e069f18a07bca314210f074455fda68e552c4
 
 
 ---
@@ -62,16 +62,16 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
     /tutorials/usesqoop/importeddata
 
 ## <a name="create-cluster-and-sql-database"></a>建立叢集與 SQL Database
-本節說明如何建立叢集、SQL Database 和 SQL Database 結構描述，以使用 Azure 入口網站和 Azure Resource Manager 範本來執行本教學課程。 範本可在 [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-sql-database/)中找到。 Resource Manager 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。  Bacpac 套件位於公用 Blob 容器中，https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac。 如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
+本節說明如何建立叢集、SQL Database 和 SQL Database 結構描述，以使用 Azure 入口網站和 Azure Resource Manager 範本來執行本教學課程。 範本可在 [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-sql-database/)中找到。 Resource Manager 範本會呼叫 bacpac 套件，以將資料表結構描述部署到 SQL Database。  Bacpac 套件位於公用 Blob 容器中，https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac。 如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
    
         "storageKeyType": "Primary",
         "storageKey": "<TheAzureStorageAccountKey>",
 
 如果您想要使用 Azure PowerShell 來建立叢集與 SQL Database，請參閱[附錄 A](#appendix-a---a-powershell-sample)。
 
-1. 按一下以下影像，以在 Azure 入口網站中開啟 Resource Manager 範本。         
+1. 在 Azure 入口網站中，按一下以下影像以開啟 Resource Manager 範本。         
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-sql-database%2Fazuredeploy.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-sql-database%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-use-sqoop/deploy-to-azure.png" alt="Deploy to Azure"></a>
    
 
 2. 輸入下列屬性：
@@ -109,7 +109,7 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
 * **Azure SQL Database**：您必須設定 Azure SQL Database 伺服器的防火牆規則，以允許從您的工作站存取。 如需關於建立 Azure SQL Database 和設定防火牆的指示，請參閱[開始使用 Azure SQL Database][sqldatabase-get-started]。 
   
   > [!NOTE]
-  > 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。 如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。 如需建立 Azure SQL 資料庫和設定防火牆規則的相關指示，請參閱[建立和設定 SQL Database][sqldatabase-create-configue]。
+  > 根據預設，Azure SQL Database 接受來自 Azure 服務 (例如 Azure HDInsight) 的連線。 如果此防火牆設定為停用，您必須在 Azure 入口網站中加以啟用。 如需關於建立 Azure SQL Database 和設定防火牆規則的指示，請參閱[建立和設定 SQL Database][sqldatabase-create-configue]。
   > 
   > 
 * **SQL Server**：如果您的 HDInsight 叢集與 SQL Server 位於同一個 Azure 虛擬網路上，您可以使用本文中的步驟在 SQL Server Database 上匯入和匯出資料。
@@ -155,7 +155,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。 請使用下表決定�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 Oozie][hdinsight-use-oozie]：在 Oozie 工作流程中使用 Sqoop 動作。
 * [使用 HDInsight 分析航班延誤資料][hdinsight-analyze-flight-data]：使用 Hive 分析航班誤點資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
-* [將資料上傳至 HDInsight][hdinsight-upload-data]：尋找可將資料上傳至 HDInsight/Azure Blob 儲存體的其他方法。
+* [將資料上傳至 HDInsight][hdinsight-upload-data]：尋找其他方法將資料上傳至 HDInsight/Azure Blob 儲存體。
 
 ## <a name="appendix-a---a-powershell-sample"></a>附錄 A - PowerShell 範例
 這些 PowerShell 範例會執行下列步驟：
@@ -217,7 +217,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。 請使用下表決定�
 7. 將 Hive 資料表匯出至 Azure SQL Database。
 8. 將 mobiledata 資料表匯入 HDInsight 叢集。
    
-    若要檢查已修改的資料檔案，可以使用 Azure 入口網站、Azure 儲存體總管工具或 Azure PowerShell。  [開始使用 HDInsight][hdinsight-get-started] 提供了有關使用 Azure PowerShell 來下載檔案及顯示檔案內容的程式碼範例。
+    若要檢查已修改的資料檔案，可以使用 Azure 入口網站、Azure 儲存體總管工具或 Azure PowerShell。  [開始使用 HDInsight][hdinsight-get-started] 提供了使用 Azure PowerShell 來下載檔案及顯示檔案內容的程式碼範例。
 
 ### <a name="the-powershell-sample"></a>PowerShell 範例
     # Prepare an Azure SQL database to be used by the Sqoop tutorial
@@ -627,13 +627,13 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。 請使用下表決定�
 [sqldatabase-create-configue]: ../sql-database/sql-database-get-started.md
 
 [powershell-start]: http://technet.microsoft.com/library/hh847889.aspx
-[powershell-install]: powershell-install-configure.md
+[powershell-install]: /powershell/azureps-cmdlets-docs
 [powershell-script]: http://technet.microsoft.com/library/ee176949.aspx
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

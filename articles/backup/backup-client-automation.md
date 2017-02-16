@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 部署和管理 Windows Server/用戶端的備份 | Microsoft Docs"
+title: "使用 PowerShell 將 Windows Server 備份至 Azure | Microsoft Docs"
 description: "了解如何使用 PowerShell 部署和管理 Azure 備份"
 services: backup
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: saurse;markgal;jimpark;nkolli;trinadhk
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cc5326eb314c90c906e0ef869124463a13f5e725
+ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
+ms.openlocfilehash: 87384588e9e2a77a5b545ce30db2776541223001
 
 
 ---
@@ -24,8 +24,8 @@ ms.openlocfilehash: cc5326eb314c90c906e0ef869124463a13f5e725
 > [!div class="op_single_selector"]
 > * [ARM](backup-client-automation.md)
 > * [傳統](backup-client-automation-classic.md)
-> 
-> 
+>
+>
 
 本文說明如何使用 PowerShell 在 Windows Server 或 Windows 用戶端上設定 Azure 備份，以及管理備份和復原。
 
@@ -46,27 +46,27 @@ ms.openlocfilehash: cc5326eb314c90c906e0ef869124463a13f5e725
 下列步驟將引導您完成建立復原服務保存庫。 復原服務保存庫不同於備份保存庫。
 
 1. 如果您是第一次使用 Azure 備份，您必須使用 **Register-AzureRMResourceProvider** Cmdlet 利用您的訂用帳戶來註冊 Azure 復原服務提供者。
-   
+
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
 2. 復原服務保存庫是 ARM 資源，因此您必須將它放在資源群組內。 您可以使用現有的資源群組，或建立一個新的群組。 建立新的資源群組時，請指定資源群組的名稱和位置。  
-   
+
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
     ```
 3. 使用 **New-AzureRmRecoveryServicesVault** Cmdlet 來建立新的保存庫。 請務必為保存庫指定與用於資源群組相同的位置。
-   
+
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
     ```
 4. 指定要使用的儲存體備援類型；您可以使用[本地備援儲存體 (LRS)](../storage/storage-redundancy.md#locally-redundant-storage) 或[異地備援儲存體 (GRS)](../storage/storage-redundancy.md#geo-redundant-storage)。 以下範例示範 testVault 設定為 GeoRedundant 的 BackupStorageRedundancy 選項。
-   
+
    > [!TIP]
    > 許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。 基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。
-   > 
-   > 
-   
+   >
+   >
+
     ```
     PS C:\> $vault1 = Get-AzureRmRecoveryServicesVault –Name "testVault"
     PS C:\> Set-AzureRmRecoveryServicesBackupProperties  -vault $vault1 -BackupStorageRedundancy GeoRedundant
@@ -149,8 +149,8 @@ Machine registration succeeded.
 
 > [!IMPORTANT]
 > 請勿使用相對路徑來指定保存庫認證檔。 您必須提供絕對路徑做為 Cmdlet 的輸入。
-> 
-> 
+>
+>
 
 ## <a name="networking-settings"></a>網路設定
 若 Windows 電腦是透過 Proxy 伺服器連線到網際網路，您也可以提供 Proxy 設定給代理程式。 本範例未使用 Proxy 伺服器，因此會明確地清除任何 Proxy 相關資訊。
@@ -177,8 +177,8 @@ Server properties updated successfully
 
 > [!IMPORTANT]
 > 一旦設定，就請保管好此複雜密碼。 若沒有此複雜密碼，您將無法從 Azure 還原資料。
-> 
-> 
+>
+>
 
 ## <a name="back-up-files-and-folders"></a>備份檔案和資料夾
 Windows Server 和用戶端的所有 Azure 備份都是由原則來掌管。 原則包含三個部分：
@@ -633,7 +633,6 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

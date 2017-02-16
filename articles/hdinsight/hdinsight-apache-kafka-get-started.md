@@ -4,7 +4,7 @@ description: "了解建立與使用 Kafka on HDInsight 的基本概念。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
-manager: paulettm
+manager: jhubbard
 editor: cgronlun
 ms.assetid: 43585abf-bec1-4322-adde-6db21de98d7f
 ms.service: hdinsight
@@ -12,11 +12,11 @@ ms.devlang:
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/09/2016
+ms.date: 01/09/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2d744e753224e4ce98680d3228914fd89e87eba4
-ms.openlocfilehash: 70d910f61fa414a0c58a22057133ef3b899dac05
+ms.sourcegitcommit: 34c1138a9c3b9313a12ffbf4bc4c3141db0a016e
+ms.openlocfilehash: 98b11144c049f9db780c7665610c83a753f23b21
 
 ---
 # <a name="get-started-with-apache-kafka-preview-on-hdinsight"></a>開始使用 Apache Kafka (預覽) on HDInsight
@@ -71,6 +71,11 @@ ms.openlocfilehash: 70d910f61fa414a0c58a22057133ef3b899dac05
     最後，使用 [選取] 按鈕來儲存設定。
      
     ![選取叢集類型](./media/hdinsight-apache-kafka-get-started/cluster-type.png)
+
+    > [!NOTE]
+    > 如果您的 Azure 訂用帳戶無法存取 Kafka 預覽，就會顯示有關如何取得預覽存取權的指示。 顯示的指示與下圖類似：
+    >
+    > ![預覽訊息：若您要在 HDInsight 上部署受管理的 Apache Kafka 叢集，請傳送電子郵件給我們以要求預覽權限](./media/hdinsight-apache-kafka-get-started/no-kafka-preview.png)
 
 4. 使用 [認證] 來設定叢集登入和 SSH 使用者認證。  使用 [選取] 按鈕來儲存設定。
    
@@ -314,12 +319,12 @@ Kafka 中儲存的記錄會依照其在資料分割內接收的順序儲存。 �
 
 * kafka.apache.org 上的 [Apache Kafka 文件](http://kafka.apache.org/documentation.html)。
 * [使用 MirrorMaker 建立 Apache Kafka on HDInsight 複本](hdinsight-apache-kafka-mirroring.md)
-* [使用 Apache Storm 搭配 Kafka on HDInsight](hdinsight-apache-storm-with-kafka.md)
+* [使用 Apache Storm 搭配 HDInsight 上的 Kafka](hdinsight-apache-storm-with-kafka.md)
 * [使用 Apache Spark 搭配 Kafka on HDInsight](hdinsight-apache-spark-with-kafka.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

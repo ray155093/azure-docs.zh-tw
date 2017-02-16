@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/25/2016
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: 118940878c7257b8657e67b06fa62561d86cdf79
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 9c8e448aaffbecb4d3ac83729710f352675913bb
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 118940878c7257b8657e67b06fa62561d86cdf79
 本逐步解說說明如何實作 Azure 背景工作角色，該角色使用 .NET EventSource 類別發出遙測資料。 Azure 診斷可用來收集遙測資料，並將資料儲存在 Azure 儲存體帳戶。 建立背景工作角色時，Visual Studio 會自動啟用診斷 1.0 來做為 Azure SDK for.NET 2.4 及更早版本中解決方案的一部分。 下列指示說明建立背景工作角色、從解決方案停用診斷 1.0，以及將診斷 1.2 或 1.3 部署至背景工作角色的程序。
 
 ### <a name="pre-requisites"></a>必要條件
-本文假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio 2013。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][免費試用版]。 請確定[安裝及設定 Azure PowerShell 0.8.7 版或更新版本][安裝及設定 Azure PowerShell 0.8.7 版或更新版本]。
+本文假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio 2013。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][Free Trial]。 請務必[安裝並設定 Azure PowerShell 0.8.7 版或更新版本][Install and configure Azure PowerShell version 0.8.7 or later]。
 
 ### <a name="step-1-create-a-worker-role"></a>步驟 1：建立背景工作角色
 1. 啟動 **Visual Studio 2013**。
@@ -38,7 +38,7 @@ ms.openlocfilehash: 118940878c7257b8657e67b06fa62561d86cdf79
 6. 建置您的解決方案以確認無誤。
 
 ### <a name="step-2-instrument-your-code"></a>步驟 2：實作您的程式碼
-以下列程式碼取代 WorkerRole.cs 的內容。 繼承自 [EventSource 類別][EventSource 類別]的 SampleEventSourceWriter 類別實作四種記錄方法：**SendEnums**、**MessageMethod**、**SetOther** 和 **HighFreq**。 傳遞至 **WriteEvent** 方法的第一個參數定義個別事件的識別碼。 Run 方法實作一個無限迴圈，每 10 秒呼叫一次在 **SampleEventSourceWriter** 類別中實作的每種記錄方法。
+以下列程式碼取代 WorkerRole.cs 的內容。 繼承自 [EventSource 類別][EventSource Class]的 SampleEventSourceWriter 類別實作四種記錄方法：**SendEnums**、**MessageMethod**、**SetOther** 和 **HighFreq**。 傳遞至 **WriteEvent** 方法的第一個參數定義個別事件的識別碼。 Run 方法實作一個無限迴圈，每 10 秒呼叫一次在 **SampleEventSourceWriter** 類別中實作的每種記錄方法。
 
 ```csharp
 using Microsoft.WindowsAzure.ServiceRuntime;
@@ -189,17 +189,17 @@ Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -Diagnostic
 如果您遇到困難，請參閱 [Azure 診斷的疑難排解](../azure-diagnostics-troubleshooting.md) ，以解決常見的問題。
 
 ## <a name="next-steps"></a>後續步驟
-[請參閱虛擬機器相關的 Azure 診斷文章清單](../azure-diagnostics.md#cloud-services-using-azure-diagnostics)，以變更您收集的資料、進行問題疑難排解，或深入了解一般的診斷。
+[請參閱虛擬機器相關的 Azure 診斷文章清單](../azure-diagnostics.md#cloud-services-using-azure-diagnostics) ，以變更您收集的資料、進行問題疑難排解，或深入了解一般的診斷。
 
-[EventSource 類別]: http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource(v=vs.110).aspx
+[EventSource Class]: http://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource(v=vs.110).aspx
 
-[偵錯 Azure 應用程式]: http://msdn.microsoft.com/library/windowsazure/ee405479.aspx   
-[使用 Microsoft Azure 診斷收集記錄資料]: http://msdn.microsoft.com/library/windowsazure/gg433048.aspx
-[免費試用版]: http://azure.microsoft.com/pricing/free-trial/
-[安裝及設定 Azure PowerShell 0.8.7 版或更新版本]: http://azure.microsoft.com/documentation/articles/install-configure-powershell/
+[Debugging an Azure Application]: http://msdn.microsoft.com/library/windowsazure/ee405479.aspx   
+[Collect Logging Data by Using Azure Diagnostics]: http://msdn.microsoft.com/library/windowsazure/gg433048.aspx
+[Free Trial]: http://azure.microsoft.com/pricing/free-trial/
+[Install and configure Azure PowerShell version 0.8.7 or later]: http://azure.microsoft.com/documentation/articles/install-configure-powershell/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

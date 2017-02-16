@@ -1,5 +1,5 @@
 ---
-title: "Azure VM 代理程式和延伸模組 |Microsoft Docs"
+title: "Azure 中 Linux VM 的代理程式和延伸模組 | Microsoft Docs"
 description: "提供代理程式和延伸模組的概觀，以及如何使用傳統部署模型來安裝代理程式。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,21 +16,20 @@ ms.workload: infrastructure-services
 ms.date: 08/23/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: aa62c48a8e2de2082928f2d3fb9429925fdda207
+ms.sourcegitcommit: 746ed119239d5a0a71a0663e81d9c5b259354419
+ms.openlocfilehash: 383e32eca05888c8bf08f80a413c0b64a9b4fb46
 
 
 ---
 # <a name="about-the-virtual-machine-agent-and-extensions"></a>有關虛擬機器代理程式和擴充功能
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-如需使用 Resource Manager 的 VM 代理程式和擴充的詳細資訊，請參閱[這裡](virtual-machines-linux-extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 的 VM 代理程式和擴充的詳細資訊，請參閱[這裡](virtual-machines-linux-extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 [!INCLUDE [virtual-machines-common-classic-agents-and-extensions](../../includes/virtual-machines-common-classic-agents-and-extensions.md)]
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

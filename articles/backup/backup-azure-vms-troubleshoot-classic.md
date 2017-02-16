@@ -1,6 +1,6 @@
 ---
-title: "Azure 虛擬機器備份的移難排解 | Microsoft Docs"
-description: "Azure 虛擬機器備份與還原的疑難排解"
+title: "針對傳統入口網站的 Azure 備份錯誤進行疑難排解 | Microsoft Docs"
+description: "針對傳統入口網站中 Azure 備份及 Azure 虛擬機器還原進行疑難排解。"
 services: backup
 documentationcenter: 
 author: trinadhk
@@ -12,11 +12,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 1/23/2017
 ms.author: trinadhk;jimpark;
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: e2c22d2833a7905ba6001178be8709ec81c26000
+ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
+ms.openlocfilehash: 2149407ff4e04f6a52a45c419382617810a63633
 
 
 ---
@@ -39,7 +39,7 @@ ms.openlocfilehash: e2c22d2833a7905ba6001178be8709ec81c26000
 | 備份作業 | 錯誤詳細資料 | 因應措施 |
 | --- | --- | --- |
 | 註冊 |連接至虛擬機器的資料磁碟數目超過支援的限制 - 請卸離此虛擬機器上的某些資料磁碟，然後重試作業。 Azure 備份最多支援 16 個資料磁碟連接至 Azure 虛擬機器進行備份。 |None |
-| 註冊 |Microsoft Azure 備份遇到內部錯誤 - 等候幾分鐘的時間，然後再次嘗試操作。 如果問題持續發生，請連絡 Microsoft 支援服務。 |出現此錯誤的原因是進階 LRS 上有下列其中一個不支援的 VM 組態。 <br>  進階儲存體 VM 可以使用復原服務保存庫來進行備份。 [深入了解](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup) |
+| 註冊 |Microsoft Azure 備份遇到內部錯誤 - 等候幾分鐘的時間，然後再次嘗試操作。 如果問題持續發生，請連絡 Microsoft 支援服務。 |出現此錯誤的原因是進階 LRS 上有下列其中一個不支援的 VM 組態。 <br> 進階儲存體 VM 可以使用復原服務保存庫來進行備份。 [深入了解](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup) |
 | 註冊 |因為安裝代理程式作業逾時而註冊失敗 |請檢查是否支援虛擬機器的作業系統版本。 |
 | 註冊 |命令執行失敗 - 另一項作業正在此項目上進行。 請等到前一項作業完成 |None |
 | 註冊 |不支援備份在進階儲存體中儲存虛擬硬碟的虛擬機器 |None |
@@ -48,7 +48,7 @@ ms.openlocfilehash: e2c22d2833a7905ba6001178be8709ec81c26000
 ## <a name="backup"></a>備份
 | 備份作業 | 錯誤詳細資料 | 因應措施 |
 | --- | --- | --- |
-| 備份 |無法與 VM 代理程式通訊來取得快照集狀態。 快照集 VM 子工作已逾時。 請參閱疑難排解指南中的解決之道。 |如果 VM 代理程式發生問題，或以某種方式封鎖對 Azure 基礎結構的網路存取，則會擲回這個錯誤。 深入了解如何 [偵錯 VM 快照集問題](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)。 <br>  如果 VM 代理程式並未造成任何問題，請重新啟動 VM。 有時，不正確的 VM 狀態可能會導致問題，重新啟動 VM 可清除此「錯誤狀態」 |
+| 備份 |無法與 VM 代理程式通訊來取得快照集狀態。 快照集 VM 子工作已逾時。 請參閱疑難排解指南中的解決之道。 |如果 VM 代理程式發生問題，或以某種方式封鎖對 Azure 基礎結構的網路存取，則會擲回這個錯誤。 深入了解如何 [偵錯 VM 快照集問題](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)。 <br> 如果 VM 代理程式並未造成任何問題，請重新啟動 VM。 有時，不正確的 VM 狀態可能會導致問題，重新啟動 VM 可清除此「錯誤狀態」 |
 | 備份 |備份因為內部錯誤而失敗 - 請在幾分鐘內重試此作業。 如果問題持續發生，請連絡 Microsoft 支援服務。 |請檢查存取 VM 儲存體時是否有暫時性的問題。 請檢查 [Azure 狀態](https://azure.microsoft.com/en-us/status/)，以查看該區域中目前是否有任何與計算/儲存體/網路相關的問題。 當備份後續問題緩和後，請重試一次。 |
 | 備份 |無法執行作業，因為 VM 不存在。 |無法執行備份，因為已刪除針對備份設定的 VM。 請移至受保護的項目檢視以停止進一步的備份、選取受保護的項目，然後按一下 [停止保護]。 您可以選取 [保留備份資料] 選項來保留資料。 您可以在稍後從 [已註冊的項目] 檢視按一下 [設定保護]，以繼續保護此虛擬機器 |
 | 備份 |無法在選取的項目上安裝 Azure 復原服務延伸模組 - VM 代理程式是 Azure 復原服務延伸模組的必要條件。 請安裝 Azure VM 代理程式並重新啟動註冊作業 |<ol> <li>檢查是否已正確安裝 VM 代理程式。 <li>確定已正確設定 VM 組態中的旗標。</ol> [深入了解](#validating-vm-agent-installation) VM 代理程式安裝，以及如何驗證 VM 代理程式安裝。 |
@@ -56,14 +56,14 @@ ms.openlocfilehash: e2c22d2833a7905ba6001178be8709ec81c26000
 | 備份 |擴充功能安裝失敗，發生錯誤「COM+ 無法與 Microsoft Distributed Transaction Coordinator 通話」 |這通常表示 COM+ 服務未執行。 請連絡 Microsoft 支援服務來協助解決此問題。 |
 | 備份 |快照集作業失敗，發生 VSS 作業錯誤「這個磁碟機已由 BitLocker 磁碟機加密鎖定」。 您必須至 [控制台] 解除鎖定這個磁碟機。 |對 VM 上的所有磁碟機關閉 BitLocker，並觀察是否已解決 VSS 問題 |
 | 備份 |不支援備份在進階儲存體中儲存虛擬硬碟的虛擬機器 |None |
-| 備份 |找不到 Azure 虛擬機器。 |當刪除主要 VM 但備份原則繼續尋找 VM 來執行備份時，就會發生這種情況。 若要修正此錯誤： <ol><li>重新建立具有相同名稱和相同資源群組名稱 [雲端服務名稱] 的虛擬機器， <br>(或) <li>  停用此 VM 的保護，以免觸發後續的備份。 </ol> |
+| 備份 |找不到 Azure 虛擬機器。 |當刪除主要 VM 但備份原則繼續尋找 VM 來執行備份時，就會發生這種情況。 若要修正此錯誤： <ol><li>重新建立具有相同名稱和相同資源群組名稱 [雲端服務名稱] 的虛擬機器， <br>(或) <li> 停用此 VM 的保護，以免觸發後續的備份。 </ol> |
 | 備份 |虛擬機器代理程式不存在於虛擬機器上：請安裝所需的必要元件 VM 代理程式，並重新啟動作業。 |[深入了解](#vm-agent) VM 代理程式安裝，以及如何驗證 VM 代理程式安裝。 |
 
 ## <a name="jobs"></a>作業
 | 作業 | 錯誤詳細資料 | 因應措施 |
 | --- | --- | --- |
 | 取消工作 |不支援取消這種工作類型：請等待工作完成。 |None |
-| 取消工作 |作業不是處於可取消的狀態：請等待作業完成。 <br>或<br>  所選取的作業不是處於可取消的狀態 - 請等待作業完成。 |工作極有可能幾乎要完成，請等待作業完成 |
+| 取消工作 |作業不是處於可取消的狀態：請等待作業完成。 <br>或<br> 所選取的作業不是處於可取消的狀態 - 請等待作業完成。 |工作極有可能幾乎要完成，請等待作業完成 |
 | 取消工作 |無法取消工作，因為它不在進行中：只支援取消進行中的工作。 請嘗試取消進行中的工作。 |這起因於暫時性狀態。 請稍候再重試取消作業 |
 | 取消工作 |無法取消作業：請等待作業完成。 |None |
 
@@ -71,7 +71,7 @@ ms.openlocfilehash: e2c22d2833a7905ba6001178be8709ec81c26000
 | 作業 | 錯誤詳細資料 | 因應措施 |
 | --- | --- | --- |
 | 還原 |還原失敗並發生雲端內部錯誤 |<ol><li>您嘗試還原的雲端服務是使用 DNS 設定所設定。 您可以檢查 <br>$deployment = Get-AzureDeployment -ServiceName "ServiceName" -Slot "Production"     Get-AzureDns -DnsSettings $deployment.DnsSettings<br>如果設定了 Address，這表示已設定 DNS 設定。<br> <li>您嘗試還原到其中的雲端服務是使用 ReservedIP 所設定，而雲端服務中現有的 VM 目前處於停止狀態。<br>您可以使用下列 powershell Cmdlet，來檢查雲端服務是否具有保留的 IP：<br>$deployment = Get-AzureDeployment -ServiceName "servicename" -Slot "Production" $dep.ReservedIPName <br><li>您嘗試將具有下列特殊網路組態的虛擬機器還原至相同的雲端服務。 <br>- 負載平衡器組態下的虛擬機器 (內部與外部)<br>- 具有多個保留 IP 的虛擬機器<br>- 具有多個 NIC 的虛擬機器<br>請在 UI 中選取新的雲端服務，或請參閱適用於具有特殊網路組態之 VM 的[還原考量](backup-azure-restore-vms.md#restoring-vms-with-special-network-configurations)</ol> |
-| 還原 |所選取的 DNS 名稱已被使用：請指定不同的 DNS 名稱，然後再試一次。 |此處的 DNS 名稱是指雲端服務名稱 (結尾通常是 .cloudapp.net)。 這必須是唯一的。 如果您遇到這個錯誤，您需要在還原期間選擇不同的 VM 名稱。 <br><br>  只有 Azure 入口網站的使用者才會看到這個錯誤。 透過 PowerShell 執行還原作業將會成功，因為它只會還原磁碟，並不會建立 VM。 當您在磁碟還原作業之後明確建立 VM 時，將會遇到此錯誤。 |
+| 還原 |所選取的 DNS 名稱已被使用：請指定不同的 DNS 名稱，然後再試一次。 |此處的 DNS 名稱是指雲端服務名稱 (結尾通常是 .cloudapp.net)。 這必須是唯一的。 如果您遇到這個錯誤，您需要在還原期間選擇不同的 VM 名稱。 <br><br> 只有 Azure 入口網站的使用者才會看到這個錯誤。 透過 PowerShell 執行還原作業將會成功，因為它只會還原磁碟，並不會建立 VM。 當您在磁碟還原作業之後明確建立 VM 時，將會遇到此錯誤。 |
 | 還原 |指定的虛擬網路組態不正確：請指定不同的虛擬網路組態，然後再試一次。 |None |
 | 還原 |指定的雲端服務使用保留的 IP，但不符合所要還原的虛擬機器組態：請指定另一個不使用保留 IP 的雲端服務，或選擇從另一個復原點還原。 |None |
 | 還原 |雲端服務已達到輸入端點數目限制：請指定不同的雲端服務或使用現有的端點來重試作業。 |None |
@@ -117,6 +117,6 @@ ms.openlocfilehash: e2c22d2833a7905ba6001178be8709ec81c26000
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

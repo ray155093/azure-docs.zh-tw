@@ -1,10 +1,10 @@
 ---
-title: "Log Analytics 中的 Syslog 訊息 | Microsoft Docs"
+title: "收集與分析 OMS Log Analytics 中的 Syslog 訊息 | Microsoft Docs"
 description: "Syslog 是通用於 Linux 的事件記錄通訊協定。   本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
 documentationcenter: 
 author: bwren
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: f1d5bde4-6b86-4b8e-b5c1-3ecbaba76198
 ms.service: log-analytics
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/09/2016
+ms.date: 01/23/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 724567b853bec19cb41ef6a78b7d25a665830897
+ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
+ms.openlocfilehash: 6e92a79c0b7ea35f110c779922255d6ddc93ed7c
 
 
 ---
@@ -77,7 +77,7 @@ Rsyslog 的組態檔位於 **/etc/rsyslog.d/95-omsagent.conf**。  其預設內�
 
 
 #### <a name="syslog-ng"></a>syslog-ng
-Rsyslog 的組態檔位於 **/etc/syslog-ng/syslog-ng.conf**。  其預設內容如下所示。  這會針對所有設備和所有嚴重性收集傳送自本機代理程式的 syslog 訊息。   
+Syslog-ng 的組態檔位於 **/etc/syslog-ng/syslog-ng.conf**。  其預設內容如下所示。  這會針對所有設備和所有嚴重性收集傳送自本機代理程式的 syslog 訊息。   
 
     #
     # Warnings (except iptables) in one file:
@@ -182,6 +182,6 @@ Syslog 記錄具有 **Syslog** 類型，以及下表中的屬性。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用適用於 Eclipse 的 Azure 工具組中的 HDInsight 工具建立 Spark Scala 應用程式 | Microsoft Docs"
+title: "使用 Azure Toolkit for Eclipse 建立適用於 Spark 的 Scala 應用程式 | Microsoft Docs"
 description: "了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
 services: hdinsight
 documentationcenter: 
@@ -16,12 +16,12 @@ ms.topic: article
 ms.date: 01/03/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b502313e1dd42c23dbabd506aabf4be1626a31c9
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: b304f66f71142606391ecbb3f29b917c32ba876a
 
 
 ---
-# <a name="use-hdinsight-tools-in-azure-toolkit-for-eclipse-to-create-spark-applications-for-hdinsight-spark-linux-cluster"></a>使用適用於 Eclipse 的 Azure 工具組中的 HDInsight 工具建立 HDInsight Spark Linux 叢集的 Spark 應用程式
+# <a name="use-hdinsight-tools-in-azure-toolkit-for-eclipse-to-create-spark-applications-for-hdinsight-spark-cluster"></a>使用 Azure Toolkit for Eclipse 中的 HDInsight 工具建立 HDInsight Spark 叢集的 Spark 應用程式
 本文將逐步指引您開發以 Scala 撰寫的 Spark 應用程式，以及使用適用於 Eclipse 的 Azure 工具組中的 HDInsight 工具，將它提交給 HDInsight Spark 叢集。 您可以利用數個不同的方式來使用此工具：
 
 * 在 HDInsight Spark 叢集上開發並提交 Scala Spark 應用程式
@@ -35,7 +35,7 @@ ms.openlocfilehash: b502313e1dd42c23dbabd506aabf4be1626a31c9
 
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * Oracle Java Development kit 第 7 版和第 8 版。 
   
   * **Java SDK 7** 來編譯 Spark 專案。 您可以從 [這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)下載 Java SDK 7。
@@ -234,6 +234,6 @@ ms.openlocfilehash: b502313e1dd42c23dbabd506aabf4be1626a31c9
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

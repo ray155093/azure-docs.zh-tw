@@ -4,7 +4,7 @@ description: "適用於 Azure 客體作業系統版次的更新清單"
 services: cloud-services
 documentationcenter: na
 author: raiye
-manager: markkie
+manager: timlt
 editor: 
 ms.assetid: d0a272a9-ed01-4f4c-a0b3-bd5e841bdd77
 ms.service: cloud-services
@@ -12,16 +12,63 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 10/31/2016
+ms.date: 1/10/2017
 ms.author: raiye
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: 8bc848f96ad1c5b6942692eb38646537b796ebbb
+ms.sourcegitcommit: e579c7fd4547a88c6356c77a220b5f9e1a07e542
+ms.openlocfilehash: deafae1c6f77a655d80ee7bafd220c5b624018bd
 
 
 ---
 # <a name="azure-guest-os"></a>Azure 客體作業系統
-下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。 請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。 更新一律會向前推進引進的特定[系列][family-explain]。
+下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。 請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。 已引進更新的特定[系列][family-explain]會持續推出更新。
+
+## <a name="january-guest-os"></a>一月客體作業系統
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| --- | --- | --- | --- | --- |
+| MS17-004 | [3216771] |本機安全性授權子系統的安全性更新 |2.59 |2017 年 1 月 10 日 |
+
+## <a name="december-guest-os"></a>十二月客體作業系統
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| --- | --- | --- | --- | --- |
+| MS16-144 |[3204059] |Internet Explorer 的累積安全性更新 |2.58、3.46、4.39 |2016 年 12 月 13 日 |
+| MS16-145 |[3204062] |Microsoft Edge 的累積安全性更新 |5.4 |2016 年 12 月 13 日 |
+| MS16-146 |[3204066]   |Microsoft 圖形元件的安全性更新|2.58、3.46、4.39、5.4 |2016 年 12 月 13 日 |
+| MS16-147 |[3204063]   |Microsoft Uniscribe 的安全性更新|2.58、3.46、4.39、5.4 |2016 年 12 月 13 日 |
+| MS16-149 |[3205655]   |Microsoft Windows 的安全性更新|2.58、3.46、4.39、5.4 |2016 年 12 月 13 日 |
+| MS16-150 |[3205642]   |安全核心模式的安全性更新 |5.4 |2016 年 12 月 13 日 |
+| MS16-151 |[3205651]   |核心模式驅動程式的安全性更新|2.58、3.46、4.39、5.4 |2016 年 12 月 13 日 |
+| MS16-152 |[3199709]   |Windows Kernel 的安全性更新 |5.4 |2016 年 12 月 13 日 |
+| MS16-153 |[3207328] |一般記錄檔系統驅動程式的安全性更新|2.58、3.46、4.39、5.4 |2016 年 12 月 13 日 |
+| MS16-155 |[3205640]   |.NET Framework 的安全性更新 |5.4 |2016 年 12 月 13 日 |
+| N/A |[3197868] |適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的 2016 年 11 月安全性每月品質彙總套件 |2.58 |2016 年 12 月 13 日 |
+| N/A |[3197877] |適用於 Windows Server 2012 的 2016 年 11 月安全性每月品質彙總套件 |3.46 |2016 年 12 月 13 日 |
+| N/A |[3197874] |適用於 Windows 8.1 和 Windows Server 2012 R2 的 2016 年 11 月安全性每月品質彙總套件 |4.39 |2016 年 12 月 13 日 |
+
+## <a name="november-guest-os"></a>十一月客體作業系統
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| --- | --- | --- | --- | --- |
+| MS16-129 |[3199057] |Microsoft Edge 的累積安全性更新 |5.3 |2016 年 11 月 8 日 |
+| MS16-130 |[3199172] |Microsoft Windows 的安全性更新 |5.3, 4.38, 3.45, 2.57 |2016 年 11 月 8 日 |
+| MS16-131 |[3199151]   |Microsoft Video Control 的安全性更新 |5.3, 4.38, 3.45, 2.57 |2016 年 11 月 8 日 |
+| MS16-132 |[3199120] |Microsoft Component 的安全性更新 |5.3, 4.38, 3.45, 2.57 |2016 年 11 月 8 日 |
+| MS16-134 |[3193706] |一般記錄檔系統驅動程式的安全性更新 |5.3, 4.38, 3.45, 2.57 |2016 年 11 月 8 日 |
+| MS16-135 |[3199135] |核心模式驅動程式的安全性更新 |5.3, 4.38, 3.45, 2.57 |2016 年 11 月 8 日 |
+| MS16-137 |[3199173]   |Windows 驗證方法的安全性更新 |5.3, 4.38, 3.45, 2.57 |2016 年 11 月 8 日 |
+| MS16-138 |[3199647] |Microsoft 虛擬硬碟的安全性更新 |5.3, 4.38, 3.45 |2016 年 11 月 8 日 |
+| MS16-139 |[3199720] |Windows Kernel 的安全性更新 |2.57 |2016 年 11 月 8 日 |
+| MS16-140 |[3193479] |開機管理程式的安全性更新 |5.3, 4.38, 3.45 |2016 年 11 月 8 日 |
+| MS16-142 |[3198467] |Internet Explorer 的累積安全性更新 |2.57, 4.38, 5.3 |2016 年 11 月 8 日 |
+| N/A |[3192321] |土耳其結束遵守 DST |5.3, 4.38, 3.45, 2.57 |2016 年 11 月 8 日 |
+| N/A |[3185330] |適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的 2016 年 10 月安全性每月品質彙總套件 |2.57 |2016 年 11 月 8 日 |
+| N/A |[3192403] |適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的 2016 年 10 月每月品質彙總套件預覽 |2.57 |2016 年 11 月 8 日 |
+| N/A |[3177467] |適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的服務堆疊更新：2016 年 9 月 20 日 |2.57 |2016 年 11 月 8 日 |
+| N/A |[3185332] |適用於 Windows Server 2012 的 2016 年 10 月安全性每月品質彙總套件 |3.45 |2016 年 11 月 8 日 |
+| N/A |[3192406] |適用於 Windows Server 2012 的 2016 年 10 月每月品質彙總套件預覽 |3.45 |2016 年 11 月 8 日 |
+| N/A |[3185331] |適用於 Windows 8.1 和 Windows Server 2012 R2 的 2016 年 10 月安全性每月品質彙總套件 |4.38 |2016 年 11 月 8 日 |
+| N/A |[3192404] |適用於 Windows 8.1 和 Windows Server 2012 R2 的 2016 年 10 月每月品質彙總套件預覽 |4.38 |2016 年 11 月 8 日 |
+| N/A |[3199986] |適用於 Windows 10 版本 1607 的服務堆疊更新：2016 年 10 月 27 日 |5.3 |2016 年 11 月 8 日 |
+| N/A |[3197954] |適用於 Windows 10 版本 1607 和 Windows Server 2016 的累積更新：2016 年 10 月 27 日 |5.3 |2016 年 11 月 8 日 |
 
 ## <a name="october-guest-os"></a>十月客體作業系統
 | 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
@@ -197,15 +244,15 @@ ms.openlocfilehash: 8bc848f96ad1c5b6942692eb38646537b796ebbb
 ## <a name="november-guest-os"></a>十一月客體作業系統
 | 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
 | --- | --- | --- | --- | --- |
-| MS15 112 |[3104517] |Internet Explorer 的累積安全性更新 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
-| MS15 114 |[3100213] |Windows Journal 的安全性更新，可解決遠端程式碼執行問題 |2.45 |2015 年 11 月 10 日 |
+| MS15&112; |[3104517] |Internet Explorer 的累積安全性更新 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
+| MS15&114; |[3100213] |Windows Journal 的安全性更新，可解決遠端程式碼執行問題 |2.45 |2015 年 11 月 10 日 |
 | MS15-115 |[3105864] |Microsoft Windows 的安全性更新，可解決遠端程式碼執行問題 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
-| MS15 117 |[3101722] |NDIS 的安全性更新，可解決提高權限問題 |2.45 |2015 年 11 月 10 日 |
-| MS15 118 |[3104507] |.NET Framework 的安全性更新，可解決提高權限問題 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
+| MS15&117; |[3101722] |NDIS 的安全性更新，可解決提高權限問題 |2.45 |2015 年 11 月 10 日 |
+| MS15&118; |[3104507] |.NET Framework 的安全性更新，可解決提高權限問題 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
 | MS15-119 |[3104521] |可解決提高權限的 Winsock 安全性更新 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
 | MS15-120 |[3102939] |可解決阻斷服務問題的 IPSec 安全性更新 |4.26、3.33 |2015 年 11 月 10 日 |
-| MS15 121 |[3081320] |解決詐騙的 Schannel 安全性更新， |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
-| MS15 122 |[3105256] |解決詐騙的 Kerberos 安全性更新 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
+| MS15&121; |[3081320] |解決詐騙的 Schannel 安全性更新， |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
+| MS15&122; |[3105256] |解決詐騙的 Kerberos 安全性更新 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
 | Microsoft Security Advisory |[3097966] |不慎公開數位憑證可能會允許詐騙 |4.26, 3.33, 2.45 |2015 年 11 月 10 日 |
 
 ## <a name="october-guest-os"></a>十月客體作業系統
@@ -356,6 +403,44 @@ ms.openlocfilehash: 8bc848f96ad1c5b6942692eb38646537b796ebbb
 | N/A |[3007054] |在 Windows 的 Windows 市集應用程式中列印文件時，一律會顯示受 PIN 保護的列印選項 |4.15、3.22,、2.34 |2015 年 1 月 13 日 |
 | N/A |[2999802] |在 Windows 中列印虛線時會變成實線 |4.15、3.22,、2.34 |2015 年 1 月 13 日 |
 | N/A |[2896881] |在 Windows 中於登入程序期間使用 AddPrinterConnection VBScript 命令對應使用者印表機時，登入時間過長 |4.15、3.22,、2.34 |2015 年 1 月 13 日 |
+
+[3216771]: https://technet.microsoft.com/library/security/MS17-004
+
+[3204059]: http://support.microsoft.com/kb/3204059 
+[3204062]: http://support.microsoft.com/kb/3204062 
+[3204066]: http://support.microsoft.com/kb/3204066 
+[3204063]: http://support.microsoft.com/kb/3204063 
+[3205655]: http://support.microsoft.com/kb/3205655 
+[3205642]: http://support.microsoft.com/kb/3205642 
+[3205651]: http://support.microsoft.com/kb/3205651 
+[3199709]: http://support.microsoft.com/kb/3199709 
+[3207328]: http://support.microsoft.com/kb/3207328 
+[3205640]: http://support.microsoft.com/kb/3205640 
+[3197868]: http://support.microsoft.com/kb/3197868 
+[3197877]: http://support.microsoft.com/kb/3197877 
+[3197874]: http://support.microsoft.com/kb/3197874 
+
+[3199057]: http://support.microsoft.com/kb/3199057 
+[3199172]: http://support.microsoft.com/kb/3199172 
+[3199151]: http://support.microsoft.com/kb/3199151 
+[3193706]: http://support.microsoft.com/kb/3193706 
+[3199120]: http://support.microsoft.com/kb/3199120 
+[3199135]: http://support.microsoft.com/kb/3199135 
+[3199173]: http://support.microsoft.com/kb/3199173 
+[3199647]: http://support.microsoft.com/kb/3199647 
+[3199720]: http://support.microsoft.com/kb/3199720 
+[3193479]: http://support.microsoft.com/kb/3193479 
+[3198467]: http://support.microsoft.com/kb/3198467 
+[3192321]: http://support.microsoft.com/kb/3192321 
+[3185330]: http://support.microsoft.com/kb/3185330 
+[3192403]: http://support.microsoft.com/kb/3192403 
+[3177467]: http://support.microsoft.com/kb/3177467 
+[3185332]: http://support.microsoft.com/kb/3185332 
+[3192406]: http://support.microsoft.com/kb/3192406 
+[3185331]: http://support.microsoft.com/kb/3185331 
+[3192404]: http://support.microsoft.com/kb/3192404 
+[3199986]: http://support.microsoft.com/kb/3199986 
+[3197954]: http://support.microsoft.com/kb/3197954  
 
 [3192887]: http://support.microsoft.com/kb/3192887
 [3192884]: http://support.microsoft.com/kb/3192884
@@ -631,11 +716,11 @@ ms.openlocfilehash: 8bc848f96ad1c5b6942692eb38646537b796ebbb
 
 
 
-[封存]: https://msdn.microsoft.com/library/azure/dn391773.aspx
+[archive]: https://msdn.microsoft.com/library/azure/dn391773.aspx
 [family-explain]: cloud-services-guestos-update-matrix.md#guest-os-family-version-explanation
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

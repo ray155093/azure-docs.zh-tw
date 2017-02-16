@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/26/2016
+ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: da6ac042a55c7c145895d15a735f77fb2e82d394
+ms.sourcegitcommit: 4c3f32cd6159052f17557c51e08e7e3f611aa338
+ms.openlocfilehash: 7a1e705e40cd8f7b260c38f41e81e2f199555059
 
 
 ---
@@ -212,27 +212,17 @@ Azure 串流分析中的查詢以類似 SQL 的查詢語言來表示，您可以
 
 **解決方案：**
 
-    WITH Makes AS (
-        SELECT
-            Make,
-            COUNT(*) AS CountMake
-        FROM
-            Input TIMESTAMP BY Time
-        GROUP BY
-              Make,
-              TumblingWindow(second, 2)
-    )
-    SELECT
-        COUNT(*) AS Count,
-        System.TimeStamp AS Time
-    FROM
-        Makes
-    GROUP BY
-        TumblingWindow(second, 1)
+````
+SELECT
+     COUNT(DISTINCT Make) AS CountMake,
+     System.TIMESTAMP AS TIME
+FROM Input TIMESTAMP BY TIME
+GROUP BY 
+     TumblingWindow(second, 2)
+````
 
 
-**說明：** 我們要執行第一次彙總，以取得時間範圍內的唯一品牌及其數目。
-然後我們會執行取得多少品牌的彙總 – 假設一個視窗中的所有唯一值都取得相同的時間戳記，則第二個彙總視窗必須是最小的，才不會從第一個步驟彙總 2 個視窗。
+**說明：**COUNT(DISTINCT Make) 會傳回一個時間範圍內 “Make” 資料行的相異值數目。
 
 ## <a name="query-example-determine-if-a-value-has-changed"></a>查詢範例：判斷值是否已變更
 **描述**：查看前一個值來判斷該值是否與目前的值不同。例如收費道路上前一輛汽車的品牌，是否與目前汽車的品牌相同？
@@ -509,7 +499,7 @@ Azure 串流分析中的查詢以類似 SQL 的查詢語言來表示，您可以
     GROUP BY HOPPINGWINDOW(second, 300, 5)
 
 
-**說明**：此查詢會每隔 5 秒產生事件，並且會輸出之前收到的最後一個事件。 [跳動視窗](https://msdn.microsoft.com/library/dn835041.aspx "跳動視窗 - Azure Stream Analytics") 持續時間會決定查詢回溯到多久之前以找出最新的事件 (在此範例中為 300 秒)。
+**說明**：此查詢會每隔 5 秒產生事件，並且會輸出之前收到的最後一個事件。 [跳動視窗](https://msdn.microsoft.com/library/dn835041.aspx "跳動視窗 - Azure Stream Analytics") 持續時間會決定查詢回溯到多久之前以找出最新的事件 (在此範例中為&300; 秒)。
 
 ## <a name="get-help"></a>取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
@@ -524,6 +514,6 @@ Azure 串流分析中的查詢以類似 SQL 的查詢語言來表示，您可以
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.tgt_pltfrm: na
 ms.date: 11/01/2016
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 844abce7941b7285c88aa0eda9eca43e1e5e42da
+ms.sourcegitcommit: c98251147bca323d31213a102f607e995b37e0ec
+ms.openlocfilehash: 801a9d0e92a248d2e9843f13cfce74b948cf0d4b
 
 
 ---
@@ -42,7 +42,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 目前支援下列資料來源：
 
 * **Azure SQL Database** 和 **Azure VM 上的 SQL Server**。 如需目標逐步解說，請參閱[本文](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)。 
-* **Azure DocumentDB**。 如需目標逐步解說，請參閱 [本文](../documentdb/documentdb-search-indexer.md)。 
+* **Azure DocumentDB**。 如需目標逐步解說，請參閱 [本文](search-howto-index-documentdb.md)。 
 * **Azure Blob 儲存體**，包括下列文件格式：PDF、Microsoft Office (DOCX/DOC、XSLX/XLS、PPTX/PPT、MSG)、HTML、XML、ZIP 以及純文字檔案 (包括 JSON)。 如需目標逐步解說，請參閱[本文](search-howto-indexing-azure-blob-storage.md)。
 * **Azure 資料表儲存體**。 如需目標逐步解說，請參閱 [本文](search-howto-indexing-azure-tables.md)。
 
@@ -799,6 +799,6 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

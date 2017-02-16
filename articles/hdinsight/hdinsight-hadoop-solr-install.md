@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 02/05/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 600bc7182b1ce3eb3663ce986e128c6b04897dee
+ms.sourcegitcommit: f9b191a68fe19f30aa157fd01f33afb0a4f1e279
+ms.openlocfilehash: c0fcfc1087e8635f6ec2a0cdc246f1155c90ea53
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 600bc7182b1ce3eb3663ce986e128c6b04897dee
 
 * [在 HDInsight Hadoop 叢集上安裝和使用 Solr (Linux)](hdinsight-hadoop-solr-install-linux.md)
 * [在 HDInsight 叢集中建立 Hadoop](hdinsight-provision-clusters.md)：建立 HDInsight 叢集的一般資訊。
-* [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集的一般資訊。
+* [使用指令碼動作來自訂 HDInsight 叢集][hdinsight-cluster-customize]：關於使用指令碼動作來自訂 HDInsight 叢集的一般資訊。
 * [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)
 
 ## <a name="what-is-solr"></a>什麼是 Solr？
@@ -44,7 +44,7 @@ ms.openlocfilehash: 600bc7182b1ce3eb3663ce986e128c6b04897dee
 1. 使用 [自訂建立] 選項，依[在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)中的描述開始建立叢集。
 2. 在精靈的 [指令碼動作] 頁面上，按一下 [加入指令碼動作] 以提供有關指令碼動作的詳細資料，如下所示：
 
-    ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install/hdi-script-action-solr.png "Use Script Action to customize a cluster")
+    ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install/hdi-script-action-solr.png "使用指令碼動作以自訂叢集")
 
     <table border='1'>
         <tr><th>屬性</th><th>值</th></tr>
@@ -82,7 +82,7 @@ ms.openlocfilehash: 600bc7182b1ce3eb3663ce986e128c6b04897dee
    * 在 [q] 文字方塊中輸入 **:**\*\*。 如此便會傳回已在 Solr 中編製索引的所有文件。 如果您想要搜尋文件內的特定字串，您可以在此輸入該字串。
    * 在 [ **wt** ] 文字方塊中，選取輸出格式。 預設值是 [ **json**]。 按一下 [ **執行查詢**]。
 
-     ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install/hdi-solr-dashboard-query.png "Run a query on Solr dashboard")
+     ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install/hdi-solr-dashboard-query.png "在 Solr 儀表板上執行查詢")
 
      輸出中會傳回兩個我們之前用於對 Solr 編製索引的文件。 輸出結果類似下面：
 
@@ -169,13 +169,13 @@ ms.openlocfilehash: 600bc7182b1ce3eb3663ce986e128c6b04897dee
 ## <a name="see-also"></a>另請參閱
 * [在 HDInsight Hadoop 叢集上安裝和使用 Solr (Linux)](hdinsight-hadoop-solr-install-linux.md)
 * [在 HDInsight 叢集中建立 Hadoop](hdinsight-provision-clusters.md)：建立 HDInsight 叢集的一般資訊。
-* [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集的一般資訊。
+* [使用指令碼動作來自訂 HDInsight 叢集][hdinsight-cluster-customize]：關於使用指令碼動作來自訂 HDInsight 叢集的一般資訊。
 * [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)
 * [在 HDInsight 叢集上安裝和使用 Spark][hdinsight-install-spark]：關於安裝 Spark 的指令碼動作範例。
 * [在 HDInsight 叢集上安裝 R][hdinsight-install-r]：關於安裝 R 的指令碼動作範例。
 * [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install.md)：關於安裝 Giraph 的指令碼動作範例。
 
-[powershell-install-configure]: powershell-install-configure.md
+[powershell-install-configure]: /powershell/azureps-cmdlets-docs
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts.md
 [hdinsight-install-spark]: hdinsight-hadoop-spark-install.md
@@ -183,6 +183,6 @@ ms.openlocfilehash: 600bc7182b1ce3eb3663ce986e128c6b04897dee
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

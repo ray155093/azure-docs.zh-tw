@@ -1,10 +1,10 @@
 ---
-title: " 在您的邏輯應用程式中使用 Slack 連接器 | Microsoft Docs"
-description: "開始在您的 Microsoft Azure App Service Logic Apps 中使用 Slack 連接器"
+title: " 在邏輯應用程式中使用 Slack 連接器 | Microsoft Docs"
+description: "開始在邏輯應用程式中使用 Slack 連接器"
 services: 
 documentationcenter: 
 author: msftman
-manager: erikre
+manager: anneta
 editor: 
 tags: connectors
 ms.assetid: 234cad64-b13d-4494-ae78-18b17119ba24
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 05/18/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: cacaa4a4a0089e1c3df54ae466af251026e1a55b
+ms.sourcegitcommit: 9c74b25a2ac5e2088a841d97920035376b7f3f11
+ms.openlocfilehash: 404776283ee10aa9410d002597e054757516bcab
 
 
 ---
@@ -33,7 +33,7 @@ Slack 是團隊通訊工具，能把您團隊的通訊都集中在一個地方�
 
 * 建置邏輯應用程式
 
-如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="lets-talk-about-triggers-and-actions"></a>我們來談談觸發程序及動作。
 Slack 連接器可當做動作來使用；它沒有觸發程序。 所有連接器都支援 JSON 和 XML 格式的資料。 
@@ -109,7 +109,7 @@ Slack 連接器可當做動作來使用；它沒有觸發程序。 所有連接�
 
 - - -
 ## <a name="object-definitions"></a>物件定義：
- **Message**：Yammer 訊息
+ **訊息**︰Slack 訊息
 
 Message 的必要屬性：
 
@@ -141,7 +141,7 @@ Message 的必要屬性：
 | liked_by |沒有定義 |
 | system_message |布林值 |
 
- **PostOperationRequest**：代表要張貼到 Yammer 上的 Yammer 連接器張貼要求
+ **PostOperationRequest**：代表要張貼到 Slack 上的 Slack 連接器張貼要求
 
 PostOperationRequest 的必要屬性：
 
@@ -231,7 +231,7 @@ YammmerEntity 的必要屬性：
 | full_name |string |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 ## <a name="object-definitions"></a>物件定義：
  **WebResultModel**：Bing 的網頁搜尋結果
@@ -400,7 +400,7 @@ MessageItem 的必要屬性：
 | is_user-deleted |布林值 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 [1]: ./media/connectors-create-api-slack/connectionconfig1.png
 [2]: ./media/connectors-create-api-slack/connectionconfig2.png 
@@ -411,6 +411,6 @@ MessageItem 的必要屬性：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: StorSimple Adapter for SharePoint | Microsoft Docs
+title: "安裝 StorSimple Adapter for SharePoint | Microsoft Docs"
 description: "描述如何在 SharePoint 伺服器陣列中安裝、設定或移除 StorSimple Adapter for SharePoint。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 07/11/2016
 ms.author: v-sharos
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a108e20c36208fd211e45d180fc77a65e501b191
+ms.sourcegitcommit: eb56cae77722268f42e5126c45ad2878af7db94a
+ms.openlocfilehash: 8c7bcc959c15399e8be96eb8f37634d2763a3115
 
 
 ---
@@ -247,7 +247,7 @@ StorSimple 裝置是一種區塊裝置，因此需要可裝載資料的檔案伺
 2. 按兩下 StorSimple Adapter for SharePoint。 安裝精靈隨即啟動。
    
     ![安裝精靈](./media/storsimple-adapter-for-sharepoint/sasp2.png)
-3. 按一下 [下一步] 。 下列頁面隨即出現。
+3. 按 [下一步] 。 下列頁面隨即出現。
    
     ![安裝精靈移除頁面](./media/storsimple-adapter-for-sharepoint/sasp3.png)
 4. 按一下 [移除]  以選取移除程序。 下列頁面隨即出現。
@@ -256,7 +256,7 @@ StorSimple 裝置是一種區塊裝置，因此需要可裝載資料的檔案伺
 5. 按一下 [移除]  確認移除。 下列進度頁面隨即出現。
    
     ![安裝精靈進度頁面](./media/storsimple-adapter-for-sharepoint/sasp5.png)
-6. 移除完成後，會出現完成頁面。 按一下 [完成]  以關閉安裝精靈。
+6. 移除完成後，會出現完成頁面。 按一下 [完成] 以關閉安裝精靈。
 
 #### <a name="to-use-the-control-panel-to-uninstall-the-adapter"></a>使用控制台來解除安裝配接器
 1. 開啟 [控制台]，然後按一下 [程式和功能] 。
@@ -275,6 +275,6 @@ StorSimple 裝置是一種區塊裝置，因此需要可裝載資料的檔案伺
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

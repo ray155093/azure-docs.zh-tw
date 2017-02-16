@@ -15,13 +15,13 @@ ms.workload: tbd
 ms.date: 11/02/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1022f5a2bbb9b61ce7d941de9e2a5582db22b91b
+ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
+ms.openlocfilehash: 925411deed422af00b10ff6787606f5039a5fb23
 
 
 ---
 # <a name="application-insights-for-azure-cloud-services"></a>Azure 雲端服務的 Application Insights
-[Microsoft Azure 雲端服務應用程式](https://azure.microsoft.com/services/cloud-services/)可以由 [Application Insights][start] 監視可用性、效能、失敗及使用情況。 當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
+[Application Insights][start] 可以監視 [Microsoft Azure 雲端服務應用程式](https://azure.microsoft.com/services/cloud-services/)的可用性、效能、失敗及使用情況。 當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
 
 ![範例](./media/app-insights-cloudservices/sample.png)
 
@@ -56,7 +56,7 @@ ms.openlocfilehash: 1022f5a2bbb9b61ce7d941de9e2a5582db22b91b
 ## <a name="plan-resources-and-resource-groups"></a>規劃資源和資源群組
 來自您應用程式的遙測將會在 Application Insights 類型的 Azure 資源中儲存、分析及顯示。 
 
-每個資源只屬於一個資源群組。 資源群組可用來在經過協調的單一交易中，管理成本、將存取權授與小組成員，以及部署更新項目。 例如，您可以[撰寫指令碼來部署](../resource-group-template-deploy.md)「Azure 雲端服務」及其 Application Insights 監視資源，全部都在一個作業中完成。
+每個資源只屬於一個資源群組。 資源群組可用來在經過協調的單一交易中，管理成本、將存取權授與小組成員，以及部署更新項目。 例如，您可以[撰寫指令碼來部署](../azure-resource-manager/resource-group-template-deploy.md)「Azure 雲端服務」及其 Application Insights 監視資源，全部都在一個作業中完成。
 
 ### <a name="resources-for-components"></a>元件的資源
 建議的配置是為您應用程式的每個元件 (亦即，每個 Web 角色和背景工作角色) 建立個別的資源。 您可以個別分析每個元件，但建立一個[儀表板](app-insights-dashboards.md)來彙總所有元件的重要圖表，以便將它們一起做比較和進行監視。 
@@ -135,7 +135,7 @@ ms.openlocfilehash: 1022f5a2bbb9b61ce7d941de9e2a5582db22b91b
 新增更多遙測 - 請參閱以下章節 - 然後再發佈應用程式以取得即時診斷和使用方式的意見反應。 
 
 #### <a name="no-data"></a>沒有資料？
-* 開啟[搜尋][diagnostic]圖格來查看個別事件。
+* 開啟 [[搜尋][diagnostic]] 磚來查看個別事件。
 * 使用應用程式、開啟不同頁面，以產生一些遙測。
 * 請稍等片刻，然後按一下 [重新整理]。
 * 請參閱[疑難排解][qna]。
@@ -212,10 +212,10 @@ ms.openlocfilehash: 1022f5a2bbb9b61ce7d941de9e2a5582db22b91b
 ![相互關聯的遙測](./media/app-insights-cloudservices/bHxuUhd.png)
 
 ## <a name="client-telemetry"></a>用戶端遙測
-[將 JavaScript SDK 新增至網頁][client]，以取得瀏覽器型遙測，例如 Web 檢視計數、頁面載入時間、指令碼例外狀況，並讓您在頁面指令碼中撰寫自訂遙測。
+[將 JavaScript SDK 新增至網頁][client]以取得瀏覽器型遙測 (例如頁面檢視計數、頁面載入時間、指令碼例外狀況)，並讓您在頁面指令碼中撰寫自訂遙測。
 
 ## <a name="availability-tests"></a>可用性集合
-[設定 Web 測試][可用性]，以確認應用程式處於線上狀態且能夠回應。
+[設定 Web 測試][availability]，以確認應用程式處於線上狀態且能夠回應。
 
 ## <a name="display-everything-together"></a>將所有內容一起顯示
 若要了解您系統的整體情況，您可以將重要的監視圖表全部都彙總在一個[儀表板](app-insights-dashboards.md)上。 例如，您可以釘選每個角色的要求和失敗計數。 
@@ -228,7 +228,7 @@ ms.openlocfilehash: 1022f5a2bbb9b61ce7d941de9e2a5582db22b91b
 [此範例](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService) 監視具有 Web 角色和兩個背景工作角色的服務。
 
 ## <a name="exception-method-not-found-on-running-in-azure-cloud-services"></a>在 Azure 雲端服務中執行時發生的「找不到方法」例外狀況
-您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援 4.6。 [在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md) ，再執行您的 App。
+您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援&4;.6。 [在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md) ，再執行您的 App。
 
 ## <a name="next-steps"></a>後續步驟
 * [設定將 Azure 診斷傳送至 Application Insights](app-insights-azure-diagnostics.md)
@@ -236,7 +236,7 @@ ms.openlocfilehash: 1022f5a2bbb9b61ce7d941de9e2a5582db22b91b
 * [自動執行 Azure 診斷](app-insights-powershell-azure-diagnostics.md)
 
 [api]: app-insights-api-custom-events-metrics.md
-[可用性]: app-insights-monitor-web-app-availability.md
+[availability]: app-insights-monitor-web-app-availability.md
 [azure]: app-insights-azure.md
 [client]: app-insights-javascript.md
 [diagnostic]: app-insights-diagnostic-search.md
@@ -248,6 +248,6 @@ ms.openlocfilehash: 1022f5a2bbb9b61ce7d941de9e2a5582db22b91b
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -4,18 +4,18 @@ description: "示範使用 Azure Storage Analytics、AzCopy 和 Microsoft Messag
 services: storage
 documentationcenter: dotnet
 author: robinsh
-manager: carmonm
+manager: timlt
 ms.assetid: 6b23cba5-0d53-439e-870b-de8e406107d8
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/03/2016
+ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: f2032f3a4fa559b9772ee63d39d66408b3f92175
-ms.openlocfilehash: 5a07c355259c61cfde9f2c1e5f056a0b7f794861
+ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
+ms.openlocfilehash: 82f0e5b9d0bfca1921367a2fd91259eeb4254285
 
 
 ---
@@ -103,7 +103,7 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 
 **透過 PowerShell**
 
-若要開始使用 Azure PowerShell，請參閱 [如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)。
+若要開始使用 Azure PowerShell，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 1. 使用 [Add-AzureAccount](http://msdn.microsoft.com/library/azure/dn722528.aspx) Cmdlet 將您的 Azure 使用者帳戶新增至 PowerShell 視窗：
    
@@ -383,6 +383,6 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 * [Microsoft Message Analyzer 操作指南](http://technet.microsoft.com/library/jj649776.aspx)
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用 Maven 與 Java 建置 HBase 應用程式，並部署到以 Linux 為基礎的 HDInsight | Microsoft Docs"
+title: "建置 Azure HDInsight 的 Java HBase 應用程式 | Microsoft Docs"
 description: "了解如何使用 Apache Maven 建置 Java 型 Apache HBase 應用程式，然後將其部署至 Azure 雲端中以 Linux 為基礎的 HDInsight。"
 services: hdinsight
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/03/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0f321065b9c24075837bebb71251cbc5751a1854
+ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
+ms.openlocfilehash: d91e05e458c6689f04dedd85a3e4adc60e6de72d
 
 
 ---
@@ -25,10 +25,8 @@ ms.openlocfilehash: 0f321065b9c24075837bebb71251cbc5751a1854
 
 [Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。 在本文中，您將了解如何用它來建立基本的 Java 應用程式，以便在以 Linux 為基礎的 HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
 
-> [!NOTE]
-> 本文件中的步驟是假設您使用以 Linux 為基礎的 HDInsight 叢集。 如需使用以 Windows 為基礎的 HDInsight 叢集資訊，請參閱 [使用 Maven 建置搭配使用 HBase 和以 Window 為基礎的 HDInsight 的 Java 應用程式](hdinsight-hbase-build-java-maven.md)
-> 
-> 
+> [!IMPORTANT]
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="requirements"></a>需求
 * [Java platform JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 7 或更新版本
@@ -391,6 +389,6 @@ ms.openlocfilehash: 0f321065b9c24075837bebb71251cbc5751a1854
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

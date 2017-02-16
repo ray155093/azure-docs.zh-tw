@@ -1,5 +1,5 @@
 ---
-title: "網路基礎結構指導方針 | Microsoft Docs"
+title: "Azure 網路基礎結構指導方針 | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中部署虛擬網路的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-windows
@@ -13,15 +13,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4e1f3e1a79321683337d155c5f575cb3f8905913
+ms.sourcegitcommit: 1e52ae69951b6b1feee6207033a85a583d13bcc2
+ms.openlocfilehash: 5db3100d94af1461d538eb1bb9b16b7bf387517a
 
 
 ---
-# <a name="networking-infrastructure-guidelines"></a>網路基礎結構指導方針
+# <a name="azure-networking-infrastructure-guidelines"></a>Azure 網路基礎結構指導方針
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
 本文著重於了解 Azure 內虛擬網路的必要計畫步驟，以及現有內部部署環境之間的連線能力。
@@ -106,6 +106,6 @@ ms.openlocfilehash: 4e1f3e1a79321683337d155c5f575cb3f8905913
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

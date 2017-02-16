@@ -1,10 +1,10 @@
 ---
 title: "將 Azure VM 備份到復原服務保存庫 | Microsoft Docs"
-description: "利用 Azure 虛擬機器備份的這些程序來探索、註冊，以及將 Azure 虛擬機器備份到復原服務保存庫。"
+description: "探索、註冊及備份 Azure 虛擬機器到復原服務保存庫。"
 services: backup
 documentationcenter: 
 author: markgalioto
-manager: cfreeman
+manager: carmonm
 editor: 
 keywords: "虛擬機器備份; 備份虛擬機器; 備份和災害復原; arm vm 備份"
 ms.assetid: 5c68481d-7be3-4e68-b87c-0961c267053e
@@ -13,11 +13,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/11/2016
-ms.author: trinadhk; jimpark; markgal;
+ms.date: 1/30/2017
+ms.author: trinadhk;jimpark;markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: ac8df40db8ddcc84a0a6221dddd0f17fecbe6586
-ms.openlocfilehash: e80d4fdb6f189bf46096422602508b0827f41a67
+ms.sourcegitcommit: 39147f2db1e660a21d6ed622206787ea0c569056
+ms.openlocfilehash: 28a5014f7ee73b30f879d249811e7fc303b13ac6
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: e80d4fdb6f189bf46096422602508b0827f41a67
 >
 >
 
-本文提供將 Azure VM (以 Resource Manager 部署的 VM 和傳統部署的 VM) 備份至復原服務保存庫的程序。 備份 VM 的工作多數是準備。 在備份或保護 VM 之前，您必須完成 [必要條件](backup-azure-arm-vms-prepare.md) 來備妥 VM 的保護環境。 完成必要條件後，您就能初始備份作業來製作 VM 的快照集。
+本文將詳細說明如何將 Azure VM (包括以 Resource Manager 部署和傳統部署的 VM) 備份至復原服務保存庫。 備份 VM 的工作多數是準備。 在備份或保護 VM 之前，您必須完成 [必要條件](backup-azure-arm-vms-prepare.md) 來備妥 VM 的保護環境。 完成必要條件後，您就能初始備份作業來製作 VM 的快照集。
 
 
 [!INCLUDE [learn about backup deployment models](../../includes/backup-deployment-models.md)]
@@ -82,6 +82,6 @@ ms.openlocfilehash: e80d4fdb6f189bf46096422602508b0827f41a67
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

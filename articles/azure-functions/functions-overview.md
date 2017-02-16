@@ -14,11 +14,11 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/20/2016
+ms.date: 01/17/2017
 ms.author: cfowler;mahender;glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 31d7a8d1abb59e096a657c4a74743adfc0d137b6
-ms.openlocfilehash: 01c1e7b58a7dce3c640ac151b3ac708ce2b7d913
+ms.sourcegitcommit: 30cc3b8749d5b36b89b242e2691003cc6f67f7d2
+ms.openlocfilehash: 00359057d702c556cd8beb91cf17ccf41c96f601
 
 
 ---
@@ -70,10 +70,10 @@ Azure Functions 可以與各種 Azure 和協力廠商服務整合。 這些服�
 ## <a name="a-namepricingahow-much-does-functions-cost"></a><a name="pricing"></a>Functions 的計費方式
 Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方案︰ 
 
-* **使用情況方案**：當您的函式執行時，Azure 會提供所有必要的運算資源。 您不必擔心資源管理，您只需為您的程式碼執行時間支付費用。 在 [Functions 價格](/pricing/details/functions)頁面上可取得完整的價格詳細資料。 
-* **App Service 方案** - 可讓您如同 Web、行動及 API 應用程式一樣執行函數。 當您已準備對其他應用程式使用 App Service 時，您可以在相同方案上執行您的函數，不會產生額外的費用。 如需完整的詳細資訊，請參閱 [App Service 價格](/pricing/details/app-service/)頁面。
+* **使用情況方案**：當您的函式執行時，Azure 會提供所有必要的運算資源。 您不必擔心資源管理，您只需為您的程式碼執行時間支付費用。 
+* **App Service 方案** - 可讓您如同 Web、行動及 API 應用程式一樣執行函數。 當您已準備對其他應用程式使用 App Service 時，您可以在相同方案上執行您的函數，不會產生額外的費用。 
 
-如需有關調整函數的詳細資訊，請參閱 [如何調整 Azure Functions](functions-scale.md)。
+在 [Functions 價格](https://azure.microsoft.com/pricing/details/functions/)頁面上可取得完整的價格詳細資料。 如需有關調整函數的詳細資訊，請參閱 [如何調整 Azure Functions](functions-scale.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * [建立您的第一個Azure Functions](functions-create-first-azure-function.md)  
@@ -90,6 +90,6 @@ Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-html
 ms.devlang: javascript
 ms.topic: article
-ms.date: 10/01/2016
+ms.date: 10/30/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 31632f9c88810d5cd26ad314dde2c28a4012dc75
+ms.sourcegitcommit: 314170f8d1ef228817543a80b99f4c2ff282866f
+ms.openlocfilehash: 8c783fc8e789ec31f0b8f4db90b5fa67334d95ab
 
 
 ---
@@ -28,11 +28,10 @@ ms.openlocfilehash: 31632f9c88810d5cd26ad314dde2c28a4012dc75
 ## <a name="supported-platforms"></a>支援的平台
 此 SDK 可在 iOS、Android 和 Windows 裝置上支援 Apache Cordova v6.0.0 和更新版本。  平台支援如下︰
 
-* Android API 19-24 (KitKat 到 Nougat)
+* Android API 19-24 (KitKat 至 Nougat)。
 * iOS 8.0 版和更新版本。
-* Windows Phone 8.0
-* Windows Phone 8.1
-* 通用 Windows 平台
+* Windows Phone 8.1。
+* 通用 Windows 平台。
 
 ## <a name="a-namesetupasetup-and-prerequisites"></a><a name="Setup"></a>設定和必要條件
 本指南假設您已建立包含資料表的後端。 本指南假設資料表的結構描述與這些教學課程中的資料表相同。 本指南也假設您已將 Apache Cordova 外掛程式加入至程式碼。  如果您還沒有這樣做，您可以在命令列將 Apache Cordova 外掛程式新增至您的專案：
@@ -74,12 +73,12 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 5. 在左側導覽中，展開網站的 [config]、[authsettings] 節點。
 6. 按一下 [編輯] 
 7. 尋找「allowedExternalRedirectUrls」元素。  它可能會設定為 null 或值陣列。  將此值變更為下列值︰
-   
+
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
-   
+
     使用您服務的 URL 來取代 URL。  範例包括 "http://localhost:3000" (適用於 Node.js 範例服務) 或 "http://localhost:4400" (適用於 Ripple 服務)。  不過，這些 URL 都是範例 - 您的情況 (包括範例中提及的服務) 可能會有差異。
 8. 按一下螢幕右上角的 [讀/寫]  按鈕。
 9. 按一下綠色 [PUT]  按鈕。
@@ -139,11 +138,15 @@ pushHandler.on('error', function (error) {
 
 使用通知中樞 SDK 從伺服器傳送推播通知。  永遠不要直接從用戶端傳送推播通知。 這種方式會被用來對通知中樞或 PNS 觸發阻斷服務攻擊。  PNS 可能會因為這類攻擊而禁止您的流量。
 
+## <a name="more-information"></a>詳細資訊
+
+您可以在 [API 文件](http://azure.github.io/azure-mobile-apps-js-client/)中找到 API 詳細資訊。
+
 <!-- URLs. -->
 [Azure 入口網站]: https://portal.azure.com
 [Azure Mobile Apps 快速啟動]: app-service-mobile-cordova-get-started.md
 [開始使用驗證]: app-service-mobile-cordova-get-started-users.md
-[將驗證新增至您的應用程式]: app-service-mobile-cordova-get-started-users.md
+[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
 
 [適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式]: https://www.npmjs.com/package/cordova-plugin-ms-azure-mobile-apps
 [第一個 Apache Cordova 應用程式]: http://cordova.apache.org/#getstarted
@@ -151,10 +154,10 @@ pushHandler.on('error', function (error) {
 [phonegap-plugin-push]: https://www.npmjs.com/package/phonegap-plugin-push
 [cordova-plugin-device]: https://www.npmjs.com/package/cordova-plugin-device
 [cordova-plugin-inappbrowser]: https://www.npmjs.com/package/cordova-plugin-inappbrowser
-[Query 物件文件]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx
+[Query object documentation]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 06/05/2016
 ms.author: mlearned
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b3ef77cc1b3b13a1603f1ca7c6d4a000b69453e0
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 6a03b96b3f06d9c8cdb820e6c7835f728a28cc99
 
 
 ---
@@ -278,31 +278,31 @@ Azure 提供許多用來監視和針對執行中應用程式進行疑難排解�
 [image11]: ./media/tutorial-azureportal-devops/image11.png
 [image12]: ./media/tutorial-azureportal-devops/image12.png
 [image13]: ./media/tutorial-azureportal-devops/image13.png
-[Image14]: ./media/tutorial-azureportal-devops/image14.png
-[Image15]: ./media/tutorial-azureportal-devops/image15.png
-[Image16]: ./media/tutorial-azureportal-devops/image16.png
-[Image17]: ./media/tutorial-azureportal-devops/image17.png
-[Image18]: ./media/tutorial-azureportal-devops/image18.png
-[Image19]: ./media/tutorial-azureportal-devops/image19.png
-[Image20]: ./media/tutorial-azureportal-devops/image20.png
-[Image21]: ./media/tutorial-azureportal-devops/image21.png
-[Image22]: ./media/tutorial-azureportal-devops/image22.png
-[Image23]: ./media/tutorial-azureportal-devops/image23.png
-[Image24]: ./media/tutorial-azureportal-devops/image24.png
-[Image25]: ./media/tutorial-azureportal-devops/image25.png
+[image14]: ./media/tutorial-azureportal-devops/image14.png
+[image15]: ./media/tutorial-azureportal-devops/image15.png
+[image16]: ./media/tutorial-azureportal-devops/image16.png
+[image17]: ./media/tutorial-azureportal-devops/image17.png
+[image18]: ./media/tutorial-azureportal-devops/image18.png
+[image19]: ./media/tutorial-azureportal-devops/image19.png
+[image20]: ./media/tutorial-azureportal-devops/image20.png
+[image21]: ./media/tutorial-azureportal-devops/image21.png
+[image22]: ./media/tutorial-azureportal-devops/image22.png
+[image23]: ./media/tutorial-azureportal-devops/image23.png
+[image24]: ./media/tutorial-azureportal-devops/image24.png
+[image25]: ./media/tutorial-azureportal-devops/image25.png
 [image26]: ./media/tutorial-azureportal-devops/image26.png
 [image27]: ./media/tutorial-azureportal-devops/image27.png
-[Image28]: ./media/tutorial-azureportal-devops/image28.png
-[Image29]: ./media/tutorial-azureportal-devops/image29.png
-[Image30]: ./media/tutorial-azureportal-devops/image30.png
-[Image31]: ./media/tutorial-azureportal-devops/image31.png
-[Image32]: ./media/tutorial-azureportal-devops/image32.png
-[Image33]: ./media/tutorial-azureportal-devops/image33.png
-[Image34]: ./media/tutorial-azureportal-devops/image34.png
-[Image35]: ./media/tutorial-azureportal-devops/image35.png
-[Image36]: ./media/tutorial-azureportal-devops/image36.png
-[Image37]: ./media/tutorial-azureportal-devops/image37.png
-[Image38]: ./media/tutorial-azureportal-devops/image38.png
+[image28]: ./media/tutorial-azureportal-devops/image28.png
+[image29]: ./media/tutorial-azureportal-devops/image29.png
+[image30]: ./media/tutorial-azureportal-devops/image30.png
+[image31]: ./media/tutorial-azureportal-devops/image31.png
+[image32]: ./media/tutorial-azureportal-devops/image32.png
+[image33]: ./media/tutorial-azureportal-devops/image33.png
+[image34]: ./media/tutorial-azureportal-devops/image34.png
+[image35]: ./media/tutorial-azureportal-devops/image35.png
+[image36]: ./media/tutorial-azureportal-devops/image36.png
+[image37]: ./media/tutorial-azureportal-devops/image37.png
+[image38]: ./media/tutorial-azureportal-devops/image38.png
 [image39]: ./media/tutorial-azureportal-devops/image39.png
 [image40]: ./media/tutorial-azureportal-devops/image40.png
 [image41]: ./media/tutorial-azureportal-devops/image41.png
@@ -337,6 +337,6 @@ Azure 提供許多用來監視和針對執行中應用程式進行疑難排解�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

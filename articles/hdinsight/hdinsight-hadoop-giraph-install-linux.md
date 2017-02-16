@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/17/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fe8d1658d2c3de2505f14255f2e30f1ddc537680
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: bd7cc835b251395c71fae4130b5b7057eb80b9e0
 
 
 ---
@@ -26,10 +26,8 @@ ms.openlocfilehash: fe8d1658d2c3de2505f14255f2e30f1ddc537680
 
 在本主題中，您將了解如何使用指令碼動作來安裝 Giraph。 一旦您已安裝 Giraph，您也將了解如何將 Giraph 用於大部分的一般應用程式，也就是處理大型的圖形。
 
-> [!NOTE]
-> 本文的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。 如需使用以 Windows 為基礎的叢集的詳細資訊，請參閱 [在 HDInsight Hadoop 叢集上安裝 Giraph (Windows)](hdinsight-hadoop-giraph-install.md)
-> 
-> 
+> [!IMPORTANT]
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="a-namewhatisawhat-is-giraph"></a><a name="whatis"></a>什麼是 Giraph？
 [Apache Giraph](http://giraph.apache.org/) 可讓您利用 Hadoop 執行圖形處理，且可以搭配 Azure HDInsight 一起使用。 圖形可以模型化物件之間的關聯，例如大型網路 (像是網際網路) 上的路由器之間的連線，或社交網路上的人際關係 (有時稱為社交圖形)。 圖形處理可讓您分析圖形中物件之間的關聯，例如：
@@ -152,6 +150,6 @@ ms.openlocfilehash: fe8d1658d2c3de2505f14255f2e30f1ddc537680
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 10/14/2016
+ms.date: 11/18/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3a2795fd08b838edcf255e518f705683cc2df15e
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 4d3609ae1ea5fba89a9c0222586f578fdaeea757
 
 
 ---
@@ -39,7 +39,7 @@ Update 3 包含以下重要的改良功能和錯誤修正。
 
 * **自動化空間回收變更** – 從 Update 3 開始，空間回收演算法是在待命控制器上執行，使得執行更快速。 如需有關與空間回收搭配運作所需之連接埠的詳細資訊，請參閱 [StorSimple 的網路需求](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device)。
 * **效能增強功能** – Update 3 已改善對雲端的讀寫效能。
-* **移轉相關的改良** – 在此版本中，針對從 5000/7000 系列裝置到 8000 系列裝置的移轉功能，進行了數個錯誤修正和改良。 如需有關如何使用移轉功能的詳細資訊，請移至[從 5000/7000 系列裝置的移轉到 8000 系列裝置](https://www.microsoft.com/en-us/download/details.aspx?id=47322)。 
+* **移轉相關的改良** – 在此版本中，針對從 5000/7000 系列裝置到 8000 系列裝置的移轉功能，進行了數個錯誤修正和改良。 如需有關如何使用移轉功能的詳細資訊，請移至[從 5000/7000 系列裝置的移轉到 8000 系列裝置](https://gallery.technet.microsoft.com/Azure-StorSimple-50007000-c1a0460b)。 
 * **監視相關的修正** - 在此版本中，與監視圖表、服務儀表板及裝置儀表板相關的錯誤均已修正。
 
 ## <a name="issues-fixed-in-update-3"></a>Update 3 中修正的問題
@@ -94,6 +94,6 @@ Update 3 包含以下重要的改良功能和錯誤修正。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

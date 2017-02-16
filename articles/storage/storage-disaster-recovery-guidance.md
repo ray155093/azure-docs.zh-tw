@@ -12,14 +12,15 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 1/19/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 14997080496adfd363fee249c858ed9a0b553066
+ms.sourcegitcommit: 64650bf7baf46b0f5473deb1a9b4ec329979d153
+ms.openlocfilehash: 0fc78521abb0fce2a38b14d1411dad42b3580df2
 
 
 ---
+
 # <a name="what-to-do-if-an-azure-storage-outage-occurs"></a>如果 Azure 儲存體發生中斷怎麼辦
 在 Microsoft，我們竭力確保我們的服務總是可供用。 有時候會因為不可抗拒之因素，而造成服務在一或多個區域內中斷。 為了協助您處理這類罕見的狀況，我們提供下列 Azure 儲存體服務的高階指引。
 
@@ -54,7 +55,9 @@ ms.openlocfilehash: 14997080496adfd363fee249c858ed9a0b553066
 * 儲存體異地複寫容錯移轉只會由 Azure 儲存體團隊發動 – 客戶無須採取行動。
 * 您現有的 Blob、資料表、佇列及檔案之儲存體服務端點，在容錯移轉後都會維持原狀；需要更新 DNS 以從主要區域切換到次要地區。
 * 由於災害的影響，在異地複寫容錯移轉的之前與期間內，您將沒有您的儲存體帳戶的寫入權限，如果您的儲存體帳戶已設為 RA-GRS，則您仍然可以從次要地區讀取資料。
-* 當異地複寫容錯移轉已完成且 DNS 變更已傳播時，您對儲存體帳戶的讀取和寫入權限將會恢復。 您可以查詢 [儲存體帳戶的「上次異地複寫容錯移轉時間」](https://msdn.microsoft.com/library/azure/ee460802.aspx) 以取得詳細資料。
+* 當異地複寫容錯移轉已完成且 DNS 變更已傳播時，您對儲存體帳戶的讀取和寫入權限將會恢復；這會指向先前用來做為您次要端點的項目。 
+* 請注意，如果您已為儲存體帳戶設定 GRS 或 RA-GRS，則您將會有寫入權限。 
+* 您可以查詢 [儲存體帳戶的「上次異地複寫容錯移轉時間」](https://msdn.microsoft.com/library/azure/ee460802.aspx) 以取得詳細資料。
 * 容錯移轉之後，您的儲存體帳戶就會正常運作，不過是處於「降級」狀態，因為它是裝載在沒有異地複寫之可能性的獨立區域。 為了降低此風險，我們將會還原原始的主要區域，然後進行異地容錯回復以還原為原始狀態。 如果無法復原為主要區域的原始狀態，我們會配置另一個次要地區。
   如需 Azure 儲存體異地複寫的詳細資訊，請參閱儲存體團隊部落格上關於 [備援選項和 RA-GRS](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/)的文章。
 
@@ -66,9 +69,11 @@ ms.openlocfilehash: 14997080496adfd363fee249c858ed9a0b553066
 * 資料表 – 使用 [AzCopy](storage-use-azcopy.md) 將資料表資料匯出到位於其他區域的其他儲存體帳戶。
 * 檔案 – 使用 [AzCopy](storage-use-azcopy.md) 或 [Azure PowerShell](storage-powershell-guide-full.md) 將您的檔案複製到位於其他區域的其他儲存體帳戶。
 
+如需建立應用程式以充分利用 RA-GRS 功能的相關資訊，請造訪[使用 RA-GRS 儲存體設計高可用性的應用程式 (英文)](storage-designing-ha-apps-with-ragrs.md)
 
 
 
-<!--HONumber=Nov16_HO3-->
+
+<!--HONumber=Jan17_HO3-->
 
 

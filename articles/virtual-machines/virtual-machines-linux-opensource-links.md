@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 06/27/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 2224028e314ca32b51c36cc2b9b8134a5eda330a
+ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
+ms.openlocfilehash: 3db8a2b4618c05430a7e0cd7664514abc582078b
 
 
 ---
@@ -105,7 +105,7 @@ ms.openlocfilehash: 2224028e314ca32b51c36cc2b9b8134a5eda330a
 * [針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-linux-classic-restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 
 
 ## <a name="reference"></a>參考
-* [Azure 服務管理 (asm) 模式中的 Azure CLI 命令](../virtual-machines-command-line-tools.md)
+* [Azure 服務管理 (asm) 模式中的 Azure CLI 命令](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 * [Azure 服務管理 REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx)
 
 ## <a name="general-links"></a>一般連結
@@ -126,7 +126,7 @@ ms.openlocfilehash: 2224028e314ca32b51c36cc2b9b8134a5eda330a
 * [適用於 Linux 檔案伺服器的 Kaspersky AV](https://azure.microsoft.com/marketplace/partners/kaspersky-lab/kav-for-lfs-kav-for-lfs/)
 
 ### <a name="nosql"></a>NoSQL
-* [Azure 的 8 個開放原始碼 NoSql 資料庫](http://openness.microsoft.com/blog/2014/11/03/open-source-nosql-databases-microsoft-azure/)
+* [Azure 的&8; 個開放原始碼 NoSql 資料庫](http://openness.microsoft.com/blog/2014/11/03/open-source-nosql-databases-microsoft-azure/)
 * [Slideshare (MSOpenTech)︰Azure 上的 CouchDb 經驗](http://www.slideshare.net/brianbenz/experiences-using-couchdb-inside-microsofts-azure-team)
 * [透過 node.js、CORS 和 Grunt 執行 CouchDB 即服務](http://msopentech.com/blog/2013/12/19/tutorial-building-multi-tier-windows-azure-web-application-use-cloudants-couchdb-service-node-js-cors-grunt-2/)
 * [Azure Redis 快取服務中的 Redis on Windows](http://msopentech.com/blog/2014/05/12/redis-on-windows/)
@@ -164,6 +164,6 @@ ms.openlocfilehash: 2224028e314ca32b51c36cc2b9b8134a5eda330a
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO5-->
 
 

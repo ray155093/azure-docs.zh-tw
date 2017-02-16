@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/10/2016
+ms.date: 11/15/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0ea08d08e058db661b0b13b2002da240e8a2e63f
+ms.sourcegitcommit: 59288709e706ba7f0162f5f857019ce2972e2743
+ms.openlocfilehash: d0b599eede1887264ad2e42803bff1d0fca89e05
 
 
 ---
@@ -60,7 +60,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
    
     **功能表和基本功能**：
    
-    ![Azure 入口網站 hdinsight 叢集基本功能](./media/hdinsight-administer-use-portal-linux/hdinsight-essentials.png)
+    ![Azure portal HDInsight cluster essentials](./media/hdinsight-administer-use-portal-linux/hdinsight-essentials.png)
    
    * **設定**和**所有設定**：顯示該叢集的 [設定] 刀鋒視窗，可讓您存取該叢集的詳細組態資訊。
    * **儀表板**、**叢集儀表板**和 **URL：這些是存取叢集儀表板 (也就是適用於以 Linux 為基礎之叢集的 Ambari Web) 的所有方法。
@@ -84,10 +84,10 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
      
      **使用量**：
      
-     ![Azure 入口網站 hdinsight 叢集使用量](./media/hdinsight-administer-use-portal-linux/hdinsight-portal-cluster-usage.png)
+     ![Azure 入口網站 HDInsight 叢集使用量](./media/hdinsight-administer-use-portal-linux/hdinsight-portal-cluster-usage.png)
 5. 按一下 [設定] 。
    
-    ![Azure 入口網站 hdinsight 叢集使用量](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.cluster.settings.png)
+    ![Azure 入口網站 HDInsight 叢集使用量](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.cluster.settings.png)
    
    * **稽核記錄檔**：
    * **快速啟動**：顯示可協助您開始使用 HDInsight 的資訊。
@@ -170,14 +170,14 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
     
     HDInsight 叢集上有提供 Storm Web UI：
     
-    ![hdinsight storm scale rebalance](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.scale.cluster.storm.rebalance.png)
+    ![HDInsight Storm 調整重新平衡](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.scale.cluster.storm.rebalance.png)
     
     以下是如何使用 CLI 命令重新平衡 Storm 拓撲的範例：
     
-    ## <a name="reconfigure-the-topology-mytopology-to-use-5-worker-processes"></a>重新設定拓撲 "mytopology" 來使用 5 個背景工作處理序、
-    ## <a name="the-spout-blue-spout-to-use-3-executors-and"></a>spout "blue-spout" 來使用 3 個執行程式，以及
-    ## <a name="the-bolt-yellow-bolt-to-use-10-executors"></a>bolt "yellow-bolt" 來使用 10 個執行程式
-      $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
+        ## Reconfigure the topology "mytopology" to use 5 worker processes,
+        ## the spout "blue-spout" to use 3 executors, and
+        ## the bolt "yellow-bolt" to use 10 executors
+        $ storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10
 
 **調整叢集**
 
@@ -186,9 +186,10 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
 3. 在頂端功能表按一下 [設定]，然後按一下 [調整叢集]。
 4. 輸入 **背景工作節點的數目**。 叢集節點的數目限制會因 Azure 訂用帳戶而有所不同。 請連絡帳務支援提高限制。  成本資訊會反映您對節點數目所做的變更。
    
-    ![hdinsight hadoop hbase storm spark scale](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.scale.cluster.png)
+    ![HDInsight hadoop hbase storm spark scale](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.scale.cluster.png)
 
 ## <a name="pauseshut-down-clusters"></a>暫停/關閉叢集
+
 大部分 Hadoop 工作是只會偶爾執行的批次工作。 對於大部分的 Hadoop 叢集而言，叢集長時間並未用於處理。 利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。
 您也需支付 HDInsight 叢集的費用 (即使未使用)。 由於叢集費用是儲存體費用的許多倍，所以刪除未使用的叢集符合經濟效益。
 
@@ -266,7 +267,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 每個叢集都會繫結至一個 Azure 訂用帳戶。 訂用帳戶識別碼會顯示在叢集 [基本資料]  圖格上。 請參閱 [列出和顯示叢集](#list-and-show-clusters)。
 
 ## <a name="find-the-resource-group"></a>尋找資源群組
-在 ARM 模式中，每個 HDInsight 叢集是隨著 Azure 資源群組一起建立。 叢集所屬的 Azure 資源群組會出現於：
+在 Azure Resource Manager 模式中，每個 HDInsight 叢集是隨著 Azure 資源群組一起建立。 叢集所屬的 Azure 資源群組會出現於：
 
 * 叢集清單含有 [資源群組]  資料行。
 * 叢集 [基本資料]  磚。  

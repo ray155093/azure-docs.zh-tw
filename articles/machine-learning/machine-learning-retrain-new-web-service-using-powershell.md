@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 12/13/2016
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f6747a80773cd76b0821edfd2ebcd6af84bed233
+ms.sourcegitcommit: 066ff1d2c8255c895fbfcb0ad8c0b1fef298f8c7
+ms.openlocfilehash: d0decc1da1444254c319e7c2e1bbe4f567ef386e
 
 
 ---
@@ -77,7 +77,7 @@ ms.openlocfilehash: f6747a80773cd76b0821edfd2ebcd6af84bed233
     Export-AzureRmMlWebService -WebService $wsd -OutputFile "C:\temp\mlservice_export.json"
 
 ## <a name="update-the-reference-to-the-ilearner-blob-in-the-json"></a>在 JSON 中將參考更新為 ilearner blob。
-在資產中，找出 [定型模型]，使用 ilearner blob 的 URI 更新 locationInfo 節點中的 uri 值。 URI 的產生方式為結合來自 BES 重新定型呼叫輸出的 BaseLocation 和 RelativeLocation。
+在資產中，找出 [定型模型]，使用 ilearner blob 的 URI 更新 locationInfo 節點中的 uri 值。 URI 的產生方式為結合來自 BES 重新定型呼叫輸出的 BaseLocation 和 RelativeLocation。 這會更新路徑以參考新定型的模型。
 
      "asset3": {
         "name": "Retrain Samp.le [trained model]",
@@ -93,13 +93,13 @@ ms.openlocfilehash: f6747a80773cd76b0821edfd2ebcd6af84bed233
       },
 
 ## <a name="import-the-json-into-a-web-service-definition"></a>將 JSON 匯入至 Web 服務定義
-您必須使用 [Import-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) Cmdlet 將修改過的 JSON 檔案轉換回可用來更新預測性實驗的 Web 服務定義。
+您必須使用 [Import-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) Cmdlet 將修改過的 JSON 檔案轉換回可用來更新 Web 服務定義的 Web 服務定義。
 
     $wsd = Import-AzureRmMlWebService -InputFile "C:\temp\mlservice_export.json"
 
 
 ## <a name="update-the-web-service-with-new-web-service-definition"></a>使用新的 Web 服務定義更新 Web 服務
-最後，使用 [Update-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) Cmdlet 來更新預測性實驗。
+最後，使用 [Update-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) Cmdlet 來更新 Web 服務定義。
 
     Update-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'  -ServiceUpdates $wsd
 
@@ -112,6 +112,6 @@ ms.openlocfilehash: f6747a80773cd76b0821edfd2ebcd6af84bed233
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

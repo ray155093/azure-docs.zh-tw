@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Resource Manager 範本建立服務匯流排命名空間和佇列 | Microsoft Docs"
+title: "使用範本建立 Azure 服務匯流排命名空間和佇列 | Microsoft Docs"
 description: "使用 Azure Resource Manager 範本建立服務匯流排命名空間和佇列"
 services: service-bus-messaging
 documentationcenter: .net
@@ -12,20 +12,20 @@ ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 10/14/2016
+ms.date: 01/18/2017
 ms.author: sethm;shvija
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 71e11a2279350236e0f65ac0b310034fb464d71a
+ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
+ms.openlocfilehash: 777a515daa57f6a6af0ebec41412a3edbd1eaf19
 
 
 ---
 # <a name="create-a-service-bus-namespace-and-a-queue-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立服務匯流排命名空間和佇列
 本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
-如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][編寫 Azure Resource Manager 範本]。
+如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
 
-如需完整的範本，請參閱 GitHub 上的[服務匯流排命名空間和佇列範本][服務匯流排命名空間和佇列範本]。
+如需完整的範本，請參閱 GitHub 上的 [服務匯流排命名空間和佇列範本][Service Bus namespace and queue template]。
 
 > [!NOTE]
 > 下列 Azure Resource Manager 範本可供下載和部署。
@@ -35,7 +35,7 @@ ms.openlocfilehash: 71e11a2279350236e0f65ac0b310034fb464d71a
 > * [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
 > * [建立服務匯流排命名空間與主題、訂用帳戶和規則](service-bus-resource-manager-namespace-topic-with-rule.md)
 > 
-> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure 快速入門範本]資源庫並搜尋「服務匯流排」。
+> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure Quickstart Templates]資源庫並搜尋「服務匯流排」。
 > 
 > 
 
@@ -56,7 +56,7 @@ ms.openlocfilehash: 71e11a2279350236e0f65ac0b310034fb464d71a
 ### <a name="servicebusnamespacename"></a>serviceBusNamespaceName
 要建立的服務匯流排命名空間名稱。
 
-```
+```json
 "serviceBusNamespaceName": {
 "type": "string",
 "metadata": { 
@@ -68,7 +68,7 @@ ms.openlocfilehash: 71e11a2279350236e0f65ac0b310034fb464d71a
 ### <a name="servicebusqueuename"></a>serviceBusQueueName
 在服務匯流排命名空間中建立的佇列名稱。
 
-```
+```json
 "serviceBusQueueName": {
 "type": "string"
 }
@@ -77,7 +77,7 @@ ms.openlocfilehash: 71e11a2279350236e0f65ac0b310034fb464d71a
 ### <a name="servicebusapiversion"></a>serviceBusApiVersion
 範本的服務匯流排 API 版本。
 
-```
+```json
 "serviceBusApiVersion": {
 "type": "string"
 }
@@ -86,7 +86,7 @@ ms.openlocfilehash: 71e11a2279350236e0f65ac0b310034fb464d71a
 ## <a name="resources-to-deploy"></a>要部署的資源
 建立 **訊息**類型的標準服務匯流排命名空間和佇列。
 
-```
+```json
 "resources ": [{
         "apiVersion": "[variables('sbVersion')]",
         "name": "[parameters('serviceBusNamespaceName')]",
@@ -115,12 +115,14 @@ ms.openlocfilehash: 71e11a2279350236e0f65ac0b310034fb464d71a
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ## <a name="powershell"></a>PowerShell
-```
+
+```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName \<resource-group-name\> -TemplateFile <https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-queue/azuredeploy.json>
 ```
 
 ## <a name="azure-cli"></a>Azure CLI
-```
+
+```cli
 azure config mode arm
 
 azure group deployment create \<my-resource-group\> \<my-deployment-name\> --template-uri <https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-queue/azuredeploy.json>
@@ -130,17 +132,17 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 現在您已使用 Azure Resource Manager 建立並部署資源，請檢視這些文件，了解如何管理這些資源︰
 
 * [使用 PowerShell 管理服務匯流排](service-bus-powershell-how-to-provision.md)
-* [使用服務匯流排總管管理服務匯流排資源](https://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a)
+* [使用服務匯流排總管管理服務匯流排資源](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
-[編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
-[服務匯流排命名空間和佇列範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/
-[Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
-[深入了解服務匯流排佇列]: service-bus-queues-topics-subscriptions.md
-[搭配使用 Azure PowerShell 與 Azure Resource Manager]: ../powershell-azure-resource-manager.md
-[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理]: ../xplat-cli-azure-resource-manager.md
+[Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
+[Service Bus namespace and queue template]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/
+[Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
+[Learn more about Service Bus queues]: service-bus-queues-topics-subscriptions.md
+[Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
+[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

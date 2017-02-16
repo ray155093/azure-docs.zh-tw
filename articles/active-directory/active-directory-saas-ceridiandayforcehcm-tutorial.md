@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/01/2016
+ms.date: 11/30/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6e0056af13bfa064d740205746a93afeef9b33ab
+ms.sourcegitcommit: 1a2ff324cfa65977685f6a0eee9cd398b0717519
+ms.openlocfilehash: dba809c8d7021357142ec2832b4660c6fb10ec96
 
 
 ---
@@ -111,7 +111,7 @@ Ceridian Dayforce HCM 應用程式需要特定格式的 SAML 判斷提示。 請
     a. 從 [屬性值] 清單中，選取您想要用於實作的使用者屬性。  
     例如，如果您想要使用 EmployeeID 為唯一的使用者識別碼，而且已在 ExtensionAttribute2 中儲存屬性值，則選取 [user.extensionattribute2]。 
    
-    b. 按一下頁面底部的 [新增] 。    
+    b. 按一下 [完成]。    
 4. 按一下頂端功能表中的 [快速啟動] 。
    
     ![設定單一登入](./media/active-directory-saas-hightail-tutorial/tutorial_general_83.png)  
@@ -134,7 +134,6 @@ Ceridian Dayforce HCM 應用程式需要特定格式的 SAML 判斷提示。 請
     b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，輸入 Azure AD 用來公佈回應的 URL。  
     針對生產環境，請使用︰`https://ncpingfederate.dayforcehcm.com/sp/ACS.saml2`  
     針對測試環境，請使用︰`https://fs-test.dayforcehcm.com/sp/ACS.saml2`  
-
 
 1. 在 [設定在 Ceridian Dayforce HCM 單一登入]  頁面上，執行下列步驟：
    
@@ -184,17 +183,18 @@ Ceridian Dayforce HCM 應用程式需要特定格式的 SAML 判斷提示。 請
     c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_06.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-ceridiandayforcehcm-tutorial/create_aaduser_07.png) 
@@ -260,6 +260,6 @@ Ceridian Dayforce HCM 應用程式需要特定格式的 SAML 判斷提示。 請
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

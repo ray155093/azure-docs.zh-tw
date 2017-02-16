@@ -1,6 +1,6 @@
 ---
-title: "在以 Linux 為基礎的 HDInsight 上執行 Hadoop MapReduce 範例 | Microsoft Docs"
-description: "開始搭配以 Linux 為基礎的 HDInsight 使用 MapReduce 範例。 使用 SSH 連接到叢集，然後使用 Hadoop 命令執行範例工作。"
+title: "在 HDInsight 上執行 Hadoop MapReduce 範例 | Microsoft Docs"
+description: "開始搭配 HDInsight 使用 MapReduce 範例。 使用 SSH 連接到叢集，然後使用 Hadoop 命令執行範例工作。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -13,22 +13,27 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8e9cf3d1a2ae950f4f843458ae8b22d99beddd7e
+ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
+ms.openlocfilehash: b3c56871ec23c7595d18006943be19c38d2fb5c9
 
 
 ---
 # <a name="run-the-hadoop-samples-in-hdinsight"></a>在 HDInsight 上執行 Hadoop 範例
 [!INCLUDE [samples-selector](../../includes/hdinsight-run-samples-selector.md)]
 
-以 Linux 為基礎的 HDInsight 叢集提供一組 MapReduce 範例，讓您可以用來了解如何執行 Hadoop MapReduce 工作。 在本文件中，您將了解可用的範例，並逐步執行幾個範例。
+HDInsight 叢集提供一組 MapReduce 範例，可讓您用來了解如何執行 Hadoop MapReduce 工作。 在本文件中，您將了解可用的範例，並逐步執行幾個範例。
 
 ## <a name="prerequisites"></a>必要條件
-* **Azure 訂用帳戶**：請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)
+
+
 * **以 Linux 為基礎的 HDInsight 叢集**：請參閱 [在 Linux 上開始在 HDInsight 中搭配使用 Hadoop 與 Hive](hdinsight-hadoop-linux-tutorial-get-started.md)
+
+  > [!IMPORTANT]
+  > Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * **SSH 用戶端**：如需搭配 HDInsight 使用 SSH 的資訊，請參閱下列文章：
   
   * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
@@ -224,6 +229,6 @@ GraySort 是一種效能評定排序，其度量為排序極大資料量時 (通
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

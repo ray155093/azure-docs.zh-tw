@@ -1,5 +1,5 @@
 ---
-title: "Log Analytics 中的警示 | Microsoft Docs"
+title: "建立 OMS Log Analytics 中的警示 | Microsoft Docs"
 description: "Log Analytics 中的警示會識別您的 OMS 儲存機制中的重要資訊，並可主動通知您相關問題或叫用動作以嘗試更正問題。  本文描述如何建立警示規則及詳細說明可以採取的各種動作。"
 services: log-analytics
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/09/2016
+ms.date: 01/25/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7f8603c9ddfd3f99ea38ad07b7a8a0a553e5e4dd
+ms.sourcegitcommit: 9fe104a1ea26afa2817aedaa8ed77d042404cda6
+ms.openlocfilehash: 9a62ed7540de05b1db7610e12f2671d33fc8049d
 
 
 ---
@@ -24,6 +24,9 @@ ms.openlocfilehash: 7f8603c9ddfd3f99ea38ad07b7a8a0a553e5e4dd
 Log Analytics 中的警示會識別您的 OMS 儲存機制中的重要資訊。  警示規則會依據排程自動執行記錄檔搜尋，並且在結果符合特定準則時建立警示記錄。  此規則接著可以自動執行一或多個動作，以主動通知警示或叫用另一個處理序。   
 
 ![Log Analytics 警示](media/log-analytics-alerts/overview.png)
+
+>[!NOTE]
+> 如需計量測量警示規則的相關資訊 (目前為公開預覽狀態)，請參閱[公用預覽版本中的新計量測量警示規則類型！(英文)](https://blogs.technet.microsoft.com/msoms/2016/11/22/new-metric-measurement-alert-rule-type-in-public-preview/)。
 
 ## <a name="creating-an-alert-rule"></a>建立警示規則
 若要建立警示規則，首先針對應叫用警示的記錄，建立記錄檔搜尋。  [警示]  按鈕將可供您使用，以便建立和設定警示規則。
@@ -43,7 +46,7 @@ Log Analytics 中的警示會識別您的 OMS 儲存機制中的重要資訊。 
 | 名稱 |用以識別警示規則的唯一名稱。 |
 | 嚴重性 |此規則所建立之警示的嚴重性。 |
 | 搜尋查詢 |選取 [使用目前搜尋查詢]  以使用目前的查詢，或從清單中選取現有的已儲存搜尋。  查詢語法會提供於文字方塊中，您可以視需要加以修改。 |
-| 時間範圍 |指定查詢的時間範圍。  查詢只會傳回在此目前時間範圍內建立的記錄。  可以是介於 5 分鐘與 24 小時之間的任何值。  應大於或等於警示頻率。  <br><br>  例如，如果時間範圍設定為 60 分鐘，則查詢會在下午 1:15 執行，只會傳回在下午 12:15 與下午 1:15 之間建立的記錄。 |
+| 時間範圍 |指定查詢的時間範圍。  查詢只會傳回在此目前時間範圍內建立的記錄。  可以是介於 5 分鐘與 24 小時之間的任何值。  應大於或等於警示頻率。  <br><br> 例如，如果時間範圍設定為 60 分鐘，則查詢會在下午 1:15 執行，只會傳回在下午 12:15 與下午 1:15 之間建立的記錄。 |
 | **排程** | |
 | 閾值 |何時建立警示的準則。  如果查詢傳回的記錄數目符合此準則，則會建立警示。 |
 | 警示頻率 |指定應執行查詢的頻率。  可以是介於 5 分鐘與 24 小時之間的任何值。  應等於或小於此時間範圍。 |
@@ -60,6 +63,7 @@ Log Analytics 中的警示會識別您的 OMS 儲存機制中的重要資訊。 
 | 啟動 Runbook |從自動化解決方案中設定的自動化帳戶中的 Runbook，選取要啟動的 Runbook。 |
 | 執行位置 |選取 [Azure]  以在 Azure 雲端中執行 Runbook。  選取 [Hybrid Worker]  以在本機環境中的 [Hybrid Runbook Worker](../automation/automation-hybrid-runbook-worker.md) 上執行 Runbook。 |
 
+
 ## <a name="manage-alert-rules"></a>管理警示規則
 您可以在 Log Analytics [設定] 的 [警示] 功能表中，取得所有警示規則的清單。  
 
@@ -74,28 +78,36 @@ Log Analytics 中的警示會識別您的 OMS 儲存機制中的重要資訊。 
 * 按一下旁邊的鉛筆圖示以編輯警示規則。
 * 按一下旁邊的 **X** 圖示以移除警示規則。 
 
-## <a name="setting-time-windows"></a>設定時間範圍
+## <a name="setting-time-windows-and-thresholds"></a>設定時間範圍和臨界值
+
+>[!NOTE]
+> 如需計量測量警示規則的相關資訊 (目前為公開預覽狀態)，請參閱[公用預覽版本中的新計量測量警示規則類型！(英文)](https://blogs.technet.microsoft.com/msoms/2016/11/22/new-metric-measurement-alert-rule-type-in-public-preview/)。
+ 
 ### <a name="event-alerts"></a>事件警示
-事件包括資料來源，例如 Windows 事件記錄檔、Syslog 和自訂記錄檔。  您可能希望在建立特定的錯誤事件，或是在特定的時間範圍內建立多個錯誤事件時建立警示。
+事件包括資料來源，例如 Windows 事件記錄檔、Syslog 和自訂記錄檔。  您可能希望在建立特定的錯誤事件時，或是在特定時間範圍內建立多個錯誤事件時建立警示。
 
 若要對單一事件發出警示，請將結果數目設為大於 0 並將頻率與時間範圍設為 5 分鐘。  如此一來，將會每隔 5 分鐘執行一次查詢，並檢查在上次執行查詢後是否發生所建立的單一事件。  較長的頻率可能會延遲收集事件和建立警示的時間。
 
 有些應用程式可能會記錄不一定會產生警示的偶發錯誤。  例如，應用程式可能會重試造成錯誤事件的處理序，而下一次就會成功。  在此情況下，除非在特定時間範圍內建立多個事件，否則您不會想建立警示。  
 
-在某些情況下，您可能想在某個事件不存在時建立警示。  例如，處理序可能會記錄一般事件，表示運作正常。  如果它不在特定的時間範圍內記錄一個事件，則應建立警示。  在此情況下，您會將臨界值設定為「小於 1」 。
+在某些情況下，您可能想在某個事件不存在時建立警示。  例如，處理序可能會記錄一般事件，表示運作正常。  如果它不在特定的時間範圍內記錄一個事件，則應建立警示。  在此情況下，您會將臨界值設定為**小於 1**。
 
 ### <a name="performance-alerts"></a>效能警示
-[效能資料](log-analytics-data-sources-performance-counters.md) 會儲存為 OMS 儲存機制中類似事件的記錄。  每筆記錄的值即為在過去 30 分鐘測量到的平均值。  如果您要在效能計數器超過特定臨界值時發出警示，則該臨界值應包含在查詢中。
+[效能資料](log-analytics-data-sources-performance-counters.md) 會儲存為 OMS 儲存機制中類似事件的記錄。  如果您要在效能計數器超過特定臨界值時發出警示，則該臨界值應包含在查詢中。
 
-例如，如果您要在處理器執行超過 90% 的時間長達 30 分鐘時發出警示，您會使用類似 *Type=Perf ObjectName=Processor CounterName="% Processor Time" CounterValue>90* 的查詢，而警示規則的臨界值會設為「大於 0」。  
+例如，如果您想要在處理器執行超過 90% 時發出警示，您會使用如下的查詢，且警示規則的臨界值**大於 0**。
 
- 不論您收集每個計數器的頻率為何，每隔 30 分鐘都會彙總一次 [效能記錄](log-analytics-data-sources-performance-counters.md) ，所以小於 30 分鐘的時間範圍可能不會傳回任何記錄。  將時間範圍設定為 30 分鐘，可確保您對每個連接的來源取得單一記錄，以代表該段時間的平均值。
+    Type=Perf ObjectName=Processor CounterName="% Processor Time" CounterValue>90
+
+如果您想要針對特定的時間範圍在處理器平均超過 90% 時發出警示，您會利用如下的[測量命令](log-analytics-search-reference.md#commands)來使用查詢，且警示規則的臨界值**大於 0**。 
+
+    Type=Perf ObjectName=Processor CounterName="% Processor Time" | measure avg(CounterValue) by Computer | where AggregatedValue>90
 
 ## <a name="alert-actions"></a>警示動作
 除了建立警示記錄，您可以設定警示規則，以自動執行一或多個動作。  動作可以主動通知警示，或叫用某個處理序序，以嘗試更正偵測到的問題。  下列各節說明目前可用的動作。
 
 ### <a name="email-actions"></a>電子郵件動作
-電子郵件動作會傳送內含警示詳細資料的電子郵件給一或多位收件者。  您可以指定郵件的主旨，但其內容是由 Log Analytics 所編製的標準格式。  除了記錄檔搜尋所傳回的最多 10 筆記錄的詳細資料以外，其中還包括摘要資訊 (如警示名稱)。  此外，也包括 Log Analytics 中將從該查詢傳回整個記錄集的記錄檔搜尋的連結。   此郵件的寄件者為 *Microsoft Operations Management Suite Team &lt;noreply@oms.microsoft.com&gt;*。 
+電子郵件動作會傳送內含警示詳細資料的電子郵件給一或多位收件者。  您可以指定郵件的主旨，但其內容是由 Log Analytics 所編製的標準格式。  除了記錄檔搜尋所傳回的最多&10; 筆記錄的詳細資料以外，其中還包括摘要資訊 (如警示名稱)。  此外，也包括 Log Analytics 中將從該查詢傳回整個記錄集的記錄檔搜尋的連結。   此郵件的寄件者為 *Microsoft Operations Management Suite Team &lt;noreply@oms.microsoft.com&gt;*。 
 
 ### <a name="webhook-actions"></a>Webhook 動作
 Webhook 動作可讓您透過單一 HTTP POST 要求叫用外部處理序。  被呼叫的服務應支援 Webhook，並判斷將如何使用所接收的承載。  只要此要求是 API 所認得的格式，您也可以呼叫不會特別支援 Webhook 的 REST API。  使用 Webhook 來回應警示的範例會使用 [Slack](http://slack.com) 等服務來傳送包含警示詳細資料的訊息，或在 [PagerDuty](http://pagerduty.com/) 等服務中建立事件。  
@@ -212,6 +224,6 @@ Runbook 動作會使用 [Webhook](../automation/automation-webhooks.md)來啟動
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

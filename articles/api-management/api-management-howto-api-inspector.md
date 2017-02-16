@@ -13,10 +13,10 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
-ms.author: sdanie
+ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: 36231c3d2c19e129b301b76dfbbc8417b055fbae
+ms.sourcegitcommit: 28e9cbf05e75055a10c78fd42b5cb27e359b1d65
+ms.openlocfilehash: aad0e6de85a40df8a873aa11e5a33e7064090dce
 
 
 ---
@@ -69,7 +69,7 @@ API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解
 ocp-apim-trace-location : https://contosoltdxw7zagdfsprykd.blob.core.windows.net/apiinspectorcontainer/ZW3e23NsW4wQyS-SHjS0Og2-2?sv=2013-08-15&sr=b&sig=Mgx7cMHsLmVDv%2B%2BSzvg3JR8qGTHoOyIAV7xDsZbF7%2Bk%3D&se=2014-05-04T21%3A00%3A13Z&sp=r&verify_guid=a56a17d83de04fcb8b9766df38514742
 ```
 
-可從指定的位置下載追蹤來檢閱，如下一個步驟所示。
+可從指定的位置下載追蹤來檢閱，如下一個步驟所示。 請注意，系統只會儲存最後 100 個記錄項目，並且會循環重複使用記錄位置。 因此，如果您在啟用追蹤功能的情況下進行超過 100 次呼叫，最後就會開始就地覆寫前幾個追蹤。
 
 ## <a name="inspect-trace"> </a>檢查追蹤
 若要檢閱追蹤裡的值，請從 **ocp-apim-trace-location** URL 下載追蹤檔案。 它是一個 JSON 格式的文字檔，且包含類似下列範例的項目。
@@ -269,6 +269,6 @@ ocp-apim-trace-location : https://contosoltdxw7zagdfsprykd.blob.core.windows.net
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

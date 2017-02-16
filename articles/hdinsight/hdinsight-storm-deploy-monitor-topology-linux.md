@@ -12,32 +12,39 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/07/2016
+ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d5c33fc7d24eb2b14db9cdf3211a06e6fcc1cb68
+ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
+ms.openlocfilehash: ca8f3ac0dd5301e1fd06abaf3a292872eb631f47
 
 
 ---
-# <a name="deploy-and-manage-apache-storm-topologies-on-linux-based-hdinsight"></a>部署和管理以 Linux 為基礎的 HDInsight 上的 Apache Storm 拓撲
-在本文件中，了解在 HDInsight 叢集上管理和監視於以 Linux 為基礎的 Storm 上執行的 Storm 拓撲的基本概念。
+# <a name="deploy-and-manage-apache-storm-topologies-on-hdinsight"></a>部署和管理 HDInsight 上的 Apache Storm 拓撲
+
+在本文件中，您可以了解管理和監視在 Storm on HDInsight 叢集上執行之 Storm 拓撲的基本概念。
 
 > [!IMPORTANT]
-> 本文中的步驟需要 HDInsight 叢集上以 Linux 為基礎的 Storm。 如需部署和監視以 Windows 為基礎的 HDInsight 上的拓撲的詳細資訊，請參閱 [部署和管理以 Windows 為基礎的 HDInsight 上的Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology.md)
+> 本文中的步驟需要 HDInsight 叢集上以 Linux 為基礎的 Storm。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 
 > 
-> 
+> 如需部署和監視以 Windows 為基礎的 HDInsight 上的拓撲的詳細資訊，請參閱 [部署和管理以 Windows 為基礎的 HDInsight 上的Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology.md)
+
 
 ## <a name="prerequisites"></a>必要條件
 * **HDInsight 叢集上以 Linux 為基礎的 Storm**：請參閱 [開始使用 Apache Storm on HDInsight](hdinsight-apache-storm-tutorial-get-started-linux.md) 以取得建立叢集的步驟
+
 * **了解 SSH 和 SCP**：如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
   
   * **Linux、Unix 或 OS X 用戶端**：請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
+
   * **Windows 用戶端**：請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+
 * **SCP 用戶端**：與所有 Linux、Unix 和 OS X 系統一起提供。 對於 Windows 用戶端，我們建議 PSCP，可從 [PuTTY 下載頁面](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)取得。
 
 ## <a name="start-a-storm-topology"></a>啟動 Storm 拓撲
+
 ### <a name="using-ssh-and-the-storm-command"></a>使用 SSH 和 Storm 命令
+
 1. 使用 SSH 連接到 HDInsight 叢集。 將 **USERNAME** 替換為您的 SSH 登入名稱。 將 **CLUSTERNAME** 取代為 HDInsight 叢集名稱：
    
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -45,10 +52,12 @@ ms.openlocfilehash: d5c33fc7d24eb2b14db9cdf3211a06e6fcc1cb68
     如需有關使用 SSH 連線至 HDInsight 叢集的詳細資訊，請參閱下列文件：
    
    * **Linux、Unix 或 OS X 用戶端**：請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
+
    * **Windows 用戶端**：請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+
 2. 使用下列命令以啟動範例拓撲：
    
-        storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-0.9.3.2.2.4.9-1.jar storm.starter.WordCountTopology WordCount
+        storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-*.jar storm.starter.WordCountTopology WordCount
    
     這會在叢集上啟動範例 WordCount 拓撲。 它會隨機產生句子並計算句子中每個字詞的出現次數。
    
@@ -60,9 +69,11 @@ ms.openlocfilehash: d5c33fc7d24eb2b14db9cdf3211a06e6fcc1cb68
    > 
 
 ### <a name="programmatically"></a>以程式設計方式
+
 您可以用程式設計方式與裝載於叢集中的 Nimbus 服務進行通訊，以對 Storm on HDInsight 部署拓撲。 [https://github.com/Azure-Samples/hdinsight-java-deploy-storm-topology](https://github.com/Azure-Samples/hdinsight-java-deploy-storm-topology) 提供範例 Java 應用程式，以示範如何透過 Nimbus 服務部署和啟動拓撲。
 
 ## <a name="monitor-and-manage-using-the-storm-command"></a>使用 Storm 命令監視和管理
+
 `storm` 公用程式可讓您從命令列使用執行中拓撲。 以下是常用命令的清單。 使用 `storm -h` 以取得完整的命令清單。
 
 ### <a name="list-topologies"></a>列出拓撲
@@ -179,6 +190,6 @@ REST API 的要求必須使用 **基本驗證**，因此請使用 HDInsight 叢�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

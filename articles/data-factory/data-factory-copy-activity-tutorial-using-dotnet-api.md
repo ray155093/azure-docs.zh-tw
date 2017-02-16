@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 10/27/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: d175d3d4d7d7a58f071dab0f32e3fdd3cb3146ce
-ms.openlocfilehash: 8c26d8ef39827cff87b7fc7f17fab78c627a5035
+ms.sourcegitcommit: d2d3f414d0e9fcc392d21327ef630f96c832c99c
+ms.openlocfilehash: 19d1cc75d61a3897c916180afa395bade43d47ec
 
 
 ---
@@ -50,58 +50,41 @@ ms.openlocfilehash: 8c26d8ef39827cff87b7fc7f17fab78c627a5035
 1. 啟動 **PowerShell**。
 2. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
 
-    ```PowerShell
-    Login-AzureRmAccount
-    ```
+        Login-AzureRmAccount
 3. 執行下列命令以檢視此帳戶的所有訂用帳戶。
 
-    ```PowerShell
-    Get-AzureRmSubscription
-    ```
+        Get-AzureRmSubscription
 4. 執行下列命令以選取您要使用的訂用帳戶。 以您的 Azure 訂用帳戶名稱取代 **&lt;NameOfAzureSubscription**&gt;。
 
-    ```PowerShell
-    Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
-    ```
+        Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
 
    > [!IMPORTANT]
    > 請記下此命令輸出中的 **SubscriptionId** 和 **TenantId**。
 
 5. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
 
-    ```PowerShell
-    New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
-    ```
+        New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
 
     如果資源群組已存在，您可指定是否要更新 (Y) 或予以保留 (N)。
 
     如果使用不同的資源群組，您必須以資源群組的名稱取代本教學課程中的 ADFTutorialResourceGroup。
 6. 建立 Azure Active Directory 應用程式。
 
-    ```PowerShell
-    $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFCopyTutotiralApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfcopytutorialapp.org/example" -Password "Pass@word1"
-    ```
+        $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFCopyTutotiralApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfcopytutorialapp.org/example" -Password "Pass@word1"
 
     如果您收到下列錯誤，請指定不同的 URL 並再次執行此命令。
-    
-    ```PowerShell
-    Another object with the same value for property identifierUris already exists.
-    ```
+
+        Another object with the same value for property identifierUris already exists.
 7. 建立 AD 服務主體。
 
-    ```PowerShell
-    New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
-    ```
+        New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
 8. 對 **Data Factory 參與者** 角色新增服務主體。
 
-    ```PowerShell
-    New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
-    ```
+        New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
 9. 取得應用程式識別碼。
 
-    ```PowerShell
-    $azureAdApplication 
-    ```
+        $azureAdApplication
+
     Note down the application ID (**applicationID** from the output).
 
 您應會從這些步驟取得下列四個值︰
@@ -491,10 +474,7 @@ ms.openlocfilehash: 8c26d8ef39827cff87b7fc7f17fab78c627a5035
 16. 建置主控台應用程式。 按一下功能表上的 [建置]，再按一下 [建置方案]。
 17. 確認您 Azure Blob 儲存體之 **adftutorial** 容器中至少有一個檔案。 如果沒有，請在「記事本」中以下列內容建立 **Emp.txt** 檔案，然後將它上傳至 adftutorial 容器。
 
-    ```
-    John, Doe
-    Jane, Doe
-    ```
+       John, Doe    Jane, Doe
 18. 按一下功能表上的 [偵錯] -> [開始偵錯]，執行範例。 當您看到 [取得資料配量的執行詳細資料]，請等待數分鐘再按 **ENTER**。
 19. 使用 Azure 入口網站確認 Data Factory： **APITutorialFactory** 是使用下列成品所建立：
    * 連結服務：**LinkedService_AzureStorage**
@@ -509,6 +489,6 @@ ms.openlocfilehash: 8c26d8ef39827cff87b7fc7f17fab78c627a5035
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

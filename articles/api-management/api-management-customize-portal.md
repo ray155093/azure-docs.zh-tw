@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 398b845a6549341d6afba101acec9eefd146d810
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: cbd2c3e915b93340c1a1478c09b23480c4565a98
 
 
 ---
@@ -55,7 +55,7 @@ ms.openlocfilehash: 398b845a6549341d6afba101acec9eefd146d810
 
 每個規則均代表所選取元素的樣式屬性。 例如，針對以上選取的頁首文字，文字的大小是 @font-size-h1，而替代字型的名稱是 @headings-font-family.
 
-> 如果您熟悉 [bootstrap][bootstrap]，事實上，這些規則就是開發人員入口網站所使用的 bootstrap 佈景主題內的 [LESS 變數][LESS 變數]。
+> 如果您熟悉 [bootstrap][bootstrap]，事實上，這些規則就是開發人員入口網站所使用的 bootstrap 佈景主題內的 [LESS 變數][LESS variables]。
 > 
 > 
 
@@ -87,12 +87,12 @@ ms.openlocfilehash: 398b845a6549341d6afba101acec9eefd146d810
 ## <a name="next-steps"> </a>後續步驟
 * 了解如何使用 [開發人員入口網站範本](api-management-developer-portal-templates.md)，自訂開發人員入口網站頁面內容。
 
-[變更頁首的文字/標誌]: #change-page-headers
-[變更頁首的樣式]: #change-headers-styling
-[編輯頁面的內容]: #edit-page-contents
-[後續步驟]: #next-steps
+[Change the text/logo in the page headers]: #change-page-headers
+[Change the styling of the headers]: #change-headers-styling
+[Edit the contents of a page]: #edit-page-contents
+[Next steps]: #next-steps
 
-[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[Azure Classic Portal]: https://manage.windowsazure.com/
 
 [api-management-management-console]: ./media/api-management-customize-portal/api-management-management-console.png
 [api-management-widgets-header]: ./media/api-management-customize-portal/api-management-widgets-header.png
@@ -103,10 +103,10 @@ ms.openlocfilehash: 398b845a6549341d6afba101acec9eefd146d810
 
 
 [bootstrap]: http://getbootstrap.com/
-[LESS 變數]: http://getbootstrap.com/css/
+[LESS variables]: http://getbootstrap.com/css/
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

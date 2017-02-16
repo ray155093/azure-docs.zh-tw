@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/16/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3b9cd8f5f0f65b84863e27abda0f3e4ca25d2e15
+ms.sourcegitcommit: c40545833da86426d3e71955b8eb8627db3c1e4b
+ms.openlocfilehash: 600959ec221b018b92a1438df601cd789521e8f5
 
 
 ---
@@ -93,7 +93,7 @@ ms.openlocfilehash: 3b9cd8f5f0f65b84863e27abda0f3e4ca25d2e15
    * SQL
 2. **您應該使用哪些工具進行資料分析？**
    
-   * [Microsoft Azure Powershell](../powershell-install-configure.md) - 在指令碼語言中用來管理 Azure 資源的指令碼語言。
+   * [Microsoft Azure Powershell](/powershell/azureps-cmdlets-docs) - 在指令碼語言中用來管理 Azure 資源的指令碼語言。
    * [Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md)
    * [Revolution Analytics](http://www.revolutionanalytics.com/revolution-r-open)
    * [RStudio](http://www.rstudio.com)
@@ -108,6 +108,6 @@ ms.openlocfilehash: 3b9cd8f5f0f65b84863e27abda0f3e4ca25d2e15
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "開發人員指南 - 直接方法 | Microsoft Docs"
-description: "Azure IoT 中樞開發人員指南 - 使用直接方法來叫用您裝置上的程式碼"
+title: "了解 Azure IoT 中樞直接方法 | Microsoft Docs"
+description: "開發人員指南 - 從服務應用程式使用直接方法叫用您裝置上的程式碼。"
 services: iot-hub
 documentationcenter: .net
 author: nberdy
@@ -12,15 +12,15 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 01/11/2017
 ms.author: nberdy
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: b041fbc6887d78644f94b247c05199fd0f80094a
+ms.sourcegitcommit: 9c2817129162ab17faadf3c5ecf8ef7dcb370c3c
+ms.openlocfilehash: 2c9c4b59077ea7d31677a5e1c690160bf63633a6
 
 
 ---
-# <a name="invoke-a-direct-method-on-a-device"></a>在裝置上叫用直接方法
+# <a name="direct-methods"></a>直接方法
 ## <a name="overview"></a>概觀
 IoT 中樞能讓您從雲端在裝置上叫用直接方法。 直接方法代表與裝置的要求-回覆互動，類似於 HTTP 呼叫，因為會立即成功或失敗 (在使用者指定的逾時之後)。 這對於依據裝置是否可以回應的不同立即動作的案例相當有用，例如如果裝置離線時傳送 SMS 喚醒至裝置 (SMS 比方法呼叫還貴)。
 
@@ -43,7 +43,9 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 
 直接方法是同步的，可能在逾時期間後成功或失敗 (預設︰30 秒，可設定為 3600 秒)。 直接方法在您想要裝置當作在線上並且接收命令 (例如透過手機開燈) 的互動案例中相當有用。 在這些案例中，您想要查看立即成功或失敗，讓雲端服務可以儘速處理結果。 裝置可能會傳回部分訊息本文作為方法的結果，但是不需要方法這麼做。 不保證方法呼叫的順序或任何並行語意。
 
-裝置方法呼叫從雲端側是僅限 HTTP，從裝置側是僅限 MQTT。
+直接的方法從雲端側為僅限 HTTP，從裝置側則為僅限 MQTT。
+
+方法要求和回應的承載是 JSON 文件 (最多 8KB)。
 
 ## <a name="reference-topics"></a>參考主題：
 下列參考主題會提供您關於使用直接方法的詳細資訊。
@@ -60,7 +62,7 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 ```
 {
     "methodName": "reboot",
-    "timeoutInSeconds": 200,
+    "responseTimeoutInSeconds": 200,
     "payload": {
         "input1": "someInput",
         "input2": "anotherInput"
@@ -68,10 +70,10 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 }
 ```
 
-  逾時 (秒)。 如果未設定逾時，它會預設為 30 秒。
+逾時 (秒)。 如果未設定逾時，它會預設為 30 秒。
 
 ### <a name="response"></a>Response
-後端收到回應，包含︰
+後端應用程式收到的回應包含︰
 
 * *HTTP 狀態碼*，用於來自 IoT 中樞的錯誤，包括裝置目前未連接的 404 錯誤
 * *標頭*，其中包含 Etag、要求識別碼、內容類型及內容編碼
@@ -110,16 +112,16 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 本文是由裝置設定，而且可以是任何狀態。
 
 ## <a name="additional-reference-material"></a>其他參考資料
-開發人員指南中的其他參考主題包括︰
+IoT 中樞開發人員指南中的其他參考主題包括︰
 
-* [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞針對執行階段和管理作業所公開的各種端點。
+* [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
 * [節流和配額][lnk-quotas]說明適用於 IoT 中樞服務的配額，和使用服務時所預期的節流行為。
-* [Azure IoT 中樞裝置和服務 SDK][lnk-sdks] 列出您可以在開發裝置和服務應用程式 (可與 IoT 中樞互動) 時使用的各種語言 SDK。
+* [Azure IoT 中樞裝置和服務 SDK][lnk-sdks] 列出各種語言 SDK，讓您在開發可與 IoT 中樞互動的裝置和服務應用程式時使用。
 * [裝置對應項和作業的 IoT 中樞查詢語言][lnk-query]說明的 IoT 中樞查詢語言可用來從 IoT 中樞擷取有關裝置對應項和作業的資訊。
 * [IoT 中樞 MQTT 支援][lnk-devguide-mqtt]針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已了解如何使用直接方法，您可能對下列開發人員指南主題感興趣︰
+現在您已了解如何使用直接方法，接下來您可能對下列 IoT 中樞開發人員指南主題感興趣︰
 
 * [排程多個裝置上的作業][lnk-devguide-jobs]
 
@@ -141,6 +143,7 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 [lnk-c2d-guidance]: iot-hub-devguide-c2d-guidance.md
 
 
-<!--HONumber=Nov16_HO5-->
+
+<!--HONumber=Jan17_HO4-->
 
 

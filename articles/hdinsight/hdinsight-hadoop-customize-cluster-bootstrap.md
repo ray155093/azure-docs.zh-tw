@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/02/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a83b4e910dbb8421d80416286c3d1eadcbf7bba7
+ms.sourcegitcommit: f9b191a68fe19f30aa157fd01f33afb0a4f1e279
+ms.openlocfilehash: 37114071cb9c3da187e8d96d7a49680ee828832a
 
 
 ---
@@ -130,10 +130,10 @@ Resource Manager 範本中，您可以使用啟動程序︰
 ![hdinsight hadoop 自訂叢集 bootstrap azure resource manager 範本](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
 
 ## <a name="see-also"></a>另請參閱
-* [在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision-cluster]說明如何使用其他自訂選項建立 HDInsight 叢集。
+* [在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision-cluster]提供如何使用其他自訂選項建立 HDInsight 叢集的指示。
 * [開發 HDInsight 的指令碼動作指令碼][hdinsight-write-script]
-* [在 HDInsight 叢集上安裝及使用 Spark][hdinsight-install-spark]
-* [在 HDInsight 叢集上安裝及使用 R][hdinsight-install-r]
+* [在 HDInsight 叢集上安裝和使用 Spark][hdinsight-install-spark]
+* [在 HDInsight 叢集上安裝和使用 R][hdinsight-install-r]
 * [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install.md)。
 * [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install.md)。
 
@@ -141,7 +141,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts.md
 [hdinsight-write-script]: hdinsight-hadoop-script-actions.md
 [hdinsight-provision-cluster]: hdinsight-provision-clusters.md
-[powershell-install-configure]: powershell-install-configure.md
+[powershell-install-configure]: /powershell/azureps-cmdlets-docs
 
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster/HDI-Cluster-state.png "叢集建立期間的階段"
@@ -258,6 +258,6 @@ Resource Manager 範本中，您可以使用啟動程序︰
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

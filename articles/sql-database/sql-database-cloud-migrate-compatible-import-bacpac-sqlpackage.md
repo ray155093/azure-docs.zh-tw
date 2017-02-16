@@ -1,6 +1,7 @@
 ---
-title: "使用 SqlPackage 從 BACPAC 檔案匯入 SQL Database"
-description: "Microsoft Azure SQL Database, 資料庫移轉, 匯入資料庫, 匯入 BACPAC 檔案, sqlpackage"
+title: "SqlPackage：從 BACPAC 檔案匯入到 Azure SQL Database | Microsoft Docs"
+description: "本文說明如何使用 SqlPackage 命令列公用程式，從 BACPAC 檔案匯入到 SQL Database。"
+keywords: "Microsoft Azure SQL Database, 資料庫移轉, 匯入資料庫, 匯入 BACPAC 檔案, sqlpackage"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -16,8 +17,8 @@ ms.workload: sqldb-migrate
 ms.date: 11/08/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: e8bb9e5a02a7caf95dae0101c720abac1c2deff3
-ms.openlocfilehash: d1f701bc5e4028db4d97ac2e7097afedf46b1f1f
+ms.sourcegitcommit: 86bc7d89bb5725add8ba05b6f0978467147fd3ca
+ms.openlocfilehash: 048a8f333eb555d860df0fd485ec8d53c27e3cd6
 
 
 ---
@@ -72,6 +73,6 @@ ms.openlocfilehash: d1f701bc5e4028db4d97ac2e7097afedf46b1f1f
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO1-->
 
 

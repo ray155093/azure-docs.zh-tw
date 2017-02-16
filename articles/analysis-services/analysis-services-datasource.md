@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 11/28/2016
+ms.date: 01/20/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 193c939065979dc48243d31e7f97cd87d96bf9a8
-ms.openlocfilehash: 1b439e2b48cc009e727a49c271318cfd4ead9ef2
+ms.sourcegitcommit: a287ebd634a9305229424d0efea266146f88a952
+ms.openlocfilehash: 234032630cb3911deb7c7d32cfc4963ad6aee43f
 
 
 ---
@@ -29,13 +29,18 @@ Azure Analysis Services 中的資料模型連線至某些資料來源時，可�
 或者，當您有 DirectQuery 模型與內部部署資料來源連線時，如果您使用原生提供者，可能會看見錯誤訊息：**“Error creating OLE DB row set.Incorrect syntax near 'LIMIT'”** (建立 OLE DB 列集時發生錯誤.。'LIMIT' 附近的語法錯誤)。
 
 ## <a name="data-source-providers"></a>資料來源提供者
-當與內部部署或雲端資料來源連線時，In-Memory 或 DirectQuery 資料模型支援下列資料來源提供者：
+與雲端或內部部署中的資料來源連線時，In-Memory 或 DirectQuery 資料模型支援下列資料來源提供者：
 
-|  | **資料來源** | **In-memory** | **DirectQuery** |
-| --- | --- | --- | --- |
-| **雲端** |Azure SQL 資料倉儲 |.NET Framework Data Provider for SQL Server |.NET Framework Data Provider for SQL Server |
+### <a name="cloud"></a>雲端
+| **資料來源** | **In-memory** | **DirectQuery** |
+|  --- | --- | --- |
+| Azure SQL 資料倉儲 |.NET Framework Data Provider for SQL Server |.NET Framework Data Provider for SQL Server |
 | Azure SQL Database |.NET Framework Data Provider for SQL Server |.NET Framework Data Provider for SQL Server | |
-| **內部部署** (透過閘道) |SQL Server |SQL Server Native Client 11.0 |.NET Framework Data Provider for SQL Server |
+
+### <a name="on-premises-via-gateway"></a>內部部署 (透過閘道)
+|**資料來源** | **In-memory** | **DirectQuery** |
+|  --- | --- | --- |
+| SQL Server |SQL Server Native Client 11.0 |.NET Framework Data Provider for SQL Server |
 | SQL Server |Microsoft OLE DB Provider for SQL Server |.NET Framework Data Provider for SQL Server | |
 | SQL Server |.NET Framework Data Provider for SQL Server |.NET Framework Data Provider for SQL Server | |
 | Oracle |Microsoft OLE DB Provider for Oracle |Oracle Data Provider for .NET | |
@@ -45,7 +50,7 @@ Azure Analysis Services 中的資料模型連線至某些資料來源時，可�
 | 分析平台系統 |.NET Framework Data Provider for SQL Server |.NET Framework Data Provider for SQL Server | |
 
 > [!NOTE]
-> 請確定使用內部部署閘道時，系統會安裝 64 位元提供者。
+> 使用內部部署閘道時，請確定已安裝 64 位元提供者。
 > 
 > 
 
@@ -75,6 +80,6 @@ Azure Analysis Services 中的資料模型連線至某些資料來源時，可�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

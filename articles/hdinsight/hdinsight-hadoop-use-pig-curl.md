@@ -16,8 +16,8 @@ ms.workload: big-data
 ms.date: 11/08/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 1589b1150df47aa5e436aa5d538b6a98706f97ae
-ms.openlocfilehash: c6da3b079ca7455fbea91d3051b7f2184c9eb9fa
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: 476af10550075cde145a9cf2153330f063ad17b3
 
 
 ---
@@ -37,6 +37,10 @@ ms.openlocfilehash: c6da3b079ca7455fbea91d3051b7f2184c9eb9fa
 若要完成本文中的步驟，您需要下列項目。
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Linux 型或 Windows 型)
+
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * [Curl](http://curl.haxx.se/)
 * [jq](http://stedolan.github.io/jq/)
 
@@ -127,6 +131,6 @@ ms.openlocfilehash: c6da3b079ca7455fbea91d3051b7f2184c9eb9fa
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

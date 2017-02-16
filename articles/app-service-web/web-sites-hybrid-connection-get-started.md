@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 02/03/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a27a8eed4ed5814cec3880567f506d0854ddbd62
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: cb656dd952e76ee29e102fff531d34a45e4630e4
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: a27a8eed4ed5814cec3880567f506d0854ddbd62
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂閱。 若要取得免費訂閱，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
   
-    如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+    如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 * 若要透過混合式連線使用內部部署 SQL Server 或 SQL Server Express 資料庫，必須在靜態連接埠上啟用 TCP/IP。 建議在 SQL Server 上使用預設執行個體，因為其使用靜態連接埠 1433。 如需安裝及設定 SQL Server Express 以搭配混合式連線使用的相關資訊，請參閱 [使用混合式連線從 Azure 網站連線到內部部署 SQL Server](http://go.microsoft.com/fwlink/?LinkID=397979)。
 * 本文稍後將會針對安裝內部部署混合式連線管理員代理程式的電腦加以說明：
   
@@ -86,7 +86,7 @@ ms.openlocfilehash: a27a8eed4ed5814cec3880567f506d0854ddbd62
    
    * 在 [名稱] 中，提供連線的名稱。
    * 在 [主機名稱] 中，輸入主控資源的內部部署電腦名稱。
-   * 在 [連接埠] 中，輸入內部部署資源使用的連接埠號碼 (若是 SQL Server 預設執行個體，請輸入 1433)。
+   * 在 [連接埠] 中，輸入內部部署資源使用的連接埠號碼 (若是 SQL Server 預設執行個體，請輸入&1433;)。
    * 按一下 [Biz Talk 服務] 
 4. [建立 BizTalk 服務]  分頁隨即開啟。 輸入 BizTalk 服務的名稱，然後按一下 [確定] 。
    
@@ -224,7 +224,7 @@ ms.openlocfilehash: a27a8eed4ed5814cec3880567f506d0854ddbd62
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- IMAGES -->
-[新增]:./media/web-sites-hybrid-connection-get-started/B01New.png
+[New]:./media/web-sites-hybrid-connection-get-started/B01New.png
 [NewWebsite]:./media/web-sites-hybrid-connection-get-started/B02NewWebsite.png
 [WebsiteCreationBlade]:./media/web-sites-hybrid-connection-get-started/B03WebsiteCreationBlade.png
 [WebSiteRunningBlade]:./media/web-sites-hybrid-connection-get-started/B04WebSiteRunningBlade.png
@@ -250,6 +250,6 @@ ms.openlocfilehash: a27a8eed4ed5814cec3880567f506d0854ddbd62
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

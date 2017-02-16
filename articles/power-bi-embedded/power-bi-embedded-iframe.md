@@ -16,8 +16,8 @@ ms.workload: powerbi
 ms.date: 01/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7aadb6ceba1a8c672ed9eeea8651c965e5b665fd
+ms.sourcegitcommit: b3037f1b96c8bfbaad5f92b726b63854469a8d06
+ms.openlocfilehash: b9a5435330e56ba8f25100437e201cccd7aeb568
 
 
 ---
@@ -91,7 +91,7 @@ RequestId: 4220d385-2fb3-406b-8901-4ebe11a5f6da
 傳回的 **workspaceId** 會用於後續的 API 呼叫。 我們的應用程式必須保留這個值。
 
 ## <a name="import-pbix-file-into-the-workspace"></a>將 .pbix 檔案匯入工作區
-每個工作區可以裝載單一 Power BI Desktop 檔案，其中含有資料集 \(包括資料來源設定) 和報表。 我們可以將我們的 .pbix 檔案匯入工作區，如下列程式碼所示。 如您所見，我們可以使用 http 中的 MIME multipart 上傳 .pbix 檔案的二進位檔。
+工作區中的每個報表都會對應到單一 Power BI Desktop 檔案，其中含有資料集 \(包括資料來源設定)。 我們可以將我們的 .pbix 檔案匯入工作區，如下列程式碼所示。 如您所見，我們可以使用 http 中的 MIME multipart 上傳 .pbix 檔案的二進位檔。
 
 Uri 片段 **32960a09-6366-4208-a8bb-9e0678cdbb9d** 是工作區識別碼，而查詢參數 **datasetDisplayName** 是要建立的資料集名稱。 建立的資料集會保存 .pbix 檔案中所有和資料相關的成品，例如匯入的資料、資料來源的指標等等。
 
@@ -289,7 +289,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-接下來，我們必須使用 SHA 256 演算法建立 HMAC \(簽章) 的 base64 編碼字串。 這個經過簽署的輸入值是之前的字串。
+接下來，我們必須使用 SHA&256; 演算法建立 HMAC \(簽章) 的 base64 編碼字串。 這個經過簽署的輸入值是之前的字串。
 
 最後，我們必須使用句號 \(.) 字元結合輸入值和簽章字串。 完整的字串是用於內嵌報表的應用程式權杖。 即使應用程式權杖被惡意使用者發現，他們也無法取得原始的存取金鑰。 此應用程式權杖很快就會到期。
 
@@ -471,6 +471,6 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

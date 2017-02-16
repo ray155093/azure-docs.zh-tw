@@ -9,14 +9,14 @@ editor:
 ms.assetid: 64cbfd3d-4a0e-4455-a90a-7f3d4f080323
 ms.service: event-hubs
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 08/16/2016
+ms.date: 11/21/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1b7a19868e75811198f54150ced78e51f42d8017
+ms.sourcegitcommit: 188e3638393262a8406f322a5720e7e3eadf3e49
+ms.openlocfilehash: 7b95616b4ce44865477d94452d9b3e646c9c0d1a
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 1b7a19868e75811198f54150ced78e51f42d8017
 本主題說明使用 Azure.NET SDK 設計 Azure 事件中樞的相關資訊。 它假設使用者對事件中樞已有初步了解。 如需事件中樞的概念概觀，請參閱 [事件中樞概觀](event-hubs-overview.md)。
 
 ## <a name="event-publishers"></a>事件發佈者
-將事件傳送到事件中樞可藉由使用 HTTP POST 或透過 AMQP 1.0 連線來完成。 使用選擇取決於應用的特定案例。 AMQP 1.0 連線是以服務匯流排中的代理連線形式計量，其較適合經常出現大量訊息且需要低延遲的案例，因為它們可提供持續的傳訊通道。
+您可以使用 HTTP POST 或透過 AMQP 1.0 連線將事件傳送到事件中樞。 使用選擇取決於應用的特定案例。 AMQP 1.0 連線是以服務匯流排中的代理連線形式計量，其較適合經常出現大量訊息且需要低延遲的案例，因為它們可提供持續的傳訊通道。
 
 您可以使用 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別來建立及管理事件中樞。 在使用 .NET Managed API 時，用於將資料發佈到事件中樞的主要建構是 [EventHubClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.aspx) 和 [EventData](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.aspx) 類別。 [EventHubClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.aspx) 提供將事件傳送到事件中樞的 AMQP 通訊通道。 [EventData](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.aspx) 類別代表事件，可用來將訊息發佈到事件中樞。 這個類別包含主體、一些中繼資料，以及有關事件的標頭資訊。 當 [EventData](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.aspx) 物件通過事件中樞時，您可以加入其他屬性。
 
@@ -38,14 +38,14 @@ Install-Package WindowsAzure.ServiceBus
 ## <a name="create-an-event-hub"></a>建立事件中心
 您可以使用 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別來建立事件中樞。 例如：
 
-```
+```csharp
 var manager = new Microsoft.ServiceBus.NamespaceManager("mynamespace.servicebus.windows.net");
 var description = manager.CreateEventHub("MyEventHub");
 ```
 
 在大部分情況下，建議您使用 [CreateEventHubIfNotExists](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.createeventhubifnotexists.aspx) 方法，以避免在服務重新啟動時產生例外狀況。 例如：
 
-```
+```csharp
 var description = manager.CreateEventHubIfNotExists("MyEventHub");
 ```
 
@@ -56,7 +56,7 @@ var description = manager.CreateEventHubIfNotExists("MyEventHub");
 ## <a name="create-an-event-hubs-client"></a>建立事件中樞用戶端
 與事件中樞互動的主要類別是 [Microsoft.ServiceBus.Messaging.EventHubClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.aspx)。 這個類別提供傳送者和接收者功能。 您可以使用 [Create](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.create.aspx) 方法來具現化這個類別，如以下範例所示。
 
-```
+```csharp
 var client = EventHubClient.Create(description.Path);
 ```
 
@@ -64,19 +64,19 @@ var client = EventHubClient.Create(description.Path);
 
 另一個選項是從連接字串建立用戶端。 這個選項適合用來搭配 Azure 背景工作角色，因為您可以將字串儲存在背景工作的組態屬性中。 例如：
 
-```
+```csharp
 EventHubClient.CreateFromConnectionString("your_connection_string");
 ```
 
 連接字串的格式與在前述方法之 App.config 檔案中的格式相同：
 
-```
-Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=Manage;SharedAccessKey=[key]
+```xml
+Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[key]
 ```
 
 最後，它也可以建立從 [MessagingFactory](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx) 執行個體建立 [EventHubClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.aspx) 物件，如以下範例所示。
 
-```
+```csharp
 var factory = MessagingFactory.CreateFromConnectionString("your_connection_string");
 var client = factory.CreateEventHubClient("MyEventHub");
 ```
@@ -95,7 +95,7 @@ var client = factory.CreateEventHubClient("MyEventHub");
 ## <a name="batch-event-send-operations"></a>批次事件傳送作業
 分批傳送事件能大幅增加輸送量。 [SendBatch](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.sendbatch.aspx) 方法會採用 [EventData](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventdata.aspx) 類型的 **IEnumerable** 參數，再以不可部分完成作業的形式將整個批次傳送到事件中樞。
 
-```
+```csharp
 public void SendBatch(IEnumerable<EventData> eventDataList);
 ```
 
@@ -107,7 +107,7 @@ public void SendBatch(IEnumerable<EventData> eventDataList);
 ## <a name="create-a-partition-sender"></a>建立資料分割的傳送者
 雖然資料分割索引鍵是最常用來將事件傳送到事件中樞的方法，不過在某些情況下，您可能會想要將事件直接傳送到指定資料分割。 例如：
 
-```
+```csharp
 var partitionedSender = client.CreatePartitionedSender(description.PartitionIds[0]);
 ```
 
@@ -119,14 +119,14 @@ var partitionedSender = client.CreatePartitionedSender(description.PartitionIds[
 ### <a name="direct-consumer"></a>直接消費者
 要讀取消費者群組內的資料分割，最直接的方式是使用 [EventHubReceiver](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubreceiver.aspx) 類別。 若要建立這個類別的執行個體，您必須使用 [EventHubConsumerGroup](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubconsumergroup.aspx) 類別的執行個體。 在以下範例中，您必須在建立消費者群組的接收者時指定資料分割識別碼。
 
-```
+```csharp
 EventHubConsumerGroup group = client.GetDefaultConsumerGroup();
 var receiver = group.CreateReceiver(client.GetRuntimeInformation().PartitionIds[0]);
 ```
 
 [CreateReceiver](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubconsumergroup.createreceiver.aspx) 方法有幾個有助於控制所建立之讀取器的多載。 這些方法包括將位移指定為字串或時間戳記，以及讓您指定要在傳回的資料流中包括指定位移，或是在位移之後開始。 建立接收者後，您可以開始接收有關傳回之物件的事件。 [Receive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubreceiver.receive.aspx) 方法有四個控制接收作業參數的多載，如批次大小和等待時間。 若要增加消費者的輸送量，您可以使用這些方法的非同步版本。 例如：
 
-```
+```csharp
 bool receive = true;
 string myOffset;
 while(receive)
@@ -175,6 +175,6 @@ while(receive)
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

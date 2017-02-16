@@ -1,5 +1,5 @@
 ---
-title: "在 Azure VM (資源管理員) 上設定 SQL Server 的 Azure 金鑰保存庫整合"
+title: "在 Azure 中的 Windows VM 上將 Key Vault 與 SQL Server 整合 | Microsoft Docs"
 description: "了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。 本主題說明如何搭配「資源管理員」建立之 SQL Server 虛擬機器使用 Azure 金鑰保存庫整合。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -8,16 +8,16 @@ manager: jhubbard
 editor: 
 tags: azure-service-management
 ms.assetid: cd66dfb1-0e9b-4fb0-a471-9deaf4ab4ab8
-ms.service: virtual-machines-windows
+ms.service: virtual-machines-sql
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
-ms.workload: infrastructure-services
+ms.workload: iaas-sql-server
 ms.date: 10/25/2016
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: 097b2bc4ce0726b2d1f0c9414035af767125cb69
+ms.sourcegitcommit: 7a285920888bdfb46922d8708cf778229efff0a3
+ms.openlocfilehash: 3a10beb423ee0068508ddb06262aeba5e575bf94
 
 
 ---
@@ -68,6 +68,6 @@ ms.openlocfilehash: 097b2bc4ce0726b2d1f0c9414035af767125cb69
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

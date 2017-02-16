@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/02/2016
+ms.date: 12/22/2016
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 51325cf5f473123c5efeb571f52e04b540b182ad
+ms.sourcegitcommit: 9e70638af1ecdd0bf89244b2a83cd7a51d527037
+ms.openlocfilehash: 98b841e300d5b704d134bcfab0968523f3b9c3f0
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 51325cf5f473123c5efeb571f52e04b540b182ad
 Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的接收資料存放區][](data-factory-data-movement-activities.md#supported-data-stores-and-formats)，但不支援將資料從其他資料存放區移動到 Salesforce。
 
 ## <a name="supported-versions"></a>支援的版本
-此連接器使用下列其中一個 Salesforce 版本︰Developer Edition、Professional Edition、Enterprise Edition 或 Unlimited Edition。
+此連接器使用下列其中一個 Salesforce 版本︰Developer Edition、Professional Edition、Enterprise Edition 或 Unlimited Edition。 並且支援從 Salesforce 生產、沙箱和自訂網域複製。
 
 ## <a name="prerequisites"></a>必要條件
 * 必須啟用 API 權限。 請參閱 [如何在 Salesforce 中透過權限集啟用 API 存取權？](https://www.data2crm.com/migration/faqs/enable-api-access-salesforce-permission-set/)
@@ -45,8 +45,8 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 
 以下是為了實作案例所必須建立的 Data Factory 構件。 清單後面的各節會提供有關這些步驟的詳細資料。
 
-*  [Salesforce](#salesforce-linked-service-properties)
-*  [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service)
+* [Salesforce](#salesforce-linked-service-properties)
+* [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service)
 * [RelationalTable](#salesforce-dataset-properties) 類型的輸入[資料集](data-factory-create-datasets.md)
 * [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)
 * 具有使用 [RelationalSource](#relationalsource-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)
@@ -55,56 +55,60 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 
 此範例使用 **Salesforce** 連結服務。 如需此連結服務所支援的屬性，請參閱 [Salesforce 連結服務](#salesforce-linked-service-properties) 一節。  如需如何重設/取得安全性權杖的指示，請參閱 [取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) 。
 
+```JSON
+{
+    "name": "SalesforceLinkedService",
+    "properties":
     {
-        "name": "SalesforceLinkedService",
-        "properties":
+        "type": "Salesforce",
+        "typeProperties":
         {
-            "type": "Salesforce",
-            "typeProperties":
-            {
-                "username": "<user name>",
-                "password": "<password>",
-                "securityToken": "<security token>"
-            }
+            "username": "<user name>",
+            "password": "<password>",
+            "securityToken": "<security token>"
         }
     }
-
+}
+```
 **Azure 儲存體連結服務**
 
-    {
-      "name": "AzureStorageLinkedService",
-      "properties": {
-        "type": "AzureStorage",
-        "typeProperties": {
-          "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-        }
-      }
+```JSON
+{
+    "name": "AzureStorageLinkedService",
+    "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+        "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
     }
-
+    }
+}
+```
 **Salesforce 輸入資料集**
 
-    {
-        "name": "SalesforceInput",
-        "properties": {
-            "linkedServiceName": "SalesforceLinkedService",
-            "type": "RelationalTable",
-            "typeProperties": {
-                "tableName": "AllDataType__c"  
-            },
-            "availability": {
-                "frequency": "Hour",
-                "interval": 1
-            },
-            "external": true,
-            "policy": {
-                "externalData": {
-                    "retryInterval": "00:01:00",
-                    "retryTimeout": "00:10:00",
-                    "maximumRetry": 3
-                }
+```JSON
+{
+    "name": "SalesforceInput",
+    "properties": {
+        "linkedServiceName": "SalesforceLinkedService",
+        "type": "RelationalTable",
+        "typeProperties": {
+            "tableName": "AllDataType__c"  
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
+        },
+        "external": true,
+        "policy": {
+            "externalData": {
+                "retryInterval": "00:01:00",
+                "retryTimeout": "00:10:00",
+                "maximumRetry": 3
             }
         }
     }
+}
+```
 
 將 **external** 設定為 **true** 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 
@@ -119,24 +123,25 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 
 資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。
 
+```JSON
+{
+    "name": "AzureBlobOutput",
+    "properties":
     {
-        "name": "AzureBlobOutput",
-        "properties":
+        "type": "AzureBlob",
+        "linkedServiceName": "AzureStorageLinkedService",
+        "typeProperties":
         {
-            "type": "AzureBlob",
-            "linkedServiceName": "AzureStorageLinkedService",
-            "typeProperties":
-            {
-                "folderPath": "adfgetstarted/alltypes_c"
-            },
-            "availability":
-            {
-                "frequency": "Hour",
-                "interval": 1
-            }
+            "folderPath": "adfgetstarted/alltypes_c"
+        },
+        "availability":
+        {
+            "frequency": "Hour",
+            "interval": 1
         }
     }
-
+}
+```
 
 **具有複製活動的管線**
 
@@ -144,54 +149,54 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 
 如需 RelationalSource 支援的屬性清單，請參閱 [RelationalSource 類型屬性](#relationalsource-type-properties) 。
 
-    {  
-        "name":"SamplePipeline",
-        "properties":{  
-            "start":"2016-06-01T18:00:00",
-            "end":"2016-06-01T19:00:00",
-            "description":"pipeline with copy activity",
-            "activities":[  
+```JSON
+{  
+    "name":"SamplePipeline",
+    "properties":{  
+        "start":"2016-06-01T18:00:00",
+        "end":"2016-06-01T19:00:00",
+        "description":"pipeline with copy activity",
+        "activities":[  
+        {
+            "name": "SalesforceToAzureBlob",
+            "description": "Copy from Salesforce to an Azure blob",
+            "type": "Copy",
+            "inputs": [
             {
-                "name": "SalesforceToAzureBlob",
-                "description": "Copy from Salesforce to an Azure blob",
-                "type": "Copy",
-                "inputs": [
-                {
-                    "name": "SalesforceInput"
-                }
-                ],
-                "outputs": [
-                {
-                    "name": "AzureBlobOutput"
-                }
-                ],
-                "typeProperties": {
-                    "source": {
-                        "type": "RelationalSource",
-                        "query": "SELECT Id, Col_AutoNumber__c, Col_Checkbox__c, Col_Currency__c, Col_Date__c, Col_DateTime__c, Col_Email__c, Col_Number__c, Col_Percent__c, Col_Phone__c, Col_Picklist__c, Col_Picklist_MultiSelect__c, Col_Text__c, Col_Text_Area__c, Col_Text_AreaLong__c, Col_Text_AreaRich__c, Col_URL__c, Col_Text_Encrypt__c, Col_Lookup__c FROM AllDataType__c"                
-                    },
-                    "sink": {
-                        "type": "BlobSink"
-                    }
-                },
-                "scheduler": {
-                    "frequency": "Hour",
-                    "interval": 1
-                },
-                "policy": {
-                    "concurrency": 1,
-                    "executionPriorityOrder": "OldestFirst",
-                    "retry": 0,
-                    "timeout": "01:00:00"
-                }
+                "name": "SalesforceInput"
             }
-            ]
+            ],
+            "outputs": [
+            {
+                "name": "AzureBlobOutput"
+            }
+            ],
+            "typeProperties": {
+                "source": {
+                    "type": "RelationalSource",
+                    "query": "SELECT Id, Col_AutoNumber__c, Col_Checkbox__c, Col_Currency__c, Col_Date__c, Col_DateTime__c, Col_Email__c, Col_Number__c, Col_Percent__c, Col_Phone__c, Col_Picklist__c, Col_Picklist_MultiSelect__c, Col_Text__c, Col_Text_Area__c, Col_Text_AreaLong__c, Col_Text_AreaRich__c, Col_URL__c, Col_Text_Encrypt__c, Col_Lookup__c FROM AllDataType__c"                
+                },
+                "sink": {
+                    "type": "BlobSink"
+                }
+            },
+            "scheduler": {
+                "frequency": "Hour",
+                "interval": 1
+            },
+            "policy": {
+                "concurrency": 1,
+                "executionPriorityOrder": "OldestFirst",
+                "retry": 0,
+                "timeout": "01:00:00"
+            }
         }
+        ]
     }
-
+}
+```
 > [!IMPORTANT]
 > 任何自訂物件都需要 API 名稱的「__c」部分。
->
 >
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name-2.png)
@@ -202,6 +207,7 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | 類型 |類型屬性必須設為： **Salesforce**。 |是 |
+| environmentUrl | 指定 Salesforce 執行個體的 URL。 <br><br> - 預設值為 "https://login.salesforce.com"。 <br> - 若要從沙箱複製資料，請指定 "https://test.salesforce.com"。 <br> - 若要從自訂網域複製資料，請指定像是 "https://[domain].my.salesforce.com"。 |否 |
 | username |指定使用者帳戶的使用者名稱。 |是 |
 | password |指定使用者帳戶的密碼。 |是 |
 | securityToken |指定使用者帳戶的安全性權杖。 如需如何重設/取得安全性權杖的指示，請參閱 [取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) 。 若要整體了解安全性權杖，請參閱[安全性和 API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)。 |是 |
@@ -290,6 +296,6 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

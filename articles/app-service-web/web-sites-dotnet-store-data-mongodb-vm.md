@@ -16,16 +16,16 @@ ms.topic: article
 ms.date: 02/29/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c5ce6c8024026e8fb88a2c6e8e5475c8aba7aa30
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 5ce82ddd2f58fed338bd061fa963978aa63e5fdc
 
 
 ---
 # <a name="create-a-web-app-in-azure-that-connects-to-mongodb-running-on-a-virtual-machine"></a>在連線至在虛擬機器上執行之 MongoDB 的 Azure 中建立 Web 應用程式
-使用 Git，即可將 ASP.NET 應用程式部署至 Azure App Service Web Apps。 在本教學課程中，您將建置簡易的前端 ASP.NET MVC 工作清單應用程式，以連接至在 Azure 的虛擬機器上執行的 MongoDB 資料庫。  [MongoDB][MongoDB] (英文) 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 在部署電腦上執行和測試 ASP.NET 應用程式之後，您將使用 Git 將此應用程式上傳至 App Service Web Apps。
+使用 Git，即可將 ASP.NET 應用程式部署至 Azure App Service Web Apps。 在本教學課程中，您將建置簡易的前端 ASP.NET MVC 工作清單應用程式，以連接至在 Azure 的虛擬機器上執行的 MongoDB 資料庫。  [MongoDB][MongoDB] 是熱門的高效能開放原始碼 NoSQL 資料庫。 在部署電腦上執行和測試 ASP.NET 應用程式之後，您將使用 Git 將此應用程式上傳至 App Service Web Apps。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -33,9 +33,9 @@ ms.openlocfilehash: c5ce6c8024026e8fb88a2c6e8e5475c8aba7aa30
 下列知識雖然並非必要，但是對本教學課程很實用：
 
 * MongoDB 的 C# 驅動程式。 如需針對 MongoDB 開發 C# 應用程式的詳細資訊，請參閱 MongoDB [CSharp Language Center][MongoC#LangCenter]。 
-* ASP .NET Web 應用程式架構。 您可以在 [ASP.net website][ASP.NET]了解此架構。
-* ASP .NET MVC Web 應用程式架構。 您可以在 [ASP.NET MVC 網站][MVCWebSite]上了解此架構。
-* Azure。 您可以在 [Azure][WindowsAzure] 上開始進行讀取。
+* ASP .NET Web 應用程式架構。 您可以在 [ASP.net 網站][ASP.NET]了解此架構。
+* ASP .NET MVC Web 應用程式架構。 您可以在 [ASP.NET MVC 網站][MVCWebSite]了解此架構。
+* Azure。 您可以在 [Azure][WindowsAzure] 開始閱讀。
 
 ## <a name="prerequisites"></a>必要條件
 * [Visual Studio Express 2013 for Web][VSEWeb] 或 [Visual Studio 2013][VSUlt]
@@ -413,7 +413,7 @@ MongoDB C# 驅動程式現已安裝。  **MongoDB.Bson****MongoDB.Driver**和 **
 
     private string connectionString = "mongodb://<vm-dns-name>";
 
-以執行 MongoDB 之虛擬機器的 DNS 名稱來取代 `<vm-dns-name>`，該 MongoDB 是您在本教學課程的 [建立虛擬機器和安裝 MongoDB][建立虛擬機器和安裝 MongoDB] 步驟中所建立的資料庫。  若要尋找虛擬機器的 DNS 名稱，請移至 Azure 入口網站，選取 [虛擬機器]，然後尋找 [DNS 名稱]。
+以執行 MongoDB 之虛擬機器的 DNS 名稱來取代 `<vm-dns-name>`，該 MongoDB 是您在本教學課程的[建立虛擬機器和安裝 MongoDB][Create a virtual machine and install MongoDB] 步驟中所建立的資料庫。  若要尋找虛擬機器的 DNS 名稱，請移至 Azure 入口網站，選取 [虛擬機器]，然後尋找 [DNS 名稱]。
 
 如果虛擬機器的 DNS 名稱為 "testlinuxvm.cloudapp.net"，且 MongoDB 是在預設連接埠 27017 上接聽，則連接字串程式碼行如下所示：
 
@@ -482,13 +482,13 @@ MongoDB C# 驅動程式現已安裝。  **MongoDB.Bson****MongoDB.Driver**和 **
 [Image11]: ./media/web-sites-dotnet-store-data-mongodb-vm/GitDeploymentComplete.png
 
 <!-- TOC BOOKMARKS -->
-[建立虛擬機器和安裝 MongoDB]: #virtualmachine
-[在部署電腦上建立和執行 My Task List ASP.NET 應用程式##]: #createapp
-[建立 Azure 網站]: #createwebsite
-[使用 Git 將 ASP.NET 應用程式部署至網站]: #deployapp
+[Create a virtual machine and install MongoDB]: #virtualmachine
+[Create and run the My Task List ASP.NET application on your development computer]: #createapp
+[Create an Azure web site]: #createwebsite
+[Deploy the ASP.NET application to the web site using Git]: #deployapp
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

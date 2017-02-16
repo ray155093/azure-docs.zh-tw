@@ -12,15 +12,15 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/14/2016
+ms.date: 12/06/2016
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4bd1e84fd9af1273f95f70d941c3a4535984c8a9
+ms.sourcegitcommit: 705bbd78970c6e3c20ef7214704194f722da09a6
+ms.openlocfilehash: 0f00d5a3b8116864d9e66c18d535f319b31b9f9c
 
 
 ---
-# <a name="update-management-solution-in-omsmediaomssolutionupdatemanagementupdatemanagementsolutioniconpng-update-management-solution-in-oms"></a>![OMS 中的更新管理方案](./media/oms-solution-update-management/update-management-solution-icon.png) OMS 中的更新管理方案
+# <a name="update-management-solution-in-oms"></a>OMS 中的更新管理方案
 OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。  您可以快速評估所有代理程式電腦上可用更新的狀態，並起始為伺服器安裝必要更新的程序。 
 
 ## <a name="prerequisites"></a>必要條件
@@ -33,7 +33,10 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 * Linux 代理程式必須能夠存取更新儲存機制。  您可以從 [GitHub](https://github.com/microsoft/oms-agent-for-linux) 下載 OMS Agent for Linux。 
 
 ## <a name="configuration"></a>組態
-請執行下列步驟，在 OMS 工作區新增更新管理方案，並新增 Linux 代理程式。  Windows 代理程式則會自動新增，不需要另外進行設定。
+請執行下列步驟，在 OMS 工作區新增更新管理方案，並新增 Linux 代理程式。 Windows 代理程式則會自動新增，不需要另外進行設定。
+
+> [!NOTE]
+> 如果您目前啟用此解決方案，則任何連接到 OMS 工作區的 Windows 電腦都會自動設定為混合式 Runbook 背景工作，以支援屬於此解決方案的 Runbook。  不過，它不會向您在自動化帳戶中建立的任何混合式背景工作群組註冊，而且您無法將它新增至混合式背景工作群組來執行自己的 Runbook。  如果 Windows 電腦已指定為混合式 Runbook 背景工作並連接至 OMS 工作區，您必須先從 OMS 工作區中將它移除，再新增解決方案，以避免 Runbook 無法如預期般運作。  
 
 1. 使用從方案庫[新增 OMS 方案](../log-analytics/log-analytics-add-solutions.md)所述的程序，在 OMS 工作區新增更新管理方案。  
 2. 在 OMS 入口網站中，依序選取 [設定] 和 [連接的來源]。  記下 [工作區識別碼] 和 [主要金鑰] 或 [次要金鑰]。
@@ -41,11 +44,13 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
    
    a.    執行下列命令，安裝最新版 OMS Agent for Linux。  以工作區識別碼取代 <Workspace ID>主要或次要金鑰取代 <Key>。
    
-     cd ~   wget https://github.com/Microsoft/OMS-Agent-for-Linux/releases/download/v1.2.0-75/omsagent-1.2.0-75.universal.x64.sh   sudo bash omsagent-1.2.0-75.universal.x64.sh --upgrade -w <Workspace ID> -s <Key>
+        cd ~
+        wget https://github.com/Microsoft/OMS-Agent-for-Linux/releases/download/v1.2.0-75/omsagent-1.2.0-75.universal.x64.sh  
+        sudo bash omsagent-1.2.0-75.universal.x64.sh --upgrade -w <Workspace ID> -s <Key>
+
+   b. 若要移除代理程式，請執行下列命令。
    
-   b.這是另一個 C# 主控台應用程式。 若要移除代理程式，請執行下列命令。
-   
-     sudo bash omsagent-1.2.0-75.universal.x64.sh --purge
+        sudo bash omsagent-1.2.0-75.universal.x64.sh --purge
 
 ## <a name="management-packs"></a>管理組件
 如果 System Center Operations Manager 管理群組已連線到 OMS 工作區，當您新增此方案時，下列管理組件會安裝在 Operations Manager 中。 這些管理組件不需要任何設定或維護。 
@@ -242,6 +247,6 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

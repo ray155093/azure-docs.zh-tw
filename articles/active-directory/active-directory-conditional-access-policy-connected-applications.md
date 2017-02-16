@@ -37,11 +37,11 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 
 若要設定裝置型條件式存取原則，在 Azure 入口網站中，請移至目錄中的特定應用程式。
 
-  ![Azure 入口網站目錄中的應用程式清單](./media/active-directory-conditional-access-policy-connected-applications/01.png "應用程式")
+  ![Azure 入口網站目錄中的應用程式清單](./media/active-directory-conditional-access-policy-connected-applications/01.png "Applications")
 
 選取應用程式，然後按一下 [設定] 索引標籤以設定條件式存取原則。  
 
-  ![設定應用程式](./media/active-directory-conditional-access-policy-connected-applications/02.png "裝置型存取規則")
+  ![設定應用程式](./media/active-directory-conditional-access-policy-connected-applications/02.png "Device based access rules")
 
 若要設定裝置型條件式存取原則，請在 [以裝置為準的存取規則] 區段中，針對 [啟用存取規則] 選取 [開啟]。
 
@@ -51,7 +51,7 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 * **裝置規則**。 裝置必須先符合才能存取應用程式的條件。
 * **應用程式強制**。 套用原則的用戶端應用程式 (原生與瀏覽器)。
   
-  ![裝置型存取原則的三個元件](./media/active-directory-conditional-access-policy-connected-applications/03.png "裝置型存取規則")
+  ![裝置型存取原則的三個元件](./media/active-directory-conditional-access-policy-connected-applications/03.png "Device based access rules")
 
 ## <a name="select-the-users-the-policy-applies-to"></a>選取要套用原則的使用者
 在 [套用對象]  區段中，您可以選取要套用此原則的使用者範圍。
@@ -61,7 +61,7 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 * **所有使用者**。 將原則套用到所有存取應用程式的使用者。
 * **群組**。 將原則限制為特定群組成員的使用者。
 
-![將原則套用至所有使用者或某個群組](./media/active-directory-conditional-access-policy-connected-applications/11.png "套用至")
+![將原則套用至所有使用者或某個群組](./media/active-directory-conditional-access-policy-connected-applications/11.png "Apply to")
 
  若要從原則中排除使用者，請選取 [例外] 核取方塊。 當您需要給予特定使用者暫時存取應用程式的權限時，這相當有用。 舉例來說，如果某些使用者有尚未針對條件式存取準備就緒的裝置，請選取此選項。 可能尚未註冊的裝置，或即將不相容的裝置。
 
@@ -77,7 +77,7 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 
 即將推出對 Mac 的支援。
 
-  ![將原則套用至裝置](./media/active-directory-conditional-access-policy-connected-applications/04.png "應用程式")
+  ![將原則套用至裝置](./media/active-directory-conditional-access-policy-connected-applications/04.png "Applications")
 
 > [!NOTE]
 > 如需有關加入網域與加入 Azure AD 裝置之間差異的資訊，請參閱[在您工作場所中使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md)。
@@ -89,7 +89,7 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 * **所有裝置都必須相容**。 所有存取應用程式的裝置平台都必須相容。 系統會拒絕在不支援裝置型條件式存取的平台上執行的裝置存取。
 * **所有選取的裝置都必須相容**。 只有特定裝置平台必須相容。 其他平台，或其他可以存取應用程式的平台都有存取權。
   
-  ![設定裝置規則的範圍](./media/active-directory-conditional-access-policy-connected-applications/05.png "應用程式")
+  ![設定裝置規則的範圍](./media/active-directory-conditional-access-policy-connected-applications/05.png "Applications")
 
 如果加入 Azure AD 的裝置在目錄中被 Intune 或與 Azure AD 整合的協力廠商行動裝置管理系統標示為「相容」，該裝置即為相容裝置。
 
@@ -98,7 +98,7 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 * 它已向 Azure AD 註冊。 許多組織會將已加入網域的裝置視為信任的裝置。
 * 在 Azure AD 中被 System Center Configuration Manager 標示為**相容**。
   
-  ![符合](./media/active-directory-conditional-access-policy-connected-applications/06.png "裝置規則")的已加入網域裝置
+  ![相容的已加入網域裝置](./media/active-directory-conditional-access-policy-connected-applications/06.png "Device Rules")
 
 如果 Windows 個人裝置在目錄中被 Intune 或與 Azure AD 整合的協力廠商行動裝置管理系統標示為「相容」，該裝置即為相容裝置。
 
@@ -112,7 +112,7 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 您可以針對裝置型存取原則選取一或多個裝置平台。 這包括 Android、iOS、Windows Mobile (Windows 8.1 手機和平板電腦) 及 Windows (所有其他 Windows 裝置，包括所有 Windows 10 裝置)。
 只會針對選取的平台進行原則評估。 如果嘗試存取的裝置並未執行其中一個選取的平台，則裝置可以存取應用程式 (如果使用者具有存取權)。 未評估任何裝置的原則。
 
-![選取裝置規則適用的平台](./media/active-directory-conditional-access-policy-connected-applications/07.png "裝置規則")
+![選取裝置規則適用的平台](./media/active-directory-conditional-access-policy-connected-applications/07.png "Device Rules")
 
 ## <a name="set-policy-evaluation-for-a-type-of-application"></a>設定某種應用程式類型的原則評估
 在 [應用程式強制] 區段中，設定原則要針對使用者或裝置存取評估的應用程式類型。
@@ -122,7 +122,7 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 * 瀏覽器與原生應用程式
 * 僅限原生應用程式
 
-![選擇瀏覽器或原生應用程式](./media/active-directory-conditional-access-policy-connected-applications/08.png "應用程式")
+![選擇瀏覽器或原生應用程式](./media/active-directory-conditional-access-policy-connected-applications/08.png "Applications")
 
 若要強制執行應用程式的存取原則，請選取 [適用於瀏覽器與原生應用程式]。 然後，您可以包含︰
 
@@ -137,9 +137,9 @@ Azure Active Directory (Azure AD) 裝置型條件式存取可協助您保護組�
 ## <a name="help-protect-email-access-from-exchange-activesync-based-applications"></a>保護來自 Exchange Active Sync 應用程式的電子郵件存取
 在 Office 365 Exchange Online 應用程式中，您可以使用 Exchange ActiveSync 來封鎖對 Exchange ActiveSync 郵件應用程式的電子郵件存取。
 
-![Exchange ActiveSync 相容性選項](./media/active-directory-conditional-access-policy-connected-applications/09.png "應用程式")
+![Exchange ActiveSync 相容性選項](./media/active-directory-conditional-access-policy-connected-applications/09.png "Applications")
 
-![需要符合規範的裝置才可存取電子郵件](./media/active-directory-conditional-access-policy-connected-applications/10.png "應用程式")
+![需要相容的裝置才可存取電子郵件](./media/active-directory-conditional-access-policy-connected-applications/10.png "Applications")
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Active Directory 條件式存取](active-directory-conditional-access.md)

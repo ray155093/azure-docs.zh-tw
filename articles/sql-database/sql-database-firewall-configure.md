@@ -16,10 +16,10 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 11/23/2016
-ms.author: rickbyh;carlrab
+ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: ae1cacf0ff003e69a16d6beac48abc36a7f18896
+ms.sourcegitcommit: 2f24c1c43300a3c5035fbb4e90c3d13f73c1bc74
+ms.openlocfilehash: a0c4cfb127934f86a7ce272c1aec2fd01331e17c
 
 
 ---
@@ -39,6 +39,10 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 * **伺服器層級防火牆規則：** 這些規則可讓用戶端存取整個 Azure SQL Server，也就是相同邏輯伺服器內的所有資料庫。 這些規則會儲存在 **master** 資料庫。 使用入口網站或使用 Transact-SQL 陳述式即可設定伺服器層級防火牆規則。 若要使用 Azure 入口網站或 PowerShell 建立伺服器層級的防火牆規則，您必須是訂用帳戶擁有者或訂用帳戶參與者。 若要使用 Transact-SQL 建立伺服器層級的防火牆規則，您必須以伺服器層級的主體登入或 Azure Active Directory 系統管理員身分連接到 SQL 資料庫執行個體 (這表示具有 Azure 層級權限的使用者必須先建立伺服器層級的防火牆規則)。
 * **資料庫層級防火牆規則：** 這些規則可讓用戶端存取 Azure SQL Database 伺服器內的個別資料庫。 您可以針對每個資料庫建立這些規則，它們會儲存在個別的資料庫中。 (您可以為**主要**資料庫建立資料庫層級防火牆規則。)這些規則能協助您限制相同邏輯伺服器內的某些 (安全) 資料庫存取。 僅可使用 Transact-SQL 陳述式來設定資料庫層級防火牆規則。
+
+   > [!NOTE]
+   > 如需示範如何使用資料庫層級防火牆的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
+   >
 
 **建議：** Microsoft 建議在可行時使用資料庫層級防火牆規則來增強安全性，並且讓您的資料庫更具有可攜性。 當您有多個資料庫具有相同存取需求，且不想花時間個別設定每個資料庫時，請對系統管理員使用伺服器層級的防火牆規則。
 
@@ -122,7 +126,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 * **本機防火牆組態：** 在您的電腦可以存取 Azure SQL Database 之前，您可能需要在電腦上為 TCP 連接埠 1433 建立防火牆例外狀況。 如果您是在 Azure 雲端界限內建立連接，您可能必須開啟其他連接埠。 如需詳細資訊，請參閱 **針對 ADO.NET 4.5 及 SQL Database V12 的 1433 以外的連接埠** 的 [SQL Database V12：內部與外部](sql-database-develop-direct-route-ports-adonet-v12.md)一節。
 * **網路位址轉譯 (NAT)：** 由於 NAT，您的電腦用來連接到 Azure SQL Database 的 IP 位址，可能會不同於您電腦 IP 組態設定中顯示的 IP 位址。 若要檢視電腦用來連接到 Azure 的 IP 位址，請登入入口網站，並在裝載您資料庫的伺服器上瀏覽至 [設定]  索引標籤。 在 [允許的 IP 位址] 區段底下，[目前的用戶端 IP 位址] 隨即顯示。 對 [允許的 IP 位址] 按一下 [新增]，以允許此電腦存取伺服器。
-* **允許清單的變更尚未生效：** Azure SQL Database 防火牆組態變更可能會延遲最多 5 分鐘才能生效。
+* **允許清單的變更尚未生效：** Azure SQL Database 防火牆組態變更可能會延遲最多&5; 分鐘才能生效。
 * **登入未獲授權或使用不正確的密碼：** 如果 Azure SQL Database 伺服器上的登入沒有權限，或所使用的密碼不正確，與 Azure SQL Database 伺服器的連線就會遭到拒絕。 建立防火牆設定只會讓用戶端有機會嘗試連線至您的伺服器；每個用戶端必須提供必要的安全性認證。 如需準備登入的詳細資訊，請參閱「管理 Azure SQL Database 中的資料庫、登入和使用者」。
 * **動態 IP 位址：** 如果您有使用動態 IP 位址的網際網路連線，並且在通過防火牆時遇到問題，您可以嘗試下列其中一個解決方案：
   
@@ -150,6 +154,6 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 

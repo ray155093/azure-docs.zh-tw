@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/06/2016
+ms.date: 12/14/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fe034613c537ce0940f7220e4695727bdc2277c2
+ms.sourcegitcommit: 7b1b50f71158e62da6b8ceb741a5b8cf9795e3a4
+ms.openlocfilehash: 8e171d56bb67c971337fa383014988074ec828b1
 
 
 ---
@@ -219,7 +219,7 @@ namespace WorkerRole1
 ## <a name="network-traffic-rules-to-control-role-communication"></a>用網路流量規則控制角色通訊
 定義內部端點之後，您可以新增網路流量規則 (根據建立的端點) 來控制角色之間通訊的方式。 下圖顯示一些控制角色通訊的常見案例：
 
-![網路流量規則案例](./media/cloud-services-enable-communication-role-instances/scenarios.png "Network Traffic Rules Scenarios")
+![網路流量規則案例](./media/cloud-services-enable-communication-role-instances/scenarios.png "網路流量規則案例")
 
 以下程式碼範例顯示上圖中角色的角色定義。 每個角色定義都包含至少一個內部端點定義：
 
@@ -375,6 +375,6 @@ namespace WorkerRole1
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

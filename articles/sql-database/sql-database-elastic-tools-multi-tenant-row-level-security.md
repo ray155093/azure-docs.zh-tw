@@ -8,7 +8,7 @@ manager: jhubbard
 author: tmullaney
 ms.assetid: e72d3cfe-e9be-4326-b776-9c6d96c0a18e
 ms.service: sql-database
-ms.custom: shared databases; app development; auth and access
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 05/27/2016
 ms.author: thmullan;torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 26a2056ee413ebbf081643d6e8ea455120799e58
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: 19afc13a1715890316b34ed1128b594105c53c69
 
 
 ---
@@ -215,7 +215,7 @@ GO
 ```
 
 > [!TIP]
-> 如果是更複雜的專案 (需要在數百個資料表上加入述詞)，您可以使用協助程式預存程序來自動產生安全性原則，藉此為結構描述中的所有資料表加入述詞。 請參閱 [將資料列層級安全性套用至所有資料表：協助程式指令碼 (部落格)](http://blogs.msdn.com/b/sqlsecurity/archive/2015/03/31/apply-row-level-security-to-all-tables-helper-script)。  
+> 如果是更複雜的專案 (需要在數百個資料表上加入述詞)，您可以使用協助程式預存程序來自動產生安全性原則，藉此為結構描述中的所有資料表加入述詞。 請參閱[將資料列層級安全性套用至所有資料表 - 協助程式指令碼 (英文) (部落格)](http://blogs.msdn.com/b/sqlsecurity/archive/2015/03/31/apply-row-level-security-to-all-tables-helper-script)。  
 > 
 > 
 
@@ -304,7 +304,7 @@ GO
 您可以將彈性資料庫工具與資料列層級安全性搭配使用，以支援多租用戶和單一租用戶的分區，藉此向外延展應用程式的資料層。 多租用戶分區可以用來更有效率地儲存資料 (特別是在有大量租用戶，卻只有些許資料列的情況)，而單一租用戶分區則可以用來支援高階租用戶，因為這類租用戶有更嚴格的效能和隔離需求。  如需詳細資訊，請參閱 [資料列層級安全性參考資料](https://msdn.microsoft.com/library/dn765131)。 
 
 ## <a name="additional-resources"></a>其他資源
-* [什麼是 Azure 彈性資料庫集區？](sql-database-elastic-pool.md)
+* [什麼是 Azure 彈性集區？](sql-database-elastic-pool.md)
 * [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)
 * [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
 * [使用 Azure AD 和 OpenID Connect 的多租用戶應用程式驗證](../guidance/guidance-multitenant-identity-authenticate.md)
@@ -321,6 +321,6 @@ GO
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

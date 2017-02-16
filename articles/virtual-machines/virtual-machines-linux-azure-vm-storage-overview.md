@@ -1,5 +1,5 @@
 ---
-title: "Azure 和 Linux VM 儲存體 | Microsoft Docs"
+title: "Azure Linux VM 與 Azure 儲存體 | Microsoft Docs"
 description: "描述 Azure 標準和進階儲存體與 Linux 虛擬機器。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
@@ -15,8 +15,8 @@ ms.workload: infrastructure
 ms.date: 10/04/2016
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: bc18d25044fb790ef85ce950a785259cc1204fe4
+ms.sourcegitcommit: a3dc017811cb891bc82b072e13e58b3af047a490
+ms.openlocfilehash: e74ede9b3132ff4b4c3e67e614b9996f56856ebc
 
 
 ---
@@ -186,6 +186,6 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

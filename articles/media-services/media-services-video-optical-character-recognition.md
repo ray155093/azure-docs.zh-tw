@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字 | Microsoft Docs"
+title: "使用 Azure 媒體分析 OCR 將文字數位化 | Microsoft Docs"
 description: "Azure 媒體分析 OCR (光學字元辨識) 可讓您將視訊檔中的文字內容轉換成可編輯、可搜尋的數位文字。  這可讓您從媒體的視訊訊號自動擷取有意義的中繼資料。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 39fc755a632ae8e06109a3ea996521310424ba82
+ms.sourcegitcommit: 555e0b6340d09517bfd87efe209f0304f3266788
+ms.openlocfilehash: c50b183582038cba90298ba391eb33825cd765bd
 
 
 ---
@@ -342,6 +342,6 @@ OCR 媒體處理器的輸出是 JSON 檔案。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "從 Azure Data Factory 在 Azure 資料湖分析上執行 U-SQL 指令碼"
-description: "了解如何在 Azure 資料湖分析計算服務上執行 U-SQL 指令碼來處理資料。"
+title: "使用 U-SQL 指令碼轉換資料 - Azure | Microsoft Docs"
+description: "了解如何在 Azure Data Lake Analytics 計算服務上執行 U-SQL 指令碼來處理或轉換資料。"
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 12/06/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: a4121f8857fa9eaeb1cf1bca70e29666f6a04f63
-ms.openlocfilehash: f2d7655f0e119b524b7fb9a32bee4cc874e265a5
+ms.sourcegitcommit: 7c9f14503a7cf5c0808e26884a73cd2918ff1c74
+ms.openlocfilehash: 7a26b44f1c2c97174fb98ffdf0cb74a71d27710a
 
 
 ---
-# <a name="run-u-sql-script-on-azure-data-lake-analytics-from-azure-data-factory"></a>從 Azure Data Factory 在 Azure 資料湖分析上執行 U-SQL 指令碼
+# <a name="transform-data-by-running-u-sql-scripts-on-azure-data-lake-analytics"></a>在 Azure Data Lake Analytics 上執行 U-SQL 指令碼來轉換資料 
 > [!div class="op_single_selector"]
 > * [Hive](data-factory-hive-activity.md)  
 > * [Pig](data-factory-pig-activity.md)  
@@ -79,7 +79,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
 | 不受 Azure Active Directory 管理的使用者帳戶 ((@hotmail.com,、@live.com, 等) |12 小時 |
-| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
+| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 **sessionId** 和 **authorization** 屬性的值。 
 
@@ -303,6 +303,6 @@ ADF 會使用 ‘parameters’ 區段來動態傳遞 U-SQL 指令碼中 **@in** 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/19/2016
 ms.author: xibingao;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 353f09a8a6fa3798d764d41618a8f0b3ba83e3d0
+ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
+ms.openlocfilehash: 777dc11be139b20363e2060776ac0227883591ff
 
 
 ---
@@ -34,7 +34,7 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。 
   > 
 
 ## <a name="a-nameprovisionaconnect-to-the-azure-classic-portal-and-provision-an-sql-server-virtual-machine"></a><a name="Provision"></a>連線到 Azure 傳統入口網站並佈建 SQL Server 虛擬機器
-1. 使用您的帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/) 。
+1. 使用您的帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)。
    如果您沒有 Azure 帳戶，請造訪 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 2. 在 Azure 傳統入口網站中，依序按一下網頁左下角的 [+新增]、[計算]、[虛擬機器] 和 [從資源庫]。
 3. 在「 **建立虛擬機器** 」頁面上，根據您的資料需求選取包含 SQL Server 的虛擬機器映像，然後按一下頁面右下角的 [下一步] 箭號。 如需 Azure 支援之 SQL Server 映像的最新資訊，請參閱 [Azure 虛擬機器中的 SQL Server](http://go.microsoft.com/fwlink/p/?LinkId=294719) 文件集內的[開始使用 Azure 虛擬機器中的 SQL Server](http://go.microsoft.com/fwlink/p/?LinkId=294720) 主題。
@@ -233,7 +233,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若�
 3. 在 [ **伺服器使用者帳戶名稱** ] 文字方塊中輸入 SQL 使用者名稱。
 4. 在 [ **伺服器使用者帳戶密碼** ] 文字方塊中輸入 SQL 使用者的密碼。
    
-   ![Azure ML 匯入資料][13]
+   ![Azure Machine Learning 匯入資料][13]
 
 ## <a name="a-nameshutdownashutdown-and-deallocate-virtual-machine-when-not-in-use"></a><a name="shutdown"></a>關閉並解除配置非使用中的虛擬機器
 Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付費**」。 為了確保未使用虛擬機器時不會被計費，您必須將虛擬機器的狀態設為 [ **已停止 (已解除配置)** ]。
@@ -243,7 +243,7 @@ Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付�
 > 
 > 
 
-關閉及取消配置虛擬機器：
+關閉及解除配置虛擬機器：
 
 1. 使用您的帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/) 。  
 2. 從左側導覽列選取 [ **虛擬機器** ]。
@@ -277,6 +277,6 @@ Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

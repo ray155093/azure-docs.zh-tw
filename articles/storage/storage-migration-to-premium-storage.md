@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/21/2016
 ms.author: yuemlu
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: ad39a17ae7aa6d7a1e2de0acee7259821e481728
+ms.sourcegitcommit: 7611f7940b076ba18b3966b0bc9a63fe53b55592
+ms.openlocfilehash: 0ebec265fe2ac2d53dbe3afcb660dddbe7b050ea
 
 
 ---
@@ -44,7 +44,7 @@ ms.openlocfilehash: ad39a17ae7aa6d7a1e2de0acee7259821e481728
 
 ### <a name="prerequisites"></a>必要條件
 * 您將需要 Azure 訂用帳戶。 如果您沒有訂用帳戶，可以建立一個月的[免費試用](https://azure.microsoft.com/pricing/free-trial/)訂用帳戶，或造訪 [Azure 價格](https://azure.microsoft.com/pricing/)以了解其他選項。
-* 若要執行 PowerShell Cmdlet，您將需要 Microsoft Azure PowerShell 模組。 如需安裝點和安裝指示的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
+* 若要執行 PowerShell Cmdlet，您將需要 Microsoft Azure PowerShell 模組。 如需安裝點和安裝指示的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 * 當您計劃使用在進階儲存體上執行的 Azure VM 時，您需要使用可支援進階儲存體的 VM。 您可以將「標準」和「進階」儲存體磁碟與支援「進階儲存體」的 VM 搭配使用。 未來進階儲存體磁碟將可搭配更多 VM 類型使用。 如需所有可用 Azure VM 磁碟類型和大小的詳細資訊，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。
 
 ### <a name="considerations"></a>考量
@@ -62,7 +62,7 @@ Azure VM 大小的規格已列在 [虛擬機器的大小](../virtual-machines/vi
 | 每一磁碟的 IOPS |500 |2300 |5000 |
 | 每一磁碟的輸送量 |每秒 100 MB |每秒 150 MB |每秒 200 MB |
 
-根據您的工作負載，決定您的 VM 是否需要額外的資料磁碟。 您可以將數個持續性資料磁碟連接至您的 VM。 如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。 (請參閱[這裡](storage-premium-storage-performance.md#disk-striping)的磁碟等量化說明。)如果您使用[儲存空間][4]等量處理進階儲存體資料磁碟，您應該為所用的每個磁碟設定一個資料行。 否則，等量磁碟區的整體效能可能會因為磁碟之間的流量分配不平均而低於預期。 而對於 Linux VM，您可以使用 *mdadm* 公用程式來達到相同的效果。 如需詳細資訊，請參閱文章 [在 Linux 上設定軟體 RAID](../virtual-machines/virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
+根據您的工作負載，決定您的 VM 是否需要額外的資料磁碟。 您可以將數個持續性資料磁碟連接至您的 VM。 如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。 (請參閱[這裡](storage-premium-storage-performance.md#disk-striping)的磁碟等量化說明。)如果您使用[儲存空間][4]等量進階儲存體資料磁碟，應該對所使用的每個磁碟中的每個資料行進行設定。 否則，等量磁碟區的整體效能可能會因為磁碟之間的流量分配不平均而低於預期。 而對於 Linux VM，您可以使用 *mdadm* 公用程式來達到相同的效果。 如需詳細資訊，請參閱文章 [在 Linux 上設定軟體 RAID](../virtual-machines/virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
 
 #### <a name="storage-account-scalability-targets"></a>儲存體帳戶延展性目標
 進階儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)之外，還有以下延展性目標。 如果您的應用程式需求超出單一儲存體帳戶的延展性目標，請建置使用多個儲存體帳戶的應用程式，並將資料分散到那些儲存體帳戶中。
@@ -313,7 +313,7 @@ Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
 為您的應用程式做好停機準備。 若要進行全新移轉，您必須停止目前系統中的所有處理。 只有這樣，您才可以使其維持在可移轉至新平台的一致狀態。 停機持續時間將取決於磁碟中要移轉的資料量。
 
 > [!NOTE]
-> 如果您要從指定的 VHD 磁碟建立 Azure Resource Manager VM，請參閱[此範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd)以便使用現有的磁碟部署 Azure Resource Manager VM。
+> 如果您要從指定的 VHD 磁碟建立 Azure Resource Manager VM，請參閱[此範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd)以便使用現有的磁碟部署 Azure Resource Manager VM。
 >
 >
 
@@ -764,7 +764,7 @@ Update-AzureVM  -VM $vm
 
 * [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/)
 * [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)
-* [Premium 儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)
+* [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)
 
 [1]:./media/storage-migration-to-premium-storage/migration-to-premium-storage-1.png
 [2]:./media/storage-migration-to-premium-storage/migration-to-premium-storage-1.png
@@ -773,6 +773,6 @@ Update-AzureVM  -VM $vm
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

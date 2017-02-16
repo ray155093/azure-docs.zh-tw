@@ -16,13 +16,13 @@ ms.workload: data-services
 ms.date: 12/22/2016
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 994fb8080f053ae3eb72eb1dda92bd5aa46c6988
-ms.openlocfilehash: a48cdb58dd48cc033f69de15fc19f313bc12cdfa
+ms.sourcegitcommit: 7f5e33b7f80e3c1e1e3e66b3cab879a5bc30e823
+ms.openlocfilehash: 6941a0a5e108617ebb16354edc9917392b7cb786
 
 
 ---
 # <a name="documentdb-indexing-policies"></a>DocumentDB 索引編製原則
-雖然許多客戶都很樂意讓 Azure DocumentDB 自動處理 [索引編製的所有層面](documentdb-indexing.md)，但是 DocumentDB 也支援在建立期間指定集合的自訂 **索引編製原則** 。 相較於其他資料庫平台所提供的次要索引，DocumentDB 中的索引編製原則在彈性和功能上都更為強大，因為後者可讓您設計和自訂索引的圖形，而不會犧牲結構描述的靈活度。 若要了解索引如何在 DocumentDB 內運作，您必須了解透過管理編製索引原則，在索引儲存空間負荷、寫入和查詢的輸送量，以及查詢一致性之間進行細微的取捨。  
+許多客戶都樂意讓 Azure DocumentDB 自動處理所有索引編製層面，但 DocumentDB 也支援在建立集合時為集合指定自訂「索引編製原則」。 相較於其他資料庫平台所提供的次要索引，DocumentDB 中的索引編製原則在彈性和功能上都更為強大，因為後者可讓您設計和自訂索引的圖形，而不會犧牲結構描述的靈活度。 若要了解索引如何在 DocumentDB 內運作，您必須了解透過管理編製索引原則，在索引儲存空間負荷、寫入和查詢的輸送量，以及查詢一致性之間進行細微的取捨。  
 
 在本文中，我們會深入探討 DocumentDB 索引編製原則、自訂索引編製原則的方式，以及相關聯的取捨。 
 
@@ -413,6 +413,6 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

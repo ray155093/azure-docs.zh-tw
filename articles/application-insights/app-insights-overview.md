@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 8c5324742e42a1f82bb3031af4380fc5f0241d7f
-ms.openlocfilehash: c719a82e6c2ae46080811190f9ca7783414f38f4
+ms.sourcegitcommit: 3e9476f8edc4186af026495bc575b8203c35c619
+ms.openlocfilehash: b01de7724ec116e5e27369f7c0f852f82ab0348b
 
 
 ---
@@ -86,11 +86,11 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
 
 有數種方式可以開始使用。 從最適合您的方式著手。 您可以稍後新增其他帳戶。
 
-* **在執行階段：檢測伺服器上的 Web 應用程式。**  避免對程式碼進行任何更新。 您需要您的伺服器的系統管理員存取權。
+* **在執行階段：檢測伺服器上的 Web 應用程式。** 避免對程式碼進行任何更新。 您需要您的伺服器的系統管理員存取權。
   * [**內部部署或 VM 上的 IIS**](app-insights-monitor-performance-live-website-now.md)
   * [**Azure Web 應用程式或 VM**](app-insights-monitor-performance-live-website-now.md)
   * [**J2EE**](app-insights-java-live.md)
-* **在開發階段：將 Application Insights 加入至您的程式碼。**  可讓您撰寫自訂遙測及檢測後端和桌面應用程式。
+* **在開發階段：將 Application Insights 加入至您的程式碼。** 可讓您撰寫自訂遙測及檢測後端和桌面應用程式。
   * [Visual Studio](app-insights-asp-net.md) 2013 Update 2 或更新版本。
   * [Eclipse](app-insights-java-eclipse.md) 或 [其他工具](app-insights-java-get-started.md) 中的 Java
   * [Node.js](app-insights-nodejs.md)
@@ -264,7 +264,7 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
 不同於計量瀏覽器，即時計量串流會顯示一組固定的計量。 只要資料仍在圖表上就會保存，之後便會捨棄該資料。
 
 ### <a name="annotations"></a>註解
-[版本註解](app-insights-annotations.md) 會顯示您在哪邊部署了新組建。 註解可讓您輕鬆查看變更是否對應用程式的效能有任何影響。 [Visual Studio Team Services 建置系統](https://www.visualstudio.com/en-us/get-started/build/build-your-app-vs)可自動建立註解，您也可以[從 PowerShell 建立](#create-annotations-from-powershell)。
+[版本註解](app-insights-annotations.md) 會顯示您在哪邊部署了新組建。 註解可讓您輕鬆查看變更是否對應用程式的效能有任何影響。 [Visual Studio Team Services 建置系統](https://www.visualstudio.com/en-us/get-started/build/build-your-app-vs)以及 Visual Studio 中的 Web 部署可自動建立註解。 您也可以[從 PowerShell 建立](#create-annotations-from-powershell)。
 
 ![註解範例，其會顯示與伺服器回應時間的相互關聯](./media/app-insights-overview/00.png)
 
@@ -369,6 +369,6 @@ Application Insights 的使用方式有所限制，在某個程度上這取決�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

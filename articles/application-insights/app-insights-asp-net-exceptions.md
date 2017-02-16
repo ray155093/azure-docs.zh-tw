@@ -1,5 +1,5 @@
 ---
-title: "使用 Application Insights 來診斷 ASP.NET 應用程式中的失敗和例外狀況 | Microsoft Docs"
+title: "使用 Azure Application Insights 診斷 Web 應用程式中的失敗和例外狀況 | Microsoft Docs | Microsoft Docs"
 description: "擷取從 ASP.NET 應用程式與所要求遙測的例外狀況。"
 services: application-insights
 documentationcenter: .net
@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 41843c3b847fedb0531fa6b193b56cbd3d74466d
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: 2dbbe59f71500c31de8568de4e92cc41131d0970
 
 
 ---
@@ -445,6 +445,6 @@ VB
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

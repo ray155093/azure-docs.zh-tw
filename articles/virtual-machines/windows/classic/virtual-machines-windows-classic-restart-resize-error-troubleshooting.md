@@ -12,12 +12,12 @@ ms.service: virtual-machines-windows
 ms.topic: support-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: required
-ms.date: 09/20/2016
+ms.date: 01/10/2017
 ms.devlang: na
 ms.author: delhan
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: f63e21708192532b94fbfce4658d91dec712cc29
+ms.sourcegitcommit: 66b1bcdf0f79ff4743f466c3737696f53ef6a44c
+ms.openlocfilehash: 6bae5c227fb45b1a6ed25c4eb7aac2048fc856c1
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: f63e21708192532b94fbfce4658d91dec712cc29
 當您嘗試啟動已停止的 Azure 虛擬機器 (VM)，或調整現有 Azure VM 的大小時，常會遇到的錯誤是配置失敗。 當叢集或區域沒有可用的資源或無法支援所要求的 VM 大小，就會產生此錯誤。
 
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../../../resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 > 
 > 
 
@@ -87,6 +87,6 @@ ms.openlocfilehash: f63e21708192532b94fbfce4658d91dec712cc29
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

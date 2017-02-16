@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: acc5c94d90820c8d9b43f6e082dd750f4541f688
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: dae5382a07ca1308f9c543155dd93ecbecf72f4f
 
 
 ---
@@ -114,7 +114,7 @@ ms.openlocfilehash: acc5c94d90820c8d9b43f6e082dd750f4541f688
    
     a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b. 按 [下一步] 。
 2. 若要在 Expensify 中啟用 SSO，您必須先在應用程式中啟用 [網域控制]  。 您可以在應用程式中啟用 [網域控制]。 [這裡](http://help.expensify.com/domain-control)列出了步驟。 如需其他支援，您可以透過 [help@expensify.com](mailto:help@expensify.com)。 一旦啟用了 [網域控制]，請遵循下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-expensify-tutorial/tutorial_expensify_51.png) 
@@ -244,6 +244,6 @@ ms.openlocfilehash: acc5c94d90820c8d9b43f6e082dd750f4541f688
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

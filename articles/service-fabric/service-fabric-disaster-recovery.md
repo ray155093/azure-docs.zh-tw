@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 10/29/2016
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ff3e8fe622bdd6ecba01bc08b26a243c592c3c8b
+ms.sourcegitcommit: 6dc2a6dbf4b26363f1ad714baec8d48045aa97b6
+ms.openlocfilehash: 81d818afb1a15db646a20b4001493d9df7e24d27
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: ff3e8fe622bdd6ecba01bc08b26a243c592c3c8b
 > 
 
 ### <a name="geographic-distribution"></a>地理分佈
-目前[全世界有 26 個 Azure 區域][azure-regions]，已宣佈更多個。 視需求和適當位置的可用性 (還有其他因素) 而定，個別區域可以包含一或多個實體資料中心。 但請注意，即使在包含多個實體資料中心的區域中，也不能保證您叢集的 VM 會平均分散於這些實體位置。 事實上，指定叢集的所有 VM 目前都佈建在單一實體站台內。
+目前[全世界有 30 個 Azure 區域][azure-regions]，已宣佈更多個。 視需求和適當位置的可用性 (還有其他因素) 而定，個別區域可以包含一或多個實體資料中心。 但請注意，即使在包含多個實體資料中心的區域中，也不能保證您叢集的 VM 會平均分散於這些實體位置。 事實上，指定叢集的所有 VM 目前都佈建在單一實體站台內。
 
 ## <a name="dealing-with-failures"></a>處理失敗
 有數種類型的失敗可能會影響您的叢集，而每種類型都有其自己的緩和方式。 我們將依照其發生的可能性順序進行探討。
@@ -109,6 +109,6 @@ protected virtual Task<bool> OnDataLoss(CancellationToken cancellationToken)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

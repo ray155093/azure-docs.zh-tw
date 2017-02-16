@@ -16,8 +16,8 @@ ms.workload: big-compute
 ms.date: 09/13/2016
 ms.author: xpillons
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 666b9e47953674b17be6cc84dbc6aeec28e28b57
+ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
+ms.openlocfilehash: 94a6a0968336f74ff116bf71aaa2e7c2ee135105
 
 
 ---
@@ -31,7 +31,7 @@ Microsoft HPC Pack 提供功能來執行各種大規模 HPC 和平行應用程�
 ## <a name="set-up-an-hpc-pack-cluster"></a>設定 HPC Pack 叢集
 從[下載中心](https://www.microsoft.com/en-us/download/details.aspx?id=44949)下載 HPC Pack IaaS 部署指令碼，並將它們解壓縮到本機。
 
-Azure PowerShell 是必要條件。 如果未在本機電腦上設定 PowerShell，請閱讀本文： [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+Azure PowerShell 是必要條件。 如果未在本機電腦上設定 PowerShell，請閱讀本文： [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 撰寫本文時，來自 Azure Marketplace 的 Linux 映像 (其包含 Azure InfiniBand 驅動程式) 適用於 SLES 12、CentOS 6.5 和 CentOS 7.1。 這篇文章根據 SLES 12 的使用方式。 若要擷取 Marketplace 中支援 HPC 的所有 Linux 映像的名稱，您可以執行下列 PowerShell 命令︰
 
@@ -336,6 +336,6 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。 若�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/04/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 1e2569a6db330c908fe4087c1bc5a475d3e8a575
-ms.openlocfilehash: 0e1f7719c993dda419e3ebae7d50b91bd5effbc2
+ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
+ms.openlocfilehash: 9a9ae2758aba17f35b7262560f8d980404ecd394
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 0e1f7719c993dda419e3ebae7d50b91bd5effbc2
 
 開放原始碼、跨平台的 Azure CLI 2.0 (Preview) 提供一組命令，供您運用在 Azure 平台上。 它提供許多與 [Azure 入口網站](https://portal.azure.com)相同的功能，包括豐富的資料存取功能。
 
-在本指南中，我們會說明如何使用 [Azure CLI 2.0 (Preview)](/cli/azure/get-started-with-az-cli2) 來執行數項工作，以便使用您的 Azure 儲存體帳戶中的資源。 建議您在使用本指南之前，先下載並安裝或升級至最新版的 CLI 2.0。
+在本指南中，我們會說明如何使用 [Azure CLI 2.0 (Preview)](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) 來執行數項工作，以便使用您的 Azure 儲存體帳戶中的資源。 建議您在使用本指南之前，先下載並安裝或升級至最新版的 CLI 2.0。
 
 本指南中的範例假設在 Ubuntu 上使用 Bash 殼層，但其他平台應以類似方式執行。 
 
@@ -364,12 +364,12 @@ az storage file copy start \
 ## <a name="next-steps"></a>後續步驟
 以下有一些額外的資源，可供深入了解如何使用 Azure CLI 2.0 (Preview)。
 
-* [開始使用 Azure CLI 2.0 (預覽)](/cli/azure/get-started-with-az-cli2)
+* [開始使用 Azure CLI 2.0 (預覽)](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 * [Azure CLI 2.0 (預覽) 命令參考](/cli/azure)
 * [GitHub 上的 Azure CLI 2.0 (預覽)](https://github.com/Azure/azure-cli)
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO5-->
 
 

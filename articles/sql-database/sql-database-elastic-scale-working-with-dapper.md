@@ -7,6 +7,7 @@ manager: jhubbard
 author: torsteng
 ms.assetid: 463d2676-3b19-47c2-83df-f8c50492c9d2
 ms.service: sql-database
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -14,8 +15,8 @@ ms.topic: article
 ms.date: 05/27/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f4a678b1c6759d50e321f0858fd4d478132b2166
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: 01369360fa10ae39e2f9b435d877de0171574286
 
 
 ---
@@ -84,7 +85,7 @@ Dapper 以及 DapperExtensions 的另一個好處就是應用程式可控制資�
 
 分區對應物件會建立分區的連線，而此分區保留給定分區化索引鍵的 Shardlet。 彈性資料庫用戶端 API 也會標記此連接以履行其一致性保證。 由於呼叫 [OpenConnectionForKey](http://msdn.microsoft.com/library/azure/dn807226.aspx) 會傳回標準 SQL 用戶端連接物件，所以後續從 Dapper 呼叫 **Execute** 延伸方法時會遵循標準 Dapper 作法。
 
-查詢的運作方式幾乎完全相同 - 首先從用戶端 API 使用 [OpenConnectionForKey](http://msdn.microsoft.com/library/azure/dn807226.aspx) 開啟連接。 然後使用標準 Dapper 延伸方法，將 SQL 查詢的結果對應至 .NET 物件：
+查詢的運作方式幾乎完全相同 - 首先使用 [OpenConnectionForKey](http://msdn.microsoft.com/library/azure/dn807226.aspx) 從用戶端 API 開啟連線。 然後使用標準 Dapper 延伸方法，將 SQL 查詢的結果對應至 .NET 物件：
 
     using (SqlConnection sqlconn = shardingLayer.ShardMap.OpenConnectionForKey(
                     key: tenantId1, 
@@ -169,6 +170,6 @@ Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

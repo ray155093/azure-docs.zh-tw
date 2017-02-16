@@ -1,20 +1,24 @@
 ---
-title: 適用於 MongoDB 的 DocumentDB 範例 | Microsoft Docs
-description: 尋找 DocumentDB 的 MongoDB 通訊協定支援的範例。
-keywords: mongodb 範例
+title: "適用於 MongoDB 的 DocumentDB 範例 | Microsoft Docs"
+description: "尋找 DocumentDB 的 MongoDB 通訊協定支援的範例。"
+keywords: "mongodb 範例"
 services: documentdb
 author: AndrewHoh
 manager: jhubbard
-editor: ''
-documentationcenter: ''
-
+editor: 
+documentationcenter: 
+ms.assetid: fb38bc53-3561-487d-9e03-20f232319a87
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/23/2016
+ms.date: 11/28/2016
 ms.author: anhoh
+translationtype: Human Translation
+ms.sourcegitcommit: 8d4c3aaefee502e79dd1ea3e074937bb9a1d4593
+ms.openlocfilehash: 703373c2c0090a2c6ffef3433aee3a05f0f41475
+
 
 ---
 # <a name="documentdb-protocol-support-for-mongodb-examples"></a>MongoDB 的 DocumentDB 通訊協定支援範例
@@ -23,7 +27,94 @@ ms.author: anhoh
 * [建立](documentdb-create-mongodb-account.md) 具有 MongoDB 的通訊協定支援的 Azure DocumentDB 帳戶。
 * 擷取具有 MongoDB 通訊協定支援的 DocumentDB 帳戶的 [連接字串](documentdb-connect-mongodb-account.md) 資訊。
 
-## <a name="get-started-with-a-sample-asp.net-mvc-task-list-application"></a>開始使用範例 ASP.NET MVC 工作清單應用程式
+## <a name="get-started-with-a-sample-nodejs-getting-started-app"></a>以範例 Node.js 開始使用應用程式開始
+
+1. 建立 *app.js* 檔案，複製並貼上下列程式碼。
+
+         var MongoClient = require('mongodb').MongoClient;
+         var assert = require('assert');
+         var ObjectId = require('mongodb').ObjectID;
+         var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10250/?ssl=true';
+
+         var insertDocument = function(db, callback) {
+            db.collection('families').insertOne( {
+                 "id": "AndersenFamily",
+                 "lastName": "Andersen",
+                 "parents": [
+                     { "firstName": "Thomas" },
+                     { "firstName": "Mary Kay" }
+                 ],
+                 "children": [
+                     { "firstName": "John", "gender": "male", "grade": 7 }
+                 ],
+                 "pets": [
+                     { "givenName": "Fluffy" }
+                 ],
+                 "address": { "country": "USA", "state": "WA", "city": "Seattle" }
+             }, function(err, result) {
+             assert.equal(err, null);
+             console.log("Inserted a document into the families collection.");
+             callback();
+           });
+         };
+
+         var findFamilies = function(db, callback) {
+            var cursor =db.collection('families').find( );
+            cursor.each(function(err, doc) {
+               assert.equal(err, null);
+               if (doc != null) {
+                  console.dir(doc);
+               } else {
+                  callback();
+               }
+            });
+         };
+
+         var updateFamilies = function(db, callback) {
+            db.collection('families').updateOne(
+               { "lastName" : "Andersen" },
+               {
+                 $set: { "pets": [
+                     { "givenName": "Fluffy" },
+                     { "givenName": "Rocky"}
+                 ] },
+                 $currentDate: { "lastModified": true }
+               }, function(err, results) {
+               console.log(results);
+               callback();
+            });
+         };
+
+         var removeFamilies = function(db, callback) {
+            db.collection('families').deleteMany(
+               { "lastName": "Andersen" },
+               function(err, results) {
+                  console.log(results);
+                  callback();
+               }
+            );
+         };
+
+         MongoClient.connect(url, function(err, db) {
+           assert.equal(null, err);
+           insertDocument(db, function() {
+             findFamilies(db, function() {
+               updateFamilies(db, function() {
+                 removeFamilies(db, function() {
+                     db.close();
+                 });
+               });
+             });
+           });
+         });
+
+2. 在 *app.js* 中根據每個帳戶設定 (了解如何尋找您的[連接字串](documentdb-connect-mongodb-account.md)) 修改下列變數：
+   
+         var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10250/?ssl=true';
+     
+3. 開啟您最愛的終端機，執行 **npm install mongodb --save**，然後使用 **node app.js** 執行您的應用程式
+
+## <a name="get-started-with-a-sample-aspnet-mvc-task-list-application"></a>開始使用範例 ASP.NET MVC 工作清單應用程式
 您可以使用 [在連接至在虛擬機器上執行之 MongoDB 的 Azure 中建立 Web 應用程式](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md) 教學課程，以最少的修改快速設定 MongoDB 應用程式 (在本機或發佈至 Azure Web 應用程式)，連接到具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。  
 
 1. 請遵循教學課程，只有一項修改。  使用下列項目取代 Dal.cs 程式碼：
@@ -160,14 +251,16 @@ ms.author: anhoh
         }
 2. 在您的每個帳戶設定中修改 Dal.cs 檔案中的下列變數：
    
-       private string userName = "<your user name>";
-       private string host = "<your host>";
-       private string password = "<your password>";
+         private string userName = "<your user name>";
+         private string host = "<your host>";
+         private string password = "<your password>";
 3. 使用應用程式！
 
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [使用 MongoChef](documentdb-mongodb-mongochef.md) 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO4-->
 
 

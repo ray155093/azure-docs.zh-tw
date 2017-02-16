@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Resource Manager 範本和 PowerShell 建立 IoT 中樞 |Microsoft Docs"
-description: "請依照此教學課程的說明，開始使用 Azure Resource Manager 範本以 PowerShell 建立「IoT 中樞」。"
+title: "使用範本建立 Azure IoT 中樞 (PowerShell) | Microsoft Docs"
+description: "如何在 PowerShell 中使用 Azure Resource Manager 範本建立 IoT 中樞。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -12,15 +12,15 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/07/2016
+ms.date: 12/06/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: cbd9c2a5d3e3f03fd9136feb35a82be0cd1ee420
+ms.sourcegitcommit: 2abfeebeac222f4371b0945e1aeb6fcf8e51595d
+ms.openlocfilehash: b884fe128b8414ae1692df92e89a41f7ba1c0447
 
 
 ---
-# <a name="create-an-iot-hub-using-powershell"></a>使用 PowerShell 建立 IoT 中樞
+# <a name="create-an-iot-hub-using-azure-resource-manager-template-powershell"></a>使用 Azure Resource Manager 範本建立 IoT 中樞 (PowerShell)
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>簡介
@@ -34,7 +34,7 @@ ms.openlocfilehash: cbd9c2a5d3e3f03fd9136feb35a82be0cd1ee420
 若要完成此教學課程，您需要下列項目：
 
 * 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
-* [Microsoft Azure PowerShell 1.0][lnk-powershell-install] 或更新版本。
+* [Azure PowerShell 1.0][lnk-powershell-install] 或更新版本。
 
 > [!TIP]
 > [搭配使用 Azure PowerShell 與 Azure Resource Manager][lnk-powershell-arm] 一文提供有關如何使用 PowerShell 指令碼和 Azure Resource Manager 範本來建立 Azure 資源的詳細資訊。 
@@ -148,7 +148,7 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
 [lnk-azure-portal]: https://portal.azure.com/
 [lnk-status]: https://azure.microsoft.com/status/
-[lnk-powershell-install]: ../powershell-install-configure.md
+[lnk-powershell-install]: /powershell/azureps-cmdlets-docs
 [lnk-rest-api]: https://msdn.microsoft.com/library/mt589014.aspx
 [lnk-azure-rm-overview]: ../azure-resource-manager/resource-group-overview.md
 [lnk-powershell-arm]: ../azure-resource-manager/powershell-azure-resource-manager.md
@@ -160,6 +160,6 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

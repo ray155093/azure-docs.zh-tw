@@ -2,7 +2,7 @@
 title: "針對 Azure 度量警示設定 Webhook | Microsoft Docs"
 description: "重設 Azure 警示的路徑到其他非 Azure 系統。"
 author: kamathashwin
-manager: carolz
+manager: carmonm
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/15/2016
+ms.date: 01/07/2017
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 62d6c15b9c360c74dc5d9436833bb4666048e523
+ms.sourcegitcommit: c0d101266fecf04a84b5717c1b81cefed90cab40
+ms.openlocfilehash: 440bd939f0c7d235d7be210c7fee9f2bc122718c
 
 
 ---
@@ -36,7 +36,7 @@ Azure 警示會將警示內容以 JSON 格式 (定義如下的結構描述) HTTP
 Webhook 可使用下列其中一種方法來進行驗證︰
 
 1. **權杖型授權** - 所儲存的 Webhook URI 具有權杖識別碼，例如  `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
-2. **基本授權** - 所儲存的 Webhook URI 具有使用者名稱和密碼，例如  `https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar`
+2. **密碼型授權** - 所儲存的 Webhook URI 具有使用者名稱和密碼，例如  `https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar`
 
 ## <a name="payload-schema"></a>承載結構描述
 POST 作業對於所有以計量為基礎的警示會包含下列 JSON 承載和結構描述。
@@ -103,8 +103,8 @@ POST 作業對於所有以計量為基礎的警示會包含下列 JSON 承載和
 
 > [!NOTE]
 > 屬性欄位只能使用 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx) 設定。
-> 
-> 
+>
+>
 
 ## <a name="next-steps"></a>後續步驟
 * 請觀賞 [使用 PagerDuty 整合 Azure 警示](http://go.microsoft.com/fwlink/?LinkId=627080)
@@ -115,7 +115,6 @@ POST 作業對於所有以計量為基礎的警示會包含下列 JSON 承載和
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

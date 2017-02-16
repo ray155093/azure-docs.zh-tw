@@ -1,5 +1,5 @@
 ---
-title: "在未安裝 Azure 客體代理程式的情況下重設本機 Windows 密碼 | Microsoft Docs"
+title: "不使用 Azure 代理程式重設本機 Windows 密碼 | Microsoft Docs"
 description: "在 Azure 客體代理程式未安裝或運作於 VM 的情況下，如何重設本機 Windows 使用者帳戶的密碼"
 services: virtual-machines-windows
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 10/05/2016
+ms.date: 12/20/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: ea637c05a0b30efcce40822556f7bfc58d4e87d9
+ms.sourcegitcommit: 370bcf5189c855185f11277518e0cbd5377993ab
+ms.openlocfilehash: 74b1282bf205bc38f13c51c5e05f55987d0cd12e
 
 
 ---
@@ -125,7 +125,7 @@ ms.openlocfilehash: ea637c05a0b30efcce40822556f7bfc58d4e87d9
      ![複製磁碟 URI](./media/virtual-machines-windows-reset-local-password-without-guest-agent/copy_source_vhd_uri.png)
 9. 從來源 VM 的 OS 磁碟建立 VM：
    
-   * 使用[此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd)，從特定的 VHD 建立 VM。 按一下 `Deploy to Azure` 按鈕開啟 Azure 入口網站，其中包含為您填入的樣板化詳細資料。
+   * 使用[此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd)，從特定的 VHD 建立 VM。 按一下 `Deploy to Azure` 按鈕開啟 Azure 入口網站，其中包含為您填入的樣板化詳細資料。
    * 如果您想要保留 VM 的所有先前設定，請選取 [編輯範本] 以提供現有的 VNet、子網路、網路介面卡或公用 IP。
    * 在 `OSDISKVHDURI` 參數文字方塊中，貼上您在前一個步驟中取得的來源 VHD URI︰
      
@@ -146,6 +146,6 @@ ms.openlocfilehash: ea637c05a0b30efcce40822556f7bfc58d4e87d9
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

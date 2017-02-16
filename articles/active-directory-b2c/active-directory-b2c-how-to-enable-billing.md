@@ -13,14 +13,12 @@ ms.workload: identity
 ms.date: 12/05/2016
 ms.author: joroja
 translationtype: Human Translation
-ms.sourcegitcommit: 0475c0f209cde80177df7dbf23eaf8dd17a44752
-ms.openlocfilehash: b5754a08e0683344cc97bdc664ed26ef9a9cf34d
+ms.sourcegitcommit: 10bcd51746315d80cef20592b869dca95eaacb56
+ms.openlocfilehash: a460ef42dafac04088ecdce12f64ee5e19ba77ff
 
 
 ---
 # <a name="linking-an-azure-subscription-to-an-azure-b2c-tenant-to-pay-for-usage-charges"></a>將 Azure 訂用帳戶連結至 Azure B2C 租用戶以支付使用費用
-> [!IMPORTANT]
-> 即將推出。 此功能不適用於所有 B2C 租用戶。
 
 Azure Active Directory B2C (或 Azure AD B2C) 的持續使用費用會計入 Azure 訂用帳戶。 建立 B2C 租用戶本身之後，租用戶系統管理員必須明確地將 Azure AD B2C 租用戶連結至 Azure 訂用帳戶。  在目標 Azure 訂用帳戶中建立 Azure AD「B2C 租用戶」資源，即可達成此連結。 許多 B2C 租用戶可以連結至單一 Azure 訂用帳戶以及其他 Azure 資源 (例如，VM、資料儲存體、LogicApps)
 
@@ -69,6 +67,9 @@ https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 
 ![B2C 資源設定](./media/active-directory-b2c-how-to-enable-billing/b2cresourcesettings.png)
 
+## <a name="known-issues"></a>已知問題
+- B2C 租用戶刪除。 如果在建立「B2C 租用戶」之後，將其刪除再以相同的網域名稱重新建立，請將「連結」資源也一併刪除再以相同的網域名稱重新建立。  您可以透過 Azure 入口網站，在訂用帳戶租用戶中的 [所有資源] 底下找到這個「連結」資源。
+- 在區域資源位置自我強加的限制。  在罕見的情況下，使用者可能針對建立 Azure 資源建立了區域限制。  此限制可能會導致無法在 Azure 訂用帳戶與「B2C 租用戶」之間建立「連結」。 若要減輕此問題的影響，請放寬這項限制。
 
 ## <a name="next-steps"></a>後續步驟
 針對每個 B2C 租用戶完成這些步驟後，您的 Azure 訂用帳戶就會根據 Azure 直接或企業合約詳細資料計費。
@@ -84,6 +85,6 @@ https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO5-->
 
 

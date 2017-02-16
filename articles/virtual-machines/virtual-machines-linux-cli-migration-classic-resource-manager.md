@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager | Microsoft Docs"
+title: "使用 Azure CLI 將 VM 移轉至 Resource Manager | Microsoft Docs"
 description: "這篇文章提供使用 Azure CLI 進行平台支援之資源移轉 (從傳統移轉至 Azure Resource Manager) 的逐步解說"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 07/19/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3fa3dacd0b5e2ad97cd751395d58ef3afe92aee3
+ms.sourcegitcommit: e64449991bc28427d8f559ed13c3bdf9160488db
+ms.openlocfilehash: 92211cc98b6d8394ff04bc7c2fe33f7bd710713b
 
 
 ---
@@ -57,7 +57,7 @@ ms.openlocfilehash: 3fa3dacd0b5e2ad97cd751395d58ef3afe92aee3
 
     azure provider register Microsoft.ClassicInfrastructureMigrate
 
-請等候 5 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態。 請先確定 RegistrationState 是 `Registered` ，再繼續進行。
+請等候&5; 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態。 請先確定 RegistrationState 是 `Registered` ，再繼續進行。
 
     azure provider show Microsoft.ClassicInfrastructureMigrate
 
@@ -163,6 +163,6 @@ azure vm list-usage -l "<Your VNET or Deployment's Azure region"
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

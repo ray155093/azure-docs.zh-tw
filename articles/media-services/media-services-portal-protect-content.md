@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0f9b0cf4e88a1ab27546063ae89cde8de7761609
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: 4256201f2fd505ed86734e900496eb7364c9a575
 
 
 ---
@@ -32,6 +32,7 @@ Microsoft Azure 媒體服務 (AMS) 可讓您保護媒體從離開電腦到進行
 AMS 提供一種服務，將 DRM 授權和 AES 純文字金鑰傳遞給授權用戶端。 Azure 入口網站可讓您針對所有加密類型建立一個 **金鑰/授權的授權原則** 。
 
 本文章示範如何使用 Azure 入口網站設定內容保護原則。 文章也會說明如何將動態加密套用到資產。
+
 
 > [!NOTE]
 > 如果您是使用 Azure 傳統入口網站建立保護原則，原則可能不會出現在 [Azure 入口網站](https://portal.azure.com/)。 不過，所有舊的原則仍然存在。 您可以使用 Azure 媒體服務 .NET SDK 或 [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer/releases) 工具來檢查這些原則 (若要參閱原則，請以滑鼠右鍵按一下 [資產] -> [顯示資訊] (F4) -> 按一下 [內容金鑰] 索引標籤 -> 按一下金鑰)。 
@@ -93,10 +94,7 @@ token 限制原則必須伴隨著安全權杖服務 (STS) 所發出的權杖。 
 ![保護內容](./media/media-services-portal-content-protection/media-services-content-protection006.png)
 
 ## <a name="apply-dynamic-encryption-to-your-asset"></a>將動態加密套用到您的資產
-若要利用動態加密，您需要執行下列動作：
-
-* 將您的來源檔案編碼為一組自適性 MP4 檔案。
-* 為您計畫從該處傳遞內容的串流端點取得至少一個隨選資料流處理單元。 如需詳細資訊，請參閱 [如何調整隨選串流保留單元](media-services-portal-manage-streaming-endpoints.md)。
+若要利用動態封裝功能，您必須將您的來源檔案編碼成一組調適性位元速率 MP4 檔案。
 
 ### <a name="select-an-asset-that-you-want-to-encrypt"></a>選取您要加密的資產
 若要查看您所有的資產，請選取 [設定] > [資產]。
@@ -137,6 +135,6 @@ AES 清除金鑰加密將會在所有串流通訊協定上啟用︰Smooth Stream
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

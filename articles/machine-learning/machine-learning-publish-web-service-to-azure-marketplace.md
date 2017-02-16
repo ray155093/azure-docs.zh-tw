@@ -1,6 +1,6 @@
 ---
-title: "將 Machine Learning Web 服務發佈至 Azure Marketplace | Microsoft Docs"
-description: "如何將 Azure Machine Learning Web 服務發佈至 Azure Marketplace"
+title: "(已過時) 將 Machine Learning Web 服務發佈到 Azure Marketplace | Microsoft Docs"
+description: "(已過時) 如何將 Azure Machine Learning Web 服務發佈到 Azure Marketplace"
 services: machine-learning
 documentationcenter: 
 author: BharathS
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 09/08/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: bharaths
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 24b131d3a9a17ce9a2daf349518873871c9d1019
+ms.sourcegitcommit: 85a58e09e05fdb50984055ab25c4c2fe520dab4d
+ms.openlocfilehash: 2d62966f130f6778c9561393cc7fc338f8903f1e
 
 
 ---
-# <a name="publish-azure-machine-learning-web-service-to-the-azure-marketplace"></a>將 Azure Machine Learning Web 服務發佈至 Azure Marketplace
+# <a name="deprecated-publish-azure-machine-learning-web-service-to-the-azure-marketplace"></a>(已過時) 將 Azure Machine Learning Web 服務發佈到 Azure Marketplace
+
+> [!NOTE]
+> DataMarket 和「資料服務」已進入淘汰階段，訂用帳戶將自 2017 年 3 月 31 日起淘汰並取消。 因此，這篇文章目前已過時。 
+> 
+> 替代方案是，您可以將 Machine Learning 實驗發佈到 [Cortana Intelligence 資源庫](https://gallery.cortanaintelligence.com/)，以利資料科學社群使用。 如需詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish)。
+
 Azure Marketplace 可讓您發行 Azure Machine Learning Web 服務，作為供外部客戶付費或免費使用的服務。 本文章將提供該程序的概觀，以及入門使用的指引連結。 透過此程序，您將可讓您的 Web 服務成為可供其他開發人員運用在其應用程式中的服務。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -89,6 +96,6 @@ Azure Marketplace 可讓您發行 Azure Machine Learning Web 服務，作為供�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

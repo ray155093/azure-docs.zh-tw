@@ -1,9 +1,9 @@
 ---
-title: "Azure CDN 進階 HTTP 報告 | Microsoft Docs"
-description: "Microsoft Azure CDN 中的進階 HTTP 報告。 這些報告提供有關 CDN 活動的詳細資訊。"
+title: "使用 Azure CDN 進階 HTTP 報告分析使用量統計資料 | Microsoft Docs"
+description: "了解如何在 Microsoft Azure CDN 中建立進階 HTTP 報告。 這些報告提供有關 CDN 活動的詳細資訊。"
 services: cdn
 documentationcenter: 
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: ef90adc1-580e-4955-8ff1-bde3f3cafc5d
@@ -12,15 +12,15 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 91cafe744e07416426da6ca5a5785a21e7874f6d
+ms.sourcegitcommit: 06bd0112eab46f3347dfb039a99641a37c2b0197
+ms.openlocfilehash: 2dfbc046674b2da692f30c945aee3ea25ae524eb
 
 
 ---
-# <a name="advanced-http-reports-in-microsoft-azure-cdn"></a>Microsoft Azure CDN 中的進階 HTTP 報告
+# <a name="analyze-usage-statistics-with-azure-cdn-advanced-http-reports"></a>使用 Azure CDN 進階 HTTP 報告分析使用量統計資料
 ## <a name="overview"></a>概觀
 本文件說明 Microsoft Azure CDN 中的進階 HTTP 報告。 這些報告提供有關 CDN 活動的詳細資訊。
 
@@ -207,6 +207,6 @@ ms.openlocfilehash: 91cafe744e07416426da6ca5a5785a21e7874f6d
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

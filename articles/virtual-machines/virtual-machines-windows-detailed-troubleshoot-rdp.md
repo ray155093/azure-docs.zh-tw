@@ -167,7 +167,7 @@ ms.openlocfilehash: 5c9d51d633b07497c230be9da2646bf49b6e8c0e
 此提示的第一個部分是您的雲端服務名稱，其中包含目標 VM，這可以與 "cloudservice4testing.cloudapp.net" 不同。 您現在可以針對此雲端服務發出 Azure PowerShell 命令，以調查所提到的問題並修正組態。
 
 ### <a name="to-manually-correct-the-remote-desktop-services-listening-tcp-port"></a>若要手動更正接聽 TCP 連接埠的遠端桌面服務
-如果您無法針對「透過 RDP 連線至 Azure VM (需要重新開機)」 [](https://home.diagnostics.support.microsoft.com/SelfHelp?knowledgebaseArticleFilter=2976864) 問題執行 **Azure IaaS (Windows) 診斷套件** ，請在遠端 Azure PowerShell 工作階段提示字元中執行這個命令。
+如果您無法針對「透過 RDP 連線至  [Azure VM (需要重新開機)」](https://home.diagnostics.support.microsoft.com/SelfHelp?knowledgebaseArticleFilter=2976864) 問題執行 **Azure IaaS (Windows) 診斷套件** ，請在遠端 Azure PowerShell 工作階段提示字元中執行這個命令。
 
     Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber"
 
@@ -199,6 +199,6 @@ PortNumber 屬性會顯示目前的連接埠號碼。 如有需要，請使用�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.workload: required
 ms.date: 10/05/2016
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: ef381ef234608e0ccbf7f3814bd1f23816100d25
-ms.openlocfilehash: 3d78ec39d75da4118cc06f49ece3aa852eefd538
+ms.sourcegitcommit: 1663126f43b8e1cd3e68b9e9b2bbbb67298bb8c1
+ms.openlocfilehash: 893e2f64377b9b00596dfdc00e6eba36c024fa66
 
 
 ---
@@ -57,7 +57,7 @@ ms.openlocfilehash: 3d78ec39d75da4118cc06f49ece3aa852eefd538
 
 * 如果您容錯移轉實體伺服器，則一律會容錯回復至新的 VMware VM。
   * 在容錯回復實體機器之前，請注意：
-    * 當從 Azure 容錯移轉回復至 VMware 時，受保護的實體機器會回復成虛擬機器。 Windows Server 2008 R2 SP1 電腦如果受保護且容錯移轉至 Azure，則無法容錯回復。
+    * 當從 Azure 容錯移轉回復至 VMware 時，受保護的實體機器會回復成虛擬機器。 Windows Server 2008 R2 SP1 實體電腦如果受保護且容錯移轉至 Azure，則無法容錯回復。 已啟動為內部部署虛擬機器的 WS 2008R2 SP1 將能夠容錯回復
     * 請確認您連同需要容錯回復的必要 ESX/ESXi 主機，有探索至少一部主要目標伺服器。
 * 如果您要容錯回復到原始 VM，則必須符合下列條件：
   
@@ -237,7 +237,7 @@ ms.openlocfilehash: 3d78ec39d75da4118cc06f49ece3aa852eefd538
 4. 如果您是使用 ESXi 5.5 免費版或 vSphere 6 Hypervisor 免費版，則容錯移轉會成功，但容錯回復不會成功。 您將需要升級為評估授權才能啟用容錯回復。
 5. 如果無法從處理伺服器連線到 CS，您可以透過以 Telnet 連線到連接埠 443 上的 CS 機器，來檢查是否能夠從您的處理伺服器連線到 CS。 您也可以嘗試從 PS 機器偵測 CS。 PS 在連線到 CS 時，也應該會有活動訊號。
 6. 如果您要嘗試容錯回復至替代的 vCenter，請確定您的新 vCenter 已被探索到，連同「主要目標」伺服器也已被探索到。 一般的徵兆是，您會發現在 [重新保護] 對話方塊中無法存取/看到資料存放區。
-7. 做為實體或虛擬內部部署電腦保護的 WS2008R2SP1 電腦無法從 Azure 無法容錯回復為內部部署。
+7. 做為實體內部部署電腦保護的 WS2008R2SP1 電腦無法從 Azure 無法容錯回復為內部部署。
 
 ## <a name="failing-back-with-expressroute"></a>透過 ExpressRoute 容錯回復
 您可以透過 VPN 連線或 Azure ExpressRoute 進行容錯回復。 如果您想要使用 ExpressRoute，請注意下列事項：
@@ -248,6 +248,6 @@ ms.openlocfilehash: 3d78ec39d75da4118cc06f49ece3aa852eefd538
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -16,8 +16,8 @@ ms.workload: integration
 ms.date: 10/18/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9a739af2c9f6adaec58bfd7b339c370fae113641
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: 6b7c73576e09af3d1b3c886efa88044846e91494
 
 
 ---
@@ -36,7 +36,7 @@ Azure Blob 儲存體是用來儲存大量非結構化資料的服務。 請在 A
 > 
 > 
 
-若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../logic-apps/logic-apps-what-are-logic-apps.md)以及[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="connect-to-azure-blob-storage"></a>連線至 Azure Blob 儲存體
 您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。 連線可讓邏輯應用程式與另一個服務連線。 例如，若要連線至儲存體帳戶，您得先建立 Blob 儲存體連線。 若要建立連線，請輸入平常用來存取所連線服務的認證。 因此，請在 Azure 儲存體中，輸入儲存體帳戶的認證以建立連線。 
@@ -47,7 +47,7 @@ Azure Blob 儲存體是用來儲存大量非結構化資料的服務。 請在 A
 > 
 
 ## <a name="use-a-trigger"></a>使用觸發程序
-此連接器並沒有任何觸發程序。 請使用其他觸發程序來啟動邏輯應用程式，例如循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) 可提供範例。
+此連接器並沒有任何觸發程序。 請使用其他觸發程序來啟動邏輯應用程式，例如循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md) 可提供範例。
 
 ## <a name="use-an-action"></a>使用動作
 動作是由邏輯應用程式中定義的工作流程所執行的作業。
@@ -301,11 +301,11 @@ BlobMetadata
 | 預設值 |作業失敗。 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

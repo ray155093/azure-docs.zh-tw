@@ -15,8 +15,8 @@ ms.workload: tbd
 ms.date: 09/23/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0740427b1cd990fb94e82f1f045cc9e7f11468cd
+ms.sourcegitcommit: a925285f94fc7b1a53e605f19bb8c1ff81ce6718
+ms.openlocfilehash: c9088b2472a6e72367666391a322068c1fdf662e
 
 
 ---
@@ -130,7 +130,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 * 為了在 Azure 佇列中找出「有害」訊息，應用程式會在清除佇列中的訊息時，檢查訊息的 **[DequeueCount](https://msdn.microsoft.com/library/azure/dd179474.aspx)** 屬性。 如果 **DequeueCount** 超過給定的臨界值，應用程式就會將訊息移至應用程式定義的「無效信件」佇列。
 * Azure 佇列可讓您取得針對佇列執行之所有交易的詳細記錄，以及彙總的度量資料。 這兩個選項有助於偵錯和了解應用程式的 Azure 佇列使用狀況， 也有助於對您的應用程式進行效能微調，以及降低使用佇列的成本。
 * 服務匯流排所支援之「訊息工作階段」的概念可讓屬於特定邏輯群組的訊息與給定的接收者產生關聯，進而在訊息與其個別的接收者之間建立類似工作階段的密切關係。 您可以設定訊息上的 [SessionID](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.sessionid.aspx) 屬性，以在服務匯流排中啟用這項進階功能。 然後，接收者就可以接聽特定的工作階段 ID，並且接收共用指定之工作階段識別項的訊息。
-* 服務匯流排佇列所支援的重複偵測功能會根據 [MessageID](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx) 屬性的值，自動移除傳送至佇列或主題的重複訊息。
+* 服務匯流排佇列所支援的重複偵測功能會根據 [MessageId](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx) 屬性的值，自動移除傳送至佇列或主題的重複訊息。
 
 ## <a name="capacity-and-quotas"></a>容量和配額
 本節將從可能適用之[容量和配額](service-bus-quotas.md)的觀點來比較 Azure 佇列和服務匯流排佇列。
@@ -145,11 +145,11 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 
 ### <a name="additional-information"></a>其他資訊
 * 服務匯流排會強制執行佇列大小限制。 佇列大小上限是在建立佇列時指定的，而且可以具有 1 到 80 GB 之間的值。 如果達到在建立佇列時所設定的佇列大小值，其他內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 如需服務匯流排中配額的詳細資訊，請參閱[服務匯流排配額](service-bus-quotas.md)。
-* 您可以建立 1、2、3、4 或 5 GB 大小的服務匯流排佇列 (預設值為 1 GB)。 啟用分割時 (這是預設值)，服務匯流排會為您指定的每 GB 建立 16 個資料分割。 因此，如果您建立 5 GB 大小的佇列，每 GB 有 16 個資料分割，則佇列大小上限會變成 (5 * 16) = 80 GB。 您可以在 [Azure 入口網站][Azure 入口網站]上檢視分割的佇列或主題項目，藉此查看其大小上限。
+* 您可以建立 1、2、3、4 或 5 GB 大小的服務匯流排佇列 (預設值為 1 GB)。 啟用分割時 (這是預設值)，服務匯流排會為您指定的每 GB 建立 16 個資料分割。 因此，如果您建立 5 GB 大小的佇列，每 GB 有 16 個資料分割，則佇列大小上限會變成 (5 * 16) = 80 GB。 您可以在 [Azure 入口網站][Azure portal]上檢視分割的佇列或主題項目，藉此查看其大小上限。
 * 使用 Azure 佇列時，如果訊息內容不是 XML 安全內容，則必須經過 **Base64** 編碼。 如果您對訊息進行 **Base64** 編碼，使用者承載最多可為 48 KB，而非 64 KB。
 * 使用服務匯流排佇列時，儲存在佇列中的每個訊息都包含兩個部分：標頭和主體。 訊息大小總計不能超過服務層所支援的訊息大小上限。
 * 當用戶端透過 TCP 通訊協定與服務匯流排佇列通訊時，單一服務匯流排佇列的並行連接數目上限會限制為 100。 這個數目是在傳送者和接收者之間共用的。 如果達到這個配額，其他連接的後續要求將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 這項限制不會加諸於使用 REST API 連接至佇列的用戶端。
-* 如果您的單一服務匯流排服務命名空間需要超過 10,000 個佇列，您可以連絡 Azure 支援小組並要求增加。 若要讓服務匯流排擴充到超過 10,000 個佇列，您也可以使用 [Azure 入口網站][Azure 入口網站]來建立其他命名空間。
+* 如果您的單一服務匯流排服務命名空間需要超過 10,000 個佇列，您可以連絡 Azure 支援小組並要求增加。 若要讓服務匯流排擴充到超過 10,000 個佇列，您也可以使用 [Azure 入口網站][Azure portal]來建立其他命名空間。
 
 ## <a name="management-and-operations"></a>管理和作業
 本節將比較 Azure 佇列和服務匯流排佇列所提供的管理功能。
@@ -226,11 +226,11 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 * [使用 Azure 中的佇列服務](http://www.developerfusion.com/article/120197/using-the-queuing-service-in-windows-azure/)
 * [了解 Azure 儲存體計費 - 頻寬、交易和容量](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx)
 
-[Azure 入口網站]: https://portal.azure.com
+[Azure portal]: https://portal.azure.com
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

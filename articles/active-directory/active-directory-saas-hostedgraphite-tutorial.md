@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: dc96c4350af865014d06ae8d8a6e7d2db47d60d0
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: f7286285828414000f90cf9d71facb9a9a51afd8
 
 
 ---
@@ -208,7 +208,7 @@ ms.openlocfilehash: dc96c4350af865014d06ae8d8a6e7d2db47d60d0
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-a-hosted-graphite-test-user"></a>建立 Hosted Graphite 測試使用者
 本節的目標是要在 Hosted Graphite 中建立一個名為 Britta Simon 的使用者。 Hosted Graphite 支援預設啟用的 Just-In-Time 佈建。
@@ -270,6 +270,6 @@ ms.openlocfilehash: dc96c4350af865014d06ae8d8a6e7d2db47d60d0
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

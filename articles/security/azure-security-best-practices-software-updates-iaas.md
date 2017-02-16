@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure IaaS 上軟體更新的最佳作法 | Microsoft Docs"
-description: "本文針對 Microsoft Azure IaaS 環境中的軟體更新提供最佳作法集合。  它的適用對象為 IT 專業人員和安全性分析師，他們每天都在處理變更控制、軟體更新和資產管理，包括那些負責其組織安全性和法規工作的人員。"
+title: "Azure IaaS 的軟體更新最佳做法 | Microsoft Docs"
+description: "本文針對 Microsoft Azure IaaS 環境中的軟體更新提供最佳做法集合。  它的適用對象為 IT 專業人員和安全性分析師，他們每天都在處理變更控制、軟體更新和資產管理，包括那些負責其組織安全性和法規工作的人員。"
 services: security
 documentationcenter: na
 author: YuriDio
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 01/30/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c52a2d6be31b1a8f581313932c0af87120ccd9fe
+ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
+ms.openlocfilehash: 43d760ffcc108a70212e47ee8eab9ec2aca02a17
 
 
 ---
@@ -27,14 +27,14 @@ ms.openlocfilehash: c52a2d6be31b1a8f581313932c0af87120ccd9fe
 
 最左邊資料行中顯示組織應該考量的七個責任 (定義於下列各節)，全部都與運算環境的安全性和隱私權有關。
 
-資料的分類與責任和用戶端與端點保護完全是客戶的責任，而實體、主機和網路的責任則在於 PaaS 和 SaaS 模型中的雲端服務提供者。 
+資料的分類與責任和用戶端與端點保護完全是客戶的責任，而實體、主機和網路的責任則在於 PaaS 和 SaaS 模型中的雲端服務提供者。
 
 其餘的責任則是由客戶和雲端服務提供者共同分擔。 某些責任需要 CSP 和客戶一同管理責任，包括其網域的稽核。 例如，使用 Azure Active Directory 服務時的身分識別與存取管理；如 Multi-Factor Authentication 等服務的組態是由客戶負責，但是確保功能有效是 Microsoft Azure 的責任。
 
 > [!NOTE]
-> 如需雲端中共同責任的詳細資訊，請閱讀 [Shared Responsibilities for Cloud Computing](https://gallery.technet.microsoft.com/Shared-Responsibilities-81d0ff91/file/153019/1/Shared%20responsibilities%20for%20cloud%20computing.pdf) (雲端運算的共同責任) 
-> 
-> 
+> 如需雲端中共同責任的詳細資訊，請閱讀 [Shared Responsibilities for Cloud Computing](https://gallery.technet.microsoft.com/Shared-Responsibilities-81d0ff91/file/153019/1/Shared%20responsibilities%20for%20cloud%20computing.pdf) (雲端運算的共同責任)
+>
+>
 
 這些相同的原則會套用在混合式案例中，其中貴公司使用 Azure IaaS VM 與內部部署資源通訊，如下圖所示。
 
@@ -110,7 +110,6 @@ Azure IaaS 的某些備份選項包括：
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

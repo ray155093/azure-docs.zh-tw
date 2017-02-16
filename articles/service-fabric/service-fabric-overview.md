@@ -15,15 +15,22 @@ ms.workload: NA
 ms.date: 10/22/2016
 ms.author: mfussell
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5bd613b7c6e44ad1aa232adc6649d237999fd53c
+ms.sourcegitcommit: 6b3c49f6721ffc149bbb7f0433ff67f529abf938
+ms.openlocfilehash: c61541d65fe2f84bdd629d8b8d8c7ce00a049133
 
 
 ---
 # <a name="overview-of-azure-service-fabric"></a>Azure Service Fabric 概觀
 Azure Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務。 Service Fabric 也可解決開發與管理雲端應用程式時遭遇的重大挑戰。 開發人員與管理員能夠避免複雜的基礎結構問題，專注於實作關鍵且嚴格要求之可調整、可信賴且可管理的工作負載。 Service Fabric 代表新一代的中介軟體平台，可建置與管理這些企業級的 Tier-1 雲端規模應用程式。
 
-此[短片](https://aka.ms/servicefabricvideo)簡介 Service Fabric 和微服務。
+此 Channel9 短片簡介 Service Fabric 和微服務：<center><a target="_blank" href="https://aka.ms/servicefabricvideo">  
+<img src="./media/service-fabric-overview/OverviewVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
+
+此 Microsoft Virtual Academy 長片說明 Service Fabric 核心概念：<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=tbuZM46yC_5206218965">  
+<img src="./media/service-fabric-overview/CoreConceptsVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
+
 
 ## <a name="applications-composed-of-microservices"></a>由微服務組成的應用程式
 Service Fabric 可讓您建置並管理由微服務組成的應用程式，這類應用程式可調整且可靠，以非常高的密度在共用的機器集區 (稱為叢集) 上執行。 它提供精密的執行階段，可建置分散式、可擴充的無狀態與可設定狀態的微服務。 還提供完整的應用程式管理功能，以佈建、部署、監視、升級/修補及刪除已部署的應用程式。
@@ -63,6 +70,10 @@ Service Fabric 可讓您建置由微服務組成的應用程式。 無狀態微�
 
 如需有關使用 Service Fabric 的應用程式模式的詳細資訊，請參閱您的服務適用的[應用程式案例](service-fabric-application-scenarios.md)和[選擇程式設計模型架構](service-fabric-choose-framework.md)。
 
+您也可以觀看此 Microsoft Virtual Academy 影片，以取得無狀態和具狀態服務的概觀︰<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=HhD9566yC_4106218965">  
+<img src="./media/service-fabric-overview/ReliableServicesVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
+
 ## <a name="application-lifecycle-management"></a>應用程式生命週期管理
 Service Fabric 可支援雲端應用程式的完整應用程式生命週期管理。 此生命週期包括開發到部署、每日管理、維護，到最終的解除委任。
 
@@ -71,6 +82,10 @@ Service Fabric 應用程式生命週期管理讓應用程式管理員和 IT 操�
 大多數的應用程式都結合了無狀態與可設定狀態的微服務，以及其他一起部署的可執行檔/執行階段。 Service Fabric 擁有應用程式與封裝微服務的強式型別，因此能部署多個應用程式執行個體。 每個執行個體都能獨立管理與升級。 重要的是，Service Fabric 能夠部署「任何」的執行檔或執行階段，並使其可靠。 例如，Service Fabric 會部署 ASP.NET Core 1、Node.js、Java VM、指令碼或其他可組成應用程式的任何一切。
 
 如需應用程式生命週期管理的詳細資訊，請參閱[應用程式生命週期](service-fabric-application-lifecycle.md)。 如需有關如何部署任何程式碼的詳細資訊，請參閱[部署來賓執行檔](service-fabric-deploy-existing-app.md)。
+
+您也可以觀看此 Microsoft Virtual Academy 影片，以取得應用程式生命週期管理概觀︰<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=My3Ka56yC_6106218965">  
+<img src="./media/service-fabric-overview/AppLifecycleVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
 
 ## <a name="key-capabilities"></a>主要功能
 藉由使用 Service Fabric，您可以：
@@ -104,6 +119,6 @@ Service Fabric 應用程式生命週期管理讓應用程式管理員和 IT 操�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

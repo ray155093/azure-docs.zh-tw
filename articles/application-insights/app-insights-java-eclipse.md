@@ -1,5 +1,5 @@
 ---
-title: "在 Eclipse 中利用 Java 開始使用 Application Insights"
+title: "在 Eclipse 中利用 Java 開始使用 Application Insights | Microsoft Docs"
 description: "使用 Eclipse 外掛程式來加入效能和使用量計數器監視到您使用 Application Insights 的 Java 網站"
 services: application-insights
 documentationcenter: java
@@ -11,11 +11,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/02/2016
+ms.date: 12/02/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1f7f06647cc437ccbf70a8871e96ddbe98f83247
+ms.sourcegitcommit: 75b651bd3e77ac19e22dcc3442870469fe2aaca1
+ms.openlocfilehash: cfdb24ea2d461d85cfdf508a9bfabe288ef86e3c
 
 
 ---
@@ -28,7 +28,7 @@ Application Insights SDK 會透過 Java Web 應用程式傳送遙測，使得您
 您需要：
 
 * Oracle JRE 1.6 或更新版本
-* [Microsoft Azure](https://azure.microsoft.com/)訂用帳戶。 (您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。)
+* [Microsoft Azure](https://azure.microsoft.com/)訂用帳戶。 
 * [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/)、Indigo 或更新版本。
 * Windows 7 或更新版本，或 Windows Server 2008 或更新版本
 
@@ -80,7 +80,7 @@ Application Insights SDK 會透過 Java Web 應用程式傳送遙測，使得您
 
 ![依名稱的要求計數](./media/app-insights-java-eclipse/6-barchart.png)
 
-[深入了解計量。][計量]
+[深入了解度量。][metrics]
 
 而檢視要求的屬性時，您可以查看與它關聯的遙測事件，例如要求和例外狀況。
 
@@ -176,7 +176,7 @@ Application Insights SDK 會透過 Java Web 應用程式傳送遙測，使得您
 * counterName – 效能計數器的名稱。
 * instanceName – 效能計數器類別執行個體的名稱，或如果類別包含單一執行個體，則為空白字串 ("")。 如果 categoryName 為 Process，而您要收集的效能計數器來自應用程式執行所在的目前 JVM 處理程序，請指定 `"__SELF__"`。
 
-您的效能計數器會在[計量瀏覽器][計量]中以自訂計量的形式顯示。
+您的效能計數器會在[計量瀏覽器][metrics]中以自訂度量的形式顯示。
 
 ![](./media/app-insights-java-eclipse/12-custom-perfs.png)
 
@@ -204,18 +204,18 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 
 您可以在網頁 JavaScript 和伺服器端 Java 中插入程式碼。
 
-[深入了解自訂遙測][track]
+[了解自訂遙測][track]
 
 ## <a name="next-steps"></a>後續步驟
 #### <a name="detect-and-diagnose-issues"></a>偵測並診斷問題
-* [新增 Web 用戶端遙測][usage]，以從 Web 用戶端取得效能遙測。
+* [新增 Web 用戶端遙測][usage]，從 Web 用戶端取得效能遙測。
 * [設定 Web 測試][availability]，以確認應用程式處於線上狀態且能夠回應。
 * [搜尋事件和記錄][diagnostic]以協助診斷問題。
 * [擷取 Log4J 或 Logback 追蹤][javalogs]
 
 #### <a name="track-usage"></a>追蹤流量
 * [新增 Web 用戶端遙測][usage]，以監視頁面檢視和基本使用者度量。
-* 在用戶端和伺服器[追蹤自訂事件和度量][track]，以深入了解應用程式的使用情況。
+* 在用戶端、伺服器，[追蹤自訂事件和度量][track]，以了解應用程式的使用情況。
 
 <!--Link references-->
 
@@ -223,13 +223,13 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 [diagnostic]: app-insights-diagnostic-search.md
 [java]: app-insights-java-get-started.md
 [javalogs]: app-insights-java-trace-logs.md
-[計量]: app-insights-metrics-explorer.md
+[metrics]: app-insights-metrics-explorer.md
 [track]: app-insights-api-custom-events-metrics.md
 [usage]: app-insights-web-track-usage.md
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

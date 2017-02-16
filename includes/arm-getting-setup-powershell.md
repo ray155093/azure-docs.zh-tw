@@ -1,8 +1,8 @@
-## 設定資源管理員範本的 PowerShell
+## <a name="setting-up-powershell-for-resource-manager-templates"></a>設定資源管理員範本的 PowerShell
 您必須擁有正確的 Windows PowerShell 和 Azure PowerShell 版本，才能搭配使用 Azure PowerShell 與資源管理員。
 
-### 確認 PowerShell 版本
-確認您有 Windows PowerShell 3.0 或 4.0 版。若要尋找 Windows PowerShell 版本，請在 Windows PowerShell 命令提示字元中輸入這個命令。
+### <a name="verify-powershell-versions"></a>確認 PowerShell 版本
+確認您有 Windows PowerShell 3.0 或 4.0 版。 若要尋找 Windows PowerShell 版本，請在 Windows PowerShell 命令提示字元中輸入這個命令。
 
     $PSVersionTable
 
@@ -19,9 +19,9 @@
     PSRemotingProtocolVersion      2.2
 
 
-確認 **PSVersion** 的值是 3.0 或 4.0。如果為否，請參閱 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)。
+確認 **PSVersion** 的值是 3.0 或 4.0。 如果為否，請參閱 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)。
 
-### 設定 Azure 帳戶和訂用帳戶
+### <a name="set-your-azure-account-and-subscription"></a>設定 Azure 帳戶和訂用帳戶
 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或申請[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 使用這個命令，開啟 Azure PowerShell 命令提示字元，並登入 Azure。
@@ -45,11 +45,15 @@
     CurrentStorageAccountName :
     TenantId                  : 32fa88b4-86f1-419f-93ab-2d7ce016dba7
 
-您可以在 Azure PowerShell 命令提示字元下執行這些命令，設定目前 Azure 訂用帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+您可以在 Azure PowerShell 命令提示字元下執行這些命令，設定目前 Azure 訂用帳戶。 以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
     $subscr="<SubscriptionName from the display of Get-AzureRmSubscription>"
     Select-AzureRmSubscription -SubscriptionName $subscr -Current
 
-如需 Azure 訂用帳戶和帳戶的詳細資訊，請參閱[如何：連線至訂用帳戶](../articles/powershell-install-configure.md#Connect)。
+如需 Azure 訂用帳戶和帳戶的詳細資訊，請參閱[如何：連線至訂用帳戶](/powershell/azureps-cmdlets-docs#step-3-connect)。
 
-<!---HONumber=AcomDC_0128_2016-->
+
+
+<!--HONumber=Dec16_HO1-->
+
+

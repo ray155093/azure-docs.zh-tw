@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 04/18/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: f7b0c3acea5bef6017230df82c57ab7a6ebccd80
-ms.openlocfilehash: 19e5ef3d18deb4bf49699df6449d1cafab92ff53
+ms.sourcegitcommit: 783390791f27a9bf8ea400403a8b0f866f8c5cee
+ms.openlocfilehash: 0f1ae486340270cac5cfdb5d44485d05cb996388
 
 
 ---
@@ -53,10 +53,10 @@ ms.openlocfilehash: 19e5ef3d18deb4bf49699df6449d1cafab92ff53
     ![設定](./media/azure-api-management-certs/upload-dialog.png)
 
 ## <a name="next-steps"></a>後續步驟
-既然您已經擁有與訂用帳戶相關聯的管理憑證，您就能 (在本機安裝相符的憑證之後) 以程式設計方式連線到 [服務管理 REST API](https://msdn.microsoft.com/library/azure/mt420159.aspx) ，並將同樣與該訂用帳戶相關聯的各種 Azure 資源自動化。
+既然您已經擁有與訂用帳戶相關聯的管理憑證，您就能 (在本機安裝相符的憑證之後) 以程式設計方式連接至[服務管理 REST API](https://msdn.microsoft.com/library/azure/mt420159.aspx)，並將同樣與該訂用帳戶相關聯的各種 Azure 資源自動化。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

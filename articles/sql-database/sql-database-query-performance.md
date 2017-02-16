@@ -8,6 +8,7 @@ manager: jhubbard
 editor: monicar
 ms.assetid: c2f580b2-3835-453f-89f5-140e02dd2ea7
 ms.service: sql-database
+ms.custom: monitor and tune
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,8 +16,8 @@ ms.workload: data-management
 ms.date: 08/09/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: ddb43393695ae74711bea0ff66b644ddd7787571
 
 
 ---
@@ -71,7 +72,7 @@ ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
    
     底部格線則代表可見查詢的彙總資訊。
    
-   * 查詢識別碼 – 資料庫內部查詢的唯一識別碼。
+   * 查詢識別碼 - 資料庫內部查詢的唯一識別碼。
    * 在可觀察時間間隔期間每個查詢的 CPU (取決於彙總函式)。
    * 每個查詢的持續時間 (取決於彙總函式)。
    * 特定查詢的總執行次數。
@@ -176,9 +177,9 @@ ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
 
 擷取原則可以設定為：
 
-* **All** ：擷取所有的查詢。
-* **Auto** ：會忽略執行不頻繁的查詢，以及編譯和執行持續時間微不足道的查詢。 執行次數、編譯及執行階段持續時間的臨界值是由內部決定的。 這是預設選項。
-* **None** ：查詢存放區會停止擷取新的查詢，不過仍然會收集已擷取查詢的執行階段統計資料。
+* **All**：擷取所有的查詢。
+* **Auto**：會忽略不常執行的查詢，以及編譯和執行持續時間微不足道的查詢。 執行次數、編譯及執行階段持續時間的臨界值是由內部決定的。 這是預設選項。
+* **None**：「查詢存放區」會停止擷取新的查詢，不過仍然會收集已擷取查詢的執行階段統計資料。
 
 我們建議您將所有原則設定為 [AUTO]，並將清除原則設定為 30 天：
 
@@ -228,6 +229,6 @@ ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

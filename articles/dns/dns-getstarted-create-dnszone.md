@@ -14,8 +14,8 @@ ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 02d720a04fdc0fa302c2cb29b0af35ee92c14b3b
-ms.openlocfilehash: 9f162115f2f080bd498085d5cb92b34452132ad8
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 23b7eef53e6fb7bc17c33e54f20d7369cfce52e8
 
 ---
 
@@ -60,7 +60,7 @@ Azure DNS PowerShell 在區域與記錄集上支援使用選項 `-Tag` 參數來
 在開始設定之前，請確認您具備下列項目。
 
 * Azure 訂用帳戶。 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
-* 您必須安裝最新版的 Azure Resource Manager PowerShell Cmdlet  (1.0 或更新版本)。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
+* 您必須安裝最新版的 Azure Resource Manager PowerShell Cmdlet  (1.0 或更新版本)。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 
 ## <a name="step-1---sign-in"></a>步驟 1 - 登入
 
@@ -102,7 +102,7 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。 您的 Azure 訂�
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-## <a name="step-4---create-a-dns-zone"></a>步驟 4 - 建立 DNS 區域
+## <a name="step-4----create-a-dns-zone"></a>步驟 4 - 建立 DNS 區域
 
 使用 `New-AzureRmDnsZone` Cmdlet 建立 DNS 區域。 下列範例使用或不使用標籤建立 DNS 區域。 如需標籤的詳細資訊，請參閱本文中關於 [標籤](#tags) 的一節。
 
@@ -187,6 +187,6 @@ New-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup -Ta
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

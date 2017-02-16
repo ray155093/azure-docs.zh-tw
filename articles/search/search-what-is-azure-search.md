@@ -11,11 +11,11 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 08/29/2016
+ms.date: 01/12/2017
 ms.author: ashmaka
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 29385af9183ef2f8431581aaa5fe38e89404d068
+ms.sourcegitcommit: 292c9150822363aba3336b1efce579dc5362cb14
+ms.openlocfilehash: 99b3babee9b252b2d741515391295d8b1dc5c747
 
 
 ---
@@ -25,13 +25,13 @@ Azure 搜尋服務是一項雲端搜尋即服務解決方案，可將伺服器�
 ## <a name="give-your-users-a-powerful-search-experience"></a>讓使用者擁有強大的搜尋經驗
 **強大的查詢** 可以使用 [簡單的查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)制訂，以提供邏輯運算子、片語搜尋運算子、後置運算子、優先順序運算子。 此外， [Lucene 查詢語法](https://msdn.microsoft.com/library/azure/mt589323.aspx) 可以啟用模糊搜尋、鄰近搜尋、詞彙提升及規則運算式。 Azure 搜尋服務也支援自訂語彙分析器，可讓應用程式能使用語音比對和規則運算式來處理複雜的搜尋查詢。
 
-**語言支援**[包含 56 種不同的語言](https://msdn.microsoft.com/library/azure/dn879793.aspx)。 Azure 搜尋服務可以同時使用 Lucene 分析器和 Microsoft 分析器 (經由 Office 和 Bing 中數年的自然語言處理修改) 分析應用程式搜尋方塊中的文字，以智慧的方式處理語言專屬的語言學，包括動詞時態、性別、不規則複數名詞 (例如 ' mouse' 與 'mice')、取消複合字、斷字 (針對不含空格的語言) 等等。
+**語言支援**[包含 56 種不同的語言](https://msdn.microsoft.com/library/azure/dn879793.aspx)。 由於同時使用 Lucene 分析器和 Microsoft 分析器 (經由 Office 和 Bing 中數年的自然語言處理改善)，因此「Azure 搜尋服務」能夠分析您應用程式搜尋方塊中的文字，以智慧方式處理語言專屬的語言學，包括動詞時態、性別、不規則複數名詞 (例如 ' mouse' 與 'mice')、拆解複合字、斷字 (針對沒有空格的語言) 等等。
 
 **搜尋建議** 。 [建議您索引中的實際文件](https://msdn.microsoft.com/library/azure/dn798936.aspx) 。
 
 **醒目提示** [可讓](https://msdn.microsoft.com/library/azure/dn798927.aspx) 使用者在每個結果中看到包含其查詢相符項目的文字片段。 您可以挑選哪些欄位傳回醒目提示的文字片段。
 
-**多面向導覽** 已輕鬆地加入至 Azure 搜尋服務的搜尋結果頁面。 只要使用[單一查詢參數](https://msdn.microsoft.com/library/azure/dn798927.aspx)，Azure 搜尋服務就會傳回所有必要的資訊，以在您的應用程式 UI 中創造多面向搜尋體驗，讓使用者能向下鑽研及篩選搜尋結果 (例如依價格範圍或品牌搜尋目錄項目)。
+**多面向導覽** 已輕鬆地加入至 Azure 搜尋服務的搜尋結果頁面。 只要使用[單一查詢參數](https://msdn.microsoft.com/library/azure/dn798927.aspx)，「Azure 搜尋服務」就會傳回所有必要的資訊，以在您的應用程式 UI 中建構多面向的搜尋體驗，讓使用者能夠向下鑽研及篩選搜尋結果 (例如依價格範圍或品牌搜尋目錄項目)。
 
 **地理空間** 支援可讓您以智慧方式處理、篩選和顯示地理位置。 Azure 搜尋服務可讓使用者根據指定位置的搜尋結果鄰近程度，或根據特定的地理區域來瀏覽資料。 本教學影片示範其運作方式︰ [Channel 9︰Azure 搜尋服務和地理空間資料](https://channel9.msdn.com/Shows/Data-Exposed/Azure-Search-and-Geospatial-Data)。
 
@@ -58,7 +58,7 @@ Azure 搜尋服務是一項雲端搜尋即服務解決方案，可將伺服器�
 
 ## <a name="how-it-works"></a>運作方式
 ### <a name="1-provision-service"></a>1.佈建服務
-您可以使用 [Azure 入口網站](https://portal.azure.com/)或 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn832684.aspx)來加速 Azure 搜尋服務。
+您可以使用 [Azure 入口網站](https://portal.azure.com/)或 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn832684.aspx) 來加速「Azure 搜尋服務」。
 
 根據設定搜尋服務的方式，您將使用與其他 Azure 搜尋服務訂閱者共用的免費層服務，或供應資源專供您服務使用的 [付費層](https://azure.microsoft.com/pricing/details/search/) 。 佈建您的服務時，您也可以選擇裝載服務的資料中心區域。
 
@@ -67,26 +67,29 @@ Azure 搜尋服務是一項雲端搜尋即服務解決方案，可將伺服器�
 ### <a name="2-create-index"></a>2.建立索引
 您必須先定義 Azure 搜尋服務索引，才可以將您的內容上傳至 Azure 搜尋服務。 索引就像是資料庫資料表，其中保存您的資料並可接受搜尋查詢。 您可定義索引結構描述，以對應至您要搜尋的文件結構 (類似於資料庫中的欄位)。
 
-您可以在 Azure 入口網站中，或[使用 .NET SDK](search-howto-dotnet-sdk.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 以程式設計方式建立這些索引的結構描述。 一旦定義索引之後，您就可以將資料上傳至 Azure 搜尋服務，接著編製索引。
+您可以在 Azure 入口網站中，或[使用 .NET SDK](search-howto-dotnet-sdk.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 透過程式設計方式，建立這些索引的結構描述。 一旦定義索引之後，您就可以將資料上傳至 Azure 搜尋服務，接著編製索引。
 
 ### <a name="3-index-data"></a>3.索引資料
 定義索引的欄位和屬性之後，即可將您的內容上傳至索引。 您可以使用發送或提取模型，將資料上傳至索引。
 
 提取模型是透過可以針對需要或排定的更新而設定的索引子提供的 (請參閱 [索引子作業 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn946891.aspx))，可讓您輕鬆地從裝載於 Azure VM 的 Azure DocumentDB、Azure SQL Database、Azure Blob 儲存體或 SQL Server 擷取資料和資料變更。
 
-發送模式是透過用於將更新的文件傳送到索引的 SDK 或 REST API 提供的。 使用 JSON 格式，您幾乎可以從任何資料集發送資料。 如需載入資料的指引，請參閱[新增、更新或刪除文件](https://msdn.microsoft.com/library/azure/dn798930.aspx)或[如何使用 .NET SDK](search-howto-dotnet-sdk.md)。
+推送模式是透過 SDK 或 REST API 來提供，可用來將已更新的文件傳送到索引。 使用 JSON 格式，您幾乎可以從任何資料集發送資料。 如需載入資料的指引，請參閱[新增、更新或刪除文件](https://msdn.microsoft.com/library/azure/dn798930.aspx)或[如何使用 .NET SDK](search-howto-dotnet-sdk.md)。
 
 ### <a name="4-search"></a>4.搜尋
 填入您的 Azure Search 索引後，您現在可以透過 REST API 或 .NET SDK 使用簡單的 HTTP 要求對服務端點 [發出搜尋查詢](https://msdn.microsoft.com/library/azure/dn798927.aspx) 。
 
 ## <a name="try-it-now-for-free"></a>立即試用 (免費！)
-您可以立即試用 Azure 搜尋服務！ 如果您已經有 Azure 帳戶，您可以 [在免費層中佈建服務](search-create-service-portal.md)。
+Azure 訂閱者可以[在免費層中佈建服務](search-create-service-portal.md)。
 
-如果您沒有 Azure 帳戶，您可以免費試用 60 分鐘的工作階段 (不需要註冊)。 移至 [試用 Azure App Service](http://go.microsoft.com/fwlink/p/?LinkId=618214) 並選取 [Web 應用程式]。 然後選取「ASP.NET + Azure 搜尋」範本開始進行。
+如果您不是訂閱者，您可以[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)：您會獲得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶並使用免費的 Azure 服務，例如「網站」。 除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
+
+或者，您也可以[啟用 MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)：您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。 
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+
+<!--HONumber=Jan17_HO2-->
 
 

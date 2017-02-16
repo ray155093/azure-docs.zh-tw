@@ -8,6 +8,7 @@ manager: jhubbard
 author: ddove
 ms.assetid: 6fa47cf2-1162-4534-a206-6e2d95b78580
 ms.service: sql-database
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -15,8 +16,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d601ce76281cac6df6d3184d9c65980b4bf7948a
+ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
+ms.openlocfilehash: 0d95f9f0e0c5b69aed6ba74a2488e46540589c00
 
 
 ---
@@ -24,7 +25,7 @@ ms.openlocfilehash: d601ce76281cac6df6d3184d9c65980b4bf7948a
 若要管理相應放大的共用資料庫，**彈性資料庫作業**功能 (預覽) 可讓您在一組資料庫中可靠地執行 TRANSACT-SQL (T-SQL) 指令碼，其中包括：
 
 * 自訂的資料庫集合 (如下所述)
-*  [彈性資料庫集區](sql-database-elastic-pool.md)
+* [彈性集區](sql-database-elastic-pool.md)中的所有資料庫
 * 分區集 (使用 [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)建立)。 
 
 ## <a name="documentation"></a>文件
@@ -72,8 +73,8 @@ ms.openlocfilehash: d601ce76281cac6df6d3184d9c65980b4bf7948a
 
 ## <a name="elastic-database-jobs-end-to-end"></a>彈性資料庫工作：端對端
 1. 安裝 **彈性資料庫工作** 元件。 如需詳細資訊，請參閱 [安裝彈性資料庫工作](sql-database-elastic-jobs-service-installation.md)。 如果安裝失敗，請參閱 [如何解除安裝](sql-database-elastic-jobs-uninstall.md)。
-2. 使用 PowerShell API 來存取更多功能，例如建立自訂定義資料庫集合、新增排程及/或收集結果集。 使用入口網站以進行簡單安裝並建立/監視限制為針對 **彈性資料庫集區**執行的工作。 
-3. 針對工作執行建立加密認證及 [將使用者 (或角色) 新增至群組中的每個資料庫](sql-database-security.md)。
+2. 使用 PowerShell API 來存取更多功能，例如建立自訂定義資料庫集合、新增排程及/或收集結果集。 使用入口網站來進行簡單安裝，以及建立/監視僅限針對「彈性集區」執行的工作。 
+3. 針對工作執行建立加密認證及 [將使用者 (或角色) 新增至群組中的每個資料庫](sql-database-security-overview.md)。
 4. 建立能夠針對群組中的每個資料庫執行的等冪 T-SQL 指令碼。 
 5. 遵循下列步驟，使用 Azure 入口網站建立工作： [建立和管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)。 
 6. 或使用 PowerShell 指令碼： [使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)](sql-database-elastic-jobs-powershell.md)。
@@ -134,7 +135,7 @@ ms.openlocfilehash: d601ce76281cac6df6d3184d9c65980b4bf7948a
    在工作執行期間，可以隨時使用 PowerShell API 以檢視工作執行的目前狀態。 PowerShell API 所傳回的所有時間都是以 UTC 表示。 如有需要，可以初始化取消要求以停止工作。 
 
 ## <a name="next-steps"></a>後續步驟
-[安裝元件](sql-database-elastic-jobs-service-installation.md)，然後[建立記錄檔並加入資料庫群組中的每個資料庫](sql-database-security.md)。 若要進一步了解工作的建立和管理，請參閱 [建立及管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)。 另請參閱 [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
+[安裝元件](sql-database-elastic-jobs-service-installation.md)，然後[建立記錄檔並加入資料庫群組中的每個資料庫](sql-database-manage-logins.md)。 若要進一步了解工作的建立和管理，請參閱 [建立及管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)。 另請參閱 [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
@@ -146,6 +147,6 @@ ms.openlocfilehash: d601ce76281cac6df6d3184d9c65980b4bf7948a
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

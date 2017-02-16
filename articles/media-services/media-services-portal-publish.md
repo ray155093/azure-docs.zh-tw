@@ -1,5 +1,5 @@
 ---
-title: "  透過 Azure 入口網站發佈內容 | Microsoft Docs"
+title: "  透過 Azure 入口網站發佈內容 | Microsoft Docscs"
 description: "本教學課程將逐步引導您完成透過 Azure 入口網站發佈內容的步驟。"
 services: media-services
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 96a8342dc782a9270a6de5b67387c35ea45b860e
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 72b0b7feef583799613b1cb2c18b2020c1401b36
 
 
 ---
@@ -62,7 +62,7 @@ SAS URL 具有下列格式。
 > 
 > 
 
-若要更新定位器的到期日，請使用 [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。 請注意，當您更新 SAS 定位器的到期日，URL 也會隨之變更。
+若要更新定位器的到期日，請使用 [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。 請注意，當您更新 SAS 定位器的到期日，URL 也會隨之變更。
 
 ### <a name="to-use-the-portal-to-publish-an-asset"></a>使用入口網站發佈資產
 若要使用入口網站發佈資產，請執行下列作業：
@@ -90,7 +90,6 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 * 確定已發佈視訊。
 * 此 **媒體播放器** 會從預設串流端點播放。 如果您想要從非預設串流端點播放，請按一下以複製 URL 並使用其他播放器。 例如， [Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
 * 您正在進行串流的串流端點必須正在執行。  
-* 若要從串流端點進行串流，您必須新增至少一個串流單位。 如需詳細資訊，請參閱 [這個](media-services-portal-scale-streaming-endpoints.md) 主題。   
 
 ## <a name="next-steps"></a>後續步驟
 檢閱媒體服務學習路徑。
@@ -103,6 +102,6 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

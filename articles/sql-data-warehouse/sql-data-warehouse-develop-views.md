@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲中的檢視 | Microsoft Docs"
+title: "在 Azure SQL 資料倉儲中使用 T-SQL 檢視 | Microsoft Docs"
 description: "在 Azure SQL 資料倉儲中使用 Transact-SQL 檢視開發解決方案的秘訣。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: eada95920b3f539c70776964eb62ff9e4d219ddd
+ms.sourcegitcommit: 43ab6a2f71ab51c50847b1ba5249f51c48e03fea
+ms.openlocfilehash: 902929fba9e2486d97323ab52505ba6db3fe0aab
 
 
 ---
@@ -66,13 +66,13 @@ SQL 資料倉儲中的檢視僅限中繼資料使用。  因此無法使用下�
 * SQL 資料倉儲中沒有索引檢視表
 
 ## <a name="next-steps"></a>後續步驟
-如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL 資料倉儲開發概觀]。
+如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。
 如需 `CREATE VIEW` 語法，請參閱 [CREATE VIEW][CREATE VIEW]。
 
 <!--Image references-->
 
 <!--Article references-->
-[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
 [CREATE VIEW]: https://msdn.microsoft.com/en-us/library/ms187956.aspx
@@ -81,6 +81,6 @@ SQL 資料倉儲中的檢視僅限中繼資料使用。  因此無法使用下�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 備份 - 使用 PowerShell 部署和管理 DPM 的備份 | Microsoft Docs"
+title: "Azure 備份：使用 PowerShell 備份 DPM 工作負載 | Microsoft Docs"
 description: "了解如何使用 PowerShell 部署和管理 Data Protection Manager (DPM) 的 Azure 備份"
 services: backup
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 1/23/2017
 ms.author: jimpark; trinadhk; anuragm; markgal
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 245172873a1ae3418fd33ccf98a26054208b620a
+ms.sourcegitcommit: 127484103706be5acd0f988aee3d13217d4d87f2
+ms.openlocfilehash: f73bdcf056dc745f9f40e96d3dc51e5e4b88f77d
 
 
 ---
@@ -24,8 +24,8 @@ ms.openlocfilehash: 245172873a1ae3418fd33ccf98a26054208b620a
 > [!div class="op_single_selector"]
 > * [ARM](backup-dpm-automation.md)
 > * [傳統](backup-dpm-automation-classic.md)
-> 
-> 
+>
+>
 
 本文說明如何使用 PowerShell 來設定 DPM 伺服器上的 Azure 備份以及管理備份和復原。
 
@@ -68,8 +68,8 @@ PowerShell 可以自動化下列設定和註冊工作：
 ### <a name="create-a-backup-vault"></a>建立備份保存庫
 > [!WARNING]
 > 對於第一次使用 Azure 備份的客戶，您需要註冊 Azure 備份提供者以搭配您的訂用帳戶使用。 這可以透過執行下列命令來完成：Register-AzureProvider -ProviderNamespace "Microsoft.Backup"
-> 
-> 
+>
+>
 
 您可以使用 **New-AzureRMBackupVault** Cmdlet 建立新的備份保存庫。 備份保存庫是 ARM 資源，因此您必須將它放在資源群組內。 在提高權限的 Azure PowerShell 主控台中，執行下列命令：
 
@@ -143,8 +143,8 @@ PS C:\> Start-DPMCloudRegistration -DPMServerName "TestingServer" -VaultCredenti
 
 > [!IMPORTANT]
 > 請勿使用相對路徑來指定保存庫認證檔。 您必須提供絕對路徑做為 Cmdlet 的輸入。
-> 
-> 
+>
+>
 
 ### <a name="initial-configuration-settings"></a>初始組態設定
 一旦向 Azure 備份保存庫註冊 DPM 伺服器，就會使用預設的訂用帳戶設定開始。 這些訂用帳戶設定包括網路、加密和臨時區域。 若要開始變更訂用帳戶設定，您需要先使用 [Get-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) Cmdlet 取得現有 (預設) 設定上的控制代碼：
@@ -194,8 +194,8 @@ PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -Subscrip
 
 > [!IMPORTANT]
 > 一旦設定，就請保管好此複雜密碼。 若沒有此複雜密碼，您將無法從 Azure 還原資料。
-> 
-> 
+>
+>
 
 此時，您應該已對 ```$setting``` 物件進行所有必要的變更。 記得要認可變更。
 
@@ -303,7 +303,7 @@ PS C:\> Set-DPMProtectionGroup -ProtectionGroup $MPG
 ```
 PS C:\> Set-DPMReplicaCreationMethod -ProtectionGroup $MPG -NOW
 ```
-### <a name="changing-the-size-of-dpm-replica-recovery-point-volume"></a>變更 DPM 複本和復原點磁碟區的大小
+### <a name="changing-the-size-of-dpm-replica--recovery-point-volume"></a>變更 DPM 複本和復原點磁碟區的大小
 您也可以變更 DPM 複本磁碟區以及陰影複製磁碟區的大小，方法是使用 [Set-DPMDatasourceDiskAllocation](https://technet.microsoft.com/library/hh881618.aspx) Cmdlet，如下列範例所示：Get-DatasourceDiskAllocation -Datasource $DS Set-DatasourceDiskAllocation -Datasource $DS -ProtectionGroup $MPG -manual -ReplicaArea (2gb) -ShadowCopyArea (2gb)
 
 ### <a name="committing-the-changes-to-the-protection-group"></a>將變更認可到保護群組
@@ -351,7 +351,6 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

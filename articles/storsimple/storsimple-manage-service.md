@@ -3,8 +3,8 @@ title: "部署 StorSimple Manager 服務 | Microsoft Docs"
 description: "說明如何在 Azure 傳統入口網站中建立和刪除 StorSimple Manager 服務，並說明如何管理服務註冊金鑰。"
 services: storsimple
 documentationcenter: 
-author: SharS
-manager: carmonm
+author: alkohli
+manager: byronr
 editor: 
 ms.assetid: bc1d5650-275c-42ed-bc77-cdb596f85943
 ms.service: storsimple
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/24/2016
-ms.author: v-sharos
+ms.date: 12/05/2016
+ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf39b922e51dd60b5b2c51cb7030436c60232a5
-ms.openlocfilehash: 51c414bacb825dd51bcd76a06e1f9e0f0c001b93
+ms.sourcegitcommit: f507eb6986f7c62965dc00673ee5ebe38e70f1d7
+ms.openlocfilehash: 1858fa9e1223d0938bb1eb6195c42fb1ec3b007d
 
 
 ---
@@ -51,6 +51,9 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 
 單一服務可以管理多個裝置。 不過，裝置不能跨越多個服務。 大型企業可以擁有多個服務執行個體使用不同的訂用帳戶、組織或甚至是部署位置。 請注意，您需要個別的 StorSimple Manager 服務來管理 StorSimple 8000 系列裝置和 StorSimple 虛擬陣列的執行個體。
 
+> [!IMPORTANT] 
+> 如果您在 2016 年 8 月前建立了未使用的服務 (在此資源上未執行任何裝置作業)，則無法透過 Azure 入口網站或 Azure 傳統入口網站進行管理。 我們建議您在 Azure 入口網站中建立新的服務。
+
 執行下列步驟來建立服務。
 
 [!INCLUDE [storsimple-create-new-service](../../includes/storsimple-create-new-service.md)]
@@ -58,7 +61,8 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 ## <a name="delete-a-service"></a>刪除服務
 刪除服務之前，請確定沒有任何連接的裝置正在使用它。 如果服務正在使用中，請停用連接的裝置。 停用作業將會斷絕裝置與服務之間的連接，但是會保留雲端中的裝置資料。
 
-[AZURE.IMPORTANT] 刪除服務之後，就無法回復此作業。 使用服務的任何裝置在可以搭配另一個服務使用之前，都必須恢復出廠預設值。 在此案例中，裝置上的本機資料以及組態將會遺失。
+> [!IMPORTANT] 
+> 刪除服務之後，就無法回復此作業。 使用服務的任何裝置在可以搭配另一個服務使用之前，都必須恢復出廠預設值。 在此案例中，裝置上的本機資料以及組態將會遺失。
 
 執行下列步驟來刪除服務。
 
@@ -89,15 +93,15 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 3. 您將會看見確認訊息。 按一下 [ **確定** ] 繼續重新產生。
 4. 新的服務註冊金鑰隨即顯示。
 5. 複製這個金鑰並儲存，以對任何新的裝置註冊此服務。
-6. 按一下核取圖示  ![核取圖示](./media/storsimple-manage-service/HCS_CheckIcon.png)  以關閉此對話方塊。
+6. 按一下核取圖示  ![核取圖示](./media/storsimple-manage-service/HCS_CheckIcon.png) 以關閉此對話方塊。
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解 [StorSimple 部署程序](storsimple-deployment-walkthrough.md)。
+* 深入了解 [StorSimple 部署程序](storsimple-deployment-walkthrough-u2.md)。
 * 深入了解 [管理 StorSimple 儲存體帳戶](storsimple-manage-storage-accounts.md)。
 * 深入了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

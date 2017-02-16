@@ -4,7 +4,7 @@ description: "了解如何在資源管理員中使用 PowerShell 建立應用程
 services: application-gateway
 documentationcenter: na
 author: georgewallace
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: 68feb660-7fa4-4f69-a7e4-bdd7bdc474db
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/13/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: d883cdc007beaf17118c6b6ddbc8345c3bfb5ef2
-ms.openlocfilehash: c766763e4633c4905595ae15aca0679b5ecaf5bd
+ms.sourcegitcommit: 09aeb63d4c2e68f22ec02f8c08f5a30c32d879dc
+ms.openlocfilehash: d6856256a9ab272e0620e82d140c5ec735e5eabc
 
 
 ---
@@ -27,8 +27,6 @@ ms.openlocfilehash: c766763e4633c4905595ae15aca0679b5ecaf5bd
 > * [Azure 入口網站](application-gateway-create-probe-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
 > * [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
-> 
-> 
 
 [!INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
@@ -39,7 +37,7 @@ ms.openlocfilehash: c766763e4633c4905595ae15aca0679b5ecaf5bd
 
 ### <a name="step-1"></a>步驟 1
 
-使用 Login-AzureRmAccount 進行驗證。
+使用 `Login-AzureRmAccount`來驗證。
 
 ```powershell
 Login-AzureRmAccount
@@ -55,7 +53,7 @@ Get-AzureRmSubscription
 
 ### <a name="step-3"></a>步驟 3
 
-選擇要使用哪一個 Azure 訂用帳戶。 <BR>
+選擇要使用哪一個 Azure 訂用帳戶。
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -192,11 +190,8 @@ $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType B
 $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 ```
 
-
 > [!NOTE]
-> **InstanceCount** 的預設值是 2，且最大值是 10。 GatewaySize  的預設值是 Medium。 您可以在 **Standard_Small**、**Standard_Medium** 及 **Standard_Large** 之間選擇。
-> 
-> 
+> **InstanceCount** 的預設值是 2，且最大值是 10。 GatewaySize  的預設值是 Medium。 您可以在 **Standard_Small**、**Standard_Medium** 及 **Standard_Large** 之間選擇。 
 
 ## <a name="create-an-application-gateway-by-using-new-azurermapplicationgateway"></a>使用 New-AzureRmApplicationGateway 建立應用程式閘道
 
@@ -256,7 +251,6 @@ Set-AzureRmApplicationGateway -ApplicationGateway $getgw
 $getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 ```
 
-
 ### <a name="step-2"></a>步驟 2
 
 使用 `Remove-AzureRmApplicationGatewayProbeConfig` 移除應用程式閘道中的探查組態。
@@ -313,11 +307,11 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>後續步驟
 
-請瀏覽 [設定 SSL 卸載](application-gateway-ssl-arm.md)
+請瀏覽：[設定 SSL 卸載](application-gateway-ssl-arm.md)了解如何設定 SSL 卸載
 
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

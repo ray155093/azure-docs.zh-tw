@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/27/2016
+ms.date: 01/19/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f9acb44fb6b6fac41da4dc05745a68066b0477fb
+ms.sourcegitcommit: 6b82132b24fb2be3f0d8ab5112c712c27edb733e
+ms.openlocfilehash: 4d7754e73abedb704b81fa0001e1957422bde1b3
 
 
 ---
@@ -98,7 +98,7 @@ ms.openlocfilehash: f9acb44fb6b6fac41da4dc05745a68066b0477fb
     DocumentDBBenchmark completed successfully.
 
 
-**步驟 4 (如有必要)：** 從工具回報的輸送量 (RU/秒) 應該等於或大於佈建的集合輸送量。 如果情況並非如此，向上微調 DegreeOfParallelism 可協助您達到該限制。 如果來自用戶端應用程式的輸送量達持平狀態，在相同或不同機器上啟動多個應用程式執行個體將可協助您在各個不同的執行個體達到所佈建的限制。 如果您需要協助進行這個步驟，請撰寫電子郵件給 askdocdb@microsoft.com 或填寫支援票證。
+**步驟 4 (如有必要)：** 從工具回報的輸送量 (RU/秒) 應該等於或大於佈建的集合輸送量。 如果情況並非如此，向上微調 DegreeOfParallelism 可協助您達到該限制。 如果來自用戶端應用程式的輸送量達持平狀態，在相同或不同機器上啟動多個應用程式執行個體將可協助您在各個不同的執行個體達到所佈建的限制。 如果您需要協助進行這個步驟，請撰寫電子郵件寄至 askdocdb@microsoft.com 或在 [Azure 入口網站](https://portal.azure.com)提出支援票證。
 
 讓應用程式處於執行狀態之後，您便可以嘗試不同的[索引編製原則](documentdb-indexing-policies.md)和[一致性層級](documentdb-consistency-levels.md)，以了解它們對輸送量和延遲的影響。 您也可以檢閱原始程式碼，然後對自己的測試套件或實際執行應用程式實作類似的組態。
 
@@ -116,6 +116,6 @@ ms.openlocfilehash: f9acb44fb6b6fac41da4dc05745a68066b0477fb
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

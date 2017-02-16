@@ -16,8 +16,8 @@ ms.topic: hero-article
 ms.date: 09/27/2016
 ms.author: markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 900967975694a688b6d5054cb351746819b65f16
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8ac37244d1e691a2f075116f3d78b89923cfb845
 
 
 ---
@@ -78,7 +78,7 @@ ms.openlocfilehash: 900967975694a688b6d5054cb351746819b65f16
 
 現在您已建立保存庫，接下來您要下載 Microsoft Azure 復原服務代理程式和保存庫認證，讓基礎結構做好備份檔案和資料夾的準備。
 
-## <a name="step-3-download-files"></a>步驟 3 - 下載檔案
+## <a name="step-3---download-files"></a>步驟 3 - 下載檔案
 1. 按一下復原服務保存庫儀表板上的 [設定]  。
    
     ![開啟備份目標刀鋒視窗](./media/backup-try-azure-backup-in-10-mins/settings-button.png)
@@ -102,7 +102,7 @@ ms.openlocfilehash: 900967975694a688b6d5054cb351746819b65f16
    
     ![準備基礎結構](./media/backup-try-azure-backup-in-10-mins/prepare-infrastructure-download.png)
 
-## <a name="step-4-install-and-register-the-agent"></a>步驟 4 - 安裝並註冊代理程式
+## <a name="step-4--install-and-register-the-agent"></a>步驟 4 - 安裝並註冊代理程式
 > [!NOTE]
 > 透過 Azure 入口網站進行備份的功能很快就會推出。 目前，您可以在內部部署使用 Microsoft Azure 復原服務代理程式來備份檔案和資料夾。
 > 
@@ -184,6 +184,6 @@ ms.openlocfilehash: 900967975694a688b6d5054cb351746819b65f16
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

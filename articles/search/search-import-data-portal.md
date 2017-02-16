@@ -16,8 +16,8 @@ ms.tgt_pltfrm: na
 ms.date: 08/29/2016
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 702ea254c19d1f9782f83d8445b7f440f11963b9
-ms.openlocfilehash: 2d4898694c69b5eb0194747982fa8bfbfea1f6f8
+ms.sourcegitcommit: c98251147bca323d31213a102f607e995b37e0ec
+ms.openlocfilehash: c2bf44dc23a3b330994e51317b6b021fab6eef1f
 
 
 ---
@@ -103,7 +103,7 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料]  精�
 檢閱下列連結以深入了解索引子：
 
 * [為 Azure SQL Database 編製索引](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-* [為 DocumentDB 編製索引](../documentdb/documentdb-search-indexer.md)
+* [為 DocumentDB 編製索引](search-howto-index-documentdb.md)
 * [為 Blob 儲存體編製索引 (預覽)](search-howto-indexing-azure-blob-storage.md)
 * [為表格儲存體編製索引 (預覽)](search-howto-indexing-azure-tables.md)
 
@@ -113,6 +113,6 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料]  精�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

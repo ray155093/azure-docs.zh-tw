@@ -1,6 +1,6 @@
 ---
-title: "使用 Docker Swarm 管理 Azure Container Service 的容器 | Microsoft Docs"
-description: "在 Azure 容器服務中將容器部署到 Docker Swarm"
+title: "使用 Docker API 管理 Azure Swarm 叢集 | Microsoft Docs"
+description: "在 Azure Container Service 中將容器部署至 Docker Swarm 叢集"
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: 2c6497ebe50b3493e376a871431fe5e5471479bd
-ms.openlocfilehash: 7c3f2e06f32856aa4aa603117b7f43bb54450da7
+ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
+ms.openlocfilehash: bd20dc4eb3948d08e3c2dd2ad2bb42d18df67796
 
 
 ---
@@ -119,6 +119,6 @@ caf185d221b7        adtd/web:0.1        "apache2-foreground"   2 minutes ago    
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 
