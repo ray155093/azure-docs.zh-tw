@@ -192,6 +192,6 @@ Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

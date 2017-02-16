@@ -341,6 +341,6 @@ Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -95,6 +95,6 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

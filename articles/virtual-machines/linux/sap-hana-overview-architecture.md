@@ -362,6 +362,6 @@ SAP HANA on Azure (大型執行個體) 有兩個重要的網路路由考量：
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

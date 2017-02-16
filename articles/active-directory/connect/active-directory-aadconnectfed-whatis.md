@@ -50,6 +50,6 @@ Azure AD Connect 可讓您設定與內部部署 AD FS 和 Azure AD 同盟。 使
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 
