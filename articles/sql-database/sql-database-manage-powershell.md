@@ -8,16 +8,16 @@ manager: jhubbard
 editor: monicar
 ms.assetid: 3f21ad5e-ba99-4010-b244-5e5815074d31
 ms.service: sql-database
-ms.custom: how to
+ms.custom: overview
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: get-started-article
 ms.date: 11/15/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
-ms.openlocfilehash: 54000d76fac3f5759f72fe623326324e6c978505
+ms.sourcegitcommit: adad6b8e27e0996559d5e6dacb8dd60fbf52a631
+ms.openlocfilehash: 0c1ce1c29e447d9db4ef0df7873ef89cb835abee
 
 
 ---
@@ -31,6 +31,10 @@ ms.openlocfilehash: 54000d76fac3f5759f72fe623326324e6c978505
 
 本主題說明用來執行許多 Azure SQL Database 工作的 PowerShell Cmdlet。 如需完整的清單，請參閱 [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/mt574084\(v=azure.300\).aspx)。
 
+> [!TIP]
+> 如需示範如何建立伺服器、建立伺服器型防火牆、檢視伺服器屬性、連接和查詢 Master 資料庫、建立範例資料庫和空白資料庫、查詢資料庫屬性、連接和查詢範例資料庫的教學課程，請參閱[開始使用教學課程](sql-database-get-started-powershell.md)。
+>
+
 ## <a name="how-do-i-create-a-resource-group"></a>如何建立資源群組？
 若要為 SQL Database 及相關的 Azure 資源建立資源群組，請使用 [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/azure/mt759837\(v=azure.300\).aspx) Cmdlet。
 
@@ -41,7 +45,7 @@ New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocati
 ```
 
 如需詳細資訊，請參閱 [將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
-如需範例指令碼，請參閱 [建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
+如需完整的教學課程，請參閱[使用 Azure PowerShell 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started-powershell.md)。
 
 ## <a name="how-do-i-create-a-sql-database-server"></a>如何建立 SQL Database 伺服器？
 若要建立 SQL Database 伺服器，請使用 [New-AzureRmSqlServer](https://msdn.microsoft.com/library/azure/mt603715\(v=azure.300\).aspx) Cmdlet。 將 *server1* 取代為您伺服器的名稱。 伺服器名稱在所有 Azure SQL Database 伺服器之中必須是唯一的。 如果該伺服器名稱已被使用，您會收到錯誤訊息。 此命令可能需要幾分鐘的時間才能完成。 資源群組必須已經存在於您的訂用帳戶中。
@@ -54,8 +58,8 @@ $sqlServerVersion = "12.0"
 $sqlServerLocation = "northcentralus"
 $serverAdmin = "loginname"
 $serverPassword = "password" 
-$securePassword = ConvertTo-SecureString –String $serverPassword –AsPlainText -Force
-$creds = New-Object –TypeName System.Management.Automation.PSCredential –ArgumentList $serverAdmin, $securePassword
+$securePassword = ConvertTo-SecureString -String $serverPassword -AsPlainText -Force
+$creds = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $serverAdmin, $securePassword
 
 
 $sqlServer = New-AzureRmSqlServer -ServerName $sqlServerName `
@@ -63,7 +67,7 @@ $sqlServer = New-AzureRmSqlServer -ServerName $sqlServerName `
  -ResourceGroupName $resourceGroupName -ServerVersion $sqlServerVersion
 ```
 
-如需伺服器的詳細資訊，請參閱 [SQL Database 功能](sql-database-features.md)。 如需範例指令碼，請參閱 [建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
+如需伺服器的詳細資訊，請參閱 [SQL Database 功能](sql-database-features.md)。 如需完整的教學課程，請參閱[使用 Azure PowerShell 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started-powershell.md)。
 
 ## <a name="how-do-i-create-a-sql-database-server-firewall-rule"></a>如何建立 SQL Database 伺服器防火牆規則？
 若要建立存取伺服器的防火牆規則，請使用 [New-AzureRmSqlServerFirewallRule](https://msdn.microsoft.com/library/azure/mt603860\(v=azure.300\).aspx) Cmdlet。 執行以下命令，以您用戶端的有效值取代開頭和結尾 IP 位址。 資源群組和伺服器必須已經存在於您的訂用帳戶中。
@@ -83,7 +87,7 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourceGroupName `
 
 若要允許其他 Azure 服務存取您的伺服器，請建立防火牆規則，並將 `-StartIpAddress` 和 `-EndIpAddress` 都設定為 **0.0.0.0**。 這個特殊的防火牆規則會允許所有 Azure 流量存取伺服器。
 
-如需詳細資訊，請參閱 [Azure SQL Database 防火牆](https://msdn.microsoft.com/library/azure/ee621782.aspx)。 如需範例指令碼，請參閱 [建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
+如需詳細資訊，請參閱 [Azure SQL Database 防火牆](https://msdn.microsoft.com/library/azure/ee621782.aspx)。 如需完整的教學課程，請參閱[使用 Azure PowerShell 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started-powershell.md)。
 
 ## <a name="how-do-i-create-a-sql-database"></a>如何建立 SQL Database？
 若要建立 SQL Database，請使用 [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619339\(v=azure.300\).aspx) Cmdlet。 資源群組和伺服器必須已經存在於您的訂用帳戶中。 
@@ -101,7 +105,7 @@ $currentDatabase = New-AzureRmSqlDatabase -ResourceGroupName $resourceGroupName 
  -Edition $databaseEdition -RequestedServiceObjectiveName $databaseServiceLevel
 ```
 
-如需詳細資訊，請參閱 [什麼是 SQL Database](sql-database-technical-overview.md)。 如需範例指令碼，請參閱 [建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
+如需詳細資訊，請參閱 [什麼是 SQL Database](sql-database-technical-overview.md)。 如需完整的教學課程，請參閱[使用 Azure PowerShell 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started-powershell.md)。
 
 ## <a name="how-do-i-change-the-performance-level-of-a-sql-database"></a>如何變更 SQL Database 的效能層級？
 若要變更效能層級，以相應增加或減少方式調整您的資料庫，請使用 [Set-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619433\(v=azure.300\).aspx) Cmdlet。 資源群組、伺服器及資料庫必須已經存在於您的訂用帳戶中。 針對「基本層」，將 `-RequestedServiceObjectiveName` 設定為單一空間 (如以下程式碼片段)。 像先前其他層的範例一樣，將它設定為 *S0*、*S1*、*P1*、*P6* 等。
@@ -163,10 +167,10 @@ $sqlServerName = "server1"
 Remove-AzureRmSqlServer -ServerName $sqlServerName -ResourceGroupName $resourceGroupName
 ```
 
-## <a name="how-do-i-create-and-manage-elastic-database-pools-using-powershell"></a>如何使用 PowerShell 來建立及管理彈性資料庫集區？
-如需有關使用 PowerShell 來建立彈性資料庫集區的詳細資料，請參閱 [使用 PowerShell 建立新的彈性資料庫集區](sql-database-elastic-pool-create-powershell.md)。
+## <a name="how-do-i-create-and-manage-elastic-pools-using-powershell"></a>如何使用 PowerShell 來建立及管理彈性集區？
+如需有關使用 PowerShell 來建立彈性集區的詳細資料，請參閱[使用 PowerShell 建立新的彈性集區](sql-database-elastic-pool-create-powershell.md)。
 
-如需有關使用 PowerShell 來管理彈性資料庫集區的詳細資料，請參閱 [透過 PowerShell 監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-powershell.md)。
+如需有關使用 PowerShell 來管理彈性集區的詳細資料，請參閱[使用 PowerShell 監視和管理彈性集區](sql-database-elastic-pool-manage-powershell.md)。
 
 ## <a name="related-information"></a>相關資訊
 * [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/azure/mt574084\(v=azure.300\).aspx)
@@ -175,6 +179,6 @@ Remove-AzureRmSqlServer -ServerName $sqlServerName -ResourceGroupName $resourceG
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 
