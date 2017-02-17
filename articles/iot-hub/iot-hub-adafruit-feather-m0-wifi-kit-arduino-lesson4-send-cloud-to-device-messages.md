@@ -1,5 +1,5 @@
 ---
-title: "從 Azure IoT 中樞執行範例應用程式以接收雲端到裝置訊息 | Microsoft Docs"
+title: "將 Arduino (C) 連接到 Azure IoT - 第 4 課：雲端到裝置 | Microsoft Docs"
 description: "範例應用程式會在 Adafruit Feather M0 WiFi 上執行，並監視從 IoT 中樞傳入的訊息。 新的 Gulp 工作會從 IoT 中樞將訊息傳送到 Adafruit Feather M0 WiFi 來使 LED 閃爍。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/13/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 9e8084fe26229ef9ed1676c0a3c34e0ee7be88b1
-ms.openlocfilehash: 55eda75c1e3290cedda1c4433db67c3cf320df20
+ms.sourcegitcommit: 4f9feb665ac93028023df86889ca53a64ac2ec0e
+ms.openlocfilehash: 63113841ca836681232e0aa43b15b444f8bb92e2
 
 
 ---
@@ -139,6 +139,6 @@ gulp 命令會將範例應用程式部署到 Arduino 面板。 然後，它會�
 [change-the-on-and-off-led-behavior]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-change-led-behavior.md
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

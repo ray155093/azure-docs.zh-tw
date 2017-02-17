@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/03/2017
+ms.date: 01/31/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 87755571f560f0b41baabac0dc2c437b2738e75f
-ms.openlocfilehash: e5f0bdeaf1c29e9f8fc844d4c3d85b1f2595d03b
+ms.sourcegitcommit: 8d370f98a4ef2501afc692af8a19a0625f54b678
+ms.openlocfilehash: a087b74470a8aa0f70b56d74cd97fe0935d35bcd
 
 
 ---
@@ -115,10 +115,10 @@ ms.openlocfilehash: e5f0bdeaf1c29e9f8fc844d4c3d85b1f2595d03b
 
 ## <a name="view-and-analyze-logs"></a>檢視及分析記錄檔
 
-若要了解如何檢視活動記錄資料，閱讀 [Azure 活動記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 若要了解如何檢視診斷記錄資料，閱讀 [Azure 診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 如果您將診斷資料傳送至 Log Analytics，您可以使用 [Azure 網路分析](../log-analytics/log-analytics-azure-networking-analytics.md#use-azure-networking-analytics) (預覽) 方案以取得增強的深入解析。 
+若要了解如何檢視活動記錄資料，閱讀 [Azure 活動記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 若要了解如何檢視診斷記錄資料，閱讀 [Azure 診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 如果您將診斷資料傳送至 Log Analytics，您可以使用 [Azure 網路安全性群組分析](../log-analytics/log-analytics-azure-networking-analytics.md) (預覽) 管理解決方案取得深入解析。 
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

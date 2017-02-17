@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 10/12/2016
+ms.date: 01/23/2017
 ms.author: cenkd;juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
-ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
+ms.sourcegitcommit: bdf41edfa6260749a91bc52ec0a2b62fcae99fb0
+ms.openlocfilehash: 4ebc53439735aa47c5191f7dccb77a3060e0f5f9
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
 ## <a name="overview"></a>Overview
 在 Azure 媒體服務中， **通道** 代表處理即時串流內容的管線。 **通道** 會以兩種方式之一收到即時輸入串流：
 
-* 內部部署即時編碼器會將多位元速率 **RTMP** 或 **Smooth Streaming** (分散式 MP4) 傳送到未啟用執行 AMS 即時編碼的通道。 內嵌的串流會通過 **通道**，而不需任何進一步處理。 此方法稱為 **傳遞**。 您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：Elemental、Envivio、Cisco。  下列即時編碼器會輸出 RTMP：Adobe Flash Live、Telestream Wirecast 和 Tricaster 轉錄器。  即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。 接到要求時，媒體服務會傳遞串流給客戶。
+* 內部部署即時編碼器會將多位元速率 **RTMP** 或 **Smooth Streaming** (分散式 MP4) 傳送到未啟用執行 AMS 即時編碼的通道。 內嵌的串流會通過 **通道**，而不需任何進一步處理。 此方法稱為 **傳遞**。 您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：MediaExcel、Ateme、Imagine Communications、Envivio、Cisco 和 Elemental。 下列即時編碼器會輸出 RTMP：Adobe Flash Media Live Encoder (FMLE)、Telestream Wirecast、Haivision、Teradek 和 Tricaster 編碼器。 即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。 接到要求時，媒體服務會傳遞串流給客戶。
 
   > [!NOTE]
   > 使用傳遞方法是進行即時串流的最經濟實惠方式。
@@ -35,8 +35,7 @@ ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
 自媒體服務 2.10 版起，當您建立通道時，您可以指定您希望通道接收輸入串流的方式，以及您是否想要通道執行串流的即時編碼。 您有兩個選擇：
 
 * **無** – 如果您想要使用會輸出多位元速率串流 (傳遞串流) 的內部部署即時編碼器，請指定這個值。 在此情況下，連入的串流會傳遞至輸出，無須任何編碼。 這是在 2.10 版以前的通道行為。  本主題提供有關使用此類型通道的詳細資訊。
-* **標準** – 如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。 請注意即時編碼有計費影響，而且您應該記住將即時編碼通道保持在「執行中」狀態會產生費用。  建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。
-  接到要求時，媒體服務會傳遞串流給客戶。
+* **標準** – 如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。 請注意即時編碼有計費影響，而且您應該記住將即時編碼通道保持在「執行中」狀態會產生費用。  建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。 接到要求時，媒體服務會傳遞串流給客戶。
 
 > [!NOTE]
 > 本主題討論通道的屬性，這些為未啟用執行即時編碼 (**未** 編碼類型) 的通道。 如需使用已啟用執行即時編碼通道的相關資訊，請參閱 [使用 Azure 媒體服務建立多位元速率串流的即時串流](media-services-manage-live-encoder-enabled-channels.md)。
@@ -73,7 +72,9 @@ ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
     使用 .NET SDK 或 REST 時，您必須建立資產並指定要在建立程式時使用此資產。
 6. 發行與程式相關聯的資產。   
 
-    確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+    >[!NOTE]
+    >建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 您想要串流內容的串流端點必須處於 [執行中] 狀態。 
+    
 7. 當您準備好開始串流和封存時，請啟動程式。
 8. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
 9. 每當您想要停止串流處理和封存事件時，請停止程式。
@@ -171,7 +172,7 @@ ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
 
 設定 [ **封存時間範圍** ] 長度，即可指定您想要保留程式之錄製內容的時數。 此值可以設為最少 5 分鐘到最多 25 個小時。 封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。 程式在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。 此屬性的這個值也會決定用戶端資訊清單可以成長為多長的時間。
 
-每個程式都與儲存串流內容的資產相關聯。 資產會對應到 Azure 儲存體帳戶中的 blob 容器，且資產中的檔案會儲存為該容器中的 blob。 若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
+每個程式都與儲存串流內容的資產相關聯。 資產會對應到「Azure 儲存體」帳戶中的區塊 Blob 容器，而資產中的檔案則會儲存為該容器中的 Blob。 若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
 
 通道支援最多三個同時執行的程式，因此您可以建立相同內送串流的多個封存。 這可讓您視需要發行和封存事件的不同部分。 例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。 為了達成此目的，您必須建立兩個同時執行的程式。 其中一個程式設定為封存 6 小時的事件，但是未發行該程式。 另一個程式則設定為封存 10 分鐘，並發行程式。
 
@@ -210,7 +211,7 @@ ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
 | --- | --- |
 | CEA-708 和 EIA-608 (708/608) |CEA-708 和 EIA-608 是美國和加拿大的隱藏式字幕標準。<p><p>目前只有編碼的輸入資料流附帶字幕時，才能播放字幕。 您使用的即時媒體編碼器，必須可以將 608 或 708 字幕插入至已傳送至媒體服務的已編碼資料流。 媒體服務會將內含字幕的內容傳遞給您的檢視器。 |
 | .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌) |媒體服務動態封裝功能可讓您的用戶端傳送以下任何格式的內容：MPEG DASH、HLS 或 Smooth Streaming。 不過，如果您內嵌 Fragmented MP4 (Smooth Streaming) 而且在 .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌)，您就只能將資料流傳遞至 Smooth Streaming 用戶端。 |
-| SCTE-35 |數位訊號系統，用來提示廣告插入。 下游接收端會使用信號並根據分配的時間，將廣告切割成資料流。 SCTE 35 必須以鬆散播放軌的形式傳送至輸入資料流中。<p><p>請注意，目前唯一支援附帶廣告訊號的輸入資料流格式是 Fragmented MP4 (Smooth Streaming)。 唯一支援的輸出格式也是 Smooth Streaming。 |
+| SCTE-35 |數位訊號系統，用來提示廣告插入。 下游接收端會使用信號並根據分配的時間，將廣告切割成資料流。 SCTE&35; 必須以鬆散播放軌的形式傳送至輸入資料流中。<p><p>請注意，目前唯一支援附帶廣告訊號的輸入資料流格式是 Fragmented MP4 (Smooth Streaming)。 唯一支援的輸出格式也是 Smooth Streaming。 |
 
 ## <a name="a-idconsiderationsaconsiderations"></a><a id="considerations"></a>考量
 使用內部部署即時編碼器並將多位元速率資料流傳送到通道時，請注意以下限制：
@@ -229,12 +230,10 @@ ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
 * 通道或其相關聯程式正在執行時，您無法變更輸入通訊協定。 如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
 * 只有當您的通道處於 **執行中** 狀態時，才會向您計費。 若需詳細資訊，請參閱 [這個](media-services-live-streaming-with-onprem-encoders.md#states) 章節。
 
-## <a name="how-to-create-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders"></a>如何建立從內部部署編碼器接收多位元速率即時串流的通道
+## <a name="using-3rd-party-live-encoders"></a>使用協力廠商即時編碼器
+
 如需內部部署即時編碼器的詳細資訊，請參閱 [搭配使用協力廠商即時編碼器與 Azure 媒體服務](https://azure.microsoft.com/blog/azure-media-services-rtmp-support-and-live-encoders/)。
 
-選擇**入口網站**、**.NET**、**REST API** 以了解如何建立及管理通道和程式。
-
-[!INCLUDE [media-services-selector-manage-channels](../../includes/media-services-selector-manage-channels.md)]
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -253,6 +252,6 @@ ms.openlocfilehash: d3a3204ee7690d501722031dea3f35bf55bfec00
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

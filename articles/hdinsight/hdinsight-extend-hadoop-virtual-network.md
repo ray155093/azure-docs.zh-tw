@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/13/2017
+ms.date: 02/01/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 7f63344455fafafc3a966c45742ba52d23177fa5
-ms.openlocfilehash: 8c25c33535ce942ac63b9a259aa9e61765129d0a
+ms.sourcegitcommit: 714c71e42593a6a038e77bfaaf2f6d7380c4f3ab
+ms.openlocfilehash: 52b75df326c1756f7bbacfc5453515c848a23870
 
 
 ---
@@ -95,6 +95,11 @@ HDInsight 服務是受管理服務，在佈建期間和執行時需要有網際�
 
 > [!IMPORTANT]
 > 應受到允許的 IP 位址是 HDInsight 叢集和「虛擬網路」所在區域特定的 IP 位址。 請使用下列資訊來尋找您所使用區域的 IP 位址。
+
+__巴西南部__區域：
+
+* 191.235.84.104
+* 191.235.87.113
 
 __加拿大東部__區域：
 
@@ -360,6 +365,6 @@ HDInsight 叢集會被指派特定的虛擬網路介面完整網域名稱 (FQDN)
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

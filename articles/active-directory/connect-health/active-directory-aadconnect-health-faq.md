@@ -1,5 +1,5 @@
 ---
-title: "Azure AD Connect Health 常見問題集"
+title: "Azure Active Directory Connect Health 常見問題集 - Azure | Microsoft Docs"
 description: "此常見問題集會回答 Azure AD Connect Health 的相關問題。 這個常見問題集涵蓋使用服務的相關問題，包括計費模型、功能、限制及支援。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
-ms.author: vakarand
+ms.date: 02/06/2017
+ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2f990f4c888da91422a6a6e9873307cbb483e782
-ms.openlocfilehash: b6687bc0ccde0e257338a939f39e343f75a6f5df
+ms.sourcegitcommit: 85458f4477dadb83a6a2627ef490471ca38ac634
+ms.openlocfilehash: a8ef669bdb28bfe66dacb42798a1ae65bcffdb4e
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: b6687bc0ccde0e257338a939f39e343f75a6f5df
 
 以下的數字是近似值。
 
-* CPU 耗用量：增加約 1%
+* CPU 耗用量：增加約&1;%
 * 記憶體耗用量：最多 10% 的系統總記憶體
 
 > [!NOTE]
@@ -95,6 +95,23 @@ Azure AD Connect Health 警示會在成功情況下獲得解決。 Azure AD Conn
 此外，如果您重新製作了伺服器的映像或使用相同的詳細資訊 (例如電腦名稱) 建立新的伺服器，但並未從 Azure AD Connect Health 入口網站移除已經註冊的伺服器，就在新伺服器上安裝代理程式，您可能會看到兩個同名的項目。  
 在此情況下，您應該手動刪除屬於較舊伺服器的項目。 此伺服器的資料應該已過時。
 
+## <a name="migration-questions"></a>移轉問題
+
+本節僅適用於獲通知其 Azure AD Connect Health 服務資料即將移轉的客戶。
+
+**問︰移轉之後，我是否必須重新註冊我的代理程式，或重新設定我的通知設定？**
+
+否，在移轉過程中，代理程式註冊資訊和通知設定將會隨之移動。 
+
+**問︰移轉之後需要多久，我才會在入口網站上開始看到資料？**
+
+資料將會開始在移轉之後的一小時內出現在入口網站中。 
+
+**問︰我的現存作用中警示會發生什麼情況？**
+
+在移轉之後的一小時內，所有適用的警示都會重新啟動。
+
+
 ## <a name="related-links"></a>相關連結
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
 * [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
@@ -107,6 +124,6 @@ Azure AD Connect Health 警示會在成功情況下獲得解決。 Azure AD Conn
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

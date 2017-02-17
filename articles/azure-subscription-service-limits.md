@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Azure 訂用帳戶和服務限制、配額與限制"
+title: "Azure 訂用帳戶限制與配額 | Microsoft Docs"
 description: "提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。 這包括如何增加限制和最大值的詳細資訊。"
 services: 
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 02/13/2017
 ms.author: byvinyal
 translationtype: Human Translation
-ms.sourcegitcommit: 18c8997d8ee77c9c3005aa765a64ae82dce8c70c
-ms.openlocfilehash: fc519c242b2676e20c1b19bfb2b5edae73b0b926
+ms.sourcegitcommit: bf6c6017f623766f5e7a6472feed02108b5adf5f
+ms.openlocfilehash: d770a05ee247103fe9693754d7fb7eada12ef1bc
 
 
 ---
@@ -65,6 +65,7 @@ ms.openlocfilehash: fc519c242b2676e20c1b19bfb2b5edae73b0b926
 * [事件中樞](#event-hubs-limits)
 * [IoT 中心](#iot-hub-limits)
 * [金鑰保存庫](#key-vault-limits)
+* [Log Analytics / Operational Insights](#log-analytics-limits)
 * [媒體服務](#media-services-limits)
 * [Mobile Engagement](#mobile-engagement-limits)
 * [行動服務](#mobile-services-limits)
@@ -72,7 +73,6 @@ ms.openlocfilehash: fc519c242b2676e20c1b19bfb2b5edae73b0b926
 * [Multi-Factor Authentication](#multi-factor-authentication)
 * [網路功能](#networking-limits)
 * [通知中樞服務](#notification-hub-service-limits)
-* [Operational Insights](#operational-insights-limits)
 * [資源群組](#resource-group-limits)
 * [排程器](#scheduler-limits)
 * [Search](#search-limits)
@@ -134,7 +134,7 @@ ms.openlocfilehash: fc519c242b2676e20c1b19bfb2b5edae73b0b926
 #### <a name="storage-service-limits"></a>儲存體服務限制
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
 
-#### <a name="virtual-machine-disk-limits"></a>虛擬機器磁碟限制
+#### <a name="virtual-machine-disk-limits"></a>虛擬機器磁碟限制 
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
 如需其他詳細資訊，請參閱 [虛擬機器大小](virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
@@ -170,7 +170,7 @@ ms.openlocfilehash: fc519c242b2676e20c1b19bfb2b5edae73b0b926
 [!INCLUDE [biztalk-services-service-limits](../includes/biztalk-services-service-limits.md)]
 
 ### <a name="documentdb-limits"></a>DocumentDB 限制
-DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於「DocumentDB 調整」的問題，請傳送電子郵件至 askdocdb@microsoft.com。
+DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於「DocumentDB 調整」的問題，請傳送電子郵件給 askdocdb@microsoft.com。
 
 ### <a name="mobile-engagement-limits"></a>Mobile Engagement 限制
 [!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
@@ -179,7 +179,7 @@ DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應
 定價層會決定搜尋服務的容量和限制。 層級包括：
 
 *  多租用戶服務，與其他 Azure 訂戶共用，適用於評估及小型開發專案。
-*  可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多 3 個複本。
+*  可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多&3; 個複本。
 *  適用於較大型生產工作負載。 標準層內具有多個層級，如此就能讓您選擇最符合工作負載設定檔的資源設定。
 
 **每一訂用帳戶的限制**
@@ -234,7 +234,7 @@ DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應
 ### <a name="storsimple-system-limits"></a>StorSimple 系統限制
 [!INCLUDE [storsimple-limits-table](../includes/storsimple-limits-table.md)]
 
-### <a name="operational-insights-limits"></a>Operational Insights 限制
+### <a name="log-analytics-limits"></a>Log Analytics 限制
 [!INCLUDE [operational-insights-limits](../includes/operational-insights-limits.md)]
 
 ### <a name="backup-limits"></a>備份限制
@@ -274,6 +274,6 @@ DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

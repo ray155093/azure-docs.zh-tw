@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure CLI 2.0 預覽建立完整的 Linux 環境 | Microsoft Docs"
+title: "使用 Azure CLI 2.0 建立 Linux 環境 | Microsoft Docs"
 description: "使用 Azure CLI 2.0 (預覽) 從頭開始建立儲存體、Linux VM、虛擬網路和子網路、負載平衡器、NIC、公用 IP 以及網路安全性群組。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,8 +16,8 @@ ms.workload: infrastructure
 ms.date: 12/8/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 95b924257c64a115728c66956d5ea38eb8764a35
-ms.openlocfilehash: b02be35b0a3e97dbab32467eb8f654ea9609e7aa
+ms.sourcegitcommit: e64449991bc28427d8f559ed13c3bdf9160488db
+ms.openlocfilehash: d8308ed6ec03457bd0ec30d34166631357e2b60f
 
 
 ---
@@ -1101,6 +1101,6 @@ az group deployment create --resource-group myNewResourceGroup \
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

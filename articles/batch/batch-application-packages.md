@@ -1,5 +1,5 @@
 ---
-title: "Azure Batch 中的簡易應用程式安裝和管理功能 | Microsoft Docs"
+title: "在運算節點上安裝應用程式封裝 - Azure Batch | Microsoft Docs"
 description: "使用 Azure Batch 的應用程式封裝功能輕鬆地管理多個應用程式和版本，以便安裝在 Batch 計算節點。"
 services: batch
 documentationcenter: .net
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 10/21/2016
+ms.date: 01/30/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
-ms.openlocfilehash: 8bd78e80347175161053b28e4350fdeb78b3299b
+ms.sourcegitcommit: 08db84f3f3f66930a81e3627dadebbe181dd7da3
+ms.openlocfilehash: 1c89f86c382d627def6cbaf23d8a67a71cd9e890
 
 
 ---
@@ -251,7 +251,9 @@ task.ApplicationPackageReferences = new List<ApplicationPackageReference>
 
 `AZ_BATCH_APP_PACKAGE_BLENDER#2.7`
 
-如果您為應用程式指定預設版本，則可以省略版本尾碼。 例如，如果您設定「2.7」做為「Blender」 應用程式的預設版本，您的工作可以參考下列環境變數，而且會執行 2.7 版：
+當您上傳應用程式套件時，您可以指定要部署至運算節點的預設版本。 如果您已經指定應用程式的預設版本，當您參考應用程式時就可以省略版本尾碼。 您可以在 Azure 入口網站中的 [應用程式] 刀鋒視窗上指定預設應用程式版本，如[上傳及管理應用程式](#upload-and-manage-applications)中所示。
+
+例如，如果您設定「2.7」做為「Blender」 應用程式的預設版本，您的工作可以參考下列環境變數，而且會執行 2.7 版：
 
 `AZ_BATCH_APP_PACKAGE_BLENDER`
 
@@ -349,6 +351,6 @@ foreach (ApplicationSummary app in applications)
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

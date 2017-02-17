@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database 查詢效能深入解析"
+title: "Azure SQL Database 的查詢效能深入解析 | Microsoft Docs"
 description: "查詢效能監視可識別 Azure SQL Database 的大部分 CPU 取用的查詢。"
 services: sql-database
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 08/09/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
-ms.openlocfilehash: ddb43393695ae74711bea0ff66b644ddd7787571
+ms.sourcegitcommit: ddf93a0db278fffa2aa45fdc73a1c7f57a84fb39
+ms.openlocfilehash: 14140a6aa8c8cccf658f8e98305659e8ae76dcad
 
 
 ---
@@ -32,7 +32,6 @@ ms.openlocfilehash: ddb43393695ae74711bea0ff66b644ddd7787571
 
 
 ## <a name="prerequisites"></a>必要條件
-* 「查詢效能深入解析」僅適用於 Azure SQL Database V12。
 * 「查詢效能深入解析」要求 [查詢存放區](https://msdn.microsoft.com/library/dn817826.aspx) 在您的資料庫上為作用中狀態。 如果查詢存放區不在執行中，則入口網站會提示您將它開啟。
 
 ## <a name="permissions"></a>權限
@@ -229,6 +228,6 @@ ms.openlocfilehash: ddb43393695ae74711bea0ff66b644ddd7787571
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -1,6 +1,6 @@
 ---
 title: "使用路由處理 Azure IoT 中樞的裝置到雲端訊息 (.Net) | Microsoft Docs"
-description: "如何使用路由來處理 IoT 中樞的裝置到雲端訊息，以將訊息分派至其他後端服務。"
+description: "如何使用路由規則和自訂端點來處理 IoT 中樞的裝置到雲端訊息，以將訊息分派至其他後端服務。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -12,11 +12,11 @@ ms.devlang: csharp
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/12/2016
+ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: d2da282a849496772fe57b9429fe2a180f37328d
-ms.openlocfilehash: 1ca480c4be2cca2c2558b13d2c3a5e5dea8b561e
+ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
+ms.openlocfilehash: 88b75c2b222ee153c935898dbece0c366c7f198d
 
 
 ---
@@ -27,12 +27,12 @@ ms.openlocfilehash: 1ca480c4be2cca2c2558b13d2c3a5e5dea8b561e
 ## <a name="introduction"></a>簡介
 Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 其他教學課程 ([開始使用IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
 
-本教學課程是以 [開始使用IoT 中樞入門]教學課程中顯示的程式碼為基礎，並示範如何使用訊息路由以簡單的設定方式來分派裝置到雲端訊息。 本教學課程說明如何從解決方案後端隔離需要立即採用行動的訊息，以便進一步處理。 例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。 相較之下，資料點訊息只會饋送至分析引擎。 例如，來自裝置且要儲存以供日後分析的溫度遙測就是資料點訊息。
+本教學課程是以 [開始使用IoT 中樞入門]教學課程為基礎，並示範如何使用路由規則以簡單的設定方式來分派裝置到雲端訊息。 本教學課程說明如何從解決方案後端隔離需要立即採取行動的訊息，以便進一步處理。 例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。 相較之下，資料點訊息只會饋送至分析引擎。 例如，來自裝置且要儲存以供日後分析的溫度遙測就是資料點訊息。
 
 在本教學課程結尾處，您會執行三個 .NET 主控台應用程式：
 
 * **SimulatedDevice** (修改自[開始使用IoT 中樞入門]教學課程中所建立的應用程式) 每秒會傳送資料點的裝置到雲端訊息，而且每 10 秒會傳送互動式裝置到雲端訊息。 此應用程式會使用 AMQP 通訊協定與「IoT 中樞」進行通訊。
-* **ReadDeviceToCloudMessages**，其中顯示模擬裝置應用程式所傳送的非關鍵性遙測。
+* **ReadDeviceToCloudMessages** 會顯示模擬裝置應用程式所傳送的非關鍵性遙測。
 * **ReadCriticalQueue** 可從連接到 IoT 中樞的服務匯流排佇列中移除模擬裝置應用程式所傳送的重要訊息。
 
 > [!NOTE]
@@ -50,77 +50,79 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 ## <a name="send-interactive-messages-from-a-simulated-device-app"></a>從模擬的裝置應用程式傳送互動式訊息
 在本節中，您會修改您在[開始使用IoT 中樞入門]教學課程中建立的模擬裝置應用程式，偶爾傳送需要立即處理的訊息。
 
-- 在 Visual Studio 的 **SimulatedDevice** 專案中，以下列程式碼取代 `SendDeviceToCloudMessagesAsync` 方法。
-   
-    ```
-    private static async void SendDeviceToCloudMessagesAsync()
+在 Visual Studio 的 **SimulatedDevice** 專案中，以下列程式碼取代 `SendDeviceToCloudMessagesAsync` 方法：
+
+```
+private static async void SendDeviceToCloudMessagesAsync()
+    {
+        double avgWindSpeed = 10; // m/s
+        Random rand = new Random();
+
+        while (true)
         {
-            double avgWindSpeed = 10; // m/s
-            Random rand = new Random();
+            double currentWindSpeed = avgWindSpeed + rand.NextDouble() * 4 - 2;
 
-            while (true)
+            var telemetryDataPoint = new
             {
-                double currentWindSpeed = avgWindSpeed + rand.NextDouble() * 4 - 2;
+                deviceId = "myFirstDevice",
+                windSpeed = currentWindSpeed
+            };
+            var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
+            string levelValue;
 
-                var telemetryDataPoint = new
-                {
-                    deviceId = "myFirstDevice",
-                    windSpeed = currentWindSpeed
-                };
-                var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
-                string levelValue;
-
-                if (rand.NextDouble() > 0.7)
-                {
-                    messageString = "This is a critical message";
-                    levelValue = "critical";
-                }
-                else
-                {
-                    levelValue = "normal";
-                }
-                
-                var message = new Message(Encoding.ASCII.GetBytes(messageString));
-                message.Properties.Add("level", levelValue);
-                
-                await deviceClient.SendEventAsync(message);
-                Console.WriteLine("{0} > Sent message: {1}", DateTime.Now, messageString);
-
-                await Task.Delay(1000);
+            if (rand.NextDouble() > 0.7)
+            {
+                messageString = "This is a critical message";
+                levelValue = "critical";
             }
-        }
-    ```
-   
-     這會隨機將 `"level": "critical"` 屬性新增至裝置所傳送的訊息，該裝置會模擬需要解決方案後端立即採取行動的訊息。 裝置應用程式會在訊息屬性中傳遞此資訊，而不是在訊息主體中傳遞，因此 IoT 中樞可以將訊息路由傳送至適當的訊息目的地。
+            else
+            {
+                levelValue = "normal";
+            }
+            
+            var message = new Message(Encoding.ASCII.GetBytes(messageString));
+            message.Properties.Add("level", levelValue);
+            
+            await deviceClient.SendEventAsync(message);
+            Console.WriteLine("{0} > Sent message: {1}", DateTime.Now, messageString);
 
-   > [!NOTE]
-   > 除了此處顯示的最忙碌路徑範例以外，您可以使用訊息屬性來路由傳送各種案例的訊息，包括冷門路徑處理。
-   > 
-   > 
-   
-   > [!NOTE]
-   > 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章 [Transient Fault Handling (暫時性錯誤處理)]所建議來實作重試原則 (例如指數型輪詢)。
-   > 
-   > 
+            await Task.Delay(1000);
+        }
+    }
+```
+
+這個方法會隨機將 `"level": "critical"` 屬性新增至裝置所傳送的訊息，該裝置會模擬需要解決方案後端立即採取行動的訊息。 裝置應用程式會在訊息屬性中傳遞此資訊，而不是在訊息主體中傳遞，因此 IoT 中樞可以將訊息路由傳送至適當的訊息目的地。
+
+> [!NOTE]
+> 除了此處顯示的最忙碌路徑範例以外，您可以使用訊息屬性來路由傳送各種案例的訊息，包括冷門路徑處理。
+
+> [!NOTE]
+> 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章 [Transient Fault Handling (暫時性錯誤處理)]所建議來實作重試原則 (例如指數型輪詢)。
 
 ## <a name="add-a-queue-to-your-iot-hub-and-route-messages-to-it"></a>將佇列新增至 IoT 中樞並將訊息路由傳送至該佇列
-本節中，您會建立服務匯流排佇列、將它連接到您的 IoT 中樞，以及設定您的 IoT 中樞，進而根據訊息的屬性目前狀態，將訊息傳送至佇列。 如需有關如何處理來自服務匯流排佇列之訊息的詳細資訊，請參閱[開始使用佇列][Service Bus queue]。
+在本節中，您可：
+
+* 建立服務匯流排佇列。
+* 將它連接到您的 IoT 中樞。
+* 設定您的 IoT 中樞，根據訊息上存在的屬性將訊息傳送到佇列。
+
+如需有關如何處理來自服務匯流排佇列之訊息的詳細資訊，請參閱[開始使用佇列][Service Bus queue]。
 
 1. 如[開始使用佇列][Service Bus queue]所述，建立服務匯流排佇列。 此佇列必須與您的 IoT 中樞位於相同的訂用帳戶和區域中。 記下命名空間和佇列名稱。
 
-2. 在 Azure 入口網站中，開啟 IoT 中樞並按一下 [端點]。
+2. 在 Azure 入口網站中，開啟 IoT 中樞然後按一下 [端點]。
     
     ![IoT 中樞端點][30]
 
-3. 在端點刀鋒視窗中，按一下頂端的 [新增] 將您的佇列新增至 IoT 中樞。 將端點命名為 "CriticalQueue"，並使用下拉式清單來選取**服務匯流排佇列**您的佇列所在的服務匯流排命名空間、以及您的佇列名稱。 完成時，請按一下底部的 [儲存]。
+3. 在 [端點] 刀鋒視窗中，按一下頂端的 [新增] 將您的佇列新增至 IoT 中樞。 將端點命名為 **CriticalQueue**，並使用下拉式清單來選取 [服務匯流排佇列]、您的佇列所在的服務匯流排命名空間，以及您的佇列名稱。 完成時，請按一下底部的 [儲存]。
     
     ![新增端點][31]
     
-4. 現在按一下您的 IoT 中樞中的 [路由]。 按一下刀鋒視窗頂端的 [新增] 來建立規則，以便將訊息路由傳送至您剛才新增的佇列。 選取 **DeviceTelemetry** 做為資料來源。 輸入 `level="critical"` 做為條件，然後選擇您剛才新增為端點的佇列做為路由端點。 完成時，請按一下底部的 [儲存]。
+4. 現在按一下 IoT 中樞中的 [路由]。 按一下刀鋒視窗頂端的 [新增] 來建立路由規則，以便將訊息路由傳送至您剛才新增的佇列。 選取 **DeviceTelemetry** 做為資料來源。 輸入 `level="critical"` 做為條件，然後選擇您剛才新增為自訂端點的佇列做為路由規則端點。 完成時，請按一下底部的 [儲存]。
     
     ![新增路由][32]
     
-    確定後援路由設定為 ON。 這是 IoT 中樞的預設組態。
+    確定後援路由設定為 [開啟]。 這個值是 IoT 中樞的預設設定。
     
     ![後援路由][33]
 
@@ -226,6 +228,6 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO5-->
 
 

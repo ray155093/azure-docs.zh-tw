@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 01/20/2016
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 4dbd2c87d648f6923772b070fdfe7379de22e6c5
-ms.openlocfilehash: e1adeaca702de3bad1c2e572f89ade9eba753173
+ms.sourcegitcommit: f24024821f522bf89c0d9baf32a427af4636c890
+ms.openlocfilehash: 41e2556437004699991363096147379d0ffa967c
 
 
 ---
@@ -44,6 +44,6 @@ Microsoft 用戶端應用程式 (如 Power BI Desktop 和 Excel) 會安裝所有
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

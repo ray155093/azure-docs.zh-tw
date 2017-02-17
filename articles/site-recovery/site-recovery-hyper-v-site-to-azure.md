@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Site Recovery 搭配 Azure 入口網站將 Hyper-V 虛擬機器 (不使用 VMM) 複寫至 Azure | Microsoft Docs"
+title: "將 Hyper-V VM 複寫至 Azure | Microsoft Docs"
 description: "描述如何使用 Azure 入口網站部署 Azure Site Recovery，以協調將未受 VMM 管理之內部部署 Hyper-V VM 複寫、容錯移轉和復原至 Azure。"
 services: site-recovery
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 11/23/2016
+ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 1268d29b0d9c4368f62918758836a73c757c0c8d
-ms.openlocfilehash: aeccda397ea3c311afddd88b3a8b9c6dab2461d7
+ms.sourcegitcommit: 75653b84d6ccbefe7d5230449bea81f498e10a98
+ms.openlocfilehash: aac1d2016043cd64d94ec0d10921d6e208db1d7f
 
 ---
 
@@ -40,18 +40,18 @@ Site Recovery 是一項有助於建立商務持續性和災害復原 (BCDR) 策�
 ## <a name="quick-reference"></a>快速參考
 
 對於完整部署，我們強烈建議您遵循文章中的所有步驟。 不過，如果您沒有足夠的時間，以下是簡短摘要。
- 
+
  **領域** | **詳細資料**
- --- | --- 
- **部署案例** | 使用 Azure 入口網站將 Hyper-V VM (不是在 VMM 雲端中) 複寫至 Azure 
- **內部部署需求** | 一或多部 Hyper-V 伺服器，執行 Windows Server 2012 R2 (具有最新的更新並啟用 Hyper-V 角色)，或執行 Microsoft Hyper-V Server 2012 R2 且具有最新的更新。<br/><br/> Hyper-V 主機需要網際網路存取，而且需要能夠直接或透過 proxy 存取特定的 URL。 [完整詳細資料](#on-premises-prerequisites)。 
+ --- | ---
+ **部署案例** | 使用 Azure 入口網站將 Hyper-V VM (不是在 VMM 雲端中) 複寫至 Azure
+ **內部部署需求** | 一或多部 Hyper-V 伺服器，執行 Windows Server 2012 R2 (具有最新的更新並啟用 Hyper-V 角色)，或執行 Microsoft Hyper-V Server 2012 R2 且具有最新的更新。<br/><br/> Hyper-V 主機需要網際網路存取，而且需要能夠直接或透過 proxy 存取特定的 URL。 [完整詳細資料](#on-premises-prerequisites)。
  **內部部署限制** | 不支援 HTTPS 型 Proxy
- **Provider/代理程式** | 在部署期間，會在 Hyper-V 主機上安裝 Azure Site Recovery Provider 和復原服務代理程式。 
- **Azure 需求** | Azure 帳戶<br/><br/> 復原服務保存庫<br/><br/> 在保存庫區域中的 LRS 或 GRS 儲存體帳戶<br/><br/> 標準儲存體帳戶<br/><br/> 在保存庫區域中的 Azure 虛擬網路。 [完整詳細資料](#azure-prerequisites)。 
- **Azure 限制** | 如果您使用 GRS，則需要另一個 LRS 帳戶進行記錄<br/><br/> 在 Azure 入口網站中建立的儲存體帳戶不能跨越相同或不同訂用帳戶中的資源群組移動。 <br/><br/> 不支援進階儲存體。<br/><br/> 用於 Site Recovery 的 Azure 網路不能跨越相同或不同訂用帳戶中的資源群組移動。 
- **VM 複寫** | [VM 必須符合 Azure 必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)<br/><br/> 
+ **Provider/代理程式** | 在部署期間，會在 Hyper-V 主機上安裝 Azure Site Recovery Provider 和復原服務代理程式。
+ **Azure 需求** | Azure 帳戶<br/><br/> 復原服務保存庫<br/><br/> 在保存庫區域中的 LRS 或 GRS 儲存體帳戶<br/><br/> 標準儲存體帳戶<br/><br/> 在保存庫區域中的 Azure 虛擬網路。 [完整詳細資料](#azure-prerequisites)。
+ **Azure 限制** | 如果您使用 GRS，則需要另一個 LRS 帳戶進行記錄<br/><br/> 在 Azure 入口網站中建立的儲存體帳戶不能跨越相同或不同訂用帳戶中的資源群組移動。 <br/><br/> 不支援進階儲存體。<br/><br/> 用於 Site Recovery 的 Azure 網路不能跨越相同或不同訂用帳戶中的資源群組移動。
+ **VM 複寫** | [VM 必須符合 Azure 必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)<br/><br/>
  **複寫限制** | 無法複寫使用靜態 IP 位址執行 Linux 的 Hyper-V VM。<br/><br/> 您可以將特定磁碟排除複寫，但 OS 磁碟則不行。
- **部署步驟** | **1)** 建立復原服務保存庫 -> **2)** 建立包含所有 Hyper-V 主機的 Hyper-V 站台 -> **3)** 設定 Hyper-V 主機 -> **4**) 準備 Azure (訂用帳戶、儲存體、網路) -> **5)** 設定複寫設定 -> **6)** 啟用複寫 -> **7)** 測試複寫和容錯移轉。 **8)** 如果您正在移轉，執行規劃的容錯移轉。 
+ **部署步驟** | **1)** 建立復原服務保存庫 -> **2)** 建立包含所有 Hyper-V 主機的 Hyper-V 站台 -> **3)** 設定 Hyper-V 主機 -> **4**) 準備 Azure (訂用帳戶、儲存體、網路) -> **5)** 設定複寫設定 -> **6)** 啟用複寫 -> **7)** 測試複寫和容錯移轉。 **8)** 如果您正在移轉，執行規劃的容錯移轉。
 
 ## <a name="azure-deployment-models"></a>Azure 部署模型
 
@@ -62,7 +62,7 @@ Azure 有兩種不同的[部署模型](../azure-resource-manager/resource-manage
 ## <a name="site-recovery-in-your-business"></a>您企業中的 Site Recovery
 
 組織需要 BCDR 策略，以決定應用程式和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。 以下是 Site Recovery 可以提供的協助︰
- 
+
  - 在 Hyper-V VM 上執行之企業應用程式的異地保護。
  - 單一位置以設定、管理和監視複寫、容錯移轉及復原。
  - 簡易容錯移轉至 Azure，以及從 Azure 容錯回復 (還原) 至內部部署網站中的 Hyper-V 主機伺服器。
@@ -190,7 +190,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。 「�
 
     ![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure/provider3.png)
 
-5.在 [Proxy 設定] 中，指定將安裝在伺服器上的 Provider 要如何透過網際網路連接到 Azure Site Recovery。
+5. 在 [Proxy 設定] 中，指定將安裝在伺服器上的 Provider 要如何透過網際網路連接到 Azure Site Recovery。
 
 * 如果您想要讓 Provider 直接連線，請選取 [不使用 Proxy 直接連線] 。
 * 如果您想要使用伺服器上目前設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線] 。
@@ -200,11 +200,11 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。 「�
 
     ![網際網路](./media/site-recovery-hyper-v-site-to-azure/provider7.PNG)
 
-6.安裝完成之後，按一下 [註冊] 以在保存庫中註冊該伺服器。
+6. 安裝完成之後，按一下 [註冊] 以在保存庫中註冊該伺服器。
 
 ![安裝位置](./media/site-recovery-hyper-v-site-to-azure/provider2.png)
 
-7.註冊完成之後，Azure Site Recovery 便會抓取來自 Hyper-V 伺服器的中繼資料，而該伺服器會顯示在 [設定]  >  [站台復原基礎結構]  >  [Hyper-V 主機] 刀鋒視窗上。
+7. 註冊完成之後，Azure Site Recovery 便會抓取來自 Hyper-V 伺服器的中繼資料，而該伺服器會顯示在 [設定] > [站台復原基礎結構] > [Hyper-V 主機] 刀鋒視窗上。
 
 ### <a name="command-line-installation"></a>命令列安裝
 您也可以使用下列命令列來安裝 Azure Site Recovery Provider 和代理程式。 這個方法可以用來在適用於 Windows Server 2012 R2 的伺服器核心上安裝提供者。
@@ -321,7 +321,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 3. 在 [目標]  中，選取保存庫訂用帳戶，以及您想要在容錯移轉後於 Azure 中使用的容錯移轉模型 (傳統或資源管理)。
 4. 選取您要使用的儲存體帳戶。 如果您想使用與現有不同的儲存體帳戶，您可以 [建立一個](#set-up-an-azure-storage-account)。 若要使用 Resource Manager 模型來建立儲存體帳戶，請按一下 [新建] 。 如果您想要使用傳統模型建立儲存體帳戶，請在 [Azure 入口網站](../storage/storage-create-storage-account-classic-portal.md)中執行該作業。 然後按一下 [確定] 。
 5. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。 選取 [立即設定選取的機器]，將網路設定套用至您選取要進行保護的所有機器。 選取 [稍後設定] 以選取每部機器的 Azure 網路。 如果您想使用與現有不同的網路，您可以[建立一個](#set-up-an-azure-network)。 若要使用 Resource Manager 模型來建立網路，請按一下 [新建]。如果您想要使用傳統模型來建立網路，請在 [Azure 入口網站](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)中執行該作業。 選取適用的子網路。 然後按一下 [確定] 。
-   ![啟用複寫](./media/site-recovery-hyper-v-site-to-azure/enable-replication11.png) 
+   ![啟用複寫](./media/site-recovery-hyper-v-site-to-azure/enable-replication11.png)
 
 6. 在 [名稱]  >  中，按一下並選取您要複寫的每部機器。 您只能選取可以啟用複寫的機器。 然後按一下 [確定] 。
 
@@ -331,10 +331,10 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
     ![啟用複寫](./media/site-recovery-hyper-v-site-to-azure/enable-replication6-with-exclude-disk.png)
 
      > [!NOTE]
-     > 
-     > * 只有基本磁碟可以從複寫排除。 您無法排除 OS 磁碟，且不建議排除動態磁碟。 ASR 無法找出哪些 VHD 磁碟是來賓 VM 內的基本或動態磁碟。  如果未排除所有的相依動態磁碟區磁碟，受保護的動態磁碟會在容錯移轉 VM 上成為失敗的磁碟，且該磁碟上的資料無法存取。  
+     >
+     > * 只有基本磁碟可以從複寫排除。 您無法排除 OS 磁碟，且不建議排除動態磁碟。 ASR 無法找出哪些 VHD 磁碟是來賓 VM 內的基本或動態磁碟。  如果未排除所有的相依動態磁碟區磁碟，受保護的動態磁碟會在容錯移轉 VM 上成為失敗的磁碟，且該磁碟上的資料無法存取。
     > * 啟用複寫後，您無法加入或移除複寫的磁碟。 如果您想要加入或排除磁碟，必須停用 VM 的保護，然後重新啟用它。
-    > * 如果您排除應用程式運作所需的磁碟，在容錯移轉至 Azure 之後，您將必須在 Azure 中手動建立它，複寫的應用程式才能執行。 或者，您可以整合 Azure 
+    > * 如果您排除應用程式運作所需的磁碟，在容錯移轉至 Azure 之後，您將必須在 Azure 中手動建立它，複寫的應用程式才能執行。 或者，您可以整合 Azure
     > * 自動化至復原計畫，在機器容錯移轉期間建立磁碟。
     > * 您以手動方式在 Azure 中建立的磁碟將不會容錯回復。 例如，如果您容錯移轉三個磁碟，並直接在 Azure VM 中建立兩個磁碟，則只有三個已容錯移轉的磁碟會從 Azure 容錯回復至 Hyper-V。 您無法包含在從 Hyper-V 至 Azure 的容錯回復中或反向複寫中手動建立的磁碟。
     >
@@ -370,21 +370,10 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 4. 在 [磁碟]  中，您可以看見 VM 上將要複寫的作業系統和資料磁碟。
 
-## <a name="step-7-test-the-deployment"></a>步驟 7：測試部署
-若要測試部署，您可以針對單一虛擬機器執行測試容錯移轉，或執行包含一或多部虛擬機器的復原方案。
 
-### <a name="prepare-for-test-failover"></a>準備測試容錯移轉
-* 若要測試容錯移轉，建議您建立與您的 Azure 生產網路分隔的新 Azure 網路 (這是您在 Azure 中建立新網路時的預設行為)。 [深入了解](site-recovery-failover.md#run-a-test-failover) 如何執行測試容錯移轉。
-* 若要在容錯移轉至 Azure 時獲得最佳效能，請在受保護的機器上安裝 Azure 代理程式。 這可讓開機變快速，並協助進行疑難排解。 安裝 [Linux](https://github.com/Azure/WALinuxAgent) 或 [Windows](http://go.microsoft.com/fwlink/?LinkID=394789) 代理程式。
-* 若要完整測試您的部署，您需要有基礎結構，讓複寫的機器如預期般運作。 如果您想要測試 Active Directory 和 DNS，您可以透過 DNS 建立虛擬機器做為網域控制站，並使用 Azure Site Recovery 將此虛擬機器複寫至 Azure。 深入了解 [Active Directory 的測試容錯移轉考量](site-recovery-active-directory.md#test-failover-considerations)。
-* 如果您已從複寫排除磁碟，您可能需要在容錯移轉之後以手動方式在 Azure 中建立磁碟，讓應用程式能如預期般執行。
-* 如果您想要執行非計劃性容錯移轉，而不是測試容錯移轉，請注意下列事項︰
-
-  * 如果可能的話您應該在執行非計劃性容錯移轉之前關閉主要機器。 這可確保您不需要同時執行來源和複本機器。
-  * 當您執行非計劃性容錯移轉時，會停止從主要機器的資料複寫，讓任何資料差異不會在開始非計劃性容錯移轉之後傳送。 此外，如果您在復原方案上執行非計劃性容錯移轉，它將會執行直到完成為止 (即使發生錯誤)。
 
 ### <a name="prepare-to-connect-to-azure-vms-after-failover"></a>準備在容錯移轉後連接到 Azure VM
-如果您想要在容錯移轉後使用 RDP 連接到 Azure VM，請確定執行下列作業︰
+如果您想要在容錯移轉後使用 RDP 連接到 Azure VM，請確定執行下列作業︰ 
 
 **在容錯移轉前的內部部署機器上**：
 
@@ -413,33 +402,21 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 * 應建立公用端點，以允許 SSH 連接埠 (預設為 TCP 通訊埠 22) 上的連入連線。
 * 如果透過 VPN 連線 (Express Route 或站對站 VPN) 存取 VM，則用戶端可用來透過 SSH 直接連接到 VM。
 
-### <a name="run-a-test-failover"></a>執行測試容錯移轉
-若要執行測試容錯移轉，請執行下列動作：
+## <a name="step-7-run-a-test-failover"></a>步驟 7：執行測試容錯移轉
+若要測試部署，您可以針對單一虛擬機器執行測試容錯移轉，或執行包含一或多部虛擬機器的復原方案。
 
-1. 若要容錯移轉單一 VM，請在 [設定]  >  [複寫的項目] 中，按一下 [VM] > [+測試容錯移轉]。
+1. 若要容錯移轉單一機器，請在 [設定]  >  [複寫的項目] 中，按一下 VM > [+測試容錯移轉] 圖示。
 
-    ![測試容錯移轉](./media/site-recovery-hyper-v-site-to-azure/run-failover1.png)
-2. 若要容錯移轉復原方案，請在 [設定]  >  [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。 若要建立復原方案，請 [遵循這些指示](site-recovery-create-recovery-plans.md)。
-3. 在 [測試容錯移轉]  中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
+    ![測試容錯移轉](./media/site-recovery-vmware-to-azure/test-failover1.png)
+1. 若要容錯移轉復原方案，請在 [設定]  >  [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。 若要建立復原方案，請[遵循這些指示](site-recovery-create-recovery-plans.md)。
+1. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
+1. 按一下 [確定]  即可開始容錯移轉。 您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定]  >  [作業]  >  [Site Recovery 作業] 中的 [測試容錯移轉] 作業上按一下，來追蹤進度。
+1. 容錯移轉完成之後，您應該也會看到複本 Azure 機器出現在 Azure 入口網站 > [虛擬機器]中。 您應該確定 VM 為適當的大小、已連接到適當的網路，而且正在執行中。
+1. 如果您[已準備好容錯移轉後的連線](#prepare-to-connect-to-azure-vms-after-failover)，您應該能夠連接到 Azure VM。
+1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這將刪除在測試容錯移轉期間所建立的虛擬機器。 
 
-    ![測試容錯移轉](./media/site-recovery-hyper-v-site-to-azure/run-failover2.png)
-4. 按一下 [確定]  即可開始容錯移轉。 若要追蹤進度，您可以按一下 VM 以開啟其屬性，或在 [設定]  >  [Site Recovery 作業] 中的 [測試容錯移轉] 作業上查看。
-5. 當容錯移轉到達 [完成測試]  階段時，請執行下列作業：
+如需詳細資訊，請參閱[測試容錯移轉至 Azure](site-recovery-test-failover-to-azure.md) 文件。
 
-   1. 在 Azure 入口網站中檢視複本虛擬機器。 確認虛擬機器成功啟動。
-   2. 如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。
-   3. 如果您已從複寫排除磁碟，您可能需要在容錯移轉之後以手動方式在 Azure 中建立磁碟，讓應用程式能如預期般執行。
-   4. 按一下 [完成測試]  來完成它。
-   5. 按一下 [記事]  記錄並儲存關於測試容錯移轉的任何觀察。
-   6. 按一下 [測試容錯移轉完成] 。 清除測試環境，以自動關閉電源及刪除測試虛擬機器。
-   7. 在此階段，會刪除 Site Recovery 在測試容錯移轉期間自動建立的所有元素或 VM。 不會刪除任何您為測試容錯移轉建立的其他元素。
-
-      > [!NOTE]
-      > 如果測試容錯移轉持續兩週以上，系統即會強制完成該測試容錯移轉。
-      >
-      >
-6. 容錯移轉完成之後，您應該也會看到複本 Azure 機器出現在 Azure 入口網站 > [虛擬機器] 中。 您應該確定 VM 為適當的大小、已連接到適當的網路，而且正在執行中。
-7. 如果您 [已準備好容錯移轉後的連線](#prepare-to-connect-to-Azure-VMs-after-failover) ，您應該能夠連接到 Azure VM。
 
 ## <a name="failover"></a>容錯移轉
 您機器的初始複寫完成之後，您便可以視需要叫用容錯移轉。 Site Recovery 支援多種類型的容錯移轉︰測試容錯移轉、計劃性容錯移轉，以及非計劃性容錯移轉。
@@ -447,8 +424,18 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 > [!NOTE]
 > 如果您打算將虛擬機器移轉至 Azure，強烈建議您使用[計劃性容錯移轉作業](site-recovery-failover.md#run-a-planned-failover-primary-to-secondary)將虛擬機器移轉至 Azure。 使用測試容錯移轉在 Azure 中驗證所移轉的應用程式之後，請使用[完成移轉](#Complete-migration-of-your-virtual-machines-to-Azure)底下所提到的步驟來完成虛擬機器的移轉。 您不需要執行「認可」或「刪除」。 「完成移轉」會完成移轉、移除虛擬機器的保護，以及停止該機器的 Azure Site Recovery 計費。
->
->
+
+
+### <a name="run-a-planned-failover"></a>執行計劃性容錯移轉
+必須選擇此項以符合法規需求，或在計劃性維護期間容錯移轉資料，使工作負載能夠在發生已知中斷時持續執行；例如，發生預期的電源故障或嚴峻的氣象報告。 此程序說明如何針對復原方案執行計劃性容錯移轉。 或者，您也可以在 [虛擬機器] 索引標籤上，針對單一虛擬機器執行容錯移轉。 開始之前，請確定您想要容錯移轉的所有虛擬機器都已完成初始複寫。
+
+1. 選取 [復原方案] > recoveryplan_name。
+2. 在 [復原方案] 刀鋒視窗上，按一下 [計劃性容錯移轉]。
+3. 在 [確認計劃性容錯移轉] 頁面上，選擇來源與目標位置。 
+4. 開始計劃性容錯移轉的第一個步驟是關閉虛擬機器，以確保資料不會遺失。 您可以在 [工作]  索引標籤上追蹤容錯移轉進度。 如果容錯移轉中發生錯誤 (無論是在虛擬機器上或在復原方案中包含的指令碼中)，復原方案的計劃性容錯移轉即會停止。 您可以再次起始容錯移轉。
+6. 建立複本虛擬機器之後，它們即會處於認可擱置中的狀態。 按一下 [認可]  以認可容錯移轉。
+7. 完成複寫之後，即會在次要位置上啟動虛擬機器。
+
 
 ### <a name="run-an-unplanned-failover"></a>執行非計劃性容錯移轉
 當主要站台因為發生非預期的事件 (例如，停電或病毒攻擊) 而變成無法存取時，應選擇此選項。 此程序說明如何針對復原方案執行「非計劃性容錯移轉」。 或者，您也可以在 [虛擬機器] 索引標籤上，針對單一虛擬機器執行容錯移轉。 開始之前，請確定您想要容錯移轉的所有虛擬機器都已完成初始複寫。
@@ -484,6 +471,6 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

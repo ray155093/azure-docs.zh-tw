@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/27/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 5724a9c66bef01972f41e66a84844aae9b300296
+ms.sourcegitcommit: 1a074e54204ff8098bea09eb4aa2066ccee47608
+ms.openlocfilehash: ab9e952027dcaa5b43cdad8faf8005b063c01dce
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 5724a9c66bef01972f41e66a84844aae9b300296
 * 在多個儲存體帳戶之間平衡您資產的負載。
 * 調整媒體服務進行大量的內容處理 (因為目前單一儲存體帳戶的最大上限為 500 TB)。 
 
-本主題示範如何將多個儲存體帳戶附加到媒體服務帳戶使用 Azure 服務管理 REST API。 同時也會示範如何在使用媒體服務 SDK 建立資產時，指定不同的儲存體帳戶。 
+本主題將示範如何使用 [Azure Resource Manager API](https://docs.microsoft.com/rest/api/media/mediaservice) 和 [Powershell](https://docs.microsoft.com/powershell/resourcemanager/azurerm.media/v0.3.2/azurerm.media)，將多個儲存體帳戶附加到媒體服務帳戶。 同時也會示範如何在使用媒體服務 SDK 建立資產時，指定不同的儲存體帳戶。 
 
 ## <a name="considerations"></a>考量
 當您在媒體服務帳戶中附加多個儲存體帳戶時，適用下列考量事項：
@@ -34,13 +34,33 @@ ms.openlocfilehash: 5724a9c66bef01972f41e66a84844aae9b300296
 * 所有附加到媒體服務帳戶的儲存體帳戶必須與該媒體服務帳戶位於相同的資料中心。
 * 目前，一旦儲存體帳戶附加到指定的媒體服務帳戶後，將無法卸離。
 * 在建立媒體服務帳戶時指出的儲存體帳戶，即為主要儲存體帳戶。 目前您無法變更預設的儲存體帳戶。 
+* 目前，如果您要新增非經常性儲存體帳戶到 AMS 帳戶，儲存體帳戶必須是 Blob 類型，並且設定為非主要。
 
 其他考量：
 
 建置串流內容的 URL (例如，http://{WAMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 **IAssetFile.Name** 屬性的值。基於這個理由，不允許 percent-encoding。 Name 屬性的值不能有下列任何[百分比編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 此外，只能有一個 ‘.’ 在檔案名稱的副檔名。
 
-## <a name="to-attach-a-storage-account-with-azure-service-management-rest-api"></a>使用 Azure 服務管理 REST API 附加儲存體帳戶
-目前附加多個儲存體帳戶的唯一方式，是使用 [Azure 服務管理 REST API](https://docs.microsoft.com/rest/api/media/management/media-services-management-rest)。 在＜ [做法：使用媒體服務管理 REST API](https://msdn.microsoft.com/library/azure/dn167656.aspx) ＞主題中的程式碼範例，定義 **AttachStorageAccountToMediaServiceAccount** 方法能將儲存體帳戶附加到指定的媒體服務帳戶。 相同主題中的程式碼定義 **ListStorageAccountDetails** 方法，能列出所有附加到指定的媒體服務帳戶的儲存體帳戶。
+## <a name="to-attach-storage-accounts"></a>附加儲存體帳戶  
+
+若要將儲存體帳戶附加到 AMS 帳戶，請使用 [Azure Resource Manager API](https://docs.microsoft.com/rest/api/media/mediaservice) 和 [Powershell](https://docs.microsoft.com/powershell/resourcemanager/azurerm.media/v0.3.2/azurerm.media)，如下列範例所示。
+
+    $regionName = "West US"
+    $subscriptionId = " xxxxxxxx-xxxx-xxxx-xxxx- xxxxxxxxxxxx "
+    $resourceGroupName = "SkyMedia-USWest-App"
+    $mediaAccountName = "sky"
+    $storageAccount1Name = "skystorage1"
+    $storageAccount2Name = "skystorage2"
+    $storageAccount1Id = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccount1Name"
+    $storageAccount2Id = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccount2Name"
+    $storageAccount1 = New-AzureRmMediaServiceStorageConfig -StorageAccountId $storageAccount1Id -IsPrimary
+    $storageAccount2 = New-AzureRmMediaServiceStorageConfig -StorageAccountId $storageAccount2Id
+    $storageAccounts = @($storageAccount1, $storageAccount2)
+    
+    Set-AzureRmMediaService -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccounts $storageAccounts
+
+### <a name="support-for-cool-storage"></a>非經常性儲存空間的支援
+
+目前，如果您要新增非經常性儲存體帳戶到 AMS 帳戶，儲存體帳戶必須是 Blob 類型，並且設定為非主要。
 
 ## <a name="to-manage-media-services-assets-across-multiple-storage-accounts"></a>管理跨多個儲存體帳戶的媒體服務資產
 下列程式碼會使用最新的媒體服務 SDK，執行下列工作：
@@ -257,6 +277,6 @@ ms.openlocfilehash: 5724a9c66bef01972f41e66a84844aae9b300296
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

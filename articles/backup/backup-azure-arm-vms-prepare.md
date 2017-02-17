@@ -1,6 +1,6 @@
 ---
-title: "準備環境以備份 Resource Manager 部署的虛擬機器 | Microsoft Docs"
-description: "確認在 Azure 中備份虛擬機器的環境已準備就緒"
+title: "Azure 備份：準備備份虛擬機器 | Microsoft Docs"
+description: "確認在 Azure 中備份虛擬機器的環境已準備就緒。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -13,11 +13,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 1/10/2017
-ms.author: trinadhk; jimpark; markgal;
+ms.date: 1/30/2017
+ms.author: trinadhk;jimpark;markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: 026bfabbf53b408d0e997c0fe21845c4b53ca8b0
-ms.openlocfilehash: d8d0ade0b3088805576cfb3fdc78eb2e4fec698a
+ms.sourcegitcommit: 39147f2db1e660a21d6ed622206787ea0c569056
+ms.openlocfilehash: e2ceb33cc8027759ccb4b5183513da849a7d60c6
 
 
 ---
@@ -74,7 +74,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 按一下 [復原服務保存庫] 。
 
-    ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
+    ![按一下 [瀏覽] 按鈕並輸入「復原服務」。 當您看到 [復原服務保存庫] 選項時，按一下該選項以開啟 [復原服務保存庫] 刀鋒視窗。](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
 
     隨即會顯示 [復原服務保存庫] 清單。
 3. 在 [復原服務保存庫] 功能表上，按一下 [新增]。
@@ -307,6 +307,6 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 
