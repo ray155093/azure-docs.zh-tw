@@ -12,16 +12,16 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 11/24/2016
+ms.date: 11/30/2016
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: 2b62ddb83b35194b9fcd23c60773085a9551b172
-ms.openlocfilehash: 041b47ed2aba11d45ed6ae02dadb73916046dd78
+ms.sourcegitcommit: 976470e7b28a355cbfa4c5c8d380744eb1366787
+ms.openlocfilehash: f8711ba45339be7ffbeac1ab28823df43db23046
 
 ---
 
 # <a name="indexing-documents-in-azure-blob-storage-with-azure-search"></a>使用 Azure 搜尋服務在 Azure Blob 儲存體中對文件編制索引
-本文說明如何使用 Azure 搜尋服務對儲存在 Azure Blob 儲存體的文件編製索引 (例如 PDF、Microsoft Office 文件和數種其他通用格式)。 新的 Azure 搜尋服務 Blob 索引子可以讓此程序快速且順暢。
+本文說明如何使用 Azure 搜尋服務對儲存在 Azure Blob 儲存體的文件編製索引 (例如 PDF、Microsoft Office 文件和數種其他通用格式)。 首先，它會說明安裝和設定 blob 索引子的基本概念。 然後，它會提供可能會發生之行為和案例的更深入探索。 
 
 ## <a name="supported-document-formats"></a>支援的文件格式
 blob 索引子可以從下列文件格式擷取文字：
@@ -45,17 +45,15 @@ blob 索引子可以從下列文件格式擷取文字：
 您可以使用下列項目設定 Azure Blob 儲存體索引子︰
 
 * [Azure 入口網站](https://ms.portal.azure.com)
-* Azure 搜尋服務 [REST API](https://msdn.microsoft.com/library/azure/dn946891.aspx)
-* Azure 搜尋服務 .NET SDK [版本 2.0 預覽版](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx)
+* Azure 搜尋服務 [REST API](https://docs.microsoft.com/rest/api/searchservice/Indexer-operations)
+* Azure 搜尋服務 [.NET SDK](https://aka.ms/search-sdk)
 
 > [!NOTE]
 > 某些功能 (例如，欄位對應) 尚未在入口網站中提供使用，而必須以程式設計方式來使用。
 >
 >
 
-在本文中，我們會使用 REST API 設定索引子。 首先，我們會建立資料來源，然後建立索引，最終會設定索引子。
-
-接下來，我們將深入討論 blob 索引子剖析 blob 的方式、如何挑選要編製 blob 的索引、如何處理不受支援內容類型的 blob，以及可用的組態設定。 
+我們會在此示範使用 REST API 的流程。 
 
 ### <a name="step-1-create-a-data-source"></a>步驟 1：建立資料來源
 資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些原則能有效識別資料變更 (新增、修改或刪除的資料列)。 資料來源可供同一個搜尋服務中的多個索引子使用。
@@ -67,7 +65,7 @@ blob 索引子可以從下列文件格式擷取文字：
 * **認證**可提供儲存體帳戶連接字串來做為 `credentials.connectionString` 參數。 您可以從 Azure 入口網站取得連接字串︰瀏覽至所需的儲存體帳戶刀鋒視窗 > [設定] > [索引鍵]，並使用「主要連接字串」或「次要連線字串」值。
 * **容器**會指定儲存體帳戶中的容器。 根據預設，容器內的所有 Blob 都可擷取。 如果您只想要在特定虛擬目錄為 Blob 編製索引，您可以使用選擇性的**查詢**參數指定該目錄。
 
-下列範例說明資料來源定義︰
+若要建立資料來源：
 
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -80,12 +78,12 @@ blob 索引子可以從下列文件格式擷取文字：
         "container" : { "name" : "my-container", "query" : "<optional-virtual-directory-name>" }
     }   
 
-如需建立資料來源 API 的詳細資訊，請參閱 [建立資料來源](https://msdn.microsoft.com/library/azure/dn946876.aspx)。
+如需建立資料來源 API 的詳細資訊，請參閱 [建立資料來源](https://docs.microsoft.com/rest/api/searchservice/create-data-source)。
 
 ### <a name="step-2-create-an-index"></a>步驟 2：建立索引
-索引會指定文件、屬性和其他建構中可形塑搜尋體驗的欄位。  
+索引會指定文件、屬性和其他建構中可形塑搜尋體驗的欄位。
 
-若要為 Blob 編製索引，請確認您的索引具有可搜尋的 `content` 欄位以儲存 Blob。
+以下說明如何使用可搜尋的 `content` 欄位建立索引，以儲存從 blob 擷取的文字︰   
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
@@ -99,10 +97,12 @@ blob 索引子可以從下列文件格式擷取文字：
           ]
     }
 
-如需建立索引 API 的詳細資訊，請參閱 [Create Index](https://msdn.microsoft.com/library/dn798941.aspx)
+如需建立索引的詳細資訊，請參閱[建立索引](https://docs.microsoft.com/rest/api/searchservice/create-index)
 
 ### <a name="step-3-create-an-indexer"></a>步驟 3：建立索引子
-索引子會連接資料來源與目標搜尋索引，並提供排程資訊以便您可以自動進行資料重新整理。 一旦索引和資料來源建立好，要建立參考資料來源和目標索引的索引子就變得相當容易。 例如：
+索引子會以目標搜尋索引連接資料來源，並提供排程來自動重新整理資料。 
+
+建立索引和資料來源之後，您就可以開始建立索引子︰
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -115,9 +115,9 @@ blob 索引子可以從下列文件格式擷取文字：
       "schedule" : { "interval" : "PT2H" }
     }
 
-這個索引子每隔兩小時就會執行一次 (已將排程間隔設為 "PT2H")。 若每隔 30 分鐘就要執行索引子，可將間隔設為 "PT30M"。 支援的最短間隔為 5 分鐘。 排程是選擇性 - 如果省略，索引子只會在建立時執行一次。 不過，您隨時都可依需求執行索引子。   
+這個索引子每隔兩小時就會執行一次 (已將排程間隔設為 "PT2H")。 若每隔 30 分鐘就要執行索引子，可將間隔設為 "PT30M"。 支援的最短間隔為 5 分鐘。 排程為選擇性 - 如果省略，索引子只會在建立時執行一次。 不過，您隨時都可依需求執行索引子。   
 
-如需建立索引子 API 的詳細資訊，請參閱 [建立索引子](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
+如需建立索引子 API 的詳細資訊，請參閱 [建立索引子](https://docs.microsoft.com/rest/api/searchservice/create-indexer)。
 
 ## <a name="how-azure-search-indexes-blobs"></a>Azure 搜尋服務如何編製 blob 的索引
 
@@ -147,13 +147,14 @@ blob 索引子可以從下列文件格式擷取文字：
 >
 >
 
-### <a name="picking-the-document-key-field-and-dealing-with-different-field-names"></a>挑選文件索引鍵欄位，然後處理不同的欄位名稱
+<a name="DocumentKeys"></a>
+### <a name="defining-document-keys-and-field-mappings"></a>定義文件索引鍵和欄位對應
 在 Azure 搜尋服務中，文件索引鍵會唯一識別文件。 每個搜尋索引必須確實具有一個 Edm.String 類型的索引鍵欄位。 要新增至索引的每個文件需要有索引鍵欄位 (實際上它是唯一必要的欄位)。  
 
 您應該仔細考慮哪一個擷取的欄位應該對應至您的索引的索引鍵欄位。 候選對象是：
 
 * **metadata\_storage\_name** - 這可能是方便的候選對象，但是請注意，1) 名稱可能不是唯一的，因為您在不同的資料夾中可能會有相同名稱的 blob，以及 2) 名稱可能包含在文件所索引鍵中無效的字元，例如連字號。 您可以藉由使用 `base64Encode` [欄位對應函式](search-indexer-field-mappings.md#base64EncodeFunction)，處理無效的字元。如果您這麼做，請記得在將它們傳入例如「查閱」的 API 呼叫時，對文件索引鍵進行編碼。 (例如，在 .NET 中您可以針對該目的使用 [UrlTokenEncode 方法](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx))。
-* **metadata\_storage\_path** - 使用完整路徑以確保唯一性，但是路徑明確包含 `/` 字元，該字元[在文件索引鍵中無效](https://msdn.microsoft.com/library/azure/dn857353.aspx)。  如上所述，您可以選擇使用 `base64Encode` [函式](search-indexer-field-mappings.md#base64EncodeFunction)來編碼索引鍵。
+* **metadata\_storage\_path** - 使用完整路徑以確保唯一性，但是路徑明確包含 `/` 字元，該字元[在文件索引鍵中無效](https://docs.microsoft.com/rest/api/searchservice/naming-rules)。  如上所述，您可以選擇使用 `base64Encode` [函式](search-indexer-field-mappings.md#base64EncodeFunction)來編碼索引鍵。
 * 如果上述任何選項都不適合，您可以在 blob 中新增自訂中繼資料屬性。 但是，此選項需要您的 blob 上傳程序，將該中繼資料屬性新增至所有 blob。 因為索引鍵是必要屬性，所以沒有該屬性的所有 blob 都無法編製索引。
 
 > [!IMPORTANT]
@@ -344,6 +345,6 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

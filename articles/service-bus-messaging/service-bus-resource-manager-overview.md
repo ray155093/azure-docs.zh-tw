@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 10/14/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 182b4378cfd876d3700a1f0028a681ce936be03c
-ms.openlocfilehash: 1425628c6e0c544b5b84a4f828bfaef3073fddee
+ms.sourcegitcommit: 5d3bcc3c1434b16279778573ccf3034f9ac28a4d
+ms.openlocfilehash: 607786ef52e9f2a7c49e3d47e2d4cf590912710b
 
 
 ---
@@ -26,9 +26,9 @@ ms.openlocfilehash: 1425628c6e0c544b5b84a4f828bfaef3073fddee
 Azure Resource Manager 範本會協助您定義要部署給解決方案的資源，以及指定參數和變數，讓您可以針對不同的環境來輸入值。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。 如需撰寫 Azure Resource Manager 範本和討論範本格式的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
 
 > [!NOTE]
-> 本文中的範例會示範如何使用 Azure Resource Manager 來建立服務匯流排命名空間和訊息實體 (佇列)。 如需其他範本範例，請造訪 [Azure 快速入門範本資源庫][Azure 快速入門範本資源庫]並搜尋「服務匯流排」。
-> 
-> 
+> 本文中的範例會示範如何使用 Azure Resource Manager 來建立服務匯流排命名空間和訊息實體 (佇列)。 如需其他範本範例，請造訪 [Azure 快速入門範本資源庫][Azure Quickstart Templates gallery]並搜尋「服務匯流排」。
+>
+>
 
 ## <a name="service-bus-and-event-hubs-resource-manager-templates"></a>服務匯流排和事件中樞 Resource Manager 範本
 這些服務匯流排 Azure Resource Manager 範本可供下載和部署。 按一下下列連結可取得各自的詳細資料，並附有 GitHub 上的範本連結：
@@ -50,10 +50,10 @@ Azure Resource Manager 範本會協助您定義要部署給解決方案的資源
 6. 如有需要，請設定部署模式。
 7. 部署範本。
 
-如需部署 Azure Resource Manager 範本的完整資訊，請參閱[使用 Azure Resource Manager 範本部署資源][使用 Azure Resource Manager 範本部署資源]。
+如需部署 Azure Resource Manager 範本的完整資訊，請參閱[使用 Azure Resource Manager 範本部署資源][Deploy resources with Azure Resource Manager templates]。
 
 ### <a name="install-powershell"></a>安裝 PowerShell
-遵循 [如何安裝並設定 Azure PowerShell](../powershell-install-configure.md) 的指示安裝 Azure PowerShell。
+遵循 [如何安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 的指示安裝 Azure PowerShell。
 
 ### <a name="create-a-template"></a>建立範本
 從 GitHub 複製 [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) 範本：
@@ -145,7 +145,7 @@ Azure Resource Manager 範本會協助您定義要部署給解決方案的資源
 }
 ```
 
-如需詳細資訊，請參閱[參數檔案](../resource-group-template-deploy.md#parameter-precedence) 主題。
+如需詳細資訊，請參閱[參數檔案](../azure-resource-manager/resource-group-template-deploy.md#parameter-precedence) 主題。
 
 ### <a name="log-in-to-azure-and-set-the-azure-subscription"></a>登入 Azure 並設定 Azure 訂用帳戶
 從 PowerShell 提示字元中執行下列命令：
@@ -191,7 +191,7 @@ Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <p
 ```
 
 ### <a name="create-the-deployment"></a>建立部署
-若要建立新的部署，請執行 `New-AzureRmResourceGroupDeployment` 命令，並於提示出現時提供必要的參數。 參數會包含部署的名稱、資源群組的名稱，以及範本檔案的路徑或 URL。 如未指定 **Mode** 參數，即會使用預設值 **Incremental**。 如需詳細資訊，請參閱[累加部署與完整部署](../resource-group-template-deploy.md#incremental-and-complete-deployments)。
+若要建立新的部署，請執行 `New-AzureRmResourceGroupDeployment` 命令，並於提示出現時提供必要的參數。 參數會包含部署的名稱、資源群組的名稱，以及範本檔案的路徑或 URL。 如未指定 **Mode** 參數，即會使用預設值 **Incremental**。 如需詳細資訊，請參閱[累加部署與完整部署](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)。
 
 下列命令會提示您在 PowerShell 視窗中輸入三個參數︰
 
@@ -211,7 +211,7 @@ New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyD
 New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -parameterName "parameterValue"
 ```
 
-若要執行[完整](../resource-group-template-deploy.md#incremental-and-complete-deployments)部署，請將 **Mode** 參數設為 **Complete**：
+若要執行[完整](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)部署，請將 **Mode** 參數設為 **Complete**：
 
 ```
 New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
@@ -239,16 +239,16 @@ Parameters        :
 ## <a name="next-steps"></a>後續步驟
 您現在已了解部署 Azure Resource Manager 範本的基本工作流程和命令。 如需更多的詳細資訊，請瀏覽下列連結內容：
 
-* [Azure Resource Manager 概觀][Azure Resource Manager 概觀]
-* [使用 Azure Resource Manager 範本部署資源][使用 Azure Resource Manager 範本部署資源]
+* [Azure Resource Manager 概觀][Azure Resource Manager overview]
+* [使用 Azure Resource Manager 範本部署資源][Deploy resources with Azure Resource Manager templates]
 * [撰寫範本](../resource-group-authoring-templates.md)
 
-[Azure Resource Manager 概觀]: ../azure-resource-manager/resource-group-overview.md
-[使用 Azure Resource Manager 範本部署資源]: ../resource-group-template-deploy.md
-[Azure 快速入門範本資源庫]: https://azure.microsoft.com/documentation/templates/?term=service+bus
+[Azure Resource Manager overview]: ../azure-resource-manager/resource-group-overview.md
+[Deploy resources with Azure Resource Manager templates]: ../resource-group-template-deploy.md
+[Azure Quickstart Templates gallery]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/18/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 3f8c9b22fb9a7aae97c43e39fe82a610f6b8b374
-ms.openlocfilehash: ff693920244316eec9ef25b00e6296e8e68f3d5e
+ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
+ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
 
 
 ---
@@ -52,11 +52,11 @@ ms.openlocfilehash: ff693920244316eec9ef25b00e6296e8e68f3d5e
 開始進行本教學課程之前，您必須具備下列條件：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **Azure PowerShell 1.0 或更新版本**。 請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* **Azure PowerShell 1.0 或更新版本**。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 * **Windows SDK**。 您可以從[這裡](https://dev.windows.com/en-us/downloads)安裝它。 您使用它來建立安全性憑證。
 * **Azure Active Directory 服務主體**。 本教學課程中的步驟提供有關如何在 Azure AD 中建立服務主體的指示。 不過，您必須是 Azure AD 系統管理員，才能建立服務主體。 如果您是 Azure AD 系統管理員，您就可以略過這項先決條件並繼續進行本教學課程。
 
-    **如果您不是 Azure AD 系統管理員**，您將無法執行建立服務主體所需的步驟。 在這樣的情況下，您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 此外，必須使用憑證來建立服務主體，如[使用憑證來建立服務主體](../resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
+    **如果您不是 Azure AD 系統管理員**，您將無法執行建立服務主體所需的步驟。 在這樣的情況下，您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 此外，必須使用憑證來建立服務主體，如[使用憑證來建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
 
 ## <a name="create-an-azure-data-lake-store"></a>建立 Azure 資料湖存放區
 依照這些步驟建立資料湖存放區。
@@ -84,13 +84,13 @@ ms.openlocfilehash: ff693920244316eec9ef25b00e6296e8e68f3d5e
         $resourceGroupName = "<your new resource group name>"
         New-AzureRmResourceGroup -Name $resourceGroupName -Location "East US 2"
 
-    ![建立 Azure 資源群組](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.PS.CreateResourceGroup.png "Create an Azure Resource Group")
+    ![建立 Azure 資源群組](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.PS.CreateResourceGroup.png "建立 Azure 資源群組")
 3. 建立 Azure 資料湖存放區帳戶。 您指定的帳戶名稱必須只包含小寫字母和數字。
 
         $dataLakeStoreName = "<your new Data Lake Store name>"
         New-AzureRmDataLakeStoreAccount -ResourceGroupName $resourceGroupName -Name $dataLakeStoreName -Location "East US 2"
 
-    ![建立 Azure 資料湖帳戶](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.PS.CreateADLAcc.png "Create an Azure Data Lake account")
+    ![建立 Azure Data Lake 帳戶](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.PS.CreateADLAcc.png "建立 Azure Data Lake 帳戶")
 4. 確認已成功建立帳戶。
 
         Test-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
@@ -113,7 +113,7 @@ ms.openlocfilehash: ff693920244316eec9ef25b00e6296e8e68f3d5e
 ### <a name="create-a-self-signed-certificate"></a>建立自我簽署憑證
 進行本節中的步驟之前，請確定您已安裝 [Windows SDK](https://dev.windows.com/en-us/downloads)。 您也必須建立一個目錄 (例如 **C:\mycertdir**)，以在其中建立憑證。
 
-1. 在 PowerShell 視窗中，瀏覽至您安裝 Windows SDK 的位置 (通常是 `C:\Program Files (x86)\Windows Kits\10\bin\x86` ，並使用 [MakeCert][makecert] 公用程式來建立自我簽署的憑證和私密金鑰。 使用下列命令。
+1. 在 PowerShell 視窗中，瀏覽至您安裝 Windows SDK 的位置 (通常是 `C:\Program Files (x86)\Windows Kits\10\bin\x86`)，並使用 [MakeCert][makecert] 公用程式來建立自我簽署的憑證和私密金鑰。 使用下列命令。
 
         $certificateFileDir = "<my certificate directory>"
         cd $certificateFileDir
@@ -310,7 +310,7 @@ ms.openlocfilehash: ff693920244316eec9ef25b00e6296e8e68f3d5e
 2. 按一下 [瀏覽]、按一下 [HDInsight 叢集]，然後按一下您建立的 HDInsight 叢集。
 3. 在 [叢集] 刀鋒視窗中，按一下 [遠端桌面]，然後在 [遠端桌面] 刀鋒視窗中，按一下 [連接]。
 
-    ![遠端至 HDI 叢集](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.HDI.PS.Remote.Desktop.png "Create an Azure Resource Group")
+    ![Remote into HDI cluster](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.HDI.PS.Remote.Desktop.png "建立 Azure 資源群組")
 
     出現提示時，請輸入為遠端桌面使用者提供的認證。
 4. 在遠端工作階段中，啟動 Windows PowerShell，並使用 HDFS 檔案系統命令來列出 Azure 資料湖存放區中的檔案。
@@ -333,6 +333,6 @@ ms.openlocfilehash: ff693920244316eec9ef25b00e6296e8e68f3d5e
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

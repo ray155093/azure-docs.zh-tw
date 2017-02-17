@@ -1,6 +1,6 @@
 ---
-title: "開發人員指南 - 配額和節流 | Microsoft Docs"
-description: "Azure IoT 中樞開發人員指南 - 適用於 IoT 中樞之配額與預期節流行為的說明"
+title: "了解 Azure IoT 中樞配額和節流 | Microsoft Docs"
+description: "開發人員指南 - 說明適用於 IoT 中樞的配額和預期的節流行為。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: c0f8c779d7f9552dc05ac3791b74c3d57cb1fe64
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: 3806e474627dfe16dbc390dfa5c5ddf82853ec37
 
 
 ---
@@ -42,8 +42,8 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 | 雲端到裝置的接收 <br/> (僅限裝置使用 HTTP 時)| 1000/分鐘/單位 | 1000/分鐘/單位| 50000/分鐘/單位 |
 | 檔案上傳 | 100 個檔案上傳通知/分鐘/單位 | 100 個檔案上傳通知/分鐘/單位 | 5000 個檔案上傳通知/分鐘/單位 |
 | 直接方法 | 10/秒/單位 | 30/秒/單位 | 1500/秒/單位 | 
-| 對應項讀取 | 10/秒 | 最大值為 10/秒或 1/秒/單位 | 50/秒/單位 |
-| 對應項更新 | 10/秒 | 最大值為 10/秒或 1/秒/單位 | 50/秒/單位 |
+| 裝置對應項讀取 | 10/秒 | 最大值為 10/秒或 1/秒/單位 | 50/秒/單位 |
+| 裝置對應項更新 | 10/秒 | 最大值為 10/秒或 1/秒/單位 | 50/秒/單位 |
 | 作業的操作 <br/> (建立、更新、列出、刪除) | 100/分鐘/單位 | 100/分鐘/單位 | 5000/分鐘/單位 |
 | 作業的每一裝置操作輸送量 | 10/秒 | 最大值為 10/秒或 1/秒/單位 | 50/秒/單位 |
 
@@ -87,6 +87,6 @@ IoT 中樞會對其不同功能強制實施其他限制。
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

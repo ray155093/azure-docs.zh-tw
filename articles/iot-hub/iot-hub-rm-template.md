@@ -1,6 +1,6 @@
 ---
-title: "使用 ARM 範本和 C# 建立 IoT 中樞 | Microsoft Docs"
-description: "請依照此教學課程的說明，開始使用 Azure Resource Manager 範本搭配 C# 程式來建立「IoT 中樞」。"
+title: "使用範本建立 Azure IoT 中樞 (.NET) | Microsoft Docs"
+description: "如何在 C# 程式中使用 Azure Resource Manager 範本建立 IoT 中樞。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 11/16/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: 118ab90d7886ad48e7476abd732b16b69375d214
+ms.sourcegitcommit: e4343cfece7286e0a4035239967ab2e0a928b188
+ms.openlocfilehash: cc284c0cd445bbfe2f4424d3251ca07da0538192
 
 
 ---
-# <a name="create-an-iot-hub-using-a-c-program-with-an-azure-resource-manager-template"></a>使用 C# 程式搭配 Azure Resource Manager 範本來建立 IoT 中樞
+# <a name="create-an-iot-hub-using-azure-resource-manager-template-net"></a>使用 Azure Resource Manager 範本建立 IoT 中樞 (.NET)
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>簡介
@@ -36,7 +36,7 @@ ms.openlocfilehash: 118ab90d7886ad48e7476abd732b16b69375d214
 * Microsoft Visual Studio 2015。
 * 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 * 可供您儲存 Azure Resource Manager 範本檔案的 [Azure 儲存體帳戶][lnk-storage-account]。
-* [Microsoft Azure PowerShell 1.0][lnk-powershell-install] 或更新版本。
+* [Azure PowerShell 1.0][lnk-powershell-install] 或更新版本。
 
 [!INCLUDE [iot-hub-prepare-resource-manager](../../includes/iot-hub-prepare-resource-manager.md)]
 
@@ -206,7 +206,7 @@ ms.openlocfilehash: 118ab90d7886ad48e7476abd732b16b69375d214
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
 [lnk-azure-portal]: https://portal.azure.com/
 [lnk-status]: https://azure.microsoft.com/status/
-[lnk-powershell-install]: ../powershell-install-configure.md
+[lnk-powershell-install]: /powershell/azureps-cmdlets-docs
 [lnk-rest-api]: https://msdn.microsoft.com/library/mt589014.aspx
 [lnk-azure-rm-overview]: ../azure-resource-manager/resource-group-overview.md
 [lnk-storage-account]: ../storage/storage-create-storage-account.md
@@ -218,6 +218,6 @@ ms.openlocfilehash: 118ab90d7886ad48e7476abd732b16b69375d214
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 
