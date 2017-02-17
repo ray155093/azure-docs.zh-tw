@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 12/15/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 52cf33c5b9f3c3818ef66b97f22d148f0bf7c859
-ms.openlocfilehash: 8efed4445977f1d75ede02ccc761138ba3a33928
+ms.sourcegitcommit: 0a4eb02e50c90f41bdc4f2db2af87e2b194da25a
+ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 
 
 ---
@@ -31,7 +31,12 @@ ms.openlocfilehash: 8efed4445977f1d75ede02ccc761138ba3a33928
 >
 >
 
-在本文中，您會使用 Microsoft Visual Studio 來建立您的第一個 Azure Data Factory。
+在本文中，您會使用 Microsoft Visual Studio 來建立您的第一個 Azure Data Factory。 若要使用其他工具/SDK 進行本教學課程，請選取下拉式清單的其中一個選項。
+
+> [!NOTE]
+> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 它不會將資料從來源資料存放區複製到目的地資料存放區。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+> 
+> 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[在 Data Factory 中排程和執行](data-factory-scheduling-and-execution.md)。 
 
 ## <a name="prerequisites"></a>必要條件
 1. 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。
@@ -247,8 +252,6 @@ ms.openlocfilehash: 8efed4445977f1d75ede02ccc761138ba3a33928
     ```
      您會在 JSON 程式碼片段中建立一個管線，其中包括在 HDInsight 叢集上使用 Hive 處理「資料」的單一活動。
 
-    您會在 JSON 程式碼片段中建立一個管線，其中包括在 HDInsight 叢集上使用 Hive 處理「資料」的單一活動。
-
     Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (透過 scriptLinkedService，名為 **AzureStorageLinkedService1**)，且位於 **adfgetstarted**容器的 **script** 資料夾中。
 
     **defines** 區段可用來指定執行階段設定，該設定將傳遞到 Hive 指令碼做為 Hive 設定值 (例如 ${hiveconf:inputtable}、${hiveconf:partitionedtable})。
@@ -293,7 +296,7 @@ ms.openlocfilehash: 8efed4445977f1d75ede02ccc761138ba3a33928
 
 - 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
     - 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。
-        ```PowerShell   
+        ```PowerShell    
         Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
         ```
         您可以執行下列命令來確認已註冊 Data Factory 提供者。
@@ -515,14 +518,14 @@ ms.openlocfilehash: 8efed4445977f1d75ede02ccc761138ba3a33928
 ## <a name="see-also"></a>另請參閱
 | 主題 | 說明 |
 |:--- |:--- |
-| [資料轉換活動](data-factory-data-transformation-activities.md) |本文提供 Azure Data Factory 所支援的資料轉換活動清單 (例如您在本教學課程中使用的 HDInsight Hive 轉換)。 |
-| [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
 | [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
+| [資料轉換活動](data-factory-data-transformation-activities.md) |本文提供 Azure Data Factory 所支援的資料轉換活動清單 (例如您在本教學課程中使用的 HDInsight Hive 轉換)。 |
+| [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

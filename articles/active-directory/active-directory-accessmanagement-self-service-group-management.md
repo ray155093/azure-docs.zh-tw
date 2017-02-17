@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/01/2016
+ms.date: 02/3/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 1fda0b3c6c3f262c0f4b2f3ad5f37c4ce44cc0e3
+ms.sourcegitcommit: 4bab9f44d1c91f05618ea510b83beb06540429f2
+ms.openlocfilehash: be84686351255585c3484f5ab8dad37b92462e2b
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: 1fda0b3c6c3f262c0f4b2f3ad5f37c4ce44cc0e3
 
 您也可以使用 [可為安全性群組使用自助的群組]  方塊，為其成員可以使用自助服務的群組指定自訂名稱。
 
-## <a name="additional-information"></a>其他資訊
+## <a name="next-steps"></a>後續步驟
 這些文章提供有關 Azure Active Directory 的其他資訊。
 
 * [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
@@ -52,7 +52,6 @@ ms.openlocfilehash: 1fda0b3c6c3f262c0f4b2f3ad5f37c4ce44cc0e3
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 08/24/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 75b651bd3e77ac19e22dcc3442870469fe2aaca1
-ms.openlocfilehash: 22d6222b8fd27eeeb562af1ba50164031c885f25
+ms.sourcegitcommit: 182e28e37eb56c547e28524f2a3e13f042238cb4
+ms.openlocfilehash: e066a7fc671399ba44bec35a2ea860fccddb4cc5
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 22d6222b8fd27eeeb562af1ba50164031c885f25
 *我在設定下列項目時有問題：*
 
 * [.NET 應用程式](app-insights-asp-net-troubleshoot-no-data.md)
-* [監視已在執行的應用程式](app-insights-monitor-performance-live-website-now.md#troubleshooting)
+* [監視已在執行的應用程式](app-insights-monitor-performance-live-website-now.md#troubleshooting-runtime-configuration-of-application-insights)
 * [Azure 診斷](app-insights-azure-diagnostics.md)
 * [Java Web 應用程式](app-insights-java-troubleshoot.md)
 * [其他平台](app-insights-platforms.md)
@@ -40,7 +40,7 @@ ms.openlocfilehash: 22d6222b8fd27eeeb562af1ba50164031c885f25
 
 ## <a name="is-it-free"></a>它是免費的嗎？
 
-是，可作為實驗用途。 在預設定價方案中，您的應用程式每個月可以免費傳送一定額度的資料。 免費額度足夠因應開發用途和為少量使用者發佈應用程式。 您可以設定上限以防止處理超過指定的資料量。
+是，可作為實驗用途。 在基本定價方案中，您的應用程式每個月可以免費傳送一定額度的資料。 免費額度足夠因應開發用途和為少量使用者發佈應用程式。 您可以設定上限以防止處理超過指定的資料量。
 
 您需要使用「企業」方案才能獲得特定的功能，例如「連續匯出」。 這會產生每日費用。
 
@@ -51,20 +51,20 @@ ms.openlocfilehash: 22d6222b8fd27eeeb562af1ba50164031c885f25
 詳細資料視專案類型而定。 若是 Web 應用程式：
 
 * 將這些檔案新增至您的專案：
-  
+
   * ApplicationInsights.config。
   * ai.js
 * 安裝這些 NuGet 套件：
-  
+
   * *Application Insights API* - 核心 API
   * *Application Insights API for Web Applications* - 用來從伺服器傳送遙測
   * *Application Insights API for JavaScript Applications* - 用來從用戶端傳送遙測
-    
+
     套件包含這些組件：
   * Microsoft.ApplicationInsights
   * Microsoft.ApplicationInsights.Platform
 * 將項目插入至：
-  
+
   * Web.config
   * packages.config
 * (僅限新專案 - 如果您[將 Application Insights 新增至現有的專案][start]，則必須手動執行。)將程式碼片段插入至用戶端和伺服器程式碼中，以使用 Application Insights 資源識別碼將這些片段初始化。 例如，在 MVC 應用程式中，程式碼會插入至主版頁面 Views/Shared/_Layout.cshtml
@@ -90,7 +90,7 @@ ms.openlocfilehash: 22d6222b8fd27eeeb562af1ba50164031c885f25
 | 您應該會看到 | 如何取得 | 取得原因 |
 | --- | --- | --- |
 | 可用性圖表 |[Web 測試](app-insights-monitor-web-app-availability.md) |知道您的 Web 應用程式已啟動 |
-| 伺服器應用程式效能：回應時間... |[將 Application Insights 新增至您的專案](app-insights-asp-net.md)或[在伺服器上安裝 AI 狀態監視器](app-insights-monitor-performance-live-website-now.md) (或撰寫您自己的程式碼來[追蹤相依性](app-insights-api-custom-events-metrics.md#track-dependency)) |偵測效能問題 |
+| 伺服器應用程式效能：回應時間... |[將 Application Insights 新增至您的專案](app-insights-asp-net.md)或[在伺服器上安裝 AI 狀態監視器](app-insights-monitor-performance-live-website-now.md) (或撰寫您自己的程式碼來[追蹤相依性](app-insights-api-custom-events-metrics.md#trackdependency)) |偵測效能問題 |
 | 相依性遙測 |[在伺服器上安裝 AI 狀態監視器](app-insights-monitor-performance-live-website-now.md) |診斷資料庫或其他外部元件的問題 |
 | 取得例外狀況的堆疊追蹤 |[在程式碼中插入 TrackException 呼叫](app-insights-search-diagnostic-logs.md#exceptions) (但部分會自動報告) |偵測並診斷例外狀況 |
 | 搜尋記錄追蹤 |[新增記錄配接器](app-insights-search-diagnostic-logs.md) |診斷例外狀況、效能問題 |
@@ -113,6 +113,6 @@ ms.openlocfilehash: 22d6222b8fd27eeeb562af1ba50164031c885f25
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

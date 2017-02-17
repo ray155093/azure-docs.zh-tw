@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: 63e822de6ae50be33590048140e06e89526282ee
+ms.sourcegitcommit: b54a95c4f81d9a981912e1b596a817dc6ad56334
+ms.openlocfilehash: 52684fe3212454abbfb0cf9d1c67759fce9a1549
 
 
 ---
@@ -185,44 +185,13 @@ ms.openlocfilehash: 63e822de6ae50be33590048140e06e89526282ee
 
 如需虛擬機器的可用大小清單，請參閱 [Azure 中的虛擬機器大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。
 
-## <a name="add-a-data-disk-to-a-virtual-machine"></a>將資料磁碟新增至虛擬機器
-這個範例示範如何將資料磁碟新增至現有的虛擬機器。
-
-    $vm = Get-AzureRmVM -ResourceGroupName $rgName -Name $vmName
-    Add-AzureRmVMDataDisk -VM $vm -Name "disk-name" -VhdUri "https://mystore1.blob.core.windows.net/vhds/datadisk1.vhd" -LUN 0 -Caching ReadWrite -DiskSizeinGB 1 -CreateOption Empty
-    Update-AzureRmVM -ResourceGroupName $rgName -VM $vm
-
-您新增的磁碟尚未初始化。 若要初始化磁碟，您可以登入該磁碟並使用磁碟管理。 如果您在建立時安裝 WinRM 和憑證，您可以使用遠端 PowerShell 初始化磁碟。 您也可以使用自訂指令碼擴充： 
-
-    $location = "location-name"
-    $scriptName = "script-name"
-    $fileName = "script-file-name"
-    Set-AzureRmVMCustomScriptExtension -ResourceGroupName $rgName -Location $locName -VMName $vmName -Name $scriptName -TypeHandlerVersion "1.4" -StorageAccountName "mystore1" -StorageAccountKey "primary-key" -FileName $fileName -ContainerName "scripts"
-
-指令碼檔案可以包含如下的程式碼來初始化磁碟︰
-
-    $disks = Get-Disk |   Where partitionstyle -eq 'raw' | sort number
-
-    $letters = 70..89 | ForEach-Object { ([char]$_) }
-    $count = 0
-    $labels = @("data1","data2")
-
-    foreach($d in $disks) {
-        $driveLetter = $letters[$count].ToString()
-        $d | 
-        Initialize-Disk -PartitionStyle MBR -PassThru |
-        New-Partition -UseMaximumSize -DriveLetter $driveLetter |
-        Format-Volume -FileSystem NTFS -NewFileSystemLabel $labels[$count] `
-            -Confirm:$false -Force 
-        $count++
-    }
 
 ## <a name="next-steps"></a>後續步驟
-如果部署發生問題，請查看 [使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
+如果部署有問題，您可以查看[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解 (英文)](../azure-resource-manager/resource-manager-common-deployment-errors.md)
 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

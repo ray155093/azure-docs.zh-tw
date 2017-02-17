@@ -12,19 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 02/03/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 27907f312b97434fe7ab5359acdac942fb563862
+ms.sourcegitcommit: e793478028cee273a07e3665d409a669bdadc758
+ms.openlocfilehash: 4f9456c479b76588adf5f5aecbdd6379ec0e9704
 
 
 ---
 # <a name="building-multi-factor-authentication-into-custom-apps-sdk"></a>在自訂應用程式中建置 Multi-Factor Authentication (SDK)
-> [!IMPORTANT]
-> 若要下載 SDK，即使您有 Azure MFA、AAD Premium 或 EMS 授權，還是需要建立 Azure 多因素驗證提供者。 如果您針對此用途建立 Azure 多因素驗證提供者，且已有授權，請務必使用**每個啟用的使用者**模型建立提供者。 然後，將提供者連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。 這個組態可確保您只會在使用 SDK 的唯一使用者超過您所擁有的授權數目時收到帳單。
-> 
-> 
 
 Azure Multi-Factor Authentication 軟體開發套件 (SDK) 可讓您將雙步驟驗證直接內建到 Azure AD 租用戶中的應用程式登入或交易程序。
 
@@ -33,6 +29,10 @@ Multi-Factor Authentication SDK 適用於 C#、Visual Basic (.NET)、Java、Perl
 Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素選項參數 (例如驗證模式) 和使用者資料 (例如要撥打的電話號碼或要驗證的 PIN 碼)，透過單一函式來呼叫 API。 API 會將函式呼叫轉換成 Web 服務要求，再提交到以雲端為基礎的 Azure Multi-Factor Authentication Service。 所有呼叫都必須參考每個 SDK 所包含的私人憑證。
 
 因為 API 無權存取 Azure Active Directory 中註冊的使用者，所以您必須在檔案或資料庫中提供使用者資訊。 API 也沒有提供註冊或使用者管理功能，所以您需要將這些程序內建到您的應用程式中。
+
+> [!IMPORTANT]
+> 若要下載 SDK，即使您有 Azure MFA、AAD Premium 或 EMS 授權，還是需要建立 Azure 多因素驗證提供者。 如果您針對此用途建立 Azure 多因素驗證提供者，且已有授權，請務必使用**每個啟用的使用者**模型建立提供者。 然後，將提供者連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。 這個組態可確保您只會在使用 SDK 的唯一使用者超過您所擁有的授權數目時收到帳單。
+
 
 ## <a name="download-the-azure-multi-factor-authentication-sdk"></a>下載 Azure Multi-Factor Authentication SDK
 下載 Azure Multi-factor SDK 需要 [Azure Multi-Factor Auth Provider](multi-factor-authentication-get-started-auth-provider.md)。  即使您擁有 Azure MFA、Azure AD Premium 或 Enterprise Mobility Suite 授權，這還是需要完整的 Azure 訂用帳戶。  若要下載 SDK，請瀏覽至 Multi-Factor 管理入口網站。 連接入口網站的方式是直接管理多因素驗證提供者，或按一下 MFA 服務設定頁面上的 [移至入口網站] 連結。
@@ -51,7 +51,7 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 1. 以系統管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 選取左邊的 [Active Directory] 。
 3. 按兩下您的 Azure AD 執行個體。
-4. 在頂端按一下 [ **設定**
+4. 在頂端按一下  **設定**
 5. 在多因素驗證底下選取[管理服務設定]****
    ![下載](./media/multi-factor-authentication-sdk/download2.png)
 6. 在 [服務設定] 頁面上，於畫面底部按一下 [ **移至入口網站**]。 新的頁面隨即開啟。
@@ -67,13 +67,11 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 * **原始程式檔** 
 * **用戶端憑證** 
 * **私密金鑰** 
-* **呼叫結果。**  呼叫結果碼的清單。 若要開啟此檔案，請使用可設定文字格式的應用程式，例如 WordPad。 使用呼叫結果碼來測試及疑難排解您在應用程式中的 Multi-Factor Authentication 實作。 它們不是驗證狀態碼。
-* **範例。**  Multi-Factor Authentication 基本工作實作的範例程式碼。
+* **呼叫結果。** 呼叫結果碼的清單。 若要開啟此檔案，請使用可設定文字格式的應用程式，例如 WordPad。 使用呼叫結果碼來測試及疑難排解您在應用程式中的 Multi-Factor Authentication 實作。 它們不是驗證狀態碼。
+* **範例。** Multi-Factor Authentication 基本工作實作的範例程式碼。
 
 > [!WARNING]
 > 用戶端憑證是特別為您產生的唯一私人憑證。 請勿分享或遺失此檔案。 它是您與 Multi-Factor Authentication 通訊時確保安全性的關鍵。
-> 
-> 
 
 ## <a name="code-sample-standard-mode-phone-verification"></a>程式碼範例：標準模式電話驗證
 此程式碼範例示範如何使用 Azure Multi-Factor Authentication SDK 中的 API，將標準模式語音通話驗證加入至您的應用程式。 標準模式是指使用者按下 # 鍵來回應通話。
@@ -82,8 +80,6 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 
 > [!NOTE]
 > 實作 Multi-Factor Authentication 時，請使用其他方法 (通話或簡訊) 做為第二或第三驗證，以補充您的主要驗證方法 (使用者名稱和密碼)。 這些方法並非設計為主要驗證方法。
-> 
-> 
 
 ### <a name="code-sample-overview"></a>程式碼範例概觀
 這是簡單 Web 示範應用程式的範例程式碼，使用 # 鍵回應通話來驗證使用者驗證。 此通話因素在 Multi-Factor Authentication 中稱為標準模式。
@@ -161,7 +157,7 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
                 // Add call details from the user database.
                 PfAuthParams pfAuthParams = new PfAuthParams();
                 pfAuthParams.Username = username.Text;
-                pfAuthParams.Phone = "9134884271";
+                pfAuthParams.Phone = "5555555555";
                 pfAuthParams.Mode = pf_auth.MODE_STANDARD;
 
                 // Specify a client certificate
@@ -182,7 +178,7 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
                 else
                 {
                     lblResult.ForeColor = System.Drawing.Color.Red;
-                    lblResult.Text = " Multi-Factor Authentication failed.";
+                    lblResult.Text = "Multi-Factor Authentication failed.";
                 }
             }
 
@@ -191,6 +187,6 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

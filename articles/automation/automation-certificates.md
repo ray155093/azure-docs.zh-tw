@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 12/19/2016
 ms.author: magoedte;bwren
 translationtype: Human Translation
-ms.sourcegitcommit: ad4878dd2684c44f8458a9eb8288730e8fd45308
-ms.openlocfilehash: dbb39aad69f63765bf7f72129dbdcde36ed40ec7
+ms.sourcegitcommit: 89e5486f3302098f3a1d49e4390ec5b21617d778
+ms.openlocfilehash: fd1737a420c132dace9307436bfea98a9bde94a0
 
 ---
 
@@ -34,7 +34,7 @@ ms.openlocfilehash: dbb39aad69f63765bf7f72129dbdcde36ed40ec7
 
 |Cmdlet|說明|
 |:---|:---|
-|[Get-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603765.aspx)|擷取要在 Runbook 或 DSC 組態中使用的憑證相關資訊。 您只能從 Get-AzureRmAutomationCertificate 活動擷取憑證本身。|
+|[Get-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603765.aspx)|擷取要在 Runbook 或 DSC 組態中使用的憑證相關資訊。 您只能從 Get-AutomationCertificate 活動擷取憑證本身。|
 |[New-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603604.aspx)|建立新的憑證到 Azure 自動化。|
 [Remove-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603529.aspx)|從 Azure 自動化中移除憑證。|建立新的憑證到 Azure 自動化。
 |[Set-AzureRmAutomationCertificate](https://msdn.microsoft.com/library/mt603760.aspx)|設定現有的憑證，包括上傳憑證檔案和設定 .pfx 的密碼屬性。|
@@ -98,6 +98,6 @@ ms.openlocfilehash: dbb39aad69f63765bf7f72129dbdcde36ed40ec7
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

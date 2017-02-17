@@ -170,7 +170,7 @@ table_service.delete_table('tasktable')
 * [Azure 儲存體團隊部落格]
 * [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]
 
-[Azure Storage Team blog]: http://blogs.msdn.com/b/windowsazurestorage/
+[Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]: https://github.com/Azure/azure-storage-python
 
 

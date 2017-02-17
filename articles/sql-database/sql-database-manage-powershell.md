@@ -13,11 +13,11 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/15/2016
+ms.date: 02/08/2017
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: adad6b8e27e0996559d5e6dacb8dd60fbf52a631
-ms.openlocfilehash: 0c1ce1c29e447d9db4ef0df7873ef89cb835abee
+ms.sourcegitcommit: 3db60639507f14b24de00a46b1e2f4effa255f56
+ms.openlocfilehash: c264682b7bee875cdfbbcc0abbc6ec49f2ba8a26
 
 
 ---
@@ -48,7 +48,7 @@ New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocati
 如需完整的教學課程，請參閱[使用 Azure PowerShell 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started-powershell.md)。
 
 ## <a name="how-do-i-create-a-sql-database-server"></a>如何建立 SQL Database 伺服器？
-若要建立 SQL Database 伺服器，請使用 [New-AzureRmSqlServer](https://msdn.microsoft.com/library/azure/mt603715\(v=azure.300\).aspx) Cmdlet。 將 *server1* 取代為您伺服器的名稱。 伺服器名稱在所有 Azure SQL Database 伺服器之中必須是唯一的。 如果該伺服器名稱已被使用，您會收到錯誤訊息。 此命令可能需要幾分鐘的時間才能完成。 資源群組必須已經存在於您的訂用帳戶中。
+若要建立 SQL Database 伺服器，請使用 [New-AzureRmSqlServer](/powershell/resourcemanager/azurerm.sql/v2.5.0/new-azurermsqlserver) Cmdlet。 將 *server1* 取代為您伺服器的名稱。 伺服器名稱在所有 Azure SQL Database 伺服器之中必須是唯一的。 如果該伺服器名稱已被使用，您會收到錯誤訊息。 此命令可能需要幾分鐘的時間才能完成。 資源群組必須已經存在於您的訂用帳戶中。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -123,7 +123,7 @@ Set-AzureRmSqlDatabase -ResourceGroupName $resourceGroupName `
  -Edition $databaseEdition -RequestedServiceObjectiveName $databaseServiceLevel
 ```
 
-如需詳細資訊，請參閱 [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)。 如需範例指令碼，請參閱 [變更您的 SQL Database 之服務層級和效能等級的範例 PowerShell 指令碼](sql-database-scale-up-powershell.md#sample-powershell-script-to-change-the-service-tier-and-performance-level-of-your-sql-database)。
+如需詳細資訊，請參閱 [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)。 如需範例指令碼，請參閱 [變更您的 SQL Database 之服務層級和效能等級的範例 PowerShell 指令碼](sql-database-manage-single-databases-powershell.md#change-the-service-tier-and-performance-level-of-a-single-database)。
 
 ## <a name="how-do-i-copy-a-sql-database-to-the-same-server"></a>如何將 SQL Database 複製到相同伺服器？
 若要將 SQL Database 複製到相同的伺服器，請使用 [New-AzureRmSqlDatabaseCopy](https://msdn.microsoft.com/library/azure/mt603644\(v=azure.300\).aspx) Cmdlet。 將 `-CopyServerName` 和 `-CopyResourceGroupName` 設定為與來源資料庫伺服器及資源群組相同的值。
@@ -179,6 +179,6 @@ Remove-AzureRmSqlServer -ServerName $sqlServerName -ResourceGroupName $resourceG
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7315e770c3f09a0ba6100cfa0be86817482e2a29
-ms.openlocfilehash: f816de5a0116903f0b58d960f6181f9709b969bb
+ms.sourcegitcommit: f3a8ef4a166a061e1f4e7ce056255e02b810c196
+ms.openlocfilehash: aa4c6400bcd16c90654c40e14b7a8ed239a4d8aa
 
 
 ---
@@ -120,7 +120,7 @@ ms.openlocfilehash: f816de5a0116903f0b58d960f6181f9709b969bb
 
 * [**應用程式對應**](app-insights-app-map.md) - 顯示應用程式元件的使用中對應，其衍生自相依性資訊。
 * [**智慧型偵測**](app-insights-proactive-diagnostics.md) - 檢閱最近的效能警示。
-* [**即時串流**](app-insights-metrics-explorer.md#live-metrics-stream) - 一組固定且幾近即時的計量，在部署新組建或偵錯時非常實用。
+* [**即時串流**](app-insights-live-stream.md) - 一組固定且幾近即時的計量，在部署新組建或偵錯時非常實用。
 * [**可用性 / Web 測試**](app-insights-monitor-web-app-availability.md) - 從世界各地將一般要求傳送至您的 Web 應用程式。*
 * [**失敗、效能**](app-insights-web-monitor-performance.md) - 對您的應用程式提出的要求和您的應用程式對[相依項目](app-insights-asp-net-dependencies.md)提出的要求，其例外狀況、失敗率和回應時間。
 * [**效能**](app-insights-web-monitor-performance.md) - 回應時間、相依性回應時間。
@@ -157,6 +157,6 @@ ms.openlocfilehash: f816de5a0116903f0b58d960f6181f9709b969bb
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

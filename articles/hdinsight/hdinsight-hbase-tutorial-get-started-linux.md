@@ -1,5 +1,5 @@
 ---
-title: "HBase 教學課程：開始在 Hadoop 中使用以 Linux 為基礎的 HBase 叢集 | Microsoft Docs"
+title: "在 Azure HDInsight 上開始使用 HBase | Microsoft Docs"
 description: "遵循本 HBase 教學課程，開始在 HDInsight 中搭配 Hadoop 使用 Apache HBase。 使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
 keywords: "apache hbase,hbase,hbase shell,hbase 教學課程"
 services: hdinsight
@@ -13,19 +13,17 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/19/2017
+ms.date: 02/09/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 86f339b1a8f8c18fd898dc06b87245b265b3adb1
-ms.openlocfilehash: 34e173c6b54bc49cf8966de459e6c03c2260cbf8
+ms.sourcegitcommit: 0a09f1511778623b21a26042a752009ae2208ba6
+ms.openlocfilehash: 415f6f71642726aeb8477f067bd406a57717ff2a
 
 
 ---
 # <a name="hbase-tutorial-get-started-using-apache-hbase-in-hdinsight"></a>HBase 教學課程：開始在 HDInsight 中使用 Apache HBase
 
 了解如何使用 Hive 在 HDInsight 中建立 HBase 叢集、建立 HBase 資料表，以及查詢資料表。 如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
-
-本文件的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。 如需 windows 叢集相關資訊，請使用頁面頂端的索引標籤選取器進行切換。
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -285,6 +283,6 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 
