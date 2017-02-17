@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 02/14/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: bcf4b4162940071c78fdae05b4b38105474c2a7a
-ms.openlocfilehash: 1121ee9817e7c4a85baf6a284f61ff0169372542
+ms.sourcegitcommit: bf5588885de9c280eb70712dbf800efe509ee912
+ms.openlocfilehash: 825fd464d9d5eb0e482598227222f5680a0b4b38
 
 
 ---
@@ -110,7 +110,7 @@ ms.openlocfilehash: 1121ee9817e7c4a85baf6a284f61ff0169372542
    
     a. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 360 Online 應用程式時所使用的 URL：`https://<company name>.public360online.com`
    
-    b. 依序按一下 [ **下一步**
+    b. 依序按一下  **下一步**
 4. 在 [設定應用程式 URL] 對話方塊頁面上，執行下列步驟，然後按 [下一步]。
    
     ![設定單一登入](./media/active-directory-saas-360online-tutorial/tutorial_360online_05.png) 
@@ -232,6 +232,6 @@ ms.openlocfilehash: 1121ee9817e7c4a85baf6a284f61ff0169372542
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 
