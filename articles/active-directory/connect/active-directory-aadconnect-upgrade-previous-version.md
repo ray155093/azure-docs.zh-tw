@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: Identity
-ms.date: 11/01/2016
+ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: d8818035349c8e78c1f2bb39a05e1afb2c854cc9
+ms.sourcegitcommit: 1f7ec5d53512dcfbff17269802c8889eae0ad744
+ms.openlocfilehash: 5dd69a0b9357a601070765817a814dae3e7e5c05
 
 
 ---
@@ -34,6 +34,11 @@ ms.openlocfilehash: d8818035349c8e78c1f2bb39a05e1afb2c854cc9
 | [變換移轉](#swing-migration) |如果您有兩台伺服器，可以把其中一台升級成新的版本或組態，然後在您準備好時變更作用中的伺服器。 |
 
 如需必要權限的相關資訊，請參閱[升級所需的權限](active-directory-aadconnect-accounts-permissions.md#upgrade)。
+
+> [!NOTE]
+> 一旦您啟用新的 Azure AD Connect 伺服器開始將變更同步處理至 Azure AD，就不可再復原為使用 DirSync 或 Azure AD 同步。 不支援從 Azure AD Connect 降級至舊版用戶端 (包括 DirSync 和 Azure AD 同步)，因為可能會導致 Azure AD 中發生遺失資料等問題。 
+> 
+> 
 
 ## <a name="in-place-upgrade"></a>就地升級
 就地升級適用於從 Azure AD Sync 或 Azure AD Connect 移轉， 但不適用於 DirSync，也不適用於任何利用 FIM + Azure AD 連接器的解決方案。
@@ -91,6 +96,6 @@ ms.openlocfilehash: d8818035349c8e78c1f2bb39a05e1afb2c854cc9
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "取得 Azure 工具 (macOS 10.10) | Microsoft Docs"
-description: "在 macOS 上安裝 Python 和 Azure 命令列介面 (Azure CLI)。"
+title: "將 Raspberry Pi (C) 連接到 Azure IoT - 第 2 課：Azure 工具 (macOS) | Microsoft Docs"
+description: "在 macOS 上安裝 Python 與 Azure 命令列介面 (Azure CLI)。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 155e5d6280d86b06b1718fc3032c2c224539183d
-ms.openlocfilehash: e8da9d89e2af04a3c3ad3272d2af5060b23f9249
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: f0615f10adaf3bd03bc9a3b446830f2906875a89
 
 
 ---
@@ -78,6 +78,6 @@ Azure CLI 提供適用於 Azure 的多平台命令列體驗。 您可直接從�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

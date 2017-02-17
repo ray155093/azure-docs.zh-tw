@@ -1,28 +1,33 @@
 ---
-title: "機器學習應用程式：異常偵測服務 | Microsoft Docs"
-description: "「異常偵測 API」是一個搭配 Microsoft Azure Machine Learning 建置的範例，此 API 使用固定時間間隔的數值，偵測時間序列資料中的異常狀況。"
+title: "(已過時) Azure Machine Learning 異常偵測服務 | Microsoft Docs"
+description: "(已過時) 異常偵測服務是使用 Microsoft Azure Machine Learning 建置的範例，此服務會使用固定時間間隔的數值，來偵測時間序列資料中的異常狀況。"
 services: machine-learning
 documentationcenter: 
 author: alokkirpal
 manager: jhubbard
 editor: cgronlun
-ms.assetid: 52fafe1f-e93d-47df-a8ac-9a9a53b60824
 ms.service: machine-learning
 ms.devlang: na
-ms.topic: article
+ms.topic: deprecated
 ms.tgt_pltfrm: na
 ms.workload: multiple
-ms.date: 10/11/2016
+ms.date: 01/18/2017
 ms.author: alok
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cbcd469f39b42d741d73f9d96daf17d011b7ebc7
+ms.sourcegitcommit: eff129aceac18342a79f06376023301afc676763
+ms.openlocfilehash: 847c24f8baf5f5db93474b469eb402d3ab7d4880
 
 
 ---
-# <a name="machine-learning-anomaly-detection-service"></a>機器學習異常偵測服務
+# <a name="machine-learning-anomaly-detection-service-deprecated"></a>Machine Learning 異常偵測服務 (已過時)
+> [!NOTE]
+> 您現在可以使用 [Cortana Intelligence 資源庫 (英文)](https://gallery.cortanaintelligence.com/MachineLearningAPI/Anomaly-Detection-2) 中新的 [註冊] 選項，將這個 API 部署到您的 Azure 訂用帳戶中。 如需詳細資訊，請參閱 [ Machine Learning 異常偵測 API (英文)](machine-learning-apps-anomaly-detection-api.md)。
+> 
+> 本文所述之透過 Azure DataMarket 存取 API 的方法已經過時。
+
 ## <a name="overview"></a>概觀
-[異常偵測 API](https://datamarket.azure.com/dataset/aml_labs/anomalydetection) 是一個搭配 Azure Machine Learning 建置的範例，此 API 使用固定時間間隔的數值，偵測時間序列資料中的異常狀況。 
+[異常偵測 API (已過時，英文)](https://datamarket.azure.com/dataset/aml_labs/anomalydetection) 是使用 Azure Machine Learning 建置的範例，此 API 會使用固定時間間隔的數值，來偵測時間序列資料中的異常狀況。 
 
 此 API 可偵測時間序列資料的下列異常模式類型︰
 
@@ -169,14 +174,14 @@ ScoreWithSeasonality API 可用來對具有季節性模式的時間序列執行�
 | preprocess.aggregationInterval |用來彙總輸入時間序列的彙總間隔 (秒) |0 (不執行彙總) |integer |0︰略過彙總，否則 > 0 |5 分鐘到 1 天，取決於時間序列 |
 | preprocess.aggregationFunc |用來將資料彙總到指定 AggregationInterval 的函式 |平均值 |列舉 |平均值、總和、長度 |N/A |
 | preprocess.replaceMissing |用來插補遺漏資料的值 |lkv (上一個已知值) |列舉 |零、lkv、平均值 |N/A |
-| detectors.historyWindow |用於計算異常分數的歷程記錄 (以資料點數目為單位) |500 |integer |10 - 2000 |取決於時間序列 |
-| upleveldetector.sensitivity |向上層級變更偵測器的敏感度。 |3.25 |double |None |3.25 - 5 (值愈低代表敏感度越高) |
-| bileveldetector.sensitivity |雙向層級變更偵測器的敏感度。 |3.25 |double |None |3.25 - 5 (值愈低代表敏感度越高) |
-| trenddetector.sensitivity |正向趨勢偵測器的敏感度。 |3.25 |double |None |3.25 - 5 (值愈低代表敏感度越高) |
-| tspikedetector.sensitivity |TSpike 偵測器的敏感度 |3 |integer |1 - 10 |3 - 5 (值愈低代表敏感度越高) |
-| zspikedetector.sensitivity |ZSpike 偵測器的敏感度 |3 |integer |1 - 10 |3 - 5 (值愈低代表敏感度越高) |
+| detectors.historyWindow |用於計算異常分數的歷程記錄 (以資料點數目為單位) |500 |integer |10 -&2000; |取決於時間序列 |
+| upleveldetector.sensitivity |向上層級變更偵測器的敏感度。 |3.25 |double |None |3.25 -&5; (值愈低代表敏感度越高) |
+| bileveldetector.sensitivity |雙向層級變更偵測器的敏感度。 |3.25 |double |None |3.25 -&5; (值愈低代表敏感度越高) |
+| trenddetector.sensitivity |正向趨勢偵測器的敏感度。 |3.25 |double |None |3.25 -&5; (值愈低代表敏感度越高) |
+| tspikedetector.sensitivity |TSpike 偵測器的敏感度 |3 |integer |1 -&10; |3 -&5; (值愈低代表敏感度越高) |
+| zspikedetector.sensitivity |ZSpike 偵測器的敏感度 |3 |integer |1 -&10; |3 -&5; (值愈低代表敏感度越高) |
 | seasonality.enable |是否要執行季節性分析 |true |布林值 |true、false |取決於時間序列 |
-| seasonality.numSeasonality |要偵測的定期循環數目上限 |1 |integer |1、2 |1 - 2 |
+| seasonality.numSeasonality |要偵測的定期循環數目上限 |1 |integer |1、2 |1 -&2; |
 | seasonality.transform |在套用異常偵測之前，是否應該移除季節性 (和) 趨勢元件 |deseason |列舉 |無、deseason、deseasontrend |N/A |
 | postprocess.tailRows |輸出結果中要保留的最新資料點數目 |0 |integer |0 (保留所有資料點)，或指定要在結果中保留的資料點數目 |N/A |
 
@@ -191,11 +196,11 @@ API 會對您的時間序列資料執行所有偵測器，然後傳回每個時�
 | TSpike |指出 TSpike 偵測器是否要偵測尖峰的二進位指示器 |
 | ZSpike |指出 Zspike 偵測器是否要偵測尖峰的二進位指示器 |
 | Pscore |代表向上層級變更異常分數的浮動數字 |
-| Palert |根據輸入敏感度指出有向上層級變更異常的 1/0 值 |
+| Palert |根據輸入敏感度指出有向上層級變更異常的&1;/0 值 |
 | RPScore |代表雙向層級變更異常分數的浮動數字 |
-| RPAlert |根據輸入敏感度指出有雙向層級變更異常的 1/0 值 |
+| RPAlert |根據輸入敏感度指出有雙向層級變更異常的&1;/0 值 |
 | TScore |代表正向趨勢異常分數的浮動數字 |
-| TAlert |根據輸入敏感度指出有正向趨勢異常的 1/0 值 |
+| TAlert |根據輸入敏感度指出有正向趨勢異常的&1;/0 值 |
 
 若要剖析此輸出，可使用 [簡單的剖析器](https://adresultparser.codeplex.com/) - 其具有的範例程式碼可示範如何連線到 API 並剖析輸出。 所偵測到的異常可以具體呈現在儀表板中並 (或) 傳送給專家人員以採取更正動作或整合到票證系統。
 
@@ -208,6 +213,6 @@ API 會對您的時間序列資料執行所有偵測器，然後傳回每個時�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

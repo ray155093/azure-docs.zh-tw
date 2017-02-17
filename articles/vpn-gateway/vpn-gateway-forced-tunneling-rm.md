@@ -1,10 +1,10 @@
 ---
-title: "為使用 Resource Manager 部署模型的站對站連線設定強制通道 | Microsoft Docs"
+title: "設定 Azure 站對站連線的強制通道：Resource Manager | Microsoft Docs"
 description: "如何重新導向或「強制」所有網際網路繫結流量回到內部部署位置。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: cbe58db8-b598-4c9f-ac88-62c865eb8721
@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 08/10/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: acfa4642ad26f819189bd871d83718b6f579e32d
+ms.sourcegitcommit: 5183fc3b4e7ec3fe6060a6a9551656332300995f
+ms.openlocfilehash: 5bf02651c6a3fdd1369676e225cb859dab6fa5d8
 
 
 ---
@@ -56,7 +56,7 @@ ms.openlocfilehash: acfa4642ad26f819189bd871d83718b6f579e32d
 ## <a name="requirements-and-considerations"></a>需求和考量
 Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設定。 將流量重新導向至在內部部署網站時，會表示為至 Azure VPN 閘道的「預設路由」。 如需有關使用者定義路由和虛擬網路的詳細資訊，請參閱 [使用者定義路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)。
 
-* 每個虛擬網路的子網路皆有內建的系統路由表。 系統路由表具有下列 3 個路由群組：
+* 每個虛擬網路的子網路皆有內建的系統路由表。 系統路由表具有下列&3; 個路由群組：
   
   * **本機 VNet 路由：** 直接連接到相同虛擬網路中的目的地 VM
   * **內部部署路由：** 連接到 Azure VPN 閘道
@@ -138,6 +138,6 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

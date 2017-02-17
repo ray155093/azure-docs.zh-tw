@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/28/2016
+ms.date: 01/17/2017
 ms.author: toddabel
 translationtype: Human Translation
-ms.sourcegitcommit: a957a70be915459baa8c687c92e251c6011b6172
-ms.openlocfilehash: bc8eaf68b89bdefe203fc7ceea7b5241ac3e9dfa
+ms.sourcegitcommit: 1b4599848f44a7200f13bd6ddf4e82e96a75e069
+ms.openlocfilehash: 41343990d3379aabd129af437ff2edbbd2134dcc
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: bc8eaf68b89bdefe203fc7ceea7b5241ac3e9dfa
 
 當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。 將記錄檔集中在中央位置，可協助您分析並針對叢集或該叢集中執行之應用程式與服務的問題進行疑難排解。
 
-上傳和收集記錄檔的方式之一是使用可將記錄檔上傳至 Azure 儲存體的 Azure 診斷擴充功能。 這些記錄檔實際上在儲存體中並不那麼實用。 但您可以使用外部處理序來讀取儲存體的事件，並將它們放在 [Log Analytics](../log-analytics/log-analytics-service-fabric.md)、[Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 之類的產品或其他記錄檔剖析解決方案中。
+上傳和收集記錄檔的其中一種方式就是使用「Azure 診斷」擴充功能，此擴充功能可將記錄檔上傳到「Azure 儲存體」、Azure Application Insights 或「Azure 事件中樞」。 這些記錄檔在儲存體或「事件中樞」中並不直接那麼有用。 但是您可以使用外部處理程序從儲存體讀取事件，然後將它們放在 [Log Analytics](../log-analytics/log-analytics-service-fabric.md) 之類的產品或其他記錄檔剖析解決方案中。 [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) 隨附完整的記錄檔搜尋與分析服務內建功能。
 
 ## <a name="prerequisites"></a>必要條件
 您將使用這些工具來執行這份文件中的某些作業：
@@ -57,9 +57,9 @@ ms.openlocfilehash: bc8eaf68b89bdefe203fc7ceea7b5241ac3e9dfa
 
 Azure 支援團隊「需要」支援記錄檔，才能盡心處理您所建立的任何支援要求。 這些記錄檔會即時收集，並儲存在建立於資源群組中的其中一個儲存體帳戶。 [診斷] 設定可設定應用程式層級的事件。 這些事件包括會儲存在 Azure 儲存體的 [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) 事件、[Reliable Services](service-fabric-reliable-services-diagnostics.md) 事件，以及部分系統層級 Service Fabric 事件。
 
-[Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或您自己的處理序可以從儲存體帳戶中取得事件。 目前沒有任何方法可以篩選或清理已傳送至資料表的事件。 如果不實作從資料表移除事件的處理序，資料表將會繼續成長。
+[Elasticsearch](https://www.elastic.co/guide/index.html) 之類的產品或您自己的處理程序可以從儲存體帳戶中取得事件。 目前沒有任何方法可以篩選或清理已傳送至資料表的事件。 如果不實作從資料表移除事件的處理序，資料表將會繼續成長。
 
-使用入口網站建立叢集時，強烈建議您先下載範本，「再按一下 [確定]**」來建立叢集。 如需詳細資訊，請參閱[使用 Azure Resource Manager 範本來設定 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)。 您需要範本以在稍後進行變更，因為您無法使用入口網站進行某些變更。
+當您使用入口網站來建立叢集時，強烈建議您**在按一下 [確定] 來建立叢集之前**，先下載範本。 如需詳細資訊，請參閱[使用 Azure Resource Manager 範本來設定 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)。 您需要範本以在稍後進行變更，因為您無法使用入口網站進行某些變更。
 
 您可以使用下列步驟從入口網站匯出範本。 不過，這些範本的使用方式可能會比較困難，因為它們可能包含缺少必要資訊的 null 值。
 
@@ -84,7 +84,7 @@ Azure 支援團隊「需要」支援記錄檔，才能盡心處理您所建立�
 
 若要查看 Resource Manager 範本中的 [診斷] 設定，請開啟 azuredeploy.json 檔案，並搜尋 **IaaSDiagnostics**。 若要使用這個範本建立叢集，請選取上一個連結所提供的 [部署到 Azure] 按鈕。
 
-或者，您也可以下載資源管理員範例，對它進行變更，然後在 Azure PowerShell 視窗中使用 `New-AzureRmResourceGroupDeployment` 命令來使用修改過的範本建立叢集。 針對您傳遞給命令的參數，請參閱以下程式碼。 如需如何使用 PowerShell 部署資源群組的詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](../resource-group-template-deploy.md)。
+或者，您也可以下載資源管理員範例，對它進行變更，然後在 Azure PowerShell 視窗中使用 `New-AzureRmResourceGroupDeployment` 命令來使用修改過的範本建立叢集。 針對您傳遞給命令的參數，請參閱以下程式碼。 如需如何使用 PowerShell 部署資源群組的詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](../azure-resource-manager/resource-group-template-deploy.md)。
 
 ```powershell
 
@@ -193,6 +193,25 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 
 如所述修改 template.json 檔案之後，將 Resource Manager 範本重新發佈。 如果已匯出範本，執行 deploy.ps1 檔案將會重新發佈範本。 部署之後，請確認 **ProvisioningState** 為 **Succeeded**。
 
+## <a name="update-diagnostics-to-collection-health-and-load-events"></a>更新診斷以收集健康情況和負載事件
+
+從 Service Fabric 5.4 版開始，健康情況和負載計量事件均可供收集。 這些事件可藉由使用健康情況或負載報告 API (例如 [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) 或 [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx))，反映系統或程式碼所產生的事件。 這可讓您彙總及檢視一段時間的系統健康情況，以及根據健康情況或負載事件發出警示。 若要在 Visual Studio 的「診斷事件檢視器」中檢視這些事件，請將 "Microsoft-ServiceFabric:4:0x4000000000000008" 新增到 ETW 提供者清單中。
+
+若要收集事件，請修改 Resource Manager 範本，使其包含
+
+```json
+  "EtwManifestProviderConfiguration": [
+    {
+      "provider": "cbd93bc2-71e5-4566-b3a7-595d8eeca6e8",
+      "scheduledTransferLogLevelFilter": "Information",
+      "scheduledTransferKeywordFilter": "4611686018427387912",
+      "scheduledTransferPeriod": "PT5M",
+      "DefaultEvents": {
+        "eventDestination": "ServiceFabricSystemEventTable"
+      }
+    }
+```
+
 ## <a name="update-diagnostics-to-collect-and-upload-logs-from-new-eventsource-channels"></a>更新診斷從新的 EventSource 通道收集並上傳記錄檔
 若要更新診斷以從新的 EventSource 通道 (代表您將要部署的新應用程式) 收集記錄檔，請執行[上一節](#deploywadarm)中相同的步驟，以針對現有叢集設定診斷。
 
@@ -222,6 +241,6 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 
