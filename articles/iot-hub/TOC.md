@@ -97,6 +97,28 @@
 #### [選擇性︰變更 LED 行為](iot-hub-intel-edison-kit-c-lesson4-change-led-behavior.md)
 ### [疑難排解](iot-hub-intel-edison-kit-c-troubleshooting.md)
 
+## 開始使用 Arduino (節點)
+### [開始使用 Arduino 面板︰Adafruit Feather M0 WiFi](iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md)
+### 第 1 課：設定裝置
+#### [設定裝置](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-configure-your-device.md)
+#### [取得工具 (Windows 7+)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-get-the-tools-win32.md)
+#### [取得工具 (Ubuntu 16.04)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-get-the-tools-ubuntu.md)
+#### [1.2 取得工具 (macOS 10.10)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-get-the-tools-mac.md)
+#### [1.3 建立並部署閃爍應用程式](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-deploy-blink-app.md)
+### 第 2 課：建立 IoT 中樞
+#### [取得 Azure 工具 (Windows 7+)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-get-azure-tools-win32.md)
+#### [取得 Azure 工具 (Ubuntu 16.04)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-get-azure-tools-ubuntu.md)
+#### [取得 Azure 工具 (MacOS 10.10)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-get-azure-tools-mac.md)
+#### [建立 IoT 中樞並登錄您的 Raspberry Pi](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-prepare-azure-iot-hub.md)
+### 第 3 課：傳送裝置到雲端訊息
+#### [建立 Azure 函式應用程式與儲存體帳戶](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-deploy-resource-manager-template.md)
+#### [執行範例應用程式以傳送訊息](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-run-azure-blink.md)
+#### [讀取保留在儲存體中的訊息](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-read-table-storage.md)
+### 第 4 課：傳送雲端到裝置訊息
+#### [執行範例應用程式以接收訊息](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-send-cloud-to-device-messages.md)
+#### [選擇性︰變更 LED 行為](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-change-led-behavior.md)
+### [疑難排解](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md)
+
 ## [開始使用閘道器 SDK (Linux)](iot-hub-linux-gateway-sdk-get-started.md)
 ## [開始使用閘道器 SDK (Windows)](iot-hub-windows-gateway-sdk-get-started.md)
 
@@ -219,9 +241,11 @@
 ## [Java (裝置)](/java/api/com.microsoft.azure.iothub)
 ## [Azure IoT SDK](http://azure.github.io/azure-iot-sdks/)
 ## [閘道器 SDK](http://azure.github.io/azure-iot-gateway-sdk)
-## [REST (資源提供者)](https://docs.microsoft.com/rest/api/iothub/resourceprovider/iot-hub-resource-provider-rest)
-## [REST (裝置身分識別)](https://docs.microsoft.com/rest/api/iothub/device-identities-rest)
-## [REST (裝置傳訊) REST API](https://docs.microsoft.com/rest/api/iothub/device-messaging-rest-apis)
+## [REST (資源提供者)](https://docs.microsoft.com/rest/api/iothub/iothubresource)
+## [REST (裝置身分識別)](https://docs.microsoft.com/rest/api/iothub/deviceapi)
+## [REST (裝置對應項)](https://docs.microsoft.com/rest/api/iothub/devicetwinapi)
+## [REST (裝置通訊)](https://docs.microsoft.com/rest/api/iothub/httpruntime)
+## [REST (作業)](https://docs.microsoft.com/rest/api/iothub/jobapi)
 
 # 相關參考
 ## [Azure IoT 套件](https://azure.microsoft.com/documentation/suites/iot-suite/)
@@ -240,6 +264,6 @@
 ## [Azure IoT 認證裝置目錄](https://catalog.azureiotsuite.com/)
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

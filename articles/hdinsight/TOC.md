@@ -77,9 +77,7 @@
 ### [使用 Phoenix 和 SQLLine](hdinsight-hbase-phoenix-squirrel-linux.md)
 ### [分析即時推文](hdinsight-hbase-analyze-twitter-sentiment.md)
 ### [在虛擬網路上建立叢集](hdinsight-hbase-provision-vnet.md)
-### [設定 VPN 連線](hdinsight-hbase-geo-replication-configure-vnets.md)
-### [設定 DNS 伺服器](hdinsight-hbase-geo-replication-configure-dns.md)
-### [設定 HBase 異地複寫](hdinsight-hbase-geo-replication.md)
+### [設定 HBase 複寫](hdinsight-hbase-replication.md)
 ### [使用 Java 開發應用程式](hdinsight-hbase-build-java-maven-linux.md)
 ## 使用 Storm
 ### [部署和管理拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
@@ -198,7 +196,6 @@
 ### [開始使用 Hadoop](hdinsight-hadoop-tutorial-get-started-windows.md)
 ### [開始使用 Storm](hdinsight-apache-storm-tutorial-get-started.md)
 ### [開始使用 HBase](hdinsight-hbase-tutorial-get-started.md)
-### [HDInsight 範例庫](hdinsight-learn-hadoop-use-sample-gallery.md)
 ### [執行 Hadoop MapReduce 範例](hdinsight-run-samples.md)
 ### [建立 Hadoop 叢集](hdinsight-provision-clusters.md)
 #### [使用 Azure 入口網站](hdinsight-hadoop-create-windows-clusters-portal.md)
@@ -228,6 +225,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

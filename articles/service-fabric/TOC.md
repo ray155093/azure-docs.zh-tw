@@ -161,6 +161,7 @@
 ### [檢視健全狀況報表](service-fabric-view-entities-aggregated-health.md)
 
 ## 監視與診斷
+### [監視與診斷應用程式](service-fabric-diagnostics-overview.md)
 ### 在本機上監視及診斷服務
 #### [Windows](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 #### [Linux](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)
@@ -208,6 +209,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-fabric)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

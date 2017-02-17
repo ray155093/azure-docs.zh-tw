@@ -12,13 +12,15 @@
 # 作法
 ## 設定高可用性
 ### [高可用性選項](virtual-machines-windows-sql-high-availability-dr.md) 
-### [設定 Always On 可用性群組](virtual-machines-windows-portal-sql-availability-group-overview.md)
+### [Always On 可用性群組](virtual-machines-windows-portal-sql-availability-group-overview.md)
 #### [自動化 - 使用範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
 #### [手動 - 必要條件](virtual-machines-windows-portal-sql-availability-group-prereq.md)
 #### [手動 - 教學課程](virtual-machines-windows-portal-sql-availability-group-tutorial.md)
 #### [負載平衡器 - 入口網站](virtual-machines-windows-portal-sql-alwayson-int-listener.md)
 #### [負載平衡器 - PowerShell](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md)
 #### [多個區域嗎](virtual-machines-windows-portal-sql-availability-group-dr.md)
+### 容錯移轉叢集執行個體
+#### [設定](virtual-machines-windows-portal-sql-create-failover-cluster.md)
 
 ## 管理
 ### [使用 SQL Server IaaS 代理程式擴充](virtual-machines-windows-sql-server-agent-extension.md)
@@ -49,6 +51,6 @@
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

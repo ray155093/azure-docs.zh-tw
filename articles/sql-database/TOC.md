@@ -6,12 +6,6 @@
 ### [資源限制](sql-database-resource-limits.md)
 ### [特性](sql-database-features.md)
 ### [SQL Database 常見問題集](sql-database-faq.md)
-## 優點
-### [學習與調整](sql-database-learn-and-adapt.md)
-### [即時調整](sql-database-scale-on-the-fly.md)
-### [建置多租用戶應用程式](sql-database-build-multi-tenant-apps.md)
-### [安全與保護](sql-database-helps-secures-and-protects.md)
-### [在您的環境中運作](sql-database-works-in-your-environment.md)
 ## 比較
 ### [比較 SQL Database 和 VM 上的 SQL](sql-database-paas-vs-sql-server-iaas.md)
 ### [T-SQL 差異](sql-database-transact-sql-information.md)
@@ -20,6 +14,7 @@
 ## [SQL Database 教學課程](sql-database-explore-tutorials.md)
 ## [解決方案快速入門](sql-database-solution-quick-starts.md)
 ## 安全性
+### [安全性概觀](sql-database-security-overview.md)
 ### [Azure SQL Database 適用的 Azure 資訊安全中心](https://azure.microsoft.com/documentation/articles/security-center-sql-database/)
 ### [SQL 資訊安全中心](https://msdn.microsoft.com/library/azure/bb510589)
 # 開始使用
@@ -69,12 +64,12 @@
 #### [複製 SQL Database](sql-database-copy.md)
 ## 防火牆規則、驗證和授權
 ### 學習
-#### [概觀](sql-database-security.md)
-#### [安全性方針](sql-database-security-guidelines.md)
+#### [存取控制](sql-database-control-access.md)
 #### [防火牆](sql-database-firewall-configure.md)
 #### [管理登入](sql-database-manage-logins.md)
 ### 建議事項
-#### [SQL 驗證和授權](sql-database-get-started-security.md)
+#### [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)
+#### [Azure AD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)
 ## 防全和保護資料
 ### 學習
 #### 稽核
@@ -106,7 +101,8 @@
 #### [執行災害復原鑽研](sql-database-disaster-recovery-drills.md)
 #### [主動式異地複寫概觀](sql-database-geo-replication-overview.md)
 ### 建議事項
-#### [開始使用 SQL Database 備份和還原](sql-database-get-started-backup-recovery.md)
+#### [Azure 入口網站：備份與還原](sql-database-get-started-backup-recovery.md)
+#### [PowerShell：庫備份與還原](sql-database-get-started-backup-recovery-powershell.md)
 ## 應用程式開發
 ### 學習
 #### [資料庫應用程式開發概觀](sql-database-develop-overview.md)
@@ -150,7 +146,7 @@
 #### [單一資料庫](sql-database-single-database-monitor.md)
 #### [SQL Database 建議程式概觀](sql-database-advisor.md)
 #### [單一資料庫指導](sql-database-performance-guidance.md)
-#### [Azure 入口網站中的工作負載深入解析](sql-database-performance.md)
+#### [效能深入資訊：Azure 入口網站](sql-database-performance.md)
 #### [使用批次處理](sql-database-use-batching-to-improve-performance.md)
 #### [擴充事件](sql-database-xevent-db-diff-from-svr.md)
 ## SQL Database V11
@@ -253,15 +249,14 @@
 #### [設定長期備份保留期](sql-database-configure-long-term-retention.md)
 #### [檢視復原服務保存庫中的備份](sql-database-view-backups-in-vault.md)
 #### [從長期備份保留期還原](sql-database-restore-from-long-term-retention.md)
+#### [除長期備份保留期](sql-database-long-term-retention-delete.md)
 ### 還原已刪除的資料庫
 #### [使用 Azure 入口網站還原已刪除的資料庫](sql-database-restore-deleted-database-portal.md)
 #### [使用 PowerShell 還原已刪除的資料庫](sql-database-restore-deleted-database-powershell.md)
 ### 還原時間點
 #### [還原至某個時間點](sql-database-point-in-time-restore.md)
 #### [檢視最早的還原點](sql-database-view-oldest-restore-point.md)
-### 異地還原
-#### [使用 Azure 入口網站進行異地還原](sql-database-geo-restore-portal.md)
-#### [使用 PowerShell 進行異地還原](sql-database-geo-restore-powershell.md)
+### [從異地備援備份還原](sql-database-geo-restore.md)
 ## 主動式異地複寫
 ### [使用 Azure 入口網站進行設定](sql-database-geo-replication-portal.md)
 ### [使用 PowerShell 進行設定](sql-database-geo-replication-powershell.md)
@@ -309,6 +304,6 @@
 ## [SqlPackage](https://msdn.microsoft.com/hh550080.aspx)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

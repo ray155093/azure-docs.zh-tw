@@ -97,9 +97,10 @@
 ##### [範例應用程式](virtual-networks-sample-app.md)
 
 ## 設定
-### 加速網路
+### VM 加速網路
 #### [Azure 入口網站](virtual-network-accelerated-networking-portal.md)
 #### [PowerShell](virtual-network-accelerated-networking-powershell.md)
+### [最佳化 VM 網路輸送量](virtual-network-optimize-network-bandwidth.md)
 ### 存取控制清單
 #### [傳統入口網站](virtual-networks-acl.md)
 #### [PowerShell](virtual-networks-acl-powershell.md)
@@ -147,6 +148,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-network)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

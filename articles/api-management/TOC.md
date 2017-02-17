@@ -14,6 +14,7 @@
 ## 保護您的後端
 ### [使用 AAD 保護 Web API 後端](api-management-howto-protect-backend-with-aad.md)
 ### [連接到虛擬網路](api-management-using-with-vnet.md)
+### [連接到內部虛擬網路](api-management-using-with-internal-vnet.md)
 ### [相互憑證驗證](api-management-howto-mutual-certificates.md)
 ## 設定原則
 ### [自訂快取](api-management-sample-cache-by-key.md)
@@ -62,7 +63,7 @@
 #### [使用者個人檔案](api-management-user-profile-templates.md)
 #### [頁面](api-management-page-templates.md)
 ### [資料模型參考](api-management-template-data-model-reference.md)
-### [頁面控制](api-management-page-controls.md)
+### [頁面控制項](api-management-page-controls.md)
 ### [範本資源](api-management-template-resources.md)
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/api-management/)
@@ -82,6 +83,6 @@
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

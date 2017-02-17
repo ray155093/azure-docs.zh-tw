@@ -26,7 +26,8 @@
 
 ## 作法
 ### [透過 Azure 入口網站管理](storsimple-virtual-array-manager-service-administration.md)
-#### [安裝最新的更新](storsimple-virtual-array-install-update.md)
+#### [安裝最新的更新](storsimple-virtual-array-install-update-04.md)
+##### [安裝 Update 0.3](storsimple-virtual-array-install-update.md)
 #### [建立和管理備份](storsimple-virtual-array-backup.md)
 #### [從備份複製](storsimple-virtual-array-clone.md)
 #### [容錯移轉與 DR](storsimple-virtual-array-failover-dr.md)
@@ -56,7 +57,8 @@
 ### [透過本機 Web UI 設定](storsimple-ova-web-ui-admin.md)
 
 ## 版本資訊
-### [Update 0.3 - 目前](storsimple-ova-update-03-release-notes.md)
+### [Update 0.4 - 目前](storsimple-virtual-array-update-04-release-notes.md)
+### [Update 0.3](storsimple-ova-update-03-release-notes.md)
 ### [Update 0.2 和 0.1](storsimple-ova-update-01-release-notes.md)
 
 # StorSimple 8000 系列
@@ -150,6 +152,7 @@
 ### 監視
 #### [使用服務儀表板](storsimple-service-dashboard.md)
 #### [使用裝置儀表板](storsimple-device-dashboard.md)
+#### [使用監視圖表](storsimple-monitor-device.md)
 #### [使用服務警示](storsimple-manage-alerts.md)
 #### [使用硬體狀態](storsimple-monitor-hardware-status.md)
 #### [使用監控 LED](storsimple-monitoring-indicators.md)
@@ -220,6 +223,6 @@
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

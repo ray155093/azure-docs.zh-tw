@@ -14,6 +14,7 @@
 ### [建立驗證提供者](multi-factor-authentication-get-started-auth-provider.md)
 ### [配置設定](multi-factor-authentication-whats-next.md)
 ### [MFA 中的報告](multi-factor-authentication-manage-reports.md)
+### [使用現有的網路原則伺服器](multi-factor-authentication-nps-extension.md)
 ### Azure MFA 內部部署
 #### [安裝使用者入口網站](multi-factor-authentication-get-started-portal.md)
 #### [進階 VPN 設定](multi-factor-authentication-advanced-vpn-configurations.md)
@@ -38,7 +39,7 @@
 ### [IIS Web Apps](multi-factor-authentication-get-started-server-iis.md)
 ### [遠端桌面閘道器](multi-factor-authentication-get-started-server-rdg.md)
 
-## 開發 
+## 開發
 ### [建置於自訂應用程式 (SDK)](multi-factor-authentication-sdk.md)
 
 ## 疑難排解
@@ -46,6 +47,6 @@
 ### [詢問問題](https://social.msdn.microsoft.com/Forums/newthread?category=windowsazureplatform&forum=windowsazureactiveauthentication&prof=required)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

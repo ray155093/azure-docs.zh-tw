@@ -23,8 +23,11 @@
 ## [身分識別管理](security-identity-management-overview.md)
 ### [身分識別管理安全性的最佳做法](azure-security-identity-management-best-practices.md)
 ## PaaS 服務
-### [IoT 安全性最佳做法](azure-security-iot-best-practices.md)
+### [保護 PaaS 部署](security-paas-deployments.md)
+#### [保護使用 SQL 的 PaaS 應用程式](security-paas-applications-using-sql.md)
+#### [保護使用應用程式服務的 PaaS 應用程式](security-paas-applications-using-app-services.md)
 ### [IoT 安全性概觀](security-internet-of-things-overview.md)
+### [IoT 安全性最佳做法](azure-security-iot-best-practices.md)
 ## 垂直產業
 ### [設計安全醫療解決方案](security-health-care-solution.md)
 ## [安全性架構](azure-security-architecture-overview.md)
@@ -51,6 +54,6 @@
 ## [Channel 9 上的安全性影片](security-channel-nine.md)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 
