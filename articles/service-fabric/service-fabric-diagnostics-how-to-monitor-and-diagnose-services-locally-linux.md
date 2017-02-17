@@ -1,5 +1,5 @@
 ---
-title: "在本機監視和診斷使用 Azure Service Fabric 所撰寫的服務 | Microsoft Docs"
+title: "在 Linux 中針對 Azure 微服務進行偵錯 | Microsoft Docs"
 description: "了解如何監視和診斷在本機開發電腦上使用 Microsoft Azure Service Fabric 所撰寫的服務。"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 11/14/2016
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 72fcad2957d6fc5466719c1d275ae0f86f7fa302
-ms.openlocfilehash: 1d02402f8d3d3f501a100c1618bcba595f1fedc0
+ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
+ms.openlocfilehash: a8f077168dbc8660625371a2b988926c69491337
 
 
 ---
@@ -143,6 +143,6 @@ public static TextWriter Out = Console.Out;
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

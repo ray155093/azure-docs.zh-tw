@@ -73,7 +73,7 @@ TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控�
     DocumentCollection collectionDefinition = new DocumentCollection();
     collectionDefinition.Id = "orders";
     collectionDefinition.PartitionKey.Paths.Add("/customerId");
-    collectionDefinition.DefaultTimeToLive = 90 * 60 * 24; // expire all documents after 90 days
+    collectionDefinition.DefaultTimeToLive = 90 * 60 * 60 * 24; // expire all documents after 90 days
     
     DocumentCollection ttlEnabledCollection = await client.CreateDocumentCollectionAsync(
         "/dbs/salesdb",

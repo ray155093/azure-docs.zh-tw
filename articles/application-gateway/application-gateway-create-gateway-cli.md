@@ -1,5 +1,5 @@
 ---
-title: "使用 Resource Manager 中的 Azure CLI 建立應用程式閘道 | Microsoft Docs"
+title: "建立 Azure 應用程式閘道 - Azure CLI | Microsoft Docs"
 description: "了解如何使用 Resource Manager 中的 Azure CLI 建立應用程式閘道"
 services: application-gateway
 documentationcenter: na
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/12/2016
+ms.date: 01/23/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
-ms.openlocfilehash: 165289acd1d2a5bc098e9a83f43613d16a023045
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: d376cd1f62f99d3f611d0d5ccc613c4b649e5c3c
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: 165289acd1d2a5bc098e9a83f43613d16a023045
 > 
 > 
 
-Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道具有下列應用程式傳遞功能：HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、「安全通訊端層」(SSL) 卸載、自訂健康狀態探查，以及多站台支援。
+Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道具有下列應用程式傳遞功能：HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、「安全通訊端層」(SSL) 卸載、自訂健康狀態探查，以及多站台支援。
 
 ## <a name="prerequisite-install-the-azure-cli"></a>必要條件：安裝 Azure CLI
 
@@ -140,6 +140,6 @@ azure network application-gateway create -n AdatumAppGateway -l eastus -g Adatum
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

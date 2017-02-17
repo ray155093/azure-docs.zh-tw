@@ -1,6 +1,6 @@
 ---
-title: "Azure PowerShell 搭配 Resource Manager | Microsoft Docs"
-description: "使用 Azure PowerShell 將多個資源做為資源群組部署至 Azure 的簡介。"
+title: "使用 PowerShell 管理 Azure 解決方案 | Microsoft Docs"
+description: "使用 Azure PowerShell 和 Resource Manager 管理資源。"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -12,360 +12,271 @@ ms.workload: multiple
 ms.tgt_pltfrm: powershell
 ms.devlang: na
 ms.topic: article
-ms.date: 08/18/2016
+ms.date: 12/05/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
-ms.openlocfilehash: 14419f36a9404202d6238d5825fb1ae77d46038a
+ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
+ms.openlocfilehash: d1f4b7806f72dc2632ba981781097b19e89d07f3
 
 
 ---
-# <a name="using-azure-powershell-with-azure-resource-manager"></a>搭配使用 Azure PowerShell 與 Azure 資源管理員
+# <a name="manage-resources-with-azure-powershell-and-resource-manager"></a>使用 Azure PowerShell 和 Resource Manager 管理資源
 > [!div class="op_single_selector"]
 > * [入口網站](resource-group-portal.md)
 > * [Azure CLI](xplat-cli-azure-resource-manager.md)
 > * [Azure PowerShell](powershell-azure-resource-manager.md)
 > * [REST API](resource-manager-rest-api.md)
+>
+>
 
-Azure Resource Manager 會對 Azure 資源的生命週期控制實作現代化方法。 與其建立並管理個別資源，您首先想像整個解決方案，例如，部落格、相片庫、SharePoint 入口網站或 Wiki。 您可以使用範本 (解決方案的宣告式呈現) 定義包含支援解決方案所需所有資源的資源群組。 然後，以邏輯單元的方式來部署與管理該資源群組。
+本主題中，您會了解如何使用 Azure PowerShell 和 Azure Resource Manager 管理您的解決方案。 如果您不熟悉如何使用 Resource Manager，請參閱 [Resource Manager 概觀](resource-group-overview.md)。 本主題著重於管理工作。 您將：
 
-在本教學課程中，您將了解如何搭配使用 Azure PowerShell 與 Azure 資源管理員。 它會逐步引導您完成部署解決方案，以及使用該解決方案的程序。 您將使用 Azure PowerShell 和資源管理員範本來部署︰
+1. 建立資源群組
+2. 將資源加入資源群組
+3. 將標籤加入資源
+4. 根據名稱或標籤值查詢資源
+5. 套用和移除資源的鎖定
+6. 從資源群組建立 Resource Manager 範本
+7. 刪除資源群組
 
-* SQL Server - 主控資料庫
-* SQL Database - 儲存資料
-* 防火牆規則 - 允許 Web 應用程式連接到資料庫
-* App Service 計劃 - 定義 Web 應用程式的功能和成本
-* 網站 - 執行 Web 應用程式
-* Web 組態 - 將連接字串儲存到資料庫
-* 警示規則 - 用於監視效能和錯誤
-* App Insights - 用於自動調整設定
+## <a name="get-started-with-azure-powershell"></a>開始使用 Azure PowerShell
 
-若要取得 Azure PowerShell，請參閱[如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+如果您未安裝 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
-## <a name="get-help-for-cmdlets"></a>取得 Cmdlet 的說明
-若要取得您在本教學課程中任何所見 Cmdlet 的詳細說明，請使用 Get-Help Cmdlet。
+如果您之前已安裝 Azure PowerShell 但近期未更新，請考慮安裝最新版本。 您可以透過先前用來安裝的方法來更新版本。 例如，如果您使用 Web Platform Installer，請再次啟動它並尋找更新。
 
-    Get-Help <cmdlet-name> -Detailed
+若要檢查您 Azure 資源模組的版本，請使用下列 Cmdlet：
 
-例如，如需取得 Get-AzureRmResource Cmdlet 的說明，請輸入：
+```powershell
+Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
+```
 
-    Get-Help Get-AzureRmResource -Detailed
+本主題已針對版本 3.3.0 更新。 如果您的版本較舊，您的經驗可能與本主題中所顯示的步驟不符。 如需此版本中 Cmdlet 的相關文件，請參閱 [AzureRM.Resources 模組](/en-us/powershell/resourcemanager/azurerm.resources/v3.3.0/azurerm.resources)。
 
-若要取得資源模組中的 Cmdlet 清單及說明概要，請輸入：
-
-    Get-Command -Module AzureRM.Resources | Get-Help | Format-Table Name, Synopsis
-
-輸出類似如下摘錄：
-
-    Name                                   Synopsis
-    ----                                   --------
-    Find-AzureRmResource                   Searches for resources using the specified parameters.
-    Find-AzureRmResourceGroup              Searches for resource group using the specified parameters.
-    Get-AzureRmADGroup                     Filters active directory groups.
-    Get-AzureRmADGroupMember               Get a group members.
-    ...
-
-To get full help for a cmdlet, type a command with the format:
-
-    Get-Help <cmdlet-name> -Full
-
-## <a name="login-to-your-azure-account"></a>登入您的 Azure 帳戶
+## <a name="log-in-to-your-azure-account"></a>登入您的 Azure 帳戶
 在使用您的解決方案之前，您必須登入您的帳戶。
 
 若要登入您的 Azure 帳戶，請使用 **Add-AzureRmAccount** Cmdlet。
 
-    Add-AzureRmAccount
+```powershell
+Add-AzureRmAccount
+```
 
 cmdlet 會提示您 Azure 帳戶的登入認證。 登入之後，它會下載您的帳戶設定以供 Azure PowerShell 使用。
 
-帳戶設定已過期，因此您必須偶爾重新整理這些設定。 若要重新整理帳戶設定，請再次執行 **Add-AzureRmAccount** 。
+Cmdlet 會傳回您的帳戶和訂用帳戶的相關資訊供作業使用。
 
-> [!NOTE]
-> 資源管理員模組需要 Add-AzureRmAccount。 發佈設定檔案不符合需求。
->
->
+```powershell
+Environment           : AzureCloud
+Account               : example@contoso.com
+TenantId              : {guid}
+SubscriptionId        : {guid}
+SubscriptionName      : Example Subscription One
+CurrentStorageAccount :
 
-如果您有多個訂用帳戶，請使用 **Set-AzureRmContext** Cmdlet 提供您想要用於部署的訂用帳戶識別碼。
+```
 
-    Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
+如果您有多個訂用帳戶，可以切換成其他訂用帳戶。 首先，我們來看看您帳戶的所有訂用帳戶。
+
+```powershell
+Get-AzureRmSubscription
+```
+
+它會傳回啟用和停用的訂用帳戶。
+
+```powershell
+SubscriptionName : Example Subscription One
+SubscriptionId   : {guid}
+TenantId         : {guid}
+State            : Enabled
+
+SubscriptionName : Example Subscription Two
+SubscriptionId   : {guid}
+TenantId         : {guid}
+State            : Enabled
+
+SubscriptionName : Example Subscription Three
+SubscriptionId   : {guid}
+TenantId         : {guid}
+State            : Disabled
+```
+
+若要切換成其他訂用帳戶，請使用 **Set-AzureRmContext** Cmdlet 提供訂用帳戶名稱。
+
+```powershell
+Set-AzureRmContext -SubscriptionName "Example Subscription Two"
+```
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 將任何資源部署至訂用帳戶之前，您必須建立將包含該資源的資源群組。
 
-若要建立資源群組，請使用 **New-AzureRmResourceGroup** Cmdlet。
+若要建立資源群組，請使用 **New-AzureRmResourceGroup** Cmdlet。 此命令會使用 **Name** 參數來指定資源群組的名稱，並使用 **Location** 參數來指定其位置。
 
-此命令會使用 **Name** 參數來指定資源群組的名稱，並使用 **Location** 參數來指定其位置。 根據我們在上一節中的發現，我們將使用「美國西部」做為位置。
+```powershell
+New-AzureRmResourceGroup -Name TestRG1 -Location "South Central US"
+```
 
-    New-AzureRmResourceGroup -Name TestRG1 -Location "West US"
+輸出的格式如下：
 
-輸出將類似於：
+```powershell
+ResourceGroupName : TestRG1
+Location          : southcentralus
+ProvisioningState : Succeeded
+Tags              :
+ResourceId        : /subscriptions/{guid}/resourceGroups/TestRG1
+```
 
-    ResourceGroupName : TestRG1
-    Location          : westus
-    ProvisioningState : Succeeded
-    Tags              :
-    ResourceId        : /subscriptions/{guid}/resourceGroups/TestRG1
+如果您稍後需要擷取資源群組，請使用下列 Cmdlet：
 
-已成功建立您的資源群組。
+```powershell
+Get-AzureRmResourceGroup -ResourceGroupName TestRG1
+```
 
-## <a name="deploy-your-solution"></a>部署您的解決方案
-本主題不會顯示如何建立您的範本或討論範本的結構。 如需該資訊，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)和 [Resource Manager 範本逐步解說](resource-manager-template-walkthrough.md)。 您會從 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)部署預先定義的[佈建 Web 應用程式與 SQL Database](https://azure.microsoft.com/documentation/templates/201-web-app-sql-database/) 範本。
+若要取得訂用帳戶中所有資源群組，請不要指定名稱：
 
-您具有資源群組和範本，因此現在您已經準備好要將在您的範本中定義的基礎結構部署至資源群組。 使用 **New-AzureRmResourceGroupDeployment** Cmdlet 部署資源。 範本會指定許多預設值，我們將使用這些預設值，所以您不需要提供這些參數的值。 基本語法如下所示：
+```powershell
+Get-AzureRmResourceGroup
+```
 
-    New-AzureRmResourceGroupDeployment -ResourceGroupName TestRG1 -administratorLogin exampleadmin -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
+## <a name="add-resources-to-a-resource-group"></a>將資源加入資源群組
+若要將資源加入資源群組，您可以使用 **New-AzureRmResource** Cmdlet 或是與您建立之資源類型相關的 Cmdlet (像是**New-AzureRmStorageAccount**)。 您可能會發現使用與資源類型相關的 Cmdlet 會比較容易，因為它包含新資源所需的屬性參數。 若要使用 **New-AzureRmResource**，您必須知道要設定的所有屬性而不需經過提示。
 
-您指定資源群組和範本的位置。 如果您的範本是本機檔案，可以使用 **-TemplateFile** 參數並指定範本的路徑。 您可以將 **-Mode** 參數設為 **Incremental** 或 **Complete**。 資源管理員預設會在部署期間執行累加式更新；因此，當您想要使用 **Incremental** 時不需要設定 **-Mode**。
-若要了解這些部署模式的差異，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
+不過，透過 Cmdlet 新增資源可能會造成未來的混淆，因為新的資源不在 Resource Manager 範本中。 Microsoft 建議在 Resource Manager 範本中定義 Azure 解決方案的基礎結構。 範本可讓您可靠且重複地部署您的解決方案。 本主題不會說明如何將 Resource Manager 範本部署到您的訂用帳戶。 如需該資訊，請參閱[使用 Resource Manager 範本與 Azure PowerShell 來部署資源](resource-group-template-deploy.md)。 在本主題中，您會使用 PowerShell Cmdlet 建立儲存體帳戶，但之後您會從資源群組中產生範本。
 
-### <a name="dynamic-template-parameters"></a>動態範本參數
-如果您熟悉 PowerShell，您知道您可以輸入減號 (-) 然後按下 TAB 鍵，循環 Cmdlet 的可用參數。 相同的功能也適用於您在範本中定義的參數。 在您輸入範本名稱之後，Cmdlet 便會立即擷取範本、剖析範本，並將範本參數動態新增至命令。 這會讓指定範本參數值變得再容易不過了。
+下列 Cmdlet 會建立儲存體帳戶。 請不要使用範例所顯示的名稱，而是為儲存體帳戶提供唯一的名稱。 名稱的長度必須介於 3 到 24 個字元，而且只能使用數字和小寫字母。 如果使用範例所顯示的名稱，您會收到錯誤，因為該名稱已在使用中。
 
-當您輸入命令時，系統會提示您輸入遺漏的必要參數 **administratorLoginPassword**。 並在您輸入密碼時，此安全字串值便會被遮住。 如此，就不會有以純文字方式提供密碼的風險。
+```powershell
+New-AzureRmStorageAccount -ResourceGroupName TestRG1 -AccountName mystoragename -Type "Standard_LRS" -Location "South Central US"
+```
 
-    cmdlet New-AzureRmResourceGroupDeployment at command pipeline position 1
-    Supply values for the following parameters:
-    (Type !? for Help.)
-    administratorLoginPassword: ********
+如果您稍後需要擷取此資源，請使用下列 Cmdlet：
 
-如果範本中有一個參數的名稱符合範本部署命令的其中一個參數 (例如範本包含名為 **ResourceGroupName** 的參數，而且與 [New-AzureRmResourceGroupDeployment](https://docs.microsoft.com/powershell/resourcemanager/azurerm.resources/v3.2.0/new-azurermresourcegroupdeployment) Cmdlet 中的 **ResourceGroupName** 參數相同)，將會提示您在後置詞為 **FromTemplate** 的參數中提供一個值 (例如 **ResourceGroupNameFromTemplate**)。 一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+```powershell
+Get-AzureRmResource -ResourceName mystoragename -ResourceGroupName TestRG1
+```
 
-資源建立時，命令會執行並且傳回訊息。 最後，您會看到您的部署結果。
+## <a name="add-a-tag"></a>新增標記
 
-    DeploymentName    : azuredeploy
-    ResourceGroupName : TestRG1
-    ProvisioningState : Succeeded
-    Timestamp         : 4/11/2016 7:26:11 PM
-    Mode              : Incremental
-    TemplateLink      :
-                Uri            : https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
-                ContentVersion : 1.0.0.0
-    Parameters        :
-                Name             Type                       Value
-                ===============  =========================  ==========
-                skuName          String                     F1
-                skuCapacity      Int                        1
-                administratorLogin  String                  exampleadmin
-                administratorLoginPassword  SecureString
-                databaseName     String                     sampledb
-                collation        String                     SQL_Latin1_General_CP1_CI_AS
-                edition          String                     Basic
-                maxSizeBytes     String                     1073741824
-                requestedServiceObjectiveName  String       Basic
+標籤可讓您根據不同的屬性組織您的資源。 例如，您在不同的資源群組中可能有數個資源，屬於相同的部門。 您可以對這些資源套用部門標籤和值，將它們標示為屬於相同的類別目錄。 或者，您可以標記資源是在生產或測試環境中使用。 本主題中，您只會對一個資源套用標籤，但在您的環境中，很有可能會對所有資源套用標籤。
 
-    Outputs           :
-                Name             Type                       Value
-                ===============  =========================  ==========
-                siteUri          String                     websites5wdai7p2k2g4.azurewebsites.net
-                sqlSvrFqdn       String                     sqlservers5wdai7p2k2g4.database.windows.net
+下列 Cmdlet 對您的儲存體帳戶套用兩個標籤︰
 
-    DeploymentDebugLogLevel :
+```powershell
+Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName mystoragename -ResourceGroupName TestRG1 -ResourceType Microsoft.Storage/storageAccounts
+ ```
 
-只需幾個步驟，即可建立與部署複雜網站所需的資源。
+標籤會以一個物件的方式更新。 若要對已經包含標籤的資源新增標籤，請先擷取現有的標籤。 將新的標籤加入包含現有標籤的物件，然後對資源重新套用所有標籤。
 
-### <a name="log-debug-information"></a>記錄偵錯資訊
-在部署範本時，藉由指定執行 **New-AzureRmResourceGroupDeployment** 時的 -**DeploymentDebugLogLevel** 參數，即可記錄有關要求和回應的其他資訊。 此資訊可協助您疑難排解部署錯誤。 預設值為 **None** ，意指不會記錄任何要求或回應內容。 您可以指定從要求、回應或兩者記錄內容。  如需有關針對部署進行疑難排解和記錄偵錯資訊的詳細資訊，請參閱 [透過 Azure PowerShell 針對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-powershell.md)。 下列範例會記錄部署的要求內容和回應內容。
+```powershell
+$tags = (Get-AzureRmResource -ResourceName mystoragename -ResourceGroupName TestRG1).Tags
+$tags += @{Status="Approved"}
+Set-AzureRmResource -Tag $tags -ResourceName mystoragename -ResourceGroupName TestRG1 -ResourceType Microsoft.Storage/storageAccounts
+```
 
-    New-AzureRmResourceGroupDeployment -ResourceGroupName TestRG1 -DeploymentDebugLogLevel All -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-sql-database/azuredeploy.json
+## <a name="search-for-resources"></a>搜尋資源
 
-> [!NOTE]
-> 設定 DeploymentDebugLogLevel 參數時，請仔細考慮您在部署期間傳入的資訊類型。 透過記錄要求或回應的相關資訊，您可能會公開透過部署作業擷取的機密資料。
+使用 **Find-AzureRmResource** Cmdlet 擷取不同搜尋條件的資源。
 
-## <a name="get-information-about-your-resource-groups"></a>取得資源群組的相關資訊
-建立資源群組之後，您可以使用資源管理員模組中的 Cmdlet，來管理您的資源群組。
+* 若要依名稱取得資源，請提供 **ResourceNameContains** 參數︰
 
-* 若要取得您訂用帳戶中的資源群組，請使用 **Get-AzureRmResourceGroup** Cmdlet：
+  ```powershell
+  Find-AzureRmResource -ResourceNameContains mystoragename
+  ```
 
-        Get-AzureRmResourceGroup -ResourceGroupName TestRG1
+* 若要取得資源群組中的所有資源，請提供 **ResourceGroupNameContains** 參數︰
 
-    它會傳回下列資訊︰
+  ```powershell
+  Find-AzureRmResource -ResourceGroupNameContains TestRG1
+  ```
 
-        ResourceGroupName : TestRG1
-        Location          : westus
-        ProvisioningState : Succeeded
-        Tags              :
-        ResourceId        : /subscriptions/{guid}/resourceGroups/TestRG
+* 若要取得有某個標籤名稱和值的所有資源，請提供 **TagName** 和 **TagValue** 參數︰
 
-        ...
+  ```powershell
+  Find-AzureRmResource -TagName Dept -TagValue IT
+  ```
 
-    如果您未指定資源群組名稱，此 Cmdlet 會傳回您的訂用帳戶中的所有資源群組。
-* 若要取得您資源群組中的資源，請使用 **Find-AzureRmResource** Cmdlet 及其 **ResourceGroupNameContains** 參數。 在沒有使用參數的情況下，Find-AzureRmResource 可取得您 Azure 訂用帳戶中的所有資源。
+* 若要取得有特定資源類型的所有資源，請提供 **ResourceType** 參數︰
 
-        Find-AzureRmResource -ResourceGroupNameContains TestRG1
+  ```powershell
+  Find-AzureRmResource -ResourceType Microsoft.Storage/storageAccounts
+  ```
 
-     它會傳回格式如下的資源清單︰
+## <a name="lock-a-resource"></a>鎖定資源
 
-        Name              : sqlservers5wdai7p2k2g4
-        ResourceId        : /subscriptions/{guid}/resourceGroups/TestRG1/providers/Microsoft.Sql/servers/sqlservers5wdai7p2k2g4
-        ResourceName      : sqlservers5wdai7p2k2g4
-        ResourceType      : Microsoft.Sql/servers
-        Kind              : v2.0
-        ResourceGroupName : TestRG1
-        Location          : westus
-        SubscriptionId    : {guid}
-        Tags              : {System.Collections.Hashtable}
-        ...
-* 您可以使用標籤以邏輯方式組織您的訂用帳戶中的資源，並利用 **Find-AzureRmResource** 和 **Find-AzureRmResourceGroup** Cmdlet 擷取資源。
+當您必須確保重要資源不會意外被刪除或修改時，就可以對資源進行鎖定。 您可以指定 **CanNotDelete** 或 **ReadOnly**。
 
-        Find-AzureRmResource -TagName displayName -TagValue Website
+若要建立或刪除管理鎖定，您必須擁有 `Microsoft.Authorization/*` 或 `Microsoft.Authorization/locks/*` 動作的存取權。 在內建角色中，只有「擁有者」和「使用者存取管理員」被授與這些動作的存取權。
 
-        Name              : webSites5wdai7p2k2g4
-        ResourceId        : /subscriptions/{guid}/resourceGroups/TestRG1/providers/Microsoft.Web/sites/webSites5wdai7p2k2g4
-        ResourceName      : webSites5wdai7p2k2g4
-        ResourceType      : Microsoft.Web/sites
-        ResourceGroupName : TestRG1
-        Location          : westus
-        SubscriptionId    : {guid}
+若要套用鎖定，請使用下列 Cmdlet：
 
-      There is much more you can do with tags. For more information, see [Using tags to organize your Azure resources](resource-group-using-tags.md).
+```powershell
+New-AzureRmResourceLock -LockLevel CanNotDelete -LockName LockStorage -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
+```
 
-## <a name="add-to-a-resource-group"></a>新增至資源群組
-若要將資源新增至資源群組，可以使用 **New-AzureRmResource** Cmdlet。 不過，以這種方式新增資源可能會造成未來的混淆，因為新的資源不存在於您的範本。 如果您重新部署舊範本，則會部署不完整的解決方案。 如果您經常部署，您會發現將新的資源新增至您的範本並重新部署它更方便且更可靠。
+在上述範例中鎖定的資源要到鎖定移除之後才能刪除。 若要移除鎖定，請使用︰
 
-## <a name="move-a-resource"></a>移動資源
-您可以將現有的資源移動到新的資源群組。 如需範例，請參閱 [將資源移至新的資源群組或訂用帳戶](resource-group-move-resources.md)。
+```powershell
+Remove-AzureRmResourceLock -LockName LockStorage -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
+```
 
-## <a name="export-template"></a>匯出範本
+如需設定鎖定的詳細資訊，請參閱[使用 Azure Resource Manager 鎖定資源](resource-group-lock-resources.md)。
+
+## <a name="export-resource-manager-template"></a>匯出 Resource Manager 範本
 對於現有的資源群組 (透過 PowerShell 或 入口網站等其他方法部署)，您可以檢視資源群組的資源管理員範本。 匯出此範本有兩個優點︰
 
 1. 因為所有基礎結構都已定義於範本中，所以您可以輕鬆地自動進行解決方案的未來部署。
 2. 您可以查看代表您的解決方案的 JavaScript 物件標記法 (JSON)，藉此熟悉範本語法。
 
-透過 PowerShell，您可以產生代表資源群組目前狀態的範本，或擷取特定部署所用的範本。
-
-您已變更資源群組，而且需要擷取其目前狀態的 JSON 表示法時，匯出資源群組的範本很有用。 不過，產生的範本只包含最少的參數數目，但不包含任何變數。 範本中大部分的值為硬式編碼。 在部署所產生的範本之前，您可能想要將更多的值轉換成參數，以便針對不同的環境自訂部署。
-
-當您需要檢視用來部署資源的實際範本時，針對特定部署匯出範本很有用。 範本會包含針對原始部署定義的所有參數和變數。 不過，如果您組織中有人已變更非此範本中定義的資源群組，此範本並不會代表資源群組的目前狀態。
-
 > [!NOTE]
 > 匯出範本功能處於預覽狀態，並非所有的資源類型目前都支援匯出範本。 嘗試匯出範本時，您可能會看到一個錯誤，表示未匯出某些資源。 如有需要，您可以在下載範本之後，在範本中手動定義這些資源。
+>
+>
 
-
-### <a name="export-template-from-resource-group"></a>從資源群組匯出範本
 若要檢視資源群組的範本，請執行 **Export-AzureRmResourceGroup** Cmdlet。
 
-    Export-AzureRmResourceGroup -ResourceGroupName TestRG1 -Path c:\Azure\Templates\Downloads\TestRG1.json
+```powershell
+Export-AzureRmResourceGroup -ResourceGroupName TestRG1 -Path c:\Azure\Templates\Downloads\TestRG1.json
+```
 
-### <a name="download-template-from-deployment"></a>從部署下載範本
-若要下載特定部署所用的範本，請執行 **Save-AzureRmResourceGroupDeploymentTemplate** Cmdlet。
+有許多匯出 Resource Manager 範本的選項和案例。 如需詳細資訊，請參閱[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
 
-    Save-AzureRmResourceGroupDeploymentTemplate -DeploymentName azuredeploy -ResourceGroupName TestRG1 -Path c:\Azure\Templates\Downloads\azuredeploy.json
+## <a name="remove-resources-or-resource-group"></a>移除資源或資源群組
+您可以移除資源或資源群組。 當您移除資源群組時，也會移除該資源群組內的所有資源。
 
-## <a name="delete-resources-or-resource-group"></a>刪除資源或資源群組
 * 若要從資源群組中刪除資源，請使用 **Remove-AzureRmResource** Cmdlet。 此 Cmdlet 會刪除資源，但不會刪除資源群組。
 
-    此命令會將 TestSite 網站從 TestRG1 資源群組中移除。
+  ```powershell
+  Remove-AzureRmResource -ResourceName mystoragename -ResourceType Microsoft.Storage/storageAccounts -ResourceGroupName TestRG1
+  ```
 
-        Remove-AzureRmResource -Name TestSite -ResourceGroupName TestRG1 -ResourceType "Microsoft.Web/sites" -ApiVersion 2015-08-01
-* 若要刪除資源群組，請使用 **Remove-AzureRmResourceGroup** Cmdlet。 此 Cmdlet 會刪除資源群組及其資源。
+* 若要刪除資源群組及其所有資源，請使用 **Remove-AzureRmResourceGroup** Cmdlet。
 
-        Remove-AzureRmResourceGroup -Name TestRG1
+  ```powershell
+  Remove-AzureRmResourceGroup -Name TestRG1
+  ```
 
-    系統會要求您確認刪除。
+這兩個 Cmdlet 都會要求您確認您想要移除資源或資源群組。 如果作業成功刪除資源或資源群組，則會傳回 **True**。
 
-        Confirm
-        Are you sure you want to remove resource group 'TestRG1'
-        [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
+## <a name="run-resource-manager-scripts-with-azure-automation"></a>使用 Azure 自動化執行 Resource Manager 指令碼
 
-## <a name="deployment-script"></a>部署指令碼
-本主題中先前的部署範例僅顯示了將資源部署到 Azure 所需的個別 Cmdlet。 下列範例會顯示可建立資源群組以及部署資源的部署指令碼。
+本主題說明如何使用 Azure PowerShell 對資源執行基本作業。 對於更進階的管理案例，您通常要建立指令碼，並視需要或根據排程重複使用該指令碼。 [Azure 自動化](../automation/automation-intro.md)提供您一種方式自動化經常使用的指令碼，管理您的 Azure 解決方案。
 
-    <#
-      .SYNOPSIS
-      Deploys a template to Azure
+下列主題說明如何使用 Azure 自動化、Resource Manager 和 PowerShell 有效地執行管理工作︰
 
-      .DESCRIPTION
-      Deploys an Azure Resource Manager template
-
-      .PARAMETER subscriptionId
-      The subscription id where the template will be deployed.
-
-      .PARAMETER resourceGroupName
-      The resource group where the template will be deployed. Can be the name of an existing or a new resource group.
-
-      .PARAMETER resourceGroupLocation
-      Optional, a resource group location. If specified, will try to create a new resource group in this location. If not specified, assumes resource group is existing.
-
-      .PARAMETER deploymentName
-      The deployment name.
-
-      .PARAMETER templateFilePath
-      Optional, path to the template file. Defaults to template.json.
-
-      .PARAMETER parametersFilePath
-      Optional, path to the parameters file. Defaults to parameters.json. If file is not found, will prompt for parameter values based on template.
-    #>
-
-    param(
-      [Parameter(Mandatory=$True)]
-      [string]
-      $subscriptionId,
-
-      [Parameter(Mandatory=$True)]
-      [string]
-      $resourceGroupName,
-
-      [string]
-      $resourceGroupLocation,
-
-      [Parameter(Mandatory=$True)]
-      [string]
-      $deploymentName,
-
-      [string]
-      $templateFilePath = "template.json",
-
-      [string]
-      $parametersFilePath = "parameters.json"
-    )
-
-    #******************************************************************************
-    # Script body
-    # Execution begins here
-    #******************************************************************************
-    $ErrorActionPreference = "Stop"
-
-    # sign in
-    Write-Host "Logging in...";
-    Add-AzureRmAccount;
-
-    # select subscription
-    Write-Host "Selecting subscription '$subscriptionId'";
-    Set-AzureRmContext -SubscriptionID $subscriptionId;
-
-    #Create or check for existing resource group
-    $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
-    if(!$resourceGroup)
-    {
-      Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
-      if(!$resourceGroupLocation) {
-        $resourceGroupLocation = Read-Host "resourceGroupLocation";
-      }
-      Write-Host "Creating resource group '$resourceGroupName' in location '$resourceGroupLocation'";
-      New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
-    }
-    else{
-      Write-Host "Using existing resource group '$resourceGroupName'";
-    }
-
-    # Start the deployment
-    Write-Host "Starting deployment...";
-    if(Test-Path $parametersFilePath) {
-      New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
-    } else {
-      New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath;
-    }
+- 如需建立 Runbook 的相關資訊，請參閱[我的第一個 PowerShell Runbook](../automation/automation-first-runbook-textual-powershell.md)。
+- 如需使用指令碼資源庫的相關資訊，請參閱[Azure 自動化的 Runbook 和模組資源庫](../automation/automation-runbook-gallery.md)。
+- 如需啟動和停止虛擬機器的 Runbook，請參閱 [Azure 自動化案例：使用 JSON 格式化標籤來建立 Azure VM 啟動和關閉的排程](../automation/automation-scenario-start-stop-vm-wjson-tags.md)。
+- 如需於下班時間啟動和停止虛擬機器的 Runbook，請參閱[於下班時間自動化啟動/停止 VM 的解決方案](../automation/automation-solution-vm-management.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * 若要了解如何建立 Resource Manager 範本，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 * 若要了解部署範本的相關資訊，請參閱[使用 Azure Resource Manager 範本部署應用程式](resource-group-template-deploy.md)。
-* 如需部署專案的詳細範例，請參閱[透過可預測方式在 Azure 中部署微服務](../app-service-web/app-service-deploy-complex-application-predictably.md)。
-* 若要了解如何針對失敗的部署進行疑難排解，請參閱[Azure 中的資源群組部署疑難排解](resource-manager-troubleshoot-deployments-powershell.md)。
+* 您可以將現有的資源移動到新的資源群組。 如需範例，請參閱 [將資源移至新的資源群組或訂用帳戶](resource-group-move-resources.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

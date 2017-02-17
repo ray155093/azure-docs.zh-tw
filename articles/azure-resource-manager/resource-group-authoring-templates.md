@@ -1,6 +1,6 @@
 ---
-title: "撰寫 Azure Resource Manager 範本 | Microsoft Docs"
-description: "使用宣告式 JSON 語法建立 Azure 資源管理員範本，藉此將應用程式部署至 Azure。"
+title: "建立 Azure 部署的範本 | Microsoft Docs"
+description: "使用宣告式 JSON 語法描述 Azure Resource Manager 範本的結構和屬性。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/28/2016
+ms.date: 01/03/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 5f810a46db4deed9c31db4f7c072c48b0817ebc4
-ms.openlocfilehash: 091947c26bb0fa348f4de2f16c21c82affcefbd3
+ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
+ms.openlocfilehash: 52fe8e3ce0c9c94c918818784fd735b5a6486ed8
 
 
 ---
@@ -32,17 +32,19 @@ ms.openlocfilehash: 091947c26bb0fa348f4de2f16c21c82affcefbd3
 ## <a name="template-format"></a>範本格式
 在最簡單的結構中，範本包含下列元素：
 
-    {
-       "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-       "contentVersion": "",
-       "parameters": {  },
-       "variables": {  },
-       "resources": [  ],
-       "outputs": {  }
-    }
+```json
+{
+   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+   "contentVersion": "",
+   "parameters": {  },
+   "variables": {  },
+   "resources": [  ],
+   "outputs": {  }
+}
+```
 
 | 元素名稱 | 必要 | 說明 |
-|:---:|:---:|:--- |
+|:--- |:--- |:--- |
 | $schema |是 |JSON 結構描述檔案的位置，說明範本語言的版本。 使用上述範例所示的 URL。 |
 | contentVersion |是 |範本版本 (例如 1.0.0.0)。 您可以為此元素提供任何值。 使用範本部署資源時，這個值可用來確定使用的是正確的範本。 |
 | 參數 |否 |執行部署以自訂資源部署時所提供的值。 |
@@ -53,17 +55,19 @@ ms.openlocfilehash: 091947c26bb0fa348f4de2f16c21c82affcefbd3
 我們在本主題稍後更詳細探討範本的各個區段。
 
 ## <a name="expressions-and-functions"></a>運算式和函式
-範本的基本語法是 JSON。 不過，運算式和函式可延伸範本中提供的 JSON。 使用運算式，您可以建立非嚴格常值的值。 運算式以方括弧 [ 及 ] 括住，並會在部署範本後評估。 運算式可出現在 JSON 字串值中的任何一處，並一律傳回另一個 JSON 值。 如果您必須使用開頭為括號 [ 的常數字串，您必須使用兩個括號 [[。
+範本的基本語法是 JSON。 不過，運算式和函式可延伸範本中提供的 JSON。 使用運算式，您可以建立非嚴格常值的值。 運算式以方括弧 `[` 及 `]` 括住，並會在部署範本後評估。 運算式可出現在 JSON 字串值中的任何一處，並一律傳回另一個 JSON 值。 如果您必須使用開頭為括號 `[` 的常數字串，必須使用兩個括號 `[[`。
 
 一般而言，您可以將運算式搭配函數使用，以執行可設定部署的作業。 正如同在 JavaScript 中，函數呼叫的格式為 **functionName(arg1,arg2,arg3)**。 您可以使用點與 [index] 運算子來參考屬性。
 
 下列範例將示範如何在結構化值時使用數個函數：
 
-    "variables": {
-       "location": "[resourceGroup().location]",
-       "usernameAndPassword": "[concat('parameters('username'), ':', parameters('password'))]",
-       "authorizationHeader": "[concat('Basic ', base64(variables('usernameAndPassword')))]"
-    }
+```json
+"variables": {
+   "location": "[resourceGroup().location]",
+   "usernameAndPassword": "[concat(parameters('username'), ':', parameters('password'))]",
+   "authorizationHeader": "[concat('Basic ', base64(variables('usernameAndPassword')))]"
+}
+```
 
 如需範本函數的完整清單，請參閱 [Azure 資源管理員範本函數](resource-group-template-functions.md)。 
 
@@ -74,25 +78,27 @@ ms.openlocfilehash: 091947c26bb0fa348f4de2f16c21c82affcefbd3
 
 您會定義結構如下的參數：
 
-    "parameters": {
-       "<parameter-name>" : {
-         "type" : "<type-of-parameter-value>",
-         "defaultValue": "<default-value-of-parameter>",
-         "allowedValues": [ "<array-of-allowed-values>" ],
-         "minValue": <minimum-value-for-int>,
-         "maxValue": <maximum-value-for-int>,
-         "minLength": <minimum-length-for-string-or-array>,
-         "maxLength": <maximum-length-for-string-or-array-parameters>,
-         "metadata": {
-             "description": "<description-of-the parameter>" 
-         }
-       }
-    }
+```json
+"parameters": {
+   "<parameter-name>" : {
+     "type" : "<type-of-parameter-value>",
+     "defaultValue": "<default-value-of-parameter>",
+     "allowedValues": [ "<array-of-allowed-values>" ],
+     "minValue": <minimum-value-for-int>,
+     "maxValue": <maximum-value-for-int>,
+     "minLength": <minimum-length-for-string-or-array>,
+     "maxLength": <maximum-length-for-string-or-array-parameters>,
+     "metadata": {
+         "description": "<description-of-the parameter>" 
+     }
+   }
+}
+```
 
 | 元素名稱 | 必要 | 說明 |
-|:---:|:---:|:--- |
+|:--- |:--- |:--- |
 | parameterName |是 |參數名稱。 必須是有效的 JavaScript 識別碼。 |
-| 類型 |是 |參數值類型。 請參閱下列允許類型清單。 |
+| 類型 |是 |參數值類型。 請參閱此表格之後的允許類型清單。 |
 | defaultValue |否 |如果未提供參數值，則會使用參數的預設值。 |
 | allowedValues |否 |參數的允許值陣列，確保提供正確的值。 |
 | minValue |否 |int 類型參數的最小值，含此值。 |
@@ -113,48 +119,53 @@ ms.openlocfilehash: 091947c26bb0fa348f4de2f16c21c82affcefbd3
 
 若要將參數指定為選用，請提供 defaultValue (可為空字串)。 
 
-如果您指定的參數名稱與命令中的其中一個參數一樣，系統會提示您為結尾標記為 **FromTemplate** 的參數提供值。 例如，如果您在範本中併入名為 **ResourceGroupName** 的參數，其與 [New-AzureRmResourceGroupDeployment][deployment2cmdlet] Cmdlet 中的 **ResourceGroupName** 參數相同，則系統會提示您為 **ResourceGroupNameFromTemplate** 提供值。 一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+如果您在範本中指定的參數名稱和要部署範本的命令中的參數相符，提供的值就有可能模稜兩可。 Resource Manager 會在範本參數加上後置詞 **FromTemplate** 以避免混淆。 例如，如果您在範本中包含名為 **ResourceGroupName** 的參數，這會與 [New-AzureRmResourceGroupDeployment][deployment2cmdlet] Cmdlet 中的 **ResourceGroupName** 參數發生衝突。 部署期間，系統會提示您為 **ResourceGroupNameFromTemplate** 提供值。 一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
 
 > [!NOTE]
-> 所有密碼、金鑰和其他密碼都應該使用 **secureString** 類型。 部署資源後，無法讀取類型為 secureString 的範本參數。 
+> 所有密碼、金鑰和其他密碼都應該使用 **secureString** 類型。 如果您在 JSON 物件中傳遞敏感資料，請使用 **secureObject** 類型。 部署資源後，無法讀取類型為 secureString 或 secureObject 的範本參數。 
 > 
-> 
+> 例如，在部署歷程記錄中，下列項目會顯示字串和物件的值，但不會顯示 secureString 和 secureObject 的值。
+>
+> ![show deployment values](./media/resource-group-authoring-templates/show-parameters.png)  
+>
 
 下列範例示範如何定義參數：
 
-    "parameters": {
-      "siteName": {
-        "type": "string",
-        "defaultValue": "[concat('site', uniqueString(resourceGroup().id))]"
-      },
-      "hostingPlanName": {
-        "type": "string",
-        "defaultValue": "[concat(parameters('siteName'),'-plan')]"
-      },
-      "skuName": {
-        "type": "string",
-        "defaultValue": "F1",
-        "allowedValues": [
-          "F1",
-          "D1",
-          "B1",
-          "B2",
-          "B3",
-          "S1",
-          "S2",
-          "S3",
-          "P1",
-          "P2",
-          "P3",
-          "P4"
-        ]
-      },
-      "skuCapacity": {
-        "type": "int",
-        "defaultValue": 1,
-        "minValue": 1
-      }
-    }
+```json
+"parameters": {
+  "siteName": {
+    "type": "string",
+    "defaultValue": "[concat('site', uniqueString(resourceGroup().id))]"
+  },
+  "hostingPlanName": {
+    "type": "string",
+    "defaultValue": "[concat(parameters('siteName'),'-plan')]"
+  },
+  "skuName": {
+    "type": "string",
+    "defaultValue": "F1",
+    "allowedValues": [
+      "F1",
+      "D1",
+      "B1",
+      "B2",
+      "B3",
+      "S1",
+      "S2",
+      "S3",
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ]
+  },
+  "skuCapacity": {
+    "type": "int",
+    "defaultValue": 1,
+    "minValue": 1
+  }
+}
+```
 
 如需如何在部署期間輸入參數值的資訊，請參閱 [使用 Azure Resource Manager 範本部署資源](resource-group-template-deploy.md)。 
 
@@ -163,225 +174,253 @@ ms.openlocfilehash: 091947c26bb0fa348f4de2f16c21c82affcefbd3
 
 您可使用以下結構定義變數：
 
-    "variables": {
-       "<variable-name>": "<variable-value>",
-       "<variable-name>": { 
-           <variable-complex-type-value> 
-       }
-    }
+```json
+"variables": {
+   "<variable-name>": "<variable-value>",
+   "<variable-name>": { 
+       <variable-complex-type-value> 
+   }
+}
+```
 
 下列範例說明如何定義由兩個參數值建構的變數：
 
-     "variables": {
-       "connectionString": "[concat('Name=', parameters('username'), ';Password=', parameters('password'))]"
-    }
+```json
+"variables": {
+    "connectionString": "[concat('Name=', parameters('username'), ';Password=', parameters('password'))]"
+}
+```
 
 接下來的範例說明複雜 JSON 類型的變數，以及由其他變數建構的變數：
 
-    "parameters": {
-       "environmentName": {
-         "type": "string",
-         "allowedValues": [
-           "test",
-           "prod"
-         ]
-       }
-    },
-    "variables": {
-       "environmentSettings": {
-         "test": {
-           "instancesSize": "Small",
-           "instancesCount": 1
-         },
-         "prod": {
-           "instancesSize": "Large",
-           "instancesCount": 4
-         }
-       },
-       "currentEnvironmentSettings": "[variables('environmentSettings')[parameters('environmentName')]]",
-       "instancesSize": "[variables('currentEnvironmentSettings').instancesSize]",
-       "instancesCount": "[variables('currentEnvironmentSettings').instancesCount]"
-    }
+```json
+"parameters": {
+   "environmentName": {
+     "type": "string",
+     "allowedValues": [
+       "test",
+       "prod"
+     ]
+   }
+},
+"variables": {
+   "environmentSettings": {
+     "test": {
+       "instancesSize": "Small",
+       "instancesCount": 1
+     },
+     "prod": {
+       "instancesSize": "Large",
+       "instancesCount": 4
+     }
+   },
+   "currentEnvironmentSettings": "[variables('environmentSettings')[parameters('environmentName')]]",
+   "instancesSize": "[variables('currentEnvironmentSettings').instancesSize]",
+   "instancesCount": "[variables('currentEnvironmentSettings').instancesCount]"
+}
+```
 
 ## <a name="resources"></a>資源
 在資源區段中，您會定義要部署或更新的資源。 此區段會變得複雜，因為您必須了解您要部署的類型才能提供正確的值。 
 
 您會定義結構如下的資源：
 
-    "resources": [
-       {
-         "apiVersion": "<api-version-of-resource>",
-         "type": "<resource-provider-namespace/resource-type-name>",
-         "name": "<name-of-the-resource>",
-         "location": "<location-of-resource>",
-         "tags": "<name-value-pairs-for-resource-tagging>",
-         "comments": "<your-reference-notes>",
-         "dependsOn": [
-           "<array-of-related-resource-names>"
-         ],
-         "properties": "<settings-for-the-resource>",
-         "copy": {
-           "name": "<name-of-copy-loop>",
-           "count": "<number-of-iterations>"
-         }
-         "resources": [
-           "<array-of-child-resources>"
-         ]
-       }
-    ]
+```json
+"resources": [
+   {
+     "apiVersion": "<api-version-of-resource>",
+     "type": "<resource-provider-namespace/resource-type-name>",
+     "name": "<name-of-the-resource>",
+     "location": "<location-of-resource>",
+     "tags": "<name-value-pairs-for-resource-tagging>",
+     "comments": "<your-reference-notes>",
+     "dependsOn": [
+       "<array-of-related-resource-names>"
+     ],
+     "properties": "<settings-for-the-resource>",
+     "copy": {
+       "name": "<name-of-copy-loop>",
+       "count": "<number-of-iterations>"
+     },
+     "resources": [
+       "<array-of-child-resources>"
+     ]
+   }
+]
+```
 
 | 元素名稱 | 必要 | 說明 |
-|:---:|:---:|:--- |
+|:--- |:--- |:--- |
 | apiVersion |是 |要用來建立資源的 REST API 版本。 |
 | 類型 |是 |資源類型。 這個值是資源提供者的命名空間與資源類型的組合 (例如 **Microsoft.Storage/storageAccounts**)。 |
 | 名稱 |是 |資源名稱。 此名稱必須遵循在 RFC3986 中定義的 URI 元件限制。 此外，將資源名稱公開到外部合作對象的 Azure 服務會驗證該名稱，確定不是有人嘗試詐騙其他身分識別。 請參閱 [請檢查資源名稱](https://msdn.microsoft.com/library/azure/mt219035.aspx)。 |
 | location |視情況而異 |所提供資源的支援地理位置。 您可以選取任何可用的位置，但通常選擇接近您的使用者的位置很合理。 通常，將彼此互動的資源放在相同區域也合乎常理。 大部分的資源類型都需要有位置，但某些類型 (例如角色指派) 不需要位置。 |
 | tags |否 |與資源相關聯的標記。 |
 | 註解 |否 |您在範本中記錄資源的註解 |
-| dependsOn |否 |在部署這項資源之前必須部署的資源。 Resource Manager 會評估資源之間的相依性，並依正確的順序進行部署。 資源若不互相依賴，則會平行部署資源。 值可以是以逗號分隔的資源名稱或資源唯一識別碼清單。 只會列出此範本中已部署的資源。 此範本中未定義的資源必須已經存在。 如需詳細資訊，請參閱 [定義 Azure 資源管理員範本中的相依性](resource-group-define-dependencies.md)。 |
-| properties |否 |資源特定的組態設定。 屬性的值和您在 REST API 作業 (PUT 方法) 要求主體中提供來建立資源的值是一樣的。 如需資源結構描述文件或 REST API 的連結，請參閱 [資訊管理員提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。 |
+| dependsOn |否 |在部署這項資源之前必須部署的資源。 Resource Manager 會評估資源之間的相依性，並依正確的順序進行部署。 資源若不互相依賴，則會平行部署資源。 值可以是以逗號分隔的資源名稱或資源唯一識別碼清單。 只會列出此範本中已部署的資源。 此範本中未定義的資源必須已經存在。 避免加入不必要的相依性，因為可能會降低部署速度並產生循環相依性。 如需設定相依性的指引，請參閱[定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)。 |
+| 屬性 |否 |資源特定的組態設定。 屬性的值和您在 REST API 作業 (PUT 方法) 要求主體中提供來建立資源的值是一樣的。 如需資源結構描述文件或 REST API 的連結，請參閱 [Resource Manager 提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。 |
 | 複製 |否 |如果需要多個執行個體，要建立的資源數目。 如需詳細資訊，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。 |
-| 資源 |否 |與正在定義的資源相依的下層資源。 您只能提供父資源的結構描述所允許的資源類型。 子資源類型的完整名稱包含父資源的名稱，例如 **Microsoft.Web/sites/extensions**。 父資源的相依性不是隱含的；您必須明確定義該相依性。 |
+| 資源 |否 |與正在定義的資源相依的下層資源。 只提供父資源的結構描述允許的資源類型。 子資源的完整類型包含父資源類型，例如 **Microsoft.Web/sites/extensions**。 沒有隱含父資源的相依性。 您必須明確定義該相依性。 |
 
 了解要為 **apiVersion**、**type** 和 **location** 指定的值目前不明顯。 幸運的是，您可以透過 Azure PowerShell 或 Azure CLI 判斷這些值。
 
 若要使用 **PowerShell** 取得所有資源提供者，請使用：
 
-    Get-AzureRmResourceProvider -ListAvailable
+```powershell
+Get-AzureRmResourceProvider -ListAvailable
+```
 
 從傳回的清單，尋找您感興趣的資源提供者。 若要取得資源提供者 (例如儲存體) 的資源類型，請使用：
 
-    (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Storage).ResourceTypes
+```powershell
+(Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Storage).ResourceTypes
+```
 
 若要取得資源類型 (這類儲存體帳戶) 的 API 版本，請使用：
 
-    ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Storage).ResourceTypes | Where-Object ResourceTypeName -eq storageAccounts).ApiVersions
+```powershell
+((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Storage).ResourceTypes | Where-Object ResourceTypeName -eq storageAccounts).ApiVersions
+```
 
 若要取得資源類型支援的位置，請使用：
 
-    ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Storage).ResourceTypes | Where-Object ResourceTypeName -eq storageAccounts).Locations
+```powershell
+((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Storage).ResourceTypes | Where-Object ResourceTypeName -eq storageAccounts).Locations
+```
 
 若要使用 **Azure CLI** 取得所有資源提供者，請使用：
 
-    azure provider list
+```azurecli
+azure provider list
+```
 
 從傳回的清單，尋找您感興趣的資源提供者。 若要取得資源提供者 (例如儲存體) 的資源類型，請使用：
 
-    azure provider show Microsoft.Storage
+```azurecli
+azure provider show Microsoft.Storage
+```
 
 若要取得支援的位置和 API 版本，請使用：
 
-    azure provider show Microsoft.Storage --details --json
+```azurecli
+azure provider show Microsoft.Storage --details --json
+```
 
 若要進一步了解資源提供者，請參閱 [Resource Manager 提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 
 resources 區段包含要部署的資源陣列。 在每個資源內，您也可以定義子資源陣列。 因此，您的 resources 區段可能會有類似以下的結構：
 
-    "resources": [
-       {
-           "name": "resourceA",
-       },
-       {
-           "name": "resourceB",
-           "resources": [
-               {
-                   "name": "firstChildResourceB",
-               },
-               {   
-                   "name": "secondChildResourceB",
-               }
-           ]
-       },
-       {
-           "name": "resourceC",
-       }
-    ]
-
+```json
+"resources": [
+   {
+       "name": "resourceA",
+   },
+   {
+       "name": "resourceB",
+       "resources": [
+           {
+               "name": "firstChildResourceB",
+           },
+           {   
+               "name": "secondChildResourceB",
+           }
+       ]
+   },
+   {
+       "name": "resourceC",
+   }
+]
+```      
 
 下列範例顯示 **Microsoft.Web/serverfarms** 資源，以及含子系 **Extensions** 資源的 **Microsoft.Web/sites** 資源。 請注意，網站會標示為依存於伺服器陣列，因為伺服器陣列必須存在，才能部署網站。 也請注意， **Extensions** 資源是網站的子系。
 
+```json
+"resources": [
+  {
+    "apiVersion": "2015-08-01",
+    "name": "[parameters('hostingPlanName')]",
+    "type": "Microsoft.Web/serverfarms",
+    "location": "[resourceGroup().location]",
+    "tags": {
+      "displayName": "HostingPlan"
+    },
+    "sku": {
+      "name": "[parameters('skuName')]",
+      "capacity": "[parameters('skuCapacity')]"
+    },
+    "properties": {
+      "name": "[parameters('hostingPlanName')]",
+      "numberOfWorkers": 1
+    }
+  },
+  {
+    "apiVersion": "2015-08-01",
+    "type": "Microsoft.Web/sites",
+    "name": "[parameters('siteName')]",
+    "location": "[resourceGroup().location]",
+    "tags": {
+      "environment": "test",
+      "team": "Web"
+    },
+    "dependsOn": [
+      "[concat(parameters('hostingPlanName'))]"
+    ],
+    "properties": {
+      "name": "[parameters('siteName')]",
+      "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+    },
     "resources": [
       {
         "apiVersion": "2015-08-01",
-        "name": "[parameters('hostingPlanName')]",
-        "type": "Microsoft.Web/serverfarms",
-        "location": "[resourceGroup().location]",
-        "tags": {
-          "displayName": "HostingPlan"
-        },
-        "sku": {
-          "name": "[parameters('skuName')]",
-          "capacity": "[parameters('skuCapacity')]"
-        },
-        "properties": {
-          "name": "[parameters('hostingPlanName')]",
-          "numberOfWorkers": 1
-        }
-      },
-      {
-        "apiVersion": "2015-08-01",
-        "type": "Microsoft.Web/sites",
-        "name": "[parameters('siteName')]",
-        "location": "[resourceGroup().location]",
-        "tags": {
-          "environment": "test",
-          "team": "Web"
-        },
+        "type": "extensions",
+        "name": "MSDeploy",
         "dependsOn": [
-          "[concat(parameters('hostingPlanName'))]"
+          "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
         ],
         "properties": {
-          "name": "[parameters('siteName')]",
-          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
-        },
-        "resources": [
-          {
-            "apiVersion": "2015-08-01",
-            "type": "extensions",
-            "name": "MSDeploy",
-            "dependsOn": [
-              "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
-            ],
-            "properties": {
-              "packageUri": "https://auxmktplceprod.blob.core.windows.net/packages/StarterSite-modified.zip",
-              "dbType": "None",
-              "connectionString": "",
-              "setParameters": {
-                "Application Path": "[parameters('siteName')]"
-              }
-            }
+          "packageUri": "https://auxmktplceprod.blob.core.windows.net/packages/StarterSite-modified.zip",
+          "dbType": "None",
+          "connectionString": "",
+          "setParameters": {
+            "Application Path": "[parameters('siteName')]"
           }
-        ]
+        }
       }
     ]
-
+  }
+]
+```
 
 ## <a name="outputs"></a>輸出
 在輸出區段中，您可以指定從部署傳回的值。 例如，您可以傳回 URI 以存取所部署的資源。
 
 下列範例顯示輸出定義的結構：
 
-    "outputs": {
-       "<outputName>" : {
-         "type" : "<type-of-output-value>",
-         "value": "<output-value-expression>"
-       }
-    }
+```json
+"outputs": {
+   "<outputName>" : {
+     "type" : "<type-of-output-value>",
+     "value": "<output-value-expression>"
+   }
+}
+```
 
 | 元素名稱 | 必要 | 說明 |
-|:---:|:---:|:--- |
+|:--- |:--- |:--- |
 | outputName |是 |輸出值的名稱。 必須是有效的 JavaScript 識別碼。 |
 | 類型 |是 |輸出值的類型。 輸出值支援與範本輸入參數相同的類型。 |
 | value |是 |評估並傳回做為輸出值的範本語言運算式。 |
 
 下列範例顯示在輸出區段中傳回的值。
 
-    "outputs": {
-       "siteUri" : {
-         "type" : "string",
-         "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', parameters('siteName'))).hostNames[0])]"
-       }
-    }
+```json
+"outputs": {
+   "siteUri" : {
+     "type" : "string",
+     "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', parameters('siteName'))).hostNames[0])]"
+   }
+}
+```
 
 如需使用輸出的相關資訊，請參閱 [Azure Resource Manager 範本中的共用狀態](best-practices-resource-manager-state.md)。
 
@@ -395,6 +434,6 @@ resources 區段包含要部署的資源陣列。 在每個資源內，您也可
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

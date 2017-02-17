@@ -1,5 +1,5 @@
 ---
-title: "使用 Livy 從遠端提交 Spark 作業 | Microsoft Docs"
+title: "使用 Livy 從遠端將作業提交至 Azure HDInsight 上的 Spark | Microsoft Docs"
 description: "了解如何使用 Livy 和 HDInsight 叢集從遠端提交 Spark 作業。"
 services: hdinsight
 documentationcenter: 
@@ -16,12 +16,13 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 0866581d6feebc71ed82aa48f6e41a58068af900
-ms.openlocfilehash: 0b8c9f9395f034355c8f10574e750fcf40e870de
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 3c349aecc87e28275045828a84e0ea3f89400b9e
 
 
 ---
-# <a name="submit-spark-jobs-remotely-to-an-apache-spark-cluster-on-hdinsight-linux-using-livy"></a>使用 Livy 將 Spark 作業遠端提交至 HDInsight Linux 上的 Apache Spark 叢集
+# <a name="submit-spark-jobs-remotely-to-an-apache-spark-cluster-on-hdinsight-using-livy"></a>使用 Livy 將 Spark 作業遠端提交至 HDInsight 上的 Apache Spark 叢集
+
 Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面，可讓您從遠端將作業提交給 Spark 叢集。 如需詳細文件，請參閱 [Livy](https://github.com/cloudera/hue/tree/master/apps/spark/java#welcome-to-livy-the-rest-spark-server)。
 
 您可以使用 Livy 執行互動式 Spark 殼層，或提交要在 Spark 上執行的批次作業。 本文將討論如何使用 Livy 提交批次作業。 下列語法會使用 Curl 對 Livy 端點發出 REST 呼叫。
@@ -31,7 +32,7 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 您必須滿足以下條件：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="submit-a-batch-job"></a>提交批次工作
 在提交批次作業之前，您必須將應用程式 jar 上傳至與叢集相關聯的叢集儲存體。 您可以使用命令列公用程式 [**AzCopy**](../storage/storage-use-azcopy.md) 來執行此動作。 此外也有很多用戶端可用來上傳資料。 您可以在 [在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)中找到其詳細資訊。
@@ -193,6 +194,6 @@ Livy 可為在叢集上執行的 Spark 作業提供高可用性。 以下是一�
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

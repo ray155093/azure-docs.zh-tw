@@ -1,5 +1,5 @@
 ---
-title: "Azure Batch 的 Visual Studio 範本 | Microsoft Docs"
+title: "使用 Visual Studio 範本快速啟動 Batch 專案 - Azure | Microsoft Docs"
 description: "了解這些 Visual Studio 專案範本如何協助您在 Azure Batch 中實作和執行計算密集型工作負載"
 services: batch
 documentationcenter: .net
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 01/05/2017
+ms.date: 01/23/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 84e7e6ddf03172e646c55e7e3bf45a32feb15b06
+ms.sourcegitcommit: bf22cd3426e936c8d74377f59443e5e1a6834286
+ms.openlocfilehash: d56525e55816595f33b1fcd9ea96e41fe48b55a3
 
 
 ---
@@ -454,6 +454,6 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

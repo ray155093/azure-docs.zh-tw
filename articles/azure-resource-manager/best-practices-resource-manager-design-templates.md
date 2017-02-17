@@ -1,6 +1,6 @@
 ---
-title: "Resource Manager 範本的模式 | Microsoft Docs"
-description: "顯示 Azure 資源管理員範本的設計模式"
+title: "為複雜的解決方案設計 Azure 範本 | Microsoft Docs"
+description: "顯示為複雜的實例設計 Azure Resource Manager 範本的最佳做法"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 12/19/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: c38d7120de7d31f1079dd84bcc073eb2f9618775
-ms.openlocfilehash: c66032ef65a523528e2610f7a2e13595a47d9587
+ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
+ms.openlocfilehash: 2bd8f7ac127cd34b2d5129ecb49c56e2adf257b8
 
 
 ---
-# <a name="patterns-for-designing-azure-resource-manager-templates"></a>設計 Azure Resource Manager 範本的模式
+# <a name="design-patterns-for-azure-resource-manager-templates-when-deploying-complex-solutions"></a>部署複雜的解決方案時，設計 Azure Resource Manager 範本的模式
 在 Azure Resource Manager 範本上使用彈性的做法，您可以快速且一致地部署複雜的拓撲。 您可以輕鬆調整這些部署，以因應核心供應項目的發展或是適應極端案例或客戶的變化。
 
 本主題是較大份白皮書的一部分。 若要閱讀完整的文件，請下載[世界級 Azure Resource Manager 範本注意事項和證明可行的作法](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf)。
@@ -351,6 +351,6 @@ Redis 只會使用單一節點類型，因此您將建立名為 node-resources.j
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

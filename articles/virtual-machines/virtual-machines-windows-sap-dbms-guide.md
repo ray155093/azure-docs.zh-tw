@@ -1,5 +1,5 @@
 ---
-title: "Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南 | Microsoft Docs"
+title: "Azure VM 上的 SAP NetWeaver - DBMS 部署指南 | Microsoft Docs"
 description: "Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南"
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: 
@@ -17,8 +17,8 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 translationtype: Human Translation
-ms.sourcegitcommit: 7cbb85e3f6705770a3eab7cc5a0da5070f2a170e
-ms.openlocfilehash: 52506430dcaccca1a29878470abb86585593b5a7
+ms.sourcegitcommit: 73d08acd6cd57a9430826413d71a8c53b9646dd5
+ms.openlocfilehash: 61a1181ee06c989b4837442800110aee0c5f1abf
 
 
 ---
@@ -350,11 +350,11 @@ Azure 將針對每個 VHD 磁碟機強制執行 IOPS 配額。 這些配額與 A
 根據 Azure VM 系列而定，計算節點上的本機磁碟會顯示可以如下方式分類的不同效能：
 
 * A0-A7︰非常有限的效能。 無法使用 Windows 分頁檔以外的項目
-* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* D 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* G 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
+* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* D 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* G 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
 
 以上陳述均適用於通過 SAP 認證的 VM 類型。 具有絕佳 IOPS 和輸送量的 VM 系列符合某些 DBMS 功能的使用資格，例如，tempdb 或暫存資料表空間。
 
@@ -603,7 +603,7 @@ SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。 此
 
 此案例的優點是您不需要耗用 VHD 來儲存 SQL Server 備份。 因此，所配置的 VHD 較少，而且可以針對資料和記錄檔使用 VHD IOPS 的整個頻寬。 請注意，如下列文章的＜限制＞一節所記載，備份的大小上限是 1 TB︰<https://msdn.microsoft.com/library/dn435916.aspx#limitations>。 如果在使用「SQL Server 備份」壓縮的情況下，備份大小仍然會超過 1 TB，就需要使用本文件的 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2] 一章中所述的功能。
 
-描述從「Azure Blob 存放區」之備份還原資料庫的[相關文件](https://msdn.microsoft.com/library/dn449492.aspx)建議在備份大於 25 GB 的情況下，不要直接從 Azure BLOB 存放區還原。 本文中的建議只以效能考量為依據，並未將功能限制納入考量。 因此，隨著案例的不同，可能會發生不同的狀況。
+描述從「Azure Blob 存放區」之備份還原資料庫的[相關文件](https://msdn.microsoft.com/library/dn449492.aspx)建議在備份大於&25; GB 的情況下，不要直接從 Azure BLOB 存放區還原。 本文中的建議只以效能考量為依據，並未將功能限制納入考量。 因此，隨著案例的不同，可能會發生不同的狀況。
 
 如需有關如何設定和利用此備份類型的說明，請參閱 [這個](https://msdn.microsoft.com/library/dn466438.aspx) 教學課程
 
@@ -1340,6 +1340,6 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

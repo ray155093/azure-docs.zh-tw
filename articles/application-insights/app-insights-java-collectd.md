@@ -1,5 +1,5 @@
 ---
-title: "collectd：Azure Application Insights 中 Unix 上的 Java 效能統計資料 | Microsoft Docs"
+title: "監視 Linux - Azure 上的 Java Web 應用程式效能 | Microsoft Docs"
 description: "使用 Application Insights 的 CollectD 外掛程式擴充您的 Java 網站的應用程式效能監視功能。"
 services: application-insights
 documentationcenter: java
@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 08/24/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 8c5324742e42a1f82bb3031af4380fc5f0241d7f
-ms.openlocfilehash: 6a9edd88dd49dd8d8edd687f8808f7d49b774139
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: e085f90d3f34d32d2e065ede6674842000e29fb8
 
 
 ---
@@ -47,7 +47,7 @@ ms.openlocfilehash: 6a9edd88dd49dd8d8edd687f8808f7d49b774139
    * `/usr/share/collectd/java/applicationinsights-collectd-1.0.5.jar`
    * 使用來自您的資源的檢測金鑰，加入此程式碼片段：
 
-```
+```XML
 
      LoadPlugin "com.microsoft.applicationinsights.collectd.ApplicationInsightsWriter"
      <Plugin ApplicationInsightsWriter>
@@ -56,6 +56,8 @@ ms.openlocfilehash: 6a9edd88dd49dd8d8edd687f8808f7d49b774139
 ```
 
 以下是範例組態檔的一部分：
+
+```XML
 
     ...
     # collectd plugins
@@ -83,14 +85,15 @@ ms.openlocfilehash: 6a9edd88dd49dd8d8edd687f8808f7d49b774139
       # Other plugin configurations ...
       ...
     </Plugin>
-，通常您會使用 collectd。   ...
+    ...
+```
 
 設定其他 [collectd 外掛程式](https://collectd.org/wiki/index.php/Table_of_Plugins)，它可以從不同來源收集各種資料。
 
 根據其 [手冊](https://collectd.org/wiki/index.php/First_steps)重新啟動 collectd。
 
 ## <a name="view-the-data-in-application-insights"></a>在 Application Insights 中檢視資料
-在您的 Application Insights 資源中，開啟[計量瀏覽器並新增圖表][metrics]，從 [自訂] 類別選取您想要查看的度量。
+在您的 Application Insights 資源中，開啟[計量瀏覽器並加入圖表][metrics]，從 [自訂] 類別選取您想要查看的度量。
 
 ![](./media/app-insights-java-collectd/result.png)
 
@@ -125,18 +128,18 @@ ms.openlocfilehash: 6a9edd88dd49dd8d8edd687f8808f7d49b774139
 
 [api]: app-insights-api-custom-events-metrics.md
 [apiexceptions]: app-insights-api-custom-events-metrics.md#track-exception
-[可用性]: app-insights-monitor-web-app-availability.md
+[availability]: app-insights-monitor-web-app-availability.md
 [diagnostic]: app-insights-diagnostic-search.md
 [eclipse]: app-insights-java-eclipse.md
 [java]: app-insights-java-get-started.md
 [javalogs]: app-insights-java-trace-logs.md
 [metrics]: app-insights-metrics-explorer.md
-[使用量]: app-insights-web-track-usage.md
+[usage]: app-insights-web-track-usage.md
 
 
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

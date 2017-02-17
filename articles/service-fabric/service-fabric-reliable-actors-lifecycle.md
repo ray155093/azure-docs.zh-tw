@@ -1,5 +1,5 @@
 ---
-title: "Reliable Actors 生命週期 | Microsoft Docs"
+title: "動作項目型 Azure 微服務生命週期概觀 | Microsoft Docs"
 description: "說明 Service Fabric Reliable Actor 生命週期、記憶體回收，以及手動刪除動作項目與其狀態"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 08/30/2016
 ms.author: amanbha
 translationtype: Human Translation
-ms.sourcegitcommit: e39c130b1abb0b2c31511abdd51f02446d3898f6
-ms.openlocfilehash: 681c9aa628ea9364f73e6a41f0f71139d3b983d7
+ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
+ms.openlocfilehash: 22f906de37ad7ae2a48acf26be26f2af1e3bde7a
 
 
 ---
@@ -137,6 +137,6 @@ await myActorServiceProxy.DeleteActorAsync(actorToDelete, cancellationToken)
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

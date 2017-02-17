@@ -1,6 +1,6 @@
 ---
-title: "Azure 內容傳遞網路規則引擎條件運算式 | Microsoft Docs"
-description: "本主題說明規則引擎的比對條件和功能"
+title: "Azure CDN 規則引擎條件運算式 | Microsoft Docs"
+description: "Azure CDN 規則引擎比對條件和功能的參考文件。"
 services: cdn
 documentationcenter: 
 author: Lichard
@@ -12,16 +12,16 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/29/2016
+ms.date: 01/23/2017
 ms.author: rli
 translationtype: Human Translation
-ms.sourcegitcommit: 8a5d98bdc737fd9476b9db42100f58ed28619879
-ms.openlocfilehash: 92cb8832de934c19164bc26e688142538a8ba96c
+ms.sourcegitcommit: dccb945e170bd3e3f23283359db25e574a2d4296
+ms.openlocfilehash: 57e56c38e003cb83dcf44f455c4451d159db8a59
 
 
 ---
 
-# <a name="conditional-expressions-for-azure-content-delivery-network-cdn-rules-engine"></a>Azure 內容傳遞網路 (CDN) 規則引擎的條件運算式
+# <a name="azure-cdn-rules-engine-conditional-expressions"></a>Azure CDN 規則引擎條件運算式
 本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)的條件運算式列出詳細說明。
 
 規則的第一個部分是條件運算式。
@@ -46,6 +46,6 @@ ELSE IF| ELSE IF 運算式會指定其他條件，必須在此 ELSE IF 陳述式
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

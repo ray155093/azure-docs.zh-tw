@@ -1,5 +1,5 @@
 ---
-title: "車輛遙測分析方案腳本：深入探索方案 | Microsoft Docs"
+title: "深入探索預測車輛健全狀態與駕駛習慣 - Azure | Microsoft Docs"
 description: "使用 Cortana Intelligence 具備的強大功能，取得關於車輛健全狀態與駕駛習慣的即時預測情資。"
 services: machine-learning
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/09/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 94fba9a2aeaebc460a513928ab76ee63c0da7cc8
-ms.openlocfilehash: 12f16b8cd7d7a4101d423aff737498251d8a5d26
+ms.sourcegitcommit: f497366f8e66ba79b0e5978fde54d0b33048aa8d
+ms.openlocfilehash: 898b93ad95ab812b8b6a538048a86a8cc8951101
 
 
 ---
@@ -60,7 +60,7 @@ ms.openlocfilehash: 12f16b8cd7d7a4101d423aff737498251d8a5d26
 | Windshield_wiper_status |指出擋風玻璃雨刷是否啟動 |True 或 False |
 | ABS |指出 ABS 是否發揮作用 |True 或 False |
 | Timestamp |建立資料點時的時間戳記 |Date |
-| City |車輛的位置 |此方案中有 4 個城市：Bellevue、Redmond、Sammamish、Seattle |
+| City |車輛的位置 |此方案中有&4; 個城市：Bellevue、Redmond、Sammamish、Seattle |
 
 車型參考資料集包含 VIN 至車型的對應。 
 
@@ -709,6 +709,6 @@ Power BI 給此方案一個豐富的儀表板來提供即時資料和預測性�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

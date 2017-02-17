@@ -1,5 +1,5 @@
 ---
-title: "搭配 Django 的 Python Web 應用程式 | Microsoft Docs"
+title: "在 Azure VM 上建立 Django 應用程式 | Microsoft Docs"
 description: "本教學課程會教您如何藉由傳統部署模型使用執行 Windows Server 2012 R2 Datacenter 的虛擬機器，在 Azure 上裝載 Django 型網站。"
 services: virtual-machines-windows
 documentationcenter: python
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/04/2015
 ms.author: huvalo
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: bd3e269815628411ff51d0274eb8ba36f04e6fcb
+ms.sourcegitcommit: 52967959e60ac64f5af2ae044803aa7443c5830b
+ms.openlocfilehash: 3691a00dd9ce64b30435be98b3429627113128e3
 
 
 ---
@@ -176,6 +176,6 @@ ms.openlocfilehash: bd3e269815628411ff51d0274eb8ba36f04e6fcb
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

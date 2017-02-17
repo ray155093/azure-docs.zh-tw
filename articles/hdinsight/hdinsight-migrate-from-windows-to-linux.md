@@ -222,6 +222,6 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

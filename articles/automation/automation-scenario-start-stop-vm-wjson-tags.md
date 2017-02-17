@@ -1,5 +1,5 @@
 ---
-title: "使用 JSON 格式化標籤來建立 Azure VM 啟動和關閉的排程 | Microsoft Docs"
+title: "使用 JSON 格式化標籤來排程 Azure VM 狀態 | Microsoft Docs"
 description: "本文示範如何在標籤上使用 JSON 字串，自動排定 VM 的啟動和關閉。"
 services: automation
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 07/18/2016
+ms.date: 01/23/2017
 ms.author: magoedte;paulomarquesc
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 0d4098199cec948541eddba8fa88242606e2ec5c
+ms.sourcegitcommit: 00d348306f76194bb44e5252be5c956a48192768
+ms.openlocfilehash: 69f05a8c0fc88201fc365546870585de5a419f1d
 
 
 ---
@@ -244,6 +244,6 @@ Runbook 會循環執行已附加排程的虛擬機器，並檢查應採取什麼
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

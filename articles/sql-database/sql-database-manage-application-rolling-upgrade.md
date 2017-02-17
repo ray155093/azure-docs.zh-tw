@@ -1,5 +1,5 @@
 ---
-title: "雲端災害復原方案 - SQL Database 主動式異地複寫 | Microsoft Docs"
+title: "輪流應用程式升級 - Azure SQL Database | Microsoft Docs"
 description: "了解如何使用 Azure SQL Database 異地複寫以支援雲端應用程式的線上升級。"
 services: sql-database
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: NA
 ms.date: 07/16/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: d7f3d972755ec326c28fcdb95fd0600dd8ca1a91
+ms.sourcegitcommit: 66c37501b053cd9a8b4487c34e8914b75f3058ee
+ms.openlocfilehash: a99d3f9b8df5cfff98e76fe3931304221b2ca6f4
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: d7f3d972755ec326c28fcdb95fd0600dd8ca1a91
 > 
 > 
 
-了解如何使用 SQL Database 中的 [異地複寫](sql-database-geo-replication-overview.md) 來啟用雲端應用程式的輪流升級。 因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。 在本文中，我們將探討兩種不同的升級程序協調方法，並討論每個選項的優點和取捨。 基於本文的目的，我們將使用簡單的應用程式，它是由連線到獨立資料庫作為其資料層的網站所組成。 我們的目標是將應用程式的版本 1 升級到版本 2，而不對使用者體驗造成顯著的影響。 
+了解如何使用 SQL Database 中的 [異地複寫](sql-database-geo-replication-overview.md) 來啟用雲端應用程式的輪流升級。 因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。 在本文中，我們將探討兩種不同的升級程序協調方法，並討論每個選項的優點和取捨。 基於本文的目的，我們將使用簡單的應用程式，它是由連線到單一資料庫作為其資料層的網站所組成。 我們的目標是將應用程式的版本 1 升級到版本 2，而不對使用者體驗造成顯著的影響。 
 
 評估升級選項時，您應該考慮下列因素：
 
@@ -155,6 +155,6 @@ ms.openlocfilehash: d7f3d972755ec326c28fcdb95fd0600dd8ca1a91
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

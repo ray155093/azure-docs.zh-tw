@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/07/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: ab97962175f4498200db428736a1cbd124fac285
-ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
+ms.sourcegitcommit: bb66627b170c9010414b24266fdae608e67f5c61
+ms.openlocfilehash: a7e891d05ffe4cc2b4f68dce072a81499cc6de80
 
 
 ---
@@ -24,8 +24,8 @@ ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](cloud-services-how-to-configure-portal.md)
 > * [Azure 傳統入口網站](cloud-services-how-to-configure.md)
-> 
-> 
+>
+>
 
 您可以在 Azure 入口網站中設定雲端服務的最常用設定。 或者，如果您想要直接更新組態檔，可以下載要更新的服務組態檔、上傳更新過的檔案，然後將雲端服務更新為使用這些組態變更。 使用上述任一種方式，都會將組態更新推送到所有角色執行個體。
 
@@ -34,7 +34,7 @@ ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
 每個角色至少必須有兩個角色執行個體，Azure 才能確保服務在組態更新期間有 99.95% 的可用性。 如此才能讓一個虛擬機器在受到更新時，還有另一個虛擬機器可以處理用戶端要求。 如需詳細資訊，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
 
 ## <a name="change-a-cloud-service"></a>變更雲端服務
-開啟 [Azure 入口網站](https://portal.azure.com/)之後，瀏覽至您的雲端服務。 您可以從這裡管理許多層面。 
+開啟 [Azure 入口網站](https://portal.azure.com/)之後，瀏覽至您的雲端服務。 您可以從這裡管理許多層面。
 
 ![設定頁面](./media/cloud-services-how-to-configure-portal/cloud-service.png)
 
@@ -42,13 +42,20 @@ ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
 
 ![Azure 雲端服務設定刀鋒視窗](./media/cloud-services-how-to-configure-portal/cs-settings-blade.png)
 
-> [!NOTE]
-> 您無法使用 **Azure 入口網站**來變更用於雲端服務的作業系統，只能透過 [Azure 傳統入口網站](http://manage.windowsazure.com/)變更此設定。 [這裡](cloud-services-how-to-configure.md#update-a-cloud-service-configuration-file)有詳細說明。
-> 
-> 
+### <a name="manage-guest-os-version"></a>管理客體作業系統版本
 
-## <a name="monitoring"></a>監控
-您可以將警示新增至雲端服務。 按一下 [設定] > [警示規則] > [新增警示]。 
+根據預設，Azure 會將客體作業系統定期更新為您在服務組態 (.cscfg) 中指定的作業系統系列內最新支援的映像，例如 Windows Server 2016。
+
+如果您需要針對特定的作業系統版本，可以在 [組態] 刀鋒視窗中設定。
+
+![設定作業系統版本](./media/cloud-services-how-to-configure-portal/cs-settings-config-guestosversion.png)
+
+
+>[!IMPORTANT]
+> 選擇特定的作業系統版本會停用作業系統自動更新，並使修補變成您的責任。 您必須確定您的角色執行個體將接收更新，否則您可能會會應用程式暴露在安全性弱點之下。
+
+## <a name="monitoring"></a>監視
+您可以將警示新增至雲端服務。 按一下 [設定] > [警示規則] > [新增警示]。
 
 ![](./media/cloud-services-how-to-configure-portal/cs-alerts.png)
 
@@ -58,7 +65,7 @@ ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
 * 磁碟寫入
 * 網路輸入
 * 網路輸出
-* CPU 百分比 
+* CPU 百分比
 
 ![](./media/cloud-services-how-to-configure-portal/cs-alert-item.png)
 
@@ -70,7 +77,7 @@ ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
 您可以從這裡自訂與圖格一起使用的圖表，或新增警示規則。
 
 ## <a name="reboot-reimage-or-remote-desktop"></a>重新啟動、重新安裝映像或遠端桌面
-目前，您無法使用 **Azure 入口網站**來設定遠端桌面。 不過，您可以透過 [Azure 傳統入口網站](cloud-services-role-enable-remote-desktop.md)、[PowerShell](cloud-services-role-enable-remote-desktop-powershell.md) 或 [Visual Studio](../vs-azure-tools-remote-desktop-roles.md) 來設定它。 
+目前，您無法使用 **Azure 入口網站**來設定遠端桌面。 不過，您可以透過 [Azure 傳統入口網站](cloud-services-role-enable-remote-desktop.md)、[PowerShell](cloud-services-role-enable-remote-desktop-powershell.md) 或 [Visual Studio](../vs-azure-tools-remote-desktop-roles.md) 來設定它。
 
 首先，請按一下雲端服務執行個體。
 
@@ -84,17 +91,17 @@ ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
 您可能需要透過[服務組態 (cscfg)](cloud-services-model-and-package.md#cscfg) 檔案來重新設定雲端服務。 首先，您需要下載 .cscfg 檔案，進行修改，然後上傳。
 
 1. 按一下 [設定] 圖示或 [所有設定] 連結，以開啟 [設定] 刀鋒視窗。
-   
+
     ![設定頁面](./media/cloud-services-how-to-configure-portal/cloud-service.png)
 2. 按一下 [ **組態** ] 項目。
-   
+
     ![設定刀鋒視窗](./media/cloud-services-how-to-configure-portal/cs-settings-config.png)
 3. 按一下 [ **下載** ] 按鈕。
-   
+
     ![下載](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-download.png)
 4. 在您更新服務組態檔之後，請上傳和套用組態更新：
-   
-    ![上傳](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-upload.png) 
+
+    ![上傳](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-upload.png)
 5. 選取 .cscfg 檔案，然後按一下 [ **確定**]。
 
 ## <a name="next-steps"></a>後續步驟
@@ -105,7 +112,6 @@ ms.openlocfilehash: 6c07bae5b0e6d16925da661e423cb6d80d4f3f15
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

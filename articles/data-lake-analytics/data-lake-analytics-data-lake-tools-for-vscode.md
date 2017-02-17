@@ -3,7 +3,7 @@ title: "使用 Azure Data Lake Tools for Visual Studio Code | Microsoft Docs"
 description: "了解如何使用 Azure Data Lake Tools for Visual Studio Code 來建立、測試和執行 U-SQL 指令碼。 "
 services: data-lake-analytics
 documentationcenter: 
-author: mumian
+author: jejiang
 manager: jhubbard
 editor: cgronlun
 ms.assetid: dc9b21d8-c5f4-4f77-bcbc-eff458f48de2
@@ -12,18 +12,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/22/2016
-ms.author: jgao
+ms.date: 11/30/2016
+ms.author: jejiang
 translationtype: Human Translation
-ms.sourcegitcommit: fe5ef9bba31abdf9b29ad7c817a376407309f289
-ms.openlocfilehash: 59f2e4473aac85a8476055d2d955f576c099d787
+ms.sourcegitcommit: e79513590bb37570764f398e716182a11c74612a
+ms.openlocfilehash: 59cc35bc740625ed0582c1557fac9a04bf0cb8bc
 
 ---
 
 # <a name="use-the-azure-data-lake-tools-for-visual-studio-code"></a>使用 Azure Data Lake Tools for Visual Studio Code
 
-了解如何使用 Azure Data Lake Tools for Visual Studio Code (VSCode) 來建立、測試和執行 U-SQL 指令碼。
+了解如何使用 Azure Data Lake Tools for Visual Studio Code (VSCode) 來建立、測試和執行 U-SQL 指令碼。  下列影片中也涵蓋此資訊︰
 
+<a href="https://www.youtube.com/watch?v=J_gWuyFnaGA&feature=youtu.be"><img src="./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-video.png"></a>
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -187,7 +188,7 @@ U-SQL 指令碼編譯會由 Data Lake Analytics 服務在遠端完成。  當您
 2. 按下 **CTRL+SHIFT+P** 開啟命令選擇區。
 3. 輸入 **ADL: Generate Code Behind**。  程式碼後置檔案會建立在相同的資料夾中。 
 
-您可以也在指令碼檔案上按一下滑鼠右鍵，然後按一下 [ADL: Generate Code Behind] 來提交 U-SQL 作業。 
+您也可以在指令碼檔案上按一下滑鼠右鍵，然後按一下 [ADL: Generate Code Behind] 來產生程式碼後置檔案。 
 
 編譯並提交有程式碼後置的 U-SQL 指令碼與獨立的 U-SQL 指令碼相同。
 
@@ -197,9 +198,11 @@ U-SQL 指令碼編譯會由 Data Lake Analytics 服務在遠端完成。  當您
 
 ![Data Lake Tools for Visual Studio Code 程式碼後置](./media/data-lake-analytics-data-lake-tools-for-vscode/data-lake-tools-for-vscode-code-behind-call.png) 
 
-## <a name="register-assemblies"></a>註冊組件
+## <a name="use-assemblies"></a>使用組件
 
-您可以使用 Data Lake Tools 向 Data Lake Analytics 中繼存放區註冊自訂的程式碼組件。
+如需有關開發組件的資訊，請參閱[針對 Azure Data Lake Analytics 作業開發 U-SQL 組件](data-lake-analytics-u-sql-develop-assemblies.md)。
+
+您可以使用 Data Lake Tools 向 Data Lake Analytics 目錄註冊自訂的程式碼組件。
 
 **註冊組件**
 
@@ -209,9 +212,26 @@ U-SQL 指令碼編譯會由 Data Lake Analytics 服務在遠端完成。  當您
 4.  選取資料庫。
 5.  指定本機組件路徑。
 
-## <a name="access-data-lake-analytics-metadata"></a>存取 Data Lake Analytics 中繼資料
+下列 U-SQL 程式碼示範如何呼叫組件。 在範例中，組件名稱是 *test*。
 
-連線到 Azure 之後，可以使用下列步驟來存取 U-SQL 中繼資料︰
+    REFERENCE ASSEMBLY [test];
+    @a=EXTRACT Iid int,Starts DateTime,Region string,Query string,DwellTime int,Results string,ClickedUrls string 
+    FROM @"ruoxin/SearchLog.txt" USING Extractors.Tsv();
+    
+    @d=SELECT DISTINCT Region FROM @a;
+    
+    @d1=PROCESS @d
+        PRODUCE Region string,
+                Mkt string
+                USING new USQLApplication_codebehind.MyProcessor();
+    
+    OUTPUT @d1 TO @"ruoxin/SearchLogtest.txt" USING Outputters.Tsv();
+
+
+
+## <a name="access-data-lake-analytics-catalog"></a>存取 Data Lake Analytics 目錄
+
+連接至 Azure 之後，您可以使用下列步驟來存取 U-SQL 目錄︰
 
 **存取 U-SQL 中繼資料**
 
@@ -250,12 +270,13 @@ Data Lake Tools for VSCode 支援下列功能︰
 
 - 如需 Data Lake Analytics 的入門資訊，請參閱[教學課程︰開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md)。
 - 如需使用 Data Lake Tools for Visual Studio 的相關資訊，請參閱[教學課程：使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+- 如需有關開發組件的資訊，請參閱[針對 Azure Data Lake Analytics 作業開發 U-SQL 組件](data-lake-analytics-u-sql-develop-assemblies.md)。
 
 
 
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

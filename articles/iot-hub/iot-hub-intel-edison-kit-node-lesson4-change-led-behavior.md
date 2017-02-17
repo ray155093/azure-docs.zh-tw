@@ -1,5 +1,5 @@
 ---
-title: "從 Azure IoT 中樞使用訊息變更 LED 閃爍行為 | Microsoft Docs"
+title: "將 Intel Edison (節點) 連接到 Azure IoT - 第 4 課：讓 LED 閃爍 | Microsoft Docs"
 description: "自訂訊息以變更 LED 的開與關行為。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 1e892cee7b977c03b2539a6495b868cd8ab83748
-ms.openlocfilehash: 69cfb48789ef72d6594bd3db68170f83c9d171b0
+ms.sourcegitcommit: adf5b10721a28432e6b37ef73c6a7e7ec9f93cdd
+ms.openlocfilehash: 9a2c6dfe5d85a4da9714f9b8942cb2baf1a98466
 
 
 ---
@@ -110,6 +110,6 @@ gulp deploy && gulp run
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

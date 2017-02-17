@@ -1,5 +1,5 @@
 ---
-title: "Azure App Service 上的企業級 WordPress | Microsoft Docs"
+title: "Azure 上的企業級 WordPress | Microsoft Docs"
 description: "了解如何在 Azure App Service 上裝載企業級 WordPress 網站"
 services: app-service\web
 documentationcenter: 
@@ -15,12 +15,12 @@ ms.workload: web
 ms.date: 10/24/2016
 ms.author: sumuth
 translationtype: Human Translation
-ms.sourcegitcommit: 4f37777eb42051921087c90a57138cb4085dd7cd
-ms.openlocfilehash: 032d5cbc19113d966b20cec1ef332eb6fdca5708
+ms.sourcegitcommit: 541dd7bed5a4a9e306642b2c36dd7c9d45aec690
+ms.openlocfilehash: fcaff51b2897b1b0bce8b1c503adfd9425c9fbb4
 
 
 ---
-# <a name="enterprise-class-wordpress-on-azure-app-service"></a>Azure App Service 上的企業級 WordPress
+# <a name="enterprise-class-wordpress-on-azure"></a>Azure 上的企業級 WordPress
 Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提供可調整、安全又容易使用的環境。 Microsoft 本身經營企業級網站，例如 [Office][officeblog] 和 [Bing][bingblog] 部落格。 本文將說明如何使用 Microsoft Azure App Service 的 Web Apps 功能來建立與維護可處理大量訪客的企業級雲端型 WordPress 網站。
 
 ## <a name="architecture-and-planning"></a>架構與規劃
@@ -191,7 +191,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 * [在 Azure 上的 WordPress 秘訣 (英文)](http://www.johnpapa.net/azurecleardbmysql/)
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期的入門 Web 應用程式。 不需要信用卡，無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期的入門 Web 應用程式。 不需要信用卡，無需承諾。
 >
 >
 
@@ -246,6 +246,6 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,7 +1,6 @@
 ---
-
-title: "OMS 容器解決方案 | Microsoft Docs"
-description: "OMS 容器解決方案是 OMS Log Analytics 中的解決方案，可協助您在單一位置檢視容器詳細目錄、效能和記錄檔。 您可以在集中式位置檢視記錄檔以稽核、對容器進行疑難排解，並尋找壟斷主機資源的容器。"
+title: "監視 Azure DC/OS 叢集 - Operations Management | Microsoft Docs"
+description: "使用 Microsoft Operations Management Suite 監視 Azure Container Service DC/OS 叢集。"
 services: container-service
 documentationcenter: 
 author: keikhara
@@ -18,15 +17,15 @@ ms.workload: infrastructure
 ms.date: 11/17/2016
 ms.author: keikhara
 translationtype: Human Translation
-ms.sourcegitcommit: 10770c96900737e1894405a6aedaa7fe2a55fd3d
-ms.openlocfilehash: 9697a4c23b50b5ed2435a00a31fa2ee239c56c48
+ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
+ms.openlocfilehash: f10236ab89339234a32abf42c42083e233ab3a52
 
 
 ---
 
-# <a name="using-oms-to-monitor-container-applications-on-acs-dcos"></a>使用 OMS 可監視 ACS DC/OS 上的容器應用程式
+# <a name="monitor-an-azure-container-service-dcos-cluster-with-operations-management-suite"></a>使用 Operations Management Suite 監視 Azure Container Service DC/OS 叢集
 
-Microsoft Operations Management (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。 容器解決方案是 OMS Log Analytics 中的解決方案，可協助您在單一位置檢視容器詳細目錄、效能和記錄檔。 您可以在集中式位置檢視記錄檔以稽核、對容器進行疑難排解，並尋找壟斷及佔用過量主機資源的容器。
+Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。 容器解決方案是 OMS Log Analytics 中的解決方案，可協助您在單一位置檢視容器詳細目錄、效能和記錄檔。 您可以在集中式位置檢視記錄檔以稽核、對容器進行疑難排解，並尋找壟斷及佔用過量主機資源的容器。
 
 ![](media/container-service-monitoring-oms/image1.png)
 
@@ -120,6 +119,6 @@ $ dcos package uninstall msoms
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

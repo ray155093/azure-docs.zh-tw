@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/14/2016
+ms.date: 01/19/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: da356a95fc372c140e089a943e5fcb680f0c9fd7
-ms.openlocfilehash: 009fde75bff1b7746ad0ae247a3b895366f54b84
+ms.sourcegitcommit: 102be620e8812cc551aebafe7c8df4e4eac0ae90
+ms.openlocfilehash: 2ad3bd7b846693c637fd843383802651a619b128
 
 ---
 
@@ -39,15 +39,15 @@ ms.openlocfilehash: 009fde75bff1b7746ad0ae247a3b895366f54b84
 
 作業系統更新的挑戰是它們通常需要重新啟動機器，這會造成暫時失去可用性。 就其本身來說並不是問題，因為 Service Fabric 會自動將那些服務的流量重新導向至其他節點。 不過，如果作業系統更新不會跨叢集協調，則有可能讓多個節點同時停機。 這類同時重新啟動會造成服務，或至少造成某個特定分割 (如果為具狀態服務) 完全失去可用性。
 
-在日後，我們將支援協調整個更新網域的作業系統更新原則，確保在發生重新開機或其他非預期失敗的情況下，都能夠維持可用性。
+未來，我們將支援在所有更新網域中完全自動化且協調化的作業系統更新原則，確保在發生重新開機或其他非預期失敗的情況下，都能夠維持可用性。
 
-在過渡時期，唯一安全的選項是以一次一個節點的方式手動執行作業系統更新。
+在此過渡期間，我們已[提供一個指令碼](https://blogs.msdn.microsoft.com/azureservicefabric/2017/01/09/os-patching-for-vms-running-service-fabric/)，可供叢集系統管理員以安全的方式手動開始執行每個節點的修補作業。
 
 ### <a name="what-is-the-minimum-size-of-a-service-fabric-cluster-why-cant-it-be-smaller"></a>Service Fabric 叢集的大小下限為何？ 為什麼無法更小？
 
 執行生產工作負載的 Service Fabric 叢集所支援的大小下限為五個節點。 針對開發/測試案例，我們支援三個節點的叢集。
 
-之所以會有這些最低限制，是因為 Service Fabric 叢集會執行一組可設定狀態的系統服務，包括命名服務及容錯移轉管理員。 這些服務會根據強式一致性，追蹤哪些服務已經部署至叢集，以及它們目前的裝載位置。 該強式一致性接著會根據取得「仲裁」的能力，提供任何指定的更新給那些服務的狀態，其中仲裁代表指定之服務的特定多數複本 (N/2 + 1)。
+之所以會有這些最低限制，是因為 Service Fabric 叢集會執行一組可設定狀態的系統服務，包括命名服務及容錯移轉管理員。 這些服務會根據強式一致性，追蹤哪些服務已經部署至叢集，以及它們目前的裝載位置。 該強式一致性接著會根據取得「仲裁」的能力，提供任何指定的更新給那些服務的狀態，其中仲裁代表指定之服務的特定多數複本 (N/2 +&1;)。
 
 了解該背景後，讓我們來檢查一些可能的叢集組態：
 
@@ -103,9 +103,17 @@ ms.openlocfilehash: 009fde75bff1b7746ad0ae247a3b895366f54b84
 
 正如同可靠的服務，您可以在動作項目服務中儲存的資料量僅受限於叢集中所有節點可用的整體磁碟空間以及記憶體。 不過，個別的動作項目在用來封裝少量的狀態以及相關聯商務邏輯時最為有效。 一般而言，個別的動作項目應該會有以 kb 為單位所測量的狀態。
 
+## <a name="other-questions"></a>其他問題
+
 ### <a name="how-does-service-fabric-relate-to-containers"></a>Service Fabric 如何與容器相關聯？
 
 容器會提供簡單的方式來封裝服務及其相依性，使它們可以在所有環境中一致地執行，並且可在單一機器上以隔離的方式運作。 Service Fabric 提供部署與管理服務的方式，包括[已經包裝於容器中的服務](service-fabric-containers-overview.md)。
+
+### <a name="are-you-planning-to-open-source-service-fabric"></a>您打算開放 Service Fabric 原始碼嗎？
+
+我們打算在 GitHub 上開放 Reliable Services 和 Reliable Actors 架構的原始碼，並將接受社群參與這些專案。 請關注 [Service Fabric 部落格](https://blogs.msdn.microsoft.com/azureservicefabric/)，以便在公告更多詳細資料時進行了解。
+
+目前並無任何開放 Service Fabric 執行階段原始碼的計畫。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -113,6 +121,6 @@ ms.openlocfilehash: 009fde75bff1b7746ad0ae247a3b895366f54b84
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

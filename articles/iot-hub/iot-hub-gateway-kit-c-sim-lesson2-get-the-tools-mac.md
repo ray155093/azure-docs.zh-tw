@@ -1,5 +1,5 @@
 ---
-title: "準備好您的 Mac 電腦和 Azure IoT 中樞 | Microsoft Docs"
+title: "模擬裝置與 Azure IoT 閘道 - 第 2 課︰取得工具 (macOS) | Microsoft Docs"
 description: "在您的 Mac 電腦上安裝工具、建立 IoT 中樞，並在 IoT 中樞登錄您的裝置。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/07/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 65a25dd7a2f6a8d518217512f9e10fc9008ee728
-ms.openlocfilehash: f3bed8620c13372c3af50657bb54aa8dce115529
+ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
+ms.openlocfilehash: 8b79b166fb16d6454fde46996e715779bf19eac7
 
 
 ---
@@ -134,6 +134,6 @@ brew install python
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

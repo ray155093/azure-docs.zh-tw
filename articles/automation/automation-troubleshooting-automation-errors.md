@@ -1,5 +1,5 @@
 ---
-title: "針對 Azure 自動化進行疑難排解 | Microsoft Docs"
+title: "針對常見的 Azure 自動化問題進行疑難排解 | Microsoft Docs"
 description: "本文提供相關資訊，以便針對常見 Azure 自動化錯誤進行疑難排解和修正。"
 services: automation
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/12/2016
+ms.date: 01/24/2017
 ms.author: sngun; v-reagie
 translationtype: Human Translation
-ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
-ms.openlocfilehash: f5db3c68122185eabb2168d9be582c3e0b17f9ff
+ms.sourcegitcommit: a8ecffbc5f9c7e2408708d59459a0d39e59d6e1e
+ms.openlocfilehash: 3e4a4b431e26e58a0af1eee182fded51b6618fac
 
 
 ---
-# <a name="troubleshoot-azure-automation"></a>針對 Azure 自動化進行疑難排解 
+# <a name="troubleshooting-common-issues-in-azure-automation"></a>針對 Azure 自動化中的常見問題進行疑難排解 
 本文提供針對您在 Azure 自動化中可能遇到的一些常見錯誤進行疑難排解的協助，並且建議可能的解決方法。
 
 ## <a name="authentication-errors-when-working-with-azure-automation-runbooks"></a>使用 Azure 自動化 Runbook 時的驗證錯誤
@@ -175,6 +175,6 @@ ms.openlocfilehash: f5db3c68122185eabb2168d9be582c3e0b17f9ff
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

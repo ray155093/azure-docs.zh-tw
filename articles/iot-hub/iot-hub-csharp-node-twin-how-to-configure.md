@@ -1,6 +1,6 @@
 ---
-title: "使用裝置對應項屬性 | Microsoft Docs"
-description: "本教學課程說明如何使用裝置對應項屬性"
+title: "使用 Azure IoT 中樞裝置對應項屬性 (.NET/Node) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞裝置對應項來設定裝置。 您可以使用適用於 Node.js 的 Azure IoT 裝置 SDK，實作模擬裝置應用程式，也可以使用適用於 .NET 的 Azure IoT 服務 SDK，實作服務應用程式，以修改使用裝置對應項的裝置組態。"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -15,21 +15,21 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
 
 
 ---
-# <a name="tutorial-use-desired-properties-to-configure-devices"></a>教學課程︰使用所需屬性來設定裝置
+# <a name="use-desired-properties-to-configure-devices"></a>使用所需屬性來設定裝置
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-在本教學課程結束時，您將會有兩個 Node.js 主控台應用程式：
+在本教學課程結尾端，您將會有兩個 Node.js 主控台應用程式：
 
 * **SimulateDeviceConfiguration.js**，這是模擬裝置應用程式，可等候所需的組態更新，並報告模擬組態更新程序的狀態。
-* **SetDesiredConfigurationAndQuery**，這是應該從後端執行的 .NET 主控台應用程式，可在裝置上設定所需的設定，並查詢組態更新程序。
+* **SetDesiredConfigurationAndQuery.js**，這是 .NET 後端應用程式，可在裝置上設定所需的設定，並查詢組態更新程序。
 
 > [!NOTE]
-> [IoT 中樞 SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
+> [Azure IoT SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
 > 
 > 
 
@@ -48,7 +48,7 @@ ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
 ## <a name="create-the-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您將建立 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 連接到您的中樞、等候所需的組態更新，然後報告模擬組態更新程序上的更新。
 
-1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元下使用下列命令建立新的 package.json 檔案。 接受所有預設值：
+1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
    
     ```
     npm init
@@ -59,7 +59,7 @@ ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 3. 使用文字編輯器，在 **simulatedeviceconfiguration** 資料夾中建立新的 **SimulateDeviceConfiguration.js** 檔案。
-4. 將下列程式碼新增至 **SimulateDeviceConfiguration.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的連接字串，取代 **{device connection string}** 預留位置︰
+4. 將下列程式碼新增至 **SimulateDeviceConfiguration.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的裝置連接字串，取代 **{device connection string}** 預留位置︰
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -142,7 +142,7 @@ ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
             });
         };
    
-    **initConfigChange** 方法會依組態更新要求而在本機裝置對應項物件上更新報告屬性，並將狀態設為 **Pending**，然後更新服務上的裝置對應項。 成功更新裝置對應項之後，它會模擬一個長時間執行而在 **completeConfigChange** 執行過程中終止的處理序。 這個方法會更新本機報告屬性，將狀態設定為 **Success**，並移除 **pendingConfig** 物件。 然後更新服務上的裝置對應項。
+    **InitConfigChange** 方法會依組態更新要求，在本機裝置對應項物件上更新所報告的屬性，並將狀態設為 **Pending**，然後更新服務上的裝置對應項。 成功更新裝置對應項之後，它會模擬一個長時間執行而在 **completeConfigChange** 執行過程中終止的處理序。 這個方法會更新本機報告屬性，將狀態設定為 **Success**，並移除 **pendingConfig** 物件。 然後更新服務上的裝置對應項。
    
     請注意，為了節省頻寬，更新所報告的屬性時只會指定要修改的屬性 (在上述程式碼中名為 **patch**)，而不是取代整份文件。
    
@@ -162,16 +162,16 @@ ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
 1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **SetDesiredConfigurationAndQuery**。
    
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **SetDesiredConfigurationAndQuery** 專案，然後按一下 [管理 Nuget 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Microsoft Azure IoT 服務 SDK][lnk-nuget-service-sdk] Nuget 套件與其相依項目，並加入對它的參考。
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 **SetDesiredConfigurationAndQuery** 專案，然後按一下 [管理 NuGet 套件]。
+3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
    
-    ![Nuget 套件管理員視窗][img-servicenuget]
+    ![NuGet 封裝管理員視窗][img-servicenuget]
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
         using System.Threading;
         using Newtonsoft.Json;
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串。
+5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
@@ -230,7 +230,7 @@ ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
    > 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您將會從後端將所需的組態設為「所需屬性」，還會撰寫裝置應用程式來偵測該變更並模擬多步驟更新程序，以透過報告屬性來回報其狀態。
+在本教學課程中，您將會從解決方案後端將所需的組態設為「所需屬性」，還會撰寫裝置應用程式來偵測該變更並模擬多步驟更新程序，以透過報告屬性來回報其狀態。
 
 使用下列資源來了解如何：
 
@@ -254,7 +254,7 @@ ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
 [lnk-dm-overview]: iot-hub-device-management-overview.md
 [lnk-twin-tutorial]: iot-hub-node-node-twin-getstarted.md
 [lnk-schedule-jobs]: iot-hub-node-node-schedule-jobs.md
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/blob/master/doc/node-devbox-setup.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 [lnk-device-management]: iot-hub-node-node-device-management-get-started.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
@@ -267,6 +267,6 @@ ms.openlocfilehash: 34e59b5ef344b48b57418d5cdb6e84b06ee07c43
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

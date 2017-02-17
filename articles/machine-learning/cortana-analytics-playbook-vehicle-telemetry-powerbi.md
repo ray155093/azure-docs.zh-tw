@@ -1,5 +1,5 @@
 ---
-title: "車輛遙測分析方案範本 Power BI 儀表板安裝指示 | Microsoft Docs"
+title: "適用於車輛健全狀態與駕駛習慣的 Power BI 儀表板 - Azure | Microsoft Docs"
 description: "使用 Cortana Intelligence 具備的強大功能，取得關於車輛健全狀態與駕駛習慣的即時預測情資。"
 services: machine-learning
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 66a2375d7560b41f0fddef3c8c32e41917eb1649
-ms.openlocfilehash: 925222e5e11c96b1b8f851dbc3679d0f6b25b99c
+ms.sourcegitcommit: f497366f8e66ba79b0e5978fde54d0b33048aa8d
+ms.openlocfilehash: 24d440049b5e889c6d4417cc16787edd42bc5848
 
 
 ---
@@ -423,6 +423,6 @@ Power BI 中會產生新的資料集。 按一下 **ConnectedCarsRealtime** 資�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

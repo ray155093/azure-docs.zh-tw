@@ -486,6 +486,6 @@ Azure 搜尋服務 .NET SDK 中的每項作業都針對同步和非同步呼叫�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

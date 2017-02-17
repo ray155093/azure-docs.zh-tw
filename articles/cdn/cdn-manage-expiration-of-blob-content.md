@@ -1,9 +1,9 @@
 ---
-title: "在 Azure CDN 中管理 Azure 儲存體 Blob 內容的到期 | Microsoft Docs"
+title: "在 Azure CDN 中管理 Azure 儲存體 Blob 的到期 | Microsoft Docs"
 description: "深入了解選項，以控制 Azure CDN 快取中的 Blob 存留時間。"
 services: cdn
 documentationcenter: 
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: ad4801e9-d09a-49bf-b35c-efdc4e6034e8
@@ -12,15 +12,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 09/15/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
-ms.openlocfilehash: 751db56ee29ebc635d4d2a27dd18f99f7efb5a34
+ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
+ms.openlocfilehash: 26085360a1f2a2ffda3789c654bc7212f2e652f3
 
 
 ---
-# <a name="manage-expiration-of-azure-storage-blob-content-in-azure-cdn"></a>在 Azure CDN 中管理 Azure 儲存體 Blob 內容的到期
+# <a name="manage-expiration-of-azure-storage-blobs-in-azure-cdn"></a>在 Azure CDN 中管理 Azure 儲存體 Blob 的到期
 > [!div class="op_single_selector"]
 > * [Azure Web Apps/雲端服務、ASP.NET 或 IIS](cdn-manage-expiration-of-cloud-service-content.md)
 > * [Azure 儲存體 Blob 服務](cdn-manage-expiration-of-blob-content.md)
@@ -30,7 +30,7 @@ ms.openlocfilehash: 751db56ee29ebc635d4d2a27dd18f99f7efb5a34
 [Azure 儲存體](../storage/storage-introduction.md)中的 [Blob 服務](../storage/storage-introduction.md#blob-storage)是數個已與 Azure CDN 整合之 Azure 型來源的其中一個。  任何可公開存取的 Blob 內容均可在 Azure CDN 中加以快取，直到其存留時間 (TTL) 結束。  TTL 是由來自 Azure 儲存體之 HTTP 回應中的 [ 標頭](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) 所決定。
 
 > [!TIP]
-> 您可以選擇不對 Blob 設定任何 TTL。  在此情況下，Azure CDN 會自動套用預設為期 7 天的 TTL。
+> 您可以選擇不對 Blob 設定任何 TTL。  在此情況下，Azure CDN 會自動套用預設為期&7; 天的 TTL。
 > 
 > 如需 Azure CDN 如何運作以加快對 Blob 和其他檔案存取速度的詳細資訊，請參閱 [Azure CDN 概觀](cdn-overview.md)。
 > 
@@ -122,6 +122,6 @@ class Program
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

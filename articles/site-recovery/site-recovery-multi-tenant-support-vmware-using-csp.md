@@ -29,9 +29,9 @@ Azure Site Recovery 支援租用戶訂用帳戶的多租用戶環境。 透過 C
 ## <a name="multi-tenant-environments"></a>多租用戶環境
 多租用戶模型主要有三種：
 
-1.  **共用主機服務提供者 (HSP)** – 合作夥伴擁有實體基礎結構，而使用者則共用資源 (如 vCenter、資料中心、實體儲存空間等) 以將多租用戶的 VM 裝載在同一個基礎結構。 DR 管理可由合作夥伴使用受管理的服務來提供，或是由租用戶擁有，如同自助 DR 解決方案一樣。
-2.  **專用主機服務提供者** – 合作夥伴擁有實體基礎結構，但使用專用資源 (如多個 vCenters、實體資料存放區等) 在個別的基礎結構上裝載每個租用戶的 VM。 DR管理同樣可由合作夥伴管理，或是由租用戶自助。
-3.  **受管理的服務提供者 (MSP)** – 客戶擁有裝載 VM 的實體基礎結構，而合作夥伴則提供 DR 支援及管理。
+1.    **共用主機服務提供者 (HSP)** – 合作夥伴擁有實體基礎結構，而使用者則共用資源 (如 vCenter、資料中心、實體儲存空間等) 以將多租用戶的 VM 裝載在同一個基礎結構。 DR 管理可由合作夥伴使用受管理的服務來提供，或是由租用戶擁有，如同自助 DR 解決方案一樣。
+2.    **專用主機服務提供者** – 合作夥伴擁有實體基礎結構，但使用專用資源 (如多個 vCenters、實體資料存放區等) 在個別的基礎結構上裝載每個租用戶的 VM。 DR管理同樣可由合作夥伴管理，或是由租用戶自助。
+3.    **受管理的服務提供者 (MSP)** – 客戶擁有裝載 VM 的實體基礎結構，而合作夥伴則提供 DR 支援及管理。
 
 ## <a name="shared-hosting-multi-tenant-guidance"></a>共用主機多租用戶指南
 本指南詳述共用主機案例。 另外兩個案例是共用主機案例的子集，且使用相同的原則。 共用主機指南最後面會詳述其中的差異。
@@ -63,21 +63,21 @@ Azure Site Recovery 支援租用戶訂用帳戶的多租用戶環境。 透過 C
 
 vCenter 帳戶存取程序如下：
 
-1.  藉由複製預先定義的「唯讀」角色來建立新的角色，並以易記名稱 (例如此範例中使用的 Azure_Site_Recovery) 命名。
-2.  將下列權限指派給這個角色：
- *  資料存放區 -> 配置空間、瀏覽資料存放區、底層檔案作業、移除檔案、更新虛擬機器檔案
- *  網路 -> 網路指派
- *  資源 -> 指派 VM 至資源集區、移轉已關閉電源的 VM、移轉已開啟電源的 VM
- *  工作 -> 建立工作、更新工作
- *  虛擬機器 -> 組態
- *  虛擬機器 -> 互動 -> 回答問題、裝置連線、設定 CD 媒體、設定磁碟片媒體、電源關閉、電源開啟、VMware 工具安裝
- *  虛擬機器 -> 清查 -> 建立、註冊、取消註冊
- *  虛擬機器 -> 佈建 -> 允許虛擬機器下載、允許虛擬機器檔案上傳
- *  虛擬機器 -> 快照 -> 移除快照。
+1.    藉由複製預先定義的「唯讀」角色來建立新的角色，並以易記名稱 (例如此範例中使用的 Azure_Site_Recovery) 命名。
+2.    將下列權限指派給這個角色：
+ *    資料存放區 -> 配置空間、瀏覽資料存放區、底層檔案作業、移除檔案、更新虛擬機器檔案
+ *    網路 -> 網路指派
+ *    資源 -> 指派 VM 至資源集區、移轉已關閉電源的 VM、移轉已開啟電源的 VM
+ *    工作 -> 建立工作、更新工作
+ *    虛擬機器 -> 組態
+ *    虛擬機器 -> 互動 -> 回答問題、裝置連線、設定 CD 媒體、設定磁碟片媒體、電源關閉、電源開啟、VMware 工具安裝
+ *    虛擬機器 -> 清查 -> 建立、註冊、取消註冊
+ *    虛擬機器 -> 佈建 -> 允許虛擬機器下載、允許虛擬機器檔案上傳
+ *    虛擬機器 -> 快照 -> 移除快照。
 
     ![role-permissions](./media/site-recovery-multi-tenant-support-vmware-using-csp/edit-role-permissions.png)
 
-3.  針對不同物件，指派存取層級給 vCenter 帳戶 (在 CS 中使用)：
+3.    針對不同物件，指派存取層級給 vCenter 帳戶 (在 CS 中使用)：
 
 | **Object** | **角色** | **備註** |
 | --- | --- | --- |
@@ -127,52 +127,52 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 
 ### <a name="step-1-create-tenant-account"></a>步驟 1︰建立租用戶帳戶
 
-1.  透過[合作夥伴中心](https://partnercenter.microsoft.com/)登入您的 CSP 帳戶。 在左側的 [儀表板] 功能表上，選取 [客戶] 選項。
+1.    透過[合作夥伴中心](https://partnercenter.microsoft.com/)登入您的 CSP 帳戶。 在左側的 [儀表板] 功能表上，選取 [客戶] 選項。
 
     ![csp-dashboard](./media/site-recovery-multi-tenant-support-vmware-using-csp/csp-dashboard-display.png)
 
-2.  在開啟的頁面上，按一下 [新增客戶] 按鈕。
+2.    在開啟的頁面上，按一下 [新增客戶] 按鈕。
 
     ![add-customer](./media/site-recovery-multi-tenant-support-vmware-using-csp/add-new-customer.png)
 
-3.  在 [新客戶] 頁面上，填入租用戶的所有帳戶資訊詳細資訊，然後按一下 [下一步: 訂閱]。
+3.    在 [新客戶] 頁面上，填入租用戶的所有帳戶資訊詳細資訊，然後按一下 [下一步: 訂閱]。
 
     ![fill-details](./media/site-recovery-multi-tenant-support-vmware-using-csp/customer-add-filled.png)
 
-4.  在選取訂閱的頁面上，向下捲動以新增 [Microsoft Azure] 訂用帳戶。 現在可以新增其他訂用帳戶，或在未來任何時候新增。
+4.    在選取訂閱的頁面上，向下捲動以新增 [Microsoft Azure] 訂用帳戶。 現在可以新增其他訂用帳戶，或在未來任何時候新增。
 
     ![add-subscription](./media/site-recovery-multi-tenant-support-vmware-using-csp/azure-subscription-selection.png)
 
-5.  繼續並在下一頁檢閱為租用戶輸入的所有詳細資料，然後按一下 [送出] 按鈕。
+5.    繼續並在下一頁檢閱為租用戶輸入的所有詳細資料，然後按一下 [送出] 按鈕。
 
     ![customer-summary](./media/site-recovery-multi-tenant-support-vmware-using-csp/customer-summary-page.png)
 
-6.  建立客戶之後，您會看到確認頁面，其中包含預設帳戶的詳細資料，以及該訂用帳戶的密碼。 儲存資訊並在稍後視需要透過 Azure 入口網站登入來變更密碼。 您可以和租用戶直接共用這項資訊，或者也可以視需要建立個別帳戶並共用。
+6.    建立客戶之後，您會看到確認頁面，其中包含預設帳戶的詳細資料，以及該訂用帳戶的密碼。 儲存資訊並在稍後視需要透過 Azure 入口網站登入來變更密碼。 您可以和租用戶直接共用這項資訊，或者也可以視需要建立個別帳戶並共用。
 
 ### <a name="step-2-access-tenant-account"></a>步驟 2︰存取租用戶帳戶
 
-1.  您可以透過儀表板從 [客戶] 頁面存取租用戶的訂用帳戶，如步驟 1 中所述。 在此頁面瀏覽，然後按一下剛才建立的租用戶帳戶的名稱。
-2.  這會開啟租用戶帳戶的 [訂用帳戶] 區段，您可以在此監視該帳戶現有的訂用帳戶，並且視需要新增更多訂用帳戶。 若要管理租用戶的 DR 作業，請選取頁面右側的 [所有資源] (Azure 入口網站) 選項。
+1.    您可以透過儀表板從 [客戶] 頁面存取租用戶的訂用帳戶，如步驟 1 中所述。 在此頁面瀏覽，然後按一下剛才建立的租用戶帳戶的名稱。
+2.    這會開啟租用戶帳戶的 [訂用帳戶] 區段，您可以在此監視該帳戶現有的訂用帳戶，並且視需要新增更多訂用帳戶。 若要管理租用戶的 DR 作業，請選取頁面右側的 [所有資源] (Azure 入口網站) 選項。
 
     ![all-resources](./media/site-recovery-multi-tenant-support-vmware-using-csp/all-resources-select.png)
 
-3.  按一下 [所有資源] 按鈕會授與您對該租用戶之 Azure 訂用帳戶的存取權，您可以檢查 Azure 入口網站右上角顯示的 AAD 來驗證相同事項。
+3.    按一下 [所有資源] 按鈕會授與您對該租用戶之 Azure 訂用帳戶的存取權，您可以檢查 Azure 入口網站右上角顯示的 AAD 來驗證相同事項。
 
     ![aad-admin](./media/site-recovery-multi-tenant-support-vmware-using-csp/aad-admin-display.png)
 
 您現在可以透過 Azure 入口網站為租用戶執行所有 Site Recovery 作業，以及管理 DR 作業。 每次透過 CSP 存取租用戶訂用帳戶來管理 DR 時都必須遵循上面詳述的程序。
 
 ### <a name="step-3-deploy-resources-to-tenant-subscription"></a>步驟 3：將資源部署到租用戶訂用帳戶
-1.  在 Azure 入口網站上，建立「資源群組」，並於每個一般程序部署「復原服務」保存庫。 下載保存庫註冊金鑰。
-2.  使用保存庫註冊金鑰為租用戶註冊 CS。
-3.  輸入兩個存取帳戶 (vCenter 存取帳戶和 VM 存取帳戶) 的認證。
+1.    在 Azure 入口網站上，建立「資源群組」，並於每個一般程序部署「復原服務」保存庫。 下載保存庫註冊金鑰。
+2.    使用保存庫註冊金鑰為租用戶註冊 CS。
+3.    輸入兩個存取帳戶 (vCenter 存取帳戶和 VM 存取帳戶) 的認證。
 
     ![config-accounts](./media/site-recovery-multi-tenant-support-vmware-using-csp/config-server-account-display.png)
 
 ### <a name="step-4-register-site-recovery-infrastructure-to-recovery-services-vault"></a>步驟 4：向復原服務保存庫註冊站台復原基礎結構
-1.  開啟 Azure 入口網站並在之前建立的保存庫上，向在上一步中註冊的 CS 註冊 vCenter 伺服器。 將 vCenter 存取帳戶用於此目的。
-2.  針對每個一般程序的 Site Recovery 完成「準備基礎結構」程序。
-3.  現在可以開始複寫 VM。 確認在 [複寫] 選項下的 VM 選取刀鋒視窗上，只有顯示該租用戶的 VM。
+1.    開啟 Azure 入口網站並在之前建立的保存庫上，向在上一步中註冊的 CS 註冊 vCenter 伺服器。 將 vCenter 存取帳戶用於此目的。
+2.    針對每個一般程序的 Site Recovery 完成「準備基礎結構」程序。
+3.    現在可以開始複寫 VM。 確認在 [複寫] 選項下的 VM 選取刀鋒視窗上，只有顯示該租用戶的 VM。
 
     ![tenant-vms](./media/site-recovery-multi-tenant-support-vmware-using-csp/tenant-vm-display.png)
 
@@ -182,13 +182,13 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 
 合作夥伴也可以透過 CSP 入口網站將新的使用者加入租用戶訂用帳戶，方法如下：
 
-1.  移至特定租用戶的 CSP 訂用帳戶頁面，並選取 [使用者與授權] 選項。
+1.    移至特定租用戶的 CSP 訂用帳戶頁面，並選取 [使用者與授權] 選項。
 
     ![user-licenses](./media/site-recovery-multi-tenant-support-vmware-using-csp/users-and-licences.png)
 
     您現在可以輸入相關詳細資料及選取權限以建立新的使用者，或選擇透過 CSV 檔案上傳使用者清單。
-2.  建立使用者之後，返回 Azure 入口網站並在 [訂用帳戶] 刀鋒視窗下選取相關訂用帳戶。
-3.  在開啟的新刀鋒視窗上選取存取控制 (IAM)，然後按一下 [+新增] 以使用相關的存取層級新增使用者。 透過 CSP 入口網站建立的使用者會自動顯示在按一下存取層級之後所開啟的刀鋒視窗中。
+2.    建立使用者之後，返回 Azure 入口網站並在 [訂用帳戶] 刀鋒視窗下選取相關訂用帳戶。
+3.    在開啟的新刀鋒視窗上選取存取控制 (IAM)，然後按一下 [+新增] 以使用相關的存取層級新增使用者。 透過 CSP 入口網站建立的使用者會自動顯示在按一下存取層級之後所開啟的刀鋒視窗中。
 
     ![user-subscription](./media/site-recovery-multi-tenant-support-vmware-using-csp/add-user-subscription.png)
 
@@ -196,6 +196,6 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 
 
 
-<!--HONumber=Jan17_HO5-->
+<!--HONumber=Feb17_HO3-->
 
 

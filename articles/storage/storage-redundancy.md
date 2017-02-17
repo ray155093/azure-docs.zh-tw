@@ -1,5 +1,5 @@
 ---
-title: "Azure 儲存體複寫 | Microsoft Docs"
+title: "Azure 儲存體中的資料複寫 | Microsoft Docs"
 description: "系統會 複製Microsoft Azure 儲存體帳戶中的資料，以維持持久性和高可用性。 複寫選項包括本地備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。"
 services: storage
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 01/23/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8253e4c58cf9f1900a6e76885af3abac32c78cb0
+ms.sourcegitcommit: 349be81b5d1d5ccc1510360974b4e3b10471cf7f
+ms.openlocfilehash: 13cd31bdce89ae898a6e22a1d27b5aed819ccc0a
 
 
 ---
@@ -77,12 +77,12 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 
 在已啟用 GRS 的儲存體帳戶中，更新會先交付到主要區域，並在此複寫三次。 然後更新會以非同步的方式複寫到次要地區，並同樣在此複寫三次。
 
-使用 GRS 時主要和次要地區會管理分散在儲存體縮放單位不同容錯網域和升級網域內的複本，如同 LRS 的描述。
+使用 GRS 時，主要和次要區域會管理分散在儲存體縮放單位內不同容錯網域和升級網域之間的複本，如同 LRS 的描述。
 
 考量：
 
 * 由於非同步方式複寫會涉及到延遲，在發生地區性災難的情況下，如果資料無法從主要區域復原，則很有可能會遺失尚未複寫到次要地區的變更。
-* 除非 Microsoft 起始容錯移轉至次要區域，否則複本無法使用。
+* 除非 Microsoft 起始容錯移轉至次要區域，否則複本無法使用。 如果 Microsoft 能夠起始容錯移轉到次要區域，您將會在完成容錯移轉之後具有該資料的讀取和寫入權限。 如需詳細資訊，請參閱[災害復原指南](storage-disaster-recovery-guidance.md)。 
 * 如果應用程式想要從次要區域讀取，使用者應該啟用 RA-GRS。
 
 建立儲存體帳戶時，您可以為帳戶選取主要區域。 次要區域會視主要區域而定，且無法變更。 下表顯示主要和次要區域配對：
@@ -129,9 +129,12 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 考量：
 
 * 您的應用程式必須管理在使用 RA-GRS 時，與哪一個端點進行互動。
+* 由於非同步方式複寫會涉及到延遲，在發生地區性災難的情況下，如果資料無法從主要區域復原，則很有可能會遺失尚未複寫到次要地區的變更。
+* 如果 Microsoft 可起始容錯移轉到次要區域，您將會在完成容錯移轉之後具有該資料的讀取和寫入權限。 如需詳細資訊，請參閱[災害復原指南](storage-disaster-recovery-guidance.md)。 
 * RA-GRS 適用於高可用性目的。 如需擴充性的指引，請檢閱[效能檢查清單](storage-performance-checklist.md)。
 
 ## <a name="next-steps"></a>後續步驟
+* [使用 RA-GRS 儲存體設計高可用性應用程式](storage-designing-ha-apps-with-ragrs.md)
 * [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)
 * [關於 Azure 儲存體帳戶](storage-create-storage-account.md)
 * [Azure 儲存體的延展性與效能目標](storage-scalability-targets.md)
@@ -141,6 +144,6 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

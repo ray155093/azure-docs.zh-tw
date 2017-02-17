@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解 | Microsoft Docs"
+title: "使用診斷與 Message Analyzer 進行 Azure 儲存體的疑難排解 | Microsoft Docs"
 description: "示範使用 Azure Storage Analytics、AzCopy 和 Microsoft Message Analyzer 進行端對端疑難排解的教學課程"
 services: storage
 documentationcenter: dotnet
@@ -11,18 +11,18 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 01/23/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
-ms.openlocfilehash: 82f0e5b9d0bfca1921367a2fd91259eeb4254285
+ms.sourcegitcommit: 3203358dce9cba95d325ec786e7ba12dd45f5ca1
+ms.openlocfilehash: c6e2c3415e6853b4df11f28a6dd59e7561a8e0cc
 
 
 ---
-# <a name="end-to-end-troubleshooting-using-azure-storage-metrics-and-logging-azcopy-and-message-analyzer"></a>使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解
+# <a name="end-to-end-troubleshooting-using-azure-storage-metrics-and-logging-azcopy-and-message-analyzer"></a>使用 Azure 儲存體計量和記錄、AzCopy 及 Message Analyzer 進行端對端疑難排解
 [!INCLUDE [storage-selector-portal-e2e-troubleshooting](../../includes/storage-selector-portal-e2e-troubleshooting.md)]
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 診斷與疑難排解是透過 Microsoft Azure 儲存體建置和支援用戶端應用程式的關鍵技術。 由於 Azure 應用程式的分散式本質，診斷和疑難排解錯誤和效能問題可能會比在傳統環境中更為複雜。
 
 在本教學課程中，我們將示範如何識別可能會影響效能的用戶端特定錯誤，以及使用 Microsoft 提供的工具和 Azure 儲存體來從端對端排解這些錯誤，以便最佳化用戶端應用程式。 
@@ -314,7 +314,7 @@ Azure 儲存體用戶端程式庫會自動為每一項要求產生唯一的用�
 儲存體資產包括預先定義的篩選條件，您可用來縮小記錄檔資料的範圍，以尋找您所尋找的錯誤或趨勢。 接下來，我們將會套用兩個預先定義的篩選條件：一個篩選 404 錯誤的伺服器和網路追蹤記錄檔，一個篩選指定時間範圍內的資料。
 
 1. 如果 [檢視篩選條件] 工具視窗尚未顯示，請予以顯示 。 在工具列功能區中，選取 [工具視窗]，然後選取 [檢視篩選條件]。
-2. 在 [檢視篩選條件] 視窗中，選取 [程式庫]，然後搜尋 `Azure Storage` 以尋找 Azure 儲存體篩條件。 選取**所有記錄檔中的 404 (找不到) 訊息**的篩選條件。
+2. 在 [檢視篩選條件] 視窗中，選取 [程式庫]，然後搜尋 `Azure Storage` 以尋找 Azure 儲存體篩條件。 選取**所有記錄檔中的&404; (找不到) 訊息**的篩選條件。
 3. 再次顯示 [程式庫] 功能表，然後找出並選取 [全域時間篩選條件]。
 4. 將篩選條件中顯示的時間戳記編輯成您想要檢視的範圍。 這有助於縮小要分析的資料範圍。
 5. 您的篩選條件看起來應類似下列範例。 按一下 [套用]  將篩選條件套用到 [分析方格]。
@@ -383,6 +383,6 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 * [Microsoft Message Analyzer 操作指南](http://technet.microsoft.com/library/jj649776.aspx)
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

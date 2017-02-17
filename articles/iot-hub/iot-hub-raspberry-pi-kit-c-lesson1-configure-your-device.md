@@ -1,5 +1,5 @@
 ---
-title: "設定您的裝置 | Microsoft Docs"
+title: "將 Raspberry Pi (C) 連接到 Azure IoT - 第 1 課：設定裝置 | Microsoft Docs"
 description: "設定 Raspberry Pi 3 首次使用與安裝 Raspbian 作業系統，此為針對 Raspberry Pi 硬體最佳化的免費作業系統。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 155e5d6280d86b06b1718fc3032c2c224539183d
-ms.openlocfilehash: abe7c8b00648a101ea8255a3a6a1091a6fcccc46
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 4fdd8de3a24bf521b8ea13416900e69d24e1b62d
 
 
 ---
@@ -117,6 +117,6 @@ ms.openlocfilehash: abe7c8b00648a101ea8255a3a6a1091a6fcccc46
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

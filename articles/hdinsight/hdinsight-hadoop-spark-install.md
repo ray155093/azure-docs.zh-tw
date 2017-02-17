@@ -15,14 +15,15 @@ ms.topic: article
 ms.date: 02/05/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 8a7ca492d846f274019eb228fc027defac0aa390
-ms.openlocfilehash: 98688632c6aaba14b71923dc217f6b0368ae76d8
+ms.sourcegitcommit: c9e3c1d2a1f5b83c59fa2a22f3cb4d89df203384
+ms.openlocfilehash: 4fa808b50b56122976cc176c55937f9443f31097
 
 
 ---
-# <a name="install-and-use-spark-on-hdinsight-hadoop-clusters-using-script-action"></a>使用指令碼動作在 HDInsight Hadoop 叢集上安裝和使用 Spark
+# <a name="install-and-use-spark-on-windows-based-hdinsight-clusters-using-script-action"></a>使用指令碼動作在 Windows 型 HDInsight 叢集上安裝和使用 Spark
+
 > [!IMPORTANT]
-> 這篇文章目前已過時。 現在 HDInsight 為以 Windows 為基礎的叢集，提供 Spark 做為第一級叢集類型，這表示您現在可以使用指令碼動作，直接建立 Spark 叢集而不必修改 Hadoop 叢集。 使用 Spark 叢集類型時，您會取得具備 Spark 1.3.1 版的 HDInsight 3.2 版叢集。  若要安裝不同版本的 Spark，您可以使用指令碼動作。 HDInsight 提供指令碼動作指令碼的範例。
+> 這篇文章目前已過時。 現在 HDInsight 為 Linux 型叢集，提供 Spark 做為第一級叢集類型，這表示您現在可以使用指令碼動作，直接建立 Spark 叢集而不必修改 Hadoop 叢集。 此外，本文件的步驟只適用於 Windows HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 了解如何使用指令碼動作在以 Windows 為基礎的 HDInsight 上安裝 Spark，以及如何在 HDInsight 叢集上執行 Spark 查詢。
 
@@ -297,6 +298,6 @@ Spark SQL 可讓您使用 Spark 來執行以結構化查詢語言 (SQL)、HiveQL
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

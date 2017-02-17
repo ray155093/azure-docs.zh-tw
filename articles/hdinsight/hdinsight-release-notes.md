@@ -13,24 +13,26 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 1/18/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: ae7407e1293202f7c76da59560efe620dde2ea0a
-ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
+ms.sourcegitcommit: 9f1222e797446a5835726a10e5c9e8b535a8cf4d
+ms.openlocfilehash: c1c13f21fff7ba201eb00f6c9f594131a75c44fc
 
 
 ---
 # <a name="release-notes-for-hadoop-components-on-azure-hdinsight"></a>Azure HDInsight 上 Hadoop 元件的版本資訊
 
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ##<a name="notes-for-11182016-release-of-spark-201-on-hdinsight-35"></a>HDInsight 3.5 上 Spark 2.0.1 之 2016/11/18 版本的相關資訊
-•   Spark 2.0.1 現已可在 Spark 叢集上取得 (HDInsight 3.5 版)。
+Spark 2.0.1 現已可在 Spark 叢集上取得 (HDInsight 3.5 版)。
 
 ## <a name="notes-for-11162016-release-of-r-server-90-on-hdinsight-35-spark-20"></a>HDInsight 3.5 (Spark 2.0) 的 R 伺服器 9.0 2016/11/16 版本的相關資訊
 *   R 伺服器叢集現在包括適用於下列兩個版本的選項︰HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 和 HDI 3.4 (Spark 1.6) 上的 R 伺服器 8.0。
-*   •   HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 是以 R 3.3.2 為基礎，且包含新的 ScaleR 資料來源函式，其名稱為 RxHiveData 和 RxParquetData，可用來將資料從 Hive 和 Parquet 直接載入到 Spark 資料框架供 ScaleR 進行分析。 如需詳細資訊，請透過使用 ?RxHivedata 和 ?RxParquetData 命令參閱 R 中這些函式的內嵌說明。
-*   RStudio 伺服器 Community 版本現在預設 (具有選擇退出選項) 會在佈建流程中安裝在 [叢集組態] 刀鋒視窗上。  
+*   HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 是以 R 3.3.2 為基礎，且包含新的 ScaleR 資料來源函式，其名稱為 RxHiveData 和 RxParquetData，可用來將資料從 Hive 和 Parquet 直接載入到 Spark 資料框架供 ScaleR 進行分析。 如需詳細資訊，請透過使用 ?RxHivedata 和 ?RxParquetData 命令參閱 R 中這些函式的內嵌說明。
+*   RStudio 伺服器 Community 版本現在預設 (具有選擇退出選項) 會在佈建流程中安裝在 [叢集組態] 刀鋒視窗上。
 
 ## <a name="notes-for-11092016-release-of-spark-20-on-hdinsight"></a>HDInsight 上 Spark 2.0 之 2016/11/09 版本的相關資訊
 * HDInsight 3.5 上的 Spark 2.0 叢集現在支援 Livy 和 Jupyter 服務。
@@ -61,9 +63,9 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 | 3.3 |3.3.0.1033.2559206 |2.3 |2.3.3.1-25 |
 
 ## <a name="notes-for-08172016-release-of-r-server-on-hdinsight"></a>HDInsight 的 R 伺服器 2016/8/17 版本的相關資訊
-* R 伺服器 8.0.5 – 主要為修正程式的版本。 詳細資訊請參閱 [R 伺服器版本資訊](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes) 。 
-* 邊緣節點上的 AzureML 套件 – [此 R 封裝](https://cran.r-project.org/web/packages/AzureML/vignettes/getting_started.html) 使 R 模型可以做為 Azure ML Web 服務被發佈和取用。  詳細資訊請參閱我們的 [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)文章中的[實作模型](hdinsight-hadoop-r-server-overview.md#operationalize-a-model)一節。
-* [前 100 名熱門 R 封裝](https://github.com/metacran/cranlogs) 的 Linux 相依性 – 現在，這些 Linux 封裝相依性都是預先安裝好。  
+* R 伺服器 8.0.5 - 主要為修正程式的版本。 詳細資訊請參閱 [R 伺服器版本資訊](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes) 。
+* 邊緣節點上的 AzureML 封裝 - [此 R 封裝](https://cran.r-project.org/web/packages/AzureML/vignettes/getting_started.html) 使 R 模型可以做為 Azure ML Web 服務來發佈和取用。  詳細資訊請參閱我們的 [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)文章中的[實作模型](hdinsight-hadoop-r-server-overview.md#operationalize-a-model)一節。
+* [前 100 名熱門 R 封裝](https://github.com/metacran/cranlogs) 的 Linux 相依性 - 現在，這些 Linux 封裝相依性都是預先安裝好。
 * 新增 R 封裝至資料節點時使用 CRAN 儲存機制的選項。 詳細資訊請參閱我們的[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)文章中的[安裝 R 封裝](hdinsight-hadoop-r-server-get-started.md#install-r-packages)小節。
 * 改善叢集建立時 R 伺服器佈建的可靠性。
 
@@ -142,8 +144,8 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 
 > [!NOTE]
 > 這些變更將只適用於等於或大於這個發行版本的新建立叢集。
-> 
-> 
+>
+>
 
 ## <a name="notes-for-06062016-release-of-hdinsight"></a>HDInsight 2016/06/06 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
@@ -426,8 +428,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>HDInsight 3.2 叢集的更新後 HDP 版本</td>
 <td>在此版本中，HDInsight 3.2 會部署 HDP 2.2.6.1</td>
@@ -435,7 +435,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 </table>
 
 ## <a name="notes-for-06182015-release-of-hdinsight"></a>HDInsight 2015/06/18 版本的相關資訊
@@ -457,8 +456,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>其他開啟的 HTTPS 連接埠</td>
 <td>雲端服務現在會開啟叢集上的 5 個連接埠 (8001 至 8005)，例如 https://<clustername>.azurehdinsight.net:8001/。 對這些 URL 的要求會使用相同的基本驗證密碼機制驗證做為連接埠 443。 這些連接埠會繫結至作用中前端節點上的相同連接埠。 使用指令碼動作，可讓客戶服務在前端節點的這些連接埠上接聽並路由傳送到叢集外部。</td>
@@ -466,7 +463,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>HDInsight 3.2 的間歇性 MapReduce Shuffle 問題</td>
 <td>修正大型叢集上 MapReduce Shuffle 的間歇性罕見情況，會導致非經常性工作失敗。 如需詳細資訊，請參閱 <a href="https://issues.apache.org/jira/browse/MAPREDUCE-6361" target="_blank">MAPREDUCE-6361</a>。</td>
@@ -474,7 +470,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td><a href="https://issues.apache.org/jira/browse/MAPREDUCE-6361" target="_blank">MAPREDUCE-6361</a></td>
 </tr>
-
 <tr>
 <td>移至最新的 Azure Java SDK 2.2 for HDInsight 3.2</td>
 <td>已移至 WASB 驅動程式所用的最新版 Azure SDK for Java。 最新的 SDK 有一些修正程式，而在 https://github.com/Azure/azure-storage-java/blob/master/ChangeLog.txt 可取得相同的版本資訊。</td>
@@ -482,7 +477,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td><a href="https://issues.apache.org/jira/browse/HADOOP-11959" target="_blank">HADOOP-11959</a></td>
 </tr>
-
 <tr>
 <td>移至 HDP 2.1.15 for HDInsight 3.1 叢集</td>
 <td>這些版本的 Hortonworks 版本資訊位於<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.15-Win/bk_releasenotes_HDP-Win/content/ch_relnotes-HDP-2.1.15.html" target="_blank">這裡</a>。</td>
@@ -490,7 +484,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 </table>
 
 ## <a name="notes-for-06042015-release-of-hdinsight"></a>HDInsight 2015/06/04 版本的相關資訊
@@ -512,8 +505,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>修正 Storm 叢集的 502 不正確閘道器錯誤</td>
 <td>此版本修正會影響工作提交 API 並導致網站在重新開機後關閉的 Bug。</td>
@@ -521,7 +512,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Storm</td>
 <td>N/A</td>
 </tr>
-
 </table>
 
 ## <a name="notes-for-06012015-release-of-hdinsight"></a>HDInsight 2015/06/01 版本的相關資訊
@@ -543,8 +533,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>各種 Bug 修正</td>
 <td>此版本修正與叢集佈建相關的 Bug。</td>
@@ -552,7 +540,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>所有叢集類型</td>
 <td>N/A</td>
 </tr>
-
 </table>
 
 ## <a name="notes-for-05272015-release-of-hdinsight"></a>HDInsight 2015/05/27 版本的相關資訊
@@ -571,8 +558,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>HDP 2.2 更新</td>
 <td>這一版的 HDInsight 3.2 包含 HDP 2.2.6，並在 HDInsight 中加入數個重要的 Bug 修正程式。 在 <a href="http://dev.hortonworks.com.s3.amazonaws.com/HDPDocuments/HDP2/HDP-2.2.6/HDP_RelNotes_v226/index.html">HDP 2.2.6 版本資訊</a>可取得完整的版本資訊。</td>
@@ -580,7 +565,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>所有叢集類型</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>變更為預設 Yarn 容器記憶體設定</td>
 <td>在這項更新中，由節點管理員啟動之 YARN 容器 (yarn.nodemanager.resource.memory-mb and yarn.scheduler.maximum-allocation-mb) 的預設可用記憶體會增加至 5632MB。 先前這會縮減至 4608MB，但根據不同的工作會執行，新值必須為大部分的工作提供更佳的可靠性和效能，因此此預設值更好。 如往常一樣，如果您對此記憶體組態有重要相依性，請在建立叢集時加以明確設定。</td>
@@ -588,7 +572,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>所有叢集類型</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>HBase 和 Storm 叢集的預設組態同位檢查</td>
 <td>此更新會將 Hbase 和 Storm 叢集還原為使用與 Hadoop 叢集相同的 YARN 組態值。 這是為了進行所有叢集類型的同位檢查。</td>
@@ -596,7 +579,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>HBase、Storm</td>
 <td>N/A</td>
 </tr>
-
 </table>
 
 ## <a name="notes-for-05202015-release-of-hdinsight"></a>HDInsight 2015/05/20 版本的相關資訊
@@ -618,8 +600,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>SCP.NET EventHub 支援</td>
 <td>HDInsight Storm 的更新叢集封裝加入 SCP.NET 的新功能。 您現在將可存取拓撲產生器中的新 API，讓您更輕鬆地使用 EventHubSpout 或 Java Spouts。 您必須更新 SCP.NET 用戶端 SDK，才能在合約更新後使用新叢集。 如需新 API、使用方式及版本資訊 (包括 Bug 修正程式) 的詳細資訊，請參閱 SCP.NET nuget 封裝中包含的 Readme 檔案。</td>
@@ -627,7 +607,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Storm HDInsight 3.2 叢集</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>JDBC 驅動程式更新</td>
 <td>將驅動程式更新為 sqljdbc_4.1.5605.100 中支援的 SQL Server 版本。</td>
@@ -656,8 +635,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>修正 DLL 相依性</td>
 <td>移除對單位測試架構的 HDInsight 相依性。</td>
@@ -665,7 +642,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>競爭情形的 Bug 修正</td>
 <td>叢集建立要求現正等待 PUT 要求獲得接受，然後才進行狀態的輪詢</td>
@@ -694,8 +670,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>Tez Bug 修正</td>
 <td>Apache TEZ 2214 和 TEZ 1923 的修正包含在此版本的 HDI 3.2。 Tez 上需要混和大量資料的特定 Hive 查詢特別需要這些修正。
@@ -718,7 +692,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 此版本包含下列更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -726,8 +699,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>HDInsight .NET SDK 1.5.6</td>
 <td>此更新可移除 Linux 上之 HDInsight 的部分內部類別。</td>
@@ -735,7 +706,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>Avro Library 1.5.6</td>
 <td>已為方法 <b>GetAllKnownTypes</b> 新增 <b>KnownTypeAttribute</b>。 當 GetAllKnownTypes 方法的類型為 Null 時已修正的 NullReferenceException。</td>
@@ -743,7 +713,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>錯誤修正</td>
 <td>服務的各種 Bug 修正</td>
@@ -751,9 +720,7 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 </table>
-<br>
 
 ## <a name="notes-for-04012015-release-of-hdinsight"></a>HDInsight 2015/04/01 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
@@ -767,7 +734,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 此版本包含下列更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -775,8 +741,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>透過 .NET SDK 啟用/停用 Windows 叢集上的遠端桌面認證的能力</td>
 <td>針對在 Windows 叢集上啟用或停用 RDP 認證的程式設計支援。</td>
@@ -784,7 +748,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>當叢集正在佈建時啟用遠端桌面認證的能力</td>
 <td>針對正在建立叢集時啟用遠端桌面認證的程式設計支援。 如此便不再需要先佈建叢集再啟用遠端桌面的兩步驟程序。</td>
@@ -792,7 +755,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>已將 Python 升級到 2.7.8</td>
 <td>已將 HDInsight 叢集上的 Python 升級到 Python 2.7.8，它包含一些 HDInsight 2.1、3.0、3.1 和 3.2 版的重要安全性修正</td>
@@ -800,7 +762,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>YARN 組態變更</td>
 <td>已針對 HDInsight 3.1 和 3.2 版的所有叢集類型將 YARN 組態 yarn.resourcemanager.max-completed-applications 變更為 1000。 此值只會控制 YARN UI 中的已完成應用程式清單。 若要取得在 UI 上顯示應用程式清單之前提交之應用程式的相關資訊，您可以直接移至 [記錄伺服器]。</td>
@@ -808,7 +769,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>在 HBase 叢集中調整節點的大小</td>
 <td>HBase 叢集現在允許針對 HDInsight 3.1 和 3.2 版 (向上及向下) 調整節點的大小</td>
@@ -816,7 +776,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>hbase</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>JDBC 升級</td>
 <td>HDInsight 3.2 版的 SQL JDBC 驅動程式已升級到 sqljdbc_4.0.2206.100 版。 此版本包含重要的安全性增強功能。</td>
@@ -824,7 +783,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>JVM 組態更新</td>
 <td>已針對 HDInsight 3.1 和 3.2 版將 JVM 組態 networkaddress.cache.ttl 從預設值 -1 更新到 300 秒。 此組態值控制來自名稱服務的成功名稱查閱快取原則。 這修正了與增大和壓縮 HBase 叢集有關的 Bug。</td>
@@ -832,7 +790,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>hbase</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>升級到 Azure Storage SDK for Java 2.0</td>
 <td>已升級 HDInsight 3.2 版以使用最新版的 Azure Storage SDK for Java。 這包含針對目前 0.6.0 版的幾項重要 Bug 修正。</td>
@@ -840,7 +797,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>已升級到 Apache WASB 原始程式碼</td>
 <td>HDInsight 3.2 版現在使用來自 Apache Hadoop 的 WASB 檔案系統驅動程式的最新程式碼。 有了這項變更，WASB 驅動程式現在封裝為獨立型 jar。 這純粹是封裝變更，不包含對 WASB 驅動程式行為的任何變更。 此 JAR 檔的名稱是 hadoop-azure-2.6.0.jar。</td>
@@ -848,7 +804,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>HDInsight 3.2 中的 Jar 檔案名稱更新</td>
 <td>HDInsight 3.2 版的這項更新包含數個 Bug 修正，且封裝為包含在 HDP 的一些內部 jar 也已升級。 請注意，這些 JAR 檔是 HDP 封裝內部使用，不供客戶應用程式直接使用。 應用程式應該封裝自己的 JAR 版本，如此升級 HDP 內部 JAR 時才不會中斷客戶應用程式。</td>
@@ -856,9 +811,7 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 </table>
-<br>
 
 ## <a name="notes-for-03032015-release-of-hdinsight"></a>HDInsight 2015/03/03 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
@@ -872,7 +825,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 此版本包含下列更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -880,8 +832,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA</th>
 </tr>
-
-
 <tr>
 <td>可靠性的改進</td>
 <td>我們做了修正，讓服務能更妥善地隨著與叢集建立時相比增加的負載而縮放。</td>
@@ -889,11 +839,7 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
-
-
 </table>
-<br>
 
 ## <a name="notes-for-02182015-release-of-hdinsight"></a>HDInsight 2015/02/18 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
@@ -907,7 +853,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 此版本包含下列更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -915,8 +860,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>HDInsight 3.2 叢集</td>
 <td>HDInsight 3.2 叢集提供 Hadoop 2.6/HDP2.2。 它包含對所有開放原始碼元件的重大更新。 如需詳細資料，請參閱 HDInsight 的新功能和 <a href ="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.0/HDP_2.2.0_Release_Notes_20141202_version/index.html" target="_blank">HDP 2.2.0.0 版本資訊</a>。</td>
@@ -924,7 +867,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>Linux 上的 HDInsight (預覽)</td>
 <td>叢集可以部署在 Ubuntu Linux 上執行。 如需詳細資料，請參閱＜開始在 Linux 上使用 HDInsight＞。</td>
@@ -932,7 +874,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>Storm 公開上市</td>
 <td>Apache Storm 叢集已公開上市。 如需詳細資料，請參閱＜開始在 HDInsight 中使用 Storm＞。</td>
@@ -940,7 +881,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Storm</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>虛擬機器大小</td>
 <td>Azure HDInsight 可用於更多虛擬機器類型和大小。 HDInsight 可以利用針對一般用途建置的 A2 到 A7 大小；D 系列節點的特色為固態硬碟 (SSD) 和處理器速度更快 60%；而 A8 和 A9 大小具有 InfiniBand 支援可快速進行網路連線。</td>
@@ -948,7 +888,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>叢集縮放</td>
 <td>您可以針對執行中的 HDInsight 叢集變更資料節點的數目，而不必刪除或重建它。 目前只有 Hadoop 查詢和 Apache Storm 叢集類型有此功能，但很快就會提供對 Apache HBase 叢集類型的支援。 如需詳細資訊，請參閱＜管理 HDInsight 叢集＞。</td>
@@ -956,7 +895,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Hadoop、Storm</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>Visual Studio 工具</td>
 <td>除了 Apache Storm 的完整工具，Visual Studio 中的 Apache Hive 工具也已更新到包含陳述式完成、本機驗證和改進的偵錯支援。 如需詳細資訊，請參閱＜開始使用 HDInsight Tools for Visual Studio＞。</td>
@@ -964,15 +902,12 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
-<tr>
 <td>適用於 DocumentDB 的 Hadoop Connector </td>
 <td>使用適用於 DocumentDB 的 Hadoop Connector，您可以針對儲存在 DocumentDB 集合之間或資料庫帳戶之間的無結構描述 JSON 文件，執行複雜的彙總、分析與操作。 如需詳細資訊和教學課程，請參閱＜使用 DocumentDB 和 HDInsight 執行 Hadoop 工作＞。</td>
 <td>服務</td>
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>錯誤修正</td>
 <td>我們為 HDInsight 服務提供了各種次要 Bug 修正。 不應有面向客戶的行為變更。</td>
@@ -980,9 +915,7 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 </table>
-<br>
 
 ## <a name="notes-for-02062015-release-of-hdinsight"></a>HDInsight 2015/02/06 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
@@ -995,7 +928,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 此版本包含下列更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1003,8 +935,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>錯誤修正</td>
 <td>我們為 HDInsight 服務提供了各種次要 Bug 修正。 不應有面向客戶的行為變更。</td>
@@ -1012,7 +942,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>HDP 2.1 維護更新</td>
 <td>已更新 HDInsight 3.1 以部署 HDP 2.1.10.0。 如需詳細資訊，請參閱<a href ="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.10/bk_releasenotes_hdp_2.1/content/ch_relnotes-HDP-2.1.10.html" target="_blank">版本資訊 HDP-2.1.10</a>。 </td>
@@ -1020,7 +949,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>HDP 二進位更新</td>
 <td>HBase 中有一些 JAR 檔的檔案名稱已更新。 這些 JAR 檔由 HBase 做為內部使用，因此客戶不應對這些 JAR 檔的名稱有相依性。 其中包含：
@@ -1034,9 +962,7 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <td>HBase</td>
 <td>N/A</td>
 </tr>
-
 </table>
-<br>
 
 ## <a name="notes-for-1292015-release-of-hdinsight"></a>HDInsight 2015/1/29 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
@@ -1057,21 +983,14 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型 (例如 Hadoop、HBase 或 Storm)</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
-
 <td>錯誤修正</td>
 <td>我們做了一些重要 Bug 修正，可以改善 HDInsight 叢集在 Azure 升級期間的可靠性。</td>
 <td>服務</td>
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
-
-
 </table>
-<br>
 
 ## <a name="notes-for-152015-release-of-hdinsight"></a>HDInsight 2015/1/5 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
@@ -1091,8 +1010,6 @@ ms.openlocfilehash: 7ab9c75e44ff2072e2f5879952d7e2f605cccb36
 <th>叢集類型</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>Twitter 趨勢分析及 Mahout 電影推薦的範例</td>
 <td><p>在此版本中，HDInsight 查詢主控台有兩個其他範例：</p>
@@ -1106,7 +1023,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>將 Hive 組態 hive.auto.convert.join.noconditionaltask.size 變更為預設值</td>
 <td><p>這個大小組態適用於自動轉換的對應聯結。 值代表可以轉換成雜湊對應且可放入記憶體的資料表大小總和。 在前版中，這個值從預設值 10 MB 增加到 128 MB。 但是新的 128 MB 值因為缺乏記憶體而導致工作失敗。 此版本將預設值還原成 10MB。 客戶仍然可以依據其查詢和資料表大小選擇在叢集建立期間覆寫此值。 如需此設定和如何覆寫該設定的詳細資訊，請參閱 Hortonworks 文件中的<a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.0.0.2/ds_Hive/optimize-joins.html#JoinOptimization-OptimizeAutoJoinConversion" target="_blank">最佳化自動聯結轉換</a>。 </p></td>
@@ -1114,9 +1030,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop、Hbase</td>
 <td>N/A</td>
 </tr>
-
 </table>
-<br>
 
 ## <a name="notes-for-12232014-release-of-hdinsight"></a>HDInsight 2014/12/23 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼為：
@@ -1128,7 +1042,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 此版本包含下列更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1136,8 +1049,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <th>叢集類型</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
-
 <tr>
 <td>由於負載過度而發生間歇性叢集建立失敗</td>
 <td><p>改善叢集建立期間下載 HDP 封裝的演算法，以便能更強大地處理由於負載過度而發生的失敗。</p></td>
@@ -1145,17 +1056,12 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop、HBase、Storm</td>
 <td>N/A</td>
 </tr>
-
-
-
 </table>
-<br>
 
 ## <a name="notes-for-12182014-release-of-hdinsight"></a>HDInsight 2014/12/18 版本的相關資訊
 此版本包含下列元件更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1163,7 +1069,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <th>叢集類型</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
 <tr>
 <td><a href = "hdinsight-hadoop-customize-cluster.md" target="_blank">叢集自訂公開上市</a></td>
 <td><p>自訂可讓您使用 Apache Hadoop 生態系統可用的專案來自訂 Azure HDInsight 叢集。 有了這項新功能，您可以實驗並部署 Hadoop 專案至 Azure HDInsight。 這是透過**指令碼動作**功能而啟用，它可以使用自訂指令碼，任意修改 Hadoop 叢集。 此自訂可在所有類型的 HDInsight 叢集上使用，包括 Hadoop、HBase 和 Storm。 為了示範此功能的威力，我們已記錄下安裝熱門 <a href = "hdinsight-hadoop-spark-install.md" target="_blank">Spark</a>、<a href = "hdinsight-hadoop-r-scripts.md" target="_blank">R</a>、<a href = "hdinsight-hadoop-solr-install.md" target="_blank">Solr</a> 和 <a href = "hdinsight-hadoop-giraph-install.md" target="_blank">Giraph</a> 模組的程序。 此版本也加入讓客戶透過 Azure 入口網站指定自訂指令碼動作的功能、提供關於如何使用協助程式方法建置自訂指令碼動作的方針和最佳實務作法，以及提供如何測試指令碼動作的方針。 </p></td>
@@ -1171,10 +1076,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
-
 </table>
-<br>
 
 ## <a name="notes-for-12052014-release-of-hdinsight"></a>HDInsight 2014/12/5 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼為：
@@ -1187,7 +1089,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 此版本包含下列元件更新。
 
 <table border="1">
-
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1195,7 +1096,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <th>叢集類型</th>
 <th>JIRA (如果適用)</th>
 </tr>
-
 <tr>
 <td>Bug 修正：將大量分割加入 Hive DDL 中的資料表時發生間歇性的錯誤 </td>
 <td><p>將大量分割加入 Hive 資料表時，如果 Hive 中繼存放區資料庫發生間歇性的連接錯誤，則 Hive DDL 可能會失敗。 如果發生此失敗，將會在 Hive 錯誤記錄中看到下列陳述式： </p><p>"錯誤 [main]：ql.Driver (SessionState.java:printError(547)) - 失敗：執行錯誤，從 org.apache.hadoop.hive.ql.exec.DDLTask 傳回代碼 1。 MetaException(message:java.lang.RuntimeException: commitTransaction 已呼叫，但 openTransactionCalls = 0。 這可能表示對 openTransaction/commitTransaction 進行不平衡的呼叫)"</p></td>
@@ -1203,7 +1103,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop、Hbase</td>
 <td>HIVE-482 (這是內部 JIRA，因此不可在外部加上引號。 在此記錄供參考之用。)</td>
 </tr>
-
 <tr>
 <td>Bug 修正：HDInsight 查詢主控台偶爾停止回應</td>
 <td>發生此情況時，可在 WebHCat 啟動器工作的 WebHCat 記錄中看到下列陳述： <p>"org.apache.hive.hcatalog.templeton.CatchallExceptionMapper | org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.yarn.exceptions.YarnRuntimeException): 無法載入歷程記錄檔 {歷程記錄檔的 wasb url}"</p></td>
@@ -1211,7 +1110,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop</td>
 <td>HIVE-482 (這是內部 JIRA，因此不可在外部加上引號。 在此記錄供參考之用。)</td>
 </tr>
-
 <tr>
 <td>Bug 修正：Hbase 查詢延遲偶爾激增</td>
 <td>如果發生這種情況，使用者會發現 Hbase 查詢延遲偶爾會激增 3 秒。 </td>
@@ -1219,7 +1117,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>HBase</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>HDP JAR 檔案名稱變更</td>
 <td>若為 HDI 叢集 3.0 版，HDP 安裝的內部 JAR 檔案有一些變更。 jetty-6.1.26.jar 已取代為 jetty-6.1.26.hwx.jar。 jetty-util-6.1.26.jar 已取代為 jetty-util-6.1.26.hwx.jar。 這些變更適用於 Hadoop、Mahout、WebHCat 和 Oozie 專案。</td>
@@ -1227,9 +1124,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop、HBase</td>
 <td>N/A</td>
 </tr>
-
 </table>
-<br>
 
 ## <a name="notes-for-11212014-release-of-hdinsight"></a>HDInsight 2014/11/21 版本的相關資訊
 使用此版本部署的 HDInsight 叢集的完整版本號碼為：
@@ -1242,15 +1137,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 此版本包含下列元件更新。
 
 <table border="1">
-
-<tr>
-<th>課程名稱</th>
-<th>說明</th>
-<th>元件</th>
-<th>叢集類型</th>
-<th>JIRA (如果適用)</th>
-</tr>
-
+<tr><th>課程名稱</th><th>說明</th><th>元件</th><th>叢集類型</th><th>JIRA (如果適用)</th></tr>
 <tr>
 <td>存取應用程式記錄</td>
 <td>您能夠以程式設計的方式列舉在叢集上執行的應用程式，並下載相關的應用程式特定或容器特定記錄以協助偵錯有問題的應用程式。</td>
@@ -1258,7 +1145,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>在 IHdInsightClient.DeleteCluster 中指定地區名稱的能力 </td>
 <td>Azure HDInsight SDK 提供在使用 **DeleteCluster** 時指定區域名稱的能力。 這有助於解除封鎖在不同地區擁有兩個同名資源且已無法刪除任一資源的客戶。</td>
@@ -1266,7 +1152,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>ClusterDetails.DeploymentId</td>
 <td>**ClusterDetails** 物件會傳回 **DeploymentID** 欄位，它代表叢集的唯一識別項。 這可在具相同名稱跨叢集建立嘗試時，保證有唯一的名稱。</td>
@@ -1275,7 +1160,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>N/A</td>
 </tr>
 </table>
-<br>
 
 ## <a name="notes-for-11142014-release-of-hdinsight"></a>HDInsight 2014/11/14 版本的相關資訊
 
@@ -1288,14 +1172,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 此版本包含下列新功能、元件更新和 Bug 修正。
 
 <table border="1">
-<tr>
-<th>課程名稱</th>
-<th>說明</th>
-<th>元件</th>
-<th>叢集類型</th>
-<th>JIRA (如果適用)</th>
-</tr>
-
+<tr><th>課程名稱</th><th>說明</th><th>元件</th><th>叢集類型</th><th>JIRA (如果適用)</th></tr>
 <tr>
 <td>指令碼動作 (預覽)</td>
 <td>叢集自訂功能的預覽，可使用自訂指令碼以任意方式來修改 Hadoop 叢集。 有了此功能，使用者可實驗從 Apache Hadoop 生態系統取得的專案，以及將專案部署到 Azure HDInsight 叢集。 此自訂功能可在所有類型的 HDInsight 叢集上使用，包括 Hadoop、HBase 和 Storm。</td>
@@ -1303,7 +1180,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>為 Azure 網站與儲存體記錄分析先行建置的工作</td>
 <td>HDInsight 查詢主控台具有使用者入門庫，其支援在您的資料或資料範例上運作的方案。
@@ -1315,7 +1191,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>Templeton 中的記憶體遺漏修正</td>
 <td>已解決 Templeton 中的記憶體流失，該問題會影響已長期執行叢集的客戶，或每秒提交數百次工作要求的客戶。 此問題會顯示為 Templeton 5xx 錯誤，且因應措施為重新啟動服務。 不再需要此因應措施。</td>
@@ -1324,16 +1199,12 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>https://issues.apache.org/jira/browse/HADOOP-11248</td>
 </tr>
 </table>
-<br>
 
-
-**注意**：為了示範叢集自訂所提供的新功能，已記錄使用指令碼動作在叢集上安裝 Spark 和 R 模組的程序。 如需進一步資訊，請參閱：
+> [!NOTE]
+> 為了示範叢集自訂所提供的新功能，已記錄使用指令碼動作在叢集上安裝 Spark 和 R 模組的程序。 如需進一步資訊，請參閱：
 
 * [在 HDInsight 叢集上安裝和使用 Spark 1.0](hdinsight-hadoop-spark-install.md)
 * [在 HDInsight Hadoop 叢集上安裝和使用 R](hdinsight-hadoop-r-scripts.md)
-
-
-
 
 ## <a name="notes-for-11072014-release-of-hdinsight"></a>HDInsight 2014/11/07 版本的相關資訊
 
@@ -1346,14 +1217,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 此版本包含下列元件更新。
 
 <table border="1">
-<tr>
-<th>課程名稱</th>
-<th>說明</th>
-<th>元件</th>
-<th>叢集類型</th>
-<th>JIRA (如果適用)</th>
-</tr>
-
+<tr><th>課程名稱</th><th>說明</th><th>元件</th><th>叢集類型</th><th>JIRA (如果適用)</th></tr>
 <tr>
 <td>HDP 2.1.7</td>
 <td>此版本根據 Hortonworks Data Platform (HDP) 2.1.7。 如需詳細資訊，請參閱 <a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.7-Win/bk_releasenotes_HDP-Win/content/ch_relnotes-HDP-2.1.7.html" target="_blank">HDP 2.1.7 的版本資訊</a>。</td>
@@ -1361,12 +1225,11 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>全部</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>YARN Timeline Server</td>
 <td>YARN Timeline Server (也稱為 Generic Application History Server) 預設已啟用。 Timeline Server 提供已完成應用程式的泛型資訊 (例如應用程式 ID、應用程式名稱、應用程式狀態、應用程式提交時間及應用程式完成時間)。
 
-可透過存取 URI http://headnodehost:8188 或執行 YARN 命令：yarn application –list –appStates ALL，從前端節點擷取此應用程式資訊。
+可透過存取 URI http://headnodehost:8188 或執行 YARN 命令：yarn application -list -appStates ALL，從前端節點擷取此應用程式資訊。
 
 此資訊也可以透過 REST API 從 https://{ClusterDnsName}. azurehdinsight.net/ws/v1/applicationhistory/ 遠端擷取。
 
@@ -1375,7 +1238,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>Hadoop、HBase</td>
 <td>N/A</td>
 </tr>
-
 <tr>
 <td>叢集部署 ID</td>
 <td>從 SDK 1.3.3.1.5426.29232 版開始，使用者可存取 HDInsight 發行給每個叢集的唯一 ID。 這能讓客戶在跨建立/捨棄案例重複使用 DNS 名稱時，找出叢集的唯一執行個體。</td>
@@ -1384,18 +1246,17 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <td>N/A</td>
 </tr>
 </table>
-<br>
 
-**注意**：這個版本已修正防止入口網站顯示及防止 SDK 或 Windows PowerShell 傳回完整版本號碼的 Bug。
+> [!NOTE]
+> 這個版本已修正防止入口網站顯示及防止 SDK 或 Windows PowerShell 傳回完整版本號碼的 Bug。
 
 ## <a name="notes-for-10152014-release"></a>2014/10/15 版本的相關資訊
 
 此 Hotfix 版本修復 Templeton 中影響 Templeton 重度使用者的記憶體遺漏。 在某些情況下，Templeton 的重度使用者會看到以 500 錯誤碼表示的錯誤，因為要求沒有足夠的記憶體可執行。 重新啟動 Templeton 服務就能解決此問題。 已修正此問題。
 
-
 ## <a name="notes-for-1072014-release"></a>2014/10/7 版本的相關資訊
 
-* 使用 Ambari 端點 "https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname}" 時，*host_name* 欄位會傳回節點的完整網域名稱 (FQDN)，而不只是主機名稱。 例如，不是傳回 "**headnode0**"，而是傳回 FQDN “**headnode0.{ClusterDNS}.azurehdinsight.net**”。 需要此變更才能協助在一個虛擬網路中部署多種叢集類型 (例如 HBase 和 Hadoop) 的情況。 例如，使用 HBase 做為 Hadoop 的後端平台時就是這種情形。
+* 使用 Ambari 端點 "https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname}" 時，*host_name* 欄位會傳回節點的完整網域名稱 (FQDN)，而不只是主機名稱。 例如，不是傳回 "**headnode0**"，而是傳回 FQDN "**headnode0.{ClusterDNS}.azurehdinsight.net**"。 需要此變更才能協助在一個虛擬網路中部署多種叢集類型 (例如 HBase 和 Hadoop) 的情況。 例如，使用 HBase 做為 Hadoop 的後端平台時就是這種情形。
 
 * 我們為 HDInsight 叢集的預設部署提供新的記憶體設定。 先前的預設記憶體設定並未充分考量所部署 CPU 核心數目的方針。 根據 Hortonworks 建議，這些新的記憶體設定應該提供更佳的預設值。 若要變更，請參閱關於變更叢集組態的 SDK 參考文件。 下表列舉預設 4 CPU 核心 (8 容器) HDInsight 叢集所使用的新記憶體設定。 (同時也附帶提供此版本之前使用的值。)
 
@@ -1412,31 +1273,30 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 <tr><td>yarn.app.mapreduce.am.command</td><td>opts=-Xmx512m (先前是 -Xmx819m)</td></tr>
 <tr><td>mapreduce.task.io.sort</td><td>256 MB (先前是 200 MB)</td></tr>
 <tr><td>tez.am.resource.memory</td><td>1536 MB (未變更)</td></tr>
-
-</table><br>
+</table>
 
 如需 HDInsight 使用的 Hortonworks Data Platform 上供 YARN 和 MapReduce 使用的記憶體組態設定的詳細資訊，請參閱 [決定 HDP 記憶體組態設定](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1-latest/bk_installing_manually_book/content/rpm-chap1-11.html)。 Hortonworks 也提供工具來計算適當的記憶體設定。
 
 關於 Azure PowerShell 和 HDInsight SDK 的錯誤訊息：「叢集未設定 HTTP 服務存取」：
 
 * 此錯誤是已知的[相容性問題](https://social.msdn.microsoft.com/Forums/azure/a7de016d-8de1-4385-b89e-d2e7a1a9d927/hdinsight-powershellsdk-error-cluster-is-not-configured-for-http-services-access?forum=hdinsight)，起因可能是 HDInsight 或 Azure PowerShell 版本和叢集版本的差異。 在 8/15 或之後建立的叢集支援佈建到虛擬網路的這項新功能。 但舊版的 HDInsight SDK 或 Azure PowerShell 無法正確解譯此功能。 結果造成某些工作提交作業失敗。 如果您使用 HDInsight SDK API 或 Azure PowerShell Cmdlet (**Use-AzureRmHDInsightCluster** 或 **Invoke-AzureRmHDInsightHiveJob**) 來提交工作，這些作業可能會失敗並傳回錯誤訊息「叢集 <clustername> 未設定 HTTP 服務存取」。 或者 (根據作業而定) 傳回其他錯誤訊息，例如「無法連接到叢集」。
-* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 取得 Azure PowerShell 工具。
+* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 取得 Azure PowerShell 工具。
 
 ## <a name="notes-for-9122014-release-of-hdinsight-31"></a>HDInsight 3.1 2014/9/12 版本的相關資訊
 * 此版本根據 Hortonworks Data Platform (HDP) 2.1.5。 如需此版本中修正的 Bug 清單，請參閱 Hortonworks 網站上的 [已在此版本修正](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.5/bk_releasenotes_hdp_2.1/content/ch_relnotes-hdp-2.1.5-fixed.html) 頁面。
-* 在 Pig 程式庫資料夾中，“avro-mapred-1.7.4.jar” 檔案已變更為 "avro-mapred-1.7.4-hadoop2.jar"。 此檔案的內容包含非中斷的次要 Bug 修正。 建議客戶不要直接依賴 JAR 檔案的名稱，以避免檔案重新命名時中斷。
+* 在 Pig 程式庫資料夾中，"avro-mapred-1.7.4.jar" 檔案已變更為 "avro-mapred-1.7.4-hadoop2.jar"。 此檔案的內容包含非中斷的次要 Bug 修正。 建議客戶不要直接依賴 JAR 檔案的名稱，以避免檔案重新命名時中斷。
 
 ## <a name="notes-for-8212014-release"></a>2014/8/21 版本的相關資訊
 * 我們加入下列 WebHCat 組態 (HIVE-7155)，其將 Templeton 控制器工作的預設記憶體限制設為 1GB。 (先前的預設值是 512 MB。)
-  
+
      templeton.mapper.memory.mb (=1024)
-  
+
   * 此變更解決了某些 Hive 查詢因為記憶體限制較低而發生的下列錯誤：「容器超過實體記憶體限制」。
   * 若要還原成舊的預設值，您可以在建立叢集時使用下列命令以透過 Azure PowerShell 將此組態值設為 512：
-    
+
       Add-AzureRmHDInsightConfigValues -Core @{"templeton.mapper.memory.mb"="512";}
 * Zookeeper 角色的主機名稱已變更為 *zookeeper*。 這會影響叢集內的名稱解析，但不影響外部 REST API。 如果您有元件使用 *zookeepernode* 主機名稱，則必須更新元件以改用新名稱。 三個 zookeeper 節點的新名稱如下：
-  
+
   * zookeeper0
   * zookeeper1
   * zookeeper2
@@ -1456,27 +1316,24 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 * 此版本中的 Hortonworks Data Platform (HDP) 變更：
 
 <table border="1">
-
 <tr><th>HDP</th><th>變更</th></tr>
 <tr><td>HDP 1.3 / HDI 2.1</td><td>沒有變更</td></tr>
 <tr><td>HDP 2.0 / HDI 3.0</td><td>沒有變更</td></tr>
 <tr><td>HDP 2.1 / HDI 3.1</td><td>zookeeper: ['3.4.5.2.1.3.0-1948'] -> ['3.4.5.2.1.3.2-0002']</td></tr>
-
-
-</table><br>
+</table>
 
 ## <a name="notes-for-6242014-release"></a>2014/6/24 版本的相關資訊
 此版本包含 HDInsight 服務的增強功能：
 
 * **HDP 2.1 可用性**：HDInsight 3.1 (內含 HDP 2.1) 已公開上市，且為新叢集的預設版本。
-* **HBase – Azure 入口網站改進**：我們正使 HBase 叢集可用於預覽版。 您可以從入口網站建立 HBase 叢集，只要按幾下滑鼠即可。 
+* **HBase - Azure 入口網站改進**：我們正使 HBase 叢集可用於預覽版。 您可以從入口網站建立 HBase 叢集，只要按幾下滑鼠即可。
 
 HBase 可讓您在 HDInsight 上建置各種即時工作負載，包括處理大型資料集的互動式網站，甚至是將數百萬個端點的感應器和遙測資料儲存起來的服務，都沒問題。 下一步是使用 Hadoop 工作來分析這些工作負載中的資料，而透過 Azure PowerShell 和 Hive 叢集儀表板，就能在 HDInsight 中進行此分析。
 
 ### <a name="apache-mahout-preinstalled-on-hdinsight-31"></a>Apache Mahout 預先安裝在 HDInsight 3.1
  [Mahout](http://hortonworks.com/hadoop/mahout/) 已預先安裝在 HDInsight 3.1 Hadoop 叢集，因此您可以執行 Mahout 工作，而不需要其他叢集組態。 例如，您可以使用遠端桌面通訊協定 (RDP) 從遠端進入 Hadoop 叢集，且不需要額外的步驟就能執行下列 Hello World Mahout 命令：
 
-        mahout org.apache.mahout.classifier.df.tools.Describe -p /user/hdp/glass.data -f /user/hdp/glass.info -d I 9 N L  
+        mahout org.apache.mahout.classifier.df.tools.Describe -p /user/hdp/glass.data -f /user/hdp/glass.info -d I 9 N L
 
         mahout org.apache.mahout.classifier.df.BreimanExample -d /user/hdp/glass.data -ds /user/hdp/glass.info -i 10 -t 100
 
@@ -1513,50 +1370,31 @@ Oozie 中繼存放區會連接到特定叢集，且兩者無法在叢集之間�
  **HDInsight 1.6 (HDP 1.1)**
 
 <table border="1">
-
 <tr><th>名稱</th><th>值</th></tr>
-
 <tr><td>dfs.http.address</td><td>namenodehost:30070</td></tr>
-
 <tr><td>dfs.datanode.address</td><td>0.0.0.0:30010</td></tr>
-
 <tr><td>dfs.datanode.http.address</td><td>0.0.0.0:30075</td></tr>
-
 <tr><td>dfs.datanode.ipc.address</td><td>0.0.0.0:30020</td></tr>
-
 <tr><td>dfs.secondary.http.address</td><td>0.0.0.0:30090</td></tr>
-
 <tr><td>mapred.job.tracker.http.address</td><td>jobtrackerhost:30030</td></tr>
-
 <tr><td>mapred.task.tracker.http.address</td><td>0.0.0.0:30060</td></tr>
-
 <tr><td>mapreduce.history.server.http.address</td><td>0.0.0.0:31111</td></tr>
-
 <tr><td>templeton.port</td><td>30111</td></tr>
-</table><br>
+</table>
 
  **HDInsight 3.1 和 3.0 (HDP 2.1 和 2.0)**
 
 <table border="1">
-
 <tr><th>名稱</th><th>值</th></tr>
-
 <tr><td>dfs.namenode.http-address</td><td>namenodehost:30070</td></tr>
-
 <tr><td>dfs.namenode.https-address</td><td>headnodehost:30470</td></tr>
-
 <tr><td>dfs.datanode.address</td><td>0.0.0.0:30010</td></tr>
-
 <tr><td>dfs.datanode.http.address</td><td>0.0.0.0:30075</td></tr>
-
 <tr><td>dfs.datanode.ipc.address</td><td>0.0.0.0:30020</td></tr>
-
 <tr><td>dfs.namenode.secondary.http-address</td><td>0.0.0.0:30090</td></tr>
-
 <tr><td>yarn.nodemanager.webapp.address</td><td>0.0.0.0:30060</td></tr>
-
 <tr><td>templeton.port</td><td>30111</td></tr>
-</table><br>
+</table>
 
 ### <a name="dependencies"></a>相依項目
 HDInsight 3.x (HDP2.x) 加入下列相依項目：
@@ -1691,7 +1529,6 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 
 
 
-
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 

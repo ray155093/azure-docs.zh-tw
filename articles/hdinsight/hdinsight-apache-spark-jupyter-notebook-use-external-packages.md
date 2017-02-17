@@ -1,5 +1,5 @@
 ---
-title: "在 HDInsight 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部套件 | Microsoft Docs"
+title: "在 Azure 上的 Spark 中搭配 Jupyter Notebook 使用自訂 Maven 封裝 | Microsoft Docs"
 description: "說明如何設定讓 HDInsight Spark 叢集隨附之 Jupyter Notebook 使用外部 Spark 套件的逐步指示。"
 services: hdinsight
 documentationcenter: 
@@ -13,17 +13,22 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 53753790b63d783a284aa0db39841c4bd6a8a0aa
-ms.openlocfilehash: 11bcf7f4f51d105f6693545669a2f17af196bf57
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 2dd0d456d0c6b1c83a409fead63dacff26c03198
 
 
 ---
-# <a name="use-external-packages-with-jupyter-notebooks-in-apache-spark-clusters-on-hdinsight-linux"></a>在 HDInsight Linux 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部套件
+# <a name="use-external-packages-with-jupyter-notebooks-in-apache-spark-clusters-on-hdinsight"></a>在 HDInsight 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部封裝
+> [!div class="op_single_selector"]
+> * [使用資料格魔術](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
+> * [使用指令碼動作](hdinsight-apache-spark-python-package-installation.md)
+>
+>
 
-了解如何在 HDInsight (Linux) 上的 Apache Spark 叢集中，將 Jupyter Notebook 設定為使用外部、社群提供的 **maven** 套件 (不是叢集中現成的)。 
+了解如何在 HDInsight 上的 Apache Spark 叢集中，將 Jupyter Notebook 設定為使用外部、社群提供的 **maven** 封裝 (不是叢集中現成的)。 
 
 您可以搜尋 [Maven 儲存機制](http://search.maven.org/) 來取得可用套件的完整清單。 您也可以從其他來源取得可用套件清單。 例如，從 [Spark 套件](http://spark-packages.org/)可以取得社群提供套件的完整清單。
 
@@ -35,27 +40,27 @@ ms.openlocfilehash: 11bcf7f4f51d105f6693545669a2f17af196bf57
 您必須滿足以下條件：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="use-external-packages-with-jupyter-notebooks"></a>搭配 Jupyter Notebook 使用外部套件
 1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。 您也可以按一下 [瀏覽全部] > [HDInsight 叢集] 來瀏覽至您的叢集。   
 2. 在 Spark 叢集刀鋒視窗中按一下 [快速連結]，然後在 [叢集儀表板] 刀鋒視窗中按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
 
-   
-   > [!NOTE]
-   > 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。 使用您叢集的名稱取代 **CLUSTERNAME** ：
-   > 
-   > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
-   > 
+    > [!NOTE]
+    > 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。 使用您叢集的名稱取代 **CLUSTERNAME** ：
+    > 
+    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
+    > 
 
+   
 
 3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [Spark]。
    
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdispark.note.jupyter.createnotebook.png "Create a new Jupyter notebook")
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
 4. 系統隨即會建立新 Notebook，並以 Untitled.pynb 的名稱開啟。 在頂端按一下 Notebook 名稱，然後輸入好記的名稱。
    
-    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdispark.note.jupyter.notebook.name.png "Provide a name for the notebook")
+    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
 
 5. 您將使用 `%%configure` magic 來設定讓 Notebook 使用外部套件。 在使用外部套件的 Notebook 中，確定您在第一個程式碼單元中呼叫 `%%configure` magic。 這可確保將核心設定為在啟動工作階段之前即使用此套件。
 
@@ -73,7 +78,7 @@ ms.openlocfilehash: 11bcf7f4f51d105f6693545669a2f17af196bf57
    
     b. 從儲存機制收集 [GroupId]、[ArtifactId] 及 [版本] 的值。
    
-    ![搭配 Jupyter Notebook 使用外部套件](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/use-external-packages-with-jupyter.png "Use external packages with Jupyter notebook")
+    ![搭配 Jupyter Notebook 使用外部封裝](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/use-external-packages-with-jupyter.png "搭配 Jupyter Notebook 使用外部封裝")
    
     c. 串連三個值，其中以冒號分隔 (**:**)。
    
@@ -122,6 +127,6 @@ ms.openlocfilehash: 11bcf7f4f51d105f6693545669a2f17af196bf57
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

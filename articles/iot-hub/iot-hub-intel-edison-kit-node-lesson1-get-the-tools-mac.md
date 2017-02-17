@@ -1,5 +1,5 @@
 ---
-title: "取得適用於 Azure IoT 入門套件 (macOS 10.10) 的 Azure 工具 | Microsoft Docs"
+title: "將 Intel Edison (節點) 連接到 Azure IoT - 第 1 課：取得工具 (macOS) | Microsoft Docs"
 description: "在 macOS 上針對 Edison 的第一個範例應用程式下載並安裝必要的工具和軟體。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 448e79e35a35292ac2646d9b94f91ca4110cb6b2
-ms.openlocfilehash: c01b8cf4323777883d33318001b0bf1a0843506e
+ms.sourcegitcommit: adf5b10721a28432e6b37ef73c6a7e7ec9f93cdd
+ms.openlocfilehash: 7d8c4ef5cf055930178408ee9751058392a2f894
 
 
 ---
@@ -91,6 +91,6 @@ sudo npm install -g gulp
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

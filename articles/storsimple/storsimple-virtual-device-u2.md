@@ -259,6 +259,6 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

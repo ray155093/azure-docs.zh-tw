@@ -1,6 +1,6 @@
 ---
-title: "Azure 身分識別管理安全性概觀 | Microsoft Docs"
-description: " Microsoft 身分識別與存取管理解決方案會協助 IT 保護應用程式和跨公司資料中心和到雲端的存取，啟用其他層級的驗證，例如 Multi-Factor Authentication 和條件式存取原則。 本文對協助進行身分識別管理的 Azure 安全性功能提供核心的概觀。 "
+title: "協助進行身分識別管理的 Azure 安全性功能 | Microsoft Docs"
+description: " 本文對協助進行身分識別管理的 Azure 安全性功能提供核心的概觀。 Microsoft 身分識別與存取管理解決方案會協助 IT 保護應用程式和跨公司資料中心和到雲端的存取，啟用其他層級的驗證，例如多重要素驗證和條件式存取原則. "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/18/2016
+ms.date: 01/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 5778f554e83426f5fba12a25d2bbce13db4a9226
-ms.openlocfilehash: b73fb97a1f3879ae8f232d666e366b058f3253d1
+ms.sourcegitcommit: af191f7eed529c7d4541b28eb62979f25da89892
+ms.openlocfilehash: 9c5af888ec0130ec8506602ab805221f0a83ea47
 
 
 ---
@@ -156,6 +156,6 @@ Microsoft 的身分識別方法可跨越內部部署和雲端架構功能，建�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

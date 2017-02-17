@@ -1,6 +1,6 @@
 ---
-title: "預測 - 自動迴歸整合式移動平均 (ARIMA) | Microsoft Docs"
-description: "預測 - 自動迴歸整合移動平均 (ARIMA)"
+title: "(已過時) 預測 - 自動迴歸整合式移動平均 (ARIMA) - Azure | Microsoft Docs"
+description: "(已過時) 預測 - 自動迴歸整合式移動平均 (ARIMA)"
 services: machine-learning
 documentationcenter: 
 author: yijichen
@@ -11,16 +11,24 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 12/13/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: yijichen
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: c8d02cdd50c7f44991aeabee1999a81ec18bf59c
+ms.sourcegitcommit: b1ee1eae91185c1893b55be2046343d78dd6c48b
+ms.openlocfilehash: 169331fc08c8d378fbb0c9869e69a9eb132224ba
 
 
 ---
-# <a name="forecasting---autoregressive-integrated-moving-average-arima"></a>預測 - 自動迴歸整合移動平均 (ARIMA)
+# <a name="deprecated-forecasting---autoregressive-integrated-moving-average-arima"></a>(已過時) 預測 - 自動迴歸整合式移動平均 (ARIMA)
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。 如需此資源庫的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
+
 這項 [服務](https://datamarket.azure.com/dataset/aml_labs/arima) 會實作自動迴歸整合式移動平均 (ARIMA)，以根據使用者所提供的歷程記錄資料產生預測。 今年的特定產品需求會增加嗎？ 為方便有效地規劃庫存，我可以預測聖誕節的產品銷售嗎？ 預測模型專門處理此類問題。 有了過去的資料，這些模型可以檢查隱藏的趨勢和季節性來預測未來的趨勢。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -142,6 +150,6 @@ Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

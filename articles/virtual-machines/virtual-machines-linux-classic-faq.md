@@ -1,5 +1,5 @@
 ---
-title: "傳統 VM 的常見問題集 | Microsoft Docs"
+title: "傳統 Linux VM 的常見問題集 | Microsoft Docs"
 description: "針對以傳統部署模型建立的 Azure Linux 虛擬機器，提供一些相關常見問題的解答。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 07/28/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 1941fae336bac00edec9cd43d3a40167dfc6834d
+ms.sourcegitcommit: 872965ae70a0f0938f190a99832104cdfed25ef9
+ms.openlocfilehash: 6b6ec0198bbe4d60c833c35b100fbf92b39df80a
 
 
 ---
@@ -30,6 +30,6 @@ ms.openlocfilehash: 1941fae336bac00edec9cd43d3a40167dfc6834d
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/13/2016
 ms.author: masashin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: d408b5affc166ae4fae6b94ab3e069b51ecfdd3c
+ms.sourcegitcommit: e7f09966e2b15735081cf2ac4d244a7ae8b92df8
+ms.openlocfilehash: 397bbc7d556338ff347d59d000fe7442acda560a
 
 
 ---
@@ -1084,7 +1084,7 @@ var result = await policy.ExecuteAsync(() => authContext.AcquireTokenAsync(resou
 
 | **策略** | **設定** | **預設值** | **意義** |
 | --- | --- | --- | --- |
-| **指數** |retryCount<br />minBackoff<br /><br />MaxBackoff<br /><br />deltaBackoff<br /><br />fastFirstRetry |10<br />1 秒<br /><br />30 秒<br /><br />10 秒<br /><br />true |重試嘗試的次數。<br />最小輪詢時間。 系統會使用此值或計算出的輪詢值兩者中較大的值做為重試延遲。<br />最小輪詢時間。 系統會使用此值或計算出的輪詢值兩者中較小的值做為重試延遲。<br />此值用來計算重試之間指數延遲的隨機差異。<br />第一個重試嘗試是否將立即進行。 |
+| **指數** |retryCount<br />minBackoff<br /><br />MaxBackoff<br /><br />deltaBackoff<br /><br />fastFirstRetry |10<br />1 秒<br /><br />30 秒<br /><br />10 秒<br /><br />true |重試嘗試的次數。<br />最大輪詢時間。 系統會使用此值或計算出的輪詢值兩者中較大的值做為重試延遲。<br />最小輪詢時間。 系統會使用此值或計算出的輪詢值兩者中較小的值做為重試延遲。<br />此值用來計算重試之間指數延遲的隨機差異。<br />第一個重試嘗試是否將立即進行。 |
 | **累加** |retryCount<br />initialInterval<br />increment<br /><br />fastFirstRetry<br /> |10<br />1 秒<br />1 秒<br /><br />true |重試嘗試的次數。<br />第一個重試適用的初始間隔。<br />累加時間值將用來計算重試之間的漸進式延遲。<br />第一個重試嘗試是否將立即進行。 |
 | **線性 (固定間隔)** |retryCount<br />retryInterval<br />fastFirstRetry<br /> |10<br />1 秒<br />true |重試嘗試的次數。<br />重試之間的延遲。<br />是否將立即進行第一次重試嘗試。 |
 
@@ -1101,6 +1101,6 @@ var result = await policy.ExecuteAsync(() => authContext.AcquireTokenAsync(resou
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

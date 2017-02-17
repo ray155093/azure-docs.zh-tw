@@ -1,6 +1,6 @@
 ---
-title: "Azure 內容傳遞網路規則引擎功能 | Microsoft Docs"
-description: "本主題說明規則引擎的比對條件和功能"
+title: "Azure CDN 規則引擎功能 | Microsoft Docs"
+description: "Azure CDN 規則引擎比對條件和功能的參考文件。"
 services: cdn
 documentationcenter: 
 author: Lichard
@@ -12,16 +12,16 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/29/2016
+ms.date: 01/23/2017
 ms.author: rli
 translationtype: Human Translation
-ms.sourcegitcommit: 8a5d98bdc737fd9476b9db42100f58ed28619879
-ms.openlocfilehash: a3d8199a9d5d067a4da1e1d40ff99bebc40a5097
+ms.sourcegitcommit: dccb945e170bd3e3f23283359db25e574a2d4296
+ms.openlocfilehash: 6703247aa8b4a6d53ff22ea2d4f22eb4a746e370
 
 
 ---
 
-# <a name="features-for-azure-content-delivery-network--cdn-rules-engine"></a>Azure 內容傳遞網路 (CDN) 規則引擎的功能
+# <a name="azure-cdn-rules-engine-features"></a>Azure CDN 規則引擎功能
 本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)列出可用功能的詳細說明。
 
 規則的第三個部分是功能。 功能會定義動作類型，其將套用到透過一組比對條件來識別的要求類型。
@@ -207,9 +207,11 @@ Prebuf 秒|將此選項設定為 Edge Server 在進行頻寬節流設定之前�
 **預設行為：**
 
 - **HTTP 大型︰**已停用
+
 <!---
 - **ADN:** Enabled
 --->
+
 ###<a name="cache-control-header-treatment"></a>Cache-Control 標頭處理
 **目的：**當 [外部最大壽命] 功能為作用中時，透過 Edge Server 來控制 Cache-Control 標頭的產生。
 
@@ -966,7 +968,28 @@ URL 重寫  | 重寫要求 URL。
  目的地  |使用下列方式來定義要將上述要求重寫至其中的相對 URL： <br/>    1.選取可識別原始伺服器的內容存取點。 <br/>    2.使用下列方式來定義相對路徑： <br/>        - 規則運算式模式 <br/>        - HTTP 變數 <br/> <br/> 使用 $_n_，將擷取自來源模式的值替代至目的地模式，其中_n_ 可依擷取的順序來識別值。 例如，$1 表示擷取自來源模式的第一個值，而 $2 代表第二個值。 
  此功能讓 Edge Server 不需執行傳統的重新導向就能重寫 URL。 這表示，如果收到重寫 URL 的要求，要求者將會收到相同的回應碼。
 
-**範例案例**
+**範例案例 1**
+
+在此範例中，我們會示範如何將解析為下列基底 CDN URL 的 Edge CNAME URL 重新導向：http://marketing.azureedge.net/brochures/
+
+符合資格的要求將會重新導向至此基底 Edge CNAME URL：http://MyOrigin.azureedge.net/resources/
+
+此 URL 重新導向可透過下列組態來達成：![](./media/cdn-rules-engine-reference/cdn-rules-engine-rewrite.png)
+
+**範例案例 2**
+
+在此範例中，我們將示範如何使用規則運算式，將邊緣 CNAME URL 從「大寫」重新導向到小寫。
+
+此 URL 重新導向可透過下列組態來達成：![](./media/cdn-rules-engine-reference/cdn-rules-engine-to-lowercase.png)
+
+
+**重點︰**
+
+- [URL 重寫] 功能會定義將要重寫的要求 URL。 如此一來，就不需要額外的比對條件。 雖然將比對條件定義為 [一律]，但只會重寫指向 [marketing] 客戶原始伺服器上 [brochures] 資料夾的要求。
+
+- 擷取自要求的 URL 區段會透過「$1」附加到新的 URL。
+
+
 
 ###<a name="compatibility"></a>相容性
 
@@ -998,6 +1021,6 @@ URL 重寫  | 重寫要求 URL。
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

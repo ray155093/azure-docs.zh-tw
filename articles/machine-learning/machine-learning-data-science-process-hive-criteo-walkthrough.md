@@ -633,6 +633,6 @@ Hive REPL "hive >" 出現記號後，只需剪下並貼上查詢即可執行。
 
 
 
-<!--HONumber=Jan17_HO5-->
+<!--HONumber=Feb17_HO3-->
 
 

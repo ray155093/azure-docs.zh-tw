@@ -4,7 +4,7 @@ description: "提供疑難排解指導方針，以協助您診斷 Azure 備份�
 services: backup
 documentationcenter: 
 author: genlin
-manager: jimpark
+manager: cshepard
 editor: 
 ms.assetid: e379180a-db13-4e0c-90e4-28e5dd6f5b14
 ms.service: backup

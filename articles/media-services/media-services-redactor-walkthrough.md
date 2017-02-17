@@ -1,5 +1,5 @@
 ---
-title: "臉部修訂逐步解說 | Microsoft Docs"
+title: "使用 Azure 媒體分析修訂臉部逐步解說 | Microsoft Docs"
 description: "本主題逐步說明如何使用 Azure 媒體服務總管 (AMSE) 和 Azure 媒體修訂器視覺化檢視 (開放原始碼工具) 來執行完整的修訂工作流程。"
 services: media-services
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 11/17/2016
+ms.date: 11/30/2016
 ms.author: rli; juliako;
 translationtype: Human Translation
-ms.sourcegitcommit: d693bc0de2f8a03d67b346f3b2d4693284ae4d71
-ms.openlocfilehash: b9bd117d2b2a4bb710c98d4a8771727d3f5d06b6
+ms.sourcegitcommit: 8d8575decb177001cefbb7f159841b64c3f84f41
+ms.openlocfilehash: d9bb513a7f5acc0ba41902795b159564b2562842
 
 
 ---
-# <a name="face-redaction-walkthrough"></a>臉部修訂逐步解說
+# <a name="redact-faces-with-azure-media-analytics-walkthrough"></a>使用 Azure 媒體分析修訂臉部逐步解說
 
 ## <a name="overview"></a>概觀
 
@@ -67,7 +67,7 @@ ms.openlocfilehash: b9bd117d2b2a4bb710c98d4a8771727d3f5d06b6
 
     ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough005.png)
 
-2. (選擇性) 上傳包含您想修訂之識別碼清單 (以新行分隔) 的 'idlist.txt' 檔案。 
+2. (選擇性) 上傳包含您想修訂之識別碼清單 (以新行分隔) 的 'Dance_idlist.txt' 檔案。 
 
     ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough006.png)
 
@@ -132,6 +132,6 @@ ms.openlocfilehash: b9bd117d2b2a4bb710c98d4a8771727d3f5d06b6
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

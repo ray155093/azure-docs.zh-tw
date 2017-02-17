@@ -1,5 +1,5 @@
 ---
-title: "將原則套用至 Azure Resource Manager 虛擬機器 | Microsoft Docs"
+title: "在 Azure 中的 Windows VM 上以原則強制執行安全性 | Microsoft Docs"
 description: "如何將原則套用至 Azure Resource Manager  Windows 虛擬機器"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,12 +16,12 @@ ms.topic: article
 ms.date: 04/13/2016
 ms.author: singhkay
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 5ee1e47b940516ea872daba7d1dd7b23f404f326
+ms.sourcegitcommit: 652a8a0dcb3216e9b762b85de56673beda74edc4
+ms.openlocfilehash: 83470aaf607a666a63bae5b9897d0b273e327377
 
 
 ---
-# <a name="apply-policies-to-azure-resource-manager-virtual-machines"></a>將原則套用至 Azure Resource Manager 虛擬機器
+# <a name="apply-security-and-policies-to-windows-vms-with-azure-resource-manager"></a>使用 Azure Resource Manager 將安全性和原則套用至 Windows VM
 藉由使用原則，組織可以強制執行整個企業的各種慣例和規則。 強制執行所要的行為有助於降低風險，同時促進組織的成功。 在本文中，我們將說明如何使用 Azure Resource Manager 原則來定義您組織虛擬機器所要的行為。
 
 完成此作業的步驟大致如下
@@ -105,6 +105,6 @@ ms.openlocfilehash: 5ee1e47b940516ea872daba7d1dd7b23f404f326
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

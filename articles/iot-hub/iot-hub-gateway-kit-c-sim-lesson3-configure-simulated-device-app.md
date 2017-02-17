@@ -1,5 +1,5 @@
 ---
-title: "執行模擬裝置範例應用程式將資料傳送至 Azure IoT 中樞 | Microsoft Docs"
+title: "模擬裝置與 Azure IoT 閘道 - 第 3 課︰執行範例應用程式 | Microsoft Docs"
 description: "執行模擬裝置範例應用程式將溫度資料傳送至您的 Azure IoT 中樞"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 1c4f44787a7200a1c3634b258df32d30152daa90
-ms.openlocfilehash: 94bffa363f7979b7dc37363328a358f0b139307d
+ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
+ms.openlocfilehash: 873f3cef8cb1d115f77f0d3fa2c4b50391f66d91
 
 
 ---
@@ -139,6 +139,6 @@ az iot device show-connection-string --hub-name {IoT hub name} --device-id mydev
 [讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-sim-lesson3-read-messages-from-hub.md)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

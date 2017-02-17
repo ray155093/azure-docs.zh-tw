@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Resource Manager 中連結資源 | Microsoft Docs"
+title: "在 Azure 解決方案中連結相關資源 | Microsoft Docs"
 description: "在 Azure Resource Manager 中建立不同資源群組中相關資源之間的連結。"
 services: azure-resource-manager
 documentationcenter: 
@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 08/01/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: e841c21a15c47108cbea356172bffe766003a145
-ms.openlocfilehash: 87d19e4680a6da6be6da55eeab80ee7739361f8c
+ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
+ms.openlocfilehash: 2750e971ae281e498e9c505e1cd2790cefbfbc78
 
 
 ---
-# <a name="linking-resources-in-azure-resource-manager"></a>在「Azure 資源管理員」中連結資源
+# <a name="link-related-resources-from-different-resource-groups"></a>連結不同資源群組的相關資源
 在部署期間，您可以將某個資源標示為依存於另一個資源，但在部署時結束該生命週期。 部署之後，相依資源之間就沒有可識別的關聯性。 Resource Manager 提供稱為「資源連結」的功能，來建立資源之間的永續性關聯性。
 
 運用資源連結，您可以記錄跨多個資源群組的關聯性。 例如，下列情況很常見：具有自己的生命週期的資料庫存在於一個資源群組中，而具有不同生命週期的應用程式存在於不同的資源群組中。 應用程式會連接到資料庫，因此您想要標示應用程式與資料庫之間的連結。 
@@ -76,6 +76,6 @@ properties 元素包含第二個資源的識別碼。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

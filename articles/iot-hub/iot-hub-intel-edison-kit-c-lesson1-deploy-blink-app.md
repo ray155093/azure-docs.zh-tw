@@ -1,5 +1,5 @@
 ---
-title: "在 Azure IoT 入門套件中部署閃爍應用程式 | Microsoft Docs"
+title: "將 Intel Edison (C) 連接到 Azure IoT - 第 1 課：部署應用程式 | Microsoft Docs"
 description: "從 GitHub 複製範例 C 應用程式，並執行 gulp 以將此應用程式部署至您的 Intel Edison 面板。 此範例應用程式會讓與面板連接的 LED 每兩秒閃爍一次。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 604ab48856f3fbc09ca6b566ef3f7e1d18e912c6
-ms.openlocfilehash: 6c911297be4fa2c7ce6bd817233e8a8012634f42
+ms.sourcegitcommit: 475b25f02715a60493e79ecd2170854019dfc4ac
+ms.openlocfilehash: c0589d488be5ec62686551b97d8949e5fed2f0a3
 
 
 ---
@@ -127,6 +127,6 @@ gulp deploy && gulp run
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

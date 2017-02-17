@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
-ms.openlocfilehash: 291f7d7f8f9addadde95bc30924b040d09c90fc7
+ms.sourcegitcommit: 43eaec477ef5279631454edd584f22573e224977
+ms.openlocfilehash: b97a81cd516b6d3d20740609c064a13fb9f8622a
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 291f7d7f8f9addadde95bc30924b040d09c90fc7
 您可以使用 Azure 診斷延伸模組，從雲端服務收集診斷資料 (例如應用程式記錄檔、效能計數器等)。 本文描述如何使用 PowerShell 啟用雲端服務的 Azure 診斷延伸模組。  如需這篇文章所需要的必要條件，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 
 ## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>啟用診斷延伸模組做為部署雲端服務的一部分
-對於可以啟用診斷擴充來做為雲端服務佈署一部分的連續整合類型案例來說，這種方法是很有用的。 當您建立新的雲端服務部署時，可以啟用診斷擴充，方法是將 *ExtensionConfiguration* 參數傳入 [New-AzureDeployment](https://msdn.microsoft.com/library/azure/mt589089.aspx) Cmdlet。 *ExtensionConfiguration* 參數接受以 [New-AzureServiceDiagnosticsExtensionConfig](https://msdn.microsoft.com/library/azure/mt589168.aspx) Cmdlet 建立的診斷組態陣列。
+此方法適用於可以啟用診斷延伸模組做為雲端服務佈署一部分的連續整合類型案例。 當您建立新的雲端服務部署時，可以啟用診斷擴充，方法是將 *ExtensionConfiguration* 參數傳入 [New-AzureDeployment](https://msdn.microsoft.com/library/azure/mt589089.aspx) Cmdlet。 *ExtensionConfiguration* 參數接受以 [New-AzureServiceDiagnosticsExtensionConfig](https://msdn.microsoft.com/library/azure/mt589168.aspx) Cmdlet 建立的診斷組態陣列。
 
 下列範例示範如何為某個雲端服務 (其中的 WebRole 和 WorkerRole 各自擁有不同的診斷組態) 啟用診斷。
 
@@ -41,7 +41,7 @@ $workerrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "Worke
 New-AzureDeployment -ServiceName $service_name -Slot Production -Package $service_package -Configuration $service_config -ExtensionConfiguration @($webrole_diagconfig,$workerrole_diagconfig)
 ```
 
-如果診斷組態檔以某個儲存體帳戶名稱來指定 StorageAccount 元素，則 New-AzureServiceDiagnosticsExtensionConfig Cmdlet 會自動使用該儲存體帳戶。 但該儲存體帳戶所屬的訂用帳戶，必須與雲端服務部署時所屬的訂用帳戶相同，這個方法才有作用。
+如果診斷組態檔以某個儲存體帳戶名稱指定 `StorageAccount` 元素，則 `New-AzureServiceDiagnosticsExtensionConfig` Cmdlet 將會自動使用該儲存體帳戶。 但該儲存體帳戶所屬的訂用帳戶，必須與雲端服務部署時所屬的訂用帳戶相同，這個方法才有作用。
 
 從 Azure SDK 2.6 開始，由 MSBuild 發佈目標輸出所產生的擴充設定檔，會包含以服務組態檔 (.cscfg) 中所指定的診斷組態字串為基礎的儲存體帳戶名稱。 下列指令碼示範在部署雲端服務時，如何從發佈目標輸出來剖析擴充設定檔，以及如何設定每個角色的診斷擴充。
 
@@ -84,11 +84,11 @@ foreach ($extPath in $diagnosticsExtensions)
 New-AzureDeployment -ServiceName $service_name -Slot Production -Package $service_package -Configuration $service_config -ExtensionConfiguration $diagnosticsConfigurations
 ```
 
-Visual Studio Online 使用類似的方法，來自動部署搭配診斷擴充的雲端服務。 請參閱 [Publish-AzureCloudDeployment.ps1](https://github.com/Microsoft/vso-agent-tasks/blob/master/Tasks/AzureCloudPowerShellDeployment/Publish-AzureCloudDeployment.ps1) 來取得完整的範例。
+Visual Studio Online 使用類似的方法，自動部署具有診斷延伸模組的雲端服務。 請參閱 [Publish-AzureCloudDeployment.ps1](https://github.com/Microsoft/vso-agent-tasks/blob/master/Tasks/AzureCloudPowerShellDeployment/Publish-AzureCloudDeployment.ps1) 來取得完整的範例。
 
-如果您沒有在診斷組態中指定 StorageAccount，就必須將 StorageAccountName 參數傳入 Cmdlet。 如果您已指定 StorageAccountName 參數，則 Cmdlet 一定會使用在此參數中指定的儲存體帳戶，而非在診斷組態檔中指定的儲存體帳戶。
+如果您未在診斷組態中指定 `StorageAccount`，則需要將 *StorageAccountName* 參數傳入 Cmdlet。 如果已指定 *StorageAccountName* 參數，則 Cmdlet 一定會使用在此參數中指定的儲存體帳戶，而非在診斷組態檔中指定的儲存體帳戶。
 
-如果診斷儲存體帳戶和雲端服務分別屬於不同的訂用帳戶，您必須明確地將 StorageAccountName 和 StorageAccountKey 參數傳入 Cmdlet。 當診斷儲存體帳戶屬於同一個訂用帳戶時，您就不需要使用 StorageAccountKey 參數，因為 Cmdlet 會在啟用診斷擴充時自動查詢並設定金鑰值。 不過，當診斷儲存體帳戶屬於不同的訂用帳戶時，Cmdlet 可能就無法自動取得金鑰，而您必須透過 StorageAccountKey 參數來明確指定金鑰。
+如果診斷儲存體帳戶和雲端服務分別屬於不同的訂用帳戶，您必須明確地將 *StorageAccountName* 和 *StorageAccountKey* 參數傳入 Cmdlet。 當診斷儲存體帳戶位於同一個訂用帳戶中時，就不需要使用 *StorageAccountKey* 參數，因為 Cmdlet 會在啟用診斷擴充功能時自動查詢並設定金鑰值。 不過，如果診斷儲存體帳戶位於不同的訂用帳戶中，Cmdlet 可能就無法自動取得金鑰，您必須透過 *StorageAccountKey* 參數來明確指定金鑰。
 
 ```powershell
 $webrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "WebRole" -DiagnosticsConfigurationPath $webrole_diagconfigpath -StorageAccountName $diagnosticsstorage_name -StorageAccountKey $diagnosticsstorage_key
@@ -140,6 +140,6 @@ Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService" -Role "WebRole"
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

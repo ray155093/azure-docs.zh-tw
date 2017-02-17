@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/08/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cb8d77588bbac30a67dab9a20e0e81d2537c977f
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 46ffa25ff6f90c898b958ee6c5b2c47219c468ab
 
 
 ---
@@ -525,7 +525,7 @@ ms.openlocfilehash: cb8d77588bbac30a67dab9a20e0e81d2537c977f
 * [Azure 管理入口網站](https://manage.windowsazure.com)
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期的入門應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期的入門應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -557,6 +557,6 @@ ms.openlocfilehash: cb8d77588bbac30a67dab9a20e0e81d2537c977f
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

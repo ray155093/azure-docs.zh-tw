@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Azure 記錄整合簡介 (預覽) | Microsoft Docs"
+title: "將記錄從 Azure 資源整合到 SIEM 系統 | Microsoft Docs"
 description: "了解 Azure 記錄整合、其主要功能及運作方式。"
 services: security
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/07/2017
+ms.date: 01/23/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 68c0e3c73b3192aedc18ec3588f1201b3aa36f35
+ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
+ms.openlocfilehash: 62b5469d06974dfbe1b243091d34e1141416c971
 
 
 ---
@@ -55,6 +55,6 @@ Azure 記錄整合目前支援 Azure 稽核記錄檔、虛擬機器記錄檔 和
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

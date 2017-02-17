@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Reliable Services | Microsoft Docs"
+title: "使用 C# 建立您第一個可靠的 Azure 微服務 | Microsoft Docs"
 description: "概述使用無狀態與具狀態服務來建立 Microsoft Azure Service Fabric 應用程式。"
 services: service-fabric
 documentationcenter: .net
@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/28/2016
+ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 4b12d221b057161013aa3401e343ec41e4637f7c
-ms.openlocfilehash: ae77871a30e0768f6848056223cacf55b064bf1a
+ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
+ms.openlocfilehash: 41823b962caf25e1826fc06bc49887fd99876fc4
 
 
 ---
@@ -231,6 +231,6 @@ using (ITransaction tx = this.StateManager.CreateTransaction())
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

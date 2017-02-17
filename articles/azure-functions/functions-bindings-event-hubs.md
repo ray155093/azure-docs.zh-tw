@@ -17,19 +17,20 @@ ms.workload: na
 ms.date: 11/02/2016
 ms.author: wesmc
 translationtype: Human Translation
-ms.sourcegitcommit: 593f97bf0fc855e2d122e093961013f923e2e053
-ms.openlocfilehash: b7b6dc01c996527c4ada974cc28b774b30e6b853
+ms.sourcegitcommit: c8e9f9709d13295c9414e525f1f60abf0d0accb7
+ms.openlocfilehash: 0bfbfd3828aacdee0b6630ced034f2c1e0451abd
 
 
 ---
 # <a name="azure-functions-event-hub-bindings"></a>Azure Functions 事件中樞繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-本文說明如何針對 Azure Functions 設定 [Azure 事件中樞](../event-hubs/event-hubs-overview.md) 繫結以及撰寫程式碼。 Azure Functions 支援事件中樞的觸發程序和輸出繫結。
+本文說明如何針對 Azure Functions 設定 [Azure 事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md) 繫結以及撰寫程式碼。
+Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-如果您對「Azure 事件中樞」並不熟悉，請參閱 [Azure 事件中樞概觀](../event-hubs/event-hubs-overview.md)。
+如果您對「Azure 事件中樞」並不熟悉，請參閱 [Azure 事件中樞概觀](../event-hubs/event-hubs-what-is-event-hubs.md)。
 
 <a name="trigger"></a>
 
@@ -44,13 +45,14 @@ ms.openlocfilehash: b7b6dc01c996527c4ada974cc28b774b30e6b853
     "name": "<Name of trigger parameter in function signature>",
     "direction": "in",
     "path": "<Name of the Event Hub>",
-    "consumerGroup": "Consumer group to use - see below", 
+    "consumerGroup": "Consumer group to use - see below",
     "connection": "<Name of app setting with connection string - see below>"
 }
 ```
 
-`consumerGroup` 是選擇性屬性，可設定用來訂閱中樞內事件的[取用者群組](../event-hubs/event-hubs-overview.md#consumer-groups)。 如果省略，則會使用 `$Default` 取用者群組。  
-`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。 按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串至少必須具備讀取權限，才能啟動觸發程序。
+`consumerGroup` 是選擇性屬性，可設定用來訂閱中樞內事件的[取用者群組](../event-hubs/event-hubs-what-is-event-hubs.md#event-consumers)。 如果省略，則會使用 `$Default` 取用者群組。  
+`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。
+按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串至少必須具備讀取權限，才能啟動觸發程序。
 
 可以在 host.json 檔案中提供[其他設定](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)來進一步微調事件中樞觸發程序。  
 
@@ -116,9 +118,9 @@ module.exports = function (context, myEventHubMessage) {
 <a name="output"></a>
 
 ## <a name="event-hub-output-binding"></a>事件中樞輸出繫結
-使用事件中樞輸出繫結將事件寫入事件中樞事件資料流。 您必須具備事件中樞的傳送權限，才能將事件寫入其中。 
+使用事件中樞輸出繫結將事件寫入事件中樞事件資料流。 您必須具備事件中樞的傳送權限，才能將事件寫入其中。
 
-輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰ 
+輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
 
 ```json
 {
@@ -130,12 +132,13 @@ module.exports = function (context, myEventHubMessage) {
 }
 ```
 
-`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。 按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串必須具有傳送權限，才能將訊息傳送至事件資料流。
+`connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。
+按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串必須具有傳送權限，才能將訊息傳送至事件資料流。
 
 ## <a name="output-usage"></a>輸出使用方式
 本節說明如何在您的函式程式碼中使用「事件中樞」輸出繫結。
 
-您可以使用下列參數類型，將訊息輸出至已設定的事件中樞︰ 
+您可以使用下列參數類型，將訊息輸出至已設定的事件中樞︰
 
 * `out string`
 * `ICollector<string>` (輸出多個訊息)
@@ -183,7 +186,7 @@ public static void Run(TimerInfo myTimer, out string outputEventHubMessage, Trac
 public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessage, TraceWriter log)
 {
     string message = $"Event Hub message created at: {DateTime.Now}";
-    log.Info(message); 
+    log.Info(message);
     outputEventHubMessage.Add("1 " + message);
     outputEventHubMessage.Add("2 " + message);
 }
@@ -233,7 +236,6 @@ module.exports = function(context) {
 
 
 
-
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

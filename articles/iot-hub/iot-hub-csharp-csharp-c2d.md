@@ -1,6 +1,6 @@
 ---
-title: "使用 IoT 中樞傳送雲端到裝置訊息 | Microsoft Docs"
-description: "請遵循本教學課程，以了解如何搭配 C# 使用 Azure IoT 中心傳送雲端到裝置的訊息。"
+title: "使用 Azure IoT 中樞傳送雲端到裝置訊息 (.NET) | Microsoft Docs"
+description: "如何使用適用於 .NET 的 Azure IoT SDK，將雲端到裝置訊息從 Azure IoT 中樞傳送至裝置。 您可以修改模擬裝置應用程式，以接收雲端到裝置訊息，也可以修改後端應用程式，以傳送雲端到裝置訊息。"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -15,28 +15,28 @@ ms.workload: na
 ms.date: 11/16/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: ce514e19370d2b42fb16b4e96b66f212d5fa999c
-ms.openlocfilehash: 873043eefc33603bd472c6d4e0e8c10d1ad400ee
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 6af64c0f4049e2597b7a101a0e0f735623fc18a0
 
 
 ---
-# <a name="tutorial-how-to-send-cloud-to-device-messages-with-iot-hub-and-net"></a>教學課程：如何使用 IoT 中樞和 .Net 傳送雲端到裝置訊息
+# <a name="send-cloud-to-device-messages-with-iot-hub-net"></a>使用 IoT 中樞傳送雲端到裝置訊息 (.NET)
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
 ## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個應用程式後端進行可靠且安全的雙向通訊。 [開始使用 IoT 中樞] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。
+Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。 [IoT 中樞入門] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。
 
-本教學課程是以 [開始使用 IoT 中樞]為基礎。 這會說明如何：
+本教學課程是以 [IoT 中樞入門]為基礎。 這會說明如何：
 
-* 從您的應用程式雲端後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。
+* 從您的解決方案後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。
 * 接收裝置上的雲端到裝置訊息。
-* 從您的應用程式雲端後端，要求確認收到從 IoT 中樞傳送到裝置的訊息 (*意見反應*)。
+* 從您的解決方案後端，要求確認收到從 IoT 中樞傳送到裝置的訊息 (「意見反應」)。
 
-您可以在 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
+您可以在 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
 
-在本教學課程結尾，您會執行兩個 Windows 主控台應用程式：
+在本教學課程結尾處，您會執行兩個 .NET 主控台應用程式：
 
-* **SimulatedDevice**， [開始使用 IoT 中樞]中建立之應用程式的修改版本，可連接到您的 IoT 中心，並接收雲端到裝置的訊息。
+* **SimulatedDevice**， [IoT 中樞入門]中建立之應用程式的修改版本，可連接到您的 IoT 中心，並接收雲端到裝置的訊息。
 * **SendCloudToDevice**：會透過 IoT 中樞，將雲端到裝置訊息傳送到模擬裝置應用程式，然後接收其傳遞通知。
 
 > [!NOTE]
@@ -50,7 +50,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
 ## <a name="receive-messages-in-the-simulated-device-app"></a>在模擬的裝置應用程式中接收訊息
-在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
+在本節中，您會修改在[IoT 中樞入門]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
 
 1. 在 Visual Studio 的 **SimulatedDevice** 專案中，將下列方法新增 [程式] 類別。
    
@@ -72,10 +72,10 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
    
     `ReceiveAsync` 方法會以非同步方式，在裝置收到訊息時，傳回收到的訊息。 它會在可指定的逾時期間過後傳回「null」  (在本例中，使用的是預設值 1 分鐘)。 當應用程式收到 *null* 時，應繼續等待新訊息。 這項要求是 `if (receivedMessage == null) continue` 行的的原因。
    
-    對 `CompleteAsync()` 的呼叫會通知 IoT 中樞，說明已成功處理訊息。 可以安全地從裝置佇列中移除該訊息。 如果因故導致裝置應用程式無法完成訊息處理作業，「IoT 中樞」將會重新傳遞該訊息。 因此，裝置應用程式中的訊息處理邏輯必須是「等冪」，如此一來，多次接收相同的訊息才會產生相同的結果。 應用程式也可以暫時放棄訊息，這會使得「IoT 中樞」將訊息保留在佇列中以供未來取用。 或者，應用程式可以拒絕訊息，這會將訊息從佇列中永久移除。 如需有關雲端到裝置訊息生命週期的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
+    對 `CompleteAsync()` 的呼叫會通知 IoT 中樞，說明已成功處理訊息。 可以安全地從裝置佇列中移除該訊息。 如果因故導致裝置應用程式無法完成訊息處理作業，「IoT 中樞」將會重新傳遞該訊息。 因此，裝置應用程式中的訊息處理邏輯必須是「等冪」 ，如此一來，多次接收相同的訊息才會產生相同的結果。 應用程式也可以暫時放棄訊息，這會使得「IoT 中樞」將訊息保留在佇列中以供未來取用。 或者，應用程式可以拒絕訊息，這會將訊息從佇列中永久移除。 如需有關雲端到裝置訊息生命週期的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]。
    
    > [!NOTE]
-   > 使用 HTTP 而不使用 MQTT 或 AMQP 做為傳輸時，`ReceiveAsync` 方法會立即傳回。 使用 HTTP 時，針對雲端到裝置訊息支援的模式是裝置以間歇方式連接而不常檢查訊息 (低於每 25 分鐘一次)。 發出更多 HTTP 接收會導致「IoT 中樞」對要求進行節流。 如需有關 AMQP、AMQP 和 HTTP 支援間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
+   > 使用 HTTP 而不使用 MQTT 或 AMQP 做為傳輸時，`ReceiveAsync` 方法會立即傳回。 使用 HTTP 時，針對雲端到裝置訊息支援的模式是裝置以間歇方式連接而不常檢查訊息 (低於每 25 分鐘一次)。 發出更多 HTTP 接收會導致「IoT 中樞」對要求進行節流。 如需有關 AMQP、AMQP 和 HTTP 支援之間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]。
    > 
    > 
 2. 將下列方法新增到 **Main** 方法中緊接在 `Console.ReadLine()` 行前面：
@@ -88,7 +88,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 > 
 
 ## <a name="send-a-cloud-to-device-message"></a>傳送雲端到裝置訊息
-在本節中，您會撰寫 Windows 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。
+在本節中，您會撰寫 .NET 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。
 
 1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立「Visual C# 傳統型應用程式」專案。 將專案命名為 **SendCloudToDevice**。
    
@@ -98,11 +98,12 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     此動作會開啟 [管理 NuGet 套件] 視窗。
 3. 搜尋 `Microsoft Azure Devices`，然後按一下 [ **安裝**] 並接受使用條款。 
    
-    此動作會下載及安裝參考，並將其加入 [Azure IoT - 服務 SDK NuGet 套件]。
+    這會下載和安裝 [Azure IoT 服務 SDK NuGet 套件]，並新增其參考。
+
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值從 IoT 中樞連接字串替換成[開始使用 IoT 中樞]：
+5. 將下列欄位新增到 **Program** 類別。 將預留位置的值從 IoT 中樞連接字串替換成[IoT 中樞入門]：
    
         static ServiceClient serviceClient;
         static string connectionString = "{iot hub connection string}";
@@ -114,7 +115,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
             await serviceClient.SendAsync("myFirstDevice", commandMessage);
         }
    
-    這個方法會將新的雲端到裝置訊息傳送給識別碼為 `myFirstDevice`的裝置。 若您修改了 [開始使用 IoT 中樞]內的方法，則需一併變更此參數。
+    這個方法會將新的雲端到裝置訊息傳送給識別碼為 `myFirstDevice`的裝置。 若您修改了 [IoT 中樞入門]內的方法，則需一併變更此參數。
 7. 最後，將下列幾行加入至 **Main** 方法：
    
         Console.WriteLine("Send Cloud-to-Device message\n");
@@ -130,7 +131,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
    ![正在接收訊息的應用程式][21]
 
 ## <a name="receive-delivery-feedback"></a>接收傳遞意見反應
-您可以向「IoT 中樞」要求每個雲端到裝置訊息的傳遞 (或到期) 通知。 此動作可讓雲端後端輕鬆地通知重試或補償邏輯。 如需有關雲端到裝置意見反應的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub Developer Guide - C2D]。
+您可以向「IoT 中樞」要求每個雲端到裝置訊息的傳遞 (或到期) 通知。 這個選項可讓解決方案後端輕鬆地通知重試或補償邏輯。 如需有關雲端到裝置意見反應的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]。
 
 在本節中，您會修改 **SendCloudToDevice** 應用程式以要求意見反應，然後從 IoT 中樞接收意見反應。
 
@@ -184,19 +185,19 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 
 <!-- Links -->
 
-[Azure IoT - 服務 SDK NuGet 套件]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
+[Azure IoT 服務 SDK NuGet 套件]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
-[IoT Hub Developer Guide - C2D]: iot-hub-devguide-messaging.md
+[IoT Hub developer guide - C2D]: iot-hub-devguide-messaging.md
 
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
-[開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
+[IoT 中樞入門]: iot-hub-csharp-csharp-getstarted.md
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

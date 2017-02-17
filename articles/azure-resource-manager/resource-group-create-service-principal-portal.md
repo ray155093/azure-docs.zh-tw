@@ -1,5 +1,5 @@
 ---
-title: "在入口網站中建立服務主體 | Microsoft Docs"
+title: "在入口網站中建立 Azure App 的身分識別 | Microsoft Docs"
 description: "描述如何建立可以與 Azure 資源管理員中的角色型存取控制搭配使用來管理資源存取權的新 Active Directory 應用程式和服務主體。"
 services: azure-resource-manager
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/30/2016
+ms.date: 01/17/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 4312002b311ec17f175f6eb6bc45fbe1ce7c7a01
-ms.openlocfilehash: 3232aa0356353e3856286c38d931543a254fd9fd
+ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
+ms.openlocfilehash: 3b132bbc89f64928f971f92365691d40c1aab420
 
 
 ---
@@ -28,7 +28,13 @@ ms.openlocfilehash: 3232aa0356353e3856286c38d931543a254fd9fd
 >
 >
 
-如果您擁有需要存取或修改資源的應用程式，您就必須設定一個 Active Directory (AD) 應用程式並為其指派必要的權限。 本主題說明如何透過入口網站執行這些步驟。 其中著重在說明單一租用戶應用程式，此應用程式的目的是只在一個組織內執行。 您通常會將單一租用戶應用程式用在組織內執行的企業營運系統應用程式。
+如果您擁有需要存取或修改資源的應用程式，您就必須設定一個 Active Directory (AD) 應用程式並為其指派必要的權限。 以您自己的認證執行 App 是比較好的作法，因為︰
+
+* 您可以對 App 身分識別指派不同於您自己權限的權限。 一般而言，這些權限只會限制為 App 必須執行的確切權限。
+* 如果您的職責變更，就不需要變更 App 的認證。 
+* 您可以使用憑證在執行自動指令碼時自動進行驗證。
+
+本主題說明如何透過入口網站執行這些步驟。 其中著重在說明單一租用戶應用程式，此應用程式的目的是只在一個組織內執行。 您通常會將單一租用戶應用程式用在組織內執行的企業營運系統應用程式。
  
 ## <a name="required-permissions"></a>所需的權限
 若要完成本主題，您必須有足夠權限向 Active Directory 註冊應用程式，並將應用程式指派給 Azure 訂用帳戶中的角色。 讓我們來確定您具有適當的權限可執行這些步驟。
@@ -157,9 +163,19 @@ ms.openlocfilehash: 3232aa0356353e3856286c38d931543a254fd9fd
      ![搜尋應用程式](./media/resource-group-create-service-principal-portal/search-app.png)
 9. 選取 [確定] 以完成角色指派。 您在使用者清單中看到應用程式已指派給該範圍的角色。
 
-您的應用程式現在已設定在 Active Directory 中。 您有識別碼和金鑰可用應用程式方式登入。 應用程式指派給角色，允許它執行特定動作。 您可以查看範例應用程式，以深入了解如何在應用程式程式碼中完成工作。
+## <a name="log-in-as-the-application"></a>以應用程式身分登入
 
-## <a name="sample-applications"></a>範例應用程式
+您的應用程式現在已設定在 Active Directory 中。 您有識別碼和金鑰可用應用程式方式登入。 系統會對應用程式指派角色，允許它執行特定動作。 
+
+若要透過 PowerShell 登入，請參閱[透過 PowerShell 提供認證](resource-group-authenticate-service-principal.md#provide-credentials-through-powershell)。
+
+若要透過 Azure CLI 登入，請參閱[透過 Azure CLI 提供認證](resource-group-authenticate-service-principal-cli.md#provide-credentials-through-azure-cli)。
+
+若要取得 REST 作業的存取權杖，請參閱[建立要求](/rest/api/#create-the-request)。
+
+我們來看下列範例應用程式，以了解透過應用程式程式碼登入。
+
+### <a name="sample-applications"></a>範例應用程式
 下列範例應用程式顯示如何以 AD 應用程式方式登入。
 
 **.NET**
@@ -194,6 +210,6 @@ ms.openlocfilehash: 3232aa0356353e3856286c38d931543a254fd9fd
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 
