@@ -1,6 +1,6 @@
 ---
 title: "開始使用 Microsoft Power BI Embedded"
-description: "對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商業智慧應用程式"
+description: "對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商務智慧應用程式"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 01/06/2017
+ms.date: 02/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
-ms.openlocfilehash: cedf69c6e50470e9d16d8e1e361bb51eb8abed72
+ms.sourcegitcommit: fd0ddf8275ab58eb3c411123b776654fb46cae5d
+ms.openlocfilehash: 5770bbfcf700b1cefea6d22e0d5f025c1660e744
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: cedf69c6e50470e9d16d8e1e361bb51eb8abed72
    
    ![](media/power-bi-embedded-get-started/create-workspace-1.png)
 3. 按一下 [資料 + 分析] 之下的 [Power BI Embedded]。
-4. 在 [建立刀鋒視窗] 上輸入必要資訊。 如需**價格**，請參閱 [Power BI Embedded 價格](http://go.microsoft.com/fwlink/?LinkID=760527)。
+4. 在 [工作區集合] 刀鋒視窗上輸入必要資訊。 如需**價格**，請參閱 [Power BI Embedded 價格](http://go.microsoft.com/fwlink/?LinkID=760527)。
    
    ![](media/power-bi-embedded-get-started/create-workspace-2.png)
 5. 按一下 [建立] 。
@@ -68,6 +68,10 @@ ms.openlocfilehash: cedf69c6e50470e9d16d8e1e361bb51eb8abed72
 雖已列出兩個金鑰，但特定時間只需要一個金鑰。 系統會提供第二個金鑰，以便您定期重新產生金鑰，而不需中斷對服務的存取。
 
 您現在已有應用程式的 Power BI 執行個體以及 **存取金鑰**，您可以將報告匯入自己的應用程式中。 在了解如何匯入報告之前，下一節說明如何建立要內嵌到應用程式中的 Power BI 資料集和報告。
+
+## <a name="working-with-workspaces"></a>使用工作區
+
+建立工作區集合之後，您必須建立將存放報告和資料集的工作區。 若要建立工作區，您必須使用 [Post Worksapce REST API](https://msdn.microsoft.com/library/azure/mt711503.aspx)。
 
 ## <a name="create-power-bi-datasets-and-reports-to-embed-into-an-app"></a>建立要內嵌到應用程式中的 Power BI 資料集和報告
 您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。 使用 **Power BI Desktop** 可以建立資料集和報告。 您可以下載 [免費的 Power BI Desktop](https://go.microsoft.com/fwlink/?LinkId=521662)。 或者，若要快速開始，您可以下載 [零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
@@ -109,6 +113,6 @@ ms.openlocfilehash: cedf69c6e50470e9d16d8e1e361bb51eb8abed72
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -4,7 +4,7 @@ description: "在 Azure 中備份虛擬機器時的重要考量"
 services: backup
 documentationcenter: 
 author: markgalioto
-manager: cfreeman
+manager: carmonm
 editor: 
 keywords: "備份 VM, 備份虛擬機器"
 ms.assetid: 19d2cf82-1f60-43e1-b089-9238042887a9
@@ -14,7 +14,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 12/08/2016
-ms.author: trinadhk; jimpark; markgal;
+ms.author: markgal;trinadhk
 translationtype: Human Translation
 ms.sourcegitcommit: a4045fc0fc6e2c263da06ed31a590714e80fb4d4
 ms.openlocfilehash: ac13b82c885720fa6d3d127b8e8dbbace5b09ef5
@@ -95,7 +95,7 @@ Azure 備份會在 Windows VM 上執行 VSS 完整備份 (深入了解 [VSS 完�
 ## <a name="total-restore-time"></a>總計還原時間
 還原作業是由兩個主要子工作所組成︰將資料從保存庫複製回所選的客戶儲存體帳戶，以及建立虛擬機器。 將資料從保存庫複製回來，取決於備份儲存在 Azure 內部的哪個位置及客戶儲存體帳戶的儲存位置。 複製資料所花費的時間取決於︰
 * 佇列等待時間 - 因為服務是同時從多個客戶處理還原，所以還原要求會放入佇列中。
-* 資料複製時間 - 複製資料類似從保存庫到客戶儲存體帳戶的第一次備份程序。 如果備份服務需要從保存庫寫入資料的目標客戶儲存體帳戶已載入，複製時間會增加。 因此，請確定選取在還原期間未載入其他應用程式寫入和讀取的儲存體帳戶，以最佳化複製時間。 
+* 資料複製時間 - 複製資料類似從保存庫到客戶儲存體帳戶的第一次備份程序。 如果備份服務需要從保存庫寫入資料的目標客戶儲存體帳戶已載入，複製時間會增加。 因此，請確定選取在還原期間未載入其他應用程式寫入和讀取的儲存體帳戶，以最佳化複製時間。
 
 ## <a name="best-practices"></a>最佳作法
 在設定虛擬機器的備份時，建議您遵循下列做法：

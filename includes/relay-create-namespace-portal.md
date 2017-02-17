@@ -1,4 +1,4 @@
-1. 登入 [Azure 入口網站][Azure 入口網站]。
+1. 登入 [Azure 入口網站][Azure portal]。
 2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[企業整合] 及 [轉送]。
 3. 在 [建立命名空間]  對話方塊中，輸入命名空間名稱。 系統會立即檢查此名稱是否可用。
 4. 在 [訂用帳戶]  欄位中，選擇要在其中建立命名空間的 Azure 訂用帳戶。
@@ -18,6 +18,8 @@
    
     ![connection-string][connection-string]
 
+5. 重複前一個步驟，複製 [主要金鑰] 的值並貼到暫存位置以供稍後使用。  
+
 <!--Image references-->
 
 [create-namespace]: ./media/relay-create-namespace-portal/create-namespace.png
@@ -25,9 +27,9 @@
 [connection-string]: ./media/relay-create-namespace-portal/connection-string.png
 
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
-[Azure 入口網站]: https://portal.azure.com
+[Azure portal]: https://portal.azure.com
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

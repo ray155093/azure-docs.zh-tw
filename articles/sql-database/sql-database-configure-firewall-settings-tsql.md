@@ -13,11 +13,11 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: get-started-article
-ms.date: 08/30/2016
+ms.date: 02/07/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 2f24c1c43300a3c5035fbb4e90c3d13f73c1bc74
-ms.openlocfilehash: ef51f63984d342422ee5f2a93acfee6357df57ca
+ms.sourcegitcommit: b80b3240cdc4917c0b7be8868e75feaf1efc24cc
+ms.openlocfilehash: c6ddae85ef44bd91ca33d99e8194bc87a0081df3
 
 
 ---
@@ -39,7 +39,7 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 > 
 
 ## <a name="server-level-firewall-rules"></a>伺服器層級防火牆規則
-只有伺服器層級主體登入或 Azure Active Directory 系統管理員可以使用 TRANSACT-SQL 建立伺服器層級的防火牆規則。
+只有 Azure Active Directory 管理員登入或 Azure Active Directory 系統管理員可以使用 Transact-SQL 建立伺服器層級的防火牆規則。
 
 1. 啟動查詢視窗，並使用 SQL Server Management Studio 連接到虛擬 master 資料庫。
 2. 可從查詢視窗中選取、建立、更新或刪除伺服器層級防火牆規則。
@@ -61,7 +61,7 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 ## <a name="database-level-firewall-rules"></a>資料庫層級防火牆規則
 只有具備 **控制** 權限的資料庫使用者 (例如資料庫擁有者) 可以建立資料庫層級的防火牆規則。
 
-1. 建立您的 IP 位址的伺服器層級防火牆之後，請透過傳統入口網站或 SQL Server Management Studio 啟動查詢視窗。
+1. 建立您的 IP 位址的伺服器層級防火牆之後，請透過 Azure 入口網站或 SQL Server Management Studio 啟動查詢視窗。
 2. 連接到要建立資料庫層級防火牆規則的資料庫。
    
     若要建立新的或更新現有的資料庫層級防火牆規則，請執行 `sp_set_database_firewall_rule` 預存程序。 下列範例會建立名為 ContosoFirewallRule 的新防火牆規則。
@@ -99,6 +99,6 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

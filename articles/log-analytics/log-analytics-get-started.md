@@ -15,11 +15,13 @@ ms.topic: get-started-article
 ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 49e624dd9bfc534fdbae25fd0c8646be36851635
-ms.openlocfilehash: 4ab71b6ee09883abd4d095f2b1788cf69d44a219
+ms.sourcegitcommit: f3be7887a33578da1b2df1f5aa02e09c50f22390
+ms.openlocfilehash: 5aa5e5006bf1d0d13f96494cc13df2c970f0d765
 
 
 ---
+注意︰如果您是在 Microsoft Azure Government 雲端，請改用 https://review.docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-monitoringandmanagement#log-analytics。
+
 # <a name="get-started-with-log-analytics"></a>開始使用 Log Analytics
 您可以使用 Microsoft Operations Management Suite (OMS) 在幾分鐘內啟動並執行 Log Analytics。 在選擇 OMS 工作區的建立方式時，您有兩個選項，就像建立帳戶一樣：
 
@@ -146,6 +148,6 @@ ms.openlocfilehash: 4ab71b6ee09883abd4d095f2b1788cf69d44a219
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

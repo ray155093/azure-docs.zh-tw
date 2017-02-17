@@ -3,25 +3,29 @@
 
 ### <a name="add-the-relay-nuget-package"></a>新增轉送 NuGet 封裝
 1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
-2. 按一下 [瀏覽] 索引標籤，然後搜尋 "Microsoft Azure Relay"，並選取 [Microsoft Azure Relay] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
+2. 按一下 [瀏覽] 索引標籤，然後搜尋 "Microsoft Azure 轉送"，並選取 [Microsoft Azure 轉送] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
 
 ### <a name="write-some-code-to-receive-messages"></a>撰寫一些程式碼來接收訊息
-1. 在 Program.cs 檔案開頭處新增以下 `using` 陳述式。
+1. 將 Program.cs 檔案頂端的 `using` 陳述式替換為下列陳述式：
    
-    ```cs
+    ```csharp
+    using System;
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Microsoft.Azure.Relay;
     ```
 2. 將常數新增至 `Program` 類別以取得混合式連接的連接詳細資料。 將方括號中的預留位置以建立混合式連接時所取得的正確值取代。
    
-    ```cs
+    ```csharp
     private const string RelayNamespace = "{RelayNamespace}";
     private const string ConnectionName = "{HybridConnectionName}";
     private const string KeyName = "{SASKeyName}";
     private const string Key = "{SASKey}";
     ```
-3. 新增名為 `ProcessMessagesOnConnection` 的新方法至 `Program` 類別，如下所示：
+3. 將名為 `ProcessMessagesOnConnection` 的下列新方法新增至 `Program` 類別：
    
-    ```cs
+    ```csharp
     // Method is used to initiate connection
     private static async void ProcessMessagesOnConnection(HybridConnectionStream relayConnection, CancellationTokenSource cts)
     {
@@ -70,9 +74,9 @@
         await relayConnection.CloseAsync(cts.Token);
     }
     ```
-4. 新增另一個名為 `RunAsync` 的新方法至 `Program` 類別，如下所示：
+4. 將另一個名為 `RunAsync` 的新方法新增至 `Program` 類別，如下所示：
    
-    ```cs
+    ```csharp
     private static async Task RunAsync()
     {
         var cts = new CancellationTokenSource();
@@ -117,13 +121,13 @@
     ```
 5. 將下列程式碼行新增至 `Program` 類別中的 `Main` 方法。
    
-    ```cs
+    ```csharp
     RunAsync().GetAwaiter().GetResult();
     ```
    
     Program.cs 看起來應該會像下面這樣：
    
-    ```cs
+    ```csharp
     namespace Server
     {
         using System;
@@ -238,6 +242,6 @@
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

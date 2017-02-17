@@ -1,10 +1,10 @@
 ---
-title: "在 Azure 資訊安全中心處理安全性事件 | Microsoft Docs"
+title: "在 Azure 資訊安全中心處理安全性警示 | Microsoft Docs"
 description: "本文件可協助您使用「Azure 資訊安全中心」功能來處理安全性事件。"
 services: security-center
 documentationcenter: na
 author: YuriDio
-manager: swadhwa
+manager: mbaldwin
 editor: 
 ms.assetid: e8feb669-8f30-49eb-ba38-046edf3f9656
 ms.service: security-center
@@ -12,11 +12,11 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 02/06/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: ec32e3937d08d912c8f96987b0c5ebbf73060258
-ms.openlocfilehash: 25fef9472f023c37538cfc2f5f7c37c0bfca746e
+ms.sourcegitcommit: 9852981e530cd147c2d34ac2ede251b58a167a0a
+ms.openlocfilehash: a688c392434be5a27f5691c2d89ad934e435a3c9
 
 
 ---
@@ -32,25 +32,25 @@ ms.openlocfilehash: 25fef9472f023c37538cfc2f5f7c37c0bfca746e
 您可以查看 [安全性警示] 圖格來檢閱目前的安全性事件。 存取 Azure 入口網站，然後依照下列步驟進行，以查看每個安全性事件的詳細資訊︰
 
 1. 您會在 [資訊安全中心] 儀表板看到 [安全性警示]  圖格。
-   
+
     ![資訊安全中心的 [安全性警示] 圖格](./media/security-center-incident/security-center-incident-fig1.png)
 
 2. 按一下此圖格來加以展開，如果偵測到安全性事件，它便會出現在安全性警示圖形下方，如下所示：
-   
+
     ![安全性事件](./media/security-center-incident/security-center-incident-fig2.png)
 
 3. 請注意，安全性事件描述具有不同於其他警示的圖示。 按一下圖示即可檢視此事件的詳細資訊。
-   
+
     ![安全性事件](./media/security-center-incident/security-center-incident-fig3.png)
 
 4. 在 [事件] 刀鋒視窗中，您會看到此安全性事件的詳細資訊，其中包含事件的完整描述、嚴重性 (在本例中是 [高])、目前狀態 (在本例中仍為 [作用中]，這代表使用者尚未對其執行動作 - 在 [安全性警示] 刀鋒視窗中的事件上按一下右鍵即可執行)、受到攻擊的資源 (在本例中是 [VM1])、事件的修復步驟，而最下方的窗格則是此事件所包含的警示。 如果您想要取得每個警示的詳細資訊，只要按一下警示便會開啟另一個刀鋒視窗，如下所示：
-   
+
     ![安全性事件](./media/security-center-incident/security-center-incident-fig4.png)
 
 此刀鋒視窗上的資訊視警示而異。 如需如何管理這些警示的詳細資訊，請閱讀 [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) 。 關於這項功能的一些重要考量︰
 
-* 有新的篩選器可讓您將檢視自訂為 [僅事件] 和/或 [僅警示]。 
-* 相同的警示可以做為事件的一部分存在 (如果適用)，以及顯示為獨立警示。 
+* 有新的篩選器可讓您將檢視自訂為 [僅事件] 和/或 [僅警示]。
+* 相同的警示可以做為事件的一部分存在 (如果適用)，以及顯示為獨立警示。
 
 ## <a name="see-also"></a>另請參閱
 在本文件中，您已了解如何使用資訊安全中心的安全性事件功能。 如要深入了解資訊安全中心，請參閱下列主題：
@@ -64,7 +64,6 @@ ms.openlocfilehash: 25fef9472f023c37538cfc2f5f7c37c0bfca746e
 
 
 
-
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 
