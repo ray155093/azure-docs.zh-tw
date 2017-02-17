@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 3cacf9edde4ed2cabf996e390bb1e00113bc47cb
+ms.sourcegitcommit: a4a78b92c8bb9e8aff25fd724ed78283de8f2fd8
+ms.openlocfilehash: 92b9c88ec49424c96c3bd21bc5c4ce390352c17b
 
 
 ---
@@ -25,11 +25,11 @@ ms.openlocfilehash: 3cacf9edde4ed2cabf996e390bb1e00113bc47cb
 
 > [!NOTE]
 > 專用群組需要 Azure AD Premium 授權已指派給 
-> 
+>
 > * 負責管理群組規則的系統管理員
 > * 已由規則選取要成為群組成員的所有使用者
-> 
-> 
+>
+>
 
 **啟用專用群組**
 
@@ -49,8 +49,9 @@ ms.openlocfilehash: 3cacf9edde4ed2cabf996e390bb1e00113bc47cb
 
                 (user.userType -ne "Guest")
 
-若要了解如何為動態群組成員資格建立進階  規則 (可包含多個比較的規則)，請參閱 [使用屬性來建立進階規則](active-directory-accessmanagement-groups-with-advanced-rules.md)。
+若要了解如何為動態群組成員資格建立「進階」  規則 (可包含多個比較的規則)，請參閱 [使用屬性來建立進階規則](active-directory-accessmanagement-groups-with-advanced-rules.md)。
 
+### <a name="next-steps"></a>後續步驟
 這些文章提供有關 Azure Active Directory 的其他資訊。
 
 * [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
@@ -60,7 +61,6 @@ ms.openlocfilehash: 3cacf9edde4ed2cabf996e390bb1e00113bc47cb
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

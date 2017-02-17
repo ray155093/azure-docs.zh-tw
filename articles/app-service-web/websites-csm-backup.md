@@ -53,7 +53,7 @@ ms.openlocfilehash: 1ad2911f809a17e4a6c0f2fe9087e1d9eb2da39e
 <a name="backup-on-demand"></a>
 
 ## <a name="backup-an-app-on-demand"></a>視需求備份應用程式
-若要立即備份應用程式，請傳送 **POST** 要求至 **https://management.azure.com/subscriptions/ {subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**。
+若要立即備份應用程式，請傳送 **POST** 要求至 **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**。
 
 使用範例網站後的 URL 看起來就像這樣。 **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
 

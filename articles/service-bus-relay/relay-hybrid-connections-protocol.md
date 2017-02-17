@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
-ms.author: sethm
+ms.date: 02/14/2017
+ms.author: sethm;clemensv
 translationtype: Human Translation
-ms.sourcegitcommit: 9919cd4735f1f915ba77d41d8b9e92b3411fef3f
-ms.openlocfilehash: 38d9eca04780493d03bb5ceb79e5b59fab0a93d2
+ms.sourcegitcommit: 579942cfe0dc7d6a5e3f205308642d36bf6be880
+ms.openlocfilehash: d3a191797e75c424af07910e4a6a87e1183f6676
 
 
 ---
@@ -31,7 +31,7 @@ Azure 轉送是 Azure 服務匯流排平台的重要功能支柱。 轉送的新
 有接聽程式會先指出已準備好可以處理連入連線，接著在連線抵達時予以接受。 而在另一端，則有連線用戶端會連線到接聽程式，並預期該連線會被接受，以便能夠建立雙向通訊路徑。
 您可在大部分通訊端 API 中發現「連線」、「接聽」、「接受」等同義詞彙。
 
-任何轉送的通訊模型皆會讓任一方對服務端點建立輸出連線「Azure 轉送混合式連線通訊協定指南」，在口語上，這會讓「接聽程式」也變成「用戶端」，並可能造成術語承載其他意義；因此，我們對「混合式連線」所下的精確術語如下︰
+任何轉送的通訊模型皆會讓任一方對服務端點建立輸出連線，在口語上，這會讓「接聽程式」也變成「用戶端」，並可能造成術語承載其他意義；因此，我們對混合式連線所下的精確術語如下︰
 
 連線兩端的程式稱為「用戶端」，因為兩者皆為服務的用戶端。 等候並接受連線的用戶端為「接聽程式」，或稱為擔任「接聽程式角色」。 透過服務對接聽程式起始新連線的用戶端則稱為「傳送者」或擔任「傳送者角色」。
 
@@ -118,7 +118,7 @@ wss://{namespace-address}/$hc/{path}?sb-hc-action=...[&sb-hc-id=...]&sb-hc-token
 * **connectHeaders** – 傳送者已提供給轉送端點的所有 HTTP 標頭，其中也包括 Sec-WebSocket-Protocol 和 Sec-WebSocket-Extensions 標頭。
 
 #### <a name="accept-message"></a>接受訊息
-``` JSON
+```json
 {                                                           
     "accept" : {
         "address" : "wss://168.61.148.205:443/$hc/{path}?..."    
@@ -201,7 +201,7 @@ URL 必須保持原樣以用來建立接受通訊端，但要包含下列參數�
 * **權杖** – 針對授予**接聽**權限的命名空間或混合式連線，有效且以 URL 編碼的服務匯流排共用存取權杖。
 
 #### <a name="renewtoken-message"></a>renewToken 訊息
-``` JSON
+```json
 {                                                                                                                                                                        
     "renewToken" : {                                                                                                                                                      
         "token" : "SharedAccessSignature sr=http%3a%2f%2fcontoso.servicebus.windows.net%2fhyco%2f&amp;sig=XXXXXXXXXX%3d&amp;se=1471633754&amp;skn=SasKeyName"  
@@ -271,6 +271,6 @@ wss://{namespace-address}/$hc/hyco/suffix?param=value&sb-hc-action=...[&sb-hc-id
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

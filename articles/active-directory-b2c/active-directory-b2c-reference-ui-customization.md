@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/26/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 351149296a6d7dfa801b295ec21fc04215c7b051
-ms.openlocfilehash: 8294842893742dcbc7a987421b454ceb7691450c
+ms.sourcegitcommit: 74b077f6f09d53c9232e5b209a5dd811364ee3f5
+ms.openlocfilehash: c995e0de46c67c5c5d243739b2d36266267bdade
 
 
 ---
@@ -340,7 +340,7 @@ ms.openlocfilehash: 8294842893742dcbc7a987421b454ceb7691450c
 
 * 請勿複製 Azure AD B2C 的預設內容來嘗試修改。 最好是從頭建置您的 HTML5 內容，將預設範本當作參考即可。
 * 在登入、註冊和設定檔編輯原則所提供的所有頁面 (錯誤頁面除外) 中，您提供的樣式表必須覆寫我們在 <head> 片段中新增至這些頁面的預設樣式表。 在註冊或登入和密碼重設原則所提供的所有頁面以及所有原則上的錯誤頁面中，您必須自行提供所有樣式。
-* 基於安全性理由，我們不允許您在內容中包含任何 JavaScript。 您所需的大多數功能應可立即使用。 如果沒有，請使用 [User Voice (使用者心聲)](http://feedback.azure.com/forums/169401-azure-active-directory) 來要求新功能。
+* 基於安全性理由，我們不允許您在內容中包含任何 JavaScript。 您所需的大多數功能應可立即使用。 如果沒有，請使用 [User Voice (使用者心聲)](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c) 來要求新功能。
 * 支援的瀏覽器版本︰
   * Internet Explorer 11、10、Edge
   * 對 Internet Explorer 9、8 提供有限支援
@@ -349,6 +349,6 @@ ms.openlocfilehash: 8294842893742dcbc7a987421b454ceb7691450c
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

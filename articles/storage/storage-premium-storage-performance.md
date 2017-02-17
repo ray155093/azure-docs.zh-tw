@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: aungoo
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: 3aa4f497a928fe4bb894f01202b116429e6f5649
+ms.sourcegitcommit: b84e07b26506149cf9475491b32b9ff3ea9ae80d
+ms.openlocfilehash: d72a191cceaa90f9dae69b5c2698fae1a9fb95a7
 
 
 ---
@@ -352,7 +352,7 @@ Azure 進階儲存體會根據您選擇的 VM 大小和磁碟大小，佈建指�
 
 我們分別在 Windows 和 Linux 上使用一般效能評定工具 Iometer 和 FIO。 這些工具會繁衍多個執行緒來模擬類似實際執行的工作負載，並測量系統效能。 您也可以使用這些工具來設定參數，例如區塊大小和佇列深度，您通常無法在應用程式中變更這些參數。 針對不同類型的應用程式工作負載，這可讓您在以高階磁碟佈建的高延展性 VM 上，更靈活地發揮最大效能。 若要深入了解每個效能評定工具，請參閱 [Iometer](http://www.iometer.org/) 和 [FIO](http://freecode.com/projects/fio)。
 
-若要執行下列範例，請建立標準 DS14 VM，並將 11 個進階儲存體磁碟連接至 VM。 在 11 磁碟中，以快取「無」來設定 10 個磁碟，並將它們串接成一個磁碟區，稱為 NoCacheWrites。 在剩餘的磁碟上，將主機快取設定為「唯讀」，並使用此磁碟建立一個磁碟區，稱為 CacheReads。 根據此設定，您可以看到標準 DS14 VM 發揮最大的讀取和寫入效能。 如需有關以進階磁碟建立 DS14 VM 的詳細步驟，請移至[為虛擬機器資料磁碟建立和使用進階儲存體帳戶](storage-premium-storage.md#quick-start-create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk)。
+若要執行下列範例，請建立標準 DS14 VM，並將 11 個進階儲存體磁碟連接至 VM。 在 11 磁碟中，以快取「無」來設定 10 個磁碟，並將它們串接成一個磁碟區，稱為 NoCacheWrites。 在剩餘的磁碟上，將主機快取設定為「唯讀」，並使用此磁碟建立一個磁碟區，稱為 CacheReads。 根據此設定，您可以看到標準 DS14 VM 發揮最大的讀取和寫入效能。 如需有關以進階磁碟建立 DS14 VM 的詳細步驟，請移至[為虛擬機器資料磁碟建立和使用進階儲存體帳戶](storage-premium-storage.md)。
 
 *準備快取*  
 設有「唯讀」主機快取的磁碟能夠提供高於磁碟限制的 IOPS。 若要從主機快取獲得這種最高的讀取效能，您必須先準備此磁碟的快取。 如此可確保效能評定工具在 CacheReads 磁碟區上推動的讀取 IO 實際上是命中快取，而非直接觸及磁碟。 快取命中會讓已啟用快取的單一磁碟產生更多 IOPS。
@@ -596,6 +596,6 @@ sudo fio --runtime 30 fioreadwrite.ini
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

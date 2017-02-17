@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 351149296a6d7dfa801b295ec21fc04215c7b051
-ms.openlocfilehash: 0f0805c8363226b6fab6463c668d750e8e7c9265
+ms.sourcegitcommit: bfffb074a905184269992a19993aabc22bb1256f
+ms.openlocfilehash: b65c54819374e90a8318a3f3eecce5b71b01b17f
 
 
 ---
@@ -27,9 +27,6 @@ Azure Active Directory (Azure AD) B2C 有幾項目前還未支援的特性與功
 如果您在[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)期間遇到問題，請參閱[建立 Azure AD 租用戶或 Azure AD B2C 租用戶 - 問題與解決方法](active-directory-b2c-support-create-directory.md)以取得指導方針。
 
 請注意，當您刪除現有的 B2C 租用戶並使用相同的網域名稱加以重建時，會發生已知的問題。 您必須使用不同的網域名稱建立 B2C 租用戶。
-
-## <a name="note-about-b2c-tenant-quotas"></a>B2C 租用戶配額的注意事項
-根據預設，B2C 租用戶的使用者數目限制為 50,000 名使用者。 如果您需要提高 B2C 租用戶的配額，請連絡支援服務。
 
 ## <a name="branding-issues-on-verification-email"></a>驗證電子郵件上的商標問題
 預設的驗證電子郵件包含 Microsoft 商標。 未來我們會將它移除。 您目前可以使用 [公司商標功能](../active-directory/active-directory-add-company-branding.md)來移除它。
@@ -133,6 +130,6 @@ Windows 傳統型 WPF 應用程式傳送給 Azure AD B2C 的要求有時會失�
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

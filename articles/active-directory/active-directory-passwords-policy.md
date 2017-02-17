@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 1e3ba55fd8c63f1189e06d1aa0bbf5f334e68459
+ms.sourcegitcommit: e4896c1a3adf76477899336f1ff1ee215cc7c9aa
+ms.openlocfilehash: 5cb86ac4694d8b763fa693954a8bb1383739497c
 
 
 ---
@@ -25,17 +25,17 @@ ms.openlocfilehash: 1e3ba55fd8c63f1189e06d1aa0bbf5f334e68459
 
 > [!IMPORTANT]
 > **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
-> 
-> 
+>
+>
 
 ## <a name="userprincipalname-policies-that-apply-to-all-user-accounts"></a>適用於所有使用者帳戶的 UserPrincipalName 原則
 每個需要登入 Azure AD 驗證系統的使用者帳戶，都必須具有與該帳戶相關聯的唯一使用者主體名稱 (UPN) 屬性值。 下表列出適用於內部部署的 Active Directory 來源使用者帳戶 (已同步至雲端) 和僅適用於雲端使用者帳戶的原則。
 
 | 屬性 | UserPrincipalName 需求 |
 | --- | --- |
-| 允許的字元 |<ul> <li>A – Z</li> <li>a - z</li><li>0 – 9</li> <li> ]。 - \_ ! \# ^ \~</li></ul> |
+| 允許的字元 |<ul> <li>A – Z</li> <li>a - z</li><li>0 – 9</li> <li> 。 - \_ ! \# ^ \~</li></ul> |
 | 不允許的字元 |<ul> <li>任何不是用來分隔使用者名稱和網域的 '@' 字元。</li> <li>'@' 符號前面不可直接包含句點字元 '.'</li></ul> |
-| 長度限制 |<ul> <li>總長度不得超過 113 個字元</li><li>‘@’ 符號前為 64 個字元</li><li>‘@’ 符號後為 48 個字元</li></ul> |
+| 長度限制 |<ul> <li>總長度不得超過 113 個字元</li><li>‘@’ 符號前為&64; 個字元</li><li>‘@’ 符號後為&48; 個字元</li></ul> |
 
 ## <a name="password-policies-that-apply-only-to-cloud-user-accounts"></a>僅適用於雲端使用者帳戶的密碼原則
 下表描述可套用至在 Azure AD 中建立及管理的使用者帳戶的可用密碼原則設定。
@@ -66,7 +66,6 @@ ms.openlocfilehash: 1e3ba55fd8c63f1189e06d1aa0bbf5f334e68459
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

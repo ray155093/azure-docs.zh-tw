@@ -117,7 +117,7 @@ ms.openlocfilehash: 4b8eb863a1fcb65c307870619ea9d8942c57a906
 4. 開啟命令列，然後使用下列命令，在本機啟動 Web app。
    
         node server.js
-5. 開啟網頁瀏覽器，導覽至 http://localhost:1337。 
+5. 開啟網頁瀏覽器，導覽至 http://localhost:1337 。 
    
     顯示「Hello World」的網頁隨即出現，如下列螢幕擷取畫面所示：
    

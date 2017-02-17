@@ -1,5 +1,5 @@
 # <a name="azure-technical-documentation-contributor-guide"></a>Azure 技術文件參與者指南
-您已經找到 GitHub 儲存機制，此處存放發佈於 [http://docs.microsoft.com/azure](http://docs.microsoft.com/azure) 之 Azure 技術文件的來源。
+您已經找到 GitHub 存放庫，此處存放發佈於 [https://docs.microsoft.com/azure](https://docs.microsoft.com/azure) 之 Azure 技術文件的來源。
 
 此儲存機制內也有相關指引，可協助您參與編輯我們的技術文件。 如需參與者指南中的文章清單，請參閱[索引](contributor-guide/contributor-guide-index.md)。
 
@@ -12,14 +12,13 @@
 * [儲存機制組織方式](#repository-organization)
 * [使用 GitHub、Git 和此儲存機制](#use-github-git-and-this-repository)
 * [如何使用 Markdown 來格式化主題](#how-to-use-markdown-to-format-your-topic)
-* [意見反應、註解和支援](./contributor-guide/feedback-and-comments.md)
 * [其他資源](#more-resources)
 * [所有參與者指南文章的索引](contributor-guide/contributor-guide-index.md)(會開啟新頁面)
 
 ## <a name="ways-to-contribute"></a>參與方法
-您可以將更新提交到 [Azure 文件](http://docs.microsoft.com/azure)，如下所示︰
+您可以將更新提交到 [Azure 文件](https://docs.microsoft.com/azure)，如下所示︰
 
-* 您可以在 GitHub 使用者介面輕鬆地參與技術文件。 在此存放庫中尋找文章，或瀏覽 [http://docs.microsoft.com/azure](http://docs.microsoft.com/azure) 上的文章，然後按一下文章中的連結以前往文章的 GitHub 來源。
+* 您可以在 GitHub 使用者介面輕鬆地參與技術文件。 在此存放庫中尋找文章，或瀏覽 [https://docs.microsoft.com/azure](https://docs.microsoft.com/azure) 上的文章，然後按一下其中的連結以前往文章的 GitHub 來源。
 * 如果要大幅變更現有文章、新增或變更圖片或是參與編輯新文章，您還需要先取用其儲存機制、安裝 Git Bash 和 MarkdownPad，並學習一些 Git 命令才行。
 
 ## <a name="code-of-conduct"></a>管理辦法
@@ -27,16 +26,16 @@
 
 ## <a name="about-your-contributions-to-azure-content"></a>關於您對 Azure 內容的參與
 ### <a name="minor-corrections"></a>小幅度修正
-您在此儲存機制中針對文件和程式碼範例所提交的小幅度修正或釐清，將受到 [docs.microsoft.com 使用規定](/enterprise-mobility-security/termsofuse)的約束。
+您在此儲存機制中針對文件和程式碼範例所提交的小幅度修正或釐清，將受到 [docs.microsoft.com 使用規定](https://docs.microsoft.com/legal/termsofuse)的約束。
 
 ### <a name="larger-submissions"></a>較大範圍的提交內容
 如果您提交提取要求是為了對文件和程式碼範例進行全新或大幅度的變更，而且您不是 Microsoft 的員工，我們會在 GitHub 中傳送註解，要求您提交線上版的參與授權合約 (Contribution License Agreement, CLA)： 您必須先填寫線上表單，我們才會接受您的提取要求。
 
 ## <a name="repository-organization"></a>儲存機制組織方式
-azure-docs 儲存機制中的內容會遵循 http://docs.microsoft.com/azure 上文件的組織方式。 此儲存機制包含兩個根資料夾：
+azure-docs 存放庫中的內容會遵循 https://docs.microsoft.com/azure 上文件的組織方式。 此儲存機制包含兩個根資料夾：
 
 ### <a name="articles"></a>\articles
-*\articles* 資料夾包含格式化為 Markdown 檔的文件文章，其副檔名為 *.md*。 文章通常會依 Azure 服務分入群組。 
+*\articles* 資料夾包含格式化為 Markdown 檔的文件文章，其副檔名為 *.md*。 文章通常會依 Azure 服務分入群組。
 
 文件需要遵守嚴格的檔案命名守則，如需詳細資訊，請參閱[我們的檔案命名指引](contributor-guide/file-names-and-locations.md)。
 
@@ -49,7 +48,7 @@ azure-docs 儲存機制中的內容會遵循 http://docs.microsoft.com/azure 上
 此資料夾包含標準的 Markdown 範本，而且此範本具有文章所需的基本 Markdown 格式。
 
 ### <a name="contributor-guide"></a>\contributor-guide
-此資料夾包含屬於參與者指南的文章。  
+此資料夾包含屬於參與者指南的文章。
 
 ## <a name="use-github-git-and-this-repository"></a>使用 GitHub、Git 和此儲存機制
 如需如何參與、如何使用 GitHub UI 參與小型變更，以及如何取用和複製儲存機制以進行更大幅度參與的相關資訊，請參閱[在 GitHub 中安裝和設定編寫工具](contributor-guide/tools-and-setup.md)。
@@ -87,6 +86,6 @@ azure-docs 儲存機制中的內容會遵循 http://docs.microsoft.com/azure 上
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 
