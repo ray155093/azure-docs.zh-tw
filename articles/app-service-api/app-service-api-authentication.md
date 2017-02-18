@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 05/23/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
-ms.openlocfilehash: df2b27fd7016294f14d2ad87325a2acf24c15d85
+ms.sourcegitcommit: b75f7aa757679a29a42cdfc04799873ee30bab2e
+ms.openlocfilehash: cd66296718d8ae3cd2bcd69c66f54684f57d7ece
 
 
 ---
@@ -83,7 +83,7 @@ App Service 驗證適用於從某個 API 應用程式呼叫另一個 API 應用�
 
 如果您想要處理服務對服務案例，但不要使用 App Service 驗證，請使用用戶端憑證或基本驗證。 如需 Azure 中用戶端憑證的詳細資訊，請參閱 [如何設定 Web Apps 的 TLS 相互驗證](../app-service-web/app-service-web-configure-tls-mutual-auth.md)。 如需 ASP.NET 中的基本驗證相關資訊，請參閱 [ASP.NET Web API 2 中的驗證篩選](http://www.asp.net/web-api/overview/security/authentication-filters)。
 
-App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特殊案例， [將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../app-service-logic/app-service-logic-custom-hosted-api.md)中有關於此案例的說明。
+App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特殊案例， [將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../logic-apps/logic-apps-custom-hosted-api.md)中有關於此案例的說明。
 
 ## <a name="mobile-client-authentication"></a>行動用戶端驗證
 如需如何處理來自行動用戶端之驗證的相關資訊，請參閱 [關於行動應用程式驗證的說明文件](../app-service-mobile/app-service-mobile-ios-get-started-users.md)。 行動應用程式和 API 應用程式的 App Service 驗證具有相同的運作方式。
@@ -112,6 +112,6 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

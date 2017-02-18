@@ -1,5 +1,5 @@
 ---
-title: "設定現有應用程式閘道以在 Azure 入口網站中裝載多個網站 | Microsoft Docs"
+title: "使用 Azure 應用程式閘道裝載多個站台 | Microsoft Docs"
 description: "本頁面提供設定現有 Azure 應用程式閘道以在具有 Azure 入口網站的相同閘道上裝載多個 Web 應用程式的指示。"
 documentationcenter: na
 services: application-gateway
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/12/2016
+ms.date: 01/23/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
-ms.openlocfilehash: ce548953a6503e146dc67401eaf57f30fe521632
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: 90b7e2f7f5327684f173bd7e10f21e65bea8fbe7
 
 
 ---
@@ -118,7 +118,7 @@ ms.openlocfilehash: ce548953a6503e146dc67401eaf57f30fe521632
 
 ### <a name="step-3"></a>步驟 3
 
-按一下 [基本規則] 以建立第 2 個規則。 以第二個接聽程式和第二個後端集區填寫表單，按一下 [確定] 以儲存。
+按一下 [基本規則] 以建立第&2; 個規則。 以第二個接聽程式和第二個後端集區填寫表單，按一下 [確定] 以儲存。
 
 ![新增基本規則刀鋒視窗][10]
 
@@ -143,6 +143,6 @@ ms.openlocfilehash: ce548953a6503e146dc67401eaf57f30fe521632
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

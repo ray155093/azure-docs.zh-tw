@@ -1,9 +1,9 @@
 ---
-title: "使用 Azure 內容傳遞網路 (CDN) 規則引擎覆寫 HTTP 行為 | Microsoft Docs"
+title: "使用 Azure CDN 規則引擎覆寫 HTTP 行為 | Microsoft Docs"
 description: "規則引擎可讓您自訂 Azure CDN 處理 HTTP 要求的方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。"
 services: cdn
 documentationcenter: 
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: 625a912b-91f2-485d-8991-128cc194ee71
@@ -12,15 +12,15 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 8a5d98bdc737fd9476b9db42100f58ed28619879
-ms.openlocfilehash: 41e17c4aeda48c1ff7db1206bf52bb709b109bea
+ms.sourcegitcommit: dccb945e170bd3e3f23283359db25e574a2d4296
+ms.openlocfilehash: abfe283476206b181018d187675b47112dc5ad2f
 
 
 ---
-# <a name="override-default-http-behavior-using-the-azure-content-delivery-network-cdn-rules-engine"></a>使用 Azure 內容傳遞網路 (CDN) 規則引擎覆寫 HTTP 行為
+# <a name="override-http-behavior-using-the-azure-cdn-rules-engine"></a>使用 Azure CDN 規則引擎覆寫 HTTP 行為
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>概觀
@@ -87,6 +87,6 @@ ms.openlocfilehash: 41e17c4aeda48c1ff7db1206bf52bb709b109bea
 * [Azure Fridays: Azure CDN's powerful new Premium Features (影片：Azure 星期五：Azure CDN 強大的新高階功能)](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/)
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure 內容傳遞網路規則引擎參考 | Microsoft Docs"
-description: "本主題說明規則引擎的比對條件和功能"
+title: "Azure CDN 規則引擎參考 | Microsoft Docs"
+description: "Azure CDN 規則引擎比對條件和功能的參考文件。"
 services: cdn
 documentationcenter: 
 author: Lichard
@@ -12,15 +12,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/29/2016
+ms.date: 01/23/2017
 ms.author: rli
 translationtype: Human Translation
-ms.sourcegitcommit: 8a5d98bdc737fd9476b9db42100f58ed28619879
-ms.openlocfilehash: 61a544f177ab820f1b13ca2bcd4afe623af597af
+ms.sourcegitcommit: dccb945e170bd3e3f23283359db25e574a2d4296
+ms.openlocfilehash: c10145661a8c575381493c9aaa901c3ef92c2e81
 
 
 ---
-# <a name="azure-content-delivery-network-rules-engine"></a>Azure 內容傳遞網路規則引擎
+# <a name="azure-cdn-rules-engine"></a>Azure CDN 規則引擎
 本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)列出可用比對條件和功能的詳細說明。
 
 HTTP 規則引擎是設計為特定類型要求如何由 CDN 處理的最終授權。
@@ -83,6 +83,6 @@ Character | 說明
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

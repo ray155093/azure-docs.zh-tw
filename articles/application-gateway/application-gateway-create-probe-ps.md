@@ -1,5 +1,5 @@
 ---
-title: "在資源管理員中使用 PowerShell 建立應用程式閘道的自訂探查 | Microsoft Docs"
+title: "建立自訂探查 - Azure 應用程式閘道 - PowerShell | Microsoft Docs"
 description: "了解如何在資源管理員中使用 PowerShell 建立應用程式閘道的自訂探查"
 services: application-gateway
 documentationcenter: na
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/13/2016
+ms.date: 01/23/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 09aeb63d4c2e68f22ec02f8c08f5a30c32d879dc
-ms.openlocfilehash: d6856256a9ab272e0620e82d140c5ec735e5eabc
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: 794797d9c42ec7f2fc351bab109147e45ce06070
 
 
 ---
@@ -312,6 +312,6 @@ DnsSettings              : {
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

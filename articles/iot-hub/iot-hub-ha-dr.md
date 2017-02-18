@@ -1,5 +1,5 @@
 ---
-title: "Azure IoT 中樞 HA 和 DR | Microsoft Docs"
+title: "Azure IoT 中樞高可用性和災害復原 | Microsoft Docs"
 description: "描述 Azure 和 IoT 中樞功能，協助您建立具有災害復原功能的高可用性 Azure IoT 解決方案。"
 services: iot-hub
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/16/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
-ms.openlocfilehash: f133300d88b0ffc10b287879ec78f4c63e9ba62d
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 76c3187549e1821908263c30e394db26ee6f75e6
 
 
 ---
@@ -29,10 +29,10 @@ ms.openlocfilehash: f133300d88b0ffc10b287879ec78f4c63e9ba62d
 | 功能 | RPO |
 | --- | --- |
 | 登錄和通訊作業的服務可用性 |可能的 CName 遺失 |
-| 身分識別登錄中的身分識別資料 |0 到 5 分鐘的資料遺失 |
+| 身分識別登錄中的身分識別資料 |0 到&5; 分鐘的資料遺失 |
 | 裝置到雲端的訊息 |所有未讀取的訊息都會遺失 |
 | 作業監視訊息 |所有未讀取的訊息都會遺失 |
-| 雲端到裝置的訊息 |0 到 5 分鐘的資料遺失 |
+| 雲端到裝置的訊息 |0 到&5; 分鐘的資料遺失 |
 | 雲端到裝置的意見反應佇列 |所有未讀取的訊息都會遺失 |
 
 ## <a name="regional-failover-with-iot-hub"></a>使用 IoT 中心的區域容錯移轉
@@ -62,6 +62,6 @@ IoT 解決方案中部署拓撲的完整處理方式不在本文討論範圍內�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

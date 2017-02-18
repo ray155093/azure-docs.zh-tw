@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 02/02/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
-ms.openlocfilehash: 152b08cf72c48109f17b5c4715e4ca5fafbb1b7b
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 84b5f28fcd0640fd85b5f8c9d655105790c70d62
 
 
 ---
@@ -56,7 +56,7 @@ ms.openlocfilehash: 152b08cf72c48109f17b5c4715e4ca5fafbb1b7b
 > * 您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/) ：您將取得可試用 Azure 付費服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如 Web Apps。
 > * 您可以 [啟用 Visual Studio 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) ：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
 >
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 >
 >
 
@@ -298,7 +298,7 @@ ms.openlocfilehash: 152b08cf72c48109f17b5c4715e4ca5fafbb1b7b
 現在，您的變更已在 beta 位置中執行，因此已可執行試驗部署。
 
 ## <a name="validate-route-traffic-to-the-beta-app"></a>驗證：將流量路由傳送至 beta 應用程式
-在本節中，您要將流量路由傳送至 beta 應用程式。 為了能夠清楚示範，請您將使用者流量的重要部分路由傳送至該應用程式。 實際上，您將路由傳送的流量會取決於您的特定情況。 例如，如果您的網站屬於 microsoft.com 層級，則您可能只需要不到 1% 總流量即可取得有用的資料。
+在本節中，您要將流量路由傳送至 beta 應用程式。 為了能夠清楚示範，請您將使用者流量的重要部分路由傳送至該應用程式。 實際上，您將路由傳送的流量會取決於您的特定情況。 例如，如果您的網站屬於 microsoft.com 層級，則您可能只需要不到&1;% 總流量即可取得有用的資料。
 
 1. 在 Git Shell 工作階段中執行下列命令，將半數的生產流量路由傳送至 beta 位置：
 
@@ -359,6 +359,6 @@ Azure App Service 可讓中小型企業輕鬆地在生產環境中測試其客�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

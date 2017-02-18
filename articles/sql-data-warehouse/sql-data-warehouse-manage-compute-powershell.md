@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 5749b37408be8eeab6a3fba40d6768ca1d035096
+ms.sourcegitcommit: f9814fc0011153a25489d60d696bb567edfcebc4
+ms.openlocfilehash: a4cde433850ab3627f870b51f5a897c6f846c2f0
 
 
 ---
@@ -29,16 +29,6 @@ ms.openlocfilehash: 5749b37408be8eeab6a3fba40d6768ca1d035096
 > * [TSQL](sql-data-warehouse-manage-compute-tsql.md)
 > 
 > 
-
-透過相應放大計算資源和記憶體來調整效能，以滿足工作負載不斷改變的需求。 透過在非尖峰時間縮減資源或直接暫停計算以節省成本。
-
-這個工作集合會使用 Azure 入口網站來：
-
-* 調整計算
-* 暫停計算
-* 繼續計算
-
-若要深入了解，請參閱[管理計算概觀][Manage compute overview]。
 
 ## <a name="before-you-begin"></a>開始之前
 ### <a name="install-the-latest-version-of-azure-powershell"></a>安裝最新版的 Azure PowerShell
@@ -141,6 +131,6 @@ $resultDatabase
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

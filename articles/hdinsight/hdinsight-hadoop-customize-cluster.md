@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/05/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
-ms.openlocfilehash: 012a62131792315dbd84d3acceb69f6e0d68a546
+ms.sourcegitcommit: b5fafb9603957a93a0ca8fbc6dd53798070641a4
+ms.openlocfilehash: da013207a2c804898d1a93dfd7875ed2a2deed22
 
 
 ---
@@ -25,6 +25,9 @@ ms.openlocfilehash: 012a62131792315dbd84d3acceb69f6e0d68a546
 **指令碼動作** 可用來叫用 [自訂指令碼](hdinsight-hadoop-script-actions.md) 。
 
 本文的資訊是針對以 Windows 為基礎的 HDInsight 叢集。 如果是以 Linux 為基礎的叢集，請參閱 [使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 您也可以使用多種其他方法來自訂 HDInsight 叢集，例如包括額外的 Azure 儲存體帳戶、變更 Hadoop 組態檔 (core-site.xml、hive-site.xml 等)，或是將共用程式庫 (例如 Hive、Oozie) 加入至叢集中的共同位置。 這些自訂動作可以透過 Azure PowerShell、Azure HDInsight .NET SDK 或 Azure 入口網站完成。 如需詳細資訊，請參閱[在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision-cluster]。
 
@@ -329,6 +332,6 @@ HDInsight 服務提供數種方式以使用自訂元件。 無論元件如何使
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

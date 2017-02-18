@@ -1,5 +1,5 @@
 ---
-title: "使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具建立 Spark Scala 應用程式 | Microsoft Docs"
+title: "使用 Azure Toolkit for IntelliJ 建立適用於 Spark 的 Scala 應用程式 | Microsoft Docs"
 description: "了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
 services: hdinsight
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/09/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 70fbc8f973a341f818cb5958931a199021b7dc46
-ms.openlocfilehash: 4e63cb94d9bd39f0621eb0dc07c60335a91324d8
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 6c513def2abc8c99b84b2eb48848de76e12e69c7
 
 
 ---
@@ -267,6 +267,6 @@ ms.openlocfilehash: 4e63cb94d9bd39f0621eb0dc07c60335a91324d8
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

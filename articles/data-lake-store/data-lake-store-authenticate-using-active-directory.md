@@ -1,6 +1,6 @@
 ---
-title: "使用 Active Directory 驗證 Data Lake Store | Microsoft Docs"
-description: "了解如何使用 Azure Active Directory 驗證 Data Lake Store"
+title: "服務對服務驗證︰使用 Azure Active Directory 以 Data Lake Store 進行 | Microsoft Docs"
+description: "了解如何使用 Azure Active Directory 以 Data Lake Store 完成服務對服務驗證"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/28/2016
+ms.date: 01/10/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 35cde786bbc091c58f4dcb341cd47ce4c4f4b46c
-ms.openlocfilehash: 02e52c3aba82ab8e3a8b1dc921731c29e505e23e
+ms.sourcegitcommit: 9019a4115e81a7d8f1960098b1138cd437a0460b
+ms.openlocfilehash: dac6c9f3be7b4535f8cb30a9ec0c1e398ca5ff28
 
 
 ---
-# <a name="service-to-serivce-authentication-with-data-lake-store-using-azure-active-directory"></a>使用 Azure Active Directory 以 Data Lake Store 進行服務對服務驗證
+# <a name="service-to-service-authentication-with-data-lake-store-using-azure-active-directory"></a>使用 Azure Active Directory 以 Data Lake Store 進行服務對服務驗證
 > [!div class="op_single_selector"]
 > * [服務對服務驗證](data-lake-store-authenticate-using-active-directory.md)
 > * [使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)
@@ -29,8 +29,8 @@ ms.openlocfilehash: 02e52c3aba82ab8e3a8b1dc921731c29e505e23e
 
 Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配 Azure Data Lake Store 或 Azure Data Lake Analytics 的應用程式之前，必須先決定要如何以 Azure Active Directory (Azure AD) 驗證應用程式。 兩個主要選項為︰
 
-* 使用者驗證，以及 
-* 服務對服務驗證。 
+* 使用者驗證 
+* 服務對服務驗證 (本文) 
 
 兩個選項都要靠 OAuth 2.0 權杖來提供您的應用程式，權杖會附加到每個對 Azure Data Lake Store 或 Azure Data Lake Analytics 提出的要求。
 
@@ -38,40 +38,11 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* 您的訂用帳戶識別碼。 您可以在 Azure 入口網站擷取。 例如，可從 [Data Lake Store] 帳戶刀鋒視窗取得。
-  
-    ![取得訂用帳戶識別碼](./media/data-lake-store-authenticate-using-active-directory/get-subscription-id.png)
-* 您的 Azure AD 網域名稱。 將滑鼠游標停留在 Azure 入口網站右上角，即可擷取它。 在以下螢幕擷取畫面中，網域名稱是 **contoso.microsoft.com**，括號內的 GUID 是租用戶識別碼。 
-  
-    ![取得 AAD 網域](./media/data-lake-store-authenticate-using-active-directory/get-aad-domain.png)
-
-## <a name="service-to-service-authentication"></a>服務對服務驗證
-如果您希望應用程式自動向 Azure AD 驗證，不需要使用者提供其認證，這是建議的方法。 只要應用程式的認證仍有效，就可以自行驗證它本身，可依年序自訂認證。
-
-### <a name="what-do-i-need-to-use-this-approach"></a>使用這個方法時需要什麼？
-* Azure AD 網域名稱。 這已列在本文的必要條件中。
-* Azure AD **Web 應用程式**。
-* Azure AD Web 應用程式的用戶端識別碼。
-* Azure AD Web 應用程式的用戶端密碼。
-* Azure AD Web 應用程式的權杖端點。
-* 啟用您想要使用的 Data Lake Store 檔案/資料夾或 Data Lake Analytics 帳戶上 Azure AD Web 應用程式的存取權。
-
-如需有關如何建立 Azure AD Web 應用程式並針對上述需求進行設定的指示，請參閱下面的[建立 Active Directory 應用程式](#create-an-active-directory-application)一節。
-
-> [!NOTE]
-> Azure AD 應用程式預設是設定為使用用戶端密碼，您可以從 Azure AD 應用程式擷取此密碼。 不過，如果您希望 Azure AD 應用程式改用憑證，您就必須使用 Azure PowerShell 來建立 Azure AD Web 應用程式，如[使用憑證來建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
-> 
-> 
 
 ## <a name="create-an-active-directory-application"></a>建立 Active Directory 應用程式
-在本節中，我們將了解如何建立和設定 Azure AD Web 應用程式，來使用 Azure Active Directory 以 Azure Data Lake Store 進行服務對服務驗證。 
+在本節中，我們將了解如何建立和設定 Azure AD Web 應用程式，來使用 Azure Active Directory 以 Azure Data Lake Store 進行服務對服務驗證。 請注意，建立「Active Directory 應用程式」，實際上不會建立應用程式或任何程式碼，而是建立您的服務主體。
 
 ### <a name="step-1-create-an-azure-active-directory-application"></a>步驟 1：建立 Azure Active Directory 應用程式
-> [!NOTE]
-> 下列步驟是使用 Azure 入口網站。 您也可以使用 [Azure PowerShell](../resource-group-authenticate-service-principal.md) 或 [Azure CLI](../resource-group-authenticate-service-principal-cli.md) 來建立 Azure AD 應用程式。
-> 
-> 
-
 1. 透過 [傳統入口網站](https://manage.windowsazure.com/)登入 Azure 帳戶。
 2. 從左窗格中，選取 [ **Active Directory** ]。
    
@@ -82,7 +53,7 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 4. 若要檢視目錄中的應用程式，請按一下 [ **應用程式**]。
    
      ![檢視應用程式](./media/data-lake-store-authenticate-using-active-directory/view-applications.png)
-5. 如果您之前尚未在該目錄中建立應用程式，則應該會看到與下面類似的映像。 按一下 [加入應用程式]
+5. 如果您之前尚未在該目錄中建立應用程式，則應該會看到類似下圖。 按一下 [加入應用程式]
    
      ![新增應用程式](./media/data-lake-store-authenticate-using-active-directory/create-application.png)
    
@@ -128,28 +99,34 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
    
     ![租用戶識別碼](./media/data-lake-store-authenticate-using-active-directory/save-tenant.png)
 
+#### <a name="note-down-the-following-properties-that-you-will-need-for-the-next-steps"></a>請將後續步驟所需的下列屬性記下：
+1. 在上述步驟 1.6 建立的 Web 應用程式識別碼名稱
+2. 在上述步驟 2.2 所擷取的用戶端識別碼
+3. 在上述步驟 2.4 所建立的金鑰
+4. 在上述步驟 2.5 所擷取的租用戶識別碼
+
 ### <a name="step-3-assign-the-azure-ad-application-to-the-azure-data-lake-store-account-file-or-folder-only-for-service-to-service-authentication"></a>步驟 3：將 Azure AD 應用程式指派給 Azure Data Lake Store 帳戶檔案或資料夾 (僅適用於服務對服務驗證)
 1. 登入新的 [Azure 入口網站](https://portal.azure.com)，然後開啟要與您稍早建立的 Azure Active Directory 應用程式建立關聯的 Azure Data Lake Store 帳戶。
 2. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [資料總管] 。
    
-    ![在資料湖儲存區帳戶中建立目錄](./media/data-lake-store-authenticate-using-active-directory/adl.start.data.explorer.png "Create directories in Data Lake account")
+    ![在 Data Lake Store 帳戶中建立目錄](./media/data-lake-store-authenticate-using-active-directory/adl.start.data.explorer.png "在 Data Lake Store 帳戶中建立目錄")
 3. 在 [資料總管] 刀鋒視窗中，按一下您要將其存取權提供給 Azure AD 應用程式的檔案或資料夾，然後按一下 [存取]。 若要設定對檔案的存取權，您必須從 [檔案預覽] 刀鋒視窗按一下 [存取]。
    
-    ![設定資料湖檔案系統上的 ACL](./media/data-lake-store-authenticate-using-active-directory/adl.acl.1.png "Set ACLs on Data Lake file system")
+    ![設定 Data Lake 檔案系統上的 ACL](./media/data-lake-store-authenticate-using-active-directory/adl.acl.1.png "設定 Data Lake 檔案系統上的 ACL")
 4. [存取]  刀鋒視窗會列出已指派至根的標準存取和自訂存取。 按一下 [新增]  圖示以新增自訂層級的 ACL。
    
-    ![列出標準和自訂存取](./media/data-lake-store-authenticate-using-active-directory/adl.acl.2.png "List standard and custom access")
+    ![列出標準和自訂存取](./media/data-lake-store-authenticate-using-active-directory/adl.acl.2.png "列出標準和自訂的存取")
 5. 按一下 [新增] 圖示，以開啟 [新增自訂存取] 刀鋒視窗。 在此刀鋒視窗中，按一下 [選取使用者或群組]，然後在 [選取使用者或群組] 刀鋒視窗中，尋找您稍早建立的 Azure Active Directory 應用程式。 若您需要搜尋大量的群組，請使用頂端的文字方塊來篩選群組名稱。 按一下您要新增的群組，然後按一下 [選取] 。
    
-    ![新增群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.3.png "Add a group")
+    ![加入群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.3.png "加入群組")
 6. 按一下 [選取權限]，選取權限及權限的指派方式 (例如預設 ACL、存取 ACL 或兩者並用)。 按一下 [確定] 。
    
-    ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.4.png "Assign permissions to group")
+    ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.4.png "將權限指派至群組")
    
     如需有關 Data Lake Store 中的權限及預設/存取 ACL 的詳細資訊，請參閱 [Data Lake Store 中的存取控制](data-lake-store-access-control.md)。
 7. 在 [新增自訂存取] 刀鋒視窗中，按一下 [確定]。 具有相關權限的新增群組現在會列在 [存取]  刀鋒視窗中。
    
-    ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.5.png "Assign permissions to group")    
+    ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.5.png "將權限指派至群組")    
 
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已建立 Azure AD Web 應用程式，並收集您使用 .NET SDK、Java SDK 等撰寫的用戶端應用程式中所需的資訊。您現在可以繼續進行下列文章，這些文章說明如何使用 Azure AD Web 應用程式先以 Data Lake Store 進行驗證，然後再於存放區上執行其他作業。
@@ -157,9 +134,15 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 * [使用 .NET SDK 開始使用 Azure 資料湖存放區](data-lake-store-get-started-net-sdk.md)
 * [使用 Java SDK 開始使用 Azure Data Lake Store](data-lake-store-get-started-java-sdk.md)
 
+本文章會逐步引導您取得使用者主體和執行應用程式所需的基本步驟。 您可以查看下列文章以取得進一步資訊︰
+* [使用 PowerShell 建立服務主體](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal)
+* [使用憑證驗證進行服務主體驗證](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal#create-service-principal-with-certificate)
+* [向 Azure AD 驗證的其他方法](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-authentication-scenarios)
 
 
 
-<!--HONumber=Nov16_HO5-->
+
+
+<!--HONumber=Jan17_HO4-->
 
 

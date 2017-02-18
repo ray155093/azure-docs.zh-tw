@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: rest-api
 ms.topic: article
-ms.date: 12/13/2016
-ms.author: b-hoedid
+ms.date: 01/25/2017
+ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: b22e75264345bc9d155bd1abc1fdb6e978dfad04
-ms.openlocfilehash: bafc50750381616ecf30c4e41090f342d82007f9
+ms.sourcegitcommit: f2586eae5ef0437b7665f9e229b0cc2749bff659
+ms.openlocfilehash: 894856c6386b26610ca5078238a88adcdd2d9a03
 
 
 ---
@@ -47,7 +47,7 @@ DocumentDB 中的變更會加以保存，且可以進行非同步處理，並分
 
 ![適用於擷取和查詢的 Azure DocumentDB 型 Lambda 管線](./media/documentdb-change-feed/lambda.png)
 
-您可以使用 DocumentDB 來接收與儲存來自裝置、感應器、基礎結構和應用程式的事件資料，並透過 [Azure 串流分析](documentdb-search-indexer.md)、[Apache Storm](../hdinsight/hdinsight-storm-overview.md) 或 [Apache Spark](../hdinsight/hdinsight-apache-spark-overview.md) 即時處理這些事件。 
+您可以使用 DocumentDB 來接收與儲存來自裝置、感應器、基礎結構和應用程式的事件資料，並透過 [Azure 串流分析](../stream-analytics/stream-analytics-documentdb-output.md)、[Apache Storm](../hdinsight/hdinsight-storm-overview.md) 或 [Apache Spark](../hdinsight/hdinsight-apache-spark-overview.md) 即時處理這些事件。 
 
 在 Web 和行動應用程式內，您可以追蹤例如變更客戶設定檔、喜好設定或位置等的事件，以觸發像是使用 [Azure Functions](../azure-functions/functions-bindings-documentdb.md) 或[應用程式服務](https://azure.microsoft.com/services/app-service/)傳送推播通知到客戶裝置的特定動作。 例如，如果您使用 DocumentDB 來建置遊戲，您可以根據完成遊戲的分數，使用「變更摘要」來實作即時排行榜。
 
@@ -74,7 +74,7 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
 ### <a name="readdocumentfeed-api"></a>ReadDocumentFeed API
 讓我們快速看一下 ReadDocumentFeed 的運作方式。 DocumentDB 支援透過 `ReadDocumentFeed` API 讀取集合內文件的摘要。 例如，下列要求會傳回 `serverlogs` 集合內文件的頁面。 
 
-    GET https://mydocumentdb.documents.azure.com/dbs/smalldb/colls/smallcoll HTTP/1.1
+    GET https://mydocumentdb.documents.azure.com/dbs/smalldb/colls/serverlogs HTTP/1.1
     x-ms-date: Tue, 22 Nov 2016 17:05:14 GMT
     authorization: type%3dmaster%26ver%3d1.0%26sig%3dgo7JEogZDn6ritWhwc5hX%2fNTV4wwM1u9V2Is1H4%2bDRg%3d
     Cache-Control: no-cache
@@ -172,20 +172,24 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
     <tr>
         <td>minInclusive</td>
         <td>資料分割索引鍵範圍的最小資料分割索引鍵雜湊值。 供內部使用。</td>
-    </tr>       
+    </tr>        
 </table>
 
 您可以使用其中一個支援的 [DocumentDB SDK](documentdb-sdk-dotnet.md) 來這麼做。 例如，下列程式碼片段顯示如何在 .NET 中擷取資料分割索引鍵範圍。
 
+    string pkRangesResponseContinuation = null;
     List<PartitionKeyRange> partitionKeyRanges = new List<PartitionKeyRange>();
-    FeedResponse<PartitionKeyRange> response;
 
     do
     {
-        response = await client.ReadPartitionKeyRangeFeedAsync(collection);
-        partitionKeyRanges.AddRange(response);
+        FeedResponse<PartitionKeyRange> pkRangesResponse = await client.ReadPartitionKeyRangeFeedAsync(
+            collectionUri, 
+            new FeedOptions { RequestContinuation = pkRangesResponseContinuation });
+
+        partitionKeyRanges.AddRange(pkRangesResponse);
+        pkRangesResponseContinuation = pkRangesResponse.ResponseContinuation;
     }
-    while (response.ResponseContinuation != null);
+    while (pkRangesResponseContinuation != null);
 
 DocumentDB 支援針對每個資料分割索引鍵範圍進行文件擷取，方法是設定選擇性的 `x-ms-documentdb-partitionkeyrangeid` 標頭。 
 
@@ -254,24 +258,31 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
     Accept: application/json
     Host: mydocumentdb.documents.azure.com
 
-變更會依照資料分割索引鍵範圍內每個資料分割索引鍵值內的時間加以排序。 跨資料分割索引鍵值順序不會是固定的。 如果結果無法容納於單一頁面，您可以透過重新提交包含 `If-None-Match` 標頭的要求，以及和上一個回應中的 `etag` 相同的值，來讀取下一頁的結果。 如果多個文件已在預存程序或觸發程序內以交易式方式更新，則文件會在相同的回應頁面中傳回。
+變更會依照資料分割索引鍵範圍內每個資料分割索引鍵值內的時間加以排序。 跨資料分割索引鍵值順序不會是固定的。 如果結果無法容納於單一頁面，您可以透過重新提交包含 `If-None-Match` 標頭的要求，以及和上一個回應中的 `etag` 相同的值，來讀取下一頁的結果。 如果多個文件已在預存程序或觸發程序內以交易式方式插入或更新，則文件會在相同的回應頁面中傳回。
 
-.NET SDK 提供了 `CreateDocumentChangeFeedQuery` 和 `ChangeFeedOptions` 協助程式類別，以存取對集合所做的變更。 下列程式碼片段示範如何使用來自單一用戶端的 .NET SDK 來擷取從一開始的所有變更。
+> [!NOTE]
+> 使用變更摘要時，若在預存程序或觸發程序內插入或更新多份文件，您在頁面中取得的傳回項目可能會比 `x-ms-max-item-count` 中指定的項目更多。 
+
+.NET SDK 提供 [CreateDocumentChangeFeedQuery](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery.aspx) 和 [ChangeFeedOptions](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.changefeedoptions.aspx) 協助程式類別來存取對集合所做的變更。 下列程式碼片段示範如何使用來自單一用戶端的 .NET SDK 來擷取從一開始的所有變更。
 
     private async Task<Dictionary<string, string>> GetChanges(
         DocumentClient client,
         string collection,
         Dictionary<string, string> checkpoints)
     {
+        string pkRangesResponseContinuation = null;
         List<PartitionKeyRange> partitionKeyRanges = new List<PartitionKeyRange>();
-        FeedResponse<PartitionKeyRange> pkRangesResponse;
 
         do
         {
-            pkRangesResponse = await client.ReadPartitionKeyRangeFeedAsync(collection);
+            FeedResponse<PartitionKeyRange> pkRangesResponse = await client.ReadPartitionKeyRangeFeedAsync(
+                collectionUri, 
+                new FeedOptions { RequestContinuation = pkRangesResponseContinuation });
+
             partitionKeyRanges.AddRange(pkRangesResponse);
+            pkRangesResponseContinuation = pkRangesResponse.ResponseContinuation;
         }
-        while (pkRangesResponse.ResponseContinuation != null);
+        while (pkRangesResponseContinuation != null);
 
         foreach (PartitionKeyRange pkRange in partitionKeyRanges)
         {
@@ -334,6 +345,7 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
 * 使用 [DocumentDB SDK](documentdb-sdk-dotnet.md) 或 [REST API (英文)](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Jan17_HO4-->
 
 

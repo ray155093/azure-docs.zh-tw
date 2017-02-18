@@ -1,9 +1,9 @@
 ---
-title: "整合雲端服務與 Azure CDN | Microsoft Docs"
-description: "指導如何部署雲端服務來提供整合式 Azure CDN 端點內容的教學課程"
+title: "整合 Azure 雲端服務與 Azure CDN | Microsoft Docs"
+description: "了解如何部署可提供整合式 Azure CDN 端點內容的雲端服務"
 services: cdn, cloud-services
 documentationcenter: .net
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: tysonn
 ms.assetid: b3c0108f-9ec5-43a8-8fd0-40eafbd32637
@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: 750488e2855546418dd27ca511b9f8b3d06aa1da
+ms.sourcegitcommit: 06bd0112eab46f3347dfb039a99641a37c2b0197
+ms.openlocfilehash: 6355c98f5c50d03b54cb4977bff4e51b8dfa669f
 
 
 ---
@@ -603,6 +603,6 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

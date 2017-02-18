@@ -1,6 +1,6 @@
 ---
-title: "以 Azure Service Fabric 節點轉換 API 取代啟動節點和停止節點 API | Microsoft Docs"
-description: "以 Azure Service Fabric 節點轉換 API 取代啟動節點和停止節點 API"
+title: "啟動和停止叢集節點以測試 Azure 微服務 | Microsoft Docs"
+description: "了解如何使用錯誤插入，藉由啟動和停止叢集節點的方式，測試 Service Fabric 應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: LMWF
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 12/19/2016
 ms.author: lemai
 translationtype: Human Translation
-ms.sourcegitcommit: 4ca07de3604c3f543354d97db100b1f578cb0a5a
-ms.openlocfilehash: 5096ad4bdb75766850e557ed09f39b15c95126da
+ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
+ms.openlocfilehash: 5f76100007466f2baf4e067de963486f47fbf857
 
 
 ---
@@ -291,6 +291,6 @@ ms.openlocfilehash: 5096ad4bdb75766850e557ed09f39b15c95126da
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

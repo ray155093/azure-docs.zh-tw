@@ -13,11 +13,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 01867f283678171eda8fb9798ea996cae605665a
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 5304ddd84bebb19f5f082acb6442faa34b8d84bb
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: 01867f283678171eda8fb9798ea996cae605665a
 ![顯示空白工作清單的網頁][node-table-finished]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -462,7 +462,7 @@ ms.openlocfilehash: 01867f283678171eda8fb9798ea996cae605665a
 
 1. 輸入下列命令：
    
-        azure account download
+        azure login
    
     此命令會啟動瀏覽器並瀏覽至下載頁面。 若出現提示，請使用與您的 Azure 訂用帳戶相關聯的帳戶登入。
    
@@ -594,6 +594,6 @@ ms.openlocfilehash: 01867f283678171eda8fb9798ea996cae605665a
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/09/2016
+ms.date: 01/19/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: ec522d843b2827c12ff04afac15d89d525d88676
-ms.openlocfilehash: aa7b7ff406d06016aa6c4ee956dbf10a856a0e24
+ms.sourcegitcommit: cbd5ca0444a1d0f9ad67864ae9507d5659191a05
+ms.openlocfilehash: aea3600cafeb297822280d7dc7ec9d13cce76ca1
 
 
 ---
@@ -34,28 +34,30 @@ ms.openlocfilehash: aa7b7ff406d06016aa6c4ee956dbf10a856a0e24
 >
 
 ## <a name="introduction"></a>簡介
+
+### <a name="azure-machine-learning"></a>Azure Machine Learning
 [Azure 機器學習服務](https://azure.microsoft.com/documentation/services/machine-learning/) 可讓您建置、測試以及部署預測性分析解決方案。 從高階觀點而言，由下列三個步驟完成這個動作：
 
 1. **建立訓練實驗**。 您可以使用 Azure ML Studio 來進行此步驟。 ML Studio 是共同作業的視覺化開發環境，可供您使用訓練資料來訓練和測試預測性分析模型。
 2. **將其轉換為評分實驗**。 一旦您的模型已使用現有資料訓練，並做好使用該模型為新資料評分的準備之後，您準備並簡化用於評分實驗。
 3. **將其部署為 Web 服務**。 只要按一下，您就可以將評分實驗當做 Azure Web 服務發佈。 您可以透過此 Web 服務端點將資料傳送給您的模型，並從模型接收結果預測。  
 
-Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Machine Learning][azure-machine-learning] Web 服務進行預測性分析。 請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)和[建置您的第一個管線](data-factory-build-your-first-pipeline.md)文章，快速地開始使用 Azure Data Factory 服務。
+### <a name="azure-data-factory"></a>Azure Data Factory
+Data Factory 是雲端架構資料整合服務，用來協調以及自動**移動**和**轉換**資料。 您可以使用 Data Factory 服務建立資料整合方案，以從各種資料存放區擷取資料、轉換/處理資料，並將結果資料發佈至資料存放區。
 
-在 Azure Data Factory 管線中使用 [批次執行活動]  ，您可以叫用 Azure ML Web 服務以對批次中的資料進行預測。 如需詳細資訊，請參閱 [使用批次執行活動叫用 Azure ML Web 服務](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity) 一節。
+Data Factory 服務可讓您建立資料管線，以移動和轉換資料，然後依指定的排程 (每小時、每天、每週等) 執行管線。 它也提供豐富的視覺效果來顯示資料管線之間的歷程和相依性，並可透過單一整合檢視監視您所有的資料管線，以輕鬆地找出問題並設定監視警示。
+
+請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)和[建置您的第一個管線](data-factory-build-your-first-pipeline.md)文章，快速地開始使用 Azure Data Factory 服務。
+
+### <a name="data-factory-and-machine-learning-together"></a>Data Factory 和 Machine Learning 一起合作
+Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Machine Learning][azure-machine-learning] Web 服務進行預測性分析。 在 Azure Data Factory 管線中使用 [批次執行活動]  ，您可以叫用 Azure ML Web 服務以對批次中的資料進行預測。 如需詳細資訊，請參閱 [使用批次執行活動叫用 Azure ML Web 服務](#invoking-an-azure-ml-web-service-using-the-batch-execution-activity) 一節。
 
 經過一段時間，必須使用新的輸入資料集重新訓練 Azure ML 評分實驗中的預測模型。 您可以執行下列步驟，從 Data Factory 管線重新訓練 Azure ML 模型：
 
 1. 將訓練實驗 (而非預設實驗) 發佈為 Web 服務。 在 Azure ML Studio 中進行此步驟的方法，和先前案例中將預測實驗公開為 Web 服務的方法一樣。
 2. 使用 Azure ML 批次執行活動，對訓練實驗叫用 Web 服務。 基本上，您可以使用 Azure ML 批次執行活動來叫用訓練 Web 服務和評分 Web 服務。
 
-完成重新訓練之後，您想要使用新訓練的模型來更新評分 Web 服務 (以 Web 服務公開的預測實驗)。 步驟如下：
-
-1. 將非預設的端點加入至評分 Web 服務。 無法更新 Web 服務的預設端點，所以您必須使用 Azure 入口網站建立非預設端點。 如需概念資訊和程序步驟，請參閱 [建立端點](../machine-learning/machine-learning-create-endpoint.md) 一文。
-2. 更新評分的現有 Azure ML 連結服務，以使用非預設端點。 開始使用新的端點以使用已更新的 Web 服務。
-3. 使用 [Azure ML 更新資源活動]  以新訓練的模型更新 Web 服務。  
-
-如需詳細資訊，請參閱 [使用更新資源活動更新 Azure ML 模型](#updating-azure-ml-models-using-the-update-resource-activity) 一節。
+完成重新訓練之後，您可以使用「Azure ML 更新資源活動」，使用新訓練的模型來更新評分 Web 服務 (以 Web 服務公開的預測實驗)。 如需詳細資訊，請參閱[使用更新資源活動更新模型](#updating-models-using-update-resource-activity)一節。
 
 ## <a name="invoking-a-web-service-using-batch-execution-activity"></a>使用批次執行活動來叫用 Web 服務
 您可以使用 Azure Data Factory 協調資料的移動和處理作業，然後使用 Azure Machine Learning 批次執行。 以下是最上層的步驟︰
@@ -64,8 +66,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
 
    1. **要求 URI** 。 您可以按一下 Web 服務頁面中的 **批次執行** 連結，即可找到要求 URI。
    2. **API 金鑰** 。 按一下已發佈的 Web 服務，即可找到 API 金鑰。
-
-      1. 使用 **AzureMLBatchExecution** 活動。
+   3. 使用 **AzureMLBatchExecution** 活動。
 
       ![機器學習服務儀表板](./media/data-factory-azure-ml-batch-execution-activity/AzureMLDashboard.png)
 
@@ -401,7 +402,7 @@ Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 [Azure Ma
 
 在上述 JSON 範例中：
 
-* 已部署的 Azure Machine Learning Web 服務使用讀取器和寫入器模組，讀取 Azure SQL Database 的資料，或將資料寫入其中。 此 Web 服務會公開下列 4 個參數：資料庫伺服器名稱、資料庫名稱、伺服器使用者帳戶名稱和伺服器使用者帳戶密碼。  
+* 已部署的 Azure Machine Learning Web 服務使用讀取器和寫入器模組，讀取 Azure SQL Database 的資料，或將資料寫入其中。 此 Web 服務會公開下列&4; 個參數：資料庫伺服器名稱、資料庫名稱、伺服器使用者帳戶名稱和伺服器使用者帳戶密碼。  
 * **開始**和**結束**日期時間必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2014-10-14T16:32:41Z。 **結束**時間是選用項目。 如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。 如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](https://msdn.microsoft.com/library/dn835050.aspx) 。
 
 ### <a name="other-scenarios"></a>其他案例
@@ -549,18 +550,67 @@ Azure ML Web 服務的讀取器和寫入器模組可能會設定為不一定要�
 
 下表說明本範例中使用的 Web 服務。  如需詳細資訊，請參閱 [以程式設計方式重新定型機器學習服務模型](../machine-learning/machine-learning-retrain-models-programmatically.md) 。
 
-| Web 服務類型 | 說明 |
-|:--- |:--- |
-| **訓練 Web 服務** |接收訓練資料並產生已訓練的模型。 重新訓練的輸出是 Azure Blob 儲存體中的 .ilearner 檔案。  當您將訓練實驗發佈為 Web 服務時，系統會自動為您建立 **預設端點** 。 您可以建立多個端點，但此範例僅使用預設端點 |
-| **評分 Web 服務** |接收未標記的資料範例並進行預測。 預測的輸出可能有各種形式，例如 .csv 檔案或 Azure SQL Database 中的資料列 (視實驗的組態而定)。 當您將預測實驗發佈為 Web 服務時，系統會自動為您建立預設端點。 使用 [Azure 入口網站](https://manage.windowsazure.com)建立第二個**非預設且可更新的端點**。 您可以建立多個端點，但此範例僅使用非預設且可更新的端點 如需相關步驟，請參閱[建立端點](../machine-learning/machine-learning-create-endpoint.md)一文。 |
+- **訓練 Web 服務** - 接收訓練資料並產生已訓練的模型。 重新訓練的輸出是 Azure Blob 儲存體中的 .ilearner 檔案。 當您將訓練實驗發佈為 Web 服務時，系統會自動為您建立 **預設端點** 。 您可以建立多個端點，但此範例僅使用預設端點。
+- **評分 Web 服務** - 接收未標記的資料範例並進行預測。 預測的輸出可能有各種形式，例如 .csv 檔案或 Azure SQL Database 中的資料列 (視實驗的組態而定)。 當您將預測實驗發佈為 Web 服務時，系統會自動為您建立預設端點。 
 
 下圖描述 Azure ML 中訓練與評分端點之間的關聯性。
 
 ![Web 服務](./media/data-factory-azure-ml-batch-execution-activity/web-services.png)
 
-您可以使用 [AzureML Batch 執行活動] 來叫用**訓練 Web 服務**。 叫用訓練 Web 服務與叫用 Azure ML Web 服務 (評分 Web 服務) 以便進行資料評分相同。 上述各節詳細說明如何從 Azure Data Factory 管線叫用 Azure ML Web 服務。
+您可以使用 [AzureML Batch 執行活動] 來叫用**訓練 Web 服務**。 叫用訓練 Web 服務與叫用 Azure ML Web 服務 (評分 Web 服務) 以便進行資料評分相同。 上述各節詳細說明如何從 Azure Data Factory 管線叫用 Azure ML Web 服務。 
 
-您可以使用 [Azure ML 更新資源活動] 來叫用**評分 Web 服務**，進而以新訓練的模型更新 Web 服務。 如上表所述，您必須建立並使用非預設的可更新端點。 此外，請將 Data Factory 中所有現有的連結服務更新為使用非預設端點，使其一律使用最近重新訓練的模型。
+您可以使用 [Azure ML 更新資源活動] 來叫用**評分 Web 服務**，進而以新訓練的模型更新 Web 服務。 下列範例提供連結的服務定義︰ 
+
+### <a name="scoring-web-service-is-a-classic-web-service"></a>評分 Web 服務是傳統的 Web 服務
+如果評分 Web 服務是「傳統 Web 服務」，請使用 [Azure 入口網站](https://manage.windowsazure.com)，建立第二個「非預設且可更新的端點」。 如需相關步驟，請參閱[建立端點](../machine-learning/machine-learning-create-endpoint.md)一文。 建立非預設的可更新端點之後，執行下列作業︰
+
+* 按一下 [批次執行] 以取得 **mlEndpoint** JSON 屬性的 URI 值。
+* 按一下 [更新資源] 連結以取得 **updateResourceEndpoint** JSON 屬性的 URI 值。 API 金鑰本身位於端點頁面 (位於右下角)。
+
+![可更新端點](./media/data-factory-azure-ml-batch-execution-activity/updatable-endpoint.png)
+
+下列範例提供 AzureML 連結服務的範例 JSON 定義。 連結服務使用 apiKey 進行驗證。  
+
+```json
+{
+    "name": "updatableScoringEndpoint2",
+    "properties": {
+        "type": "AzureML",
+        "typeProperties": {
+            "mlEndpoint": "https://ussouthcentral.services.azureml.net/workspaces/xxx/services/--scoring experiment--/jobs",
+            "apiKey": "endpoint2Key",
+            "updateResourceEndpoint": "https://management.azureml.net/workspaces/xxx/webservices/--scoring experiment--/endpoints/endpoint2"
+        }
+    }
+}
+```
+
+### <a name="scoring-web-service-is-a-new-type-of-web-service-azure-resource-manager"></a>評分 Web 服務是新的 Web 服務類型 (Azure Resource Manager)
+如果 Web 服務是會公開 Azure Resource Manager 端點的新 Web 服務類型，您不需要新增第二個「非預設」端點。 連結服務中 **updateResourceEndpoint** 的格式如下︰ 
+
+```
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resource-group-name}/providers/Microsoft.MachineLearning/webServices/{web-service-name}?api-version=2016-05-01-preview. 
+```
+
+在 [Azure Machine Learning Web 服務入口網站](https://services.azureml.net/)上查詢 Web 服務時，您可以取得 URL 中預留位置的值。 新的更新資源端點類型需要 AAD (Azure Active Directory) 權杖。 在 AzureML 連結服務中指定 **servicePrincipalId** 和 **servicePrincipalKey**。 請參閱[如何建立服務主體及指派權限來管理 Azure 資源](../azure-resource-manager/resource-group-create-service-principal-portal.md)。 以下是 AzureML 連結服務定義範例︰ 
+
+```json
+{
+    "name": "AzureMLLinkedService",
+    "properties": {
+        "type": "AzureML",
+        "description": "The linked service for AML web service.",
+        "typeProperties": {
+            "mlEndpoint": "https://ussouthcentral.services.azureml.net/workspaces/0000000000000000000000000000000000000/services/0000000000000000000000000000000000000/jobs?api-version=2.0",
+            "apiKey": "xxxxxxxxxxxx",
+            "updateResourceEndpoint": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRG/providers/Microsoft.MachineLearning/webServices/myWebService?api-version=2016-05-01-preview",
+            "servicePrincipalId": "000000000-0000-0000-0000-0000000000000",
+            "servicePrincipalKey": "xxxxx",
+            "tenant": "mycompany.com"
+        }
+    }
+}
+```
 
 下列案例提供更多詳細資料， 其中包含從 Azure Data Factory 管線重新訓練和更新 Azure ML 模型的範例。
 
@@ -679,22 +729,16 @@ Azure 儲存體會保留下列資料：
     "properties": {
         "type": "AzureML",
         "typeProperties": {
-            "mlEndpoint": "https://ussouthcentral.services.azureml.net/workspaces/xxx/services/--scoring experiment--/jobs",
-            "apiKey": "endpoint2Key",
-            "updateResourceEndpoint": "https://management.azureml.net/workspaces/xxx/webservices/--scoring experiment--/endpoints/endpoint2"
+            "mlEndpoint": "https://ussouthcentral.services.azureml.net/workspaces/00000000eb0abe4d6bbb1d7886062747d7/services/00000000026734a5889e02fbb1f65cefd/jobs?api-version=2.0",
+            "apiKey": "sooooooooooh3WvG1hBfKS2BNNcfwSO7hhY6dY98noLfOdqQydYDIXyf2KoIaN3JpALu/AKtflHWMOCuicm/Q==",
+            "updateResourceEndpoint": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/myWebService?api-version=2016-05-01-preview",
+            "servicePrincipalId": "fe200044-c008-4008-a005-94000000731",
+            "servicePrincipalKey": "zWa0000000000Tp6FjtZOspK/WMA2tQ08c8U+gZRBlw=",
+            "tenant": "mycompany.com"
         }
     }
 }
 ```
-
-建立和部署 Azure ML 連結服務之前，請依照 [建立端點](../machine-learning/machine-learning-create-endpoint.md) 一文中的步驟，來建立評分 Web 服務的第二個 (非預設且可更新) 端點。
-
-建立非預設的可更新端點之後，執行下列作業︰
-
-* 按一下 [批次執行] 以取得 **mlEndpoint** JSON 屬性的 URI 值。
-* 按一下 [更新資源] 連結以取得 **updateResourceEndpoint** JSON 屬性的 URI 值。 API 金鑰本身位於端點頁面 (位於右下角)。
-
-![可更新端點](./media/data-factory-azure-ml-batch-execution-activity/updatable-endpoint.png)
 
 #### <a name="placeholder-output-dataset"></a>預留位置輸出資料集：
 Azure ML 更新資源活動不會產生任何輸出。 不過，Azure Data Factory 需要輸出資料集來驅動管線的排程。 因此，我們在此範例中使用虛擬/預留位置資料集。  
@@ -876,6 +920,6 @@ Azure ML 更新資源活動不會產生任何輸出。 不過，Azure Data Facto
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

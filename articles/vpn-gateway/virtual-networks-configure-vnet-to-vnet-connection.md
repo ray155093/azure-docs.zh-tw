@@ -1,10 +1,10 @@
 ---
-title: "設定傳統部署模型的 VNet 對 VNet 連線 | Microsoft Docs"
+title: "將 Azure 虛擬網路連接至另一個 VNet︰傳統入口網站 | Microsoft Docs"
 description: "如何使用 PowerShell 和 Azure 傳統入口網站將 Azure 虛擬網路連接在一起。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management
 ms.assetid: 7413827f-233d-4c7c-a133-9c99cf031833
@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 08/31/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: c1fd18ad8889033cba8a92f6ae255ba6478e6595
+ms.sourcegitcommit: eadb1f29da69e7f6fcc2c7c19ba67f4e3072c346
+ms.openlocfilehash: 863b308125a7a9ae2b9d9104d150bd2474c064b3
 
 
 ---
@@ -60,7 +60,7 @@ ms.openlocfilehash: c1fd18ad8889033cba8a92f6ae255ba6478e6595
   * 如果您有多個 Azure 訂用帳戶，您可以將虛擬網路之間不同訂用帳戶的工作負載安全地連接在一起。
   * 針對企業或服務提供者，您可以在 Azure 中使用安全 VPN 技術啟用跨組織通訊。
 
-### <a name="vnet-to-vnet-faq-for-classic-vnets"></a>傳統 Vnet 的 VNet 對 VNet 常見問題集
+### <a name="vnet-to-vnet-considerations-for-classic-vnets"></a>傳統 VNet 的 VNet 對 VNet 考量
 * 虛擬網路可位於相同或不同的訂用帳戶。
 * 虛擬網路可位於相同或不同的 Azure 區域 (位置)。
 * 即使虛擬網路連接在一起，雲端服務或負載平衡端點也無法跨虛擬網路。
@@ -200,6 +200,6 @@ ms.openlocfilehash: c1fd18ad8889033cba8a92f6ae255ba6478e6595
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

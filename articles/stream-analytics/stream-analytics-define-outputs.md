@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 12/05/2016
+ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 3a42093a67fe1ded29e97343affa5df89ea5fd1a
+ms.sourcegitcommit: 2b4a10c77ae02ac0e9eeecf6d7d6ade6e4c33115
+ms.openlocfilehash: 9eb581e6180a7ae6a5f24b3a991376264b0ecef9
 
 
 ---
@@ -303,40 +303,17 @@ DateTime | String | String |  DateTime | String
 ## <a name="documentdb"></a>DocumentDB
 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 是完全受管理的 NoSQL 文件資料庫服務，可提供透過無結構描述資料進行的查詢和交易，並且提供既可預測又可靠的效能，還能讓您快速開發。
 
-下表列出用於建立 DocumentDB 輸出的屬性名稱及其描述。
+下列清單詳述用於建立 DocumentDB 輸出的屬性名稱及其說明。
 
-<table>
-<tbody>
-<tr>
-<td>屬性名稱</td>
-<td>描述</td>
-</tr>
-<tr>
-<td>帳戶名稱</td>
-<td>DocumentDB 帳戶的名稱。  這也會是帳戶的端點。</td>
-</tr>
-<tr>
-<td>帳戶金鑰</td>
-<td>DocumentDB 帳戶的共用存取金鑰。</td>
-</tr>
-<tr>
-<td>資料庫</td>
-<td>DocumentDB 資料庫名稱。</td>
-</tr>
-<tr>
-<td>集合名稱模式</td>
-<td>要使用之集合的集合名稱模式。 您可以使用選用的 {partition} 語彙基元來建構集合名稱的格式，其中的資料分割會從 0 開始。<BR>例如 以下是有效的輸入：<BR>MyCollection{partition}<BR>MyCollection<BR>請注意，集合必須在資料流分析工作啟動之前便存在，而且不會自動建立。</td>
-</tr>
-<tr>
-<td>資料分割索引鍵</td>
-<td>輸出事件中的欄位名稱會用來為跨集合的資料分割輸出指定索引鍵。</td>
-</tr>
-<tr>
-<td>文件識別碼</td>
-<td>輸出事件中的欄位名稱會用來指定主索引鍵，其為插入或更新作業的依據。</td>
-</tr>
-</tbody>
-</table>
+* **輸出別名** ：在您的 ASA 查詢中參照到此輸出時所用的別名。  
+* **帳戶名稱** ：DocumentDB 帳戶的名稱或端點 URI。  
+* **帳戶金鑰** ：DocumentDB 帳戶的共用存取金鑰。  
+* **資料庫** ：DocumentDB 資料庫名稱。  
+* **集合名稱模式**：要使用之集合的集合名稱或其模式。 您可以使用選用的 {partition} 語彙基元來建構集合名稱的格式，其中的資料分割會從 0 開始。 以下是有效的範例輸入：  
+  1\) MyCollection – 必須要有一個名為 “MyCollection” 的集合存在。  
+  2\) MyCollection{partition} – 這些集合必須存在 – "MyCollection0”、“MyCollection1”、“MyCollection2” 等，依此類推。  
+* **資料分割索引鍵** - 選擇性。 只有您在集合名稱模式中使用 {parition} 語彙基元時，才需要此索引鍵。 輸出事件中的欄位名稱會用來為跨集合的資料分割輸出指定索引鍵。 若為單一集合輸出，則可使用任何任意的輸出欄，例如 PartitionId。  
+* **文件識別碼** ：可省略。 輸出事件中的欄位名稱會用來指定主索引鍵，此為插入或更新作業的依據。  
 
 
 ## <a name="get-help"></a>取得說明
@@ -360,6 +337,6 @@ DateTime | String | String |  DateTime | String
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

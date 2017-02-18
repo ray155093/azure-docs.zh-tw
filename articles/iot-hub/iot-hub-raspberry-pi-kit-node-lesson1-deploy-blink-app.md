@@ -1,5 +1,7 @@
 ---
-title: "建立並部署閃爍應用程式 | Microsoft Docs"
+featureFlags:
+- usabilla
+title: "將 Raspberry Pi (節點) 連接到 Azure IoT - 第 1 課：部署應用程式 | Microsoft Docs"
 description: "從 GitHub 複製範例 Node.js 應用程式，並複製 gulp 以將此應用程式部署至您的 Raspberry Pi 3 面板。 此範例應用程式會讓與面板連接的 LED 每兩秒閃爍一次。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +18,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 09554b64f31c909e413f5a93dfd6d74186bf6e21
-ms.openlocfilehash: b9e49d3637b3e3aff1a89e57c125a59877544e01
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 90ceb432bd9506dc40e340af21a3cae4e21a20b0
 
 
 ---
@@ -153,6 +155,6 @@ gulp deploy && gulp run
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

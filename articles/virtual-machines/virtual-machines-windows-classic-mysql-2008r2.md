@@ -1,5 +1,5 @@
 ---
-title: "建立執行 MySQL 的 VM | Microsoft Docs"
+title: "建立執行 MySQL 的傳統 Azure VM | Microsoft Docs"
 description: "使用傳統部署模型，建立執行 Windows Server 2012 R2 和 MySQL 資料庫的 Azure 虛擬機器。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 07/25/2016
+ms.date: 01/23/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 5d08c629fc6e94b43b73c74d8485f6aee695cf4a
+ms.sourcegitcommit: 0937d80011d0ae7015c08d99b06934fda85930b0
+ms.openlocfilehash: d17c92bd239360e0bfddd61a57a9f481f64ff05d
 
 
 ---
@@ -120,6 +120,6 @@ ms.openlocfilehash: 5d08c629fc6e94b43b73c74d8485f6aee695cf4a
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

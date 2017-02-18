@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure IoT 閘道器入門套件 | Microsoft Docs"
+title: "模擬裝置與 Azure IoT 閘道 - 開始使用 | Microsoft Docs"
 description: "開始使用 IoT 閘道器入門套件，建立 Azure IoT 中樞，並將閘道器連接到 IoT 中樞"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/21/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 65a25dd7a2f6a8d518217512f9e10fc9008ee728
-ms.openlocfilehash: c62e0cc560af18945c371af000ec08c0ddc7cd5a
+ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
+ms.openlocfilehash: 06161c2950fbe99d2e4f9c1b416695a5f9f18ca4
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: c62e0cc560af18945c371af000ec08c0ddc7cd5a
 ***
 
 ## <a name="lesson-1-configure-your-nuc"></a>第 1 課：設定 NUC
-![第 1 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson1.png)
+![第&1; 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson1.png)
 
 在這一課，您要將套件中的 Intel NUC (Next Unit of Computing) 設定為 Azure IoT 閘道器、在 NUC 上安裝 Azure IoT 閘道器 SDK 套件，執行範例應用程式以確認閘道器的功能。
 
@@ -44,7 +44,7 @@ ms.openlocfilehash: c62e0cc560af18945c371af000ec08c0ddc7cd5a
 前往[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-sim-lesson1-set-up-nuc.md)
 
 ## <a name="lesson-2-create-your-iot-hub"></a>第 2 課：建立 IoT 中樞
-![第 2 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson2.png)
+![第&2; 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson2.png)
 
 在這一課，您要在主機電腦上安裝工具和軟體。 然後會建立一個免費的 Azure 帳戶、佈建您的 Azure IoT 中樞，並在 IoT 中樞建立您的第一個裝置。
 
@@ -109,6 +109,6 @@ ms.openlocfilehash: c62e0cc560af18945c371af000ec08c0ddc7cd5a
 若要深入了解，請瀏覽 [Intel IoT 閘道器套件開發人員區域](https://software.intel.com/en-us/iot/hardware/gateways/dev-kit)。
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

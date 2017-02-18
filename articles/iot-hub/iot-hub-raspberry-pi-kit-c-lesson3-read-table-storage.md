@@ -1,5 +1,5 @@
 ---
-title: "讀取保留在 Azure 儲存體中的訊息 | Microsoft Docs"
+title: "將 Raspberry Pi (C) 連接到 Azure IoT - 第 3 課：表格儲存體 | Microsoft Docs"
 description: "當裝置到雲端訊息寫入您的 Azure 表格儲存體時對其進行監視。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 155e5d6280d86b06b1718fc3032c2c224539183d
-ms.openlocfilehash: 4e1107400ef08cc3fd955d693c77f332446ecc37
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 41e89f524bf9ae67489ab3a0eb09ceda6b211f15
 
 
 ---
@@ -74,6 +74,6 @@ ms.openlocfilehash: 4e1107400ef08cc3fd955d693c77f332446ecc37
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

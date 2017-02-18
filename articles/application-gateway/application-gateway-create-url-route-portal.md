@@ -1,5 +1,5 @@
 ---
-title: "使用入口網站為應用程式閘道建立路徑型規則 | Microsoft Docs"
+title: "建立路徑型規則 - Azure 應用程式閘道 - Azure 入口網站 | Microsoft Docs"
 description: "了解如何使用入口網站為應用程式閘道建立路徑型規則"
 services: application-gateway
 documentationcenter: na
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/13/2016
+ms.date: 01/23/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 09aeb63d4c2e68f22ec02f8c08f5a30c32d879dc
-ms.openlocfilehash: 2889716d6b5b6079c311d6a7f1eb97b001098b45
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: e92c33b81aa1b69da0336bec1260cbda96c7a72e
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 2889716d6b5b6079c311d6a7f1eb97b001098b45
 
 URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。 它會檢查是否有路由連至針對應用程式閘道中的 URL 清單設定的後端集區，並將網路流量傳送至定義的後端集區。 URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
 
-URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘道具有 2 種規則類型：基本和路徑型規則。 基本規則類型會針對後端集區提供循環配置資源服務，而路徑型規則除了循環配置資源發佈之外，也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
+URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘道具有&2; 種規則類型：基本和路徑型規則。 基本規則類型會針對後端集區提供循環配置資源服務，而路徑型規則除了循環配置資源發佈之外，也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
 
 ## <a name="scenario"></a>案例
 
@@ -90,6 +90,6 @@ URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

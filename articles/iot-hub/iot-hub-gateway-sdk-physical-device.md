@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: andbuc
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 05c82a87e839a0a95e7050092d6f6867e76fb316
+ms.sourcegitcommit: e1cf5ed3f2434a9e98027afd0225207ad5d2f1b1
+ms.openlocfilehash: 199f07ce705036c3d8f9d56115b5df9c8c52dc45
 
 
 ---
@@ -236,10 +236,10 @@ cd azure-iot-gateway-sdk
 git submodule update --init --recursive
 ```
 
-當您的 Raspberry Pi 3 上擁有「IoT 閘道 SDK」儲存機制的完整複本時，您就可以使用下列命令，從包含該 SDK 的資料夾建置它：
+當您的 Raspberry Pi 3 上擁有 IoT 閘道 SDK 儲存機制的完整複本時，您就可以使用下列命令，從包含該 SDK 的資料夾建置它
 
 ```
-./tools/build.sh --skip-unittests
+./tools/build.sh
 ```
 
 ### <a name="configure-and-run-the-ble-sample-on-your-raspberry-pi-3"></a>在 Raspberry Pi 3 上設定和執行 BLE 範例
@@ -429,11 +429,11 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。 任何�
 當您執行範例時，可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，監視閘道器從 SensorTag 裝置轉送的訊息。
 
 ## <a name="send-cloud-to-device-messages"></a>傳送雲端到裝置訊息
-BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[裝置總管](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md)或 [iothub-explorer](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer) 工具來傳送 JSON 訊息，再由 BLE 閘道器模組轉送至 BLE 裝置的 。
+BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[裝置總管](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer)或 [iothub-explorer](https://github.com/Azure/iothub-explorer) 工具來傳送 JSON 訊息，再由 BLE 閘道器模組轉送至 BLE 裝置的 。
 如果您使用 Texas Instruments SensorTag 裝置，則可以從 IoT 中樞傳送命令以開啟紅色 LED、綠色 LED 或警報器。 若要這樣做，請先依序傳送下列兩個 JSON 訊息。 然後，您可以傳送任何命令以開啟燈號或警報器。
 
-1 重設所有的 LED 與警報器 (將其關閉)
-  
+1. 重設所有的 LED 與警報器 (將其關閉)：
+
     ```json
     {
       "type": "write_once",
@@ -441,7 +441,8 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[
       "data": "AA=="
     }
     ```
-2 將 I/O 設定為「遠端」
+    
+2. 將 I/O 設定為「遠端」：
   
     ```json
     {
@@ -450,7 +451,10 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[
       "data": "AQ=="
     }
     ```
-* 開啟紅色 LED
+    
+然後，您可以傳送下列任何命令來開啟燈號或警報器。
+
+* 開啟紅色 LED：
   
     ```json
     {
@@ -459,7 +463,8 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[
       "data": "AQ=="
     }
     ```
-* 開啟綠色 LED
+
+* 開啟綠色 LED：
   
     ```json
     {
@@ -468,7 +473,8 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[
       "data": "Ag=="
     }
     ```
-* 開啟警報器
+
+* 開啟警報器：
   
     ```json
     {
@@ -501,6 +507,6 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。 您可以使用[
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

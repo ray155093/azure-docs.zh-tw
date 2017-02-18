@@ -1,5 +1,5 @@
 ---
-title: "將 Intel NUC 設定為 IoT 閘道器 | Microsoft Docs"
+title: "模擬裝置與 Azure IoT 閘道 - 第 1 課：設定 NUC | Microsoft Docs"
 description: "將 Intel NUC 設定為在感應器和 Azure IoT 中樞之間做為 IoT 閘道器，以收集感應器資訊，並將資訊傳送至 IoT 中樞。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 1c4f44787a7200a1c3634b258df32d30152daa90
-ms.openlocfilehash: 7725f49d71cb77dd6ff7ae075cc7449e568c21d7
+ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
+ms.openlocfilehash: 399ac2d571b65503da7d9cc47d2dec9aa5e4c3d7
 
 
 ---
@@ -85,7 +85,7 @@ ms.openlocfilehash: 7725f49d71cb77dd6ff7ae075cc7449e568c21d7
 
 ## <a name="install-the-azure-iot-gateway-sdk-package"></a>安裝 Azure IoT 閘道器 SDK 套件
 
-Azure IoT 閘道器 SDK 套件包含預先編譯的 SDK 二進位檔及其相依性。 這些二進位檔是 Azure IoT 閘道器 SDK、Azure IoT SDK 和對應的工具。 套件中也有 "hello_world" 範例應用程式，用以確認閘道器的功能。 此 SDK 是閘道器的核心部分。 若要安裝套件，請遵循下列步驟：
+Azure IoT 閘道器 SDK 套件包含預先編譯的 SDK 二進位檔及其相依性。 這些二進位檔是 Azure IoT 閘道器 SDK、Azure IoT SDK 和對應的工具。 套件也會包含 "hello_world" 範例應用程式，可用來確認閘道功能。 此 SDK 是閘道器的核心部分。 若要安裝套件，請遵循下列步驟：
 
 1. 在終端機視窗中執行下列命令，新增 IoT 雲端存放庫：
 
@@ -138,6 +138,6 @@ cd /usr/share/azureiotgatewaysdk/samples/hello_world/
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

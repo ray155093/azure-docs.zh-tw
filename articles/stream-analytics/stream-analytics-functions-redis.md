@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Functions 從 Azure 串流分析輸出至 Azure Redis 快取 | Microsoft Docs"
+title: "適用於 Azure Functions 的串流分析即時處理 | Microsoft Docs"
 description: "了解如何使用連接到服務匯流排佇列的 Azure 函式，從串流分析工作的輸出填入 Azure Redis 快取。"
 keywords: "data stream, redis cache, service bus queue, 資料流, redis 快取, 服務匯流排佇列"
 services: stream-analytics
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/26/2016
+ms.date: 01/24/2017
 ms.author: ryancraw
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: e792f8c8b1ffddbd534b1660421e4cc89a63d35a
+ms.sourcegitcommit: 9afd26024d2aa0d3d732ddc6f54e591715afca69
+ms.openlocfilehash: 3753846e955308a7607d92ed25648d75b9cc3a35
 
 
 ---
@@ -207,6 +207,6 @@ Azure 串流分析可讓您快速開發及部署低成本的解決方案，即�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

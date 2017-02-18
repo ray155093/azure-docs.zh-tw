@@ -1,5 +1,5 @@
 ---
-title: "建立 Azure 函式應用程式和儲存體帳戶 | Microsoft Docs"
+title: "將 Intel Edison (節點) 連接到 Azure IoT - 第 3 課：建立函數應用程式 | Microsoft Docs"
 description: "Azure 函式應用程式會接聽 Azure IoT 中樞事件、處理傳入訊息，並將它們寫入 Azure 表格儲存體。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: f45b3bf00d619376ac07418f0c02eca5f3241939
-ms.openlocfilehash: 2a0471afe0be575405bcc8d542c2f1dec6e309a2
+ms.sourcegitcommit: adf5b10721a28432e6b37ef73c6a7e7ec9f93cdd
+ms.openlocfilehash: 72d1496fcf353662fa2f7b003ee3757c45b8181e
 
 
 ---
@@ -84,6 +84,6 @@ az group deployment create --template-file arm-template.json --parameters @arm-t
 [send-device-to-cloud-messages]: iot-hub-intel-edison-kit-node-lesson3-run-azure-blink.md
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "取得適用於 Azure IoT 入門套件 (Windows 7 +) 的工具 | Microsoft Docs"
+title: "將 Arduino 連接到 Azure IoT - 第 1 課：取得工具 (Windows) | Microsoft Docs"
 description: "在 Windows 7 和更新版本上，針對 Adafruit Feather M0 WiFi 的第一個範例應用程式下載並安裝必要的工具和軟體。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/13/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 9e8084fe26229ef9ed1676c0a3c34e0ee7be88b1
-ms.openlocfilehash: 5720809e9f257218c8ee0801bfc7a06d286934f6
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: dbf4be49bf806415c7a7817acb37c7e33be6267d
 
 
 ---
@@ -93,6 +93,6 @@ npm install -g gulp device-discovery-cli
 [create-and-deploy-the-blink-sample-application]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-deploy-blink-app.md
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

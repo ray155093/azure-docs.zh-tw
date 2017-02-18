@@ -1,5 +1,5 @@
 ---
-title: "從 Azure IoT 中樞執行範例應用程式以接收雲端到裝置的訊息 | Microsoft Docs"
+title: "將 Intel Edison (節點) 連接到 Azure IoT - 第 4 課：接收訊息 | Microsoft Docs"
 description: "範例應用程式會在 Edison 上執行，並監視來自 IoT 中樞的傳入訊息。 新的 Gulp 工作會從 IoT 中樞將訊息傳送到 Edison 來使 LED 閃爍。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: d492fa295237f6ff333aefb2181975e8af948723
-ms.openlocfilehash: 57f794c85f7feab95a0a22006c49b29bc6cb1384
+ms.sourcegitcommit: adf5b10721a28432e6b37ef73c6a7e7ec9f93cdd
+ms.openlocfilehash: 4dfddf6a2664abbdfd9b5d782dafc9e5ff243e5a
 
 
 ---
@@ -56,7 +56,7 @@ ms.openlocfilehash: 57f794c85f7feab95a0a22006c49b29bc6cb1384
    gulp init
    ```
 
-   如果您已在此電腦上完成[建立 Azure 函式應用程式與儲存體帳戶][create-an-azure-function-app-and-storage-account]中的步驟，則會繼承所有組態，因此您可以略過部署和執行範例應用程式之工作的步驟。 如果您已在不同電腦上完成[建立 Azure 函式應用程式與儲存體帳戶][create-an-azure-function-app-and-storage-account]中的步驟，您必須取代 `config-edison.json` 檔案中的預留位置。 `config-edison.json` 檔案位於您主資料夾的子資料夾中。
+   如果您已在此電腦上完成[建立 Azure 函式應用程式與儲存體帳戶][create-an-azure-function-app-and-storage-account]中的步驟，則會繼承所有組態，因此您可以略過部署和執行範例應用程式之工作的步驟。 如果您是在不同電腦上完成[建立 Azure 函數應用程式與儲存體帳戶][create-an-azure-function-app-and-storage-account]中的步驟，您必須取代 `config-edison.json` 檔案中的預留位置。 `config-edison.json` 檔案位於您主資料夾的子資料夾中。
 
    ![config-edison.json 檔案的內容](media/iot-hub-intel-edison-lessons/lesson4/config-edison.png)
 
@@ -96,6 +96,6 @@ gulp 命令會將範例應用程式部署到 Edison。 然後，它會在 Edison
 [change-the-on-and-off-behavior-of-the-led]: iot-hub-intel-edison-kit-node-lesson4-change-led-behavior.md
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

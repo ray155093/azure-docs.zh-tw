@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: tdykstra
 translationtype: Human Translation
-ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
-ms.openlocfilehash: bf4735cd0a56e7837a0dfd7d9bc8e50e09e5cf54
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: b4a64bbccabf0e7b0e7aec659d066883139c8207
 
 
 ---
@@ -44,7 +44,7 @@ ms.openlocfilehash: bf4735cd0a56e7837a0dfd7d9bc8e50e09e5cf54
 > * 您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)- 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。 除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
 > * 您可以 [啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)- 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
 >
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 >
 >
 
@@ -131,7 +131,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
     ![New storage account](./media/websites-dotnet-webjobs-sdk-get-started/newstorage.png)
 4. 複製 [連接字串] 。
 
-    ![ [儲存體帳戶金鑰] 對話方塊](./media/websites-dotnet-webjobs-sdk-get-started/cpak.png)
+    ![[儲存體帳戶金鑰] 對話方塊](./media/websites-dotnet-webjobs-sdk-get-started/cpak.png)
 5. 使用您剛才複製的連接字串來取代 *Web.config* 檔案中的儲存體連接字串。 在貼上之前請確定您選取引號內的所有項目，但不包括引號。
 6. 開啟 ContosoAdsWebJob 專案中的 *App.config* 檔案。
 
@@ -343,7 +343,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
     此專案將包含由前端與後端使用的 Entity Framework 內容和資料模型。 作為替代方式，您可以在 Web 專案中定義 EF 相關的類別，並從 WebJob 專案參考該專案。 但之後您的 WebJob 專案會有不需要的 Web 組件參考。
 
 ### <a name="add-a-console-application-project-that-has-webjobs-deployment-enabled"></a>新增已啟用 WebJobs 部署的主控台應用程式專案
-1. 以滑鼠右鍵按一下 Web 專案 (不是方案或類別庫專案)，然後依序按一下 [新增]  > 的簡單多層次 ASP.NET MVC 5 應用程式撰寫程式碼。
+1. 以滑鼠右鍵按一下 Web 專案 (不是方案或類別庫專案)，然後依序按一下 [新增]  > 的簡單多層次 ASP.NET MVC&5; 應用程式撰寫程式碼。
 
     ![New Azure WebJob Project menu selection](./media/websites-dotnet-webjobs-sdk-get-started/newawjp.png)
 2. 在 [新增 Azure WebJob] 對話方塊中，在 [專案名稱] 和 [WebJob 名稱] 中輸入 ContosoAdsWebJob。 保留 [WebJob 執行模式] 的 [連續執行] 設定。
@@ -374,7 +374,7 @@ WebJob 專案的新專案範本會自動安裝 WebJobs SDK NuGet 封裝 [Microso
 ### <a name="set-project-references"></a>設定專案參考
 Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 ContosoAdsCommon 專案的參考。
 
-1. 在 ContosoAdsWeb 專案中，設定 ContosoAdsCommon 專案的參考。 (以滑鼠右鍵按一下 ContosoAdsWeb 專案，然後依序按一下 [新增]  > **K**的簡單多層次 ASP.NET MVC 5 應用程式撰寫程式碼。 在 [參考管理員] 對話方塊中，依序選取 [方案]  >  [專案]  >  [ContosoAdsCommon]，然後按一下 [確定]。)
+1. 在 ContosoAdsWeb 專案中，設定 ContosoAdsCommon 專案的參考。 (以滑鼠右鍵按一下 ContosoAdsWeb 專案，然後依序按一下 [新增]  > **K**的簡單多層次 ASP.NET MVC&5; 應用程式撰寫程式碼。 在 [參考管理員] 對話方塊中，依序選取 [方案]  >  [專案]  >  [ContosoAdsCommon]，然後按一下 [確定]。)
 2. 在 ContosoAdsWebJob 專案中，設定 ContosAdsCommon 專案的參考。
 
     WebJob 專案需要參考，才能使用映像及存取連接字串。
@@ -383,7 +383,7 @@ Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 Contos
 ### <a name="add-code-and-configuration-files"></a>新增程式碼和組態檔
 本教學檔案未說明如何[使用 Scaffolding 建立 MVC 控制器和檢視](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)、如何[編寫能與 SQL Server 資料庫搭配使用的 Entity Framework 程式碼](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc)或 [ASP.NET 4.5 中非同步程式設計的基本概念](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/web-development-best-practices#async)。 因此剩下要進行的作業就是，從所下載的方案複製程式碼和組態檔到新方案。 在執行該作業後，下一節將示範和說明程式碼的重要部分。
 
-若要加入檔案到專案或資料夾，請以滑鼠右鍵按一下專案或資料夾，然後按一下 [加入]  > 的簡單多層次 ASP.NET MVC 5 應用程式撰寫程式碼。 選取您需要的檔案，然後按一下 [加入] 。 如果詢問您是否要取代現有的檔案，請按一下 [是] 。
+若要加入檔案到專案或資料夾，請以滑鼠右鍵按一下專案或資料夾，然後按一下 [加入]  > 的簡單多層次 ASP.NET MVC&5; 應用程式撰寫程式碼。 選取您需要的檔案，然後按一下 [加入] 。 如果詢問您是否要取代現有的檔案，請按一下 [是] 。
 
 1. 在 ContosoAdsCommon 專案中，刪除 *Class1.cs* 檔案，並在其位置加入所下載專案的下列檔案。
 
@@ -727,6 +727,6 @@ https://{webappname}.scm.azurewebsites.net/azurejobs/#/functions
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

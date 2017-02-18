@@ -1,5 +1,5 @@
 ---
-title: "Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南 | Microsoft Docs"
+title: "Azure VM 上的 SAP NetWeaver - 規劃和實作指南 | Microsoft Docs"
 description: "Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南"
 services: virtual-machines-windows
 documentationcenter: 
@@ -17,8 +17,8 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 translationtype: Human Translation
-ms.sourcegitcommit: 08f82498d46b2e67d55ad7dfb05efdb266e7fc61
-ms.openlocfilehash: 56da763a21da7c55aa0cd295a04fa22b2815d2ac
+ms.sourcegitcommit: 06b8f8cc99809338fcf512fb8e4bbf72721cb243
+ms.openlocfilehash: 433b2bc5d602c1117c2ef2e16399eb6d29b425d7
 
 
 ---
@@ -503,11 +503,11 @@ Microsoft Azure 虛擬機器使用不同的儲存體類型。 在 Azure 虛擬�
 實際的磁碟機由於會儲存在主機伺服器本身，因此是可變更的。 如果重新部署時移動 VM (例如由於主機上的維護作業或關機後再重新啟動)，磁碟機內容會遺失。 因此，不適合在此磁碟機上儲存任何重要資料。 此儲存體類型所使用的媒體類型會因不同的 VM 系列而異，而且會有相當不同的效能特性，截至 2015 年 6 月為止的類型如下所示︰
 
 * A5-A7︰非常有限的效能。 除了分頁檔之外，不建議使用
-* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
-* D 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
-* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
-* G 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
-* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
+* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
+* D 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
+* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
+* G 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
+* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
 
 以上陳述均適用於通過 SAP 認證的 VM 類型。 具有絕佳 IOPS 和輸送量的 VM 系列則可供某些 DBMS 功能使用。 如需詳細資訊，請參閱 [DBMS 部署指南][dbms-guide]。
 
@@ -1874,6 +1874,6 @@ Azure 中 SAP 系統的高可用性重點如下：
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

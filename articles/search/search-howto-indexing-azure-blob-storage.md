@@ -12,11 +12,11 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 11/30/2016
+ms.date: 01/18/2017
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: 976470e7b28a355cbfa4c5c8d380744eb1366787
-ms.openlocfilehash: f8711ba45339be7ffbeac1ab28823df43db23046
+ms.sourcegitcommit: 19a652f81beacefd4a51f594f045c1f3f7063b59
+ms.openlocfilehash: 60c8296e1287419dedf5b5f01f2ddb7ab86b5d11
 
 ---
 
@@ -62,7 +62,7 @@ blob 索引子可以從下列文件格式擷取文字：
 
 * **名稱**是搜尋服務中資料來源的唯一名稱。
 * **類型**必須是 `azureblob`。
-* **認證**可提供儲存體帳戶連接字串來做為 `credentials.connectionString` 參數。 您可以從 Azure 入口網站取得連接字串︰瀏覽至所需的儲存體帳戶刀鋒視窗 > [設定] > [索引鍵]，並使用「主要連接字串」或「次要連線字串」值。
+* **認證**可提供儲存體帳戶連接字串來做為 `credentials.connectionString` 參數。 請參閱下面的[如何指定認證](#Credentials)了解詳細資訊。
 * **容器**會指定儲存體帳戶中的容器。 根據預設，容器內的所有 Blob 都可擷取。 如果您只想要在特定虛擬目錄為 Blob 編製索引，您可以使用選擇性的**查詢**參數指定該目錄。
 
 若要建立資料來源：
@@ -74,11 +74,25 @@ blob 索引子可以從下列文件格式擷取文字：
     {
         "name" : "blob-datasource",
         "type" : "azureblob",
-        "credentials" : { "connectionString" : "<my storage connection string>" },
+        "credentials" : { "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<account key>;" },
         "container" : { "name" : "my-container", "query" : "<optional-virtual-directory-name>" }
     }   
 
 如需建立資料來源 API 的詳細資訊，請參閱 [建立資料來源](https://docs.microsoft.com/rest/api/searchservice/create-data-source)。
+
+<a name="Credentials"></a>
+#### <a name="how-to-specify-credentials"></a>如何指定認證 ####
+
+您可以採取下列其中一種方式提供 blob 容器的認證︰ 
+
+- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定] > [金鑰] (傳統儲存體帳戶)，或 [設定] > [存取金鑰] (Azure Resource Manager 儲存體帳戶)。
+- **儲存體帳戶共用存取簽章** (SAS) 連接字串︰`BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl`。 SAS 對於容器和物件 (在此案例中為 blob) 應該擁有列出和讀取權限。
+-  **容器共用存取簽章**：`ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl`。 SAS 對於容器應該擁有列出和讀取權限。
+
+如需儲存體共用存取簽章的詳細資訊，請參閱[使用共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md)。
+
+> [!NOTE]
+> 如果您使用 SAS 認證，您必須使用更新的簽章定期更新資料來源認證以防止其到期。 如果 SAS 認證過期，索引子將會失敗並出現類似 `Credentials provided in the connection string are invalid or have expired.` 的錯誤訊息。  
 
 ### <a name="step-2-create-an-index"></a>步驟 2：建立索引
 索引會指定文件、屬性和其他建構中可形塑搜尋體驗的欄位。
@@ -345,6 +359,6 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

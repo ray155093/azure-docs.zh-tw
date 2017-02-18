@@ -1,5 +1,5 @@
 ---
-title: "取得工具 (macOS 10.10) | Microsoft Docs"
+title: "將 Raspberry Pi (C) 連接到 Azure IoT - 第 1 課：取得工具 (macOS) | Microsoft Docs"
 description: "在 macOS 上針對 Pi 的第一個範例應用程式下載並安裝必要的工具和軟體。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 155e5d6280d86b06b1718fc3032c2c224539183d
-ms.openlocfilehash: bcb0b09468364cf13aff3987aeb7dd74e551cf9d
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 20cf1fd57f37c84342ba08954a913c0eceba415f
 
 
 ---
@@ -89,6 +89,6 @@ sudo npm install -g device-discovery-cli gulp
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

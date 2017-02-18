@@ -1,5 +1,5 @@
 ---
-title: "Service Fabric 術語概觀 | Microsoft Docs"
+title: "了解 Azure Service Fabric 術語 | Microsoft Docs"
 description: "Service Fabric 的術語概觀 討論重要術語概念和文件其餘部分中使用的詞彙。"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 12/01/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: e0efcabbb876e77e5b23537ce023c30f9fd153cd
-ms.openlocfilehash: 884e43e36517c0c894b72ab6f4e8f6aadb1d9bcf
+ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
+ms.openlocfilehash: 94d085ac026a309a457891944931901e9dc2564f
 
 
 ---
@@ -63,7 +63,7 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 **容器**：根據預設，Service Fabric 會以處理序形式部署和啟動這些服務。 Service Fabric 也可以在容器映像中部署服務。 容器是從應用程式中將基礎作業系統虛擬化的一種虛擬化技術。 應用程式與其執行階段、相依性及系統程式庫在容器內執行時，在其各自於作業系統建構中的獨立範圍內，都具有容器的完整專屬存取權。 Service Fabric 支援 Linux 上的 Docker 容器和 Windows Server 容器。  如需詳細資訊，請參閱 [Service Fabric 和容器](service-fabric-containers-overview.md)。
 
-**分割配置**：建立具名的服務時，要指定分割配置。 含有大量狀態的服務會跨分割切割其資料，所以服務是分散在叢集的節點上。 這使得具名服務的狀態可以擴充。 在分割內，無狀態的具名服務會有執行個體，而具狀態的具名服務則有複本。 通常，無狀態具名服務只會有 1 個分割，因為它們有沒有內部狀態。 分割執行個體提供可用性；如果一個執行個體失敗，其他執行個體會繼續正常運作，接著 Service Fabric 會建立新的執行個體。 具狀態的具名服務會在複本中維持其狀態，且每個分割都有自己的複本集，其中包含保持同步的所有狀態。 複本失敗失敗時，Service Fabric 會從現有複本建立新的複本。
+**分割配置**：建立具名的服務時，要指定分割配置。 含有大量狀態的服務會跨分割切割其資料，所以服務是分散在叢集的節點上。 這使得具名服務的狀態可以擴充。 在分割內，無狀態的具名服務會有執行個體，而具狀態的具名服務則有複本。 通常，無狀態具名服務只會有&1; 個分割，因為它們有沒有內部狀態。 分割執行個體提供可用性；如果一個執行個體失敗，其他執行個體會繼續正常運作，接著 Service Fabric 會建立新的執行個體。 具狀態的具名服務會在複本中維持其狀態，且每個分割都有自己的複本集，其中包含保持同步的所有狀態。 複本失敗失敗時，Service Fabric 會從現有複本建立新的複本。
 
 如需詳細資訊，請閱讀 [分割 Service Fabric Reliable Services](service-fabric-concepts-partitioning.md) 。
 
@@ -98,6 +98,6 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

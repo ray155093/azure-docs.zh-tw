@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 931503f56b32ce9d1b11283dff7224d7e2f015ae
-ms.openlocfilehash: 4935223f572e0ed3188195c23f7e9f692fb170af
+ms.sourcegitcommit: b9041713f3d084fde77a34ef7956a2c59312245e
+ms.openlocfilehash: d9008f6232ca2442edce2a3cae88f0b3d2be2f14
 
 
 ---
 # <a name="how-to-use-azure-table-storage-from-nodejs"></a>如何使用 Node.js 的 Azure 資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 
-[!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
+[!INCLUDE [storage-check-out-samples-all](../../includes/storage-check-out-samples-all.md)]
 
 ## <a name="overview"></a>Overview
 本主題示範如何使用 Node.js 應用程式中的 Azure 表格服務執行一般案例。
@@ -195,9 +195,8 @@ tableSvc.replaceEntity('mytable', updatedTask, function(error, result, response)
 > 1. 取得正在更新之物件的 ETag。 系統會針對實體相關的作業將 ETag 包含在 `response` 中傳回，且可透過 `response['.metadata'].etag` 擷取 ETag。
 > 2. 對實體執行更新操作時，請將先前擷取的 ETag 資訊新增至新的實體。 例如：
 >
-> `entity2['.metadata'].etag = currentEtag;`
->
-> 1. 執行更新操作。 如果擷取 ETag 值之後，實體 (例如您應用程式的其他執行個體) 進行了修改，系統會傳回 `error` ，表示不符合要求中指定的更新條件。
+>       entity2['.metadata'].etag = currentEtag;
+> 3. 執行更新操作。 如果擷取 ETag 值之後，實體 (例如您應用程式的其他執行個體) 進行了修改，系統會傳回 `error` ，表示不符合要求中指定的更新條件。
 >
 >
 
@@ -270,7 +269,7 @@ tableSvc.retrieveEntity('mytable', 'hometasks', '1', function(error, result, res
   * **or** - `or` where 條件
 * **top** - 要提取的項目數
 
-下列範例建立的查詢會傳回 PartitionKey 為 'hometasks' 的前 5 個項目。
+下列範例建立的查詢會傳回 PartitionKey 為 'hometasks' 的前&5; 個項目。
 
 ```nodejs
 var query = new azure.TableQuery()
@@ -469,6 +468,6 @@ tableSAS = tableSvc.generateSharedAccessSignature('hometasks', { Id: 'user2' });
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

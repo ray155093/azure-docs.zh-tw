@@ -1,5 +1,5 @@
 ---
-title: "使用入口網站設定適用於 SSL 卸載的應用程式閘道 | Microsoft Docs"
+title: "設定 SSL 卸載 - Azure 應用程式閘道 - Azure 入口網站 | Microsoft Docs"
 description: "本頁面提供使用入口網站來建立具有 SSL 卸載之應用程式閘道的指示"
 documentationcenter: na
 services: application-gateway
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/16/2016
+ms.date: 01/23/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 1506729fb346a8a67930a5a2cd4c15f375c52e3f
-ms.openlocfilehash: d5c3d2ef6fe8fe22552fe1b23f3a4690b166be8b
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: b1852b82875c63fa0e252c14b69b281bd501095f
 
 
 ---
@@ -96,6 +96,6 @@ HTTPS 接聽程式會根據其組態來尋找流量，並協助將流量路由�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 01/16/2017
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 0703fa4f4d3eb9f23aa9b3c0b90267fac9557f13
-ms.openlocfilehash: 876fff6a63ccf1a3c10a6852927c60b454436954
+ms.sourcegitcommit: 2de367287a4bee05694070dbeeb4d4a458d47f11
+ms.openlocfilehash: 38d811a7a08a6f8a6dd07a29e9a49bb34810ee91
 
 
 ---
@@ -33,6 +33,12 @@ DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資
 **企業級** - DocumentDB 支援多個本機複本，在面對本機和區域故障時可提供 99.99% 的可用性和資料保護。 DocumentDB 有企業級的[法規認證](https://www.microsoft.com/trustcenter)和安全性功能。 
 
 **MongoDB 相容性** - MongoDB 的 DocumentDB 通訊協定支援是專門針對與 MongoDB 的相容性而設計。 您可以使用現有的程式碼、應用程式、驅動程式和工具來使用 DocumentDB。 
+
+在這段 Azure Friday 影片中，和 Scott Hanselman 與 DocumentDB 工程總經理 Kirill Gavrylyuk 一起深入了解。
+
+> [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/DocumentDB-Database-as-a-Service-for-MongoDB-Developers/player]
+> 
+
 
 ## <a name="how-to-get-started"></a>如何開始？
 在 [Azure 入口網站](https://portal.azure.com)中建立具有 MongoDB 通訊協定支援的 DocumentDB 帳戶，然後將連接交換到您的新帳戶。 
@@ -50,6 +56,6 @@ DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO3-->
 
 

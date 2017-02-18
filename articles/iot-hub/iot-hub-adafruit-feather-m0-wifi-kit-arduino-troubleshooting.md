@@ -1,5 +1,5 @@
 ---
-title: "針對 Adafruit Feather M0 WiFi Azure IoT 入門套件進行疑難排解 | Microsoft Docs"
+title: "將 Arduino (C) 連接到 Azure IoT - 疑難排解 | Microsoft Docs"
 description: "Adafruit Feather M0 WiFi Arduino 經驗的疑難排解頁面"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 5d7eed340d2021c58f68c69100be5a9e13655146
-ms.openlocfilehash: 21ded74f54f71865d6480d8b29dc225a2b18e958
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 448dc0370014ad295ed820d796f7af2eb5fe698e
 
 
 ---
@@ -109,6 +109,6 @@ iothub-explorer help
 [sample-repository]: https://github.com/Azure/azure-cli/blob/master/doc/preview_install_guide.md
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 
