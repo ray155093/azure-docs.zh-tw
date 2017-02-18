@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Azure StorSimple Virtual Array 的災害復原和裝置容錯移轉 | Microsoft Docs"
+title: "StorSimple Virtual Array 的災害復原和裝置容錯移轉 | Microsoft Docs"
 description: "深入了解如何容錯移轉 StorSimple Virtual Array。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 11/21/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 5c31ac5284f3ba8fecc1e9f33838a778254658e5
-ms.openlocfilehash: 34de93b8133649aaedc3cb89a8cd478eda92c7aa
+ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
+ms.openlocfilehash: d31f10f660dc05290363825c089664a70ecdd037
 
 ---
 # <a name="disaster-recovery-and-device-failover-for-your-storsimple-virtual-array"></a>StorSimple Virtual Array 的災害復原和裝置容錯移轉
@@ -76,7 +76,7 @@ DR 開始之前，裝置會執行前置檢查。 這些檢查有助於確保 DR 
   
   * 有效的 ACR 名稱。
   * 有效的 IQN (不超過 220 個字元)。
-  * 有效的 CHAP 密碼 (長度為 12-16 個字元)。
+  * 有效的 CHAP 密碼 (長度為&12;-16 個字元)。
 
 如果上述任何前置檢查失敗，則無法繼續進行 DR。 解決這些問題，然後重試 DR。
 
@@ -182,6 +182,6 @@ DR 順利完成之後，來源裝置上雲端資料的擁有權會移轉給目�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

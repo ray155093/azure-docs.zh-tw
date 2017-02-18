@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a7d0b98e1c582230c756d1c893d9cc549a5a2893
-ms.openlocfilehash: ec38012c15d1970a56881fa64d8655b09487eae5
+ms.sourcegitcommit: 2969e6063d7bc59a6c8ca733912904abeeb7e7e8
+ms.openlocfilehash: c79826afe9af20dd46db46ab6c73f3196a71fc46
 
 
 ---
@@ -50,7 +50,7 @@ ms.openlocfilehash: ec38012c15d1970a56881fa64d8655b09487eae5
 
 * [Azure 串流分析](../stream-analytics/stream-analytics-data-lake-output.md) - 內嵌到「事件中樞」的事件可以透過 Azure Data Lake Store 輸出被寫入 Azure Data Lake 中。
 * [Azure HDInsight Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md) - 您可以從 Storm 叢集將資料直接寫入 Data Lake Store 中。
-* [EventProcessorHost](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost) - 您可以從「事件中樞」接收事件，然後使用 [Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md) 將事件寫入 Data Lake Store 中。
+* [EventProcessorHost](../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md) - 您可以從「事件中樞」接收事件，然後使用 [Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md) 將事件寫入 Data Lake Store 中。
 
 ### <a name="relational-data"></a>關聯式資料
 您也可以從關聯式資料庫取得資料。 每經過一段時間，關聯式資料庫就會收集大量資料，在經過巨量資料管線處理後，這些資料將可提供重要情資。 您可以使用下列工具，將這類資料移動到 Data Lake 存放區。
@@ -135,6 +135,6 @@ ms.openlocfilehash: ec38012c15d1970a56881fa64d8655b09487eae5
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -3,7 +3,7 @@ title: "如何完成存取權檢閱 | Microsoft Docs"
 description: "在您於 Azure AD Privileged Identity Management 中開始存取權檢閱之後，了解如何完成它並檢視結果"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: billmath
 manager: femila
 editor: 
 ms.assetid: abc2d3dd-afd5-42cf-8a17-6c11f5674c35
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 06/30/2016
+ms.date: 02/03/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a5a9d2aeb5d9d13d0561e21ea90160511659d6a3
+ms.sourcegitcommit: 081e45e0256134d692a2da7333ddbaafc7366eaa
+ms.openlocfilehash: b31863124b4c1aa64951de5a9afb1d6d85d54ee0
 
 
 ---
@@ -50,11 +50,8 @@ ms.openlocfilehash: a5a9d2aeb5d9d13d0561e21ea90160511659d6a3
 如果對檢閱不再有任何興趣，請刪除它。 [刪除]  按鈕會將檢閱從 PIM 應用程式中移除。
 
 > [!IMPORTANT]
-> 刪除執行前，您不會收到警告，因此請務必確定您想要刪除該檢閱。
-> 
-> 
+> 刪除執行前，您不會收到警告，因此請務必確定您想要刪除該檢閱。 
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
@@ -64,6 +61,6 @@ ms.openlocfilehash: a5a9d2aeb5d9d13d0561e21ea90160511659d6a3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

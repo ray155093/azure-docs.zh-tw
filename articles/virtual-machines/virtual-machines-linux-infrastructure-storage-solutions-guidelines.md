@@ -1,5 +1,5 @@
 ---
-title: "Azure 儲存體解決方案指導方針 | Microsoft Docs"
+title: "Azure 中 Linux VM 的儲存體解決方案 | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中部署儲存體解決方案的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-linux
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: a99ab839ec9ade0049e1cc59054e333048e0208c
-ms.openlocfilehash: 8b4ee1634981a449d9968f9156df10a9d40baae9
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: 61bd36ff8b3bff0acb262f6d181ffe69e6b92d27
 
 
 ---
@@ -88,6 +88,6 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

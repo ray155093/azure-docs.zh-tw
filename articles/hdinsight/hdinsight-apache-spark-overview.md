@@ -1,5 +1,5 @@
 ---
-title: "HDInsight 中的 Apache Spark 概觀 | Microsoft Docs"
+title: "Azure HDInsight 上的 Apache Spark 概觀 | Microsoft Docs"
 description: "介紹 HDInsight 中的 Apache Spark，以及在應用程式中使用 HDInsight 上之 Spark 的案例。"
 services: hdinsight
 documentationcenter: 
@@ -16,22 +16,23 @@ ms.topic: get-started-article
 ms.date: 01/03/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: ab9c4bc6e2e68a3522bbc3fe23ea33760f03b620
-ms.openlocfilehash: fe40bc372a63735b0130bcbb115c312fa2e45fa6
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 2cb69f253e1a6d01b412775bbfc37de3423bde0b
 
 
 ---
-# <a name="overview-apache-spark-on-hdinsight-linux"></a>概觀：HDInsight Linux 上的 Apache Spark
+# <a name="overview-apache-spark-on-hdinsight"></a>概觀：HDInsight 上的 Apache Spark
+
 <a href="http://spark.apache.org/" target="_blank">Apache Spark</a> 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇 。 Spark 也能與 Azure Blob 儲存體 (WASB) 相容，因此您可以輕鬆地透過 Spark 處理儲存在 Azure 中的現有資料。
 
 當您在 HDInsight 中建立 Spark 叢集時，就是建立了已安裝及設定 Spark 的 Azure 計算資源。 在 HDInsight 中建立 Spark 叢集只需要約十分鐘。 系統會將要處理的資料儲存在 Azure Blob 儲存體。 請參閱[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]。
 
 ![Azure HDInsight 上的 Apache Spark](./media/hdinsight-apache-spark-overview/hdispark.architecture.png "Azure HDInsight 上的 Apache Spark")
 
-**想要開始使用 Azure HDInsight 上的 Apache Spark 嗎？** 請參閱 [快速入門：在 HDInsight Linux 上建立 Spark 叢集，並利用 Jupyter 來執行範例應用程式](hdinsight-apache-spark-jupyter-spark-sql.md)。
+**想要開始使用 Azure HDInsight 上的 Apache Spark 嗎？** 請參閱[快速入門：在 HDInsight 上建立 Spark 叢集，並利用 Jupyter 來執行範例應用程式](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 > [!NOTE]
-> 如需目前版本的已知問題及限制清單，請參閱 [Azure HDInsight 中 Apache Spark 的已知問題及限制](hdinsight-apache-spark-jupyter-spark-sql.md)。
+> 如需目前版本的已知問題與限制清單，請參閱 [Azure HDInsight 中 Apache Spark 的已知問題](hdinsight-apache-spark-jupyter-spark-sql.md)。
 > 
 > 
 
@@ -115,6 +116,6 @@ HDInsight 中的 Spark 也提供 [ODBC 驅動程式](http://go.microsoft.com/fwl
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

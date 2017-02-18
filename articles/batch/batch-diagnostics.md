@@ -1,5 +1,5 @@
 ---
-title: "Azure Batch 診斷記錄 | Microsoft Docs"
+title: "啟用 Batch 事件的診斷記錄 - Azure | Microsoft Docs"
 description: "記錄並分析 Azure Batch 帳戶資源 (如集區和工作) 的診斷記錄事件。"
 services: batch
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: big-compute
-ms.date: 01/20/2017
+ms.date: 02/01/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
-ms.openlocfilehash: f1aa23d2865ec8401a59b2370c8157d2458c60f7
+ms.sourcegitcommit: 4b8343ac07aa7b2c0771a723306cf1f875cb6147
+ms.openlocfilehash: aeba32d62458f948c7aa99294c90519979924d57
 
 
 ---
@@ -93,7 +93,7 @@ Batch 服務目前會發出下列服務記錄檔事件。 這份清單可能不�
 * [將 Azure 診斷記錄檔串流至事件中樞](../monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs.md)
   
   將 Batch 診斷事件串流處理至高擴充性的資料輸入服務：事件中樞。 事件中樞每秒可輸入數百萬個事件，您可以使用任何即時分析提供者來轉換和儲存。
-* [使用 Log Analytics 分析 Azure 診斷記錄](../log-analytics/log-analytics-azure-storage-json.md)
+* [使用 Log Analytics 分析 Azure 診斷記錄](../log-analytics/log-analytics-azure-storage.md)
   
   將您的診斷記錄傳送至 Log Analytics，您可以在 Operations Management Suite (OMS) 入口網站中分析它們，或是匯出它們以在 Power BI 或 Excel 中分析。
 
@@ -108,6 +108,6 @@ Batch 服務目前會發出下列服務記錄檔事件。 這份清單可能不�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

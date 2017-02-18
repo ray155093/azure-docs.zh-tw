@@ -12,12 +12,12 @@ ms.custom: development
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.date: 08/17/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: 18dc3cce7451d90b6b65b990b80c05e7f6decb56
+ms.sourcegitcommit: cf627b92399856af2b9a58ab155fac6730128f85
+ms.openlocfilehash: 59b8e7b6b2e2442c0a961d105ccdbc9336445aa6
 
 
 ---
@@ -32,6 +32,9 @@ ms.openlocfilehash: 18dc3cce7451d90b6b65b990b80c05e7f6decb56
 有一些程式碼範例可供各種程式設計語言和平台使用。 您可以在下列位置找到程式碼範例的連結： 
 
 * 詳細資訊： [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
+
+## <a name="tools"></a>工具 
+您可以利用 [cheetah](https://github.com/wunderlist/cheetah)、[sql-cli](https://www.npmjs.com/package/sql-cli)、[VS Code](https://code.visualstudio.com/) 等開放原始碼工具。 此外，Azure SQL Database 使用 [Visual Studio](https://www.visualstudio.com/visual-studio-homepage-vs.aspx) 和 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) 等 Microsoft 工具。  您也可以使用 Azure 管理入口網站、PowerShell 和 REST API 協助您獲得額外生產力。
 
 ## <a name="resource-limitations"></a>資源限制
 Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源：資源管理和限制強制執行。
@@ -72,11 +75,10 @@ Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。
 * [開始使用 Azure SQL Database Elastic Scale 預覽](sql-database-elastic-scale-get-started.md)
 
 ## <a name="next-steps"></a>後續步驟
-瀏覽 [SQL Database 的所有功能](https://azure.microsoft.com/services/sql-database/)。
+瀏覽所有 [SQL Database 的能力](sql-database-technical-overview.md)
 
 
 
-
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 10/31/2016
+ms.date: 01/30/2017
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: a7f6de2fe04a62278d49ff2395bb6f48b701e35b
-ms.openlocfilehash: 797844a0b58269c5258001ed53bec0dbbec8d4d5
+ms.sourcegitcommit: d9436796373af55a18c0b6fbfc036bd6616bbe4f
+ms.openlocfilehash: ea9c6be4dce0b0812ac780257732321444a57beb
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 797844a0b58269c5258001ed53bec0dbbec8d4d5
 ## <a name="our-data-integration-partners"></a>我們的資料整合合作夥伴
 | 合作夥伴 | 說明 | 連結 | 影片 |
 | --- | --- | --- | --- |
-| ![Alteryx][1] |**Alteryx**<br> Alteryx Designer 提供可重複用來進行自助式資料分析的工作流程，以小時為單位進行更深入的見解，而不是傳統處理方式通常使用的以週為單位！ Alteryx Designer 藉由使用相同的直覺式使用者介面來結合資料準備、資料混合及分析 (預測、統計和空間)，賦予資料分析人員強大的能力。 |[Marketplace][alteryx_marketplace]<br>[網站][alteryx_designer_website]<br>[資料表][alteryx_designer_datasheet]<br>[Twitter][alteryx_designer_twitter]<br>[YouTube][alteryx_designer_youtube] |[![Alteryx 影片](./media/sql-data-warehouse-partner-data-integration/alteryx_designer_video.jpg)](https://www.youtube.com/watch?v=CdqSDPyNDKc) |
+| ![Alteryx][1] |**Alteryx**<br> Alteryx Designer 提供可重複用來進行自助式資料分析的工作流程，以小時為單位進行更深入的見解，而不是傳統處理方式通常使用的以週為單位！ Alteryx Designer 藉由使用相同的直覺式使用者介面來結合資料準備、資料混合及分析 (預測、統計和空間)，賦予資料分析人員強大的能力。 |[Marketplace][alteryx_marketplace]<br>[網站][alteryx_designer_website]<br>[技術白皮書][alteryx_whitepaper]<br>[資料表][alteryx_designer_datasheet]<br>[Twitter][alteryx_designer_twitter]<br>[YouTube][alteryx_designer_youtube] |[![Alteryx 影片](./media/sql-data-warehouse-partner-data-integration/alteryx_designer_video.jpg)](https://www.youtube.com/watch?v=CdqSDPyNDKc) |
 | ![Attunity][2] |**Attunity**<br>Attunity CloudBeam 提供自動化且經過最佳化的解決方案將資料載入到 SQL 資料倉儲。 「按一下即載入」的設計，簡化並加速批次載入，並支援從許多異質資料庫來遞增複寫，包括 SQL Server、Oracle、DB2、Sybase 和 mySQL。 |[Marketplace][attunity_marketplace]<br>[快速啟動][attunity_quickstart]<br>[網站][attunity_cloudbeam_website]<br>[資料表][attunity_cloudbeam_datasheet]<br>[Twitter][attunity_cloudbeam_twitter]<br>[YouTube][attunity_cloudbeam_youtube] |[![Attunity 影片](./media/sql-data-warehouse-partner-data-integration/attunity_video.jpg)](https://www.youtube.com/watch?v=w14zuSjMlok) |
 | ![Bryte Systems][3] |**Bryte Systems**<br>Bryte Systems 將從各種資料庫和來源到「SQL 資料倉儲」的資料傳輸自動化。 Bryte Systems 擅長資料移動及整合技術。 他們建置可擴充的雲端架構資料倉儲和資料湖來發現見解。 |[Marketplace][bryte_systems_marketplace]<br>[網站][bryte_systems_azure_website] | |
 | ![Informatica][4] |**Azure 的 Informatica 雲端服務 – 隨用隨付**<br> 最佳化您 Azure 服務的價值，並使用「Azure 的 Informatica 雲端服務 – 隨用隨付」衍生出所有混合式資料集的可操作深入解析。 Informatica 雲端提供同級中最佳的資料整合、雲端分析和資料管理解決方案。 客戶可以利用自助式資料移轉、整合及管理功能，從 SaaS 應用程式、以 Hadoop 為基礎的 Data Lake 和其他內部部屬資料來源 (Oracle、SAP) 等各種來源，快速且可靠地將數 PB 的資料匯入、匯出、同步處理和排程至 Azure。  Azure 的 Informatica 雲端服務提供原生、高磁碟區、高效能連線至 Azure SQL 資料倉儲、Sgl 資料庫、Blob 儲存體、Data Lake Store 和 DocumentDB。 |[Marketplace][informatica_Cloud_Services_marketplace]<br>[免費試用][informatica_cloud_free_trial]<br>[設定指南][informatica_cloud_services_config]<br>[網站][informatica_Cloud_Services_website]<br>[資料表][informatica_cloud_datasheet]<br>[Twitter][informatica_cloud_twitter]<br>[YouTube][informatica_cloud_youtube] | |
@@ -68,7 +68,7 @@ ms.openlocfilehash: 797844a0b58269c5258001ed53bec0dbbec8d4d5
 [informatica_cloud_free_trial]:https://www.informatica.com/products/cloud-integration/connectivity/microsoft-azure-connector.html
 
 <!--Website Links -->
-[alteryx_designer_website]:http://www.alteryx.com/products/alteryx-designer/
+[alteryx_designer_website]:http://www.alteryx.com/partners/microsoft/
 [attunity_cloudbeam_website]:http://www.attunity.com/attunity-cloudbeam-for-azure/
 [bryte_systems_azure_website]:http://www.bryte.com.au/azure-integration/
 [informatica_Cloud_Services_website]:https://www.informatica.com/products/cloud-integration.html
@@ -116,8 +116,10 @@ ms.openlocfilehash: 797844a0b58269c5258001ed53bec0dbbec8d4d5
 [redgate_twitter]:https://twitter.com/DataPlatform_S
 [snaplogic_twitter]:https://twitter.com/snaplogic
 
+<!--WhitePaper-->
+[alteryx_whitepaper]:http://pages.alteryx.com/Microsoft-Azure-InDB-WP?lsm=microsoft
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

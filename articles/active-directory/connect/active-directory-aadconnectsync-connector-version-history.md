@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 08/17/2016
+ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 58c89833330d8dbb1147b42c086ca2c86be3e94d
+ms.sourcegitcommit: 731dd999e053b98c93c374530599232d4dc5bb92
+ms.openlocfilehash: 9c7a8dc5204a799a8b79fa88b243d981bcd54c74
 
 
 ---
@@ -25,8 +25,6 @@ ms.openlocfilehash: 58c89833330d8dbb1147b42c086ca2c86be3e94d
 
 > [!NOTE]
 > 本主題僅討論 FIM 與 MIM。 Azure AD Connect 不支援這些連接器。
-> 
-> 
 
 本主題會列出所有已發行的連接器版本。
 
@@ -103,7 +101,6 @@ ms.openlocfilehash: 58c89833330d8dbb1147b42c086ca2c86be3e94d
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

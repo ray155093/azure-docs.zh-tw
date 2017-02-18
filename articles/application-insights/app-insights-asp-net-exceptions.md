@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
-ms.openlocfilehash: 2dbbe59f71500c31de8568de4e92cc41131d0970
+ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
+ms.openlocfilehash: c4a20fe310d9a70bb3a954bd936daf6f3d432db9
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 2dbbe59f71500c31de8568de4e92cc41131d0970
 
 ## <a name="set-up-exception-reporting"></a>設定例外狀況報告
 * 讓伺服器應用程式回報例外狀況︰
-  * 在應用程式程式碼中安裝 [Application Insights SDK](app-insights-asp-net.md)，或 
+  * 在應用程式程式碼中安裝 [Application Insights SDK](app-insights-asp-net.md)，或
   * IIS Web 伺服器：執行 [Application Insights 代理程式](app-insights-monitor-performance-live-website-now.md)；或
   * Azure Web 應用程式：新增 [Application Insights 擴充功能](app-insights-azure-web-apps.md)
 * 在您的網頁中安裝 [JavaScript 程式碼片段](app-insights-javascript.md)來攔截瀏覽器例外狀況。
@@ -44,7 +44,7 @@ ms.openlocfilehash: 2dbbe59f71500c31de8568de4e92cc41131d0970
 
 ![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[開啟]。](./media/app-insights-asp-net-exceptions/34.png)
 
-請注意，您可以篩選報告僅顯示例外狀況。 
+請注意，您可以篩選報告僅顯示例外狀況。
 
 *未顯示例外狀況？請參閱[擷取例外狀況](#exceptions)。*
 
@@ -76,12 +76,12 @@ ms.openlocfilehash: 2dbbe59f71500c31de8568de4e92cc41131d0970
 [深入了解診斷搜尋](app-insights-diagnostic-search.md)。
 
 ## <a name="custom-tracing-and-log-data"></a>自訂追蹤和記錄資料
-若要取得您的 app 的特定診斷資料，您可以插入程式碼以傳送您自己的遙測資料。 這會隨著要求、頁面檢視和其他自動收集的資料顯示在診斷搜尋中。 
+若要取得您的 app 的特定診斷資料，您可以插入程式碼以傳送您自己的遙測資料。 這會隨著要求、頁面檢視和其他自動收集的資料顯示在診斷搜尋中。
 
 您有幾種選項：
 
-* [TrackEvent()](app-insights-api-custom-events-metrics.md#track-event) 通常用來監視使用模式，但它傳送的資料也會出現在診斷搜尋的 [自訂事件] 下。 事件具有名稱，並且可以包含字串屬性和數值度量，您可以對其[篩選診斷搜尋](app-insights-diagnostic-search.md)。
-* [TrackTrace()](app-insights-api-custom-events-metrics.md#track-trace) 可讓您傳送較長的資料，例如 POST 資訊。
+* [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent) 通常用來監視使用模式，但它傳送的資料也會出現在診斷搜尋的 [自訂事件] 下。 事件具有名稱，並且可以包含字串屬性和數值度量，您可以對其[篩選診斷搜尋](app-insights-diagnostic-search.md)。
+* [TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace) 可讓您傳送較長的資料，例如 POST 資訊。
 * [TrackException()](#exceptions) 會傳送堆疊追蹤。 [深入了解例外狀況](#exceptions)。
 * 如果您已經使用 Log4Net 或 NLog 等記錄架構，您可以[擷取這些記錄](app-insights-asp-net-trace-logs.md)，然後在診斷搜尋中將它們連同要求和例外狀況資料一起檢視。
 
@@ -91,14 +91,14 @@ ms.openlocfilehash: 2dbbe59f71500c31de8568de4e92cc41131d0970
 
 > [!NOTE]
 > 如果您的應用程式會產生大量遙測，調適性取樣模型會自動藉由僅傳送事件代表性片段，減少傳送到入口網站的量。 為相同作業之一部分的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。 [了解取樣。](app-insights-sampling.md)
-> 
-> 
+>
+>
 
 ### <a name="how-to-see-request-post-data"></a>如何查看要求 POST 資料
 要求詳細資料不包括在 POST 呼叫中傳送至您的應用程式的資料。 若要報告此資料：
 
 * 在您的應用程式專案中[安裝 SDK](app-insights-asp-net.md)。
-* 在您的應用程式中插入程式碼來呼叫 [Microsoft.ApplicationInsights.TrackTrace()](app-insights-api-custom-events-metrics.md#track-trace)。 在訊息參數中傳送 POST 資料。 允許的大小有限制，所以您應該嘗試只傳送基本的資料。
+* 在您的應用程式中插入程式碼來呼叫 [Microsoft.ApplicationInsights.TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace)。 在訊息參數中傳送 POST 資料。 允許的大小有限制，所以您應該嘗試只傳送基本的資料。
 * 當您調查失敗的要求時，會發現相關聯的追蹤。  
 
 ![鑽研](./media/app-insights-asp-net-exceptions/060-req-related.png)
@@ -116,13 +116,13 @@ ms.openlocfilehash: 2dbbe59f71500c31de8568de4e92cc41131d0970
 
 JavaScript
 
-    try 
+    try
     { ...
     }
     catch (ex)
     {
       appInsights.trackException(ex, "handler loc",
-        {Game: currentGame.Name, 
+        {Game: currentGame.Name,
          State: currentGame.State.ToString()});
     }
 
@@ -130,13 +130,13 @@ C#
 
     var telemetry = new TelemetryClient();
     ...
-    try 
+    try
     { ...
     }
     catch (Exception ex)
     {
        // Set up some properties:
-       var properties = new Dictionary <string, string> 
+       var properties = new Dictionary <string, string>
          {{"Game", currentGame.Name}};
 
        var measurements = new Dictionary <string, double>
@@ -198,7 +198,7 @@ VB
 
     namespace MVC2App.Controllers
     {
-      [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)] 
+      [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
       public class AiHandleErrorAttribute : HandleErrorAttribute
       {
         public override void OnException(ExceptionContext filterContext)
@@ -210,7 +210,7 @@ VB
                 {   //or reuse instance (recommended!). see note above  
                     var ai = new TelemetryClient();
                     ai.TrackException(filterContext.Exception);
-                } 
+                }
             }
             base.OnException(filterContext);
         }
@@ -269,7 +269,7 @@ VB
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             if (actionExecutedContext != null && actionExecutedContext.Exception != null)
-            {  //or reuse instance (recommended!). see note above 
+            {  //or reuse instance (recommended!). see note above
                 var ai = new TelemetryClient();
                 ai.TrackException(actionExecutedContext.Exception);    
             }
@@ -278,7 +278,7 @@ VB
       }
     }
 
-您可以將此覆寫的屬性加入到特定的控制器，或將它加入至 WebApiConfig 類別中的全域篩選組態： 
+您可以將此覆寫的屬性加入到特定的控制器，或將它加入至 WebApiConfig 類別中的全域篩選組態：
 
     using System.Web.Http;
     using WebApi1.x.App_Start;
@@ -304,10 +304,10 @@ VB
 
 有一些無法處理的例外狀況篩選器案例。 例如：
 
-* 從控制器建構函式擲回的例外狀況。 
-* 從訊息處理常式擲回的例外狀況。 
-* 在路由期間擲回的例外狀況。 
-* 在回應內容序列化期間擲回的例外狀況。 
+* 從控制器建構函式擲回的例外狀況。
+* 從訊息處理常式擲回的例外狀況。
+* 在路由期間擲回的例外狀況。
+* 在回應內容序列化期間擲回的例外狀況。
 
 ## <a name="web-api-2x"></a>Web API 2.x
 新增 IExceptionLogger 的實作：
@@ -322,7 +322,7 @@ VB
         public override void Log(ExceptionLoggerContext context)
         {
             if (context !=null && context.Exception != null)
-            {//or reuse instance (recommended!). see note above 
+            {//or reuse instance (recommended!). see note above
                 var ai = new TelemetryClient();
                 ai.TrackException(context.Exception);
             }
@@ -353,7 +353,7 @@ VB
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            config.Services.Add(typeof(IExceptionLogger), new AiExceptionLogger()); 
+            config.Services.Add(typeof(IExceptionLogger), new AiExceptionLogger());
         }
       }
   }
@@ -362,7 +362,7 @@ VB
 
 做為替代方案，您可以：
 
-1. 以 IExceptionHandler 的自訂實作取代唯一的 ExceptionHandler。 這只會在架構仍然可以選擇要傳送的回應訊息時呼叫 (不會在針對執行個體中止連接時呼叫) 
+1. 以 IExceptionHandler 的自訂實作取代唯一的 ExceptionHandler。 這只會在架構仍然可以選擇要傳送的回應訊息時呼叫 (不會在針對執行個體中止連接時呼叫)
 2. 例外狀況篩選器 (如以上的 Web API 1.x 控制器章節所述) - 在所有案例中均不會呼叫。
 
 ## <a name="wcf"></a>WCF
@@ -387,7 +387,7 @@ VB
         {
         }
 
-        public void ApplyDispatchBehavior(ServiceDescription serviceDescription, 
+        public void ApplyDispatchBehavior(ServiceDescription serviceDescription,
             System.ServiceModel.ServiceHostBase serviceHostBase)
         {
             foreach (ChannelDispatcher disp in serviceHostBase.ChannelDispatchers)
@@ -396,21 +396,21 @@ VB
             }
         }
 
-        public void Validate(ServiceDescription serviceDescription, 
+        public void Validate(ServiceDescription serviceDescription,
             System.ServiceModel.ServiceHostBase serviceHostBase)
         {
         }
 
         bool IErrorHandler.HandleError(Exception error)
-        {//or reuse instance (recommended!). see note above 
+        {//or reuse instance (recommended!). see note above
             var ai = new TelemetryClient();
 
             ai.TrackException(error);
             return false;
         }
 
-        void IErrorHandler.ProvideFault(Exception error, 
-            System.ServiceModel.Channels.MessageVersion version, 
+        void IErrorHandler.ProvideFault(Exception error,
+            System.ServiceModel.Channels.MessageVersion version,
             ref System.ServiceModel.Channels.Message fault)
         {
         }
@@ -422,8 +422,8 @@ VB
     namespace WcfService4
     {
         [AiLogException]
-        public class Service1 : IService1 
-        { 
+        public class Service1 : IService1
+        {
          ...
 
 [範例](https://github.com/AppInsightsSamples/WCFUnhandledExceptions)
@@ -431,9 +431,9 @@ VB
 ## <a name="exception-performance-counters"></a>例外狀況效能計數器
 如果您已在伺服器上[安裝 Application Insights代理程式](app-insights-monitor-performance-live-website-now.md)，您便可取得由 .NET 測量的例外狀況比率圖表。 這包括已處理和未處理的 .NET 例外狀況。
 
-開啟 [計量瀏覽器] 刀鋒視窗、加入新圖表，然後選取 [效能計數器] 下方所列的 [例外狀況比率] 。 
+開啟 [計量瀏覽器] 刀鋒視窗、加入新圖表，然後選取 [效能計數器] 下方所列的 [例外狀況比率] 。
 
-.NET framework 會計算間隔中的例外狀況次數並除以間隔長度，以計算得出例外狀況比率。 
+.NET framework 會計算間隔中的例外狀況次數並除以間隔長度，以計算得出例外狀況比率。
 
 請注意，其與 Application Insights 入口網站執行 TrackException 報告計數算得的「例外狀況」計數不同。 取樣間隔不同，且 SDK 不會針對所有已處理與未處理的例外狀況傳送 TrackException 報告。
 
@@ -444,7 +444,6 @@ VB
 
 
 
-
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

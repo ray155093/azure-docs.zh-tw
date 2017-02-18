@@ -1,10 +1,10 @@
 ---
-title: "使用 Resource Manager 部署模型和 Azure 入口網站來連接 VNet | Microsoft Docs"
+title: "將 Azure 虛擬網路連接至另一個 VNet︰入口網站 | Microsoft Docs"
 description: "使用 Resource Manager 和 Azure 入口網站建立 VNet 間的 VPN 閘道連接。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: a7015cfc-764b-46a1-bfac-043d30a275df
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/25/2016
+ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 28d81fe312195b9a9094e1ed066f5cba57c76933
-ms.openlocfilehash: b85017913316a450fe19f1760abff6a86f933e2e
+ms.sourcegitcommit: eadb1f29da69e7f6fcc2c7c19ba67f4e3072c346
+ms.openlocfilehash: 7796ec3a7c65e320ca142de4d03f6de5d0698e21
 
 
 ---
@@ -51,7 +51,7 @@ ms.openlocfilehash: b85017913316a450fe19f1760abff6a86f933e2e
 
 您甚至可以將多網站組態與 VNet 對 VNet 通訊結合。 這可讓您建立使用內部虛擬網路連線結合跨單位連線的網路拓撲，如下圖所示：
 
-![關於連線](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/aboutconnections.png "About connections")
+![關於連接](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/aboutconnections.png "關於連接")
 
 ### <a name="why-connect-virtual-networks"></a>為什麼要連接虛擬網路？
 針對下列原因，您可能希望連接虛擬網路：
@@ -64,7 +64,7 @@ ms.openlocfilehash: b85017913316a450fe19f1760abff6a86f933e2e
   
   * 在相同區域中，您可以因為隔離或管理需求，設定將多層式應用程式與多個虛擬網路連線在一起。
 
-如需 VNet 對 VNet 連線的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 常見問題集](#faq) 。
+如需 VNet 對 VNet 連接的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 的考量](#faq)。
 
 ### <a name="a-namevaluesaexample-settings"></a><a name="values"></a>設定範例
 練習這些步驟時，您可以使用範例組態值。 為了舉例說明，我們對每個 VNet 使用多個位址空間。 不過，VNet 對 VNet 組態不需要多個位址空間。
@@ -155,21 +155,21 @@ ms.openlocfilehash: b85017913316a450fe19f1760abff6a86f933e2e
 
 1. 在 [所有資源] 中，瀏覽至 VNet 的虛擬網路閘道。 例如，**TestVNet1GW**。 按一下 [TestVNet1GW] 以開啟 [虛擬網路閘道] 刀鋒視窗。
    
-    ![連接刀鋒視窗](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/settings_connection.png "Connections blade")
+    ![連接刀鋒視窗](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/settings_connection.png "連接刀鋒視窗e")
 2. 按一下 [+新增] 以開啟 [新增連接] 刀鋒視窗。
 3. 在 [新增連接] 刀鋒視窗的 [名稱] 欄位中，輸入連接名稱。 例如，**TestVNet1toTestVNet4**。
    
-    ![連接名稱](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/v1tov4.png "Connection name")
+    ![連接名稱](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/v1tov4.png "連接名稱")
 4. 在 [連線類型] 中， 從下拉式清單選取 [VNet 對 VNet]。
 5. 因為您是從指定的虛擬網路閘道建立此連接，將會自動填入 [第一個虛擬網路閘道] 欄位值。
 6. [第二個虛擬網路閘道] 欄位是您想要建立連接的 VNet 的虛擬網路閘道。 按一下 [選擇另一個虛擬網路閘道]，以開啟 [選擇虛擬網路閘道] 刀鋒視窗。
    
-    ![新增連接](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/add_connection.png "Add a connection")
+    ![新增連接](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/add_connection.png "新增連接")
 7. 檢視此刀鋒視窗上列出的虛擬網路閘道。 請注意，只會列出您的訂用帳戶中的虛擬網路閘道。 如果想要連接的虛擬網路閘道不在您的訂用帳戶中，請參閱 [PowerShell 文章](vpn-gateway-vnet-vnet-rm-ps.md)。 
 8. 按一下您想要連接虛擬網路閘道。
 9. 在 [共用金鑰] 欄位中，輸入連接的共用金鑰。 您可以產生此金鑰，或自行建立此金鑰。 在網站間連接中，您用於內部部署裝置與虛擬網路閘道連接的金鑰完全相同。 此處的概念類似，差別在於是連接到另一個虛擬網路閘道，而不是連接到 VPN 裝置。
    
-    ![共用金鑰](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/sharedkey.png "Shared key")
+    ![共用金鑰](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/sharedkey.png "共用金鑰")
 10. 按一下刀鋒視窗底部的 [確定] 以儲存變更。
 
 ## <a name="a-nametestvnet4connectiona8-configure-the-testvnet4-connection"></a><a name="TestVNet4Connection"></a>8.設定 TestVNet4 連接
@@ -183,13 +183,13 @@ ms.openlocfilehash: b85017913316a450fe19f1760abff6a86f933e2e
 
 檢視連接並確認狀態。 一旦建立連接，您會看到 [狀態] 值為 [成功] 和 [已連接]。
 
-![Succeeded](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/connected.png "Succeeded")
+![已成功](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/connected.png "已成功")
 
 您可以分別按兩下每個連接，以檢視該連接的相關資訊。
 
-![基本資訊](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/essentials.png "Essentials")
+![程式集](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/essentials.png "程式集")
 
-## <a name="a-namefaqavnet-to-vnet-faq"></a><a name="faq"></a>VNet 對 VNet 常見問題集
+## <a name="a-namefaqavnet-to-vnet-considerations"></a><a name="faq"></a>VNet 對 VNet 的考量
 檢視常見問題集詳細資料以取得 VNet 對 VNet 連線的其他資訊。
 
 [!INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
@@ -199,6 +199,6 @@ ms.openlocfilehash: b85017913316a450fe19f1760abff6a86f933e2e
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

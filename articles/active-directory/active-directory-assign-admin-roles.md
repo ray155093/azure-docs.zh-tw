@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/31/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: c36ad871c5b1cd14268cf8dc5a156884a5f67a77
-ms.openlocfilehash: 4403523bb3bd33b967ca3c212386db8ac5d75a68
+ms.sourcegitcommit: 2d428e0e3aaf8fd4a2138648411da644ccd308f6
+ms.openlocfilehash: 3c19c2035b8dc9717dced5164b0214ab8019afd1
 
 
 ---
@@ -115,7 +115,7 @@ ms.openlocfilehash: 4403523bb3bd33b967ca3c212386db8ac5d75a68
 7. 完成時，請按一下 [ **儲存**]。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱 [如何新增或變更 Azure 系統管理員角色](../billing-add-change-azure-subscription-administrator.md)
+* 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱 [如何新增或變更 Azure 系統管理員角色](../billing/billing-add-change-azure-subscription-administrator.md)
 * 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱 [了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 * 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 * [管理使用者](active-directory-create-users.md)
@@ -124,6 +124,6 @@ ms.openlocfilehash: 4403523bb3bd33b967ca3c212386db8ac5d75a68
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

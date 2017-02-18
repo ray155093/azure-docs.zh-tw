@@ -12,19 +12,19 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/19/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: fc79b8017f2184091f2473a0ff9cdfbd0a4cbdf8
-ms.openlocfilehash: 8b5a608775582753b0bcc2fe0117edf51a37c238
+ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
+ms.openlocfilehash: d8ea4fb54db5c114aa886a6267b18eba6563d231
 
 
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-in-hdinsight"></a>在 HDInsight 上使用 Hadoop 分析航班延誤資料
 Hive 可透過一種類似 SQL 的指令碼語言 (稱為 *[HiveQL][hadoop-hiveql]*) 來執行 Hadoop MapReduce 作業，可用來彙總、查詢和分析大量資料。
 
-> [!NOTE]
-> 此文件中的步驟需要以 Windows 為基礎的 HDInsight 叢集。 如需與 Linux 叢集搭配使用的步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)。
+> [!IMPORTANT]
+> 此文件中的步驟需要以 Windows 為基礎的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如需與 Linux 叢集搭配使用的步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data-linux.md)。
 
 Azure HDInsight 的其中一個主要優點就是區隔資料儲存和運算。 HDInsight 使用 Azure Blob 儲存體來儲存資料。 典型的工作包含三個部分：
 
@@ -747,6 +747,6 @@ HiveQL 指令碼將執行下列作業：
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

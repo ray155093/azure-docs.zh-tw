@@ -14,11 +14,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/14/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 0ca7a73d0d7db3651bec26deb4557fae5fc3451f
+ms.sourcegitcommit: ec9e3c6c6919bb5ce50553a29536f821fe79f577
+ms.openlocfilehash: 3d8ee1d23fab0b410bce711afc27f8bbbad4c7e4
 
 
 ---
@@ -30,7 +30,7 @@ Apache HBase 是開放原始碼的 NoSQL 資料庫，其建置於 Hadoop 上並�
 ## <a name="how-is-hbase-implemented-in-azure-hdinsight"></a>Azure HDInsight 中的 HBase 是如何實作的？
 HDInsight HBase 會以受管理叢集的形式提供，並整合到 Azure 環境中。 叢集依設定會將資料直接儲存至 Azure Blob 儲存體中，使其在效能與成本的選擇中提供低延遲性與高度彈性。 這可讓客戶建置使用大型資料集的互動式網站、建置可儲存數百萬端點上之感應器和遙測資料的服務，以及使用 Hadoop 工作分析此資料。 HBase 和 Hadoop 是在 Azure 中處理巨量資料專案的好起點，尤其是它們讓即時應用程式能夠使用大型資料集。
 
-HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區功能、讀取和寫入的強大一致性，以及自動容錯移轉功能。 透過在記憶體內部快取讀取和高輸送量的串流寫入，來提高效能。 HDInsight HBase 也提供虛擬網路佈建功能。 如需詳細資訊，請參閱[在 Azure 虛擬網路上佈建 HDInsight 叢集][hbase-provision-vnet]。
+HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區功能、讀取和寫入的強大一致性，以及自動容錯移轉功能。 透過在記憶體內部快取讀取和高輸送量的串流寫入，來提高效能。 可以在虛擬網路內建立 HBase 叢集。 如需詳細資訊，請參閱[在 Azure 虛擬網路上建立 HDInsight 叢集][hbase-provision-vnet]。
 
 ## <a name="how-is-data-managed-in-hdinsight-hbase"></a>如何在 HDInsight HBase 中管理資料？
 要管理 HBase 中的資料，可使用 HBase Shell 的 `create``get`, `put` 和 `scan` 命令。 將資料寫入資料庫，需使用 `put`，讀取則使用 `get` `scan` 命令可用來取得資料表中多個資料列裡的資料。 您也可以使用 HBase C# API 管理資料，其在 HBase REST API 之上提供用戶端程式庫。 HBase 資料庫也可使用 Hive 進行查詢。 如需這些程式設計模型的簡介，請參閱[開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]。 同時也提供共同處理器，其允許在主控資料庫的節點中進行資料處理。
@@ -53,8 +53,8 @@ HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區
 
 ## <a name="a-namenext-stepsanext-steps"></a><a name="next-steps"></a>接續步驟
 * [開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]
-* [在 Azure 虛擬網路上佈建 HDInsight 叢集][hbase-provision-vnet]
-* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-geo-replication.md)
+* [在 Azure 虛擬網路上建立 HDInsight 叢集][hbase-provision-vnet]
+* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-replication.md)
 * [使用 HDInsight 中的 HBase 分析 Twitter 情緒][hbase-twitter-sentiment]
 * [使用 Maven 建置搭配使用 HBase 和 HDInsight (Hadoop) 的 Java 應用程式][hbase-build-java-maven]
 
@@ -84,6 +84,6 @@ HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

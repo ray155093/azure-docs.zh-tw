@@ -1,5 +1,5 @@
 ---
-title: "部署 Microsoft Azure StorSimple Virtual Array 的 StorSimple 裝置管理員服務 | Microsoft Docs"
+title: "部署 StorSimple 裝置管理員服務 | Microsoft Docs"
 description: "說明如何在 Azure 入口網站中建立和刪除 StorSimple 裝置管理員服務，並說明如何管理服務註冊金鑰。"
 services: storsimple
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/29/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: b6440796fb2afc713cba40dba576f9439e5ed296
-ms.openlocfilehash: 4761d4261f64a9332830e5373a0a2ee6a63b96a1
+ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
+ms.openlocfilehash: 1881a0625b107ae1a90e5b772f5296a4d728973d
 
 ---
 # <a name="deploy-the-storsimple-device-manager-service-for-storsimple-virtual-array"></a>部署 StorSimple Virtual Array 的 StorSimple 裝置管理員服務
@@ -124,6 +124,6 @@ StorSimple 裝置管理員服務相關的一般工作包括︰
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

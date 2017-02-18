@@ -15,8 +15,8 @@ ms.workload: azure-government
 ms.date: 12/22/2016
 ms.author: ryansoc
 translationtype: Human Translation
-ms.sourcegitcommit: a7e53dcdbf3cecd8a00ad3424ffa0d62cc8fde43
-ms.openlocfilehash: 73d34bc7f34b9b9730e826e17537f82d0f689c03
+ms.sourcegitcommit: 831334f2b835d00aa3fd22292764b69e85d735a6
+ms.openlocfilehash: a6b61df5884031eb5b53f983b834357bd23a622e
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: 73d34bc7f34b9b9730e826e17537f82d0f689c03
 | [熱/冷Blob 儲存體] (../storage/storage-blob-storage-tiers.md) |NA |NA |
 | [儲存體服務加密] (../storage/storage-service-encryption.md) |GA |GA |
 | [進階儲存體] (../storage/storage-premium-storage.md) |GA |NA | 包括 DS 系列的虛擬機器。 |
-| [Blob 匯入/匯出] (../storage/storage-import-export-service.md) |GA |GA | 目前僅支援傳統儲存體帳戶。 |
+| [Blob 匯入/匯出] (../storage/storage-import-export-service.md) |GA |GA |
 | [StorSimple] (../storsimple/storsimple-ova-overview.md) |GA |GA |
 
 ### <a name="variations"></a>變化
@@ -85,6 +85,6 @@ Azure Government 中的儲存體帳戶 URL 不同：
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

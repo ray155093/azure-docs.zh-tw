@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.date: 01/18/2017
 ms.author: darosa;sethm;jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: dfd1ae52cc56a4d4b4c7ee3f69f0c454be607401
-ms.openlocfilehash: 9dd2696ebf4e2c4749471e5adcbc446c3945babf
+ms.sourcegitcommit: f223ea7ac168d3c800b6ba664b31ab66b382d6cc
+ms.openlocfilehash: 2657965ff3ee028263f9ef0c48024fe1839eee6e
 
 
 ---
 # <a name="service-bus-premium-and-standard-messaging-tiers"></a>服務匯流排進階和標準傳訊層級
-服務匯流排傳訊 (其包含佇列和主題等傳訊實體) 在雲端規模結合了企業傳訊功能與豐富的發佈-訂閱語意。 服務匯流排傳訊作為許多縝密雲端解決方案的通訊骨幹。
+服務匯流排傳訊 (包含佇列和主題等實體) 結合雲端級別的企業傳訊功能與豐富的發佈-訂閱語意。 服務匯流排傳訊作為許多縝密雲端解決方案的通訊骨幹。
 
 服務匯流排傳訊的「進階」層級可滿足一般客戶對於關鍵任務應用程式的規模、效能和可用性要求。 雖然功能組幾乎完全相同，但這兩層級的服務匯流排傳訊設計用來服務不同的使用案例。
 

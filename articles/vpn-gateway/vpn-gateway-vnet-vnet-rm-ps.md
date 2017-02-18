@@ -1,10 +1,10 @@
 ---
-title: "使用 VPN 閘道和 PowerShell 連接 Azure VNet | Microsoft Docs"
+title: "將 Azure 虛擬網路連接至另一個 VNet︰PowerShell | Microsoft Docs"
 description: "本文將逐步引導您使用 Azure 資源管理員和 PowerShell，將虛擬網路連接在一起。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: 0683c664-9c03-40a4-b198-a6529bf1ce8b
@@ -13,15 +13,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/31/2016
+ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: 0f0b2df109d8326e5d15d4955ab4547c90df545b
+ms.sourcegitcommit: eadb1f29da69e7f6fcc2c7c19ba67f4e3072c346
+ms.openlocfilehash: eb21e6cc47da18d2e6fa5cbb00c3b71bf36173c6
 
 
 ---
-# <a name="configure-a-vnet-to-vnet-connection-for-resource-manager-using-powershell"></a>使用 PowerShell 設定 Resource Manager 的 VNet 對 VNet 連線
+# <a name="configure-a-vnet-to-vnet-connection-using-powershell"></a>使用 PowerShell 設定 VNet 對 VNet 連接
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
@@ -36,7 +36,7 @@ ms.openlocfilehash: 0f0b2df109d8326e5d15d4955ab4547c90df545b
 ### <a name="deployment-models-and-methods-for-vnet-to-vnet-connections"></a>VNet 對 VNet 連線的部署模型和方法
 [!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
 
-下表顯示 VNet 對 VNet 組態目前可用的部署模型和方法。 當包含設定的文章推出時，我們會直接從此資料表連結至該文章。
+下表顯示 VNet 對 VNet 組態目前可用的部署模型和方法。 當包含設定的文章推出時，我們會直接從此資料表連結至該文章。 
 
 [!INCLUDE [vpn-gateway-table-vnet-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
 
@@ -60,7 +60,7 @@ ms.openlocfilehash: 0f0b2df109d8326e5d15d4955ab4547c90df545b
   
   * 在相同區域中，您可以因為隔離或管理需求，設定將多層式應用程式與多個虛擬網路連線在一起。
 
-### <a name="vnet-to-vnet-faq"></a>VNet 對 VNet 常見問題集
+### <a name="vnet-to-vnet-considerations"></a>VNet 對 VNet 的考量
 [!INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
 ## <a name="which-set-of-steps-should-i-use"></a>我應該使用哪個步驟集？
@@ -434,6 +434,6 @@ ms.openlocfilehash: 0f0b2df109d8326e5d15d4955ab4547c90df545b
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

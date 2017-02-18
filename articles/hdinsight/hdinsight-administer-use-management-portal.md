@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集 | Microsoft Docs"
+title: "使用 Azure 入口網站管理 HDInsight 中的 Windows 型 Hadoop 叢集 | Microsoft Docs"
 description: "了解如何管理 HDInsight 服務。 建立 HDInsight 叢集、開啟互動式 JavaScript 主控台，以及開啟 Hadoop 命令主控台。"
 services: hdinsight
 documentationcenter: 
@@ -13,24 +13,25 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 01/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 59288709e706ba7f0162f5f857019ce2972e2743
-ms.openlocfilehash: 55193e8570f480b9c6b2ef9a0785ddb538749cb5
+ms.sourcegitcommit: 58011fe25a96edfe2744990180b2f2866537bd37
+ms.openlocfilehash: ec35e177d1bb94671b1703020c9aa863a3805af1
 
 
 ---
-# <a name="manage-hadoop-clusters-in-hdinsight-by-using-the-azure-portal"></a>使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集
-[!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
+# <a name="manage-windows-based-hadoop-clusters-in-hdinsight-by-using-the-azure-portal"></a>使用 Azure 入口網站管理 HDInsight 中的 Windows 型 Hadoop 叢集
 
-您可以使用 [Azure 入口網站][azure-portal]，在 Azure HDInsight 中建立 Hadoop 叢集、變更 Hadoop 使用者密碼，以及啟用遠端桌面通訊協定 (RDP)，以存取叢集上的 Hadoop 命令主控台。
+您可以使用 [Azure 入口網站][azure-portal]，在 Azure HDInsight 中建立 Windows 型 Hadoop 叢集、變更 Hadoop 使用者密碼，以及啟用遠端桌面通訊協定 (RDP)，以存取叢集上的 Hadoop 命令主控台。
 
-本文的資訊僅適用於以 Windows 為基礎的 HDInsight 叢集。 如需管理以 Linux 為基礎的叢集的詳細資訊，請按一下上面的索引標籤選取器。
+本文的資訊僅適用於以 Windows 為基礎的 HDInsight 叢集。 如需管理 Linux 型叢集的相關資訊，請參閱[使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集](hdinsight-administer-use-portal-linux.md)。
 
-按一下索引標籤選取器，以取得使用其他工具在 HDInsight 中建立 Hadoop 叢集的詳細資訊。
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
-**必要條件**
+
+## <a name="prerequisites"></a>必要條件
 
 開始閱讀本文之前，您必須符合下列必要條件：
 
@@ -64,7 +65,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
   > [!NOTE]
   > 如果您在將 JAR 檔案部署至 HDInsight 叢集或在 HDInsight 叢集上呼叫 JAR 檔案時發生問題，請連絡 [Microsoft 支援](https://azure.microsoft.com/support/options/)。
   >
-  > Cascading 不受 HDInsight 支援，而且不符合「Microsoft 支援」的資格。 如需所支援元件的清單，請參閱 [HDInsight 所提供叢集版本的新功能](hdinsight-component-versioning.md)(英文)。
+  > Cascading 不受 HDInsight 支援，而且不符合「Microsoft 支援」的資格。 如需所支援元件的清單，請參閱 [HDInsight 所提供叢集版本的新功能](hdinsight-component-versioning.md)。
   >
   >
 
@@ -92,7 +93,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
      > 這「只」會影響在 Azure 入口網站對此叢集的存取和權限，對於連線到 HDInsight 叢集或將工作提交到 HDInsight 叢集的使用者沒有影響。
      >
      >
-   * **標記 (![ ](./media/hdinsight-administer-use-portal-linux/tags.png)標記圖示)**：標記可讓您設定索引鍵/值組，以定義自訂的雲端服務分類法。 例如，您可建立名為 **project**的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
+   * **標記 (![標記圖示](./media/hdinsight-administer-use-portal-linux/tags.png))**：標記可讓您設定索引鍵/值組，以定義自訂的雲端服務分類法。 例如，您可建立名為 **project**的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
    * **Ambari 檢視**：Ambari Web 的連結。
 
      > [!IMPORTANT]
@@ -122,7 +123,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
      >
 6. 按一下 [屬性] ：
 
-    屬性如下所列：
+    屬性區段如下所列：
 
    * **主機名稱**：叢集名稱。
    * **叢集 URL**。
@@ -269,7 +270,6 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 ## <a name="open-hdinsight-query-console"></a>開啟 HDInsight 查詢主控台
 HDInsight 查詢主控台包括下列功能：
 
-* **開始使用資源庫**：若要使用資源庫，請參閱 [使用 Azure HDInsight Getting Started Gallery 了解 Hadoop](hdinsight-learn-hadoop-use-sample-gallery.md)。
 * **Hive 編輯器**：用於提交 Hive 工作的 GUI Web 介面。  請參閱 [使用查詢主控台執行 Hive 查詢](hdinsight-hadoop-use-hive-query-console.md)。
 
     ![HDInsight portal hive editor](./media/hdinsight-administer-use-management-portal/hdinsight-hive-editor.png)
@@ -379,6 +379,6 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

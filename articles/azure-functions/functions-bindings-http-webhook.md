@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 11/18/2016
 ms.author: mahender
 translationtype: Human Translation
-ms.sourcegitcommit: 412640c0c53ca85dbdc234783ba94afaa807a22a
-ms.openlocfilehash: f1e4ecfd91e161f71115bed31cd41684ed514b5a
+ms.sourcegitcommit: 29df0e2198be05a64b6a90f1adf30a0c3b218d93
+ms.openlocfilehash: b40fa2d511910668438ba33291d16202dec8c8a8
 
 
 ---
@@ -211,10 +211,10 @@ HttpTriggers 可以利用金鑰來增加安全性。 標準 HttpTrigger 可以�
 金鑰會當作您函數應用程式的一部分儲存於 Azure 中，並在加密後靜置。 若要檢視您的金鑰，請建立新的金鑰或將金鑰輪替為新的值，瀏覽至入口網站中您的其中一個函式，然後選取 [管理]。 
 
 金鑰類型有兩種：
-- **管理金鑰**：這些金鑰由函數應用程式中所有的函式共用。 當做為 API 金鑰使用時，這些金鑰會允許存取函數應用程式中的任何函式。
+- **主機金鑰**：這些金鑰由函數應用程式中所有的函式共用。 當做為 API 金鑰使用時，這些金鑰會允許存取函數應用程式中的任何函式。
 - **函式金鑰**：這些金鑰僅適用於據以定義它們的特定函式。 當做為 API 金鑰使用時，這些金鑰僅允許存取該函式。
 
-每個金鑰均為具名以供參考，並且在函式和管理層級有一預設金鑰 (名稱為 "default")。 「主要金鑰」是預設的管理金鑰，名稱為 "_master"，它是針對每個函數應用程式所定義且無法撤銷。 它會提供執行階段 API 的系統管理存取權。 在繫結 JSON 中使用 `"authLevel": "admin"` 會要求此金鑰必須存在於要求上；任何其他金鑰將會導致授權失敗。
+每個金鑰均為具名以供參考，並且在函式和主機層級有一預設金鑰 (名稱為 "default")。 「主要金鑰」是預設的主機金鑰，名稱為 "_master"，它是針對每個函數應用程式所定義且無法撤銷。 它會提供執行階段 API 的系統管理存取權。 在繫結 JSON 中使用 `"authLevel": "admin"` 會要求此金鑰必須存在於要求上；任何其他金鑰將會導致授權失敗。
 
 > [!NOTE]
 > 由於主要金鑰會授與提高的權限，因此您不應該與第三方共用此金鑰，或是將它散發到原生用戶端應用程式。 當您選擇管理授權層級時，請務必謹慎。
@@ -226,7 +226,7 @@ HttpTriggers 可以利用金鑰來增加安全性。 標準 HttpTrigger 可以�
 
     https://<yourapp>.azurewebsites.net/api/<function>?code=<ApiKey>
 
-金鑰可包含在名為 `code` 的查詢字串變數中 (如上所述)，或是包含在 `x-functions-key` HTTP 標頭中。 金鑰的值可以是針對函式定義的任何函式金鑰，或是任何管理金鑰。
+金鑰可包含在名為 `code` 的查詢字串變數中 (如上所述)，或是包含在 `x-functions-key` HTTP 標頭中。 金鑰的值可以是針對函式定義的任何函式金鑰，或是任何主機金鑰。
 
 您可以選擇在不需要金鑰的情況下允許要求，或是指定必須使用主要金鑰，方法是變更繫結 JSON 中的 `authLevel` 屬性 (請參閱 [HTTP 觸發程序](#httptrigger))。
 
@@ -237,7 +237,7 @@ Webhook 授權是由 Webhook 接收器元件 (HttpTrigger 的一部分) 處理�
 - **要求標頭**︰提供者在 `x-functions-clientid` 標頭中傳遞金鑰名稱。
 
 > [!NOTE]
-> 函式金鑰的優先順序高於管理金鑰。 如果兩個金鑰是以相同的名稱定義，將會使用函式金鑰。
+> 函式金鑰的優先順序高於主機金鑰。 如果兩個金鑰是以相同的名稱定義，將會使用函式金鑰。
 > 
 > 
 
@@ -439,6 +439,6 @@ module.exports = function (context, data) {
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

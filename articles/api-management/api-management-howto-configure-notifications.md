@@ -1,5 +1,5 @@
 ---
-title: "如何在 Azure API 管理中設定通知和電子郵件範本"
+title: "在 Azure API 管理中設定通知和電子郵件範本 | Microsoft Docs"
 description: "了解如何在 Azure API 管理中設定通知和電子郵件範本。"
 services: api-management
 documentationcenter: 
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: 5d52b7609eb5ade1850e78868cbe0929c40c3c4f
-
+ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
+ms.openlocfilehash: 3d8b74e32059cfc1a4c3a8fc7d3bd04676ee80c8
 
 ---
 # <a name="how-to-configure-notifications-and-email-templates-in-azure-api-management"></a>如何在 Azure API 管理中設定通知和電子郵件範本
@@ -122,6 +121,6 @@ API 管理可讓您設定特定事件的通知，以及設定用來與 API 管�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

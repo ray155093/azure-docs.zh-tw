@@ -1,5 +1,5 @@
 ---
-title: "Azure MFA 和 AD FS | Microsoft Docs"
+title: "兩步驟驗證和 AD FS - Azure MFA | Microsoft Docs"
 description: "這是說明如何開始使用 Azure MFA 和 AD FS 的 Azure Multi-Factor Authentication 頁面。"
 services: multi-factor-authentication
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/17/2016
+ms.date: 01/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dcf67cfd5f4d44188f119ca40b227b32c684e1f7
+ms.sourcegitcommit: 00ee90b6d264c1aee4b488cd1c2a5447809a1e3c
+ms.openlocfilehash: 0981be75b9caffb29b10c70ce528209984986ce2
 
 
 ---
-# <a name="getting-started-with-azure-multifactor-authentication-and-active-directory-federation-services"></a>開始使用 Azure Multi-Factor Authentication Server 和 Active Directory Federation Services
+# <a name="getting-started-with-azure-multi-factor-authentication-and-active-directory-federation-services"></a>開始使用 Azure Multi-Factor Authentication Server 和 Active Directory Federation Services
 <center>![雲端](./media/multi-factor-authentication-get-started-adfs/adfs.png)</center>
 
 如果組織已使用 AD FS 讓內部部署 Active Directory 與 Azure Active Directory 同盟，就會有兩個使用 Azure Multi-Factor Authentication 的選項。
@@ -51,7 +51,6 @@ ms.openlocfilehash: dcf67cfd5f4d44188f119ca40b227b32c684e1f7
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

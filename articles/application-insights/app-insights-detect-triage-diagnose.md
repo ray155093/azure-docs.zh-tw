@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
-ms.openlocfilehash: c63bad2cbf362e10b1fd901d6c22fa25524afbac
+ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
+ms.openlocfilehash: 1af63c31a8cb7995f64813c12d32b283745c04ed
 
 
 ---
@@ -69,7 +69,7 @@ Marcela Markova 是 OBS 小組的資深開發人員，主導線上效能監視�
 
 瀏覽器頁面載入時間是從網頁直接傳送的遙測所衍生。 伺服器回應時間、伺服器要求計數和失敗的要求計數，都是在 Web 伺服器中測量，然後從該處傳送到 Application Insights。
 
-Marcela 對於伺服器回應圖表有點擔心，該圖表會顯示伺服器自收到使用者瀏覽器的 HTTP 要求，直到瀏覽器傳回回應這段期間的平均時間。 在這個圖表中看到差異並無不尋常，因為各系統的負載不同。 但在此情況下，要求數量些微增加與回應時間大幅增加似乎有某種關係。 這可能表示系統到達運作極限。 
+Marcela 對於伺服器回應圖表有點擔心，該圖表會顯示伺服器自收到使用者瀏覽器的 HTTP 要求，直到瀏覽器傳回回應這段期間的平均時間。 在這個圖表中看到差異並無不尋常，因為各系統的負載不同。 但在此情況下，要求數量些微增加與回應時間大幅增加似乎有某種關係。 這可能表示系統到達運作極限。
 
 她將「伺服器」圖表打開：
 
@@ -91,7 +91,7 @@ Marcela 對於伺服器回應圖表有點擔心，該圖表會顯示伺服器自
 
 發生失敗的要求時使用者會看到錯誤，通常是在程式碼中擲出例外狀況之後。 也許他們看到訊息指出「很抱歉，我們目前無法更新您的詳細資料」，或是在最遭的情況下，出自於 Web 伺服器，在使用者畫面上出現堆疊傾印。
 
-這個警示令人驚訝，因為她上次查看時，失敗的要求計數很低，完全不用擔心。 其中一小部分的失敗預期是在忙碌的伺服器中。 
+這個警示令人驚訝，因為她上次查看時，失敗的要求計數很低，完全不用擔心。 其中一小部分的失敗預期是在忙碌的伺服器中。
 
 這也讓她稍微感到驚訝，因為她之前並不需要設定這個警示。 事實上，Application Insights 自動隨附「智慧型偵測」。 它會自動調整至您 app 的一般失敗模式，並且「習慣」特定頁面、高負載或和其他計量連結的失敗。 只有當增加量超出預期的量時它才會發出警示。
 
@@ -101,16 +101,16 @@ Marcela 對於伺服器回應圖表有點擔心，該圖表會顯示伺服器自
 
 它會顯示有多少客戶，以及哪些網頁或作業受到影響。 Marcela 可以決定是否需要動員整個小組來處理此問題，或者可以延後到下週再處理。
 
-該電子郵件也顯示發生的特定例外狀況，甚至 - 更有趣的 - 是與對特定資料庫呼叫失敗關聯的失敗。 這解釋了為何 Marcela 的團隊即使最近沒有部署任何更新也會突然發生錯誤。 
+該電子郵件也顯示發生的特定例外狀況，甚至 - 更有趣的 - 是與對特定資料庫呼叫失敗關聯的失敗。 這解釋了為何 Marcela 的團隊即使最近沒有部署任何更新也會突然發生錯誤。
 
 她向資料庫團隊的主管確認。 沒錯，他們在過去半小時釋出了 Hot Fix；而不巧的是，或許是基礎結構有些微小變更...
 
-因此，在問題發生後的 15 分鐘內，甚至是在檢查紀錄之前，就已經開始修正問題。 不過，Marcela 按了一下連結來開啟 Application Insights。 此時直接開啟了一個失敗的要求，而且她可以在相依性呼叫的關聯清單中看到失敗的資料庫呼叫。 
+因此，在問題發生後的 15 分鐘內，甚至是在檢查紀錄之前，就已經開始修正問題。 不過，Marcela 按了一下連結來開啟 Application Insights。 此時直接開啟了一個失敗的要求，而且她可以在相依性呼叫的關聯清單中看到失敗的資料庫呼叫。
 
 ![失敗的要求](./media/app-insights-detect-triage-diagnose/23.png)
 
 ## <a name="detecting-exceptions"></a>偵測例外狀況
-只要一點點設定，就可以將 [例外狀況](app-insights-asp-net-exceptions.md) 自動報告給 Application Insights。 也可以在程式碼中呼叫 [TrackException()](app-insights-api-custom-events-metrics.md#track-exception) ，明確擷取這些例外狀況：  
+只要一點點設定，就可以將 [例外狀況](app-insights-asp-net-exceptions.md) 自動報告給 Application Insights。 也可以在程式碼中呼叫 [TrackException()](app-insights-api-custom-events-metrics.md#trackexception) ，明確擷取這些例外狀況：  
 
     var telemetry = new TelemetryClient();
     ...
@@ -231,10 +231,6 @@ Application Insights 也可以用來了解使用者在應用程式內執行的�
 
 
 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "什麼是 Azure 資料目錄？ | Microsoft Docs"
+title: "Azure 資料目錄簡介 | Microsoft Docs"
 description: "本文提供 Microsoft Azure 資料目錄的概觀，包括其具備的功能以及專門解決的問題。 資料目錄可讓任何使用者 – 從分析師、資料科學家到開發人員 – 註冊、探索、了解及取用資料來源。"
 services: data-catalog
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 09/21/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: f047b81511efb0b9852dd343ed995bb153344c39
+ms.sourcegitcommit: cd3184059a0970bb7c9b59803cf37125abbbd879
+ms.openlocfilehash: 19d4c3990c88f82f60cd253ffdcbd2005d00ad79
 
 
 ---
@@ -75,7 +75,6 @@ Azure 資料目錄是完全受管理的雲端服務，可讓使用者探索所�
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

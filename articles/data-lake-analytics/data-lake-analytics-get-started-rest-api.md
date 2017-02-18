@@ -7,16 +7,16 @@ author: mumian
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 5e133d92-baaa-44c9-890c-ab2d85c91122
-ms.service: data-lake-store
+ms.service: data-lake-analytics
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/19/2016
+ms.date: 02/03/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: cae1eeb70e5358b8c30527a45379d2a0da315974
+ms.sourcegitcommit: 2fea3686b1484406d31c5447c7d3d7e2451b827e
+ms.openlocfilehash: 1898b3d6aa1a9ccbc9f4427cf994c02f9fa35abd
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: cae1eeb70e5358b8c30527a45379d2a0da315974
 ## <a name="authenticate-with-azure-active-directory"></a>向 Azure Active Directory 進行驗證
 向 Azure Active Directory 進行驗證的方法有兩種。
 
-### <a name="enduser-authentication-interactive"></a>使用者驗證 (互動式)
+### <a name="end-user-authentication-interactive"></a>使用者驗證 (互動式)
 使用此方法，應用程式會提示使用者登入，且會在使用者的內容中執行所有作業。 
 
 遵循下列步驟進行互動式驗證：
@@ -76,7 +76,7 @@ ms.openlocfilehash: cae1eeb70e5358b8c30527a45379d2a0da315974
 
 如需互動使用者驗證的詳細資料，請參閱 [授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)。
 
-### <a name="servicetoservice-authentication-noninteractive"></a>服務對服務驗證 (非互動式)
+### <a name="service-to-service-authentication-non-interactive"></a>服務對服務驗證 (非互動式)
 使用此方法，應用程式提供自己的認證來執行作業。 為此，您必須發出 POST 要求，如下所示： 
 
     curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
@@ -209,7 +209,7 @@ ms.openlocfilehash: cae1eeb70e5358b8c30527a45379d2a0da315974
         ]
     }
 
-## <a name="submit-usql-jobs"></a>提交 U-SQL 作業
+## <a name="submit-u-sql-jobs"></a>提交 U-SQL 作業
 下列 Curl 命令示範如何提交 U-SQL 作業：
 
     curl -i -X PUT -H "Authorization: Bearer <REDACTED>" https://<DataLakeAnalyticsAccountName>.azuredatalakeanalytics.net/Jobs/<NewGUID>?api-version=2016-03-20-preview -d@"C:\tutorials\adla\SubmitADLAJob.json"
@@ -266,7 +266,7 @@ ms.openlocfilehash: cae1eeb70e5358b8c30527a45379d2a0da315974
     }
 
 
-## <a name="list-usql-jobs"></a>列出 U-SQL 作業
+## <a name="list-u-sql-jobs"></a>列出 U-SQL 作業
 下列 Curl 命令示範如何列出 U-SQL 作業：
 
     curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://<DataLakeAnalyticsAccountName>.azuredatalakeanalytics.net/Jobs?api-version=2016-11-01 
@@ -350,6 +350,6 @@ ms.openlocfilehash: cae1eeb70e5358b8c30527a45379d2a0da315974
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 07cb021c99362d7195d2a8a6c1c802d952cf1331
+ms.sourcegitcommit: 59f072c7a8272fc04e1d662c0ab17e7ee4500fa6
+ms.openlocfilehash: 382b4929f0587906bd7256380cae4eb641f108bb
 
 
 ---
@@ -187,7 +187,7 @@ ms.openlocfilehash: 07cb021c99362d7195d2a8a6c1c802d952cf1331
 
    ![SQL 查詢輸出](./media/hdinsight-apache-spark-custom-library-website-log-analysis/sql.output.png "SQL 查詢輸出")
 
-   如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-pyspark-or-spark-kernels)。
+   如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
 7. 現在您可以使用 Matplotlib (用於建構資料視覺效果的程式庫) 建立繪圖。 因為必須從保存在本機上的 **averagetime** 資料框架建立繪圖，所以程式碼片段的開頭必須為 `%%local` magic。 這可確保程式碼是在 Jupyter 伺服器的本機上執行。
 
        %%local
@@ -230,6 +230,6 @@ ms.openlocfilehash: 07cb021c99362d7195d2a8a6c1c802d952cf1331
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

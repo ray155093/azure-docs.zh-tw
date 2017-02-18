@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure Site Recovery 中的虛擬機器和實體伺服器保護規劃容量 | Microsoft Docs"
-description: "規劃 Azure Site recovery 的複寫容量"
+title: "估計 Azure 中的複寫容量 | Microsoft Docs"
+description: "使用本文章來估計使用 Azure Site Recovery 複寫時的容量"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 11/15/2016
+ms.date: 02/06/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: 8fca992488746bc50a7342644de62b862a9aaea7
-ms.openlocfilehash: a427969378d2454246217d48bafe6f360e93df0f
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: 7ec48138cf18cf50dc34f28e177c8d774034090b
 
 
 ---
@@ -65,9 +65,9 @@ Azure Site Recovery Capacity Planner 工具可協助您釐清使用 Azure Site R
    * **所需的 Blob 磁碟數目** 提供將在 Azure 儲存體上建立的磁碟數目。
    * **進階儲存體帳戶數目** 提供保護 VM 所需的進階儲存體帳戶總數。 具有高 IOPS (超過 20000) 的來源 VM 需要進階儲存體帳戶。 進階儲存體帳戶可以保存多達 80000 個 IOPS。
    * **進階儲存體上的 IOPS 總數** 是根據進階儲存體帳戶總計上的 256K IOPS 單位大小計算。  針對快速規劃，數目是根據來源 VM 磁碟和每日資料變更率計算。 針對詳細規劃，數目是根據對應到進階 Azure VM (DS 和 GS 系列) 的 VM 數，以及那些 VM 上的資料變更率計算。
-   * **所需的組態伺服器數目** 顯示需要多少組態伺服器以進行部署。 
+   * **所需的組態伺服器數目** 顯示需要多少組態伺服器以進行部署。
    * **所需的額外的處理序伺服器數目**顯示除了預設在組態伺服器上執行的處理序伺服器，是否需要額外的處理序伺服器。
-   * **來源上的 100% 其他儲存體** 顯示來源位置中是否需要其他儲存體。
+   * **來源上的&100;% 其他儲存體** 顯示來源位置中是否需要其他儲存體。
 
    ![輸出](./media/site-recovery-capacity-planner/output.png)
 
@@ -117,7 +117,7 @@ Azure Site Recovery Capacity Planner 工具可協助您釐清使用 Azure Site R
 
     > [!NOTE]
     > 在標準及進階儲存體上的 IOPS 是在 VM 層級計算，而不是在磁碟層級。 標準虛擬機器可以處理每個磁碟最多 500 個 IOPS。 如果磁碟的 IOPS 大於 500，則您需要進階儲存體。 不過，如果磁碟的 IOPS 超過 500，但 VM 磁碟總數的 IOPS 在標準 Azure VM 支援的限制中 (VM 大小、磁碟數目、介面卡數目、CPU、記憶體)，那麼規劃工具會挑選標準 VM，而不是 DS 或 GS 系列。 您必須以適當的 DS 或 GS 系列 VM 手動更新 [Mapping Azure Size](對應的 Azure 大小) 儲存格。
-   
+
 
 1. 所有詳細資料已就緒之後，請按一下 [將資料提交至規劃工具] 以開啟 [Capacity Planner]。工作負載會反白顯示以顯示是否適合保護。
 
@@ -129,6 +129,6 @@ Azure Site Recovery Capacity Planner 工具可協助您釐清使用 Azure Site R
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

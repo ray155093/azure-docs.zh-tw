@@ -14,8 +14,8 @@ ms.topic: get-started-article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 57daba3f23b2a35afc2d704e4913584f21259ec7
+ms.sourcegitcommit: 601045a6048266cbd317f3a8ff328caa7edf877f
+ms.openlocfilehash: a7b17961ea23c109dc840192fa3f7cea1d88326e
 
 
 ---
@@ -44,7 +44,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 ![選擇 [新增]、[開發人員服務]、[Application Insights]。](./media/app-insights-javascript/01-create.png)
 
-*已經有問題了嗎？* [建立資源的詳細資訊](app-insights-create-new-resource訂用帳戶。md)訂用帳戶。
+*已經有問題了嗎？* [建立資源的詳細資訊](app-insights-create-new-resource.md)訂用帳戶。
 
 ### <a name="add-the-sdk-script-to-your-app-or-web-pages"></a>將 SDK 指令碼加入至您的應用程式或網頁
 在快速入門中，取得網頁指令碼：
@@ -129,17 +129,17 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 請注意頁面檢視計數和標準差。 如果頁面計數非常低，則問題不太會影響使用者。 高的標準差 (相當於平均值本身) 表示個別測量之間的變化。
 
-**放大某個 URL 和整頁檢視。**  按一下任何頁面名稱，即可查看針對該 URL 篩選的瀏覽器圖表的刀鋒視窗，接著是網頁檢視的執行個體。
+**放大某個 URL 和整頁檢視。** 按一下任何頁面名稱，即可查看針對該 URL 篩選的瀏覽器圖表的刀鋒視窗，接著是網頁檢視的執行個體。
 
 ![](./media/app-insights-javascript/35.png)
 
 按一下 `...` 以取得該事件之屬性的完整清單，或檢查 Ajax 呼叫和相關的事件。 如果它們是同步的，緩慢的 Ajax 呼叫會影響整體頁面載入時間。 相關的事件包含伺服器要求相同的 URL (如果您已在 Web 伺服器上設定 Application Insights)。
 
-**經過一段時間的網頁效能。**  回到 [瀏覽器] 刀鋒視窗，將 [頁面檢視載入時間] 方格變更為折線圖，以查看在特定時間是否有尖峰：
+**經過一段時間的網頁效能。** 回到 [瀏覽器] 刀鋒視窗，將 [頁面檢視載入時間] 方格變更為折線圖，以查看在特定時間是否有尖峰：
 
 ![按一下方格的標頭，然後選取新的圖表類型](./media/app-insights-javascript/10-page-perf-area.png)
 
-**依據其他維度來分段。**  或許您的網頁在特定瀏覽器、用戶端作業系統或使用者位置載入時較緩慢？ 加入具有 **Group-by** 維度的圖表和實驗。
+**依據其他維度來分段。** 或許您的網頁在特定瀏覽器、用戶端作業系統或使用者位置載入時較緩慢？ 加入具有 **Group-by** 維度的圖表和實驗。
 
 ![](./media/app-insights-javascript/21.png)
 
@@ -170,7 +170,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 按一下 `...` 以取得 Ajax 呼叫的完整遙測。
 
 ### <a name="no-ajax-calls-reported"></a>未報告任何 Ajax 呼叫？
-Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。 如果您沒有看到這些報告，請檢查程式碼片段未設定 `disableAjaxTracking` 或 `maxAjaxCallsPerView` [參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)。
+Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP/HTTPS 呼叫。 如果您沒有看到這些報告，請檢查程式碼片段未設定 `disableAjaxTracking` 或 `maxAjaxCallsPerView` [參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)。
 
 ## <a name="browser-exceptions"></a>瀏覽器例外狀況
 在 [瀏覽器] 刀鋒視窗上，有例外狀況摘要圖表，進一步的刀鋒視窗中有例外狀況類型的方格。
@@ -193,7 +193,7 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。 如果�
 > 
 > 
 
-您也可以使用功能強大的 [分析查詢語言](app-insights-analytics-tour.md) 來搜尋頁面檢視。
+您也可以使用功能強大的 [分析查詢語言](https://docs.microsoft.com/azure/application-insights/app-insights-analytics-tour#browser-timings-table) 來搜尋頁面檢視。
 
 ### <a name="page-view-properties"></a>頁面檢視屬性
 * **頁面檢視持續時間** 
@@ -230,6 +230,6 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。 如果�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

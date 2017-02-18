@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/21/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: ede2e4ec5f3414d1c8a17f4c120011eba0d9a6ca
-ms.openlocfilehash: 14dcb8fe12bb516bc27b27f94992801d935811c8
+ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
+ms.openlocfilehash: f014b92516879a0255dda3736bf5af6142555d92
 
 
 ---
@@ -27,10 +27,8 @@ ms.openlocfilehash: 14dcb8fe12bb516bc27b27f94992801d935811c8
 
 Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集上的作業。 Azure 將個別節點安裝和設定的實作細節抽象化，因此您必須提供一般組態資訊。 您會在本文中學習這些組態設定。
 
-本文件的資訊是以 Windows 為基礎之 Azure HDInsight 叢集的特定資訊。 如需以 Linux 為基礎的叢集的詳細資訊，請參閱 [在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
-
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 本文件的資訊是以 Windows 為基礎之 Azure HDInsight 叢集的特定資訊。 如需以 Linux 為基礎的叢集的詳細資訊，請參閱 [在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
 
 
@@ -300,6 +298,6 @@ HBase 叢集類型無法使用中繼存放區組態。
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

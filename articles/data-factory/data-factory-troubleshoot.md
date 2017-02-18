@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 02/06/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 6b50b65fa1ad86c8e80fff0fb92352b1be52632e
-ms.openlocfilehash: d4589b5e9ca7f08b2152605dc26a96d4b5d656c8
+ms.sourcegitcommit: f78081d173bfe255a3ed8016d10a2deec87ac758
+ms.openlocfilehash: 684515213fc2533e56600cacf3bc0a3a33f337c2
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: d4589b5e9ca7f08b2152605dc26a96d4b5d656c8
     Login-AzureRmAccount
     ```
 3. 執行下列命令以註冊 Azure Data Factory 提供者。
-    
+
     ```powershell        
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
     ```
@@ -109,7 +109,7 @@ Failed to create cluster. Exception: Unable to complete the cluster create opera
 此外，還有第二個的 JSON 屬性 additionalLinkedServiceNames，可供隨選 HDInsight 中指定其他儲存體帳戶。 這些其他的連結儲存體帳戶應該與 HDInsight 叢集位於相同位置，否則會因相同的錯誤而發生失敗。
 
 ### <a name="problem-custom-net-activity-fails"></a>問題：自訂 .NET 活動失敗
-如需詳細步驟，請參閱 [偵錯具有自訂活動的管線](data-factory-use-custom-activities.md#debug-the-pipeline) 。
+如需詳細步驟，請參閱 [偵錯具有自訂活動的管線](data-factory-use-custom-activities.md#troubleshoot-failures) 。
 
 ## <a name="use-azure-portal-to-troubleshoot"></a>使用 Azure 入口網站進行疑難排解
 ### <a name="using-portal-blades"></a>使用入口網站刀鋒視窗
@@ -153,6 +153,6 @@ Failed to create cluster. Exception: Unable to complete the cluster create opera
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

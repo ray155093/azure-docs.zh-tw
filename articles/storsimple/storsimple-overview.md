@@ -1,5 +1,5 @@
 ---
-title: "何謂 StorSimple？ | Microsoft Docs"
+title: "StorSimple 8000 系列解決方案概觀 | Microsoft Docs"
 description: "描述 StorSimple 分層、裝置、虛擬裝置、服務與儲存管理，並介紹 StorSimple 中使用的重要詞彙。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 10/05/2016
 ms.author: v-sharos@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: aaef3322fc98b0874222e4a3728d54a38a34b602
-ms.openlocfilehash: 34b09279785d87f75d16e3baf320ffb66cf9b682
+ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
+ms.openlocfilehash: 3575e4f22e17608de7f3b66e9dd577a1d4a4c148
 
 
 ---
@@ -32,9 +32,9 @@ Update 2 也可讓您建立 StorSimple 虛擬裝置，可利用 Azure 進階儲�
 
 除了儲存體管理外，StorSimple 資料保護功能可讓您建立依需求和排程的備份，然後將其儲存在本機或雲端中。 備份採用累加快照的形式，這表示建立及還原備份更快速。 雲端快照在災害復原案例中至關重要，因為這些快照會取代次要儲存體系統 (例如磁帶備份)，並讓您將資料還原到資料中心或在必要時還原至其他網站。
 
-![影片圖示](./media/storsimple-overview/video_icon.png)  觀賞 Microsoft Azure StorSimple 的快速簡介影片。
+![影片圖示](./media/storsimple-overview/video_icon.png) 觀賞 Microsoft Azure StorSimple 的快速簡介影片。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/StorSimple-Hybrid-Cloud-Storage-Solution/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/StorSimple-Hybrid-Cloud-Storage-Solution/player]
 > 
 > 
 
@@ -252,7 +252,7 @@ StorSimple 8000 系列裝置不支援下列工作負載。 如果部署於 StorS
 | 術語 (首字母縮寫或縮寫) | 說明 |
 | --- | --- |
 | 存取控制記錄 (ACR) |與 Microsoft Azure StorSimple 裝置上的磁碟區相關聯的記錄，決定哪些主機可連接到其中。 此決定根據連接到 StorSimple 裝置之主機 (包含在 ACR 中) 的 iSCSI 合格名稱 (IQN)。 |
-| AES 256 |256 位元進階加密標準 (AES) 演算法，用於加密移入和移出雲端的資料。 |
+| AES&256; |256 位元進階加密標準 (AES) 演算法，用於加密移入和移出雲端的資料。 |
 | 配置單位大小 (AUS) |最小數量的磁碟空間，可配置來保留 Windows 檔案系統中的檔案。 如果檔案大小不是叢集大小的偶數倍數，則必須使用額外的空間來保留檔案 (最多為叢集大小的下一個倍數)，這會導致喪失空間和硬碟的片段。 <br>建議的 Azure StorSimple 磁碟區 AUS 為 64 KB，因為此容量適用於進行重複資料刪除演算法。 |
 | 自動儲存體分層 |自動將較不活躍的資料從 SSD 移到 HDD，再移至雲端中的層，然後可讓您從中央使用者介面管理所有儲存體。 |
 | 備份類別目錄 |備份的集合，通常與所使用的應用程式類型相關。 這個集合會顯示在 StorSimple Manager 服務 UI 的 [備份類別目錄] 頁面中。 |
@@ -310,6 +310,6 @@ StorSimple 8000 系列裝置不支援下列工作負載。 如果部署於 StorS
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

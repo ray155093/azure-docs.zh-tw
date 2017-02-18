@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: cbd2c3e915b93340c1a1478c09b23480c4565a98
+ms.sourcegitcommit: 13431648e87d085161ad278dc991d49f7872be34
+ms.openlocfilehash: 60213f885020a5ba36d6ada0812f755e06b3c48b
 
 
 ---
@@ -43,17 +43,17 @@ ms.openlocfilehash: cbd2c3e915b93340c1a1478c09b23480c4565a98
 > 
 
 ## <a name="change-headers-styling"> </a>變更頁首的樣式
-入口網站上任何頁面的色彩、字型、大小、空格和其他樣式相關的元素，都會透過樣式規則加以定義。 若要編輯樣式，請從發行者入口網站的 [開發人員入口網站] 功能表中按一下 [外觀]，然後按一下 [開始自訂] 來啟用樣式編輯器。
+入口網站上任何頁面的色彩、字型、大小、空格和其他樣式相關的元素，都會透過樣式規則加以定義。 若要編輯樣式，請在**開發人員入口網站**中，將滑鼠指標移到自訂圖示上，以開啟左邊的自訂工具列，然後從工具列中選取「樣式」。
 
-您的瀏覽器將切換為開發人員入口網站內的隱藏頁面，其中包含內容範例，以及可在網站上任意處使用的所有樣式規則範例。 若要開啟樣式編輯器，請將游標移至頁面最左側的細長灰色垂直線上。 應該會出現編輯器工具列。
+![自訂工具列][api-management-customization-toolbar-button]
+
+編輯樣式規則的主要方式有兩種 - 您可以查看任何地方使用的所有樣式規則清單 (預設會顯示) 並視需要修改樣式，也可以選擇 [選取頁面上的元素]，然後按一下頁面上的任意處，以查看該元素的樣式。
+
+在本節中，我們只想變更頁首的樣式。 按一下樣式編輯器工具列中的 [選取頁面上的元素] 選項。 
 
 ![Customization toolbar][api-management-customization-toolbar]
 
-編輯樣式規則有兩種主要模式 - [編輯所有規則] 會顯示在任意處使用之所有樣式規則的清單，而 [挑選元素] 可讓您從所在頁面選取元素，並且僅顯示該元素的樣式。
-
-在本節中，我們只想變更頁首的樣式。 從樣式編輯器工具列按一下 [挑選元素] 選項，然後按一下 [選取要自訂的元素]。 現在，當您將滑鼠移至元素上方時，元素會變成反白顯示狀態，以象徵您按一下就會開始編輯的元素樣式。 將滑鼠移至頁首中代表公司名稱的文字上方 (如果您遵循上一節中的指示，即為 "Fabrikam Developer Portal")，然後按一下該文字。 樣式編輯器中會出現一組已具名且分類的樣式規則。
-
-每個規則均代表所選取元素的樣式屬性。 例如，針對以上選取的頁首文字，文字的大小是 @font-size-h1，而替代字型的名稱是 @headings-font-family.
+現在，當您將滑鼠移至元素上方時，元素會變成反白顯示狀態，以象徵您按一下就會開始編輯的元素樣式。 將滑鼠移至頁首中代表公司名稱的文字上方 (如果您遵循上一節中的指示，即為 "Fabrikam Developer Portal")，然後按一下該文字。 樣式編輯器中會出現一組已具名且分類的樣式規則。 每個規則均代表所選取元素的樣式屬性。 例如，針對以上選取的頁首文字，文字的大小是 @font-size-h1，而替代字型的名稱是 @headings-font-family。
 
 > 如果您熟悉 [bootstrap][bootstrap]，事實上，這些規則就是開發人員入口網站所使用的 bootstrap 佈景主題內的 [LESS 變數][LESS variables]。
 > 
@@ -63,7 +63,7 @@ ms.openlocfilehash: cbd2c3e915b93340c1a1478c09b23480c4565a98
 
 ![Color picker][api-management-customization-toolbar-color-picker]
 
-完成對於所選取元素的樣式變更時，按一下 [預覽變更]  來查看畫面上的結果。 目前只有管理員能夠看見這些結果。 若要讓每個人都能看見這些變更，可在樣式編輯器中按一下 [發佈]  按鈕並確認變更。
+您可以在進行變更時即時預覽變更，但只有系統管理員可以看到。 若要讓每個人都能看見這些變更，可在樣式編輯器中按一下 [發佈]  按鈕並確認變更。
 
 ![Publish menu][api-management-customization-toolbar-publish-form]
 
@@ -96,6 +96,7 @@ ms.openlocfilehash: cbd2c3e915b93340c1a1478c09b23480c4565a98
 
 [api-management-management-console]: ./media/api-management-customize-portal/api-management-management-console.png
 [api-management-widgets-header]: ./media/api-management-customize-portal/api-management-widgets-header.png
+[api-management-customization-toolbar-button]: ./media/api-management-customize-portal/api-management-customization-toolbar-button.png
 [api-management-customization-toolbar]: ./media/api-management-customize-portal/api-management-customization-toolbar.png
 [api-management-customization-toolbar-color-picker]: ./media/api-management-customize-portal/api-management-customization-toolbar-color-picker.png
 [api-management-customization-toolbar-publish-form]: ./media/api-management-customize-portal/api-management-customization-toolbar-publish-form.png
@@ -107,6 +108,6 @@ ms.openlocfilehash: cbd2c3e915b93340c1a1478c09b23480c4565a98
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

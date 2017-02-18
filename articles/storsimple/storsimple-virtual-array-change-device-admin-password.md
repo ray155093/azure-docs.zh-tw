@@ -1,5 +1,5 @@
 ---
-title: "變更 Microsoft Azure StorSimple Virtual Array 裝置系統管理員密碼 | Microsoft Docs"
+title: "變更 StorSimple Virtual Array 裝置系統管理員密碼 | Microsoft Docs"
 description: "說明如何使用 Azure 入口網站或 StorSimple Virtual Array Web UI 來變更裝置系統管理員密碼。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 11/21/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: fd73672f97b4c16e49b2fad5e53042764f5793ca
-ms.openlocfilehash: 4645ec88f804908916f7cf9b090376753c089119
+ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
+ms.openlocfilehash: 2ff0b7796b8e31cc3b26a951647bb483fd131c14
 
 ---
 # <a name="change-the-storsimple-virtual-array-device-administrator-password"></a>變更 StorSimple Virtual Array 裝置系統管理員密碼
@@ -80,6 +80,6 @@ ms.openlocfilehash: 4645ec88f804908916f7cf9b090376753c089119
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

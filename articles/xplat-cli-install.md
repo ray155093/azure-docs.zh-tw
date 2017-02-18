@@ -13,31 +13,31 @@ ms.workload: multiple
 ms.tgt_pltfrm: command-line-interface
 ms.devlang: na
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/21/2017
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2053470f0a54a0a9b388d020b416df1ff2bfd084
+ms.sourcegitcommit: cc3cc2dce324942f184b6a520dc4db28518a3091
+ms.openlocfilehash: 08f0fe132858bf4629cadc53fbfc6c203592e3a7
 
 
 ---
 # <a name="install-the-azure-cli"></a>安裝 Azure CLI
 > [!div class="op_single_selector"]
-> * [PowerShell](/powershell/azureps-cmdlets-docs)
+> * [PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs)
 > * [Azure CLI](xplat-cli-install.md)
 
-快速安裝 Azure 命令列介面 (Azure CLI) 以使用一組開放原始碼的命令介面式命令，用於建立和管理 Microsoft Azure 中的資源。 有數個選項可讓您在電腦上安裝這些跨平台工具︰ 
+快速安裝 Azure 命令列介面 (Azure CLI) 以使用一組開放原始碼的命令介面式命令，用於建立和管理 Microsoft Azure 中的資源。 有數個選項可讓您在電腦上安裝這些跨平台工具︰
 
 * **npm 套件** - 執行 npm (適用於 JavaScript 的封裝管理員) 將最新的 Azure CLI 套件安裝在您的 Linux 散發套件或作業系統上。 您的電腦上需要有 node.js 和 npm。
 * **安裝程式** - 下載安裝程式以輕鬆在 Mac 或 Windows 上安裝。
 * **Docker 容器** - 在已就緒可執行的 Docker 容器中開始使用最新的 CLI。 您的電腦上需要有 Docker 主機。
 
-如需詳細的選項和背景，請參閱 [GitHub](https://github.com/azure/azure-xplat-cli)上的專案儲存機制。 
+如需詳細的選項和背景，請參閱 [GitHub](https://github.com/azure/azure-xplat-cli)上的專案儲存機制。
 
 安裝好 Azure CLI 之後， [使用 Azure 訂用帳戶將其連接](xplat-cli-connect.md) ，並從命令列介面 (Bash、終端機及命令提示字元等) 中執行 **azure** 命令以使用 Azure 資源。
 
 ## <a name="option-1-install-an-npm-package"></a>選項 1：安裝 npm 套件
-若要從 npm 套件安裝 CLI，請確定已下載並安裝[最新的 Node.js 和 npm](https://nodejs.org/en/download/package-manager/)。 然後，執行 **npm 安裝**，以安裝 azure-cli 套件： 
+若要從 npm 套件安裝 CLI，請確定已下載並安裝[最新的 Node.js 和 npm](https://nodejs.org/en/download/package-manager/)。 然後，執行 **npm 安裝**，以安裝 azure-cli 套件：
 
 ```bash
 npm install -g azure-cli
@@ -50,7 +50,7 @@ sudo npm install -g azure-cli
 ```
 
 > [!NOTE]
-> 如果您需要在 Linux 散發套件或作業系統上安裝或更新 Node.js 和 npm，建議您安裝最新的 Node.js LTS 版本 (4.x)。 如果您使用較舊的版本，可能會發生安裝錯誤。 
+> 如果您需要在 Linux 散發套件或作業系統上安裝或更新 Node.js 和 npm，建議您安裝最新的 Node.js LTS 版本 (4.x)。 如果您使用較舊的版本，可能會發生安裝錯誤。
 
 如果您喜歡，請將 npm 套件的最新 Linux [tar 檔案][linux-installer]下載到本機。 然後，安裝下載的 npm 套件，如下所示 (在 Linux 散發套件上，您可能需要使用 **sudo**)：
 
@@ -62,10 +62,10 @@ npm install -g <path to downloaded tar file>
 如果您使用 Mac 或 Windows 電腦，則有下列 CLI 安裝程式可供下載︰
 
 * [Mac OS X 安裝程式][mac-installer]
-* [Windows MSI][windows-installer] 
+* [Windows MSI][windows-installer]
 
 > [!TIP]
-> 在 Windows 中，您也可以下載 [Web Platform Installer](https://go.microsoft.com/?linkid=9828653) 來安裝 CLI。 這個安裝程式可讓您在安裝 CLI 之後，再選擇安裝額外的 Azure SDK 和命令列工具。 
+> 在 Windows 中，您也可以下載 [Web Platform Installer](https://go.microsoft.com/?linkid=9828653) 來安裝 CLI。 這個安裝程式可讓您在安裝 CLI 之後，再選擇安裝額外的 Azure SDK 和命令列工具。
 
 ## <a name="option-3-use-a-docker-container"></a>選項 3：使用 Docker 容器
 如果您已將電腦設定為 [Docker](https://docs.docker.com/engine/understanding-docker/) 主機，您可以在 Docker 容器中執行最新的 Azure CLI。 執行下列命令 (在 Linux 散發套件上，您可能需要使用 **sudo**)：
@@ -137,6 +137,6 @@ echo 'source ~/azure.completion.sh' >> ~/.bash_profile
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

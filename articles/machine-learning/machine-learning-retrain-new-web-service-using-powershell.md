@@ -1,5 +1,5 @@
 ---
-title: "使用 Machine Learning Management PowerShell Cmdlet 重新訓練新的 Web 服務 | Microsoft Docs"
+title: "使用 PowerShell 重新訓練新的 Azure Machine Learning Web 服務 | Microsoft Docs"
 description: "了解如何使用 Machine Learning Management PowerShell Cmdlet 在 Azure Machine Learning 中以程式設計方式重新訓練模型，以及使用新訓練的模型來更新 Web 服務。"
 services: machine-learning
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/13/2016
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 066ff1d2c8255c895fbfcb0ad8c0b1fef298f8c7
-ms.openlocfilehash: d0decc1da1444254c319e7c2e1bbe4f567ef386e
+ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
+ms.openlocfilehash: d57d3802e1678c6754b0d770acc4fe6c092329a3
 
 
 ---
@@ -112,6 +112,6 @@ ms.openlocfilehash: d0decc1da1444254c319e7c2e1bbe4f567ef386e
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

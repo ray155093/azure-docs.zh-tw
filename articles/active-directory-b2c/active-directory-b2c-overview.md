@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 4b13c040a15bef2f04d2cd2126e2270d061898bd
-ms.openlocfilehash: 37c9d6808b3282d86583f6305672405775a7f306
+ms.sourcegitcommit: f37fa3a212a0dca46c76b3928cf78756722f0340
+ms.openlocfilehash: 2c6765e28f40210730823a9af0b6fb80a5ddc4d1
 
 
 ---
@@ -54,6 +54,7 @@ Azure Active Directory B2C 是適用於取用者導向 Web 與行動應用程式
 以下連結有助於深入探索服務：
 
 * 請參閱 [Azure Active Directory B2C 價格資訊](https://azure.microsoft.com/pricing/details/active-directory-b2c/)。
+* 檢閱 Azure Active Directory B2C 的[程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory&term=b2c)。 
 * 使用 [azure-active-directory](http://stackoverflow.com/questions/tagged/azure-active-directory) 或 [adal](http://stackoverflow.com/questions/tagged/adal) 標記，取得 Stack Overflow 的相關說明。
 * 透過 [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/)告訴我們您的想法 -- 我們冀望瞭解您的看法！ 請在您的文章標題中使用 "AzureADB2C:" 字詞，以方便我們尋找。
 * 檢閱 [Azure AD B2C 通訊協定參考](active-directory-b2c-reference-protocols.md)。
@@ -67,6 +68,6 @@ Azure Active Directory B2C 是適用於取用者導向 Web 與行動應用程式
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

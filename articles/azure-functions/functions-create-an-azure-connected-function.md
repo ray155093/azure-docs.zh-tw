@@ -1,6 +1,6 @@
 ---
-title: "建立繫結至 Azure 服務的 Azure 函式 | Microsoft Docs"
-description: "建置 Azure 函式 (無伺服器的應用程式)，以與其他 Azure 服務互動。"
+title: "建立連接到 Azure 服務的函式 | Microsoft Docs"
+description: "使用 Azure Functions 來建立連接至其他 Azure 服務的無伺服器應用程式。"
 services: functions
 documentationcenter: dev-center-name
 author: yochay
@@ -14,24 +14,21 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 12/06/2016
+ms.date: 01/23/2017
 ms.author: rachelap@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: f46a67f2591ef98eeda03f5c3bc556d5b8bcc096
-ms.openlocfilehash: 4e0dd8b922107b232a120c25d1f656c5d667748b
+ms.sourcegitcommit: a8f6d111a010666bf4aaaf05e061381cc8fffed0
+ms.openlocfilehash: 634781189459f26e2ffa42b25a2ffb229d3371d4
 
 
 ---
-# <a name="create-an-azure-function-connected-to-an-azure-service"></a>建立連接至 Azure 服務的 Azure 函式
+# <a name="use-azure-functions-to-create-a-function-that-connects-to-other-azure-services"></a>使用 Azure Functions 來建立連接至其他 Azure 服務的函式
 
-本主題說明如何建立 Azure 函式，以接聽 Azure 儲存體佇列上的訊息，以及將訊息複製到 Azure 儲存體資料表中的資料列。 計時器觸發函式用將訊息載入佇列中。 第二個函式會從佇列讀取並將訊息寫入資料表中。 Azure Functions 會根據繫結定義為您建立佇列和資料表。 
+本主題說明如何在 Azure Functions 中建立函式，以接聽 Azure 儲存體佇列上的訊息，以及將訊息複製到 Azure 儲存體資料表中的資料列。 計時器觸發函式用將訊息載入佇列中。 第二個函式會從佇列讀取並將訊息寫入資料表中。 Azure Functions 會根據繫結定義為您建立佇列和資料表。 
 
-更有趣的做法是以 JavaScript 撰寫一個函式，並另以 C# 指令碼撰寫另一個函式。 這可示範函式應用程式如何擁有使用不同語言的函式。
+更有趣的做法是以 JavaScript 撰寫一個函式，並另以 C# 指令碼撰寫另一個函式。 這可示範函式應用程式如何擁有使用不同語言的函式。 
 
-## <a name="watch-the-video"></a>觀賞影片
->[!VIDEO https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player]
->
->
+您可以看到 [Channel 9 影片](https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player)中示範的這個案例。
 
 ## <a name="create-a-function-that-writes-to-the-queue"></a>建立可寫入佇列的函式
 
@@ -186,9 +183,9 @@ ms.openlocfilehash: 4e0dd8b922107b232a120c25d1f656c5d667748b
 如需 Azure Functions 的詳細資訊，請參閱下列主題。
 
 * [Azure Functions 開發人員參考](functions-reference.md)  
-   可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。
+  可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。
 * [測試 Azure Functions](functions-test-a-function.md)  
-   說明可用於測試函式的各種工具和技巧。
+  說明可用於測試函式的各種工具和技巧。
 * [如何調整 Azure 函式](functions-scale.md)  
   討論 Azure Functions 可用的服務方案，包括使用情況主控方案，以及如何選擇正確的方案。 
 
@@ -197,6 +194,6 @@ ms.openlocfilehash: 4e0dd8b922107b232a120c25d1f656c5d667748b
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

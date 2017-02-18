@@ -1,5 +1,5 @@
 ---
-title: "快速入門指南：在 Azure VM 上手動安裝單一執行個體 SAP HANA | Microsoft Docs"
+title: "Azure 中 Linux VM 上的 SAP HANA | Microsoft Docs"
 description: "在 Azure VM 上手動安裝單一執行個體 SAP HANA 的快速入門指南"
 services: virtual-machines-linux
 documentationcenter: 
@@ -17,8 +17,8 @@ ms.workload: infrastructure-services
 ms.date: 09/15/2016
 ms.author: hermannd
 translationtype: Human Translation
-ms.sourcegitcommit: d8fe055ec2912b4bf8ba2c86ba63335cc6ac2600
-ms.openlocfilehash: 0683008470ade23abc5cf6c76ff945abdf303617
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: 0c7f550e9fe9c27315f8381a8b2a91ff75ba1535
 
 
 ---
@@ -400,6 +400,6 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

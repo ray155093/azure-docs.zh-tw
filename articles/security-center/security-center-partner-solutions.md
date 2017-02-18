@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/26/2016
+ms.date: 02/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a3d7254fded543fa12b6e82cd50ece8260858955
+ms.sourcegitcommit: 6b7d2da8ababba65146503ecfbe6fd6e142a359c
+ms.openlocfilehash: 2d7ab8fbed1d4edb60416c7c6b7ae08ddbdec91a
 
 
 ---
@@ -25,11 +25,12 @@ ms.openlocfilehash: a3d7254fded543fa12b6e82cd50ece8260858955
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。 這不是逐步指南。
-> 
-> 
+>
+>
 
 ## <a name="monitoring-partner-solutions"></a>監視合作夥伴解決方案
 [資訊安全中心] 刀鋒視窗上的 [合作夥伴解決方案] 圖格可讓您監視與您的 Azure 訂用帳戶整合之合作夥伴解決方案的健全狀況，一目了然。
+
 ![合作夥伴解決方案圖格][1]
 
 [合作夥伴解決方案]  圖格會顯示合作夥伴解決方案的數目以及這些解決方案的狀態摘要。
@@ -43,15 +44,19 @@ ms.openlocfilehash: a3d7254fded543fa12b6e82cd50ece8260858955
 * 未報告 (灰色) - 解決方案尚未報告任何狀態，如果解決方案才剛連接且仍在部署中，則可能未報告解決方案的狀態
 
 如果沒有任何與您的訂用帳戶整合的解決方案，此圖格會表示沒有任何解決方案。 選取 [合作夥伴解決方案] 圖格可讓您開啟 [建議] 刀鋒視窗，以部署合作夥伴安全性解決方案。
+
 ![沒有合作夥伴解決方案][2]
 
 若要檢視合作夥伴解決方案的健康狀態：
 
 1. 選取 [合作夥伴解決方案]  圖格。 隨即開啟一個刀鋒視窗，其中顯示已連接到資訊安全中心的合作夥伴解決方案清單。
-   ![][3]
+
+   ![合作夥伴解決方案][3]
 2. 選取合作夥伴解決方案。 在此範例中，選取 **F5 WAF2** 解決方案。  隨即開啟一個刀鋒視窗，其中顯示合作夥伴解決方案的狀態和解決方案相關聯的資源。 選取 [解決方案主控台]  以開啟此解決方案的合作夥伴管理體驗。
+
    ![合作夥伴解決方案詳細資料][4]
 3. 返回至 [F5-WAF2] 刀鋒視窗，然後選取 [連結應用程式]。 [連結應用程式]  刀鋒視窗隨即開啟。 您可以在這裡將資源連接到合作夥伴解決方案。
+
    ![將資源連結至第三方解決方案][5]
 
 ## <a name="see-also"></a>另請參閱
@@ -73,6 +78,6 @@ ms.openlocfilehash: a3d7254fded543fa12b6e82cd50ece8260858955
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

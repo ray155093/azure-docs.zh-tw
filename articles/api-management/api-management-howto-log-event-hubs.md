@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: 7418595e6f070f15c9ebeac759bffe692da5d143
+ms.sourcegitcommit: 2969e6063d7bc59a6c8ca733912904abeeb7e7e8
+ms.openlocfilehash: afecb15f36525c53a66f30047dffe8a3e8f36107
 
 
 ---
@@ -81,12 +81,12 @@ ms.openlocfilehash: 7418595e6f070f15c9ebeac759bffe692da5d143
 * `description` 提供記錄器的選擇性描述，如有需要，可以是零長度字串。
 * `credentials` 包含 Azure 事件中樞的 `name` 和 `connectionString`。
 
-當您提出要求時，如果記錄器已建立，會傳回狀態碼 `201 Created` 。 
+當您提出要求時，如果記錄器已建立，會傳回狀態碼 `201 Created` 。
 
 > [!NOTE]
 > 如需其他可能的傳回碼和其原因，請參閱 [建立記錄器](https://msdn.microsoft.com/library/azure/mt592020.aspx#PUT)。 若要查看如何執行其他作業，例如列出、更新和刪除，請參閱 [記錄器](https://msdn.microsoft.com/library/azure/mt592020.aspx) 實體文件。
-> 
-> 
+>
+>
 
 ## <a name="configure-log-to-eventhubs-policies"></a>設定 log-to-eventhubs 原則
 您在 API 管理中設定好記錄器後，便可設定 log-to-eventhubs 原則來記錄所需的事件。 log-to-eventhubs 原則可用於輸入原則區段或輸出原則區段。
@@ -117,8 +117,8 @@ ms.openlocfilehash: 7418595e6f070f15c9ebeac759bffe692da5d143
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 Azure 事件中樞
-  * [開始使用 Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
-  * [使用 EventProcessorHost 接收訊息](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost)
+  * [開始使用 Azure 事件中樞](../event-hubs/event-hubs-c-getstarted-send.md)
+  * [使用 EventProcessorHost 接收訊息](../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md)
   * [事件中樞程式設計指南](../event-hubs/event-hubs-programming-guide.md)
 * 深入了解 API 管理和事件中樞的整合
   * [記錄器實體參考](https://msdn.microsoft.com/library/azure/mt592020.aspx)
@@ -127,8 +127,8 @@ ms.openlocfilehash: 7418595e6f070f15c9ebeac759bffe692da5d143
 
 ## <a name="watch-a-video-walkthrough"></a>觀看影片逐步解說
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Integrate-Azure-API-Management-with-Event-Hubs/player]
-> 
-> 
+>
+>
 
 [publisher-portal]: ./media/api-management-howto-log-event-hubs/publisher-portal.png
 [create-event-hub]: ./media/api-management-howto-log-event-hubs/create-event-hub.png
@@ -141,12 +141,6 @@ ms.openlocfilehash: 7418595e6f070f15c9ebeac759bffe692da5d143
 
 
 
-
-
-
-
-
-
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

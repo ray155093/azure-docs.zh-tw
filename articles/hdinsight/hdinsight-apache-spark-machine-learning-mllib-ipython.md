@@ -13,15 +13,15 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 02/07/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 91897cb8ee5bc69bacc354a62bebafd8beb47c0c
+ms.sourcegitcommit: 59f072c7a8272fc04e1d662c0ab17e7ee4500fa6
+ms.openlocfilehash: d39f9b4f55f93745afea48a4b581d76e57a824c3
 
 
 ---
-# <a name="machine-learning-predictive-analysis-on-food-inspection-data-using-mllib-with-apache-spark-cluster-on-hdinsight"></a>機器學習服務：使用 HDInsight 上 Apache Spark 叢集的 MLLib 對食品檢查資料進行預測分析 
+# <a name="machine-learning-predictive-analysis-on-food-inspection-data-using-mllib-with-apache-spark-cluster-on-hdinsight"></a>機器學習服務：使用 HDInsight 上 Apache Spark 叢集的 MLLib 對食品檢查資料進行預測分析
 
 > [!TIP]
 > 本教學課程也適用於您在 HDInsight 中所建立 Spark (Linux) 叢集上的 Jupyter Notebook。 Notebook 的體驗能讓您從 Notebook 本身執行 Python 程式碼片段。 若要從 Notebook 中執行本教學課程，請建立 Spark 叢集、啟動 Jupyter Notebook (`https://CLUSTERNAME.azurehdinsight.net/jupyter`)，然後執行 **Python** 資料夾下的 Notebook **Spark 機器學習服務 - 使用 MLLib.ipynb 對食品檢查資料進行預測分析**。
@@ -181,7 +181,7 @@ ms.openlocfilehash: 91897cb8ee5bc69bacc354a62bebafd8beb47c0c
 
     ![SQL 查詢輸出](./media/hdinsight-apache-spark-machine-learning-mllib-ipython/query.output.png "SQL 查詢輸出")
 
-    如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-pyspark-or-spark-kernels)。
+    如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
 1. 您也可以使用 Matplotlib (用於建構資料視覺效果的程式庫) 建立繪圖。 因為必須從保存在本機上的 **countResultsdf** 資料框架建立繪圖，所以程式碼片段的開頭必須為 `%%local` magic。 這可確保程式碼是在 Jupyter 伺服器的本機上執行。
 
         %%local
@@ -362,6 +362,6 @@ MLLib 可提供簡單的方法來執行此作業。 首先，我們將「語彙�
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

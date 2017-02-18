@@ -1,5 +1,5 @@
 ---
-title: "使用 Resource Manager 中的 PowerShell 建立內部負載平衡器 | Microsoft Docs"
+title: "建立 Azure 內部負載平衡器 - PowerShell | Microsoft Docs"
 description: "了解如何使用資源管理員中的 PowerShell 建立內部負載平衡器"
 services: load-balancer
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/24/2016
+ms.date: 01/23/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 8827793d771a2982a3dccb5d5d1674af0cd472ce
-ms.openlocfilehash: 07ea7f3529d5d2e6fde07805663da7c0f3e65d86
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: 7bd31ab8f52ec5e81f6966000554be46eaa59396
 
 ---
 
@@ -334,6 +334,6 @@ Remove-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

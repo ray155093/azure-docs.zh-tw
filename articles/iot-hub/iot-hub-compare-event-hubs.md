@@ -1,6 +1,6 @@
 ---
 title: "比較 Azure IoT 中樞與 Azure 事件中樞 | Microsoft Docs"
-description: "透過反白顯示功能差異和使用案例來比較 Azure IoT 中樞和 Azure 事件中樞服務。"
+description: "IoT 中樞和事件中樞 Azure 服務的比較，重點在於功能差異和使用案例。 比較的項目包括支援的通訊協定、裝置管理、監視及檔案上傳。"
 services: iot-hub
 documentationcenter: 
 author: fsautomata
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 01/31/2017
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: ce514e19370d2b42fb16b4e96b66f212d5fa999c
-ms.openlocfilehash: 9c7e33ceebb28f6a263d2c92e0c0208434e64ffc
+ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
+ms.openlocfilehash: 2075c7a1b8f3393e100ab92ae7d497c56965f887
 
 
 ---
@@ -35,6 +35,7 @@ IoT 中樞的主要使用案例之一是從裝置收集遙測。 因此，經常
 | 調整 |已最佳化以支援數百萬同時連接的裝置。 |可支援更多同時連接的限制數目：每個 [Azure 服務匯流排配額][Azure Service Bus quotas]高達 5,000 個 AMQP 連接。 另一方面，事件中樞可讓您指定每個傳送訊息的分割。 |
 | 裝置 SDK |除了直接 MQTT、AMQP 和 HTTP API 以外，提供[裝置 SDK][Azure IoT SDKs] 給各種平台和語言。 |除了 AMQP 和 HTTP 傳送介面以外，在 .NET、Java 和 C 上都提供支援。 |
 | 檔案上傳 |可讓 IoT 解決方案將檔案從裝置上傳到雲端。 包含一個用於整合工作流程的檔案通知端點，以及一個用於支援偵錯的作業監視類別。 | 不支援。 |
+| 將訊息路由至多個端點 | 最多支援 10 個自訂端點。 規則會決定訊息路由至自訂端點的方式。 如需詳細資訊，請參閱[使用 IoT 中樞傳送及接收訊息][lnk-devguide-messaging]。 | 需要撰寫及裝載額外的程式碼才能發送訊息。 |
 
 總而言之，即使唯一的使用案例是裝置到雲端遙測輸入，IoT 中樞仍會提供為 IoT 裝置連線所設計的服務。 它會持續擴充具備 IoT 功能之案例的價值主張。 事件中樞的設計對象是資料中心之間及資料中心內部案例的大規模事件輸入。
 
@@ -45,7 +46,7 @@ IoT 中樞的主要使用案例之一是從裝置收集遙測。 因此，經常
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [開發人員指南][lnk-devguide]
+* [IoT 中樞開發人員指南][lnk-devguide]
 * [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
 
 [lnk-twins]: iot-hub-devguide-device-twins.md
@@ -55,17 +56,18 @@ IoT 中樞的主要使用案例之一是從裝置收集遙測。 因此，經常
 [Azure Event Hubs]: ../event-hubs/event-hubs-what-is-event-hubs.md
 [IoT 中樞開發人員指南的安全性章節]: iot-hub-devguide-security.md
 [Event Hubs - security]: ../event-hubs/event-hubs-authentication-and-security-model-overview.md
-[Event Hubs publisher policies]: ../event-hubs/event-hubs-overview.md#common-publisher-tasks
+[Event Hubs publisher policies]: ../event-hubs/event-hubs-what-is-event-hubs.md#event-publishers
 [Azure Service Bus quotas]: ../service-bus-messaging/service-bus-quotas.md
-[Azure IoT SDKs]: https://github.com/Azure/azure-iot-sdks/blob/master/readme.md
+[Azure IoT SDKs]: https://github.com/Azure/azure-iot-sdks
 [lnk-azure-protocol-gateway]: iot-hub-protocol-gateway.md
 
 [lnk-scaling]: iot-hub-scaling.md
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-devguide-messaging]: iot-hub-devguide-messaging.md
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO5-->
 
 

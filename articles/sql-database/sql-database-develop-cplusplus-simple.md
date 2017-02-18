@@ -13,11 +13,11 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: cpp
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/03/2017
 ms.author: tobiast
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: df275d6ee1aed7e44eb26f999a068b6b56ca918f
+ms.sourcegitcommit: 1f1c6c89c492d18e0678fa4650b6c5744dc9f7d1
+ms.openlocfilehash: 697a99ec828984d4e6f6e3dc446bc6dc8377cf57
 
 
 ---
@@ -129,7 +129,7 @@ Azure 目前有兩個裝載 SQL Server 工作負載的選項︰Azure SQL Databas
 
 ## <a name="next-steps"></a>後續步驟
 * 檢閱 [SQL Database 開發概觀](sql-database-develop-overview.md)
-* 更多 [ODBC API 參考](https://msdn.microsoft.com/library/ms714562\(v=vs.85\).aspx)的相關資訊
+* 更多 [ODBC API 參考](https://docs.microsoft.com/sql/odbc/reference/syntax/odbc-api-reference/)的相關資訊
 
 ## <a name="additional-resources"></a>其他資源
 * [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
@@ -138,6 +138,6 @@ Azure 目前有兩個裝載 SQL Server 工作負載的選項︰Azure SQL Databas
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 07/07/2016
 ms.author: huvalo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 759441c5d64ee59f13d50eb415fbaa884dd4821a
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 1c29cfc0a5b6361a7f526c37d5421ee4be3fe2c1
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: 759441c5d64ee59f13d50eb415fbaa884dd4821a
 > [!NOTE]
 > 本教學課程中所包含的資訊也可在下列影片中取得︰
 > 
-> [PTVS 2.1：Django 應用程式與 MySQL][影片]
+> [PTVS 2.1：Django 應用程式與 MySQL][video]
 > 
 > 
 
@@ -47,7 +47,7 @@ ms.openlocfilehash: 759441c5d64ee59f13d50eb415fbaa884dd4821a
 <!-- This note should not render as part of the the previous include. -->
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡，無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡，無需承諾。
 > 
 > 
 
@@ -175,10 +175,10 @@ Azure .NET SDK 提供簡單的方法將 Web 應用程式部署至 Azure App Serv
 [雲端服務專案]: http://go.microsoft.com/fwlink/?LinkId=624028
 [Django 說明文件]: https://www.djangoproject.com/
 [MySQL]: http://www.mysql.com/
-[影片]: http://youtu.be/oKCApIrS0Lo
+[video]: http://youtu.be/oKCApIrS0Lo
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

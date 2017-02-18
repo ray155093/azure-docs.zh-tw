@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 4edd2696c9a5709ded6e2a3e352090775335f0d2
-ms.openlocfilehash: 710663e122bdebff575c762a501a0d261056e1bc
+ms.sourcegitcommit: 80e2ac4235492d727e2034f37f9a85eb2873625c
+ms.openlocfilehash: f479ae38e446c3404592901c416990ab6e39126b
 
 
 ---
@@ -81,7 +81,7 @@ GUID 是該訂用帳戶的 ID (而非應用程式的檢測金鑰)。
      -Location "East US" -RuleType Metric
 
 ## <a name="example-2"></a>範例 2
-我已有應用程式，並在其中使用 [TrackMetric()](app-insights-api-custom-events-metrics.md#track-metric) 來報告名為 "salesPerHour" 的度量。 若 salesPerHour 超過 24 小時皆低於平均值 100，則傳送電子郵件給我的同事。
+我已有應用程式，並在其中使用 [TrackMetric()](app-insights-api-custom-events-metrics.md#trackmetric) 來報告名為 "salesPerHour" 的度量。 若 salesPerHour 超過 24 小時皆低於平均值 100，則傳送電子郵件給我的同事。
 
     Add-AlertRule -Name "poor sales" `
      -Description "slow sales alert" `
@@ -108,19 +108,19 @@ GUID 是該訂用帳戶的 ID (而非應用程式的檢測金鑰)。
 | `clientPerformance.total.value` |瀏覽器頁面載入時間 |從使用者要求直至載入 DOM、樣式表、指令碼和影像的經過時間。 |
 | `performanceCounter.available_bytes.value` |可用的記憶體 |針對處理程序或系統用途的立即可用實體記憶體。 |
 | `performanceCounter.io_data_bytes_per_sec.value` |處理程序 IO 速率 |每秒讀取與寫入檔案、 網路和裝置的總位元組數。 |
-| `performanceCounter.number_of_exceps_thrown_per_sec` |例外狀況比率 |每秒擲回的例外狀況。 |
+| `performanceCounter.number_of_exceps_thrown_per_sec.value` |例外狀況比率 |每秒擲回的例外狀況。 |
 | `performanceCounter.percentage_processor_time.value` |處理程序 CPU |處理器針對應用程式處理程序執行指示，所用之全部處理程序執行緒的經過時間百分比。 |
 | `performanceCounter.percentage_processor_total.value` |處理器時間 |處理器針對非閒置執行緒所耗費時間的百分比。 |
 | `performanceCounter.process_private_bytes.value` |處理程序私人位元組 |以獨佔方式指派至監視應用程式處理程序的記憶體。 |
 | `performanceCounter.request_execution_time.value` |ASP.NET 要求執行時間 |最近要求的執行時間。 |
 | `performanceCounter.requests_in_application_queue.value` |執行佇列中的 ASP.NET 要求 |應用程式要求佇列的長度。 |
-| `performanceCounter.requests_per_sec` |ASP.NET 要求率 |每秒從 ASP.NET 發出所有應用程式要求的速率。 |
+| `performanceCounter.requests_per_sec.value` |ASP.NET 要求率 |每秒從 ASP.NET 發出所有應用程式要求的速率。 |
 | `remoteDependencyFailed.durationMetric.count` |相依性失敗 |伺服器應用程式針對外部資源的呼叫失敗計數。 |
 | `request.duration` |伺服器回應時間 |從接收 HTTP 要求直至完成傳送回應的經過時間。 |
 | `request.rate` |要求率 |每秒發出所有應用程式要求的速率。 |
 | `requestFailed.count` |失敗的要求 |產生回應碼的 HTTP 要求計數 >= 400 |
 | `view.count` |頁面檢視 |網頁的用戶端使用者要求計數。 系統會篩選掉綜合流量。 |
-| {您的自訂度量名稱} |{您的度量名稱} |由 [TrackMetric](app-insights-api-custom-events-metrics.md#track-metric) 或[追蹤呼叫之測量參數](app-insights-api-custom-events-metrics.md#properties)所報告的度量值。 |
+| {您的自訂度量名稱} |{您的度量名稱} |由 [TrackMetric](app-insights-api-custom-events-metrics.md#trackmetric) 或[追蹤呼叫之測量參數](app-insights-api-custom-events-metrics.md#properties)所報告的度量值。 |
 
 此度量由不同遙測模組所傳送：
 
@@ -142,6 +142,6 @@ GUID 是該訂用帳戶的 ID (而非應用程式的檢測金鑰)。
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

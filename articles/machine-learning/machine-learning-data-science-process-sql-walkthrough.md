@@ -1,5 +1,5 @@
 ---
-title: "Team Data Science Process 實務：使用 SQL Server | Microsoft Docs"
+title: "使用 Azure VM 上的 SQL Server 建置與部署機器學習模型 | Microsoft Docs"
 description: "進階分析程序和技術實務"
 services: machine-learning
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 01/29/2017
 ms.author: fashah;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
-ms.openlocfilehash: 76fe2f70ca297be153d1223a219c9a2b18203a96
+ms.sourcegitcommit: e899487e9445955cea3a9387c73ea7c5dca37ddc
+ms.openlocfilehash: a5e0a76a29a82d5364ee1adb5c912e76064dd1f9
 
 
 ---
@@ -70,7 +70,7 @@ ms.openlocfilehash: 76fe2f70ca297be153d1223a219c9a2b18203a96
 
 1. [建立儲存體帳戶](../storage/storage-create-storage-account.md)
 2. [建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)
-3. [佈建資料科學虛擬機器](machine-learning-data-science-setup-sql-server-virtual-machine.md)，這將做為 SQL Server 和 IPython Notebook 伺服器使用。
+3. [佈建資料科學虛擬機器](machine-learning-data-science-setup-sql-server-virtual-machine.md)，這樣會提供 SQL Server 和 IPython Notebook 伺服器。
    
    > [!NOTE]
    > 指令碼範例和 IPython Notebook 將在安裝過程中下載到您的資料科學虛擬機器上。 當 VM 後續安裝指令碼完成之後，範例將位於您的 VM 文件庫上。  
@@ -572,7 +572,7 @@ ms.openlocfilehash: 76fe2f70ca297be153d1223a219c9a2b18203a96
 9. 評估模型來計算適用於學習問題的相關度量。
 10. 微調模型，並選取要部署的最佳模型。
 
-在這個練習中，我們已經探索了 SQL Server 中的資料並進行工程 (步驟 1-4)，並且決定了要在 Azure Machine Learning 中內嵌的取樣大小。 建置一或多個我們所決定的預測模型：
+在這個練習中，我們已經探索了 SQL Server 中的資料並進行工程 (步驟&1;-4)，並且決定了要在 Azure Machine Learning 中內嵌的取樣大小。 建置一或多個我們所決定的預測模型：
 
 1. 使用[匯入資料][import-data]模組 (可從**資料輸入和輸出**一節取得)，將資料匯入 Azure Machine Learning。 如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
    
@@ -656,6 +656,6 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。 �
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

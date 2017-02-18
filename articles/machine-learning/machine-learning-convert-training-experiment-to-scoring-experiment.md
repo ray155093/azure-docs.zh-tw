@@ -1,5 +1,5 @@
 ---
-title: "將機器學習服務訓練實驗轉換成預測實驗 | Microsoft Docs"
+title: "轉換成 Azure Machine Learning 中的預測性實驗 | Microsoft Docs"
 description: "如何將用於預測性分析模型的機器學習服務訓練實驗轉換成可以當做 Web 服務部署的預測實驗。"
 services: machine-learning
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/12/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 9e738c4e5f43ae6c939f7c6da90c258498943e73
-ms.openlocfilehash: 7fbdaa7238d1c3c5d858e76c38f4691cfa0769a5
+ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
+ms.openlocfilehash: 1ed2ee17e6b4d0256707bc63ac450b33ad9ef162
 
 
 ---
@@ -131,6 +131,6 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

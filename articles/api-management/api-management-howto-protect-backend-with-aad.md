@@ -1,5 +1,5 @@
 ---
-title: "如何使用 Azure Active Directory 與 API 管理保護 Web API 後端"
+title: "使用 Azure Active Directory 與 API 管理保護 Web API 後端 | Microsoft Docs"
 description: "了解如何使用 Azure Active Directory 與 API 管理保護 Web API 後端。"
 services: api-management
 documentationcenter: 
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: a7ff82a47b4e972db96929acb47fcce760b244b3
-ms.openlocfilehash: 727fdb9a53fe1dec189018e12f42ba7515e6fb54
-
+ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
+ms.openlocfilehash: af21253dadd5cd2f64149aa2738e459da9f8325a
 
 ---
 # <a name="how-to-protect-a-web-api-backend-with-azure-active-directory-and-api-management"></a>如何使用 Azure Active Directory 與 API 管理保護 Web API 後端
@@ -566,6 +565,6 @@ API 經由 API 發佈者入口網站進行設定，您可以透過 Azure 入口�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

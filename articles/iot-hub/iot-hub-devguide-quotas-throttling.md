@@ -12,15 +12,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
-ms.openlocfilehash: 3806e474627dfe16dbc390dfa5c5ddf82853ec37
+ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
+ms.openlocfilehash: ebfafd5ee9049b5049070ad111c95746b89e755f
 
 
 ---
-# <a name="reference---quotas-and-throttling"></a>參考 - 配額和節流
+# <a name="reference---iot-hub-quotas-and-throttling"></a>參考 - IoT 中樞配額和節流
+
 ## <a name="quotas-and-throttling"></a>配額和節流
 每個 Azure 訂用帳戶最多可以有 10 個 IoT 中樞，以及最多 1 個可用中樞。
 
@@ -49,7 +50,7 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 
 鄭重說明，「裝置連線」  節流是控制 IoT 中樞建立新裝置連線的速率，而不是同時可連線的裝置數目上限。 節流受制於為 IoT 中樞佈建的單位數。
 
-例如，若您購買單一 S1 單位，則得到每秒 100 個連線的節流。 這表示，要連線到 100,000 個裝置，至少需要 1000 秒 (約 16 分鐘)。 不過，若您已將裝置登錄在您的身分識別登錄中，則可以有任意數量的同時連線裝置。
+例如，若您購買單一 S1 單位，則得到每秒 100 個連線的節流。 因此，要連線到 100,000 個裝置，至少需要 1000 秒 (約 16 分鐘)。 不過，若您已將裝置登錄在您的身分識別登錄中，則可以有任意數量的同時連線裝置。
 
 如需有關 IoT 中樞節流行為的深入討論，請參閱 [IoT Hub throttling and you (IoT 中樞節流和您)][lnk-throttle-blog] 部落格文章。
 
@@ -69,6 +70,8 @@ IoT 中樞會對其不同功能強制實施其他限制。
 | --------- | ----- |
 | 檔案上傳 URI | 10000 個 SAS URI 可以讓儲存體帳戶一次用盡。 <br/> 10 個 SAS URI/裝置可以一次用盡。 |
 | 作業 | 作業歷程記錄最多保留 30 天 <br/> 並行作業數上限為 1 個 (若為免費和 S1)、5 個 (若為 S2)、10 個 (若為 S3)。 |
+| 額外端點 | 付費 SKU 中樞包含 10 個額外端點。 免費 SKU 中樞包含&1; 個額外端點。 |
+| 訊息路由規則 | 付費 SKU 中樞包含 100 個路由規則。 免費 SKU 中樞包含&5; 個路由規則。 |
 
 ## <a name="next-steps"></a>後續步驟
 此 IoT 中樞開發人員指南中的其他參考主題包括︰
@@ -87,6 +90,6 @@ IoT 中樞會對其不同功能強制實施其他限制。
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO5-->
 
 

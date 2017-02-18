@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/04/2016
+ms.date: 02/02/2017
 ms.author: clemensv;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: d9386e08adc4646c7bfcf8bfcb4407ddb5681334
+ms.sourcegitcommit: c39abad6c5e2a9e2ae7add9ecda48783f61bc736
+ms.openlocfilehash: 8d0f3818831a22550fb0eea9bcbc1f62b133003a
 
 
 ---
@@ -33,10 +33,10 @@ ms.openlocfilehash: d9386e08adc4646c7bfcf8bfcb4407ddb5681334
 ## <a name="operations-within-a-transaction-scope"></a>交易範圍內的作業
 可在交易範圍內執行的作業如下︰
 
-* **[QueueClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx)、[MessageSender](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesender.aspx)、[TopicClient](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicclient.aspx)**：Send、SendAsync、SendBatch、SendBatchAsync 
-* **[BrokeredMessage](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx)**：Complete、CompleteAsync、Abandon、AbandonAsync、Deadletter、DeadletterAsync、Defer、DeferAsync、RenewLock、RenewLockAsync 
+* **[QueueClient](/dotnet/api/microsoft.servicebus.messaging.queueclient)、[MessageSender](/dotnet/api/microsoft.servicebus.messaging.messagesender)、[TopicClient](/dotnet/api/microsoft.servicebus.messaging.topicclient)**：Send、SendAsync、SendBatch、SendBatchAsync 
+* **[BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)**：Complete、CompleteAsync、Abandon、AbandonAsync、Deadletter、DeadletterAsync、Defer、DeferAsync、RenewLock、RenewLockAsync 
 
-不包括接收作業，因為假設應用程式使用 [ReceiveMode.PeekLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx) 模式、在一些接收迴圈內或使用 [OnMessage](https://msdn.microsoft.com/library/azure/dn369601.aspx) 回呼來取得訊息，然後只會開啟交易範圍來處理訊息。
+不包括接收作業，因為假設應用程式使用 [ReceiveMode.PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode) 模式、在一些接收迴圈內或使用 [OnMessage](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_OnMessage_System_Action_Microsoft_ServiceBus_Messaging_BrokeredMessage__Microsoft_ServiceBus_Messaging_OnMessageOptions_) 回呼來取得訊息，然後只會開啟交易範圍來處理訊息。
 
 訊息的處置 (完成、放棄、寄不出的信件、延遲) 接著發生於整體交易結果的範圍內，並與整體交易結果相依。
 
@@ -48,14 +48,14 @@ ms.openlocfilehash: d9386e08adc4646c7bfcf8bfcb4407ddb5681334
 ### <a name="see-it-in-code"></a>透過程式碼查看
 若要設定這類傳輸，您可以建立將目標設為透過傳輸佇列之目的地佇列的訊息寄件者。 您也要有從相同佇列提取訊息的收件者。 例如：
 
-```
+```csharp
 var sender = this.messagingFactory.CreateMessageSender(destinationQueue, myQueueName);
 var receiver = this.messagingFactory.CreateMessageReceiver(myQueueName);
 ```
 
 簡單交易接著會使用這些元素，如下列範例所示︰
 
-```
+```csharp
 var msg = receiver.Receive();
 
 using (scope = new TransactionScope())
@@ -72,6 +72,7 @@ using (scope = new TransactionScope())
 ```
 
 ## <a name="next-steps"></a>後續步驟
+
 如需服務匯流排佇列的詳細資訊，請參閱下列文章。
 
 * [使用自動轉寄鏈結服務匯流排實體](service-bus-auto-forwarding.md)
@@ -83,6 +84,6 @@ using (scope = new TransactionScope())
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

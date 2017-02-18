@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/27/2016
+ms.date: 01/17/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: d2d3f414d0e9fcc392d21327ef630f96c832c99c
-ms.openlocfilehash: 19d1cc75d61a3897c916180afa395bade43d47ec
+ms.sourcegitcommit: 4b29fd1c188c76a7c65c4dcff02dc9efdf3ebaee
+ms.openlocfilehash: 733c151012e3d896f720fbc64120432aca594bda
 
 
 ---
@@ -37,6 +37,9 @@ ms.openlocfilehash: 19d1cc75d61a3897c916180afa395bade43d47ec
 
 > [!NOTE]
 > 這篇文章並未涵蓋所有的 Data Factory .NET API。 請參閱 [Data Factory .NET API 參考](https://msdn.microsoft.com/library/mt415893.aspx) ，以取得有關 Data Factory .NET SDK 的詳細資料。
+> 
+> 本教學課程中的資料管線會將資料從來源資料存放區複製到目的地資料存放區。 它不會轉換輸入資料來產生輸出資料。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
+
 
 ## <a name="prerequisites"></a>必要條件
 * 請檢閱 [教學課程概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得本教學課程的概觀並完成 **必要** 步驟。
@@ -50,41 +53,58 @@ ms.openlocfilehash: 19d1cc75d61a3897c916180afa395bade43d47ec
 1. 啟動 **PowerShell**。
 2. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
 
-        Login-AzureRmAccount
+    ```PowerShell
+    Login-AzureRmAccount
+    ```
 3. 執行下列命令以檢視此帳戶的所有訂用帳戶。
 
-        Get-AzureRmSubscription
+    ```PowerShell
+    Get-AzureRmSubscription
+    ```
 4. 執行下列命令以選取您要使用的訂用帳戶。 以您的 Azure 訂用帳戶名稱取代 **&lt;NameOfAzureSubscription**&gt;。
 
-        Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
+    ```PowerShell
+    Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
+    ```
 
    > [!IMPORTANT]
    > 請記下此命令輸出中的 **SubscriptionId** 和 **TenantId**。
 
 5. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
 
-        New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
+    ```PowerShell
+    New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
+    ```
 
     如果資源群組已存在，您可指定是否要更新 (Y) 或予以保留 (N)。
 
     如果使用不同的資源群組，您必須以資源群組的名稱取代本教學課程中的 ADFTutorialResourceGroup。
 6. 建立 Azure Active Directory 應用程式。
 
-        $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFCopyTutotiralApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfcopytutorialapp.org/example" -Password "Pass@word1"
+    ```PowerShell
+    $azureAdApplication = New-AzureRmADApplication -DisplayName "ADFCopyTutotiralApp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.adfcopytutorialapp.org/example" -Password "Pass@word1"
+    ```
 
     如果您收到下列錯誤，請指定不同的 URL 並再次執行此命令。
-
-        Another object with the same value for property identifierUris already exists.
+    
+    ```PowerShell
+    Another object with the same value for property identifierUris already exists.
+    ```
 7. 建立 AD 服務主體。
 
-        New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
+    ```PowerShell
+    New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
+    ```
 8. 對 **Data Factory 參與者** 角色新增服務主體。
 
-        New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
+    ```PowerShell
+    New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
+    ```
 9. 取得應用程式識別碼。
 
-        $azureAdApplication
-
+    ```PowerShell
+    $azureAdApplication 
+    ```
     Note down the application ID (**applicationID** from the output).
 
 您應會從這些步驟取得下列四個值︰
@@ -474,7 +494,10 @@ ms.openlocfilehash: 19d1cc75d61a3897c916180afa395bade43d47ec
 16. 建置主控台應用程式。 按一下功能表上的 [建置]，再按一下 [建置方案]。
 17. 確認您 Azure Blob 儲存體之 **adftutorial** 容器中至少有一個檔案。 如果沒有，請在「記事本」中以下列內容建立 **Emp.txt** 檔案，然後將它上傳至 adftutorial 容器。
 
-       John, Doe    Jane, Doe
+    ```
+    John, Doe
+    Jane, Doe
+    ```
 18. 按一下功能表上的 [偵錯] -> [開始偵錯]，執行範例。 當您看到 [取得資料配量的執行詳細資料]，請等待數分鐘再按 **ENTER**。
 19. 使用 Azure 入口網站確認 Data Factory： **APITutorialFactory** 是使用下列成品所建立：
    * 連結服務：**LinkedService_AzureStorage**
@@ -483,12 +506,18 @@ ms.openlocfilehash: 19d1cc75d61a3897c916180afa395bade43d47ec
 20. 確認在指定 Azure SQL Database 的 "**emp**" 資料表中建立兩筆員工記錄。
 
 ## <a name="next-steps"></a>後續步驟
-* 詳閱 [資料移動活動](data-factory-data-movement-activities.md) 一文，其提供您在本教學課程中使用的複製活動詳細資訊。
-* 請參閱 [Data Factory .NET API 參考](https://msdn.microsoft.com/library/mt415893.aspx) ，以取得有關 Data Factory .NET SDK 的詳細資料。 這篇文章並未涵蓋所有的 Data Factory .NET API。
+| 主題 | 說明 |
+|:--- |:--- |
+| [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動。 |
+| [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
+| [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
+[Data Factory .NET API 參考](/dotnet/api/) | 提供有關 Data Factory .NET SDK 的詳細資料 (在樹狀檢視中尋找 Microsoft.Azure.Management.DataFactories.Models)。 
 
 
 
 
-<!--HONumber=Dec16_HO2-->
+
+
+<!--HONumber=Feb17_HO1-->
 
 

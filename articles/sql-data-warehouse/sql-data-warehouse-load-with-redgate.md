@@ -1,5 +1,5 @@
 ---
-title: "使用 Redgate 的資料平台 Studio 將資料載入 SQL 資料倉儲 | Microsoft Docs"
+title: "使用 Redgate 將資料載入至 Azure 資料倉儲 | Microsoft Docs"
 description: "了解如何針對資料倉儲案例使用 Redgate 的資料平台 Studio。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: mausher;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: dd77457bfa7ebfc701750e090778f2976d82b141
+ms.sourcegitcommit: 2548f779767635865daf790d301d86feff573a29
+ms.openlocfilehash: cb0b5489ccfabb0e2a4ee412162a18930073b309
 
 
 ---
@@ -154,6 +154,6 @@ DPS 會顯示視覺效果，顯示從內部部署 SQL Server 擷取和上傳資�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: b2dc4feb5cee28c051010f7d86c99f49c56da219
-ms.openlocfilehash: 7b5ed6a9e16de5a5978a40331a41708dc5615aa2
+ms.sourcegitcommit: fbf77e9848ce371fd8d02b83275eb553d950b0ff
+ms.openlocfilehash: c9f2e3beafd19e0d4d62e409a80da336be17b90b
 
 
 ---
@@ -28,10 +28,14 @@ ms.openlocfilehash: 7b5ed6a9e16de5a5978a40331a41708dc5615aa2
 > * [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 > * [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
 > * [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
->
->
 
-在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/) 來建立您的第一個 Azure Data Factory。
+
+在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/) 來建立您的第一個 Azure Data Factory。 若要使用其他工具/SDK 進行本教學課程，請選取下拉式清單的其中一個選項。 
+
+> [!NOTE]
+> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 它不會將資料從來源資料存放區複製到目的地資料存放區。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+> 
+> 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[在 Data Factory 中排程和執行](data-factory-scheduling-and-execution.md)。 
 
 ## <a name="prerequisites"></a>必要條件
 1. 詳讀 [教學課程概觀](data-factory-build-your-first-pipeline.md) 一文並完成 **必要** 步驟。
@@ -382,14 +386,13 @@ ms.openlocfilehash: 7b5ed6a9e16de5a5978a40331a41708dc5615aa2
 ## <a name="see-also"></a>另請參閱
 | 主題 | 說明 |
 |:--- |:--- |
-| [資料轉換活動](data-factory-data-transformation-activities.md) |本文提供 Azure Data Factory 所支援的資料轉換活動清單 (例如您在本教學課程中使用的 HDInsight Hive 轉換)。 |
-| [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
 | [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
+| [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

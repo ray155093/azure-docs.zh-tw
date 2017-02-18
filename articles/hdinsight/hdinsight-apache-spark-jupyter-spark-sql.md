@@ -1,5 +1,5 @@
 ---
-title: "在 Azure HDInsight 中建立 Spark 叢集，並使用 Spark SQL 從 Jupyter 執行互動式分析 | Microsoft Docs"
+title: "在 Azure HDInsight 中開始使用 Apache Spark 叢集 | Microsoft Docs"
 description: "關於如何在 HDInsight 中快速建立 Apache Spark 叢集，然後使用 Spark SQL 從 Jupyter Notebook 執行互動式查詢的逐步指示。"
 services: hdinsight
 documentationcenter: 
@@ -13,15 +13,16 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/06/2017
+ms.date: 02/01/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 791b6a5a07bb87302cb382290a355c9a14c63ff0
-ms.openlocfilehash: cc1d484d40dce0b1c64f2e8cdebb9377a38705cb
+ms.sourcegitcommit: a3bdeb6fea306babc9358134c37044843b9bdd1c
+ms.openlocfilehash: d8d9c5111a19bb165c25d2796d6b6e933d75042a
 
 
 ---
 # <a name="get-started-create-apache-spark-cluster-in-azure-hdinsight-and-run-interactive-queries-using-spark-sql"></a>開始使用：在 Azure HDInsight 中建立 Apache Spark 叢集並使用 Spark SQL 執行互動式查詢
+
 了解在 HDInsight 中建立 [Apache Spark](hdinsight-apache-spark-overview.md) 叢集，然後使用 [Jupyter](https://jupyter.org) Notebook 對 Spark 叢集執行 Spark SQL 互動式查詢。
 
    ![開始使用 HDInsight 中的 Apache Spark](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.getstartedflow.png "開始使用 HDInsight 中的 Apache Spark 教學課程。說明的步驟：建立儲存體帳戶、建立叢集、執行 Spark SQL 陳述式")
@@ -30,7 +31,8 @@ ms.openlocfilehash: cc1d484d40dce0b1c64f2e8cdebb9377a38705cb
 
 ## <a name="prerequisites"></a>必要條件
 * **Azure 訂用帳戶**。 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。 請參閱[立即建立免費的 Azure 帳戶](https://azure.microsoft.com/free)。
-* **安全殼層 (SSH) 用戶端**：Linux、Unix 和 OS X 系統透過 `ssh` 命令提供 SSH 用戶端。 若為 Windows 系統，請參閱[從具有 PuTTY 的 Windows 在 HDInsight 上搭配以 Linux 為基礎的 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)；若為 Linux、Unix 或 OS X，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配以 Linux 為基礎的 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
+
+* **安全殼層 (SSH) 用戶端**：Linux、Unix 和 OS X 系統透過 `ssh` 命令提供 SSH 用戶端。 若為 Windows 系統，請參閱[從具有 PuTTY 的 Windows 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)；若為 Linux、Unix 或 OS X，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
 
 > [!NOTE]
 > 本文使用 Azure Resource Manager 範本來建立使用 [Azure 儲存體 Blob 做為叢集儲存體](hdinsight-hadoop-use-blob-storage.md)的 Spark 叢集。 除了使用 Azure 儲存體 Blob 做為預設儲存體外，您也可以建立使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 做為額外儲存體的 Spark 叢集。 如需指示，請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
@@ -68,19 +70,19 @@ ms.openlocfilehash: cc1d484d40dce0b1c64f2e8cdebb9377a38705cb
 * **PySpark** (適用於以 Python 撰寫的應用程式)
 * **Spark** (適用於以 Scala 撰寫的應用程式)
 
-在本文中，您將使用 PySpark 核心。 在 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-pyspark-or-spark-kernels) 一文中，您可以詳細閱讀使用 PySpark 核心的優點。 但是，使用 PySpark 核心的幾個主要優點包括：
+在本文中，您會使用 PySpark 核心。 如需兩個核心的詳細資訊，請參閱[在 HDInsight 中搭配使用 Jupyter Notebook 核心與 Apache Spark 叢集](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 使用 PySpark 核心的幾個主要優點包括：
 
-* 您不需要設定 Spark 和 Hive 的內容。 這些內容會自動為您設定。
-* 您可以使用 cell magic (例如 `%%sql`) 直接執行 SQL 或 Hive 查詢，而不需要任何前置的程式碼片段。
+* 系統會自動設定 Spark 和 Hive 的內容。
+* 使用 cell magic (例如 `%%sql`) 直接執行 SQL 或 Hive 查詢，而不需要任何前置的程式碼片段。
 * SQL 或 Hive 查詢的輸出會自動視覺化。
 
 ### <a name="create-jupyter-notebook-with-pyspark-kernel"></a>使用 PySpark 核心建立 Jupyter Notebook
 
 1. 開啟 [Azure 入口網站](https://portal.azure.com/)。
-2. 從左功能表中，按一下 [資源群組]。
+2. 從左功能表，按一下 [資源群組]。
 3. 按一下您在上一節中建立的資源群組名稱。 如果有太多的資源群組，您可以使用搜尋功能。 您可以在群組、HDInsight 叢集及預設儲存體帳戶中看見兩個資源。
 4. 按一下叢集加以開啟。
- 
+
 2. 從 [快速連結]，按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
 
    ![HDInsight 叢集儀表板](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-azure-portal-cluster-dashboards.png "HDInsight 叢集儀表板")
@@ -95,7 +97,7 @@ ms.openlocfilehash: cc1d484d40dce0b1c64f2e8cdebb9377a38705cb
 
    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
-   新的 Notebook 隨即建立並以 Untitled(Untitled.pynb) 名稱開啟。 
+   新的 Notebook 隨即建立並以 Untitled(Untitled.pynb) 名稱開啟。
 
 4. 按一下頂端的 Notebook 名稱，然後輸入好記的名稱。
 
@@ -128,13 +130,13 @@ ms.openlocfilehash: cc1d484d40dce0b1c64f2e8cdebb9377a38705cb
         hvacdf.registerTempTable("hvac")
 
     HDInsight 中的 Spark 叢集隨附範例資料檔案 **hvac.csv** (位於 **\HdiSamples\HdiSamples\SensorSampleData\hvac**)。
-    
+
 7. 執行下列程式碼以查詢資料：
 
         %%sql
         SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
 
-   由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-pyspark-or-spark-kernels)。
+   由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
 
    預設會顯示下列表格式輸出。
 
@@ -165,7 +167,7 @@ ms.openlocfilehash: cc1d484d40dce0b1c64f2e8cdebb9377a38705cb
 * [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>工具和擴充功能
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
 * [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
@@ -188,6 +190,6 @@ ms.openlocfilehash: cc1d484d40dce0b1c64f2e8cdebb9377a38705cb
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

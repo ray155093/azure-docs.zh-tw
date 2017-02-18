@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 7a99b931a30c04e13d535caa2abd46980c4a3fb3
+ms.sourcegitcommit: 84d42efc54f7dcbde8330360941969a5b0884a1a
+ms.openlocfilehash: ed249f63098a82b935016ccac3e0416951cb1b0a
 
 
 ---
@@ -46,7 +46,6 @@ ms.openlocfilehash: 7a99b931a30c04e13d535caa2abd46980c4a3fb3
 
 您必須考量下列事項：
 
-* 目前的媒體服務 SDK 版本不支援以指定的定位器識別碼建立定位器。 為了達成這項工作，我們將使用媒體服務 REST API。
 * 目前的媒體服務 SDK 版本不支援以程式設計方式產生可讓資產和資產檔案產生關聯的 IAssetFile 資訊。 為了達成這項工作，我們將使用 CreateFileInfos 媒體服務 REST API。 
 * 儲存體加密資產 (AssetCreationOptions.StorageEncrypted) 不支援複寫 (因為兩個媒體服務帳戶中的加密金鑰不同)。 
 * 如果您想要利用動態封裝，請確定您想要從中串流內容的串流端點是處於 [執行中] 狀態。
@@ -950,6 +949,6 @@ ms.openlocfilehash: 7a99b931a30c04e13d535caa2abd46980c4a3fb3
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

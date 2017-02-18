@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: f595be46983bf07783b529de885d889c18fdb61a
-ms.openlocfilehash: b7890150da382e4ef08323654c076ff8236e3e79
+ms.sourcegitcommit: c002c4588869536810b969aed80da09e60b62525
+ms.openlocfilehash: 9b06b4a7f4b58c586b81d0ad4a40dfdc586dfe6e
 
 
 ---
@@ -58,7 +58,7 @@ ms.openlocfilehash: b7890150da382e4ef08323654c076ff8236e3e79
     建立數個位置後，就可以從生產位置以外的位置複製組態：
    
     ![組態來源][MultipleConfigurationSources]
-4. 在您應用程式的資源刀鋒視窗中，按一下 [部署位置]，然後按一下部署位置，使用一組度量和設定，就像任何其他應用程式的部署位置，以開啟該位置的資源刀鋒視窗。 刀鋒視窗頂端顯示之位置的名稱，提醒您正在檢視部署位置。
+4. 在您應用程式的資源刀鋒視窗中，按一下 [部署位置]，然後按一下某個部署位置來開啟該位置的資源刀鋒視窗，當中會含有一組計量和組態，就像任何其他應用程式一樣。 刀鋒視窗頂端顯示之位置的名稱，提醒您正在檢視部署位置。
    
     ![Deployment Slot Title][StagingTitle]
 5. 在位置的刀鋒視窗中按一下應用程式 URL。 請注意，部署位置有自己的主機名稱，同時也是作用中的應用程式。 若要限制對部署位置的公用存取，請參閱 [App Service Web 應用程式 - 封鎖對非生產部署位置的 Web 存取](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)。
@@ -268,7 +268,7 @@ Azure CLI 提供跨平台命令供您處理 Azure，包括支援管理 App Servi
 
 - - -
 > [!NOTE]
-> 請看看作用中的 Web 應用程式。 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751) 並建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
+> 請看看作用中的 Web 應用程式。 [試用 App Service](https://azure.microsoft.com/try/app-service/) 並建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
 > 
 > 
 
@@ -295,6 +295,6 @@ Azure CLI 提供跨平台命令供您處理 Azure，包括支援管理 App Servi
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure 虛擬網路 (VNet) 概觀"
-description: "了解 Azure 中的虛擬網路 (VNet)。"
+title: "Azure 虛擬網路 |Microsoft Docs"
+description: "了解 Azure 中的虛擬網路。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,13 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e08966567a8545c1b37ec856f836b976b5a9ab2a
+ms.sourcegitcommit: 83f9a2716086730f22527a9321b6b111f6e69907
+ms.openlocfilehash: 9e794e89e5ecf4633c2e6312c69487bfa0c7795c
 
 
 ---
-# <a name="virtual-network-overview"></a>虛擬網路概觀
-Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。 您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。 您也可以進一步將 VNet 分成子網路，並啟動 Azure IaaS 虛擬機器 (VM) 和/或 [雲端服務 (PaaS 角色執行個體)](../cloud-services/cloud-services-choose-me.md)。 另外，您也可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site) 將虛擬網路連線到內部部署網路。 基本上，您可以將您的網路延伸至 Azure，透過 Azure 提供的企業級好處完整控制 IP 位址區塊。
+# <a name="virtual-networks"></a>虛擬網路
+Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。 您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。 您也可以進一步將 VNet 分成子網路，並啟動 Azure IaaS 虛擬機器 (VM) 和/或 [雲端服務 (PaaS 角色執行個體)](../cloud-services/cloud-services-choose-me.md)。 另外，您也可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site-connections) 將虛擬網路連線到內部部署網路。 基本上，您可以將您的網路延伸至 Azure，透過 Azure 提供的企業級好處完整控制 IP 位址區塊。
 
 若要進一步了解 VNet，請看下圖顯示的簡化內部部署網路。
 
@@ -37,21 +37,19 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬�
 
 > [!NOTE]
 > Azure 中有兩種部署模式：傳統 (也稱為服務管理) 和 Azure 資源管理員 (ARM)。 傳統 VNet 可以加入同質群組，或建立成區域 VNet。 如果您有 VNet 在同質群組中，建議 [將其移轉至區域 VNet](virtual-networks-migrate-to-regional-vnet.md)。
-> 
-> 
+>
 
-## <a name="virtual-network-benefits"></a>虛擬網路的優點
+## <a name="benefits"></a>優點
 * **隔離**。 VNet 與彼此完全隔離。 這樣可以讓您為使用相同 CIDR 位址區塊的開發、測試和生產環境建立不相連的網路。
 * **存取公用網際網路**。 依預設，VNet 中的所有 IaaS VM 和 PaaS 角色執行個體都可以存取公用網際網路。 您可以使用網路安全性群組 (NSG) 來控制存取。
 * **存取 VNet 中的 VM**。 PaaS 角色執行個體和 IaaS VM 可以在相同虛擬網路中啟動，並可使用私人 IP 位址彼此連線，即使它們位於不同的子網路也一樣，而且不需要設定閘道器或使用公用 IP 位址。
-* **名稱解析**。 Azure 會針對部署在 VNet 中的 IaaS VM 和 PaaS 角色執行個體提供內部名稱解析。 您也可以部署自己的 DNS 伺服器，並設定 VNet 來使用它們。
+* **名稱解析**。 Azure 會針對部署在 VNet 中的 IaaS VM 和 PaaS 角色執行個體提供[內部名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)。 您也可以部署自己的 DNS 伺服器，並設定 VNet 來使用它們。
 * **安全性**。 您可以使用網路安全性群組來控制 VNet 中進出虛擬機器和 PaaS 角色執行個體的流量。
-* **連線能力**。 可以使用網路閘道或 VNet 對等互連將 VNet 彼此連接。 透過網站間 VPN 網路或 Azure ExpressRoute，可以將 VNet 連接到內部部署資料中心。 若要深入了解網站間 VPN 連線，請造訪[關於 VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site)。 若要深入了解 ExpressRoute，請瀏覽 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。 若要深入了解 VNet 對等互連，請造訪 [VNet 對等互連](virtual-network-peering-overview.md)。
-  
+* **連線能力**。 可以使用網路閘道或 VNet 對等互連將 VNet 彼此連接。 透過網站間 VPN 網路或 Azure ExpressRoute，可以將 VNet 連接到內部部署資料中心。 若要深入了解網站間 VPN 連線，請造訪[關於 VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site-connections)。 若要深入了解 ExpressRoute，請瀏覽 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。 若要深入了解 VNet 對等互連，請造訪 [VNet 對等互連](virtual-network-peering-overview.md)。
+
   > [!NOTE]
   > 在將任何 IaaS VM 或 PaaS 角色執行個體部署至 Azure 環境之前，請確定您已建立 VNet。 ARM 架構的 VM 需要 VNet，而且如果沒有指定現有的 VNet，Azure 建立的預設 VNet 可能會與您的內部部署網路產生 CIDR 位址區塊衝突， 這會使您無法將 VNet 連線至內部部署網路。
-  > 
-  > 
+  >
 
 ## <a name="subnets"></a>子網路
 子網路是 VNet 中某個範圍的 IP 位址，您可以將 VNet 分割成多個子網路以便進行組織和獲得安全性。 部署至 VNet 內 (相同或不同) 子網路的 VM 和 PaaS 角色執行個體不需要進行額外設定就可以彼此通訊。 您也可以設定子網路的路由表和 NSG。
@@ -61,15 +59,15 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬�
 
 若要深入了解 Azure 中的 IP 位址，請瀏覽 [虛擬網路中的 IP 位址](virtual-network-ip-addresses-overview-arm.md)
 
-## <a name="azure-load-balancers"></a>Azure 負載平衡器
-虛擬網路中的虛擬機器和雲端服務可以使用 Azure 負載平衡器對網際網路公開。 對內提供的企業營運應用程式則可以使用內部負載平衡器來平衡負載。
+## <a name="azure-load-balancers"></a>Azure Load Balancer
+虛擬網路中的虛擬機器和雲端服務可以使用 Azure Load Balancer 對網際網路公開。 對內提供的企業營運應用程式則可以使用內部負載平衡器來平衡負載。
 
 * **外部負載平衡器**。 您可以使用外部負載平衡器，以提供從公用網際網路存取 IaaS VM 和 PaaS 角色執行個體時的高可用性。
 * **內部負載平衡器**。 您可以使用內部負載平衡器，以提供從 VNet 中其他服務存取 IaaS VM 和 PaaS 角色執行個體時的高可用性。
 
 若要深入了解 Azure 中的負載平衡，請瀏覽 [負載平衡器概觀](../load-balancer/load-balancer-overview.md)。
 
-## <a name="network-security-group-nsg"></a>網路安全性群組 (NSG)
+## <a name="network-security-groups-nsg"></a>網路安全性群組 (NSG)
 您可以建立 NSG 來控制對網路介面 (NIC)、VM 和子網路的輸入和輸出存取。 每個 NSG 都有包含一個或多個規則，指定是否要根據來源 IP 位址、來源連接埠、目的地 IP 位址和目的地連接埠來核准或拒絕流量。 若要深入了解 NSG，請瀏覽 [什麼是網路安全性群組](virtual-networks-nsg.md)。
 
 ## <a name="virtual-appliances"></a>虛擬應用裝置
@@ -93,7 +91,6 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬�
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

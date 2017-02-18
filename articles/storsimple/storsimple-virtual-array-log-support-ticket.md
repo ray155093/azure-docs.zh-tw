@@ -1,5 +1,5 @@
 ---
-title: "StorSimple 裝置管理員 - 登錄 Microsoft Azure StorSimple Virtual Array 的支援票證 | Microsoft Docs"
+title: "透過 StorSimple 裝置管理員記錄支援票證 | Microsoft Docs"
 description: "描述 StorSimple 裝置管理員診斷功能，並說明如何使用它來針對 StorSimple Virtual Array 進行疑難排解。"
 services: storsimple
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
 translationtype: Human Translation
-ms.sourcegitcommit: 5c31ac5284f3ba8fecc1e9f33838a778254658e5
-ms.openlocfilehash: adf6454fef9cfdea60241909453266c79416ac4e
+ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
+ms.openlocfilehash: 658afbc178814389fefd7941e2ca030741bd08e8
 
 ---
 # <a name="use-the-storsimple-device-manager-service-to-log-a-support-request-for-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務來登錄 StorSimple Virtual Array 的支援要求
@@ -70,6 +70,6 @@ StorSimple 裝置管理員可讓您在服務摘要刀鋒視窗中**登錄新的�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

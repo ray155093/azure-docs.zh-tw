@@ -13,8 +13,8 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: b18b1d4c2a3b9e1bba36bce2f38917501e641c4f
-ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
+ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
+ms.openlocfilehash: cd09b7c5d45d07a3fbcc5d6f0c02400dcd36d61b
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
 * 快速回應 - 也就是，要求您的應用程式快速回應
 * 特定事件名稱
 
-> [!NOTE] 
+> [!NOTE]
 > 篩選器會扭曲您應用程式的計量。 例如，您可能會決定，為了診斷緩慢回應，您將設定一個篩選器來捨棄快速回應時間。 但是，您必須留意，Application Insights 所回報的平均回應時間會比真實的速度慢，而且要求計數會小於實際計數。
 > 如果有此疑慮，請改用[取樣](app-insights-sampling.md)。
 
@@ -66,7 +66,7 @@ ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
 
            <!-- Exclude telemetry from availability tests and bots -->
            <Processor type="SyntheticSourceFilter">
-                <!-- Optional: specify which synthetic sources, 
+                <!-- Optional: specify which synthetic sources,
                      comma-separated
                      - default is all synthetics -->
                 <Add name="NotNeededSources" value="Application Insights Availability Monitoring,BingPreview"
@@ -115,7 +115,7 @@ ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
            </Processor>
 ```
 
-* `DurationThresholdInMS` - Duration 是指載入網頁所花費的時間。 若已設定此屬性，則不會報告載入速度比此時間快的頁面。 
+* `DurationThresholdInMS` - Duration 是指載入網頁所花費的時間。 若已設定此屬性，則不會報告載入速度比此時間快的頁面。
 * `NotNeededNames` - 頁面名稱的逗號分隔清單。
 * `NotNeededUrls` - URL 片段的逗號分隔清單。 例如，`"home"` 可篩選出在 URL 中包含 "home" 的所有頁面。
 
@@ -160,7 +160,7 @@ ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
 
 ### <a name="telemetry-event-filter"></a>遙測事件篩選器
 
-篩選自訂事件 (使用 [TrackEvent()](app-insights-api-custom-events-metrics.md#track-event) 記錄)。
+篩選自訂事件 (使用 [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent) 記錄)。
 
 
 ```XML
@@ -176,7 +176,7 @@ ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
 
 ### <a name="trace-telemetry-filter"></a>追蹤遙測篩選器
 
-篩選記錄檔追蹤 (使用 [TrackTrace()](app-insights-api-custom-events-metrics.md#track-trace) 或[紀錄架構收集器](app-insights-java-trace-logs.md)記錄)。
+篩選記錄檔追蹤 (使用 [TrackTrace()](app-insights-api-custom-events-metrics.md#tracktrace) 或[紀錄架構收集器](app-insights-java-trace-logs.md)記錄)。
 
 ```XML
 
@@ -212,7 +212,7 @@ ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
        private final String successful;
 
        /* Initializers for the parameters, named "setParameterName" */
-       public void setNotNeeded(String successful) 
+       public void setNotNeeded(String successful)
        {
           this.successful = successful;
        }
@@ -266,7 +266,6 @@ ms.openlocfilehash: 29dab5bc8eb76200f03a32b9299b4d89b247ab36
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

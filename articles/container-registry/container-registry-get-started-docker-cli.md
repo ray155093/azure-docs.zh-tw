@@ -1,0 +1,123 @@
+---
+title: "Azure 容器登錄中的 Docker 映像 | Microsoft Docs"
+description: "使用 Docker CLI 推送和提取 Docker 映像至 Azure 容器登錄庫"
+services: container-registry
+documentationcenter: 
+author: stevelas
+manager: balans
+editor: dlepow
+tags: 
+keywords: 
+ms.assetid: 64fbe43f-fdde-4c17-a39a-d04f2d6d90a1
+ms.service: container-registry
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 11/14/2016
+ms.author: stevelas
+translationtype: Human Translation
+ms.sourcegitcommit: f299cff22d00a1c765a32838647818d18f3df85d
+ms.openlocfilehash: df15eebf0052aa4713263a810df605fa1016c306
+
+---
+# <a name="push-your-first-image-to-a-container-registry-using-the-docker-cli"></a>使用 Docker CLI 推送您的第一個映像至容器登錄庫
+Azure 容器登錄庫儲存和管理私人 [Docker](http://hub.docker.com) 容器映像，其方式類似於 [Docker 中樞](https://hub.docker.com/)儲存公用 Docker 映像。 使用 [Docker 命令列介面](https://docs.docker.com/engine/reference/commandline/cli/) (Docker CLI) 進行[登入](https://docs.docker.com/engine/reference/commandline/login/)、[推送](https://docs.docker.com/engine/reference/commandline/push/)、[提取](https://docs.docker.com/engine/reference/commandline/pull/)和其他容器登錄庫作業。 
+
+如需詳細背景和概念，請參閱[什麼是 Azure 容器登錄庫？](container-registry-intro.md)
+
+
+> [!NOTE]
+> 容器登錄庫目前為預覽版本。
+> 
+> 
+
+## <a name="prerequisites"></a>必要條件
+* **Azure 容器登錄庫** - 在 Azure 訂用帳戶中建立容器登錄庫。 例如，使用 [Azure 入口網站](container-registry-get-started-portal.md)或 [Azure CLI 2.0 預覽版](container-registry-get-started-azure-cli.md)。
+* **Docker CLI** - 若要將您的本機電腦設定為 Docker 主機並存取 Docker CLI 命令，安裝 [Docker 引擎](https://docs.docker.com/engine/installation/)。
+
+## <a name="log-in-to-a-registry"></a>登入登錄庫
+使用您的[登錄認證](container-registry-authentication.md)執行 `docker login` 登入容器登錄庫。
+
+下列範例會傳遞 Azure Active Directory [service principal](../active-directory/active-directory-application-objects.md) 的識別碼和密碼。 例如，您可能基於自動化案例已指派服務主體到您的登錄庫。 
+
+```
+docker login myregistry-contoso.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p myPassword
+```
+
+> [!TIP]
+> 請務必指定完整的登錄庫名稱 (全部小寫)。 在此範例中為 `myregistry-contoso.azurecr.io`。
+
+## <a name="steps-to-pull-and-push-an-image"></a>提取和推送映像的步驟
+下列範例會從公用 Docker 中樞登錄庫下載 Nginx 映像，將其標記為私人 Azure 容器登錄庫，推送到您的登錄庫，然後再次將其提取出來。
+
+**1.提取 Nginx 的 Docker 官方映像**
+
+第一次提取公用 Nginx 映像至您的本機電腦。
+
+```
+docker pull nginx
+```
+**2.啟動 Nginx 容器**
+
+下列命令會以互動方式啟動本機 Nginx 容器 (所以您可以查看 Nginx 的輸出)，並接聽連接埠 8080。 它會移除已停止的執行中容器。
+
+```
+docker run -it --rm -p 8080:80 nginx
+```
+
+瀏覽至 [http://localhost:8080/](http://localhost:8080) 以檢視執行中的容器。 將會看到類似以下的畫面。
+
+![本機電腦上的 Nginx](./media/container-registry-get-started-docker-cli/nginx.png)
+
+若要停止執行中的容器，請按 [CTRL] + [C]。
+
+**3.在登錄庫中建立映像的別名**
+
+下列命令會建立映像的別名，包含登錄庫的完整路徑。 這個範例會指定 `samples` 命名空間，以避免登錄庫根目錄雜亂。
+
+```
+docker tag nginx myregistry-exp.azurecr.io/samples/nginx
+```  
+
+**4.將映像推送至您的登錄庫**
+
+```
+docker push myregistry-contoso.azurecr.io/samples/nginx
+``` 
+
+**5.從您的登錄庫提取映像**
+
+```
+docker pull myregistry-contoso.azurecr.io/samples/nginx
+``` 
+
+**6.從您的登錄庫啟動 Nginx 容器**
+
+```
+docker run -it --rm -p 8080:80 myregistry-exp.azurecr.io/samples/nginx
+```
+
+瀏覽至 [http://localhost:8080/](http://localhost:8080) 以檢視執行中的容器。
+
+若要停止執行中的容器，請按 [CTRL] + [C]。
+
+**6.移除映像**
+
+```
+docker rmi myregistry-contoso.azurecr.io/samples/nginx
+```
+
+
+
+## <a name="next-steps"></a>後續步驟
+現在您瞭解基本概念了，可以開始使用您的登錄庫！ 例如，開始將容器映像部署到 [Azure Container Service](https://azure.microsoft.com/documentation/services/container-service/) 叢集。
+
+
+
+
+
+
+<!--HONumber=Jan17_HO4-->
+
+

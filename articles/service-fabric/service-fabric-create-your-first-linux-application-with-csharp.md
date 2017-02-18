@@ -1,5 +1,5 @@
 ---
-title: "在 Linux 上使用 C# 建立第一個 Service Fabric 應用程式 | Microsoft Docs"
+title: "在 Linux 上使用 C# 建立您的第一個 Azure 微服務應用程式 | Microsoft Docs"
 description: "使用 C 建立和部署 Service Fabric 應用程式#"
 services: service-fabric
 documentationcenter: csharp
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 10/04/2016
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
-ms.openlocfilehash: e3632d89501c1c25b76e9160f0ad82f2b76327d7
+ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
+ms.openlocfilehash: c810f3e86ba582943e88f3085f6d9cff2496031c
 
 
 ---
@@ -102,6 +102,6 @@ Service Fabric Yeoman 範本包含建置指令碼，可用來從終端機建置�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

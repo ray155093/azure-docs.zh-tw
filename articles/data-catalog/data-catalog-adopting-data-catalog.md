@@ -1,5 +1,5 @@
 ---
-title: "採用 Azure 資料目錄 | Microsoft Docs"
+title: "採用 Azure 資料目錄的方法和程序 | Microsoft Docs"
 description: "本文將為考慮採用 Azure 資料目錄的組織介紹一種方法和程序，包括定義願景、找出重要的商業使用案例，以及選擇試驗專案。"
 services: data-catalog
 documentationcenter: 
@@ -13,15 +13,15 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 10/11/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6299c6eaab1e62281e23d2dd43c14fbb9769a316
+ms.sourcegitcommit: 15e72950ef30b8540d0303292fb9882f500c875e
+ms.openlocfilehash: 646a7611f5680a4c08e9a5f5ff4e2a3e5631276f
 
 
 ---
-# <a name="adopting-azure-data-catalog"></a>採用 Azure 資料目錄
+# <a name="approach-and-process-for-adopting-azure-data-catalog"></a>採用 Azure 資料目錄的方法和程序
 本文會協助您在組織中開始採用 **Azure 資料目錄**。 為了能順利採用 **Azure 資料目錄**，您必須將重點放在三大要項：定義願景、找出組織內的重要商業使用案例，以及選擇試驗專案。
 
 ## <a name="introducing-the-azure-data-catalog"></a>簡介 Azure 資料目錄
@@ -102,8 +102,8 @@ ms.openlocfilehash: 6299c6eaab1e62281e23d2dd43c14fbb9769a316
 
 **Azure 資料目錄**所解決的其中一個商務問題是將**資料產生者**連接至**資料取用者**。 其解決方式是做為企業資料來源相關資訊的中央儲存機制。 David 使用資料目錄註冊了 Adventure Works 和 SQL Server 資料來源。 透過群眾外包，任何找到此資料來源的使用者就能分享其對於資料的意見，而不必使用其找到的資料。 比方說，Nancy 在搜尋目錄後找到資料來源，並分享其關於資料的專業知識。  現在，組織中的其他人只要搜尋資料目錄就能從所分享的知識獲益。
 
-* 若要深入了解如何註冊資料來源，請參閱 [註冊資料來源](data-catalog-get-started.md#exercise-2-registering-data-sources)。
-* 若要深入了解如何找到資料來源，請參閱 [搜尋資料來源](data-catalog-get-started.md#exercise-3-discovering-registered-data-assets)。
+* 若要深入了解如何註冊資料來源，請參閱 [註冊資料來源](data-catalog-get-started.md)。
+* 若要深入了解如何找到資料來源，請參閱 [搜尋資料來源](data-catalog-get-started.md)。
 
 ### <a name="start-small-and-focused"></a>從小規模著手並保持專注
 對於大多數的企業試驗專案來說，您應該在目錄中植入高價值的資料來源，讓商務使用者可以快速看到資料目錄的價值。 IT 部門很適合用來做為試驗團隊會感興趣之一般資料來源的尋找起點。 針對支援的資料來源 (例如 SQL Server)，我們建議您使用 **Azure 資料目錄** 資料來源註冊工具。 使用資料來源註冊工具，您就可以註冊各種資料來源，包括 SQL Server 和 Oracle 資料庫以及 SQL Server Reporting Services 報表。 如需目前的資料來源的完整清單，請參閱 [Azure 資料目錄支援的資料來源](data-catalog-dsr.md)。
@@ -123,8 +123,8 @@ ms.openlocfilehash: 6299c6eaab1e62281e23d2dd43c14fbb9769a316
 
 > [!NOTE]
 > 我們已撰寫使用 **Azure 資料目錄** API 的範例工具，來將 Excel 活頁簿移轉至資料目錄。 若要深入了解資料目錄 API 和範例工具，您可以[下載臨機操作的活頁簿程式碼範例](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-excel-register-data-assets/)，並查看 [Azure 資料目錄 REST API](https://msdn.microsoft.com/library/azure/mt267593.aspx) 文件。
-> 
-> 
+>
+>
 
 在備妥試驗專案後，就可以開始執行資料目錄採用方案。
 
@@ -142,9 +142,9 @@ ms.openlocfilehash: 6299c6eaab1e62281e23d2dd43c14fbb9769a316
 在試驗團隊開始使用資料目錄之前，請安排啟動會議，以討論對於試驗專案的期望，並提供初始訓練。
 
 ### <a name="set-expectations"></a>設立期望
-設立期望和目標可幫助商務使用者專注於特定交付成果上。 若要讓專案如期推展，請指派 (每天或每週，根據試驗的範圍和期間而定) 家庭作業。 資料目錄的其中一個最有價值的功能是將資料資產群眾外包，讓商務使用者可以受益於企業資料的知識。 對於每個試驗團隊成員來說，註冊至少一個他們使用的資料來源並為其加上註解，便是絕佳的家庭作業。 請參閱[註冊資料來源](data-catalog-get-started.md#exercise-2-registering-data-sources)和[如何註解資料來源](data-catalog-get-started.md#exercise-4-annotating-registered-data-sources)。
+設立期望和目標可幫助商務使用者專注於特定交付成果上。 若要讓專案如期推展，請指派 (每天或每週，根據試驗的範圍和期間而定) 家庭作業。 資料目錄的其中一個最有價值的功能是將資料資產群眾外包，讓商務使用者可以受益於企業資料的知識。 對於每個試驗團隊成員來說，註冊至少一個他們使用的資料來源並為其加上註解，便是絕佳的家庭作業。 請參閱[註冊資料來源](data-catalog-get-started.md)和[如何註解資料來源](data-catalog-get-started.md)。
 
-定期和團隊碰面，以檢閱其中的某些註解。 好的資料來源註解是成功採用資料目錄的關鍵，因為它們可以在集中位置提供有意義的資料來源見解。 若沒有良好的註解，整個企業中關於資料來源的知識就會雜亂無章。 請參閱 [如何註解資料來源](data-catalog-get-started.md#exercise-4-annotating-registered-data-sources)。
+定期和團隊碰面，以檢閱其中的某些註解。 好的資料來源註解是成功採用資料目錄的關鍵，因為它們可以在集中位置提供有意義的資料來源見解。 若沒有良好的註解，整個企業中關於資料來源的知識就會雜亂無章。 請參閱 [如何註解資料來源](data-catalog-get-started.md)。
 
 想當然爾，專案的最終測試是使用者是否可以找到並了解他們需要使用的資料來源。 試驗使用者應該要定期測試目錄，以確保其日常工作使用的資料來源具有相關性。 當必要的資料來源遺失或未正確註解時，您可以將它當做註冊其他資料來源或提供其他註解的提醒。 這種做法不只能增加試驗工作的價值，也能養成有效的習慣以在試驗完成後帶到其他團隊。
 
@@ -162,14 +162,13 @@ ms.openlocfilehash: 6299c6eaab1e62281e23d2dd43c14fbb9769a316
 * [Azure 資料目錄產品頁面](https://azure.microsoft.com/services/data-catalog/)
 * [Azure 資料目錄文件](https://azure.microsoft.com/documentation/services/data-catalog/)
 * [Azure 資料目錄常見案例](data-catalog-common-scenarios.md)
-* [註冊資料來源](data-catalog-get-started.md#exercise-2-registering-data-sources)
-* [搜尋資料來源](data-catalog-get-started.md#exercise-3-discovering-registered-data-assets)
-* [註解資料來源](data-catalog-get-started.md#exercise-4-annotating-registered-data-sources)
-* [將中繼資料群眾外包](data-catalog-get-started.md#exercise-5-crowdsourcing-metadata)
+* [註冊資料來源](data-catalog-get-started.md)
+* [搜尋資料來源](data-catalog-get-started.md)
+* [註解資料來源](data-catalog-get-started.md)
+* [將中繼資料群眾外包](data-catalog-get-started.md)
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

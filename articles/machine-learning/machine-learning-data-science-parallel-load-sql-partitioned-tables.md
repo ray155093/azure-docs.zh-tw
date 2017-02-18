@@ -1,5 +1,5 @@
 ---
-title: "使用 SQL 資料分割資料表平行處理大量資料匯入 | Microsoft Docs"
+title: "建置和最佳化資料表，以便快速地將資料平行匯入到 Azure VM 上的 SQL Server | Microsoft Docs"
 description: "使用 SQL 資料分割資料表平行處理大量資料匯入"
 services: machine-learning
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 01/29/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: e6c45f4be168cef1a05958624f666097779e76f6
-ms.openlocfilehash: 2486a00482ca873ccb5198b5ca13cdc104bd1505
+ms.sourcegitcommit: e899487e9445955cea3a9387c73ea7c5dca37ddc
+ms.openlocfilehash: aae4e4f59e76bf48b00a2ee92aedd7d5643ba91a
 
 
 ---
@@ -24,11 +24,9 @@ ms.openlocfilehash: 2486a00482ca873ccb5198b5ca13cdc104bd1505
 本文件說明如何建置資料分割資料表，以快速的平行處理方式將大量資料匯入 SQL Server 資料庫。 若要將巨量資料載入/傳輸至 SQL Database，可使用*資料分割資料表和檢視*，來改善將資料匯入 SQL DB 和後續查詢的效能。 
 
 ## <a name="create-a-new-database-and-a-set-of-filegroups"></a>建立新的資料庫和一組檔案群組
-* [建立新的資料庫](https://technet.microsoft.com/library/ms176061.aspx) (如果不存在)
-* 將資料庫檔案群組新增至將用來保留資料分割實體檔案的資料庫
-  
-  這可透過 [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) (如果是新的) 或 [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) (如果資料庫已經存在) 來完成
-* 將一或多個檔案 (視需要) 新增至每個資料庫檔案群組
+* [建立新的資料庫](https://technet.microsoft.com/library/ms176061.aspx) (如果尚不存在)。
+* 將資料庫檔案群組新增至將用來保留資料分割實體檔案的資料庫。這可以透過 [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) (如果是新的資料庫) 或 [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) (如果資料庫已存在) 來完成。
+* 將一或多個檔案 (視需要) 新增至每個資料庫檔案群組。
   
   > [!NOTE]
   > 指定將保留這個資料分割之資料的目標檔案群組，以及將儲存檔案群組資料的實體資料庫檔案名稱。
@@ -185,6 +183,6 @@ ms.openlocfilehash: 2486a00482ca873ccb5198b5ca13cdc104bd1505
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Linux 虛擬機器 (VM) 上的 SAP NetWeaver– DBMS 部署指南 | Microsoft Docs"
+title: "Azure 中 Linux VM 上的 SAP NetWeaver - DBMS 部署 | Microsoft Docs"
 description: "Linux 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南"
 services: virtual-machines-linux
 documentationcenter: 
@@ -17,8 +17,8 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 translationtype: Human Translation
-ms.sourcegitcommit: 7cbb85e3f6705770a3eab7cc5a0da5070f2a170e
-ms.openlocfilehash: 14874e43c06d426d43e3369e9217978dd8115ed7
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: db6d4de6f88672f2258fdeac8416c795bc0c4613
 
 
 ---
@@ -349,11 +349,11 @@ Azure 將針對每個 VHD 磁碟機強制執行 IOPS 配額。 這些配額與 A
 根據 Azure VM 系列而定，計算節點上的本機磁碟會顯示可以如下方式分類的不同效能：
 
 * A0-A7︰非常有限的效能。 無法使用 Windows 分頁檔以外的項目
-* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* D 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* G 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
-* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量
+* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* D 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* G 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
+* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量
 
 以上陳述均適用於通過 SAP 認證的 VM 類型。 具有絕佳 IOPS 和輸送量的 VM 系列符合某些 DBMS 功能的使用資格，例如，tempdb 或暫存資料表空間。
 
@@ -602,7 +602,7 @@ SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。 此
 
 此案例的優點是您不需要耗用 VHD 來儲存 SQL Server 備份。 因此，所配置的 VHD 較少，而且可以針對資料和記錄檔使用 VHD IOPS 的整個頻寬。 請注意，如下列文章的＜限制＞一節所記載，備份的大小上限是 1 TB︰<https://msdn.microsoft.com/library/dn435916.aspx#limitations>。 如果在使用「SQL Server 備份」壓縮的情況下，備份大小仍然會超過 1 TB，就需要使用本文件的 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2] 一章中所述的功能。
 
-描述從「Azure Blob 存放區」之備份還原資料庫的[相關文件](https://msdn.microsoft.com/library/dn449492.aspx)建議在備份大於 25 GB 的情況下，不要直接從 Azure BLOB 存放區還原。 本文中的建議只以效能考量為依據，並未將功能限制納入考量。 因此，隨著案例的不同，可能會發生不同的狀況。
+描述從「Azure Blob 存放區」之備份還原資料庫的[相關文件](https://msdn.microsoft.com/library/dn449492.aspx)建議在備份大於&25; GB 的情況下，不要直接從 Azure BLOB 存放區還原。 本文中的建議只以效能考量為依據，並未將功能限制納入考量。 因此，隨著案例的不同，可能會發生不同的狀況。
 
 如需有關如何設定和利用此備份類型的說明，請參閱 [這個](https://msdn.microsoft.com/library/dn466438.aspx) 教學課程
 
@@ -1211,10 +1211,10 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
 #### <a name="storage-configuration"></a>儲存體組態
 由於 SAP liveCache 是以 SAP MaxDB 技術為基礎，因此 [儲存體組態][dbms-guide-8.4.1] 一章中針對 SAP MaxDB 提到的所有 Azure 儲存體最佳做法建議也適用於 SAP liveCache。 
 
-#### <a name="dedicated-azure-vm-for-livecache"></a>LiveCache 專用的 Azure VM
+#### <a name="dedicated-azure-vm-for-livecache"></a>liveCache 專用的 Azure VM
 因為 SAP liveCache 會密集使用運算能力，所以針對可提高生產力的使用方式，強烈建議部署於專用的 Azure 虛擬機器上。 
 
-![適用於具生產力使用案例的 LiveCache 專用的 Azure VM][dbms-guide-figure-700]
+![適用於具生產力使用案例的 liveCache 專用的 Azure VM][dbms-guide-figure-700]
 
 #### <a name="backup-and-restore"></a>備份與還原
 備份與還原 (包括效能考量) 已經在相關的 SAP MaxDB 章節 [備份與還原][dbms-guide-8.4.2] 和 [備份與還原的效能考量][dbms-guide-8.4.3] 中做過說明。 
@@ -1394,6 +1394,6 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO5-->
 
 

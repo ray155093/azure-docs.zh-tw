@@ -1,6 +1,6 @@
 ---
-title: "使用 Data Lake Store .NET SDK 來開發應用程式 | Microsoft Docs"
-description: "使用 Azure 資料湖存放區 .NET SDK 來開發應用程式"
+title: "在 Azure Data Lake Store 中使用 .NET SDK 開發應用程式 | Microsoft Docs"
+description: "使用 Azure Data Lake Store .NET SDK 建立 Data Lake Store 帳戶，並在 Data Lake Store 中執行基本作業"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/21/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 5d73d1203faf485d715354e68ce2ccde32562611
-ms.openlocfilehash: 03faf2594c9c3d7612127d46bdaa99b937c78475
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 8ec76c597dfb59860b456e42a78239c67d289f13
 
 
 ---
@@ -261,6 +261,6 @@ ms.openlocfilehash: 03faf2594c9c3d7612127d46bdaa99b937c78475
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

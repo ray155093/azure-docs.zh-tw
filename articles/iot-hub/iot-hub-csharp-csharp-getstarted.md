@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/12/2016
+ms.date: 12/15/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: 128e3607829d3838cdbb285fa95a1f7cd2112229
+ms.sourcegitcommit: 2e4220bedcb0091342fd9386669d523d4da04d1c
+ms.openlocfilehash: 90ca7089b2ce6a541f6890c6d50e912f2127ff85
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 128e3607829d3838cdbb285fa95a1f7cd2112229
 
 * **CreateDeviceIdentity**，這會建立裝置身分識別與相關聯的安全性金鑰，來連線到您的模擬裝置應用程式。
 * **ReadDeviceToCloudMessages**，其中顯示模擬裝置應用程式所傳送的遙測。
-* **SimulatedDevice**，這會使用先前建立的裝置識別連接到您的 IoT 中樞，並使用 AMQP 通訊協定每秒傳送遙測訊息。
+* **SimulatedDevice**，這會使用先前建立的裝置識別連接到您的 IoT 中樞，並使用 MQTT 通訊協定每秒傳送遙測訊息。
 
 > [!NOTE]
 > 如需可用來建置兩個應用程式，以在裝置與您的解決方案後端執行之 Azure IoT SDK 的相關資訊，請參閱 [Azure IoT SDK][lnk-hub-sdks]。
@@ -94,7 +94,7 @@ ms.openlocfilehash: 128e3607829d3838cdbb285fa95a1f7cd2112229
 > 
 
 ## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
-在本節中，您會建立 .NET 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與 [Azure 事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 若要了解如何大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。 如需如何處理來自事件中樞之訊息的進一步資訊，請參閱[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程。 (本教學課程適用於 IoT 中樞的事件中樞相容端點)。
+在本節中，您會建立 .NET 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與 [Azure 事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 若要了解如何大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。 如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程。 (本教學課程適用於 IoT 中樞的事件中樞相容端點)。
 
 > [!NOTE]
 > 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQP 通訊協定。
@@ -202,12 +202,12 @@ ms.openlocfilehash: 128e3607829d3838cdbb285fa95a1f7cd2112229
 7. 最後，將下列幾行加入至 **Main** 方法：
    
         Console.WriteLine("Simulated device\n");
-        deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey("myFirstDevice", deviceKey));
+        deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey("myFirstDevice", deviceKey), TransportType.Mqtt);
    
         SendDeviceToCloudMessagesAsync();
         Console.ReadLine();
    
-   根據預設，**Create** 方法會建立一個使用 AMQP 通訊協定的 **DeviceClient** 執行個體來與 IoT 中樞通訊。 若要使用 HTTP 通訊協定，請使用可讓您指定通訊協定的 **Create** 方法的覆寫。 若您使用 HTTP 通訊協定，您也應該將 **Microsoft.AspNet.WebApi.Client** NuGet 套件新增至您的專案，以包含 **System.Net.Http.Formatting** 命名空間。
+   根據預設，**Create** 方法會建立一個使用 AMQP 通訊協定的 **DeviceClient** 執行個體來與 IoT 中樞通訊。 若要使用 MQTT 或 HTTP 通訊協定，請使用可讓您指定通訊協定的 **Create** 方法的覆寫。 若您使用 HTTP 通訊協定，您也應該將 **Microsoft.AspNet.WebApi.Client** NuGet 套件新增至您的專案，以包含 **System.Net.Http.Formatting** 命名空間。
 
 本教學課程會逐步引導您完成建立 IoT 中樞模擬裝置應用程式的步驟。 您也可以使用 [Azure IoT 中樞的已連結服務][lnk-connected-service] Visual Studio 擴充功能，將必要的程式碼新增至裝置應用程式。
 
@@ -270,6 +270,6 @@ ms.openlocfilehash: 128e3607829d3838cdbb285fa95a1f7cd2112229
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 

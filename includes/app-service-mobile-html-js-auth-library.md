@@ -80,6 +80,6 @@ fetch(url, { headers: headers })
 Fetch 可以 [npm 套件](https://www.npmjs.com/package/whatwg-fetch)的形式提供使用或從 [CDNJS](https://cdnjs.com/libraries/fetch) 使用瀏覽器下載。 您也可以使用 jQuery 或另一個 AJAX API 擷取資訊。  系統會以 JSON 物件形式接收資料。
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

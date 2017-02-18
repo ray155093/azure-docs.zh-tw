@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 01/04/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 9f262eb2fa4c0bd8bf1442a7a3d013af6d9ad649
+ms.sourcegitcommit: 9ea90a7e2f69344fa86e20bc869f5b8af629a226
+ms.openlocfilehash: 77de5a58dc792ff2d65855e726dd35d9824276cb
 
 
 ---
@@ -53,7 +53,7 @@ ms.openlocfilehash: 9f262eb2fa4c0bd8bf1442a7a3d013af6d9ad649
 ## <a name="deploy-a-web-app"></a>部署 Web 應用程式
 將 Web 應用程式部署至 Azure App Service。
 
-1. 開啟新的 Windows 命令提示字元、PowerShell 視窗、Linux Shell 或 OS X 終端機。 執行 `git --version` 和 `azure --version`，確認電腦上已安裝 Git 和 Azure CLI。
+1. 開啟新的 Windows 命令提示字元、PowerShell 視窗、Linux Shell 或 OS X 終端機。 執行 `git --version` 和 `az --version`，確認電腦上已安裝 Git 和 Azure CLI。
    
     ![測試已在 Azure 中針對您的第一個 Web 應用程式安裝 CLI 工具](./media/app-service-web-get-started/1-test-tools-2.0.png)
    
@@ -161,6 +161,6 @@ ms.openlocfilehash: 9f262eb2fa4c0bd8bf1442a7a3d013af6d9ad649
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "利用 Azure API 管理、事件中樞及 Runscope 監視您的 API"
+title: "使用 Azure API 管理、事件中樞和 Runscope 監視 API | Microsoft Docs"
 description: "藉由連接「Azure API 管理」、「Azure 事件中樞」和 Runscope 來進行 HTTP 記錄和監視，示範 log-to-eventhub 原則的範例應用程式"
 services: api-management
 documentationcenter: 
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 12/19/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 7fafc85fe2997841b01ded693c532fea527f90de
-ms.openlocfilehash: 678f1aa97a4cfe93f2db569d4ddf20fcaf6fa39f
-
+ms.sourcegitcommit: 30855c86780e13144dbe0e507397a719d1a1f95d
+ms.openlocfilehash: 588425fdc4a076d4d7ad65e634849f4f77bb9fdd
 
 ---
 # <a name="monitor-your-apis-with-azure-api-management-event-hubs-and-runscope"></a>利用 Azure API 管理、事件中樞及 Runscope 監視您的 API
@@ -275,8 +274,8 @@ Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的�
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 Azure 事件中樞
-  * [開始使用 Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
-  * [使用 EventProcessorHost 接收訊息](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost)
+  * [開始使用 Azure 事件中樞](../event-hubs/event-hubs-c-getstarted-send.md)
+  * [使用 EventProcessorHost 接收訊息](../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md)
   * [事件中樞程式設計指南](../event-hubs/event-hubs-programming-guide.md)
 * 深入了解 API 管理和事件中樞的整合
   * [如何將事件記錄到 Azure API 管理中的 Azure 事件中樞](api-management-howto-log-event-hubs.md)
@@ -285,7 +284,6 @@ Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的�
 
 
 
-
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

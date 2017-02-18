@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 06/27/2016
 ms.author: riande
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7ac0fde19d61a9c3a9f54b42982c7096434cb965
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: a682e51bfaed9056b170c3e9473180ca210557b9
 
 
 ---
@@ -86,10 +86,10 @@ ms.openlocfilehash: 7ac0fde19d61a9c3a9f54b42982c7096434cb965
        strValue = (string)objValue;    
 
 您也可以使用 Redis 快取來快取 Web 應用程式中物件。 如需詳細資訊，請參閱 [15 分鐘學會包含 Azure Redis 快取的 MVC 影片應用程式](https://azure.microsoft.com/blog/2014/06/05/mvc-movie-app-with-azure-redis-cache-in-15-minutes/)。
-如需如何使用 ASP.NET 工作階段狀態的詳細資訊，請參閱 [ASP.NET 工作階段狀態概觀][ASP.NET 工作階段狀態概觀]。
+如需如何使用 ASP.NET 工作階段狀態的詳細資訊，請參閱 [ASP.NET 工作階段狀態概觀][ASP.NET Session State Overview]。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -98,8 +98,8 @@ ms.openlocfilehash: 7ac0fde19d61a9c3a9f54b42982c7096434cb965
   
   *作者：[Rick Anderson](https://twitter.com/RickAndMSFT)*
 
-[安裝最新版]: http://www.windowsazure.com/downloads/?sdk=net  
-[ASP.NET 工作階段狀態概觀]: http://msdn.microsoft.com/library/ms178581.aspx
+[installed the latest]: http://www.windowsazure.com/downloads/?sdk=net  
+[ASP.NET Session State Overview]: http://msdn.microsoft.com/library/ms178581.aspx
 
 [NewIcon]: ./media/web-sites-dotnet-session-state-caching/CacheScreenshot_NewButton.png
 [NewCacheDialog]: ./media/web-sites-dotnet-session-state-caching/CachingScreenshot_CreateOptions.png
@@ -108,11 +108,11 @@ ms.openlocfilehash: 7ac0fde19d61a9c3a9f54b42982c7096434cb965
 [OutputConfig]: ./media/web-sites-dotnet-session-state-caching/CachingScreenshot_OC_WebConfig.png
 [CacheConfig]: ./media/web-sites-dotnet-session-state-caching/CachingScreenshot_CacheConfig.png
 [EndpointURL]: ./media/web-sites-dotnet-session-state-caching/CachingScreenshot_EndpointURL.png
-[Managekeys]: ./media/web-sites-dotnet-session-state-caching/CachingScreenshot_ManageAccessKeys.png
+[ManageKeys]: ./media/web-sites-dotnet-session-state-caching/CachingScreenshot_ManageAccessKeys.png
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

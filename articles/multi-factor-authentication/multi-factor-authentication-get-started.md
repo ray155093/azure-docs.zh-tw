@@ -1,5 +1,5 @@
 ---
-title: "Azure MFA 雲端與伺服器 | Microsoft Docs"
+title: "選擇 Azure MFA 雲端或伺服器 | Microsoft Docs"
 description: "藉由提出我要保護什麼和使用者所在位置等問題，選擇最合適的 Multi-Factor Authentication 安全性解決方案。  然後選擇雲端、MFA Server 或 AD FS。"
 services: multi-factor-authentication
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/06/2017
+ms.date: 01/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 07e2a62ee63a8f9ef3d660fff8c6269654e2b448
-ms.openlocfilehash: 3e10becd802dfe8934063727f2f7fb0e9e8b420b
+ms.sourcegitcommit: 92c552f42f2645281f5039242825cfdaf6b683c9
+ms.openlocfilehash: 1a42c137204c2d2f6fff9a005b2b0e885c2002b2
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: 3e10becd802dfe8934063727f2f7fb0e9e8b420b
 | --- |:---:|:---:|
 | 第一方 Microsoft 應用程式 |● |● |
 | 應用程式資源庫中的 SaaS 應用程式 |● |● |
-| 透過 Azure AD App Proxy 發佈的 IIS 應用程式 |● |● |
+| 透過 Azure AD App Proxy 發佈的 Web 應用程式 |● |● |
 | 非透過 Azure AD App Proxy 發佈的 IIS 應用程式 | |● |
 | VPN、RDG 等遠端存取 | |● |
 
@@ -62,8 +62,8 @@ ms.openlocfilehash: 3e10becd802dfe8934063727f2f7fb0e9e8b420b
 | 以單向 SMS 做為第二個因素 | ● | ● |
 | 以雙向 SMS 做為第二個因素 | | ● |
 | 以硬體權杖做為第二個因素 | | ● |
-| 用戶端應用程式密碼不支援 MFA | ● | |
-| 系統管理員控制驗證方法 | | ● |
+| 不支援 MFA 之 Office 365 用戶端的應用程式密碼 | ● | |
+| 系統管理員控制驗證方法 | ● | ● |
 | PIN 模式 | | ● |
 | 詐騙警示 |● | ● |
 | MFA 報告 |● | ● |
@@ -73,7 +73,7 @@ ms.openlocfilehash: 3e10becd802dfe8934063727f2f7fb0e9e8b420b
 | 信任的 IP | ● | ● |
 | 記住受信任裝置的 MFA | ● | |
 | 條件式存取 | ● | ● |
-| 快取 | ● | ● |
+| 快取 |  | ● |
 
 既然我們已判斷出要使用雲端 Multi-Factor Authentication 或內部部署 MFA Server，接下來可以開始設定及使用 Azure Multi-Factor Authentication。 **選取代表您案例的圖示！**
 
@@ -87,6 +87,6 @@ ms.openlocfilehash: 3e10becd802dfe8934063727f2f7fb0e9e8b420b
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

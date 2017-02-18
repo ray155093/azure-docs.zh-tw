@@ -1,28 +1,25 @@
 ---
-title: "如何使用 Git 儲存和設定 API 管理服務組態"
+title: "使用 Git 設定 API 管理服務 - Azure | Microsoft Docs"
 description: "了解如何使用 Git 儲存和設定 API 管理服務組態。"
 services: api-management
 documentationcenter: 
 author: steved0x
 manager: erikre
-editor: 
+editor: mattfarm
 ms.assetid: 364cd53e-88fb-4301-a093-f132fa1f88f5
 ms.service: api-management
 ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: 96d100d69a7f4989153b293d1fa1ab249a82c1c2
-
+ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
+ms.openlocfilehash: 801fe10ad20c48fb965d3f80956d7979c9c2314e
 
 ---
 # <a name="how-to-save-and-configure-your-api-management-service-configuration-using-git"></a>如何使用 Git 儲存和設定 API 管理服務組態
-> [!IMPORTANT]
-> API 管理的 Git 組態目前為預覽狀態。 它的功能完整，但處於預覽狀態，因為我們正積極徵求關於此功能的意見反應。 我們可能會進行中斷變更來回應客戶意見反應，因此建議不要根據要在生產環境中執行的功能來決定。 如果您有任何意見或疑問，請在 `apimgmt@microsoft.com`中提出來讓我們知道。
 > 
 > 
 
@@ -40,7 +37,7 @@ ms.openlocfilehash: 96d100d69a7f4989153b293d1fa1ab249a82c1c2
 
 下列步驟提供使用 Git 管理 API 管理服務執行個體的概觀。
 
-1. 在您的服務中啟用 Git 存取
+1. 存取服務中的 Git 組態
 2. 將您的服務組態資料庫儲存至您的 Git 儲存機制
 3. 將 Git 儲存機制複製到本機電腦
 4. 將最新的儲存機制提取至您的本機電腦，認可並且將變更推送回您的儲存機制
@@ -48,20 +45,14 @@ ms.openlocfilehash: 96d100d69a7f4989153b293d1fa1ab249a82c1c2
 
 本文說明如何啟用及使用 Git 來管理您的服務組態，並提供 Git 儲存機制中檔案和資料夾的參考。
 
-## <a name="to-enable-git-access"></a>啟用 Git 存取
-您可以檢視發行者入口網站右上角的 Git 圖示，藉以快速檢視 Git 組態的狀態。 在此範例中，尚未啟用 Git 存取。
+## <a name="access-git-configuration-in-your-service"></a>存取服務中的 Git 組態
+您可以檢視發行者入口網站右上角的 Git 圖示，藉以快速檢視 Git 組態的狀態。 在此範例中，狀態訊息指出存放庫有未儲存的變更。 這是因為 API 管理服務組態資料庫尚未儲存到儲存機制所致。
 
 ![Git 狀態][api-management-git-icon-enable]
 
 若要檢視並設定您的 Git 組態設定，您可以按一下 [Git] 圖示，或按一下 [安全性] 功能表，然後瀏覽至 [組態儲存機制] 索引標籤。
 
 ![啟用 GIT][api-management-enable-git]
-
-若要啟用 Git 存取，請核取 [啟用 Git 存取]  核取方塊。
-
-儲存變更之後，確認訊息隨即顯示。 請注意，Git 圖示已變更顏色，以指出 Git 存取已啟用，而狀態訊息現在會指出尚未儲存對於儲存機制的變更。 這是因為 API 管理服務組態資料庫尚未儲存到儲存機制所致。
-
-![已啟用 Git][api-management-git-enabled]
 
 > [!IMPORTANT]
 > 未定義為屬性的任何密碼會儲存在儲存機制，並且仍然保留其歷程記錄，直到您停用然後重新啟用 Git 存取。 屬性會提供一個安全的地方以管理跨所有的 API 組態和原則的常數字串值，包括密碼，因此您不必將它們直接儲存在您的原則陳述式。 如需詳細資訊，請參閱 [如何使用 Azure API 管理原則中的屬性](api-management-howto-properties.md)。
@@ -321,6 +312,6 @@ git push
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

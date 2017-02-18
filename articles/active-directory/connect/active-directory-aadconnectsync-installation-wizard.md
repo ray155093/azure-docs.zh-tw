@@ -1,5 +1,5 @@
 ---
-title: "Azure AD Connect 同步︰第二次執行安裝精靈 | Microsoft Docs"
+title: "重新執行 Azure AD Connect 安裝精靈 | Microsoft Docs"
 description: "說明安裝精靈在第二次執行時的運作方式。"
 keywords: "Azure AD Connect 安裝精靈可讓您在第二次執行時設定維護設定"
 services: active-directory
@@ -13,11 +13,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/31/2016
+ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: 4fb05d21d1a7ac7d9b2f13adfbe1bed8456393c2
+ms.sourcegitcommit: bb500d4705c3b67de6b9b31fa5311967beffffc2
+ms.openlocfilehash: df5c0475245c6ad1f632b08e5fdbf64374893d67
 
 
 ---
@@ -94,6 +94,6 @@ ms.openlocfilehash: 4fb05d21d1a7ac7d9b2f13adfbe1bed8456393c2
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

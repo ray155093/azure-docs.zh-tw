@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 02/05/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: e4576409641db73ad8920a1eec2eea1e3580109f
-ms.openlocfilehash: fdd41039fdb59597e3a0a2903fadbbc73eb85654
+ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
+ms.openlocfilehash: 9e54ee2d67a8dfb5b480db01219e128607e26f51
 
 
 ---
@@ -40,7 +40,7 @@ ms.openlocfilehash: fdd41039fdb59597e3a0a2903fadbbc73eb85654
 ### <a name="email-on-an-event-in-my-app"></a>我的 app 發生事件時寄送電子郵件
 我們假設您想要在特定事件發生時收到電子郵件。 Application Insights 並未直接提供此功能，但它可 [在計量超過某個閾值時傳送警示](app-insights-alerts.md)。
 
-您可以針對 [自訂計量](app-insights-api-custom-events-metrics.md#track-metric)設定警示，而不是自訂事件。 撰寫一些程式碼以在事件發生時增加計量：
+您可以針對 [自訂計量](app-insights-api-custom-events-metrics.md#trackmetric)設定警示，而不是自訂事件。 撰寫一些程式碼以在事件發生時增加計量：
 
     telemetry.TrackMetric("Alarm", 10);
 
@@ -174,7 +174,7 @@ ms.openlocfilehash: fdd41039fdb59597e3a0a2903fadbbc73eb85654
 * 在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)中，停用任何您不需要的模組，例如效能計數器收集器。
 * 使用 SDK 中的 [取樣和篩選](app-insights-api-filtering-sampling.md) 。
 * 您在網頁中，限制針對每個頁面檢視回報的 Ajax 呼叫次數。 在 `instrumentationKey:...` 之後的指令碼片段中，插入：`,maxAjaxCallsPerView:3` (或適當的數字)。
-* 如果您使用的是 [TrackMetric](app-insights-api-custom-events-metrics.md#track-metric)，請在傳送結果之前，先計算計量值批次的彙總。 有一個 TrackMetric() 的多載是針對該動作所提供。
+* 如果您使用的是 [TrackMetric](app-insights-api-custom-events-metrics.md#trackmetric)，請在傳送結果之前，先計算計量值批次的彙總。 有一個 TrackMetric() 的多載是針對該動作所提供。
 
 深入了解 [價格和配額](app-insights-pricing.md)。
 
@@ -208,6 +208,6 @@ ms.openlocfilehash: fdd41039fdb59597e3a0a2903fadbbc73eb85654
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 01/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 8122ed46a81f84f5b897986b9e69ab112e2079da
+ms.sourcegitcommit: a3bdeb6fea306babc9358134c37044843b9bdd1c
+ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
 
 
 ---
@@ -82,7 +82,7 @@ ms.openlocfilehash: 8122ed46a81f84f5b897986b9e69ab112e2079da
         dfw = DataFrameWriter(hvacTable)
         dfw.saveAsTable('hvac')
 
-1. 確認資料表已成功建立。 您可以使用 `%%sql` magic 直接執行 Hive 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-pyspark-or-spark-kernels)。
+1. 確認資料表已成功建立。 您可以使用 `%%sql` magic 直接執行 Hive 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
 
         %%sql
         SHOW TABLES
@@ -209,6 +209,6 @@ ms.openlocfilehash: 8122ed46a81f84f5b897986b9e69ab112e2079da
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

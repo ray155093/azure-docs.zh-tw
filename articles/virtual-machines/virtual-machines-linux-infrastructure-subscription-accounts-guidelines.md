@@ -1,5 +1,5 @@
 ---
-title: "Azure 訂用帳戶和帳戶指導方針 | Microsoft Docs"
+title: "Azure 中 Linux VM 的訂用帳戶和帳戶 | Microsoft Docs"
 description: "了解 Azure 上訂用帳戶和帳戶的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-linux
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: a99ab839ec9ade0049e1cc59054e333048e0208c
-ms.openlocfilehash: df7291a93af5185d3bd18259a37233f7910fcabf
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: 0a4ddfa550913df1c987d1782bcd4bc3c41eb048
 
 
 ---
@@ -69,6 +69,6 @@ ms.openlocfilehash: df7291a93af5185d3bd18259a37233f7910fcabf
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

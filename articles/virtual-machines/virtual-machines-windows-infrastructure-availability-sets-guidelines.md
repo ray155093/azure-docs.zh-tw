@@ -1,5 +1,5 @@
 ---
-title: "Azure 可用性設定組指導方針 | Microsoft Docs"
+title: "Azure 中 Windows VM 的可用性設定組 | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中部署可用性設定組的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-windows
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2e981b0bebbc88fdad23ce8279762fe717e48a4c
-ms.openlocfilehash: 59ef4be4854c4625bed5f9f1f32e7771ccb6979d
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: 0d4a7f8d7f469c43c972a163651688796483f8fc
 
 
 ---
@@ -56,6 +56,6 @@ Azure 中的基礎結構被分為「更新網域」和「容錯網域」。 這�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

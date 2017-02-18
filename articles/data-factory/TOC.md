@@ -25,7 +25,7 @@
 
 # 作法
 ## 移動資料
-### [Data Factory 複製精靈](data-factory-copy-wizard.md)
+### [Data Factory 複製精靈](data-factory-azure-copy-wizard.md)
 #### [在 15 分鐘內載入 1 TB](data-factory-load-sql-data-warehouse.md)
 ### [複製活動](data-factory-data-movement-activities.md)
 #### [效能和微調指南](data-factory-copy-activity-performance.md)
@@ -84,7 +84,6 @@
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.datafactories/v2.3.0/azurerm.datafactories)
 ## [.NET](/dotnet/api/microsoft.azure.management.datafactories.models)
-## [Azure Data Factory 開發人員參考](data-factory-sdks.md)
 ## [REST](/rest/api/datafactory/)
 
 # 資源
@@ -102,6 +101,6 @@
 ## [要求功能](https://feedback.azure.com/forums/270578-azure-data-factory)
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 
