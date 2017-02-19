@@ -16,7 +16,7 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 在這些範本的詳細資料頁面中，您會看到連結至入口網站部署功能的按鈕。 若要部署 VM 調整集，請按一下該按鈕，然後在入口網站中填入所需的任何參數。 如果您不確定某項資源是否支援大寫或混合大小寫，一律使用小寫參數值會比較安全。 此外也有 VM 調整集範本的視訊剖析，非常容易存取：
 
-[VM 調整集範本剖析](https://channel9.msdn.com/Blogs/Windows-Azure/VM-Scale-Set-Template-Dissection/player)
+[VM 調整集範本剖析](https://channel9.msdn.com/Blogs/Azure/VM-Scale-Set-Template-Dissection/player)
 
 ## <a name="scaling-a-vm-scale-set-out-and-in"></a>相應放大和相應縮小 VM 調整集
 若要增加或減少 VM 調整集內的虛擬機器數目，請直接變更 capacity 屬性，並重新部署範本。 這樣的單純性，可讓您在想要定義不受 Azure 自動調整支援的自訂調整事件時，能更輕易地撰寫您的自訂調整層。
@@ -118,6 +118,6 @@ VM 調整集可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/li
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

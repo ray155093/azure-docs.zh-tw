@@ -1,10 +1,10 @@
 ---
-title: "使用 Azure Resource Manager 和 PowerShell 建立具有網站間 VPN 連線的虛擬網路 | Microsoft Docs"
-description: "本文逐步引導您建立使用 Resource Manager 部署模型的 VNet，並使用 S2S VPN 閘道連線將其連接到您的本機內部部署網路。"
+title: "將內部部署網路連接至 Azure 虛擬網路：站對站 VPN：PowerShell | Microsoft Docs"
+description: "透過公用網際網路建立從內部部署網路至 Azure 虛擬網路之 IPsec 連線的步驟。 這些步驟可協助您使用 PowerShell 建立跨單位的站對站 VPN 閘道連線。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: fcc2fda5-4493-4c15-9436-84d35adbda8e
@@ -13,15 +13,15 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/14/2016
+ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: e2c1a99a23f8d2d8ceb1fd8a9fe3c0e86abc0b02
+ms.sourcegitcommit: eea00841708212789e14fa8717d83dd81d472bac
+ms.openlocfilehash: dad78df8d841dd1d5e014a902fa541044743f7e4
 
 
 ---
-# <a name="create-a-vnet-with-a-site-to-site-connection-using-powershell"></a>使用 PowerShell 建立具有站對站連線的 VNet
+# <a name="create-a-vnet-with-a-site-to-site-vpn-connection-using-powershell"></a>使用 PowerShell 建立具有站對站 VPN 連接的 VNet
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
@@ -31,7 +31,7 @@ ms.openlocfilehash: e2c1a99a23f8d2d8ceb1fd8a9fe3c0e86abc0b02
 
 本文逐步引導您使用 Azure Resource Manager 部署模型建立虛擬網路以及內部部署網路的網站間 VPN 閘道連線。 網站間連線可以用於跨單位與混合式組態。
 
-![網站間圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/s2srmps.png "site-to-site")
+![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/site-to-site-connection-diagram.png)
 
 ### <a name="deployment-models-and-methods-for-site-to-site-connections"></a>網站間連接的部署模型和方法
 [!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
@@ -205,6 +205,6 @@ VPN 連線有幾種不同的驗證方式。
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

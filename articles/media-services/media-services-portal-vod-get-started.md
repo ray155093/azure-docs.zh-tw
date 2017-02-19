@@ -1,5 +1,5 @@
 ---
-title: " 使用 Azure 入口網站傳遞點播內容入門 | Microsoft Docss"
+title: "使用 Azure 入口網站傳遞 VoD入門 | Microsoft Docs"
 description: "本教學課程會逐步引導您使用 Azure 入口網站實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/10/2017
+ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 6b5ba034325ef1cbb7b085890c63302d06d0d927
+ms.sourcegitcommit: 555e0b6340d09517bfd87efe209f0304f3266788
+ms.openlocfilehash: 76fd245f91e1bfab3df68120859c69e459283e5b
 
 
 ---

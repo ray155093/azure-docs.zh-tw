@@ -41,7 +41,7 @@
 
 您需要 Azure 帳戶，才能使用適用於 Mac 和 Linux 的 Azure 命令列工具。
 
-請開啟網頁瀏覽器，瀏覽到 [http://www.windowsazure.com][windowsazuredotcom]，然後按一下右上角的 [免費試用]。
+開啟網頁瀏覽器，瀏覽到 [http://www.windowsazure.com][windowsazuredotcom]，然後按一下右上角的 [免費帳戶]。
 
 ![Azure 網站][Azure Web Site]
 
@@ -214,6 +214,6 @@ Azure 虛擬機器是使用您提供的映像或映像庫中的虛擬機器映�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

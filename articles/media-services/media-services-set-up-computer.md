@@ -1,5 +1,5 @@
 ---
-title: "設定環境 | Microsoft Docs"
+title: "設定 Azure 媒體服務開發環境 | Microsoft Docs"
 description: "設定環境來使用 Azure 媒體服務進行開發。"
 services: media-services
 documentationcenter: 
@@ -12,22 +12,16 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/12/2016
+ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 5d49c309a8bfef8f6b4a2825c2bd12a590f19fd9
+ms.sourcegitcommit: e16620b457e82260b27fe484abee715bb4b3aa24
+ms.openlocfilehash: fe69fc0ace47967e1ddf083e47dd25beb8d91d84
 
 
 ---
-# <a name="set-up-your-environment"></a>設定環境
-> [!div class="op_single_selector"]
-> * [入口網站](media-services-portal-create-account.md)
-> * [PowerShell](media-services-manage-with-powershell.md)
-> * [REST](https://docs.microsoft.com/rest/api/media/management/media-services-management-rest)
->   <a id="create_account"></a>
-> 
-> 
+# <a name="set-up-your-media-services-development-environment"></a>設定媒體服務開發環境
+
 
 下列步驟說明使用 Azure 媒體服務進行開發時所需的必要條件。
 
@@ -37,16 +31,19 @@ ms.openlocfilehash: 5d49c309a8bfef8f6b4a2825c2bd12a590f19fd9
 <a id="setup_dev_env"></a>
 
 ## <a name="set-up-the-development-environment"></a>設定開發環境
-針對開發環境選擇 .NET 或 REST API。
 
-[!INCLUDE [media-services-selector-setup](../../includes/media-services-selector-setup.md)]
+若要設定 .NET 開發環境，請參閱[此](media-services-dotnet-how-to-use.md)主題。  
+
+若要設定 REST 開發環境，請參閱[此](media-services-rest-how-to-use.md)主題。  
 
 <a id="connect"></a>
 
 ## <a name="connect-programmatically"></a>以程式設計方式連線
-選擇 .NET 或 REST API，以程式設計方式連線到 Azure 媒體服務。
 
-[!INCLUDE [media-services-selector-connect](../../includes/media-services-selector-connect.md)]
+若要使用 .NET 連接到 Azure 媒體服務，請參閱[此](media-services-dotnet-connect-programmatically.md)主題。  
+
+若要使用 REST 連接到 Azure 媒體服務，請參閱[此](media-services-rest-connect-programmatically.md)主題。  
+
 
 ## <a name="next-steps-azure-media-services-learning-paths"></a>後續步驟：Azure 媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -57,6 +54,6 @@ ms.openlocfilehash: 5d49c309a8bfef8f6b4a2825c2bd12a590f19fd9
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

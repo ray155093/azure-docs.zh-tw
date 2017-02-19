@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f498f4546e8c23f2141d8d30160a360fa0fc2514
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 8790bacecac0fa824189b5c212c2d803092ff4ed
 
 
 ---
@@ -32,19 +32,19 @@ ms.openlocfilehash: f498f4546e8c23f2141d8d30160a360fa0fc2514
 
 本教學課程會示範如何使用 Power BI 來連接到 SQL 資料倉儲，並建立一些基本的視覺效果。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Data-Warehouse-Sample-Data-and-PowerBI/player]
+> [!影片 https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Data-Warehouse-Sample-Data-and-PowerBI/player]
 > 
 > 
 
 ## <a name="prerequisites"></a>必要條件
 若要逐步執行本教學課程，您需要：
 
-* 預先載入 AdventureWorksDW 資料庫的 SQL 資料倉儲。 若要進行佈建，請參閱 [建立 SQL 資料倉儲][建立 SQL 資料倉儲] 並選擇載入範例資料。 如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][手動載入範例資料]。
+* 預先載入 AdventureWorksDW 資料庫的 SQL 資料倉儲。 若要進行佈建，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]並選擇載入範例資料。 如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][load sample data manually]。
 
 ## <a name="1-connect-to-your-database"></a>1.連接到您的資料庫
 若要開啟 Power BI 並連接到您的 AdventureWorksDW 資料庫：
 
-1. 移至 [Azure 入口網站][Azure 入口網站]。
+1. 登入 [Azure 入口網站][Azure portal]。
 2. 按一下 [SQL 資料庫]  ，並選擇您的 AdventureWorks SQL 資料倉儲資料庫。
    
     ![尋找您的資料庫][1]
@@ -89,7 +89,7 @@ ms.openlocfilehash: f498f4546e8c23f2141d8d30160a360fa0fc2514
 您也可以隨時按一下 [檔案]，並選取 [儲存] 來儲存您的進度。
 
 ## <a name="next-steps"></a>後續步驟
-既然我們已經提供您一些時間，讓您利用範例資料進入狀況，接著請查看如何進行[開發][開發]、[載入][載入]或[移轉][移轉]。 或者，看一下 [Power BI 網站][Power BI 網站]。
+既然我們已經提供您一些時間，讓您利用範例資料進入狀況，接著請查看如何進行[開發][develop]、[載入][load]或[移轉][migrate]。 或者，看一下 [Power BI 網站][Power BI website]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-find-database.png
@@ -106,19 +106,19 @@ ms.openlocfilehash: f498f4546e8c23f2141d8d30160a360fa0fc2514
 [12]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-save.png
 
 <!--Article references-->
-[移轉]: sql-data-warehouse-overview-migrate.md
-[開發]: sql-data-warehouse-overview-develop.md
-[載入]: sql-data-warehouse-overview-load.md
-[手動載入範例資料]: sql-data-warehouse-load-sample-databases.md
-[連線到 SQL 資料倉儲]: sql-data-warehouse-integrate-power-bi.md
-[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
+[migrate]: sql-data-warehouse-overview-migrate.md
+[develop]: sql-data-warehouse-overview-develop.md
+[load]: sql-data-warehouse-overview-load.md
+[load sample data manually]: sql-data-warehouse-load-sample-databases.md
+[connecting to SQL Data Warehouse]: sql-data-warehouse-integrate-power-bi.md
+[Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
 
 <!--Other-->
-[Azure 入口網站]: https://portal.azure.com/
-[Power BI 網站]: http://www.powerbi.com/
+[Azure portal]: https://portal.azure.com/
+[Power BI website]: http://www.powerbi.com/
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

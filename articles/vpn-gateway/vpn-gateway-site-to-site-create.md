@@ -1,10 +1,10 @@
 ---
-title: "使用 Azure 傳統入口網站建立具有網站間 VPN 閘道連線的虛擬網路 | Microsoft Docs"
-description: "使用傳統部署模型，針對跨部署與混合式組態建立 VNet 搭配 S2S VPN 閘道連線。"
+title: "將內部部署網路連接至 Azure 虛擬網路：站對站 VPN：傳統入口網站 | Microsoft Docs"
+description: "透過公用網際網路建立從內部部署網路至 Azure 虛擬網路之 IPsec 連線的步驟。 這些步驟可協助您使用傳統入口網站和傳統部署模型，建立跨單位的站對站 VPN 閘道連線。"
 services: vpn-gateway
 documentationcenter: 
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management
 ms.assetid: 024ecb29-64de-4ff1-84f1-1a45a8595f0b
@@ -13,15 +13,15 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/14/2016
+ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: d269d9a76ff4ccd973eee70d2d5b54a7262383ef
-ms.openlocfilehash: b45801d4e6deb25ca8c6af5c3b46de741d4993e0
+ms.sourcegitcommit: eea00841708212789e14fa8717d83dd81d472bac
+ms.openlocfilehash: 835968ec5b540890dbe8644038ab7f63b0721847
 
 
 ---
-# <a name="create-a-vnet-with-a-site-to-site-connection-using-the-azure-classic-portal"></a>使用 Azure 傳統入口網站建立具有網站間連線的 VNet
+# <a name="create-a-vnet-with-a-site-to-site-connection-using-the-classic-portal"></a>使用傳統入口網站建立具有站對站連接的 VNet
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
@@ -31,7 +31,7 @@ ms.openlocfilehash: b45801d4e6deb25ca8c6af5c3b46de741d4993e0
 
 本文逐步引導您使用傳統部署模型和傳統入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 閘道連接。 網站間連線可以用於跨單位與混合式組態。
 
-![網站間圖表](./media/vpn-gateway-site-to-site-create/site2site.png "site-to-site")
+![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-site-to-site-create/site-to-site-connection-diagram.png)
 
 ### <a name="deployment-models-and-methods-for-site-to-site-connections"></a>網站間連接的部署模型和方法
 [!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
@@ -102,6 +102,6 @@ ms.openlocfilehash: b45801d4e6deb25ca8c6af5c3b46de741d4993e0
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

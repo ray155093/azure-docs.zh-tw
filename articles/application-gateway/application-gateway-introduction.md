@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 12/14/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 3c1fda0661d577e3042f1ad7103017eed74704ad
-ms.openlocfilehash: bb979cde449a7e6d8038f6ea392c3529ced29853
+ms.sourcegitcommit: ca87ad0165c7333fd43a828f7d92d46a432d8f78
+ms.openlocfilehash: 6956353771e6b4bcb814eb7cc9dfde01c452b8bd
 
 
 ---
@@ -67,7 +67,7 @@ Microsoft Azure 應用程式閘道會以服務形式提供應用程式傳遞控�
 
 每一訂用帳戶您可以建立最多 50 個應用程式閘道，而且每一應用程式閘道最多可以有 10 個執行個體。 每個應用程式閘道可以包含 20 個 http 接聽程式。 如需應用程式閘道限制的完整清單，請瀏覽[應用程式閘道服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#application-gateway-limits)。
 
-下表顯示每個應用程式閘道執行個體的平均效能輸送量：
+下表顯示每個應用程式閘道執行個體，在啟用 SSL 卸載時的平均效能輸送量：
 
 | 後端頁面回應 | 小型 | 中型 | 大型 |
 | --- | --- | --- | --- |
@@ -95,6 +95,6 @@ Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

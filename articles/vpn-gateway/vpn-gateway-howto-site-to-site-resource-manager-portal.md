@@ -1,10 +1,10 @@
 ---
-title: "使用 Azure Resource Manager 和 Azure 入口網站建立具有網站間 VPN 連線的虛擬網路 | Microsoft Docs"
-description: "如何使用 Resource Manager 部署模型建立 VNet 並使用 S2S VPN 閘道連線將它連接到您的本機內部部署網路。"
+title: "將內部部署網路連接至 Azure 虛擬網路：站對站 VPN：入口網站 | Microsoft Docs"
+description: "透過公用網際網路建立從內部部署網路至 Azure 虛擬網路之 IPsec 連線的步驟。 這些步驟可協助您使用入口網站建立跨單位的站對站 VPN 閘道連線。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: 827a4db7-7fa5-4eaf-b7e1-e1518c51c815
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/14/2016
+ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: d269d9a76ff4ccd973eee70d2d5b54a7262383ef
-ms.openlocfilehash: f0491df77418c4d7c79beff87302b64ddc3fa9be
+ms.sourcegitcommit: eea00841708212789e14fa8717d83dd81d472bac
+ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: f0491df77418c4d7c79beff87302b64ddc3fa9be
 
 本文逐步引導您使用 Azure Resource Manager 部署模型 和 Azure 入口網站，以建立虛擬網路及連至內部部署網路的網站間 VPN 閘道連線。 網站間連線可以用於跨單位與混合式組態。
 
-![圖表](./media/vpn-gateway-howto-site-to-site-resource-manager-portal/s2srmportal.png)
+![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-howto-site-to-site-resource-manager-portal/site-to-site-diagram.png)
 
 ### <a name="deployment-models-and-methods-for-site-to-site-connections"></a>網站間連接的部署模型和方法
 [!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
@@ -130,6 +130,6 @@ ms.openlocfilehash: f0491df77418c4d7c79beff87302b64ddc3fa9be
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

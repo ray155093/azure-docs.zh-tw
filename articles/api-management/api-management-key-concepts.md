@@ -1,5 +1,5 @@
 ---
-title: "API 管理主要概念"
+title: "Azure API 管理概觀和索引鍵概念 | Microsoft Docs"
 description: "了解 API、產品、角色、群組及其他 API 管理的主要概念。"
 services: api-management
 documentationcenter: 
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 12/15/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: b0ead7ecbf9327e9df6846d6e046ed69f25832cf
-ms.openlocfilehash: 872fbd44a9bccf0d6e9f7f3f3bd839e384874ae5
-
+ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
+ms.openlocfilehash: 47358c6c209488d7a12e8afbf7a2d9b3f872f0de
 
 ---
 # <a name="what-is-api-management"></a>什麼是 API 管理？
@@ -25,7 +24,7 @@ ms.openlocfilehash: 872fbd44a9bccf0d6e9f7f3f3bd839e384874ae5
 
 觀看下列影片以取得 Azure API 管理的概觀，並了解如何使用 API 管理，以最少量的工作將許多功能新增至您的 API，包括存取控制、速率限制、監視、事件記錄及回應快取。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-API-Management-Overview/player]
+> [!影片 https://channel9.msdn.com/Blogs/Azure/Azure-API-Management-Overview/player]
 > 
 > 
 
@@ -132,6 +131,6 @@ API 是 API 管理服務執行個體的基礎。 每個 API 都代表可供開�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

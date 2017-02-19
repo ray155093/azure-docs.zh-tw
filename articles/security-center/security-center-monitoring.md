@@ -1,5 +1,5 @@
 ---
-title: "Azure 資訊安全中心的安全性健康情況監視 | Microsoft Docs"
+title: "Azure 資訊安全中心的安全性監視 | Microsoft Docs"
 description: "本文可協助您開始使用「Azure 資訊安全中心」的監視功能。"
 services: security-center
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/10/2017
+ms.date: 01/30/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: b0694222548e39718f6626c1b1666584445f8398
-ms.openlocfilehash: 246b322378d581f6f263fd0adb96ef32f6962906
+ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
+ms.openlocfilehash: ae263615d5fa262eb8a8ed2e5461d92bec503f1d
 
 
 ---
@@ -60,8 +60,8 @@ ms.openlocfilehash: 246b322378d581f6f263fd0adb96ef32f6962906
 
 > [!NOTE]
 > 只有至少擁有一個公用端點的虛擬機器會顯示在 [網路拓撲] 清單的 [網路健康情況] 刀鋒視窗中。
-> 
-> 
+>
+>
 
 每個建議在經過點選之後，都會有一組可供執行的動作。 比方說，如果您按一下 [遺失的系統更新]，便會開啟 [遺失的系統更新] 刀鋒視窗。 它會列出遺失修補程式的虛擬機器和遺失更新的嚴重性，如下列螢幕擷取畫面所示。
 
@@ -87,8 +87,8 @@ ms.openlocfilehash: 246b322378d581f6f263fd0adb96ef32f6962906
 
 > [!NOTE]
 > 這裡的安全性建議與 [建議] 刀鋒視窗中的建議相同。 如需如何處理建議的詳細資訊，請參閱[實作 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)。 這不只適用於虛擬機器，也適用於 [資源健康情況] 圖格中所有可用的資源。
-> 
-> 
+>
+>
 
 #### <a name="virtual-machines-section"></a>虛擬機器區段
 虛擬機器區段提供所有虛擬機器和建議的概觀。 每個資料行代表一組建議，如下列螢幕擷取畫面所示：
@@ -217,7 +217,6 @@ ms.openlocfilehash: 246b322378d581f6f263fd0adb96ef32f6962906
 
 
 
-
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

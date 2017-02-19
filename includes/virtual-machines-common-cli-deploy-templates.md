@@ -42,12 +42,18 @@ docker run -it microsoft/azure-cli
 
 您的帳戶可能會有一個以上的訂閱帳戶。 您可以輸入 `azure account list`，即可列出訂閱帳戶，如以下所示：
 
-```azure cli azure account list info:    Executing command account list data:    Name                              Id                                    Tenant Id                            Current data:    --------------------------------  ------------------------------------  ------------------------------------  ------- data:    Contoso Admin                     xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  true data:    Fabrikam dev                      xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  false  
+```azurecli
+azure account list
+info:    Executing command account list
+data:    Name                              Id                                    Tenant Id                            Current
+data:    --------------------------------  ------------------------------------  ------------------------------------  -------
+data:    Contoso Admin                     xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  true
+data:    Fabrikam dev                      xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  false  
 data:    Fabrikam test                     xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  false  
 data:    Contoso production                xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx  false  
 ```
 
-You can set the current Azure subscription by typing the following. Use the subscription name or the ID that has the resources you want to manage.
+若要設定目前的 Azure 訂用帳戶，請輸入下列內容。 使用訂用帳戶名稱或識別碼 (有您想管理的資源)。
 
 ```azurecli
 azure account set <subscription name or ID> true
@@ -1302,6 +1308,6 @@ azure vm disk attach <resource-group> <vm-name> [vhd-url]
 如需您可以使用的其他範本，請參閱[Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/virtual-machines-linux-app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 
