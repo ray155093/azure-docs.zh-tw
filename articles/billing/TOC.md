@@ -1,9 +1,10 @@
-# [開始使用](billing-getting-started.md)
+# 開始使用
+## [避免非預期的成本](billing-getting-started.md)
 ## [使用 Office 365 帳戶註冊](billing-use-existing-office-365-account-azure-subscription.md)
-## [限制和配額](../azure-subscription-service-limits.md)
+## [限制和配額](../azure-subscription-service-limits.md?toc=/azure/billing/TOC.json)
 # 作法
 ## 監視使用情況和成本
-### [下載發票與使用方式](billing-download-azure-invoice-daily-usage-date.md)
+### [取得發票和使用方式](billing-download-azure-invoice-daily-usage-date.md)
 ### [了解您的帳單](billing-understand-your-bill.md)
 ### [了解外部服務費用](billing-understand-your-azure-marketplace-charges.md)
 ### [設定帳務警示](billing-set-up-alerts.md)
@@ -32,6 +33,7 @@
 
 # 資源
 ## [請連絡支援人員](../azure-supportability/how-to-create-azure-support-request.md)
+
 
 <!--HONumber=Feb17_HO2-->
 

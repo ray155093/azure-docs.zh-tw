@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure SQL Server Stretch Database 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 SQL Server Stretch Database，在無需變更佇列或應用程式的情況下安全地將原始資料移轉至 Azure。 教學課程和其他文件。"
+services: sql-server-stretch-database
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: sql-server-stretch-database
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: 3dad35a38c753988615a4c1f2b439de9f95baf0e
+ms.sourcegitcommit: 91c1cb9713d087982dc68f2511b72ef86a050616
+ms.openlocfilehash: bb5e0fa9981133a77c235a42be369b3bbacb4ac0
 
 ---
 #<a name="sql-server-stretch-database-documentation"></a>SQL Server Stretch Database 文件
@@ -92,6 +103,6 @@ ms.openlocfilehash: 3dad35a38c753988615a4c1f2b439de9f95baf0e
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

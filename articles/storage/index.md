@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure 儲存體文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 Azure 儲存體 - 雲端中的 Blob、資料表、佇列、檔案和虛擬機器磁碟儲存體。 教學課程、API 參考和其他文件。"
+services: storage
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: storage
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: 1e9cc940d681893abbc351ef440c90f579e6c40a
+ms.sourcegitcommit: f7bd1007aeff86faf7a1d744602e5184f0ce1d6f
+ms.openlocfilehash: cdb001f960ea5d505bc757195abf14b505f77103
 
 ---
 
@@ -133,6 +144,7 @@ ms.openlocfilehash: 1e9cc940d681893abbc351ef440c90f579e6c40a
                         <p><a href="/rest/api/storageservices/fileservices/azure-storage-services-rest-api-reference">Blob、佇列、資料表和檔案</a></p>
                         <p><a href="/rest/api/storagerp">資源提供者</a></p>
                         <p><a href="/rest/api/storageimportexport">匯入/匯出</a></p>
+                        <p><a href="/rest/api/storageservices/fileservices/azure-storage-services-rest-api-reference">儲存體資料 REST API</a></p>
                    </div>
                 </div>
             </div>
@@ -144,6 +156,6 @@ ms.openlocfilehash: 1e9cc940d681893abbc351ef440c90f579e6c40a
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

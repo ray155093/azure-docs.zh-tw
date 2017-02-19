@@ -1,11 +1,23 @@
 ---
-layout: LandingPage
+title: "Azure Key Vault 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用金鑰保存庫來建立及維護金鑰，以便存取和加密您的雲端資源、應用程式和解決方案。 教學課程、API 參考等等。"
+services: key-vault
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: key-vault
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: 0c53b569e45569fd7a7c56142d66fbab8d8b0a05
+ms.sourcegitcommit: ea6717f8c5e04883d2feb83537c1c1f96bec2287
+ms.openlocfilehash: 70a89aad208ae71d5c0aab462b6078dafa8efcfc
 
 ---
+
 # <a name="key-vault-documentation"></a>金鑰保存庫文件
 
 了解如何使用 Azure 金鑰保存庫來保護及管理雲端應用程式和服務所使用的密碼編譯金鑰和密碼。 教學課程、API 參考和其他文件會示範如何建立及維護金鑰，以便存取和加密您的資源和解決方案。
@@ -154,6 +166,6 @@ ms.openlocfilehash: 0c53b569e45569fd7a7c56142d66fbab8d8b0a05
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

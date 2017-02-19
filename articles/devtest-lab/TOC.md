@@ -21,16 +21,18 @@
 ### [加入構件存放庫](devtest-lab-add-artifact-repo.md)
 ### [建立自訂構件](devtest-lab-artifact-author.md)
 
-## 管理 VM 基底
+## 管理 VM 基底和範本
+### [使用 Azure Resource Manager 範本建立多個 VM 環境](devtest-lab-create-environment-from-arm.md)
+### [設定 Marketplace 影像](devtest-lab-configure-marketplace-images.md)
 ### [比較映像與公式](devtest-lab-comparing-vm-base-image-types.md)
+### [管理公式](devtest-lab-manage-formulas.md)
+### [從 VM 建立自訂映像](devtest-lab-create-custom-image-from-vm-using-portal.md)
+### [使用 Azure 入口網站從 VHD 建立自訂映像](devtest-lab-create-template.md)
+### [使用 PowerShell 從 VHD 建立自訂映像](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
 ### [使用 AzCopy 來上傳 VHD 檔案](devtest-lab-upload-vhd-using-azcopy.md)
 ### [使用 PowerShell 上傳 VHD 檔案](devtest-lab-upload-vhd-using-powershell.md)
 ### [使用儲存體總管上傳 VHD 檔案](devtest-lab-upload-vhd-using-storage-explorer.md)
-### [使用 Azure 入口網站從 VHD 建立自訂映像](devtest-lab-create-template.md)
-### [使用 PowerShell 從 VHD 建立自訂映像](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
-### [從 VM 建立自訂映像](devtest-lab-create-custom-image-from-vm-using-portal.md)
-### [設定 Marketplace 影像](devtest-lab-configure-marketplace-images.md)
-### [管理公式](devtest-lab-manage-formulas.md)
+
 
 
 # 資源
@@ -41,6 +43,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=devtest-lab)
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

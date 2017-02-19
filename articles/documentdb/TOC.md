@@ -90,7 +90,7 @@
 ### [與 Azure 搜尋服務整合](../search/search-howto-index-documentdb.md)
 ### [使用 Azure Data Factory 移動資料](../data-factory/data-factory-azure-documentdb-connector.md)
 ### [使用 Azure 串流分析來分析即時資料](../stream-analytics/stream-analytics-define-outputs.md#documentdb)
-### [使用 Logic Apps 取得通知](documentdb-change-notification.md)
+### [使用 Logic Apps 取得已變更的 HL7 FHIR 記錄](documentdb-change-feed-hl7-fhir-logic-apps.md)
 ### [即時處理感應器資料](../hdinsight/hdinsight-storm-iot-eventhub-documentdb.md)
 ### [使用 Power BI 將資料視覺化](documentdb-powerbi-visualize.md)
 ### [運用 ODBC 驅動程式展現資料視覺效果](documentdb-nosql-odbc-driver.md)

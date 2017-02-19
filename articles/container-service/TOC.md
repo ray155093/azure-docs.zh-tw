@@ -1,5 +1,6 @@
 # 概觀
 ## [什麼是 Azure Container Service？](container-service-intro.md)
+## [常見問題集](container-service-faq.md)
 # 開始使用
 ## [部署 ACS 叢集](container-service-deployment.md)
 ## [使用 Azure CLI 2.0 (預覽) 部署至 ACS](container-service-create-acs-cluster-cli.md)
@@ -43,6 +44,6 @@
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-service&updatetype=&platform=)
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

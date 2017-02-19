@@ -1,10 +1,20 @@
 ---
-layout: LandingPage
-+toc_rel: breadcrumb.json
+title: "Azure 虛擬網路文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何在雲端使用虛擬網路。 文件會示範如何部署 VNet、使用它來啟動資源，並且與內部部署網路整合。"
+services: virtual-network
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: virtual-network
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: 2c3ce9081d456dcedd61ba85f2d023526aa5fa49
+ms.sourcegitcommit: c69489141c704965b2406210b3e2c20842c34a6c
+ms.openlocfilehash: 2b130d8b29270e08d432af9a117592c8ce7bac57
 
 ---
 # <a name="virtual-network-documentation"></a>虛擬網路文件
@@ -153,6 +163,6 @@ ms.openlocfilehash: 2c3ce9081d456dcedd61ba85f2d023526aa5fa49
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure Batch 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 Azure Batch 有效地執行大規模的平行和高效能計算應用程式。 教學課程、API 參考和其他文件。"
+services: batch
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: batch
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: aafd374ff1d72df90bd09479e18ac7ce83715cef
-ms.openlocfilehash: daf72b1a473e3940e889cd6caf78b709e08428c6
+ms.sourcegitcommit: a180f89814c3186e98018eee4d97a6b6904742cf
+ms.openlocfilehash: 11ec370ee2736d66d19a33eab938fe9639cafed7
 
 ---
 #<a name="batch-documentation"></a>Batch 文件
@@ -128,7 +139,7 @@ ms.openlocfilehash: daf72b1a473e3940e889cd6caf78b709e08428c6
                         <p><a href="/dotnet/api/microsoft.azure.batch">.NET</a></p>
                         <p><a href="/java/api/com.microsoft.azure.batch">Java</a></p>
                         <p><a href="http://azure.github.io/azure-sdk-for-node/azure-batch/latest.azure.batch">Node.js</a></p>
-                        <p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.batch">Python</a></p>
+                        <p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.batch.html">Python</a></p>
                     </div>
                 </div>
             </div>
@@ -148,16 +159,10 @@ ms.openlocfilehash: daf72b1a473e3940e889cd6caf78b709e08428c6
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/batch.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure Batch 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+<!--HONumber=Feb17_HO2-->
 
 

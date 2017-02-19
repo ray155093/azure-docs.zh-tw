@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure CDN 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用內容傳遞網路 (CDN)，將全球資料中心的內容提供給任何裝置。 教學課程、API 參考和其他文件。"
+services: cdn
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: cdn
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 565971021beec4afde15c17737ee82b812ba894d
-ms.openlocfilehash: fe5c35945f14c5023f070f25fd76e47d7952ce54
+ms.sourcegitcommit: 642f9469722dfe701db8e353f4aa2b17edc00081
+ms.openlocfilehash: 67fdc8b9b4db5d311a8247995d7f8f626b90e5c5
 
 ---
 # <a name="cdn-documentation"></a>CDN 文件
@@ -110,16 +121,10 @@ ms.openlocfilehash: fe5c35945f14c5023f070f25fd76e47d7952ce54
 </ul>
 
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/cdn.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure CDN 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+<!--HONumber=Feb17_HO2-->
 
 

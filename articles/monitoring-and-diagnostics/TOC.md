@@ -50,10 +50,10 @@
 
 # 資源
 ## [PowerShell 範例](../monitoring-and-diagnostics/insights-powershell-samples.md)
-## [Azure CLI 2.0 (Preview) 範例](../monitoring-and-diagnostics/insights-cli-samples.md)
+## [Azure CLI 1.0 範例](../monitoring-and-diagnostics/insights-cli-samples.md)
 ## [支援的計量清單](../monitoring-and-diagnostics/monitoring-supported-metrics.md)
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

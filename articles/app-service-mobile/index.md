@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure Mobile Apps 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 Azure App Service 中的 Mobile Apps，透過 Xamarin 或 Cordova 建置及裝載原生 iOS、Android 或 Windows 應用程式，或是跨平台的應用程式。"
+services: app-service\mobile
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: app-service\mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 5735759300fddfb650220cebc49bd5968621a8d4
-ms.openlocfilehash: 59bab7c719a01643dacf5549c0674d149e8b92f4
+ms.sourcegitcommit: 6f1ca5fe5125728b51a6d46e55415afb72405910
+ms.openlocfilehash: f660922fa2f7d5d21b4e6678233792ad6cb84041
 
 ---
 # <a name="mobile-apps-documentation"></a>Mobile Apps 文件
@@ -185,8 +196,13 @@ ms.openlocfilehash: 59bab7c719a01643dacf5549c0674d149e8b92f4
                 <div class="card">
                     <div class="cardText">
                         <h3>語言</h3>
-                        <p><a href="https://msdn.microsoft.com/library/azure/dn961176.aspx">.NET</a></p>
-                   </div>
+                        <p><a href="https://msdn.microsoft.com/library/azure/dn961176.aspx">.NET 後端 SDK</a></p>
+                        <p><a href="https://azure.github.io/azure-mobile-apps-node/">Node.js 後端 SDK</a></p>
+                        <p><a href="https://azure.github.io/azure-mobile-apps-android-client/">Android 用戶端 SDK</a></p>
+                        <p><a href="https://azure.github.io/azure-mobile-apps-ios-client/">iOS 用戶端 SDK</a></p>
+                        <p><a href="https://azure.github.io/azure-mobile-apps-js-client/">JavaScript/Cordova 用戶端 SDK</a></p>
+                        <p><a href="https://msdn.microsoft.com/library/azure/mt419521.aspx">Windows/Xamarin 用戶端 SDK</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,6 +211,6 @@ ms.openlocfilehash: 59bab7c719a01643dacf5549c0674d149e8b92f4
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

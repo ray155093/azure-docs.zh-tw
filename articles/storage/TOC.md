@@ -43,6 +43,14 @@
 ### [C++](storage-c-plus-plus-how-to-use-files.md)
 ### [Python](storage-python-how-to-use-file-storage.md)
 
+## 磁碟儲存體 
+### [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
+### [使用 Azure CLI 2.0 建立 Linux VM (預覽)](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+### [使用 PowerShell 將受控磁碟連結至 Windows VM](../virtual-machines/virtual-machines-windows-attach-disk-ps.md)
+### [在 Linux VM 中新增受控磁碟](../virtual-machines/virtual-machines-linux-add-disk.md)
+### [在 Windows 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/virtual-machines-windows-snapshot-copy-managed-disk.md)
+### [在 Linux 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/linux/virtual-machines-linux-snapshot-copy-managed-disk.md)
+
 # 作法
 ## [建立儲存體帳戶](storage-create-storage-account.md)
 ## 使用 Blob
@@ -62,13 +70,21 @@
 ### [概觀](/rest/api/storageservices/fileservices/File-Service-Concepts)
 ### [針對 Azure 檔案進行疑難排解](storage-troubleshoot-file-connection-problems.md)
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=file)
-## 使用虛擬機器磁碟
+## 使用磁碟
+### [Windows VM 的磁碟和 VHD](storage-about-disks-and-vhds-windows.md)
+### [Linux VM 的磁碟和 VHD](storage-about-disks-and-vhds-linux.md)
+### [Azure 受控磁碟概觀](storage-managed-disks-overview.md)
+### [將 Azure 虛擬機器移轉至 Azure 受控磁碟](../virtual-machines/virtual-machines-windows-migrate-to-managed-disks.md)
+### [從 AWS 和其他平台移轉至受控磁碟](../virtual-machines/virtual-machines-windows-on-prem-to-azure.md)
+### [關於 Azure IaaS VM 磁碟 的常見問題](storage-faq-for-disks.md)
 ### 進階儲存體
-#### [VM 工作負載適用的高效能儲存體](storage-premium-storage.md)
-#### [移轉至進階儲存體](storage-migration-to-premium-storage.md)
+#### [VM 磁碟適用的高效能進階儲存體](storage-premium-storage.md)
 #### [為高效能而設計](storage-premium-storage-performance.md)
 ### 標準儲存體
-#### [以遞增快照備份 VM 磁碟](storage-incremental-snapshots.md)
+#### [符合成本效益的標準儲存體和非受控和受控 VM 磁碟](storage-standard-storage.md)
+### 使用非受控磁碟
+#### [移轉至進階儲存體](storage-migration-to-premium-storage.md)
+#### [以遞增快照集備份非受控 VM 磁碟](storage-incremental-snapshots.md)
 ## 規劃和設計
 ### [複寫](storage-redundancy.md)
 ### [擴充和效能目標](storage-scalability-targets.md)
@@ -205,6 +221,6 @@
 ### [iOS](https://github.com/Azure/azure-storage-ios)
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

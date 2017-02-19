@@ -1,11 +1,23 @@
 ---
-layout: LandingPage
+title: "Azure 媒體服務文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何利用媒體服務 (可延伸的雲端平台) 安全地串流處理隨選或即時廣播品質的影片。 教學課程、API 參考等等。"
+services: media-services
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: media-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: 3e029a72b1918636ede33db1445ce0550d40ede6
+ms.sourcegitcommit: ac58c5e8f43a1e6bab1023826818cc3641cad54a
+ms.openlocfilehash: f0da57cc74e190e6684036c8a793dface3c6dd74
 
 ---
+
 # <a name="media-services-documentation"></a>媒體服務文件
 
 了解如何利用媒體服務 (可延伸的雲端平台) 串流處理廣播品質的影片。 教學課程、API 參考和其他文件會示範如何安全地提供可針對數百萬位使用者調整的隨選和即時視訊或音訊串流。
@@ -202,6 +214,6 @@ ms.openlocfilehash: 3e029a72b1918636ede33db1445ce0550d40ede6
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

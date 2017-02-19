@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure 辨識服務文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何將智慧功能新增至您的應用程式，例如辨識、語音和語言分析。 取得快速入門指南和 API 參考。"
+services: cognitive-services
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: cognitive-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: d08cbd179ffb64630a37dd04e33ae50dfda3c615
-ms.openlocfilehash: 9e31044fb3be93befb18939210e0bc703462fbd6
+ms.sourcegitcommit: 0c5f1ba593952cb6dc6a8200a5666ecb7a32fce7
+ms.openlocfilehash: 3895b02f25b0e27b46a5e5493fe2b7f8f83201c1
 
 ---
 #<a name="cognitive-services-documentation"></a>辨識服務文件
@@ -97,16 +108,10 @@ ms.openlocfilehash: 9e31044fb3be93befb18939210e0bc703462fbd6
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/cognitive-services.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載辨識服務文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+<!--HONumber=Feb17_HO2-->
 
 

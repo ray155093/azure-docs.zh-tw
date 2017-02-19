@@ -44,6 +44,7 @@
 ### [整合模組](automation-integration-modules.md)
 ### [排程](automation-schedules.md)
 ### [變數](automation-variables.md)
+### [更新 Azure Powershell 模組](automation-update-azure-modules.md)
 ## 自動化案例
 ### [Runbook 資源庫](automation-runbook-gallery.md)
 ### [啟動/停止虛擬機器](automation-solution-startstopvm-graphical.md)
@@ -81,6 +82,6 @@
 ## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

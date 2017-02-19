@@ -1,23 +1,20 @@
 ---
-title: "Operations Management Suite (OMS) 概觀 | Microsoft Docs"
-description: "Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。"
+title: "Azure Operations Management Suite (OMS) 文件 - 教學課程 | Microsoft Docs"
+description: "Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。 本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。"
 services: operations-management-suite
-documentationcenter: 
-author: bwren
-manager: jwhit
-editor: tysonn
-ms.assetid: 9dc437b9-e83c-45da-917c-cb4f4d8d6333
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
 ms.service: operations-management-suite
-ms.devlang: na
-ms.topic: get-started-article
 ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-ms.date: 10/24/2016
-ms.author: bwren
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 4f14a461b842649de977d2c4c80edfc197e15657
-ms.openlocfilehash: 14274c7d94213681b3779b97a44296e6eaf90be9
-
+ms.sourcegitcommit: ccfbd45def1ecf036a2464f560aa89817c37b419
+ms.openlocfilehash: 54b3ce2c8c3966ee36350fed71bdc48aa5bffa63
 
 ---
 # <a name="what-is-operations-management-suite-oms"></a>Operations Management Suite (OMS) 是什麼？
@@ -32,7 +29,7 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 
 您可以輕鬆地新增 Log Analytics 的解決方案，而解決方案定義要收集的資料和其分析的邏輯。  解決方案可能包括自動提供給代理程式的額外功能，而且幾乎不需要進行設定或進行很少的設定。  除了使用個別解決方案所提供的分析工具之外，您可以跨整個資料集執行自訂搜尋，以關聯系統與應用程式之間的資料。  
 
-## <a name="automation-controlmediaoperations-management-suite-overviewicon-automation-controlpng-automation-control"></a>![自動化與控制](media/operations-management-suite-overview/icon-automation-control.png) 自動化與控制
+## <a name="automation--controlmediaoperations-management-suite-overviewicon-automation-controlpng-automation--control"></a>![自動化與控制](media/operations-management-suite-overview/icon-automation-control.png) 自動化與控制
 Azure 自動化會使用根據 PowerShell 並在 Azure 雲端中執行的 [Runbook](../automation/automation-runbook-types.md)，來自動化管理程序。  Runbook 可以存取可使用 PowerShell 管理的任何產品或服務，包括其他雲端 (例如 Amazon Web Services (AWS)) 中的資源。  Runbook 也可以在本機資料中心的伺服器上執行，以管理本機資源。
 
 Azure 自動化使用 [PowerShell DSC](../automation/automation-dsc-overview.md) 來提供組態管理。  您可以建立和管理裝載於 Azure 的 DSC 資源，以及將它們套用到雲端和內部部署系統，來定義和自動強制執行其組態。
@@ -42,7 +39,7 @@ Azure 自動化使用 [PowerShell DSC](../automation/automation-dsc-overview.md)
 
 [Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery) 可協調內部部署 Hyper-V 虛擬機器、VMware 虛擬機器和實體 Windows/Linux 伺服器的複寫、容錯移轉及復原，為您的商務持續性與災害復原 (BCDR) 策略做出貢獻。 您可以將電腦複寫到次要資料中心，或將電腦複寫到 Azure 來擴充資料中心。 Site Recovery 也提供工作負載的簡單容錯移轉和復原。 它會與災害復原機制 (例如 SQL Server AlwaysOn) 整合，並提供復原計劃輕鬆容錯移轉跨多部電腦分層的工作負載。
 
-## <a name="oms-security-and-compliancemediaoperations-management-suite-overviewicon-security-compliancepng-security-and-compliance"></a>![OMS 安全性與法規遵循](media/operations-management-suite-overview/icon-security-compliance.png)  安全性與法規遵循
+## <a name="oms-security-and-compliancemediaoperations-management-suite-overviewicon-security-compliancepng-security-and-compliance"></a>![OMS 安全性與法規遵循](media/operations-management-suite-overview/icon-security-compliance.png) 安全性與法規遵循
 安全性與法規遵循可協助您識別、評定並降低基礎結構的安全性風險。  OMS 的這些功能是透過 Log Analytics 中的多個解決方案所實作，而這些解決方案會分析代理程式系統中的記錄資料和組態，協助您確保環境的未來安全性。
 
 * [安全性和稽核解決方案](oms-security-getting-started.md)會收集並分析受管理系統上的安全性事件，以找出可疑的活動。
@@ -58,6 +55,6 @@ Azure 自動化使用 [PowerShell DSC](../automation/automation-dsc-overview.md)
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

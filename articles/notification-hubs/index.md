@@ -1,11 +1,23 @@
 ---
-layout: LandingPage
+title: "Azure 通知中樞文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何透過通知中樞，將推播通知從任何後端傳送至任何行動裝置。 教學課程、API 參考和其他文件。"
+services: notification-hubs
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: notification-hubs
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: c99636cdb412f1144f2dbe078379b89b6841bd9b
+ms.sourcegitcommit: a5d4401d74c8aebbe618cd1fac9bc8247b8da90b
+ms.openlocfilehash: 418e985335b582957637430cdde71024302f3fc2
 
 ---
+
 #<a name="notification-hubs-documentation"></a>通知中樞文件
 
 了解如何使用通知中樞 (可調整的多平台推播通知引擎) 快速傳送數百萬則訊息。 教學課程、API 參考和其他文件會示範如何設定推播通知，並將這類通知從任何後端傳送至任何行動裝置。 
@@ -205,6 +217,6 @@ ms.openlocfilehash: c99636cdb412f1144f2dbe078379b89b6841bd9b
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

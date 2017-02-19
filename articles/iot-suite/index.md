@@ -1,10 +1,23 @@
 ---
+title: "Azure IoT 套件文件 - 教學課程和 API 參考 | Microsoft Docs"
+description: 
+services: iot-suite
+author: carolz
+manager: carolz
 layout: LandingPage
+ms.assetid: 
+ms.service: iot-suite
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: ceade1ccba2d1328faf548f43f51b4fa3a5343b0
+ms.sourcegitcommit: 29fb247771d662d3abcbf35e95ff0f7a8cf95af1
+ms.openlocfilehash: 461542095d9ef357460e93d65bb9f4dd8fe17c86
 
 ---
+
 # <a name="iot-suite-documentation"></a>IoT 套件文件
 
 即刻開始使用 Microsoft Azure IoT 套件。 使用預先設定的解決方案，並大幅提升開發物聯網 (IoT) 解決方案的速度。 透過使用多個平台 (包括 Linux、Windows 以及即時作業系統) 的裝置 SDK，以新增裝置並連接現有的裝置。 輕易地從少數感應器擴充到數百萬個同步連接的裝置，並依賴於 Azure 整體可用性&mdash;無論專案的大小為何。
@@ -91,6 +104,6 @@ ms.openlocfilehash: ceade1ccba2d1328faf548f43f51b4fa3a5343b0
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

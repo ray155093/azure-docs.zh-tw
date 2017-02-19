@@ -1,11 +1,23 @@
 ---
-layout: LandingPage
+title: "Azure Multi-Factor Authentication 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何透過可提供簡單登入程序的各種驗證方法，部署 Multi-Factor Authentication。 教學課程、SDK 等等。"
+services: multi-factor-authentication
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: multi-factor-authentication
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: 6ff0e1c42ad151c56500596d99f63bae200368ed
+ms.sourcegitcommit: acd9ead9012043bc6db8c32add86bb7797fcf8c9
+ms.openlocfilehash: c4aaa14007bf441f99ef6599bda411bcaed92a92
 
 ---
+
 # <a name="multi-factor-authentication-documentation"></a>Multi-Factor Authentication 文件
 
 了解如何部署和管理 Azure Multi-Factor Authentication，這是雙步驟的身分驗證系統。 教學課程、SDK 和其他文件會示範如何透過各種驗證方法提供強式驗證，同時提供簡單登入程序。
@@ -109,6 +121,6 @@ ms.openlocfilehash: 6ff0e1c42ad151c56500596d99f63bae200368ed
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

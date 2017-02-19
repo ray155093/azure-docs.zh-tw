@@ -1,11 +1,23 @@
 ---
-layout: LandingPage
+title: "Azure ExpressRoute 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何設定和管理從內部部署基礎結構或共置設備到 Microsoft 雲端服務的私人 ExpressRoute 連線。"
+services: expressroute
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: expressroute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: ecb42e7a0abc5a0438bff39bddddac25d005eb77
+ms.sourcegitcommit: 6eb84236ff7814ab7dfade718693060d7e7383b9
+ms.openlocfilehash: a060970a2f2870a40d4925b8eeccf4fec4af1aa4
 
 ---
+
 #<a name="expressroute-documentation"></a>ExpressRoute 文件
 
 了解如何使用 ExpressRoute 來設定從內部部署基礎結構或共置設備到 Microsoft 雲端服務的快速私人連線。 教學課程、REST API 和其他文件可協助您設定和管理 ExpressRoute 線路。
@@ -102,6 +114,6 @@ ms.openlocfilehash: ecb42e7a0abc5a0438bff39bddddac25d005eb77
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

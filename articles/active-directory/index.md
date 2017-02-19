@@ -1,9 +1,20 @@
 ---
 layout: LandingPage
-description: "了解如何同步處理目錄及啟用單一登入。 文件會示範如何整合一套完整的身分識別管理功能。"
+description: Learn how to synchronize directories and enable single sign-on. Documentation shows you how to integrate a full suite of identity management capabilities.
+title: "Azure Active Directory 文件 - 教學課程和 API 參考 | Microsoft Docs"
+services: active-directory
+author: carolz
+manager: carolz
+ms.assetid: 
+ms.service: active-directory
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 5a478ce5c06cd875ec4ed5ff2bed4d0cd98fac53
-ms.openlocfilehash: 500c764b124ac811432212bab50f83dc6f6b86ee
+ms.sourcegitcommit: 2dc340dcb864325554700f58057d157dd46f7f7a
+ms.openlocfilehash: ba13ea0d6c17e50e7b1887373d67ca691bdfad01
 
 ---
 
@@ -129,16 +140,8 @@ ms.openlocfilehash: 500c764b124ac811432212bab50f83dc6f6b86ee
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/active-directory.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Active Directory 文件 </div>
-    </a>
-</div>
 
 
-
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 
