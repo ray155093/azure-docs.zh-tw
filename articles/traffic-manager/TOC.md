@@ -16,9 +16,10 @@
 # 作法
 ## [設定路由方法](traffic-manager-configure-routing-method.md)
 ## [測試您的設定](traffic-manager-testing-settings.md)
-## [針對降級的端點進行疑難排解](traffic-manager-troubleshooting-degraded.md)
 ## [合併負載平衡服務](traffic-manager-load-balancing-azure.md)
 ## [使用網路資源](../virtual-network/resource-groups-networking.md?toc=%2fazure%2ftraffic-manager%2ftoc.json)
+## 疑難排解
+### [針對降級的端點進行疑難排解](traffic-manager-troubleshooting-degraded.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.trafficmanager/v2.3.0/azurerm.trafficmanager)
@@ -45,6 +46,6 @@
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=traffic-manager)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 
