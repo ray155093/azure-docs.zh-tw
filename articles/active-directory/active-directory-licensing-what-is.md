@@ -13,32 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 08/23/2016
+ms.date: 02/06/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: de0de775c551e5b7b7f5c42d09a40b35a282f891
+ms.sourcegitcommit: ae4961611195c1574f5b94edbca74e1f182b4361
+ms.openlocfilehash: eb0b428f84dc16abd5cfee73dc8e4191698ebdd6
 
 
 ---
 # <a name="what-is-microsoft-azure-active-directory-licensing"></a>什麼是 Microsoft Azure Active Directory 授權？
-## <a name="description"></a>說明
+
+> [!div class="op_single_selector"]
+> * [Azure 入口網站](active-directory-licensing-get-started-azure-portal.md)
+> * [Azure 傳統入口網站](active-directory-licensing-what-is.md)
+>
+>
+
+
 Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDaaS)」解決方案與平台。 Azure AD 提供許多功能與技術的版本，從可搭配任何 Microsoft 服務 (例如 Office 365、Dynamics、Microsoft Intune 和 Azure) 使用的 Azure AD 免費版 (Azure AD 在此模式中不會產生任何使用費用)，到許多 Azure AD 付費版本，例如 Enterprise Mobility Suite (EMS)、Azure AD Premium 與 Basic，以及 Azure Multi-Factor Authentication (MFA)。 如同許多 Microsoft 線上服務一般，大多數 Azure AD 付費版本都是透過賦予每位使用者權利來提供，就像在 Office 365、Microsoft Intune 和 Azure AD 中一樣。 在這些情況下，服務購買是由一或多個訂用帳戶來表示，而且每個訂用帳戶會在您的租用戶中包含預先購買的授權數目。 每位使用者權利是透過授權指派、在使用者與產品之間建立連結、啟用使用者的服務元件，以及使用一個預付授權來達成。
 
 [立即試用 Azure AD Premium。](https://portal.office.com/Signup/Signup.aspx?OfferId=01824d11-5ad8-447f-8523-666b0848b381&ali=1#0)
 
 > [!NOTE]
 > Azure AD 管理入口網站是 Azure 傳統入口網站的一部分。 雖然使用 Azure AD 不需要購買任何 Azure，但是存取此入口網站需要有效的 Azure 訂用帳戶或 [Azure 試用版訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)。
-> 
-> 
+>
+>
 
 如需 Azure AD 服務功能的一般概觀，請參閱 [什麼是 Azure AD](active-directory-whatis.md)。
 [深入了解 Azure AD 服務等級](https://azure.microsoft.com/support/legal/sla/)
 
 > [!NOTE]
 > Azure 預付型訂用帳戶則不同：雖然也會在您的目錄中表示，但是這些訂用帳戶可以建立 Azure 資源，而且會將資源對應到您的付款方法。 在這種情況下，訂用帳戶「沒有」相關聯的授權計數。 使用者與訂用帳戶的關聯就是使用者管理訂用帳戶資源的存取權，是透過授與使用者權限來達成，讓他們能夠操作與訂用帳戶對應的 Azure 資源。
-> 
-> 
+>
+>
 
 ## <a name="how-does-azure-ad-licensing-work"></a>Azure AD 授權如何運作？
 以授權為基礎 (以權利為基礎) 的 Azure AD 服務的運作方式，是在您的 Azure AD 目錄/服務租用戶中啟用訂用帳戶。 一旦訂用帳戶啟用，服務功能就可以由目錄/服務系統管理員管理，並由授權的使用者使用。
@@ -51,10 +58,10 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 > [!IMPORTANT]
 > Azure AD Premium 和 Basic，以及 Enterprise Mobility Suite 訂用帳戶，會受限於其佈建的目錄/租用戶。 訂用帳戶無法分割至不同目錄，或用來賦予權利給其他目錄中的使用者。 在目錄之間可以移動訂用帳戶，但是需要提交支援票證，如果是直接購買的情況，則需要取消並重新購買。
-> 
+>
 > 透過大量授權購買 Azure AD 或 Enterprise Mobility Suite 時，如果協議包含其他 Microsoft Online Services (例如 Office 365)，將會自動啟用訂用帳戶。
-> 
-> 
+>
+>
 
 付費 Azure AD 功能可以擴展目錄的範圍。 範例包括：
 
@@ -80,8 +87,8 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 > [!NOTE]
 > Azure AD 支援「外部使用者」，這是在 Azure AD 執行個體中，使用 Microsoft 帳戶 (MSA) 或另一個目錄中的 Azure AD 身分識別所建立的使用者帳戶。 雖然我們忙著將此功能擴充到所有 Microsoft 的組織服務，但是目前在某些服務體驗中不支援這些帳戶。例如，Office 365 系統管理入口網站目前不支援這些使用者。 因此，使用 Microsoft 帳戶的外部使用者將無法存取 Office 365 系統管理入口網站，而來自其他 Azure AD 目錄的外部使用者將會被忽略。 在後者的情況中，只有使用者的本機帳戶，最初建立使用者的 Azure AD 或 Office 365 目錄，才能透過這些體驗存取。
-> 
-> 
+>
+>
 
 如之前所述，Azure AD 有不同的付費版本。 這些版本在其購買可用性有些微的差異：
 
@@ -154,7 +161,6 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 
