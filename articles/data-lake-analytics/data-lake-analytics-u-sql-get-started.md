@@ -1,6 +1,6 @@
 ---
-title: "使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼 | Microsoft Docs"
-description: "了解如何安裝適用於 Visual Studio 的資料湖工具，如何開發和測試 U-SQL 指令碼。 "
+title: "教學課程：開始使用 Azure Data Lake Analytics U-SQL 語言 | Microsoft Docs"
+description: "使用此教學課程來了解 Azure Data Lake Analytics U-SQL 語言。"
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -15,25 +15,24 @@ ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 5137ccfd2c809fe17cc7fdf06941ebd797288d81
-ms.openlocfilehash: 496c3c1cc0f203a58a6f81476393b369e6a76215
+ms.sourcegitcommit: 96747e898b2d84cbce9251758a90941f85112dd0
+ms.openlocfilehash: 7aa3844b9bdc2c5372c6e54b05296dcde6b1c05f
 
 
 ---
 # <a name="tutorial-get-started-with-azure-data-lake-analytics-u-sql-language"></a>教學課程：開始使用 Azure 資料湖分析 U-SQL 語言
-U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。 U-SQL 的可調整分散式查詢功能可讓您有效率地分析各關聯式存放區 (Azure SQL Database) 中的資料。  它可讓您在讀取、插入自訂邏輯和 UDF 上套用結構描述，以處理非結構化資料，而且包含擴充性，可精細控制如何大規模執行。 若要深入了解 U-SQL 背後的設計原理，請參閱此 [Visual Studio 部落格文章](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
+U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。 透過 U-SQL 的可調整分散式查詢功能，您可以有效率地分析各關聯式存放區 (Azure SQL Database) 中的資料。 使用 U-SQL，您可以藉由在讀取時套用結構描述並插入自訂邏輯和 UDF，來處理非結構化資料。 此外，U-SQL 所含有的擴充性可讓您細微控制如何大規模執行。 若要深入了解 U-SQL 背後的設計原理，請參閱 Visual Studio 部落格文章[簡介 U-SQL – 讓巨量資料的處理變簡單的語言](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
 
-U-SQL 與 ANSI SQL 或 T-SQL 有一些差異。 例如，其關鍵字 (像是 SELECT) 一定要全是大寫字。
+U-SQL 有幾點不同於 ANSI SQL 或 T-SQL。 例如，SELECT 等關鍵字必須全部是大寫字母。
 
-select 子句內部是型別系統和運算式語言，在這裡面述詞等項目是以 C# 來撰寫。
-這表示資料型別是屬於 C# 型別且資料型別使用 C# NULL 語意，而述詞內的比較作業會遵循 C# 語法 (例如 == "foo")。  這也表示值全都是 .NET 物件，可讓您輕鬆地使用任何方法來操作物件 (例如 "f o o o".Split(' '))。
+ 其在 SELECT 子句和 WHERE 述詞內的類型系統和運算式語言為 C#。 這表示，資料類型是 C# 類型且使用 C# NULL 語意，而述詞內的比較作業會遵循 C# 語法 (例如 == "foo")。 這也表示，值全都是 .NET 物件，因此您可以輕鬆地使用任何方法來操作物件 (例如 "f o o o".Split(' '))。
 
-如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
+如需 U-SQL 的詳細資訊，請參閱 [U-SQL 語言參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
 ### <a name="prerequisites"></a>必要條件
-請完成[教學課程：使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+如果您尚未這麼做，請閱讀並完成[教學課程：使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。 在完成此教學課程後，請返回本文。
 
-在此教學課程中，您使用下列 U-SQL 指令碼執行了資料湖分析作業：
+在此教學課程中，您使用下列 U-SQL 指令碼執行了 Azure Data Lake Analytics 作業：
 
     @searchlog =
         EXTRACT UserId          int,
@@ -50,31 +49,30 @@ select 子句內部是型別系統和運算式語言，在這裡面述詞等項�
         TO "/output/SearchLog-first-u-sql.csv"
     USING Outputters.Csv();
 
-此指令碼沒有任何轉換步驟。 它會從原始程式檔 **SearchLog.tsv** 讀取資料，為其建立結構描述，並將資料列集輸出回 **SearchLog-first-u-sql.csv** 檔案。
+此指令碼沒有任何轉換步驟。 它會從原始程式檔 SearchLog.tsv 讀取資料，為其建立結構描述，並將資料列集回寫到 SearchLog-first-u-sql.csv 檔案。
 
-請注意 [持續時間] 欄位的資料類型旁邊的問號。 該符號表示 [持續時間] 欄位可能是 null。
+請注意 [持續時間] 欄位中資料類型旁邊的問號。 該符號表示 [持續時間] 欄位可能是 null。
 
-以下是指令碼中的一些概念和關鍵字：
+在指令碼中，您會發現下列概念和關鍵字︰
 
-* **資料列集變數**：每個會產生資料列集的查詢運算式都可以指派給變數。 U-SQL 遵循 T-SQL 的變數命名模式，例如指令碼中的 **@searchlog** 。
-    請注意，U-SQL 不會強制執行指派工作。 它只是命名運算式，並讓您能夠建置更複雜的運算式。
-* **EXTRACT** 讓您能夠定義「讀取時的結構描述」。 結構描述是透過每個資料行的資料行名稱和 C# 型別名稱配對來加以指定。 它會使用所謂的**擷取器** (例如 **Extractors.Tsv())** 來擷取 tsv 檔案。 您可以開發自訂擷取器。
-* **OUTPUT** 會抓取資料列集並將其序列化。 Outputters.Csv() 會將逗號分隔檔輸出到指定的位置。 您也可以開發自訂輸出器。
-* 請注意，指令碼中的兩個路徑是相對路徑。 您也可以使用絕對路徑。  例如
-  
-        adl://<ADLStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
-  
-    您必須使用絕對路徑，才能存取所連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：
-  
-        wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
-  
-  > [!NOTE]
-  > 目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 容器。
-  > 
-  > 
+* 資料列集變數：每個會產生資料列集的查詢運算式都可以指派給變數。 在指令碼中，U-SQL 會遵循 T-SQL 的變數命名模式，例如 (@searchlog,。
+
+ >[!NOTE]
+ >指派作業不會強制執行。 它只會指定運算式，以便您能夠建置更複雜的運算式。
+* EXTRACT︰使用此關鍵字，您可以在讀取時定義結構描述。 結構描述是透過每個資料行的資料行名稱和 C# 型別名稱配對來加以指定。 結構描述會使用所謂的擷取器 (例如 Extractors.Tsv()) 來擷取 .tsv 檔案。 您可以開發自訂擷取器。
+* OUTPUT：此關鍵字會抓取資料列集並將其序列化。 Outputters.Csv() 會將逗號分隔檔寫入到指定位置。 您也可以開發自訂輸出器。
+
+ >[!NOTE]
+ >兩個路徑都是相對路徑。 您也可以使用絕對路徑。 例如：    
+ >     adl://<ADLStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
+ >
+ >您必須使用絕對路徑，才能存取所連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
+
+ >[!NOTE]
+ >目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 儲存體容器。
 
 ## <a name="use-scalar-variables"></a>使用純量變數
-您也可以使用純量變數以方便維護指令碼。 前述 U-SQL 指令碼也可以撰寫成下面這樣：
+您也可以使用純量變數以方便維護指令碼。 前述 U-SQL 指令碼也可以撰寫成：
 
     DECLARE @in  string = "/Samples/Data/SearchLog.tsv";
     DECLARE @out string = "/output/SearchLog-scalar-variables.csv";
@@ -146,14 +144,15 @@ WHERE 子句使用 [C# 布林運算式](https://msdn.microsoft.com/library/6a71f
         TO "/output/SearchLog-transform-datatime.csv"
         USING Outputters.Csv();
 
-請注意，第二個查詢會對第一個資料列集的結果起作用，因此最終結果是兩個篩選條件的組合。 您也可以重複使用變數名稱，因為它們是語彙範圍型名稱。
+ >[!NOTE]
+ >第二個查詢會對第一個資料列集的結果起作用，因而建立兩個篩選條件的組合。 您也可以重複使用變數名稱，因為它們是語彙範圍型名稱。
 
 ## <a name="aggregate-rowsets"></a>彙總資料列集
-U-SQL 提供您已熟悉使用的 **ORDER BY**、**GROUP BY** 和各種彙總語法。
+U-SQL 提供您已熟悉使用的 ORDER BY、GROUP BY 和各種彙總語法。
 
-下列查詢會尋找每個區域的總持續時間，然後按順序輸出前五大持續時間。
+下列查詢會尋找每個區域的總持續時間，然後按順序顯示前五大持續時間。
 
-U-SQL 資料列集不會保留它們的順序以供下一次查詢使用。 因此，若要對輸出排序，您需要將 ORDER BY 加入 OUTPUT 陳述式，如下所示：
+U-SQL 資料列集不會保留它們的順序以供下一次查詢使用。 因此，若要對輸出排序，您需要將 ORDER BY 新增至 OUTPUT 陳述式：
 
     DECLARE @outpref string = "/output/Searchlog-aggregation";
     DECLARE @out1    string = @outpref+"_agg.csv";
@@ -243,16 +242,16 @@ U-SQL 提供常見的聯結運算子，例如 INNER JOIN、LEFT/RIGHT/FULL OUTER
         USING Outputters.Csv();
 
 
-U-SQL 只支援 ANSI 相容聯結語法：Rowset1 JOIN Rowset2 ON 述詞。 不支援舊有的 FROM Rowset1, Rowset2 WHERE 述詞語法。
+U-SQL 只支援符合規範的 ANSI 聯結語法：Rowset1 JOIN Rowset2 ON 述詞。 「不」支援舊有的 FROM Rowset1, Rowset2 WHERE 述詞語法。
 JOIN 中的述詞必須是等號比較聯結且沒有運算式。 如果您想要使用運算式，請將它加入前一個資料列集的 select 子句。 如果您想要進行不同的比較，則可將它移至 WHERE 子句。
 
 ## <a name="create-databases-table-valued-functions-views-and-tables"></a>建立資料庫、資料表值函式、檢視和資料表
-U-SQL 可讓您在資料庫和結構描述的內容中使用資料。 因此您不必一直對檔案進行讀取或寫入。
+在 U-SQL 中，您可以在資料庫和結構描述的內容中使用資料，而不一定要讀取或寫入檔案。
 
-每個 U-SQL 指令碼在執行時，都會有預設資料庫 (主要) 與預設結構描述 (DBO) 做為其預設內容。 您可以建立自己的資料庫和 (或) 結構描述。 若要變更內容，請使用 **USE** 陳述式來變更內容。
+每個 U-SQL 指令碼在執行時，都會有預設資料庫 (主要) 與預設結構描述 (DBO) 做為其預設內容。 您可以建立自己的資料庫或結構描述。 若要變更內容，請使用 USE 陳述式。
 
-### <a name="create-a-table-valued-function-tvf"></a>建立資料表值函式 (TVF)
-在先前的 U-SQL 指令碼中，您重複使用會從相同原始程式檔進行讀取的 EXTRACT。 U-SQL 資料表值函式可讓您封裝資料以供日後重複使用。   
+### <a name="create-a-tvf"></a>建立 TVF
+在先前的 U-SQL 指令碼中，您重複使用 EXTRACT 來從相同原始程式檔進行讀取。 使用 U-SQL 資料表值函式 (TVF)，您就可以封裝資料以供日後重複使用。  
 
 下列指令碼會在預設資料庫和結構描述中建立名為 *Searchlog()* 的 TVF。
 
@@ -299,7 +298,7 @@ U-SQL 可讓您在資料庫和結構描述的內容中使用資料。 因此您�
         USING Outputters.Csv();
 
 ### <a name="create-views"></a>建立檢視
-如果您只有一個想要抽取但不要予以參數化的查詢運算式，您可以建立檢視而不是資料表值函式。
+如果您只有一個想要抽取但不要從中建立參數的查詢運算式，您可以建立檢視而不是資料表值函式。
 
 下列指令碼會在預設資料庫和結構描述中建立名為 *SearchlogView* 的檢視：
 
@@ -316,7 +315,7 @@ U-SQL 可讓您在資料庫和結構描述的內容中使用資料。 因此您�
         FROM "/Samples/Data/SearchLog.tsv"
     USING Extractors.Tsv();
 
-下列指令碼示範使用定義的檢視：
+下列指令碼示範如何使用定義的檢視：
 
     @res =
         SELECT
@@ -332,9 +331,9 @@ U-SQL 可讓您在資料庫和結構描述的內容中使用資料。 因此您�
         USING Outputters.Csv();
 
 ### <a name="create-tables"></a>建立資料表
-U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結構描述建立資料表，或建立資料表並從填入資料表的查詢推斷結構描述 (也就是 CREATE TABLE AS SELECT 或 CTAS)。
+和關聯式資料庫資料表一樣，使用 U-SQL 可讓您使用預先定義的結構描述建立資料表，或建立資料表以從填入資料表的查詢推斷結構描述 (也就是 CREATE TABLE AS SELECT 或 CTAS)。
 
-下列指令碼會建立一個資料庫和兩個資料表：
+使用下列指令碼建立一個資料庫和兩個資料表：
 
     DROP DATABASE IF EXISTS SearchLogDb;
     CREATE DATABASE SearchLogDb;
@@ -353,21 +352,21 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
                 ClickedUrls     string,
 
                 INDEX sl_idx CLUSTERED (UserId ASC)
-                    PARTITIONED BY HASH (UserId)
+                    DISTRIBUTED BY HASH (UserId)
     );
 
     INSERT INTO SearchLog1 SELECT * FROM master.dbo.Searchlog() AS s;
 
     CREATE TABLE SearchLog2(
         INDEX sl_idx CLUSTERED (UserId ASC)
-                PARTITIONED BY HASH (UserId)
+                DISTRIBUTED BY HASH (UserId)
     ) AS SELECT * FROM master.dbo.Searchlog() AS S; // You can use EXTRACT or SELECT here
 
 
 ### <a name="query-tables"></a>查詢資料表
-您可以運用和查詢資料檔案一樣的方式來查詢資料表 (上一個指令碼所建立的)。 您現在可以直接參考資料表名稱，而不必使用 EXTRACT 建立資料列集。
+您可以運用和查詢資料檔案一樣的方式來查詢資料表 (例如，上一個指令碼所建立的資料表)。 您現在可以直接參考資料表名稱，而不必使用 EXTRACT 建立資料列集。
 
-您先前使用的轉換指令碼會修改成從資料表進行讀取：
+若要從資料表進行讀取，請修改您先前使用的轉換指令碼：
 
     @rs1 =
         SELECT
@@ -387,18 +386,19 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
-請注意，您目前無法在用來建立資料表的相同指令碼中，對該資料表執行 SELECT。
+ >[!NOTE]
+ >您目前無法在用來建立資料表的相同指令碼中，對該資料表執行 SELECT。
 
 ## <a name="conclusion"></a>結論
-本教學課程所涵蓋的內容僅是 U-SQL 的一小部分。 本教學課程的範圍有限，不可能囊括所有內容，例如：
+本教學課程只說明了 U-SQL 一小部分的內容。 因為範圍有限，本教學課程並未討論 U-SQL 的其他眾多好處。 例如，您可以：
 
 * 使用 CROSS APPLY 將局部字串、陣列和對應解除封裝到資料列。
 * 操作經過分割的各組資料 (檔案集和經過分割的資料表)。
-* 以 C# 開發使用者定義的運算子，例如擷取器、輸出器、處理器、使用者定義的彙總器。
+* 以 C# 開發使用者定義的運算子，例如擷取器、輸出器、處理器和使用者定義的彙總器。
 * 使用 U-SQL 視窗函式。
 * 使用檢視、資料表值函式和預存程序管理 U-SQL 程式碼。
 * 在您的處理節點上執行任意的自訂程式碼。
-* 連接到 Azure SQL Database 並同盟這些資料庫和 U-SQL 與 Azure 資料湖資料的查詢。
+* 連接到 SQL Database 並同盟這些資料庫和 U-SQL 與 Azure Data Lake 資料的查詢。
 
 ## <a name="see-also"></a>另請參閱
 * [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
@@ -413,7 +413,6 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Dec16_HO4-->
 
 

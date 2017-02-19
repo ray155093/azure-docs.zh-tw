@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 01/05/2017
 ms.author: juliako;mingfeiy
 translationtype: Human Translation
-ms.sourcegitcommit: ff663f40507547ba561053b5c9a7a8ce93fbf213
-ms.openlocfilehash: 39f4f0b7e9bbe28a36471558c8535ee9f3cd17ff
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: 3dcd45307716b7343fbac00e083e8f26c9eb967f
 
 
 ---
@@ -45,7 +45,7 @@ Microsoft Azure 媒體服務可讓您傳遞受到進階加密標準 (AES) (使�
 [使用 Azure ACS 發行權杖](http://mingfeiy.com/acs-with-key-services)。
 
 ### <a name="some-considerations-apply"></a>適用一些考量事項：
-* 為了能夠使用動態封裝和動態加密，您至少有一個串流保留單元。 如需詳細資訊，請參閱 [如何調整媒體服務](media-services-portal-manage-streaming-endpoints.md)。
+* 當建立您的 AMS 帳戶時，系統會新增一個狀態為 [已停止] 的「預設」串流端點到您的帳戶。 若要開始串流處理您的內容並利用動態封裝和動態加密功能，您的串流端點必須處於 [執行中] 狀態。 
 * 您的資產必須包含一組調適性位元速率 MP4 或調適性位元速率 Smooth Streaming 檔案。 如需詳細資訊，請參閱 [為資產編碼](media-services-encode-asset.md)。
 * 使用 **AssetCreationOptions.StorageEncrypted** 選項，上傳資產並為其編碼。
 * 如果您計劃有多個內容金鑰需要相同的原則組態，強烈建議建立一個授權原則，並針對多個內容金鑰重複使用。
@@ -59,11 +59,16 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 下列範例會建立 open 授權原則，並將它加入至內容金鑰。
 
-static public void AddOpenAuthorizationPolicy(IContentKey contentKey) { // Create ContentKeyAuthorizationPolicy with Open restrictions // and create authorization policy IContentKeyAuthorizationPolicy policy = _context.
-ContentKeyAuthorizationPolicies.
-CreateAsync("Open Authorization Policy").Result;
-
-List<ContentKeyAuthorizationPolicyRestriction> restrictions = new List<ContentKeyAuthorizationPolicyRestriction>();
+    static public void AddOpenAuthorizationPolicy(IContentKey contentKey)
+    {
+        // Create ContentKeyAuthorizationPolicy with Open restrictions
+        // and create authorization policy
+        IContentKeyAuthorizationPolicy policy = _context.
+        ContentKeyAuthorizationPolicies.
+        CreateAsync("Open Authorization Policy").Result;
+        
+        List<ContentKeyAuthorizationPolicyRestriction> restrictions =
+            new List<ContentKeyAuthorizationPolicyRestriction>();
 
         ContentKeyAuthorizationPolicyRestriction restriction =
             new ContentKeyAuthorizationPolicyRestriction
@@ -424,6 +429,6 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

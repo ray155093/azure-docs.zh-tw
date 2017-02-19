@@ -16,8 +16,8 @@ ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 41334fb928b18c288f32efb0978150fa24ae14e3
+ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
+ms.openlocfilehash: 774d5ac6f3d5d9d97120ab895157677e4a92bb05
 
 
 ---
@@ -30,7 +30,7 @@ Umbraco 是一個熱門的開放原始碼內容管理系統 (CMS)，從小型行
 > 
 > — Morten Christensen，Umbraco 技術主管
 > 
-> [!影片 https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Database-Case-Study-Umbraco/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-Case-Study-Umbraco/player]
 > 
 > 
 
@@ -133,6 +133,6 @@ Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Data
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

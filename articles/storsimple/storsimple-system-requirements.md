@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 12/13/2016
+ms.date: 01/05/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 52f2bf14c60dbb062a6f4aec26403c5064bba036
-ms.openlocfilehash: 3dc513e99ad3ac0f4f18f70666ee299a95ee9294
+ms.sourcegitcommit: c3af0df0f2e5a0367bef8e12edaca4937db7e39f
+ms.openlocfilehash: 50bc63845bab1322090097dd0d5736e11642a95b
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: 3dc513e99ad3ac0f4f18f70666ee299a95ee9294
 
 | 受支援的作業系統 | 必要版本 | 其他需求/注意事項 |
 | --- | --- | --- |
-| Windows Server |2008R2 SP1、2012、2012R2 |StorSimple iSCSI 磁碟區僅支援在下列 Windows 磁碟類型上使用：<ul><li>基本磁碟上的簡單磁碟區</li><li>動態磁碟上的簡單及鏡像磁碟區</li></ul>如果您使用 StorSimple iSCSI 磁碟區，則支援 Windows Server 2012 精簡佈建和 ODX 功能。<br><br>StorSimple 可以建立精簡佈建和完整佈建的磁碟區。 它無法建立部分佈建的磁碟區。<br><br>重新格式化精簡佈建的磁碟區可能需要很長的時間。 建議刪除磁碟區，然後建立新的磁碟區，而不是重新格式化。 不過，如果您仍然偏好重新格式化磁碟區︰<ul><li>先執行下列命令再重新格式化，以避免空間回收延遲︰ <br>`fsutil behavior set disabledeletenotify 1`</br></li><li>格式化完成後，使用下列命令來重新啟用空間回收︰<br>`fsutil behavior set disabledeletenotify 0`</br></li><li>將 [KB 2878635](https://support.microsoft.com/kb/2870270) 中所述的 Windows Server 2012 Hotfix 套用到您的 Windows Server 電腦。</li></ul></li></ul></ul> 如果您要設定 StorSimple Snapshot Manager 或 StorSimple Adapter for SharePoint，請移至[選用元件的軟體需求](#software-requirements-for-optional-components)。 |
+| Windows Server |2008R2 SP1、2012、2012R2、2016 |StorSimple iSCSI 磁碟區僅支援在下列 Windows 磁碟類型上使用：<ul><li>基本磁碟上的簡單磁碟區</li><li>動態磁碟上的簡單及鏡像磁碟區</li></ul>如果您使用 StorSimple iSCSI 磁碟區，則支援 Windows Server 2012 和 2016 精簡佈建及 ODX 功能。<br><br>StorSimple 可以建立精簡佈建和完整佈建的磁碟區。 它無法建立部分佈建的磁碟區。<br><br>重新格式化精簡佈建的磁碟區可能需要很長的時間。 建議刪除磁碟區，然後建立新的磁碟區，而不是重新格式化。 不過，如果您仍然偏好重新格式化磁碟區︰<ul><li>先執行下列命令再重新格式化，以避免空間回收延遲︰ <br>`fsutil behavior set disabledeletenotify 1`</br></li><li>格式化完成後，使用下列命令來重新啟用空間回收︰<br>`fsutil behavior set disabledeletenotify 0`</br></li><li>將 [KB 2878635](https://support.microsoft.com/kb/2870270) 中所述的 Windows Server 2012 Hotfix 套用到您的 Windows Server 電腦。</li></ul></li></ul></ul> 如果您要設定 StorSimple Snapshot Manager 或 StorSimple Adapter for SharePoint，請移至[選用元件的軟體需求](#software-requirements-for-optional-components)。 |
 | VMWare ESX |5.5 和 6.0 |受 VMWare vSphere 支援為 iSCSI 用戶端。 StorSimple 裝置上的 VMWare vSphere 支援 VAAI 區塊功能。 |
 | Linux RHEL/CentOS |5、6 和 7 |支援具備 Open-iSCSI 啟動器第 5 版、第 6 版和第 7 版的 Linux iSCSI 用戶端。 |
 | Linux |SUSE Linux 11 | |
@@ -253,6 +253,6 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

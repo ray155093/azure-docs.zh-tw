@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/29/2016
+ms.date: 01/06/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 852d8ee2686e5653f9fe8bb5ec41b22cb1b19048
-ms.openlocfilehash: a9cf9a7e91c21d675f7ae22072fd10794a1295e7
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 1cde923ad0aef1ce1c91d1240f7b3e3d3c26e105
 
 
 ---
@@ -44,8 +44,8 @@ ms.openlocfilehash: a9cf9a7e91c21d675f7ae22072fd10794a1295e7
 
 * 保留單元用於平行化所有媒體處理，包括使用 Azure 媒體索引器的索引工作。  不過，與編碼不同，索引工作的處理速度不會因為使用較快的保留單元而變快。
 * 如果使用共用的集區，也就是沒有任何保留單元，則編碼工作會和 S1 RU 有相同的效能。 不過，您的工作在已排入佇列的狀態下可以花費的時間沒有上限，而且在任何時候，最多只會執行一個工作。
-* 下列資料中心不提供 **S2** 保留單元類型：巴西南部、印度西部、印度中部、印度南部。
-* 下列資料中心不提供 **S3** 保留單元類型：巴西南部、印度西部、印度中部。
+* 下列資料中心不提供 **S2** 保留單元類型：巴西南部和印度西部。
+* 下列資料中心不提供 **S3** 保留單元類型：印度西部。
 * 計算成本時會使用 24 小時內指定的最大單位數。
 
 ## <a name="quotas-and-limitations"></a>配額和限制
@@ -57,7 +57,7 @@ ms.openlocfilehash: a9cf9a7e91c21d675f7ae22072fd10794a1295e7
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-encoding-units.md)
 > * [入口網站](media-services-portal-scale-media-processing.md)
-> * [REST](https://msdn.microsoft.com/library/azure/dn859236.aspx)
+> * [REST](https://docs.microsoft.com/rest/api/media/operations/encodingreservedunittype)
 > * [Java](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
 > * [PHP](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
 > 
@@ -72,6 +72,6 @@ ms.openlocfilehash: a9cf9a7e91c21d675f7ae22072fd10794a1295e7
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

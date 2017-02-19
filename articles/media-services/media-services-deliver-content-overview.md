@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: ff663f40507547ba561053b5c9a7a8ce93fbf213
-ms.openlocfilehash: 42428d9456c5ea00192a981265bd50263cbf66ba
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 249b87ecc9e43fa26a74e27f91f807d60b275eeb
 
 
 ---
@@ -28,6 +28,9 @@ ms.openlocfilehash: 42428d9456c5ea00192a981265bd50263cbf66ba
 * 將您的串流編碼成多位元速率 (調適性位元速率) 視訊串流。 這會負責處理品質和網路狀況。
 * 使用 Microsoft Azure 媒體服務 [動態封裝](media-services-dynamic-packaging-overview.md) 將串流動態地重新封裝至不同的通訊協定。 這會負責處理不同裝置上的串流處理。 媒體服務支援傳遞下列自適性串流技術：HTTP 即時串流 (HLS)、Smooth Streaming 和 MPEG-DASH。
 
+>[!NOTE]
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
+
 本文提供內容傳遞概念的重要概觀。
 
 若要查閱已知問題，請參閱 [已知問題](media-services-deliver-content-overview.md#known-issues)。
@@ -35,14 +38,11 @@ ms.openlocfilehash: 42428d9456c5ea00192a981265bd50263cbf66ba
 ## <a name="dynamic-packaging"></a>動態封裝
 媒體服務提供的動態封裝，可讓您以媒體服務支援的串流格式 (MPEG-DASH、HLS、Smooth Streaming) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。 我們建議您利用動態封裝傳遞內容。
 
-若要利用動態封裝，您需要執行下列動作：
-
-* 將您的夾層 (來源) 檔編碼成一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。
-* 為您計畫從該處傳遞內容的串流端點取得至少一個隨選資料流處理單元。 如需詳細資訊，請參閱 [如何調整隨選串流保留單元](media-services-portal-manage-streaming-endpoints.md)。
+若要利用動態封裝功能，您必須將您的夾層 (來源) 檔案編碼成一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。
 
 使用動態封裝，您可以儲存及播放單一儲存格式的檔案。 媒體服務會根據您的要求建置及傳遞適當的回應。
 
-除了提供存取動態封裝功能，隨選串流保留單元提供您專用流出容量，此容量可以 200 Mbps 為增量來購買。 依預設，隨選資料流處理是以共用執行個體模型來設定，可與其他所有使用者共用伺服器資源 (例如，運算或流出容量)。 您可以購買隨選串流保留單元，改進隨選資料流處理的輸送量。
+動態封裝適用於標準和高階串流端點。 
 
 如需詳細資訊，請參閱 [動態封裝](media-services-dynamic-packaging-overview.md)。
 
@@ -66,7 +66,7 @@ ms.openlocfilehash: 42428d9456c5ea00192a981265bd50263cbf66ba
 > 
 > 
 
-若要更新定位器的到期日，請使用 [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。 請注意，當您更新 SAS 定位器的到期日，URL 也會隨之變更。
+若要更新定位器的到期日，請使用 [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。 請注意，當您更新 SAS 定位器的到期日，URL 也會隨之變更。
 
 定位器並不是用來控制每個使用者的權限。 您可以使用數位版權管理 (DRM) 方案，給予個別使用者不同的存取權限。 如需詳細資訊，請參閱 [保護媒體](http://msdn.microsoft.com/library/azure/dn282272.aspx)。
 
@@ -78,9 +78,9 @@ ms.openlocfilehash: 42428d9456c5ea00192a981265bd50263cbf66ba
 若要提供漸進式下載 URL 給使用者，您必須先建立 OnDemandOrigin 定位器。 建立定位器可針對包含您要串流之內容的資產，提供其基底路徑。 不過，若要能夠串流此內容，您還需要進一步修改此路徑。 若要建構串流資訊清單檔案的完整 URL，您必須串連定位器的路徑值和資訊清單 (filename.ism) 的檔案名稱。 接著，在定位器路徑後面附加 **/Manifest** 和適當的格式 (如果需要)。
 
 > [!NOTE]
-> 您也可以透過 SSL 連線串流您的內容。 若要這樣做，請確定您的串流 URL 以 HTTPS 開頭。
+> 您也可以透過 SSL 連線串流您的內容。 若要這樣做，請確定您的串流 URL 以 HTTPS 開頭。 請注意，目前 AMS 不支援使用 SSL 搭配自訂網域。  
 > 
-> 
+
 
 只有當您傳遞內容的來源串流端點是在 2014 年 9 月 10 日之後建立時，才能透過 SSL 串流。 如果您的串流 URL 是根據 2014 年 9 月 10 日之後建立的串流端點，則 URL 會包含 "streaming.mediaservices.windows.net"。 包含 "origin.mediaservices.windows.net" (舊格式) 的串流 URL 不支援 SSL。 如果您的 URL 是舊格式，而且您希望能夠透過 SSL 串流，請建立新的串流端點。 使用根據新的串流端點的 URL，透過 SSL 串流內容。
 
@@ -143,7 +143,11 @@ http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f
 * 未在 12 小時內完成的下載，最後一定會失敗。
 
 ## <a name="streaming-endpoints"></a>串流端點
-串流端點代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給內容傳遞網路 (CDN) 進行進一步發佈的串流服務。 來自串流端點服務的輸出串流可以是即時資料流，或媒體服務帳戶中的隨選視訊資產。 您也可以藉由調整串流保留單元，控制串流端點服務如何應付不斷增加的頻寬需求。 您應該為生產環境中的應用程式，至少配置一個保留單元。 如需詳細資訊，請參閱 [如何調整媒體服務](media-services-portal-manage-streaming-endpoints.md)。
+
+串流端點代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給內容傳遞網路 (CDN) 進行進一步發佈的串流服務。 來自串流端點服務的輸出串流可以是即時資料流，或媒體服務帳戶中的隨選視訊資產。 串流端點有兩種類型：「標準」和「進階」。 如需詳細資訊，請參閱[串流端點概觀](media-services-streaming-endpoints-overview.md)。
+
+>[!NOTE]
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
 
 ## <a name="known-issues"></a>已知問題
 ### <a name="changes-to-smooth-streaming-manifest-version"></a>Smooth Streaming 資訊清單版本變更
@@ -184,6 +188,6 @@ http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

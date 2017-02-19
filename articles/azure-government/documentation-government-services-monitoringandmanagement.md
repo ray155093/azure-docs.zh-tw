@@ -1,23 +1,22 @@
 ---
 title: "Azure Government 監視和管理 | Microsoft Docs"
 description: "這為 Azure Government 的開發應用程式提供功能和指引的比較。"
-services: Azure-Government
+services: azure-government
 cloud: gov
 documentationcenter: 
 author: ryansoc
 manager: zakramer
-editor: 
 ms.assetid: 4b7720c1-699e-432b-9246-6e49fb77f497
-ms.service: multiple
+ms.service: azure-government
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: azure-government
-ms.date: 10/31/2016
+ms.date: 1/13/2017
 ms.author: ryansoc
 translationtype: Human Translation
-ms.sourcegitcommit: 3e460dd2aaf51ef2ba9840513d236ce313320c80
-ms.openlocfilehash: 39a87bdbef7c532f9e50f1e71e9c12797bc9a33c
+ms.sourcegitcommit: ec62cc79aeffa21e5d9d772dcd2da6f973c18d81
+ms.openlocfilehash: 3d9f2308d20e723da324be7e3aec3106ff5ff846
 
 
 ---
@@ -30,7 +29,7 @@ ms.openlocfilehash: 39a87bdbef7c532f9e50f1e71e9c12797bc9a33c
 ### <a name="variations"></a>變化
 下列自動化功能目前無法在 Azure Government 中使用。
 
-* 建立服務主體認證進行驗證
+* 建立「服務主體」認證以供驗證使用
 
 如需詳細資訊，請參閱[自動化公開文件](../automation/automation-intro.md)。
 
@@ -39,15 +38,7 @@ ms.openlocfilehash: 39a87bdbef7c532f9e50f1e71e9c12797bc9a33c
 
 如需詳細資訊，請參閱 [Azure Government 備份](documentation-government-services-backup.md)。
 
-### <a name="variations"></a>變化
-下列備份功能目前無法在 Azure Government 中使用：
-
-* Azure Resource Manager 保存庫
-* 使用 Azure 入口網站進行管理 (支援 Azure 傳統入口網站)
-
-Azure Government 中的備份 URL 不同：
-
-## <a name="site-recovery"></a>Site Recovery
+## <a name="site-recovery"></a>站台復原
 Site Recovery (ASR) 已在 Azure Government 中正式推出。
 
 如需詳細資訊，請參閱 [Site Recovery 公開文件](../site-recovery/site-recovery-overview.md)。
@@ -56,14 +47,16 @@ Site Recovery (ASR) 已在 Azure Government 中正式推出。
 下列 Site Recovery 功能目前無法在 Azure Government 中使用：
 
 * Azure Resource Manager Site Recovery 保存庫
+* 電子郵件通知
 
-| Site Recovery | 傳統 | 資源管理員 | 
+| 站台復原 | 傳統 | 資源管理員 |
 | --- | --- | --- |
-| VMWare/實體  | GA | 已規劃 |
-| Hyper-V | GA | 已規劃 |
-| 網站對網站 | GA | 已規劃 |
+| VMWare/實體  | GA | GA |
+| Hyper-V | GA | GA |
+| 網站對網站 | GA | GA |
 
-注意：資料表適用於 VA 和 Iowa。 
+>[!NOTE]
+>表格適用於美國維吉尼亞州政府和美國愛荷華州政府。
 
 下列 ASR URL 在 Azure Government 中不同：
 
@@ -74,8 +67,6 @@ Site Recovery (ASR) 已在 Azure Government 中正式推出。
 | *.blob.core.windows.net | *.blob.core.usgovcloudapi.net | 用於儲存 VM 快照集 |
 | http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi | http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi | 下載 MySQL |
 
-
-
 ## <a name="log-analytics"></a>Log Analytics
 Log Analytics 已在 Azure Government 中正式推出。
 
@@ -84,7 +75,7 @@ Log Analytics 已在 Azure Government 中正式推出。
 
 * 在 Microsoft Azure 中預覽的解決方案包括︰
   * 網路監視解決方案
-  * 應用程式相依性監視解決方案
+  * 服務對應
   * Office 365 解決方案
   * Windows 10 Upgrade Analytics 解決方案
   * Application Insights 解決方案
@@ -127,21 +118,11 @@ Azure Government 中的 Log Analytics URL 不同：
 
 如需詳細資訊，請參閱 [Log Analytics 公開文件](../log-analytics/log-analytics-overview.md)。
 
-## <a name="site-recovery"></a>Site Recovery
-Site Recovery 已在 Azure Government 中正式推出。
-
-如需詳細資訊，請參閱 [Site Recovery 公開文件](../site-recovery/site-recovery-overview.md)。
-
-### <a name="variations"></a>變化
-下列 Site Recovery 功能目前無法在 Azure Government 中使用：
-
-* Azure Resource Manager Site Recovery 保存庫
-
 ## <a name="next-steps"></a>後續步驟
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。 </a>
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

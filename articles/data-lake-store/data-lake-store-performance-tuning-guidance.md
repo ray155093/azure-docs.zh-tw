@@ -1,6 +1,6 @@
 ---
-title: "Data Lake Store 效能微調方針 | Microsoft Docs"
-description: "Data Lake Store 效能微調方針"
+title: "Azure Data Lake Store 效能微調指導方針 | Microsoft Docs"
+description: "Azure Data Lake Store 效能微調指導方針"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -15,12 +15,12 @@ ms.workload: big-data
 ms.date: 12/02/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 30e6dd65fa2643fdf7ec65601d6391891d48566c
-ms.openlocfilehash: 1238f834edc9452a6a9791d9f3db8d8d50a975a7
+ms.sourcegitcommit: af11866fc812cd8a375557b7bf9df5cdc9bba610
+ms.openlocfilehash: f0d0c05c08ce198e2702c76ad35b348107c664c7
 
 
 ---
-# <a name="performance-tuning-guidance-for-azure-data-lake-store"></a>Azure Data Lake Store 的效能微調方針
+# <a name="performance-tuning-guidance-for-azure-data-lake-store"></a>Azure Data Lake Store 的效能微調指導方針
 
 本文提供如何在針對效能 Azure Data Lake Store 進行資料寫入或讀取時取得最佳化效能的指導方針。 本文的目的是協助使用者了解可以針對常用資料上傳/下載工具及資料分析工作負載進行設定的參數。 本指南中的微調是以需使用大量資源的工作負載為目標，此類工作負載需要針對 Data Lake Store 讀取或寫入大量資料。
 
@@ -86,10 +86,10 @@ Azure Data Lake Store 在有更多並行數目的情況下將能取得最佳化�
 
     | 工作負載               | 設定工作的參數                                                         |
     |--------------------|------------------------------------------------------------------------------------|
-    | HDInsight 上的 Spark       | <ul><li>Num-executors</li><li>Executor-memory</li><li>Executor-cores</li></ul> |
-    | HDInsight 上的 Hive    | hive.tez.container.size         |
-    | HDInsight 上的 MapReduce            | <ul><li>Mapreduce.map.memory</li><li>Mapreduce.job.maps</li><li>Mapreduce.reduce.memory</li><li>Mapreduce.job.reduces</li></ul> |
-    | HDInsight 上的 Storm| <ul><li>背景工作處理序數目</li><li>Spout 執行程式執行個體數目</li><li>Bolt 執行程式執行個體數目 </li><li>Spout 工作數目</li><li>Bolt 工作數目</li></ul>|
+    | [HDInsight 上的 Spark](data-lake-store-performance-tuning-spark.md)       | <ul><li>Num-executors</li><li>Executor-memory</li><li>Executor-cores</li></ul> |
+    | [Hive on HDInsight](data-lake-store-performance-tuning-hive.md)    | hive.tez.container.size         |
+    | [MapReduce on HDInsight](data-lake-store-performance-tuning-mapreduce.md)            | <ul><li>Mapreduce.map.memory</li><li>Mapreduce.job.maps</li><li>Mapreduce.reduce.memory</li><li>Mapreduce.job.reduces</li></ul> |
+    | [Storm on HDInsight](data-lake-store-performance-tuning-storm.md)| <ul><li>背景工作處理序數目</li><li>Spout 執行程式執行個體數目</li><li>Bolt 執行程式執行個體數目 </li><li>Spout 工作數目</li><li>Bolt 工作數目</li></ul>|
 
 ## <a name="see-also"></a>另請參閱
 * [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
@@ -97,6 +97,6 @@ Azure Data Lake Store 在有更多並行數目的情況下將能取得最佳化�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 
