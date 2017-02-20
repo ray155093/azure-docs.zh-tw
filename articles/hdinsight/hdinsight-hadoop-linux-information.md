@@ -1,5 +1,5 @@
 ---
-title: "在 Linux 架構的 HDInsight 上使用 Hadoop 的秘訣 | Microsoft Docs"
+title: "在 Linux 架構的 HDInsight 上使用 Hadoop 的秘訣 - Azure | Microsoft Docs"
 description: "取得在 Azure 雲端中執行的熟悉 Linux 環境上使用 Linux 架構的 HDInsight (Hadoop) 叢集的實作秘訣。"
 services: hdinsight
 documentationcenter: 
@@ -13,17 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/28/2016
+ms.date: 02/02/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 854df55045d4d9a062ade3905b9be1daad0a7d8c
-ms.openlocfilehash: 3ce0444427ba10e7247aec500017ea4bae3af161
+ms.sourcegitcommit: 1d2d3d9d6c8dee02f2eb96ba20894e1d52541102
+ms.openlocfilehash: 584af73f3f2d428f7551de0b12b498b1a118e5dc
 
 
 ---
 # <a name="information-about-using-hdinsight-on-linux"></a>在 Linux 上使用 HDInsight 的相關資訊
 
-以 Linux 為基礎的 Azure HDInsight 叢集可在您熟悉的 Linux 環境中提供於 Azure 雲端中執行的 Hadoop。 其操作大多與 Linux 安裝上的任何其他 Hadoop 相同。 本文件會指出其中應注意的特殊不同之處。
+Azure HDInsight 叢集可在您熟悉的 Linux 環境中提供於 Azure 雲端中執行的 Hadoop。 其操作大多與 Linux 安裝上的任何其他 Hadoop 相同。 本文件會指出其中應注意的特殊不同之處。
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -43,7 +46,7 @@ ms.openlocfilehash: 3ce0444427ba10e7247aec500017ea4bae3af161
 
 從網際網路連接到叢集時所要使用的完整網域名稱 (FQDN) 是 **&lt;clustername>.azurehdinsight.net** 或 (僅適用於 SSH) **&lt;clustername-ssh>.azurehdinsight.net**。
 
-就內部而言，叢集中的每個節點都具有在叢集組態期間指派的名稱。 若要尋找叢集名稱，您可以造訪 Ambari Web UI 的 [主機] 頁面，或使用下列命令以傳回來自 Ambari REST API 的主機清單：
+就內部而言，叢集中的每個節點都具有在叢集組態期間指派的名稱。 若要尋找叢集名稱，請參閱 Ambari Web UI 上的 [主機] 頁面。 您也可以使用下列命令從 Ambari REST API 傳回主機清單︰
 
     curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/hosts" | jq '.items[].Hosts.host_name'
 
@@ -53,20 +56,20 @@ ms.openlocfilehash: 3ce0444427ba10e7247aec500017ea4bae3af161
 
     curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/services/HDFS/components/NAMENODE" | jq '.host_components[].HostRoles.host_name'
 
-這會傳回描述服務的 JSON 文件，然後 jq 只會針對主機提取 `host_name` 值。
+這個要求會傳回描述服務的 JSON 文件，然後 jq 只會針對主機提取 `host_name` 值。
 
 ## <a name="remote-access-to-services"></a>遠端存取服務
 
 * **Ambari (web)** - https://&lt;clustername>.azurehdinsight.net
 
-    使用叢集系統管理員使用者和密碼進行驗證，然後登入 Ambari 。 這也會用到叢集系統管理員使用者和密碼。
+    使用叢集系統管理員使用者和密碼進行驗證，然後登入 Ambari 。 您必須使用叢集系統管理員使用者和密碼進行驗證。
 
     驗證是純文字的 - 請一律使用 HTTPS 來協助確保連線的安全性。
 
     > [!IMPORTANT]
-    > 雖然可以直接透過網際網路存取叢集的 Ambari，但要使用某些功能則要靠存取叢集所使用之內部網域名稱的節點來達成。 由於這是內部網域名稱且並未公開，因此在嘗試透過網際網路存取某些功能時會收到「找不到伺服器」的錯誤。
+    > 雖然可以直接透過網際網路存取叢集的 Ambari，但要使用某些功能則要靠存取叢集所使用之內部網域名稱的節點來達成。 由於這是內部網域名稱且並未公開，因此在嘗試透過網際網路存取某些功能時可能會收到「找不到伺服器」的錯誤。
     >
-    > 若要使用 Ambari Web UI 的完整功能，請使用 SSH 通道將 Web 流量以 Proxy 處理傳輸到叢集前端節點。 請參閱 [使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
+    > 若要使用 Ambari Web UI 的完整功能，請使用 SSH 通道將 Web 流量以 Proxy 處理傳輸到叢集前端節點。 請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
 
 * **Ambari (REST)** - https://&lt;clustername>.azurehdinsight.net/ambari
 
@@ -94,63 +97,87 @@ Hadoop 相關檔案可以在叢集節點的 `/usr/hdp`上找到。 此目錄包�
 * **2.2.4.9-1**：這個目錄是針對 HDInsight 所使用的 Hortonworks Data Platform 版本來命名，因此您叢集上的數字可能會與此處所列的數字不同。
 * **current**：這個目錄包含可連至 **2.2.4.9-1** 目錄下的目錄連結，有了它就可讓您每次要存取檔案時，不必輸入版本號碼 (該號碼可能會變更)。
 
-範例資料和 JAR 檔案可於 Hadoop 分散式檔案系統 (HDFS) 或 Azure Blob 儲存體的 '/example' 或 'wasb:///example' 取得。
+範例資料和 JAR 檔案可於 Hadoop 分散式檔案系統 (HDFS) 或 Azure Blob 儲存體的 `/example` 和 `/HdiSamples` 取得
 
-## <a name="hdfs-azure-blob-storage-and-storage-best-practices"></a>HDFS、Azure Blob 儲存體及儲存最佳作法
+## <a name="hdfs-blob-storage-and-data-lake-store"></a>HDFS、Blob 儲存體和 Data Lake Store
 
 在大部分的 Hadoop 散發套件中，是以叢集機器上的本機儲存體支援 HDFS 的運作。 這樣的方式雖有效率，但在用於雲端解決方案時則需高昂成本，因為運算資源是以每小時或每分鐘為單位來計費。
 
-HDInsight 則是使用 Azure Blob 儲存體當做預設存放區，這麼做有下列好處：
+HDInsight 使用 Azure Blob 儲存體或 Azure Data Lake Store 做為預設存放區。 這些存放區可提供下列優點：
 
 * 長期儲存成本低廉
 * 可從各種外部服務進行存取，例如網站、檔案上傳/下載公用程式、各種語言的 SDK 和網頁瀏覽器
 
-由於 HDInsight 預設使用這種存放區，因此您通常不需要進行任何設定就能使用。 例如，下列命令會列出 **/example/data** 資料夾中的檔案，這些檔案便是儲存在 Azure Blob 儲存體中：
+> [!IMPORTANT]
+> Blob 儲存體可以保存多達 4.75 TB 的資料，但個別 Blob (或檔案，從 HDInsight 觀點來看) 只能保存到達 195 GB 的資料。 Azure Data Lake Store 可以動態地成長來保存數兆的檔案，個別檔案可大於 PB。
+>
+> 如需詳細資訊，請參閱[了解 Blob](https://docs.microsoft.com/rest/api/storageservices/fileservices/understanding-block-blobs--append-blobs--and-page-blobs) 和[Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)。
+
+使用 Azure 儲存體或 Data Lake Store 時，您通常不需要從 HDInsight 進行任何特殊動作就能存取資料。 例如，下列命令會列出 `/example/data` 資料夾中的檔案，不論其儲存在 Azure Blob 儲存體或 Data Lake Store 中：
 
     hdfs dfs -ls /example/data
 
-有些命令可能需要您指定您使用的是 Blob 儲存體。 對於這些命令，您可以為其加上前置詞 **wasb://** 或 **wasbs://**。
+### <a name="uri-and-scheme"></a>URI 和配置
 
-HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。 若要存取非預設 Blob 儲存體帳戶上的資料，您可以使用下列格式：**wasbs://&lt;container-name>@&lt;account-name>.blob.core.windows.net/**。 例如，以下命令會列出指定容器和 Blob 儲存體帳戶之 **/example/data** 目錄的內容：
+有些命令可能需要您在存取檔案時於 URI 中指定配置。 例如，Storm-HDFS 元件就需要您指定配置。 在使用非預設儲存體 (新增為叢集「其他」儲存體的儲存體) 時，您一律必須在 URI 中使用配置。
 
-    hdfs dfs -ls wasbs://mycontainer@mystorage.blob.core.windows.net/example/data
+在使用 __Blob 儲存體__時，配置可以是下列其中之一︰
 
-### <a name="what-blob-storage-is-the-cluster-using"></a>叢集所使用的 Blob 儲存體為何？
+* `wasb:///`︰使用未加密通訊存取預設儲存體。
 
-叢集建立期間，您會選取使用現有 Azure 儲存體帳戶和容器，或是建立新的。 之後您可能就忘得一乾二淨。 您可以使用 Ambari REST API 尋找預設的儲存體帳戶和容器。
+* `wasbs:///`︰使用加密通訊存取預設儲存體。
 
-1. 請使用下列命令和 CURL 來擷取 HDFS 組態資訊，並使用 [jq](https://stedolan.github.io/jq/)加以篩選：
+* `wasbs://<container-name>@<account-name>.blob.core.windows.net/`︰以非預設儲存體帳戶進行通訊時使用。 例如，當您有其他儲存體帳戶，或在可公開存取的儲存體帳戶中存取儲存的資料時。
 
-        curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.defaultFS"] | select(. != null)'
+在使用 __Data Lake Store__ 時，配置可以是下列其中之一︰
 
-    > [!NOTE]
-    > 這個方法會傳回套用至伺服器的第一個組態 (`service_config_version=1`) 其中會包含這項資訊。 如果是擷取在叢集建立後修改的值，您可能需要列出組態版本並擷取最新的版本。
+* `adl:///`︰存取叢集的預設 Data Lake Store。
 
-    這會傳回值類似下列的值，其中 **CONTAINER** 為預設容器和 **ACCOUNTNAME** 是 Azure 儲存體帳戶名稱：
+* `adl://<storage-name>.azuredatalakestore.net/`︰以非預設 Data Lake Store 進行通訊，或存取 HDInsight 叢集根目錄之外的資料時。
 
-        wasbs://CONTAINER@ACCOUNTNAME.blob.core.windows.net
+> [!IMPORTANT]
+> 使用 Data Lake Store 做為 HDInsight 的預設存放區時，您必須在存放區內指定要做為 HDInsight 儲存體根目錄的路徑。 預設路徑為 `/clusters/<cluster-name>/`。
+>
+> 使用 `/` 或 `adl:///` 存取資料時，您只可以存取儲存在叢集根目錄 (例如，`/clusters/<cluster-name>/`) 中的資料。 若要存取存放區中任何位置的資料，請使用 `adl://<storage-name>.azuredatalakestore.net/` 格式。
 
-2. 使用下列命令來取得儲存體帳戶的唯一識別碼。 在下列命令中，將 **ACCOUNTNAME** 取代為從 Ambari 擷取的儲存體帳戶名稱：
+### <a name="what-storage-is-the-cluster-using"></a>叢集使用什麼儲存體
 
-        az storage account list --query "[?name=='ACCOUNTNAME'].id --out list
+您可以使用 Ambari 來擷取叢集的預設儲存體組態。 請使用下列命令和 CURL 來擷取 HDFS 組態資訊，並使用 [jq](https://stedolan.github.io/jq/)加以篩選：
 
-3. 使用下列命令取得儲存體帳戶的金鑰。 使用儲存體帳戶識別碼取代 **STORAGEID** 。
+```curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.defaultFS"] | select(. != null)'```
 
-        az storage account keys list --ids STORAGEID --out list
+> [!NOTE]
+> 這個方法會傳回套用至伺服器的第一個組態 (`service_config_version=1`)，其包含這項資訊。 如果是擷取在叢集建立後修改的值，您可能需要列出組態版本並擷取最新的版本。
 
-    這會傳回帳戶的主要金鑰。
+此命令會傳回如下值：
 
-您也可以使用 Azure 入口網站尋找儲存體資訊︰
+* `wasbs://<container-name>@<account-name>.blob.core.windows.net`，若使用 Azure 儲存體帳戶。
+
+    帳戶名稱是 Azure 儲存體帳戶的名稱，容器名稱則是叢集儲存體根目錄的 Blob 容器。
+
+* `adl://home`，若使用 Azure Data Lake Store。 若要取得 Data Lake Store 名稱，請使用下列 REST 呼叫︰
+
+    ```curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["dfs.adls.home.hostname"] | select(. != null)'```
+
+    這會傳回下列主機名稱︰`<data-lake-store-account-name>.azuredatalakestore.net`。
+
+    若要取得 HDInsight 根目錄存放區內的目錄，請使用下列 REST 呼叫︰
+
+    ```curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["dfs.adls.home.mountpoint"] | select(. != null)'```
+
+    這會傳回類似下列的路徑︰`/clusters/<hdinsight-cluster-name>/`。
+
+您也可以使用 Azure 入口網站，以下列步驟尋找儲存體資訊︰
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 HDInsight 叢集。
-2. 從 [程式集] 區段選取 [所有設定]。
-3. 從 [設定] 選取 [Azure 儲存體金鑰]。
-4. 從 [Azure 儲存體金鑰]，選取其中一個列出的儲存體帳戶。 如此會顯示有關儲存體帳戶的資訊。
-5. 選取金鑰圖示。 如此會顯示此儲存體帳戶的金鑰。
 
-### <a name="how-do-i-access-blob-storage"></a>如何存取 Blob 儲存體？
+2. 從 [屬性] 區段中，選取 [儲存體帳戶]。 隨即會顯示叢集的儲存體資訊。
 
-除了透過叢集的 Hadoop 命令，還有各種不同方式可用來存取 Blob：
+### <a name="how-do-i-access-files-from-outside-hdinsight"></a>如何從 HDInsight 外部存取檔案
+
+有各種不同的方式可從 HDInsight 叢集之外存取資料。 以下是幾個可用來處理資料之公用程式和 SDK 的連結︰
+
+如果使用 __Azure 儲存體__，請參閱下列連結，以取得可供存取資料的方式︰
 
 * [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)：適用於 Azure 的命令列介面命令。 安裝好後，請使用 `az storage` 命令以協助使用儲存體，或是針對 Blob 特有命令使用 `az storage blob`。
 * [blobxfer.py](https://github.com/Azure/azure-batch-samples/tree/master/Python/Storage)：python 指令碼，用於 Azure 儲存體中的 Blob。
@@ -164,11 +191,20 @@ HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。 若要
     * [.NET](https://github.com/Azure/azure-sdk-for-net)
     * [儲存體 REST API](https://msdn.microsoft.com/library/azure/dd135733.aspx)
 
+如果使用 __Azure Data Lake Store__，請參閱下列連結，以取得可供存取資料的方式︰
+
+* [Web 瀏覽器](../data-lake-store/data-lake-store-get-started-portal.md)
+* [PowerShell](../data-lake-store/data-lake-store-get-started-powershell.md)
+* [Azure CLI](../data-lake-store/data-lake-store-get-started-cli.md)
+* [WebHDFS REST API](../data-lake-store/data-lake-store-get-started-rest-api.md)
+* [Visual Studio 適用的 Data Lake 工具](https://www.microsoft.com/download/details.aspx?id=49504)
+* [.NET](../data-lake-store/data-lake-store-get-started-net-sdk.md)
+* [Java](../data-lake-store/data-lake-store-get-started-java-sdk.md)
+* [Python](../data-lake-store/data-lake-store-get-started-python.md)
+
 ## <a name="a-namescalingascaling-your-cluster"></a><a name="scaling"></a>調整您的叢集規模
 
-叢集調整功能可讓您變更在 Azure HDInsight 中執行的叢集所用的資料節點數目，而不需要刪除然後再重新建立叢集。
-
-正在叢集上執行其他工作或處理序時，您可以執行調整作業。
+叢集調整功能可讓您變更叢集所用的資料節點數目，而不需要刪除然後再重新建立叢集。 正在叢集上執行其他工作或處理序時，您可以執行調整作業。
 
 不同的叢集類型會受調整影響，如下所示：
 
@@ -194,7 +230,7 @@ HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。 若要
 
             storm rebalance TOPOLOGYNAME
 
-        您也可以指定參數來覆寫拓撲原先提供的平行處理原則提示。 例如， `storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10` 會將拓撲重新設定為 5 個背景工作角色處理序、適用於 blue-spout 元件的 3 個執行程式，以及適用於 yellow-bolt 元件的 10 個執行程式。
+        您也可以指定參數來覆寫拓撲原先提供的平行處理原則提示。 例如，`storm rebalance mytopology -n 5 -e blue-spout=3 -e yellow-bolt=10` 會將拓撲重新設定為 5 個背景工作角色處理序、適用於 blue-spout 元件的 3 個執行程式，以及適用於 yellow-bolt 元件的 10 個執行程式。
 
     * **Storm UI**︰使用下列步驟來重新平衡使用 Storm UI 的拓撲。
 
@@ -223,7 +259,7 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 
 ### <a name="jar-files"></a>JAR 檔案
 
-獨立的 jar 檔案中提供了一些 Hadoop 技術，其中包含可用來做為 MapReduce 工作一部分的函式，或者來自 Pig 或 Hive 內部的函式。 使用指令碼動作安裝這些項目時，它們通常不需要任何設定，只需在佈建之後上傳到叢集，且可直接使用。 如果您想要確定元件會重新安裝叢集的映像，則可將 jar 檔案儲存於 WASB 中。
+獨立的 jar 檔案中提供了一些 Hadoop 技術，其中包含可用來做為 MapReduce 工作一部分的函式，或者來自 Pig 或 Hive 內部的函式。 使用指令碼動作安裝這些項目時，它們通常不需要任何設定，並且可以在佈建之後上傳到叢集並直接使用。 如果您想要確定元件會在重新安裝叢集的映像後保存下來，則可將 jar 檔案儲存於叢集的預設儲存體 (WASB 或 ADL) 中。
 
 例如，如果您想要使用最新版本的 [DataFu](http://datafu.incubator.apache.org/)，則可下載包含專案的 jar，並將它上傳至 HDInsight 叢集。 接著遵循 DataFu 文件中，如何從 Pig 或 Hive 中使用它的指示進行。
 
@@ -232,12 +268,12 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 >
 > ```find / -name *componentname*.jar 2>/dev/null```
 >
-> 這將會傳回任何相符 jar 檔案的路徑。
+> 這會傳回任何相符 jar 檔案的路徑。
 
 如果叢集已經提供某個元件版本做為獨立的 jar 檔案，但您想要使用不同的版本，則可將新版元件上傳到該叢集，並嘗試在您的工作中使用它。
 
 > [!WARNING]
-> 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務將協助釐清與解決這些元件的相關問題。
+> 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務會協助釐清與解決這些元件的相關問題。
 >
 > 自訂元件則獲得商務上合理的支援，協助您進一步疑難排解問題。 如此可能會進而解決問題，或要求您利用可用管道，以找出開放原始碼技術，從中了解該技術的深度專業知識。 例如，有許多社群網站可以使用，像是：[HDInsight 的 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight)、[http://stackoverflow.com](http://stackoverflow.com)。 另外，Apache 專案在 [http://apache.org](http://apache.org) 上有專案網站，例如：[Hadoop](http://hadoop.apache.org/)、[Spark](http://spark.apache.org/)。
 
@@ -250,6 +286,6 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: R
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/09/2017
+ms.date: 02/02/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 888a818bc0ea1804366dcb3932ac0e3f7b5802c6
-ms.openlocfilehash: 51341d933525ef77d1f9ab604b212854b447ebc5
+ms.sourcegitcommit: 8c0b167423fd18e069ea5112ac39b18d3ca71805
+ms.openlocfilehash: 63197d66ec7f6e68e7be9ed44694cddec15aaa11
 
 
 ---
@@ -94,23 +94,24 @@ HDInsight 包含了要整合至您的 HDInsight 叢集的 R 伺服器選項。 �
 
 6. 選取 [資料來源]，以選取要做為叢集使用之 HDFS 檔案系統主要位置的資料來源。 選取新的或現有的 Azure 儲存體帳戶或現有的 Data Lake 儲存體帳戶。
 
-   1. 如果您選取 Azure 儲存體帳戶，則可以選取 [選取儲存體帳戶] 並選取帳戶來選取現有儲存體帳戶，或使用 [選取儲存體帳戶] 區段中的 [建立新的] 連結，來建立新的帳戶。
+   1. 如果您選取 Azure 儲存體帳戶，您可以藉由選取 [選取儲存體帳戶]，然後選取帳戶，來選取現有的儲存體帳戶。 或者，使用 [選取儲存體帳戶] 區段中的 [建立新的] 連結，以建立新的帳戶。
 
       > [!NOTE]
       > 如果您選取 [新增]，則必須輸入新儲存體帳戶的名稱。 如果系統接受該名稱，就會出現綠色核取記號。
 
       [預設容器] 的預設值為叢集的名稱。 請不要更動此值。
 
-      如果選取新的儲存體帳戶選項，則請選取 [位置] 來選取要在其中建立儲存體帳戶的區域。
-
+      如果選取新的儲存體帳戶選項，則會出現選取 [位置] 的提示，供您選取要在其中建立儲存體帳戶的區域。  
+   
+         ![資料來源刀鋒視窗](./media/hdinsight-getting-started-with-r/datastore.png)  
+   
       > [!IMPORTANT]
       > 選取預設資料來源位置的同時，也會設定 HDInsight 叢集位置。 叢集和預設資料來源必須位於相同區域中。
 
-   2. 如果您選取使用現有 Data Lake Store，則請選取要使用的 ADLS 儲存體帳戶，並將叢集 ADD 身分識別新增到叢集中，以允許存取存放區。  如需此程序的詳細資訊，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-hdinsight-hadoop-use-portal)。
+   2. 如果您選取使用現有 Data Lake Store，則請選取要使用的 ADLS 儲存體帳戶，並將叢集 ADD 身分識別新增到叢集中，以允許存取存放區。 如需此程序的詳細資訊，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-hdinsight-hadoop-use-portal)。
 
       使用 [選取]  按鈕以儲存資料來源設定。
 
-       ![資料來源刀鋒視窗](./media/hdinsight-getting-started-with-r/datastore.png)
 
 7. 選取 [節點定價層]  會顯示將針對此叢集建立之節點的相關資訊。 除非您確定需要更大的叢集，否則請保留背景工作節點數目的預設值 `4`。 該叢集的預估成本將會顯示在此刀鋒視窗內。
 
@@ -138,7 +139,7 @@ HDInsight 包含了要整合至您的 HDInsight 叢集的 R 伺服器選項。 �
 
    
 
-9. 檢閱過選取項目後，現在可以建立叢集了。 若要這麼做，請依序選取 [釘選到「開始面板」] 和 [建立]。 這將會建立叢集，並將該叢集圖格加入到您 Azure 入口網站的「開始面板」。
+9. 檢閱過選取項目後，現在可以建立叢集了。 若要這麼做，請依序選取 [釘選到「開始面板」] 和 [建立]。 這將會建立叢集，並將該叢集磚加入到您 Azure 入口網站的「開始面板」。
 
    您會發現，其中也有**自動化選項**的連結。 按一下此連結會顯示可用來以所選組態自動建立叢集的指令碼。 這些指令碼在建立好之後，也可透過 Azure 入口網站項目來取得以供叢集使用。
 
@@ -485,6 +486,118 @@ rxSparkDisconnect(myHadoopCluster)
      
 4. 按一下 [建立] 執行指令碼。 指令碼完成之後，即可在所有的背景工作節點上使用 R 封裝。
 
+## <a name="using-microsoft-r-server-operationalization"></a>使用 Microsoft R 伺服器實作
+完成資料模型化時，可以運作模型以進行預測。 若要設定 Microsoft R 伺服器實作，請執行下列步驟。
+
+首先，透過 ssh 連線到邊緣節點。 例如， ```ssh -L USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net```。
+
+在使用 ssh 之後，請將目錄變更到下列目錄，並如下所示對 dotnet dll 進行 sudo。
+
+```
+    cd /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Utils.AdminUtil
+    sudo dotnet Microsoft.DeployR.Utils.AdminUtil.dll
+```
+
+若要使用一整體組態設定 Microsoft R 伺服器實作，請執行下列作業：
+
+* 選取 1. Configure R Server for Operationalization
+* 選取 A. One-box (web + compute nodes)
+* 輸入 **admin** 使用者的密碼
+
+![one box op](./media/hdinsight-hadoop-r-server-get-started/admin-util-one-box-.png)
+
+您也可以選擇性地執行診斷測試以執行診斷檢查，如下所示。
+
+* 選取 6. Run diagnostic tests
+* 選取 A. Test configuration
+* 輸入上述組態步驟中的使用者名稱 = "admin" 和密碼
+* 確認整體健全狀況 = pass
+* 結束系統管理公用程式
+* 結束 SSH
+
+![實作的診斷](./media/hdinsight-hadoop-r-server-get-started/admin-util-diagnostics.png)
+
+在這個階段，實作的組態已設定完成。 現在您可以在 RClient 上使用 'mrsdeploy' 套件來連線至邊緣節點上的實作，並開始使用其功能，像是[遠端執行](https://msdn.microsoft.com/microsoft-r/operationalize/remote-execution)和 [eb 服務](https://msdn.microsoft.com/microsoft-r/mrsdeploy/mrsdeploy-websrv-vignette)。 根據叢集是否設定在虛擬網路上，您可能必須設定透過 SSH 登入的連接埠轉送通道，如下所述︰
+
+### <a name="rserver-cluster-on-virtual-network"></a>虛擬網路上的 RServer 叢集
+
+請確定您允許流量通過連接埠 12800 到達邊緣節點。 這樣一來，您就可以使用 Edge 節點連線到實作功能。
+
+```
+library(mrsdeploy)
+
+remoteLogin(
+    deployr_endpoint = "http://[your-cluster-name]-ed-ssh.azurehdinsight.net:12800",
+    username = "admin",
+    password = "xxxxxxx"
+)
+```
+
+如果 remoteLogin() 無法連線到邊緣節點，但您可以透過 SSH 連線到邊緣節點，則必須確認是否已正確設定在連接埠 12800 上允許流量的規則。 如果您持續遇到此問題，您可以藉由設定透過 SSH 的連接埠轉送通道來使用因應措施。
+
+### <a name="rserver-cluster-not-set-up-on-virtual-network"></a>RServer 叢集未設定於虛擬網路上
+
+如果您的叢集未設定於 vnet 上，或如果您在透過 vnet 連線時遇到麻煩，您可以使用 SSH 連接埠轉送通道，如下所示︰
+
+```
+ssh -L localhost:12800:localhost:12800 USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net
+```
+
+在 Putty 上，您也可以做此設定。
+
+![putty ssh 連線](./media/hdinsight-hadoop-r-server-get-started/putty.png)
+
+SSH 工作階段變為作用中後，來自電腦連接埠 12800 的流量就會透過 SSH 工作階段轉送到邊緣節點的連接埠 12800。 請務必在 remoteLogin() 方法中使用 `127.0.0.1:12800`。 這會透過連接埠轉送登入到邊緣節點的實作。
+
+```
+library(mrsdeploy)
+
+remoteLogin(
+    deployr_endpoint = "http://127.0.0.1:12800",
+    username = "admin",
+    password = "xxxxxxx"
+)
+```
+
+## <a name="how-to-scale-microsoft-r-server-operationalization-compute-nodes-on-hdinsight-worker-nodes"></a>如何在 HDInsight 背景工作節點上調整 Microsoft R 伺服器實作的計算節點？
+ 
+ 
+### <a name="decommission-the-worker-nodes"></a>將背景工作節點解除委任
+Microsoft R 伺服器目前無法透過 Yarn 管理。 如果未將背景工作節點解除任務，Yarn 資源管理員將無法如預期般運作，因為它不會知到伺服器目前所佔用的資源。 為了避免這個狀況，建議您對要將計算節點調整到的背景工作節點解除委任。
+ 
+解除委任背景工作節點的步驟︰
+ 
+* 登入 HDI 叢集的 Ambari 主控台，然後按一下 [主機] 索引標籤
+* 選取 (要解除委任的) 背景工作節點，按一下 [動作] > [選取的主機] > [主機] > 按一下 [開啟維護模式]。 例如，在以下螢幕擷取畫面中，我們選取要解除委任 wn3 和 wn4。  
+   
+   ![解除委任背景工作節點](./media/hdinsight-hadoop-r-server-get-started/get-started-operationalization.png)  
+
+* 選取 [動作] > [選取的主機] > [DataNode] > 按一下 [解除委任]
+* 選取 [動作] > [選取的主機] > [NodeManager] > 按一下 [解除委任]
+* 選取 [動作] > [選取的主機] > [DataNode] > 按一下 [停止]
+* 選取 [動作] > [選取的主機] > [NodeManager] > 按一下 [停止]
+* 選取 [動作] > [選取的主機] > [主機] > 按一下 [停止所有元件]
+* 取消選取背景工作節點和選取的前端節點
+* 選取 [動作] > [選取的主機] > [主機] > [重新啟動所有元件]
+ 
+ 
+### <a name="configure-compute-nodes-on-each-decommissioned-worker-nodes"></a>在每個已解除委任的背景工作節點上設定計算節點
+ 
+* 透過 SSH 連線到每個已解除委任的背景工作節點
+* 使用 `dotnet /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Utils.AdminUtil/Microsoft.DeployR.Utils.AdminUtil.dll` 執行系統管理公用程式
+* 輸入 1 來選取選項 1. Configure R Server for Operationalization
+* 輸入 c 來選取選項 C. Compute node。 這會設定背景工作節點上的計算節點。
+* 結束系統管理公用程式
+ 
+### <a name="add-compute-nodes-details-on-web-node"></a>在 Web 節點上新增計算節點詳細資料
+所有已解除委任的背景工作節點皆已設定為執行計算節點後，請回到邊緣節點，然後在 Microsoft R 伺服器 Web 節點的組態中新增已解除委任之背景工作節點的 IP 位址︰
+ 
+* 透過 SSH 連線到邊緣節點
+* 執行 `vi /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Server.WebAPI/appsettings.json`
+* 尋找 [URI] 區段，並新增背景工作節點的 IP 和連接埠詳細資料。
+
+![解除委任背景工作節點 cmdline](./media/hdinsight-hadoop-r-server-get-started/get-started-op-cmd.png)
+
 ## <a name="next-steps"></a>後續步驟
 現在您已了解如何建立包含 R Server 的新 HDInsight 叢集，以及透過 SSH 工作階段使用 R 主控台的基本概念，請參閱下列內容以探索在 HDInsight 上使用 R Server 的其他方式。
 
@@ -495,6 +608,6 @@ rxSparkDisconnect(myHadoopCluster)
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 
