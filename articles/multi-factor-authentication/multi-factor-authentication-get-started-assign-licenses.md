@@ -1,6 +1,6 @@
 ---
 title: "指派 Azure MFA 的授權 | Microsoft Docs"
-description: "了解如何為使用者指派 Microsoft Azure Multi-Factor Authentication 的授權。"
+description: "了解如何為 Microsoft Azure Multi-Factor Authentication 指派授權。"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/17/2016
+ms.date: 02/13/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c93db18866478556e91da8acbc9f0c749b65dc62
+ms.sourcegitcommit: 4572913c2bc732c31f38021f9d3ccc34417de875
+ms.openlocfilehash: 536968a803e14019c42e7beed4c948ab760cf020
 
 
 ---
@@ -38,9 +38,11 @@ ms.openlocfilehash: c93db18866478556e91da8acbc9f0c749b65dc62
 9. 您應該會看到訊息，指出已指派多少授權以及多少授權已失敗。  按一下 [確定] 。
    ![指派授權](./media/multi-factor-authentication-get-started-assign-licenses/assign5.png)
 
+## <a name="next-steps"></a>後續步驟
+
+- 如需詳細資訊，請參閱[什麼是 Microsoft Azure Active Directory 授權？](../active-directory/active-directory-licensing-what-is.md)
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

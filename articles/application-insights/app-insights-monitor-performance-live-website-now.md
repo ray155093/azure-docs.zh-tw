@@ -1,28 +1,28 @@
 ---
-title: "在執行中的 IIS 網站上診斷效能問題 | Microsoft Docs"
-description: "監視網站的效能而不重新部署網站。 使用獨立或帶有 Application Insights 的 SDK，取得相依性遙測資料。"
+title: "使用 Azure Application Insights 監視即時 ASP.NET Web 應用程式 | Microsoft Docs"
+description: "監視網站的效能而不重新部署網站。 使用裝載於內部部署、VM 中或 Azure 上的 ASP.NET Web 應用程式。"
 services: application-insights
 documentationcenter: .net
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 769a5ea4-a8c6-4c18-b46c-657e864e24de
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/24/2016
+ms.date: 02/08/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: ee9ebc23ce805bb4665669077a4d3fddf4c43e32
-ms.openlocfilehash: a190b1990a4ae4e7ad52cc1a7e802c8002522917
+ms.sourcegitcommit: 917f54248f4c9277caa3cf09d92f78593a901e89
+ms.openlocfilehash: fd76f40f5a34b6adf9c6ec3bded604d59b6baa72
 
 
 ---
 # <a name="instrument-web-apps-at-runtime-with-application-insights"></a>在執行階段使用 Application Insights 檢測 Web 應用程式
 
 
-您可以使用 Azure Application Insights 檢測即時 Web 應用程式，而不需修改或重新部署您的程式碼。 如果您的應用程式是由內部部署 IIS 伺服器裝載，請安裝「狀態監視器」；或者，如果它們是 Azure Web 應用程式或在 Azure VM 中執行，您可以安裝 Application Insights 延伸模組。 (我們還提供有關檢測[即時 J2EE Web 應用程式](app-insights-java-live.md)和 [Azure 雲端服務](app-insights-cloudservices.md)的個別文章)。
+您可以使用 Azure Application Insights 檢測即時 Web 應用程式，而不需修改或重新部署您的程式碼。 如果您的應用程式是由內部部署 IIS 伺服器裝載，請安裝「狀態監視器」；或者，如果它們是 Azure Web 應用程式或在 Azure VM 中執行，您可以安裝 Application Insights 擴充功能。 (我們還提供有關檢測[即時 J2EE Web 應用程式](app-insights-java-live.md)和 [Azure 雲端服務](app-insights-cloudservices.md)的個別文章)。您需要 [Microsoft Azure](http://azure.com) 訂用帳戶。
 
 ![範例圖表](./media/app-insights-monitor-performance-live-website-now/10-intro.png)
 
@@ -45,88 +45,63 @@ ms.openlocfilehash: a190b1990a4ae4e7ad52cc1a7e802c8002522917
 | [頁面檢視和使用者資料](app-insights-javascript.md) |是 | |
 | 不需要重建程式碼 |否 | |
 
-## <a name="instrument-your-web-app-at-run-time"></a>在執行階段檢測 Web 應用程式
-您需要 [Microsoft Azure](http://azure.com) 訂用帳戶。
 
-### <a name="if-your-app-is-an-azure-web-app-or-cloud-service"></a>如果您的 app 是 Azure Web 應用程式或雲端服務
+## <a name="monitor-a-live-azure-web-app"></a>監視即時 Azure Web 應用程式
+
+如果您的應用程式是以 Azure Web 服務的形式執行，以下是如何開始監視的方法︰
+
 * 在 Azure 中於應用程式控制台選取 [Application Insights]。
 
-    [深入了解](app-insights-azure.md)。
+    ![針對 Azure Web 應用程式設定 Application Insights](./media/app-insights-monitor-performance-live-website-now/azure-web-setup.png)
+* 當 [Application Insights 摘要] 頁面開啟時，按一下頁面底部的連結以開啟完整的 Application Insights 資源。
 
-### <a name="if-your-app-is-hosted-on-your-iis-server"></a>如果您的應用程式裝載於您的 IIS 伺服器
+    ![點選 Application Insights](./media/app-insights-monitor-performance-live-website-now/azure-web-view-more.png)
+
+[監視雲端和 VM 應用程式](app-insights-azure.md)。
+
+## <a name="monitor-a-live-iis-web-app"></a>監視即時 IIS Web 應用程式
+
+如果您的應用程式裝載於 IIS 伺服器上，請使用狀態監視器來啟用 Application Insights。
+
 1. 在 IIS Web 伺服器上，以系統管理員認證登入。
-2. 下載並執行 [狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648)。  
-3. 挑選您想要監視的已安裝 Web 應用程式或網站，然後設定您在 Application Insights 入口網站中查看結果時想要使用的資源。 您應該登入 Microsoft Azure。
+2. 如果尚未安裝 Application Insights 狀態監視器，請下載並執行[狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648)。
+3. 在狀態監視器中，選取您想要監視的已安裝 Web 應用程式或網站。 利用您的 Azure 認證登入。
+
+    在 Application Insights 入口網站中設定您要在其中檢視結果的資源。 (通常最好建立新的資源。 如果您已經為此應用程式設定 [Web 測試][availability]或[用戶端監視][client]，請選取現有的資源。) 
 
     ![選擇應用程式和資源。](./media/app-insights-monitor-performance-live-website-now/appinsights-036-configAIC.png)
 
-    一般來說，您可以選擇設定新的資源和[資源群組][roles]。
-
-    否則，如果您已經為網站設定 [Web 測試][availability]，或設定 [Web 用戶端監視][client]，請使用現有的資源。
 4. 重新啟動 IIS。
 
     ![選擇對話方塊頂端的 [重新啟動]。](./media/app-insights-monitor-performance-live-website-now/appinsights-036-restart.png)
 
     您的 Web 服務將會中斷一小段時間。
-5. 請注意，ApplicationInsights.config 已插入至您想要監視的 Web 應用程式。
 
-    ![在 Web 應用程式的程式碼檔案旁找到 .config 檔案。](./media/app-insights-monitor-performance-live-website-now/appinsights-034-aiconfig.png)
-   
+## <a name="customize-monitoring-options"></a>自訂監視選項
 
-#### <a name="want-to-reconfigure-later"></a>稍後再 (重新) 設定嗎？
-完成精靈之後，您隨時都可以重新設定代理程式。 如果已安裝代理程式，但初始設定有一些問題，則您也可以這樣做。
+啟用 Application Insights 可將 DLL 和 ApplicationInsights.config 新增至您的 Web 應用程式。 您可以[編輯 .config 檔案](app-insights-configuration-with-applicationinsights-config.md)﹐以變更某些選項。
 
-![按一下工作列上的 [Application Insights] 圖示](./media/app-insights-monitor-performance-live-website-now/appinsights-033-aicRunning.png)
+## <a name="when-you-re-publish-your-app-re-enable-application-insights"></a>當您重新發佈您的應用程式時，請重新啟用 Application Insights。
 
-## <a name="view-performance-telemetry"></a>檢視效能遙測資料
-登入 [Azure 入口網站](https://portal.azure.com)、瀏覽 Application Insights，然後開啟您建立的資源。
+重新發佈您的應用程式之前，請考慮[將 Application Insights 新增至 Visual Studio 中的程式碼][greenbrown]。 您將取得更詳細的遙測，並且能夠撰寫自訂遙測。
 
-![依序選擇 [瀏覽]、[Application Insights]，然後選取您的應用程式](./media/app-insights-monitor-performance-live-website-now/appinsights-08openApp.png)
+如果您想要重新發行，但不將 Application Insights 新增至程式碼，請留意部署程序可能會從已發佈的網站中刪除 DLL 和 ApplicationInsights.config。 因此：
 
-開啟 [效能] 刀鋒視窗，即可查看要求、回應時間、相依性和其他資料。
+1. 如果您已編輯 ApplicationInsights.config，請在重新發佈應用程式前複製一份。
+2. 重新發佈您的應用程式。
+3. 重新啟用 Application Insights 監視功能。 (使用適當的方法︰Azure Web 應用程式控制台或 IIS 主機上的狀態監視器。)
+4. 恢復您在 .config 檔案上執行的所有編輯。
 
-![效能](./media/app-insights-monitor-performance-live-website-now/21-perf.png)
 
-按一下任何圖表即可開啟更詳細的檢視。
+## <a name="troubleshooting-runtime-configuration-of-application-insights"></a>針對 Application Insights 的執行階段組態進行疑難排解
 
-您可以[編輯、重新排列、儲存](app-insights-metrics-explorer.md)圖表或整個刀鋒視窗[dashboard](app-insights-dashboards.md)，以及將其釘選至儀表板。
+### <a name="cant-connect-no-telemetry"></a>無法連接？ 沒有遙測資料？
 
-## <a name="dependencies"></a>相依項目
-相依性工期圖表會顯示呼叫從應用程式到外部元件 (例如資料庫、REST API 或 Azure Blob 儲存體) 所經過的時間。
+* 您需要在伺服器防火牆開啟 [某些傳出的連接埠](app-insights-ip-addresses.md#outgoing-ports) ，以允許狀態監視器運作。
 
-若要藉由呼叫不同的相依性來分隔圖表：請編輯圖表，開啟 [群組]，然後依 [相依性]、[相依性類型] 或 [相依性效能] 分組。
-
-![相依性](./media/app-insights-monitor-performance-live-website-now/23-dep.png)
-
-## <a name="performance-counters"></a>效能計數器
-在 [概觀] 刀鋒視窗中按一下 [伺服器]，以查看伺服器效能計數器的圖表，例如 CPU 佔用和記憶體使用量。
-
-如果您有數個伺服器執行個體，您可能想要編輯圖表以便依角色執行個體分組。
-
-![伺服器](./media/app-insights-monitor-performance-live-website-now/22-servers.png)
-
-您也可以變更由 SDK 報告的效能計數器設定。 
-
-## <a name="exceptions"></a>例外狀況
-![逐一點選伺服器例外狀況圖表](./media/app-insights-monitor-performance-live-website-now/appinsights-039-1exceptions.png)
-
-您可以鑽研過去七天的特定例外狀況，並取得堆疊追蹤和內容資料。
-
-## <a name="sampling"></a>取樣
-如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。 [深入了解取樣。](app-insights-sampling.md)
-
-## <a name="troubleshooting"></a>疑難排解
-### <a name="connection-errors"></a>連接錯誤
-您需要在伺服器防火牆開啟 [某些傳出的連接埠](app-insights-ip-addresses.md#outgoing-ports) ，以允許狀態監視器運作。
-
-### <a name="no-telemetry"></a>沒有遙測資料？
-* 使用您的網站來產生一些資料。
-* 等候幾分鐘讓資料抵達，然後按一下 [重新整理] 。
-* 開啟 [診斷搜尋] ([搜尋] 圖格) 以查看個別事件。 彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
 * 開啟狀態監視器，然後選取左窗格中的應用程式。 檢查 [設定通知] 區段中是否有任何關於此應用程式的診斷訊息：
 
   ![開啟 [效能] 刀鋒視窗，即可查看要求、回應時間、相依性和其他資料](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
-* 請確定伺服器防火牆允許上列連接埠的連出流量。
 * 如果您在伺服器上看到有關「權限不足」的訊息，請嘗試下列操作：
   * 在 IIS 管理員中，選取應用程式集區，開啟 [進階設定]，並記下 [處理序模型] 下的身分識別。
   * 在電腦的管理控制台中，將此身分識別加入至效能監試器使用者群組。
@@ -209,10 +184,19 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 * 將最新的 Application Insights SDK 下載至伺服器。
 
 ## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
+
+檢視遙測：
+
+* [探索計量](app-insights-metrics-explorer.md)以監視效能和使用量
+* [搜尋事件和記錄][diagnostic]以診斷問題
+* 更多進階查詢的[分析](app-insights-analytics.md)
+* [建立儀表板](app-insights-dashboards.md)
+
+新增更多遙測：
+
 * [建立 Web 測試][availability]，確定您的網站保持即時狀態。
-* [搜尋事件和記錄][diagnostic]以協助診斷問題。
 * [新增 Web 用戶端遙測][usage]，以查看網頁程式碼中的例外狀況，並讓您插入追蹤呼叫。
-* [將 Application Insights SDK 新增至您的 Web 服務程式碼][greenbrown]，便可以將追蹤和記錄呼叫插入至伺服器程式碼中。
+* [將 Application Insights SDK 新增至您的程式碼][greenbrown]，以便插入追蹤和記錄呼叫
 
 <!--Link references-->
 
@@ -227,6 +211,6 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

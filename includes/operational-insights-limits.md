@@ -1,29 +1,35 @@
----
-title: Operational Insights 限制資料表
-description: 說明 Operational Insights 的系統限制。
-services: operational-insights
-documentationcenter: NA
-author: bandersmsft
-manager: jwhit
-editor: ''
 
-ms.service: operational-insights
-ms.devlang: NA
-ms.topic: article
-ms.tgt_pltfrm: NA
-ms.workload: TBD
-ms.date: 07/01/2015
-ms.author: banders
+>[!NOTE]
+>Log Analytics 以前稱為 Operational Insights。
+>
+>
 
----
-下列限制適用於 Operational Insights 訂閱。
+下列限制適用於每個訂用帳戶的 Log Analytics 資源：
 
-|  | 可用 | 標準 | 高級 |
-| --- | --- | --- | --- |
-| 每日的資料傳輸限制 |500 MB<sup>1</sup> |None |None |
-| 資料保留期間 |7 天 |1 個月 |12 個月 |
-| 資料存放區限制 |500 MB * 7 天 = 3.5 GB |無限制 |無限制 |
+| 資源 | 預設限制 | 註解
+| --- | --- | --- |
+| 每一訂用帳戶的可用工作區數目 | 10 | 此限制無法增加。 |
+| 每一訂用帳戶的付費工作區數目 | N/A | 您會受到資源群組內的資源數目和每一訂用帳戶的資源群組數目所限制 | 
 
-<sup>1</sup>當客戶達到每日 500MB 資料傳輸限制時，資料分析會停止，並在次日開始時繼續。一天是以 UTC 為基礎。
 
-<!---HONumber=AcomDC_0706_2016-->
+下列限制適用於每個 Log Analytics 工作區：
+
+|  | 免費 | 標準 | 高級 | 獨立 | OMS |
+| --- | --- | --- | --- | --- | --- |
+| 每日所收集的資料量 |500 MB<sup>1</sup> |None |None | None | None
+| 資料保留期間 |7 天 |1 個月 |12 個月 | 1 個月 <sup>2</sup> | 1 個月 <sup>2</sup>|
+
+<sup>1</sup>當客戶達到每日 500MB 資料傳輸限制時，系統會停止資料分析，並在次日開始時繼續。 一天是以 UTC 為基礎。
+
+<sup>2</sup>獨立和 OMS 定價方案的資料保留期限可增加到 730 天。
+
+| 類別 | 限制 | 註解
+| --- | --- | --- |
+| 資料收集器 API | 單一篇文章的大小上限為 30 MB<br>欄位值的大小上限為 32 KB | 將較大的磁碟區分割成多篇文章<br>超過 32 KB 的欄位會被截斷。 |
+| 搜尋 API | 傳回非彙總資料的&5000; 筆記錄<br>彙總資料的&50000;0 筆記錄 | 彙總資料是包含 `measure` 命令的搜尋
+ 
+
+
+<!--HONumber=Feb17_HO3-->
+
+

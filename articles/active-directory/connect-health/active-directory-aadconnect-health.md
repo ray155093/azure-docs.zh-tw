@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/06/2017
-ms.author: billmath
+ms.date: 02/10/2017
+ms.author: vakarand
 translationtype: Human Translation
-ms.sourcegitcommit: c9ebe21acbe06aa25bcadb3b500c34cf89154388
-ms.openlocfilehash: 9abdfa7349bee74b89a23663969904110c730395
+ms.sourcegitcommit: 21e599fc2adf3d7dce84cc1c4130504b71928db7
+ms.openlocfilehash: c8c5f30e4cb0467f6ccdc65d96b57b766593ba31
 
 
 ---
@@ -89,13 +89,16 @@ Azure AD Connect Health 未來更新的內容包括額外監視，以及額外�
 >
 
 ## <a name="download-and-install-azure-ad-connect-health-agent"></a>下載和安裝 Azure AD Connect Health 代理程式
-* 確定您符合 Azure AD Connect Health 的需求
-* 若要開始使用適用於 AD FS 的 Azure AD Connect Health，您可以在此下載最新版的代理程式：[下載適用於 AD FS 的 Azure AD Connect Health 代理程式。](http://go.microsoft.com/fwlink/?LinkID=518973)
-  [](active-directory-aadconnect-health-agent-install.md#installing-the-azure-ad-connect-health-agent-for-ad-fs)
-* 若要開始使用適用於同步處理的 Azure AD Connect Health，請下載並安裝 [最新版的 Azure AD Connect](http://go.microsoft.com/fwlink/?linkid=615771)。  Health 代理程式將會隨著 Azure AD Connect 安裝 (1.0.9125.0 或更高版本) 一起安裝。  Azure AD Connect 支援從舊版就地升級。
-* 若要開始使用適用於 AD DS 的 Azure AD Connect Health，您可以在此下載最新版的代理程式：[下載適用於 AD DS 的 Azure AD Connect Health 代理程式。](http://go.microsoft.com/fwlink/?LinkID=820540)
-  [](active-directory-aadconnect-health-agent-install.md#installing-the-azure-ad-connect-health-agent-for-ad-fs)
-
+* 確定您符合 Azure AD Connect Health 的需求 (active-directory-aadconnect-health-agent-install.md#requirements)
+* 開始使用適用於 AD FS 的 Azure AD Connect Health
+    * [下載適用於 AD FS 的 Azure AD Connect Health 代理程式](http://go.microsoft.com/fwlink/?LinkID=518973)
+    * [請參閱安裝指示](active-directory-aadconnect-health-agent-install.md#installing-the-azure-ad-connect-health-agent-for-ad-fs)
+* 開始使用適用於同步處理的 Azure AD Connect Health
+    * [下載並安裝最新版的 Azure AD Connect](http://go.microsoft.com/fwlink/?linkid=615771)。 適用於同步處理的 Health 代理程式將會隨著 Azure AD Connect 安裝 (1.0.9125.0 或更高版本) 一起安裝。
+* 開始使用適用於 AD DS 的 Azure AD Connect Health
+    * [下載適用於 AD DS 的 Azure AD Connect Health 代理程式](http://go.microsoft.com/fwlink/?LinkID=820540)
+    * [請參閱安裝指示](active-directory-aadconnect-health-agent-install.md#installing-the-azure-ad-connect-health-agent-for-ad-fs)
+    
 ## <a name="azure-ad-connect-health-portal"></a>Azure AD Connect Health 入口網站
 Azure AD Connect Health 入口網站可讓您檢視警示、效能監視和使用情況分析。 https://aka.ms/aadconnecthealth 會帶您前往 Azure AD Connect Health 的主要刀鋒視窗。  您可以將刀鋒視窗視為視窗。 在 [主要] 刀鋒視窗上，您會看到 [快速啟動]、Azure AD Connect Health 中的服務以及其他設定選項。 以下螢幕擷取畫面是各自的簡短說明。  部署代理程式之後，健康狀態服務會自動識別 Azure AD Connect Health 所監視的服務。
 
@@ -120,7 +123,6 @@ Azure AD Connect Health 入口網站可讓您檢視警示、效能監視和使�
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
 
-
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

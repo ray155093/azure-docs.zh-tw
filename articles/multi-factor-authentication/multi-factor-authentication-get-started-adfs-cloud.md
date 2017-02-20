@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure MFA 與 AD FS 保護雲端資源"
+title: "使用 Azure MFA 與 AD FS 保護雲端資源 | Microsoft Docs"
 description: "這是說明如何在雲端開始使用 Azure MFA 和 AD FS 的 Azure Multi-Factor Authentication 頁面。"
 services: multi-factor-authentication
 documentationcenter: 
@@ -12,43 +12,40 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/14/2016
+ms.date: 02/09/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 0a9ab0aca1a77245f360d0d8976aa9b8f59f15a0
-
+ms.sourcegitcommit: 60e8bf883a09668100df8fb51572f9ce0856ccb3
+ms.openlocfilehash: 9eb32ac7936ad54d487dc15d3ef320ec279ce0bc
 
 ---
+
 # <a name="securing-cloud-resources-with-azure-multi-factor-authentication-and-ad-fs"></a>使用 Azure Multi-Factor Authentication 與 AD FS 保護雲端資源
-如果您的組織與 Azure Active Directory 同盟，請使用 Azure Multi-factor Authentication 或 Active Directory Federation Services 來保護 Azure AD 存取的資源。 使用下列程序可利用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 來保護 Azure Active Directory 資源。
+如果您的組織與 Azure Active Directory 同盟，請使用 Azure Multi-factor Authentication 或 Active Directory Federation Services (AD FS) 來保護 Azure AD 存取的資源。 使用下列程序可利用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 來保護 Azure Active Directory 資源。
 
 ## <a name="secure-azure-ad-resources-using-ad-fs"></a>使用 AD FS 保護 Azure AD 資源
-若要保護雲端資源，請先為使用者啟用帳戶，然後設定宣告規則。 遵循此程序來逐步執行各個步驟︰
+若要保護雲端資源，請設定宣告規則，以便在使用者成功執行雙步驟驗證時，Active Directory Federation Services 會發出 multipleauthn 宣告。 此宣告會傳遞至 Azure AD。 遵循此程序來逐步執行各個步驟︰
 
-1. 使用[為使用者開啟 Multi-Factor Authentication](multi-factor-authentication-get-started-cloud.md#turn-on-two-step-verification-for-users) 中概述的步驟來啟用帳戶。
-2. 啟動 AD FS 管理主控台。
-   ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/adfs1.png)
-3. 瀏覽至 [信賴憑證者信任]，並以滑鼠右鍵按一下 [信賴憑證者信任]。 選取 [編輯宣告規則...]
-4. 按一下 [新增規則...]
-5. 從下拉式清單中，選取 [使用自訂規則傳送宣告] 並按 [下一步]。
-6. 輸入宣告規則的名稱。
-7. 在自訂規則之下：新增下列文字：
 
-    ```
-    => issue(Type = "http://schemas.microsoft.com/claims/authnmethodsreferences", Value = "http://schemas.microsoft.com/claims/multipleauthn");
-    ```
+1. 開啟 [AD FS 管理]。
+2. 在左側選取 [信賴憑證者信任]。
+3. 以滑鼠右鍵按一下 [Microsoft Office 365 身分識別平台]，然後選取 [編輯宣告規則...]
 
-    對應宣告：
+   ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip1.png)
 
-    ```
-    <saml:Attribute AttributeName="authnmethodsreferences" AttributeNamespace="http://schemas.microsoft.com/claims">
-    <saml:AttributeValue>http://schemas.microsoft.com/claims/multipleauthn</saml:AttributeValue>
-    </saml:Attribute>
-    ```
-8. 依序按一下 [確定] 和 [完成]。 關閉 AD FS 管理主控台。
+4. 在 [發佈轉換規則] 上，按一下 [新增規則]
 
-使用者便可以使用內部部署方法 (例如智慧卡) 完成登入。
+   ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip2.png)
+
+5. 在 [新增轉換宣告規則精靈] 上，從下拉式清單選取 [通過或篩選傳入宣告]，然後按 [下一步]。
+
+   ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip3.png)
+
+6. 指定規則的名稱。 
+7. 選取 [驗證方法參考] 做為傳入宣告類型。
+8. 選取 [傳遞所有宣告值]。
+    ![新增轉換宣告規則精靈](./media/multi-factor-authentication-get-started-adfs-cloud/configurewizard.png)
+9. 按一下 [完成]。 關閉 AD FS 管理主控台。
 
 ## <a name="trusted-ips-for-federated-users"></a>同盟使用者的可信任 IP
 信任的 IP 可讓系統管理員針對特定的 IP 位址，或針對從他們自己的內部網路發出要求的同盟使用者，略過雙步驟驗證。 下列各節說明當要求是來自同盟使用者的內部網路時，如何設定同盟使用者的 Azure Multi-Factor Authentication 信任的 IP，以及略過雙步驟驗證。 這是藉由設定 AD FS 使用「通過或篩選傳入宣告」範本與「位於公司網路之內」宣告類別來達成。
@@ -56,7 +53,7 @@ ms.openlocfilehash: 0a9ab0aca1a77245f360d0d8976aa9b8f59f15a0
 此範例使用 Office 365 做為信賴憑證者信任。
 
 ### <a name="configure-the-ad-fs-claims-rules"></a>設定 AD FS 宣告規則
-我們要做的第一件事是設定 AD FS 宣告。 我們將建立兩個宣告規則，一個用於「位於公司網路之內」宣告類型，另一個用於保持使用者登入。
+我們要做的第一件事是設定 AD FS 宣告。 建立兩個宣告規則，一個用於「位於公司網路之內」宣告類型，另一個用於保持使用者登入。
 
 1. 開啟 [AD FS 管理]。
 2. 在左側選取 [信賴憑證者信任]。
@@ -100,6 +97,6 @@ ms.openlocfilehash: 0a9ab0aca1a77245f360d0d8976aa9b8f59f15a0
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

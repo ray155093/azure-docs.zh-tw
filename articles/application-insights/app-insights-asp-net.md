@@ -14,8 +14,8 @@ ms.topic: get-started-article
 ms.date: 10/13/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: dc95c922b71d18cf791ea98f4ab1a02d2bac2c3b
-ms.openlocfilehash: 5103c28047e6d5e7be5f4f3b7933196de7045eeb
+ms.sourcegitcommit: 919f67a422faad2ba4c19e1f11f8e873098e8bd1
+ms.openlocfilehash: 9c27cfb674a7743c7cfe47b35b263da48c9c564e
 
 
 ---
@@ -55,7 +55,7 @@ ms.openlocfilehash: 5103c28047e6d5e7be5f4f3b7933196de7045eeb
 
 ## <a name="3-see-your-telemetry"></a>3.查看遙測...
 ### <a name="-in-visual-studio"></a>... 在 Visual Studio 中
-在 Visual Studio 中開啟 [Application Insights] 視窗︰按一下 [Application Insights] 按鈕，或以滑鼠右鍵按一下 [方案總管] 中的專案︰
+在 Visual Studio 中開啟 [Application Insights] 視窗︰按一下 [Application Insights] 按鈕，或以滑鼠右鍵按一下 [方案總管] 中的專案﹐選取 `Application Insights`﹐然後按一下 `Search Live Telemetry`︰
 
 ![在 Visual Studio 中，[Application Insights] 按鈕會在偵錯期間顯示。](./media/app-insights-asp-net/55.png)
 
@@ -84,7 +84,7 @@ ms.openlocfilehash: 5103c28047e6d5e7be5f4f3b7933196de7045eeb
 
 ### <a name="more-detail-in-the-portal"></a>入口網站的詳細資料
 
-* [**即時計量串流**](app-insights-metrics-explorer.md#live-metrics-stream)幾乎可立即顯示遙測。
+* [**即時計量串流**](app-insights-live-stream.md)幾乎可立即顯示遙測。
 
     ![從 [概觀] 刀鋒視窗按一下 [即時串流]](./media/app-insights-asp-net/livestream.png)
 
@@ -134,17 +134,25 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
 
 ## <a name="add-more-telemetry"></a>新增更多遙測
-### <a name="web-pages-and-single-page-apps"></a>網頁和單一頁面應用程式
-1. [新增 JavaScript 程式碼片段](app-insights-javascript.md)網頁，添加頁面檢視、載入時間、瀏覽器例外狀況、AJAX 呼叫效能、使用者和工作階段計數等相關資料，讓 [瀏覽器] 和 [使用量] 刀鋒視窗變得更生動。
-2. [撰寫自訂事件](app-insights-api-custom-events-metrics.md)以計數、計時或測量使用者動作。
-
 ### <a name="dependencies-exceptions-and-performance-counters"></a>相依性、例外狀況和效能計數器
-在每一部伺服器電腦上[安裝狀態監視器](app-insights-monitor-performance-live-website-now.md)，以取得有關應用程式的其他遙測。 您會得到下列資料：
+
+在每一部 IIS 伺服器電腦上[安裝狀態監視器](http://go.microsoft.com/fwlink/?LinkId=506648)，以取得有關 Web 應用程式的其他遙測。
+
+如果已經安裝，您就不需要採取任何動作。 
+
+您可能已經使用狀態監視器，在執行階段開始監視應用程式。 
+
+藉由在建置階段 SDK 以外使用狀態監視器，可取得一組更完整的遙測資料，其中包括︰
 
 * [效能計數器](app-insights-performance-counters.md) - 
   有關應用程式的 CPU、記憶體、磁碟和其他效能計數器。 
 * [例外狀況](app-insights-asp-net-exceptions.md) - 某些例外狀況更詳細的遙測。
-* [相依性](app-insights-asp-net-dependencies.md) - REST API 或 SQL 服務的呼叫。 了解外部元件回應緩慢是否造成應用程式的效能問題。 (如果您的應用程式在 .NET 4.6 上執行，您不需要狀態監視器來取得此遙測)。
+* [相依項目](app-insights-asp-net-dependencies.md) - 包括傳回值。
+
+### <a name="web-pages-and-single-page-apps"></a>網頁和單一頁面應用程式
+1. [新增 JavaScript 程式碼片段](app-insights-javascript.md)網頁，添加頁面檢視、載入時間、瀏覽器例外狀況、AJAX 呼叫效能、使用者和工作階段計數等相關資料，讓 [瀏覽器] 和 [使用量] 刀鋒視窗變得更生動。
+2. [撰寫自訂事件](app-insights-api-custom-events-metrics.md)以計數、計時或測量使用者動作。
+
 
 ### <a name="diagnostic-code"></a>診斷程式碼
 有問題嗎？ 如果想要在應用程式中插入程式碼以協助診斷，您有幾種選項：
@@ -189,13 +197,12 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 ## <a name="next-steps"></a>後續步驟
 |  |
 | --- | --- |
-| **在 Visual Studio 中使用 Application Insights[](app-insights-visual-studio.md)**<br/> 使用遙測來偵錯、診斷搜尋、鑽研程式碼。 |
+| **在 Visual Studio 中使用 Application Insights[](app-insights-visual-studio.md)**<br/>使用遙測來偵錯、診斷搜尋、鑽研程式碼。 |
 | **[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |
-| **新增更多測試[](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。 整合來自記錄架構的追蹤。 撰寫自訂遙測。 |
 
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

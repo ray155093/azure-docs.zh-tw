@@ -1,5 +1,5 @@
 ---
-title: "在 Log Analytics 中設定 Proxy 和防火牆設定 | Microsoft Docs"
+title: "在 Azure Log Analytics 中設定 Proxy 和防火牆設定 | Microsoft Docs"
 description: "當您的代理程式或 OMS 服務需要使用特定連接埠時，請設定 Proxy 和防火牆設定。"
 services: log-analytics
 documentationcenter: 
@@ -12,18 +12,26 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/06/2017
+ms.date: 02/10/2017
 ms.author: banders;magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: d5d86a0f7177b9a1e96e50a3e3e7d1f5800974bf
-ms.openlocfilehash: 427d5d7ed43f19611e99705dab33a0c80a8bf9f9
+ms.sourcegitcommit: 6a527fa303f1e2bd06ac662e545d6b6a1d299fb4
+ms.openlocfilehash: cd06dfd498540970dc8ed29650f4d9e3ca57939b
 
 
 ---
 # <a name="configure-proxy-and-firewall-settings-in-log-analytics"></a>在 Log Analytics 中設定 Proxy 和防火牆設定
-相較於直接連線至伺服器的 Microsoft Monitoring Agent，當您使用 Operations Manager 及其代理程式時，在 OMS 中為 Log Analytics 設定 Proxy 和防火牆設定時須執行的動作是不一樣的。 請檢閱下列章節，以了解您所使用的代理程式類型。
+用來設定 Log Analytics 之 Proxy 和防火牆設定所需執行的動作，會因您所使用的代理程式類型而有所不同。 請檢閱下列章節，以了解您所使用的代理程式類型。
 
-## <a name="configure-proxy-and-firewall-settings-with-the-microsoft-monitoring-agent"></a>使用 Microsoft Monitoring Agent 設定 Proxy 和防火牆設定
+## <a name="settings-for-the-oms-gateway"></a>OMS 閘道的設定
+
+如果您的代理程式無法存取網際網路，則可以改為使用自己的網路資源將其資料傳送到 OMS 閘道。 此閘道會收集這些資源的資料，並代它們將資料傳送給 OMS 服務。
+
+在設定與 OMS 閘道通訊的代理程式時，請使用閘道的完整網域名稱和自訂連接埠號碼。
+
+OMS 閘道需要能夠存取網際網路。 請針對 OMS 閘道使用和您用於所擁有之代理程式類型相同的 Proxy 伺服器或防火牆設定。 如需 OMS 閘道的詳細資訊，請參閱[使用 OMS 閘道將電腦和裝置連線到 OMS](log-analytics-oms-gateway.md)。
+
+## <a name="configure-settings-with-the-microsoft-monitoring-agent"></a>使用 Microsoft Monitoring Agent 進行設定
 如果要讓 Microsoft Monitoring Agent 連線並註冊 OMS 服務，該代理程式必須能夠存取您網域的連接埠號碼和 URL。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取 OMS。 下表列出 OMS 需要的連接埠。
 
 | **代理程式資源** | **連接埠** | **略過 HTTPS 檢查** |
@@ -71,7 +79,7 @@ ms.openlocfilehash: 427d5d7ed43f19611e99705dab33a0c80a8bf9f9
     $healthServiceSettings.SetProxyInfo($ProxyDomainName, $ProxyUserName, $cred.GetNetworkCredential().password)
 
 
-## <a name="configure-proxy-and-firewall-settings-with-operations-manager"></a>使用 Operations Manager 設定 Proxy 和防火牆設定
+## <a name="configure-settings-with-operations-manager"></a>使用 Operations Manager 進行設定
 Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接埠號碼，才能連接 OMS 服務來註冊。 如果您使用 Proxy 伺服器在 Operations Manager 管理伺服器和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取 OMS。 即使 Operations Manager 管理伺服器不在 Proxy 伺服器後方，但可能它的代理程式可能在後方。 在此情況下，Proxy 伺服器和代理程式應該以相同方式設定，才能讓安全性與記錄管理方案資料傳送到 OMS Web 服務。
 
 為了讓 Operations Manager 代理程式與 OMS 服務進行通訊，Operations Manager 基礎結構 (包括代理程式) 應該具有正確的 Proxy 設定和版本。 代理程式的 Proxy 設定是在 Operations Manager 主控台中指定。 您的版本必須是下列其中一項：
@@ -180,6 +188,6 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

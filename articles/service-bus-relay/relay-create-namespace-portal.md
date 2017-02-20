@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure 入口網站建立轉送命名空間 | Microsoft Docs"
-description: "若要開始使用 Azure 轉送，您需要命名空間。 以下會說明如何使用 Azure 入口網站建立命名空間。"
+description: "如何使用 Azure 入口網站建立轉送命名空間。"
 services: service-bus-relay
 documentationcenter: .net
 author: jtaubensee
@@ -12,16 +12,16 @@ ms.devlang: tbd
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 10/28/2016
-ms.author: jotaub
+ms.date: 02/13/2017
+ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 8ba8baa1b6500b3300e0bfc1c6b9f00f214f0179
-ms.openlocfilehash: e51dc77e0a0fc3c0a2cc4050d7b896e177a86cc0
-
+ms.sourcegitcommit: 97c793abc9935707115c166a97f6f7bdfee1a8c5
+ms.openlocfilehash: d6ef2e0c75a27b294ee653bf9a0219c2233d272c
 
 ---
+
 # <a name="create-a-relay-namespace-using-the-azure-portal"></a>使用 Azure 入口網站建立轉送命名空間
-命名空間是所有轉送元件的共同容器。 多個轉送可以位於單一命名空間，而且命名空間通常會做為應用程式容器。 目前有 2 個不同的方式可建立轉送命名空間。
+命名空間是所有轉送元件的共同容器。 多個轉送可以位於單一命名空間，而且命名空間通常會做為應用程式容器。 目前有&2; 個不同的方式可建立轉送命名空間。
 
 1. Azure 入口網站 (本文)
 2. [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 範本
@@ -39,6 +39,6 @@ ms.openlocfilehash: e51dc77e0a0fc3c0a2cc4050d7b896e177a86cc0
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -2,9 +2,13 @@
 | 層： | 可用 | 基本 | 標準 |
 | --- | --- | --- | --- |
 | 已包括的推送 |100 萬 |1000 萬 |1000 萬 |
-| 使用中裝置 |500 |無限 |無限 |
+| 使用中裝置 |500 |200,000 | 1000 萬 |
 | 每一個安裝/註冊的標籤配額 |60 |60 |60 |
 
-如需這些限制的其他詳細資料和價格的相關資訊，請參閱[通知中樞價格](https://azure.microsoft.com/pricing/details/notification-hubs/)。
+如需這些限制的其他詳細資料和價格的相關資訊，請參閱 [通知中樞價格](https://azure.microsoft.com/pricing/details/notification-hubs/)。 
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Feb17_HO2-->
+
+

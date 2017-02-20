@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/12/2017
+ms.date: 02/10/2017
 ms.author: vakarand
 translationtype: Human Translation
-ms.sourcegitcommit: 7c320a043322fefea1f58301492d4c5a0567320c
-ms.openlocfilehash: fcea61a09654f41af57969a79fab3aabdba4e19c
+ms.sourcegitcommit: 21e599fc2adf3d7dce84cc1c4130504b71928db7
+ms.openlocfilehash: 7a2f53de0067879a811c9954199026ecfe3ec906
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: fcea61a09654f41af57969a79fab3aabdba4e19c
 ### <a name="limited-evaluation-of-alerts"></a>有限的警示評估
 如果 Azure AD Connect 不使用預設組態 (比方說，如果 [屬性篩選] 從預設組態變更為自訂組態)，則 Azure AD Connect Health 代理程式不會上傳 Azure AD Connect 相關的錯誤事件。
 
-這會限制服務的警示評估。 您會在 Azure 入口網站中您的服務之下，看到指出這種情況的橫幅。
+這會限制服務的警示評估。 您應會在 Azure 入口網站中您的服務之下，看到指出這種情況的橫幅。
 
 ![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/banner.png)
 

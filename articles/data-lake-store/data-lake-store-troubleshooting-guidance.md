@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: f426cf4b91941f19714c33abc21ef0c777f5b233
-ms.openlocfilehash: 38f3ca24b7fa136bdb4b64b6cae77078b7ea3c97
+ms.sourcegitcommit: a3629845014cb401df96d2d8bf7b9801a0664150
+ms.openlocfilehash: 2f184f5289b9394572023fe9d1aec2d28a73c4f7
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: 38f3ca24b7fa136bdb4b64b6cae77078b7ea3c97
 雖然 Azure Data Lake Store 可透過自動化複本提供資料恢復，但這無法防止應用程式 (或開發人員/使用者) 的資料遭到損毀或意外刪除。
 
 #### <a name="best-practices"></a>最佳作法
-若要防止意外刪除，建議您先使用可用的 [Data Lake Store 安全性功能](data-lake-store-security-overview.md)，為 Data Lake Store 帳戶設定正確的存取原則。 另外，也建議您使用 [ADLCopy](data-lake-store-copy-data-azure-storage-blob.md)、[Azure PowerShell](data-lake-store-get-started-powershell.md) 或 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md)，在另一個 Data Lake Store 帳戶、資料夾或 Azure 訂用帳戶定期建立重要資料的複本。  這可用來從資料損毀或刪除事件中復原。 Azure Data Factory 這項服務很適合用來反覆建立和部署資料移動管線。
+若要防止意外刪除，建議您先為 Data Lake Store 帳戶設定正確的存取原則。  這包括套用 [Azure 資源鎖定](../azure-resource-manager/resource-group-lock-resources.md)來鎖定重要資源，以及套用採用可用 [Data Lake Store 安全性功能](data-lake-store-security-overview.md)的帳戶和檔案層級存取控制。 另外，也建議您使用 [ADLCopy](data-lake-store-copy-data-azure-storage-blob.md)、[Azure PowerShell](data-lake-store-get-started-powershell.md) 或 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md)，在另一個 Data Lake Store 帳戶、資料夾或 Azure 訂用帳戶定期建立重要資料的複本。  這可用來從資料損毀或刪除事件中復原。 Azure Data Factory 這項服務很適合用來反覆建立和部署資料移動管線。
 
 組織也可以啟用 Azure Data Lake Store 帳戶的[診斷記錄](data-lake-store-diagnostic-logs.md)，收集資料存取稽核線索來提供刪除或更新檔案之可疑人員的相關資訊。
 
@@ -52,6 +52,6 @@ ms.openlocfilehash: 38f3ca24b7fa136bdb4b64b6cae77078b7ea3c97
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
 title: "初步了解：使用復原服務保存庫保護 Azure VM | Microsoft Docs"
-description: "使用復原服務保存庫保護 Azure VM。 使用 Resource Manager 部署的 VM、傳統部署的 VM 和進階儲存體 VM 的備份來保護您的資料。 建立和註冊復原服務保存庫。 在 Azure 中註冊 VM、建立原則和保護 VM。"
+description: "使用復原服務保存庫保護 Azure VM。 使用 Resource Manager 部署的 VM、傳統部署的 VM 和進階儲存體 VM、已在受控磁碟中加密 VM 的備份來保護您的資料。 建立和註冊復原服務保存庫。 在 Azure 中註冊 VM、建立原則和保護 VM。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -13,11 +13,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 11/10/2016
+ms.date: 02/06/2017
 ms.author: markgal; jimpark
 translationtype: Human Translation
-ms.sourcegitcommit: d18cd2c117ced64e407e87bcc96da38b0351a341
-ms.openlocfilehash: 0b3409074e0b4929fdf1f5a6b915e3814facedf6
+ms.sourcegitcommit: b73d5bb1f4f9e7adc65bf38a3c98db846a341cb3
+ms.openlocfilehash: 2d8bedcf51cf55e13cc22d5a2d258218f0a786bb
 
 
 ---
@@ -33,10 +33,11 @@ ms.openlocfilehash: 0b3409074e0b4929fdf1f5a6b915e3814facedf6
 * Azure Resource Manager 部署的 VM
 * 傳統 VM
 * 標準儲存體 VM
-* 進階儲存體 VM
+* 進階儲存體 VM 
+* 在受控磁碟上執行的 VM
 * 使用 Azure 磁碟加密，搭配 BEK 與 KEK 來加密的 VM
 
-如需保護進階儲存體 VM 的詳細資訊，請參閱 [備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup)
+如需保護進階儲存體 VM 的詳細資訊，請參閱[備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup)。 如需受控磁碟 VM 支援的詳細資訊，請參閱[備份及還原受控磁碟上的 VM](backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)
 
 > [!NOTE]
 > 本教學課程假設您的 Azure 訂用帳戶中已有 VM，且您已採取措施以允許備份服務存取 VM。
@@ -59,12 +60,12 @@ ms.openlocfilehash: 0b3409074e0b4929fdf1f5a6b915e3814facedf6
 
   ![啟用備份精靈](./media/backup-azure-vms-first-look-arm/vm-blade-enable-backup.png)
 
-5. 針對復原服務保存庫，您可以選取現有的保存庫，或建立新的保存庫。 如果您建立新的保存庫，它會建立在與虛擬機器相同的資源群組中，位置和虛擬機器相同。 如果您想要建立具有不同值的復原服務保存庫，請先[建立復原服務保存庫](backup-azure-vms-first-look-arm.md#create-a-recovery-services-vault-for-a-vm)，按一下步驟 #3 中的備份選項，然後在此刀鋒視窗中選取它。
+5. 針對復原服務保存庫，您可以選取現有的保存庫，或建立新的保存庫。 如果您建立新的保存庫，它會建立在與虛擬機器相同的資源群組中，位置和虛擬機器相同。 如果您想要建立具有不同值的復原服務保存庫，請先[建立復原服務保存庫](backup-azure-vms-first-look-arm.md#create-a-recovery-services-vault-for-a-vm)，按一下步驟&#3; 中的備份選項，然後在此刀鋒視窗中選取它。
 
 6. 在 [備份原則] 刀鋒視窗中選取您要套用至保存庫的備份原則，然後按一下 [確定] 。
     ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new.png)
 
-    預設原則的詳細資料便會列在詳細資料中。 如果您想要建立原則，請在下拉式功能表中選取 [建立新的]  。 下拉式功能表也提供選項，可讓您將時間切換為擷取快照的時間。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 一旦您按下 [確定]，備份原則便會與虛擬機器建立關聯。
+    預設原則的詳細資料便會列在詳細資料中。 如果您想要建立原則，請在下拉式功能表中選取 [新建]。 下拉式功能表也提供選項，可讓您將時間切換為擷取快照的時間。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 一旦您按下 [確定]，備份原則便會與虛擬機器建立關聯。
 
 7. 按一下 [啟用備份] 來設定虛擬機器的備份。 這會觸發部署。
 ![啟用備份按鈕](./media/backup-azure-vms-first-look-arm/vm-management-blade-enable-backup-button.png)
@@ -167,7 +168,7 @@ ms.openlocfilehash: 0b3409074e0b4929fdf1f5a6b915e3814facedf6
 
     ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new.png)
 
-    預設原則的詳細資料便會列在詳細資料中。 如果您想要建立原則，請在下拉式功能表中選取 [建立新的]  。 下拉式功能表也提供選項，可讓您將快照的擷取時間切換為晚上 7 點。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 一旦您按下 [確定] ，備份原則便會與保存庫建立關聯。
+    預設原則的詳細資料便會列在詳細資料中。 如果您想要建立原則，請在下拉式功能表中選取 [新建]。 下拉式功能表也提供選項，可讓您將快照的擷取時間切換為晚上 7 點。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 一旦您按下 [確定] ，備份原則便會與保存庫建立關聯。
 
     接下來選擇要與保存庫建立關聯的 VM。
 6. 選擇要與指定原則建立關聯的虛擬機器，然後按一下 [選取] 。
@@ -246,6 +247,6 @@ Azure VM 備份將會根據受保護的執行個體模型收費。 深入了解[
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

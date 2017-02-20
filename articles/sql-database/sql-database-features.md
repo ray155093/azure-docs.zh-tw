@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 02/01/2017
 ms.author: carlrab; jognanay
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: c153f09741b9b063d67459bbb127f9c4e7942a5b
+ms.sourcegitcommit: 21be71a1b4c79ecec8af02d08f65c41128c5ef73
+ms.openlocfilehash: 50a465f314909c10bc3c3f95be2d9dc377d433a7
 
 
 ---
@@ -47,7 +47,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 * 篩選出 SQL Database 功能的「正式運作 [(GA)」公告](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) 。
 
 > [!TIP]
-> 若要測試現有資料庫與 Azure SQL Database 的相容性，請參閱[驗證 Azure SQL Database 相容性](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)。
+> 若要測試現有資料庫與 Azure SQL Database 的相容性，請參閱[將 SQL Server Database 移轉到 Azure](sql-database-cloud-migrate.md)。
 >
 
 | **功能** | **SQL Server** | **Azure SQL Database** | 
@@ -161,6 +161,6 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

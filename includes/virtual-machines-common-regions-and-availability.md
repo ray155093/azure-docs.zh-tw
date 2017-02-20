@@ -37,8 +37,13 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 有些服務或 VM 功能只有在特定區域提供，例如特定的 VM 大小或儲存體類型。 也有一些不會要求您選取特定區域的通用 Azure 服務，例如 [Azure Active Directory](../articles/active-directory/active-directory-whatis.md)、[流量管理員](../articles/traffic-manager/traffic-manager-overview.md)或 [Azure DNS](../articles/dns/dns-overview.md)。 為了協助您設計應用程式環境，您可以查看 [每個區域的 Azure 服務可用性](https://azure.microsoft.com/regions/#services)。 
 
 ## <a name="storage-availability"></a>儲存體可用性
-在您考慮可用的「Azure 儲存體」複寫選項時，了解 Azure 區域和地理位置會變得相當重要。 建立儲存體帳戶時，您必須選取下列其中一個複寫選項：
+在您考慮可用的儲存體複寫選項時，了解 Azure 區域和地理位置會變得相當重要。 根據儲存體類型，您會有不同的複寫選項。
 
+**Azure 受控磁碟**
+* 本機備援儲存體 (LRS)
+  * 此選項會在您建立儲存體帳戶的區域內複寫資料三次。
+
+**儲存體帳戶型磁碟**
 * 本機備援儲存體 (LRS)
   * 此選項會在您建立儲存體帳戶的區域內複寫資料三次。
 * 區域備援儲存體 (ZRS)
@@ -56,11 +61,15 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 | 可從次要位置及主要位置讀取資料。 |否 |否 |否 |是 |
 | 可在不同的節點上維護的資料副本數量。 |3 |3 |6 |6 |
 
-您可以 [在這裡深入了解 Azure 儲存體複寫選項](../articles/storage/storage-redundancy.md)。
+您可以 [在這裡深入了解 Azure 儲存體複寫選項](../articles/storage/storage-redundancy.md)。 如需受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../articles/storage/storage-managed-disks-overview.md)。
 
 ### <a name="storage-costs"></a>儲存成本
-價格會依據您選取的儲存體類型和可用性而有所不同。 
+價格會依據您選取的儲存體類型和可用性而有所不同。
 
+**Azure 受控磁碟**
+* 進階受控磁碟是由固態硬碟 (SSD) 來支援，標準受控磁碟則是由一般轉動式磁碟來支援。 進階和標準受控磁碟的收費是依據磁碟的佈建容量。
+
+**非受控磁碟**
 * 進階儲存體是由「固態硬碟」(SSD) 支援，收費方式是依據磁碟的容量。
 * 標準儲存體是由一般轉動式磁碟支援，收費方式是依據使用的容量和所需的儲存體可用性。
   * 針對 RA-GRS，會有一個額外的「異地複寫資料傳輸」費用，此費用是將該資料複寫到另一個 Azure 區域中時的頻寬費用。
@@ -75,7 +84,7 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 您也可以使用 [Azure CLI](../articles/virtual-machines/virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure PowerShell](../articles/virtual-machines/virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來建立自己的自訂映像並上傳它們，以快速建立符合您特定建置需求的自訂 VM。
 
 ## <a name="availability-sets"></a>可用性設定組
-可用性設定組是 VM 的邏輯群組，可讓 Azure 了解您應用程式的建置方式，以提供備援和可用性。 建議您在可用性設定組內建立兩個或更多個 VM，以提供具高可用性的應用程式，以及符合 [99.95% Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 可用性設定組是由可防止硬體故障及允許安全地套用更新的兩個額外群組所組成 - 容錯網域 (FD) 和更新網域 (UD)。
+可用性設定組是 VM 的邏輯群組，可讓 Azure 了解您應用程式的建置方式，以提供備援和可用性。 建議您在可用性設定組內建立兩個或更多個 VM，以提供具高可用性的應用程式，以及符合 [99.95% Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 當單一 VM 是使用 [Azure 進階儲存體](../articles/storage/storage-premium-storage.md)時，非計劃性的維護事件適用 Azure SLA。 可用性設定組是由可防止硬體故障及允許安全地套用更新的兩個額外群組所組成 - 容錯網域 (FD) 和更新網域 (UD)。
 
 ![更新網域和容錯網域組態的概念圖](./media/virtual-machines-common-regions-and-availability/ud-fd-configuration.png)
 
@@ -83,6 +92,9 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 
 ### <a name="fault-domains"></a>容錯網域
 容錯網域是共用通用電源和網路交換器的基礎硬體邏輯群組，類似於內部部署資料中心內的機架。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些容錯網域。 此方法可限制潛在實體硬體錯誤、網路中斷或電源中斷的影響。
+
+#### <a name="managed-disk-fault-domains-and-availability-sets"></a>受控磁碟的容錯網域和可用性設定組
+若 VM 使用 [Azure 受控磁碟](../articles/storage/storage-faq-for-disks.md)，VM 會在使用受管理的可用性設定組時配合使用受控磁碟容錯網域。 此一配合行為可確保連接到 VM 的所有受控磁碟都位於相同的受控磁碟容錯網域。 在受管理的可用性設定組中只能建立使用受控磁碟的 VM。 受控磁碟容錯網域數目會依區域而異，每個區域會有兩個或三個受控磁碟容錯網域。
 
 ### <a name="update-domains"></a>更新網域
 更新網域是可以同時進行維護或重新啟動的基礎硬體邏輯群組。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些更新網域。 此方法可確保當 Azure 平台進行定期維護時，您的應用程式至少有一個執行個體一直保持執行中。 重新啟動的更新網域順序可能不會在規劃的維護事件期間循序進行，而只會一次重新啟動一個更新網域。
@@ -92,6 +104,6 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

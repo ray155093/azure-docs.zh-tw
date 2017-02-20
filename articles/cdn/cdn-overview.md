@@ -3,8 +3,8 @@ title: "Azure CDN 概觀 |Microsoft Docs"
 description: "了解何謂 Azure 內容傳遞網路 (CDN)，以及如何使用它透過快取 Blob 和靜態內容來傳遞高頻寬內容。"
 services: cdn
 documentationcenter: 
-author: camsoper
-manager: erikre
+author: lichard
+manager: akucer
 editor: 
 ms.assetid: 866e0c30-1f33-43a5-91f0-d22f033b16c6
 ms.service: cdn
@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 09/30/2016
-ms.author: casoper
+ms.date: 02/08/2017
+ms.author: rli
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 838a9ca3b77d5cd152ad2b8a54387149eafb6202
+ms.sourcegitcommit: 6c8c04e0237e2168df60ecc597754c38af167e14
+ms.openlocfilehash: 0aed3d224199b17bac748b14416a738eac342103
 
 
 ---
@@ -40,7 +40,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 1. 使用者 (Alice) 使用具有特殊網域名稱的 URL (例如 `<endpointname>.azureedge.net`) 要求檔案 (也稱為資產)。  DNS 將要求路由傳送到最佳的存在點 (POP) 位置。  這通常是地理位置最接近使用者的 POP。
 2. 如果 POP 中的 Edge Server 在其快取中沒有該檔案，Edge Server 便會從原始來源要求檔案。  原始來源可以是 Azure Web 應用程式、Azure 雲端服務、Azure 儲存體帳戶或任何可公開存取的 Web 伺服器。
 3. 原始來源將檔案傳回給 Edge Server，包括描述檔案存留時間 (TTL) 的選擇性 HTTP 標頭。
-4. Edge Server 快取檔案，並將檔案傳回給原始要求者 (Alice)。  在 TTL 到期之前，檔案會一直快取在 Edge Server 上。  如果原始來源未指定 TTL，預設 TTL 為 7 天。
+4. Edge Server 快取檔案，並將檔案傳回給原始要求者 (Alice)。  在 TTL 到期之前，檔案會一直快取在 Edge Server 上。  如果原始來源未指定 TTL，預設 TTL 為&7; 天。
 5. 其他使用者後來可能會使用相同 URL 要求相同檔案，而且也可能導向至該相同 POP。
 6. 如果檔案的 TTL 尚未過期，Edge Server 便會從快取傳回檔案。  這會產生更快、更靈敏回應的使用者經驗。
 
@@ -51,13 +51,14 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 | --- | --- | --- | --- |
 | 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、[Web Apps](../app-service-web/cdn-websites-with-cdn.md) 和[媒體服務](../media-services/media-services-portal-manage-streaming-endpoints.md)等 Azure 服務整合 |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | 透過 [REST API](https://msdn.microsoft.com/library/mt634456.aspx)、[.NET](cdn-app-dev-net.md)、[Node.js](cdn-app-dev-node.md) 或 [PowerShell](cdn-manage-powershell.md) 管理。 |**&#x2713;** |**&#x2713;** |**&#x2713;** |
-| HTTPS 支援 |**&#x2713;** |**&#x2713;** |**&#x2713;** |
+| CDN 端點的 HTTPS 支援 |**&#x2713;** |**&#x2713;** |**&#x2713;** |
+| 自訂網域 HTTPS | |**&#x2713;** |**&#x2713;** |
 | 負載平衡 |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | [DDOS](https://www.us-cert.gov/ncas/tips/ST04-015) 保護 |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | IPv4/IPv6 雙重堆疊 |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | [自訂網域名稱支援](cdn-map-content-to-custom-domain.md) |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | [查詢字串快取](cdn-query-string.md) |**&#x2713;** |**&#x2713;** |**&#x2713;** |
-| [地理位置篩選](cdn-restrict-access-by-country.md) | |**&#x2713;** |**&#x2713;** |
+| [地理位置篩選](cdn-restrict-access-by-country.md) |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | [快速清除](cdn-purge-endpoint.md) |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | [資產預先載入](cdn-preload-endpoint.md) | |**&#x2713;** |**&#x2713;** |
 | [核心分析](cdn-analyze-usage-patterns.md) | |**&#x2713;** |**&#x2713;** |
@@ -69,6 +70,8 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 | 快取/標頭設定 (使用 [規則引擎](cdn-rules-engine.md)) | | |**&#x2713;** |
 | URL 重新導向/重寫 (使用 [規則引擎](cdn-rules-engine.md)) | | |**&#x2713;** |
 | 行動裝置規則 (使用 [規則引擎](cdn-rules-engine.md)) | | |**&#x2713;** |
+| [權杖驗證](cdn-token-auth.md)|  |  |**&#x2713;**| 
+
 
 > [!TIP]
 > 您是否有想要在 Azure CDN 中看到的功能？  [請不吝提供意見](https://feedback.azure.com/forums/169397-cdn)！ 
@@ -89,6 +92,6 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

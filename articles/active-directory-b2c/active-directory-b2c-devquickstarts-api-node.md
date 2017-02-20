@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cea04afd22270c77d91148d3c4a95e87f37406db
+ms.sourcegitcommit: 3b5d9162e2d39e2b0f011383a478545644c57861
+ms.openlocfilehash: c9742c7f505417577857889ef307083afb9bab18
 
 
 ---
@@ -279,7 +279,7 @@ passReqToCallback: false // This is a node.js construct that lets you pass the r
 `policyName`：您想用來驗證傳入伺服器之權杖的原則。 此原則應與您針對用戶端應用程式登入所用的原則相同。
 
 > [!NOTE]
-> 在我們的 B2C 預覽中，請將相同的原則用於用戶端與伺服器設定。 如果您已完成逐步解說並建立這些原則，則不需要再做一次。 由於您已完成此逐步解說，您應該不需要在網站上為用戶端逐步解說建立新的原則。
+> 現在，請將相同的原則用於用戶端與伺服器設定。 如果您已完成逐步解說並建立這些原則，則不需要再做一次。 由於您已完成此逐步解說，您應該不需要在網站上為用戶端逐步解說建立新的原則。
 >
 >
 
@@ -763,6 +763,6 @@ Transfer-Encoding: chunked
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 
