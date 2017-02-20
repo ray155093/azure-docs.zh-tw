@@ -17,8 +17,8 @@ ms.topic: article
 ms.date: 12/20/2016
 ms.author: ankshah; kraman
 translationtype: Human Translation
-ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
-ms.openlocfilehash: f96c0b7b7edcd19a041c803e268a2dc4bf25b137
+ms.sourcegitcommit: 08cac64a6b08266f78bca03f1139a13e9686ebc3
+ms.openlocfilehash: 819602cda932ea698287724e307ebbd73f1af988
 
 
 ---
@@ -31,14 +31,14 @@ ms.openlocfilehash: f96c0b7b7edcd19a041c803e268a2dc4bf25b137
 ![顯示 IP 型存取控制之連接程序的圖表](./media/documentdb-firewall-support/documentdb-firewall-support-flow.png)
 
 ## <a name="connections-from-cloud-services"></a>從雲端服務的連接
-在 Azure 中，雲端服務是使用 DocumentDB 裝載中介層服務邏輯的極常見方式。 若要從雲端服務存取 DocumentDB 資料庫帳戶，必須[連絡 Azure 支援人員](#configure-ip-policy)，以將雲端服務的公用 IP 位址新增至與 DocumentDB 資料庫帳戶相關聯的允許 IP 位址清單。  這確保雲端服務的所有角色執行個體可以存取 DocumentDB 資料庫帳戶。 您可以在 Azure 入口網站中擷取雲端服務的 IP 位址，如下列螢幕擷取畫面所示。 
+在 Azure 中，雲端服務是使用 DocumentDB 裝載中介層服務邏輯的極常見方式。 若要從雲端服務存取 DocumentDB 資料庫帳戶，必須[設定 IP 存取控制原則](#configure-ip-policy)，以將雲端服務的公用 IP 位址新增至與 DocumentDB 資料庫帳戶相關聯的允許 IP 位址清單。  這確保雲端服務的所有角色執行個體可以存取 DocumentDB 資料庫帳戶。 您可以在 Azure 入口網站中擷取雲端服務的 IP 位址，如下列螢幕擷取畫面所示。
 
 ![這個螢幕擷取畫面顯示 Azure 入口網站中所顯示雲端服務的公用 IP 位址](./media/documentdb-firewall-support/documentdb-public-ip-addresses.png)
 
 當您新增其他角色執行個體來相應放大雲端服務時，這些新的執行個體自動可以存取 DocumentDB 資料庫帳戶，原因它們是相同雲端服務的一部分。
 
 ## <a name="connections-from-virtual-machines"></a>從虛擬機器的連接
-也可以使用[虛擬機器](https://azure.microsoft.com/services/virtual-machines/)或[虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)，透過 DocumentDB 裝載中介層服務。  若要設定允許從虛擬機器存取 DocumentDB 資料庫帳戶，必須[連絡 Azure 支援人員](#configure-ip-policy)，以將虛擬機器和 (或) 虛擬機器擴展集的公用 IP 位址設定為 DocumentDB 資料庫帳戶的其中一個允許 IP 位址。 您可以在 Azure 入口網站中擷取虛擬機器的 IP 位址，如下列螢幕擷取畫面所示。
+也可以使用[虛擬機器](https://azure.microsoft.com/services/virtual-machines/)或[虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)，透過 DocumentDB 裝載中介層服務。  若要設定允許從虛擬機器存取 DocumentDB 資料庫帳戶，必須[設定 IP 存取控制原則](#configure-ip-policy)，以將虛擬機器和 (或) 虛擬機器擴展集的公用 IP 位址設定為 DocumentDB 資料庫帳戶的其中一個允許 IP 位址。 您可以在 Azure 入口網站中擷取虛擬機器的 IP 位址，如下列螢幕擷取畫面所示。
 
 ![這個螢幕擷取畫面顯示 Azure 入口網站中所顯示虛擬機器的公用 IP 位址](./media/documentdb-firewall-support/documentdb-public-ip-addresses-dns.png)
 
@@ -66,6 +66,6 @@ IP 存取控制原則可以藉由更新 `ipRangeFilter` 屬性，透過 [Azure C
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions NodeJS 開發人員參考 | Microsoft Docs"
-description: "了解如何使用 NodeJS 開發 Azure Functions。"
+title: "適用於 Azure Functions 的 JavaScript 開發人員參考 | Microsoft Docs"
+description: "了解如何使用 JavaScript 開發 Azure Functions。"
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -15,22 +15,22 @@ ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/13/2016
-ms.author: chrande
+ms.author: chrande, glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 6f558761f85bd0f9f4e8be38192df1c1ccf16c4e
-ms.openlocfilehash: d4d43e646734d3496cd9d35d1d7aa6a39852533a
+ms.sourcegitcommit: e660f3313ba6805356eef30b3a17ac609fc9043e
+ms.openlocfilehash: 880fdbd6fc51f16add2f2497402d8b01047d0847
 
 
 ---
-# <a name="azure-functions-nodejs-developer-reference"></a>Azure Functions NodeJS 開發人員參考
+# <a name="azure-functions-javascript-developer-guide"></a>Azure Functions JavaScript 開發人員指南
 > [!div class="op_single_selector"]
 > * [C# 指令碼](functions-reference-csharp.md)
 > * [F# 指令碼](functions-reference-fsharp.md)
-> * [Node.js](functions-reference-node.md)
+> * [JavaScript](functions-reference-node.md)
 > 
 > 
 
-Azure Functions 的 Node/JavaScript 體驗能讓您輕鬆地匯出函式，系統會傳遞一個 `context` 物件給該函式以便與執行階段通訊，以及用來透過繫結接收和傳送資料。
+Azure Functions 的 JavaScript 體驗能讓您輕鬆地匯出函式，系統會傳遞一個 `context` 物件給該函式以便與執行階段通訊，以及用來透過繫結接收和傳送資料。
 
 本文假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)。
 
@@ -198,6 +198,6 @@ function GetEnvironmentVariable(name)
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

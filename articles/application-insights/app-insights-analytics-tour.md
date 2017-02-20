@@ -11,11 +11,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 02/07/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2284b12c87eee6a453844e54cdcb2add5874218b
-ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
+ms.sourcegitcommit: ab9006b915b3455b6e63857514e98ed89ad78c7c
+ms.openlocfilehash: 9914f1dc96672020a4d7e7a1976d20e5abf7028b
 
 
 ---
@@ -91,7 +91,7 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 ```AIQL
 
     requests
-    | where resultCode  == "404" 
+    | where resultCode  == "404"
     | take 10
 ```
 
@@ -128,26 +128,26 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 
     // What were the slowest requests over the past 3 days?
     requests
-    | where timestamp > ago(3d)  // Override the time range 
+    | where timestamp > ago(3d)  // Override the time range
     | top 5 by duration
 ```
 
-時間範圍功能相當於在每個提到的其中一個來源資料表之後插入 'where' 子句。 
+時間範圍功能相當於在每個提到的其中一個來源資料表之後插入 'where' 子句。
 
-`ago(3d)` 表示「三天前」。 其他時間單位包括小時 (`2h`、`2.5h`)、分鐘 (`25m`) 和秒 (`10s`)。 
+`ago(3d)` 表示「三天前」。 其他時間單位包括小時 (`2h`、`2.5h`)、分鐘 (`25m`) 和秒 (`10s`)。
 
 其他範例︰
 
 ```AIQL
 
     // Last calendar week:
-    requests 
-    | where timestamp > startofweek(now()-7d) 
-        and timestamp < startofweek(now()) 
+    requests
+    | where timestamp > startofweek(now()-7d)
+        and timestamp < startofweek(now())
     | top 5 by duration
 
     // First hour of every day in past seven days:
-    requests 
+    requests
     | where timestamp > ago(7d) and timestamp % 1d < 1h
     | top 5 by duration
 
@@ -189,7 +189,7 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 
 * 如果[資料行名稱](app-insights-analytics-reference.md#names)是以括號括起來 (如下所示)，就可以包含空格或符號︰`['...']` 或 `["..."]`
 * `%` 是很常見的模數運算子。
-* `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。 以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
+* `1d` (這是數字&1;，再加上 'd') 是一個時間範圍常值，表示一天。 以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
 * `floor` (別名 `bin`) 會將一個值無條件捨去為您提供之基值的最近倍數。 所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
 
 [運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一系列的實用函式。
@@ -212,7 +212,7 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 
 ```AIQL
 
-    requests 
+    requests
     | top 10 by timestamp desc
     | extend localTime = timestamp - 8h
 ```
@@ -318,14 +318,14 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 ```AIQL
 
     // Bounce rate: sessions with only one page view
-    requests 
-    | where notempty(session_Id) 
+    requests
+    | where notempty(session_Id)
     | where tostring(operation_SyntheticSource) == "" // real users
-    | summarize pagesInSession=sum(itemCount), sessionEnd=max(timestamp) 
-               by session_Id 
-    | extend isbounce= pagesInSession == 1 
-    | summarize count() 
-               by tostring(isbounce), bin (sessionEnd, 1h) 
+    | summarize pagesInSession=sum(itemCount), sessionEnd=max(timestamp)
+               by session_Id
+    | extend isbounce= pagesInSession == 1
+    | summarize count()
+               by tostring(isbounce), bin (sessionEnd, 1h)
     | render timechart
 ```
 
@@ -343,7 +343,7 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 
 ```AIQL
 
-    requests 
+    requests
     | where timestamp > ago(30d)  // Override "Last 24h"
     | where tostring(operation_SyntheticSource) == "" // real users
     | extend hour = bin(timestamp % 1d , 1h)
@@ -459,6 +459,7 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 在相同的子句中，我們會將時間戳記資料行重新命名。
 
 ## <a name="letapp-insights-analytics-referencemdlet-clause-assign-a-result-to-a-variable"></a>[Let](app-insights-analytics-reference.md#let-clause)︰將結果指派給變數
+
 使用 `let` 來分隔前一個運算式的各個部分。 結果不變：
 
 ```AIQL
@@ -471,23 +472,37 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
     | take 30
 ```
 
-> 秘訣︰在分析用戶端中，不要在查詢的各個部分之間插入空白行。 務必執行所有一切。
->
+> [!Tip] 
+> 在分析用戶端中，不要在查詢的各個部分之間插入空白行。 務必執行所有一切。
 >
 
-### <a name="functions"></a>Functions 
+使用 `toscalar` 將單一表格儲存格轉換為值：
+
+```AIQL
+let topCities =  toscalar (
+   requests
+   | summarize count() by client_City 
+   | top n by count_ 
+   | summarize makeset(client_City));
+requests
+| where client_City in (topCities(3)) 
+| summarize count() by client_City;
+```
+
+
+### <a name="functions"></a>Functions
 
 使用 Let 來定義函式︰
 
 ```AIQL
 
-    let usdate = (t:datetime) 
+    let usdate = (t:datetime)
     {
-      strcat(getmonth(t), "/", dayofmonth(t),"/", getyear(t), " ", 
+      strcat(getmonth(t), "/", dayofmonth(t),"/", getyear(t), " ",
       bin((t-1h)%12h+1h,1s), iff(t%24h<12h, "AM", "PM"))
     };
     requests  
-    | extend PST = usdate(timestamp-8h) 
+    | extend PST = usdate(timestamp-8h)
 ```
 
 ## <a name="accessing-nested-objects"></a>存取巢狀物件
@@ -547,24 +562,24 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 
 ## <a name="combine-with-imported-data"></a>與匯入的資料結合
 
-儀表板上的分析報告看起來很不錯，但有時候您想要將資料轉譯為更容易消化的表單。 例如，假設已驗證的使用者在遙測中是依照別名識別。 您想要在結果中顯示其真實名稱。 若要這樣做，您只需要有 CSV 檔案從別名對應至真實名稱。 
+儀表板上的分析報告看起來很不錯，但有時候您想要將資料轉譯為更容易消化的表單。 例如，假設已驗證的使用者在遙測中是依照別名識別。 您想要在結果中顯示其真實名稱。 若要這樣做，您只需要有 CSV 檔案從別名對應至真實名稱。
 
 您可以匯入資料檔案，並且就像任何標準資料表 (要求、例外狀況等等) 一樣使用它。 單獨查詢它，或是將它與其他資料表聯結。 例如，如果您有名為 usermap 的資料表，且其中包含 `realName` 和 `userId` 資料行，您即可使用它來轉譯要求遙測中的 `user_AuthenticatedId` 欄位︰
 
 ```AIQL
 
     requests
-    | where notempty(user_AuthenticatedId) 
+    | where notempty(user_AuthenticatedId)
     | project userId = user_AuthenticatedId
       // get the realName field from the usermap table:
-    | join kind=leftouter ( usermap ) on userId 
+    | join kind=leftouter ( usermap ) on userId
       // count transactions by name:
     | summarize count() by realName
 ```
 
-若要匯入資料表，請在 [結構描述] 刀鋒視窗的 [其他資料來源] 下，依指示上傳資料樣本來新增資料來源。 然後，您可以使用此定義來上傳資料表。 
+若要匯入資料表，請在 [結構描述] 刀鋒視窗的 [其他資料來源] 下，依指示上傳資料樣本來新增資料來源。 然後，您可以使用此定義來上傳資料表。
 
-匯入功能目前為預覽狀態，所以在 [其他資料來源] 下，您最初會看到 [與我們連絡] 連結。 請利用此連結來註冊預覽方案，之後，連結會換成 [新增資料來源] 按鈕。 
+匯入功能目前為預覽狀態，所以在 [其他資料來源] 下，您最初會看到 [與我們連絡] 連結。 請利用此連結來註冊預覽方案，之後，連結會換成 [新增資料來源] 按鈕。
 
 
 ## <a name="tables"></a>資料表
@@ -580,7 +595,7 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 ![計算要求數量，依名稱分割](./media/app-insights-analytics-tour/analytics-failed-requests.png)
 
 ### <a name="custom-events-table"></a>自訂事件資料表
-如果您使用 [TrackEvent()](app-insights-api-custom-events-metrics.md#track-event) 傳送您自己的事件，則可以從這個資料表查看事件。
+如果您使用 [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent) 傳送您自己的事件，則可以從這個資料表查看事件。
 
 讓我們舉包含下列程式行的應用程式程式碼為例︰
 
@@ -602,7 +617,7 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 ![顯示自訂事件的速率](./media/app-insights-analytics-tour/analytics-custom-events-dimensions.png)
 
 ### <a name="custom-metrics-table"></a>自訂度量表
-如果您使用 [TrackMetric()](app-insights-api-custom-events-metrics.md#track-metric) 傳送您自己的度量值，您會在 **customMetrics** 串流中發現它的結果。 例如：  
+如果您使用 [TrackMetric()](app-insights-api-custom-events-metrics.md#trackmetric) 傳送您自己的度量值，您會在 **customMetrics** 串流中發現它的結果。 例如：  
 
 ![Application Insights 分析中的自訂度量](./media/app-insights-analytics-tour/analytics-custom-metrics.png)
 
@@ -655,16 +670,16 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 從瀏覽器進行的 AJAX 呼叫︰
 
 ```AIQL
-    
-    dependencies | where client_Type == "Browser" 
+
+    dependencies | where client_Type == "Browser"
     | take 10
 ```
 
 從伺服器進行的相依性呼叫︰
 
 ```AIQL
-    
-    dependencies | where client_Type == "PC" 
+
+    dependencies | where client_Type == "PC"
     | take 10
 ```
 
@@ -683,6 +698,6 @@ ms.openlocfilehash: e5872f48e77cbb729dca88a2e5c603fdf2759fa5
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

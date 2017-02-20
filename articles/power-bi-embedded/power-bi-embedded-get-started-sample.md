@@ -1,6 +1,6 @@
 ---
 title: "以範例作為起始"
-description: "有了 Power BI Embedded，即可使用 SDK 將互動式 Power BI 報告新增到您的商業智慧應用程式中"
+description: "對於 Power BI Embedded，使用 SDK 將互動式 Power BI 報告加入您的商務智慧應用程式中"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -13,29 +13,30 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 01/06/2017
+ms.date: 02/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 2f0f36e7ffeec52bacc35ac5039cd183976dc3aa
-ms.openlocfilehash: 9c9ab36ac90c3e73a21c7e53a6715cc4503a8e99
+ms.sourcegitcommit: 11409a498c14abbc95e52ef793564c254df8ec89
+ms.openlocfilehash: 2bd7da95901e7216a84aaa8e1761b491c7217ea3
 
 
 ---
 # <a name="get-started-with-power-bi-embedded-sample"></a>開始使用 Power BI Embedded 範例
+
 運用 **Microsoft Power BI Embedded**，您可以將 Power BI 報告整合至您的 Web 應用程式或行動應用程式。 在本文中，會向您介紹 **Power BI Embedded** 開始使用範例。
 
 在我們繼續之前，您可能想要儲存下列資源。 它們會協助您將 Power BI 報告整合至範例應用程式和您自己的應用程式。
 
 * [範例儀表板 Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=761493)
-* [Power BI Embedded API 參考](https://msdn.microsoft.com/library/mt711493.aspx)
+* [Power BI Embedded API 參考](https://msdn.microsoft.com/en-US/library/azure/mt711507.aspx)
 * [Power BI Embedded .NET SDK ](http://go.microsoft.com/fwlink/?LinkId=746472) (透過 NuGet 提供)
+* [JavaScript 報告內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo)
 
-> [!NOTE]
+> [!NOTE] 
 > 在您可以設定及執行 Power BI Embedded 開始使用範例之前，您需要在您的 Azure 訂用帳戶中至少建立一個「工作區集合」。 若要了解如何在 Azure 入口網站中建立**工作區集合**，請參閱[開始使用 Power BI Embedded](power-bi-embedded-get-started.md)。
->
->
 
 ## <a name="configure-the-sample-app"></a>設定範例應用程式
+
 讓我們逐步引導您設定 Visual Studio 開發環境，以存取執行範例應用程式時所需的元件。
 
 1. 下載並解壓縮 GitHub 上的 [Power BI Embedded - 將報表整合到 Web 應用程式中](http://go.microsoft.com/fwlink/?LinkId=761493) 範例。
@@ -63,8 +64,6 @@ Checking import state... Succeeded
 
 > [!NOTE]
 > If your PBIX file contains any direct query connections, run option 7 to update the connection strings.
->
->
 
 At this point, you have a Power BI PBIX report imported into your **Workspace**. Now, let's look at how to run the **Power BI Embedded** get started sample web app.
 
@@ -93,16 +92,16 @@ After you click a report, the **EmbedSample** web application should look someth
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
 ## Explore the sample code
+
 The **Microsoft Power BI Embedded** sample is an example dashboard web app that shows you how to integrate **Power BI** reports into your app. It uses a Model-View-Controller (MVC) design pattern to demonstrate best practices. This section highlights parts of the sample code that you can explore within the **PowerBI-embedded** web app solution. The Model-View-Controller (MVC) pattern separates the modeling of the domain, the presentation, and the actions based on user input into three separate classes: Model, View, and Control. To learn more about MVC, see [Learn About ASP.NET](http://www.asp.net/mvc).
 
 The **Microsoft Power BI Embedded** sample code is separated as follows. Each section includes the file name in the PowerBI-embedded.sln solution so that you can easily find the code in the sample.
 
 > [!NOTE]
 > This section is a summary of the sample code that shows how the code was written. To view the complete sample, please load the PowerBI-embedded.sln solution in Visual Studio.
->
->
 
 ### Model
+
 The sample has a **ReportsViewModel** and **ReportViewModel**.
 
 **ReportsViewModel.cs**: Represents Power BI Reports.
@@ -122,6 +121,7 @@ The sample has a **ReportsViewModel** and **ReportViewModel**.
     }
 
 ### Connection string
+
 The connection string must be in the following format:
 
 ```
@@ -131,6 +131,7 @@ Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
 Using common server and database attributes will fail. For example: Server=tcp:MyServer.database.windows.net,1433;Database=MyDatabase,
 
 ### View
+
 The **View** manages the display of Power BI **Reports** and a Power BI **Report**.
 
 **Reports.cshtml**: Iterate over **Model.Reports** to create an **ActionLink**. The **ActionLink** is composed as follows:
@@ -166,6 +167,7 @@ Report.cshtml: Set the **Model.AccessToken**, and the Lambda expression for **Po
     </div>
 
 ### Controller
+
 **DashboardController.cs**: Creates a PowerBIClient passing an **app token**. A JSON Web Token (JWT) is generated from the **Signing Key** to get the **Credentials**. The **Credentials** are used to create an instance of **PowerBIClient**. Once you have an instance of **PowerBIClient**, you can call GetReports() and GetReportsAsync().
 
 CreatePowerBIClient()
@@ -220,11 +222,13 @@ Task<ActionResult> Report(string reportId)
     }
 
 ### Integrate a report into your app
+
 Once you have a **Report**, you use an **IFrame** to embed the Power BI **Report**. Here is a code snippet from  powerbi.js in the **Microsoft Power BI Embedded** sample.
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-iframe-code.png)
 
 ## Filter reports embedded in your application
+
 You can filter an embedded report using a URL syntax. To do this, you add a **$filter** query string parameter with an **eq** operator to your iFrame src url with the filter specified. Here is the filter query syntax:
 
 ```
@@ -235,15 +239,14 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 
 > [!NOTE]
 > {tableName/fieldName} cannot include spaces or special characters. The {fieldValue} accepts a single categorical value.  
->
->
 
 ## See also
 * [Common Microsoft Power BI Embedded scenarios](power-bi-embedded-scenarios.md)
 * [Authenticating and authorizing in Power BI Embedded](power-bi-embedded-app-token-flow.md)
 
+More questions? [Try the Power BI Community](http://community.powerbi.com/)
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

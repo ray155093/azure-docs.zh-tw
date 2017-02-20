@@ -1,10 +1,10 @@
 ---
-title: "ExpressRoute 常見問題集"
+title: "Azure ExpressRoute 常見問題集 | Microsoft Docs"
 description: "ExpressRoute 常見問題集包含支援的 Azure 服務、費用、資料和連線、SLA、提供者和位置、頻寬等資訊及其他技術詳細資料。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 09b17bc4-d0b3-4ab0-8c14-eed730e1446e
 ms.service: expressroute
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/21/2016
+ms.date: 02/01/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 9f26fd3796a45d6a4a782f80632e09a6390f1dbe
-ms.openlocfilehash: ae2dbb8524acba44f83397b7340ca98433b34de6
+ms.sourcegitcommit: 899fbfb63633286a1065546b1f262cbc1d7d39c4
+ms.openlocfilehash: d11d57a352138e43f7a7e9d2ec91663361be6f95
 
 
 ---
@@ -46,7 +46,7 @@ ExpressRoute 目前支援大多數的 Microsoft Azure 服務，包括 Office 365
 是。 ExpressRoute 電路已設定支援您可以突增兩倍的所採購頻寬限制，且無需另外付費。 請向您的服務提供者查詢是否支援此功能。
 
 ### <a name="can-i-use-the-same-private-network-connection-with-virtual-network-and-other-azure-services-simultaneously"></a>我是否可以在虛擬網路和其他 Azure 服務中同時使用相同私人網路連線？
-是。 設定 ExpressRoute 電路之後，您可以同時存取虛擬網路內部的服務和其他 Azure 服務。 您將透過私人對等互連路徑連線至虛擬網路，並透過公用對等互連路徑連線至其他服務。
+是。 設定 ExpressRoute 線路之後，您可以同時存取虛擬網路內部的服務和其他 Azure 服務。 您將透過私人對等互連路徑連線至虛擬網路，並透過公用對等互連路徑連線至其他服務。
 
 ### <a name="does-expressroute-offer-a-service-level-agreement-sla"></a>ExpressRoute 是否提供服務等級協定 (SLA)？
 如需詳細資訊，請參閱 [ExpressRoute SLA 頁面](https://azure.microsoft.com/support/legal/sla/) 。
@@ -83,7 +83,7 @@ ExpressRoute 不支援下列 Azure 服務
 ### <a name="what-connection-speeds-are-supported-by-expressroute"></a>ExpressRoute 支援的連線速度為何？
 支援的頻寬優惠：
 
-|50 Mbps、100 Mbps、200 Mbps、500 Mbps、1Gbps、2 Gbps、5 Gbps、10Gbps|
+|50 Mbps、100 Mbps、200 Mbps、500 Mbps、1 Gbps、2 Gbps、5 Gbps、10 Gbps|
 
 ### <a name="which-service-providers-are-available"></a>可以使用的服務提供者有哪些？
 如需服務提供者和位置清單，請參閱 [ExpressRoute 合作夥伴和位置](expressroute-locations.md) 。
@@ -99,7 +99,7 @@ ExpressRoute 不支援下列 Azure 服務
 如果其中一個交叉連線失敗，您的連線就會中斷。 您可以使用備援連線來支援網路的負載。 為取得失敗恢復，您可以在其他對等互連位置額外建立多個電路。
 
 ### <a name="a-nameonep2plinkaif-im-not-co-located-at-a-cloud-exchange-and-my-service-provider-offers-point-to-point-connection-do-i-need-to-order-two-physical-connections-between-my-on-premises-network-and-microsoft"></a><a name="onep2plink"></a>如果我不要在雲端交換中共置，而我的服務提供者提供點對點連線，我需要在內部部署網路與 Microsoft 之間訂購兩個實體連線嗎？
-不需要，如果您的服務提供者可以透過實體連線建立兩個乙太網路的虛擬電路，您就只需要一個實體連線。 實體連線 (例如光纖) 的終點在實體層 (L1) 裝置 (請見下圖)。 兩個乙太網路虛擬電路都會標記不同的 VLAN ID，一個供主要電路使用，一個供次要電路使用。 這些 VLAN ID 位於外部 802.1Q 乙太網路標頭中。 內部 802.1Q 乙太網路標頭 (不顯示) 會對應至特定的 [ExpressRoute 路由網域](expressroute-circuit-peerings.md)。 
+不需要，如果您的服務提供者可以透過實體連線建立兩個乙太網路的虛擬電路，您就只需要一個實體連線。 實體連線 (例如光纖) 的終點在實體層 1 (L1) 裝置 (請見下圖)。 兩個乙太網路虛擬電路都會標記不同的 VLAN ID，一個供主要電路使用，一個供次要電路使用。 這些 VLAN ID 位於外部 802.1Q 乙太網路標頭中。 內部 802.1Q 乙太網路標頭 (不顯示) 會對應至特定的 [ExpressRoute 路由網域](expressroute-circuit-peerings.md)。 
 
 ![](./media/expressroute-faqs/expressroute-p2p-ref-arch.png)
 
@@ -201,7 +201,7 @@ ExpressRoute Premium 是下面所列功能的集合。
 當啟用功能時便可啟用 ExpressRoute Premium 功能，並可透過更新電路狀態將它關閉。 您可以在建立電路時啟用 ExpressRoute Premium，或呼叫更新專用電路 API / PowerShell cmdlet 以啟用 ExpressRoute Premium。
 
 ### <a name="how-do-i-disable-expressroute-premium"></a>我要如何停用 ExpressRoute Premium？
-您可以呼叫更新專用電路 API / PowerShell cmdlet 以停用 ExpressRoute Premium。您必須確認已調整連線需求以達到預設限制，才能停用 ExpressRoute Premium。 如果您的使用率擴充超越預設限制，我們將捨棄要求並停用 ExpressRoute Premium。
+您可以透過呼叫更新專用電路 API / PowerShell Cmdlet 來停用 ExpressRoute Premium。 在您停用 ExpressRoute Premium 之前，您必須確定您已經調整連線需求以符合預設限制。 如果您的使用率擴充超越預設限制，我們將捨棄要求並停用 ExpressRoute Premium。
 
 ### <a name="can-i-pick-and-choose-the-features-i-want-from-the-premium-feature-set"></a>我可以從進階功能集中挑選和選擇所需功能嗎？
 否。 您無法挑選所需功能。 當您開啟 ExpressRoute Premium 時，我們便會將所有功能啟用。
@@ -233,7 +233,7 @@ ExpressRoute Premium 是下面所列功能的集合。
 是。 您可以設定現有 ExpressRoute 電路以支援與 Office 365 服務的連線。 請確保您有足夠的容量可以連線到 Office 365 服務，並確定您已啟用進階附加元件。 [Office 365 的網路規劃和效能調整](http://aka.ms/tune/) 將協助您計劃連線需求。 另請參閱 [建立和修改 ExpressRoute 電路](expressroute-howto-circuit-classic.md)。
 
 ### <a name="what-office-365-services-can-be-accessed-over-an-expressroute-connection"></a>透過 ExpressRoute 連線可以存取哪些 Office 365 服務？
-請參閱 [Office 365 URL 與 IP 位址範圍](http://aka.ms/o365endpoints) 頁面，以取得透過 ExpressRoute 支援的最新服務清單。
+請參閱 [Office 365 URL 與 IP 位址範圍](http://aka.ms/o365endpoints)頁面，以取得透過 ExpressRoute 支援的最新服務清單。
 
 ### <a name="how-much-does-expressroute-for-office-365-services-and-crm-online-cost"></a>適用於 Office 365 服務和 CRM Online 的 ExpressRoute 費用是多少？
 必須啟用進階附加元件，才能使用 Office 365 服務和 CRM Online。 [價格詳細資料頁面](https://azure.microsoft.com/pricing/details/expressroute/) 提供 ExpressRoute 費用的詳細資料。
@@ -250,6 +250,6 @@ ExpressRoute Premium 是下面所列功能的集合。
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

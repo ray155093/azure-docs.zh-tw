@@ -15,8 +15,8 @@ ms.workload: identity
 ms.date: 11/30/2016
 ms.author: dhanyahk
 translationtype: Human Translation
-ms.sourcegitcommit: 8a7d1bd1db8abdac5b741d79b10c9b363afecd24
-ms.openlocfilehash: 9f8d9c845c391ec24aa3b265aa3078840fe3240a
+ms.sourcegitcommit: 47594d1d435ee92d57150a01a99765bab0e87846
+ms.openlocfilehash: 2ac62c2c04975167b243b49bf2c536900e77df73
 
 
 ---
@@ -30,8 +30,8 @@ ms.openlocfilehash: 9f8d9c845c391ec24aa3b265aa3078840fe3240a
 
 | Azure AD 版本 | 開始收集 |
 | :--              | :--   |
-|Premium 和 Premium 2 | 當您註冊授權時 |
-| 免費 | 首次開啟 [Azure Active Directory 刀鋒視窗](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)或使用[報告 API](https://aka.ms/aadreports)  |
+| Azure AD Premium P1 <br /> Azure AD Premium P2 | 當您註冊訂用帳戶時 |
+| Azure AD Free | 首次開啟 [Azure Active Directory 刀鋒視窗](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)或使用[報告 API](https://aka.ms/aadreports)  |
 
 
 何時可在 Azure 入口網站中取得您的活動資料？
@@ -46,14 +46,14 @@ ms.openlocfilehash: 9f8d9c845c391ec24aa3b265aa3078840fe3240a
 
 **活動報告**    
 
-| 報告 | Azure AD Free | Azure AD Premium 1 | Azure AD Premium 2 |
+| 報告 | Azure AD Free | Azure AD Premium P1 | Azure AD Premium P2 |
 | :--    | :--           | :--                | :--                |
 | 目錄稽核 | 7 天 | 30 天 | 30 天 |
 | 登入活動 |    7 天 | 30 天 | 30 天 |
 
 **安全性訊號**
 
-| 報告 | Azure AD Free | Azure AD Premium 1 | Azure AD Premium 2 |
+| 報告 | Azure AD Free | Azure AD Premium P1 | Azure AD Premium P2 |
 | :--    | :--           | :--                | :--                |
 | 有風險的登入 | 7 天 | 30 天 | 90 天 |
 
@@ -61,6 +61,6 @@ ms.openlocfilehash: 9f8d9c845c391ec24aa3b265aa3078840fe3240a
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

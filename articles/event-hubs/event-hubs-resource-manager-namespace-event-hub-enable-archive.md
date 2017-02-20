@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Resource Manager 範本建立含有事件中樞的事件中樞命名空間並啟用封存 | Microsoft Docs"
+title: "使用範本建立 Azure 事件中樞命名空間與啟用封存 | Microsoft Docs"
 description: "使用 Azure Resource Manager 範本建立含有事件中樞的事件中樞命名空間並啟用封存"
 services: event-hubs
 documentationcenter: .net
@@ -15,22 +15,22 @@ ms.workload: na
 ms.date: 11/21/2016
 ms.author: shvija;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 188e3638393262a8406f322a5720e7e3eadf3e49
-ms.openlocfilehash: 6fb396063f4944a3043314cfbc58121f45a5c0c6
+ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
+ms.openlocfilehash: fffa437acabc2f26cbe285be9aec47c89232948c
 
 
 ---
 # <a name="create-an-event-hubs-namespace-with-event-hub-and-enable-archive-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立含有事件中樞的事件中樞命名空間並啟用封存
 本文說明如何使用 Azure Resource Manager 範本，建立含有事件中樞的事件中樞命名空間，並在您的事件中樞啟用封存。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
 
-如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][編寫 Azure Resource Manager 範本]。
+如需關於建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
 
-如需 Azure 資源命名慣例相關模式和實務的詳細資訊，請參閱 [Azure 資源命名慣例][Azure 資源命名慣例]。
+如需 Azure 資源命名慣例相關模式和實務的詳細資訊，請參閱 [Azure 資源命名慣例][Azure Resources Naming Conventions]。
 
-如需完整的範本，請參閱 GitHub 上的[事件中樞和啟用封存範本][事件中樞和啟用封存範本]。
+如需完整的範本，請參閱 GitHub 上的 [事件中樞和啟用封存範本][Event Hub and enable Archive template]。
 
 > [!NOTE]
-> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure 快速入門範本]資源庫並搜尋「事件中樞」。
+> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure Quickstart Templates] 資源庫並搜尋事件中樞。
 > 
 > 
 
@@ -262,17 +262,23 @@ azure config mode arm
 
 azure group deployment create \<my-resource-group\> \<my-deployment-name\> --template-uri [https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-eventhubs-create-namespace-and-enable-archive/azuredeploy.json][]
 ```
+## <a name="next-steps"></a>後續步驟
+您可以造訪下列連結以深入了解事件中樞︰
 
-[編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
-[Azure 快速入門範本]:  https://azure.microsoft.com/documentation/templates/?term=event+hubs
-[搭配使用 Azure PowerShell 與 Azure Resource Manager]: ../powershell-azure-resource-manager.md
-[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理]: ../xplat-cli-azure-resource-manager.md
-[事件中樞和取用者群組範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-eventhubs-create-namespace-and-enable-archive/
-[Azure 資源命名慣例]: https://azure.microsoft.com/en-us/documentation/articles/guidance-naming-conventions/
-[事件中樞和啟用封存範本]:https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-archive
+* [事件中樞概觀](event-hubs-what-is-event-hubs.md)
+* [建立事件中樞](event-hubs-create.md)
+* [事件中樞常見問題集](event-hubs-faq.md)
+
+[Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
+[Azure Quickstart Templates]:  https://azure.microsoft.com/documentation/templates/?term=event+hubs
+[Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
+[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
+[Event Hub and consumer group template]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-eventhubs-create-namespace-and-enable-archive/
+[Azure Resources Naming Conventions]: https://azure.microsoft.com/documentation/articles/guidance-naming-conventions/
+[Event Hub and enable Archive template]:https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-archive
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

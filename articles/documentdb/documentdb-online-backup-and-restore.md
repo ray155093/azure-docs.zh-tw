@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 02/06/2017
 ms.author: raprasa
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 23f6049bc0df133966911b2352b044cdbc777b36
+ms.sourcegitcommit: b5419efbaf51476cfc662c8aa814001e2757b4b7
+ms.openlocfilehash: db7b24c049153b6622f50fd9934611d48c98a1e8
 
 
 ---
@@ -38,7 +38,7 @@ DocumentDB 設計為 [分散在全區域](documentdb-distribute-data-globally.md
 ![DocumentDB 的高度備援性](./media/documentdb-online-backup-and-restore/azure-documentdb-nosql-database-global-distribution.png)
 
 ## <a name="full-automatic-online-backups"></a>完整自動線上備份
-糟糕，我刪掉集合或資料庫了！ 有了 DocumentDB，不只您的資料，還有資料的備份都一併具有高度備援性，可針對區域性災害進行復原。 目前，這些自動化備份大約每四個小時備份一次。 
+糟糕，我刪掉集合或資料庫了！ 有了 DocumentDB，不只您的資料，還有資料的備份都一併具有高度備援性，可針對區域性災害進行復原。 目前，這些自動化備份大約每四個小時備份一次，並隨時儲存 2 個最新的備份。 如果不小心捨棄或損毀資料，請在 8 小時內[聯絡 Azure 支援服務](https://azure.microsoft.com/support/options/)。 
 
 備份的進行不會影響資料庫作業的效能或可用性。 DocumentDB 會在背景中備份，不會使用您佈建的 RU 或影響效能，也不影響 NoSQL 資料庫的可用性。 
 
@@ -62,6 +62,6 @@ DocumentDB 設計為 [分散在全區域](documentdb-distribute-data-globally.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

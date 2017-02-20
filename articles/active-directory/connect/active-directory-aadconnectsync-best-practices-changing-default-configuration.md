@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
-ms.author: markvi;andkjell
+ms.date: 02/08/2017
+ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: bb500d4705c3b67de6b9b31fa5311967beffffc2
-ms.openlocfilehash: 14b6b817c071ba833d2f49ca289151520e1e32f0
+ms.sourcegitcommit: 08ec09275bbcaffaf25cf45a0f2f466fdeb60dc5
+ms.openlocfilehash: 954923e699ef2160b0a16cb369f8a86b3beacd39
 
 
 ---
@@ -44,8 +44,6 @@ Azure AD Connect 同步處理會使用安裝精靈所建立的服務帳戶執行
 
 > [!WARNING]
 > 現成可用的同步處理規則具有憑證指紋。 如果您變更這些規則，將不再符合憑證指紋。 未來當您嘗試套用新版的 Azure AD Connect 時可能會遇到問題。 僅利用本文所述的方式進行變更。
-> 
-> 
 
 ### <a name="disable-an-unwanted-sync-rule"></a>停用不必要的同步處理規則
 請勿刪除現成可用的同步處理規則。 升級期間會重新建立此規則。
@@ -57,6 +55,8 @@ Azure AD Connect 同步處理會使用安裝精靈所建立的服務帳戶執行
 在上圖中，安裝精靈已在帳戶樹系中找到舊的 Exchange 2003 結構描述。 此結構描述擴充是在 Fabrikam 的環境中引進資源樹系之前新增的。 若要確保不會同步處理任何來自舊的 Exchange 實作的屬性，就必須以所述的方式停用同步處理規則。
 
 ### <a name="change-an-out-of-box-rule"></a>變更現成可用的規則
+只有當您需要變更聯結規則時，才應該變更內建規則。 如果您需要變更屬性流程，則您應該建立其優先順序高於內建規則的同步處理規則。 您實際上唯一需要複製的規則是 **In from AD - User Join** 規則。 您可以使用具有較高優先順序的規則來覆寫所有其他規則。
+
 如果您需要對現成可用的規則進行變更，則您應該複製該現成可用的規則，然後停用原始的規則。 接著對複製的規則進行變更。 同步處理規則編輯器會協助您完成這些步驟。 當您開啟現成可用的規則時，即會顯示此對話方塊：  
 ![對現成可用的規則發出警告](./media/active-directory-aadconnectsync-best-practices-changing-default-configuration/warningoutofboxrule.png)
 
@@ -73,7 +73,6 @@ Azure AD Connect 同步處理會使用安裝精靈所建立的服務帳戶執行
 
 
 
-
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

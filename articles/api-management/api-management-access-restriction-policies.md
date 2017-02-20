@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 77fd7b5b339a8ede8a297bec96f91f0a243cc18d
-ms.openlocfilehash: 2b2d71decf6027a7ffdde444c0746ad5da0080b5
+ms.sourcegitcommit: fd3a08f227ade7589bbc7a17fa600e5a283d8054
+ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
 
 ---
 # <a name="api-management-access-restriction-policies"></a>API 管理存取限制原則
@@ -26,9 +26,9 @@ ms.openlocfilehash: 2b2d71decf6027a7ffdde444c0746ad5da0080b5
   
 -   [檢查 HTTP 標頭](api-management-access-restriction-policies.md#CheckHTTPHeader) - 強制必須存在和/或強制採用 HTTP 標頭的值。  
   
--   [依訂用帳戶限制呼叫頻率](api-management-access-restriction-policies.md#LimitCallRate) - 以訂用帳戶為單位，限制呼叫頻率以避免 API 使用量暴增。  
+-   [依訂閱限制呼叫率](api-management-access-restriction-policies.md#LimitCallRate) - 以訂閱為單位，限制呼叫率以避免 API 使用量暴增。  
   
--   [依金鑰限制呼叫頻率](#LimitCallRateByKey) - 以金鑰為單位，限制呼叫頻率以避免 API 使用量暴增。  
+-   [依金鑰限制呼叫率](#LimitCallRateByKey) - 以金鑰為單位，限制呼叫率以避免 API 使用量暴增。  
   
 -   [限制呼叫端 IP](api-management-access-restriction-policies.md#RestrictCallerIPs) - 篩選 (允許/拒絕) 來自特定 IP 位址和/或位址範圍的呼叫。  
   
@@ -368,7 +368,8 @@ ms.openlocfilehash: 2b2d71decf6027a7ffdde444c0746ad5da0080b5
     header-name="name of http header containing the token (use query-parameter-name attribute if the token is passed in the URL)"   
     failed-validation-httpcode="http status code to return on failure"   
     failed-validation-error-message="error message to return on failure"   
-    require-expiration-time="true|false"   
+    require-expiration-time="true|false"
+    require-scheme="scheme"
     require-signed-tokens="true|false"   
     clock-skew="allowed clock skew in seconds">  
   <issuer-signing-keys>  
@@ -491,7 +492,8 @@ ms.openlocfilehash: 2b2d71decf6027a7ffdde444c0746ad5da0080b5
 |id|`key` 元素的 `id` 屬性可讓您指定要與權杖中的 `kid` 宣告 (如果存在) 進行比對的字串，以找出適合用於簽章驗證的金鑰。|否|N/A|  
 |match|`claim` 元素的 `match` 屬性可指定原則中的每個宣告值是否都必須存在於權杖，才能驗證成功。 可能的值包括：<br /><br /> -                          `all` - 原則中的每個宣告值都必須存在於權杖，才能驗證成功。<br /><br /> -                          `any` - 至少一個宣告必須存在於權杖，才能驗證成功。|否|所有|  
 |query-paremeter-name|保留權杖的查詢參數名稱。|必須指定 `header-name` 或 `query-paremeter-name`；但不能同時指定。|N/A|  
-|require-expiration-time|布林值。 指定權杖中是否需有逾期宣告。|否|true|  
+|require-expiration-time|布林值。 指定權杖中是否需有逾期宣告。|否|true|
+|require-scheme|權杖結構描述的名稱，例如"Bearer"。 當已設定此屬性時，原則將會確定指定的結構描述存在於授權標頭值中。|否|N/A|
 |require-signed-tokens|布林值。 指定是否需要簽署權杖。|否|true|  
 |url|可從中取得 Open ID 設定中繼資料的 Open ID 設定端點 URL。 對於 Azure Active Directory，使用下列 URL：`https://login.windows.net/{tenant-name}/.well-known/openid-configuration` 代替您的目錄租用戶名稱，例如 `contoso.onmicrosoft.com`。|是|N/A|  
   
@@ -506,6 +508,7 @@ ms.openlocfilehash: 2b2d71decf6027a7ffdde444c0746ad5da0080b5
 如需有關使用原則的詳細資訊，請參閱 [API 管理中的原則](api-management-howto-policies.md)。  
 
 
-<!--HONumber=Jan17_HO2-->
+
+<!--HONumber=Feb17_HO1-->
 
 

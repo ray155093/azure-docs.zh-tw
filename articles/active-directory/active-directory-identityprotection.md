@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/18/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 7bedcd3d61fd4aa9d34ac5de4fbec0e39e3c0011
-ms.openlocfilehash: 4476e3d3e8fe18cadefc6a49a4b896f1106433e2
+ms.sourcegitcommit: 4232c27926c2d48adb91eedd15884e44cc004ac2
+ms.openlocfilehash: 2fad0a4e7c4ac282802c2bc0dd10c7d86b651e08
 
 
 ---
@@ -264,7 +264,7 @@ Azure Active Directory Identity Protection 也提供按一下即可為使用者�
 
 相關的對話方塊提供兩個不同的方法，可以將密碼重設為︰
 
-**重設密碼** - 如果使用者已註冊 Multi-Factor Authentication，選取 [要求使用者重設密碼] 可讓使用者自行復原。 在使用者下次登入期間，使用者必須成功解決 Multi-Factor Authentication 挑戰，且被迫變更密碼。 如果使用者帳戶尚未註冊 Multi-Factor Authentication，則無法使用此選項。
+**重設密碼** - 選取 [要求使用者重設密碼] 以允許使用者執行自助復原 (若該使用者已針對多重要素驗證註冊)。 在使用者下次登入期間，使用者必須成功解決 Multi-Factor Authentication 挑戰，且被迫變更密碼。 如果使用者帳戶尚未註冊 Multi-Factor Authentication，則無法使用此選項。
 
 **暫時密碼** - 選取 [產生暫時密碼]，立即讓現有的密碼失效，並且為使用者建立新的暫時密碼。 將新的暫時密碼傳送到使用者的備用電子郵件地址，或傳送給使用者的經理。 因為此密碼是暫時的，所以會提示使用者在登入時變更密碼。
 
@@ -398,6 +398,6 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

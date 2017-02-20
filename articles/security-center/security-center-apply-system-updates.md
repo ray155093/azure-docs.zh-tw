@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/01/2016
+ms.date: 02/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8fc8917555028d3045166e462362d502e677e4a0
+ms.sourcegitcommit: 53f4898f31ef19a39e1448235ed14c8fc7df7b3b
+ms.openlocfilehash: 50cdea437db5387813c6a3905d14b6904d2aba34
 
 
 ---
@@ -25,23 +25,30 @@ Azure 資訊安全中心每日監視 Windows 和 Linux 虛擬機器 (VM) 是否�
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。  這不是逐步指南。
-> 
-> 
+>
+>
 
 ## <a name="implement-the-recommendation"></a>實作建議
 1. 在 [建議] 刀鋒視窗中，選取 [套用系統更新]。
+
    ![套用系統更新][1]
 2. [套用系統更新]  刀鋒視窗會開啟，顯示 VM 遺漏的系統更新的清單。 選取 VM。
+
    ![選取 VM][2]
 3. 隨即開啟一個刀鋒視窗，其中顯示該 VM 的遺漏更新的清單。 選取系統更新。 在此範例中，我們選取 KB3156016。
+
    ![遺漏的安全性更新][3]
+
 4. 請依照 [安全性更新]  刀鋒視窗中的步驟，套用遺漏的更新。
-   ![Security update][4]
+
+   ![安全性更新][4]
 
 ## <a name="reboot-after-system-updates"></a>在系統更新之後重新開機
 1. 返回 [建議]  刀鋒視窗。 在您套用系統更新之後會產生新的項目，稱為「在系統更新之後重新開機」。 此項目可讓您知道您需要重新啟動 VM 以完成套用系統更新的程序。
+
    ![在系統更新之後重新開機][5]
 2. 選取 [在系統更新之後重新開機] 。 這會開啟 [重新啟動正在等待以完成系統更新]  刀鋒視窗，其中顯示 VM，您必須加以重新啟動才能完成套用系統清單更新的程序。
+
    ![重新啟動擱置中][6]
 
 從 Azure 重新啟動 VM 以完成程序。
@@ -67,6 +74,6 @@ Azure 資訊安全中心每日監視 Windows 和 Linux 虛擬機器 (VM) 是否�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

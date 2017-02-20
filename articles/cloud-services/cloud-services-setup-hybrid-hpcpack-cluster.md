@@ -13,11 +13,11 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/14/2016
+ms.date: 02/06/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 0e74a1784f39fe934d36c0391de7d01bf7699868
-ms.openlocfilehash: b0c207190fcfb23cc75c4aaa661c76c561265ef8
+ms.sourcegitcommit: a0e80acad4e8db2177e699f90f7296c64b38e718
+ms.openlocfilehash: da7102882b9dcf7db1285c0ec004ce1ad3859853
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: b0c207190fcfb23cc75c4aaa661c76c561265ef8
 
 本教學課程示範一個有時稱為「將量擴大到雲端」的方法，此方法使用 Azure 中可調整的隨選計算資源來執行大量計算的應用程式。
 
-本教學課程假設您先前沒有使用計算叢集或 HPC Pack 的經驗。 其只是要協助您快速部署一個示範性質的混合式計算叢集。 如需有關在生產環境中以較大規模部署混合式 HPC Pack 叢集的考量和步驟，請參閱 [詳細指引](http://go.microsoft.com/fwlink/p/?LinkID=200493)(英文)。 如需使用 HPC Pack 的其他案例，包括 Azure 虛擬機器中的自動化叢集部署，請參閱[使用 HPC Pack 在 Azure 中建立及管理 Windows HPC 叢集的選項](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+本教學課程假設您先前沒有使用計算叢集或 HPC Pack 2012 R2 的經驗。 其只是要協助您快速部署一個示範性質的混合式計算叢集。 如需有關使用 HPC Pack 2016，或有關在生產環境中以較大規模部署混合式 HPC Pack 叢集的考量和步驟，請參閱[詳細指引 (英文)](http://go.microsoft.com/fwlink/p/?LinkID=200493)。 如需使用 HPC Pack 的其他案例，包括 Azure 虛擬機器中的自動化叢集部署，請參閱[使用 HPC Pack 在 Azure 中建立及管理 Windows HPC 叢集的選項](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ## <a name="prerequisites"></a>必要條件
 * **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立 [免費帳戶](https://azure.microsoft.com/free/) 。
@@ -38,6 +38,10 @@ ms.openlocfilehash: b0c207190fcfb23cc75c4aaa661c76c561265ef8
   * 為了支援 HPC Pack，作業系統必須以下列其中一種語言安裝：英文、日文或簡體中心。
   * 確認已安裝重要及重大更新。
 * **HPC Pack 2012 R2** - [下載](http://go.microsoft.com/fwlink/p/?linkid=328024) 最新版本的免費版安裝套件，並將檔案複製到前端節點電腦或網路位置。 選擇與安裝的 Windows Server 語言相同語言的安裝檔。
+
+    >[!NOTE]
+    > 如果您想要使用 HPC Pack 2016 而不是 HPC Pack 2012 R2，則需要額外設定。 請參閱[詳細指引](http://go.microsoft.com/fwlink/p/?LinkID=200493)。
+    > 
 * **網域帳戶** - 必須在前端節點上以本機系統管理員權限設定此帳戶，才能安裝 HPC Pack。
 * **連接埠 443 上的 TCP 連線** 。
 
@@ -99,14 +103,14 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 > 
 
 1. 在傳統入口網站的命令列上，按一下 [新增] 。
-2. 按一下 計算 > 雲端服務 > 快速建立。
+2. 按一下 [計算] > [雲端服務] > [快速建立]。
 3. 輸入雲端服務的 URL，然後按一下 [建立雲端服務] 。
    
     ![Create Service][createservice1]
 
 ### <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
 1. 在傳統入口網站的命令列上，按一下 [新增] 。
-2. 按一下 資料服務 > 儲存體 > 快速建立。
+2. 按一下 [資料服務] > [儲存體] > [快速建立]。
 3. 輸入帳戶的 URL，然後按一下 [建立儲存體帳戶] 。
    
     ![Create Storage][createstorage1]
@@ -263,7 +267,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
     這樣就完成了教學課程。
 
 ## <a name="next-steps"></a>後續步驟
-* 請參閱 [Microsoft HPC Pack 2012 R2 and HPC Pack 2012 (Microsoft HPC Pack 2012 R2 和 HPC Pack 2012)](http://go.microsoft.com/fwlink/p/?LinkID=263697)文件。
+* 瀏覽 [HPC Pack](https://technet.microsoft.com/library/cc514029) 文件。
 * 若要設定較大規模的混合式 HPC Pack 叢集部署，請參閱 [Burst to Azure with Microsoft HPC Pack (使用 Microsoft HPC Pack 高載至 Azure 背景工作角色執行個體)](http://go.microsoft.com/fwlink/p/?LinkID=200493)。
 * 如需在 Azure 中建立 HPC Pack 叢集的其他方式，包括使用 Azure Resource Manager 範本，請參閱[使用 HPC Pack 在 Azure 中建立及管理 Windows HPC 叢集的選項](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * 如需 Azure 中大量計算範圍和 HPC 雲端方案的詳細資訊，請參閱 [Azure 中的大量計算：Batch 和高效能計算 (HPC) 的技術資源](../batch/big-compute-resources.md) 。
@@ -307,6 +311,6 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

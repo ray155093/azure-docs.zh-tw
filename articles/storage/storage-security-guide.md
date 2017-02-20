@@ -4,7 +4,7 @@ description: "詳述許多保護 Azure 儲存體的方法，包括但不限於 R
 services: storage
 documentationcenter: .net
 author: robinsh
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: 6f931d94-ef5a-44c6-b1d9-8a3c9c327fb2
 ms.service: storage
@@ -12,17 +12,17 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: d943e28507de9675d30e662354ca811fbd8c1b4a
-ms.openlocfilehash: 489041f211f28dd373e34bf9ba719d7fcc8c035d
+ms.sourcegitcommit: 9e75c5af6cb6d2f2a25f18269ec6822aa86459fc
+ms.openlocfilehash: 95ea1a9bc8fe80c39ca9f0683855cc3a4e7a77c4
 
 
 ---
 # <a name="azure-storage-security-guide"></a>Azure 儲存體安全性指南
 ## <a name="overview"></a>概觀
-Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用角色型存取控制與 Azure Active Directory 來保護儲存體帳戶本身。 您可以使用 [用戶端加密](storage-client-side-encryption.md)、HTTPS 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 使用 [儲存體服務加密 (SSE)](storage-service-encryption.md)寫入 Azure 儲存體時，可將資料設定為自動加密。 您可以使用 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)，將虛擬機器所使用的作業系統和資料磁碟設定為加密。 Azure 儲存體中資料物件的委派存取權可以使用 [共用存取簽章](storage-dotnet-shared-access-signature-part-1.md)來授與。
+Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用角色型存取控制與 Azure Active Directory 來保護儲存體帳戶本身。 您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTPS 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 使用 [儲存體服務加密 (SSE)](storage-service-encryption.md)寫入 Azure 儲存體時，可將資料設定為自動加密。 您可以使用 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)，將虛擬機器所使用的作業系統和資料磁碟設定為加密。 Azure 儲存體中資料物件的委派存取權可以使用 [共用存取簽章](storage-dotnet-shared-access-signature-part-1.md)來授與。
 
 本文將提供這其中每個可搭配 Azure 儲存體使用的安全性功能概觀。 所提供的文章連結將提供每個功能的詳細資料，讓您能夠輕鬆地進一步調查每個主題。
 
@@ -55,7 +55,7 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 本指南著重在資源管理員模型，也就是建立儲存體帳戶的建議方法。 使用 Resource Manager 儲存體帳戶，而不是提供整個訂用帳戶的存取權，您可以使用角色型存取控制 (RBAC)，來控制更限定層級上對管理平面的存取。
 
 ### <a name="how-to-secure-your-storage-account-with-role-based-access-control-rbac"></a>如何使用角色型存取控制 (RBAC) 保護儲存體帳戶
-讓我們討論何謂 RBAC 及使用方式。 每一個 Azure 訂用帳戶都具有 Azure Active Directory。 您可以為來自該目錄的使用者、群組和應用程式授與存取權，以便在使用資源管理員部署模型的 Azure 訂用帳戶中管理資源。 這稱為角色型存取控制 (RBAC)。 若要管理此存取權，您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../xplat-cli-install.md)、[PowerShell](../powershell-install-configure.md) 或 [Azure 儲存體資源提供者 REST API](https://msdn.microsoft.com/library/azure/mt163683.aspx)。
+讓我們討論何謂 RBAC 及使用方式。 每一個 Azure 訂用帳戶都具有 Azure Active Directory。 您可以為來自該目錄的使用者、群組和應用程式授與存取權，以便在使用資源管理員部署模型的 Azure 訂用帳戶中管理資源。 這稱為角色型存取控制 (RBAC)。 若要管理此存取權，您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../xplat-cli-install.md)、[PowerShell](/powershell/azureps-cmdlets-docs) 或 [Azure 儲存體資源提供者 REST API](https://msdn.microsoft.com/library/azure/mt163683.aspx)。
 
 使用資源管理員模型，您可以將儲存體帳戶放置於資源群組中，並使用 Azure Active Directory 來控制該特定儲存體帳戶之管理平面的存取。 例如，您可以為特定使用者提供存取儲存體帳戶金鑰的能力，而其他使用者可以檢視儲存體帳戶的相關資訊，但是無法存取儲存體帳戶金鑰。
 
@@ -315,7 +315,7 @@ SSE 可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加
 
 如果 Web 應用程式會儲存 Blob 和擷取 Blob，而您想要讓應用程式和資料儘可能保持安全，則可使用此範例。 在此情況下，您會使用用戶端加密。 用戶端和 Azure Blob 服務之間的流量包含加密的資源，而且沒有人能夠解譯傳輸中的資料並將它重組到您的私人 Blob。
 
-用戶端加密內建於 Java 和 .NET 儲存體用戶端程式庫，接著會使用 Azure 金鑰保存庫 API，讓您實作變得很簡單。 加密和解密資料的程序會使用信封技術，並在每個儲存體物件中儲存加密所使用的中繼資料。 例如，如果是 Blob，會將其儲存於 Blob 中繼資料中，如果是佇列，則會將它新增至每個佇列訊息。
+用戶端加密內建於 Java 和 .NET 儲存體用戶端程式庫，接著會使用 Azure 金鑰保存庫 API，讓您實作變得很簡單。 加密和解密資料的程序會使用信封技術，並在每個儲存體物件中儲存加密所使用的中繼資料。 例如，如果是 Blob，會將它儲存於 Blob 中繼資料中，如果是佇列，則會將它新增至每個佇列訊息。
 
 至於加密本身，您可以產生和管理自己的加密金鑰。 您也可以使用 Azure 儲存體用戶端程式庫所產生的金鑰，或者可以讓 Azure 金鑰保存庫產生金鑰。 您可以將加密金鑰儲存於內部部署金鑰儲存體中，或將它們儲存在 Azure 金鑰保存庫中。 Azure 金鑰保存庫可讓您使用 Azure Active Directory，為特定的使用者授與 Azure 金鑰保存庫中密碼的存取權。 這表示並非人人都能讀取 Azure 金鑰保存庫，以及擷取您用來進行用戶端加密的金鑰。
 
@@ -328,33 +328,41 @@ SSE 可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加
   本文說明用戶端加密，並提供使用儲存體用戶端程式庫，從四個儲存體服務加密和解密資源的範例。 它也會討論 Azure 金鑰保存庫。
 
 ### <a name="using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines"></a>使用 Azure 磁碟加密來加密虛擬機器所使用的磁碟
-Azure 磁碟加密是目前預覽版中的新功能。 此功能允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。 對於 Windows，磁碟機是使用業界標準的 BitLocker 加密技術來加密。 對於 Linux，磁碟是使用 DM-Crypt 技術來加密。 這會與 Azure 金鑰保存庫整合，可讓您控制和管理磁碟加密金鑰。
+「Azure 磁碟加密」是一個新功能。 此功能允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。 對於 Windows，磁碟機是使用業界標準的 BitLocker 加密技術來加密。 對於 Linux，磁碟是使用 DM-Crypt 技術來加密。 這會與 Azure 金鑰保存庫整合，可讓您控制和管理磁碟加密金鑰。
 
-Azure 磁碟加密解決方案支援下列三個客戶加密案例：
-
-* 在透過客戶加密的 VHD 檔案和客戶提供的加密金鑰 (儲存於 Azure 金鑰保存庫中) 建立的新 IaaS VM 上啟用加密。
-* 在透過 Azure Marketplace 建立的新 IaaS VM 上啟用加密。
-* 在 Azure 中已執行的現有 IaaS VM 上啟用加密。
-
-> [!NOTE]
-> 對於已經在 Azure 中執行的 Linux VM，或從 Azure Marketplace 中的映像建立的新 Linux VM，目前不支援將作業系統磁碟加密。 僅針對已在內部部署加密且上傳至 Azure 的 VM，支援將 Linux VM 的作業系統磁碟區加密。 此限制只適用於作業系統磁碟；支援將 Linux VM 的資料磁碟區加密。
-> 
-> 
-
-在 Microsoft Azure 中啟用時，解決方案支援下列公用預覽版本適用的 IaaS VM：
+在 Microsoft Azure 中啟用時，解決方案會對 IaaS VM 支援下列案例：
 
 * 與 Azure 金鑰保存庫整合
-* 標準 [A、D 和 G 系列 IaaS VM](https://azure.microsoft.com/pricing/details/virtual-machines/)
-* 在使用 [Azure 資源管理員](../azure-resource-manager/resource-group-overview.md) 模型建立的 IaaS VM 上啟用加密
-* 所有 Azure 公用 [區域](https://azure.microsoft.com/regions/)
+* 標準層 VM：[A、D、DS、G、GS 等系列 IaaS VM](https://azure.microsoft.com/pricing/details/virtual-machines/)
+* 在 Windows 和 Linux IaaS VM 上啟用加密
+* 為 Windows IaaS VM 的 OS 和資料磁碟機停用加密
+* 為 Linux IaaS VM 的資料磁碟機停用加密
+* 在執行 Windows 用戶端 OS 的 IaaS VM 上啟用加密
+* 在具有掛接路徑的磁碟區上啟用加密
+* 在使用 mdadm 設定了等量磁碟 (RAID) 的 Linux VM 上啟用加密
+* 在使用資料磁碟適用之 LVM 的 Linux VM 上啟用加密
+* 在使用儲存空間設定的 Windows VM 上啟用加密
+* 所有 Azure 公用區域皆受到支援
+
+解決方案不支援此版本中的下列案例、功能和技術：
+
+* 基本層 IaaS VM
+* 在 Linux IaaS VM 的 OS 磁碟機上停用加密
+* 使用傳統 VM 建立方法所建立的 IaaS VM
+* 與您的內部部署金鑰管理服務整合
+* Azure 檔案 (共用檔案系統)、網路檔案系統 (NFS)、動態磁碟區和以軟體型 RAID 系統所設定的 Windows VM
+
+
+> [!NOTE]
+> 下列 Linux 散發套件目前支援 Linux OS 磁碟加密：RHEL 7.2、CentOS 7.2n 和 Ubuntu 16.04。
+> 
+> 
 
 此功能可確保虛擬機器磁碟上的所有待用資料都會在 Azure 儲存體中加密。
 
 #### <a name="resources"></a>資源
-* [適用於 Windows 和 Linux IaaS 虛擬機器的 Azure 磁碟加密](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0)
+* [Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption)
   
-  本文討論 Azure 磁碟加密的預覽版本，並提供下載技術白皮書的連結。
-
 ### <a name="comparison-of-azure-disk-encryption-sse-and-client-side-encryption"></a>Azure 磁碟加密、SSE 和用戶端加密的比較
 #### <a name="iaas-vms-and-their-vhd-files"></a>IaaS VM 及其 VHD 檔案
 對於 IaaS VM 所使用的磁碟，建議使用 Azure 磁碟加密。 您可以開啟 SSE，來加密在 Azure 儲存體中用來備份這些磁碟的 VHD 檔案，但它只會加密新寫入的資料。 這表示，如果您建立 VM，然後在保留 VHD 檔案的儲存體帳戶上啟用 SSE，則只會加密變更，而不會加密原始的 VHD 檔案。
@@ -379,7 +387,7 @@ Azure 磁碟加密解決方案支援下列三個客戶加密案例：
 #### <a name="storage-service-encryption-sse"></a>儲存體服務加密 (SSE)
 SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提供安全性，但它會在資料寫入 Azure 儲存體時進行加密。 使用此功能時不會對效能產生任何影響。
 
-您可以使用 SSE，只加密區塊 Blob、附加 Blob 及分頁 Blob。 如果您需要加密表格資料或佇列資料，就應該考慮使用用戶端加密。
+您只能使用 SSE 來加密區塊 Blob、附加 Blob 及分頁 Blob。 如果您需要加密表格資料或佇列資料，就應該考慮使用用戶端加密。
 
 如果您使用 VHD 檔案的封存或程式庫做為建立新虛擬機器的基礎，您可以建立新的儲存體帳戶、啟用 SSE，然後將 VHD 檔案上傳到該帳戶。 這些 VHD 檔案將會由 Azure 儲存體加密。
 
@@ -413,7 +421,7 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
 
 ![記錄檔中欄位的快照](./media/storage-security-guide/image3.png)
 
-我們對於 GetBlob 的項目及其驗證方法很感興趣，所以必須尋找作業類型 "Get-Blob" 的項目，並檢查要求狀態 (第 4<sup></sup> 欄) 和授權類型 (第 8<sup></sup> 欄)。
+我們對於 GetBlob 的項目及其驗證方法很感興趣，所以必須尋找作業類型 "Get-Blob" 的項目，並檢查要求狀態 (第&4;<sup></sup> 欄) 和授權類型 (第&8;<sup></sup> 欄)。
 
 例如，在上述清單的前幾個列中，要求狀態為 “Success” 且驗證類型為 “authenticated”。 這表示已使用儲存體帳戶金鑰驗證要求。
 
@@ -527,6 +535,6 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每
   本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

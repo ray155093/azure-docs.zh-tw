@@ -1,5 +1,5 @@
 ---
-title: "將資源移到新的資源群組 | Microsoft Docs"
+title: "將 Azure 資源移至新的訂用帳戶或資源群組 | Microsoft Docs"
 description: "使用 Azure Resource Manager 將資源移到新的資源群組或訂用帳戶。"
 services: azure-resource-manager
 documentationcenter: 
@@ -12,40 +12,51 @@ ms.workload: multiple
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/03/2017
+ms.date: 01/31/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 5718ca956680ac3c92f4eb479a5948d0296b8b21
-ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
+ms.sourcegitcommit: 2d428e0e3aaf8fd4a2138648411da644ccd308f6
+ms.openlocfilehash: 81ac6de576614050d972d6fae384f91cc8bf6841
 
 
 ---
 # <a name="move-resources-to-new-resource-group-or-subscription"></a>將資源移動到新的資源群組或訂用帳戶
 本主題說明如何將資源移至新的訂用帳戶或相同訂用帳戶中新的資源群組。 您可以使用入口網站、PowerShell、Azure CLI 或 REST API 來移動資源。 本主題中的移動作業可供您使用而不需要任何 Azure 支援的協助。
 
-一般而言，您可能會在下列情況中移動資源：
-
-* 因計費之目的，資源必須位於不同的訂用帳戶。
-* 資源不會再與先前的相同群組資源共用相同的生命週期。 您想要將它移動到新的資源群組，以便您可以將該資源與其他資源分開管理。
-
 移動資源時，在此作業期間會同時鎖定來源群組和目標群組。 資源群組上的寫入和刪除作業將會封鎖，直到移動完成。 此鎖定表示您無法新增、更新或刪除資源群組中的資源，但不表示資源已遭到凍結。 例如，如果您將 SQL Server 和其資料庫移至新的資源群組，使用該資料庫的應用程式不會發生停機時間。 它仍可對資料庫讀取和寫入。 
 
 您無法變更資源的位置。 移動資源只會將它移動到新的資源群組。 新的資源群組可能會有不同的位置，但那樣不會變更資源的位置。
 
 > [!NOTE]
-> 本文說明如何在現有的 Azure 帳戶提供項目內移動資源。 如果您真的想要變更 Azure 帳戶提供項目 (例如，從隨用隨付升級為預付)，同時繼續使用現有的資源，請參閱 [切換至不同的 Azure 訂用帳戶優惠](../billing-how-to-switch-azure-offer.md)。 
+> 本文說明如何在現有的 Azure 帳戶提供項目內移動資源。 如果您真的想要變更 Azure 帳戶提供項目 (例如，從隨用隨付升級為預付)，同時繼續使用現有的資源，請參閱 [切換至不同的 Azure 訂用帳戶優惠](../billing/billing-how-to-switch-azure-offer.md)。 
 > 
 > 
 
 ## <a name="checklist-before-moving-resources"></a>移動資源前的檢查清單
 在移動資源之前，要執行的重要步驟如下︰ 藉由驗證這些條件，您可以避免錯誤。
 
-1. 服務必須啟用移動資源的功能。 本主題列出哪些服務可實現移動資源，哪些服務無法實現移動資源。
-2. 來源和目的地的訂用帳戶必須存在於相同的 [Active Directory 租用戶](../active-directory/active-directory-howto-tenant.md)內。 若要改為使用新租用戶，請連絡支援人員。
+1. 來源和目的地的訂用帳戶必須存在於相同的 [Active Directory 租用戶](../active-directory/active-directory-howto-tenant.md)內。 若要檢查這兩個訂用帳戶都有相同的租用戶識別碼，請使用 Azure PowerShell 或 Azure CLI。
+
+  如果是 Azure PowerShell，請使用：
+
+  ```powershell
+  (Get-AzureRmSubscription -SubscriptionName "Example Subscription").TenantId
+  ```
+
+  如果是 Azure CLI 2.0 (預覽)，請使用：
+
+  ```azurecli
+  az account show --subscription "Example Subscription" --query tenantId
+  ```
+
+  如果來源和目的地訂用帳戶的租用戶識別碼不相同，您可以嘗試變更訂用帳戶的目錄。 不過，此選項僅提供給使用 Microsoft 帳戶 (非組織帳戶) 登入的服務系統管理員。 若要嘗試變更目錄，登入到[傳統入口網站](https://manage.windowsazure.com/)，然後選取 [設定]，再選取訂用帳戶。 如果 [編輯目錄] 圖示可用，請選取它來變更相關聯的 Active Directory。 
+
+  ![編輯目錄](./media/resource-group-move-resources/edit-directory.png) 
+
+  如果該圖示不可用，您必須連絡支援人員將資源移動到新的租用戶。
+
+2. 服務必須啟用移動資源的功能。 本主題列出哪些服務可實現移動資源，哪些服務無法實現移動資源。
 3. 必須針對要移動之資源的資源提供者註冊其目的地訂用帳戶。 否則，您會收到錯誤，指出 **未針對資源類型註冊訂用帳戶**。 將資源移至新的訂用帳戶時，可能會因為該訂用帳戶不曾以指定的資源類型使用過而遇到問題。 若要了解如何檢查註冊狀態及註冊資源提供者，請參閱 [資源提供者和類型](resource-manager-supported-services.md#resource-providers-and-types)。
-4. 如果您正在移動 App Service 應用程式，則已檢閱 [App Service 限制](#app-service-limitations)。
-5. 如果您要移動與復原服務相關聯的資源，您必須檢閱[復原服務限制](#recovery-services-limitations)
-6. 如果您正在移動透過傳統模型所部署的資源，則已檢閱 [傳統部署限制](#classic-deployment-limitations)。
 
 ## <a name="when-to-call-support"></a>呼叫支援的時機
 您可以透過本主題顯示的自助式作業，移動大部分資源。 使用自助式作業︰
@@ -75,7 +86,6 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
 * Data Factory
 * 資料湖分析
 * Data Lake Store
-* DevTest Lab
 * DNS
 * DocumentDB
 * 事件中樞
@@ -102,7 +112,7 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
 * 串流分析
 * SQL Database 伺服器 - 資料庫和伺服器必須位於相同的資源群組。 當您移動 SQL 伺服器時，其所有資料庫也會跟著移動。
 * 流量管理員
-* 但若虛擬機器的憑證儲存在金鑰保存庫，它並不支援使用新訂用帳戶
+* 虛擬機器 - 若虛擬機器的憑證儲存在 Key Vault，它並不支援移動至新的訂用帳戶
 * 虛擬機器 (傳統) - 請參閱 [傳統部署限制](#classic-deployment-limitations)
 * 虛擬網路
 
@@ -118,6 +128,7 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
 * Application Insights
 * BizTalk 服務
 * ExpressRoute
+* DevTest Labs - 已啟用移動至相同訂用帳戶中新資源群組的功能，但未啟用跨訂用帳戶之間的移動。
 * Dynamics LCS
 * 復原服務保存庫 - 也不會移動與「復原服務」保存庫關聯的「計算」、「網路」及「儲存體」資源，請參閱 [復原服務限制](#recovery-services-limitations)。
 * 安全性
@@ -202,13 +213,13 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
 
 1. 請檢查來源訂用帳戶是否可以參與跨訂用帳戶移動。 請使用下列作業：
 
-  ```   
+  ```HTTP   
   POST https://management.azure.com/subscriptions/{sourceSubscriptionId}/providers/Microsoft.ClassicCompute/validateSubscriptionMoveAvailability?api-version=2016-04-01
   ```
    
      在要求本文中包含：
 
-  ``` 
+  ```json 
   {
     "role": "source"
   }
@@ -216,7 +227,7 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
   
      驗證作業的回應格式如下︰
 
-  ``` 
+  ```json 
   {
     "status": "{status}",
     "reasons": [
@@ -228,13 +239,13 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
 
 2. 請檢查目的地訂用帳戶是否可以參與跨訂用帳戶移動。 請使用下列作業：
 
-  ``` 
+  ```HTTP 
   POST https://management.azure.com/subscriptions/{destinationSubscriptionId}/providers/Microsoft.ClassicCompute/validateSubscriptionMoveAvailability?api-version=2016-04-01
   ```
 
      在要求本文中包含：
 
-  ``` 
+  ```json 
   {
     "role": "target"
   }
@@ -243,13 +254,13 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
      回應的格式與來源訂用帳戶驗證的格式相同。
 3. 如果兩個訂用帳戶都通過驗證，使用下列作業將所有傳統資源從某個訂用帳戶移到另一個訂用帳戶︰
 
-  ``` 
+  ```HTTP 
   POST https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.ClassicCompute/moveSubscriptionResources?api-version=2016-04-01
   ```
 
     在要求本文中包含：
 
-  ``` 
+  ```json 
   {
     "target": "/subscriptions/{target-subscription-id}"
   }
@@ -258,13 +269,11 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
 這項作業可能需要幾分鐘的時間執行。 
 
 ## <a name="use-portal"></a>使用入口網站
-若要將資源移到**相同訂用帳戶**中的新資源群組，請選取包含這些資源的資源群組，然後選取 [移動] 按鈕。
+若要移動資源，請選取包含這些資源的資源群組，然後選取 [移動] 按鈕。
 
-![移動資源](./media/resource-group-move-resources/edit-rg-icon.png)
+![移動資源](./media/resource-group-move-resources/select-move.png)
 
-或者，若要將資源移到**新的訂用帳戶**，請選取包含這些資源的資源群組，然後選取 [編輯訂用帳戶] 圖示。
-
-![移動資源](./media/resource-group-move-resources/change-subscription.png)
+選擇將資源移動到新的資源群組或新的訂用帳戶。
 
 選取要移動的資源和目的地資源群組。 認可您需要更新這些資源的指令碼，然後選取 [確定] 。 如果您在上一個步驟中選取了 [編輯訂用帳戶] 圖示，則也必須選取目的地訂用帳戶。
 
@@ -279,7 +288,7 @@ ms.openlocfilehash: a9271062bc9de41a180c8e78fe911afed9e1fc7a
 ![顯示移動結果](./media/resource-group-move-resources/show-result.png)
 
 ## <a name="use-powershell"></a>使用 PowerShell
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 **Move-AzureRmResource** 命令。
+若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `Move-AzureRmResource` 命令。
 
 第一個範例顯示如何將某個資源移動到新的資源群組。
 
@@ -296,7 +305,7 @@ $plan = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExamplePlan
 Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $webapp.ResourceId, $plan.ResourceId
 ```
 
-若要移動到新的訂用帳戶，請為 **DestinationSubscriptionId** 參數設定某個值。
+若要移動到新的訂用帳戶，請包含 `DestinationSubscriptionId`參數的值。
 
 系統會要求您確認您想要移動指定的資源。
 
@@ -310,8 +319,23 @@ Are you sure you want to move these resources to the resource group
 [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): y
 ```
 
-## <a name="use-azure-cli"></a>使用 Azure CLI
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 **azure resource move** 命令。 提供要移動之資源的資源識別碼。 您可以使用下列命令取得資源識別碼︰
+## <a name="use-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽)
+若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `az resource move` 命令。 提供要移動之資源的資源識別碼。 您可以使用下列命令取得資源識別碼︰
+
+```azurecli
+az resource show -g sourceGroup -n storagedemo --resource-type "Microsoft.Storage/storageAccounts" --query id
+```
+
+下列範例說明如何將儲存體帳戶移動到新的資源群組。 請在 `--ids` 參數中，為要移動的資源識別碼提供以空格分隔的清單。
+
+```azurecli
+az resource move --destination-group newgroup --ids "/subscriptions/{guid}/resourceGroups/sourceGroup/providers/Microsoft.Storage/storageAccounts/storagedemo"
+```
+
+若要移動到新的訂用帳戶，請提供 `--destination-subscription-id` 參數。
+
+## <a name="use-azure-cli-10"></a>使用 Azure CLI 1.0
+若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `azure resource move` 命令。 提供要移動之資源的資源識別碼。 您可以使用下列命令取得資源識別碼︰
 
 ```azurecli
 azure resource list -g sourceGroup --json
@@ -336,7 +360,7 @@ azure resource list -g sourceGroup --json
 ]
 ```
 
-下列範例說明如何將儲存體帳戶移動到新的資源群組。 請在 **-i** 參數中，為要移動的資源識別碼提供以逗號分隔的清單。
+下列範例說明如何將儲存體帳戶移動到新的資源群組。 請在 `-i` 參數中，為要移動的資源識別碼提供以逗號分隔的清單。
 
 ```azurecli
 azure resource move -i "/subscriptions/{guid}/resourceGroups/sourceGroup/providers/Microsoft.Storage/storageAccounts/storagedemo" -d "destinationGroup"
@@ -347,7 +371,7 @@ azure resource move -i "/subscriptions/{guid}/resourceGroups/sourceGroup/provide
 ## <a name="use-rest-api"></a>使用 REST API
 若要將現有的資源移動到另一個資源群組或訂用帳戶，請執行：
 
-```
+```HTTP
 POST https://management.azure.com/subscriptions/{source-subscription-id}/resourcegroups/{source-resource-group-name}/moveResources?api-version={api-version} 
 ```
 
@@ -362,6 +386,6 @@ POST https://management.azure.com/subscriptions/{source-subscription-id}/resourc
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

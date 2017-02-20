@@ -1,5 +1,5 @@
 ---
-title: "如何建置可讓任何 Azure Active Directory 使用者登入的應用程式 | Microsoft Docs"
+title: "如何建置可讓任何 Azure AD 使用者登入的應用程式 | Microsoft Docs"
 description: "如何建置可讓使用者從任何 Azure Active Directory 租用戶登入之應用程式 (也稱為多租用戶應用程式) 的逐步解說。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/07/2017
+ms.date: 01/23/2017
 ms.author: skwan;bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 0e4eb184e353700f945f0da93aeca2187d710415
-ms.openlocfilehash: cc4893c004939f071287fea068dd754da6561224
+ms.sourcegitcommit: c0c94960cc0a6a00f1db19867e622cda7f66a07b
+ms.openlocfilehash: 80f7470bcaad07ff2e355a7b95155a329827e8e0
 
 
 ---
@@ -39,9 +39,9 @@ ms.openlocfilehash: cc4893c004939f071287fea068dd754da6561224
 讓我們仔細看看每個步驟。 您也可以直接跳到[這份多租用戶範例清單][AAD-Samples-MT]。
 
 ## <a name="update-registration-to-be-multi-tenant"></a>將註冊更新成多租用戶
-Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。  您只要在 [Azure 傳統入口網站][AZURE-classic-portal]中的應用程式註冊設定頁面上，找出 [應用程式是多租用戶] 參數並將其設定為 [是]，即可將您的註冊轉換成多租用戶。
+Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。  您只要在 [Azure 傳統入口網站][AZURE-classic-portal]中的應用程式註冊設定頁面上，找出 [應用程式是多租用戶] 切換開關並將它設定為 [是]，即可將您的註冊轉換成多租用戶。
 
-注意︰Azure AD 會要求應用程式的「應用程式識別碼 URI」必須具全域唯一性，才能被設定成多租用戶應用程式。 「應用程式識別碼 URI」是其中一種可在通訊協定訊息中識別應用程式的方式。  就單一租用戶應用程式而言，「應用程式識別碼 URI」只要在該租用戶中具唯一性即已足夠。  就多租用戶應用程式而言，該 URI 則必須具全域唯一性，Azure AD 才能在所有租用戶中找到該應用程式。  系統會透過要求「應用程式識別碼 URI」必須具有與已驗證的 Azure AD 租用戶網域相符的主機名稱，來強制執行全域唯一性。  例如，如果租用戶的名稱是 contoso.onmicrosoft.com，則有效的「應用程式識別碼 URI」會是 `https://contoso.onmicrosoft.com/myapp`。  如果租用戶具有已驗證的網域 `contoso.com`，則有效的「應用程式識別碼 URI」也會是 `https://contoso.com/myapp`。  如果「應用程式識別碼 URI」沒有按照這個模式，將應用程式設定成多租用戶時就會失敗。
+此外請注意，Azure AD 會要求應用程式的「應用程式識別碼 URI」必須具全域唯一性，才能被設定成多租用戶應用程式。 「應用程式識別碼 URI」是其中一種可在通訊協定訊息中識別應用程式的方式。  就單一租用戶應用程式而言，「應用程式識別碼 URI」只要在該租用戶中具唯一性即已足夠。  就多租用戶應用程式而言，該 URI 則必須具全域唯一性，Azure AD 才能在所有租用戶中找到該應用程式。  系統會透過要求「應用程式識別碼 URI」必須具有與已驗證的 Azure AD 租用戶網域相符的主機名稱，來強制執行全域唯一性。  例如，如果租用戶的名稱是 contoso.onmicrosoft.com，則有效的「應用程式識別碼 URI」會是 `https://contoso.onmicrosoft.com/myapp`。  如果租用戶具有已驗證的網域 `contoso.com`，則有效的「應用程式識別碼 URI」也會是 `https://contoso.com/myapp`。  如果「應用程式識別碼 URI」沒有按照這個模式，將應用程式設定成多租用戶時就會失敗。
 
 原生用戶端註冊預設即為多租用戶。  您不需要採取任何動作來將原生用戶端應用程式註冊轉換成多租用戶。
 
@@ -239,6 +239,6 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

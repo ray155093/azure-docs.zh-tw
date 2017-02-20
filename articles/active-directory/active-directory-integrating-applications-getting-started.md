@@ -1,5 +1,5 @@
 ---
-title: "整合 Azure Active Directory 與應用程式入門指南 | Microsoft Docs"
+title: "開始將 Azure AD 與應用程式整合 | Microsoft Docs"
 description: "本文章是整合 Azure Active Directory (AD) 與在內部部署應用程式和雲端應用程式的入門指南。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/09/2016
+ms.date: 01/23/2017
 ms.author: inhenk
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 66276b94f0b2fa124ba2b197d6e8467632f93ce8
+ms.sourcegitcommit: 54e6bf0953135855d4dda2bc83c8dc06212c6eb5
+ms.openlocfilehash: 6b3f6889c747e72ee1c592b1b0dfb1d03d700ad3
 
 
 ---
@@ -95,6 +95,6 @@ ms.openlocfilehash: 66276b94f0b2fa124ba2b197d6e8467632f93ce8
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

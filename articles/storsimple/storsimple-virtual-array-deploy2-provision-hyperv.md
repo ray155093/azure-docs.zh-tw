@@ -4,7 +4,7 @@ description: "這是 StorSimple Virtual Array 部署中的第二個教學課程�
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 4354963c-e09d-41ac-9c8b-f21abeae9913
 ms.service: storsimple
@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 01/12/2017
+ms.date: 02/03/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
-ms.openlocfilehash: eaeb7bf48239fea0c86d8234fe25e3f23cf76653
+ms.sourcegitcommit: 37f2816cb1fa9c7db43359f16669e6521b0fe46a
+ms.openlocfilehash: d623c4172a654b90d68c6e6e488a2c791abe8647
 
 ---
 # <a name="deploy-storsimple-virtual-array---provision-a-virtual-array-in-hyper-v"></a>部署 StorSimple Virtual Array：在 Hyper-V 中佈建虛擬陣列
@@ -48,7 +48,7 @@ ms.openlocfilehash: eaeb7bf48239fea0c86d8234fe25e3f23cf76653
 * 主機系統能夠把下列資源專門用來佈建虛擬陣列：
 
   * 至少 4 顆核心。
-  * 至少 8 GB 的 RAM。
+  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個以下的檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個檔案。
   * 一個網路介面。
   * 供資料使用的 500 GB 虛擬磁碟。
 
@@ -73,7 +73,7 @@ ms.openlocfilehash: eaeb7bf48239fea0c86d8234fe25e3f23cf76653
 請確定您要建立虛擬陣列的基礎硬體 (主機系統) 能夠把下列資源專門提供給虛擬陣列來使用：
 
 * 至少 4 顆核心。
-* 至少 8 GB 的 RAM。
+* 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個以下的檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個檔案。
 * 一個網路介面。
 * 供系統資料使用的 500 GB 虛擬磁碟。
 
@@ -90,23 +90,23 @@ ms.openlocfilehash: eaeb7bf48239fea0c86d8234fe25e3f23cf76653
 3. 在 [Hyper-V 管理員] 的範圍窗格中，於您的系統節點上按一下滑鼠右鍵以開啟操作功能表，然後按一下 [新增]  >  [虛擬機器]。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image2.png)
-4. 在「新增虛擬機器精靈」的「開始之前」頁面上，按 [下一步]。
-5. 在 [指定名稱和位置] 頁面上，提供虛擬陣列的 [名稱]。 按 [下一步] 。
+4. 在「新增虛擬機器精靈」的 [開始之前] 頁面上，按一下 [下一步]。
+5. 在 [指定名稱和位置] 頁面上，提供虛擬陣列的 [名稱]。 按一下 [下一步]。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image4.png)
-6. 在 [指定世代] 頁面上，選擇裝置映像類型，然後按 [下一步]。 如果您使用的是 Windows Server 2008 R2，則不會出現此頁面。
+6. 在 [指定世代] 頁面上，選擇裝置映像類型，然後按一下 [下一步]。 如果您使用的是 Windows Server 2008 R2，則不會出現此頁面。
 
    * 如果您已下載適用於 Windows Server 2012 或更新版本的 .vhdx 映像，請選擇 [第 2 代]  。
    * 如果您已下載適用於 Windows Server 2008 R2 或更新版本的 .vhd 映像，請選擇 [第 1 代]  。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image5.png)
-7. 在「指派記憶體」頁面上，至少指定 **8192 MB** 的「啟動記憶體」，請勿啟用動態記憶體，然後按 [下一步]。
+7. 在 [指派記憶體] 頁面上，至少指定 **8192 MB** 的「啟動記憶體」，請勿啟用動態記憶體，然後按一下 [下一步]。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image6.png)  
-8. 在「設定網路功能」頁面上，指定連線到網際網路的虛擬交換器，然後按 [下一步]。
+8. 在 [設定網路功能] 頁面上，指定連線到網際網路的虛擬交換器，然後按一下 [下一步]。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image7.png)
-9. 在 [連接虛擬硬碟] 頁面上，選擇 [使用現有的虛擬硬碟]，指定虛擬陣列映像 (.vhdx 或.vhd) 的位置，然後按 [下一步]。
+9. 在 [連接虛擬硬碟] 頁面上，選擇 [使用現有的虛擬硬碟]，指定虛擬陣列映像 (.vhdx 或.vhd) 的位置，然後按一下 [下一步]。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image8m.png)
 10. 檢閱「摘要」，然後按一下 [結束] 來建立虛擬機器。
@@ -115,32 +115,32 @@ ms.openlocfilehash: eaeb7bf48239fea0c86d8234fe25e3f23cf76653
 11. 您需要 4 顆核心才能符合最低需求。 若要新增 4 顆虛擬處理器，請在 [Hyper-V 管理員] 視窗中選取您的主機系統。 在右窗格中的 [虛擬機器] 清單下，找出您剛才建立的虛擬機器。 選取虛擬機器的名稱並按一下滑鼠右鍵，然後選取 [設定] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image10.png)
-12. 在「設定」頁面上，按一下左窗格中的 [處理器]。 在右窗格中，將 [虛擬處理器數目]  設定為 4 (或更多)。 按一下 [套用] 。
+12. 在 [設定] 頁面上，按一下左窗格中的 [處理器]。 在右窗格中，將 [虛擬處理器數目] 設定為 4 (或更多)。 按一下 [套用]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image11.png)
-13. 您也必須新增 500 GB 的虛擬資料磁碟，才能符合最低需求。 在「設定」  頁面中：
+13. 您也必須新增 500 GB 的虛擬資料磁碟，才能符合最低需求。 在 [設定] 頁面中：
 
-    1. 在左窗格中，選取 [SCSI 控制器] 。
+    1. 在左窗格中，選取 [SCSI 控制器]。
     2. 在右窗格中，選取 [硬碟]，然後按一下 [新增]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image12.png)
-14. 在「硬碟」頁面上，選取 [虛擬硬碟] 選項，然後按一下 [新增]。 [新增虛擬硬碟精靈] 會啟動。
+14. 在 [硬碟] 頁面上，選取 [虛擬硬碟] 選項，然後按一下 [新增]。 [新增虛擬硬碟精靈] 會啟動。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image13.png)
-15. 在「新增虛擬硬碟精靈」的「開始之前」頁面上，按 [下一步]。
-16. 在「選擇磁碟格式」頁面上，接受 [VHDX] 格式預設選項。 按 [下一步] 。 如果您執行的是 Windows Server 2008 R2，則不會出現此畫面。
+15. 在「新增虛擬硬碟精靈」的 [開始之前] 頁面上，按一下 [下一步]。
+16. 在 [選擇磁碟格式] 頁面上，接受 [VHDX] 格式預設選項。 按一下 [下一步]。 如果您執行的是 Windows Server 2008 R2，則不會出現此畫面。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image15.png)
-17. 在「選擇磁碟類型」頁面上，將虛擬硬碟類型設定為 [動態擴充] (建議選項)。 [固定大小] 磁碟可以運作，但您可能需要等待很長一段時間。 建議您不要使用 [差異]  選項。 按 [下一步] 。 在 Windows Server 2012 R2 和 Windows Server 2012 中，[動態擴充] 是預設選項，而在 Windows Server 2008 R2 中，預設值是 [固定大小]。
+17. 在 [選擇磁碟類型] 頁面上，將虛擬硬碟類型設定為 [動態擴充] (建議選項)。 [固定大小] 磁碟可以運作，但您可能需要等待很長一段時間。 建議您不要使用 [差異]  選項。 按一下 [下一步]。 在 Windows Server 2012 R2 和 Windows Server 2012 中，[動態擴充] 是預設選項，而在 Windows Server 2008 R2 中，預設值是 [固定大小]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image16.png)
-18. 在「指定名稱和位置」頁面上，提供資料磁碟的「名稱」和「位置」(您可以瀏覽至該位置)。 按 [下一步] 。
+18. 在 [指定名稱和位置] 頁面上，提供資料磁碟的「名稱」和「位置」(您可以瀏覽至該位置)。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image17.png)
-19. 在「設定磁碟」頁面上，選取 [建立新的空白虛擬硬碟] 選項，然後將大小指定為 **500 GB** (或更多)。 按 [下一步] 。
+19. 在 [設定磁碟] 頁面上，選取 [建立新的空白虛擬硬碟] 選項，然後將大小指定為 **500 GB** (或更多)。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image18.png)
-20. 在「摘要」頁面上，檢閱虛擬資料磁碟的詳細資料，如果您對這些資料感到滿意，請按一下 [完成] 來建立磁碟。 精靈會關閉，虛擬硬碟會新增至您的電腦。
+20. 在 [摘要] 頁面上，檢閱虛擬資料磁碟的詳細資料，如果您對這些資料感到滿意，請按一下 [完成] 來建立磁碟。 精靈會關閉，虛擬硬碟會新增至您的電腦。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image19.png)
 21. 返回 [設定] 頁面。 按一下 [確定] 來關閉「設定」頁面並返回 [Hyper-V 管理員] 視窗。
@@ -217,6 +217,6 @@ ms.openlocfilehash: eaeb7bf48239fea0c86d8234fe25e3f23cf76653
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

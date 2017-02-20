@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/01/2016
+ms.date: 02/02/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6944454190d2744cd7cd9a25d9876c5c7427b5f8
+ms.sourcegitcommit: f532f1aea9b8c4be6707862be4001099aa3c1d32
+ms.openlocfilehash: 2a2963affdbff3710ad08f86c6ed4e6304335559
 
 
 ---
@@ -27,8 +27,8 @@ ms.openlocfilehash: 6944454190d2744cd7cd9a25d9876c5c7427b5f8
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。  這不是逐步指南。
-> 
-> 
+>
+>
 
 ## <a name="implement-the-recommendation"></a>實作建議
 1. 在 [建議] 刀鋒視窗中，選取 [啟用透明資料加密]。
@@ -37,9 +37,9 @@ ms.openlocfilehash: 6944454190d2744cd7cd9a25d9876c5c7427b5f8
    ![選取要在其上啟用 TDE 的 SQL DB][2]
 3. 在 [透明資料加密] 刀鋒視窗中，選取 [資料加密] 下方的 [開啟]，然後選取刀鋒視窗頂端功能區中的 [儲存]。
    ![開啟 TDE][3]
-   
+
    一旦在所選取的 SQL Database 上啟用 TDE 後，[加密狀態] 就會變成 [已加密]。    
-   
+
    ![加密狀態][4]
 
 ## <a name="see-also"></a>另請參閱
@@ -66,6 +66,6 @@ ms.openlocfilehash: 6944454190d2744cd7cd9a25d9876c5c7427b5f8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

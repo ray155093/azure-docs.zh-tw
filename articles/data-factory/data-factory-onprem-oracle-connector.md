@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/22/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 45b44b7b5cb4fd299fcc9c4f704a602048dd15c5
-ms.openlocfilehash: e875aab41e09066df2facd3669eec09eea621fd2
+ms.sourcegitcommit: a4b067e732bccb01faa96f23dbfd2ed65b7711a0
+ms.openlocfilehash: 62326da2e801a7c6e01d29e2298bd3552f331647
 
 
 ---
@@ -32,10 +32,10 @@ Data Factory 支援使用資料管理閘道連接至內部部署 Oracle 來源�
 ## <a name="supported-versions-and-installation"></a>支援的版本和安裝
 Oracle 連接器支援兩種驅動程式版本︰
 
-- **適用於 Oracle 的 Microsoft 驅動程式**自 2.7 版起即隨附於資料管理閘道。 如此一來，除了將閘道連線到 Oracle，就不需要安裝任何其他項目。 支援 Oracle Database 10g Release 2 版或更新版本。 「建議」您使用此驅動程式來簡化環境設定。
+- **適用於 Oracle 的 Microsoft 驅動程式**自 2.7 版起即隨附於資料管理閘道。 **建議**您使用此驅動程式。 如此一來，除了將閘道連線到 Oracle，就不需要安裝任何其他項目，而且您也能夠體驗更好的複製效能。 支援 Oracle Database 10g Release 2 版或更新版本。
 
     > [!NOTE]
-    > 目前適用於 Oracle 的 Microsoft 驅動程式僅支援從 Oracle 複製資料，但不支援將資料寫入 Oracle。
+    > 目前適用於 Oracle 的 Microsoft 驅動程式僅支援從 Oracle 複製資料，但不支援將資料寫入 Oracle。 請注意，[資料管理閘道診斷] 索引標籤中的測試連線功能不支援此驅動程式。 您可以選擇使用複製精靈來驗證連線。
     >
 
 - **.NET 的 Oracle 資料提供者︰**您也可以選擇使用 Oracle 資料提供者，從 Oracle 複製資料/將資料複製到 Oracle。 此元件包含於 [適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/)中。 在安裝閘道的電腦上安裝適當版本 (32/64 位元)。 [Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
@@ -569,6 +569,6 @@ User Id=<username>;Password=<password>;",
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

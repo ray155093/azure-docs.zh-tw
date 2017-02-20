@@ -12,11 +12,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/19/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: f9b191a68fe19f30aa157fd01f33afb0a4f1e279
-ms.openlocfilehash: 2622f228ee770725142d91f3366fe52e58d1c9cc
+ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
+ms.openlocfilehash: a90c412d2d66834cd0df3f348fa488b6ce10c898
 
 ---
 
@@ -24,8 +24,8 @@ ms.openlocfilehash: 2622f228ee770725142d91f3366fe52e58d1c9cc
 社群網站是驅使採用巨量資料的其中一個主要動力。 像 Twitter 之類的網站所提供的公開 API，是分析和了解流行趨勢的一項實用的資料來源。
 在本教學課程中，您將使用 Twitter 串流 API 取得推文，然後使用 Apache Hive on Azure HDInsight 取得傳送了最多內含特定文字之推文的 Twitter 使用者清單。
 
-> [!NOTE]
-> 此文件中的步驟需要以 Windows 為基礎的 HDInsight 叢集。 如需 Linux 型叢集的特定步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data-linux.md)。
+> [!IMPORTANT]
+> 此文件中的步驟需要 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如需 Linux 型叢集的特定步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data-linux.md)。
 
 ## <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
@@ -262,7 +262,7 @@ HiveQL 指令碼將執行下列作業：
 6. **插入覆寫資料表**。 這個複雜的 Hive 指令碼會啟動一組冗長的 MapReduce 工作 (由 Hadoop 叢集執行)。 根據資料集和叢集大小而定，這可能需要 10 分鐘。
 7. **插入覆寫目錄**。 執行查詢，並將資料集輸出至檔案。 此查詢會傳回一份 Twitter 使用者清單，這些使用者傳送了最多含有 "Azure" 一字的推文。
 
-**建立 Hive 指令碼並將其上傳至 Azure**
+**建立 Hive 指令碼並將它上傳至 Azure**
 
 1. 開啟 Windows PowerShell ISE。
 2. 將下列指令碼複製到指令碼窗格中：
@@ -458,7 +458,7 @@ HiveQL 指令碼將執行下列作業：
 使用下列 Window PowerShell 指令碼可執行 Hive 指令碼。 您必須設定第一個變數。
 
 > [!NOTE]
-> 若要使用您在上兩節中上傳的推文和 HiveQL 指令碼，請將 $hqlScriptFile 設定為 "/tutorials/twitter/twitter.hql"。 若要使用已為您上傳至公用 Blob 的檔案，請將 $hqlScriptFile 設定為 "wasbs://twittertrend@hditutorialdata.blob.core.windows.net/twitter.hql"。
+> 若要使用您在上兩節中上傳的推文和 HiveQL 指令碼，請將 $hqlScriptFile 設定為 "/tutorials/twitter/twitter.hql"。 若要使用已上傳至公用 Blob 的項目，請將 $hqlScriptFile 設定為 "wasbs://twittertrend@hditutorialdata.blob.core.windows.net/twitter.hql"。
 
 ```powershell
 #region variables and constants
@@ -572,6 +572,6 @@ Write-Host "==================================" -ForegroundColor Green
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,0 +1,68 @@
+---
+
+title: "資訊工作者如何將 B2B 共同作業使用者新增到 Azure Active Directory? | Microsoft Docs"
+description: "Azure Active Directory B2B 共同作業可讓資訊工作者將使用者從其組織新增到 Azure AD 以存取您的公司應用程式"
+services: active-directory
+documentationcenter: 
+author: sasubram
+manager: femila
+editor: 
+tags: 
+ms.assetid: 
+ms.service: active-directory
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: identity
+ms.date: 02/02/2017
+ms.author: sasubram
+translationtype: Human Translation
+ms.sourcegitcommit: d9ffd4176e87b6b5ada882ff09f507665bda7b1d
+ms.openlocfilehash: 7bad8269c3756979fe48d130a0cdfb02ceafad86
+
+
+---
+
+# <a name="how-do-information-workers-add-b2b-collaboration-users-to-azure-active-directory"></a>資訊工作者如何將 B2B 共同作業使用者新增到 Azure Active Directory?
+
+資訊工作者可以使用[應用程式存取面板](http://myapps.microsoft.com)將 B2B 共同作業使用者新增到資訊工作者為其系統管理員的群組與應用程式。
+
+## <a name="information-workers-adding-b2b-collaboration-users-to-an-application"></a>資訊工作者將 B2B 共同作業使用者新增到應用程式
+以合作夥伴組織中的資訊工作者身分指派 B2B 共同作業使用者到應用程式，如下列影片中所示：
+
+  >[!VIDEO https://channel9.msdn.com/Blogs/Azure/information-worker-assign-to-apps]
+
+  如果沒有內嵌顯示這段影片，您可以在[這裡](https://channel9.msdn.com/Blogs/Azure/information-worker-assign-to-apps)取得。
+
+## <a name="information-workers-adding-b2b-collaboration-users-to-a-group"></a>資訊工作者將 B2B 共同作業使用者新增到群組
+
+資訊工作者能以類似方式將 B2B 共同作業使用者新增到已啟用自助式群組管理的受指派群組。
+> [!NOTE]
+您可以將 B2B 共同作業使用者新增到動態群組或已與內部部署 Active Directory 同步的群組。
+
+## <a name="add-without-invitation"></a>在不傳送邀請的情況下新增
+
+若邀請者屬於在其中新增使用者之合作夥伴組織目錄中具有列舉權限的角色，則受邀請的使用者會被新增到發出邀請的組織，而不需要取得邀請。
+
+此案例最適用於：
+1. 主組織 (例如，WoodGrove) 中的使用者邀請合作夥伴組織 (例如，Sam@litware.com) 的使用者做為「來賓」。
+2. 主組織中的系統管理員設定原則以允許 Sam 識別及新增來自合作夥伴組織 (Litware) 的使用者。
+4. 現在 Sam 可以將來自 Litware 的其他使用者新增到 WoodGrove 目錄、群組或應用程式，而不需要兌換邀請。 若 Sam 具有 Litware 中的適當列舉權限，這會自動發生。
+
+
+* [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
+* [Azure Active Directory 系統管理員如何新增 B2B 共同作業使用者？](active-directory-b2b-admin-add-users.md)
+* [B2B 共同作業邀請電子郵件的元素](active-directory-b2b-invitation-email.md)
+* [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
+* [Azure AD B2B 共同作業授權](active-directory-b2b-licensing.md)
+* [針對 Azure Active Directory B2B 共同作業問題進行疑難排解](active-directory-b2b-troubleshooting.md)
+* [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
+* [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
+* [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
+* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+
+
+
+<!--HONumber=Feb17_HO1-->
+
+

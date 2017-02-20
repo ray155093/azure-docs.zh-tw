@@ -4,7 +4,7 @@ description: "部署 StorSimple Virtual Array 的第二個教學課程，內容�
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 0425b2a9-d36f-433d-8131-ee0cacef95f8
 ms.service: storsimple
@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 01/12/2017
+ms.date: 02/03/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
-ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
+ms.sourcegitcommit: 37f2816cb1fa9c7db43359f16669e6521b0fe46a
+ms.openlocfilehash: 655c00e3042cca78872df052cb89bab43fbc35a4
 
 ---
 # <a name="deploy-storsimple-virtual-array---provision-a-virtual-array-in-vmware"></a>部署 StorSimple Virtual Array：在 VMware 中佈建虛擬陣列
@@ -43,7 +43,7 @@ ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
 * 主機系統能夠把下列資源專門用來佈建虛擬裝置：
 
   * 至少 4 顆核心。
-  * 至少 8 GB 的 RAM。
+  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個以下的檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個檔案。
   * 一個網路介面。
   * 供系統資料使用的 500 GB 虛擬磁碟。
 
@@ -66,7 +66,7 @@ ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
 * 您系統上的 VMware vSphere 用戶端，以便管理 ESXi 主機。
 
   * 至少 4 顆核心。
-  * 至少 8 GB 的 RAM。
+  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個以下的檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個檔案。
   * 網路介面，且已連線到能夠將流量路由至網際網路的網路。 網際網路頻寬應該至少要有 5 Mbps，以便讓裝置能夠發揮最大功能。
   * 供資料使用的 500 GB 虛擬磁碟。
 
@@ -77,6 +77,7 @@ ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
 
    1. 請確定您已下載最新的映像檔。 如果您稍早下載過映像，請再下載一次，確定您擁有最新映像。 最新映像具有兩個檔案 (而不是一個)。
    2. 請記下您複製映像的位置，因為稍後會在程序中使用此映像。
+
 2. 使用 vSphere 用戶端登入 ESXi 伺服器。 您需要有系統管理員權限，才能建立虛擬機器。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image1.png)
@@ -116,9 +117,9 @@ ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
 14. 返回 vSphere 用戶端視窗。 在選取 ESXi 伺服器之後按一下滑鼠右鍵，然後選取 [新增虛擬機器] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image15.png)
-15. 畫面會出限 [建立新虛擬機器]  視窗。 在 [設定] 頁面上，選取 [自訂] 選項。 按 [下一步] 。
+15. 畫面會出限 [建立新虛擬機器]  視窗。 在 [設定] 頁面上，選取 [自訂] 選項。 按一下 [下一步]。
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image16.png)
-16. 在 [名稱和位置]  頁面上，指定虛擬機器的名稱。 這個名稱應該與您之前在步驟 8 中指定的資料夾名稱 (建議的最佳做法) 相同。
+16. 在 [名稱和位置] 頁面上，指定虛擬機器的名稱。 這個名稱應該與您之前在步驟 8 中指定的資料夾名稱 (建議的最佳做法) 相同。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image17.png)
 17. 在 [儲存體]  頁面上，選取您要用來佈建虛擬機器的資料存放區。
@@ -130,10 +131,10 @@ ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
 19. 在 [客體作業系統] 頁面上，將 [客體作業系統] 選取為 [Windows]。 而對於 [版本]，請從下拉式清單中選取 [Microsoft Windows Server 2012 (64 位元)]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image20.png)
-20. 在 [CPU] 頁面上，調整 [虛擬通訊端的數目] 和 [每個虛擬通訊端的核心數目]，以便讓 [核心總數] 至少為 4。 按一下頁面底部的 [新增] 來單一登入應用程式。
+20. 在 [CPU] 頁面上，調整 [虛擬通訊端的數目] 和 [每個虛擬通訊端的核心數目]，以便讓 [核心總數] 至少為 4。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image21.png)
-21. 在 [記憶體]  頁面上，將 RAM 指定為至少為 8 GB。 按一下頁面底部的 [新增] 來單一登入應用程式。
+21. 在 [記憶體]  頁面上，將 RAM 指定為至少為 8 GB。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image22.png)
 22. 在 [網路]  頁面上，指定網路介面的數目。 最低需求是一個網路介面。
@@ -142,28 +143,28 @@ ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
 23. 在 [SCSI 控制器] 頁面上，接受預設的 [LSI Logic SAS 控制器]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image24.png)
-24. 在 [選取磁碟] 頁面上，選擇 [使用現有的虛擬硬碟]。 按一下頁面底部的 [新增] 來單一登入應用程式。
+24. 在 [選取磁碟] 頁面上，選擇 [使用現有的虛擬硬碟]。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image25.png)
-25. 在 [選取現有的磁碟] 頁面的 [磁碟檔案路徑] 下方，按一下 [瀏覽]。 這會開啟 [瀏覽資料存放區]  對話方塊。 瀏覽至您之前上傳 VMDK 的位置。 因為您最初上傳回的兩個檔案已合併，所以您現在於資料存放區中只會看到一個檔案。 選取檔案，然後按一下 [確定] 。 按一下頁面底部的 [新增] 來單一登入應用程式。
+25. 在 [選取現有的磁碟] 頁面的 [磁碟檔案路徑] 下方，按一下 [瀏覽]。 這會開啟 [瀏覽資料存放區]  對話方塊。 瀏覽至您之前上傳 VMDK 的位置。 因為您最初上傳回的兩個檔案已合併，所以您現在於資料存放區中只會看到一個檔案。 選取檔案，然後按一下 [確定] 。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image26.png)
-26. 在 [進階選項] 頁面上，接受預設值並按 [下一步]。
+26. 在 [進階選項] 頁面上，接受預設值並按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image27.png)
-27. 在 [準備完成]  頁面上，檢閱與新的虛擬機器相關的所有設定。 核取 [在完成之前編輯虛擬機器的設定] 。 按一下 [繼續] 。
+27. 在 [準備完成]  頁面上，檢閱與新的虛擬機器相關的所有設定。 選取 [在完成之前編輯虛擬機器的設定]。 按一下 [繼續]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image28.png)
-28. 在 [虛擬機器屬性] 頁面的 [硬體] 索引標籤上尋找裝置的硬體。 選取 [新增硬碟] 。 按一下 [新增] 。
+28. 在 [虛擬機器屬性] 頁面的 [硬體] 索引標籤上尋找裝置的硬體。 選取 [新增硬碟] 。 按一下 [新增]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image29.png)
-29. 您會看到 [新增硬體] 視窗。 在 [裝置類型] 頁面的 [選擇您想要新增的裝置類型] 下方，選取 [硬碟] 並按 [下一步]。
+29. 您會看到 [新增硬體] 視窗。 在 [裝置類型] 頁面的 [選擇您想要新增的裝置類型] 下方，選取 [硬碟] 並按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image30.png)
-30. 在 [選取磁碟] 頁面上，選擇 [建立新的虛擬磁碟]。 按一下頁面底部的 [新增] 來單一登入應用程式。
+30. 在 [選取磁碟] 頁面上，選擇 [建立新的虛擬磁碟]。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image31.png)
-31. 在 [建立磁碟] 頁面上，將 [磁碟大小] 變更為至少 500 GB。 在 [磁碟佈建] 下方，選取 [精簡佈建]。 按一下頁面底部的 [新增] 來單一登入應用程式。
+31. 在 [建立磁碟] 頁面上，將 [磁碟大小] 變更為至少 500 GB。 在 [磁碟佈建] 下方，選取 [精簡佈建]。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image32.png)
 32. 在 [進階選項]  頁面上，接受預設值。
@@ -243,6 +244,6 @@ ms.openlocfilehash: 2c9411312f561d03ab6bd29e8e007db309cb5f00
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

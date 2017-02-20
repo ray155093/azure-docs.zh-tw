@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/05/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 276033907d454a54b2d9d5354f8e1dc48a7b01d4
+ms.sourcegitcommit: 59f072c7a8272fc04e1d662c0ab17e7ee4500fa6
+ms.openlocfilehash: f139674f96793b8486c541c9e3f1ead751b97232
 
 
 ---
@@ -31,17 +31,26 @@ ms.openlocfilehash: 276033907d454a54b2d9d5354f8e1dc48a7b01d4
 
 ## <a name="enable-diagnostic-logging-for-your-data-lake-store-account"></a>啟用 Data Lake Store 帳戶的診斷記錄
 1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
-2. 開啟 Data Lake Store 帳戶，接著在 Data Lake Store 帳戶刀鋒視窗中依序按一下 [設定] 和 [診斷設定]。
+2. 開啟 Data Lake Store 帳戶，接著在 Data Lake Store 帳戶刀鋒視窗中依序按一下 [設定] 和 [診斷記錄檔]。
+3. 在 [診斷記錄檔] 刀鋒視窗中，按一下 [開啟診斷]。
+
+    ![啟用診斷記錄](./media/data-lake-store-diagnostic-logs/turn-on-diagnostics.png "啟用診斷記錄")
+
 3. 在 [診斷]  刀鋒視窗中，變更下列項目以設定診斷記錄。
    
-    ![啟用診斷記錄](./media/data-lake-store-diagnostic-logs/enable-diagnostic-logs.png "Enable diagnostic logs")
+    ![啟用診斷記錄](./media/data-lake-store-diagnostic-logs/enable-diagnostic-logs.png "啟用診斷記錄")
    
    * 將 [狀態] 設定為 [開啟] 以啟用診斷記錄。
-   * 您可以選擇兩種不同的資料儲存/處理方法。
-     * 選取 [匯出到事件中樞]  選項可將記錄資料串流到 Azure 事件中樞。 如果您有即時分析內送記錄的下游處理管線，很可能會使用這個選項。 如果您選取此選項，必須提供要使用的 Azure 事件中樞詳細資料。
-     * 選取 [匯出到儲存體帳戶]  選項可將記錄儲存到 Azure 儲存體帳戶。 如果您想要保存資料以供日後批次處理，可以使用此選項。 如果您選取此選項，必須提供用來儲存記錄的 Azure 儲存體帳戶。
+   * 您可以選擇不同的資料儲存/處理方法。
+     
+        * 選取 [封存至儲存體帳戶] 選項可將記錄儲存到 Azure 儲存體帳戶。 如果您想要保存資料以供日後批次處理，可以使用此選項。 如果您選取此選項，必須提供用來儲存記錄的 Azure 儲存體帳戶。
+        
+        * 選取 [串流至事件中樞] 選項可將記錄資料串流到 Azure 事件中樞。 如果您有即時分析內送記錄的下游處理管線，很可能會使用這個選項。 如果您選取此選項，必須提供要使用的 Azure 事件中樞詳細資料。
+
+        * 選取 [傳送至 Log Analytics] 選項可使用 Azure Log Analytics 服務來分析產生的記錄資料。 如果您選取此選項，必須提供要用來執行記錄檔分析的 Operations Management Suite 工作區詳細資料。
+     
    * 指定要取得稽核記錄、要求記錄或兩者。
-   * 指定的資料的保留天數。
+   * 指定的資料的保留天數。 只有在您使用 Azure 儲存體帳戶來封存記錄資料時，才適用保留期。
    * 按一下 [儲存] 。
 
 一旦您啟用了診斷設定，即可在 [診斷記錄]  索引標籤中查看記錄。
@@ -55,7 +64,7 @@ ms.openlocfilehash: 276033907d454a54b2d9d5354f8e1dc48a7b01d4
 ### <a name="using-the-data-lake-store-settings-view"></a>使用 Data Lake Store 設定檢視
 1. 在 Data Lake Store 帳戶的 [設定] 刀鋒視窗中，按一下 [診斷記錄]。
    
-    ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "View diagnostic logs") 
+    ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "檢視診斷記錄") 
 2. 在 [診斷記錄] 刀鋒視窗中，您應該會看到依照 [稽核記錄] 和 [要求記錄] 分類的記錄。
    
    * 要求記錄能擷取所有以 Data Lake Store 帳戶提出的 API 要求。
@@ -65,13 +74,13 @@ ms.openlocfilehash: 276033907d454a54b2d9d5354f8e1dc48a7b01d4
 ### <a name="from-the-azure-storage-account-that-contains-log-data"></a>從包含記錄資料的 Azure 儲存體帳戶
 1. 開啟與與用於記錄的 Data Lake Store 關聯的Azure 儲存體帳戶刀鋒視窗，然後按一下 [Blob]。 [Blob 服務]  刀鋒視窗會列出兩個容器。
    
-    ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account.png "View diagnostic logs")
+    ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account.png "檢視診斷記錄")
    
    * 容器 **insights-logs-audit** 包含稽核記錄檔。
    * 容器 **insights-logs-requests** 包含要求記錄檔。
 2. 在這些容器中，紀錄會儲存在下列結構底下。
    
-    ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account-structure.png "View diagnostic logs")
+    ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account-structure.png "檢視診斷記錄")
    
     例如，稽核記錄檔的完整路徑可能是 `https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
    
@@ -177,6 +186,6 @@ Azure Data Lake Store 會提供有關如何處理和分析記錄資料的範例�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

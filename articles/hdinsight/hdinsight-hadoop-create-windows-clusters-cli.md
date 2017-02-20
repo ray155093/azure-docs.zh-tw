@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/02/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 84d52dccef4e2d9a1ae253831b5d8f86b6fb50a6
-ms.openlocfilehash: 489067e44525532f2913f44156a5eeb19214d250
+ms.sourcegitcommit: a2b32f23381ed1f9912edf6432f029e51bdf1be4
+ms.openlocfilehash: 393b7e44b21fe510e07b4048ddd3bdbcc31d90a9
 
 
 ---
@@ -27,10 +27,8 @@ ms.openlocfilehash: 489067e44525532f2913f44156a5eeb19214d250
 
 了解如何使用 Azure CLI 在 HDInsight 中建立 Windows 型 Hadoop 叢集。 
 
-本文的資訊僅適用於以 Windows 為基礎的 HDInsight 叢集。 如需建立 Linux 型叢集的詳細資訊，請參閱[使用 Azure CLI 在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-azure-cli.md)。
-
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 本文的資訊僅適用於 Windows 型 HDInsight 叢集。 如需建立 Linux 型叢集的詳細資訊，請參閱[使用 Azure CLI 在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-azure-cli.md)。
 
 ## <a name="prerequisites"></a>必要條件：
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -134,7 +132,7 @@ ms.openlocfilehash: 489067e44525532f2913f44156a5eeb19214d250
 如需一般使用指令碼動作的資訊，請參閱 [使用指令碼動作來自訂 HDInsight 叢集 (Linux)](hdinsight-hadoop-customize-cluster.md)。
 
 ## <a name="create-clusters-using-resource-manager-templates"></a>使用 Resource Manager 範本建立叢集
-您可以使用 CLI 呼叫 ARM 範本以建立叢集。 請參閱 [使用 Azure CLI 進行部署](hdinsight-hadoop-create-windows-clusters-arm-templates.md#deploy-with-azure-cli)。
+您可以使用 CLI 呼叫 Azure Resource Manager 範本以建立叢集。 請參閱 [使用 Azure CLI 進行部署](hdinsight-hadoop-create-windows-clusters-arm-templates.md#deploy-with-azure-cli)。
 
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md) - 了解如何開始使用 HDInsight 叢集
@@ -145,6 +143,6 @@ ms.openlocfilehash: 489067e44525532f2913f44156a5eeb19214d250
 
 
 
-<!--HONumber=Jan17_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure AD Connect 同步：如何變更預設組態 | Microsoft Docs"
+title: "Azure AD Connect 同步：在 Azure AD Connect 同步中進行組態變更 | Microsoft Docs"
 description: "逐步解說如何對 Azure AD Connect 同步處理中的組態進行變更。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/31/2016
+ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: 1e5356dca98e8da035c1ffb1eca16e8b16dbfe77
+ms.sourcegitcommit: 7c237bfb42fdd2ffdfface1a12ab21c51d2504bb
+ms.openlocfilehash: b327671b12bf6e2ce040ef6e6b0a58a0fead22b4
 
 
 ---
@@ -54,19 +54,19 @@ ms.openlocfilehash: 1e5356dca98e8da035c1ffb1eca16e8b16dbfe77
    ![輸入規則篩選](./media/active-directory-aadconnectsync-change-the-configuration/description2.png)  
    * 名稱：賦予規則描述性名稱。
    * 描述︰讓其他人可以了解規則用途的一些說明。
-   * 連接的系統︰可在其中找到物件的系統。 在此情況下，我們會選取 Active Directory 連接器。
+   * 連接的系統︰可在其中找到物件的系統。 在此案例中，請選取 [Active Directory 連接器]。
    * 已連線的系統/Metaverse 物件類型︰分別選取 [使用者] 和 [人員]。
    * 連結類型︰將此值變更為 [聯結] 。
    * 優先順序︰提供在系統中是唯一的值。 較低的數值表示優先順序較高。
    * 標籤︰保留空白。 只有 Microsoft 提供的現成可用規則應該在此方塊中填入值。
 3. 在 [範圍篩選器] 頁面上，輸入 **givenName ISNOTNULL**。  
    ![輸入規則範圍篩選器](./media/active-directory-aadconnectsync-change-the-configuration/scopingfilter.png)  
-    此區段用來定義應套用規則的物件。 如果保留空白，規則會套用到所有的使用者物件。 但會包括會議室、服務帳戶，以及其他非人員的使用者物件。
+   此區段用來定義應套用規則的物件。 如果保留空白，規則會套用到所有的使用者物件。 但會包括會議室、服務帳戶，以及其他非人員的使用者物件。
 4. 在 [聯結規則] 上，將它保留空白。
 5. 在 [轉換] 頁面上，將 FlowType 變更為 [運算式]。 選取目標屬性 **givenName**，並在 [來源] 中輸入 `PCase([givenName])`。
    ![輸入規則轉換](./media/active-directory-aadconnectsync-change-the-configuration/transformations.png)  
    同步處理引擎會區分函式名稱和屬性名稱的大小寫。 如果您輸入錯誤，您會在新增規則時看到警告。 編輯器可讓您儲存並繼續進行，因此您必須重新開啟規則並予以更正。
-6. 按一下 [新增]  以儲存規則。
+6. 按一下 [新增] 以儲存規則。
 
 新的自訂規則應與其他同步處理規則一起顯示在系統中。
 
@@ -83,12 +83,12 @@ ms.openlocfilehash: 1e5356dca98e8da035c1ffb1eca16e8b16dbfe77
    ![完整同步處理](./media/active-directory-aadconnectsync-change-the-configuration/fullsync.png)  
    物件現已在 Metaverse 中更新。 您現在想要查看 Metaverse 中的物件。
 2. **單一物件的預覽和完整同步處理**  
-   從 [動作] 中選取 [執行]  。 識別您在前一節中進行變更的連接器，在此例中為 Active Directory 網域服務，並加以選取。 選取 [搜尋連接器空間] 。 使用範圍來尋找您要用來測試變更的物件。 選取物件，然後按一下 [預覽] 。 在新的畫面中，選取 [認可預覽] 。
+   從 [動作] 中選取 [執行]  。 識別您在前一節中進行變更的連接器，在此例中為 Active Directory 網域服務，並加以選取。 選取 [搜尋連接器空間] 。 使用範圍來尋找您要用來測試變更的物件。 選取物件，然後按一下 [預覽] 。 在新的畫面中，選取 [認可預覽] 。  
    ![Commit preview](./media/active-directory-aadconnectsync-change-the-configuration/commitpreview.png)  
-    變更現已認可至 Metaverse。
+   變更現已認可至 Metaverse。
 
 **查看 Metaverse 中的物件**  
- 您現在可挑選幾個範例物件，確定這是預期的值並已套用規則。 從頂端選取 [Metaverse 搜尋]  。 新增您需要的任何篩選，以尋找相關的物件。 從搜尋結果中，開啟物件。 查看屬性值，同時在 [同步處理規則]  資料行中確認已如預期套用規則。  
+您現在可挑選幾個範例物件，確定這是預期的值並已套用規則。 從頂端選取 [Metaverse 搜尋]  。 新增您需要的任何篩選，以尋找相關的物件。 從搜尋結果中，開啟物件。 查看屬性值，同時在 [同步處理規則]  資料行中確認已如預期套用規則。  
 ![Metaverse search](./media/active-directory-aadconnectsync-change-the-configuration/mvsearch.png)  
 
 ### <a name="enable-the-scheduler"></a>停用排程器
@@ -107,13 +107,13 @@ Fabrikam 中有對名字、姓氏和顯示名稱使用當地字母的樹系。 �
 
 * 從 [開始] 功能表啟動 [同步處理規則編輯器]  。
 * 在左側依然選取 [輸入] 的情況下，按一下 [新增規則] 按鈕。
-* 賦予規則名稱和描述。 選取內部部署 Active Directory 和相關的物件類型。  在 [連結類型] 中，選取 [聯結]。 為優先順序挑選一個其他規則還沒使用的數字。 現成可用的規則是從 100 開始，因此此範例可以使用 50 這個值。
+* 賦予規則名稱和描述。 選取內部部署 Active Directory 和相關的物件類型。 在 [連結類型] 中，選取 [聯結]。 為優先順序挑選一個其他規則還沒使用的數字。 現成可用的規則是從 100 開始，因此此範例可以使用 50 這個值。
   ![屬性流程 2](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp2.png)
 * 將範圍留空 (也就是，應該套用到樹系中的所有使用者物件)。
 * 將聯結規則留空 (也就是，讓現成可用的規則處理任何聯結)。
 * 在 [轉換] 中，建立下列流程：  
   ![屬性流程 3](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp3.png)
-* 按一下 [新增]  以儲存規則。
+* 按一下 [新增] 以儲存規則。
 * 移至 [同步處理服務管理員] 。 在 [連接器] 上，選取我們已在其中新增規則的連接器。 依序選取 [執行] 和 [完整同步處理]。 完整同步處理會使用目前的規則重新計算所有物件。
 
 這是具有此自訂規則之相同物件的結果：  
@@ -133,7 +133,7 @@ Fabrikam 中有對名字、姓氏和顯示名稱使用當地字母的樹系。 �
 Active Directory 中的某些屬性在結構描述中是多重值，但是在 [Active Directory 使用者和電腦] 中看起來是單一值。 描述屬性是其中一個範例。  
 `description` <- `IIF(IsNullOrEmpty([description]),NULL,Left(Trim(Item([description],1)),448))`
 
-在此運算式中，如果屬性有值，我們就取出屬性中的第一個項目 (Item)、移除開頭和結尾的空格 (Trim)，然後保留字串中的前 448 個字元 (Left)。
+在此運算式中，如果屬性有值，請取屬性中的第一個項目 (Item)、移除開頭和結尾的空格 (Trim)，然後保留字串中的前 448 個字元 (Left)。
 
 ### <a name="do-not-flow-an-attribute"></a>請勿傳送屬性
 如需本節案例的背景，請參閱 [控制屬性流程程序](active-directory-aadconnectsync-understanding-declarative-provisioning.md#control-the-attribute-flow-process)。
@@ -152,6 +152,25 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 * 藉由搜尋連接器空間，來確認即將匯出所需的變更。
   ![分段刪除](./media/active-directory-aadconnectsync-change-the-configuration/deletetobeexported.png)
 
+## <a name="create-rules-with-powershell"></a>使用 PowerShell 建立規則
+當您只需要進行一些變更時，使用同步處理規則編輯器就足以完成工作。 如果您需要進行許多變更，則 PowerShell 可能是較好的選擇。 某些進階功能只有 PowerShell 才提供。
+
+### <a name="get-the-powershell-script-for-an-out-of-box-rule"></a>取得 PowerShell 指令碼，獲得可立即使用的內建規則
+若要查看已建立內建規則的 PowerShell 指令碼，請在同步處理規則編輯器中選取規則，然後按一下 [匯出]。 此動作會為您提供已建立規則的 PowerShell 指令碼。
+
+### <a name="advanced-precedence"></a>進階優先順序
+內建同步處理規則具有從 100 開始算起的優先順序值。 如果您有許多樹系且需要進行許多自訂變更，那麼 99 同步處理規則可能不太夠。
+
+您可以指示同步處理引擎，指定要在內建規則前面插入其他規則。 若要取得此行為，請依照下列步驟執行︰
+
+1. 在同步處理規則編輯器中標記第一個內建同步處理規則 (此規則是 **In from AD-User Join**)，然後選取 [匯出]。 複製 SR 識別碼值。  
+![變更前的 PowerShell](./media/active-directory-aadconnectsync-change-the-configuration/powershell1.png)  
+2. 建立新的同步處理規則。 您可以使用同步處理規則編輯器來建立它。 將規則匯出到 PowerShell 指令碼。
+3. 在屬性 **PrecedenceBefore** 中，插入內建規則的識別碼值。 將 **Precedence** 設定為 **0**。 確定 [識別碼] 屬性是唯一的，而且您沒有重複使用另一個規則的 GUID。 此外，請確定 **ImmutableTag** 屬性未設定；此屬性只應該針對內建規則設定。 儲存 PowerShell 指令碼並執行它。 得到的結果是系統會對您的自訂規則指派優先順序值 100，而且所有其他內建規則會自此開始遞增。  
+![變更後的 PowerShell](./media/active-directory-aadconnectsync-change-the-configuration/powershell2.png)  
+
+您可以依據自己的需求，擁有許多個使用相同 **PrecedenceBefore** 值的自訂同步處理規則。
+
 ## <a name="next-steps"></a>後續步驟
 * 如需組態模型的詳細資訊，請參閱 [了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
 * 如需運算式語言的詳細資訊，請參閱 [了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
@@ -163,7 +182,6 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 
 
 
-
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

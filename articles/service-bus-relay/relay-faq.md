@@ -12,26 +12,27 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/28/2016
-ms.author: jotaub,sethm
+ms.date: 02/02/2017
+ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 22781ec965decbfd33923478794a76692151c363
+ms.sourcegitcommit: 4b54ad027a7de02cba7821f2a9b7fd06ef3a825b
+ms.openlocfilehash: ca2767340cb232722def8f06277cc84d5c76c1bf
 
 
 ---
 # <a name="relay-faq"></a>轉送常見問題集
-本文提供 Microsoft Azure 轉送的一些常見問題解答。 您也可以造訪 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083) ，以取得一般的 Azure 價格和支援資訊。
+
+本文提供 [Microsoft Azure 轉送](https://azure.microsoft.com/services/service-bus/)的一些常見問題解答。 您也可以造訪 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083) ，以取得一般的 Azure 價格和支援資訊。
 
 ## <a name="general-questions"></a>一般問題
 ### <a name="what-is-azure-relay"></a>什麼是 Azure 轉送？
-Azure [轉送服務](relay-what-is-it.md)可執行您的混合式應用程式，方法是讓您以安全的方式向公用雲端公開位於企業網路內部的服務，而無需開啟防火牆連接或要求對企業網路基礎結構的進行侵入式變更。
+[Azure 轉送服務](relay-what-is-it.md)可執行您的混合式應用程式，方法是讓您以安全的方式向公用雲端公開位於企業網路內部的服務，而無需開啟防火牆連接或要求對企業網路基礎結構的進行侵入式變更。
 
 ### <a name="what-is-a-relay-namespace"></a>什麼是轉送命名空間？
 [命名空間](relay-create-namespace-portal.md)提供範圍容器，可在應用程式內定址轉送資源。 必須建立命名空間才能使用轉送，而且這也是開始使用的第一個步驟。
 
 ### <a name="what-happened-to-the-previously-named-relay-service"></a>先前指定的轉送服務發生什麼情況？
-先前指定的**轉送**服務現在稱為「WCF 轉送」。 您可以繼續如常使用這項服務。 「混合式連接」是從 BizTalk 移轉的服務的更新版本。 之後會繼續支援「WCF 轉送」和「混合式連接」。
+先前稱為「服務匯流排轉送」服務現在稱為「WCF 轉送」。 您可以繼續如常使用這項服務。 「混合式連接」是從 BizTalk 移轉的服務的更新版本。 之後會繼續支援「WCF 轉送」和「混合式連接」。
 
 ## <a name="pricing"></a>價格
 本節提供轉送價格結構的一些常見問題解答。 您也可以造訪 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083) ，以取得一般 Microsoft Azure 價格資訊。 如需轉送價格的完整資訊，請參閱 [服務匯流排價格詳細資料](https://azure.microsoft.com/pricing/details/service-bus/)。
@@ -86,7 +87,7 @@ Azure [轉送服務](relay-what-is-it.md)可執行您的混合式應用程式，
 
 ## <a name="subscription-and-namespace-management"></a>訂用帳戶和命名空間管理
 ### <a name="how-do-i-migrate-a-namespace-to-another-azure-subscription"></a>如何將命名空間移轉到另一個 Azure 訂用帳戶？
-您可以使用 PowerShell 命令 (可在[這裡](../service-bus-messaging/service-bus-powershell-how-to-provision.md#migrate-a-namespace-to-another-azure-subscription)的文章中找到) 將命名空間從某個 Azure 訂用帳戶移到另一個 Azure 訂用帳戶。 若要執行此作業，命名空間必須已是作用中。 此外，執行命令的使用者也必須是來源和目標訂用帳戶的系統管理員。
+您可以使用 PowerShell 命令 (可在[這裡](../service-bus-messaging/service-bus-powershell-how-to-provision.md)的文章中找到) 將命名空間從某個 Azure 訂用帳戶移到另一個 Azure 訂用帳戶。 若要執行此作業，命名空間必須已是作用中。 此外，執行命令的使用者也必須是來源和目標訂用帳戶的系統管理員。
 
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="what-are-some-of-the-exceptions-generated-by-azure-relay-apis-and-their-suggested-actions"></a>Azure 轉送 API 所產生的例外狀況有哪些，其建議的動作為何？
@@ -109,6 +110,6 @@ Azure [轉送服務](relay-what-is-it.md)可執行您的混合式應用程式，
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

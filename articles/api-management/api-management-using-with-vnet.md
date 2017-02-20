@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 40d9b0ee5a24e5503de19daa030bf1e8169dec24
-ms.openlocfilehash: 58be070ea5d5f4ea9f6d9453a1adcc23c4b9b2a2
+ms.sourcegitcommit: a74872f308624028016ffb30ead3c056b1fa69ce
+ms.openlocfilehash: fbab411a22d3d1e140bc3ea8f56b113de79f204c
 
 
 ---
 # <a name="how-to-use-azure-api-management-with-virtual-networks"></a>如何將 Azure API 管理與虛擬網路搭配使用
 「Azure 虛擬網路」(VNET) 可讓您將任何 Azure 資源，放在您控制存取權的非網際網路可路由網路中。 然後，可以使用各種 VPN 技術，將這些網路連接到您的內部部署網路。 若要深入了解「Azure 虛擬網路」，請從以下資訊著手：[Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-「Azure API 管理」可以連接到「虛擬網路」(VNET)，因此它可以存取該網路內的後端服務，也因此開發人員入口網站和 API 閘道在該網站內可供存取。
+Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取網路內的後端服務。 開發人員入口網站與 API 閘道，可設定為從網際網路存取或只從虛擬網路內存取。
 
 > [!NOTE]
 > Azure API 管理支援傳統和 Azure Resource Manager Vnet。
@@ -101,12 +101,14 @@ ms.openlocfilehash: 58be070ea5d5f4ea9f6d9453a1adcc23c4b9b2a2
 
 | 來源 / 目的地連接埠 | 方向 | 傳輸通訊協定 | 目的 | 來源 / 目的地 | 存取類型 |
 | --- | --- | --- | --- | --- | --- |
-| 80, 443 / 80, 443 |輸入 |TCP |與 API 管理的用戶端通訊 |INTERNET / VIRTUAL_NETWORK |外部 |
+| * / 80, 443 |輸入 |TCP |與 API 管理的用戶端通訊 |INTERNET / VIRTUAL_NETWORK |外部 |
 | * / 3443 |輸入 |TCP |Azure 入口網站和 PowerShell 的管理端點 |INTERNET / VIRTUAL_NETWORK |外部和內部 |
-| 80, 443 / 80, 443 |輸出 |TCP |與「Azure 儲存體」和「Azure 服務匯流排」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
-| 1433 / 1433 |輸出 |TCP |與 Azure SQL 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
-| 9350 - 9354 / 9350 - 9354 |輸出 |TCP |與「服務匯流排」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
-| 5671 / 5671 |輸出 |AMQP |「記錄到事件中樞」原則的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
+| * / 80, 443 |輸出 |TCP |與「Azure 儲存體」和「Azure 服務匯流排」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
+| * / 1433 |輸出 |TCP |與 Azure SQL 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
+| * / 11000 - 11999 |輸出 |TCP |與 Azure SQL V12 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
+| * / 14000 - 14999 |輸出 |TCP |與 Azure SQL V12 的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
+| * / 9350 - 9354 |輸出 |TCP |與「服務匯流排」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
+| * / 5671 |輸出 |AMQP |「記錄到事件中樞」原則的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | 6381 - 6383 / 6381 - 6383 |輸入和輸出 |UDP |與「Redis 快取」的相依性 |VIRTUAL_NETWORK / VIRTUAL_NETWORK |外部和內部 |-
 | * / 445 |輸出 |TCP |與「適用於 GIT 的 Azure 檔案共用」的相依性 |VIRTUAL_NETWORK / INTERNET |外部和內部 |
 | * / * | 輸入 |TCP |Azure 基礎結構負載平衡器 | AZURE_LOAD_BALANCER / VIRTUAL_NETWORK |外部和內部 |
@@ -152,6 +154,6 @@ ms.openlocfilehash: 58be070ea5d5f4ea9f6d9453a1adcc23c4b9b2a2
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

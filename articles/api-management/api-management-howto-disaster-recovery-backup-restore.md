@@ -1,5 +1,5 @@
 ---
-title: "如何在 Azure API 管理中使用服務備份和還原實作災害復原 | Microsoft Docs"
+title: "在 Azure API 管理中使用備份和還原實作災害復原 | Microsoft Docs"
 description: "了解如何在 Azure API 管理中使用備份和還原來執行災難復原。"
 services: api-management
 documentationcenter: 
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: a7ff82a47b4e972db96929acb47fcce760b244b3
-ms.openlocfilehash: 73bb12643a5c94e364ac4040f6e1678cb1495fb2
-
+ms.sourcegitcommit: 809fc7a5454c814d1d3edb8ebcdd40978952bc2c
+ms.openlocfilehash: d05404ed6893978a857a3ad66d5129998272ebbd
 
 ---
 # <a name="how-to-implement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>如何在 Azure API 管理中使用服務備份和還原實作災害復原
@@ -30,7 +29,7 @@ ms.openlocfilehash: 73bb12643a5c94e364ac4040f6e1678cb1495fb2
 > [!NOTE]
 > 備份與還原嚴重損壞修復的 API 管理服務執行個體的程序，也可用於預備等案例，以複寫 API 管理服務執行個體。
 >
-> 請注意，每個備份在 7 天後到期。 如果您在過了 7 天的到期時間後嘗試還原備份，還原會失敗並傳回 `Cannot restore: backup expired` 訊息。
+> 請注意，每個備份在 30 天後到期。 如果您在過了 30 天的到期時間後嘗試還原備份，還原會失敗並傳回 `Cannot restore: backup expired` 訊息。
 >
 >
 
@@ -214,6 +213,6 @@ request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

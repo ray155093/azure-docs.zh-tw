@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/27/2017
 ms.author: richrund
 translationtype: Human Translation
-ms.sourcegitcommit: a631b409fed14bcfce39ca4180b00a0d23d5caf2
-ms.openlocfilehash: 52cd04e34f17884a39979279798debbe8f018aa2
+ms.sourcegitcommit: b781d7b8cbf3f6b9a0a92f4368491404ee033f91
+ms.openlocfilehash: a6612d59d9504b1befd691f3b784ac9378c2b414
 
 
 ---
@@ -80,7 +80,7 @@ Azure Key Vault 解決方案會直接從 Key Vault 收集診斷記錄。
 | Azure |![否](./media/log-analytics-azure-keyvault/oms-bullet-red.png) |![否](./media/log-analytics-azure-keyvault/oms-bullet-red.png) |![是](./media/log-analytics-azure-keyvault/oms-bullet-green.png) |![否](./media/log-analytics-azure-keyvault/oms-bullet-red.png) |![否](./media/log-analytics-azure-keyvault/oms-bullet-red.png) | 與抵達同時 |
 
 ## <a name="use-azure-key-vault"></a>使用 Azure 金鑰保存庫
-在您安裝解決方案之後，按一下 Log Analytics [概觀] 頁面的 [Azure Key Vault] 圖格來檢視 Key Vault 資料。
+在您安裝解決方案之後，按一下 Log Analytics [概觀] 頁面的 [Azure Key Vault] 圖格來檢視金鑰保存庫資料。
 
 ![Azure 金鑰保存庫圖格的影像](./media/log-analytics-azure-keyvault/log-analytics-keyvault-tile.png)
 
@@ -150,12 +150,15 @@ Azure 金鑰保存庫解決方案會分析從 Azure 診斷的 [AuditEvent 記錄
 
 在變更之前所收集的資料不會顯示在新的解決方案中。 您可以繼續使用舊的類型和欄位名稱查詢此資料。
 
+## <a name="troubleshooting"></a>疑難排解
+[!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
+
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md)來檢視詳細的 Azure 金鑰保存庫資料。
 
 
 
 
-<!--HONumber=Jan17_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -17,8 +17,8 @@ ms.workload: iaas-sql-server
 ms.date: 01/10/2016
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 54dcec29b9ec6a6e518658e9be15c4ed63917bd4
-ms.openlocfilehash: c59bf8bfdee095ebc0a9afe07f2c43beb77e772d
+ms.sourcegitcommit: 5e41a20f563eab6b236eaa6eaf0ce1d20ebfa493
+ms.openlocfilehash: d8982dda38df92c94e7dac4b5a1cf451bab3a5ce
 
 
 ---
@@ -55,7 +55,9 @@ ms.openlocfilehash: c59bf8bfdee095ebc0a9afe07f2c43beb77e772d
 
 <!--**Procedure**: *This is the first “step”. Make titles H2’s and short and clear – H2’s appear in the right pane on the web page and are important for navigation.*-->
 
-## <a name="a-namecreateclusteracreate-the-cluster"></a><a name="CreateCluster"></a>建立叢集
+<a name="CreateCluster">
+</a>
+## 建立叢集
 
 完成必要條件之後，第一個步驟是建立一個包含兩部 SQL Server 和一部見證伺服器的「Windows Server 容錯移轉叢集」。  
 
@@ -297,7 +299,7 @@ Repeat these steps on the second SQL Server.
 8. 在 [選取初始資料同步處理] 頁面中，選取 [完整]，然後指定一個共用網路位置。 針對位置，請使用[您所建立的備份共用](#backupshare)。 在此範例中是 **\\\\\<第一部 SQL 電腦\>\Backup\**。按 [下一步]**。
 
    >[!NOTE]
-   >完整同步處理會完整備份第一個 SQL Server 執行個體上的資料庫，然後將其還原到第二個執行個體。 就大型資料庫而言，不建議進行完整同步處理，因為可能費時很久。 您可以手動備份並使用 `NO RECOVERY` 來還原備份，以縮短此時間。 如果在設定「可用性群組」之前已經使用 `NO RECOVERY` 在第二部 SQL Server 上還原資料庫，請選擇 [僅聯結]。 如果您想要在設定「可用性群組」之後進行備份，請選擇 [略過初始資料同步處理]。
+   >完整同步處理會完整備份第一個 SQL Server 執行個體上的資料庫，然後將它還原到第二個執行個體。 就大型資料庫而言，不建議進行完整同步處理，因為可能費時很久。 您可以手動備份並使用 `NO RECOVERY` 來還原備份，以縮短此時間。 如果在設定「可用性群組」之前已經使用 `NO RECOVERY` 在第二部 SQL Server 上還原資料庫，請選擇 [僅聯結]。 如果您想要在設定「可用性群組」之後進行備份，請選擇 [略過初始資料同步處理]。
 
     ![新增 AG 精靈：選取初始資料同步處理](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/70-datasynchronization.png)
 
@@ -504,6 +506,6 @@ SQLCMD 連線會自動連線到任何一個裝載主要複本的 SQL Server 執�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

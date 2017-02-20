@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/28/2016
+ms.date: 01/25/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 33508e0b5a74cb37201ee926e297897ac0a73fcf
+ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
+ms.openlocfilehash: c853d61257493d73cd0f8a51a15f0389e1e83cf4
 
 
 ---
@@ -35,7 +35,7 @@ Deputy 與 Azure AD 整合提供下列優點：
 如要設定 Azure AD 與 Deputy 的整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 已啟用 Deputy 單一登入功能的訂用帳戶
+* 已啟用 Deputy 單一登入 (SSO) 功能的訂用帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -109,19 +109,14 @@ Deputy 與 Azure AD 整合提供下列優點：
 3. 在 [設定應用程式設定] 對話方塊頁面上，如果您想要以 **IDP 起始模式**設定應用程式，請執行下列步驟，然後按 [下一步]：
    
     ![設定單一登入](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_04.png)
-   
-    a. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<your-subdomain>.<region>.deputy.com`。
-   
-    b. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<your-subdomain>.<region>.deputy.com/exec/devapp/samlacs`。
-   
-    c. 按 [下一步] 。
+  1. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<your-subdomain>.<region>.deputy.com`。
+  2. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<your-subdomain>.<region>.deputy.com/exec/devapp/samlacs`。
+  3. 按 [下一步] 。
 4. 如果您想要在 [設定應用程式設定] 對話方塊頁面上以 **SP 起始模式**設定應用程式，則請按一下 [顯示進階設定 (選擇性)]，然後輸入**登入 URL** 並按 [下一步]。
    
     ![設定單一登入](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_05.png)
-   
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<your-subdomain>.<region>.deputy.com`。
-   
-    b. 按 [下一步] 。
+   1. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<your-subdomain>.<region>.deputy.com`。
+   2. 按 [下一步] 。
    
    > [!NOTE]
    > Deputy 區域尾碼是選擇性的，或者應該使用下列其中一個︰au | na | eu |as |la |af |an |ent-au |ent-na |ent-eu |ent-as | ent-la | ent-af | ent-an
@@ -130,27 +125,21 @@ Deputy 與 Azure AD 整合提供下列優點：
 5. 在 [設定在 Deputy 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
    
     ![設定單一登入](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_06.png)
-   
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+   1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
 6. 瀏覽至下列 URL：https://(your-subdomain).deputy.com/exec/config/system_config。 移至 [安全性設定]，然後按一下 [編輯]。
    
     ![設定單一登入](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_004.png)
 7. 在 Azure 傳統入口網站的 [設定在 Deputy 單一登入] 頁面上， 複製 [SAML SSO URL]。 
 8. 在此 [安全性設定]  頁面上，執行下列步驟。
    
-    ![設定單一登入](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_005.png)
-   
-    a. 啟用**社交登入**。
-   
-    b. 在記事本中開啟您的 Base64 編碼的憑證，將其內容複製到剪貼簿，然後貼到 [OpenSSL 憑證] 文字方塊。
-   
-    c. 在 [SAM SSO URL] 文字方塊中，輸入︰`https://<your subdomain>.deputy.com/exec/devapp/samlacs?dpLoginTo=<saml sso url>`
-   
-    d. 在 [SAM SSO URL] 文字方塊中，以您的子網域取代 `<your subdomain>`。
-   
-    e. 在 [SAM SSO URL] 文字方塊中，以您從 Azure 傳統入口網站複製的 SAML SSO URL 取代 `<saml sso url>`。
-   
-    f. 按一下 [儲存設定] 。
+![設定單一登入](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_005.png)
+
+   1. 啟用**社交登入**。
+   2. 在記事本中開啟您的 Base64 編碼的憑證，將其內容複製到剪貼簿，然後貼到 [OpenSSL 憑證] 文字方塊。
+   3. 在 [SAM SSO URL] 文字方塊中，輸入︰`https://<your subdomain>.deputy.com/exec/devapp/samlacs?dpLoginTo=<saml sso url>`
+   4. 在 [SAM SSO URL] 文字方塊中，以您的子網域取代 `<your subdomain>`。
+   5. 在 [SAM SSO URL] 文字方塊中，以您從 Azure 傳統入口網站複製的 SAML SSO URL 取代 `<saml sso url>`。
+   6. 按一下 [儲存設定] 。
 9. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
@@ -178,25 +167,20 @@ Deputy 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-deputy-tutorial/create_aaduser_05.png)
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+
+   1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+   2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+   3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-deputy-tutorial/create_aaduser_06.png)
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+   1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+   2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+   3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-deputy-tutorial/create_aaduser_07.png)
@@ -204,9 +188,8 @@ Deputy 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-deputy-tutorial/create_aaduser_08.png)
    
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下 [完成]。   
+   1. 記下 [新密碼] 的值。
+   2. 按一下 [完成]。   
 
 ### <a name="creating-a-deputy-test-user"></a>建立 Deputy 測試使用者
 若要讓 Azure AD 使用者可以登入 Deputy，則必須將他們佈建到 Deputy。 Deputy 需以手動的方式佈建。
@@ -215,21 +198,18 @@ Deputy 與 Azure AD 整合提供下列優點：
 1. 以系統管理員身分登入您的 Deputy 公司網站。
 2. 在導覽窗格的頂端，按一下 [人員] 。
    
-   ![人員](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_001.png "People")
+   ![人員](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_001.png "人員")
 3. 按一下 [新增人員] 按鈕，然後按一下 [新增一個人]。
    
-   ![新增人員](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_002.png "Add People")
+   ![新增人員](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_002.png "新增人員")
 4. 執行下列步驟，然後按一下 [儲存並邀請]。
    
-   ![新使用者](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_003.png "New User")
+   ![新增使用者](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_003.png "新增使用者")
    
-   a. 在 [名稱] 文字方塊中，輸入 **Britta** 和 **Simon**。  
-   
-   b. 在 [電子郵件] 文字方塊中，輸入您要佈建的 Azure AD 帳戶的電子郵件地址。
-   
-   c. 在 [公司] 文字方塊中，輸入企業名稱。
-   
-   d. 按一下 [儲存並邀請] 按鈕。
+  1. 在 [名稱] 文字方塊中，輸入 **Britta** 和 **Simon**。  
+  2. 在 [電子郵件] 文字方塊中，輸入您要佈建的 Azure AD 帳戶的電子郵件地址。
+  3. 在 [公司] 文字方塊中，輸入企業名稱。
+  4. 按一下 [儲存並邀請] 按鈕。
    
    > [!NOTE]
    > AAD 帳戶的持有者會收到一封電子郵件，並遵循連結在啟用其帳戶前進行確認。 您可以使用任何其他的 Deputy 使用者帳戶建立工具或 Deputy 提供的 API 來佈建 AAD 使用者帳戶。
@@ -286,6 +266,6 @@ Deputy 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
 translationtype: Human Translation
-ms.sourcegitcommit: 36c9a33fc0fa1b71b3dde22a6dfd472eb569b650
-ms.openlocfilehash: 28a18ac0e33c0cccbb97d31dd34e8286ff566852
+ms.sourcegitcommit: ab688288c7ae0d6bebdff5156fad6f7f5e9b4224
+ms.openlocfilehash: e10bf8f7cbae2b81d22823ff74fe652c6bcb2da3
 
 
 ---
@@ -56,7 +56,7 @@ ms.openlocfilehash: 28a18ac0e33c0cccbb97d31dd34e8286ff566852
 
 **Set hive.exec.reducer.bytes.per.reducer** – 資料若未壓縮，預設值就很適用。  資料若有壓縮，則應縮減歸納器的大小。  
 
-**Set hive.tez.container.size** – 在每個節點中，記憶體會由 yarn.nodemanager.resource.memory-mb 指定，且預設應該會在 HDI 叢集上正確設定。  如需在 YARN 中設定適當記憶體的詳細資訊，請參閱這篇文章。
+**Set hive.tez.container.size** – 在每個節點中，記憶體會由 yarn.nodemanager.resource.memory-mb 指定，且預設應該會在 HDI 叢集上正確設定。  如需在 YARN 中設定適當記憶體的詳細資訊，請參閱這篇[文章](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-hive-out-of-memory-error-oom)。
 
 I/O 密集工作負載可以透過減少 Tez 容器大小，而從更符合平行處理原則受益。 這會讓使用者獲得更多容器，而增加並行能力。  不過，某些 Hive 查詢需要大量的記憶體 (例如 MapJoin)。  如果工作沒有足夠的記憶體，您會在執行階段期間遇到記憶體不足的例外狀況。  如果您遇到記憶體不足的例外狀況，則應增加記憶體。   
 
@@ -94,6 +94,6 @@ I/O 密集工作負載可以透過減少 Tez 容器大小，而從更符合平�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 
