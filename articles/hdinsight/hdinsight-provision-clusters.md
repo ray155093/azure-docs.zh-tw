@@ -13,7 +13,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/06/2017
+ms.date: 02/17/2017
 ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
@@ -22,8 +22,6 @@ ms.openlocfilehash: f014b92516879a0255dda3736bf5af6142555d92
 
 ---
 # <a name="create-windows-based-hadoop-clusters-in-hdinsight"></a>在 HDInsight 中建立 Windows 型 Hadoop 叢集
-
-[!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
 Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集上的作業。 Azure 將個別節點安裝和設定的實作細節抽象化，因此您必須提供一般組態資訊。 您會在本文中學習這些組態設定。
 
