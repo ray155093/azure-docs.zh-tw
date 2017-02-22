@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/07/2017
+ms.date: 02/09/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 049f8ecec38a518276c6deea6a285a59d1401de6
-ms.openlocfilehash: 318ec4a2b807aaed5c61272016d0957d6e6f5004
+ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
+ms.openlocfilehash: 894f94fdefe081679b1e35183bd4127be35cd33c
 
 
 ---
@@ -35,10 +35,10 @@ ms.openlocfilehash: 318ec4a2b807aaed5c61272016d0957d6e6f5004
 6. 公司 A 將需要擁有支援 MFA 的適當進階 Azure AD SKU。 公司 B 的使用者將從公司 A 取用此授權。
 7. 總而言之，發出邀請的租用戶*一律*必須負責來自合作夥伴組織之 B2B 共同作業使用者的 MFA，而不是由合作夥伴組織本身負責 (即使合作夥伴組織具有 MFA 能力)。 在未來的版本中，我們會讓發出邀請的組織信任特定合作夥伴組織的 MFA，而非使用發出邀請之組織的 MFA。
 
-## <a name="setting-up-mfa-for-b2b-users"></a>為 B2B 使用者設定 MFA
+## <a name="setting-up-mfa-for-b2b-collaboration-users"></a>為 B2B 共同作業使用者設定 MFA
 若要探索如何輕鬆地為 B2B 共同作業使用者設定 MFA，請參閱[此影片](https://channel9.msdn.com/Blogs/Azure/b2b-conditional-access-setup)以了解作法。
 
-## <a name="b2b-users-mfa-experience-for-offer-redemption"></a>方案兌換的 B2B 使用者 MFA 體驗
+## <a name="b2b-collaboration-users-mfa-experience-for-offer-redemption"></a>方案兌換的 B2B 共同作業使用者 MFA 體驗
 查看下面的動畫以了解兌換體驗，如[此影片](https://channel9.msdn.com/Blogs/Azure/MFA-redemption)中所示。
 
 ## <a name="mfa-reset-for-b2b-collaboration-users"></a>B2B 共同作業使用者的 MFA 重設
@@ -76,14 +76,15 @@ ms.openlocfilehash: 318ec4a2b807aaed5c61272016d0957d6e6f5004
 
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Azure Active Directory 系統管理員如何新增 B2B 共同作業使用者？](active-directory-b2b-admin-add-users.md)
-* [資訊工作者如何新增 B2B 共同作業使用者？](active-directory-b2b-add-guest-to-role.md)
+* [資訊工作者如何新增 B2B 共同作業使用者？](active-directory-b2b-iw-add-users.md)
 * [B2B 共同作業邀請電子郵件的元素](active-directory-b2b-invitation-email.md)
 * [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
 * [Azure AD B2B 共同作業授權](active-directory-b2b-licensing.md)
 * [針對 Azure Active Directory B2B 共同作業問題進行疑難排解](active-directory-b2b-troubleshooting.md)
 * [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
 * [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
-* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
+* [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
 
 
 

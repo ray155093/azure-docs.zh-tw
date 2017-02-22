@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/25/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3c0f17c4ff79bab7f5b13f42cd31e170780fc0c2
+ms.sourcegitcommit: 2e7815702f2d2f4ce935826c4769838727a83696
+ms.openlocfilehash: 7d1be1dea6ed4ecda196743f592456a5b977e9b0
 
 
 ---
@@ -53,8 +53,10 @@ Azure AD 應用程式 Proxy：
 * 您想要公開給不同裝置上豐富應用程式的 Web API  
 * 裝載在遠端桌面閘道之後的應用程式  
 
-## <a name="how-does-it-work"></a>運作方式
+## <a name="how-does-the-service-work-with-connectors"></a>服務如何搭配連接器使用？
 應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。 透過此連接器，您就不需要開放任何輸入連接埠，或在 DMZ 中放置任何物件。 如果您的應用程式有大量的流量，您可以新增更多連接器，而且該服務會負責負載平衡。 連接器是無狀態的，而且必要時，會從雲端提取所有內容。
+
+如需有關連接器的詳細資訊，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)。 
 
 當使用者從遠端存取應用程式時，他們會連線到已發佈的端點。 使用者在 Azure AD 中進行驗證，然後透過連接器路由至內部部署應用程式。
 
@@ -71,18 +73,21 @@ Azure AD 應用程式 Proxy：
 ### <a name="single-sign-on"></a>單一登入
 Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應用程式或宣告感知應用程式提供單一登入 (SSO)。 如果您的應用程式使用 IWA，應用程式 Proxy 會模擬使用 Kerberos 限制委派的使用者來提供 SSO。 如果您有信任 Azure Active Directory 的宣告感知應用程式，則可以使用 SSO，因為使用者已經由 Azure AD 驗證。
 
+如需有關 Kerberos 的詳細資訊，請參閱[有關 Kerberos 限制委派 (KCD) 您想要知道的一切](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/21/all-you-want-to-know-about-kerberos-constrained-delegation-kcd)。
+
 ## <a name="how-to-get-started"></a>如何開始使用
 請確定您有 Azure AD 基本或進階的訂用帳戶，以及您是全域管理員的 Azure AD 目錄。 您也需要 Azure AD 基本或進階的授權，目錄系統管理員和使用者才能存取應用程式。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md) 。
 
 設定應用程式 Proxy 是以兩個步驟完成：
 
-1. [啟用應用程式 Proxy 並設定連接器](active-directory-application-proxy-enable.md)    
+1. [啟用應用程式 Proxy 並設定連接器](active-directory-application-proxy-enable.md)。    
 2. [發佈應用程式](active-directory-application-proxy-publish.md) ：使用快速且簡單的精靈發佈內部部署應用程式並提供遠端存取。
 
 ## <a name="whats-next"></a>後續步驟
 應用程式 Proxy 還有其他更多用途：
 
 * [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
+* [使用現有的內部部署 Proxy 伺服器](application-proxy-working-with-proxy-servers.md) 
 * [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
 * [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
 * [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
@@ -92,6 +97,6 @@ Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

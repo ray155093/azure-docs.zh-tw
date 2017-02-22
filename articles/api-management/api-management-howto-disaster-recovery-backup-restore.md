@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 809fc7a5454c814d1d3edb8ebcdd40978952bc2c
-ms.openlocfilehash: d05404ed6893978a857a3ad66d5129998272ebbd
+ms.sourcegitcommit: 1c812fc31011b57f2cdb357574877d6b7125280f
+ms.openlocfilehash: c5ae5049588d5bc7628442942e71f182a425fead
 
 ---
 # <a name="how-to-implement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>如何在 Azure API 管理中使用服務備份和還原實作災害復原
@@ -148,7 +148,7 @@ request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
 
 * 在要求本文中指定的**容器****必須存在**。
 * 備份進行時，請「避免嘗試任何服務管理作業」  ，如提升或降低 SKU、變更網域名稱等。
-* 備份還原的 **保證僅限建立後的 7 天內** 。
+* 備份還原的**保證僅限建立後的 30 天內**。
 * 備份**不包含**用來建立分析報告的**使用量資料**。 請使用 [Azure API 管理 REST API][Azure API Management REST API] 來定期擷取分析報告，以利妥善保存。
 * 執行服務備份的頻率會影響您的復原點目標。 為了盡可能縮小，建議您實施定期備份，以及在針對 API 管理服務做出重要變更後執行隨選備份。
 * 在備份作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更****可能不會納入備份中，因此可能會遺失**。
@@ -213,6 +213,6 @@ request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

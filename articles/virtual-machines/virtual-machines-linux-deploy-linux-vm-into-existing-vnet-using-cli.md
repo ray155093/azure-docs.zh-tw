@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 63485f0c9e151db22f23d291e2a4425dd01fb7ee
-ms.openlocfilehash: b22ac95ee11fe059d36a9416434a14814da1ee7d
+ms.sourcegitcommit: 34e9b401444aeec233d846a6b52f4a452c54cdaf
+ms.openlocfilehash: 106571bf36454ab20e75cb4ee42b2aca787a9d5a
 
 
 ---
@@ -53,12 +53,9 @@ az vm create \
     --resource-group myResourceGroup \
     --name myVM \
     --image Debian \
-    --admin-username ops \
+    --admin-username azureuser \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --nics myNic \
-    --vnet myVnet \
-    --subnet-name mySubnet \
-    --nsg myNetworkSecurityGroup
+    --nics myNic
 ```
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
@@ -154,17 +151,23 @@ az network nic create \
 
 使用 [az vm create](/cli/azure/vm#create) 建立 VM。 如需使用旗標搭配 Azure CLI 2.0 (預覽) 來部署完整 VM 的詳細資訊，請參閱[使用 Azure CLI 建立完整的 Linux 環境](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
+下列範例使用 Azure 受控磁碟建立 VM。 這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md)。 如果您想要使用非受控磁碟，請參閱下列其他附註。
+
 ```azurecli
 az vm create \
     --resource-group myResourceGroup \
     --name myVM \
     --image Debian \
-    --admin-username ops \
+    --admin-username azureuser \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --nics myNic \
-    --vnet myVnet \
-    --subnet-name mySubnet \
-    --nsg myNetworkSecurityGroup
+    --nics myNic
+```
+
+如果您使用受控磁碟，請略過此步驟。 如果您想要使用使用預設未受控磁碟，則需要將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟： 
+
+```azurecli
+    --use-unmanaged-disk \
+    --storage-account mystorageaccount
 ```
 
 我們使用 CLI 旗標來呼叫現有的資源，以指示 Azure 將 VM 部署在現有的網路內。 重申一次，虛擬網路和子網路部署之後，就可以在 Azure 區域內保持為靜態或永久性資源。 在此範例中，我們沒有建立公用 IP 位址並將它指派給 VNic，因此無法透過網際網路公開地存取此 VM。 如需詳細資訊，請參閱[使用 Azure CLI 建立具有靜態公用 IP 的 VM](../virtual-network/virtual-network-deploy-static-pip-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
@@ -178,6 +181,6 @@ az vm create \
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

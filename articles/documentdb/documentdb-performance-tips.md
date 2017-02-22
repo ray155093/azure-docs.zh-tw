@@ -13,16 +13,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 01/19/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 25c48bbd0edafa4c6e4e478c471e11b6d69e00c7
-ms.openlocfilehash: e34571efac5d1a5e75d5e5d2cab75c91dbce71c8
+ms.sourcegitcommit: abf65ccbf8806d6581135f41224ef46840715f85
+ms.openlocfilehash: 51e7188530574703a178c5927092d9bc9d15a45f
 
 
 ---
 # <a name="performance-tips-for-documentdb"></a>DocumentDB 的效能秘訣
-Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得延遲與輸送量保證的情況下順暢地調整。 使用 DocumentDB 時，您不須進行主要的架構變更，或是撰寫複雜的程式碼來調整您的資料庫。 相應增加和減少就像進行單一 API 呼叫或 [SDK 方法呼叫](documentdb-performance-levels.md#changing-performance-levels-using-the-net-sdk)一樣簡單。 不過，由於 DocumentDB 是透過網路呼叫存取，所以您可以進行用戶端最佳化以達到最高效能。
+Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得延遲與輸送量保證的情況下順暢地調整。 使用 DocumentDB 時，您不須進行主要的架構變更，或是撰寫複雜的程式碼來調整您的資料庫。 相應增加和減少就像進行單一 API 呼叫或 [SDK 方法呼叫](documentdb-set-throughput.md#set-throughput-sdk)一樣簡單。 不過，由於 DocumentDB 是透過網路呼叫存取，所以您可以進行用戶端最佳化以達到最高效能。
 
 如果您詢問「如何改善我的資料庫效能？ 」，請考慮下列選項：
 
@@ -36,11 +36,11 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
    1. 閘道模式 (預設值)
    2. 直接模式
 
-      所有 SDK 平台都支援閘道模式並設為預設值。  如果您的應用程式在有嚴格防火牆限制的公司網路中執行，則閘道模式會是最佳的選擇，因為它會使用標準 HTTPS 連接埠與單一端點。 不過，對於效能的影響是每次讀取或寫入 DocumentDB 資料時，閘道模式都會涉及額外的網路躍點。   因此，直接模式因為網路躍點較少，所以可提供較佳的效能。
+      所有 SDK 平台都支援閘道模式並設為預設值。  如果您的應用程式在有嚴格防火牆限制的公司網路中執行，則閘道模式會是最佳的選擇，因為它會使用標準 HTTPS 連接埠與單一端點。 不過，對於效能的影響是每次讀取或寫入 DocumentDB 資料時，閘道模式都會涉及額外的網路躍點。 因此，直接模式因為網路躍點較少，所以可提供較佳的效能。
 <a id="use-tcp"></a>
 2. **連接原則︰使用 TCP 通訊協定**
 
-    運用直接模式時，有兩個可用的通訊協定選項︰
+    使用直接模式時，有兩個可用的通訊協定選項：
 
    * TCP
    * HTTPS
@@ -51,19 +51,21 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
      連接模式設定於使用 ConnectionPolicy 參數建構 DocumentClient 執行個體期間。 如果使用直接模式，也可以在 ConnectionPolicy 參數內設定 Protocol。
 
-         var serviceEndpoint = new Uri("https://contoso.documents.net");
-         var authKey = new "your authKey from Azure Mngt Portal";
-         DocumentClient client = new DocumentClient(serviceEndpoint, authKey,
-         new ConnectionPolicy
-         {
+    ```C#
+    var serviceEndpoint = new Uri("https://contoso.documents.net");
+    var authKey = new "your authKey from the Azure portal";
+    DocumentClient client = new DocumentClient(serviceEndpoint, authKey,
+    new ConnectionPolicy
+    {
+        ConnectionMode = ConnectionMode.Direct,
+        ConnectionProtocol = Protocol.Tcp
+    });
+    ```
 
-             ConnectionMode = ConnectionMode.Direct,
-             ConnectionProtocol = Protocol.Tcp
-         });
+    因為只有直接模式支援 TCP，所以如果使用閘道模式，則 HTTPS 通訊協定一律用來與閘道通訊，並忽略 ConnectionPolicy 中的 Protocol 值。
 
-     因為只有直接模式支援 TCP，所以如果使用閘道模式，則 HTTPS 通訊協定一律用來與閘道通訊，並忽略 ConnectionPolicy 中的 Protocol 值。
+    ![DocumentDB 連接原則的圖例](./media/documentdb-performance-tips/azure-documentdb-connection-policy.png)
 
-     ![DocumentDB 連接原則的圖例](./media/documentdb-performance-tips/azure-documentdb-connection-policy.png)
 3. **呼叫 OpenAsync 以避免第一次要求的啟動延遲**
 
     根據預設，第一個要求會因為必須擷取位址路由表而有較高的延遲。 若要避免此第一次要求的啟動延遲，您應該在初始化期間呼叫 OpenAsync() 一次，如下所示。
@@ -87,6 +89,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 2. **在應用程式存留期內使用單一 DocumentDB 用戶端**
 
     請注意，每個 DocumentClient 執行個體都具備執行緒安全，並且在直接模式中運作時執行有效率的連接管理和位址快取。 若要藉由 DocumentClient 獲得有效率的連接管理和更佳的效能，建議在應用程式存留期內對每個 AppDomain 使用單一 DocumentClient 執行個體。
+
    <a id="max-connection"></a>
 3. **增加每部主機的 System.Net MaxConnections**
 
@@ -119,7 +122,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
    <a id="tune-page-size"></a>
 9. **調整查詢/讀取摘要的頁面大小以獲得更好的效能**
 
-    使用讀取摘要功能 (亦即 ReadDocumentFeedAsync) 執行大量文件讀取時，或發出 DocumentDB SQL 查詢時，如果結果集太大，則會以分段方式傳回結果。 根據預設，會以 100 個項目或 1 MB 的區塊傳回結果 (以先達到的限制為準)。
+    使用讀取摘要功能 (例如 ReadDocumentFeedAsync) 執行大量文件讀取時，或發出 DocumentDB SQL 查詢時，如果結果集太大，則會以分段方式傳回結果。 根據預設，會以 100 個項目或 1 MB 的區塊傳回結果 (以先達到的限制為準)。
 
     若要減少擷取所有適用結果所需的網路來回行程次數，您可以使用 x-ms-max-item-count 要求標頭將頁面大小最多增加至 1000。 在您只需要顯示幾個結果的情況下 (例如，您的使用者介面或應用程式 API 一次只傳回 10 筆結果)，您也可以將頁面大小縮小為 10，以降低讀取和查詢所耗用的輸送量。
 
@@ -129,6 +132,18 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 10. **增加執行緒/工作數目**
 
     請參閱＜網路＞一節中的[增加執行緒/工作數目](#increase-threads)。
+    
+11. **使用 64 位元主機處理序**
+
+    DocumentDB SDK 適用於 32 位元主機處理序。 不過，若使用跨分割區查詢，建議您使用 64 位元主機處理以獲得改進的效能。 下列的應用程式類型預設使用 32 位元主機處理序，若要將其變更為 64 位元，請根據您的應用程式類型依照下列步驟執行：
+    
+    - 針對「可執行檔」應用程式，做法是在 [專案屬性] 視窗中的 [建置] 索引標籤上取消選取 [建議使用 32 位元] 選項。 
+    
+    - 針對 VSTest 型的測試專案，可以從 [Visual Studio 測試] 功能表選項，選取 [測試]->[測試設定]->[以 X64 做為預設處理器架構] 來完成。
+    
+    - 針對本機部署的 ASP.NET Web 應用程式，可以在 [工具]->[選項]->[專案和方案]->[Web 專案] 之下，選取 [將 64 位元版本的 IIS Express 用於網站和專案] 來完成。
+    
+    - 針對部署於 Azure 上的 ASP.NET Web 應用程式，可以在 Azure 入口網站上的 [應用程式設定] 中選擇 [以 64 位元做為平台] 來完成。
 
 ## <a name="indexing-policy"></a>索引原則
 1. **使用延遲索引加快尖峰時間擷取速率**
@@ -142,10 +157,12 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
     DocumentDB 的索引編製原則也可讓您利用檢索路徑 (IndexingPolicy.IncludedPaths 和 IndexingPolicy.ExcludedPaths)，指定要在索引編製中包含或排除的文件路徑。 在事先知道查詢模式的案例中，使用檢索路徑可改善寫入效能並降低索引儲存空間，因為檢索成本與檢索的唯一路徑數目直接相互關聯。  例如，以下程式碼示範如何將文件的整個區段 (也稱為 樹狀子目錄) 自索引編製作業中排除 (透過使用 "*" 萬用字元)。
 
-        var collection = new DocumentCollection { Id = "excludedPathCollection" };
-        collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/*" });
-        collection.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/nonIndexedContent/*");
-        collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
+    ```C#
+    var collection = new DocumentCollection { Id = "excludedPathCollection" };
+    collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/*" });
+    collection.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/nonIndexedContent/*");
+    collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
+    ```
 
     如需詳細資訊，請參閱 [DocumentDB 索引編製原則](documentdb-indexing-policies.md)。
 
@@ -162,18 +179,20 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
     若要測量任何作業 (建立、更新或刪除) 的負荷，請檢查 x-ms-request-charge 標頭 (或 .NET SDK 的 ResourceResponse<T> 或 FeedResponse<T> 中同等的 RequestCharge 屬性) 來測量這些作業所耗用的要求單位數量。
 
-        // Measure the performance (request units) of writes
-        ResourceResponse<Document> response = await client.CreateDocumentAsync(collectionSelfLink, myDocument);
-        Console.WriteLine("Insert of document consumed {0} request units", response.RequestCharge);
-        // Measure the performance (request units) of queries
-        IDocumentQuery<dynamic> queryable = client.CreateDocumentQuery(collectionSelfLink, queryString).AsDocumentQuery();
-        while (queryable.HasMoreResults)
-             {
-                  FeedResponse<dynamic> queryResponse = await queryable.ExecuteNextAsync<dynamic>();
-                  Console.WriteLine("Query batch consumed {0} request units", queryResponse.RequestCharge);
-             }
+    ```C#
+    // Measure the performance (request units) of writes
+    ResourceResponse<Document> response = await client.CreateDocumentAsync(collectionSelfLink, myDocument);
+    Console.WriteLine("Insert of document consumed {0} request units", response.RequestCharge);
+    // Measure the performance (request units) of queries
+    IDocumentQuery<dynamic> queryable = client.CreateDocumentQuery(collectionSelfLink, queryString).AsDocumentQuery();
+    while (queryable.HasMoreResults)
+         {
+              FeedResponse<dynamic> queryResponse = await queryable.ExecuteNextAsync<dynamic>();
+              Console.WriteLine("Query batch consumed {0} request units", queryResponse.RequestCharge);
+         }
+    ```             
 
-    在此標頭中傳回的要求費用是佈建輸送量的一小部分 (也就是 2000 RU / 秒)。 例如，如果上述查詢傳回 1000 份 1KB 文件，則作業成本會是 1000。 因此在一秒內，伺服器在節流後續要求前，只會接受兩個這類要求。 如需詳細資訊，請參閱[要求單位](documentdb-request-units.md)和[要求單位計算機](https://www.documentdb.com/capacityplanner)。
+    在此標頭中傳回的要求費用是佈建輸送量的一小部分 (也就是 2000 RU / 秒)。 例如，如果前述查詢傳回 1000 份 1KB 文件，則作業成本會是 1000。 因此在一秒內，伺服器在節流後續要求前，只會接受兩個這類要求。 如需詳細資訊，請參閱[要求單位](documentdb-request-units.md)和[要求單位計算機](https://www.documentdb.com/capacityplanner)。
 <a id="429"></a>
 2. **處理速率限制/要求速率太大**
 
@@ -199,6 +218,6 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/02/2017
+ms.date: 02/10/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: eff605d7a3c493e5797bc9c3c805c103828c93e3
-ms.openlocfilehash: ada7dd484805040d7f1d55081bddf4ae9f821a4b
+ms.sourcegitcommit: 0eef684115f9c21ea61502a10576f74cac0ace8e
+ms.openlocfilehash: 2054cb65b5192e08fc64e56f59a456fc911f0829
 
 
 ---
@@ -100,17 +100,18 @@ Azure AD 有一組固定的字元、密碼強度，以及帳戶鎖定需求，�
 
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Azure Active Directory 系統管理員如何新增 B2B 共同作業的使用者？](active-directory-b2b-admin-add-users.md)
-* [資訊工作者如何新增 B2B 共同作業使用者？](active-directory-b2b-how-it-works.md)
+* [資訊工作者如何新增 B2B 共同作業使用者？](active-directory-b2b-iw-add-users.md)
 * [B2B 共同作業邀請電子郵件的元素](active-directory-b2b-invitation-email.md)
 * [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
 * [Azure AD B2B 共同作業授權 (英文)](active-directory-b2b-licensing.md)
 * [疑難排解 Azure Active Directory B2B 共同作業](active-directory-b2b-troubleshooting.md)
 * [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
+* [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

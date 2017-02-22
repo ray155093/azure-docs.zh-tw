@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/02/2017
+ms.date: 02/13/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: c9cf1540c0f8d16b0a5cdbedc78ac58cd5686107
-ms.openlocfilehash: 51ebadc241892ebc6fb26b29955e3030ae1bdcb3
+ms.sourcegitcommit: 68f1088a7303b5eddecc9ff99f7330c0462baafc
+ms.openlocfilehash: 9fb517a08fb56a1adb9e23f820aa2e4aa20eacf6
 
 
 ---
@@ -49,10 +49,8 @@ Azure MFA 的 NPS 擴充功能可透過 [Azure Multi-Factor Authentication 授�
 
 ### <a name="libraries"></a>程式庫
 
-NPS 擴充功能需要兩個程式庫。 設定程序進行期間會安裝這些程式庫︰
-
--   Microsoft Visual Studio 2013 C++ 可轉散發套件 (X64)
--   適用於 Windows PowerShell 1.1.166 版本的 Microsoft Azure Active Directory 模組
+-    [適用於 Visual Studio 2013 的 Visual C++ 可轉散發套件 (X64)](https://www.microsoft.com/download/details.aspx?id=40784)
+-    [適用於 Windows PowerShell 1.1.1660 版本的 Microsoft Azure Active Directory 模組](https://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
@@ -64,19 +62,22 @@ NPS 擴充功能需要兩個程式庫。 設定程序進行期間會安裝這些
 
 ## <a name="install-the-nps-extension"></a>安裝 NPS 擴充功能
 
+> [!IMPORTANT]
+> 在與 VPN 存取點不同的伺服器上安裝 NPS 擴充功能。 
+
 若要安裝 Azure MFA 的 NPS 擴充功能：
 
-1.  從 Microsoft 下載中心[下載 NPS 擴充功能](https://aka.ms/npsmfa)
-2.  將二進位檔複製到您要設定的網路原則伺服器
-3.  執行 setup.exe 並遵循安裝指示
+1.    從 Microsoft 下載中心[下載 NPS 擴充功能](https://aka.ms/npsmfa)
+2.    將二進位檔複製到您要設定的網路原則伺服器
+3.    執行 setup.exe 並遵循安裝指示
 
 安裝完成後，安裝程式會在下列位置建立 PowerShell 指令碼︰`C:\Program Files\Microsoft\AzureMfa\Config` (其中 C:\ 是您的安裝磁碟機)。 此 PowerShell 指令碼會執行下列動作：
 
--   建立自我簽署憑證。
--   讓憑證的公開金鑰與 Azure AD 的服務主體產生關聯。
--   將憑證儲存在本機電腦的憑證存放區。
--   將憑證的私密金鑰存取權授與給網路使用者。
--   重新啟動 NPS。
+-    建立自我簽署憑證。
+-    讓憑證的公開金鑰與 Azure AD 的服務主體產生關聯。
+-    將憑證儲存在本機電腦的憑證存放區。
+-    將憑證的私密金鑰存取權授與給網路使用者。
+-    重新啟動 NPS。
 
 除非您想要使用自己的憑證 (而非 PowerShell 指令碼產生的自我簽署憑證)，否則請執行 PowerShell 指令碼來完成安裝。
 
@@ -137,7 +138,7 @@ NPS 擴充功能需要兩個程式庫。 設定程序進行期間會安裝這些
 1. 重新啟動 NPS 伺服器。
 2. 確認已如預期安裝用戶端憑證。
 3. 確認憑證已與 Azure AD 上的租用戶相關聯。
-4. 確認可以從執行擴充功能的伺服器存取 https://login.windows.new/。
+4. 確認可以從執行擴充功能的伺服器存取 https://login.windows.net/。
 
 -------------------------------------------------------------
 
@@ -157,6 +158,6 @@ NPS 擴充功能需要兩個程式庫。 設定程序進行期間會安裝這些
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

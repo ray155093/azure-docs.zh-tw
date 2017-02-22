@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 01/13/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 47c3491b067d5e112db589672b68e7cfc7cbe921
-ms.openlocfilehash: b1691d78e4914bd5cf9c75e32f36afceb997a622
+ms.sourcegitcommit: df0ab8e6828033b783449e9478a5884355a7f1fe
+ms.openlocfilehash: 453aa0e98e639872184b697ad8ed91d9545e152f
 
 
 ---
@@ -40,7 +40,8 @@ ms.openlocfilehash: b1691d78e4914bd5cf9c75e32f36afceb997a622
 
 * 基本方案是依照您的資料量收費︰Application Insights 接收的遙測位元組數。 資料量是測量 Application Insights 從應用程式收到的未壓縮 JSON 資料套件的大小。
 * 每個應用程式的第一個 1 GB 是免費的，因此如果只是實驗或開發，您可能不需要付費。
-* 在基本方案中，還可以依照每一 GB 額外付費使用[連續匯出](app-insights-export-telemetry.md)和 [Log Analytics 連接器](https://go.microsoft.com/fwlink/?LinkId=833039&amp;clcid=0x409)，不過它們在 2017 年 3 月初以前是免費的。
+* [即時計量串流](app-insights-live-stream.md)資料不會計入價格用途。
+* 在基本方案中，可以依照每一 GB 額外付費使用[連續匯出](app-insights-export-telemetry.md)，不過它在 2017 年 3 月初以前是免費的。
 
 ### <a name="enterprise-plan"></a>企業方案
 
@@ -49,6 +50,7 @@ ms.openlocfilehash: b1691d78e4914bd5cf9c75e32f36afceb997a622
  * 「節點」是裝載應用程式的實體或虛擬伺服器機器，或是平台即服務 (PaaS) 角色執行個體。
  * 開發用電腦、用戶端瀏覽器、行動裝置不算節點。
  * 如果您的應用程式有數個會傳送遙測的元件，例如 Web 服務和後端背景工作，會將它們分開計算。
+ * [即時計量串流](app-insights-live-stream.md)資料不會計入價格用途。
 * 整個訂用帳戶的收費是依照每一節點，而非每一應用程式。 如果您有五個節點傳送 12 個應用程式的遙測，則是以五個節點計算收費。
 * 雖然費用是按月報價，您的收費僅適用於一個節點從一個應用程式傳送遙測的任何小時。 每小時的費用是月費報價 / 744 (一個月 31 天的小時數)。
 * 每個節點 (資料粒度為小時) 偵測每日 200 MB 的資料量配置。 未使用的資料配置不會帶到隔天。
@@ -66,7 +68,7 @@ ms.openlocfilehash: b1691d78e4914bd5cf9c75e32f36afceb997a622
 
 * 節點的精確計算行為取決於您的應用程式使用哪個 Application Insights SDK。 
   * 若是 SDK 2.2 及之後的版本，Application Insights [Core SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) 或 [Web SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 會將每個應用程式主機當做節點報告，例如實體伺服器與 VM 主機的電腦名稱 (在雲端服務的案例中則是執行個體名稱)。  唯一的例外是只使用 [.NET Core](https://dotnet.github.io/) 和 Application Insights Core SDK 的應用程式，此情況下，所有主機只會報告一個節點，因為不知道主機名稱。 
-  * 若是較早版本的 SDK，Web SDK (https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 的行為就和較新版的 SDK 一樣，不過不論應用程式主機的實際數目是多少，[Core SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) 只會報告一個節點。 
+  * 對於較早版本的 SDK，[Web SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 的行為就和較新版的 SDK 一樣，不過不論實際應用程式主機的數目是多少，[Core SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) 都只會報告一個節點。 
   * 請注意，如果您的應用程式使用 SDK 將 roleInstance 設為某個自訂值，依預設會用相同的值來判斷節點數目。 
   * 如果您使用新的 SDK 版本，搭配從用戶端電腦或行動裝置執行的應用程式，則節點數目可能會傳回很大的數字 (來自大量的用戶端電腦或行動裝置)。 
 
@@ -98,7 +100,7 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 
 * **每日上限。** 根據預設，這會設為一天 500 GB。 當您的應用程式達到上限時，我們會傳送電子郵件並捨棄資料，直到當天結束為止。 若要變更，請使用 [資料量管理] 刀鋒視窗。
 * **[取樣](app-insights-sampling.md)。** 這個機制可減少您的伺服器和用戶端應用程式所傳送的遙測量，計量的扭曲程度最小。
-* **節流**會將資料速率限制在每秒 16000 個事件，平均超過 1 分鐘。 
+* **節流**會將資料速率限制在每秒 32,000 個事件，平均超過 1 分鐘。 
 
 
 如果應用程式超過節流速率會發生什麼事？
@@ -174,6 +176,6 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

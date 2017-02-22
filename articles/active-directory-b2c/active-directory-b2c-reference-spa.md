@@ -15,12 +15,17 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: parakhj
 translationtype: Human Translation
-ms.sourcegitcommit: 96c9425d8f58d3b617330615573a479429f12b11
-ms.openlocfilehash: 44a7cf18afdf6a523c5f7fb03ee49f72cdd22564
+ms.sourcegitcommit: f2eb1f67c5687ac9bd8b94f6480617e6dc87ac9f
+ms.openlocfilehash: ace35adc1cd2745ea11cb60429a1e7892d1f66d3
 
 
 ---
-# <a name="azure-active-directory-b2c-sign-in-for-single-page-apps-using-auth-20-implicit-flow"></a>Azure Active Directory B2C：使用 Auth 2.0 隱含流程的單一頁面應用程式登入
+# <a name="azure-active-directory-b2c-sign-in-for-single-page-apps-using-oauth-20-implicit-flow"></a>Azure Active Directory B2C：使用 OAuth 2.0 隱含流程的單一頁面應用程式登入
+
+> [!NOTE]
+> 此功能仍然處於預覽狀態。
+> 
+
 許多新式應用程式都有一個單頁應用程式前端，主要是以 JavaScript 撰寫。 通常是使用 AngularJS、Ember.js、Durandal.js 等架構來撰寫它們。 主要在瀏覽器上執行的單一頁面和其他 JavaScript 應用程式，在驗證時會面臨一些有趣的挑戰：
 
 * 這些應用程式的安全性特性與傳統伺服器型 Web 應用程式大不相同。
@@ -285,6 +290,6 @@ p=b2c_1_sign_in
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

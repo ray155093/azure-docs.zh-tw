@@ -16,8 +16,8 @@ ms.workload: powerbi
 ms.date: 02/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 11409a498c14abbc95e52ef793564c254df8ec89
-ms.openlocfilehash: 2bd7da95901e7216a84aaa8e1761b491c7217ea3
+ms.sourcegitcommit: 71476ae63d2394e7edefa10b8c71d15c04190290
+ms.openlocfilehash: 299e06bf6d4bd3af5d6dc7496ba9a947f42c19b7
 
 
 ---
@@ -57,21 +57,21 @@ ms.openlocfilehash: 2bd7da95901e7216a84aaa8e1761b491c7217ea3
 
 您應該會看到像這樣的回應：
 
-````
+```
 Checking import state... Publishing
 Checking import state... Succeeded
 ```
 
 > [!NOTE]
-> If your PBIX file contains any direct query connections, run option 7 to update the connection strings.
+> 如果您的 PBIX 檔案包含任何直接查詢連接，請執行選項 7 來更新連接字串。
 
-At this point, you have a Power BI PBIX report imported into your **Workspace**. Now, let's look at how to run the **Power BI Embedded** get started sample web app.
+此時，您已經將 Power BI PBIX 報表匯入到您的**工作區**。 現在我們看一下如何執行 **Power BI Embedded** 開始使用範例 Web 應用程式。
 
-## Run the sample web app
-The web app sample is a sample dashboard that renders reports imported into your **Workspace**. Here's how to configure the web app sample.
+## <a name="run-the-sample-web-app"></a>執行範例 Web 應用程式
+Web 應用程式範例是一個範例儀表板，會轉譯匯入到您**工作區**的報表。 以下說明如何設定 Web 應用程式範例。
 
-1. In the **PowerBI-embedded** Visual Studio solution, right click the **EmbedSample** web application, and choose **Set as StartUp project**.
-2. In **web.config**, in the **EmbedSample** web application, edit the **appSettings**: **AccessKey**, **WorkspaceCollection** name, and **WorkspaceId**.
+1. 在 **PowerBI-embedded** Visual Studio 解決方案中，用滑鼠右鍵按一下 [EmbedSample] Web 應用程式，然後選擇 [設定為啟始專案]。
+2. 在 **web.config** 中，於 **EmbedSample** Web 應用程式中編輯 **appSettings**：**AccessKey**、**WorkspaceCollection** 名稱，及 **WorkspaceId**。
 
     ```
     <appSettings>
@@ -81,37 +81,37 @@ The web app sample is a sample dashboard that renders reports imported into your
         <add key="powerbi:WorkspaceId" value="" />
     </appSettings>
     ```
-3. Run the **EmbedSample** web application.
+3. 執行 **EmbedSample** Web 應用程式。
 
-Once you run the **EmbedSample** web application, the left navigation panel should contain a **Reports** menu. To view the report you imported, expand **Reports**, and click a report. If you imported the [Retail Analysis Sample PBIX](http://go.microsoft.com/fwlink/?LinkID=780547), the sample web app would look like this:
+在您執行 **EmbedSample** Web 應用程式之後，左邊瀏覽窗格應該就會包含一個 [多個報表] 功能表。 若要檢視您匯入的報表，請展開 [多個報表]，然後按一下報表。 如果您匯入了[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)，範例 Web 應用程式看起來就會像這樣：
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-sample-left-nav.png)
 
-After you click a report, the **EmbedSample** web application should look something this:
+在您按一下報表之後，**EmbedSample** Web 應用程式應該看起來像這樣：
 
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
-## Explore the sample code
+## <a name="explore-the-sample-code"></a>探討範例程式碼
 
-The **Microsoft Power BI Embedded** sample is an example dashboard web app that shows you how to integrate **Power BI** reports into your app. It uses a Model-View-Controller (MVC) design pattern to demonstrate best practices. This section highlights parts of the sample code that you can explore within the **PowerBI-embedded** web app solution. The Model-View-Controller (MVC) pattern separates the modeling of the domain, the presentation, and the actions based on user input into three separate classes: Model, View, and Control. To learn more about MVC, see [Learn About ASP.NET](http://www.asp.net/mvc).
+**Microsoft Power BI Embedded** 範例是向您示範如何將 **Power BI** 報告整合到您應用程式中的範例儀表板 Web 應用程式。 它會使用「模型-檢視-控制器」(MVC) 設計樣式來示範最佳作法。 本節重點在於 **PowerBI-embedded** Web 應用程式方案中您可以探討的部分範例程式碼。 「模型-檢視-控制器」(MVC) 樣式會依據使用者在三種個別類型中的輸入來分隔網域、簡報及動作的模型製作：模型、檢視及控制器。 若要詳細了解 MVC，請參閱[了解 ASP.NET](http://www.asp.net/mvc)。
 
-The **Microsoft Power BI Embedded** sample code is separated as follows. Each section includes the file name in the PowerBI-embedded.sln solution so that you can easily find the code in the sample.
+**Microsoft Power BI Embedded** 範例程式碼的各部分如下。 每個區段都包含 PowerBI-embedded.sln 解決方案中的檔案名稱，因此您可以很容易地在範例中找到程式碼。
 
 > [!NOTE]
-> This section is a summary of the sample code that shows how the code was written. To view the complete sample, please load the PowerBI-embedded.sln solution in Visual Studio.
+> 本節是示範程式碼撰寫方式之範例程式碼的摘要。 若要檢視完整範例，請在 Visual Studio 中載入 PowerBI-embedded.sln 解決方案。
 
-### Model
+### <a name="model"></a>模型
 
-The sample has a **ReportsViewModel** and **ReportViewModel**.
+範例有 **ReportsViewModel** 和 **ReportViewModel**。
 
-**ReportsViewModel.cs**: Represents Power BI Reports.
+**ReportsViewModel.cs**：代表 Power BI Reports。
 
     public class ReportsViewModel
     {
         public List<Report> Reports { get; set; }
     }
 
-**ReportViewModel.cs**: Represents a Power BI Report.
+**ReportViewModel.cs**：代表 Power BI Report。
 
     public classReportViewModel
     {
@@ -120,26 +120,26 @@ The sample has a **ReportsViewModel** and **ReportViewModel**.
         public string AccessToken { get; set; }
     }
 
-### Connection string
+### <a name="connection-string"></a>連接字串
 
-The connection string must be in the following format:
+連接字串必須為下列格式：
 
 ```
 Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
 ```
 
-Using common server and database attributes will fail. For example: Server=tcp:MyServer.database.windows.net,1433;Database=MyDatabase,
+使用一般伺服器和資料庫屬性將會失敗。 例如：Server=tcp:MyServer.database.windows.net,1433;Database=MyDatabase,
 
-### View
+### <a name="view"></a>檢視
 
-The **View** manages the display of Power BI **Reports** and a Power BI **Report**.
+**檢視**可管理 Power BI **Reports** 和 **Power BI Report** 的顯示。
 
-**Reports.cshtml**: Iterate over **Model.Reports** to create an **ActionLink**. The **ActionLink** is composed as follows:
+**Reports.cshtml**：反覆執行 **Model.Reports** 來建立 **ActionLink**。 **ActionLink** 是由以下項目組成：
 
-| Part | Description |
+| 部分 | 說明 |
 | --- | --- |
-| Title |Name of the Report. |
-| QueryString |A link to the Report ID. |
+| Title |報表名稱。 |
+| QueryString |報表識別碼的連結。 |
 
     <div id="reports-nav" class="panel-collapse collapse">
         <div class="panel-body">
@@ -155,7 +155,7 @@ The **View** manages the display of Power BI **Reports** and a Power BI **Report
         </div>
     </div>
 
-Report.cshtml: Set the **Model.AccessToken**, and the Lambda expression for **PowerBIReportFor**.
+Report.cshtml：設定 **Model.AccessToken**，以及 **PowerBIReportFor** 的 Lambda 運算式。
 
     @model ReportViewModel
 
@@ -166,9 +166,9 @@ Report.cshtml: Set the **Model.AccessToken**, and the Lambda expression for **Po
         @Html.PowerBIReportFor(m => m.Report, new { style = "height:85vh" })
     </div>
 
-### Controller
+### <a name="controller"></a>Controller
 
-**DashboardController.cs**: Creates a PowerBIClient passing an **app token**. A JSON Web Token (JWT) is generated from the **Signing Key** to get the **Credentials**. The **Credentials** are used to create an instance of **PowerBIClient**. Once you have an instance of **PowerBIClient**, you can call GetReports() and GetReportsAsync().
+**DashboardController.cs**：建立會傳遞**應用程式權杖**的 PowerBIClient。 JSON Web 權杖 (JWT) 是從**簽署金鑰**產生，可用於取得**認證**。 **Credentials** 是用來建立 **PowerBIClient** 的執行個體。 在您擁有 **PowerBIClient** 的執行個體之後，您就可以呼叫 GetReports() 與 GetReportsAsync()。
 
 CreatePowerBIClient()
 
@@ -221,15 +221,15 @@ Task<ActionResult> Report(string reportId)
         }
     }
 
-### Integrate a report into your app
+### <a name="integrate-a-report-into-your-app"></a>將報表整合到您的應用程式中
 
-Once you have a **Report**, you use an **IFrame** to embed the Power BI **Report**. Here is a code snippet from  powerbi.js in the **Microsoft Power BI Embedded** sample.
+在您擁有 **Report** 之後，您就可以使用 **IFrame** 來內嵌 Power BI **Report**。 以下是來自 **Microsoft Power BI Embedded** 範例中 powerbi.js 的程式碼片段。
 
 ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-iframe-code.png)
 
-## Filter reports embedded in your application
+## <a name="filter-reports-embedded-in-your-application"></a>篩選內嵌在應用程式中的報表
 
-You can filter an embedded report using a URL syntax. To do this, you add a **$filter** query string parameter with an **eq** operator to your iFrame src url with the filter specified. Here is the filter query syntax:
+您可以使用 URL 語法，篩選內嵌的報表。 若要這樣做，請將含有 **eq** 運算子的 **$filter** 查詢字串參數新增到含指定篩選的 iFrame src URL。 以下是篩選的查詢語法︰
 
 ```
 https://app.powerbi.com/reportEmbed
@@ -238,15 +238,16 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 ```
 
 > [!NOTE]
-> {tableName/fieldName} cannot include spaces or special characters. The {fieldValue} accepts a single categorical value.  
+> {表格名稱/欄位名稱} 不能包含空格或特殊字元。 {欄位值} 接受單一類別目錄值。  
 
-## See also
-* [Common Microsoft Power BI Embedded scenarios](power-bi-embedded-scenarios.md)
-* [Authenticating and authorizing in Power BI Embedded](power-bi-embedded-app-token-flow.md)
+## <a name="see-also"></a>另請參閱
+* [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
+* [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
-More questions? [Try the Power BI Community](http://community.powerbi.com/)
+有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
 
 
-<!--HONumber=Feb17_HO1-->
+
+<!--HONumber=Feb17_HO2-->
 
 

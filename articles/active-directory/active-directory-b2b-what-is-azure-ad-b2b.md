@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/01/2017
+ms.date: 02/09/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 8fdd2993e6b3f0345948f35753ebb7a20ed174e3
-ms.openlocfilehash: d5764ee2a8447de70798c24a3152a854327ae89d
+ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
+ms.openlocfilehash: 5e55afe6eb88a558ea4eb147860ac5e2ebc97dbc
 
 
 ---
@@ -30,7 +30,7 @@ Azure AD B2B 共同作業功能可讓所有規模大小及在所有產業的組�
 
 ## <a name="how-does-it-work"></a>運作方式
 
-在目前的版本中 (在 [Azure 傳統入口網站](https://manage.windowsazure.com)中)，若要與某個組織建立關聯性，IT 專業人員和資訊工作者可以透過入口網站或「邀請管理員 API」，一次新增一個或一些來自另一個組織的使用者。 現在，系統管理員可以使用 Azure 中的新入口網站體驗 (https://portal.azure.com) 和 PowerShell 來進行此操作。 而資訊工作者則可以使用 http://myapps.microsoft.com 中的「存取面板」體驗。 開發人員可以建立使用 Azure AD B2B 邀請管理員 API 的應用程式，以新增 B2B 共同作業使用者及自訂邀請和上線工作流程。
+在目前的預覽版本中，若要與某個組織建立關聯性，IT 專業人員和資訊工作者可以透過入口網站或「邀請管理員 API」，一次新增一個或一些來自另一個組織的使用者。 系統管理員可以使用 Azure 入口網站 (https://portal.azure.com) 中的新入口網站體驗和 PowerShell 來執行此動作。 而資訊工作者則可以使用 http://myapps.microsoft.com 中的「存取面板」體驗。 開發人員可以建立使用 Azure AD B2B 邀請管理員 API 的應用程式，以新增 B2B 共同作業使用者及自訂邀請和上線工作流程。
 
 通常讓 B2B 共同作業使用者上線的方式是透過一個邀請和兌換程序。 其運作方式如下。
 
@@ -83,12 +83,20 @@ Azure AD B2B 共同作業功能可讓所有規模大小及在所有產業的組�
 
 請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 
+* [Azure Active Directory 系統管理員如何新增 B2B 共同作業使用者？](active-directory-b2b-admin-add-users.md)
+* [資訊工作者如何新增 B2B 共同作業使用者？](active-directory-b2b-iw-add-users.md)
 * [B2B 共同作業邀請電子郵件的元素](active-directory-b2b-invitation-email.md)
-* [Azure AD B2B 共同作業授權 (英文)](active-directory-b2b-licensing.md)
+* [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
+* [Azure AD B2B 共同作業授權](active-directory-b2b-licensing.md)
+* [針對 Azure Active Directory B2B 共同作業問題進行疑難排解](active-directory-b2b-troubleshooting.md)
+* [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
+* [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
+* [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
+* [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

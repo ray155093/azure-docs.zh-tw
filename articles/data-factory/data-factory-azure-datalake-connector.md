@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/01/2016
+ms.date: 02/08/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 4c0b60afdc95a44dc5fdb0e43605e8bb079278e5
-ms.openlocfilehash: f64478598eb8b21af3b4362d55e7f0092f207967
+ms.sourcegitcommit: b2d1a740782a20a7c6b7b8cec8335a41f16231f5
+ms.openlocfilehash: 5a6a14e5fc8f6915b34f9667c4294a46c8591633
 
 
 ---
@@ -26,9 +26,9 @@ ms.openlocfilehash: f64478598eb8b21af3b4362d55e7f0092f207967
 > [!NOTE]
 > 請先建立 Azure Data Lake Store 帳戶，再透過複製活動建立管線，以在 Azure Data Lake Store 中移入/移出資料。 若要了解 Azure Data Lake Store，請參閱 [開始使用 Azure Data Lake Store](../data-lake-store/data-lake-store-get-started-portal.md)。
 >
-> 請檢閱 [建置您的第一個管線教學課程](data-factory-build-your-first-pipeline.md) ，以了解建立 Data Factory、連結服務、資料集和管線的詳細步驟。 搭配使用 JSON 片段和 Data Factory 編輯器或 Visual Studio 或 Azure PowerShell 來建立 Data Factory 實體。
->
->
+
+## <a name="supported-authentication-types"></a>支援的驗證類型
+Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認證」驗證。 尤其是進行排程的資料複製時，建議您使用前者，避免使用後者而發生權杖到期行為。 如需組態詳細資料，請參閱 [Azure Data Lake Store 連結服務屬性](#azure-data-lake-store-linked-service-properties)一節。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
 要建立將資料複製到 Azure Data Lake Store/複製 Azure Data Lake Store 之資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
@@ -69,28 +69,18 @@ ms.openlocfilehash: f64478598eb8b21af3b4362d55e7f0092f207967
         "type": "AzureDataLakeStore",
         "typeProperties": {
             "dataLakeStoreUri": "https://<accountname>.azuredatalakestore.net/webhdfs/v1",
-            "sessionId": "<session ID>",
-            "authorization": "<authorization URL>"
+            "servicePrincipalId": "<service principal id>",
+            "servicePrincipalKey": "<service principal key>",
+            "tenant": "<tenant info, e.g. microsoft.onmicrosoft.com>",
+            "subscriptionId": "<subscription of ADLS>",
+            "resourceGroupName": "<resource group of ADLS>"
         }
     }
 }
 ```
 
-### <a name="to-create-azure-data-lake-linked-service-using-data-factory-editor"></a>使用 Data Factory 編輯器建立 Azure 資料湖連結服務
-下列程序提供使用 Data Factory 編輯器建立 Azure 資料湖存放區連結服務的步驟。
-
-1. 按一下命令列上的 [新增資料存放區]，然後選取 [Azure Data Lake Store]。
-2. 在 JSON 編輯器中，為 **dataLakeStoreUri** 屬性輸入 Data Lake 的 URI。
-3. 按一下命令列上的 [授權]  按鈕。 應該會出現一個快顯視窗。
-
-    ![授權按鈕](./media/data-factory-azure-data-lake-connector/authorize-button.png)
-4. 使用您的認證登入，您應該會看到 JSON 中的 **授權** 屬性現在已指派給值。
-5. (選擇性) 指定 JSON 中選用參數的值，例如 **accountName**、**subscriptionID** 與 **resourceGroupName**，或將這些屬性從 JSON 中刪除。
-6. 按一下命令列的 [部署]  ，部署連結服務。
-
-> [!IMPORTANT]
-> 您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。 請在**權杖到期**和重新部署連結的服務時使用 [授權] 按鈕**重新授權**。 如需詳細資訊，請參閱 [Azure Data Lake Store 連結服務](#azure-data-lake-store-linked-service-properties)一節。
->
+> [!NOTE]
+> 如需組態詳細資料，請參閱 [Azure Data Lake Store 連結服務屬性](#azure-data-lake-store-linked-service-properties)一節中的步驟。
 >
 
 **Azure Blob 輸入資料集：**
@@ -208,9 +198,7 @@ ms.openlocfilehash: f64478598eb8b21af3b4362d55e7f0092f207967
                 ],
                 "typeProperties": {
                     "source": {
-                        "type": "BlobSource",
-                        "treatEmptyAsNull": true,
-                        "blobColumnSeparators": ","
+                        "type": "BlobSource"
                       },
                       "sink": {
                         "type": "AzureDataLakeStoreSink"
@@ -252,16 +240,16 @@ ms.openlocfilehash: f64478598eb8b21af3b4362d55e7f0092f207967
         "type": "AzureDataLakeStore",
         "typeProperties": {
             "dataLakeStoreUri": "https://<accountname>.azuredatalakestore.net/webhdfs/v1",
-            "sessionId": "<session ID>",
-            "authorization": "<authorization URL>"
+            "servicePrincipalId": "<service principal id>",
+            "servicePrincipalKey": "<service principal key>",
+            "tenant": "<tenant info, e.g. microsoft.onmicrosoft.com>"
         }
     }
 }
 ```
 
 > [!NOTE]
-> 請參閱上個範例中的步驟，以取得授權 URL。  
->
+> 如需組態詳細資料，請參閱 [Azure Data Lake Store 連結服務屬性](#azure-data-lake-store-linked-service-properties)一節中的步驟。
 >
 
 **Azure 儲存體連結服務：**
@@ -371,6 +359,7 @@ ms.openlocfilehash: f64478598eb8b21af3b4362d55e7f0092f207967
   }
 }
 ```
+
 **具有複製活動的管線：**
 
 此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設定為 **AzureDataLakeStoreSource**，且 **sink** 類型設定為 **BlobSink**。
@@ -422,31 +411,86 @@ ms.openlocfilehash: f64478598eb8b21af3b4362d55e7f0092f207967
 ```
 
 ## <a name="azure-data-lake-store-linked-service-properties"></a>Azure 資料湖存放區連結服務屬性
-您可以使用 Azure 儲存體連結服務，將 Azure 儲存體帳戶連結至 Azure Data Factory。 下表提供 Azure 儲存體連結服務專屬 JSON 元素的描述。
+下表提供 Azure Data Lake Store 連結服務專屬 JSON 元素的描述，並可在「服務主體」和「使用者認證」驗證之間擇一。
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| 類型 |type 屬性必須設為： **AzureDataLakeStore** |是 |
-| dataLakeStoreUri |指定有關 Azure 資料湖存放區帳戶的資訊。 格式如下：https://<Azure Data Lake account name>.azuredatalakestore.net/webhdfs/v1 |是 |
-| 授權 |按一下 [Data Factory 編輯器] 中的 [授權] 按鈕，然後輸入您的認證，此動作會將自動產生的授權 URL 指派給此屬性。 |是 |
-| sessionId |OAuth 工作階段的 OAuth 工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 當您使用 Data Factory 編輯器時便會自動產生此設定。 |是 |
-| accountName |資料湖帳戶名稱 |否 |
-| subscriptionId |Azure 訂用帳戶識別碼。 |否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 |
-| resourceGroupName |Azure 資源群組名稱 |否 (若未指定，便會使用 Data Factory 的資源群組)。 |
+| 類型 | type 屬性必須設為： **AzureDataLakeStore** | 是 |
+| dataLakeStoreUri | 指定有關 Azure 資料湖存放區帳戶的資訊。 它的格式如下：**https://[帳戶名稱].azuredatalakestore.net/webhdfs/v1** 或 **adl://[帳戶名稱].azuredatalakestore.net/**。 | 是 |
+| subscriptionId | Data Lake Store 所屬的 Azure 訂用帳戶識別碼。 | 接收 (Sink) 的必要項目 |
+| resourceGroupName | Data Lake Store 所屬的 Azure 資源群組名稱。 | 接收 (Sink) 的必要項目 |
 
-## <a name="token-expiration"></a>權杖到期
+### <a name="using-service-principal-authentication-recommended"></a>使用服務主體驗證 (建議)
+若要使用服務主體驗證，您必須先在 Azure Active Directory (AAD) 註冊應用程式實體，並在 Data Lake Store 中授與存取權。 之後您可以在 Azure Data Factory 中，利用對應的應用程式識別碼、應用程式金鑰及租用戶資訊，指定下列屬性以從 Data Lake Store 複製資料/將資料複製到 Data Lake Store。 如需如何設定和擷取所需的資訊，請參閱[服務對服務驗證](../data-lake-store/data-lake-store-authenticate-using-active-directory.md)。
+
+> [!IMPORTANT]
+> 使用複製精靈時，請務必至少授與服務主體 ADLS 根 ("/") 的讀取權限或 ADLS 帳戶的讀取者角色，才能順利在不同資料夾瀏覽。 否則，您可能會看到「提供的認證不正確」錯誤。
+>
+> 若您剛剛才從 AAD 建立/更新服務主體，可能需要幾分鐘才會實際生效。 先重複檢查服務主體和 ADLS ACL 設定，如果仍看見說明「提供的認證不正確」錯誤，請稍候再試。
+>
+
+| 屬性 | 說明 | 必要 |
+|:--- |:--- |:--- |
+| servicePrincipalId | 指定應用程式的用戶端識別碼。 | 是 |
+| servicePrincipalKey | 指定應用程式的金鑰。 | 是 |
+| tenant | 指定您的應用程式所在租用戶的資訊 (網域名稱或租用戶識別碼)。 將滑鼠游標停留在 Azure 入口網站右上角，即可擷取它。 | 是 |
+
+**範例：使用服務主體驗證**
+```json
+{
+    "name": "AzureDataLakeStoreLinkedService",
+    "properties": {
+        "type": "AzureDataLakeStore",
+        "typeProperties": {
+            "dataLakeStoreUri": "https://<accountname>.azuredatalakestore.net/webhdfs/v1",
+            "servicePrincipalId": "<service principal id>",
+            "servicePrincipalKey": "<service principal key>",
+            "tenant": "<tenant info, e.g. microsoft.onmicrosoft.com>",
+            "subscriptionId": "<subscription of ADLS>",
+            "resourceGroupName": "<resource group of ADLS>"
+        }
+    }
+}
+```
+
+### <a name="using-user-credential-authentication"></a>使用使用者認證驗證
+或者，您可以藉由指定下列屬性，使用使用者認證驗證，從 Data Lake Store 複製/複製到 Data Lake Store。
+
+| 屬性 | 說明 | 必要 |
+|:--- |:--- |:--- |
+| 授權 | 按一下 [Data Factory 編輯器] 中的 [授權] 按鈕，然後輸入您的認證，此動作會將自動產生的授權 URL 指派給此屬性。 | 是 |
+| sessionId | OAuth 授權工作階段的 OAuth 工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 當您使用 Data Factory 編輯器時便會自動產生此設定。 | 是 |
+
+**範例︰使用使用者認證驗證**
+```json
+{
+    "name": "AzureDataLakeStoreLinkedService",
+    "properties": {
+        "type": "AzureDataLakeStore",
+        "typeProperties": {
+            "dataLakeStoreUri": "https://<accountname>.azuredatalakestore.net/webhdfs/v1",
+            "sessionId": "<session ID>",
+            "authorization": "<authorization URL>",
+            "subscriptionId": "<subscription of ADLS>",
+            "resourceGroupName": "<resource group of ADLS>"
+        }
+    }
+}
+```
+
+#### <a name="token-expiration"></a>權杖到期
 您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。 請參閱下表以了解不同類型的使用者帳戶的到期時間。 當驗證**權杖到期**時，您可能會看到下列錯誤訊息："認證作業發生錯誤：invalid_grant - AADSTS70002：驗證認證時發生錯誤。 AADSTS70008：提供的存取授權已過期或撤銷。 追蹤識別碼：d18629e8-af88-43c5-88e3-d8419eb1fca1 相互關連識別碼：fac30a0c-6be6-4e02-8d69-a776d2ffefd7 時間戳記：2015-12-15 21-09-31Z"。
 
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
 | 不受 Azure Active Directory 管理的使用者帳戶 ((@hotmail.com,、@live.com, 等)。 |12 小時 |
-| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
+| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果您在此權杖的到期時間之前變更密碼，權杖會立即到期，且您會看到本節所述的錯誤。
 
 如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 **sessionId** 和 **authorization** 屬性的值：
 
-### <a name="to-programmatically-generate-sessionid-and-authorization-values"></a>若要以程式設計方式產生 sessionId 與 authorization 的值
+#### <a name="to-programmatically-generate-sessionid-and-authorization-values"></a>若要以程式設計方式產生 sessionId 與 authorization 的值
 
 ```csharp
 if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
@@ -484,8 +528,8 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 | folderPath |Azure 資料湖存放區中容器與資料夾的路徑。 |是 |
 | fileName |Azure Data Lake Store 中的檔案名稱。 fileName 是選擇性的，而且區分大小寫。 <br/><br/>如果您指定檔案名稱，活動 (包括複製) 適用於特定的檔案。<br/><br/>如果您未指定 fileName，複製會包含 folderPath 中的所有檔案以做為輸入資料集。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
 | partitionedBy |partitionedBy 是選擇性的屬性。 您可以用來指定時間序列資料的動態 folderPath 和 filename。 例如，folderPath 可針對每小時的資料進行參數化。 如需詳細資訊和範例，請參閱 [使用 partitionedBy 屬性](#using-partitionedby-property) 一節。 |否 |
-| format |支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat)、[指定 OrcFormat](#specifying-orcformat)、[指定 ParquetFormat](#specifying-parquetformat) 各節。 如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression |指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate** 和 **BZip2**，而支援的層級為：**最佳**和**最快**。 **AvroFormat** 或 **OrcFormat** 格式的資料目前不支援壓縮設定。 如需詳細資訊，請參閱 [壓縮支援](#compression-support) 一節。 |否 |
+| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](#specifying-textformat)、[Json 格式](#specifying-jsonformat)、[Avro 格式](#specifying-avroformat)、[Orc 格式](#specifying-orcformat)和 [Parquet 格式](#specifying-parquetformat)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
+| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 |
 
 ### <a name="using-partitionedby-property"></a>使用 partitionedBy 屬性
 您可以使用 **partitionedBy** 區段、Data Factory 巨集和系統變數 (SliceStart 和 SliceEnd，表示指定資料配量的開始和結束時間)，指定時間序列資料的動態 folderPath 和 filename。
@@ -519,49 +563,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 [!INCLUDE [data-factory-file-format](../../includes/data-factory-file-format.md)]
 
-### <a name="compression-support"></a>壓縮支援
-處理大型資料集可能會導致 I/O 和網路瓶頸。 因此，存放區中的壓縮資料不但可以跨網路加速資料傳輸和節省磁碟空間，也能在處理巨量資料時帶來顯著的效能提升。 目前，Azure Blob 或內部部署檔案系統等以檔案為基礎的資料存放區支援壓縮。  
-
-若要指定資料集的壓縮，請使用資料集 JSON 中的 **壓縮** 屬性，如下列範例所示：   
-
-```JSON
-{  
-    "name": "AzureDatalakeStoreDataSet",  
-      "properties": {  
-        "availability": {  
-            "frequency": "Day",  
-              "interval": 1  
-        },  
-        "type": "AzureDatalakeStore",  
-        "linkedServiceName": "DataLakeStoreLinkedService",  
-        "typeProperties": {  
-            "fileName": "pagecounts.csv.gz",  
-              "folderPath": "compression/file/",  
-              "compression": {  
-                "type": "GZip",  
-                "level": "Optimal"  
-              }  
-        }  
-      }  
-}  
-```
-[壓縮]  區段有兩個屬性：  
-
-* **類型：**壓縮轉碼器，它可以是 **GZIP**、**Deflate** 或 **BZIP2**。  
-* **層級：**壓縮比，它可以是**最佳**或**最快**。
-
-  * **最快：** 即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。
-  * **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。
-
-    如需詳細資訊，請參閱 [壓縮層級](https://msdn.microsoft.com/library/system.io.compression.compressionlevel.aspx) 主題。
-
-假設範例資料集做為複製活動的輸出。 複製活動會透過使用最佳比率的 GZIP 轉碼器壓縮初輸資料，然後將壓縮的資料寫入到 Azure Data Lake Store 中名為 pagecounts.csv.gz 的檔案。   
-
-當您在輸入資料集 JSON 中指定壓縮屬性，管線會從來源讀取壓縮的資料。 當您在輸出資料集 JSON 中指定屬性，複製活動可以將壓縮的資料寫入到目的地。 以下是一些範例案例：
-
-* 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮，並將結果資料寫入到 Azure SQL Database。 您可以在此情況下利用壓縮 JSON 屬性定義輸入 Azure 資料湖存放區。
-* 從來自內部部署檔案系統之純文字檔案讀取資料、使用 GZip 格式加以壓縮並將壓縮的資料寫入到 Azure 資料湖存放區。 您可以在此情況下利用壓縮 JSON 屬性定義輸出 Azure 資料湖資料集。  
-* 從 Azure 資料湖存放區讀取 GZIP 壓縮資料，將其解壓縮、使用 BZIP2 將其壓縮，並將結果資料寫入到 Azure 資料湖存放區。 您可以分別將輸入和輸出資料集的壓縮類型設定為 GZIP 和 BZIP2。   
+[!INCLUDE [data-factory-compression](../../includes/data-factory-compression.md)]
 
 ## <a name="azure-data-lake-copy-activity-type-properties"></a>Azure 資料湖複製活動類型屬性
 如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
@@ -594,6 +596,6 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

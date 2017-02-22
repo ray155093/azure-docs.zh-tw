@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 05/27/2016
 ms.author: srinia
 translationtype: Human Translation
-ms.sourcegitcommit: 637171b775d01e16cec1a7e9ef6fad73875eac69
-ms.openlocfilehash: 4f6c3713c6ca579d6ec24e8f208299f9984e0d00
+ms.sourcegitcommit: 6453cca9f876e6c363fbed463263c0f9684a3e70
+ms.openlocfilehash: 11b1a6dd9ecaaa3abaf088b1fed73aae783252f5
 
 
 ---
@@ -62,14 +62,14 @@ ms.openlocfilehash: 4f6c3713c6ca579d6ec24e8f208299f9984e0d00
     ON d.database_id = slo.database_id
     WHERE elastic_pool_name = 'MyElasticPool'; 
 
-## <a name="get-resource-usage-data-for-an-elastic"></a>取得彈性集區的資源使用量資料
+## <a name="get-resource-usage-data-for-an-elastic-pool"></a>取得彈性集區的資源使用量資料
 使用 [sys.elastic\_pool\_resource\_stats view](https://msdn.microsoft.com/library/mt280062.aspx)來檢查邏輯伺服器上彈性集區的資源使用量統計資料。 登入 master 資料庫來查詢檢視。
 
     SELECT * FROM sys.elastic_pool_resource_stats 
     WHERE elastic_pool_name = 'MyElasticPool'
     ORDER BY end_time DESC;
 
-## <a name="get-resource-usage-for-an-elastic-database"></a>取得彈性資料庫的資源使用量
+## <a name="get-resource-usage-for-a-pooled-database"></a>取得集區資料庫的資源使用量
 使用 [sys.dm\_ db\_resource\_stats view](https://msdn.microsoft.com/library/dn800981.aspx) 或 [sys.resource\_stats view](https://msdn.microsoft.com/library/dn269979.aspx) 來檢查彈性集區中資料庫的資源使用量統計資料。 此程序類似於查詢單一資料庫的資源使用量。
 
 ## <a name="next-steps"></a>後續步驟

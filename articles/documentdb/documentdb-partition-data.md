@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2016
+ms.date: 02/09/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 7f5e33b7f80e3c1e1e3e66b3cab879a5bc30e823
-ms.openlocfilehash: 0ca848a953276da1793707709580ff79d6d90819
+ms.sourcegitcommit: 876e0fd12d045bba85d1e30d4abfcb8ce421213a
+ms.openlocfilehash: ed58e623ff74a21df25fc93346e571edec7b40da
 
 
 ---
@@ -31,6 +31,11 @@ ms.openlocfilehash: 0ca848a953276da1793707709580ff79d6d90819
 
 若要開始使用程式碼，請從 [DocumentDB 效能測試驅動程式範例](https://github.com/Azure/azure-documentdb-dotnet/tree/a2d61ddb53f8ab2a23d3ce323c77afcf5a608f52/samples/documentdb-benchmark)下載專案。 
 
+Scott Hanselman 和 DocumentDB 工程總經理 Shireesh Thota 也會在這段 Azure Friday 影片中說明資料分割和分割索引鍵。
+
+> [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-DocumentDB-Elastic-Scale-Partitioning/player]
+> 
+
 ## <a name="partitioning-in-documentdb"></a>DocumentDB 中的資料分割
 您在 DocumentDB 中可儲存及查詢無結構描述的 JSON 文件，以及任何規模的毫秒順序回應時間。 DocumentDB 提供存放資料的容器，稱為「集合」 。 集合是邏輯資源，可以跨一或多個實體資料分割或伺服器分佈。 資料分割數目取決於根據集合儲存體大小與佈建輸送量的 DocumentDB。 DocumentDB 中的每個資料分割，都有固定數量與其相關聯的 SSD 儲存體，會進行複寫以提供高可用性。 分割管理完全是由 Azure DocumentDB 所管理，您不需要撰寫複雜程式碼或管理分割。 從儲存體和輸送量的角度來看，DocumentDB 集合「實際上並無限制」  。 
 
@@ -40,7 +45,7 @@ ms.openlocfilehash: 0ca848a953276da1793707709580ff79d6d90819
 
 例如，請考慮使用將員工和其部門資料儲存在 DocumentDB 中的應用程式。 為了依部門相應放大資料，讓我們選擇 `"department"` 作為資料分割索引鍵屬性。 DocumentDB 中的每個文件都必須包含必要的 `"id"` 屬性，而就每個具有相同資料分割索引鍵值 (例如 `"Marketing`") 的文件而言，這個屬性都不得重複。 儲存在集合中的每個文件都必須具有不重複的資料分割索引鍵與識別碼組合 (例如 `{ "Department": "Marketing", "id": "0001" }`、`{ "Department": "Marketing", "id": "0002" }` 和 `{ "Department": "Sales", "id": "0001" }`)。 換句話說，複合屬性 (資料分割索引鍵, 識別碼) 是集合的主要索引鍵。
 
-### <a name="partition-keys"></a>資料分割索引鍵
+## <a name="partition-keys"></a>資料分割索引鍵
 選擇資料分割索引鍵是在設計階段必須進行的一項重要決策。 您選擇的 JSON 屬性名稱必須具有各種不同的值，而且應該可以平均分散存取模式。 資料分割索引鍵會以 JSON 路徑的形式指定，例如 `/department` 代表 department 屬性。 
 
 下表顯示資料分割索引鍵定義及其對應的 JSON 值的範例。
@@ -77,18 +82,18 @@ ms.openlocfilehash: 0ca848a953276da1793707709580ff79d6d90819
 
 讓我們看看資料分割索引鍵選擇對於應用程式效能的影響。
 
-### <a name="partitioning-and-provisioned-throughput"></a>資料分割與佈建的輸送量
+## <a name="partitioning-and-provisioned-throughput"></a>資料分割與佈建的輸送量
 DocumentDB 設計用來取得可預測的效能。 當您建立集合時，需以**每秒的[要求單位](documentdb-request-units.md) (RU)**的方式保留輸送量。 每項要求都會指派有與系統資源 (例如作業所使用的 CPU 和 IO) 數量成正比的要求單位費用。 讀取 1 KB 具有工作階段一致性的文件，會使用 1 個要求單位。 不論儲存的項目數或同時執行的並行要求數，讀取一次都是 1 個 RU。 根據大小之不同，較大的文件需要較高的要求單位。 如果您知道實體大小以及支援您應用程式所需的讀取次數，則可以佈建應用程式讀取需求確實需要的輸送量。 
 
-DocumentDB 儲存文件時，會根據資料分割索引鍵值將其平均分散到不同的資料分割。 輸送量也會平均分散到可用的資料分割，即每個資料分割的輸送量 = (每個集合的總輸送量)/(資料分割數目)。 
+DocumentDB 儲存文件時，會根據資料分割索引鍵值將它們平均分散到不同的資料分割。 輸送量也會平均分散到可用的資料分割，即每個資料分割的輸送量 = (每個集合的總輸送量)/(資料分割數目)。 
 
 > [!NOTE]
 > 為達到集合的完整輸送量，您必須選擇資料分割索引鍵，讓您能將要求平均地分散到數個相異的資料分割索引鍵值。
 > 
 > 
 
-## <a name="single-partition-and-partitioned-collections"></a>單一資料分割與已分割集合
-DocumentDB 支援建立單一資料分割與資料分割的集合。 
+## <a name="single-partition-and-partitioned-collections"></a>單一分割區和已分割集合
+DocumentDB 支援建立單一分割和分割的集合。 
 
 * **資料分割的集合**可以跨多個資料分割，並且支援無限制的儲存體與輸送量。 您必須為集合指定資料分割索引鍵。 
 * **單一資料分割集合**擁有較低的價格選項，但在最低儲存體和輸送量方面有上限。 您不需要為這些集合指定資料分割索引鍵。 我們建議除了您預計只有少量的資料儲存體和要求的情況外，所有案例皆使用資料分割的集合而非單一資料分割集合。
@@ -103,8 +108,8 @@ DocumentDB 支援建立單一資料分割與資料分割的集合。
     <tbody>
         <tr>
             <td valign="top"><p></p></td>
-            <td valign="top"><p><strong>單一資料分割集合</strong></p></td>
-            <td valign="top"><p><strong>資料分割的集合</strong></p></td>
+            <td valign="top"><p><strong>單一分割區集合</strong></p></td>
+            <td valign="top"><p><strong>已分割集合</strong></p></td>
         </tr>
         <tr>
             <td valign="top"><p>資料分割索引鍵</p></td>
@@ -129,7 +134,7 @@ DocumentDB 支援建立單一資料分割與資料分割的集合。
         <tr>
             <td valign="top"><p>輸送量下限</p></td>
             <td valign="top"><p>每秒&400; 個要求單位</p></td>
-            <td valign="top"><p>每秒&10;,000 個要求單位</p></td>
+            <td valign="top"><p>每秒&2;,500 個要求單位</p></td>
         </tr>
         <tr>
             <td valign="top"><p>輸送量上限</p></td>
@@ -169,11 +174,11 @@ Azure DocumentDB 已藉由 [REST API 版本 2015-12-16](https://msdn.microsoft.c
 
 
 > [!NOTE]
-> 若要建立資料分割的集合，您必須指定每秒 > 10,000 個要求單位的輸送量值。 由於輸送量是 100 的倍數，此值必須是 10,100 以上。
+> 若要使用 SDK 建立已分割集合，您必須指定等於或大於 10,100 RU/秒的輸送量值。 若要為已分割集合設定介於 2,500 與 10,000 之間的輸送量值，您必須暫時使用 Azure 入口網站，因為這些新的較低值尚無法在 SDK 中取得。
 > 
 > 
 
-此方法會對 DocumentDB 進行 REST API 呼叫，且服務會根據要求的輸送量來佈建許多資料分割。 您可以隨著效能需求的發展變更集合的輸送量。 如需詳細資訊，請參閱 [效能等級](documentdb-performance-levels.md) 。
+此方法會對 DocumentDB 進行 REST API 呼叫，且服務會根據要求的輸送量來佈建許多資料分割。 您可以隨著效能需求的發展變更集合的輸送量。 
 
 ### <a name="reading-and-writing-documents"></a>讀取和寫入文件
 現在，我們將資料插入 DocumentDB 中。 以下是包含裝置讀取的範例類別，以及呼叫 CreateDocumentAsync 將新的裝置讀取插入集合中。
@@ -283,13 +288,13 @@ DocumentDB SDK 1.9.0 和更新版本支援平行查詢執行選項，可讓您�
 
 <a name="migrating-from-single-partition"></a>
 
-### <a name="migrating-from-single-partition-to-partitioned-collections"></a>從單一資料分割集合移轉至資料分割的集合
+## <a name="migrating-from-single-partition-to-partitioned-collections"></a>從單一資料分割集合移轉至資料分割的集合
 當使用單一資料分割集合的應用程式需要較高的輸送量 (>&10;,000 RU/秒) 或較大的資料儲存體 (>&10; GB) 時，您可以使用 [DocumentDB 資料移轉工具](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d)將單一資料分割集合中的資料移轉至已分割集合。 
 
 從單一資料分割集合移轉到資料分割的集合
 
 1. 將資料從單一資料分割集合匯出至 JSON。 如需詳細資訊，請參閱 [匯出至 JSON 檔案](documentdb-import-data.md#export-to-json-file) 。
-2. 在使用資料分割索引鍵定義所建立、每秒輸送量超過 10,000 個要求單位的資料分割的集合中匯入資料，如下列範例所示。 如需詳細資訊，請參閱 [匯入到 DocumentDB](documentdb-import-data.md#DocumentDBSeqTarget) 。
+2. 在使用資料分割索引鍵定義所建立、每秒輸送量超過 2,500 個要求單位的資料分割的集合中匯入資料，如下列範例所示。 如需詳細資訊，請參閱 [匯入到 DocumentDB](documentdb-import-data.md#DocumentDBSeqTarget) 。
 
 ![將資料移轉至 DocumentDB 中的資料分割的集合][3]  
 
@@ -324,7 +329,7 @@ DocumentDB 最常見的其中一個使用案例是用在記錄與遙測。 您�
 
 * 如果您的使用案例牽涉到以較小的速率寫入已累積很長一段時間的資料，而且必須依時間戳記範圍和其他篩選器進行查詢，則使用彙總的時間戳記 (例如日期) 做為資料分割索引鍵是不錯的方法。 這可讓您查詢單一資料分割中某一天的所有資料。 
 * 如果您的寫入工作負載繁重 (一般來說這是更常見的情形)，則不應該使用根據時間戳記的資料分割索引鍵，這樣一來，DocumentDB 才可以將寫入工作平均分散到多個資料分割。 在這個案例中，主機名稱、處理序識別碼、活動識別碼或其他具有高基數的屬性是不錯的選擇。 
-* 第三種方法是混合式方法，在此方法中您會擁有多個集合，每天/每月各有一個集合，而且資料分割索引鍵是細微的屬性，例如主機名稱。 這樣的好處是，您可以根據時間範圍設定不同的效能等級，例如當月的集合會佈建較高的輸送量，因為它要處理讀取和寫入，而先前月份則佈建較低的輸送量，因為它們只要處理讀取。
+* 第三種方法是混合式方法，在此方法中您會擁有多個集合，每天/每月各有一個集合，而且資料分割索引鍵是細微的屬性，例如主機名稱。 這樣的好處是，您可以根據時間範圍設定不同的輸送量，例如當月的集合會佈建較高的輸送量，因為它要處理讀取和寫入，而先前月份則佈建較低的輸送量，因為它們只要處理讀取。
 
 ### <a name="partitioning-and-multi-tenancy"></a>資料分割與多重租用
 如果您實作使用 DocumentDB 的多重租用戶應用程式，則有兩種主要模式可使用 DocumentDB 實作租用：一個租用戶一個資料分割索引鍵，以及一個租用戶一個集合。 以下是每項方式的優缺點︰
@@ -349,6 +354,6 @@ DocumentDB 最常見的其中一個使用案例是用在記錄與遙測。 您�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

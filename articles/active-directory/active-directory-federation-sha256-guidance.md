@@ -16,12 +16,12 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: anandy
 translationtype: Human Translation
-ms.sourcegitcommit: 8102c014dae3f2e87b1e6642278feefe0962cdc1
-ms.openlocfilehash: 261986d0f0c442398781be211ea2c4211916a2fe
+ms.sourcegitcommit: e1b909f419c8c04a9332a29669148321ab3dbd2d
+ms.openlocfilehash: 2afd8e04ac325f1c9f2dee8aed867b0d0a6b558d
 
 
 ---
-# <a name="change-signature-hash-algorithm-for-office-365-replying-party-trust"></a>變更 Office 365 信賴憑證者信任的簽章雜湊演算法
+# <a name="change-signature-hash-algorithm-for-office-365-relying-party-trust"></a>變更 Office 365 信賴憑證者信任的簽章雜湊演算法
 ## <a name="overview"></a>概觀
 Active Directory 同盟服務 (AD FS) 會將其權杖簽署到 Microsoft Azure Active Directory 以確保它們無法被竄改。 此簽章可以是以 SHA1 或 SHA256 為基礎。 Azure Active Directory 現在支援以 SHA256 演算法簽署的權杖，建議您將權杖簽署演算法設定為 SHA256 以獲得最高層級的安全性。 本文說明將權杖簽署演算法設定為更安全 SHA256 層級所需的步驟。
 

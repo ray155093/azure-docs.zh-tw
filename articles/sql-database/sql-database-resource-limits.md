@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 01/11/2017
+ms.date: 02/09/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 5dfb2b4fbe4dbd74575b418257843bc2097b966b
-ms.openlocfilehash: 5ca2da0caff29244f43c162e3cd98d335fd23f23
+ms.sourcegitcommit: f2e48e290f59efb5ab6271b7b2882ca8ea8887a6
+ms.openlocfilehash: 15fd64f21eb20ae412f4d0cf1930e99e2e9fc62b
 
 
 ---
@@ -40,7 +40,7 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 ## <a name="enforcement-of-limits"></a>限制強制執行
 系統會在達到上限時拒絕新的要求，藉此強制執行 CPU、記憶體、記錄 I/O 和資料 I/O 以外的資源。 當資料庫達到設定的大小上限時，會使得資料大小增加的插入與更新作業將會失敗，但選取與刪除作業仍能繼續運作。 用戶端收到的[錯誤訊息](sql-database-develop-error-messages.md)會因達到的上限而有所不同。
 
-例如，SQL Database 的連接數，以及可以處理的並行要求數目都將受到限制。 SQL Database 可允許資料庫的連接數大於並行要求的數目，以支援連接共用。 雖然應用程式能輕易控制可用的連接數目，但平行要求的數目通常難以預估及控制。 尤其在尖峰負載期間，應用程式往往傳送過多的要求，或是資料庫在達到資源上限後，因為執行耗時較長的查詢而開始累積背景工作執行緒，此時就可能發生錯誤。
+例如，SQL Database 的連線數，以及可以處理的並行要求數目都將受到限制。 SQL Database 可允許資料庫的連接數大於並行要求的數目，以支援連接共用。 雖然應用程式能輕易控制可用的連接數目，但平行要求的數目通常難以預估及控制。 尤其在尖峰負載期間，應用程式往往傳送過多的要求，或是資料庫在達到資源上限後，因為執行耗時較長的查詢而開始累積背景工作執行緒，此時就可能發生錯誤。
 
 ## <a name="service-tiers-and-performance-levels"></a>服務層和效能等級
 單一資料庫和彈性集區都有服務層和效能等級。
@@ -65,7 +65,7 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 | 每一部伺服器的 DTU |45000 |在 V12 伺服器上，每一部伺服器會有&45000; 個 DTU 可用於佈建資料庫、彈性集區和資料倉儲。 |
 
 > [!IMPORTANT]
-> Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 1 日停用。 從 2016 年 12 月 1 日開始，您將無法再於任何 SQL 資料庫上設定自動匯出。 所有現有的自動匯出作業會繼續運作至 2017 年 3 月 1 日。 2016 年 12 月 1 日之後，您可以使用[長期的備份保留](sql-database-long-term-retention.md)或[Azure 自動化](../automation/automation-intro.md)，根據您選擇的排程使用 PowerShell 定期封存 SQL Database。 如需範例指令碼，您可以[從 GitHub 下載範例指令碼](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-automation-automated-export)。 
+> Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 1 日停用。 從 2016 年 12 月 1 日開始，您將無法再於任何 SQL 資料庫上設定自動匯出。 所有現有的自動匯出作業會繼續運作至 2017 年 3 月 1 日。 2016 年 12 月 1 日之後，您可以使用[長期的備份保留](sql-database-long-term-retention.md)或 [Azure 自動化](../automation/automation-intro.md)，根據您選擇的排程使用 PowerShell 定期封存 SQL Database。 如需範例指令碼，您可以[從 GitHub 下載範例指令碼](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-automation-automated-export)。 
 >
 
 

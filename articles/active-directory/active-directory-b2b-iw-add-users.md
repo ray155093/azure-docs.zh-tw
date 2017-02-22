@@ -14,11 +14,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/02/2017
+ms.date: 02/09/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: d9ffd4176e87b6b5ada882ff09f507665bda7b1d
-ms.openlocfilehash: 7bad8269c3756979fe48d130a0cdfb02ceafad86
+ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
+ms.openlocfilehash: 5622ab215fd7fea4c24ad00ea7132d12ecabbcd5
 
 
 ---
@@ -40,15 +40,10 @@ ms.openlocfilehash: 7bad8269c3756979fe48d130a0cdfb02ceafad86
 > [!NOTE]
 您可以將 B2B 共同作業使用者新增到動態群組或已與內部部署 Active Directory 同步的群組。
 
-## <a name="add-without-invitation"></a>在不傳送邀請的情況下新增
 
-若邀請者屬於在其中新增使用者之合作夥伴組織目錄中具有列舉權限的角色，則受邀請的使用者會被新增到發出邀請的組織，而不需要取得邀請。
+## <a name="next-steps"></a>後續步驟
 
-此案例最適用於：
-1. 主組織 (例如，WoodGrove) 中的使用者邀請合作夥伴組織 (例如，Sam@litware.com) 的使用者做為「來賓」。
-2. 主組織中的系統管理員設定原則以允許 Sam 識別及新增來自合作夥伴組織 (Litware) 的使用者。
-4. 現在 Sam 可以將來自 Litware 的其他使用者新增到 WoodGrove 目錄、群組或應用程式，而不需要兌換邀請。 若 Sam 具有 Litware 中的適當列舉權限，這會自動發生。
-
+請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Azure Active Directory 系統管理員如何新增 B2B 共同作業使用者？](active-directory-b2b-admin-add-users.md)
@@ -59,10 +54,11 @@ ms.openlocfilehash: 7bad8269c3756979fe48d130a0cdfb02ceafad86
 * [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
 * [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
-* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
+* [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

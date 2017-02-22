@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 12/27/2016
 ms.author: magoedte;tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 7fa1be008b5be0c912af14674ffb38d99dcf6bcc
-ms.openlocfilehash: 4042810a5ccfffba74ae9cffd82f194e8058ad83
+ms.sourcegitcommit: 53e57807e97671bd279c03ada4c147fc1e7f1e45
+ms.openlocfilehash: c7bfc5584c11a7e69aedeb93f143a78d97c9369a
 
 
 ---
@@ -33,7 +33,8 @@ Azure 資源管理員提供一種新方式來部署和管理組成應用程式�
 | 服務 | 已啟用資源管理員 | REST API | 結構描述 | 快速入門範本 |
 | --- | --- | --- | --- | --- |
 | 批次 |是 |[Batch REST](/rest/api/batchservice) |[Batch 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-12-01/Microsoft.Batch.json) | |
-| 容器 |是 |[Container Service REST](/rest/api/containerregistry) |[容器結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-03-30/Microsoft.ContainerService.json) |[Microsoft.ContainerService](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.ContainerService%22&type=Code) |
+| Container Registry |是 |[容器登錄 REST](/rest/api/containerregistry) |[容器登錄結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-06-27-preview/Microsoft.ContainerRegistry.json) |[Microsoft.ContainerRegistry](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.ContainerRegistry%22&type=Code) |
+| 容器服務 |是 |[Container Service REST](/rest/api/compute/containerservices) |[容器結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-03-30/Microsoft.ContainerService.json) |[Microsoft.ContainerService](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.ContainerService%22&type=Code) |
 | Dynamics 週期服務 |是 | | | |
 | 擴展集 |是 |[擴展集 REST](/rest/api/compute/virtualmachinescalesets) |[擴展集結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-08-01/Microsoft.Compute.json) |[virtualMachineScaleSets](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=virtualMachineScaleSets&type=Code) |
 | Service Fabric |是 |[Service Fabric Rest](/rest/api/servicefabric) | [Service Fabric 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-09-01/Microsoft.ServiceFabric.json) |[Microsoft.ServiceFabric](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.ServiceFabric%22&type=Code) |

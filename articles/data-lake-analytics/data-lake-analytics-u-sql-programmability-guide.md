@@ -14,8 +14,8 @@ ms.workload: big-data
 ms.date: 11/15/2016
 ms.author: mrys
 translationtype: Human Translation
-ms.sourcegitcommit: 6d05de6ac944b69402583e939d6b498515945461
-ms.openlocfilehash: f8b13b2b39cf0c860ad59f43eb341c5924804dd9
+ms.sourcegitcommit: cd2aafd80db337cadaa2217a6638d93186975b68
+ms.openlocfilehash: 563a6821b4a3736ef1233aa67d86b9ba06565788
 
 
 ---
@@ -237,7 +237,7 @@ U-SQL 允許在 C# 運算式中使用內嵌函式運算式定義。 這是另外
     ) (dt)
 ```
 
-在此範例中，我們會使用字串輸入參數 input_p 定義內嵌函式。 我們會在此函式內部驗證輸入字串是否為有效的日期時間值。 如果是便將其傳回，否則傳回 null。
+在此範例中，我們會使用字串輸入參數 input_p 定義內嵌函式。 我們會在此函式內部驗證輸入字串是否為有效的日期時間值。 如果是便將它傳回，否則傳回 null。
 
 此案例需要內嵌函式，因為 DateTime.TryParse 函式包含輸出參數 `out dt_result`。 我們將它定義為 `DateTime dt_result`。
 
@@ -289,7 +289,7 @@ OUTPUT @rs1 TO @output_file USING Outputters.Text();
 ### <a name="using-code-behind"></a>使用程式碼後置
 若要在 U-SQL 程式的程式碼後置區段中使用相同的功能，我們可以定義 C# 函式 ToDateTime。
 
-以下是上述基底 U-SQL 指令碼中必須變更的區段︰
+以下是基底 U-SQL 指令碼區段，我們在其中做了必要的變更︰
 
 ```sql
      @rs1 =
@@ -392,6 +392,7 @@ U-SQL 的擴充性模型極為依賴新增自有自訂程式碼的能力。 U-SQ
 當您開啟指令碼時，您可以看到產生的序言和結語︰
 
 ![generated-prologue](./media/data-lake-analytics-u-sql-programmability-guide/generated-prologue.png)
+
 **圖 2**：為程式碼後置自動產生的序言和結語
 <br />
 
@@ -422,7 +423,7 @@ U-SQL 的擴充性模型極為依賴新增自有自訂程式碼的能力。 U-SQ
 
 我們將在下面的範例中使用這兩種選項。 [近期有關映像處理的部落格文章](https://blogs.msdn.microsoft.com/azuredatalake/2016/08/18/introducing-image-processing-in-u-sql/)是另一個範例，其示範如何使用可利用這些選項進行註冊的預先定義組件。
 
-現在，您可以從任何擁有已註冊組件之資料庫存取權限的任何 U-SQL 指令碼，參考已註冊的組件 (見圖 4 中的 U-SQL 指令碼程式碼)。 您必須針對每個個別註冊的組件新增參考。 其他資源檔案則會自動部署。 該指令碼應該不會再擁有所參考組件之程式碼的程式碼後置檔案，但仍可提供其他程式碼。
+現在，您可以從任何擁有已註冊組件之資料庫存取權限的任何 U-SQL 指令碼，參考已註冊的組件 (見圖 4 中的 U-SQL 指令碼程式碼)。 您必須針對每個個別註冊的組件新增參考。 其他資源檔案則會自動部署。 該指令碼應該不會再擁有所參考組件之程式碼的程式碼後置檔案，但程式碼後置檔案仍可提供其他程式碼。
 
 ### <a name="registering-assemblies-via-adl-tools-in-visual-studio-and-in-u-sql-scripts"></a>透過 ADL Tools 在 Visual Studio 和 U-SQL 指令碼中註冊組件
 雖然 Visual Studio 中的 ADL Tools 可讓您輕鬆地註冊組件，但如果您要 (舉例來說) 在不同平台上進行開發，且該平台上具有已編譯好之欲上傳和註冊的組件，您也可以使用指令碼來進行註冊工作 (方式和 Tools 為您所做的一樣)。 基本上所應遵循的步驟如下︰
@@ -439,7 +440,8 @@ U-SQL 的擴充性模型極為依賴新增自有自訂程式碼的能力。 U-SQ
 首先，將 [Visual Studio 專案](https://github.com/Azure/usql/tree/master/Examples/DataFormats)下載至本機開發環境 (例如，使用適用於 Windows 的 GitHub 工具建立本機複本)。 接著在 Visual Studio 中開啟方案，如前文所述以滑鼠右鍵按一下專案以註冊組件。 雖然這個組件有兩個相依性，但我們只需要包含 Newtonsoft 相依性，因為 System.Xml 已可在 Azure Data Lake 中取得 (不過，必須明確地參考)。 圖 6 說明我們是如何為組件命名 (請注意，您也可以選擇不含點的其他名稱)，以及如何新增 Newtonsoft dll。 這兩個組件現在會各自註冊到指定的資料庫 (例如，JSONBlog)。
 
 ![register-assembly](./media/data-lake-analytics-u-sql-programmability-guide/register-assembly.png)
-**圖 6**︰如何註冊從 Visual Studio 取得的 Microsoft.Analytics.Samples.Formats 組件
+
+**圖 6**︰如何從 Visual Studio 註冊 Microsoft.Analytics.Samples.Formats 組件
 <br />
 
 如果您或其他人 (您透過賦予資料庫讀取權限而與其共用已註冊之組件者) 現在想要在指令碼中使用 JSON 功能，您需要在指令碼中新增下列兩個參考︰
@@ -467,7 +469,7 @@ REFERENCE ASSEMBLY JSONBlog.[Microsoft.Analytics.Samples.Formats];
 
 安裝程式會將受管理的組件 Microsoft.SqlServer.Types.dll 安裝到 C:\Program Files (x86)\Microsoft SQL Server\130\SDK\Assemblies，並將原生組件 SqlServerSpatial130.dll 安裝到 \Windows\System32\. 現在，將這兩個組件上傳到 Azure Data Lake Store (例如，上傳到稱為 /upload/asm/spatial 的資料夾)。
 
-安裝程式已將原生程式庫安裝到系統資料夾 c:\Windows\System32，因此我們必須確定我們會先從該資料夾複製 SqlServerSpatial130.dll 再將其上傳，或確定我們使用的工具不會對系統資料夾執行[檔案系統重新導向](https://msdn.microsoft.com/library/windows/desktop/aa384187(v=vs.85).aspx)。 例如，如果您想要使用最新的 Visual Studio ADL 檔案總管來進行上傳，您必須先將檔案複製到另一個目錄，否則 (截至本部落格撰寫之時) 您會上傳 32 位元版本 (因為 Visual Studio 是 32 位元應用程式，因此會在其 ADL 上傳檔案選取視窗中執行檔案系統重新導向)，而且當您執行 U-SQL 指令碼來呼叫原生組件時，您會在執行階段收到下列 (內部) 錯誤︰
+安裝程式已將原生程式庫安裝到系統資料夾 c:\Windows\System32，因此我們必須確定我們會先從該資料夾複製 SqlServerSpatial130.dll 再將它上傳，或確定我們使用的工具不會對系統資料夾執行[檔案系統重新導向](https://msdn.microsoft.com/library/windows/desktop/aa384187(v=vs.85).aspx)。 例如，如果您想要使用最新的 Visual Studio ADL 檔案總管來進行上傳，您必須先將檔案複製到另一個目錄，否則 (截至本部落格撰寫之時) 您會上傳 32 位元版本 (因為 Visual Studio 是 32 位元應用程式，因此會在其 ADL 上傳檔案選取視窗中執行檔案系統重新導向)，而且當您執行 U-SQL 指令碼來呼叫原生組件時，您會在執行階段收到下列 (內部) 錯誤︰
 
 來自使用者運算式的內部例外狀況︰嘗試載入錯誤格式的程式 (例外狀況發生於 HRESULT：0x8007000B)
 
@@ -766,9 +768,9 @@ LAG(EventDateTime, 1) OVER(PARTITION BY UserName ORDER BY EventDateTime ASC) AS 
            string.IsNullOrEmpty(LAG(EventDateTime, 1) OVER(PARTITION BY UserName ORDER BY EventDateTime ASC)) AS Flag,           
            USQLApplication21.UserSession.StampUserSession
            (
-            EventDateTime,
-            LAG(EventDateTime, 1) OVER(PARTITION BY UserName ORDER BY EventDateTime ASC),
-            LAG(UserSessionTimestamp, 1) OVER(PARTITION BY UserName ORDER BY EventDateTime ASC)
+               EventDateTime,
+               LAG(EventDateTime, 1) OVER(PARTITION BY UserName ORDER BY EventDateTime ASC),
+               LAG(UserSessionTimestamp, 1) OVER(PARTITION BY UserName ORDER BY EventDateTime ASC)
            )
            AS UserSessionTimestamp
     FROM @records;
@@ -822,7 +824,10 @@ USING Outputters.Csv();
 ## <a name="using-user-defined-types---udt"></a>使用使用者定義類型 - UDT
 使用者定義類型 (UDT) 是 U-SQL 的另一個可程式性功能。 U-SQL UDT 的作用就像一般的 C# 使用者定義類型。 C# 是強類型的語言，允許使用內建和自訂的使用者定義類型。
 
-U-SQL 目前無法以隱含方式對外部檔案進行 UDT 資料的序列化/還原序列化。 因此，IFormatter 介面必須以序列化/還原序列化方法定義為 UDT 定義的一部分。 在 ADLA V1 中，僅支援中繼序列化。 這表示，雖然 IFormatter 對內部 UDT 處理很重要，但它無法在 EXTRACTOR 或 OUTPUTTER 中用於持續進行序列化。 使用 OUTPUTTER 將資料寫入檔案或使用 EXTRACTOR 讀取資料時，必須使用 UDT 實作的 ToString() 方法將 UDT 序列化為字串。 或者，您可以在處理 UDT 時使用自訂的 EXTRACTOR/OUTPUTTER。  
+在資料列集的頂點之間傳遞 UDT 時，U-SQL 無法以隱含方式序列化/還原序列化任意 UDT。 因此，使用者必須使用 IFormatter 介面提供明確的格式器。 這將提供 U-SQL 將 UDT 序列化和還原序列化的方法。 
+
+> [!NOTE]
+> U-SQL 的內建擷取器和 outputter 目前無法將 UDT 資料從檔案往返序列化/還原序列化，即使是已設定 IFormatter 亦然。  因此，使用 OUTPUT 陳述式將 UDT 資料寫入檔案，或使用擷取器讀它時，使用者必須將它以字串或位元組陣列形式傳遞，並明確呼叫序列化和還原序列化程式碼 (例如 UDT 的 ToString() 方法)。 另一方面，使用者定義的擷取器和 outputter 可以讀取並寫入 UDT。
 
 如果我們嘗試在 EXTRACTOR 或 OUTPUTTER 中使用 UDT (出自上一個 SELECT)
 
@@ -837,7 +842,7 @@ OUTPUT @rs1 TO @output_file USING Outputters.Text();
 我們會收到下列錯誤
 
 ```
-    Error   1   E_CSC_USER_INVALIDTYPEINOUTPUTTER: Outputters.Text was used to output column myfield of type
+    Error    1    E_CSC_USER_INVALIDTYPEINOUTPUTTER: Outputters.Text was used to output column myfield of type
     MyNameSpace.Myfunction_Returning_UDT.
 
     Description:
@@ -847,8 +852,8 @@ OUTPUT @rs1 TO @output_file USING Outputters.Text();
     Resolution:
 
     Implement a custom outputter that knows how to serialize this type or call a serialization method on the type in
-    the preceding SELECT.   C:\Users\sergeypu\Documents\Visual Studio 2013\Projects\USQL-Programmability\
-    USQL-Programmability\Types.usql 52  1   USQL-Programmability
+    the preceding SELECT.    C:\Users\sergeypu\Documents\Visual Studio 2013\Projects\USQL-Programmability\
+    USQL-Programmability\Types.usql    52    1    USQL-Programmability
 ```
 
 若要在 Outptutter 中使用 UDT，我們必須使用 ToString() 方法將它序列化為字串，您會建立自訂 Outputter。
@@ -856,7 +861,7 @@ OUTPUT @rs1 TO @output_file USING Outputters.Text();
 UDT 目前不能用於 GROUP BY。 如果將 UDT 用於 GROUP BY，系統會擲回下列錯誤︰
 
 ```
-    Error   1   E_CSC_USER_INVALIDTYPEINCLAUSE: GROUP BY doesn't support type MyNameSpace.Myfunction_Returning_UDT
+    Error    1    E_CSC_USER_INVALIDTYPEINCLAUSE: GROUP BY doesn't support type MyNameSpace.Myfunction_Returning_UDT
     for column myfield
 
     Description:
@@ -867,7 +872,7 @@ UDT 目前不能用於 GROUP BY。 如果將 UDT 用於 GROUP BY，系統會擲�
 
     Add a SELECT statement where you can project a scalar column that you want to use with GROUP BY.
     C:\Users\sergeypu\Documents\Visual Studio 2013\Projects\USQL-Programmability\USQL-Programmability\Types.usql
-    62  5   USQL-Programmability
+    62    5    USQL-Programmability
 ```
 
 若要定義 UDT，我們必須︰
@@ -896,7 +901,7 @@ SqlUserDefinedType 是 UDT 定義的必要屬性 (attribute)。
 ```c#
     [SqlUserDefinedType(typeof(MyTypeFormatter))]
       public class MyType
-           {
+              {
              …
            }
 ```
@@ -1116,6 +1121,8 @@ DECLARE @output_file string = @"c:\work\cosmos\usql-programmability\output_file.
            fiscalquarter,
            fiscalmonth,
            USQL_Programmability.CustomFunctions.GetFiscalPeriodWithCustomType(dt).ToString() AS fiscalperiod,
+       
+       // This user-defined type was created in the prior SELECT.  Passing the UDT to this subsequent SELECT would have failed if the UDT was not annotated with an IFormatter.
            fiscalperiod_adjusted.ToString() AS fiscalperiod_adjusted,
            user,
            des
@@ -1285,9 +1292,6 @@ var result = new FiscalPeriod(binaryReader.ReadInt16(), binaryReader.ReadInt16()
 }
 ```
 
-### <a name="udts-from-built-in-types"></a>來自內建類型的 UDT
-敬請期待
-
 ## <a name="user-defined-aggregates--udagg"></a>使用者定義彙總 – UDAGG
 使用者定義彙總是指並非 U-SQL 現成提供的彙總相關函式。 其範例包括用來執行自訂數學計算、執行字串串連或使用字串之操作等彙總。
 
@@ -1425,7 +1429,7 @@ OUTPUT @rs1 TO @output_file USING Outputters.Text();
 在此使用案例中，我們會串連特定使用者的類別 GUID。
 
 ## <a name="user-defined-objects--udo"></a>使用者定義物件 – UDO
-U-SQL 可讓您定義自訂可程式性物件，我們將其稱為使用者定義物件，簡稱 UDO。
+U-SQL 可讓您定義自訂可程式性物件，我們將它稱為使用者定義物件，簡稱 UDO。
 
 以下是 U-SQL 中的 UDO 清單
 
@@ -1523,7 +1527,7 @@ SqlUserDefinedExtractor 是 UDE 定義的選擇性屬性。 它可用來定義 U
     {
     …
         string[] parts = line.Split(my_column_delimiter);
-            foreach (string part in parts)
+               foreach (string part in parts)
         {
         …
         }
@@ -2174,9 +2178,9 @@ OUTPUT @rs1 TO @output_file USING Outputters.Text();
 在此使用案例中，使用者定義套用器可做為車隊屬性的逗號分隔值剖析器。 輸入檔資料列看起來如下︰
 
 ```
-103 Z1AB2CD123XY45889   Ford,Explorer,2005,SUV,152345
-303 Y0AB2CD34XY458890   Shevrolet,Cruise,2010,4Dr,32455
-210 X5AB2CD45XY458893   Nissan,Altima,2011,4Dr,74000
+103    Z1AB2CD123XY45889    Ford,Explorer,2005,SUV,152345
+303    Y0AB2CD34XY458890    Shevrolet,Cruise,2010,4Dr,32455
+210    X5AB2CD45XY458893    Nissan,Altima,2011,4Dr,74000
 ```
 
 這是典型的定位點分隔符號 TSV 檔案，其屬性資料行內含製造商、型號等汽車屬性。這些屬性需要剖析到資料表資料行。 所提供的套用器也可讓您根據所傳遞的參數，在結果資料列集產生數目不定的屬性，不論是所有屬性還是只傳回一組特定屬性。
@@ -2263,7 +2267,7 @@ CombinerMode 列舉可以採用下列值︰
 
 * 內部 (3) 每個輸出資料列相依於具有相同值的左邊和右邊單一輸入資料列
 
-範例：[`SqlUserDefinedCombiner(Mode=CombinerMode.Left)`]
+範例：     [`SqlUserDefinedCombiner(Mode=CombinerMode.Left)`]
 
 
 主要的可程式性物件為
@@ -2608,6 +2612,6 @@ OUTPUT @rs2 TO @output_file USING Outputters.Text();
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

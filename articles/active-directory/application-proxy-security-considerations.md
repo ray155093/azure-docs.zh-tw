@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: b01d0ddef2271c440cbff1684c85d23dcda9a1de
-ms.openlocfilehash: 75d657412a61de38ab53708a8108d40309de742d
+ms.sourcegitcommit: 67650676117fef834ea819da2fc45ca66ed15493
+ms.openlocfilehash: 1b713e015f48b044c6c9d8ff6a0d8669d4532a9f
 
 
 ---
@@ -54,7 +54,7 @@ Azure AD 應用程式 Proxy 提供下列安全性優點︰
 * 使用電腦學習導向智慧與來自我們數位犯罪單位和 Microsoft Security Response Center 之摘要的 Azure AD Identity Protection。 我們共同主動識別遭入侵的帳戶，並提供來自高風險登入的即時防護。 我們考慮許多因素，例如來自受感染裝置和透過匿名網路，以及來自非典型與假位置的存取。
 * 這些報告和事件中有許多已可透過 API 與 SIEM 系統整合。
 * 您可以閱讀 [Azure Active Directory 身分識別保護](https://azure.microsoft.com/en-us/documentation/articles/active-directory-identityprotection)，進一步了解 Azure AD Identity Protection。
-
+!
 **遠端存取即服務︰**您不必擔心維護及修補內部部署伺服器
 
 * Azure AD App Proxy 是我們自己的網際網路級別服務，因此您可以確保永遠取得最新的安全性修補程式和升級。 因此，我們會負責處理您的網路安全性。
@@ -65,6 +65,12 @@ Azure AD 應用程式 Proxy 提供下列安全性優點︰
 下圖顯示 Azure AD 如何讓您在內部部署應用程式安全遠端存取。
 
  ![Azure AD 應用程式 Proxy 連接器](./media/application-proxy-security-considerations/secure-remote-access.png)
+
+>[!NOTE] 
+>若要改善 Azure AD 應用程式 Proxy 所發佈應用程式的安全性，我們會封鎖 Web 編目程式傀儡程式，使其無法對您的應用程式編製索引和進行保存。 每次 Web 編目程式傀儡程式嘗試擷取已發佈應用程式的傀儡程式設定時，應用程式 Proxy 會以包括下列項目的 robots.txt 檔案回覆： <br>
+>   _User-agent: *_<br>
+>   _Disallow: /_
+>
 
 ## <a name="components-of-the-azure-ad-app-proxy-solution"></a>Azure AD App Proxy 解決方案的元件
 
@@ -141,6 +147,6 @@ Azure AD 應用程式 Proxy 是由兩個部分組成︰
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 
