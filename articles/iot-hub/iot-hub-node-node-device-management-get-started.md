@@ -1,6 +1,6 @@
 ---
-title: "開始使用裝置管理 | Microsoft 文件"
-description: "本教學課程說明如何在 Azure IoT 中樞上開始使用裝置管理"
+title: "開始使用 Azure IoT 中樞裝置管理 (Node) | Microsoft Docs"
+description: "如何使用 IoT 中樞裝置管理來起始遠端裝置重新開機。 您可以使用適用於 Node.js 的 Azure IoT SDK，實作模擬裝置應用程式 (包含直接方法) 和服務應用程式 (叫用直接方法)。"
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 829164eaa856d824ed1f37c43799dabb8f0a0868
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: e1bb89ba369818d7ba0e92a54a4712033f648187
 
 
 ---
-# <a name="tutorial-get-started-with-device-management"></a>教學課程：開始使用裝置管理
+# <a name="get-started-with-device-management-node"></a>開始使用裝置管理 (Node)
 ## <a name="introduction"></a>簡介
 IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是裝置對應項和直接方法) 來遠端啟動並監視裝置上的裝置管理動作。  本文提供 IoT 雲端應用程式和裝置如何共同運作，以使用 IoT 中樞初始化並監視遠端裝置重新啟動的指導方針和程式碼。
 
@@ -38,7 +38,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 
 * 使用 Azure 入口網站來建立 IoT 中樞，並且在 IoT 中樞建立裝置識別。
 * 建立模擬的裝置應用程式，其具有可以由雲端呼叫以進行重新啟動的直接方法。
-* 建立主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
+* 建立 Node.js 主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
 
 在本教學課程結尾處，您會有兩個 Node.js 主控台應用程式：
 
@@ -81,7 +81,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。  以您裝置的連接字串取代連接字串。  
+5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。  以您裝置的連接字串取代連接字串。  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myDeviceId;SharedAccessKey={yourdevicekey}';
@@ -147,7 +147,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 ## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>使用直接方法在裝置上觸發遠端重新啟動
 在本節中，您會建立一個 Node.js 主控台 App，此 App 會使用直接方法在裝置上初始化遠端重新啟動，並使用裝置對應項 (twin) 查詢來尋找該裝置的上次重新啟動時間。
 
-1. 建立名為 **triggerrebootondevice** 的新空白資料夾。  在命令提示字元中，於 [triggerrebootondevice] 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
+1. 建立名為 **triggerrebootondevice** 的新空白資料夾。  在命令提示字元中，於 **triggerrebootondevice** 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
    
     ```
     npm init
@@ -232,7 +232,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
     ```
     node dmpatterns_getstarted_device.js
     ```
-2. 在命令提示字元中，於 [triggerrebootondevice] 資料夾中執行下列命令來觸發遠端重新啟動，以及查詢裝置對應項 (twin) 來尋找上次重新啟動時間。
+2. 在命令提示字元中，於 **triggerrebootondevice** 資料夾執行下列命令以觸發裝置對應項的遠端重新啟動，以及查詢裝置對應項來尋找上次重新啟動時間。
    
     ```
     node dmpatterns_getstarted_service.js
@@ -260,7 +260,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 [img-output]: media/iot-hub-get-started-with-dm/image6.png
 [img-dm-ui]: media/iot-hub-get-started-with-dm/dmui.png
 
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-fwupdate]: iot-hub-node-node-firmware-update.md
@@ -276,6 +276,6 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

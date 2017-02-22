@@ -12,21 +12,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/04/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b1099d742e555bcc7b7730409c85c10778967678
+ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
+ms.openlocfilehash: 0c288989a2b1662bcbec6fd2c74dffaefedc82b8
 
 
 ---
 # <a name="use-ambari-views-to-debug-tez-jobs-on-hdinsight"></a>在 HDInsight 上使用 Ambari 檢視來為 Tez 作業偵錯
 適用於 HDInsight 的 Ambari Web UI 包含 Tez 檢視，可用來了解以 Tez 為執行引擎的作業，以及為該類型的作業偵錯。 Tez 檢視可讓您把作業視覺化有已連接項目的圖表、深入每個項目、取得統計資料，以及記錄資訊。
 
-> [!NOTE]
-> 本文件的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。 如需如何使用 Windows 型 HDInsight 來為 Tez 作業偵錯的資訊，請參閱 [Use the Tez UI to debug Tez jobs on Windows-based HDInsight (在 Windows 型 HDInsight 上使用 Tez UI 來為 Tez 作業偵錯)](hdinsight-debug-tez-ui.md)。
-> 
-> 
+> [!IMPORTANT]
+> 本文件中的步驟需要一個使用 Linux 的 HDInsight 叢集。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="prerequisites"></a>必要條件
 * 以 Linux 為基礎的 HDInsight 叢集。 如需建立新叢集的步驟，請參閱 [開始使用 Linux 型 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)。
@@ -133,6 +131,6 @@ Tez 檢視只包含正在或曾經使用 Tez 引擎來執行之作業的資料�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

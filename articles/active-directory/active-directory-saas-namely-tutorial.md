@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/20/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3c2f2665b217b2de1656e77dae0d9b6c2b439ff5
+ms.sourcegitcommit: 66b1c7769f1141aa2853f77fdb82ad16f5b4e6d3
+ms.openlocfilehash: ec2f9618c4cd4a2944eec8efec83d325da058bb1
 
 
 ---
@@ -136,7 +136,7 @@ ms.openlocfilehash: 3c2f2665b217b2de1656e77dae0d9b6c2b439ff5
    
     a. 按一下 [啟用 SAML] 。 
    
-    b. 在 Azure 傳統入口網站的 [設定在 Namely 單一登入] 對話方塊頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [識別提供者 DDO URL] 文字方塊中。 
+    b.這是另一個 C# 主控台應用程式。 在 Azure 傳統入口網站的 [設定在 Namely 單一登入] 對話方塊頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [識別提供者 SSO URL] 文字方塊中。 
    
     c. 在記事本中開啟下載的憑證，複製其內容，然後貼到 [識別提供者憑證] 文字方塊中。    
    
@@ -276,6 +276,6 @@ ms.openlocfilehash: 3c2f2665b217b2de1656e77dae0d9b6c2b439ff5
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

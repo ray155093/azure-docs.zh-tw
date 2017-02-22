@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5675c2e0c44356002595620df9b06c38a771af56
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: b00c320eeb1e8b30a0fad9634844ceeca60d1c29
 
 
 ---
@@ -169,7 +169,7 @@ App Service 可以備份下列資訊：
 如需從備份還原應用程式的相關資訊，請參閱 [在 Azure 中還原應用程式](web-sites-restore.md)。 您也可以使用 REST API 來備份及還原 App Service 應用程式 (請參閱 [使用 REST 來備份及還原 App Service 應用程式](websites-csm-backup.md))。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -180,7 +180,7 @@ App Service 可以備份下列資訊：
 [BackUpNow]: ./media/web-sites-backup/04BackUpNow.png
 [BackupProgress]: ./media/web-sites-backup/05BackupProgress.png
 [SetAutomatedBackupOn]: ./media/web-sites-backup/06SetAutomatedBackupOn.png
-[頻率]: ./media/web-sites-backup/07Frequency.png
+[Frequency]: ./media/web-sites-backup/07Frequency.png
 [StartDate]: ./media/web-sites-backup/08StartDate.png
 [StartTime]: ./media/web-sites-backup/09StartTime.png
 [SaveIcon]: ./media/web-sites-backup/10SaveIcon.png
@@ -191,6 +191,6 @@ App Service 可以備份下列資訊：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

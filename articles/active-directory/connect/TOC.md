@@ -11,7 +11,7 @@
 
 # 開始使用
 ## [必要條件](active-directory-aadconnect-prerequisites.md)
-## [安裝 Azure AD Connect](active-directory-aadconnect-accounts-permissions.md)
+## [安裝 Azure AD Connect](active-directory-aadconnect-select-installation.md)
 ### [快速設定](active-directory-aadconnect-get-started-express.md)
 ### [自訂設定](active-directory-aadconnect-get-started-custom.md)
 ### [從 DirSync 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
@@ -33,7 +33,6 @@
 
 
 ## 管理 Azure AD Connect 同步處理
-### [一般 SQL 連接器的逐步解說](active-directory-aadconnectsync-connector-genericsql-step-by-step.md)
 ### [防止意外刪除](active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)
 ### [密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md)
 ### [Azure AD 服務帳戶](active-directory-aadconnectsync-howto-azureadaccount.md)
@@ -58,14 +57,11 @@
 
 
 # 參考
-## [Windows PowerShell 連接器](active-directory-aadconnectsync-connector-powershell.md)
-## [一般 SQL 連接器](active-directory-aadconnectsync-connector-genericsql.md)
-## [一般 LDAP 連接器](active-directory-aadconnectsync-connector-genericldap.md)
-## [Lotus Domino 連接器](active-directory-aadconnectsync-connector-domino.md)
 ## [身分識別同步處理和重複屬性恢復功能](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)
 ## [混合式身分識別所需的連接埠和通訊協定](active-directory-aadconnect-ports.md)
 ## [預覽中的功能](active-directory-aadconnect-feature-preview.md)
 ## [版本歷程記錄](active-directory-aadconnect-version-history.md)
+## [帳戶和權限](active-directory-aadconnect-accounts-permissions.md)
 
 ## Azure AD Connect 同步處理
 ### [將屬性同步處理至 Azure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md)
@@ -89,6 +85,6 @@
 ##[DirSync 淘汰](active-directory-aadconnect-dirsync-deprecated.md)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

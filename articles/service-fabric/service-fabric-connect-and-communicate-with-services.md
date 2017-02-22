@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/19/2016
+ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ae6d85a3b6efddff1bd1df7b9b022d91b8de634e
+ms.sourcegitcommit: 4e5568bfcc3d488ef07203b7d3ad95f44354cabc
+ms.openlocfilehash: f35a42154e5d14e798a787a3ecd100ab72512b96
 
 
 ---
@@ -24,6 +24,10 @@ ms.openlocfilehash: ae6d85a3b6efddff1bd1df7b9b022d91b8de634e
 在 Service Fabric 中，服務會在 Service Fabric 叢集中的某處執行，通常是分散到多個 VM。 它可以由服務擁有者或是 Service Fabric 自動從某個位置移到其他位置。 服務無法以靜態方式繫結至特定電腦或位址。
 
 Service Fabric 應用程式通常是由許多不同的服務組成，每一個服務用來執行特定的工作。 這些服務可能會彼此進行通訊以形成完整的函式，例如轉譯 Web 應用程式的不同部分。 有些用戶端應用程式會連接到服務並與其通訊。 本文件討論如何設定您在 Service Fabric 中的服務之間的通訊。
+
+這段 Microsoft Virtual Academy 影片也會討論服務通訊︰<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=iYFCk76yC_6706218965">  
+<img src="./media/service-fabric-connect-and-communicate-with-services/CommunicationVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
 
 ## <a name="bring-your-own-protocol"></a>引進您自己的通訊協定
 Service Fabric 可以幫助管理您的服務的生命週期，但是它不會決定您的服務要執行的動作。 這包含通訊： 當您的服務是由 Service Fabric 開啟時，就是您的服務設定連入要求端點的機會，使用您想要的任何通訊協定或通訊堆疊。 您的服務會接聽一般 **IP:port** 位址，使用任何定址配置，例如 URI。 多個服務執行個體或複本可能共用主機處理序，在此情況下，它們必須使用不同的連接埠，或使用連接埠共用機制，如 Windows 的 http.sys 核心驅動程式。 在任一情況下，主機處理序中的每個服務執行個體或複本必須可以唯一定址。
@@ -135,6 +139,6 @@ Reliable Services 架構隨附數個預先建置的通訊選項。 最適合您�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

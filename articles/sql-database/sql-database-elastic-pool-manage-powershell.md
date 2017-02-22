@@ -1,6 +1,6 @@
 ---
-title: "管理彈性資料庫集區 (PowerShell) | Microsoft Docs"
-description: "了解如何使用 PowerShell 管理彈性資料庫集區。"
+title: "PowerShell：管理 Azure SQL Database 彈性集區 | Microsoft Docs"
+description: "了解如何使用 PowerShell 管理彈性集區。"
 services: sql-database
 documentationcenter: 
 author: srinia
@@ -8,6 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 61289770-69b9-4ae3-9252-d0e94d709331
 ms.service: sql-database
+ms.custom: multiple databases
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: powershell
@@ -15,12 +16,12 @@ ms.workload: data-management
 ms.date: 06/22/2016
 ms.author: srinia
 translationtype: Human Translation
-ms.sourcegitcommit: 5a101aa78dbac4f1a0edb7f414b44c14db392652
-ms.openlocfilehash: 8b0893b159b6ed086cd3fcb41f7671c7c41cd176
+ms.sourcegitcommit: 9c6800c54f545d5ae70e9e8c2a3234cb3acecb83
+ms.openlocfilehash: 355baefc2ef50000ddb5a1241d9d28c201deffa1
 
 
 ---
-# <a name="monitor-and-manage-an-elastic-database-pool-with-powershell"></a>透過 PowerShell 監視和管理彈性資料庫集區
+# <a name="monitor-and-manage-an-elastic-pool-with-powershell"></a>使用 PowerShell 監視和管理彈性集區
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)
 > * [PowerShell](sql-database-elastic-pool-manage-powershell.md)
@@ -29,15 +30,14 @@ ms.openlocfilehash: 8b0893b159b6ed086cd3fcb41f7671c7c41cd176
 >
 >
 
-使用 PowerShell Cmdlet 管理 [彈性資料庫集區](sql-database-elastic-pool.md) 。
+使用 PowerShell Cmdlet 管理[彈性集區](sql-database-elastic-pool.md)。
 
 如需常見的錯誤碼，請參閱 [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md)。
 
-集區值可在 [eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)中找到。
+集區值可在 [eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)中找到。
 
 ## <a name="prerequisites"></a>必要條件
-* Azure PowerShell 1.0 或更新版本。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
-* 只有 SQL Database V12 伺服器才可以使用彈性資料庫集區。 如果您有 SQL Database V11 伺服器，可以在單一步驟中 [使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-portal.md) 。
+* Azure PowerShell 1.0 或更新版本。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="move-a-database-into-an-elastic-pool"></a>將資料庫移入彈性集區
 您可以使用 [Set-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619433\(v=azure.300\).aspx)，將資料庫移入或移出集區。
@@ -45,15 +45,15 @@ ms.openlocfilehash: 8b0893b159b6ed086cd3fcb41f7671c7c41cd176
     Set-AzureRmSqlDatabase -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
 
 ## <a name="change-performance-settings-of-a-pool"></a>變更集區的效能設定
-當犧牲效能時，您可以變更集區的設定，以配合效能成長。 使用 [Set-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt603511\(v=azure.300\).aspx) Cmdlet。 為每個集區的 eDTU 設定 -Dtu 參數。 請參閱 [eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)以了解有哪些可能的值。  
+當犧牲效能時，您可以變更集區的設定，以配合效能成長。 使用 [Set-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt603511\(v=azure.300\).aspx) Cmdlet。 為每個集區的 eDTU 設定 -Dtu 參數。 請參閱 [eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)以了解有哪些可能的值。  
 
-    Set-AzureRmSqlElasticPool –ResourceGroupName “resourcegroup1” –ServerName “server1” –ElasticPoolName “elasticpool1” –Dtu 1200 –DatabaseDtuMax 100 –DatabaseDtuMin 50
+    Set-AzureRmSqlElasticPool -ResourceGroupName “resourcegroup1” -ServerName “server1” -ElasticPoolName “elasticpool1” -Dtu 1200 -DatabaseDtuMax 100 -DatabaseDtuMin 50
 
 
 ## <a name="get-the-status-of-pool-operations"></a>取得集區作業的狀態
 建立集區可能會很耗時。 要追蹤集區作業的狀態，包括建立及更新作業，請使用 [Get-AzureRmSqlElasticPoolActivity](https://msdn.microsoft.com/library/azure/mt603812\(v=azure.300\).aspx) Cmdlet。
 
-    Get-AzureRmSqlElasticPoolActivity –ResourceGroupName “resourcegroup1” –ServerName “server1” –ElasticPoolName “elasticpool1”
+    Get-AzureRmSqlElasticPoolActivity -ResourceGroupName “resourcegroup1” -ServerName “server1” -ElasticPoolName “elasticpool1”
 
 
 ## <a name="get-the-status-of-moving-an-elastic-database-into-and-out-of-a-pool"></a>取得將彈性資料庫移入和移出集區的狀態
@@ -91,7 +91,7 @@ ms.openlocfilehash: 8b0893b159b6ed086cd3fcb41f7671c7c41cd176
 
 
 ## <a name="get-resource-usage-data-for-an-elastic-database"></a>取得彈性資料庫的資源使用量資料
-除了以下的語意差異外，這些 API 與目前用於監視獨立資料庫之資源使用率的 (V12) API 相同。
+除了以下的語意差異外，這些 API 與目前用於監視單一資料庫之資源使用率的 (V12) API 相同。
 
 這個擷取的 API 度量，會以針對該集區所設定之每個eDTU 上限 (或是 CPU、IO 等基礎度量的相等上限) 的百分比來表示。 例如，這些度量有其中一項的使用率為 50%，則表示特定資源的消耗量佔該資源在父集區中，每個資料庫上限限制的 50%。
 
@@ -251,11 +251,6 @@ ms.openlocfilehash: 8b0893b159b6ed086cd3fcb41f7671c7c41cd176
 * 每個資料庫的最小 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在 5 分鐘內即可完成。
 * 集區的 eDTU 變更作業，需視集區中所有資料庫使用的總空間量而定。 變更作業平均每 100 GB 會在 90 分鐘以內完成。 舉例來說，如果集區中所有資料庫使用的總空間為 200 GB，則每集區 eDTU 變更作業的預期延遲時間會少於 3 小時。
 
-## <a name="migrate-from-v11-to-v12-servers"></a>從 V11 移轉到 V12 伺服器
-PowerShell Cmdlet 可用來啟動、停止或監視從 V11 或任何其他 V12 以前版本升級至 Azure SQL Database V12。
-
-* [使用 PowerShell 升級至 SQL Database V12](sql-database-upgrade-server-powershell.md)
-
 如需這些 PowerShell Cmdlet 的參考文件，請參閱：
 
 * [Get-AzureRMSqlServerUpgrade](https://msdn.microsoft.com/library/azure/mt603582\(v=azure.300\).aspx)
@@ -270,6 +265,6 @@ Stop- Cmdlet 表示取消，不是暫停。 升級一旦停止就沒有任何方
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

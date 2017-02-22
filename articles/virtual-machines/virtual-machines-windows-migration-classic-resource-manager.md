@@ -1,5 +1,5 @@
 ---
-title: "平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager) | Microsoft Docs"
+title: "將傳統資源移轉至 Azure Resource Manager - 概觀 | Microsoft Docs"
 description: "這篇文章提供平台支援之資源移轉 (從傳統移轉至 Azure Resource Manager) 的逐步解說"
 services: virtual-machines-windows
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 08/22/2016
+ms.date: 01/23/2017
 ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 66b1bcdf0f79ff4743f466c3737696f53ef6a44c
-ms.openlocfilehash: 8eb70339785ca15131b5ce8debd6a232a8a693b9
+ms.sourcegitcommit: 2c96a3ca5fd72a4a3c992206aeb93f201342dd6a
+ms.openlocfilehash: aafaacea59c2c7fc463fb84207417d2c4e1d81ff
 
 
 ---
@@ -138,6 +138,8 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 
 * 如果資源不能進行移轉，Azure 平台將會列出不支援移轉該資源的所有原因。
 
+驗證儲存體服務時，您會發現資源群組中已移轉帳戶的名稱與您儲存體帳戶的名稱相同，但會附加 "-Migrated"。  例如，如果您的儲存體帳戶名為 "mystorage"，您會發現資源群組中支援 ARM 的資源會命名為 "mystorage-Migrated"，而且它會包含名為 "mystorage" 的儲存體帳戶。
+
 ### <a name="prepare"></a>準備
 準備作業是移轉程序的第二個步驟。 這個步驟的目標是要模擬將 IaaS 資源從傳統資源轉換為 Resource Manager 資源的轉換過程，並以並排方式呈現此過程以供您用視覺化方式檢視。
 
@@ -237,7 +239,7 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 
 **我收到訊息*「VM 將整體代理程式狀態回報為『未就緒』。因此，無法移轉 VM。請確定 VM 代理程式將整體代理程式狀態回報為『就緒』」*，或*「VM 包含 VM 未回報其狀態的擴充功能。因此，無法移轉此 VM。」***
 
-當 VM 無法連出到網際網路時，就會收到此訊息。 VM 代理程式會使用連出連線來連接到 Azure 儲存體帳戶，來每隔 5 分鐘更新一次代理程式狀態。
+當 VM 無法連出到網際網路時，就會收到此訊息。 VM 代理程式會使用連出連線來連接到 Azure 儲存體帳戶，來每隔&5; 分鐘更新一次代理程式狀態。
 
 ## <a name="next-steps"></a>後續步驟
 既然您已了解如何將傳統 IaaS 資源移轉至 Resource Manager，您便可以開始移轉資源。
@@ -250,6 +252,6 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

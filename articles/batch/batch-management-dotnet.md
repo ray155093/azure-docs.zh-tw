@@ -1,5 +1,5 @@
 ---
-title: "使用 Batch Management .NET 進行帳戶資源管理 | Microsoft Docs"
+title: "使用適用於 .NET 的用戶端程式庫管理 Batch 帳戶資源 - Azure | Microsoft Docs"
 description: "使用 Batch Management .NET 程式庫建立、刪除和修改 Azure Batch 帳戶資源。"
 services: batch
 documentationcenter: .net
@@ -13,11 +13,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 01/20/2017
+ms.date: 01/23/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: e65393c9582056f84530a32804e0d82fd451b688
-ms.openlocfilehash: ce2b316c9e04c46c1b45139b2ba84c1ca8843f29
+ms.sourcegitcommit: bf22cd3426e936c8d74377f59443e5e1a6834286
+ms.openlocfilehash: 94d2de0d18863872510ed03a5701f4fc6d133659
 
 
 ---
@@ -228,6 +228,6 @@ Azure 本身會使用 Azure AD 來驗證其客戶、服務管理員和組織的�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集 | Microsoft Docs"
+title: "使用範本建立 Azure HDInsight (Hadoop) | Microsoft Docs"
 description: "了解如何使用 Azure Resource Manager 範本建立 Azure HDInsight 的叢集。"
 services: hdinsight
 documentationcenter: 
@@ -13,18 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/02/2016
+ms.date: 01/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 756369d219c34e5530edc91de0dc74cbf88c02c5
-ms.openlocfilehash: 78276ecfbeb339721c76af40428a452681c3407d
+ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
+ms.openlocfilehash: 1816b7f5bb95669197891315ca57f93fd779c5c3
 
 
 ---
-# <a name="create-linux-based-hadoop-clusters-in-hdinsight-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集
-[!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
+# <a name="create-hadoop-clusters-in-hdinsight-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集
+[!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-了解如何使用 Azure 資源管理員 (ARM) 範本建立 HDInsight 叢集。 如需詳細資訊，請參閱 [使用 Azure 資源管理員範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)。 如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱 [叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
+了解如何使用 Azure Resource Manager 範本建立 HDInsight 叢集。 如需詳細資訊，請參閱 [使用 Azure 資源管理員範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)。 如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱 [叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
 
 ## <a name="prerequisites"></a>必要條件：
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -59,9 +59,9 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
 
     入口網站會根據您的組態建立 Resource Manager 範本。
 
-   ## <a name="deploy-with-powershell"></a>使用 PowerShell 部署
+## <a name="deploy-with-powershell"></a>使用 PowerShell 部署
 
-以下程序會建立以 Linux 為基礎的 HDInsight 叢集。
+以下程序會在 HDInsight 中建立 Hadoop 叢集：
 
 **使用 Resource Manager 範本部署叢集**
 
@@ -151,7 +151,7 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
 * 如需可在 Azure Resource Manager 範本中使用的函式清單，請參閱 [範本函式](../azure-resource-manager/resource-group-template-functions.md)。
 
 ## <a name="appx-a-resource-manager-template"></a>附錄 A：Resource Manager 範本
-下列 Azure 資源管理員範本會建立 Linux 型 Hadoop 叢集與相依的 Azure 儲存體帳戶。
+下列 Azure Resource Manager 範本會建立 Linux 型 Hadoop 叢集與相依的 Azure 儲存體帳戶。
 
 > [!NOTE]
 > 範例包括 Hive 中繼存放區和 Oozie 中繼存放區的組態資訊。  請在使用範本之前先移除區段或設定區段。
@@ -359,6 +359,6 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

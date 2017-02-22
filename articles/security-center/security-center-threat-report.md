@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/17/2016
+ms.date: 01/30/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: d59a749a19bc5b3a57cc7e62c056d454c51c4204
+ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
+ms.openlocfilehash: 99c5ea06a0970c360eb711a8b10894d416146693
 
 
 ---
@@ -24,9 +24,9 @@ ms.openlocfilehash: d59a749a19bc5b3a57cc7e62c056d454c51c4204
 本文件說明 Azure 資訊安全中心威脅情報報告可如何協助您深入了解產生安全性警示的威脅。
 
 ## <a name="what-is-a-threat-intelligence-report"></a>何謂威脅情報報告？
-資訊安全中心威脅偵測的運作方式如下：監視來自 Azure 資源、網路和已連線合作夥伴解決方案的安全性資訊。 它會分析這項資訊 (通常是來自多個來源的相互關聯資訊) 以識別威脅。 此程序為資訊安全中心[偵測功能](security-center-detection-capabilities.md)的一部分。 
+資訊安全中心威脅偵測的運作方式如下：監視來自 Azure 資源、網路和已連線合作夥伴解決方案的安全性資訊。 它會分析這項資訊 (通常是來自多個來源的相互關聯資訊) 以識別威脅。 此程序為資訊安全中心[偵測功能](security-center-detection-capabilities.md)的一部分。
 
-當資訊安全中心識別到威脅時，便會觸發[安全性警示](security-center-managing-and-responding-alerts.md)，其內含關於特定事件的詳細資訊，包括修復方面的建議。 為了協助事件回應小組調查和修復威脅，資訊安全中心包含威脅情報報告，報告中含有偵測到之威脅的相關資訊，包括如下資訊： 
+當資訊安全中心識別到威脅時，便會觸發[安全性警示](security-center-managing-and-responding-alerts.md)，其內含關於特定事件的詳細資訊，包括修復方面的建議。 為了協助事件回應小組調查和修復威脅，資訊安全中心包含威脅情報報告，報告中含有偵測到之威脅的相關資訊，包括如下資訊：
 
 * 攻擊者的身分識別或關聯 (如果有提供這項資訊)
 * 攻擊者的目標
@@ -38,29 +38,29 @@ ms.openlocfilehash: d59a749a19bc5b3a57cc7e62c056d454c51c4204
 
 > [!NOTE]
 > 任何特定報告中所含的資訊數量各有不同；詳細程度視惡意程式碼的活動和盛行情況而定。
-> 
-> 
+>
+>
 
 資訊安全中心有三種威脅報告，不同攻擊會提供不同的報告。 所提供的報告如下︰
 
 * **群組活動報告**︰提供攻擊者、其目標和策略的深入探討。
-* **活動報告**︰著重說明特定攻擊活動的詳細資料。 
+* **活動報告**︰著重說明特定攻擊活動的詳細資料。
 * **威脅摘要報告**︰涵蓋先前兩種報告的所有項目。
 
-這種類型的資訊在[事件回應](security-center-incident-response.md)程序期間非常有用，因為該期間會持續進行調查，以了解攻擊來源、攻擊者的動機，以及日後該如何緩和此問題。 
+這種類型的資訊在[事件回應](security-center-incident-response.md)程序期間非常有用，因為該期間會持續進行調查，以了解攻擊來源、攻擊者的動機，以及日後該如何緩和此問題。
 
 ## <a name="how-to-access-the-threat-intelligence-report"></a>如何存取威脅情報報告？
 您可以查看 [安全性警示]  圖格來檢視目前的警示。 開啟 Azure 入口網站並遵循下列步驟來查看有關每個警示的更多詳細資訊：
 
 1. 您會在「資訊安全中心」的儀表板看到 [安全性警示]  圖格。
 2. 按一下圖格便可開啟 [安全性警示] 刀鋒視窗，其中包含有關警示的更多詳細資料，按一下您想了解的安全性警示即可取得更多相關資訊。
-   
+
     ![安全性警示](./media/security-center-threat-report/security-center-threat-report-fig1.png)
 3. 在此案例中，[已執行的可疑處理程序] 刀鋒視窗會顯示警示的詳細資料，如下圖所示︰
-   
+
     ![安全性警示詳細資料](./media/security-center-threat-report/security-center-threat-report-fig2.png)
 4. 根據警示類型而定，針對每個安全性警示所提供的資訊數量會有所不同。 [報告] 欄位中有威脅情報報告的連結。 按一下連結，便會出現另一個含有 PDF 檔案的瀏覽器視窗。
-   
+
    ![儲存體選擇](./media/security-center-threat-report/security-center-threat-report-fig3.png)
 
 您可以從這裡下載此報告的 PDF，深入了解偵測到的安全性問題，並根據所提供的資訊採取動作。
@@ -78,7 +78,6 @@ ms.openlocfilehash: d59a749a19bc5b3a57cc7e62c056d454c51c4204
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

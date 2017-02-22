@@ -3,30 +3,25 @@ title: "使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計
 description: "使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉"
 services: sql-database
 documentationcenter: 
-author: anosov1960
+author: CarlRabeler
 manager: jhubbard
 editor: 
 ms.assetid: a9d184a4-09e0-4f41-b364-40425f68f430
 ms.service: sql-database
+ms.custom: business continuity
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-management
 ms.date: 11/22/2016
-ms.author: sashan;carlrab
+ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: bba23c13ec710e23f4d40be5ac33af919afe432c
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: b0180a9f32e1176667fe8e33a4151b2b70956adc
 
 
 ---
 # <a name="initiate-a-planned-or-unplanned-failover-for-azure-sql-database-with-the-azure-portal"></a>使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](sql-database-geo-replication-failover-portal.md)
-> * [PowerShell](sql-database-geo-replication-failover-powershell.md)
-> * [T-SQL](sql-database-geo-replication-failover-transact-sql.md)
-> 
-> 
 
 本文說明如何使用 [Azure 入口網站](http://portal.azure.com)起始容錯移轉至次要 SQL Database。 若要設定「異地複寫」，請參閱 [為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)。
 
@@ -54,7 +49,7 @@ ms.openlocfilehash: bba23c13ec710e23f4d40be5ac33af919afe432c
 * 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱 [災害復原演練](sql-database-disaster-recovery.md)
 * 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱 [新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
 * 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱 [使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-* 如需使用主動式異地複寫與彈性資料庫集區的相關資訊，請參閱 [彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
+* 如需使用主動式異地複寫與彈性集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
 * 如需商務持續性的概觀，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
 
 <!--Image references-->
@@ -63,6 +58,6 @@ ms.openlocfilehash: bba23c13ec710e23f4d40be5ac33af919afe432c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

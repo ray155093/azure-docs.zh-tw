@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: e564a1a277e559c10b13932ed7e017a28780c334
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 0b1f13f816c7836557cd6f646f2d9b38f7bc5b14
 
 
 ---
@@ -47,7 +47,7 @@ ms.openlocfilehash: e564a1a277e559c10b13932ed7e017a28780c334
 > * 您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/) ：您將取得可試用 Azure 付費服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如 Web Apps。
 > * 您可以 [啟用 Visual Studio 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) ：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
 > 
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -75,7 +75,7 @@ ms.openlocfilehash: e564a1a277e559c10b13932ed7e017a28780c334
    
     當發佈完成時，您會在瀏覽器中看到您已發佈的 Web 應用程式。 
 7. 若要建立 CDN 端點，請登入 [Azure 入口網站](https://portal.azure.com)。 
-8. 按一下 [+新增] > 媒體 + CDN] > CDN]。
+8. 按一下 +新增 > 媒體 + CDN > CDN。
    
     ![](media/cdn-websites-with-cdn/create-cdn-profile.png)
 9. 指定 [CDN]、[位置]、[資源群組]、[定價層]，然後按一下 [建立]
@@ -548,6 +548,6 @@ ms.openlocfilehash: e564a1a277e559c10b13932ed7e017a28780c334
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

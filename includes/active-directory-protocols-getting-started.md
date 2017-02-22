@@ -17,10 +17,7 @@ translationtype: Human Translation
 ms.sourcegitcommit: f1e4b86a04a76513a2f0d9a9f89e49611c0447d5
 ms.openlocfilehash: b31fa50a62d5b26a7346f212076ec3a2b0386f5e
 
-
 ---
-<!--TODO: Introduction -->
-
 ## <a name="register-your-application-with-your-ad-tenant"></a>向 AD 租用戶註冊應用程式
 首先，您必須向您的 Azure Active Directory (Azure AD) 租用戶註冊應用程式。 這會讓應用程式獲得應用程式識別碼，以及讓它可以接收權杖。
 

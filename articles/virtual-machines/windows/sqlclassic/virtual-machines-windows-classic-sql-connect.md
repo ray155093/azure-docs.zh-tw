@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 09/22/2016
+ms.date: 01/31/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: 98165704fe2699f8ff8a90edb7af8ad10b4d296c
+ms.sourcegitcommit: c6c716c4dce810f190ed66d633524472ba665256
+ms.openlocfilehash: 60d74f1a8dff6441aa461cdc740b5aadc6b77be3
 
 
 ---
@@ -55,7 +55,7 @@ ms.openlocfilehash: 98165704fe2699f8ff8a90edb7af8ad10b4d296c
 ### <a name="connect-to-sql-server-over-the-internet"></a>連接網際網路中的 SQL Server
 如果您希望透過網際網路連接您的 SQL Server 資料庫引擎，您必須建立虛擬機器端點以進行傳入 TCP 通訊。 此 Azure 組態步驟能將傳入 TCP 連接埠流量導向虛擬機器可存取的 TCP 連接埠。
 
-若要透過網際網路連接，您必須使用 VM 的 DNS 名稱和 VM 端點連接埠號碼 (稍後在本文中設定)。 若要尋找 DNS 名稱，請瀏覽至 Azure 入口網站，然後選取 [虛擬機器 (傳統)] 。 然後選取您的虛擬機器。 [摘要] 區段中會顯示 [DNS 名稱]。
+若要透過網際網路連接，您必須使用 VM 的 DNS 名稱和 VM 端點連接埠號碼 (稍後在本文中設定)。 若要尋找 DNS 名稱，請瀏覽至 Azure 入口網站，然後選取 [虛擬機器 (傳統)]。 然後選取您的虛擬機器。 [摘要] 區段中會顯示 [DNS 名稱]。
 
 例如，假設名為 **mysqlvm** 的傳統虛擬機器，其 DNS 名稱為 **mysqlvm7777.cloudapp.net**，且 VM 端點是 **57500**。 假設已適當設定連線能力，則使用下列連接字串，就能從網際網路上任何位置存取該虛擬機器：
 
@@ -112,6 +112,6 @@ ms.openlocfilehash: 98165704fe2699f8ff8a90edb7af8ad10b4d296c
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

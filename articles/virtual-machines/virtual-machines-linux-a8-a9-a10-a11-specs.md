@@ -13,16 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 09/21/2016
+ms.date: 11/18/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: e42736725bb3636115a6c81aea1f929612a351fe
+ms.sourcegitcommit: f73cbfec2ce2e41589b84997891ff0b60266c9b2
+ms.openlocfilehash: 10a10e138c9c8ed8c15136bf1d6565edc57758b5
 
 
 ---
 # <a name="about-h-series-and-compute-intensive-a-series-vms"></a>關於 H 系列和計算密集型 A 系列 VM
-這裡提供使用較新的 Azure H 系列和較舊的 A8、A9、A10 及 A11 大小 (也稱為「計算密集型」  執行個體) 的背景資訊和一些考量。 本文將焦點放在使用這些 Linux VM 大小。 本文也適用於 [Windows VM](virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+這裡提供使用較新的 Azure H 系列和較舊的 A8、A9、A10 及 A11 大小 (也稱為「計算密集型」  執行個體) 的背景資訊和一些考量。 本文將焦點放在使用這些 Linux VM 大小。 本文也適用於 [Windows VM](virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+
+如需基本規格、儲存體容量與磁碟的詳細資料，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 [!INCLUDE [virtual-machines-common-a8-a9-a10-a11-specs](../../includes/virtual-machines-common-a8-a9-a10-a11-specs.md)]
 
@@ -49,7 +51,7 @@ ms.openlocfilehash: e42736725bb3636115a6c81aea1f929612a351fe
   * **SLES 12 SP1 for HPC 映像** - 請執行下列命令來安裝散佈在 VM 上的 Intel MPI 套件：
     
           sudo rpm -v -i --nodeps /opt/intelMPI/intel_mpi_packages/*.rpm
-  * **SLES 12 for HPC 映像** - 您必須個別註冊，才能下載並安裝 Intel MPI。 請參閱 [Intel MPI Library 安裝指南](https://software.intel.com/sites/default/files/managed/7c/2c/intelmpi-2017-installguide-linux.pdf)。
+  * **SLES 12 for HPC 映像** - 您必須個別註冊，才能下載並安裝 Intel MPI。 如需相關指示，請參閱 [Intel MPI Library 文件](https://software.intel.com/en-us/intel-mpi-library/documentation)。
   * **CentOS 型 HPC 映像** - 已經安裝 Intel MPI 5.1。  
     
     必須進行額外的系統設定，才能在叢集 VM 上執行 MPI 作業。 例如，在 VM 叢集上，您必須在計算節點之間建立信任關係。 如需了解一般設定，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
@@ -130,6 +132,6 @@ done
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

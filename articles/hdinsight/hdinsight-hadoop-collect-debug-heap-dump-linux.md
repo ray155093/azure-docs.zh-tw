@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4bbd6f0033fd148832e56d0e0abef50c84a8422f
+ms.sourcegitcommit: 93990e342f6bd8fcfe9781bcb021aabfd33e8572
+ms.openlocfilehash: 9c5f3c36cc317a4e3700610799872d35c05d386f
 
 
 ---
@@ -26,10 +26,10 @@ ms.openlocfilehash: 4bbd6f0033fd148832e56d0e0abef50c84a8422f
 
 堆積傾印含有應用程式記憶體的快照，其中包括建立傾印時的變數值。 因此堆積傾印非常有助於診斷在執行階段發生的問題。
 
-> [!NOTE]
-> 本文的資訊僅適用於以 Linux 為基礎的 HDInsight。 如需以 Windows 為基礎的 HDInsight 資訊，請參閱 [在以 Windows 為基礎的 HDInsight 上啟用 Hadoop 服務的堆積傾印](hdinsight-hadoop-collect-debug-heap-dumps.md)
-> 
-> 
+
+
+> [!IMPORTANT]
+> 本文件中的步驟只適用於使用 Linux 的 HDInsight 叢集。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="a-namewhichservicesaservices"></a><a name="whichServices"></a>服務
 您可以啟用下列服務的堆積傾印：
@@ -62,7 +62,7 @@ map 和 reduce 處理序會稍有不同，因為它們是 MapReduce 服務的子
 
     -XX:+HeapDumpOnOutOfMemoryError
 
- **+** 表示已啟用此選項。 預設值為停用。
+**+** 表示已啟用此選項。 預設值為停用。
 
 > [!WARNING]
 > 根據預設不會在 HDInsight 上啟用 Hadoop 服務的堆積傾印，因為傾印檔案可能會很龐大。 如果您為了進行疑難排解而啟用它們，請記得在重現問題並收集傾印檔案之後將其停用。
@@ -134,6 +134,6 @@ map 和 reduce 處理序會稍有不同，因為它們是 MapReduce 服務的子
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

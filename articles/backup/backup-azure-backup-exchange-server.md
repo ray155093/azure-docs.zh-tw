@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
-ms.author: anuragm;jimpark;delhan;trinadhk;markgal
+ms.author: masaran;jimpark;delhan;trinadhk;markgal
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 2ee4bfa8c7dce45c6366ddc8aa6e723fe91431a7
@@ -28,8 +28,8 @@ ms.openlocfilehash: 2ee4bfa8c7dce45c6366ddc8aa6e723fe91431a7
 
 > [!NOTE]
 > 對於本文中的範例，會安裝 Azure 備份代理程式的 2.0.8719.0 版，而更新彙總套件 6 會安裝於 System Center 2012 R2 DPM。
-> 
-> 
+>
+>
 
 ## <a name="prerequisites"></a>必要條件
 繼續之前，請確定符合使用 Microsoft Azure 備份保護工作負載的所有 [必要條件](backup-azure-dpm-introduction.md#prerequisites) 。 這些先決條件包含下列各項：
@@ -51,58 +51,58 @@ ms.openlocfilehash: 2ee4bfa8c7dce45c6366ddc8aa6e723fe91431a7
 2. 在精靈的 [歡迎使用] 畫面上按 [下一步]。
 3. 在 [選取保護群組類型] 畫面上，選取 [伺服器]，然後按 [下一步]。
 4. 選取您想要保護的 Exchange Server 資料庫，然後按 [下一步] 。
-   
+
    > [!NOTE]
    > 如果您要保護 Exchange 2013，請檢查 [Exchange 2013 先決條件](https://technet.microsoft.com/library/dn751029.aspx)。
-   > 
-   > 
-   
+   >
+   >
+
     下例中選取了Exchange 2010 資料庫。
-   
+
     ![選擇群組成員](./media/backup-azure-backup-exchange-server/select-group-members.png)
 5. 選取資料保護方式。
-   
+
     替保護群組命名，然後選取下列兩個選項：
-   
+
    * 我想要使用磁碟進行短期保護。
    * 我想要線上保護。
 6. 按 [下一步] 。
 7. 如果您想要檢查 Exchange Server 資料庫的完整性，請選取 [執行 Eseutil 以檢查資料完整性]  選項。
-   
+
     選取此選項之後，將會在 DPM 伺服器上執行備份一致性檢查，以避免在 Exchange Server 上執行 **eseutil** 命令所產生的 I/O 流量。
-   
+
    > [!NOTE]
    > 若要使用此選項，您必須將 Ese.dll 和 Eseutil.exe 檔案複製到 DPM 伺服器上的 C:\Program Files\Microsoft System Center 2012 R2\DPM\DPM\bin 目錄。 否則會觸發下列錯誤：  
    > ![eseutil 錯誤](./media/backup-azure-backup-exchange-server/eseutil-error.png)
-   > 
-   > 
+   >
+   >
 8. 按 [下一步] 。
 9. 選取用於 [複製備份] 的資料庫，然後按 [下一步]。
-   
+
    > [!NOTE]
    > 如果您未對資料庫的至少一個 DAG 複本選取「完整備份」，則不會截斷記錄檔。
-   > 
-   > 
+   >
+   >
 10. 設定 [短期備份] 的目標，然後按 [下一步]。
 11. 檢閱可用的磁碟空間，然後按 [下一步] 。
 12. 選取 DPM 伺服器將建立初始複寫的時間，然後按 [下一步] 。
 13. 選取一致性檢查選項，然後按 [下一步] 。
 14. 選擇您要備份至 Azure 資料庫，然後按 [下一步] 。 例如：
-    
+
     ![指定線上保護資料](./media/backup-azure-backup-exchange-server/specify-online-protection-data.png)
 15. 定義 [Azure 備份] 的排程，然後按 [下一步]。 例如：
-    
+
     ![指定線上備份排程](./media/backup-azure-backup-exchange-server/specify-online-backup-schedule.png)
-    
+
     > [!NOTE]
     > 請注意，線上復原點是以快速完整復原點為基礎。 因此，您必須將線上復原點排程在針對快速完整復原點指定的時間之後。
-    > 
-    > 
+    >
+    >
 16. 設定 [Azure 備份] 的保留原則，然後按 [下一步]。
 17. 選擇線上複寫選項並按 [下一步] 。
-    
+
     如果您有大型資料庫，則透過網路建立初始備份所需的時間很長。 若要避免這個問題，您可以建立離線備份。  
-    
+
     ![指定線上保留期原則](./media/backup-azure-backup-exchange-server/specify-online-retention-policy.png)
 18. 確認設定，然後按一下 [建立群組] 。
 19. 按一下 [關閉] 。
@@ -120,12 +120,11 @@ ms.openlocfilehash: 2ee4bfa8c7dce45c6366ddc8aa6e723fe91431a7
 * **復原到復原資料庫：** 資料將會復原到 Exchange 復原資料庫 (RDB)。
 * **複製到網路資料夾：** 資料將會還原到網路資料夾。
 * **複製到磁帶：** 如果您有磁帶媒體櫃或獨立磁帶機連接並設定於 DPM 伺服器，則復原點將會複製到可用的磁帶。
-  
+
     ![選擇線上複寫](./media/backup-azure-backup-exchange-server/choose-online-replication.png)
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure 備份常見問題集](backup-azure-backup-faq.md)
-
 
 
 

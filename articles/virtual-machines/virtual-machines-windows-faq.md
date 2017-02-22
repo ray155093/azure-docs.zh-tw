@@ -1,5 +1,5 @@
 ---
-title: "Windows VM 的常見問題集 | Microsoft Docs"
+title: "Azure 中 Windows VM 的相關常見問題集 | Microsoft Docs"
 description: "針對以 Resource Manager 模型建立的 Windows 虛擬機器，提供一些相關常見問題的解答。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/16/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: f78c66904a3e07ffde5908167f27882e51e781e7
+ms.sourcegitcommit: fc445f1879ba1f8862c048bbb0753c824758630c
+ms.openlocfilehash: 18c4f70a3872e7e4c509f55db6276653ba48722d
 
 
 ---
@@ -126,6 +126,6 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

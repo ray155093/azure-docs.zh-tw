@@ -1,13 +1,25 @@
 ---
+title: "Azure 資料目錄文件 - 教學課程和 API 參考 | Microsoft Docs"
+description: "了解如何設定資料目錄，以便您的組織尋找、了解及取用資料來源。 教學課程、API 參考和其他文件。"
+services: data-catalog
+author: carolz
+manager: carolz
 layout: LandingPage
+ms.assetid: 
+ms.service: data-catalog
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
-ms.openlocfilehash: 7c2c989ca2119f7a2c14ca55a56a2bce69d94efa
+ms.sourcegitcommit: c5ada5ff9a0ba37cecff9e2d507736457cc11eb5
+ms.openlocfilehash: b04ec1a07bd1d74aa061409823c78ea814d127fc
 
 ---
 #<a name="data-catalog-documentation"></a>資料目錄文件
 
-Azure 資料目錄是完全受管理的雲端服務，可讓使用者探索所需的資料來源，並了解他們找到的資料來源，同時協助組織從現有的投資中獲得更多價值。 資料目錄可讓任何使用者 – 包括分析師、資料科學家及開發人員 – 探索、了解及取用資料來源。 資料目錄包含中繼資料和註解的群眾外包模型，並可讓所有使用者提供他們的知識來建置資料的社群和文化特性。
+了解如何使用資料目錄，協助您的組織和小組探索、了解及取用資料來源。 教學課程、REST API 參考和其他文件會示範如何規劃和設定資料儲存機制，以便資料取用者探索可用的資料來源，並取得由主題專家所提供的知識。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -66,15 +78,10 @@ Azure 資料目錄是完全受管理的雲端服務，可讓使用者探索所�
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/data-catalog.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載資料目錄文件 </div>
-    </a>
-</div>
 
 
-<!--HONumber=Dec16_HO2-->
+
+
+<!--HONumber=Feb17_HO2-->
 
 

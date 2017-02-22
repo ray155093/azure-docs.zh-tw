@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 10/10/2016
+ms.date: 12/28/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: 06be4297bd805a77c2901296071bfa344d076c82
+ms.sourcegitcommit: 4ad6d1003b3acd48a1f129eb84f9bbed53075d37
+ms.openlocfilehash: 3c2705a7608c3af9085b51fdbc7191030d3fc9fe
 
 
 ---
@@ -72,6 +72,20 @@ Site Recovery 可藉由協調及自動執行從內部部署虛擬機器和實體
 ### <a name="can-i-manage-disaster-recovery-for-my-branch-offices-with-site-recovery"></a>我可以使用 Site Recovery 來管理分公司的災害復原嗎？
 是。 當您使用 Site Recovery 來協調分公司中的複寫與容錯移轉時，會為您集中提供所有分公司工作負載的整合協調與檢視。 您不需要造訪分公司，就可以從總公司輕鬆執行所有分公司的容錯移轉及管理災害復原。
 
+## <a name="pricing"></a>價格
+
+### <a name="what-charges-do-i-incur-while-using-azure-site-recovery"></a>使用 Azure Site Recovery 時有哪些費用？
+使用 Azure Site Recovery 時，會產生 Azure Site Recovery 授權、Azure 儲存體、儲存體交易和輸出資料傳輸的費用。 [深入了解](https://azure.microsoft.com/pricing/details/site-recovery)。
+
+Site Recovery 授權是根據受保護的執行個體，其中的執行個體是 VM 或實體伺服器。
+
+- 如果 VM 磁碟複寫到標準儲存體帳戶，Azure 儲存體會依據儲存體使用量收費。 例如，如果來源磁碟大小是 1 TB，使用量是 400 GB，Site Recovery 會在 Azure 中建立 1 TB 的 VHD，但要收費的儲存體是 400 GB (加上複寫記錄檔使用的儲存體空間量)。
+- 如果 VM 磁碟複寫到進階儲存體帳戶，Azure 儲存體會依據佈建的儲存體大小收費，四捨五入到最接近的進階儲存體磁碟選項。 例如，如果來源磁碟大小是 50GB，Site Recovery 會在 Azure 中建立 50 GB 的磁碟，而 Azure 會將此對應到最接近的進階儲存體磁碟 (P10)。  成本是依據 P10 計算，而非 50 GB 的磁碟大小。  [深入了解](https://aka.ms/premium-storage-pricing)。  如果您使用進階儲存體，也需要複寫記錄所需的標準儲存體帳戶，這些記錄檔使用的標準儲存體空間量也會計費。
+
+測試容錯移轉期間也會產生成本，將適用 VM、儲存體、輸出和儲存體交易成本。
+
+
+
 ## <a name="security"></a>安全性
 ### <a name="is-replication-data-sent-to-the-site-recovery-service"></a>複寫資料會傳送到 Site Recovery 服務嗎？
 否，Site Recovery 不會攔截複寫的資料，也不會擁有任何關於您虛擬機器或實體伺服器上執行哪些項目的資訊。
@@ -86,6 +100,13 @@ Site Recovery 已通過 ISO 27001:2013、27018、HIPAA、DPA 認證，並且正�
 就虛擬機器和實體伺服器而言，在內部部署站台之間進行複寫時，支援傳輸中加密。 在將虛擬機器和實體伺服器複寫至 Azure 時，則同時支援傳輸中加密和靜態加密 (在 Azure 中)。
 
 ## <a name="replication"></a>複寫
+
+### <a name="can-i-replicate-over-a-site-to-site-vpn-to-azure"></a>我可以透過站對站 VPN 複寫至 Azure 嗎？
+Azure Site Recovery 會透過公用端點，將資料複製到 Azure 儲存體帳戶。 因此，不會透過站對站 VPN 複寫。 您可以使用 Azure 虛擬網路建立站對站 VPN，這並不會干擾 ASR 複寫。
+
+### <a name="can-i-use-expressroute-to-replicate-virtual-machines-to-azure"></a>可以使用 ExpressRoute 將虛擬機器複寫到 Azure 嗎？
+是的，ExpressRoute 可用來將虛擬機器複寫至 Azure。 Azure Site Recovery 會透過公用端點，將資料複製到 Azure 儲存體帳戶。 您必須設定[公用對等](../expressroute/expressroute-circuit-peerings.md#public-peering)以使用 Site Recovery 複寫的 ExpressRoute。 在虛擬機器容錯移轉到 Azure 虛擬網路之後，您可以 Azure 虛擬網路使用[私人對等互連](../expressroute/expressroute-circuit-peerings.md#private-peering)安裝來存取這些虛擬機器。
+
 ### <a name="are-there-any-prerequisites-for-replicating-virtual-machines-to-azure"></a>將虛擬機器複寫至 Azure 有任何先決條件嗎？
 您想要複寫至 Azure 的虛擬機器應該要符合 [Azure 需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
 
@@ -139,9 +160,9 @@ Site Recovery 已通過 ISO 27001:2013、27018、HIPAA、DPA 認證，並且正�
 ### <a name="if-im-failing-over-to-azure-how-do-i-access-the-azure-virtual-machines-after-failover"></a>如果容錯移轉到 Azure，在容錯移轉之後，我要如何存取存取 Azure 虛擬機器？
 您可以透過安全的網際網路連線、透過站台對站台 VPN 或透過 Azure ExpressRoute 存取 Azure VM。 您必須做好一些準備才能連線。 閱讀更多資訊：
 
-* [在 VMware VM 或實體伺服器容錯移轉後連接到 Azure VM](site-recovery-vmware-to-azure.md#step-7-test-the-deployment)
+* [在 VMware VM 或實體伺服器容錯移轉後連接到 Azure VM](site-recovery-vmware-to-azure.md#prepare-to-connect-to-azure-vms-after-failover)
 * [在位於 VMM 雲端中的 Hyper-V VM 容錯移轉後連接到 Azure VM](site-recovery-vmm-to-azure.md#step-7-test-your-deployment)
-* [在不使用 VMM 的 Hyper-V VM 容錯移轉後連接到 Azure VM](site-recovery-hyper-v-site-to-azure.md#step-7-test-the-deployment)
+* [在不使用 VMM 的 Hyper-V VM 容錯移轉後連接到 Azure VM](site-recovery-hyper-v-site-to-azure.md#prepare-to-connect-to-azure-vms-after-failover)
 
 ### <a name="if-i-fail-over-to-azure-how-does-azure-make-sure-my-data-is-resilient"></a>如果我容錯移轉到 Azure，Azure 如何確定我的資料具有復原能力？
 Azure 是針對復原能力而設計的。 Site Recovery 已經設計成可根據 Azure SLA，在需要時容錯移轉至次要 Azure 資料中心。 如果發生這種情況，我們會確保您的中繼資料和保存庫都保留在您為保存庫選擇的相同地理區域中。  
@@ -191,6 +212,6 @@ Azure 是針對復原能力而設計的。 Site Recovery 已經設計成可根�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

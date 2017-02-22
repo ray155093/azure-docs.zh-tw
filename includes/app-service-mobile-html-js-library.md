@@ -5,7 +5,7 @@
 var client = WindowsAzure.MobileServiceClient(appUrl);
 ```
 
-## <a name="a-nametable-referenceawork-with-tables"></a><a name="table-reference"></a>使用資料表
+## <a name="a-nametable-referenceawork-with-tables"></a><a name="table-reference">使用資料表</a>
 若要存取或更新資料，請建立後端資料表的參考。 以您的資料表名稱取代 `tableName`
 
 ```
@@ -22,7 +22,7 @@ var table = client.getTable(tableName);
 * [修改資料](#modifying)
 * [刪除資料](#deleting)
 
-### <a name="a-namequeryingahow-to-query-a-table-reference"></a><a name="querying"></a>如何：查詢資料表參考
+### <a name="a-namequeryingahow-to-query-a-table-reference"></a><a name="querying"></a>操作說明 ：查詢資料表參考
 取得資料表參考之後，您可以使用它來查詢伺服器上的資料。  您可以使用「類似 LINQ」的語言來撰寫查詢。
 若要從資料表傳回所有資料，使用下列程式碼：
 
@@ -107,7 +107,7 @@ function loadPage(pageNum) {
 
 接著，您可以使用 pages 變數和一些 UI 按鈕來提供頁面清單。您可以使用 `loadPage()` 載入每個頁面的新記錄。  實作快取來加速存取已經載入的記錄。
 
-#### <a name="a-namesorting-dataahow-to-return-data-sorted"></a><a name="sorting-data"></a>如何：傳回已排序的資料
+#### <a name="a-namesorting-dataahow-to-return-sorted-data"></a><a name="sorting-data"></a>操作說明：傳回已排序的資料
 使用 `.orderBy()` 或 `.orderByDescending()` 查詢方法︰
 
 ```
@@ -119,7 +119,7 @@ table
 
 如需 Query 物件的詳細資訊，請參閱 [Query 物件文件]。
 
-### <a name="a-nameinsertingahow-to-insert-data"></a><a name="inserting"></a>作法：插入資料
+### <a name="a-nameinsertingahow-to-insert-data"></a><a name="inserting"></a>操作說明：插入資料
 以適當的日期建立 JavaScript 物件，並以非同步方式呼叫 `table.insert()`：
 
 ```javascript
@@ -139,7 +139,7 @@ table
 
 Azure Mobile Apps Node.js Server SDK 支援的動態結構描述適用於開發用途。  動態結構描述可讓您在插入或更新作業中指定資料行，以將資料行新增至資料表。  在將應用程式移至生產環境之前，我們建議您關閉動態結構描述。
 
-### <a name="a-namemodifyingahow-to-modify-data"></a><a name="modifying"></a>作法：修改資料
+### <a name="a-namemodifyingahow-to-modify-data"></a><a name="modifying"></a>操作說明：修改資料
 類似於 `.insert()` 方法，您應該建立 Update 物件，然後呼叫 `.update()`。  Update 物件必須包含要更新的記錄的識別碼 - 在讀取記錄或呼叫 `.insert()` 時會取得此識別碼。
 
 ```javascript
@@ -155,7 +155,7 @@ table
     }, failure);
 ```
 
-### <a name="a-namedeletingahow-to-delete-data"></a><a name="deleting"></a>作法：刪除資料
+### <a name="a-namedeletingahow-to-delete-data"></a><a name="deleting"></a>操作說明：刪除資料
 若要刪除記錄時，請呼叫 `.del()` 方法。  將識別碼傳入物件參考中：
 
 ```
@@ -167,6 +167,6 @@ table
 ```
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

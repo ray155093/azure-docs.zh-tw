@@ -15,8 +15,8 @@ ms.workload: identity
 ms.date: 07/22/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9129eda8e4b3c3865878b8ceafb95a155ba02885
+ms.sourcegitcommit: d6dbbee1f977245cc16710ace3b25d6e167cbc7e
+ms.openlocfilehash: cdd7aab27943df568abfda27265ed970e6dd789c
 
 
 ---
@@ -127,9 +127,10 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 ![RBAC PowerShell - Remove-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-remove-azure-rm-role-assignment.png)
 
 ## <a name="create-a-custom-role"></a>建立自訂角色
-若要建立自訂角色，請使用 `New-AzureRmRoleDefinition` 命令。
+若要建立自訂角色，請使用 `New-AzureRmRoleDefinition` 命令。 建構角色有兩種方法：使用 PSRoleDefinitionObject 或 JSON 範本。 
 
-當您使用 PowerShell 來建立自訂角色時，您必須從其中一個 [內建角色](role-based-access-built-in-roles.md)開始進行。 請編輯屬性來新增您想要的 *Actions*、*notActions* 或 *scopes*，然後將變更儲存為新角色。
+### <a name="create-role-with-psroledefinitionobject"></a>使用 PSRoleDefinitionObject 建立角色
+使用 PowerShell 建立自訂角色時，您可以從頭開始，或使用其中一個[內建角色](role-based-access-built-in-roles.md)當作起點，此範例採用後者。 請編輯屬性來新增您想要的 *Actions*、*notActions* 或 *scopes*，然後將變更儲存為新角色。
 
 下列範例會從「虛擬機器參與者」角色來開始，並使用它來建立稱為「虛擬機器操作者」的自訂角色。 新角色會授與對 *Microsoft.Compute*、*Microsoft.Storage* 和 *Microsoft.Network* 資源提供者之所有讀取作業的存取權，以及授與對啟動、重新啟動和監視虛擬機器的存取權。 自訂角色可用於兩個訂用帳戶中。
 
@@ -156,7 +157,37 @@ New-AzureRmRoleDefinition -Role $role
 
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
+### <a name="create-role-with-json-template"></a>使用 JSON 範本建立角色
+JSON 範本可作為自訂角色的來源定義。 下列範例會建立自訂角色來允許讀取儲存體和計算資源及存取支援，然後將該角色新增至兩個訂用帳戶。 建立含有下列內容的新檔案 `C:\CustomRoles\customrole1.json`。 請注意，最初建立角色時，識別碼應該設定為 `null`，因為將會產生新的識別碼。 
+
+```
+{
+  "Name": "Custom Role 1",
+  "Id": null,
+  "IsCustom": true,
+  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Actions": [
+    "Microsoft.Compute/*/read",
+    "Microsoft.Storage/*/read",
+    "Microsoft.Support/*"
+  ],
+  "NotActions": [
+  ],
+  "AssignableScopes": [
+    "/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e",
+    "/subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624"
+  ]
+}
+```
+若要將角色新增至訂用帳戶，請執行下列 PowerShell 命令︰
+```
+New-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
+```
+
 ## <a name="modify-a-custom-role"></a>修改自訂角色
+類似於建立自訂角色，您可以使用 PSRoleDefinitionObject 或 JSON 範本修改現有的自訂角色。
+
+### <a name="modify-role-with-psroledefinitionobject"></a>使用 PSRoleDefinitionObject 修改角色
 若要修改自訂角色，請先使用 `Get-AzureRmRoleDefinition` 命令來擷取角色定義。 接著，對角色定義進行想要的變更。 最後，使用 `Set-AzureRmRoleDefinition` 命令來儲存已修改的角色定義。
 
 下列範例會將 `Microsoft.Insights/diagnosticSettings/*` 作業加入到 *Virtual Machine Operator* 自訂角色。
@@ -175,11 +206,40 @@ Set-AzureRmRoleDefinition -Role $role
 Get-AzureRmSubscription - SubscriptionName Production3
 
 $role = Get-AzureRmRoleDefinition "Virtual Machine Operator"
-$role.AssignableScopes.Add("/subscriptions/34370e90-ac4a-4bf9-821f-85eeedead1a2"
-Set-AzureRmRoleDefinition -Role $role)
+$role.AssignableScopes.Add("/subscriptions/34370e90-ac4a-4bf9-821f-85eeedead1a2")
+Set-AzureRmRoleDefinition -Role $role
 ```
 
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-2.png)
+
+### <a name="modify-role-with-json-template"></a>使用 JSON 範本修改角色
+您可以利用先前的 JSON 範本，輕鬆修改現有的自訂角色來新增或移除 Actions。 更新 JSON 範本，並新增網路的讀取動作，如下所示。 請注意，範本中所列的定義不會累積套用至現有的定義，這表示角色會完全依照您在範本中指定的樣子出現。 另請注意，您也需要以角色的識別碼來更新 Id。 如果不確定此值，您可以使用 `Get-AzureRmRoleDefinition` Cmdlet 來取得這項資訊。
+
+```
+{
+  "Name": "Custom Role 1",
+  "Id": "acce7ded-2559-449d-bcd5-e9604e50bad1",
+  "IsCustom": true,
+  "Description": "Allows for read access to Azure storage and compute resources and access to support",
+  "Actions": [
+    "Microsoft.Compute/*/read",
+    "Microsoft.Storage/*/read",
+    "Microsoft.Network/*/read",
+    "Microsoft.Support/*"
+  ],
+  "NotActions": [
+  ],
+  "AssignableScopes": [
+    "/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e",
+    "/subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624"
+  ]
+}
+```
+
+若要更新現有的角色，請執行下列 PowerShell 命令︰
+```
+Set-AzureRmRoleDefinition -InputFile "C:\CustomRoles\customrole1.json"
+```
 
 ## <a name="delete-a-custom-role"></a>刪除自訂角色
 若要刪除自訂角色，請使用 `Remove-AzureRmRoleDefinition` 命令。
@@ -216,6 +276,6 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

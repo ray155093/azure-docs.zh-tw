@@ -9,6 +9,6 @@ ExpressRoute 可從私人網路連線到 Microsoft 雲端服務。 在 Azure 中
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

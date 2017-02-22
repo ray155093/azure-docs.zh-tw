@@ -13,19 +13,23 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 09/26/2016
+ms.date: 02/07/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6703485aff4a826394238b35720c2e528feae115
+ms.sourcegitcommit: eec8c82857ef9e2806c953ae996f9e7970e64392
+ms.openlocfilehash: 4d6bfebd9faa4e37de148539e7248f88e711bf43
 
 
 ---
 # <a name="using-reference-data-or-lookup-tables-in-a-stream-analytics-input-stream"></a>在串流分析的輸入串流中使用參考資料或查詢資料表
-參考資料 (也稱為查詢資料表) 基本上是靜態或不常變更的有限資料集，可用來執行查閱或與資料流相互關聯。 若要使用 Azure 串流分析工作中的參考資料，您通常會在查詢中使用 [參考資料聯結](https://msdn.microsoft.com/library/azure/dn949258.aspx) 。 串流分析會使用 Azure Blob 儲存體做為參考資料的儲存層，且可和 Azure Data Factory 參考資料一起轉換和/或複製到來自 [任意數目的雲端架構和內部部署資料存放區](../data-factory/data-factory-data-movement-activities.md)的 Azure Blob 儲存體，做為參考資料。 參考資料會依 Blob 名稱中指定之日期/時間的遞增順序，以 Blob 序列的形式建立模型 (在輸入組態中定義)。 它「只」支援使用比序列中最後一個 Blob 指定之日期/時間「大」的日期/時間來新增到序列的結尾。
+參考資料 (也稱為查詢資料表) 基本上是靜態或不常變更的有限資料集，可用來執行查閱或與資料流相互關聯。 若要使用 Azure 串流分析作業中的參考資料，您通常會在查詢中使用[參考資料聯結](https://msdn.microsoft.com/library/azure/dn949258.aspx)。 串流分析會使用 Azure Blob 儲存體做為參考資料的儲存層，且可和 Azure Data Factory 參考資料一起轉換和/或複製到來自 [任意數目的雲端架構和內部部署資料存放區](../data-factory/data-factory-data-movement-activities.md)的 Azure Blob 儲存體，做為參考資料。 參考資料會依 Blob 名稱中指定之日期/時間的遞增順序，以 Blob 序列的形式建立模型 (在輸入組態中定義)。 它「只」支援使用比序列中最後一個 Blob 指定之日期/時間「大」的日期/時間來新增到序列的結尾。
+
+串流分析具有**每個 Bolb 100 MB 的限制**，但作業可以使用**路徑模式**屬性來存取多個參考 Blob。
+
 
 ## <a name="configuring-reference-data"></a>設定參考資料
 若要設定參考資料，您必須先建立屬於「 **參考資料**」類型的輸入。 下表說明您在建立參考資料輸入及其描述時必須提供的每個屬性：
+
 
 <table>
 <tbody>
@@ -39,7 +43,7 @@ ms.openlocfilehash: 6703485aff4a826394238b35720c2e528feae115
 </tr>
 <tr>
 <td>儲存體帳戶</td>
-<td>您的 blob 檔案所在的儲存體帳戶名稱。 如果它與您的「串流分析工作」位於相同的訂用帳戶，您就可以從下拉式清單中選取它。</td>
+<td>您 blob 所在的儲存體帳戶名稱。 如果它與您的串流分析工作位於相同的訂用帳戶，您就可以從下拉式清單中選取它。</td>
 </tr>
 <tr>
 <td>儲存體帳戶金鑰</td>
@@ -51,15 +55,15 @@ ms.openlocfilehash: 6703485aff4a826394238b35720c2e528feae115
 </tr>
 <tr>
 <td>路徑格式</td>
-<td>用來在指定容器中找出 Blob 的檔案路徑。 在該路徑內，您也可以指定下列 2 個變數的一個或多個執行個體：<BR>{date}、{time}<BR>範例 1：products/{date}/{time}/product-list.csv<BR>範例 2：products/{date}/product-list.csv
+<td>用來在指定容器中找出 blob 的路徑。 在該路徑內，您也可以指定下列 2 個變數的一個或多個執行個體：<BR>{date}、{time}<BR>範例 1：products/{date}/{time}/product-list.csv<BR>範例 2：products/{date}/product-list.csv
 </tr>
 <tr>
 <td>日期格式 [選用]</td>
-<td>如果您已經使用您指定之路徑模式內的 {date}，您可以從支援格式的下拉式清單選取組織檔案所使用的日期格式。 範例：YYYY/MM/DD</td>
+<td>如果您已在指定的路徑模式內使用 {date}，則您可以從支援格式的下拉式清單中選取組織 Blob 所使用的日期格式。<BR>範例︰YYYY/MM/DD、MM/DD/YYYY 等。</td>
 </tr>
 <tr>
 <td>時間格式 [選用]</td>
-<td>如果您已經使用您指定之路徑模式內的 {time}，您可以從支援格式的下拉式清單選取組織檔案所使用的時間格式。 範例：HH</td>
+<td>如果您已在指定的路徑模式內使用 {time}，則您可以從支援格式的下拉式清單中選取組織 Blob 所使用的時間格式。<BR>範例︰HH、HH/mm 或 HH-mm</td>
 </tr>
 <tr>
 <td>事件序列化格式</td>
@@ -73,25 +77,25 @@ ms.openlocfilehash: 6703485aff4a826394238b35720c2e528feae115
 </table>
 
 ## <a name="generating-reference-data-on-a-schedule"></a>產生排程上的參考資料
-如果您的參考資料是不常變更的資料集，可以啟用重新整理參考資料的支援，方法是使用 {date} 與 {time} 替代權杖指定輸入設定內的路徑模式。 串流分析會根據此路徑模式採用更新的參考資料定義。 例如，日期格式為 **“YYYY-MM-DD”** 且時間格式為 **“HH:mm”** 的模式 `sample/{date}/{time}/products.csv`，會指示「串流分析」在 UTC 時區 2015 年 4 月 16 日的下午 5:30 擷取更新的 blob `sample/2015-04-16/17:30/products.csv`。
+如果您的參考資料是不常變更的資料集，可以啟用重新整理參考資料的支援，方法是使用 {date} 與 {time} 替代權杖指定輸入設定內的路徑模式。 串流分析會根據此路徑模式採用更新的參考資料定義。 例如，日期格式為 **“YYYY-MM-DD”** 且時間格式為 **“HH:mm”** 的模式 `sample/{date}/{time}/products.csv`，會指示串流分析在 UTC 時區 2015 年 4 月 16 日的下午 5:30 採用更新的 Blob `sample/2015-04-16/17-30/products.csv`。
 
 > [!NOTE]
-> 目前串流分析作業只有在機器時間朝向 Blob 名稱中編碼的時間時，才會尋求 Blob 重新整理。 例如，作業會儘速尋找 `sample/2015-04-16/17:30/products.csv` ，但不早於 UTC 時區 2015 年 4 月 16 日的下午 5:30。 它「決不會」  尋找編碼時間早於最後一個探索到的檔案。
+> 目前串流分析作業只有在機器時間朝向 Blob 名稱中編碼的時間時，才會尋求 Blob 重新整理。 例如，作業會儘速尋找 `sample/2015-04-16/17-30/products.csv` ，但不早於 UTC 時區 2015 年 4 月 16 日的下午 5:30。 它「決不會」尋找編碼時間早於最後一個探索到的 blob。
 > 
-> 例如 一旦作業找到 blob `sample/2015-04-16/17:30/products.csv`，就會忽略任何編碼日期早於 2015 年 4 月 16 日下午 5:30 的檔案，所以如果在相同的容器中建立晚到的 `sample/2015-04-16/17:25/products.csv` blob，作業便不會使用它。
+> 例如 一旦作業找到 Blob `sample/2015-04-16/17-30/products.csv`，就會忽略任何編碼日期早於 2015 年 4 月 16 日下午 5:30 的檔案，所以如果在相同的容器中建立晚到的 `sample/2015-04-16/17-25/products.csv` Blob，作業便不會使用它。
 > 
-> 同樣地如果 `sample/2015-04-16/17:30/products.csv` 只會在 2015 年 4 月 16 日上午 10:03 產生，但容器中沒有日期較早的 Blob ，則作業會從 2015 年 4 月 16 日上午 10:03 開始使用這個檔案，並在那之前使用先前的參考資料。
+> 同樣地，如果 `sample/2015-04-16/17-30/products.csv` 只會在 2015 年 4 月 16 日下午 10:03 產生，但容器中沒有日期較早的 Blob，則作業會從 2015 年 4 月 16 日下午 10:03 開始使用這個檔案，並在那之前使用先前的參考資料。
 > 
-> 此情況有例外，就是當工作需要回到之前來重新處理資料，或當工作第一次啟動的時候。 啟動時，工作會尋找在指定工作啟動時間之前產生的最新 Blob。 這是為了確保在作業啟動時，會有 **非空白** 的參考資料集。 如果無法找到，作業就會顯示下列診斷： `Initializing input without a valid reference data blob for UTC time <start time>`。
+> 此情況有例外，就是當工作需要回到之前來重新處理資料，或當工作第一次啟動的時候。 啟動時，作業會尋找在指定作業啟動時間之前產生的最新 Blob。 這是為了確保在作業啟動時，會有 **非空白** 的參考資料集。 如果無法找到，作業會顯示下列診斷： `Initializing input without a valid reference data blob for UTC time <start time>`。
 > 
 > 
 
-[Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 可用來針對「串流分析」更新參考資料定義時所需的已更新 Blob，協調建立這些 Blob 的工作。 Data Factory 是雲端架構資料整合服務，用來協調以及自動移動和轉換資料。 Data Factory 可 [連線到大量雲端式和內部部署的資料存放區](../data-factory/data-factory-data-movement-activities.md) ，也可根據您指定的定期排程輕鬆移動資料。 如需詳細資訊及逐步解說指南，瞭解該如何設定 Data Factory 管線才能產生依預先定義排程重新整理的「串流分析」參考資料，請查看此 [GitHub 範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ReferenceDataRefreshForASAJobs)。
+[Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 可用來針對串流分析更新參考資料定義時所需的已更新 Blob，協調建立這些 Blob 的工作。 Data Factory 是雲端架構資料整合服務，用來協調以及自動移動和轉換資料。 Data Factory 可 [連線到大量雲端式和內部部署的資料存放區](../data-factory/data-factory-data-movement-activities.md) ，也可根據您指定的定期排程輕鬆移動資料。 如需詳細資訊及逐步解說指南，瞭解該如何設定 Data Factory 管線才能產生依預先定義排程重新整理的「串流分析」參考資料，請查看此 [GitHub 範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/ReferenceDataRefreshForASAJobs)。
 
 ## <a name="tips-on-refreshing-your-reference-data"></a>重新整理參考資料的秘訣
 1. 覆寫參考資料 Blob 並不會造成「串流分析」重新載入 Blob，並且在某些情況下，它可能會造成工作失敗。 若要變更參考資料，建議的方式是藉由使用工作輸入中定義的相同容器和路徑格式，並使用比序列中最後一個 Blob 指定之日期/時間「大」  的日期/時間，加入新的 Blob。
-2. 參考資料 Blobs 不是依 Blob 的「上次修改日期」時間排序，而是只依 Blob 名稱中使用 {date} 和 {time} 替代來指定的時間和日期排序。
-3. 在一些情況下，工作必須回到之前，因此參照資料必須不被更改或刪除。
+2. 參考資料 Blob **不是**依 Blob 的「上次修改日期」時間排序，而是只依 Blob 名稱中使用 {date} 和 {time} 替代來指定的時間和日期排序。
+3. 在一些情況下，作業必須回到之前的時間，因此參照資料不得被更改或刪除。
 
 ## <a name="get-help"></a>取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
@@ -114,6 +118,6 @@ ms.openlocfilehash: 6703485aff4a826394238b35720c2e528feae115
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "取得適用於 Azure IoT 入門套件 (macOS 10.10) 的工具 | Microsoft Docs"
+title: "將 Arduino 連接到 Azure IoT - 第 1 課：取得工具 (macOS) | Microsoft Docs"
 description: "在 macOS 上針對 Adafruit Feather M0 WiFi 的第一個範例應用程式下載並安裝必要的工具和軟體。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/13/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 9e8084fe26229ef9ed1676c0a3c34e0ee7be88b1
-ms.openlocfilehash: c6737b963215cf6b053c8a06081bf682cf4cfd11
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 41b2277a26f0e99052a699cfab8a8129a6c7ddb1
 
 
 ---
@@ -96,6 +96,6 @@ sudo npm install -g gulp device-discovery-cli
 [create-and-deploy-the-blink-application]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-deploy-blink-app.md
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

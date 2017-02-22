@@ -1,6 +1,6 @@
 
 ---
-title: "Azure Active Directory v2.0 和 OAuth 2.0 用戶端認證流程 | Microsoft Docs"
+title: "使用 Azure AD v2.0 存取安全資源且無需使用者互動 | Microsoft Docs"
 description: "使用 Azure AD 實作 OAuth 2.0 驗證通訊協定以建置 Web 應用程式。"
 services: active-directory
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: d619f6e98563448859e54ecbb0605df1365246ce
+ms.sourcegitcommit: 08e2e561b6b939de4d829c816c1948361e16f6c4
+ms.openlocfilehash: 2bbfed6e14a77964a32b84ae3f78f3529f13043c
 
 
 ---
@@ -211,6 +211,6 @@ curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dC
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

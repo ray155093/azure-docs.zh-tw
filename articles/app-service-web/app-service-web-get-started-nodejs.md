@@ -129,7 +129,7 @@ ms.openlocfilehash: 06a8dfbac31024cb44fd38bcf9c4a4ea79dbc968
 ## <a name="see-your-app-running-live"></a>看見您的應用程式即時執行
 若要查看 Azure 中即時執行的應用程式，請從儲存機制中的任何目錄執行此命令︰
 
-    azure site browse
+    az appservice web browse -n <app-name> --resource-group my-first-app-group
 
 ## <a name="make-updates-to-your-app"></a>更新您的應用程式
 您現在可以使用 Git 隨時從您的專案 (儲存機制) 根目錄進行推送，以更新即時網站。 您可以使用第一次部署程式碼時的相同方式來執行這項作業。 例如，每次您想要推送已在本機測試的新變更時，只需從專案 (儲存機制) 根目錄執行下列命令︰
@@ -155,6 +155,6 @@ ms.openlocfilehash: 06a8dfbac31024cb44fd38bcf9c4a4ea79dbc968
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

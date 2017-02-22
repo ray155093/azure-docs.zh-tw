@@ -1,5 +1,5 @@
 ---
-title: "在 AAD 中建立工作或學校身分識別 | Microsoft Docs"
+title: "在 AAD 中針對 Linux 建立工作或學校身分識別 | Microsoft Docs"
 description: "了解如何在 Azure Active Directory 中建立用於 Linux 虛擬機器的工作或學校身分識別。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: infrastructure
 ms.date: 08/23/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 9332e089a7bafe0acc9f136795926c1290413448
+ms.sourcegitcommit: 1d35114800ba024d0c201840722df2c6a74d1d61
+ms.openlocfilehash: 0eaa83fc19316708685eed0ca994112bc09153e5
 
 
 ---
@@ -33,6 +33,6 @@ ms.openlocfilehash: 9332e089a7bafe0acc9f136795926c1290413448
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

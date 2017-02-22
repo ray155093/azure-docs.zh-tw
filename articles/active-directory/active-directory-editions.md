@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b241d70ab7c7e8468a3f358fef5af47a89d42e56
+ms.sourcegitcommit: a4a78b92c8bb9e8aff25fd724ed78283de8f2fd8
+ms.openlocfilehash: 8dd4c5ab11c43ca09085004ee4dce3e616b19d8e
 
 
 ---
@@ -124,7 +124,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 | 免費版 | 基本版 | Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 |:---:|:---:|:---:|:---:|
-| 每位使用者 10 個應用程式 (1) |每位使用者 10 個應用程式 (1) |沒有限制 (2) |每位使用者 10 個應用程式 (1) |
+| 每位使用者&10; 個應用程式 (1) |每位使用者&10; 個應用程式 (1) |沒有限制 (2) |每位使用者&10; 個應用程式 (1) |
 
 1. Azure AD Free 和 Azure AD Basic 的使用者可使用單一登入功能存取最多 10 個應用程式。
 2. 藉由使用應用程式庫功能表中提供的範本，自助整合任何支援 SAML、SCIM 或表單型驗證的應用程式。 如需詳細資訊，請參閱 [設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](active-directory-saas-custom-apps.md)。
@@ -377,7 +377,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 * [iOS 上的憑證式驗證](active-directory-certificate-based-authentication-ios.md)
 * [Android 上的憑證式驗證](active-directory-certificate-based-authentication-android.md)
 
-## <a name="whats-next"></a>後續步驟
+## <a name="next-steps"></a>後續步驟
 * [開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)
 * [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
 * [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)

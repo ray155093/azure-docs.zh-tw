@@ -1,5 +1,5 @@
 ---
-title: "使用 Site Recovery 進行內部部署對內部部署 Hyper-V 複寫的效能測試和調整結果 | Microsoft Docs"
+title: "使用 Azure Site Recovery 進行站台間 Hyper-V 複寫的測試結果 | Microsoft Docs"
 description: "本文提供使用 Azure Site Recovery 針對內部部署對內部部署複寫進行效能測試的相關資訊。"
 services: site-recovery
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 11/01/2016
+ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b3c35bf129dd1566f3e2084caacc0330b5a6fc32
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: ba82512e830032172c8a0d78029605935d1417f9
 
 
 ---
-# <a name="performance-test-and-scale-results-for-on-premises-to-on-premises-hyper-v-replication-with-site-recovery"></a>使用 Site Recovery 進行內部部署對內部部署 Hyper-V 複寫的效能測試和調整結果
+# <a name="test-results-for-on-premises-to-on-premises-hyper-v-replication-with-site-recovery"></a>使用 Site Recovery 進行內部部署對內部部署 Hyper-V 複寫的測試結果
 您可以使用 Microsoft Azure Site Recovery 來協調和管理將虛擬機器與實體伺服器複寫至 Azure 或次要資料中心的複寫作業。 本文提供我們在兩個內部部署資料中心之間複寫 Hyper-V 虛擬機器時所執行之效能測試的結果。
 
 ## <a name="overview"></a>概觀
@@ -94,7 +94,7 @@ Hyper-V 複本會使用復原伺服器上的少量記憶體來最佳化儲存作
 * 主要站台所具備的叢集內含五部執行 470 個虛擬機器的 Hyper-V 伺服器。
 * 虛擬機器執行不同的工作負載，而且全都有啟用 Azure Site Recovery 保護。
 * 叢集節點的儲存體是由 iSCSI SAN 提供。 機型 – Hitachi HUS130。
-* 每部叢集伺服器都有四張網路卡 (NIC)，每張網路卡各為 1 Gbps。
+* 每部叢集伺服器都有四張網路卡 (NIC)，每張網路卡各為&1; Gbps。
 * 其中兩張網路卡會連線到 iSCSI 私人網路，另外兩張會連線到外部企業網路。 其中一個外部網路會保留為供叢集通訊專用。
 
 ![主要硬體需求](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744922.png)
@@ -125,13 +125,13 @@ Hyper-V 複本會使用復原伺服器上的少量記憶體來最佳化儲存作
 | 工作負載 | I/O 大小 (KB) | 存取百分比 | 讀取百分比 | 未完成的 I/O | I/O 模式 |
 | --- | --- | --- | --- | --- | --- |
 | 檔案伺服器 |48163264 |60%20%5%5%10% |80%80%80%80%80% |88888 |全部 100% 隨機 |
-| SQL Server (磁碟區 1) SQL Server (磁碟區 2) |864 |100%100% |70%0% |88 |100% 隨機 100% 循序 |
+| SQL Server (磁碟區 1) SQL Server (磁碟區 2) |864 |100%100% |70%0% |88 |100% 隨機&100;% 循序 |
 | Exchange |32 |100% |67% |8 |100% 隨機 |
 | 工作站/VDI |464 |66%34% |70%95% |11 |兩者都 100% 隨機 |
 | Web 檔案伺服器 |4864 |33%34%33% |95%95%95% |888 |全部 75% 隨機 |
 
 ### <a name="virtual-machine-configuration"></a>虛擬機器組態
-* 主要叢集上 470 個虛擬機器。
+* 主要叢集上&470; 個虛擬機器。
 * 所有虛擬機器都搭配 VHDX 磁碟。
 * 虛擬機器執行資料表中摘要說明的工作負載。 全部都使用 VMM 範本建立。
 
@@ -173,7 +173,6 @@ Hyper-V 複本會使用復原伺服器上的少量記憶體來最佳化儲存作
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

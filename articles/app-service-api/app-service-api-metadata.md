@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/30/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 53f5c17d51622dbc27a27c750999a925c3f80bff
+ms.sourcegitcommit: a0580f8d303c7ce33a65f0ce6faecf2492f851b0
+ms.openlocfilehash: 3b41340f30239dc0102808b5e492ee7300dcd12b
 
 
 ---
@@ -34,7 +34,7 @@ App Service API Apps 內建支援 [Swagger 2.0](http://swagger.io/) API 中繼�
 ![](./media/app-service-api-metadata/apidefblade.png)
 
 ### <a name="azure-resource-manager-property"></a>Azure Resource Manager 屬性
-您也可以使用 [Azure PowerShell](../powershell-install-configure.md) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的[資源總管](https://resources.azure.com/)或 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)，設定 API 應用程式的 API 定義。 
+您也可以使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的[資源總管](https://resources.azure.com/)或 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)，設定 API 應用程式的 API 定義。 
 
 例如，在**資源總管**中移至 [訂用帳戶] > {您的訂用帳戶} > [resourceGroups] > {您的資源群組} > [提供者] > [Microsoft.Web] > [網站] > {您的網站} > [組態] > [web]，您就會看到 `apiDefinition` 屬性：
 
@@ -60,6 +60,6 @@ App Service API Apps 內建支援 [Swagger 2.0](http://swagger.io/) API 中繼�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -16,8 +16,8 @@ ms.workload: integration
 ms.date: 08/18/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ad35f6590a39972ec9be7168059738b6daae0574
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: e30231bd576436ae69f4fa42d0e2ab312c3938d6
 
 
 ---
@@ -29,7 +29,7 @@ SendGrid 連線提供者可讓您傳送電子郵件及管理收件者清單。
 > 
 > 
 
-您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="triggers-and-actions"></a>觸發程序及動作
 SendGrid 連接器可當做動作使用，它有觸發程序。 所有連接器都支援 JSON 和 XML 格式的資料。 
@@ -157,11 +157,11 @@ SendGrid 連接器可當做動作使用，它有觸發程序。 所有連接器�
 | id |string |否 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

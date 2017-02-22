@@ -1,4 +1,4 @@
-利用 [使用者心聲](http://go.microsoft.com/fwlink/?linkid=698785&clcid=0x409) 論壇來提供意見並提出如何改善 Azure 媒體服務的建議。 您也可直接前往下列類別之一： 
+利用 [使用者心聲](http://go.microsoft.com/fwlink/?linkid=698785&clcid=0x409) 論壇來提供意見並提出如何改善 Azure 媒體服務的建議。 您也可直接前往下列類別之一：
 
 * [Azure Media Player](https://feedback.azure.com/forums/169396-media-services/category/109320-azure-media-player/)
 * [用戶端 SDK 程式庫](https://feedback.azure.com/forums/169396-media-services/category/144435-client-sdks/)
@@ -10,7 +10,6 @@
 * [VoD 串流](https://feedback.azure.com/forums/169396-media-services/category/144429-vod-streaming/)
 
 
-
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

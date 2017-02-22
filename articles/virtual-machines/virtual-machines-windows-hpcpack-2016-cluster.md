@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
-ms.date: 11/14/2016
+ms.date: 12/15/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 7e7dc6b6d58da556dfa07d5d21b3e70483d36ef9
-ms.openlocfilehash: 688f3f0885606949a265300af215f416e8f94155
+ms.sourcegitcommit: f4c29b292ecd97b51620b5e41cbcd6a096a7768e
+ms.openlocfilehash: e96d26e458f3b8f88ba88a5839dff9c48a755ffa
 
 
 ---
@@ -36,6 +36,23 @@ Microsoft HPC Pack 2016 叢集需要個人資訊交換 (PFX) 憑證來保護 HPC
 * 它必須有能夠進行金鑰交換的私密金鑰
 * 金鑰使用方法包含數位簽章和金鑰加密
 * 增強金鑰使用方法包含用戶端驗證和伺服器驗證
+
+如果您還沒有符合這些需求的憑證，可以從憑證授權單位要求憑證。 或者，您可以根據您用來執行命令的作業系統，使用下列命令產生自我簽署的憑證，並以私密金鑰匯出 PFX 格式的憑證。
+
+* **Windows 10 或 Windows Server 2016**，執行內建 **New-SelfSignedCertificate** PowerShell cmdlet，如下所示︰
+
+  ```PowerShell
+  New-SelfSignedCertificate -Subject "CN=HPC Pack 2016 Communication" -KeySpec KeyExchange -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.1,1.3.6.1.5.5.7.3.2") -CertStoreLocation cert:\CurrentUser\My -KeyExportPolicy Exportable -NotAfter (Get-Date).AddYears(5)
+  ```
+* **若為 Windows 10 或 Windows Server 2016 以前的作業系統**，則必須從 Microsoft 指令碼中心下載[自我簽署憑證產生器](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/)。 將其內容解壓縮，並在 PowerShell 提示字元執行下列命令︰
+
+    ```PowerShell 
+    Import-Module -Name c:\ExtractedModule\New-SelfSignedCertificateEx.ps1
+  
+    New-SelfSignedCertificateEx -Subject "CN=HPC Pack 2016 Communication" -KeySpec Exchange -KeyUsage "DigitalSignature,KeyEncipherment" -EnhancedKeyUsage "Server Authentication","Client Authentication" -StoreLocation CurrentUser -Exportable -NotAfter (Get-Date).AddYears(5)
+    ```
+
+### <a name="upload-certificate-to-an-azure-key-vault"></a>將憑證上傳至 Azure 金鑰保存庫
 
 在部署 HPC 叢集之前，將憑證上傳至 [Azure 金鑰保存庫](../key-vault/index.md)做為密碼，並記錄下列資訊以在部署期間使用︰**保存庫名稱**、**保存庫資源群組**、**憑證 URL** 及**憑證指紋**。
 
@@ -122,7 +139,7 @@ $hpcSecret = Set-AzureKeyVaultSecret -VaultName $VaultName -Name $SecretName -Se
 
 指定您在必要條件中記錄之下列參數的值︰**保存庫名稱**、**保存庫資源群組**、**憑證 URL** 和 **憑證指紋**。
 
-###<a name="step-3-review-legal-terms-and-create"></a>步驟 3. 檢閱法律條款並建立
+### <a name="step-3-review-legal-terms-and-create"></a>步驟 3. 檢閱法律條款並建立
 按一下 [檢閱法律條款] 檢閱條款。 如果您同意，請按一下 [購買]，然後按一下 [建立] 以開始部署。
 
 ## <a name="connect-to-the-cluster"></a>連接到叢集
@@ -142,6 +159,6 @@ $hpcSecret = Set-AzureKeyVaultSecret -VaultName $VaultName -Name $SecretName -Se
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

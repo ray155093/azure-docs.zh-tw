@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 12/09/2016
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: d9f6c8c73cb7803547053ec495812f993eb44c43
-ms.openlocfilehash: b2f8683be1dea938cba84766efe32287eeebb712
+ms.sourcegitcommit: c98251147bca323d31213a102f607e995b37e0ec
+ms.openlocfilehash: 19e8c9de137e10abb563fcd60cf89502dbf94cfd
 
 
 ---
@@ -64,7 +64,7 @@ ms.openlocfilehash: b2f8683be1dea938cba84766efe32287eeebb712
 
 如此一來，即可利用單一查詢而不需要任何聯結，即可取得該文件。 這麼做不只更簡單、直接也節省成本，而且只需較少的資源，即可達到更佳的結果。
 
-Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來確保所有屬性都已編製成索引，甚至還可以[自訂](documentdb-indexing-policies.md)這項作業。 無結構描述的方法可讓我們使用不同的動態結構來儲存文件，日後若我們希望貼文具有類別或已與其建立關聯的主題標籤清單時，不需進行任何額外的工作，即可由 DocumentDB 來處理新的文件與新增的屬性。
+Azure DocumentDB 可利用自己的自動索引編製作業，確保所有屬性都已編製成索引，甚至還可以[自訂](documentdb-indexing-policies.md)這項作業。 無結構描述的方法可讓我們使用不同的動態結構來儲存文件，日後若我們希望貼文具有類別或已與其建立關聯的主題標籤清單時，不需進行任何額外的工作，即可由 DocumentDB 來處理新的文件與新增的屬性。
 
 某篇文章的回應可視為含父屬性的其他貼文 (如此可簡化物件的對應)。 
 
@@ -168,7 +168,7 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 
 最大的一階為「擴充使用者」。 它包含所有重要的使用者資訊，加上其他並不需要快速讀取或最終使用情況的相關資料 (例如登入過程)。 這些資料可以儲存在 DocumentDB 外部、Azure SQL Database 中或 Azure 儲存體資料表中。
 
-為什麼我們要分割使用者，甚至在不同位置儲存這些資訊？ 因為 DocumentDB 的儲存空間 [有限](documentdb-limits.md) ，而且從效能方面來看，文件愈大，查詢也就愈昂貴。 讓文件保持精簡，只包含適當資訊以針對社交網路進行所有與效能相依的查詢，並將用於最終情況 (例如完整的設定檔編輯、登入，甚至是針對資料採礦進行的使用情況分析和巨量資料計劃) 所需的其他額外資訊加以儲存。 我們不用擔心針對資料採礦進行的資料收集作業是否比較慢，因為這項作業執行於 Azure SQL Database 上，但我們必須保障使用者擁有快速且精簡的體驗。 在 DocumentDB 中儲存的「使用者」，應類似如下︰
+為什麼我們要分割使用者，甚至在不同位置儲存這些資訊？ 因為 DocumentDB 的儲存空間有限，而且從效能方面來看，文件愈大，查詢也就愈昂貴。 讓文件保持精簡，只包含適當資訊以針對社交網路進行所有與效能相依的查詢，並將用於最終情況 (例如完整的設定檔編輯、登入，甚至是針對資料採礦進行的使用情況分析和巨量資料計劃) 所需的其他額外資訊加以儲存。 我們不用擔心針對資料採礦進行的資料收集作業是否比較慢，因為這項作業執行於 Azure SQL Database 上，但我們必須保障使用者擁有快速且精簡的體驗。 在 DocumentDB 中儲存的「使用者」，應類似如下︰
 
     {
         "id":"dse4-qwe2-ert4-aad2",
@@ -200,7 +200,7 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 
 為什麼可以這麼輕鬆？
 
-Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx) (這是與您資料儲存機制連結的背景處理序)，並會自動新增、更新或移除您在索引中的物件。 它們支援 [Azure SQL Database 索引子](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/)、[Azure Blob 索引子](../search/search-howto-indexing-azure-blob-storage.md)，很幸運地也支援 [Azure DocumentDB 索引子](documentdb-search-indexer.md)。 從 DocumentDB 到 Azure 搜尋服務的資訊轉換相當簡單，因為兩者皆是以 JSON 格式儲存，我們只需要[建立索引](../search/search-create-index-portal.md)，並從我們要編製索引的文件來對應屬性即可。短短幾分鐘內 (取決於資料大小而定)，即可透過雲端基礎結構中的最佳搜尋即服務解決方案來搜尋所有內容。 
+Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx) (這是與您資料儲存機制連結的背景處理序)，並會自動新增、更新或移除您在索引中的物件。 它們支援 [Azure SQL Database 索引子](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/)、[Azure Blob 索引子](../search/search-howto-indexing-azure-blob-storage.md)，很幸運地也支援 [Azure DocumentDB 索引子](../search/search-howto-index-documentdb.md)。 從 DocumentDB 到 Azure 搜尋服務的資訊轉換相當簡單，因為兩者皆是以 JSON 格式儲存，我們只需要[建立索引](../search/search-create-index-portal.md)，並從我們要編製索引的文件來對應屬性即可。短短幾分鐘內 (取決於資料大小而定)，即可透過雲端基礎結構中的最佳搜尋即服務解決方案來搜尋所有內容。 
 
 如需 Azure 搜尋服務的詳細資訊，請瀏覽 [搜尋漫遊指南](https://blogs.msdn.microsoft.com/mvpawardprogram/2016/02/02/a-hitchhikers-guide-to-search/)。
 
@@ -234,6 +234,6 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

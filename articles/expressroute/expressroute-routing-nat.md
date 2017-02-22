@@ -13,10 +13,10 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/12/2016
-ms.author: osamazia
+ms.author: osamam
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: bd7537a81661bc175a770fdbd6388ba07ea912ae
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 5e3c65d9ada5c75e0ddef3b3778a79ca77aa07d8
 
 
 ---
@@ -101,7 +101,7 @@ Microsoft 將使用 AS 12076 進行 Azure 公用、Azure 私人和 Microsoft 對
 
 如果前置詞數目超過此限制，則會捨棄 BGP 工作階段。 我們只會接受私人對等互連連結上的預設路由。 提供者必須從 Azure 公用和 Microsoft 對等互連路徑中篩選出預設路由和私人 IP 位址 (RFC 1918)。 
 
-## <a name="transit-routing-and-crossregion-routing"></a>傳輸路由和跨區域路由
+## <a name="transit-routing-and-cross-region-routing"></a>傳輸路由和跨區域路由
 ExpressRoute 不能設定為傳輸路由器。 您必須依賴連線提供者的傳輸路由服務。
 
 ## <a name="advertising-default-routes"></a>公告預設路由
@@ -194,6 +194,6 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

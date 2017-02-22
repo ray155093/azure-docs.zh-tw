@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/30/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: fcd8fe1bd1be5ffa85aab0951a28054754ba03ff
+ms.sourcegitcommit: e4896c1a3adf76477899336f1ff1ee215cc7c9aa
+ms.openlocfilehash: a451ab54144222676e8063b764a6d22f44a690d7
 
 
 ---
@@ -25,8 +25,8 @@ ms.openlocfilehash: fcd8fe1bd1be5ffa85aab0951a28054754ba03ff
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-enterprise-apps-manage-sso.md)
 > * [Azure 傳統入口網站](active-directory-sso-integrate-saas-apps.md)
-> 
-> 
+>
+>
 
 [!INCLUDE [active-directory-sso-use-case-intro](../../includes/active-directory-sso-use-case-intro.md)]
 
@@ -50,8 +50,8 @@ Azure AD 提供幾種可自訂的方式，來對您組織中的使用者部署�
 
 > [!NOTE]
 > 若要為現有的應用程式設定 SSO，您必須在 Azure AD 和 SaaS 應用程式同時具有全域系統管理員權限。
-> 
-> 
+>
+>
 
 ### <a name="mapping-user-accounts"></a>對應使用者帳戶
 使用者的身分識別通常有唯一識別碼，可能是電子郵件地址或使用者主體名稱 (UPN)。 您必須將每個使用者的應用程式身分識別連結 (對應) 至其各自的 Azure AD 身分識別。 根據您的應用程式驗證的需求，有好幾種方法可完成這項作業。
@@ -72,12 +72,11 @@ Azure AD 提供幾種可自訂的方式，來對您組織中的使用者部署�
 
 Azure.com 文件庫中還有更多關於這些議題的詳細資訊，請先閱讀 [什麼是應用程式存取與單一登入搭配 Azure Active Directory](active-directory-appssoaccess-whatis.md)。
 
-## <a name="see-also"></a>另請參閱
+## <a name="next-steps"></a>後續步驟
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

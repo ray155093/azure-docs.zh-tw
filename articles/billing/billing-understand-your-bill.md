@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/31/2016
 ms.author: erihur;genli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8768ccd5a1d04566c5f2e1f26ab328cea570cc61
+ms.sourcegitcommit: 25dc3835983f1f51047bc5680138dcc6b3879d7a
+ms.openlocfilehash: 5abb8627a2b0d06d9aa948ac35cfd1ba2b08ee31
 
 
 ---
@@ -132,7 +132,7 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 * **第 1 版** 使用預先存在的格式
 * **第 2 版** 包含其他資訊和 [每日使用情況] 區段中已更新的資料行名稱。  
 
-使用費用是訂用帳戶的 **每月** 總費用扣除任何信用額度或折扣。 我們會根據您過去一個月的使用量事後向您收取費用。  檔案的上方區段會顯示您在上個月的計費週期中需支付的服務詳細資料。  上表列出每個 .csv 版本檔案的資料行名稱。
+使用費用是訂用帳戶的 **每月** 總費用扣除任何信用額度或折扣。 我們會根據您過去一個月的使用量事後向您收取費用。  檔案的上方區段會顯示您在上個月的計費週期中需支付的服務詳細資料。  下表列出每個 .csv 版本檔案的資料行名稱。
 
 | 第 1 版 | 第 2 版 | 說明 |
 |:--- |:--- | --- |
@@ -181,9 +181,9 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 | 已耗用 |已耗用的數量 |包含當日已耗用的資源量。 |
 | 子區域 |資源位置 |識別正在執行資源的資料中心。 |
 | 服務 |已耗用的服務 |您可以利用這個資料行來追蹤可能無法在名稱資料行中特別識別的個別 Azure 平台服務。 此服務資料行會指出與使用有關的特定服務。 |
-| N/A |資源群組 |新增資料行。  部署的資源正在其中執行的資源群組。 請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md) |
+| N/A |資源群組 |新增資料行。 部署的資源正在其中執行的資源群組。 請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md) |
 | 元件 |執行個體識別碼 |執行中資源的識別碼。 識別碼包含在建立時為資源指定的名稱。 |
-| N/A |標記 |新增資料行。  Azure 中的新資源類型可讓您標記資源。 請參閱 [使用標籤來組織 Azure 資源](http://azure.microsoft.com/updates/organize-your-azure-resources-with-tags/) |
+| N/A |標記 |新增資料行。 Azure 中的新資源類型可讓您標記資源。 請參閱 [使用標籤來組織 Azure 資源](http://azure.microsoft.com/updates/organize-your-azure-resources-with-tags/) |
 | 其他資訊 |其他資訊 |關於服務的其他中繼資料。 |
 | 服務資訊 1 |服務資訊 1 |此資料行會提供服務在訂用帳戶上所屬的專案名稱。 |
 | 服務資訊 2 |服務資訊 2 |這是舊版欄位，可擷取選擇性服務的特定中繼資料。 |
@@ -232,6 +232,6 @@ OLD MSDN Articles
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

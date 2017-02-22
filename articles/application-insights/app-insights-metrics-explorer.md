@@ -11,11 +11,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 12/14/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: dea21a59b189d1d3d474cbc5e67f64df485a1981
-ms.openlocfilehash: 040556d42f246ab2876cc5bab031036ec78e13bc
+ms.sourcegitcommit: 6c644b124ad8c994170152006ff61c11e363e7ab
+ms.openlocfilehash: 951aac469ab7bca90014a8af115448833152bb6a
 
 
 ---
@@ -24,13 +24,11 @@ ms.openlocfilehash: 040556d42f246ab2876cc5bab031036ec78e13bc
 
 度量和事件計數會顯示在彙總值 (例如總和、平均或計數) 的圖表中。
 
-以下是範例圖表：
+以下是一組範例圖表︰
 
-![開啟 Azure 入口網站中應用程式的 [概觀] 刀鋒視窗](./media/app-insights-metrics-explorer/01-overview.png)
+![](./media/app-insights-metrics-explorer/01-overview.png)
 
-有些圖表經過分段：任何點的圖表高度總計為顯示的度量的總合。 圖例預設會顯示最大數量。
-
-虛線顯示前一週度量的值。
+您可在 Application Insights 入口網站中找到度量圖表。 在大部分情況下，您可以自訂它們，而且您可以將更多圖表新增至刀鋒視窗。 從 [概觀] 刀鋒視窗中，按一下以取得更詳細的圖表 (它們有標題，例如「伺服器回應」)，或按一下 [計量瀏覽器] 以開啟新的刀鋒視窗，您可以在其中建立自訂圖表。
 
 ## <a name="time-range"></a>時間範圍
 您可以在任何刀鋒視窗上變更圖表或格線涵蓋的時間範圍。
@@ -62,33 +60,6 @@ ms.openlocfilehash: 040556d42f246ab2876cc5bab031036ec78e13bc
 
 可提供的資料粒度取決於您選取的時間範圍。 明確的資料粒度可替代時間範圍內的「自動」資料粒度。
 
-## <a name="metrics-explorer"></a>計量瀏覽器
-按一下 [概觀] 刀鋒視窗上的任何圖表，可查看更詳細的一組相關圖表和格線。 您可以編輯這些圖表和格線，以著重在感興趣的詳細資料。
-
-或者，您也可以按一下概觀刀鋒視窗頂端的 [計量瀏覽器] 按鈕。
-
-例如，逐一點選 Web 應用程式的「失敗的要求」圖表：
-
-![在 [概觀] 刀鋒視窗上，按一下圖表](./media/app-insights-metrics-explorer/14-trix.png)
-
-## <a name="what-do-the-figures-mean"></a>數據代表意義為何？
-旁邊的圖例通常預設會顯示圖表在這段期間的彙總值。 如果您將滑鼠停留在圖表上，它會顯示在該點的值。
-
-圖表上的每個資料點是在先前取樣間隔或「資料粒度」中所收到的資料值彙總。 資料粒度會顯示在刀鋒視窗頂端，並隨著圖表的時幅而有所不同。
-
-度量可以用不同方式彙總：
-
-* **總和** ：將取樣間隔或圖表期間收到的所有資料點的值相加。
-* **平均** ：將總和除以間隔期間收到的資料點數目。
-* **唯一** ：計數會用於使用者及帳戶的計數。 在取樣間隔或圖表期間，圖形顯示在該時間看到的不同使用者的計數。
-
-您可以變更彙總方法：
-
-![選取圖表，然後選取彙總](./media/app-insights-metrics-explorer/05-aggregation.png)
-
-當您建立新的圖表或所有度量皆已取消選取時，會顯示每個度量的預設方法：
-
-![取消選取所有度量以查看預設值](./media/app-insights-metrics-explorer/06-total.png)
 
 ## <a name="editing-charts-and-grids"></a>編輯圖表和格線
 若要對刀鋒視窗加入新圖表：
@@ -115,11 +86,35 @@ ms.openlocfilehash: 040556d42f246ab2876cc5bab031036ec78e13bc
 >
 >
 
-如果您將[自訂度量][track]編寫至您的應用程式，並且它們包含屬性值，將可以在清單中選取屬性。
+如果您將自訂度量編寫至您的應用程式，並且它們包含[屬性值][track]，將可以在清單中選取屬性。
 
 圖表是否對分段的資料來說太小？ 調整其高度：
 
 ![調整滑桿](./media/app-insights-metrics-explorer/18-height.png)
+
+## <a name="aggregation-types"></a>彙總類型
+旁邊的圖例通常預設會顯示圖表在這段期間的彙總值。 如果您將滑鼠停留在圖表上，它會顯示在該點的值。
+
+圖表上的每個資料點是在先前取樣間隔或「資料粒度」中所收到的資料值彙總。 資料粒度會顯示在刀鋒視窗頂端，並隨著圖表的時幅而有所不同。
+
+度量可以用不同方式彙總：
+
+* **計數**是在取樣間隔中接收到的事件計數。 它用於事件，例如要求。 圖表的高度變化指出事件發生的速率變化。 但請注意，數字的值會隨變更取樣間隔而變更。
+* **總和** ：將取樣間隔或圖表期間收到的所有資料點的值相加。
+* **平均** ：將總和除以間隔期間收到的資料點數目。
+* **唯一** ：計數會用於使用者及帳戶的計數。 在取樣間隔或圖表期間，圖形顯示在該時間看到的不同使用者的計數。
+* **%** - 每個彙總百分比版本只會搭配分段圖表使用。 總計永遠會加總至 100%，圖表會顯示總計的不同元件之相對貢獻。
+
+    ![百分比彙總](./media/app-insights-metrics-explorer/percentage-aggregation.png)
+
+### <a name="change-the-aggregation-type"></a>變更彙總類型
+
+![編輯圖表，然後選取彙總](./media/app-insights-metrics-explorer/05-aggregation.png)
+
+當您建立新的圖表或所有度量皆已取消選取時，會顯示每個度量的預設方法：
+
+![取消選取所有度量以查看預設值](./media/app-insights-metrics-explorer/06-total.png)
+
 
 ## <a name="filter-your-data"></a>篩選資料
 若只要查看選取的一組屬性值的度量：
@@ -229,6 +224,6 @@ ms.openlocfilehash: 040556d42f246ab2876cc5bab031036ec78e13bc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

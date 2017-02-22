@@ -1,5 +1,5 @@
 ---
-title: "儲存體解決方案指導方針 | Microsoft Docs"
+title: "Azure 中 Windows VM 的儲存體解決方案 | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中部署儲存體解決方案的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-windows
@@ -13,15 +13,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 589c79b9caba359ce8063c051ebe80dcbc68456c
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: e4c1dd67dce33c2cb30f6fd3e7163c68c7084e67
 
 
 ---
-# <a name="storage-infrastructure-guidelines"></a>儲存體基礎結構指導方針
+# <a name="azure-storage-infrastructure-guidelines"></a>Azure 儲存體基礎結構指導方針
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
 本文著重於了解達成最佳虛擬機器 (VM) 效能的儲存體需求及設計考量。
@@ -59,7 +59,7 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 
 作業系統磁碟和資料磁碟的大小上限為 1023 GB。 Blob 的大小上限為 1024 GB 且必須包含 VHD 檔案的中繼資料 (頁尾) (一個 GB 是 1024<sup>3</sup> 個位元組)。 您可以使用 Windows Server 2012 中的「儲存空間」，匯集資料磁碟來提供大於 1023GB 的邏輯磁碟區給 VM，以超越此限制。
 
-設計 Azure 儲存體部署時有幾個延展性的限制，請參閱 [Microsoft Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md#storage-limits)以取得詳細資料。 另請參閱〈 [Azure 儲存體的延展性與效能目標](../storage/storage-scalability-targets.md)〉。
+設計 Azure 儲存體部署時有幾個延展性的限制 - 如需詳細資訊，請參閱 [Microsoft Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md#storage-limits)。 另請參閱〈 [Azure 儲存體的延展性與效能目標](../storage/storage-scalability-targets.md)〉。
 
 針對應用程式儲存體，您可以儲存非結構化的物件資料，例如文件、影像、備份、設定資料、記錄檔等等。 使用 Blob 儲存體。 與其讓您的應用程式寫入附加至 VM 的虛擬磁碟，該應用程式可以直接寫入 Azure blob 儲存體。 根據您的可用性需求和成本限制，blob 儲存體也提供[經常性存取與非經常性存取儲存層](../storage/storage-blob-storage-tiers.md)的選項。
 
@@ -78,7 +78,7 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 如需詳細資訊，請參閱〈 [儲存體空間 - 適用於效能的設計](http://social.technet.microsoft.com/wiki/contents/articles/15200.storage-spaces-designing-for-performance.aspx)〉。
 
 ## <a name="multiple-storage-accounts"></a>多個儲存體帳戶
-設計您的 Azure 儲存體環境時，隨著您部署的 VM 數目增加，您可以善用多個儲存體帳戶。 這可以協助將 I/O 分散到基礎 Azure 儲存體基礎結構上，以維持 VM 和應用程式的最佳效能。 當您設計要部署的應用程式時，請考慮每個 VM 的 I/O 需求，並使那些 VM 在 Azure 儲存體帳戶之間取得平衡。 請盡量避免只將所有高 I/O 需求的 VM 分配到一個或兩個儲存體帳戶上。
+設計您的 Azure 儲存體環境時，隨著您部署的 VM 數目增加，您可以善用多個儲存體帳戶。 這個方式可協助將 I/O 分散到基礎 Azure 儲存體基礎結構上，以維持 VM 和應用程式的最佳效能。 當您設計要部署的應用程式時，請考慮每個 VM 的 I/O 需求，並使那些 VM 在 Azure 儲存體帳戶之間取得平衡。 請盡量避免只將所有高 I/O 需求的 VM 分配到一個或兩個儲存體帳戶上。
 
 如需不同 Azure 儲存體選項的 I/O 功能以及一些建議最大值的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../storage/storage-scalability-targets.md)。
 
@@ -88,6 +88,6 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

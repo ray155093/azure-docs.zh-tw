@@ -3,7 +3,7 @@ title: "開始使用 Azure SQL Database 中的時態表 | Microsoft Docs"
 description: "了解如何開始使用 Azure SQL Database 中的時態表。"
 services: sql-database
 documentationcenter: 
-author: CarlRabeler
+author: bonova
 manager: jhubbard
 editor: 
 ms.assetid: c8c0f232-0751-4a7f-a36e-67a0b29fa1b8
@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: sql-database
-ms.date: 08/29/2016
-ms.author: carlrab
+ms.date: 01/10/2017
+ms.author: bonova
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2b83d2561d37cb2dcb799d14774b6350e0681c42
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: e00345ddd9e52e2613789ba78c48e8f993d2415c
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 2b83d2561d37cb2dcb799d14774b6350e0681c42
 ## <a name="temporal-scenario"></a>時態表案例
 本文說明在應用程式案例中使用時態表的步驟。 假設您想要從頭開始追蹤正在開發的新網站上的使用者活動，或您想要使用使用者活動分析擴充的現有網站上的使用者活動。 在這個簡化的範例中，我們假設在一段時間內瀏覽過的網頁數目是必須在裝載於 Azure SQL Database 的網站資料庫中擷取和監視的指標。 使用者活動歷史分析的目標是要獲得重新設計網站的意見，並為訪客提供更好的經驗。
 
-此案例的資料庫模型非常簡單：使用者活動度量以一個整數欄位 **PageVisited**表示，而且會與使用者設定檔上的基本資訊一起擷取。 此外，對於以時間為基礎的分析，您要為每個使用者保留一連串的資料列，其中每個資料列都代表特定的一段時間內特定使用者瀏覽過的頁數。
+此案例的資料庫模型非常簡單：使用者活動度量是以單一整數欄位 **PageVisited** 表示，而且會與使用者設定檔上的基本資訊一起被擷取。 此外，對於以時間為基礎的分析，您要為每個使用者保留一連串的資料列，其中每個資料列都代表特定的一段時間內特定使用者瀏覽過的頁數。
 
 ![結構描述](./media/sql-database-temporal-tables/AzureTemporal1.png)
 
@@ -69,7 +69,9 @@ CREATE TABLE WebsiteUserInfo
 
 在此特殊案例中，我們的目標是針對一段較長的資料歷程記錄以及較大的資料集，執行以時間為基礎的趨勢分析，因此歷程記錄表格的儲存體選擇為叢集資料行存放區索引。 叢集資料行存放區為分析查詢提供很好的壓縮和效能。 時態表提供您完全獨立地設定目前資料表和時態表的索引的彈性。 
 
-**注意**︰只有在進階服務層中才能使用資料行存放區索引。
+> [!NOTE]
+> 只有在進階服務層中才能使用資料行存放區索引。
+>
 
 下列指令碼示範如何將歷程記錄資料表的預設索引變更為叢集資料行存放區︰
 
@@ -199,6 +201,6 @@ ALTER TABLE dbo.WebsiteUserInfo
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

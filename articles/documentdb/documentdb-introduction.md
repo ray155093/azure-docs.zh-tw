@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 11/16/2016
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 7f5e33b7f80e3c1e1e3e66b3cab879a5bc30e823
-ms.openlocfilehash: 18f2c1876fab914073c8aea67f67724f281a65aa
+ms.sourcegitcommit: 988c887d2d26ab3ab5b287f803c7d598bd6620e3
+ms.openlocfilehash: 23b1780df8ec01c0692e3afd408ea44fc9773b28
 
 
 ---
@@ -87,6 +87,14 @@ DocumentDB 可讓您將應用程式邏輯撰寫成完全以 JavaScript 撰寫的
 
 在 DocumentDB 內執行 JavaScript 的作法是仿造自關聯式資料庫系統所支援的概念，以 JavaScript 做為 Transact-SQL 的新式取代項目。 所有 JavaScript 邏輯都是以隔離的快照在環境 ACID 交易內執行。 在執行期間，如果 JavaScript 擲回例外狀況，則會中止整個交易。
 
+## <a name="are-there-any-online-courses-on-documentdb"></a>DocumentDB 上是否有任何線上課程？
+
+是，Azure DocumentDB 上有 [Microsoft Virtual Academy](https://mva.microsoft.com/en-US/training-courses/azure-documentdb-planetscale-nosql-16847) 課程。 
+
+>[!VIDEO https://mva.microsoft.com/en-US/training-courses-embed/azure-documentdb-planetscale-nosql-16847]
+>
+>
+
 ## <a name="next-steps"></a>後續步驟
 已經有 Azure 帳戶嗎？ 您可以接著透過[建立 DocumentDB 資料庫帳戶](documentdb-create-account.md)，開始在 [Azure 入口網站](https://portal.azure.com/#gallery/Microsoft.DocumentDB)中使用 DocumentDB。
 
@@ -103,6 +111,6 @@ DocumentDB 可讓您將應用程式邏輯撰寫成完全以 JavaScript 撰寫的
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

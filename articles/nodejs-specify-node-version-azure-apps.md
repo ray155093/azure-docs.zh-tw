@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c41ef7c2bf4c7d66e8596627585cd3014a9ac839
+ms.sourcegitcommit: 70b0aef629ceb0fe0021f633183d2a6f09145d85
+ms.openlocfilehash: b164865aaef16799ccdec24d163d4723acb88530
 
 
 ---
@@ -28,8 +28,8 @@ Azure 提供的 Node.js 版本會持續進行更新。 除非另有指定，否�
 
 > [!NOTE]
 > 如果您要將應用程式裝載在 Azure 雲端服務 (Web 或背景工作角色) 中，而且這是您第一次部署應用程式，只要您安裝在部署環境中的 Node.js 版本符合 Azure 上提供的其中一個預設版本，Azure 就會嘗試使用這個版本。
-> 
-> 
+>
+>
 
 ## <a name="versioning-with-packagejson"></a>以 package.json 進行版本設定
 您可以在 **package.json** 檔案中新增下列內容，以指定要使用的 Node.js 版本。
@@ -58,48 +58,48 @@ Azure 提供的 Node.js 版本會持續進行更新。 除非另有指定，否�
 雖然 Azure 提供數個預設 Node.js 版本，不過您可能會想要使用預設未提供的版本。 如果您的應用程式是以 Azure 網站形式裝載，您可以使用 **iisnode.yml** 檔案達到該目的。 下列步驟將逐步引導您對 Azure 網站使用自訂版本的 Node.Js：
 
 1. 建立新目錄，然後在目錄中建立 **server.js** 檔案。 **server.js** 檔案應該包含下列內容：
-   
+
         var http = require('http');
         http.createServer(function(req,res) {
           res.writeHead(200, {'Content-Type': 'text/html'});
           res.end('Hello from Azure running node version: ' + process.version + '</br>');
         }).listen(process.env.PORT || 3000);
-   
+
     這將顯示當您瀏覽網站時會使用的 Node.js 版本。
 2. 建立新網站並記下網站的名稱。 例如，以下使用 [Azure 命令列工具] 建立新的 Azure 網站 (名稱為 **mywebsite**)，然後編輯該網站的 Git 存放庫。
-   
+
         azure site create mywebsite --git
 3. 建立名稱為 **bin** 的新目錄作為 **server.js** 檔案所在目錄的子目錄。
 4. 下載要讓應用程式使用的特定 **node.exe** 版本 (Windows 版本)。 例如，以下使用 **curl** 下載 0.8.1 版。
-   
+
         curl -O http://nodejs.org/dist/v0.8.1/node.exe
-   
+
     將 **node.exe** 檔案儲存到先前建立的 **bin** 資料夾中。
 5. 在 **server.js** 檔案所在的同一個目錄中建立 **iisnode.yml** 檔案，然後在 **iisnode.yml** 檔案中新增下列內容：
-   
+
         nodeProcessCommandLine: "D:\home\site\wwwroot\bin\node.exe"
-   
+
     您將應用程式發行到 Azure 網站後，您專案中的 **node.exe** 檔案將位在這個路徑中。
 6. 發行您的應用程式。 例如，由於我稍早是使用 --git 參數建立新的網站，下列命令會將應用程式檔案新增到我的本機 Git 存放庫，然後將這些檔案推播到網站存放庫：
-   
+
         git add .
         git commit -m "testing node v0.8.1"
         git push azure master
-   
+
     發行應用程式後，使用瀏覽器開啟網站。 您應該會看見 "Hello from Azure running node version: v0.8.1" 訊息。
 
 ## <a name="next-steps"></a>後續步驟
 您已了解如何指定應用程式使用的 Node.js 版本，現在請了解如何[使用模組]、[建置並部署 Node.js 網站](app-service-web/web-sites-nodejs-develop-deploy-mac.md)和[如何使用適用於 Mac 和 Linux 的 Azure 命令列工具]。
 
-如需詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
+如需詳細資訊，請參閱 [Node.js 開發人員中心](https://azure.microsoft.com/develop/nodejs/)。
 
 [如何使用適用於 Mac 和 Linux 的 Azure 命令列工具]: xplat-cli-install.md
 [Azure 命令列工具]: xplat-cli-install.md
 [使用模組]: nodejs-use-node-modules-azure-apps.md
-[建置並部署 Node.js 網站]: web-sites-nodejs-develop-deploy-mac.md
+[build and deploy a Node.js Web Site]: web-sites-nodejs-develop-deploy-mac.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

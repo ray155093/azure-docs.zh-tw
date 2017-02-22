@@ -1,5 +1,5 @@
 ---
-title: "使用增量快照備份和復原 Azure 虛擬機器 | Microsoft Docs"
+title: "使用增量快照備份和復原 Azure VM | Microsoft Docs"
 description: "使用增量快照，建立備份和復原 Azure 虛擬機器磁碟的自訂解決方案。"
 services: storage
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/17/2016
+ms.date: 01/23/2017
 ms.author: aungoo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9ade78c954ca6443354b198c7141b6fb5c88afdb
+ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
+ms.openlocfilehash: 848c3fb655688dd55176cff00c728a151fd8f548
 
 
 ---
@@ -60,7 +60,7 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。 一旦建立快�
 
 前提是符合下列條件，
 
-* Blob 是在 2016 年 1 月 1 日或之後建立。
+* Blob 是在&2016; 年&1; 月&1; 日或之後建立。
 * 在兩個快照集之間，Blob 不會覆寫為 [PutPage](https://msdn.microsoft.com/library/azure/ee691975.aspx) 或[複製 Blob](https://msdn.microsoft.com/library/azure/dd894037.aspx)。
 
 **注意**︰此功能適用於進階和標準 Azure 分頁 Blob。
@@ -123,6 +123,6 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。 一旦建立快�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

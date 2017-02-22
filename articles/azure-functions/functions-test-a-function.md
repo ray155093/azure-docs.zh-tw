@@ -14,103 +14,86 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/10/2016
+ms.date: 02/02/2017
 ms.author: wesmc
 translationtype: Human Translation
-ms.sourcegitcommit: 7e9534afa8ecd224b4e3c1df2f4465b70d961d2c
-ms.openlocfilehash: b3b0251436497cfdfb36369a05e01519c631e351
+ms.sourcegitcommit: 3603f58a9df1f0222a75b863ad2c1ab1b6e13fb2
+ms.openlocfilehash: c6868566e513c5cd2c76be3305ca6c9035d58acd
 
 
 ---
 # <a name="testing-azure-functions"></a>測試 Azure Functions
-## <a name="overview"></a>Overview
-在本教學課程中，我們將逐步進行測試函數的不同方法。 我們會定義會透過查詢字串參數或要求主體接受輸入的 http 觸發程序函數。 預設 **HttpTrigger Node.js 函數**範本程式碼支援 `name` 查詢字串參數。 我們也會新增程式碼來支援該參數，連同要求主體中使用者的 `address` 資訊。
+## <a name="overview"></a>概觀
+本主題會示範測試函數的各種方法，其中包括下列一般方式：
+
++ HTTP 型的工具，例如 cURL、Postman，甚至是適用於 Web 型觸發程序的網頁瀏覽器。 
++ 用於測試以 Azure 儲存體為基礎之觸發程序的儲存體總管。
++ Functions 入口網站中的 [測試] 索引標籤。
++ 計時器觸發函式。
++ 測試應用程式或架構。  
+
+所有顯示的測試方法都是使用會透過查詢字串參數或要求主體接受輸入的 HTTP 觸發程序函式。 您將會在第一節中建立此函式。
 
 ## <a name="create-a-function-for-testing"></a>建立用於測試的函數
-本教學課程中的大多數時間，我們將使用建立新的函數時可以使用 **HttpTrigger Nodejs 函數** 範本稍經修改的版本。  如果您需要建立新函數的說明，可以檢閱 [建立您的第一個 Azure 函數](functions-create-first-azure-function.md) 。  在 **Azure 入口網站** 中建立測試函數時，只要選擇 [Azure 入口網站]範本。
+在本教學課程中的大多數時間裡，我們將使用建立新的函式時可使用的 HttpTrigger JavaScript 函式範本的稍經修改版本。  如果您需要建立新函數的說明，可以檢閱 [建立您的第一個 Azure 函數](functions-create-first-azure-function.md) 。  在 [Azure 入口網站]中建立測試函式時，只需要選擇 **HttpTrigger- JavaScript** 範本。
 
 預設函式範本基本上是 hello world 函式，可從要求主體或查詢字串參數 `name=<your name>`回應名稱。  我們將更新程式碼，以讓您在要求主體中以 JSON 內容的形式提供名稱和位址。 然後函數會在可使用時將這些內容回應給用戶端。   
 
 使用我們將用來測試的下列程式碼更新函數︰
 
 ```javascript
-module.exports = function(context, req) {
-    context.log("Node.js HTTP trigger function processed a request. RequestUri=%s", req.originalUrl);
-    context.log("Request Headers = " + JSON.stringify(req.headers));    
+module.exports = function (context, req) {
+    context.log("HTTP trigger function processed a request. RequestUri=%s", req.originalUrl);
+    context.log("Request Headers = " + JSON.stringify(req.headers));
+    var res;
 
     if (req.query.name || (req.body && req.body.name)) {
         if (typeof req.query.name != "undefined") {
             context.log("Name was provided as a query string param...");
-            ProcessNewUserInformation(context, req.query.name);
+            res = ProcessNewUserInformation(context, req.query.name);
         }
         else {
             context.log("Processing user info from request body...");
-            ProcessNewUserInformation(context, req.body.name, req.body.address);
+            res = ProcessNewUserInformation(context, req.body.name, req.body.address);
         }
     }
     else {
-        context.res = {
+        res = {
             status: 400,
             body: "Please pass a name on the query string or in the request body"
         };
     }
-    context.done();
+    context.done(null, res);
 };
+function ProcessNewUserInformation(context, name, address) {
+    context.log("Processing user information...");
+    context.log("name = " + name);
+    var echoString = "Hello " + name;
+    var res;
 
-function ProcessNewUserInformation(context, name, address)
-{    
-    context.log("Processing User Information...");            
-    context.log("name = " + name);            
-    echoString = "Hello " + name;
-
-    if (typeof address != "undefined")
-    {
+    if (typeof address != "undefined") {
         echoString += "\n" + "The address you provided is " + address;
-        context.log("address = " + address);            
+        context.log("address = " + address);
     }
-
-    context.res = {
-            // status: 200, /* Defaults to 200 */
-            body: echoString
-        };
+    res = {
+        // status: 200, /* Defaults to 200 */
+        body: echoString
+    };
+    return res;
 }
 ```
 
 ## <a name="test-a-function-with-tools"></a>使用工具測試函數
-### <a name="test-with-curl"></a>使用 cURL 測試
-測試軟體時往往只需要命令列即可協助偵錯您的應用程式，對於函數也是如此。
-
-若要測試上述函數，請從入口網站複製 **函數 URL** 。 它將具有下列格式：
-
-    https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
-
-這是觸發程式函數的 URL，我們可以在命令列上使用 cURL 命令來測試它，以便對我們的函數取得 (`-G` 或 `--get`) 要求︰
-
-    curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
-
-以上這個特定範例需要在 cURL 命令中將查詢字串參數傳遞做為資料 (`-d`)︰
-
-    curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code> -d name=<Enter a name here>
-
-按 Enter 鍵，您會在命令列上看到函數的輸出。
-
-![](./media/functions-test-a-function/curl-test.png)
-
-在入口網站 [記錄]  視窗中，執行函數時會記錄類似下面的輸出︰
-
-    2016-04-05T21:55:09  Welcome, you are now connected to log-streaming service.
-    2016-04-05T21:55:30.738 Function started (Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
-    2016-04-05T21:55:30.738 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/HttpTriggerNodeJS1?code=XXXXXXX&name=Azure Functions
-    2016-04-05T21:55:30.738 Function completed (Success, Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
+在 Azure 入口網站之外，您可以使用數種工具來針對測試觸發函數。 這些工具包含 HTTP 測試工具 (包括 UI 型和命令列)、Azure 儲存體存取工具，以及甚至簡易的網頁瀏覽器。
 
 ### <a name="test-with-a-browser"></a>使用瀏覽器測試
-不需要參數或只需要查詢字串參數的函數，即可以使用瀏覽器測試。
+網頁瀏覽器是透過 HTTP 觸發函數的簡易方法。 您可以針對不需要主體承載並僅使用查詢字串參數的 GET 要求使用瀏覽器。
 
 若要測試上述定義的函數，請從入口網站複製 **函數 URL** 。 它將具有下列格式：
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
 
-如下所示，附加 `name` 查詢字串參數，對 `<Enter a name here>` 預留位置使用實際名稱。
+透過針對 `<Enter a name here>` 預留位置使用實際名稱，來將 `name` 參數附加到查詢字串。 
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>&name=<Enter a name here>
 
@@ -118,21 +101,23 @@ function ProcessNewUserInformation(context, name, address)
 
 ![](./media/functions-test-a-function/browser-test.png)
 
+此範例使用 Chrome 瀏覽器，它會將傳回字串包裝在 XML 中。 其他瀏覽器只會顯示字串值。
+
 在入口網站 [記錄]  視窗中，執行函數時會記錄類似下面的輸出︰
 
     2016-03-23T07:34:59  Welcome, you are now connected to log-streaming service.
     2016-03-23T07:35:09.195 Function started (Id=61a8c5a9-5e44-4da0-909d-91d293f20445)
-    2016-03-23T07:35:10.338 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==&name=Wes from a browser
+    2016-03-23T07:35:10.338 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==&name=Glenn from a browser
     2016-03-23T07:35:10.338 Request Headers = {"cache-control":"max-age=0","connection":"Keep-Alive","accept":"text/html","accept-encoding":"gzip","accept-language":"en-US"}
     2016-03-23T07:35:10.338 Name was provided as a query string param.
     2016-03-23T07:35:10.338 Processing User Information...
     2016-03-23T07:35:10.369 Function completed (Success, Id=61a8c5a9-5e44-4da0-909d-91d293f20445)
 
 ### <a name="test-with-postman"></a>使用 Postman 測試
-用來測試您的多數函數所建議的工具是 Postman。 若要安裝 Postman，請參閱 [取得 Postman](https://www.getpostman.com/)。 Postman 可對 HTTP 要求的許多其他屬性提供控制。
+測試多數函數的建議工具是 Postman，它能與 Chrome 瀏覽器整合。 若要安裝 Postman，請參閱 [取得 Postman](https://www.getpostman.com/)。 Postman 可對 HTTP 要求的許多其他屬性提供控制。
 
 > [!TIP]
-> 方便時請使用 REST 用戶端。 以下是 Postman 的一些替代方案︰  
+> 請使用您最熟悉的 HTTP 測試工具。 以下是 Postman 的一些替代方案︰  
 >
 > * [Fiddler](http://www.telerik.com/fiddler)  
 > * [Paw](https://luckymarmot.com/paw)  
@@ -162,7 +147,7 @@ function ProcessNewUserInformation(context, name, address)
 
     2016-03-23T08:04:51  Welcome, you are now connected to log-streaming service.
     2016-03-23T08:04:57.107 Function started (Id=dc5db8b1-6f1c-4117-b5c4-f6b602d538f7)
-    2016-03-23T08:04:57.763 Node.js HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==
+    2016-03-23T08:04:57.763 HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==
     2016-03-23T08:04:57.763 Request Headers = {"cache-control":"no-cache","connection":"Keep-Alive","accept":"*/*","accept-encoding":"gzip","accept-language":"en-US"}
     2016-03-23T08:04:57.763 Processing user info from request body...
     2016-03-23T08:04:57.763 Processing User Information...
@@ -170,10 +155,36 @@ function ProcessNewUserInformation(context, name, address)
     2016-03-23T08:04:57.763 address = Seattle, W.A. 98101
     2016-03-23T08:04:57.795 Function completed (Success, Id=dc5db8b1-6f1c-4117-b5c4-f6b602d538f7)
 
+### <a name="test-with-curl-from-the-command-line"></a>從命令列透過 cURL 進行測試 
+測試軟體時往往只需要命令列即可協助偵錯您的應用程式，對於函數也是如此。 請注意，以 Linux 為基礎的系統預設可以使用 cURL。 在 Windows 上，您必須先下載並安裝 [cURL 工具 (英文)](https://curl.haxx.se/)。 
+
+若要測試上述函數，請從入口網站複製「函數 URL」。 它將具有下列格式：
+
+    https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
+
+這是觸發程式函數的 URL，我們可以在命令列上使用 cURL 命令來測試它，以針對函數執行 GET (`-G` 或 `--get`) 要求︰
+
+    curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
+
+以上這個特定範例需要在 cURL 命令中將查詢字串參數傳遞做為資料 (`-d`)︰
+
+    curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code> -d name=<Enter a name here>
+
+執行該命令後，您會在命令列上看到函數的下列輸出：
+
+![](./media/functions-test-a-function/curl-test.png)
+
+在入口網站 [記錄]  視窗中，執行函數時會記錄類似下面的輸出︰
+
+    2016-04-05T21:55:09  Welcome, you are now connected to log-streaming service.
+    2016-04-05T21:55:30.738 Function started (Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
+    2016-04-05T21:55:30.738 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/HttpTriggerNodeJS1?code=XXXXXXX&name=Azure Functions
+    2016-04-05T21:55:30.738 Function completed (Success, Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
+
 ### <a name="test-a-blob-trigger-using-storage-explorer"></a>使用儲存體總管測試 blob 觸發程序
 您可以使用 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)來測試 blob 觸發程序函數。
 
-1. 在您的 Functions 應用程式的 [Azure 入口網站] 中，建立新的 C#、F# 或 Node blob 觸發程序函式。 將要監視的路徑設定為您的 blob 容器名稱。 例如：
+1. 在您 Functions App 的 [Azure 入口網站]中，建立新的 C#、F# 或 JavaScript Blob 觸發程序函式。 將要監視的路徑設定為您的 blob 容器名稱。 例如：
 
         files
 2. 按一下 **+** 按鈕以選取或建立您想要使用的儲存體帳戶。 然後按一下 [ **建立**]。
@@ -193,6 +204,8 @@ function ProcessNewUserInformation(context, name, address)
         2016-03-24T11:30:34.472 Function completed (Success, Id=739ebc07-ff9e-4ec4-a444-e479cec2e460)
 
 ## <a name="test-a-function-within-functions"></a>在 Functions 內測試函數
+Azure Functions 入口網站是為了讓您測試 HTTP 和計時器觸發的函數而設計。 您也可以建立函數以觸發其他您正在測試的函數。
+
 ### <a name="test-with-the-functions-portal-run-button"></a>使用 Functions 入口網站的執行按鈕測試
 入口網站提供的 **執行** 按鈕可讓您執行一些有限的測試。 您可以使用 [執行] 按鈕提供要求主體，但無法提供查詢字串參數或更新要求標頭。
 
@@ -209,7 +222,7 @@ function ProcessNewUserInformation(context, name, address)
 
     2016-03-23T08:03:12  Welcome, you are now connected to log-streaming service.
     2016-03-23T08:03:17.357 Function started (Id=753a01b0-45a8-4125-a030-3ad543a89409)
-    2016-03-23T08:03:18.697 Node.js HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/wesmchttptriggernodejs1
+    2016-03-23T08:03:18.697 HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/wesmchttptriggernodejs1
     2016-03-23T08:03:18.697 Request Headers = {"connection":"Keep-Alive","accept":"*/*","accept-encoding":"gzip","accept-language":"en-US"}
     2016-03-23T08:03:18.697 Processing user info from request body...
     2016-03-23T08:03:18.697 Processing User Information...
@@ -288,9 +301,10 @@ function ProcessNewUserInformation(context, name, address)
     2016-03-24T10:27:30.607 Function completed (Success, Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
 
 ## <a name="test-a-function-with-code"></a>使用程式碼測試函數
-### <a name="test-a-http-trigger-function-with-code-nodejs"></a>使用 Node.js 程式碼測試 HTTP 觸發程序函數
-您可以使用 Node.js 程式碼來執行 http 要求，以測試您的 Azure Function。
+在某些情況下，您需要建立外部應用程式或架構以測試您的函式。
 
+### <a name="test-a-http-trigger-function-with-code-nodejs"></a>使用 Node.js 程式碼測試 HTTP 觸發程序函數
+您可以使用 Node.js App 來執行 HTTP 要求，以測試您的函式。
 請務必設定：
 
 * 要求選項中的 `host` 設為您的 Function 應用程式主機
@@ -352,7 +366,7 @@ req.end(bodyString);
 
     2016-03-23T08:08:55  Welcome, you are now connected to log-streaming service.
     2016-03-23T08:08:59.736 Function started (Id=607b891c-08a1-427f-910c-af64ae4f7f9c)
-    2016-03-23T08:09:01.153 Node.js HTTP trigger function processed a request. RequestUri=http://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1/?code=XXXXXXXXXX==
+    2016-03-23T08:09:01.153 HTTP trigger function processed a request. RequestUri=http://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1/?code=XXXXXXXXXX==
     2016-03-23T08:09:01.153 Request Headers = {"connection":"Keep-Alive","host":"functionsExample.azurewebsites.net"}
     2016-03-23T08:09:01.153 Name not provided as query string param. Checking body...
     2016-03-23T08:09:01.153 Request Body Type = object
@@ -431,6 +445,6 @@ static void Main(string[] args)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

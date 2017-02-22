@@ -1,5 +1,5 @@
 ---
-title: "Azure Multi-Factor Authentication 對我有何意義？"
+title: "開始使用雙步驟驗證 |Microsoft Docs"
 description: "這是可協助使用者開始使用 Azure Multi-Factor Authentication 的 Azure Multi-Factor Authentication 頁面。"
 services: multi-factor-authentication
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/22/2016
+ms.date: 12/15/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: da55d4adaf00277a303a53a2b807ca3a28d2dbe0
+ms.sourcegitcommit: 4ff028f88e984f28bc0f4a228aabed1fabc90560
+ms.openlocfilehash: dd9b0692dbc044e4bed26cfe7e9e4be11450a595
 
 
 ---
@@ -32,26 +32,24 @@ ms.openlocfilehash: da55d4adaf00277a303a53a2b807ca3a28d2dbe0
 * **具有通知或驗證碼的行動應用程式** - 如果您使用行動應用程式，請選擇收到您要回應的通知或驗證碼。
 
 > [!NOTE]
-> 請注意，您的 IT 部門可能會停用上述一或多個選項。  如果發生這種情況，將無法在註冊期間使用這些選項。
-> 
-> 
+> 請注意，您的 IT 部門可能會停用上述一或多個選項。  如果發生這種情況，將無法在註冊期間使用這些選項。  
 
-既然您已決定驗證方法，現在就可以開始註冊。  使用[設定體驗](../multi-factor-authentication-end-user-first-time.md)連結，開始逐步完成註冊程序。
+既然您已決定驗證方法，現在就可以開始註冊。  使用[設定體驗](multi-factor-authentication-end-user-first-time.md)連結，開始逐步完成註冊程序。
 
 ## <a name="how-to-get-going-with-multi-factor-authentication"></a>如何開始使用 Multi-Factor Authentication
 選取以下其中一個主題以便開始。
 
 | 主題 | 說明 |
 |:--- |:--- |
-| [設定體驗](../multi-factor-authentication-end-user-first-time.md) |描述第一次設定 Multi-Factor Authentication 的程序。 |
-| [登入體驗](../multi-factor-authentication-end-user-signin.md) |顯示使用各種方法 (例如電話或應用程式) 登入時所能預期的情況。 |
-| [變更您的設定](../multi-factor-authentication-end-user-manage-settings.md) |示範如何變更您的設定，例如電話號碼或慣用的註冊方法。 |
-| [協助使用應用程式密碼](../multi-factor-authentication-end-user-app-passwords.md) |尋找有關建立和使用應用程式密碼的資訊。 |
-| [使用行動應用程式](../multi-factor-authentication-microsoft-authenticator.md) |Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
+| [設定體驗](multi-factor-authentication-end-user-first-time.md) |描述第一次設定 Multi-Factor Authentication 的程序。 |
+| [登入體驗](multi-factor-authentication-end-user-signin.md) |顯示使用各種方法 (例如電話或應用程式) 登入時所能預期的情況。 |
+| [變更您的設定](multi-factor-authentication-end-user-manage-settings.md) |示範如何變更您的設定，例如電話號碼或慣用的註冊方法。 |
+| [協助使用應用程式密碼](multi-factor-authentication-end-user-app-passwords.md) |尋找有關建立和使用應用程式密碼的資訊。 |
+| [使用行動應用程式](microsoft-authenticator-app-how-to.md) |Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

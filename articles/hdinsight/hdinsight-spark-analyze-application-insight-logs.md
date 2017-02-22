@@ -12,33 +12,37 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/01/2016
+ms.date: 02/10/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: dcb28a67ef21728d9b21159f356ed122e0b7a1be
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: b3ff0e93ee144e98dec69c0678c3b467db1e0bc0
 
 
 ---
 # <a name="analyze-application-insights-telemetry-logs-with-spark-on-hdinsight"></a>使用 HDInsight 上的 Spark 分析 Application Insights 遙測記錄檔
+
 [Visual Studio Application Insights](../application-insights/app-insights-overview.md) 是一項分析服務，可監視您的 Web 應用程式。 可以將 Application Insights 產生的遙測資料匯出至 Azure 儲存體，並從該處就可以進行 HDInsight 分析。
 
 在本文件中，您將學習如何使用 HDInsight 加上 Apache Spark 來分析 Application Insights 遙測資料。
 
 ## <a name="prerequisites"></a>必要條件
+
 * Azure 訂用帳戶。
+
 * 設定要使用 Application Insights 的應用程式。 
+
 * 熟悉以 Linux 為基礎的 HDInsight 叢集的建立程序。 如果您不熟悉叢集建立，請參閱 [在 HDInsight 上建立 Spark](hdinsight-apache-spark-jupyter-spark-sql.md) 取得詳細資訊。
   
-  > [!NOTE]
-  > 這份文件不提供建立新叢集的逐步解說。 但會提供其他參考文件的連結，由其他文件提供如何建立可存取遙測資料之叢集的資訊。
-  > 
-  > 
+  > [!IMPORTANT]
+  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * 網頁瀏覽器。 這是用來使用 Jupyter Notebook 以互動方式執行分析。
 
 開發和測試本文件時使用了以下項目︰
 
 * Application Insights 遙測資料，由 [設定為使用 Application Insights 的 Node.js Web 應用程式](../application-insights/app-insights-nodejs.md)產生。
+
 * 在 Linux 上使用 HDInsight 叢集版本 3.4 上的 Spark 分析資料。
 
 ## <a name="architecture-and-planning"></a>架構與規劃
@@ -47,6 +51,7 @@ ms.openlocfilehash: dcb28a67ef21728d9b21159f356ed122e0b7a1be
 ![顯示資料從 Application Insights 傳輸至 blob 儲存體，然後由 HDInsight 上的 Spark 處理的圖](./media/hdinsight-spark-analyze-application-insight-logs/appinsightshdinsight.png)
 
 ### <a name="azure-storage"></a>Azure 儲存體
+
 HDInsight 叢集可以直接從 Azure 儲存體帳戶存取區塊 blob，Application Insights 可以設定為持續將遙測資訊匯出到 Azure 儲存體中的 blob。 不過，有一些您必須遵守的需求︰
 
 * **位置**：儲存體帳戶必須和 HDInsight 位於相同的區域中。 這可在存取資料時減少延遲，並避免在區域之間移動資料時所發生的出口流量費用。
@@ -56,6 +61,7 @@ HDInsight 叢集可以直接從 Azure 儲存體帳戶存取區塊 blob，Applica
     相反地，建議您為 HDInsight 和 Application Insights 遙測使用不同的儲存體帳戶，並且 [使用共用存取簽章 (SAS) 來限制對 HDInsight 上資料的存取](hdinsight-storage-sharedaccesssignature-permissions.md)。 使用 SAS 可讓您授與對 HDInsight 遙測資料的唯讀存取權。
 
 ### <a name="data-schema"></a>資料結構描述
+
 Application Insights 提供 [匯出資料模型](../application-insights/app-insights-export-data-model.md) 資訊，做為匯出至 blob 之遙測資料的格式依據。 這份文件中的步驟使用 Spark SQL 來處理資料。 Spark SQL 可以自動產生 Application Insights 所記錄的 JSON 資料結構的結構描述，因此您不需要在執行分析時手動定義結構描述。
 
 ## <a name="export-telemetry-data"></a>匯出遙測資料
@@ -349,6 +355,6 @@ Application Insights 提供 [匯出資料模型](../application-insights/app-ins
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

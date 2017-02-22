@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: e2e81139152549eaa40d788c80cfdd2388b2d55d
-ms.openlocfilehash: 3b3a203ce261405ee7392561ffbc19c047c0d370
+ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
+ms.openlocfilehash: f0cbb7f78d73c6f39dc4e8a2227b144e8a49c83a
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 3b3a203ce261405ee7392561ffbc19c047c0d370
 * 網頁
   * AJAX 呼叫
 
-您也可以使用 [TrackDependency API](app-insights-api-custom-events-metrics.md#track-dependency)，同時在用戶端和伺服器程式碼中撰寫自己的 SDK 呼叫，來監視其他相依性。
+您也可以使用 [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency)，同時在用戶端和伺服器程式碼中撰寫自己的 SDK 呼叫，來監視其他相依性。
 
 ## <a name="set-up-dependency-monitoring"></a>設定相依性監視
 [Application Insights SDK](app-insights-asp-net.md) 會自動收集部分相依性資訊。 若要取得完整資料，請為主機伺服器安裝適當的代理程式。
@@ -172,7 +172,7 @@ ms.openlocfilehash: 3b3a203ce261405ee7392561ffbc19c047c0d370
 ## <a name="custom-dependency-tracking"></a>自訂相依性追蹤
 標準的相依性追蹤模組會自動探索外部相依性，例如資料庫和 REST API。 但是您可能想以相同的方式對待一些其他元件。
 
-您可以使用標準模組所使用的相同 [TrackDependency API](app-insights-api-custom-events-metrics.md#track-dependency) 來撰寫傳送相依性資訊的程式碼。
+您可以使用標準模組所使用的相同 [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency) 來撰寫傳送相依性資訊的程式碼。
 
 例如，如果您建置程式碼的組件不是您自己撰寫的，您可以計算對組件的所有呼叫，以找出它佔回應時間的比例。 若要在 Application Insights 中的相依性圖表中顯示此資料，請使用 `TrackDependency`傳送。
 
@@ -209,6 +209,6 @@ ms.openlocfilehash: 3b3a203ce261405ee7392561ffbc19c047c0d370
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

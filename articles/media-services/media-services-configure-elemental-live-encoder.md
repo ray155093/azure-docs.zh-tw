@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 10/12/2016
+ms.date: 01/05/2017
 ms.author: cenkd;anilmur;juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 602f86f17baffe706f27963e8d9963f082971f54
-ms.openlocfilehash: 5aeaee615b45be3b943f4b39c8b65b2efc323aa3
+ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
+ms.openlocfilehash: bb4966cbd2af7a14caeac108a001b0820a67d2a1
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: 5aeaee615b45be3b943f4b39c8b65b2efc323aa3
 ## <a name="prerequisites"></a>必要條件
 * 必須具備使用 Elemental Live Web 介面來建立即時事件的工作知識。
 * [建立 Azure 媒體服務帳戶](media-services-portal-create-account.md)
-* 請確定執行的串流端點至少有一個配置的串流單位。 如需詳細資訊，請參閱 [在媒體服務帳戶中管理串流端點](media-services-portal-manage-streaming-endpoints.md)。
+* 確定有執行中的「串流端點」。 如需詳細資訊，請參閱 [在媒體服務帳戶中管理串流端點](media-services-portal-manage-streaming-endpoints.md)。
 * 安裝最新版的 [AMSE](https://github.com/Azure/Azure-Media-Services-Explorer) 工具。
 * 啟動工具並連接到您的 AMS 帳戶。
 
@@ -49,15 +49,17 @@ ms.openlocfilehash: 5aeaee615b45be3b943f4b39c8b65b2efc323aa3
 本節說明如何設定可透過 RTP 傳送單一位元速率的即時串流 Elemental Live 編碼器。  如需詳細資訊，請參閱 [透過 RTP 的 MPEG-TS 串流](media-services-manage-live-encoder-enabled-channels.md#channel)。
 
 ### <a name="create-a-channel"></a>建立通道
+
 1. 在 AMSE 工具中，瀏覽至 [Live]  索引標籤，然後在通道區域內按一下滑鼠右鍵。 從功能表選取 [建立通道...]  。
 
-![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental1.png)
+    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental1.png)
 
-1. 指定通道名稱，描述欄位為選填。 在 [頻道設定] 下方，針對 [即時編碼] 選項選取 [標準]，並將 [輸入通訊協定] 設為 [RTP (MPEG-TS)]。 您可以將所有其他設定保留現狀。
+2. 指定通道名稱，描述欄位為選填。 在 [頻道設定] 下方，針對 [即時編碼] 選項選取 [標準]，並將 [輸入通訊協定] 設為 [RTP (MPEG-TS)]。 您可以將所有其他設定保留現狀。
 
-請確認已選取 [ **立即啟動新頻道** ]。
+    請確認已選取 [ **立即啟動新頻道** ]。
 
-1. 按一下 [ **建立頻道**]。
+3. 按一下 [ **建立頻道**]。
+
    ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental12.png)
 
 > [!NOTE]
@@ -138,7 +140,8 @@ ms.openlocfilehash: 5aeaee615b45be3b943f4b39c8b65b2efc323aa3
 在串流已經執行了 30 秒後，導覽回 AMSE 工具和測試播放。  
 
 ### <a name="test-playback"></a>測試播放
-1. 瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。 在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。  
+
+瀏覽至 AMSE 工具，然後以滑鼠右鍵按一下要測試的通道。 在功能表中，將滑鼠游標停留在 [播放預覽]，並選取 [使用 Azure 媒體播放器]。  
 
     ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental8.png)
 
@@ -154,7 +157,9 @@ ms.openlocfilehash: 5aeaee615b45be3b943f4b39c8b65b2efc323aa3
 3. 勾選 [現在啟動程式]  方塊。
 4. 按一下 [建立程式] 。  
 
-    注意：建立程式時所使用的時間會比建立通道時更少。    
+    >[!NOTE]
+    > 建立程式時所使用的時間會比建立通道時少。   
+      
 5. 一旦程式開始執行，請在程式上按一下滑鼠右鍵，並瀏覽至 [播放程式]，然後選取 [使用 Azure 媒體播放器] 確認播放。  
 6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] (或從 [程式資訊和設定] 功能表選項擷取這項資訊)。
 
@@ -171,6 +176,6 @@ ms.openlocfilehash: 5aeaee615b45be3b943f4b39c8b65b2efc323aa3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

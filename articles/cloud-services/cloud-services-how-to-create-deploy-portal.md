@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 11/14/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: f57bdd0c1d8efc37b90430f829184eb3c44aede5
-ms.openlocfilehash: ea31150ef186c9bcd8c943e39a7cb51559e94bd2
+ms.sourcegitcommit: 1ce2e980dc71ede4f8cd8ec7c9166efac7b25d2e
+ms.openlocfilehash: 554ef45d7fba5f2ff314a162ae33c6cc27206933
 
 
 ---
@@ -40,11 +40,11 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 需要三個元件才能部署應用程式成為 Azure 中的雲端服務：
 
 * **服務定義**  
-   雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
+  雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
 * **服務組態**  
-   雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
+  雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
 * **服務封裝**  
-   服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
+  服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
 
 您可以在 [這裡](cloud-services-model-and-package.md)深入了解這些內容，以及如何建立封裝。
 
@@ -66,7 +66,7 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 
 ## <a name="create-and-deploy"></a>建立和部署
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 [新增] > [虛擬機器]，然後向下捲動並按一下 [雲端服務]。
+2. 按一下 [新增] > [計算]，然後向下捲動至 [雲端服務] 並按一下。
 
     ![發佈您的雲端服務](media/cloud-services-how-to-create-deploy-portal/create-cloud-service.png)
 3. 在 [資訊] 頁面底部，按一下 [建立] 。
@@ -76,7 +76,7 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 7. 按一下 [封裝] 。 這會開啟 [上傳封裝]  刀鋒視窗。 填寫必要欄位。 如果您的任一個角色包含單一執行個體，請確定核取 [即使一個或多個角色包含單一執行個體，也要部署]  。
 
     > [!IMPORTANT]
-    > 雲端服務只能與[傳統儲存體帳戶](../resource-manager-deployment-model.md)產生關聯。 如果看到訊息指出在您的訂用帳戶和位置中找不到儲存體帳戶，請確定您已在該位置為雲端服務建立傳統儲存體帳戶。
+    > 雲端服務只能與[傳統儲存體帳戶](../azure-resource-manager/resource-manager-deployment-model.md)產生關聯。 如果看到訊息指出在您的訂用帳戶和位置中找不到儲存體帳戶，請確定您已在該位置為雲端服務建立傳統儲存體帳戶。
 
 8. 請確定已選取 [開始部署]  。
 9. 按一下 [確定] 以關閉 [上傳套件] 刀鋒視窗。
@@ -111,6 +111,6 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

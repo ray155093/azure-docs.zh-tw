@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 資訊安全中心進行事件回應 | Microsoft Docs"
+title: "使用 Azure 資訊安全中心回應安全性事件 | Microsoft Docs"
 description: "本文件說明如何使用 Azure 資訊安全中心執行事件回應案例。"
 services: security-center
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/20/2016
+ms.date: 01/23/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 31311194c051a1fd7c889a956e06e88ca83a74db
+ms.sourcegitcommit: f40f64906bf87d8505fa1a209222163256326d14
+ms.openlocfilehash: a2cc4729ca5cb1dcc10630158ec3d94315fb01a5
 
 
 ---
@@ -78,13 +78,13 @@ Judy 登入了 Azure 入口網站，並在資訊安全中心主控台進行工�
 
 1. 按一下 [安全性警示] 圖格，然後存取 [安全性警示] 刀鋒視窗。
     ![安全性警示刀鋒視窗](./media/security-center-incident-response/security-center-incident-response-fig4.png)
-   
+
    > [!NOTE]
    > 基於此案例的目的，Judy 即將對 [惡意 SQL 活動] 警示執行評估，如上圖所示。
-   > 
-   > 
+   >
+   >
 2. 按一下 [惡意 SQL 活動] 警示並在 [惡意 SQL 活動] 刀鋒視窗中檢閱受攻擊的資源︰ ![事件詳細資料](./media/security-center-incident-response/security-center-incident-response-fig5.png)
-   
+
     在此刀鋒視窗中，Judy 可以做一些筆記：受攻擊資源的相關資訊、此攻擊的發生次數，以及其偵測時間。
 3. 按一下 [受到攻擊的資源]  以取得有關此攻擊的詳細資訊。
 
@@ -103,7 +103,6 @@ Sam 會收到來自 Judy 的案例，開始檢閱資訊安全中心所建議的�
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

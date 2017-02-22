@@ -15,8 +15,8 @@ ms.tgt_pltfrm: na
 ms.date: 10/17/2016
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a7a0c49b6fcac84a61005f330b07f5ea47ce1961
+ms.sourcegitcommit: 7a633460f249f7c7b6675a5ab23b1724549cccba
+ms.openlocfilehash: ca07067b73b72b5ff8b93a72fa7eef55e9d47cc2
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: a7a0c49b6fcac84a61005f330b07f5ea47ce1961
 
 您需要 Azure 訂用帳戶和 Azure 搜尋服務來完成教學課程。 如需協助設定服務，請參閱 [在入口網站中建立搜尋服務](search-create-service-portal.md) 。
 
- [若要完成此教學課程，您需要 Azure 帳戶：](../../includes/free-trial-note.md)]
+[!INCLUDE [You need an Azure account to complete this tutorial](../../includes/free-trial-note.md)]
 
 <a id="sub-2"></a>
 
@@ -66,7 +66,7 @@ ms.openlocfilehash: a7a0c49b6fcac84a61005f330b07f5ea47ce1961
 
 **Schema.json** 會定義索引，包括此示範中強調的評分設定檔。 請注意，結構描述會定義索引中使用的所有欄位，包括您可用於評分設定檔中不可搜尋的欄位，例如 `margin`。 評分設定檔語法記載於 [將評分設定檔新增至 Azure 搜尋服務索引](http://msdn.microsoft.com/library/azure/dn798928.aspx)中。
 
-**Data1-3.json** 會提供資料 (跨多種內容類型的 246 張專輯)。 此資料是實際專輯和藝術工作者資訊的組合，其中包含用來說明搜尋作業的 `price` 和 `margin` 等虛構欄位。。 資料檔案符合索引並且會上傳到 Azure Search 服務。 資料上傳並編成索引之後，您即可對其發出查詢。
+**Data1-3.json** 會提供資料 (跨多種內容類型的 246 張專輯)。 此資料是實際專輯和藝術工作者資訊的組合，其中包含用來說明搜尋作業的 `price` 和 `margin` 等虛構欄位。 資料檔案符合索引並且會上傳到 Azure Search 服務。 資料上傳並編成索引之後，您即可對其發出查詢。
 
 **Program.cs** 會執行下列作業：
 
@@ -125,6 +125,6 @@ ms.openlocfilehash: a7a0c49b6fcac84a61005f330b07f5ea47ce1961
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

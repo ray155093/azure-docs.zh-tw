@@ -1,10 +1,10 @@
 ---
-title: "網路安全性群組 | Microsoft Docs"
+title: "Azure 中的網路安全性群組 | Microsoft Docs"
 description: "深入了解如何在 Azure 中使用分散式防火牆和網路安全性群組，來隔離及控制虛擬網路中的流量流程。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: 20e850fc-6456-4b5f-9a3f-a8379b052bc9
 ms.service: virtual-network
@@ -15,12 +15,12 @@ ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 1de0827c01c772a4298b7b568363e89f08910ff7
-ms.openlocfilehash: 46dce57f509872580c57bb1d8d93af51623211ac
+ms.sourcegitcommit: 2165cdc87a505e94fab2fc73c30a5764348c6dc1
+ms.openlocfilehash: b382cf65ae172e0037f2bc668a4f5862b29d1700
 
 
 ---
-# <a name="network-security-groups"></a>網路安全性群組
+# <a name="control-network-traffic-flow-with-network-security-groups"></a>使用網路安全性群組來控制網路流量
 
 網路安全性群組 (NSG) 包含存取控制清單 (ACL) 規則的清單，可允許或拒絕虛擬網路中 VM 執行個體的網路流量。 NSG 可與子網路或該子網路內的個別 VM 執行個體相關聯。 當 NSG 與子網路相關聯時，ACL 規則便會套用至該子網路中的所有 VM 執行個體。 此外，將 NSG 直接關聯至該 VM 即可進一步限制個別 VM 的流量。
 
@@ -93,8 +93,8 @@ NSG 包含兩組規則：輸入和輸出。 規則的優先順序在每一個集
 ## <a name="associating-nsgs"></a>建立 NSG 關聯
 視您使用的部署模型而定，您可以將 NSG 與 VM、NIC 和子網路建立關聯。
 
-* **將 NSG 與 VM 建立關聯 (僅傳統部署)。**  當您將 NSG 與 VM 建立關聯時，NSG 中的網路存取規則會套用到預定要進入和離開 VM 的所有流量。 
-* **將 NSG 與 NIC 建立關聯 (僅資源管理員部署)。**  當您將 NSG 與 NIC 建立關聯時，NSG 中的網路存取規則只會套用到該 NIC。 這表示多 NIC 的 VM 中，如果 NSG 已套用到單一 NIC，則它不會影響繫結至其他 NIC 的流量。 
+* **將 NSG 與 VM 建立關聯 (僅傳統部署)。** 當您將 NSG 與 VM 建立關聯時，NSG 中的網路存取規則會套用到預定要進入和離開 VM 的所有流量。 
+* **將 NSG 與 NIC 建立關聯 (僅資源管理員部署)。** 當您將 NSG 與 NIC 建立關聯時，NSG 中的網路存取規則只會套用到該 NIC。 這表示多 NIC 的 VM 中，如果 NSG 已套用到單一 NIC，則它不會影響繫結至其他 NIC 的流量。 
 * **將 NSG 與子網路建立關聯 (所有部署)**。 當您將 NSG 與子網路建立關聯時，NSG 中的網路存取規則會套用到子網路中的所有 IaaS 和 PaaS 資源。 
 
 您可以將不同 NSG 與 VM (或 NIC，根據部署模型而定) 和 NIC 或 VM 繫結的子網路建立關聯。 當發生這種情況時，所有網路存取規則都會依每個 NSG 中的優先順序，以下列順序套用到流量：
@@ -261,6 +261,6 @@ NSG 包含兩組規則：輸入和輸出。 規則的優先順序在每一個集
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO5-->
 
 

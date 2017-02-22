@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/11/2016
+ms.date: 01/05/2017
 ms.author: juliako;anilmur
 translationtype: Human Translation
-ms.sourcegitcommit: f6ce639dd0ee8386d3bd9ff48f5a05cb392d7979
-ms.openlocfilehash: 82662d0c52262ca2febc54e45a4fd497fe9cf264
+ms.sourcegitcommit: ef9c1d5511889cf78421d24f9c5902bf188890c7
+ms.openlocfilehash: 35db86988cf3d62401d6caecc7214411ddc2c498
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 82662d0c52262ca2febc54e45a4fd497fe9cf264
 在 Azure 媒體服務 (AMS) 中， **通道** 代表一個管線，負責處理即時資料流內容。 **通道** 會以兩種方式之一收到即時輸入串流：
 
 * 內部部署即時編碼器會傳送單一位元速率串流至通道，可以使用下列格式之一，以媒體服務執行即時編碼：RTP (MPEG-TS)、RTMP 或 Smooth Streaming (分散的 MP4) 。 通道接著會執行即時編碼，將連入的單一位元速率串流編碼成多位元速率 (自動調整) 視訊串流。 接到要求時，媒體服務會傳遞串流給客戶。
-* 內部部署即時編碼器會將多位元速率 **RTMP** 或 **Smooth Streaming** (分散式 MP4) 傳送到未啟用執行 AMS 即時編碼的通道。 內嵌的串流會通過 **通道**，而不需任何進一步處理。 此方法稱為 **傳遞**。 您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：Elemental、Envivio、Cisco。  下列即時編碼器會輸出 RTMP：Adobe Flash Live、Telestream Wirecast 和 Tricaster 轉錄器。  即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。 接到要求時，媒體服務會傳遞串流給客戶。
+* 內部部署即時編碼器會將多位元速率 **RTMP** 或 **Smooth Streaming** (分散式 MP4) 傳送到未啟用執行 AMS 即時編碼的通道。 內嵌的串流會通過 **通道**，而不需任何進一步處理。 此方法稱為 **傳遞**。 您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：MediaExcel、Ateme、Imagine Communications、Envivio、Cisco 和 Elemental。 下列即時編碼器會輸出 RTMP：Adobe Flash Media Live Encoder (FMLE)、Telestream Wirecast、Haivision、Teradek 和 Tricaster 編碼器。  即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。 接到要求時，媒體服務會傳遞串流給客戶。
   
   > [!NOTE]
   > 使用傳遞方法是進行即時串流的最經濟實惠方式。
@@ -80,11 +80,6 @@ ms.openlocfilehash: 82662d0c52262ca2febc54e45a4fd497fe9cf264
 
 ![即時工作流程][live-overview]
 
-## <a name="in-this-topic"></a>本主題內容
-* [常見即時串流案例](media-services-manage-live-encoder-enabled-channels.md#scenario)
-* [通道和其相關元件的說明](media-services-manage-live-encoder-enabled-channels.md#channel)
-* [考量](media-services-manage-live-encoder-enabled-channels.md#Considerations)
-
 ## <a name="a-idscenarioacommon-live-streaming-scenario"></a><a id="scenario"></a>常見即時串流案例
 下列是建立常見即時串流應用程式所含的一般步驟。
 
@@ -110,7 +105,9 @@ ms.openlocfilehash: 82662d0c52262ca2febc54e45a4fd497fe9cf264
     使用 .NET SDK 或 REST 時，您必須建立資產並指定要在建立程式時使用此資產。 
 6. 發行與程式相關聯的資產。   
    
-    確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+    >[!NOTE]
+    >建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 您想要串流內容的串流端點必須處於 [執行中] 狀態。 
+    
 7. 當您準備好開始串流和封存時，請啟動程式。
 8. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
 9. 每當您想要停止串流處理和封存事件時，請停止程式。
@@ -217,7 +214,7 @@ ms.openlocfilehash: 82662d0c52262ca2febc54e45a4fd497fe9cf264
 
 建立通道之後，您可以取得內嵌 URL。 若要取得這些 URL，通道不一定要在 **執行** 狀態。 當您準備好開始將資料推入通道，它必須處於 **執行** 狀態。 一旦通道開始內嵌資料，您就可以透過預覽 URL 預覽您的串流。
 
-您可以透過 SSL 連線選擇內嵌的分散 MP4 (Smooth Streaming) 即時串流。 若要透過 SSL 擷取，請務必將擷取 URL 更新為 HTTPS。
+您可以透過 SSL 連線選擇內嵌的分散 MP4 (Smooth Streaming) 即時串流。 若要透過 SSL 擷取，請務必將擷取 URL 更新為 HTTPS。 請注意，目前 AMS 不支援使用 SSL 搭配自訂網域。  
 
 ### <a name="allowed-ip-addresses"></a>允許的 IP 位址
 您可以定義允許將視訊發行到這個通道的 IP 位址。 允許的 IP 位址可以指定為單一 IP 位址 (例如'10.0.0.1')、使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如'10.0.0.1/22’)，或使用 IP 位址和以點分隔十進位子網路遮罩的 IP 範圍 (例如'10.0.0.1(255.255.252.0)')。
@@ -251,7 +248,7 @@ ms.openlocfilehash: 82662d0c52262ca2febc54e45a4fd497fe9cf264
 ### <a name="ad-marker-source"></a>Ad 標記來源
 您可以指定 ad 標記信號的來源。 預設值為 **Api**，其指出通道內的即時編碼器應該接聽非同步 **Ad 標記 API**。
 
-另一個有效的選項是 **Scte35** (只有內嵌串流通訊協定設為 RTP (MPEG-TS) 時才允許。 指定 Scte35 時，即時編碼器將會剖析來自輸入 RTP (MPEG-TS) 串流的 SCTE 35 信號。
+另一個有效的選項是 **Scte35** (只有內嵌串流通訊協定設為 RTP (MPEG-TS) 時才允許。 指定 Scte35 時，即時編碼器將會剖析來自輸入 RTP (MPEG-TS) 串流的 SCTE&35; 信號。
 
 ### <a name="cea-708-closed-captions"></a>CEA 708 隱藏式輔助字幕
 選擇性旗標會通知即時編碼器略過任何內嵌於連入視訊的 CEA 708 字幕資料。 當旗標設為 false (預設值) 時，編碼器會偵測 CEA 708 資料並將其重新插入至輸出視訊串流。
@@ -297,7 +294,7 @@ ms.openlocfilehash: 82662d0c52262ca2febc54e45a4fd497fe9cf264
 音訊編碼為 64 kbps 的立體聲 AAC-LC，取樣率為 44.1 kHz。
 
 ## <a name="signaling-advertisements"></a>發出信號的廣告
-當您的通道啟用即時編碼時，您會在處理視訊的管線中具有元件，並可加以操作。 您可以發出信號給通道以將 Slate 及/或廣告插入連出的自動調整位元速率串流。 Slate 是靜止映像，您可以用來在某些情況下遮蓋輸入的即時摘要 (例如廣告插播期間)。 廣告信號是您嵌入連外串流的時間同步處理信號，告知視訊播放器採取特殊動作 – 例如在適當時機切換到廣告。 如需此用途的 SCTE 35 信號發送機制的概觀，請參閱此 [部落格](https://codesequoia.wordpress.com/2014/02/24/understanding-scte-35/) 。 以下是您可以在即時事件中實作的典型案例。
+當您的通道啟用即時編碼時，您會在處理視訊的管線中具有元件，並可加以操作。 您可以發出信號給通道以將 Slate 及/或廣告插入連出的自動調整位元速率串流。 Slate 是靜止映像，您可以用來在某些情況下遮蓋輸入的即時摘要 (例如廣告插播期間)。 廣告信號是您嵌入連外串流的時間同步處理信號，告知視訊播放器採取特殊動作 – 例如在適當時機切換到廣告。 如需此用途的 SCTE&35; 信號發送機制的概觀，請參閱此 [部落格](https://codesequoia.wordpress.com/2014/02/24/understanding-scte-35/) 。 以下是您可以在即時事件中實作的典型案例。
 
 1. 讓您的檢視器在事件開始前取得  PRE-EVENT 映像。
 2. 讓您的檢視器在事件開始前取得 POST-EVENT 映像。
@@ -332,9 +329,10 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 
 選用。 指定包含 slate 映像之媒體服務資產的資產識別碼。 預設值為 null。 
 
->
+
 >[!NOTE] 
->建立通道之前，具有下列限制的靜態圖像映像應上傳做為專用的資產 (此資產中應該沒有其他檔案)。 
+>建立通道之前，具有下列限制的靜態圖像映像應上傳做為專用的資產 (此資產中應該沒有其他檔案)。 只有在即時編碼器因為廣告中斷而插入靜態圖像時，或者已明確發出訊號來插入靜態圖像時，才會使用此映像。 即時編碼器也可以在發生特定的錯誤情況期間鍵入靜態圖像模式 - 例如，如果遺失輸入訊號。 目前沒有任何選項可在即時編碼器進入這類「輸入訊號遺失」狀態時使用自訂映像。 您可以在[這裡](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/10190457-define-custom-slate-image-on-a-live-encoder-channel)投此功能一票。
+
 
 * 最多 1920 x 1080 的解析度。
 * 最多 3 Mb 的大小。
@@ -348,7 +346,7 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 
 設定 **封存時間範圍** 長度，即可指定您想要保留程式之錄製內容的時數。 此值可以設為最少 5 分鐘到最多 25 個小時。 封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。 程式在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。 此屬性的這個值也會決定用戶端資訊清單可以成長為多長的時間。
 
-每個程式都與儲存串流內容的資產相關聯。 資產會對應到 Azure 儲存體帳戶中的 blob 容器，且資產中的檔案會儲存為該容器中的 blob。 若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
+每個程式都與儲存串流內容的資產相關聯。 資產會對應到 Azure 儲存體帳戶中的區塊 Blob 容器，且資產中的檔案會儲存為該容器中的 Blob。 若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
 
 通道可支援最多三個同時執行的程式，因此您可以建立相同連入串流的多個封存。 這可讓您視需要發行和封存事件的不同部分。 例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。 為了達成此目的，您必須建立兩個同時執行的程式。 其中一個程式設定為封存 6 小時的事件，但是未發行該程式。 另一個程式則設定為封存 10 分鐘，並發行程式。
 
@@ -397,7 +395,7 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 * 通道或其相關聯程式正在執行時，您無法變更輸入通訊協定。 如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
 * 只有當您的通道處於 **執行中** 狀態時，才會向您計費。 若需詳細資訊，請參閱 [這個](media-services-manage-live-encoder-enabled-channels.md#states) 章節。
 * 目前，即時事件的最大建議持續時間是 8 小時。 如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
-* 確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+* 確定您想要串流內容的串流端點已處於 [執行中] 狀態。
 * 使用 Azure 輸入多個語言資料軌及執行即時編碼時，多語言輸入僅支援 RTP。 您可以透過 RTP 使用 MPEG-2 TS 定義最多 8 個音訊串流。 目前不支援使用 RTMP 或 Smooth Streaming 內嵌多個音軌。 使用 [內部部署即時編碼器](media-services-live-streaming-with-onprem-encoders.md)執行即時編碼時，並沒有這類限制，因為傳送至 AMS 的所有項目都會通過通道，而不需要進一步處理。
 * 編碼預設採用「畫面播放速率上限」30fps 的概念。 因此，如果輸入是 60fps/59.97i，輸入畫面會降低/去交錯為 30/29.97 fps。 如果輸入是 50fps/50i，輸入畫面會降低/去交錯為 25 fps。 如果輸入是 25 fps，輸出會保持為 25 fps。
 * 切記在完成時停止您的通道。 如果您忘記，計費會繼續。
@@ -407,16 +405,6 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 * 為專業的廣播者建立 RTP 支援。 請先檢閱 [這個](https://azure.microsoft.com/blog/2015/04/13/an-introduction-to-live-encoding-with-azure-media-services/) 部落格中的 RTP 注意事項。
 * 靜態圖像映像應該符合 [這裡](media-services-manage-live-encoder-enabled-channels.md#default_slate)所述的限制。 如果您嘗試建立預設 slate 大於 1920 x 1080 的通道，要求最後將會發生錯誤。
 * 再次重申....切記在完成串流時停止您的通道。 如果您忘記，計費會繼續。
-
-### <a name="how-to-create-channels-that-perform-live-encoding-from-a-singe-bitrate-to-adaptive-bitrate-stream"></a>如何建立通道以執行從單一位元速率到自適性串流的即時編碼
-選擇**入口網站**、**.NET**、**REST API** 以了解如何建立及管理通道和程式。
-
-> [!div class="op_single_selector"]
-> * [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
-> * [.NET SDK](media-services-dotnet-creating-live-encoder-enabled-channel.md)
-> * [REST API](https://msdn.microsoft.com/library/azure/dn783458.aspx)
-> 
-> 
 
 ## <a name="next-step"></a>後續步驟
 檢閱媒體服務學習路徑。
@@ -429,6 +417,12 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 ## <a name="related-topics"></a>相關主題
 [使用 Azure 媒體服務傳遞即時串流事件](media-services-overview.md)
 
+[使用入口網站建立通道，以執行從單一位元速率到自適性串流的即時編碼](media-services-portal-creating-live-encoder-enabled-channel.md)
+
+[使用 .NET SDK 建立通道，以執行從單一位元速率到自適性串流的即時編碼](media-services-dotnet-creating-live-encoder-enabled-channel.md)
+
+[使用 REST API 管理通道 (英文)](https://docs.microsoft.com/rest/api/media/operations/channel)
+ 
 [媒體服務概念](media-services-concepts.md)
 
 [Azure 媒體服務的分散 MP4 即時內嵌規格](media-services-fmp4-live-ingest-overview.md)
@@ -438,6 +432,6 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

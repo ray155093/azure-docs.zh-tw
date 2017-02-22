@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 97b81c9b5904dea8d43042fd5b6529580eb35e74
-ms.openlocfilehash: e83518c0cd41c101170de6598c3321543b2ccf53
+ms.sourcegitcommit: 2d568a38f66605da63054d1797ce23653e6204d4
+ms.openlocfilehash: ff5d64bc00bc5fb3617160db852c7d08f8b3677b
 
 
 ---
@@ -68,7 +68,7 @@ ms.openlocfilehash: e83518c0cd41c101170de6598c3321543b2ccf53
    
     將您的 API 金鑰貼上至 ApiKey 變數定義。
    
-    ![在 [Team Services] 視窗中，選取 [設定] 索引標籤然後按一下 [新增變數]。 設定 ApiKey 的名稱並設定到 [值] 中，將剛剛產生的金鑰貼上。](./media/app-insights-annotations/50.png)
+    ![在 [Team Services] 視窗中，選取 [設定] 索引標籤然後按一下 [新增變數]。 設定 ApiKey 的名稱，並在 [值] 中，貼上剛才產生的金鑰，然後按一下鎖定圖示。](./media/app-insights-annotations/50.png)
 7. 最後，儲存  發行定義。
 
 
@@ -109,6 +109,6 @@ ms.openlocfilehash: e83518c0cd41c101170de6598c3321543b2ccf53
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

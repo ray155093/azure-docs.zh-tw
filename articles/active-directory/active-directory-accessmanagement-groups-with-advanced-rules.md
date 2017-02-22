@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: d83372fbce5f49d7cd038a15bd271e9d8a463b7b
-ms.openlocfilehash: f1cff67f31da87d6361603f0216a68c55686db0e
+ms.sourcegitcommit: 4bab9f44d1c91f05618ea510b83beb06540429f2
+ms.openlocfilehash: 00424292fbc5321a77a4e924530ade97739208d4
 
 
 ---
@@ -27,12 +27,12 @@ Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Direct
 
 > [!NOTE]
 > 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。 目前對應用程式的群組式指派並不支援巢狀群組成員資格。
-> 
+>
 > 群組的動態成員資格需要將 Azure AD Premium 授權指派給：
-> 
+>
 > * 負責管理群組規則的系統管理員
 > * 群組的所有成員
-> 
+>
 
 ## <a name="to-create-the-advanced-rule"></a>建立進階規則
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，選取 [Active Directory]，然後開啟您組織的目錄。
@@ -57,17 +57,18 @@ Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Direct
 請注意，屬性前面必須加上正確的物件類型︰使用者或裝置。
 以下規則會驗證失敗︰mail –ne null
 
-正確的規則會是︰ 
+正確的規則會是︰
 
 user.mail –ne null
 
 進階規則主體的總長度不得超過 2048 個字元。
 
 > [!NOTE]
-> 字串和 regex 運算都不區分大小寫。 包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq \`"Sales"。
+> 字串和 regex 運算都不區分大小寫。
+> 包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq \`"Sales"。
 > 只能將引號用於字串類型值，而且只能使用英文引號。
-> 
-> 
+>
+>
 
 ## <a name="supported-expression-rule-operators"></a>支援的運算式規則運算子
 下表列出所有支援的運算式規則運算子及其用於進階規則主體中的語法：
@@ -86,14 +87,14 @@ user.mail –ne null
 ## <a name="operator-precedence"></a>運算子優先順序
 
 所有運算子會依照優先順序 (從低至高) 列在底下，同一行中的運算子具有相等的優先順序 -any -all -or -and -not -eq -ne -startsWith -notStartsWith -contains -notContains -match –notMatch
- 
+
 不管有沒有連字號前置詞，均可使用所有運算子。
 
 請注意，不一定需要括號，您只需要在優先順序不符合您的需求時加上括號，例如︰
 
-   user.department –eq "Marketing" –and user.country –eq "US" 
-   
-相當於： 
+   user.department –eq "Marketing" –and user.country –eq "US"
+
+相當於：
 
    (user.department –eq "Marketing") –and (user.country –eq "US")
 
@@ -173,7 +174,7 @@ user.mail –ne null
 
 ## <a name="use-of-null-values"></a>使用 Null 值
 
-若要在規則中指定 null 值，您可以使用 "null" 或 $null。 範例： 
+若要在規則中指定 null 值，您可以使用 "null" 或 $null。 範例：
 
    user.mail –ne null is equivalent to user.mail –ne $null
 
@@ -197,7 +198,7 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 若要在規則中包含多值屬性，請使用 "-any" 運算子，如下所示：
 
   user.assignedPlans -any assignedPlan.service -startsWith "SCO"
-  
+
 ## <a name="direct-reports-rule"></a>屬下規則
 您可以根據使用者的經理屬性在群組中填入成員。
 
@@ -207,11 +208,11 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 2. 選取 [群組]  索引標籤，然後開啟您想要編輯的群組。
 3. 選取 [設定] 索引標籤，然後選取 [進階規則]。
 4. 使用下列語法輸入規則：
-   
+
     *Direct Reports for {obectID_of_manager}* 的 Direct Reports。 以下是 Direct Reports 的有效規則範例：
-   
+
                     Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
-   
+
     其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。 您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔]  索引標籤上找到物件識別碼。
 5. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。 一開始填入群組可能需要幾分鐘的時間。
 
@@ -239,10 +240,10 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 
 > [!NOTE]
 > 無法在 Azure 傳統入口網站中使用 [簡單規則] 下拉式清單建立這些裝置規則。
-> 
-> 
+>
+>
 
-## <a name="additional-information"></a>其他資訊
+## <a name="next-steps"></a>後續步驟
 這些文章提供有關 Azure Active Directory 的其他資訊。
 
 * [疑難排解群組的動態成員資格](active-directory-accessmanagement-troubleshooting.md)
@@ -253,7 +254,6 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 
 
 
-
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

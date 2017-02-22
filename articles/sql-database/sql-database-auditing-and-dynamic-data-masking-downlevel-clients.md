@@ -1,6 +1,6 @@
 ---
-title: "SQL Database 下層用戶端支援與 IP 端點變更 | Microsoft Docs"
-description: "了解 SQL Database 下層用戶端支援與針對「稽核」的 IP 端點變更。"
+title: "Azure SQL Database 的稽核、TDS 重新導向及 IP 端點 |Microsoft Docs"
+description: "了解在 Azure SQL Database 中實作資料表稽核時的稽核、TDS 重新導向及 IP 端點變更。"
 services: sql-database
 documentationcenter: 
 author: ronitr
@@ -13,16 +13,16 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/10/2016
+ms.date: 01/05/2017
 ms.author: ronitr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 06c1dfbcfa365f6c34708021f63a756e295e2ab4
+ms.sourcegitcommit: 86bc7d89bb5725add8ba05b6f0978467147fd3ca
+ms.openlocfilehash: d225a6156ea3672ed214f8308d7e944e6ff08576
 
 
 ---
-# <a name="sql-database---downlevel-clients-support-and-ip-endpoint-changes-for-auditing"></a>SQL Database - 下層用戶端支援與針對「稽核」的 IP 端點變更
-[稽核](sql-database-auditing-get-started.md) 可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。
+# <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-auditing"></a>SQL Database - 下層用戶端支援與針對「稽核」的 IP 端點變更
+[SQL Database 資料表稽核](sql-database-auditing-get-started.md)可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。 請注意，使用「Blob 稽核」方法時，不適用重新導向。
 
 ## <a name="a-idsubheading-1adownlevel-clients-support"></a><a id="subheading-1"></a>舊版用戶端支援
 實作 TDS 7.4 的任何用戶端應該也支援重新導向。 例外包括其中未完全支援重新導向功能的 JDBC 4.0，和其中未實作重新導向的 Tedious for Node.JS。
@@ -43,7 +43,7 @@ ms.openlocfilehash: 06c1dfbcfa365f6c34708021f63a756e295e2ab4
 **備註：** 上述伺服器 FDQN 修改可能會對於套用 SQL Server 層級稽核原則有所助益，不需要每個資料庫中的組態步驟 (暫存緩和)。
 
 ## <a name="a-idsubheading-2aip-endpoint-changes-when-enabling-auditing"></a><a id="subheading-2"></a>啟用稽核的 IP 端點變更
-請注意，當您啟用稽核時，您資料庫的 IP 端點將會變更。 如果您有嚴格的防火牆設定，請適當更新這些防火牆設定。
+請注意，當您啟用「資料表稽核」時，您資料庫的 IP 端點將會變更。 如果您有嚴格的防火牆設定，請適當更新這些防火牆設定。
 
 新的資料庫 IP 端點將取決於資料庫區域：
 
@@ -55,9 +55,11 @@ ms.openlocfilehash: 06c1dfbcfa365f6c34708021f63a756e295e2ab4
 | 澳洲東南部 |191.239.184.223, 40.127.85.81, 191.239.161.83, 40.127.81.130 |
 | 巴西南部 |104.41.44.161, 104.41.62.230, 23.97.99.54, 104.41.59.191 |
 | 美國中部 |104.43.255.70, 40.83.14.7, 23.99.128.244, 40.83.15.176 |
+| 美國中部 EUAP |52.180.178.16, 52.180.176.190 |
 | 東亞 |23.99.125.133, 13.75.40.42, 23.97.71.138, 13.94.43.245 |
 | 美國東部 2 |104.209.141.31, 104.208.238.177, 191.237.131.51, 104.208.235.50 |
 | 美國東部 |23.96.107.223, 104.41.150.122, 23.96.38.170, 104.41.146.44 |
+| 美國東部 EUAP |52.225.190.86, 52.225.191.187 |
 | 印度中部 |104.211.98.219, 104.211.103.71 |
 | 印度南部 |104.211.227.102, 104.211.225.157 |
 | 印度西部 |104.211.161.152, 104.211.162.21 |
@@ -69,12 +71,15 @@ ms.openlocfilehash: 06c1dfbcfa365f6c34708021f63a756e295e2ab4
 | 東南亞 |104.215.198.156, 13.76.252.200, 23.97.51.109, 13.76.252.113 |
 | 西歐 |104.40.230.120, 13.80.23.64, 137.117.171.161, 13.80.8.37, 104.47.167.215, 40.118.56.193, 104.40.176.73, 40.118.56.20 |
 | 美國西部 |191.236.123.146, 138.91.163.240, 168.62.194.148, 23.99.6.91 |
-| 加拿大中部 |13.88.248.106 |
-| 加拿大東部 |40.86.227.82 |
+| 美國西部 2 |13.66.224.156, 13.66.227.8 |
+| 美國中西部 |52.161.29.186, 52.161.27.213 |
+| 加拿大中部 |13.88.248.106, 13.88.248.110 |
+| 加拿大東部 |40.86.227.82, 40.86.225.194 |
+| 英國北部 |13.87.101.18, 13.87.100.232 |
+| 英國南部 2 |13.87.32.202, 13.87.32.226 |
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

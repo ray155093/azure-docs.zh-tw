@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/19/2016
 ms.author: fashah;garye;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b62d42ccf9a62c0b7057a9c08cdd2d7793ffaedc
+ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
+ms.openlocfilehash: c046220304075242f655bced2f0f16a6fb692ad3
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: b62d42ccf9a62c0b7057a9c08cdd2d7793ffaedc
 * **SQL Server 資料** 進行取樣。 
 * **Hive 資料表** 進行取樣。
 
-以下 **功能表** 所連結的主題會說明如何從這其中的每一個 Azure 儲存體環境進行資料取樣。 
+以下**功能表**所連結的主題會說明如何從這其中的每一個 Azure 儲存體環境進行資料取樣。 
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
@@ -39,6 +39,6 @@ ms.openlocfilehash: b62d42ccf9a62c0b7057a9c08cdd2d7793ffaedc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

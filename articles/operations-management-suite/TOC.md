@@ -19,10 +19,6 @@
 ### [Log Analytics](../log-analytics/log-analytics-overview.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [監視產品比較](operations-management-suite-monitoring-product-comparison.md)
 ### [管理警示](operations-management-suite-monitoring-alerts.md)
-## 管理
-### [規劃和部署](operations-management-suite-solutions-creating.md)
-### [自動化資源](operations-management-suite-solutions-resources-automation.md)
-### [檢視](operations-management-suite-solutions-resources-views.md)
 ## 自動化
 ### [Azure 自動化概觀](../automation/automation-intro.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ## 備份
@@ -35,6 +31,11 @@
 ### [惡意程式碼評估](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [系統更新評估](../log-analytics/log-analytics-system-update.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [連線安全性產品](oms-security-connect-products.md)
+## 建立解決方案
+### [管理解決方案](operations-management-suite-solutions-creating.md)
+### [自動化資源](operations-management-suite-solutions-resources-automation.md)
+### [記錄搜尋與警示](operations-management-suite-solutions-resources-searches-alerts.md)
+### [檢視](operations-management-suite-solutions-resources-views.md)
 ## [與 OMS 整合](operations-management-suite-integration.md)
 
 
@@ -65,6 +66,6 @@
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/12/2016
+ms.date: 12/15/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
+ms.sourcegitcommit: 2e4220bedcb0091342fd9386669d523d4da04d1c
+ms.openlocfilehash: 5d005e3259333f79b9b9852e325864745ee54b84
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
 
 * **CreateDeviceIdentity.js**，這會建立裝置身分識別與相關聯的安全性金鑰，來連線到您的模擬裝置應用程式。
 * **ReadDeviceToCloudMessages.js**，其中顯示模擬裝置應用程式所傳送的遙測。
-* **SimulatedDevice.js**，這會使用先前建立的裝置識別連接到您的 IoT 中樞，並使用 AMQP 通訊協定每秒傳送遙測訊息。
+* **SimulatedDevice.js**，這會使用先前建立的裝置識別連接到您的 IoT 中樞，並使用 MQTT 通訊協定每秒傳送遙測訊息。
 
 > [!NOTE]
 > [Azure IoT SDK][lnk-hub-sdks] 一文提供 Azure IoT SDK (可讓您同時建置在裝置與您的解決方案後端執行的兩個應用程式) 的相關資訊。
@@ -113,7 +113,7 @@ ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
 > 
 > 
 
-1. 建立稱為 **readdevicetocloudmessages**的新的空資料夾。 在 **readdevicetocloudmessages** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
+1. 建立稱為 **readdevicetocloudmessages** 的空資料夾。 在 **readdevicetocloudmessages** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
    
     ```
     npm init
@@ -149,7 +149,7 @@ ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
       console.log('');
     };
     ```
-7. 加入下列程式碼以建立 **EventHubClient**、開啟您的 IoT 中樞的連線，並建立每個資料分割的接收者。 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，此應用程式會使用篩選器。 此篩選器很適合測試環境，如此一來您即可看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息；如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程：
+7. 加入下列程式碼以建立 **EventHubClient**、開啟您的 IoT 中樞的連線，並建立每個資料分割的接收者。 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，此應用程式會使用篩選器。 此篩選器很適合測試環境，如此一來您即可看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息。 如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程：
    
     ```
     var client = EventHubClient.fromConnectionString(connectionString);
@@ -171,23 +171,23 @@ ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
 ## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您會撰寫 Node.js 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
-1. 建立稱為 **simulateddevice**的新的空資料夾。 在 **simulateddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
+1. 建立稱為 **simulateddevice**的空資料夾。 在 **simulateddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
    
     ```
     npm init
     ```
-2. 在 **simulateddevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 裝置 SDK 套件以及 **azure-iot-device-amqp** 套件：
+2. 在 **simulateddevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 裝置 SDK 套件以及 **azure-iot-device-mqtt** 套件：
    
     ```
-    npm install azure-iot-device azure-iot-device-amqp --save
+    npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 使用文字編輯器，在 **simulateddevice** 資料夾中建立新的 **SimulatedDevice.js** 檔案。
+3. 使用文字編輯器，在 **simulateddevice** 資料夾中建立 **SimulatedDevice.js** 檔案。
 4. 在 **SimulatedDevice.js** 檔案開頭新增下列 `require` 陳述式：
    
     ```
     'use strict';
    
-    var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
+    var clientFromConnectionString = require('azure-iot-device-mqtt').clientFromConnectionString;
     var Message = require('azure-iot-device').Message;
     ```
 5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。 以您在＜建立 IoT 中樞＞  一節中建立的 IoT 中樞名稱取代 *{youriothostname}* 。 以您在＜建立裝置識別＞  一節中產生的裝置金鑰值取代 *{yourdevicekey}* ：
@@ -207,7 +207,7 @@ ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
       };
     }
     ```
-7. 建立回呼，並使用 **setInterval** 函數每秒將新訊息傳送至 IoT 中樞：
+7. 建立回呼，並使用 **setInterval** 函式每秒將新訊息傳送至 IoT 中樞：
    
     ```
     var connectCallback = function (err) {
@@ -283,7 +283,7 @@ ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
 [lnk-devguide-identity]: iot-hub-devguide-identity-registry.md
 [lnk-event-hubs-overview]: ../event-hubs/event-hubs-overview.md
 
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 [lnk-process-d2c-tutorial]: iot-hub-csharp-csharp-process-d2c.md
 
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md
@@ -296,6 +296,6 @@ ms.openlocfilehash: 6a4275b7fb7501fec4e98f87b09e20b2114b556b
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Dec16_HO3-->
 
 

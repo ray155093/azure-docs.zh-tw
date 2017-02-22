@@ -252,6 +252,6 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。 例如，在程式
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 和 Linux | Microsoft Docs"
+title: "Azure 中 Linux VM 的概觀 | Microsoft Docs"
 description: "描述 Azure 計算、儲存體和網路服務與 Linux 虛擬機器。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
@@ -15,8 +15,8 @@ ms.workload: infrastructure
 ms.date: 09/14/2016
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: e9625a14486cdcfbd9a23625b6399cf391574e64
+ms.sourcegitcommit: d860d30620dac88f1db7965503b2ac2aebf4ab21
+ms.openlocfilehash: 351f03e29e91b906da084e5c30c87fc3c963b823
 
 
 ---
@@ -33,7 +33,7 @@ Microsoft Azure 資源分散在世界各地的多個地理區域。  「區域�
 ## <a name="availability"></a>Availability
 為了讓您的部署符合 99.95 的 VM 服務等級協定資格，您必須部署兩個或更多在可用性設定組內執行工作負載的 VM。 這可確保您的 VM 會分散在我們資料中心內的多個容錯網域，以及部署至具有不同維護期間的主機。 完整 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) 說明保證的 Azure 整體可用性。
 
-## <a name="azure-virtual-machines-instances"></a>Azure 虛擬機器和執行個體
+## <a name="azure-virtual-machines--instances"></a>Azure 虛擬機器和執行個體
 Microsoft Azure 支援執行由多家合作夥伴提供和維護的眾多熱門 Linux 散發套件。  您可以在 Azure Marketplace 中找到 Red Hat Enterprise、CentOS、Debian、Ubuntu、CoreOS、RancherOS 及 FreeBSD 等散發套件。 我們與各個 Linux 社群積極合作，以便為[經 Azure 背書的 Linux 散發套件](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)清單新增更多版本選項。
 
 如果您慣用的 Linux 散發套件選項目前未出現在映像庫中，您可以[建立 Linux VHD 並上傳到 Azure](virtual-machines-linux-create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)來「自備 Linux」VM。
@@ -150,6 +150,6 @@ VM 現在已在 Azure 上執行，而您已經可以登入。  使用密碼透�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

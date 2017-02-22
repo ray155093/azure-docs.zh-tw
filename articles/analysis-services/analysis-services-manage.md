@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 10/31/2016
+ms.date: 01/20/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 193c939065979dc48243d31e7f97cd87d96bf9a8
-ms.openlocfilehash: 55a016a0943885a3aaa636316808939777afb0f8
+ms.sourcegitcommit: 17df0dfc32078fc08d2e744d4e83f1a1d77a9da1
+ms.openlocfilehash: d6fbb7febc05548e1e89e12394bbb7064e5da1c9
 
 
 ---
@@ -55,51 +55,8 @@ ms.openlocfilehash: 55a016a0943885a3aaa636316808939777afb0f8
 
 由於在 Azure 中使用 SSMS 管理伺服器的方式與管理內部部署伺服器極為相似，因此本文不再詳述。 MSDN 中的 [Analysis Services 執行個體管理](https://msdn.microsoft.com/library/hh230806.aspx)提供所有您需要的協助。
 
-## <a name="server-administrators"></a>伺服器管理員
-在 Azure 入口網站或 SSMS 中，您可以使用您伺服器之控制項刀鋒視窗中的 **Analysis Services 管理員**來管理伺服器管理員。 Analysis Services 管理員是資料庫伺服器管理員，擁有一般資料庫管理工作的權利，例如新增與移除資料庫，以及管理使用者。 根據預設，系統會將在 Azure 入口網站中建立伺服器的使用者自動新增成為 Analysis Services 管理員。
-
-您也應該知道︰
-
-* Windows Live ID 不是 Azure Analysis Services 支援的身分識別類型。  
-* Analysis Services 管理員必須是有效的 Azure Active Directory 使用者。
-* 如果透過 Azure Resource Manager 範本建立 Azure Analysis Services 伺服器，Analysis Services 管理員會取得應新增為管理員的使用者 JSON 陣列。
-
-Analysis Services 管理員與 Azure 資源管理員不同，後者可以管理 Azure 訂用帳戶的資源。 這種做法能夠保持與 Analysis Services 中現有 XMLA 和 TSML 管理行為的相容性，並可讓您將 Azure 資源管理與 Analysis Services 資料庫管理之間的職責劃分隔離。
-
-若要檢視 Azure Analysis Services 資源的所有角色與存取類型，請使用控制項刀鋒視窗上的存取控制 (IAM)。
-
-## <a name="database-users"></a>資料庫使用者
-Analysis Services 模型資料庫使用者必須在您的 Azure Active Directory 中。 為該模型資料庫所指定的使用者名稱必須是組織的電子郵件地址或 UPN。 這與內部部署模型資料庫不同，這些資料庫藉由 Windows 網域使用者名稱來支援使用者。
-
-您可以使用 [Azure Active Directory 中的角色指派](../active-directory/role-based-access-control-configure.md)，或使用 SQL Server Management Studio 中的[表格式模型指令碼語言](https://msdn.microsoft.com/library/mt614797.aspx) (TMSL) 來新增使用者。
-
-**TMSL 指令碼範例**
-
-```
-{
-  "createOrReplace": {
-    "object": {
-      "database": "SalesBI",
-      "role": "Users"
-    },
-    "role": {
-      "name": "Users",
-      "description": "All allowed users to query the model",
-      "modelPermission": "read",
-      "members": [
-        {
-          "memberName": "user1@contoso.com",
-          "identityProvider": "AzureAD"
-        },
-        {
-          "memberName": "group1@contoso.com",
-          "identityProvider": "AzureAD"
-        }
-      ]
-    }
-  }
-}
-```
+## <a name="server-administrators-and-database-users"></a>伺服器管理員和資料庫使用者
+在 Azure Analysis Services 中，有兩種類型的使用者：伺服器管理員和資料庫使用者。 這兩種類型的使用者都必須位於 Azure Active Directory 中，而且必須由組織的電子郵件地址或 UPN 指定。 這與內部部署表格式模型資料庫不同，這些資料庫藉由 Windows 網域使用者名稱來支援伺服器管理員和資料庫使用者。 若要深入了解，請參閱[管理 Azure Analysis Services 中的使用者](analysis-services-manage-users.md)。
 
 ## <a name="enable-azure-active-directory-authentication"></a>啟用 Azure Active Directory 驗證
 若要在登錄中啟用 SSMS 的 Azure Active Directory 驗證功能，請先建立一個名為 EnableAAD.reg 的文字檔，然後複製並貼上以下內容︰
@@ -128,6 +85,6 @@ Windows Registry Editor Version 5.00
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

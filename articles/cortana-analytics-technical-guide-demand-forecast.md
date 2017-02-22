@@ -242,6 +242,6 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的 [串流分析查
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

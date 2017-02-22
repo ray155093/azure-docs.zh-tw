@@ -4,7 +4,7 @@ description: "本文包含使用 makecert 在 Windows 10 上建立自我簽署�
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: 27b99f7c-50dc-4f88-8a6e-d60080819a43
@@ -13,30 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/22/2016
+ms.date: 01/19/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b44f46273c6ddb439ec3793f193986011c222ee3
+ms.sourcegitcommit: 64c6e8fa5288ce9a25bcb434217511425aebfe21
+ms.openlocfilehash: beb873c99d956eafebecc69f9afc480c558efabb
 
 
 ---
 # <a name="working-with-self-signed-certificates-for-point-to-site-connections"></a>使用點對站連線的自我簽署憑證
-本文將協助您使用 **makecert**建立自我簽署憑證，然後再從它產生用戶端憑證。 下列步驟專為 Windows 10 上的 makecert 所撰寫。 Makecert 已經驗證以建立與 P2S 連線相容的憑證。 
+本文將協助您使用 **makecert** 建立自我簽署憑證，然後再從自我簽署憑證產生用戶端憑證。 針對 P2S 連線，憑證的慣用方法是使用您的企業憑證解決方案。 請務必使用通用名稱值格式 'name@yourdomain.com', 發出用戶端憑證，而非「NetBIOS 網域名稱\使用者名稱」格式。
 
-對於 P2S 連線，針對憑證的慣用方法是使用您的企業憑證解決方案，確保使用具有通用名稱值格式「'name@yourdomain.com',」核發用戶端憑證，而非使用「NetBIOS 網域名稱\使用者名稱」格式。
-
-如果您沒有企業解決方案，則需要自我簽署憑證以允許 P2S 用戶端連接到虛擬網路。 我們知道 makecert 已經過時，但它仍是建立與 P2S 連線相容的自我簽署憑證的有效方法。 我們正在研究建立自我簽署憑證的另一個解決方案，但就目前而言，makecert 是慣用的方法。
+如果您沒有企業解決方案，則需要自我簽署憑證以允許 P2S 用戶端連接到虛擬網路。 雖然您可以使用 PowerShell 來建立憑證，但使用 PowerShell 產生的憑證不會包含 Azure 進行 P2S 驗證所需要的必要欄位。 Makecert 已經驗證以建立與 P2S 連線相容的憑證。 Makecert 搭配 P2S 設定使用尚未被取代。
 
 ## <a name="create-a-self-signed-certificate"></a>建立自我簽署憑證
-Makecert 是建立自我簽署憑證的其中一種方式。 下列步驟將逐步引導您使用 makecert 建立自我簽署憑證。 這些並非部署模型特定的步驟。 它們同樣適用於資源管理員和傳統部署模型。
+下列步驟將逐步引導您使用 makecert 建立自我簽署憑證。 這些並非部署模型特定的步驟。 它們同樣適用於資源管理員和傳統部署模型。
 
 ### <a name="to-create-a-self-signed-certificate"></a>建立自我簽署憑證
 1. 從執行 Windows 10 的電腦上下載並安裝[適用於 Windows 10 的 Windows 軟體開發套件 (SDK)](https://dev.windows.com/en-us/downloads/windows-10-sdk)。
 2. 安裝之後，您可以在下列路徑中找到 makecert.exe 公用程式：C:\Program Files (x86)\Windows Kits\10\bin\<arch>。 
    
     範例： `C:\Program Files (x86)\Windows Kits\10\bin\x64`
-3. 接下來，在您電腦上的個人憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 以系統管理員身分執行下列命令。 將 ARMP2SRootCert 和 ARMP2SRootCert.cer 取代為您想使用的憑證名稱。<br><br>憑證會位於您的憑證 - 目前使用者\個人\憑證。
+3. 接下來，在您電腦上的個人憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 以系統管理員身分執行下列命令。 將 *ARMP2SRootCert* 和 *ARMP2SRootCert.cer* 取代為您想使用的憑證名稱。<br><br>憑證會位於您的憑證 - 目前使用者\個人\憑證。
    
         makecert -sky exchange -r -n "CN=ARMP2SRootCert" -pe -a sha1 -len 2048 -ss My "ARMP2SRootCert.cer"
 
@@ -84,10 +82,10 @@ Makecert 是建立自我簽署憑證的其中一種方式。 下列步驟將逐�
 您想要使用點對站連線與虛擬網路連線的每個用戶端，都必須安裝用戶端憑證。 此憑證是必要的 VPN 設定封裝以外的項目。 下列步驟將逐步引導您手動安裝用戶端憑證。
 
 1. 找出 *.pfx* 檔案並複製到用戶端電腦。 在用戶端電腦上，按兩下 *.pfx* 檔案以安裝。 [存放區位置] 保留 [目前使用者]，然後按 [下一步]。
-2. 在 [要匯入的檔案]  頁面上，請勿進行任何變更。 按一下頁面底部的 [新增] 來單一登入應用程式。
+2. 在 [要匯入的檔案]  頁面上，請勿進行任何變更。 按 [下一步] 。
 3. 在 [私密金鑰保護] 頁面上，如果您已使用密碼，請輸入憑證的密碼，或確認安裝憑證的安全性主體是否正確，然後按 [下一步]。
 4. 在 [憑證存放區] 頁面上，保留預設的位置，然後按 [下一步]。
-5. 按一下 [完成] 。 在憑證安裝的 [安全性警告] 上，按一下 [是]。 現在已成功匯入憑證。
+5. 按一下 [完成] 。 在憑證安裝的 [安全性警告] 上，按一下 [是]。 您可以安心地按一下 [是]，因為您已經產生憑證。 現在已成功匯入憑證。
 
 ## <a name="next-steps"></a>後續步驟
 繼續使用您的點對站設定。 
@@ -98,6 +96,6 @@ Makecert 是建立自我簽署憑證的其中一種方式。 下列步驟將逐�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

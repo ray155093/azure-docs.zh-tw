@@ -1,5 +1,5 @@
 ---
-title: "事件中樞驗證和安全性模型概觀 | Microsoft Docs"
+title: "Azure 事件中樞驗證和安全性模型概觀 | Microsoft Docs"
 description: "事件中樞驗證和安全性模型概觀。"
 services: event-hubs
 documentationcenter: na
@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/16/2016
+ms.date: 11/30/2016
 ms.author: sethm;clemensv
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9447b863b62fc71d2619591f78be0494711dc6a3
+ms.sourcegitcommit: 05ca343cfdfc602759eb3ea30a7186a0bb47bd74
+ms.openlocfilehash: 3f20a19c212c082aa766cc2bd67e938aaabf715e
 
 
 ---
 # <a name="event-hubs-authentication-and-security-model-overview"></a>事件中樞驗證和安全性模型概觀
-事件中樞安全性模型符合下列需求：
+Azure 事件中樞安全性模型符合下列需求：
 
 * 唯有提供有效憑證的裝置能將資料傳送到事件中樞。
 * 裝置無法模擬另一個裝置。
@@ -39,7 +39,7 @@ ms.openlocfilehash: 9447b863b62fc71d2619591f78be0494711dc6a3
 所有權杖都經過 SAS 金鑰簽署。 一般而言，所有權杖都會經過同一個金鑰簽署。 裝置無法感知金鑰，如此能避免裝置製造權杖。
 
 ### <a name="create-the-sas-key"></a>建立 SAS 金鑰
-建立事件中樞命名空間時，Azure 事件中樞會產生名為 **RootManageSharedAccessKey**的 256 位元 SAS 金鑰。 這個金鑰能授與命名空間的傳送、聆聽及管理權限。 您可以建立額外的金鑰。 建議您產生授與特定事件中樞之傳送權限的金鑰。 在本主題的其他部分，我們假設您將此金鑰命名為 `EventHubSendKey`。
+建立 Azure 事件中樞命名空間時，此服務會產生名為 **RootManageSharedAccessKey** 的 256 位元 SAS 金鑰。 這個金鑰能授與命名空間的傳送、聆聽及管理權限。 您可以建立額外的金鑰。 建議您產生授與特定事件中樞之傳送權限的金鑰。 在本主題的其餘部分，假設您將此金鑰命名為 **EventHubSendKey**。
 
 以下範例會在建立事件中樞時建立僅限傳送的金鑰：
 
@@ -102,17 +102,17 @@ SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFm
 ## <a name="next-steps"></a>後續步驟
 若要深入了解事件中樞，請造訪下列主題：
 
-* [事件中心概觀]
-* 使用服務匯流排佇列的 [佇列訊息解決方案] 。
-* [使用事件中樞的完整範例應用程式]。
+* [事件中樞概觀]
+* [SAS 概觀]
+* [使用事件中樞的完整範例應用程式]
 
-[事件中心概觀]: event-hubs-overview.md
+[事件中樞概觀]: event-hubs-overview.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
-[佇列訊息解決方案]: ../service-bus-messaging/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
+[SAS 概觀]: ../service-bus-messaging/service-bus-sas-overview.md
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

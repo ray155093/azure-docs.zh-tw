@@ -5,36 +5,35 @@ services: active-directory
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: 2fce5c82-d3de-4097-808f-40214768df9e
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 01/11/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 6adb1dd25c24b18b834dd921c2586ef29d56dc81
-ms.openlocfilehash: e14ee89eec9cbc7db7b1253ed46acf1ae93e620d
+ms.sourcegitcommit: b621a1716b731c99f9ad54d2e29006fb7bddadbb
+ms.openlocfilehash: 5c4ab6e08c8f1af89ea80ac7f4d58d82ee931ec9
 
 
 ---
 # <a name="cloud-app-discovery-security-and-privacy-considerations"></a>Cloud App Discovery 的安全性和隱私權考量
-Microsoft 致力於保護您的隱私權和保護資料安全，同時提供軟體和服務，協助您管理組織的安全性。 <br>
+Microsoft 致力於保護您的隱私權和保護資料安全，同時提供軟體和服務，協助您管理組織的安全性。  
 我們了解當您將資料委託給他人管理時，必須有投資嚴密的安全性工程，以及背後支援的專業知識，才能獲得您的信任。
-Microsoft 從實行安全的軟體開發週期到運作服務，均遵守嚴格的規範與安全性指導方針。 <br>
+Microsoft 從實行安全的軟體開發週期到運作服務，均遵守嚴格的規範與安全性指導方針。  
 保全和保護資料在 Microsoft 是第一要務。
 
 本主題說明在 Azure Active Directory Cloud App Discovery 內如何收集、處理以及保護資料
 
 ## <a name="overview"></a>概觀
-Cloud App Discovery 是 Azure AD 的功能，裝載在 Microsoft Azure 中。 <br>
-您可以使用 Cloud App Discovery Endpoint Agent，從受 IT 管理的電腦收集應用程式探索資料。 <br>
-收集的資料會透過加密的通道安全地傳送到 Azure AD Cloud App Discovery 服務。 <br>
- 然後在 Azure 入口網站中就會看到組織的 Cloud App Discovery 資料。 <br>
+Cloud App Discovery 是 Azure AD 的功能，裝載在 Microsoft Azure 中。  
+您可以使用 Cloud App Discovery Endpoint Agent，從受 IT 管理的電腦收集應用程式探索資料。  
+收集的資料會透過加密的通道安全地傳送到 Azure AD Cloud App Discovery 服務。  
+然後在 Azure 入口網站中就會看到組織的 Cloud App Discovery 資料。 
 
-<center>![Cloud App Discovery 的運作方式](./media/active-directory-cloudappdiscovery-security-and-privacy-considerations/cad01.png) </center> <br>
+![Cloud App Discovery 的運作方式](./media/active-directory-cloudappdiscovery-security-and-privacy-considerations/cad01.png) 
 
 下列各節會依照資訊的流程，並且描述資訊從您的組織移動到 Cloud App Discovery 服務時如何受到保護，最後到達 Cloud App Discovery 入口網站。
 
@@ -44,26 +43,27 @@ Cloud App Discovery 是 Azure AD 的功能，裝載在 Microsoft Azure 中。 <b
 Azure Active Directory 租用戶 (或其委派) 的系統管理員可以從 Azure 入口網站下載代理程式安裝封裝。 您可以手動安裝，或是使用 SCCM 或群組原則在組織的多部電腦上安裝此代理程式。
 
 如需部署選項的進一步指示，請參閱 [Cloud App Discovery 群組原則部署指南](http://social.technet.microsoft.com/wiki/contents/articles/30965.cloud-app-discovery-group-policy-deployment-guide.aspx)。
-<br>
+
 
 ### <a name="data-collected-by-the-agent"></a>代理程式收集的資料
-下列清單中描述的資訊是在連線到 Web 應用程式時由代理程式所收集的資訊。 只會針對系統管理員已設定進行探索的應用程式收集此資訊。 <br>
-您可以透過 Microsoft [Azure 入口網站](https://portal.azure.com/)中的 [Cloud App Discovery] 刀鋒視窗，在 [設定] -> [資料收集] -> [應用程式集合清單] 下方，編輯代理程式監視的雲端應用程式清單。 如需詳細資訊，請參閱[開始使用 Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
-<br>
-**資訊類別**：使用者資訊 <br>
-**說明**： <br>
+下列清單中描述的資訊是在連線到 Web 應用程式時由代理程式所收集的資訊。 只會針對系統管理員已設定進行探索的應用程式收集此資訊。  
+您可以透過 Microsoft [Azure 入口網站](https://portal.azure.com/)中的 [Cloud App Discovery] 刀鋒視窗，在 [設定] -> [資料收集] -> [應用程式集合清單] 下方，編輯代理程式監視的雲端應用程式清單。 如需詳細資訊，請參閱 [開始使用 Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
+
+
+**資訊類別**：使用者資訊  
+**描述**：  
 向目標 Web 應用程式提出要求之程序的 Windows 使用者名稱 (例如：DOMAIN\username) 以及該使用者的 Windows 安全性識別碼 (SID)。
 
-**資訊類別**：處理資訊 <br>
-**說明**： <br>
- 向目標 Web 應用程式提出要求的處理序名稱 (例如：“iexplore.exe”)
+**資訊類別**：處理資訊  
+**描述**：  
+向目標 Web 應用程式提出要求的處理序名稱 (例如：“iexplore.exe”)
 
-**資訊類別**：電腦資訊 <br>
-**說明**： <br>
+**資訊類別**：電腦資訊  
+**描述**：  
 安裝代理程式的電腦 NetBIOS 名稱。
 
-**資訊類別**：應用程式流量資訊 <br>
-**說明**： <br>
+**資訊類別**：應用程式流量資訊  
+**描述**： 
 
 下列連線資訊：
 
@@ -93,7 +93,6 @@ Azure Active Directory 租用戶 (或其委派) 的系統管理員可以從 Azur
 
 除了代理程式所收集有關網路活動的資料外，它也會收集關於軟體和硬體組態的匿名資訊、錯誤報告和代理程式使用情形的相關資訊。
 
-<br><br>
 
 ### <a name="how-the-agent-works"></a>代理程式的運作方式
 代理程式安裝包含兩個元件：
@@ -101,12 +100,12 @@ Azure Active Directory 租用戶 (或其委派) 的系統管理員可以從 Azur
 * 使用者模式元件
 * 核心模式驅動程式元件 (Windows 篩選平台驅動程式)
 
-第一次安裝代理程式時，會在電腦上儲存特定電腦的受信任憑證，然後再使用這個憑證與 Cloud App Discovery 服務建立安全連線。 <br>
- 代理程式會透過這個安全連線，定期從 Cloud App Discovery 服務擷取原則組態。 <br>
- 此原則包括要監視哪些雲端應用程式，以及是否應啟用自動更新等相關資訊。
+第一次安裝代理程式時，會在電腦上儲存特定電腦的受信任憑證，然後再使用這個憑證與 Cloud App Discovery 服務建立安全連線。  
+代理程式會透過這個安全連線，定期從 Cloud App Discovery 服務擷取原則組態。  
+此原則包括要監視哪些雲端應用程式，以及是否應啟用自動更新等相關資訊。
 
-在電腦上傳送和接收來自 Internet Explorer 和 Chrome 的 Web 流量時，Cloud App Discovery 代理程式會分析該流量並擷取相關的中繼資料 (請參閱上列 **代理程式收集的資料** 一節)。 <br>
- 代理程式每分鐘都會透過加密通道，將收集的中繼資料上傳到 Cloud App Discovery 服務。
+在電腦上傳送和接收來自 Internet Explorer 和 Chrome 的 Web 流量時，Cloud App Discovery 代理程式會分析該流量並擷取相關的中繼資料 (請參閱上列 **代理程式收集的資料** 一節)。  
+代理程式每分鐘都會透過加密通道，將收集的中繼資料上傳到 Cloud App Discovery 服務。
 
 驅動程式元件會攔截加密的流量，將其本身插入加密的資料流。 如需詳細資訊，請參閱下列 **攔截來自加密連線的資料 (深度檢查)** 一節。
 
@@ -143,28 +142,28 @@ Cloud App Discovery Endpoint Agent 只會收集上列 **代理程式收集的資
 ## <a name="sending-data-to-cloud-app-discovery"></a>傳送資料到 Cloud App Discovery
 代理程式收集中繼資料之後，最多會在電腦上快取一分鐘，或快取的資料達到 5 MB 的大小為止。 然後中繼資料會經過壓縮並透過安全連線傳送到 Cloud App Discovery 服務。
 
-如果代理程式因為任何原因無法與 Cloud App Discovery 服務通訊，收集的中繼資料會儲存在只能由電腦上授權的使用者 (例如 Administrators 群組) 存取的本機檔案快取。 <br>
- 代理程式會自動嘗試重新傳送快取的中繼資料，直到 Cloud App Discovery 服務順利收到為止。
+如果代理程式因為任何原因無法與 Cloud App Discovery 服務通訊，收集的中繼資料會儲存在只能由電腦上授權的使用者 (例如 Administrators 群組) 存取的本機檔案快取。  
+代理程式會自動嘗試重新傳送快取的中繼資料，直到 Cloud App Discovery 服務順利收到為止。
 
 ## <a name="receiving-the-data-at-the-service-end"></a>在服務端接收資料
-代理程式會使用上述電腦特定的用戶端驗證憑證向 Cloud App Discovery 服務進行驗證，並且透過加密通道轉送資料。 <br>
- Cloud App Discovery 服務的分析管線會以邏輯方式分割分析管線的所有階段，分別為每個客戶處理中繼資料。
+代理程式會使用上述電腦特定的用戶端驗證憑證向 Cloud App Discovery 服務進行驗證，並且透過加密通道轉送資料。  
+Cloud App Discovery 服務的分析管線會以邏輯方式分割分析管線的所有階段，分別為每個客戶處理中繼資料。
 分析過的中繼資料會在入口網站中產生各種報告。
 
 未處理的中繼資料和分析過的中繼資料最多儲存 180 天。 此外，客戶可以選擇在自行選擇的 Azure blob 儲存體帳戶中擷取分析過的中繼資料。
 這對於要離線分析中繼資料，以及要保留較長時間的資料很有用。
 
 ## <a name="accessing-the-data-using-the-azure-portal"></a>使用 Azure 入口網站存取資料
-為了保護所收集的中繼資料的安全，預設只有租用戶的全域系統管理員才能存取 Azure 入口網站的 Cloud App Discovery 功能。 <br>
- 不過，系統管理員可以選擇委派這個存取權給其他使用者或群組。
+為了保護所收集的中繼資料的安全，預設只有租用戶的全域系統管理員才能存取 Azure 入口網站的 Cloud App Discovery 功能。  
+不過，系統管理員可以選擇委派這個存取權給其他使用者或群組。
 
 > [!NOTE]
 > 如需詳細資訊，請參閱 [開始使用 Cloud App Discovery](http://social.technet.microsoft.com/wiki/contents/articles/30962.getting-started-with-cloud-app-discovery.aspx)
 > 
 > 
 
-<br>
- 要在入口網站中存取資料的所有使用者都必須擁有 Azure AD Premium 授權。
+
+要在入口網站中存取資料的所有使用者都必須擁有 Azure AD Premium 授權。
 
 ## <a name="additional-resources"></a>其他資源
 * [如何探索組織內使用未經批准的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
@@ -173,6 +172,6 @@ Cloud App Discovery Endpoint Agent 只會收集上列 **代理程式收集的資
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 

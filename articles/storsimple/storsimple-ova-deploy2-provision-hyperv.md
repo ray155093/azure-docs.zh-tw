@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 10/11/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4d8de51377c8aad73ebf71f83b44edb094635f32
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 2fddc72747ce97e8985e9f1c84ffdce52cd05e2e
 
 
 ---
@@ -138,7 +138,7 @@ ms.openlocfilehash: 4d8de51377c8aad73ebf71f83b44edb094635f32
 18. 在「指定名稱和位置」頁面上，提供資料磁碟的「名稱」和「位置」(您可以瀏覽至該位置)。 按 [下一步] 。
     
     ![](./media/storsimple-ova-deploy2-provision-hyperv/image17.png)
-19. 在「設定磁碟」頁面上，選取 [建立新的空白虛擬硬碟] 選項，然後將大小指定為 **500 GB** (或更多)。 500 GB 是最低需求，您永遠可以佈建更大的磁碟。 請注意，佈建之後您無法擴充或縮小磁碟。 如需有關要佈建磁碟大小的詳細資訊，請檢閱[最佳作法](storsimple-ova-best-practices.md#configuration-best-practices)文件中的「大小」區段。 按一下頁面底部的 [新增] 來單一登入應用程式。
+19. 在「設定磁碟」頁面上，選取 [建立新的空白虛擬硬碟] 選項，然後將大小指定為 **500 GB** (或更多)。 500 GB 是最低需求，您永遠可以佈建更大的磁碟。 請注意，佈建之後您無法擴充或縮小磁碟。 如需有關要佈建磁碟大小的詳細資訊，請檢閱[最佳作法](storsimple-ova-best-practices.md#configuration-best-practices)文件中的「大小」區段。 按 [下一步] 。
     
     ![](./media/storsimple-ova-deploy2-provision-hyperv/image18.png)
 20. 在「摘要」頁面上，檢閱虛擬資料磁碟的詳細資料，如果您對這些資料感到滿意，請按一下 [完成] 來建立磁碟。 精靈會隨即關閉，而您的電腦會新增一個虛擬硬碟。
@@ -216,7 +216,7 @@ ms.openlocfilehash: 4d8de51377c8aad73ebf71f83b44edb094635f32
 
 請觀賞說明如何在 Hyper-V 中佈建 StorSimple 虛擬陣列的影片。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Create-a-StorSimple-Virtual-Array/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Create-a-StorSimple-Virtual-Array/player]
 > 
 > 
 
@@ -227,6 +227,6 @@ ms.openlocfilehash: 4d8de51377c8aad73ebf71f83b44edb094635f32
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/12/2016
+ms.date: 01/11/2017
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: d71bbf32196bd249bdefb94e0e760847cc6ec5e0
-ms.openlocfilehash: 85a1ca7542220b8b3e84e7bad811f7f961b26ba0
+ms.sourcegitcommit: c10a35e4828e8da427f324ef3c3892e7e24cc72d
+ms.openlocfilehash: 489037b0ff43c7041f3e12a49525184e7eda0290
 
 
 ---
@@ -35,7 +35,7 @@ Machine Learning Studio 和 Microsoft Azure Machine Learning Web 服務入口網
 * 如需如何部署 Web 服務的逐步解說，請參閱 [部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
 * 如需如何建立和部署 Web 服務的完整逐步解說，請參閱 [逐步解說步驟 1︰建立 Machine Learning 工作區](machine-learning-walkthrough-1-create-ml-workspace.md)。
 * 如需部署 Web 服務的特定範例，請參閱︰
-  
+
   * [逐步解說步驟 5：部署 Azure Machine Learning Web 服務](machine-learning-walkthrough-5-publish-web-service.md)
   * [如何將 Web 服務部署到多個區域](machine-learning-how-to-deploy-to-multiple-regions.md)
 
@@ -48,7 +48,7 @@ Machine Learning Studio 和 Microsoft Azure Machine Learning Web 服務入口網
 ### <a name="with-powershell-cmdlets"></a>使用 PowerShell Cmdlet
 用於 Web 服務的 Azure Machine Learning 資源提供者，可利用 PowerShell Cmdlet 來部署和管理 Web 服務。
 
-若要使用 Cmdlet，您必須先在 PowerShell 環境中，使用 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 登入您的 Azure 帳戶。 如果您不熟悉如何呼叫以 Resource Manager 為基礎的 PowerShell 命令，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md#login-to-your-azure-account)。
+若要使用 Cmdlet，您必須先在 PowerShell 環境中，使用 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 登入您的 Azure 帳戶。 如果您不熟悉如何呼叫以 Resource Manager 為基礎的 PowerShell 命令，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](../azure-resource-manager/powershell-azure-resource-manager.md#log-in-to-your-azure-account)。
 
 若要匯出預測實驗，請使用這個 [範例程式碼](https://github.com/ritwik20/AzureML-WebServices)。 由程式碼建立 .exe 檔案之後，您可以輸入︰
 
@@ -57,10 +57,10 @@ Machine Learning Studio 和 Microsoft Azure Machine Learning Web 服務入口網
 執行應用程式會建立 Web 服務的 JSON 範本。 若要使用此範本部署 Web 服務，必須新增下列資訊︰
 
 * 儲存體帳戶名稱和金鑰
-  
+
     您可以從 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](http://manage.windowsazure.com/)取得儲存體帳戶名稱和金鑰。
 * 承諾用量方案識別碼
-  
+
     您可以從 [Azure Machine Learning Web 服務](https://services.azureml.net) 入口網站登入，按一下方案名稱取得方案識別碼。
 
 將它們新增至 JSON 範本做為 *Properties* 節點的子系，與 *MachineLearningWorkspace* 節點位於相同層級。
@@ -99,7 +99,6 @@ Azure Machine Learning Web 服務是 RESTful API。 您可以從 .NET、Python�
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

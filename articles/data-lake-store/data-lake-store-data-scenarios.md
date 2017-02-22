@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/06/2016
+ms.date: 01/17/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 73d3e5577d0702a93b7f4edf3bf4e29f55a053ed
-ms.openlocfilehash: 15460ef4add0e0ab94e776ffb715b86d39b89659
+ms.sourcegitcommit: 2969e6063d7bc59a6c8ca733912904abeeb7e7e8
+ms.openlocfilehash: c79826afe9af20dd46db46ab6c73f3196a71fc46
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: 15460ef4add0e0ab94e776ffb715b86d39b89659
 ## <a name="ingest-data-into-data-lake-store"></a>將資料內嵌到 Data Lake 存放區
 本章節強調不同的資料來源，以及將資料內嵌到 Data Lake 存放區帳戶的各種方式。
 
-![將資料內嵌到 Data Lake 存放區](./media/data-lake-store-data-scenarios/ingest-data.png "Ingest data into Data Lake Store")
+![將資料內嵌到 Data Lake Store](./media/data-lake-store-data-scenarios/ingest-data.png "將資料內嵌到 Data Lake Store")
 
 ### <a name="ad-hoc-data"></a>臨機操作資料
 代表用來建立巨量資料應用程式原型的較小型資料集。 內嵌臨機操作資料的方式會因資料來源不同而有所差異。
@@ -50,7 +50,7 @@ ms.openlocfilehash: 15460ef4add0e0ab94e776ffb715b86d39b89659
 
 * [Azure 串流分析](../stream-analytics/stream-analytics-data-lake-output.md) - 內嵌到「事件中樞」的事件可以透過 Azure Data Lake Store 輸出被寫入 Azure Data Lake 中。
 * [Azure HDInsight Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md) - 您可以從 Storm 叢集將資料直接寫入 Data Lake Store 中。
-* [EventProcessorHost](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost) - 您可以從「事件中樞」接收事件，然後使用 [Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md) 將事件寫入 Data Lake Store 中。
+* [EventProcessorHost](../event-hubs/event-hubs-dotnet-standard-getstarted-receive-eph.md) - 您可以從「事件中樞」接收事件，然後使用 [Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md) 將事件寫入 Data Lake Store 中。
 
 ### <a name="relational-data"></a>關聯式資料
 您也可以從關聯式資料庫取得資料。 每經過一段時間，關聯式資料庫就會收集大量資料，在經過巨量資料管線處理後，這些資料將可提供重要情資。 您可以使用下列工具，將這類資料移動到 Data Lake 存放區。
@@ -91,14 +91,14 @@ ms.openlocfilehash: 15460ef4add0e0ab94e776ffb715b86d39b89659
 * **「離線」上傳資料**。 如果因為任何原因而無法使用 Azure ExpressRoute，您可以使用 [Azure 匯入/匯出服務](../storage/storage-import-export-service.md) ，將含有您資料的硬碟送到 Azure 資料中心。 您的資料會先上傳到 Azure 儲存體 Blob。 接下來，您可以使用 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store) 或 [AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)，將資料從 Azure 儲存體 Blob 複製到 Data Lake Store。
 
   > [!NOTE]
-  > 在使用匯入/匯出服務時，運送到 Azure 資料中心之磁碟上的檔案大小不得大於 200 GB。
+  > 使用「匯入/匯出」服務時，運送到 Azure 資料中心之磁碟上的檔案大小應不大於 195 GB。
   >
   >
 
 ## <a name="process-data-stored-in-data-lake-store"></a>處理儲存在 Data Lake 存放區中的資料
 一旦可以取用 Data Lake 存放區中的資料後，您就可以使用支援的巨量資料應用程式來針對這些資料執行分析。 目前，您可以使用 Azure HDInsight 和 Azure Data Lake 分析來針對儲存在 Data Lake 存放區中的資料執行資料分析工作。
 
-![分析 Data Lake 存放區中的資料](./media/data-lake-store-data-scenarios/analyze-data.png "Analyze data in Data Lake Store")
+![分析 Data Lake Store 中的資料](./media/data-lake-store-data-scenarios/analyze-data.png "分析 Data Lake Store 中的資料")
 
 您可以查看下列範例。
 
@@ -111,7 +111,7 @@ ms.openlocfilehash: 15460ef4add0e0ab94e776ffb715b86d39b89659
 * 將資料移動到其他儲存機制，以便與現有的資料處理管線連結。 例如，您可能會想要將資料從 Data Lake 存放區移動到 Azure SQL Database 或內部部署 SQL Server。
 * 在建置應用程式原型時，將資料下載到本機電腦，以便在 IDE 環境中處理。
 
-![從 Data Lake 存放區輸出資料](./media/data-lake-store-data-scenarios/egress-data.png "Egress data from Data Lake Store")
+![從 Data Lake Store 輸出資料](./media/data-lake-store-data-scenarios/egress-data.png "從 Data Lake Store 輸出資料")
 
 在這些案例中，您可以使用下列任何選項。
 
@@ -128,13 +128,13 @@ ms.openlocfilehash: 15460ef4add0e0ab94e776ffb715b86d39b89659
 ## <a name="visualize-data-in-data-lake-store"></a>將 Data Lake 存放區中的資料視覺化
 您可以混合使用多種服務，利用視覺化的方式呈現儲存在 Data Lake 存放區中的資料。
 
-![將 Data Lake 存放區中的資料視覺化](./media/data-lake-store-data-scenarios/visualize-data.png "Visualize data in Data Lake Store")
+![將 Data Lake Store 中的資料視覺化](./media/data-lake-store-data-scenarios/visualize-data.png "將 Data Lake Store 中的資料視覺化")
 
 * 您可以從使用 [Azure Data Factory 將資料從 Data Lake Store 移到 Azure SQL 資料倉儲](../data-factory/data-factory-data-movement-activities.md#supported-data-stores-and-formats)
 * 之後，您可以 [將 Power BI 與 Azure SQL 資料倉儲整合](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md) ，以視覺化方式呈現資料。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

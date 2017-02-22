@@ -1,5 +1,5 @@
 ---
-title: "將磁碟附加至 VM | Microsoft Docs"
+title: "將磁碟連接到傳統 Azure VM | Microsoft Docs"
 description: "將資料磁碟連接到以傳統部署模型建立的 Windows 虛擬機器，並予以初始化。"
 services: virtual-machines-windows, storage
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 06/27/2016
+ms.date: 01/23/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 6e2b33492344acedf1c79d4f67a6d69ad163c14c
+ms.sourcegitcommit: 26c58ae4c509cb768807875ecdf96e9a24d6a472
+ms.openlocfilehash: 8393b8ce2b373e8ff33454a61c944a5f8f7a8168
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 6e2b33492344acedf1c79d4f67a6d69ad163c14c
 
 如果您需要其他資料磁碟，可將空磁碟或現有的資料磁碟連接到 VM。 在這兩種情況下，磁碟是位於 Azure 儲存體帳戶中的 .vhd 檔案。 如果是新的磁碟，則在連接磁碟之後，您也需要將它初始化，使其可供 Windows VM 使用。
 
-如需有關磁碟的詳細資訊，請參閱 [關於虛擬機器的磁碟和 VHD](virtual-machines-windows-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如需有關磁碟的詳細資訊，請參閱 [關於虛擬機器的磁碟和 VHD](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 [!INCLUDE [howto-attach-disk-windows-linux](../../includes/howto-attach-disk-windows-linux.md)]
 
@@ -57,6 +57,6 @@ ms.openlocfilehash: 6e2b33492344acedf1c79d4f67a6d69ad163c14c
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

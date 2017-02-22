@@ -1,6 +1,6 @@
 ---
-title: "使用開發人員分析來監視行動 Web 應用程式的效能 | Microsoft Docs"
-description: "行動應用程式開發人員的應用程式效能和使用情況監視。 傳統型服務、Web 服務及後端應用程式搭配 HockeyApp 和 Application Insights。"
+title: "行動應用程式的效能監視 - Azure Application Insights | Microsoft Docs"
+description: "行動應用程式開發人員的應用程式效能和使用情況監視。 具有 HockeyApp 與 Application Insights 的 DevOps。"
 author: alancameronwills
 services: application-insights
 documentationcenter: 
@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 09/19/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
-ms.openlocfilehash: 4d394ff22e57d162c5adf39c492ca76f3d1f9d3a
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: c4077aa88a401a1c75c0d3fbcd58186f7cb137c2
 
 
 ---
@@ -64,6 +64,6 @@ ms.openlocfilehash: 4d394ff22e57d162c5adf39c492ca76f3d1f9d3a
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

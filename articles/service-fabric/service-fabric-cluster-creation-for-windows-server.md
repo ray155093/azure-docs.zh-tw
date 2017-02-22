@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/26/2016
+ms.date: 12/06/2016
 ms.author: dkshir;chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 913726bb57f727bd62cdee0aee16bc886b38884f
+ms.sourcegitcommit: 6db229794c90e985de834bd3bfb6e0b030de2df5
+ms.openlocfilehash: 0cb59a2e94a9c985cb56d9dd20c05e2e22a45151
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 913726bb57f727bd62cdee0aee16bc886b38884f
 本文將逐步引導您使用 Service Fabric 內部部署 (但可針對其他任何環境輕鬆地調整，例如其他雲端提供者) 的獨立封裝完成建立叢集的步驟。
 
 > [!NOTE]
-> 此獨立的 Windows Server 封裝可能包含一些目前為預覽版的功能，並不支援商業用途。 若要查看預覽功能的清單，請參閱「此封裝包含的預覽功能」。 您也可以立即[下載一份 EULA](http://go.microsoft.com/fwlink/?LinkID=733084)。
+> 此獨立 Windows Server 套件已正式上市，可使用於生產部署。 此套件包含處於「預覽」狀態的新 Service Fabric 功能。 捲動至 [此套件包含的預覽功能。] 區段，以取得預覽功能的清單。 您可以立即[下載一份 EULA](http://go.microsoft.com/fwlink/?LinkID=733084)。
 > 
 > 
 
@@ -35,6 +35,7 @@ ms.openlocfilehash: 913726bb57f727bd62cdee0aee16bc886b38884f
 ## <a name="get-support-for-the-service-fabric-standalone-package"></a>取得 Service Fabric 獨立封裝的支援
 * 請至 [Azure Service Fabric 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=AzureServiceFabric?)，向社群發問有關 Windows Server 的 Service Fabric 獨立封裝。
 * 向 [Service Fabric 的專業支援](http://support.microsoft.com/oas/default.aspx?prid=16146)開立票證。  深入了解 [Microsoft 的專業支援](https://support.microsoft.com/en-us/gp/offerprophone?wa=wsignin1.0)。
+* 您可以取得此套件的支援做為 [Microsoft 頂級支援](https://support.microsoft.com/en-us/premier)的一部分，以及 
 
 <a id="downloadpackage"></a>
 
@@ -127,7 +128,7 @@ ClusterConfig.json 檔案中會描述叢集。 如需此檔案中各個區段的
 | **組態設定** | **說明** |
 | --- | --- |
 | **NodeTypes** |節點類型可讓您將叢集節點分成不同的群組。 一個叢集至少必須有一個節點類型。 群組中的所有節點都有下列共同的特性： <br> **Name** - 這是節點類型名稱。 <br>**Endpoint Ports** - 這些是與這個節點類型相關聯的各種具名端點 (連接埠)。 您可以使用任何您想要的連接埠號碼，只要該號碼未與此資訊清單中的其他任何號碼衝突，而且目前沒有任何其他在電腦/VM 上執行的應用程式在使用該號碼即可。 <br> **Placement Properties** - 此節點類型的這些屬性是用來做為系統服務或您的服務的放置條件約束。 這些屬性是使用者定義的索引鍵/值組，可針對指定節點提供額外的中繼資料。 節點屬性的範例包括節點是否有硬碟機或圖形卡、其硬碟機的磁針數、核心，以及其他實體屬性。 <br> **Capacities** - 節點容量會定義特定節點可以使用的特定資源名稱和數量。 例如，節點可能會定義它具有名為 "MemoryInMb" 的度量容量，而且預設有 2048 MB 的可用記憶體。 這些容量會在執行階段使用，以確保需要特定資源數量的服務會放在需要的數量中有這些資源的節點上。<br>**IsPrimary** - 如果有一個以上已定義的節點類型，請確定只有一個設為主要 (且值為 *true*)，這是系統服務執行的位置。 其他所有節點類型應該設定為值 *false* |
-| **Nodes** |這些是屬於叢集一部分的每個節點的詳細資料 (節點類型、節點名稱、IP 位址、節點的容錯網域和升級網域)。 您想要建立叢集所在的電腦必須與其 IP 位址一起列在這裡。 <br>  如果您為所有節點使用相同的 IP 位址，則會建立一整體叢集，您可以將此叢集用於測試之用。 不要使用一整體叢集部署生產工作負載。 |
+| **Nodes** |這些是屬於叢集一部分的每個節點的詳細資料 (節點類型、節點名稱、IP 位址、節點的容錯網域和升級網域)。 您想要建立叢集所在的電腦必須與其 IP 位址一起列在這裡。 <br> 如果您為所有節點使用相同的 IP 位址，則會建立一整體叢集，您可以將此叢集用於測試之用。 不要使用一整體叢集部署生產工作負載。 |
 
 ### <a name="step-2-run-the-testconfiguration-script"></a>步驟 2︰ 執行 TestConfiguration 指令碼
 TestConfiguration 指令碼會測試 cluster.json 中定義的基礎結構，以確定已指派所需的權限、電腦已彼此相連等，而且已定義其他屬性，以便成功部署。 基本上這是迷你版的「最佳做法分析程式」。 我們將持續在這項工具中加入更多驗證功能，讓它變得更健全。
@@ -241,23 +242,25 @@ Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.2345:19000
 ## <a name="preview-features-included-in-this-package"></a>此封裝包含的預覽功能
 無。
 
+
 > [!NOTE]
-> 藉由[適用於 Windows Server 的獨立叢集 GA 新版本 (5.3.204.x 版)](https://azure.microsoft.com/blog/azure-service-fabric-for-windows-server-now-ga/)，您可以手動或自動將叢集升級至未來的版本。 因為這項功能沒有可用的預覽版本，因此您必須利用 GA 版本建立叢集，並從預覽叢集移轉資料和應用程式。 請密切注意這項功能的詳細資訊。
+> 從[適用於 Windows Server 的獨立叢集 GA 新版本 (5.3.204.x 版)](https://azure.microsoft.com/blog/azure-service-fabric-for-windows-server-now-ga/)著手，您可以手動或自動將叢集升級至未來的版本。 請參閱[獨立 Service Fabric 叢集版本升級](service-fabric-cluster-upgrade-windows-server.md)文件，以取得詳細資訊。
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
 * [獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)
 * [在獨立 Service Fabric 叢集中新增或移除節點](service-fabric-cluster-windows-server-add-remove-nodes.md)
+* [獨立 Service Fabric 叢集版本升級](service-fabric-cluster-upgrade-windows-server.md)
 * [建立具有執行 Windows 之 Azure VM 的獨立 Service Fabric 叢集](service-fabric-cluster-creation-with-windows-azure-vms.md)
 * [使用 Windows 安全性保護 Windows 上的獨立叢集](service-fabric-windows-cluster-windows-security.md)
 * [使用 X509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)
 
 <!--Image references-->
-[信任的區域]: ./media/service-fabric-cluster-creation-for-windows-server/TrustedZone.png
+[Trusted Zone]: ./media/service-fabric-cluster-creation-for-windows-server/TrustedZone.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

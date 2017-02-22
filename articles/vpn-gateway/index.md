@@ -1,5 +1,5 @@
 ---
-title: "VPN 閘道文件 - 教學課程和 API 參考 | Microsoft Docs"
+title: "Azure VPN 閘道文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何設定虛擬私人網路 (VPN) 閘道，以管理雲端虛擬網路與內部部署之間的流量或雲端 VNet 之間的流量。"
 services: vpn-gateway
 author: carolz
@@ -13,9 +13,8 @@ ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 2e7486833ae23cdfed037aa1afb930997586a158
-ms.openlocfilehash: e3179c060380c07dde9058597b0d77861d14d848
-
+ms.sourcegitcommit: b481f480d44696476497e0eaeeee7150ed8d365b
+ms.openlocfilehash: 6c0f96adff93080f88a6a23edbdf5a622279049f
 
 ---
 # <a name="vpn-gateway-documentation"></a>VPN 閘道文件
@@ -169,6 +168,6 @@ ms.openlocfilehash: e3179c060380c07dde9058597b0d77861d14d848
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

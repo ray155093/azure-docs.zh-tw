@@ -1,5 +1,5 @@
 ---
-title: "以 Linux 為基礎的 HDInsight (Hadoop) 高可用性功能 |Microsoft Docs"
+title: "HDInsight (Hadoop) 高可用性功能 |Microsoft Docs"
 description: "了解如何使用額外的前端節點，讓以 Linux 為基礎的 HDInsight 叢集可以提高可靠性和可用性。 您將了解這會如何影響例如 Ambari 和 Hive 等 Hadoop 服務，以及如何使用 SSH 分別連線到每個前端節點。"
 services: hdinsight
 editor: cgronlun
@@ -13,23 +13,22 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: f9b191a68fe19f30aa157fd01f33afb0a4f1e279
-ms.openlocfilehash: 461ff9ce5aac5b2bf87671c314b38a4b1adad233
+ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
+ms.openlocfilehash: c29f539d25df3f7b005eb0fa98009d26549fa32b
 
 
 ---
 # <a name="availability-and-reliability-of-hadoop-clusters-in-hdinsight"></a>HDInsight 上 Hadoop 叢集的可用性和可靠性
+
 Hadoop 可藉由在叢集中的節點散佈服務和資料的複製檔，達到高可用性和可靠性。 不過 Hadoop 的標準散佈功能通常只能有一個前端節點。 任何單一前端節點的中斷情況都可能導致叢集停止運作。
 
-若要解決這種潛在問題，在 Azure 上以 Linux 為基礎的 HDInsight 叢集可提供兩個前端節點，以提升 Hadoop 服務和作業執行的可用性和可靠性。
+為了解決這種潛在問題，Azure 上的 HDInsight 叢集提供兩個前端節點，以提升執行中 Hadoop 服務和作業的可用性和可靠性。
 
-> [!NOTE]
-> 此文件中使用的步驟是針對以 Linux 為基礎的 HDInsight 叢集。 如果您使用以 Windows 為主的叢集，如需 Windows 特定的資訊，請參閱 [HDInsight 上以 Windows 為主的 Hadoop 叢集可用性和可靠性](hdinsight-high-availability.md) 。
-> 
-> 
+> [!IMPORTANT]
+> Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="understanding-the-nodes"></a>了解節點
 使用 Azure 虛擬機器在 HDInsight 叢集中的節點實作。 當節點失敗時，該節點會離線，並且會建立一個新的節點，來取代失敗的節點。 當節點離線時，在新節點上線之前，將會使用相同類型的另一個節點。
@@ -187,14 +186,10 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 
 > [!NOTE]
 > 使用 SFTP 連線時，也提供圖形化介面可讓您以視覺化方式檢視檔案系統。 例如： [MobaXTerm](http://mobaxterm.mobatek.net/) 可讓您使用類似於「Windows 檔案總管」的介面瀏覽檔案系統。
-> 
-> 
 
 ### <a name="ambari"></a>Ambari
 > [!NOTE]
 > 因為個別服務的網站不會在網際網路上公開，所以透過 Ambari 存取記錄檔需要 SSH 通道。 如需使用 SSH 通道的相關資訊，請參閱 [使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)。
-> 
-> 
 
 從 Ambari Web UI 中，選取您想要檢視記錄檔的服務 (例如 YARN)，然後使用 [快速連結]  選取要檢視哪一個前端節點的記錄檔。
 
@@ -226,6 +221,6 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

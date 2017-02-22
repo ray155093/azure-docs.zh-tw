@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT 中樞裝置到雲端通訊指引 |Microsoft Docs"
-description: "Azure IoT 中樞開發人員指南 - 裝置到雲端訊息、報告屬性或檔案上傳的使用時機指引。"
+title: "Azure IoT 中樞裝置到雲端選項 | Microsoft Docs"
+description: "開發人員指南 - 針對雲端到裝置通訊，提供裝置到雲端訊息、報告屬性或檔案上傳的使用時機指引。"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -15,13 +15,13 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: 53f14e6fe115ed5f96d25b9ec5ab04abe23712d5
-ms.openlocfilehash: 6d5608cd86e3f042a7d63bd4e43e75a06141dfab
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: 8c3479e29b55eacc30842ffdfee23b4a00a13126
 
 
 ---
-# <a name="device-to-cloud-communications-guidance"></a>裝置到雲端通訊指引
-將資訊從裝置應用程式傳送到後端時，IoT 中樞會公開三個選項︰
+# <a name="device-to-cloud-communications-guidance"></a>Device-to-cloud communications guidance
+將資訊從裝置應用程式傳送到解決方案後端時，IoT 中樞會公開三個選項︰
 
 * [裝置到雲端 (D2C) 訊息][lnk-d2c]，適用於時間序列遙測和警示；
 * [報告屬性][lnk-twins]，適用於報告裝置狀態資訊，例如長時間執行的工作流程 (例如組態和軟體更新) 可用的功能、條件和狀態；
@@ -38,7 +38,7 @@ ms.openlocfilehash: 6d5608cd86e3f042a7d63bd4e43e75a06141dfab
 | 通訊協定 | 適用於所有通訊協定。 | 目前僅適用於使用 MQTT 時。 | 可用於使用任何通訊協定時，但需要是裝置上的 HTTP。 |
 
 > [!NOTE]
-> 應用程式可能需要以遙測時間序列或警示形式傳送資訊，而且使其可用於裝置對應項。 在這些情況下，裝置應用程式可傳送 D2C 訊息和報告屬性變更，或後端可以在收到訊息時將資訊儲存在裝置對應項的標籤中。 由於 D2C 訊息允許高於裝置對應項更新的輸送量，所以有時希望避免針對每則 D2C 訊息更新裝置對應項。
+> 應用程式可能需要以遙測時間序列或警示形式傳送資訊，而且使其可用於裝置對應項。 在這些情況下，裝置應用程式可傳送 D2C 訊息和報告屬性變更，或解決方案後端可以在收到訊息時將資訊儲存在裝置對應項的標籤中。 由於 D2C 訊息允許高於裝置對應項更新的輸送量，所以有時希望避免針對每則 D2C 訊息更新裝置對應項。
 > 
 > 
 
@@ -50,6 +50,6 @@ ms.openlocfilehash: 6d5608cd86e3f042a7d63bd4e43e75a06141dfab
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

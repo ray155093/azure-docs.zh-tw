@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/27/2016
+ms.date: 01/17/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: d175d3d4d7d7a58f071dab0f32e3fdd3cb3146ce
-ms.openlocfilehash: 8c26d8ef39827cff87b7fc7f17fab78c627a5035
+ms.sourcegitcommit: 4b29fd1c188c76a7c65c4dcff02dc9efdf3ebaee
+ms.openlocfilehash: 733c151012e3d896f720fbc64120432aca594bda
 
 
 ---
@@ -37,6 +37,9 @@ ms.openlocfilehash: 8c26d8ef39827cff87b7fc7f17fab78c627a5035
 
 > [!NOTE]
 > 這篇文章並未涵蓋所有的 Data Factory .NET API。 請參閱 [Data Factory .NET API 參考](https://msdn.microsoft.com/library/mt415893.aspx) ，以取得有關 Data Factory .NET SDK 的詳細資料。
+> 
+> 本教學課程中的資料管線會將資料從來源資料存放區複製到目的地資料存放區。 它不會轉換輸入資料來產生輸出資料。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
+
 
 ## <a name="prerequisites"></a>必要條件
 * 請檢閱 [教學課程概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得本教學課程的概觀並完成 **必要** 步驟。
@@ -503,12 +506,18 @@ ms.openlocfilehash: 8c26d8ef39827cff87b7fc7f17fab78c627a5035
 20. 確認在指定 Azure SQL Database 的 "**emp**" 資料表中建立兩筆員工記錄。
 
 ## <a name="next-steps"></a>後續步驟
-* 詳閱 [資料移動活動](data-factory-data-movement-activities.md) 一文，其提供您在本教學課程中使用的複製活動詳細資訊。
-* 請參閱 [Data Factory .NET API 參考](https://msdn.microsoft.com/library/mt415893.aspx) ，以取得有關 Data Factory .NET SDK 的詳細資料。 這篇文章並未涵蓋所有的 Data Factory .NET API。
+| 主題 | 說明 |
+|:--- |:--- |
+| [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動。 |
+| [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
+| [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
+[Data Factory .NET API 參考](/dotnet/api/) | 提供有關 Data Factory .NET SDK 的詳細資料 (在樹狀檢視中尋找 Microsoft.Azure.Management.DataFactories.Models)。 
 
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+
+<!--HONumber=Feb17_HO1-->
 
 

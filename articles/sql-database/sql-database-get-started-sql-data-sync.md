@@ -1,9 +1,9 @@
 ---
-title: "開始使用 SQL 資料庫資料同步"
+title: "開始使用 Azure SQL 資料同步 (預覽) | Microsoft Docs"
 description: "本教學課程可協助您開始使用 Azure SQL 資料同步 (預覽)。"
 services: sql-database
 documentationcenter: 
-author: jennieHubbard
+author: dearandyxu
 manager: jhubbard
 editor: 
 ms.assetid: a295a768-7ff2-4a86-a253-0090281c8efa
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 07/11/2016
 ms.author: jhubbard
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
+ms.sourcegitcommit: c8e285fc6fb82ab5c929236ac9cb5dc858924e57
+ms.openlocfilehash: 6535260a1650a2d3cc665eeb9d3ea33ae2de2650
 
 
 ---
@@ -28,8 +28,8 @@ ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
 
 > [!NOTE]
 > Azure SQL 資料同步的完整技術文件集 (先前位於 MSDN 上) 現已透過 .pdf 檔案格式提供使用。 在 [這裡](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf)下載。
-> 
-> 
+>
+>
 
 ## <a name="step-1-connect-to-the-azure-sql-database"></a>步驟 1：連接到 Azure SQL Database
 1. 登入 [傳統入口網站](http://manage.windowsazure.com)。
@@ -37,11 +37,12 @@ ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
 3. 按一下頁面底部的 [同步]  。 當您按一下 [同步] 時，會出現一份顯示可新增項目的清單 - [新增同步群組] 和 [新增同步代理程式]。
 4. 若要啟動 [新增 SQL 資料同步代理程式] 精靈，按一下 [新增同步代理程式] 。
 5. 如果之前尚未新增代理程式，請 **按一下在此下載**。
-   
+
     ![Image1](./media/sql-database-get-started-sql-data-sync/SQLDatabaseScreen-Figure1.PNG)
 
 ## <a name="step-2-add-a-client-agent"></a>步驟 2：新增用戶端代理程式
-只有在您要將內部部署 SQL Server 資料庫納入同步群組時，才需要執行這個步驟。 如果同步群組只有 SQL Database 執行個體，請跳到步驟 4。
+只有在您要將內部部署 SQL Server 資料庫納入同步群組時，才需要執行這個步驟。
+如果同步群組只有 SQL Database 執行個體，請跳到步驟 4。
 
 <a id="InstallRequiredSoftware"></a>
 
@@ -49,13 +50,13 @@ ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
 請務必在您安裝用戶端代理程式的電腦上安裝下列項目。
 
 * **.NET Framework 4.0**
-  
+
   您可以從 [這裡](http://go.microsoft.com/fwlink/?linkid=205836)安裝 .NET Framework 4.0。
 * **Microsoft SQL Server 2008 R2 SP1 系統 CLR 類型 (x86)**
-  
+
   從[這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)安裝 Microsoft SQL Server 2008 R2 SP1 系統 CLR 類型 (x86)。
 * **Microsoft SQL Server 2008 R2 SP1 共用管理物件 (x86)**
-  
+
   從 [這裡](http://www.microsoft.com/download/en/details.aspx?id=26728)
 
 <a id="InstallClient"></a>
@@ -83,7 +84,7 @@ ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
 1. 返回 [傳統入口網站](http://manage.windowsazure.com)。
 2. 按一下 [SQL DATABASE] 。
 3. 按一下頁面底部的 [加入同步]  ，然後選取下拉式清單中的 [新增同步群組]。
-   
+
    ![Image2](./media/sql-database-get-started-sql-data-sync/NewSyncGroup-Figure2.png)
 
 <a id=""></a>
@@ -92,7 +93,7 @@ ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
 1. 為同步群組輸入有意義的名稱。
 2. 從下拉式清單中選取 [區域]  (資料中心) 以裝載此同步群組。
 3. 按一下向右箭頭。
-   
+
     ![Image3](./media/sql-database-get-started-sql-data-sync/NewSyncGroupName-Figure3.PNG)
 
 <a id="DefineHubDB"></a>
@@ -102,13 +103,13 @@ ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
 2. 輸入此 SQL Database 執行個體的認證 - [中樞使用者名稱] 和 [中樞密碼]。
 3. 等待 SQL 資料同步確認使用者名稱和密碼。 確認認證後，您會看到密碼的右邊出現綠色核取記號。
 4. 從下拉式清單中選取 [衝突解決]  原則。
-   
+
    **中樞獲勝** - 任何寫入中心資料庫的變更都會寫入參考資料庫，並覆寫相同參考資料庫記錄的變更。 在功能上，這表示寫入中心的第一項變更會傳播至其他資料庫。
 
  **Client Wins** - 寫入中心的變更會被參考資料庫中的變更所覆寫。 在功能上，這表示寫入中心的最後一項變更會是保留並傳播至其他資料庫的變更。
 
 1. 按一下向右箭頭。
-   
+
    ![Image4](./media/sql-database-get-started-sql-data-sync/NewSyncGroupHub-Figure4.PNG)
 
 <a id="AddRefDB"></a>
@@ -117,19 +118,19 @@ ms.openlocfilehash: 328e694fae433800962b85e44a4a8ba902db3fd5
 對您要新增至同步群組的其他各個資料庫，重複執行此步驟。
 
 1. 從下拉式清單中選取要新增的資料庫。
-   
+
     下拉式清單中的資料庫包括已向代理程式和 SQL Database 執行個體註冊的 SQL Server 資料庫。
 2. 輸入此資料庫的認證 - [使用者名稱] 和 [密碼]。
 3. 從下拉式清單中選取此資料庫的 [同步處理方向]  。
-   
+
    **雙向** - 參考資料庫中的變更會寫入中心資料庫中，而對中心資料庫所做的變更會寫入參考資料庫中。
-   
+
    **Sync from the Hub** - 資料庫收到來自中心的更新。 但不會將變更傳送至中心。
-   
+
    **Sync to the Hub** - 資料庫將更新傳送到中心。 但中心的變更不會寫入此資料庫中。
 4. 若要完成同步群組的建立，請按一下精靈右下方的核取記號。 等待 SQL 資料同步確認認證。 綠色核取記號表示已確認認證。
 5. 再按一次核取記號。 您即可返回 SQL Database 下的 [同步]  頁面。 此同步群組現在會與您的其他同步群組和代理程式列在一起。
-   
+
    ![Image5](./media/sql-database-get-started-sql-data-sync/NewSyncGroupReference-Figure5.PNG)
 
 ## <a name="step-5-define-the-data-to-sync"></a>步驟 5：定義要同步的資料
@@ -149,7 +150,7 @@ Azure SQL 資料同步可讓您選取要同步的資料表和資料欄。 如果
    * 若要選取/取消選取所有資料表，請按一下畫面底部的 [選取]。
 10. 按一下 [儲存] ，然後等待同步群組完成佈建。
 11. 若要返回 [資料同步] 登陸頁面，請按一下畫面左上方的向後鍵 (在同步群組名稱之上)。
-    
+
     ![Image6](./media/sql-database-get-started-sql-data-sync/NewSyncGroupSyncRules-Figure6.PNG)
 
 ## <a name="step-6-configure-your-sync-group"></a>步驟 6：設定同步群組
@@ -181,7 +182,6 @@ Azure SQL 資料同步可讓您選取要同步的資料表和資料欄。 如果
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

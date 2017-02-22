@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/12/2016
+ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: f01a5e7ec081b1c989fc8784c845d6e639b1d73b
-ms.openlocfilehash: 92c5e8c50b281fe1dc7e296dcdf8a6822b187ce3
+ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
+ms.openlocfilehash: 249f2dcd852c771d0c48aa223a4596992e5ce3d7
 
 
 ---
@@ -59,7 +59,7 @@ ms.openlocfilehash: 92c5e8c50b281fe1dc7e296dcdf8a6822b187ce3
 
 * **裝置對應項**。 使用[裝置對應項][lnk-twins]，您可以儲存、同步處理，以及查詢裝置中繼資料與狀態資訊。 「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。 IoT 中樞會為連線到 IoT 中樞的每個裝置保存裝置對應項。 
 * **每一裝置的驗證和安全連線能力**。 您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。 [IoT 中樞身分識別登錄][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別與金鑰。 解決方案後端可將個別裝置加入允許或拒絕清單，以達到完全控制裝置存取權。
-* **根據宣告式規則，將裝置對雲端訊息路由傳送至 Azure 服務**。 IoT 中樞可讓您根據訊息規則定義訊息路由，以控制您的中樞傳送裝置對雲端訊息訊息的位置。 訊息規則不需要撰寫任何程式碼，且可代替自訂後擷取訊息發送器。
+* **根據宣告式規則，將裝置對雲端訊息路由傳送至 Azure 服務**。 IoT 中樞可讓您根據路由規則定義訊息路由，以控制您的中樞傳送裝置對雲端訊息的位置。 路由規則不需要撰寫任何程式碼，且可代替自訂後擷取訊息發送器。
 * **裝置連線作業的監視**。 您可以收到有關裝置身分識別管理作業與裝置連線事件的詳細作業記錄檔。 此監視功能可讓 IoT 解決方案找出連線問題，例如，嘗試使用錯誤認證來連線的裝置、訊息傳送太頻繁，或拒絕所有雲端到裝置的訊息。
 * **一組廣泛的裝置程式庫**。 [Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援，例如許多 Linux 發行版本都支援的 C、Windows 和即時作業系統。 Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
 * **IoT 通訊協定和擴充性**。 如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。 您也可以擴充 IoT 中樞以提供自訂通訊協定支援，方法如下：
@@ -91,7 +91,7 @@ Azure IoT 中樞會實作[服務輔助通訊][lnk-service-assisted-pattern]模�
 ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 
 ## <a name="next-steps"></a>後續步驟
-若要了解如何從裝置傳送及從 IoT 中樞接收訊息，以及如何設定您 IoT 中樞的訊息路由，請參閱[使用 IoT 中樞傳送及接收訊息][lnk-send-messages]。
+若要了解如何從裝置傳送及從 IoT 中樞接收訊息，以及如何設定訊息路由，請參閱[使用 IoT 中樞傳送及接收訊息][lnk-send-messages]。
 
 若要了解 IoT 中樞如何啟用標準型裝置管理，以便您遠端管理、設定及更新您的裝置，請參閱 [IoT 中樞的裝置管理概觀][lnk-device-management]。
 
@@ -127,6 +127,6 @@ ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

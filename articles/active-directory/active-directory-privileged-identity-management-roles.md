@@ -1,9 +1,9 @@
 ---
-title: "PIM 中的角色 |Microsoft Docs"
+title: "Azure AD Privileged Identity Management 中的角色 | Microsoft Docs"
 description: "了解要針對具備 Azure 特殊權限身分識別管理擴充功能的特殊權限身分識別使用哪些角色。"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: billmath
 manager: femila
 editor: 
 ms.assetid: ac812ccc-cf4e-4ac2-b981-69598056c9ed
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/01/2016
-ms.author: kgremban
+ms.date: 02/14/2017
+ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 0831755c619fb33c49a6df87141ca3a0a4714f71
+ms.sourcegitcommit: ec80273fd388a435bc0aee9cb2dd49df12535923
+ms.openlocfilehash: d21bf547c80c533481254a8a9640b5dcef6a66c2
 
 
 ---
-# <a name="roles-in-azure-ad-privileged-identity-management"></a>Azure AD Privileged Identity Management 中的角色
+# <a name="roles-in-azure-ad-pim"></a>AD PIM 中的角色
 <!-- **PLACEHOLDER: Need description of how this works. Azure PIM uses roles from MSODS objects.**-->
 
 您可以將組織中的使用者指派給 Azure AD 內的不同系統管理角色。 這些角色指派控制使用者可以在 Azure AD、Office 365 和其他 Microsoft Online Services 與連線的應用程式執行哪些工作，像是新增或移除使用者或變更服務設定。  
@@ -63,7 +63,7 @@ Privileged Identity Management 可讓您將使用者指派給常見的系統管�
 ## <a name="roles-not-managed-in-pim"></a>PIM 中未管理的角色
 Exchange Online 或 SharePoint Online 內的角色 (除了前面提及的角色外) 並不會出現在 Azure AD 中，因此您不會在 PIM 中看到。 如需有關在這些 Office 365 服務中變更細部角色指派的詳細資訊，請參閱 [Office 365 中的權限](https://support.office.com/article/Permissions-in-Office-365-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
 
-Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。 若要管理 Azure 訂用帳戶，請參閱 [如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)，如需有關 Azure RBAC 的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。 若要管理 Azure 訂用帳戶，請參閱 [如何新增或變更 Azure 管理員角色](../billing/billing-add-change-azure-subscription-administrator.md)，如需有關 Azure RBAC 的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 <!--**The above links might be replaced by ones that are from within this documentation repository **-->
 
@@ -71,7 +71,7 @@ Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。 若要管理
 ## <a name="user-roles-and-signing-in"></a>使用者角色和登入
 對於某些 Microsoft 服務和應用程式來說，將使用者指派給角色可能還不足以讓該使用者成為管理員。
 
-使用者若要存取 Azure 傳統入口網站，就必須是 Azure 訂用帳戶的服務管理員或共同管理員，即使使用者不需要管理 Azure 訂用帳戶也是如此。  例如，若要在傳統入口網站中管理 Azure AD 的組態設定，使用者必須身兼 Azure AD 中的全域管理員和 Azure 訂用帳戶上的訂用帳戶共同管理員。  若要了解如何將使用者新增到 Azure 訂用帳戶，請參閱 [如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)。
+使用者若要存取 Azure 傳統入口網站，就必須是 Azure 訂用帳戶的服務管理員或共同管理員，即使使用者不需要管理 Azure 訂用帳戶也是如此。  例如，若要在傳統入口網站中管理 Azure AD 的組態設定，使用者必須身兼 Azure AD 中的全域管理員和 Azure 訂用帳戶上的訂用帳戶共同管理員。  若要了解如何將使用者新增到 Azure 訂用帳戶，請參閱 [如何新增或變更 Azure 管理員角色](../billing/billing-add-change-azure-subscription-administrator.md)。
 
 使用者若要存取 Microsoft Online Services，可能也必須已獲指派授權才能開啟服務的入口網站或執行系統管理工作。
 
@@ -92,6 +92,6 @@ Azure 訂用帳戶和資源群組也不會出現在 Azure AD 中。 若要管理
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

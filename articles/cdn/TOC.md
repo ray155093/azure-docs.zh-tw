@@ -12,6 +12,7 @@
 ### [跨原始資源共用](cdn-cors.md)
 
 ## 管理
+### [啟用自訂網域的 HTTPS](cdn-custom-ssl.md)
 ### [以 PowerShell 管理](cdn-manage-powershell.md)
 ### 設定存留時間
 #### [Web Apps/雲端服務、ASP.NET 或 IIS 內容](cdn-manage-expiration-of-cloud-service-content.md)
@@ -62,6 +63,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

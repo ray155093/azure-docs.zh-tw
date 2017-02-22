@@ -1,6 +1,6 @@
 ---
-title: "開發人員指南 - 訊息 | Microsoft Docs"
-description: "Azure IoT 中樞開發人員指南 - 裝置到雲端及雲端到裝置的傳訊功能"
+title: "了解 Azure IoT 中樞傳訊 | Microsoft Docs"
+description: "開發人員指南 - IoT 中樞的裝置到雲端及雲端到裝置傳訊。 其中包括訊息格式和支援之通訊協定的相關資訊。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 1951ea9d876ccb962e0bc84873bfb71ee42aa535
+ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
+ms.openlocfilehash: 768e21205e341f4915f8be50129fd246285a2efc
 
 
 ---
@@ -24,14 +24,14 @@ ms.openlocfilehash: 1951ea9d876ccb962e0bc84873bfb71ee42aa535
 ## <a name="overview"></a>Overview
 IoT 中樞提供下列與裝置通訊的傳訊基礎︰
 
-* [裝置到雲端][lnk-d2c]︰從裝置到應用程式後端。
-* [雲端到裝置][lnk-c2d]︰從應用程式後端 (服務或雲端)。
+* [裝置到雲端][lnk-d2c]︰從裝置到後端應用程式。
+* [雲端到裝置][lnk-c2d]︰從後端應用程式 (「服務」或「雲端」)。
 
 IoT 中樞傳訊功能的核心屬性是訊息的可靠性和持久性。 這些屬性可在裝置端上恢復間歇性連線，以及在雲端恢復事件處理的負載尖峰。 IoT 中樞會針對裝置到雲端和雲端到裝置訊息，實作「至少一次」  傳遞保證。
 
 IoT 中樞支援多個[裝置面向通訊協定][lnk-protocols] (例如 MQTT、AMQP 和 HTTP)。 為了支援完美的跨通訊協定互通性，IoT 中樞定義了所有裝置面向通訊協定均可支援的[通用訊息格式][lnk-message-format]。
 
-IoT 中樞會公開[事件中樞相容端點][lnk-compatible-endpoint]讓後端應用程式能夠讀取 IoT 中樞所接收到的裝置到雲端訊息。
+IoT 中樞會公開內建的[事件中樞相容端點][lnk-compatible-endpoint]，可讓後端應用程式讀取中樞所接收的裝置到雲端訊息。 您也可以將訂用帳戶中的其他服務連結到 IoT 中樞，來在中樞中建立自訂端點。
 
 ### <a name="when-to-use"></a>使用時機
 使用裝置到雲端訊息可傳送裝置應用程式所傳來的時間序列遙測和警示，使用雲端到裝置訊息則可用來傳送單向通知給裝置應用程式。
@@ -42,30 +42,26 @@ IoT 中樞會公開[事件中樞相容端點][lnk-compatible-endpoint]讓後端�
 如需 IoT 中樞與事件中樞服務的比較，請參閱 [IoT 中樞與事件中樞的比較][lnk-compare]。
 
 ## <a name="device-to-cloud-messages"></a>裝置到雲端的訊息
-您透過裝置面向端點傳送裝置到雲端訊息 (**/devices/{deviceId}/messages/events**)。 您的後端服務透過服務面向端點收到裝置到雲端訊息 (**/messages/events**)，與[事件中樞][lnk-event-hubs]相容。 因此，您可以使用標準[事件中樞整合和 SDK][lnk-compatible-endpoint] 來接收裝置到雲端的訊息。
+您透過裝置面向端點傳送裝置到雲端訊息 (**/devices/{deviceId}/messages/events**)。 路由規則接著會將訊息路由至您 IoT 中樞上的其中一個服務面向端點。 路由規則會使用流經您中樞的裝置到雲端訊息屬性，決定訊息的路由目標。 根據預設，訊息會路由至內建的服務面向端點 (messages/events)，此端點與[事件中樞][lnk-event-hubs]相容。 因此，您可以使用標準[事件中樞整合和 SDK][lnk-compatible-endpoint] 來接收裝置到雲端的訊息。
 
-IoT 中樞實作裝置到雲端訊息的方式類似於[事件中樞][lnk-event-hubs]。 比起[服務匯流排][lnk-servicebus]「訊息」，IoT 中樞的裝置到雲端訊息更類似事件中樞「事件」。
+IoT 中樞使用串流訊息模式實作裝置到雲端傳訊。 IoT 中樞的裝置到雲端訊息與[事件中樞][lnk-event-hubs]*事件*較為相似 (而不像[服務匯流排][lnk-servicebus]*訊息*) 因為會有大量的事件傳遞給該服務，並可由多個讀取器讀取。
 
 此實作具有下列含意：
 
-* 與事件中樞事件類似，裝置到雲端訊息會長期保留在 IoT 中樞最多七天 (請參閱 [裝置到雲端的組態選項][lnk-d2c-configuration])。
-* 裝置到雲端訊息會分割存放到建立時所設定的一組固定分割區中 (請參閱 [裝置到雲端的組態選項][lnk-d2c-configuration])。
-* 與事件中樞類似，讀取裝置到雲端訊息的用戶端必須處理資料分割和檢查點， 請參閱[事件中樞 - 取用事件][lnk-event-hubs-consuming-events]。
-* 如同事件中樞的事件，裝置到雲端的訊息最大可能為 256 KB，而且可分成數個批次以最佳化傳送。 批次最大為 256 KB，最多可包含 500 則訊息。
+* 裝置到雲端訊息與事件中樞事件類似，會長期保留在 IoT 中樞的預設 **messages/events** 端點，最多達七天。
+* 如同事件中樞的事件，裝置到雲端的訊息最大可能為 256 KB，而且可分成數個批次以最佳化傳送。 批次最多可達 256 KB。
 
 不過，IoT 中樞裝置到雲端訊息與事件中樞之間還有一些重要差異：
 
 * 如[控制 IoT 中樞的存取權][lnk-devguide-security]一節所述，IoT 中樞允許每一裝置的驗證和存取控制。
+* IoT 中樞可讓您建立最多 10 個自訂端點。 訊息會根據您 IoT 中樞上所設定的路由傳遞至端點。
 * IoT 中樞允許同時連接數百萬個裝置 (請參閱[配額和節流][lnk-quotas])，而事件中樞則受限於每個命名空間 5000 個 AMQP 連線。
 * IoT 中樞不允許使用 **PartitionKey**任意進行資料分割。 裝置到雲端訊息會根據其原始的 **deviceId**進行分割。
 * 調整 IoT 中樞的方式與調整事件中樞有些微不同。 如需詳細資訊，請參閱[調整 IoT 中樞][lnk-guidance-scale]。
 
-> [!NOTE]
-> 您無法在所有案例中替代事件中樞的 IoT 中樞。 例如，在某些事件處理運算中，有可能需要在分析資料串流之前，根據不同屬性或欄位而重新分割事件。 在此案例中，您可以使用事件中樞來減少串流處理管線的兩個部分。 如需詳細資訊，請參閱 [Azure 事件中樞概觀][lnk-eventhub-partitions]中的「分割數」。
-> 
-> 
-
 如需如何使用裝置到雲端傳訊的詳細資訊，請參閱 [Azure IoT SDK][lnk-sdks]。
+
+如需有關如何設定訊息路由的詳細資料，請參閱[路由規則](#routing-rules)。
 
 > [!NOTE]
 > 使用 HTTP 傳送裝置到雲端訊息時，屬性名稱和值只能包含 ASCII 英數字元和 ``{'!', '#', '$', '%, '&', "'", '*', '*', '+', '-', '.', '^', '_', '`', '|', '~'}``。
@@ -73,17 +69,33 @@ IoT 中樞實作裝置到雲端訊息的方式類似於[事件中樞][lnk-event-
 > 
 
 ### <a name="non-telemetry-traffic"></a>非遙測流量
-通常除了遙測資料點之外，裝置也會傳送訊息，以及需要執行與處理應用程式商務邏輯層要求的要求。 例如，必須在後端觸發特定動作的重大警示，或對由後端傳送之命令的裝置回應。
+通常除了遙測資料點之外，裝置也會傳送需要從應用程式商務邏輯層進行個別執行與處理的訊息及要求。 例如，必須於後端觸發特定動作的重大警示。 您可以輕鬆地撰寫路由規則，以將這些訊息類型傳送至專屬的處理端點。
 
 如需處理這種訊息最佳方式的詳細資訊，請參閱[教學課程：如何處理 IoT 中樞裝置到雲端訊息][lnk-d2c-tutorial]教學課程。
 
-### <a name="device-to-cloud-configuration-options"></a>裝置到雲端組態選項
-IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
+### <a name="routing-rules"></a>路由規則
+
+IoT 中樞可讓您根據訊息屬性，將訊息路由至 IoT 中樞端點。 路由規則提供您傳送訊息目的地的彈性，而不需要為了處理訊息或撰寫額外程式碼而停止其他服務。 您設定的每個路由規則都具有下列屬性：
+
+* **名稱**。 可識別規則的唯一名稱。
+* **來源**。 要據以處理的資料串流來源。 例如裝置遙測。
+* **條件**。 針對訊息屬性執行的路由規則查詢運算式，用來判斷它是否符合端點。 如需建構路由條件的詳細資訊，請參閱[參考 - 裝置對應項和作業的查詢語言][lnk-devguide-query-language]。
+* **端點**。 IoT 中樞傳送符合條件之訊息的目的地端點名稱。 端點應該與 IoT 中樞位於相同區域，否則您可能需要支付跨區域寫入費用。
+
+單一訊息可能符合多個路由規則的條件，在這種情況下 IoT 中樞會將訊息傳遞至與每個符合的規則相關聯的端點。 IoT 中樞也會自動刪除重複的訊息傳遞，如此若有訊息符合多個規則並且都有相同的目的地，則訊息僅會寫入到該目的地一次。
+
+如需在 IoT 中樞建立自訂端點的詳細資訊，請參閱 [IoT 中樞端點][lnk-devguide-endpoints]。
+
+### <a name="built-in-endpoint-messagesevents"></a>內建端點：messages/events
+
+IoT 中樞會公開下列屬性，讓您控制內建訊息端點 **messages/events**。
 
 * **分割計數**。 在建立時設定此屬性，以定義裝置對雲端事件擷取的資料分割數目。
 * **保留時間**。 此屬性指定裝置到雲端訊息的保留時間。 預設值是一天，但它可以增加到七天。
 
-此外，類似於事件中樞，IoT 中樞也可讓您管理裝置對雲端接收端點上的取用者群組。
+IoT 中樞也可讓您管理內建裝置對雲端接收端點上的取用者群組。
+
+根據預設，所有未明確符合訊息路由規則的訊息，均會寫入至內建端點。 如果您停用此後援路由，則會捨棄未明確符合任何訊息路由規則的訊息。
 
 您可以透過 [IoT 中樞資源提供者 REST API][lnk-resource-provider-apis] 以程式設計方式來修改以上所有屬性，或者使用 [Azure 入口網站][lnk-management-portal]來修改。
 
@@ -140,7 +152,7 @@ IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
 如需雲端到裝置訊息的教學課程，請參閱[教學課程：如何使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d-tutorial]。 如需有關不同 Azure IoT SDK 如何公開雲端到裝置功能的參考主題，請參閱 [Azure IoT SDK][lnk-sdks]。
 
 > [!NOTE]
-> 通常只要遺失訊息不會影響應用程式邏輯，就應該完成雲端到裝置的訊息。 例如，訊息內容已經成功保存於本機儲存體，或者作業已經成功執行。 訊息可能也會攜帶暫時性資訊，遺失該訊息並不會影響應用程式的功能。 有時，對於長時間執行的作業，您可以在將作業描述保存於本機儲存體之後，完成雲端到裝置訊息。 接著，您可以在作業進度的各個階段，利用一或多個裝置到雲端訊息來通知應用程式後端。
+> 通常只要遺失訊息不會影響應用程式邏輯，就應該完成雲端到裝置的訊息。 例如，訊息內容已經成功保存於本機儲存體，或者作業已經成功執行。 訊息可能也會攜帶暫時性資訊，遺失該訊息並不會影響應用程式的功能。 有時，對於長時間執行的作業，您可以在將作業描述保存於本機儲存體之後，完成雲端到裝置訊息。 接著，您可以在作業進度的各個階段，利用一或多個裝置到雲端訊息來通知解決方案後端。
 > 
 > 
 
@@ -178,7 +190,7 @@ IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
 | --- | --- |
 | EnqueuedTimeUtc |指出訊息的結果出現時的時間戳記。 例如，完成已裝置或訊息已到期。 |
 | OriginalMessageId |**MessageId** 。 |
-| StatusCode |必須是整數。 用於 IoT 中樞所產生的回饋訊息中。 <br/> 0 = 成功 <br/> 1 = 訊息過期 <br/> 2 = 超過最大傳遞計數 <br/>  3 = 訊息被拒 |
+| StatusCode |必須是整數。 用於 IoT 中樞所產生的回饋訊息中。 <br/> 0 = 成功 <br/> 1 = 訊息過期 <br/> 2 = 超過最大傳遞計數 <br/> &3; = 訊息被拒 |
 | 說明 |**StatusCode**的字串值。 |
 | deviceId |**DeviceId** 。 |
 | DeviceGenerationId |**DeviceGenerationId** 。 |
@@ -220,21 +232,30 @@ IoT 中樞會公開下列屬性，讓您控制裝置到雲端傳訊。
 如需詳細資訊，請參閱[建立 IoT 中樞][lnk-portal]。
 
 ## <a name="read-device-to-cloud-messages"></a>讀取裝置到雲端的訊息
-IoT 中樞會公開您的後端服務的端點，以讀取您的中樞收到的裝置到雲端訊息。 端點是事件中樞相容，可讓您使用事件中樞服務支援的任何機制讀取訊息。
+IoT 中樞會公開您後端服務的 **messages/events** 內建端點，以讀取您的中樞收到的裝置到雲端訊息。 此端點是事件中樞相容，可讓您使用事件中樞服務支援的任何機制讀取訊息。
+
+您也可以在 IoT 中樞中建立自訂端點。 IoT 中樞目前支援事件中樞、服務匯流排佇列，及服務匯流排主題做為自訂端點。 如需從這些服務讀取的詳細資訊，請參閱：從[事件中樞][lnk-getstarted-eh]讀取、從[服務匯流排佇列][lnk-getstarted-queue]讀取、從[服務匯流排主題][lnk-getstarted-topic]讀取。
+
+### <a name="reading-from-the-built-in-endpoint"></a>從內建端點讀取
 
 使用[適用於 .NET 的 Azure 服務匯流排 SDK][lnk-servicebus-sdk] 或[事件中樞 - 事件處理器主機][lnk-eventprocessorhost]時，您可以使用任何 IoT 中樞連接字串搭配正確的權限。 然後使用 **messages/events** 做為事件中樞名稱
 
 當您使用未能察覺 IoT 中樞的 SDK (或產品整合) 時，必須從 [Azure 入口網站][lnk-management-portal]的 IoT 中樞設定中，擷取事件中樞相容端點和事件中樞相容名稱︰
 
-1. 在 IoT 中樞刀鋒視窗中，按一下[傳訊] 。
-2. 在 [裝置到雲端的設定] 區段中，您會發現下列值：[事件中樞相容端點]、[事件中樞相容名稱] 和 [資料分割]。
+1. 在 IoT 中樞刀鋒視窗中，按一下 [端點]。
+2. 在 [內建端點] 區段中，按一下 [事件]。 刀鋒視窗包含下列值：[事件中樞相容端點]、[事件中樞相容名稱]、[資料分割]、[保留時間] 和 [取用者群組]。
    
     ![裝置到雲端設定][img-eventhubcompatible]
 
 > [!NOTE]
-> 如果 SDK 需要**主機名稱**或**命名空間**，請從 [事件中樞相容端點] 中移除配置。 例如，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，**主機名稱**會是 **iothub-ns-myiothub-1234.servicebus.windows.net**，而**命名空間**會是 **iothub-ns-myiothub-1234**。
+> IoT 中樞 SDK 需要 IoT 中樞端點名稱，也就是 [端點] 刀鋒視窗中顯示的 **messages/events**。
+>
+>
+
+> [!NOTE]
+> 如果您正在使用的 SDK 需要**主機名稱**或**命名空間**值，請從 [事件中樞相容端點] 中移除配置。 例如，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/**，**主機名稱**會是 **iothub-ns-myiothub-1234.servicebus.windows.net**，而**命名空間**會是 **iothub-ns-myiothub-1234**。
 > 
-> 
+>
 
 然後，您可以使用具有 **ServiceConnect** 權限的任何共用存取原則，連接至指定的事件中樞。
 
@@ -327,24 +348,24 @@ IoT 中樞可讓裝置使用 [MQTT][lnk-mqtt]、透過 WebSocket 的 MQTT、[AMQ
 ## <a name="notes-on-mqtt-support"></a>MQTT 支援的注意事項
 IoT 中樞會實作 MQTT v3.1.1 通訊協定，但其具有下列限制和特定行為：
 
-* **不支援 QoS 2**。 當裝置用戶端使用 **QoS 2**發佈訊息時，IoT 中樞就會關閉網路連接。 當裝置用戶端訂閱具有 **QoS 2** 的主題時，IoT 中樞會在 **SUBACK** 封包中授與最大 QoS 層級 1。
-* **保留訊息不會保存**。 如果裝置用戶端發佈 RETAIN 旗標設為 1 的訊息，IoT 中樞會在訊息中加入 **x-opt-retain** 應用程式屬性。 在此情況下，IoT 中樞不會持續保留訊息，而是改為將它傳遞至後端應用程式。
+* **不支援 QoS 2**。 當裝置應用程式發佈 **QoS 2** 的訊息時，IoT 中樞會關閉網路連接。 當裝置應用程式訂閱具有 **QoS 2** 的主題時，IoT 中樞會在 **SUBACK** 封包中授與最大 QoS 層級 1。
+* **保留訊息不會保存**。 如果裝置應用程式發佈 RETAIN 旗標設為 1 的訊息，IoT 中樞會在訊息中新增 **x-opt-retain** 應用程式屬性。 在此情況下，IoT 中樞不會持續保留訊息，而是改為將它傳遞至後端應用程式。
 
 如需詳細資訊，請參閱 [IoT 中樞的 MQTT 支援][lnk-devguide-mqtt]。
 
 最後請務必檢閱 [Azure IoT 通訊協定閘道][lnk-azure-protocol-gateway]，它可讓您部署高效能自訂通訊協定閘道，以便直接與 IoT 中樞互動。 Azure IoT 通訊協定閘道器可讓您自訂裝置通訊協定，以順應要重建的 MQTT 部署或其他自訂通訊協定。 不過，這種方法會要求您執行及操作自訂通訊協定閘道。
 
 ## <a name="additional-reference-material"></a>其他參考資料
-開發人員指南中的其他參考主題包括︰
+IoT 中樞開發人員指南中的其他參考主題包括︰
 
-* [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞針對執行階段和管理作業所公開的各種端點。
+* [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
 * [節流和配額][lnk-quotas]說明適用於 IoT 中樞服務的配額，和使用服務時所預期的節流行為。
-* [Azure IoT 中樞裝置和服務 SDK][lnk-sdks] 列出您可以在開發裝置和服務應用程式 (可與 IoT 中樞互動) 時使用的各種語言 SDK。
+* [Azure IoT 裝置和服務 SDK][lnk-sdks] 列出各種語言 SDK，可供您在開發與「IoT 中樞」互動的裝置和服務應用程式時使用。
 * [裝置對應項和作業的 IoT 中樞查詢語言][lnk-query]說明的 IoT 中樞查詢語言可用來從 IoT 中樞擷取有關裝置對應項和作業的資訊。
 * [IoT 中樞 MQTT 支援][lnk-devguide-mqtt]針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已了解如何使用 IoT 中樞傳送和接收訊息，您可能對下列開發人員指南主題感興趣︰
+現在您已了解如何使用 IoT 中樞傳送和接收訊息，接下來您可能對下列 IoT 中樞開發人員指南主題感興趣︰
 
 * [從裝置上傳檔案][lnk-devguide-upload]
 * [在 IoT 中樞管理裝置身分識別][lnk-devguide-identities]
@@ -374,6 +395,9 @@ IoT 中樞會實作 MQTT v3.1.1 通訊協定，但其具有下列限制和特定
 [lnk-servicebus]: http://azure.microsoft.com/documentation/services/service-bus/
 [lnk-eventhub-partitions]: ../event-hubs/event-hubs-overview.md#partitions
 [lnk-portal]: iot-hub-create-through-portal.md
+[lnk-getstarted-eh]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
+[lnk-getstarted-queue]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md
+[lnk-getstarted-topic]: ../service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions.md
 
 [lnk-c2d-guidance]: iot-hub-devguide-c2d-guidance.md
 [lnk-d2c-guidance]: iot-hub-devguide-d2c-guidance.md
@@ -388,7 +412,6 @@ IoT 中樞會實作 MQTT v3.1.1 通訊協定，但其具有下列限制和特定
 [lnk-compatible-endpoint]: iot-hub-devguide-messaging.md#read-device-to-cloud-messages
 [lnk-protocols]: iot-hub-devguide-messaging.md#communication-protocols
 [lnk-message-format]: iot-hub-devguide-messaging.md#message-format
-[lnk-d2c-configuration]: iot-hub-devguide-messaging.md#device-to-cloud-configuration-options
 [lnk-device-properties]: iot-hub-devguide-identity-registry.md#device-identity-properties
 [lnk-ttl]: iot-hub-devguide-messaging.md#message-expiration-time-to-live
 [lnk-c2d-configuration]: iot-hub-devguide-messaging.md#cloud-to-device-configuration-options
@@ -405,7 +428,8 @@ IoT 中樞會實作 MQTT v3.1.1 通訊協定，但其具有下列限制和特定
 [lnk-devguide-jobs]: iot-hub-devguide-jobs.md
 [lnk-servicebus-sdk]: https://www.nuget.org/packages/WindowsAzure.ServiceBus
 [lnk-eventprocessorhost]: http://blogs.msdn.com/b/servicebus/archive/2015/01/16/event-processor-host-best-practices-part-1.aspx
-
+[lnk-devguide-query-language]: iot-hub-devguide-query-language.md
+[lnk-devguide-endpoints]: iot-hub-devguide-endpoints.md
 
 [lnk-getstarted-tutorial]: iot-hub-csharp-csharp-getstarted.md
 [lnk-c2d-tutorial]: iot-hub-csharp-csharp-c2d.md
@@ -413,6 +437,6 @@ IoT 中樞會實作 MQTT v3.1.1 通訊協定，但其具有下列限制和特定
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO5-->
 
 

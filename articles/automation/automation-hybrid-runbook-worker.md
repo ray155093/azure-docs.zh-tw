@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/05/2016
+ms.date: 01/12/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: f8d515c6a8b1332ccb338cb5ec2c16daa5725281
-ms.openlocfilehash: c8bdd686deff888c9029b88ceeb32c147398eca2
+ms.sourcegitcommit: 4b7912b48ef37eac3148582d1d635d8a4c4a4b44
+ms.openlocfilehash: 8ee5dfea961984bd01a24815b9d3c94f486a57d7
 
 
 ---
@@ -32,8 +32,8 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 沒有輸入防火牆需求可支援混合式 Runbook 背景工作。 本機電腦上的代理程式會起始與雲端中 Azure 自動化的所有通訊。 啟動 Runbook 時，Azure 自動化會建立代理程式會擷取的指示。 代理程式接著會在執行之前取得 Runbook 和任何參數。  它也會從 Azure 自動化擷取 Runbook 使用的任何 [資產](http://msdn.microsoft.com/library/dn939988.aspx) 。
 
 > [!NOTE]
-> 混合式 Runbook 背景工作目前不支援將 [DSC 組態](automation-dsc-overview.md)套用至主控此角色的電腦。
-><br><br>
+> 為了透過「預期狀態設定」(DSC) 管理支援「Hybrid Runbook 背景工作角色」之伺服器的組態，您將需要將它們新增為 DSC 節點。  如需有關讓它們上線以透過 DSC 進行管理的進一步資訊，請參閱[讓機器上線以透過 Azure 自動化 DSC 進行管理](automation-dsc-onboarding.md)。           
+><br>
 >目前，如果您啟用[更新管理解決方案](../operations-management-suite/oms-solution-update-management.md)，則任何連接至 OMS 工作區的 Windows 電腦都會自動設定為 Hybrid Runbook Worker，以支援屬於此解決方案的 Runbook。  不過，它不會向您在自動化帳戶中建立的任何混合式背景工作群組註冊，而且您無法將它新增至混合式背景工作群組來執行自己的 Runbook。  如果 Windows 電腦已指定為混合式 Runbook 背景工作並連接至 OMS 工作區，您必須先從 OMS 工作區中將它移除，再新增解決方案，以避免 Runbook 無法如預期般運作。  
 
 
@@ -136,7 +136,7 @@ Microsoft Monitoring Agent 可將電腦連線至 Operations Management Suite。 
 以系統管理員模式開啟 PowerShell 工作階段，並執行下列命令來匯入模組。
 
     cd "C:\Program Files\Microsoft Monitoring Agent\Agent\AzureAutomation\<version>\HybridRegistration"
-    Import-Module .\HybridRegistration.psd1
+    Import-Module HybridRegistration.psd1
 
 然後使用下列語法執行 **Add-HybridRunbookWorker** Cmdlet：
 
@@ -246,11 +246,11 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 * Azure 自動化具備 SMA 中並未提供的圖形 Runbook 等進階功能。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解可用來啟動 Runbook 的不同方法，請參閱 [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
+* 若要深入了解可用來啟動 Runbook 的不同方法，請參閱[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)。  
 * 若要了解使用文字式編輯器在 Azure 自動化中使用 PowerShell 和 PowerShell 工作流程 Runbook 的不同程序，請參閱 [在 Azure 自動化中編輯 Runbook](automation-edit-textual-runbook.md)
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

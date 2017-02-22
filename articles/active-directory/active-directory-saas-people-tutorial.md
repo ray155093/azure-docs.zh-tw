@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 01/25/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1ba2e051f4f14db10a83d6aaf90fc6355cef586a
+ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
+ms.openlocfilehash: eb24c4fe5f382a30acc524065f2ee9e3a27ce94f
 
 
 ---
@@ -27,7 +27,7 @@ People 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 People 的人員
 * 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 People (單一登入)
-* 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+* 您可以使用 Azure 傳統入口網站集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -35,7 +35,7 @@ People 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 People 整合，您需要下列項目：
 
 * Azure 訂用帳戶
-* 啟用 People 單一登入的訂用帳戶
+* 已啟用 People 單一登入 (SSO) 功能的訂用帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -104,33 +104,24 @@ People 與 Azure AD 整合提供下列優點：
    
     ![設定單一登入](./media/active-directory-saas-people-tutorial/tutorial_people_04.png) 
    
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 People 應用程式的 URL：**“https://\<company name\>.peoplehr.com/”**。 
-   
-    b.這是另一個 C# 主控台應用程式。 如果您不知道租用戶 URL，請透過 [customerservices@peoplehr.com](mailto:customerservices@peoplehr.com) 連絡 People 支援小組來取得。  
-   
-    c. 在 [識別碼] 文字方塊中，輸入租用戶 URL。 
-   
-    d. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL： "**https://itgs.peoplehr.net/Pages/Saml/ConsumeAzureAD.aspx**"。
-   
-    e. 依序按一下 [ **下一步**
+   1. 在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 People 應用程式的 URL：**“https://\<company name\>.peoplehr.com/”**。 
+   2. 如果您不知道租用戶 URL，請透過 [customerservices@peoplehr.com](mailto:customerservices@peoplehr.com) 連絡 People 支援小組來取得。    3. 在 [識別碼] 文字方塊中，輸入租用戶 URL。 
+   4. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL： "**https://itgs.peoplehr.net/Pages/Saml/ConsumeAzureAD.aspx**"。
+   5. 按 [下一步] 。
 4. 在 [設定在 People 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
    
     ![設定單一登入](./media/active-directory-saas-people-tutorial/tutorial_people_05.png) 
    
-    a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
+   1. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
+   2. 按 [下一步] 。
 5. 若要取得為應用程式設定的 SSO，您必須以系統管理員身分登入 People 租用戶。
    
-    a. 在左側功能表中，按一下 [設定]。
-   
-    ![設定單一登入](./media/active-directory-saas-people-tutorial/tutorial_people_001.png) 
-   
-    b. 按一下 [公司]。
+   1. 在左側功能表中，按一下 [設定]。
+    ![設定單一登入](./media/active-directory-saas-people-tutorial/tutorial_people_001.png)    
+   2. 按一下 [公司]。
    
     ![設定單一登入](./media/active-directory-saas-people-tutorial/tutorial_people_002.png) 
-   
-    c. 在 [上傳單衣登入 SAML 中繼資料檔案] 上，按一下 [瀏覽] 上傳下載的中繼資料檔案。
+    3. 在 [上傳單衣登入 SAML 中繼資料檔案] 上，按一下 [瀏覽] 上傳下載的中繼資料檔案。
    
     ![設定單一登入](./media/active-directory-saas-people-tutorial/tutorial_people_003.png)
 6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
@@ -162,24 +153,18 @@ People 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-people-tutorial/create_aaduser_05.png) 
    
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+    1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+    2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-people-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+   1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+   2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+   3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-people-tutorial/create_aaduser_07.png) 
@@ -187,9 +172,8 @@ People 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-people-tutorial/create_aaduser_08.png) 
    
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+   1. 記下 [新密碼] 的值。
+   2. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-people-test-user"></a>建立 People 測試使用者
 本節目標是在 People 中建立名為 Britta Simon 的使用者。 People 不支援 just-in-time 佈建，因此您需要連絡 People 支援小組以手動建立使用者。
@@ -243,6 +227,6 @@ People 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

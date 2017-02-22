@@ -1,5 +1,5 @@
 ---
-title: "儲存體簡介 | Microsoft Docs"
+title: "Azure 儲存體簡介 | Microsoft Docs"
 description: "Azure 儲存體概觀，Microsoft 的線上雲端資料儲存體。 了解如何在您的應用程式中使用可用的最佳雲端儲存體解決方案。"
 services: storage
 documentationcenter: 
@@ -12,15 +12,16 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/08/2016
+ms.date: 02/02/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 931503f56b32ce9d1b11283dff7224d7e2f015ae
-ms.openlocfilehash: 40ab7632f47de4d4eef277f4c4071ce2d4de1eed
+ms.sourcegitcommit: 8e11b36ee927724d4736f8a235aa97848ee2d271
+ms.openlocfilehash: d0647706ad18b3106de44496e43ea822896215ba
 
 
 ---
 # <a name="introduction-to-microsoft-azure-storage"></a>Microsoft Azure 儲存體簡介
+
 ## <a name="overview"></a>Overview
 Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。 透過閱讀此文件，開發人員、IT 專業人員，以及商業決策人員可以了解關於：
 
@@ -30,7 +31,7 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 * 如何透過備援和複寫來保持 Azure 儲存體資料的永久性
 * 若要打造第一個 Azure 儲存體應用程式下一步該怎麼做
 
-若要快速啟動並執行 Azure 儲存體，請參閱 [在 5 分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)。
+若要快速啟動並執行 Azure 儲存體，請參閱 [在&5; 分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)。
 
 如需使用 Azure 儲存體的工具、程式庫及其他資源的詳細資訊，請參閱下方的 [後續步驟](#next-steps) 。
 
@@ -132,10 +133,10 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 建立儲存體帳戶時，您可以選取下列其中一個複寫選項：
 
-* **本地備援儲存體 (LRS)。**  本地備援儲存體可維護三個資料複本。 LRS 會在單一區域的單一資料中心內複寫三次。 LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一資料中心的故障。
+* **本地備援儲存體 (LRS)。** 本地備援儲存體可維護三個資料複本。 LRS 會在單一區域的單一資料中心內複寫三次。 LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一資料中心的故障。
 
     使用 LRS 可享有折扣費率。 如需最高的持久性，建議您採用異地備援儲存體，如下所述。
-* **區域備援儲存體 (ZRS)。**  區域備援儲存體可維護三個資料複本。 ZRS 會在單一地區或兩個地區內的二或三個設備中複寫三次，提供比 LRS 更高的持久性。 ZRS 可確保資料在單一地區內的持續性。
+* **區域備援儲存體 (ZRS)。** 區域備援儲存體可維護三個資料複本。 ZRS 會在單一地區或兩個地區內的二或三個設備中複寫三次，提供比 LRS 更高的持久性。 ZRS 可確保資料在單一地區內的持續性。
 
     ZRS 提供高於 LRS 等級的持久性；不過，如需最高的持久性，建議您採用地理區域備援儲存體，如下所述。
 
@@ -208,8 +209,10 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 
 ### <a name="documentation"></a>文件
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
+* [建立儲存體帳戶](storage-create-storage-account.md)
+* [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
 
-### <a name="for-administrators"></a>系統管理員
+### <a name="for-administrators"></a>針對系統管理員
 * [搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)
 * [使用 Azure CLI 搭配 Azure 儲存體](storage-azure-cli.md)
 
@@ -246,12 +249,8 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 * [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
 
-## <a name="next-steps"></a>後續步驟
-
-* [建立儲存體帳戶](storage-create-storage-account.md)
-* [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

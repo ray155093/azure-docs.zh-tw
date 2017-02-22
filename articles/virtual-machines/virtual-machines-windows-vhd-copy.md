@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/20/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: e516d3cea9a53dec209a51fc8729f2cca934d3cd
+ms.sourcegitcommit: e5bacb7ce32845b97e06cb0d35cc62935a3c86f6
+ms.openlocfilehash: 79b597fb1d76ec0dd7bdfca701a16f885d245b94
 
 
 ---
@@ -30,7 +30,7 @@ ms.openlocfilehash: e516d3cea9a53dec209a51fc8729f2cca934d3cd
 ## <a name="before-you-begin"></a>開始之前
 請確定您︰
 
-* 已取得**來源和目的地儲存體帳戶**的相關資訊。 針對來源 VM，您需要儲存體帳戶和容器名稱。 容器名稱通常會是 **vhd**。 您也需要有一個目的地儲存體帳戶。 如果您還沒有，可以使用入口網站 ([更多服務] > [儲存體帳戶[ > [新增])，或使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 建立一個。 
+* 已取得**來源和目的地儲存體帳戶**的相關資訊。 針對來源 VM，您需要儲存體帳戶和容器名稱。 容器名稱通常會是 **vhd**。 您也需要有一個目的地儲存體帳戶。 如果您還沒有，可以使用入口網站 ([更多服務] > [儲存體帳戶] > [新增])，或使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 建立一個。 
 * 已安裝 Azure [PowerShell 1.0](/powershell/azureps-cmdlets-docs) (或更新版本)。
 * 已下載並安裝 [AzCopy 工具](../storage/storage-use-azcopy.md)。 
 
@@ -93,7 +93,7 @@ Elapsed time:            00.00:13:07
 ```
 
 ## <a name="troubleshooting"></a>疑難排解
-* 當您使用 AZCopy 時，如果您看到錯誤：「伺服器無法驗證要求。 請確定授權標頭的值 (包括簽章在內) 格式正確。」 而且您正在使用金鑰 2 或次要儲存體金鑰，請嘗試使用主要或第 1 個儲存體金鑰。
+* 當您使用 AZCopy 時，如果您看到「伺服器無法驗證要求」錯誤，請確定授權標頭值的格式正確 (包含簽章)，且如果您是使用金鑰 2 或次要儲存體金鑰，請嘗試使用主要或第 1 個儲存體金鑰。
 
 ## <a name="next-steps"></a>後續步驟
 * 您可以[將 VHD 的複本附加至 VM 作為 OS 磁碟](virtual-machines-windows-create-vm-specialized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，藉此建立新的 VM。
@@ -101,6 +101,6 @@ Elapsed time:            00.00:13:07
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

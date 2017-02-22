@@ -4,7 +4,7 @@ description: "了解如何啟用 NSG 的計數器、事件和作業記錄"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: tysonn
 tags: azure-resource-manager
 ms.assetid: 2e699078-043f-48bd-8aa8-b011a32d98ca
@@ -13,120 +13,112 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 07/14/2016
+ms.date: 01/31/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 30542a5166dffda4a99fe2fccd9e1c5d6127cabd
+ms.sourcegitcommit: 8d370f98a4ef2501afc692af8a19a0625f54b678
+ms.openlocfilehash: a087b74470a8aa0f70b56d74cd97fe0935d35bcd
 
 
 ---
 # <a name="log-analytics-for-network-security-groups-nsgs"></a>網路安全性群組 (NSG) 的記錄檔分析
-您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解 NSG。 透過入口網站可以存取這些當中的一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔，並且可在不同的工具 (例如 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md)、Excel 及 PowerBI) 中檢視這些記錄檔。 您可以從下列清單進一步了解不同類型的記錄檔。
 
-* **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您 Azure 訂用帳戶的所有作業及其狀態。 預設會啟用稽核記錄檔，並可在 Azure Preview 入口網站中進行檢視。
-* **事件記錄檔︰** 您可以使用此記錄檔來檢視哪些 NSG 規則會套用到以 MAC 位址為基礎的 VM 和執行個體角色。 每隔 60 秒會收集一次這些規則的狀態。
-* **計數器記錄檔︰** 您可以使用此記錄檔來檢視每個 NSG 規則套用到拒絕或允許流量的次數。
+您可以啟用下列 NSG 的診斷記錄類別︰
 
-> [!WARNING]
-> 記錄檔僅適用於在資源管理員部署模型中部署的資源。 您無法將記錄檔使用於傳統部署模型中的資源。 若要深入了解這兩個模型，請參閱 [了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md) 一文。
-> 
-> 
+* **事件記錄檔︰**包含 NSG 規則會套用到以 MAC 位址為基礎的 VM 和執行個體角色的項目。 每隔 60 秒會收集一次這些規則的狀態。
+* **規則計數器：**包含套用每個 NSG 規則以拒絕或允許流量之次數的項目。
 
-## <a name="enable-logging"></a>啟用記錄
-每個資源管理員資源都會隨時自動啟用稽核記錄。 您需要啟用事件和計數器記錄，才能開始收集可透過這些記錄檔取得的資料。 若要啟用記錄，請遵循下列步驟。
+> [!NOTE]
+> 診斷記錄檔僅適用於透過 Azure Resource Manager 部署模型中部署的 NSG。 您無法啟用透過傳統部署模型部署的 NSG 診斷記錄。 若要深入了解這兩個模型，請參閱[了解 Azure 部署模型](../resource-manager-deployment-model.md)一文。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。 如果您還沒有現有的網路安全性群組，請在繼續之前 [建立 NSG](virtual-networks-create-nsg-arm-ps.md) 。
-2. 在 Preview 入口網站中，按一下 [瀏覽] >> [網路安全性群組]。
-   
-   ![Preview 入口網站 - 網路安全性群組](./media/virtual-network-nsg-manage-log/portal-enable1.png)
-3. 選取現有的網路安全性群組。
-   
-    ![Preview 入口網站 - 網路安全性群組設定](./media/virtual-network-nsg-manage-log/portal-enable2.png)
-4. 在 [設定] 刀鋒視窗中，按一下 [診斷]，然後在 [診斷] 窗格中，按一下 [狀態] 旁邊的 [開啟]
-5. 在 [設定] 刀鋒視窗中，按一下 [儲存體帳戶]，然後選取現有的儲存體帳戶或建立新的帳戶。  
+預設會啟用透過任何一個 Azure 部署模型所建立之 NSG 的活動記錄 (先前稱為稽核或操作的記錄檔)。 若要判斷活動記錄中哪些作業在 NSG 上完成，請尋找包含下列資源類型的項目：Microsoft.ClassicNetwork/networkSecurityGroups、Microsoft.ClassicNetwork/networkSecurityGroups/securityRules、Microsoft.Network/networkSecurityGroups 和 Microsoft.Network/networkSecurityGroups/securityRules。 閱讀 [Azure 活動記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)文章以深入了解活動記錄。 
 
-> [AZURE.INFORMATION] 稽核記錄檔不需要個別的儲存體帳戶。 將儲存體用於事件和規則記錄將會產生服務費用。
-> 
-> 
+## <a name="enable-diagnostic-logging"></a>啟用診斷記錄
 
-1. 在下拉式清單的 [儲存體帳戶] 之下，選取您是要記錄事件、計數器還是兩者都記錄，然後按一下 [儲存]。
-   
-    ![Preview 入口網站 - 診斷記錄檔](./media/virtual-network-nsg-manage-log/portal-enable3.png)
+必須啟用每個您想要收集資料的 NSG 診斷記錄。 [Azure 診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章說明可傳送診斷記錄檔的位置。 如果您沒有現有的 NSG，完成[建立網路安全性群組](virtual-networks-create-nsg-arm-pportal.md)文章中的步驟以建立一個 NSG。 您可以使用下列任何方法來啟用 NSG 診斷記錄功能︰
 
-## <a name="audit-log"></a>稽核記錄檔
-此記錄檔 (之前稱為「作業記錄檔」) 預設是由 Azure 產生。  記錄檔會在 Azure 的 [事件記錄檔] 存放區中保留 90 天。 閱讀 [檢視事件和稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md) 一文，進一步了解這些記錄檔。
+### <a name="azure-portal"></a>Azure 入口網站
 
-## <a name="counter-log"></a>計數器記錄檔
-如果您已如上所述對每一個 NSG 進行啟用，才會產生此記錄檔。 資料會儲存在您啟用記錄時所指定的儲存體帳戶中。 套用至資源的每個規則會以 JSON 格式記錄，如下所示。
+若要使用入口網站來啟用記錄，請登入[入口網站](https://portal.azure.com)。 按一下 [更多服務]，然後輸入網路安全性群組。 選取您想要啟用記錄功能的 NSG。 遵循[在入口網站中啟用診斷記錄檔](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#enable-diagnostic-logs-in-the-portal)一文中非計算資源的指示來進行。 選取 **NetworkSecurityGroupEvent**、**NetworkSecurityGroupRuleCounter**，或兩種類別的記錄檔。
 
-    {
-        "time": "2015-09-11T23:14:22.6940000Z",
-        "systemId": "e22a0996-e5a7-4952-8e28-4357a6e8f0c5",
-        "category": "NetworkSecurityGroupRuleCounter",
-        "resourceId": "/SUBSCRIPTIONS/D763EE4A-9131-455F-8C5E-876035455EC4/RESOURCEGROUPS/INSIGHTOBONRP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGINSIGHTOBONRP",
-        "operationName": "NetworkSecurityGroupCounters",
-        "properties": {
-            "vnetResourceGuid":"{DD0074B1-4CB3-49FA-BF10-8719DFBA3568}",
-            "subnetPrefix":"10.0.0.0/24",
-            "macAddress":"001517D9C43C",
-            "ruleName":"DenyAllOutBound",
-            "direction":"Out",
-            "type":"block",
-            "matchedConnections":0
-            }
-    }
+### <a name="powershell"></a>PowerShell
 
-## <a name="event-log"></a>事件記錄檔
-如果您已如上所述對每一個 NSG 進行啟用，才會產生此記錄檔。 資料會儲存在您啟用記錄時所指定的儲存體帳戶中。 會記錄下列資料：
+若要使用 PowerShell 啟用記錄，請遵循[透過 PowerShell 啟用診斷記錄檔](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#enable-diagnostic-logs-via-powershell)文章中的指示。 請先評估下列資訊之後，再輸入文章中的命令︰
 
-    {
-        "time": "2015-09-11T23:05:22.6860000Z",
-        "systemId": "e22a0996-e5a7-4952-8e28-4357a6e8f0c5",
-        "category": "NetworkSecurityGroupEvent",
-        "resourceId": "/SUBSCRIPTIONS/D763EE4A-9131-455F-8C5E-876035455EC4/RESOURCEGROUPS/INSIGHTOBONRP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGINSIGHTOBONRP",
-        "operationName": "NetworkSecurityGroupEvents",
-        "properties": {
-            "vnetResourceGuid":"{DD0074B1-4CB3-49FA-BF10-8719DFBA3568}",
-            "subnetPrefix":"10.0.0.0/24",
-            "macAddress":"001517D9C43C",
-            "ruleName":"AllowVnetOutBound",
-            "direction":"Out",
-            "priority":65000,
-            "type":"allow",
-            "conditions":{
-                "destinationPortRange":"0-65535",
-                "sourcePortRange":"0-65535",
-                "destinationIP":"10.0.0.0/8,172.16.0.0/12,169.254.0.0/16,192.168.0.0/16,168.63.129.16/32",
-                "sourceIP":"10.0.0.0/8,172.16.0.0/12,169.254.0.0/16,192.168.0.0/16,168.63.129.16/32"
+- 您可以視需要取代下列 [文字] 來決定要用於 `-ResourceId` 參數的值，然後輸入命令 `Get-AzureRmNetworkSecurityGroup -Name [nsg-name] -ResourceGroupName [resource-group-name]`。 命令中的識別碼輸出看起來類似 */subscriptions/[訂用帳戶識別碼]/resourceGroups/[resource-group]/providers/Microsoft.Network/networkSecurityGroups/[NSG 名稱]*。
+- 如果您只想要收集記錄檔分類中的資料，請將 `-Categories [category]` 新增至文章中的命令結尾，其中類別為 *NetworkSecurityGroupEvent* 或 *NetworkSecurityGroupRuleCounter*。 如果您不使用 `-Categories` 參數，會同時啟用兩個記錄類別的資料集合。
+
+### <a name="azure-command-line-interface-cli"></a>Azure 命令列介面 (CLI)
+
+若要使用 CLI 啟用記錄，請遵循[透過 CLI 啟用診斷記錄檔](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#enable-diagnostic-logs-via-cli)文章中的指示。 請先評估下列資訊之後，再輸入文章中的命令︰
+
+- 您可以視需要取代下列 [文字] 來決定要用於 `-ResourceId` 參數的值，然後輸入命令 `azure network nsg show [resource-group-name] [nsg-name]`。 命令中的識別碼輸出看起來類似 */subscriptions/[訂用帳戶識別碼]/resourceGroups/[resource-group]/providers/Microsoft.Network/networkSecurityGroups/[NSG 名稱]*。
+- 如果您只想要收集記錄檔分類中的資料，請將 `-Categories [category]` 新增至文章中的命令結尾，其中類別為 *NetworkSecurityGroupEvent* 或 *NetworkSecurityGroupRuleCounter*。 如果您不使用 `-Categories` 參數，會同時啟用兩個記錄類別的資料集合。
+
+## <a name="logged-data"></a>記錄的資料
+
+兩個記錄皆會以 JSON 格式資料寫入。 以下各節中會列出針對每個記錄類型撰寫的特定資料︰
+
+### <a name="event-log"></a>事件記錄檔
+這個記錄包含有關哪些 NSG 規則會根據 MAC 位址套用至 VM 和雲端服務角色執行個體的資訊。 每個事件會記錄下列範例資料︰
+
+```json
+{
+    "time": "[DATE-TIME]",
+    "systemId": "007d0441-5d6b-41f6-8bfd-930db640ec03",
+    "category": "NetworkSecurityGroupEvent",
+    "resourceId": "/SUBSCRIPTIONS/[SUBSCRIPTION-ID]/RESOURCEGROUPS/[RESOURCE-GROUP-NAME]/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/[NSG-NAME]",
+    "operationName": "NetworkSecurityGroupEvents",
+    "properties": {
+        "vnetResourceGuid":"{5E8AEC16-C728-441F-B0CA-B791E1DBC2F4}",
+        "subnetPrefix":"192.168.1.0/24",
+        "macAddress":"00-0D-3A-92-6A-7C",
+        "primaryIPv4Address":"192.168.1.4",
+        "ruleName":"UserRule_default-allow-rdp",
+        "direction":"In",
+        "priority":1000,
+        "type":"allow",
+        "conditions":{
+            "protocols":"6",
+            "destinationPortRange":"3389-3389",
+            "sourcePortRange":"0-65535",
+            "sourceIP":"0.0.0.0/0",
+            "destinationIP":"0.0.0.0/0"
             }
         }
-    }
+}
+```
 
-## <a name="view-and-analyze-the-audit-log"></a>檢視和分析稽核記錄檔
-您可以使用下列任何方法，檢視和分析稽核記錄檔資料：
+### <a name="rule-counter-log"></a>規則計數器記錄檔
 
-* **Azure 工具︰** 透過 Azure PowerShell、Azure 命令列介面 (CLI)、Azure REST API 或 Azure Preview 入口網站，從稽核記錄擷取資訊。  [稽核作業與資源管理員](../resource-group-audit.md) 一文會詳述每個方法的逐步指示。
-* **Power BI︰** 如果還沒有 [Power BI](https://powerbi.microsoft.com/pricing) 帳戶，您可以免費試用。 使用 [Power BI 的 Azure 稽核記錄檔內容套件](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/) ，您可以使用預先設定的儀表板 (可按原樣使用或加以自訂) 來分析資料。
+此記錄檔包含每個規則套用至資源的相關資訊。 每次套用規則時會記錄下列範例資料︰
 
-## <a name="view-and-analyze-the-counter-and-event-log"></a>檢視和分析計數器和事件記錄檔
-Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) 可以從您的 Blob 儲存體帳戶收集計數器和事件記錄檔，並且納入了視覺效果和強大的搜尋功能來分析您的記錄檔。
+```json
+{
+    "time": "[DATE-TIME]",
+    "systemId": "007d0441-5d6b-41f6-8bfd-930db640ec03",
+    "category": "NetworkSecurityGroupRuleCounter",
+    "resourceId": "/SUBSCRIPTIONS/[SUBSCRIPTION ID]/RESOURCEGROUPS/[RESOURCE-GROUP-NAME]TESTRG/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/[NSG-NAME]",
+    "operationName": "NetworkSecurityGroupCounters",
+    "properties": {
+        "vnetResourceGuid":"{5E8AEC16-C728-441F-B0CA-791E1DBC2F4}",
+        "subnetPrefix":"192.168.1.0/24",
+        "macAddress":"00-0D-3A-92-6A-7C",
+        "primaryIPv4Address":"192.168.1.4",
+        "ruleName":"UserRule_default-allow-rdp",
+        "direction":"In",
+        "type":"allow",
+        "matchedConnections":125
+        }
+}
+```
 
-您也可以連接到儲存體帳戶，然後擷取事件和計數器記錄檔的 JSON 記錄項目。 下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
+## <a name="view-and-analyze-logs"></a>檢視及分析記錄檔
 
-> [!TIP]
-> 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 Github 所提供的 [記錄檔轉換器工具](https://github.com/Azure-Samples/networking-dotnet-log-converter) 。
-> 
-> 
-
-## <a name="next-steps"></a>後續步驟
-* 利用 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md)
-* [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx) 部落格文章。
-* [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/) 部落格文章。
+若要了解如何檢視活動記錄資料，閱讀 [Azure 活動記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 若要了解如何檢視診斷記錄資料，閱讀 [Azure 診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 如果您將診斷資料傳送至 Log Analytics，您可以使用 [Azure 網路安全性群組分析](../log-analytics/log-analytics-azure-networking-analytics.md) (預覽) 管理解決方案取得深入解析。 
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

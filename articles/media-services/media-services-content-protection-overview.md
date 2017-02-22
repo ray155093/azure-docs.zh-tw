@@ -1,5 +1,5 @@
 ---
-title: "保護內容概觀 | Microsoft Docs"
+title: "使用 Azure 媒體服務保護您的內容 | Microsoft Docs"
 description: "此文章簡介如何利用 Media Services 保護內容。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: ff663f40507547ba561053b5c9a7a8ce93fbf213
-ms.openlocfilehash: 9d3718cf80e023f4c5b9c523375b77083a9d7be7
+ms.sourcegitcommit: 555e0b6340d09517bfd87efe209f0304f3266788
+ms.openlocfilehash: bf2bd9bca8817f64790ac62d2981a51aa36566a3
 
 
 ---
@@ -27,10 +27,8 @@ Microsoft Azure 媒體服務可讓您保護媒體從離開電腦到進行儲存�
 
 ![利用 PlayReady 保護](./media/media-services-content-protection-overview/media-services-content-protection-with-multi-drm.png)
 
-> [!NOTE]
-> 要想使用動態加密，您必須從負責傳送加密內容的資料流端點至少取得一個資料流保留單位。
-> 
-> 
+>[!NOTE]
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
 
 本主題說明關於了解以 AMS 內容保護的 [概念與術語](media-services-content-protection-overview.md) 。 主題也包含說明如何達成內容保護工作的主題 [連結](media-services-content-protection-overview.md#common-scenarios) 。 
 
@@ -45,10 +43,6 @@ Microsoft Azure 媒體服務可讓您傳遞使用 AES 清除金鑰或 DRM 加密
 
 播放程式要求串流時，媒體服務便會使用 AES 清除金鑰或 DRM 加密，使用指定的金鑰動態加密您的內容。 為了將串流解密，播放程式將從金鑰傳遞服務要求金鑰。 為了決定使用者是否有權取得金鑰，服務會評估為金鑰指定的授權原則。
 
-> [!NOTE]
-> 若要利用動態加密，您必須先為想要從該處傳遞加密內容的串流端點取得至少一個隨選串流單元。 如需詳細資訊，請參閱 [如何調整媒體服務](media-services-portal-manage-streaming-endpoints.md)。
-> 
-> 
 
 ## <a name="storage-encryption"></a>儲存體加密
 使用儲存體加密，使用 AES-256 位元加密對您的純文字內容進行本機加密，然後將其上傳到已靜止加密儲存的 Azure 儲存體。 使用儲存體加密保護的資產會在編碼之前自動解除加密並放在加密的檔案系統中，並且選擇性地在上傳為新的輸出資產之前重新加密。 儲存體加密的主要使用案例是當您想要使用強式加密保護靜止在磁碟上的高品質輸入媒體檔案時。
@@ -96,6 +90,10 @@ Microsoft Azure 媒體服務可讓您傳遞使用 AES 清除金鑰或 DRM 加密
 * [如何整合 Azure PlayReady 授權服務與您自己的加密程式/串流伺服器](http://mingfeiy.com/integrate-azure-playready-license-service-encryptorstreaming-server)。
 * [使用 castLabs 將 DRM 授權傳遞到 Azure 媒體服務](media-services-castlabs-integration.md)
 
+>[!NOTE]
+>目前不支援使用外部 DRM 伺服器 (技術) 並從 AMS 進行串流處理的案例。
+
+
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -119,6 +117,6 @@ Microsoft Azure 媒體服務可讓您傳遞使用 AES 清除金鑰或 DRM 加密
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

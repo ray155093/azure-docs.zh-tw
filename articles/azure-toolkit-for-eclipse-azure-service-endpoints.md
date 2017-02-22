@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c6e67ba61732beba96831e6c3b0fd89bb8097972
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 9f664b07566fe78d93b1e35a2e0f7e5513960fad
 
 
 ---
@@ -42,20 +42,20 @@ Azure 服務端點會判斷您的應用程式是否已部署至全域 Azure 平�
   7. 建立私人 Azure 平台 `preferenceset` 元素後，您可以按一下 [服務端點] 對話方塊中的 [編輯] 按鈕，變更指派給該元素的值。 如有需要，也可以建立多個私人 Azure 平台 `preferenceset` 元素。
 
 ## <a name="see-also"></a>另請參閱
-[適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]
+[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]
 
-[安裝 Azure Toolkit for Eclipse][安裝 Azure Toolkit for Eclipse] 
+[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse] 
 
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式][在 Eclipse 中為 Azure 建立 Hello World 應用程式]
+[在 Eclipse 中為 Azure 建立 Hello World 應用程式][Creating a Hello World Application for Azure in Eclipse]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java 開發人員中心]。
+如需有關如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java Developer Center]。
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 
@@ -65,6 +65,6 @@ Azure 服務端點會判斷您的應用程式是否已部署至全域 Azure 平�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

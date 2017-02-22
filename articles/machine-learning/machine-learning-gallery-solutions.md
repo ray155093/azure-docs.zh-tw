@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/13/2016
+ms.date: 01/06/2017
 ms.author: roopalik;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d1020d153c283a7c0bcf71c479e6109f354de173
+ms.sourcegitcommit: 262ee4f092efa11150de61168e6b03c0477f0543
+ms.openlocfilehash: 0fc014ad8fe4ab0b36b0c941564c5c531079ce4d
 
 
 ---
@@ -34,7 +34,7 @@ Gallery 中的**[解決方案](https://gallery.cortanaintelligence.com/solutions
  **[解決方案](https://gallery.cortanaintelligence.com/solutions)**
  頁面會顯示最近新增解決方案的清單。
 按一下 **See all** (查看全部) 即可檢視所有的解決方案。
-在這個頁面上，您可以瀏覽 Gallery 中所有的解決方案，或者選取頁面左側的篩選條件並在頂端輸入搜尋字詞進行搜尋。
+您可以從此頁面瀏覽 Gallery 中的所有「解決方案」。 您也可以選取頁面左側的篩選條件，然後在頂端輸入搜尋字詞來進行搜尋。
 
  按一下任何一個解決方案即可開啟解決方案的詳細資料頁面，並讀取更多有關該解決方案的資訊。 在此頁面上，您可以留言、提供意見反應，或透過留言區段提問。 您甚至可以使用 LinkedIn 或 Twitter 的分享功能，與朋友或同事分享該解決方案。 您也可以用電子郵件寄出解決方案連結，以邀請其他使用者檢視該頁面。
 
@@ -54,6 +54,6 @@ Gallery 中的**[解決方案](https://gallery.cortanaintelligence.com/solutions
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -16,8 +16,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 27df1166a23e3ed89fdc86f861353c80a4a467ad
-ms.openlocfilehash: e8be3cd9aeb3ff39c808f5ee39bdf3091d45feec
+ms.sourcegitcommit: cea81f16ecc6203f487fdf15310638b123312dde
+ms.openlocfilehash: caee6a14bd988f2355c9683519b5f5480428a709
 
 
 ---
@@ -44,7 +44,7 @@ ms.openlocfilehash: e8be3cd9aeb3ff39c808f5ee39bdf3091d45feec
 
 ## <a name="create-a-sql-data-warehouse"></a>建立 SQL 資料倉儲
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下 [+新增] > [資料 + 儲存體] > [SQL 資料倉儲]。
+2. 按一下 [+ 新增] > [資料庫] > [SQL 資料倉儲]。
 
     ![建立](./media/sql-data-warehouse-get-started-provision/create-sample.gif)
 3. 在 [SQL 資料倉儲]  刀鋒視窗中，填入所需的資訊，然後按 [建立] 來建立。
@@ -102,6 +102,6 @@ ms.openlocfilehash: e8be3cd9aeb3ff39c808f5ee39bdf3091d45feec
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO3-->
 
 

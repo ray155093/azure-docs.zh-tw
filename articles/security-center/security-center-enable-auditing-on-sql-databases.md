@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/01/2016
+ms.date: 02/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: c662a69f2fdbe3bd7848bdcd1eb0f9742f56c8c8
+ms.sourcegitcommit: 6b7d2da8ababba65146503ecfbe6fd6e142a359c
+ms.openlocfilehash: 3d35c26ab0e1013ae10508cfbcf7ed644ab6d1f0
 
 
 ---
@@ -29,15 +29,18 @@ ms.openlocfilehash: c662a69f2fdbe3bd7848bdcd1eb0f9742f56c8c8
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。  這不是逐步指南。
-> 
-> 
+>
+>
 
 ## <a name="implement-the-recommendation"></a>實作建議
 1. 在 [建議] 刀鋒視窗中，選取 [在 SQL Database 上啟用稽核]。  這會開啟 [在 SQL Database 上啟用稽核]  刀鋒視窗。
-   ![Enable auditing on SQL databases][1]
+
+   ![在 SQL Database 上啟用稽核][1]
 2. 選取要在其上啟用稽核的 SQL Database。 這會開啟 [稽核與威脅偵測] 刀鋒視窗。
+
    ![稽核與威脅偵測][2]
 3. 在 [稽核與威脅偵測] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。
+
    ![開啟稽核與脅偵測][3]
 4. 遵循 [開始使用 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md) ，開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
 
@@ -63,6 +66,6 @@ ms.openlocfilehash: c662a69f2fdbe3bd7848bdcd1eb0f9742f56c8c8
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

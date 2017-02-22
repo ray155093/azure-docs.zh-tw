@@ -1,5 +1,5 @@
 ---
-title: "取得適用於 Azure IoT 入門套件 (Ubuntu 16.04) 的 Azure 工具 | Microsoft Docs"
+title: "將 Intel Edison (C) 連接到 Azure IoT - 第 2 課：Azure 工具 (Ubuntu) | Microsoft Docs"
 description: "在 Ubuntu 上安裝 Python 與 Azure 命令列介面 (Azure CLI)。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 97054e61b2586d74b2eab348d75b64399f66667b
-ms.openlocfilehash: 5d8f626380372847cdba72895abb4598e32f8829
+ms.sourcegitcommit: 475b25f02715a60493e79ecd2170854019dfc4ac
+ms.openlocfilehash: e3b1c4dd3ff9a361c6c32cabd04fec523f8d6578
 
 
 ---
@@ -82,6 +82,6 @@ Azure CLI 能為 Azure 提供多平台的命令列體驗，使您可以直接從
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

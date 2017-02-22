@@ -1,5 +1,5 @@
 ---
-title: "建立、設定和部署 PHP Web 應用應式至 Azure"
+title: "建立、設定和部署 PHP Web 應用程式至 Azure | Microsoft Docs"
 description: "示範如何在 Azure App Service 中執行 PHP (Laravel) Web 應用程式的教學課程。 了解如何設定 Azure App Service，以符合您所選擇的 PHP 架構的需求。"
 services: app-service\web
 documentationcenter: php
@@ -13,15 +13,15 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 06/03/2016
+ms.date: 12/16/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: cddcfcc816a2af74fbdd68e4e1031051c42b45a7
 
 
 ---
-# <a name="create-configure-and-deploy-a-php-web-app-to-azure"></a>建立、設定和部署 PHP Web 應用應式至 Azure
+# <a name="create-configure-and-deploy-a-php-web-app-to-azure"></a>建立、設定和部署 PHP Web 應用程式至 Azure
 [!INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
 
 本教學課程說明如何建立、設定和部署 Azure 的 PHP Web 應用程式，以及如何設定 Azure App Service，以符合 PHP Web 應用程式的需求。 本教學課程結束時，您將擁有一個實際在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中運作的 [Laravel](https://www.laravel.com/) Web 應用程式。
@@ -36,19 +36,24 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
 
 您可以將這裡的所學運用到您部署至 Azure 的其他 PHP Web 應用程式。
 
-> [!INCLUDE [app-service-linux](../../includes/app-service-linux.md)]
-> 
-> 
+[!INCLUDE [app-service-linux](../../includes/app-service-linux.md)]
+
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+
+您可以使用下列其中一個 CLI 版本來完成工作︰
+
+- [Azure CLI 1.0](app-service-web-php-get-started-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
+- [Azure CLI 2.0 (預覽)](app-service-web-php-get-started.md) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="prerequisites"></a>必要條件
-* 安裝 [PHP 5.6.x](http://php.net/downloads.php) (PHP 7 支援是 Beta 版)
-* 安裝 [編輯器](https://getcomposer.org/download/)
-* 安裝 [Azure CLI](../xplat-cli-install.md)
-* 安裝 [Git](http://www.git-scm.com/downloads)
-* 取得 Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[註冊免費試用版](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+* [PHP 7.0](http://php.net/downloads.php)
+* [Composer](https://getcomposer.org/download/)
+* [Azure CLI 2.0 Preview](/cli/azure/install-az-cli2)
+* [Git](http://www.git-scm.com/downloads)
+* Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 > [!NOTE]
-> 請看看作用中的 Web 應用程式。 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751) 並建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
+> 請看看作用中的 Web 應用程式。 [試用 App Service](https://azure.microsoft.com/try/app-service/) 並建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
 > 
 > 
 
@@ -57,15 +62,15 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
    
         php --version
         composer --version
-        azure --version
+        az --version
         git --version
    
-    ![Test tools installation before creating your PHP (Laravel) app for Azure](./media/app-service-web-php-get-started/test-tools.png)
-   
     如果您尚未安裝工具，請參閱 [必要條件](#Prerequisites) 以取得下載連結。
+
 2. 安裝 Laravel，如下所示︰
    
-        composer global require "laravel/installer
+        composer global require "laravel/installer"
+
 3. `CD` 安裝到工作目錄，並建立新的 Laravel 應用程式，如下所示︰
    
         cd <working_directory>
@@ -79,7 +84,13 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
    
     ![Test your PHP (Laravel) app locally before deploying it to Azure](./media/app-service-web-php-get-started/laravel-splash-screen.png)
 
-目前為止只是一般的 Laravel 工作流程，還沒有開始<a href="https://laravel.com/docs/5.2" rel="nofollow">學習 Laravel</a>。 我們繼續下去。
+1. 初始化 Git 儲存機制，並認可所有程式碼：
+
+        git init
+        git add .
+        git commit -m "Hurray! My first commit for my Azure web app!"
+
+目前為止只是一般的 Laravel 和 Git 工作流程，還沒有開始<a href="https://laravel.com/docs/5.3" rel="nofollow">學習 Laravel</a>。 我們繼續下去。
 
 ## <a name="create-an-azure-web-app-and-set-up-git-deployment"></a>建立 Azure Web 應用程式並設定 Git 部署
 > [!NOTE]
@@ -89,35 +100,52 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
 
 透過 Azure CLI，只要一行程式碼就可以在 Azure App Service 中建立 Web 應用程式並設定來進行 Git 部署。 讓我們開始吧！
 
-1. 變更為 ASM 模式並登入 Azure：
+1. 如下所示，登入 Azure：
    
-        azure config mode asm
-        azure login
+        az login
    
     依照說明訊息進行來繼續登入程序。
    
-    ![Log in to Azure to deploy your PHP (Laravel) app to Azure](./media/app-service-web-php-get-started/log-in-to-azure-cli.png)
-2. 執行命令建立 Azure Web 應用程式和 Git 部署。 出現提示時，指定所需的區域數目。
+3. 設定 App Service 的部署使用者。 稍後您將使用這些認證來部署程式碼。
    
-        azure site create --git <app_name>
-   
-    ![在 Azure 中建立 PHP (Laravel) 應用程式的 Azure 資源](./media/app-service-web-php-get-started/create-site-cli.png)
-   
-   > [!NOTE]
-   > 如果您從未設定 Azure 訂用帳戶的部署認證，系統將會提示您加以建立。 App Service 只會將這些認證 (而不是您的 Azure 帳戶認證) 使用於 Git 部署與 FTP 登入。 
-   > 
-   > 
-   
-    此命令會在目前的目錄中建立新的 Git 存放庫 (使用 `git init`)，並將它連線至 Azure 中的存放庫當做 Git 遠端 (使用 `git remote add`)。
+        az appservice web deployment user set --user-name <username> --password <password>
 
+3. 建立新的[資源群組](../azure-resource-manager/resource-group-overview.md)。 在此 PHP 教學課程中，您真的不需要知道它是什麼。
+
+        az group create --location "<location>" --name my-php-app-group
+
+    若要查看您可用於 `<location>` 的可能值，請使用 `az appservice list-locations` CLI 命令。
+
+3. 建立新的「免費」[App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 在此 PHP 教學課程中，只需知道，您可以免費使用本方案中 Web 應用程式。
+
+        az appservice plan create --name my-php-appservice-plan --resource-group my-php-app-group --sku FREE
+
+4. 在 `<app_name>` 中使用唯一名稱建立新的 Web 應用程式。
+
+        az appservice web create --name <app_name> --resource-group my-php-app-group --plan my-php-appservice-plan
+
+5. 使用下列命令，設定新 Web 應用程式的本機 Git 部署︰
+
+        az appservice web source-control config-local-git --name <app_name> --resource-group my-php-app-group
+
+    您會取得如下所示的 JSON 輸出，這表示已設定遠端 Git 儲存機制︰
+
+        {
+        "url": "https://<deployment_user>@<app_name>.scm.azurewebsites.net/<app_name>.git"
+        }
+
+6. 將 JSON 中的 URL 新增為本機儲存機制的 Git 遠端 (為了簡單起見，稱為 `azure`)。
+
+        git remote add azure https://<deployment_user>@<app_name>.scm.azurewebsites.net/<app_name>.git
+   
 <a name="configure"/>
 
 ## <a name="configure-the-azure-web-app"></a>設定 Azure Web 應用程式
 為了讓 Laravel 應用程式在 Azure 中運作，您必須注意幾件事。 您將對您所選擇的 PHP 架構進行此類似的練習。
 
-* 設定 PHP 5.5.9 或更高版本。 如需得完整的伺服器需求清單，請參閱 [最新的 Laravel 5.2 伺服器需求](https://laravel.com/docs/5.2#server-requirements) 。 清單的其餘部分是 Azure 的 PHP 安裝已啟用的擴充功能。 
-* 設定應用程式需要的環境變數。 Laravel 使用 `.env` 檔案來輕鬆設定環境變數。 不過，因為不會認可到原始檔控制 (請參閱 [Laravel 環境組態](https://laravel.com/docs/5.2/configuration#environment-configuration)，您將改以設定 Azure Web 應用程式的應用程式設定。
-* 請確定最先載入 Laravel 應用程式的進入點： `public/index.php`。 請參閱 [Laravel 生命週期概觀](https://laravel.com/docs/5.2/lifecycle#lifecycle-overview)。 換句話說，您必須設定 Web 應用程式的根目錄 URL 以指向 `public` 目錄。
+* 設定 PHP 5.6.4 或更高版本。 如需得完整的伺服器需求清單，請參閱[最新的 Laravel 5.3 伺服器需求](https://laravel.com/docs/5.3#server-requirements)。 清單的其餘部分是 Azure 的 PHP 安裝已啟用的擴充功能。 
+* 設定應用程式需要的環境變數。 Laravel 使用 `.env` 檔案來輕鬆設定環境變數。 不過，因為不會認可到原始檔控制 (請參閱 [Laravel 環境組態](https://laravel.com/docs/5.3/configuration#environment-configuration)，您將改以設定 Azure Web 應用程式的應用程式設定。
+* 請確定最先載入 Laravel 應用程式的進入點： `public/index.php`。 請參閱 [Laravel 生命週期概觀](https://laravel.com/docs/5.3/lifecycle#lifecycle-overview)。 換句話說，您必須設定 Web 應用程式的根目錄 URL 以指向 `public` 目錄。
 * 由於您有 composer.json，請在 Azure 中啟用編輯器擴充。 如此一來，當您使用 `git push`部署時，編輯器會替您取得所需的封裝。 這樣比較方便。 
   如果您未啟用編輯器自動化，則只需要從 `.gitignore` 檔案中移除 `/vendor`，在認可及部署程式碼時，Git 就會包含 ("un-ignores") `vendor` 目錄中的所有項目。
 
@@ -125,21 +153,23 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
 
 1. 設定 Laravel 應用程式需要的 PHP 版本。
    
-        azure site set --php-version 5.6
+        az appservice web config update --php-version 7.0 --name <app_name> --resource-group my-php-app-group
    
     您已完成設定 PHP 版本！ 
+
 2. 為您的 Azure Web 應用程式產生新的 `APP_KEY` ，並將它設為 Azure Web 應用程式的應用程式設定。
    
         php artisan key:generate --show
-        azure site appsetting add APP_KEY="<output_of_php_artisan_key:generate_--show>"
+        az appservice web config appsettings update --settings APP_KEY="<output_of_php_artisan_key:generate_--show>" --name <app_name> --resource-group my-php-app-group
+
 3. 此外，開啟 Laravel 偵錯以攔截任何怪異的 `Whoops, looks like something went wrong.` 頁面。
    
-        azure site appsetting add APP_DEBUG=true
+        az appservice web config appsettings update --settings APP_DEBUG=true --name <app_name> --resource-group my-php-app-group
    
     您已完成設定環境變數！
    
    > [!NOTE]
-   > 等一下，我們稍微放慢腳步，說明 Laravel 和 Azure 在這裡的運作情形。 Laravel 使用 `.env` 根目錄來提供環境變數給應用程式，您可以在其中找到 `APP_DEBUG=true` (以及 `APP_KEY=...`) 這一行。 這個變數在 `config/app.php` 是透過程式碼 `'debug' => env('APP_DEBUG', false),` 存取。 [env()](https://laravel.com/docs/5.2/helpers#method-env) 是 Laravel 協助程式方法，在幕後使用 PHP [getenv()](http://php.net/manual/en/function.getenv.php)。
+   > 等一下，我們稍微放慢腳步，說明 Laravel 和 Azure 在這裡的運作情形。 Laravel 使用 `.env` 根目錄來提供環境變數給應用程式，您可以在其中找到 `APP_DEBUG=true` (以及 `APP_KEY=...`) 這一行。 這個變數在 `config/app.php` 是透過程式碼 `'debug' => env('APP_DEBUG', false),` 存取。 [env()](https://laravel.com/docs/5.3/helpers#method-env) 是 Laravel 協助程式方法，在幕後使用 PHP [getenv()](http://php.net/manual/en/function.getenv.php)。
    > 
    > 不過，Git 會忽略 `.env`，因為根目錄中的 `.gitignore` 檔案會呼叫它。 簡單地說，本機 Git 儲存機制中的 `.env` 不會隨著其餘檔案一起推送至 Azure。 當然，您可以從 `.gitignore`中移除該行，但我們已聲明不建議將此檔案認可到原始檔控制。 您還是需要設法在 Azure 中指定這些環境變數。 
    > 
@@ -147,55 +177,50 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
    > 
    > 
 4. 最後兩項工作 (設定虛擬目錄及啟用編輯器) 需要 [Azure 入口網站](https://portal.azure.com)，請以您的 Azure 帳戶登入[入口網站](https://portal.azure.com)。
-5. 從左功能表開始，按一下 [應用程式服務]  >  **&lt;app_name>**  >  [工具]。
+5. 從左功能表開始，按一下 [應用程式服務]**App Services** > **&lt;app_name>** > [擴充功能]。
    
     ![Enable Composer for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-composer-tools.png)
    
-   > [!TIP]
-   > 如果您按一下 [設定] 而不是 [工具]，您將能夠存取 [應用程式設定] 刀鋒視窗，在其中設定 PHP 版本、應用程式設定和虛擬目錄，如同您剛才的做法一樣。 
-   > 
-   > 
-6. 按一下 [擴充功能]  >  ，新增擴充功能。
-7. 在 [選擇擴充功能] [刀鋒視窗](../azure-portal-overview.md)中，選取 [編輯器] (*刀鋒視窗*：水平開啟的入口網站頁面)。
-8. 在 [接受法律條款] 刀鋒視窗中按一下 [確定]。 
-9. 在 [新增擴充功能] 刀鋒視窗中按一下 [確定]。
+6. 按一下 [新增]，新增擴充功能。
+7. 在 [選擇擴充功能] [刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)中，選取 [編輯器] (*刀鋒視窗*：水平開啟的入口網站頁面)。
+8. 在 [接受法律條款] [刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)中按一下 [確定]。 
+9. 在 [新增擴充功能] [刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)中按一下 [確定]。
    
-    當 Azure 完成新增擴充功能後，您應該會在角落看到友善的快顯訊息，也會看到 [擴充功能] 刀鋒視窗中列出 [編輯器] ****。
+    當 Azure 完成新增擴充功能後，您應該會在角落看到友善的快顯訊息，也會看到 [擴充功能] [刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)中列出 [編輯器] ****。
    
     ![Extensions blade after enabling Composer for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-composer-end.png)
    
     您已完成啟用編輯器！
-10. 回到 Web 應用程式的刀鋒視窗，按一下 [設定]  >  [應用程式設定]。
+10. 回到 Web 應用程式的[資源刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)，按一下 [應用程式設定]。
     
      ![Access Settings blade to set virtual directory for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-virtual-dir-settings.png)
     
-     在 [應用程式設定]  刀鋒視窗中，注意您先前設定的 PHP 版本︰
+     在 [應用程式設定] [刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)中，注意您先前設定的 PHP 版本︰
     
-     ![PHP version in Settings blade for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-virtual-dir-settings-a.png)
+     ![PHP version in Settings blade for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-virtual-dir-settings-a-cli2.png)
     
      以及您新增的應用程式設定︰
     
      ![App settings in Settings blade for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-virtual-dir-settings-b.png)
-11. 捲動至刀鋒視窗的底部，變更根虛擬目錄來指向 **site\wwwroot\public** 而不是 **site\wwwroot**。
+11. 捲動至[刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)的底部，變更根虛擬目錄來指向 **site\wwwroot\public** 而不是 **site\wwwroot**。
     
      ![Set virtual directory for your PHP (Laravel) app in Azure](./media/app-service-web-php-get-started/configure-virtual-dir-public.png)
-12. 按一下刀鋒視窗頂端的 [儲存]  。
+12. 按一下[刀鋒視窗](../azure-resource-manager/resource-group-portal.md#manage-resources)頂端的 [儲存]。
     
      您已完成設定虛擬目錄！ 
 
 ## <a name="deploy-your-web-app-with-git-and-setting-environment-variables"></a>使用 Git (和設定環境變數) 部署 Web 應用程式
 您現在可以開始部署程式碼。 您將回到命令提示字元或終端機來執行此工作。
 
-1. 認可所有變更，並將程式碼部署至 Azure Web 應用程式，如同在任何 Git 儲存機制中的做法一樣︰
+1. 將程式碼推送到 Azure Web 應用程式，就像進行任何 Git 儲存機制︰
    
-        git add .
-        git commit -m "Hurray! My first commit for my Azure app!"
         git push azure master 
    
-    當執行 `git push`，系統會要求您提供 Git 部署密碼。 如果您稍早要求在 `azure site create` 中建立部署認證，請輸入您所使用的密碼。
+    出現提示時，請使用您稍早建立的認證。
+
 2. 讓我們執行此命令來看它在瀏覽器中執行的情形︰
    
-        azure site browse
+        az appservice web browse --name <app_name> --resource-group my-php-app-group
    
     瀏覽器應該會顯示 Laravel 啟動顯示畫面。
    
@@ -244,7 +269,7 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
 ## <a name="next-steps"></a>後續步驟
 了解如何 [在 Azure 中建立 MySQL 資料庫](../store-php-create-mysql-database.md)，將資料加入至您的應用程式。 此外，關於 Azure 中的 PHP，請查看以下更有用的連結︰
 
-* [PHP 開發人員中心](/develop/php/)。
+* [PHP 開發人員中心](/develop/php/)
 * [從 Azure Marketplace 建立 Web 應用程式](app-service-web-create-web-app-from-marketplace.md)
 * [在 Azure App Service Web Apps 中設定 PHP](web-sites-php-configure.md)
 * [在 Azure App Service 中將 WordPress 轉換成多站台](web-sites-php-convert-wordpress-multisite.md)
@@ -253,6 +278,6 @@ ms.openlocfilehash: aafd6378709ec584bc1bfa0aeb8a1593c103dacb
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

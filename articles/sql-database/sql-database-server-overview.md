@@ -10,14 +10,14 @@ ms.assetid:
 ms.service: sql-database
 ms.custom: servers
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: 17e2830dceeaa313dd0fd7d406bf68a75b6f900e
+ms.sourcegitcommit: 79a9e72d29b5522dc3960b79bae7876f21acb4c5
+ms.openlocfilehash: 07181e5d35703cddf8a896badd45e7485c9e07a2
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 17e2830dceeaa313dd0fd7d406bf68a75b6f900e
 本主題提供使用 Azure SQL 邏輯伺服器的考量和指導方針。 如需 Azure SQL 資料庫的詳細資訊，請參閱 [SQL Database](sql-database-overview.md)。
 
 ## <a name="what-is-an-azure-sql-database-logical-server"></a>什麼是 Azure SQL Database 邏輯伺服器？
-Azure SQL Database 邏輯伺服器做為多個資料庫的中央管理點。 在 SQL Database 中，伺服器是邏輯建構，不同於您可能已熟悉運用在內部部署世界中的 SQL Server 執行個體。 具體來說，SQL Database 服務對於其邏輯伺服器相關之資料庫位置不提供任何保證，且不公開任何執行個體層級存取權或功能。 如需 Azure SQL 邏輯伺服器的詳細資訊，請參閱[邏輯伺服器](sql-database-server-overview.md)。 
+Azure SQL Database 邏輯伺服器做為多個資料庫的中央管理點。 在 SQL Database 中，伺服器是邏輯建構，不同於您可能已熟悉運用在內部部署世界中的 SQL Server 執行個體。 具體來說，SQL Database 服務對於其邏輯伺服器相關之資料庫位置不提供任何保證，且不公開任何執行個體層級存取權或功能。  
 
 Azure 資料庫邏輯伺服器：
 
@@ -85,6 +85,6 @@ Microsoft Azure SQL Database (包含 master 資料庫) 使用的預設資料庫�
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

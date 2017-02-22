@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure 分析服務文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何在雲端使用 Analysis Services 設定資料模型。 文件會示範如何使用表格式資料來建立企業 BI 解決方案。"
+services: analysis-services
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: analysis-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: fad85d382ef508b65b57559f7f52e079caae9363
-ms.openlocfilehash: 40c79ea2a68c69352d7f14bd138f8131b3b01da9
+ms.sourcegitcommit: 565dfcc4ca69badecff981057681bb7bd61d048d
+ms.openlocfilehash: 931102cca5799d0117fdaf056ac479edac8de776
 
 ---
 # <a name="analysis-services-documentation"></a>Analysis Services 文件
@@ -77,7 +88,7 @@ ms.openlocfilehash: 40c79ea2a68c69352d7f14bd138f8131b3b01da9
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/powershell/resourcemanager">PowerShell</a></p>
+                        <p><a href="/azure/analysis-services/analysis-services-powershell">PowerShell</a></p>
                     </div>
                 </div>
             </div>
@@ -97,18 +108,10 @@ ms.openlocfilehash: 40c79ea2a68c69352d7f14bd138f8131b3b01da9
     </li>
 </ul>
 
----
-
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/analysis-services.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Analysis Services 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+<!--HONumber=Feb17_HO2-->
 
 

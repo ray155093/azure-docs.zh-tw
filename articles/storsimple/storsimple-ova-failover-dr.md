@@ -1,5 +1,5 @@
 ---
-title: "StorSimple Virtual Array 的災害復原和裝置容錯移轉"
+title: "StorSimple Virtual Array 的災害復原和裝置容錯移轉 | Microsoft Docs"
 description: "深入了解如何容錯移轉 StorSimple Virtual Array。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 06/07/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 67cdf4e3d8e81d2ea419603918a3204dc6860ae7
+ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
+ms.openlocfilehash: 2017fcdc7a5c36c7c00d8bcef5be973ed60e3f82
 
 
 ---
@@ -125,7 +125,7 @@ DR 順利完成之後，來源裝置上雲端資料的擁有權會移轉給目�
 
 這段影片示範如何將 StorSimple 內部部署虛擬裝置容錯移轉至另一個虛擬裝置。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/StorSimple-Virtual-Array-Disaster-Recovery/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/StorSimple-Virtual-Array-Disaster-Recovery/player]
 > 
 > 
 
@@ -153,6 +153,6 @@ DR 順利完成之後，來源裝置上雲端資料的擁有權會移轉給目�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

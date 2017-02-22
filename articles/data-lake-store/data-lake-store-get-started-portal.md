@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Data Lake Store | Microsoft Docs"
-description: "使用入口網站來建立資料湖存放區帳戶，並在資料湖存放區中執行基本作業"
+title: "使用 Azure 入口網站來開始使用 Data Lake Store | Microsoft Docs"
+description: "使用 Azure 入口網站來建立 Data Lake Store 帳戶，並在 Data Lake Store 中執行基本作業"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/21/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 7d02b9fd741310a39aaadee0358af6c7b5990cf2
-ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: db53f991aab10bace2d253fa96f739f99640bd77
 
 
 ---
@@ -51,7 +51,7 @@ ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
 2. 按一下 [新增]，然後依序按一下 [資料 + 儲存體] 和 [Azure Data Lake Store]。 讀取 [Azure Data Lake Store] 刀鋒視窗中的資訊，然後按一下刀鋒視窗左上角的 [建立]。
 3. 在 [新增資料湖存放區]  刀鋒視窗中提供值，如以下擷取畫面所示：
    
-    ![建立新的 Azure 資料湖存放區帳戶](./media/data-lake-store-get-started-portal/ADL.Create.New.Account.png "Create a new Azure Data Lake account")
+    ![建立新的 Azure Data Lake Store 帳戶](./media/data-lake-store-get-started-portal/ADL.Create.New.Account.png "建立新的 Azure Data Lake 帳戶")
    
    * **名稱**。 輸入 Data Lake Store 帳戶的唯一名稱。
    * **訂用帳戶**。 選取您想要建立新 Data Lake Store 帳戶所在的訂用帳戶。
@@ -62,10 +62,10 @@ ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
      * (選擇性) 從下拉式清單選取 [不啟用加密] 以選擇不要加密。
      * (預設值) 如果您想要讓 Azure Data Lake Store 管理加密金鑰，請選取 [使用由 Azure Data Lake 管理的金鑰]。
        
-         ![Data Lake Store 加密](./media/data-lake-store-get-started-portal/adls-encryption-1.png "Data Lake Store encryption")
+         ![Data Lake Store 加密](./media/data-lake-store-get-started-portal/adls-encryption-1.png "Data Lake Store 加密")
      * (選擇性) 如果您想要使用 Azure 金鑰保存庫中的自有金鑰，請選取 [從 Azure 金鑰保存庫選擇金鑰]。 使用此選項時，您還可以建立金鑰保存庫帳戶和金鑰 (如果您還沒有這些項目)。
        
-         ![Data Lake Store 加密](./media/data-lake-store-get-started-portal/adls-encryption-2.png "Data Lake Store encryption")
+         ![Data Lake Store 加密](./media/data-lake-store-get-started-portal/adls-encryption-2.png "Data Lake Store 加密")
        
        按一下 [加密設定] 刀鋒視窗中的 [確定]。
        
@@ -80,7 +80,7 @@ ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
 
 1. 如果您使用 Azure 金鑰保存庫中的金鑰，Data Lake Store 帳戶的刀鋒視窗上方會顯示警告。 按一下警告即可開啟 [設定金鑰保存庫權限] 刀鋒視窗。
    
-    ![Data Lake Store 加密](./media/data-lake-store-get-started-portal/adls-encryption-3.png "Data Lake Store encryption")
+    ![Data Lake Store 加密](./media/data-lake-store-get-started-portal/adls-encryption-3.png "Data Lake Store 加密")
 2. 刀鋒視窗中會顯示兩個用來設定存取權的選項。
    
    * 在第一個選項中，按一下 [授與權限] 以設定存取權。 只有當建立 Data Lake Store 帳戶的使用者也是 Azure 金鑰保存庫的系統管理員時，才會啟用第一個選項。
@@ -90,32 +90,32 @@ ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
 您可以在您的 Azure 資料湖存放區帳戶下建立資料夾，用於管理與存放資料。
 
 1. 開啟您剛建立的資料湖存放區帳戶。 從左窗格按一下 [瀏覽]，按一下 [Data Lake Store]，然後從 [Data Lake Store] 刀鋒視窗中，按一下您要在其下建立資料夾的帳戶名稱。 如果您將帳戶釘選到開始面板，請按一下該帳戶磚。
-2. 在您的 [資料湖存放區帳戶] 刀鋒視窗中，按一下 [資料總管] 。
+2. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [資料總管] 。
    
-    ![在資料湖存放區帳戶中建立資料夾](./media/data-lake-store-get-started-portal/ADL.Create.Folder.png "Create folders in Data Lake Store account")
+    ![在 Data Lake Store 帳戶中建立資料夾](./media/data-lake-store-get-started-portal/ADL.Create.Folder.png "在 Data Lake Store 帳戶中建立資料夾")
 3. 在您的 [Data Lake Store] 刀鋒視窗中，按一下 [新增資料夾]，輸入新資料夾的名稱，然後按一下 [確定]。
    
-    ![在資料湖存放區帳戶中建立資料夾](./media/data-lake-store-get-started-portal/ADL.Folder.Name.png "Create folders in Data Lake Store account")
+    ![在 Data Lake Store 帳戶中建立資料夾](./media/data-lake-store-get-started-portal/ADL.Folder.Name.png "在 Data Lake Store 帳戶中建立資料夾")
    
     新建立的資料夾將會列在 [資料總管]  刀鋒視窗中。 您可以建立任何層級的巢狀資料夾。
    
-    ![在資料湖帳戶中建立資料夾](./media/data-lake-store-get-started-portal/ADL.New.Directory.png "Create folders in Data Lake account")
+    ![在 Data Lake 帳戶中建立資料夾](./media/data-lake-store-get-started-portal/ADL.New.Directory.png "在 Data Lake 帳戶中建立資料夾")
 
 ## <a name="a-nameuploaddataaupload-data-to-azure-data-lake-store-account"></a><a name="uploaddata"></a>將資料上傳至 Azure 資料湖存放區帳戶
 您可以直接在根層級將資料上傳至 Azure 資料湖存放區帳戶，或上傳至您在帳戶內建立的資料夾。 在下面的螢幕擷取畫面，遵循步驟從 [資料總管]  刀鋒視窗將檔案上傳至子資料夾。 在這個螢幕擷取畫面中，檔案會上傳到階層連結所示的子資料夾 (以紅色方塊標示)。
 
-如果您要尋找一些可上傳的範例資料，您可以從 **Azure 資料湖 Git 儲存機制** 取得 [Ambulance Data](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData)資料夾。
+如果您正在尋找一些可上傳的範例資料，您可以從 **Azure 資料湖 Git 儲存機制** 取得 [Ambulance Data](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData)資料夾。
 
-![上傳資料](./media/data-lake-store-get-started-portal/ADL.New.Upload.File.png "Upload data")
+![上傳資料](./media/data-lake-store-get-started-portal/ADL.New.Upload.File.png "上傳資料")
 
 ## <a name="a-namepropertiesaproperties-and-actions-available-on-the-stored-data"></a><a name="properties"></a>儲存資料的屬性和可用的動作
 按一下新加入的檔案以開啟 [屬性]  刀鋒視窗。 此刀鋒視窗提供檔案相關聯的屬性，以及您可以對檔案執行的動作。 您也可以在 Azure 資料湖存放區帳戶中複製檔案的完整路徑，如以下的螢幕擷取畫面中紅色方塊的反白顯示。
 
-![資料上的屬性](./media/data-lake-store-get-started-portal/ADL.File.Properties.png "Properties on the data")
+![資料屬性](./media/data-lake-store-get-started-portal/ADL.File.Properties.png "資料屬性")
 
 * 按一下 [預覽]  可直接從瀏覽器查看檔案的預覽。 您也可以指定預覽的格式。 按一下 [預覽]，按一下 [檔案預覽] 刀鋒視窗中的 [格式]，然後在 [檔案預覽格式] 刀鋒視窗中指定要顯示的資料列數目、使用的編碼、要使用的分隔符號等等選項。
   
-  ![檔案預覽格式](./media/data-lake-store-get-started-portal/ADL.File.Preview.png "File preview format")
+  ![檔案預覽格式](./media/data-lake-store-get-started-portal/ADL.File.Preview.png "檔案預覽格式")
 * 按一下 [下載]  將檔案下載到您的電腦。
 * 按一下 [重新命名檔案]  來重新命名檔案。
 * 按一下 [刪除檔案]  來刪除檔案。
@@ -126,7 +126,7 @@ ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
 ## <a name="delete-azure-data-lake-store-account"></a>刪除 Azure 資料湖存放區帳戶
 若要刪除 Azure 資料湖存放區帳戶，請從 [資料湖存放區] 刀鋒視窗按一下 [刪除] 。 為了確認此動作，將提示您輸入您要刪除的帳戶名稱。 輸入帳戶的名稱，然後按一下 [刪除] 。
 
-![刪除資料湖帳戶](./media/data-lake-store-get-started-portal/ADL.Delete.Account.png "Delete Data Lake account")
+![刪除 Data Lake 帳戶](./media/data-lake-store-get-started-portal/ADL.Delete.Account.png "刪除 Data Lake 帳戶")
 
 ## <a name="next-steps"></a>後續步驟
 * [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
@@ -137,6 +137,6 @@ ms.openlocfilehash: dfa7a41c7acd71eca39ac1360b1699bed9309e09
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

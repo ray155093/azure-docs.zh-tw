@@ -1,5 +1,5 @@
 ---
-title: "虛擬機器上的 Tomcat | Microsoft Docs"
+title: "在傳統 Azure VM 上執行 Java 應用程式伺服器 | Microsoft Docs"
 description: "本教學課程使用以傳統部署模型建立的資源，示範如何建立 Windows 虛擬機器，並將其設定為執行 Apache Tomcat 應用程式伺服器。"
 services: virtual-machines-windows
 documentationcenter: java
@@ -13,11 +13,11 @@ ms.workload: web
 ms.tgt_pltfrm: vm-windows
 ms.devlang: Java
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 01/23/2017
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 75388bba3084099fcea8d9ec1f3a2c1e909e914f
+ms.sourcegitcommit: 7b621733e09a1ba4e21152d7670a8936e3944521
+ms.openlocfilehash: 4503610eb8ef2e690e028667ebbf64e865af7134
 
 
 ---
@@ -155,6 +155,6 @@ Azure 可讓您利用虛擬機器來提供伺服器功能。 例如，於 Azure 
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

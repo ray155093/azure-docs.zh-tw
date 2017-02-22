@@ -12,19 +12,21 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: mijiang
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 21c05684055a98fecd214fb8291147d3cfefe13a
-
+ms.sourcegitcommit: a0580f8d303c7ce33a65f0ce6faecf2492f851b0
+ms.openlocfilehash: f4f3ee081d7c89fb5bc01552cb2e3ce01dd5381a
 
 ---
 # <a name="azure-api-management-faqs"></a>Azure API 管理常見問題集
 得到 Azure API 管理常見問題、模式和最佳作法的答案。
 
-## <a name="frequently-asked-questions"></a>常見問題集
+## <a name="contact-us"></a>與我們連絡
 * [如何向 Microsoft Azure API 管理小組詢問問題？](#how-can-i-ask-the-microsoft-azure-api-management-team-a-question)
+
+
+## <a name="frequently-asked-questions"></a>常見問題集
 * [功能預覽中是什麼意思？](#what-does-it-mean-when-a-feature-is-in-preview)
 * [如何保護 API 管理閘道與後端服務之間的連線安全？](#how-can-i-secure-the-connection-between-the-api-management-gateway-and-my-back-end-services)
 * [如何將我的 API 管理服務執行個體複製到新的執行個體？](#how-do-i-copy-my-api-management-service-instance-to-a-new-instance)
@@ -144,11 +146,11 @@ API 管理會在部署到多個地理位置時，使用[效能流量路由方法
  是。 API 管理能搭配 Azure ExpressRoute 運作。
 
 ### <a name="can-i-move-an-api-management-service-from-one-subscription-to-another"></a>可以將 API 管理服務從某一個訂用帳戶移至另一個嗎？
- 是。 若要了解作法，請參閱[將資源移至新的資源群組或訂用帳戶](../resource-group-move-resources.md)。
+ 是。 若要了解作法，請參閱[將資源移至新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

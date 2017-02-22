@@ -8,7 +8,7 @@ author: ddove
 editor: 
 ms.assetid: cbe0aa2b-17e3-4b6f-a16f-6ebc1f5a66af
 ms.service: sql-database
-ms.custom: elastic
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: fb40d7d98486ddd74bc6f0151a816c171efa4ba4
+ms.sourcegitcommit: e210fb7ead88a9c7f82a0d0202a1fb31043456e6
+ms.openlocfilehash: 045e4486920f147a66b2ea81552ce1b75aa119c2
 
 
 ---
 # <a name="installing-elastic-database-jobs-overview"></a>安裝彈性資料庫工作概觀
 您可以透過 PowerShell 或透過「Azure 傳統入口網站」安裝[**彈性資料庫工作**](sql-database-elastic-jobs-overview.md)。只有在安裝 PowerShell 套件的情況下，您才能取得可使用 PowerShell API 來建立和管理工作的存取權。 此外，PowerShell API 目前比入口網站提供更多的功能。
 
-如果您已透過「入口網站」從現有的「彈性資料庫集區」安裝「彈性資料庫工作」，最新的 Powershell 預覽版便會包括可升級現有安裝的指令碼。 強烈建議將安裝升級至最新的 **彈性資料庫工作** 元件，以利用透過 PowerShell API 公開的新功能。
+如果您已透過「入口網站」從現有的「彈性集區」安裝「彈性資料庫工作」，最新的 Powershell 預覽版包含可升級現有安裝的指令碼。 強烈建議將安裝升級至最新的 **彈性資料庫工作** 元件，以利用透過 PowerShell API 公開的新功能。
 
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 如需免費試用版，請參閱 [免費試用版](https://azure.microsoft.com/pricing/free-trial/)。
@@ -147,11 +147,11 @@ ms.openlocfilehash: fb40d7d98486ddd74bc6f0151a816c171efa4ba4
 </table>
 
 ## <a name="install-the-elastic-database-jobs-components-using-the-portal"></a>使用入口網站安裝彈性資料庫工作元件
-一旦 [建立了彈性資料庫集區](sql-database-elastic-pool-create-portal.md)，您就可以安裝 **彈性資料庫工作** 元件，以對彈性資料庫集區中的每個資料庫啟用系統管理工作的執行。 不同於使用 **彈性資料庫工作** PowerShell API 時，入口網站介面目前限制為只針對現有的集區執行。
+在[建立彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)之後，您可以安裝「彈性資料庫工作」元件，以便能夠對彈性集區中的每個資料庫執行系統管理工作。 不同於使用 **彈性資料庫工作** PowerShell API 時，入口網站介面目前限制為只針對現有的集區執行。
 
 **預估完成時間：** 10 分鐘。
 
-1. 透過 [Azure 入口網站](https://portal.azure.com/#)，從彈性資料庫集區的儀表板檢視按一下 [建立工作]。
+1. 透過 [Azure 入口網站](https://portal.azure.com/#)，從彈性集區的儀表板檢視按一下 [建立工作]。
 2. 如果您是第一次建立工作，則必須按一下 [預覽條款] 來安裝「彈性資料庫工作」。
 3. 然後按一下核取方塊接受條款。
 4. 在 [安裝服務] 檢視中，按一下 [工作認證] 。
@@ -170,7 +170,7 @@ ms.openlocfilehash: fb40d7d98486ddd74bc6f0151a816c171efa4ba4
 如果需要解除安裝，請刪除資源群組。 請參閱 [如何解除安裝彈性資料庫工作元件](sql-database-elastic-jobs-uninstall.md)。
 
 ## <a name="next-steps"></a>後續步驟
-確定在群組中的每個資料庫上建立具備適當指令碼執行權限的認證，如需詳細資訊，請參閱[保護您的 SQL Database](sql-database-security.md)。
+確定在群組中的每個資料庫上建立具備適當指令碼執行權限的認證，如需詳細資訊，請參閱[保護您的 SQL Database](sql-database-manage-logins.md)。
 請參閱[建立和管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)以開始進行。
 
 <!--Image references-->
@@ -181,6 +181,6 @@ ms.openlocfilehash: fb40d7d98486ddd74bc6f0151a816c171efa4ba4
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

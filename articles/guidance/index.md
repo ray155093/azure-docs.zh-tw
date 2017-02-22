@@ -1,24 +1,20 @@
 ---
-title: "Azure 指引 | Microsoft Docs"
+title: "Azure 指導文件 - 教學課程 | Microsoft Docs"
 description: "Azure 的最佳做法和指引"
-services: 
-documentationcenter: na
-author: bennage
-manager: marksou
-editor: 
-tags: 
-ms.assetid: de94c74a-fea7-4815-8484-553e421a7490
+services: guidance
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
 ms.service: guidance
-ms.devlang: na
-ms.topic: article
 ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 08/17/2016
-ms.author: christb
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 5f3ced657cf3d6587a63789b3dd3ca41cd2856f0
-ms.openlocfilehash: 0061e1ff2ae2d6b8ed7b7c3bb60405e76d4cc91b
-
+ms.sourcegitcommit: f5ced8f436f4d1426e4d2b307fcfb6b644e94aaf
+ms.openlocfilehash: c05d311633b9c9aa5490e55baafe83376d0c8fbc
 
 ---
 # <a name="azure-guidance"></a>Azure 指導
@@ -93,7 +89,7 @@ Microsoft 模式和做法團隊是 Azure 客戶諮詢團隊的一部分。 我�
     雲端設計模式是設計模式和相關指導主題的程式庫， 它以說明每個部分如何與雲端應用程式架構相符的方式，明確表達出套用模式的優點。
 * [雲端應用程式的效能最佳化](https://github.com/mspnp/performance-optimization)
   
-    本指導在探索會妨礙應用程式在負載之下進行調整的一般反向模式。 它包含了 8 個範例，說明反向模式和[初級效能分析](https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md)，以及[評估關鍵評量效能](https://github.com/mspnp/performance-optimization/blob/master/Assessing-System-Performance-Against-KPI.md)的指南。
+    本指導在探索會妨礙應用程式在負載之下進行調整的一般反向模式。 它包含了&8; 個範例，說明反向模式和[初級效能分析](https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md)，以及[評估關鍵評量效能](https://github.com/mspnp/performance-optimization/blob/master/Assessing-System-Performance-Against-KPI.md)的指南。
 
 ## <a name="reference-architectures"></a>參考架構
 我們的參考架構會依案例編排。
@@ -157,6 +153,6 @@ Microsoft 模式和做法團隊是 Azure 客戶諮詢團隊的一部分。 我�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 12/05/2016
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 7167048a287bee7c26cfc08775dcb84f9e7c2eed
-ms.openlocfilehash: 73eec3322f8ee027c68ede89501b8b9fb00961a6
+ms.sourcegitcommit: f24227a33b2106955dc44defe8feb5a7d4dc655e
+ms.openlocfilehash: 6f6338d8c0e941b7fee4fb8c04315b26919716a3
 
 ---
 
@@ -148,18 +148,18 @@ Azure Resource Manager 自動化指令碼會產生 Resource Manager 範本、參
 }
 ```
 
-如果使用範本參數來提供屬性值，則需建立這些參數。 建立受保護設定值的範本參數時，請務必使用 `SecureObject` 參數類型，以便確保敏感值的安全。 如需使用參數的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
+如果使用範本參數來提供屬性值，則需建立這些參數。 建立受保護設定值的範本參數時，請務必使用 `SecureString` 參數類型，以便確保敏感值的安全。 如需使用參數的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 在 `IaasDiagnostic` 擴充功能的範例中，Resource Manager 範本的 parameters 區段中會建立下列參數。
 
 ```json
 "storageAccountName": {
     "defaultValue": null,
-    "type": "SecureObject"
+    "type": "SecureString"
 },
 "storageAccountKey": {
     "defaultValue": null,
-    "type": "SecureObject"
+    "type": "SecureString"
 }
 ```
 
@@ -167,6 +167,6 @@ Azure Resource Manager 自動化指令碼會產生 Resource Manager 範本、參
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

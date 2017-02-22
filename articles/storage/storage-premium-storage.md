@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/28/2016
 ms.author: yuemlu
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: de35dd48aa8a24fab7426ccc29fda318ea186186
+ms.sourcegitcommit: d943e28507de9675d30e662354ca811fbd8c1b4a
+ms.openlocfilehash: 4a611ece107c4729f161d52f96f2075ed7cd5a90
 
 
 ---
@@ -101,23 +101,9 @@ Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。 �
 ### <a name="premium-storage-account-limits"></a>進階儲存體帳戶限制
 進階儲存體帳戶有下列延展性目標：
 
-<table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
-<tbody>
-<tr>
-    <td><strong>總帳戶容量</strong></td>
-    <td><strong>本地備援儲存體帳戶總頻寬</strong></td>
-</tr>
-<tr>
-    <td>
-    <ul>
-       <li type=round>磁碟容量：35 TB</li>
-       <li type=round>快照容量：10 TB</li>
-    </ul>
-    </td>
-    <td>每秒最多 50 Gbps (輸入 + 輸出)</td>
-</tr>
-</tbody>
-</table>
+| 總帳戶容量 | 本地備援儲存體帳戶總頻寬 |
+| --- | --- | 
+| 磁碟容量：35 TB <br>快照容量：10 TB | 每秒最多 50 Gbps (輸入 + 輸出) |
 
 * 輸入是指傳送至某個儲存體帳戶的所有資料 (要求)。
 * 輸出是指從某個儲存體帳戶接收的所有資料 (回應)。
@@ -129,34 +115,11 @@ Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。 �
 ### <a name="premium-storage-disks-limits"></a>進階儲存體磁碟限制
 當您為某個 Premium 儲存體帳戶佈建磁碟時，其每秒的輸入/輸出作業 (IOPS) 和輸送量 (頻寬) 取決於磁碟大小。 目前有三種類型的 Premium 儲存體磁碟：P10、P20 及 P30。 每種各有特定的 IOPS 和輸送量限制，如下表所示：
 
-<table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
-<tbody>
-<tr>
-    <td><strong>進階儲存體磁碟類型</strong></td>
-    <td><strong>P10</strong></td>
-    <td><strong>P20</strong></td>
-    <td><strong>P30</strong></td>
-</tr>
-<tr>
-    <td><strong>磁碟大小</strong></td>
-    <td>128 GB</td>
-    <td>512 GB</td>
-    <td>1024 GB (1 TB)</td>
-</tr>
-<tr>
-    <td><strong>每一磁碟的 IOPS</strong></td>
-    <td>500</td>
-    <td>2300</td>
-    <td>5000</td>
-</tr>
-<tr>
-    <td><strong>每一磁碟的輸送量</strong></td>
-    <td>每秒 100 MB </td>
-    <td>每秒 150 MB </td>
-    <td>每秒 200 MB </td>
-</tr>
-</tbody>
-</table>
+|進階儲存體磁碟類型 | P10 | P20 | P30 |
+| --- | --- | --- | --- |
+| 磁碟大小 | 128 GB | 512 GB | 1024 GB (1 TB) |
+| 每一磁碟的 IOPS | 500 | 2300 | 5000 |
+每一磁碟的輸送量 | 每秒 100 MB | 每秒 150 MB | 每秒 200 MB |
 
 > [!NOTE]
 > 請確定您的 VM 上有足夠的頻寬可用來運送磁碟流量，如本文稍早 [進階儲存體支援的 VM](#ds-dsv2-and-gs-series-vms) 一節所述。 否則，您的磁碟輸送量和 IOPS 將會根據 VM 限制而不是上表所述的磁碟限制而受限於較低的值。  
@@ -174,32 +137,14 @@ Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。 �
   > 
 * **IO 大小**：輸入/輸出 (I/O) 單位大小為 256 KB。 如果要傳送的資料少於 256 KB，會視為單一 I/O 單位。 較大的 I/O 大小則會視為大小是 256 KB 的多個 I/O。 例如，1100 KB 的 I/O 會視為五個 I/O 單位。
 * **輸送量**：輸送量限制包含寫入至磁碟，以及從磁碟而不是從快取的讀取。 例如，P10 磁碟有每秒 100 MB 的每一磁碟輸送量。 P10 磁碟的有效輸送量範例如下：
+
+| 每個 P10 磁碟的輸送量上限 | 從磁碟的非快取讀取 | 對磁碟的非快取寫入 |
+| --- | --- | --- |
+| 每秒 100 MB | 每秒 100 MB | 0 |
+| 每秒 100 MB | 0 | 每秒 100 MB |
+| 每秒 100 MB | 每秒 60 MB | 每秒 40 MB |
   
-  <table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
-  <tbody>
-  <tr>
-    <td><strong>每個 P10 磁碟的輸送量上限</strong></td>
-    <td><strong>從磁碟的非快取讀取</strong></td>
-    <td><strong>對磁碟的非快取寫入</strong></td>
-  </tr>
-  <tr>
-    <td>每秒 100 MB</td>
-    <td>每秒 100 MB</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>每秒 100 MB</td>
-    <td>0</td>
-    <td>每秒 100 MB</td>
-  </tr>
-  <tr>
-    <td>每秒 100 MB </td>
-    <td>每秒 60 MB </td>
-    <td>每秒 40 MB </td>
-  </tr>
-  </tbody>
-  </table>
-* **快取命中數**：快取命中數不會受到磁碟配置 IOPS/輸送量的限制。 例如，當您在「進階儲存體」支援的 VM 上使用具有 ReadOnly 快取設定的資料磁碟時，從快取提供的「讀取數」並不受「進階儲存體」磁碟限制約束。 因此，如果工作負載以讀取為主，可以從磁碟獲得極高的輸送量。 請注意，快取會根據 VM 大小，受到 VM 層級個別 IOPS / 輸送量的限制。 DS 系列 VM 大約有 4000 IOPS，快取與本機 SSD IO 是每個核心 33 MB/秒。 GS 系列 VM 的限制為 5000 IOPS，而快取與本機 SSD IO 是每個核心 50 MB/秒。
+* **快取命中數**：快取命中數不會受到磁碟配置 IOPS/輸送量的限制。 例如，當您在「進階儲存體」支援的 VM 上使用具有 ReadOnly 快取設定的資料磁碟時，從快取提供的「讀取數」並不受限。因此，如果工作負載是以讀取為主，就可以從磁碟獲得極高的輸送量。 請注意，快取會根據 VM 大小，受到 VM 層級個別 IOPS / 輸送量的限制。 DS 系列 VM 大約有 4000 IOPS，快取與本機 SSD IO 是每個核心 33 MB/秒。 GS 系列 VM 的限制為 5000 IOPS，而快取與本機 SSD IO 是每個核心 50 MB/秒。
 
 ## <a name="throttling"></a>節流
 如果您的應用程式 IOPS 或輸送量超過進階儲存體磁碟的配置限制，或如果您在 VM 上所有磁碟的磁碟總流量超過 VM 可用的磁碟頻寬限制，您可能會看到節流。 若要避免節流，建議您根據佈建之磁碟的延展性和效能目標，以及根據 VM 可用的磁碟頻寬，來限制磁碟的擱置 I/O 要求數。  
@@ -231,26 +176,11 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 
 下列限制適用於進階儲存體 Blob 快照︰
 
-<table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
-<tbody>
-<tr>
-    <td><strong>進階儲存體限制</strong></td>
-    <td><strong>值</strong></td>
-</tr>
-<tr>
-    <td>最大 每個 Blob 的快照數目</td>
-    <td>100</td>
-</tr>
-<tr>
-    <td>快照的儲存體帳戶容量 (只包含快照中的資料，不包含基底 Blob 中的資料)。</td>
-    <td>10 TB</td>
-</tr>
-<tr>
-    <td>最小 連續快照之間的時間</td>
-    <td>10 分鐘</td>
-</tr>
-</tbody>
-</table>
+| 進階儲存體限制 | 值 |
+| --- | --- |
+| 最大 每個 Blob 的快照數目 | 100 |
+| 快照的儲存體帳戶容量 (只包含快照中的資料，不包含基底 Blob 中的資料) | 10 TB |
+| 最小 連續快照之間的時間 | 10 分鐘 |
 
 若要維護快照集的異地備援副本，您可以使用 AzCopy 或「複製 Blob」，將進階儲存體帳戶中的快照複製到異地備援的標準儲存體帳戶。 如需詳細資訊，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)和[複製 Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx)。
 
@@ -269,97 +199,29 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 
 以下是我們驗證能使用 Premium 儲存體的 Linux 散發套件。 我們建議您升級 VM 到至少其中一個版本 (或更新版本)，以便獲得 Premium 儲存體較佳的效能和穩定性。 此外，部分版本需要最新的 LIS (適用於 Microsoft Azure 的 Linux Integration Services v4.0)。 請依照下面提供的連結進行下載及安裝。 當我們完成其他驗證後，將繼續在清單中新增更多映像。 請注意，我們的驗證顯示效能依映像而有所不同，而且也取決於工作負載特性和映像上的設定。 不同的映像已針對不同種類的工作負載進行調整。
 
-<table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
-<tbody>
-<tr>
-    <td><strong>配送映像</strong></td>
-    <td><strong>版本</strong></td>
-    <td><strong>支援的核心</strong></td>
-    <td><strong>詳細資料</strong></td>
-</tr>
-<tr>
-    <td rowspan="2"><strong>Ubuntu</strong></td>
-    <td>12.04</td>
-    <td>3.2.0-75.110+</td>
-    <td>Ubuntu-12_04_5-LTS-amd64-server-20150119-en-us-30GB</td>
-</tr>
-<tr>
-    <td>14.04+</td>
-    <td>3.13.0-44.73+</td>
-    <td>Ubuntu-14_04_1-LTS-amd64-server-20150123-en-us-30GB</td>
-</tr>
-<tr>
-    <td><strong>Debian</strong></td>
-    <td>7.x、8.x</td>
-    <td>3.16.7-ckt4-1+</td>
-    <td> </td>
-</tr>
-<tr>
-    <td rowspan="2"><strong>SUSE</strong></td>
-    <td>SLES 12</td>
-    <td>3.12.36-38.1+</td>
-    <td>suse-sles-12-priority-v20150213<br>suse-sles-12-v20150213</td>
-</tr>
-<tr>
-    <td>SLES 11 SP4</td>
-    <td>3.0.101-0.63.1+</td>
-    <td> </td>
-</tr>
-<tr>
-    <td><strong>CoreOS</strong></td>
-    <td>584.0.0+</td>
-    <td>3.18.4+</td>
-    <td>CoreOS 584.0.0</td>
-</tr>
-<tr>
-    <td rowspan="2"><strong>CentOS</strong></td>
-    <td>6.5、6.6、6.7、7.0</td>
-    <td></td>
-    <td>
-        <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409"> LIS4 (必要) </a> <br/>
-        *請參閱下方注意事項*
-    </td>
-</tr>
-<tr>
-    <td>7.1+</td>
-    <td>3.10.0-229.1.2.el7+</td>
-    <td>
-        <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409"> LIS4 (建議使用) </a> <br/>
-        *請參閱下方注意事項*
-    </td>
-</tr>
-<tr>
-    <td><strong>RHEL</strong></td>
-    <td>6.8+、7.2+</td>
-    <td> </td>
-    <td></td>
-</tr>
-<tr>
-    <td rowspan="3"><strong>Oracle</strong></td>
-    <td>6.8+、7.2+</td>
-    <td> </td>
-    <td> UEK4 或 RHCK </td>
-
-</tr>
-<tr>
-    <td>7.0-7.1</td>
-    <td> </td>
-    <td>UEK4 或 RHCK 搭配 <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409">LIS 4.1+</a></td>
-</tr>
-<tr>
-    <td>6.4-6.7</td>
-    <td></td>
-    <td>UEK4 或 RHCK 搭配 <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409">LIS 4.1+</a></td>
-</tr>
-</tbody>
-</table>
+| 配送映像 | 版本 | 支援的核心 | 詳細資料 |
+| --- | --- | --- | --- |
+| Ubuntu | 12.04 | 3.2.0-75.110+ | Ubuntu-12_04_5-LTS-amd64-server-20150119-en-us-30GB |
+| Ubuntu | 14.04 | 3.13.0-44.73+ | Ubuntu-14_04_1-LTS-amd64-server-20150123-en-us-30GB |
+| Debian | 7.x、8.x | 3.16.7-ckt4-1+ | &nbsp; |
+| SUSE | SLES 12| 3.12.36-38.1+| suse-sles-12-priority-v20150213 <br> suse-sles-12-v20150213 |
+| SUSE | SLES 11 SP4 | 3.0.101-0.63.1+ | &nbsp; |
+| CoreOS | 584.0.0+| 3.18.4+ | CoreOS 584.0.0 |
+| CentOS | 6.5、6.6、6.7、7.0 | &nbsp; | [LIS4 (必要)](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409) <br> *請參閱下方注意事項* |
+| CentOS | 7.1+ | 3.10.0-229.1.2.el7+ | [LIS4 (建議使用) ](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409) <br> *請參閱下方注意事項* |
+| RHEL | 6.8+、7.2+ | &nbsp; | &nbsp; |
+| Oracle | 6.0+, 7.2+ | &nbsp; | UEK4 或 RHCK |
+| Oracle | 7.0-7.1 | &nbsp; | UEK4 或 RHCK w/[LIS 4.1+](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409) |
+| Oracle | 6.4-6.7 | &nbsp; | UEK4 或 RHCK w/[LIS 4.1+](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409) |
 
 
 ### <a name="lis-drivers-for-openlogic-centos"></a>Openlogic CentOS 的 LIS 驅動程式
 執行 OpenLogic CentOS VM 的客戶應該執行下列命令以安裝最新的驅動程式：
 
-    sudo rpm -e hypervkvpd  ## (may return error if not installed, that's OK)
-    sudo yum install microsoft-hyper-v
+```
+sudo rpm -e hypervkvpd  ## (may return error if not installed, that's OK)
+sudo yum install microsoft-hyper-v
+```
 
 您需要重新開機才能啟動驅動程式。
 
@@ -384,8 +246,7 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 ## <a name="backup"></a>備份
 使用進階儲存體的虛擬機器可使用 Azure 備份進行備份。 [其他詳細資訊](../backup/backup-azure-vms-first-look-arm.md)。
 
-## <a name="quick-start"></a>快速啟動
-## <a name="create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk"></a>為虛擬機器資料磁碟建立和使用 Premium 儲存體帳戶
+## <a name="quick-start-create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk"></a>快速入門：為虛擬機器資料磁碟建立和使用進階儲存體帳戶
 在這一節中，我們將使用 Azure 入口網站、Azure PowerShell 和 Azure CLI 示範下列案例︰
 
 * 如何建立進階儲存體帳戶。
@@ -393,7 +254,11 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 * 如何變更已連接到虛擬機器的資料磁碟的磁碟快取原則：
 
 ### <a name="create-an-azure-virtual-machine-using-premium-storage-via-the-azure-portal"></a>透過 Azure 入口網站使用進階儲存體來建立 Azure 虛擬機器
-#### <a name="i-create-a-premium-storage-account-in-azure-portal"></a>I. 在 Azure 入口網站中建立進階儲存體帳戶
+
+若要在進階儲存體中建立虛擬機器，您必須先建立進階儲存體帳戶。
+
+#### <a name="create-a-premium-storage-account-in-azure-portal"></a>在 Azure 入口網站中建立進階儲存體帳戶
+
 本節說明如何使用 Azure 入口網站來建立進階儲存體帳戶。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。 如果您還沒有訂用帳戶，請參考 [免費試用](https://azure.microsoft.com/pricing/free-trial/) 方案。
@@ -406,7 +271,7 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
    > 儲存體帳戶名稱必須在 Azure 中是獨一無二的。 Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
    > 
    > 
-4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。  是建議的部署模型。 如需詳細資訊，請參閱 [了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
+4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。  是建議的部署模型。 如需詳細資訊，請參閱 [了解資源管理員部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
 5. 將儲存體帳戶的效能層指定為 [進階] 。
 6. **本地備援儲存體 (LRS)** 是進階儲存體唯一可用的複寫選項。 如需 Azure 儲存體複寫選項的詳細資訊，請參閱下方的 [Azure 儲存體複寫](storage-redundancy.md)。
 7. 選取您要在其中建立新儲存體帳戶的訂用帳戶。
@@ -414,19 +279,22 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 9. 選取儲存體帳戶的地理位置。 您可以參考 [依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services)，來確認進階儲存體是否可在選取的位置使用。
 10. 按一下 [建立]  建立儲存體帳戶。
 
-#### <a name="ii-create-an-azure-virtual-machine-via-azure-portal"></a>II. 透過 Azure 入口網站建立 Azure 虛擬機器
+#### <a name="create-an-azure-virtual-machine-via-azure-portal"></a>透過 Azure 入口網站建立 Azure 虛擬機器
+
 您必須建立「進階儲存體」支援的 VM，才能使用「進階儲存體」。 請依照 [在 Azure 入口網站中建立 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 中的步驟來建立新的 DS、DSv2、GS 或 Fs 虛擬機器。
 
-#### <a name="iii-attach-a-premium-storage-data-disk-via-azure-portal"></a>III. 透過 Azure 入口網站連接進階儲存體資料磁碟
+#### <a name="attach-a-premium-storage-data-disk-via-azure-portal"></a>透過 Azure 入口網站連接進階儲存體資料磁碟
+
 1. 在 Azure 入口網站中尋找新的或現有的 DS、DSv2、GS 或 Fs VM。
 2. 在 VM 的 [所有設定] 中，移至 [磁碟]，然後按一下 [連接新項目]。
 3. 輸入資料磁碟的名稱，然後將 [類型] 選取為 [進階]。 選取所需的 [大小] 和 [主機快取] 設定。
    
-    ![進階磁碟][Image1]
+    ![進階磁碟](./media/storage-premium-storage/Azure_attach_premium_disk.png)
 
-請參閱 [如何在 Azure 入口網站中連接資料磁碟](../virtual-machines/virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的詳細步驟。
+    請參閱 [如何在 Azure 入口網站中連接資料磁碟](../virtual-machines/virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的詳細步驟。
 
-#### <a name="iv-change-disk-caching-policy-via-azure-portal"></a>IV. 透過 Azure 入口網站變更磁碟快取原則
+#### <a name="change-disk-caching-policy-via-azure-portal"></a>透過 Azure 入口網站變更磁碟快取原則
+
 1. 在 Azure 入口網站中尋找新的或現有的 DS、DSv2、GS 或 Fs VM。
 2. 在 VM 的 [所有設定] 中，移至 [磁碟]，然後按一下您要變更的磁碟。
 3. 將 [主機快取] 選項變更為所要的值：[無]、[唯讀] 或 [讀寫]
@@ -437,44 +305,58 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 > 
 
 ### <a name="create-an-azure-virtual-machine-using-premium-storage-via-azure-powershell"></a>透過 Azure PwerShell 使用 Premium 儲存體建立 Azure 虛擬機器
-#### <a name="i-create-a-premium-storage-account-in-azure-powershell"></a>I. 在 Azure PowerShell 中建立進階儲存體帳戶
+
+若要在進階儲存體中建立虛擬機器，您必須先建立進階儲存體帳戶。
+
+#### <a name="create-a-premium-storage-account-in-azure-powershell"></a>在 Azure PowerShell 中建立進階儲存體帳戶
+
 這個 PowerShell 範例示範如何建立新的 Premium 儲存體帳戶並將使用該帳戶的資料磁碟連接至新的 Azure 虛擬機器。
 
-1. 依照 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)中提供的步驟設定您的 PowerShell 環境。
-2. 啟動 PowerShell 主控台，連接至您的訂閱，並在主控台視窗中執行下列 PowerShell Cmdlet。 如此 PowerShell 陳述式所示，當您建立「進階儲存體」帳戶時，必須將 **Type** 參數指定為 **Premium_LRS**。
-   
-        New-AzureStorageAccount -StorageAccountName "yourpremiumaccount" -Location "West US" -Type "Premium_LRS"
+依照 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)中提供的步驟設定您的 PowerShell 環境。
 
-#### <a name="ii-create-an-azure-virtual-machine-via-azure-powershell"></a>II. 透過 Azure PowerShell 建立 Azure 虛擬機器
+啟動 PowerShell 主控台，連接至您的訂閱，並在主控台視窗中執行下列 PowerShell Cmdlet。 如此 PowerShell 陳述式所示，當您建立「進階儲存體」帳戶時，必須將 **Type** 參數指定為 **Premium_LRS**。
+ 
+```powershell  
+New-AzureStorageAccount -StorageAccountName "yourpremiumaccount" -Location "West US" -Type "Premium_LRS"
+```
+
+#### <a name="create-an-azure-virtual-machine-via-azure-powershell"></a>透過 Azure PowerShell 建立 Azure 虛擬機器
+
 接著建立新的 DS 系列 VM，並在主控台視窗中執行下列 PowerShell Cmdlet 以指定您要使用進階儲存體。 您可以使用相同的步驟建立 GS 系列 VM。 在命令中指定適當的 VM 大小。 例如針對 Standard_GS2︰
 
-        $storageAccount = "yourpremiumaccount"
-        $adminName = "youradmin"
-        $adminPassword = "yourpassword"
-        $vmName ="yourVM"
-        $location = "West US"
-        $imageName = "a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-R2-201409.01-en.us-127GB.vhd"
-        $vmSize ="Standard_DS2"
-        $OSDiskPath = "https://" + $storageAccount + ".blob.core.windows.net/vhds/" + $vmName + "_OS_PIO.vhd"
-        $vm = New-AzureVMConfig -Name $vmName -ImageName $imageName -InstanceSize $vmSize -MediaLocation $OSDiskPath
-        Add-AzureProvisioningConfig -Windows -VM $vm -AdminUsername $adminName -Password $adminPassword
-        New-AzureVM -ServiceName $vmName -VMs $VM -Location $location
+```powershell
+$storageAccount = "yourpremiumaccount"
+$adminName = "youradmin"
+$adminPassword = "yourpassword"
+$vmName ="yourVM"
+$location = "West US"
+$imageName = "a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-R2-201409.01-en.us-127GB.vhd"
+$vmSize ="Standard_DS2"
+$OSDiskPath = "https://" + $storageAccount + ".blob.core.windows.net/vhds/" + $vmName + "_OS_PIO.vhd"
+$vm = New-AzureVMConfig -Name $vmName -ImageName $imageName -InstanceSize $vmSize -MediaLocation $OSDiskPath
+Add-AzureProvisioningConfig -Windows -VM $vm -AdminUsername $adminName -Password $adminPassword
+New-AzureVM -ServiceName $vmName -VMs $VM -Location $location
+```
 
-#### <a name="iii-attach-a-premium-storage-data-disk-via-azure-powershell"></a>III. 透過 Azure PowerShell 連接進階儲存體資料磁碟
+#### <a name="attach-a-premium-storage-data-disk-via-azure-powershell"></a>透過 Azure PowerShell 連接進階儲存體資料磁碟
 如果您希望 VM 有更多磁碟空間，請在虛擬機器建立後，於主控台視窗中執行下列 PowerShell Cmdlet，以將新資料磁碟連接至現有的「進階儲存體」支援 VM：
 
-        $storageAccount = "yourpremiumaccount"
-        $vmName ="yourVM"
-        $vm = Get-AzureVM -ServiceName $vmName -Name $vmName
-        $LunNo = 1
-        $path = "http://" + $storageAccount + ".blob.core.windows.net/vhds/" + "myDataDisk_" + $LunNo + "_PIO.vhd"
-        $label = "Disk " + $LunNo
-        Add-AzureDataDisk -CreateNew -MediaLocation $path -DiskSizeInGB 128 -DiskLabel $label -LUN $LunNo -HostCaching ReadOnly -VM $vm | Update-AzureVm
+```powershell
+$storageAccount = "yourpremiumaccount"
+$vmName ="yourVM"
+$vm = Get-AzureVM -ServiceName $vmName -Name $vmName
+$LunNo = 1
+$path = "http://" + $storageAccount + ".blob.core.windows.net/vhds/" + "myDataDisk_" + $LunNo + "_PIO.vhd"
+$label = "Disk " + $LunNo
+Add-AzureDataDisk -CreateNew -MediaLocation $path -DiskSizeInGB 128 -DiskLabel $label -LUN $LunNo -HostCaching ReadOnly -VM $vm | Update-AzureVm
+```
 
-#### <a name="iv-change-disk-caching-policy-via-azure-powershell"></a>IV. 透過 Azure PowerShell 變更磁碟快取原則
+#### <a name="change-disk-caching-policy-via-azure-powershell"></a>透過 Azure PowerShell 變更磁碟快取原則
 若要更新磁碟快取原則，請記下所連接資料磁碟的 LUN 編號。 執行下列命令，將連接於 LUN 編號 2 的資料磁碟更新為 [唯讀]。
 
-        Get-AzureVM "myservice" -name "MyVM" | Set-AzureDataDisk -LUN 2 -HostCaching ReadOnly | Update-AzureVM
+```powershell
+Get-AzureVM "myservice" -name "MyVM" | Set-AzureDataDisk -LUN 2 -HostCaching ReadOnly | Update-AzureVM
+```
 
 > [!WARNING]
 > 變更 Azure 磁碟的快取設定會將目標磁碟中斷連接再重新連接。 如果它是作業系統磁碟，則會重新啟動 VM。 在變更磁碟快取設定之前，請先將可能受此中斷情況影響的所有應用程式/服務停止。
@@ -482,36 +364,53 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 > 
 
 ### <a name="create-an-azure-virtual-machine-using-premium-storage-via-the-azure-command-line-interface"></a>透過 Azure 命令列介面使用 Premium 儲存體建立 Azure 虛擬機器
+
 [Azure 命令列介面](../xplat-cli-install.md)(Azure CLI) 提供一組可與 Azure 平台搭配運作的開放原始碼跨平台命令。 下列範例示範如何使用 Azure CLI (版本 0.8.14 和更新版本) 建立進階儲存體帳戶、新的虛擬機器，並從進階儲存體帳戶連接新的資料磁碟。
 
-#### <a name="i-create-a-premium-storage-account-via-azure-cli"></a>I. 透過 Azure CLI 建立進階儲存體帳戶
-````
-azure storage account create "premiumtestaccount" -l "west us" --type PLRS
-````
+#### <a name="create-a-premium-storage-account-via-azure-cli"></a>透過 Azure CLI 建立進階儲存體帳戶
 
-#### <a name="ii-create-a-ds-series-virtual-machine-via-azure-cli"></a>II. 透過 Azure CLI 建立 DS 系列的虛擬機器
-    azure vm create -z "Standard_DS2" -l "west us" -e 22 "premium-test-vm"
-        "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_10-amd64-server-20150202-en-us-30GB" -u "myusername" -p "passwd@123"
+```
+azure storage account create "premiumtestaccount" -l "west us" --type PLRS
+```
+
+#### <a name="create-a-ds-series-virtual-machine-via-azure-cli"></a>透過 Azure CLI 建立 DS 系列的虛擬機器
+
+```
+azure vm create -z "Standard_DS2" -l "west us" -e 22 "premium-test-vm"
+    "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_10-amd64-server-20150202-en-us-30GB" -u "myusername" -p "passwd@123"
+```
 
 顯示虛擬機器的相關資訊
 
-    azure vm show premium-test-vm
+```
+azure vm show premium-test-vm
+```
 
-#### <a name="iii-attach-a-new-premium-data-disk-via-azure-cli"></a>III. 透過 Azure CLI 連接新的進階資料磁碟
-    azure vm disk attach-new premium-test-vm 20 https://premiumstorageaccount.blob.core.windows.net/vhd-store/data1.vhd
+#### <a name="attach-a-new-premium-data-disk-via-azure-cli"></a>透過 Azure CLI 連接新的進階資料磁碟
+
+```
+azure vm disk attach-new premium-test-vm 20 https://premiumstorageaccount.blob.core.windows.net/vhd-store/data1.vhd
+```
 
 顯示新資料磁碟的相關資訊
 
-    azure vm disk show premium-test-vm-premium-test-vm-0-201502210429470316
+```
+azure vm disk show premium-test-vm-premium-test-vm-0-201502210429470316
+```
 
-#### <a name="iv-change-disk-caching-policy"></a>IV. 變更磁碟快取原則
+#### <a name="change-disk-caching-policy"></a>變更磁碟快取原則
+
 若要使用 Azure CLI 變更其中一個磁碟上的快取原則，請執行下列命令：
 
-        $ azure vm disk attach -h ReadOnly <VM-Name> <Disk-Name>
+```
+$ azure vm disk attach -h ReadOnly <VM-Name> <Disk-Name>
+```
 
 請注意，快取原則選項可以是 ReadOnly、None 或 ReadWrite。 如需其他選項，請執行下列命令參閱說明：
 
-        azure vm disk attach --help
+```
+azure vm disk attach --help
+```
 
 > [!WARNING]
 > 變更 Azure 磁碟的快取設定會將目標磁碟中斷連接再重新連接。 如果它是作業系統磁碟，則會重新啟動 VM。 在變更磁碟快取設定之前，請先將可能受此中斷情況影響的所有應用程式/服務停止。
@@ -522,27 +421,35 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 1. **我是否可以將進階和標準資料磁碟都連接到「進階儲存體」支援的 VM？**
    
     是。 您可將進階和標準資料磁碟都連接到「進階儲存體」支援的系列 VM。
+
 2. **我是否可以將進階和標準資料磁碟都連接到 D、Dv2、G 或 F 系列 VM？**
    
     否。 您只能將標準資料磁碟連接到所有不屬於「進階儲存體」支援系列的 VM。
+
 3. **如果我從現有的 VHD (大小 為 80 GB) 建立進階資料磁碟，需要多少費用？**
    
     從 80 GB VHD 建立的進階資料磁碟會被視為下一個可用的進階磁碟大小 (P10 磁碟)。 我們將根據 P10 磁碟價格收費。
+
 4. **使用進階儲存體時是否有任何交易成本？**
    
     每個磁碟大小都有固定成本，其隨著特定數量的 IOPS 和輸送量佈建。 其他成本包括輸出頻寬和快照容量 (如果適用的話)。 如需詳細資料，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/) 。
+
 5. **我可以將「進階儲存體」支援之系列 VM 的開機診斷儲存在哪裡？**
    
     請建立標準儲存體帳戶來儲存「進階儲存體」支援之系列 VM 的開機診斷。
+
 6. **我可以從磁碟快取取得多少 IOPS 和輸送量？**
    
     DS 系列的快取和本機 SSD 合併限制是每個核心 4000 IOPS，以及每個核心每秒 33 MB。 GS 系列提供每個核心 5000 IOPS，以及每個核心每秒 50 MB。
+
 7. **「進階儲存體」支援之系列 VM 中的本機 SSD 是什麼？**
    
     本機 SSD 是「進階儲存體」支援之系列 VM 隨附的暫時儲存體。 暫時儲存體不需額外的成本。 建議您不要使用此暫時儲存體或本機 SSD 來儲存應用程式資料，因為它不會保存在 Azure Blob 儲存體中。
+
 8. **是否可以將標準儲存體帳戶轉換成進階儲存體帳戶？**
    
     否。 不可能將標準儲存體帳戶轉換成進階儲存體帳戶 (反之亦然)。 您必須以所需的類型建立新的儲存體帳戶，並將資料複製到新的儲存體帳戶 (如果適用的話)。
+
 9. **如何將 D 系列 VM 轉換成 DS 系列 VM？**
    
     請參閱 [移轉到 Azure 進階儲存體](storage-migration-to-premium-storage.md) 移轉指南，以將您的工作負載從使用標準儲存體帳戶的 D 系列 VM 移到使用「進階儲存體」帳戶的 DS 系列 VM。
@@ -561,10 +468,8 @@ azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 * [Azure 進階儲存體正式推出](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/)
 * [宣佈 GS 系列︰將進階儲存體支援加入至公用雲端中的最大 VM](https://azure.microsoft.com/blog/azure-has-the-most-powerful-vms-in-the-public-cloud/)
 
-[Image1]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

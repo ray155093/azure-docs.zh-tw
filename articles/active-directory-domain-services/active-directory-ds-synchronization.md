@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/02/2016
+ms.date: 01/13/2016
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6b89917f71701cccd6e78c036b78b136c19e9c2c
+ms.sourcegitcommit: f5143bc817215d075129170adcabf3dd53b5e15a
+ms.openlocfilehash: 1f6abf9bf123534f29b7976ecadbcf8cb49ce040
 
 
 ---
@@ -32,11 +32,13 @@ ms.openlocfilehash: 6b89917f71701cccd6e78c036b78b136c19e9c2c
 
 > [!NOTE]
 > 請一律使用最新版的 Azure AD Connect 版本，以確保您已具備所有已知問題的修正。
-> 
-> 
+>
+>
 
 ## <a name="synchronization-from-your-azure-ad-tenant-to-your-managed-domain"></a>從 Azure AD 租用戶同步到受管理網域
-使用者帳戶、群組成員資格及認證雜湊會從 Azure AD 租用戶同步到 Azure AD Domain Services 受管理網域。 此同步處理程序是自動執行的。 您不需要設定、監視或管理此同步處理程序。 此同步處理程序在本質上也是單向的。 除了您建立的所有自訂 OU 之外，您的受管理網域大部分都是唯獨的。 因此，您無法對受管理網域內的使用者屬性、使用者密碼或群組成員資格進行變更。 所以，並不會有將變更從受管理網域反向同步到 Azure AD 租用戶的情況。
+使用者帳戶、群組成員資格及認證雜湊會從 Azure AD 租用戶同步到 Azure AD Domain Services 受管理網域。 此同步處理程序是自動執行的。 您不需要設定、監視或管理此同步處理程序。 在您目錄的單次初始同步處理完成之後，通常需要 20 分鐘的時間，在 Azure AD 中所做的變更才會反映在您的受管理網域中。 此同步處理間隔適用於密碼變更或在 Azure AD 中所做的屬性變更。
+
+此同步處理程序在本質上也是單向的。 除了您建立的所有自訂 OU 之外，您的受管理網域大部分都是唯獨的。 因此，您無法對受管理網域內的使用者屬性、使用者密碼或群組成員資格進行變更。 所以，並不會有將變更從受管理網域反向同步到 Azure AD 租用戶的情況。
 
 ## <a name="synchronization-from-a-multi-forest-on-premises-environment"></a>從多樹系內部部署環境同步處理
 許多組織有由多個帳戶樹系組成、相當複雜的內部部署身分識別基礎結構。 Azure AD Connect 支援將使用者、群組及認證雜湊從多樹系環境同步到 Azure AD 租用戶。
@@ -66,8 +68,8 @@ ms.openlocfilehash: 6b89917f71701cccd6e78c036b78b136c19e9c2c
 
 > [!NOTE]
 > **使用 UPN 格式來登入受管理網域：**系統可能會針對受管理網域中的某些使用者帳戶自動產生 SAMAccountName 屬性。 如果有多個使用者具有相同的 mailNickname 屬性，或使用者的 UPN 前置詞太長，可能就會自動為這些使用者產生 SAMAccountName。 因此，SAMAccountName 格式 (例如 'CONTOSO100\joeuser') 並不一定是登入網域的可靠方法。 使用者的自動產生 SAMAccountName 可能會與其 UPN 前置詞不同。 請使用 UPN 格式 (例如 'joeuser@contoso100.com')) 來可靠地登入受管理網域。
-> 
-> 
+>
+>
 
 ### <a name="attribute-mapping-for-user-accounts"></a>使用者帳戶的屬性對應
 下表說明如何將您 Azure AD 租用戶中使用者物件的特定屬性同步到受管理網域中對應的屬性。
@@ -122,7 +124,6 @@ ms.openlocfilehash: 6b89917f71701cccd6e78c036b78b136c19e9c2c
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

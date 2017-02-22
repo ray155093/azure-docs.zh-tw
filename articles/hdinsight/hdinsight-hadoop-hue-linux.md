@@ -12,16 +12,20 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 01/30/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 008908824715eac788c56778309bca3b09587f78
+ms.sourcegitcommit: 9096b87dc93e261c2810a069a95d954121822cf5
+ms.openlocfilehash: 903a8b7f143ac08b69d94aa2bc442a43ca041b64
 
 
 ---
 # <a name="install-and-use-hue-on-hdinsight-hadoop-clusters"></a>在 HDInsight Hadoop 叢集上安裝和使用 Hue
-了解如何在 HDInsight Linux 叢集上安裝 Hue，並且使用通道將要求路由至 Hue。
+
+了解如何在 HDInsight 叢集上安裝 Hue，並且使用通道將要求路由至 Hue。
+
+> [!IMPORTANT]
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="what-is-hue"></a>何謂 Hue？
 Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。 您可以使用 Hue 以瀏覽與 Hadoop 叢集 (在 HDInsight 叢集的案例中為 WASB) 相關聯的儲存體、執行 Hive 工作和 Pig 指令碼等等。HDInsight Hadoop 叢集上的 Hue 安裝可使用下列元件。
@@ -41,6 +45,7 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。 您可以使�
 >
 
 ## <a name="install-hue-using-script-actions"></a>使用指令碼動作安裝 Hue
+
 下列指令碼動作可以用來在 Linux 型的 HDInsight 叢集上安裝 Hue。
 https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh
 
@@ -59,7 +64,7 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
    >
 2. 在 [選用組態] 刀鋒視窗中，選取 [指令碼動作]，並提供如下所示的資訊：
 
-    ![提供 Hue 的指令碼動作參數](./media/hdinsight-hadoop-hue-linux/hue_script_action.png "Provide script action parameters for Hue")
+    ![提供 Hue 的指令碼動作參數](./media/hdinsight-hadoop-hue-linux/hue_script_action.png "提供 Hue 的指令碼動作參數")
 
    * **名稱**：輸入指令碼動作的易記名稱。
    * **SCRIPT URI**：https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh
@@ -71,15 +76,22 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
 4. 繼續如[在 Linux 上佈建 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)中所述佈建叢集。
 
 ## <a name="use-hue-with-hdinsight-clusters"></a>搭配使用 Hue 與 HDInsight 叢集
+
 執行 Hue 之後，SSH 通道是在叢集上存取 Hue 的唯一方式。 透過 SSH 的通道允許直接至在其中執行 Hue 之叢集的前端節點的流量。 叢集完成佈建之後，請使用下列步驟，在 HDInsight Linux 叢集上使用 Hue。
 
+> [!NOTE]
+> 建議您使用 Firefox 網頁瀏覽器來遵循下列指示。
+>
+>
+
 1. 請以 [使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md) 中的資訊，建立用戶端系統至 HDInsight 叢集的 SSH 通道，然後設定網頁瀏覽器以便將 SSH 通道當做 Proxy 使用。
+
 2. 一旦您建立了 SSH 通道，並設定您的瀏覽器將流量以 Proxy 通過該通道傳送後，您必須找到主要前端節點的主機名稱。 若要這麼做，您可以使用 SSH 在連接埠 22 上連線到叢集。 例如，`ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`，其中 **USERNAME** 是您的 SSH 使用者名稱，**CLUSTERNAME** 是您的叢集名稱。
 
     如需使用 SSH 的詳細資訊，請參閱下列文件：
 
-   * [從 Linux、Unix 或 Mac OS X 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-   * [從 Windows 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+   * [從 Linux、Unix 或 Mac OS X 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+   * [從 Windows 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
 3. 連線之後，請使用下列命令來取得主要前端節點的完整網域名稱︰
 
         hostname -f
@@ -96,15 +108,15 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
    >
    >
 
-    ![登入 Hue 入口網站](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Login.png "Specify credentials for Hue portal")
+    ![登入 Hue 入口網站](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Login.png "指定 Hue 入口網站的認證")
 
 ### <a name="run-a-hive-query"></a>執行 HIVE 查詢
 1. 從 Hue 入口網站中，按一下 [查詢編輯器]，然後按一下 [Hive] 開啟 Hive 編輯器。
 
-    ![使用 Hive](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Hive.png "Use Hive")
+    ![使用 Hive](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Hive.png "使用 Hive")
 2. 在 [協助] 索引標籤中，於 [資料庫] 底下，您應該會看到 **hivesampletable**。 這是 HDInsight 上的所有 Hadoop 叢集隨附的範例資料表。 在右窗格中輸入範例查詢，然後在下方窗格的 [結果]  索引標籤中查看輸出，如螢幕擷取畫面所示。
 
-    ![執行 Hive 查詢](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Hive.Query.png "Run Hive query")
+    ![執行 Hive 查詢](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Hive.Query.png "執行 Hive 查詢")
 
     您也可以使用 [圖表]  索引標籤來查看結果的視覺表示。
 
@@ -112,7 +124,7 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
 1. 從 Hue 入口網站中，按一下功能表列右上角的 [檔案瀏覽器]  。
 2. 根據預設，檔案瀏覽器會在 **/user/myuser** 目錄中開啟。 按一下路徑中使用者目錄前面的正斜線，以移至與叢集相關聯的 Azure 儲存體容器的根目錄。
 
-    ![使用檔案瀏覽器](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.File.Browser.png "Use file browser")
+    ![使用檔案瀏覽器](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.File.Browser.png "使用檔案瀏覽器")
 3. 以滑鼠右鍵按一下檔案或資料夾，以查看可用的作業。 使用右邊的 [上傳]  按鈕，將檔案上傳至目前的目錄。 使用 [新增]  按鈕建立新的檔案或目錄。
 
 > [!NOTE]
@@ -122,13 +134,15 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
 
 ## <a name="important-considerations"></a>重要考量︰
 1. 用來安裝 Hue 的指令碼只會將它安裝在叢集的主要前端節點上。
+
 2. 在安裝期間，會重新啟動多個 Hadoop 服務 (HDFS、YARN、MR2、Oozie) 以更新與設定。 指令碼完成安裝 Hue 之後，可能需要一些時間讓其他 Hadoop 服務啟動。 一開始可能會影響 Hue 的效能。 所有服務啟動之後，Hue 就可以完全正常運作。
 3. Hue 不了解 Tez 作業，這是 Hive 目前的預設值。 如果您想要使用 MapReduce 做為 Hive 執行引擎，請更新指令碼以在您的指令碼中使用下列命令：
 
-     set hive.execution.engine=mr;
+        set hive.execution.engine=mr;
+
 4. 使用 Linux 叢集，您就可以擁有在主要前端節點上執行服務，在次要前端節點上執行 Resource Manager 的案例。 使用 Hue 以檢視叢集上「執行中」工作的詳細資料時，此類案例可能會導致錯誤 (如下所示)。 不過，您可以在工作完成時檢視工作詳細資料。
 
-   ![Hue 入口網站錯誤](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Error.png "Hue portal error")
+   ![Hue 入口網站錯誤](./media/hdinsight-hadoop-hue-linux/HDI.Hue.Portal.Error.png "Hue 入口網站錯誤")
 
    這是由已知問題造成的。 因應措施是修改 Ambari，讓作用中的 Resource Manager 也在主要前端節點上執行。
 5. 當 HDInsight 叢集使用 Azure 儲存體 (使用 `wasbs://`) 時，色調能了解 WebHDFS。 因此，搭配指令碼動作使用的自訂指令碼會安裝 WebWasb，這是針對與 WASB 通訊的 WebHDFS 相容服務。 所以，即使在 Hue 入口網站顯示有 HDFS (例如將滑鼠移至 [檔案瀏覽器] 時)，應將它解讀成 WASB。
@@ -144,6 +158,6 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

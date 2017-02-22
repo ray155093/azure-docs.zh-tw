@@ -187,6 +187,6 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

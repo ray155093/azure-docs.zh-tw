@@ -1,10 +1,10 @@
 ---
-title: "Azure RBAC 中的自訂角色 | Microsoft Docs"
+title: "建立 Azure RBAC 的自訂角色 | Microsoft Docs"
 description: "了解如何使用 Azure 角色型存取控制來定義自訂角色，以在您的 Azure 訂用帳戶中進行更精確的身分識別管理。"
 services: active-directory
 documentationcenter: 
 author: kgremban
-manager: kgremban
+manager: femila
 editor: 
 ms.assetid: e4206ea9-52c3-47ee-af29-f6eef7566fa5
 ms.service: active-directory
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/25/2016
+ms.date: 01/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b5ffc0f9d337c776f2702aa95d991d1b57829f3b
+ms.sourcegitcommit: d00ba4e6d1abd62e5a0d5a9d5bb229d3fa64b473
+ms.openlocfilehash: 2ac01c010979fca0bb3df5d003dd639cd7819651
 
 
 ---
@@ -84,8 +84,8 @@ azure provider operations show "Microsoft.Network/*"
 
 > [!NOTE]
 > 如果使用者獲指派的角色排除 **NotActions**中的作業，並且指派授與相同作業的存取權的第二個角色，將會允許使用者執行該作業。 **NotActions** 不是拒絕規則 – 它只是一個便利的方式，可以在需要排除特定作業時建立允許作業集。
-> 
-> 
+>
+>
 
 ## <a name="assignablescopes"></a>AssignableScopes
 自訂角色的 **AssignableScopes** 屬性會指定自訂角色可供指派的範圍 (訂用帳戶、資源群組或資源)。 您可以讓自訂角色僅指派給需要它的訂用帳戶或資源群組，不會干擾其餘訂用帳戶或資源群組的使用者體驗。
@@ -98,8 +98,8 @@ azure provider operations show "Microsoft.Network/*"
 
 > [!NOTE]
 > 您至少必須使用一個訂用帳戶、資源群組或資源識別碼。
-> 
-> 
+>
+>
 
 ## <a name="custom-roles-access-control"></a>自訂角色存取控制
 自訂角色的 **AssignableScopes** 屬性也會控制誰可以檢視、修改和刪除角色。
@@ -122,7 +122,6 @@ azure provider operations show "Microsoft.Network/*"
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

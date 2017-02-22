@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/07/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 31be0e05b72b8c1ba444ad69798f3675b58a6b71
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 4a249f25aa9331d8f8669f553b6aae21ee5620c0
 
 
 ---
@@ -112,7 +112,7 @@ Yardi eLearning 與 Azure AD 整合提供下列優點：
 
     a. 在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Yardi eLearning 應用程式的 URL：**“https://\<公司名稱\>.yardielearning.com/login”**。
 
-    b. 按 [下一步]。
+    b. 按 [下一步] 。
 
 
 1. 在 [設定在 Yardi eLearning 單一登入]  頁面上，執行下列步驟：
@@ -240,6 +240,6 @@ Yardi eLearning 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

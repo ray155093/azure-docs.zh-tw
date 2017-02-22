@@ -1,6 +1,6 @@
 ---
-title: "雲端災害復原方案 - SQL Database 主動式異地複寫 | Microsoft Docs"
-description: "了解如何使用異地複寫針對商務持續性計劃設計雲端災害復原方案，以用於搭配 Azure SQL Database 備份應用程式資料。"
+title: "災害復原應用程式設計 - Azure SQL Database | Microsoft Docs"
+description: "了解使用異地複寫針對 Azure SQL Database 災害復原的應用程式設計。"
 keywords: "cloud disaster recovery,disaster recovery solutions,app data backup,geo-replication,business continuity planning,雲端災害復原,災害復原方案,應用程式資料備份,異地複寫,商務持續性計劃"
 services: sql-database
 documentationcenter: 
@@ -17,12 +17,12 @@ ms.workload: data-management
 ms.date: 07/20/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 5a101aa78dbac4f1a0edb7f414b44c14db392652
-ms.openlocfilehash: 5afcde0df03cb953eb8387cc8beea8851f36c516
+ms.sourcegitcommit: 7e607debe47efb6a22ca6fa47a40554d13d29359
+ms.openlocfilehash: dd56a8d1ee428b1845ed80f0b899cc73c2c4b7f6
 
 
 ---
-# <a name="design-an-application-for-cloud-disaster-recovery-using-active-geo-replication-in-sql-database"></a>使用 SQL Database 的主動式異地複寫設計雲端災害復原應用程式
+# <a name="application-design-for-cloud-disaster-recovery-using-active-geo-replication-in-sql-database"></a>使用 SQL Database 的主動式異地複寫針對雲端災害復原的應用程式設計
 > [!NOTE]
 > [作用中異地複寫](sql-database-geo-replication-overview.md)現在可供所有層中的所有資料庫使用。
 >
@@ -187,6 +187,6 @@ ms.openlocfilehash: 5afcde0df03cb953eb8387cc8beea8851f36c516
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/22/2016
+ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: f3787f72dbd8ee865899b71538816d2e8d30af32
+ms.sourcegitcommit: 8f171456f74925eba16ebd6f56ced558a11f9d99
+ms.openlocfilehash: 6c366a2b7e5017bbe67cf1dbefc0baec6cf1aed3
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: f3787f72dbd8ee865899b71538816d2e8d30af32
 2. 選取 [Active Directory] ，然後選取貴組織目錄的名稱。
 3. 選取 [使用者] 索引標籤，然後在命令列中選取 [新增使用者]。
 4. 在 [告訴我們這位使用者] 頁面上，於 [使用者類型] 底下選取下列其中一項：
-   
+
    * **您組織中的新使用者** – 在您的目錄中新增使用者帳戶。
    * **現有 Microsoft 帳戶的使用者** – 將現有的 Microsoft 取用者帳戶加入至您的目錄 (例如，Outlook 帳戶)。
 5. 根據 [使用者類型] 輸入使用者名稱 (適用於新使用者) 或電子郵件地址 (適用於具有 Microsoft 帳戶的使用者)。
@@ -37,11 +37,11 @@ ms.openlocfilehash: f3787f72dbd8ee865899b71538816d2e8d30af32
 
 > [!IMPORTANT]
 > 如果您的組織使用多個網域，當您新增使用者帳戶時，請注意下列問題：
-> 
-> * 若要跨網域新增具有相同使用者主體名稱 (UPN) 的使用者帳戶，請**先**新增 geoffgrisso@contoso.onmicrosoft.com,，**再**新增 geoffgrisso@contoso.com.
-> * **請勿**在新增 geoffgrisso@contoso.onmicrosoft.com. 之前新增 geoffgrisso@contoso.com。此順序很重要，事後想要復原會很麻煩。
-> 
-> 
+>
+> * 若要跨網域新增具有相同使用者主體名稱 (UPN) 的使用者帳戶，請**先**新增 geoffgrisso@contoso.onmicrosoft.com,，**再**新增 geoffgrisso@contoso.com。
+> * 請「勿」先新增 geoffgrisso@contoso.com，再新增 geoffgrisso@contoso.onmicrosoft.com。 此順序很重要，事後想要復原會很麻煩。
+>
+>
 
 ## <a name="change-user-information"></a>變更使用者資訊
 您可以變更任何使用者屬性，但物件識別碼除外。
@@ -87,6 +87,6 @@ ms.openlocfilehash: f3787f72dbd8ee865899b71538816d2e8d30af32
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

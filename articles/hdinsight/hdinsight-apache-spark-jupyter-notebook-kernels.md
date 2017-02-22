@@ -1,6 +1,6 @@
 ---
-title: "Linux 上的 HDInsight Spark 叢集可供 Jupyter Notebook 使用的核心| Microsoft Docs"
-description: "了解 HDInsight Linux 上的 Spark 叢集可用的其他 Jupyter Notebook 核心。"
+title: "在 Azure Spark 叢集上搭配 Jupyter Notebook 使用不同的核心 | Microsoft Docs"
+description: "了解您可以透過 HDInsight Linux 上 Spark 叢集提供 Jupyter Notebook 使用的 PySpark 和 Spark 核心。"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,12 +16,13 @@ ms.topic: article
 ms.date: 10/05/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b322e44f53567e2618df086500ca42e81e4e233e
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: bb47fa4e876322a0e3e36d4da657fba4be84d6f2
 
 
 ---
-# <a name="kernels-available-for-jupyter-notebooks-with-apache-spark-clusters-on-hdinsight-linux"></a>HDInsight Linux 上的 Apache Spark 叢集可供 Jupyter Notebook 使用的核心
+# <a name="kernels-available-for-jupyter-notebooks-with-apache-spark-clusters-on-hdinsight"></a>HDInsight 上的 Apache Spark 叢集可供 Jupyter Notebook 使用的核心
+
 在 HDInsight (Linux) 上的 Apache Spark 叢集包含可用來測試應用程式的 Jupyter Notebook。 核心是一個可執行並解譯程式碼的程式。 HDInsight Spark 叢集提供兩種核心，可讓您用於 Jupyter Notebook。 它們是：
 
 1. **PySpark** (適用於以 Python 撰寫的應用程式)
@@ -34,28 +35,28 @@ ms.openlocfilehash: b322e44f53567e2618df086500ca42e81e4e233e
 您必須滿足以下條件：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="how-do-i-use-the-kernels"></a>核心要如何使用？
 1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。 您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。   
 2. 從 Spark 叢集刀鋒視窗按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
-   
+
    > [!NOTE]
    > 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。 使用您叢集的名稱取代 **CLUSTERNAME** ：
-   > 
+   >
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
-   > 
-   > 
+   >
+   >
 3. 以新核心建立新的 Notebook。 按一下 [新增]，然後按一下 [Pyspark] 或 [Spark]。 Spark 核心適用於 Scala 應用程式，PySpark 核心則適用於 Python 應用程式。
-   
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-kernels/jupyter-kernels.png "Create a new Jupyter notebook") 
+
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-kernels/jupyter-kernels.png "建立新的 Jupyter Notebook")
 4. 這應該會開啟使用您所選核心的新 Notebook。
 
 ## <a name="why-should-i-use-the-pyspark-or-spark-kernels"></a>為何應使用 PySpark 或 Spark 核心？
 以下是使用新核心的幾項好處。
 
 1. **預設內容**。 使用和 Jupyter Notebook 一起提供的 **PySpark** 或 **Spark** 核心時，您不需要先明確地設定 Spark 或 Hive 內容，即可開始使用您所開發的應用程式；這些都是預設可供您使用。 這些內容包括：
-   
+
    * **sc** - 代表 Spark 內容
    * **sqlContext** - 代表 Hive 內容
 
@@ -69,9 +70,9 @@ ms.openlocfilehash: b322e44f53567e2618df086500ca42e81e4e233e
     您可以直接在您的應用程式中使用現有的內容。
 
 1. **Cell magic**。 PySpark 核心提供一些預先定義的 “magic”，這是您可以使用 `%%` 呼叫的特殊命令 (例如 `%%MAGIC` <args>)。 magic 命令必須是程式碼儲存格中的第一個字，而且允許多行的內容。 magic 這個字應該是儲存格中的第一個字。 在 magic 前面加入任何項目，甚至是註解，將會造成錯誤。     如需 magic 的詳細資訊，請參閱 [這裡](http://ipython.readthedocs.org/en/stable/interactive/magics.html)。
-   
+
     下表列出可透過核心提供的不同 magic。
-   
+
    | Magic | 範例 | 說明 |
    | --- | --- | --- |
    | help |`%%help` |產生所有可用 magic 的表格，其中包含範例與說明 |
@@ -82,11 +83,11 @@ ms.openlocfilehash: b322e44f53567e2618df086500ca42e81e4e233e
    | logs |`%%logs` |輸出目前 Livy 工作階段的記錄檔。 |
    | delete |`%%delete -f -s <session number>` |刪除目前 Livy 端點的特定工作階段。 請注意，您無法刪除針對核心本身起始的工作階段。 |
    | cleanup |`%%cleanup -f` |刪除目前 Livy 端點的所有工作階段，包括此 Notebook 的工作階段。 force 旗標 -f 是必要的。 |
-   
+
    > [!NOTE]
-   > 除了 PySpark 核心所新增的 Magic，您也可以使用[內建的 IPython Magic](https://ipython.org/ipython-doc/3/interactive/magics.html#cell-magics) (包括 `%%sh`)。 您可以使用 `%%sh` Magic，在叢集前端節點上執行指令碼和程式碼區塊。 
-   > 
-   > 
+   > 除了 PySpark 核心所新增的 Magic，您也可以使用[內建的 IPython Magic](https://ipython.org/ipython-doc/3/interactive/magics.html#cell-magics) (包括 `%%sh`)。 您可以使用 `%%sh` Magic，在叢集前端節點上執行指令碼和程式碼區塊。
+   >
+   >
 2. **自動視覺化**。 **Pyspark** 核心會自動將 Hive 和 SQL 查詢的輸出視覺化。 您可以選擇數種不同類型的視覺效果，包括資料表、圓形圖、線條、區域、長條圖。
 
 ## <a name="parameters-supported-with-the-sql-magic"></a>%%sql magic 支援的參數
@@ -102,7 +103,7 @@ ms.openlocfilehash: b322e44f53567e2618df086500ca42e81e4e233e
 
 **範例：**
 
-    %%sql -q -m sample -r 0.1 -n 500 -o query2 
+    %%sql -q -m sample -r 0.1 -n 500 -o query2
     SELECT * FROM hivesampletable
 
 上面的陳述式會執行下列動作︰
@@ -168,7 +169,6 @@ Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Noteboo
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

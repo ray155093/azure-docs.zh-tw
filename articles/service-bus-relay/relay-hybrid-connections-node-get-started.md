@@ -1,5 +1,5 @@
 ---
-title: "開始使用轉送混合式連線 | Microsoft Docs"
+title: "在 Node 中開始使用 Azure 轉送混合式連接 | Microsoft Docs"
 description: "如何為混合式連線撰寫 Node 主控台應用程式"
 services: service-bus-relay
 documentationcenter: node
@@ -12,11 +12,11 @@ ms.devlang: tbd
 ms.topic: get-started-article
 ms.tgt_pltfrm: node
 ms.workload: na
-ms.date: 10/28/2016
-ms.author: jotaub,sethm
+ms.date: 02/13/2017
+ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: e26b6005116c7aacdf42afea6ea39e100a9d8080
-ms.openlocfilehash: 218082e4cedba2c11871d47bcfb7b92688d97f04
+ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
+ms.openlocfilehash: bee101d19cb5f5fc790b53295069b4d4db247366
 
 
 ---
@@ -75,6 +75,6 @@ ms.openlocfilehash: 218082e4cedba2c11871d47bcfb7b92688d97f04
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

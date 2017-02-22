@@ -17,19 +17,19 @@ ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 04b081d265c53ddcf77c79bf604296a0d44be4ed
+ms.sourcegitcommit: c0edbe421050ad46f6d31fd6416df4b344b233ad
+ms.openlocfilehash: ade380b7fc6adfb929f42c0e6c75b3fa613c45b1
 
 
 ---
 # <a name="get-started-with-the-http--swagger-action"></a>開始使用 HTTP + Swagger 動作
 您可以使用 HTTP + Swagger 動作，透過 [Swagger 文件](https://swagger.io)在任一 REST 端點建立一流的連接器。 您也可以使用一流的邏輯應用程式設計工具體驗，擴充邏輯應用程式以呼叫任何 REST 端點。
 
-若要開始在邏輯應用程式中使用 HTTP + Swagger 動作，請參閱 [建立新的邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要開始在邏輯應用程式中使用 HTTP + Swagger 動作，請參閱 [建立新的邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 - - -
 ## <a name="use-http--swagger-as-a-trigger-or-an-action"></a>使用 HTTP + Swagger 做為觸發程序或動作
-HTTP + Swagger 觸發程序和動作的功能與 [HTTP 動作](connectors-native-http.md)相同，但能從 [Swagger 中繼資料](https://swagger.io)將 API 的形式和輸出顯示在設計工具中，因此可以提供較佳的設計體驗。 此外，您可以使用 HTTP + Swagger 做為觸發程序。 如果您想要實作輪詢觸發程序，它應該依照 [建立自訂 API 來與邏輯應用程式搭配使用](../app-service-logic/app-service-logic-create-api-app.md#polling-triggers)中所述的輪詢模式進行。
+HTTP + Swagger 觸發程序和動作的功能與 [HTTP 動作](connectors-native-http.md)相同，但能從 [Swagger 中繼資料](https://swagger.io)將 API 的形式和輸出顯示在設計工具中，因此可以提供較佳的設計體驗。 此外，您可以使用 HTTP + Swagger 做為觸發程序。 如果您想要實作輪詢觸發程序，它應該依照 [建立自訂 API 來與邏輯應用程式搭配使用](../logic-apps/logic-apps-create-api-app.md#polling-triggers)中所述的輪詢模式進行。
 
 [進一步了解邏輯應用程式觸發程序和動作。](connectors-overview.md)
 
@@ -64,14 +64,14 @@ HTTP + Swagger 觸發程序和動作的功能與 [HTTP 動作](connectors-native
 以下是此 HTTP + Swagger 連接器所支援觸發程序和動作的詳細資料。
 
 ## <a name="http--swagger-triggers"></a>HTTP + Swagger 觸發程序
-觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序。](connectors-overview.md)  HTTP + Swagger 連接器有一個觸發程序。
+觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序。](connectors-overview.md) HTTP + Swagger 連接器有一個觸發程序。
 
 | 觸發程序 | 說明 |
 | --- | --- |
 | HTTP + Swagger |進行 HTTP 呼叫並傳回回應內容 |
 
 ## <a name="http--swagger-actions"></a>HTTP + Swagger 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作。](connectors-overview.md)  HTTP + Swagger 連接器有一個可能的動作。
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作。](connectors-overview.md) HTTP + Swagger 連接器有一個可能的動作。
 
 | 動作 | 說明 |
 | --- | --- |
@@ -117,11 +117,11 @@ HTTP 回應
 
 - - -
 ## <a name="next-steps"></a>後續步驟
-立即試用平台和 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) 。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
+立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md) 。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO3-->
 
 

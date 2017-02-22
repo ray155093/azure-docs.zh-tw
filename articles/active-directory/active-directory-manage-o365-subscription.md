@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/09/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b2985119b60bf11bf1ce1b951c40f8b87351e749
+ms.sourcegitcommit: a4a78b92c8bb9e8aff25fd724ed78283de8f2fd8
+ms.openlocfilehash: 2fda7dc07d01bcd0629d1fa80ec9262e80af4c5f
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: b2985119b60bf11bf1ce1b951c40f8b87351e749
 
 完成 Azure 訂用帳戶之後，您便可以登入 Azure 傳統入口網站並存取 Azure 服務。 按一下 Active Directory 擴充模組，以便管理用來驗證您 Office 365 使用者的相同目錄。
 
-如果您已經擁有 Azure 訂用帳戶，則管理其他目錄的程序也很簡單。 在此範例中，Michael Smith 可能擁有適用於 Contoso.com 的 Office 365 訂用帳戶。 他也擁有使用其 Microsoft 帳戶 msmith@hotmail.com. 在此情況下，他要管理兩個目錄。
+如果您已經擁有 Azure 訂用帳戶，則管理其他目錄的程序也很簡單。 在此範例中，Michael Smith 可能擁有適用於 Contoso.com 的 Office 365 訂用帳戶。 他也擁有使用其 Microsoft 帳戶 msmith@hotmail.com 所註冊的 Azure 訂用帳戶。 在此情況下，他要管理兩個目錄。
 
 | 訂用帳戶 | Office 365 | Azure |
 | --- | --- | --- |
@@ -46,20 +46,20 @@ ms.openlocfilehash: b2985119b60bf11bf1ce1b951c40f8b87351e749
 >
 >
 
-1. 以 msmith@hotmail.com. 身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)
+1. 以 msmith@hotmail.com 身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 按一下 [新增]  >  [應用程式服務]  >  [Active Directory]  >  [目錄]  >  [自訂建立]。
 3. 按一下 [使用現有的目錄]，然後選取 [我現在已經可以登出]  核取方塊。
 4. 以 Contoso.onmicrosoft.com 的全域管理員身分登入 Azure 傳統入口網站 (例如 msmith@contoso.com)。
 5. 當系統出現 [搭配使用 Contoso 目錄和 Azure？] 提示時，按一下 [繼續]。
 6. 按一下 [ **立即登出**]。
-7. 以 msmith@hotmail.com. Contoso 目錄和預設目錄會出現在 Active Directory 延伸模組中。
+7. 以 msmith@hotmail.com 身分登入 Azure 傳統入口網站。 Contoso 目錄和預設目錄會出現在 Active Directory 延伸模組中。
 
-完成這些步驟之後， msmith@hotmail.com 會成為 Contoso 目錄中的全域管理員。
+完成這些步驟之後，msmith@hotmail.com 會成為 Contoso 目錄中的全域管理員。
 
 ## <a name="to-administer-resources-as-the-global-admin"></a>以全域管理員身分管理資源
-現在我們假設 Jane Doe 需要管理與 msmith@hotmail.com. 在這麼做之前，Michael Smith 必須先完成下列額外步驟：
+現在我們假設 Jane Doe 需要管理與 msmith@hotmail.com 的 Azure 訂用帳戶相關聯的網站和資料庫資源。 在這麼做之前，Michael Smith 必須先完成下列額外步驟：
 
-1. 使用 Azure 訂用帳戶的服務管理員帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com) (在此範例中為 msmith@hotmail.com).
+1. 使用 Azure 訂用帳戶的服務管理員帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com) (在此範例中為 msmith@hotmail.com)。
 2. 將訂用帳戶移轉至 Contoso 目錄：按一下 [設定]  >  [訂用帳戶] > 選取訂用帳戶 > [編輯目錄] > 選取 [Contoso (Contoso.com)]。 在移轉過程中，如果有工作或學校帳戶是訂用帳戶的共同管理員，則會移除這類帳戶。
 3. 新增 Jane Doe 做為訂用帳戶的共同管理員：按一下 [設定]  >  [系統管理員] > 選取訂用帳戶 > [新增] > 輸入 **JohnDoe@Contoso.com**。
 
@@ -68,6 +68,6 @@ ms.openlocfilehash: b2985119b60bf11bf1ce1b951c40f8b87351e749
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

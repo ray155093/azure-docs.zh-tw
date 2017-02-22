@@ -1,6 +1,6 @@
 ---
-title: "Azure 網路安全性概觀 | Microsoft Docs"
-description: " 本文可讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。 我們提供核心網路安全性概念和需求的基本說明，以及 Azure 必須在所有這些區域中提供之資訊的相關資訊。 "
+title: "Azure 中的網路安全性概念和需求 | Microsoft Docs"
+description: " 本文可讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。 我們提供核心網路安全性概念和需求的基本說明，以及 Azure 必須在所有這些區域中提供之資訊的相關資訊. "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/18/2016
+ms.date: 01/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f62d964dc5da9200a9f1944c00a4983e8d01b997
+ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
+ms.openlocfilehash: 8b0266a86221b379a105b87f130cd0a4f97385f7
 
 
 ---
@@ -270,6 +270,6 @@ Azure 資訊安全中心藉由下列方式來協助您最佳化和監視網路�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "將內部部署 VMware 虛擬機器或實體伺服器複寫至次要網站 | Microsoft Docs"
+title: "將 VMware VM 或實體伺服器複寫到其他站台 (傳統 Azure 入口網站) | Microsoft Docs"
 description: "使用這篇文章以使用 Azure Site Recovery，將 VMware VM 或 Windows/Linux 實體伺服器複寫至次要網站。"
 services: site-recovery
 documentationcenter: 
@@ -12,15 +12,16 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/20/2016
+ms.date: 02/06/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: d325ce41e79ec85e08fbf4bb86e0cd7e0edf1c8f
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: cff6ef0c1c49110edc53ec82f88d9875439aab8a
 
 
 ---
-# <a name="replicate-on-premises-vmware-virtual-machines-or-physical-servers-to-a-secondary-site"></a>將內部部署 VMware 虛擬機器或實體伺服器複寫至次要網站
+# <a name="replicate-on-premises-vmware-virtual-machines-or-physical-servers-to-a-secondary-site-in-the-classic-azure-portal"></a>在傳統 Azure 入口網站中，將內部部署 VMware 虛擬機器或實體伺服器複寫到次要站台
+
 ## <a name="overview"></a>概觀
 Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之間的即時複寫。 InMage Scout 包含在 Azure Site Recovery 服務訂用帳戶中。
 
@@ -83,7 +84,7 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
 
 ## <a name="updates"></a>更新
 ### <a name="azure-site-recovery-scout-801-update-4"></a>Azure Site Recovery Scout 8.0.1 Update 4
-Scout Update 4 是累積更新。 它包含 update1 到 update 3 的所有修正及下列新的錯誤修正和增強功能。
+Scout Update 4 是累積更新。 它包含 update1 到 update&3; 的所有修正及下列新的錯誤修正和增強功能。
 
 **新平台支援**
 
@@ -115,7 +116,7 @@ Scout Update 4 是累積更新。 它包含 update1 到 update 3 的所有修正
 * cxps 傳輸伺服器會因發生超出範圍例外狀況而當機。
 * 現在在 vContinuum 精靈的推送安裝頁面中可以調整伺服器名稱和 IP 資料行的大小。
 * RX API 增強功能
-  * 提供 5 個最新可用的共同一致性點 (僅限 [保證] 標記)。
+  * 提供&5; 個最新可用的共同一致性點 (僅限 [保證] 標記)。
   * 為所有受保護的裝置提供容量和可用空間詳細資料。
   * 提供來源伺服器上的 Scout 驅動程式狀態。
 
@@ -172,7 +173,7 @@ Update 2 中的修正包括：
 ### <a name="azure-site-recovery-scout-801-update-1"></a>Azure Site Recovery Scout 8.0.1 Update 1
 Update 1 包含下列錯誤修正和新功能：
 
-* 每個伺服器執行個體享有 31 天的免費保護。 這可讓您測試功能或設定概念證明。
+* 每個伺服器執行個體享有&31; 天的免費保護。 這可讓您測試功能或設定概念證明。
   * 從使用 Site Recovery Scout 第一次保護伺服器的時間開始計算的前 31 天，伺服器上的所有作業 (包括容錯移轉和容錯回復) 都是免費的。
   * 從第 32 天起，每個受保護的伺服器都會依照標準執行個體費率，向客戶擁有的網站收取 Azure Site Recovery 保護費用。
   * 在 Azure Site Recovery 保存庫的 [儀表板] 頁面上，隨時可取得目前計費的受保護伺服器數目。
@@ -199,6 +200,6 @@ Update 1 包含下列錯誤修正和新功能：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

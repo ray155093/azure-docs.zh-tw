@@ -1,5 +1,5 @@
 ---
-title: "如何設定進階 Azure Redis 快取的虛擬網路支援 | Microsoft Docs"
+title: "設定進階 Azure Redis Cache 的虛擬網路 | Microsoft Docs"
 description: "了解如何建立和管理高階層 Azure Redis 快取執行個體的虛擬網路支援"
 services: redis-cache
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 01/23/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 65385aa918222837468f88246d0527c22c677ba7
-ms.openlocfilehash: a3e1472ed737039157a4593404dce371c57906da
+ms.sourcegitcommit: c885edd7064f7ee3c9907e6b938d826e181dcae5
+ms.openlocfilehash: 2cc95618b2edcb8d0f7c172a18156871887b8f69
 
 
 ---
@@ -93,7 +93,7 @@ Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。 如果�
 | 連接埠 | 方向 | 傳輸通訊協定 | 目的 | 遠端 IP |
 | --- | --- | --- | --- | --- |
 | 80、443 |輸出 |TCP |Azure 儲存體/PKI 上 Redis 的相依項目 (網際網路) |* |
-| 53 |輸出 |TCP/UDP |DNS 上 Redis 的相依項目 (網際網路/VNET) |* |
+| 53 |輸出 |TCP/UDP |DNS 上 Redis 的相依項目 (網際網路/VNet) |* |
 | 6379, 6380 |輸入 |TCP |對 Redis 的用戶端通訊，Azure 負載平衡 |VIRTUAL_NETWORK, AZURE_LOADBALANCER |
 | 8443 |輸入/輸出 |TCP |Redis 的實作詳細資料 |VIRTUAL_NETWORK |
 | 8500 |輸入 |TCP/UDP |Azure 負載平衡 |AZURE_LOADBALANCER |
@@ -168,6 +168,6 @@ VNet 僅適用於進階快取。
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

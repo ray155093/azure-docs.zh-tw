@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 11/01/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a7320a7e5052ffb4171307bc8636182447ddfc50
+ms.sourcegitcommit: 3fb7a0361717d4616ec21e55c0a202ed8bf8991d
+ms.openlocfilehash: a537a71a43b49d510a12d1293d8ee898d66efe63
 
 
 ---
@@ -42,26 +42,23 @@ Eclipse Toolkit 藉由將稱為應用程式要求路由 (ARR) 的特殊 IIS 模�
 * 初始化每個角色的時間會比較長。
 * 系統會加入一個內部端點，如上所述作為路由器來重新路由傳送流量。
 
-如需在啟用工作階段同質時如何維護工作階段資料的範例，請參閱[如何使用工作階段同質來維護工作階段資料][如何使用工作階段同質來維護工作階段資料]。
 
 ## <a name="see-also"></a>另請參閱
-[適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]
+[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]
 
-[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式][在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式]
+[在 Eclipse 中為 Azure 建立 Hello World 應用程式][Creating a Hello World Application for Azure in Eclipse]
 
-[安裝 Azure Toolkit for Eclipse][安裝 Azure Toolkit for Eclipse] 
+[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse] 
 
-[如何使用工作階段同質來維護工作階段資料][如何使用工作階段同質來維護工作階段資料]
-
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java 開發人員中心]。
+如需有關如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java Developer Center]。
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[如何使用工作階段同質來維護工作階段資料]: http://go.microsoft.com/fwlink/?LinkID=699539
-[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[How to Maintain Session Data with Session Affinity]: http://go.microsoft.com/fwlink/?LinkID=699539
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 
@@ -71,6 +68,6 @@ Eclipse Toolkit 藉由將稱為應用程式要求路由 (ARR) 的特殊 IIS 模�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

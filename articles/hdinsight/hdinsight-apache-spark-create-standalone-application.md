@@ -1,5 +1,5 @@
 ---
-title: "建立在 HDInsight Spark 叢集上執行的獨立 Scala 應用程式 | Microsoft Docs"
+title: "建立在 Azure Spark 叢集上執行的獨立 Scala 應用程式 | Microsoft Docs"
 description: "了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
 services: hdinsight
 documentationcenter: 
@@ -13,15 +13,16 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/28/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7b4348fbc77c2682001c8b18ddf7918dbb66872b
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 153b1ea4ec3d326fb533817cdb74d3489135f7d9
 
 
 ---
-# <a name="create-a-standalone-scala-application-to-run-on-apache-spark-cluster-on-hdinsight-linux"></a>建立在 HDInsight Linux 中的 Apache Spark 叢集上執行的獨立 Scala 應用程式
+# <a name="create-a-standalone-scala-application-to-run-on-apache-spark-cluster-on-hdinsight"></a>建立在 HDInsight 中的 Apache Spark 叢集上執行的獨立 Scala 應用程式
+
 本文提供相關的逐步指引，說明如何使用 Maven 與 IntelliJ IDEA 開發以 Scala 撰寫的獨立 Spark 應用程式。 本文以 Apache Maven 作為建置系統，並且以 IntelliJ IDEA 為 Scala 提供的現有 Maven 原型作為起始點。  概括來說，要在 IntelliJ IDEA 中建立 Scala 應用程式，必須執行下列步驟：
 
 * 以 Maven 做為建置系統。
@@ -38,7 +39,7 @@ ms.openlocfilehash: 7b4348fbc77c2682001c8b18ddf7918dbb66872b
 **必要條件**
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * Oracle Java Development Kit。 您可以從 [這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)加以安裝。
 * Java IDE。 本文使用 IntelliJ IDEA 15.0.1。 您可以從 [這裡](https://www.jetbrains.com/idea/download/)加以安裝。
 
@@ -172,6 +173,6 @@ ms.openlocfilehash: 7b4348fbc77c2682001c8b18ddf7918dbb66872b
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

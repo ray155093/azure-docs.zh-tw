@@ -1,20 +1,29 @@
-1. 若要為現有的資源和資源群組新增標記，請選取標記圖示。
+1. 若要檢視資源或資源群組的標籤，請選取 [標籤] 圖示。 
    
-     ![資源與資源群組刀鋒視窗上的標記部分](./media/resource-manager-tag-resources/select-tag-icon.png)
-2. 您會看到您的組織已經套用到資源的標記清單。如果您先前尚未套用標記，清單就會是空的。若要加入標記，只要指定名稱和值，然後按 Enter 即可。新增一些標記之後，您會發現有以既有標記名稱和值為基礎的自動完成選項。這些自動完成選項可確保各個資源間的分類法一致，並避免常見的錯誤，像是拼字錯誤。
-   
-     ![使用名稱/值組標記資源](./media/resource-manager-tag-resources/tag-resources.png)
-3. 若要在入口網站中檢視標記的分類法，請選取 [更多服務] 和 [標記]。
+     ![選取資源與資源群組刀鋒視窗上的標籤](./media/resource-manager-tag-resources/select-tag-icon.png)
+2. 您會看到該資源的現有標籤。 如果您先前尚未套用標記，清單就會是空的。 
+
+     ![顯示資源與資源群組刀鋒視窗上的現有標籤](./media/resource-manager-tag-resources/existing-tags.png)
+3. 若要加入標籤，輸入索引鍵和值，或從下拉式功能表中選取現有標籤。 選取 [ **儲存**]。
+
+     ![新增標籤](./media/resource-manager-tag-resources/tag-resources.png)
+3. 若要檢視具有標籤值的所有資源，請選取 **>** (更多服務)，並依 **標籤**進行篩選。 從可用選項中選取 [標籤]。
    
      ![透過 [瀏覽中樞] 尋找標記](./media/resource-manager-tag-resources/browse-tags.png)
-4. 您會在自己的訂用帳戶中看到標記的摘要。
+4. 您會在自己的訂用帳戶中看到標籤的摘要。
    
      ![顯示所有標記](./media/resource-manager-tag-resources/tag-taxonomy.png)
 5. 選取任何標記以顯示具有該標記的資源和資源群組。
    
      ![顯示已加上標記的資源](./media/resource-manager-tag-resources/show-tagged-resources.png)
-6. 將最重要的標記釘選到您的儀表板，以便快速存取。
+6. 選取 [將刀鋒視窗釘選到儀表板] 即可快速存取。
    
-     ![將標記釘選到「開始面板」](./media/resource-manager-tag-resources/show-pinned-tag.png)
+     ![將標籤釘選到儀表板](./media/resource-manager-tag-resources/pin-tag.png)
+7. 您可以從儀表板選取已釘選的標籤，以檢視具有該標籤的資源。
 
-<!---HONumber=AcomDC_0824_2016-->
+     ![將標籤釘選到儀表板](./media/resource-manager-tag-resources/show-pinned-tag.png)
+
+
+<!--HONumber=Feb17_HO1-->
+
+

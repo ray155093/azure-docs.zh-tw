@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: e7931f1b08d09fbe1fa5a5a2d4a11da01e736462
-ms.openlocfilehash: a68481073ea07b4c7775da6682e1753b32f0793c
+ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
+ms.openlocfilehash: 3e11bc1e196b263f758394d1abd4c21d9e12aeef
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: a68481073ea07b4c7775da6682e1753b32f0793c
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="before-you-begin"></a>開始之前
-* 取得最新版的 Azure PowerShell 模組 (至少版本 1.0)。 請遵循 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)中的指示，來取得如何設定您的電腦以使用 PowerShell 模組的逐步指引。
+* 取得最新版的 Azure PowerShell 模組 (至少版本 1.0)。 請遵循 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)中的指示，來取得如何設定您的電腦以使用 PowerShell 模組的逐步指引。
 * 開始設定之前，請檢閱[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>建立和佈建 ExpressRoute 線路
@@ -384,6 +384,6 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "如何使用 Linux 上的 App Service 建立 Web 應用程式 | Microsoft Docs"
+title: "建立在 Linux 上執行的 Azure Web 應用程式 | Microsoft Docs"
 description: "針對 Linux 上的 App Service 建立 Web 應用程式的工作流程。"
 keywords: "azure app service, web 應用程式, linux, oss"
 services: app-service
@@ -16,12 +16,12 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: naziml
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 8d87315ec97631c7ad3f0163aeaa0abde11b7416
+ms.sourcegitcommit: e062cb169782319bda14acfa4f2b7c8198f320f6
+ms.openlocfilehash: e5c0547a4fb109560dbafbf84d17e0c3d28a7188
 
 
 ---
-# <a name="create-a-web-app-with-app-service-on-linux"></a>使用 Linux 上的 App Service 建立 Web 應用程式
+# <a name="create-an-azure-web-app-running-on-linux"></a>建立在 Linux 上執行的 Azure Web 應用程式
 ## <a name="use-the-azure-portal-to-create-your-web-app"></a>使用 Azure 入口網站建立 Web 應用程式
 您可以從 [Azure 入口網站](https://portal.azure.com)開始建立 Linux 上的 Web 應用程式，如下圖所示︰
 
@@ -59,6 +59,6 @@ ms.openlocfilehash: 8d87315ec97631c7ad3f0163aeaa0abde11b7416
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

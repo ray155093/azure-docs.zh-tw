@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/14/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cdc03ca462125ca379f7c0dd2460da719dce0c63
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2d3250eb1c0855d185228b0bca990b255f9aa9bd
 
 
 ---
@@ -359,7 +359,7 @@ Microsoft Avro 程式庫可透過反映、根據要序列化的 C# 物件資料�
 
 本範例會使用 [**SequentialWriter<SensorData>**](http://msdn.microsoft.com/library/dn627340.aspx) 序列化資料，並使用 [**SequentialReader<SensorData>**](http://msdn.microsoft.com/library/dn627340.aspx) 還原序列化資料。 最後與初始執行個體相比較，以確認身分識別。
 
-物件容器檔案中的資料會透過預設的 .NET Framework 4 [**Deflate**][deflate-100] 壓縮轉碼器進行壓縮。 請參閱本主題中的<a href="#Scenario5">第五個範例</a>，以了解如何使用 .NET Framework 4.5 中所提供更新及更優異的 [**Deflate**][deflate-110] 壓縮轉碼器版本。
+物件容器檔案中的資料會透過 .NET Framework 4 預設的 [**Deflate**][deflate-100] 壓縮轉碼器進行壓縮。 請參閱本主題中的<a href="#Scenario5">第五個範例</a>，以了解如何使用 .NET Framework 4.5 中所提供更新的及更優異的 [**Deflate**][deflate-110] 壓縮轉碼器版本。
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -859,7 +859,7 @@ Microsoft Avro 程式庫可透過反映、根據要序列化的 C# 物件資料�
 ### <a name="sample-5-serialization-using-object-container-files-with-a-custom-compression-codec"></a>範例 5：使用物件容器檔案和自訂壓縮轉碼器進行序列化
 第五個範例說明如何使用自訂壓縮轉碼器來處理 Avro 物件容器檔案。 您可以從 [Azure 程式碼範例](http://code.msdn.microsoft.com/windowsazure/Serialize-data-with-the-67159111) (英文) 網站下載包含此案例程式碼的範例。
 
-[Avro 規格](http://avro.apache.org/docs/current/spec.html#Required+Codecs)允許使用選用的壓縮轉碼器 (**Null** 和 **Deflate** 預設值除外)。 本範例並未完全實作新的轉碼器，例如 Snappy (如同 [Avro 規格](http://avro.apache.org/docs/current/spec.html#snappy)中所提及的支援選用轉碼器)。 它說明如何使用 .NET Framework 4.5 的 [**Deflate**][deflate-110] 轉碼器實作，採用 [zlib](http://zlib.net/) 壓縮程式庫，提供比預設 .NET Framework 4 版本更好的壓縮演算法。
+[Avro 規格](http://avro.apache.org/docs/current/spec.html#Required+Codecs)允許使用選用的壓縮轉碼器 (**Null** 和 **Deflate** 預設值除外)。 本範例並未完全實作新的轉碼器，例如 Snappy (如同 [Avro 規格](http://avro.apache.org/docs/current/spec.html#snappy)中所提及的支援選用轉碼器)。 其中說明如何使用 .NET Framework 4.5 的 [**Deflate**][deflate-110] 轉碼器實作，採用 [zlib](http://zlib.net/) 壓縮程式庫，提供比預設 .NET Framework 4 版本更好的壓縮演算法。
 
     //
     // This code needs to be compiled with the parameter Target Framework set as ".NET Framework 4.5"
@@ -1390,6 +1390,6 @@ Microsoft Avro 程式庫可透過反映、根據要序列化的 C# 物件資料�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

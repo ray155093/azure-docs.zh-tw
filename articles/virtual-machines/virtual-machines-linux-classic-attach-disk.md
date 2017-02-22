@@ -1,5 +1,5 @@
 ---
-title: "將磁碟附加至 Linux VM | Microsoft Docs"
+title: "將磁碟附加至 Azure 中的 Linux VM | Microsoft Docs"
 description: "了解如何使用傳統部署模型將資料磁碟連接至 Linux VM，並初始化磁碟，使其可供使用"
 services: virtual-machines-linux
 documentationcenter: 
@@ -13,31 +13,30 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 11/14/2016
+ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 99c36b40b16689e76a9b9af661cf1c5dd41d8321
-ms.openlocfilehash: bbf6f7ad4b7ee444787c464dae0f0fdc5db033be
+ms.sourcegitcommit: 84d52dccef4e2d9a1ae253831b5d8f86b6fb50a6
+ms.openlocfilehash: b78deeeb7fd8d337b83c8e831f51f8e57014cf43
 
 
 ---
 # <a name="how-to-attach-a-data-disk-to-a-linux-virtual-machine"></a>如何將資料磁碟連接至 Linux 虛擬機器
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
-參閱如何[使用 Resource Manager 部署模型連接資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 參閱如何[使用 Resource Manager 部署模型連接資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 您可以將空的磁碟和含有資料的磁碟連接到 Azure VM。 這兩種類型的磁碟都是位於 Azure 儲存體帳戶中的 .vhd 檔案。 就像將任何磁碟新增到 Linux 機器一樣，連接磁碟之後，您必須將磁碟初始化並格式化，它才可供使用。 本文將會詳細說明連接空的磁碟和連接含有資料的磁碟到 VM，以及初始化和格式化新磁碟的方法。
 
 > [!NOTE]
-> 最好使用一或多個不同的磁碟來儲存虛擬機器的資料。 當您建立 Azure 虛擬機器時，它會有作業系統磁碟和暫存磁碟。 **請勿使用暫存磁碟來儲存持續資料。**  顧名思義，它只提供暫存儲存空間。 它並不提供備援或備份，因為它不在 Azure 儲存體內。
-> 暫存磁碟通常是由 Azure Linux 代理程式管理，並自動掛接到 **/mnt/resource** (或 Ubuntu 映像中的**/mnt**)。 另一方面，Linux 核心可能會將資料磁碟命名為 `/dev/sdc`之類的名稱，而您必須分割、格式化及掛接此資源。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南][代理程式]。
+> 最好使用一或多個不同的磁碟來儲存虛擬機器的資料。 當您建立 Azure 虛擬機器時，它會有作業系統磁碟和暫存磁碟。 **請勿使用暫存磁碟來儲存持續資料。** 顧名思義，它只提供暫存儲存空間。 它並不提供備援或備份，因為它不在 Azure 儲存體內。
+> 暫存磁碟通常是由 Azure Linux 代理程式管理，並自動掛接到 **/mnt/resource** (或 Ubuntu 映像中的**/mnt**)。 另一方面，Linux 核心可能會將資料磁碟命名為 `/dev/sdc`之類的名稱，而您必須分割、格式化及掛接此資源。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南][Agent]。
 > 
 > 
 
 [!INCLUDE [howto-attach-disk-windows-linux](../../includes/howto-attach-disk-linux.md)]
 
 ## <a name="initialize-a-new-data-disk-in-linux"></a>在 Linux 中初始化新的資料磁碟
-1. SSH 連線到您的 VM。 如需詳細資訊，請參閱[如何登入執行 Linux 的虛擬機器][登入]。
+1. SSH 連線到您的 VM。 如需詳細資訊，請參閱[如何登入執行 Linux 的虛擬機器][Logon]。
 2. 接下來您需要尋找資料磁碟的裝置識別碼以進行初始化。 作法有二：
    
     a) Grep SCSI 裝置中的記錄檔，如以下命令︰
@@ -166,7 +165,7 @@ ms.openlocfilehash: bbf6f7ad4b7ee444787c464dae0f0fdc5db033be
     UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail   1   2
     ```
 
-    或者，在基於 SUSE Linux 的系統上，您可能需要使用稍微不同的格式：
+    或者，在基於 SuSE Linux 的系統上，您可能需要使用稍微不同的格式：
 
     ```sh
     /dev/disk/by-uuid/33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext3   defaults,nofail   1   2
@@ -204,7 +203,7 @@ ms.openlocfilehash: bbf6f7ad4b7ee444787c464dae0f0fdc5db033be
     UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
     ```
 
-* 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
+* 在某些情況下，`discard` 選項可能會影響效能。 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
   
     **Ubuntu**
   
@@ -226,16 +225,18 @@ ms.openlocfilehash: bbf6f7ad4b7ee444787c464dae0f0fdc5db033be
 ## <a name="next-steps"></a>後續步驟
 您可以閱讀下列文章來進一步了解如何使用 Linux VM：
 
-* [如何登入執行 Linux 的虛擬機器][登入]
+* [如何登入執行 Linux 的虛擬機器][Logon]
 * [如何從 Linux 虛擬機器卸離磁碟](virtual-machines-linux-classic-detach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [搭配傳統部署模型使用 Azuer CLI](../virtual-machines-command-line-tools.md)
+* [搭配傳統部署模型使用 Azuer CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
+* [在 Azure 中的 Linux VM 上設定 RAID](virtual-machines-linux-configure-raid.md)
+* [設定 Azure 中 Linux VM 的 LVM](virtual-machines-linux-configure-lvm.md)
 
 <!--Link references-->
-[代理程式]: virtual-machines-linux-agent-user-guide.md
-[登入]: virtual-machines-linux-mac-create-ssh-keys.md
+[Agent]: virtual-machines-linux-agent-user-guide.md
+[Logon]: virtual-machines-linux-mac-create-ssh-keys.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

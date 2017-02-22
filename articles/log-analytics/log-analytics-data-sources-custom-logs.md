@@ -1,5 +1,5 @@
 ---
-title: "Log Analytics 中的自訂記錄檔 | Microsoft Docs"
+title: "在 OMS Log Analytics 中收集自訂記錄 | Microsoft Docs"
 description: "Log Analytics 可從 Windows 和 Linux 電腦上的文字檔收集事件。  本文說明如何定義新的自訂記錄檔，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/18/2016
+ms.date: 01/23/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 25c63021160e5259bc72a4f7bbfc248b7ac717aa
+ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
+ms.openlocfilehash: a9c70810c4f731b2d8b395873fa6b94db78306aa
 
 
 ---
@@ -61,7 +61,7 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 2. 按 [下一步] 。 
 3. 自訂記錄檔精靈會上傳檔案並列出其識別的記錄。
 4. 變更用來識別新記錄的分隔符號，並選取最能識別記錄檔中的記錄的分隔符號。
-5. 按一下頁面底部的 [新增] 來單一登入應用程式。
+5. 按 [下一步] 。
 
 ### <a name="step-3-add-log-collection-paths"></a>步驟 3. 新增記錄檔收集路徑
 您必須在代理程式上定義一個或多個它可以在其中找到自訂記錄檔的路徑。  您可以提供該記錄檔的特定路徑和名稱，或者您可以使用萬用字元為該名稱指定路徑。  這可支援每天會建立一個新檔案的應用程式或在一個檔案到達特定大小時提供支援。  您也可以為單一記錄檔提供多個路徑。
@@ -122,7 +122,7 @@ Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每
 | 屬性 | 說明 |
 |:--- |:--- |
 | TimeGenerated |Log Analytics 收集記錄時的日期和時間。  如果記錄檔使用以時間為基礎的分隔符號，則這是從項目收集到的時間。 |
-| SourceSystem |收集記錄的來源代理程式類型。 <br> OpsManager – Windows 代理程式，直接連接或 SCOM <br>  Linux – 所有的 Linux 代理程式 |
+| SourceSystem |收集記錄的來源代理程式類型。 <br> OpsManager – Windows 代理程式，直接連接或 SCOM <br> Linux – 所有的 Linux 代理程式 |
 | RawData |所收集項目的完整文字。 |
 | ManagementGroupName |SCOM 代理程式的管理群組名稱。  若為其他代理程式，此為 AOI-\<工作區 ID\> |
 
@@ -177,6 +177,6 @@ Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

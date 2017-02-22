@@ -11,11 +11,11 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 08/29/2016
+ms.date: 01/13/2017
 ms.author: ashmaka
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f0d468d0cb2cf76bb90e73d3fef3f6a8c14d1850
+ms.sourcegitcommit: 1f06a7197cc1a6dcf7a39c91183a4317bef126bb
+ms.openlocfilehash: cc439b5da8753b41f8d65781c567b4808f385078
 
 
 ---
@@ -32,12 +32,12 @@ ms.openlocfilehash: f0d468d0cb2cf76bb90e73d3fef3f6a8c14d1850
 
 在按照本指南進行並建立索引錢，請先 [建立好 Azure 搜尋服務](search-create-service-portal.md)。
 
-## <a name="i-go-to-your-azure-search-blade"></a>I. 前往 Azure 搜尋服務刀鋒視窗
-1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)
+## <a name="go-to-your-azure-search-blade"></a>前往 Azure 搜尋服務刀鋒視窗
+1. 按一下 [Azure 入口網站](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)左側功能表中的 [所有資源]
 2. 選取您的 Azure 搜尋服務
 
-## <a name="ii-add-and-name-your-index"></a>II. 新增索引並為其命名
-1. 按一下 [新增索引] 按鈕
+## <a name="add-and-name-your-index"></a>新增索引並為其命名
+1. 按一下 [加入索引] 按鈕
 2. 為 Azure 搜尋服務索引命名。 我們正在建立索引來搜尋本指南中的旅館，因此我們將索引命名為 "hotels"。
    * 索引名稱必須以字母開頭，並僅包含小寫字母、數字或連字號 ("-")。
    * 與您的服務名稱類似，您所選擇的索引名稱也將是您為 Azure 搜尋服務 API 傳送 HTTP 要求所在端點 URL 的一部分
@@ -45,7 +45,7 @@ ms.openlocfilehash: f0d468d0cb2cf76bb90e73d3fef3f6a8c14d1850
 
 ![](./media/search-create-index-portal/add-index.png)
 
-## <a name="iii-create-and-define-the-fields-of-your-index"></a>III. 建立並定義索引的欄位
+## <a name="create-and-define-the-fields-of-your-index"></a>建立並定義索引的欄位
 1. 選取 [欄位] 項目時，將的刀鋒視窗將會以表單形式開啟，以輸入您的索引定義。
 2. 使用表單將欄位新增至您的索引。
    
@@ -62,12 +62,12 @@ ms.openlocfilehash: f0d468d0cb2cf76bb90e73d3fef3f6a8c14d1850
 
 ![](./media/search-create-index-portal/set-analyzer.png)
 
-## <a name="next"></a>下一步
+## <a name="next-steps"></a>後續步驟
 建立 Azure 搜尋服務索引後，您就可以 [將內容上傳到索引](search-what-is-data-import.md) ，以便開始搜尋資料。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

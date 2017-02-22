@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/27/2017
 ms.author: juliako;anilmur
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d7e3bc0ac0c1f0c6bbce0cc25fe7a8df2cc53836
+ms.sourcegitcommit: ef5db062ac320995ff8bfa64f38c89d860957868
+ms.openlocfilehash: 8179e955ef0c126acb9dab31226bd1e12278f9b6
 
 
 ---
@@ -100,6 +100,9 @@ ms.openlocfilehash: d7e3bc0ac0c1f0c6bbce0cc25fe7a8df2cc53836
 * MP3 (MPEG-1 音訊層 3)
 * Windows Media 音訊
 
+>[!NOTE]
+>如果編碼成 Dolby® Digital (AC3)，則輸出只能寫入到 ISO MP4 檔案。
+
 ## <a name="a-idclosedcaptioningasupport-for-closed-captioning"></a><a id="closed_captioning"></a>支援隱藏式字幕
 內嵌時， **Media Encoder Premium Workflow** 支援：
 
@@ -131,6 +134,6 @@ ms.openlocfilehash: d7e3bc0ac0c1f0c6bbce0cc25fe7a8df2cc53836
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "在您的第一個 Web 應用程式中新增功能"
+title: "在您的第一個 Web 應用程式中新增功能 | Microsoft Docs"
 description: "幾分鐘之內就在您的第一個 Web 應用程式中新增絕妙功能。"
 services: app-service\web
 documentationcenter: 
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.date: 05/12/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b2c501b6e048d569ebf43b8f40d6b08f687ab624
-ms.openlocfilehash: 549b84788259796c2146fa19763fb00d4e03019c
+ms.sourcegitcommit: 9916000ddf38fdda1dcbdcf8818c5833a445efc8
+ms.openlocfilehash: 3f099db9f75466b5571aa732bb60343af7bd86da
 
 
 ---
 # <a name="add-functionality-to-your-first-web-app"></a>在您的第一個 Web 應用程式中新增功能
-在[在 5 分鐘內，將您的第一個 Web 應用程式部署至 Azure](app-service-web-get-started-cli-nodejs.md) 中，您已將範例 Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 在本文中，您將快速地在已部署的 Web 應用程式中新增一些很棒的功能。 您將在幾分鐘內︰
+在[在&5; 分鐘內，將您的第一個 Web 應用程式部署至 Azure](app-service-web-get-started-cli-nodejs.md) 中，您已將範例 Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 在本文中，您將快速地在已部署的 Web 應用程式中新增一些很棒的功能。 您將在幾分鐘內︰
 
 * 強制執行使用者驗證
 * 自動調整您的應用程式
@@ -52,9 +52,9 @@ ms.openlocfilehash: 549b84788259796c2146fa19763fb00d4e03019c
     成功變更之後，您會看到通知鈴變成綠色，以及一則清楚的訊息。
 6. 回到您應用程式的入口網站刀鋒視窗，按一下 [URL] 連結 (或功能表列中的 [瀏覽])。 此連結是 HTTP 位址。  
     ![Authenticate - browse to URL](./media/app-service-web-get-started/aad-login-browse-click.png)  
-     但是在新的索引標籤中開啟應用程式後，URL 方塊就會重新導向數次並透過 HTTPS 位址到達您的應用程式。 您會看到您已登入您的 Azure 訂用帳戶，而且您已自動在應用程式中進行驗證。  
+    但是在新的索引標籤中開啟應用程式後，URL 方塊就會重新導向數次並透過 HTTPS 位址到達您的應用程式。 您會看到您已登入您的 Azure 訂用帳戶，而且您已自動在應用程式中進行驗證。  
     ![Authenticate - logged in](./media/app-service-web-get-started/aad-login-browse-http-postclick.png)  
-     因此，如果您現在於不同瀏覽器中開啟未驗證的工作階段，當您瀏覽至相同 URL 時，將會看到登入畫面。  
+    因此，如果您現在於不同瀏覽器中開啟未驗證的工作階段，當您瀏覽至相同 URL 時，將會看到登入畫面。  
     <!-- ![Authenticate - login page](./media/app-service-web-get-started/aad-login-browse.png)  -->
     如果您從未使用 Azure Active Directory 執行任何作業，預設目錄可能沒有任何 Azure AD 使用者。 在此情況下，那裡唯一的帳戶可能是以您的 Azure 訂用帳戶登入的 Microsoft 帳戶。 這就是為什麼您先前會在相同的瀏覽器中自動登入此應用程式。
    您也可以使用相同的 Microsoft 帳戶登入此登入頁面。
@@ -128,7 +128,7 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 恭喜，您現已接收警示。
 
-此警示設定會每隔 5 分鐘檢查一次 CPU 使用率。 如果該數字高於 90%，您以及獲得授權的人員都會收到電子郵件警示。 若要查看有權接收警示的人員，請回到您應用程式的刀鋒視窗，然後按一下 [存取]  按鈕。  
+此警示設定會每隔&5; 分鐘檢查一次 CPU 使用率。 如果該數字高於 90%，您以及獲得授權的人員都會收到電子郵件警示。 若要查看有權接收警示的人員，請回到您應用程式的刀鋒視窗，然後按一下 [存取]  按鈕。  
 ![查看有誰收到警示](./media/app-service-web-get-started/alert-rbac.png)
 
 您應該會看到 [訂用帳戶管理員] 已經是應用程式的 [擁有者]。 如果您是 Azure 訂用帳戶 (如您的試用訂用帳戶) 的帳戶管理員，您就包含在此群組中。 如需 Azure 角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
@@ -157,6 +157,6 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

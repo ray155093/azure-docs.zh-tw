@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 05/17/2016
+ms.date: 01/04/2017
 ms.author: alanwar
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7064de917505223eadc07cde67c373de1cac36ef
+ms.sourcegitcommit: 3ed67788fbbe0c4fb820cfd1525d8c9ee5154446
+ms.openlocfilehash: 5da5707900b35be69018ba4e9c8efb05d8a74a9d
 
 
 ---
@@ -46,9 +46,11 @@ StatefulRunAsyncInvocation、StatefulRunAsyncCompletion，和 StatefulRunAsyncCa
 
 只要 RunAsync 工作的取消要求所花費的時間超過四秒，就會發出 StatefulRunAsyncSlowCancellation。 當服務完成取消所花費的時間太久，它會影響服務快速在另一個節點上重新啟動的能力。 這可能會影響服務的整體可用性。
 
+## <a name="next-steps"></a>後續步驟
+* [PerfView 中的 EventSource 提供者](https://blogs.msdn.microsoft.com/vancem/2012/07/09/introduction-tutorial-logging-etw-events-in-c-system-diagnostics-tracing-eventsource/)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

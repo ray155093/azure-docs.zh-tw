@@ -23,6 +23,7 @@
 ### [做為可呼叫端點的 Logic Apps](logic-apps-http-endpoint.md)
 ### [迴圈、範圍和解除批次處理](logic-apps-loops-and-scopes.md)
 ### [使用您的自訂 API](logic-apps-custom-hosted-api.md)
+### [使用 Switch 陳述式](logic-apps-switch-case.md)
 ### [例外狀況處理](logic-apps-exception-handling.md)
 ### [例外狀況處理案例](logic-apps-scenario-error-and-exception-handling.md)
 ### [處理內容類型](logic-apps-content-type.md)
@@ -91,6 +92,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=logic-apps)
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

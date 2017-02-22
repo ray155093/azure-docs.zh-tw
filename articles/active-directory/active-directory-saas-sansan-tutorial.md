@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2533338698478a4d9aa07aace93c9bbecb0b3350
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a21fb8c22b5c429fc768e128162836275ff18bf1
 
 
 ---
@@ -124,7 +124,7 @@ SanSan 與 Azure AD 整合提供下列優點：
     | 行動瀏覽器設定 | `https://ap.sansan.com/s/saml2/<company name>` |
 
 
-    c. 按一下頁面底部的 [新增] 來單一登入應用程式。
+    c. 按 [下一步] 。
 
 1. 在 [設定在 SanSan 單一登入]  頁面上，執行下列步驟：
    
@@ -263,6 +263,6 @@ SanSan 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

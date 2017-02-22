@@ -1,5 +1,5 @@
 ---
-title: "教學課程 - 開始使用 Azure Batch Python 用戶端 | Microsoft Docs"
+title: "教學課程 - 使用適用於 Python 的 Azure Batch SDK | Microsoft Docs"
 description: "了解 Azure Batch 的基本概念，以及利用簡單的案例了解如何開發 Batch 服務"
 services: batch
 documentationcenter: python
@@ -12,11 +12,11 @@ ms.devlang: python
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 11/30/2016
+ms.date: 02/01/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
-ms.openlocfilehash: 3c1efaa277c6fba7965d6fe10cc5991cb02281d7
+ms.sourcegitcommit: 02f68c743f18fa691afdd5ff02f427b89d28c663
+ms.openlocfilehash: 146eaea2bf523ff6e7d9024205e47965fa2e0413
 
 
 ---
@@ -708,6 +708,6 @@ Press ENTER to exit...
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

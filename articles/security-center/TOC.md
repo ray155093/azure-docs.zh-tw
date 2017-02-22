@@ -4,11 +4,13 @@
 ## [資料安全性](security-center-data-security.md)
 ## 案例
 ### [事件回應](security-center-incident-response.md)
+### [使用增強安全性的建議](security-center-using-recommendations.md)
 
 # 開始使用
 ## [快速入門](security-center-get-started.md)
 ## [規劃與作業](security-center-planning-and-operations-guide.md)
 ## [權限](security-center-permissions.md)
+## [合作夥伴整合](security-center-partner-integration.md)
 ## [常見問題集](security-center-faq.md)
 
 # 作法
@@ -19,11 +21,13 @@
 
 ### [應用程式建議](security-center-application-recommendations.md)
 #### [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)
+#### [完成應用程式保護](security-center-add-web-application-firewall.md#finalize-application-protection)
 
 ### [網路建議](security-center-network-recommendations.md)
 #### [新增新一代防火牆](security-center-add-next-generation-firewall.md)
 #### [啟用網路安全性群組](security-center-enable-network-security-groups.md)
 #### [透過網際網路面向端點限制存取](security-center-restrict-access-through-internet-facing-endpoints.md)
+#### [僅透過 NGFW 路由傳送流量](security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only)
 
 ### [SQL 服務建議](security-center-sql-service-recommendations.md)
 #### [Enable auditing on SQL databases](security-center-enable-auditing-on-sql-databases.md)
@@ -34,9 +38,11 @@
 #### [套用磁碟加密](security-center-apply-disk-encryption.md)
 #### [套用系統更新](security-center-apply-system-updates.md)
 #### [啟用資料收集](security-center-enable-data-collection.md)
+#### [啟用儲存體帳戶的加密](security-center-enable-encryption-for-storage-account.md)
 #### [啟用 VM 代理程式](security-center-enable-vm-agent.md)
 #### [安裝端點保護](security-center-install-endpoint-protection.md)
 #### [提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md)
+#### [在系統更新之後重新開機](security-center-apply-system-updates.md#reboot-after-system-updates)
 #### [修復 OS 弱點](security-center-remediate-os-vulnerabilities.md)
 #### [解決端點保護健全狀況警示](security-center-resolve-endpoint-protection-health-alerts.md)
 #### [更新作業系統版本](security-center-update-os-version.md)
@@ -70,6 +76,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=security-center)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

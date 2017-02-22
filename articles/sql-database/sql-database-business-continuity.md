@@ -11,14 +11,14 @@ ms.assetid: 18e5d3f1-bfe5-4089-b6fd-76988ab29822
 ms.service: sql-database
 ms.custom: business continuity
 ms.devlang: NA
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 10/13/2016
-ms.author: carlrab;sashan
+ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b2653afe1aeb920ef7e14f3e15501c8541c43219
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: 8fefa688ee52395d7dee2f53da12ebc50e84fb8e
 
 
 ---
@@ -38,7 +38,7 @@ SQL Database 提供幾種商務持續性功能，包括自動備份和選用的�
 | 主動式異地複寫 |ERT < 30 秒，RPO < 5 秒 |ERT < 30 秒，RPO < 5 秒 |ERT < 30 秒，RPO < 5 秒 |
 
 ### <a name="use-database-backups-to-recover-a-database"></a>使用資料庫備份來復原資料庫
-SQL Database 會每週自動執行完整資料庫備份、每小時自動執行差異資料庫備份，以及每 5 分鐘自動執行交易記錄備份，透過這樣的備份組合來防止您的企業遺失資料。 針對「標準」和「進階」服務層中的資料庫，這些備份會在本地備援儲存體中儲存達 35 天，如果是「基本」服務層中的資料庫，則儲存天數為 7 天 - 如需有關服務層的更多詳細資料，請參閱 [服務層](sql-database-service-tiers.md) 。 如果服務層的保留期間不符合您的企業需求，您可以 [變更服務層](sql-database-scale-up.md)來增長保留期間。 完整和差異資料庫備份也會複寫到[配對的資料中心](../best-practices-availability-paired-regions.md)，以防止發生資料中心中斷的情況。 如需更多詳細資料，請參閱[自動資料庫備份](sql-database-automated-backups.md)。
+SQL Database 會每週自動執行完整資料庫備份、每小時自動執行差異資料庫備份，以及每&5; 分鐘自動執行交易記錄備份，透過這樣的備份組合來防止您的企業遺失資料。 針對「標準」和「進階」服務層中的資料庫，這些備份會在異地備援儲存體中儲存達 35 天，如果是「基本」服務層中的資料庫，則儲存天數為 7 天 - 如需有關服務層的更多詳細資料，請參閱 [服務層](sql-database-service-tiers.md) 。 如果服務層的保留期間不符合您的企業需求，您可以 [變更服務層](sql-database-service-tiers.md)來增長保留期間。 完整和差異資料庫備份也會複寫到[配對的資料中心](../best-practices-availability-paired-regions.md)，以防止發生資料中心中斷的情況。 如需更多詳細資料，請參閱[自動資料庫備份](sql-database-automated-backups.md)。
 
 如果您的應用程式內建保留期間不足，可以藉由針對資料庫設定長期保留期原則來擴充。 如需詳細資訊，請參閱[長期保存](sql-database-long-term-retention.md)。 
 
@@ -59,7 +59,7 @@ SQL Database 會每週自動執行完整資料庫備份、每小時自動執行�
 如果您需要更快速的復原，請使用 [主動式異地複寫](sql-database-geo-replication-overview.md) (接下來將討論)。 如果您需要能夠復原 35 天前的資料，請考慮將您的資料庫定期封存成 BACPAC 檔案 (一種包含您資料庫結構描述和相關資料的壓縮檔案)，並儲存在 Azure Blob 儲存體或您所選擇的另一個位置中。 如需有關如何建立交易一致資料庫封存的詳細資訊，請參閱[建立資料庫複本](sql-database-copy.md)和[匯出資料庫複本](sql-database-export.md)。 
 
 ### <a name="use-active-geo-replication-to-reduce-recovery-time-and-limit-data-loss-associated-with-a-recovery"></a>使用主動式異地複寫減少復原時間，並限制與復原相關聯的資料遺失
-除了在發生業務中斷時使用資料庫備份來進行資料庫復原之外，您還可以使用 [主動式異地複寫](sql-database-geo-replication-overview.md) 來設定資料庫，在您選擇的區域中最多可擁有 4 個可讀取的次要資料庫。 這些次要資料庫會使用非同步複寫機制與主要資料庫保持同步。 此功能可用來防範資料中心中斷或應用程式升級期間的業務中斷。 「主動式異地複寫」也可用來為地理位置分散的使用者，就唯讀查詢方面提供較佳的查詢效能。
+除了在發生業務中斷時使用資料庫備份來進行資料庫復原之外，您還可以使用 [主動式異地複寫](sql-database-geo-replication-overview.md) 來設定資料庫，在您選擇的區域中最多可擁有&4; 個可讀取的次要資料庫。 這些次要資料庫會使用非同步複寫機制與主要資料庫保持同步。 此功能可用來防範資料中心中斷或應用程式升級期間的業務中斷。 「主動式異地複寫」也可用來為地理位置分散的使用者，就唯讀查詢方面提供較佳的查詢效能。
 
 如果主要資料庫意外離線，或者您需要離線進行維護活動，可以快速將次要升級成主要 (也稱為容錯移轉)，並且設定應用程式連線到新升級的主要資料庫。 使用計劃性容錯移轉時，不會有任何資料遺失。 使用非計劃性容錯移轉時，則由於非同步複寫的性質緣故，可能會有一些少量的資料遺失。 容錯移轉之後，無論是根據計畫或當資料中心再次上線時，就可以容錯回復。 在所有情況下，使用者都會經歷短暫的停機時間，而需要重新連線。 
 
@@ -75,6 +75,10 @@ SQL Database 會每週自動執行完整資料庫備份、每小時自動執行�
 * 停機時間會衍生財務責任。
 * 具有很高的資料變更率，而且不接受遺失一個小時的資料。
 * 與潛在的財務責任和相關企業損失相較下，使用主動式異地複寫的額外成本較低。
+
+>
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-protecting-important-DBs-from-regional-disasters-is-easy/player]
+>
 
 ## <a name="recover-a-database-after-a-user-or-application-error"></a>在使用者或應用程式錯誤之後復原資料庫
 * 沒有人是完美的！ 使用者可能會不小心刪除某些資料、不小心卸除重要的資料表，或甚至是卸除整個資料庫。 或者，應用程式可能會因為應用程式缺陷，而意外以不正確的資料覆寫正確的資料。 
@@ -136,7 +140,7 @@ SQL Database 會每週自動執行完整資料庫備份、每小時自動執行�
 > 
 > 
 
-### <a name="perform-post-failover-recovery-tasks"></a>執行容錯移轉後/復原後工作
+### <a name="perform-post-failover--recovery-tasks"></a>執行容錯移轉後/復原後工作
 從其中任何一種復原機制復原之後，您都必須執行下列額外的工作，您的使用者和應用程式才能回復正常執行狀態︰
 
 * 重新導向用戶端與用戶端應用程式到新的伺服器與還原的資料庫
@@ -154,6 +158,6 @@ SQL Database 會每週自動執行完整資料庫備份、每小時自動執行�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

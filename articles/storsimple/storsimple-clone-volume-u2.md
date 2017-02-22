@@ -1,5 +1,5 @@
 ---
-title: "複製 StorSimple 磁碟區 | Microsoft Docs"
+title: "複製 StorSimple 8000 系列磁碟區 | Microsoft Docs"
 description: "說明不同的複製類型以及使用時機，並說明如何使用備份組來複製個別磁碟區。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 07/27/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 024b6bceb9eb150e60f68edf916cebacd3552af2
+ms.sourcegitcommit: eb56cae77722268f42e5126c45ad2878af7db94a
+ms.openlocfilehash: 0db0af490f03525f4c23c4e9a23e62a1ef9f1c7f
 
 
 ---
@@ -72,7 +72,7 @@ StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動�
    1. 指定該複製的存取控制記錄 (ACR)。 您可以加入新的 ACR，或從現有清單中選擇。
       
         ![複製精靈 2](./media/storsimple-clone-volume-u2/clone2.png) 
-   2. 按一下核取圖示  ![核取圖示](./media/storsimple-clone-volume-u2/HCS_CheckIcon.png) 完成操作。
+   2. 按一下核取圖示  ![核取圖示](./media/storsimple-clone-volume-u2/HCS_CheckIcon.png)完成操作。
 6. 複製工作隨即起始並在成功建立複製時通知您。 按一下 [檢視工作]，在 [工作] 頁面上監視複製工作。 複製作業完成時，您會看到下列訊息：
    
     ![複製訊息](./media/storsimple-clone-volume-u2/CloneMsg.png) 
@@ -115,6 +115,6 @@ StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

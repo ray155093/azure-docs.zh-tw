@@ -1,6 +1,6 @@
 ---
-title: "Azure Container Service 叢集中容器的負載平衡 | Microsoft Docs"
-description: "Azure Container Service 叢集中多個容器的負載平衡。"
+title: "Azure DC/OS 叢集中的負載平衡容器 | Microsoft Docs"
+description: "Azure Container Service DC/OS 叢集中多個容器的負載平衡。"
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -11,18 +11,18 @@ keywords: "容器, 微服務, DC/OS, Azure"
 ms.assetid: f0ab5645-2636-42de-b23b-4c3a7e3aa8bb
 ms.service: container-service
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/11/2016
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: cf255856302ad5bdb1f6022d231833610acbcac5
+ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
+ms.openlocfilehash: 27ad7100f6203db3ba3dcc88ffdc191b9b9d45cb
 
 
 ---
-# <a name="load-balance-containers-in-an-azure-container-service-cluster"></a>Azure Container Service 叢集中容器的負載平衡
+# <a name="load-balance-containers-in-an-azure-container-service-dcos-cluster"></a>Azure Container Service DC/OS 叢集中容器的負載平衡
 在本文中，我們將探討如何在 DC/OS 管理的 Azure Container Service 中使用 Marathon-LB 建立內部負載平衡器。 這可讓您以水平方式調整應用程式。 也可讓您在將負載平衡器放在公用叢集上，並將應用程式容器放在私用叢集上，藉此利用公用和私用代理程式叢集。
 
 ## <a name="prerequisites"></a>必要條件
@@ -39,14 +39,14 @@ Marathon Load Balancer 會根據您所部署的容器以動態方式重新設定
 
 若要安裝 Marathon 負載平衡器，您可以使用 DC/OS Web UI 或命令列。
 
-### <a name="install-marathonlb-using-dcos-web-ui"></a>使用 DC/OS Web UI 安裝 Marathon-LB
+### <a name="install-marathon-lb-using-dcos-web-ui"></a>使用 DC/OS Web UI 安裝 Marathon-LB
 1. 按一下 'Universe'
 2. 搜尋 'Marathon-LB'
 3. 按一下 'Install'
 
 ![透過 DC/OS Web 介面安裝 marathon-lb](./media/dcos/marathon-lb-install.png)
 
-### <a name="install-marathonlb-using-the-dcos-cli"></a>使用 DC/OS CLI 安裝 Marathon-LB
+### <a name="install-marathon-lb-using-the-dcos-cli"></a>使用 DC/OS CLI 安裝 Marathon-LB
 安裝 DC/OS CLI 並確保您可以連接至叢集之後，請從用戶端電腦執行下列命令︰
 
 ```bash
@@ -136,6 +136,6 @@ Azure lb:8080 -> marathon-lb:1002 -> mycontainer2:33432
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -13,11 +13,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 5304ddd84bebb19f5f082acb6442faa34b8d84bb
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 ![顯示空白工作清單的網頁][node-table-finished]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -462,7 +462,7 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 
 1. 輸入下列命令：
    
-        azure account download
+        azure login
    
     此命令會啟動瀏覽器並瀏覽至下載頁面。 若出現提示，請使用與您的 Azure 訂用帳戶相關聯的帳戶登入。
    
@@ -559,12 +559,12 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 <!-- URLs -->
 
 [在 Azure App Service 中建置和部署 Node.js Web 應用程式]: web-sites-nodejs-develop-deploy-mac.md
-[Azure 開發人員中心]: /develop/nodejs/
+[Azure Developer Center]: /develop/nodejs/
 
 [node]: http://nodejs.org
 [Git]: http://git-scm.com
 [Express]: http://expressjs.com
-[免費]: http://windowsazure.com
+[for free]: http://windowsazure.com
 [Git 遠端]: http://git-scm.com/docs/git-remote
 
 [Azure CLI]: ../xplat-cli-install.md
@@ -574,9 +574,9 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 [nconf]: https://www.npmjs.com/package/nconf
 [async]: https://www.npmjs.com/package/async
 
-[Azure 入口網站]: https://portal.azure.com
+[Azure Portal]: https://portal.azure.com
 
-[建立 Node.js 應用程式並將其部署到 Azure 網站]: web-sites-nodejs-develop-deploy-mac.md
+[Create and deploy a Node.js application to an Azure Web Site]: web-sites-nodejs-develop-deploy-mac.md
 
 <!-- Image References -->
 
@@ -594,6 +594,6 @@ ms.openlocfilehash: a5ff81a2b693c8a7b97783d6a43cab204c7ec3eb
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

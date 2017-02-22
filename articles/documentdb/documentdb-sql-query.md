@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 11/01/2016
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: a28aace9269bafe9158cccf9bea2dc26f77cf937
-ms.openlocfilehash: 54a763530961073655257251f0381b0b379ae73c
+ms.sourcegitcommit: 7f5e33b7f80e3c1e1e3e66b3cab879a5bc30e823
+ms.openlocfilehash: f4f04a05c1d522f43668e31db15092476b4ef6df
 
 
 ---
@@ -566,7 +566,7 @@ IN 關鍵字可用來檢查指定的值是否符合清單中的任何值。 例�
     FROM Families 
     WHERE Families.address.state IN ("NY", "WA", "CA", "PA", "OH", "OR", "MI", "WI", "MN", "FL")
 
-### <a name="ternary-and-coalesce-operators"></a>三元 (?) 和聯合 (??) 運算子
+### <a name="ternary--and-coalesce--operators"></a>三元 (?) 和聯合 (??) 運算子
 三元和聯合運算子可用來建立條件運算式，與熱門程式設計語言 (如 C# 和 JavaScript) 類似。 
 
 快速建構新的 JSON 屬性時，三元 (?) 運算子可以說非常好用。 比方說，您現在可以撰寫查詢將類別層級分類為一般人可判讀的格式 (例如初級/中級/進階)，如下所示。
@@ -617,7 +617,7 @@ SELECT 子句 (**`SELECT <select_list>`**) 是必要項目，並指定將從查�
 
 
 ### <a name="nested-properties"></a>巢狀屬性
-在下列範例中，我們將投射兩個巢狀屬性 `f.address.state` 和 `f.address.city`。
+在下列範例中，我們將投射兩個巢狀屬性 `f。address。state` and `f。address。city`。
 
 **查詢**
 
@@ -882,7 +882,7 @@ TOP 關鍵字可以用來限制來自查詢的值數目。 當 TOP 與 ORDER BY 
 TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配使用 。 如需詳細資訊，請參閱下方的參數化查詢。
 
 ## <a name="order-by-clause"></a>ORDER BY 子句
-像是在 ANSI SQL 中，您可以在查詢時包含選擇性的 Order By 子句。 子句可以包含選擇性 ASC/DESC 引數，利用它來指定擷取結果時必須依循的順序。 若要更深入了解 Order By，請參閱 [DocumentDB Order By 逐步解說](documentdb-orderby.md)。
+像是在 ANSI SQL 中，您可以在查詢時包含選擇性的 Order By 子句。 子句可以包含選擇性 ASC/DESC 引數，利用它來指定擷取結果時必須依循的順序。
 
 例如，以下是依據居住城市名稱的順序擷取家族的查詢。
 
@@ -1128,7 +1128,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
         }
     }
 
-`AndersenFamily` 有一個小孩養了一隻寵物。 因此，交叉乘積會從此家族產生 1 個資料列 (1*1*1)。 不過，WakefieldFamily 有兩個小孩，但只有一個小孩 "Jesse" 養了多隻寵物。 而 Jesse 擁有 2 隻寵物。 因此，交叉乘積會從此家族產生 1*1*2 = 2 個資料列。
+`AndersenFamily` 有一個小孩養了一隻寵物。 因此，交叉乘積會從此家族產生&1; 個資料列 (1*1*1)。 不過，WakefieldFamily 有兩個小孩，但只有一個小孩 "Jesse" 養了多隻寵物。 而 Jesse 擁有 2 隻寵物。 因此，交叉乘積會從此家族產生 1*1*2 = 2 個資料列。
 
 在下一個範例中，對 `pet`有一個額外的篩選。 這會排除寵物名稱不是 "Shadow" 的所有 Tuple。 請注意，我們可以從陣列建置 Tuple、根據 Tuple 的任何元素進行篩選，以及投射元素的任何組合。 
 
@@ -1334,7 +1334,7 @@ DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查
 | [FLOOR (num_expr)](#bk_floor) | 傳回小於或等於指定之數值運算式的最大整數。 |
 | [EXP (num_expr)](#bk_exp) | 傳回指定之數值運算式的指數。 |
 | [LOG (num_expr [,base])](#bk_log) | 傳回指定之數值運算式的自然對數，或使用指定之基底的對數 |
-| [LOG10 (num_expr)](#bk_log10) | 傳回指定之數值運算式的以 10 為基底的對數值。 |
+| [LOG10 (num_expr)](#bk_log10) | 傳回指定之數值運算式的以&10; 為基底的對數值。 |
 | [ROUND (num_expr)](#bk_round) | 傳回數值，四捨五入到最接近的整數值。 |
 | [TRUNC (num_expr)](#bk_trunc) | 傳回數值，截斷至最接近的整數值。 |
 | [SQRT (num_expr)](#bk_sqrt) | 傳回指定之數值運算式的平方根。 |
@@ -2190,6 +2190,6 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

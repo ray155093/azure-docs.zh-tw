@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/28/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: c881b378a96b9d3eca7018bc32154a265ec524ea
-ms.openlocfilehash: 893892759b0cac38c0baa5ed3d56addb0dd75065
+ms.sourcegitcommit: 59f072c7a8272fc04e1d662c0ab17e7ee4500fa6
+ms.openlocfilehash: b589742e23ba9cca919a845e4d262ccfea4c9aca
 
 
 ---
@@ -40,17 +40,17 @@ ms.openlocfilehash: 893892759b0cac38c0baa5ed3d56addb0dd75065
 1. 前往 `https://azure.microsoft.com/services/data-catalog`，然後按一下 [開始使用]。
 2. 登入 Azure 資料目錄入口網站，再按一下 [發佈資料] 。
 
-    ![註冊資料來源](./media/data-lake-store-with-data-catalog/register-data-source.png "Register a data source")
+    ![註冊資料來源](./media/data-lake-store-with-data-catalog/register-data-source.png "註冊資料來源")
 3. 在下一個頁面上，按一下 [啟動應用程式] 。 這樣會下載電腦上的應用程式資訊清單檔案。 按兩下此資訊清單檔案以啟動應用程式。
 4. 在 [歡迎使用] 頁面上，按一下 [登入] ，並輸入您的認證。
 
-    ![歡迎使用畫面](./media/data-lake-store-with-data-catalog/welcome.screen.png "Welcome screen")
+    ![歡迎使用畫面](./media/data-lake-store-with-data-catalog/welcome.screen.png "歡迎使用畫面")
 5. 在 [選取資料來源] 頁面上，選取 [Azure Data Lake]，然後按 [下一步]。
 
-    ![選取資料來源](./media/data-lake-store-with-data-catalog/select-source.png "Select data source")
+    ![選取資料來源](./media/data-lake-store-with-data-catalog/select-source.png "選取資料來源")
 6. 在下一個頁面上，提供您想要在資料目錄中註冊的 Data Lake Store 帳戶名稱。 其他選項保留為預設值，然後按一下 [連線] 。
 
-    ![連接到資料來源](./media/data-lake-store-with-data-catalog/connect-to-source.png "Connect to data source")
+    ![連接到資料來源](./media/data-lake-store-with-data-catalog/connect-to-source.png "連接到資料來源")
 7. 下一個頁面可以分成下列區段。
 
     a. [伺服器階層] 方塊代表 Data Lake Store 帳戶資料夾結構。 [$Root] 代表 Data Lake Store 帳戶根目錄，而 [AmbulanceData] 則代表在 Data Lake Store 帳戶的根目錄中建立的資料夾。
@@ -59,20 +59,20 @@ ms.openlocfilehash: 893892759b0cac38c0baa5ed3d56addb0dd75065
 
     c. [要註冊的物件] 方塊會列出您想要在「Azure 資料目錄」中註冊的檔案和資料夾。
 
-    ![檢視資料結構](./media/data-lake-store-with-data-catalog/view-data-structure.png "View data structure")
-8. 在本教學課程中，您應該在目錄中註冊所有檔案。 因此，請按一下 (![移動物件](./media/data-lake-store-with-data-catalog/move-objects.png "Move objects")) 按鈕來將所有檔案移至 [要註冊的物件] 方塊。
+    ![檢視資料結構](./media/data-lake-store-with-data-catalog/view-data-structure.png "檢視資料結構")
+8. 在本教學課程中，您應該在目錄中註冊所有檔案。 因此，請按一下 (![移動物件](./media/data-lake-store-with-data-catalog/move-objects.png "移動物件")) 按鈕來將所有檔案移至 [要註冊的物件] 方塊。
 
     因為資料將會在整個組織的資料目錄中註冊，建議新增一些元資料，讓您稍後可以用來快速尋找資料。 例如，您可以新增資料擁有者 (例如，上傳資料的人員) 的電子郵件地址，或新增可識別資料的標籤。 下方螢幕擷取畫面顯示我們新增至資料的標籤。
 
-    ![檢視資料結構](./media/data-lake-store-with-data-catalog/view-selected-data-structure.png "View data structure")
+    ![檢視資料結構](./media/data-lake-store-with-data-catalog/view-selected-data-structure.png "檢視資料結構")
 
     按一下 [註冊] 。
 9. 下列螢幕擷取畫面表示已成功在資料目錄中註冊資料。
 
-    ![註冊完成](./media/data-lake-store-with-data-catalog/registration-complete.png "View data structure")
+    ![註冊完成](./media/data-lake-store-with-data-catalog/registration-complete.png "檢視資料結構")
 10. 按一下 [檢視入口網站]  以回到資料目錄入口網站，並確認您現在可以從入口網站存取已註冊的資料。 若要搜尋資料，您可以使用您在註冊資料時使用的標籤。
 
-     ![搜尋目錄中的資料](./media/data-lake-store-with-data-catalog/search-data-in-catalog.png "Search data in catalog")
+     ![搜尋目錄中的資料](./media/data-lake-store-with-data-catalog/search-data-in-catalog.png "搜尋目錄中的資料")
 11. 您現在可以執行將註釋和文件新增至資料等作業。 如需詳細資訊，請參閱下列連結。
 
     * [註釋資料目錄中的資料來源](../data-catalog/data-catalog-how-to-annotate.md)
@@ -85,6 +85,6 @@ ms.openlocfilehash: 893892759b0cac38c0baa5ed3d56addb0dd75065
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "IP 位址 (傳統) | Microsoft Docs"
+title: "Azure 中的 IP 位址類型 (傳統) | Microsoft Docs"
 description: "了解 Azure 中的公用和私人 IP 位址 (傳統)。"
 services: virtual-network
 documentationcenter: na
@@ -16,12 +16,12 @@ ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: f4c164ac86c404f11a4bc77bc9346ad6fc45e0a7
+ms.sourcegitcommit: 54277a39601cd7f986a8ff8f517ab02eac77309b
+ms.openlocfilehash: dfc34435ad6e8982c0298301bdefe489c37db8f1
 
 
 ---
-# <a name="ip-addresses-classic-in-azure"></a>Azure 中的 IP 位址 (傳統)
+# <a name="ip-address-types-and-allocation-methods-classic-in-azure"></a>Azure 中的 IP 位址類型及配置方法 (傳統)
 您可以將 IP 位址指派給 Azure 資源，來與其他 Azure 資源、內部部署網路和網際網路進行通訊。 您可以在 Azure 中使用兩種類型的 IP 位址：公用和私人。
 
 公用 IP 位址用於與網際網路通訊，包括 Azure 公眾對應服務。
@@ -133,7 +133,7 @@ Azure [應用程式閘道](../application-gateway/application-gateway-introducti
 
 如果是獨立  雲端服務，您只能夠解析相同雲端服務內所有 VM/角色執行個體的主機名稱。 如果是 VNet 內的雲端服務，您將能夠解析 VNet 內所有 VM/角色執行個體的主機名稱。
 
-### <a name="internal-load-balancers-ilb-application-gateways"></a>內部負載平衡器 (ILB) 與應用程式閘道
+### <a name="internal-load-balancers-ilb--application-gateways"></a>內部負載平衡器 (ILB) 與應用程式閘道
 您可以將私人 IP 位址指派給 [Azure 內部負載平衡器](../load-balancer/load-balancer-internal-overview.md) (ILB) 或 [Azure 應用程式閘道](../application-gateway/application-gateway-introduction.md)的**前端**組態。 此私人 IP 位址可做為內部端點，只能存取其虛擬網路 (VNet) 內的資源與連線到 VNet 的遠端網路。 您可以將動態或靜態私人 IP 位址指派給前端組態。 您也可以指派多個私人 IP 位址，以實現多重 vip 案例。
 
 ### <a name="at-a-glance"></a>速覽
@@ -182,6 +182,6 @@ Azure [應用程式閘道](../application-gateway/application-gateway-introducti
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

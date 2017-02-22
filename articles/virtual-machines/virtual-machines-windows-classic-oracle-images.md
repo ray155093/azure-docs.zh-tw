@@ -1,5 +1,5 @@
 ---
-title: "Oracle VM 映像清單 | Microsoft Docs"
+title: "Oracle Windows VM 映像清單 | Microsoft Docs"
 description: "在 Azure 資源庫中取得 Oracle 映像清單，並了解如何建立 Oracle 虛擬機器。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 09/06/2016
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7ebe3b1240c553b86c2fa4f6d02d011b4fae4777
+ms.sourcegitcommit: ed43a0ae9d1b184bfe059103cd2bee00c975537d
+ms.openlocfilehash: 114787bb15e94381f95a717b27aab57209e2d9f1
 
 
 ---
@@ -27,6 +27,6 @@ ms.openlocfilehash: 7ebe3b1240c553b86c2fa4f6d02d011b4fae4777
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

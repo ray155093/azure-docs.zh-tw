@@ -1,13 +1,25 @@
 ---
+title: "Azure Functions 文件 - 教學課程 | Microsoft Docs"
+description: "了解如何以您所選的語言開發和部署函式，以在背景中或依照排程執行工作，而不需要特殊的基礎結構。"
+services: functions
+author: carolz
+manager: carolz
 layout: LandingPage
+ms.assetid: 
+ms.service: functions
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 87316969b7849396c6542decde3257774c35c454
-ms.openlocfilehash: dc15cd4e497135ea9ce07d671020af6df49ad3f6
+ms.sourcegitcommit: b490d47b03cd3c7c57c3630fafb95777fffaa3aa
+ms.openlocfilehash: b2f2e067fd6c6c2c34bee167356756721c8fd0cd
 
 ---
 #<a name="azure-functions-documentation"></a>Azure Functions 文件
 
-Azure Functions 是可在雲端輕鬆執行程式碼 (「函式」) 片段的解決方案。 您可以撰寫處理手邊問題所需的程式碼，而不需擔心要執行它的整個應用程式或基礎結構。 您也可以您選擇的語言進行開發，例如 C#、F#、Node.js、Python 或 PHP。
+了解如何使用 Functions，以您所選的語言在雲端開發和部署小段的程式碼，而不需要設定基礎結構。 教學課程、範本和其他文件會示範如何針對您要在背景執行緒中或依照排程執行的工作建立函式。
 
 <ul class="panelContent cardsFTitle">
    <li>
@@ -103,18 +115,9 @@ Azure Functions 是可在雲端輕鬆執行程式碼 (「函式」) 片段的解
     </li>
 </ul>
 
----
-
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/azure-functions.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure Functions 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

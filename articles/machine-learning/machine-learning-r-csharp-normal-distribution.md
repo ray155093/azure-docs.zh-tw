@@ -1,6 +1,6 @@
 ---
-title: "常態分佈 Web 服務套件 | Microsoft Docs"
-description: "常態分佈 Web 服務套件"
+title: "(已過時) 常態分佈 Web 服務套件 - Azure | Microsoft Docs"
+description: "(已過時) 常態分佈 Web 服務套件"
 services: machine-learning
 documentationcenter: 
 author: ireiter
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 10/04/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: ireiter
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cd4f532d69f9380ac96675d403dbad1c83e89636
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: da7b70171d13c82e9269064069e69a35b9b2daaa
 
 
 ---
-# <a name="normal-distribution-suite"></a>常態分配套件
+# <a name="deprecated-normal-distribution-suite"></a>(已過時) 常態分佈套件
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 常態分佈套件是一組範例 Web 服務 ([產生器](https://datamarket.azure.com/dataset/aml_labs/ndg7)、[分位數計算機](https://datamarket.azure.com/dataset/aml_labs/ndq5)、[機率計算機](https://datamarket.azure.com/dataset/aml_labs/ndp5))，可協助產生和處理常態分佈。 這些服務允許產生任何長度的常態分佈序列、計算指定機率的分位數，以及計算指定分位數的機率。 每個服務會根據所選取的服務發出不同的輸出 (請參閱下列說明)。 常態分佈套件會以 R 統計封裝中所包含的 R 函數 qnorm、rnorm 和 pnorm 為基礎。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -269,6 +276,6 @@ ms.openlocfilehash: cd4f532d69f9380ac96675d403dbad1c83e89636
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

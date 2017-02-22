@@ -1,5 +1,5 @@
 ---
-title: "針對 Azure 虛擬機器備份進行移難排解 | Microsoft Docs"
+title: "針對 Azure 虛擬機器的備份錯誤進行疑難排解 | Microsoft Docs"
 description: "Azure 虛擬機器備份與還原的疑難排解"
 services: backup
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/18/2016
-ms.author: trinadhk;jimpark;
+ms.date: 01/18/2017
+ms.author: trinadhk;markgal;jpallavi;
 translationtype: Human Translation
-ms.sourcegitcommit: 6fa4e4b2ed8818cfb55a3ac039c8134f7e2a6096
-ms.openlocfilehash: 9fc01460d653ffecc16c916d5538ef20bf699135
+ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
+ms.openlocfilehash: e40a31b7226bd94a3d0e07f528a87f4f686e5bdc
 
 
 ---
@@ -36,17 +36,18 @@ ms.openlocfilehash: 9fc01460d653ffecc16c916d5538ef20bf699135
 | 無法與 VM 代理程式通訊來取得快照集狀態。 - 確保 VM 可以存取網際網路。 此外，如疑難排解指南 (http://go.microsoft.com/fwlink/?LinkId=800034) 所述更新 VM 代理程式 |如果 VM 代理程式發生問題，或以某種方式封鎖對 Azure 基礎結構的網路存取，則會擲回這個錯誤。 [深入了解](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)如何進行 VM 快照集問題偵錯。<br> 如果 VM 代理程式並未造成任何問題，請重新啟動 VM。 有時，不正確的 VM 狀態可能會導致問題，重新啟動 VM 可清除此「錯誤狀態」 |
 | 復原服務擴充作業失敗。 - 請確定虛擬機器上有最新的虛擬機器代理程式，且代理程式服務正在執行中。 請重試備份作業，如果失敗，請連絡 Microsoft 支援服務。 |VM 代理程式過期時會擲回這個錯誤。 請參閱下面的「更新 VM 代理程式」一節以更新 VM 代理程式。 |
 | 虛擬機器不存在。 - 請確定該虛擬機器存在，或選取不同的虛擬機器。 |當刪除主要 VM 但備份原則繼續尋找 VM 來執行備份時，就會發生這種情況。 若要修正此錯誤： <ol><li> 重新建立具有相同名稱和相同資源群組名稱 [雲端服務名稱] 的虛擬機器，<br>(或)<br></li><li>停止保護虛擬機器，但不刪除備份資料。 [更多詳細資料](http://go.microsoft.com/fwlink/?LinkId=808124)</li></ol> |
-| 命令執行失敗。 另一項作業目前正在此項目上進行。 請等到前一項作業完成，然後重試 |VM 的現有備份或還原作業正在執行中，而當現有作業正在執行時，無法啟動新的作業。 |
-| 從備份保存庫複製 VHD 已逾時 - 請在幾分鐘內重試此作業。 如果問題持續發生，請連絡 Microsoft 支援服務。 |要複製的資料太多時會發生此問題。 請檢查您的資料磁碟是否少於 16 個。 |
+| 命令執行失敗。 另一項作業目前正在此項目上進行。 請等到前一項作業完成，然後重試 |VM 上的現有備份正在執行中，而當現有作業正在執行時，無法啟動新的作業。 |
+| 從備份保存庫複製 VHD 已逾時 - 請在幾分鐘內重試此作業。 如果問題持續發生，請連絡 Microsoft 支援服務。 | 發生此問題的時機為儲存體端上產生暫時性錯誤，或者備份服務尚未從裝載 VM 的儲存體帳戶取得足夠的 IOPS，以便在逾時期限內將資料轉送到保存庫。 確定您在設定備份時已遵循[最佳作法](backup-azure-vms-introduction.md#best-practices)。 請嘗試將 VM 移至其他尚未載入的儲存體帳戶，然後重試備份。|
 | 備份因為內部錯誤而失敗 - 請在幾分鐘內重試此作業。 如果問題持續發生，請連絡 Microsoft 支援服務。 |這個錯誤的發生原因有 2 個： <ol><li> 存取 VM 儲存體時發生暫時性問題。 請檢查 [Azure 狀態](https://azure.microsoft.com/en-us/status/)，以查看該區域中目前是否有任何與計算、儲存體或網路相關的問題。 然後在問題解決後，立即重試備份作業。 <li>已刪除原始 VM，因此無法取得復原點。 若要保留已刪除 VM 的備份資料，但移除備份錯誤：請取消保護 VM 並選擇保留資料。 這個動作會停止排定的備份作業和週期性錯誤訊息。 |
 | 無法在選取的項目上安裝 Azure 復原服務延伸模組 - VM 代理程式是 Azure 復原服務延伸模組的先決條件。 安裝 Azure VM 代理程式並重新啟動註冊作業 |<ol> <li>檢查是否已正確安裝 VM 代理程式。 <li>確定已正確設定 VM 組態中的旗標。</ol> [深入了解](#validating-vm-agent-installation)如何安裝 VM 代理程式，以及如何驗證 VM 代理程式安裝。 |
 | 擴充功能安裝失敗，發生錯誤「COM+ 無法與 Microsoft Distributed Transaction Coordinator 通話」 |這通常表示 COM+ 服務未執行。 請連絡 Microsoft 支援服務來協助解決此問題。 |
 | 快照集作業失敗，發生 VSS 作業錯誤「這個磁碟機已由 BitLocker 磁碟機加密鎖定」。 您必須至 [控制台] 解除鎖定這個磁碟機。 |對 VM 上的所有磁碟機關閉 BitLocker，並觀察是否已解決 VSS 問題 |
-| 不支援備份在進階儲存體中儲存虛擬硬碟的虛擬機器 |無。 |
+| VM 目前的狀態不允許備份。 |<ul><li>檢查 VM 是否處於「執行中」與「關閉」之間的暫時性狀態。 如果是，請等待 VM 狀態變成這其中一種狀態，然後再次觸發備份。 <li> 如果 VM 是 Linux VM 並使用 [安全性強化 Linux] 核心模組，您必須從安全性原則中排除 Linux 代理程式路徑 (_/var/lib/waagent_)，以確定會安裝備份擴充功能。  |
 | 找不到 Azure 虛擬機器。 |當刪除主要 VM 但備份原則繼續尋找 VM 來執行備份時，就會發生這種情況。 若要修正此錯誤： <ol><li>重新建立具有相同名稱和相同資源群組名稱 [雲端服務名稱] 的虛擬機器， <br>(或) <li> 停用此 VM 的保護，因此不會建立備份作業。 </ol> |
 | 虛擬機器代理程式不存在於虛擬機器上：請安裝任何必要元件和 VM 代理程式，然後重新啟動作業。 |[深入了解](#vm-agent) VM 代理程式安裝，以及如何驗證 VM 代理程式安裝。 |
 | 快照集作業失敗，因為 VSS 寫入器處於不正常狀態 |您需要重新啟動 VSS (磁碟區陰影複製服務) 寫入器處於不正常的狀態。 若要達到這個目的，從提高權限的命令提示字元，執行 _vssadmin list writers_。 輸出會包含所有 VSS 寫入器和其狀態。 對於每個狀態不是「[1] 穩定」的 VSS 寫入器，請從提高權限的命令提示字元執行下列命令，重新啟動 VSS 寫入器<br> _net stop serviceName_ <br> _net start serviceName_|
 | 快照集作業失敗，因為組態的剖析失敗 |這是因為 MachineKeys 目錄中的權限已變更︰_%systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br>請執行下列命令，並確認 MachineKeys 目錄的權限是預設的︰<br>_icacls %systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br><br> 預設權限是︰<br>Everyone:(R,W) <br>BUILTIN\Administrators:(F)<br><br>如果您發現 MachineKeys 目錄的權限不同於預設權限，請依照下列步驟來修正權限、刪除憑證，並觸發備份。<ol><li>修正 MachineKeys 目錄上的權限。<br>在目錄上使用 Explorer 安全性屬性和進階安全性設定，將權限重設回預設值，從目錄移除任何額外 (預設值以外) 的使用者物件，然後確認「Everyone」權限有特殊存取權︰<br>-列出資料夾/讀取資料 <br>-讀取屬性 <br>-讀取擴充屬性 <br>-建立檔案/寫入資料 <br>-建立資料夾/附加資料<br>-寫入屬性<br>-寫入擴充屬性<br>-讀取權限<br><br><li>刪除具有欄位 [發行至] = Windows Azure Service Management for Extensions 的憑證<ul><li>[開啟憑證主控台](https://msdn.microsoft.com/library/ms788967(v=vs.110).aspx)<li>刪除具有欄位 [發行至] = “Windows Azure Service Management for Extensions” 的憑證 (在 [個人] -> [憑證] 底下)</ul><li>觸發 VM 備份。 </ol>|
+| 驗證失敗，因為虛擬機器單獨以 BEK 進行加密。 只會對同時使用 BEK 和 KEK 加密的虛擬機器啟用備份。 |虛擬機器應該使用「BitLocker 加密金鑰」和「金鑰加密金鑰」進行加密。 之後，應該啟用備份。 |
 
 ## <a name="jobs"></a>作業
 | 錯誤詳細資料 | 因應措施 |
@@ -69,6 +70,7 @@ ms.openlocfilehash: 9fc01460d653ffecc16c916d5538ef20bf699135
 | 還原作業所指定的儲存體帳戶類型不在線上：請確定還原作業中指定的儲存體帳戶在線上 |這可能是因為 Azure 儲存體的暫時性錯誤或運作中斷。 請選擇另一個儲存體帳戶。 |
 | 已達到資源群組配額：請從 Azure 入口網站刪除一些資源群組，或連絡 Azure 支援以提高限制。 |None |
 | 選取的子網路不存在：請選取已存在的子網路 |None |
+| 備份服務無權存取您訂用帳戶中的資源。 |若要解決此問題，請先使用[選擇 VM 還原組態](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration)的＜還原備份的磁碟＞一節中所述的步驟來還原磁碟。 之後，使用[從還原的磁碟建立 VM](backup-azure-vms-automation.md#create-a-vm-from-restored-disks) 中所述的 PowerShell 步驟，從還原的磁碟建立完整的 VM。 |
 
 ## <a name="policy"></a>原則
 | 錯誤詳細資料 | 因應措施 |
@@ -97,7 +99,7 @@ ms.openlocfilehash: 9fc01460d653ffecc16c916d5538ef20bf699135
 如為 Linux VM：
 
 * 遵循[更新 Linux VM 代理程式](../virtual-machines/virtual-machines-linux-update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)上的指示進行。
-我們**強烈建議**只透過發佈存放庫更新代理程式。 我們不建議直接從 github 下載代理程式程式碼，並加以更新。 如果最新的代理程式不適用於您的散發套件，請連絡散發套件支援以取得如何安裝最新代理程式的指示。 您可以在 github 存放庫中檢查最新的 [Windows Azure Linux 代理程式](https://github.com/Azure/WALinuxAgent/releases)資訊。 
+我們**強烈建議**只透過發佈存放庫更新代理程式。 我們不建議直接從 github 下載代理程式程式碼，並加以更新。 如果最新的代理程式不適用於您的散發套件，請連絡散發套件支援以取得如何安裝最新代理程式的指示。 您可以在 github 存放庫中檢查最新的 [Windows Azure Linux 代理程式](https://github.com/Azure/WALinuxAgent/releases)資訊。
 
 ### <a name="validating-vm-agent-installation"></a>驗證 VM 代理程式安裝
 如何檢查 Windows VM 上的 VM 代理程式版本：
@@ -152,6 +154,6 @@ VM 備份仰賴發給底層儲存體的快照命令。 無法存取儲存體，�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

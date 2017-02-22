@@ -3,7 +3,7 @@ title: "如何在 Azure RemoteApp 中重新導向 QuickBooks？ | Microsoft Docs
 description: "了解如何在 Azure RemoteApp 中對 USB 裝置使用重新導向。"
 services: remoteapp
 documentationcenter: 
-author: lizap
+author: msmbaldwin
 manager: mbaldwin
 ms.assetid: 191d98af-2f5a-4307-9042-aae0e4049f9f
 ms.service: remoteapp
@@ -11,11 +11,11 @@ ms.workload: compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/15/2016
-ms.author: elizapo
+ms.date: 11/23/2016
+ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 62d7b8dba97aae33e077a501bb8da653bbdd127b
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 937ebbbb7daf573d072697ee09ab7f6557d0184f
 
 
 ---
@@ -73,7 +73,7 @@ ms.openlocfilehash: 62d7b8dba97aae33e077a501bb8da653bbdd127b
 2. 開啟遠端桌面連線，然後按一下 [顯示選項] 。
 3. 按一下 [另存新檔]  將目前的連線設定儲存至 RDP 檔案。  
     ![將設定儲存為 RDP 檔案](./media/remoteapp-usbredir/ra-saveasrdp.png)
-4. 選擇檔案名稱和位置 (例如 “MyConnection.rdp” 和 “This PC\Documents”)，然後儲存檔案。
+4. 選擇檔案名稱和位置，例如 MyConnection.rdp 和 This PC\Documents，然後儲存檔案。
 5. 使用文字編輯器開啟 MyConnection.rdp 檔案，並尋找您要重新導向之裝置的執行個體識別碼。
 
 現在，在下列 Cmdlet 中使用執行個體識別碼：
@@ -88,6 +88,6 @@ ms.openlocfilehash: 62d7b8dba97aae33e077a501bb8da653bbdd127b
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 身分識別管理和存取控制安全性最佳作法 | Microsoft Docs"
+title: "Azure 身分識別和存取安全性的最佳做法 | Microsoft Docs"
 description: "本文提供使用內建 Azure 功能的一些身分識別管理和存取控制最佳作法。"
 services: security
 documentationcenter: na
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/09/2017
+ms.date: 01/30/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 3451bdde3be60df0f1e1ed977f23db65d39f535f
-ms.openlocfilehash: eb4f55ab1f463d3351c74d9996eb8611281abe41
+ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
+ms.openlocfilehash: 50f9073d3c35bd9dcfd826ff44e767fb69558757
 
 
 ---
@@ -138,6 +138,6 @@ ms.openlocfilehash: eb4f55ab1f463d3351c74d9996eb8611281abe41
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

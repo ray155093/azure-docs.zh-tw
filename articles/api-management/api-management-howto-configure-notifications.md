@@ -1,5 +1,5 @@
 ---
-title: "如何在 Azure API 管理中設定通知和電子郵件範本"
+title: "在 Azure API 管理中設定通知和電子郵件範本 | Microsoft Docs"
 description: "了解如何在 Azure API 管理中設定通知和電子郵件範本。"
 services: api-management
 documentationcenter: 
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: d99e2d885d56e3752a3b1caf51e52c801acaab52
-ms.openlocfilehash: 8e3c98108672dcd2ae48da7b2a9eeb174cee76e1
-
+ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
+ms.openlocfilehash: 3d8b74e32059cfc1a4c3a8fc7d3bd04676ee80c8
 
 ---
 # <a name="how-to-configure-notifications-and-email-templates-in-azure-api-management"></a>如何在 Azure API 管理中設定通知和電子郵件範本
@@ -29,7 +28,7 @@ API 管理可讓您設定特定事件的通知，以及設定用來與 API 管�
 ![發行者入口網站][api-management-management-console]
 
 > [!NOTE] 
-> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 
 從左邊的 [API 管理] 功能表中按一下 [通知]，以檢視可用的通知。
 
@@ -111,17 +110,17 @@ API 管理可讓您設定特定事件的通知，以及設定用來與 API 管�
 [api-management-email-template]: ./media/api-management-howto-configure-notifications/api-management-email-template.png
 
 
-[設定發行者通知]: #publisher-notifications
-[設定電子郵件範本]: #email-templates
+[Configure publisher notifications]: #publisher-notifications
+[Configure email templates]: #email-templates
 
-[如何建立和使用群組]: api-management-howto-create-groups.md
-[如何將群組與開發人員建立關聯]: api-management-howto-create-groups.md#associate-group-developer
+[How to create and use groups]: api-management-howto-create-groups.md
+[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
 
-[建立 API 管理服務執行個體]: api-management-get-started.md
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
+[Get started with Azure API Management]: api-management-get-started.md
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

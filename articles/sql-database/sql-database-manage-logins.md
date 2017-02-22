@@ -1,5 +1,5 @@
 ---
-title: "SQL Database 驗證和授權 | Microsoft Docs"
+title: "Azure SQL 登入與使用者 | Microsoft Docs"
 description: "深入了解 SQL Database 安全性管理，特別是如何透過伺服器層級主體帳戶管理資料庫存取與登入安全性。"
 keywords: "sql 資料庫安全性, 資料庫安全性管理, 登入安全性, 資料庫安全性, 資料庫存取權"
 services: sql-database
@@ -12,14 +12,14 @@ ms.assetid: 0a65a93f-d5dc-424b-a774-7ed62d996f8c
 ms.service: sql-database
 ms.custom: authentication and authorization
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 01/17/2017
+ms.date: 01/23/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 435fca81cda845200467fbc0d6ed4d41de41aaf6
-ms.openlocfilehash: 324fd91b415a4744cb472bbd8a8b795a8fbb8080
+ms.sourcegitcommit: 5eccb4705cd6c8f6170a48f3b3591518688651f1
+ms.openlocfilehash: c3a45973a04d5082bee777a98f8204ceedc888a5
 
 
 ---
@@ -29,6 +29,12 @@ ms.openlocfilehash: 324fd91b415a4744cb472bbd8a8b795a8fbb8080
 
 >  [!NOTE]  
 >  本主題適用於 Azure SQL 伺服器，以及在 Azure SQL Server 上建立的 SQL Database 和 SQL 資料倉儲資料庫。 為了簡單起見，參考 SQL Database 和 SQL 資料倉儲時都會使用 SQL Database。 
+>
+
+> [!TIP]
+> 如需使用 SQL Server 驗證的教學課程，請參閱[教學課程︰SQL Server 驗證](sql-database-control-access-sql-authentication-get-started.md)。 如需使用 Azure Active Directory 驗證的教學課程，請參閱[教學課程：AAD 驗證](sql-database-control-access-aad-authentication-get-started.md)。
+>
+
 
 ## <a name="unrestricted-administrative-accounts"></a>不受限制的系統管理帳戶
 做為系統管理員的系統管理帳戶有兩個 (**伺服器管理員**和**Active Directory 管理員**)。 若要識別 SQL server 的系統管理員帳戶，請開啟 Azure 入口網站，然後瀏覽至 SQL server 的屬性。
@@ -188,11 +194,11 @@ GRANT ALTER ANY USER TO Mary;
 - 如需教學課程，請參閱 [SQL 安全性入門](sql-database-control-access-sql-authentication-get-started.md)
 - 如需檢視和預存程序的相關資訊，請參閱[建立檢視和預存程序](https://msdn.microsoft.com/library/ms365311.aspx)
 - 如需授與資料庫物件存取權的相關資訊，請參閱[授與資料庫物件的存取權](https://msdn.microsoft.com/library/ms365327.aspx)
-- 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
-- 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [SQL Database 教學課程︰AAD 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-aad-authentication-get-started.md)。
+- 如需使用 SQL Server 驗證的教學課程，請參閱[教學課程︰SQL Server 驗證](sql-database-control-access-sql-authentication-get-started.md)。
+- 如需使用 Azure Active Directory 驗證的教學課程，請參閱[教學課程：AAD 驗證](sql-database-control-access-aad-authentication-get-started.md)。
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

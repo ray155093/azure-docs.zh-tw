@@ -12,11 +12,11 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 10/27/2016
+ms.date: 01/18/2017
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: fc2f30569acc49dd383ba230271989eca8a14423
-ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
+ms.sourcegitcommit: 19a652f81beacefd4a51f594f045c1f3f7063b59
+ms.openlocfilehash: b7f6c92867e3fabe07312539ec8dfd2d3525f02e
 
 ---
 
@@ -34,7 +34,7 @@ ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
 
 1. 建立資料來源
    * 將 `type` 參數設定為 `azuretable`
-   * 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
+   * 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數。 請參閱下面的[如何指定認證](#Credentials)了解詳細資訊。
    * 使用 `container.name` 參數指定資料表名稱
    * (選擇性) 使用 `container.query` 參數指定查詢。 可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
 2. 使用與您想要編製索引的資料表中的資料行對應的結構描述，建立搜尋索引。
@@ -48,11 +48,25 @@ ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
     {
         "name" : "table-datasource",
         "type" : "azuretable",
-        "credentials" : { "connectionString" : "<my storage connection string>" },
+        "credentials" : { "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<account key>;" },
         "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
     }   
 
 如需建立資料來源 API 的詳細資訊，請參閱 [建立資料來源](https://msdn.microsoft.com/library/azure/dn946876.aspx)。
+
+<a name="Credentials"></a>
+#### <a name="how-to-specify-credentials"></a>如何指定認證 ####
+
+您可以採取下列其中一種方式提供資料表的認證︰ 
+
+- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定] > [金鑰] (傳統儲存體帳戶)，或 [設定] > [存取金鑰] (Azure Resource Manager 儲存體帳戶)。
+- **儲存體帳戶共用存取簽章** (SAS) 連接字串︰`TableEndpoint=https://<your account>.table.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl`。 SAS 對於容器 (在此案例中為資料表) 和物件 (資料表資料列) 應該擁有列出和讀取權限。
+-  **資料表共用存取簽章**：`ContainerSharedAccessUri=https://<your storage account>.table.core.windows.net/<table name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl`。 SAS 對於資料表應該擁有列出和讀取權限。
+
+如需儲存體共用存取簽章的詳細資訊，請參閱[使用共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md)。
+
+> [!NOTE]
+> 如果您使用 SAS 認證，您必須使用更新的簽章定期更新資料來源認證以防止其到期。 如果 SAS 認證過期，索引子將會失敗並出現類似 `Credentials provided in the connection string are invalid or have expired.` 的錯誤訊息。  
 
 ### <a name="create-index"></a>建立索引
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
@@ -123,6 +137,6 @@ ms.openlocfilehash: 031667b3a6f0265e57568706e5454cd275ec9ecc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

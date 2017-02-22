@@ -12,18 +12,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 12/19/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1ad39ddd622573b4842e1e231b0b00685cff83e4
+ms.sourcegitcommit: 0a711ee4118973b21d47f1c3e63301f0dfac879d
+ms.openlocfilehash: b746462e382cb5c065417940a80b00c31f440e9b
 
 
 ---
 # <a name="get-help-from-machine-learning-live-chat-support"></a>取得來自機器學習即時聊天支援的說明
-[Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md) 提供用於建立機器學習模型的直覺式介面。 有[資源庫](machine-learning-gallery-how-to-use-contribute-publish.md)和[論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning)可以一路指引您。 
+[Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md) 提供用於建立機器學習模型的直覺式介面。 使用社群所貢獻的範例[資源庫](machine-learning-gallery-how-to-use-contribute-publish.md)可協助您開始。 且有[論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning)讓您詢問問題協助您繼續下去。 
 
-但是有時候您只是需要對於疑問快速提出問題。 在 [Studio](machine-learning-what-is-ml-studio.md) 中尋找最上層導覽的聊天圖示。  如果您看到此圖示，就表示產品團隊的成員目前正在線上，可以即時協助您。
+但是有時候您只是需要對於疑問快速提出問題。 在 [Machine Learning Studio](http://studio.azureml.net/Home) 中尋找最上層導覽的聊天圖示。  如果您看到此圖示，就表示產品團隊的成員目前正在線上，可以即時協助您。
 
 ![Azure ML 聊天](./media/machine-learning-live-chat/AzureMLChatNavBar.png)
 
@@ -32,13 +32,13 @@ ms.openlocfilehash: 1ad39ddd622573b4842e1e231b0b00685cff83e4
 ![Azure ML 聊天對話方塊](./media/machine-learning-live-chat/AzureMLChat.png)
 
 ## <a name="dont-see-the-live-chat-icon"></a>看不到即時聊天圖示嗎？
-小組成員實際上在回答您的問題。 如果您看不到即時聊天圖示，這是因為該圖示不會在工作時間以外的時間顯示。 
+即時聊天由 Machine Learning 小組的成員參與。 如果您看不到即時聊天圖示，是因為該小組的人員目前無法參與聊天。 例如，可能不是正常上班時間。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

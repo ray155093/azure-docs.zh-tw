@@ -1,6 +1,6 @@
 ---
-title: "預測 - ETS + STL | Microsoft Docs"
-description: "預測 - ETS + STL"
+title: "(已過時) 預測 - ETS + STL - Azure  | Microsoft Docs"
+description: "(已過時) 預測 - ETS + STL"
 services: machine-learning
 documentationcenter: 
 author: xueshanz
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 10/31/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: yijichen
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 7a8877257ba03de22e0f74253885585c02d2bd10
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: cdf6661a36e38bf7a6fca241682be796712bd5d9
 
 
 ---
-# <a name="forecasting---ets--stl"></a>預測 - ETS + STL
+# <a name="deprecated-forecasting---ets--stl"></a>(已過時) 預測 - ETS + STL
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/demand_forecast) 會實作季節性趨勢分解法 (STL) 和指數平滑法 (ETS) 模型，以根據使用者所提供的歷程記錄資料產生預測。 今年的特定產品需求會增加嗎？ 為方便有效地規劃庫存，我可以預測聖誕節的產品銷售嗎？ 預測模型專門處理此類問題。 有了過去的資料，這些模型可以檢查隱藏的趨勢和季節性來預測未來的趨勢。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -141,6 +148,6 @@ Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

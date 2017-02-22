@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: d12ccdc13d6964a6de8068a63f945c7eac40b682
+ms.sourcegitcommit: 7c75fd870efb93bcf6c69ccf8a8ea9b56288c749
+ms.openlocfilehash: 0744b317f595786b91afce3c9e9d59f64ceef25d
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: d12ccdc13d6964a6de8068a63f945c7eac40b682
 
 自助服務的 IaaS 是由您管理、操作及擁有的自己動手部署，可直接部署在虛擬機器 (VM) 或實體系統上。 另一方面，完全受管理的 PaaS/SaaS 供應項目比較像 Azure RemoteApp - 合作夥伴會在遠端解決方案之上提供一個可處理操作和服務事宜的服務層，而身為客戶的您，只要進行一些映像和應用程式管理。
 
-閱讀詳細資訊，包括不同裝載選項的範例。    
+[ Azure RemoteApp 網路研討會](https://social.msdn.microsoft.com/Forums/azure/40557aaa-3e9f-403c-b221-ad3eac10dc56/migration-option-webinar-recordings?forum=AzureRemoteApp)，或閱讀更多詳細資訊 (包括不同裝載選項的範例)。
 
 ## <a name="self-managed-iaas-solutions"></a>自我管理的 (IaaS) 解決方案
 ### <a name="rds-on-iaas"></a>**IaaS 上的 RDS**
@@ -212,6 +212,6 @@ Microsoft Cloud 服務提供者：是
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

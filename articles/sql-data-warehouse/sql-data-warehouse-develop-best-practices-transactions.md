@@ -427,7 +427,7 @@ Azure SQL 資料倉儲可讓您暫停、繼續及調整需要的資料倉儲。 
 <!--Article references-->
 [SQL 資料倉儲中的交易]: ./sql-data-warehouse-develop-transactions.md
 [資料表分割]: ./sql-data-warehouse-tables-partition.md
-[並行
+[並行]: ./sql-data-warehouse-develop-concurrency.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
 [SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 

@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure 備份文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "使用備份文件，了解如何備份至雲端。 請參閱應用程式、Windows Server 和 Azure 虛擬機器備份的教學課程和影片。"
+services: backup
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: backup
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: e156357ceb900f1f610b7158a803f553ac3960a5
-ms.openlocfilehash: ed252f28a754b632a3dd95d848f70ec319124ba6
+ms.sourcegitcommit: 4d159b2cec70d9491a562f460629d8efa511d695
+ms.openlocfilehash: 29466a465865dc17350eb4aa70a86f9c973b693a
 
 ---
 #<a name="backup-documentation"></a>備份文件
@@ -133,16 +144,10 @@ ms.openlocfilehash: ed252f28a754b632a3dd95d848f70ec319124ba6
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/backup.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure 備份文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Jan17_HO2-->
+
+<!--HONumber=Feb17_HO2-->
 
 

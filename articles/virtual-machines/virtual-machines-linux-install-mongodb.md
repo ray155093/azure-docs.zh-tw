@@ -1,5 +1,5 @@
 ---
-title: "在 Linux VM 上安裝 MongoDB | Microsoft Docs"
+title: "在 Azure 中 Linux VM 上安裝 MongoDB | Microsoft Docs"
 description: "了解如何使用 Resource Manager 部署模型在 Azure 中的 Linux 虛擬機器上安裝及設定 MongoDB。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 09/29/2016
+ms.date: 12/20/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: bec9f1fb0797b0c073dde9e65ab6bbffe8e3b5c2
+ms.sourcegitcommit: 370bcf5189c855185f11277518e0cbd5377993ab
+ms.openlocfilehash: fd323a828ee879d6093e2473accbea883f861420
 
 
 ---
@@ -35,10 +35,10 @@ ms.openlocfilehash: bec9f1fb0797b0c073dde9e65ab6bbffe8e3b5c2
 * Azure CLI *必須處於* Azure Resource Manager 模式，使用 `azure config mode arm`
 
 ## <a name="manually-install-and-configure-mongodb-on-a-vm"></a>在 VM 上手動安裝及設定 MongoDB
-MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 下列範例使用 `.ssh/azure_id_rsa.pub` 中儲存的 SSH 金鑰來建立 `CoreOS` VM。 回答儲存體帳戶名稱、DNS 名稱和系統管理員認證的提示︰
+MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 下列範例使用 `~/.ssh/id_rsa.pub` 中儲存的 SSH 金鑰來建立 `CentOS` VM。 回答儲存體帳戶名稱、DNS 名稱和系統管理員認證的提示︰
 
 ```azurecli
-azure vm quick-create --ssh-publickey-file .ssh/azure_id_rsa.pub --image-urn CentOS
+azure vm quick-create --ssh-publickey-file ~/.ssh/id_rsa.pub --image-urn CentOS
 ```
 
 使用前一個 VM 建立步驟結尾所顯示的公用 IP 位址登入 VM︰
@@ -127,7 +127,7 @@ azure group create --name myResourceGroup --location WestUS \
 一旦部署完成時，SSH 連線到 VM。 使用 `azure vm show` 命令取得 VM 的 IP 位址，如下列範例所示：
 
 ```azurecli
-azure vm show --resource-group myResourceGroup --name myVM
+azure vm show --resource-group myResourceGroup --name myLinuxVM
 ```
 
 在輸出的結尾附近，會顯示 `Public IP address`。 SSH 連線到您的 VM，包含您 VM 的 IP 位址︰
@@ -186,6 +186,6 @@ Azure Resource Manager 範本會使用自訂指令碼延伸模組，在您的 VM
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

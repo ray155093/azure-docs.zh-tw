@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/06/2016
+ms.date: 01/26/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 4b13c040a15bef2f04d2cd2126e2270d061898bd
-ms.openlocfilehash: 3b7550b10339762882403a42f114d1b18da9e1ab
+ms.sourcegitcommit: 351149296a6d7dfa801b295ec21fc04215c7b051
+ms.openlocfilehash: ac2730935d206ddf9079395384d46a43fdd740cb
 
 
 ---
@@ -79,6 +79,9 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。 Az
 ### <a name="can-i-use-azure-ad-connect-to-migrate-consumer-identities-that-are-stored-on-my-on-premises-active-directory-to-azure-ad-b2c"></a>我可以使用 Azure AD Connect，將儲存於內部部署 Active Directory 的取用者身分識別移轉至 Azure AD B2C 嗎？
 否，Azure AD Connect 不是設計來搭配 Azure AD B2C 一起使用。 未來我們將提供各種現成的移轉選項和工具。
 
+### <a name="can-my-app-open-up-azure-ad-b2c-pages-within-an-iframe"></a>我的應用程式是否能在 iFrame 內開啟 Azure AD B2C 頁面？
+否，基於安全性考量，無法在 iFrame 內開啟 Azure AD B2C 頁面 (在 `login.microsftonline.com` 網域底下提供)。 針對所有取用者體驗，您必須一律重新導向到 Azure AD B2C。
+
 ### <a name="does-azure-ad-b2c-work-with-crm-systems-such-as-microsoft-dynamics"></a>Azure AD B2C 可以搭配 Microsoft Dynamics 之類的 CRM 系統一起使用嗎？
 目前不支援。 整合這些系統已在我們的規劃中。
 
@@ -124,6 +127,6 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。 Az
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

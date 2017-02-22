@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/12/2016
+ms.date: 01/12/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: dabe7d9796ab24a257ea904bc5d978cb71d7e149
-ms.openlocfilehash: 1733edf961c2ce1297fc148d3a844ce141f5d7c2
+ms.sourcegitcommit: 1460a3e6b3d225a507e5da51dcc66810862ee2de
+ms.openlocfilehash: 4001c2d9bf2a635d7189ae46a855e347b93185c8
 
 
 ---
@@ -88,21 +88,29 @@ Resource Manager 會針對您透過 Azure PowerShell、Azure CLI、Azure 入口�
 
 您可以使用下列 PowerShell Cmdlet 擷取所有資源提供者：
 
-    Get-AzureRmResourceProvider -ListAvailable
+```powershell
+Get-AzureRmResourceProvider -ListAvailable
+```
 
 或者，若是使用 Azure CLI，您可以使用下列命令擷取所有資源提供者︰
 
-    azure provider list
+```azurecli
+azure provider list
+```
 
 您可以瀏覽傳回的清單，以找到您必須使用的資源提供者。
 
 若要取得資源提供者的詳細資料，請在命令中新增提供者命名空間。 此命令會針對資源提供者傳回支援的資源類型，並針對每個資源類型傳回支援的位置和 API 版本。 下列 PowerShell Cmdlet 可取得 Microsoft.Compute 的詳細資料︰
 
-    (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Compute).ResourceTypes
+```powershell
+(Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Compute).ResourceTypes
+```
 
 或者，若是使用 Azure CLI，請使用下列命令擷取 Microsoft.Compute 所支援的資源類型、位置和 API 版本︰
 
-    azure provider show Microsoft.Compute --json > c:\Azure\compute.json
+```azurecli
+azure provider show Microsoft.Compute --json > c:\Azure\compute.json
+```
 
 如需詳細資訊，請參閱 [Resource Manager 提供者、區域、API 版本和結構描述](resource-manager-supported-services.md)。
 
@@ -113,35 +121,39 @@ Resource Manager 會針對您透過 Azure PowerShell、Azure CLI、Azure 入口�
 
 Resource Manager 處理範本的方式會和處理其他任何要求一樣 (請參閱[一致的管理層](#consistent-management-layer)影像)。 它會剖析範本，並將其語法轉換成適當的資源提供者所需的 REST API 作業。 例如，當 Resource Manager 收到具有下列資源定義的範本︰
 
-    "resources": [
-      {
-        "apiVersion": "2016-01-01",
-        "type": "Microsoft.Storage/storageAccounts",
-        "name": "mystorageaccount",
-        "location": "westus",
-        "sku": {
-          "name": "Standard_LRS"
-        },
-        "kind": "Storage",
-        "properties": {
-        }
-      }
-      ]
+```json
+"resources": [
+  {
+    "apiVersion": "2016-01-01",
+    "type": "Microsoft.Storage/storageAccounts",
+    "name": "mystorageaccount",
+    "location": "westus",
+    "sku": {
+      "name": "Standard_LRS"
+    },
+    "kind": "Storage",
+    "properties": {
+    }
+  }
+]
+```
 
 它會將定義轉換成下列 REST API 作業，該作業會再傳送給 Microsoft.Storage 資源提供者︰
 
-    PUT
-    https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/mystorageaccount?api-version=2016-01-01
-    REQUEST BODY
-    {
-      "location": "westus",
-      "properties": {
-      }
-      "sku": {
-        "name": "Standard_LRS"
-      },   
-      "kind": "Storage"
-    }
+```HTTP
+PUT
+https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/mystorageaccount?api-version=2016-01-01
+REQUEST BODY
+{
+  "location": "westus",
+  "properties": {
+  }
+  "sku": {
+    "name": "Standard_LRS"
+  },   
+  "kind": "Storage"
+}
+```
 
 範本和資源群組的定義方式全由您決定，方案的管理方式也是如此。 比方說，您可以透過單一範本在單一資源群組中部署三層式應用程式。
 
@@ -181,26 +193,32 @@ Azure Resource Manager 會分析相依性，確保以正確的順序建立資源
 
 下列範例顯示套用到虛擬機器的標籤。
 
-    "resources": [    
-      {
-        "type": "Microsoft.Compute/virtualMachines",
-        "apiVersion": "2015-06-15",
-        "name": "SimpleWindowsVM",
-        "location": "[resourceGroup().location]",
-        "tags": {
-            "costCenter": "Finance"
-        },
-        ...
-      }
-    ]
+```json
+"resources": [    
+  {
+    "type": "Microsoft.Compute/virtualMachines",
+    "apiVersion": "2015-06-15",
+    "name": "SimpleWindowsVM",
+    "location": "[resourceGroup().location]",
+    "tags": {
+        "costCenter": "Finance"
+    },
+    ...
+  }
+]
+```
 
 若要擷取所有具有標籤值的資源，請使用下列 PowerShell Cmdlet：
 
-    Find-AzureRmResource -TagName costCenter -TagValue Finance
+```powershell
+Find-AzureRmResource -TagName costCenter -TagValue Finance
+```
 
 或是下列 Azure CLI 命令：
 
-    azure resource list -t costCenter=Finance --json
+```azurecli
+azure resource list -t costCenter=Finance --json
+```
 
 您也可以透過 Azure 入口網站檢視已加上標籤的資源。
 
@@ -242,7 +260,7 @@ Azure 也提供數個資源特有的角色。 一些常見的角色有︰
 您也可以明確地鎖定重要的資源，以防止使用者刪除或修改它們。 如需詳細資訊，請參閱 [使用 Azure 資源管理員來鎖定資源](resource-group-lock-resources.md)。
 
 ## <a name="activity-logs"></a>活動記錄檔
-Resource Manager 會記錄所有建立、修改或刪除資源的作業。 您可以使用活動記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。 若要查看記錄檔，請在資源群組的 [設定] 刀鋒視窗中選取 [活動記錄檔]。 您可以透過許多不同的值篩選記錄檔，包括哪位使用者起始了作業。 如需使用活動記錄檔的相關資訊，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
+Resource Manager 會記錄所有建立、修改或刪除資源的作業。 您可以使用活動記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。 若要查看記錄檔，請在資源群組的 [設定] 刀鋒視窗中選取 [活動記錄檔]。 您可以透過許多不同的值篩選記錄檔，包括哪位使用者起始了作業。 如需使用活動記錄檔的相關資訊，請參閱[檢視活動記錄檔以管理 Azure 資源](resource-group-audit.md)。
 
 ## <a name="customized-policies"></a>自訂的原則
 資源管理員可讓您建立自訂的原則，以便管理您的資源。 您所建立的原則類型可以包含各種案例。 您可以強制執行資源的的命名慣例、限制可以部署的資源類型和執行個體，或限制可以裝載某個資源類型的區域。 您可以要求資源的標籤值，以便依照部門組織計費方式。 您可建立原則來協助降低成本，並維護訂用帳戶中的一致性。 
@@ -251,17 +269,19 @@ Resource Manager 會記錄所有建立、修改或刪除資源的作業。 您�
 
 下列範例顯示了某個原則，其藉由指定所有資源都包含 costCenter 標籤，來確保標籤的一致性。
 
-    {
-      "if": {
-        "not" : {
-          "field" : "tags",
-          "containsKey" : "costCenter"
-        }
-      },
-      "then" : {
-        "effect" : "deny"
-      }
+```json
+{
+  "if": {
+    "not" : {
+      "field" : "tags",
+      "containsKey" : "costCenter"
     }
+  },
+  "then" : {
+    "effect" : "deny"
+  }
+}
+```
 
 您還可以建立其他類型的原則。 如需詳細資訊，請參閱 [使用原則來管理資源和控制存取](resource-manager-policy.md)。
 
@@ -326,6 +346,6 @@ AutoRest 會將這些 RESTful API 規格轉換成多種語言版本的用戶端�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

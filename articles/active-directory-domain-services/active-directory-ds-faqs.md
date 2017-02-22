@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/19/2016
+ms.date: 01/13/2016
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a681699c081422e5ea0da34ca56e17e786c221d1
+ms.sourcegitcommit: 5e6bab265b2b6eabd1a878492588c4eb39d1b332
+ms.openlocfilehash: 89dfabb8feafffee2ed8143c372b53d02033d582
 
 
 ---
@@ -58,11 +58,14 @@ ms.openlocfilehash: a681699c081422e5ea0da34ca56e17e786c221d1
 #### <a name="can-i-modify-group-memberships-using-ldap-or-other-ad-administrative-tools-on-domains-provided-by-azure-ad-domain-services"></a>我可以在 Azure AD 網域服務所提供的網域上，使用 LDAP 或其他 AD 系統管理工具來修改群組成員資格嗎？
 否。 您無法在 Azure AD 網域服務所服務的網域上修改群組成員資格。 這同樣適用於使用者屬性。 但是，您可能會在 Azure AD 中或內部部署網域上變更群組成員資格或使用者屬性。 這類變更會自動同步處理到 Azure AD 網域服務。
 
+#### <a name="how-long-does-it-take-for-changes-i-make-to-my-azure-ad-directory-to-be-visible-in-my-managed-domain"></a>我對 Azure AD 目錄所做的變更要多久才會反映在我的受管理網域中？
+使用 Azure AD UI 或 PowerShell 在您 Azure AD 目錄中進行的變更會同步至您的受管理網域。 這個同步處理程序會在背景執行。 在您目錄的單次初始同步處理完成之後，通常需要 20 分鐘的時間，在 Azure AD 中所做的變更才會反映在您的受管理網域中。
+
 #### <a name="can-i-extend-the-schema-of-the-domain-provided-by-azure-ad-domain-services"></a>可以擴充 Azure AD 網域服務所提供之網域的結構描述嗎？
 否。 結構描述是由 Microsoft 針對受管理網域進行管理。 Azure AD 網域服務不支援結構描述延伸模組。
 
 #### <a name="can-i-modify-or-add-dns-records-in-my-managed-domain"></a>是否可以在受管理的網域中修改或新增 DNS 記錄？
- 是。 屬於「AAD DC 系統管理員」群組的使用者會被授與「DNS 系統管理」權限，以在受管理網域中修改 DNS 記錄。 這些使用者可以在加入受管理網域且執行 Windows Server 的電腦上，使用 DNS 管理員主控台以管理 DNS。 若要使用 DNS 管理員主控台，請安裝 DNS 伺服器工具，這是伺服器上的「遠端伺服器管理工具」選擇性功能的一部分。 如需 [管理、監視及疑難排解 DNS 的公用程式](https://technet.microsoft.com/library/cc753579.aspx) 詳細資訊，可在 TechNet 上取得。
+是。 屬於「AAD DC 系統管理員」群組的使用者會被授與「DNS 系統管理」權限，以在受管理網域中修改 DNS 記錄。 這些使用者可以在加入受管理網域且執行 Windows Server 的電腦上，使用 DNS 管理員主控台以管理 DNS。 若要使用 DNS 管理員主控台，請安裝 DNS 伺服器工具，這是伺服器上的「遠端伺服器管理工具」選擇性功能的一部分。 如需 [管理、監視及疑難排解 DNS 的公用程式](https://technet.microsoft.com/library/cc753579.aspx) 詳細資訊，可在 TechNet 上取得。
 
 ### <a name="billing-and-availability"></a>計費與可用性
 #### <a name="is-azure-ad-domain-services-a-paid-service"></a>Azure AD 網域服務是付費服務嗎？
@@ -71,16 +74,14 @@ ms.openlocfilehash: a681699c081422e5ea0da34ca56e17e786c221d1
 #### <a name="is-there-a-free-trial-for-the-service"></a>是否可以免費試用服務？
 此服務隨附於 Azure 的免費試用版。 您可以註冊以 [免費試用 Azure 一個月](https://azure.microsoft.com/pricing/free-trial/)。
 
-#### <a name="can-i-get-azure-ad-domain-services-as-part-of-enterprise-mobility-suite-ems"></a>我可以從 Enterprise Mobility Suite (EMS) 中取得 Azure AD 網域服務嗎？
-#### <a name="do-i-need-azure-ad-premium-to-use-azure-ad-domain-services"></a>我是否需要 Azure AD Premium 才能使用 Azure AD 網域服務？
-否。 Azure AD 網域服務是隨用隨付的 Azure 服務，並不是 EMS 的一部分。 Azure AD 網域服務適用於所有 Azure AD 版本 (免費、基本和進階)，並根據使用方式進行每小時計費。
+#### <a name="can-i-get-azure-ad-domain-services-as-part-of-enterprise-mobility-suite-ems-do-i-need-azure-ad-premium-to-use-azure-ad-domain-services"></a>我可以從 Enterprise Mobility Suite (EMS) 中取得 Azure AD 網域服務嗎？ 我是否需要 Azure AD Premium 才能使用 Azure AD 網域服務？
+否。 Azure AD 網域服務是隨用隨付的 Azure 服務，並不是 EMS 的一部分。 Azure AD Domain Services 可以與所有 Azure AD 版本 (免費、基本及進階) 搭配使用。 計費方式是每小時依據使用量計費。
 
 #### <a name="what-azure-regions-is-the-service-available-in"></a>哪些 Azure 區域提供此服務？
 請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/)頁面，以查看可使用 Azure AD 網域服務的 Azure 區域清單。
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 

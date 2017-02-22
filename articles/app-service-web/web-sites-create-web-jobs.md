@@ -12,23 +12,23 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/27/2016
+ms.date: 11/27/2016
 ms.author: tdykstra
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9dd4539122de38221e229ad5799961b62a4f648a
+ms.sourcegitcommit: 10320f338d902ffefd8a98fd59f3e8fb22682b00
+ms.openlocfilehash: 578575877fc706076ac2fdf034cb1ac0e92b16ef
 
 
 ---
 # <a name="run-background-tasks-with-webjobs"></a>使用 WebJob 執行背景工作
 ## <a name="overview"></a>概觀
-您可以使用下列三種方式，在 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web 應用程式的 WebJob 中執行程式或指令碼：依需求、連續或根據排程。 使用 WebJob 不會產生額外的費用。
+您可以使用下列三種方式，在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web 應用程式的 WebJob 中執行程式或指令碼：依需求、連續或根據排程。 使用 WebJob 不會產生額外的費用。
 
 本文說明如何使用 [Azure 入口網站](https://portal.azure.com)來部署 WebJob。 如需如何使用 Visual Studio 或連續傳遞程序進行部署的相關資訊，請參閱 [如何將 Azure WebJob 部署至 Web 應用程式](websites-dotnet-deploy-webjobs.md)。
 
 Azure WebJobs SDK 能簡化許多 WebJobs 程式設計工作。 如需詳細資訊，請參閱 [什麼是 WebJobs SDK](websites-dotnet-webjobs-sdk.md)。
 
- Azure Functions (目前為預覽) 是在 Azure App Service 中執行程式和指令碼的另一種方式。 如需詳細資訊，請參閱 [Azure Functions 概觀](../azure-functions/functions-overview.md)。
+ Azure Functions 提供另一種方式，從無伺服器環境或 App Service App 執行程式和指令碼。 如需詳細資訊，請參閱 [Azure Functions 概觀](../azure-functions/functions-overview.md)。
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
@@ -207,6 +207,6 @@ Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

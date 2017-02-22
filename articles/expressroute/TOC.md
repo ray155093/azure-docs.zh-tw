@@ -1,14 +1,15 @@
 # 概觀
 ## [什麼是 ExpressRoute？](expressroute-introduction.md)
 ## [ExpressRoute 常見問題集](expressroute-faqs.md)
+## [連線能力模型](expressroute-connectivity-models.md)
 ## [位置與合作夥伴](expressroute-locations.md)
 ### [依位置的提供者](expressroute-locations-providers.md)
 ### [依提供者的位置](expressroute-locations.md)
 
 # 開始使用
-## [電路與路由網域](expressroute-circuit-peerings.md)
 ## [工作流程](expressroute-workflows.md)
 ## [必要條件](expressroute-prerequisites.md)
+## [電路與路由網域](expressroute-circuit-peerings.md)
 ## [路由需求](expressroute-routing.md)
 ## [將路由最佳化](expressroute-optimize-routing.md)
 ## [NAT 需求](expressroute-nat.md)
@@ -80,6 +81,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=expressroute)
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

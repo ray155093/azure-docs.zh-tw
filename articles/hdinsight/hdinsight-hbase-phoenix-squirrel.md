@@ -1,5 +1,5 @@
 ---
-title: "使用 HDinsight 中的 Apache Phoenix 和 SQuirreL | Microsoft Docs"
+title: "搭配 Windows 型 Azure HDInsight 使用 Apache Phoenix 和 SQuirreL | Microsoft Docs"
 description: "了解如何使用 HDinsight 中的 Apache Phoenix，以及如何在您的工作站上安裝與設定 SQuirreL 以連線到 HDInsight 中的 HBase 叢集。"
 services: hdinsight
 documentationcenter: 
@@ -12,23 +12,26 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/02/2016
+ms.date: 02/09/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
+ms.sourcegitcommit: cd7e8564d24e45bad291c3632021f96fb1584b6f
+ms.openlocfilehash: 730cf9be80be5c5381148f138c3a437beb95c340
 
 
 ---
-# <a name="use-apache-phoenix-and-squirrel-with-windows-based-hbase-clusters-in-hdinsight"></a>在 HDinsight 中搭配以 Windows 為基礎的 HBase 叢集使用 Apache Phoenix 和 SQuirreL
+# <a name="use-apache-phoenix-and-squirrel-with-windows-based-hbase-clusters-in-hdinsight"></a>在 HDInsight 中搭配 Windows 型 HBase 叢集使用 Apache Phoenix 和 SQuirreL
 了解如何使用 HDinsight 中的 [Apache Phoenix](http://phoenix.apache.org/) ，以及如何在您的工作站上安裝與設定 SQuirreL 以連線到 HDInsight 中的 HBase 叢集。 如需有關 Phoenix 的詳細資訊，請參閱 [15 分鐘內了解 Phoenix](http://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html)。 如需 Phoenix 文法，請參閱 [Phoenix 文法](http://phoenix.apache.org/language/index.html)。
 
 > [!NOTE]
-> 如需 HDInsight 中的 Phoenix 版本資訊，請參閱 [HDInsight 在 Hadoop 叢集版本中提供什麼新功能？][hdinsight-versions]。
+> 如需 HDInsight 中的 Phoenix 版本資訊，請參閱 [HDInsight 在 Hadoop 叢集版本中提供什麼新功能？](hdinsight-component-versioning.md)
 >
-> 本文件的資訊是 以 Windows 為基礎之 HDInsight 叢集的特定資訊。 如需在以 Linux 為基礎的 HDInsight 上使用 Phoenix 的相關資訊，請參閱 [Use Apache Phoenix with Linux-based HBase clusters in HDinsight (在 HDinsight 中搭配以 Linux 為基礎的 HBase 叢集使用 Apache Phoenix)](hdinsight-hbase-phoenix-squirrel-linux.md)。
+
+> [!IMPORTANT]
+> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
 >
->
+
+
 
 ## <a name="use-sqlline"></a>使用 SQLLine
 [SQLLine](http://sqlline.sourceforge.net/) 是執行 SQL 的命令列公用程式。
@@ -56,7 +59,7 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
         cd %phoenix_home%\bin
         sqlline.py [The FQDN of one of the Zookeepers]
 
-    ![hdinsight hbase phoenix sqlline][hdinsight-hbase-phoenix-sqlline]
+    ![HDInsight hbase phoenix sqlline][hdinsight-hbase-phoenix-sqlline]
 
     此範例中使用的命令：
 
@@ -78,12 +81,8 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 ### <a name="prerequisites"></a>必要條件
 遵循程序之前，您必須具備下列項目：
 
-* 將 HBase 叢集部署至具備 DNS 虛擬機器的 Azure 虛擬網路。  如需指示，請參閱[在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]。
+* 將 HBase 叢集部署至具備 DNS 虛擬機器的 Azure 虛擬網路。  如需相關指示，請參閱[在 Azure 虛擬網路上建立 HBase 叢集][hdinsight-hbase-provision-vnet]。
 
-  > [!IMPORTANT]
-  > 您必須將 DNS 伺服器安裝到虛擬網路。 如需相關指示，請參閱[設定兩個 Azure 虛擬網路之間的 DNS](hdinsight-hbase-geo-replication-configure-dns.md)
-  >
-  >
 * 取得 HBase 叢集的連線專用 DNS 尾碼。 若要取得該尾碼，請 RDP 到叢集，然後執行 IPConfig。  DNS 尾碼會類似於：
 
         myhbase.b7.internal.cloudapp.net
@@ -109,7 +108,7 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 3. 按一下您已建立的虛擬網路 (請參閱[在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet])。
 4. 按一下頂端的 [ **設定** ]。
 5. 在 [點對站連線] 區段中，選取 [設定點對站連線]。
-6. 設定**起始 IP** 和 **CIDR** 來指定您的 VPN 用戶端在連線時接收 IP 位址的 IP 位址範圍。 此範圍不能與任何位於內部部署網路及您將連線之 Azure 虛擬網路的範圍重疊。 例如，如果您選取 10.0.0.0/20 做為虛擬網路，您可以選取 10.1.0.0/24 做為用戶端的位址空間。 if you selected 10.0.0.0/20 for the virtual network, you can select 10.1.0.0/24 for the client address space. 如需詳細資訊，請參閱[點對站連線][vnet-point-to-site-connectivity]頁面。
+6. 設定**起始 IP** 和 **CIDR** 來指定您的 VPN 用戶端在連線時接收 IP 位址的 IP 位址範圍。 此範圍不能與任何位於內部部署網路及您將連線之 Azure 虛擬網路的範圍重疊。 例如， 如果您選取 10.0.0.0/20 做為虛擬網路，您可以選取 10.1.0.0/24 做為用戶端的位址空間。 如需詳細資訊，請參閱[點對站連線][vnet-point-to-site-connectivity]頁面。
 7. 在 [虛擬網路位址空間] 區段中，按一下 [ **新增閘道子網路**]。
 8. 按一下頁面底部的 [ **儲存** ]。
 9. 按一下 [ **是** ] 以確認變更。 請等候系統完成變更，才能繼續進行下一個程序。
@@ -155,7 +154,7 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 
     根憑證和用戶端憑證都會儲存在電腦上的個人憑證存放區中。 使用 certmgr.msc 來驗證。
 
-    ![Azure 虛擬網路點對站 vpn 憑證][img-certificate]
+    ![Azure 虛擬網路點對站 VPN 憑證][img-certificate]
 
     您想要連接到虛擬網路的每一部電腦都必須安裝用戶端憑證。 建議您最好針對要連接到虛擬網路的每部電腦建立唯一的用戶端憑證。 若要匯出用戶端憑證，請使用 certmgr.msc。
 
@@ -179,7 +178,7 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 
 1. 在您的工作站桌面上，按一下工作列上的網路圖示。 您會看到虛擬網路名稱的 VPN 連線。
 2. 按一下 VPN 連線名稱。
-3. 按一下 [連接] 。
+3. 按一下 [連接]。
 
 **測試 VPN 連線和網域名稱解析**
 
@@ -199,9 +198,11 @@ ms.openlocfilehash: 427ddb00988b2ac6c2701c909d338942ae6a4352
 2. 開啟/執行 jar 檔案。 它需要 [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)。
 3. 按兩下 [ **下一步** ]。
 4. 指定您具有寫入權限的路徑，然後按 [ **下一步**]。
-    >[AZURE.NOTE] 預設的安裝資料夾位於 C:\Program Files\squirrel sql 3.6 資料夾中。  若要寫入此路徑，必須將系統管理員權限授與安裝程式。 您可以系統管理員身分開啟命令提示字元、瀏覽至 Java 的 bin 資料夾，然後再執行
-    >
-    >     java.exe -jar [the path of the SQuirreL jar file]
+
+  > [!NOTE]
+  > 預設的安裝資料夾位於 C:\Program Files\squirrel sql&3;.6 資料夾中。  若要寫入此路徑，必須將系統管理員權限授與安裝程式。 您可以系統管理員身分開啟命令提示字元、瀏覽至 Java 的 bin 資料夾，然後再執行：
+  >
+  >     java.exe-jar [SQuirreL jar 檔案的路徑]
 5. 按一下 [ **確定** ] 以確認建立目標目錄。
 6. 預設設定是安裝基底和標準封裝。  按 [下一步] 。
 7. 依序按兩下 [下一步] 和 [完成]。
@@ -246,7 +247,7 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。 此路徑根據版本�
 
      ![HDInsight HBase Phoenix SQuirreL 驅動程式][img-squirrel-alias]
 4. 按一下 [ **測試**]。
-5. 按一下 [連接] 。 當它建立連線時，SQuirreL 如下所示：
+5. 按一下 [連接]。 當它建立連線時，SQuirreL 如下所示：
 
     ![HBase Phoenix SQuirrel][img-squirrel]
 
@@ -267,7 +268,7 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。 此路徑根據版本�
 
 * [HDInsight HBase 概觀][hdinsight-hbase-overview]：HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 * [在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]：由於 HBase 叢集已與虛擬網路整合，因此能夠部署到和應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。
-* [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-geo-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
+* [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
 * [利用 HDInsight 中的 HBase 分析 Twitter 情感][hbase-twitter-sentiment]：了解如何使用 HDInsight 之 Hadoop 叢集中的 HBase，執行巨量資料的即時[情感分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
 [azure-portal]: https://portal.azure.com
@@ -290,6 +291,6 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。 此路徑根據版本�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

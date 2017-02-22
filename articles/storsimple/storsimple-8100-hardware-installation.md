@@ -1,5 +1,5 @@
 ---
-title: "安裝您的 StorSimple 8100 裝置 | Microsoft Docs"
+title: "安裝 Microsoft Azure StorSimple 8100 裝置 | Microsoft Docs"
 description: "描述如何打開包裝、掛接機架和佈線 StorSimple 8100 裝置，再部署和設定軟體。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: aaef3322fc98b0874222e4a3728d54a38a34b602
-ms.openlocfilehash: 9d6d4ca99d5733f4e586ccba44307d8f5ffa09e8
+ms.sourcegitcommit: eb56cae77722268f42e5126c45ad2878af7db94a
+ms.openlocfilehash: 102dffcd73f3d3b9362d7b2853faa060e9c645dd
 
 
 ---
@@ -64,7 +64,7 @@ ms.openlocfilehash: 9d6d4ca99d5733f4e586ccba44307d8f5ffa09e8
    * 1 個機架掛接套件 (2 個具有掛接硬體的側軌)
    * 開始使用文件
      
-     如果您未收到任何上述項目，請 [連絡 Microsoft 支援](storsimple-contact-microsoft-support.md)。
+     如果您未收到任何上述項目，請[連絡 Microsoft 支援](storsimple-contact-microsoft-support.md)。
 
 下一步是利用機架掛接裝置。
 
@@ -94,14 +94,14 @@ ms.openlocfilehash: 9d6d4ca99d5733f4e586ccba44307d8f5ffa09e8
 8100 機箱是針對安裝在具有下列項目的標準 19 英吋機櫃而設計的：
 
 * 從機架柱到柱子最小深度為 27.84 英吋。
-* 裝置的最大重量為 32 公斤。
+* 裝置的最大重量為 32 公斤
 * 最大背部壓力為 5 Pascal (0.5 mm 水位表)。
 
 ### <a name="rack-mounting-rail-kit"></a>機架掛接滑軌套件
 提供一組掛接滑軌以用於 19 英吋機櫃。 滑軌已經過測試可以處理最大機箱重量。 這些滑軌也可以進行多個機箱的安裝，而不會損失機櫃內的任何空間。
 
 #### <a name="to-install-the-device-on-the-rails"></a>在滑軌上安裝裝置
-1. 只有在內部滑軌未安裝在您的裝置上時才執行此步驟。 通常，內部滑軌會在工廠安裝。 如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。 他們是在每一邊使用六個公制螺絲來連接。 為了協助辨識方向，滑軌標示為 [LH – Front] (左邊 – 前) 和 [RH – Front] (右邊 – 前)，接至機箱後端的尾端有錐型結尾。<br/>
+1. 只有在內部滑軌未安裝在您的裝置上時才執行此步驟。 通常，內部滑軌會在工廠安裝。 如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。 它們是在每一邊使用六個公制螺絲來連接。 為了協助辨識方向，滑軌標示為 [LH – Front] (左邊 – 前) 和 [RH – Front] (右邊 – 前)，接至機箱後端的尾端有錐型結尾。<br/>
    
     ![將滑軌連接至機箱底座](./media/storsimple-8100-hardware-installation/HCSAttachingRailSlidestoEnclosureChassis.png)
 
@@ -160,7 +160,7 @@ ms.openlocfilehash: 9d6d4ca99d5733f4e586ccba44307d8f5ffa09e8
 開始您的裝置佈線之前，您需要：
 
 * 完全打開儲存體裝置的包裝並掛接機架。
-* 裝置隨附的 2 條電源線
+* 裝置隨附的&2; 條電源線
 * 可以存取 2 個電源分配單元 (建議)
 * 網路纜線
 * 提供的序列纜線
@@ -210,14 +210,14 @@ ms.openlocfilehash: 9d6d4ca99d5733f4e586ccba44307d8f5ffa09e8
 
 
 
-裝置佈線時，最低的組態需要：
+當連接裝置纜線時，最低設定需要：
 
 * 各個控制器上至少已連接兩個網路介面，一個用於雲端存取，一個用於 iSCSI。 DATA 0 連接埠會自動啟用並透過裝置的序列主控台設定。 除了 DATA 0，另一個資料連接埠也需要透過 Azure 傳統入口網站來設定。 在此情況下，請將 DATA 0 連接埠連接到主要區域網路 (具有網際網路存取的網路)。 其他資料連接埠可以連線到網路的 SAN/iSCSI LAN (VLAN) 區段，視預期的角色而定。
 * 各個控制器上的相同介面已連接到相同的網路以確保可用性 (如果發生控制器容錯移轉)。 例如，如果您選擇對於其中一個控制器連接 DATA 0 和 DATA 3，您需要在其他控制器上連接對應的 DATA 0 和 DATA 3。
 
 針對高可用性和效能，請記住：
 
-* 可能的話，請在各個控制器上設定一組用於雲端存取 (1 GbE)，和另一組用於 iSCSI (建議 10 GbE) 的網路介面。
+* 可能的話，請在各個控制器上設定一組用於雲端存取 (1 GbE)，和另一組用於 iSCSI (建議&10; GbE) 的網路介面。
 * 可能的話，請將各個控制器的網路介面連接到兩個不同的交換器，以確保交換器發生錯誤時的可用性。 下圖說明兩個從各個控制器連接到兩個不同交換器的 10 GbE 網路介面 (DATA 2 和 DATA 3)。
 
 如需詳細資訊，請參閱 **StorSimple 裝置的高可用性需求** 下的 [網路介面](storsimple-system-requirements.md#high-availability-requirements-for-storsimple)。
@@ -251,6 +251,6 @@ ms.openlocfilehash: 9d6d4ca99d5733f4e586ccba44307d8f5ffa09e8
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

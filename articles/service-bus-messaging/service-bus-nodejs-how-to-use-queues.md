@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 10/03/2016
+ms.date: 01/11/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
-ms.openlocfilehash: d36d806d14fbaa813ea9e8e6ec132fda998bb22c
+ms.sourcegitcommit: f0b0c3bc9daf1e44dfebecedf628b09c97394f94
+ms.openlocfilehash: d993ba4bdff690ee6f0867cdbf0a8059fb5847ee
 
 
 ---
@@ -27,8 +27,10 @@ ms.openlocfilehash: d36d806d14fbaa813ea9e8e6ec132fda998bb22c
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
+[!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
+
 ## <a name="create-a-nodejs-application"></a>建立 Node.js 應用程式
-建立空白的 Node.js 應用程式。 如需建立 Node.js 應用程式的相關指示，請參閱使用 Windows PowerShell [建立 Node.js 應用程式並部署到 Azure 網站][建立 Node.js 應用程式並部署到 Azure 網站]或 [Node.js 雲端服務][Node.js 雲端服務]。
+建立空白的 Node.js 應用程式。 如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][Create and deploy a Node.js application to an Azure Website]或 [Node.js 雲端服務][Node.js Cloud Service] (使用 Windows PowerShell)。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
 若要使用 Azure 服務匯流排，請下載及使用 Node.js Azure 套件。 此封裝含有一組能與服務匯流排 REST 服務通訊的便利程式庫。
@@ -55,27 +57,27 @@ ms.openlocfilehash: d36d806d14fbaa813ea9e8e6ec132fda998bb22c
 ### <a name="import-the-module"></a>匯入模組
 使用記事本或其他文字編輯器將以下內容新增至應用程式 **server.js** 檔案的頂端：
 
-```
+```javascript
 var azure = require('azure');
 ```
 
 ### <a name="set-up-an-azure-service-bus-connection"></a>設定 Azure 服務匯流排連接
 Azure 模組會讀取環境變數 AZURE\_SERVICEBUS\_NAMESPACE 和 AZURE\_SERVICEBUS\_ACCESS\_KEY，以取得連接服務匯流排所需的資訊。 如果您未設定這些環境變數，必須在呼叫 **createServiceBusService** 時指定帳戶資訊。
 
-如需在 Azure 雲端服務組態檔中設定環境變數的範例，請參閱[使用儲存體的 Node.js 雲端服務][使用儲存體的 Node.js 雲端服務]。
+如需在「Azure 雲端服務」組態檔中設定環境變數的範例，請參閱[使用儲存體的 Node.js 雲端服務][Node.js Cloud Service with Storage]。
 
-如需在 Azure 網站的 [Azure 傳統入口網站][Azure 傳統入口網站]中設定環境變數的範例，請參閱[使用儲存體的 Node.js Web 應用程式][使用儲存體的 Node.js Web 應用程式]。
+如需在 [Azure 傳統入口網站][Azure classic portal]中設定 Azure 網站環境變數的範例，請參閱[使用儲存體的 Node.js Web 應用程式][Node.js Web Application with Storage]。
 
 ## <a name="create-a-queue"></a>建立佇列
 **ServiceBusService** 物件可讓您使用服務匯流排佇列。 下列程式碼將建立 **ServiceBusService** 物件。 請將程式碼新增至 **server.js** 檔案的頂端附近，放置在匯入 Azure 模型的陳述式後方：
 
-```
+```javascript
 var serviceBusService = azure.createServiceBusService();
 ```
 
 呼叫 **ServiceBusService** 物件上的 **createQueueIfNotExists** 之後，會傳回指定的佇列 (如果存在)，或以指定的名稱建立新的佇列。 下列程式碼使用 **createQueueIfNotExists** 建立或連接至名稱為 `myqueue` 的佇列：
 
-```
+```javascript
 serviceBusService.createQueueIfNotExists('myqueue', function(error){
     if(!error){
         // Queue exists
@@ -85,7 +87,7 @@ serviceBusService.createQueueIfNotExists('myqueue', function(error){
 
 **createServiceBusService** 也支援其他選項，讓您覆寫預設佇列設定，例如訊息存留時間或佇列大小上限。 下列範例會將佇列大小上限設為 5 GB，並將存留時間 (TTL) 值設為 1 分鐘：
 
-```
+```javascript
 var queueOptions = {
       MaxSizeInMegabytes: '5120',
       DefaultMessageTimeToLive: 'PT1M'
@@ -101,13 +103,13 @@ serviceBusService.createQueueIfNotExists('myqueue', queueOptions, function(error
 ### <a name="filters"></a>篩選器
 您可以將選用的篩選作業套用至使用 **ServiceBusService** 執行的作業。 篩選作業可包括記錄、自動重試等等。篩選器是以簽章實作方法的物件：
 
-```
+```javascript
 function handle (requestOptions, next)
 ```
 
 在對要求選項進行前處理之後，方法必須呼叫 `next`，並傳遞具有下列簽章的回呼：
 
-```
+```javascript
 function (returnObject, finalCallback, next)
 ```
 
@@ -115,7 +117,7 @@ function (returnObject, finalCallback, next)
 
 Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**ExponentialRetryPolicyFilter** 和 **LinearRetryPolicyFilter**。 下列程式碼將建立使用 **ExponentialRetryPolicyFilter** 的 **ServiceBusService** 物件：
 
-```
+```javascript
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
 var serviceBusService = azure.createServiceBusService().withFilter(retryOperations);
 ```
@@ -125,7 +127,7 @@ var serviceBusService = azure.createServiceBusService().withFilter(retryOperatio
 
 下列範例示範如何使用 **sendQueueMessage** 將測試訊息傳送至名為 `myqueue` 的佇列：
 
-```
+```javascript
 var message = {
     body: 'Test message',
     customProperties: {
@@ -138,7 +140,7 @@ serviceBusService.sendQueueMessage('myqueue', message, function(error){
 });
 ```
 
-服務匯流排佇列支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。 此佇列大小會在建立時定義，上限是 5 GB。 如需服務匯流排中配額的詳細資訊，請參閱[服務匯流排配額][服務匯流排配額]。
+服務匯流排佇列支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。 此佇列大小會在建立時定義，上限是 5 GB。 如需有關配額的詳細資訊，請參閱[服務匯流排配額][Service Bus quotas]。
 
 ## <a name="receive-messages-from-a-queue"></a>從佇列接收訊息
 對於 **ServiceBusService** 物件使用 **receiveQueueMessage** 方法即可從佇列接收訊息。 預設會從佇列刪除唯讀的訊息，不過，您可以將 **isPeekLock** 設定為 **true**，不需要從佇列刪除訊息，即可讀取 (查看) 並鎖定訊息。
@@ -149,7 +151,7 @@ serviceBusService.sendQueueMessage('myqueue', message, function(error){
 
 下列範例示範如何使用 **receiveQueueMessage** 來接收和處理訊息。 範例首先會接收並刪除訊息，然後使用設定為 **true** 的 **isPeekLock** 接收訊息，接著使用 **deleteMessage** 刪除訊息：
 
-```
+```javascript
 serviceBusService.receiveQueueMessage('myqueue', function(error, receivedMessage){
     if(!error){
         // Message received and deleted
@@ -177,22 +179,22 @@ serviceBusService.receiveQueueMessage('myqueue', { isPeekLock: true }, function(
 ## <a name="next-steps"></a>後續步驟
 若要深入了解佇列，請參閱下列資源。
 
-* [佇列、主題和訂用帳戶][佇列、主題和訂用帳戶]
+* [佇列、主題和訂用帳戶][Queues, topics, and subscriptions]
 * GitHub 上的 [Azure SDK for Node][Azure SDK for Node] 儲存機制
-* [Node.js 開發人員中心](/develop/nodejs/)
+* [Node.js 開發人員中心](https://azure.microsoft.com/develop/nodejs/)
 
 [Azure SDK for Node]: https://github.com/Azure/azure-sdk-for-node
-[Azure 傳統入口網站]: http://manage.windowsazure.com
+[Azure classic portal]: http://manage.windowsazure.com
 
-[Node.js 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
-[佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
-[建立 Node.js 應用程式並部署到 Azure 網站]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
-[使用儲存體的 Node.js 雲端服務]: ../storage/storage-nodejs-use-table-storage-cloud-service-app.md
-[使用儲存體的 Node.js Web 應用程式]: ../storage/storage-nodejs-how-to-use-table-storage.md
-[服務匯流排配額]: service-bus-quotas.md
+[Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
+[Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
+[Create and deploy a Node.js application to an Azure Website]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
+[Node.js Cloud Service with Storage]: ../storage/storage-nodejs-use-table-storage-cloud-service-app.md
+[Node.js Web Application with Storage]: ../storage/storage-nodejs-how-to-use-table-storage.md
+[Service Bus quotas]: service-bus-quotas.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

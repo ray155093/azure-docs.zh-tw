@@ -8,6 +8,7 @@
 ## [Proxy 與防火牆](log-analytics-proxy-firewall.md)
 ## [使用狀況資料](log-analytics-usage.md)
 ## [Log Analytics 常見問題集](log-analytics-faq.md)
+## [服務提供者](log-analytics-service-providers.md)
 
 # 作法
 ## 收集資料
@@ -15,7 +16,7 @@
 #### [Windows 代理程式](log-analytics-windows-agents.md)
 #### [Linux 代理程式](log-analytics-linux-agents.md)
 #### [Azure 虛擬機器](log-analytics-azure-vm-extension.md)
-#### [Azure 儲存體](log-analytics-azure-storage.md)
+#### [Azure 資源](log-analytics-azure-storage.md)
 #### [Operations Manager](log-analytics-om-agents.md)
 #### [組態管理員](log-analytics-sccm.md)
 #### [OMS 閘道](log-analytics-oms-gateway.md)
@@ -45,6 +46,9 @@
 #### [變更追蹤](log-analytics-change-tracking.md)
 #### [容器](log-analytics-containers.md)
 #### [金鑰保存庫](log-analytics-azure-key-vault.md)
+#### Logic Apps B2B 訊息
+##### [Logic Apps B2B 訊息解決方案](../logic-apps/logic-apps-track-b2b-messages-omsportal.md?toc=%2fazure%2flog-analytics%2ftoc.json)
+##### [Logic Apps B2B 自訂追蹤結構描述](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md?toc=%2fazure%2flog-analytics%2ftoc.json)
 #### [惡意程式碼評估](log-analytics-malware.md)
 #### [網路分析](log-analytics-azure-networking-analytics.md)
 #### [網路效能監視器](log-analytics-network-performance-monitor.md)
@@ -59,11 +63,13 @@
 ## 開發
 ### [資料收集器 API](log-analytics-data-collector-api.md)
 ### [PowerShell Cmdlet](log-analytics-powershell-workspace-configuration.md)
+### [Resource Manager 範本](log-analytics-template-workspace-configuration.md)
 ### [記錄檔搜尋 API](log-analytics-log-search-api.md)
 ### [警示 API](log-analytics-api-alerts.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.operationalinsights/v2.3.0/azurerm.operationalinsights)
+## [REST](/rest/api/loganalytics)
 
 # 資源
 ## [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics)
@@ -71,6 +77,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=log-analytics)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

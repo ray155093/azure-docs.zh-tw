@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 07/14/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 339438be098d0adb46a22ccf0389d7503c43672e
+ms.sourcegitcommit: fe331199333d492dbc42c9125c9da96a44066ee1
+ms.openlocfilehash: 6623bb9a4f3845676574f6335dd662dd5bcf7be9
 
 
 ---
@@ -51,7 +51,7 @@ Azure 診斷中的事件中樞接收在雲端服務、VM、虛擬機器擴展集
 ## <a name="connect-azure-diagnostics-to-event-hubs-sink"></a>將 Azure 診斷連接至事件中樞接收
 根據預設，Azure 診斷一律會將記錄檔和度量接收至 Azure 儲存體帳戶。 應用程式可能會額外接收到事件中樞，方法是將 [接收] 區段新增至 *.wadcfgx* 檔案的 **PublicConfig** 區段中的 **WadCfg** 元素。 在 Visual Studio 中，*.wadcfgx* 檔案會儲存在以下路徑：[雲端服務專案] > [角色] >  **(RoleName)** > **diagnostics.wadcfgx** 檔案。
 
-```
+```xml
 <SinksConfig>
   <Sink name="HotPath">
     <EventHub Url="https://diags-mycompany-ns.servicebus.windows.net/diageventhub" SharedAccessKeyName="SendRule" />
@@ -93,7 +93,7 @@ Azure 診斷中的事件中樞接收在雲端服務、VM、虛擬機器擴展集
 
 以下是一些範例組態。
 
-```
+```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M" sinks="HotPath">
   <PerformanceCounterConfiguration counterSpecifier="\Memory\Available MBytes" sampleRate="PT3M" />
   <PerformanceCounterConfiguration counterSpecifier="\Web Service(_Total)\ISAPI Extension Requests/sec" sampleRate="PT3M" />
@@ -108,7 +108,7 @@ Azure 診斷中的事件中樞接收在雲端服務、VM、虛擬機器擴展集
 
 在下列範例中，接收會套用至階層中的父 **PerformanceCounters**，這表示所有子 **PerformanceCounters** 將傳送至事件中樞。  
 
-```
+```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M">
   <PerformanceCounterConfiguration counterSpecifier="\Memory\Available MBytes" sampleRate="PT3M" />
   <PerformanceCounterConfiguration counterSpecifier="\Web Service(_Total)\ISAPI Extension Requests/sec" sampleRate="PT3M" />
@@ -156,7 +156,7 @@ Visual Studio 提供最簡單的路徑供您部署應用程式和事件中樞接
 
 請記得使用您資源的值取代 **Main** 函式中角括弧裡面的值。   
 
-```
+```csharp
 //Console application code for EventHub test client
 using System;
 using System.Collections.Generic;
@@ -252,7 +252,7 @@ namespace EventHubListener
 •    [深入了解事件中樞](https://azure.microsoft.com/services/event-hubs/)
 
 ## <a name="appendix-complete-azure-diagnostics-configuration-file-wadcfgx-example"></a>附錄：完成 Azure 診斷組態檔 (.wadcfgx) 範例
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <DiagnosticsConfiguration xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
   <PublicConfig xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
@@ -307,7 +307,7 @@ namespace EventHubListener
 
 此範例的補充 *ServiceConfiguration.Cloud.cscfg* 如下所示。
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceConfiguration serviceName="MyFixItCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2015-04.2.6">
   <Role name="MyFixIt.WorkerRole">
@@ -318,12 +318,18 @@ namespace EventHubListener
   </Role>
 </ServiceConfiguration>
 ```
+## <a name="next-steps"></a>後續步驟
+您可以造訪下列連結以深入了解事件中樞︰
+
+* [事件中樞概觀](event-hubs-what-is-event-hubs.md)
+* [建立事件中樞](event-hubs-create.md)
+* [事件中樞常見問題集](event-hubs-faq.md)
 
 <!-- Images. -->
 [0]: ./media/event-hubs-streaming-azure-diags-data/dashboard.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

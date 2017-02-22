@@ -1,5 +1,5 @@
 ---
-title: "航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的腳本 | Microsoft Docs"
+title: "航太在航太工業中使用 Azure - Cortana Intelligence 解決方案進行預測性維護的範本 | Microsoft Docs"
 description: "航太、公用事業和運輸中預測性維護的 Microsoft Cortana Intelligence 解決方案範本。"
 services: cortana-analytics
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/07/2016
 ms.author: fboylu
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ce34066c808b378b7f73cb8e782db3d2da7b536b
+ms.sourcegitcommit: c78604783bb21f9162939637e04e60aa8131ce11
+ms.openlocfilehash: 1fc824c65e68c70ace589e788a0c470c475e66b4
 
 
 ---
@@ -228,7 +228,7 @@ ms.openlocfilehash: ce34066c808b378b7f73cb8e782db3d2da7b536b
 
 在特徵產生期間，應執行其他一些重要步驟，例如處理遺失值和正規化。 遺失值插補和資料正規化的方法都有很多種，此處將不會加以討論。 不過，嘗試不同的方法來看看是否可能提升預測效能，則是非常實用。
 
-當時間單位為 1 天時，上一節所述的特徵設計步驟後面的最終特徵資料表應該類似下列範例資料結構描述：
+當時間單位為&1; 天時，上一節所述的特徵設計步驟後面的最終特徵資料表應該類似下列範例資料結構描述：
 
 | 資產識別碼 | 時間 | 特徵資料行 | 標籤 |
 | --- | --- | --- | --- |
@@ -286,7 +286,7 @@ ms.openlocfilehash: ce34066c808b378b7f73cb8e782db3d2da7b536b
 
 圖 5. 故障時間預測的多類別分類標記方式
 
-針對第一個問題，取用資產故障前的 X 筆記錄並將其標記為「即將由於問題 P<sub>i</sub> 而失敗」(標籤 = P<sub>i</sub>)，而將其他所有記錄標記為「正常」(標籤 = 0)，即可完成標記。 在此方法中，標籤為類別變數 (請參閱圖 6)。
+針對第一個問題，取用資產故障前的 X 筆記錄並將其標記為「即將由於問題 P<sub>i</sub> 而失敗」(標籤 = P<sub>i</sub>)，而將其他所有記錄標記為「正常」(標籤 =&0;)，即可完成標記。 在此方法中，標籤為類別變數 (請參閱圖 6)。
 
 ![圖 6. 根本原因預測的多類別分類標記方式](media/cortana-analytics-playbook-predictive-maintenance/labelling-for-multiclass-classification-for-root-cause-prediction.png)
 
@@ -372,6 +372,6 @@ ms.openlocfilehash: ce34066c808b378b7f73cb8e782db3d2da7b536b
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: masashin
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ea811d7315298132a45a8d1873da8a2bf5600c1c
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 5989d31306aa896a404b29b2c71c9ddf7e23da01
 
 
 ---
@@ -33,7 +33,7 @@ Microsoft Azure 內容傳遞網路 (CDN) 為開發人員提供一套傳遞高頻
 
 ![CDN 圖表](./media/best-practices-cdn/CDN.png)
 
-使用 CDN 也有助於降低應用程式的負載，因為它能舒緩存取和傳遞內容所需的處理程序。 此降低負載可協助提高應用程式的效能和延展性，以及減少達成特定層級的效能和可用性所需的處理資源，從而將裝載成本降至最低。
+使用 CDN 也有助於降低應用程式的負載，因為它能免除存取和傳遞內容所需的處理程序。 此降低負載可協助提高應用程式的效能和延展性，以及減少達成特定層級的效能和可用性所需的處理資源，從而將裝載成本降至最低。
 
 ## <a name="how-and-why-a-cdn-is-used"></a>如何及為何使用 CDN
 CDN 的典型用法包括：  
@@ -66,7 +66,7 @@ CDN 的典型用法包括：
 計劃使用 CDN 時必須考量有幾項挑戰：  
 
 * **部署**。 您必須決定 CDN 將從中提取內容的原點，及是否需要將內容部署到多個儲存體系統中 (例如在 CDN 和替代位置中)。
-  
+
   您的應用程式部署機制必須考慮部署靜態內容和資源的程序，以及部署應用程式檔案 (例如 ASPX 頁面) 的程序。 比方說，您可能需要實作個別的步驟，才能將內容載入 Azure blob 儲存體。
 * **版本控制和快取控制**。 您必須考慮如何更新靜態內容和部署新版本。 當資產的新版本可供使用時，可能會使用 Azure 入口網站來 [清除](cdn/cdn-purge-endpoint.md) CDN 內容。 這類似於管理用戶端快取的挑戰，例如在網頁瀏覽器中發生的情形。
 * **測試**。 在本機或在預備環境中開發和測試應用程式時，很難為 CDN 設定執行本機測試。
@@ -74,7 +74,7 @@ CDN 的典型用法包括：
 * **內容安全性**。 許多 CDN 服務 (例如 Azure CDN) 目前不提供任何類型的內容存取控制。
 * **用戶端安全性**。 用戶端可從不允許存取 CDN 上資源的環境中連接。 這可能是安全性限制的環境，限制只能存取一組已知來源，或防止從原始頁面以外的任何位置載入資源的環境。 需要後援實作，才能處理這些情況。
 * **恢復功能**。 CDN 是應用程式的潛在單一失敗點。 它比 blob 儲存體具有更低的可用性 SLA (可用於直接傳遞內容)，因此您可能需要考慮為重要內容實作後援機制。
-  
+
   您可以從 Azure 入口網站的[即時](cdn/cdn-real-time-stats.md)和[彙總報告](cdn/cdn-analyze-usage-patterns.md)中監視 CDN 內容的可用性、頻寬、傳輸的資料、點擊數、快取點擊率和快取計量。
 
 CDN 較沒有用的案例括：  
@@ -151,7 +151,7 @@ Azure CDN 未提供任何存取控制工具來安全地存取內容。 您無法
 * 如果傳遞內容的原點是應用程式中的資料夾，例如 *cdn* 根資料夾，您可以在應用程式組態檔中設定輸出規則。以便在所有回應上設定 *Access-Control-Allow-Origin* 標頭。 如需有關使用重寫規則的詳細資訊，請參閱 [URL 重寫模組](http://www.iis.net/learn/extensions/url-rewrite-module)。
 
 ### <a name="custom-domains"></a>自訂網域
-Azure CDN 可讓您指定 [自訂網域名稱](cdn/cdn-map-content-to-custom-domain.md) ，並使用它透過 CDN 存取資源。 您也可以在 DNS 中使用 *CNAME* 記錄，以設定自訂的子網域名稱。 使用這種方法可以提供額外的抽象和控制層級。
+Azure CDN 可讓您指定[自訂網域名稱](cdn/cdn-map-content-to-custom-domain.md)，並利用它來透過 CDN 存取資源。 您也可以在 DNS 中使用 *CNAME* 記錄，以設定自訂的子網域名稱。 使用這種方法可以提供額外的抽象和控制層級。
 
 如果您使用 *CNAME*，您將無法使用 SSL，因為 CDN 會使用它本身的單一 SSL 憑證，而此憑證不符合您的自訂網域/子網域名稱。
 
@@ -247,7 +247,6 @@ Azure CDN 可讓您指定 [自訂網域名稱](cdn/cdn-map-content-to-custom-dom
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

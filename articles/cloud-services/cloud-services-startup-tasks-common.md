@@ -187,7 +187,7 @@ powershell -ExecutionPolicy Unrestricted -command "Install-WindowsFeature Web-IP
 
 最後，修改 Web 角色 [web.config](http://www.iis.net/configreference/system.webserver/security/ipsecurity#005) 檔案中的 **system.webServer** 區段，新增具有存取權的 IP 位址清單，如以下範例所示：
 
-此範例組態 **允許** 所有 IP 存取伺服器 (另外定義的 2 個 IP 除外)。
+此範例組態 **允許** 所有 IP 存取伺服器 (另外定義的&2; 個 IP 除外)。
 
 ```xml
 <system.webServer>
@@ -202,7 +202,7 @@ powershell -ExecutionPolicy Unrestricted -command "Install-WindowsFeature Web-IP
 </system.webServer>
 ```
 
-此範例組態 **拒絕** 所有 IP 存取伺服器 (另外定義的 2 個 IP 除外)。
+此範例組態 **拒絕** 所有 IP 存取伺服器 (另外定義的&2; 個 IP 除外)。
 
 ```xml
 <system.webServer>
@@ -513,13 +513,13 @@ EXIT %ERRORLEVEL%
 [Variable]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 [RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx
-[端點]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Endpoints
+[EndPoints]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Endpoints
 [LocalStorage]: https://msdn.microsoft.com/library/azure/gg557552.aspx#LocalStorage
 [LocalResources]: https://msdn.microsoft.com/library/azure/gg557552.aspx#LocalResources
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

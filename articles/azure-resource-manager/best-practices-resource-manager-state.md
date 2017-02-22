@@ -1,6 +1,6 @@
 ---
-title: "在 Resource Manager 範本中處理狀態 | Microsoft Docs"
-description: "示範透過「Azure 資源管理員」範本與連結的範本，使用複雜物件來共用狀態資料的建議做法"
+title: "在 Azure 範本之間傳遞複雜的值 | Microsoft Docs"
+description: "示範透過 Azure Resource Manager 範本與連結的範本，使用複雜物件共用狀態資料的建議做法。"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -15,12 +15,12 @@ ms.topic: article
 ms.date: 10/26/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cf2f6a82df28047ba7b50dc2cfd6fc2f0dfad794
+ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
+ms.openlocfilehash: 23cc4321159a87b61c177b11381646af8bd9eb35
 
 
 ---
-# <a name="sharing-state-in-azure-resource-manager-templates"></a>Azure 資源管理員範本中的共用狀態
+# <a name="share-state-to-and-from-azure-resource-manager-templates"></a>在 Azure Resource Manager 範本中共用狀態以及從 Azure Resource Manager 範本共用狀態
 這個主題說明在範本中管理和共用狀態的最佳做法。 本主題所顯示的參數與變數為您可以定義的物件類型範例，方便您用來組織部署需求。 在這些範例中，您可以實作自己的物件與您環境適用的屬性值。
 
 本主題是較大份白皮書的一部分。 若要閱讀完整的文件，請下載[世界級 Azure Resource Manager 範本注意事項和證明可行的作法](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf)。
@@ -415,6 +415,6 @@ ms.openlocfilehash: cf2f6a82df28047ba7b50dc2cfd6fc2f0dfad794
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

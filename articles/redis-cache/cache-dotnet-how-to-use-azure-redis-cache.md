@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 08/25/2016
+ms.date: 01/06/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 209d4f610f0d5199d9018c506acef3b7328478ef
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: aeac4f6ae98ec453127459f9af467458ef2dbd98
 
 
 ---
@@ -38,17 +38,17 @@ Microsoft Azure Redis 快取有下列階層：
 * **標準** – 兩個節點 (主要/從屬)。 多種大小，最高為 53 GB。 99.9% SLA。
 * **進階** – 兩個節點的主要/從屬，最多具有 10 個分區。 從 6 GB 到 530 GB 的多種大小 (如需詳細資訊，請與我們連絡)。 所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。 99.9% SLA。
 
-每一個階層都有不同的功能和價格。 如需價格的相關資訊，請參閱[快取價格詳細資料][快取價格詳細資料]。
+每一個階層都有不同的功能和價格。 如需價格的相關資訊，請參閱 [快取價格詳細資料][Cache Pricing Details]。
 
-本指南說明如何使用採用 C\# 程式碼的 [StackExchange.Redis][StackExchange.Redis] 用戶端。 涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**，以及**新增和移除快取中的物件**。 如需使用 Azure Redis 快取的詳細資訊，請參閱[後續步驟][後續步驟]一節。 如需使用 Redis 快取建置 ASP.NET MVC Web 應用程式的逐步教學課程，請參閱 [如何使用 Redis 快取建立 Web 應用程式](cache-web-app-howto.md)。
+本指南說明如何使用採用 C\# 程式碼的 [StackExchange.Redis][StackExchange.Redis] 用戶端。 涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**，以及**新增和移除快取中的物件**。 如需使用 Azure Redis 快取的詳細資訊，請參閱 [後續步驟][Next Steps]一節。 如需使用 Redis 快取建置 ASP.NET MVC Web 應用程式的逐步教學課程，請參閱 [如何使用 Redis 快取建立 Web 應用程式](cache-web-app-howto.md)。
 
 <a name="getting-started-cache-service"></a>
 
 ## <a name="get-started-with-azure-redis-cache"></a>開始使用 Azure Redis 快取
 開始使用 Azure Redis 快取相當簡單。 若要開始，請佈建並設定快取。 接著，設定快取用戶端，以便它們可以存取快取。 一旦設定了快取用戶端，就可以開始使用它們。
 
-* [建立快取][建立快取]
-* [設定快取用戶端][設定快取用戶端]
+* [建立快取][Create the cache]
+* [設定快取用戶端][Configure the cache clients]
 
 <a name="create-cache"></a>
 
@@ -72,8 +72,8 @@ Microsoft Azure Redis 快取有下列階層：
 ## <a name="working-with-caches"></a>使用快取
 本節中的步驟描述如何利用快取執行常見工作。
 
-* [連接到快取][連接到快取]
-* [從快取新增和擷取物件][從快取新增和擷取物件]
+* [連接到快取][Connect to the cache]
+* [從快取新增和擷取物件][Add and retrieve objects from the cache]
 * [使用快取中的 .NET 物件](#work-with-net-objects-in-the-cache)
 
 <a name="connect-to-cache"></a>
@@ -95,7 +95,7 @@ Microsoft Azure Redis 快取有下列階層：
     ConnectionMultiplexer connection = ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
 
 > [!IMPORTANT]
-> 警告：請勿將認證儲存在原始程式碼中。 為了讓這個範例簡單明瞭，我會以原始程式碼來呈現認證內容。 如需如何儲存認證的相關資訊，請參閱[應用程式字串與連接字串的運作方式][應用程式字串與連接字串的運作方式]。
+> 警告：請勿將認證儲存在原始程式碼中。 為了讓這個範例簡單明瞭，我會以原始程式碼來呈現認證內容。 如需如何儲存認證的相關資訊，請參閱[應用程式字串與連接字串的運作方式][How Application Strings and Connection Strings Work]。
 > 
 > 
 
@@ -121,7 +121,7 @@ Microsoft Azure Redis 快取有下列階層：
         }
     }
 
-如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][StackExchange.Redis 組態模型]。
+如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][StackExchange.Redis configuration model]。
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
@@ -202,30 +202,30 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
   * [Azure Redis 工作階段狀態提供者](cache-aspnet-session-state-provider.md)
   * [Azure Redis 快取 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)
 * [啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。 您可以在 Azure 入口網站中檢視度量，也可以使用您選擇的工具 [下載並檢閱](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring) 它們。
-* 請參閱 [StackExchange.Redis 快取用戶端文件][StackExchange.Redis 快取用戶端文件]。
+* 請參閱 [StackExchange.Redis 快取用戶端文件][StackExchange.Redis cache client documentation]。
   * Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。 如需詳細資訊，請參閱 [http://redis.io/clients][http://redis.io/clients]。
 * Azure Redis 快取也可以與協力廠商服務和工具搭配使用 (例如 Redsmin 和 Redis Desktop Manager)。
-  * 如需 Redsmin 的詳細資訊，請參閱 [如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用]。
+  * 如需 Redsmin 的詳細資訊，請參閱 [如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][How to retrieve an Azure Redis connection string and use it with Redsmin]。
   * 使用 [RedisDesktopManager](https://github.com/uglide/RedisDesktopManager)，透過 GUI 存取和檢查 Azure Redis 快取中的資料。
-* 請參閱 [redis][redis] 文件，並閱讀有關 [redis 資料類型][redis data types]和 [Redis 資料類型的 15 分鐘簡介][Redis 資料類型的 15 分鐘簡介]。
+* 請參閱 [redis][redis] 文件，並閱讀有關 [Redis 資料類型][redis data types]和 [Redis 資料類型的 15 分鐘簡介][a fifteen minute introduction to Redis data types]。
 
 <!-- INTRA-TOPIC LINKS -->
-[後續步驟]: #next-steps
-[Azure Redis 快取簡介 (影片)]: #video
-[何謂 Azure Redis 快取？]: #what-is
-[建立 Azure 快取]: #create-cache
-[哪一種快取最適合我？]: #choosing-cache
-[準備 Visual Studio 專案來使用 Azure 快取]: #prepare-vs
-[設定應用程式以使用快取]: #configure-app
-[開始使用 Azure Redis 快取]: #getting-started-cache-service
-[建立快取]: #create-cache
-[設定快取]: #enable-caching
-[設定快取用戶端]: #NuGet
-[使用快取]: #working-with-caches
-[連接到快取]: #connect-to-cache
-[從快取新增和擷取物件]: #add-object
-[指定快取中物件的到期時間]: #specify-expiration
-[將 ASP.NET 工作階段狀態儲存在快取中]: #store-session
+[Next Steps]: #next-steps
+[Introduction to Azure Redis Cache (Video)]: #video
+[What is Azure Redis Cache?]: #what-is
+[Create an Azure Cache]: #create-cache
+[Which type of caching is right for me?]: #choosing-cache
+[Prepare Your Visual Studio Project to Use Azure Caching]: #prepare-vs
+[Configure Your Application to Use Caching]: #configure-app
+[Get Started with Azure Redis Cache]: #getting-started-cache-service
+[Create the cache]: #create-cache
+[Configure the cache]: #enable-caching
+[Configure the cache clients]: #NuGet
+[Working with Caches]: #working-with-caches
+[Connect to the cache]: #connect-to-cache
+[Add and retrieve objects from the cache]: #add-object
+[Specify the expiration of an object in the cache]: #specify-expiration
+[Store ASP.NET session state in the cache]: #store-session
 
 
 <!-- IMAGES -->
@@ -237,7 +237,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [CacheProperties]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-properties.png
 
-[Managekeys]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-manage-keys.png
+[ManageKeys]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-manage-keys.png
 
 [SessionStateNuGet]: ./media/cache-dotnet-how-to-use-azure-redis-cache/redis-cache-session-state-provider.png
 
@@ -253,52 +253,52 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 <!-- LINKS -->
 [http://redis.io/clients]: http://redis.io/clients
-[以其他語言開發 Azure Redis 快取]: http://msdn.microsoft.com/library/azure/dn690470.aspx
-[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用]: https://redsmin.uservoice.com/knowledgebase/articles/485711-how-to-connect-redsmin-to-azure-redis-cache
-[Azure Redis 工作階段狀態提供者]: http://go.microsoft.com/fwlink/?LinkId=398249
-[作法：以程式設計方式設定快取用戶端]: http://msdn.microsoft.com/library/windowsazure/gg618003.aspx
-[Azure 快取的工作階段狀態提供者]: http://go.microsoft.com/fwlink/?LinkId=320835
-[Azure AppFabric 快取︰快取工作階段狀態]: http://www.microsoft.com/showcase/details.aspx?uuid=87c833e9-97a9-42b2-8bb1-7601f9b5ca20
-[建立 Microsoft Azure 快取服務 (預覽) 頁面輸出快取提供者]: http://go.microsoft.com/fwlink/?LinkId=320837
-[Azure 共用快取]: http://msdn.microsoft.com/library/windowsazure/gg278356.aspx
-[小組部落格]: http://blogs.msdn.com/b/windowsazure/
-[Azure 快取]: http://www.microsoft.com/showcase/Search.aspx?phrase=azure+caching
-[設定雲端服務的大小]: http://go.microsoft.com/fwlink/?LinkId=164387
-[Azure 快取容量規劃考量]: http://go.microsoft.com/fwlink/?LinkId=320167
-[Azure 快取]: http://go.microsoft.com/fwlink/?LinkId=252658
-[作法：以宣告方式設定 ASP.NET 網頁的快取性]: http://msdn.microsoft.com/library/zd1ysf1y.aspx
-[作法：以程式設計方式設定頁面的快取性]: http://msdn.microsoft.com/library/z852zf6b.aspx
-[在 Azure Redis 快取中設定快取]: http://msdn.microsoft.com/library/azure/dn793612.aspx
+[Develop in other languages for Azure Redis Cache]: http://msdn.microsoft.com/library/azure/dn690470.aspx
+[How to retrieve an Azure Redis connection string and use it with Redsmin]: https://redsmin.uservoice.com/knowledgebase/articles/485711-how-to-connect-redsmin-to-azure-redis-cache
+[Azure Redis Session State Provider]: http://go.microsoft.com/fwlink/?LinkId=398249
+[How to: Configure a Cache Client Programmatically]: http://msdn.microsoft.com/library/windowsazure/gg618003.aspx
+[Session State Provider for Azure Cache]: http://go.microsoft.com/fwlink/?LinkId=320835
+[Azure AppFabric Cache: Caching Session State]: http://www.microsoft.com/showcase/details.aspx?uuid=87c833e9-97a9-42b2-8bb1-7601f9b5ca20
+[Output Cache Provider for Azure Cache]: http://go.microsoft.com/fwlink/?LinkId=320837
+[Azure Shared Caching]: http://msdn.microsoft.com/library/windowsazure/gg278356.aspx
+[Team Blog]: http://blogs.msdn.com/b/windowsazure/
+[Azure Caching]: http://www.microsoft.com/showcase/Search.aspx?phrase=azure+caching
+[How to Configure Virtual Machine Sizes]: http://go.microsoft.com/fwlink/?LinkId=164387
+[Azure Caching Capacity Planning Considerations]: http://go.microsoft.com/fwlink/?LinkId=320167
+[Azure Caching]: http://go.microsoft.com/fwlink/?LinkId=252658
+[How to: Set the Cacheability of an ASP.NET Page Declaratively]: http://msdn.microsoft.com/library/zd1ysf1y.aspx
+[How to: Set a Page's Cacheability Programmatically]: http://msdn.microsoft.com/library/z852zf6b.aspx
+[Configure a cache in Azure Redis Cache]: http://msdn.microsoft.com/library/azure/dn793612.aspx
 
-[StackExchange.Redis 組態模型]: http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Configuration.md
+[StackExchange.Redis configuration model]: http://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Configuration.md
 
-[使用快取中的 .NET 物件]: http://msdn.microsoft.com/library/dn690521.aspx#Objects
+[Work with .NET objects in the cache]: http://msdn.microsoft.com/library/dn690521.aspx#Objects
 
 
-[NuGet Package Manager 安裝]: http://go.microsoft.com/fwlink/?LinkId=240311
-[快取價格詳細資料]: http://www.windowsazure.com/pricing/details/cache/
-[Azure 入口網站]: https://portal.azure.com/
+[NuGet Package Manager Installation]: http://go.microsoft.com/fwlink/?LinkId=240311
+[Cache Pricing Details]: http://www.windowsazure.com/pricing/details/cache/
+[Azure Portal]: https://portal.azure.com/
 
-[Azure Redis 快取的概觀]: http://go.microsoft.com/fwlink/?LinkId=320830
-[Azure Redis 快取]: http://go.microsoft.com/fwlink/?LinkId=398247
+[Overview of Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=320830
+[Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=398247
 
-[移轉至 Azure Redis 快取]: http://go.microsoft.com/fwlink/?LinkId=317347
-[Azure Redis 快取範例]: http://go.microsoft.com/fwlink/?LinkId=320840
-[使用資源群組來管理您的 Azure 資源]: ../azure-resource-manager/resource-group-overview.md
+[Migrate to Azure Redis Cache]: http://go.microsoft.com/fwlink/?LinkId=317347
+[Azure Redis Cache Samples]: http://go.microsoft.com/fwlink/?LinkId=320840
+[Using Resource groups to manage your Azure resources]: ../azure-resource-manager/resource-group-overview.md
 
 [StackExchange.Redis]: http://github.com/StackExchange/StackExchange.Redis
-[StackExchange.Redis 快取用戶端文件]: http://github.com/StackExchange/StackExchange.Redis#documentation
+[StackExchange.Redis cache client documentation]: http://github.com/StackExchange/StackExchange.Redis#documentation
 
 [Redis]: http://redis.io/documentation
-[Redis 資料類型]: http://redis.io/topics/data-types
-[Redis 資料類型的 15 分鐘簡介]: http://redis.io/topics/data-types-intro
+[Redis data types]: http://redis.io/topics/data-types
+[a fifteen minute introduction to Redis data types]: http://redis.io/topics/data-types-intro
 
-[應用程式字串與連接字串的運作方式]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
-
-
+[How Application Strings and Connection Strings Work]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
 
 
 
-<!--HONumber=Nov16_HO2-->
+
+
+<!--HONumber=Dec16_HO2-->
 
 

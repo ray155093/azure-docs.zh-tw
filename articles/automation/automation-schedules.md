@@ -13,10 +13,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
-ms.author: mgoedtel
+ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 26cbd468e6aa1613bd5f6c9944aedaafbd865a14
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: d12b1522e1935e4e9ebefd1a49fdfda8b339286c
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 26cbd468e6aa1613bd5f6c9944aedaafbd865a14
 > 
 
 ## <a name="windows-powershell-cmdlets"></a>Windows PowerShell Cmdlet
-下表中的 Cmdlet 是用來在 Azure 自動化中透過 Windows PowerShell 建立和管理排程。 它們是隨著 [Azure PowerShell 模組](../powershell-install-configure.md)的一部分推出。
+下表中的 Cmdlet 是用來在 Azure 自動化中透過 Windows PowerShell 建立和管理排程。 它們是隨著 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs)的一部分推出。
 
 | Cmdlet | 說明 |
 |:--- |:--- |
@@ -169,6 +169,6 @@ Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Ru
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

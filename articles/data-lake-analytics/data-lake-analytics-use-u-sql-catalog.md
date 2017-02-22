@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 15b22d577343667c9232b3394cf64bc307ccd777
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 64427583dba57716c23e1a01df820a263c5e7298
 
 
 ---
-# <a name="use-u-sql-catalog"></a>使用 U-SQL 目錄
+# <a name="use-azure-data-lake-analytics-u-sql-catalog"></a>使用 Azure Data Lake Analytics (U-SQL) 目錄
 U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用它們。 目錄可以讓 Azure 資料湖中的資料具有可能的最高效能。
 
 每個 Azure 資料湖分析帳戶都有一個與其相關聯的 U-SQL 目錄。 您無法刪除 U-SQL 目錄。 目前無法在資料湖存放區帳戶之間共用 U-SQL 目錄。
@@ -51,9 +51,9 @@ U-SQL 資料庫包含：
 
     - 若要新增新的資料庫，請在 [資料庫] 上按一下滑鼠右鍵，然後按一下 [建立資料庫]。
     - 若要新增新的組件，請在 [組件] 上按一下滑鼠右鍵，然後按一下 [註冊組件]。
-    - 若要新增新的結構描述，以滑鼠右鍵按一下 [結構描述] ，然後按一下 [建立結構描述]**。
-    - 若要新增新的資料表，以滑鼠右鍵按一下 [資料表] ，然後按一下 [建立資料表]**。
-    - 如要新增資料表值函式，請參閱 [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)。
+    - 若要新增結構描述，請以滑鼠右鍵按一下 [結構描述] ，然後按一下 [建立結構描述]。
+    - 若要新增資料表，請以滑鼠右鍵按一下 [資料表]，然後按一下 [建立資料表]。
+    - 若要新增資料表值函式，請參閱[針對 Data Lake Analytics 作業開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)。
 
 
 ![瀏覽 U-SQL Visual Studio 目錄](./media/data-lake-analytics-use-u-sql-catalog/data-lake-analytics-browse-catalogs.png)
@@ -70,7 +70,7 @@ U-SQL 資料庫包含：
   
   * [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
   * [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
-  * [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
+  * [針對 Data Lake Analytics 工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
 * 管理
   
   * [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)
@@ -84,6 +84,6 @@ U-SQL 資料庫包含：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

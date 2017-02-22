@@ -12,47 +12,47 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/22/2016
+ms.date: 01/30/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 397f20446e113dd89b5ffa3d5680e7a3a9885476
+ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
+ms.openlocfilehash: 10e58a76644b5e4d50f05a2db03f4af193cc5152
 
 
 ---
 # <a name="get-insights-from-azure-security-center-data-with-power-bi"></a>使用 Power BI 從 Azure 資訊安全中心的資料取得見解
-Azure 資訊安全中心的 [Power BI 儀表板](http://aka.ms/azure-security-center-power-bi) 可讓您從任何地方 (包括行動裝置) 視覺化、分析和篩選建議與安全性警示。 使用 Power BI 儀表板即可顯示趨勢和攻擊模式，依資源或來源 IP 位址檢視安全性警示以及依資源或存留期檢視尚未解決的安全性風險。 
+Azure 資訊安全中心的 [Power BI 儀表板](http://aka.ms/azure-security-center-power-bi) 可讓您從任何地方 (包括行動裝置) 視覺化、分析和篩選建議與安全性警示。 使用 Power BI 儀表板即可顯示趨勢和攻擊模式，依資源或來源 IP 位址檢視安全性警示以及依資源或存留期檢視尚未解決的安全性風險。
 
 您也可以用相關方式結合資訊安全中心建議、安全性警示和其他資料，例如使用 [Azure 稽核記錄檔](https://powerbi.microsoft.com/blog/monitor-azure-audit-logs-with-power-bi/)和 [Azure SQL Database 稽核](https://powerbi.microsoft.com/blog/monitor-your-azure-sql-database-auditing-activity-with-power-bi/)中的資料。 兩者都提供 Power BI 儀表板，您也可以將此資料匯出至 Excel，方便進行雲端資源的安全性狀態報告。
 
 ## <a name="using-azure-security-center-dashboard-to-access-power-bi"></a>使用 Azure 資訊安全中心儀表板存取 Power BI
-您也可以使用 Azure 資訊安全中心儀表板存取 Power BI 報告。 請按照步驟來執行這項工作： 
+您也可以使用 Azure 資訊安全中心儀表板存取 Power BI 報告。 請按照步驟來執行這項工作：
 
 1. 在 [Azure 資訊安全中心] 儀表板按一下 [在 Power BI 中瀏覽] 按鈕。
-   
-    ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig1-new10.png) 
+
+    ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig1-new10.png)
 2. [在 Power BI 中瀏覽]  刀鋒視窗隨即會在右側開啟，如下列畫面所示：
-   
+
     ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig1-new2.png)
-3. 如果您第一次建立 Power BI 儀表板，可以在 [在 Power BI 中瀏覽]  刀鋒視窗中選擇下列的其中一個選項： 
-   
+3. 如果您第一次建立 Power BI 儀表板，可以在 [在 Power BI 中瀏覽]  刀鋒視窗中選擇下列的其中一個選項：
+
    * **安全性深入解析儀表板**︰如果您要建立包含安全性狀態、執行緒和偵測的儀表板，請選擇這個選項。 對於負責分析各訂用帳戶的防護狀態及偵測到之警示的 DevOps 角色而言，這是較常見的選項。
    * **原則管理儀表板**︰如果您想要瀏覽管理和強制執行原則，請選擇這個選項。  對於偏重控管的中心 IT 人員而言，這是較常見的選項。 他們可以使用此儀表板來取得其組織所堅守之安全性原則的可見性和深入資訊。
    * 如果您已經有 Power BI 儀表板，請按一下 [移至您目前的 Power BI 儀表板] 。
 4. 在這個範例中，請點選 [安全性深入解析儀表板]  選項。 如果這是您第一次建立資訊安全中心的 Power BI 儀表板，系統會提示您安裝內容套件。 在如下列畫面所示的 [Power BI 內容套件] 視窗中，按一下 [取得] 按鈕：
-   
+
     ![Azure 資訊安全中心安全性深入解析儀表板](./media/security-center-powerbi/security-center-powerbi-fig1-new3.png)
 5. [連接到 Azure 資訊安全中心安全性深入解析]  視窗隨即出現。 確定 [驗證] 方法為 oAuth2 \(如下所示)，然後按一下 [登入] 按鈕。
-   
+
     ![驗證](./media/security-center-powerbi/security-center-powerbi-fig1-new4.png)
 6. 系統可能會要求您再次使用您的 Azure 認證進行驗證。 驗證之後，將會建立您的儀表板。 建立儀表板後，您會看到具有類似結構的報告，如下列畫面所示：
-   
+
     ![Power BI 儀表板](./media/security-center-powerbi/security-center-powerbi-fig1-new5.png)
 
 > [!NOTE]
 > 報告已排定每日進行重新整理。 如果遇到重新整理失敗，請參閱 [Azure 資訊安全中心 Power BI 的潛在重新整理問題](https://blogs.msdn.microsoft.com/azuresecurity/2016/04/07/azure-security-center-power-bi-refresh-fails/)，以取得疑難排解方式的詳細資訊。
-> 
-> 
+>
+>
 
 您可以在此看到安全性警示和建議的數目，以及 Azure 資訊安全中心所監控的 VM、Azure SQL Database 和網路資源的數目。
 
@@ -73,8 +73,8 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。 
 
 > [!NOTE]
 > 如果您想要自訂報告，只要透過新增其他欄位或變更現有視覺效果即可編輯報告。 如需詳細資訊，請閱讀 [在 Power BI 中與編輯檢視的報告互動](https://powerbi.microsoft.com/documentation/powerbi-service-interact-with-a-report-in-editing-view/) 。
-> 
-> 
+>
+>
 
 當您分別按一下 [不同時間的警示]、[受到攻擊的資源] 和 [攻擊者 IP] 圖格時，都會有相似的輸出。 會有這個情況是因為報告會彙總這三個變數的所有相關資訊，並將它稱為**遭受攻擊的資源**，如以下畫面所示：
 
@@ -88,27 +88,27 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。 
 在 Power BI 中連線到 [Power BI 內容套件服務](https://msit.powerbi.com/groups/me/getdata/services) ，並執行下列步驟：
 
 1. 在 [Power BI 內容套件]  視窗中，您會看到兩個選項，如下所示。
-   
+
     ![Power BI 內容套件](./media/security-center-powerbi/security-center-powerbi-fig1-new.png)
-   
+
    > [!NOTE]
    > 如果已經執行本文的第一個部分，您只會看到一個選項，這是 Azure 資訊安全中心原則管理。
-   > 
-   > 
+   >
+   >
 2. 如此範例所述，按一下 [Azure 資訊安全中心原則管理] 圖格中的 [取得]。
 3. 在 [連接到 Azure 資訊安全中心原則管理] 視窗中，請務必選取 [驗證方法] 下拉式清單下方的 oAuth2 \(如下所示)，然後按一下 [登入] 按鈕。
-   
+
     ![原則管理視窗](./media/security-center-powerbi/security-center-powerbi-fig1-new8.png)
 4. 系統會將您重新導向至驗證頁面，請在此輸入您要用來連線到 Azure 資訊安全中心的認證。 驗證程序完成後，Power BI 會開始匯入資料以建置報告。 在這段期間，您可能會在瀏覽器右側角落看到下列訊息：
-   
+
     ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig4.png)
-   
+
    > [!NOTE]
-   > 第一次建立儀表板時可能需要較長的時間，主要是因為您有多個訂用帳戶。 
-   > 
-   > 
+   > 第一次建立儀表板時可能需要較長的時間，主要是因為您有多個訂用帳戶。
+   >
+   >
 5. 程序完成後，Azure 資訊安全中心 Power BI 儀表板就會載入如下所示的 **原則管理** 報告：
-   
+
     ![原則管理儀表板](./media/security-center-powerbi/security-center-powerbi-fig1-new9.png)
 
 ## <a name="see-also"></a>另請參閱
@@ -122,7 +122,6 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。 
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

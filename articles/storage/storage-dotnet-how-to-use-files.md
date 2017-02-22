@@ -15,15 +15,15 @@ ms.topic: hero-article
 /ms.date: 1/18/2017
 ms.author: renash
 translationtype: Human Translation
-ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
-ms.openlocfilehash: b4f13f1b5469ea3d3b2ab69e6435d3e7beb6ace8
+ms.sourcegitcommit: 6c93e5363767cb6860d4a365eba178dd940bd41d
+ms.openlocfilehash: e0800b7c7aba64fa7429fc3ced8c194cd9fbf0d1
 
 
 ---
 # <a name="get-started-with-azure-file-storage-on-windows"></a>在 Windows 上開始使用 Azure 檔案儲存體
 [!INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)]
 
-[!INCLUDE [storage-try-azure-tools-files](../../includes/storage-try-azure-tools-files.md)]
+[!INCLUDE [storage-check-out-samples-dotnet](../../includes/storage-check-out-samples-dotnet.md)]
 
 [!INCLUDE [storage-file-overview-include](../../includes/storage-file-overview-include.md)]
 
@@ -38,7 +38,7 @@ ms.openlocfilehash: b4f13f1b5469ea3d3b2ab69e6435d3e7beb6ace8
 ## <a name="video-using-azure-file-storage-with-windows"></a>影片：搭配 Windows 使用 Azure 檔案儲存體
 以下影片示範如何在 Windows 上建立和使用 Azure 檔案共用。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-File-Storage-with-Windows/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-File-Storage-with-Windows/player]
 > 
 > 
 
@@ -602,49 +602,61 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
    
     我們目前不支援 AD 式驗證或 ACL，但在我們的功能要求清單中卻有它。 目前，Azure 儲存體帳戶金鑰可用來提供檔案共用的驗證。 我們的確提供透過 REST API 或用戶端程式庫使用共用存取簽章 (SAS) 的因應措施。 使用 SAS 時，您可以產生在一段時間內都是有效的具有特定權限的權杖。 例如，您可以產生具有指定檔案的唯讀存取的權杖。 擁有此權杖的任何人，在其有效時具有該檔案的唯讀存取。
    
-    僅透過 REST API 或用戶端程式庫才支援 SAS。 當您透過 SMB 通訊協定掛接檔案共用時，您無法使用 SAS 來委派其內容的存取。
-2. **Azure 檔案共用可公開在網際網路顯示，或只可從 Azure 取得？**
-   
-    只要已開啟連接埠 445 (TCP 輸出) 且您的用戶端支援 SMB 3.0 通訊協定 (例如：Windows 8 或 Windows Server 2012)，即可透過網際網路使用檔案共用。  
-3. **Azure 虛擬機器和檔案共用之間的網路流量，會計算為向訂用帳戶收費的外部頻寬嗎？**
+    僅透過 REST API 或用戶端程式庫才支援 SAS。 當您透過 SMB 通訊協定掛接檔案共用時，您無法使用 SAS 來委派其內容的存取。 
+
+2. **要如何提供透過網頁瀏覽器對特定檔案的存取權？**
+   使用 SAS 時，您可以產生在一段時間內都是有效的具有特定權限的權杖。 例如，您可以產生可在一段特定時間內對特定檔案進行唯讀存取的權杖。 任何人只要擁有此 URL，就可以在其有效時間內，直接從任何網頁瀏覽器執行下載作業。 從儲存體總管之類的 UI 就能輕鬆產生 SAS 金鑰。
+
+3.   **有哪些不同方式可在 Azure 檔案儲存體中存取檔案？**
+    您可以使用 SMB 3.0 通訊協定或使用[儲存體總管](http://storageexplorer.com/)或 Cloudberry 之類的工具，在本機電腦上掛接檔案共用以存取檔案共用中的檔案。 從您的應用程式中，您可以使用用戶端程式庫、REST API 或 Powershell 來存取 Azure 檔案共用中的檔案。
+    
+4.   **如何在本機電腦上掛接 Azure 檔案共用？** 只要已開啟連接埠 445 (TCP 輸出) 且您的用戶端支援 SMB 3.0 通訊協定 (例如：Windows 8 或 Windows Server 2012)，即可透過 SMB 通訊協定掛接檔案共用。 請與您的當地 ISP 提供者合作，以將連接埠解除封鎖。 在過渡時期，您可以使用儲存體總管或任何其他協力廠商 (例如 Cloudberry) 來檢視檔案。
+
+5. **Azure 虛擬機器和檔案共用之間的網路流量，會計算為向訂用帳戶收費的外部頻寬嗎？**
    
     如果檔案共用和虛擬機器位於不同的區域，兩者之間的流量會以外部頻寬收費。
-4. **如果網路流量是在虛擬機器和相同區域的檔案共用之間，是否免費？**
+6. **如果網路流量是在虛擬機器和相同區域的檔案共用之間，是否免費？**
    
     是。 如果流量位於相同區域則是免費的。
-5. **從內部部署虛擬機器連接到 Azure 檔案儲存體是否仰賴 Azure ExpressRoute？**
+7. **從內部部署虛擬機器連接到 Azure 檔案儲存體是否仰賴 Azure ExpressRoute？**
    
     沒有。 如果沒有 ExpressRoute，您仍然可以從內部部署存取檔案共用，只要您將連接埠 445 (TCP 輸出) 開啟供網際網路存取。 不過，您可以搭配使用 ExpressRoute 與檔案儲存體 (如果需要)。
-6. **容錯移轉叢集的「檔案共用見證」是Azure 檔案儲存體的其中一個使用案例？**
+8. **容錯移轉叢集的「檔案共用見證」是Azure 檔案儲存體的其中一個使用案例？**
    
     這目前不受支援。
-7. **檔案儲存體目前只能透過 LRS 或 GRS 複寫，正確嗎？**  
+9. **檔案儲存體目前只能透過 LRS 或 GRS 複寫，正確嗎？**  
    
     我們打算支援 RA-GRS，但時程尚未決定。
-8. **何時能對 Azure 檔案儲存體使用現有的儲存體帳戶？**
+10. **何時能對 Azure 檔案儲存體使用現有的儲存體帳戶？**
    
     Azure 檔案儲存體現在已為所有儲存體帳戶啟用。
-9. **重新命名作業也會加入 REST API 嗎？**
+11. **重新命名作業也會加入 REST API 嗎？**
    
     我們的 REST API 中尚未支援重新命名。
-10. **可以有巢狀共用，換句話說，共用下的共用嗎？**
+12. **可以有巢狀共用，換句話說，共用下的共用嗎？**
     
     沒有。 檔案共用是您可以掛接的虛擬驅動程式，因此不支援巢狀共用。
-11. **可以對共用內的資料夾指定唯讀或唯寫權限嗎？**
+13. **可以對共用內的資料夾指定唯讀或唯寫權限嗎？**
     
     如果是透過 SMB 掛接檔案共用，則您對權限沒有此層級的控制。 不過，您可以透過 REST API 或用戶端程式庫來建立共用存取簽章 (SAS)，以達到此目的。  
-12. 嘗試將檔案解壓縮到檔案儲存體時，執行速度很緩慢。**我該怎麼辦？**
+14. 嘗試將檔案解壓縮到檔案儲存體時，執行速度很緩慢。**我該怎麼辦？**
     
     若要將大量檔案傳輸到檔案儲存體，我們建議您使用 AzCopy、Azure Powershell (Windows) 或 Azure CLI (Linux/Unix)，因為這些工具已針對網路傳輸最佳化。
-13. **已發行修補程式來修正 Azure 檔案的效能下滑問題**
+15. **已發行修補程式來修正 Azure 檔案的效能下滑問題**
     
     Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。 如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/en-us/kb/3114025)。
-14. **搭配 IBM MQ 使用 Azure 檔案儲存體**
+16. **搭配 IBM MQ 使用 Azure 檔案儲存體**
     
     IBM 已發行文件來指引 IBM MQ 客戶設定 Azure 檔案儲存體與其服務。 如需詳細資訊，請查看 [如何使用 Microsoft Azure 檔案服務來設定 IBM MQ 多重執行個體佇列管理員](https://github.com/ibm-messaging/mq-azure/wiki/How-to-setup-IBM-MQ-Multi-instance-queue-manager-with-Microsoft-Azure-File-Service)。
-15. **我要如何疑難排解 Azure 檔案儲存體錯誤？**
+17. **我要如何疑難排解 Azure 檔案儲存體錯誤？**
     
     您可以參考 [Azure 檔案疑難排解文章](storage-troubleshoot-file-connection-problems.md)以取得端對端疑難排解指引。               
+
+18. **如何啟用 Azure 檔案服務的伺服器端加密？**
+
+    [伺服器端加密](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)目前為預覽狀態。 在預覽期間，此功能只能針對新建立的 Azure Resource Manager (ARM) 儲存體帳戶啟用。
+    您可以使用 Azure 入口網站在 Azure Resource Manager 儲存體帳戶上啟用此功能。 我們打算在&2; 月底前讓 [Azure Powershell](https://msdn.microsoft.com/en-us/library/azure/mt607151.aspx)、[Azure CLI](https://docs.microsoft.com/en-us/azure/storage/storage-azure-cli-nodejs) 或 [Microsoft Azure 儲存體資源提供者 API](https://docs.microsoft.com/en-us/rest/api/storagerp/storageaccounts) 啟用檔案儲存體的加密。 此用此功能不會額外收費。 當您啟用 Azure 檔案儲存體的儲存體服務加密時，您的資料會自動加密。 
+    深入了解儲存體服務加密。 如有其他預覽相關問題，您可以聯繫 ssediscussions@microsoft.com。
 
 ## <a name="next-steps"></a>後續步驟
 請參閱這些連結以取得 Azure 檔案儲存體的相關詳細資訊。
@@ -657,6 +669,7 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
 * [搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)
 * [如何搭配使用 AzCopy 與 Microsoft Azure 儲存體](storage-use-azcopy.md)
 * [使用 Azure CLI 搭配 Azure 儲存體](storage-azure-cli.md#create-and-manage-file-shares)
+* [針對 Azure 檔案儲存體的問題進行疑難排解](https://docs.microsoft.com/en-us/azure/storage/storage-troubleshoot-file-connection-problems)
 
 ### <a name="reference"></a>參考
 * [Storage Client Library for .NET 參考資料](https://msdn.microsoft.com/library/azure/dn261237.aspx)
@@ -670,6 +683,6 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

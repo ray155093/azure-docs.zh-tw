@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: d94d89a6-3234-46c5-8279-5eb8daad10ac
 ms.service: sql-database
-ms.custom: business continuity; how to
+ms.custom: business continuity
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
@@ -16,19 +16,12 @@ ms.workload: NA
 ms.date: 10/13/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 702a01f7ea56e8af6286149bcb42590294cb618b
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: 07593e7f1d92a9a5943714f662568fec10a8886a
 
 
 ---
-# <a name="configure-geo-replication-for-azure-sql-database-with-transact-sql"></a>使用 Transact-SQL 為 Azure SQL Database 設定異地複寫
-> [!div class="op_single_selector"]
-> * [概觀](sql-database-geo-replication-overview.md)
-> * [Azure 入口網站](sql-database-geo-replication-portal.md)
-> * [PowerShell](sql-database-geo-replication-powershell.md)
-> * [T-SQL](sql-database-geo-replication-transact-sql.md)
-> 
-> 
+# <a name="configure-active-geo-replication-for-azure-sql-database-with-transact-sql"></a>使用 Transact-SQL 為 Azure SQL Database 設定作用中異地複寫
 
 本文說明如何使用 Transact-SQL，為 Azure SQL Database 設定主動式異地複寫。
 
@@ -53,8 +46,8 @@ ms.openlocfilehash: 702a01f7ea56e8af6286149bcb42590294cb618b
 > 
 
 ## <a name="add-secondary-database"></a>加入次要資料庫
-您可以使用 **ALTER DATABASE** 陳述式，在夥伴伺服器上建立異地複寫的次要資料庫。 您在包含要複寫的資料庫伺服器的 master 資料庫上執行此陳述式。 異地複寫資料庫 (「主要資料庫」) 會具備與要複寫的資料庫相同的名稱，並且預設與主要資料庫具有相同的服務層級。 次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性資料庫。 如需詳細資訊，請參閱 [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 和[服務層](sql-database-service-tiers.md)。
-建立次要資料庫並植入之後，資料就會開始以非同步方式從主要資料庫複寫。 下列步驟說明如何使用 Management Studio 來設定「異地複寫」。 提供使用單一資料庫或彈性資料庫建立不可讀取和可讀取次要複本的步驟。
+您可以使用 **ALTER DATABASE** 陳述式，在夥伴伺服器上建立異地複寫的次要資料庫。 您在包含要複寫的資料庫伺服器的 master 資料庫上執行此陳述式。 異地複寫資料庫 (「主要資料庫」) 會具備與要複寫的資料庫相同的名稱，並且預設與主要資料庫具有相同的服務層級。 次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性集區。 如需詳細資訊，請參閱 [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 和[服務層](sql-database-service-tiers.md)。
+建立次要資料庫並植入之後，資料就會開始以非同步方式從主要資料庫複寫。 下列步驟說明如何使用 Management Studio 來設定「異地複寫」。 提供使用單一資料庫或彈性集區建立不可讀取和可讀取次要複本的步驟。
 
 > [!NOTE]
 > 如果指定的夥伴伺服器上存在與名稱與主要資料庫相同的資料庫，則命令會失敗。
@@ -88,8 +81,8 @@ ms.openlocfilehash: 702a01f7ea56e8af6286149bcb42590294cb618b
            ADD SECONDARY ON SERVER <MySecondaryServer2> WITH (ALLOW_CONNECTIONS = ALL);
 4. 按一下 [執行]  來執行查詢。
 
-### <a name="add-non-readable-secondary-elastic-database"></a>加入不可讀取次要複本 (彈性資料庫)
-您可以使用下列步驟，將不可讀取次要複本建立為彈性資料庫。
+### <a name="add-non-readable-secondary-elastic-pool"></a>加入不可讀取次要複本 (彈性集區)
+您可以使用下列步驟，在彈性集區中建立不可讀取次要複本。
 
 1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
 2. 開啟 Databases 資料夾、展開 [System Databases] 資料夾、在 [master] 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
@@ -100,8 +93,8 @@ ms.openlocfilehash: 702a01f7ea56e8af6286149bcb42590294cb618b
            , SERVICE_OBJECTIVE = ELASTIC_POOL (name = MyElasticPool1));
 4. 按一下 [執行]  來執行查詢。
 
-### <a name="add-readable-secondary-elastic-database"></a>加入可讀取次要複本 (彈性資料庫)
-您可以使用下列步驟，將可讀取次要複本建立為彈性資料庫。
+### <a name="add-readable-secondary-elastic-pool"></a>新增可讀取次要複本 (彈性集區)
+您可以使用下列步驟，在彈性集區中建立可讀取次要複本。
 
 1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
 2. 開啟 Databases 資料夾、展開 [System Databases] 資料夾、在 [master] 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
@@ -125,10 +118,11 @@ ms.openlocfilehash: 702a01f7ea56e8af6286149bcb42590294cb618b
            REMOVE SECONDARY ON SERVER <MySecondaryServer1>;
 4. 按一下 [執行]  來執行查詢。
 
-## <a name="monitor-geo-replication-configuration-and-health"></a>監視異地複寫組態和健康狀態
+## <a name="monitor-active-geo-replication-configuration-and-health"></a>監視主動式異地複寫組態和健康狀態
+
 監視工作包括監視「異地複寫」組態及監視資料複寫健康狀態。  您可以使用 master 資料庫中的 **sys.dm_geo_replication_links** 動態管理檢視，傳回 Azure SQL Database 邏輯伺服器上每個資料庫的所有現有複寫連結的相關資訊。 這個檢視針對每個主要和次要資料庫之間的複寫連結包含一個資料列。 您可以使用 **sys.dm_replication_link_status** 動態管理檢視，對目前參與複寫連結的每個 Azure SQL Database 傳回一個資料列。 這包括主要和次要資料庫。 如果給定主要資料庫有一個以上的連續複寫連結，此資料表會對每個關聯性包含一個資料列。 會在所有資料庫 (包括邏輯主機) 中建立檢視。 不過，在邏輯主機中查詢此檢視會傳回空集合。 您可以使用 **sys.dm_operation_status** 動態管理檢視來顯示所有資料庫作業的狀態，包括複寫連結的狀態。 如需詳細資訊，請參閱 [sys.geo_replication_links (Azure SQL Database)](https://msdn.microsoft.com/library/mt575501.aspx)、[sys.dm_geo_replication_link_status (Azure SQL Database)](https://msdn.microsoft.com/library/mt575504.aspx) 和 [sys.dm_operation_status (Azure SQL Database)](https://msdn.microsoft.com/library/dn270022.aspx)。
 
-使用下列步驟可監視「異地複寫」合作關係。
+使用下列步驟可監視作用中異地複寫合作關係。
 
 1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
 2. 開啟 Databases 資料夾、展開 [System Databases] 資料夾、在 [master] 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
@@ -164,12 +158,12 @@ ms.openlocfilehash: 702a01f7ea56e8af6286149bcb42590294cb618b
             ADD SECONDARY ON SERVER <MySecondaryServer> WITH (ALLOW_CONNECTIONS = ALL);
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解主動式異地複寫，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)
+* 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

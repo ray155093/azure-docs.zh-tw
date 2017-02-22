@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB Java API 和 SDK | Microsoft Docs"
+title: "Java API 和 SDK 資源 - Azure DocumentDB | Microsoft Docs"
 description: "了解所有 Java API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Java SDK 每個版本之間的變更。"
 services: documentdb
 documentationcenter: java
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: article
-ms.date: 10/28/2016
-ms.author: rnagpal
+ms.date: 01/31/2017
+ms.author: khdang
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: 35a773e5f91490c3d4eb053d71ce1d189ba96872
+ms.sourcegitcommit: 47a54e51fa7378336aabe3fa6f93794852152cfe
+ms.openlocfilehash: d61ed82cc7841e427d422d4e48f2b1a42cf97521
 
 
 ---
@@ -42,12 +42,41 @@ ms.openlocfilehash: 35a773e5f91490c3d4eb053d71ce1d189ba96872
 
 <tr><td>**參與 SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
 
-<tr><td>**開始使用**</td><td>[開始使用 Java SDK](documentdb-java-application.md)</td></tr>
+<tr><td>**開始使用**</td><td>[開始使用 Java SDK](documentdb-java-get-started.md)</td></tr>
+
+<tr><td>**Web 應用程式教學課程**</td><td>[使用 DocumentDB 開發 Web 應用程式](documentdb-java-application.md)</td></tr>
 
 <tr><td>**目前支援的執行階段**</td><td>[JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)</td></tr>
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+### <a name="a-name195195httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb195"></a><a name="1.9.5"/>[1.9.5](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.5)
+* 新增彙總查詢的支援 (AVG、COUNT、MIN、MAX 和 SUM)。
+* 新增變更摘要的支援。
+* 新增透過 RequestOptions.setPopulateQuotaInfo 收集配額資訊的支援。
+* 新增透過 RequestOptions.setScriptLoggingEnabled 進行預存程序指令碼記錄的支援。
+* 修正發生節流閥失敗時，DirectHttps 模式的查詢可能會停止回應的錯誤。
+* 修正工作階段一致性模式中的錯誤。
+* 修正當要求率過高時，可能在 HttpContext 中造成 NullReferenceException 的錯誤。
+* 改善 DirectHttps 模式的效能。
+
+### <a name="a-name194194httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb194"></a><a name="1.9.4"/>[1.9.4](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.4)
+* 在 ConnectionPolicy.setProxy() API 加入簡單的用戶端執行個體 Proxy 支援。
+* 加入的 DocumentClient.close() API 可正確關閉 DocumentClient 執行個體。
+* 從原生組件 (而不是從閘道) 衍生的查詢計劃利用直接連線模式改善查詢效能。
+* 設定 FAIL_ON_UNKNOWN_PROPERTIES = false，讓使用者不需要在其 POJO 定義 JsonIgnoreProperties。
+* 重新建構記錄使用 SLF4J。
+* 修正一致性讀取器中的其他幾個 Bug。
+
+### <a name="a-name193193httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb193"></a><a name="1.9.3"/>[1.9.3](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.3)
+* 修正連線管理中的 Bug，避免連線在直接連線模式中流失。
+* 修正排名最前的查詢中可能會擲回 NullReferenece 例外狀況的 Bug。
+* 透過減少內部快取的網路呼叫數來增進效能。
+* 在 DocumentClientException 中的 ActivityID 和要求 URI 中加入狀態碼以協助疑難排解。
+
+### <a name="a-name192192httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb192"></a><a name="1.9.2"/>[1.9.2](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.2)
+* 修正連線管理中的問題以提供穩定性。
+
 ### <a name="a-name191191httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb191"></a><a name="1.9.1"/>[1.9.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.1)
 * 新增對 BoundedStaleness 一致性層級的支援。
 * 新增對已分割集合之 CRUD 作業的直接連線支援。
@@ -122,7 +151,11 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
-| [1.9.1](#1.9.1) |2016 年 10 月 28 日 |--- |
+| [1.9.5](#1.9.5) |2017 年 1 月 31 日 |--- |
+| [1.9.4](#1.9.4) |2016 年 11 月24 日 |--- |
+| [1.9.3](#1.9.3) |2016 年 10 月 30 日 |--- |
+| [1.9.2](#1.9.2) |2016 年 10 月 28 日 |--- |
+| [1.9.1](#1.9.1) |2016 年 10 月 26 日 |--- |
 | [1.9.0](#1.9.0) |2016 年 10 月 3 日 |--- |
 | [1.8.1](#1.8.1) |2016 年 6 月 30 日 |--- |
 | [1.8.0](#1.8.0) |2016 年 6 月 14 日 |--- |
@@ -153,6 +186,6 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,5 +1,5 @@
 
-1. 使用 [從 Azure CLI 連接到 Azure](../articles/xplat-cli-connect.md)中列出的步驟登入 Azure 訂用帳戶。
+1. 使用[從 Azure CLI 1.0 連接到 Azure](../articles/xplat-cli-connect.md) 中列出的步驟登入 Azure 訂用帳戶。
 
 2. 請確定您處於傳統部署模式，如下所示：
 
@@ -52,10 +52,10 @@
     ```
 
 ## <a name="next-steps"></a>後續步驟
-如需所有 Azure CLI 虛擬機器命令的詳細資料，請參閱 [搭配使用 Azure CLI 和傳統部署 API](../articles/virtual-machines-command-line-tools.md)。
+如需所有 Azure CLI 1.0 虛擬機器命令的詳細資料，請參閱[搭配使用 Azure CLI 1.0 和傳統部署 API](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

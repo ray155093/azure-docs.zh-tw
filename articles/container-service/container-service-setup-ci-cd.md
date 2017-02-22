@@ -1,5 +1,5 @@
 ---
-title: "將多容器 Docker 應用程式連續整合和部署到 Azure Container Service | Microsoft Docs"
+title: "包含 Azure Container Service 與 DC/OS 的 CI/CD | Microsoft Docs"
 description: "如何讓多容器 Docker 應用程式完全自動建置和部署到執行 DC/OS 的 Azure Container Service 叢集。"
 services: container-service
 documentationcenter: 
@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: johnsta
 translationtype: Human Translation
-ms.sourcegitcommit: 71fdc7b13fd3b42b136b4907c3d747887fde1a19
-ms.openlocfilehash: cdcb2a8493c6790a395251c4cf05f2a6c0770c8d
+ms.sourcegitcommit: 831f585a9591338c2f404f7ec031d40937731eab
+ms.openlocfilehash: dcf4c0b67bc7a6596070cdf44644a6c451e3afc1
 
 
 ---
@@ -47,15 +47,18 @@ ms.openlocfilehash: cdcb2a8493c6790a395251c4cf05f2a6c0770c8d
 ## <a name="create-an-azure-container-service-cluster-configured-with-dcos"></a>建立使用 DC/OS 設定的 Azure Container Service 叢集
 
 >[!IMPORTANT]
-> 若要建立安全的叢集，請在呼叫 `az acs create` 時傳遞您的 SSH 公用金鑰檔案。 您可以使用 `--generate-ssh-keys` 選項，讓 Azure CLI 2.0 為您產生金鑰並同時進行傳遞，或者可以使用 `--ssh-key-value` 選項來傳遞您的金鑰路徑 (在 Linux 上的預設位置是 `~/.ssh/id_rsa.pub`，而在 Windows 上的預設位置是 `%HOMEPATH%\.ssh\id_rsa.pub`，但可加以變更)。 若要在 Linux 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Linux 和 Mac 上建立 SSH 金鑰](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 若要在 Windows 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Windows 上建立 SSH 金鑰](../virtual-machines/virtual-machines-linux-ssh-from-windows.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 
+> 若要建立安全的叢集，請在呼叫 `az acs create` 時傳遞您的 SSH 公用金鑰檔案。 您可以使用 `--generate-ssh-keys` 選項，讓 Azure CLI 2.0 為您產生金鑰並同時進行傳遞，或者可以使用 `--ssh-key-value` 選項來傳遞您的金鑰路徑 (在 Linux 上的預設位置是 `~/.ssh/id_rsa.pub`，而在 Windows 上的預設位置是 `%HOMEPATH%\.ssh\id_rsa.pub`，但可加以變更)。
+<!---Loc Comment: What do you mean by "you pass your SSH public key file to pass"? Thank you.--->
+> 若要在 Linux 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Linux 和 Mac 上建立 SSH 金鑰](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 
+> 若要在 Windows 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Windows 上建立 SSH 金鑰](../virtual-machines/virtual-machines-linux-ssh-from-windows.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 
 
 1. 首先，在終端機視窗中輸入 [az login](/cli/azure/#login) 命令，以使用 Azure CLI 登入您的 Azure 訂用帳戶︰ 
 
     `az login`
 
-1. 建立資源群組，我們會使用 [az resource group create](/cli/azure/resource/group#create) 在其中放置叢集：
+1. 建立資源群組，我們會使用 [az group create](/cli/azure/group#create) 在其中放置叢集：
     
-    `az resource group create --name myacs-rg --location westus`
+    `az group create --name myacs-rg --location westus`
 
     您可以指定最靠近您的 [Azure 資料中心區域](https://azure.microsoft.com/regions)。 
 
@@ -325,26 +328,26 @@ az container release list --resource-name myacs --resource-group myacs-rg
 1. 查詢含有您的 ACS 虛擬機器的資源群組。
 1. 開啟資源群組的刀鋒視窗 UI，然後在刀鋒視窗的命令列中按一下 [刪除]。
 
-刪除 Azure 容器登錄︰
-1. 在 Azure 入口網站中，搜尋 Azure Container Registry 並加以刪除。 
+刪除 Azure 容器登錄︰在 Azure 入口網站中，搜尋 Azure Container Registry 並加以刪除。 
 
 [Visual Studio Team Services 帳戶會針對前五個使用者提供免費的基本存取層級](https://azure.microsoft.com/en-us/pricing/details/visual-studio-team-services/)，但您可以刪除組建和發行定義。
-1. 刪除 VSTS 組建定義：
+
+刪除 VSTS 組建定義：
         
-    * 在瀏覽器中開啟組建定義 URL，然後按一下 [組建定義] 連結 (位於您目前檢視的組建定義名稱旁邊)。
-    * 按一下您要刪除之組建定義旁邊的動作功能表，然後選取 [刪除定義]
+1. 在瀏覽器中開啟組建定義 URL，然後按一下 [組建定義] 連結 (位於您目前檢視的組建定義名稱旁邊)。
+2. 按一下您要刪除之組建定義旁邊的動作功能表，然後選取 [刪除定義]
 
-    ![刪除 VSTS 組建定義](media/container-service-setup-ci-cd/vsts-delete-build-def.png) 
+`![刪除 VSTS 組建定義](media/container-service-setup-ci-cd/vsts-delete-build-def.png) 
 
-1. 刪除 VSTS 發行定義：
+刪除 VSTS 發行定義：
 
-    * 在瀏覽器中開啟發行定義 URL。
-    * 在左手邊的發行定義清單中，按一下您想要刪除之發行定義旁邊的下拉式清單，然後選取 [刪除]。
+1. 在瀏覽器中開啟發行定義 URL。
+2. 在左手邊的發行定義清單中，按一下您想要刪除之發行定義旁邊的下拉式清單，然後選取 [刪除]。
 
-    ![刪除 VSTS 發行定義](media/container-service-setup-ci-cd/vsts-delete-release-def.png)
+`![刪除 VSTS 發行定義](media/container-service-setup-ci-cd/vsts-delete-release-def.png)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,30 +1,16 @@
 ---
-title: "DocumentDB 儲存體和效能 | Microsoft Docs"
-description: "了解 DocumentDB 中的資料儲存體和文件儲存體，以及如何調整 DocumentDB 以符合應用程式的容量需求。"
-keywords: "文件儲存體"
-services: documentdb
-author: syamkmsft
-manager: jhubbard
-editor: cgronlun
-documentationcenter: 
-ms.assetid: d3c0bae3-1862-4203-9260-e36216a7823d
-ms.service: documentdb
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 08/18/2016
-ms.author: syamk
+redirect_url: https://azure.microsoft.com/services/documentdb/
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: d5af6e3d9ba35558e0d7850820f4b9a479a259be
-ms.openlocfilehash: 8a387dbb4ae5c8ce64c397441613d6d1fc3f08b1
+ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
+ms.openlocfilehash: 27880401ccfca4c2c504eecc1aeb128d40c501a3
 
 
 ---
 # <a name="storage-and-predictable-performance-provisioning-in-documentdb"></a>儲存體和 DocumentDB 中佈建的可預測效能
 Azure DocumentDB 是適用於 JSON 文件且受到完整管理、可調整的文件導向 NoSQL 資料庫服務。 有了 DocumentDB，您就不需要租用虛擬機器、部署軟體或監視資料庫。 Microsoft 工程師會負責操作並持續監視 DocumentDB，提供世界級的可用性、效能和資料保護能力。  
 
-若要開始使用 DocumentDB，請先透過 [Azure 入口網站](https://portal.azure.com/)[建立資料庫帳戶](documentdb-create-account.md)和 [DocumentDB 資料庫](documentdb-create-database.md)。 DocumentDB 資料庫是以固態硬碟 (SSD) 型儲存體和輸送量的單位來提供。 這些儲存體單位會藉由在資料庫帳戶內 [建立資料庫集合](documentdb-create-collection.md) 來加以佈建，每個集合的保留輸送量可以隨時相應增加或減少，以符合應用程式的需求。
+若要開始使用 DocumentDB，請先透過 [Azure 入口網站](https://portal.azure.com/)[建立資料庫帳戶](documentdb-create-account.md)，然後建立 [DocumentDB 集合和資料庫](documentdb-create-collection.md)。 DocumentDB 資料庫是以固態硬碟 (SSD) 型儲存體和輸送量的單位來提供。 這些儲存體單位會在您建立資料庫集合時加以佈建，每個集合的保留輸送量可以隨時相應增加或減少，以符合應用程式的需求。
 
 若應用程式超過一個或多個集合的保留輸送量時，要求將會依每個集合為基礎受到限制。 這表示某些應用程式的要求可能會成功，而其他的可能受到節流控制。
 
@@ -142,6 +128,6 @@ DocumentDB 支援建立單一分割和分割的集合。 DocumentDB 中的每個
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

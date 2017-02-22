@@ -13,31 +13,32 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/19/2016
 ms.author: garye;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3d9cceb28de1cfd43a2d2de79de3a59517908ec9
+ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
+ms.openlocfilehash: a35bc89044ebe8ea8e4a0e4a883c30fb8e8d879a
 
 
 ---
 # <a name="import-your-training-data-into-azure-machine-learning-studio-from-various-data-sources"></a>從各種資料來源將訓練資料匯入 Azure Machine Learning Studio
 若要在 Machine Learning Studio 中使用您自己的資料來開發和訓練預測性分析方案，您可以： 
 
-* 事先從硬碟從 **本機檔案** 上傳資料，在工作區中建立資料集模組。  
-* 使用[匯入資料][import-data]模組，在實驗進行時，從數個**線上資料來源**其中之一存取資料。 
-* 使用來自另一個 Azure Machine Learning 實驗並儲存為 **dataset**的資料。 
+* 事先上傳硬碟中**本機檔案**資料，在工作區中建立資料集模組
+* 使用[匯入資料][import-data]模組，在實驗進行時，從數個**線上資料來源**其中之一存取資料 
+* 使用其他 Azure Machine Learning **實驗**中儲存為資料集的資料
+* 使用內部部署 **SQL Server 資料庫**中的資料
+
+上述選項都在下方選單的其中一個主題裡說明。 這些主題說明如何從各種資料來源匯入用於 Machine Learning Studio 的資料。 
 
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-每個選項都在上方選單的其中一個主題裡說明。 這些主題會示範如何從各種資料來源匯入資料以用於 Machine Learning Studio。 
-
 > [!NOTE]
-> Machine Learning Studio 中有一些可用於此目的範例資料集。 如需這些資訊，請參閱 [在 Azure Machine Learning Studio 中使用範例資料集](machine-learning-use-sample-datasets.md)。
+> Machine Learning Studio 中有一些可用於訓練資料的範例資料集。 如需這些資訊，請參閱 [在 Azure Machine Learning Studio 中使用範例資料集](machine-learning-use-sample-datasets.md)。
 > 
 > 
 
-這個簡介主題也會示範如何備妥資料以在 Machine Learning Studio 中使用，並描述支援的資料格式和資料類型。 
+這個簡介主題也會討論如何備妥資料供 Machine Learning Studio 使用，並描述支援的資料格式和資料類型。 
 
 > [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 > 
@@ -50,7 +51,7 @@ Machine Learning Studio 是專為與矩形或表格式資料搭配使用而設�
 
 但是，Machine Learning Studio 中有模組可讓您在實驗中進行一些資料操作。 依據您使用的機器學習演算法，您可能需要決定如何處理資料結構問題，例如遺漏值和疏鬆資料，有模組可以協助處理。 請參閱模組調色盤的 **資料轉換** 區段，以取得執行這些功能的模組。
 
-您可以在實驗的任何位置，檢視或下載模組產生的資料，方法是以滑鼠右鍵按一下輸出連接埠。 視模組而定，可能會提供不同的下載選項，或者可以在 Machine Learning Studio 中的網頁瀏覽器檢視資料。
+您可以在實驗的任何位置，檢視或下載模組產生的資料，方法是按一下輸出連接埠。 視模組而定，可能會提供不同的下載選項，或者可以在 Machine Learning Studio 中的網頁瀏覽器將資料視覺化呈現。
 
 ## <a name="data-formats-and-data-types-supported"></a>支援的資料格式和資料類型
 視您用來匯入資料的機制及其來源而定，您可以將一些資料類型匯入您的實驗：
@@ -72,7 +73,7 @@ Machine Learning Studio 是專為與矩形或表格式資料搭配使用而設�
 
 如果您以 TSV 或 CSV 格式匯入不包含此中繼資料的資料，Machine Learning Studio 會透過取樣資料來推斷每個資料行的資料類型。 如果資料也沒有資料行標題，Machine Learning Studio 會提供預設名稱。
 
-您可以使用[編輯中繼資料][edit-metadata]，明確指定或變更資料行的標題和資料類型。
+您可以使用 [編輯中繼資料][][edit-metadata]，明確指定或變更資料行的標題和資料類型。
 
 Machine Learning Studio 可辨識下列 **資料類型** ：
 
@@ -83,7 +84,7 @@ Machine Learning Studio 可辨識下列 **資料類型** ：
 * DateTime
 * TimeSpan
 
-Machine Learning Studio 使用名為***資料表格***的內部資料類型以在模組之間傳遞資料。 您可以使用[轉換為資料集][convert-to-dataset]模組，明確地將資料轉換為資料表格格式。
+Machine Learning Studio 使用名為***資料表格***的內部資料類型以在模組之間傳遞資料。 您可以使用[轉換為資料集][convert-to-dataset]模組，明確地將資料轉換為「資料表格」格式。
 
 接受「資料表格」以外格式的任何模組，會在將資料傳遞至下一個模組之前，無訊息地將資料轉換為「資料表格」。
 
@@ -97,6 +98,6 @@ Machine Learning Studio 使用名為***資料表格***的內部資料類型以�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

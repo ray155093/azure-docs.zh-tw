@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 10/04/2016
+ms.date: 01/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2204034d9a39f9773a6e12ca5ed9504939a6ebf6
+ms.sourcegitcommit: f57b400dc20dc08221c0a8a770fd78f5885f634c
+ms.openlocfilehash: 0beb98220f043dc7c66cc494c3de00e0993798a6
 
 
 ---
@@ -52,16 +52,6 @@ Power BI Embedded 服務現在已可在大部分的資料中心內使用。 您�
 ## <a name="how-is-this-service-priced"></a>此服務的定價方式是？
 如需價格資訊，請參閱 [Power BI Embedded 價格](http://go.microsoft.com/fwlink/?LinkId=760527) 。
 
-## <a name="what-is-a-render-and-how-is-it-billed"></a>什麼是轉譯？如何計費？
-> [!NOTE]
-> 有鑑於使用者意見反應，Power BI Embedded 預覽期間提供的每轉譯折扣定價將中止，以支持每工作階段定價。 每轉譯定價將於 2016 年 9 月 1 日轉換至每工作階段定價。
-> 
-> 
-
-轉譯是一項視覺元素，用以向終端使用者展示服務的查詢結果。 例如，如果使用者檢視內含 4 種視覺效果的報表，就會得到 4 種轉譯結果。 如果使用者重新整理報表，並向服務傳送更多查詢，就會得到 4 種以上的轉譯結果。 服務擁有者能夠掌控終端使用者驅動新查詢 (其會導致付費轉譯) 的程度，以在靜態資料案例中限制成本暴露程度及降低成本。
-
-轉譯按每 1,000 次轉譯計費。 轉譯數量低於 1,000 則按比例攤派費用。 客戶每月可獲得 1,000 次免費轉譯。 透過大量授權合約購買服務的客戶，應向其 Microsoft 合作夥伴或銷售商洽詢定價資訊。
-
 ## <a name="what-is-a-report-session-and-how-is-it-billed"></a>什麼是報告工作階段？如何計費？
 工作階段是指終端使用者與 Power BI Embedded 報表間的一組互動。 工作階段會在每次 Power BI Embedded 報表顯示給使用者看時起始，而訂用帳戶持有者將須支付工作階段費用。 工作階段以統一費率計費，獨立於報表中的視覺元素數目或報表內容重新整理的頻率。 工作階段會在使用者關閉報告或是工作階段逾時一小時後結束。
 
@@ -85,7 +75,7 @@ Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而�
 及傳送應用程式權杖，以告知我們的服務轉譯要求的報告。 雖然您可以使用 Azure AD 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。 您可以在 [這裡](power-bi-embedded-app-token-flow.md)深入了解應用程式權杖。 我們也針對進階安全性篩選案例在 Power BI Embedded 中引進了資料列層級安全性功能 (RLS)。
 
 ## <a name="what-data-sources-are-currently-supported-with-power-bi-embedded"></a>Power BI Embedded 目前支援哪些資料來源？
-我們將支援透過「直接查詢」使用基本認證來存取雲端資料來源。 這表示目前支援像是 Azure SQL DB 和 Azure SQL DW 這樣的來源。 我們將在未來幾個月內新增對其他資料來源和存取類型的支援。 我們將在 Power BI 開發人員論壇 ([https://dev.powerbi.com](https://dev.powerbi.com/)) 宣布新支援的資料來源。
+我們將支援透過「直接查詢」使用基本認證來存取雲端資料來源。 這表示目前支援像是 Azure SQL DB 和 Azure SQL DW 這樣的來源。 我們將在未來幾個月內新增對其他資料來源和存取類型的支援。 如需詳細資訊，請參閱[連線至資料來源](power-bi-embedded-connect-datasource.md)。
 
 ## <a name="how-does-the-tenancy-model-work-for-power-bi-embedded"></a>租用模型如何與 Power BI Embedded 搭配使用？
 在 Power BI Embedded 模型中，沒有明確要求您的客戶必須是 Azure AD 租用戶。 您可以選擇是否要為您的客戶要求 Azure AD。 因此，您應用程式和基礎結構的架構將決定 Power BI Embedded 所需的租用模型。
@@ -102,9 +92,11 @@ Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而�
 * [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
 * [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
+有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
 
 
 
-<!--HONumber=Nov16_HO3-->
+
+<!--HONumber=Dec16_HO3-->
 
 

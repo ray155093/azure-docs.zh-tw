@@ -1,6 +1,6 @@
 ---
-title: "關於 Azure 虛擬網路的站對站 VPN 閘道連線的 VPN 裝置 | Microsoft Docs"
-description: "本文討論適用於 S2S VPN 閘道連線的 VPN 裝置和 IPsec 參數，並且包含設定指示和範本的連結。"
+title: "關於跨單位 Azure 連接的 VPN 裝置 | Microsoft Docs"
+description: "本文討論 S2S VPN 閘道跨單位連接的 VPN 裝置和 IPsec 參數。 其中提供設定指示和範例的連結。"
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: yushwang;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: bbaf89bca07fd2d4c4a12403d2daa8323f4d7be5
-ms.openlocfilehash: 12e7768665b8d360fe7241c9879bd1f7bfc63664
+ms.sourcegitcommit: bf262073b46daa8b7dcf50fabf5f455d7d5850e7
+ms.openlocfilehash: b8e65f6c314457b76bd062ea09bda53099fb79d9
 
 
 ---
 # <a name="about-vpn-devices-for-site-to-site-vpn-gateway-connections"></a>關於站對站 VPN 閘道連線的 VPN 裝置
-設定站對站 (S2S) VPN 連線需要 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 這篇文章討論相容的 VPN 裝置和組態參數。
+使用 VPN 閘道設定站對站 (S2S) 跨單位 VPN 連接需要有 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 這篇文章討論相容的 VPN 裝置和組態參數。
 
 > [!NOTE]
 > 設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。                                                                                                                                                                               
@@ -115,7 +115,7 @@ ms.openlocfilehash: 12e7768665b8d360fe7241c9879bd1f7bfc63664
 | **屬性** | **原則式** | **路由式和標準或高效能 VPN 閘道** |
 | --- | --- | --- |
 | IKE 版本 |IKEv1 |IKEv2 |
-| 雜湊演算法 |SHA1(SHA128) |SHA1(SHA128) |
+| 雜湊演算法 |SHA1(SHA128)、SHA2(SHA256) |SHA1(SHA128)、SHA2(SHA256) |
 | 階段 2 安全性關聯 (SA) 存留期 (時間) |3,600 秒 |3,600 秒 |
 | 階段 2 安全性關聯 (SA) 存留期 (輸送量) |102,400,000 KB |- |
 | IPsec SA 加密和驗證提供項目 (依喜好順序) |1.ESP-AES256 2. ESP-AES128 3. ESP-3DES 4. N/A |請參閱*路由式閘道 IPsec 安全性關聯 (SA) 提供項目* (下面) |
@@ -153,6 +153,6 @@ ms.openlocfilehash: 12e7768665b8d360fe7241c9879bd1f7bfc63664
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

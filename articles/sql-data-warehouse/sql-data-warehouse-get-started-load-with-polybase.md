@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 936bfcb7d4e7d2a901304f31a58b31e6cd14498a
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 4ca929b2be7fe17e140a9daca01a25ac903e8c76
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: 936bfcb7d4e7d2a901304f31a58b31e6cd14498a
 * 建立資料庫物件以定義資料
 * 執行 T-SQL 查詢以載入資料
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Loading-data-with-PolyBase-in-Azure-SQL-Data-Warehouse/player]
+> [!影片 https://channel9.msdn.com/Blogs/Azure/Loading-data-with-PolyBase-in-Azure-SQL-Data-Warehouse/player]
 > 
 > 
 
@@ -44,7 +44,7 @@ ms.openlocfilehash: 936bfcb7d4e7d2a901304f31a58b31e6cd14498a
 
 * SQL 資料倉儲資料庫。
 * 類型為標準本地備援儲存體 (標準 LRS)、標準異地備援儲存體 (標準 GRS) 或標準讀取存取異地備援儲存體 (標準 RAGRS) 的 Azure 儲存體帳戶。
-* AzCopy 命令列公用程式。 下載並安裝 [最新版 AzCopy][最新版 AzCopy]，此公用程式會隨 Microsoft Azure 儲存體工具一起安裝。
+* AzCopy 命令列公用程式。 下載並安裝[最新版 AzCopy][latest version of AzCopy]，此公用程式會隨 Microsoft Azure 儲存體工具一起安裝。
   
     ![Azure 儲存體工具](./media/sql-data-warehouse-get-started-load-with-polybase/install-azcopy.png)
 
@@ -107,7 +107,7 @@ ms.openlocfilehash: 936bfcb7d4e7d2a901304f31a58b31e6cd14498a
     .\AzCopy.exe /Source:C:\Temp\ /Dest:<blob service endpoint URL> /datacontainer/datedimension/ /DestKey:<azure_storage_account_key> /Pattern:DimDate2.txt
     ```
 
-另請參閱[開始使用 AzCopy 命令列公用程式][開始使用 AzCopy 命令列公用程式]。
+另請參閱[開始使用 AzCopy 命令列公用程式][Getting Started with the AzCopy Command-Line Utility]。
 
 ### <a name="e-explore-your-blob-storage-container"></a>E. 瀏覽 Blob 儲存體容器
 若要查看您上傳至 Blob 儲存體的檔案：
@@ -127,11 +127,11 @@ PolyBase 使用外部資料表存取 Azure Blob 儲存體中的資料。 因為�
 
 此步驟中的範例使用這些 Transact-SQL 陳述式建立外部資料表。
 
-* [建立主要金鑰 (Transact-SQL)][建立主要金鑰 (Transact-SQL)] 以加密資料庫範圍認證的密碼。
-* [建立資料庫範圍認證 (Transact-SQL)][建立資料庫範圍認證 (Transact-SQL)] 以指定 Azure 儲存體帳戶的驗證資訊。
-* [建立外部資料來源 (Transact-SQL)][建立外部資料來源 (Transact-SQL)] 以指定 Azure Blob 儲存體的位置。
-* [建立外部檔案格式 (Transact-SQL)][建立外部檔案格式 (Transact-SQL)] 以指定您資料的格式。
-* [建立外部資料表 (Transact-SQL)][建立外部資料表 (Transact-SQL)] 以指定資料表定義和資料的位置。
+* [建立主要金鑰 (Transact-SQL)][Create Master Key (Transact-SQL)]，以加密資料庫範圍認證的密碼。
+* [建立資料庫範圍認證 (Transact-SQL)][Create Database Scoped Credential (Transact-SQL)]，以指定 Azure 儲存體帳戶的驗證資訊。
+* [建立外部資料來源 (Transact-SQL)][Create External Data Source (Transact-SQL)]，以指定 Azure Blob 儲存體的位置。
+* [建立外部檔案格式 (Transact-SQL)][Create External File Format (Transact-SQL)]，以指定資料的格式。
+* [建立外部資料表 (Transact-SQL)][Create External Table (Transact-SQL)]，以指定資料表定義和資料的位置。
 
 對 SQL 資料倉儲資料庫執行這個查詢。 它會在 dbo 結構描述中建立指向 Azure Blob 儲存體中 DimDate2.txt 範例資料的外部資料表 (名稱為 DimDate2External)。
 
@@ -238,26 +238,26 @@ CREATE STATISTICS [CalendarQuarter] on [DimDate2] ([CalendarQuarter]);
 CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 ```
 
-若要深入了解，請參閱[統計資料][統計資料]。  
+若要深入了解，請參閱[統計資料][Statistics]。  
 
 ## <a name="next-steps"></a>後續步驟
-請參閱 [PolyBase 指南][PolyBase 指南]，以取得開發使用 PolyBase 的解決方案時，您應該知道的進一步資訊。
+請參閱 [PolyBase 指南][PolyBase guide]，以取得開發使用 PolyBase 的解決方案時，您應該知道的進一步資訊。
 
 <!--Image references-->
 
 
 <!--Article references-->
-[SQL 資料倉儲中的 PolyBase 教學課程]: ./sql-data-warehouse-get-started-load-with-polybase.md
-[使用 bcp 載入資料]: ./sql-data-warehouse-load-with-bcp.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[PolyBase 指南]: ./sql-data-warehouse-load-polybase-guide.md
-[開始使用 AzCopy 命令列公用程式]: ../storage/storage-use-azcopy.md
-[最新版 AzCopy]: ../storage/storage-use-azcopy.md
+[PolyBase in SQL Data Warehouse Tutorial]: ./sql-data-warehouse-get-started-load-with-polybase.md
+[Load data with bcp]: ./sql-data-warehouse-load-with-bcp.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[PolyBase guide]: ./sql-data-warehouse-load-polybase-guide.md
+[Getting Started with the AzCopy Command-Line Utility]: ../storage/storage-use-azcopy.md
+[latest version of AzCopy]: ../storage/storage-use-azcopy.md
 
 <!--External references-->
-[支援的來源/接收]: https://msdn.microsoft.com/library/dn894007.aspx
-[複製活動]: https://msdn.microsoft.com/library/dn835035.aspx
-[SQL Server 目的地配接器]: https://msdn.microsoft.com/library/ms141095.aspx
+[supported source/sink]: https://msdn.microsoft.com/library/dn894007.aspx
+[copy activity]: https://msdn.microsoft.com/library/dn835035.aspx
+[SQL Server destination adapter]: https://msdn.microsoft.com/library/ms141095.aspx
 [SSIS]: https://msdn.microsoft.com/library/ms141026.aspx
 
 
@@ -278,6 +278,6 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

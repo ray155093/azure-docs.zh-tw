@@ -17,60 +17,61 @@ ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
 translationtype: Human Translation
-ms.sourcegitcommit: 0f8bc125855bc5a5b67fde5b0b742c73b5da7610
-ms.openlocfilehash: d717acf4c8c758de45c7bd70e165c50584ec10a5
+ms.sourcegitcommit: 3a5e22315e338fe089cf557688f741ee16416da2
+ms.openlocfilehash: 5214f55b8e65ec758ba93fb86d548b45a1b4f21e
 
 
 ---
-# <a name="sap-netweaver-on-azure-virtual-machines-vms-deployment-guide"></a>Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南
-[767598]:https://service.sap.com/sap/support/notes/767598
-[773830]:https://service.sap.com/sap/support/notes/773830
-[826037]:https://service.sap.com/sap/support/notes/826037
-[965908]:https://service.sap.com/sap/support/notes/965908
-[1031096]:https://service.sap.com/sap/support/notes/1031096
-[1139904]:https://service.sap.com/sap/support/notes/1139904
-[1173395]:https://service.sap.com/sap/support/notes/1173395
-[1245200]:https://service.sap.com/sap/support/notes/1245200
-[1409604]:https://service.sap.com/sap/support/notes/1409604
-[1558958]:https://service.sap.com/sap/support/notes/1558958
-[1585981]:https://service.sap.com/sap/support/notes/1585981
-[1588316]:https://service.sap.com/sap/support/notes/1588316
-[1590719]:https://service.sap.com/sap/support/notes/1590719
-[1597355]:https://service.sap.com/sap/support/notes/1597355
-[1605680]:https://service.sap.com/sap/support/notes/1605680
-[1619720]:https://service.sap.com/sap/support/notes/1619720
-[1619726]:https://service.sap.com/sap/support/notes/1619726
-[1619967]:https://service.sap.com/sap/support/notes/1619967
-[1750510]:https://service.sap.com/sap/support/notes/1750510
-[1752266]:https://service.sap.com/sap/support/notes/1752266
-[1757924]:https://service.sap.com/sap/support/notes/1757924
-[1757928]:https://service.sap.com/sap/support/notes/1757928
-[1758182]:https://service.sap.com/sap/support/notes/1758182
-[1758496]:https://service.sap.com/sap/support/notes/1758496
-[1772688]:https://service.sap.com/sap/support/notes/1772688
-[1814258]:https://service.sap.com/sap/support/notes/1814258
-[1882376]:https://service.sap.com/sap/support/notes/1882376
-[1909114]:https://service.sap.com/sap/support/notes/1909114
-[1922555]:https://service.sap.com/sap/support/notes/1922555
-[1928533]:https://service.sap.com/sap/support/notes/1928533
-[1941500]:https://service.sap.com/sap/support/notes/1941500
-[1956005]:https://service.sap.com/sap/support/notes/1956005
-[1973241]:https://service.sap.com/sap/support/notes/1973241
-[1984787]:https://service.sap.com/sap/support/notes/1984787
-[1999351]:https://service.sap.com/sap/support/notes/1999351
-[2002167]:https://service.sap.com/sap/support/notes/2002167
-[2015553]:https://service.sap.com/sap/support/notes/2015553
-[2039619]:https://service.sap.com/sap/support/notes/2039619
-[2121797]:https://service.sap.com/sap/support/notes/2121797
-[2134316]:https://service.sap.com/sap/support/notes/2134316
-[2178632]:https://service.sap.com/sap/support/notes/2178632
-[2191498]:https://service.sap.com/sap/support/notes/2191498
-[2233094]:https://service.sap.com/sap/support/notes/2233094
-[2243692]:https://service.sap.com/sap/support/notes/2243692
+# <a name="sap-netweaver-on-azure-virtual-machines-vms--deployment-guide"></a>Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南
+[767598]:https://launchpad.support.sap.com/#/notes/767598
+[773830]:https://launchpad.support.sap.com/#/notes/773830
+[826037]:https://launchpad.support.sap.com/#/notes/826037
+[965908]:https://launchpad.support.sap.com/#/notes/965908
+[1031096]:https://launchpad.support.sap.com/#/notes/1031096
+[1139904]:https://launchpad.support.sap.com/#/notes/1139904
+[1173395]:https://launchpad.support.sap.com/#/notes/1173395
+[1245200]:https://launchpad.support.sap.com/#/notes/1245200
+[1409604]:https://launchpad.support.sap.com/#/notes/1409604
+[1558958]:https://launchpad.support.sap.com/#/notes/1558958
+[1585981]:https://launchpad.support.sap.com/#/notes/1585981
+[1588316]:https://launchpad.support.sap.com/#/notes/1588316
+[1590719]:https://launchpad.support.sap.com/#/notes/1590719
+[1597355]:https://launchpad.support.sap.com/#/notes/1597355
+[1605680]:https://launchpad.support.sap.com/#/notes/1605680
+[1619720]:https://launchpad.support.sap.com/#/notes/1619720
+[1619726]:https://launchpad.support.sap.com/#/notes/1619726
+[1619967]:https://launchpad.support.sap.com/#/notes/1619967
+[1750510]:https://launchpad.support.sap.com/#/notes/1750510
+[1752266]:https://launchpad.support.sap.com/#/notes/1752266
+[1757924]:https://launchpad.support.sap.com/#/notes/1757924
+[1757928]:https://launchpad.support.sap.com/#/notes/1757928
+[1758182]:https://launchpad.support.sap.com/#/notes/1758182
+[1758496]:https://launchpad.support.sap.com/#/notes/1758496
+[1772688]:https://launchpad.support.sap.com/#/notes/1772688
+[1814258]:https://launchpad.support.sap.com/#/notes/1814258
+[1882376]:https://launchpad.support.sap.com/#/notes/1882376
+[1909114]:https://launchpad.support.sap.com/#/notes/1909114
+[1922555]:https://launchpad.support.sap.com/#/notes/1922555
+[1928533]:https://launchpad.support.sap.com/#/notes/1928533
+[1941500]:https://launchpad.support.sap.com/#/notes/1941500
+[1956005]:https://launchpad.support.sap.com/#/notes/1956005
+[1973241]:https://launchpad.support.sap.com/#/notes/1973241
+[1984787]:https://launchpad.support.sap.com/#/notes/1984787
+[1999351]:https://launchpad.support.sap.com/#/notes/1999351
+[2002167]:https://launchpad.support.sap.com/#/notes/2002167
+[2015553]:https://launchpad.support.sap.com/#/notes/2015553
+[2039619]:https://launchpad.support.sap.com/#/notes/2039619
+[2121797]:https://launchpad.support.sap.com/#/notes/2121797
+[2134316]:https://launchpad.support.sap.com/#/notes/2134316
+[2178632]:https://launchpad.support.sap.com/#/notes/2178632
+[2191498]:https://launchpad.support.sap.com/#/notes/2191498
+[2233094]:https://launchpad.support.sap.com/#/notes/2233094
+[2243692]:https://launchpad.support.sap.com/#/notes/2243692
+[2367194]:https://launchpad.support.sap.com/#/notes/2367194
 
 [azure-cli]:../xplat-cli-install.md
 [azure-portal]:https://portal.azure.com
-[azure-ps]:../powershell-install-configure.md
+[azure-ps]:/powershell/azureps-cmdlets-docs
 [azure-quickstart-templates-github]:https://github.com/Azure/azure-quickstart-templates
 [azure-script-ps]:https://go.microsoft.com/fwlink/p/?LinkID=395017
 [azure-subscription-service-limits]:../azure-subscription-service-limits.md
@@ -116,9 +117,9 @@ ms.openlocfilehash: d717acf4c8c758de45c7bd70e165c50584ec10a5
 [deployment-guide-install-vm-agent-windows]:virtual-machines-linux-sap-deployment-guide.md#b2db5c9a-a076-42c6-9835-16945868e866
 [deployment-guide-troubleshooting-chapter]:virtual-machines-linux-sap-deployment-guide.md#564adb4f-5c95-4041-9616-6635e83a810b (Checks and Troubleshooting for End-to-End Monitoring Setup for SAP on Azure)
 
-[deploy-template-cli]:../resource-group-template-deploy.md#deploy-with-azure-cli-for-mac-linux-and-windows
-[deploy-template-portal]:../resource-group-template-deploy.md#deploy-with-the-preview-portal
-[deploy-template-powershell]:../resource-group-template-deploy.md#deploy-with-powershell
+[deploy-template-cli]:../azure-resource-manager/resource-group-template-deploy-cli.md
+[deploy-template-portal]:../azure-resource-manager/resource-group-template-deploy-portal.md
+[deploy-template-powershell]:../azure-resource-manager/resource-group-template-deploy.md
 
 [dr-guide-classic]:http://go.microsoft.com/fwlink/?LinkID=521971
 
@@ -171,8 +172,8 @@ ms.openlocfilehash: d717acf4c8c758de45c7bd70e165c50584ec10a5
 [planning-guide-microsoft-azure-networking]:virtual-machines-linux-sap-planning-guide.md#61678387-8868-435d-9f8c-450b2424f5bd (Microsoft Azure Networking)
 [planning-guide-storage-microsoft-azure-storage-and-data-disks]:virtual-machines-linux-sap-planning-guide.md#a72afa26-4bf4-4a25-8cf7-855d6032157f (Storage: Microsoft Azure Storage and Data Disks)
 
-[powershell-install-configure]:../powershell-install-configure.md
-[resource-group-authoring-templates]:../resource-group-authoring-templates.md
+[powershell-install-configure]:/powershell/azureps-cmdlets-docs
+[resource-group-authoring-templates]:../azure-resource-manager/resource-group-authoring-templates.md
 [resource-group-overview]:../azure-resource-manager/resource-group-overview.md
 [resource-groups-networking]:../virtual-network/resource-groups-networking.md
 [sap-pam]:https://support.sap.com/pam (SAP Product Availability Matrix)
@@ -193,7 +194,7 @@ ms.openlocfilehash: d717acf4c8c758de45c7bd70e165c50584ec10a5
 [templates-101-simple-windows-vm]:https://github.com/Azure/azure-quickstart-templates/tree/master/101-simple-windows-vm
 [templates-101-vm-from-user-image]:https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image
 [virtual-machines-linux-attach-disk-portal]:virtual-machines-linux-attach-disk-portal.md
-[virtual-machines-azure-resource-manager-architecture]:../resource-manager-deployment-model.md
+[virtual-machines-azure-resource-manager-architecture]:../azure-resource-manager/resource-manager-deployment-model.md
 [virtual-machines-azurerm-versus-azuresm]:virtual-machines-linux-compare-deployment-models.md
 [virtual-machines-windows-classic-configure-oracle-data-guard]:virtual-machines-windows-classic-configure-oracle-data-guard.md
 [virtual-machines-linux-cli-deploy-templates]:virtual-machines-linux-cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI)
@@ -215,11 +216,11 @@ ms.openlocfilehash: d717acf4c8c758de45c7bd70e165c50584ec10a5
 [virtual-machines-manage-availability]:virtual-machines-linux-manage-availability.md
 [virtual-machines-ps-create-preconfigure-windows-resource-manager-vms]:virtual-machines-windows-ps-create.md
 [virtual-machines-sizes]:virtual-machines-linux-sizes.md
-[virtual-machines-windows-classic-ps-sql-alwayson-availability-groups]:virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md
-[virtual-machines-windows-classic-ps-sql-int-listener]:virtual-machines-windows-classic-ps-sql-int-listener.md
-[virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions]:virtual-machines-windows-sql-high-availability-dr.md
-[virtual-machines-sql-server-infrastructure-services]:virtual-machines-windows-sql-server-iaas-overview.md
-[virtual-machines-sql-server-performance-best-practices]:virtual-machines-windows-sql-performance.md
+[virtual-machines-windows-classic-ps-sql-alwayson-availability-groups]:./windows/sqlclassic/virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md
+[virtual-machines-windows-classic-ps-sql-int-listener]:./windows/sqlclassic/virtual-machines-windows-classic-ps-sql-int-listener.md
+[virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions]:./windows/sql/virtual-machines-windows-sql-high-availability-dr.md
+[virtual-machines-sql-server-infrastructure-services]:./windows/sql/virtual-machines-windows-sql-server-iaas-overview.md
+[virtual-machines-sql-server-performance-best-practices]:./windows/sql/virtual-machines-windows-sql-performance.md
 [virtual-machines-upload-image-windows-resource-manager]:virtual-machines-windows-upload-image.md
 [virtual-machines-windows-tutorial]:virtual-machines-windows-hero-tutorial.md
 [virtual-machines-workload-template-sql-alwayson]:https://azure.microsoft.com/documentation/templates/sql-server-2014-alwayson-dsc/
@@ -246,15 +247,13 @@ ms.openlocfilehash: d717acf4c8c758de45c7bd70e165c50584ec10a5
 
 Microsoft Azure 可讓公司在最短的時間內取得計算和儲存體資源，而不需要冗長的採購週期。 Azure 虛擬機器可讓公司將傳統應用程式 (例如以 SAP NetWeaver 為基礎的應用程式) 部署到 Azure，並擴充其可靠性和可用性，而不需要在內部部署提供進一步的資源。 Microsoft Azure 也支援跨單位連線能力，可讓公司主動將 Azure 虛擬機器整合到其內部部署網域、私人雲端及 SAP 系統環境。
 
-這份白皮書逐步說明如何準備 Azure 虛擬機器來部署以 SAP NetWeaver 為基礎的應用程式。 它會假設您已知道 [規劃和實作指南][planning-guide] 中所含的資訊。 否則，請先閱讀這份個別文件。
+這份技術白皮書逐步說明如何準備「Azure 虛擬機器」來部署以 SAP NetWeaver 為基礎的應用程式。 它會假設您已知道 [規劃和實作指南][planning-guide] 中所含的資訊。 否則，請先閱讀這份個別文件。
 
 本白皮書會對「SAP 安裝文件」和「SAP 附註」進行補充說明，指出用來在指定平台上安裝和部署 SAP 軟體的主要資源。
 
-[!INCLUDE [windows-warning](../../includes/virtual-machines-linux-sap-warning.md)]
-
 ## <a name="introduction"></a>簡介
 全球已有大量公司使用以 SAP NetWeaver 為基礎的應用程式 (最主要是 SAP Business Suite) 來執行其任務關鍵性商務程序。 因此，系統健康狀態是十分重要的資產，而且在故障 (包括效能事件) 時提供企業支援的能力也成為重要需求。
-Microsoft Azure 提供優越的平台工具，可容納所有商務關鍵應用程式的支援需求。 本指南確定已設定要部署 SAP Software 的 Microsoft Azure 虛擬機器，以提供企業支援，不論虛擬機器的建立方式為何 (取自 Azure Marketplace 還是使用客戶特定映像)。
+Microsoft Azure 提供優越的平台工具，可容納所有商務關鍵應用程式的支援需求。 本指南會確定作為 SAP 軟體部署目標的「Microsoft Azure 虛擬機器」已設定妥當，使得不論是以何種方式建立虛擬機器 (取自 Azure Marketplace 或使用客戶特定映像)，都能對其提供企業支援。
 以下詳細說明所有必要的安裝步驟。
 
 ## <a name="prerequisites-and-resources"></a>必要條件和資源
@@ -265,7 +264,7 @@ Microsoft Azure 提供優越的平台工具，可容納所有商務關鍵應用�
 安裝 Azure 虛擬機器以進行 SAP Software 部署包含數個步驟。 若要管理 Windows VM 或 Linux VM，您需要使用 PowerShell 指令碼和 Microsoft Azure 入口網站。 因此，需要執行 Windows 7 或更新版本的本機個人電腦。 如果您只想要管理 Linux VM，而且想要使用 Linux 電腦進行這項工作，則也可以使用 Azure 命令列介面 (Azure CLI)。
 
 #### <a name="internet-connection"></a>網際網路連線
-若要下載和執行必要的工具和指令碼，需要網際網路連線。 此外，執行 Azure Enhanced Monitoring Extension 的 Microsoft Azure 虛擬機器需要存取網際網路。 如果此 Azure VM 是「Azure 虛擬網路」或內部部署網域的一部分，請務必如這份文件的[設定 Proxy][deployment-guide-configure-proxy] 一章所述，設定相關的 Proxy 設定。
+若要下載和執行必要的工具和指令碼，需要網際網路連線。 此外，執行 Azure Enhanced Monitoring Extension for SAP 的「Microsoft Azure 虛擬機器」必須能夠存取網際網路。 如果此 Azure VM 是「Azure 虛擬網路」或內部部署網域的一部分，請務必如這份文件的[設定 Proxy][deployment-guide-configure-proxy] 一章所述，設定相關的 Proxy 設定。
 
 #### <a name="microsoft-azure-subscription"></a>Microsoft Azure 訂用帳戶
 Azure 帳戶已存在，並且已知相應的登入認證。
@@ -291,29 +290,31 @@ Azure 帳戶已存在，並且已知相應的登入認證。
 * 內部部署資產與已部署 Azure 的 SAP 系統之間所需的網路頻寬為已知
 
 #### <a name="resource-groups"></a>資源群組
-資源群組是新的概念，內含具有相同生命週期的所有資源 (例如，同時予以建立和刪除)。 如需有關資源群組的詳細資訊，請參閱[這篇文章][resource-group-overview]。 
+資源群組是新部署概念的一部分。 資源群組的所有資源都具有相同的生命週期，例如它們的建立與刪除時間都相同。 如需有關資源群組的詳細資訊，請參閱[這篇文章][resource-group-overview]。 
 
 ### <a name="a-name42ee2bdb-1efc-4ec7-ab31-fe4c22769b94asap-resources"></a><a name="42ee2bdb-1efc-4ec7-ab31-fe4c22769b94"></a>SAP 資源
 在進行設定工作期間，需要下列資源︰
 
-* SAP 附註 [1928533]
-  * 支援部署 SAP Software 之 Azure 虛擬機器大小的清單 
+* SAP 附註 [1928533] 包含：
+  * 支援部署 SAP 軟體的「Azure 虛擬機器」大小清單 
   * 每個 Azure 虛擬機器大小的重要容量資訊
   * 支援的 SAP 軟體和 OS 與 DB 組合
-* SAP 附註 [2015553] ，當中列出將 SAP 軟體部署到 Microsoft Azure 時 SAP 所要支援的必要條件。
-* SAP 附註 [1999351] ，當中包含適用於 SAP 的「增強型 Azure 監視」的其他疑難排解資訊。
-* SAP 附註 [2178632] ，當中包含有關 Microsoft Azure 上 SAP 所有可用監視度量的詳細資訊。 
-* SAP 附註 [1409604] ，當中包含在新的 Azure Resource Manager 上進行部署時，Microsoft Azure 上 Windows 所需的 SAP Host Agent 版本。
-* SAP 附註 [2191498] ，當中包含在新的 Azure Resource Manager 上進行部署時，Microsoft Azure 上 Linux 所需的 SAP Host Agent 版本。
-* SAP 附註 [2243692] ，當中包含有關 Azure 上 Linux 的 SAP 授權資訊
-* SAP 附註 [1984787] ，當中包含有關 SUSE LINUX Enterprise Server 12 的一般資訊
-* SAP 附註 [2002167] ，當中包含有關 Red Hat Enterprise Linux 7.x 的一般資訊
-* [SCN](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) ，當中包含適用於 Linux 的所有必要 SAP 附註
-* 屬於 [Azure PowerShell][azure-ps] 之一部分的 SAP 特定 PowerShell Cmdlet
-* 屬於 [Azure CLI][azure-cli] 之一部分的 SAP 特定 Azure CLI
+  * Microsoft Azure 上 Windows 和 Linux 所需的 SAP 核心版本
+  
+* SAP 附註 [2015553] 列出將 SAP 軟體部署到 Microsoft Azure 時 SAP 所要支援的必要條件。
+* SAP 附註 [2178632] 包含針對 Microsoft Azure 上 SAP 回報的所有監視度量相關詳細資訊。 
+* SAP 附註 [1409604] 包含 Microsoft Azure 上 Windows 所需的 SAP Host Agent 版本。
+* SAP 附註 [2191498] 包含 Microsoft Azure 上 Linux 所需的 SAP Host Agent 版本。
+* SAP 附註 [2243692] 包含 Azure 上 SAP on Linux 的授權相關資訊
+* SAP 附註 [1984787] 包含 SUSE LINUX Enterprise Server 12 的一般相關資訊
+* SAP 附註 [2002167] 包含 Red Hat Enterprise Linux 7.x 的一般相關資訊
+* SAP 附註 [1999351] 包含適用於 SAP 的「增強型 Azure 監視」的其他疑難排解資訊。
+* [SAP WIKI (英文)](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) 包含適用於 Linux 的所有必要 SAP 附註
+* [Azure PowerShell][azure-ps] 所包含的 SAP 特定 PowerShell Cmdlet
+* [Azure CLI][azure-cli] 所包含的 SAP 特定 Azure CLI
 * [Microsoft Azure 入口網站][azure-portal]
 
-[註解]: <> (MSSedusch TODO 新增 SAP 附註 1409604 中 SAP Host Agent 的 ARM 修補程式層級)
+[comment]: <> (MSSedusch TODO 新增 SAP 附註 1409604 中 SAP Host Agent 的 ARM 修補程式層級)
 
 下列指南也涵蓋 Microsoft Azure 上的 SAP 主題︰
 
@@ -330,7 +331,7 @@ Microsoft Azure 提供多種方法來部署 VM 和相關聯的磁碟。 因此�
 #### <a name="deploying-a-vm-out-of-the-azure-marketplace"></a>從 Azure Marketplace 部署 VM
 您想要從 Azure Marketplace 使用 Microsoft 或協力廠商提供的映像來部署 VM。 在 Microsoft Azure 上部署您的 VM 之後，請遵循相同的方針和工具在 VM 內安裝 SAP 軟體，就像是在內部部署環境中一樣。 若要在 Azure VM 中安裝 SAP 軟體，SAP 和 Microsoft 建議將 SAP 安裝媒體上傳並儲存到 Azure VHD，或建立做為「檔案伺服器」並包含所有必要 SAP 安裝媒體的 Azure VM。
 
-[註解]: <> (MSSedusch TODO 為什麼需要建議使用檔案管理 (例如檔案伺服器或 VHD)？這是否與內部部署不同？)
+[comment]: <> (MSSedusch TODO 為什麼需要建議使用檔案管理 (例如檔案伺服器或 VHD)？這是否與內部部署不同？)
 
 如需更多詳細資料，請參閱 [案例 1：從 Azure Marketplace 為 SAP 部署 VM][deployment-guide-3.2] 一章。
 
@@ -339,18 +340,18 @@ Microsoft Azure 提供多種方法來部署 VM 和相關聯的磁碟。 因此�
 Windows 與 Linux 映像之間的私人映像建立步驟不同。
 
 - - -
-> ![ Windows][Logo_Windows]  Windows
+> ![Windows][Logo_Windows] Windows
 > 
-> 若要準備可用來部署多部虛擬機器的 Windows 映像，必須在內部部署 VM 上抽象化/一般化 Windows 設定 (如 Windows SID 和主機名稱)。 這個操作可以使用 sysprep 來完成，如 <https://technet.microsoft.com/library/cc721940.aspx> 所述。
+> 若要準備可用來部署多部虛擬機器的 Windows 映像，必須在內部部署 VM 上抽象化/一般化 Windows 設定 (如 Windows SID 和主機名稱)。 這個操作可以使用 sysprep 來完成，如 <https://msdn.microsoft.com/library/hh825084.aspx> 所述。
 > 
-> ![Linux][Logo_Linux]  Linux
+> ![Linux][Logo_Linux] Linux
 > 
 > 若要準備可用來部署多部虛擬機器的 Linux 映像，必須在內部部署 VM 上抽象化/一般化一些 Linux 設定。 這個操作可以使用 waagent -deprovision 來完成，如[這篇文章][virtual-machines-linux-capture-image]或[這篇文章][virtual-machines-linux-agent-user-guide-command-line-options]所述。
 > 
 > 
 
 - - -
-您可以藉由使用 SAP Software Provision Manager 來安裝新的 SAP 系統、從連接到虛擬機器的 VHD 還原資料庫備份，或直接從「Azure 儲存體」(如果 DBMS 支援的話) 還原資料庫備份，來設定您的資料庫內容。 (請參閱 [DBMS 部署指南][dbms-guide])。 如果您已在內部部署 VM (特別是針對 2 層系統) 中安裝 SAP 系統，您可以在部署 Azure VM 之後，透過 SAP Software Provisioning Manager 支援的「系統重新命名」程序來調整 SAP 系統設定 (SAP 附註 [1619720])。 否則，您稍後可以在部署 Azure VM 之後安裝 SAP 軟體。
+您可以藉由使用 SAP Software Provision Manager 來安裝新的 SAP 系統、從連接到虛擬機器的 VHD 還原資料庫備份，或直接從「Azure 儲存體」還原資料庫備份 (如果 DBMS 支援的話)，來設定您的資料庫內容。 (請參閱 [DBMS 部署指南][dbms-guide])。 如果您已在內部部署 VM (特別是針對 2 層系統) 中安裝 SAP 系統，您可以在部署 Azure VM 之後，透過 SAP Software Provisioning Manager 支援的「系統重新命名」程序來調整 SAP 系統設定 (SAP 附註 [1619720])。 否則，您稍後可以在部署 Azure VM 之後安裝 SAP 軟體。
 
 如需更多詳細資料，請參閱 [案例 2：使用自訂映像為 SAP 部署 VM][deployment-guide-3.3] 一章。
 
@@ -360,7 +361,7 @@ Windows 與 Linux 映像之間的私人映像建立步驟不同。
 如需更多詳細資料，請參閱 [案例 3：使用非一般化 Azure VHD 搭配 SAP 從內部部署環境移動 VM][deployment-guide-3.4] 一章。
 
 ### <a name="a-namedb477013-9060-4602-9ad4-b0316f8bb281ascenario-1-deploying-a-vm-out-of-the-azure-marketplace-for-sap"></a><a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>案例 1：從 Azure Marketplace 為 SAP 部署 VM
-Microsoft Azure 可讓您從 Azure Marketplace 部署 VM 執行個體，而 Azure Marketplace 提供 Windows Server 的一些標準 OS 映像以及不同的 Linux 散發套件。 它也可以部署包含 DBMS SKU 的映像 (例如 SQL Server)。 如需將那些映像與 DBMS SKU 搭配使用的詳細資料，請參閱 [DBMS 部署指南][dbms-guide]
+Microsoft Azure 可讓您從 Azure Marketplace 部署 VM 執行個體，而 Azure Marketplace 提供 Windows Server 的一些標準 OS 映像以及不同的 Linux 散發套件。 您也可以部署包含 DBMS SKU 的映像 (例如 MS SQL Server)。 如需將那些映像與 DBMS SKU 搭配使用的詳細資料，請參閱 [DBMS 部署指南][dbms-guide]。
 
 從 Azure Marketplace 部署 VM 的 SAP 一系列特定步驟如下：
 
@@ -369,138 +370,158 @@ Microsoft Azure 可讓您從 Azure Marketplace 部署 VM 執行個體，而 Azur
 在流程圖之後，需要執行下列步驟︰
 
 #### <a name="create-virtual-machine-using-the-azure-portal"></a>使用 Azure 入口網站建立虛擬機器
-使用 Azure Marketplace 中的映像建立新虛擬機器的最簡單方式，是透過 Azure 入口網站。 瀏覽至 <https://portal.azure.com/#create>。 在搜尋欄位中輸入您想要部署的作業系統類型 (例如 Windows、SLES 或 RHEL)，然後選取版本。 請務必選取 "Azure Resource Manager" 部署模型，然後按一下 [建立]。
+使用 Azure Marketplace 中的映像建立新虛擬機器的最簡單方式，是透過 Azure 入口網站。 瀏覽至 <https://portal.azure.com/#create>，或按一下「Azure 入口網站」左邊的 [+]。 在搜尋欄位中輸入您想要部署的作業系統類型 (例如 Windows、SLES 或 RHEL)，然後選取版本。 請務必選取 "Resource Manager" 部署模型，然後按一下 [建立]。
 
 此精靈會引導您完成建立虛擬機器的必要參數，以及所有必要資源 (例如網路介面或儲存體帳戶)。 其中一些參數包括︰
 
 1. 基本概念
    1. 名稱：資源名稱 (即虛擬機器名稱)
-   2. 使用者名稱和密碼/SSH 公用金鑰︰輸入在佈建期間建立之使用者的使用者名稱和密碼。 對於 Linux 虛擬機器，您也可以輸入要用來使用 SSH 登入電腦的公開 SSH 金鑰。
-   3. 訂用帳戶：選取您想要用來佈建新虛擬機器的訂用帳戶。
-   4. 資源群組：資源群組的名稱。 您可以插入新資源群組的名稱，或現有資源群組的名稱。
-   5. 位置︰選取應該部署新虛擬機器的位置。 如果您想要將虛擬機器連接到內部部署網路，請務必選取將 Azure 連接到內部部署網路的虛擬網路位置。 如需詳細資訊，請參閱 [計畫指南][planning-guide] 中的 [Microsoft Azure 網路功能][planning-guide-microsoft-azure-networking]章節。
-2. 大小︰如需所支援 VM 類型的清單，請參閱 SAP 附註 [1928533] 。 如果您想要使用進階儲存體，也請務必選取正確的類型。 並非所有 VM 類型都支援進階儲存體。 如需詳細資訊，請參閱 [計畫指南][planning-guide] 中的 [儲存體︰Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]章節和 [Azure 進階儲存體][planning-guide-azure-premium-storage]。
-3. 設定
-   1. 儲存體帳戶：您可以選取現有儲存體帳戶，或建立新的儲存體帳戶。 如需有關不同儲存體類型的更多詳細資料，請參閱 [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3] 章節。 請注意，執行 SAP 應用程式時並不支援所有儲存體類型。
-   2. 虛擬網路和子網路：如果您想要將虛擬機器整合到內部網路，請選取連接到內部部署網路的虛擬網路。
-   3. 公用 IP 位址︰選取您想要使用的公用 IP 位址，或輸入參數來建立新的公用 IP 位址。 您可以使用公用 IP 位址，透過網際網路存取您的虛擬機器。 請務必也建立網路安全性群組來篩選對您虛擬機器的存取。
-   4. 網路安全性群組：如需更多詳細資料，請參閱[什麼是網路安全性群組 (NSG)][virtual-networks-nsg]。
-   5. 監視︰您可以停用診斷設定。 執行命令來啟用 Azure Enhanced Monitoring 時，會自動啟用它 (如[設定監視][deployment-guide-configure-monitoring-scenario-1]一章所述)。
-   6. 可用性︰選取可用性設定組，或輸入參數來建立新的可用性設定組。 如需詳細資訊，請參閱 [Azure 可用性設定組][planning-guide-3.2.3] 一章。
-4. 摘要︰驗證摘要頁面上所提供的資訊，然後按一下 [確定]。
+   1. 使用者名稱和密碼/SSH 公用金鑰︰輸入在佈建期間建立之使用者的使用者名稱和密碼。 對於 Linux 虛擬機器，您也可以輸入要用來使用 SSH 登入電腦的公開 SSH 金鑰。
+   1. 訂用帳戶：選取您想要用來佈建新虛擬機器的訂用帳戶。
+   1. 資源群組：資源群組的名稱。 您可以插入新資源群組的名稱，或現有資源群組的名稱。
+   1. 位置︰選取應該部署新虛擬機器的位置。 如果您想要將虛擬機器連接到內部部署網路，請務必選取將 Azure 連接到內部部署網路的虛擬網路位置。 如需更多詳細資料，請參閱《規劃指南》[planning-guide]中的 [Microsoft Azure 網路][planning-guide-microsoft-azure-networking]一章。
+1. 大小
+
+    如需所支援 VM 類型的清單，請參閱 SAP 附註 [1928533]。 如果您想要使用進階儲存體，也請務必選取正確的類型。 並非所有 VM 類型都支援進階儲存體。 如需詳細資訊，請參閱 [規劃指南][planning-guide] 中的[儲存體︰Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]一章和 [Azure 進階儲存體][planning-guide-azure-premium-storage] 一章。
+    
+1. 設定
+   1. 儲存體帳戶：選取現有的儲存體帳戶或建立新的儲存體帳戶。 如需有關不同儲存體類型的更多詳細資料，請參閱 [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3] 章節。 請注意，執行 SAP 應用程式時並不支援所有儲存體類型。
+   1. 虛擬網路和子網路：如果您想要將虛擬機器整合到內部網路，請選取連接到內部部署網路的虛擬網路。
+   1. 公用 IP 位址︰選取您想要使用的公用 IP 位址，或輸入參數來建立新的公用 IP 位址。 您可以使用公用 IP 位址，透過網際網路存取您的虛擬機器。 請務必也建立網路安全性群組來篩選對您虛擬機器的存取。
+   1. 網路安全性群組：如需更多詳細資料，請參閱[什麼是網路安全性群組 (NSG)][virtual-networks-nsg]。
+   1. 可用性︰選取可用性設定組，或輸入參數來建立新的可用性設定組。 如需詳細資訊，請參閱 [Azure 可用性設定組][planning-guide-3.2.3] 一章。
+   1. 監視︰您可以停用診斷設定。 執行命令來啟用 Azure Enhanced Monitoring 時，會自動啟用它 (如[設定監視][deployment-guide-configure-monitoring-scenario-1]一章所述)。
+   
+1. 摘要︰驗證摘要頁面上所提供的資訊，然後按一下 [確定]。
 
 完成精靈之後，您的虛擬機器將會部署在您選取的資源群組中。
 
-#### <a name="create-virtual-machine-using-a-template"></a>使用範本建立虛擬機器。
-您也可以使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]中所發佈的其中一個 SAP 範本來建立部署。 或者您可以使用 [Azure 入口網站][virtual-machines-windows-tutorial]、[PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms] 或 [Azure CLI][virtual-machines-linux-tutorial]，手動建立虛擬機器。
+#### <a name="create-virtual-machine-using-a-template"></a>使用範本建立虛擬機器
+您也可以使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]中所發佈的其中一個 SAP 範本來建立部署。 或者，您可以使用 [Azure 入口網站][virtual-machines-windows-tutorial]、[PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms] 或 [Azure CLI][virtual-machines-linux-tutorial] 來手動建立虛擬機器。
 
-* [2 層組態 (僅一部虛擬機器) 範本][sap-templates-2-tier-marketplace-image]：如果您想要僅使用一部虛擬機器來建立一個 2 層系統，請使用此範本。
-* [3 層組態 (多部虛擬機器) 範本][sap-templates-3-tier-marketplace-image]：如果您想要使用多部虛擬機器來建立一個 3 層系統，請使用此範本。
+* [2 層組態 (僅一部虛擬機器) 範本 (sap-2-tier-marketplace-image)][sap-templates-2-tier-marketplace-image]：如果您想要僅使用一部虛擬機器來建立一個 2 層系統，請使用此範本。
+* [3 層組態 (多部虛擬機器) 範本 (sap-3-tier-marketplace-image)][sap-templates-3-tier-marketplace-image]：如果您想要使用多部虛擬機器來建立一個 3 層系統，請使用此範本。
 
-開啟上述其中一個範本之後，Azure 入口網站會瀏覽至 [編輯參數] 面板。 輸入以下資訊：
+開啟上述其中一個範本之後，「Azure 入口網站」就會瀏覽至可讓您為範本輸入參數的畫面。 輸入以下資訊：
 
-* **sapSystemId**：SAP 系統識別碼
-* **osType**：您想要部署的作業系統 (例如 Windows Server 2012 R2、SLES 12 或 RHEL 7.2)
-  * 這份清單僅包含 Microsoft Azure 上 SAP 所支援的版本。
-* **sapSystemSize**：SAP 系統的大小
-  * 新系統將提供的 SAP 數量。 如果您不確定系統將需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
-* **systemAvailability**：(僅限 3 層範本) 系統可用性 
-  * 選取適用於 HA 安裝之組態的 HA。 將為 ASCS 建立兩部資料庫伺服器和兩部伺服器。
-* storageType：(僅 2 層範本) 應該使用的儲存體類型 
-  * 對於更大的系統，強烈建議使用進階儲存體。 如需不同儲存體類型的詳細資訊，請閱讀 
-    * [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3]
-    * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
-    * [Microsoft Azure 儲存體簡介][storage-introduction]
-* **adminUsername** 和 **adminPassword**：使用者名稱和密碼
-  * 建立可用來登入電腦的新使用者。
-* **newOrExistingSubnet**︰決定應該建立新的虛擬網路和子網路，還是應該使用現有子網路。 如果您已經有連接到內部部署網路的虛擬網路，請選取現有虛擬網路。
-* **subnetId**：虛擬機器應該連接的子網路識別碼。 選取將虛擬機器連接到內部部署網路之 VPN 或快速路由虛擬網路的子網路。 識別碼通常看起來像 /subscriptions/`<subscription id`>/resourceGroups/`<resource group name`>/providers/Microsoft.Network/virtualNetworks/`<virtual network name`>/subnets/`<subnet name`>
+1. 基本概念
+  * **訂用帳戶**：要作為範本部署目的地的訂用帳戶
+  * **資源群組**：要作為範本部署目的地的資源群組。 您可以建立新的資源群組，或選取所選訂用帳戶中的現有資源群組。
+  * **位置**：要作為範本部署目的地的位置。 如果您選取了現有的資源群組，則會使用該資源群組的位置。
+1. 設定
+  * **SAP 系統識別碼**：SAP 系統識別碼
+  * **OS 類型**：您想要部署的作業系統 (例如 Windows Server 2012 R2、SLES 12 或 RHEL 7.2)
+    * 此清單並未包含所有支援的作業系統，例如此清單並未包含 Windows Server 2008 R2，但 SAP 支援此作業系統。 如需所有已支援的作業系統清單，請參閱 SAP 附註 [1928533]。
+  * **SAP 系統大小**：SAP 系統的大小
+    * 新系統將提供的 SAP 數量。 如果您不確定系統將需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
+  * **系統可用性**：(僅限 3 層範本) 系統可用性
+    * 選取適用於 HA 安裝之組態的 HA。 將為 ASCS 建立兩部資料庫伺服器和兩部伺服器。
+  * **儲存體類型**：(僅限 2 層範本) 應該使用的儲存體類型
+    * 對於更大的系統，強烈建議使用進階儲存體。 如需不同儲存體類型的詳細資訊，請閱讀
+      * [針對 SAP DBMS 執行個體使用 Azure 進階 SSD 儲存體][2367194]
+      * [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3]
+      * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
+      * [Microsoft Azure 儲存體簡介][storage-introduction]
+  * **管理員使用者名稱**和**管理員密碼**：使用者名稱和密碼
+    * 建立可用來登入電腦的新使用者。
+  * **新的或現有的子網路**︰決定應該建立新的虛擬網路和子網路，還是應該使用現有的子網路。 如果您已經有連接到內部部署網路的虛擬網路，請選取現有虛擬網路。
+  * **子網路識別碼**：虛擬機器應該連接的子網路識別碼。 選取將虛擬機器連接到內部部署網路之 VPN 或快速路由虛擬網路的子網路。 識別碼通常看起來像 /subscriptions/`<subscription id`>/resourceGroups/`<resource group name`>/providers/Microsoft.Network/virtualNetworks/`<virtual network name`>/subnets/`<subnet name`>
 
-輸入所有參數之後，請選取您想要使用的訂用帳戶和資源群組。 您可以選取現有資源群組，或選取下拉式功能表中的 [+ 新增] 來建立新的資源群組。 如果您建立新的資源群組，則也必須選取將在其中建立資源群組和虛擬機器的區域。
+1. 條款及條件  
+    檢閱及接受法律條款。
 
-請檢閱法律條款，並接受法律條款，然後按一下 [建立]。
+輸入所有參數之後，請按一下 [購買] 來確認畫面。 
 
 請注意，使用 Azure Marketplace 中的映像時，預設會部署 Azure VM 代理程式。
 
 #### <a name="configure-proxy-settings"></a>設定 Proxy 設定
-根據內部部署網路組態，如果透過 VPN 或快速路由將虛擬機器連接到您的內部部署網路，則可能需要在虛擬機器上設定 Proxy。 否則，虛擬機器可能無法存取網際網路，因此無法下載所需的擴充功能或收集監視資料。 請參閱這份文件的[設定 Proxy][deployment-guide-configure-proxy] 一章。
+根據內部部署網路組態，如果透過 VPN 或快速路由將虛擬機器連接到您的內部部署網路，則可能需要在虛擬機器上設定 Proxy。 否則，虛擬機器可能無法存取網際網路，也因此無法下載所需的擴充功能或收集監視資料。 請參閱這份文件的[設定 Proxy][deployment-guide-configure-proxy] 一章。
 
 #### <a name="join-domain-windows-only"></a>加入網域 (僅限 Windows)
 如果 Azure 中的部署是透過「Azure 站對站」或 Express Route (在 [規劃和實作指南][planning-guide] 中也稱為「跨單位」) 連接到內部部署 AD/DNS，則 VM 應該加入內部部署網域。 關於此步驟的考量，請參閱這份文件的 [將 VM 加入內部部署網域 (僅限 Windows)][deployment-guide-4.3] 一章。
 
 #### <a name="a-nameec323ac3-1de9-4c3a-b770-4ff701def65baconfigure-monitoring"></a><a name="ec323ac3-1de9-4c3a-b770-4ff701def65b"></a>設定監視
-如這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，設定 Azure Enhanced Monitoring Extension for SAP。
+為了確保擁有 SAP 支援的環境，請依照這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，設定 Azure Enhanced Monitoring Extension for SAP。
 
 請從這份文件的 [SAP 資源][deployment-guide-2.2] 一章所列的資源中，檢查「SAP 監視」的必要條件，以找出所需的最低 SAP 核心和 SAP Host Agent 版本。
 
 #### <a name="monitoring-check"></a>監視檢查
-如[針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解][deployment-guide-troubleshooting-chapter]一章所述，檢查監視是否正常運作。
+依照[針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解][deployment-guide-troubleshooting-chapter]一章所述，檢查監視是否正常運作。
 
 #### <a name="post-deployment-steps"></a>後置部署步驟
-VM 在建立之後將會進行部署，然後由您將所有必要軟體元件安裝到 VM。 因此，這類型的 VM 部署需要安裝已在某個其他 VM 的 Microsoft Azure 中的軟體，或作為可連接的磁碟。 或者，我們正在查看指定內部部署資產 (安裝共用) 連線的跨單位案例。
+建立 VM 之後，將會部署 VM，而您則必須將所有必要的軟體元件安裝到 VM。 因此，這種類型的 VM 部署會需要所要安裝的軟體是在 Microsoft Azure 的某個其他 VM 中，或是作為可連接的磁碟。 否則，我們所探討的就會是提供了內部部署資產 (安裝共用) 連線的跨單位案例。
 
 ### <a name="a-name54a1fc6d-24fd-4feb-9c57-ac588a55dff2ascenario-2-deploying-a-vm-with-a-custom-image-for-sap"></a><a name="54a1fc6d-24fd-4feb-9c57-ac588a55dff2"></a>案例 2：使用自訂映像為 SAP 部署 VM
-如 [規劃和實作指南][planning-guide] 中的詳細步驟所述，有方法可以準備和建立自訂映像，並使用它來建立多個新 VM。 流程圖中的一系列步驟如下︰
+如 [規劃和實作指南][planning-guide] 所述，您可以準備和建立自訂映像，並使用它來建立多個新 VM。 流程圖中的一系列步驟如下︰
 
 ![使用私人 Marketplace 中的 VM 映像部署適用於 SAP 系統之 VM 的流程圖][deployment-guide-figure-300]
 
 在流程圖之後，需要執行下列步驟︰
 
-#### <a name="create-virtual-machine"></a>建立虛擬機器
-若要透過「Azure 入口網站」使用私人 OS 映像來建立部署，請使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]上所發佈的其中一個 SAP 範本。
-您也可以使用 [PowerShell][virtual-machines-upload-image-windows-resource-manager]，手動建立虛擬機器。 
+#### <a name="create-the-virtual-machine"></a>建立虛擬機器
+若要透過「Azure 入口網站」使用私人 OS 映像來建立部署，請使用下列其中一個 SAP 範本。 這些是 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]上所發佈的範本。
+您也可以使用 [PowerShell][virtual-machines-upload-image-windows-resource-manager] 來手動建立虛擬機器。 
 
-* [2 層組態 (僅一部虛擬機器) 範本][sap-templates-2-tier-user-image]：如果您想要僅使用一部虛擬機器和您自己的 OS 映像來建立一個 2 層系統，請使用此範本。
-* [3 層組態 (多部虛擬機器) 範本][sap-templates-3-tier-user-image]：如果您想要使用多部虛擬機器和您自己的 OS 映像來建立一個 3 層系統，請使用此範本。
+* [2 層組態 (僅一部虛擬機器) 範本 (sap-2-tier-user-image)][sap-templates-2-tier-user-image]：如果您想要僅使用一部虛擬機器和您自己的 OS 映像來建立一個 2 層系統，請使用此範本。
+* [3 層組態 (多部虛擬機器) 範本 (sap-3-tier-user-image)][sap-templates-3-tier-user-image]：如果您想要使用多部虛擬機器和您自己的 OS 映像來建立一個 3 層系統，請使用此範本。
 
-開啟上述其中一個範本之後，Azure 入口網站會瀏覽至 [編輯參數] 面板。 輸入以下資訊：
+開啟上述其中一個範本之後，「Azure 入口網站」就會瀏覽至可讓您為範本輸入參數的畫面。 輸入以下資訊：
 
-* **sapSystemId**：SAP 系統識別碼
-* **osType**：您想要部署的作業系統類型 (Windows 或 Linux)
-* **sapSystemSize**：SAP 系統的大小
-  * 新系統將提供的 SAP 數量。 如果您不確定系統將需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
-* **systemAvailability**：(僅限 3 層範本) 系統可用性 
-  * 選取適用於 HA 安裝之組態的 HA。 將為 ASCS 建立兩部資料庫伺服器和兩部伺服器。
-* **storageType**：(僅限 2 層範本) 應該使用的儲存體類型 
-  * 對於更大的系統，強烈建議使用進階儲存體。 如需不同儲存體類型的詳細資訊，請閱讀 
-    * [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3]
-    * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
-    * [Microsoft Azure 儲存體簡介][storage-introduction]
-* **adminUsername** 和 **adminPassword**：使用者名稱和密碼
-  * 建立可用來登入電腦的新使用者。
-* **userImageVhdUri**：私人 OS 映像 VHD 的 URI (例如 https://`<accountname`>.blob.core.windows.net/vhds/userimage.vhd)
-* **userImageStorageAccount**：儲存私人 OS 映像的儲存體帳戶名稱 (例如上述範例 URI 中的 `<accountname`>)
-* **newOrExistingSubnet**︰決定應該建立新的虛擬網路和子網路，還是應該使用現有子網路。 如果您已經有連接到內部部署網路的虛擬網路，請選取現有虛擬網路。
-* **subnetId**：虛擬機器應該連接的子網路識別碼。 選取將虛擬機器連接到內部部署網路之 VPN 或快速路由虛擬網路的子網路。 識別碼通常看起來像 /subscriptions/`<subscription id`>/resourceGroups/`<resource group name`>/providers/Microsoft.Network/virtualNetworks/`<virtual network name`>/subnets/`<subnet name`>
+1. 基本概念
+  * **訂用帳戶**：要作為範本部署目的地的訂用帳戶
+  * **資源群組**：要作為範本部署目的地的資源群組。 您可以建立新的資源群組，或選取所選訂用帳戶中的現有資源群組。
+  * **位置**：要作為範本部署目的地的位置。 如果您選取了現有的資源群組，則會使用該資源群組的位置。
+1. 設定
+  * **SAP 系統識別碼**：SAP 系統識別碼
+  * **OS 類型**：您想要部署的作業系統類型 (Windows 或 Linux)
+  * **SAP 系統大小**：SAP 系統的大小
+    * 新系統將提供的 SAP 數量。 如果您不確定系統將需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
+  * **系統可用性**：(僅限 3 層範本) 系統可用性 
+    * 選取適用於 HA 安裝之組態的 HA。 將為 ASCS 建立兩部資料庫伺服器和兩部伺服器。
+  * **儲存體類型**：(僅限 2 層範本) 應該使用的儲存體類型 
+    * 對於更大的系統，強烈建議使用進階儲存體。 如需不同儲存體類型的詳細資訊，請閱讀 
+      * [針對 SAP DBMS 執行個體使用 Azure 進階 SSD 儲存體][2367194]
+      * [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3]
+      * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
+      * [Microsoft Azure 儲存體簡介][storage-introduction]
+  * **使用者映像 VHD URI**：私人 OS 映像 VHD 的 URI (例如 https://`<accountname`>.blob.core.windows.net/vhds/userimage.vhd)
+  * **使用者映像儲存體帳戶**：儲存私人 OS 映像的儲存體帳戶名稱 (例如上述範例 URI 中的 `<accountname`>)
+  * **管理員使用者名稱**和**管理員密碼**：使用者名稱和密碼
+    * 建立可用來登入電腦的新使用者。
+  * **新的或現有的子網路**︰決定應該建立新的虛擬網路和子網路，還是應該使用現有的子網路。 如果您已經有連接到內部部署網路的虛擬網路，請選取現有虛擬網路。
+  * **子網路識別碼**：虛擬機器應該連接的子網路識別碼。 選取將虛擬機器連接到內部部署網路之 VPN 或快速路由虛擬網路的子網路。 識別碼通常看起來像 /subscriptions/`<subscription id`>/resourceGroups/`<resource group name`>/providers/Microsoft.Network/virtualNetworks/`<virtual network name`>/subnets/`<subnet name`>
 
-輸入所有參數之後，請選取您想要使用的訂用帳戶和資源群組。 您可以選取現有資源群組，或選取下拉式功能表中的 [+ 新增] 來建立新的資源群組。 如果您建立新的資源群組，則也必須選取將在其中建立資源群組和虛擬機器的區域。
+1. 條款及條件  
+    檢閱及接受法律條款。
 
-請檢閱法律條款，並接受法律條款，然後按一下 [建立]。
+輸入所有參數之後，請按一下 [購買] 來確認畫面。
 
 #### <a name="install-vm-agent-linux-only"></a>安裝 VM 代理程式 (僅限 Linux)
-如果您想要使用上述範本，必須已在使用者映像中安裝 Linux 代理程式。 否則，部署將會失敗。 請如這份文件的 [下載、安裝和啟用 Azure VM 代理程式][deployment-guide-4.4] 一章所述，下載「VM 代理程式」並安裝在使用者映像中。
+如果您想要使用上述範本，必須已在使用者映像中安裝 Linux 代理程式。 否則，部署將會失敗。 請依照這份文件的 [下載、安裝和啟用 Azure VM 代理程式][deployment-guide-4.4] 一章所述，下載「VM 代理程式」並安裝在使用者映像中。
 如果您未使用上述範本，則之後也可以安裝 VM 代理程式。
 
 #### <a name="join-domain-windows-only"></a>加入網域 (僅限 Windows)
-如果 Azure 中的部署是透過「Azure 站對站」或 Express Route (在 [規劃和實作指南][planning-guide] 中也稱為「跨單位」) 連接到內部部署 AD/DNS，則 VM 應該加入內部部署網域。 關於此步驟的考量，請參閱這份文件的 [將 VM 加入內部部署網域 (僅限 Windows)][deployment-guide-4.3] 一章。
+如果 Azure 中的部署是透過「Azure 站對站」或 Express Route (在 [規劃和實作指南][planning-guide] 中也稱為「跨單位」) 連接到內部部署 AD/DNS，則 VM 應該加入內部部署網域。 若要了解此步驟的考量事項，請參閱這份文件的 [將 VM 加入內部部署網域 (僅限 Windows)][deployment-guide-4.3] 一章。
 
 #### <a name="configure-proxy-settings"></a>設定 Proxy 設定
 根據內部部署網路組態，如果透過 VPN 或快速路由將虛擬機器連接到您的內部部署網路，則可能需要在虛擬機器上設定 Proxy。 否則，虛擬機器可能無法存取網際網路，因此無法下載所需的擴充功能或收集監視資料。 請參閱這份文件的[設定 Proxy][deployment-guide-configure-proxy] 一章。
 
 #### <a name="configure-monitoring"></a>設定監視
-如這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，設定 Azure Monitoring Extension for SAP。
+為了確保擁有 SAP 支援的環境，請依照這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，設定 Azure Monitoring Extension for SAP。
 請從這份文件的 [SAP 資源][deployment-guide-2.2] 一章所列的資源中，檢查「SAP 監視」的必要條件，以找出所需的最低 SAP 核心和 SAP Host Agent 版本。
 
 #### <a name="monitoring-check"></a>監視檢查
-如[針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解][deployment-guide-troubleshooting-chapter]一章所述，檢查監視是否正常運作。
+依照[針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解][deployment-guide-troubleshooting-chapter]一章所述，檢查監視是否正常運作。
 
 ### <a name="a-namea9a60133-a763-4de8-8986-ac0fa33aa8c1ascenario-3-moving-a-vm-from-on-premises-using-a-non-generalized-azure-vhd-with-sap"></a><a name="a9a60133-a763-4de8-8986-ac0fa33aa8c1"></a>案例 3：使用非一般化 Azure VHD 搭配 SAP 從內部部署環境移動 VM
-此案例是要解決只以其目前形式和形狀從內部部署移至 Azure 的 SAP 系統的情況。 表示 Windows 或 Linux 主機名稱和 SAP SID 或這類項目的名稱未變更。 在此情況下，VHD 在部署期間不是當成映像，而是直接作為 OS 磁碟。 就部署而言，此案例與先前的兩個案例不同，不同處在於部署期間無法自動安裝 VM 代理程式。 因此，Azure VM 代理程式必須從 Microsoft 進行下載，而且之後必須在 VM 內手動進行安裝並啟用。 該工作成功之後，您可以繼續起始 SAP Host Monitoring Azure Extension 和其組態。 如需 Azure VM 代理程式之這項功能的詳細資訊，請參閱本文︰
+如果您打算將 SAP 系統以其目前的形式和狀態 (相同的主機名稱和 SAP SID) 從內部部署環境移到 Azure，則在部署時，VHD 就會直接作為 OS 磁碟而不是當作映像來參照。 在此情況下，進行部署時，將不會自動安裝「VM 代理程式」。 由於「VM 代理程式」和 Azure Enhanced Monitoring Extension for SAP 是獲得 SAP 支援的先決條件，因此在建立虛擬機器之後，您必須手動下載、安裝和啟用這兩個元件。 
 
-[註解]: <> (MSSedusch TODO 更新下方的 Windows 連結) 
+如需有關「Azure VM 代理程式」的詳細資料，請參閱這篇文章︰
+
+[comment]: <> (MSSedusch TODO 更新下方的 Windows 連結) 
 
 - - -
-> ![ Windows][Logo_Windows]  Windows
+> ![Windows][Logo_Windows] Windows
 > 
 > <http://blogs.msdn.com/b/wats/archive/2014/02/17/bginfo-guest-agent-extension-for-azure-vms.aspx>
 > 
@@ -515,35 +536,42 @@ VM 在建立之後將會進行部署，然後由您將所有必要軟體元件�
 
 ![使用 VM 磁碟部署適用於 SAP 系統之 VM 的流程圖][deployment-guide-figure-400]
 
-假設已上傳磁碟並在 Azure 中定義 (請參閱 [規劃和實作指南][planning-guide])，請依照下列步驟操作。
+如果已上傳磁碟並在 Azure 中定義 (請參閱 [規劃和實作指南][planning-guide])，請依照下列步驟操作：
 
 #### <a name="create-virtual-machine"></a>建立虛擬機器
-若要透過「Azure 入口網站」使用私人 OS 磁碟來建立部署，請使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]上所發佈的 SAP 範本。 您也可以使用 PowerShell 或 Azure CLI 手動建立虛擬機器。
+若要透過「Azure 入口網站」使用私人 OS 磁碟來建立部署，請使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]上所發佈的 SAP 範本。 您也可以使用 [PowerShell][virtual-machines-windows-create-vm-specialized] 來手動建立虛擬機器。
 
-* [2 層組態 (僅一部虛擬機器) 範本][sap-templates-2-tier-os-disk]
+* [2 層組態 (僅一部虛擬機器) 範本 (sap-2-tier-user-disk)][sap-templates-2-tier-os-disk]
   * ：如果您想要僅使用一部虛擬機器來建立一個 2 層系統，請使用此範本。
 
-開啟上述範本之後，Azure 入口網站會瀏覽至 [編輯參數] 面板。 輸入以下資訊：
+開啟上述其中一個範本之後，「Azure 入口網站」就會瀏覽至可讓您為範本輸入參數的畫面。 輸入以下資訊：
 
-* **sapSystemId**：SAP 系統識別碼
-* **osType**：您想要部署的作業系統類型 (Windows 或 Linux)
-* **sapSystemSize**：SAP 系統的大小
-  * 新系統將提供的 SAP 數量。 如果您不確定系統將需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
-* **storageType**：(僅限 2 層範本) 應該使用的儲存體類型 
-  * 對於更大的系統，強烈建議使用進階儲存體。 如需不同儲存體類型的詳細資訊，請閱讀 
-    * [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3]
-    * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
-    * [Microsoft Azure 儲存體簡介][storage-introduction]
-* **osDiskVhdUri**：私人 OS 磁碟的 URI (例如 https://`<accountname`>.blob.core.windows.net/vhds/osdisk.vhd)
-* **newOrExistingSubnet**︰決定應該建立新的虛擬網路和子網路，還是應該使用現有子網路。 如果您已經有連接到內部部署網路的虛擬網路，請選取現有虛擬網路。
-* **subnetId**：虛擬機器應該連接的子網路識別碼。 選取將虛擬機器連接到內部部署網路之 VPN 或快速路由虛擬網路的子網路。 識別碼通常看起來像 /subscriptions/`<subscription id`>/resourceGroups/`<resource group name`>/providers/Microsoft.Network/virtualNetworks/`<virtual network name`>/subnets/`<subnet name`>
+1. 基本概念
+  * **訂用帳戶**：要作為範本部署目的地的訂用帳戶
+  * **資源群組**：要作為範本部署目的地的資源群組。 您可以建立新的資源群組，或選取所選訂用帳戶中的現有資源群組。
+  * **位置**：要作為範本部署目的地的位置。 如果您選取了現有的資源群組，則會使用該資源群組的位置。
+1. 設定
+  * **SAP 系統識別碼**：SAP 系統識別碼
+  * **OS 類型**：您想要部署的作業系統類型 (Windows 或 Linux)
+  * **SAP 系統大小**：SAP 系統的大小
+    * 新系統將提供的 SAP 數量。 如果您不確定系統將需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
+  * **儲存體類型**：(僅限 2 層範本) 應該使用的儲存體類型 
+    * 對於更大的系統，強烈建議使用進階儲存體。 如需不同儲存體類型的詳細資訊，請閱讀
+      * [針對 SAP DBMS 執行個體使用 Azure 進階 SSD 儲存體][2367194] 
+      * [DBMS 指南][dbms-guide] 的 [Microsoft Azure 儲存體][dbms-guide-2.3]
+      * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
+      * [Microsoft Azure 儲存體簡介][storage-introduction]
+  * **OS 磁碟 VHD URI**：私人 OS 磁碟的 URI (例如 https://`<accountname`>.blob.core.windows.net/vhds/osdisk.vhd)
+  * **新的或現有的子網路**︰決定應該建立新的虛擬網路和子網路，還是應該使用現有的子網路。 如果您已經有連接到內部部署網路的虛擬網路，請選取現有虛擬網路。
+  * **子網路識別碼**：虛擬機器應該連接的子網路識別碼。 選取將虛擬機器連接到內部部署網路之 VPN 或快速路由虛擬網路的子網路。 識別碼通常看起來像 /subscriptions/`<subscription id`>/resourceGroups/`<resource group name`>/providers/Microsoft.Network/virtualNetworks/`<virtual network name`>/subnets/`<subnet name`>
 
-輸入所有參數之後，請選取您想要使用的訂用帳戶和資源群組。 您可以選取現有資源群組，或選取下拉式功能表中的 [+ 新增] 來建立新的資源群組。 如果您建立新的資源群組，則也必須選取將在其中建立資源群組和虛擬機器的區域。
+1. 條款及條件  
+    檢閱及接受法律條款。
 
-請檢閱法律條款，並接受法律條款，然後按一下 [建立]。
+輸入所有參數之後，請按一下 [購買] 來確認畫面。
 
 #### <a name="install-vm-agent"></a>安裝 VM 代理程式
-如果您想要使用上述範本，必須已在 OS 磁碟中安裝 Linux 代理程式。 否則，部署將會失敗。 請如這份文件的 [下載、安裝和啟用 Azure VM 代理程式][deployment-guide-4.4] 一章所述，在 VM 中下載和安裝「VM 代理程式」。
+如果您想要使用上述範本，則「VM 代理程式」必須安裝在 OS 磁碟中。 否則，部署將會失敗。 請依照這份文件的 [下載、安裝和啟用 Azure VM 代理程式][deployment-guide-4.4] 一章所述，下載「VM 代理程式」並安裝在 VM 中。
 
 如果您未使用上述範本，則之後也可以安裝 VM 代理程式。
 
@@ -554,44 +582,32 @@ VM 在建立之後將會進行部署，然後由您將所有必要軟體元件�
 根據內部部署網路組態，如果透過 VPN 或快速路由將虛擬機器連接到您的內部部署網路，則可能需要在虛擬機器上設定 Proxy。 否則，虛擬機器可能無法存取網際網路，因此無法下載所需的擴充功能或收集監視資料。 請參閱這份文件的[設定 Proxy][deployment-guide-configure-proxy] 一章。
 
 #### <a name="configure-monitoring"></a>設定監視
-如這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，設定 Azure Enhanced Monitoring Extension for SAP。
+為了確保擁有 SAP 支援的環境，請依照這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，設定 Azure Enhanced Monitoring Extension for SAP。
 
 請從這份文件的 [SAP 資源][deployment-guide-2.2] 一章所列的資源中，檢查「SAP 監視」的必要條件，以找出所需的最低 SAP 核心和 SAP Host Agent 版本。
 
 #### <a name="monitoring-check"></a>監視檢查
-如[針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解][deployment-guide-troubleshooting-chapter]一章所述，檢查監視是否正常運作。
+依照[針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解][deployment-guide-troubleshooting-chapter]一章所述，檢查監視是否正常運作。
 
 ### <a name="scenario-4-updating-the-monitoring-configuration-for-sap"></a>案例 4︰更新 SAP 的監視組態
-有一些情況是您需要更新監視組態︰
+在下列情況下，您必須更新 SAP 監視組態︰
 
-* 聯合 MS/SAP 小組已擴充監視功能，並決定新增更多計數器或刪除一些計數器。 
-* Microsoft 推出新版本的基礎 Azure 基礎結構來提供監視資料，並針對這些變更來調整 Azure Enhanced Monitoring Extension for SAP。
-* 您可以新增掛接到 Azure VM 的額外 VHD，或移除 VHD。 在此情況下，您需要更新儲存體相關資料的集合。 如果您透過新增端點、刪除端點或將 IP 位址指派給 VM 來變更組態，則這不會影響監視組態。
-* 您可以變更 Azure VM 大小 (例如從 A5 到任何其他大小的 VM)。
-* 您可以在 Azure VM 中新增網路介面
+* 聯合 MS/SAP 小組已延伸監視功能，並要求增加或減少計數器。 
+* Microsoft 推出新版本的基礎 Azure 基礎結構來提供監視資料，而 Azure Enhanced Monitoring Extension for SAP 必須配合這些變更。
+* 您將額外的 VHD 掛接到 Azure VM 或是移除 VHD。 在此情況下，您需要更新儲存體相關資料的集合。 如果您透過新增端點、刪除端點或將 IP 位址指派給 VM 來變更組態，則這不會影響監視組態。
+* 您變更 Azure VM 的大小 (例如從 A5 變更成任何其他 VM 大小)。
+* 您為 Azure VM 新增網路介面
 
 若要更新監視組態，請依照下列方式繼續進行︰
 
 * 依照這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章中所述的步驟，更新監視基礎結構。 重新執行本章所述的指令碼將會偵測到已部署監視組態，並且將執行對監視組態的必要變更。 
 
-- - -
-> ![ Windows][Logo_Windows]  Windows
-> 
-> 對於更新 Azure VM 代理程式，並不需要使用者介入。 VM 代理程式會自動自行更新，而且不需要 VM 重新開機。
-> 
-> ![ Linux][Logo_Linux] Linux
-> 
-> 請依照[這篇文章][virtual-machines-linux-update-agent]中的步驟來更新「Azure Linux 代理程式」。 
-> 
-> 
-
-- - -
 ## <a name="detailed-single-deployment-steps"></a>詳細單一部署步驟
 ### <a name="a-name604bcec2-8b6e-48d2-a944-61b0f5dee2f7adeploying-azure-powershell-cmdlets"></a><a name="604bcec2-8b6e-48d2-a944-61b0f5dee2f7"></a>部署 Azure PowerShell Cmdlet
 * 移至 <https://azure.microsoft.com/downloads/>
-* 在＜命令列工具＞小節下方，有一個小節稱為＜Windows PowerShell＞。 遵循 [安裝] 連結。
+* 在＜命令列工具＞一節下方有一個稱為＜PowerShell＞的小節。 依循 [Windows 安裝] 連結進行操作。
 * 所跳出的 Microsoft 下載管理員會包含結尾為 .exe 的行項目。 選取 [執行] 選項。
-* 會出現快顯視窗，詢問是否要執行 Microsoft Web Platform Installer。 按 [是]
+* 會出現快顯視窗，詢問是否要執行 Microsoft Web Platform Installer。 按 [是]。
 * 即會出現與下面類似的畫面：
 
 ![適用於 Azure PowerShell Cmdlet 的安裝畫面][deployment-guide-figure-500]
@@ -599,7 +615,7 @@ VM 在建立之後將會進行部署，然後由您將所有必要軟體元件�
 
 * 按 [安裝]，並接受使用者授權合約。
 
-經常檢查是否已更新 PowerShell Cmdlet。 通常會每個月進行更新。 最簡單的做法是依照上述的安裝步驟操作，直到[這張][deployment-guide-figure-5]圖所顯示的安裝畫面為止。 在此畫面中，會顯示 Cmdlet 的發行日期以及實際版本號碼。 除非 SAP 附註 [1928533] 或 [2015553] 有不同的指定，否則建議使用最新版的 Azure PowerShell Cmdlet。
+經常檢查是否已更新 PowerShell Cmdlet。 通常會每個月進行更新。 最簡單的做法是依照上述安裝步驟進行操作，直到出現[這張][deployment-guide-figure-5]圖所顯示的安裝畫面為止。 在此畫面中，會顯示 Cmdlet 的發行日期以及實際版本號碼。 除非 SAP 附註 [1928533] 或 [2015553] 有不同的指定，否則建議使用最新版的 Azure PowerShell Cmdlet。
 
 使用 PS 命令，可以檢查桌上型/膝上型電腦上目前安裝的 Azure Cmdlet 版本：
 
@@ -615,7 +631,7 @@ Import-Module Azure
 
 如果桌上型/膝上型電腦上安裝的 Azure Cmdlet 版本是最新版本，則啟動 Microsoft Web Platform Installer 後的第一個畫面會與[這張][deployment-guide-figure-5]圖所示的畫面略有不同。
 
-請注意下[圖][deployment-guide-figure-7]中下面的紅色圓圈。
+請注意下面這個下[圖][deployment-guide-figure-7]中紅色圈選的部分。
 
 ![Azure PowerShell Cmdlet 的安裝畫面，表示已安裝最新版本的 Azure PS Cmdlet][deployment-guide-figure-700]
 <a name="figure-7"></a>
@@ -640,23 +656,27 @@ azure --version
 <a name="0ad010e6-f9b5-4c21-9c09-bb2e5efb3fda"></a>
 
 ### <a name="a-name31d9ecd6-b136-4c73-b61e-da4a29bbc9ccajoin-vm-into-on-premises-domain-windows-only"></a><a name="31d9ecd6-b136-4c73-b61e-da4a29bbc9cc"></a>將 VM 加入內部部署網域 (僅限 Windows)
-如果將 SAP VM 部署到將內部部署 AD 和 DNS 擴充到 Azure 的跨單位案例，則必須將 VM 加入內部部署網域。 將 VM 加入內部部署網域的詳細步驟以及成為內部部署網域成員所需的額外軟體是依客戶而定。 通常將 VM 加入內部部署網域，即表示安裝其他軟體 (例如惡意程式碼防護軟體或者各種備份或監視軟體代理程式)。
+如果您將 SAP VM 部署到其中內部部署 AD 和 DNS 會延伸到 Azure 的跨單位案例，則應該將 VM 加入內部部署網域。 將 VM 加入內部部署網域的詳細步驟以及成為內部部署網域成員所需的額外軟體是依客戶而定。 通常將 VM 加入內部部署網域，即表示安裝其他軟體 (例如惡意程式碼防護軟體或者各種備份或監視軟體代理程式)。
 
 此外，您需要確定如果在加入網域時強制使用網際網路 Proxy 設定，則來賓 VM 中的 Windows 本機系統帳戶 (S-1-5-18) 也會有這些設定。 最簡單的方式是使用適用於網域內系統的網域群組原則來強制使用 Proxy。
 
 ### <a name="a-namec7cbb0dc-52a4-49db-8e03-83e7edc2927dadownload-install-and-enable-azure-vm-agent"></a><a name="c7cbb0dc-52a4-49db-8e03-83e7edc2927d"></a>下載、安裝和啟用 Azure VM 代理程式
-從非一般化 (例如未針對 Windows 進行 sysprep 處理) 的 OS 映像部署適用於 SAP 的 VM 時，需要下列步驟。 針對從 Azure Marketplace 部署的虛擬機器，不需要安裝代理程式。 這些映像已經包含 Azure 代理程式。
+針對從未一般化 (例如未針對 Windows 進行 sysprep 處理) 的 OS 映像部署的虛擬機器，您必須手動下載、安裝和啟用「Azure VM 代理程式」。 
+
+針對從 Azure Marketplace 部署的虛擬機器，則不需進行此步驟，因為這些映像已經包含「Azure VM 代理程式」。
 
 #### <a name="a-nameb2db5c9a-a076-42c6-9835-16945868e866awindows"></a><a name="b2db5c9a-a076-42c6-9835-16945868e866"></a>Windows
 * 下載 Azure VM 代理程式︰
   * 從下列位置下載 Azure VM 代理程式安裝程式套件︰<https://go.microsoft.com/fwlink/?LinkId=394789>
   * 在膝上型電腦或伺服器上本機儲存 VM 代理程式 MSI 封裝
 * 安裝 Azure VM 代理程式︰
-  * 使用終端機服務 (RDP) 連接到已部署的 Azure VM
-  * 在 VM 上開啟 Windows 檔案總管視窗，然後開啟 VM 代理程式之 MSI 檔案的目標目錄
+  * 使用遠端桌面 (RDP) 連接到已部署的 Azure VM
+  * 在 VM 上開啟「Windows 檔案總管」視窗，然後選擇「VM 代理程式」之 MSI 檔案的目標目錄
   * 將 Azure VM 代理程式安裝程式 MSI 檔案從本機膝上型電腦/伺服器拖放到 VM 中 VM 代理程式的目標目錄
   * 按兩下 VM 中的 MSI 檔案
   * 針對加入內部部署網域的 VM，請確定最終網際網路 Proxy 設定也適用於 VM 中的「Windows 本機系統帳戶」(S-1-5-18)，如[設定 Proxy][deployment-guide-configure-proxy] 一章所述。 VM 代理程式將在此內容中執行，而且必須可以連接到 Azure。
+
+「Azure VM 代理程式」的更新無需使用者介入。 VM 代理程式會自動自行更新，而且不需要 VM 重新開機。
 
 #### <a name="a-name6889ff12-eaaf-4f3c-97e1-7c9edc7f7542alinux"></a><a name="6889ff12-eaaf-4f3c-97e1-7c9edc7f7542"></a>Linux
 請使用下列命令來安裝適用於 Linux 的 VM 代理程式
@@ -672,20 +692,22 @@ sudo zypper install WALinuxAgent
 sudo yum install WALinuxAgent
 ```
 
+請依照[這篇文章][virtual-machines-linux-update-agent]中的步驟來更新「Azure Linux 代理程式」(如果已經安裝此代理程式)。 
+
 ### <a name="a-namebaccae00-6f79-4307-ade4-40292ce4e02daconfigure-proxy"></a><a name="baccae00-6f79-4307-ade4-40292ce4e02d"></a>設定 Proxy
 在 Windows 和 Linux 中，設定 Proxy 的步驟不同。
 
-#### <a name="windows"></a> Windows
-這些設定也必須適用於 LocalSystem 帳戶，才能存取網際網路。 如果您的 Proxy 設定不是透過群組原則所設定，則可以遵循這些步驟為 LocalSystem 帳戶進行設定。
+#### <a name="windows"></a>Windows
+這些設定也必須適用於 LocalSystem 帳戶，才能存取網際網路。 如果您的 Proxy 設定不是透過群組原則所設定，則您可以為 LocalSystem 帳戶進行這些設定。 請遵循下列步驟：
 
 1. 開啟 gpedit.msc
-2. 瀏覽至 [電腦設定] –> [系統管理範本] -> [Windows 元件] -> [Internet Explorer]，然後啟用 [為每台電腦建立 Proxy 設定 - 而不是每個使用者]
+2. 瀏覽至 [電腦設定] > [系統管理範本] > [Windows 元件] > [Internet Explorer]。 請確定 [為每台電腦建立 Proxy 設定 - 而不是每個使用者] 已設定為 [已啟用]。
 3. 開啟 [控制台]，然後瀏覽至 [網路和網際網路] -> [網際網路選項]
 4. 開啟 [連線] 索引標籤，然後按一下 [區域網路 (LAN) 設定]
 5. 停用 [自動偵測設定]
-6. 啟用 [在您的區域網路使用 Proxy 伺服器]，然後輸入 Proxy 主機和連接埠
+6. 啟用 [為您的 LAN 使用 Proxy 伺服器]，然後輸入 Proxy 位址和連接埠
 
-#### <a name="linux"></a> Linux
+#### <a name="linux"></a>Linux
 在 Microsoft Azure 客體代理程式的組態檔 (位於 /etc/waagent.conf) 中設定正確的 Proxy。 必須設定下列參數：
 
 ```
@@ -709,7 +731,7 @@ sudo service waagent restart
 ![強制通道][deployment-guide-figure-50]
 
 ### <a name="a-named98edcd3-f2a1-49f7-b26a-07448ceb60caaconfigure-azure-enhanced-monitoring-extension-for-sap"></a><a name="d98edcd3-f2a1-49f7-b26a-07448ceb60ca"></a>設定 Azure Enhanced Monitoring Extension for SAP
-如 [適用於 Microsoft Azure 上 SAP 的 VM 部署案例][deployment-guide-3] 一章所述準備好 VM 之後，就會將「Azure VM 代理程式」安裝在電腦中。 下一個重要步驟是部署 Azure Enhanced Monitoring Extension for SAP (位於 Microsoft Azure 全球資料中心內的 Azure 擴充功能儲存機制)。 如需更多詳細資料，請參閱 [規劃和實作指南][planning-guide-9.1]。 
+在依照 [適用於 Microsoft Azure 上 SAP 的 VM 部署案例][deployment-guide-3] 一章所述準備好 VM 之後，「Azure VM 代理程式」就會安裝在虛擬機器中。 下一個重要步驟是部署 Azure Enhanced Monitoring Extension for SAP (可從 Microsoft Azure 全球資料中心內的 Azure 擴充功能儲存機制中取得)。 如需更多詳細資料，請參閱 [規劃和實作指南][planning-guide-9.1]。 
 
 您可以使用 Azure PowerShell 或 Azure CLI 安裝和設定 Azure Enhanced Monitoring Extension for SAP。 如果您想要使用 Windows 電腦在 Windows 或 Linux VM 上安裝該擴充功能，請參閱 [Azure PowerShell][deployment-guide-4.5.1] 一章。 若要使用 Linux 桌上型電腦在 Linux VM 上安裝該擴充功能，請參閱 [Azure CLI][deployment-guide-4.5.2] 一章。
 
@@ -717,7 +739,8 @@ sudo service waagent restart
 若要執行安裝 Azure Enhanced Monitoring Extension for SAP 的工作，請執行下列步驟︰
 
 * 確定您已安裝最新版本的 Microsoft Azure PowerShell Cmdlet。 請參閱這份文件的 [部署 Azure PowerShell Cmdlet][deployment-guide-4.1] 一章。  
-* 執行下列 PowerShell Cmdlet。 如需可用環境的清單，請執行 Commandlet Get-AzureRmEnvironment。 如果您想要使用公用 Azure，則您的環境是 AzureCloud。 若為中國的 Azure，請選取 AzureChinaCloud。
+* 執行下列 PowerShell Cmdlet。
+    如需可用環境的清單，請執行 Commandlet Get-AzureRmEnvironment。 如果您想要使用公用 Azure，則您的環境是 AzureCloud。 若為中國的 Azure，請選取 AzureChinaCloud。
 
 ```powershell
     $env = Get-AzureRmEnvironment -Name <name of the environment>
@@ -741,7 +764,7 @@ sudo service waagent restart
 * 其中一行輸出將提供實際更新監視組態的狀態。
 * 另一行將顯示已部署或更新組態的確認。
 * 輸出的最後一行是參考資訊，顯示測試監視組態的可能性。
-* 若要確認 Azure Enhanced Monitoring 的所有步驟是否已成功執行，以及「Azure 基礎結構」是否提供必要的資料，請繼續進行 Azure Enhanced Monitoring Extension for SAP 的整備檢查 (如這份文件的 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1] 一章所述)。 
+* 若要確認 Azure Enhanced Monitoring 的所有步驟是否都已成功執行，以及「Azure 基礎結構」是否提供必要的資料，請繼續進行「Azure Enhanced Monitoring Extension for SAP 整備檢查」(如這份文件的 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1] 一章所述)。
 * 若要繼續執行此動作，請等候 15-30 分鐘，直到 Azure Diagnostics 收集到相關資料。
 
 #### <a name="a-name408f3779-f422-4413-82f8-c57a23b4fc2faazure-cli-for-linux-vms"></a><a name="408f3779-f422-4413-82f8-c57a23b4fc2f"></a>適用於 Linux VM 的 Azure CLI
@@ -780,13 +803,13 @@ sudo service waagent restart
 ## <a name="a-name564adb4f-5c95-4041-9616-6635e83a810bachecks-and-troubleshooting-for-end-to-end-monitoring-setup-for-sap-on-azure"></a><a name="564adb4f-5c95-4041-9616-6635e83a810b"></a>針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解
 部署 Azure VM 並設定相關 Azure 監視基礎結構之後，請檢查 Azure Enhanced Monitoring 的所有元件是否正確地運作。 
 
-因此，請執行 Azure Enhanced Monitoring Extension for SAP 整備檢查 (如 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1] 一章所述)。 如果這項檢查的結果是正向的，並且取得所有相關效能計數器，則已成功設定 Azure 監視。 在此情況下，請繼續安裝 SAP Host Agent (如這份文件的 [SAP 資源][deployment-guide-2.2] 一章所列的「SAP 附註」所述)。 如果整備檢查結果指出遺失計數器，請繼續執行「Azure 監視基礎結構」的健康狀態檢查 (如 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2] 一章所述)。 如果發生任何「Azure 監視組態」問題，請參閱 [適用於 SAP 之 Azure 監視基礎結構的進一步疑難排解][deployment-guide-5.3] 一章，以取得進一步的疑難排解說明。
+因此，請執行「Azure Enhanced Monitoring Extension for SAP 整備檢查」(如 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1] 一章所述)。 如果這項檢查的結果是正向的，並且取得所有相關效能計數器，則已成功設定 Azure 監視。 在此情況下，請繼續安裝 SAP Host Agent (如這份文件的 [SAP 資源][deployment-guide-2.2] 一章所列的「SAP 附註」所述)。 如果「整備檢查」結果指出遺失計數器，請繼續執行「Azure 監視基礎結構的健康狀態檢查」(如 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2] 一章所述)。 如果發生任何「Azure 監視組態」問題，請參閱 [適用於 SAP 之 Azure 監視基礎結構的進一步疑難排解][deployment-guide-5.3] 一章，以取得進一步的疑難排解說明。
 
 ### <a name="a-namebb61ce92-8c5c-461f-8c53-39f5e5ed91f2areadiness-check-for-azure-enhanced-monitoring-for-sap"></a><a name="bb61ce92-8c5c-461f-8c53-39f5e5ed91f2"></a>Azure Enhanced Monitoring for SAP 整備檢查
 運用這項檢查，您可以確定基礎 Azure 監視基礎結構完整提供 SAP 應用程式內所顯示的度量。 
 
 #### <a name="execute-the-readiness-check-on-a-windows-vm"></a>在 Windows VM 上執行整備檢查
-若要執行整備檢查，請登入 Azure 虛擬機器 (不需要系統管理員帳戶)，然後執行下列步驟︰
+為了執行「整備檢查」，請登入「Azure 虛擬機器」(不一定要使用系統管理員帳戶)，然後執行下列步驟︰
 
 * 開啟 Windows 命令提示字元，並切換到 Azure Monitoring Extension for SAP 的安裝資料夾 C:\Packages\Plugins\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\`<version`>\drop
 
@@ -801,7 +824,7 @@ sudo service waagent restart
 > 
 > 
 
-如果未安裝 Azure Enhanced Monitoring Extension 或 ‘AzureEnhancedMonitoring’ 服務未執行，即表示尚未正確設定擴充功能。 在此情況下，請遵循 [適用於 SAP 之 Azure 監視基礎結構的進一步疑難排解][deployment-guide-5.3] 一章，以取得如何重新部署擴充功能的詳細指示。
+如果未安裝 Azure Enhanced Monitoring Extension 或 ‘AzureEnhancedMonitoring’ 服務未執行，即表示尚未正確設定擴充功能。 在此情況下，請依照 [適用於 SAP 之 Azure 監視基礎結構的進一步疑難排解][deployment-guide-5.3] 一章，以取得如何重新部署擴充功能的詳細指示。
 
 ##### <a name="check-the-output-of-azperflibexe"></a>檢查 azperflib.exe 的輸出
 azperflib.exe 輸出會顯示適用於 SAP 的所有已填入 Azure 效能計數器。 在所收集計數器清單底部，您會看到摘要和健康狀態指標，表示 Azure 監視的狀態。 
@@ -813,12 +836,14 @@ azperflib.exe 輸出會顯示適用於 SAP 的所有已填入 Azure 效能計數
 
 您可以解譯結果值，如下所示︰
 
-| Azperflib.exe 結果值 | Azure 監視整備狀態 |
+| Azperflib.exe 結果值 | Azure 監視健全狀態 |
 | --- | --- |
+| **API 呼叫 - 無法使用** | 無法使用的計數器可能是不適用於虛擬機器組態或發生錯誤 - 請查看健全狀態 | 
 | **計數器總計：空白** |下列 2 個 Azure 儲存體計數器可為空白： <ul><li>儲存體讀取 Op 延遲伺服器毫秒</li><li>儲存體讀取 Op 延遲 E2E 毫秒</li></ul>所有其他計數器則都必須包含值。 |
 | **健康狀態檢查** |只有在傳回狀態顯示正常時，才是正常 |
+| **診斷** |健全狀態的相關詳細資訊 |
 
-如果 azperflib.exe 的這兩個傳回值未都顯示已正確地傳回所有填入的計數器，請依照「Azure 監視基礎結構組態」的健康狀態檢查指示操作 (如下面的 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2] 一章所述)。
+如果健康狀態檢查值不是 OK，請依照「Azure 監視基礎結構組態的健康狀態檢查」指示操作 (如下面的 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2] 一章所述)。
 
 #### <a name="execute-the-readiness-check-on-a-linux-vm"></a>在 Linux VM 上執行整備檢查
 若要執行整備檢查，請使用 SSH 連接到 Azure 虛擬機器，然後執行下列步驟︰
@@ -880,7 +905,7 @@ Test-AzureRmVMAEMExtension -ResourceGroupName <resource group name> -VMName <vir
 請確定每項檢查都標示為正常。 如果部分檢查不正常，請執行更新 Cmdlet (如這份文件的 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述)。 請再多等待 15 分鐘，然後重新執行 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1] 和 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2] 章節中所述的檢查。 如果檢查仍然指出部分或所有計數器有問題，請繼續進行 [適用於 SAP 之 Azure 監視基礎結構的進一步疑難排解][deployment-guide-5.3] 一章。
 
 ### <a name="a-namefe25a7da-4e4e-4388-8907-8abc2d33cfd8afurther-troubleshooting-of-azure-monitoring-infrastructure-for-sap"></a><a name="fe25a7da-4e4e-4388-8907-8abc2d33cfd8"></a>適用於 SAP 之 Azure 監視基礎結構的進一步疑難排解
-#### <a name="windowslogowindows-azure-performance-counters-do-not-show-up-at-all"></a>![ Windows][Logo_Windows]  完全未顯示 Azure 效能計數器
+#### <a name="windowslogowindows-azure-performance-counters-do-not-show-up-at-all"></a>![Windows][Logo_Windows] 完全未顯示 Azure 效能計數器
 Windows 服務 ‘AzureEnhancedMonitoring’ 會收集 Azure 上的效能度量。 如果尚未正確安裝服務，或未在 VM 中執行服務，則根本不會收集任何效能度量。
 
 ##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Azure Enhanced Monitoring Extension 的安裝目錄是空白
@@ -909,12 +934,12 @@ Windows 服務 ‘AzureEnhancedMonitoring’ 存在並已啟用，但無法啟�
 ###### <a name="solution"></a>方案
 組態錯誤。 如 [設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，重新啟用 VM 的監視擴充功能。
 
-#### <a name="windowslogowindows-some-azure-performance-counters-are-missing"></a>![ Windows][Logo_Windows]  遺失部分 Azure 效能計數器
+#### <a name="windowslogowindows-some-azure-performance-counters-are-missing"></a>![Windows][Logo_Windows] 遺失部分 Azure 效能計數器
 Azure 上效能度量的收集工作是由 Windows 服務 ‘AzureEnhancedMonitoring’ 執行，它會從數個來源取得資料。 有些組態資料是在本機進行收集、效能度量是讀取自「Azure 診斷」，而儲存體計數器的使用則是從您在儲存體訂用帳戶層級登入開始。
 
-如果使用 SAP 附註 [1999351] 進行排解疑難沒有任何幫助，請重新執行組態指令碼 Set-AzureRmVMAEMExtension。 因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。 如果問題仍然存在，請在元件 BC-OP-NT-AZR 上開啟 SAP 客戶支援訊息。
+如果使用 SAP 附註 [1999351] 進行排解疑難沒有任何幫助，請重新執行組態指令碼 Set-AzureRmVMAEMExtension。 因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。 如果問題仍然存在，請在元件 BC-OP-NT-AZR (適用於 Windows) 或 BC-OP-LNX-AZR (適用於 Linux 虛擬機器) 上開啟 SAP 客戶支援訊息。
 
-#### <a name="linuxlogolinux-azure-performance-counters-do-not-show-up-at-all"></a>![ Linux][Logo_Linux]  完全未顯示 Azure 效能計數器
+#### <a name="linuxlogolinux-azure-performance-counters-do-not-show-up-at-all"></a>![Linux][Logo_Linux] 完全未顯示 Azure 效能計數器
 Deamon 會收集 Azure 上的效能度量。 如果未執行 Deamon，則根本不會收集任何效能度量。
 
 ##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Azure Enhanced Monitoring Extension 的安裝目錄是空白
@@ -924,7 +949,7 @@ Deamon 會收集 Azure 上的效能度量。 如果未執行 Deamon，則根本�
 ###### <a name="solution"></a>方案
 未安裝此擴充功能。 請檢查是否為 Proxy 問題 (如前所述)。 您可能需要重新啟動電腦，並 (或) 重新執行組態指令碼 Set-AzureRmVMAEMExtension。
 
-#### <a name="linuxlogolinux-some-azure-performance-counters-are-missing"></a>![ Linux][Logo_Linux]  遺失部分 Azure 效能計數器
+#### <a name="linuxlogolinux-some-azure-performance-counters-are-missing"></a>![Linux][Logo_Linux] 遺失部分 Azure 效能計數器
 從數個來源取得資料的 Deamon 會收集 Azure 上的效能度量。 有些組態資料是在本機進行收集、效能度量是讀取自「Azure 診斷」，而儲存體計數器的使用則是從您在儲存體訂用帳戶層級登入開始。
 
 如需完整且最新的已知問題清單，請參閱 SAP 附註 [1999351] ，當中包含適用於 SAP 的「增強型 Azure 監視」的其他疑難排解資訊。
@@ -934,6 +959,6 @@ Deamon 會收集 Azure 上的效能度量。 如果未執行 Deamon，則根本�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO5-->
 
 

@@ -6,11 +6,8 @@
 
 # 開始使用
 
-## 建立 SQL 資料倉儲
-### [Azure 入口網站](sql-data-warehouse-get-started-provision.md)
-### [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
-### [T-SQL](sql-data-warehouse-get-started-create-database-tsql.md)
-## [最佳作法](sql-data-warehouse-best-practices.md)
+## [初學者教學課程](sql-data-warehouse-get-started-tutorial.md)
+## [最佳做法](sql-data-warehouse-best-practices.md)
 ## [管理](sql-data-warehouse-overview-manage.md)
 ## [取得支援](sql-data-warehouse-get-started-create-support-ticket.md)
 
@@ -32,6 +29,11 @@
 ### [SSMS](sql-data-warehouse-query-ssms.md)
 ### [Visual Studio](sql-data-warehouse-query-visual-studio.md)
 ### [安裝 Visual Studio](sql-data-warehouse-install-visual-studio.md)
+
+## 建立
+### [Azure 入口網站](sql-data-warehouse-get-started-provision.md)
+### [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
+### [T-SQL](sql-data-warehouse-get-started-create-database-tsql.md)
 
 ## 開發
 
@@ -78,6 +80,7 @@
 
 ### [概觀](sql-data-warehouse-overview-load.md)
 ### [範例資料](sql-data-warehouse-load-sample-databases.md)
+### [Azure 資料湖存放區](sql-data-warehouse-load-from-azure-data-lake-store.md)
 ### [AZCopy](sql-data-warehouse-load-from-sql-server-with-azcopy.md)
 ### [BCP](sql-data-warehouse-load-with-bcp.md)
 ### [從 SQL Server 載入 BCP](sql-data-warehouse-load-from-sql-server-with-bcp.md)
@@ -145,6 +148,6 @@
 ### [資料管理](sql-data-warehouse-partner-data-management.md)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

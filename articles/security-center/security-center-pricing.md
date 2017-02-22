@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/12/2016
+ms.date: 02/02/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a39a8aaeb2bc3603e5fd2404f061697c98c0ff2f
+ms.sourcegitcommit: fd4603d7bcbd1d243c6dd37d810040ff0ee1b3ae
+ms.openlocfilehash: e61a9fad0c241da30a615e03aa18c6fbb03baf35
 
 
 ---
@@ -33,15 +33,15 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 > [!NOTE]
 > 資訊安全中心使用 Azure 儲存體來儲存產生自受保護節點的安全性資料。 與此儲存體相關的費用不包含在服務價格中，而將以一般 [Azure 儲存體費率](https://azure.microsoft.com/pricing/details/storage/blobs/)分別計費。 儲存體費用在試用期間同樣適用。
-> 
-> 
+>
+>
 
 ## <a name="try-standard-free-for-90-days"></a>免費試用 90 天的標準
 標準層可享 90 天免費試用。 若要取得免費試用版的「標準」層，請選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。 選取您要升級至「標準」的訂用帳戶。 在 [安全性原則] 刀鋒視窗中，選取 [定價層]。 在 [選擇定價層] 刀鋒視窗中，選取 [標準 – 免費試用]。
 
 ![免費試用][1]
 
-在 90 天結束時，如果您選擇繼續使用服務，我們將自動開始針對使用量計費。
+在 90 天結束時，如果您選擇繼續使用服務，我們會自動開始針對使用量計費。
 
 ## <a name="upgrade-to-standard"></a>升級至標準
 升級至「標準」層以新增進階威脅偵測。 若要取得「標準」層，請選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。 選取您要升級至「標準」的訂用帳戶。 在 [安全性原則] 刀鋒視窗中，選取 [定價層]。 在 [選擇定價層] 刀鋒視窗中，選取 [標準]。
@@ -86,6 +86,6 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

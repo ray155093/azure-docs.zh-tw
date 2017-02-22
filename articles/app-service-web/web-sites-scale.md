@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/05/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: 0ab1dcc8ccc621f5dabfffffb17fd1822f78eb1c
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: b7ef8386e974486c2d327d0b042eeabdb9701b7e
 
 
 ---
@@ -81,7 +81,7 @@ ms.openlocfilehash: 0ab1dcc8ccc621f5dabfffffb17fd1822f78eb1c
 
 ### <a name="debugger-support"></a>偵錯工具支援
 * 在每個 App Service 方案一個連線的情況下，偵錯工具支援適用於 [免費]、[共用] 及 [基本] 模式。
-* 在每個 App Service 方案有 5 個同時連線的情況下，偵錯工具支援適用於 [標準] 和 [進階] 模式。
+* 在每個 App Service 方案有&5; 個同時連線的情況下，偵錯工具支援適用於 [標準] 和 [進階] 模式。
 
 <a name="OtherFeatures"></a>
 
@@ -89,7 +89,7 @@ ms.openlocfilehash: 0ab1dcc8ccc621f5dabfffffb17fd1822f78eb1c
 * 如需 App Service 方案其他所有功能的詳細資訊，包括所有使用者 (包括開發人員) 關心的定價和功能，請參閱 [App Service 定價詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751) ，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡，無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/) ，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡，無需承諾。
 > 
 > 
 
@@ -143,6 +143,6 @@ ms.openlocfilehash: 0ab1dcc8ccc621f5dabfffffb17fd1822f78eb1c
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

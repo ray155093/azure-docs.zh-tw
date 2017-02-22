@@ -1,5 +1,5 @@
 ---
-title: "設定 Service Fabric 叢集支援的安全連線 | Microsoft Docs"
+title: "設定安全的 Azure Service Fabric 叢集連線 | Microsoft Docs"
 description: "了解如何使用 Visual Studio 設定 Azure Service Fabric 叢集支援的安全連線。"
 services: service-fabric
 documentationcenter: na
@@ -15,8 +15,8 @@ ms.workload: multiple
 ms.date: 10/08/2015
 ms.author: cawa
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a02d3840555df0d9c16d179023b3bc763274701a
+ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
+ms.openlocfilehash: b6705e14e52e98759027389758d7fa57c4e11462
 
 
 ---
@@ -74,6 +74,6 @@ Visual Studio Service Fabric 工具支援所有用於連線到叢集來進行發
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

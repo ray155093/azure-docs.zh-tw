@@ -15,8 +15,8 @@ ms.workload: integration
 ms.date: 09/01/2016
 ms.author: stepsic
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ff72e6b0465f25be94c6852f3cdd3417817b8056
+ms.sourcegitcommit: 7ff7874538f23c8dd8c4aaa789018c77dfe2ab9a
+ms.openlocfilehash: 7923735d9ed382ee8c554e7e0c6b1fb4a22208bb
 
 
 ---
@@ -93,10 +93,10 @@ David Ebbo 寫了 [一篇很棒的部落格文章](http://blog.davidebbo.com/201
 | 取得度量 |取得某資源識別碼的度量。 |
 
 ## <a name="do-more-with-your-connector"></a>進一步運用您的連接器
-現在已建立連接器，您可以使用邏輯應用程式將它加入商務流程。 請參閱 [什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
+現在已建立連接器，您可以使用邏輯應用程式將它加入商務流程。 請參閱 [什麼是 Logic Apps？](../logic-apps/logic-apps-what-are-logic-apps.md)。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至 [試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至 [試用 Logic App](https://azure.microsoft.com/try/app-service/logic/)，即可在 App Service 中立即建立短期入門 Logic Apps。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -105,10 +105,10 @@ David Ebbo 寫了 [一篇很棒的部落格文章](http://blog.davidebbo.com/201
 <!--References -->
 
 <!--Links -->
-[建立邏輯應用程式]: app-service-logic-create-a-logic-app.md
+[Creating a Logic app]: app-service-logic-create-a-logic-app.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

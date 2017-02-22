@@ -1,10 +1,10 @@
 ---
-title: "管理及回應 Azure 資訊安全中心的安全性警示 | Microsoft Docs"
+title: "在 Azure 資訊安全中心管理安全性警示 | Microsoft Docs"
 description: "本文件可協助您使用「Azure 資訊安全中心」功能來管理及回應安全性警示。"
 services: security-center
 documentationcenter: na
 author: YuriDio
-manager: swadhwa
+manager: mbaldwin
 editor: 
 ms.assetid: b88a8df7-6979-479b-8039-04da1b8737a7
 ms.service: security-center
@@ -12,11 +12,11 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/17/2016
+ms.date: 02/06/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: ec32e3937d08d912c8f96987b0c5ebbf73060258
-ms.openlocfilehash: 7a4413c6d2ecf497e72e2909e627761f0a9ff23a
+ms.sourcegitcommit: 9852981e530cd147c2d34ac2ede251b58a167a0a
+ms.openlocfilehash: 0093beda6af6d3b2400185fcd63bc73b2c8c9ba9
 
 
 ---
@@ -25,26 +25,27 @@ ms.openlocfilehash: 7a4413c6d2ecf497e72e2909e627761f0a9ff23a
 
 > [!NOTE]
 > 若要啟用進階偵測，請升級至 Azure 資訊安全中心標準。 提供 90 天的免費試用。 若要升級，請選取[安全性原則](security-center-policies.md)中的 [定價層]。 若要深入了解，請參閱 [Azure 資訊安全中心價格](security-center-pricing.md)。
-> 
-> 
+>
+>
 
 ## <a name="what-are-security-alerts"></a>什麼是安全性警示：
-資訊安全中心會自動收集、分析及整合您 Azure 資源、網路和已連線的合作夥伴解決方案 (例如防火牆和端點保護解決方案) 的記錄檔資料，來偵測真正的威脅並減少誤判情形。 「資訊安全中心」會顯示優先安全性警示清單，以及需要您快速調查問題的資訊，和如何修復攻擊行為的建議。 Azure 資訊安全中心還會將符合狙殺鏈模式的警示彙整到 [事件](security-center-incident.md)。 
+資訊安全中心會自動收集、分析及整合您 Azure 資源、網路和已連線的合作夥伴解決方案 (例如防火牆和端點保護解決方案) 的記錄檔資料，來偵測真正的威脅並減少誤判情形。 「資訊安全中心」會顯示優先安全性警示清單，以及需要您快速調查問題的資訊，和如何修復攻擊行為的建議。
+
 
 > [!NOTE]
 > 如需資訊安全中心偵測功能運作方式的詳細資訊，請閱讀 [Azure 資訊安全中心的偵測功能](security-center-detection-capabilities.md)。
-> 
-> 
+>
+>
 
 ## <a name="managing-security-alerts"></a>管理安全性警示
 您可以查看 [安全性警示]  圖格來檢視目前的警示。 開啟 Azure 入口網站並遵循下列步驟來查看有關每個警示的更多詳細資訊：
 
 1. 您會在「資訊安全中心」的儀表板看到 [安全性警示]  圖格。
-   
+
     ![資訊安全中心的 [安全性警示] 圖格](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig1-ga.png)
 
 2. 按一下圖格，開啟 [安全性警示]  刀鋒視窗，其中包括與警示相關的詳細資料，如下所示。
-   
+
    ![資訊安全中心的 [安全性警示] 刀鋒視窗](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig2-ga.png)
 
 這個刀鋒視窗的底部會顯示每個警示的詳細資料。 如要為警示排序，請按一下您要做為排序依據的的資料行。 下列為每個資料行的定義：
@@ -61,7 +62,7 @@ ms.openlocfilehash: 7a4413c6d2ecf497e72e2909e627761f0a9ff23a
 您可以根據日期、狀態及嚴重性來篩選警示。 如果您需要縮小顯示的安全性警示檢視範圍，篩選警示會相當有用。 例如，您可能想確認在過去 24 小時發生的安全性警示，因為您正在調查系統中可能的入侵行動。
 
 1. 按一下 [安全性警示] 刀鋒視窗上的 [篩選]。 即會開啟 [篩選]  刀鋒視窗，您可以選取想要查看的日期、狀態和嚴重性值。
-   
+
     ![篩選資訊安全中心的警示](./media/security-center-managing-and-responding-alerts/security-center-managing-and-responding-alerts-fig3-2017.png)
 
 ### <a name="respond-to-security-alerts"></a>回應安全性警示
@@ -79,8 +80,8 @@ ms.openlocfilehash: 7a4413c6d2ecf497e72e2909e627761f0a9ff23a
 
 > [!NOTE]
 > 如需不同警示類型的詳細資訊，請閱讀 [Azure 資訊安全中心不同類型的安全性警示](security-center-alerts-type.md)。
-> 
-> 
+>
+>
 
 ## <a name="see-also"></a>另請參閱
 在本文件中，您了解到如何在資訊安全中心設定安全性原則。 如要深入了解資訊安全中心，請參閱下列主題：
@@ -93,7 +94,6 @@ ms.openlocfilehash: 7a4413c6d2ecf497e72e2909e627761f0a9ff23a
 
 
 
-
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

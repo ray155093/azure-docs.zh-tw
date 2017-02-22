@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: f5b9a4d83e21dfefc12ea2931702a9dce3f03016
-ms.openlocfilehash: bd4352cd6f8a909d518b0c5527d6c0e63e4bad51
+ms.sourcegitcommit: 7d472733e80ae03294ba1ac9e97d1afd3aa0fa91
+ms.openlocfilehash: c7d8eefe560a361690cc4daf6550b2a8c894f318
 
 
 ---
@@ -120,23 +120,17 @@ Windows 10 用戶端 SKU 支援「企業狀態漫遊」，但伺服器 SKU 則�
 如果貴組織已經藉由有使用限制的 Azure RMS 免費訂用帳戶在 Windows 10 中使用漫遊，購買付費 Azure RMS 訂用帳戶不會對漫遊功能造成任何影響，且您的 IT 系統管理員也不需要進行任何組態變更。
 
 ## <a name="known-issues"></a>已知問題
-* 如果您嘗試使用智慧卡或虛擬智慧卡來登入您的 Windows 裝置，設定同步處理將會停止運作。 Windows 10 未來的更新可能會解決此問題。
-* 您將需要適用於 Windows 10 的 7 月份累積更新 (組建 10586.494 或更新版本)，才能進行 Internet Explorer 我的最愛同步處理。
-* 利用 Windows Information Protection 保護的資料不會透過企業狀態漫遊同步。 此外，已啟用 Windows Information Protection 的電腦不會發生佈景主題同步處理。
-* 在某些情況下，如果設定了 Azure Multi-Factor Authentication，「企業狀態漫遊」可能會無法同步處理資料。
-
-  * 如果您的裝置已設定為在 Azure Active Directory 入口網站上需要 [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) ，則使用密碼登入 Windows 10 裝置時，可能無法同步處理設定。 這類型的 Multi-Factor Authentication 組態是用來保護 Azure 系統管理員帳戶。 系統管理員使用者仍然能夠藉由使用 [Microsoft Passport for Work](active-directory-azureadjoin-passport.md) PIN 登入他們的 Windows 10 裝置，或藉由在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication，來進行同步處理。
-  * 如果系統管理員設定 Active Directory Federation Services Multi-Factor Authentication 條件式存取原則，而裝置上的存取權杖到期，則同步處理可能會失敗。  請確定您是使用 [Microsoft Passport for Work](active-directory-azureadjoin-passport.md) PIN 來登入和登出，或在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication。
-* 如果電腦已加入網域並自動向 Azure Active Directory 裝置註冊，當電腦已離站很久時，它可能會發生同步處理失敗，而且網域驗證會無法完成。 若要解決此問題，請將電腦連線到公司網路，以便讓同步處理能夠繼續執行。
+如需已知問題清單，請參閱[疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)一節中的文件。 
 
 ## <a name="related-topics"></a>相關主題
 * [企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)
 * [在 Azure Active Directory 中啟用企業狀態漫遊](active-directory-windows-enterprise-state-roaming-enable.md)
 * [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 * [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
+* [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -1,11 +1,10 @@
 ---
-title: "開始使用 Azure CLI 在傳統部署模型中建立網際網路面向的負載平衡器 | Microsoft Docs"
+title: "建立網際網路對向負載平衡器 - Azure CLI 傳統 | Microsoft Docs"
 description: "了解如何使用 Azure CLI 在傳統部署模型中建立網際網路面向的負載平衡器"
 services: load-balancer
 documentationcenter: na
-author: sdwheeler
-manager: carmonm
-editor: 
+author: kumudd
+manager: timlt
 tags: azure-service-management
 ms.assetid: e433a824-4a8a-44d2-8765-a74f52d4e584
 ms.service: load-balancer
@@ -13,62 +12,72 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/09/2016
-ms.author: sewhee
+ms.date: 01/23/2017
+ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e8a346c1b2d430eceb4aa1b8bc94fbbe89394556
-
+ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
+ms.openlocfilehash: cf5ecd7652bf1b10d24731a5b6829995fea81e41
 
 ---
+
 # <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-cli"></a>開始在 Azure CLI 中建立網際網路面向的負載平衡器 (傳統)
-[!INCLUDE [load-balancer-get-started-internet-classic-selectors-include.md](../../includes/load-balancer-get-started-internet-classic-selectors-include.md)]
+
+> [!div class="op_single_selector"]
+> * [Azure 傳統入口網站](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
+> * [PowerShell](../load-balancer/load-balancer-get-started-internet-classic-ps.md)
+> * [Azure CLI](../load-balancer/load-balancer-get-started-internet-classic-cli.md)
+> * [Azure 雲端服務](../load-balancer/load-balancer-get-started-internet-classic-cloud.md)
 
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
-[!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
-
-本文涵蓋之內容包括傳統部署模型。 您也可以 [了解如何使用 Azure 資源管理員建立網際網路面向的負載平衡器](load-balancer-get-started-internet-arm-ps.md)。
+> [!IMPORTANT]
+> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-classic-rm.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。 本文涵蓋之內容包括傳統部署模型。 您也可以 [了解如何使用 Azure 資源管理員建立網際網路面向的負載平衡器](load-balancer-get-started-internet-arm-ps.md)。
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="step-by-step-creating-an-internet-facing-load-balancer-using-cli"></a>使用 CLI 逐步建立網際網路面向的負載平衡器
+
 本指南根據上述案例說明如何建立網際網路面向的負載平衡器。
 
 1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
 2. 執行 **azure config mode** 命令，以切換為傳統模式，如下所示。
-   
-        azure config mode asm
-   
+
+    ```azurecli
+    azure config mode asm
+    ```
+
     預期的輸出：
-   
+
         info:    New mode is asm
 
 ## <a name="create-endpoint-and-load-balancer-set"></a>建立端點與負載平衡器集
+
 此案例假設虛擬機器 "web1" 和 "web2" 已經建立。
 本指南將使用連接埠 80 作為公用連接埠，以及 80 作為本機連接埠，建立負載平衡器集。 探查連接埠也設定在連接埠 80 上，並將負載平衡器集稱為 "lbset"
 
 ### <a name="step-1"></a>步驟 1
+
 針對虛擬機器 "web1" 使用 `azure network vm endpoint create` 建立第一個端點和負載平衡器集
 
-    azure vm endpoint create web1 80 -k 80 -o tcp -t 80 -b lbset
-
-使用的參數：
-
-**-k** - 本機虛擬機器連接埠<br>
-**-o** - 通訊協定<BR>
-**-t** - 探查連接埠<BR>
-**-b** - 負載平衡器名稱<BR>
+```azurecli
+azure vm endpoint create web1 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
+```
 
 ## <a name="step-2"></a>步驟 2
+
 將第二個虛擬機器 "web2" 新增到負載平衡器集。
 
-    azure vm endpoint create web2 80 -k 80 -o tcp -t 80 -b lbset
+```azurecli
+azure vm endpoint create web2 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
+```
 
 ## <a name="step-3"></a>步驟 3
+
 使用 `azure vm show` 確認負載平衡器設定
 
-    azure vm show web1
+```azurecli
+azure vm show web1
+```
 
 輸出將是：
 
@@ -115,25 +124,28 @@ ms.openlocfilehash: e8a346c1b2d430eceb4aa1b8bc94fbbe89394556
     info:    vm show command OK
 
 ## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a>為虛擬機器建立遠端桌面端點
+
 您可以使用 `azure vm endpoint create`建立遠端桌面端點，針對特定的虛擬機器將網路流量從公用連接埠轉送至本機連接埠。
 
-    azure vm endpoint create web1 54580 -k 3389
-
+```azurecli
+azure vm endpoint create web1 54580 -k 3389
+```
 
 ## <a name="remove-virtual-machine-from-load-balancer"></a>從負載平衡器移除虛擬機器
+
 您必須從虛擬機器刪除與負載平衡器集相關聯的端點。 一旦移除端點，虛擬機器就不再屬於負載平衡器集。
 
- 使用上述的範例，您可以使用命令 `azure vm endpoint delete` 從負載平衡器 "lbset" 移除針對虛擬機器 "web1" 所建立的端點。
+使用上述的範例，您可以使用命令 `azure vm endpoint delete` 從負載平衡器 "lbset" 移除針對虛擬機器 "web1" 所建立的端點。
 
-    azure vm endpoint delete web1 tcp-80-80
-
+```azurecli
+azure vm endpoint delete web1 tcp-80-80
+```
 
 > [!NOTE]
 > 您可以使用命令 `azure vm endpoint --help` 探索更多管理端點的選項
-> 
-> 
 
 ## <a name="next-steps"></a>後續步驟
+
 [開始設定內部負載平衡器](load-balancer-get-started-ilb-arm-ps.md)
 
 [設定負載平衡器分配模式](load-balancer-distribution-mode.md)
@@ -142,7 +154,6 @@ ms.openlocfilehash: e8a346c1b2d430eceb4aa1b8bc94fbbe89394556
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 的連續整合 |Microsoft Docs"
-description: "取得如何使用 Visual Studio Team Services (VSTS) 設定 Service Fabric 應用程式之持續整合的概觀。"
+title: "設定 Azure 微服務的連續整合 |Microsoft Docs"
+description: "取得如何使用 Visual Studio Team Services (VSTS) 設定 Service Fabric 應用程式之持續整合和部署的概觀。"
 services: service-fabric
 documentationcenter: na
 author: mthalman-msft
@@ -12,16 +12,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: multiple
-ms.date: 08/01/2016
-ms.author: mthalman
+ms.date: 12/06/2016
+ms.author: mthalman;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3f931a93df5604e0e108c0333cea684bd16f4c6c
+ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
+ms.openlocfilehash: 437e343425da5c8cfe71d4ae67c423fcc2b794c2
 
 
 ---
-# <a name="set-up-continuous-integration-for-a-service-fabric-application-by-using-visual-studio-team-services"></a>使用 Visual Studio Team Services 為 Service Fabric 應用程式設定持續整合
-本文說明使用 Visual Studio Team Services (VSTS) 為 Azure Service Fabric 應用程式設定持續整合的步驟，以確保能夠自動建置、封裝及部署您的應用程式。
+# <a name="set-up-service-fabric-continuous-integration-and-deployment-with-visual-studio-team-services"></a>使用 Visual Studio Team Services 設定 Service Fabric 連續整合和部署
+本文說明使用 Visual Studio Team Services (VSTS) 設定 Azure Service Fabric 應用程式之持續整合和部署的步驟。
 
 這份文件反映目前的程序，而且應該隨著時間而改變。
 
@@ -39,15 +39,15 @@ ms.openlocfilehash: 3f931a93df5604e0e108c0333cea684bd16f4c6c
 > 
 
 ## <a name="configure-and-share-your-source-files"></a>設定和共用來源檔案
-您會想要執行的第一步是準備部署程序使用的發行設定檔 (將於 Team Services 內執行)。  發行設定檔應設定為以先前準備的叢集為目標。
+您想要執行的第一步是準備部署程序使用的發行設定檔 (於 Team Services 內執行)。  發行設定檔應設定為以先前準備的叢集為目標。
 
-1. 在您的應用程式專案內選擇一個想要使用於持續整合工作流程中的發行設定檔，並遵循如何將應用程式發行至遠端叢集的 [發行指示](service-fabric-publish-app-remote-cluster.md) 。 但是，實際上您不需要發佈應用程式。 一旦您適當地設定項目後，只要按一下 [發行] 對話方塊中的 [儲存]  超連結。
-2. 如果您想針對 Team Services 中的每個部署升級應用程式，您會想要設定發行設定檔以啟用升級。 在步驟 1 使用的同一個 [發行] 對話方塊中，確認已核取 [升級應用程式]  核取方塊。  深入了解 [設定其他升級設定](service-fabric-visualstudio-configure-upgrade.md)。 按一下 [儲存]  超連結，將設定儲存至發行設定檔。
+1. 在您的應用程式專案內選擇您想要使用於持續整合工作流程的發行設定檔。 遵循如何將應用程式發佈至遠端叢集的[發佈指示](service-fabric-publish-app-remote-cluster.md)。 但是，實際上您不需要發佈應用程式。 適當地設定各項後，即可按一下 [發佈] 對話方塊中的 [儲存] 超連結。
+2. 如果您想針對 Team Services 中的每個部署升級應用程式，您可以設定發行設定檔以啟用升級。 在步驟 1 使用的同一個 [發行] 對話方塊中，確認已核取 [升級應用程式]  核取方塊。  深入了解 [設定其他升級設定](service-fabric-visualstudio-configure-upgrade.md)。 按一下 [儲存]  超連結，將設定儲存至發行設定檔。
 3. 確定您已將變更儲存至發行設定檔，並取消 [發行] 對話方塊。
 4. 現在是時候與 Team Services [共用應用程式專案來源檔案](https://www.visualstudio.com/docs/setup-admin/team-services/connect-to-visual-studio-team-services#vs) 。 當您的來源檔案可以在 Team Services 中存取之後，就可以繼續產生組建的下一個步驟。 
 
 ## <a name="create-a-build-definition"></a>建立組建定義
-Team Services 組建定義描述由一組循序執行的組建步驟所組成的工作流程。 建立組建定義的目的是要產生 Service Fabric 應用程式封裝，以及包括最終可用於部署應用程式至叢集的一些其他附加檔案。 深入了解 Team Services [組建定義](https://www.visualstudio.com/docs/build/define/create)。
+Team Services 組建定義描述由一組循序執行的組建步驟所組成的工作流程。 建立組建定義的目的是要產生 Service Fabric 應用程式套件，以及可用於部署應用程式的其他構件。 深入了解 Team Services [組建定義](https://www.visualstudio.com/docs/build/define/create)。
 
 ### <a name="create-a-definition-from-the-build-template"></a>從組建範本建立定義
 1. 在 Visual Studio Team Services 中開啟您的小組專案。
@@ -59,24 +59,24 @@ Team Services 組建定義描述由一組循序執行的組建步驟所組成的
 7. 選取您想要使用的代理程式佇列。 支援裝載的代理程式。
 8. 選取 [ **建立**]。
 9. 儲存組建定義並提供名稱。
-10. 以下是範本所產生的組建步驟的說明︰
+10. 下一段是範本所產生之組建步驟的說明︰
 
 | 組建步驟 | 說明 |
 | --- | --- |
-| Nuget 還原 |還原方案的 NuGet 封裝。 |
+| NuGet 還原 |還原方案的 NuGet 套件。 |
 | 組建方案 \*.sln |組建整個方案。 |
-| 組建方案 \*.sfproj |產生將用來部署應用程式的 Service Fabric 應用程式封裝。 請注意，應用程式封裝位置會指定於組建的構件目錄內。 |
-| 更新 Service Fabric 應用程式版本 |更新應用程式封裝資訊清單檔案中包含的版本值以提供升級支援。 如需詳細資訊，請參閱 [工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820529) 。 |
-| 複製檔案 |將發行設定檔和應用程式參數檔案複製到組建的構件，以便供部署取用。 |
-| 發行構件 |發行組建的構件。 這可讓發行定義取用組建的構件。 |
+| 組建方案 \*.sfproj |產生用來部署應用程式的 Service Fabric 應用程式套件。 應用程式套件位置會指定為組建的構件目錄內。 |
+| 更新 Service Fabric 應用程式版本 |更新應用程式套件資訊清單檔案中包含的版本值以提供升級支援。 如需詳細資訊，請參閱 [工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820529) 。 |
+| 複製檔案 |將發行設定檔和應用程式參數檔案複製到組建的構件，以供部署取用。 |
+| 發行構件 |發行組建的構件。 可讓發行定義取用組建的構件。 |
 
 ### <a name="verify-the-default-set-of-tasks"></a>確認預設工作集
-1. 確認 [NuGet 還原] 的 [方案]輸入欄位和 [組建方案] 組建步驟。  根據預設，這些組建步驟將針對相關儲存機制中包含的所有方案檔案執行。  如果您只想在這些方案檔案的其中之一執行組建定義，您需要明確地更新該檔案的路徑。
+1. 確認 [NuGet 還原] 的 [方案]輸入欄位和 [組建方案] 組建步驟。  根據預設，這些組建步驟會針對相關儲存機制中包含的所有方案檔案執行。  如果您只想在這些方案檔案的其中之一執行組建定義，您需要明確地更新該檔案的路徑。
 2. 確認 [封裝應用程式] 組建步驟的 [方案] 輸入欄位。  根據預設，這個組建步驟會假設儲存機制中只有一個 Service Fabric 應用程式專案 (.sfproj)。  如果您的儲存機制中有多個這類檔案，並只想以其中之一作為此組建定義的目標，您需要明確地更新該檔案的路徑。  如果您想將多個應用程式專案封裝在您的儲存機制中，您需要在組建定義中建立分別以一個應用程式專案為目標的額外 **Visual Studio 組建**步驟。  您也需要更新這些組建步驟的 [MSBuild 引數] 欄位，讓它們各自擁有唯一的封裝位置。
-3. 確認 **更新 Service Fabric 應用程式版本** 組建步驟中定義的版本控制行為。  根據預設，這個組建步驟會將組建編號附加至應用程式封裝資訊清單檔案中的所有版本值。 如需詳細資訊，請參閱 [工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820529) 。 這有助於支援您的應用程式的升級，因為每個升級部署需要的版本值不同於先前的部署。 如果您不想在工作流程中使用應用程式升級，您可以考慮停用這個組建步驟。 事實上，如果您想要產生可用來覆寫現有 Service Fabric 應用程式的組建，就必須停用，因為如果組建所產生的應用程式版本與叢集中的應用程式版本不符，部署將會失敗。
-4. 如果您的方案包含 .NET Core 專案，必須確定您的組建定義包含還原任何 project.json 檔案所定義的相依性的組建步驟。  若要這樣做，請遵循下列步驟：
+3. 確認 **更新 Service Fabric 應用程式版本** 組建步驟中定義的版本控制行為。  根據預設，這個組建步驟會將組建編號附加至應用程式套件資訊清單檔案中的所有版本值。 如需詳細資訊，請參閱 [工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820529) 。 這有助於支援您的應用程式的升級，因為每個升級部署需要的版本值不同於先前的部署。 如果您不想在工作流程中使用應用程式升級，您可以考慮停用這個組建步驟。 如果您打算產生可用來覆寫現有 Service Fabric 應用程式的組建，則必須予以停用。 如果組建所產生的應用程式版本與叢集中的應用程式版本不相符，則會部署失敗。
+4. 如果您的方案包含 .NET Core 專案，則必須確定您的組建定義包含還原相依性的組建步驟：
    1. 選取 [新增組件步驟...] 。
-   2. 找出 [公用程式] 索引標籤內的 [命令列]  工作，並按一下其 [新增] 按鈕。
+   2. 找出 [公用程式] 索引標籤內的 [命令列] 工作，並按一下其 [新增] 按鈕。
    3. 對於工作的輸入欄位，請使用下列值︰
    4. 工具︰dotnet
    5. 引數︰restore
@@ -84,10 +84,10 @@ Team Services 組建定義描述由一組循序執行的組建步驟所組成的
 5. 儲存對組建定義所做的任何變更。
 
 ### <a name="try-it"></a>試試看
-選取 [佇列組建]  以手動啟動組建。 推送或簽入時也會觸發組建。 一旦您確認組建順利執行後，就可以繼續定義會將應用程式部署至叢集的發行定義。
+選取 [佇列組建]  以手動啟動組建。 推送或簽入時也會觸發組建。 一旦您確認組建順利執行後，就可以繼續定義可將應用程式部署至叢集的發行定義。
 
 ## <a name="create-a-release-definition"></a>建立發行定義
-Team Services 發行定義描述由一組循序執行的工作所組成的工作流程。 建立發行定義的目的是取得應用程式封裝，並將它部署至叢集。 一起使用時，組建定義和發行定義可以執行整個工作流程，從來源檔案開始，並以叢集中的執行中應用程式結束。 深入了解 Team Services [發行定義](https://www.visualstudio.com/docs/release/author-release-definition/more-release-definition)。
+Team Services 發行定義描述由一組循序執行的工作所組成的工作流程。 建立發行定義的目的是取得應用程式套件，並將它部署至叢集。 一起使用時，組建定義和發行定義可以執行整個工作流程，從來源檔案開始，並以叢集中的執行中應用程式結束。 深入了解 Team Services [發行定義](https://www.visualstudio.com/docs/release/author-release-definition/more-release-definition)。
 
 ### <a name="create-a-definition-from-the-release-template"></a>從發行範本建立定義
 1. 在 Visual Studio Team Services 中開啟您的專案。
@@ -110,14 +110,19 @@ Team Services 發行定義描述由一組循序執行的工作所組成的工作
     7. 按一下 [確定] 確認變更。 回到發行定義後，按一下 [叢集連線]  欄位上的重新整理圖示以查看您剛才新增的端點。
 12. 儲存發行定義。
 
+> [!NOTE]
+> Microsoft 帳戶 (例如，@hotmail.com 或 @outlook.com) 不支援 Azure Active Directory 驗證。
+> 
+> 
+
 建立的定義包含一項工作類型 **Service Fabric 應用程式部署**。 如需此工作的詳細資訊，請參閱 [工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820528) 。
 
 ### <a name="verify-the-template-defaults"></a>確認範本預設值
-1. 確認 [部署 Service Fabric 應用程式] 工作的 [發行設定檔] 輸入欄位。 根據預設，此欄位會參考組建的構件中包含的發行設定檔 (名為 Cloud.xml)。 如果您想要參考不同的發行設定檔，或如果組建的構件中包含多個應用程式封裝，您必須適當地更新路徑。
-2. 確認 [部署 Service Fabric 應用程式] 工作的 [應用程式封裝] 輸入欄位。 根據預設，這會參考組建定義範本中使用的預設應用程式封裝路徑。  如果您已經修改組建定義中的預設應用程式封裝路徑，您也必須在此適當地更新路徑。
+1. 確認 [部署 Service Fabric 應用程式] 工作的 [發行設定檔] 輸入欄位。 根據預設，此欄位會參考組建的構件中包含的發行設定檔 (名為 Cloud.xml)。 如果您想要參考不同的發行設定檔，或如果組建的構件中包含多個應用程式套件，您必須適當地更新路徑。
+2. 確認 [部署 Service Fabric 應用程式] 工作的 [應用程式套件] 輸入欄位。 根據預設，此欄位會參考組建定義範本中使用的預設應用程式套件路徑。  如果您已經修改組建定義中的預設應用程式套件路徑，您也必須在此適當地更新路徑。
 
 ### <a name="try-it"></a>試試看
-從 [發行] 按鈕功能表上選取 [建立發行] 以手動建立發行。 在開啟的對話方塊中，選取做為發行基準的組建，然後按一下 [建立] 。 如果您啟用連續部署，當關聯的組建定義完成組建後，發行也會自動建立。
+從 [發行] 按鈕功能表上選取 [建立發行] 以手動建立發行。 在開啟的對話方塊中，選取做為發行基準的組建，然後按一下 [建立] 。 如果您啟用連續部署，當關聯的組建定義完成組建時，便會自動建立發行。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解與 Service Fabric 應用程式的連續整合，請閱讀下列文章：
@@ -129,6 +134,6 @@ Team Services 發行定義描述由一組循序執行的工作所組成的工作
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

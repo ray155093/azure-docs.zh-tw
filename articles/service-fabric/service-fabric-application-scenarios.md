@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 10/22/2016
 ms.author: mfussell
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 160d6a41fc1ea3eecd39e8ad199bc5e69f236061
+ms.sourcegitcommit: ef4d5bb9b8b25d940aca26117d759a4152639730
+ms.openlocfilehash: bc8009e0ba0b604c995ce24f883eb03d586d667b
 
 
 ---
@@ -51,6 +51,7 @@ Azure 中的 Service Fabric 平台適用於下列應用程式和服務的類別�
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>後續步驟
 * 開始使用 Service Fabric [Reliable Services](service-fabric-reliable-services-quick-start.md) 和 [Reliable Actors](service-fabric-reliable-actors-get-started.md) 程式設計模型，來建置無狀態與具狀態的服務。
+* 深入了解[模式和案例](service-fabric-patterns-and-scenarios.md)。
 * 另請參閱下列主題：
   * [Microservices 詳細說明](service-fabric-overview-microservices.md)
   * [定義及管理服務狀態](service-fabric-concepts-state.md)
@@ -63,6 +64,6 @@ Azure 中的 Service Fabric 平台適用於下列應用程式和服務的類別�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

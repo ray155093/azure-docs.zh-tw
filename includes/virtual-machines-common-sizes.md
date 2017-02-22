@@ -10,14 +10,14 @@
     F 系列也導入了新的 Azure VM 大小命名標準。 針對此系列及未來發行的 VM 大小，系列名稱字母後的數值將會對應 CPU 核心數目。 額外功能 (例如針對進階儲存體最佳化) 將會以 CPU 核心計數後的字母指定。 此命名格式將用於未來發行的 VM 大小，但不會回溯變更任何現有已發行之 VM 大小的名稱。
 * G 系列 VM 提供最大的記憶體，並且是在具有 Intel Xeon E5 V3 系列處理器的主機上執行。
 * DS 系列、DSv2 系列、Fs 系列及 GS 系列 VM 可以使用「進階儲存體」，此儲存體可為需要大量 I/O 的工作負載，提供高效能、低延遲的儲存體。 這些 VM 會使用固態硬碟 (SSD) 來裝載虛擬機器的磁碟，還可提供本機 SSD 磁碟快取。 僅特定地區可用進階儲存體。 如需詳細資訊，請參閱 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
-* A 系列 VM 可以部署在各種不同的硬體類型和處理器上。 根據硬體節流大小，為執行中的執行個體提供一致的處理器效能，不論硬體部署的位置。 若要判斷此大小部署所在的實體硬體，請從虛擬機器內查詢虛擬硬體。
+*   A 系列和 Av2 系列 VM 可以部署在各種不同的硬體類型和處理器上。 根據硬體節流大小，為執行中的執行個體提供一致的處理器效能，不論硬體部署的位置。 若要判斷此大小部署所在的實體硬體，請從虛擬機器內查詢虛擬硬體。
 * A0 大小是在實體硬體上過度訂閱。 僅針對這個特定大小，其他客戶部署可能會影響您正在執行的工作負載的效能。 以下概述的相對效能為預期的基準，受限於近似變化性的 15%。
 
 虛擬機器的大小會影響定價。 大小也會影響虛擬機器的處理、記憶體和儲存體容量。 儲存體成本會分別根據儲存體帳戶中使用的頁面來計算。 如需詳細資訊，請參閱[虛擬機器定價詳細資料](https://azure.microsoft.com/pricing/details/virtual-machines/)和 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。 
 
 下列考量可協助您決定大小：
 
-* A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。 如需有關使用這些大小的詳細資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。 
+* A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。 如需有關使用這些大小的詳細資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 * Dv2 系列、D系列、G 系列以及對應的 DS/GS 是要求更快速的 CPU、更好的本機磁碟效能，或有更高記憶體需求之應用程式的最佳選擇。  它們為許多企業級應用程式提供了強大的組合。
 * 對於需要較快的 CPU 但每一 CPU 核心不需要太多記憶體或本機 SSD 的工作負載來說，F 系列 VM 是一個絕佳選擇。  分析、遊戲伺服器、Web 伺服器及批次處理之類的工作負載都將因 F 系列的實用性而受益。
 * Azure 資料中心的某些實體主機可能不支援較大的虛擬機器大小，例如 A5-A11。 因此，您可能會在將現有的虛擬機器調整為新的大小、在 2013 年 4 月 16 日之前建立的虛擬網路中建立新的虛擬機器，或將新的虛擬機器新增現有雲端服務時，看到錯誤訊息：**無法設定虛擬機器<machine name>**或**無法建立虛擬機器<machine name>**。 請參閱支援論壇上[錯誤：「無法設定虛擬機器」](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows)，以查看每個部署案例的因應措施。  
@@ -35,18 +35,20 @@
 
 | SKU 系列 | ACU/核心 |
 | --- | --- |
-| [Standard_A0](#a-series) |50 |
-| [Standard_A1-4](#a-series) |100 |
-| [Standard_A5-7](#a-series) |100 |
+| [A0](#a-series) |50 |
+| [A1-A4](#a-series) |100 |
+| [A5-A7](#a-series) |100 |
+| [A1_v2-A8_v2](#av2-series) |100 |
+| [A2m_v2-A8m_v2](#av2-series) |100 |
 | [A8-A11](#a-series) |225* |
-| [D1-14](#d-series) |160 |
-| [D1-15v2](#dv2-series) |210 - 250* |
-| [DS1-14](#ds-series) |160 |
-| [DS1-15v2](#dsv2-series) |210-250* |
+| [D1-D14](#d-series) |160 |
+| [D1_v2-D15_v2](#dv2-series) |210 - 250* |
+| [DS1-DS14](#ds-series) |160 |
+| [DS1_v2-DS15_v2](#dsv2-series) |210-250* |
 | [F1-F16](#f-series) |210-250* |
 | [F1s-F16s](#fs-series) |210-250* |
-| [G1-5](#g-series) |180 - 240* |
-| [GS1-5](#gs-series) |180 - 240* |
+| [G1-G5](#g-series) |180 - 240* |
+| [GS1-GS5](#gs-series) |180 - 240* |
 | [H](#h-series) |290 - 300* |
 
 以 * 標示的 ACU 使用了「Intel® 渦輪」技術來增加 CPU 頻率及提升效能。  提升的程度會依 VM 大小、工作負載及在相同主機上執行的其他工作負載而有所不同。
@@ -64,7 +66,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Standard_A0 |1 |0.768 |20 |1 |1x500 |1 / 低 |
 | Standard_A1 |1 |1.75 |70 |2 |2x500 |1 / 中 |
-| Standard_A2 |2 |3.5 GB |135 |4 |4x500 |1 / 中 |
+| Standard_A2 |2 |3.5 |135 |4 |4x500 |1 / 中 |
 | Standard_A3 |4 |7 |285 |8 |8x500 |2 / 高 |
 | Standard_A4 |8 |14 |605 |16 |16x500 |4 / 高 |
 | Standard_A5 |2 |14 |135 |4 |4x500 |1 / 中 |
@@ -74,7 +76,7 @@
 <br>
 
 ## <a name="a-series---compute-intensive-instances"></a>A 系列 - 大量計算執行個體
-如需有關使用這些大小的資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
+如需有關使用這些大小的資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 HDD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -86,6 +88,19 @@
 *支援 RDMA
 
 <br>
+
+## <a name="av2-series"></a>Av2 系列
+
+| 大小        | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
+|-------------|-----------|--------------|-----------------------|----------------|--------------------|-----------------------|
+| Standard_A1_v2 | 1         | 2            | 10                   | 2              | 2x500              | 1 / 中              |
+| Standard_A2_v2 | 2         | 4            | 20                   | 4              | 4x500              | 2 / 中              |
+| Standard_A4_v2 | 4         | 8            | 40                   | 8              | 8x500              | 4 / 高                  |
+| Standard_A8_v2 | 8         | 16           | 80                   | 16             | 16x500             | 8 / 高                  |
+| Standard_A2m_v2 | 2        | 16           | 20                   | 4              | 4x500              | 2 / 中              |
+| Standard_A4m_v2 | 4        | 32           | 40                   | 8              | 8x500              | 4 / 高                  |
+| Standard_A8m_v2 | 8        | 64           | 80                   | 16             | 16x500             | 8 / 高                  |
+
 
 ## <a name="d-series"></a>D 系列
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大資料磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
@@ -113,11 +128,15 @@
 | Standard_D12_v2 |4 |28 |200 |8 |8x500 |4 / 高 |
 | Standard_D13_v2 |8 |56 |400 |16 |16x500 |8 / 高 |
 | Standard_D14_v2 |16 |112 |800 |32 |32x500 |8 / 極高 |
-| Standard_D15_v2 |20 |140 |1,000 |40 |40x500 |8 / 極高 |
+| Standard_D15_v2** |20 |140 |1,000 |40 |40x500 |8 / 極高* |
+
+* 在某些區域，加速網路適用於 Standard_D15_v2 大小。 如需使用情形和可用性的詳細資訊，請參閱[加速網路僅供預覽](https://azure.microsoft.com/updates/accelerated-networking-in-preview/)和[虛擬機器的加速網路](../articles/virtual-network/virtual-network-accelerated-networking-powershell.md)。
+
+**執行個體會隔離至單一客戶專用的硬體。
 
 <br>
 
-## <a name="ds-series*"></a>DS 系列*
+## <a name="ds-series"></a>DS 系列*
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大快取的磁碟輸送量︰IOPS / MBps (快取大小以 GiB 為單位) | 最大取消快取的磁碟輸送量︰IOPS / MBps | 最大 NIC / 網路頻寬 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Standard_DS1 |1 |3.5 |7 |2 |4,000 / 32 (43) |3,200 / 32 |1 / 中 |
@@ -135,7 +154,7 @@ MBps = 每秒 10^6 位元組，而 GiB = 1024^3 位元組。
 
 <br>
 
-## <a name="dsv2-series*"></a>DSv2 系列*
+## <a name="dsv2-series"></a>DSv2 系列*
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大快取的磁碟輸送量︰IOPS / MBps (快取大小以 GiB 為單位) | 最大取消快取的磁碟輸送量︰IOPS / MBps | 最大 NIC / 網路頻寬 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Standard_DS1_v2 |1 |3.5 |7 |2 |4,000 / 32 (43) |3,200 / 48 |1 中度 |
@@ -147,12 +166,15 @@ MBps = 每秒 10^6 位元組，而 GiB = 1024^3 位元組。
 | Standard_DS12_v2 |4 |28 |56 |8 |16,000 / 128 (144) |12,800 / 192 |4 高 |
 | Standard_DS13_v2 |8 |56 |112 |16 |32,000 / 256 (288) |25,600 / 384 |8 高 |
 | Standard_DS14_v2 |16 |112 |224 |32 |64,000 / 512 (576) |51,200 / 768 |8 極高 |
-| Standard_DS15_v2 |20 |140 GB |280 |40 |80,000 / 640 (720) |64,000 / 960 |8 極高 |
+| Standard_DS15_v2*** |20 |140 |280 |40 |80,000 / 640 (720) |64,000 / 960 |8 極高** |
 
 MBps = 每秒 10^6 位元組，而 GiB = 1024^3 位元組。
 
 *DSv2 系列 VM 的最大磁碟輸送量 (IOPS 或 MBps)，可能會受到所連接磁碟的數量、大小和串接所限制。  如需詳細資訊，請參閱 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
 
+** 在某些區域，加速網路適用於 Standard_DS15_v2 大小。 如需使用情形和可用性的詳細資訊，請參閱[加速網路僅供預覽](https://azure.microsoft.com/updates/accelerated-networking-in-preview/)和[虛擬機器的加速網路](../articles/virtual-network/virtual-network-accelerated-networking-powershell.md)。
+
+***執行個體會隔離至單一客戶專用的硬體。
 <br>
 
 ## <a name="f-series"></a>F 系列
@@ -166,7 +188,7 @@ MBps = 每秒 10^6 位元組，而 GiB = 1024^3 位元組。
 
 <br>
 
-## <a name="fs-series*"></a>Fs 系列*
+## <a name="fs-series"></a>Fs 系列*
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大快取的磁碟輸送量︰IOPS / MBps (快取大小以 GiB 為單位) | 最大取消快取的磁碟輸送量︰IOPS / MBps | 最大 NIC / 網路頻寬 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Standard_F1s |1 |2 |4 |2 |4,000 / 32 (12) |3,200 / 48 |1 / 中 |
@@ -188,23 +210,25 @@ MBps = 每秒 10^6 位元組，而 GiB = 1024^3 位元組。
 | Standard_G2 |4 |56 |768 |8 |8 x 500 |2 / 高 |
 | Standard_G3 |8 |112 |1,536 |16 |16 x 500 |4 / 非常高 |
 | Standard_G4 |16 |224 |3,072 |32 |32 x 500 |8 / 極高 |
-| Standard_G5 |32 |448 |6,144 |64 |64 x 500 |8 / 極高 |
+| Standard_G5* |32 |448 |6,144 |64 |64 x 500 |8 / 極高 |
 
+*執行個體會隔離至單一客戶專用的硬體。
 <br>
 
-## <a name="gs-series*"></a>GS 系列*
+## <a name="gs-series"></a>GS 系列*
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大快取的磁碟輸送量︰IOPS / MBps (快取大小以 GiB 為單位) | 最大取消快取的磁碟輸送量︰IOPS / MBps | 最大 NIC / 網路頻寬 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Standard_GS1 |2 |28 |56 |4 |10,000 / 100 (264) |5,000 / 125 |1 / 高 |
-| Standard_GS2 |4 |56 |528 |8 |20,000 / 200 (528) |10,000 / 250 |2 / 高 |
-| Standard_GS3 |8 |112 |1,056 |16 |40,000 / 400 (1,056) |20,000 / 500 |4 / 非常高 |
-| Standard_GS4 |16 |224 |2,112 |32 |80,000 / 800 (2,112) |40,000 / 1,000 |8 / 極高 |
-| Standard_GS5 |32 |448 |4,224 |64 |160,000 / 1,600 (4,224) |80,000 / 2,000 |8 / 極高 |
+| Standard_GS2 |4 |56 |112 |8 |20,000 / 200 (528) |10,000 / 250 |2 / 高 |
+| Standard_GS3 |8 |112 |224 |16 |40,000 / 400 (1,056) |20,000 / 500 |4 / 非常高 |
+| Standard_GS4 |16 |224 |448 |32 |80,000 / 800 (2,112) |40,000 / 1,000 |8 / 極高 |
+| Standard_GS5** |32 |448 |896 |64 |160,000 / 1,600 (4,224) |80,000 / 2,000 |8 / 極高 |
 
 MBps = 每秒 10^6 位元組，而 GiB = 1024^3 位元組。
 
 *GS 系列 VM 的最大磁碟輸送量 (IOPS 或 MBps)，可能會受到所連接磁碟的數量、大小和串接所限制。 
 
+**執行個體會隔離至單一客戶專用的硬體。
 <br>
 
 ## <a name="h-series"></a>H 系列
@@ -212,43 +236,62 @@ Azure H 系列虛擬機器是下一代高效能運算 VM，以高端運算需求
 
 除了大量的 CPU 能力，H 系列使用 FDR InfiniBand 與數個記憶體組態，針對低延遲 RDMA 網路提供不同的選項，以支援記憶體大量運算需求。
 
+如需有關使用這些大小的資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | 最大資料磁碟 | 最大磁碟輸送量︰IOPS | 最大 NIC / 網路頻寬 |
 | --- | --- | --- | --- | --- | --- | --- |
-| Standard_H8 |8 |56 |1000 |16 |16 x 500 |8 / 高 |
-| Standard_H16 |16 |112 |2000 |32 |32 x 500 |8 / 非常高 |
-| Standard_H8m |8 |112 |1000 |16 |16 x 500 |8 / 高 |
-| Standard_H16m |16 |224 |2000 |32 |32 x 500 |8 / 非常高 |
-| Standard_H16r* |16 |112 |2000 |32 |32 x 500 |8 / 非常高 |
-| Standard_H16mr* |16 |224 |2000 |32 |32 x 500 |8 / 非常高 |
+| Standard_H8 |8 |56 |1000 |16 |16 x 500 |2 / 高 |
+| Standard_H16 |16 |112 |2000 |32 |32 x 500 |4 / 非常高 |
+| Standard_H8m |8 |112 |1000 |16 |16 x 500 |2 / 高 |
+| Standard_H16m |16 |224 |2000 |32 |32 x 500 |4 / 非常高 |
+| Standard_H16r* |16 |112 |2000 |32 |32 x 500 |4 / 非常高 |
+| Standard_H16mr* |16 |224 |2000 |32 |32 x 500 |4 / 非常高 |
 
 *支援 RDMA
 
 <br>
 
-## <a name="n-series-(preview)"></a>N 系列 (預覽)
-NC 和 NV 大小也稱為已啟用 GPU 功能的執行個體。 這些是包含 NVIDIA GPU 卡並已針對不同情況和使用案例進行最佳化的特製化虛擬機器。 NV 大小會針對遠端視覺效果、串流、遊戲、編碼及利用 OpenGL 和 DirectX 這類架構的 VDI 案例進行最佳化和設計。 NC 大小則是針對運算密集型和網路密集型應用程式、演算法 (包括以 CUDA 和 OpenCL 為基礎的應用程式) 及模擬，有更深入的最佳化。 
+## <a name="n-series"></a>N 系列
+NC 和 NV 大小也稱為已啟用 GPU 功能的執行個體。 這些是包含 NVIDIA GPU 卡並已針對不同情況和使用案例進行最佳化的特製化虛擬機器。 NV 大小會針對遠端視覺效果、串流、遊戲、編碼及利用 OpenGL 和 DirectX 這類架構的 VDI 案例進行最佳化和設計。 NC 大小則是對運算密集型和網路密集型應用程式和演算法 (包括以 CUDA 和 OpenCL 為基礎的應用程式及模擬) 有更深入的最佳化。 
 
 ### <a name="nv-instances"></a>NV 執行個體
-NV 執行個體是由 NVIDIA 的 Tesla M60 GPU 和 NVIDIA GRID 提供技術支援，適用於桌面加速應用程式和虛擬桌面，可供客戶從中將其資料或模擬視覺化。 使用者將能夠在 NV 執行個體上，將其圖形密集型工作流程視覺化以獲得較佳的圖形功能，此外還能夠執行單精確度工作負載，例如編碼和轉譯。 Tesla M60 以雙 GPU 設計提供 4096 個 CUDA 核心，最多可達 36 個 1080p H.264 的串流。
+NV 執行個體是由 NVIDIA 的 Tesla M60 GPU 卡和 NVIDIA GRID 提供技術支援，適用於桌面加速應用程式和虛擬桌面，可供客戶從中將其資料或模擬視覺化。 使用者將能夠在 NV 執行個體上，將其圖形密集型工作流程視覺化以獲得較佳的圖形功能，此外還能夠執行單精確度工作負載，例如編碼和轉譯。 Tesla M60 以雙 GPU 設計提供 4096 個 CUDA 核心，最多可達 36 個 1080p H.264 的串流。 
+
 
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU |
 | --- | --- | --- | --- | --- |
-| Standard_NV6 |6 |56 |380 |1 x NVIDIA M60 |
-| Standard_NV12 |12 |112 |680 |2 x NVIDIA M60 |
-| Standard_NV24 |24 |224 |1440 |4 x NVIDIA M60 |
+| Standard_NV6 |6 |56 |380 | 1 |
+| Standard_NV12 |12 |112 |680 | 2 |
+| Standard_NV24 |24 |224 |1440 | 4 |
+
+1 GPU =&1;/2 M60 卡。
+
+**受支援的作業系統**
+
+* Windows Server 2016、Windows Server 2012 R2 - 請參閱[適用於 Windows 的 N 系列驅動程式設定](../articles/virtual-machines/virtual-machines-windows-n-series-driver-setup.md)
 
 ### <a name="nc-instances"></a>NC 執行個體
-NC 執行個體是由 NVIDIA 的 Tesla K80 提供技術支援。 使用者現在可以藉由將 CUDA 用於能源探勘應用程式、當機模擬、光線追蹤轉譯、深入學習等等，更快速地處理資料。 Tesla K80 以雙 GPU 設計提供 4992 個 CUDA 核心，最多可達 2.91 個兆級浮點運算 (Teraflop) 的雙精確度效能及最多 8.93 個兆級浮點運算的單精確度效能。 
+NC 執行個體是由 NVIDIA 的 Tesla K80 卡提供技術支援。 使用者現在可以藉由將 CUDA 用於能源探勘應用程式、當機模擬、光線追蹤轉譯、深入學習等等，更快速地處理資料。 Tesla K80 以雙 GPU 設計提供 4992 個 CUDA 核心，最多可達 2.91 個兆級浮點運算 (Teraflop) 的雙精確度效能及最多 8.93 個兆級浮點運算的單精確度效能。
 
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU |
 | --- | --- | --- | --- | --- |
-| Standard_NC6 |6 |56 |380 |1 x NVIDIA K80 |
-| Standard_NC12 |12 |112 |680 |2 x NVIDIA K80 |
-| Standard_NC24 |24 |224 |1440 |4 x NVIDIA K80 |
+| Standard_NC6 |6 |56 | 380 | 1 |
+| Standard_NC12 |12 |112 | 680 | 2 |
+| Standard_NC24 |24 |224 | 1440 | 4 |
+| Standard_NC24r* |24 |224 | 1440 | 4 |
+
+1 GPU =&1;/2 K80 卡。
+
+*支援 RDMA
+
+**受支援的作業系統**
+
+* Windows Server 2016、Windows Server 2012 R2 - 請參閱[適用於 Windows 的 N 系列驅動程式設定](../articles/virtual-machines/virtual-machines-windows-n-series-driver-setup.md)
+* Ubuntu 16.04 LTS - 請參閱[適用於 Linux 的 N 系列驅動程式設定](../articles/virtual-machines/virtual-machines-linux-n-series-driver-setup.md)
 
 <br>
 
-## <a name="notes:-standard-a0---a4-using-cli-and-powershell"></a>注意︰使用 CLI 和 PowerShell 的標準 A0 - A4
+## <a name="notes-standard-a0---a4-using-cli-and-powershell"></a>注意︰使用 CLI 和 PowerShell 的標準 A0 - A4
 在傳統部署模型中，部分 VM 大小名稱會與 CLI 和 PowerShell 中的稍有不同：
 
 * Standard_A0 是「特小型」 
@@ -259,8 +302,10 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 提供技術支援。 使用者現在
 
 ## <a name="next-steps"></a>後續步驟
 * 了解 [Azure 訂用帳戶和服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
-* 深入了解適用於高效能運算 (HPC) 這類工作負載的 [H 系列與計算密集型 A 系列 VM](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) 。
+* 深入了解適用於高效能運算 (HPC) 這類工作負載的 [H 系列與計算密集型 A 系列 VM](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Feb17_HO2-->
 
 

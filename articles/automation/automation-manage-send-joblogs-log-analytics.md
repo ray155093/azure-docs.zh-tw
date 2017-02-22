@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 09/22/2016
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 00b217a4cddac0a893564db27ffb4f460973c246
-ms.openlocfilehash: 6a58b75b1bc198e26e7ddc776a668cb2a4bf9553
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 22a8a7541da572445ab0d6a822b56bd9a03339b7
 
 
 ---
@@ -44,7 +44,7 @@ ms.openlocfilehash: 6a58b75b1bc198e26e7ddc776a668cb2a4bf9553
    > 儲存體帳戶「必須」與自動化帳戶位於相同的區域中。
    >
    >
-3. Azure PowerShell 以及 Operational Insights Cmdlet 版本 1.0.8 或更新版本。 如需有關此版本以及如何安裝的資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+3. Azure PowerShell 以及 Operational Insights Cmdlet 版本 1.0.8 或更新版本。 如需有關此版本以及如何安裝的資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 4. Azure 診斷和 Log Analytics PowerShell。  如需有關此版本及安裝方式的詳細資訊，請參閱 [Azure Diagnostic and Log Analytics (Azure 診斷和 Log Analytics)](https://www.powershellgallery.com/packages/AzureDiagnosticsAndLogAnalytics/0.1)。  
 5. 從 **PowerShell 資源庫** 下載 PowerShell 指令碼 [Enable-AzureDiagnostics.ps1](https://www.powershellgallery.com/packages/Enable-AzureDiagnostics/1.0/DisplayScript)。 此指令碼將會設定以下內容：
    * 為您所指定的自動化帳戶保存 Runbook 工作狀態和資料流資料的儲存體帳戶。
@@ -156,6 +156,6 @@ ms.openlocfilehash: 6a58b75b1bc198e26e7ddc776a668cb2a4bf9553
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

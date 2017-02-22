@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure 資訊安全中心文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何設定 Azure 資源的安全性監視和原則管理。 教學課程、REST API 參考和其他文件。"
+services: security-center
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: security-center
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: 5600b20d3c04547e2002a779fde70769bb6a5e59
+ms.sourcegitcommit: 75d2819ed673b6283221d1e09507dd9f18a1bc99
+ms.openlocfilehash: 324192324831cbda13f23b784b37efcfd14808d3
 
 ---
 # <a name="security-center-documentation"></a>資訊安全中心文件
@@ -83,12 +94,12 @@ ms.openlocfilehash: 5600b20d3c04547e2002a779fde70769bb6a5e59
             </div>
         </div>
     </li>
-</ul>   
+</ul>    
 
 
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

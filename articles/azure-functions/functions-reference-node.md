@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions NodeJS 開發人員參考 | Microsoft Docs"
-description: "了解如何使用 NodeJS 開發 Azure Functions。"
+title: "適用於 Azure Functions 的 JavaScript 開發人員參考 | Microsoft Docs"
+description: "了解如何使用 JavaScript 開發 Azure Functions。"
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -15,22 +15,22 @@ ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/13/2016
-ms.author: chrande
+ms.author: chrande, glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 4544629c47326d448cd99b5d96d79666a56f0274
-ms.openlocfilehash: 116b0fd67701e69a81b7f736bbd241427eb33e34
+ms.sourcegitcommit: e660f3313ba6805356eef30b3a17ac609fc9043e
+ms.openlocfilehash: 880fdbd6fc51f16add2f2497402d8b01047d0847
 
 
 ---
-# <a name="azure-functions-nodejs-developer-reference"></a>Azure Functions NodeJS 開發人員參考
+# <a name="azure-functions-javascript-developer-guide"></a>Azure Functions JavaScript 開發人員指南
 > [!div class="op_single_selector"]
 > * [C# 指令碼](functions-reference-csharp.md)
 > * [F# 指令碼](functions-reference-fsharp.md)
-> * [Node.js](functions-reference-node.md)
+> * [JavaScript](functions-reference-node.md)
 > 
 > 
 
-Azure Functions 的 Node/JavaScript 體驗能讓您輕鬆地匯出函式，系統會傳遞一個 `context` 物件給該函式以便與執行階段通訊，以及用來透過繫結接收和傳送資料。
+Azure Functions 的 JavaScript 體驗能讓您輕鬆地匯出函式，系統會傳遞一個 `context` 物件給該函式以便與執行階段通訊，以及用來透過繫結接收和傳送資料。
 
 本文假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)。
 
@@ -138,8 +138,8 @@ if(context.req.body.emoji === ':pizza:') context.log('Yay!');
 context.res = { status: 202, body: 'You successfully ordered more coffee!' };   
 ```
 
-## <a name="node-version-package-management"></a>Node 版本和封裝管理
-Node 版本目前鎖定在 `5.9.1`。 我們正在調查加入更多版本並允許設定的支援。
+## <a name="node-version--package-management"></a>Node 版本和封裝管理
+Node 版本目前鎖定在 `6.5.0`。 我們正在調查加入更多版本並允許設定的支援。
 
 您可以在您的函式中加入封裝，做法是將 project.json  檔案上傳至函式應用程式檔案系統中的函式資料夾。 如需檔案上傳指示，請參閱 **Azure Functions 開發人員參考主題** 中的 [如何更新函式應用程式檔案](functions-reference.md#fileupdate)一節。 
 
@@ -155,7 +155,7 @@ Node 版本目前鎖定在 `5.9.1`。 我們正在調查加入更多版本並允
 ```javascript
 // Import the underscore.js library
 var _ = require('underscore');
-var version = process.version; // version === 'v5.9.1'
+var version = process.version; // version === 'v6.5.0'
 
 module.exports = function(context) {
     // Using our imported underscore.js library
@@ -198,6 +198,6 @@ function GetEnvironmentVariable(name)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

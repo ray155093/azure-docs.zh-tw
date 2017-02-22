@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/09/2016
 ms.author: kbaroni;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: eb6fc4b1451d9c1ba17d1787bc8a77507b694258
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: b519769502f9883c5be59dc453bce872660774b5
 
 
 ---
@@ -52,9 +52,9 @@ ms.openlocfilehash: eb6fc4b1451d9c1ba17d1787bc8a77507b694258
 我們遵循下列步驟在 Azure ML 中建立我們的實驗：  
 
 1. 將資料集以 csv 檔案 (非常小的檔案) 的形式上傳到 Azure ML
-2. 建立新的實驗，並使用[選取資料集中的資料行][select-columns]模組來選取 Excel 中所使用的相同資料功能   
-3. 使用[資料分割][split]模組 (與「相對運算式」模式)，將資料分成完全相同的訓練集，正如同在 Excel 中完成的動作  
-4. 使用[線性迴歸][linear-regression]模組實驗 (只有使用預設選項)、記載，並將結果與我們 Excel 迴歸模型比較
+2. 建立新的實驗，並使用[選取資料集中的資料行][select-columns]模組來選取 Excel 中所使用的相同資料特徵   
+3. 使用[資料分割][split]模組 (與「相對運算式」模式)，將資料分割成完全如同 Excel 中產生的相同訓練集。  
+4. 使用[線性迴歸][linear-regression]模組進行實驗 (只使用預設選項)、記載，並將結果與我們的 Excel 迴歸模型相互比較
 
 ### <a name="review-initial-results"></a>檢閱初步結果
 最初，Excel 模型效能明顯勝過 Azure ML 模型：  
@@ -69,7 +69,7 @@ ms.openlocfilehash: eb6fc4b1451d9c1ba17d1787bc8a77507b694258
 
 當我們向 Azure ML 小組的開發人員和資料科學家執行我們的程序和結果時，他們快速提供一些實用的秘訣。  
 
-* 當您在 Azure ML 中使用[線性迴歸][linear-regression]模組時，會提供兩種方法：
+* 當您在 Azure ML 中使用[線性迴歸][linear-regression]模組時，我們提供兩種方法：
   * 線上梯度下降：可能比較適合較大規模的問題
   * 一般最小平方：這是大多數人聽到線性迴歸時會想到的方法。 對於小型資料集，一般最小平方是較佳的選擇。
 * 考慮調整 L2 正規化加權參數，以改善效能。 它預設設定為 0.001，而對我們的小型資料集，將它設定為 0.005 以改善效能。    
@@ -117,9 +117,9 @@ ms.openlocfilehash: eb6fc4b1451d9c1ba17d1787bc8a77507b694258
 ![][2]
 
 ### <a name="optimization-and-further-experiments"></a>最佳化及進一步實驗
-現在我們已具備 Excel 模型的基準，我們可以進行最佳化 Azure ML 線性迴歸模型。  我們使用模組[以篩選為基礎的功能選取][filter-based-feature-selection]來改善我們的初始資料元素的選取，並且它幫助我們達到平均絕對誤差 4.6% 的效能提升。   針對未來的專案，我們將使用這項功能，它可以為逐一查看資料屬性，以找出正確的功能，用於模型化組合上，可為我們節省數週的時間。  
+現在我們已具備 Excel 模型的基準，我們可以進行最佳化 Azure ML 線性迴歸模型。  我們使用[以篩選為基礎的特徵選取][filter-based-feature-selection]模組，改善我們選取的初始資料元素，有助於我們的效能提升達到平均絕對誤差 4.6%。   針對未來的專案，我們將使用這項功能，它可以為逐一查看資料屬性，以找出正確的功能，用於模型化組合上，可為我們節省數週的時間。  
 
-接下來我們計劃要在我們的實驗中納入其他演算法 (例如 [Bayesian][bayesian-linear-regression]或[推進式決策樹][boosted-decision-tree-regression]) 來比較效能。    
+接下來，我們打算在實驗中納入其他演算法來比較效能，例如 [Bayesian][bayesian-linear-regression]或[推進式決策樹][boosted-decision-tree-regression]。    
 
 如果您想要實驗迴歸，「能量效益迴歸」範例資料集即是可用來嘗試的良好的資料集，其中包含多個數值屬性。 資料集是在 ML Studio 中的範例資料集的一部分提供。  您可以使用各種不同的學習模組，來預測加熱負載或冷卻負載。  下列圖表是針對目標變數冷卻負載預測的能源效率資料集所學習不同的迴歸的效能比較： 
 
@@ -131,9 +131,9 @@ ms.openlocfilehash: eb6fc4b1451d9c1ba17d1787bc8a77507b694258
 | 線性迴歸 (一般最小平方) |1.428273 |1.984461 |0.163767 |0.042074 |0.957926 |
 
 ## <a name="key-takeaways"></a>重要心得
-我們從並行執行 Excel 迴歸和 Azure Machine Learning 實驗中學到很多。 在 Excel 中建立基準模型並與使用 Azure ML [線性迴歸][linear-regression]的模型比較，幫助我們了解 Azure ML，並且我們探索了改善資料的選項和模型效能的機會。         
+我們從並行執行 Excel 迴歸和 Azure Machine Learning 實驗中學到很多。 我們在 Excel 中建立基準模型，並與使用 Azure ML [線性迴歸][linear-regression]的模型相互比較，幫助我們了解 Azure ML，我們也發現有機會改善資料的選取和模型效能。         
 
-我們也發現，最好使用[以篩選為基礎的功能選取][filter-based-feature-selection]來加速未來的預測專案。  藉由將功能選取套用到您的資料，您可以在 Azure ML 中建立改良的模型，以獲得更好的整體效能。 
+我們也發現，最好使用[以篩選為基礎的特徵選取][filter-based-feature-selection]來加速未來的預測專案。  藉由將功能選取套用到您的資料，您可以在 Azure ML 中建立改良的模型，以獲得更好的整體效能。 
 
 能夠從 Azure ML 傳送預測性的分析預測至 Excel 可大幅增加成功將結果提供給廣泛的商業使用者對象的能力。     
 
@@ -159,6 +159,6 @@ ms.openlocfilehash: eb6fc4b1451d9c1ba17d1787bc8a77507b694258
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

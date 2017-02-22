@@ -12,15 +12,25 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/24/2017
+ms.date: 02/01/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: f06747c35f12802f54b44774dff7f92280ba0dc9
-ms.openlocfilehash: fb6dbb6da0ad2cfdfee519c8ce254d983d34fe5e
+ms.sourcegitcommit: 2fe28e7b52af579038ec145c028a6d2796d6cc6e
+ms.openlocfilehash: f47b719f7b1a78264e054ee15edacc32ca35aaf7
 
 
 ---
 # <a name="stream-analytics-release-notes"></a>串流分析版本資訊
+## <a name="notes-for-02012017-release-of-stream-analytics"></a>串流分析 2017/02/01 版本的注意事項
+此版本包含下列更新。
+
+| 課程名稱 | 說明 |
+| --- | --- |
+| 簡介 JavaScript 使用者定義函數 (UDF) |[Java 使用者定義函數](stream-analytics-javascript-user-defined-functions.md)現已可為建立查詢提供額外的彈性。 |
+| 簡介 Visual Studio 和串流分析的工具 |[Visual Studio 適用的工具](stream-analytics-tools-for-visual-studio.md)現已可供進行偵錯，並具備更強大的功能。 |
+| 簡介診斷記錄 |[診斷記錄](stream-analytics-job-diagnostic-logs.md)現已具有額外的疑難排解選項。 |
+| 簡介 GeoSpatial 函數 |[GeoSpatial 函數](http://msdn.microsoft.com/library/mt778980(Azure.100).aspx)現已正式推出。 |
+
 ## <a name="notes-for-04152016-release-of-stream-analytics"></a>串流分析 2016 年 4 月 15 日版本的注意事項
 此版本包含下列更新。
 
@@ -136,6 +146,6 @@ ms.openlocfilehash: fb6dbb6da0ad2cfdfee519c8ce254d983d34fe5e
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 02/07/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b2baa9ea093a36cadb2251bbd1f4390552d8ec0e
+ms.sourcegitcommit: 68e475891a91e4ae45a467cbda2b7b51c8020dbd
+ms.openlocfilehash: e5f643d444fb2bf00aa91083f5d09962372e0dbb
 
 
 ---
@@ -29,11 +29,13 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 ## <a name="related-documentation"></a>相關文件
 如果您尚未閱讀有關[整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md) 的文件，下表提供相關主題的連結。
 
-| 主題 |
+|主題 |連結|  
 | --- | --- |
-| 使用快速設定進行安裝 |
-| 使用自訂設定進行安裝 |
-| 從 DirSync 升級 |
+|下載 Azure AD Connect | [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)|
+|使用快速設定進行安裝 | [快速安裝 Azure AD Connect](./active-directory-aadconnect-get-started-express.md)|
+|使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](./active-directory-aadconnect-get-started-custom.md)|
+|從 DirSync 升級 | [從 Azure AD 同步作業工具 (DirSync) 升級](./active-directory-aadconnect-dirsync-upgrade-get-started.md)|
+|安裝後 | [驗證安裝和指派授權 ](active-directory-aadconnect-whats-next.md)|
 
 ## <a name="express-settings-installation"></a>快速設定安裝
 在「快速設定」中，安裝精靈會要求提供「AD DS 企業系統管理員」認證，以便設定您的內部部署 Active Directory，使其具備必要的 Azure AD Connect 權限。 如果您是從 DirSync 升級，可透過 AD DS 企業系統管理員認證來重設 DirSync 所使用帳戶的密碼。 您也需要 Azure AD 全域管理員認證。
@@ -45,7 +47,7 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 | 連線到 AD DS |內部部署 Active Directory 認證 |Active Directory 中 Enterprise Admins (EA) 群組成員 |<li>在 Active Directory 中建立[帳戶](#active-directory-account)並授與權限。 這個建立的帳戶是在同步處理期間用來讀取和寫入目錄資訊。</li> |
 
 ### <a name="enterprise-admin-credentials"></a>企業管理員認證
-這些認證只能在安裝期間使用，安裝完成後則無法使用。 它是企業管理員而不是網域管理員，以確定可以在所有網域中設定 Active Directory 中的權限。
+這些認證只能在安裝期間使用，安裝完成後則無法使用。 企業管理員而不是網域管理員應該確定可以在所有網域中設定 Active Directory 中的權限。
 
 ### <a name="global-admin-credentials"></a>全域管理員認證
 這些認證只能在安裝期間使用，安裝完成後則無法使用。 它是用來建立 [Azure AD 帳戶](#azure-ad-service-account) ，用於同步處理變更至 Azure AD。 帳戶也會在 Azure AD 中啟用同步處理做為一項功能。
@@ -84,9 +86,9 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 | 功能 | 權限 |
 | --- | --- |
 | 密碼同步處理 |<li>複寫目錄變更</li>  <li>複寫目錄變更 (全部) |
-| Exchange 混合式部署 |[Exchange 混合回寫](../active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback)中記載了使用者、群組和連絡人適用的屬性的寫入權限。 |
+| Exchange 混合式部署 |[Exchange 混合回寫](active-directory-aadconnectsync-attributes-synchronized.md#exchange-hybrid-writeback)中記載了使用者、群組和連絡人適用的屬性的寫入權限。 |
 | 密碼回寫 |[開始使用密碼管理](../active-directory-passwords-getting-started.md#step-4-set-up-the-appropriate-active-directory-permissions)中記載了使用者適用的屬性的寫入權限。 |
-| 裝置回寫 |[裝置回寫](../active-directory-aadconnect-feature-device-writeback.md)中所述的使用 PowerShell 指令碼授與權限。 |
+| 裝置回寫 |[裝置回寫](active-directory-aadconnect-feature-device-writeback.md)中所述的使用 PowerShell 指令碼授與權限。 |
 | 群組回寫 |讀取、建立、更新和刪除散發群組所在 OU 中的群組物件。 |
 
 ## <a name="upgrade"></a>升級
@@ -134,6 +136,6 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

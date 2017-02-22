@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/24/2016
-ms.author: mfussell
+ms.date: 2/17/2017
+ms.author: msfussell
 translationtype: Human Translation
-ms.sourcegitcommit: af9f761179896a1acdde8e8b20476b7db33ca772
-ms.openlocfilehash: 1c5f3bc66c902c3b7186cad44728fa5237dd298a
+ms.sourcegitcommit: 47b3fffb2d5c24b7473884e490be19ff17b61b61
+ms.openlocfilehash: 97b0cb7a5f04f2c5c547cb4b70d87273aa8f2383
 
 
 ---
@@ -30,9 +30,8 @@ ms.openlocfilehash: 1c5f3bc66c902c3b7186cad44728fa5237dd298a
 本文將引導您在 Windows 容器中建置容器化服務的程序。
 
 > [!NOTE]
-> 這項功能在 Linux 上處於預覽階段，在 Windows Server 2016 上尚無法使用。 在即將發行的 Azure Service Fabric 中，此功能會是的 Windows Server 2016 的預覽階段功能。 
-> 
-> 
+> 此功能在 Windows Server 2016 預覽版中。
+>  
 
 Service Fabric 有數個容器功能可協助您建置由容器化微服務組成的應用程式。 
 
@@ -48,17 +47,46 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 讓我們看看將容器化服務封裝納入應用程式時，每項功能如何運作。
 
 ## <a name="package-a-windows-container"></a>封裝 Windows 容器
-在封裝容器時，您可以選擇使用 Visual Studio 專案範本，或是[手動建立應用程式套件](#manually)。 當您使用 Visual Studio 時，就可讓 [新增專案範本] 為您建立應用程式套件的結構和資訊清單檔案。 未來的版本將會發行 VS 範本。
+在封裝容器時，您可以選擇使用 Visual Studio 專案範本，或是[手動建立應用程式套件](#manually)。  當您使用 Visual Studio 時，「新增專案」範本會為您建立應用程式套件結構和資訊清單檔案。
+
+> [!TIP]
+> 將現有的容器映像封裝到服務中的最簡單方式就是使用 Visual Studio。
 
 ## <a name="use-visual-studio-to-package-an-existing-container-image"></a>使用 Visual Studio 封裝現有容器映像
-> [!NOTE]
-> 在即將發行的 Service Fabric 適用的Visual Studio 中，您能夠將容器新增至應用程式，就像您現在新增來賓執行檔一樣。 如需詳細資訊，請參閱[將來賓執行檔部署至 Service Fabric](service-fabric-deploy-existing-app.md) 主題。 目前，您必須如下一節所述手動封裝容器。
-> 
-> 
+Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器部署到 Service Fabric 叢集中。
+
+1. 選擇 [檔案]  >  [新增專案]，然後建立 Service Fabric 應用程式。
+2. 選擇 [客體容器] 作為服務範本。
+3. 選擇 [映像名稱] 並提供該映像在容器存放庫 (例如在 https://hub.docker.com/) 中的路徑，例如：myrepo/myimage:v1 
+4. 指定服務的名稱，然後按一下 [確定]。
+5. 如果容器化服務需要一個用來進行通訊的端點，您現在便可在 ServiceManifest.xml 檔案中新增通訊協定、連接埠及類型。 例如： 
+     
+    `<Endpoint Name="MyContainerServiceEndpoint" Protocol="http" Port="80" UriScheme="http" PathSuffix="myapp/" Type="Input" />`
+    
+    藉由提供 `UriScheme`，就會自動向「Service Fabric 命名」服務註冊容器端點以供搜尋。 此連接埠可以是固定連接埠 (如以上範例所示) 或動態配置的連接埠 (只要留白，就會從指定的應用程式連接埠範圍配置連接埠)，就像您使用任何服務時一樣。
+    您還需要在應用程式資訊清單中指定 `PortBinding` 來設定容器端點對端點連接埠對應，如以下所述。
+6. 如果您的容器需要資源管理，則請新增 `ResourceGovernancePolicy`。
+8. 如果您的容器需要向私用儲存機制進行驗證，則請新增 `RepositoryCredentials`。
+7. 如果這是已啟用容器支援的 Windows Server 2016，您現在便可以對本機叢集使用封裝和發佈動作。 
+8. 準備好時，即可將應用程式發佈至遠端叢集，或將方案簽入到原始檔控制。 
+
+如需範例應用程式，請[查看 GitHub 上的 Service Fabric 容器程式碼範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+
+## <a name="creating-a-windows-server-2016-cluster"></a>建立 Windows Server 2016 叢集
+若要部署容器化應用程式，您必須建立執行 Windows Server 2016 並已啟用容器支援的叢集。 這可以位於您的本機開發電腦或透過 Azure Resource Manager (ARM) 在 Azure 中部署。 
+
+若要使用 ARM 來部署叢集，請選擇 Azure 中的 [含容器的 Windows Server 2016] 映像。 請參閱文章[使用 Azure Resource Manager 來建立 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)。 確定您是使用下列 ARM 設定：
+
+```xml
+"vmImageOffer": { "type": "string","defaultValue": "WindowsServer"     },
+"vmImageSku": { "defaultValue": "2016-Datacenter-with-Containers","type": "string"     },
+"vmImageVersion": { "defaultValue": "latest","type": "string"     },  
+```
+您也可以使用[這裡的&5; 節點 ARM 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype)來建立叢集。 或者，閱讀[這裡的 Leok 部落格文章](https://loekd.blogspot.com/2017/01/running-windows-containers-on-azure.html)以了解如何使用 Service Fabric 和 Windows 容器。
 
 <a id="manually"></a>
 
-## <a name="manually-package-and-deploy-a-container"></a>手動封裝和部署容器
+## <a name="manually-package-and-deploy-a-container-image"></a>手動封裝和部署容器映像
 手動封裝容器化服務的程序是基於下列步驟：
 
 1. 將容器發佈至儲存機制。
@@ -263,7 +291,7 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
         <DataPackage Name="FrontendService.Data" Version="1.0" />
         <Resources>
             <Endpoints>
-                <Endpoint Name="Endpoint1" Port="80"  UriScheme="http" />
+                <Endpoint Name="Endpoint1" UriScheme="http" Port="80" Protocol="http"/>
             </Endpoints>
         </Resources>
     </ServiceManifest>
@@ -272,9 +300,11 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 ## <a name="next-steps"></a>後續步驟
 現在您已部署容器化的服務，可以開始了解如何讀取 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)並管理其生命週期。
 
+* [Service Fabric 和容器的概觀](service-fabric-containers-overview.md)
+* 如需範例應用程式，請[查看 GitHub 上的 Service Fabric 容器程式碼範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "啟用 ACS 應用程式的公用存取 | Microsoft Docs"
-description: "如何啟用 Azure Container Service 的公用存取。"
+title: "啟用對 Azure DC/OS 容器應用程式的存取 | Microsoft Docs"
+description: "如何在 Azure Container Service 中啟用對 DC/OS 容器的公用存取。"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 08/26/2016
 ms.author: saudas
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9491ffb2683063169ab25c38b3db5de06282d654
+ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
+ms.openlocfilehash: b432755bdae235228a9b677783a8cad94142b6ca
 
 
 ---
@@ -91,6 +91,6 @@ ACS [公用代理程式集區](container-service-mesos-marathon-ui.md#deploy-a-d
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

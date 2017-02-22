@@ -12,17 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/06/2017
+ms.date: 02/03/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 6862723b774951fe4cca0303ee2a39a0d5f2089d
-ms.openlocfilehash: eec688e33ff55334ebe0c1bc6d08e4753aadb85c
+ms.sourcegitcommit: 96a971c31f9088b3aa409a85f0679fd3bd5945d1
+ms.openlocfilehash: 4dc1bfa1e385e945c47bbfc5faa776e577ee84b2
 
 
 ---
 # <a name="manage-workspaces"></a>管理工作區
 
-若要管理對 Log Analytics 的存取，請執行與工作區相關的各種系統管理工作。 本文提供您要用來以不同帳戶類型管理工作區的最佳做法建議和程序。 工作區本質上是一個容器，包含帳戶資訊和帳戶的簡單組態資訊。 您或組織的其他成員可能會使用多個工作區來管理從所有或部分 IT 基礎結構收集而來的不同資料。
+若要管理對 Log Analytics 的存取，請執行與工作區相關的各種系統管理工作。 本文提供管理工作區的最佳做法和程序。 工作區本質上是一個容器，包含帳戶資訊和帳戶的簡單組態資訊。 您或組織的其他成員可能會使用多個工作區來管理從所有或部分 IT 基礎結構收集而來的不同資料。
 
 若要建立工作區，您需要︰
 
@@ -41,6 +41,7 @@ ms.openlocfilehash: eec688e33ff55334ebe0c1bc6d08e4753aadb85c
 * 資料儲存體的地理位置
 * 計費的細微度
 * 資料隔離
+* 設定範圍
 
 根據上述特性，您在下列情況下可能想要建立多個工作區︰
 
@@ -61,7 +62,7 @@ ms.openlocfilehash: eec688e33ff55334ebe0c1bc6d08e4753aadb85c
 #### <a name="view-workspace-information-the-azure-portal"></a>在 Azure 入口網站中檢視工作區資訊
 
 1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在 [中樞] 功能表上按一下 [更多服務]，然後在資源清單中輸入 **Log Analytics**。 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 按一下 [Log Analytics]。  
+2. 在 [中樞] 功能表上按一下 [更多服務]，然後在資源清單中輸入 **Log Analytics**。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 按一下 [Log Analytics]。  
     ![Azure 中樞](./media/log-analytics-manage-access/hub.png)  
 3. 在 [Log Analytics 訂用帳戶] 刀鋒視窗中選取工作區。
 4. [工作區] 刀鋒視窗會顯示工作區的詳細資料和其他資訊的連結。  
@@ -78,8 +79,7 @@ ms.openlocfilehash: eec688e33ff55334ebe0c1bc6d08e4753aadb85c
 * 在 Azure 中，您可以使用 Azure 角色型存取控制來允許存取 Azure 訂用帳戶和相關聯的 Azure 資源。 這些權限也用於 PowerShell 和 REST API 存取。
 * 在 OMS 入口網站中，僅限於存取 OMS 入口網站，而不能存取相關聯的 Azure 訂用帳戶。
 
-如果您僅將 OMS 入口網站存取權授與使用者，而非它所連結的 Azure 訂用帳戶，則使用者在備份和 Site Recovery 方案圖格中看不到資料。
-若要允許所有使用者看到這些方案中的資料，請確定他們至少有連結到工作區之備份保存庫和 Site Recovery 保存庫的**讀者**存取權。   
+若要查看備份和 Site Recovery 方案圖格中的資料，一定要具備工作區所連結之 Azure 訂用帳戶的系統管理員或共同系統管理員權限。   
 
 ### <a name="managing-access-to-log-analytics-using-the-azure-portal"></a>使用 Azure 入口網站管理對 Log Analytics 的存取
 如果您允許使用者利用 Azure 權限存取 Log Analytics 工作區 (例如在 Azure 入口網站中)，則相同的使用者也可存取 Log Analytics 入口網站。 如果使用者在 Azure 入口網站中，他們在檢視 Log Analytics 工作區資源時，只要按一下 [OMS 入口網站 ] 工作，即可瀏覽至 OMS 入口網站。
@@ -199,7 +199,7 @@ ms.openlocfilehash: eec688e33ff55334ebe0c1bc6d08e4753aadb85c
 8. 按一下 [確定] 。 工作區現在已連結到您的 Azure 帳戶。
 
 > [!NOTE]
-> 如果您看不到想要連結的工作區，則您的 Azure 訂用帳戶沒有使用 OMS 網站建立之工作區的存取權。  您需要從 OMS 入口網站授與此帳戶的存取權。 若要這樣做，請參閱 [新增使用者到現有的工作區](#add-a-user-to-an-existing-workspace)。
+> 如果您看不到想要連結的工作區，則您的 Azure 訂用帳戶沒有使用 OMS 網站建立之工作區的存取權。  若要從 OMS 入口網站授與此帳戶的存取權，請參閱[將使用者新增至現有的工作區](#add-a-user-to-an-existing-workspace)。
 >
 >
 
@@ -232,15 +232,20 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 
 如果需要變更工作區所連結的 Azure 訂用帳戶，則可以使用 Azure PowerShell [Move-AzureRmResource](https://msdn.microsoft.com/library/mt652516.aspx) Cmdlet。  
 
-### <a name="change-a-workspace-to-a-paid-data-plan"></a>將工作區變更為付費資料方案
+### <a name="change-a-workspace-to-a-paid-pricing-tier"></a>將工作區變更為付費定價層
 1. 登入 [Azure 入口網站](http://portal.azure.com)。
 2. 瀏覽 **Log Analytics**，然後加以選取。
 3. 您會看到現有工作區清單。 選取工作區。  
-4. 在 [工作區] 刀鋒視窗的 [一般] 下方，按一下 [定價層]。  
-5. 在 [定價層] 下方，按一下 [選取行動數據方案]，然後按一下 [選取]。  
+4. 在 [工作區] 刀鋒視窗的 [一般] 之下，按一下 [定價層]。  
+5. 在 [定價層] 之下，按一下 [選取定價層]，然後按一下 [選取]。  
     ![選取方案](./media/log-analytics-manage-access/manage-access-change-plan03.png)
-6. 重新整理您在 Azure 入口網站中的檢視時，會看到所選取方案的 [定價層] 已更新。  
+6. 重新整理您在 Azure 入口網站中的檢視時，會看到所選取層級的 [定價層] 已更新。  
     ![更新的方案](./media/log-analytics-manage-access/manage-access-change-plan04.png)
+
+> [!NOTE]
+> 如果您的工作區連結到自動化帳戶，必須先刪除任何**自動化和控制**解決方案以及取消連結自動化帳戶，才可以選取 [獨立 (每 GB)] 定價層。 在 [工作區] 刀鋒視窗的 [一般] 之下，按一下 [解決方案] 以查看和刪除解決方案。 若要取消連結自動化帳戶，請按一下 [定價層] 刀鋒視窗上的自動化帳戶名稱。
+>
+>
 
 ## <a name="change-how-long-log-analytics-stores-data"></a>變更 Log Analytics 儲存資料的時間長度
 
@@ -293,6 +298,6 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

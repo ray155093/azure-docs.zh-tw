@@ -1,5 +1,5 @@
 ---
-title: "使用 Apache Spark 搭配 Kafka on HDInsight | Microsoft Docs"
+title: "搭配 Kafka 使用 Azure HDInsight 上的 Apache Spark | Microsoft Docs"
 description: "了解如何使用 Spark on HDInsight 來讀取資料並寫入至 Kafka on HDInsight 叢集。 此範例使用 Jupyter Notebook 中的 Scala，將隨機資料寫入 Kafka on HDInsight，然後使用 Spark 串流加以讀回。"
 services: hdinsight
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang:
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/14/2016
+ms.date: 02/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2d744e753224e4ce98680d3228914fd89e87eba4
-ms.openlocfilehash: 535e8fc7503e21eea470a1fdb0a10fbc8a18349c
+ms.sourcegitcommit: 50a9c3929a4d3194c3786a3d4f6cdd1b73fb5867
+ms.openlocfilehash: 0cb9d65e33bf6f6b67e2a74b7e4634aba3f2359b
 
 ---
 # <a name="use-apache-spark-with-kafka-preview-on-hdinsight"></a>使用 Apache Spark 搭配 Kafka (預覽) on HDInsight
@@ -130,7 +130,7 @@ Notebook 中的程式碼會執行下列工作：
         curl -u admin:PASSWORD -G "https://kafka-BASENAME.azurehdinsight.net/api/v1/clusters/kafka-BASENAME/services/KAFKA/components/KAFKA_BROKER" | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")'
 
     > [!IMPORTANT]
-    > 從 Windows PowerShell 使用此命令時，您可能會收到有關殼層引用的錯誤。 若是如此，請使用下列命令：`curl -u admin:PASSWORD -G "https://kafka-BASENAME.azurehdinsight.net/api/v1/clusters/kafka-BASENAME/services/KAFKA/components/KAFKA_BROKER" | jq -r '["""\(.host_components[].HostRoles.host_name):9092"""] | join(""",""")'
+    > 從 Windows PowerShell 使用此命令時，您可能會收到有關殼層引用的錯誤。 若是如此，請使用下列命令：`curl -u admin:PASSWORD -G "https://kafka-BASENAME.azurehdinsight.net/api/v1/clusters/kafka-BASENAME/services/KAFKA/components/KAFKA_BROKER" | jq -r '["""\(.host_components[].HostRoles.host_name):9092"""] | join(""",""")'`
 
 * 若要取得 __Zookeeper 主機__資訊：
 
@@ -187,6 +187,6 @@ Notebook 中的程式碼會執行下列工作：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

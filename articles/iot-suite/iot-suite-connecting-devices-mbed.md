@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/05/2016
+ms.date: 01/04/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f2a77ada25d7d6285c62d2f3d1330df5f192713d
+ms.sourcegitcommit: 9ded95283b52f0fc21ca5b99df8e72e1e152fe1c
+ms.openlocfilehash: a70eb51e7ebbc79e1aab4176d154dbef754368c1
 
 
 ---
@@ -29,8 +29,8 @@ ms.openlocfilehash: f2a77ada25d7d6285c62d2f3d1330df5f192713d
 
 ### <a name="connect-the-mbed-device-to-your-network-and-desktop-machine"></a>將 mbed 裝置連接到網路和桌上型電腦
 1. 使用乙太網路纜線將 mbed 裝置連接到您的網路。 這是必要的步驟，因為範例應用程式需要透過網際網路存取。
-2. 請參閱 [mbed 使用者入門][lnk-mbed-getstarted]將您的 mbed 裝置連接至桌上型電腦。
-3. 如果桌上型電腦執行的是 Windows，請參閱 [PC 組態][lnk-mbed-pcconnect]設定序列埠存取 mbed 裝置。
+2. 請參閱 [mbed 使用者入門][lnk-mbed-getstarted]來將您的 mbed 裝置連接至桌上型電腦。
+3. 如果桌上型電腦執行的是 Windows，請參閱 [PC 組態][lnk-mbed-pcconnect]以設定對您 mbed 裝置的序列埠存取。
 
 ### <a name="create-an-mbed-project-and-import-the-sample-code"></a>建立 mbed 專案並匯入範例程式碼
 1. 在您的 Web 瀏覽器中，移至 mbed.org [開發人員網站](https://developer.mbed.org/)。 如果您還沒有註冊，您會看到建立帳戶的選項 (它是免費的)。 否則，請使用您的帳戶認證登入。 然後按一下頁面右上角的 [編譯器]  。 這項動作會將您帶往 [工作區] 介面。
@@ -64,10 +64,14 @@ ms.openlocfilehash: f2a77ada25d7d6285c62d2f3d1330df5f192713d
     ![][9]
 
 ### <a name="walk-through-the-code"></a>程式碼逐步解說
-如果您對程式運作的方式感到興趣，本節將會描述範例程式碼幾個關鍵的部分。 如果您只想要執行程式碼，請直接跳到 [建置並執行程式](#buildandrun)。
+如果您對程式運作的方式感到興趣，本節將會描述範例程式碼幾個關鍵的部分。 如果您只想要執行程式碼，請直接跳到[建置並執行程式](#buildandrun)。
 
 #### <a name="defining-the-model"></a>定義模型
-此範例使用[序列化程式][lnk-serializer]程式庫來定義指定裝置可傳送到或接收來自 IoT 中樞之訊息的模型。 在此範例中，**Contoso** 命名空間會定義一個 **Thermostat** 模型，此模型能指定 **Temperature**、**ExternalTemperature** 和 **Humidity** 等遙測資料，以及裝置識別碼、裝置屬性及裝置會做出回應的命令等中繼資料：
+此範例使用[序列化程式][lnk-serializer]程式庫來定義一個模型，其中指定裝置可傳送到「IoT 中樞」及從「IoT 中樞」接收的訊息。 在此範例中，**Contoso** 命名空間定義了 **Thermostat** 模型，其中指定：
+
+- **Temperature**、**ExternalTemperature** 及 **Humidity** 遙測資料。
+- 裝置識別碼、裝置屬性等中繼資料。
+- 裝置會回應的命令：
 
 ```
 BEGIN_NAMESPACE(Contoso);
@@ -204,6 +208,6 @@ EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "疑難排解 |Microsoft Docs"
+title: "將 Raspberry Pi (C) 連接到 Azure IoT - 疑難排解 | Microsoft Docs"
 description: "Raspberry Pi Node.js 體驗的疑難排解頁面"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: e3e4ad430d8941a09543ce2dc97f8e449a39bced
-ms.openlocfilehash: cd29c24c7c1a1bf3bc03543ffd7f0e9e33537edf
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 2c5e2955584b165ca0ca95ce424a2050fb3f6ccd
 
 
 ---
@@ -123,6 +123,7 @@ Azure 命令列介面 (Azure CLI) 是預覽組建。 若要尋求解決方案，
 ### <a name="device-explorer"></a>裝置總管
 [裝置總管](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer)工具在您的 Windows 本機電腦上執行，並連接至 Azure 中的 IoT 中樞。 它會與下列 [IoT 中樞端點](iot-hub-devguide.md)通訊：
 
+
 * *裝置身分識別管理*以佈建和管理已向 IoT 中樞註冊的裝置。
 * *接收裝置到雲端*以便可以監視從裝置傳送到 IoT 中樞的訊息。
 * *傳送裝置到雲端*以便可以從 IoT 中樞將訊息傳送至裝置。
@@ -153,6 +154,6 @@ iothub-explorer help
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

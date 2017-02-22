@@ -1,9 +1,9 @@
 ---
-title: "如何管理 Azure CDN 中 Azure Web Apps/雲端服務、ASP.NET 和 IIS 內容的到期 | Microsoft Docs"
-description: "說明如何在 Azure CDN 中管理雲端服務內容的到期"
+title: "在 Azure CDN 中管理 Web 內容的到期 | Microsoft Docs"
+description: "了解如何在 Azure CDN 中管理 Azure Web Apps/雲端服務、ASP.NET 或 IIS 內容的到期。"
 services: cdn
 documentationcenter: .NET
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: bef53fcc-bb13-4002-9324-9edee9da8288
@@ -12,15 +12,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/19/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 61c14a27fc82b128dec41e2ed46850ac7fb554ad
+ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
+ms.openlocfilehash: 02d0270c5763eb9dd2190bc24b793022ea536746
 
 
 ---
-# <a name="how-to-manage-expiration-of-azure-web-appscloud-services-aspnet-or-iis-content-in-azure-cdn"></a>如何管理 Azure CDN 中的 Azure Web Apps/雲端服務、ASP.NET 或 IIS 內容的到期
+# <a name="manage-expiration-of-azure-web-appscloud-services-aspnet-or-iis-content-in-azure-cdn"></a>在 Azure CDN 中管理 Azure Web Apps/雲端服務、ASP.NET 或 IIS 內容的到期
 > [!div class="op_single_selector"]
 > * [Azure Web Apps/雲端服務、ASP.NET 或 IIS](cdn-manage-expiration-of-cloud-service-content.md)
 > * [Azure 儲存體 Blob 服務](cdn-manage-expiration-of-blob-content.md)
@@ -30,7 +30,7 @@ ms.openlocfilehash: 61c14a27fc82b128dec41e2ed46850ac7fb554ad
 來自任何可公開存取的原始 Web 伺服器的檔案均可在 Azure CDN 中加以快取，直到其存留時間 (TTL) 結束。  TTL 是由來自原始伺服器之 HTTP 回應中的 [*Cache-Control* 標頭](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)所決定。  本文說明如何設定Azure Web Apps、Azure 雲端服務、ASP.NET 應用程式和 Internet Information Services 網站的 `Cache-Control` 標頭，上述所有項目的設定方式均類似。
 
 > [!TIP]
-> 您可以選擇不對檔案設定 TTL。  在此情況下，Azure CDN 會自動套用預設為期 7 天的 TTL。
+> 您可以選擇不對檔案設定 TTL。  在此情況下，Azure CDN 會自動套用預設為期&7; 天的 TTL。
 > 
 > 如需 Azure CDN 如何運作以加快檔案和其他資源存取速度的詳細資訊，請參閱 [Azure CDN 概觀](cdn-overview.md)。
 > 
@@ -75,6 +75,6 @@ Response.Cache.SetLastModified(DateTime.Now);
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

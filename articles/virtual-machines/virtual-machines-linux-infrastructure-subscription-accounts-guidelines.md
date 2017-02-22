@@ -1,5 +1,5 @@
 ---
-title: "訂用帳戶和帳戶指導方針 | Microsoft Docs"
+title: "Azure 中 Linux VM 的訂用帳戶和帳戶 | Microsoft Docs"
 description: "了解 Azure 上訂用帳戶和帳戶的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-linux
@@ -13,15 +13,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2b22f5fe87e1bf741e59ed71a3f57e756e2fad88
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: 0a4ddfa550913df1c987d1782bcd4bc3c41eb048
 
 
 ---
-# <a name="subscription-and-accounts-guidelines"></a>訂用帳戶和帳戶指導方針
+# <a name="azure-subscription-and-accounts-guidelines"></a>Azure 訂用帳戶和帳戶指導方針
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
 本文著重於了解在環境和使用者群增加的情況下，管理訂用帳戶和帳戶的方法。
@@ -57,7 +57,7 @@ ms.openlocfilehash: 2b22f5fe87e1bf741e59ed71a3f57e756e2fad88
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-組織應看起來如下：
+組織應看起來如下範例所示：
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 
@@ -69,6 +69,6 @@ ms.openlocfilehash: 2b22f5fe87e1bf741e59ed71a3f57e756e2fad88
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

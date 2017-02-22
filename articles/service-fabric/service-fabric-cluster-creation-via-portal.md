@@ -1,20 +1,24 @@
 
 ---
-title: 使用 Azure 入口網站建立安全的 Service Fabric 叢集 | Microsoft Docs
-description: 本文說明如何使用 Azure 入口網站和 Azure 金鑰保存庫在 Azure 中建立安全的 Service Fabric 叢集。
+title: "在 Azure 入口網站中建立 Service Fabric 叢集 | Microsoft Docs"
+description: "本文說明如何使用 Azure 入口網站和 Azure 金鑰保存庫在 Azure 中建立安全的 Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
 author: chackdan
 manager: timlt
 editor: vturecek
-
+ms.assetid: 426c3d13-127a-49eb-a54c-6bde7c87a83b
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/21/2016
-ms.author: vturecek
+ms.author: chackdan
+translationtype: Human Translation
+ms.sourcegitcommit: bb27d279396aa7b670187560cebe2ed074576bad
+ms.openlocfilehash: c413f415cb056f079ed30cf444af4edbe20364ea
+
 
 ---
 # <a name="create-a-service-fabric-cluster-in-azure-using-the-azure-portal"></a>使用 Azure 入口網站在 Azure 中建立 Service Fabric 叢集
@@ -56,7 +60,7 @@ Set-AzureRmContext -SubscriptionId <guid>
 ```
 
 ## <a name="set-up-key-vault"></a>設定金鑰保存庫
-這部分的指南將逐步引導您為 Azure 中的 Service Fabric 叢集和為 Service Fabric 應用程式建立金鑰保存庫。 如需金鑰保存庫的完整指引，請參閱[金鑰保存庫入門指南][key-vault-get-started]。
+這部分的指南將逐步引導您為 Azure 中的 Service Fabric 叢集和為 Service Fabric 應用程式建立金鑰保存庫。 如需 Key Vault 的完整指引，請參閱 [Key Vault入門指南][key-vault-get-started]。
 
 Service Fabric 會使用 X.509 憑證來保護叢集。 Azure 金鑰保存庫可用來管理 Azure 中 Service Fabric 叢集的憑證。 在 Azure 中部署叢集時，負責建立 Service Fabric 叢集的 Azure 資源提供者會從金鑰保存庫提取憑證，並將它們安裝在叢集 VM 上。
 
@@ -124,7 +128,7 @@ Service Fabric 會使用 X.509 憑證來保護叢集。 Azure 金鑰保存庫可
 ## <a name="add-certificates-to-key-vault"></a>新增憑證至金鑰保存庫
 憑證是在 Service Fabric 中用來提供驗證與加密，以保護叢集和其應用程式的各個層面。 如需如何在 Service Fabric 中使用憑證的詳細資訊，請參閱 [Service Fabric 叢集安全性案例][service-fabric-cluster-security]。
 
-### <a name="cluster-and-server-certificate-(required)"></a>叢集和伺服器憑證 (必要)
+### <a name="cluster-and-server-certificate-required"></a>叢集和伺服器憑證 (必要)
 需要此憑證來保護叢集安全及防止未經授權存取叢集。 它會透過幾種方式提供叢集安全性：
 
 * **叢集驗證：** 驗證叢集同盟的節點對節點通訊。 只有可使用此憑證提供其身分識別的節點可以加入叢集。
@@ -146,7 +150,7 @@ Service Fabric 會使用 X.509 憑證來保護叢集。 Azure 金鑰保存庫可
 > 
 > 
 
-### <a name="application-certificates-(optional)"></a>應用程式憑證 (選用)
+### <a name="application-certificates-optional"></a>應用程式憑證 (選用)
 您可以針對應用程式安全性目的，在叢集上安裝任何數目的其他憑證。 在建立您的叢集之前，請考量需要在節點上安裝憑證的應用程式安全性案例，例如：
 
 * 加密和解密應用程式組態值
@@ -208,7 +212,7 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 4. 瀏覽至 [Service Fabric 叢集] 刀鋒視窗，按一下 [建立]，
 5. [建立 Service Fabric 叢集]  刀鋒視窗具有下列四個步驟。
 
-#### <a name="1.-basics"></a>1.基本概念
+#### <a name="1-basics"></a>1.基本概念
 ![建立新資源群組的螢幕擷取畫面。][CreateRG]
 
 在 [基本] 刀鋒視窗中，您必須提供您的叢集的基本詳細資料。
@@ -224,10 +228,10 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
    > 
 5. 選取您要在其中建立叢集的 [區域]  。 您必須使用金鑰保存庫所在的相同區域。
 
-#### <a name="2.-cluster-configuration"></a>2.叢集組態
+#### <a name="2-cluster-configuration"></a>2.叢集組態
 ![建立節點類型][CreateNodeType]
 
-設定您的叢集節點。 可用來定義定義 VM 的大小、VM 的數目，以及 VM 的屬性。 您的叢集可以有多個節點類型，但主要節點類型 (您在入口網站定義的第一個節點類型) 必須至少有 5 個 VM。這是 Service Fabric 系統服務放置所在的節點類型。 請勿設定 [放置屬性]，因為會自動新增 "NodeTypeName" 預設放置屬性。
+設定您的叢集節點。 可用來定義定義 VM 的大小、VM 的數目，以及 VM 的屬性。 您的叢集可以有多個節點類型，但主要節點類型 (您在入口網站定義的第一個節點類型) 必須至少有&5; 個 VM。這是 Service Fabric 系統服務放置所在的節點類型。 請勿設定 [放置屬性]，因為會自動新增 "NodeTypeName" 預設放置屬性。
 
 > [!NOTE]
 > 多個節點類型的常見案例是包含前端服務和後端服務的應用程式。 您想要將「前端」服務放在連接埠對網際網路開放的較小型 VM (D2 等 VM 大小) 上，但想要將「後端」服務放在沒有對網際網路開放連接埠的較大型 VM (D4、D6、D15 等 VM 大小) 上。
@@ -244,11 +248,11 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 8. 選取您想要為叢集設定的 Fabric 升級模式。 如果您要讓系統自動挑選最新可用的版本，並嘗試將叢集升級到此版本，請選取 [自動] 。 如果您想要選擇支援的版本，將模式設定為 [手動] 。
 
 > [!NOTE]
-> 我們支援的叢集限於執行支援的 Service Fabric 版本。 如果選取 [手動]  模式，您必須負責將叢集升級到支援的版本。 如需 Fabric 升級模式的詳細資訊，請參閱 [service-fabric-cluster-upgrade 文件][service-fabric-cluster-upgrade]
+> 我們支援的叢集限於執行支援的 Service Fabric 版本。 如果選取 [手動]  模式，您必須負責將叢集升級到支援的版本。 如需 Fabric 升級模式的詳細資訊，請參閱 [service-fabric-cluster-upgrade 文件][service-fabric-cluster-upgrade]。
 > 
 > 
 
-#### <a name="3.-security"></a>3.安全性
+#### <a name="3-security"></a>3.安全性
 ![Azure 入口網站中安全性組態的螢幕擷取畫面。][SecurityConfigs]
 
 最後一個步驟是使用金鑰保存庫和稍早建立的憑證資訊，提供憑證資訊來保護叢集。
@@ -268,7 +272,7 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 
 * 選取 [設定進階設定] 核取方塊來輸入**系統管理用戶端**和**唯讀用戶端**的用戶端憑證。 在這些欄位中，輸入系統管理用戶端憑證的指紋和唯讀使用者用戶端憑證的指紋 (如果適用)。 當系統管理員嘗試連線叢集時，只有在他們的憑證指紋和這裡輸入的指紋值相符時，才會被授與存取權。  
 
-#### <a name="4.-summary"></a>4.摘要
+#### <a name="4-summary"></a>4.摘要
 ![顯示 [部署 Service Fabric 叢集] 的開始面板的螢幕擷取畫面。 ][Notifications]
 
 若要完成叢集建立程序，請按一下 [摘要]  來查看您提供的組態，或是下載用來部署叢集的 Azure Resource Manager 範本。 在您提供必要的設定之後，[確定]  按鈕會變成綠色，您只要按一下該按鈕就可以啟動叢集建立程序。
@@ -295,7 +299,7 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 您在叢集中指定的每個 NodeTypes 都會形成 VM 擴展集。 如需詳細資料，請參閱[遠端連線到 VM 擴展集執行個體][remote-connect-to-a-vm-scale-set]。
 
 ## <a name="next-steps"></a>後續步驟
-此時，您擁有一個使用憑證來管理驗證的安全叢集。 接下來，請[連線到您的叢集](service-fabric-connect-to-secure-cluster.md)並了解如何[管理應用程式密碼](service-fabric-application-secret-management.md)。
+此時，您擁有一個使用憑證來管理驗證的安全叢集。 接下來，請[連線到您的叢集](service-fabric-connect-to-secure-cluster.md)並了解如何[管理應用程式密碼](service-fabric-application-secret-management.md)。  同時，了解 [Service Fabric 支援選項](service-fabric-support.md)。
 
 <!-- Links -->
 [azure-powershell]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
@@ -323,6 +327,6 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

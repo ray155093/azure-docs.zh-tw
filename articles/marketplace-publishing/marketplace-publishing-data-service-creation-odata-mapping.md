@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 60d3225f276b54e08946744838a5028a02666149
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a853b4dbd1952ba4ea8ee68ea3ca98f588bb71a2
 
 
 ---
@@ -31,7 +31,7 @@ ms.openlocfilehash: 60d3225f276b54e08946744838a5028a02666149
 ## <a name="what-is-a-csdl-and-its-structure"></a>什麼是 CSDL 及其結構？
 CSDL (概念結構定義語言) 是一項規格，會定義如何使用常見的 XML 用語來說明對於 Azure Marketplace 的 Web 服務或資料庫服務。
 
- **要求流程**
+**要求流程**
 
   `Client -> Azure Marketplace -> Content Provider’s Web Service (Get, Post, Delete, Put)`
 
@@ -78,10 +78,10 @@ ATOM Pub 的延伸模組，其中每個項目代表結果集的一個資料列�
 > 
 
 ### <a name="edm---entry-data-model"></a>EDM - 項目資料模型
-* 概觀：[http://msdn.microsoft.com/library/vstudio/ee382825(v=vs.100).aspx][OverviewLink]
+* 概觀︰[http://msdn.microsoft.com/library/vstudio/ee382825(v=vs.100).aspx][OverviewLink]
 
 [OverviewLink]:http://msdn.microsoft.com/library/vstudio/ee382825(v=vs.100).aspx
-* 預覽：[http://msdn.microsoft.com/library/aa697428(v=vs.80).aspx][PreviewLink]
+* 預覽︰[http://msdn.microsoft.com/library/aa697428(v=vs.80).aspx][PreviewLink]
 
 [PreviewLink]:http://msdn.microsoft.com/library/aa697428(v=vs.80).aspx
 * 資料類型：[http://msdn.microsoft.com/library/bb399548(v=VS.100).aspx][DataTypesLink]
@@ -321,6 +321,6 @@ CSDL 的範例如下：(複製下列範例 CSDL 並貼至 XML 編輯器，然後
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

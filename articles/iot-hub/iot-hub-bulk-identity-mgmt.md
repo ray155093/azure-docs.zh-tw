@@ -1,6 +1,6 @@
 ---
-title: "IoT 中樞裝置身分識別的匯入匯出 | Microsoft Docs"
-description: "大量管理 IoT 中樞裝置身分識別的概念與 .NET 程式碼片段"
+title: "Azure IoT 中樞裝置身分識別的匯入匯出 | Microsoft Docs"
+description: "如何使用 Azure IoT 服務 SDK 對身分識別登錄執行大量作業，以匯入和匯出裝置身分識別。 匯入作業可讓您建立、更新和刪除大量裝置身分識別。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/05/2016
+ms.date: 01/04/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 7c50b4bd32d32ec33f35c2484a3c86e944830725
+ms.sourcegitcommit: 9ded95283b52f0fc21ca5b99df8e72e1e152fe1c
+ms.openlocfilehash: 668f6ab0d5c09d53edd85b568cc8c9941b2f9135
 
 
 ---
-# <a name="bulk-management-of-iot-hub-device-identities"></a>大量管理 IoT 中樞的裝置身分識別
+# <a name="manage-your-iot-hub-device-identities-in-bulk"></a>管理大量的 IoT 中樞裝置身分識別
 每個 IoT 中樞都有一個身分識別登錄，您可用來在服務中建立各裝置的資源 (例如含有傳送中雲端到裝置訊息的佇列)。 身分識別登錄也可讓您控制裝置面向端點的存取權。 本文說明如何在身分識別登錄中大量匯入和匯出裝置身分識別。
 
 匯入和匯出操作會在「作業」的內容中進行，其可讓您對 IoT 中樞執行大量服務操作。
@@ -30,7 +30,7 @@ ms.openlocfilehash: 7c50b4bd32d32ec33f35c2484a3c86e944830725
 ## <a name="what-are-jobs"></a>什麼是作業？
 身分識別登錄操作會使用**作業** 系統的前提是操作符合下列條件時：
 
-* 相較於標準執行階段操作，其執行時間可能很長，或是，
+* 相較於標準執行階段作業，執行時間可能很長，或者
 * 會傳回大量資料給使用者。
 
 在這些情況下，與其讓單一 API 呼叫等候或封鎖操作的結果，操作會以非同步方式建立該 IoT 中樞的**作業**。 然後操作會立即傳回 **JobProperties** 物件。
@@ -75,7 +75,7 @@ while(true)
    ```
    SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
    ```
-* 指出是否要在匯出資料中排除驗證金鑰的 *布林值* 。 若為 **false**，驗證金鑰會包含在匯出輸出中；否則會將金鑰匯出為 **null**。
+* 指出是否要在匯出資料中排除驗證金鑰的 *布林值* 。 若為 **false**，驗證金鑰就會包含在匯出輸出中。 否則，會將金鑰匯出為 **null**。
 
 下列 C# 程式碼片段示範如何啟動在匯出資料中包含裝置驗證金鑰的匯出作業，然後執行輪詢以完成作業：
 
@@ -342,12 +342,12 @@ static string GetContainerSasUri(CloudBlobContainer container)
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已了解如何對 IoT 中樞內的身分識別登錄執行大量操作。 遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
-* [使用量計量][lnk-metrics]
+* [IoT 中樞度量][lnk-metrics]
 * [作業監視][lnk-monitor]
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [開發人員指南][lnk-devguide]
+* [IoT 中樞開發人員指南][lnk-devguide]
 * [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
 
 [lnk-metrics]: iot-hub-metrics.md
@@ -358,6 +358,6 @@ static string GetContainerSasUri(CloudBlobContainer container)
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO1-->
 
 

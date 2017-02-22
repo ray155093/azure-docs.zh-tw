@@ -1,5 +1,5 @@
 ---
-title: "執行範例應用程式以將裝置到雲端的訊息傳送至 Azure IoT 中樞 | Microsoft Docs"
+title: "將 Intel Edison (C) 連接到 Azure IoT - 第 3 課：傳送訊息 | Microsoft Docs"
 description: "將範例應用程式部署至 Intel Edison 裝置，並執行該應用程式以傳送訊息至 IoT 中樞並讓 LED 閃爍。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/8/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: cb18052f74528e245264bb2f400b625fe550ed85
-ms.openlocfilehash: 59db4ca0afcfd2757a725f5d56c0810f6547c924
+ms.sourcegitcommit: 475b25f02715a60493e79ecd2170854019dfc4ac
+ms.openlocfilehash: 5c63363660845f970b03f67363cc495ef8cb94c7
 
 
 ---
@@ -114,6 +114,6 @@ gulp deploy && gulp run
 [read-messages-persisted-in-azure-storage]: iot-hub-intel-edison-kit-c-lesson3-read-table-storage.md
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

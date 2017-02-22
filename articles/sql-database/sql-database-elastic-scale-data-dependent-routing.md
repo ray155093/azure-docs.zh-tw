@@ -1,6 +1,6 @@
 ---
-title: "資料依存路由 | Microsoft Docs"
-description: "如何在 .NET 應用程式中將 ShardMapManager 類別用於資料相依路由 (Azure SQL Database 的彈性資料庫的一項功能)"
+title: "與 Azure SQL Database 的資料相依路由 | Microsoft Docs"
+description: "如何在 .NET 應用程式中將 ShardMapManager 類別用於資料相依路由 (Azure SQL Database 中的分區化資料庫的一項功能)"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 05/27/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c77996b8dfa0c2ad9785e42758278a621a52c93c
+ms.sourcegitcommit: 5024e5edbfaaf9b070f66e6b009bc6085de3fa7e
+ms.openlocfilehash: b0f700bd742e1a69245711ff7f87d7f35535b3ab
 
 
 ---
@@ -90,7 +90,7 @@ ms.openlocfilehash: c77996b8dfa0c2ad9785e42758278a621a52c93c
 
 暫時性錯誤處理可以自然地與資料相依路由模式並存。 主要需求是重試整個資料存取要求，包括用以取得資料相依路由連接的 **using** 區塊。 上述範例可以改寫如下 (請注意反白顯示的變更)。 
 
-### <a name="example-data-dependent-routing-with-transient-fault-handling"></a>範例 – 資料相依路由與暫時性錯誤處理
+### <a name="example---data-dependent-routing-with-transient-fault-handling"></a>範例 - 資料相依路由與暫時性錯誤處理
 <pre><code>int customerId = 12345; 
 int newPersonId = 4321; 
 
@@ -130,6 +130,6 @@ int newPersonId = 4321;
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

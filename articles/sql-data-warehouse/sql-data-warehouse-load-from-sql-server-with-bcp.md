@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e61865c903f168e35cff6a7ce8ccd27dbaaff104
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 8dc7c2fb833c1c51ecef772ba1cbe5f0405fe494
 
 
 ---
@@ -36,7 +36,7 @@ ms.openlocfilehash: e61865c903f168e35cff6a7ce8ccd27dbaaff104
 * 從一般檔案將資料表匯入到 SQL 資料倉儲。
 * 建立已載入資料的統計資料。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Loading-data-into-Azure-SQL-Data-Warehouse-with-BCP/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Loading-data-into-Azure-SQL-Data-Warehouse-with-BCP/player]
 > 
 > 
 
@@ -48,7 +48,7 @@ ms.openlocfilehash: e61865c903f168e35cff6a7ce8ccd27dbaaff104
 * 已安裝的 bcp 命令列公用程式
 * 已安裝的 sqlcmd 命令列公用程式
 
-您可以從 [Microsoft 下載中心][Microsoft 下載中心]下載 bcp 和 sqlcmd 公用程式。
+您可以從 [Microsoft 下載中心][Microsoft Download Center]下載 bcp 和 sqlcmd 公用程式。
 
 ### <a name="data-in-ascii-or-utf-16-format"></a>ASCII 或 UTF-16 格式的資料
 如果您使用您自己的資料嘗試本教學課程，您的資料必須使用 ASCII 或 UTF-16 編碼，因為 bcp 不支援 UFT-8。 
@@ -134,7 +134,7 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 | 20151201 |4 |2 |
 
 ## <a name="4-create-statistics"></a>4.建立統計資料
-SQL 資料倉儲尚未支援自動建立或自動更新統計資料。 為了獲得最佳查詢效能，在首次載入資料或資料發生任何重大變更之後，建立所有資料表的所有資料行統計資料非常重要。 如需統計資料的詳細說明，請參閱[統計資料][統計資料]。 
+SQL 資料倉儲尚未支援自動建立或自動更新統計資料。 為了獲得最佳查詢效能，在首次載入資料或資料發生任何重大變更之後，建立所有資料表的所有資料行統計資料非常重要。 如需統計資料的詳細說明，請參閱[統計資料][Statistics]。 
 
 執行下列命令以建立新載入資料的統計資料。
 
@@ -178,28 +178,28 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 您可以使用 bcp 的 **queryout** 函數匯出查詢結果，而不是匯出整份資料表。 
 
 ## <a name="next-steps"></a>後續步驟
-如需載入的概觀，請參閱[將資料載入 SQL 資料倉儲][將資料載入 SQL 資料倉儲]。
-如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL 資料倉儲開發概觀]。
-如需有關在「SQL 資料倉儲」上建立資料表的詳細資訊，請參閱[資料表概觀][資料表概觀]或 [CREATE TABLE 語法][CREATE TABLE 語法]。
+如需載入的概觀，請參閱[將資料載入 SQL 資料倉儲][Load data into SQL Data Warehouse]。
+如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。
+如需有關在 SQL 資料倉儲上建立資料表的詳細資訊，請參閱[資料表概觀][Table Overview]或 [CREATE TABLE 語法][CREATE TABLE syntax]。
 
 <!--Image references-->
 
 <!--Article references-->
 
-[將資料載入 SQL 資料倉儲]: ./sql-data-warehouse-overview-load.md
-[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
-[資料表概觀]: ./sql-data-warehouse-tables-overview.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[Load data into SQL Data Warehouse]: ./sql-data-warehouse-overview-load.md
+[SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md
+[Table Overview]: ./sql-data-warehouse-tables-overview.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
 
 <!--MSDN references-->
 [bcp]: https://msdn.microsoft.com/library/ms162802.aspx
-[CREATE TABLE 語法]: https://msdn.microsoft.com/library/mt203953.aspx
+[CREATE TABLE syntax]: https://msdn.microsoft.com/library/mt203953.aspx
 
 <!--Other Web references-->
-[Microsoft 下載中心]: https://www.microsoft.com/download/details.aspx?id=36433
+[Microsoft Download Center]: https://www.microsoft.com/download/details.aspx?id=36433
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

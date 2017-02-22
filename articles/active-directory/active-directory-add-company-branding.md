@@ -12,11 +12,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/30/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 98c8352152b6cd1817d32c6418597c566d94d44f
+ms.sourcegitcommit: e4896c1a3adf76477899336f1ff1ee215cc7c9aa
+ms.openlocfilehash: 6a20f75dbb2c914b1239adb5ba10189a7193584c
 
 
 ---
@@ -31,8 +31,8 @@ ms.openlocfilehash: 98c8352152b6cd1817d32c6418597c566d94d44f
 > [!NOTE]
 > * 公司商標是您升級至 Premium 或 Basic 版本的 Azure Active Directory 後，或是 Office 365 使用者時才能使用的功能。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 > * Azure Active Directory Premium 和 Basic 版本適用於使用全球 Azure Active Directory 執行個體的中國客戶。 由 21Vianet 在中國提供的 Microsoft Azure 服務目前不支援 Azure Active Directory Premium 和 Basic 版本。 如需詳細資訊，請透過 [Azure Active Directory 論壇](https://feedback.azure.com/forums/169401-azure-active-directory/)與我們連絡。
-> 
-> 
+>
+>
 
 ## <a name="customizing-the-sign-in-page"></a>自訂登入頁面
 一般而言，如果您需要透過瀏覽器存取貴組織訂閱的雲端應用程式和服務，您可使用登入頁面。
@@ -46,8 +46,8 @@ ms.openlocfilehash: 98c8352152b6cd1817d32c6418597c566d94d44f
 > [!NOTE]
 > * 在已設定商標之 Azure 傳統入口網站的 [Active Directory]  >  [目錄]  >  [網域] 區段中，您的網域名稱必須為 [作用中]。
 > * 登入頁面商標不會延續到 Microsoft 的消費者登入頁面。 如果您使用個人 Microsoft 帳戶進行登入，可能會看到 Azure AD 所呈現並加上商標的使用者圖格清單，但是您組織的商標不會套用到 Microsoft 帳戶登入頁面。
-> 
-> 
+>
+>
 
 如果您想要在此頁面上顯示您的公司商標、色彩和其他可自訂的元素，請參閱下列影像以了解這兩種做法的差異。
 
@@ -91,8 +91,8 @@ ms.openlocfilehash: 98c8352152b6cd1817d32c6418597c566d94d44f
 
 > [!NOTE]
 > 所有元素都是選用的。 例如，如果您指定 [橫幅標誌]，但未指定 [大型圖例]，則登入頁面會顯示您的標誌以及目的地網站的圖例 (即 Office 365 加州高速公路影像)。
-> 
-> 
+>
+>
 
 登入頁面上的 [讓我保持登入] 核取方塊，可讓使用者在關閉並重新開啟其瀏覽器時保持登入狀態。 它不會影響工作階段存留期。 您可以在 Azure Active Directory 登入頁面上隱藏此核取方塊。
 
@@ -100,12 +100,12 @@ ms.openlocfilehash: 98c8352152b6cd1817d32c6418597c566d94d44f
 
 ![][9]
 
-若要隱藏此核取方塊，請將此設定設為 [隱藏]。 
+若要隱藏此核取方塊，請將此設定設為 [隱藏]。
 
 > [!NOTE]
 > SharePoint Online 和 Office 2010 的某些功能取決於能夠核取此方塊的使用者。 如果您將此設定設為隱藏，使用者可能會在登入時看見其他和非預期的提示。
-> 
-> 
+>
+>
 
 您也可以將此頁面上的所有元素都翻成當地使用語。 設定一組「預設」自訂元素之後，就可以設定不同地區設定的其他版本。 您也可以混合使用並符合各種元素。 例如，您可以：
 
@@ -163,15 +163,15 @@ ms.openlocfilehash: 98c8352152b6cd1817d32c6418597c566d94d44f
 4. 按一下 [自訂商標] 。
 5. 在 [自訂商標] 頁面上，選取 [編輯現有商標設定]  ，然後移至下一頁。
 6. 根據您想要移除的元素，執行下列一或多項動作：
-   
+
     a. 在 [橫幅標誌] 之下，選取 [移除上傳的標誌]。
-   
+
     b.這是另一個 C# 主控台應用程式。 在 [圖格標誌] 之下，選取 [移除上傳的標誌]。
-   
+
     c. 移除所有文字方塊中的文字。
-   
+
     d. 按 [下一步] 。
-   
+
     e. 移除所有文字方塊中的文字。
 7. 按一下 [儲存]  移除元素。
 8. 如有必要，請再按一下 [自訂商標]  ，並針對需要移除的所有語言特定商標重複這些步驟。
@@ -224,6 +224,6 @@ Azure AD 中的部分可自訂元素有多個使用案例。 您可以在每個�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

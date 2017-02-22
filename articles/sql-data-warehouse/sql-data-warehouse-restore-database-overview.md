@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲還原 | Microsoft Docs"
+title: "還原 Azure 資料倉儲 - 本機與異地備援 | Microsoft Docs"
 description: "復原 Azure SQL 資料倉儲中資料庫之資料庫還原選項的概觀。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,15 +15,15 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2147967edc1dadcc8bda5e5a33bbdedd62a22b4f
+ms.sourcegitcommit: 43ab6a2f71ab51c50847b1ba5249f51c48e03fea
+ms.openlocfilehash: 104986e88ededf2137725fe258b6ce51f608b37d
 
 
 ---
 # <a name="sql-data-warehouse-restore"></a>SQL 資料倉儲還原
 > [!div class="op_single_selector"]
-> * [概觀][概觀]
-> * [入口網站][入口網站]
+> * [概觀][Overview]
+> * [入口網站][Portal]
 > * [PowerShell][PowerShell]
 > * [REST][REST]
 > 
@@ -90,9 +90,9 @@ Yes, for the next seven calendar days. When you delete a data warehouse, SQL Dat
 <!--Image references-->
 
 <!--Article references-->
-[Azure SQL Database 商務持續性概觀]: ../sql-database/sql-database-business-continuity.md
-[概觀]: ./sql-data-warehouse-restore-database-overview.md
-[入口網站]: ./sql-data-warehouse-restore-database-portal.md
+[Azure SQL Database business continuity overview]: ../sql-database/sql-database-business-continuity.md
+[Overview]: ./sql-data-warehouse-restore-database-overview.md
+[Portal]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md
 [REST]: ./sql-data-warehouse-restore-database-rest-api.md
 
@@ -103,6 +103,6 @@ Yes, for the next seven calendar days. When you delete a data warehouse, SQL Dat
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

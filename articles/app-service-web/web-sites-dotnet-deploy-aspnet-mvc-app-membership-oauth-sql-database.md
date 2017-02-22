@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 03/21/2016
 ms.author: riande
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: f0bffc2a77ef5f91c6c637e8ab247b559fb59d5c
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 11d9869e656014fe7106f9c66975792c5faa357d
 
 
 ---
@@ -41,7 +41,7 @@ ms.openlocfilehash: f0bffc2a77ef5f91c6c637e8ab247b559fb59d5c
 > [!NOTE]
 > 這個教學課程時間很長。 如果您想快速認識 Azure App Service 和 Visual Studio Web 專案，請參閱 [在 Azure App Service 中建立 ASP.NET Web 應用程式](web-sites-dotnet-get-started.md)。 如需疑難排解資訊，請參閱 [疑難排解](#troubleshooting) 一節。
 > 
-> 或者，如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期的入門 Web 應用程式。 不需要信用卡；無需承諾。
+> 或者，如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期的入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
@@ -104,10 +104,10 @@ ms.openlocfilehash: f0bffc2a77ef5f91c6c637e8ab247b559fb59d5c
     ![方案總管中的 _Layout.cshtml][newapp004]
 2. 將 Layout.cshtml  檔案中的 ActionLink 取代為下列程式碼。
 
-    @Html.ActionLink("CM Demo", "Index", "Contacts", new { area = "" }, new { @class = "navbar-brand" })
-
-
-    確定您將第三個參數從 "Home" 變更為 "Contacts"。 上面的標記將在每個頁面上建立 "Contacts" 連結，以連結至 Contacts 控制器的 Index 方法。 變更頁首和頁尾的應用程式名稱，從 "My ASP.NET Application" 和 "Application name" 變更為 "Contact Manager" 和 "CM Demo"。 
+```
+   @Html.ActionLink("CM Demo", "Index", "Contacts", new { area = "" }, new { @class = "navbar-brand" })
+```
+   確定您將第三個參數從 "Home" 變更為 "Contacts"。 上面的標記將在每個頁面上建立 "Contacts" 連結，以連結至 Contacts 控制器的 Index 方法。 變更頁首和頁尾的應用程式名稱，從 "My ASP.NET Application" 和 "Application name" 變更為 "Contact Manager" 和 "CM Demo"。 
 
 ### <a name="run-the-application-locally"></a>在本機執行應用程式
 1. 按 CTRL+F5 執行應用程式。
@@ -443,7 +443,7 @@ ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更�
           }
    
     如果您全面搜尋 *AllowAnonymous*，您將會發現帳戶控制器的登入與註冊方法中都使用了它。
-3. 在 *CmController.cs* 中，將 `[Authorize(Roles = "canEdit")]` 新增至 *Cm* 控制器中用來變更資料的 HttpGet 和 HttpPost 方法 (Create、Edit、Delete，也就是 Index 和 Details 外的每個動作方法)。 以下顯示完整程式碼的片段內容： 
+3. 在 *ContactsController.cs* 中，將 `[Authorize(Roles = "canEdit")]` 新增至 *Cm* 控制器中用來變更資料的 HttpGet 和 HttpPost 方法 (Create、Edit、Delete，也就是 Index 和 Details 外的每個動作方法)。 以下顯示完整程式碼的片段內容： 
    
         // GET: Cm/Create
         [Authorize(Roles = "canEdit")]
@@ -663,6 +663,6 @@ ASP.NET MVC 樣板功能可自動產生程式碼來執行建立、讀取、更�
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO3-->
 
 

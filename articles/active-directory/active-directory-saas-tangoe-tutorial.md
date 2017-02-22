@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 01/25/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: ac82535515f346d43bbceeb274ce61d81ade60b1
+ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
+ms.openlocfilehash: bb140097831453d46f6bfef1c9fbe569eefb3020
 
 
 ---
@@ -27,7 +27,7 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 Tangoe 命令高階行動裝置的人員
 * 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Tangoe 命令高階行動裝置 (單一登入)
-* 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+* 您可以使用 Azure 傳統入口網站集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -35,7 +35,7 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 若要設定與 Tangoe 命令高階行動裝置的 Azure AD 整合，您需要下列項目：
 
 * Azure 訂用帳戶
-* Tangoe 命令高階行動裝置單一登入啟用的訂用帳戶
+* Tangoe 命令高階行動裝置單一登入 (SSO) 啟用的訂用帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -110,40 +110,39 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
    
     ![設定單一登入](./media/active-directory-saas-tangoe-tutorial/tutorial_tangoe_04.png) 
 
-    a. 在 [登入 URL] 文字方塊中，輸入使用者使用以下模式登入 Tangoe 命令高階行動裝置應用程式所使用的 URL：**“https://sso.tangoe.com/sp/startSSO.ping?PartnerIdpId=\<租用戶發行者\>&Target=\<目標頁面 URL\>”**。
+   1. 在 [登入 URL] 文字方塊中，輸入使用者使用以下模式登入 Tangoe 命令高階行動裝置應用程式所使用的 URL：**“https://sso.tangoe.com/sp/startSSO.ping?PartnerIdpId=\<租用戶發行者\>&Target=\<目標頁面 URL\>”**。
 
-    b. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：**"https://sso.tangoe.com/sp/ACS.saml2"**
+   2. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：**"https://sso.tangoe.com/sp/ACS.saml2"**
 
-    > [AZURE.NOTE]  如果您不知道 URL 的正確值，您可以使用上述的值做為預留位置，並向 Tangoe 客戶支援部門要求正確的值。
+    > [!NOTE]  
+    > 如果您不知道 URL 的正確值，您可以使用上述的值做為預留位置，並向 Tangoe 客戶支援部門要求正確的值。
+    >
 
-
-1. 在 [在 Tangoe 命令高階行動裝置設定單一登入]  頁面上，執行下列步驟：
+4. 在 [在 Tangoe 命令高階行動裝置設定單一登入]  頁面上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-tangoe-tutorial/tutorial_tangoe_05.png) 
    
-    a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
-2. 若要為應用程式設定 SSO，請連絡 Tangoe 客戶支援部門，並提供下列資訊：
+   1. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
+   2. 按 [下一步] 。
 
-    - 下載的中繼資料檔案
-    - **簽發者 URL**
-    - **SAML SSO URL**
-    - **單一登出服務 URL**
+5. 若要為應用程式設定 SSO，請連絡 Tangoe 客戶支援部門，並提供下列資訊：
 
+   - 下載的中繼資料檔案
+   - **簽發者 URL**
+   - **SAML SSO URL**
+   - **單一登出服務 URL**
 
-
-1. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
+6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
-2. 在 [單一登入確認] 頁面上，按一下 [完成]。  
+7. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
-在 [使用者] 清單中，選取 [Britta Simon] 。
+* 在 [使用者] 清單中，選取 [Britta Simon] 。
 
 ![建立 Azure AD 使用者][20]
 
@@ -172,15 +171,11 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-tangoe-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+  1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+  4. 在 [角色] 清單中選取 [使用者]。
+  5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-tangoe-tutorial/create_aaduser_07.png) 
@@ -188,16 +183,14 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-tangoe-tutorial/create_aaduser_08.png) 
    
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下 [完成]。   
+  1. 記下 [新密碼] 的值。
+  2. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-an-tangoe-command-premium-mobile-test-user"></a>建立 Tangoe 命令高階行動裝置測試使用者
 在本節中，您要在 Tangoe 命令高階行動裝置中建立名為 Britta Simon 的使用者。 Tangoe 命令高階行動裝置應用程式需要在應用程式中佈建所有使用者才能執行單一登入。 因此，請利用 Tangoe 客戶支援部門將所有使用者佈建到應用程式。 
 
 > [!NOTE]
 > 如果您需要手動建立使用者或使用者批次，您必須連絡 Tangoe 命令高階行動裝置支援小組。
-> 
 > 
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
@@ -209,18 +202,18 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
 1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
 
-![指派使用者][201] 
+ ![指派使用者][201] 
 
-1. 在應用程式清單中，選取 [Tangoe 命令高階行動裝置] 。
+2. 在應用程式清單中，選取 [Tangoe 命令高階行動裝置] 。
 
-![設定單一登入](./media/active-directory-saas-tangoe-tutorial/tutorial_tangoe_50.png) 
+ ![設定單一登入](./media/active-directory-saas-tangoe-tutorial/tutorial_tangoe_50.png) 
+ 
+3. 在頂端的功能表中，按一下 [使用者] 。
 
-1. 在頂端的功能表中，按一下 [使用者] 。
+ ![指派使用者][203] 
 
-![指派使用者][203] 
-
-1. 在 [使用者] 清單中，選取 [Britta Simon] 。
-2. 在底部的工具列中，按一下 [指派] 。
+4. 在 [使用者] 清單中，選取 [Britta Simon] 。
+5. 在底部的工具列中，按一下 [指派] 。
 
 ![指派使用者][205]
 
@@ -253,6 +246,6 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

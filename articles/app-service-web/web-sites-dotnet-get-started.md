@@ -1,5 +1,5 @@
 ---
-title: "使用 Visual Studio 將 ASP.NET 應用程式部署至 Azure App Service | Microsoft Docs"
+title: "使用 Visual Studio 將 ASP.NET 應用程式部署至 Azure | Microsoft Docs"
 description: "了解如何使用 Visual Studio 在 Azure App Service 中將 ASP.NET Web 專案部署到新的 Web 應用程式。"
 services: app-service\web
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 12/16/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
-ms.openlocfilehash: 4a0d72f46fada5112563d10d22f61abc439730a7
+ms.sourcegitcommit: 9b7e0b429575d080819f25e04d492a2b09d4d63a
+ms.openlocfilehash: 946552d1b268c6e70a9e8fcd4c40bd6e2ab76178
 
 
 ---
@@ -47,7 +47,7 @@ ms.openlocfilehash: 4a0d72f46fada5112563d10d22f61abc439730a7
 * 本教學課程假設您已使用 ASP.NET MVC 和 Visual Studio。 如果您需要簡介，請參閱 [開始使用 ASP.NET MVC 5](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started)。
 * 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
   
-    如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)。 您可以於該處，在 App Service 中建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
+    如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)。 您可以於該處，在 App Service 中建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
 
 ## <a name="a-namesetupdevenvaset-up-the-development-environment"></a><a name="setupdevenv"></a>設定開發環境
 本教學課程是特別為 Visual Studio 2015 (含 [Azure SDK for .NET](../dotnet-sdk.md) 2.9 或更新版本) 所撰寫。 
@@ -222,6 +222,6 @@ ms.openlocfilehash: 4a0d72f46fada5112563d10d22f61abc439730a7
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

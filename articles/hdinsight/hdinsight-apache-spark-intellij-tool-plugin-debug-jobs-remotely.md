@@ -1,5 +1,5 @@
 ---
-title: "使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具遠端偵錯 HDInsight Spark 叢集上執行的應用程式 | Microsoft Docs"
+title: "在 Spark 叢集上使用 Azure Toolkit for IntelliJ 對應用程式進行遠端偵錯 | Microsoft Docs"
 description: "了解如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，遠端偵錯 HDInsight Spark 叢集上執行的應用程式。"
 services: hdinsight
 documentationcenter: 
@@ -13,15 +13,15 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/09/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: faeb4568a0d9cd7b1991496ce167a481ef08e189
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 2d50c432f335d362068e55899f350cdf1c4c09ec
 
 
 ---
-# <a name="use-hdinsight-tools-in-azure-toolkit-for-intellij-to-debug-spark-applications-remotely-on-hdinsight-spark-linux-cluster"></a>使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具遠端偵錯 HDInsight Spark Linux 叢集上的 Spark 應用程式
+# <a name="use-hdinsight-tools-in-azure-toolkit-for-intellij-to-debug-spark-applications-remotely-on-hdinsight-spark-cluster"></a>使用 Azure Toolkit for IntelliJ 中的 HDInsight 工具對 HDInsight Spark 叢集上的 Spark 應用程式進行遠端偵錯
 本文提供如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，來提交 HDInsight Spark 叢集上的 Spark 作業，然後從桌上型電腦遠端偵錯的逐步指引。 若要這樣做，您必須執行下列高階步驟：
 
 1. 建立站對站或點對站 Azure 虛擬網路。 本文件中的步驟假設您使用站對站網路。
@@ -32,7 +32,7 @@ ms.openlocfilehash: faeb4568a0d9cd7b1991496ce167a481ef08e189
 
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * Oracle Java Development Kit。 您可以從 [這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)加以安裝。
 * IntelliJ IDEA。 本文章使用 15.0.1 版。 您可以從 [這裡](https://www.jetbrains.com/idea/download/)加以安裝。
 * 適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具。 適用於 IntelliJ 的 HDInsight 工具是適用於 IntelliJ 的 Azure 工具組的一部分。 如需有關如何安裝 Azure 工具組的指示，請參閱 [安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
@@ -283,6 +283,6 @@ ms.openlocfilehash: faeb4568a0d9cd7b1991496ce167a481ef08e189
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

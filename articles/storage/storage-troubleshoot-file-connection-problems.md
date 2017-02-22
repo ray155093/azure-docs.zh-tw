@@ -13,11 +13,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/13/2016
+ms.date: 02/07/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: afce238686f5b35a094f0792f8197b686d317fa5
-ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
+ms.sourcegitcommit: 09f0aa4ea770d23d1b581c54b636c10e59ce1d3c
+ms.openlocfilehash: d5768c44022fc251aa0741d91b575ff604032e18
 
 
 ---
@@ -44,6 +44,10 @@ ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
 * [在現有檔案共用上發生「主機當機」錯誤，或在掛接點上進行清單命令時殼層停止回應](#errorhold)
 * [嘗試在 Linux VM 上掛接 Azure 檔案時，發生掛接錯誤 115](#error15)
 * [使用類似 "ls" 的命令時 Linux VM 遇到隨機延遲](#delayproblem)
+* [錯誤 112 - 逾時錯誤](#error112)
+
+**從其他應用程式存取**
+* [我可以透過 Web 工作參考我的應用程式的 Azure 檔案共用嗎？](#webjobs)
 
 <a id="quotaerror"></a>
 
@@ -75,7 +79,9 @@ ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
 ## <a name="slow-performance-when-accessing-file-storage-from-windows-or-linux"></a>從 Windows 或 Linux 存取 Azure 檔案儲存體時效能緩慢
 * 如果您沒有特定的 I/O 大小需求下限，建議您使用 1 MB 的 I/O 大小以獲得最佳效能。
 * 如果您知道擴充寫入檔案的最終大小，而且當檔案上尚未寫入的結尾中有零時您的軟體沒有相容性問題，則請將事先設定檔案大小，而不是在每次寫入是擴充寫入時設定。
-
+* 使用正確的複製方法：
+      * 針對任何在兩個檔案共用間的傳輸使用 AZCopy。 如需詳細資料，請參閱[使用 AzCopy 命令列公用程式傳輸資料](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy#file-copy)。
+      * 在檔案共用和內部部署電腦之間使用 Robocopy。 如需詳細資料，請參閱[使用多執行緒的 Robocopy 以加快複製 (英文)](https://blogs.msdn.microsoft.com/granth/2009/12/07/multi-threaded-robocopy-for-faster-copies/)。
 <a id="windowsslow"></a>
 
 ## <a name="slow-performance-when-accessing-the-file-storage-from-windows-81-or-windows-server-2012-r2"></a>從 Windows 8.1 或 Windows Server 2012 R2 存取檔案儲存體時效能緩慢
@@ -103,7 +109,7 @@ ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
 
 <a id="error53"></a>
 
-## <a name="error-53-when-you-try-to-mount-or-unmount-an-azure-file-share"></a>當您嘗試掛接或取消掛接 Azure 檔案共用時發生「錯誤 53」
+## <a name="error-53-or-error-67-when-you-try-to-mount-or-unmount-an-azure-file-share"></a>當您嘗試掛接或取消掛接 Azure 檔案共用時發生「錯誤 53」或「錯誤 67」
 這個問題可能是因下列情況而起︰
 
 ### <a name="cause-1"></a>原因 1
@@ -113,7 +119,7 @@ ms.openlocfilehash: b75e80b66e00be0022102c06113eb414f5b4b6e9
 從符合 Windows 8、Windows Server 2012 和更新版本需求的用戶端進行連線，或是從 Azure 檔案共用所使用的 Azure 儲存體帳戶相同的資料中心上的虛擬機器進行連線。
 
 ### <a name="cause-2"></a>原因 2
-當您掛接 Azure 檔案共用時，如果連接埠 445 至 Azure 檔案資料中心的輸出通訊遭到封鎖，可能會發生「系統錯誤 53」。 按一下[這裡](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx)查看 ISP 是否允許從連接埠 445 進行存取的摘要。
+當您掛接 Azure 檔案共用時，如果連接埠 445 至 Azure 檔案資料中心的輸出通訊遭到封鎖，可能會發生「系統錯誤 53」或「系統錯誤 67」。 按一下[這裡](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx)查看 ISP 是否允許從連接埠 445 進行存取的摘要。
 
 Comcast 和某些 IT 組織會封鎖此連接埠。 若要了解這是否是「系統錯誤 53」訊息的原因，您可以使用 Portqry 查詢 TCP:445 端點。 如果篩選顯示 TCP:445 端點，則 TCP 連接埠會被封鎖。 查詢範例如下：
 
@@ -234,14 +240,32 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 
 //azureuser.file.core.windows.net/wms/comer on /home/sampledir type cifs (rw,nodev,relatime,vers=2.1,sec=ntlmssp,cache=strict,username=xxx,domain=X, file_mode=0755,dir_mode=0755,serverino,rsize=65536,wsize=65536,actimeo=1)
 
-如果沒有 **serverino** 選項，選取 **serverino** 選項即可先取消掛接再掛接 Azure 檔案。
+如果沒有 **serverino** 選項，請選取 **serverino** 選項以取消掛接並掛接 Azure 檔案。+
 
+<a id="error112"></a>
+## <a name="error-112---timeout-error"></a>錯誤 112 - 逾時錯誤
+
+此錯誤指出當使用「軟」掛接選項時 (這是預設值) 造成無法重新建立 TCP 連線以連線到伺服器的通訊失敗。
+
+### <a name="cause"></a>原因
+
+此錯誤的原因為 Linux 重新連線問題或造成無法重新連線的其他問題 (例如網路錯誤)。 指定硬掛接將會強制用戶端一直等候直到連線建立或明確中斷，而且它可用來防止因為網路逾時而發生錯誤。 不過，使用者應該注意這可能會導致無限期等候，而且應該視需要處理暫停連線的情況。
+
+### <a name="workaround"></a>因應措施
+
+該 Linux 問題已經修復，不過尚未移植到 Linux 發行版本。 如果問題是因為 Linux 中的重新連線而造成的，那麼只要避免進入閒置狀態即可解決。 若要達到此目的，請在 Azure 檔案共用中保留一個檔案供您每隔 30 秒寫入一次。 這必須是寫入作業，例如重寫檔案的建立/修改日期。 否則，您可能會收到快取的結果，而且您的作業可能不會觸發連線。
+
+<a id="webjobs"></a>
+
+## <a name="accessing-from-other-applications"></a>從其他應用程式存取
+### <a name="can-i-reference-the-azure-file-share-for-my-application-through-a-webjob"></a>我可以透過 Web 工作參考我的應用程式的 Azure 檔案共用嗎？
+您無法在應用程式服務沙箱中掛接 SMB 共用。 因應措施是將 Azure 檔案共用對應為對應磁碟機，並允許應用程式以磁碟機代號方式存取它。
 ## <a name="learn-more"></a>詳細資訊
 * [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 * [在 Linux 上開始使用 Azure 檔案儲存體](storage-how-to-use-files-linux.md)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "開始使用裝置對應項 | Microsoft Docs"
-description: "本教學課程說明如何使用裝置對應項"
+title: "開始使用 Azure IoT 中樞裝置對應項 (Node) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞裝置對應項來新增標籤，然後使用 IoT 中樞查詢。 您可以使用適用於 Node.js 的 Azure IoT SDK，實作模擬裝置應用程式和服務應用程式，以新增標籤和執行 IoT 中樞查詢。"
 services: iot-hub
 documentationcenter: node
 author: fsautomata
@@ -15,21 +15,21 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: d7b615476bb5e9ed08e1e84f63c1a40c11154b23
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 527aed57517f04d1b0fdcad5feac5488123b89c7
 
 
 ---
-# <a name="tutorial-get-started-with-device-twins"></a>教學課程：開始使用裝置對應項
+# <a name="get-started-with-device-twins-node"></a>開始使用裝置對應項 (Node)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-在本教學課程結束時，您將會有兩個 Node.js 主控台應用程式：
+在本教學課程結尾端，您將會有兩個 Node.js 主控台應用程式：
 
-* **AddTagsAndQuery.js**，這是應該從後端執行的 Node.js 應用程式，可新增標籤並查詢裝置對應項。
+* **AddTagsAndQuery.js**，這是 Node.js 後端應用程式，可新增標籤和查詢裝置對應項。
 * **TwinSimulatedDevice.js**，這是會模擬裝置的 Node.js 應用程式，此裝置會以稍早建立的身分識別連接到您的 IoT 中樞，並報告其連線狀況。
 
 > [!NOTE]
-> [IoT 中樞 SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
+> [Azure IoT SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
 > 
 > 
 
@@ -56,11 +56,11 @@ ms.openlocfilehash: d7b615476bb5e9ed08e1e84f63c1a40c11154b23
     npm install azure-iothub --save
     ```
 3. 使用文字編輯器，在 **addtagsandqueryapp** 資料夾中建立新的 **AddTagsAndQuery.js** 檔案。
-4. 將下列程式碼新增至 **AddTagsAndQuery.js** 檔案，並以您建立中樞時所複製的連接字串，取代 **{service connection string}** 預留位置︰
+4. 將下列程式碼新增至 **AddTagsAndQuery.js** 檔案，並以您建立中樞時所複製的 IoT 中樞連接字串，取代 **{iot hub connection string}** 預留位置︰
    
         'use strict';
         var iothub = require('azure-iothub');
-        var connectionString = '{service hub connection string}';
+        var connectionString = '{iot hub connection string}';
         var registry = iothub.Registry.fromConnectionString(connectionString);
    
         registry.getTwin('myDeviceId', function(err, twin){
@@ -144,7 +144,7 @@ ms.openlocfilehash: d7b615476bb5e9ed08e1e84f63c1a40c11154b23
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 3. 使用文字編輯器，在 **reportconnectivity** 資料夾中建立新的 **ReportConnectivity.js** 檔案。
-4. 將下列程式碼新增至 **ReportConnectivity.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的連接字串，取代 **{device connection string}** 預留位置︰
+4. 將下列程式碼新增至 **ReportConnectivity.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的裝置連接字串，取代 **{device connection string}** 預留位置︰
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -225,13 +225,13 @@ ms.openlocfilehash: d7b615476bb5e9ed08e1e84f63c1a40c11154b23
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
 [lnk-twin-how-to-configure]: iot-hub-node-node-twin-how-to-configure.md
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 
 [lnk-methods-tutorial]: iot-hub-node-node-direct-methods.md
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 07/18/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a9a1bcd75dbea49a4eff8e7eb9113cc47f7ab86f
+ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
+ms.openlocfilehash: 13ecb8936484b1c86938a16c7dd6da8000d4ffec
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: a9a1bcd75dbea49a4eff8e7eb9113cc47f7ab86f
 * 存取時間軸、好友和追隨者
 * 執行以下所述的任何其他動作和觸發程序  
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。  
+若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)來開始。  
 
 ## <a name="connect-to-twitter"></a>連接到 Twitter
 您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
@@ -39,7 +39,7 @@ ms.openlocfilehash: a9a1bcd75dbea49a4eff8e7eb9113cc47f7ab86f
 > 
 
 ## <a name="use-a-twitter-trigger"></a>使用 Twitter 觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
 
 在此範例中，我將示範如何使用 [當有新推文張貼時] 觸發程序來搜尋 #Seattle，如果找到 #Seattle，就使用推文中的文字來更新 Dropbox 中的檔案。 在企業範例中，您可以搜尋您的公司名稱，並以推文中的文字更新 SQL Database。
 
@@ -80,7 +80,7 @@ ms.openlocfilehash: a9a1bcd75dbea49a4eff8e7eb9113cc47f7ab86f
    ![Twitter 條件圖 8](../../includes/media/connectors-create-api-twitter/condition-8.png)   
 
 ## <a name="use-a-twitter-action"></a>使用 Twitter 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。  
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。  
 
 您現已新增觸發程序，請遵循下列步驟來新增動作，該動作將會張貼包含觸發程序所找到之推文內容的新推文。 基於本逐步解說的目的，只會張貼有 50 個以上跟隨者的使用者的推文。  
 
@@ -384,11 +384,11 @@ TriggerBatchResponse[TweetModel]
 | 預設值 |作業失敗。 |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

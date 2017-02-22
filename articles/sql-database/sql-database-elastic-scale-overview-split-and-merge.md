@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 00497f64feea692cf0f289991d1b905f39e1c880
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: b2e45a77b900092390a2ca66a8d1286193023f29
 
 
 ---
@@ -150,7 +150,7 @@ ms.openlocfilehash: 00497f64feea692cf0f289991d1b905f39e1c880
 * **Details**：XML 值，提供更詳細的進度報表。 隨著資料列從來源複製到目標，進度報表會定期更新。 如果發生錯誤或例外狀況，此資料行也包含失敗的詳細資訊。
 
 ### <a name="azure-diagnostics"></a>Azure 診斷
-分割合併服務會根據 Azure SDK 2.5 使用 Azure 診斷來監控與診斷。 您可以如這裡所述控制診斷組態： [在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。 下載封裝包含兩個診斷組態 – 一個用於 Web 角色，另一個用於背景工作角色。 這些服務診斷組態遵循 [Microsoft Azure 雲端服務基本概念](https://code.msdn.microsoft.com/windowsazure/Cloud-Service-Fundamentals-4ca72649)中的指引。 其中包含定義來記錄效能計數器、IIS 記錄檔、Windows 事件記錄檔，以及分割合併應用程式事件記錄檔。 
+分割合併服務會根據 Azure SDK 2.5 使用 Azure 診斷來監控與診斷。 您可以如這裡所述控制診斷組態： [在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。 下載封裝包含兩個診斷組態 - 一個用於 Web 角色，另一個用於背景工作角色。 這些服務診斷組態遵循 [Microsoft Azure 雲端服務基本概念](https://code.msdn.microsoft.com/windowsazure/Cloud-Service-Fundamentals-4ca72649)中的指引。 其中包含定義來記錄效能計數器、IIS 記錄檔、Windows 事件記錄檔，以及分割合併應用程式事件記錄檔。 
 
 ## <a name="deploy-diagnostics"></a>部署診斷
 針對 NuGet 封裝所提供的 Web 和背景工作角色，若要使用診斷組態啟用監視和診斷，請使用 Azure PowerShell 執行下列命令： 
@@ -219,6 +219,6 @@ ms.openlocfilehash: 00497f64feea692cf0f289991d1b905f39e1c880
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "了解 PowerShell 工作流程"
-description: "本文旨在做為熟悉 PowerShell 的作者的快速課程，以了解 PowerShell 和 PowerShell 工作流程的特定差異。"
+title: "了解適用於 Azure 自動化的 PowerShell 工作流程 | Microsoft Docs"
+description: "本文旨在做為熟悉 PowerShell 的作者的快速課程，以了解 PowerShell 和 PowerShell 工作流程的特定差異，以及適用於自動化 Runbook 的概念。"
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -12,27 +12,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/12/2016
-ms.author: bwren
+ms.date: 01/23/2017
+ms.author: magoedte;bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 0ab72bd4ad531d1162726c6f5548fa253a4f5265
-ms.openlocfilehash: 3893d8508535ee605c3555d2ddf40d6f286d85fa
+ms.sourcegitcommit: 480a40bd5ecd58f11b10c27e7e0d2828bcae1f17
+ms.openlocfilehash: 50966ed518b79f2033680790432e29b0c9e7b289
 
 
 ---
-# <a name="learning-windows-powershell-workflow"></a>了解 Windows PowerShell 工作流程
-Azure 自動化中的 Runbook 會實作為 Windows PowerShell 工作流程。  Windows PowerShell 工作流程類似於 Windows PowerShell 指令碼，但有一些顯著的差異可能會對新使用者造成混淆。  本文章的適用對象是已經熟悉 PowerShell 的使用者，並簡短說明要將 PowerShell 指令碼轉換成在 Runbook 中使用的 PowerShell 工作流程，您所需的概念。  
+# <a name="learning-key-windows-powershell-workflow-concepts-for-automation-runbooks"></a>了解適用於自動化 Runbook 的重要 Windows PowerShell 工作流程概念 
+Azure 自動化中的 Runbook 會實作為 Windows PowerShell 工作流程。  Windows PowerShell 工作流程類似於 Windows PowerShell 指令碼，但有一些顯著的差異可能會對新使用者造成混淆。  雖然本文旨在協助您使用 PowerShell 工作流程撰寫 Runbook，但是除非您需要檢查點，否則建議您使用 PowerShell 來撰寫 Runbook。  在撰寫 PowerShell 工作流程 Runbook 時有許多語法差異，而這些差異需要更多的工作來撰寫有效的工作流程。  
 
 工作流程是一連串的程式化、連接步驟，執行長時間執行的工作，或是需要跨多個裝置或受管理節點協調多個步驟。 透過標準的指令碼工作流程的好處包括能夠同時對多個裝置執行動作，以及可自動從失敗復原的能力。 Windows PowerShell 工作流程是運用 Windows Workflow Foundation 的 Windows PowerShell 指令碼。 雖然工作流程是使用 Windows PowerShell 語法編寫，並由 Windows PowerShell 啟動，它是由 Windows Workflow Foundation 來處理。
 
 如需這篇文章中的主題的完整詳細資訊，請參閱 [開始使用 Windows PowerShell 工作流程](http://technet.microsoft.com/library/jj134242.aspx)。
-
-## <a name="types-of-runbook"></a>Runbook 的類型
-Azure 自動化中有三種類型的 Runbook：*PowerShell 工作流程*、*PowerShell* 和*圖形*。  當您建立 Runbook 而且在建立後無法將 Runbook 轉換為其他類型時，您會定義 Runbook 類型。
-
-PowerShell 工作流程 Runbook 和 PowerShell Runbook 適用於想要直接使用 PowerShell 程式碼的使用者，無論是使用 Azure 自動化中的文字編輯器或離線編輯器 (例如 PowerShell ISE)。 如果您要建立 PowerShell 工作流程 Runbook，您應該了解這篇文章中的資訊。
-
-圖形化 Runbook 可讓您使用相同的活動和 Cmdlet 建立 Runbook，但使用會隱藏基礎的 PowerShell 工作流程複雜度的圖形介面。  本文章中的概念，例如檢查點和平行執行仍適用圖形化 Runbook，但是您不必擔心詳細的語法。
 
 ## <a name="basic-structure-of-a-workflow"></a>工作流程的基本結構
 將 PowerShell 指令碼轉換成 PowerShell 工作流程的第一個步驟是將它使用 **Workflow** 關鍵字含括。  一種工作流程，以 **Workflow** 關鍵字為開頭，後面接著括在大括弧中的指令碼主體。 工作流程的名稱會遵循 **Workflow** 關鍵字，如下列語法所示。
@@ -204,7 +197,6 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 > [!NOTE]
 > 我們不建議並行執行子 Runbook，因為這可能會提供不可靠的結果。  有時候子 Runbook 的輸出不會出現，並且一個子 Runbook 中的設定會影響其他平行子 Runbook
 >
->
 
 ## <a name="checkpoints"></a>檢查點
 *檢查點* 是包含變數的目前值和在該點產生的任何輸出的工作流程的目前狀態的快照。 如果工作流程結束時發生錯誤或是擱置，則下次執行時就會從其最後一個檢查點開始，而不是工作流程的開頭開始。  您可以使用 **Checkpoint-Workflow** 活動來設定工作流程中的檢查點。
@@ -271,6 +263,6 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

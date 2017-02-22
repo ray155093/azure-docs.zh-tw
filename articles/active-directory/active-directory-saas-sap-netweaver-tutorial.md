@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/02/2016
+ms.date: 11/30/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2793f2b59207d4c329b2fd76eb164b3c4237b9e3
+ms.sourcegitcommit: 1a2ff324cfa65977685f6a0eee9cd398b0717519
+ms.openlocfilehash: c7205f2a743bf2d835e9a1a5e6aad2542a7782ad
 
 
 ---
@@ -116,19 +116,20 @@ SAP NetWeaver 與 Azure AD 整合提供下列優點：
    
     c. 在 [回覆 URL] 文字方塊中，使用以下模式輸入 URL： **https://\<SAP NetWeaver 的公司執行個體\>/sap/saml2/sp/acs/100**。
    
-   > [!NOTE]
-   > 您將能夠在 SAP NetWeaver 合作夥伴所提供的同盟中繼資料文件中找到上述這些值。
-   > 
-   > 
+    > [!NOTE]
+    > 您將能夠在 SAP NetWeaver 合作夥伴所提供的同盟中繼資料文件中找到上述這些值。
+    > 
+    > 
    
     d. click 
+
 4. 在 [設定在 SAP NetWeaver 單一登入]  頁面上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-sap-netweaver-tutorial/tutorial_sapnetweaver_05.png)
    
     a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b. 按 [下一步] 。
 5. 若要為您的應用程式設定 SSO，請連絡您的 SAP NetWeaver 夥伴並提供下列資訊：
    
     • 下載的「中繼資料」 
@@ -169,17 +170,18 @@ SAP NetWeaver 與 Azure AD 整合提供下列優點：
     b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
     c. 按 [下一步] 。
-6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-netweaver-tutorial/create_aaduser_06.png) 
+6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-netweaver-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步] 。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-sap-netweaver-tutorial/create_aaduser_07.png) 
@@ -244,6 +246,6 @@ SAP NetWeaver 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

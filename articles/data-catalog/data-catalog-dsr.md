@@ -13,11 +13,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 09/15/2016
+ms.date: 01/23/2017
 ms.author: maroche
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c357d477684444342c74e04a2c5545a76b9ee0e3
+ms.sourcegitcommit: 24143b6866c4393b18636669b5b4281a0d18c3d1
+ms.openlocfilehash: 64e8c8b284f21320601208c798d354df2496274c
 
 
 ---
@@ -226,7 +226,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
       <td>✓ </td>
       <td>✓</td>
       <td><font size=2>[瀏覽器]</font></td>
-      <td><font size=2>僅限原生模式伺服器。 不支援 SharePoint 模式。</font></td>
+      <td><font size=2>僅限原生模式伺服器。不支援 SharePoint 模式。</font></td>
     </tr>
 
     <tr>
@@ -419,7 +419,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
 ## <a name="data-source-reference-specification"></a>資料來源參考規格
 > [!NOTE]
 > 下表中的「DSL 結構」資料行只會列出 Azure 資料目錄所使用之「位址」屬性包的連接屬性 (也就是「位址」屬性包可以包含 Azure 資料目錄持續保留之資料來源的其他連接屬性，但不會加以使用)。
-> 
+>
 > <table>
 > <tr>
 > <td><b>來源類型</b></td>
@@ -1169,11 +1169,10 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
 > <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; assetId </font>
 > </td>
 > </tr>
-> </table> 
+> </table>>
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

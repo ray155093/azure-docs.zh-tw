@@ -1,6 +1,6 @@
 ---
-title: "雲端服務常見問題集 | Microsoft Docs"
-description: "關於雲端服務的常見問題集。"
+title: "Azure 雲端服務角色常見問題集 | Microsoft Docs"
+description: "關於 Azure 雲端服務的常見問題集。 關於憑證、Web 角色和背景工作角色的一些常見問題解答。"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/16/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 2501b6480e81b236995c37db7171a4ed1429dcbf
-ms.openlocfilehash: f7bad9a46132dec43f73e561362c9e6441a5c1c0
+ms.sourcegitcommit: 8dc7ea843ea316fa4659a8e6575adbfd045f7a70
+ms.openlocfilehash: c169f9ab2eead732ad0fe5579caaa1b4b015732b
 
 
 ---
@@ -28,9 +28,9 @@ ms.openlocfilehash: f7bad9a46132dec43f73e561362c9e6441a5c1c0
 * **My**  
   具有私密金鑰的應用程式憑證 (\*.pfx、\*.p12)。
 * **CA**  
-   所有中繼憑證都會放入此存放區 (原則和子 CA)。
+  所有中繼憑證都會放入此存放區 (原則和子 CA)。
 * **ROOT**  
-   根 CA 存放區，因此主要的根 CA 憑證應該放在這裡。
+  根 CA 存放區，因此主要的根 CA 憑證應該放在這裡。
 
 ### <a name="i-cant-remove-expired-certificate"></a>無法移除過期的憑證
 Azure 會防止您移除使用中的憑證。 您必須刪除使用憑證的部署，或使用不同憑證或更新的憑證來更新部署。
@@ -71,6 +71,6 @@ Azure 會防止您移除使用中的憑證。 您必須刪除使用憑證的部�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

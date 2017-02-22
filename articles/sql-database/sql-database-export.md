@@ -3,20 +3,21 @@ title: "使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案"
 description: "使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案"
 services: sql-database
 documentationcenter: 
-author: stevestein
+author: CarlRabeler
 manager: jhubbard
 editor: 
 ms.assetid: 41d63a97-37db-4e40-b652-77c2fd1c09b7
 ms.service: sql-database
+ms.custom: migrate and move
 ms.devlang: NA
-ms.date: 08/15/2016
-ms.author: sstein
+ms.date: 12/20/2016
+ms.author: sstein;carlrab
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 035a4b394c446d3b92e17ec6d938690504f463c5
-ms.openlocfilehash: 8fbc4febad665d66c857876eb60f0165c5fc5c8e
+ms.sourcegitcommit: df14225e6c2a1b9bf83623df172b9be9b5777add
+ms.openlocfilehash: 33699b00d50c623661292e5a9b21a97726c47611
 
 
 ---
@@ -32,7 +33,11 @@ ms.openlocfilehash: 8fbc4febad665d66c857876eb60f0165c5fc5c8e
 
 當您需要建立 Azure SQL Database 的封存檔時，可以將資料庫結構描述和資料匯出到 BACPAC 檔案。 BACPAC 檔案就是副檔名為 BACPAC 的 ZIP 檔案。 BACPAC 檔案可以稍後儲存在 Azure Blob 儲存體，或在內部部署位置的本機儲存體中，之後再匯入至 Azure SQL Database 或 SQL Server 內部部署安裝。 
 
-***考量***
+> [!IMPORTANT]
+> Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 1 日停用。 2016 年 12 月 1 日開始，您將無法再於任何 SQL Database 上設定自動匯出。 所有現有的自動匯出作業會繼續運作至 2017 年 3 月 1 日。 2016 年 12 月 1 日之後，您可以使用[長期的備份保留](sql-database-long-term-retention.md)或[Azure 自動化](../automation/automation-intro.md)，根據您選擇的排程使用 PowerShell 定期封存 SQL Database。 如需範例指令碼，您可以[從 GitHub 下載範例指令碼](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-automation-automated-export)。 
+>
+
+## <a name="considerations"></a>考量
 
 * 為了讓封存檔處於交易一致狀態，您必須確定在匯出期間未發生任何寫入活動，或者是從 Azure SQL Database 的 [交易一致性複本](sql-database-copy.md) 匯出。
 * 封存到 Azure Blob 儲存體的 BACPAC 檔案大小上限為 200 GB。 若要將較大的 BACPAC 檔案封存到本機儲存體，請使用 [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) 命令提示字元公用程式。 此公用程式隨附於 Visual Studio 和 SQL Server。 您也可以 [下載](https://msdn.microsoft.com/library/mt204009.aspx) 最新版的 SQL Server Data Tools 以取得此公用程式。
@@ -43,8 +48,7 @@ ms.openlocfilehash: 8fbc4febad665d66c857876eb60f0165c5fc5c8e
   * 在所有大型資料表上搭配使用 [叢集索引](https://msdn.microsoft.com/library/ms190457.aspx) 和非 null 值。 若沒有叢集索引，如果要花超過 6-12 小時，匯出可能會失敗。 這是因為匯出服務需要完成資料表掃描，以便嘗試匯出整份資料表。 有一個可判斷資料表是否已針對匯出進行最佳化的好方法，就是執行 **DBCC SHOW_STATISTICS**，並確定 *RANGE_HI_KEY* 不是 null 且其值具有良好的分佈。 如需詳細資料，請參閱 [DBCC SHOW_STATISTICS](https://msdn.microsoft.com/library/ms174384.aspx)。
 
 > [!NOTE]
-> BACPAC 並非用於備份和還原作業。 Azure SQL Database 會自動為每個使用者資料庫建立備份。 如需詳細資訊，請參閱 [商務持續性概觀](sql-database-business-continuity.md)。
-> 
+> BACPAC 並非用於備份和還原作業。 Azure SQL Database 會自動為每個使用者資料庫建立備份。 如需詳細資訊，請參閱 [商務持續性概觀](sql-database-business-continuity.md)。  
 > 
 
 若要完成本文，您需要下列項目：
@@ -57,7 +61,7 @@ ms.openlocfilehash: 8fbc4febad665d66c857876eb60f0165c5fc5c8e
 開啟欲匯出資料庫的 [SQL Database] 刀鋒視窗。
 
 > [!IMPORTANT]
-> 若要保證在交易上一致的 BACPAC 檔案，您應該先 [建立您的資料庫複本](sql-database-copy.md) ，然後匯出資料庫複本。 
+> 若要保證在交易上一致的 BACPAC 檔案，您應該先 [建立您的資料庫複本](sql-database-copy.md)，然後匯出資料庫複本。 
 > 
 > 
 
@@ -67,18 +71,18 @@ ms.openlocfilehash: 8fbc4febad665d66c857876eb60f0165c5fc5c8e
 4. 在 [SQL Database] 刀鋒視窗中，按一下 [匯出] 開啟 [匯出資料庫] 刀鋒視窗：
    
    ![匯出按鈕][1]
-5. 按一下 [ **儲存體** ]，並選取您的儲存體帳戶以及要儲存 BACPAC 的 Blob 容器：
+5. 按一下 [儲存體]，並選取您的儲存體帳戶以及要儲存 BACPAC 的 Blob 容器：
    
    ![匯出資料庫][2]
 6. 選取驗證類型。 
 7. 針對包含欲匯出之資料庫的 Azure SQL Server，輸入適當的驗證認證。
-8. 按一下 [確定]  封存資料庫。 按一下 [確定]  時，會建立匯出資料庫要求並將它提交至服務。 匯出所需的時間長度取決於您資料庫的大小和複雜性，以及您的服務等級。 您將會收到通知。
+8. 按一下 [確定]  封存資料庫。 按一下 [確定]  時，會建立匯出資料庫要求並將它提交至服務。 匯出所需的時間長度取決於您資料庫的大小和複雜性，以及您的服務等級。 檢視您收到的通知。
    
    ![匯出通知][3]
 
 ## <a name="monitor-the-progress-of-the-export-operation"></a>監視匯出作業的進度
 1. 按一下 [SQL Server] 。
-2. 按一下包含您剛才封存之原始 (來源) 資料庫的伺服器。
+2. 按一下包含您封存之原始 (來源) 資料庫的伺服器。
 3. 向下捲動到 [作業]。
 4. 在 SQL Server 刀鋒視窗中，按一下 [匯入/匯出記錄] ：
    
@@ -105,6 +109,6 @@ ms.openlocfilehash: 8fbc4febad665d66c857876eb60f0165c5fc5c8e
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

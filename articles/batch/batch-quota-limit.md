@@ -1,5 +1,5 @@
 ---
-title: "Batch 服務配額和限制 | Microsoft Docs"
+title: "Azure Batch 的服務配額和限制 | Microsoft Docs"
 description: "了解預設的 Azure Batch 配額、限制和條件約束，以及如何要求增加配額"
 services: batch
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 02/09/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
-ms.openlocfilehash: 1a530bf6e9afca9a7cdc1f68e8eefdbf077dc516
+ms.sourcegitcommit: 683ff9f9a829468d9852ce7e9699c766cab53f8b
+ms.openlocfilehash: 163f9f19dfed86e1280135b653086e018f85592b
 
 
 ---
@@ -30,12 +30,7 @@ ms.openlocfilehash: 1a530bf6e9afca9a7cdc1f68e8eefdbf077dc516
 > 
 > 
 
-## <a name="subscription-quotas"></a>訂用帳戶配額
-| **Resource** | **預設限制** | **上限** |
-| --- | --- | --- |
-| Batch 帳戶 (每一區域的每一訂用帳戶) |1 |50 |
-
-## <a name="batch-account-quotas"></a>Batch 帳戶配額
+## <a name="resource-quotas"></a>資源配額
 [!INCLUDE [azure-batch-limits](../../includes/azure-batch-limits.md)]
 
 ## <a name="other-limits"></a>其他限制
@@ -103,6 +98,6 @@ ms.openlocfilehash: 1a530bf6e9afca9a7cdc1f68e8eefdbf077dc516
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

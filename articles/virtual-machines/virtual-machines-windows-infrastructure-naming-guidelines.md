@@ -1,5 +1,5 @@
 ---
-title: "基礎結構命名指導方針 | Microsoft Docs"
+title: "Azure 基礎結構命名指導方針 - Windows | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中進行命名的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-windows
@@ -13,15 +13,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 01/24/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0ad6e170a52d29cb85ec6de57a39f08b30c25b03
+ms.sourcegitcommit: 87a3d4fc849cee5d9abed1e4c32a9da583ea9516
+ms.openlocfilehash: 866265bfa2eb7bcfebd8c73e14d3344a150aaf09
 
 
 ---
-# <a name="infrastructure-naming-guidelines"></a>基礎結構命名指導方針
+# <a name="azure-infrastructure-naming-guidelines"></a>Azure 基礎結構命名指導方針
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
 本文著重於了解各種 Azure 資源的命名慣例做法，以在整個環境中建置一組具邏輯性且可輕鬆識別的資源集合。
@@ -42,10 +42,10 @@ ms.openlocfilehash: 0ad6e170a52d29cb85ec6de57a39f08b30c25b03
 
 您可以選擇遵循為整個組織所定義的一組特定命名慣例，或適用於特定 Azure 訂用帳戶或帳戶的命名慣例。 儘管對組織內的個人來說，在使用 Azure 資源時建立隱含規則非常容易，但當小組需要在 Azure 上致力於某個專案時，該模型並不會適當地調整範圍。
 
-預先針對命名慣例組合取得一致的意見。 有些關於命名慣例的考量會牽涉到規則組合。
+預先針對命名慣例組合取得一致的意見。 有些關於此命名慣例的考量會牽涉到規則組合。
 
 ## <a name="affixes"></a>詞綴
-當您定義命名慣例時，其中一個決定便是詞綴的位置應該位於：
+當您在定義命名慣例時，其中一個決定便是詞綴要位於：
 
 * 名稱開頭 (前置)
 * 名稱結尾 (後置)
@@ -95,7 +95,7 @@ ms.openlocfilehash: 0ad6e170a52d29cb85ec6de57a39f08b30c25b03
 我們建議讓 Azure VM 名稱與基礎作業系統電腦名稱相同。
 
 ## <a name="storage-account-names"></a>儲存體帳戶名稱
-儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account) 。 此外，儲存體帳戶名稱 (以及 core.windows.net) 應是全域有效的唯一 DNS 名稱。 例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
+儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。 此外，儲存體帳戶名稱 (以及 core.windows.net) 應是全域有效的唯一 DNS 名稱。 例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
 
 * mystorageaccount.blob.core.windows.net
 * mystorageaccount.table.core.windows.net
@@ -107,6 +107,6 @@ ms.openlocfilehash: 0ad6e170a52d29cb85ec6de57a39f08b30c25b03
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

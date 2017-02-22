@@ -1,6 +1,6 @@
 ---
-title: "開發人員指南 - IoT 中樞端點 | Microsoft Docs"
-description: "Azure IoT 中樞開發人員指南 - IoT 中樞端點的相關參考資訊"
+title: "了解 Azure IoT 中樞端點 | Microsoft Docs"
+description: "開發人員指南 - IoT 中樞裝置對向端點和服務對向端點的相關參考資訊。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -12,16 +12,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: f2da46ba3fdf9386ad78ade4d2364a4a8990cd6d
+ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
+ms.openlocfilehash: 58a5f8cfc376cd1fea6a668126683bb6d2521bab
 
 
 ---
 # <a name="reference---iot-hub-endpoints"></a>參考 - IoT 中樞端點
-## <a name="list-of-iot-hub-endpoints"></a>IoT 中樞端點清單
+## <a name="list-of-built-in-iot-hub-endpoints"></a>內建 IoT 中樞端點清單
 Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動作項目。 下圖顯示 IoT 中樞公開的各種端點。
 
 ![IoT 中樞端點][img-endpoints]
@@ -43,10 +43,10 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
     公開這些端點時，是使用 [MQTT v3.1.1][lnk-mqtt]、HTTP 1.1 及 [AMQP 1.0][lnk-amqp] 通訊協定來公開。 請注意，AMQP 也可透過連接埠 443 上的 [WebSockets][lnk-websockets] 來取得。
     
     裝置對應項端點和方法端點只能在使用 [MQTT v3.1.1][lnk-mqtt] 時取得。
-* **服務端點**。 各個 IoT 中樞會公開您的應用程式後端可用來與您的裝置通訊的一組端點。 這些端點目前只會使用 [AMQP][lnk-amqp] 通訊協定來公開，但透過 HTTP 1.1 公開的方法叫用端點除外。
+* **服務端點**。 各個 IoT 中樞公開一組端點，供您的解決方案後端用來與您的裝置通訊。 這些端點目前只會使用 [AMQP][lnk-amqp] 通訊協定來公開，但透過 HTTP 1.1 公開的方法叫用端點除外。
   
-  * *接收裝置到雲端的訊息*。 此端點與 [Azure 事件中樞][lnk-event-hubs]相容。 後端服務可用它來讀取由您的裝置所傳送的所有[裝置到雲端訊息][lnk-d2c]。
-  * *傳送雲端到裝置的訊息及接收傳遞通知*。 這些端點可讓您的應用程式後端傳送可靠的[雲端到裝置訊息][lnk-c2d]，以及接收相對應的傳遞或到期通知。
+  * *接收裝置到雲端的訊息*。 此端點與 [Azure 事件中樞][lnk-event-hubs]相容。 後端服務可用它來讀取由您的裝置所傳送的[裝置到雲端訊息][lnk-d2c]。 除了這個內建端點外，您可以在 IoT 中樞上建立自訂端點。
+  * *傳送雲端到裝置的訊息及接收傳遞通知*。 這些端點可讓您的解決方案後端傳送可靠的[雲端到裝置訊息][lnk-c2d]，以及接收相對應的傳遞或到期通知。
   * *接收檔案通知*。 此訊息的端點可讓您接收您的裝置已成功上傳檔案的通知。 
   * *直接方法叫用*。 此端點可讓後端服務在裝置上叫用[直接方法][lnk-methods]。
 
@@ -54,10 +54,25 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
 
 最後請務必注意，所有的 IoT 中樞端點都使用 [TLS][lnk-tls] 通訊協定，且絕不會在未加密/不安全的通道上公開任何端點。
 
+## <a name="custom-endpoints"></a>自訂端點
+您可以將訂用帳戶中的現有 Azure 服務連結至 IoT 中樞，以便做為訊息路由傳送的端點。 這些端點可做為服務端點，並當作訊息路由的接收器。 裝置無法直接寫入至其他端點。 若要深入了解訊息路由，請參閱[透過 IoT 中樞傳送和接收訊息][lnk-devguide-messaging]上的開發人員指南項目。
+
+IoT 中樞目前支援下列 Azure 服務做為額外的端點︰
+
+* 事件中樞
+* 服務匯流排佇列
+* 服務匯流排主題
+
+IoT 中樞需要這些服務端點的寫入權限，才能將訊息路由傳送至工作。 如果您透過 Azure 入口網站設定您的端點，則會為您新增必要的權限。 請務必設定您的服務，以支援預期的輸送量。 當您第一次設定您的 IoT 解決方案時，您可能需要監視其他端點，然後對實際負載進行必要的調整。
+
+如果訊息符合多個指向相同端點的路由，則 IoT 中樞只會將訊息傳遞至該端點一次。 因此，您不需要在您的服務匯流排佇列或主題上設定重複資料刪除。 在分割佇列中，分割區同質性可保證訊息排序。 不支援以啟用工作階段的佇列做為端點。 也不支援已啟用重複資料刪除的分割佇列和主題。
+
+如需您可以新增的端點數目限制，請參閱[配額和節流][lnk-devguide-quotas]。
+
 ## <a name="field-gateways"></a>現場閘道器
 在 IoT 解決方案中， *現場閘道*位於裝置和 IoT 中樞端點之間。 它通常位於接近您的裝置的位置。 您的裝置會使用裝置所支援的通訊協定，直接與現場閘道器通訊。 現場閘道會使用 IoT 中樞所支援的通訊協定來連線到 IoT 中樞端點。 現場閘道可以是高度特殊化硬體或低功率電腦，其執行完成閘道所想要之端對端案例的軟體。
 
-您可以使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 來實作現場閘道。 此 SDK 提供特定功能，例如可以對從多個裝置到相同 IoT 中樞連接的通訊進行多工處理。
+您可以使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 來實作現場閘道。 此 SDK 提供特定功能，例如可以對從多個裝置到相同 IoT 中樞連線的通訊進行多工處理。
 
 ## <a name="next-steps"></a>後續步驟
 此 IoT 中樞開發人員指南中的其他參考主題包括︰
@@ -93,9 +108,10 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
 [lnk-devguide-quotas]: iot-hub-devguide-quotas-throttling.md
 [lnk-devguide-query]: iot-hub-devguide-query-language.md
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
+[lnk-devguide-messaging]: iot-hub-devguide-messaging.md
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO5-->
 
 

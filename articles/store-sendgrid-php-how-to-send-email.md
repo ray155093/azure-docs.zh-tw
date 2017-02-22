@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/30/2014
 ms.author: elmer.thomas@sendgrid.com; erika.berkland@sendgrid.com; vibhork; matt.bernier@sendgrid.com
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 15d830e418e08c388039d9ee6b9af212bfdf310e
+ms.sourcegitcommit: 9b2d456d8dba33af224ea147f5f8ec49ba7397f9
+ms.openlocfilehash: 523b986f66a2e48685e9707903194856f0dcf4a2
 
 
 ---
@@ -54,9 +54,9 @@ SendGrid 是 [雲端架構電子郵件服務]，能提供可靠的 [交易式電
       * Create the body of the message (a plain-text and an HTML version).
       * $text is your plain-text email
       * $html is your html version of the email
-      * If the reciever is able to view html emails then only the html
+      * If the receiver is able to view html emails then only the html
       * email will be displayed
-      */ 
+      */
      $text = "Hi!\nHow are you?\n";
      $html = "<html>
            <head></head>
@@ -95,7 +95,7 @@ SendGrid 是 [雲端架構電子郵件服務]，能提供可靠的 [交易式電
      $message->setTo($to);
      $message->addPart($text, 'text/plain');
 
-     // send message 
+     // send message
      if ($recipients = $swift->send($message, $failures))
      {
          // This will let us know how many users received this message
@@ -109,13 +109,13 @@ SendGrid 是 [雲端架構電子郵件服務]，能提供可靠的 [交易式電
      }
 
 ### <a name="web-api"></a>Web API
-透過 PHP 的 [curl 函式][curl 函數]使用 SendGrid Web API 傳送電子郵件。
+透過 PHP 的 [curl 函式][curl function]使用 SendGrid Web API 傳送電子郵件。
 
     <?php
 
      $url = 'https://api.sendgrid.com/';
      $user = 'USERNAME';
-     $pass = 'PASSWORD'; 
+     $pass = 'PASSWORD';
 
      $params = array(
           'api_user' => $user,
@@ -205,7 +205,7 @@ SendGrid 的 Web API 與 REST API 十分類似，但並非真的是 REST 型 API
      $message->addPart($text, 'text/plain');
      $message->attach(Swift_Attachment::fromPath("path\to\file")->setFileName("file_name"));
 
-     // send message 
+     // send message
      if ($recipients = $swift->send($message, $failures))
      {
           // This will let us know how many users received this message
@@ -311,7 +311,7 @@ SendGrid 提供了運用 'filters' 的其他電子郵件功能。 這些設定�
      // Specify that this is an initial contact message
      $email->addCategory("initial");
 
-     // You can optionally setup individual filters here, in this example, we have 
+     // You can optionally setup individual filters here, in this example, we have
      // enabled the footer filter
      $email->addFilter('footer', 'enable', 1);
      $email->addFilter('footer', "text/plain", "Thank you for your business");
@@ -320,16 +320,16 @@ SendGrid 提供了運用 'filters' 的其他電子郵件功能。 這些設定�
      // The subject of your email
      $subject = 'Example SendGrid Email';
 
-     // Where is this message coming from. For example, this message can be from 
+     // Where is this message coming from. For example, this message can be from
      // support@yourcompany.com, info@yourcompany.com
      $from = 'someone@example.com';
 
-     // If you do not specify a sender list above, you can specifiy the user here. If 
+     // If you do not specify a sender list above, you can specifiy the user here. If
      // a sender list IS specified above, this email address becomes irrelevant.
      $to = 'john@contoso.com';
 
-     # Create the body of the message (a plain-text and an HTML version). 
-     # text is your plain-text email 
+     # Create the body of the message (a plain-text and an HTML version).
+     # text is your plain-text email
      # html is your html version of the email
      # if the receiver is able to view html emails then only the html
      # email will be displayed
@@ -344,7 +344,7 @@ SendGrid 提供了運用 'filters' 的其他電子郵件功能。 這些設定�
      Fred";
 
      $html = "
-     <html> 
+     <html>
      <head></head>
      <body>
      <p>Hello -name-,<br>
@@ -390,10 +390,10 @@ SendGrid 提供了運用 'filters' 的其他電子郵件功能。 這些設定�
 
 [https://sendgrid.com]: https://sendgrid.com
 [https://sendgrid.com/transactional-email/pricing]: https://sendgrid.com/transactional-email/pricing
-[特別優惠]: https://www.sendgrid.com/windowsazure.html
-[封裝和部署 Azure 的 PHP 應用程式]: http://msdn.microsoft.com/library/windowsazure/hh674499(v=VS.103).aspx
+[special offer]: https://www.sendgrid.com/windowsazure.html
+[Packaging and Deploying PHP Applications for Azure]: http://msdn.microsoft.com/library/windowsazure/hh674499(v=VS.103).aspx
 [http://swiftmailer.org/download]: http://swiftmailer.org/download
-[curl 函數]: http://php.net/curl
+[curl function]: http://php.net/curl
 [雲端架構電子郵件服務]: https://sendgrid.com/email-solutions
 [交易式電子郵件傳遞]: https://sendgrid.com/transactional-email
 [sendgrid-php 程式庫]: https://github.com/sendgrid/sendgrid-php/tree/v2.1.1
@@ -401,6 +401,6 @@ SendGrid 提供了運用 'filters' 的其他電子郵件功能。 這些設定�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/25/2016
+ms.date: 01/11/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 668cd65309eefee8094103686734f12a8db52715
+ms.sourcegitcommit: f7656382500682898cd3ed6372630afa3c3f6350
+ms.openlocfilehash: 2f31d8bf78d63e207d5f26ad37c5cf7bd2bac5bb
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: 668cd65309eefee8094103686734f12a8db52715
 
 Azure DevTest Labs 是一項服務，可協助開發人員和測試人員在 Azure 中建立快速環境，同時將浪費降至最低並控制成本。 您可以利用可重複使用的範本和構件快速佈建 Windows 和 Linux 環境，來測試最新版的應用程式。 將您的部署管線與研發/測試實驗室輕鬆整合，來佈建隨選環境。 藉由佈建多個測試代理程式來相應增加您的負載測試，並建立預先佈建的環境來進行訓練和示範。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/What-is-Azure-DevTest-Labs/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/What-is-Azure-DevTest-Labs/player]
 > 
 > 
 
@@ -47,6 +47,6 @@ Azure DevTest Labs 是一項服務，可協助開發人員和測試人員在 Azu
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

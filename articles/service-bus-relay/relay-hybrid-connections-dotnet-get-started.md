@@ -1,35 +1,37 @@
 ---
-title: "開始使用轉送混合式連線 | Microsoft Docs"
+title: "在 .NET 中開始使用 Azure 轉送混合式連接 | Microsoft Docs"
 description: "如何為混合式連線撰寫 C# 主控台應用程式"
-services: service-bus
+services: service-bus-relay
 documentationcenter: .net
 author: jtaubensee
 manager: timlt
 editor: 
 ms.assetid: d1386900-b942-4abf-acfc-38d2ef826253
-ms.service: service-bus
+ms.service: service-bus-relay
 ms.devlang: tbd
 ms.topic: get-started-article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 10/28/2016
-ms.author: jotaub
+ms.date: 02/03/2017
+ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 92d7935596ab1dede6dc1d613cb635c32d52e3ab
+ms.sourcegitcommit: 1ee1e7d0c6f239abfda474d51c8d02d5338dabc7
+ms.openlocfilehash: ec8d7cf64786a3347998f243fc7e4f9550fd9f08
 
 
 ---
 # <a name="get-started-with-relay-hybrid-connections"></a>開始使用轉送混合式連線
 [!INCLUDE [relay-selector-hybrid-connections](../../includes/relay-selector-hybrid-connections.md)]
 
+本教學課程提供 [Azure 轉送混合式連線](relay-what-is-it.md#hybrid-connections)的介紹，並示範如何建立用戶端應用程式，以將訊息傳送至對應的接聽端應用程式。 
+
 ## <a name="what-will-be-accomplished"></a>將會完成的工作
-由於混合式連線需要用戶端和伺服器元件，我們將在本教學課程中建立兩個主控台應用程式。 步驟如下：
+因為混合式連線需要用戶端和伺服器元件，所以本教學課程會建立兩個主控台應用程式。 步驟如下：
 
 1. 使用 Azure 入口網站建立轉送命名空間。
 2. 使用 Azure 入口網站建立混合式連線。
-3. 撰寫伺服器主控台應用程式來接收訊息。
-4. 撰寫用戶端主控台應用程式來傳送訊息。
+3. 撰寫伺服器 (接聽端) 主控台應用程式來接收訊息。
+4. 撰寫用戶端 (傳送端) 主控台應用程式來傳送訊息。
 
 ## <a name="prerequisites"></a>必要條件
 1. [Visual Studio 2013 或 Visual Studio 2015](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2015。
@@ -74,6 +76,6 @@ ms.openlocfilehash: 92d7935596ab1dede6dc1d613cb635c32d52e3ab
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

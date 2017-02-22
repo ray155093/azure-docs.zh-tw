@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4d9c5e52bc42116b03983ed3a9f5b4a7d9e87977
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: 1568bbba999018e26493654e0286a6b8d93f3ae7
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: 4d9c5e52bc42116b03983ed3a9f5b4a7d9e87977
 
 ![發行者入口網站][api-management-management-console]
 
-> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][建立 API 管理服務執行個體]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 > 
 > 
 
@@ -42,7 +42,7 @@ ms.openlocfilehash: 4d9c5e52bc42116b03983ed3a9f5b4a7d9e87977
 
 API 管理中的產品可以是 [開放] 或 [受保護]。 受保護產品必須先擁有訂用帳戶才能使用，開放產品則可以使用而不需訂用帳戶。 若要建立需要訂用帳戶的受保護產品，請核取 [ **需要訂閱** ]。 這是預設設定。
 
-如果您希望管理員檢閱並接受或拒絕對此產品的訂閱嘗試，請核取 [Require subscription approval]  。 如果未核取方塊，將會自動核准訂閱嘗試。 如需有關訂用帳戶的詳細資訊，請參閱[檢視產品的訂閱者][檢視產品的訂閱者]。
+如果您希望管理員檢閱並接受或拒絕對此產品的訂閱嘗試，請核取 [Require subscription approval]  。 如果未核取方塊，將會自動核准訂閱嘗試。 如需訂用帳戶的詳細資訊，請參閱[檢視產品的訂閱者][View subscribers to a product]。
 
 若要允許開發人員帳戶訂閱產品多次，請核取 [ **允許多項訂閱** ] 核取方塊。 如果未核取此方塊，則每個開發人員帳戶只能訂閱產品一次。
 
@@ -98,7 +98,7 @@ API 管理中的產品可以是 [開放] 或 [受保護]。 受保護產品必�
 
 若要允許或不允許群組中的開發人員看見產品，請核取或取消核取群組旁邊的核取方塊，然後按一下 [儲存] 。
 
-> 如需詳細資訊，請參閱[如何在 Azure API 管理中建立和使用群組來管理開發人員帳戶][如何在 Azure API 管理中建立和使用群組來管理開發人員帳戶]。
+> 如需詳細資訊，請參閱 [如何在 Azure API 管理中建立和使用群組來管理開發人員帳戶][How to create and use groups to manage developer accounts in Azure API Management]。
 > 
 > 
 
@@ -108,7 +108,7 @@ API 管理中的產品可以是 [開放] 或 [受保護]。 受保護產品必�
 ![開發人員][api-management-developer-list]
 
 ## <a name="next-steps"> </a>後續步驟
-加入想要的 API 並發行產品之後，開發人員就可以訂閱產品並開始呼叫 API。 如需這些項目及進階產品組態的示範教學課程，請參閱[如何在 Azure API 管理中建立和設定進階產品設定][如何在 Azure API 管理中建立和設定進階產品設定]。
+加入想要的 API 並發行產品之後，開發人員就可以訂閱產品並開始呼叫 API。 如需有關這些項目和進階產品組態的示範教學課程，請參閱 [如何在 Azure API 管理中建立和設定進階產品設定][How create and configure advanced product settings in Azure API Management]。
 
 如需關於使用產品的詳細資訊，請觀看以下影片。
 
@@ -116,13 +116,13 @@ API 管理中的產品可以是 [開放] 或 [受保護]。 受保護產品必�
 > 
 > 
 
-[建立產品]: #create-product
-[將 API 加入至產品]: #add-apis
-[將描述性資訊加入至產品]: #add-description
-[發行產品]: #publish-product
-[讓開發人員看見產品]: #make-visible
-[檢視產品的訂閱者]: #view-subscribers
-[後續步驟]: #next-steps
+[Create a product]: #create-product
+[Add APIs to a product]: #add-apis
+[Add descriptive information to a product]: #add-description
+[Publish a product]: #publish-product
+[Make a product visible to developers]: #make-visible
+[View subscribers to a product]: #view-subscribers
+[Next steps]: #next-steps
 
 [api-management-management-console]: ./media/api-management-howto-add-products/api-management-management-console.png
 [api-management-add-product]: ./media/api-management-howto-add-products/api-management-add-product.png
@@ -144,16 +144,16 @@ API 管理中的產品可以是 [開放] 或 [受保護]。 受保護產品必�
 [api-management-]: ./media/api-management-howto-add-products/
 
 
-[如何將作業加入至 API]: api-management-howto-add-operations.md
-[如何建立和發佈產品]: api-management-howto-add-products.md
-[建立 API 管理服務執行個體]: api-management-get-started.md
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
-[後續步驟]: #next-steps
-[如何在 Azure API 管理中建立和使用群組來管理開發人員帳戶]: api-management-howto-create-groups.md
-[如何在 Azure API 管理中建立和設定進階產品設定]: api-management-howto-product-with-rules.md 
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to create and publish a product]: api-management-howto-add-products.md
+[Get started with Azure API Management]: api-management-get-started.md
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
+[Next steps]: #next-steps
+[How to create and use groups to manage developer accounts in Azure API Management]: api-management-howto-create-groups.md
+[How create and configure advanced product settings in Azure API Management]: api-management-howto-product-with-rules.md 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

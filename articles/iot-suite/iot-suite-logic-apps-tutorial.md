@@ -16,15 +16,15 @@ ms.workload: na
 ms.date: 10/31/2016
 ms.author: araguila
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 12f8fa60fd5da8dcb7ce8f429f6bc47595a0f9d6
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a010e0dff76390020b74ada6d6144e411e304268
 
 
 ---
 # <a name="tutorial-connect-logic-app-to-your-azure-iot-suite-remote-monitoring-preconfigured-solution"></a>教學課程：將邏輯應用程式連接至 Azure IoT 套件遠端監視預先設定解決方案
-[Microsoft Azure IoT 套件][lnk-internetofthings]遠端監視預先設定解決方案以一套端對端功能集示範 IoT 解決方案，是快速入門的好工具。 本教學課程逐步引導您將邏輯應用程式連接至 Microsoft Azure IoT 套件遠端監視預先設定解決方案。 這些步驟示範如何將 IoT 解決方案連接至商務程序，以進一步發展此 IoT 解決方案。
+[Microsoft Azure IoT 套件][lnk-internetofthings]遠端監視預先設定解決方案以一套端對端功能集來示範 IoT 解決方案，是快速入門的好工具。 本教學課程逐步引導您將邏輯應用程式連接至 Microsoft Azure IoT 套件遠端監視預先設定解決方案。 這些步驟示範如何將 IoT 解決方案連接至商務程序，以進一步發展此 IoT 解決方案。
 
-*如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐步解說，請參閱[教學課程：IoT 預先設定解決方案入門][lnk-getstarted]。*
+如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐步解說，請參閱[教學課程：開始使用 IoT 預先設定的解決方案][lnk-getstarted]。
 
 在開始本教學課程之前，您應該：
 
@@ -127,7 +127,7 @@ ms.openlocfilehash: 12f8fa60fd5da8dcb7ce8f429f6bc47595a0f9d6
 
 1. 遵循[開發設定][lnk-devsetup]的指示，設定您的環境準備部署。
 2. 若要在本機部署，請遵循[本機部署][lnk-localdeploy]指示。
-3. 若要部署到雲端並更新現有的雲端部署，請遵循[雲端部署][lnk-localdeploy]指示。 使用原始部署的名稱做為部署名稱。 例如，如果原始部署為 **demologicapp**，請使用下列命令︰
+3. 若要部署至雲端並更新現有的雲端部署，請遵循[雲端部署][lnk-clouddeploy]指示。 使用原始部署的名稱做為部署名稱。 例如，如果原始部署為 **demologicapp**，請使用下列命令︰
    
    ``
    build.cmd cloud release demologicapp
@@ -156,7 +156,7 @@ ms.openlocfilehash: 12f8fa60fd5da8dcb7ce8f429f6bc47595a0f9d6
 既然您已使用邏輯應用程式將預先設定的解決方案連接到商務程序，您可以深入了解自訂預先設定的解決方案的選項。
 
 * [搭配使用動態遙測與遠端監視預先設定解決方案][lnk-dynamic]
-* [遠端監視預先設定解決方案中的裝置資訊中繼資料][lnk-devinfo]
+* [遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]
 
 [lnk-dynamic]: iot-suite-dynamic-telemetry.md
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
@@ -168,10 +168,10 @@ ms.openlocfilehash: 12f8fa60fd5da8dcb7ce8f429f6bc47595a0f9d6
 [lnk-rmgithub]: https://github.com/Azure/azure-iot-remote-monitoring
 [lnk-devsetup]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/dev-setup.md
 [lnk-localdeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/local-deployment.md
-[lnk-localdeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/cloud-deployment.md
+[lnk-clouddeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/cloud-deployment.md
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

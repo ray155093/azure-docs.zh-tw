@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Resource Manager 範本在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Docs"
-description: "了解如何使用 Azure Resource Manager 範本建立 Azure HDInsight 的叢集。"
+title: "使用範本建立 Windows 型 Azure HDInsight (Hadoop) | Microsoft Docs"
+description: "了解如何使用 Azure Resource Manager 範本在 Azure HDInsight 中建立 Windows 型叢集。"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -13,18 +13,25 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/19/2016
+ms.date: 01/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 756369d219c34e5530edc91de0dc74cbf88c02c5
-ms.openlocfilehash: 9fb4862f3ba38058bd07d5a2e0bebcf78477e2d1
+ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
+ms.openlocfilehash: ad511174f8df2fca752447ed942880d02c141308
 
 
 ---
 # <a name="create-windows-based-hadoop-clusters-in-hdinsight-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本在 HDInsight 中建立 Windows 型 Hadoop 叢集
+
 [!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-了解如何使用 Azure Resource Manager 範本建立 HDInsight 叢集。 如需詳細資訊，請參閱 [使用 Azure 資源管理員範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)。 如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱 [叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
+了解如何使用 Azure Resource Manager 範本建立 Windows 型 HDInsight 叢集。 如需詳細資訊，請參閱 [使用 Azure 資源管理員範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)。 
+
+本文的資訊僅適用於以 Windows 為基礎的 HDInsight 叢集。 如需建立 Linux 型叢集的詳細資訊，請參閱[使用 Azure Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 
 ## <a name="prerequisites"></a>必要條件：
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -140,7 +147,7 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
 * 如需可在 Azure Resource Manager 範本中使用的函式清單，請參閱 [範本函式](../azure-resource-manager/resource-group-template-functions.md)。
 
 ## <a name="appx-a-resource-manager-template"></a>附錄 A：Resource Manager 範本
-下列 Azure 資源管理員範本會建立 Windows 型 Hadoop 叢集與相依的 Azure 儲存體帳戶。
+下列 Azure Resource Manager 範本會建立 Windows 型 Hadoop 叢集與相依的 Azure 儲存體帳戶。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -290,6 +297,6 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

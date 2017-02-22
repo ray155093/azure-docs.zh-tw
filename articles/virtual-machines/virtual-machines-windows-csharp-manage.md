@@ -16,18 +16,18 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4d0c334a0b1e047208f6f61e5181864b1c2e3a6a
+ms.sourcegitcommit: 0782000e87bed0d881be5238c1b91f89a970682c
+ms.openlocfilehash: 81706c6c95199b25a07589780d2a27fc0f8dffa7
 
 
 ---
-# <a name="manage-azure-virtual-machines-using-azure-resource-manager-and-c"></a>使用 Azure Resource Manager 和 C# 管理 Azure 虛擬機器
+# <a name="manage-azure-virtual-machines-using-azure-resource-manager-and-c"></a>使用 Azure Resource Manager 和 C# 管理 Azure 虛擬機器# #
 本文章中的工作會示範如何管理虛擬機器，例如啟動、停止及更新。 虛擬機器必須存在於資源群組中，才能完成這篇文章中的工作。
 
 若要完成本文中的工作，您需要：
 
 * [Visual Studio](http://msdn.microsoft.com/library/dd831853.aspx)
-* [驗證權杖](../resource-group-authenticate-service-principal.md)
+* [驗證權杖](../azure-resource-manager/resource-group-authenticate-service-principal.md)
 
 ## <a name="create-a-visual-studio-project-and-install-packages"></a>建立 Visual Studio 專案並安裝封裝
 NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。 您針對本文安裝的程式庫是 Azure Active Directory Authentication Library 以及 Compute Resource Provider Library。 請執行下列步驟，以在 Visual Studio 中取得程式庫：
@@ -435,11 +435,11 @@ NuGet 封裝是安裝完成本文中工作所需程式庫最簡單的方式。 �
 5. 按一下 Visual Studio 中的 [啟動]  ，然後以您用於訂用帳戶的同一組使用者名稱和密碼，登入 Azure AD。
 
 ## <a name="next-steps"></a>後續步驟
-如果部署發生問題，請查看 [使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
+如果部署有問題，您可以查看[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解 (英文)](../azure-resource-manager/resource-manager-common-deployment-errors.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

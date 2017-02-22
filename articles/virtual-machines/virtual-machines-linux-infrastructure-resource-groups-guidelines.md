@@ -1,5 +1,5 @@
 ---
-title: "資源群組指導方針 | Microsoft Docs"
+title: "Azure 中 Linux VM 的資源群組 | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中部署資源群組的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-linux
@@ -13,11 +13,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 12/16/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ed79850fc238e4406e9525dfb1986a1e0e155799
+ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
+ms.openlocfilehash: adf382fef7a83d31f35321187c7c5d20c48db6ef
 
 
 ---
@@ -57,6 +57,6 @@ ms.openlocfilehash: ed79850fc238e4406e9525dfb1986a1e0e155799
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

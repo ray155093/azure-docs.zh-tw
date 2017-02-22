@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 12/19/2016
+ms.date: 01/27/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 5385e8a33466020dd89eaa843ece0ca8d1f31936
-ms.openlocfilehash: c6166484fb132395e7c06d695a6a03a7a628b56a
+ms.sourcegitcommit: 8d1b9293a0b3958d0f478b6a0b6816b8d534883d
+ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 
 
 ---
@@ -65,7 +65,7 @@ ms.openlocfilehash: c6166484fb132395e7c06d695a6a03a7a628b56a
 
 ## <a name="create-the-visual-studio-project"></a>建立 Visual Studio 專案
 1. 開啟 Visual Studio，然後按一下 [檔案][新增]、[專案]。
-2. 展開 [範本] 清單中的 [Visual C#] 節點、選取 [雲端]，然後按一下 [ASP.NET Web 應用程式]。 確定已選取 [.NET Framework 4.5.2]。  在 [名稱] 文字方塊中輸入 **ContosoTeamStats**，然後按一下 [確定]。
+2. 展開 [範本] 清單中的 [Visual C#] 節點、選取 [雲端]，然後按一下 [ASP.NET Web 應用程式]。 確定已選取 [.NET Framework 4.5.2] 或更新版本。  在 [名稱] 文字方塊中輸入 **ContosoTeamStats**，然後按一下 [確定]。
    
     ![建立專案][cache-create-project]
 3. 選取 [MVC]  做為專案類型。 清除 [雲端中的主機]  核取方塊。 在本教學課程的後續步驟中，您將會[佈建 Azure 資源](#provision-the-azure-resources)和[發佈應用程式至 Azure](#publish-the-application-to-azure)。 如需在保持核取 [雲端中的主機]  的狀態下從 Visual Studio 佈建 App Service Web 應用程式的範例，請參閱 [使用 ASP.NET 和 Visual Studio 在 Azure App Service 中開始使用 Web Apps](../app-service-web/web-sites-dotnet-get-started.md)。
@@ -852,6 +852,6 @@ ms.openlocfilehash: c6166484fb132395e7c06d695a6a03a7a628b56a
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

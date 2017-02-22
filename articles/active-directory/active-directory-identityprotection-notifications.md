@@ -13,11 +13,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/20/2016
+ms.date: 12/20/2016
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: afb51a4513a7f1bcbbc85394d8dc7ab8af762f43
+ms.sourcegitcommit: ce3379d5b5e883c6601c40aca191e8b84e3ad8d3
+ms.openlocfilehash: 0170b5d2435f6e856478ee9e55ae26c626288f75
 
 
 ---
@@ -28,7 +28,7 @@ Azure AD Identity Protection 會傳送兩種自動化通知電子郵件，協助
 * 每週精選文章電子郵件
 
 ## <a name="user-compromised-alert-email"></a>使用者遭到入侵的警示電子郵件
-當 Azure AD Identity Protection 發現帳戶遭到入侵時，就會產生使用者遭到入侵的電子郵件警示。 此電子郵件包含 Identity Protection 儀表板中「標示有風險的使用者」報告的連結。 我們建議您立即調查遭到入侵的通知。
+當 Azure AD Identity Protection 發現帳戶遭到入侵時，就會產生使用者遭到入侵的電子郵件警示。 此電子郵件包含 Identity Protection 儀表板中「標示有風險的使用者」報告的連結。 建議您立即調查遭入侵之帳戶的通知。
 
 ## <a name="weekly-digest-email"></a>每週精選文章電子郵件
 每週精選文章電子郵件包含新風險事件的摘要。<br>
@@ -41,7 +41,7 @@ Azure AD Identity Protection 會傳送兩種自動化通知電子郵件，協助
 
 <br>
 ![補救](./media/active-directory-identityprotection-notifications/400.png "Remediation")
-<br> 
+<br>
 
 您可以關閉每週精選文章電子郵件的傳送。
 <br><br>
@@ -60,11 +60,10 @@ Azure AD Identity Protection 會傳送兩種自動化通知電子郵件，協助
    <br>
 
 ## <a name="see-also"></a>另請參閱
-* [Azure Active Directory Identity Protection](active-directory-identityprotection.md) 
+* [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

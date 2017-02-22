@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Service Fabric Reliable Actors | Microsoft Docs"
+title: "使用 C# 建立您的第一個動作項目型 Azure 微服務 | Microsoft Docs"
 description: "本教學課程將引導您使用 Service Fabric Reliable Actors，建立、偵錯及部署簡易動作項目型服務的步驟。"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 01/04/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 2304a9433bb382c0c7ddcf36733838ac769b9584
-ms.openlocfilehash: 98e519df244e9ae934b8100ea9820a7f765b1ee3
+ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
+ms.openlocfilehash: 25b24e6d267ac14147f426fce46d609954b7dfc9
 
 
 ---
@@ -66,7 +66,7 @@ ms.openlocfilehash: 98e519df244e9ae934b8100ea9820a7f765b1ee3
 ![Service Fabric 專案結構][2]
 
 ## <a name="reliable-actors-basic-building-blocks"></a>Reliable Actors 項目基本建置組塊
-典型的 Reliable Actors 方案是由 3 個專案組成：
+典型的 Reliable Actors 方案是由&3; 個專案組成：
 
 * **應用程式專案 (MyActorApplication)**。 此專案會將所有的服務封裝在一起部署。 其包含了用於管理應用程式的 ApplicationManifest.xml  與 PowerShell 指令碼。
 * **介面專案 (MyActor.Interfaces)**。 此專案包含動作項目的介面定義。 在 MyActor.Interfaces 專案中，您可以定義將由方案中的動作項目使用者介面。 可以在任何專案中使用任何名稱定義動作項目介面，不過該介面會定義由動作項目實作與呼叫動作項目的用戶端所共用的動作項目合約，因此通常適合在不同於動作項目實作的組件中定義該合約，並可由多個其他專案共用。
@@ -155,6 +155,6 @@ Visual Studio 專用的 Service Fabric 工具支援在本機機器上偵錯。 �
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

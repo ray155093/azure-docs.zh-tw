@@ -16,52 +16,53 @@ ms.workload: infrastructure-services
 ms.date: 01/03/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 44c46fff9ccf9c7dba9ee380faf5f8213b58e3c3
-ms.openlocfilehash: 4397d84ef4d97bdee387777a193ec0b969f2d5e1
+ms.sourcegitcommit: 42ee74ac250e6594616652157fe85a9088f4021a
+ms.openlocfilehash: 23862762fcf0939ce84859fdae0274421c0bb5fe
 
 
 ---
-# <a name="different-ways-to-create-a-linux-vm-including-azure-cli-20-preview"></a>建立 Linux VM (包含 Azure CLI 2.0 (預覽)) 的不同方式
+# <a name="different-ways-to-create-a-linux-vm-including-the-azure-cli-20-preview"></a>建立 Linux VM 的不同方式，包括 Azure CLI 2.0 (預覽)
 您在 Azure 中可選擇使用您習慣的工具和工作流程來建立 Linux 虛擬機器 (VM)。 本文摘要說明這些差異以及建立 Linux VM 的範例。
 
 ## <a name="azure-cli"></a>Azure CLI
+您可以在 Azure 中使用下列其中一個 CLI 版本建立 VM︰
 
-您可以使用下列其中一個 CLI 版本來完成工作︰
+- [Azure CLI 1.0](virtual-machines-linux-creation-choices-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
+- Azure CLI 2.0 (預覽) - 適用於資源管理部署模型的新一代 CLI (本文章)
 
-- Azure CLI 1.0 – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](../xplat-cli-install.md) - 適用於資源管理部署模型的新一代 CLI
+[Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2) 可透過 npm 套件、散發版本提供的套件或 Docker 容器，跨平台適用。 安裝最適合環境的組建，並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶
 
-Azure CLI 2.0 (預覽) 可透過 npm 套件、散發版本提供的套件或 Docker 容器，使用於各平台。 請務必使用 **az login** 進行登入。
-
-下列教學課程提供有關使用 Azure CLI 2.0 (預覽) 的範例。 如需以下命令的詳細資訊，請閱讀每篇文章：
+下列範例使用 Azure CLI 2.0 (預覽)。 如需以下命令的詳細資訊，請閱讀每篇文章。 有關 Linux 建立選項方面，您也可以找到使用 [Azure CLI 1.0](virtual-machines-linux-creation-choices-nodejs.md) 的範例。
 
 * [使用 Azure CLI 2.0 建立 Linux VM (預覽)](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
   
-  * 這個範例會建立名為 myResourceGroup 的資源群組： 
+  * 這個範例使用 [az group create](/cli/azure/group#create) 建立資源群組 `myResourceGroup`： 
     
     ```azurecli
-    az group create -n myResourceGroup -l westus
+    az group create --name myResourceGroup --location westus
     ```
-
-  * 這個範例會使用最新的 Debian 映像搭配名為 `id_rsa.pub` 的公用金鑰在新的資源群組中建立 VM：
+    
+  * 這個範例使用 [az vm create](/cli/azure/vm#create)，以最新的 Debian 映像 (使用 Azure 受控磁碟) 和公用金鑰 `id_rsa.pub` 建立 VM `myVM`：
 
     ```azurecli
     az vm create \
     --image credativ:Debian:8:latest \
-    --admin-username ops \
+    --admin-username azureuser \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --public-ip-address-dns-name mydns \
+    --public-ip-address-dns-name myPublicDNS \
     --resource-group myResourceGroup \
     --location westus \
     --name myVM
     ```
 
+    * 如果您想要使用非受控磁碟，請新增 `--use-unmanaged-disks` 旗標到上述命令。 系統便會為您建立儲存體帳戶。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md)。
+
 * [使用 Azure 範本建立受保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
   
-  * 下列範例使用 GitHub 上儲存的範本來建立 VM：
+  * 下列範例使用 [az group deployment create](/cli/azure/group/deployment#create)，以儲存 GitHub 上的範本建立 VM︰
     
     ```azurecli
-    az group deployment create -g myResourceGroup \ 
+    az group deployment create --resource-group myResourceGroup \ 
       --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-sshkey/azuredeploy.json \
       --parameters @myparameters.json
     ```
@@ -72,11 +73,11 @@ Azure CLI 2.0 (預覽) 可透過 npm 套件、散發版本提供的套件或 Doc
 
 * [在 Linux VM 中新增磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
   
-  * 下列範例會將 5Gb 磁碟新增至名為 `myVM`的現有 VM：
-    
+  * 下列範例使用 [az vm disk attach-new](/cli/azure/vm/disk#attach-new)，將 5Gb 非受控磁碟 `myDataDisk.vhd` 新增至現有的 VM `myVM`：
+  
     ```azurecli
     az vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
-      --disk-size 5 --vhd https://myStorage.blob.core.windows.net/vhds/myDataDisk1.vhd
+      --disk-size 5 --vhd https://mystorageaccount.blob.core.windows.net/vhds/myDataDisk.vhd
     ```
 
 ## <a name="azure-portal"></a>Azure 入口網站
@@ -89,35 +90,35 @@ Azure CLI 2.0 (預覽) 可透過 npm 套件、散發版本提供的套件或 Doc
 建立 VM 時，根據您想要執行的作業系統來選擇映像。 Azure 與其合作夥伴提供許多映像，其中有些包括已預先安裝的應用程式和工具。 或者，上傳您自己的其中一個映像 (請參閱 [下一節](#use-your-own-image))。
 
 ### <a name="azure-images"></a>Azure 映像
-使用 `az vm image` CLI 命令，查看可用的發佈者、散發版本和組建。
+使用 [az vm image](/cli/azure/vm/image) 命令，依發佈者、散發版本和組建來查看可用的映像。
 
 列出可用的發佈者：
 
 ```azurecli
-az vm image list-publishers -l WestUS
+az vm image list-publishers --location WestUS
 ```
 
 列出特定發佈者的可用產品 (提供項目)︰
 
 ```azurecli
-az vm image list-offers --publisher-name Canonical -l WestUS
+az vm image list-offers --publisher-name Canonical --location WestUS
 ```
 
 清單特定提供項目的可用 SKU (散發版本)︰
 
 ```azurecli
-az vm image list-skus --publisher-name Canonical --offer UbuntuServer -l WestUS
+az vm image list-skus --publisher-name Canonical --offer UbuntuServer --location WestUS
 ```
 
 列出特定版本的所有可用映像︰
 
 ```azurecli
-az vm image list --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS -l WestUS
+az vm image list --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS --location WestUS
 ```
 
 如需有關瀏覽和使用可用映像的更多範例，請參閱 [使用 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-`az vm create` 命令有一些別名，您可以用來快速存取更多常見的散發版本及其最新版本。 使用別名通常比每次建立 VM 時指定發佈者、提供項目、SKU 和版本還要快速：
+**az vm create** 命令有一些別名可用來快速存取更常見的散發版本及其最新版本。 使用別名通常比每次建立 VM 時指定發佈者、提供項目、SKU 和版本還要快速：
 
 | Alias | 發佈者 | 提供項目 | SKU | 版本 |
 |:--- |:--- |:--- |:--- |:--- |
@@ -136,22 +137,21 @@ az vm image list --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS -l
 * [非背書散發套件的資訊](virtual-machines-linux-create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [如何擷取 Linux 虛擬機器以做為 Resource Manager 範本](virtual-machines-linux-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
   
-  * 用來擷取現有 VM 的快速入門範例命令：
+  * 用來擷取現有 VM (使用非受控磁碟) 的快速入門 **az vm** 範例命令：
     
     ```azurecli
-    az vm deallocate -g myResourceGroup -n myVM
-    az vm generalize -g myResourceGroup -n myVM
-    az vm capture -g myResourceGroup -n myVM --vhd-name-prefix myCapturedVM
+    az vm deallocate --resource-group myResourceGroup --name myVM
+    az vm generalize --resource-group myResourceGroup --name myVM
+    az vm capture --resource-group myResourceGroup --name myVM --vhd-name-prefix myCapturedVM
     ```
 
 ## <a name="next-steps"></a>後續步驟
 * 透過[入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、[CLI](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure Resource Manager 範本](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)建立 Linux VM。
 * 在建立 Linux VM 後， [新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-*  [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 
 
-
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

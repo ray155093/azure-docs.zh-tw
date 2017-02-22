@@ -12,12 +12,12 @@ ms.service: virtual-machines-sql
 ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-windows-sql-server
-ms.workload: iaas-sql-server
-ms.date: 09/21/2016
+ms.workload: infrastructure-services
+ms.date: 02/02/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: 171566e8b1eccfafc78bd8b422189c977421592d
+ms.sourcegitcommit: 55a4b22c3bb097c688446a5ec22f60baecf44ffe
+ms.openlocfilehash: 0dea81ef42d9225ee3780ffd2ad67a37c8a4a2ed
 
 
 ---
@@ -46,14 +46,13 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
    > 如果您沒有 Azure 帳戶，請造訪 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
    > 
    > 
-2. 在 Azure 入口網站上，按一下 [新增] 。 入口網站會開啟 [新增]  刀鋒視窗。 SQL Server VM 資源位於 Marketplace 的 [虛擬機器]  群組中。
-3. 在 [新增] 刀鋒視窗中，按一下 [虛擬機器]。
-4. 若要查看所有可用的映像，請按一下 [虛擬機器] 刀鋒視窗上的 [查看全部]。
-   
-    ![Azure 虛擬機器刀鋒視窗](./media/virtual-machines-windows-portal-sql-server-provision/azure-compute-blade.png)
-5. 在 [資料庫伺服器] 底下，按一下 [SQL Server]。 您可能必須向下捲動才能找到 [資料庫伺服器] 。 檢閱可用的 SQL Server 範本。
-   
-    ![虛擬機器資源庫 SQL 映像](./media/virtual-machines-windows-portal-sql-server-provision/virtual-machine-gallery-sql-server.png)
+2. 在 Azure 入口網站上，按一下 [新增] 。 入口網站會開啟 [新增]  刀鋒視窗。 SQL Server VM 資源位於 Marketplace 的 [計算] 群組中。
+3. 在 [新增] 刀鋒視窗中，按一下 [計算]，然後按一下 [檢視全部]。
+4. 在 [篩選器] 文字方塊中，輸入 SQL Server，然後按 ENTER 鍵。
+
+   ![Azure 虛擬機器刀鋒視窗](./media/virtual-machines-windows-portal-sql-server-provision/azure-compute-blade2.png)
+
+5. 檢閱可用的 SQL Server 範本。
 6. 每個範本皆識別一個 SQL Server 版本和一個作業系統。 從清單中選取其中一個映像。 然後檢閱詳細資料刀鋒視窗，其中提供虛擬機器映像的描述。
    
    > [!NOTE]
@@ -82,7 +81,7 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
 * 指定 VM 上本機系統管理員帳戶的 [使用者名稱]。 這個帳戶也會加入至 SQL Server **sysadmin** 固定伺服器角色。
 * 提供強式 [密碼] 。
 * 如果您有多個訂用帳戶，請確認訂用帳戶適用於新的 VM。
-* 在 [資源群組]  方塊中，輸入新資源群組的名稱。 或者，若要使用現有的資源群組，請按一下 [選取現有項目] 。 資源群組是 Azure (虛擬機器、儲存體帳戶、虛擬網路等) 中相關資源的集合。
+* 在 [資源群組]  方塊中，輸入新資源群組的名稱。 或者，若要使用現有的資源群組，請按一下 [使用現有項目]。 資源群組是 Azure (虛擬機器、儲存體帳戶、虛擬網路等) 中相關資源的集合。
   
   > [!NOTE]
   > 如果您只是測試或了解 Azure 中的 SQL Server 部署，使用新的資源群組很有幫助。 完成測試之後，請刪除資源群組以自動刪除此 VM 以及與該資源群組相關聯的所有資源。 如需有關資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../../../azure-resource-manager/resource-group-overview.md)。
@@ -216,10 +215,12 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 * 備份的保留期限 (天數)
 * 要用於備份的儲存體帳戶
 * 備份的加密選項和密碼
+* 備份系統資料庫
+* 設定備份排程
 
 若要加密備份，請按一下 [啟用] 。 然後指定 [密碼] 。 Azure 會建立憑證來加密備份，並使用指定的密碼來保護該憑證。
 
-![SQL 自動備份](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-autobackup.png)
+![SQL 自動備份](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-autobackup2.png)
 
  如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的自動化備份](virtual-machines-windows-sql-automated-backup.md)。
 
@@ -302,6 +303,6 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

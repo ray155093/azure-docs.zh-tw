@@ -1,6 +1,6 @@
 ---
-title: "HDInsight 中的 Apache Spark 的已知問題 | Microsoft Docs"
-description: "HDInsight 中的 Apache Spark 的已知問題"
+title: "Azure HDInsight 中的 Apache Spark 叢集已知問題 | Microsoft Docs"
+description: "Azure HDInsight 中的 Apache Spark 叢集已知問題。"
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -13,15 +13,16 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/03/2017
+ms.date: 01/18/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f36307d77bce1f0d6805a225477a61b95865545f
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 6c81d978e470754f5c0a737aba0437e105949099
 
 
 ---
-# <a name="known-issues-for-apache-spark-cluster-on-hdinsight-linux"></a>HDInsight Linux 上的 Apache Spark 叢集已知問題
+# <a name="known-issues-for-apache-spark-cluster-on-hdinsight"></a>HDInsight 上的 Apache Spark 叢集已知問題
+
 這份文件記錄 HDInsight Spark 公開預覽版本的所有已知問題。  
 
 ## <a name="livy-leaks-interactive-session"></a>Livy 會流失互動式工作階段
@@ -31,7 +32,7 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 請使用下列程序解決此問題：
 
-1. Ssh 到前端節點。 
+1. Ssh 到前端節點。 若為 Windows 系統，請參閱[從具有 PuTTY 的 Windows 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)；若為 Linux、Unix 或 OS X，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md) 
 2. 執行下列命令，以尋找透過 Livy 啟動之互動式作業的應用程式識別碼。 
    
         yarn application –list
@@ -71,7 +72,9 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 **緩和：**
 
-如果您收到這個錯誤，並不表示您的資料已損毀或遺失。  您的 Notebook 仍在磁碟的 `/var/lib/jupyter`中，您可以透過 SSH 連線到叢集來加以存取。 您可以從叢集中將 Notebook 複製到本機電腦 (使用 SCP 或 WinSCP) 來做為備份，以避免遺失 Notebook 中的重要資料。 您接著可以在連接埠 8001 以 SSH 通道連到前端節點，以存取 Jupyter 而不透過閘道。  您可以從該處清除 Notebook 的輸出，並將其重新儲存，以盡量縮減 Notebook 的大小。
+如果您收到這個錯誤，並不表示您的資料已損毀或遺失。  您的 Notebook 仍在磁碟的 `/var/lib/jupyter`中，您可以透過 SSH 連線到叢集來加以存取。 若為 Windows 系統，請參閱[從具有 PuTTY 的 Windows 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)；若為 Linux、Unix 或 OS X，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
+
+在您使用 SSH 連線到叢集之後，您可以從叢集中將 Notebook 複製到本機電腦 (使用 SCP 或 WinSCP) 來做為備份，以避免遺失 Notebook 中的重要資料。 您接著可以在連接埠 8001 以 SSH 通道連到前端節點，以存取 Jupyter 而不透過閘道。  您可以從該處清除 Notebook 的輸出，並將其重新儲存，以盡量縮減 Notebook 的大小。
 
 若要防止日後再發生此錯誤，您必須遵循一些最佳作法：
 
@@ -125,6 +128,6 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

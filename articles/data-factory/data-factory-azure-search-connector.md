@@ -12,23 +12,21 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/07/2016
+ms.date: 12/20/2016
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: f1d7df6163336cd66600dc22ff72a2bc1f29a1d5
-ms.openlocfilehash: 138ac79846a2e7d0ae4af59ce13b6d36cce05047
+ms.sourcegitcommit: 55c988bf74ff0f2e519e895a735dc68f3dc99855
+ms.openlocfilehash: e2deed13106db9467eef181f25a0a226034df5a2
 
 ---
 
 # <a name="push-data-to-an-azure-search-index-by-using-azure-data-factory"></a>使用 Azure Data Factory 將資料推送到 Azure 搜尋服務索引
 本文說明如何使用「複製活動」，將資料從 Data Factory 服務所支援的內部資料存放區推送到 Azure 搜尋服務索引。 支援的來源資料存放區會列於[支援的來源與接收器](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格的 [來源] 欄中。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
-Azure Data Factory 目前僅支援將資料從[支援的內部部署來源資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)移到 Azure 搜尋服務。 它不支援將資料從 Azure 搜尋服務移至其他資料存放區。
-
 ## <a name="enabling-connectivity"></a>啟用連線
-若要讓 Data Factory 服務連接到內部部署資料存放區，您要在內部部署環境中安裝資料管理閘道。 您可以在裝載來源資料存放區的同一部電腦上或個別電腦上安裝閘道，以避免與資料存放區競用資源。 
+若要讓 Data Factory 服務連接到內部部署資料存放區，您要在內部部署環境中安裝資料管理閘道。 您可以在裝載來源資料存放區的同一部電腦上或個別電腦上安裝閘道，以避免與資料存放區競用資源。
 
-資料管理閘道會透過安全且可管理的方式，將內部部署資料來源連接到雲端服務。 如需資料管理閘道的詳細資訊，請參閱 [在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文。 
+資料管理閘道會透過安全且可管理的方式，將內部部署資料來源連接到雲端服務。 如需資料管理閘道的詳細資訊，請參閱 [在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
 若要建立管線以將資料從任何支援的來源資料存放區複製到 Azure 搜尋服務，最簡單的方式是使用 [複製資料] 精靈。 如需快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
@@ -45,14 +43,14 @@ Azure Data Factory 目前僅支援將資料從[支援的內部部署來源資料
 4.  [AzureSearchIndex](#azure-search-index-dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 4.  具有使用 [SqlSource](data-factory-sqlserver-connector.md#sql-server-copy-activity-type-properties) 和 [AzureSearchIndexSink](#azure-search-index-sink-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-這個範例每小時都會將時間序列的資料從內部部署 SQL Server 資料庫複製到 Azure 搜尋服務索引。 範例後面的各節將會說明此範例中使用的 JSON 屬性。 
+這個範例每小時都會將時間序列的資料從內部部署 SQL Server 資料庫複製到 Azure 搜尋服務索引。 範例後面的各節將會說明此範例中使用的 JSON 屬性。
 
 第一步是在內部部署電腦上設定資料管理閘道。 如需相關指示，請參閱 [在內部部署位置和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 。
 
 **Azure 搜尋服務連結的服務：**
 
 ```JSON
-{   
+{
     "name": "AzureSearchLinkedService",
     "properties": {
         "type": "AzureSearch",
@@ -182,6 +180,19 @@ Azure Data Factory 目前僅支援將資料從[支援的內部部署來源資料
 }
 ```
 
+如果您從雲端資料存放區將資料複製到 Azure 搜尋服務，則 `executionLocation` 是必要屬性。 以下顯示在複製活動 `typeProperties` 做為範例底下所需的變更。 參閱[在雲端資料存放區之間複製資料](data-factory-data-movement-activities.md#global)一節以取得支援的值和更多詳細資料。
+
+```JSON
+"typeProperties": {
+  "source": {
+    "type": "BlobSource"
+  },
+  "sink": {
+    "type": "AzureSearchIndexSink"
+  },
+  "executionLocation": "West US"
+}
+```
 
 ## <a name="azure-search-linked-service-properties"></a>Azure 搜尋服務連結的服務屬性
 
@@ -210,7 +221,7 @@ Azure Data Factory 目前僅支援將資料從[支援的內部部署來源資料
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
-| WriteBehavior | 指定若文件已經存在於索引中，是否要合併或取代。 請參閱 [WriteBehavior 屬性](#writebehavior-property)。| 合併 (預設值)<br/>上傳| 否 | 
+| WriteBehavior | 指定若文件已經存在於索引中，是否要合併或取代。 請參閱 [WriteBehavior 屬性](#writebehavior-property)。| 合併 (預設值)<br/>上傳| 否 |
 | WriteBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料上傳至 Azure 搜尋服務中。 如需詳細資訊，請參閱 [WriteBatchSize 屬性](#writebatchsize-property)。 | 1 到 1000。 預設值為 1000。 | 否 |
 
 ### <a name="writebehavior-property"></a>WriteBehavior 屬性
@@ -226,22 +237,37 @@ AzureSearchSink (藉由使用 AzureSearch SDK) 提供下列兩種更新插入行
 ### <a name="writebatchsize-property"></a>WriteBatchSize 屬性
 Azure 搜尋服務支援批次寫入文件。 一個批次可包含 1 到 1,000 個動作。 一個動作可指示一份文件來執行上傳/合併作業。
 
-### <a name="data-type-support"></a>資料類型支援 
-下表指出是否支援 Azure 搜尋服務資料類型。 
+### <a name="data-type-support"></a>資料類型支援
+下表指出是否支援 Azure 搜尋服務資料類型。
 
 | Azure 搜尋服務資料類型 | 在 Azure 搜尋服務接收器中受到支援 |
 | ---------------------- | ------------------------------ |
-| String | Y | 
+| String | Y |
 | Int32 | Y |
 | Int64 | Y |
 | 兩倍 | Y |
 | Boolean | Y |
-| DataTimeOffset | Y | 
-| 字串陣列 | N | 
+| DataTimeOffset | Y |
+| 字串陣列 | N |
 | GeographyPoint | N |
 
+## <a name="copy-from-a-cloud-source"></a>從雲端來源複製
+如果您從雲端資料存放區將資料複製到 Azure 搜尋服務，則 `executionLocation` 是必要屬性。 以下顯示在複製活動 `typeProperties` 做為範例底下所需的變更。 參閱[在雲端資料存放區之間複製資料](data-factory-data-movement-activities.md#global)一節以取得支援的值和更多詳細資料。
+
+```JSON
+"typeProperties": {
+  "source": {
+    "type": "BlobSource"
+  },
+  "sink": {
+    "type": "AzureSearchIndexSink"
+  },
+  "executionLocation": "West US"
+}
+```
+
 ## <a name="specifying-structure-definition-for-rectangular-datasets"></a>指定矩形資料集的結構定義
-在資料集 JSON 中的結構區段 (“structure”) 是矩形資料表 (有資料列和資料行) 的**選擇性**區段，並包含該資料表的資料行集合。 使用結構區段來提供類型轉換的類型資訊或執行資料行對應。 下列各節更詳細說明這些功能。 
+在資料集 JSON 中的結構區段 (“structure”) 是矩形資料表 (有資料列和資料行) 的**選擇性**區段，並包含該資料表的資料行集合。 使用結構區段來提供類型轉換的類型資訊或執行資料行對應。 下列各節更詳細說明這些功能。
 
 各資料行包含下列屬性：
 
@@ -255,7 +281,7 @@ Azure 搜尋服務支援批次寫入文件。 一個批次可包含 1 到 1,000 
 下列範例示範具有 `userid`、`name` 及 `lastlogindate` 三個資料行的資料表的結構區段 JSON。
 
 ```JSON
-"structure": 
+"structure":
 [
     { "name": "userid"},
     { "name": "name"},
@@ -264,27 +290,27 @@ Azure 搜尋服務支援批次寫入文件。 一個批次可包含 1 到 1,000 
 ```
 有關何時要包括 “structure” 資訊以及在**結構**區段中要包含哪些資訊，請遵循下列準則。
 
-- **針對結構化的資料來源**，其會將資料結構描述和類型資訊以及資料本身儲存在一起 (例如：SQL Server、Oracle、Azure 資料表等來源)：只有當您將特定來源資料行對應至接收器中的特定資料行且其名稱不相同時，才應指定 “structure” 區段。 請參閱資料行對應區段中的詳細資訊。 
+- **針對結構化的資料來源**，其會將資料結構描述和類型資訊以及資料本身儲存在一起 (例如：SQL Server、Oracle、Azure 資料表等來源)：只有當您將特定來源資料行對應至接收器中的特定資料行且其名稱不相同時，才應指定 “structure” 區段。 請參閱資料行對應區段中的詳細資訊。
 
     如上所述，“structure” 區段中的類型資訊是選擇性的。 針對結構化的來源，類型資訊可用來做為資料存放區中資料集定義的一部分，因此當您包含 “structure” 區段時不應包含類型資訊。
 - **針對讀取的資料來源 (尤其是 Azure Blob) 的結構描述**：您可以選擇儲存資料，而不需將任何結構描述或類型資訊與資料儲存在一起。 針對這些類型的資料來源，在以下兩種案例中應包含 “structure”：
     - 將來源資料行對應到接收資料行。
     - 當資料集為「複製活動」中的來源時，您可以提供在 “structure” 中提供類型資訊。 Data Factory 會使用此類型資訊來轉換為接收器的原生類型。 如需詳細資訊，請參閱[移動資料進出 Azure Blob](data-factory-azure-blob-connector.md) 文章。
 
-### <a name="supported-net-based-types"></a>支援 .NET 型的類型 
+### <a name="supported-net-based-types"></a>支援 .NET 型的類型
 Data Factory 支援下列符合 CLS 標準的 .NET 型類型值，以利針對讀取的資料來源 (如 Azure Blob) 的結構描述在 “structure” 中提供類型資訊。
 
 - Int16
-- Int32 
+- Int32
 - Int64
 - 單一
 - 兩倍
 - 十進位
 - Bool
-- String 
+- String
 - Datetime
 - Datetimeoffset
-- Timespan 
+- Timespan
 
 針對 Datetime 和 Datetimeoffset，您也可以選擇性地指定 “culture” 和 “format” 字串，以幫助剖析您的自訂 Datetime 字串。 請參閱下一節中的類型轉換範例：
 
@@ -298,12 +324,12 @@ Data Factory 支援下列符合 CLS 標準的 .NET 型類型值，以利針對�
 若要了解影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
 ## <a name="next-steps"></a>後續步驟
-請參閱下列文章： 
+請參閱下列文章：
 
-* [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得使用「複製活動」來建立管線的逐步指示。 
+* [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得使用「複製活動」來建立管線的逐步指示。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

@@ -21,25 +21,21 @@
 ## [儲存搜尋並釘選資料資產](data-catalog-how-to-save-pin.md)
 ## [設定商務詞彙](data-catalog-how-to-business-glossary.md)
 
-## 開發
-### [開發人員概念](data-catalog-developer-concepts.md)
-### [開發人員範例](data-catalog-samples.md)
-
 # 參考
 ## [REST](/rest/api/datacatalog/)
+## [開發人員概念](data-catalog-developer-concepts.md)
+## [開發人員範例](data-catalog-samples.md)
 
 # 資源
 ## [Azure 資料目錄的鍵盤快速鍵](data-catalog-keyboard-shortcuts.md)
 ## [術語](data-catalog-terminology.md)
-## 版本資訊
-### [版本資訊 - 新](data-catalog-whats-new.md)
-### [版本資訊](data-catalog-release-notes.md)
+## [版本資訊](data-catalog-whats-new.md)
 ## [服務更新](https://azure.microsoft.com/updates/?product=data-catalog)
 ## [價格](https://azure.microsoft.com/pricing/details/data-catalog/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azuredatacatalog)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-data-catalog)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

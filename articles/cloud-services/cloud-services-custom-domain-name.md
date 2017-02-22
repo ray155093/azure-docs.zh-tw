@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/10/2016
+ms.date: 12/14/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: 69ffe9fd723e582bb9148ca9de570ede9231961d
+ms.sourcegitcommit: 2b020004762125aad201cf7eb454da5cf73288ae
+ms.openlocfilehash: bc8b93d59b53e17eff4b7448f5c6b445894f47e9
 
 
 ---
@@ -76,7 +76,7 @@ A 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**) *或萬用字
        ![快速瀏覽區段，其中顯示網站 URL][csurl]
      
        **或**  
-   * 安裝並設定 [Azure Powershell](../powershell-install-configure.md)，然後使用下列命令：
+   * 安裝並設定 [Azure Powershell](/powershell/azureps-cmdlets-docs)，然後使用下列命令：
      
        ```powershell
        Get-AzureDeployment -ServiceName yourservicename | Select Url
@@ -111,7 +111,7 @@ A 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**) *或萬用字
        ![快速瀏覽區段，其中顯示 VIP][vip]
      
        **或**  
-   * 安裝並設定 [Azure Powershell](../powershell-install-configure.md)，然後使用下列命令：
+   * 安裝並設定 [Azure Powershell](/powershell/azureps-cmdlets-docs)，然後使用下列命令：
      
        ```powershell
        get-azurevm -servicename yourservicename | get-azureendpoint -VM {$_.VM} | select Vip
@@ -147,18 +147,18 @@ A 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**) *或萬用字
 * 了解如何 [部署雲端服務](cloud-services-how-to-create-deploy.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-[在自訂網域上公開您的應用程式]: #access-app
+[Expose Your Application on a Custom Domain]: #access-app
 [Add a CNAME Record for Your Custom Domain]: #add-cname
-[在自訂網域上公開您的資料]: #access-data
-[VIP 交換]: http://msdn.microsoft.com/library/ee517253.aspx
-[建立將子網域與儲存體帳戶產生關聯的 CNAME 記錄]: #create-cname
+[Expose Your Data on a Custom Domain]: #access-data
+[VIP swaps]: http://msdn.microsoft.com/library/ee517253.aspx
+[Create a CNAME record that associates the subdomain with the storage account]: #create-cname
 [Azure 傳統入口網站]: https://manage.windowsazure.com
-[驗證自訂網域對話方塊]: http://i.msdn.microsoft.com/dynimg/IC544437.jpg
+[Validate Custom Domain dialog box]: http://i.msdn.microsoft.com/dynimg/IC544437.jpg
 [vip]: ./media/cloud-services-custom-domain-name/csvip.png
 [csurl]: ./media/cloud-services-custom-domain-name/csurl.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

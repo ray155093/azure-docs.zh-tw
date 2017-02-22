@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站管理 DNS 記錄集和記錄 | Microsoft Docs"
-description: "在將網域裝載於 Azure DNS 時管理 DNS 記錄集和記錄。"
+title: "使用 Azure DNS 管理 DNS 記錄集和記錄 |Microsoft Docs"
+description: "Azure DNS 可在裝載您的網域時，提供管理 DNS 記錄集和記錄的功能。"
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -16,8 +16,8 @@ ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 42d47741e414b2de177f1fd75b3e1ac3fde96579
-ms.openlocfilehash: db14074ba4f3b5b675f608b76c496c84f7c22945
+ms.sourcegitcommit: efa52b5f30cab16bfde4202dbfe2c95f4464e2c4
+ms.openlocfilehash: b09b66c44ba94df12934211d5d09430adb667003
 
 ---
 
@@ -105,11 +105,11 @@ ms.openlocfilehash: db14074ba4f3b5b675f608b76c496c84f7c22945
 
 ### <a name="modify-soa-records"></a>修改 SOA 記錄
 
-您無法從區域頂點 (名稱 = "@").) 中自動建立的 SOA 記錄集新增或移除記錄，但是您可以修改 SOA 記錄 ('Host' 除外) 和記錄集 TTL 內的任何參數。
+您無法在區域頂點 (名稱 = "@") 自動建立的 SOA 記錄集中新增或移除記錄。 不過，您可以修改 SOA 記錄 (「主機」除外) 和記錄集 TTL 內的任何參數。
 
 ### <a name="modify-ns-records-at-the-zone-apex"></a>在區域頂點修改 NS 記錄
 
-您無法在區域頂點 (名稱 = "@").) 自動建立的 NS 記錄集中新增、移除或修改記錄。修改記錄集 TTL 是唯一允許的變更。
+您無法在區域頂點 (名稱 = "@") 自動建立的 NS 記錄集中新增、移除或修改記錄。 修改記錄集 TTL 是唯一允許的變更。
 
 ### <a name="delete-soa-or-ns-record-sets"></a>刪除 SOA 或 NS 記錄集
 
@@ -123,6 +123,6 @@ ms.openlocfilehash: db14074ba4f3b5b675f608b76c496c84f7c22945
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

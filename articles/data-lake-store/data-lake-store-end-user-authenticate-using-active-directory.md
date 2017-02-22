@@ -1,6 +1,6 @@
 ---
-title: "使用 Active Directory 驗證 Data Lake Store | Microsoft Docs"
-description: "了解如何使用 Azure Active Directory 驗證 Data Lake Store"
+title: "使用者驗證︰搭配使用 Azure Active Directory 與 Data Lake Store | Microsoft Docs"
+description: "了解如何搭配使用 Azure Active Directory 與 Data Lake Store 以完成使用者驗證"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/17/2016
+ms.date: 01/10/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7e7c9fd2fe7e6327cd39c4c26583c8fd556c9044
+ms.sourcegitcommit: 9019a4115e81a7d8f1960098b1138cd437a0460b
+ms.openlocfilehash: a50fc687a1738a55c3d22eb3e12060397c162e06
 
 
 ---
@@ -29,8 +29,8 @@ ms.openlocfilehash: 7e7c9fd2fe7e6327cd39c4c26583c8fd556c9044
 
 Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配 Azure Data Lake Store 或 Azure Data Lake Analytics 的應用程式之前，必須先決定要如何以 Azure Active Directory (Azure AD) 驗證應用程式。 兩個主要選項為︰
 
-* 使用者驗證，以及 
-* 服務對服務驗證。 
+* 使用者驗證 (本文)
+* 服務對服務驗證
 
 兩個選項都要靠 OAuth 2.0 權杖來提供您的應用程式，權杖會附加到每個對 Azure Data Lake Store 或 Azure Data Lake Analytics 提出的要求。
 
@@ -59,7 +59,7 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 > 
 
 ### <a name="directly-passing-in-user-credentials"></a>直接傳遞使用者認證
-您的應用程式可以直接提供對 Azure AD 的使用者認證。 這個方法僅適用於有組織識別碼的使用者帳戶；與個人/「即時識別碼」使用者帳戶不相容，包括以 @outlook.com 或 @live.com. 結尾的帳戶。此外，這個方法與需要 Azure AD 雙因素驗證 (2FA) 的使用者帳戶不相容。
+您的應用程式可以直接提供對 Azure AD 的使用者認證。 這個方法僅適用於有組織識別碼的使用者帳戶；不適用於個人/「Live ID」使用者帳戶 (包括以 @outlook.com 或 @live.com 結尾的帳戶)。 此外，這個方法與需要 Azure AD 雙因素驗證 (2FA) 的使用者帳戶不相容。
 
 ### <a name="what-do-i-need-to-use-this-approach"></a>使用這個方法時需要什麼？
 * Azure AD 網域名稱。 已列在本文的先決條件中。
@@ -75,7 +75,7 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 
 ### <a name="step-1-create-an-azure-active-directory-application"></a>步驟 1：建立 Azure Active Directory 應用程式
 > [!NOTE]
-> 下列步驟是使用 Azure 入口網站。 您也可以使用 [Azure PowerShell](../resource-group-authenticate-service-principal.md) 或 [Azure CLI](../resource-group-authenticate-service-principal-cli.md) 來建立 Azure AD 應用程式。
+> 下列步驟是使用 Azure 入口網站。 您也可以使用 [Azure PowerShell](../azure-resource-manager/resource-group-authenticate-service-principal.md) 或 [Azure CLI](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md) 來建立 Azure AD 應用程式。
 > 
 > 
 
@@ -134,6 +134,6 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

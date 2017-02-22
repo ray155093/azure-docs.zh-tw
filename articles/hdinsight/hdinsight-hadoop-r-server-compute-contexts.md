@@ -12,16 +12,16 @@ ms.devlang: R
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 11/15/2016
+ms.date: 01/09/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 3743a1c9539f6e0077448aff4470cb8f5363ef2f
-ms.openlocfilehash: ac1e2c269d59d9e3262c385450a4912de0c9debe
+ms.sourcegitcommit: 841e70fa3a80bbeb7e2281246bac2f99c0de899f
+ms.openlocfilehash: 169743012b1f50d67d5eafdb279e706719752eb8
 
 
 ---
 # <a name="compute-context-options-for-r-server-on-hdinsight"></a>適用於 HDInsight 中 R 伺服器的計算內容選項
-Azure HDInsight 上的 Microsoft R 伺服器可提供最新的 R 型分析功能。 它會在您的 [Azure Blob](../storage/storage-introduction.md "Azure Blob 儲存體") 儲存體帳戶或本機 Linux 檔案系統中，使用儲存在容器的 HDFS 中的資料。 R 伺服器是根據開放原始碼 R 所建置，因此您建置的 R 型應用程式可以利用 8000 多個開放原始碼 R 封裝的任何一個。 它們也可以利用 [ScaleR](http://www.revolutionanalytics.com/revolution-r-enterprise-scaler "Revolution Analytics ScaleR")(R 伺服器隨附的 Microsoft 巨量資料分析封裝) 中的常式。  
+Azure HDInsight 上的 Microsoft R 伺服器可提供最新的 R 型分析功能。 它會在您的 [Azure Blob](../storage/storage-introduction.md "Azure Blob 儲存體") 儲存體帳戶、Data Lake Store 或本機 Linux 檔案系統中，使用儲存在容器的 HDFS 內的資料。 R 伺服器是根據開放原始碼 R 所建置，因此您建置的 R 型應用程式可以利用 8000 多個開放原始碼 R 封裝的任何一個。 它們也可以利用 [ScaleR](http://www.revolutionanalytics.com/revolution-r-enterprise-scaler "Revolution Analytics ScaleR")(R 伺服器隨附的 Microsoft 巨量資料分析封裝) 中的常式。  
 
 叢集的邊緣節點提供便利的地方，以便連接到叢集並執行 R 指令碼。 有了邊緣節點之後，即可選擇跨邊緣節點伺服器的核心，執行 ScaleR 的平行分散式函數。 也可以選擇透過使用 ScaleR 的 Hadoop Map Reduce 或 Spark 計算內容，跨叢集的節點執行這些函數。
 
@@ -30,12 +30,12 @@ Azure HDInsight 上的 Microsoft R 伺服器可提供最新的 R 型分析功能
 
 ‘local’ 和 ‘localpar’ 選項的差別只在於執行 rxExec 呼叫的方式。 它們都會在所有可用的核心之間，以平行方式執行其他的 rx 函式呼叫，除非已指定，否則皆使用 ScaleR numCoresToUse 選項，例如 rxOptions(numCoresToUse=6)。 以下摘要說明不同的計算內容選項。
 
-| 計算內容 | 設定方式 | 執行內容 |
-| --- | --- | --- |
-| 本機循序 |rxSetComputeContext(‘local’) |跨邊緣節點伺服器的核心平行執行，只有 rxExec 為循序執行。 |
-| 本機平行 |rxSetComputeContext(‘localpar’) |跨邊緣節點伺服器的核心平行執行 |
-| Spark |RxSpark() |跨 HDI 叢集的節點透過 Spark 平行處理分散式執行 |
-| Map Reduce |RxHadoopMR() |跨 HDI 叢集的節點透過 Map Reduce 平行處理分散式執行 |
+| 計算內容  | 設定方式                      | 執行內容                        |
+| ---------------- | ------------------------------- | ---------------------------------------- |
+| 本機循序 | rxSetComputeContext(‘local’)    | 跨邊緣節點伺服器的核心平行執行，只有 rxExec 為循序執行。 |
+| 本機平行   | rxSetComputeContext(‘localpar’) | 跨邊緣節點伺服器的核心平行執行 |
+| Spark            | RxSpark()                       | 跨 HDI 叢集的節點透過 Spark 平行處理分散式執行 |
+| Map Reduce       | RxHadoopMR()                    | 跨 HDI 叢集的節點透過 Map Reduce 平行處理分散式執行 |
 
 假設您想要針對效能目的進行平行處理執行，則有三個選項。 您會選擇哪個選項，取決於您的分析工作本質以及資料的大小和位置。
 
@@ -55,7 +55,7 @@ Azure HDInsight 上的 Microsoft R 伺服器可提供最新的 R 型分析功能
 * 如果要分析的資料量很小或是中等大小，並且需要重複分析，請將它複製到本機檔案系統、匯入至 XDF，然後透過 'local' 或 'localpar' 進行分析。
 
 ### <a name="hadoop-spark"></a>Hadoop Spark
-* 如果要分析的資料量很大，請將它匯入至 HDFS 中的 XDF (除非儲存上有問題)，然後透過 'Spark' 進行分析。
+* 如果要分析的資料量很大，請使用 RxHiveData 或 RxParquetData 將它匯入 Spark DataFrame，或匯入至 HDFS 中的 XDF (除非儲存體會是問題)，然後透過 'Spark' 進行分析。
 
 ### <a name="hadoop-map-reduce"></a>Hadoop Map Reduce
 * 請只在您使用 Spark 計算內容時發生無法克服的問題時才使用，因為它的速度通常會比較慢。  
@@ -65,19 +65,19 @@ Azure HDInsight 上的 Microsoft R 伺服器可提供最新的 R 型分析功能
 
     > ?rxSetComputeContext
 
-您也可以參閱《ScaleR 分散式計算指南》，可以從 [R 伺服器 MSDN](https://msdn.microsoft.com/library/mt674634.aspx "MSDN 上的 R 伺服器") 文件庫取得。
+您也可以參閱 [ScaleR 分散式計算指南 (英文)](https://msdn.microsoft.com/microsoft-r/scaler-distributed-computing)，可以從 [R 伺服器 MSDN (英文)](https://msdn.microsoft.com/library/mt674634.aspx "MSDN 上的 R 伺服器") 文件庫取得。
 
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已學會如何建立包含 R 伺服器的新 HDInsight 叢集。 您也學會了從 SSH 工作階段使用 R 主控台的基本概念。 現在您可以閱讀下列文章，探索在 HDInsight 上使用 R 伺服器的其他方法︰
 
 * [適用於 Hadoop 的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)
 * [開始使用適用於 Hadoop 的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)
-* [將 RStudio 伺服器新增至 HDInsight](hdinsight-hadoop-r-server-install-r-studio.md)
+* [將 RStudio Server 新增至 HDInsight (若未在建立叢集期間新增)](hdinsight-hadoop-r-server-install-r-studio.md)
 * [適用於 HDInsight R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

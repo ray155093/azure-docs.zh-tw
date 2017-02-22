@@ -12,11 +12,11 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 93cfd92687fdcad3f1f593a5c5c098850af4762f
+ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
+ms.openlocfilehash: 134239990df959fe2657340eca4f2a8bf646a7b0
 
 
 ---
@@ -33,7 +33,7 @@ ms.openlocfilehash: 93cfd92687fdcad3f1f593a5c5c098850af4762f
 ![Azure PHP Web Site][running-app]
 
 > [!NOTE]
-> 如果您想要在註冊 Azure 帳戶之前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，讓您能夠立即在應用程式服務中建立短期的入門 Web 應用程式。 不需要信用卡，無需承諾。 
+> 如果您想要在註冊 Azure 帳戶之前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，讓您能夠立即在應用程式服務中建立短期的入門 Web 應用程式。 不需要信用卡，無需承諾。 
 > 
 > 
 
@@ -197,7 +197,7 @@ ms.openlocfilehash: 93cfd92687fdcad3f1f593a5c5c098850af4762f
             echo "<h3>No one is currently registered.</h3>";
         }
 
-您現在可以瀏覽至 [http://localhost/registration/index.php][localhost-index] 來測試應用程式。
+您現在可以瀏覽至 [http://localhost/registration/index.php][localhost-index] 並測試應用程式。
 
 ## <a name="get-mysql-and-ftp-connection-information"></a>取得 MySQL 與 FTP 連線資訊
 若要連接至在 Web Apps 中執行的 MySQL 資料庫，您需要連線資訊。 若要取得 MySQL 連線資訊，請依照以下步驟執行：
@@ -276,6 +276,6 @@ ms.openlocfilehash: 93cfd92687fdcad3f1f593a5c5c098850af4762f
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

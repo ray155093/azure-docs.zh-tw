@@ -13,32 +13,32 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 01/06/2017
+ms.date: 02/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7aadb6ceba1a8c672ed9eeea8651c965e5b665fd
+ms.sourcegitcommit: 89e16687f858708cdfd1432114c39bd9109dc6ac
+ms.openlocfilehash: 31624b9d15772a4f08cf013ac713b3aa636acfca
 
 
 ---
 # <a name="how-to-use-power-bi-embedded-with-rest"></a>如何使用 Power BI Embedded 搭配 REST
+
 ## <a name="power-bi-embedded-what-it-is-and-what-its-for"></a>Power BI Embedded：了解功能與用途
+
 在官方的 [Power BI Embedded 網站](https://azure.microsoft.com/services/power-bi-embedded/)中已說明 Power BI Embedded 的概觀，但在深入了解使用它來搭配 REST 的詳細資料之前，讓我們先快速了解一下。
 
-這其實很簡單。 獨立軟體廠商 (ISV) 通常會想在它們自己的應用程式中，使用 [Power BI](https://powerbi.microsoft.com) 的動態資料視覺化做為 UI 建置組塊。
+這其實很簡單。 您可能想在自己的應用程式中使用 [Power BI](https://powerbi.microsoft.com) 的動態資料視覺效果。
 
-但您知道，將 Power BI 報表或磚內嵌到您的網頁已經不需要使用 Power BI Embedded Azure 服務，而是使用 **Power BI API**。 當您想要在相同的組織中共用報表時，您可以搭配 Azure AD 驗證來內嵌報表。 檢視報表的使用者必須使用他們自己的 Azure AD 帳戶登入。 當您想與所有使用者 (包括外部使用者) 共用報表時，您可以直接內嵌匿名存取。
+大部分的自訂應用程式需要為它們的客戶傳遞資料，那些客戶不一定是它們本身組織內的使用者。 例如，如果您要同時為公司 A 和 公司 B 提供某些服務，公司 A 中的使用者應該只會看到他們公司 A 本身的資料。也就是需要透過多重租用來傳遞。
 
-但如您所見，這個簡單的內嵌解決方案並不完全符合 ISV 應用程式的需求。
-大部分的 ISV 應用程式需要為它們的客戶傳遞資料，那些客戶不一定是它們本身組織內的使用者。 例如，如果您要同時為公司 A 和 公司 B 提供某些服務，公司 A 中的使用者應該只會看到他們公司 A 本身的資料。也就是需要透過多重租用來傳遞。
+自訂應用程式也可以提供自己的驗證方法，例如表單驗證、基本驗證等等。 接著，內嵌解決方案必須與現有的驗證方法安全地共同作業。 同時，使用者也必須可以使用那些 ISV 應用程式，而不需要另外購買 Power BI 訂用帳戶或授權。
 
-ISV 應用程式也可以提供自己的驗證方法，例如表單驗證、基本驗證等等。 接著，內嵌解決方案必須與現有的驗證方法安全地共同作業。 同時，使用者也必須可以使用那些 ISV 應用程式，而不需要另外購買 Power BI 訂用帳戶或授權。
-
- **Power BI Embedded** 正是針對這類 ISV 案例所設計。 我們現在已經完成快速介紹，接著就讓我們深入了解一些詳細資料
+ **Power BI Embedded** 正是針對這類案例所設計。 我們現在已經完成快速介紹，接著就讓我們深入了解一些詳細資料
 
 您可以使用 .NET \(C#) 或 Node.js SDK 來輕鬆建立含有 Power BI Embedded 的應用程式。 但是，在本文中，我們將不使用 SDK 來說明關於 Power BI 的 HTTP 流程 \(incl. AuthN)。 了解這個流程，您就可以 **使用任何程式設計語言**建置應用程式，並深入了解 Power BI Embedded 的本質。
 
 ## <a name="create-power-bi-workspace-collection-and-get-access-key-provisioning"></a>建立 Power BI 工作區集合，並取得存取金鑰 \(佈建)
+
 Power BI Embedded 是其中一項 Azure 服務。 只有使用 Azure 入口網站的 ISV 要支付使用費 \(依據每小時的使用者工作階段計費)，檢視報表的使用者則不需要收費，甚至不需要 Azure 訂用帳戶。
 在開始開發我們的應用程式之前，我們必須使用 Azure 入口網站建立 **Power BI 工作區集合** 。
 
@@ -52,10 +52,9 @@ Power BI Embedded 是其中一項 Azure 服務。 只有使用 Azure 入口網�
 
 > [!NOTE]
 > 我們也可以佈建工作區集合，然後透過 REST API 取得存取金鑰。 若要深入了解，請參閱 [Power BI Resource Provider APIs (Power BI 資源提供者 API)](https://msdn.microsoft.com/library/azure/mt712306.aspx)。
-> 
-> 
 
 ## <a name="create-pbix-file-with-power-bi-desktop"></a>使用 Power BI Desktop 建立 .pbix 檔案
+
 接下來，我們必須建立資料連接與要內嵌的報表。
 此工作中沒有任何程式設計或程式碼。 我們只使用 Power BI Desktop。
 在本文中，我們不會探討如何使用 Power BI Desktop。 如果您在此處需要一些說明，請參閱 [開始使用 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)。 在我們的範例中，我們只使用 [零售分析範例](https://powerbi.microsoft.com/documentation/powerbi-sample-datasets/)。
@@ -63,8 +62,8 @@ Power BI Embedded 是其中一項 Azure 服務。 只有使用 Azure 入口網�
 ![](media/power-bi-embedded-iframe/power-bi-desktop-1.png)
 
 ## <a name="create-a-power-bi-workspace"></a>建立 Power BI 工作區
-現在已經完成所有的佈建，我們可以透過 REST API 開始在工作區集合中建立客戶的工作區。 下列 HTTP POST 要求 (REST) 會在我們現有的工作區集合中建立新的工作區。 在本範例中，工作區集合名稱是 **mypbiapp**。
-我們只要將先前複製的存取金鑰設定為 **AppKey**。 這是非常簡單的驗證！
+
+現在已經完成所有的佈建，我們可以透過 REST API 開始在工作區集合中建立客戶的工作區。 下列 HTTP POST 要求 (REST) 會在我們現有的工作區集合中建立新的工作區。 這是 [POST 工作區 API](https://msdn.microsoft.com/library/azure/mt711503.aspx)。 在本範例中，工作區集合名稱是 **mypbiapp**。 我們只要將先前複製的存取金鑰設定為 **AppKey**。 這是非常簡單的驗證！
 
 **HTTP 要求**
 
@@ -91,7 +90,8 @@ RequestId: 4220d385-2fb3-406b-8901-4ebe11a5f6da
 傳回的 **workspaceId** 會用於後續的 API 呼叫。 我們的應用程式必須保留這個值。
 
 ## <a name="import-pbix-file-into-the-workspace"></a>將 .pbix 檔案匯入工作區
-每個工作區可以裝載單一 Power BI Desktop 檔案，其中含有資料集 \(包括資料來源設定) 和報表。 我們可以將我們的 .pbix 檔案匯入工作區，如下列程式碼所示。 如您所見，我們可以使用 http 中的 MIME multipart 上傳 .pbix 檔案的二進位檔。
+
+工作區中的每個報表都會對應到單一 Power BI Desktop 檔案，其中含有資料集 \(包括資料來源設定)。 我們可以將我們的 .pbix 檔案匯入工作區，如下列程式碼所示。 如您所見，我們可以使用 http 中的 MIME multipart 上傳 .pbix 檔案的二進位檔。
 
 Uri 片段 **32960a09-6366-4208-a8bb-9e0678cdbb9d** 是工作區識別碼，而查詢參數 **datasetDisplayName** 是要建立的資料集名稱。 建立的資料集會保存 .pbix 檔案中所有和資料相關的成品，例如匯入的資料、資料來源的指標等等。
 
@@ -175,6 +175,7 @@ RequestId: eb2c5a85-4d7d-4cc2-b0aa-0bafee4b1606
 ```
 
 ## <a name="data-source-connectivity-and-multi-tenancy-of-data"></a>資料來源連線 \(以及資料的多重租用)
+
 即使幾乎 .pbix 檔案中的所有成品都會匯入到我們的工作區，但不會包含資料來源的認證。 如此一來，當使用 [DirectQuery 模式] 時，內嵌的報表會無法正確顯示。 但是，當使用 [匯入模式] 時，我們可以使用現有的匯入資料檢視報表。 在這種情況下，我們必須使用下列步驟，透過 REST 呼叫來設定認證。
 
 首先，我們必須取得閘道器資料來源。 我們知道資料集 **id** 是先前傳回的識別碼。
@@ -250,10 +251,9 @@ Content-Type: application/json; charset=utf-8
 
 > [!NOTE]
 > 如果您使用 [匯入模式] 而不是 [DirectQuery 模式]，則無法透過 API 重新整理模型。 而且，Power BI Embedded 尚未支援透過 Power BI 閘道器內部部署資料來源。 不過，建議您持續留意 [Power BI 部落格](https://powerbi.microsoft.com/blog/) ，以了解最新消息和未來版本中將推出的新功能。
-> 
-> 
 
 ## <a name="authentication-and-hosting-embedding-reports-in-our-web-page"></a>在我們的網頁中驗證和裝載 (內嵌) 報表
+
 在先前的 REST API 中，我們可以使用存取金鑰 **AppKey** 本身作為授權標頭。 因為這類呼叫可以在後端伺服器端處理，因此非常安全。
 
 不過，當我們在網頁中內嵌報表時，會使用 JavaScript \(前端) 來處理這類安全性資訊。 接著必須保護授權標頭值。 如果我們的存取金鑰被惡意使用者或惡意程式碼發現，他們就可以使用這個金鑰呼叫任何作業。
@@ -266,8 +266,6 @@ Content-Type: application/json; charset=utf-8
 
 > [!NOTE]
 > 如果我們想要使用 Power BI Embedded 的資料列層級安全性 (RLS)，則我們在宣告中也必須指定 **username** 和 **roles**。
-> 
-> 
 
 ```
 {
@@ -289,7 +287,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-接下來，我們必須使用 SHA 256 演算法建立 HMAC \(簽章) 的 base64 編碼字串。 這個經過簽署的輸入值是之前的字串。
+接下來，我們必須使用 SHA&256; 演算法建立 HMAC \(簽章) 的 base64 編碼字串。 這個經過簽署的輸入值是之前的字串。
 
 最後，我們必須使用句號 \(.) 字元結合輸入值和簽章字串。 完整的字串是用於內嵌報表的應用程式權杖。 即使應用程式權杖被惡意使用者發現，他們也無法取得原始的存取金鑰。 此應用程式權杖很快就會到期。
 
@@ -343,6 +341,7 @@ function rfc4648_base64_encode($arg) {
 ```
 
 ## <a name="finally-embed-the-report-into-the-web-page"></a>最後，將報表內嵌到網頁
+
 如需內嵌我們的報表，我們必須使用下列 REST API 取得內嵌 URL 和報表 **id** 。
 
 **HTTP 要求**
@@ -378,8 +377,6 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 
 > [!NOTE]
 > 您必須將報表識別碼值變更為您擁有的其中一個。 此外，由於我們內容管理系統中的錯誤，程式碼範例中的 iframe 標籤會照字面讀出。 如果您將這個範例程式碼複製並貼上，請移除標籤中的大寫文字。
-> 
-> 
 
 ```
     <?php
@@ -463,14 +460,16 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 
 ![](media/power-bi-embedded-iframe/view-report.png)
 
-此時，Power BI Embedded 僅會在 iframe 中顯示報表。 但是，請持續關注 [Power BI 部落格]()。 未來的增強功能可能使用新的用戶端 API，讓我們可以傳送資訊到 iframe 以及取出資訊。 令人興奮吧！
+此時，Power BI Embedded 僅會在 iframe 中顯示報表。 但是，請持續關注 [Power BI 部落格](https://powerbi.microsoft.com/blog/)。 未來的增強功能可能使用新的用戶端 API，讓我們可以傳送資訊到 iframe 以及取出資訊。 令人興奮吧！
 
 ## <a name="see-also"></a>另請參閱
 * [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
+有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
 
 
 
-<!--HONumber=Nov16_HO3-->
+
+<!--HONumber=Feb17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 02/09/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 4cc2906d19562fc420d92ea0f3097a972acc45b9
-ms.openlocfilehash: dfacb95f816c45413b292c93c13d0e37b7ce517e
+ms.sourcegitcommit: c3d96d11894f0009db004b1089c05559cafd2d43
+ms.openlocfilehash: ee79612cc30f1dfefcf7dcd8af7aed7836dd528c
 
 
 ---
@@ -156,13 +156,14 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 **cloudDataMovementUnits** 屬性的**允許值**是 1 (預設值)、2、4 和 8。 根據您的資料模式，複製作業會在執行階段使用的 **實際雲端 DMU 數目** 等於或小於所設定的值。
 
 > [!NOTE]
-> 如果您需要更多雲端 DMU 以提高輸送量，請連絡 [Azure 支援](https://azure.microsoft.com/support/)。 目前只有當您是**將多個檔案從 Blob 儲存體/Data Lake Store/Amazon S3 複製到 Blob 儲存體/Data Lake Store/Azure SQL Database**，且個別檔案的大小大於或等於 16 MB 時，設定 8 及 8 以上的值才有作用。
+> 如果您需要更多雲端 DMU 以提高輸送量，請連絡 [Azure 支援](https://azure.microsoft.com/support/)。 目前只有當您是**將多個檔案從 Blob 儲存體/Data Lake Store/Amazon S3/雲端 FTP 複製到 Blob 儲存體/Data Lake Store/Azure SQL Database**，且個別檔案的大小大於或等於 16 MB 時，設定 8 及 8 以上的值才有作用。
 >
 >
 
 若要更妥善地使用這兩個屬性，以及增強您的資料移動輸送量，請參閱 [範例使用案例](#case-study-use-parallel-copy)。 您不需要設定 **parallelCopies** 就能利用預設行為。 如果您有設定且 **parallelCopies** 太小，將可能無法充分利用多個雲端 DMU。  
 
-請 **務必** 要記住，您必須根據複製作業的總時間付費。 若過去某複製作業使用 1 個雲端單位花費 1 小時，現在使用 4 個雲端單位花費 15 分鐘，則兩者的整體費用幾乎相同。 例如，您使用 4 個雲端單位。 第 1 個雲端單位費時 10 分鐘、第 2 個單位費時 10 分鐘、第 3 個單位費時 5 分鐘、第 4 個單位費時 5 分鐘，以上全都在一個複製活動執行內。 您必須支付總複製 (資料移動) 時間的費用，亦即 10 + 10 + 5 + 5 = 30 分鐘。 是否使用 **parallelCopies** 對計費沒有任何影響。
+### <a name="billing-impact"></a>計費影響
+請 **務必** 要記住，您必須根據複製作業的總時間付費。 若過去某複製作業使用 1 個雲端單位花費 1 小時，現在使用 4 個雲端單位花費 15 分鐘，則兩者的整體費用幾乎相同。 例如，您使用&4; 個雲端單位。 第 1 個雲端單位費時 10 分鐘、第 2 個單位費時 10 分鐘、第 3 個單位費時 5 分鐘、第 4 個單位費時 5 分鐘，以上全都在一個複製活動執行內。 您必須支付總複製 (資料移動) 時間的費用，亦即 10 + 10 + 5 + 5 = 30 分鐘。 是否使用 **parallelCopies** 對計費沒有任何影響。
 
 ## <a name="staged-copy"></a>分段複製
 從來源資料存放區將資料複製到接收資料存放區時，您可以選擇使用 Blob 儲存體做為過渡暫存存放區。 暫存在下列情況下特別有用︰
@@ -172,7 +173,7 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 3. **由於公司 IT 原則，您不想要在您的防火牆中開啟 80 和 443 以外的連接埠**。 例如，從內部部署資料存放區將資料複製到 Azure SQL Database 接收或 Azure SQL 資料倉儲接收時，您必須針對 Windows 防火牆和公司防火牆啟用連接埠 1433 上的輸出 TCP 通訊。 在此案例中，請利用閘道先在連接埠 443 上透過 HTTP 或 HTTPS 將資料複製到 Blob 儲存體暫存執行個體。 接著，將資料從 Blob 儲存體暫存載入到 SQL Database 或 SQL 資料倉儲。 在此流程中，您不需要啟用連接埠 1433。
 
 ### <a name="how-staged-copy-works"></a>分段複製的運作方式
-當您啟用暫存功能時，會先從來源資料存放區複製資料到暫存資料存放區 (自備)， 接著再從暫存資料存放區複製資料到接收資料存放區。 Data Factory 會自動為您管理 2 階段流程， 也會在資料移動完成之後，清除暫存儲存體中的暫存資料。
+當您啟用暫存功能時，會先從來源資料存放區複製資料到暫存資料存放區 (自備)， 接著再從暫存資料存放區複製資料到接收資料存放區。 Data Factory 會自動為您管理&2; 階段流程， 也會在資料移動完成之後，清除暫存儲存體中的暫存資料。
 
 在雲端複製案例中 (來源與接收的資料存放區皆在雲端)，不會使用閘道。 Data Factory 服務會執行複製作業。
 
@@ -410,6 +411,6 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

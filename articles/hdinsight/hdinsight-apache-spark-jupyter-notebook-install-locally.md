@@ -1,5 +1,5 @@
 ---
-title: "在電腦上安裝 Jupyter Notebook 並連接到 Azure HDInsight Spark 叢集 | Microsoft Docs"
+title: "在本機安裝 Jupyter Notebook 並連線到 Azure Spark 叢集 | Microsoft Docs"
 description: "了解如何在電腦本機安裝 Jupyter Notebook 並連接到 Azure HDInsight 上的 Apache Spark 叢集"
 services: hdinsight
 documentationcenter: 
@@ -13,15 +13,16 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/17/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 57df4ab0b2a1df6631eb6e67a90f69cebb1dfe75
-ms.openlocfilehash: e6aeacd091e58a010348c031294f7b7c98df57fb
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 26cdaf4dc68876fa2bed4ca15d8bfb7fd3ac4b6d
 
 
 ---
-# <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-cluster-on-hdinsight-linux"></a>在電腦上安裝 Jupyter Notebook 並連接到 HDInsight Linux 上的 Apache Spark 叢集
+# <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-cluster-on-hdinsight"></a>在電腦上安裝 Jupyter Notebook 並連接到 HDInsight 上的 Apache Spark 叢集
+
 在這篇文章中，您將了解如何搭配含有 Spark magic 的自訂 PySpark (適用於 Python) 和 Spark (適用於 Scala) 核心來安裝 Jupyter Notebook，然後將 Notebook 連接到 HDInsight 叢集。 在您的本機電腦上安裝 Jupyter 可以有數種原因，而且也會面臨數種挑戰。 如需原因和挑戰的清單，請參閱這篇文章結尾的 [為什麼我應該在我的電腦上安裝 Jupyter](#why-should-i-install-jupyter-on-my-computer) 。
 
 在電腦上安裝 Jupyter 和 Spark magic 涉及三個主要步驟。
@@ -36,7 +37,7 @@ ms.openlocfilehash: e6aeacd091e58a010348c031294f7b7c98df57fb
 此處所列的必要條件不是針對安裝 Jupyter。 這些是用來在安裝 Notebook 之後將 Jupyter Notebook 連接到 HDInsight 叢集。
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="install-jupyter-notebook-on-your-computer"></a>在電腦上安裝 Jupyter Notebook
 您必須先安裝 Python，才能安裝 Jupyter Notebook。 Python 和 Jupyter 皆為 [Ananconda 發行版本](https://www.continuum.io/downloads)的一部分。 當您安裝 Anaconda 時，實際上安裝的是某個 Python 發行版本。 安裝 Anaconda 之後，您便可以執行命令來新增 Jupyter 安裝。 本節提供您必須遵循的指示。
@@ -89,7 +90,7 @@ ms.openlocfilehash: e6aeacd091e58a010348c031294f7b7c98df57fb
 
         python -c "import base64; print(base64.b64encode('{YOURPASSWORD}'))"
 
-5. 在 `config.json` 中設定正確的活動訊號設定：
+5. 在 `config.json` 中設定正確的活動訊號設定。 您應該依照加入稍早的 `kernel_python_credentials` 和 `kernel_scala_credentials` 程式碼片段，在相同層級新增這些設定。 如需有關加入活動訊號設定的方法與位置範例，請參閱此[範例 config.json (sample config.json)](https://github.com/jupyter-incubator/sparkmagic/blob/master/sparkmagic/example_config.json)。
 
     * 若為 `sparkmagic 0.5.0` (叢集 3.4 版)，請加入︰
 
@@ -104,7 +105,7 @@ ms.openlocfilehash: e6aeacd091e58a010348c031294f7b7c98df57fb
             "heartbeat_retry_seconds": 1
 
     >[!TIP]
-    >傳送活動訊號可確保不會流失工作階段。 請注意，當電腦進入睡眠狀態或關機時，將不會傳送活動訊號，所以會清除工作階段。 若為叢集 3.4 版，如果想要停用此行為，您可以從 Ambari UI 將 Livy 組態 `livy.server.interactive.heartbeat.timeout` 設定為 `0`。 若為叢集 3.5 版，如果您未設定上述的 3.5 組態，則不會刪除工作階段。
+    >傳送活動訊號可確保不會流失工作階段。 請注意，當電腦進入睡眠狀態或關機時，將不會傳送活動訊號，所以會清除工作階段。 若為叢集&3;.4 版，如果想要停用此行為，您可以從 Ambari UI 將 Livy 組態 `livy.server.interactive.heartbeat.timeout` 設定為 `0`。 若為叢集 3.5 版，如果您未設定上述的 3.5 組態，則不會刪除工作階段。
 
 6. 啟動 Jupyter。 從命令提示字元使用下列命令。
 
@@ -114,7 +115,7 @@ ms.openlocfilehash: e6aeacd091e58a010348c031294f7b7c98df57fb
 
    1. 建立新的 Notebook。 從右下角，按一下 [新增]。 您應該會看到預設核心 **Python2**，以及您安裝的兩個新核心 **PySpark** 和 **Spark**。
 
-       ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "Create a new Jupyter notebook")
+       ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "建立新的 Jupyter Notebook")
 
         按一下 [PySpark] 。
 
@@ -170,6 +171,6 @@ ms.openlocfilehash: e6aeacd091e58a010348c031294f7b7c98df57fb
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

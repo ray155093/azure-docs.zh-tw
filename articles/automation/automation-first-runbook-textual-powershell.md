@@ -16,13 +16,17 @@ ms.topic: get-started-article
 ms.date: 07/19/2016
 ms.author: magoedte;sngun
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 0f8c103b2ce0fcd4596d21af33b0a13e03dad54a
 
 
 ---
 # <a name="my-first-powershell-runbook"></a>我的第一個 PowerShell Runbook
-> [AZURE.SELECTOR] - [Graphical](automation-first-runbook-graphical.md) - [PowerShell](automation-first-runbook-textual-powershell.md) - [PowerShell 工作流程](automation-first-runbook-textual.md)  
+
+> [!div class="op_single_selector"]
+> * [圖形化](automation-first-runbook-graphical.md)
+> * [PowerShell](automation-first-runbook-textual-powershell.md)
+> * [PowerShell 工作流程](automation-first-runbook-textual.md)
 > 
 > 
 
@@ -35,7 +39,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
 * [自動化帳戶](automation-security-overview.md) ，用來保存 Runbook 以及向 Azure 資源驗證。  此帳戶必須擁有啟動和停止虛擬機器的權限。
 * Azure 虛擬機器。 我們將會停止並啟動這台電腦，因此它不應該是生產環境。
 
-## <a name="step-1-create-new-runbook"></a>步驟 1 - 建立新的 Runbook
+## <a name="step-1---create-new-runbook"></a>步驟 1 - 建立新的 Runbook
 我們將藉由建立一個輸出文字「Hello World」 的簡單 Runbook 開始。
 
 1. 在 Azure 入口網站中，開啟您的自動化帳戶。  
@@ -48,7 +52,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
    ![Runbook 類型](media/automation-first-runbook-textual-powershell/automation-runbook-type.png)  
 6. 按一下 [建立]  來建立 Runbook 並開啟文字式編輯器。
 
-## <a name="step-2-add-code-to-the-runbook"></a>步驟 2 - 將程式碼加入至 runbook
+## <a name="step-2---add-code-to-the-runbook"></a>步驟 2 - 將程式碼加入至 runbook
 您可以直接將程式碼輸入到 runbook 中，或從程式庫控制項選取 cmdlet、runbook 和資產，並利用任何相關的參數將它們加入至 runbook。 在此逐步解說中，我們將直接輸入至 runbook。
 
 1. 我們的 Runbook 目前是空白的，輸入「Write-Output "Hello World."」 。  
@@ -56,7 +60,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
 2. 按一下 [儲存] 來儲存 Runbook。  
    ![儲存按鈕](media/automation-first-runbook-textual-powershell/automation-save-button.png)  
 
-## <a name="step-3-test-the-runbook"></a>步驟 3 - 測試 Runbook
+## <a name="step-3---test-the-runbook"></a>步驟 3 - 測試 Runbook
 在我們發佈 Runbook 之前，為了使其可用於生產環境，我們想要測試以確定它可以正常運作。 測試 Runbook 時，您會執行其 **草稿** 版本，並以互動方式檢視其輸出。
 
 1. 按一下 [測試窗格]  來開啟 [測試] 窗格。  
@@ -68,7 +72,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
    ![測試窗格輸出](media/automation-first-runbook-textual-powershell/automation-testpane-output.png)  
 5. 關閉 [測試] 窗格以返回畫布。
 
-## <a name="step-4-publish-and-start-the-runbook"></a>步驟 4 - 發佈和啟動 Runbook
+## <a name="step-4---publish-and-start-the-runbook"></a>步驟 4 - 發佈和啟動 Runbook
 我們剛剛建立的 Runbook 仍處於草稿模式。 我們需要將它發佈，才能在生產環境中執行它。 當您發佈 Runbook 時，您會使用草稿版本覆寫現有的已發佈版本。 在我們的情況中，因為我們剛剛建立 Runbook，因此還沒有已發佈版本。
 
 1. 按一下 [發佈] 來發佈 Runbook，然後出現提示時按一下 [是]。  
@@ -80,7 +84,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
    ![開始按鈕](media/automation-first-runbook-textual-powershell/automation-start-button.png)  
 5. 工作窗格會開啟我們剛剛建立的 Runbook 工作。 我們可以關閉此窗格，但在此情況下，我們要將它開啟，使得我們可以觀看工作的進度。
 6. [作業摘要]  中會顯示作業狀態，且符合當我們測試 Runbook 時看到的狀態。  
-   ![](media/automation-first-runbook-textual-powershell/automation-job-summary.png)  
+   ![工作摘要](media/automation-first-runbook-textual-powershell/automation-job-summary.png)  
 7. 一旦 Runbook 狀態顯示 [已完成]，請按一下 [輸出]。 [輸出] 窗格會開啟，而且可以看到我們的「Hello World」 。  
    ![工作輸出](media/automation-first-runbook-textual-powershell/automation-job-output.png)
 8. 關閉 [輸出] 窗格。
@@ -91,7 +95,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
     ![作業清單](media/automation-first-runbook-textual-powershell/automation-job-list.png)  
 12. 您可以按一下此工作以開啟我們啟動 Runbook 時所檢視的相同 [工作] 窗格。 這可讓您回到過去的時間並檢視針對特定 Runbook 所建立的任何工作的詳細資料。
 
-## <a name="step-5-add-authentication-to-manage-azure-resources"></a>步驟 5 - 加入驗證來管理 Azure 資源
+## <a name="step-5---add-authentication-to-manage-azure-resources"></a>步驟 5 - 加入驗證來管理 Azure 資源
 我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。 我們想要讓它管理 Azure 資源。 不過它無法辦到這點，除非我們使用在 [必要條件](#prerequisites)中提及的認證對其進行驗證。 我們會利用 **Add-AzureRmAccount** Cmdlet 來執行。
 
 1. 按一下 MyFirstRunbook-PowerShell 窗格上的 [編輯]  來開啟文字式編輯器。  
@@ -108,7 +112,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
 4. 按一下 [測試]  窗格，我們便可以測試 Runbook。
 5. 按一下 [開始]  以開始測試。 測試完成時，您應該會從帳戶收到如同以下顯示基本資訊的輸出。 這可確認認證有效。 <br> ![驗證](media/automation-first-runbook-textual-powershell/runbook-auth-output.png)
 
-## <a name="step-6-add-code-to-start-a-virtual-machine"></a>步驟 6 - 加入程式碼以啟動虛擬機器
+## <a name="step-6---add-code-to-start-a-virtual-machine"></a>步驟 6 - 加入程式碼以啟動虛擬機器
 由於我們的 runbook 正在驗證我們的 Azure 訂用帳戶，所以我們可以管理資源。 我們將新增一個命令以啟動虛擬機器。 您可以在您的 Azure 訂用帳戶中挑選任何虛擬機器，而現在我們會將該名稱硬式編碼成 Cmdlet。
 
 1. 在 Add-AzureRmAccount 後面輸入 Start-AzureRmVM -Name 'VMName' -ResourceGroupName 'NameofResourceGroup'，提供要啟動之虛擬機器的名稱和資源群組名稱。  
@@ -123,7 +127,7 @@ ms.openlocfilehash: 483a02e2f59439a278412284b9cf9b18c4ca5ee4
 2. 儲存 Runbook，然後按一下 [測試]  窗格，我們便能加以測試。
 3. 按一下 [開始]  以開始測試。 當它完成時，請檢查虛擬機器已啟動。
 
-## <a name="step-7-add-an-input-parameter-to-the-runbook"></a>步驟 7 - 將輸入參數加入至 Runbook
+## <a name="step-7---add-an-input-parameter-to-the-runbook"></a>步驟 7 - 將輸入參數加入至 Runbook
 我們的 Runbook 目前會啟動我們在 runbook 中硬式編碼的虛擬機器，但如果可以在啟動 runbook 時指定虛擬機器，它會更有用。 我們現在會將輸入參數加入 Runbook，以提供該功能。
 
 1. 如下列範例所示，將 [VMName] 和 [ResourceGroupName] 的參數新增至 Runbook，並搭配使用這些變數與 **Start-AzureRmVM** Cmdlet。  
@@ -164,6 +168,6 @@ PowerShell Runbook 的生命週期、功能和管理與 PowerShell 工作流程 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

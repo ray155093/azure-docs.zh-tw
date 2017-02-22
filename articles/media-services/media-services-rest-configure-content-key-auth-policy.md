@@ -1,5 +1,5 @@
 ---
-title: "使用媒體服務 REST API 設定內容金鑰授權原則 | Microsoft Docs"
+title: "使用 REST 設定內容金鑰授權原則 - Azure | Microsoft Docs"
 description: "了解如何使用媒體服務 REST API 設定內容金鑰的授權原則。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: ff663f40507547ba561053b5c9a7a8ce93fbf213
-ms.openlocfilehash: e00c18be79eb5f7ee4d1dcb8f5e9a5b084afe60f
+ms.sourcegitcommit: bdf41edfa6260749a91bc52ec0a2b62fcae99fb0
+ms.openlocfilehash: 171a971411546d1421a48f3dceab98fb2b54b25f
 
 
 ---
@@ -43,7 +43,7 @@ Microsoft Azure 媒體服務可讓您傳遞使用進階加密標準 (AES) (使�
 [使用 Azure ACS 發行權杖](http://mingfeiy.com/acs-with-key-services)。
 
 ### <a name="some-considerations-apply"></a>適用一些考量事項：
-* 為了能夠使用動態封裝和動態加密，您至少有一個串流保留單元。 如需詳細資訊，請參閱 [如何調整媒體服務](media-services-portal-manage-streaming-endpoints.md)。
+* 為了能夠使用動態封裝和動態加密功能，請確定您想要從中串流內容的串流端點是處於 [執行中] 狀態。
 * 您的資產必須包含一組調適性位元速率 MP4 或調適性位元速率 Smooth Streaming 檔案。 如需詳細資訊，請參閱 [為資產編碼](media-services-encode-asset.md)。
 * 使用 **AssetCreationOptions.StorageEncrypted** 選項，上傳資產並為其編碼。
 * 如果您計劃有多個內容金鑰需要相同的原則組態，強烈建議建立一個授權原則，並針對多個內容金鑰重複使用。
@@ -285,7 +285,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 ## <a name="playready-dynamic-encryption"></a>PlayReady 動態加密
 媒體服務可讓您設定您要 PlayReady DRM 執行階段在使用者嘗試播放受保護內容時強制執行的權限和限制。 
 
-使用 PlayReady 保護內容時，您需要在驗證原則中指定的其中一件事是定義 [PlayReady 授權範本](https://msdn.microsoft.com/library/azure/dn783459.aspx)的 XML 字串。 
+使用 PlayReady 保護內容時，您需要在驗證原則中指定的其中一件事是定義 [PlayReady 授權範本](media-services-playready-license-template-overview.md)的 XML 字串。 
 
 ### <a name="open-restriction"></a>Open 限制
 Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 這項限制可用於測試用途。
@@ -450,6 +450,6 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

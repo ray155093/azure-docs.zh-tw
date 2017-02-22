@@ -1,5 +1,5 @@
 ---
-title: "適用於 Azure Machine Learning 預測之自動資料管線的小祕技 | Microsoft Docs"
+title: "Azure Machine Learning 自動化資料管線小密技 | Microsoft Docs"
 description: "可列印的小祕技，可向您示範如何對您的 Azure Machine Learning Web 服務設定自動資料管線，無論您的資料是在內部部署、串流、Azure 中或協力廠商雲端服務中。"
 services: machine-learning
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/12/2016
 ms.author: mithal;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 9e738c4e5f43ae6c939f7c6da90c258498943e73
-ms.openlocfilehash: 68a3a313831a4d424de26812a58a0f82c1ebad74
+ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
+ms.openlocfilehash: 86f8b18e06fdc5a24797b0c90f09f0e053e4569c
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 68a3a313831a4d424de26812a58a0f82c1ebad74
 ## <a name="download-the-machine-learning-automated-data-pipeline-cheat-sheet"></a>下載「Microsoft Azure Machine Learning 自動資料管線小祕技」
 下載此這份小祕技之後，您可以將它列印成 Tabloid 大小 (11 x 17 英吋)。
 
- **[](http://download.microsoft.com/download/C/C/7/CC726F8B-2E6F-4C20-9B6F-AFBEE8253023/microsoft-machine-learning-operationalization-cheat-sheet_v1.pdf)**
+**[](http://download.microsoft.com/download/C/C/7/CC726F8B-2E6F-4C20-9B6F-AFBEE8253023/microsoft-machine-learning-operationalization-cheat-sheet_v1.pdf)**
 
 ![Microsoft Azure Machine Learning Studio 功能概觀][op-cheat-sheet]
 
@@ -46,6 +46,6 @@ ms.openlocfilehash: 68a3a313831a4d424de26812a58a0f82c1ebad74
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

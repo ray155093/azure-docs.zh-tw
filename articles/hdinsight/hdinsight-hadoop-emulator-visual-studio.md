@@ -1,5 +1,5 @@
 ---
-title: "使用適用於 Visual Studio 的 Microsoft Azure Data Lake 工具搭配 Hortonworks 沙箱 | Microsoft Docs"
+title: "Azure Data Lake Tools for Visual Studio 搭配使用 Hortonworks 沙箱 | Microsoft Docs"
 description: "了解如何使用適用於 Visual Studio 的 Azure Data Lake 工具搭配 Hortonworks 沙箱 (在本機 VM 中執行)。您可以使用這些工具，在沙箱上建立和執行 Hive 和 Pig 作業，以及檢視作業輸出和歷程記錄。"
 services: hdinsight
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/15/2016
+ms.date: 02/10/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4b0572d8fb3b81fd4bd2a34794141f137b50eed0
-ms.openlocfilehash: 42f53e0c725ed7744c2e3d919c960c42e4cebc0c
+ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
+ms.openlocfilehash: a1e6216647b7401183ab2f47f72aaee1f80ccee0
 
 
 ---
@@ -43,6 +43,7 @@ ms.openlocfilehash: 42f53e0c725ed7744c2e3d919c960c42e4cebc0c
 ## <a name="connect-the-tools-to-the-sandbox"></a>將工具連接至沙箱
 
 1. 開啟 Visual Studio，然後依序選取 [檢視] 和 [伺服器總管]。
+
 2. 在 [伺服器總管] 中，以滑鼠右鍵按一下 [HDInsight] 項目，然後選取 [連接到 HDInsight Emulator]。
 
     ![連接到 HDInsight Emulator](./media/hdinsight-hadoop-emulator-visual-studio/connect-emulator.png)
@@ -209,6 +210,6 @@ Azure Data Lake 工具也可讓您輕鬆地檢視已在 Hadoop 上執行的作�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

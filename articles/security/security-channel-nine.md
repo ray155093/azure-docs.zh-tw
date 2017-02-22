@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/18/2016
+ms.date: 01/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9713d8b952f79f3ea4010a2d504b5174e70ce9ca
+ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
+ms.openlocfilehash: 35e3f4ee07414927cd93e3fbe54d7c96f4681ba4
 
 
 ---
@@ -53,7 +53,7 @@ Jack Richins 教導 [Scott](https://channel9.msdn.com/Niners/Glucose) 如何輕�
 * 了解 Data Protection API、主要金鑰和憑證
 * 使用 SQL 命令來建立主要金鑰和憑證，並加密資料庫
 
-[如何在 DevTest 實驗室中設定安全性](https://channel9.msdn.com/Blogs/Windows-Azure/How-to-set-security-in-your-DevTest-Lab)
+[如何在 DevTest 實驗室中設定安全性](https://channel9.msdn.com/Blogs/Azure/How-to-set-security-in-your-DevTest-Lab)
 
 身為您實驗室的擁有者，您可以透過兩個實驗室角色來保護實驗室存取︰擁有者和 DevTest 實驗室使用者。 擁有者角色中的人員具有實驗室的完整存取權，而 DevTest 實驗室使用者角色中的人員則具有有限存取權。 在本影片中，我們會示範如何將上述任一角色的人員新增至實驗室。
 
@@ -81,6 +81,6 @@ Amit Bapat 向 Scott 介紹 Azure 金鑰保存庫。 有了 Azure 金鑰保存�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

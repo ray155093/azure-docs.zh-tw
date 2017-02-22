@@ -1,6 +1,6 @@
 ---
-title: "Azure 入口網站：開始使用 Azure SQL Database | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站建立 SQL Database 邏輯伺服器、伺服器層級防火牆規則和資料庫。 您也可了解如何使用 SQL Server Management Studio 查詢資料庫。"
+title: "快速入門：您的第一個 Azure SQL Database | Microsoft Docs"
+description: "了解如何透過 Azure 入口網站，建立 SQL Database 邏輯伺服器、伺服器層級防火牆規則和資料庫。 您也可了解如何使用 SQL Server Management Studio 搭配 Azure SQL Database。"
 keywords: "sql database 教學課程, 建立 sql database"
 services: sql-database
 documentationcenter: 
@@ -14,53 +14,52 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 11/23/2016
+ms.date: 02/04/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 2a85b3dc1078bad9e5e2fc0ce0bec7e994b29150
-ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
+ms.sourcegitcommit: 6453cca9f876e6c363fbed463263c0f9684a3e70
+ms.openlocfilehash: b838974de06ecbc751254064e2310df51c450086
 
 
 ---
-# <a name="sql-database-tutorial-get-started-with-azure-sql-database-servers-databases-and-firewall-rules-using-the-azure-portal-and-sql-server-management-studio"></a>SQL Database 教學課程：使用 Azure 入口網站和 SQL Server Management Studio 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則
+# <a name="quick-start-tutorial-your-first-azure-sql-database"></a>快速入門教學課程：您的第一個 Azure SQL Database
 
-在本入門教學課程裡，您將學習如何使用 Azure 入口網站來：
+在本快速入門教學課程中，您可了解如何：
 
-* 建立新的 Azure 資源群組
-* 建立 Azure SQL 邏輯伺服器
-* 檢視 Azure SQL 邏輯伺服器屬性
-* 建立伺服器層級防火牆規則
-* 以單一資料庫方式建立 Adventure Works LT 範例資料庫
-* 在 Azure 中檢視 Adventure Works LT 範例資料庫屬性
+* [建立新的邏輯伺服器](sql-database-get-started.md#create-a-new-logical-sql-server) 
+* [檢視邏輯伺服器屬性](sql-database-get-started.md#view-the-logical-server-properties) 
+* [建立伺服器層級防火牆規則](sql-database-get-started.md#create-a-server-level-firewall-rule) 
+* [使用 SSMS 連接到伺服器](sql-database-get-started.md#connect-to-the-server-with-ssms) 
+* [使用範例資料建立資料庫](sql-database-get-started.md#create-a-database-with-sample-data) 
+* [檢視資料庫屬性](sql-database-get-started.md#view-the-database-properties) 
+* [在 Azure 入口網站中查詢資料庫](sql-database-get-started.md#query-the-database-in-the-azure-portal) 
+* [使用 SSMS 連接和查詢資料庫](sql-database-get-started.md#connect-and-query-the-database-with-ssms) 
+* [使用 SSMS 建立空白資料庫](sql-database-get-started.md#create-a-blank-database-with-ssms) 
+* [針對連線問題進行疑難排解](sql-database-get-started.md#troubleshoot-connectivity) 
+* [刪除資料庫](sql-database-get-started.md#delete-a-single-database) 
 
-在本教學課程中，您也會使用最新版的 SQL Server Management Studio 來：
 
-* 連接到邏輯伺服器和其主要資料庫
-* 查詢 Master 資料庫
-* 連接到範例資料庫
-* 查詢範例資料庫
+在本快速入門教學課程中，您會建立在 Azure 資源群組中執行並連接到邏輯伺服器的範例資料庫和空白資料庫。 您也會建立兩個伺服器層級防火牆規則，其設定為可啟用伺服器層級主體以從兩個指定的 IP 位址登入伺服器。 最後，您會學習如何在 Azure 入口網站查詢資料庫，以及如何使用 SQL Server Management Studio 進行連線和查詢。 
 
-當完成本教學課程時，您將會有在 Azure 資源群組中執行並連接到邏輯伺服器的範例資料庫和空白資料庫。 您也會有伺服器層級防火牆規則，設定為可啟用伺服器層級主體以從指定的 IP 位址 (或 IP 位址範圍) 登入伺服器。 
-
-**時間估計**︰本教學課程將需要大約 30 分鐘 (假設您已符合先決條件)。
+**時間估計**︰本教學課程需要大約 30 分鐘 (假設您已符合先決條件)。
 
 > [!TIP]
-> 您可以使用 [C#](sql-database-get-started-csharp.md) 或 [PowerShell](sql-database-get-started-powershell.md) 來執行入門教學課程中相同的工作。
+> 您可以透過 [C#](sql-database-get-started-csharp.md) 或 [PowerShell](sql-database-get-started-powershell.md) 來執行相同的工作。
 >
 
 ## <a name="prerequisites"></a>必要條件
 
 * 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
 
-* 您必須能夠使用屬於訂用帳戶擁有者或參與者角色之成員的帳戶來連線 Azure 入口網站。 如需角色型存取控制 (RBAC) 的詳細資訊，請參閱[開始使用 Azure 入口網站中的存取管理](../active-directory/role-based-access-control-what-is.md)。
+* 您必須能夠利用屬於訂用帳戶擁有者或參與者角色成員的帳戶來連線 Azure 入口網站。 如需角色型存取控制 (RBAC) 的詳細資訊，請參閱[開始使用 Azure 入口網站中的存取管理](../active-directory/role-based-access-control-what-is.md)。
 
 > [!NOTE]
-> 本教學課程會協助您了解下列學習主題的內容︰[SQL Database 伺服器概觀](sql-database-server-overview.md)、[SQL Database 概觀](sql-database-overview.md)和 [Azure SQL Database 防火牆規則概觀](sql-database-firewall-configure.md)。
+> 本快速入門教學課程會協助您了解下列學習主題的內容︰[SQL Database 伺服器概觀](sql-database-server-overview.md)、[SQL Database 概觀](sql-database-overview.md)和 [Azure SQL Database 防火牆規則概觀](sql-database-firewall-configure.md)。
 >  
 
 
-### <a name="sign-in-to-the-azure-portal-using-your-azure-account"></a>使用 Azure 帳戶登入 Azure 入口網站
-使用 [現有的訂用帳戶](https://account.windowsazure.com/Home/Index)，遵循下列步驟來連接到 Azure 入口網站。
+### <a name="sign-in-to-the-azure-portal-with-your-azure-account"></a>使用您的 Azure 帳戶登入 Azure 入口網站
+使用您的 [Azure 帳戶](https://account.windowsazure.com/Home/Index)，遵循下列步驟來連接到 Azure 入口網站。
 
 1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)。
 2. 登入 [Azure 入口網站](https://portal.azure.com/)。
@@ -71,7 +70,9 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
 <a name="create-logical-server-bk"></a>
 
-## <a name="create-a-new-logical-sql-server-in-the-azure-portal"></a>在 Azure 入口網站中建立新的邏輯 SQL Server
+## <a name="create-a-new-logical-sql-server"></a>建立新的邏輯 SQL Server
+
+遵循此程序中的步驟，在您所選的區域中透過 Azure 入口網站建立新的邏輯伺服器。
 
 1. 按一下 [新增]，接著鍵入 **sql server**，然後按一下 **Enter**。
 
@@ -87,7 +88,7 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
     ![新的伺服器名稱](./media/sql-database-get-started/new-server-name.png)
 
     > [!IMPORTANT]
-    > 您的新伺服器完整名稱將會是 <your_server_name>.database.windows.net。
+    > 您的新伺服器完整名稱格式如下：<your_server_name>.database.windows.net。
     >
     
 4. 在 [伺服器管理登入] 文字方塊中，為此伺服器提供用於 SQL 驗證登入的使用者名稱。 此登入就是所謂的伺服器主體登入。 綠色核取記號指示您提供的名稱有效。
@@ -115,7 +116,9 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
     ![建立按鈕](./media/sql-database-get-started/create.png)
 
-## <a name="view-the-logical-sql-server-properties-in-the-azure-portal"></a>在 Azure 入口網站中檢視邏輯 SQL Server 屬性
+## <a name="view-the-logical-server-properties"></a>檢視邏輯伺服器屬性
+
+遵循此程序中的步驟，透過 Azure 入口網站檢視伺服器屬性。 您需要完整的伺服器名稱，才能在後續程序中連接到這部伺服器。 
 
 1. 在 Azure 入口網站中，按一下 [更多服務]。
 
@@ -137,17 +140,15 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
     ![SQL Server 完整名稱](./media/sql-database-get-started/sql-server-full-name.png)
 
-## <a name="create-a-server-level-firewall-rule-in-the-azure-portal"></a>在 Azure 入口網站中建立伺服器層級的防火牆規則
+## <a name="create-a-server-level-firewall-rule"></a>建立伺服器層級防火牆規則
+
+遵循此程序中的步驟，透過 Azure 入口網站建立新的伺服器層級防火牆規則，可讓您在下一個程序中透過 SQL Server Management Studio 連接到您的伺服器。
 
 1. 在 SQL Server 刀鋒視窗的 [設定] 下，按一下 [防火牆] 來開啟 SQL Server 的防火牆刀鋒視窗。
 
     ![SQL Server 防火牆](./media/sql-database-get-started/sql-server-firewall.png)
 
-2. 檢閱顯示的用戶端 IP 位址，並使用自行選擇的瀏覽器來驗證這是否為您在網際網路上的 IP 位址 (問「我的 IP 位址是什麼)。 偶爾會因為各種原因而不相符。
-
-    ![您的 IP 位址](./media/sql-database-get-started/your-ip-address.png)
-
-3. 假設的 IP 位址相符，按一下工具列上的 [新增用戶端 IP]。
+2. 按一下工具列上的 [新增用戶端 IP] 。
 
     ![新增用戶端 IP](./media/sql-database-get-started/add-client-ip.png)
 
@@ -159,7 +160,9 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
     ![新增用戶端 IP](./media/sql-database-get-started/save-firewall-rule.png)
 
-## <a name="connect-to-sql-server-using-sql-server-management-studio-ssms"></a>使用 SQL Server Management Studio (SSMS) 連接到 SQL Server
+## <a name="connect-to-the-server-with-ssms"></a>使用 SSMS 連接到伺服器
+
+遵循此程序中的步驟，透過 SQL Server Management Studio 連接到 SQL 邏輯伺服器。
 
 1. 如果您尚未這麼做，請下載並安裝最新版的 SSMS，位置是[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。 為了保持最新狀態，最新版的 SSMS 會在有新版本可供下載時提示您。
 
@@ -191,7 +194,9 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
     > 若要瀏覽 SQL 安全性，請參閱 [SQL 安全性入門](sql-database-control-access-sql-authentication-get-started.md)
     >
 
-## <a name="create-new-database-in-the-azure-portal-using-adventure-works-lt-sample"></a>使用 Adventure Works LT 範例在 Azure 入口網站中建立新的資料庫
+## <a name="create-a-database-with-sample-data"></a>使用範例資料建立資料庫
+
+遵循此程序中的步驟，經由 Azure 入口網站使用範例資料建立資料庫。 您建立的這個資料庫會附加至您先前建立的邏輯伺服器。 如果在您建立伺服器的區域中無法使用基本服務層，請刪除您的伺服器並在其他區域中予以重建。 如需刪除步驟，請參閱本教學課程中的最後一個程序。
 
 1. 在 Azure 入口網站中，按一下預設刀鋒視窗中的 [SQL Database]。
 
@@ -223,7 +228,9 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
     ![建立按鈕](./media/sql-database-get-started/create.png)
 
-## <a name="view-database-properties-in-the-azure-portal"></a>在 Azure 入口網站中檢視資料庫屬性
+## <a name="view-the-database-properties"></a>檢視資料庫屬性
+
+遵循此程序中的步驟，透過 Azure 入口網站查詢資料庫。
 
 1. 在 SQL Database 刀鋒視窗中，按一下新的資料庫以檢視其在 Azure 入口網站內的屬性。 後續的教學課程可協助您了解此刀鋒視窗中可用的選項。 
 
@@ -242,7 +249,41 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
     ![在伺服器基本功能窗格內的新範例資料庫](./media/sql-database-get-started/new-sample-db-server-essentials-pane.png)
 
-## <a name="connect-and-query-sample-database-using-sql-server-management-studio"></a>使用 SQL Server Management Studio 連接和查詢範例資料庫
+## <a name="query-the-database-in-the-azure-portal"></a>在 Azure 入口網站中查詢資料庫
+
+遵循此程序中的步驟，透過 Azure 入口網站中的查詢編輯器來查詢資料庫。 查詢會顯示資料庫中的物件。
+
+1. 在 [SQL Database] 刀鋒視窗中，按一下工具列上的 [工具]。
+
+    ![工具](./media/sql-database-get-started/tools.png)
+2. 在 [工具] 刀鋒視窗上，按一下 [查詢編輯器 (預覽)]。
+
+    ![查詢編輯器](./media/sql-database-get-started/query-editor.png)
+3. 按一下核取方塊，確認查詢編輯器是預覽功能，然後按一下 [確定]。
+4. 在 [查詢編輯器] 刀鋒視窗中，按一下 [登入]。
+
+    ![查詢編輯器刀鋒視窗](./media/sql-database-get-started/query-editor-blade.png)
+5. 檢閱授權類型和登入，然後提供此登入的密碼。 
+
+    ![查詢編輯器登入](./media/sql-database-get-started/query-editor-login.png)
+6. 按一下 [確定] 以嘗試登入。
+7. 當您收到登入錯誤 (指出您的用戶端 IP 位址沒有防火牆規則，所以您的用戶端沒有登入權限) 時，請複製錯誤視窗中的用戶端 IP 位址，並在此資料庫的 [SQL Server] 刀鋒視窗中，建立伺服器層級防火牆規則。
+
+    ![查詢編輯器登入](./media/sql-database-get-started/query-editor-error.png)
+8. 重複先前的 6 個步驟，登入您的資料庫。
+9. 經過驗證後，在查詢視窗中輸入下列查詢︰
+
+   ```select * from sys.objects```
+
+    ![查詢編輯器查詢](./media/sql-database-get-started/query-editor-query.png)
+10.  按一下 **[執行]**。
+11. 在 [結果] 窗格中檢閱查詢結果。
+
+    ![查詢編輯器結果](./media/sql-database-get-started/query-editor-results.png)
+
+## <a name="connect-and-query-the-database-with-ssms"></a>使用 SSMS 連接和查詢資料庫
+
+遵循此程序中的步驟，透過 SQL Server Management Studio 連接到資料庫，然後查詢範例資料以檢視資料庫中的物件。
 
 1. 切換至 SQL Server Management Studio，並在 [物件總管] 中按一下 [資料庫]，然後按一下工具列上的 [重新整理] 來檢視範例資料庫。
 
@@ -261,14 +302,16 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
     ![使用 ssms 新增範例資料庫查詢系統物件](./media/sql-database-get-started/new-sample-db-query-objects-ssms.png)
 
-## <a name="create-a-new-blank-database-using-sql-server-management-studio"></a>使用 SQL Server Management Studio 建立新的空白資料庫
+## <a name="create-a-blank-database-with-ssms"></a>使用 SSMS 建立空白資料庫
+
+遵循此程序中的步驟，透過 SQL Server Management Studio 在邏輯伺服器上建立新資料庫。
 
 1. 在 [物件總管] 中，以滑鼠右鍵按一下 [資料庫] 然後按一下 [新增資料庫]。
 
     ![使用 ssms 新增空白資料庫](./media/sql-database-get-started/new-blank-database-ssms.png)
 
     > [!NOTE]
-    > 您也可以讓 SSMS 為您建立資料庫指令碼，進而使用 Transact-SQL 建立新的資料庫。
+    > 您也可以讓 SSMS 為您建立資料庫指令碼，進而透過 Transact-SQL 建立新的資料庫。
     >
 
 2. 在 [新增資料庫] 對話方塊中，在資料庫名稱文字方塊中提供資料庫名稱。 
@@ -288,29 +331,48 @@ ms.openlocfilehash: 6da0bb371336e0d9662a7fd36187cdf4317c22ea
 
     ![在物件總管中新增空白資料庫](./media/sql-database-get-started/new-blank-database-object-explorer.png)
 
+## <a name="troubleshoot-connectivity"></a>針對連線問題進行疑難排解
+
+> [!IMPORTANT]
+> 如果您有連線問題，請參閱[連線問題](sql-database-troubleshoot-common-connection-issues.md)。
+> 
+
+## <a name="delete-a-single-database"></a>刪除單一資料庫
+
+遵循此程序中的步驟，透過 Azure 入口網站刪除單一資料庫。
+
+1. 在 Azure 入口網站中您的 SQL Database 的刀鋒視窗上，按一下 [刪除]。
+
+    ![delete-database](./media/sql-database-get-started/delete-database.png)
+2. 按一下 [是] 確認要永久刪除此資料庫。
+
+    ![delete-database-yes](./media/sql-database-get-started/delete-database-yes.png)
+
 > [!TIP]
-> 在學習過程中，您可以透過刪除未使用的資料庫來節省金錢。 針對基本版的資料庫，您可以在七天內進行還原。 然而，不要刪除伺服器。 如果您這樣做，就無法復原伺服器或任何已刪除的資料庫。
+> 您的資料庫的保留期內，您可以從服務起始的自動備份還原資料庫。 針對基本版的資料庫，您可以在七天內進行還原。 然而，不要刪除伺服器。 如果您這樣做，就無法復原伺服器或任何已刪除的資料庫。 如需資料庫備份的詳細資訊，請參閱[深入了解 SQL Database 備份](sql-database-automated-backups.md)，而如需從備份還原資料庫的相關資訊，請參閱[資料庫復原](sql-database-recovery-using-backups.md)。 如需還原已刪除資料庫的作法文章，請參閱[還原已刪除的 Azure SQL Database - Azure 入口網站](sql-database-restore-deleted-database-portal.md)。
 >
 
 
 ## <a name="next-steps"></a>後續步驟
 現在您已經完成本教學課程，您或許有興趣探索其他教學課程，來建置在本教學課程中已學習到的內容。 
 
-* 如果您想要探索 Azure SQL Database 安全性，請參閱 [安全性入門](sql-database-control-access-sql-authentication-get-started.md)。
+- 如需 SQL Server 驗證的入門教學課程，請參閱 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)
+- 如需 Azure Active Directory 驗證的入門教學課程，請參閱 [ AAD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)
+* 如果您想要查詢 Azure 入口網站中的範例資料庫，請參閱[公用預覽︰適用於 SQL 資料庫的互動式查詢經驗](https://azure.microsoft.com/en-us/updates/azure-sql-database-public-preview-t-sql-editor/)
 * 如果您熟悉 Excel，請了解如何 [在 Azure 中使用 Excel 連接至 SQL Database](sql-database-connect-excel.md)。
 * 如果您準備好開始撰寫程式碼，請在 [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)選擇您的程式語言。
 * 如果您想要將內部部署的 SQL Server 資料庫移動至 Azure，請參閱 [將資料庫移轉至 SQL Database](sql-database-cloud-migrate.md)。
-* 如果您想要使用 BCP 命令列工具將某些資料從 CSV 檔案載入新資料表，請參閱 [使用 BCP 將資料從 CSV 檔案載入 SQL Database](sql-database-load-from-csv-with-bcp.md)。
+* 如果您想要透過 BCP 命令列工具，將某些資料從 CSV 檔案載入新資料表，請參閱[透過 BCP 將資料從 CSV 檔案載入 SQL Database](sql-database-load-from-csv-with-bcp.md)。
 * 如果您想要開始建立資料表和其他物件，請參閱[建立資料表](https://msdn.microsoft.com/library/ms365315.aspx)中的「建立資料表」主題。
 
 ## <a name="additional-resources"></a>其他資源
 
-- 如需技術概觀，請參閱[什麼是 SQL Database？](sql-database-technical-overview.md)。
+- 如需技術概觀，請參閱[什麼是 SQL Database？](sql-database-technical-overview.md)
 - 如需價格資訊，請參閱 [Azure SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)。
 
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

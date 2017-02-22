@@ -13,101 +13,121 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 12/15/2016
+ms.date: 01/17/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 862b19b334b0a4da6e61983f428e3e6732189870
-ms.openlocfilehash: a5e3fc8a1160fc3eef3c98320840992f86b67d14
+ms.sourcegitcommit: b326ad93120715e4965524e7d6618c1a7fecafb6
+ms.openlocfilehash: bd44fd21c6150eac882d03dc946f573e34f6ad7b
 
 
 ---
-# <a name="custom-script-extension-for-windows-virtual-machines"></a>Windows 虛擬機器的自訂指令碼擴充功能
 
-本文概要說明如何使用 Azure PowerShell Cmdlet 搭配「Azure 服務管理 API」，在 Windows VM 上使用「自訂指令碼」擴充功能。
-
-Microsoft 和受信任的協力廠商發行者建置的虛擬機器 (VM) 延伸模組，可延伸 VM 的功能。 如需 VM 延伸模組的概觀，請參閱 [Azure VM 延伸模組與功能](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+# <a name="custom-script-extension-for-windows-using-the-classic-deployment-model"></a>使用傳統部署模型自訂適用於 Windows 的指令碼擴充功能
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有兩種： [Resource Manager](../azure-resource-manager/resource-manager-deployment-model.md) 和傳統。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-## <a name="custom-script-extension-overview"></a>自訂指令碼擴充功能概觀
+「自訂指令碼擴充功能」會在 Azure 虛擬機器上下載並執行指令碼。 此擴充功能適用於部署後組態、軟體安裝或其他任何組態/管理工作。 您可以從 Azure 儲存體或 GitHub 下載指令碼，或是在擴充功能執行階段將指令碼提供給 Azure 入口網站。 「自訂指令碼擴充功能」會與 Azure Resource Manager 範本整合，您也可以使用 Azure CLI、PowerShell、Azure 入口網站或「Azure 虛擬機器 REST API」來執行它。
 
-有了適用於 Windows 的「自訂指令碼」擴充功能，您不須登入遠端 VM，即可在遠端 VM 上執行 PowerShell 指令碼。 您可以在佈建 VM 之後或在 VM 生命週期中的任何時間執行指令碼，而不需開啟任何其他連接埠。 執行「自訂指令碼」擴充功能的最常見使用案例包括：在於佈建 VM 之後，於 VM 上執行、安裝及設定其他軟體。
+本文件詳細說明如何透過 Azure PowerShell 模組、Azure Resource Manager 範本使用自訂指令碼擴充功能，同時也詳細說明 Windows 系統上的疑難排解步驟。
 
-### <a name="prerequisites-for-running-the-custom-script-extension"></a>執行自訂指令碼擴充功能的先決條件
+## <a name="prerequisites"></a>必要條件
 
-1. 安裝 <a href="http://azure.microsoft.com/downloads" target="_blank">Azure PowerShell Cmdlet</a> 0.8.0 版或更新版本。
-2. 如果您想要讓指令碼在現有的 VM 上執行，請確定在該 VM 上啟用「VM 代理程式」。 如果未安裝，請依照這些[步驟](virtual-machines-windows-classic-agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)操作。 如果 VM 是從 Azure 入口網站建立的，則預設會安裝「VM 代理程式」。
-3. 將您想要在 VM 上執行的指令碼上傳到 Azure 儲存體。 指令碼可以來自單一容器或多個儲存體容器。
-4. 撰寫指令碼時，應將其撰寫成讓入口指令碼 (由擴充功能啟動) 啟動其他指令碼。
+### <a name="operating-system"></a>作業系統
 
-## <a name="custom-script-extension-scenarios"></a>自訂指令碼擴充功能案例
+可以對 Windows Server 2008 R2、2012、2012 R2 和 2016 版執行適用於 Windows 的自訂指令碼擴充功能。
 
-### <a name="upload-files-to-the-default-container"></a>將檔案上傳到預設容器
+### <a name="script-location"></a>指令碼位置
 
-下列範例示範當指令碼位於您訂用帳戶的預設帳戶儲存體容器中時，如何在 VM 上執行這些指令碼。 您需將您的指令碼上傳到 ContainerName。 您可以使用 **Get-AzureSubscription –Default** 命令來驗證預設的儲存體帳戶。
+指令碼必須儲存在 Azure 儲存體或任何可透過有效 URL 存取的其他位置。
 
-下列範例會建立 VM，但您也可以在現有的 VM 上執行相同的案例。
+### <a name="internet-connectivity"></a>網際網路連線
 
-```powershell
-# Create a new VM in Azure.
-$vm = New-AzureVMConfig -Name $name -InstanceSize Small -ImageName $imagename
-$vm = Add-AzureProvisioningConfig -VM $vm -Windows -AdminUsername $username -Password $password
+適用於 Windows 的自訂指令碼擴充功能會要求目標虛擬機器連接到網際網路。 
 
-# Add Custom Script extension to the VM. 
-# The container name refers to the storage container that contains the file.
-$vm = Set-AzureVMCustomScriptExtension -VM $vm -ContainerName $container -FileName 'start.ps1'
-New-AzureVM -ServiceName $servicename -Location $location -VMs $vm
+## <a name="extension-schema"></a>擴充功能結構描述
 
-# Viewing the  script execution output.
-$vm = Get-AzureVM -ServiceName $servicename -Name $name
-# Use the position of the extension in the output as index.
-$vm.ResourceExtensionStatusList[i].ExtensionSettingStatus.SubStatusList
+下列 JSON 顯示自訂指令碼擴充功能的結構描述。 擴充功能需要指令碼位置 (Azure 儲存體或其他具有有效 URL 的位置)，以及可供執行的命令。 如果使用 Azure 儲存體做為指令碼來源，則需要 Azure 儲存體帳戶名稱和帳戶金鑰。 這些項目應被視為敏感性資料，並在擴充功能保護的設定組態中指定。 Azure VM 擴充功能保護的設定資料會經過加密，只會在目標虛擬機器上解密。
+
+```json
+{
+    "name": "config-app",
+    "type": "Microsoft.ClassicCompute/virtualMachines/extensions",
+    "location": "[resourceGroup().location]",
+    "apiVersion": "2015-06-01",
+    "properties": {
+        "publisher": "Microsoft.Compute",
+        "extension": "CustomScriptExtension",
+        "version": "1.8",
+        "parameters": {
+            "public": {
+                "fileUris": "[myScriptLocation]"
+            },
+            "private": {
+                "commandToExecute": "[myExecutionString]"
+            }
+        }
+    }
+}
 ```
 
-### <a name="upload-files-to-a-non-default-storage-container"></a>將檔案上傳到非預設的儲存體容器
+### <a name="property-values"></a>屬性值
 
-這個案例示範如何使用相同訂用帳戶內或不同訂用帳戶中的非預設儲存體容器，來上傳指令碼和檔案。 此範例示範的是現有的 VM，但如果您要建立 VM，也可以執行相同的作業。
+| 名稱 | 值 / 範例 |
+| ---- | ---- |
+| apiVersion | 2015-06-15 |
+| publisher | Microsoft.Compute |
+| 擴充功能 | CustomScriptExtension |
+| typeHandlerVersion | 1.8 |
+| fileUris (例如) | https://raw.githubusercontent.com/Microsoft/dotnet-core-sample-templates/master/dotnet-core-music-windows/scripts/configure-music-app.ps1 |
+| commandToExecute (例如) | powershell -ExecutionPolicy Unrestricted -File configure-music-app.ps1 |
 
-```powershell
-Get-AzureVM -Name $name -ServiceName $servicename | ` 
-Set-AzureVMCustomScriptExtension -StorageAccountName $storageaccount -StorageAccountKey $storagekey ` 
--ContainerName $container -FileName 'file1.ps1','file2.ps1' -Run 'file.ps1' | ` 
-Update-AzureVM
-```
+## <a name="template-deployment"></a>範本部署
 
-### <a name="upload-scripts-to-multiple-containers-across-different-storage-accounts"></a>將指令碼上傳到橫跨不同儲存體帳戶的多個容器
+也可以使用 Azure Resource Manager 範本部署 Azure VM 擴充功能。 上一節詳述的 JSON 結構描述可以用於 Azure Resource Manager 範本，以在 Azure Resource Manager 範本部署期間執行自訂指令碼擴充功能。 在 [GitHub](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows) 可以找到包含自訂指令碼擴充功能的範例範本。
 
-如果指令碼檔案儲存在多個容器中，您就必須提供這些檔案的完整共用存取簽章 (SAS) URL，才能執行指令碼。
+## <a name="powershell-deployment"></a>PowerShell 部署
 
-```powershell
-Get-AzureVM -Name $name -ServiceName $servicename | ` 
-Set-AzureVMCustomScriptExtension -StorageAccountName $storageaccount -StorageAccountKey $storagekey ` 
--ContainerName $container -FileUri $fileUrl1, $fileUrl2 -Run 'file.ps1' | ` 
-Update-AzureVM
-```
-
-### <a name="add-the-custom-script-extension-from-the-azure-portal"></a>從 Azure 入口網站新增自訂指令碼擴充功能
-
-在 <a href="https://portal.azure.com/ " target="_blank">Azure 入口網站</a>中移至 VM，然後指定要執行的指令碼檔案來新增擴充功能。
-
-![Specify the script file][5]
-
-### <a name="uninstall-the-custom-script-extension"></a>將自訂指令碼擴充功能解除安裝
-
-您可以使用下列命令，將「自訂指令碼」擴充功能從 VM 中解除安裝。
+`Set-AzureVMCustomScriptExtension` 命令可以用來將自訂指令碼擴充功能新增至現有的虛擬機器。 如需詳細資訊，請參閱 [Set-AzureRmVMCustomScriptExtension ](https://docs.microsoft.com/en-us/powershell/resourcemanager/azurerm.compute/v2.1.0/set-azurermvmcustomscriptextension)。
 
 ```powershell
-get-azureVM -ServiceName KPTRDemo -Name KPTRDemo | ` 
-Set-AzureVMCustomScriptExtension -Uninstall | Update-AzureVM
+# create vm object
+$vm = Get-AzureVM -Name 2016clas -ServiceName 2016clas1313
+
+# set extension
+Set-AzureVMCustomScriptExtension -VM $vm -FileUri myFileUri -Run 'create-file.ps1'
+
+# update vm
+$vm | Update-AzureVM
 ```
 
-### <a name="use-the-custom-script-extension-with-templates"></a>搭配範本使用自訂指令碼擴充功能
+## <a name="troubleshoot-and-support"></a>疑難排解與支援
 
-若要了解如何搭配 Azure Resource Manager 範本使用「自訂指令碼」擴充功能，請參閱[使用 Windows VM 的自訂指令碼擴充功能搭配 Azure Resource Manager 範本](virtual-machines-windows-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+### <a name="troubleshoot"></a>疑難排解
+
+使用 Azure PowerShell 模組，就可以從 Azure 入口網站擷取有關擴充功能部署狀態的資料。 若要查看指定 VM 的擴充功能部署狀態，請執行下列命令。
+
+```powershell
+Get-AzureVMExtension -ResourceGroupName myResourceGroup -VMName myVM -Name myExtensionName
+```
+
+擴充功能執行輸出會記錄至目標虛擬機器上下列目錄中的檔案。
+
+```cmd
+C:\WindowsAzure\Logs\Plugins\Microsoft.Compute.CustomScriptExtension
+```
+
+指令碼本身會下載到目標虛擬機器上的下列目錄。
+
+```cmd
+C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.*\Downloads
+```
+
+### <a name="support"></a>支援
+
+如果您在本文中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/en-us/support/forums/)上的 Azure 專家。 或者，您可以提出 Azure 支援事件。 請移至 [Azure 支援網站](https://azure.microsoft.com/en-us/support/options/)，然後選取 [取得支援]。 如需使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](https://azure.microsoft.com/en-us/support/faq/)。
 
 
-
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

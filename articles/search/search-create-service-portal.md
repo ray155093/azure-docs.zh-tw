@@ -11,23 +11,23 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 08/29/2016
+ms.date: 11/29/2016
 ms.author: ashmaka
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5975bd5b2a2e7fe8799155ab47d96c3ecd0093ee
+ms.sourcegitcommit: 702ea254c19d1f9782f83d8445b7f440f11963b9
+ms.openlocfilehash: 5046b3fc1444e37388505f2662a28486342c8822
 
 
 ---
 # <a name="create-an-azure-search-service-using-the-azure-portal"></a>使用 Azure 入口網站建立 Azure 搜尋服務
-本指南將逐步引導您完成使用 [Azure 入口網站](https://portal.azure.com/)建立 (或佈建) Azure 搜尋服務的程序。
+本文將逐步引導您完成使用 [Azure 入口網站](https://portal.azure.com/)來建立 (或佈建)「Azure 搜尋服務」的程序。
 
-本指南假設您已經有 Azure 訂用帳戶，可以登入 Azure 入口網站。
+本文假設您已經有「Azure 訂用帳戶」，而能夠登入「Azure 入口網站」。
 
 ## <a name="find-azure-search-in-the-azure-portal"></a>在 Azure 入口網站中尋找 Azure 搜尋服務
 1. 前往 [Azure 入口網站](https://portal.azure.com/) 並登入。
 2. 按一下左上角的加號 ("+")。
-3. 選取 [資料 + 儲存體] 。
+3. 選取 [ **Web + Mobile**]。
 4. 選取 [Azure 搜尋服務] 。
 
 ![](./media/search-create-service-portal/find-search.png)
@@ -58,21 +58,20 @@ ms.openlocfilehash: 5975bd5b2a2e7fe8799155ab47d96c3ecd0093ee
 ![](./media/search-create-service-portal/create-service.png)
 
 ## <a name="scale-your-service"></a>調整您的服務
-佈建完您的服務之後，您可以調整它以符合您的需求。 如果您為 Azure 搜尋服務選擇標準層，則您可以在兩個維度調整服務︰複本和資料分割。 如果您選擇基本層，則只能新增複本。
+佈建完您的服務之後，您可以調整它以符合您的需求。 由於您為「Azure 搜尋服務」選擇了「標準」層，因此您可以在兩個維度調整服務︰複本和資料分割。 如果您選擇的是「基本」層，則只能新增複本。 如果您佈建的是免費服務，則無法進行調整。
 
 「資料分割」允許您的服務儲存及搜尋更多文件。
 
 ***複本***允許服務處理更高的搜尋查詢負載 - [服務需要 2 個複本才能達到唯讀 SLA，需要 3 個複本才能達到讀寫 SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
 
-1. 在「Azure 入口網站」中，前往「Azure 搜尋服務」的管理刀鋒視窗。
+1. 在 Azure 入口網站中，前往「Azure 搜尋服務」的管理刀鋒視窗。
 2. 在 [設定] 刀鋒視窗中，選取 [調整]。
 3. 您可以藉由加入複本或資料分割來調整您的服務。
-   * 您無法將服務調整超過 36 個搜尋單位。 您的搜尋單位總數是您的複本和資料分割的乘積 (複本 * 資料分割 = 搜尋單位總數)。
-   * 如果您選擇基本層，則只能調整到 3 個複本。 基本的服務繫結至單一資料分割。
+   * 關於單一服務中允許的搜尋單位總數 (複本 * 資料分割 = 搜尋單位總數)，每一個服務層各有不同的[限制](search-limits-quotas-capacity.md)。
 
 ![](./media/search-create-service-portal/scale-service.png)
 
-## <a name="next"></a>下一步
+## <a name="next-steps"></a>後續步驟
 佈建 Azure 搜尋服務之後，您就可以 [定義 Azure 搜尋服務索引](search-what-is-an-index.md) ，以便上傳和搜尋您的資料。
 
 如需快速教學課程，請參閱 [開始在入口網站中使用 Azure 搜尋服務](search-get-started-portal.md) 。
@@ -80,6 +79,6 @@ ms.openlocfilehash: 5975bd5b2a2e7fe8799155ab47d96c3ecd0093ee
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

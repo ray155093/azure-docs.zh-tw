@@ -4,7 +4,7 @@ description: "找出並解決 Azure SQL Database 常見之連接錯誤的步驟�
 services: sql-database
 documentationcenter: 
 author: dalechen
-manager: felixwu
+manager: cshepard
 editor: 
 ms.assetid: ac463d1c-aec8-443d-b66e-fa5eadcccfa8
 ms.service: sql-database
@@ -13,11 +13,11 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/31/2016
+ms.date: 01/20/2017
 ms.author: daleche
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 48ccd940efb75427461c3a8018aa6b31f46a626e
+ms.sourcegitcommit: 676cecdd886cfb557e7859e1e9583f0a0f9f749c
+ms.openlocfilehash: 222b9fe98592e0c78ec3d7c5ae4804bf75dd0d1e
 
 
 ---
@@ -61,8 +61,8 @@ ms.openlocfilehash: 48ccd940efb75427461c3a8018aa6b31f46a626e
 * 使用者錯誤︰例如，輸入錯誤的連線參數，例如連接字串中的伺服器名稱。
 
 ### <a name="steps-to-resolve-persistent-connectivity-issues"></a>解決永久性連線問題的步驟
-1. 設定 [防火牆規則](sql-database-configure-firewall-settings.md) 允許用戶端 IP 位址。
-2. 在用戶端與網際網路之間的所有防火牆上，請確定開放連接埠 1433 供輸出連線使用。 檢閱 [設定 Windows 防火牆以允許 SQL Server 存取](https://msdn.microsoft.com/library/cc646023.aspx) ，以取得其他指標。
+1. 設定 [防火牆規則](sql-database-configure-firewall-settings.md) 允許用戶端 IP 位址。 對於臨時測試用途，請設定防火牆規則並使用 0.0.0.0 做為起始 IP 位址範圍，並使用 255.255.255.255 做為結束 IP 位址範圍。 這樣會開放伺服器供所有 IP 位址存取。 若這樣可解決您的連線問題，請移除此規則並針對已適當限制的 IP 位址或位址範圍建立防火牆規則。 
+2. 在用戶端與網際網路之間的所有防火牆上，請確定開放連接埠 1433 供輸出連線使用。 檢閱[設定 Windows 防火牆以允許 SQL Server 存取](https://msdn.microsoft.com/library/cc646023.aspx)與[混合式身分識別所需的連接埠與通訊協定 (英文)](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-ports) 以取得有關必須針對 Azure Active Directory 驗證開放之其他連接埠的其他詳細資訊。
 3. 請確認您的連接字串和其他連線設定。 請參閱 [連線能力問題主題](sql-database-connectivity-issues.md#connections-to-azure-sql-database)中的「連接字串」一節。
 4. 檢查儀表板中的服務健全狀況。 如果您認為沒有區域性停電，請參閱 [從中斷復原](sql-database-disaster-recovery.md) 以了解復原到新區域的步驟。
 
@@ -77,13 +77,11 @@ ms.openlocfilehash: 48ccd940efb75427461c3a8018aa6b31f46a626e
 | 4 |[針對 Microsoft Azure SQL Database 的連線問題進行疑難排解](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database) |此工具可協助識別您的問題並解決連線錯誤。 |
 | 5 |[為「伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt; 目前無法使用」的問題進行疑難排解。請稍後重試連接」錯誤](sql-database-troubleshoot-connection.md) |說明如何識別並解決 40613 錯誤：「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。 請稍後重試連接。」 |
 | 6 |[SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md) |提供 SQL Database 用戶端應用程式的 SQL 錯誤碼相關資訊，例如常見的資料庫連線錯誤、資料庫複製問題，以及一般錯誤。 |
-| 7 |[獨立資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md) |提供可協助您判斷哪個服務層是最適合您應用程式的指引。 同時也提供微調應用程式以充分運用您 Azure SQL Database 的建議。 |
+| 7 |[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md) |提供可協助您判斷哪個服務層是最適合您應用程式的指引。 同時也提供微調應用程式以充分運用您 Azure SQL Database 的建議。 |
 | 8 |[SQL Database 開發概觀](sql-database-develop-overview.md) |提供各種技術之程式碼範例的連結，可用來連接到 Azure SQL Database 並與其互動。 |
-| 9 |升級到 Azure SQL Database v12 頁面 ([Azure 入口網站](sql-database-upgrade-server-portal.md)、[PowerShell](sql-database-upgrade-server-powershell.md)) |提供使用 Azure 入口網站或 PowerShell 將現有 Azure SQL Database V11 伺服器和資料庫升級到 Azure SQL Database V12 的指示。 |
 
 ## <a name="next-steps"></a>後續步驟
 * [針對 Azure SQL Database 效能問題進行疑難排解](sql-database-troubleshoot-performance.md)
-* [針對 Azure SQL Database 權限問題進行疑難排解](sql-database-troubleshoot-permissions.md)
 * [搜尋 Microsoft Azure 相關文件](http://azure.microsoft.com/search/documentation/)
 * [檢視 Azure SQL Database 服務的最新更新](http://azure.microsoft.com/updates/?service=sql-database)
 
@@ -91,12 +89,10 @@ ms.openlocfilehash: 48ccd940efb75427461c3a8018aa6b31f46a626e
 * [SQL Database 開發概觀](sql-database-develop-overview.md)
 * [一般暫時性錯誤處理指引](../best-practices-retry-general.md)
 * [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
-* [使用 Azure SQL Database 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database)
-* [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale) 
 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

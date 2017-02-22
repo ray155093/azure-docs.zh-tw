@@ -1,5 +1,5 @@
 ---
-title: "取得 Azure 工具 (Windows 7 和更新版本) | Microsoft Docs"
+title: "將 Raspberry Pi (節點) 連接到 Azure IoT - 第 1 課：取得工具 (Windows) | Microsoft Docs"
 description: "在 Windows 7 和更新版本上安裝 Python 和 Azure 命令列介面 (Azure CLI)。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: d93b7b67ee0727f45c3f4b93459b013b16805bf6
-ms.openlocfilehash: 14db457645cdbb258184e6a0c88d4c1bb7fa4f45
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 822ec5c36203a6de5efb25249c2c4a93794b759d
 
 
 ---
@@ -45,7 +45,7 @@ ms.openlocfilehash: 14db457645cdbb258184e6a0c88d4c1bb7fa4f45
 您也必須將安裝 python.exe 和 pip.exe 的資料夾路徑新增到系統 `PATH` 環境變數。 根據預設，python.exe 是安裝在 `C:\Python27`，而 pip.exe 是安裝在 `C:\Python27\Scripts`。
 
 ## <a name="install-the-azure-cli"></a>安裝 Azure CLI
-Azure CLI 提供適用於 Azure 的多平台命令列體驗。 您可直接從命令列工作以佈建和管理資源。
+Azure CLI 提供適用於 Azure 的多平台命令列體驗。 您直接從命令列工作佈建和管理資源。
 
 若要安裝 Azure CLI，請遵循下列步驟：
 
@@ -75,6 +75,6 @@ Azure CLI 提供適用於 Azure 的多平台命令列體驗。 您可直接從�
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

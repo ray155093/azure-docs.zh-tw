@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/15/2016
 ms.author: juliako;johndeu;anilmur
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: caf697786ce2a95dd0d4168d6ffa26bf4bee525a
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: bf208f65ef5509e56373a84bb096da39d6bafc1f
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: caf697786ce2a95dd0d4168d6ffa26bf4bee525a
 這項工具也可用來修改任何 [已發佈工作流程](media-services-workflow-designer.md#existing_workflows)。 
 
 > [!NOTE]
-> 若想取得工作流程設計工具，請連絡 mepd@microsoft.com。
+> 若想取得工作流程設計工具的複本，請連絡 mepd@microsoft.com。
 > 
 > 
 
@@ -53,7 +53,7 @@ ms.openlocfilehash: caf697786ce2a95dd0d4168d6ffa26bf4bee525a
 * 基本工作流程 – "Hello World"
 * 建立多個搭配 Azure 媒體服務串流的輸出 MP4 檔案
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-1/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-1/player]
 > 
 > 
 
@@ -64,7 +64,7 @@ ms.openlocfilehash: caf697786ce2a95dd0d4168d6ffa26bf4bee525a
 * 使用進階邏輯的工作流程
 * 圖形階段
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-2/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-2/player]
 > 
 > 
 
@@ -75,7 +75,7 @@ ms.openlocfilehash: caf697786ce2a95dd0d4168d6ffa26bf4bee525a
 * 目前編碼器的限制
 * 問答集
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-3/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-3/player]
 > 
 > 
 
@@ -95,6 +95,6 @@ ms.openlocfilehash: caf697786ce2a95dd0d4168d6ffa26bf4bee525a
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

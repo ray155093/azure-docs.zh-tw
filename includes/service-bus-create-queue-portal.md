@@ -1,7 +1,7 @@
 請確定您已建立服務匯流排命名空間，如[這裡][namespace-how-to]所示。
 
 1. 登入 [Azure 入口網站][azure-portal]。
-2. 在入口網站的左方瀏覽窗格中，按一下 [服務匯流排] 。
+2. 在入口網站的左方瀏覽窗格中，按一下 [服務匯流排] (如果您未看見 [服務匯流排]，請按一下 [更多服務])。
 3. 選取要在其中建立佇列的命名空間。 在本例中是 **nstest1**。
    
     ![建立佇列][createqueue1]
@@ -21,6 +21,6 @@
 [azure-portal]: https://portal.azure.com
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

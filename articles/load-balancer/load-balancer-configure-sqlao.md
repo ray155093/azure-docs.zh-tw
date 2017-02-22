@@ -1,6 +1,6 @@
 ---
 title: "設定負載平衡器使用 SQL 一律開啟 | Microsoft Docs"
-description: "設定負載平衡器使用 SQL 一律開啟，以及如何運用 powershell 來建立 SQL 實作的負載平衡器"
+description: "設定負載平衡器以與 SQL Always On 搭配運作，以及如何運用 PowerShell 來建立 SQL 實作的負載平衡器"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,8 +14,8 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 1a1c3c15c51b1e441f21158510e92cc8de057352
-ms.openlocfilehash: 75f05f003b691ee6464168453fa7935f1fae166e
+ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
+ms.openlocfilehash: 68aad6253f185d53fdd7f11c8660c7287ef12655
 
 ---
 
@@ -55,7 +55,7 @@ SQL Server AlwaysOn 可用性群組現在可以與 ILB 搭配執行。 可用性
 
     上述範例中，您有 2 個分別稱為 "sqlsvc1" 和 "sqlsvc2" 的 VM 正在雲端服務 "Sqlsvc" 中執行。 在使用 `DirectServerReturn` 參數建立 ILB 之後，您會將負載平衡的端點新增 ILB，讓 SQL 能針對可用性群組設定接聽程式。
 
-如需有關 SQL AlwaysOn 的詳細資訊，請參閱[針對 Azure 中的 AlwaysOn 可用性群組設定內部負載平衡器](../virtual-machines/virtual-machines-windows-portal-sql-alwayson-int-listener.md?toc=%2fazure%2fload-balancer%2ftoc.json)。
+如需有關 SQL AlwaysOn 的詳細資訊，請參閱[針對 Azure 中的 AlwaysOn 可用性群組設定內部負載平衡器](../virtual-machines/windows/sql/virtual-machines-windows-portal-sql-alwayson-int-listener.md)。
 
 ## <a name="see-also"></a>另請參閱
 [開始設定網際網路面向的負載平衡器](load-balancer-get-started-internet-arm-ps.md)
@@ -68,6 +68,6 @@ SQL Server AlwaysOn 可用性群組現在可以與 ILB 搭配執行。 可用性
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

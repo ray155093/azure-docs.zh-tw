@@ -1,5 +1,5 @@
 ---
-title: "Log Analytics 檢視設計工具圖格參考 | Microsoft Docs"
+title: "OMS Log Analytics 中檢視設計工具的圖格參考 | Microsoft Docs"
 description: "Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文針對可用於自訂檢視的圖格提供其設定參考。"
 services: log-analytics
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/26/2016
+ms.date: 01/23/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: c00a472e2dda12874dd7bee4ccb6c4d53bf104a7
-ms.openlocfilehash: 1f4a42ea42000c3a8dd25baea610332ea6cd6a71
+ms.sourcegitcommit: 4d6ea516717077ffb4b832caa9e8a064905fce09
+ms.openlocfilehash: 07938808a6ce39be80f38d93831db40130bcd4b5
 
 
 ---
@@ -180,6 +180,6 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

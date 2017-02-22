@@ -6,39 +6,56 @@ keywords: "azure active directory identity protection, cloud app discovery, 管�
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: e7434eeb-4e98-4b6b-a895-b5598a6cccf1
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/30/2016
+ms.date: 01/18/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: ffc64fc0469cd3588d6d13524411575b423ab4e5
-ms.openlocfilehash: 8672cf1e90bafc370a24a2d00c25926f3fe7b50e
+ms.sourcegitcommit: 4232c27926c2d48adb91eedd15884e44cc004ac2
+ms.openlocfilehash: 2fad0a4e7c4ac282802c2bc0dd10c7d86b651e08
 
 
 ---
 # <a name="azure-active-directory-identity-protection"></a>Azure Active Directory Identity Protection
-Azure Active Directory Identity Protection 是 Azure AD Premium P2 Edition 的一項功能，可供整合檢視會影響組織身分識別的風險事件和潛在弱點。 十多年來，Microsoft 一直保護雲端架構身分識別的安全，並透過 Azure AD Identity Protection 持續為企業客戶提供相同的保護系統。 Identity Protection 利用現有 Azure AD 的異常偵測功能 (可透過 Azure AD 的異常活動報告取得)，並引進可即時偵測異常的新風險事件類型。
+
+Azure Active Directory Identity Protection 是 Azure AD Premium P2 版本的一向功能，可讓您：
+
+- 偵測會影響組織的身分識別的潛在弱點
+
+- 針對偵測到的與您組織的身分識別有關的可疑動作，設定自動回應  
+
+- 調查可疑事件並採取適當動作以解決它們   
+
 
 ## <a name="getting-started"></a>開始使用
-大部分的安全性缺口出現於當攻擊者藉由竊取使用者的身分識別來取得環境的存取權時。 攻擊者變得越來越擅於利用協力廠商缺考，以及使用複雜的網路釣魚攻擊。 一旦攻擊者取得更低權限的使用者帳戶的存取權，他們即可透過橫向移動，相當容易地存取重要的公司資源。 因此務必保護所有身分識別，當身分識別遭到入侵時，請主動防止遭入侵的身分識別被濫用。
 
-探索遭入侵的身分識別並不容易。 幸運的是，Identity Protection 有所幫助：Identity Protection 會使用調適性機器學習演算法和啟發學習法來偵測異常行為以及可能表示身分識別已遭入侵的風險事件。
+Microsoft 保護雲端身分識別已經超過十多年。 在您的環境中使用 Azure Active Directory Identity Protection，即可使用與 Microsoft 用來保護身份識別一樣的保護系統。
 
-Identity Protection 會使用此資料來產生報告和警示，讓您調查這些風險事件並採取適當的補救或緩和動作。
+大部分的安全性缺口出現於當攻擊者藉由竊取使用者的身分識別來取得環境的存取權時。 這些年來，攻擊者變得越來越擅於利用協力廠商缺考，以及使用複雜的網路釣魚攻擊。 只要攻擊者取得更低權限的使用者帳戶的存取權，他們即可相對容易地透過橫向移動存取重要的公司資源。
 
-但是，Azure Active Directory Identity Protection 不只是監視和報告工具而已。 Identity Protection 會根據風險事件，計算每位使用者的使用者風險層級，讓您設定以風險為基礎的原則來自動保護您組織的身分識別。  除了 Azure Active Directory 與 EMS 所提供的其他條件式存取控制以外，這些以風險為基礎的原則可以自動封鎖或提供調適性補救動作，包括重設密碼以及強制 Multi-Factor Authentication。  
+如此一來，您必須：
 
-#### <a name="explore-identity-protections-capabilities"></a>探索 Identity Protection 的功能
-**偵測風險事件和有風險的帳戶：**  
+- 保護所有的識別身分，不論其權限層級 
 
-* 使用機器學習服務和啟發式規則偵測 6 種風險事件類型
-* 計算使用者風險層級
+- 主動防止遭入侵的身分識別被濫用
+
+探索遭入侵的身分識別並不容易。 Azure Active Directory 使用調適性機器學習運算法和啟發學習法來偵測表示可能遭入侵身份識別的異常與可疑事件。 Identity Protection 會使用此資料來產生報告和警示，讓您評估偵測到的問題並採取適當的緩和或補救動作。
+
+Azure Active Directory Identity Protection 不只是監視和報告工具而已。 若要保護您組織的身分識別，您可以設定以風險為基礎的原則，當達到指定風險層級時自動回應偵測到的問題。 除了 Azure Active Directory 與 EMS 所提供的其他條件式存取控制以外，這些的原則可以自動封鎖或起始調適性補救動作，包括重設密碼以及強制 Multi-Factor Authentication。
+
+
+#### <a name="identity-protection-capabilities"></a>Identity Protection 功能
+
+**偵測弱點和風險帳戶：**  
+
 * 提供自訂建議，藉由反白顯示弱點來改善整體安全性狀態
+* 計算登入風險層級
+* 計算使用者風險層級
+
 
 **調查風險事件：**
 
@@ -53,23 +70,17 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 * 此原則會封鎖或保護有風險的使用者帳戶
 * 此原則會要求使用者註冊以便進行 Multi-Factor Authentication
 
-## <a name="detection-and-risk"></a>偵測和風險
+## <a name="detection"></a>偵測
+
+### <a name="vulnerabilities"></a>弱點
+
+Azure Active Directory Identity Protection 會分析您的組態，並偵測可能影響您使用者身份識別的弱點。 如需詳細資訊，請參閱 [Azure Active Directory Identity Protection 偵測到的弱點](active-directory-identityprotection-vulnerabilities.md)。 
+
 ### <a name="risk-events"></a>風險事件
-由 Identity Protection 標示為可疑的風險事件，表示身分識別可能已被入侵。 如需風險事件的完整清單，請參閱 [Azure Active Directory 偵測到的風險事件類型](active-directory-identityprotection-risk-events-types.md)。
 
-### <a name="risk-level"></a>風險層級
-風險事件的風險層級可表示風險事件的嚴重性 (高、中或低)。 風險層級可協助 Identity Protection 使用者排定為了降低組織風險而必須採取之行動的優先順序。 風險事件的嚴重性代表身分識別入侵 (結合它通常引發的雜訊) 預測的訊號強度。
+Azure Active Directory 使用調適性機器學習運算法和啟發學習法來偵測與您使用者身份識別有關的可疑動作。 系統會針對每個偵測到的可疑動作建立記錄。 這些記錄又名風險事件。  
+如需詳細資訊，請參閱 [Azure Active Directory風險事件](active-directory-identity-protection-risk-events.md)。 
 
-* **高**：高信賴度和高嚴重性風險事件。 這些事件強烈指出使用者的身分識別已遭入侵，而且應該立即補救任何受影響的使用者帳戶。
-* **中**：高嚴重性，但信賴度較低的風險事件，或反之亦然。 這些事件具有潛在風險，而且應該補救任何受影響的使用者帳戶。
-* **低**：低信賴度和低嚴重性風險事件。 此事件可能不需要採取立即行動，但與其他風險事件結合時，可能強烈指出身分識別遭到入侵。
-
-![風險層級](./media/active-directory-identityprotection/01.png "風險層級")
-
-風險事件會以 **即時**方式，或在風險事件發生後的後處理中 (離線) 識別。 目前 Identity Protection 中的大部分風險事件均為離線計算，並且會在 2-4 小時內顯示於 Identity Protection。
-進行即時評估時，即時風險事件會在 5-10 分鐘內顯示於 Identity Protection 主控台。
-
-目前有數個舊版用戶端不支援即時風險事件偵測與防護。 因此，無法即時偵測或預防從這些用戶端登入。
 
 ## <a name="investigation"></a>調查
 您通常會從 Identity Protection 儀表板開始使用 Identity Protection。
@@ -87,10 +98,109 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 下列各節提供更多詳細資料以及調查的相關步驟。  
 
-## <a name="what-is-a-user-risk-level"></a>什麼是使用者風險層級？
+
+## <a name="risky-sign-ins"></a>有風險的登入
+
+Aure Active Directory 會以即時方式偵測某些[風險事件類型](active-directory-identity-protection-risk-events.md#risk-event-types)。 在使用者登入期間偵測到的所有即時風險事件，構成了名為*有風險的登入*的邏輯概念。 有風險的登入表示可能不是由使用者帳戶合法擁有者執行的嘗試登入。 當使用者登出時，有風險的登入的生命週期即結束。
+
+### <a name="sign-in-risk-level"></a>登入風險層級
+
+登入風險層級指的是，不是由使用者帳戶合法擁有者執行的登入的可能性指示 (高、中或低)。 
+
+### <a name="mitigating-sign-in-risk-events"></a>緩和登入風險事件
+
+緩和動作可限制攻擊者利用遭到入侵的身分識別或裝置的能力，但不需將身分識別或裝置還原至安全的狀態。 緩和並未解決先前與身分識別或裝置相關聯的登入風險事件。
+
+若要自動降低有風險的登入，您可以設定登入風險安全性原則。 使用這些原則時，請考慮使用者或登入的風險層級，以封鎖有風險的登入或要求使用者執行 Multi-Factor Authentication。 這些動作可防止攻擊者利用遭竊的身分識別而造成損害，而且會讓您有一些時間可保護身分識別。
+
+### <a name="sign-in-risk-security-policy"></a>登入風險安全性原則
+登入風險原則是條件式存取原則，可評估特定登入的風險，並根據預先定義的條件和規則來套用緩和動作。
+
+![登入風險原則](./media/active-directory-identityprotection/1014.png "登入風險原則")
+
+Azure AD Identity Protection 可讓您執行下列作業，以協助您管理有風險登入的緩和動作：
+
+* 設定要套用原則的使用者和群組：
+
+    ![登入風險原則](./media/active-directory-identityprotection/1015.png "登入風險原則")
+* 設定可觸發原則的登入風險層級臨界值 (低、中或高)：
+
+    ![登入風險原則](./media/active-directory-identityprotection/1016.png "登入風險原則")
+* 設定原則觸發時要強制執行的控制項︰  
+
+    ![登入風險原則](./media/active-directory-identityprotection/1017.png "登入風險原則")
+* 切換原則的狀態：
+
+    ![MFA 註冊](./media/active-directory-identityprotection/403.png "MFA 註冊")
+* 在啟用變更前檢閱和評估其影響：
+
+    ![登入風險原則](./media/active-directory-identityprotection/1018.png "登入風險原則")
+
+#### <a name="what-you-need-to-know"></a>您所需了解的事情
+您可以設定登入風險安全性原則以要求 Multi-Factor Authentication︰
+
+![登入風險原則](./media/active-directory-identityprotection/1017.png "登入風險原則")
+
+不過，基於安全性理由，這項設定只適用於已註冊 Multi-Factor Authentication 的使用者。 如果尚未註冊 Multi-Factor Authentication 的使用者很滿意要求 Multi-Factor Authentication 的條件，則會封鎖該使用者。
+
+最佳作法是，如果您想對有風險的登入要求 Multi-Factor Authentication，您應該︰
+
+1. 為受影響的使用者啟用 [Multi-Factor Authentication 註冊原則](#multi-factor-authentication-registration-policy)。
+2. 要求受影響的使用者登入沒有危險的工作階段以執行 MFA 註冊
+
+完成這些步驟可確保有風險的登入一定需要 Multi-Factor Authentication。
+
+#### <a name="best-practices"></a>最佳作法
+選擇 [高]  臨界值可減少觸發原則的次數，並將對使用者的影響降至最低。  
+
+不過，它會從原則中排除標示 [低] 和 [中] 度風險的登入，而無法阻止攻擊者利用遭到入侵的身分識別。
+
+設定原則時，
+
+* 排除不會 / 不能有 Multi-Factor Authentication 的使用者
+* 在啟用原則並不實用 (例如無法存取技術服務人員) 的地區設定中排除使用者
+* 排除可能會產生大量誤判的使用者 (開發人員、安全性分析人員)
+* 在原則推出初期，或如果您必須盡量減少使用者所看到的挑戰，請使用 [高]  臨界值。
+* 如果您的組織需要更高的安全性，請使用 [低]  臨界值。 選取 [低]  臨界值會帶來額外的使用者登入挑戰，並提高安全性。
+
+大部分組織的建議預設值是設定 [中]  臨界值的規則，以取得可用性與安全性之間的平衡。
+
+登入風險原則：
+
+* 會套用至所有使用新式驗證的瀏覽器流量和登入。
+* 不會套用至使用較舊安全性通訊協定的應用程式，其做法是停用位於同盟 IDP (例如 ADFS) 的 WS-Trust 端點。
+
+Identity Protection 主控台中的 [風險事件]  頁面會列出所有事件：
+
+* 此原則已套用至
+* 您可以檢閱活動並判斷動作是否適當
+
+如需相關的使用者經驗概觀，請參閱︰
+
+* [有風險的登入復原](active-directory-identityprotection-flows.md#risky-sign-in-recovery)
+* [已封鎖有風險的登入](active-directory-identityprotection-flows.md#risky-sign-in-blocked)  
+* [使用 Azure AD Identity Protection 時的登入體驗](active-directory-identityprotection-flows.md)  
+
+**開啟相關的組態對話方塊**：
+
+- 在 [Azure AD Identity Protection] 刀鋒視窗的 [設定] 區段中，按一下 [登入風險原則]。
+
+    ![使用者風險原則](./media/active-directory-identityprotection/1014.png "使用者風險原則")
+
+
+
+## <a name="users-flagged-for-risk"></a>標示有風險的使用者
+
+由 Azure Active Directory 針對某個使用者所偵測到的所有[風險事件](active-directory-identity-protection-risk-events.md)，構成了名為*標示有風險的使用者*的邏輯概念。 *標示有風險的使用者*或*有風險的使用者*表示可能遭到入侵的使用者帳戶。   
+
+![標示有風險的使用者](./media/active-directory-identityprotection/1200.png)
+
+
+### <a name="user-risk-level"></a>使用者風險層級
+
 使用者風險層級可指出使用者的身分識別遭到入侵的可能性 (高、中或低)。 它會根據與使用者的身分識別相關聯的使用者風險事件進行計算。
 
-風險事件的狀態為 [作用中] 或 [已關閉]。 只有 [作用中]  的風險事件會納入使用者風險計算。
+風險事件的狀態為 [作用中] 或 [已關閉]。 只有 [作用中] 的風險事件會納入使用者風險層級計算。
 
 使用下列輸入來計算使用者風險層級：
 
@@ -98,11 +208,12 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 * 這些事件的風險層級
 * 是否已採取任何補救動作
 
-![使用者風險](./media/active-directory-identityprotection/1001.png "使用者風險")
+![使用者風險](./media/active-directory-identityprotection/1031.png "使用者風險")
 
 您可以使用使用者風險層級來建立條件式存取原則，以阻止有風險的使用者進行登入，或迫使他們安全地變更其密碼。
 
-## <a name="closing-risk-events-manually"></a>手動關閉風險事件
+### <a name="closing-risk-events-manually"></a>手動關閉風險事件
+
 在大部分情況下，您將採取補救動作 (例如重設安全的密碼) 來自動關閉風險事件。 但是，這不一定都可行。  
 比方說，在下列情況下即是如此︰
 
@@ -138,7 +249,8 @@ Azure Active Directory Identity Protection 也提供按一下即可為使用者�
 
 當您按一下 [關閉所有事件] ，所有事件都已關閉，且受影響的使用者不再有風險。
 
-## <a name="remediating-user-risk-events"></a>補救使用者風險事件
+### <a name="remediating-user-risk-events"></a>補救使用者風險事件
+
 補救就是用來保護先前疑似或已知遭到入侵的身分識別或裝置的動作。 補救動作可讓身分識別或裝置還原到安全的狀態，以及解決先前與身分識別或裝置相關聯的風險事件。
 
 若要補救使用者風險事件，您可以：
@@ -147,12 +259,12 @@ Azure Active Directory Identity Protection 也提供按一下即可為使用者�
 * 設定使用者風險安全性原則，以自動緩和或補救使用者風險事件
 * 重新製作受感染裝置的映像  
 
-### <a name="manual-secure-password-reset"></a>手動重設安全密碼
+#### <a name="manual-secure-password-reset"></a>手動重設安全密碼
 重設安全的密碼是許多風險事件的有效補救動作，一旦執行，就會自動關閉這些風險事件並重新計算使用者風險層級。 您可以使用 Identity Protection 儀表板，為有風險的使用者起始密碼重設。
 
 相關的對話方塊提供兩個不同的方法，可以將密碼重設為︰
 
-**重設密碼** - 如果使用者已註冊 Multi-Factor Authentication，選取 [要求使用者重設密碼] 可讓使用者自行復原。 在使用者下次登入期間，使用者必須成功解決 Multi-Factor Authentication 挑戰，且被迫變更密碼。 如果使用者帳戶尚未註冊 Multi-Factor Authentication，則無法使用此選項。
+**重設密碼** - 選取 [要求使用者重設密碼] 以允許使用者執行自助復原 (若該使用者已針對多重要素驗證註冊)。 在使用者下次登入期間，使用者必須成功解決 Multi-Factor Authentication 挑戰，且被迫變更密碼。 如果使用者帳戶尚未註冊 Multi-Factor Authentication，則無法使用此選項。
 
 **暫時密碼** - 選取 [產生暫時密碼]，立即讓現有的密碼失效，並且為使用者建立新的暫時密碼。 將新的暫時密碼傳送到使用者的備用電子郵件地址，或傳送給使用者的經理。 因為此密碼是暫時的，所以會提示使用者在登入時變更密碼。
 
@@ -170,7 +282,7 @@ Azure Active Directory Identity Protection 也提供按一下即可為使用者�
 
     ![手動密碼重設](./media/active-directory-identityprotection/1008.png "手動密碼重設")
 
-## <a name="user-risk-security-policy"></a>使用者風險安全性原則
+### <a name="user-risk-security-policy"></a>使用者風險安全性原則
 使用者風險安全性原則是條件式存取原則，可評估特定使用者的風險層級，並根據預先定義的條件和規則來套用補救和緩和動作。
 
 ![使用者風險原則](./media/active-directory-identityprotection/1009.png "使用者風險原則")
@@ -212,11 +324,11 @@ Azure AD Identity Protection 可讓您執行下列作業，以協助您管理標
 
 **開啟相關的組態對話方塊**：
 
-1. 在 [Azure AD Identity Protection] 刀鋒視窗的 [設定] 區段中，按一下 [使用者風險原則]。
+- 在 [Azure AD Identity Protection] 刀鋒視窗的 [設定] 區段中，按一下 [使用者風險原則]。
 
     ![使用者風險原則](./media/active-directory-identityprotection/1009.png "使用者風險原則")
 
-## <a name="mitigating-user-risk-events"></a>緩和使用者風險事件
+### <a name="mitigating-user-risk-events"></a>緩和使用者風險事件
 系統管理員可以設定使用者風險安全性原則，以根據風險層級防止使用者登入。
 
 封鎖登入：
@@ -224,87 +336,7 @@ Azure AD Identity Protection 可讓您執行下列作業，以協助您管理標
 * 避免對受影響的使用者產生新的使用者風險事件
 * 可讓系統管理員手動地補救會影響使用者身分識別的風險事件，並將它還原到安全的狀態
 
-## <a name="what-is-a-sign-in-risk-level"></a>登入風險層級為何？
-登入風險層級指出特定登入 (其他人正嘗試使用使用者的身分識別進行驗證) 的可能性 (高、中或低)。 登入風險層級是在登入時間評估，並即時針對該特定登入考量偵測到的風險事件和標記。
 
-## <a name="mitigating-sign-in-risk-events"></a>緩和登入風險事件
-緩和動作可限制攻擊者利用遭到入侵的身分識別或裝置的能力，但不需將身分識別或裝置還原至安全的狀態。 緩和並未解決先前與身分識別或裝置相關聯的登入風險事件。
-
-您可以在 Azure AD Identity Protection 中使用條件式存取，以自動緩和登入風險事件。 使用這些原則時，請考慮使用者或登入的風險層級，以封鎖有風險的登入或要求使用者執行 Multi-Factor Authentication。 這些動作可防止攻擊者利用遭竊的身分識別而造成損害，而且會讓您有一些時間可保護身分識別。
-
-## <a name="sign-in-risk-security-policy"></a>登入風險安全性原則
-登入風險原則是條件式存取原則，可評估特定登入的風險，並根據預先定義的條件和規則來套用緩和動作。
-
-![登入風險原則](./media/active-directory-identityprotection/1014.png "登入風險原則")
-
-Azure AD Identity Protection 可讓您執行下列作業，以協助您管理有風險登入的緩和動作：
-
-* 設定要套用原則的使用者和群組：
-
-    ![登入風險原則](./media/active-directory-identityprotection/1015.png "登入風險原則")
-* 設定可觸發原則的登入風險層級臨界值 (低、中或高)：
-
-    ![登入風險原則](./media/active-directory-identityprotection/1016.png "登入風險原則")
-* 設定原則觸發時要強制執行的控制項︰  
-
-    ![登入風險原則](./media/active-directory-identityprotection/1017.png "登入風險原則")
-* 切換原則的狀態：
-
-    ![MFA 註冊](./media/active-directory-identityprotection/403.png "MFA 註冊")
-* 在啟用變更前檢閱和評估其影響：
-
-    ![登入風險原則](./media/active-directory-identityprotection/1018.png "登入風險原則")
-
-### <a name="what-you-need-to-know"></a>您所需了解的事情
-您可以設定登入風險安全性原則以要求 Multi-Factor Authentication︰
-
-![登入風險原則](./media/active-directory-identityprotection/1017.png "登入風險原則")
-
-不過，基於安全性理由，這項設定只適用於已註冊 Multi-Factor Authentication 的使用者。 如果尚未註冊 Multi-Factor Authentication 的使用者很滿意要求 Multi-Factor Authentication 的條件，則會封鎖該使用者。
-
-最佳作法是，如果您想對有風險的登入要求 Multi-Factor Authentication，您應該︰
-
-1. 為受影響的使用者啟用 [Multi-Factor Authentication 註冊原則](#multi-factor-authentication-registration-policy)。
-2. 要求受影響的使用者登入沒有危險的工作階段以執行 MFA 註冊
-
-完成這些步驟可確保有風險的登入一定需要 Multi-Factor Authentication。
-
-### <a name="best-practices"></a>最佳作法
-選擇 [高]  臨界值可減少觸發原則的次數，並將對使用者的影響降至最低。  
-
-不過，它會從原則中排除標示 [低] 和 [中] 度風險的登入，而無法阻止攻擊者利用遭到入侵的身分識別。
-
-設定原則時，
-
-* 排除不會 / 不能有 Multi-Factor Authentication 的使用者
-* 在啟用原則並不實用 (例如無法存取技術服務人員) 的地區設定中排除使用者
-* 排除可能會產生大量誤判的使用者 (開發人員、安全性分析人員)
-* 在原則推出初期，或如果您必須盡量減少使用者所看到的挑戰，請使用 [高]  臨界值。
-* 如果您的組織需要更高的安全性，請使用 [低]  臨界值。 選取 [低]  臨界值會帶來額外的使用者登入挑戰，並提高安全性。
-
-大部分組織的建議預設值是設定 [中]  臨界值的規則，以取得可用性與安全性之間的平衡。
-
-登入風險原則：
-
-* 會套用至所有使用新式驗證的瀏覽器流量和登入。
-* 不會套用至使用較舊安全性通訊協定的應用程式，其做法是停用位於同盟 IDP (例如 ADFS) 的 WS-Trust 端點。
-
-Identity Protection 主控台中的 [風險事件]  頁面會列出所有事件：
-
-* 此原則已套用至
-* 您可以檢閱活動並判斷動作是否適當
-
-如需相關的使用者經驗概觀，請參閱︰
-
-* [有風險的登入復原](active-directory-identityprotection-flows.md#risky-sign-in-recovery)
-* [已封鎖有風險的登入](active-directory-identityprotection-flows.md#risky-sign-in-blocked)  
-* [使用 Azure AD Identity Protection 時的登入體驗](active-directory-identityprotection-flows.md)  
-
-**開啟相關的組態對話方塊**：
-
-1. 在 [Azure AD Identity Protection] 刀鋒視窗的 [設定] 區段中，按一下 [登入風險原則]。
-
-    ![使用者風險原則](./media/active-directory-identityprotection/1014.png "使用者風險原則")
 
 ## <a name="multi-factor-authentication-registration-policy"></a>Multi-Factor Authentication 註冊原則
 Azure Multi-Factor Authentication 是除了使用使用者名稱與密碼之外，需要再利用其他方法驗證身份的驗證方法。 它可以為使用者登入和交易提供第二層安全性。  
@@ -339,24 +371,33 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
 
 **開啟相關的組態對話方塊**：
 
-1. 在 [Azure AD Identity Protection] 刀鋒視窗的 [設定] 區段中，按一下 [Multi-Factor Authentication 註冊]。
+- 在 [Azure AD Identity Protection] 刀鋒視窗的 [設定] 區段中，按一下 [Multi-Factor Authentication 註冊]。
 
     ![MFA 原則](./media/active-directory-identityprotection/1019.png "MFA 原則")
 
 ## <a name="next-steps"></a>後續步驟
 * [第 9 頻道：Azure AD 和身分識別展示：Identity Protection 預覽](https://channel9.msdn.com/Series/Azure-AD-Identity/Azure-AD-and-Identity-Show-Identity-Protection-Preview)
-* [Azure Active Directory 偵測到的風險事件類型](active-directory-identityprotection-risk-events-types.md)
-* [Azure Active Directory Identity Protection 偵測到的弱點](active-directory-identityprotection-vulnerabilities.md)
-* [Azure Active Directory Identity Protection 通知](active-directory-identityprotection-notifications.md)
-* [Azure Active Directory Identity Protection 腳本](active-directory-identityprotection-playbook.md)
-* [Azure Active Directory Identity Protection 詞彙](active-directory-identityprotection-glossary.md)
-* [使用 Azure AD Identity Protection 時的登入體驗](active-directory-identityprotection-flows.md)
+
 * [啟用 Azure Active Directory Identity Protection](active-directory-identityprotection-enable.md)
+
+* [Azure Active Directory Identity Protection 偵測到的弱點](active-directory-identityprotection-vulnerabilities.md)
+
+* [Azure Active Directory 風險事件](active-directory-identity-protection-risk-events.md)
+
+* [Azure Active Directory Identity Protection 通知](active-directory-identityprotection-notifications.md)
+
+* [Azure Active Directory Identity Protection 腳本](active-directory-identityprotection-playbook.md)
+
+* [Azure Active Directory Identity Protection 詞彙](active-directory-identityprotection-glossary.md)
+
+* [使用 Azure AD Identity Protection 時的登入體驗](active-directory-identityprotection-flows.md)
+
 * [Azure Active Directory Identity Protection - 如何解鎖使用者](active-directory-identityprotection-unblock-howto.md)
+
 * [開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

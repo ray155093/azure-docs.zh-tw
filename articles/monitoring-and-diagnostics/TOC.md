@@ -23,7 +23,7 @@
 ### [自動調整的最佳做法](../monitoring-and-diagnostics/insights-autoscale-best-practices.md)
 ### [自動調整規模的常用計量](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md)
 ### [使用 Resource Manager 範本自動調整 VM 擴展集](../monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets.md)
-### [在虛擬機器擴展集中自動調整機器](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md)
+### [在虛擬機器擴展集中自動調整機器](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [設定自動調整規模的 Webhook 與電子郵件通知](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)
 ## 使用活動記錄
 ### [檢視活動記錄中的事件](../monitoring-and-diagnostics/insights-debugging-with-events.md)
@@ -38,17 +38,22 @@
 ## 使用 REST API
 ### [逐步解說如何使用 REST API](../monitoring-and-diagnostics/monitoring-rest-api-walkthrough.md)
 
-
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.insights/v1.0.12/azurerm.insights?redirectedfrom=msdn#40v=azure.200#41)
 ## [.NET](https://msdn.microsoft.com/library/azure/dn802153)
 ## [REST](/rest/api/monitor/)
+## [Azure 診斷結構描述](../monitoring-and-diagnostics/azure-diagnostics-schema.md)
+### [診斷結構描述 1.0](../monitoring-and-diagnostics/azure-diagnostics-schema-1dot0.md)
+### [診斷結構描述 1.2](../monitoring-and-diagnostics/azure-diagnostics-schema-1dot2.md)
+### [診斷結構描述 1.3 到 1.5](../monitoring-and-diagnostics/azure-diagnostics-schema-1dot3-to-1dot5.md)
+
 
 # 資源
 ## [PowerShell 範例](../monitoring-and-diagnostics/insights-powershell-samples.md)
-## [Azure CLI 2.0 (Preview) 範例](../monitoring-and-diagnostics/insights-cli-samples.md)
+## [Azure CLI 1.0 範例](../monitoring-and-diagnostics/insights-cli-samples.md)
 ## [支援的計量清單](../monitoring-and-diagnostics/monitoring-supported-metrics.md)
 
-<!--HONumber=Jan17_HO3-->
+
+<!--HONumber=Feb17_HO2-->
 
 

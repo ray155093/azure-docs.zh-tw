@@ -1,6 +1,6 @@
 ---
-title: Deploy Azure Container Service cluster with Kubernetes | Microsoft Docs
-description: Deploy an Azure Container Service cluster with Kubernetes
+title: "在 Azure 中快速開始 Kubernetes 叢集 | Microsoft Docs"
+description: "部署並開始使用 Azure Container Service 的 Kubernetes 叢集"
 services: container-service
 documentationcenter: 
 author: anhowe
@@ -17,42 +17,42 @@ ms.workload: na
 ms.date: 11/15/2016
 ms.author: anhowe
 translationtype: Human Translation
-ms.sourcegitcommit: e25d1eed2983eb831d1c9976c71912db56bb4cf9
-ms.openlocfilehash: ea9832bf69904cfd9d9952afafbf837a919e3453
+ms.sourcegitcommit: 7ed8fb75f057d5a7cfde5436e72e8fec52d07156
+ms.openlocfilehash: f3b2fc301bf7083f192c0ec872c4e032472eef97
 
 
 ---
 
-# <a name="microsoft-azure-container-service-engine---kubernetes-walkthrough"></a>Microsoft Azure Container Service Engine - Kubernetes Walkthrough
+# <a name="microsoft-azure-container-service-engine---kubernetes-walkthrough"></a>Microsoft Azure Container Service 引擎 - Kubernetes 逐步解說
 
-## <a name="prerequisites"></a>Prerequisites
-This walkthrough assumes that you have the ['azure-cli' command line tool](https://github.com/azure/azure-cli#installation) installed and have created [SSH public key](https://docs.microsoft.com/en-us/azure/virtual-machines/virtual-machines-linux-mac-create-ssh-keys) at `~/.ssh/id_rsa.pub`.
+## <a name="prerequisites"></a>必要條件
+本逐步解說假設您已安裝 ['azure-cli' 命令列工具 (英文)](https://github.com/azure/azure-cli#installation) 並已在 `~/.ssh/id_rsa.pub` 建立 [SSH 公開金鑰](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)。
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 
-The instructions below will create a Kubernetes cluster with one master and two worker nodes.
-The master serves the Kubernetes REST API.  The worker nodes are grouped in an Azure availability set and run your containers. All VMs are in the same private VNET and are fully accessible to each other.
+下列指示會建立一個 Kubernetes 叢集搭配一個主要節點及兩個背景工作節點。
+主要節點供 Kubernetes REST API 使用。  背景工作節點則是以群組方式存在於 Azure 可用性設定組並執行您的容器。 所有 VM 都位於相同的私人 VNET，可完全存取彼此。
 
 > [!NOTE]
-> Kubernetes support in Azure Container Service is currently in preview.
+> Azure Container Service 中的 Kubernetes 支援目前為預覽狀態。
 >
 
-The following image shows the architecture of a container service cluster with one master, and two agents:
+下圖顯示容器服務叢集搭配一個主要節點及兩個代理程式的架構：
 
 ![Image of Kubernetes cluster on azure](media/container-service-kubernetes-walkthrough/kubernetes.png)
 
-## <a name="creating-your-kubernetes-cluster"></a>Creating your Kubernetes cluster
+## <a name="creating-your-kubernetes-cluster"></a>建立 Kubernetes 叢集
 
-### <a name="create-a-resource-group"></a>Create a resource group
-To create your cluster, you first need to create a resource group in a specific location, you can do this with:
+### <a name="create-a-resource-group"></a>建立資源群組
+若要建立叢集，您必須先在特定位置中建立資源群組，您可以透過下列命令來完成此動作：
 ```console
 RESOURCE_GROUP=my-resource-group
 LOCATION=westus
 az group create --name=$RESOURCE_GROUP --location=$LOCATION
 ```
 
-### <a name="create-a-cluster"></a>Create a cluster
-Once you have a resource group, you can create a cluster in that group with:
+### <a name="create-a-cluster"></a>建立叢集
+一旦有資源群組之後，您就可以使用下列命令在該群組中建立叢集：
 ```console
 DNS_PREFIX=some-unique-value
 SERVICE_NAME=any-acs-service-name
@@ -60,98 +60,98 @@ az acs create --orchestrator-type=kubernetes --resource-group $RESOURCE_GROUP --
 ```
 
 > [!NOTE]
-> azure-cli will upload `~/.ssh/id_rsa.pub` to the Linux VMs.
+> azure-cli 會將 `~/.ssh/id_rsa.pub` 上傳到 Linux VM。
 >
 
-Once that command is complete, you should have a working Kubernetes cluster.
+該命令完成之後，您應該會有正常運作的 Kubernetes 叢集。
 
-### <a name="configure-kubectl"></a>Configure kubectl
-`kubectl` is the Kubernetes command line client.  If you don't already have it installed, you can install it with:
+### <a name="configure-kubectl"></a>設定 kubectl
+`kubectl` 是 Kubernetes 命令列用戶端。  如果您尚未安裝它，可以使用下列命令安裝：
 
 ```console
 az acs kubernetes install-cli
 ```
 
-Once `kubectl` is installed, running the below command will download the master kubernetes cluster configuration to the ~/.kube/config file
+一旦安裝了 `kubectl`，執行下列命令會將主要 kubernetes 叢集組態下載到 ~/.kube/config 檔案中
 ```console
 az acs kubernetes get-credentials --resource-group=$RESOURCE_GROUP --name=$SERVICE_NAME
 ```
 
-At this point you should be ready to access your cluster from your machine, try running:
+此時您應該已準備好從您的電腦存取叢集，請嘗試執行：
 ```console
 kubectl get nodes
 ```
 
-And validate that you can see the machines in your cluster.
+並確定您可以在叢集中看到電腦。
 
-## <a name="create-your-first-kubernetes-service"></a>Create your First Kubernetes Service
+## <a name="create-your-first-kubernetes-service"></a>建立第一個 Kubernetes 服務
 
-After completing this walkthrough, you will know how to:
- * deploy a Docker application and expose to the world,
- * use `kubectl exec` to run commands in a container, 
- * and access the Kubernetes dashboard.
+完成此逐步解說之後，您將了解如何︰
+ * 部署 Docker 應用程式並對外公開、
+ * 使用 `kubectl exec` 在容器中執行命令， 
+ * 以及存取 Kubernetes 儀表板。
 
-### <a name="start-a-simple-container"></a>Start a simple container
-You can run a simple container (in this case the `nginx` web server) by running:
+### <a name="start-a-simple-container"></a>啟動簡單容器
+您可以執行下列命令來執行簡單容器 (在此案例中為 `nginx` Web 伺服器)：
 
 ```console
 kubectl run nginx --image nginx
 ```
 
-This command starts the nginx Docker container in a pod on one of the nodes.
+這會在其中一個節點上的 pod 中啟動 nginx Docker 容器。
 
-You can run
+您可以執行
 ```console
 kubectl get pods
 ```
 
-to see the running container.
+來查看執行中的容器。
 
-### <a name="expose-the-service-to-the-world"></a>Expose the service to the world
-To expose the service to the world.  You create a Kubernetes `Service` of type `LoadBalancer`:
+### <a name="expose-the-service-to-the-world"></a>對外公開服務
+若要對外公開服務。  您可以建立 `LoadBalancer` 類型的 Kubernetes `Service`：
 
 ```console
 kubectl expose deployments nginx --port=80 --type=LoadBalancer
 ```
 
-This will now cause Kubernetes to create an Azure Load Balancer with a public IP. The change takes about 2-3 minutes to propagate to the load balancer.
+現在，這將會使 Kubernetes 以公用 IP 建立 Azure Load Balancer。 變更需要 2-3 分鐘才能傳遍負載平衡器。
 
-To watch the service change from "pending" to an external ip type:
+若要監看服務從 "pending" 變更為外部 IP，請輸入：
 ```console
 watch 'kubectl get svc'
 ```
 
-  ![Image of watching the transition from pending to external ip](media/container-service-kubernetes-walkthrough/kubernetes-nginx3.png)
+  ![監看從 pending 轉換為外部 ip 的影像](media/container-service-kubernetes-walkthrough/kubernetes-nginx3.png)
 
-Once you see the external IP, you can browse to it in your browser:
+一旦看到外部 IP 後，您就可以在瀏覽器中瀏覽它︰
 
   ![Image of browsing to nginx](media/container-service-kubernetes-walkthrough/kubernetes-nginx4.png)  
 
 
-### <a name="browse-the-kubernetes-ui"></a>Browse the Kubernetes UI
-To see the Kubernetes web interface, you can use:
+### <a name="browse-the-kubernetes-ui"></a>瀏覽 Kubernetes UI
+若要查看 Kubernetes Web 介面，您可以使用：
 
 ```console
 kubectl proxy
 ```
-This runs a simple authenticated proxy on localhost, which you can use to view the [kubernetes ui](http://localhost:8001/ui)
+這會在 localhost 上執行經過簡單驗證的 Proxy，可讓您用來檢視 [Kubernetes UI](http://localhost:8001/ui)
 
-![Image of Kubernetes dashboard](media/container-service-kubernetes-walkthrough/kubernetes-dashboard.png)
+![Kubernetes 儀表板的影像](media/container-service-kubernetes-walkthrough/kubernetes-dashboard.png)
 
-### <a name="remote-sessions-inside-your-containers"></a>Remote sessions inside your containers
-Kubernetes allows you to run commands in a remote Docker container running in your cluster.
+### <a name="remote-sessions-inside-your-containers"></a>容器中的遠端工作階段
+Kubernetes 可讓您在叢集中執行的遠端 Docker 容器中執行命令。
 
 ```console
 # Get the name of your nginx pod
 kubectl get pods
 ```
 
-Using your pod name, you can run a remote command on your pod.  For example:
+使用您的 pod 名稱，您可以在 pod 上執行遠端命令。  例如：
 ```console
 kubectl exec nginx-701339712-retbj date
 ```
 
-You can also get a fully interactive session using the `-it` flags:
+您也可以使用 `-it` 旗標取得完整的互動式工作階段：
 
 ```console
 kubectl exec nginx-701339712-retbj -it bash
@@ -160,14 +160,14 @@ kubectl exec nginx-701339712-retbj -it bash
 ![Image of curl to podIP](media/container-service-kubernetes-walkthrough/kubernetes-remote.png)
 
 
-## <a name="details"></a>Details
-### <a name="installing-the-kubectl-configuration-file"></a>Installing the kubectl configuration file
-When you ran `az acs kubernetes get-credentials`, the kube config file for remote access was stored under the home directory ~/.kube/config.
+## <a name="details"></a>詳細資料
+### <a name="installing-the-kubectl-configuration-file"></a>安裝 kubectl 組態檔
+當您執行 `az acs kubernetes get-credentials` 之後，用於遠端存取的 kube 組態檔會儲存於主目錄 ~/.kube/config 下。
 
-If you ever need to download it directly, you can use `ssh` on Linux or OS X, or `Putty` on windows:
+如果您需要直接下載它，您可以使用 `ssh` (Linux 或 OS X) 或是 `Putty` (Windows)：
 
 #### <a name="windows"></a>Windows
-To use pscp from [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).  Ensure you have your certificate exposed through [pageant](https://github.com/Azure/acs-engine/blob/master/docs/ssh.md#key-management-and-agent-forwarding-with-windows-pageant):
+若要從 [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 使用 pscp。  請確定您已透過 [pageant](https://github.com/Azure/acs-engine/blob/master/docs/ssh.md#key-management-and-agent-forwarding-with-windows-pageant) 公開憑證：
   ```
   # MASTERFQDN is obtained in step1
   pscp azureuser@MASTERFQDN:.kube/config .
@@ -175,28 +175,28 @@ To use pscp from [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/downl
   kubectl get nodes
   ```
 
-#### <a name="os-x-or-linux"></a>OS X or Linux:
+#### <a name="os-x-or-linux"></a>OS X 或 Linux：
   ```
   # MASTERFQDN is obtained in step1
   scp azureuser@MASTERFQDN:.kube/config .
   export KUBECONFIG=`pwd`/config
   kubectl get nodes
   ```
-## <a name="learning-more"></a>Learning More
+## <a name="learning-more"></a>深入了解
 
 ### <a name="azure-container-service"></a>Azure Container Service
 
-1. [Azure Container Service documentation](https://azure.microsoft.com/en-us/documentation/services/container-service/)
-2. [Azure Container Service Open Source Engine](https://github.com/azure/acs-engine)
+1. [Azure Container Service 文件](https://azure.microsoft.com/en-us/documentation/services/container-service/)
+2. [Azure Container Service 開放原始碼引擎](https://github.com/azure/acs-engine)
 
-### <a name="kubernetes-community-documentation"></a>Kubernetes Community Documentation
+### <a name="kubernetes-community-documentation"></a>Kubernetes 社群文件
 
-1. [Kubernetes Bootcamp](https://katacoda.com/embed/kubernetes-bootcamp/1/) - shows you how to deploy, scale, update, and debug containerized applications.
-2. [Kubernetes User Guide](http://kubernetes.io/docs/user-guide/) - provides information on running programs in an existing Kubernetes cluster.
-3. [Kubernetes Examples](https://github.com/kubernetes/kubernetes/tree/master/examples) - provides a number of examples on how to run real applications with Kubernetes.
+1. [Kubernetes 訓練營](https://katacoda.com/embed/kubernetes-bootcamp/1/) - 說明如何部署、調整、更新和偵錯容器化應用程式。
+2. [Kubernetes 使用者指南](http://kubernetes.io/docs/user-guide/) - 提供在現有 Kubernetes 叢集中執行程式的相關資訊。
+3. [Kubernetes 範例](https://github.com/kubernetes/kubernetes/tree/master/examples) - 提供如何使用 Kubernetes 執行實際應用程式的一些範例。
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

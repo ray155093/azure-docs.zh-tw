@@ -1,6 +1,6 @@
 ---
-title: "在您的本機叢集上開始部署和升級應用程式 | Microsoft Docs"
-description: "設定本機 Service Fabric 叢集、將現有的應用程式部署至該叢集，然後升級該應用程式。"
+title: "在本機部署和升級 Azure 微服務 | Microsoft Docs"
+description: "了解如何設定本機 Service Fabric 叢集、將現有的應用程式部署至該叢集，然後升級該應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 12/14/2016
 ms.author: ryanwi;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: efe9845280de3bcd882a7c879b53576600aae0a7
-ms.openlocfilehash: 1bc418f3cadfc83fbec0f2e2c508c77d97b84285
+ms.sourcegitcommit: eddca02c4fba88aee667216568beecc76ea65d7c
+ms.openlocfilehash: d1320daaf4b0bd8c1a7b7c8e37fa8b81c4a53e64
 
 
 ---
@@ -29,7 +29,7 @@ Azure Service Fabric SDK 包含完整的本機開發環境，可讓您快速地�
 > 
 
 ## <a name="create-a-local-cluster"></a>建立本機叢集
-Service Fabric 叢集代表一組您可以部署應用程式的硬體資源。 通常，叢集是由任意數量的電腦 (從 5 部到數千部) 所組成。 不過，Service Fabric SDK 包含可在一部電腦上執行的叢集組態。
+Service Fabric 叢集代表一組您可以部署應用程式的硬體資源。 通常，叢集是由任意數量的電腦 (從&5; 部到數千部) 所組成。 不過，Service Fabric SDK 包含可在一部電腦上執行的叢集組態。
 
 請務必了解 Service Fabric 本機叢集不是模擬器。 它會執行在多部電腦的叢集上找到的相同平台程式碼。 唯一的差別在於它會在一部電腦上執行通常分散於五部電腦的平台程序。
 
@@ -189,17 +189,17 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
 4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 只有在您計劃一陣子不使用本機叢集或者需要回收資源時，才將本機叢集移除。
 
-## <a name="one-node-and-five-node-cluster-mode"></a>1 個節點和 5 個節點叢集模式
-開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼和偵錯。 為了協助最佳化這個程序，本機叢集可以用兩種模式執行︰1 個節點或 5 節點。 這兩個叢集模式各有優點。 5 個節點叢集模式可讓您使用實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。 1 個節點叢集模式已最佳化，可進行服務的快速部署和註冊，進而協助您使用 Service Fabric 執行階段快速驗證程式碼。
+## <a name="one-node-and-five-node-cluster-mode"></a>1 個節點和&5; 個節點叢集模式
+開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼和偵錯。 為了協助最佳化這個程序，本機叢集可以用兩種模式執行︰1 個節點或&5; 節點。 這兩個叢集模式各有優點。 5 個節點叢集模式可讓您使用實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。 1 個節點叢集模式已最佳化，可進行服務的快速部署和註冊，進而協助您使用 Service Fabric 執行階段快速驗證程式碼。
 
-1 個節點叢集或 5 個節點叢集模式皆不是模擬器。 本機開發叢集會執行在多部電腦的叢集上找到的相同平台程式碼。
+1 個節點叢集或&5; 個節點叢集模式皆不是模擬器。 本機開發叢集會執行在多部電腦的叢集上找到的相同平台程式碼。
 
 > [!WARNING]
 > 變更叢集模式時，目前的叢集會從您的系統移除，而建立新的叢集。 當您變更叢集模式時，在叢集中儲存的資料會遭到刪除。
 > 
 > 
 
-若要將模式變更為 1 個節點叢集，請選取 Service Fabric 本機叢集管理員中的**交換器叢集模式**。
+若要將模式變更為&1; 個節點叢集，請選取 Service Fabric 本機叢集管理員中的**交換器叢集模式**。
 
 ![切換叢集模式][switch-cluster-mode]
 
@@ -243,6 +243,6 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

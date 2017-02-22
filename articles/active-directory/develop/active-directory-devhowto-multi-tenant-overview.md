@@ -1,5 +1,5 @@
 ---
-title: "如何建置可讓任何 Azure Active Directory 使用者登入的應用程式 | Microsoft Docs"
+title: "如何建置可讓任何 Azure AD 使用者登入的應用程式 | Microsoft Docs"
 description: "如何建置可讓使用者從任何 Azure Active Directory 租用戶登入之應用程式 (也稱為多租用戶應用程式) 的逐步解說。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/07/2017
+ms.date: 01/23/2017
 ms.author: skwan;bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 0e4eb184e353700f945f0da93aeca2187d710415
-ms.openlocfilehash: cc4893c004939f071287fea068dd754da6561224
+ms.sourcegitcommit: 7d6525f4614c6301f0ddb621b0483da70842a71b
+ms.openlocfilehash: 8daad095d80b244f53b4ee94c48ae9421172f062
 
 
 ---
@@ -39,9 +39,9 @@ ms.openlocfilehash: cc4893c004939f071287fea068dd754da6561224
 讓我們仔細看看每個步驟。 您也可以直接跳到[這份多租用戶範例清單][AAD-Samples-MT]。
 
 ## <a name="update-registration-to-be-multi-tenant"></a>將註冊更新成多租用戶
-Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。  您只要在 [Azure 傳統入口網站][AZURE-classic-portal]中的應用程式註冊設定頁面上，找出 [應用程式是多租用戶] 參數並將其設定為 [是]，即可將您的註冊轉換成多租用戶。
+Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。  您只要在 [Azure 入口網站][AZURE-portal]中的應用程式註冊內容頁面上，找出 [多租用戶] 切換開關並將它設定為 [是]，即可將您的註冊轉換成多租用戶。
 
-注意︰Azure AD 會要求應用程式的「應用程式識別碼 URI」必須具全域唯一性，才能被設定成多租用戶應用程式。 「應用程式識別碼 URI」是其中一種可在通訊協定訊息中識別應用程式的方式。  就單一租用戶應用程式而言，「應用程式識別碼 URI」只要在該租用戶中具唯一性即已足夠。  就多租用戶應用程式而言，該 URI 則必須具全域唯一性，Azure AD 才能在所有租用戶中找到該應用程式。  系統會透過要求「應用程式識別碼 URI」必須具有與已驗證的 Azure AD 租用戶網域相符的主機名稱，來強制執行全域唯一性。  例如，如果租用戶的名稱是 contoso.onmicrosoft.com，則有效的「應用程式識別碼 URI」會是 `https://contoso.onmicrosoft.com/myapp`。  如果租用戶具有已驗證的網域 `contoso.com`，則有效的「應用程式識別碼 URI」也會是 `https://contoso.com/myapp`。  如果「應用程式識別碼 URI」沒有按照這個模式，將應用程式設定成多租用戶時就會失敗。
+此外請注意，Azure AD 會要求應用程式的「應用程式識別碼 URI」必須具全域唯一性，才能被設定成多租用戶應用程式。 「應用程式識別碼 URI」是其中一種可在通訊協定訊息中識別應用程式的方式。  就單一租用戶應用程式而言，「應用程式識別碼 URI」只要在該租用戶中具唯一性即已足夠。  就多租用戶應用程式而言，該 URI 則必須具全域唯一性，Azure AD 才能在所有租用戶中找到該應用程式。  系統會透過要求「應用程式識別碼 URI」必須具有與已驗證的 Azure AD 租用戶網域相符的主機名稱，來強制執行全域唯一性。  例如，如果租用戶的名稱是 contoso.onmicrosoft.com，則有效的「應用程式識別碼 URI」會是 `https://contoso.onmicrosoft.com/myapp`。  如果租用戶具有已驗證的網域 `contoso.com`，則有效的「應用程式識別碼 URI」也會是 `https://contoso.com/myapp`。  如果「應用程式識別碼 URI」沒有按照這個模式，將應用程式設定成多租用戶時就會失敗。
 
 原生用戶端註冊預設即為多租用戶。  您不需要採取任何動作來將原生用戶端應用程式註冊轉換成多租用戶。
 
@@ -101,7 +101,7 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 現在，讓我們看看登入多租用戶應用程式之使用者的使用者體驗。
 
 ## <a name="understanding-user-and-admin-consent"></a>了解使用者和系統管理員的同意意向
-若要讓使用者登入 Azuer AD 中的應用程式，必須以使用者的租用戶代表該應用程式。  這可讓組織執行一些操作，例如在來自其租用戶的使用者登入應用程式時套用唯一原則。  就單一租用戶應用程式而言，這個註冊程序相當簡單；就是您在 [Azure 傳統入口網站][AZURE-classic-portal]中註冊應用程式時所進行的程序。
+若要讓使用者登入 Azuer AD 中的應用程式，必須以使用者的租用戶代表該應用程式。  這可讓組織執行一些操作，例如在來自其租用戶的使用者登入應用程式時套用唯一原則。  就單一租用戶應用程式而言，這個註冊程序相當簡單；就是您在 [Azure 入口網站][AZURE-portal]中註冊應用程式時所進行的程序。
 
 就多租用戶應用程式而言，應用程式的初始註冊程序則是在開發人員所使用的 Azure AD 租用戶中進行。  當來自不同租用戶的使用者第一次登入應用程式時，Azure AD 會要求他們同意應用程式所要求的權限。  如果他們同意，系統就會在使用者的租用戶中建立一個稱為「服務主體」  的應用程式代表，然後登入便可繼續進行。 系統也會在記錄使用者對應用程式之同意意向的目錄中建立委派。 如需有關應用程式之「應用程式」和「服務主體」物件的詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
 
@@ -125,7 +125,7 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
 如果應用程式需要系統管理員同意，當系統管理員登入應用程式但系統未傳送 `prompt=admin_consent` 參數時，系統管理員將能順利對此應用程式行使同意權，但是他們將只能代表其使用者帳戶行使同意權。  一般使用者將仍然無法登入此應用程式並對其行使同意權。  當您想要先讓租用戶系統管理員能夠瀏覽您的應用程式，然後才允許其他使用者存取時，這會相當有用。
 
-租用戶系統管理員可以停用一般使用者對應用程式行使同意權的能力。  如果停用這項功能，就一律需要系統管理員同意，才能在租用戶中設定應用程式。  如果您想要在停用一般使用者同意的情況下測試您的應用程式，您可以在 [Azure 傳統入口網站][AZURE-classic-portal]的 Azure AD 租用戶設定區段中找到設定參數。
+租用戶系統管理員可以停用一般使用者對應用程式行使同意權的能力。  如果停用這項功能，就一律需要系統管理員同意，才能在租用戶中設定應用程式。  如果您想要在停用一般使用者同意的情況下測試您的應用程式，您可以在 [Azure 入口網站][AZURE-portal]的 Azure AD 租用戶設定區段中找到設定參數。
 
 > [!NOTE]
 > 有些應用程式想要提供一種體驗，讓一般使用者能夠一開始即表示同意，之後應用程式即可讓系統管理員參與操作並要求需要系統管理員同意的權限。  目前在 Azure AD 中還沒有任何方法可以使用單一應用程式註冊來達到這個目的。  即將推出 Azure AD v2 端點將可允許應用程式在執行階段 (而不是在註冊階段) 要求權限，這將使得此情況變成可行。  如需詳細資訊，請參閱 [Azure AD 應用程式模型 v2 開發人員指南][AAD-V2-Dev-Guide]。
@@ -153,7 +153,7 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 使用者和系統管理員可以隨時撤銷對您應用程式的同意：
 
 * 使用者可藉由將個別應用程式從其[存取面板應用程式][AAD-Access-Panel]清單中移除，來撤銷對這些應用程式的存取權。
-* 系統管理員可藉由使用 [Azure 傳統入口網站][AZURE-classic-portal]的 Azure AD 管理區段，將應用程式從 Azure AD 中移除，來撤銷對這些應用程式的存取權。
+* 系統管理員可藉由使用 [Azure 入口網站][AZURE-portal]的 Azure AD 管理區段，將應用程式從 Azure AD 中移除，來撤銷對這些應用程式的存取權。
 
 如果是由系統管理員代表租用戶中的所有使用者對應用程式行使同意權，使用者就不能個別撤銷存取權。  只有系統管理員才能撤銷存取權，並且只能針對整個應用程式撤銷。
 
@@ -173,7 +173,7 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 * [Microsoft Graph API 權限範圍][MSFT-Graph-AAD]
 * [Azure AD Graph API 權限範圍][AAD-Graph-Perm-Scopes]
 
-請使用下方的 Disqus 註解區段來提供意見反應，並協助我們改善及設計我們的內容。
+請使用下方的註解區段來提供意見反應，並協助我們改善及設計我們的內容。
 
 <!--Reference style links IN USE -->
 [AAD-Access-Panel]:  https://myapps.microsoft.com
@@ -188,7 +188,7 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 [AAD-Integrating-Apps]: ./active-directory-integrating-applications.md
 [AAD-Samples-MT]: https://azure.microsoft.com/documentation/samples/?service=active-directory&term=multitenant
 [AAD-Why-To-Integrate]: ./active-directory-how-to-integrate.md
-[AZURE-classic-portal]: https://manage.windowsazure.com
+[AZURE-portal]: https://portal.azure.com
 [MSFT-Graph-AAD]: https://graph.microsoft.io/en-us/docs/authorization/permission_scopes
 
 <!--Image references-->
@@ -211,7 +211,7 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 [AAD-Security-Token-Claims]: ./active-directory-authentication-scenarios/#claims-in-azure-ad-security-tokens
 [AAD-Tokens-Claims]: ./active-directory-token-and-claims.md
 [AAD-V2-Dev-Guide]: ../active-directory-appmodel-v2-overview.md
-[AZURE-classic-portal]: https://manage.windowsazure.com
+[AZURE-portal]: https://portal.azure.com
 [Duyshant-Role-Blog]: http://www.dushyantgill.com/blog/2014/12/10/roles-based-access-control-in-cloud-applications-using-azure-ad/
 [JWT]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
 [O365-Perm-Ref]: https://msdn.microsoft.com/en-us/office/office365/howto/application-manifest
@@ -239,6 +239,6 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

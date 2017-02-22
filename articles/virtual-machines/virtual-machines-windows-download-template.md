@@ -16,13 +16,13 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b6dffec166ffe8e04c5d7b701aef009bf7b72d45
+ms.sourcegitcommit: 349b8dc78ace79efca771efb78e453a47e51023e
+ms.openlocfilehash: 6e80064adadcc542523acb1d2478e6b8f0163acb
 
 
 ---
 # <a name="download-the-template-for-a-vm"></a>下載 VM 的範本
-當您使用入口網站或 PowerShell 在 Azure 中建立 VM 時，系統會自動為您建立 Resource Manager 範本。 您可以使用此範本快速地重複部署。 範本包含資源群組中所有資源的相關資訊。 針對虛擬機器，這表示範本包含建立以支援該資源群組中 VM 的所有項目，包括網路功能資源。
+當您使用入口網站或 PowerShell 在 Azure 中建立 VM 時，系統會自動為您建立 Resource Manager 範本。 您可以使用此範本快速地重複部署。 範本包含資源群組中所有資源的相關資訊。 針對虛擬機器，這表示範本包含針對支援該資源群組中 VM 而建立的所有項目，包括網路功能資源。
 
 ## <a name="download-the-template-using-the-portal"></a>使用入口網站下載範本
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
@@ -39,7 +39,7 @@ ms.openlocfilehash: b6dffec166ffe8e04c5d7b701aef009bf7b72d45
    * parameters.json
    * template.json
 
-.Json 檔為範本。
+template.json 檔案為範本。
 
 ## <a name="download-the-template-using-powershell"></a>使用 PowerShell 下載範本
 您也可以使用 [Export-AzureRMResourceGroup](https://msdn.microsoft.com/library/mt715427.aspx) cmdlet 下載 .json 範本檔案。 您可以使用 `-path` 參數來提供 .json 檔的檔名和路徑。 這個範例示範如何將名為 **myResourceGroup** 的資源群組範本下載至本機電腦上的 **C:\users\public\downloads** 資料夾。
@@ -54,6 +54,6 @@ ms.openlocfilehash: b6dffec166ffe8e04c5d7b701aef009bf7b72d45
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

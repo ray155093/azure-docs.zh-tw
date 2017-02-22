@@ -1,6 +1,6 @@
 ---
-title: "使用適用於 C 的 Azure IoT 裝置 SDK | Microsoft Docs"
-description: "深入了解並開始使用 Azure IoT 裝置 SDK (適用於 C) 中的範例程式碼。"
+title: "適用於 C 的 Azure IoT 裝置 SDK | Microsoft Docs"
+description: "開始使用適用於 C 的 Azure IoT 裝置 SDK，以及了解如何建立與 IoT 中樞通訊的裝置應用程式。"
 services: iot-hub
 documentationcenter: 
 author: olivierbloch
@@ -15,12 +15,12 @@ ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 38dd351fb6acf5b754eb8fd4b768262241ab24c3
+ms.sourcegitcommit: ef066a50b71389cb1cdd3bb0f8d342a34a4cc722
+ms.openlocfilehash: 0033f1cc036e1eef63f0728be8d5d73c8dbbccf6
 
 
 ---
-# <a name="introducing-the-azure-iot-device-sdk-for-c"></a>Azure IoT 裝置 SDK (適用於 C) 簡介
+# <a name="azure-iot-device-sdk-for-c"></a>適用於 C 的 Azure IoT 裝置 SDK
 「Azure IoT 裝置 SDK」是一組程式庫，其設計目的是要簡化從「Azure IoT 中樞」服務傳送事件和接收訊息的程序。 有各種不同的 SDK，每個 SDK 都以特定的平台為目標，而本文將說明的是「Azure IoT 裝置 SDK (適用於 C)」 。
 
 Azure IoT 裝置 SDK (適用於 C) 是以 ANSI C (C99) 撰寫，以獲得最大可攜性。 如此就很適合在一些平台和裝置上運作 - 尤其是在以將磁碟和記憶體使用量降至最低做為優先考量的情況下。  
@@ -30,7 +30,7 @@ Azure IoT 裝置 SDK (適用於 C) 是以 ANSI C (C99) 撰寫，以獲得最大�
 本文將介紹 Azure IoT 裝置 SDK (適用於 C) 的架構。我們將示範如何初始化裝置程式庫，將事件傳送到 IoT 中樞，以及從 IoT 中樞接收訊息。 本文中的資訊應足以讓您開始使用 SDK，但也提供了可取得程式庫其他相關資訊的指標。
 
 ## <a name="sdk-architecture"></a>SDK 架構
-您可以在 [Azure IoT SDK](https://github.com/Azure/azure-iot-sdks) GitHub 儲存機制中尋找「適用於 C 的 Azure IoT 裝置 SDK」，然後在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
+您可以尋找[**適用於 C 的 Azure IoT 裝置 SDK**](https://github.com/Azure/azure-iot-sdk-c) GitHub 儲存機制，然後在 [C API 參考資料](https://azure.github.io/azure-iot-sdk-c/index.html)中檢視 API 的詳細資料。
 
 在此儲存機制的 **master** 分支中可找到最新版的程式庫：
 
@@ -58,15 +58,15 @@ Azure IoT 裝置 SDK (適用於 C) 是以 ANSI C (C99) 撰寫，以獲得最大�
 
 如果您需要在您的 Azure 訂用帳戶上建立「Azure IoT 中樞」執行個體，請依照 [這裡](https://github.com/Azure/azure-iot-sdks/blob/master/doc/setup_iothub.md)的指示操作。
 
-SDK 隨附的 [讀我檔案](https://github.com/Azure/azure-iot-sdks/tree/master/c) 提供了準備開發環境，並取得裝置認證所需的指示。
+SDK 隨附的 [讀我檔案](https://github.com/Azure/azure-iot-sdk-c) 提供了準備開發環境，並取得裝置認證所需的指示。
 下列各節包含有關這些指示的一些額外評論。
 
 ### <a name="preparing-your-development-environment"></a>準備開發環境
 針對某些平台 (例如適用於 Windows 的 NuGet 或適用於 Debian 和 Ubuntu 的 apt_get) 提供封裝，且範例會在這些封裝可用時使用的同時，下面的指示會詳細說明如何直接從程式碼建置程式庫和範例。
 
-首先，您必須從 GitHub 取得 SDK 的複本，然後建立來源。 您應該從 **GitHub 儲存機制** 的 [master](https://github.com/Azure/azure-iot-sdks)分支取得一份原始檔複本。
+首先，您必須從 GitHub 取得 SDK 的複本，然後建立來源。 您應該從 **GitHub 儲存機制** 的 [master](https://github.com/Azure/azure-iot-sdk-c)分支取得一份原始檔複本。
 
-下載來源的複本後，您必須完成 SDK 文章 [Prepare your development environment (準備開發環境)](https://github.com/Azure/azure-iot-sdks/blob/master/c/doc/devbox_setup.md)中所述的步驟。
+下載來源的複本後，您必須完成 SDK 文章 [Prepare your development environment (準備開發環境)](https://github.com/Azure/azure-iot-sdk-c/blob/master/doc/devbox_setup.md)中所述的步驟。
 
 以下是一些秘訣，可幫助您完成準備指南中所描述的程序：
 
@@ -75,7 +75,7 @@ SDK 隨附的 [讀我檔案](https://github.com/Azure/azure-iot-sdks/tree/master
   ![](media/iot-hub-device-sdk-c-intro/08-CMake.PNG)
 * 在您開啟 [VS2015 開發人員命令提示字元] 之前，請先安裝 Git 命令列工具。 若要安裝這些工具，請完成下列步驟：
   
-  1. 啟動 **Visual Studio 2015** 安裝程式 (或從 [程式和功能] 控制台選擇 [Microsoft Visual Studio 2015]，然後選取 [變更])。
+  1. 啟動 **Microsoft Visual Studio 2015** 安裝程式 (或從 [程式和功能] 控制台選擇 [Microsoft Visual Studio 2015]，然後選取 [變更])。
   2. 確定在安裝程式中已選取 [Git for Windows] 功能，但您也可以核取 [Visual Studio 的 GitHub 擴充] 選項以提供整合式開發環境 (IDE) 整合：
      
         ![](media/iot-hub-device-sdk-c-intro/10-GitTools.PNG)
@@ -84,20 +84,20 @@ SDK 隨附的 [讀我檔案](https://github.com/Azure/azure-iot-sdks/tree/master
      
         ![](media/iot-hub-device-sdk-c-intro/11-GitToolsPath.PNG)
 
-當您已經完成 [Prepare your development environment (準備開發環境)](https://github.com/Azure/azure-iot-sdks/blob/master/c/doc/devbox_setup.md) 頁面中所述的所有步驟，您就準備好編譯範例應用程式。
+當您已經完成 [Prepare your development environment (準備開發環境)](https://github.com/Azure/azure-iot-sdk-c/blob/master/doc/devbox_setup.md) 頁面中所述的所有步驟，您就準備好編譯範例應用程式。
 
 ### <a name="obtaining-device-credentials"></a>取得裝置認證
 現在已設定好您的開發環境，下一件事就是取得一組裝置認證。  若要讓裝置能夠存取 IoT 中樞，您必須先將該裝置新增至 IoT 中樞身分識別登錄。 當您加入您的裝置時，您會取得一組所需的裝置認證，以便裝置能夠連線到 IoT 中樞。 我們在下一節中看到的範例應用程式預期這些認證的形式為 **裝置連接字串**。
 
-SDK 開放原始碼儲存機制中提供了一些工具，以協助管理 IoT 中樞。 一個是稱為「裝置總管」的 Windows 應用程式，第二個是稱為 iothub-explorer、以 node.js 為基礎的跨平台 CLI 工具。 您可以在 [這裡](https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md)深入了解這些工具。
+SDK 開放原始碼儲存機制中提供了一些工具，以協助管理 IoT 中樞。 一個是稱為「裝置總管」的 Windows 應用程式，第二個是稱為 *iothub-explorer*、以 node.js 為基礎的跨平台 CLI 工具。 您可以在 [這裡](https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md)深入了解這些工具。
 
-如同本文中我們審查在 Windows 上執行這些範例一樣，我們就是使用「裝置總管」工具。 但是如果您偏好使用 CLI 工具，您也可以使用 iothub-explorer。
+由於我們會在 Windows 上執行本文中的範例，所以使用裝置總管工具。 但是如果您偏好使用 CLI 工具，您也可以使用 iothub-explorer。
 
-[裝置總管](https://github.com/Azure/azure-iot-sdks/tree/master/tools/DeviceExplorer) 工具會使用 Azure IoT 服務程式庫在 IoT 中樞上執行各種函式，包含新增裝置。 如果您使用 [裝置總管] 來新增裝置，您將會得到對應的連接字串。 您需要此連接字串才能執行範例應用程式。
+[裝置總管](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer)工具會使用 Azure IoT 服務程式庫在 IoT 中樞上執行各種功能，包括新增裝置。 如果您使用裝置總管工具來新增裝置，您將會得到對應的連接字串。 您需要此連接字串才能執行範例應用程式。
 
-萬一您不熟悉此程序，下列程序說明如何使用 [裝置總管] 來新增裝置和取得裝置連接字串。
+如果您不熟悉此程序，下列程序說明如何使用裝置總管工具來新增裝置和取得裝置連接字串。
 
-您可以在 [SDK 版本頁面](https://github.com/Azure/azure-iot-sdks/releases)上尋找「裝置總管」工具的 Windows 安裝程式。 但您也可以透過在 **Visual Studio 2015** 中開啟 **[DeviceExplorer.sln](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/DeviceExplorer.sln)** 並建置方案，直接從其程式碼執行此工具。
+您可以在 [SDK 版本頁面](https://github.com/Azure/azure-iot-sdks/releases)上找到裝置總管工具的 Windows 安裝程式。 但您也可以在 **Microsoft Visual Studio 2015** 中開啟 **[DeviceExplorer.sln](https://github.com/Azure/azure-iot-sdk-csharp/blob/master/tools/DeviceExplorer/DeviceExplorer.sln)** 並建置方案，直接從程式碼執行此工具。
 
 當您執行程式時，您會看到此介面：
 
@@ -119,7 +119,7 @@ SDK 開放原始碼儲存機制中提供了一些工具，以協助管理 IoT �
 
   ![](media/iot-hub-device-sdk-c-intro/06-RightClickDevice.PNG)
 
-如果您選擇 [複製所選裝置的連接字串]  選項，裝置的連接字串就會被複製到剪貼簿。 請保留一份連接字串複本。 在執行後續各節中所述的範例應用程式時，您將會需要它。
+如果您選擇 [複製所選裝置的連接字串] 選項，裝置連接字串就會複製到剪貼簿。 請保留一份裝置連接字串。 在執行後續各節中所述的範例應用程式時，您將會需要它。
 
 完成上述步驟後，您就可以開始執行一些程式碼。 兩個範例在主要原始程式檔頂端都有一個常數，此常數可讓您輸入連接字串。 例如，來自 **iothub\_client\_sample\_amqp** 應用程式的對應行會如以下所示。
 
@@ -130,7 +130,7 @@ static const char* connectionString = "[device connection string]";
 如果您想要遵循，請在此輸入您的裝置連接字串，重新編譯解決方案，您將能夠執行範例。
 
 ## <a name="iothubclient"></a>IoTHubClient
-在 azure-iot-sdks 儲存機制的 [iothub\_client] 資料夾中，有一個 [samples] 資料夾，當中包含名為 **iothub\_client\_sample\_amqp** 的應用程式。
+在 [azure-iot-sdk-c](https://github.com/azure/azure-iot-sdk-c) 儲存機制的 **iothub\_client** 資料夾中，有一個 [samples] 資料夾，當中包含名為 **iothub\_client\_sample\_amqp** 的應用程式。
 
 Windows 版本的 **iothub\_client\_sample\_ampq** 應用程式包含下列 Visual Studio 方案：
 
@@ -151,7 +151,7 @@ Windows 版本的 **iothub\_client\_sample\_ampq** 應用程式包含下列 Visu
 
 ### <a name="initializing-the-library"></a>初始化程式庫
 > [!NOTE]
-> 開始使用程式庫之前，您可能需要執行某些平台特定的初始化。 例如，如果您打算在 Linux 上使用 AMQP，您就必須初始化 OpenSSL 程式庫。 [GitHub 儲存機制](https://github.com/Azure/azure-iot-sdks)中的範例會在用戶端啟動時呼叫 **platform_init** 公用程式函式，並在結束之前呼叫 **platform_deinit** 函式。 這些函式在 platform.h 標頭檔中宣告。 您應該在 [儲存機制](https://github.com/Azure/azure-iot-sdks) 中為目標平台檢查這些函式的定義，判斷是否需要在您的用戶端加入任何平台初始化程式碼。
+> 開始使用程式庫之前，您可能需要執行某些平台特定的初始化。 例如，如果您打算在 Linux 上使用 AMQP，您就必須初始化 OpenSSL 程式庫。 [GitHub 儲存機制](https://github.com/Azure/azure-iot-sdk-c)中的範例會在用戶端啟動時呼叫 **platform_init** 公用程式函式，並在結束之前呼叫 **platform_deinit** 函式。 這些函式在 platform.h 標頭檔中宣告。 您應該在 [儲存機制](https://github.com/Azure/azure-iot-sdk-c) 中為目標平台檢查這些函式的定義，判斷是否需要在您的用戶端加入任何平台初始化程式碼。
 > 
 > 
 
@@ -162,7 +162,7 @@ IOTHUB_CLIENT_HANDLE iotHubClientHandle;
 iotHubClientHandle = IoTHubClient_CreateFromConnectionString(connectionString, AMQP_Protocol);
 ```
 
-請注意，我們要將我們的裝置連接字串複本傳遞給此函式 (我們從 [裝置總管] 取得的函式)。 我們也會指定我們想要使用的通訊協定。 這個範例使用 AMQP，但 MQTT 與 HTTP 也是選項之一。
+請注意，我們要將裝置連接字串複本傳遞給此函式 (我們從裝置總管工具取得的函式)。 我們也會指定我們想要使用的通訊協定。 這個範例使用 AMQP，但 MQTT 與 HTTP 也是選項之一。
 
 當您具有有效的 **IOTHUB\_CLIENT\_HANDLE** 時，您可以開始呼叫 API 來傳送事件和從「IoT 中樞」接收訊息。 我們會接著進行探討。
 
@@ -245,7 +245,7 @@ IoTHubClient_Destroy(iotHubClientHandle);
 ## <a name="serializer"></a>serializer
 在概念上，「序列化程式」程式庫位於 SDK 中的 **IoTHubClient** 程式庫之上。 它會使用 **IoTHubClient** 程式庫與 IoT 中樞進行基礎通訊，但是會新增模型化功能，以減輕開發人員處理訊息序列化的負擔。 此程式庫的運作方式最好是由範例示範。
 
-在 azure-iot-sdks 儲存機制的 [serializer] 資料夾中，有一個 [samples] 資料夾，當中包含名為 **simplesample\_amqp** 的應用程式。 Windows 版本的這個範例包含下列 Visual Studio 解決方案：
+在 [azure-iot-sdk-c 儲存機制](https://github.com/Azure/azure-iot-sdk-c)的 [serializer] 資料夾中，有一個 [samples] 資料夾，當中包含名為 **simplesample\_amqp** 的應用程式。 Windows 版本的這個範例包含下列 Visual Studio 解決方案：
 
   ![](media/iot-hub-device-sdk-c-intro/14-simplesample_amqp.PNG)
 
@@ -466,6 +466,6 @@ serializer_deinit();
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

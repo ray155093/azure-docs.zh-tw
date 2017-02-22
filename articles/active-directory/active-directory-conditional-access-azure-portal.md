@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/22/2016
+ms.date: 01/19/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 0ecbaaf030e5c87ff05228af852477b865329596
-ms.openlocfilehash: 3b06c7c32c6ec27659365ca4da6193457fff7162
+ms.sourcegitcommit: 89d32955506afdfb9c45c5b0ce3d38d40f012e72
+ms.openlocfilehash: 570a0f0a0c0932a00bbe92b1e137951ceffcd660
 
 
 ---
@@ -159,18 +159,13 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 
 ### <a name="does-conditional-access-work-with-exchange-activesync"></a>條件式存取是否適用於 Exchange ActiveSync？
  
-您可以在條件式存取原則中使用 Exchange ActiveSync；不過，此案例的支援有所限制。  
-下列限制適用於包含 Exchange ActiveSync 的原則︰
+否，您目前無法在條件式存取原則中使用 Exchange ActiveSync。
 
-- 依照**雲端應用程式**指派，您只選取了 [Exchange Online]。
 
-- 如果您需要設定**控制項**，您只能選取 [需要符合規範的裝置]。 
- 
-    ![授與](./media/active-directory-conditional-access-azure-portal/22.png)
- 
-- 如果您需要設定**條件**，您只能設定**用戶端應用程式**。   
+### <a name="what-happens-if-i-require-multi-factor-authentication-or-a-compliant-device"></a>如果我要求多重要素驗證或符合規範裝置會發生什麼情況？
 
-    ![條件](./media/active-directory-conditional-access-azure-portal/21.png)
+目前，會提示使用者使用與裝置無關的多重要素驗證。
+
 
 
 ## <a name="common-scenarios"></a>常見案例
@@ -201,6 +196,6 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO3-->
 
 

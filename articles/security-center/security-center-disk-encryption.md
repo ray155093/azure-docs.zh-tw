@@ -15,20 +15,20 @@ ms.workload: na
 ms.date: 05/27/2016
 ms.author: tomsh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 65d586405bc79ccf0d5e27c09d750818e5f3dd24
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 83e277fe261338aed960dea8e2ab15cbff3c895e
 
 
 ---
 # <a name="encrypt-an-azure-virtual-machine"></a>加密 Azure 虛擬機器
 Azure 資訊安全中心會在您有未加密的虛擬機器時對您發出警示。 這些警示會顯示為高嚴重性，因此建議您加密這些虛擬機器。
 
-![磁碟加密建議](./media/security-center-disk-encryption\\security-center-disk-encryption-fig1.png)
+![磁碟加密建議](./media/security-center-disk-encryption/security-center-disk-encryption-fig1.png)
 
 > [!NOTE]
 > 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。
-> 
-> 
+>
+>
 
 若要加密已由 Azure 資訊安全中心識別為需要加密的 Azure 虛擬機器，建議您執行下列步驟︰
 
@@ -43,11 +43,11 @@ Azure 資訊安全中心會在您有未加密的虛擬機器時對您發出警�
 
 > [!NOTE]
 > 若要深入了解其他可為 Azure 虛擬機器設定加密功能的方法，請參閱 [適用於 Windows 和 Linux Azure 虛擬機器的 Azure 磁碟加密](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0)。
-> 
-> 
+>
+>
 
 ## <a name="install-and-configure-azure-powershell"></a>安裝並設定 Azure PowerShell
-您的電腦上需要安裝 Azure PowerShell 1.2.1 版或更新版本。 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文含有佈建電腦以使用 Azure PowerShell 的所有所需步驟。 最直接的方法是使用該文章所述的 Web PI 安裝方法。 即使您已安裝 Azure PowerShell，仍請使用 Web PI 方法再安裝一次，以便擁有最新的 Azure PowerShell 版本。
+您的電腦上需要安裝 Azure PowerShell 1.2.1 版或更新版本。 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 一文含有佈建電腦以使用 Azure PowerShell 的所有所需步驟。 最直接的方法是使用該文章所述的 Web PI 安裝方法。 即使您已安裝 Azure PowerShell，仍請使用 Web PI 方法再安裝一次，以便擁有最新的 Azure PowerShell 版本。
 
 ## <a name="obtain-and-run-the-azure-disk-encryption-prerequisites-configuration-script"></a>取得並執行 Azure 磁碟加密先決條件組態指令碼
 Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬機器所需的所有先決條件。
@@ -70,7 +70,7 @@ Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬�
 
 您現在應該會看到類似下圖的內容：
 
-![PowerShell ISE 視窗](./media/security-center-disk-encryption\\security-center-disk-encryption-fig2.png)
+![PowerShell ISE 視窗](./media/security-center-disk-encryption/security-center-disk-encryption-fig2.png)
 
 上方窗格稱為「指令碼窗格」，下方窗格則稱為「主控台」。 本文稍後將會使用這些詞彙。
 
@@ -84,8 +84,8 @@ Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬�
 
 > [!NOTE]
 > 如果您想知道為何需要建立 Azure Active Directory 應用程式，請參閱 *開始使用 Azure 金鑰保存庫* 一文的 [向 Azure Active Directory 註冊應用程式](../key-vault/key-vault-get-started.md)章節。
-> 
-> 
+>
+>
 
 執行下列步驟來加密 Azure 虛擬機器︰
 
@@ -94,12 +94,12 @@ Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬�
 3. 設定機器的執行原則以便可以執行指令碼。 在主控台輸入 **Set-ExecutionPolicy Unrestricted** ，然後按 ENTER 鍵。 如果出現對話方塊指出執行原則變更所帶來的影響，請按一下 **[全部都是]** 或 [是] \(如果有看到 [全部都是]，請選取該選項；如果沒看到 [全部都是]，則請按一下 [是])。
 4. 登入 Azure 帳戶。 在主控台中輸入 **Login-AzureRmAccount**，然後按 **ENTER** 鍵。 隨即會出現對話方塊供您輸入認證 (請確定您有變更虛擬機器的權限；如果沒有權限，就無法將其加密。 如果不能確定，請詢問訂用帳戶擁有者或系統管理員)。 您應該會看到您 **Environment**、**Account**、**TenantId**、**SubscriptionId** 和 **CurrentStorageAccount** 的相關資訊。 請將 **SubscriptionId** 複製到 [記事本]。 步驟 6 會用到此資訊。
 5. 尋找虛擬機器所隸屬的訂用帳戶以及虛擬機器的位置。 移至 [https://portal.azure.com](ttps://portal.azure.com) 並登入。  在頁面左側按一下 [虛擬機器] 。 您將會看到虛擬機器和其所屬訂用帳戶的清單。
-   
-   ![虛擬機器](./media/security-center-disk-encryption\\security-center-disk-encryption-fig3.png)
+
+   ![虛擬機器](./media/security-center-disk-encryption/security-center-disk-encryption-fig3.png)
 6. 返回 PowerShell ISE。 設定用來執行指令碼的訂用帳戶內容。 在主控台中，輸入 **Select-AzureRmSubscription –SubscriptionId <your_subscription_Id>** (使用您的實際訂用帳戶識別碼取代 **< your_subscription_Id >**) 然後按 **ENTER**鍵。 您會看到您 Environment、**Account**、**TenantId**、**SubscriptionId** 和 **CurrentStorageAccount** 的相關資訊。
 7. 您現在可以開始執行指令碼。 按一下 [執行指令碼] 按鈕或按鍵盤上的 **F5** 鍵。
-   
-   ![執行 PowerShell 指令碼](./media/security-center-disk-encryption\\security-center-disk-encryption-fig4.png)
+
+   ![執行 PowerShell 指令碼](./media/security-center-disk-encryption/security-center-disk-encryption-fig4.png)
 8. 指令碼會要求輸入 [resourceGroupName:] - 輸入想要使用的資源群組名稱，然後按 **ENTER** 鍵。 如果您沒有資源群組，請輸入新的資源群組所要使用的名稱。 如果您已有想要使用的 *資源群組* (例如虛擬機器所在的資源群組)，請輸入現有資源群組的名稱。
 9. 指令碼會要求輸入 [keyVaultName:]  - 輸入想要使用的 *金鑰保存庫* 名稱，然後按 ENTER 鍵。 如果您沒有資源群組，請輸入新的資源群組所要使用的名稱。 如果您已有想要使用的金鑰保存庫，請輸入現有 *金鑰保存庫*的名稱。
 10. 指令碼會要求輸入 [位置:] - 輸入想要加密之 VM 所在位置的名稱，然後按 **ENTER** 鍵。 如果不記得位置，請返回步驟 5。
@@ -110,7 +110,7 @@ Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬�
 
 指令碼的輸出看起來應該會像以下畫面︰
 
-![PowerShell 輸出](./media/security-center-disk-encryption\\security-center-disk-encryption-fig5.png)
+![PowerShell 輸出](./media/security-center-disk-encryption/security-center-disk-encryption-fig5.png)
 
 ## <a name="encrypt-the-azure-virtual-machine"></a>加密 Azure 虛擬機器
 現在，您已準備好加密虛擬機器。 如果虛擬機器和金鑰保存庫位於相同資源群組，您可以移至＜加密步驟＞一節。 不過，如果虛擬機器和金鑰保存庫並非位在相同資源群組，則必須在 PowerShell ISE 的主控台中輸入下列命令︰
@@ -124,7 +124,7 @@ Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬�
 
 按 **ENTER**鍵。 您應該會看到虛擬機器所在資源群組的名稱。 例如：
 
-![PowerShell 輸出](./media/security-center-disk-encryption\\security-center-disk-encryption-fig6.png)
+![PowerShell 輸出](./media/security-center-disk-encryption/security-center-disk-encryption-fig6.png)
 
 ### <a name="encryption-steps"></a>加密步驟
 首先，您必須提供想要加密的虛擬機器名稱給 PowerShell。 在主控台中輸入︰
@@ -139,7 +139,7 @@ Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬�
 
 按 **ENTER**鍵。 您應該會看到想要加密的虛擬機器名稱。 例如：
 
-![PowerShell 輸出](./media/security-center-disk-encryption\\security-center-disk-encryption-fig7.png)
+![PowerShell 輸出](./media/security-center-disk-encryption/security-center-disk-encryption-fig7.png)
 
 有兩種方法可供您執行加密命令以加密虛擬機器。 第一個方法是在 PowerShell ISE 主控台中輸入下列命令︰
 
@@ -151,25 +151,25 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMNa
 
 第二個方法是在指令碼窗格 (PowerShell ISE 的上方窗格) 中按一下，然後向下捲動到指令碼底部。 反白顯示上面所列的命令並按一下滑鼠右鍵，然後按一下 [執行選取範圍] 或按鍵盤上的 **F8** 鍵。
 
-![PowerShell ISE](./media/security-center-disk-encryption\\security-center-disk-encryption-fig8.png)
+![PowerShell ISE](./media/security-center-disk-encryption/security-center-disk-encryption-fig8.png)
 
 不論您使用哪一種方法，都會出現對話方塊通知您，需要 10-15 分鐘才能完成作業。 按一下 [是] 。
 
 加密程序進行時，您可以返回 Azure 入口網站，並查看虛擬機器的狀態。 在頁面左側按一下 [虛擬機器]，然後在 [虛擬機器] 刀鋒視窗中按一下您要加密的虛擬機器名稱。 在出現的刀鋒視窗中，您會發現 [狀態] 指出其 [正在更新]。 下圖展示進行中的加密。
 
-![更多關於 VM 的詳細資料](./media/security-center-disk-encryption\\security-center-disk-encryption-fig9.png)
+![更多關於 VM 的詳細資料](./media/security-center-disk-encryption/security-center-disk-encryption-fig9.png)
 
 返回 PowerShell ISE。 指令碼完成時，您會看到下圖中所顯示的內容。
 
-![PowerShell 輸出](./media/security-center-disk-encryption\\security-center-disk-encryption-fig10.png)
+![PowerShell 輸出](./media/security-center-disk-encryption/security-center-disk-encryption-fig10.png)
 
 為了證明虛擬機器現已加密，請返回 Azure 入口網站，然後按一下頁面左側的 [虛擬機器]  。 按一下已加密之虛擬機器的名稱。 在 [設定] 刀鋒視窗中，按一下 [磁碟]。
 
-![設定選項](./media/security-center-disk-encryption\\security-center-disk-encryption-fig11.png)
+![設定選項](./media/security-center-disk-encryption/security-center-disk-encryption-fig11.png)
 
 在 [磁碟] 刀鋒視窗中，您會看到 [加密] 是 [已啟用] 狀態。
 
-![磁碟屬性](./media/security-center-disk-encryption\\security-center-disk-encryption-fig12.png)
+![磁碟屬性](./media/security-center-disk-encryption/security-center-disk-encryption-fig12.png)
 
 ## <a name="next-steps"></a>後續步驟
 在本文件中，您已了解如何加密 Azure 虛擬機器。 若要深入了解「Azure 資訊安全中心」，請參閱下列主題：
@@ -181,7 +181,6 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMNa
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

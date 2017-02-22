@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 06/12/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
-ms.openlocfilehash: 1480c67792dc0ef6d2742b5b7f1c13e81cefbc1c
+ms.sourcegitcommit: f86986fea6fc48a4a6ed09022e8026e0645dfc56
+ms.openlocfilehash: 971558d287191c6b7b5ea9d135e6fe37c904aa76
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: 1480c67792dc0ef6d2742b5b7f1c13e81cefbc1c
 Azure Application Insights 提供兩種使用情況追蹤層級：
 
 * **使用者、工作階段與頁面檢視資料** - 預設提供。  
-* **自訂遙測** - 您[撰寫程式碼][api]以透過應用程式的使用者體驗來追蹤您的使用者。 
+* **自訂遙測** - [撰寫程式碼][api]，透過應用程式的使用者體驗來追蹤您的使用者。 
 
 ## <a name="setting-up"></a>設定
 在 [Azure 入口網站](https://portal.azure.com)中開啟 Application Insights 資源按一下 [瀏覽器載入頁面] 圖表，並按照設定指示操作。
@@ -33,7 +33,7 @@ Azure Application Insights 提供兩種使用情況追蹤層級：
 [深入了解](app-insights-javascript.md) 
 
 ## <a name="how-popular-is-my-web-application"></a>我的 Web 應用程式的熱門程度為何？
-登入 [Azure 入口網站][portal]，瀏覽至應用程式資源，然後按一下 [使用量]：
+登入 [Azure 入口網站][portal]，瀏覽至應用程式資源，然後按一下 [使用情況]：
 
 ![](./media/app-insights-web-track-usage/14-usage.png)
 
@@ -60,7 +60,7 @@ Azure Application Insights 提供兩種使用情況追蹤層級：
 
 如果您同時檢測用戶端和伺服器 ([ASP.NET][greenbrown] 或 [J2EE][java])，則 SDK 會在用戶端與伺服器之間傳播工作階段識別碼，以便能夠相互關聯這兩端的事件。
 
-在[診斷問題][diagnostic]時，您可以找到與發生問題之工作階段相關的所有遙測資料，包括所有要求及已記錄的任何事件、例外狀況或追蹤。
+在[診斷問題][diagnostic]時，您可以找到與問題發生所在工作階段相關的所有遙測資料，包括所記錄下來的所有要求、任何事件、例外狀況或追蹤。
 
 工作階段可正確測量出裝置、作業系統或位置等內容的熱門程度。 比方說，相較於透過計算頁面檢視計數，透過顯示依裝置所分組的工作階段計數，您可以取得該裝置與您的應用程式搭配使用之頻率的更精確數字。 此輸入很適合用來分類任何裝置特定的問題。
 
@@ -75,11 +75,12 @@ Azure Application Insights 提供兩種使用情況追蹤層級：
             sessionRenewalMs: 3600000,
             sessionExpirationMs: 172800000
         });
+    </script>
 
 * `sessionRenewalMs` ：因使用者未活動而讓工作階段過期的時間 (毫秒)。 預設值：30 分鐘。
 * `sessionExpirationMs` ：工作階段最大長度，以毫秒為單位。 如果使用者持續活動超過這段時間，就會計入另一個工作階段。 預設值：24 小時。
 
-**工作階段持續時間**是一個[度量值][計量]，會記錄工作階段的第一個和最後一個遙測項目間隔的時間範圍。 (不包含逾時期間)。
+**工作階段持續時間**是一個[計量值][metrics]，會記錄工作階段的第一個和最後一個遙測項目間隔的時間範圍。 (不包含逾時期間)。
 
 **工作階段計數** 的定義是，在此間隔期間具有某些活動的唯一工作階段數目。 當您查看長時間範圍時，例如過去一週的每日工作階段計數，這通常相當於工作階段的總數。 
 
@@ -115,7 +116,7 @@ Azure Application Insights 提供兩種使用情況追蹤層級：
 
 Application Insights 會努力試著自動判斷和分類綜合流量並適當地標記。 在大部分情況下，綜合流量不會叫用 JavaScript SDK，因此這個活動會排除在使用者和工作階段的計算之外。 
 
-不過，針對 Application Insights [Web 測試][availability]，系統會根據 POP 位置自動設定使用者識別碼，以及根據測試回合識別碼設定工作階段識別碼。 在預設報告中，預設會篩選掉綜合流量，排除這些使用者和工作階段。 不過，若包含綜合流量，可能會造成整體使用者和工作階段計數少量增加。
+不過，對於 Application Insights [Web 測試][availability]，使用者識別碼會自動根據 POP 位置進行設定，而工作階段識別碼則會根據測試回合識別碼進行設定。 在預設報告中，預設會篩選掉綜合流量，排除這些使用者和工作階段。 不過，若包含綜合流量，可能會造成整體使用者和工作階段計數少量增加。
 
 ## <a name="page-usage"></a>頁面使用量
 逐一點選頁面檢視圖表以取得更放大的版本，以及最受歡迎頁面的分解：
@@ -241,7 +242,7 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
 ![在 [搜尋] 欄位中輸入值](./media/app-insights-web-track-usage/12-searchEvents.png)
 
-## <a name="a-b-testing"></a>A | B 測試
+## <a name="a--b-testing"></a>A | B 測試
 如果您不知道哪個功能的變數將更可能成功，請兩者都釋出，讓兩者都可供不同使用者存取。 測量每一個的成功，然後移至整合的版本。
 
 針對此技術，您會附加獨特的標記到每個應用程式版本所傳送的所有遙測。 您可以在作用中 TelemetryContext 中定義屬性來執行該動作。 這些預設屬性會加入到應用程式傳送的每個遙測訊息 - 不只是您的自訂訊息，還有標準遙測。 
@@ -329,7 +330,7 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 [diagnostic]: app-insights-diagnostic-search.md
 [greenbrown]: app-insights-asp-net.md
 [java]: app-insights-java-get-started.md
-[計量]: app-insights-metrics-explorer.md
+[metrics]: app-insights-metrics-explorer.md
 [portal]: http://portal.azure.com/
 [windows]: app-insights-windows-get-started.md
 
@@ -337,6 +338,6 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

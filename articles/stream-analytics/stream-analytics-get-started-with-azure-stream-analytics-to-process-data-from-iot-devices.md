@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure 串流分析來處理 IoT 裝置的資料。 | Microsoft Docs"
+title: "IoT 即時資料流和 Azure 串流分析 | Microsoft Docs"
 description: "IoT 感應器標記和具有串流分析的資料串流與即時資料處理"
 keywords: "IoT 解決方案，開始使用 IoT"
 services: stream-analytics
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 10/19/2016
+ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b4a725d55594885a5d9d4a62b4bf5fe6fd402849
+ms.sourcegitcommit: 9afd26024d2aa0d3d732ddc6f54e591715afca69
+ms.openlocfilehash: 9624405d8bc454e886e8011c1cb4920fdf7e0640
 
 
 ---
@@ -122,6 +122,6 @@ Contoso 是一家工業自動化空間的公司，他們已完全自動化其製
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用 Site Recovery 將虛擬機器從 Amazon Web Services 移轉至 Azure | Microsoft Docs"
+title: "將 VM 從 AWS 移轉到 Azure| Microsoft Docs"
 description: "本文說明如何使用 Azure Site Recovery 將 Amazon Web Services (AWS) 中執行的虛擬機器移轉至 Azure。"
 services: site-recovery
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: backup-recovery
-ms.date: 11/01/2016
+ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
-ms.openlocfilehash: c7238d677b315390bc5f53e54ab7dbded2871c5a
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: 5cf068dd64084d39e353dab6629e832112e15843
 
 
 ---
@@ -34,12 +34,12 @@ ms.openlocfilehash: c7238d677b315390bc5f53e54ab7dbded2871c5a
 ## <a name="supported-operating-systems"></a>受支援的作業系統
 站台復原可用於移轉執行下列任何作業系統的 EC2 執行個體
 
-### <a name="windows64-bit-only"></a>Windows (僅 64 位元)
+### <a name="windows64-bit-only"></a>Windows (僅&64; 位元)
 * Windows Server 2008 R2 SP1 + (僅限 Citrix PV 驅動程式或 AWS PV 驅動程式；**不支援執行 RedHat PV 驅動程式的執行個體**)
 * Windows Server 2012
 * Windows Server 2012 R2
 
-### <a name="linux-64-bit-only"></a>Linux (僅 64 位元)
+### <a name="linux-64-bit-only"></a>Linux (僅&64; 位元)
 * Red Hat Enterprise Linux 6.7 (只有 HVM 虛擬化執行個體)
 
 ## <a name="prerequisites"></a>必要條件
@@ -66,6 +66,6 @@ ms.openlocfilehash: c7238d677b315390bc5f53e54ab7dbded2871c5a
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

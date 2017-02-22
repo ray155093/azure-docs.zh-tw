@@ -1,6 +1,6 @@
 ---
-title: "使用彈性工作建立和管理相應放大的 Azure SQL Database | Micosoft Docs"
-description: "逐步解說如何建立和管理彈性資料庫工作。"
+title: "管理 Azure SQL Database 的群組 | Microsoft Docs"
+description: "逐步解說如何建立和管理彈性工作。"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -8,7 +8,7 @@ author: ddove
 editor: 
 ms.assetid: f858344d-085b-4022-935e-1b5fa20adbac
 ms.service: sql-database
-ms.custom: jobs
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,23 +16,19 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 7b3c6d29ad7ded2ea65f378a1f807235c688d738
-ms.openlocfilehash: 2e652979d56e8f14179102a946761874553219df
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: 7058139814a0a20d6fb6305e1e469946bb6b7d77
 
 
 ---
 # <a name="create-and-manage-scaled-out-azure-sql-databases-using-elastic-jobs-preview"></a>使用彈性工作建立和管理相應放大的 Azure SQL Database (預覽)
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](sql-database-elastic-jobs-create-and-manage.md)
-> * [PowerShell](sql-database-elastic-jobs-powershell.md)
-> 
-> 
 
-**彈性資料庫工作** 可以簡化資料庫群組的管理，方法是執行系統管理作業 (例如結構描述變更、認證管理、參考資料更新、效能資料收集，或租用戶 (客戶) 遙測收集)。 彈性資料庫工作目前可透過 Azure 入口網站和 PowerShell Cmdlet 使用。 不過，Azure 入口網站呈現精簡功能會限制為跨 [彈性資料庫集區 (預覽)](sql-database-elastic-pool.md)中的所有資料庫執行。 若要存取其他功能以及跨資料庫群組執行指令碼，包括自訂定義集合或分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-scale-introduction.md)建立)，請參閱[使用 PowerShell 建立和管理作業](sql-database-elastic-jobs-powershell.md)。 如需工作的詳細資訊，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。 
+
+**彈性資料庫工作** 可以簡化資料庫群組的管理，方法是執行系統管理作業 (例如結構描述變更、認證管理、參考資料更新、效能資料收集，或租用戶 (客戶) 遙測收集)。 彈性資料庫工作目前可透過 Azure 入口網站和 PowerShell Cmdlet 使用。 不過，Azure 入口網站呈現精簡功能會限制為跨[彈性集區 (預覽)](sql-database-elastic-pool.md) 中的所有資料庫執行。 若要存取其他功能以及跨資料庫群組執行指令碼，包括自訂定義集合或分區集 (使用[彈性資料庫用戶端程式庫](sql-database-elastic-scale-introduction.md)建立)，請參閱[使用 PowerShell 建立和管理作業](sql-database-elastic-jobs-powershell.md)。 如需工作的詳細資訊，請參閱 [彈性資料庫工作概觀](sql-database-elastic-jobs-overview.md)。 
 
 ## <a name="prerequisites"></a>必要條件
-* Azure 訂用帳戶。 如需免費試用，請參閱 [免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
-* 彈性資料庫集區。 請參閱 [關於彈性資料庫集區](sql-database-elastic-pool.md)
+* Azure 訂用帳戶。 如需免費試用版，請參閱 [免費試用版](https://azure.microsoft.com/pricing/free-trial/)。
+* 彈性集區。 請參閱[關於彈性集區](sql-database-elastic-pool.md)。
 * 安裝彈性資料庫工作服務元件。 請參閱 [安裝彈性資料庫工作服務](sql-database-elastic-jobs-service-installation.md)。
 
 ## <a name="creating-jobs"></a>建立工作 (Job)
@@ -89,7 +85,7 @@ ms.openlocfilehash: 2e652979d56e8f14179102a946761874553219df
 ## <a name="checking-job-status"></a>檢查工作狀態
 工作開始之後，您可以檢查它的進度。
 
-1. 從 [彈性資料庫集區] 頁面，按一下 [管理工作] 。
+1. 從 [彈性集區] 頁面，按一下 [管理工作]。
    
     ![按一下 [管理工作]][2]
 2. 按一下工作的名稱 (a)。 [狀態]  可以是 [已完成] 或 [失敗]。 工作的詳細資料隨即出現 (b)，並提供建立和執行的日期和時間。 其下方的清單 (c) 顯示對集區中每個資料庫執行指令碼的進度，並提供其日期和時間詳細資料。
@@ -114,6 +110,6 @@ ms.openlocfilehash: 2e652979d56e8f14179102a946761874553219df
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

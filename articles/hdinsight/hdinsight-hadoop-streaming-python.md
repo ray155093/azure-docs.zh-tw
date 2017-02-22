@@ -16,18 +16,13 @@ ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 729550243e18c7a9f514aa18d1f4fdd8142d141b
+ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
+ms.openlocfilehash: 0223b2f8228560480077ae4d28819ac20bd88d79
 
 
 ---
 # <a name="develop-python-streaming-programs-for-hdinsight"></a>開發適用於 HDInsight 的 Python 串流程式
 Hadoop 為 MapReduce 提供一個串流 API，可讓您以 Java 以外的語言撰寫 map 和 reduce 函數。 在本文中，您將學習如何使用 Python 來執行 MapReduce 作業。
-
-> [!NOTE]
-> 雖然本文件中的 Python 程式碼可以搭配以 Windows 為基礎的 HDInsight 叢集使用，這份文件中的步驟專門用於以 Linux 為基礎的叢集。
-> 
-> 
 
 本文是根據 Michael Noll 在 [使用 Python 撰寫 Hadoop MapReduce 程式](http://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-python/)所發佈的資訊和範例撰寫而成。
 
@@ -35,6 +30,10 @@ Hadoop 為 MapReduce 提供一個串流 API，可讓您以 Java 以外的語言�
 若要完成本文中的步驟，您需要下列項目。
 
 * HDInsight 叢集上的 Linux 型 Hadoop
+
+  > [!IMPORTANT]
+  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
 * 文字編輯器
   
   > [!IMPORTANT]
@@ -211,6 +210,6 @@ Python 可以使用 **sys** 模組從 STDIN 讀取資料並使用 **print** 來�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

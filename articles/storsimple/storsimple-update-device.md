@@ -15,8 +15,8 @@ ms.workload: TBD
 ms.date: 11/18/2016
 ms.author: v-sharos
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9e37687e44fa80f59a3e95ec0e3051290bd9c0c0
+ms.sourcegitcommit: 9c0a113e50fdb78307b8030f9b0d95b696f3f234
+ms.openlocfilehash: 8490110942741b049b6d44ac93697303cef40e8a
 
 
 ---
@@ -41,7 +41,7 @@ StorSimple 更新功能可讓您輕鬆地將 StorSimple 裝置保持為最新狀
 > 
 > 
 
-* 如需如何透過 Azure 傳統入口網站安裝一般更新的詳細資訊，請參閱 [透過 Azure 傳統入口網站安裝一般更新(#install-regular-updates-via-the-azure-classic-portal)。
+* 如需如何透過 Azure 傳統入口網站安裝一般更新的詳細資訊，請參閱[透過 Azure 傳統入口網站安裝一般更新](#install-regular-updates-via-the-azure-classic-portal)。
 * 您也可以透過 Windows PowerShell for StorSimple 安裝一般更新。 如需詳細資訊，請參閱 [透過 Windows PowerShell for StorSimple 安裝一般更新](#install-regular-updates-via-windows-powershell-for-storsimple)。
 
 ### <a name="maintenance-mode-updates"></a>維護模式更新
@@ -122,6 +122,6 @@ StorSimple 更新功能可讓您輕鬆地將 StorSimple 裝置保持為最新狀
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

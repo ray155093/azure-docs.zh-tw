@@ -3,7 +3,7 @@ title: "開始使用 Azure AD Privileged Identity Management | Microsoft Docs"
 description: "了解如何在 Azure 入口網站中使用 Azure Active Directory Privileged Identity Management 應用程式來管理特殊權限身分識別。"
 services: active-directory
 documentationcenter: 
-author: kgremban
+author: billmath
 manager: femila
 editor: 
 ms.assetid: 2299db7d-bee7-40d0-b3c6-8d628ac61071
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/16/2016
-ms.author: kgremban
+ms.date: 02/14/2017
+ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e84b361ec2acb062142d15ff9a6e02aca07d0958
+ms.sourcegitcommit: 081e45e0256134d692a2da7333ddbaafc7366eaa
+ms.openlocfilehash: 7b1510ccfed939e27bad4fc0e5fafd4383db4a35
 
 
 ---
@@ -44,7 +44,6 @@ Azure AD Privileged Identity Management 設定完畢後，您會在每次開啟�
 * **管理特殊權限角色** 是特殊權限角色管理員用來管理角色指派、變更角色啟用設定、開始存取權檢閱等的儀表板。 對於任何不是特殊權限角色管理員的人員，此儀表板中的選項會停用。
 * **檢閱特殊權限存取** 會帶您前往任何需要完成的擱置中存取權檢閱 (無論您是否正在檢閱自己或他人的存取權)。 
 
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>後續步驟
 [Azure AD Privileged Identity Management 概觀](active-directory-privileged-identity-management-configure.md) 包含如何管理貴組織系統管理存取的更多詳細資訊。
 
@@ -56,6 +55,6 @@ Azure AD Privileged Identity Management 設定完畢後，您會在每次開啟�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

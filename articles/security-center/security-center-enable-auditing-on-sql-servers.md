@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/01/2016
+ms.date: 02/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 114368ffdf8637a229bd0dfc61c0d568d348e8ee
+ms.sourcegitcommit: 6b7d2da8ababba65146503ecfbe6fd6e142a359c
+ms.openlocfilehash: 7aab37882e3f831627281bcd197fb6098dc50cc6
 
 
 ---
@@ -29,15 +29,18 @@ ms.openlocfilehash: 114368ffdf8637a229bd0dfc61c0d568d348e8ee
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。  這不是逐步指南。
-> 
-> 
+>
+>
 
 ## <a name="implement-the-recommendation"></a>實作建議
 1. 在 [建議] 刀鋒視窗中，選取 [在 SQL Server 上啟用稽核]。  這會開啟 [在 SQL Server 上啟用稽核]  刀鋒視窗。
-   ![Enable auditing on SQL servers][1]
+
+   ![在 SQL Server 上啟用稽核][1]
 2. 選取要在其上啟用稽核的 SQL Server。 這會開啟 [稽核設定]  刀鋒視窗。
-   ![Auditing settings][2]
+
+   ![稽核設定][2]
 3. 在 [稽核設定] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。
+
    ![開啟稽核設定][3]
 4. 遵循 [開始使用 SQL Database 稽核](../sql-database/sql-database-auditing-get-started.md) ，設定將儲存稽核記錄的儲存體。 適用於資料收集的訂用帳戶儲存體帳戶是預設儲存體帳戶。
 5. 遵循 [開始使用 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md) ，開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
@@ -64,6 +67,6 @@ ms.openlocfilehash: 114368ffdf8637a229bd0dfc61c0d568d348e8ee
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

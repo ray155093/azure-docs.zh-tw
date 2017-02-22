@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 11/28/2016
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8a971b0dc1f216deaa93045857d6220d0fcbf8c1
+ms.sourcegitcommit: 244cc5e4f053901a8de94adb8fc983edf30ca516
+ms.openlocfilehash: 46b3ade8bb58ccd0637ce4f2cf5c484f599e6173
 
 
 ---
@@ -75,7 +75,7 @@ OpsGenie 作為由 Azure 所產生警示發送器。 OpsGenie 會根據值勤排
 [請移至文件。][opsgenie-doc]
 
 ## <a name="pagerduty"></a>PagerDuty
-PagerDuty 是業界領先的事件管理解決方案，針對 Azure 度量警示提供第一級支援。 如今，PagerDuty 除了 Azure 服務的平台層級度量通知之外，還支援 Azure Applications、Azure 監視器警示、自動調整與稽核記錄檔事件的通知。 這些增強功能讓使用者能進一步地掌握核心 Azure 平台，同時讓他們充分利用 PagerDuty 的即時回應事件管理功能。 我們透過 webhook 實現擴充的 Azure 整合，以供快速且輕鬆的設定與自訂。
+PagerDuty 是業界領先的事件管理解決方案，針對 Azure 度量警示提供第一級支援。 現今，PagerDuty 除了 Azure 服務的平台層級計量通知之外，還支援「Azure 監視器警示」、「自動調整規模通知」及「稽核記錄事件」的通知。 這些增強功能讓使用者能進一步地掌握核心 Azure 平台，同時讓他們充分利用 PagerDuty 的即時回應事件管理功能。 我們透過 webhook 實現擴充的 Azure 整合，以供快速且輕鬆的設定與自訂。
 
 [請移至文件。][pagerduty-doc]
 
@@ -85,10 +85,12 @@ Microsoft 雲端服務的 Splunk 附加元件[可在這裡的 Splunkbase 取得]
 [請移至文件。][splunk-doc]
 
 ## <a name="sumo-logic"></a>Sumo Logic
+Sumo Logic 是安全、雲端原生的電腦資料分析服務，能橫跨整個應用程式生命週期與堆疊提供結構化、半結構化和非結構化資料即時、不間斷的智慧服務。 全球超過 1,000 個客戶都依賴 Sumo Logic 進行分析及洞察，以建置、執行並保護他們的新式應用程式與雲端架構。 透過 Sumo Logic，客戶可取得多租用戶、服務模型的優點，來加速他們持續創新的腳步，提升競爭優勢、商業價值及發展。
+
 [深入了解。][sumologic-doc]
 
 ## <a name="next-steps"></a>後續步驟
-* [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
+* [深入了解活動記錄檔 (之前的稽核記錄檔)](../azure-resource-manager/resource-group-audit.md)
 * [將 Azure 活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 
 <!--Connectors Documentation-->
@@ -103,7 +105,7 @@ Microsoft 雲端服務的 Splunk 附加元件[可在這裡的 Splunkbase 取得]
 [opsgenie-anchor]: #opsgenie "OpsGenie"
 [pagerduty-anchor]: #pagerduty "PagerDuty"
 [splunk-anchor]: #splunk-add-on-for-microsoft-cloud-services "Splunk"
-[sumologic-anchor]: #sumologic "Sumo Logic"
+[sumologic-anchor]: #sumo-logic "Sumo Logic"
 
 <!--Icon references-->
 [alertlogic-logo]: ./media/partner-logos/alertlogic.png
@@ -135,6 +137,6 @@ Microsoft 雲端服務的 Splunk 附加元件[可在這裡的 Splunkbase 取得]
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

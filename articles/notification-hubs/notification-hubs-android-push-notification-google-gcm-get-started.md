@@ -16,8 +16,8 @@ ms.topic: hero-article
 ms.date: 07/05/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 84d3aa963f8538c0721f6c0a02cee5b8e7269770
-ms.openlocfilehash: 33433fb4e71ea6a88522c0bd50695d271fee1884
+ms.sourcegitcommit: 5ef9e96ae78b02da9dff1456608d73b9e78516a1
+ms.openlocfilehash: 808fc10ef1ebb3288facbdf2e9e817b27d4fc6bc
 
 
 ---
@@ -63,10 +63,10 @@ ms.openlocfilehash: 33433fb4e71ea6a88522c0bd50695d271fee1884
 ### <a name="create-a-new-android-project"></a>建立新的 Android 專案
 1. 在 Android Studio 中，啟動新的 Android Studio 專案。
    
-     ![Android Studio - 新增專案][13]
+   ![Android Studio - 新增專案][13]
 2. 選擇 [電話和平板電腦] 板型規格和您要支援的 [Minimum SDK]。 然後按 [下一步] 。
    
-     ![Android Studio - 專案建立工作流程][14]
+   ![Android Studio - 專案建立工作流程][14]
 3. 為主要活動選擇 [空白活動]，並按 [下一步]，然後按一下 [完成]。
 
 ### <a name="add-google-play-services-to-the-project"></a>新增 Google Play 服務至專案
@@ -619,13 +619,14 @@ ms.openlocfilehash: 33433fb4e71ea6a88522c0bd50695d271fee1884
 #### <a name="running-the-application"></a>執行應用程式
 1. 執行 app，並注意已回報註冊成功的註冊識別碼。
    
-       ![Testing on Android - Channel registration][18]
+      ![在 Android 上測試 - 通道註冊][18]
 2. 輸入通知訊息，以傳送給已向中心註冊的所有 Android 裝置。
    
-       ![Testing on Android - sending a message][19]
+      ![在 Android 上測試 - 傳送訊息][19]
+
 3. 按 [ **傳送通知**]。 任何執行應用程式的裝置都會顯示含推播通知訊息的 `AlertDialog` 執行個體。 未執行應用程式但先前已註冊推播通知的裝置，將會收到 Android 通知管理員的通知。 從左上角往下撥動，即可檢視通知。
    
-       ![Testing on Android - notifications][21]
+      ![在 Android 上測試 - 通知][21]
 
 ## <a name="next-steps"></a>後續步驟
 我們建議以 [使用通知中樞將通知推播給使用者] 教學課程做為下一個步驟。 它會示範如何使用標記以特定使用者為目標，從 ASP.NET 後端傳送通知。
@@ -671,6 +672,6 @@ ms.openlocfilehash: 33433fb4e71ea6a88522c0bd50695d271fee1884
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,157 +1,170 @@
 ---
-title: 管理 Application Insights 的定價和配額
-description: 選擇您需要的價格方案
+title: "管理 Application Insights 的價格和資料量 | Microsoft Docs"
+description: "在 Application Insights 中管理遙測量和監視成本。"
 services: application-insights
-documentationcenter: ''
+documentationcenter: 
 author: alancameronwills
 manager: douge
-
+ms.assetid: ebd0d843-4780-4ff3-bc68-932aa44185f6
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 08/27/2016
+ms.date: 01/13/2017
 ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: df0ab8e6828033b783449e9478a5884355a7f1fe
+ms.openlocfilehash: 453aa0e98e639872184b697ad8ed91d9545e152f
+
 
 ---
-# 管理 Application Insights 的定價和配額
-*Application Insights 目前僅供預覽。*
+# <a name="manage-pricing-and-data-volume-in-application-insights"></a>管理 Application Insights 的價格和資料量
 
-[Visual Studio Application Insights][start] 的[定價][pricing]是根據每個應用程式的資料量而定。我們提供實質的免費層，讓您在該層次中使用大部分的功能，但會有一些限制。
+
+[Azure Application Insights][start] 的價格是根據每個應用程式的資料量而定。 開發期間或小型應用程式的低使用量可能是免費的，因為每個月有 1 GB 的遙測資料額度。
 
 每項 Application Insights 資源的收費方式採個別服務計價，並計入您 Azure 訂用帳戶的帳單。
 
-[請參閱定價機制][pricing]。
+價格方案有兩個。 預設方案稱為「基本」。 您可以選擇「企業」方案，該方案有每日費用，但可使用某些特定功能，例如[連續匯出](app-insights-export-telemetry.md)。
 
-## 檢視 Application Insights 資源的配額和價格方案
-您可以在應用程式資源的 [設定] 中開啟 [配額 + 定價] 刀鋒視窗。
+如果您對 Application Insights 的定價有疑問，歡迎隨時在[論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=ApplicationInsights)中張貼問題。 
 
-![依序選擇 [設定]、[配額 + 定價]。](./media/app-insights-pricing/01-pricing.png)
+## <a name="the-pricing-plans"></a>價格方案
 
-您選擇的定價結構描述會影響：
+如需您的貨幣的目前價格，請參閱[Application Insights 價格頁面][pricing]。
 
-* [每月配額](#monthly-quota) - 您每個月可以分析的遙測數量。
-* [資料速率](#data-rate) - 從您的應用程式處理資料的最高速率。
-* [連續匯出](#continuous-export) - 您是否可以將資料匯出到其他工具和服務。
+### <a name="basic-plan"></a>基本方案
 
-這些限制會分別為每個 Application Insights 資源加以設定。
+建立新的 Application Insights 資源時，基本方案是預設方案，應可滿足大部分客戶的需要。
 
-### 免費試用高階
-當您第一次建立新的 Application Insights 資源時，會先從免費層開始。
+* 基本方案是依照您的資料量收費︰Application Insights 接收的遙測位元組數。 資料量是測量 Application Insights 從應用程式收到的未壓縮 JSON 資料套件的大小。
+* 每個應用程式的第一個 1 GB 是免費的，因此如果只是實驗或開發，您可能不需要付費。
+* [即時計量串流](app-insights-live-stream.md)資料不會計入價格用途。
+* 在基本方案中，可以依照每一 GB 額外付費使用[連續匯出](app-insights-export-telemetry.md)，不過它在 2017 年 3 月初以前是免費的。
 
-您可以隨時切換成免費試用 30 天的高階版。如此便可體驗高階層的優點。30 天之後，如果您未明確選擇另一個層次，它會自動還原到您之前所在的任一層次。您可以在試用期間隨時選取想要的層次，但在 30 天的期限結束前，您仍可以免費試用。
+### <a name="enterprise-plan"></a>企業方案
 
-## 每月配額
-* 您的應用程式每月最多可以將指定的遙測資料量上傳至 Application Insights。目前免費定價層的配額是每個月 5 百萬個資料點，而其他訂價配置會提供多出許多的配額。如果您的配額用完了，可以購買更多的配額。如需實際數字，請參閱[定價機制][pricing]。
-* 配額取決於您所選擇的定價層。
-* 配額的計算是從每個月第一天的午夜起 (UTC)。
-* 資料點圖表會顯示您這個月已使用多少配額。
-* 配額是以資料點來進行測量。 不論您的程式碼，或其中一個標準遙測模組是否有明確呼叫，單一資料點都是其中一種追蹤方法的呼叫。它可以有多個附加的屬性和度量。
-* 產生資料點的項目：
-  * 會自動收集資料的 [SDK 模組](app-insights-configuration-with-applicationinsights-config.md)，例如用來回報要求或損毀，或是測量效能。
-  * 您編寫的 [API](app-insights-api-custom-events-metrics.md) `Track...` 呼叫，例如 `TrackEvent` 或 `trackPageView`。
-  * 您已設定的[可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
-* 當您偵錯時，可以在 Visual Studio 的輸出視窗中看到從您應用程式所傳送的資料點。只要開啟您瀏覽器的偵錯窗格 (通常是 F12) 中的 [網路] 索引標籤，就能看到用戶端事件。
-* 工作階段資料不會計入配額。這包括使用者、工作階段、環境和裝置資料的計數。
-* 如果您要透過檢查來計算資料點的總數，可以在各種不同位置找到資料點：
-  * 您在[診斷搜尋](app-insights-diagnostic-search.md)中看到的每個項目，包括 HTTP 要求、例外狀況、記錄追蹤、頁面檢視、相依性事件，及自訂事件。
-  * [度量](app-insights-metrics-explorer.md) (例如效能計數器) 的每個原始測量資料。(您在圖表看到的點通常是多個原始資料點的彙總)。
-  * Web 可用性圖表上的每個點，也都是幾個資料點的彙總。
-* 您也可以在偵錯時，在來源檢查個別的資料點：
-  * 如果您在 Visual Studio 的偵錯模式中執行應用程式，資料點會記錄在輸出視窗中。
-  * 若要查看用戶端資料點，請開啟瀏覽器的偵錯窗格 (通常是 F12)，然後開啟 [網路] 索引標籤。
-* 資料速率 (預設) 可能會依[調適性取樣](app-insights-sampling.md)降低。這表示，隨著應用程式使用頻率的增加，遙測速率不會如像您預期一般增加。
+* 在企業方案中，您的應用程式可以使用 Application Insights 的所有功能。 在企業方案中[連續匯出](app-insights-export-telemetry.md)和 [Log Analytics 連接器](https://go.microsoft.com/fwlink/?LinkId=833039&amp;clcid=0x409)為免費，無需任何額外的費用。
+* 在企業方案中，是依照傳送所有應用程式遙測的每一節點付費。 
+ * 「節點」是裝載應用程式的實體或虛擬伺服器機器，或是平台即服務 (PaaS) 角色執行個體。
+ * 開發用電腦、用戶端瀏覽器、行動裝置不算節點。
+ * 如果您的應用程式有數個會傳送遙測的元件，例如 Web 服務和後端背景工作，會將它們分開計算。
+ * [即時計量串流](app-insights-live-stream.md)資料不會計入價格用途。
+* 整個訂用帳戶的收費是依照每一節點，而非每一應用程式。 如果您有五個節點傳送 12 個應用程式的遙測，則是以五個節點計算收費。
+* 雖然費用是按月報價，您的收費僅適用於一個節點從一個應用程式傳送遙測的任何小時。 每小時的費用是月費報價 / 744 (一個月 31 天的小時數)。
+* 每個節點 (資料粒度為小時) 偵測每日 200 MB 的資料量配置。 未使用的資料配置不會帶到隔天。
+ * 如果您選擇企業價格方案，每個訂用帳戶會根據傳送遙測資料至該訂用帳戶中 Application Insights 資源的節點數，得到每日資料額度。 因此，如果您有 5 個節點全天候傳送資料，您會有合起來 1GB 的資料額度，套用至該訂用帳戶中的所有 Application Insights 資源。 由於內含資料會在所有節點之間共用，因此特定節點所傳送的資料是否超過其他節點並無妨。 如果某一天，Application Insights 資源收到超過此訂用帳戶的每日資料配置，則會按 GB 收取資料超量費用。 
+ * 每日資料額度的計算方式，是每個節點在當天傳送遙測資料的時數 (使用 UTC) 除以 24 再乘以 200 MB。 因此，如果您有 4 個節點在一天 24 個小時的 15 個小時內傳送遙測資料，則當天內含資料量會是 ((4 x 15) / 24) x 200 MB = 500 MB。 以資料超量每一 GB 的價格是 2.30 美元來說，如果節點那一天會傳送 1 GB 的資料，費用會是 1.15 美元。
+ * 請注意，「企業」方案的每日額度不能與已選擇「基本」方案的應用程式共用，且未使用的額度也不能帶到隔天。 
+* 以下是判斷不同節點計數的一些範例︰
+| 案例                               | 每日節點總數 |
+|:---------------------------------------|:----------------:|
+| 1 個應用程式使用 3 個 Azure App Service 執行個體和 1 個虛擬伺服器 | 4 |
+| 3 個應用程式在 2 個 VM 上執行，而這些應用程式的 Application Insights 資源位於相同的訂用帳戶中，且採用「企業」方案 | 2 | 
+| 4 個應用程式，其 Application Insights 資源位於相同訂用帳戶中。 在 16 小時的離峰時間裡每個應用程式執行 2 個執行個體，在 8 小時的尖峰時間裡執行 4 個執行個體。 | 13.33 | 
+| 雲端服務有 1 個背景工作角色和 1 個 Web 角色，各執行 2 個執行個體 | 4 | 
+| 5 個節的 Service Fabric 叢集執行 50 個微服務，每個微服務執行 3 個執行個體 | 5|
 
-### 超額部分
-如果您的應用程式傳送的配額超過每月上限，您可以：
+* 節點的精確計算行為取決於您的應用程式使用哪個 Application Insights SDK。 
+  * 若是 SDK 2.2 及之後的版本，Application Insights [Core SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) 或 [Web SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 會將每個應用程式主機當做節點報告，例如實體伺服器與 VM 主機的電腦名稱 (在雲端服務的案例中則是執行個體名稱)。  唯一的例外是只使用 [.NET Core](https://dotnet.github.io/) 和 Application Insights Core SDK 的應用程式，此情況下，所有主機只會報告一個節點，因為不知道主機名稱。 
+  * 對於較早版本的 SDK，[Web SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 的行為就和較新版的 SDK 一樣，不過不論實際應用程式主機的數目是多少，[Core SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) 都只會報告一個節點。 
+  * 請注意，如果您的應用程式使用 SDK 將 roleInstance 設為某個自訂值，依預設會用相同的值來判斷節點數目。 
+  * 如果您使用新的 SDK 版本，搭配從用戶端電腦或行動裝置執行的應用程式，則節點數目可能會傳回很大的數字 (來自大量的用戶端電腦或行動裝置)。 
 
-* 為額外的資料付費：如需詳細資料，請參閱[定價機制][pricing]。您可以預先選擇此選項。免費定價層中沒有此選項。
-* 升級定價層。
-* 不做任何動作。系統仍會繼續記錄工作階段資料，但診斷搜尋或計量瀏覽器中將不會顯示其他資料。
+### <a name="multi-step-web-tests"></a>多重步驟 Web 測試
 
-## 正在傳送多少資料？
-[價格] 刀鋒視窗底部的圖表中，會依資料點數量分組，顯示您應用程式的資料點使用量。(您也可以在 [計量瀏覽器] 中建立此圖表。)
+[多步驟 Web 測試](app-insights-monitor-web-app-availability.md#multi-step-web-tests)會有一項額外的費用。 這是指執行連續動作的 Web 測試。 
 
-![位於 [定價] 刀鋒視窗底部](./media/app-insights-pricing/03-allocation.png)
+單一頁面的 ping 測試沒有另外的費用。 來自 ping 測試和多步驟測試的遙測，會與來自您應用程式的其他遙測一起計費。
 
-按一下圖表可取得詳細資料，或在圖表上拖曳並按 (+) ，以取得某個時間範圍內的詳細資料。
+## <a name="review-pricing-plan-and-estimate-costs-for-your-application-insights-resource"></a>檢閱 Application Insights 資源的價格方案並評估成本
+在您應用程式的 Application Insights 資源中開啟 [功能 + 價格] 刀鋒視窗。
 
-此圖表顯示[取樣](app-insights-sampling.md)之後抵達 Application Insights 服務的資料量。
+![選擇價格。](./media/app-insights-pricing/01-pricing.png)
 
-如果資料量達到每月配額，則圖表上會出現註解。
+**a.** 檢閱當月的資料量。 這包括從您的伺服器和用戶端應用程式，以及從可用性測試接收並保留的所有資料 (在任何[取樣](app-insights-sampling.md)之後)。
 
-## 資料速率
-除了每月配額，還有資料速率的節流限制。對於免費[價格層][pricing]，此限制是平均每 5 分鐘 200 個資料點/秒；對於付費層，則為平均每 1 分鐘 500 個資料點/秒。
+**b.** 進行[多步驟 Web 測試](app-insights-monitor-web-app-availability.md#multi-step-web-tests)需另外收費。 (這不包括簡單的可用性測試，其已包含在資料量費用中。)
 
-有三個個別計數的貯體：
+**c.** 啟用企業方案。
 
-* [TrackTrace 呼叫](app-insights-api-custom-events-metrics.md#track-trace)和[擷取的記錄檔](app-insights-asp-net-trace-logs.md)
-* [例外狀況](app-insights-api-custom-events-metrics.md#track-exception)，限制為 50 點/秒。
-* 所有其他遙測 (頁面檢視、工作階段、要求、相依性、度量、自訂事件、Web 測試結果)。
+**d.** 逐一點選資料管理選項，以檢視上個月的資料量，並設定每日上限或設定擷取取樣。
 
-*如果應用程式超過每秒速率，會發生什麼事？*
+Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure 入口網站中的 [帳務] 區段中，或在 [Azure 計費入口網站](https://account.windowsazure.com/Subscriptions)中，查看 Azure 帳單的詳細資料。 
 
-* 系統會每分鐘評估應用程式傳送的資料量。如果每秒速率超過每分鐘平均值，伺服器會拒絕部分要求。接著，部分版本的 SDK 會嘗試每數分鐘重新傳送突波；其他像是 JavaScript SDK 則會放棄遭到拒絕的資料。
+![選擇側邊功能表中的 [帳務]。](./media/app-insights-pricing/02-billing.png)
+
+## <a name="data-rate"></a>資料速率
+有三種方式可限制您傳送的資料量︰
+
+* **每日上限。** 根據預設，這會設為一天 500 GB。 當您的應用程式達到上限時，我們會傳送電子郵件並捨棄資料，直到當天結束為止。 若要變更，請使用 [資料量管理] 刀鋒視窗。
+* **[取樣](app-insights-sampling.md)。** 這個機制可減少您的伺服器和用戶端應用程式所傳送的遙測量，計量的扭曲程度最小。
+* **節流**會將資料速率限制在每秒 32,000 個事件，平均超過 1 分鐘。 
+
+
+如果應用程式超過節流速率會發生什麼事？
+
+* 系統會每分鐘評估應用程式傳送的資料量。 如果每秒速率超過每分鐘平均值，伺服器會拒絕部分要求。 SDK 會緩衝處理資料，然後嘗試重新傳送，大量傳播幾分鐘。 如果應用程式始終以高於節流速率的方式傳送資料，有些資料會遭到捨棄  (ASP.NET、Java 和 JavaScript SDK 會嘗試以此方式重新傳送，其他 SDK 則可能直接捨棄節流的資料)。
 
 當節流發生時，您會看到警告您這種情況已發生的通知。
 
 *如何知道應用程式正在傳送多少資料點？*
 
-* 開啟 [設定/配額與定價] 查看 [資料數量] 圖表。
-* 或在 [計量瀏覽器] 中，新增新的圖表，然後選取 [資料點數量] 做為其計量。切換群組，並依 [**資料類型**] 分組。
+* 開啟 [價格] 刀鋒視窗以查看 [資料量] 圖表。
+* 或在 [計量瀏覽器] 中，新增新的圖表，然後選取 [資料點數量] 做為其計量。 切換群組，並依 [資料類型] 分組。
 
-## 降低資料速率
-如果您遇到節流限制，以下是您可以執行的一些事項：
+## <a name="to-reduce-your-data-rate"></a>降低資料速率
+以下是您可進行以減少資料量的一些事項︰
 
-* 使用[取樣](app-insights-sampling.md)。這項技術可減少資料率而不會曲解您的計量，且不會中斷在 [搜尋] 中於相關項目之間瀏覽的能力。
+* 減少每日數量上限。 預設值為一天 500 GB。
+* 使用 [取樣](app-insights-sampling.md)。 這項技術可減少資料率而不會曲解您的計量，且不會中斷在 [搜尋] 中於相關項目之間瀏覽的能力。 在伺服器應用程式，它會自動運作。
 * [限制可回報的 Ajax 呼叫次數](app-insights-javascript.md#detailed-configuration) (在每個頁面檢視中) 或關閉 Ajax 報告功能。
-* 藉由[編輯 ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 來關閉您不需要的集合模組。例如，您可能會決定效能計數器或相依性資料是不必要的。
-* 預先彙總度量。如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。您也可以使用[預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。
+* 藉由 [編輯 ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)來關閉您不需要的集合模組。 例如，您可能會決定效能計數器或相依性資料是不必要的。
+* 分割您的遙測，以區隔檢測金鑰。 
+* 預先彙總度量。 如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。 您也可以使用 [預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。 
 
-## 取樣
-[取樣](app-insights-sampling.md)可以降低將遙測傳送到您 App 的速率，同時仍保留在診斷搜尋時尋找相關事件的功能，並保有正確的事件計數。
+## <a name="sampling"></a>取樣
+[取樣](app-insights-sampling.md) 可以降低將遙測傳送到您 App 的速率，同時仍保留在診斷搜尋時尋找相關事件的功能，並保有正確的事件計數。 
 
-取樣可有效減少費用並維持在每月配額內。取樣演算法會保留遙測的相關項目，例如：使用「搜尋」時，可以找到與特定例外狀況相關的要求。此演算法也會保留正確的計數，方便您在計量瀏覽器中查看正確的要求率、例外狀況率，以及其他計數等數值。
+取樣可有效減少費用並維持在每月配額內。 取樣演算法會保留遙測的相關項目，例如：使用「搜尋」時，可以找到與特定例外狀況相關的要求。 此演算法也會保留正確的計數，方便您在計量瀏覽器中查看正確的要求率、例外狀況率，以及其他計數等數值。
 
 取樣有數種形式。
 
-* [調適性取樣](app-insights-sampling.md)是 ASP.NET SDK 的預設值，它能自動針對應用程式所傳送的遙測量進行調整。這會自動在 Web 應用程式中的 SDK 運作，所以能降低網路上的遙測流量。
-* 「擷取取樣」是替代方法，它會在遙測從應用程式進入 Application Insights 服務時運作。它並不會影響從應用程式傳送的遙測大小，但可減少服務保留的大小。您可以用它來減少瀏覽器和其他 SDK 遙測所用的配額。
+* [調適性取樣](app-insights-sampling.md) 是 ASP.NET SDK 的預設值，它能自動針對應用程式所傳送的遙測量進行調整。 這會自動在 Web 應用程式中的 SDK 運作，所以能降低網路上的遙測流量。 
+*  是替代方法，它會在遙測從應用程式進入 Application Insights 服務時運作。 它並不會影響從應用程式傳送的遙測大小，但可減少服務保留的大小。 您可以用它來減少瀏覽器和其他 SDK 遙測所用的配額。
 
-若要設定擷取取樣，請在 [配額 + 價格] 刀鋒視窗中設定控制項：
+若要設定擷取取樣，請在 [價格] 刀鋒視窗中設定控制項：
 
 ![在 [配額和價格] 刀鋒視窗中，按一下 [範例] 磚，然後選取取樣分數。](./media/app-insights-pricing/04.png)
 
 > [!WARNING]
-> [保留的樣本] 圖格上顯示的值只會指出您為擷取取樣所設定的值。它不會顯示在您應用程式中的 SDK 運作的取樣率。
+> [保留的樣本] 圖格上顯示的值只會指出您為擷取取樣所設定的值。 它不會顯示在您應用程式中的 SDK 運作的取樣率。 
 > 
 > 如果已在 SDK 進行連入遙測的取樣，則不適用擷取取樣。
 > 
 > 
 
-若要找出實際的取樣率 (不論是否已套用)，請使用如下所示的[分析查詢](app-insights-analytics.md)︰
+若要找出實際的取樣率 (不論是否已套用)，請使用如下所示的 [分析查詢](app-insights-analytics.md) ︰
 
     requests | where timestamp > ago(1d)
     | summarize 100/avg(itemCount) by bin(timestamp, 1h) 
     | render areachart 
 
-在每筆保留的記錄中，`itemCount` 表示它所代表的原始記錄筆數，其等於 1 + 先前捨棄的記錄筆數。
+在每筆保留的記錄中， `itemCount` 表示它所代表的原始記錄筆數，其等於 1 + 先前捨棄的記錄筆數。 
 
-## 檢視 Azure 訂用帳戶的帳單
-Application Insights 費用會加到您的 Azure 帳單中。您可以在 Azure 入口網站中的 [帳務] 區段中，或在 [Azure 計費入口網站](https://account.windowsazure.com/Subscriptions)中，查看 Azure 帳單的詳細資料。
 
-![選擇側邊功能表中的 [帳務]。](./media/app-insights-pricing/02-billing.png)
+## <a name="transition-from-the-old-pricing-tiers"></a>從舊的定價層轉換
 
-## 名稱限制
-1. 您的應用程式具有最多 200 個唯一度量名稱和 200 個唯一屬性名稱。度量包括透過 TrackMetric 傳送的資料，以及其他資料類型 (例如事件) 的度量資料 。每個檢測金鑰的[計量和屬性名稱][api]是全域的。
-2. 只有在每個屬性具有少於 100 個唯一值時，[屬性][apiproperties]才能用於篩選和分組依據。唯一值的數目超過 100 個之後，您仍可以搜尋屬性，但無法再用於篩選或分組依據。
-3. 標準屬性，例如要求名稱和網頁 URL 會限制為每週 1000 個唯一值。超過 1000 個唯一值之後，額外值都會標示為「其他值」。 原始值仍然可以用於全文檢索搜尋和篩選。
+現有的應用程式可以繼續使用舊的定價層，直到 2017 年 2 月為止。 屆時，大部分應用程式將自動移轉至「基本」方案。 那些使用連續匯出或 OMS Log Analytics 連接器的應用程式將移轉至「企業」方案。
 
-如果您發現您的應用程式超過這些限制，請考慮依照不同的檢測金鑰來分割您的資料 - 也就是[建立新的 Application Insights 資源](app-insights-create-new-resource.md)，並將部分資料傳送至新的檢測金鑰。您可能會發現結果更具結構化。您可以使用[儀表板](app-insights-dashboards.md#dashboards)將不同的度量呈現在相同的畫面上，如此，這種方法就不會妨礙您比較不同的度量。
 
-## 限制摘要
+## <a name="limits-summary"></a>限制摘要
 [!INCLUDE [application-insights-limits](../../includes/application-insights-limits.md)]
+
+## <a name="next-steps"></a>後續步驟
+
+* [取樣](app-insights-sampling.md)
 
 <!--Link references-->
 
@@ -162,4 +175,7 @@ Application Insights 費用會加到您的 Azure 帳單中。您可以在 Azure 
 
 
 
-<!---HONumber=AcomDC_0831_2016-->
+
+<!--HONumber=Feb17_HO2-->
+
+

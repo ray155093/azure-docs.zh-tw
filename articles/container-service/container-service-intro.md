@@ -1,5 +1,5 @@
 ---
-title: "Azure Container Service 簡介 | Microsoft Docs"
+title: "Azure 雲端中的 Docker 容器叢集 | Microsoft Docs"
 description: "Azure Container Service 提供簡化建立、設定及管理虛擬機器叢集的方法，這些虛擬機器預先設定為執行容器化應用程式。"
 services: container-service
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/20/2016
+ms.date: 01/21/2017
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: f8a2b63c381ceafb23b31697916796066ea549f9
-ms.openlocfilehash: d5652134cc2c660395cfb83a1a2727acf306f5e9
+ms.sourcegitcommit: cc3cc2dce324942f184b6a520dc4db28518a3091
+ms.openlocfilehash: 0521fbd689233c0f2359a10006e24c75c8997732
 
 
 ---
@@ -39,7 +39,7 @@ Azure Container Service 會使用 Docker 容器格式，確保您的應用程式
 我們對於 Azure Container Service 的目標，是要使用現今頗受客戶歡迎的開放原始碼工具和技術，提供容器主控環境。 為了這個目的，我們會為您所選擇的 Orchestrator (DC/OS 或 Docker Swarm 或 Kubernetes) 公開標準 API 端點。 您可以使用這些端點來運用能夠與這些端點通訊的任何軟體。 比方說，在 Docker Swarm 端點的案例中，您可能會選擇使用 Docker 命令列介面 (CLI)。 若是 DC/OS，您可能會選擇使用 DCOS CLI。 針對 Kubernetes，您可以選擇使用 kubectl。
 
 ## <a name="creating-a-docker-cluster-by-using-azure-container-service"></a>使用 Azure Container Service 建立 Docker 叢集
-若要開始使用 Azure Container Service，您必須透過入口網站 (搜尋 'Azure Container Service') 部署 Azure Container Service 叢集、使用 Azure Resource Manager 範本 ([Docker Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm) 或 [DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos) 或 [Kubernetes](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes))，或使用 [CLI](/documentation/articles/xplat-cli-install/)。 提供的快速入門範本可以修改為包含其他或進階 Azure 組態。 如需有關部署 Azure Container Service 叢集的詳細資訊，請參閱 [部署 Azure Container Service 叢集](container-service-deployment.md)。
+若要開始使用 Azure Container Service，您必須透過入口網站 (搜尋 'Azure Container Service') 部署 Azure Container Service 叢集、使用 Azure Resource Manager 範本 ([Docker Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm) 或 [DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos) 或 [Kubernetes](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes))，或使用 [CLI](/articles/xplat-cli-install.md)。 提供的快速入門範本可以修改為包含其他或進階 Azure 組態。 如需有關部署 Azure Container Service 叢集的詳細資訊，請參閱 [部署 Azure Container Service 叢集](container-service-deployment.md)。
 
 ## <a name="deploying-an-application"></a>部署應用程式
 Azure Container Service 提供協調流程的選擇：Docker Swarm 或 DC/OS 或 Kubernetes。 部署應用程式的方式取決於您所選擇的 Orchestrator。
@@ -92,7 +92,7 @@ Kubernetes 是受歡迎的開放原始碼生產等級容器 Orchestrator 工具�
 * 服務探索和負載平衡
 * 密碼和組態管理
 * 以 API 為基礎的自動化推出和復原
-* 自我修復 
+* 自我修復
 * 等等。
 
 
@@ -101,18 +101,17 @@ Kubernetes 是受歡迎的開放原始碼生產等級容器 Orchestrator 工具�
 開始使用 Azure Container Service (101)：  
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-Container-Service-101/player]
-> 
-> 
+>
+>
 
 使用 Azure Container Service 建置應用程式 (組建 2016)
 
 > [!VIDEO https://channel9.msdn.com/Events/Build/2016/B822/player]
-> 
-> 
+>
+>
 
 
 
-
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

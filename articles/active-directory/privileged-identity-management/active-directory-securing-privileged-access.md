@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/26/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 1150f7eaba41e42c94ed7297bd7603dc506a97a9
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 936e152304dc4a4a3bd95c7bfba071a02a20d0dd
 
 
 ---
@@ -36,7 +36,7 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 
 如需 Azure Multi-Factor Authentication 運作方式的概觀，請參閱以下影片。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Windows-Azure-Multi-Factor-Authentication/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Windows-Azure-Multi-Factor-Authentication/player]
 > 
 > 
 
@@ -75,6 +75,6 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/20/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dece2cd1c8645c0a2d19177d433dbfe5d6e3f6cd
+ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
+ms.openlocfilehash: ac73b5c2ece8044d9f75e017428c43259f8a9357
 
 
 ---
@@ -47,8 +47,7 @@ Promapp 與 Azure AD 整合提供下列優點：
 * 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
 
 ## <a name="scenario-description"></a>案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。  
-本教學課程中說明的案例由二個主要建置組塊組成：
+此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫加入 Promapp 
 2. 設定並測試 Azure AD 單一登入
@@ -107,17 +106,16 @@ Promapp 與 Azure AD 整合提供下列優點：
    
     ![Azure AD 單一登入][8] 
    
-     a. 在 [登入 URL] 文字方塊中，輸入您的使用者用來登入 Promapp 網站的 URL (例如：https://companyname.promapp.com/instancename)。
-
-     b. 按 [下一步] 。
+   1. 在 [登入 URL] 文字方塊中，輸入您的使用者用來登入 Promapp 網站的 URL (例如：https://companyname.promapp.com/instancename)。
+   2. 按 [下一步] 。
 
 1. 在 [設定在 Promapp 單一登入]  頁面上，執行下列步驟：
    
     ![Azure AD 單一登入][9] 
    
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+   1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+   2. 按 [下一步] 。
    
-    b. 按 [下一步] 。
 2. 以系統管理員身分登入您的 Promapp 公司網站。 
 3. 在頂端的功能表中，按一下 [系統管理員] 。 
    
@@ -129,11 +127,9 @@ Promapp 與 Azure AD 整合提供下列優點：
    
     ![Azure AD 單一登入][14] 
    
-    a. 在 Azure 傳統入口網站的 [設定在 Promapp 單一登入] 對話方塊中，複製 [遠端登入 URL]，然後貼到 [SSO 登入 URL] 文字方塊，然後按一下 [儲存]。
-   
-    b. 針對 [SSO - 單一登入模式]，選取 [選擇性]，然後按一下 [儲存]。
-   
-    c. 在記事本中開啟下載的憑證，複製憑證的內容但不包含第一行 (*-----BEGIN CERTIFICATE-----*) 和最後一行 (*-----END CERTIFICATE-----*)，將它貼到 [SSO x.509 憑證] 文字方塊中，然後按一下 [儲存]。
+   1. 在 Azure 傳統入口網站的 [設定在 Promapp 單一登入] 對話方塊中，複製 [遠端登入 URL]，然後貼到 [SSO 登入 URL] 文字方塊，然後按一下 [儲存]。
+   2. 針對 [SSO - 單一登入模式]，選取 [選擇性]，然後按一下 [儲存]。
+   3. 在記事本中開啟下載的憑證，複製憑證的內容但不包含第一行 (*-----BEGIN CERTIFICATE-----*) 和最後一行 (*-----END CERTIFICATE-----*)，將它貼到 [SSO x.509 憑證] 文字方塊中，然後按一下 [儲存]。
 6. 在 Azure AD 傳統入口網站上，選取單一登入設定確認，然後按一下 [下一步] 。 
    
     ![Azure AD 單一登入][10]
@@ -162,23 +158,20 @@ Promapp 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-promapp-tutorial/create_aaduser_05.png)  
    
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+   1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+   2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+   3. 按 [下一步] 。
    
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟： 
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-promapp-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+   1. 在 [名字] 文字方塊中，輸入 **Britta**。   
+   2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+   3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   e. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-promapp-tutorial/create_aaduser_07.png) 
@@ -186,9 +179,8 @@ Promapp 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-promapp-tutorial/create_aaduser_08.png) 
    
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+   1. 記下 [新密碼] 的值。
+   2. 按一下 [完成]。   
 
 ### <a name="creating-a-promapp-test-user"></a>建立 Promapp 測試使用者
 Promapp 應用程式支援 Just-in-Time 佈建。
@@ -259,6 +251,6 @@ Promapp 應用程式支援 Just-in-Time 佈建。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

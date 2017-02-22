@@ -116,6 +116,6 @@ Service Fabric 中常見的無狀態服務使用範例是做為前端，其公�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

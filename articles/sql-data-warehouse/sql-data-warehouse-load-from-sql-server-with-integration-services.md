@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a4230f1dc65e0b5bb5c4904a1c2780f0c3c907f1
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a8c557ea07cbccb913bc47c510f6759dd832c861
 
 
 ---
@@ -47,15 +47,15 @@ SQL Server Integration Services (SSIS) 是彈性的工具組合，提供連接�
 
 1. 使用「ADO NET 目的地」連接到 SQL 資料倉儲。 本教學課程使用 ADO NET 目的地，因為它的設定選項最少。
 2. 使用「OLE DB 目的地」連接到 SQL 資料倉儲。 此選項可能會提供比 ADO NET 目的地稍好的效能。
-3. 使用「Azure Blob 上傳」工作在 Azure Blob 儲存體中預備資料。 然後使用「SSIS 執行 SQL」工作來啟動可將資料載入 SQL 資料倉儲的 Polybase 指令碼。 此選項提供此處所列三個選項中最佳的效能。 若要取得 Azure Blob 上傳工作，必須下載[適用於 Azure 的 Microsoft SQL Server 2016 Integration Services Feature Pack][適用於 Azure 的 Microsoft SQL Server 2016 Integration Services Feature Pack]。 若要深入了解 Polybase，請參閱 [PolyBase 指南][PolyBase 指南]。
+3. 使用「Azure Blob 上傳」工作在 Azure Blob 儲存體中預備資料。 然後使用「SSIS 執行 SQL」工作來啟動可將資料載入 SQL 資料倉儲的 Polybase 指令碼。 此選項提供此處所列三個選項中最佳的效能。 若要取得 Azure Blob 上傳工作，請下載[適用於 Azure 的 Microsoft SQL Server 2016 Integration Services Feature Pack][Microsoft SQL Server 2016 Integration Services Feature Pack for Azure]。 若要深入了解 Polybase，請參閱 [PolyBase 指南][PolyBase Guide]。
 
 ## <a name="before-you-start"></a>開始之前
 若要逐步執行本教學課程，您需要：
 
-1. **SQL Server Integration Services (SSIS)**。 SSIS 是 SQL Server 的元件，需有試用版或授權版的 SQL Server。 若要取得 SQL Server 2016 Preview 的試用版，請參閱 [SQL Server 試用版][SQL Server 試用版]。
+1. **SQL Server Integration Services (SSIS)**。 SSIS 是 SQL Server 的元件，需有試用版或授權版的 SQL Server。 若要取得 SQL Server 2016 Preview 的試用版，請參閱 [SQL Server 試用版][SQL Server Evaluations]。
 2. **Visual Studio**。 若要取得免費的 Visual Studio 2015 Community Edition，請參閱 [Visual Studio Community][Visual Studio Community]。
-3. **SQL Server Data Tools for Visual Studio (SSDT)**。 若要取得 Visual Studio 2015 的 SQL Server Data Tools，請參閱[下載 SQL Server Data Tools (SSDT)][下載 SQL Server Data Tools (SSDT)]。
-4. **範例資料**。 本教學課程會使用 AdventureWorks 範例資料庫中儲存在 SQL Server 中的範例資料，做為要載入 SQL 資料倉儲的來源資料。 若要取得 AdventureWorks 範例資料庫，請參閱[AdventureWorks 2014 範例資料庫][AdventureWorks 2014 範例資料庫]。
+3. **SQL Server Data Tools for Visual Studio (SSDT)**。 若要取得 Visual Studio 2015 的 SQL Server Data Tools，請參閱覽[下載 SQL Server Data Tools (SSDT)][Download SQL Server Data Tools (SSDT)]。
+4. **範例資料**。 本教學課程會使用 AdventureWorks 範例資料庫中儲存在 SQL Server 中的範例資料，做為要載入 SQL 資料倉儲的來源資料。 若要取得 AdventureWorks 範例資料庫，請參閱 [AdventureWorks 2014 範例資料庫][AdventureWorks 2014 Sample Databases]。
 5. **SQL 資料倉儲資料庫和權限**。 本教學課程會連接到 SQL 資料倉儲執行個體，並載入資料至執行個體。 您必須具有建立資料表以及載入資料的權限。
 6. **防火牆規則**。 您必須先在使用您本機電腦 IP 位址的 SQL 資料倉儲上建立防火牆規則，才您可以將資料上傳到此 SQL 資料倉儲。
 
@@ -144,7 +144,7 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。 然後
    
    1. 將目的地資料表的名稱變更為 **SalesOrderDetail**。
    2. 移除 **rowguid** 資料行。 SQL 資料倉儲不支援 **uniqueidentifier** 資料類型。
-   3. 將 **LineTotal** 資料行的資料類型變更為 [money]。 SQL 資料倉儲不支援 **decimal** 資料類型。 如需支援資料類型的詳細資訊，請參閱 [建立資料表 (Azure SQL 資料倉儲，平行資料倉儲)][建立資料表 (Azure SQL 資料倉儲，平行資料倉儲)]。
+   3. 將 **LineTotal** 資料行的資料類型變更為 [money]。 SQL 資料倉儲不支援 **decimal** 資料類型。 如需支援的資料類型資訊，請參閱[建立資料表 (Azure SQL 資料倉儲，平行資料倉儲)][CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)]。
       
        ![][12b]
    4. 按一下 [確定] 以建立資料表，並回到 [ADO.NET 目的地編輯器]。
@@ -167,9 +167,9 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。 然後
 恭喜！ 您已使用 SQL Server Integration Services 成功將資料載入 Azure SQL 資料倉儲。
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解 SSIS 資料流程。 從這裡開始：[資料流程][資料流程]。
-* 了解如何在設計環境中進行封裝的偵錯和疑難排解。 從這裡開始︰[封裝開發的疑難排解工具][封裝開發的疑難排解工具]。
-* 了解如何將 SSIS 專案和封裝部署到 Integration Services 伺服器或其他儲存位置。 從這裡開始︰[部署專案和封裝][部署專案和封裝]。
+* 深入了解 SSIS 資料流程。 從這裡開始：[資料流程][Data Flow]。
+* 了解如何在設計環境中進行封裝的偵錯和疑難排解。 從這裡開始：[套件開發的疑難排解工具][Troubleshooting Tools for Package Development]。
+* 了解如何將 SSIS 專案和封裝部署到 Integration Services 伺服器或其他儲存位置。 從這裡開始：[部署專案和套件][Deployment of Projects and Packages]。
 
 <!-- Image references -->
 [01]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ssis-designer-01.png
@@ -192,21 +192,21 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。 然後
 <!-- Article references -->
 
 <!-- MSDN references -->
-[PolyBase 指南]: https://msdn.microsoft.com/library/mt143171.aspx
-[下載 SQL Server Data Tools (SSDT)]: https://msdn.microsoft.com/library/mt204009.aspx
-[建立資料表 (Azure SQL 資料倉儲，平行資料倉儲)]: https://msdn.microsoft.com/library/mt203953.aspx
-[資料流程]: https://msdn.microsoft.com/library/ms140080.aspx
-[封裝開發的疑難排解工具]: https://msdn.microsoft.com/library/ms137625.aspx
-[部署專案和封裝]: https://msdn.microsoft.com/library/hh213290.aspx
+[PolyBase Guide]: https://msdn.microsoft.com/library/mt143171.aspx
+[Download SQL Server Data Tools (SSDT)]: https://msdn.microsoft.com/library/mt204009.aspx
+[CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)]: https://msdn.microsoft.com/library/mt203953.aspx
+[Data Flow]: https://msdn.microsoft.com/library/ms140080.aspx
+[Troubleshooting Tools for Package Development]: https://msdn.microsoft.com/library/ms137625.aspx
+[Deployment of Projects and Packages]: https://msdn.microsoft.com/library/hh213290.aspx
 
 <!--Other Web references-->
-[適用於 Azure 的 Microsoft SQL Server 2016 Integration Services Feature Pack]: http://go.microsoft.com/fwlink/?LinkID=626967
-[SQL Server 試用版]: https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2016
+[Microsoft SQL Server 2016 Integration Services Feature Pack for Azure]: http://go.microsoft.com/fwlink/?LinkID=626967
+[SQL Server Evaluations]: https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2016
 [Visual Studio Community]: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx
-[AdventureWorks 2014 範例資料庫]: https://msftdbprodsamples.codeplex.com/releases/view/125550
+[AdventureWorks 2014 Sample Databases]: https://msftdbprodsamples.codeplex.com/releases/view/125550
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

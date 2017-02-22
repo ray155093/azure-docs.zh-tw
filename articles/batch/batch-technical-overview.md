@@ -1,5 +1,5 @@
 ---
-title: "Azure Batch 服務基本概念 | Microsoft Docs"
+title: "Azure Batch 服務概觀 | Microsoft Docs"
 description: "了解如何將 Azure Batch 服務用於大規模的平行工作負載和 HPC 工作負載 "
 services: batch
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/19/2016
+ms.date: 01/23/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 6f05aa3f06c8ec86d58cafd406c2752ddb2eecc1
-ms.openlocfilehash: f3429fff9362451e687435e0c5e779feda564e46
+ms.sourcegitcommit: bf22cd3426e936c8d74377f59443e5e1a6834286
+ms.openlocfilehash: 3a01764b6a0e777e947cf8648606cdd568d118ff
 
 
 ---
@@ -159,6 +159,6 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行其�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

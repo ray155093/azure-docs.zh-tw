@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 11/11/2016
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 843f0862f9e4d8dc1d40e110710e48ad66716168
-ms.openlocfilehash: d714907184ccdde8d912ff8cf4240b8c6d2c45e5
+ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
+ms.openlocfilehash: afb6662e1b4af6cf66fd3c8e7b155b5b6bea85ff
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: d714907184ccdde8d912ff8cf4240b8c6d2c45e5
 > Azure 自動化中的安全資產包括認證、憑證、連接和加密的變數。 這些資產都會經過加密，並使用為每個自動化帳戶產生的唯一索引鍵儲存在 Azure 自動化中。 這個索引鍵是由主要憑證加密，並且儲存在 Azure 自動化中。 儲存安全資產之前，會使用主要憑證解密自動化帳戶的金鑰，然後用來加密資產。  
 
 ## <a name="windows-powershell-cmdlets"></a>Windows PowerShell Cmdlet
-下表中的 Cmdlet 是用來透過 Windows PowerShell 建立和管理自動化認證資產。  它們是隨著 [Azure PowerShell 模組](../powershell-install-configure.md) 的一部分推出，可供在自動化 Runbook 和 DSC 設定中使用。
+下表中的 Cmdlet 是用來透過 Windows PowerShell 建立和管理自動化認證資產。  它們是隨著 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs) 的一部分推出，可供在自動化 Runbook 和 DSC 設定中使用。
 
 | Cmdlet | 說明 |
 |:--- |:--- |
@@ -104,6 +104,6 @@ ms.openlocfilehash: d714907184ccdde8d912ff8cf4240b8c6d2c45e5
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

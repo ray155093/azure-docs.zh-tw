@@ -1,11 +1,23 @@
 ---
-layout: LandingPage
+title: "Azure DocumentDB 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 DocumentDB，這是一個無結構描述的 NoSQL 文件資料庫。 教學課程會示範如何整合應用程式以及在 JSON 文件上使用 SQL 查詢。"
+services: documentdb
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: documentdb
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 14e5e2f2bdf3708ab339eff7eb58bbf87cb1a10c
-ms.openlocfilehash: 261d2d5410603fe3352c0bcfabcc15058f3f7c94
+ms.sourcegitcommit: be32b9d24db59618b42d0923b0ff4248f3329904
+ms.openlocfilehash: 347b2933a33d7a11505842ea437790d5fabf5b58
 
 ---
+
 #<a name="documentdb-documentation"></a>DocumentDB 文件
 
 了解如何在適用於 Web、行動、遊戲及 IoT 的高效能應用程式中使用 DocumentDB。 教學課程和其他文件會示範如何儲存 JSON 資料，並在此 NoSQL 資料庫服務中的彈性結構描述上執行 SQL 查詢。
@@ -210,18 +222,10 @@ ms.openlocfilehash: 261d2d5410603fe3352c0bcfabcc15058f3f7c94
     </li>
 </ul>
 
----
-
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/documentdb.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 DocumentDB 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+<!--HONumber=Feb17_HO2-->
 
 

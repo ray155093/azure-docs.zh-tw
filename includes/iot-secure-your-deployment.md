@@ -1,4 +1,4 @@
-# <a name="securing-your-iot-deployment"></a>保護您的 IoT 部署
+# <a name="secure-your-iot-deployment"></a>保護您的 IoT 部署
 本文針對以 Azure IoT 為主的物聯網 (IoT) 基礎結構提供更進一層的詳細資料。 它會連結到設定及部署每個元件的實作層級詳細資料。 另外也會提供各種競爭方法之間的比較和選擇。
 
 保護 Azure IoT 部署可分為下列三個安全性區域：
@@ -72,7 +72,7 @@ Azure IoT 中樞允許針對每個安全性金鑰定義[存取控制原則][lnk-
 * **RegistryRead**。 為身分識別登錄授與讀取權限。 如需詳細資訊，請參閱[身分識別登錄][lnk-identity-registry]。
 * **RegistryReadWrite**。 為身分識別登錄授與讀取和寫入權限。 如需詳細資訊，請參閱[身分識別登錄][lnk-identity-registry]。
 * **ServiceConnect**。 授與雲端服務面向通訊和監視端點的存取權。 例如，它授權後端雲端服務接收裝置到雲端的訊息、傳送雲端到裝置的訊息，以及擷取相對應的傳遞通知。
-* **DeviceConnect**。 授與裝置面向通訊端點的存取權。 例如，它會授與傳送裝置到雲端的訊息和接收雲端到裝置的訊息的權限。 裝置會使用此權限。
+* **DeviceConnect**。 授與裝置面向端點的存取權。 例如，它會授與傳送裝置到雲端的訊息和接收雲端到裝置的訊息的權限。 裝置會使用此權限。
 
 利用[安全性權杖][lnk-sas-tokens]取得 IoT 中樞之 **DeviceConnect** 權限的方法有兩種：使用裝置身分識別金鑰，或使用共用存取金鑰。 此外，請務必注意所有可從裝置存取的功能，在設計上會於前置詞為 `/devices/{deviceId}`的端點公開。
 
@@ -84,7 +84,7 @@ Azure IoT 中樞和可能是解決方案一部份的其他服務，允許使用 
 
 * [Azure DocumentDB][lnk-docdb]：可調整且已完全編製索引的資料庫服務，適用於半結構化資料，可管理您所佈建裝置的中繼資料，例如，屬性、組態及安全性內容。 DocumentDB 提供高效能且高輸送量的處理、無從驗證結構描述且編製索引的資料，以及豐富的 SQL 查詢介面。
 * [Azure 串流分析][lnk-asa]：雲端中處理的即時串流讓您能夠快速開發並部署低成本的分析方案，以在第一時間提供裝置、感應器、基礎結構與應用程式的深入剖析資料。 來自這個完全受管理服務的資料可調整為任何數量，但仍可達到高輸送量、低遲性和恢復功能。
-* [Azure App Service][lnk-appservices]：一個雲端平台，可供建置功能強大的 Web 和行動應用程式來連接各地的資料；不論是在雲端還是內部部署環境內。 建置吸引客戶參與的 iOS、Android 和 Windows 版行動應用程式。 與軟體即服務 (SaaS) 和企業應用程式整合，讓您能夠立即連線到數十種雲端服務和企業應用程式。 使用您愛用的語言 (.NET、NodeJS、PHP、Python 或 Java) 和整合式開發環境 (IDE) 撰寫程式碼，以前所未有的速度建置 Web 應用程式和 API。
+* [Azure App Service][lnk-appservices]：一個雲端平台，可供建置功能強大的 Web 和行動應用程式來連接各地的資料；不論是在雲端還是內部部署環境內。 建置吸引客戶參與的 iOS、Android 和 Windows 版行動應用程式。 與軟體即服務 (SaaS) 和企業應用程式整合，讓您能夠立即連線到數十種雲端服務和企業應用程式。 使用您愛用的語言 (.NET、Node.JS、PHP、Python 或 Java) 和整合式開發環境 (IDE) 撰寫程式碼，以前所未有的速度建置 Web 應用程式和 API。
 * [Logic Apps][lnk-logicapps]：Azure App Service 的 Logic Apps 功能可協助您將 IoT 解決方案整合到現有的企業營運系統並自動化工作流程處理。 Logic Apps 可讓開發人員設計從觸發程序開始，然後執行一系列步驟的工作流程 — 使用功能強大的連接器來與您的商務程序整合的規則和動作。 Logic Apps 提供與 SaaS、雲端架構及內部部署應用程式的廣大生態系統的即時連接。
 * [Azure Blob 儲存體][lnk-blob]：可靠且符合經濟效益的雲端儲存體，適用於裝置要傳送到雲端的資料。
 
@@ -94,7 +94,7 @@ Azure IoT 中樞和可能是解決方案一部份的其他服務，允許使用 
 [img-overview]: media/iot-secure-your-deployment/overview.png
 
 [lnk-security-tokens]: ../articles/iot-hub/iot-hub-devguide-security.md#security-token-structure
-[lnk-sas-tokens]: ../articles/iot-hub/iot-hub-devguide-security.md#use-sas-tokens-in-a-device-client
+[lnk-sas-tokens]: ../articles/iot-hub/iot-hub-devguide-security.md#use-sas-tokens-in-a-device-app
 [lnk-identity-registry]: ../articles/iot-hub/iot-hub-devguide-identity-registry.md
 [lnk-protocols]: ../articles/iot-hub/iot-hub-devguide-security.md
 [lnk-custom-auth]: ../articles/iot-hub/iot-hub-devguide-security.md#custom-device-authentication
@@ -109,6 +109,6 @@ Azure IoT 中樞和可能是解決方案一部份的其他服務，允許使用 
 [lnk-blob]: https://azure.microsoft.com/services/storage/
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,6 +1,6 @@
 ---
-title: "IoT 中樞作業監視"
-description: "Azure IoT 中樞的作業監視概觀，可讓您即時監視其 IoT 中樞上的作業狀態。"
+title: "Azure IoT 中樞作業監視 | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞作業監視來即時監視 IoT 中樞上的作業狀態。"
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -15,19 +15,19 @@ ms.workload: na
 ms.date: 11/16/2016
 ms.author: nberdy
 translationtype: Human Translation
-ms.sourcegitcommit: ce514e19370d2b42fb16b4e96b66f212d5fa999c
-ms.openlocfilehash: 3c1ae13409c11ec49810209dd155e934b34c3a9b
+ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
+ms.openlocfilehash: f6f894157a31641b1d0294e84795563c727caaac
 
 
 ---
-# <a name="introduction-to-operations-monitoring"></a>作業監視簡介
+# <a name="operations-monitoring"></a>作業監視
 IoT 中樞的作業監視可讓您即時監視其 IoT 中樞上的作業狀態。 IoT 中樞可追蹤橫跨數個作業類別的事件。 您可以選擇將一或多個類別的事件傳送至 IoT 中樞的端點進行處理。 您可以監視資料中是否有錯誤，或根據資料模式設定更複雜的處理行為。
 
 IoT 中樞會監視五個類別的事件：
 
 * 裝置身分識別作業
 * 裝置遙測
-* 雲端到裝置的命令
+* 雲端到裝置的訊息
 * 連線
 * 檔案上傳
 
@@ -81,7 +81,7 @@ IoT 中樞會監視五個類別的事件：
     }
 
 ### <a name="cloud-to-device-commands"></a>雲端到裝置的命令
-雲端到裝置的命令類別會追蹤在 IoT 中樞發生，且與裝置命令管線相關的錯誤。 這個類別包括在傳送命令 (例如未經授權的寄件者)、接收命令 (例如超過傳遞計數) 和接收命令回饋 (例如回饋已過期) 時所發生的錯誤。 此類別不會捕捉未正確處理命令但卻將其成功傳遞之裝置所發生的錯誤。
+雲端到裝置的命令類別會追蹤在 IoT 中樞發生，且與雲端到裝置訊息管線相關的錯誤。 這個類別包括在傳送雲端到裝置訊息 (例如未經授權的寄件者)、接收雲端到裝置訊息 (例如超過傳遞計數) 和接收雲端到裝置訊息意見反應 (例如意見反應已過期) 時所發生的錯誤。 如果已成功傳遞雲端到裝置訊息，但裝置未適當處理雲端到裝置訊息，此類別不會捕捉來自此裝置的錯誤。
 
     {
          "messageSizeInBytes": 1234,
@@ -147,7 +147,7 @@ IoT 中樞會監視五個類別的事件：
 ## <a name="next-steps"></a>後續步驟
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-* [開發人員指南][lnk-devguide]
+* [IoT 中樞開發人員指南][lnk-devguide]
 * [使用 IoT 閘道 SDK 來模擬裝置][lnk-gateway]
 
 <!-- Links and images -->
@@ -164,6 +164,6 @@ IoT 中樞會監視五個類別的事件：
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

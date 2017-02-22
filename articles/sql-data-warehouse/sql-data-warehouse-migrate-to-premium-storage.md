@@ -1,170 +1,133 @@
 ---
-title: Migrate your existing Azure SQL Data Warehouse to premium storage | Microsoft Docs
-description: Instructions for migrating an existing SQL Data Warehouse to premium storage
+title: "將您現有的 Azure 資料倉儲移轉到進階儲存體 | Microsoft Docs"
+description: "將現有資料倉儲移轉到進階儲存體的指示"
 services: sql-data-warehouse
 documentationcenter: NA
 author: happynicolle
 manager: barbkess
-editor: ''
-
+editor: 
+ms.assetid: 04b05dea-c066-44a0-9751-0774eb84c689
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 10/31/2016
-ms.author: nicw;barbkess
+ms.date: 11/29/2016
+ms.author: rortloff;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: e66f808da8d301e0adc393ba0ae67ab8618ce814
+ms.openlocfilehash: e73e52665dd22e33054745907613c269b6d57915
+
 
 ---
-# <a name="migration-to-premium-storage-details"></a>Migration to Premium Storage Details
-SQL Data Warehouse recently introduced [Premium Storage for greater performance predictability][Premium Storage for greater performance predictability].  We are now ready to migrate existing Data Warehouses currently on Standard Storage to Premium Storage.  Read on for more details about how and when automatic migrations occur and how to self-migrate if you prefer to control when the downtime occurs.
+# <a name="migrate-your-data-warehouse-to-premium-storage"></a>將您的資料倉儲移轉到進階儲存體
+Azure SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預測性][premium storage for greater performance predictability]。 現在可以將目前在標準儲存體上的現有資料倉儲移轉至進階儲存體。 您可以利用自動移轉，或如果您想要控制何時要移轉 (未包含某些停機時間)，您可以自行完成移轉。
 
-If you have more than one Data Warehouse, use the [automatic migration schedule][automatic migration schedule] below to determine when it will also be migrated.
+如果您有一個以上的資料倉儲，請使用[自動移轉排程][automatic migration schedule]來判斷它也會移轉的時間。
 
-## <a name="determine-storage-type"></a>Determine storage type
-If you created a DW before the dates below, you are currently using Standard Storage.  Each Data Warehouse on Standard Storage that is subject to automatic migration has a notice at the top of the Data Warehouse blade in the [Azure Portal][Azure Portal] that says "*An upcoming upgrade to premium storage will require an outage.  Learn more ->*."
+## <a name="determine-storage-type"></a>決定儲存體類型
+如果您在下列日期前建立資料倉儲，則您目前是使用標準儲存體。
 
-| **Region** | **DW Created Before This Date** |
+| **區域** | **在此日期前建立的資料倉儲** |
 |:--- |:--- |
-| Australia East |Premium Storage Not Yet Available |
-| Australia Southeast |August 5, 2016 |
-| Brazil South |August 5, 2016 |
-| Canada Central |May 25, 2016 |
-| Canada East |May 26, 2016 |
-| Central US |May 26, 2016 |
-| China East |Premium Storage Not Yet Available |
-| China North |Premium Storage Not Yet Available |
-| East Asia |May 25, 2016 |
-| East US |May 26, 2016 |
-| East US2 |May 27, 2016 |
-| India Central |May 27, 2016 |
-| India South |May 26, 2016 |
-| India West |Premium Storage Not Yet Available |
-| Japan East |August 5, 2016 |
-| Japan West |Premium Storage Not Yet Available |
-| North Central US |Premium Storage Not Yet Available |
-| North Europe |August 5, 2016 |
-| South Central US |May 27, 2016 |
-| Southeast Asia |May 24, 2016 |
-| West Europe |May 25, 2016 |
-| West Central US |August 26, 2016 |
-| West US |May 26, 2016 |
-| West US2 |August 26, 2016 |
+| 澳洲東部 |尚未提供進階儲存體 |
+| 中國東部 |2016 年 11 月 1 日 |
+| 中國北部 |2016 年 11 月 1 日 |
+| 德國中部 |2016 年 11 月 1 日 |
+| 德國東北部 |2016 年 11 月 1 日 |
+| 印度西部 |尚未提供進階儲存體 |
+| 日本西部 |尚未提供進階儲存體 |
+| 美國中北部 |2016 年 11 月 10 日 |
 
-## <a name="automatic-migration-details"></a>Automatic migration details
-By default, we will migrate your database for you during 6pm and 6am in your region's local time during the [automatic migration schedule][automatic migration schedule] below.  Your existing Data Warehouse will be unusable during the migration.  We estimate that the migration will take around one hour per TB of storage per Data Warehouse.  We will also ensure that you are not charged during any portion of the automatic migration.
+## <a name="automatic-migration-details"></a>自動移轉詳細資料
+根據預設，在[自動移轉排程][automatic migration schedule]期間，我們會在下午 6:00 與上午 6:00 之間 (您所在地區的當地時間) 為您移轉資料庫。 在移轉期間，現有的資料倉儲將無法使用。 每個資料倉儲每 TB 的儲存體需要大約一小時的時間進行移轉。 在自動移轉的任何部分中，您不需支付任何費用。
 
 > [!NOTE]
-> You will not be able to use your existing Data Warehouse during the migration.  Once the migration is complete, your Data Warehouse will be back online.
-> 
-> 
+> 移轉完成後，您的資料倉儲就會重新上線並可使用。
+>
+>
 
-The details below are steps that Microsoft is taking on your behalf to complete the migration and does not require any involvement on your part.  In this example, imagine that your existing DW on Standard Storage is currently named “MyDW.”
+Microsoft 會採取下列步驟來完成移轉 (這些不需要您採取任何介入)。 在此範例中，假設您在標準儲存體上的現有資料倉儲目前名為 “MyDW”。
 
-1. Microsoft renames “MyDW” to “MyDW_DO_NOT_USE_[Timestamp]”
-2. Microsoft pauses “MyDW_DO_NOT_USE_[Timestamp].”  During this time, a backup is taken.  You may see multiple pause/resumes if we encounter any issues during this process.
-3. Microsoft creates a new DW named “MyDW” on Premium Storage from the backup taken in step 2.  “MyDW” will not appear until after the restore is complete.
-4. Once the restore is complete, “MyDW” returns to the same DWUs and paused or active state it was before the migration.
-5. Once the migration is complete, Microsoft deletes “MyDW_DO_NOT_USE_[Timestamp]”
+1. Microsoft 會將 “MyDW” 重新命名為 “MyDW_DO_NOT_USE_[時間戳記]”。
+2. Microsoft 會暫停 “MyDW_DO_NOT_USE_[時間戳記]”。 系統會在此期間執行備份。 如果在過程中發生任何問題，您可能會看到多個暫停及繼續。
+3. Microsoft 會從步驟 2 中建立的備份，在進階儲存體上建立名為 “MyDW” 的新資料倉儲。 直到還原完成後，“MyDW” 才會出現。
+4. 還原完成後，“MyDW” 會回到相同的資料倉儲單位，以及移轉之前的狀態 (暫停或作用中)。
+5. 移轉完成後，Microsoft 會刪除 “MyDW_DO_NOT_USE_[時間戳記]”。
 
 > [!NOTE]
-> These settings do not carry over as part of the migration:
-> 
-> * Auditing at the Database level needs to be re-enabled
-> * Firewall rules at the **Database** level need to be readded.  Firewall rules at the **Server** level are not be impacted.
-> 
-> 
+> 下列設定不會在移轉過程中沿用：
+>
+> * 在資料庫層級稽核必須重新啟用。
+> * 在資料庫層級的防火牆規則必須是已顯示。 在伺服器層級的防火牆規則不會受到影響。
+>
+>
 
-### <a name="automatic-migration-schedule"></a>Automatic migration schedule
-Automatic migrations occur from 6pm – 6am (local time per region) during the following outage schedule.
+### <a name="automatic-migration-schedule"></a>自動移轉排程
+自動移轉會在下列中斷排程期間發生，時間是從下午 6:00 至上午 6:00 (每個地區的當地時間)。
 
-| **Region** | **Estimated Start Date** | **Estimated End Date** |
+| **區域** | **預估開始日期** | **預估結束日期** |
 |:--- |:--- |:--- |
-| Australia East |Not determined yet |Not determined yet |
-| Australia Southeast |August 10, 2016 |August 24, 2016 |
-| Brazil South |August 10, 2016 |August 24, 2016 |
-| Canada Central |June 23, 2016 |July 1, 2016 |
-| Canada East |June 23, 2016 |July 1, 2016 |
-| Central US |June 23, 2016 |July 4, 2016 |
-| China East |Not determined yet |Not determined yet |
-| China North |Not determined yet |Not determined yet |
-| East Asia |June 23, 2016 |July 1, 2016 |
-| East US |June 23, 2016 |July 11, 2016 |
-| East US2 |June 23, 2016 |July 8, 2016 |
-| India Central |June 23, 2016 |July 1, 2016 |
-| India South |June 23, 2016 |July 1, 2016 |
-| India West |Not determined yet |Not determined yet |
-| Japan East |August 10, 2016 |August 24, 2016 |
-| Japan West |Not determined yet |Not determined yet |
-| North Central US |Not determined yet |Not determined yet |
-| North Europe |August 10, 2016 |August 31, 2016 |
-| South Central US |June 23, 2016 |July 2, 2016 |
-| Southeast Asia |June 23, 2016 |July 1, 2016 |
-| West Europe |June 23, 2016 |July 8, 2016 |
-| West Central US |August 14, 2016 |August 31, 2016 |
-| West US |June 23, 2016 |July 7, 2016 |
-| West US2 |August 14, 2016 |August 31, 2016 |
+| 澳洲東部 |尚未決定 |尚未決定 |
+| 中國東部 |2017 年 1 月 9 日 |2017 年 1 月 13 日 |
+| 中國北部 |2017 年 1 月 9 日 |2017 年 1 月 13 日 |
+| 德國中部 |2017 年 1 月 9 日 |2017 年 1 月 13 日 |
+| 德國東北部 |2017 年 1 月 9 日 |2017 年 1 月 13 日 |
+| 印度西部 |尚未決定 |尚未決定 |
+| 日本西部 |尚未決定 |尚未決定 |
+| 美國中北部 |2017 年 1 月 9 日 |2017 年 1 月 13 日 |
 
-## <a name="selfmigration-to-premium-storage"></a>Self-migration to Premium Storage
-If you would like to control when your downtime will occur, you can use the following steps to migrate an existing Data Warehouse on Standard Storage to Premium Storage.  If you choose to self-migrate, you must complete the self-migration before the automatic migration begins in that region to avoid any risk of the automatic migration causing a conflict (refer to the [automatic migration schedule][automatic migration schedule]).
+## <a name="self-migration-to-premium-storage"></a>自行移轉至進階儲存體
+如果您要控制發生停機的時間，您可以使用下列步驟，將標準儲存體上的現有資料倉儲移轉至進階儲存體。 如果您選擇此選項，必須在自動移轉於該區域中開始之前完成自我移轉。 這可確保您避免任何自動移轉造成衝突的風險 (請參閱[自動移轉排程][automatic migration schedule])。
 
-### <a name="selfmigration-instructions"></a>Self-migration instructions
-If you would like to control your downtime, you can self-migrate your Data Warehouse by using backup/restore.  The restore portion of the migration is expected to take around one hour per TB of storage per DW.  If you want to keep the same name once migration is complete, follow the steps for [steps to rename during migration][steps to rename during migration]. 
+### <a name="self-migration-instructions"></a>自行移轉指示
+若要自行移轉您的資料倉儲，請使用備份和還原功能。 每個資料倉儲每 TB 的儲存體預計需要約一小時的時間來進行移轉作業的還原部分。 如果您要在移轉完成後保留相同的名稱，請遵循[在移轉期間內重新命名的步驟][steps to rename during migration]。
 
-1. [Pause][Pause] your DW which takes an automatic backup
-2. [Restore][Restore] from your most recent snapshot
-3. Delete your existing DW on Standard Storage. **If you fail to do this step, you will be charged for both DWs.**
+1. [暫停][ Pause]資料倉儲。 這會進行自動備份。
+2. 從最新的快照集[還原][Restore]。
+3. 刪除標準儲存體上的現有資料倉儲。 **如果您無法執行此步驟，您需支付這兩個資料倉儲的費用。**
 
 > [!NOTE]
-> These settings do not carry over as part of the migration:
-> 
-> * Auditing at the Database level needs to be re-enabled
-> * Firewall rules at the **Database** level need to be readded.  Firewall rules at the **Server** level are not be impacted.
-> 
-> 
+> 下列設定不會在移轉過程中沿用：
+>
+> * 在資料庫層級稽核必須重新啟用。
+> * 在資料庫層級的防火牆規則必須是已顯示。 在伺服器層級的防火牆規則不會受到影響。
+>
+>
 
-#### <a name="optional-steps-to-rename-during-migration"></a>Optional: steps to rename during migration
-Two databases on the same logical server cannot have the same name. SQL Data Warehouse now supports the ability to rename a DW.
+#### <a name="rename-data-warehouse-during-migration-optional"></a>(選擇性) 在移轉期間重新命名資料倉儲
+相同邏輯伺服器上的兩個資料庫不能具有相同的名稱。 SQL 資料倉儲現在支援重新命名資料倉儲。
 
-In this example, imagine that your existing DW on Standard Storage is currently named “MyDW.”
+在此範例中，假設您在標準儲存體上的現有資料倉儲目前名為 “MyDW”。
 
-1. Rename "MyDW" using the ALTER DATABASE command that follows to something like "MyDW_BeforeMigration."  This command kills all existing transactions and must be done in the master database to succeed.
+1. 使用下列 ALTER DATABASE 命令重新命名 "MyDW"。 (在此範例中，我們會將它重新命名為 "MyDW_BeforeMigration") 此命令會停止所有現有的交易，且必須在主要資料庫中完成才能成功。
    ```
    ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
    ```
-2. [Pause][Pause] "MyDW_BeforeMigration" which takes an automatic backup
-3. [Restore][Restore] from your most recent snapshot a new database with the name you used to have (ex: "MyDW")
-4. Delete "MyDW_BeforeMigration".  **If you fail to do this step, you will be charged for both DWs.**
+2. [暫停][Pause] "MyDW_BeforeMigration"。 這會進行自動備份。
+3. 從您最近使用的快照集搭配過去的名稱 (例如，"MyDW") 來[還原][Restore]新的資料庫。
+4. 刪除 "MyDW_BeforeMigration"。 **如果您無法執行此步驟，您需支付這兩個資料倉儲的費用。**
 
-> [!NOTE]
-> These settings do not carry over as part of the migration:
-> 
-> * Auditing at the Database level needs to be re-enabled
-> * Firewall rules at the **Database** level need to be readded.  Firewall rules at the **Server** level are not be impacted.
-> 
-> 
 
-## <a name="next-steps"></a>Next steps
-With the change to Premium Storage, we have also increased the number of database blob files in the underlying architecture of your Data Warehouse.  To maximize the performance benefits of this change, we recommend that you rebuild your Clustered Columnstore Indexes using the following script.  The script below works by forcing some of your existing data to the additional blobs.  If you take no action, the data will naturally redistribute over time as you load more data into your Data Warehouse tables.
+## <a name="next-steps"></a>後續步驟
+除了變更為進階儲存體，您也會增加資料倉儲基礎架構中的資料庫 blob 檔案數目。 為獲得此變更的最佳效益，請使用下列指令碼來重建叢集資料行存放區索引。 此指令碼是藉由強制將某些現有資料移至其他 Blob 來運作。 如果您不採取任何動作，隨著您將更多的資料載入資料表中，資料會在一段時間後自然重新分配。
 
-**Pre-requisites:**
+**必要條件：**
 
-1. Data Warehouse should run with 1,000 DWUs or higher (see [scale compute power][scale compute power])
-2. User executing the script should be in the [mediumrc role][mediumrc role] or higher
-   1. To add a user to this role, execute the following: 
-      1. ````EXEC sp_addrolemember 'xlargerc', 'MyUser'````
+- 資料倉儲應以 1,000 個資料倉儲單位或更多數量來執行 (請參閱[調整計算能力][scale compute power])。
+- 執行指令碼的使用者應具有 [mediumrc 角色][mediumrc role]或更高權限。 若要將使用者新增至此角色，請執行下列作業︰    ````EXEC sp_addrolemember 'xlargerc', 'MyUser'````
 
 ````sql
 -------------------------------------------------------------------------------
--- Step 1: Create Table to control Index Rebuild
+-- Step 1: Create table to control index rebuild
 -- Run as user in mediumrc or higher
 --------------------------------------------------------------------------------
 create table sql_statements
 WITH (distribution = round_robin)
-as select 
+as select
     'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement,
     row_number() over (order by s.name, t.name) as sequence
-from 
+from
     sys.schemas s
     inner join sys.tables t
         on s.schema_id = t.schema_id
@@ -174,7 +137,7 @@ where
 go
 
 --------------------------------------------------------------------------------
--- Step 2: Execute Index Rebuilds.  If script fails, the below can be rerun to restart where last left off
+-- Step 2: Execute index rebuilds. If script fails, the below can be re-run to restart where last left off.
 -- Run as user in mediumrc or higher
 --------------------------------------------------------------------------------
 
@@ -190,13 +153,13 @@ begin
 end;
 go
 -------------------------------------------------------------------------------
--- Step 3: Cleanup Table Created in Step 1
+-- Step 3: Clean up table created in Step 1
 --------------------------------------------------------------------------------
 drop table sql_statements;
 go
 ````
 
-If you encounter any issues with your Data Warehouse, [create a support ticket][create a support ticket] and reference “Migration to Premium Storage” as the possible cause.
+如果您遇到任何關於資料倉儲的問題，請[建立支援票證][create a support ticket]和參考「移轉至進階儲存體」做為可能的原因。
 
 <!--Image references-->
 
@@ -206,11 +169,11 @@ If you encounter any issues with your Data Warehouse, [create a support ticket][
 [create a support ticket]: sql-data-warehouse-get-started-create-support-ticket.md
 [Azure paired region]: best-practices-availability-paired-regions.md
 [main documentation site]: services/sql-data-warehouse.md
-[Pause]: sql-data-warehouse-manage-compute-portal.md/#pause-compute
+[Pause]: sql-data-warehouse-manage-compute-portal.md#pause-compute
 [Restore]: sql-data-warehouse-restore-database-portal.md
 [steps to rename during migration]: #optional-steps-to-rename-during-migration
-[scale compute power]: sql-data-warehouse-manage-compute-portal/#scale-compute-power
-[mediumrc role]: sql-data-warehouse-develop-concurrency/#workload-management
+[scale compute power]: sql-data-warehouse-manage-compute-portal.md#scale-compute-power
+[mediumrc role]: sql-data-warehouse-develop-concurrency.md
 
 <!--MSDN references-->
 
@@ -221,6 +184,6 @@ If you encounter any issues with your Data Warehouse, [create a support ticket][
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

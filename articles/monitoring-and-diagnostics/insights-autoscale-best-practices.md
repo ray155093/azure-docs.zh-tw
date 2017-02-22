@@ -1,8 +1,8 @@
 ---
-title: "Azure 監視器自動調整的最佳作法 | Microsoft Docs"
-description: "了解在 Azure 監視器中有效使用自動調整的原則。"
+title: "自動調整的最佳做法 | Microsoft Docs"
+description: "了解有效地自動調整虛擬機器、虛擬機器擴展集和雲端服務的原則。"
 author: kamathashwin
-manager: carolz
+manager: carmonm
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -12,16 +12,16 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/20/2016
+ms.date: 01/23/2016
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f49d9121f34cc58d1486220a93bcb102f8eba90b
+ms.sourcegitcommit: cc557c7139561345a201fa0cd45c803af3751acd
+ms.openlocfilehash: 25fa8749d4b23d3619829fa179a7c91da311bbd0
 
 
 ---
-# <a name="best-practices-for-azure-monitor-autoscaling"></a>Azure 監視器自動調整的最佳作法
-此文件中的下列各節將能協助您了解 Azure 自動調整的最佳作法。 檢閱此資訊之後，您將能在 Azure 基礎結構中更有效地使用自動調整功能。
+# <a name="best-practices-autoscaling-virtual"></a>自動調整虛擬的最佳做法
+本文會說明在 Azure 中自動調整的最佳做法。 它與虛擬機器、虛擬機器擴展集和雲端服務相關。  其他 Azure 服務使用不同的調整方法。
 
 ## <a name="autoscale-concepts"></a>自動調整的概念
 * 資源可以只有「一項」  自動調整設定。
@@ -46,7 +46,7 @@ ms.openlocfilehash: f49d9121f34cc58d1486220a93bcb102f8eba90b
 若您只使用組合中的其中一部分，則自動調整只會相應放大或縮小該單邊，直到達到最大值或最小值為止。
 
 ### <a name="do-not-switch-between-the-azure-portal-and-the-azure-classic-portal-when-managing-autoscale"></a>管理自動調整時，請勿切換使用 Azure 入口網站與 Azure 傳統入口網站。
-若是雲端服務及應用程式服務 (Web Apps)，請使用 Azure 入口網站 (portal.azure.com) 建立及管理自動調整設定。 若是虛擬機器擴展集，請使用 PoSH、CLI 或 REST API 建立及管理自動調整設定。 管理自動調整設定時，請勿切換使用 Azure 傳統入口網站 (manage.windowsazure.com) 與 Azure 入口網站 (portal.azure.com)。 Azure 傳統入口網站及其基礎後端有其限制。 請使用 Azure 入口網站的圖形化使用者介面來管理自動調整。 此外也可選擇使用自動調整 PowerShell、CLI 或 REST API (透過 Azure 資源總管)。
+若是雲端服務及應用程式服務 (Web Apps)，請使用 Azure 入口網站 (portal.azure.com) 建立及管理自動調整設定。 若是虛擬機器擴展集，請使用 PowerShell、CLI 或 REST API 建立及管理自動調整設定。 管理自動調整設定時，請勿切換使用 Azure 傳統入口網站 (manage.windowsazure.com) 與 Azure 入口網站 (portal.azure.com)。 Azure 傳統入口網站及其基礎後端有其限制。 請使用 Azure 入口網站的圖形化使用者介面來管理自動調整。 此外也可選擇使用自動調整 PowerShell、CLI 或 REST API (透過 Azure 資源總管)。
 
 ### <a name="choose-the-appropriate-statistic-for-your-diagnostics-metric"></a>為您的診斷度量選擇適當的統計資料
 針對診斷度量，您可以選擇 [平均值]、[最小值]、[最大值] 和 [總計] 作為據以調整的度量。 最常用的統計資料是 [平均值] 。
@@ -67,7 +67,7 @@ ms.openlocfilehash: f49d9121f34cc58d1486220a93bcb102f8eba90b
 4. 則在相應減少之前，自動調整會嘗試評估相應縮小後的最終狀態。 例如，575 x 3 (目前的執行個體計數) = 1,725 / 2 (相應減少後的最終執行個體數) = 862.5 個執行緒。 這表示即便平均執行緒計數維持不變，或甚至降至極少量，自動調整仍須在相應縮小之後立即再相應放大。 但自動調整若再相應增加，整個程序將會重複執行，進行產生無限迴圈。
 5. 為了避免這種「不穩定」的狀況，自動調整根本不會相應減少， 而會在下次執行服務的工作時略過並重新評估條件。 這可能會讓許多人困惑不已，因為當平均執行緒計數達到 575 時，自動調整完全不運作。
 
-在相應縮小期間執行評估的用意在避免不穩定的情況。 當您為相應放大及相應縮小選擇相同的臨界值時，應注意這項行為。
+相應縮小期間的估計是為了避免「不穩定」情況 (持續地反覆相應縮小和相應放大動作)。 當您為相應放大及相應縮小選擇相同的臨界值時，請注意這項行為。
 
 建議您在選擇相應放大及相應縮小的臨界值時，為兩者之間保留適當的差距。 例如您可以考慮下列比較適當的規則組合。
 
@@ -152,7 +152,6 @@ ms.openlocfilehash: f49d9121f34cc58d1486220a93bcb102f8eba90b
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

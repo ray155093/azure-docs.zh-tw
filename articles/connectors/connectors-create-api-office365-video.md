@@ -16,12 +16,12 @@ ms.workload: na
 ms.date: 05/18/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 959eaca7aafd8516cfc6f3b5dd2a44ce21ec4825
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: e6f569355dd73919824f22c88ce3eead10e5b853
 
 
 ---
-# <a name="get-started-with-the-office365-video-connector"></a>開始使用 Office 365 影片連接器
+# <a name="get-started-with-the-office365-video-connector"></a>開始使用 Office&365; 影片連接器
 連接至 Office 365 影片，以取得 Office 365 影片的相關資訊、影片清單等。 您可以從下列應用程式使用 Office 365 影片連接器︰
 
 * 邏輯應用程式 
@@ -36,14 +36,14 @@ ms.openlocfilehash: 959eaca7aafd8516cfc6f3b5dd2a44ce21ec4825
 * 根據您從 Office 365 影片所取得的資料，來建置您的商務流程。 
 * 檢查影片入口網站狀態、取得頻道影片清單等動作。 這些動作會收到回應，然後輸出能讓其他動作使用的資料。 例如，您可以使用 Bing 搜尋連接器來搜尋 Office 365 影片，然後使用 Office 365 影片連接器取得該影片的相關資訊。 如果影片符合您的需求，您可以將該影片張貼在 Facebook 上。 
 
-如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="triggers-and-actions"></a>觸發程序及動作
 Office 365 影片連接器提供下列動作。 但不包含觸發程序。
 
 | 觸發程序 | 動作 |
 | --- | --- |
-| None |<ul><li>檢查視訊入口網站狀態</li><li>取得所有可檢視的頻道</li><li>取得某個影片之 Azure 媒體服務資訊清單的播放 URL</li><li>取得有權限來為影片解密的持有人權杖</li><li>取得特定 Office 365 影片的相關資訊</li><li>列出某個頻道中的所有 Office 365 影片</li></ul> |
+| None |<ul><li>檢查視訊入口網站狀態</li><li>取得所有可檢視的頻道</li><li>取得某個影片之 Azure 媒體服務資訊清單的播放 URL</li><li>取得有權限來為影片解密的持有人權杖</li><li>取得特定 Office&365; 影片的相關資訊</li><li>列出某個頻道中的所有 Office&365; 影片</li></ul> |
 
 所有連接器都支援 JSON 和 XML 格式的資料。 
 
@@ -100,7 +100,7 @@ Office 365 影片連接器提供下列動作。 但不包含觸發程序。
 | 500 |內部伺服器錯誤 |
 | 預設值 |作業失敗。 |
 
-### <a name="lists-all-the-office365-videos-present-in-a-channel"></a>列出某個頻道中的所有 Office 365 影片
+### <a name="lists-all-the-office365-videos-present-in-a-channel"></a>列出某個頻道中的所有 Office&365; 影片
 列出某個頻道中的所有 office365 影片。  
 ```GET: /{tenant}/Channels/{channelId}/Videos``` 
 
@@ -119,7 +119,7 @@ Office 365 影片連接器提供下列動作。 但不包含觸發程序。
 | 500 |內部伺服器錯誤 |
 | 預設值 |作業失敗。 |
 
-### <a name="gets-information-about-a-particular-office365-video"></a>取得特定 Office 365 影片的相關資訊
+### <a name="gets-information-about-a-particular-office365-video"></a>取得特定 Office&365; 影片的相關資訊
 取得特定 office365 影片的相關資訊。  
 ```GET: /{tenant}/Channels/{channelId}/Videos/{videoId}``` 
 
@@ -203,11 +203,11 @@ Office 365 影片連接器提供下列動作。 但不包含觸發程序。
 | ViewCount |integer |no |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

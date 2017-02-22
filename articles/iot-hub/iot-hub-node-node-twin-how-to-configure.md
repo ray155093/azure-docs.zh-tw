@@ -1,6 +1,6 @@
 ---
-title: "使用裝置對應項屬性 | Microsoft Docs"
-description: "本教學課程說明如何使用裝置對應項屬性"
+title: "使用 Azure IoT 中樞裝置對應項屬性 (Node) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞裝置對應項來設定裝置。 您可以使用適用於 Node.js 的 Azure IoT SDK，實作模擬裝置應用程式和服務應用程式，以修改使用裝置對應項的裝置組態。"
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -15,21 +15,21 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: 400eab43a417980abe9df5fa75ee9f9e43b296d0
-ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: 397dffe8ec93ced9196bce8fcc12a058c6876bd4
 
 
 ---
-# <a name="tutorial-use-desired-properties-to-configure-devices"></a>教學課程︰使用所需屬性來設定裝置
+# <a name="use-desired-properties-to-configure-devices-node"></a>使用所需屬性來設定裝置 (Node)
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-在本教學課程結束時，您將會有兩個 Node.js 主控台應用程式：
+在本教學課程結尾端，您將會有兩個 Node.js 主控台應用程式：
 
 * **SimulateDeviceConfiguration.js**，這是模擬裝置應用程式，可等候所需的組態更新，並報告模擬組態更新程序的狀態。
-* **SetDesiredConfigurationAndQuery.js**，這是應該從後端執行的 Node.js 應用程式，可在裝置上設定所需的設定，並查詢組態更新程序。
+* **SetDesiredConfigurationAndQuery.js**，這是 Node.js 後端應用程式，可在裝置上設定所需的設定，並查詢組態更新程序。
 
 > [!NOTE]
-> [IoT 中樞 SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
+> [Azure IoT SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
 > 
 > 
 
@@ -47,7 +47,7 @@ ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
 ## <a name="create-the-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您將建立 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 連接到您的中樞、等候所需的組態更新，然後報告模擬組態更新程序上的更新。
 
-1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元下使用下列命令建立新的 package.json 檔案。 接受所有預設值：
+1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
    
     ```
     npm init
@@ -58,7 +58,7 @@ ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 3. 使用文字編輯器，在 **simulatedeviceconfiguration** 資料夾中建立新的 **SimulateDeviceConfiguration.js** 檔案。
-4. 將下列程式碼新增至 **SimulateDeviceConfiguration.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的連接字串，取代 **{device connection string}** 預留位置︰
+4. 將下列程式碼新增至 **SimulateDeviceConfiguration.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的裝置連接字串，取代 **{device connection string}** 預留位置︰
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -141,7 +141,7 @@ ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
             });
         };
    
-    **InitConfigChange** 方法會依組態更新要求而在本機裝置對應項物件上更新所報告的屬性，並將狀態設為 **Pending**，然後更新服務上的裝置對應項。 成功更新裝置對應項之後，它會模擬一個長時間執行而在 **completeConfigChange** 執行過程中終止的處理序。 這個方法會更新本機裝置對應項所報告的屬性，將狀態設定為 **Success**，並移除 **pendingConfig** 物件。 然後更新服務上的裝置對應項。
+    **InitConfigChange** 方法會依組態更新要求，在本機裝置對應項物件上更新所報告的屬性，並將狀態設為 **Pending**，然後更新服務上的裝置對應項。 成功更新裝置對應項之後，它會模擬一個長時間執行而在 **completeConfigChange** 執行過程中終止的處理序。 這個方法會更新本機裝置對應項所報告的屬性，將狀態設定為 **Success**，並移除 **pendingConfig** 物件。 然後更新服務上的裝置對應項。
    
     請注意，為了節省頻寬，更新所報告的屬性時只會指定要修改的屬性 (在上述程式碼中名為 **patch**)，而不是取代整份文件。
    
@@ -169,12 +169,12 @@ ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
     npm install azure-iothub node-uuid --save
     ```
 3. 使用文字編輯器，在 **addtagsandqueryapp** 資料夾中建立新的 **SetDesiredAndQuery.js** 檔案。
-4. 將下列程式碼新增至 **SetDesiredAndQuery.js** 檔案，並以您建立中樞時所複製的連接字串，取代 **{service connection string}** 預留位置︰
+4. 將下列程式碼新增至 **SetDesiredAndQuery.js** 檔案，並以您建立中樞時所複製的 IoT 中樞連接字串，取代 **{iot hub connection string}** 預留位置︰
    
         'use strict';
         var iothub = require('azure-iothub');
         var uuid = require('node-uuid');
-        var connectionString = '{service connection string}';
+        var connectionString = '{iot hub connection string}';
         var registry = iothub.Registry.fromConnectionString(connectionString);
    
         registry.getTwin('myDeviceId', function(err, twin){
@@ -246,7 +246,7 @@ ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
    > 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您將會從後端應用程式將所需的組態設為「所需屬性」，還會撰寫模擬裝置應用程式來偵測該變更並模擬多步驟更新程序，以「所報告屬性」將其狀態回報給裝置對應項。
+在本教學課程中，您將會從後端應用程式將所需的組態設為「所需屬性」，還會撰寫模擬裝置應用程式來偵測該變更，並模擬多步驟更新程序，以「所報告屬性」將其狀態回報給裝置對應項。
 
 使用下列資源來了解如何：
 
@@ -265,7 +265,7 @@ ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
 [lnk-dm-overview]: iot-hub-device-management-overview.md
 [lnk-twin-tutorial]: iot-hub-node-node-twin-getstarted.md
 [lnk-schedule-jobs]: iot-hub-node-node-schedule-jobs.md
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/blob/master/doc/node-devbox-setup.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 [lnk-device-management]: iot-hub-node-node-device-management-get-started.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
@@ -278,6 +278,6 @@ ms.openlocfilehash: cc3e2f92550b77fe837afa19f51ea7691422ac9b
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -13,11 +13,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/16/2016
+ms.date: 01/22/2017
 ms.author: tvoellm
 translationtype: Human Translation
-ms.sourcegitcommit: 638c6c5ac9ffac7e726d86a979e2c5dc7fab41f4
-ms.openlocfilehash: 32bebcbd724d577f78672cb623748fcf77cee20a
+ms.sourcegitcommit: 224897c09073fe36c7d4f9f8c965212c25297271
+ms.openlocfilehash: 3f89e192052bb633190610a4dffbefb930dbc01c
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 32bebcbd724d577f78672cb623748fcf77cee20a
 
 [**下載模擬器**](https://aka.ms/documentdb-emulator)
 
-Azure DocumentDB 模擬器提供一個模擬 Azure DocumentDB 服務的本機環境做為開發之用，當中也能使用 SSL 連線。 這篇文章示範如何匯出 SSL 憑證以用於未整合 Windows 憑證存放區的語言和執行階段，例如使用它自己的[憑證存放區](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html) (英文) 的 Java，以及使用[通訊端包裝函式](https://docs.python.org/2/library/ssl.html) (英文) 的 Python。 您可以閱讀[使用 Azure DocumentDB 模擬器進行開發和測試](./documentdb-nosql-local-emulator.md)，瞭解更多有關模擬器的資訊。
+Azure DocumentDB 模擬器提供一個模擬 Azure DocumentDB 服務的本機環境做為開發之用，當中也能使用 SSL 連線。 這篇文章示範如何匯出 SSL 憑證以用於未整合 Windows 憑證存放區的語言和執行階段，例如使用它自己的[憑證存放區 (certificate store)](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html) 的 Java，和使用[通訊端包裝函式 (socket wrappers)](https://docs.python.org/2/library/ssl.html) 的 Python 以及使用 [tlsSocket](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback) 的 Node.js。 您可以閱讀[使用 Azure DocumentDB 模擬器進行開發和測試](./documentdb-nosql-local-emulator.md)，瞭解更多有關模擬器的資訊。
 
 ## <a name="certification-rotation"></a>憑證旋轉
 
@@ -80,7 +80,11 @@ DocumentDB 本機模擬器中的憑證會在模擬器第一次執行時產生。
 
 ## <a name="how-to-use-the-certificate-in-python"></a>如何在 Python 中使用憑證
 
-適用於 DocumentDB 的 Python SDK 在連線到本機模擬器時，預設不會嘗試和使用 SSL 憑證。 不過如果您想要使用 SSL 驗證，可以依照 [Python 通訊端包裝函式](https://docs.python.org/2/library/ssl.html) (英文) 文件中的範例。
+適用於 DocumentDB 的 [Python SDK (2.0.0 版或更新版本)](https://docs.microsoft.com/en-us/azure/documentdb/documentdb-sdk-python) 在連線到本機模擬器時，預設不會嘗試和使用 SSL 憑證。 不過如果您想要使用 SSL 驗證，可以依照 [Python 通訊端包裝函式](https://docs.python.org/2/library/ssl.html) (英文) 文件中的範例。
+
+## <a name="how-to-use-the-certificate-in-nodejs"></a>如何在 Node.js 中使用憑證
+
+適用於 DocumentDB 的 [Node.js SDK (1.10.1 版或更新版本)](https://docs.microsoft.com/en-us/azure/documentdb/documentdb-sdk-node) 在連線到本機模擬器時，預設不會嘗試和使用 SSL 憑證。 不過如果您想要使用 SSL 驗證，可以依照 [Node.js 文件 (Node.js documentation)](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback) 文件中的範例。
 
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解 DocumentDB，請參閱 [Azure DocumentDB 簡介](documentdb-introduction.md)
@@ -88,6 +92,6 @@ DocumentDB 本機模擬器中的憑證會在模擬器第一次執行時產生。
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

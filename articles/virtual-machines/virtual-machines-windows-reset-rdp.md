@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: 6700ea97bea02d68329b923f8715d84e5df1de33
+ms.sourcegitcommit: 8062106872bd50cd265fc4e64bc6f4c0fb2dbb1d
+ms.openlocfilehash: b7458e13174dc03f2c4cab707c033d96a80628e6
 
 
 ---
@@ -44,7 +44,11 @@ ms.openlocfilehash: 6700ea97bea02d68329b923f8715d84e5df1de33
 - [使用 Azure PowerShell 重設](#vmaccess-extension-and-powershell---classic)
 
 ## <a name="azure-portal---resource-manager"></a>Azure 入口網站 - Resource Manager
-依序按一下 [瀏覽] > [虛擬機器] > *您的 Windows 虛擬機器* > **[所有設定]** > [重設密碼]，以選取您的 VM。 將會顯示 [密碼重設] 刀鋒視窗︰
+若要展開入口網站功能表，請按一下左上角的三個橫條，然後按一下 [虛擬機器]：
+
+![瀏覽您的 Azure VM](./media/virtual-machines-windows-reset-rdp/Portal-Select-VM.png)
+
+選取您的 Windows 虛擬機器，然後按一下 [支援與疑難排解] > [重設密碼]。 將會顯示 [密碼重設] 刀鋒視窗︰
 
 ![密碼重設頁面](./media/virtual-machines-windows-reset-rdp/Portal-RM-PW-Reset-Windows.png)
 
@@ -100,11 +104,15 @@ Set-AzureRmVMAccessExtension -ResourceGroupName "myResoureGroup" -VMName "myVM" 
 
 
 ## <a name="azure-portal---classic"></a>Azure 入口網站 - 傳統
-對於使用傳統部署模型所建立的虛擬機器，您可以使用 [Azure 入口網站](https://portal.azure.com) 來重設遠端桌面服務。 依序按一下 [瀏覽] >  [虛擬機器 (傳統)] > 您的 Windows 虛擬機器 > [重設遠端]。 下列頁面隨即出現。
+對於使用傳統部署模型所建立的虛擬機器，您可以使用 [Azure 入口網站](https://portal.azure.com) 來重設遠端桌面服務。 若要展開入口網站功能表，請按一下左上角的三個橫條，然後按一下 [虛擬機器 (傳統)]：
+
+![瀏覽您的 Azure VM](./media/virtual-machines-windows-reset-rdp/Portal-Select-Classic-VM.png)
+
+選取您的 Windows 虛擬機器，然後按一下 [重設遠端...]。 以下對話方塊隨即出現，可供您重設「遠端桌面」組態：
 
 ![重設 RDP 組態頁面](./media/virtual-machines-windows-reset-rdp/Portal-RDP-Reset-Windows.png)
 
-您也可以嘗試重設本機系統管理員帳戶的名稱和密碼。 依序按一下 [瀏覽] > **[虛擬機器 (傳統)]** > *您的 Windows 虛擬機器* > **[所有設定]** > [重設密碼]。 下列頁面隨即出現。
+您也可以重設本機系統管理員帳戶的使用者名稱和密碼。 從您的 VM，按一下 [支援與疑難排解] > [重設密碼]。 將會顯示 [密碼重設] 刀鋒視窗︰
 
 ![密碼重設頁面](./media/virtual-machines-windows-reset-rdp/Portal-PW-Reset-Windows.png)
 
@@ -174,6 +182,6 @@ Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

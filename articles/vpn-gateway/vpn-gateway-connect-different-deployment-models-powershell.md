@@ -1,10 +1,10 @@
 ---
-title: "如何使用 PowerShell 將傳統虛擬網路連線至 Resource Manager 虛擬網路 | Microsoft Docs"
+title: "將傳統虛擬網路連接到 Azure Resource Manager VNet：PowerShell | Microsoft Docs"
 description: "了解如何使用 VPN 閘道和 PowerShell 在傳統 VNet 和 Resource Manager VNet 之間建立 VPN 連線"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management,azure-resource-manager
 ms.assetid: f17c3bf0-5cc9-4629-9928-1b72d0c9340b
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/23/2016
+ms.date: 01/12/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: 42cc83b058f504ba5eb7a918fbcc775f14c632fd
+ms.sourcegitcommit: 10985eaebd9148ef4fbd22eac0ba50076ca71ef5
+ms.openlocfilehash: 430d2c02537e6907da09926db52a3d07b975bb64
 
 
 ---
@@ -62,7 +62,7 @@ VNet 名稱 = ClassicVNet  <br>
 子網路 1 = 10.0.0.0/27 <br>
 GatewaySubnet = 10.0.0.32/29 <br>
 區域網路名稱 = RMVNetLocal <br>
- GatewayType = DynamicRouting
+GatewayType = DynamicRouting
 
 **Resource Manager VNet 設定**
 
@@ -75,7 +75,7 @@ GatewaySubnet = 192.168.0.0/26 <br>
 閘道公用 IP 名稱 = gwpip <br>
 區域網路閘道 = ClassicVNetLocal <br>
 虛擬網路閘道名稱 = RMGateway <br>
- 閘道 IP 位址組態 = gwipconfig
+閘道 IP 位址組態 = gwipconfig
 
 ## <a name="a-namecreatesmgwasection-1---configure-the-classic-vnet"></a><a name="createsmgw"></a>區段 1 - 設定傳統 VNet
 ### <a name="part-1---download-your-network-configuration-file"></a>第 1 部份 - 下載您的網路組態檔
@@ -111,7 +111,7 @@ GatewaySubnet = 192.168.0.0/26 <br>
     </VirtualNetworkSites>
 
 ### <a name="part-3---add-the-local-network-site"></a>步驟 3 - 新增區域網路站台
-您新增的區域網路站台代表您要連接的 RM VNet。 您可能必須將 **LocalNetworkSites** 元素 (如果尚未存在) 加入至檔案。 此時在組態中，VPNGatewayAddress 可以是任何有效的公用 IP 位址，因為我們尚未建立 Resource Manager VNet 的閘道。 一旦建立閘道，我們會以指派給 RM 閘道的正確公用 IP 位址取代此預留位置 IP 位址。
+您新增的區域網路站台代表您要連接的 RM VNet。 您必須將 **LocalNetworkSites** 元素 (如果尚未存在) 加入至檔案。 此時在組態中，VPNGatewayAddress 可以是任何有效的公用 IP 位址，因為我們尚未建立 Resource Manager VNet 的閘道。 一旦建立閘道，我們會以指派給 RM 閘道的正確公用 IP 位址取代此預留位置 IP 位址。
 
     <LocalNetworkSites>
       <LocalNetworkSite name="RMVNetLocal">
@@ -146,6 +146,9 @@ GatewaySubnet = 192.168.0.0/26 <br>
 
 ### <a name="part-6---create-the-gateway"></a>第 6 部分 - 建立閘道
 您可以使用傳統入口網站或 PowerShell 來建立 VNet 閘道。
+
+執行此範例之前，請參閱您針對 Azure 預期看到的確切名稱所下載的網路組態檔。 網路組態檔包含傳統虛擬網路的值。 因為部署模型中的差異，當在 Azure 入口網站中建立傳統 VNet 設定時，有時候傳統 VNet 的名稱會變更。 例如，如果您使用 Azure 入口網站在名稱為 'ClassicRG' 的資源群組中，建立一個名稱為 'Classic VNet' 的傳統 VNet，網路組態檔中所包含的名稱會轉換為 'Group ClassicRG Classic VNet'。 當指定包含空格的 VNet 名稱時，請使用引號括住值。
+
 
 使用以下範例來建立動態路由閘道︰
 
@@ -206,28 +209,24 @@ GatewaySubnet = 192.168.0.0/26 <br>
    
         Get-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName RG1
 
-## <a name="section-3-modify-the-local-network-for-the-classic-vnet"></a>區段 3︰修改傳統 Vnet 的區域網路
-在這個步驟中，您可以匯出網路組態檔、加以編輯，然後儲存檔案並匯回 Azure。 或者，可以在傳統入口網站中修改此設定。 
+## <a name="section-3-modify-the-classic-vnet-local-site-settings"></a>第 3 節：修改傳統 VNet 本機站台設定
 
-### <a name="to-modify-in-the-portal"></a>在入口網站中修改
-1. 開啟 [傳統入口網站](https://manage.windowsazure.com)。
-2. 在傳統入口網站中，在左側向下捲動並按一下 [網路] 。 在 [網路] 頁面上，按一下頁面頂端的 [區域網路]。 
-3. 在 [區域網路] 頁面上，按一下以選取您在第 1 部份中設定的區域網路，然後移至頁面底部並按一下 [編輯]。
-4. 在 [指定區域網路詳細資料]  頁面上，使用您在上一個區段中為 Resource Manager 閘道建立的公用 IP 位址取代預留位置 IP 位址。 按一下箭號移至下一個區段。 確認 [位址空間]  正確無誤，然後按一下核取記號以接受變更。
+在本節中，您將會處理傳統 VNet。 您將會取代您在指定本機站台設定 (將用於連線至 Resource Manager VNet 閘道) 時所使用的預留位置 IP 位址。 
 
-### <a name="to-modify-using-the-network-configuration-file"></a>使用網路組態檔進行修改
 1. 匯出網路組態檔。
-2. 在文字編輯器中，修改 VPN 閘道 IP 位址。
+
+        Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
+2. 使用文字編輯器修改 VPNGatewayAddress 的值。 使用 Resource Manager 閘道的公用 IP 位址取代預留位置 IP 位址，然後儲存變更。
    
         <VPNGatewayAddress>13.68.210.16</VPNGatewayAddress>
-3. 儲存您的變更並將編輯過的檔案匯回 Azure。
+3. 將修改過的網路組態檔匯入至 Azure。
+
+        Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\NetworkConfig.xml
 
 ## <a name="a-nameconnectasection-4-create-a-connection-between-the-gateways"></a><a name="connect"></a>區段 4：在閘道之間建立連線
-在閘道之間建立連線需要 PowerShell。 您可以需要加入您的 Azure 帳戶，才能使用傳統 PowerShell Cmdlet。 若要這麼做，您可使用下列 Cmdlet： 
+在閘道之間建立連線需要 PowerShell。 您可以需要加入您的 Azure 帳戶，才能使用傳統 PowerShell Cmdlet。 若要這樣做，請使用 `Add-AzureAccount`。
 
-    Add-AzureAccount
-
-1. **設定共用金鑰** 。 在此範例中，`-VNetName` 是傳統 VNet 的名稱，而 `-LocalNetworkSiteName` 是在傳統入口網站中設定區域網路時所指定的名稱。 `-SharedKey` 是您可以產生和指定的值。 您在此指定的值，必須與您在下一個步驟中建立連線時指定的值相同。 此範例的傳回資料應該顯示狀態 [成功] 。
+1. 在 PowerShell 主控台中，設定您的共用金鑰。 執行 Cmdlet 之前，請參閱您針對 Azure 預期看到的確切名稱所下載的網路組態檔。 當指定包含空格的 VNet 名稱時，請使用單引號括住值。<br><br>在下列範例中，`-VNetName` 是傳統 VNet 的名稱，`-LocalNetworkSiteName` 是您針對區域網路站台指定的名稱。 `-SharedKey` 是您產生和指定的值。 在範例中，我們使用的是 'abc123'，但是您可以產生並使用更為複雜的值。 重要的是，您在此指定的值必須與您在下一個步驟中建立連線時指定的值相同。 傳回應顯示 [狀態: 成功]。 
    
         Set-AzureVNetGatewayKey -VNetName ClassicVNet `
         -LocalNetworkSiteName RMVNetLocal -SharedKey abc123
@@ -244,18 +243,39 @@ GatewaySubnet = 192.168.0.0/26 <br>
         -Location "East US" -VirtualNetworkGateway1 `
         $vnet02gateway -LocalNetworkGateway2 `
         $vnet01gateway -ConnectionType IPsec -RoutingWeight 10 -SharedKey 'abc123'
-3. 您可以在任一入口網站，或使用 `Get-AzureRmVirtualNetworkGatewayConnection` Cmdlet 來檢視您的連線。
-   
-        Get-AzureRmVirtualNetworkGatewayConnection -Name RM-Classic -ResourceGroupName RG1
 
-## <a name="a-namefaqavnet-to-vnet-faq"></a><a name="faq"></a>VNet 對 VNet 常見問題集
-檢視常見問題集詳細資料以取得 VNet 對 VNet 連線的其他資訊。
+## <a name="section-5-verify-your-connections"></a>第 5 節︰驗證您的連線
+
+### <a name="to-verify-the-connection-from-your-classic-vnet-to-your-resource-manager-vnet"></a>驗證從傳統 VNet 到 Resource Manager VNet 的連線
+
+####<a name="verify-your-connection-using-powershell"></a>使用 PowerShell 驗證您的連線
+
+
+[!INCLUDE [vpn-gateway-verify-connection-ps-classic](../../includes/vpn-gateway-verify-connection-ps-classic-include.md)]
+
+
+####<a name="verify-your-connection-using-the-azure-portal"></a>使用 Azure 入口網站驗證您的連線
+
+[!INCLUDE [vpn-gateway-verify-connection-azureportal-classic](../../includes/vpn-gateway-verify-connection-azureportal-classic-include.md)]
+
+
+###<a name="to-verify-the-connection-from-your-resource-manager-vnet-to-your-classic-vnet"></a>驗證從 Resource Manager VNet 到傳統 VNet 的連線
+
+####<a name="verify-your-connection-using-powershell"></a>使用 PowerShell 驗證您的連線
+
+[!INCLUDE [vpn-gateway-verify-ps-rm](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
+
+####<a name="verify-your-connection-using-the-azure-portal"></a>使用 Azure 入口網站驗證您的連線
+
+[!INCLUDE [vpn-gateway-verify-connection-portal-rm](../../includes/vpn-gateway-verify-connection-portal-rm-include.md)]
+
+## <a name="a-namefaqavnet-to-vnet-considerations"></a><a name="faq"></a>VNet 對 VNet 的考量
 
 [!INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

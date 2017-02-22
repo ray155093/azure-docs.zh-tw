@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: na
-ms.date: 09/15/2016
+ms.date: 01/09/2017
 ms.author: zachal
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: d2668d6dcdc7e7af45f2fdfa317565e541e035ba
+ms.sourcegitcommit: c2ce603e80243584fdc302c545e520b4503f5555
+ms.openlocfilehash: ca2d8d4b277f48ec46156293f73b18b6c2967c51
 
 
 ---
@@ -32,7 +32,7 @@ Azure VM 代理程式和相關聯的擴充功能是 Microsoft Azure 基礎結構
 ## <a name="prerequisites"></a>必要條件
 **本機電腦** ：若要與 Azure VM 擴充功能互動，您需要使用 Azure 入口網站或 Azure PowerShell SDK。 
 
-**客體代理程式** ：將由 DSC 組態設定的 Azure VM 必須是支援 Windows Management Framework (WMF) 4.0 或 5.0 的 OS。 如需所支援作業系統版本的完整清單，請參閱 [DSC 擴充功能版本歷程記錄](https://blogs.msdn.microsoft.com/powershell/2014/11/20/release-history-for-the-azure-dsc-extension/)。
+**客體代理程式**：由 DSC 組態設定的 Azure VM 必須是支援 Windows Management Framework (WMF) 4.0 或 5.0 的 OS。 如需所支援作業系統版本的完整清單，請參閱 [DSC 擴充功能版本歷程記錄](https://blogs.msdn.microsoft.com/powershell/2014/11/20/release-history-for-the-azure-dsc-extension/)。
 
 ## <a name="terms-and-concepts"></a>詞彙和概念
 本指南假設您已熟悉下列概念︰
@@ -55,13 +55,13 @@ Azure DSC 擴充功能會使用「Azure VM 代理程式」架構來傳遞、套�
 安裝 WMF 需要重新開機。 重新開機後，擴充功能會下載 `modulesUrl` 屬性所指定的 .zip 檔案。 如果此位置在 Azure Blob 儲存體中，您可以在 `sasToken` 屬性中指定 SAS 權杖來存取檔案。 將 .zip 下載並解壓縮之後，系統會執行 `configurationFunction` 中定義的組態函數來產生 MOF 檔案。 接著，擴充功能就會在產生的 MOF 檔案上執行 `Start-DscConfiguration -Force` 。 擴充功能會擷取輸出並寫回 Azure 狀態通道。 DSC LCM 會從這裡開始正常處理監視和更正。 
 
 ## <a name="powershell-cmdlets"></a>PowerShell Cmdlet
-PowerShell Cmdlet 可與 ARM 或 ASM 搭配使用，來封裝、發佈和監視 DSC 擴充功能部署。 下列 Cmdlet 是 ASM 模組，不過您可以將 "Azure" 取代為 "AzureRm" 來使用 ARM 模型。 例如，`Publish-AzureVMDscConfiguration` 會使用 ASM，而 `Publish-AzureRmVMDscConfiguration` 則使用 ARM。 
+PowerShell Cmdlet 可與 Azure Resource Manager 或傳統部署模型搭配使用，來封裝、發佈和監視 DSC 擴充功能部署。 下列 Cmdlet 是傳統部署模組，不過您可以將 "Azure" 取代為 "AzureRm" 來使用 Azure Resource Manager 模型。 例如，`Publish-AzureVMDscConfiguration` 會使用傳統部署模型，而 `Publish-AzureRmVMDscConfiguration` 則會使用 Azure Resource Manager。 
 
 `Publish-AzureVMDscConfiguration` 會接受組態檔、掃描其中是否有相依的 DSC 資源，然後建立包含了組態及套用組態所需之 DSC 資源的 .zip 檔案。 它也可以使用 `-ConfigurationArchivePath` 參數在本機建立封裝。 否則，它會將 .zip 檔案發佈至 Azure Blob 儲存體，然後以 SAS 權杖加以保護。
 
 對於這個 Cmdlet 所建立的 .zip 檔案，.ps1 組態指令碼位於封存資料夾的根目錄。 資源會將模組資料夾放置在封存資料夾中。 
 
-`Set-AzureVMDscExtension` 會將 PowerShell DSC 擴充功能所需的設定插入 VM 組態物件中，接著即可使用 `Update-AzureVM` 將此物件套用至 Azure VM。
+`Set-AzureVMDscExtension` 會將 PowerShell DSC 擴充功能所需的設定插入 VM 組態物件中。 在傳統部署模型中，必須使用 `Update-AzureVM`，才能將 VM 變更套用到 Azure VM。 
 
 `Get-AzureVMDscExtension` 會擷取特定 VM 的 DSC 擴充功能狀態。 
 
@@ -69,18 +69,18 @@ PowerShell Cmdlet 可與 ARM 或 ASM 搭配使用，來封裝、發佈和監視 
 
 `Remove-AzureVMDscExtension` 會從指定的虛擬機器移除擴充功能處理常式。 此 Cmdlet「不會」  移除組態、將 WMF 解除安裝或變更虛擬機器上已套用的設定。 它只會移除擴充功能處理常式。 
 
-**ASM 和 ARM Cmdlet 的主要差異**
+**ASM 和 Azure Resource Manager Cmdlet 的主要差異**
 
-* ARM Cmdlet 具備同步性； ASM Cmdlet 具備非同步性。
-* ResourceGroupName、VMName、ArchiveStorageAccountName、Version 及 Location 皆為新的必要參數。
-* ArchiveResourceGroupName 是 ARM 的新選擇性參數。 當儲存體帳戶所屬的資源群組與建立虛擬機器的資源群組不同時，您可以指定此參數。
-* ConfigurationArchive 在 ARM 中名為 ArchiveBlobName
-* ContainerName 在 ARM 中名為 ArchiveContainerName
-* StorageEndpointSuffix 在 ARM 中名為 ArchiveStorageEndpointSuffix
-* 我們已將 AutoUpdate 參數加入 ARM，讓擴充功能處理常式能在有最新版本時自動更新。 請注意，當新版本的 WMF 發行時，此參數有可能會導致 VM 重新啟動。 
+* Azure Resource Manager Cmdlet 是同步的。 ASM Cmdlet 具備非同步性。
+* ResourceGroupName、VMName、ArchiveStorageAccountName、Version 及 Location 皆為 Azure Resource Manager 中的必要參數。
+* ArchiveResourceGroupName 是 Azure Resource Manager 的新選擇性參數。 當儲存體帳戶所屬的資源群組與建立虛擬機器的資源群組不同時，您可以指定此參數。
+* ConfigurationArchive 在 Azure Resource Manager 中稱為 ArchiveBlobName
+* ContainerName 在 Azure Resource Manager 中稱為 ArchiveContainerName
+* StorageEndpointSuffix 在 Azure Resource Manager 中稱為 ArchiveStorageEndpointSuffix
+* 我們已將 AutoUpdate 參數新增到 Azure Resource Manager 中，可讓擴充功能處理常式在有最新版本時自動更新。 請注意，當新版本的 WMF 發行時，此參數有可能會導致 VM 重新啟動。 
 
 ## <a name="azure-portal-functionality"></a>Azure 入口網站功能
-瀏覽至傳統的 VM。 在 [設定] -> [一般] 底下，按一下 [擴充功能]。 系統會建立新窗格。 按一下 [加入]，然後選取 [PowerShell DSC]。
+瀏覽至 VM。 在 [設定] -> [一般] 底下，按一下 [擴充功能]。 系統會建立新窗格。 按一下 [加入]，然後選取 [PowerShell DSC]。
 
 入口網站需要輸入。
 **組態模組或指令碼**︰這是必要欄位。 需要一個包含組態指令碼的 .ps1 檔案，或一個 .ps1 組態指令碼位於根目錄而所有相依資源位於模組資料夾內的 .zip 檔案。 您可以使用 Azure PowerShell SDK 隨附的 `Publish-AzureVMDscConfiguration -ConfigurationArchivePath` Cmdlet 來建立此檔案。 系統會將 .zip 檔案上傳到受 SAS 權杖保護的使用者 Blob 儲存體中。 
@@ -109,7 +109,7 @@ configuration IISInstall
 ```
 
 下列步驟會將 IisInstall.ps1 指令碼置於指定的 VM 上、執行組態，然後回報狀態。
-
+###<a name="classic-model"></a>傳統模型
 ```powershell
 #Azure PowerShell cmdlets are required
 Import-Module Azure
@@ -121,13 +121,26 @@ $demoVM = Get-AzureVM DscDemo1
 Publish-AzureVMDscConfiguration -ConfigurationPath ".\IisInstall.ps1" -StorageContext $storageContext -Verbose -Force
 
 #Set the VM to run the DSC configuration
-Set-AzureVMDscExtension -VM $demoVM -ConfigurationArchive "demo.ps1.zip" -StorageContext $storageContext -ConfigurationName "runScript" -Verbose
+Set-AzureVMDscExtension -VM $demoVM -ConfigurationArchive "IisInstall.ps1.zip" -StorageContext $storageContext -ConfigurationName "IisInstall" -Verbose
 
 #Update the configuration of an Azure Virtual Machine
 $demoVM | Update-AzureVM -Verbose
 
 #check on status
 Get-AzureVMDscExtensionStatus -VM $demovm -Verbose
+```
+###<a name="azure-resource-manager-model"></a>Azure Resource Manager 模型
+
+```powershell
+$resourceGroup = "dscVmDemo"
+$location = "westus"
+$vmName = "myVM"
+$storageName = "demostorage"
+#Publish the configuration script into user storage
+Publish-AzureRmVMDscConfiguration -ConfigurationPath .\iisInstall.ps1 -ResourceGroupName $resourceGroup -StorageAccountName $storageName -force
+#Set the VM to run the DSC configuration
+Set-AzureRmVmDscExtension -Version 2.21 -ResourceGroupName $resourceGroup -VMName $vmName -ArchiveStorageAccountName $storageName -ArchiveBlobName iisInstall.ps1.zip -AutoUpdate:$true -ConfigurationName "IISInstall"
+
 ```
 
 ## <a name="logging"></a>記錄
@@ -147,6 +160,6 @@ C:\WindowsAzure\Logs\Plugins\Microsoft.Powershell.DSC\[版本號碼]
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

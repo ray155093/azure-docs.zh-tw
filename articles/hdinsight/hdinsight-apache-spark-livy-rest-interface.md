@@ -1,5 +1,5 @@
 ---
-title: "使用 Livy 從遠端提交 Spark 作業 | Microsoft Docs"
+title: "使用 Livy 從遠端將作業提交至 Azure HDInsight 上的 Spark | Microsoft Docs"
 description: "了解如何使用 Livy 和 HDInsight 叢集從遠端提交 Spark 作業。"
 services: hdinsight
 documentationcenter: 
@@ -13,15 +13,16 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/28/2016
+ms.date: 11/28/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 564bd1f3095446edf839d0353b92e0df256e1007
+ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
+ms.openlocfilehash: 3c349aecc87e28275045828a84e0ea3f89400b9e
 
 
 ---
-# <a name="submit-spark-jobs-remotely-to-an-apache-spark-cluster-on-hdinsight-linux-using-livy"></a>使用 Livy 將 Spark 作業遠端提交至 HDInsight Linux 上的 Apache Spark 叢集
+# <a name="submit-spark-jobs-remotely-to-an-apache-spark-cluster-on-hdinsight-using-livy"></a>使用 Livy 將 Spark 作業遠端提交至 HDInsight 上的 Apache Spark 叢集
+
 Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面，可讓您從遠端將作業提交給 Spark 叢集。 如需詳細文件，請參閱 [Livy](https://github.com/cloudera/hue/tree/master/apps/spark/java#welcome-to-livy-the-rest-spark-server)。
 
 您可以使用 Livy 執行互動式 Spark 殼層，或提交要在 Spark 上執行的批次作業。 本文將討論如何使用 Livy 提交批次作業。 下列語法會使用 Curl 對 Livy 端點發出 REST 呼叫。
@@ -31,9 +32,9 @@ Azure HDInsight 上的 Apache Spark 叢集包含 Livy，這是一個 REST 介面
 您必須滿足以下條件：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight Linux 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
-## <a name="submit-a-batch-job-the-cluster"></a>將批次作業提交至叢集
+## <a name="submit-a-batch-job"></a>提交批次工作
 在提交批次作業之前，您必須將應用程式 jar 上傳至與叢集相關聯的叢集儲存體。 您可以使用命令列公用程式 [**AzCopy**](../storage/storage-use-azcopy.md) 來執行此動作。 此外也有很多用戶端可用來上傳資料。 您可以在 [在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)中找到其詳細資訊。
 
     curl -k --user "<hdinsight user>:<user password>" -v -H <content-type> -X POST -d '{ "file":"<path to application jar>", "className":"<classname in jar>" }' 'https://<spark_cluster_name>.azurehdinsight.net/livy/batches'
@@ -154,6 +155,17 @@ Livy 可為在叢集上執行的 Spark 作業提供高可用性。 以下是一�
    
     輸出的最後一行顯示批次已成功刪除。 如果您刪除執行中的作業，該作業實際上就會被刪除。 如果您刪除已完成的作業，無論成功與否，這將會完全刪除作業資訊。
 
+## <a name="using-livy-on-hdinsight-35-spark-clusters"></a>在 HDInsight 3.5 Spark 叢集上使用 Livy
+
+根據預設，HDInsight 3.5 叢集會停用使用本機檔案路徑，以存取範本資料檔案或 jar。 建議您使用 `wasb://` 路徑，而不是從叢集存取 jar 或範本資料檔案。 如果您確定要使用本機路徑，您就必須同時更新 Ambari 組態。 若要這樣做：
+
+1. 移至叢集的 Ambari 入口網站。 Ambari Web UI 位在您的 HDInsight 叢集的 https://**CLUSTERNAME**.azurehdidnsight.net，其中 CLUSTERNAME 是您的叢集的名稱。
+
+2. 在左側導覽中，按一下 [Livy]，然後按一下 [設定]。
+
+3. 在 [livy-default] 底下新增屬性名稱 `livy.file.local-dir-whitelist`，如果您想要允許存取整個檔案系統，可將其值設為 **"/"**。 如果您只想要允許存取特定目錄，請將值設為該目錄的路徑。
+
+
 ## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
@@ -182,6 +194,6 @@ Livy 可為在叢集上執行的 Spark 作業提供高可用性。 以下是一�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

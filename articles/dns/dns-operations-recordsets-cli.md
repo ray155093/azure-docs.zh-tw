@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure CLI 在 Azure DNS 管理 DNS 記錄集和記錄 | Microsoft Docs"
+title: "使用 Azure CLI 管理 Azure DNS 中的 DNS 記錄 | Microsoft Docs"
 description: "將網域裝載於 Azure DNS 時，在 Azure DNS 管理 DNS 記錄集和記錄。 對記錄集和記錄執行作業的所有 CLI 命令。"
 services: dns
 documentationcenter: na
@@ -11,200 +11,272 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/22/2016
+ms.date: 12/20/2016
 ms.author: jonatul
 translationtype: Human Translation
-ms.sourcegitcommit: 02d720a04fdc0fa302c2cb29b0af35ee92c14b3b
-ms.openlocfilehash: 2bc18d618cf8838209bea9f8a2d323e3b1042709
+ms.sourcegitcommit: 5508413543a229cb639a55832b3253fe86e21f2c
+ms.openlocfilehash: 6a80423f9550f3df218c247673dbdbf25ea5d4e3
 
 ---
 
-# <a name="manage-dns-records-and-record-sets-by-using-cli"></a>使用 CLI 管理 DNS 記錄集和記錄集
+# <a name="manage-dns-records-in-azure-dns-using-the-azure-cli"></a>使用 Azure CLI 管理 Azure DNS 中的 DNS 記錄
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](dns-operations-recordsets-portal.md)
 > * [Azure CLI](dns-operations-recordsets-cli.md)
 > * [PowerShell](dns-operations-recordsets.md)
 
-本文說明如何使用跨平台 Azure 命令列介面 (CLI) 管理 DNS 區域的記錄集和記錄。
+本文適用於 Windows、Mac 和 Linux，將會說明如何使用跨平台 Azure 命令列介面 (CLI) 管理 DNS 區域的 DNS 記錄。 您也可以使用 [Azure PowerShell](dns-operations-recordsets.md) 或 [Azure 入口網站](dns-operations-recordsets-portal.md)來管理 DNS 記錄。
 
-請務必了解 DNS 記錄集和個別 DNS 記錄之間的差別。 記錄集是指一個區域中有相同名稱和相同類型的記錄集合。 如需詳細資訊，請參閱 [了解記錄集和記錄](dns-getstarted-create-recordset-cli.md)。
+此文章中的範例假設您已[安裝 Azure CLI、登入，並建立 DNS 區域](dns-operations-dnszones-cli.md)。
 
-## <a name="configure-the-cross-platform-azure-cli"></a>設定跨平台 Azure CLI
+## <a name="introduction"></a>簡介
 
-Azure DNS 是僅能以 Azure 資源管理員運作的服務。 它沒有 Azure 服務管理 API。 使用 `azure config mode arm` 命令，來確定已將 Azure CLI 設定為使用 Resource Manager 模式。
+在 Azure DNS 中建立 DNS 記錄前，您需要先了解 Azure DNS 如何將 DNS 記錄組織成 DNS 記錄集。
 
-如果您看到 **錯誤：'dns' 不是 azure 命令**，可能是因為您正在 Azure 服務管理模式中使用 Azure CLI，而不是在 Resource Manager 模式中。
+[!INCLUDE [dns-about-records-include](../../includes/dns-about-records-include.md)]
 
-## <a name="create-a-new-record-set-and-record"></a>建立新的記錄集和記錄
+如需在 Azure DNS 的 DNS 記錄的詳細資訊，請參閱 [DNS 區域與記錄](dns-zones-records.md)。
 
-若要在 Azure 入口網站中建立新的記錄集，請參閱 [建立記錄集和記錄](dns-getstarted-create-recordset-cli.md)。
+## <a name="create-a-dns-record"></a>建立 DNS 記錄
 
-## <a name="retrieve-a-record-set"></a>擷取記錄集
+若要建立 DNS 記錄，請使用 `azure network dns record-set add-record` 命令。 如需協助，請參閱 `azure network dns record-set add-record -h`。
 
-若要擷取現有的記錄集，使用 `azure network dns record-set show`。 指定資源群組、區域名稱、記錄集相對名稱及記錄類型。 使用下列範例，將其中的值替換為您自己的值。
+建立記錄時，您必須指定資源群組名稱、區域名稱、記錄集名稱、記錄類型，以及所建立記錄的詳細資料。 提供的記錄集名稱必須是「相對」名稱，表示它不能包含區域名稱。
+
+如果記錄集不存在，此命令會為您建立。 如果記錄集已經存在，此命令會將您指定的記錄新增至現有的記錄集。
+
+如果建立新的記錄集，則會使用預設存留時間 (TTL) 3600。 如需如何使用不同 TTL 的指示，請參閱[建立 DNS 記錄集](#create-a-dns-record-set)。
+
+下列範例會在 MyResourceGroup 資源群組的 contoso.com 區域中建立稱為 www 的 A 記錄。 A 記錄的 IP 位址是&1;.2.3.4。
 
 ```azurecli
-azure network dns record-set show myresourcegroup contoso.com www A
+azure network dns record-set add-record MyResourceGroup contoso.com www A -a 1.2.3.4
+```
+
+若要在區域頂點 (在此案例中為 "contoso.com") 建立記錄，請使用記錄名稱 "@", (包括引號)：
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup contoso.com "@" A -a 1.2.3.4
+```
+
+## <a name="create-a-dns-record-set"></a>建立 DNS 記錄集
+
+在上述範例中，DNS 記錄不是新增至現有記錄集，就是記錄集是以*隱含方式*建立。 您也可以先*明確地*建立記錄集，再於其中新增記錄。 Azure DNS 支援「空白」記錄集，其可做為預留位置，以在建立 DNS 記錄之前保留 DNS 名稱。 空白記錄集可在 Azure DNS 控制面板中看到，但不會出現在 Azure DNS 名稱伺服器上。
+
+請使用 `azure network dns record-set create` 命令建立記錄集。 如需協助，請參閱 `azure network dns record-set create -h`。
+
+明確地建立記錄集可讓您指定記錄集屬性，例如[存留時間 (TTL)](dns-zones-records.md#time-to-live) 和中繼資料。 [記錄集中繼資料](dns-zones-records.md#tags-and-metadata)可用來將應用程式特定資料與每一個資料集產生關聯 (以索引鍵值組的形式)。
+
+下列範例使用 `--ttl` 參數 (簡短形式 `-l`) 建立 60 秒 TTL 的空白記錄集：
+
+```azurecli
+azure network dns record-set create MyResourceGroup contoso.com www A --ttl 60
+```
+
+下列範例使用 `--metadata` 參數 (簡短形式 `-m`) 建立具有兩個中繼資料項目 ("dept=finance" 和 "environment=production") 的記錄集：
+
+```azurecli
+azure network dns record-set create MyResourceGroup contoso.com www A --metadata "dept=finance;environment=production"
+```
+
+建立好空白記錄集之後，可依[建立 DNS 記錄](#create-a-dns-record)所述使用 `azure network dns record-set add-record` 新增記錄。
+
+## <a name="create-records-of-other-types"></a>建立其他類型的記錄
+
+參閱如何建立 'A' 記錄的詳細資訊後，下列範例會示範如何建立 Azure DNS 所支援其他記錄類型的記錄。
+
+用來指定記錄資料的參數，根據記錄的類型而所有不同。 例如，對於類型 "A" 的記錄，您可使用參數 `-a <IPv4 address>` 指定 IPv4 位址。 每個記錄類型的參數可以使用 `azure network dns record-set add-record -h` 列出。
+
+在每個案例中，我們會說明如何建立單一記錄。 記錄會新增至現有記錄集，或者會以隱含方式建立記錄集。 如需明確建立記錄集和定義記錄集參數的詳細資訊，請參閱[建立 DNS 記錄集](#create-a-dns-record-set)。
+
+我們沒有提供 SOA 記錄集的建立範例，因為已與每一個 DNS 區域完成 SOA 建立與刪除，且無法個別建立或刪除 SOA。 然而，[可以對 SOA 進行修改，如稍後範例所示](#to-modify-an-SOA-record)。
+
+### <a name="create-an-aaaa-record"></a>建立 AAAA 記錄
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup contoso.com test-aaaa AAAA --ipv6-address 2607:f8b0:4009:1803::1005
+```
+
+### <a name="create-a-cname-record"></a>建立 CNAME 記錄
+
+> [!NOTE]
+> DNS 標準在區域頂點不允許 CNAME 記錄 (`-Name "@"`)，也不允許包含一個記錄以上的記錄集。
+> 
+> 如需詳細資訊，請參閱 [CNAME 記錄](dns-zones-records.md#cname-records)。
+
+```azurecli
+azure network dns record-set add-record  MyResourceGroup contoso.com  test-cname CNAME --cname www.contoso.com
+```
+
+### <a name="create-an-mx-record"></a>建立 MX 記錄
+
+在此範例中，會使用記錄集名稱 "@"，在區域頂點 (在此案例中，"contoso.com") 建立 MX 記錄。
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup contoso.com  "@" MX --exchange mail.contoso.com --preference 5
+```
+
+### <a name="create-an-ns-record"></a>建立 NS 記錄
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup  contoso.com  test-ns NS --nsdname ns1.contoso.com
+```
+
+### <a name="create-a-ptr-record"></a>建立 PTR 記錄
+
+在此情況下，'my-arpa-zone.com' 代表表示您 IP 範圍的 ARPA 區域。 此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。  記錄名稱 '10' 是此記錄所代表的這個 IP 範圍內 IP 位址的最後一個八位元。
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup my-arpa-zone.com "10" PTR --ptrdname "myservice.contoso.com"
+```
+
+### <a name="create-an-srv-record"></a>建立 SRV 記錄
+
+建立 [SRV 記錄集](dns-zones-records.md#srv-records)時，指定記錄集名稱中的 *\_服務* 和 *\_通訊協定*。 在區域頂點建立一筆 SRV 記錄集時，不需要在記錄集名稱中包含 "@"。
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup contoso.com  "_sip._tls" SRV --priority 10 --weight 5 --port 8080 --target "sip.contoso.com"
+```
+
+### <a name="create-a-txt-record"></a>建立 TXT 記錄
+
+下列範例示範如何建立 TXT 記錄。 如需 TXT 記錄中，所支援字串長度上限的相關資訊，請參閱 [TXT 記錄](dns-zones-records.md#txt-records)。
+
+```azurecli
+azure network dns record-set add-record MyResourceGroup contoso.com test-txt TXT --text "This is a TXT record"
+```
+
+## <a name="get-a-record-set"></a>取得記錄集
+
+若要擷取現有的記錄集，使用 `azure network dns record-set show`。 如需協助，請參閱 `azure network dns record-set show -h`。
+
+和建立記錄或記錄集時相同，提供的記錄集名稱必須是「相對」名稱，表示它不能包含區域名稱。 您也必須指定記錄類型、包含記錄集的區域，以及包含區域的資源群組。
+
+下列範例會從 MyResourceGroup 資源群組的 contoso.com 區域中，擷取類型為 A 的 www 記錄：
+
+```azurecli
+azure network dns record-set show MyResourceGroup contoso.com www A
 ```
 
 ## <a name="list-record-sets"></a>列出記錄集
 
-您可以使用 `azure network dns record-set list` 命令來列出 DNS 區域中的所有記錄。 您需要指定資源群組名稱和區域名稱。
+您可以使用 `azure network dns record-set list` 命令來列出 DNS 區域中的所有記錄。 如需協助，請參閱 `azure network dns record-set list -h`。
 
-### <a name="to-list-all-record-sets"></a>列出所有記錄集
-
-此範例會傳回所有記錄集，不論其名稱或記錄類型：
+這個範例會傳回資源群組 MyResourceGroup 之區域 contoso.com 中的所有記錄集，不論其名稱或記錄類型為何︰
 
 ```azurecli
-azure network dns record-set list myresourcegroup contoso.com
+azure network dns record-set list MyResourceGroup contoso.com
 ```
 
-### <a name="to-list-record-sets-of-a-given-type"></a>列出指定類型的記錄集
-
-此範例會傳回符合指定記錄類型 (此案例中為 "A" 記錄) 的所有記錄集：
+此範例會傳回符合指定記錄類型 (此案例中為 'A' 記錄) 的所有記錄集：
 
 ```azurecli
-azure network dns record-set list myresourcegroup contoso.com A
+azure network dns record-set list MyResourceGroup contoso.com --type A
 ```
 
-## <a name="add-a-record-to-a-record-set"></a>將記錄加入至記錄集
+## <a name="add-a-record-to-an-existing-record-set"></a>將記錄新增至現有的記錄集
 
-您可以使用 `azure network dns record-set add-record`命令來將記錄新增至記錄集。 將記錄新增至記錄集的參數，會根據所設定的記錄類型而所有不同。 例如，使用 "A" 類型的記錄集時，您只能使用參數 `-a <IPv4 address>`來指定記錄。
+您可以使用 `azure network dns record-set add-record` 在新的記錄集內建立記錄，或用它將記錄新增至現有記錄集。
 
-若要建立記錄集，請使用 `azure network dns record-set create`命令。 指定資源群組、區域名稱、記錄集相對名稱、記錄類型以及存留時間 (TTL)。 若未定義 `--ttl` 參數，預設值 (以秒為單位) 為四。
+如需詳細資訊，請參閱上面的[建立 DNS 記錄](#create-a-dns-record)和[建立其他類型的記錄](#create-records-of-other-types)。
+
+## <a name="remove-a-record-from-an-existing-record-set"></a>從現有的記錄集移除記錄。
+
+若要從現有記錄集內移除 DNS 記錄，請使用 `azure network dns record-set delete-record`。 如需協助，請參閱 `azure network dns record-set delete-record -h`。
+
+此命令會刪除記錄集內的 DNS 記錄。 如果記錄集內的最後一個記錄遭到刪除，記錄集本身**不會**遭到刪除。 反而會留下空白記錄集。 若要改為刪除記錄集，請參閱[刪除記錄集](#delete-a-record-set)。
+
+您必須使用和使用 `azure network dns record-set add-record` 建立記錄時相同的參數，指定要刪除的記錄和應從哪個區域中刪除。 這些參數在上面的[建立 DNS 記錄](#create-a-dns-record)和[建立其他類型的記錄](#create-records-of-other-types)中有所說明。
+
+此命令會提示您確認。 使用 `--quiet` 參數 (簡短形式 `-q`) 可以抑制此提示。
+
+下列範例會在 MyResourceGroup 資源群組的 contoso.com 區域中，刪除名為 www 之記錄集內值為 '1.2.3.4' 的 A 記錄。 確認提示已抑制。
 
 ```azurecli
-azure network dns record-set create myresourcegroup  contoso.com "test-a"  A --ttl 300
+azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 1.2.3.4 --quiet
 ```
 
-建立 "A" 記錄集之後，使用 `azure network dns record-set add-record`命令來新增 IPv4 位址。
+## <a name="modify-an-existing-record-set"></a>修改現有記錄集
+
+每個記錄集都包含[存留時間 (TTL)](dns-zones-records.md#time-to-live)、[中繼資料](dns-zones-records.md#tags-and-metadata)和 DNS 記錄。 下列各節說明如何修改每個屬性。
+
+### <a name="to-modify-an-a-aaaa-mx-ns-ptr-srv-or-txt-record"></a>修改 A、AAAA、MX、NS、PTR、SRV 或 TXT 記錄
+
+若要修改類型為 A、AAAA、MX、NS、PTR、SRV 或 TXT 的現有記錄，您應該先新增記錄，再刪除現有記錄。 如需如何刪除和新增記錄的詳細指示，請參閱本文稍早的章節。
+
+下列範例說明如何修改 'A' 記錄，從 IP 位址 1.2.3.4 到 IP 位址 5.6.7.8：
 
 ```azurecli
-azure network dns record-set add-record myresourcegroup contoso.com "test-a" A -a 192.168.1.1
+azure network dns record-set add-record MyResourceGroup contoso.com www A -a 5.6.7.8
+azure network dns record-set delete-record MyResourceGroup contoso.com www A -a 1.2.3.4
 ```
 
-下列範例示範如何建立每一種記錄類型的記錄集。 每個記錄集都會包含一筆記錄。
+您無法在區域頂點 (`-Name "@"` (包含引號)) 在自動建立的 NS 記錄集中新增、移除或修改記錄。 針對此記錄集，修改記錄集 TTL 與中繼資料是唯一允許的變更。
 
-[!INCLUDE [dns-add-record-cli-include](../../includes/dns-add-record-cli-include.md)]
+### <a name="to-modify-a-cname-record"></a>修改 CNAME 記錄
 
-## <a name="update-a-record-in-a-record-set"></a>更新記錄集中的記錄
+若要修改 CNAME 記錄，請使用 `azure network dns record-set add-record` 來新增記錄值。 不同於其他記錄類型，CNAME 記錄集只能包含單一記錄。 因此，當您新增記錄時，現有記錄就會遭到「取代」，並不需要另外刪除。  系統會提示您接受這項取代。
 
-### <a name="to-add-another-ip-address-1234-to-an-existing-a-record-set-www"></a>將另一個 IP 位址 (1.2.3.4) 新增至現有的 "A" 記錄集 ("www")：
-
-    azure network dns record-set add-record  myresourcegroup contoso.com  A
-    -a 1.2.3.4
-    info:    Executing command network dns record-set add-record
-    Record set name: www
-    + Looking up the dns zone "contoso.com"
-    + Looking up the DNS record set "www"
-    + Updating DNS record set "www"
-    data:    Id                              : /subscriptions/################################/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/a/www
-    data:    Name                            : www
-    data:    Type                            : Microsoft.Network/dnszones/a
-    data:    Location                        : global
-    data:    TTL                             : 4
-    data:    A records:
-    data:        IPv4 address                : 192.168.1.1
-    data:        IPv4 address                : 1.2.3.4
-    data:
-    info:    network dns record-set add-record command OK
-
-### <a name="to-remove-an-existing-value-from-a-record-set"></a>移除記錄集中現有的值
-
-使用 `azure network dns record-set delete-record`。
-
-    azure network dns record-set delete-record myresourcegroup contoso.com www A -a 1.2.3.4
-    info:    Executing command network dns record-set delete-record
-    + Looking up the DNS record set "www"
-    Delete DNS record? [y/n] y
-    + Updating DNS record set "www"
-    data:    Id                              : /subscriptions/################################/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/A/www
-    data:    Name                            : www
-    data:    Type                            : Microsoft.Network/dnszones/A
-    data:    Location                        : global
-    data:    TTL                             : 4
-    data:    A records:
-    data:    IPv4 address                    : 192.168.1.1
-    data:
-    info:    network dns record-set delete-record command OK
-
-## <a name="remove-a-record-from-a-record-set"></a>從記錄集移除記錄
-
-您可以使用 `azure network dns record-set delete-record`來移除記錄集中的記錄。 要移除的記錄必須完全符合現有的資料錄，包括所有參數。
-
-移除記錄集的最後一筆記錄不會刪除記錄集。 如需詳細資訊，請參閱本文的 [刪除記錄集](#delete)一節。
+此範例會修改 MyResourceGroup 資源群組之 contoso.com 區域中的 CNAME 記錄集 www，使其指向 'www.fabrikam.net' 而非其現有值︰
 
 ```azurecli
-azure network dns record-set delete-record myresourcegroup contoso.com www A -a 192.168.1.1
+azure network dns record-set add-record MyResourceGroup contoso.com www CNAME --cname www.fabrikam.net
+``` 
 
-azure network dns record-set delete myresourcegroup contoso.com www A
-```
+### <a name="to-modify-an-soa-record"></a>修改 SOA 記錄
 
-### <a name="remove-an-aaaa-record-from-a-record-set"></a>從記錄集移除 AAAA 記錄
+使用 `azure network dns record-set set-soa-record` 修改指定 DNS 區域的 SOA。 如需協助，請參閱 `azure network dns record-set set-soa-record -h`。
 
-```azurecli
-azure network dns record-set delete-record myresourcegroup contoso.com test-aaaa  AAAA -b "2607:f8b0:4009:1803::1005"
-```
-
-### <a name="remove-a-cname-record-from-a-record-set"></a>從記錄集移除 CNAME 記錄
+下列範例說明如何設定資源群組 MyResourceGroup 之區域 contoso.com 的 SOA 記錄 'email' 屬性：
 
 ```azurecli
-azure network dns record-set delete-record myresourcegroup contoso.com test-cname CNAME -c www.contoso.com
+azure network dns record-set set-soa-record rg1 contoso.com --email admin.contoso.com
 ```
 
-### <a name="remove-an-mx-record-from-a-record-set"></a>從記錄集移除 MX 記錄
+### <a name="to-modify-the-ttl-of-an-existing-record-set"></a>修改現有記錄集的 TTL
+
+若要修改現有記錄集的 TTL，請使用 `azure network dns record-set set`。 如需協助，請參閱 `azure network dns record-set set -h`。
+
+下列範例說明如何修改記錄集 TTL，在此案例中是修改為 60 秒︰
 
 ```azurecli
-azure network dns record-set delete-record myresourcegroup contoso.com "@" MX -e "mail.contoso.com" -f 5
+azure network dns record-set set MyResourceGroup contoso.com www A --ttl 60
 ```
 
-### <a name="remove-an-ns-record-from-record-set"></a>從記錄集移除 NS 記錄
+### <a name="to-modify-the-metadata-of-an-existing-record-set"></a>修改現有記錄集的中繼資料
+
+[記錄集中繼資料](dns-zones-records.md#tags-and-metadata)可用來將應用程式特定資料與每一個資料集產生關聯 (以索引鍵值組的形式)。 若要修改現有記錄集的中繼資料，請使用 `azure network dns record-set set`。 如需協助，請參閱 `azure network dns record-set set -h`。
+
+下列範例說明如何使用 `--metadata` 參數 (簡短形式 `-m`) 修改具有兩個中繼資料項目 ("dept=finance" 和 "environment=production") 的記錄集。 請注意，任何現有的中繼資料都會由給定值所「取代」。
 
 ```azurecli
-azure network dns record-set delete-record myresourcegroup contoso.com  "test-ns" NS -d "ns1.contoso.com"
+azure network dns record-set set MyResourceGroup contoso.com www A --metadata "dept=finance;environment=production"
 ```
 
-### <a name="remove-a-ptr-record-from-a-record-set"></a>從記錄集移除 PTR 記錄
+## <a name="delete-a-record-set"></a>刪除記錄集
 
-在此情況下，'my-arpa-zone.com' 代表表示 IP 範圍的 ARPA 區域。  此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。
+您可以使用 `azure network dns record-set delete` 命令來刪除記錄集。 如需協助，請參閱 `azure network dns record-set delete -h`。 刪除記錄集時，也會刪除記錄集內的所有記錄。
+
+> [!NOTE]
+> 您無法在區域頂點 (`-Name "@"`) 刪除 SOA 和 NS 記錄集。  這些項目在區域建立時即會自動建立，且當區域刪除時則會自動刪除。
+
+下列範例會從 MyResourceGroup 資源群組的 contoso.com 區域中，刪除類型為 A 的 www 記錄集：
 
 ```azurecli
-azure network dns record-set delete-record myresourcegroup my-arpa-zone.com "10" PTR -P "myservice.contoso.com"
+azure network dns record-set delete MyResourceGroup contoso.com www A
 ```
 
-### <a name="remove-an-srv-record-from-a-record-set"></a>從記錄集移除 SRV 記錄
-
-```azurecli
-azure network dns record-set delete-record myresourcegroup contoso.com  "_sip._tls" SRV -p 0 -w 5 -o 8080 -u "sip.contoso.com"
-```
-
-### <a name="remove-a-txt-record-from-a-record-set"></a>從記錄集移除 TXT 記錄
-
-```azurecli
-azure network dns record-set delete-record myresourcegroup contoso.com  "test-TXT" TXT -x "this is a TXT record"
-```
-
-## <a name="a-namedeleteadelete-a-record-set"></a><a name="delete"></a>刪除記錄集
-
-您可以使用 `Remove-AzureRmDnsRecordSet` Cmdlet 來刪除記錄集。 您無法在建立區域時所自動建立的區域頂點 (名稱 = "@")) 刪除 SOA 和 NS 記錄集。 刪除區域時會自動加以刪除。
-
-在下列範例中，"A" 記錄集 "test-a" 將會從 "contoso.com" DNS 區域移除：
-
-```azurecli
-azure network dns record-set delete myresourcegroup contoso.com  "test-a" A
-```
-
-選擇性的 `-q` 參數可用來隱藏確認提示。
+系統會提示您確認刪除作業。 若要抑制此提示，請使用 `--quiet` 參數 (簡短形式 `-q`)。
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。 如需自動化 DNS 的相關資訊，請參閱 [使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
+深入了解[ Azure DNS 中的區域和記錄](dns-zones-records.md)。
+<br>
+了解使用 Azure DNS 時，如何[保護區域和記錄](dns-protect-zones-recordsets.md)。
 
-如果您想要使用反向 DNS 記錄，請參閱 [如何使用 Azure CLI 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-cli.md)。
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

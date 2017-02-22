@@ -4,7 +4,7 @@ description: "本文件有助於了解 Azure 資訊安全中心可用的安全�
 services: security-center
 documentationcenter: na
 author: YuriDio
-manager: swadhwa
+manager: mbaldwin
 editor: 
 ms.assetid: b3e7b4bc-5ee0-4280-ad78-f49998675af1
 ms.service: security-center
@@ -12,11 +12,11 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/20/2016
+ms.date: 02/06/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4ddc691f4f3d53dbff2e55b7a97446427b93a8a4
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: bdd7d3d6e532efe7c3ed8225dd29a895725f2ff9
 
 
 ---
@@ -25,8 +25,8 @@ ms.openlocfilehash: 4ddc691f4f3d53dbff2e55b7a97446427b93a8a4
 
 > [!NOTE]
 > 若要啟用進階偵測，請升級至 Azure 資訊安全中心標準。 提供 90 天的免費試用。 若要升級，請選取[安全性原則](security-center-policies.md)中的 [定價層]。 若要深入了解，請參閱 [價格頁面](https://azure.microsoft.com/pricing/details/security-center/) 。
-> 
-> 
+>
+>
 
 ## <a name="what-type-of-alerts-are-available"></a>可以使用何種類型的警示？
 Azure 資訊安全中心提供了搭配各階段網路狙殺鏈的各種警示。 下圖提供各種警示的一些範例，因為這些範例與其中一些階段相關。
@@ -65,8 +65,8 @@ Azure 資訊安全中心可以使用行為分析，根據虛擬機器事件記�
 
 > [!NOTE]
 > 如需資訊安全中心偵測功能運作方式的詳細資訊，請閱讀 [Azure 資訊安全中心的偵測功能](security-center-detection-capabilities.md)。
-> 
-> 
+>
+>
 
 ### <a name="crash-analysis"></a>損毀分析
 損毀傾印記憶體分析是一種方法，可用來偵測能避開傳統安全性解決方案的複雜惡意程式碼。 各種形式的惡意程式碼會藉由決不寫入至磁碟或將寫入至磁碟的軟體元件加密，試圖減少被防毒產品偵測到的機會。 如此一來，使用傳統反惡意程式碼方法便難以偵測到惡意程式碼。 不過，可以使用記憶體分析來偵測這類惡意程式碼，因為惡意程式碼必須在記憶體中留下蹤跡才能運作。
@@ -88,7 +88,7 @@ Shellcode 是惡意程式碼利用軟體弱點後執行的承載。 該警示代
 
 以下是本類型之警示的範例：
 
-![Shellcode 警示](./media/security-center-alerts-type/security-center-alerts-type-fig2.png) 
+![Shellcode 警示](./media/security-center-alerts-type/security-center-alerts-type-fig2.png)
 
 ### <a name="module-hijacking-discovered"></a>探索到模組攔截
 Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows 系統功能。 DLL 攔截發生於當惡意程式碼變更 DLL 載入順序，以便將惡意承載載入記憶體時，得手後有心人士便能執行任意程式碼。 該警示代表毀損傾印分析偵測到名稱相近的模組從兩個不同的路徑載入，而其中一個載入路徑來自通用 Windows 系統二進位檔位置。
@@ -104,7 +104,7 @@ Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows �
 
 以下是本類型之警示的範例：
 
-![模組攔截警示](./media/security-center-alerts-type/security-center-alerts-type-fig3.png) 
+![模組攔截警示](./media/security-center-alerts-type/security-center-alerts-type-fig3.png)
 
 ### <a name="masquerading-windows-module-detected"></a>偵測到偽裝的 Windows 模組
 惡意程式碼可能會使用 Windows 系統二進位檔 (如 SVCHOST.EXE) 或模組 (如 NTDLL.DLL) 的常用名稱，以期能蒙混過關，避免系統管理員看清惡意軟體的本質。 該警示代表毀損傾印分析偵測到毀損傾印檔案含有使用 Windows 系統模組名稱的模組，但這些模組不符合 Windows 模組的其他典型條件。 分析偽裝模組的磁碟複本，可能可以讓您進一步瞭解該模組的本質屬於合法或惡意。 分析可能包括︰
@@ -123,7 +123,7 @@ Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows �
 
 以下是本類型之警示的範例：
 
-![偽裝的 Windows 警示](./media/security-center-alerts-type/security-center-alerts-type-fig4.png) 
+![偽裝的 Windows 警示](./media/security-center-alerts-type/security-center-alerts-type-fig4.png)
 
 ### <a name="modified-system-binary-discovered"></a>探索到修改過的系統二進位檔
 惡意程式碼可能會修改核心系統二進位檔，以便秘密存取資料或暗中存留在遭入侵的系統上。 該警示代表毀損傾印分析偵測到記憶體中或磁碟上的核心 Windows 作業系統二進位檔已遭到修改。
@@ -136,7 +136,7 @@ Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows �
 
 以下是本類型之警示的範例：
 
-![系統二進位檔警示](./media/security-center-alerts-type/security-center-alerts-type-fig5.png) 
+![系統二進位檔警示](./media/security-center-alerts-type/security-center-alerts-type-fig5.png)
 
 ### <a name="suspicious-process-executed"></a>已執行可疑的處理序
 資訊安全中心會識別目標虛擬機器中執行的可疑處理序並觸發警示。 偵測作業不會尋找特定的名稱，但會依照其參數尋找，因此即使攻擊者將可執行檔重新命名，資訊安全中心仍然能夠偵測。
@@ -158,7 +158,7 @@ Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows �
 ### <a name="suspicious-outgoing-traffic-detected"></a>偵測到可疑的連出流量
 網路裝置可以受到探索和分析，其方式和其他類型的系統非常類似。 攻擊者通常會使用連接埠掃描/連接埠掃掠來開始攻擊。 在下列範例中，您有來自 VM 的可疑 SSH 流量，而此流量可以對外部資源執行 SSH 暴力密碼破解攻擊或連接埠掃掠攻擊。
 
-![可疑連出流量警示](./media/security-center-alerts-type/security-center-alerts-type-fig8.png) 
+![可疑連出流量警示](./media/security-center-alerts-type/security-center-alerts-type-fig8.png)
 
 此警示會提供資訊，讓您識別用來起始此攻擊的資源、遭入侵的電腦、偵測時間、通訊協定和所使用的連接埠。 此刀鋒視窗也可提供您可用來解決這個問題的補救步驟清單。
 
@@ -169,9 +169,12 @@ Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows �
 
 此警示會提供資訊，讓您識別用來起始此攻擊的資源、受攻擊的資源、受害者 IP、攻擊者 IP 和偵測時間。
 
-[AZURE.NOTE] 為了保護隱私權，此螢幕擷取畫面的即時 IP 位址已遭到移除。
+> [!NOTE]
+> 為了保護隱私權，此螢幕擷取畫面的即時 IP 位址已遭到移除。
+>
+>
 
-### <a name="possible-outgoing-denialofservice-attack-detected"></a>偵測到可能的連出拒絕服務攻擊
+### <a name="possible-outgoing-denial-of-service-attack-detected"></a>偵測到可能的連出拒絕服務攻擊
 源自一部虛擬機器的異常網路流量可能會導致資訊安全中心觸發潛在的拒絕服務攻擊類型。
 
 以下是本類型之警示的範例：
@@ -184,8 +187,8 @@ Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows �
 ### <a name="potential-sql-injection"></a>潛在的 SQL 插入式攻擊
 SQL 插入式攻擊會將惡意程式碼插入字串，而此字串稍後會傳遞至 SQL Server 執行個體以進行剖析和執行。 建構 SQL 陳述式的任何程序皆應檢閱其中是否有插入式攻擊弱點，因為 SQL Server 會執行所有它收到的語法上有效的查詢。 SQL 威脅偵測會使用機器學習、行為分析和異常偵測，判斷 Azure SQL Database 中可能會發生的可疑事件。 例如：
 
-* 離職員工嘗試的資料庫存取 
-* SQL 插入式攻擊 
+* 離職員工嘗試的資料庫存取
+* SQL 插入式攻擊
 * 從使用者家裡異常存取生產資料庫
 
 ![潛在的 SQL 插入式攻擊警示](./media/security-center-alerts-type/security-center-alerts-type-fig11.png)
@@ -213,7 +216,6 @@ SQL 插入式攻擊會將惡意程式碼插入字串，而此字串稍後會傳�
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

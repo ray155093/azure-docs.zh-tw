@@ -1,5 +1,5 @@
 ---
-title: "分區對應管理 | Microsoft Docs"
+title: "相應放大 Azure SQL Database | Microsoft Docs"
 description: "如何使用彈性資料庫用戶端程式庫 ShardMapManager"
 services: sql-database
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 3c2cb9a99bb28c2530e1c58ec8ad2fd16b9cc97c
+ms.sourcegitcommit: eb5483e497ef1c1a239f207a034eb8c67f485a39
+ms.openlocfilehash: c7a46ebf0df6db92d2e66c7523e00c0a574ebf56
 
 
 ---
@@ -76,7 +76,7 @@ Elastic Scale 支援下列 .Net Framework 型別作為分區化索引鍵：
 ### <a name="range-shard-maps"></a>範圍分區對應
 在**範圍分區對應**中，由一組 **[低值, 高值)** 描述索引鍵範圍，其中*低值*是範圍內的最小索引鍵，*高值*是高於該範圍的第一個值。 
 
-例如，**[0, 100)** 包含所有大於或等於 0 且小於 100 的整數。 請注意，多個範圍可指向相同的資料庫，而且可支援不相連的範圍 (例如 [100, 200) 和 [400, 600) 都指向下面範例中的資料庫 C。)
+例如，**[0, 100)** 包含所有大於或等於 0 且小於 100 的整數。 請注意，多個範圍可指向相同的資料庫，而且可支援不相連的範圍 (例如 [100,&200;) 和 [400,&600;) 都指向下面範例中的資料庫 C。)
 
 | 金鑰 | 分區位置 |
 | --- | --- |
@@ -325,6 +325,6 @@ Elastic Scale 支援下列 .Net Framework 型別作為分區化索引鍵：
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

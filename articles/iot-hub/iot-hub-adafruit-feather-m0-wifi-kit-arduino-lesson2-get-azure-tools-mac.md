@@ -1,5 +1,5 @@
 ---
-title: "取得適用於 Azure IoT 入門套件 (macOS 10.10) 的 Azure 工具 | Microsoft Docs"
+title: "將 Arduino 連接到 Azure IoT - 第 2 課：Azure 工具 (macOS) | Microsoft Docs"
 description: "在 macOS 上安裝 Python 與 Azure 命令列介面 (Azure CLI)。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/13/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 9e8084fe26229ef9ed1676c0a3c34e0ee7be88b1
-ms.openlocfilehash: de7d031a05110ccbd2d5ab18a7735a91df2bd05e
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: ad8ee9d524dcb096ac7db4bb23ec16d56518742b
 
 
 ---
@@ -75,7 +75,7 @@ Azure CLI 提供適用於 Azure 的多平台命令列體驗。 您可直接從�
 您已安裝 Azure CLI。 下一個工作是使用 Azure CLI 建立 Azure IoT 中樞和裝置身分識別。
 
 ## <a name="next-steps"></a>後續步驟
-[建立 IoT 中樞並登錄您的 Arduino 面板][create-your-iot-hub-and-register-your-arduino-board]
+[建立 IoT 中樞並註冊您的 Arduino 面板][create-your-iot-hub-and-register-your-arduino-board]
 
 
 <!-- Images and links -->
@@ -87,6 +87,6 @@ Azure CLI 提供適用於 Azure 的多平台命令列體驗。 您可直接從�
 [create-your-iot-hub-and-register-your-arduino-board]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-prepare-azure-iot-hub.md
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

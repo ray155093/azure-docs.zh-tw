@@ -99,22 +99,6 @@
 ### [登記裝置](active-directory-azureadjoin-personal-device.md)
 ### [註冊 Windows 10 裝置](active-directory-azureadjoin-user-upgrade.md)
 
-### [條件式存取](active-directory-conditional-access.md)
-#### [開始使用](active-directory-conditional-access-azuread-connected-apps.md)
-#### [支援的應用程式](active-directory-conditional-access-supported-apps.md)
-#### [註冊裝置](active-directory-conditional-access-device-registration-overview.md)
-#### [管理自動註冊](active-directory-conditional-access-automatic-device-registration.md)
-##### [設定](active-directory-conditional-access-automatic-device-registration-setup.md)
-##### [Windows 7](active-directory-conditional-access-automatic-device-registration-windows7.md)
-##### [Windows 8.1](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
-#### [管理 Authenticator 應用程式](active-directory-conditional-access-azure-authenticator-app.md)
-#### [了解裝置原則](active-directory-conditional-access-device-policies.md)
-#### [設定已連接應用程式的存取權](active-directory-conditional-access-policy-connected-applications.md)
-#### [部署內部部署](active-directory-conditional-access-on-premises-setup.md)
-#### [常見問題集](active-directory-conditional-faqs.md)
-#### [疑難排解](active-directory-conditional-access-device-remediation.md)
-#### [參考](active-directory-conditional-access-technical-reference.md)
-
 ### [Azure AD Join](active-directory-azureadjoin-overview.md)
 #### [規劃](active-directory-azureadjoin-deployment-aadjoindirect.md)
 #### [設定裝置註冊](active-directory-azureadjoin-setup.md)
@@ -124,10 +108,10 @@
 #### [啟用 Windows Hello 企業版](active-directory-azureadjoin-passport-deployment.md)
 #### [了解 Windows 10 整合](active-directory-azureadjoin-windows10-devices-overview.md)
 #### [使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md)
-
-### 憑證式驗證
-#### [Android](active-directory-certificate-based-authentication-android.md)
-#### [iOS](active-directory-certificate-based-authentication-ios.md)
+#### [常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md)
+#### 疑難排解
+##### [針對 Windows 10 與 Windows Server 2016 進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
+##### [針對 Windows 下層用戶端進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
 
 ## 管理應用程式
 ### [概觀](active-directory-enable-sso-scenario.md)
@@ -176,6 +160,7 @@
 ### [管理應用程式的存取權](active-directory-managing-access-to-apps.md)
 #### [自助服務存取](active-directory-self-service-application-access.md)
 #### [SSO 憑證](active-directory-sso-certs.md)
+#### [租用戶限制](active-directory-tenant-restrictions.md)
 
 ### [使用 SCIM 佈建使用者](active-directory-scim-provisioning.md)
 ### [文件庫](active-directory-apps-index.md)
@@ -207,14 +192,24 @@
 #### [常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 #### [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
 ### [將合作夥伴與 Azure AD B2B 整合](active-directory-b2b-what-is-azure-ad-b2b.md)
-#### [概觀](active-directory-b2b-collaboration-overview.md)
-#### [運作方式](active-directory-b2b-how-it-works.md)
-#### [比較功能](active-directory-b2b-compare-external-identities.md)
-#### [逐步介紹](active-directory-b2b-detailed-walkthrough.md)
-#### [限制](active-directory-b2b-current-preview-limitations.md)
-#### [CSV 檔案格式](active-directory-b2b-references-csv-file-format.md)
-#### [使用者物件](active-directory-b2b-references-external-user-object-attribute-changes.md)
-#### [使用者權杖](active-directory-b2b-references-external-user-token-format.md)
+#### [管理員新增 B2B 使用者](active-directory-b2b-admin-add-users.md)
+#### [資訊背景工作新增 B2B 使用者](active-directory-b2b-iw-add-users.md)
+#### [邀請電子郵件](active-directory-b2b-invitation-email.md)
+#### [兌換邀請](active-directory-b2b-redemption-experience.md)
+#### [授權](active-directory-b2b-licensing.md)
+#### [疑難排解 B2B](active-directory-b2b-troubleshooting.md)
+#### [常見問題集](active-directory-b2b-faq.md)
+#### [API 與自訂](active-directory-b2b-api.md)
+#### [Multi-factor authentication for B2B](active-directory-b2b-mfa-instructions.md)
+#### [將來賓使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
+#### [委派邀請](active-directory-b2b-delegate-invitations.md)
+#### [動態群組與 B2B](active-directory-b2b-dynamic-groups.md)
+#### [程式碼與 PowerShell 範例](active-directory-b2b-code-samples.md)
+#### [設定適用於 B2B 的 SaaS 應用程式](active-directory-b2b-configure-saas-apps.md)
+#### [B2B 使用者權杖](active-directory-b2b-user-token.md)
+#### [B2B 使用者宣告對應](active-directory-b2b-claims-mapping.md)
+#### [Office 365 外部共用](active-directory-b2b-o365-external-user.md)
+#### [目前限制](active-directory-b2b-current-limitations.md)
 ### [使用 Azure AD Connect 整合內部部署身分識別](./connect/active-directory-aadconnect.md)
 
 
@@ -238,6 +233,22 @@
 ### [設定權杖存留期](active-directory-configurable-token-lifetimes.md)
 
 ## 保護您的身分識別
+### [條件式存取](active-directory-conditional-access.md)
+#### [開始使用](active-directory-conditional-access-azuread-connected-apps.md)
+#### [支援的應用程式](active-directory-conditional-access-supported-apps.md)
+#### [註冊裝置](active-directory-conditional-access-device-registration-overview.md)
+#### [管理自動註冊](active-directory-conditional-access-automatic-device-registration.md)
+##### [設定](active-directory-conditional-access-automatic-device-registration-setup.md)
+#### [管理 Authenticator 應用程式](active-directory-conditional-access-azure-authenticator-app.md)
+#### [了解裝置原則](active-directory-conditional-access-device-policies.md)
+#### [設定已連接應用程式的存取權](active-directory-conditional-access-policy-connected-applications.md)
+#### [部署內部部署](active-directory-conditional-access-on-premises-setup.md)
+#### [常見問題集](active-directory-conditional-faqs.md)
+#### [疑難排解](active-directory-conditional-access-device-remediation.md)
+#### [參考](active-directory-conditional-access-technical-reference.md)
+### 憑證式驗證
+#### [Android](active-directory-certificate-based-authentication-android.md)
+#### [iOS](active-directory-certificate-based-authentication-ios.md)
 ### [Azure AD Identity Protection](active-directory-identityprotection.md)
 #### [啟用](active-directory-identityprotection-enable.md)
 #### [偵測弱點](active-directory-identityprotection-vulnerabilities.md)
@@ -301,6 +312,6 @@
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

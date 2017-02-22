@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2.0 端點 |Microsoft Docs"
+title: "Azure AD v2.0 端點中有哪些差異？ | Microsoft Docs"
 description: "原始的 Azure AD 和 v2.0 端點之間的比較。"
 services: active-directory
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 3e0bb32a6c60011d71606c896cc506f430bc3c27
-ms.openlocfilehash: 8a8f8af9b23c66461385a73f80c148a2fdd652d5
+ms.sourcegitcommit: 47dce83cb4e3e5df92e91f1ca9195326634d6c8b
+ms.openlocfilehash: 9f00013c4eb6c32707489d5f78a5e95b7419bcd2
 
 
 ---
@@ -113,7 +113,7 @@ v2.0 端點可能需要針對 app 使用新的已知權限 - `offline_access` �
 
 若要深入了解 OAuth 2.0、refresh_token 和 access_token，請參閱 [v2.0 通訊協定參考](active-directory-v2-protocols.md)。
 
-#### <a name="openid-profile--email"></a>OpenID、設定檔和電子郵件
+#### <a name="openid-profile-and-email"></a>OpenID、設定檔和電子郵件
 在原始 Azure Active Directory 服務中，最基本的 OpenID Connect 登入流程會在產生的 id_token 中提供豐富的使用者相關資訊。  id_token 中的宣告可以包含使用者的名稱、慣用使用者名稱、電子郵件地址、物件識別碼等等。
 
 我們現在會限制 `openid` 範圍可提供 app 存取權的資訊。  ‘openid’ 範圍只允許您的 app 將使用者登入，並接收使用者的 app 特定識別碼。  如果您想要取得有關您的應用程式中的使用者的個人識別資訊 (PII)，您的應用程式必須向使用者要求其他權限。  我們引進的兩個新範圍 (`email` 和 `profile` 範圍) 可讓您執行這項操作。
@@ -132,6 +132,6 @@ V2.0 端點所簽發的權杖中的宣告與公開上市 Azure AD 端點所簽�
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

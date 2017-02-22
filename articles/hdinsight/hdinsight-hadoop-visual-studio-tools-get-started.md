@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/02/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8bd214c166190248662634d488d8e7b1427b5738
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 1fd0451809c8afca5c330229390ec691f4a25eb5
 
 
 ---
@@ -72,7 +72,7 @@ Data Lake Tools for Visual Studio 可讓您連線到您的 HDInsight 叢集、�
    > 
    > 
 4. 輸入您的 Azure 訂用帳戶認證，然後按一下 [登入] 。 只有當您從未在此工作站上從 Visual Studio 連線到 Azure 訂用帳戶時，才需要這樣做。
-5. 在 [伺服器總管] 中，您會看到現有 HDInsight 叢集的清單。 如果您沒有任何叢集，可以使用 Azure 入口網站、Azure PowerShell 或 HDInsight SDK 來建立一個。 如需詳細資訊，請參閱[建立 HDInsight 叢集][hdinsight-create-clusters]。
+5. 在 [伺服器總管] 中，您會看到現有 HDInsight 叢集的清單。 如果您沒有任何叢集，可以使用 Azure 入口網站、Azure PowerShell 或 HDInsight SDK 來建立一個。 如需詳細資訊，請參閱[管理 HDInsight 叢集][hdinsight-create-clusters]。
    
    ![Data Lake Tools for Visual Studio 伺服器總管叢集清單][5]
 6. 展開某個 HDInsight 叢集。 您將會看到 **Hive 資料庫**、預設儲存體帳戶、連結的儲存體帳戶，以及 **Hadoop 服務記錄**。 您可以進一步展開這些實體。
@@ -173,7 +173,7 @@ Data Lake Tools for Visual Studio 也可讓使用者透過收集和呈現特定 
 ### <a name="view-hive-jobs"></a>檢視 Hive 工作
 您可以檢視 Hive 工作的工作查詢、工作輸出、工作記錄和 Yarn 記錄。 如需詳細資訊，請參閱上一個螢幕擷取畫面。
 
-此工具的最新版本可讓您透過收集和呈現 YARN 記錄來查看 Hive 工作的內容。 YARN 記錄可協助您調查效能問題。 如需 HDInsight 如何收集 YARN 記錄的詳細資訊，請參閱[透過程式設計方式存取 HDInsight 應用程式記錄檔][hdinsight.access.application.logs]。
+此工具的最新版本可讓您透過收集和呈現 YARN 記錄來查看 Hive 工作的內容。 YARN 記錄可協助您調查效能問題。 如需 HDInsight 如何收集 YARN 記錄的詳細資訊，請參閱[透過程式設計方式存取 HDInsight 應用程式記錄][hdinsight.access.application.logs]。
 
 **檢視 Hive 工作**
 
@@ -232,7 +232,7 @@ Tez 工作上 Hive 的工作執行檢視可用來取得結構化和視覺化 Hiv
 ## <a name="run-pig-scripts"></a>執行 Pig 指令碼
 Data Lake Tools for Visual Studio 支援建立 Pig 指令碼並提交至 HDInsight 叢集。 使用者可以從範本建立 Pig 專案，然後再提交指令碼至 HDInsight 叢集。
 
-## <a name="feedbacks-known-issues"></a>意見反應和已知問題
+## <a name="feedbacks--known-issues"></a>意見反應和已知問題
 * 目前 HiveServer2 結果會以純文字形式顯示，但不太理想。 我們正努力修正該問題。
 * 如果結果是以 NULL 值開頭，目前就不會顯示結果。 我們已修正此問題，如果您因為此問題而遭到封鎖，歡迎寄電子郵件給我們，或連絡支援小組。
 * Visual Studio 所建立的 HQL 指令碼是根據使用者的所在區域設定進行編碼。 如果使用者將指令碼以二進位格式上傳至叢集，則可能無法正常執行。
@@ -240,17 +240,17 @@ Data Lake Tools for Visual Studio 支援建立 Pig 指令碼並提交至 HDInsig
 ## <a name="next-steps"></a>後續步驟
 在本文中，您學會如何使用 Data Lake (HDInsight) Tools 套件從 Visual Studio 連線到 HDInsight 叢集，以及如何執行 Hive 查詢。 如需詳細資訊，請參閱：
 
-* [在 HDInsight 中使用 Hadoop Hive][hdinsight.hive]
+* [在 HDInsight 上使用 Hadoop Hive][hdinsight.hive]
 * [開始使用 HDInsight 中的 Hadoop][hdinsight.get.started]
-* [在 HDInsight 中提交 Hadoop 作業][hdinsight.submit.jobs]
-* [在 HDInsight 上使用 Hadoop 分析 Twitter 資料][hdinsight.analyze.twitter.data]
+* [在 HDInsight 上提交 Hadoop 工作][hdinsight.submit.jobs]
+* [在 HDInsight 中使用 Hadoop 分析 Twitter 資料][hdinsight.analyze.twitter.data]
 
 <!--Anchors-->
-[安裝]: #installation
-[連接到 Azure 訂用帳戶]: #connect-to-your-azure-subscription
-[瀏覽連結的資源]: #navigate-the-linked-resources
-[執行 Hive 查詢]: #run-hive-queries
-[後續步驟]: #next-steps
+[Installation]: #installation
+[Connect to your Azure subscription]: #connect-to-your-azure-subscription
+[Navigate the linked resources]: #navigate-the-linked-resources
+[Run Hive queries]: #run-hive-queries
+[Next steps]: #next-steps
 
 <!--Image references-->
 [1]: ./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.wpi.png
@@ -281,6 +281,6 @@ Data Lake Tools for Visual Studio 支援建立 Pig 指令碼並提交至 HDInsig
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

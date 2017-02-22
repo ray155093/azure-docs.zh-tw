@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/03/2016
+ms.date: 02/01/2017
 ms.author: v-jeana; hascipio; v-dabosl
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 51452ce98a02f3bcea9914b741c611b00f862cc6
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 408394e529c262c0a47aae680c8f6ea1bc8eb7c6
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 51452ce98a02f3bcea9914b741c611b00f862cc6
 
 * **歡迎電子郵件：** 如果是新的發行者，您會收到一封歡迎電子郵件，通知您將會開始收到賣方 Insights 每月報告。
 * **每月銷售報告：**如果您有使用量，您會收到第二封電子郵件，當中含有報告並指示如何存取您的密碼：
-  
+
   * 如果您的 VM 或使用量計費開發人員服務 SKU 產生使用量，您的每月報告將會顯示有關訂單、使用量和市場的詳細資料，以及您優惠的客戶詳細資料。
   * 為了保護您的客戶資料，報告會使用密碼鎖住，只有您和 Microsoft 才知道密碼。
   * 如果您的供應項目在當月份沒有產生使用量，Microsoft 就不會傳送報告。
@@ -117,6 +117,6 @@ ms.openlocfilehash: 51452ce98a02f3bcea9914b741c611b00f862cc6
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

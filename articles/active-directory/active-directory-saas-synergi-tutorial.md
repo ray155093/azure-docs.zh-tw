@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/20/2016
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: aa89b6a536cfe0e594e71d00d90737fa7e5a495f
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 2a5b04f8f8fe521993aae0c63be2408034030ecf
 
 
 ---
@@ -119,7 +119,7 @@ Synergi 與 Azure AD 整合提供下列優點：
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] 。
+    b. 按 [下一步] 。
 5. 若要為您的應用程式設定 SSO，請聯絡 Synergi 支援小組，並提供下列資訊：
    
     • 下載的憑證
@@ -233,6 +233,6 @@ Synergi 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

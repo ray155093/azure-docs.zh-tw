@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 10/18/2016
+ms.date: 01/27/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cc669e18d702e5cb59a4ee292f8b0fdb22e1b7fa
+ms.sourcegitcommit: 8649f64415e0535dce4b23d9783d8ac90d367921
+ms.openlocfilehash: 9b2a500380efe60c3109f74c059fb8fa06b19fbe
 
 
 ---
@@ -354,9 +354,9 @@ CLR 執行緒集區有兩種類型的執行緒：「背景工作」和「I/O 完
 
 * 在 ASP.NET 中，使用 web.config 中的 `<processModel>` 組態元素下的 ["minIoThreads" 組態設定]["minIoThreads" configuration setting]。 如果您在 Azure 網站內執行，此設定不會透過組態選項公開。 不過，您應該仍然能夠透過 global.asax.cs 的 Application_Start 方法以程式設計方式設定 (如下所示)。
 
-> **重要事項：**這個組態元素中指定的值是「每一核心」設定。 例如，如果您有 4 核心的電腦，並且想要在執行階段將 minIOThreads 設為 200，您會使用 `<processModel minIoThreads="50"/>`。
->
->
+  > [!NOTE] 
+  > 這個組態元素中指定的值是「每一核心」設定。 例如，如果您有 4 核心的電腦，並且想要在執行階段將 minIOThreads 設為 200，您會使用 `<processModel minIoThreads="50"/>`。
+  >
 
 * 在 ASP.NET 之外，請使用 [ThreadPool.SetMinThreads(...)](https://msdn.microsoft.com/library/system.threading.threadpool.setminthreads.aspx) API。
 
@@ -384,7 +384,7 @@ Redis 快取 [設定] 刀鋒視窗的 [支援 + 疑難排解] 區段也包含數
 這些工具可讓您監視 Azure Redis 快取執行個體的健全狀況，並協助您管理快取應用程式。 如需詳細資訊，請參閱[如何設定 Azure Redis 快取](cache-configure.md)的＜支援和疑難排解設定＞一節。
 
 ### <a name="my-cache-diagnostics-storage-account-settings-changed-what-happened"></a>我的快取診斷儲存體帳戶設定已變更，發生了什麼事？
-在相同區域和訂用帳戶中，快取會共用相同的診斷儲存體設定，當組態變更時 (啟用/停用診斷或變更儲存體帳戶)，會套用至訂用帳戶中所有位於該區域的快取。 如果適用於快取的診斷設定已變更，請進行檢查，以查看相同訂用帳戶與區域中其他快取的診斷設定是否已變更。 有一個檢查方法是，針對 `Write DiagnosticSettings` 事件檢視快取的稽核記錄檔。 如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。 如需有關監視 Azure Redis 快取事件的詳細資訊，請參閱 [作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
+在相同區域和訂用帳戶中，快取會共用相同的診斷儲存體設定，當組態變更時 (啟用/停用診斷或變更儲存體帳戶)，會套用至訂用帳戶中所有位於該區域的快取。 如果適用於快取的診斷設定已變更，請進行檢查，以查看相同訂用帳戶與區域中其他快取的診斷設定是否已變更。 有一個檢查方法是，針對 `Write DiagnosticSettings` 事件檢視快取的稽核記錄檔。 如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md)。 如需有關監視 Azure Redis 快取事件的詳細資訊，請參閱 [作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
 
 ### <a name="why-is-diagnostics-enabled-for-some-new-caches-but-not-others"></a>為什麼會針對某些新的快取啟用診斷，而不會針對其他快取啟用？
 在相同區域和訂用帳戶中，快取會共用相同的診斷儲存體設定。 如果有其他快取已啟用診斷，而您在與該快取相同的區域和訂用帳戶中建立新快取，則在新快取中會使用相同設定來啟用診斷。
@@ -414,7 +414,7 @@ Redis 快取 [設定] 刀鋒視窗的 [支援 + 疑難排解] 區段也包含數
 
 ### <a name="which-azure-cache-offering-is-right-for-me"></a>我適合使用哪個 Azure 快取服務？
 > [!IMPORTANT]
-> 根據去年的 [公告](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)，Azure 受管理的快取服務和 Azure In-Role Cache 服務都將在 2016 年 11 月 30 日淘汰。 我們建議使用 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)。 如需移轉的相關資訊，請參閱 [從受管理的快取服務移轉至 Azure Redis 快取](cache-migrate-to-redis.md)。
+> 根據去年的[公告](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)，Azure 受管理的快取服務和 Azure In-Role Cache 服務已在 2016 年 11 月 30 日**淘汰**。 我們建議使用 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)。 如需移轉的相關資訊，請參閱 [從受管理的快取服務移轉至 Azure Redis 快取](cache-migrate-to-redis.md)。
 >
 >
 
@@ -427,18 +427,18 @@ Azure Redis Cache 可以讓客戶使用 Microsoft 所管理的安全、專用 Re
 
 Redis 成功的另一個重要層面是建置健全、有活力的開放原始碼生態系統。 這會反映在跨多種語言可用的各式各樣 Redis 用戶端。 您在 Azure 內建置的任何工作負載，幾乎都可使用它。
 
-如需有關如何開始使用 Azure Redis 快取的詳細資訊，請參閱[如何使用 Azure Redis 快取](cache-dotnet-how-to-use-azure-redis-cache.md)和 [Azure Redis 快取文件](https://azure.microsoft.com/documentation/services/redis-cache/)。
+如需有關如何開始使用 Azure Redis 快取的詳細資訊，請參閱[如何使用 Azure Redis 快取](cache-dotnet-how-to-use-azure-redis-cache.md)和 [Azure Redis 快取文件](index.md)。
 
 ### <a name="managed-cache-service"></a>受管理的快取服務
-[受管理的快取服務已設定於 2016 年 11 月 30 日淘汰。](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)
+[受管理的快取服務已在 2016 年 11 月 30 日淘汰 (英文)。](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)
 
 ### <a name="in-role-cache"></a>角色中快取
-[In-Role Cache 已設定於 2016 年 11 月 30 日淘汰。](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)
+[In-Role Cache 已在 2016 年 11 月 30 日淘汰 (英文)。](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/)
 
 ["minIoThreads" configuration setting]: https://msdn.microsoft.com/library/vstudio/7w2sway1(v=vs.100).aspx
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

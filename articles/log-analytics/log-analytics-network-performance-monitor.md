@@ -4,7 +4,7 @@ description: "網路效能監視器可協助您即時監視網路的效能，以
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 5b9c9c83-3435-488c-b4f6-7653003ae18a
 ms.service: log-analytics
@@ -12,17 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/09/2016
+ms.date: 01/31/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
-ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
+ms.sourcegitcommit: d1cae87bb312ef903d099b8be59ad39a5b83d468
+ms.openlocfilehash: 4b683ef50ca1046686213b55c32e07b5fb8cca68
 
 
 ---
 # <a name="network-performance-monitor-preview-solution-in-oms"></a>OMS 中的網路效能監視器 (預覽) 方案
 > [!NOTE]
-> 這是[預覽解決方案](log-analytics-add-solutions.md#log-analytics-preview-solutions-and-features)。
+> 這是[預覽解決方案](log-analytics-add-solutions.md#preview-management-solutions-and-features)。
 >
 >
 
@@ -149,6 +149,51 @@ ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
 6. 按一下 [儲存] 儲存組態。  
    ![建立自訂監視規則](./media/log-analytics-network-performance-monitor/npm-monitor-rule.png)
 
+### <a name="choose-the-right-protocol-icmp-or-tcp"></a>選擇正確的通訊協定：ICMP 或 TCP
+
+網路效能監視器 (NPM) 使用綜合交易來計算網路效能度量，例如封包遺失和連結延遲。 若要進一步了解，請想像連接到網路連結一端的 NPM 代理程式。 這個 NPM 代理程式會傳送探查封包至連接到網路另一端的第二個 NPM 代理程式。 第二個代理程式會以回應封包回覆。 此程序會重複幾次。 藉由測量回應的數目及接收每個回應所花費的時間，第一個 NPM 代理程式就可評估連結延遲和封包遺失。
+
+您在建立監視規則時所選擇的通訊協定，會決定這些封包的格式、大小和順序。 根據封包的通訊協定，中繼網路裝置 (路由器、交換器等等) 可能會以不同的方式處理這些封包。 因此，您的通訊協定選擇會影響結果的精確度。 另外，您的通訊協定選擇也會決定在您部署 NPM 解決方案後，是否必須採取任何手動步驟。
+
+NPM 提供 ICMP 和 TCP 通訊協定選項，供您用來執行綜合交易。
+如果您在建立綜合交易規則時選擇 ICMP，NPM 代理程式會使用 ICMP ECHO 訊息來計算網路延遲和封包遺失。 ICMP ECHO 使用的訊息與傳統 Ping 公用程式傳送的訊息相同。 當您使用 TCP 做為通訊協定時，NPM 代理程式會透過網路傳送 TCP SYN 封包。 接著 TCP 交握完成，然後移除使用 RST 封包的連線。
+
+#### <a name="points-to-consider-before-choosing-the-protocol"></a>選擇通訊協定前應考慮的重點
+選擇通訊協定之前，您應該考慮下列資訊：
+
+##### <a name="discovering-multiple-network-routes"></a>探索多個網路路由
+TCP 在探索多個路由時提供更高的精確度，而且在每個子網路中需要較少的代理程式。 例如，只要有一或二個使用 TCP 的代理程式，就可以探索子網路之間的所有備援路徑。 不過，使用 ICMP 時，需要數個代理程式才能達到類似的結果。 如果使用 ICMP，假設您在兩個子網路間有 *N* 個路由，您在來源或目標子網路就需要超過 5*N* 個代理程式。
+
+##### <a name="accuracy-of-results"></a>結果的精確度
+路由器和交換器對於 ICMP ECHO 封包會指派比 TCP 封包較低的優先順序。 在某些情況下，當網路裝置處於大量負載狀態時，透過 TCP 取得的資料會更貼切地反映應用程式發生的遺失和延遲。 這是因為大部分的應用程式流量都是透過 TCP 傳送。 在這種情況下，ICMP 提供的結果精確度就不及 TCP。
+
+##### <a name="firewall-configuration"></a>防火牆設定
+TCP 通訊協定會要求 TCP 封包傳送至目的地連接埠。 NPM 代理程式使用的預設連接埠是 8084，不過您可以在設定代理程式時變更。 因此，您必須確定網路防火牆或 NSG 規則 (在 Azure 中) 允許該連接埠的流量。 您也必須確定安裝代理程式的電腦本機防火牆設定為允許這個連接埠的流量。
+
+您可以使用 PowerShell 指令碼來設定執行 Windows 之電腦上的防火牆規則，不過您必須手動設定網路防火牆。
+
+相反地，ICMP 運作不使用連接埠。 在大部分的企業案例中，會允許 ICMP 流量通過防火牆，讓您可以使用如 Ping 公用程式的網路診斷工具。 因此，如果您可以從另一部電腦 Ping 某部電腦，則您可以使用 ICMP 通訊協定，而不需要手動設定防火牆。
+
+> [!NOTE]
+> 如果您不確定要使用哪個通訊協定，可以選擇從 ICMP 開始。 如果您不滿意結果，在稍後隨時可以切換為 TCP。
+
+
+#### <a name="how-to-switch-the-protocol"></a>如何切換通訊協定
+
+如果您在部署期間選擇使用 ICMP，您可以隨時編輯預設監視規則來切換為 TCP。
+
+##### <a name="to-edit-the-default-monitoring-rule"></a>編輯預設監視規則
+1.  瀏覽至 [網路效能]  >  [監視]  >  [設定]  >  [監視]，然後按一下 [預設規則]。
+2.  捲動至 [通訊協定] 區段，然後選取您要使用的通訊協定。
+3.  按一下 [儲存] 來套用設定。
+
+即使預設規則正在使用特定的通訊協定，您也能以其他通訊協定建立新規則。 您甚至可以建立混合規則，其中某些規則使用 ICMP，而其他使用 TCP。
+
+
+
+
+
+
 ## <a name="data-collection-details"></a>資料收集詳細資料
 網路效能監視器會使用 TCP SYN-SYNACK-ACK 交握封包來收集遺失和延遲資訊，而「路徑追蹤」也會用來取得拓撲資訊。
 
@@ -158,7 +203,7 @@ ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |TCP 會每 5 秒交握一次，而資料會每 3 分鐘傳送一次 |
 
-此方案會利用綜合交易來評估網路的健康狀態。 安裝於網路中不同點的 OMS 代理程式會彼此交換 TCP 封包，並在過程中了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每 5 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 OMS。
+此方案會利用綜合交易來評估網路的健康狀態。 安裝於網路中不同點的 OMS 代理程式會彼此交換 TCP 封包，並在過程中了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每&5; 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 OMS。
 
 > [!NOTE]
 > 雖然代理程式會經常彼此通訊，但是在進行測試時不會產生大量網路流量。 代理程式只依賴 TCP SYN-SYNACK-ACK 交握封包來判斷遺失和延遲 - 不會交換任何資料封包。 在此過程中，代理程式只會在需要時彼此通訊，而且代理程式通訊拓撲已最佳化以減少網路流量。
@@ -246,6 +291,6 @@ ms.openlocfilehash: 4f5c7208cabc565c4f5dddc917c4756ae4776c33
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

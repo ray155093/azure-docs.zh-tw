@@ -12,20 +12,20 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/14/2016
+ms.date: 02/09/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 86a4bc7ea89416f2c67626439f08fa615a2e6511
+ms.sourcegitcommit: 337a88105d1d19fd69805caeaaef5040dad42316
+ms.openlocfilehash: 663b8a0d27e3746aec5097364643eac981810368
 
 
 ---
-# <a name="secure-your-cloud-and-onpremises-resources-using-azure-multifactor-authentication-server-with-ad-fs-in-windows-server-2012-r2"></a>搭配 Windows Server 2012 R2 中的 AD FS 使用 Azure Multi-Factor Authentication Server 來保護雲端和內部部署資源
+# <a name="secure-your-cloud-and-on-premises-resources-using-azure-multi-factor-authentication-server-with-ad-fs-in-windows-server-2012-r2"></a>搭配 Windows Server 2012 R2 中的 AD FS 使用 Azure Multi-Factor Authentication Server 來保護雲端和內部部署資源
 如果您使用 Active Directory 同盟服務 (AD FS)，而且想要保護雲端或內部部署資源，您可以設定 Azure Multi-factor Authentication Server 以搭配 AD FS 運作。 此組態會觸發高價值端點的雙步驟驗證。
 
 在本文中，我們將討論如何搭配 Windows Server 2012 R2 中的 AD FS 使用 Azure Multi-Factor Authentication Server。 如需詳細資訊，請參閱 [搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server 來保護雲端和內部部署資源](multi-factor-authentication-get-started-adfs-adfs2.md)。
 
-## <a name="secure-windows-server-2012-r2-ad-fs-with-azure-multifactor-authentication-server"></a>使用 Azure Multi-Factor Authentication Server 保護 Windows Server 2012 R2 AD FS
+## <a name="secure-windows-server-2012-r2-ad-fs-with-azure-multi-factor-authentication-server"></a>使用 Azure Multi-Factor Authentication Server 保護 Windows Server 2012 R2 AD FS
 安裝 Azure Multi-Factor Authentication Server 時，您有下列選項：
 
 * 在與 AD FS 相同的伺服器本機上安裝 Azure Multi-Factor Authentication Server
@@ -39,7 +39,7 @@ ms.openlocfilehash: 86a4bc7ea89416f2c67626439f08fa615a2e6511
 * Multi-Factor Authentication AD FS 配接器安裝精靈會在 Active Directory 執行個體中建立名為 PhoneFactor Admins 的安全性群組。 然後將 Federation Service 的 AD FS 服務帳戶新增至這個群組。 建議您在網域控制站上確認確實已建立 PhoneFactor Admins 群組，而且 AD FS 服務帳戶是此群組的成員。 如有必要，請以手動方式將 AD FS 服務帳戶加入至網域控制站上的 PhoneFactor Admins 群組。
 * 如需透過使用者入口網站安裝 Web 服務 SDK 的資訊，請參閱 [部署 Azure Multi-Factor Authentication Server 的使用者入口網站](multi-factor-authentication-get-started-portal.md)
 
-### <a name="install-azure-multifactor-authentication-server-locally-on-the-ad-fs-server"></a>在 AD FS 伺服器本機上安裝 Azure Multi-Factor Authentication Server
+### <a name="install-azure-multi-factor-authentication-server-locally-on-the-ad-fs-server"></a>在 AD FS 伺服器本機上安裝 Azure Multi-Factor Authentication Server
 1. 在 AD FS 伺服器上下載並安裝 Azure Multi-Factor Authentication Server。 如需安裝資訊，請參閱 [開始使用 Azure Multi-Factor Authentication Server](multi-factor-authentication-get-started-server.md)。
 2. 在 Azure Multi-Factor Authentication Server 管理主控台中，按一下 [AD FS] 圖示，然後選取 [允許使用者註冊] 和 [允許使用者選取方法] 選項。
 3. 選取您想要為您的組織指定的任何其他選項。
@@ -93,7 +93,7 @@ ms.openlocfilehash: 86a4bc7ea89416f2c67626439f08fa615a2e6511
 3. 將用戶端憑證的公開和私密金鑰匯出至 .pfx 檔案。  
 4. 將 Base64 格式的公開金鑰匯出至 .cer 檔案。  
 5. 在 [伺服器管理員] 中，確認已安裝網頁伺服器 (IIS)\網頁伺服器\安全性\IIS 用戶端憑證對應驗證功能。 如果未安裝，請選擇 [新增角色及功能]  來新增此功能。  
-6. 在 [IIS 管理員] 中，按兩下包含 Web 服務 SDK 虛擬目錄之網站中的 [設定編輯器]  。 請務必在網站層級而非虛擬目錄層級執行此作業。  
+6. 在 [IIS 管理員] 中，按兩下包含 Web 服務 SDK 虛擬目錄之網站中的 [設定編輯器]  。 請務必選取網站，而非虛擬目錄。  
 7. 移至 **system.webServer/security/authentication/iisClientCertificateMappingAuthentication** 區段。  
 8. 將 enabled 設定為 **true**。  
 9. 將 oneToOneCertificateMappingsEnabled 設定為 **true**。  
@@ -116,12 +116,34 @@ ms.openlocfilehash: 86a4bc7ea89416f2c67626439f08fa615a2e6511
 
 最後，若要登錄配接器，請在 PowerShell 中執行 \Program Files\Multi-Factor Authentication Server\Register-MultiFactorAuthenticationAdfsAdapter.ps1 指令碼。 此配接器會登錄為 WindowsAzureMultiFactorAuthentication。 重新啟動 AD FS 服務，以讓登錄生效。
 
+## <a name="secure-azure-ad-resources-using-ad-fs"></a>使用 AD FS 保護 Azure AD 資源
+若要保護雲端資源，請設定宣告規則，以便在使用者成功執行雙步驟驗證時，Active Directory Federation Services 會發出 multipleauthn 宣告。 此宣告會傳遞至 Azure AD。 遵循此程序來逐步執行各個步驟︰
+
+1. 開啟 [AD FS 管理]。
+2. 在左側選取 [信賴憑證者信任]。
+3. 以滑鼠右鍵按一下 [Microsoft Office 365 身分識別平台]，然後選取 [編輯宣告規則...]
+
+   ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip1.png)
+
+4. 在 [發佈轉換規則] 上，按一下 [新增規則]
+
+   ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip2.png)
+
+5. 在 [新增轉換宣告規則精靈] 上，從下拉式清單選取 [通過或篩選傳入宣告]，然後按 [下一步]。
+
+   ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip3.png)
+
+6. 指定規則的名稱。 
+7. 選取 [驗證方法參考] 做為傳入宣告類型。
+8. 選取 [傳遞所有宣告值]。
+    ![新增轉換宣告規則精靈](./media/multi-factor-authentication-get-started-adfs-cloud/configurewizard.png)
+9. 按一下 [完成]。 關閉 AD FS 管理主控台。
+
 ## <a name="related-topics"></a>相關主題
 如需疑難排解說明，請參閱 [Azure Multi-Factor Authentication 常見問題集](multi-factor-authentication-faq.md)
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

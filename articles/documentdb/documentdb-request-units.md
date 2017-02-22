@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB 中的要求單位 | Microsoft Docs"
+title: "要求單位和估計輸送量 - Azure DocumentDB | Microsoft Docs"
 description: "了解如何在 DocumentDB 中了解、指定及估計要求單位需求。"
 services: documentdb
 author: syamkmsft
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: syamk
 translationtype: Human Translation
-ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
-ms.openlocfilehash: 8b2d13dd16f629fbb2108856cd1e1b2954ece8bf
+ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
+ms.openlocfilehash: bf58d333e81fb76ffc3cca8a8e1ccb3f71ac72c9
 
 
 ---
@@ -205,7 +205,7 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 | 讀取文件 |100 |100 |
 | 依製造商選取食物 |25 |175 |
 | 依食物群組選取 |10 |700 |
-| 選取前 10 個 |15 |總共 150 個 |
+| 選取前 10 個 |15 |總共&150; 個 |
 
 在此情況下，我們預期平均輸送量需求為 1,275 RU/秒。  四捨五入至最接近 100 的數目，我們會針對此應用程式的集合佈建 1,300 RU/秒。
 
@@ -239,6 +239,6 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

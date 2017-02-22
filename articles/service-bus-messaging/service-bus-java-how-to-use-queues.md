@@ -1,5 +1,5 @@
 ---
-title: "如何搭配使用服務匯流排佇列與 Java | Microsoft Docs"
+title: "如何搭配 Java 使用 Azure 服務匯流排佇列 | Microsoft Docs"
 description: "了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 Java 撰寫。"
 services: service-bus-messaging
 documentationcenter: java
@@ -11,48 +11,31 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/11/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 29cab1dff7ffc0f42ee8c605e3817b855967eb53
+ms.sourcegitcommit: 43197f7402795c37fa7ed43658bc3b8858a41080
+ms.openlocfilehash: 8568978a558b09220eff14a13ccefb3e60c18e87
 
 
 ---
 # <a name="how-to-use-service-bus-queues"></a>如何使用服務匯流排佇列
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-本文說明如何使用服務匯流排佇列。 相關範例是以 Java 撰寫並使用 [Azure SDK for Java][Azure SDK for Java]。 本文說明的案例包括**建立佇列**、**傳送並接收訊息**，以及**刪除佇列**。
+本文說明如何使用服務匯流排佇列。 相關範例是以 Java 撰寫，並且使用 [Azure SDK for Java][Azure SDK for Java]。 本文說明的案例包括**建立佇列**、**傳送並接收訊息**，以及**刪除佇列**。
 
-## <a name="what-are-service-bus-queues"></a>什麼是服務匯流排佇列？
-服務匯流排佇列支援 **代理傳訊** 通訊模型。 使用佇列時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色 (代理人) 的佇列來交換訊息。 訊息產生者 (傳送者) 會將訊息遞交給佇列，然後繼續其處理工作。
-訊息取用者 (接收者) 非同步地從佇列中提取訊息並處理。 產生者不必等待取用者的回覆，即可繼續處理及傳送其他訊息。 如果有一或多個競爭取用者，佇列會採取 **先進先出 (FIFO)** 訊息傳遞機制。 亦即，通常由接收者依訊息加入佇列的順序來接收和處理訊息，而且每則訊息只能由一個訊息取用者接收和處理。
-
-![佇列概念](./media/service-bus-java-how-to-use-queues/sb-queues-08.png)
-
-服務匯流排佇列為適用於各種情況的通用技術：
-
-* 多層式 Azure 應用程式中 Web 角色和背景工作角色之間的通訊。
-* 混合式解決方案中的內部部署應用程式和 Azure 代管應用程式之間的通訊。
-* 在不同組織或同一組織的不同部門中，在內部部署執行之分散式應用程式的各元件之間的通訊。
-
-使用佇列，可讓應用程式更容易地進一步向外延展，並啟用架構的備援能力。
-
-## <a name="create-a-service-namespace"></a>建立服務命名空間
-若要開始在 Azure 中使用服務匯流排佇列，必須先建立命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
-
-若要建立命名空間：
+[!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
-先確定已安裝 [Azure SDK for Java][Azure SDK for Java] 再建置此範例。 如果使用 Eclipse，您可以安裝包含 Azure SDK for Java 的 [適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]。 然後您可以將 **Microsoft Azure Libraries for Java** 新增至您的專案：
+在建置此範例之前，請先確定您已安裝 [Azure SDK for Java][Azure SDK for Java]。 如果您使用的是 Eclipse，則可以安裝包含 Azure SDK for Java 的[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]。 然後您可以將 **Microsoft Azure Libraries for Java** 新增至您的專案：
 
 ![](./media/service-bus-java-how-to-use-queues/eclipselibs.png)
 
 在 Java 檔案頂端新增下列 `import` 陳述式：
 
-```
+```java
 // Include the following imports to use Service Bus APIs
 import com.microsoft.windowsazure.services.servicebus.*;
 import com.microsoft.windowsazure.services.servicebus.models.*;
@@ -65,7 +48,7 @@ import javax.xml.datatype.*;
 
 **ServiceBusService** 類別提供建立、列舉及刪除佇列的方法。 以下範例顯示如何使用 **ServiceBusService** 物件建立名稱為「TestQueue」的佇列及名稱為「HowToSample」的命名空間：
 
-```
+```java
 Configuration config =
     ServiceBusConfiguration.configureWithSASAuthentication(
             "HowToSample",
@@ -90,7 +73,7 @@ catch (ServiceException e)
 
 **QueueInfo** 有相關方法可讓您調整佇列的屬性 (例如，針對要在傳送至佇列的訊息所套用的存留時間 (TTL) 設定預設值)。 下列範例示範如何使用大小上限為 5 GB 的設定，來建立名為 `TestQueue` 的佇列：
 
-````
+````java
 long maxSizeInMegabytes = 5120;
 QueueInfo queueInfo = new QueueInfo("TestQueue");
 queueInfo.setMaxSizeInMegabytes(maxSizeInMegabytes);
@@ -102,7 +85,7 @@ CreateQueueResult result = service.createQueue(queueInfo);
 ## <a name="send-messages-to-a-queue"></a>傳送訊息至佇列
 若要將訊息傳送至服務匯流排佇列，應用程式會取得 **ServiceBusContract** 物件。 下列程式碼示範如何針對先前在 `HowToSample` 命名空間中建立的 `TestQueue` 佇列傳送訊息：
 
-```
+```java
 try
 {
     BrokeredMessage message = new BrokeredMessage("MyMessage");
@@ -116,11 +99,11 @@ catch (ServiceException e)
 }
 ```
 
-傳送至 (和擷取自) 服務匯流排佇列的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage] 物件具有一組標準屬性 (例如 [Label](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx) 和 [TimeToLive](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx))、一個用來保存自訂應用程式特定屬性的目錄，以及一堆任意的應用程式資料。 應用程式可設定訊息主體，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統便會使用適當的序列化程式來序列化物件。 此外，您也可以提供 **java.IO.InputStream** 物件。
+傳送至 (及接收自)「服務匯流排」佇列的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage] 物件具有一組標準屬性 (例如 [Label](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) 和 [TimeToLive](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive))、一個用來保存自訂應用程式特定屬性的字典，以及一堆任意的應用程式資料。 應用程式可以設定訊息本文，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統便會使用適當的序列化程式將物件序列化。 此外，您也可以提供 **java.IO.InputStream** 物件。
 
 下列範例示範如何將五則測試訊息傳送至上述程式碼片段中所取得的 `TestQueue` **MessageSender**：
 
-```
+```java
 for (int i=0; i<5; i++)
 {
      // Create message, passing a string message for the body.
@@ -144,7 +127,7 @@ for (int i=0; i<5; i++)
 
 以下範例示範如何使用 **PeekLock** 模式 (非預設模式) 來接收與處理訊息。 下列範例會建立一個無限迴圈，並在訊息抵達 "TestQueue" 時處理訊息：
 
-```
+```java
 try
 {
     ReceiveMessageOptions opts = ReceiveMessageOptions.DEFAULT;
@@ -205,18 +188,17 @@ catch (Exception e) {
 如果應用程式在處理訊息之後，尚未發出 **deleteMessage** 要求時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為**至少處理一次**，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **getMessageId** 方法來達到此目的，該方法將在各個傳遞嘗試中保持不變。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已了解服務匯流排佇列的基本概念，請參閱[佇列、主題和訂用帳戶][佇列、主題和訂用帳戶]，以取得詳細資訊。
+既然您已了解「服務匯流排」佇列的基本概念，請參閱[佇列、主題和訂用帳戶][Queues, topics, and subscriptions]來取得詳細資訊。
 
 如需詳細資訊，請參閱 [Java 開發人員中心](/develop/java/)。
 
 [Azure SDK for Java]: http://azure.microsoft.com/develop/java/
-[適用於 Eclipse 的 Azure 工具組]: https://msdn.microsoft.com/library/azure/hh694271.aspx
-[佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
-[BrokeredMessage]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx
+[Azure Toolkit for Eclipse]: https://msdn.microsoft.com/library/azure/hh694271.aspx
+[Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
+[BrokeredMessage]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -1,10 +1,10 @@
 ---
-title: "Log Analytics 中的 Windows 和 Linux 的效能計數器 | Microsoft Docs"
+title: "在 Log Analytics 中收集並分析效能計數器 | Microsoft Docs"
 description: "Log Analytics 會收集效能計數器以分析 Windows 和 Linux 代理程式的效能。  本文說明如何設定 Windows 和 Linux 代理程式的效能計數器收集、儲存在 OMS 儲存機制中的相關詳細資料，以及如何在 OMS 入口網站中分析這些資料。"
 services: log-analytics
 documentationcenter: 
 author: bwren
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: 20e145e4-2ace-4cd9-b252-71fb4f94099e
 ms.service: log-analytics
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/27/2016
+ms.date: 01/23/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b4d326064059b42cf2bf059184066c9acb4dcfd0
+ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
+ms.openlocfilehash: 1e4b5dac9333a9bd38f6ef89ddce22c74fed06ba
 
 
 ---
@@ -63,7 +63,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | CounterValue |計數器的數值。 |
 | InstanceName |事件執行個體的名稱。  如果沒有執行個體即為空白。 |
 | ObjectName |效能物件的名稱 |
-| SourceSystem |收集資料的來源代理程式類型。 <br> OpsManager – Windows 代理程式，直接連接或 SCOM <br>  Linux – 所有的 Linux 代理程式  <br>  AzureStorage – Azure 診斷 |
+| SourceSystem |收集資料的來源代理程式類型。 <br> OpsManager – Windows 代理程式，直接連接或 SCOM <br> Linux – 所有的 Linux 代理程式  <br> AzureStorage – Azure 診斷 |
 | TimeGenerated |資料取樣的日期和時間。 |
 
 ## <a name="sizing-estimates"></a>大小估計值
@@ -82,7 +82,7 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 | Type=Perf (ObjectName=Processor) CounterName="% Processor Time" InstanceName=_Total &#124; measure Avg(Average) as AVGCPU  by Computer |所有電腦的平均 CPU 使用率 |
 | Type=Perf (CounterName="% Processor Time") &#124;  measure max(Max) by Computer |所有電腦的最大 CPU 使用率 |
 | Type=Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Computer="MyComputerName" &#124; measure Avg(Average) by InstanceName |指定電腦之所有執行個體的平均目前磁碟佇列長度 |
-| Type=Perf CounterName="DiskTransfers/sec" &#124; measure percentile95(Average) by Computer |所有電腦之第 95 個百分位數的 Disk Transfers/Sec |
+| Type=Perf CounterName="DiskTransfers/sec" &#124; measure percentile95(Average) by Computer |所有電腦之第&95; 個百分位數的 Disk Transfers/Sec |
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  &#124; measure avg(CounterValue) by Computer Interval 1HOUR |所有電腦每小時平均 CPU 使用率 |
 | Type=Perf Computer="MyComputer" CounterName=%* InstanceName=_Total &#124; measure percentile70(CounterValue) by CounterName Interval 1HOUR |特定電腦每小時每個 % 百分比計數器的 70 個百分位數 |
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  (Computer="MyComputer") &#124; measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR |特定電腦每小時平均、最小、最大和 75 個百分位數的 CPU 使用量 |
@@ -105,6 +105,6 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

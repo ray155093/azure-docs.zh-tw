@@ -1,5 +1,5 @@
 ---
-title: "部署 StorSimple Virtual Array 3：將虛擬裝置設定為檔案伺服器"
+title: "將 StorSimple Virtual Array 設定為檔案伺服器 | Microsoft Docs"
 description: "這是如何部署 StorSimple Virtual Array 的第三個教學課程，教導您如何將虛擬裝置設定成檔案伺服器。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 05/26/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8f99e3dc59c0637053cad6c2b3b6baedac803f42
+ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
+ms.openlocfilehash: e1863b43706ffc200bb94c4a26ae75080a6dd857
 
 
 ---
@@ -32,7 +32,7 @@ ms.openlocfilehash: 8f99e3dc59c0637053cad6c2b3b6baedac803f42
 在您設定及安裝 StorSimple 虛擬裝置之前，請先確定：
 
 * 根據[在 Hyper-V 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-hyperv.md) 或[在 VMware 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-vmware.md) 中的詳細說明，您已佈建虛擬裝置並連接它。
-* 您已擁有服務註冊金鑰，且該金鑰來自您建立來管理 StorSimple 虛擬裝置的 StorSimple Manager 服務。 如需詳細資訊，請參閱 [步驟 2：取得 StorSimple Virtual Array 的服務註冊金鑰](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key) 。
+* 您已擁有服務註冊金鑰，且該金鑰來自您建立來管理 StorSimple 虛擬裝置的 StorSimple Manager 服務。 如需詳細資訊，請參閱[步驟 2：取得 StorSimple Virtual Array 的服務註冊金鑰](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key)。
 * 如果這是第二個或後續新增的虛擬裝置，且您要使用現有的 StorSimple Manager 服務來為該虛擬裝置註冊，您應該已經擁有服務資料加密金鑰。 當第一個裝置在此服務註冊成功時，這個金鑰就已經產生。 如果您遺失這個金鑰，請參閱 StorSimple Virtual Array 的 [取得服務資料加密金鑰](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key) 。
 
 ## <a name="step-by-step-setup"></a>安裝的逐步指示
@@ -65,7 +65,7 @@ ms.openlocfilehash: 8f99e3dc59c0637053cad6c2b3b6baedac803f42
 6. 在 [裝置設定]  頁面中：
    
    1. 為裝置指派唯一的 [名稱]  。 這個名稱可以有 1 至 15 個字元，且可以包含字母、數字和連字號。
-   2. 對於您要建立的裝置的 [類型]，按一下 [檔案伺服器] 圖示 ![](./media/storsimple-ova-deploy3-fs-setup/image6.png)。 檔案伺服器可讓您建立共用資料夾。
+   2. 對於您要建立的裝置 [類型]，按一下 [檔案伺服器] 圖示 ![](./media/storsimple-ova-deploy3-fs-setup/image6.png)。 檔案伺服器可讓您建立共用資料夾。
    3. 由於您的裝置是檔案伺服器，您必須讓裝置加入某個網域。 輸入 [網域名稱] 。
    4. 按一下 [Apply (套用)] 。
 7. 此時畫面會出現對話方塊。 請以指定格式輸入網域認證。 按一下核取圖示。 系統將會驗證該網域認證。 如果認證不正確，畫面會出現錯誤訊息。
@@ -177,7 +177,7 @@ ms.openlocfilehash: 8f99e3dc59c0637053cad6c2b3b6baedac803f42
 
 請觀賞說明如何設定及註冊 StorSimple Virtual Array 來做為檔案伺服器的影片。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Configure-a-StorSimple-Virtual-Array/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Configure-a-StorSimple-Virtual-Array/player]
 > 
 > 
 
@@ -187,6 +187,6 @@ ms.openlocfilehash: 8f99e3dc59c0637053cad6c2b3b6baedac803f42
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

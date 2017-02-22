@@ -3,7 +3,7 @@ title: "Azure SQL Database 基準測試概觀"
 description: "本主題說明用來測量 Azure SQL Database 效能的 Azure SQL Database 基準測試。"
 services: sql-database
 documentationcenter: na
-author: CarlRabeler
+author: jan-eng
 manager: jhubbard
 editor: monicar
 ms.assetid: e26f8a66-2c12-49d7-8297-45b4d48a5c01
@@ -14,10 +14,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 06/21/2016
-ms.author: carlrab
+ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: cbe53ce7f259432085a828ef8c1fe3ae2da42074
+ms.sourcegitcommit: 2681dd3792a351fecc0c72eb7fe546113a451d24
+ms.openlocfilehash: 7b9b222be1a131d2a80d37404cbdd309b61785f3
 
 
 ---
@@ -42,7 +42,7 @@ ASDB 可測量基本資料庫作業混合的效能，這些作業最常發生在
 ## <a name="schema"></a>結構描述
 結構描述的設計具有足夠的多樣性和複雜性才能支援廣泛的作業。 對包含六個資料表的資料庫執行基準測試。 資料表分成三個類別：固定大小、調整和成長。 有兩個固定大小資料表、三個調整資料表，和一個成長資料表。 固定大小資料表有固定數目的資料列。 調整資料表有與資料庫效能成正比但不會在基準測試期間變更的基數。 成長資料表的大小在初始載入時類似調整資料表，但是在執行基準測試做為資料列的過程中，會插入並刪除基數變更。
 
-結構描述包含資料類型的混合，包括整數、數值、字元和日期/時間。 結構描述包含主要和次要索引鍵，但沒有任何外部索引鍵 – 也就是資料表之間沒有參考完整性條件約束。
+結構描述包含資料類型的混合，包括整數、數值、字元和日期/時間。 結構描述包含主要和次要索引鍵，但不含任何外部索引鍵 - 也就是資料表之間沒有參考完整性條件約束。
 
 資料產生程式會產生初始資料庫的資料。 運用各種策略產生整數和數值資料。 在某些情況下，會在某範圍中隨機分佈值。 在其他情況下，會隨機排列一組值以確保維護特定的分佈。 從文字的加權清單產生文字欄位以產生實際的查看資料。
 
@@ -131,10 +131,10 @@ Azure SQL Database 基準測試會測量跨某範圍可用服務層和效能等�
 
 [服務層和效能層級](sql-database-service-tiers.md)
 
-[獨立資料庫的效能指引](sql-database-performance-guidance.md)
+[單一資料庫的效能指引](sql-database-performance-guidance.md)
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/12/2016
+ms.date: 12/15/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 9138fc1da6c45e2aa874e3e26c4a65ceb248d8f1
-ms.openlocfilehash: 325e25412e80d005a87b49e6971703cd74551c5e
+ms.sourcegitcommit: 2e4220bedcb0091342fd9386669d523d4da04d1c
+ms.openlocfilehash: 8aac22bed0b16c97faabf1e15c9fc9f40c34ca67
 
 
 ---
@@ -92,7 +92,7 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 
 您可以使用方案入口網站，從您的方案中移除裝置。 當您移除裝置時，方案會從方案裝置登錄中移除裝置資訊中繼資料，並移除 IoT 中樞裝置身分識別登錄中的裝置項目。 您必須先停用裝置，才可以將它移除。
 
-![裝置移除][img-device-remove]
+![移除裝置][img-device-remove]
 
 ## <a name="device-information-message-processing"></a>裝置資訊訊息處理
 裝置所傳送的裝置資訊訊息與遙測訊息不同。 裝置資訊訊息包含裝置屬性、裝置可以回應的命令及任何命令歷程記錄等資訊。 IoT 中樞本身不知道裝置資訊訊息中內含的中繼資料，它會以處理任何裝置對雲端訊息的相同方式處理訊息。 在遠端監視方案中，[Azure 串流分析][lnk-stream-analytics] (ASA) 作業會從「IoT 中樞」讀取訊息。 **DeviceInfo** 串流分析作業會篩選包含 **"ObjectType":"DeviceInfo"** 的訊息，並將這些訊息轉送至在 Web 作業中執行的 **EventProcessorHost** 主機執行個體。 **EventProcessorHost** 執行個體中的邏輯會使用裝置識別碼，來尋找特定裝置的 DocumentDB 記錄並更新該記錄。 裝置登錄記錄現在包含裝置屬性、命令和命令歷程記錄等資訊。
@@ -248,7 +248,7 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 }
 ```
 
-以下顯示裝置所傳送來更新裝置資訊中繼資料的 JSON **DeviceInfo** 訊息︰
+以下範例顯示裝置所傳送來更新裝置資訊中繼資料的 JSON **DeviceInfo** 訊息︰
 
 ```
 { "ObjectType":"DeviceInfo",
@@ -265,7 +265,7 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 ## <a name="next-steps"></a>後續步驟
 現在您已完成了解如何自訂預先設定的解決方案，您可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
 
-* [預先設定的預測性維護解決方案概觀][lnk-predictive-overview]
+* [預先設定的預防性維護解決方案概觀][lnk-predictive-overview]
 * [IoT 套件的常見問題集][lnk-faq]
 * [從頭建立 IoT 安全性][lnk-security-groundup]
 
@@ -288,6 +288,6 @@ Azure IoT 套件遠端監視預先設定方案會示範用於管理裝置中繼�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

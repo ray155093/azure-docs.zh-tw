@@ -6,18 +6,17 @@ keywords: "裝置型條件式存取、裝置註冊、啟用裝置註冊、裝置
 documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: 
 ms.assetid: 8ad0156c-0812-4855-8563-6fbff6194174
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/11/2016
+ms.date: 01/24/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fd2076f22c6048fda83d6da3b069e2805afb453f
+ms.sourcegitcommit: fbabf6f2e1e588ba509c4da84ab1700b1b5d4f87
+ms.openlocfilehash: ad9f9a8c5b370ffa916b9089ef3ce523fe0266c7
 
 
 ---
@@ -48,7 +47,7 @@ ms.openlocfilehash: fd2076f22c6048fda83d6da3b069e2805afb453f
 ### <a name="device-is-not-registered"></a>裝置未註冊
 如果未向 Azure AD 註冊您的裝置，且應用程式受裝置型原則所保護，您可能會看一個頁面顯示下列其中一個錯誤訊息︰
 
-![因裝置未註冊而顯示的「您無法從這裡完成」訊息](./media/active-directory-conditional-access-device-remediation/01.png "Scenario")
+![未註冊的裝置會收到「您無法從這裡前往該處」訊息](./media/active-directory-conditional-access-device-remediation/01.png "案例")
 
 如果您的裝置已加入組織中的 Active Directory 網域，請嘗試下列做法︰
 
@@ -122,7 +121,7 @@ ms.openlocfilehash: fd2076f22c6048fda83d6da3b069e2805afb453f
 
 您會看到如下所示的錯誤頁面︰
 
-![因瀏覽器不受支援而顯示的「您無法從這裡完成」訊息](./media/active-directory-conditional-access-device-remediation/02.png "Scenario")
+![不受支援的瀏覽器會收到「您無法從這裡前往該處」訊息](./media/active-directory-conditional-access-device-remediation/02.png "例")
 
 唯一的補救方式是根據您的裝置平台來使用應用程式所支援的瀏覽器。
 
@@ -132,6 +131,6 @@ ms.openlocfilehash: fd2076f22c6048fda83d6da3b069e2805afb453f
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

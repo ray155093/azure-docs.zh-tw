@@ -11,7 +11,7 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。 此服務是�
 ## <a name="table-service-concepts"></a>資料表服務概念
 資料表服務包含下列元件：
 
-![表格 1][Table1]
+![Table1][Table1]
 
 * **URL 格式：**程式碼使用此位址格式來定位帳戶中的資料表：   
   http://`<storage account>`.table.core.windows.net/`<table>`  
@@ -24,7 +24,7 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。 此服務是�
 
 如需有關命名資料表和屬性的詳細資訊，請參閱 [了解表格服務資料模型](https://msdn.microsoft.com/library/azure/dd179338.aspx)。
 
-[表格 1]: ./media/storage-table-concepts-include/table1.png
+[Table1]: ./media/storage-table-concepts-include/table1.png
 [OData.org]: http://www.odata.org/
 
 

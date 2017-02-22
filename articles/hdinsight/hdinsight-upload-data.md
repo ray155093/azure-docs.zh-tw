@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/10/2016
+ms.date: 11/15/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 28cc7f8ac707068b5517f7dfe45687fff5a0eed3
+ms.sourcegitcommit: 4f52049cb946b0ed7e721389de8f9d086b856e00
+ms.openlocfilehash: af20126e1a2ab5d468bd3883d5ece8e1ecdc3a5f
 
 
 ---
@@ -46,7 +46,7 @@ Azure Blob 儲存體容器會以機碼/值組來儲存資料，而且沒有目�
 ## <a name="command-line-utilities"></a>命令列公用程式
 Microsoft 提供下列公用程式來使用 Azure Blob 儲存體：
 
-| 工具 | Linux | OS X |  Windows |
+| 工具 | Linux | OS X | Windows |
 | --- |:---:|:---:|:---:|
 | [Azure 命令列介面][azurecli] |✔ |✔ |✔ |
 | [Azure PowerShell][azure-powershell] | | |✔ |
@@ -183,7 +183,7 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 
 使用此工具之前，必須先知道您的 Azure 儲存體帳戶名稱和帳戶金鑰。 如需關於取得此資訊的指示，請參閱[建立、管理或刪除儲存體帳戶][azure-create-storage-account]的＜如何：檢視、複製及重新產生儲存體存取金鑰＞一節。  
 
-1. 執行 Azure 儲存體總管。 如果這是您第一次執行 [儲存體總管]，將會提示您輸入 [儲存體帳戶名稱] 和 [儲存體帳戶金鑰]。 如果您之前曾執行過，請使用 [新增] 按鈕加入新的儲存體帳戶名稱和金鑰。
+1. 執行 Azure 儲存體總管。 如果這是您第一次執行 [儲存體總管]，系統將會提示您輸入 [儲存體帳戶名稱] 和 [儲存體帳戶金鑰]。 如果您之前曾執行過，請使用 [新增] 按鈕加入新的儲存體帳戶名稱和金鑰。
 
     輸入 HDinsight 叢集所使用儲存體帳戶的名稱和金鑰，然後選取 [儲存並開啟]。
 

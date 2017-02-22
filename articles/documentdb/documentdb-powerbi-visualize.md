@@ -3,7 +3,7 @@ title: "DocumentDB 連接器的 Power BI 教學課程 | Microsoft Docs"
 description: "使用本 Power BI 教學課程以匯入 JSON、建立具深入資訊的報告以及使用 DocumentDB 和 Power BI 連接器視覺化資料。"
 keywords: "power bi 教學課程，視覺化資料，power bi 連接器"
 services: documentdb
-author: h0n
+author: mimig1
 manager: jhubbard
 editor: mimig
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/22/2016
-ms.author: hawong
+ms.date: 02/14/2016
+ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 35c469ce0cfb99dc6a26fbcc0734938ad6b66fd7
+ms.sourcegitcommit: 089b250e36eb3e091ad63d716acaf6259a958898
+ms.openlocfilehash: 3f2103a1d3838b73f10d567721693a9b813d0edb
 
 
 ---
@@ -88,7 +88,7 @@ ms.openlocfilehash: 35c469ce0cfb99dc6a26fbcc0734938ad6b66fd7
     資料庫名稱、集合名稱、SQL 陳述式皆保留空白，這些欄位是選用的。  我們將使用「瀏覽器」來選取資料庫和集合，以識別資料來自何處。
    
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 桌面連接視窗](./media/documentdb-powerbi-visualize/power_bi_connector_pbiconnectwindow.png)
-7. 如果您是第一次連接到此端點，系統會提示您提供帳戶金鑰。  您可以從 Azure 入口網站 [[唯讀金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗的 [主要金鑰] 方塊中擷取金鑰，示範中是 `RcEBrRI2xVnlWheejXncHId6QRcKdCGQSW6uSUEgroYBWVnujW3YWvgiG2ePZ0P0TppsrMgscoxsO7cf6mOpcA==`。 輸入帳戶金鑰，然後按一下 [連接] 。
+7. 如果您是第一次連接到此端點，系統會提示您提供帳戶金鑰。  您可以從 Azure 入口網站 [[唯讀金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗的 [主要金鑰] 方塊中擷取金鑰，示範中是 `MSr6kt7Gn0YRQbjd6RbTnTt7VHc5ohaAFu7osF0HdyQmfR+YhwCH2D2jcczVIR1LNK3nMPNBD31losN7lQ/fkw==`。 輸入帳戶金鑰，然後按一下 [連接] 。
    
     建議您在建置報告時使用唯讀金鑰。  這樣可避免非必要地將主要金鑰暴露於潛在的安全性風險下。 唯讀金鑰可從 Azure 入口網站的 [金鑰] [](documentdb-manage-account.md#keys) 刀鋒視窗取得，或使用上面提供的示範帳戶資訊。
    
@@ -216,6 +216,6 @@ ms.openlocfilehash: 35c469ce0cfb99dc6a26fbcc0734938ad6b66fd7
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

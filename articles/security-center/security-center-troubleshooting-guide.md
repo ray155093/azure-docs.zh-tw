@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2016
+ms.date: 02/14/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9ed6eebd8a0c11158f9812edfc15b29a70ccc905
+ms.sourcegitcommit: d8956072460ba8629bb852e7b5d3e5155c3711e3
+ms.openlocfilehash: fe2d32e3c20c3e91954a6d00294ec018e8da0f2b
 
 
 ---
@@ -51,8 +51,16 @@ Azure 安全性監視擴充功能會掃描各種安全性相關組態，並從�
 
 > [!NOTE]
 > 如果 Azure 資訊安全中心代理程式運作不正常，您必須重新啟動目標 VM，因為沒有任何命令可停止和啟動此代理程式。
-> 
-> 
+
+
+如果您仍有收集資料方面的問題，您可以遵循以下步驟將代理程式解除安裝︰
+
+1. 從 **Azure 入口網站**中，選取遇到資料收集問題的虛擬機器，然後按一下 [擴充功能]。
+2. 以滑鼠右鍵按一下 **Microsoft.Azure.Security.Monitoring**，然後按一下 [解除安裝]。
+
+![移除代理程式](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig4.png)
+
+Azure 安全性監視擴充功能應該會在幾分鐘內自行重新安裝。
 
 ## <a name="troubleshooting-monitoring-agent-installation-in-linux"></a>疑難排解 Linux 中的監視代理程式安裝
 在 Linux 系統中疑難排解 VM 代理程式安裝時，您應該確定延伸模組已下載到 /var/lib/waagent/。 您可以執行下列命令來確認已安裝該延伸模組︰
@@ -68,8 +76,12 @@ Azure 安全性監視擴充功能會掃描各種安全性相關組態，並從�
 
 `netstat -plantu | grep 29130`
 
+## <a name="troubleshooting-problems-loading-the-dashboard"></a>針對載入儀表板的問題進行疑難排解
+
+如果您遇到載入資訊安全中心儀表板的問題，請確定向資訊安全中心註冊訂用帳戶的使用者 (也就是第一位使用訂用帳戶開啟資訊安全中心的使用者) 以及想要開啟資料收集的使用者，應該是訂用帳戶的「擁有者」或「參與者」。 另外，從那時起，訂用帳戶上具有「讀取者」身分的使用者就可以看到儀表板/警示/建議/原則。
+
 ## <a name="contacting-microsoft-support"></a>連絡 Microsoft 支援服務
-使用本文提供的指導方針可識別一些問題，您也可能發現的其他問題則記載於資訊安全中心的公開 [論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter)。 不過，如果您需要進一步疑難排解，您可以使用 Azure 入口網站開啟新的支援要求，如下所示︰ 
+使用本文提供的指導方針可識別一些問題，您也可能發現的其他問題則記載於資訊安全中心的公開 [論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureSecurityCenter)。 不過，如果您需要進一步疑難排解，您可以使用 **Azure 入口網站**開啟新的支援要求，如下所示︰ 
 
 ![Microsoft 支援服務](./media/security-center-troubleshooting-guide/security-center-troubleshooting-guide-fig2.png)
 
@@ -86,6 +98,6 @@ Azure 安全性監視擴充功能會掃描各種安全性相關組態，並從�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

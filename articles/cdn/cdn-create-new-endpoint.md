@@ -1,9 +1,9 @@
 ---
-title: "使用 Azure CDN | Microsoft Docs"
+title: "開始使用 Azure CDN | Microsoft Docs"
 description: "本主題說明如何啟用 Azure 內容傳遞網路 (CDN)。 本教學課程會逐步建立新的 CDN 設定檔和端點。"
 services: cdn
 documentationcenter: 
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: 4ca51224-5423-419b-98cf-89860ef516d2
@@ -12,15 +12,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e5568503541e773fa11bcde530da09befc51b2ad
+ms.sourcegitcommit: bdf6e27463fcc6186a3b15a55653fa468da91bdc
+ms.openlocfilehash: d263e911d0d0b3cdc1e48e300a3c8a0994b38c39
 
 
 ---
-# <a name="using-azure-cdn"></a>使用 Azure CDN
+# <a name="getting-started-with-azure-cdn"></a>開始使用 Azure CDN
 本主題將逐步解說如何透過建立新的 CDN 設定檔和端點來啟用 Azure CDN。
 
 > [!IMPORTANT]
@@ -106,6 +106,6 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

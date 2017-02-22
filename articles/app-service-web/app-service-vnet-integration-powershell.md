@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 08/29/2016
 ms.author: ccompy
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7b0dcf833981364abfbc77d0cd6dfde8beb081b7
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e8763f1ab7e51e10ae59cf2b6b2c609f0f45dcd3
 
 
 ---
@@ -119,7 +119,7 @@ VNet 整合功能在新的入口網站中有使用者介面 (UI)，可讓您與�
 
 憑證將位於 **$Configuration.GeneratedCertificatePath** 所指定的位置。
 
-若要手動上傳憑證，請使用 [Azure 入口網站][azureportal]並按一下 [瀏覽虛擬網路 (傳統)] > [VPN 連接] > [點對站] > [管理憑證]。 從這裡上傳您的憑證。
+若要手動上傳憑證，請使用 [Azure 入口網站][azureportal]，並按一下 [瀏覽虛擬網路 (傳統)] > [VPN 連接] > [點對站] > [管理憑證]。 從這裡上傳您的憑證。
 
 ##### <a name="get-the-point-to-site-package"></a>取得點對站封裝
 設定 Web 應用程式上的虛擬網路連接的下一步是取得點對站封裝，並將其提供給您的 Web 應用程式。
@@ -706,6 +706,6 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: guybo
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 7d122d04dfd9cb1f565e86b60f2180f9534588c9
+ms.sourcegitcommit: 4818c0c036c7e462af5b8d99f1085f8d9025156c
+ms.openlocfilehash: 7b4db2f215b8f7369694a45533d0c862b8f8d08e
 
 
 ---
@@ -46,12 +46,12 @@ ms.openlocfilehash: 7d122d04dfd9cb1f565e86b60f2180f9534588c9
 * 是否可以手動相應縮小或相應放大？
   
     請嘗試使用不同的「容量」設定重新部署 VM 擴展集資源，以手動變更 VM 數目。 執行這項操作的範例範本如下︰https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing – 您可能需要編輯範本以確定它有與您的擴展集所使用的相同機器大小。 如果您可以成功手動變更 VM 數目，則您知道問題與自動調整無關。
-* 請在 [Azure 資源總管](https://resources.azure.com/)
+* 請在 [Azure 資源總管](https://resources.azure.com/)中檢查您的 Microsoft.Compute/virtualMachineScaleSet 和 Microsoft.Insights 資源。
   
     這是向您顯示 Azure Resource Manager 資源的狀態不可或缺的疑難排解工具。 按一下您的訂用帳戶，查看您正在進行疑難排解的資源群組。 在「計算」資源提供者下查看您建立的 VM 擴展集，並且檢查執行個體檢視，它會顯示部署的狀態。 也請檢查 VM 擴展集中的 VM 執行個體檢視。 然後進入 Microsoft.Insights 資源提供者，並且檢查自動調整規則看起來是否沒有問題。
 * 診斷擴充是否正常運作，而且發出效能資料？
   
-    **更新︰**已增強 Azure 自動調整，以使用不再需要安裝診斷擴充功能的主機型度量管線。 這表示如果您使用新的管線建立自動調整應用程式，則不再適用於後續幾個段落。 已轉換成使用主應用程式管線的 Azure 範本範例包括︰https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale、https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-lapstack-autoscale。 
+    **更新︰**已增強 Azure 自動調整，以使用不再需要安裝診斷擴充功能的主機型度量管線。 這表示如果您使用新的管線建立自動調整應用程式，則不再適用於後續幾個段落。 已經轉換為使用主機管線的 Azure 範本範例在：https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale。 
   
     使用主機型度量進行自動調整較佳，原因如下︰
   
@@ -79,12 +79,12 @@ ms.openlocfilehash: 7d122d04dfd9cb1f565e86b60f2180f9534588c9
     
     一旦您完成這些步驟後，如果仍有自動調整問題，您可以嘗試 [MSDN](https://social.msdn.microsoft.com/forums/azure/home?category=windowsazureplatform%2Cazuremarketplace%2Cwindowsazureplatformctp) 上的論壇，或 [Stack Overflow](http://stackoverflow.com/questions/tagged/azure)，或記錄支援呼叫。 請準備共用範本和效能資料的檢視。
 
-[稽核]: ./media/virtual-machine-scale-sets-troubleshoot/image3.png
-[總管]: ./media/virtual-machine-scale-sets-troubleshoot/image1.png
-[資料表]: ./media/virtual-machine-scale-sets-troubleshoot/image4.png
+[audit]: ./media/virtual-machine-scale-sets-troubleshoot/image3.png
+[explorer]: ./media/virtual-machine-scale-sets-troubleshoot/image1.png
+[tables]: ./media/virtual-machine-scale-sets-troubleshoot/image4.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 串流分析和 Azure Machine Learning 的情緒分析 | Microsoft Docs"
+title: "Azure 串流分析和 Azure Machine Learning 整合 | Microsoft Docs"
 description: "如何在串流分析工作中使用使用者定義的函數和機器學習服務"
 keywords: 
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: data-services
 ms.date: 10/04/2016
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: fd5d7e2bf8d9cf68f1c3e9fe98656a8cfe0d1f15
+ms.sourcegitcommit: 9afd26024d2aa0d3d732ddc6f54e591715afca69
+ms.openlocfilehash: e7c9e684a9e879b4795312c59b90176846cad82d
 
 
 ---
@@ -134,6 +134,6 @@ ms.openlocfilehash: fd5d7e2bf8d9cf68f1c3e9fe98656a8cfe0d1f15
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

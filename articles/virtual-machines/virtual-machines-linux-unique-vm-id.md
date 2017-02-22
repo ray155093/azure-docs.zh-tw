@@ -1,6 +1,6 @@
 ---
-title: "存取 VM 識別碼"
-description: "說明如何存取和使用 Azure VM 的唯一識別碼"
+title: "取得 Azure Linux VM 識別碼 | Microsoft Docs"
+description: "說明如何取得和使用「Azure Linux VM 唯一識別碼」。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: kmouss
@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 02/08/2016
+ms.date: 01/23/2017
 ms.author: kmouss
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 8bbde19aeccec285f9c5727540f49b7c9207b3b3
+ms.sourcegitcommit: 167863b0de66d89f1cec80b1c6b2aec64f48b790
+ms.openlocfilehash: 70d1d3ee35c32bb95306c7ce6089574d035de6a6
 
 
 ---
@@ -62,6 +62,6 @@ DA 56 05 09 – FA D4 – 4f 76 - A9F1-63614EDA019A
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

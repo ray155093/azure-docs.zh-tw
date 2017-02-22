@@ -1,5 +1,5 @@
 ---
-title: "基礎結構命名指導方針 | Microsoft Docs"
+title: "Azure 基礎結構命名指導方針 - Linux | Microsoft Docs"
 description: "了解適合用來在 Azure 基礎結構服務中進行命名的關鍵設計和實作指導方針。"
 documentationcenter: 
 services: virtual-machines-linux
@@ -13,15 +13,15 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 01/24/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 8eaca7d1f942af7b36891f7ee0d9a455283bfc36
+ms.sourcegitcommit: 87a3d4fc849cee5d9abed1e4c32a9da583ea9516
+ms.openlocfilehash: 1ccde46c7adafdaa4a9efca450a3dd2efde8413a
 
 
 ---
-# <a name="infrastructure-naming-guidelines"></a>基礎結構命名指導方針
+# <a name="azure-infrastructure-naming-guidelines"></a>Azure 基礎結構命名指導方針
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
 本文著重於了解各種 Azure 資源的命名慣例做法，以在整個環境中建置一組具邏輯性且可輕鬆識別的資源集合。
@@ -95,7 +95,7 @@ ms.openlocfilehash: 8eaca7d1f942af7b36891f7ee0d9a455283bfc36
 我們建議讓 Azure VM 名稱與基礎作業系統電腦名稱相同。
 
 ## <a name="storage-account-names"></a>儲存體帳戶名稱
-儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account) 。 此外，儲存體帳戶名稱 (含 core.windows.net) 應是全域有效的唯一 DNS 名稱。 例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
+儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。 此外，儲存體帳戶名稱 (含 core.windows.net) 應是全域有效的唯一 DNS 名稱。 例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
 
 * mystorageaccount.blob.core.windows.net
 * mystorageaccount.table.core.windows.net
@@ -107,6 +107,6 @@ ms.openlocfilehash: 8eaca7d1f942af7b36891f7ee0d9a455283bfc36
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,3 +1,4 @@
+
 # 概觀
 ## [什麼是 DocumentDB？](documentdb-introduction.md)
 ## [核心概念](documentdb-resources.md)
@@ -29,6 +30,7 @@
 ### [資料分割與調整規模](documentdb-partition-data.md)
 ### [一致性](documentdb-consistency-levels.md)
 ### [NoSQL 與 SQL](documentdb-nosql-vs-sql.md)
+### [符合成本效益的讀取和寫入](documentdb-key-value-store-cost.md)
 
 ## 管理
 ### [匯入資料](documentdb-import-data.md)
@@ -40,14 +42,13 @@
 ### [自訂索引](documentdb-indexing-policies.md)
 ### [安全存取資料](documentdb-secure-access-to-data.md)
 ### [備份與還原](documentdb-online-backup-and-restore.md)
-### [效能層級](documentdb-performance-levels.md)
+### [淘汰 S1、 S2、 S3](documentdb-performance-levels.md)
 ### [要求單位](documentdb-request-units.md)
 ### Azure CLI
 #### [建立帳戶](documentdb-automation-resource-manager-cli.md)
 #### [新增或移除區域](documentdb-automation-region-management.md)
 ### [Azure PowerShell](documentdb-manage-account-with-powershell.md)
 ### [防火牆支援](documentdb-firewall-support.md)
-### [加速填滿帳戶](documentdb-supercharge-your-account.md)
 
 ## 開發
 ### [SQL query](documentdb-sql-query.md)
@@ -71,6 +72,7 @@
 ## 使用入口網站
 ### [建立資料庫帳戶](documentdb-create-account.md)
 ### [建立集合](documentdb-create-collection.md)
+### [設定輸送量](documentdb-set-throughput.md)
 ### [新增全域複寫](documentdb-portal-global-replication.md)
 ### [新增和編輯文件](documentdb-view-json-document-explorer.md)
 ### [查詢文件](documentdb-query-collections-query-explorer.md)
@@ -88,9 +90,10 @@
 ### [與 Azure 搜尋服務整合](../search/search-howto-index-documentdb.md)
 ### [使用 Azure Data Factory 移動資料](../data-factory/data-factory-azure-documentdb-connector.md)
 ### [使用 Azure 串流分析來分析即時資料](../stream-analytics/stream-analytics-define-outputs.md#documentdb)
-### [使用 Logic Apps 取得通知](documentdb-change-notification.md)
+### [使用 Logic Apps 取得已變更的 HL7 FHIR 記錄](documentdb-change-feed-hl7-fhir-logic-apps.md)
 ### [即時處理感應器資料](../hdinsight/hdinsight-storm-iot-eventhub-documentdb.md)
 ### [使用 Power BI 將資料視覺化](documentdb-powerbi-visualize.md)
+### [運用 ODBC 驅動程式展現資料視覺效果](documentdb-nosql-odbc-driver.md)
 
 
 # 參考
@@ -123,6 +126,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

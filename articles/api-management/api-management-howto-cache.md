@@ -12,11 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/25/2016
-ms.author: sdanie
+ms.date: 12/15/2016
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c8cdb37fceb7b598c92b7b3cd41655c87c74e639
+ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
+ms.openlocfilehash: d4ba7c276b0ad8539cfbad9b9a6afe193af3a0b8
 
 
 ---
@@ -31,13 +31,13 @@ ms.openlocfilehash: c8cdb37fceb7b598c92b7b3cd41655c87c74e639
 > 
 
 ## <a name="prerequisites"></a>必要條件
-遵循本指南中的步驟之前，您必須擁有已設定 API 和產品的 API 管理服務執行個體。 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][開始使用 Azure API 管理]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+遵循本指南中的步驟之前，您必須擁有已設定 API 和產品的 API 管理服務執行個體。 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 
 ## <a name="configure-caching"> </a>設定要快取的作業
 在此步驟中，您將檢閱範例 Echo API 的 **取得資源 (快取)** 作業的快取設定。
 
 > [!NOTE]
-> 每個「API 管理」服務執行個體皆隨附預先設定的範例 Echo API，可供您試驗與了解「API 管理」。 如需詳細資訊，請參閱[開始使用 Azure API 管理][開始使用 Azure API 管理]。
+> 每個「API 管理」服務執行個體皆隨附預先設定的範例 Echo API，可供您試驗與了解「API 管理」。 如需詳細資訊，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]。
 > 
 > 
 
@@ -80,20 +80,22 @@ ms.openlocfilehash: c8cdb37fceb7b598c92b7b3cd41655c87c74e639
 
 此操作的原則定義中包含一些原則，定義上一個步驟中使用 [快取]  索引標籤所檢閱的快取組態。
 
-    <policies>
-        <inbound>
-            <base />
-            <cache-lookup vary-by-developer="false" vary-by-developer-groups="false">
-                <vary-by-header>Accept</vary-by-header>
-                <vary-by-header>Accept-Charset</vary-by-header>
-            </cache-lookup>
-            <rewrite-uri template="/resource" />
-        </inbound>
-        <outbound>
-            <base />
-            <cache-store caching-mode="cache-on" duration="3600" />
-        </outbound>
-    </policies>
+```xml
+<policies>
+    <inbound>
+        <base />
+        <cache-lookup vary-by-developer="false" vary-by-developer-groups="false">
+            <vary-by-header>Accept</vary-by-header>
+            <vary-by-header>Accept-Charset</vary-by-header>
+        </cache-lookup>
+        <rewrite-uri template="/resource" />
+    </inbound>
+    <outbound>
+        <base />
+        <cache-store caching-mode="cache-on" duration="3600" />
+    </outbound>
+</policies>
+```
 
 > [!NOTE]
 > 在原則編輯器中對快取原則所做的變更，將反映在作業的 [快取] 索引標籤中，反之亦然。
@@ -138,7 +140,7 @@ ms.openlocfilehash: c8cdb37fceb7b598c92b7b3cd41655c87c74e639
 請注意，回應中的 **sampleheader** 值現在是 **value2**。 因為操作結果是依查詢字串來識別，所以不會傳回前一個快取回應。
 
 ## <a name="next-steps"> </a>後續步驟
-* 如需快取原則的詳細資訊，請參閱 [API 管理原則參考][API 管理原則參考]中的[快取原則][快取原則]。
+* 如需快取原則的詳細資訊，請參閱 [API 管理原則參考文件][API Management policy reference]中的[快取原則][Caching policies]。
 * 如需使用原則運算式依索引鍵快取項目的詳細資訊，請參閱 [在 Azure API 管理中自訂快取](api-management-sample-cache-by-key.md)。
 
 [api-management-management-console]: ./media/api-management-howto-cache/api-management-management-console.png
@@ -153,25 +155,25 @@ ms.openlocfilehash: c8cdb37fceb7b598c92b7b3cd41655c87c74e639
 [api-management-console]: ./media/api-management-howto-cache/api-management-console.png
 
 
-[如何將作業加入至 API]: api-management-howto-add-operations.md
-[如何加入和發佈產品]: api-management-howto-add-products.md
-[監視和分析]: api-management-monitoring.md
-[將 API 新增至產品]: api-management-howto-add-products.md#add-apis
-[發佈產品]: api-management-howto-add-products.md#publish-product
-[開始使用 Azure API 管理]: api-management-get-started.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
+[Monitoring and analytics]: api-management-monitoring.md
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Publish a product]: api-management-howto-add-products.md#publish-product
+[Get started with Azure API Management]: api-management-get-started.md
 
-[API 管理原則參考]: https://msdn.microsoft.com/library/azure/dn894081.aspx
-[快取原則]: https://msdn.microsoft.com/library/azure/dn894086.aspx
+[API Management policy reference]: https://msdn.microsoft.com/library/azure/dn894081.aspx
+[Caching policies]: https://msdn.microsoft.com/library/azure/dn894086.aspx
 
-[建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
+[Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[設定要快取的作業]: #configure-caching
-[檢閱快取原則]: #caching-policies
-[呼叫作業和測試快取]: #test-operation
-[後續步驟]: #next-steps
+[Configure an operation for caching]: #configure-caching
+[Review the caching policies]: #caching-policies
+[Call an operation and test the caching]: #test-operation
+[Next steps]: #next-steps
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO3-->
 
 

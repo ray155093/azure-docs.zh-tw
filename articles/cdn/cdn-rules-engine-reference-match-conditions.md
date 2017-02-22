@@ -1,6 +1,6 @@
 ---
-title: "Azure 內容傳遞網路規則引擎比對條件 | Microsoft Docs"
-description: "本主題說明規則引擎的比對條件和功能"
+title: "Azure CDN 規則引擎比對條件 | Microsoft Docs"
+description: "Azure CDN 規則引擎比對條件和功能的參考文件。"
 services: cdn
 documentationcenter: 
 author: Lichard
@@ -12,16 +12,16 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/29/2016
+ms.date: 01/23/2017
 ms.author: rli
 translationtype: Human Translation
-ms.sourcegitcommit: 8a5d98bdc737fd9476b9db42100f58ed28619879
-ms.openlocfilehash: f96e977c777e4ecd007d6cd863054addb465489d
+ms.sourcegitcommit: dccb945e170bd3e3f23283359db25e574a2d4296
+ms.openlocfilehash: f4886b1d78dfa87cf25737fb46c12b5963034f27
 
 
 ---
 
-#<a name="match-conditions-for-azure-content-delivery-network-cdn-rules-engine"></a>Azure 內容傳遞網路 (CDN) 規則引擎的比對條件
+# <a name="azure-cdn-rules-engine-match-conditions"></a>Azure CDN 規則引擎比對條件
 本主題會針對 Azure 內容傳遞網路 (CDN) [規則引擎](cdn-rules-engine.md)列出可用比對條件的詳細說明。
 
 規則的第二個部分是比對條件。 比對條件會識別特定類型的要求，系統將針對這類要求執行一組功能。
@@ -128,6 +128,6 @@ URL 查詢萬用字元 | 根據要求的查詢字串來比較指定的值。
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

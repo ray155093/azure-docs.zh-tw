@@ -3,7 +3,7 @@ title: "如何建立 Azure RemoteApp 的混合式收藏 | Microsoft Docs"
 description: "了解如何建立連接內部網路的 RemoteApp 部署。"
 services: remoteapp
 documentationcenter: 
-author: lizap
+author: msmbaldwin
 manager: mbaldwin
 editor: 
 ms.assetid: 08ea0ce3-3a2c-4ddf-9394-6d75c8030cb1
@@ -12,11 +12,11 @@ ms.workload: compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/15/2016
-ms.author: elizapo
+ms.date: 11/23/2016
+ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 79434166999d4f847f28cf6a05a21f1cd002d75f
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 15430904979108cbebe4a64a8ae07f2f01b82690
 
 
 ---
@@ -51,7 +51,7 @@ Azure RemoteApp 收藏分成兩種：
 * [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。
 * 在 Active Directory 中建立使用者帳戶，做為 Azure RemoteApp 服務的帳戶。 限制此帳戶的權限，使其只能將機器加入網域中。
 * 收集內部部署網路的相關資訊：IP 位址資訊和 VPN 裝置詳細資料。
-* 安裝 [Azure PowerShell](../powershell-install-configure.md) 模組。
+* 安裝 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 模組。
 * 收集您想授與存取權之使用者的相關資訊。 您將需要每個使用者的 Azure Active Directory 使用者主體名稱 (例如，name@contoso.com))。 請確定 UPN 符合 Azure AD 和 Active Directory。
 * 選擇範本映像。 Azure RemoteApp 範本映像包含您要為使用者發佈的應用程式與程式。 如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md) 。
 * 想要使用 Office 365 ProPlus 的映像嗎？ 請在 [這裡](remoteapp-officesubscription.md)查看資訊。
@@ -126,7 +126,7 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
    
    **注意：**
    
-   請確定您使用 “user@domain.com” 格式。
+   請確定您使用 *user@domain.com* 格式。
    
    如果您的收藏中使用 Office 365 ProPlus，您必須為使用者使用 Active Directory 身分識別。 這有助於驗證授權。
 3. 在驗證使用者之後，按一下 [儲存] 。
@@ -140,6 +140,6 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

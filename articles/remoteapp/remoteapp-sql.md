@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: compute
-ms.date: 08/15/2016
-ms.author: elizapo
+ms.date: 11/23/2016
+ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: cfd3da08a8c8674e686ae2933db331809fb0e34d
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 52edc23e0f677567beeb33c47b14f6ea66989890
 
 
 ---
@@ -44,9 +44,9 @@ ms.openlocfilehash: cfd3da08a8c8674e686ae2933db331809fb0e34d
 ## <a name="app-and-sql-configuration-considerations"></a>應用程式和 SQL 組態考量：
 使用 Azure SQL 搭配 RemoteApp 時要考慮下列幾點：
 
-了解 [如何設定 Azure SQL Database 防火牆](../sql-database/sql-database-firewall-configure.md)。 本文的摘要陳述：一開始，防火牆會封鎖對您的 Azure SQL Database 伺服器的所有存取。 若要開始使用 Azure SQL Database 伺服器，您必須移至傳統入口網站並指定一或多個伺服器層級防火牆規則，啟用您的 Azure SQL Database 伺服器的存取。 使用防火牆規則來指定允許網際網路的哪些 IP 位址範圍，以及 Azure 應用程式是否可以嘗試連接到 Azure SQL Database 伺服器。
+了解 [如何設定 Azure SQL Database 防火牆](../sql-database/sql-database-firewall-configure.md)。 本文的摘要陳述：「一開始，防火牆會封鎖對您的 Azure SQL Database 伺服器的所有存取。 若要開始使用 Azure SQL Database 伺服器，您必須移至傳統入口網站並指定一或多個伺服器層級防火牆規則，啟用您的 Azure SQL Database 伺服器的存取。 使用防火牆規則來指定允許網際網路的哪些 IP 位址範圍，以及 Azure 應用程式是否可以嘗試連接到 Azure SQL Database 伺服器。」
 
-此外，當電腦嘗試從網際網路連線到您的資料庫伺服器時，防火牆會根據整組伺服器層級和 (如有必要) 資料庫層級防火牆規則，檢查要求的原始 IP 位址。 「如果要求的 IP 位址在伺服器層級防火牆規則中指定的其中一個範圍內，就會允許連線至您的 Azure SQL Database 伺服器。 」 因此，我們可以使用 IP 範圍，而不只是個別的來源 IP 位址。
+此外，當電腦嘗試從網際網路連線到您的資料庫伺服器時，防火牆會根據整組伺服器層級和 (如有必要) 資料庫層級防火牆規則，檢查要求的原始 IP 位址。 「如果要求的 IP 位址在伺服器層級防火牆規則中指定的其中一個範圍內，就會允許連線至您的 Azure SQL Database 伺服器。」 」 因此，我們可以使用 IP 範圍，而不只是個別的來源 IP 位址。
 
 依照 [如何：使用 Azure 入口網站在 SQL Database 上進行防火牆設定](../sql-database/sql-database-configure-firewall-settings.md) 中的逐步指示執行。 當您設定 SQL 防火牆規則時，請提供針對 Azure RemoteApp 集合指定的子網路 IP 範圍。 這應該可讓 ARA 伺服器 (即使它們將有動態指派的 IP 位址) 連接到 SQL Databse。
 
@@ -60,6 +60,6 @@ ms.openlocfilehash: cfd3da08a8c8674e686ae2933db331809fb0e34d
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

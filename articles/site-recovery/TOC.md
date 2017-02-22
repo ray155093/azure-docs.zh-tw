@@ -7,25 +7,28 @@
 ## [觀看簡介](https://www.youtube.com/watch?v=eOOwMQPBKfM)
 
 # 開始使用
-## [準備部署](site-recovery-best-practices.md)
+## [將 VMware VM 複寫至 Azure](site-recovery-vmware-to-azure.md)
+## [在多租用戶部署 (CSP) 中將 VMware VM 複寫至 Azure](site-recovery-multi-tenant-support-vmware-using-csp.md)
+## [將 Hyper-V VM 複寫至 Azure (使用 VMM)](site-recovery-vmm-to-azure.md)
+## [將 Hyper-V VM 複寫至 Azure](site-recovery-hyper-v-site-to-azure.md)
+## [將 VMware VM 和實體伺服器複寫至次要網站](site-recovery-vmware-to-vmware.md)
+## [將 Hyper-V VM 複寫至次要站台 (使用 VMM)](site-recovery-vmm-to-vmm.md)
 
 # 作法
 ## 規劃
-### [容量規劃](site-recovery-capacity-planner.md)
-### [效能與規模測試結果](site-recovery-performance-and-scaling-testing-on-premises-to-on-premises.md)
+### [部署必要條件](site-recovery-prereq.md)
 ### [網路基礎結構的注意事項](site-recovery-network-design.md)
-### [網路對應 (VMM)](site-recovery-network-mapping.md)
-### [內部部署網站之間的儲存體對應](site-recovery-storage-mapping.md)
-## 複寫
-### [Azure 的 VMware VM 和實體伺服器](site-recovery-vmware-to-azure.md)
-### [次要網站的 VMware VM 和實體伺服器](site-recovery-vmware-to-vmware.md)
-### [使用 CSP 計畫進行 Azure 的 VMware VM 搭配多租用戶支援](site-recovery-multi-tenant-support-vmware-using-csp.md)
-### [Hyper-V VM 至 Azure (具有 VMM)](site-recovery-vmm-to-azure.md)
-### [Hyper-V VM 至 Azure (沒有 VMM)](site-recovery-hyper-v-site-to-azure.md)
-### [Hyper-V VM 至次要站台](site-recovery-vmm-to-vmm.md)
-### [Hyper-V VM 至次要站台 (具有 SAN)](site-recovery-vmm-san.md)
-### [Hyper-V VM (只有單一 VMM 伺服器)](site-recovery-single-vmm.md)
+### [使用 Site Recovery Capacity Planner](site-recovery-capacity-planner.md)
+### [規劃容量並調整 Azure 中的 VMware 複寫](site-recovery-plan-capacity-vmware.md)
+## 設定
+### [設定來源複寫環境](site-recovery-set-up-vmware-to-azure.md)
+### [設定複寫設定](site-recovery-setup-replication-settings-vmware.md)
+### [部署 VMware 複寫的行動服務](site-recovery-vmware-to-azure-install-mob-svc.md)
+#### [使用 System Center Configuration Manager 部署行動服務](site-recovery-install-mobility-service-using-sccm.md)
+#### [使用 Azure 自動化 DSC 部署行動服務](site-recovery-automate-mobility-service-install.md)
+### [移除伺服器並停用保護](site-recovery-manage-registration-and-protection.md)
 ## 移轉
+### [移轉至 Azure](site-recovery-migrate-to-azure.md)
 ### [在不同的 Azure 地區之間移轉](site-recovery-migrate-azure-to-azure.md)
 ### [將 AWS Windows 執行個體移轉到 Azure](site-recovery-migrate-aws-to-azure.md)
 ## 工作負載
@@ -38,14 +41,15 @@
 ### [SAP](site-recovery-workload.md#protect-sap)
 ### [其他工作負載](site-recovery-workload.md#workload-summary)
 ## 將複寫自動化
-### [Hyper-V VM (使用 VMM)](site-recovery-deploy-with-powershell.md)
-### [Hyper-V VMs (沒有 VMM)](site-recovery-deploy-with-powershell-resource-manager.md)
-### [新增自動化至復原計畫](site-recovery-runbook-automation.md)
-### [將行動服務部署自動化](site-recovery-automate-mobility-service-install.md)
-## 管理
-### [移除伺服器並停用保護](site-recovery-manage-registration-and-protection.md)
-### [設定復原計畫](site-recovery-create-recovery-plans.md)
-### [Site Recovery 中的容錯移轉](site-recovery-failover.md)
+### [自動將 Hyper-V 複寫至 Azure (不使用 VMM)](site-recovery-deploy-with-powershell-resource-manager.md)
+### [自動將 Hyper-V 複寫至 Azure (透過 VMM)](site-recovery-vmm-to-azure-powershell-resource-manager.md)
+### [自動將 Hyper-V 複寫至 Azure (透過 VMM)](site-recovery-vmm-to-vmm-powershell-resource-manager.md)
+## 容錯移轉和容錯回復
+### [在 Site Recovery 中進行容錯移轉](site-recovery-failover.md)
+### [設定復原方案](site-recovery-create-recovery-plans.md)
+#### [將 Runbook 新增至復原方案](site-recovery-runbook-automation.md)
+### [執行從 VMware 到 Azure 的測試容錯移轉](site-recovery-test-failover-to-azure.md)
+### [在兩個 VMM 站台間執行測試容錯移轉](site-recovery-test-failover-vmm-to-vmm.md)
 ### [容錯回復 VMware VM 和實體伺服器](site-recovery-failback-azure-to-vmware.md)
 ## [監視及疑難排解](site-recovery-monitoring-and-troubleshooting.md)
 
@@ -65,6 +69,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=site-recovery)
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

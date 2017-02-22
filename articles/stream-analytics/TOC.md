@@ -17,19 +17,22 @@
 
 ## 開發
 ### [常見查詢模式](stream-analytics-stream-analytics-query-patterns.md)
+### [Visual Studio 適用的工具](stream-analytics-tools-for-visual-studio.md)
 ### [建立輸入](stream-analytics-define-inputs.md)
 ### [建立輸出](stream-analytics-define-outputs.md)
 ### [使用參考資料](stream-analytics-use-reference-data.md)
-### [輸出至 Azure Redis 快取](stream-analytics-functions-redis.md)
+### [輸出至 Azure Functions](stream-analytics-functions-redis.md)
 ### [輸出至 Data Lake Store](stream-analytics-data-lake-output.md)
 ### [輸出至 DocumentDB](stream-analytics-documentdb-output.md)
 ### [使用 Power BI 分析資料](stream-analytics-power-bi-dashboard.md)
+### [JavaScript UDF 整合](stream-analytics-javascript-user-defined-functions.md)
 ### [REST API 與 Machine Learning 整合](stream-analytics-how-to-configure-azure-machine-learning-endpoints-in-stream-analytics.md)
 ### [使用 Management .NET SDK](stream-analytics-dotnet-management-sdk.md)
 ### [視窗函式](stream-analytics-window-functions.md)
 
 ## 管理
 ### [監視工作](stream-analytics-monitoring.md)
+### [診斷記錄](stream-analytics-job-diagnostic-logs.md)
 ### [以程式設計方式監視作業](stream-analytics-monitor-jobs.md)
 ### [使用 PowerShell 監視作業](stream-analytics-monitor-and-manage-jobs-use-powershell.md)
 ### [調整規模以增加輸送量](stream-analytics-scale-jobs.md)
@@ -58,6 +61,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=stream-analytics)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/06/2016
+ms.date: 01/04/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6a3437ce502711a56f7201a87c84e8336b7a3e05
+ms.sourcegitcommit: 0b404af5b638ec2d543ce98b562b7df538652f70
+ms.openlocfilehash: 71863e52dca951b1fc3847e1bba47977a6e49c7c
 
 
 ---
@@ -32,7 +32,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 本主題說明如何使用「快速建立」方法建立新的雲端服務，然後使用 [上傳] 來上傳雲端服務封裝並在 Azure 中加以部署。 當您使用這個方法時，Azure 傳統入口網站會在過程中提供便利的連結，讓您完成所有要求。 如果您準備在建立雲端服務時加以部署，可以同時使用 [自訂建立] 進行這兩項作業。
 
 > [!NOTE]
-> 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用 [快速建立]，然後從 [ **快速啟動** ] 或儀表板設定 VSTS 發佈。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 持續傳遞至 Azure][TFSTutorialForCloudService] 或 [快速啟動]頁面的說明。
+> 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用 [快速建立]，然後從 [ **快速啟動** ] 或儀表板設定 VSTS 發佈。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 連續傳遞至 Azure][TFSTutorialForCloudService]，或參閱 [快速入門] 頁面的說明。
 > 
 > 
 
@@ -40,11 +40,11 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 需要三個元件才能部署應用程式成為 Azure 中的雲端服務：
 
 * **服務定義**  
-   雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
+  雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
 * **服務組態**  
-   雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
+  雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
 * **服務封裝**  
-   服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
+  服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
 
 您可以在 [這裡](cloud-services-model-and-package.md)深入了解這些內容，以及如何建立封裝。
 
@@ -131,6 +131,6 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

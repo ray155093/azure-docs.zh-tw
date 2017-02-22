@@ -221,7 +221,7 @@ Web 應用程式與兩個不同的資源相依。 這表示只有在建立 App S
 11. 找到 `location` 和 `isEnabled` 屬性，並如下所示設定它們。 請對其他三個警示 (紫色燈泡) 執行相同的動作。
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-7-alerts.png)
-12. 您現在可以開始進行部署。 以滑鼠右鍵按一下專案，然後選取 [ **部署** > **New 部署ment**。
+12. 您現在可以開始進行部署。 以滑鼠右鍵按一下專案，然後選取  **部署** > **New 部署ment**。
     
     ![](./media/app-service-deploy-complex-application-predictably/deploy-8-newdeployment.png)
 13. 登入 Azure 帳戶 (如果您尚未這樣做)。
@@ -260,7 +260,7 @@ Web 應用程式與兩個不同的資源相依。 這表示只有在建立 App S
 在 DevOps 中，重複性和可預測性是任何成功部署包含微服務之高級別應用程式的關鍵。 在本教學課程中，您已使用 Azure 資源管理員範本將雙微服務應用程式部署至 Azure 以做為單一資源群組。 希望這可讓您了解如何開始將 Azure 中的應用程式轉換成範本，而且可以透過可預測方式進行佈建和部署。 
 
 ## <a name="next-steps"></a>後續步驟
-了解如何[套用敏捷方法，並利用進階部署技術 (例如[正式發佈前小眾測試部署](app-service-web-test-in-production-controlled-test-flight.md)) 持續輕鬆地發佈您的微服務應用程式](app-service-agile-software-development.md)。
+了解如何[套用敏捷方法](app-service-agile-software-development.md)，並利用進階部署技術 [(例如0正式發佈前小眾測試部署) 持續輕鬆地發佈您的微服務應用程式](app-service-web-test-in-production-controlled-test-flight.md)。
 
 <a name="resources"></a>
 
@@ -275,6 +275,6 @@ Web 應用程式與兩個不同的資源相依。 這表示只有在建立 App S
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

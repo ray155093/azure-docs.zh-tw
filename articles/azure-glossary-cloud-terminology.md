@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 08/03/2016
 ms.author: monicar
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: bcfa97c08cb55aba1ab69e67843abb81805a8884
+ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
+ms.openlocfilehash: c4a58abe5018f15a1067e46e47010b963dfd530e
 
 
 ---
@@ -46,8 +46,8 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 [命令列介面](xplat-cli-install.md) ，可用來從 Windows、OSX 和 Linux 電腦管理 Azure 服務。
 
 ### <a name="a-namepowershellaazure-powershell"></a><a name="powershell"></a>Azure PowerShell
-[命令列介面](powershell-install-configure.md) ，可透過命令列從 Windows 電腦管理 Azure 服務。 某些服務或服務功能可以只透過 PowerShell 或 CLI 進行管理。 適用於每個個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。   
-另請參閱 [如何安裝和設定 Azure PowerShell](powershell-install-configure.md)
+[命令列介面](/powershell/azureps-cmdlets-docs) ，可透過命令列從 Windows 電腦管理 Azure 服務。 某些服務或服務功能可以只透過 PowerShell 或 CLI 進行管理。 適用於每個個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。   
+另請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 
 ### <a name="a-namearm-modelaazure-resource-manager-deployment-model"></a><a name="arm-model"></a>Azure Resource Manager 部署模型
 您可以使用兩個 [部署模型](resource-manager-deployment-model.md) 之一來部署 Microsoft Azure 中的資源 (另一個是傳統部署模型)。 您可以將部分 Azure 資源部署於這其中一個模型中，而將其他資源部署於這兩個模型中。 適用於個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。
@@ -147,6 +147,6 @@ Azure 方案一部分的項目。 每個 Azure 服務可讓您部署不同類型
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

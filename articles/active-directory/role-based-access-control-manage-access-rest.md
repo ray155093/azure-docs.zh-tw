@@ -1,5 +1,5 @@
 ---
-title: "使用 REST API 管理角色型存取控制"
+title: "角色型存取控制與 REST | Microsoft Docs"
 description: "使用 REST API 管理角色型存取控制"
 services: active-directory
 documentationcenter: na
@@ -12,21 +12,19 @@ ms.workload: multiple
 ms.tgt_pltfrm: rest-api
 ms.devlang: na
 ms.topic: article
-ms.date: 08/04/2016
+ms.date: 02/06/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d50031941be34d1e543d901747018ba0635be4d8
+ms.sourcegitcommit: 4547a805c1827a703bf0ef118387882e45c3f241
+ms.openlocfilehash: f63381e3349063ba9dd4ceb67d644c1d71d73369
 
 
 ---
-# <a name="managing-role-based-access-control-with-the-rest-api"></a>使用 REST API 管理角色型存取控制
+# <a name="manage-role-based-access-control-with-the-rest-api"></a>使用 REST API 管理角色型存取控制
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
-> 
-> 
 
 Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制」(RBAC) 可協助您精確管理對您訂用帳戶與資源的存取。 透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
@@ -43,13 +41,13 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為您要列出角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. 將 *{api-version}* 取代為 2015-07-01。
 3. 將 *{filter}* 取代為要針對角色指派清單篩選套用的條件：
-   
+
    * 僅列出指定範圍的角色指派，不包括子範圍內的角色指派： `atScope()`    
    * 僅列出特定使用者、群組或應用程式的角色指派： `principalId%20eq%20'{objectId of user, group, or service principal}'`  
    * 僅列出特定使用者的角色指派，包括從群組繼承的角色指派 | `assignedTo('{objectId of user}')`
@@ -93,7 +91,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為您要列出角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
@@ -134,7 +132,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為您要建立角色指派的範圍。 當您在父範圍內建立角色指派時，所有的子範圍會繼承相同的角色指派。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1   
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
@@ -192,7 +190,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為您要建立角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
@@ -233,13 +231,13 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為您要列出角色的範圍。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. 將 *{api-version}* 取代為 2015-07-01。
 3. 將 *{filter}* 取代為要針對角色清單篩選套用的條件：
-   
+
    * 列出在指定的範圍及其任何子範圍內可供指派的角色： `atScopeAndBelow()`
    * 使用確切的顯示名稱來搜尋角色： `roleName%20eq%20'{role-display-name}'`。 使用角色確切顯示名稱的 URL 編碼型式。 例如， `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
 
@@ -316,7 +314,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為您要列出角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
@@ -396,7 +394,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。 下列範例顯示如何指定不同層級的範圍。
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
@@ -442,7 +440,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 | properties.roleName |是 |String |自訂角色的顯示名稱。 大小上限為 128 個字元。 |
 | properties.description |否 |String |自訂角色的說明。 大小上限為 1024 個字元。 |
 | properties.type |是 |String |設定為 "CustomRole"。 |
-| properties.permissions.actions |是 |String[] |動作字串陣列，此陣列指定自訂角色所授權的作業。 |
+| properties.permissions.actions |yes |String[] |動作字串陣列，此陣列指定自訂角色所授權的作業。 |
 | properties.permissions.notActions |否 |String[] |動作字串陣列，此陣列指定要從自訂角色所授權的作業中排除的作業。 |
 | properties.assignableScopes |是 |String[] |範圍陣列，此陣列指定可在其中使用自訂角色的範圍。 |
 
@@ -499,7 +497,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
@@ -602,7 +600,7 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 在 URI 內進行下列替代動作以自訂要求：
 
 1. 將 *{scope}* 取代為您要刪除角色定義的範圍。 下列範例顯示如何指定不同層級的範圍：
-   
+
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
@@ -649,12 +647,12 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 ```
 
+## <a name="next-steps"></a>後續步驟
 
 [!INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

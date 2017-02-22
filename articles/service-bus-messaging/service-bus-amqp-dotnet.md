@@ -1,6 +1,6 @@
 ---
 title: "服務匯流排和 .NET 與 AMQP 1.0 |Microsoft Docs"
-description: "搭配使用 .NET 的服務匯流排與 AMQP"
+description: "搭配使用 .NET 的 Azure 服務匯流排與 AMQP"
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -12,19 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/03/2016
+ms.date: 01/13/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0cf8282d40c60fe9887dcbf43e2a526ffe34cc22
+ms.sourcegitcommit: 220b0f6212268a44226edefa4afc5671306ff295
+ms.openlocfilehash: 9d2ff3ff50aebc3e25f553a86ca13d8a9fe7400c
 
 
 ---
 # <a name="using-service-bus-from-net-with-amqp-10"></a>搭配使用 .NET 的服務匯流排與 AMQP 1.0
-[!INCLUDE [service-bus-selector-amqp](../../includes/service-bus-selector-amqp.md)]
 
 ## <a name="downloading-the-service-bus-sdk"></a>下載服務匯流排 SDK
-服務匯流排 SDK 2.1 版或更新版本提供 AMQP 1.0 支援。 您可以從 [NuGet][NuGet] 下載服務匯流排軟體，以確保您擁有最新版本。
+服務匯流排 SDK 2.1 版或更新版本提供 AMQP 1.0 支援。 您可以從 [NuGet][NuGet] 下載「服務匯流排」軟體，以確保您擁有最新版本。
 
 ## <a name="configuring-net-applications-to-use-amqp-10"></a>設定 .NET 應用程式以使用 AMQP 1.0
 依預設，服務匯流排 .NET 用戶端程式庫能使用專屬的 SOAP 型通訊協定與服務匯流排服務通訊。 若要使用 AMQP 1.0 (而非預設的通訊協定)，您需要明確地設定服務匯流排連接字串，如下節內容所述。 除了這項變更之外，在使用 AMQP 1.0 時，應用程式程式碼會維持不變。
@@ -34,26 +33,28 @@ ms.openlocfilehash: 0cf8282d40c60fe9887dcbf43e2a526ffe34cc22
 ### <a name="configuration-using-appconfig"></a>使用 App.config 進行設定
 讓應用程式使用 App.config 組態檔案來儲存設定是不錯的作法。 對於服務匯流排應用程式，您可以使用 App.config 來儲存服務匯流排 **ConnectionString** 值的設定。 範例 App.config 檔案如下所示：
 
-    <?xml version="1.0" encoding="utf-8" ?>
-    <configuration>
-        <appSettings>
-            <add key="Microsoft.ServiceBus.ConnectionString"
-                 value="Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp" />
-        </appSettings>
-    </configuration>
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <appSettings>
+        <add key="Microsoft.ServiceBus.ConnectionString"
+             value="Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp" />
+    </appSettings>
+</configuration>
+```
 
 `Microsoft.ServiceBus.ConnectionString` 設定的值是用來設定服務匯流排連線的服務匯流排連接字串。 其格式如下所示：
 
-    Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp
+`Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp`
 
-其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 入口網站][Azure 入口網站]取得。 如需詳細資訊，請參閱 [開始使用服務匯流排佇列][開始使用服務匯流排佇列]。
+其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 入口網站][Azure portal]取得。 如需詳細資訊，請參閱[開始使用服務匯流排佇列][Get started with Service Bus queues]。
 
-使用 AMQP 時，在連接字串中附加 `;TransportType=Amqp`。 此標記法會通知用戶端程式庫使用 AMQP 1.0 連線到服務匯流排。
+使用 AMQP 時，在連接字串中附加 `;TransportType=Amqp`。 此標記法會指示用戶端程式庫使用 AMQP 1.0 來連線到「服務匯流排」。
 
 ## <a name="message-serialization"></a>訊息序列化
-使用預設通訊協定時，.NET 用戶端程式庫的預設序列化行為是使用 [DataContractSerializer][DataContractSerializer] 類型來序列化用戶端程式庫與服務匯流排服務之間傳輸的 [BrokeredMessage][BrokeredMessage] 執行個體。 使用 AMQP 傳輸模式時，用戶端程式庫會使用 AMQP 類型系統，將[代理訊息][BrokeredMessage]序列化為 AMQP 訊息。 此序列化作業讓可能在不同平台上執行的接收應用程式 (例如使用 JMS API 來存取服務匯流排的 Java 應用程式) 能夠接收和解譯此訊息。
+使用預設通訊協定時，.NET 用戶端程式庫的預設序列化行為是使用 [DataContractSerializer][DataContractSerializer] 類型將 [BrokeredMessage][BrokeredMessage] 執行個體序列化，以用於用戶端程式庫與「服務匯流排服務」之間的傳輸。 使用 AMQP 傳輸模式時，用戶端程式庫會使用 AMQP 類型系統，將[代理訊息][BrokeredMessage]序列化為 AMQP 訊息。 此序列化作業讓可能在不同平台上執行的接收應用程式 (例如使用 JMS API 來存取服務匯流排的 Java 應用程式) 能夠接收和解譯此訊息。
 
-當您建構 [BrokeredMessage][BrokeredMessage] 執行個體時，您可以提供 .NET 物件做為建構函式的參數，進而做為訊息的本文。 如果是可以對應至 AMQP 基本類型的物件，本文會序列化為 AMQP 資料類型。 如果物件不能直接對應至 AMQP 基本類型 (也就是，應用程式所定義的自訂類型)，則會使用 [DataContractSerializer][DataContractSerializer] 序列化物件，並且在 AMQP 資料訊息中傳送序列化的位元組。
+當您建構 [BrokeredMessage][BrokeredMessage] 執行個體時，您可以提供 .NET 物件作為建構函式的參數，進而做為訊息的本文。 如果是可以對應至 AMQP 基本類型的物件，本文會序列化為 AMQP 資料類型。 如果物件不能直接對應至 AMQP 基本類型 (也就是，應用程式所定義的自訂類型)，就會使用 [DataContractSerializer][DataContractSerializer] 將物件序列化，然後在 AMQP 資料訊息中傳送序列化的位元組。
 
 若要促進與非 .NET 用戶端的互通性，在訊息本文中僅使用可直接序列化為 AMQP 類型的 .NET 類型。 下表詳細說明這些類型及對應的 AMQP 類型系統。
 
@@ -104,12 +105,12 @@ ms.openlocfilehash: 0cf8282d40c60fe9887dcbf43e2a526ffe34cc22
 * 只有最初收到訊息的訊息接收者能夠以鎖定權杖完成訊息。
 
 ## <a name="controlling-amqp-protocol-settings"></a>控制 AMQP 通訊協定設定
-.NET API 會公開數個設定，以控制 AMQP 通訊協定的行為：
+[.NET API](https://docs.microsoft.com/dotnet/api/) 會公開數個可控制 AMQP 通訊協定行為的設定：
 
-* **MessageReceiver.PrefetchCount**：控制已套用至連結的初始信用額度。 預設值為 0。
-* **MessagingFactorySettings.AmqpTransportSettings.MaxFrameSize**︰控制在連線開啟時間交涉期間所提供的 AMQP 框架大小上限。 預設值為 65,536 個位元組。
-* **MessagingFactorySettings.AmqpTransportSettings.BatchFlushInterval**︰如果傳輸可分批進行，這個值會決定用於傳送配置的延遲上限。 預設由傳送者/接收者繼承。 個別的傳送者/接收者可以覆寫預設值 (20 毫秒)。
-* **MessagingFactorySettings.AmqpTransportSettings.UseSslStreamSecurity**︰控制是否透過 SSL 連線建立 AMQP 連線。 預設值為 **true**。
+* **[MessageReceiver.PrefetchCount](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_PrefetchCount)**：控制套用至連結的初始信用額度。 預設值為 0。
+* **[MessagingFactorySettings.AmqpTransportSettings.MaxFrameSize](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_MaxFrameSize)**︰控制在連線開啟時間進行交涉時所提供的 AMQP 框架大小上限。 預設值為 65,536 個位元組。
+* **[MessagingFactorySettings.AmqpTransportSettings.BatchFlushInterval](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_BatchFlushInterval)**︰如果傳輸可分批進行，這個值會決定用於傳送配置的延遲上限。 預設由傳送者/接收者繼承。 個別的傳送者/接收者可以覆寫預設值 (20 毫秒)。
+* **[MessagingFactorySettings.AmqpTransportSettings.UseSslStreamSecurity](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_UseSslStreamSecurity)**︰控制是否透過 SSL 連線建立 AMQP 連線。 預設值為 **true**。
 
 ## <a name="next-steps"></a>後續步驟
 準備好進行深入了解嗎？ 請造訪下列連結：
@@ -118,20 +119,19 @@ ms.openlocfilehash: 0cf8282d40c60fe9887dcbf43e2a526ffe34cc22
 * [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]
 * [Windows Server 服務匯流排中的 AMQP]
 
-[開始使用服務匯流排佇列]: service-bus-dotnet-get-started-with-queues.md
-[DataContractSerializer]: https://msdn.microsoft.com/library/azure/system.runtime.serialization.datacontractserializer.aspx
-[BrokeredMessage]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx
-[Microsoft.ServiceBus.Messaging.MessagingFactory.AcceptMessageSession]: https://msdn.microsoft.com/library/azure/jj657638.aspx
-[Microsoft.ServiceBus.Messaging.MessagingFactory.CreateMessageSender(System.String,System.String)]: https://msdn.microsoft.com/library/azure/jj657703.aspx
-[OperationTimeout]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout.aspx
+[Get started with Service Bus queues]: service-bus-dotnet-get-started-with-queues.md
+[DataContractSerializer]: https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx
+[BrokeredMessage]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage
+[Microsoft.ServiceBus.Messaging.MessagingFactory.AcceptMessageSession]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_AcceptMessageSession
+[OperationTimeout]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactorysettings#Microsoft_ServiceBus_Messaging_MessagingFactorySettings_OperationTimeout
 [NuGet]: http://nuget.org/packages/WindowsAzure.ServiceBus/
-[Azure 入口網站]: https://portal.azure.com
+[Azure portal]: https://portal.azure.com
 [服務匯流排 AMQP 概觀]: service-bus-amqp-overview.md
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

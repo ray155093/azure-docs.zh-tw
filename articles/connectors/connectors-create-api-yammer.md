@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 05/18/2016
 ms.author: deonhe
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 274ddce2bd3586dfba9ee214055accdba52f3ba9
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: c69f7af9f9427eb295481657eaefcdad76b48ccb
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: 274ddce2bd3586dfba9ee214055accdba52f3ba9
 * 在群組或您追蹤的摘要中有新訊息時使用觸發程序。
 * 使用動作來張貼訊息、取得所有訊息等等。 這些動作會收到回應，然後輸出能讓其他動作使用的資料。 舉例來說，當新訊息出現時，您可以利用 Office 365 來傳送電子郵件。
 
-如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="triggers-and-actions"></a>觸發程序及動作
 Yammer 包含下列觸發程序及動作。 
@@ -180,7 +180,7 @@ Yammer 包含下列觸發程序及動作。
 | full_name |string |no |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 [1]: ./media/connectors-create-api-yammer/connectionconfig1.png
 [2]: ./media/connectors-create-api-yammer/connectionconfig2.png 
@@ -190,6 +190,6 @@ Yammer 包含下列觸發程序及動作。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

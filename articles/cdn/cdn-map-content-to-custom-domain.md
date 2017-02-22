@@ -1,9 +1,9 @@
 ---
-title: "如何將 Azure 內容傳遞網路 (CDN) 內容對應至自訂網域 | Microsoft Docs"
-description: "本主題示範如何將 CDN 內容對應至自訂網域。"
+title: "將 Azure CDN 內容對應至自訂網域 | Microsoft Docs"
+description: "了解如何將 Azure CDN 內容對應至自訂網域。"
 services: cdn
 documentationcenter: 
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: 
 ms.assetid: 289f8d9e-8839-4e21-b248-bef320f9dbfc
@@ -12,15 +12,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 567e72805c22c8100ef2d8d97c1e26a77f214ca3
+ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
+ms.openlocfilehash: 36099a7c52508cd5115a527f5ef6e40fbfd6c323
 
 
 ---
-# <a name="how-to-map-custom-domain-to-content-delivery-network-cdn-endpoint"></a>如何將自訂網域對應至內容傳遞網路 (CDN) 端點
+# <a name="map-azure-cdn-content-to-a-custom-domain"></a>將 Azure CDN 內容對應至自訂網域
 您可以將自訂網域對應至 CDN 端點，以在所快取內容的 URL 中使用您自己的網域名稱，而不是使用 azureedge.net 的子網域。
 
 有兩種方式可將您的自訂網域對應至 CDN 端點：
@@ -84,6 +84,6 @@ ms.openlocfilehash: 567e72805c22c8100ef2d8d97c1e26a77f214ca3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

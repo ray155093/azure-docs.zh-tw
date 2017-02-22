@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: compute
-ms.date: 08/15/2016
+ms.date: 11/23/2016
 ms.author: piotrci
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 07cadd332edc4c55d87ca76aabeaba824d1e2673
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 6dcadbfb99d4d111ab9ddde9d74db65b5542a8f5
 
 
 ---
@@ -26,9 +26,9 @@ ms.openlocfilehash: 07cadd332edc4c55d87ca76aabeaba824d1e2673
 > 
 > 
 
-本文說明如何在 Azure RemoteApp 集合中發佈應用程式給個別使用者。 這是 Azure RemoteApp 的新功能，目前還是「私人預覽」狀態，僅提供給選出的早期採用者進行評估。
+本文說明如何在 Azure RemoteApp 集合中發佈應用程式給個別使用者。 這是 Azure RemoteApp 的新功能，目前還是私人預覽狀態，僅提供給選出的早期採用者進行評估。
 
-Azure RemoteApp 最初只啟用一種「發佈」應用程式的方式：系統管理員會從映像發佈應用程式，而且集合中的所有使用者都能看見。
+Azure RemoteApp 最初只啟用一種發佈應用程式的方式：系統管理員會從映像發佈應用程式，而且集合中的所有使用者都能看見。
 
 常見的案例是在單一映像中包含許多應用程式並部署一個集合，以降低管理成本。 但有時候並非所有應用程式都與所有使用者有關，因此系統管理員會想要將應用程式發佈給個別使用者，讓使用者不會在應用程式摘要中看到不必要的應用程式。
 
@@ -36,8 +36,8 @@ Azure RemoteApp 最初只啟用一種「發佈」應用程式的方式：系統�
 
 1. 集合可以設定成兩種模式之一：
    
-   * 原始的「集合模式」，在此模式中，集合內的所有使用者都可以看到所有已發佈的應用程式。 這是預設模式。
-   * 新推出的「應用程式模式」，在此模式中，使用者只能看見明確指派給他們的應用程式。
+   * 原始的集合模式，在此模式中，集合內的所有使用者都可以看到所有已發佈的應用程式。 這是預設模式。
+   * 新推出的應用程式模式，在此模式中，使用者只能看見明確指派給他們的應用程式
 2. 應用程式模式目前只能使用 Azure RemoteApp PowerShell Cmdlet 來啟用。
    
    * 設定為應用程式模式時，將無法透過 Azure 入口網站管理集合中的使用者指派。 您必須透過 PowerShell Cmdlet 管理使用者指派。
@@ -49,7 +49,7 @@ Azure RemoteApp 最初只啟用一種「發佈」應用程式的方式：系統�
 ## <a name="how-to-get-azure-remoteapp-powershell-cmdlets"></a>如何取得 Azure RemoteApp PowerShell Cmdlet
 若要嘗試新的預覽功能，您必須使用 Azure PowerShell Cmdlet。 目前還無法使用 Azure 管理入口網站來啟用新的應用程式發佈模式。
 
-首先請確定您已安裝 [Azure PowerShell 模組](../powershell-install-configure.md) 。
+首先請確定您已安裝 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs) 。
 
 然後以系統管理員模式啟動 PowerShell 主控台，並執行下列 Cmdlet：
 
@@ -106,6 +106,6 @@ AclLevel 屬性的可能值如下：
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

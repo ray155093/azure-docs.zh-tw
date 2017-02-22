@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 01/03/2017
 ms.author: rodend;karlku;tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: adae9827bbdb5f72b9e0fb4a1792fe54b9324706
-ms.openlocfilehash: 95dae0597cf9fc812bb04f070de2175a1ff4f45d
+ms.sourcegitcommit: c75d95ed554a78a02e5469915c21491e65edd8c2
+ms.openlocfilehash: 14ec59087b0aede76a18034f5aa93cb6ecd67a7e
 
 
 ---
@@ -121,7 +121,7 @@ Contoso IT 服務管理部門需要快速識別及處理威脅。 他們也想�
 供應鏈業務單位的業務領導者已找出利用忠誠卡來增加 Contoso 客戶參與的各種機會。 Alice 的小組必須建立此應用程式，並決定 Azure 可提高其滿足商務需求的能力。 Alice 與來自 ETS 組織的 Dave 一起設定兩個可供開發和操作此應用程式的訂用帳戶。
 
 ### <a name="azure-subscriptions"></a>Azure 訂用帳戶
-Dave 登入 Azure 企業入口網站並看到供應鏈部門已經存在。  不過，因為此專案是供應鏈小組在 Azure 中的第一個開發專案，所以 Dave 認為 Alice 的開發小組需要有新帳戶。  他替 Alice 的小組建立「研發」帳戶並將存取權指派給她。 Alice 透過帳戶入口網站登入並建立兩個訂用帳戶︰一個用來保存開發伺服器，一個用來保存生產伺服器。  建立下列訂用帳戶時，她會依循先前建立的命名標準︰
+Dave 登入 Azure 企業入口網站並看到供應鏈部門已經存在。  不過，因為此專案是供應鏈小組在 Azure 中的第一個開發專案，所以 Dave 認為 Alice 的開發小組需要有新帳戶。  他替 Alice 的小組建立「研發」帳戶並將存取權指派給她。 Alice 透過 Azure 入口網站登入並建立兩個訂用帳戶︰一個用來保存開發伺服器，一個用來保存生產伺服器。  建立下列訂用帳戶時，她會依循先前建立的命名標準︰
 
 | 訂用帳戶用途 | 名稱 |
 | --- | --- |
@@ -200,6 +200,6 @@ Contoso IT 服務管理部門需要快速識別及處理威脅。 他們也想�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

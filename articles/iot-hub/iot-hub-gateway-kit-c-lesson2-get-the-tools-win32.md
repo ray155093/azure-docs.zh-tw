@@ -1,5 +1,5 @@
 ---
-title: "準備好您的主機電腦和 Azure IoT 中樞 | Microsoft Docs"
+title: "SensorTag 裝置與 Azure IoT 閘道 - 第 2 課︰取得工具 (Windows) | Microsoft Docs"
 description: "在執行 Windows 的主機電腦上安裝工具和軟體，建立 IoT 中樞，在 IoT 中樞登錄您的裝置。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/07/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 1c4f44787a7200a1c3634b258df32d30152daa90
-ms.openlocfilehash: c2e24522d1485cb8418b5f66ba16ce8c0b9bbca0
+ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
+ms.openlocfilehash: 4a854222be9aaf6733f1c256dd75195927299099
 
 
 ---
@@ -127,6 +127,6 @@ npm install -g gulp
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

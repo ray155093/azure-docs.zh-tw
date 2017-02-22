@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 06/30/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 234ab46713657c7400148210c6029c63afd35e96
+ms.sourcegitcommit: b75f7aa757679a29a42cdfc04799873ee30bab2e
+ms.openlocfilehash: 232446806309148f7958609608d4afc28ffea98d
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 234ab46713657c7400148210c6029c63afd35e96
 在本文中，您將了解：
 
 * 如何使用 Azure Active Directory (Azure AD) 防止未經驗證存取 API 應用程式。
-* 如何使用 Azure AD 服務主體 (應用程式身分識別) 認證，從 API 應用程式、Web 應用程式或行動應用程式取用受保護的 API 應用程式。 如需如何從邏輯應用程式取用的詳細資訊，請參閱 [將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../app-service-logic/app-service-logic-custom-hosted-api.md)。
+* 如何使用 Azure AD 服務主體 (應用程式身分識別) 認證，從 API 應用程式、Web 應用程式或行動應用程式取用受保護的 API 應用程式。 如需如何從邏輯應用程式取用的詳細資訊，請參閱 [將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../logic-apps/logic-apps-custom-hosted-api.md)。
 * 如何確保登入的使用者不能從瀏覽器呼叫受保護的 API 應用程式。
 * 如何確保只能由特定 Azure AD 服務主體呼叫受保護的 API 應用程式。
 
@@ -352,6 +352,6 @@ App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` �
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

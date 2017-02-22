@@ -12,24 +12,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/22/2016
+ms.date: 01/05/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b97cd5d2f9a29d3fa8f13363b937ace276e556ff
+ms.sourcegitcommit: dafaf29b6827a6f1c043af3d6bfe62d480d31ad5
+ms.openlocfilehash: bebfd5e0cc209d8c1fc28d2300c57e3519410954
 
 
 ---
 # <a name="visualize-your-cluster-with-service-fabric-explorer"></a>使用 Service Fabric 總管視覺化叢集
 Service Fabric 總管是一個 Web 型工具，可檢查和管理 Azure Service Fabric 叢集中的應用程式與節點。 Service Fabric 總管直接裝載於叢集內，因此不論您的叢集在何處執行，它都一律可供使用。
 
+## <a name="video-tutorial"></a>影片教學課程
+
+若要了解如何使用 Service Fabric Explorer，請觀賞下列 Microsoft Virtual Academy 影片︰
+
+[<center><img src="./media/service-fabric-visualizing-your-cluster/SfxVideo.png" WIDTH="360" HEIGHT="244"></center>](https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=bBTFg46yC_9806218965)
+
 ## <a name="connect-to-service-fabric-explorer"></a>連線到 Service Fabric 總管
 如果您已依照[準備開發環境](service-fabric-get-started.md)的指示操作，可以瀏覽至 http://localhost:19080/Explorer，啟動您本機叢集上的 [Service Fabric 總管]。
 
 > [!NOTE]
 > 如果您使用 Internet Explorer 搭配 Service Fabric 總管來管理遠端叢集，則需要設定一些 Internet Explorer 設定。 若要確保所有資訊都會正確載入，請移至 [工具]  >  [相容性檢視設定]，然後取消核取 [在相容性檢視下顯示內部網路網站]。
-> 
-> 
+>
+>
 
 ## <a name="understand-the-service-fabric-explorer-layout"></a>了解 Service Fabric 總管配置
 您可以使用左邊的樹狀目錄來瀏覽 Service Fabric 總管。 在樹狀目錄的根目錄，叢集儀表板會提供您叢集的概觀，包括應用程式和節點健康情況的摘要。
@@ -60,14 +66,14 @@ Service Fabric 叢集中的節點會橫跨容錯網域和升級網域的二維�
 ## <a name="actions"></a>動作
 「Service Fabric 總管」提供一個對您叢集內的節點、應用程式及服務快速叫用動作的方式。
 
-例如，若要刪除某個應用程式執行個體，只要從左邊的樹狀目錄選擇該應用程式，然後選擇 [動作] **動作** > 來啟動您本機叢集上的「Service Fabric 總管」。
+例如，若要刪除某個應用程式執行個體，請從左邊的樹狀目錄選擇該應用程式，然後選擇 [動作] > [刪除應用程式]。
 
 ![在 Service Fabric 總管中刪除應用程式][sfx-delete-application]
 
 > [!TIP]
 > 您可以按下每個元素旁邊的省略符號來執行相同動作。
-> 
-> 
+>
+>
 
 下表列出每個實體的可用動作：
 
@@ -81,37 +87,38 @@ Service Fabric 叢集中的節點會橫跨容錯網域和升級網域的二維�
 | 停用 (重新啟動) |安全地移除所有記憶體內部服務，並關閉持續性服務。 通常會在主機處理或電腦必須重新啟動時使用。 | |
 | 停用 (移除資料) |在建置足夠的備援複本之後，安全地關閉節點上執行的所有服務。 通常於節點 (或至少其儲存體) 永久性地移除委任時使用。 | |
 | 移除節點狀態 |從叢集移除節點複本的知識。 通常在已失敗的節點被視為無法回復時使用。 | |
+| 節點 | 重新啟動 | 藉由重新啟動節點，模擬節點失敗。 如需詳細資訊，請參閱[這裡](https://docs.microsoft.com/en-us/powershell/servicefabric/vlatest/Restart-ServiceFabricNode)。 ||
 
 由於許多動作都具有破壞性，因此在完成動作之前，系統可能會要求您確認您的意圖。
 
 > [!TIP]
 > 可以透過 Service Fabric 總管執行的每個動作也都可以透過 PowerShell 或 REST API 執行，以實現自動化。
-> 
-> 
+>
+>
 
-您也可以使用 Service Fabric Explorer，針對指定的應用程式類型與版本建立新的應用程式執行個體。 在樹狀檢視中選擇應用程式類型，然後在右邊窗格中按一下您想要的版本旁邊的 [建立應用程式執行個體]  連結。
+您也可以使用 Service Fabric Explorer，為指定的應用程式類型和版本建立應用程式執行個體。 在樹狀檢視中選擇應用程式類型，然後在右邊窗格中按一下您想要的版本旁邊的 [建立應用程式執行個體]  連結。
 
 ![在 Service Fabric Explorer 中建立應用程式執行個體][sfx-create-app-instance]
 
 > [!NOTE]
 > 透過 Service Fabric Explorer 建立的應用程式執行個體目前無法參數化。 會使用預設參數值來建立它們。
-> 
-> 
+>
+>
 
 ## <a name="connect-to-a-remote-service-fabric-cluster"></a>連線至遠端 Service Fabric 叢集
-由於「Service Fabric 總管」是 Web 型工具並且是在叢集內執行，因此只要您知道叢集的端點且有足夠的存取權限，便可以從任何瀏覽器存取它。
+如果您知道叢集的端點並有足夠的權限，您就可以從任何瀏覽器存取 Service Fabric Explorer。 這是因為 Service Fabric Explorer 只是另一個在叢集中執行的服務。
 
 ### <a name="discover-the-service-fabric-explorer-endpoint-for-a-remote-cluster"></a>探索遠端叢集的 Service Fabric 總管端點
-若要連線到指定之叢集的「Service Fabric 總管」，只需要將您的瀏覽器指向：
+若要連線到所指定叢集的 Service Fabric Explorer，請將您的瀏覽器指向：
 
 http://&lt;your-cluster-endpoint&gt;:19080/Explorer
 
-Azure 入口網站的叢集基本資訊窗格中也會提供完整 URL。
+在 Azure 入口網站的叢集基本資訊窗格中，也有提供 Azure 叢集的完整 URL。
 
 ### <a name="connect-to-a-secure-cluster"></a>連線到安全的叢集
 您可以為使用憑證或使用 Azure Active Directory (AAD) 來控制用戶端對您 Service Fabric 叢集的存取。
 
-如果您嘗試連線到安全叢集上的 Service Fabric Explorer，將必須出示用戶端憑證或使用 AAD 登入，需視叢集的組態而定。
+如果您嘗試連線到安全叢集上的 Service Fabric Explorer，則視叢集的組態而定，您將必須出示用戶端憑證或使用 AAD 來登入。
 
 ## <a name="next-steps"></a>後續步驟
 * [Testability 概觀](service-fabric-testability-overview.md)
@@ -128,6 +135,6 @@ Azure 入口網站的叢集基本資訊窗格中也會提供完整 URL。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

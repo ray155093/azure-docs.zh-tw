@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure IoT 閘道器入門套件 | Microsoft Docs"
+title: "SensorTag 裝置與 Azure IoT 閘道 - 開始使用 | Microsoft Docs"
 description: "開始使用 IoT 閘道器入門套件、建立 Azure IoT 中樞，以及將 SensorTag 和閘道器連接到 IoT 中樞"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/21/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: ab8f4f7bbb823cc56783a0cb39bb22157c74087f
-ms.openlocfilehash: fb45ef6239827ea2860b707b2bb5016ea680ad17
+ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
+ms.openlocfilehash: dd14d137c23fbccb3616b60db8a63e668ae7ea80
 
 
 ---
@@ -109,6 +109,6 @@ ms.openlocfilehash: fb45ef6239827ea2860b707b2bb5016ea680ad17
 若要深入了解，請瀏覽 [Intel IoT 閘道器套件開發人員區域](http://software.intel.com/iot/microsoft-azure)。
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

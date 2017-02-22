@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 12/16/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: c7e5bf29aacbcb11bfa1db01738d234ae64b46b2
-ms.openlocfilehash: 141586d880e6a8f069ec26b3279d9787c5e046b4
+ms.sourcegitcommit: a9ebbbdc431a34553de04e920efbbc8c2496ce5f
+ms.openlocfilehash: dd5ce9de46d4089d285268125f2b63f1117d48c7
 
 
 ---
@@ -42,138 +42,148 @@ ms.openlocfilehash: 141586d880e6a8f069ec26b3279d9787c5e046b4
 
 但首先，我們需要更精簡這項實驗。 目前我們在實驗中有兩個不同的模型，但將實驗部署為 Web 服務時，我們只要一個模型。  
 
-假設我們已判斷出推進式樹狀模型是較適合使用的模型。 因此，首要之務是移除[二元支援向量機器][two-class-support-vector-machine]模組，以及用於訓練該模組的其他模組。 您可能需要按一下實驗畫布底部的 [ **另存新檔** ]，先建立一份實驗複本。
+假設我們已判斷出促進式樹狀模型比 SVM 模型更適合。 因此，首要之務是移除[二元支援向量機器][two-class-support-vector-machine]模組，以及用於訓練該模組的其他模組。 您可能需要按一下實驗畫布底部的 [ **另存新檔** ]，先建立一份實驗複本。
 
 我們必須刪除下列模組：  
 
 * [二元支援向量機器][two-class-support-vector-machine]
-* 連接到它的[訓練模型][train-model]和[評分模型][score-model]模組
+* [訓練模型][train-model]和與之連接的[評分模型][score-model]模組
 * [標準化資料][normalize-data] (兩者)
-* [評估模型][evaluate-model]
+* [評估模型][evaluate-model] (因為我們已完成模型的評估)
 
-選取模組然後按 Delete 鍵，或用右鍵按一下模組並選取 [刪除]。
+選取每個模組然後按 Delete 鍵，或用右鍵按一下模組並選取 [刪除]。
 
-現在我們已經準備好使用[二元推進式決策樹][two-class-boosted-decision-tree]部署此模型。
+現在我們已經準備好使用[二元促進式決策樹][two-class-boosted-decision-tree]來部署此模型。
 
 ## <a name="convert-the-training-experiment-to-a-predictive-experiment"></a>將訓練實驗轉換為預測實驗
+
 轉換成預測實驗的作業包含三個步驟：
 
 1. 儲存已定型的模型，並取代我們的定型模組
 2. 精簡實驗，移除只有定型才需要的模組
 3. 定義 Web 服務接受輸入的位置和產生輸出的位置
 
-幸好上述三個步驟只要按一下實驗畫布底端的 [設定 Web 服務] (選取 [預測性 Web 服務] 選項)，即可完成。
+我們可以手動作業，幸好上述三個步驟只要按一下實驗畫布底端的 [設定 Web 服務] (然後選取 [預測性 Web 服務] 選項)，即可完成。
+
+> [!TIP]
+> 如需將訓練實驗轉換成預測實驗的詳細說明，請參閱[將 Machine Learning 訓練實驗轉換成預測實驗](machine-learning-convert-training-experiment-to-scoring-experiment.md)。
 
 當您按一下 [設定 Web 服務] 時會發生幾件事：
 
-* 定型的模型會另存為實驗畫布左側模組選擇區中的單一**定型模型**模組 (您可以在 [定型模型] 下找到這個模組)。
-* 用於定型的模組會遭到移除。 具體而言：
-  * [二元推進式決策樹][two-class-boosted-decision-tree]
-  * [訓練模型][train-model]
-  * [分割資料][split]
+* 定型的模型會轉換為單一**定型模型**模組，並存放在實驗畫布左側的模組選擇區中 (您可以在 [定型模型] 下找到這個模組)
+* 用於定型的模組已遭到移除，尤其是：
+  * [二元促進式決策樹][two-class-boosted-decision-tree]
+  * [定型模型][train-model]
+  * [資料分割][split]
   * 用於測試資料的第二個[執行 R 指令碼][execute-r-script]模組
-* 儲存的定型模型會加回實驗中。
-* 將會新增 **Web 服務輸入**和 **Web 服務輸出**模組。
+* 儲存的定型模型會加回實驗中
+* 會新增 **Web 服務輸入**和 **Web 服務輸出**模組 (這些可用來辨識使用者的資料將在何處輸入模型中、傳回什麼資料、在何時存取 Web 服務)
 
 > [!NOTE]
-> 實驗已儲存在已新增實驗畫布頂端之索引標籤下的兩個部分：原始的訓練實驗位於 [訓練實驗] 索引標籤底下，新建立的預測實驗位於 [預測實驗] 底下。
-> 
-> 
+> 您可以看到，實驗已儲存在已新增至實驗畫布頂端之索引標籤下的兩個部分。 原始的訓練實驗位於 [訓練實驗] 索引標籤底下，新建立的預測實驗位於 [預測實驗] 底下。 我們將預測實驗部署為 Web 服務。
 
 我們需要對這項特別的實驗採取一個額外步驟。
-我們新增了兩個[執行 R 指令碼][execute-r-script]模組來提供加權函式以進行訓練和測試。 在最終模型中不需這麼做。
+我們新增了兩個[執行 R 指令碼][execute-r-script]模組來替資料提供加權函式。 這只是我們為了訓練和測試所用的技巧，因此我們可以從最終模型中拿掉這些模組。
 
-Machine Learning Studio 已在移除[分割][split]模組時移除[執行 R 指令碼][execute-r-script]模組。 現在我們可以移除另一個模組，並直接將[中繼資料編輯器][metadata-editor]連接至[評分模型][score-model]。    
+Machine Learning Studio 已在移除[分割][split]模組時移除一個[執行 R 指令碼][execute-r-script]模組。 現在我們可以移除另一個模組，並直接將[中繼資料編輯器][metadata-editor]連接至[評分模型][score-model]。    
 
 實驗現在看起來如下：  
 
 ![Scoring the trained model][4]  
 
 > [!NOTE]
-> 您可能驚訝我們為什麼要在預測實驗中留下「UCI 德國信用卡資料」資料集。 服務即將使用使用者的資料，而不是原始資料集，所以為何要讓原始資料集留在模型中？
+> 您可能驚訝我們為什麼要在預測實驗中留下「UCI 德國信用卡資料」資料集。 服務即將評分使用者的資料，而不是原始資料集，所以為何要讓原始資料集留在模型中？
 > 
 > 服務的確不需要原始信用卡資料。 但卻需要該資料的結構描述，例如，有多少個資料行及哪些資料行是數值等資訊。 需要此結構描述資訊才能解譯使用者的資料。 我們保持連接這些元件，以便服務執行時，評分模型才會有資料集結構描述。 不會使用資料，只是使用結構描述。  
 > 
 > 
 
-最後一次執行實驗 (按一下 [執行])。如果要驗證模型仍然有效，請按一下[評分模型][score-model]模組的輸出，並選取 [檢視結果]。 您會看到原始資料出現，也會看到信用風險值 ("Scored Labels") 和評分機率值 ("Scored Probabilities")。 
+最後一次執行實驗 (按一下 [執行])。如果要確認模型仍然有效，請按一下 [評分模型][][score-model]模組的輸出結果，並選取 [檢視結果]。 您會看到原始資料出現，也會看到信用風險值 ("Scored Labels") 和評分機率值 ("Scored Probabilities")。 
 
 ## <a name="deploy-the-web-service"></a>部署 Web 服務
-您可以根據 Azure Resource Manager 將實驗部署為傳統 Web 服務或新式 Web 服務。
+您可以將實驗部署為傳統 Web 服務或架構在 Azure Resource Manager 上的新式 Web 服務。
 
 ### <a name="deploy-as-a-classic-web-service"></a>部署為傳統 Web 服務
 若要部署衍生自實驗的傳統 Web 服務，請按一下畫布下方的 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]]。 Machine Learning Studio 會將實驗部署為 Web 服務，並帶您前往該 Web 服務的儀表板。 您可以從此處返回實驗 ([檢視快照] 或 [檢視最新])，並執行簡單的 Web 服務測試 (請參閱下面的**測試 Web 服務**)。 這裡還有建立應用程式以存取 Web 服務的資訊 (此逐步說明的下一個步驟提供這方面的詳細資料)。
 
 ![Web 服務儀表板][6]
 
-您可以按一下 [設定]  索引標籤來設定服務。 您可以在這裡修改服務名稱 (預設會指定實驗名稱) 並輸入描述。 您也可以為輸入和輸出資料行指定更好記的標籤。  
+您可以按一下 [設定]  索引標籤來設定服務。 您可以在這裡修改服務名稱 (預設會指定實驗名稱) 並輸入描述。 您也可以為輸入和輸出資料指定更好記的標籤。  
 
 ![設定 Web 服務][5]  
 
 ### <a name="deploy-as-a-new-web-service"></a>部署為新式 Web 服務
-若要部署衍生自實驗的新式 Web 服務，請按一下畫布下方的 [部署 Web 服務]，然後按一下 [部署 Web 服務 [新式]]。 Machine Learning Studio 會帶您到 Azure Machine Learning Web 服務的 [部署實驗] 頁面。
+若要將實驗衍生部署為新式 Web 服務：
 
-輸入 Web 服務的名稱，然後選取定價方案。 如果您有現有的定價方案，可以進行選取，否則您必須為服務建立新的定價方案。 
+1. 按一下畫布底下的 [部署 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 Machine Learning Studio 會帶您到 Azure Machine Learning Web 服務的 [部署實驗] 頁面。
 
-1. 在 [價格方案] 下拉式清單中，選取現有的方案或選取 [選取新的方案] 選項。
-2. 在 [方案名稱] 中，輸入在帳單上識別方案的名稱。
-3. 選取其中一個 [每月方案層] 。 方案層預設為您預設區域的方案，而您的 Web 服務會部署到該區域。
+2. 輸入 Web 服務的名稱。 
 
-按一下 [部署]，Web 服務的 [快速入門] 頁面就會開啟。
+3. 在 [價格方案]，您可以選取現有的定價方案，或選取 [建立新的] 並指定新的方案的名稱，然後選取每月方案選項。 方案層預設為您預設區域的方案，而您的 Web 服務會部署到該區域。
 
-您可以按一下 [設定]  功能表選項來設定服務。 您可以在這裡修改服務名稱 (預設會指定實驗名稱) 並輸入描述。 
+4. 按一下 [ **部署**]。
 
-若要測試 Web 服務，請按一下 [測試] 功能表選項 (請參閱下面的**測試 Web 服務**)。 如需建立應用程式以存取 Web 服務的資訊，請按一下 [取用]  功能表選項 (此逐步說明的下一個步驟提供這方面的詳細資料)。
+幾分鐘後，Web 服務的 [快速入門] 頁面就會開啟。
+
+您可以按一下 [設定] 索引標籤來設定服務。 您可以在這裡修改服務標題並輸入描述。 
+
+若要測試 Web 服務，按一下 [測試] 索引標籤 (請參閱下面的**測試 Web 服務**)。 如需建立應用程式以存取 Web 服務的資訊，請按一下 [取用] 索引標籤 (本逐步說明的下一個步驟提供這方面的詳細資料)。
 
 > [!TIP]
-> 您可以在部署 Web 服務之後進行更新。 例如，如果想要變更模型，請編輯訓練實驗、調整模型參數，然後按一下 [部署 Web 服務]。 然後選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新式]]。 重新部署實驗時，將會取代 Web 服務 (現在使用的是已更新的模型)。  
+> 您可以在部署 Web 服務之後進行更新。 例如，如果想要變更模型，則可以編輯訓練實驗、調整模型參數，然後按一下 [部署 Web 服務]，選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新式]]。 重新部署實驗時，將會取代 Web 服務 (現在使用的是已更新的模型)。  
 > 
 > 
 
 ## <a name="test-the-web-service"></a>測試 Web 服務
+
+存取 Web 服務時，使用者的資料會透過 **Web 服務輸入**模組傳入，再透過它傳遞給 [評分模型][][score-model] 模組進行評分。 基於我們設定預測實驗的方式，模型預期會得到與原始信用風險資料集相同格式的資料。
+
+接著會透過 **Web 服務輸出**模組將結果從 Web 服務傳回給使用者。
+
+> [!TIP]
+> 基於我們設定預測實驗的方式，會傳回[評分模型][score-model]模組的整個結果。 這包括所有輸入的資料以及信用風險值和評分機率。 如果您想傳回其他內容，例如只要信用風險值，那麼您可以在 [評分模型][][score-model]和 [Web 服務輸出] 之間插入 [專案資料行][][project-columns] 模組，來排除不想讓 Web 服務傳回的資料行。 
+> 
+> 
+
 ### <a name="test-a-classic-web-service"></a>測試傳統 Web 服務
-您可以在 Machine Learning Studio 或 Azure Machine Learning Web 服務入口網站中測試服務。 在 Azure Machine Learning Web 服務入口網站中測試的好處是可讓您啟用 
+
+您可以在 Machine Learning Studio 或 Azure Machine Learning Web 服務入口網站中測試 Web 服務。 在 Azure Machine Learning Web 服務入口網站中測試的好處是可讓您啟用 
 
 **在 Machine Learning Studio 中測試**
 
-在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 按鈕。 即會顯示對話方塊，要求您提供服務的輸入資料。 這些就是在原始的德國信用風險資料集中出現的資料行。  
+1. 在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 按鈕。 對話方塊隨即顯示，要求您提供服務的輸入資料。 這些就是在原始的信用風險資料集中出現的資料行。  
 
-輸入一組資料，然後按一下 [確定] 。 
+2. 輸入一組資料，然後按一下 [確定] 。 
 
 **在 Azure Machine Learning Web 服務入口網站中測試**
 
-在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 預覽連結。 Azure Machine Learning Web 服務入口網站中的 Web 服務端點測試頁面隨即開啟，並要求您提供服務的輸入資料。 這些就是在原始的德國信用風險資料集中出現的資料行。
+1. 在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 預覽連結。 Azure Machine Learning Web 服務入口網站中的 Web 服務端點測試頁面隨即開啟，並要求您提供服務的輸入資料。 這些就是在原始的信用風險資料集中出現的資料行。
 
-按一下 [測試要求-回應]。 
+2. 按一下 [測試要求-回應]。 
 
-在 Web 服務中，資料經過 **Web 服務輸入**模組，再經過[中繼資料編輯器][metadata-editor]模組，最後進入到[評分模型][score-model]模組來計分。 接著會透過 **Web 服務輸出**從 Web 服務輸出結果。
+### <a name="test-a-new-web-service"></a>測試新的 Web 服務
 
-**測試新式 Web 服務**
+1. 在 Azure Machine Learning Web 服務入口網站中，按一下頁面頂端的 [測試]。 [測試] 頁面會開啟，您可以輸入服務的資料。 顯示的輸入欄位會對應到在原始的信用風險資料集中出現的資料行。 
 
-在 Azure Machine Learning Web 服務入口網站中，按一下頁面頂端的 [測試]。 [測試] 頁面會開啟，您可以輸入服務的資料。 顯示的輸入欄位會對應到在原始的德國信用風險資料集中出現的資料行。 
-
-輸入一組資料，然後按一下 [測試要求-回應] 。
+2. 輸入一組資料，然後按一下 [測試要求-回應] 。
 
 測試的結果將會顯示在頁面右手邊的輸出資料行。 
 
-在 Azure Machine Learning Web 服務入口網站中測試時，您可以啟用範例資料以用於測試要求-回應服務。 如果您是在 Machine Learning Studio 中建立 Web 服務，範例資料會取自您用來訓練模型的資料。
-
 > [!TIP]
-> 根據我們設定預測實驗的方式，將會傳回[評分模型][score-model]模組的整個結果。 這包括所有輸入的資料以及信用風險值和評分機率。 如果您想傳回不一樣的結果 (例如只要信用風險值)，您可以在[評分模型][score-model]和 **Web 服務輸出**之間插入[專案資料行][project-columns]模組，以排除不想讓 Web 服務傳回的資料行。 
-> 
-> 
+> 在 Azure Machine Learning Web 服務入口網站中測試時，您可以用入口網站建立範例資料以用於測試要求-回應服務。 在 [設定] 頁面上，[啟用範例資料嗎?] 選取 [是]。 當您開啟 [測試] 頁面上的 [要求-回應] 索引標籤，入口網站將會填入取自原始信用風險資料集中的範例資料。
 
 ## <a name="manage-the-web-service"></a>管理 Web 服務
-**管理傳統 Web 服務**
+
+### <a name="manage-a-classic-web-service-in-the-azure-classic-portal"></a>在 Azure 傳統入口網站中管理傳統 Web 服務
 
 一旦部署傳統 Web 服務之後，您就可以從 [Azure 傳統入口網站](https://manage.windowsazure.com)管理它。
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 在 Microsoft Azure 服務面板中，按一下 [機器學習] 。
-3. 按一下您的工作區。
-4. 按一下 [Web 服務] 索引標籤。
-5. 按一下我們建立的 Web 服務。
-6. 按一下 [預設] 端點。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)
+2. 在 Microsoft Azure 服務面板中，按一下 [Machine Learning]
+3. 按一下您的工作區
+4. 按一下 [Web 服務] 索引標籤
+5. 按一下我們建立的 Web 服務
+6. 按一下「預設」端點
 
 從這裡您可以進行一些動作，例如監視 Web 服務的執行狀況，以及變更服務可處理的同時呼叫數目來調整效能。
 
@@ -182,16 +192,16 @@ Machine Learning Studio 已在移除[分割][split]模組時移除[執行 R 指�
 * [建立端點](machine-learning-create-endpoint.md)
 * [調整 Web 服務](machine-learning-scaling-webservice.md)
 
-**在 Azure Machine Learning Web 服務入口網站管理 Web 服務**
+### <a name="manage-a-web-service-in-the-azure-machine-learning-web-services-portal"></a>在 Azure Machine Learning Web 服務入口網站中管理 Web 服務
 
-一旦部署 Web 服務 (傳統或新型) 之後，您就可以從 [Azure Machine Learning Web Services 入口網站](https://servics.azureml.net)管理它。
+一旦部署 Web 服務 (傳統或新式) 之後，您就可以從 [Azure Machine Learning Web Services 入口網站](https://services.azureml.net)管理它。
 
 監視 Web 服務的效能：
 
-1. 登入 [Azure Machine Learning Web 服務入口網站](https://servics.azureml.net)。
-2. 按一下 [Web 服務]。
-3. 按一下您的 Web 服務。
-4. 按一下 [儀表板] 。
+1. 登入 [Azure Machine Learning Web 服務入口網站](https://servics.azureml.net)
+2. 按一下 [Web 服務]
+3. 按一下您的 Web 服務
+4. 按一下 [儀表板]
 
 - - -
 **下一步：[存取 Web 服務](machine-learning-walkthrough-6-access-web-service.md)**
@@ -218,6 +228,6 @@ Machine Learning Studio 已在移除[分割][split]模組時移除[執行 R 指�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO3-->
 
 

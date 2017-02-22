@@ -1,5 +1,5 @@
 ---
-title: "使用 Datadog 監視 Azure Container Service 叢集 | Microsoft Docs"
+title: "監視 Azure DC/OS 叢集 - Datadog | Microsoft Docs"
 description: "使用 Datadog 監視 Azure 容器服務叢集。 使用 DC/OS Web UI 將 Datadog 代理程式部署至您的叢集。"
 services: container-service
 documentationcenter: 
@@ -17,12 +17,12 @@ ms.workload: infrastructure
 ms.date: 07/28/2016
 ms.author: saudas
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: eeb257e00f89948c9623ac05303d46209454a615
+ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
+ms.openlocfilehash: 8dfd53346b6198bf5ecab4b4b73bfed93fa46b18
 
 
 ---
-# <a name="monitor-an-azure-container-service-cluster-with-datadog"></a>使用 Datadog 監視 Azure 容器服務叢集
+# <a name="monitor-an-azure-container-service-dcos-cluster-with-datadog"></a>使用 Datadog 監視 Azure Container Service DC/OS 叢集
 本文中，我們會將 Datadog 代理程式部署到 Azure 容器服務叢集中的所有代理程式節點。 您將需要 Datadog 帳戶以進行這項設定。 
 
 ## <a name="prerequisites"></a>必要條件
@@ -40,7 +40,7 @@ Datadog 是一項監視服務，會從 Azure 容器服務叢集內的容器收�
 
 ![DC/OS Universe 內的 Datadog 封裝](./media/container-service-monitoring/datadog1.png)
 
-現在，若要完成設定，您將需要 Datadog 帳戶或免費試用帳戶。 登入 Datadog 網站後請看左邊，然後移至 [整合] -> [API]。 
+現在，若要完成設定，您將需要 Datadog 帳戶或免費試用帳戶。 登入 Datadog 網站後請看左邊，然後移至 [整合] -> [API](https://app.datadoghq.com/account/settings#api)。 
 
 ![Datadog API 金鑰](./media/container-service-monitoring/datadog2.png)
 
@@ -48,11 +48,11 @@ Datadog 是一項監視服務，會從 Azure 容器服務叢集內的容器收�
 
 ![DC/OS Universe 中的 Datadog 設定](./media/container-service-monitoring/datadog3.png) 
 
-在上面的設定中，執行個體會設為 10000000，因此每當有新節點新增至叢集時，Datadog 就會自動將代理程式部署到該新節點。 這是過渡解決方案。 一旦您安裝了封裝，請瀏覽回到 Datadog 網站並尋找「儀表板」。 從該處，您會看到自訂和整合儀表板。 Docker 整合儀表板會擁有為了監視叢集所需的所有容器度量。 
+在上面的設定中，執行個體會設為 10000000，因此每當有新節點新增至叢集時，Datadog 就會自動將代理程式部署到該新節點。 這是過渡解決方案。 一旦您安裝了封裝，請瀏覽回到 Datadog 網站並尋找「[儀表板](https://app.datadoghq.com/dash/list)」。 從該處，您會看到自訂和整合儀表板。 [Docker 儀表板](https://app.datadoghq.com/screen/integration/docker)會擁有為了監視叢集所需的所有容器計量。 
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

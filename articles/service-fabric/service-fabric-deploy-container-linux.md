@@ -13,10 +13,10 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 10/24/2016
-ms.author: msfussell
+ms.author: mfussell
 translationtype: Human Translation
-ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
-ms.openlocfilehash: 9c45513f7d2987a83026adab39257d298292b7a5
+ms.sourcegitcommit: f31c8ab3d2b4fd871c92ac0e7d04bc8d5ab86830
+ms.openlocfilehash: 963ca79f83d9ae4b3c5a0e5da6c5fb7985e9ca77
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 9c45513f7d2987a83026adab39257d298292b7a5
 
 本文將引導您在 Linux 上的 Docker 容器中建置容器化服務。
 
-Service Fabric 有數個容器功能可協助您建置由容器化微服務組成的應用程式。 這些稱為容器化服務。
+Service Fabric 有數個容器功能可協助您建置由容器化微服務組成的應用程式。 這些服務稱為容器化服務。
 
 功能包括：
 
@@ -49,7 +49,7 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
 1. 在終端機中，輸入 **yo azuresfguest**。
 2. 針對架構選擇 [容器]。
 3. 為應用程式命名，例如 SimpleContainerApp
-4. 從 DockerHub 儲存機制提供容器映像的 URL。 其格式為 [儲存機制]/[映像名稱]
+4. 從 DockerHub 儲存機制提供容器映像的 URL。 映像參數的格式為 [儲存機制]/[映像名稱]
 
 ![容器的 Service Fabric Yeoman 產生器][sf-yeoman]
 
@@ -74,6 +74,14 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
     ./uninstall.sh
     ```
 
+## <a name="adding-more-services-to-an-existing-application"></a>將更多服務新增至現有的應用程式
+
+若要將其他容器服務新增至已使用 `yo` 建立的應用程式，請執行下列步驟︰ 
+1. 將目錄變更為現有應用程式的根目錄。  例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
+2. 執行 `yo azuresfguest:AddService`
+
+
+
 ## <a name="next-steps"></a>後續步驟
 * [Service Fabric 和容器的概觀](service-fabric-containers-overview.md)
 * [使用 Azure CLI 與 Service Fabric 叢集互動](service-fabric-azure-cli.md)
@@ -83,6 +91,6 @@ Service Fabric 應用程式可以包含一或多個容器，而每個容器在�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

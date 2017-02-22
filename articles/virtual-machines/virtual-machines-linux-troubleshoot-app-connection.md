@@ -1,5 +1,5 @@
 ---
-title: "針對 Linux VM 應用程式存取問題進行疑難排解 | Microsoft Docs"
+title: "在 Azure 中針對 Linux VM 應用程式存取問題進行疑難排解 | Microsoft Docs"
 description: "使用這些詳細的疑難排解步驟，將連線至在 Azure 中 Linux 虛擬機器上執行之應用程式時發生的問題隔離。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: support-article
-ms.date: 09/27/2016
+ms.date: 12/20/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f14da3010c1f5b76b4015f785911ff996ece9376
+ms.sourcegitcommit: 8835427415e8e01e851796eaf323bce7d1918c8c
+ms.openlocfilehash: 4c1c71f2ba30a8e61cd5a2aff8e7ffea49357785
 
 
 ---
@@ -28,6 +28,6 @@ ms.openlocfilehash: f14da3010c1f5b76b4015f785911ff996ece9376
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO3-->
 
 

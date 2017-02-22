@@ -1,6 +1,6 @@
 ---
-title: "處理 SQL Azure 的資料 | Microsoft Docs"
-description: "處理 SQL Azure 的資料"
+title: "在 Azure 上瀏覽 SQL Server 虛擬機器中的資料 | Microsoft Docs"
+description: "在 Azure 上的 SQL Server 虛擬機器中瀏覽資料和產生功能"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2016
+ms.date: 01/23/2017
 ms.author: fashah;garye;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 4ebd5dc2da50db93061e92660c97dcca3866c713
-ms.openlocfilehash: 3e565090d751344a8ad3efd6ebdc3f26d5ee55ec
+ms.sourcegitcommit: 0813611f581a68efb8f09a1e041cfbe429bf0c5c
+ms.openlocfilehash: 16fabb29bdc8ec770efd843e18e9016e338a8f4e
 
 
 ---
@@ -150,6 +150,6 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/) 提供一組豐富�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

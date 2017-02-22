@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 02/09/2017
 ms.author: milanga;juliako;
 translationtype: Human Translation
-ms.sourcegitcommit: 48a4cdf7d50e765ee42cb44d12d1dafd49c13795
-ms.openlocfilehash: 3147eba8bd31d3d05bd990571a986316d6f5093f
+ms.sourcegitcommit: adaf2a71e022d6d29493ab0a679bd593ea40195e
+ms.openlocfilehash: acb3b4d4a14ea546e94ccc38806251460e21a6bc
 
 
 ---
@@ -72,7 +72,7 @@ ms.openlocfilehash: 3147eba8bd31d3d05bd990571a986316d6f5093f
 臉部偵測器使用分散 (中繼資料可以分解為以時間為基礎的區塊，讓您可以只下載需要的部分) 及分割 (可以在事件過於龐大的情況下對事件進行分解) 的技術。 某些簡單的計算可以協助您轉換資料。 例如，如果事件是從 6300 (刻度) 開始，並擁有 2997 (刻度/每秒) 的時幅，以及 29.97 (畫面/每秒) 的畫面播放速率，則：
 
 * 開始/時幅 = 2.1 秒
-* 秒數 x (畫面播放速率/時幅) = 63 個畫面
+* 秒數 x 畫面播放速率 = 63 格畫面
 
 ## <a name="face-detection-input-and-output-example"></a>臉部偵測輸入和輸出範例
 ### <a name="input-video"></a>輸入影片
@@ -81,7 +81,18 @@ ms.openlocfilehash: 3147eba8bd31d3d05bd990571a986316d6f5093f
 ### <a name="task-configuration-preset"></a>工作設定 (預設)
 以 **Azure 媒體臉部偵測器**建立工作時，您必須指定設定預設值。 下列設定預設值僅適用於臉部偵測。
 
-    {"version":"1.0"}
+    {
+      "version":"1.0"
+      "options":{
+          "TrackingMode": "Faster"
+      }
+    }
+
+#### <a name="attribute-descriptions"></a>屬性描述
+| 屬性名稱 | 說明 |
+| --- | --- |
+| 模式 |Faster：較快的處理速度，但較不精確 (預設)。 <br/>Quality：較佳的精確度追蹤，但花費時間較長。 |
+
 
 ### <a name="json-output"></a>JSON 輸出
 下列為 JSON 輸出受到截斷的範例。
@@ -153,17 +164,17 @@ ms.openlocfilehash: 3147eba8bd31d3d05bd990571a986316d6f5093f
 #### <a name="attribute-descriptions"></a>屬性描述
 | 屬性名稱 | 說明 |
 | --- | --- |
-| 模式 |臉部：僅臉部偵測  <br/>AggregateEmotion：傳回該畫面中所有臉部的平均情緒值。 |
+| 模式 |Faces：僅臉部偵測。<br/>PerFaceEmotion：將每個臉部偵測的情緒單獨傳回。<br/>AggregateEmotion：傳回該畫面中所有臉部的平均情緒值。 |
 | AggregateEmotionWindowMs |在已選取 AggregateEmotion 模式時使用。 指定要用來產生每個彙總結果之影片的長度，以毫秒為單位。 |
 | AggregateEmotionIntervalMs |在已選取 AggregateEmotion 模式時使用。 指定產生彙總結果的頻率。 |
 
 #### <a name="aggregate-defaults"></a>彙總預設值
 以下為彙總窗口和間隔設定的建議值。 AggregateEmotionWindowMs 應該超過 AggregateEmotionIntervalMs。
 
-| 預設 | 最大 | 最小 |
-| --- | --- | --- | --- |
-| AggregateEmotionWindowMs |0.5 |2 |
-| AggregateEmotionIntervalMs |0.5 |1 |
+|| 預設 | 最小 | 最大 |
+|--- | --- | --- | --- |
+| AggregateEmotionWindowMs |0.5 |2 |0.25|
+| AggregateEmotionIntervalMs |0.5 |1 |0.25|
 
 ### <a name="json-output"></a>JSON 輸出
 彙總情緒的 JSON 輸出 (已截斷)：
@@ -330,7 +341,7 @@ ms.openlocfilehash: 3147eba8bd31d3d05bd990571a986316d6f5093f
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
-2. 根據包含下列 JSON 預設值的設定檔案，建立執行臉部偵測工作的工作。 
+2. 根據包含下列 JSON 預設值的組態檔，建立帶有臉部偵測工作的作業。 
    
         {
             "version": "1.0"
@@ -514,6 +525,6 @@ ms.openlocfilehash: 3147eba8bd31d3d05bd990571a986316d6f5093f
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 08/04/2016
 ms.author: navale;tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 4f541e34e7c0696e4074613c4ab0734a096c6d12
-ms.openlocfilehash: 68bec71fd23367a05b405edf9196b28d04fca1e6
+ms.sourcegitcommit: 40687046c832ca39e460f1d7f55f7c188b6242b3
+ms.openlocfilehash: 0479a970e2c3b8abaa9305de37a79e2b4128932e
 
 
 ---
@@ -146,7 +146,7 @@ azure group deployment create -f azuredeploy.json -g ExampleResourceGroup -n Exa
 後續步驟將會新增部署本教學課程開頭所述架構所需的全部資源。 您會在您一直使用的相同範本中新增這些資源。
 
 ## <a name="availability-set"></a>可用性設定組
-在儲存體帳戶的定義之後，加入虛擬機器的可用性設定組。 在此情況下，不需要其他屬性，因此其定義相當簡單。 如果您想要定義更新網域計數和容錯網域計數值，請參閱 [可供建立可用性設定組的 REST API](https://msdn.microsoft.com/library/azure/mt163607.aspx) 中的完整 properties 區段。
+在儲存體帳戶的定義之後，新增虛擬機器的可用性設定組。 在此情況下，不需要其他屬性，因此其定義相當簡單。 如果您想要定義更新網域計數和容錯網域計數值，請參閱 [可供建立可用性設定組的 REST API](https://msdn.microsoft.com/library/azure/mt163607.aspx) 中的完整 properties 區段。
 
 ```json
 {
@@ -592,6 +592,6 @@ VM 的建立取決於儲存體帳戶、網路介面和可用性設定組。 如 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

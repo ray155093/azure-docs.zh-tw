@@ -1,5 +1,5 @@
 ---
-title: "如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務"
+title: "使用用戶端憑證驗證保護後端服務 - Azure API 管理 | Microsoft Docs"
 description: "了解如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務。"
 services: api-management
 documentationcenter: 
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: de47ff52eac40c4b4c57eef89763b71fd525ffa4
-
+ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
+ms.openlocfilehash: 2ebe71c96fd9076a48f689041634dbd23d3d8414
 
 ---
 # <a name="how-to-secure-back-end-services-using-client-certificate-authentication-in-azure-api-management"></a>如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務
@@ -156,6 +155,6 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。 �
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

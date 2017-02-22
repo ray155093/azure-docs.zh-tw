@@ -15,8 +15,8 @@ ms.workload: integration
 ms.date: 11/16/2016
 ms.author: juliako;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: 52ae631ad516767682122b0b5c05efb19e462209
-ms.openlocfilehash: a8be2c34358c817ca35ccfe46c97409a57ed539a
+ms.sourcegitcommit: b0bbde6828ed556eef8063a56a35b325fee1865c
+ms.openlocfilehash: 4ba7d6c43a5e0893366669e7511d8e1cfe149b81
 
 
 ---
@@ -82,8 +82,8 @@ Azure SDK 2.9 在此版本中沒有重大變更。 在現有的雲端服務專�
 ## <a name="hdinsight-tools"></a>HDInsight 工具
 **HDInsight Tools** for Visual Studio 現在支援 HDInsight 3.3 版，包括顯示 Tez 圖形和其他語言修正。
 
-## <a name="azure-resource-manager"></a>Azure 資源管理員
-本版新增對於 ARM 範本的 [金鑰保存庫](../resource-manager-keyvault-parameter.md) 支援。
+## <a name="azure-resource-manager"></a>Azure Resource Manager
+此版本為 Resource Manager 範本新增[金鑰保存庫](../azure-resource-manager/resource-manager-keyvault-parameter.md)支援。
 
 ## <a name="see-also"></a>另請參閱
 [Azure SDK 2.9 公告文章](https://azure.microsoft.com/blog/announcing-visual-studio-azure-tools-and-sdk-2-9/)
@@ -91,6 +91,6 @@ Azure SDK 2.9 在此版本中沒有重大變更。 在現有的雲端服務專�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

@@ -1,23 +1,22 @@
 ---
 title: "Azure Governmenmt 網路 | Microsoft Docs"
 description: "這會提供與 Azure Government 之私人連線的功能比較和指引"
-services: Azure-Government
+services: azure-government
 cloud: gov
 documentationcenter: 
-author: ryansoc
+author: jawalte
 manager: zakramer
-editor: 
 ms.assetid: 3da70579-ecda-421a-8ebf-d52906334e9b
-ms.service: multiple
+ms.service: azure-government
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: azure-government
-ms.date: 09/28/2016
-ms.author: ryansoc
+ms.date: 01/24/2017
+ms.author: jawalte
 translationtype: Human Translation
-ms.sourcegitcommit: 14aa9126d3426c560c1f9497ed0d7a92448137b4
-ms.openlocfilehash: 39e67d449c0fa37b76354dc522216f9473df7b97
+ms.sourcegitcommit: 8288ca2e85ec0cd1a1b53862b2d60fcb88e7be4b
+ms.openlocfilehash: c6b8c27299c1bfceb045ee7d82981654f3a446d8
 
 
 ---
@@ -54,12 +53,59 @@ Azure ExpressRoute 可用來在 Azure Government 資料中心之間、內部部�
 
 所有使用私人連線架構的客戶都應該驗證是否已針對客戶與 Azure Government 之閘道網路/網際網路 (GN/I) 邊緣路由器分界點的連線建立並維護適當實作。 同樣地，您的組織必須在內部部署環境與 Azure Government 的閘道網路/客戶 (GN/C) 邊緣路由器分界點之間建立網路連線。
 
+## <a name="support-for-bgp-communities"></a>BGP 社群支援
+本節提供 BGP 社群如何搭配 AzureGov 中的 ExpressRoute 使用的概觀。 Microsoft 將會公告公用和 Microsoft 對等互連路徑中的路由並為路由標記適當的社群值。 這麼做的基本原理和社群值的詳細資料如下所述。 不過，Microsoft 不接受任何標記至向 Microsoft 公告之路由的社群值。
+
+如果您要在 AzureGov 區域內的任何一個對等互連位置透過 ExpressRoute 連接到 Microsoft，您必須能夠存取 Azure Government 界限內所有區域中的所有 Microsoft 雲端服務。 
+
+例如，如果您連線到 Microsoft 在華盛頓特區 透過 ExpressRoute 連線將可讓您存取 AzureGov 中託管的所有 Microsoft 雲端服務。
+
+如需位置和合作夥伴的詳細資訊，以及 AzureGov 對等互連位置的 ExpressRoute 詳細清單，請參閱 [ExpressRoute 公用文件](../expressroute/index.md)上的 [概觀] 索引標籤。
+
+您可以購買多個 ExpressRoute 迴路。 如果擁有多個連線，您即可因為異地備援而有明顯的高可用性優勢。 具有多個 ExpressRoute 循環的情況下，您會從 Microsoft 收到同一組有關公用對等互連和 Microsoft 對等互連路徑的前置詞。 這表示您將會有多個路徑可從您的網路連到 Microsoft。 這可能會導致在您的網路中做出次佳的路由決策。 因此，您可能會遇到次佳的不同服務連線體驗。 
+
+Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microsoft 對等互連公告的前置詞，表示前置詞裝載於的區域。 您可以依賴社群值來做出適當的路由決策，以提供最佳路由給客戶。  如需其他詳細資訊，請參閱 [ExpressRoute 公用文件](../expressroute/index.md)上的 [入門] 索引標籤，並按一下 [最佳化路由]。
+
+| **國家雲端 Azure 區域**| **BGP 社群值** |
+| --- | --- |
+| **美國政府** |  |
+| 美國政府愛荷華州 | 12076:51109 |
+| 美國政府維吉尼亞州 | 12076:51105 |
+
+所有 Microsoft 公告的路由會都加上適當的社群值。 
+
+除了上述各項，Microsoft 也將根據其所屬的服務加上標記及前置詞。 這只適用於 Microsoft 對等互連。 下表提供服務與 BGP 社群值的對應。
+
+| **國家雲端中的服務** | **BGP 社群值** |
+| --- | --- |
+| **美國政府** |  |
+| Exchange Online |12076:5110 |
+| SharePoint Online |12076:5120 |
+| 商務用 Skype Online |12076:5130 |
+| CRM Online |12076:5140 |
+| 其他 Office 365 Online 服務 |12076:5200 |
+
+> [!NOTE]
+> Microsoft 不接受任何您在向 Microsoft 通告的路由上設定的 BGP 社群值。
+
+## <a name="support-for-load-balancer"></a>支援負載平衡器
+負載平衡器已在 Azure Government 中正式推出。 如需詳細資訊，請參閱[負載平衡器公開文件](../load-balancer/load-balancer-overview.md)。 
+
+## <a name="support-for-traffic-manger"></a>支援流量管理員
+流量管理員已在 Azure Government 中正式推出。 如需詳細資訊，請參閱[流量管理員公開文件](../traffic-manager/traffic-manager-overview.md)。 
+
+## <a name="support-for-vnet-peering"></a>支援 VNet 對等互連 
+VNet 對等互連已在 Azure Government 中正式推出。 如需詳細資訊，請參閱 [VNet 對等互連公開文件](../virtual-network/virtual-network-peering-overview.md)。 
+
+## <a name="support-for-vpn-gateway"></a>支援 VPN 閘道 
+VPN 閘道已在 Azure Government 中正式推出。 如需詳細資訊，請參閱 [VPN 閘道公開文件](../vpn-gateway/vpn-gateway-about-vpngateways.md)。 
+
 ## <a name="next-steps"></a>後續步驟
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。 </a>
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

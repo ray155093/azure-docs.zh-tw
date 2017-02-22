@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: f6e7cf0e9e2055df5f8a9fcf9ea49330a91be656
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: add307420b9e16a60b0e57b0ba08188b2509978e
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: f6e7cf0e9e2055df5f8a9fcf9ea49330a91be656
 * 根據您從 Microsoft Translator 所取得的資料，來建置您的商務流程。 
 * 使用動作來翻譯文字、偵測語言種類等等。 這些動作會收到回應，然後輸出能讓其他動作使用的資料。 舉例來說，當 Dropbox 中有新檔案建立時，您可以利用 Microsoft Translator 把該檔案中的文字翻譯成另一種語言。
 
-如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="triggers-and-actions"></a>觸發程序及動作
 Microsoft Translator 包含下列動作， 但不包含觸發程序。
@@ -125,7 +125,7 @@ Microsoft Translator 包含下列動作， 但不包含觸發程序。
 | 名稱 |字串 |no |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 返回 [API 清單](apis-list.md)。
 
@@ -135,6 +135,6 @@ Microsoft Translator 包含下列動作， 但不包含觸發程序。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

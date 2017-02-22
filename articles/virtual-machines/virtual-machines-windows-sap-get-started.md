@@ -1,5 +1,5 @@
 ---
-title: "開始使用 SAP 解決方案 | Microsoft Docs"
+title: "在 Azure 中的 Windows VM 上開始使用 SAP | Microsoft Docs"
 description: "了解在 Microsoft Azure 中的虛擬機器 (VM) 上執行的 SAP 解決方案"
 services: virtual-machines-windows
 documentationcenter: 
@@ -17,8 +17,8 @@ ms.workload: infrastructure-services
 ms.date: 12/08/2016
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: 407b189af12116d633ed505facf4bcfde9be5822
-ms.openlocfilehash: 89f5605b23626e426ddc59900c60c29f6d6c1c14
+ms.sourcegitcommit: 746ed119239d5a0a71a0663e81d9c5b259354419
+ms.openlocfilehash: 581ddd7ac3d612007614ca4f582364dfa16d30f6
 
 
 ---
@@ -393,6 +393,6 @@ Microsoft Azure 已獲認證可用於下列 SAP 產品，因此具備 Microsoft 
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

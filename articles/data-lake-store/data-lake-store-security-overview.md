@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/02/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a664cd0a2a10be17cd57f7ace418ea0dc92f70d0
+ms.sourcegitcommit: 59f072c7a8272fc04e1d662c0ab17e7ee4500fa6
+ms.openlocfilehash: 59bff7e1f7bdfc1786c4ee47ab2a652e2df85289
 
 
 ---
@@ -48,7 +48,7 @@ ms.openlocfilehash: a664cd0a2a10be17cd57f7ace418ea0dc92f70d0
 ### <a name="rbac-for-account-management"></a>用於帳戶管理的 RBAC
 預設會為 Data Lake Store 定義四種基本角色。 這些角色允許透過 Azure 入口網站、PowerShell Cmdlet 和 REST API，在 Data Lake Store 帳戶上執行不同的作業。 [擁有者] 和 [參與者] 角色可在帳戶上執行各種管理功能。 您可以對只會與資料互動的使用者指派讀取者角色。
 
-![RBAC 角色](./media/data-lake-store-security-overview/rbac-roles.png "RBAC roles")
+![RBAC 角色](./media/data-lake-store-security-overview/rbac-roles.png "RBAC 角色")
 
 請注意，雖然指派角色是為了管理帳戶，但某些角色會影響資料的存取權。 您必須使用 ACL 來控制使用者可在檔案系統上執行之作業的存取權。 下表顯示預設角色的管理權限和資料存取權限摘要。
 
@@ -67,17 +67,17 @@ Data Lake Store 是 Hadoop 分散式檔案系統 (HDFS) 之類的階層式檔案
 
 建議您使用 [安全性群組](../active-directory/active-directory-accessmanagement-manage-groups.md)為多個使用者定義 ACL。 將使用者新增到安全性群組，然後將檔案或資料夾的 ACL 指派給該安全性群組。 當您想要提供自訂存取時這會非常有用，因為您被限制最多只能新增九個自訂存取項目。 如需如何使用 Azure Active Directory 安全性群組更加妥善地保護 Data Lake Store 中所儲存之資料的詳細資訊，請參閱 [將使用者或安全性群組以 ACL 形式指派給 Azure Data Lake Store 檔案系統](data-lake-store-secure-data.md#filepermissions)。
 
-![列出標準和自訂存取](./media/data-lake-store-security-overview/adl.acl.2.png "List standard and custom access")
+![列出標準和自訂存取](./media/data-lake-store-security-overview/adl.acl.2.png "列出標準和自訂的存取")
 
 ## <a name="network-isolation"></a>網路隔離
 使用 Data Lake Store 以協助在網路層級控制資料存放區的存取。 您可以建立防火牆，並且為受信任的用戶端定義 IP 位址範圍。 使用 IP 位址範圍時，只有具有定義範圍內 IP 位址的用戶端可以連線到 Data Lake Store。
 
-![防火牆設定和 IP 存取](./media/data-lake-store-security-overview/firewall-ip-access.png "Firewall settings and IP address")
+![防火牆設定和 IP 存取](./media/data-lake-store-security-overview/firewall-ip-access.png "防火牆設定和 IP 位址")
 
 ## <a name="data-protection"></a>資料保護
 Azure Data Lake Store 在資料的生命週期中保護您的資料。 對於傳輸中的資料，Data Lake Store 會使用業界標準的傳輸層安全性 (TLS) 通訊協定來保護網路上的資料。
 
-![Data Lake Store 中的加密](./media/data-lake-store-security-overview/adls-encryption.png "Encryption in Data Lake Store")
+![Data Lake Store 中的加密](./media/data-lake-store-security-overview/adls-encryption.png "Data Lake Store 中的加密")
 
 Data Lake Store 也會為帳戶中儲存的資料提供加密功能。 您可以選擇將資料加密，或選擇不使用加密。 如果您選擇進行加密，Data Lake Store 中儲存的資料會在儲存在持續性媒體之前進行加密。 在這種情況下，Data Lake Store 會在保存之前自動加密資料，並在擷取之前解密資料，因此它對存取資料的用戶端來說是完全透明的。 用戶端不需進行任何程式碼變更，即可加密/解密資料。
 
@@ -94,12 +94,12 @@ Data Lake Store 也會為帳戶中儲存的資料提供加密功能。 您可以
 
 如需帳戶管理稽核線索，請檢視並選擇您想要記錄的資料行。 您也可以將稽核記錄檔匯出至 Azure 儲存體。
 
-![稽核記錄檔](./media/data-lake-store-security-overview/audit-logs.png "Audit logs")
+![稽核記錄檔](./media/data-lake-store-security-overview/audit-logs.png "稽核記錄檔")
 
 ### <a name="diagnostic-logs"></a>診斷記錄檔
 您可以在 Azure 入口網站 (於診斷設定中) 設定資料存取稽核線索，並建立用來存放記錄檔的 Azure Blob 儲存體帳戶。
 
-![診斷記錄檔](./media/data-lake-store-security-overview/diagnostic-logs.png "Diagnostic logs")
+![診斷記錄檔](./media/data-lake-store-security-overview/diagnostic-logs.png "診斷記錄檔")
 
 在設定診斷設定之後，您可以在 [診斷記錄檔]  索引標籤上檢視記錄檔。
 
@@ -118,6 +118,6 @@ Data Lake Store 也會為帳戶中儲存的資料提供加密功能。 您可以
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

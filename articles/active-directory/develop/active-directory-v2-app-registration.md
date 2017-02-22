@@ -1,5 +1,5 @@
 ---
-title: "v2.0 應用程式註冊 |Microsoft Docs"
+title: "使用入口網站向 Azure AD v2.0 端點註冊應用程式 | Microsoft Docs"
 description: "如何向 Microsoft 註冊 app，以使用 v2.0 端點啟用登入及存取 Microsoft 服務"
 services: active-directory
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: 0ca01c2ef66706502e19e5e30f878a509356c94c
+ms.sourcegitcommit: ba958d029e5bf1bc914a2dff4b6c09282d578c67
+ms.openlocfilehash: 4a71d02d37e55ae08035632c323283438b3f66c6
 
 
 ---
@@ -58,6 +58,6 @@ ms.openlocfilehash: 0ca01c2ef66706502e19e5e30f878a509356c94c
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

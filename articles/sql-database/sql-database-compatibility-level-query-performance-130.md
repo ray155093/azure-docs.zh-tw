@@ -1,6 +1,6 @@
 ---
-title: "如何評估相容性層級 | Microsoft Docs"
-description: "步驟和工具，可供判斷哪個相容性層級最適合您在 Azure SQL Database 或 Microsoft SQL Server 上的資料庫"
+title: "資料庫相容性層級 130 - Azure SQL Database | Microsoft Docs"
+description: "在本文中，我們會探索以相容性層級 130 執行 Azure SQL Databse 的優點，並善用新查詢最佳化工具和查詢處理器功能的優點。 我們也會解決對現有 SQL 應用程式的查詢效能可能造成的副作用。"
 services: sql-database
 documentationcenter: 
 author: alainlissoir
@@ -16,15 +16,17 @@ ms.topic: article
 ms.date: 08/08/2016
 ms.author: alainl
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b778a822e49acbbae4bc9e109b673c10ccc01ae2
+ms.sourcegitcommit: 1df9f3549db8417445a5a012d31ed662977a9990
+ms.openlocfilehash: 3ad25fe844c75941303034ca1037fdb99a5c679b
 
 
 ---
 # <a name="improved-query-performance-with-compatibility-level-130-in-azure-sql-database"></a>改善 Azure SQL Database 中相容性層級 130 的查詢效能
 Azure SQL Database 會在許多不同的相容性層級上以透明方式執行數十萬個資料庫，對其所有客戶保留並保證對應 Microsoft SQL Server 版本的回溯相容性！
 
-因此，任何事物均無法阻止將任何現有資料庫更改為最新相容性層級的客戶，從新的查詢最佳化工具和查詢處理器功能獲益。 當作歷程記錄的提醒，預設相容性層級的 SQL 版本比對如下︰
+在本文中，我們會探索以相容性層級 130 執行 Azure SQL Databse 的優點，並善用新查詢最佳化工具和查詢處理器功能的優點。 我們也會解決對現有 SQL 應用程式的查詢效能可能造成的副作用。
+
+當作歷程記錄的提醒，預設相容性層級的 SQL 版本比對如下︰
 
 * 100：在 SQL Server 2008 和 Azure SQL Database V11 中。
 * 110：在 SQL Server 2012 和 Azure SQL Database V11 中。
@@ -34,11 +36,8 @@ Azure SQL Database 會在許多不同的相容性層級上以透明方式執行�
 > [!IMPORTANT]
 > 從 **2016 年 6 月中旬**開始，在 Azure SQL Database 中，**新建**資料庫的預設相容性層級會是 130 (而不是 120)。
 > 
-> 在 2016 年 6 月中旬前建立的資料庫將「不」  受影響，而且會維持其目前的相容性層級 (100、110 或 120)。 從 Azure SQL Database V12 升級至 V11 的資料庫不會變更其相容性層級。
+> 在 2016 年 6 月中旬前建立的資料庫將「不」  受影響，而且會維持其目前的相容性層級 (100、110 或 120)。 從 Azure SQL Database V11 版移轉到 V12 版的資料庫，其相容性層級會是 100 或 110。 
 > 
-> 
-
-在這篇文章中，我們會探討相容性層級 130 的優點，以及如何運用這些優點。 我們會解決對現有 SQL 應用程式的查詢效能可能造成的副作用。
 
 ## <a name="about-compatibility-level-130"></a>關於相容性層級 130
 首先，如果想要知道資料庫目前的相容性層級，請執行下列 Transact-SQL 陳述式。
@@ -63,7 +62,7 @@ SELECT compatibility_level
   * 具有資料行存放區索引的資料表現在會以批次模式排序。
   * 時間範圍彙總現在以批次模式運作，例如 TSQL LAG/LEAD 陳述式。
   * 具有多個不同子句的資料行存放區資料表會以批次模式進行查詢。
-  * 在 DOP = 1 之下執行或具有序列計劃的查詢也會以批次模式執行。
+  * 在 DOP =&1; 之下執行或具有序列計劃的查詢也會以批次模式執行。
 * 最後，基數估計改進實際上隨著相容性層級 120 出現，但如何您是在較低的相容性層級 (也就是 100 或 110) 執行，移到相容性層級 130 也會帶來這些改進，而這些改進也有益於您應用程式的查詢效能。
 
 ## <a name="practicing-compatibility-level-130"></a>演練相容性層級 130
@@ -462,6 +461,6 @@ genemi = MightyPen , 2016-05-20  Friday  17:00pm
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

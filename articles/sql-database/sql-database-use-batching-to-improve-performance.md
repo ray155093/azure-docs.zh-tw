@@ -16,8 +16,8 @@ ms.workload: data-management
 ms.date: 07/12/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a4310e365148e94a7d9b61df354e7328863f8662
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: 28c847137bda93886a2ae80151e3834f149a4858
 
 
 ---
@@ -236,7 +236,7 @@ SQL 大量複製是另一種將大量資料插入至目標資料庫的方式。 
 > 
 > 
 
-批次較小時，使用資料表值參數的效能勝過 **SqlBulkCopy** 類別。 不過，在測試 1,000 和 10,000 個資料列時， **SqlBulkCopy** 的執行速度比資料表值參數快 12-31%。 就像資料表值參數一樣， **SqlBulkCopy** 是批次插入的理想選擇，尤其與非批次作業的效能相比較。
+批次較小時，使用資料表值參數的效能勝過 **SqlBulkCopy** 類別。 不過，在測試 1,000 和 10,000 個資料列時，**SqlBulkCopy** 的執行速度比資料表值參數快 12-31%。 就像資料表值參數一樣， **SqlBulkCopy** 是批次插入的理想選擇，尤其與非批次作業的效能相比較。
 
 如需 ADO.NET 中的大量複製的詳細資訊，請參閱 [SQL Server 中的大量複製作業](https://msdn.microsoft.com/library/7ek5da1a.aspx)。
 
@@ -283,7 +283,7 @@ SQL 大量複製是另一種將大量資料插入至目標資料庫的方式。 
 **DataAdapter** 類別可讓您修改 **DataSet** 物件，然後以 INSERT、UPDATE 和 DELETE 作業的形式提交變更。 如果以此方式使用 **DataAdapter** ，必須注意每個不同的作業會執行個別的呼叫。 若要改善效能，請使用 **UpdateBatchSize** 屬性指定應該同時批次處理的作業數目。 如需詳細資訊，請參閱 [使用 Dataadapter 執行批次作業](https://msdn.microsoft.com/library/aadf8fk2.aspx)。
 
 ### <a name="entity-framework"></a>Entity Framework
-Entity Framework 目前不支援批次處理。 社群中不同的開發人員已嘗試示範因應措施，例如覆寫 **SaveChanges** 方法。 但解決方案通常太複雜，而且都針對應用程式和資料模型來自訂。 Entity Framework codeplex 專案目前有這項功能要求的討論頁。 若要查看這方面的討論，請參閱 [設計會議記錄 - 2012 年 8 月 2 日](http://entityframework.codeplex.com/wikipage?title=Design%20Meeting%20Notes%20-%20August%202%2c%202012)。
+Entity Framework 目前不支援批次處理。 社群中不同的開發人員已嘗試示範因應措施，例如覆寫 **SaveChanges** 方法。 但解決方案通常太複雜，而且都針對應用程式和資料模型來自訂。 Entity Framework codeplex 專案目前有這項功能要求的討論頁。 若要查看這項討論，請參閱[設計會議記錄 - 2012 年 8 月 2 日 (英文)](http://entityframework.codeplex.com/wikipage?title=Design%20Meeting%20Notes%20-%20August%202%2c%202012)。
 
 ### <a name="xml"></a>XML
 為了完整說明，我們覺得有必要討論將 XML 當做批次處理策略。 但是，使用 XML 沒有比其他方法更好，而且還有幾個缺點。 此方法類似於資料表值參數，但傳給預存程序的是 XML 檔案或字串，而不是使用者定義的資料表。 預存程序會剖析預存程序中的命令。
@@ -622,11 +622,11 @@ PurchaseOrderDetail 資料表中的 OrderID 資料行必須參考 PurchaseOrder 
 * 在更多案例下，考慮依大小和時間緩衝來實作批次處理。
 
 ## <a name="next-steps"></a>後續步驟
-這篇文章著重於與批次處理相關的資料庫設計和程式碼撰寫技術，如何改善應用程式的效能和延展性。 但這只是整體策略中的一個因素。 關於其他可改善效能和延展性的方式，請參閱[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)和[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
+這篇文章著重於與批次處理相關的資料庫設計和程式碼撰寫技術，如何改善應用程式的效能和延展性。 但這只是整體策略中的一個因素。 關於其他可改善效能和延展性的方式，請參閱[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)和[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

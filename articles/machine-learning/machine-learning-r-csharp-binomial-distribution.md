@@ -1,6 +1,6 @@
 ---
-title: "二項分配套件 | Microsoft Docs"
-description: "二項分配套件"
+title: "(已過時) 二項分配套件 - Azure | Microsoft Docs"
+description: "(已過時) 二項分配套件"
 services: machine-learning
 documentationcenter: 
 author: ireiter
@@ -11,16 +11,23 @@ ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 10/04/2016
+ms.topic: deprecated
+ms.date: 01/06/2017
 ms.author: ireiter
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 82e679e1565bfb18c09ffd30c8b49a69b67e0aeb
+ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
+ms.openlocfilehash: 4d4a343be86909acf054eaaf9cc4a1b0df5a4209
 
 
 ---
-# <a name="binomial-distribution-suite"></a>二項分配套件
+# <a name="deprecated-binomial-distribution-suite"></a>(已過時) 二項分配套件
+
+> [!NOTE]
+> Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
+> 
+> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+
 二項分配套件是一組範例 Web 服務 ([二項產生器](https://datamarket.azure.com/dataset/aml_labs/bdg5)、[機率計算機](https://datamarket.azure.com/dataset/aml_labs/bdp4)、[分位數計算機](https://datamarket.azure.com/dataset/aml_labs/bdq5))，可協助產生和處理二項分配。 這些服務允許產生任何長度的二項分配序列、算出指定機率的分位數，以及計算指定分位數的機率。 每個服務會根據所選取的服務發出不同的輸出 (請參閱下列說明)。 二項分配套件會以 R 統計封裝中所包含的 R 函數 qbinom、rbinom 和 pbinom 為基礎。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
@@ -289,6 +296,6 @@ ms.openlocfilehash: 82e679e1565bfb18c09ffd30c8b49a69b67e0aeb
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

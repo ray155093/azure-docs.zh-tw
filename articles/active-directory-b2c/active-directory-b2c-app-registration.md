@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 12/06/2016
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 0b87ec728891d4f64bb7b2e4b7b4f0f2276b1ffc
-ms.openlocfilehash: ca75ddf8d099f411c4ae1af00e922f26e145f939
+ms.sourcegitcommit: fd22e9596feecbc12e577a4abfb47552e1b6e520
+ms.openlocfilehash: da8f083cb7bca59501df080036e789a0fb75731e
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: ca75ddf8d099f411c4ae1af00e922f26e145f939
 ## <a name="navigate-to-the-b2c-features-blade"></a>瀏覽至 B2C 功能刀鋒視窗
 若您已將 B2C 功能刀鋒視窗釘選至「開始面板」，則在您以 B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/) 時，即會看見該刀鋒視窗。
 
-您也可以在 [Azure 入口網站](https://portal.azure.com/)的左側功能窗格中依序按一下 [瀏覽] 和 [Azure AD B2C]，來存取刀鋒視窗。
+您也可以在 [Azure 入口網站](https://portal.azure.com/)的左側導覽窗格中按一下 [更多服務]，然後搜尋 [Azure AD B2C]，來存取刀鋒視窗。
 
 > [!IMPORTANT]
 > 您必須是 B2C 租用戶的全域管理員，才能存取 B2C 功能刀鋒視窗。 其他租用戶的全域管理員或所有租用戶的使用者均無法存取。  您可以使用 Azure 入口網站右上角中的租用戶切換器來切換至 B2C 租用戶。
@@ -40,7 +40,7 @@ ms.openlocfilehash: ca75ddf8d099f411c4ae1af00e922f26e145f939
 1. 在 Azure 入口網站的 B2C 功能刀鋒視窗中，按一下 [應用程式] 。
 2. 按一下刀鋒視窗頂端的 [新增]  。
 3. 輸入應用程式的 **名稱** ，此名稱將會為取用者說明您的應用程式。 例如，您可以輸入「Contoso B2C app」。
-4. 如果您正在撰寫 Web 應用程式，請將 [包含 Web 應用程式/Web API] 切換為 [是]。 **回覆 URL** 是 Azure AD B2C 傳回您應用程式要求之任何權杖的所在端點。 例如，輸入 `https://localhost:44321/`。 若您的 Web 應用程式也會呼叫 Azure AD B2C 所保護的一些 Web API，您可按一下 [產生金鑰] 按鈕以建立 [應用程式密碼]。
+4. 如果您正在撰寫 Web 應用程式，請將 [包含 Web 應用程式/Web API] 切換為 [是]。 **回覆 URL** 是 Azure AD B2C 傳回您應用程式要求之任何權杖的所在端點。 例如，輸入 `https://localhost:44316/`。 若您的 Web 應用程式也會呼叫 Azure AD B2C 所保護的一些 Web API，您可按一下 [產生金鑰] 按鈕以建立 [應用程式密碼]。
    
    > [!NOTE]
    > **應用程式密碼** 是重要的安全性認證，應該適當地加以保護。
@@ -63,6 +63,6 @@ ms.openlocfilehash: ca75ddf8d099f411c4ae1af00e922f26e145f939
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

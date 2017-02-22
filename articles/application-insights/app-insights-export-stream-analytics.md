@@ -1,5 +1,5 @@
 ---
-title: "使用串流分析來處理從 Application Insights 匯出的資料 | Microsoft Docs"
+title: "使用 Azure Application Insights 中的串流分析匯出 | Microsoft Docs"
 description: "串流分析可以持續轉換、篩選和路由傳送您從 Application Insights 匯出的資料。"
 services: application-insights
 documentationcenter: 
@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e6fb4cdbbe8c334245517f2df0292ca172af5c7b
+ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
+ms.openlocfilehash: be47e9de14700b66a3f1c59554762303987f67be
 
 
 ---
@@ -230,7 +230,7 @@ ms.openlocfilehash: e6fb4cdbbe8c334245517f2df0292ca172af5c7b
 ## <a name="video"></a>影片
 Noam Ben Zeev 示範如何使用串流分析來處理匯出的資料。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Export-to-Power-BI-from-Application-Insights/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Export-to-Power-BI-from-Application-Insights/player]
 > 
 > 
 
@@ -243,6 +243,6 @@ Noam Ben Zeev 示範如何使用串流分析來處理匯出的資料。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

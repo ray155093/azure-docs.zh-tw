@@ -13,11 +13,11 @@ ms.topic: support-article
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.workload: required
-ms.date: 09/09/2016
+ms.date: 01/10/2017
 ms.author: delhan
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 3cdf936cbf621943a7ecb7ed55ddac95d2238c52
+ms.sourcegitcommit: 94c18aa0c4fe38fb74931d5ed61fece207c8b5ce
+ms.openlocfilehash: afa8d2b76ab0f85b5eaf615b264af2f29936016c
 
 
 ---
@@ -26,12 +26,12 @@ ms.openlocfilehash: 3cdf936cbf621943a7ecb7ed55ddac95d2238c52
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
-## <a name="collect-audit-logs"></a>收集稽核記錄檔
-若要開始進行排解疑難，請收集稽核記錄，識別與問題相關的錯誤。 下列連結提供此程序的更多詳細資訊：
+## <a name="collect-activity-logs"></a>收集活動記錄
+若要開始進行排解疑難，請收集活動記錄，以識別與問題相關的錯誤。 下列連結提供此程序的更多詳細資訊：
 
-[使用 Azure 入口網站疑難排解資源群組部署](../resource-manager-troubleshoot-deployments-portal.md)
+[檢視部署作業](../azure-resource-manager/resource-manager-deployment-operations.md)
 
-[使用 Resource Manager 來稽核作業](../resource-group-audit.md)
+[檢視活動記錄以管理 Azure 資源](../azure-resource-manager/resource-group-audit.md)
 
 ## <a name="issue-error-when-starting-a-stopped-vm"></a>問題：啟動已停止的 VM 時發生錯誤
 您嘗試啟動已停止的 VM，但是發現配置失敗。
@@ -68,6 +68,6 @@ ms.openlocfilehash: 3cdf936cbf621943a7ecb7ed55ddac95d2238c52
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

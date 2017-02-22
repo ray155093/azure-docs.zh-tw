@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7f2fb432881c606c29d4ee7bc810bff984ddec2c
+ms.sourcegitcommit: f9a216f3f76ef84e745ef29575d20da971e5eb61
+ms.openlocfilehash: 2ccd414e0eec04dbee7c412cef245e1ab0da2bff
 
 
 ---
@@ -46,6 +46,7 @@ ms.openlocfilehash: 7f2fb432881c606c29d4ee7bc810bff984ddec2c
 Azure App Service 不支援所有的原生模組，而且在編譯具有非常特定必要元件的原生模組時可能會失敗。 雖然某些熱門模組 (如 MongoDB) 具有選擇性原生相依性，而且沒有這些相依性仍照常運作，但兩種因應措施成功證明目前可使用幾乎所有的原生模組：
 
 * 在已安裝所有原生模組之必要元件的 Windows 電腦上執行 **npm install** 。 然後，建立的 **node\_modules** 資料夾部署為 Azure App Service 應用程式的一部分。
+  * 開始編譯之前，請確認您的本機 Node.js 安裝有相符的架構，且版本儘可能接近 Azure 中使用的版本 (可在執行階段從 **process.arch** 和 **process.version** 屬性查到目前的值)。
 * Azure App Service 可以設定為在部署期間執行自訂 Bash 或 Shell 指令碼，讓您有機會執行自訂命令以及精確地設定 **npm install** 的執行方式。 如需示範如何執行這項操作的影片，請參閱 [使用 Kudu 自訂網站部署指令碼]。
 
 ### <a name="using-a-packagejson-file"></a>使用 package.json 檔案
@@ -85,13 +86,13 @@ Azure App Service 不支援所有的原生模組，而且在編譯具有非常�
 
 [指定 Node.js 版本]: nodejs-specify-node-version-azure-apps.md
 [如何使用適用於 Mac 和 Linux 的 Azure 命令列介面]: xplat-cli-install.md
-[建置和部署 Node.js Web 應用程式]: web-sites-nodejs-develop-deploy-mac.md
-[使用 MongoDB (MongoLab) 上儲存體的 Node.js Web 應用程式]: store-mongolab-web-sites-nodejs-store-data-mongodb.md
-[建立 Node.js 應用程式並部署到 Azure 雲端服務]: cloud-services-nodejs-develop-deploy-app.md
+[build and deploy a Node.js web app]: web-sites-nodejs-develop-deploy-mac.md
+[Node.js Web Application with Storage on MongoDB (MongoLab)]: store-mongolab-web-sites-nodejs-store-data-mongodb.md
+[Build and deploy a Node.js application to an Azure Cloud Service]: cloud-services-nodejs-develop-deploy-app.md
 [使用 Kudu 自訂網站部署指令碼]: /documentation/videos/custom-web-site-deployment-scripts-with-kudu/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

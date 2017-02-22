@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Resource Manager 範本建立服務匯流排命名空間與主題、訂用帳戶和規則 | Microsoft Docs"
+title: "使用範本建立 Azure 服務匯流排主題訂用帳戶和規則 | Microsoft Docs"
 description: "使用 Azure Resource Manager 範本建立服務匯流排命名空間與主題、訂用帳戶和規則"
 services: service-bus-messaging
 documentationcenter: .net
@@ -12,22 +12,22 @@ ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 10/25/2016
+ms.date: 01/18/2017
 ms.author: sethm;shvija
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
+ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
+ms.openlocfilehash: 16da81e14b7c4059de61b2dfebe081a9e4f08d5e
 
 
 ---
 # <a name="create-a-service-bus-namespace-with-topic-subscription-and-rule-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立服務匯流排命名空間與主題、訂用帳戶和規則
 本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間與主題、訂用帳戶和規則 (篩選器)。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
 
-如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][編寫 Azure Resource Manager 範本]。
+如需關於建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
 
-如需 Azure 資源命名慣例相關模式和實務的詳細資訊，請參閱 [Azure 資源命名慣例][Azure 資源命名慣例]。
+如需 Azure 資源命名慣例相關實務和模式的詳細資訊，請參閱 [Azure 資源的建議命名慣例][Recommended naming conventions for Azure resources]。
 
-如需完整的範本，請參閱 GitHub 上的[服務匯流排命名空間與主題、訂用帳戶和規則][服務匯流排命名空間與主題、訂用帳戶和規則]範本。
+如需完整的範本，請參閱[服務匯流排命名空間與主題、訂用帳戶和規則][Service Bus namespace with topic, subscription, and rule]範本。
 
 > [!NOTE]
 > 下列 Azure Resource Manager 範本可供下載和部署。
@@ -37,7 +37,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 > * [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
 > * [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
 > 
-> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure 快速入門範本]資源庫並搜尋「服務匯流排」。
+> 若要檢查最新的範本，請造訪 [Azure 快速入門範本][Azure Quickstart Templates]資源庫並搜尋「服務匯流排」。
 > 
 > 
 
@@ -47,7 +47,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 [服務匯流排主題和訂用帳戶](service-bus-queues-topics-subscriptions.md#topics-and-subscriptions)使用「發佈/訂閱」模式，提供一對多的通訊形式。 使用主題和訂用帳戶時，分散式應用程式的元件彼此不直接通訊，相反的，它們會透過扮演中繼角色的主題來交換訊息。主題的訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。 訂用帳戶上的篩選器可讓您指定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。
 
 ## <a name="what-are-rules-filters"></a>什麼是規則 (篩選器)？
-在許多情況下，必須以不同的方式處理具有特定特性的訊息。 若要這麼做，您可以設定訂用帳戶以尋找具有所需屬性的訊息，然後對這些屬性進行一些修改。 雖然服務匯流排訂用帳戶可看見所有傳送至主題的訊息，但您只可以將部分的訊息複製到虛擬訂用帳戶佇列。 使用訂用帳戶篩選器即可達成。 若要深入了解規則 (篩選器)，請參閱[服務匯流排佇列、主題和訂用帳戶][服務匯流排佇列、主題和訂用帳戶]。
+在許多情況下，必須以不同的方式處理具有特定特性的訊息。 若要這麼做，您可以設定訂用帳戶以尋找具有所需屬性的訊息，然後對這些屬性進行一些修改。 雖然服務匯流排訂用帳戶可看見所有傳送至主題的訊息，但您只可以將部分的訊息複製到虛擬訂用帳戶佇列。 使用訂用帳戶篩選器即可達成。 若要深入了解規則 (篩選器)，請參閱[服務匯流排佇列、主題和訂用帳戶][Service Bus queues, topics, and subscriptions]。
 
 若要自動執行部署，請按一下下列按鈕：
 
@@ -61,7 +61,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 ### <a name="servicebusnamespacename"></a>serviceBusNamespaceName
 要建立的服務匯流排命名空間名稱。
 
-```
+```json
 "serviceBusNamespaceName": {
 "type": "string"
 }
@@ -70,7 +70,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 ### <a name="servicebustopicname"></a>serviceBusTopicName
 在服務匯流排命名空間中建立的主題名稱。
 
-```
+```json
 "serviceBusTopicName": {
 "type": "string"
 }
@@ -79,7 +79,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 ### <a name="servicebussubscriptionname"></a>serviceBusSubscriptionName
 在服務匯流排命名空間中建立的訂用帳戶名稱。
 
-```
+```json
 "serviceBusSubscriptionName": {
 "type": "string"
 }
@@ -87,7 +87,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 ### <a name="servicebusrulename"></a>serviceBusRuleName
 在服務匯流排命名空間中建立的規則 (篩選器) 名稱。
 
-```
+```json
    "serviceBusRuleName": {
    "type": "string",
   }
@@ -95,7 +95,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 ### <a name="servicebusapiversion"></a>serviceBusApiVersion
 範本的服務匯流排 API 版本。
 
-```
+```json
 "serviceBusApiVersion": {
 "type": "string"
 }
@@ -103,7 +103,7 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 ## <a name="resources-to-deploy"></a>要部署的資源
 建立**訊息**類型的標準服務匯流排命名空間與主題、訂用帳戶和規則。
 
-```
+```json
  "resources": [{
         "apiVersion": "[variables('sbVersion')]",
         "name": "[parameters('serviceBusNamespaceName')]",
@@ -156,12 +156,12 @@ ms.openlocfilehash: a1a5d9d6fa62bee7b2b463ddc89fe6c99740e03d
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ## <a name="powershell"></a>PowerShell
-```
+```powershell
 New-AzureResourceGroupDeployment -Name \<deployment-name\> -ResourceGroupName \<resource-group-name\> -TemplateUri <https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-topic-subscription-rule/azuredeploy.json>
 ```
 
 ## <a name="azure-cli"></a>Azure CLI
-```
+```cli
 azure config mode arm
 
 azure group deployment create \<my-resource-group\> \<my-deployment-name\> --template-uri <https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-topic-subscription-rule/azuredeploy.json>
@@ -172,20 +172,20 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 
 * [使用 Azure 自動化管理 Azure 服務匯流排](service-bus-automation-manage.md)
 * [使用 PowerShell 管理服務匯流排](service-bus-powershell-how-to-provision.md)
-* [使用服務匯流排總管管理服務匯流排資源](https://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a)
+* [使用服務匯流排總管管理服務匯流排資源](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
-[編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
-[Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
-[深入了解服務匯流排主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
-[搭配使用 Azure PowerShell 與 Azure Resource Manager]: ../powershell-azure-resource-manager.md
-[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理]: ../xplat-cli-azure-resource-manager.md
-[Azure 資源命名慣例]: https://azure.microsoft.com/en-us/documentation/articles/guidance-naming-conventions/
-[服務匯流排命名空間與主題、訂用帳戶和規則]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-subscription-rule/
-[服務匯流排佇列、主題和訂用帳戶]:service-bus-queues-topics-subscriptions.md
-
-
+[Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
+[Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
+[Learn more about Service Bus topics and subscriptions]: service-bus-queues-topics-subscriptions.md
+[Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
+[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Recommended naming conventions for Azure resources]: ../guidance/guidance-naming-conventions.md
+[Service Bus namespace with topic, subscription, and rule]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-subscription-rule/
+[Service Bus queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
 
 
-<!--HONumber=Nov16_HO3-->
+
+
+<!--HONumber=Jan17_HO4-->
 
 

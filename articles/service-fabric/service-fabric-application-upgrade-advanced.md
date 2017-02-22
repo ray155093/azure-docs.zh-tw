@@ -1,5 +1,5 @@
 ---
-title: "應用程式升級：進階主題 | Microsoft Docs"
+title: "進階應用程式升級主題 | Microsoft Docs"
 description: "本文章涵蓋升級 Service Fabric 應用程式相關的一些進階主題。"
 services: service-fabric
 documentationcenter: .net
@@ -12,11 +12,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/15/2016
+ms.date: 01/05/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 5e4aebee48754f1f6762898d9571a4fff7d7283e
-ms.openlocfilehash: 8f911da6798b8a2d517d79a9a90e66de86db9b8b
+ms.sourcegitcommit: f1e035b50b415f68ce567fe1db3a3fe93c2a1394
+ms.openlocfilehash: 63d7ca0224c1989618c474181b02fa79eb69c966
 
 
 ---
@@ -24,13 +24,13 @@ ms.openlocfilehash: 8f911da6798b8a2d517d79a9a90e66de86db9b8b
 ## <a name="adding-or-removing-services-during-an-application-upgrade"></a>在應用程式升級期間加入或移除服務
 如果新服務已加入準備好部署的應用程式中並發佈為一項升級，新服務就會加入部署的應用程式中。  這類升級不會影響已在應用程式中的任何服務。 不過，必須為要開始使用的新服務啟動已加入的服務執行個體 (使用 `New-ServiceFabricService` Cmdlet)。
 
-服務也可從應用程式以升級的方式移除。 不過，要繼續升級之前，必須先停止所要刪除服務的所有目前執行個體 (使用 `Remove-ServiceFabricService` Cmdlet)。 
+服務也可從應用程式以升級的方式移除。 不過，要繼續升級之前，必須先停止所要刪除服務的所有目前執行個體 (使用 `Remove-ServiceFabricService` Cmdlet)。
 
 ## <a name="manual-upgrade-mode"></a>手動升級模式
 > [!NOTE]
 > 只有對於失敗或已暫停的升級，才應該考量不受監控手動模式。 監視模式是對於 Service Fabric 應用程式的建議升級模式。
-> 
-> 
+>
+>
 
 Azure Service Fabric 會提供多個升級模式以支援開發和生產叢集。 選擇的部署選項可能會因不同的環境而不同。
 
@@ -55,7 +55,7 @@ Service Fabric 應用程式可以藉由佈建完整、獨立式應用程式封�
 * 當您有大型應用程式封裝參考數個服務資訊清單檔案及/或數個程式碼封裝、組態封裝或資料封裝時，最好使用差異封裝。
 * 當您有部署系統會直接從您的應用程式建置程序產生組建版面配置時，最好使用差異封裝。 在此情況下，即使程式碼沒有任何變更，新建立的組件也會有不同的總和檢查碼。 使用完整的應用程式封裝需要您在所有的程式碼封裝上更新版本。 使用差異封裝，您只需提供已變更的檔案和已變更版本的資訊清單檔案。
 
-使用 Visual Studio 升級應用程式時，會自動發佈差異封裝。 若要手動建立差異封裝，就必須更新應用程式資訊清單和服務資訊清單，但只有變更過的封裝才要放入最終的應用程式封裝。 
+使用 Visual Studio 升級應用程式時，會自動發佈差異封裝。 若要手動建立差異封裝，就必須更新應用程式資訊清單和服務資訊清單，但只有變更過的封裝才要放入最終的應用程式封裝。
 
 比方說，讓我們從下列應用程式開始 (為方便了解而提供版本號碼)︰
 
@@ -102,7 +102,6 @@ app1/
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

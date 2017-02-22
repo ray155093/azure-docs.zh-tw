@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
-ms.author: cabailey
+ms.date: 11/30/2016
+ms.author: ambapat
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d410dd8b7baf852212707d0fa9bffd6e45c23eff
+ms.sourcegitcommit: 593fdde402845fa062dbceafa533a1efc1f7af9c
+ms.openlocfilehash: b189106be19b95366ba0e6d248c69b34b219b8a1
 
 
 ---
@@ -77,7 +77,7 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容�
 ### <a name="step-11-install-azure-powershell"></a>步驟 1.1：安裝 Azure PowerShell
 從網際網路連線的工作站，下載並安裝 Azure PowerShell 模組，其包含 cmdlet 以管理 Azure 金鑰保存庫。 這需要得最低版本為 0.8.13。
 
-如需安裝指示，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需安裝指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ### <a name="step-12-get-your-azure-subscription-id"></a>步驟 1.2：取得您的 Azure 訂用帳戶識別碼
 使用下列命令開始 Azure PowerShell 工作階段，並登入您的 Azure 帳戶：
@@ -94,76 +94,84 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容�
 移至 Microsoft 下載中心並為您的地理區域或 Azure 執行個體 [下載 Azure 金鑰保存庫 BYOK 工具組](http://www.microsoft.com/download/details.aspx?id=45345) 。 使用下列資訊來識別要下載封裝雜湊與其對應的 SHA-256 封裝雜湊︰
 
 - - -
-**北美洲：**
+**美國：**
 
 KeyVault-BYOK-Tools-UnitedStates.zip
 
-305F44A78FEB750D1D478F6A0C345B097CD5551003302FA465C73D9497AB4A03
+760EE9BD6445C87CFF0E8B032577118704B3BEAA045AA55977C10EF68BC67E2B
 
 - - -
 **歐洲︰**
 
 KeyVault-BYOK-Tools-Europe.zip
 
-C73BB0628B91471CA7F9ADFCE247561C6016A5103EF1A315D49C3EA23AFC0B9C
+7A64B94225F59B847C5C27C2200BAD7D16C901E1687767EDBBB8B09BB285011D
 
 - - -
 **亞洲︰**
 
 KeyVault-BYOK-Tools-AsiaPacific.zip
 
-BE9A84B6C76661929F9FDAD627005D892B3B8F9F19F351220BB4F9C356694192
+813DC94B23079CF7A5CEA71D5B444E86B292F463C53EE47AED25D4F7CD58E7D8
 
 - - -
 **拉丁美洲︰**
 
 KeyVault-BYOK-Tools-LatinAmerica.zip
 
-9E8EE11972DECE8F05CD898AF64C070C375B387CED716FDCB788544AE27D3D23
+3F29069E3500F95C0E156F4B8914E1DC60C20FB64B464306A299EA5145D755C0
 
 - - -
 **日本︰**
 
 KeyVault-BYOK-Tools-Japan.zip
 
-E6B88C111D972A02ABA3325F8969C4E36FD7565C467E9D7107635E3DDA11A8B2
+453FFEA2F8F410720B68B8BAC4CF79135A7F37F4E491FF840BE9E69E88A98C90
 
 - - -
 **澳大利亞：**
 
 KeyVault-BYOK-Tools-Australia.zip
 
-7660D7A675506737857B14F527232BE51DC269746590A4E5AB7D50EDD220675D
+4AD893396E86F2D2A71682876A6A8EA59E3C7895BEAD2F7E7C8516682582C34B
 
 - - -
 [**Azure Government:**](https://azure.microsoft.com/features/gov/)
 
 KeyVault-BYOK-Tools-USGovCloud.zip
 
-53801A3043B0F8B4A50E8DC01A935C2BFE61F94EE027445B65C52C1ACC2B5E80
+3AAE1A96B9D15B899B8126CFC0380719EB54FDF2EA94489B43FAD21ECC745F64
 
 - - -
 **加拿大：**
 
 KeyVault-BYOK-Tools-Canada.zip
 
-A42D9407B490E97693F8A5FA6B60DC1B06B1D1516EDAE7C9A71AA13E12CF1345
+30B87A0BA8208F6B7241C30C794FED1C370D7445ACA179685816E4E156CD2AF7
 
 - - -
 **德國：**
 
 KeyVault-BYOK-Tools-Germany.zip
 
-4795DA855E027B2CA8A2FF1E7AE6F03F772836C7255AFC68E576410BDD28B48E
+5E3E4AA54715E4F93C3C145035B18275B7C6815A06D7ABB212E7FADBF2929261
 
 - - -
 **印度：**
 
 KeyVault-BYOK-Tools-India.zip
 
-26853511EB767A33CF6CD880E78588E9BBE04E619B17FBC77A6B00A5111E800C
+136733A6C6A71D75571BB80819B3D55A9B83CCAD5C996C686BC5682A3F369BF7
 
 - - -
+**英國：**
+
+KeyVault-BYOK-Tools-UnitedKingdom.zip
+
+ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
+
+- - -
+
 若要驗證您已下載之 BYOK 工具組的完整性，請從您的 Azure PowerShell 工作階段，使用 [Get-FileHash](https://technet.microsoft.com/library/dn520872.aspx) Cmdlet。
 
     Get-FileHash KeyVault-BYOK-Tools-*.zip
@@ -225,7 +233,7 @@ KeyVault-BYOK-Tools-India.zip
 
 驗證下載的封裝：
 
-1. 根據您的地理區域或 Azure 執行個體嘗試下列其中一個區域，以執行 verifykeypackage.py 指令碼：
+1. 根據您的地理區域或 Azure 的執行個體輸入下列其中一個區域，以執行 verifykeypackage.py 指令碼：
    
    * 北美洲：
      
@@ -403,6 +411,6 @@ KeyVault-BYOK-Tools-India.zip
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

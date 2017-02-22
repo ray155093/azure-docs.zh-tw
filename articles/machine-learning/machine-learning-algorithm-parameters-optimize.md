@@ -1,5 +1,5 @@
 ---
-title: "選擇參數來最佳化 Azure Machine Learning 中的演算法 | Microsoft Docs"
+title: "最佳化 Azure Machine Learning 中的演算法 | Microsoft Docs"
 description: "說明如何為 Azure Machine Learning 中的演算法選擇最佳的參數設定。"
 services: machine-learning
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 01/29/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 4c6dac8b1c5968995de12e678434e158045d5cc6
+ms.sourcegitcommit: e899487e9445955cea3a9387c73ea7c5dca37ddc
+ms.openlocfilehash: b3be7f31ac31c656744fb809e3972af0ac4ad4f1
 
 
 ---
@@ -79,6 +79,6 @@ ms.openlocfilehash: 4c6dac8b1c5968995de12e678434e158045d5cc6
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

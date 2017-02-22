@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Azure 訂用帳戶和服務限制、配額與限制"
+title: "Azure 訂用帳戶限制與配額 | Microsoft Docs"
 description: "提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。 這包括如何增加限制和最大值的詳細資訊。"
 services: 
 documentationcenter: 
@@ -13,23 +13,23 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/29/2016
+ms.date: 02/13/2017
 ms.author: byvinyal
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
+ms.sourcegitcommit: bf6c6017f623766f5e7a6472feed02108b5adf5f
+ms.openlocfilehash: d770a05ee247103fe9693754d7fb7eada12ef1bc
 
 
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 訂用帳戶和服務限制、配額與限制
-## <a name="overview"></a>Overview
-本文件說明一些最常見的 Microsoft Azure 限制。 這目前未涵蓋所有 Azure 服務。 這些限制將隨著時間擴展並更新以涵蓋更多平台。
+本文件列出一些最常見的 Microsoft Azure 限制，有時也稱為配額。 本文件目前未涵蓋所有 Azure 服務。 清單將隨著時間擴展並更新以涵蓋更多平台。
 
 請瀏覽 [Azure 定價一覽](https://azure.microsoft.com/pricing/) 以深入了解 Azure 定價。 您可以在那裡使用[定價計算機](https://azure.microsoft.com/pricing/calculator/)或透過瀏覽服務 (例如，[Windows VM](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)) 的定價詳細資料頁面來估計成本。
 
 > [!NOTE]
-> 如果您想要將限制提升到 **預設限制**以上，您可以 [免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 您無法將限制提升到高於下表中所示的 **上限** 值。 如果沒有 **上限** 欄，指定的資源即沒有可調整的限制。
+> 如果您想要將限制或配額提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。 您無法將限制提升到高於下表中所示的**上限**值。 如果沒有**上限**欄，資源即沒有可調整的限制。 
 > 
+> 免費試用訂用帳戶無法增加限制或配額。 如果您有免費試用，則可以升級到 [隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/) 訂用帳戶。 如需詳細資訊，請參閱[將 Azure 免費試用版升級至隨收隨付](billing-upgrade-azure-subscription.md)。
 > 
 
 ## <a name="limits-and-the-azure-resource-manager"></a>限制和 Azure 資源管理員
@@ -65,6 +65,7 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 * [事件中樞](#event-hubs-limits)
 * [IoT 中心](#iot-hub-limits)
 * [金鑰保存庫](#key-vault-limits)
+* [Log Analytics / Operational Insights](#log-analytics-limits)
 * [媒體服務](#media-services-limits)
 * [Mobile Engagement](#mobile-engagement-limits)
 * [行動服務](#mobile-services-limits)
@@ -72,7 +73,6 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 * [Multi-Factor Authentication](#multi-factor-authentication)
 * [網路功能](#networking-limits)
 * [通知中樞服務](#notification-hub-service-limits)
-* [Operational Insights](#operational-insights-limits)
 * [資源群組](#resource-group-limits)
 * [排程器](#scheduler-limits)
 * [Search](#search-limits)
@@ -134,7 +134,7 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 #### <a name="storage-service-limits"></a>儲存體服務限制
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
 
-#### <a name="virtual-machine-disk-limits"></a>虛擬機器磁碟限制
+#### <a name="virtual-machine-disk-limits"></a>虛擬機器磁碟限制 
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
 如需其他詳細資訊，請參閱 [虛擬機器大小](virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
@@ -170,9 +170,7 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 [!INCLUDE [biztalk-services-service-limits](../includes/biztalk-services-service-limits.md)]
 
 ### <a name="documentdb-limits"></a>DocumentDB 限制
-[!INCLUDE [azure-documentdb-limits](../includes/azure-documentdb-limits.md)]
-
-以星號 (*) 列出的配額 [可以透過聯絡 Azure 支援人員來進行調整](documentdb/documentdb-increase-limits.md)。
+DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於「DocumentDB 調整」的問題，請傳送電子郵件給 askdocdb@microsoft.com。
 
 ### <a name="mobile-engagement-limits"></a>Mobile Engagement 限制
 [!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
@@ -181,7 +179,7 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 定價層會決定搜尋服務的容量和限制。 層級包括：
 
 *  多租用戶服務，與其他 Azure 訂戶共用，適用於評估及小型開發專案。
-*  可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多 3 個複本。
+*  可針對規模較小的生產工作負載提供專用的計算資源，以及針對高可用性的查詢工作負載提供最多&3; 個複本。
 *  適用於較大型生產工作負載。 標準層內具有多個層級，如此就能讓您選擇最符合工作負載設定檔的資源設定。
 
 **每一訂用帳戶的限制**
@@ -236,7 +234,7 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 ### <a name="storsimple-system-limits"></a>StorSimple 系統限制
 [!INCLUDE [storsimple-limits-table](../includes/storsimple-limits-table.md)]
 
-### <a name="operational-insights-limits"></a>Operational Insights 限制
+### <a name="log-analytics-limits"></a>Log Analytics 限制
 [!INCLUDE [operational-insights-limits](../includes/operational-insights-limits.md)]
 
 ### <a name="backup-limits"></a>備份限制
@@ -276,6 +274,6 @@ ms.openlocfilehash: c98484a754943ad0ea5b1098a9a6c06cbf5f8814
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

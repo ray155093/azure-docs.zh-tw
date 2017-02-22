@@ -1,5 +1,5 @@
 ---
-title: "部署 StorSimple 裝置管理員 - 管理 Microsoft Azure StorSimple Virtual Array 上的共用 | Microsoft Docs"
+title: "管理 StorSimple Virtual Array 共用 | Microsoft Docs"
 description: "描述 StorSimple 裝置管理員，並說明如何使用它來管理 StorSimple Virtual Array 上的共用。"
 services: storsimple
 documentationcenter: 
@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
 translationtype: Human Translation
-ms.sourcegitcommit: 5c31ac5284f3ba8fecc1e9f33838a778254658e5
-ms.openlocfilehash: 90b932453c83d15e7e33eb0653f0f7ceaf7eeff4
+ms.sourcegitcommit: 19177fe13db2aefcef7fcf37ea8fef2fa99c728f
+ms.openlocfilehash: e5c62689de36baa175001f5f4f70d87568876ef0
 
 ---
 # <a name="use-the-storsimple-device-manager-service-to-manage-shares-on-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務管理 StorSimple Virtual Array 上的共用
@@ -74,9 +74,9 @@ StorSimple 服務摘要刀鋒視窗的 [共用] 功能表會顯示給定 StorSim
 
 1. 從 StorSimple 服務摘要刀鋒視窗中，從命令列按一下 [+ 新增共用]。 這會開啟 [新增共用] 刀鋒視窗。
 
-![新增共用](./media/storsimple-virtual-array-manage-shares/add-share.png)
+    ![新增共用](./media/storsimple-virtual-array-manage-shares/add-share.png)
 
-1. 在 [新增共用] 刀鋒視窗中，執行下列動作：
+2. 在 [新增共用] 刀鋒視窗中，執行下列動作：
    
     1. 在 [共用名稱] 欄位中，輸入共用的唯一名稱。 該名稱必須為包含 3 至 127 個字元的字串。
 
@@ -87,8 +87,8 @@ StorSimple 服務摘要刀鋒視窗的 [共用] 功能表會顯示給定 StorSim
     4. 在 [容量] 欄位中，指定共用大小。 階層式共用必須介於 500 GB 和 20 TB 之間，而固定在本機的共用必須介於 50 GB 和 2 TB 之間。
 
     5. 在 [將預設完整權限設為] 欄位中，指派權限給存取此共用的使用者或群組。 請以下列格式指定使用者或使用者群組的名稱：_john@contoso.com_。 我們建議您利用使用者群組 (而非單一使用者)，來授予可存取這些共用的系統管理員權限。 當您在此指派權限之後，就可以使用 [檔案總管] 來修改這些權限。
-2. 共用設定完成之後，按一下 [建立]。 將會使用指定的設定來建立共用，您會看到通知。 根據預設，共用會啟用備份。
-3. 若要確認已成功建立共用，請移至 [共用] 刀鋒視窗。 您應該會看列出共用。
+3. 共用設定完成之後，按一下 [建立]。 將會使用指定的設定來建立共用，您會看到通知。 根據預設，共用會啟用備份。
+4. 若要確認已成功建立共用，請移至 [共用] 刀鋒視窗。 您應該會看列出共用。
    
     ![共用建立成功](./media/storsimple-virtual-array-manage-shares/share-success.png)
 
@@ -146,6 +146,6 @@ StorSimple 服務摘要刀鋒視窗的 [共用] 功能表會顯示給定 StorSim
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

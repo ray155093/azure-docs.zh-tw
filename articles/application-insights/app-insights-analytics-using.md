@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7bd26ffdec185a1ebd71fb88383c2ae4cd6d504f
-ms.openlocfilehash: f9c02c11c6f0143f8da7a329f23033120f31ba59
+ms.sourcegitcommit: 2389f1d785abc750dd165303f737a883b3f788d0
+ms.openlocfilehash: 6232a80417cf4581f6c6cbe6c11418dc8d0c3407
 
 
 ---
@@ -154,10 +154,10 @@ IntelliSense 會向您提示您可使用的運算子和運算式元素。 按一
 ![具有有限長條的圖表](./media/app-insights-analytics-using/pin-08.png)
 
 ## <a name="export-to-excel"></a>匯出至 Excel
-執行查詢之後，您可以下載 .csv 檔案。 按一下 [匯出至 Excel] 。
+執行查詢之後，您可以下載 .csv 檔案。 按一下 [匯出] > [Excel]。
 
 ## <a name="export-to-power-bi"></a>匯出至 Power BI
-將游標放在查詢中，然後選擇 [匯出至 Power BI] 。
+將游標放在查詢中，然後選擇 [匯出] > [Power BI]。
 
 ![從分析匯出至 Power BI](./media/app-insights-analytics-using/240.png)
 
@@ -167,10 +167,22 @@ IntelliSense 會向您提示您可使用的運算子和運算式元素。 按一
 
 [深入了解如何匯出至 Power BI](app-insights-export-power-bi.md)
 
+## <a name="deep-link"></a>深層連結
+
+在 [匯出] > [共用連結] 底下取得您可以傳送給另一位使用者的連結。 如果該使用者[能夠存取您的資源群組](app-insights-resources-roles-access-control.md)，該查詢就會在「分析」UI 中開啟。
+
+(在該連結中，查詢文字會顯示在 "?q=" 之後，以 gzip 格式壓縮並採用 Base-64 編碼。 您可以撰寫程式碼來產生要提供給使用者的深層連結。 不過，建議的方式是使用 [REST API](https://dev.applicationinsights.io/) 從程式碼執行「分析」。)
+
 
 ## <a name="automation"></a>自動化
 
-您可以透過[資料存取 REST API](https://dev.applicationinsights.io/)執行「分析」查詢，例如使用 PowerShell。
+請使用[資料存取 REST API](https://dev.applicationinsights.io/) 來執行「分析」查詢。 [例如](https://dev.applicationinsights.io/apiexplorer/query?appId=DEMO_APP&apiKey=DEMO_KEY&query=requests%0A%7C%20where%20timestamp%20%3E%3D%20ago%2824h%29%0A%7C%20count) (使用 PowerShell)：
+
+```PS
+curl "https://api.applicationinsights.io/beta/apps/DEMO_APP/query?query=requests%7C%20where%20timestamp%20%3E%3D%20ago(24h)%7C%20count" -H "x-api-key: DEMO_KEY"
+```
+
+與「分析」UI 不同，REST API 並不會在您的查詢中自動新增任何時間戳記限制。 請記得新增您自己的 where 子句，以避免收到大量回應。
 
 
 
@@ -183,7 +195,7 @@ IntelliSense 會向您提示您可使用的運算子和運算式元素。 按一
 ### <a name="define-your-data-schema"></a>定義資料結構描述
 
 1. 按一下 [設定] \(在左上方)，然後按一下 [資料來源]。 
-2. 依照指示，新增資料來源。 系統會要求您提供資料範例，此範例應該至少包含 10 個資料列。 接著，您需更正結構描述。
+2. 依照指示，新增資料來源。 系統會要求您提供資料範例，此範例應該至少包含&10; 個資料列。 接著，您需更正結構描述。
 
 這定義了資料來源，您可以接著使用它來匯入個別資料表。
 
@@ -217,6 +229,6 @@ IntelliSense 會向您提示您可使用的運算子和運算式元素。 按一
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

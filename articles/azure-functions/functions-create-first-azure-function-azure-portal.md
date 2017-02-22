@@ -13,11 +13,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/14/2016
+ms.date: 02/02/2017
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 8d7823b6ecbc1a762839fc620f76d0bf4687d8fa
-ms.openlocfilehash: 5b33a36a3415efd2bc4673999806aa797f4a1c9f
+ms.sourcegitcommit: ab0b218a99ab3ff98edfa075eabbd3eb2c2bd1d4
+ms.openlocfilehash: 996fc80ff926117dc12180efe1949b3dbeba3f91
 
 
 ---
@@ -28,9 +28,7 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 本主題說明如何使用 Azure 入口網站建立由 HTTP 觸發程序叫用的簡單 "hello world" Node.js Azure 函式。 在您可以於 Azure 入口網站中建立函式之前，您必須在 Azure App Service 中明確建立一個函數應用程式。 如果要讓系統為您自動建立函數應用程式，請參閱 [另一篇 Azure Functions 快速入門教學課程](functions-create-first-azure-function.md)，該文章提供較為簡單的快速入門體驗，且包含一部影片。
 
 ## <a name="create-a-function-app"></a>建立函數應用程式
-函式應用程式可在 Azure 中主控函式的執行。 請遵循下列步驟來在 Azure 入口網站中建立函數應用程式。
-
-您必須先具備有效的 Azure 帳戶，才可以建立第一個函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。
+函式應用程式可在 Azure 中主控函式的執行。 如果您沒有 Azure 帳戶，請查看[試用 Functions](https://functions.azure.com/try) 體驗或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 請遵循下列步驟來在 Azure 入口網站中建立函數應用程式。
 
 1. 移至 [Azure 入口網站](https://portal.azure.com) ，然後以您的 Azure 帳戶登入。
 2. 按一下 [+新增]  >  [計算]  >  [函式應用程式]，選取您的 [訂用帳戶]，輸入可識別您函式應用程式的唯一 [應用程式名稱]，然後指定下列設定：
@@ -42,6 +40,8 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
    * **儲存體帳戶**：每個函數應用程式都需要一個儲存體帳戶。 您可以選擇現有的儲存體帳戶或是建立帳戶。 
      
      ![在 Azure 入口網站中建立新的函數應用程式](./media/functions-create-first-azure-function-azure-portal/function-app-create-flow.png)
+
+    請注意，您必須輸入有效的「App 名稱」，該名稱只可包含字母、數字和連字號。 不允許使用底線 (**_**) 字元。
 
 3. 按一下 [建立]  以佈建並部署新的函數應用程式。  
 
@@ -57,35 +57,16 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 2. (選擇性) 此時，您可以在快速入門中，選擇在入口網站中進行 Azure Functions 功能的快速導覽。    完成或跳過本教學課程之後，您可以使用 HTTP 觸發程序來測試新函式。
 
 ## <a name="test-the-function"></a>測試函式
-由於 Azure Functions 快速入門包含功能程式碼，您可以立即測試您的新函式。
-
-1. 在 [開發] 索引標籤中，檢閱 [程式碼] 視窗，並請注意此 Node.js 程式碼預期 HTTP 要求有在訊息內文中或在查詢字串中傳遞的 name 值。 此函式執行時，回應訊息中會傳回這個值。
-   
-2. 按一下 [測試] 以顯示函式的內建 HTTP 測試要求窗格。
- 
-    ![](./media/functions-create-first-azure-function-azure-portal/function-app-develop-tab-testing.png)
-
-2. 在 [要求本文] 文字方塊中，將 name 屬性的值變更為您的名稱，然後按一下 [執行]。 您會看到執行是由測試 HTTP 要求所觸發，資訊會寫入至串流記錄檔，而 "hello" 回應會顯示在 [輸出] 中。 
-
-3. 若要從另一個瀏覽器視窗或索引標籤觸發相同函式的執行，請從 [開發] 索引標籤複製 [函式 URL] 值並貼到瀏覽器網址列中。 然後附加查詢字串值 `&name=yourname` 至 URL 並按 Enter 鍵。 相同的資訊會寫入至記錄檔，而瀏覽器會像之前一樣顯示 "hello" 回應。
+[!INCLUDE [Functions quickstart test](../../includes/functions-quickstart-test.md)]
 
 ## <a name="next-steps"></a>後續步驟
-本快速入門示範簡單的基本 HTTP 觸發函式執行。 若要深入了解在您的應用程式中使用 Azure Functions，請參閱下列主題︰
-
-* [Azure Functions 開發人員參考](functions-reference.md)  
-   可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。
-* [測試 Azure Functions](functions-test-a-function.md)  
-   說明可用於測試函式的各種工具和技巧。
-* [如何調整 Azure 函式](functions-scale.md)  
-  討論 Azure Functions 可用的服務方案，包括以取用量為基礎的 App Service 方案，以及如何選擇正確的方案。 
-* [什麼是 Azure 應用程式服務？](../app-service/app-service-value-prop-what-is.md)  
-   Azure Functions 會使用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
+[!INCLUDE [Functions quickstart next steps](../../includes/functions-quickstart-next-steps.md)]
 
 [!INCLUDE [Getting Started Note](../../includes/functions-get-help.md)]
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

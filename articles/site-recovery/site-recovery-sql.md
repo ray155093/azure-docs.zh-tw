@@ -1,5 +1,5 @@
 ---
-title: "使用 SQL Server 災害復原與 Azure Site Recovery 保護 SQL Server | Microsoft Docs"
+title: "使用 SQL Server 和 Azure Site Recovery 複寫應用程式 | Microsoft Docs"
 description: "本文說明如何使用 SQL Server 災害復原功能的 Azure Site Recovery 複寫 SQL Server。"
 services: site-recovery
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: c5e80c3cd3caac07e250d296c61fb3813e0000dd
-ms.openlocfilehash: 40c4f88bc91773158d416d5e89424b92cf15cf91
+ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
+ms.openlocfilehash: 2d55db297bcef2c5789cb33a8791cf2c787a0789
 
 
 ---
@@ -29,7 +29,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 許多工作負載都使用 SQL Server 做為基礎。 SharePoint、Dynamics 和 SAP 之類的應用程式會使用 SQL Server 實作資料服務。  應用程式會以下列各種不同的方式部署 SQL Server：
 
 * **獨立 SQL Server**：SQL Server 和所有資料庫都裝載在單一電腦 (實體或虛擬) 上。 如果是虛擬，則主機叢集用於高可用性。 不會實作來賓層級的高可用性。
-* **SQL Server 容錯移轉叢集執行個體 (Always ON FCI)**：會在「Windows 容錯移轉」叢集中設定 2 個或更多個具有共用磁碟的 SQL Server 執行個體節點。 如果任何叢集執行個體停止運作，叢集便可將 SQL Server 容錯移轉到另一個執行個體。 此設定通常用於主要站台上的 HA。 這並無法防止共用儲存體層中發生失敗或中斷。 實作共用磁碟時，可以使用 ISCSI、「光纖通道」或「共用 VHDx」來實作。
+* **SQL Server 容錯移轉叢集執行個體 (Always ON FCI)**：會在「Windows 容錯移轉」叢集中設定&2; 個或更多個具有共用磁碟的 SQL Server 執行個體節點。 如果任何叢集執行個體停止運作，叢集便可將 SQL Server 容錯移轉到另一個執行個體。 此設定通常用於主要站台上的 HA。 這並無法防止共用儲存體層中發生失敗或中斷。 實作共用磁碟時，可以使用 ISCSI、「光纖通道」或「共用 VHDx」來實作。
 * **SQL Always On 可用性群組**：在此步驟中，會在不共用任何內容的叢集中設定兩個節點，其中此叢集的 SQL Server 資料庫是設定在具有同步複寫和自動容錯移轉功能的可用性群組中。
 
 在 Enterprise 版本中，SQL Server 也提供可將資料庫復原至遠端站台的原生災害復原技術。 在本文中，我們將運用並整合這些原生 SQL 災害復原技術：
@@ -89,11 +89,11 @@ Site Recovery 可以與下表中摘要說明的原生 SQL Server BCDR 技術整�
 
 本文件中的指示假設在次要位置會提供網域控制站。 [閱讀更多](site-recovery-active-directory.md) 有關使用 Site Recovery 保護 Active Directory。
 
-## <a name="integrate-protection-with-sql-server-always-on-on-premises-to-azure"></a>使用 SQL Server Always-On (內部部署至 Azure) 整合保護
+## <a name="integrate-protection-with-sql-server-always-on-in-classic-azure-portal-on-premises-to-azure"></a>在傳統 Azure 入口網站中將保護與 SQL Server Always-On 整合 (內部部署至 Azure)
 Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性群組且 Azure 虛擬機器設定為「次要」，則您可以使用 Site Recovery 管理可用性群組的容錯移轉。
 
 > [!NOTE]
-> 這項功能目前是預覽版，其會變成可用的條件是主要資料中心內的 Hyper-V 主機伺服器是在 VMM 雲端中管理時以及 VMware 設定是由 [組態伺服器](site-recovery-vmware-to-azure.md#configuration-server-or-additional-process-server-prerequisites)管理時。 這項功能目前不適用於新的 Azure 入口網站。
+> 這項功能目前是預覽版，其會變成可用的條件是主要資料中心內的 Hyper-V 主機伺服器是在 VMM 雲端中管理時以及 VMware 設定是由 [組態伺服器](site-recovery-vmware-to-azure.md#configuration-server-or-additional-process-server-prerequisites)管理時。 這項功能目前不適用於新的 Azure 入口網站。 如果您使用新的 Azure 入口網站，請依照[本節](site-recovery-sql.md#protect-machines-in-new-azure-portal-or-without-a-vmm-server-or-a-configuration-server-in-classic-azure-portal)中的步驟操作。
 >
 >
 
@@ -106,7 +106,7 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 * PowerShell 遠端應該在內部部署 SQL Server 機器上啟用。 VMM 伺服器或組態伺服器應該可以讓 PowerShell 遠端呼叫 SQL Server。
 * 使用者帳戶應該加入內部部署 SQL Server，在這些 SQL 使用者群組中具有至少下列權限：
   * ALTER AVAILABILITY GROUP - 權限[這裡](https://msdn.microsoft.com/library/hh231018.aspx)和[這裡](https://msdn.microsoft.com/library/ff878601.aspx#Anchor_3)
-  * ALTER DATABASE - 權限[這裡](https://msdn.microsoft.com/library/ff877956.aspx#Security)
+  * ALTER DATABASE - 權限 [這裡](https://msdn.microsoft.com/library/ff877956.aspx#Security)
 * 應該為先前步驟中所提到的使用者在 VMM 伺服器上建立 RunAs 帳戶，或應該使用 CSPSConfigtool.exe 在組態伺服器上建立帳戶
 * SQL PS 模組應該安裝在內部部署執行和 Azure 虛擬機器上的 SQL Server
 * VM 代理程式應該安裝在 Azure 上執行的虛擬機器
@@ -146,7 +146,7 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
 #### <a name="step-3-create-a-recovery-plan"></a>步驟 3：建立復原計畫
 下一步是使用虛擬機器和可用性群組建立復原計劃。
-選取在步驟 1 中所使用的相同 VMM 伺服器或組態伺服器做為來源，選取 Microsoft Azure 做為目標。
+選取在步驟&1; 中所使用的相同 VMM 伺服器或組態伺服器做為來源，選取 Microsoft Azure 做為目標。
 
 ![建立復原計畫](./media/site-recovery-sql/create-rp1.png)
 
@@ -183,7 +183,7 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 >
 >
 
-### <a name="protect-machines-without-a-vmm-server-or-a-configuration-server"></a>保護沒有 VMM 伺服器或組態伺服器的機器
+### <a name="protect-machines-in-new-azure-portal-or-without-a-vmm-server-or-a-configuration-server-in-classic-azure-portal"></a>在新 Azure 入口網站中保護機器，或在傳統 Azure 入口網站中於不使用 VMM 伺服器或組態伺服器的情況下保護機器
 針對不是由 VMM 伺服器或組態伺服器管理的環境，Azure 自動化 Runbook 可以用於設定 SQL 可用性群組的指令碼式容錯移轉。 以下是進行設定的步驟：
 
 1. 建立指令碼的本機檔案以容錯移轉可用性群組。 此範例指令碼會在 Azure 複本上指定可用性群組的路徑，並將其容錯移轉至該複本執行個體。 此指令碼會藉由使用自訂指令碼擴充功能傳遞該指令碼，以便在 SQL Server 複本虛擬機器上執行。
@@ -205,15 +205,15 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
 
 1. **測試容錯移轉**：SQL AlwaysOn 原生不支援測試容錯移轉。 因此，建議的方法如下所示︰
-    1. 在 Azure 中裝載可用性群組複本的虛擬機器上安裝 [Azure 備份](../backup/backup-azure-vms.md)。 
-    1. 觸發復原計劃的測試容錯移轉之前，請從步驟 1 中進行的備份復原虛擬機器
+    1. 在 Azure 中裝載可用性群組複本的虛擬機器上安裝 [Azure 備份](../backup/backup-azure-vms.md)。
+    1. 觸發復原計劃的測試容錯移轉之前，請從步驟&1; 中進行的備份復原虛擬機器
     1. 執行復原計劃的測試容錯移轉
 
 
 > [!NOTE]
-> 下面的指令碼假設 SQL 可用性群組裝載於傳統 Azure 虛擬機器，且在步驟 2 中的還原虛擬機器名稱是 SQLAzureVM-Test。 根據您用於已復原虛擬機器的名稱修改指令碼。
-> 
-> 
+> 下面的指令碼假設 SQL 可用性群組裝載於傳統 Azure 虛擬機器，且在步驟&2; 中的還原虛擬機器名稱是 SQLAzureVM-Test。 根據您用於已復原虛擬機器的名稱修改指令碼。
+>
+>
 
 
      workflow SQLAvailabilityGroupFailover
@@ -241,7 +241,7 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
           if ($Using:RecoveryPlanContext.FailoverType -eq "Test")
                 {
                     Write-output "tfo"
-                    
+
                     Write-Output "Creating ILB"
                     Add-AzureInternalLoadBalancer -InternalLoadBalancerName SQLAGILB -SubnetName Subnet-1 -ServiceName SQLAzureVM-Test -StaticVNetIPAddress #IP
                     Write-Output "ILB Created"
@@ -251,14 +251,14 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
                     Get-AzureVM -ServiceName "SQLAzureVM-Test" -Name "SQLAzureVM-Test"| Add-AzureEndpoint -Name sqlag -LBSetName sqlagset -Protocol tcp -LocalPort 1433 -PublicPort 1433 -ProbePort 59999 -ProbeProtocol tcp -ProbeIntervalInSeconds 10 -InternalLoadBalancerName SQLAGILB | Update-AzureVM
 
                     Write-Output "Added Endpoint"
-        
-                    $VM = Get-AzureVM -Name "SQLAzureVM-Test" -ServiceName "SQLAzureVM-Test" 
-                       
+
+                    $VM = Get-AzureVM -Name "SQLAzureVM-Test" -ServiceName "SQLAzureVM-Test"
+
                     Write-Output "UnInstalling custom script extension"
-                    Set-AzureVMCustomScriptExtension -Uninstall -ReferenceName CustomScriptExtension -VM $VM |Update-AzureVM 
+                    Set-AzureVMCustomScriptExtension -Uninstall -ReferenceName CustomScriptExtension -VM $VM |Update-AzureVM
                     Write-Output "Installing custom script extension"
                     Set-AzureVMExtension -ExtensionName CustomScriptExtension -VM $vm -Publisher Microsoft.Compute -Version 1.*| Update-AzureVM   
-                    
+
                     Write-output "Starting AG Failover"
                     Set-AzureVMCustomScriptExtension -VM $VM -FileUri $sasuri -Run "AGFailover.ps1" -Argument "-Path sqlserver:\sql\sqlazureVM\default\availabilitygroups\testag"  | Update-AzureVM
                     Write-output "Completed AG Failover"
@@ -342,6 +342,6 @@ Site Recovery 原生支援 SQL AlwaysOn。 如果您已經建立 SQL 可用性�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

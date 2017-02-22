@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/28/2016
+ms.date: 01/03/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: e82cc23dac2b765ee3dc8ae2eb1e4f7f2e49675a
-ms.openlocfilehash: 9e7dbb2b218796e3484bee05c6026c801c7780b7
+ms.sourcegitcommit: ab9c4bc6e2e68a3522bbc3fe23ea33760f03b620
+ms.openlocfilehash: 10926263ee2657dc96fb1873733d349cf0956e92
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: 9e7dbb2b218796e3484bee05c6026c801c7780b7
 | 資料作業 - 稽核 |可用。 需詳細資訊請參閱 [這裡](data-lake-store-diagnostic-logs.md) 。 |可用 |
 | 待用資料加密 |透明、伺服器端 <ul><li>使用服務管理的金鑰</li><li>在 Azure KeyVault 中使用客戶管理的金鑰</li></ul> |<ul><li>透明、伺服器端</li> <ul><li>使用服務管理的金鑰</li><li>在 Azure KeyVault 中使用客戶管理的金鑰 (即將推出)</li></ul><li>用戶端加密</li></ul> |
 | 管理作業 (例如帳戶建立) |[角色型存取控制](../active-directory/role-based-access-control-what-is.md) (RBAC) |[角色型存取控制](../active-directory/role-based-access-control-what-is.md) (RBAC) |
-| 開發人員 SDK |.NET、Java、Node.js |.Net、Java、Python、Node.js、C++、Ruby |
+| 開發人員 SDK |.NET、Java、Python、Node.js |.Net、Java、Python、Node.js、C++、Ruby |
 | 分析的工作負載效能 |平行分析工作負載的效能最佳化。 高輸送量和 IOPS。 |未針對分析工作負載最佳化 |
 | 大小限制 |帳戶大小、檔案大小或檔案數目沒有限制 |特定限制記載於 [這裡](../azure-subscription-service-limits.md#storage-limits) |
 | 異地備援 |本機備援 (在一個 Azure 區域中多個資料複本） |本機備援 (LRS)、全域備援 (GRS)、讀取存取全域備援 (RA-GRS)。 詳細資訊請參閱 [這裡](../storage/storage-redundancy.md) |
@@ -53,6 +53,6 @@ ms.openlocfilehash: 9e7dbb2b218796e3484bee05c6026c801c7780b7
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO1-->
 
 

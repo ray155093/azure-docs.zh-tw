@@ -1,6 +1,6 @@
 ---
-title: "對 Azure Data Lake Store 中儲存的資料執行 Spark 作業 | Microsoft Docs"
-description: "對 Azure Data Lake Store 中儲存的資料執行 Spark 作業"
+title: "使用 Apache Spark 來分析 Azure Data Lake Store 中的資料 | Microsoft Docs"
+description: "執行 Spark 作業來分析 Azure Data Lake Store 中所儲存的資料"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 11/18/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a5e2bc4e29ac91ec17a7778e33509ec54f167ca2
-ms.openlocfilehash: 3e8c6d358602b6061447feb216d1e0e07fd950ee
+ms.sourcegitcommit: a3bdeb6fea306babc9358134c37044843b9bdd1c
+ms.openlocfilehash: e9780d487043a86df5a627b92579b67154c59279
 
 
 ---
@@ -77,7 +77,7 @@ ms.openlocfilehash: 3e8c6d358602b6061447feb216d1e0e07fd950ee
 
 3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [PySpark]。
 
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-use-with-data-lake-store/hdispark.note.jupyter.createnotebook.png "Create a new Jupyter notebook")
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-use-with-data-lake-store/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
 4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。 當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。 首先，您可以匯入此案例所需的類型。 方法是將下列程式碼片段貼到儲存格中，然後按下 **SHIFT + ENTER**。
 
@@ -85,7 +85,7 @@ ms.openlocfilehash: 3e8c6d358602b6061447feb216d1e0e07fd950ee
 
     每當您在 Jupyter 中執行作業時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。 您也會在右上角的 **PySpark** 文字旁看到一個實心圓。 工作完成後，實心圓將變成空心圓。
 
-     ![Jupyter Notebook 工作的狀態](./media/hdinsight-apache-spark-use-with-data-lake-store/hdispark.jupyter.job.status.png "Status of a Jupyter notebook job")
+     ![Jupyter Notebook 作業的狀態](./media/hdinsight-apache-spark-use-with-data-lake-store/hdispark.jupyter.job.status.png "Jupyter Notebook 作業的狀態")
 
 5. 使用您複製到 Data Lake Store 帳戶的 **HVAC.csv** 檔案，將範例資料載入到暫存資料表中。 您可以使用下列 URL 模式，存取 Data Lake Store 帳戶中的資料。
 
@@ -114,18 +114,18 @@ ms.openlocfilehash: 3e8c6d358602b6061447feb216d1e0e07fd950ee
          # Register the data fram as a table to run queries against
          hvacdf.registerTempTable("hvac")
 
-6. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-pyspark-or-spark-kernels)。
+6. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
 
          %%sql
          SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
 
 7. 一旦工作順利完成後，預設會顯示下列表格式輸出。
 
-      ![查詢結果的資料表輸出](./media/hdinsight-apache-spark-use-with-data-lake-store/tabular.output.png "Table output of query result")
+      ![查詢結果的資料表輸出](./media/hdinsight-apache-spark-use-with-data-lake-store/tabular.output.png "查詢結果的資料表輸出")
 
      您也可以查看其他視覺效果中的結果。 例如，相同輸出的區域圖看起來會如下所示。
 
-     ![查詢結果的區域圖](./media/hdinsight-apache-spark-use-with-data-lake-store/area.output.png "Area graph of query result")
+     ![查詢結果的區域圖](./media/hdinsight-apache-spark-use-with-data-lake-store/area.output.png "查詢結果的區域圖")
 
 8. 應用程式執行完畢之後，您應該要關閉 Notebook 來釋放資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。 這樣就能夠結束並關閉 Notebook。
 
@@ -138,6 +138,6 @@ ms.openlocfilehash: 3e8c6d358602b6061447feb216d1e0e07fd950ee
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

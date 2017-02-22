@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 06b33c09f5c316f974efde1116cae699d8df1065
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 04e6a43e478484d90478e4aa90d489ea4eb0cc68
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 06b33c09f5c316f974efde1116cae699d8df1065
 
 本教學課程假設您已成功建立應用程式，而且熟悉計算模擬器和部署到 Azure 的操作。
 
-我們將使用[在 JSP 中使用 Azure 服務執行階段程式庫][在 JSP 中使用 Azure 服務執行階段程式庫]教學課程中的應用程式做為本主題的起點。 如果您尚未建立該應用程式，請先建立應用程式後再繼續。
+我們將使用[在 JSP 中使用 Azure 服務執行階段程式庫][Using the Azure Service Runtime Library in JSP]教學課程中的應用程式作為本主題的起始點。 如果您尚未建立該應用程式，請先建立應用程式後再繼續。
 
 ## <a name="to-debug-your-application-while-running-in-azure"></a>在應用程式於 Azure 中執行時偵錯
 > [!WARNING]
@@ -39,7 +39,7 @@ ms.openlocfilehash: 06b33c09f5c316f974efde1116cae699d8df1065
 2. 重建您的專案：從 Eclipse 功能表按一下 [專案]，然後按一下 [全部建置]。
 3. 將應用程式部署至 Azure 中的 [預備]  。
     >[AZURE.IMPORTANT] 如前所述，在大部分情況下，強烈建議您在計算模擬器中偵錯，只有需要額外的偵錯時，才在預備環境中偵錯。 建議您不要在生產環境中偵錯。
-4. 當您在 Azure 的部署準備就緒後，請從 [Azure 管理入口網站][Azure 管理入口網站]取得部署的 DNS 名稱。 預備環境部署的 DNS 名稱格式如下：http://&lt;guid&gt;.cloudapp.net，其中 &lt;guid&gt; 是 Azure 指派的 GUID 值。
+4. 當您的部署在 Azure 中準備就緒後，請從 [Azure 管理入口網站][Azure Management Portal]取得該部署的 DNS 名稱。 預備環境部署的 DNS 名稱格式如下：http://&lt;guid&gt;.cloudapp.net，其中 &lt;guid&gt; 是 Azure 指派的 GUID 值。
 5. 在 Eclipse 的專案總管中，於 [WorkerRole1] 上按一下滑鼠右鍵，按一下 [Azure]，然後按一下 [偵錯]。
 6. 在 [WorkerRole1 偵錯內容]  對話方塊中：
    1. 核取 [啟用這個角色的遠端偵錯] 
@@ -119,22 +119,22 @@ ms.openlocfilehash: 06b33c09f5c316f974efde1116cae699d8df1065
 * 若要在 GlassFish 中啟用遠端偵錯，請勿使用 Eclipse 的 Azure 工具組的遠端偵錯組態功能。 請改為手動設定 GlassFish。 由於 GlassFish 處理預先定義在環境變數中的 Java 選項的方式，此工具組的遠端偵錯組態功能無法正確搭配 GlassFish 使用。 如果工具組的遠端偵錯組態功能已啟用，可能造成 GlassFish 無法啟動。
 
 ## <a name="see-also"></a>另請參閱
-[適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]
+[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]
 
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式][在 Eclipse 中為 Azure 建立 Hello World 應用程式]
+[在 Eclipse 中為 Azure 建立 Hello World 應用程式][Creating a Hello World Application for Azure in Eclipse]
 
-[安裝適用於 Eclipse 的 Azure 工具組][安裝適用於 Eclipse 的 Azure 工具組] 
+[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse] 
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java 開發人員中心]。
+如需有關如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java Developer Center]。
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Azure 管理入口網站]: http://go.microsoft.com/fwlink/?LinkID=512959
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[安裝適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkId=699546
-[在 JSP 中使用 Azure 服務執行階段程式庫]: http://go.microsoft.com/fwlink/?LinkID=699551
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Using the Azure Service Runtime Library in JSP]: http://go.microsoft.com/fwlink/?LinkID=699551
 
 <!-- IMG List -->
 
@@ -145,6 +145,6 @@ ms.openlocfilehash: 06b33c09f5c316f974efde1116cae699d8df1065
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

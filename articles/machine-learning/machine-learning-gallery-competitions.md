@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/13/2016
+ms.date: 01/06/2017
 ms.author: roopalik;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6b1f72a6d6f5084e804078a4deb984ebace0ac58
+ms.sourcegitcommit: 262ee4f092efa11150de61168e6b03c0477f0543
+ms.openlocfilehash: 0e7f5b3ed4e9a23b2d2fe1acdf35450f36ef1ad4
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 6b1f72a6d6f5084e804078a4deb984ebace0ac58
  **[Competitions](https://gallery.cortanaintelligence.com/competitions)**
  (競賽) 頁面會顯示最受歡迎的競賽清單。
 按一下 **See all** (查看全部) 即可檢視所有的競賽。
-在這個頁面上，您可以瀏覽 Gallery 中所有的競賽，或者選取頁面左側的篩選條件並在頂端輸入搜尋字詞進行搜尋。
+您可以從此頁面瀏覽 Gallery 中的所有競賽。 您也可以選取頁面左側的篩選條件，然後在頂端輸入搜尋字詞來進行搜尋。
 
  按一下任何一個競賽即可開啟競賽的詳細資料頁面，並讀取更多有關該競賽的資訊。 在此頁面上，您可以留言、提供意見反應，或透過留言區段提問。 您甚至可以使用 LinkedIn 或 Twitter 的分享功能，與朋友或同事分享該競賽。 您也可以用電子郵件寄出競賽連結，以邀請其他使用者檢視該頁面。
 
@@ -47,7 +47,7 @@ ms.openlocfilehash: 6b1f72a6d6f5084e804078a4deb984ebace0ac58
 
 ![已完成競賽](media/machine-learning-gallery-competitions/open-competition.png)
 
-如果競賽不再開啟，其在詳細資料頁面上的狀態將為 **Completed** (已完成)，且 **Enter Competition** (進入競賽) 連結會變成 **Finished** (已完成)。
+如果競賽已不再開放，它在詳細資料頁面上的狀態將會是 [Completed] (已完成)，而 [Enter Competition] (進入競賽) 連結文字會變成 [Finished] (已完成)。
 
 ![已完成競賽](media/machine-learning-gallery-competitions/completed-competition.png)
 
@@ -58,6 +58,6 @@ ms.openlocfilehash: 6b1f72a6d6f5084e804078a4deb984ebace0ac58
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

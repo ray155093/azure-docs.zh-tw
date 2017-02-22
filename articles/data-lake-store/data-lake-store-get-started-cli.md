@@ -1,6 +1,6 @@
 ---
-title: "使用跨平台命令列介面開始使用 Data Lake Store | Microsoft Docs"
-description: "使用 Azure 跨平台命令列建立資料湖存放區帳戶並執行基本作業"
+title: "使用命令列介面來開始使用 Azure Data Lake Store | Microsoft Docs"
+description: "使用 Azure 跨平台命令列建立 Data Lake Store 帳戶並執行基本作業"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/21/2016
+ms.date: 01/31/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: c157da7bf53e2d0762624e8e71e56e956db04a24
-ms.openlocfilehash: 236563a8814640391130ba53886c5cebfea67a8f
+ms.sourcegitcommit: f33ccee7dd520adf074856616005c929040116dd
+ms.openlocfilehash: 89d1811f3f336f2526ccba3b6be26e90ab7120ad
 
 
 ---
-# <a name="get-started-with-azure-data-lake-store-using-azure-command-line"></a>使用 Azure 命令列開始使用 Azure 資料湖存放區
+# <a name="get-started-with-azure-data-lake-store-using-azure-command-line"></a>使用 Azure 命令列開始使用 Azure Data Lake Store
 > [!div class="op_single_selector"]
 > * [入口網站](data-lake-store-get-started-portal.md)
 > * [PowerShell](data-lake-store-get-started-powershell.md)
@@ -33,9 +33,14 @@ ms.openlocfilehash: 236563a8814640391130ba53886c5cebfea67a8f
 >
 >
 
-了解如何使用 Azure 命令列介面建立 Azure 資料湖存放區帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關 Data Lake Store 的詳細資訊，請參閱 [Data Lake Store 概觀](data-lake-store-overview.md)。
+> [!NOTE]
+> 若要上傳和下載大量資料 (大型檔案、大量檔案或兩者)，建議您使用 [Python SDK](data-lake-store-get-started-python.md)、[.NET SDK](data-lake-store-get-started-net-sdk.md) 或 [Azure PowerShell](data-lake-store-get-started-powershell.md)。 這些選項擁有較佳的效能，因為它們會使用多個執行緒平行處理資料移動。
+> 
+>  
 
-Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。 Azure CLI 為開放原始碼。 原始程式碼會在 GitHub 中進行管理 (<a href= "https://github.com/azure/azure-xplat-cli">https://github.com/azure/azure-xplat-cli</a>)。 本文只涵蓋使用 Azure CLI 搭配資料湖存放區。 如需如何使用 Azure CLI 的一般指引，請參閱[如何使用 Azure CLI][azure-command-line-tools]。
+了解如何使用 Azure 命令列介面建立 Azure Data Lake Store 帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關 Data Lake Store 的詳細資訊，請參閱 [Data Lake Store 概觀](data-lake-store-overview.md)。
+
+Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。 Azure CLI 為開放原始碼。 原始程式碼會在 GitHub 中進行管理 (<a href= "https://github.com/azure/azure-xplat-cli">https://github.com/azure/azure-xplat-cli</a>)。 本文只涵蓋使用 Azure CLI 搭配 Data Lake Store。 如需如何使用 Azure CLI 的一般指引，請參閱[如何使用 Azure CLI][azure-command-line-tools]。
 
 ## <a name="prerequisites"></a>必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
@@ -61,7 +66,7 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
    
         azure account set Azure-sub-2
 
-## <a name="create-an-azure-data-lake-store-account"></a>建立 Azure 資料湖存放區帳戶
+## <a name="create-an-azure-data-lake-store-account"></a>建立 Azure Data Lake Store 帳戶
 開啟命令提示字元、殼層或終端機工作階段並執行下列命令。
 
 1. 使用下列命令來切換至 Azure Resource Manager 模式︰
@@ -72,12 +77,12 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
         azure group create <resourceGroup> <location>
    
     如果位置名稱包含空格，請將它放在引號中。 例如 "East US 2"。
-3. 建立資料湖存放區帳戶。
+3. 建立 Data Lake Store 帳戶。
    
         azure datalake store account create <dataLakeStoreAccountName> <location> <resourceGroup>
 
-## <a name="create-folders-in-your-data-lake-store"></a>在您的資料湖存放區中建立資料夾
-您可以在您的 Azure 資料湖存放區帳戶下建立資料夾，用於管理與存放資料。 使用下列命令在資料湖存放區的根目錄建立名為 "mynewfolder" 的資料夾。
+## <a name="create-folders-in-your-data-lake-store"></a>在您的 Data Lake Store 中建立資料夾
+您可以在您的 Azure Data Lake Store 帳戶下建立資料夾，用於管理與存放資料。 使用下列命令在 Data Lake Store 的根目錄建立名為 "mynewfolder" 的資料夾。
 
     azure datalake store filesystem create <dataLakeStoreAccountName> <path> --folder
 
@@ -85,10 +90,10 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
 
     azure datalake store filesystem create mynewdatalakestore /mynewfolder --folder
 
-## <a name="upload-data-to-your-data-lake-store"></a>將資料上傳至您的資料湖存放區
-您可以在根層級直接將資料上傳至資料湖存放區，或上傳至您在帳戶內建立的資料夾。 下列程式碼片段示範如何將一些範例資料上傳至您在上一節中建立的資料夾 (**mynewfolder**)。
+## <a name="upload-data-to-your-data-lake-store"></a>將資料上傳至您的 Data Lake Store
+您可以在根層級直接將資料上傳至 Data Lake Store，或上傳至您在帳戶內建立的資料夾。 下列程式碼片段示範如何將一些範例資料上傳至您在上一節中建立的資料夾 (**mynewfolder**)。
 
-如果您要尋找一些可上傳的範例資料，您可以從 **Azure 資料湖 Git 儲存機制** 取得 [Ambulance Data](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData)資料夾。 下載檔案並將它儲存在電腦的本機目錄上，例如 C:\sampledata\.
+如果您要尋找一些可上傳的範例資料，您可以從 **Azure Data Lake Git 儲存機制** 取得 [Ambulance Data](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData)資料夾。 下載檔案並將它儲存在電腦的本機目錄上，例如 C:\sampledata\.
 
     azure datalake store filesystem import <dataLakeStoreAccountName> "<source path>" "<destination path>"
 
@@ -97,8 +102,8 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
     azure datalake store filesystem import mynewdatalakestore "C:\SampleData\AmbulanceData\vehicle1_09142014.csv" "/mynewfolder/vehicle1_09142014.csv"
 
 
-## <a name="list-files-in-data-lake-store"></a>列出資料湖存放區中的檔案
-使用下列命令列出資料湖存放區中的檔案。
+## <a name="list-files-in-data-lake-store"></a>列出 Data Lake Store 中的檔案
+使用下列命令列出 Data Lake Store 中的檔案。
 
     azure datalake store filesystem list <dataLakeStoreAccountName> <path>
 
@@ -122,7 +127,7 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
     data:    ------------------------------------------------------------------------------------
     info:    datalake store filesystem list command OK
 
-## <a name="rename-download-and-delete-data-from-your-data-lake-store"></a>重新命名、下載與刪除資料湖存放區中的資料
+## <a name="rename-download-and-delete-data-from-your-data-lake-store"></a>重新命名、下載與刪除 Data Lake Store 中的資料
 * **若要重新命名檔案**，請使用下列命令：
   
         azure datalake store filesystem move <dataLakeStoreAccountName> <path/old_file_name> <path/new_file_name>
@@ -147,8 +152,8 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
   
     出現提示時，請輸入 **Y** 刪除項目。
 
-## <a name="view-the-access-control-list-for-a-folder-in-data-lake-store"></a>檢視資料湖存放區中資料夾的存取控制清單
-使用下列命令來檢視資料湖存放區資料夾中的 ACL。 在目前版本中，ACL 可以只在資料湖存放區的根目錄上設定。 因此，下面的路徑參數一律為根目錄 (/)。
+## <a name="view-the-access-control-list-for-a-folder-in-data-lake-store"></a>檢視 Data Lake Store 中資料夾的存取控制清單
+使用下列命令來檢視 Data Lake Store 資料夾中的 ACL。 在目前版本中，ACL 可以只在 Data Lake Store 的根目錄上設定。 因此，下面的路徑參數一律為根目錄 (/)。
 
     azure datalake store permissions show <dataLakeStoreName> <path>
 
@@ -157,8 +162,8 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
     azure datalake store permissions show mynewdatalakestore /
 
 
-## <a name="delete-your-data-lake-store-account"></a>刪除資料湖存放區帳戶
-使用下列命令刪除資料湖存放區帳戶。
+## <a name="delete-your-data-lake-store-account"></a>刪除 Data Lake Store 帳戶
+使用下列命令刪除 Data Lake Store 帳戶。
 
     azure datalake store account delete <dataLakeStoreAccountName>
 
@@ -171,12 +176,12 @@ Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平
 ## <a name="next-steps"></a>後續步驟
 * [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 * [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-* [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
 [azure-command-line-tools]: ../xplat-cli-install.md
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

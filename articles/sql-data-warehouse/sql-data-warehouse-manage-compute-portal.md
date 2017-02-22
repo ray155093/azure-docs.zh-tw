@@ -15,8 +15,8 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: c1c23ab46d9b4e43154a62080cb8865b246489f9
-ms.openlocfilehash: 2e11486203f04d671548b6132e61f804acb7f90a
+ms.sourcegitcommit: f9814fc0011153a25489d60d696bb567edfcebc4
+ms.openlocfilehash: a86b041424ce1757fd45c7a39350f4c4e66ee265
 
 
 ---
@@ -30,22 +30,13 @@ ms.openlocfilehash: 2e11486203f04d671548b6132e61f804acb7f90a
 >
 >
 
-透過相應放大計算資源和記憶體來調整效能，以滿足工作負載不斷改變的需求。 透過在非尖峰時間縮減資源或直接暫停計算以節省成本。
-
-這個工作集合會使用 Azure 入口網站來：
-
-* 調整計算
-* 暫停計算
-* 繼續計算
-
-如需詳細資訊，請參閱[管理計算概觀][管理計算概觀]。
 
 ## <a name="scale-compute-power"></a>調整計算能力
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
 若要變更計算資源︰
 
-1. 開啟 [Azure 入口網站][Azure 入口網站]，開啟您的資料庫，然後按一下 [調整]。
+1. 開啟 [Azure 入口網站][Azure portal]，開啟您的資料庫，然後按一下 [調整]。
 
     ![按一下 [調整]][1]
 2. 在 [調整] 刀鋒視窗中，將滑桿向左或右移動來變更 DWU 設定。
@@ -62,7 +53,7 @@ ms.openlocfilehash: 2e11486203f04d671548b6132e61f804acb7f90a
 
 若要暫停資料庫︰
 
-1. 開啟 [Azure 入口網站][Azure 入口網站]，並開啟您的資料庫。 請注意，狀態為 **線上**。
+1. 開啟 [Azure 入口網站][Azure portal]，並開啟您的資料庫。 請注意，狀態為 **線上**。
 
     ![線上狀態][6]
 2. 若要暫停計算和記憶體資源，請按一下 [暫停] ，接著就會出現確認訊息。 按一下 [是] 以確認或 [否] 以取消。
@@ -80,7 +71,7 @@ ms.openlocfilehash: 2e11486203f04d671548b6132e61f804acb7f90a
 
 若要繼續資料庫︰
 
-1. 開啟 [Azure 入口網站][Azure 入口網站]，並開啟您的資料庫。 請注意，狀態為 **已暫停**。
+1. 開啟 [Azure 入口網站][Azure portal]，並開啟您的資料庫。 請注意，狀態為 **已暫停**。
 
     ![暫停資料庫][4]
 2. 若要繼續資料庫，請按一下 [啟動] ，接著就會出現確認訊息。 按一下 [是] 以確認或 [否] 以取消。
@@ -94,7 +85,7 @@ ms.openlocfilehash: 2e11486203f04d671548b6132e61f804acb7f90a
 <a name="next-steps-bk"></a>
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱[管理概觀][管理概觀]。
+如需詳細資訊，請參閱[管理概觀][Management overview]。
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-manage-compute-portal/click-scale.png
@@ -106,18 +97,18 @@ ms.openlocfilehash: 2e11486203f04d671548b6132e61f804acb7f90a
 [7]: ./media/sql-data-warehouse-manage-compute-portal/pause-confirm.png
 
 <!--Article references-->
-[管理概觀]: ./sql-data-warehouse-overview-manage.md
-[管理計算概觀]: ./sql-data-warehouse-manage-compute-overview.md
+[Management overview]: ./sql-data-warehouse-overview-manage.md
+[Manage compute overview]: ./sql-data-warehouse-manage-compute-overview.md
 
 <!--MSDN references-->
 
 
 <!--Other Web references-->
 
-[Azure 入口網站]: http://portal.azure.com/
+[Azure portal]: http://portal.azure.com/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

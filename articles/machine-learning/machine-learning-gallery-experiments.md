@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/13/2016
+ms.date: 01/06/2017
 ms.author: roopalik;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ac264d48db224fb1a14c2ea4a23ddb11f767efda
+ms.sourcegitcommit: 262ee4f092efa11150de61168e6b03c0477f0543
+ms.openlocfilehash: 66b61e4619518619aac644f6833c597cb9a7408e
 
 
 ---
@@ -38,13 +38,13 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
  **[Experiments](https://gallery.cortanaintelligence.com/experiments)**
  (實驗) 頁面上會顯示最近新增與最受歡迎的實驗清單。
 按一下 **See all** (查看全部) 即可檢視所有實驗。
-在這個頁面上，您可以瀏覽 Gallery 中的所有實驗，或者選取頁面左側的篩選條件並在頂端輸入搜尋字詞進行搜尋。
+您可以從此頁面瀏覽 Gallery 中的所有實驗。 您也可以選取頁面左側的篩選條件，然後在頂端輸入搜尋字詞來進行搜尋。
 
  按一下任何實驗，以開啟實驗的詳細資料頁面，並閱讀實驗目的的相關資訊。 在此頁面上，您可以留言、提供意見反應，或透過留言區段提問。 您甚至可以使用 LinkedIn 或 Twitter 的分享功能，與朋友或同事分享該集合。 您也可以用電子郵件寄出實驗連結，以邀請其他使用者檢視該頁面。
 
-![與朋友分享此項目](media\\machine-learning-gallery-how-to-use-contribute-publish\\share-links.png)
+![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
-![新增您自己的留言](media\\machine-learning-gallery-how-to-use-contribute-publish\\comments.png)
+![新增您自己的留言](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="download"></a>下載
 您可以從 Gallery 將任何實驗的複本下載到 Studio 工作區，然後修改複本以建立自己的解決方案。
@@ -59,7 +59,7 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
 1. 在 Gallery 中開啟實驗的詳細資料頁面
 2. 按一下 [在 Studio 中開啟]
    
-    ![從 Gallery 開啟實驗](media\\machine-learning-gallery-experiments\\open-experiment-from-gallery.png)
+    ![從 Gallery 開啟實驗](media/machine-learning-gallery-experiments/open-experiment-from-gallery.png)
 
 當您按一下 [在 Studio 中開啟]，實驗會載入到 Machine Learning Studio 工作區並加以開啟 (如果您尚未登入 Studio，系統會提示您先使用 Microsoft 帳戶登入，然後才會將實驗複製到工作區)。
 
@@ -70,11 +70,11 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
 2. 選取 [實驗] - 您可以在 Microsoft 所發表的 Gallery 實驗清單中做選擇，或是使用搜尋方塊尋找特定實驗
 3. 將滑鼠游標指向某實驗，然後選取 [在 Studio 中開啟] - 實驗便會複製到工作區並加以開啟 (若要查看實驗的相關資訊，請選取 [在 Gallery 中檢視]，然後您便會移至 Gallery 中實驗的詳細資料頁面)
    
-    ![在 Machine Learning Studio 中開啟 Gallery 實驗](media\\machine-learning-gallery-experiments\\open-experiment-from-studio.png)
+    ![在 Machine Learning Studio 中開啟 Gallery 實驗](media/machine-learning-gallery-experiments/open-experiment-from-studio.png)
 
 您現在可以和處理您在 Machine Learning Studio 中建立的其他任何實驗一樣，自訂、反覆執行和部署此實驗。
 
-![在 Studio 中開啟的實驗](media\\machine-learning-gallery-experiments\\experiment-open-in-studio.png)
+![在 Studio 中開啟的實驗](media/machine-learning-gallery-experiments/experiment-open-in-studio.png)
 
 ## <a name="contribute"></a>參與
 當您登入 Gallery 時，您就成為 Gallery 社群的成員。 您可以發表自己的實驗，以便其他人可以從您發現的解決方案中受益。
@@ -86,10 +86,10 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
 2. 建立您的實驗並加以執行。
 3. 當您準備將實驗發佈至資源庫時，按一下實驗畫布下方的 [發佈到資源庫]。
    
-    ![按一下 [發佈到資源庫]](media\\machine-learning-gallery-experiments\\publish-experiment-to-gallery.png)
+    ![按一下 [發佈到資源庫]](media/machine-learning-gallery-experiments/publish-experiment-to-gallery.png)
 4. 填寫標題和標籤欄位。 請提供清楚的描述，指出所使用的技術或所要解決的實際問題，例如「二元分類：Twitter 情緒分析」。
    
-    ![在發佈時填寫標題和標籤欄位](media\\machine-learning-gallery-experiments\\experiment-description.png)
+    ![在發佈時填寫標題和標籤欄位](media/machine-learning-gallery-experiments/experiment-description.png)
 5. 撰寫內容所涵蓋事項的摘要。 簡要說明所要解決的問題，以及你是怎麼處理的。
 6. 使用詳細的說明方塊來逐步解說實驗的各個部分。 此處要包括的一些有用主題如下︰
    
@@ -103,7 +103,7 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
      </br>
      您可以視需要使用 Markdown 來進行格式化。 按一下 [預覽] 圖示以查看發佈時的樣貌。
      </br>
-     ![按一下 [預覽] 來查看文字的樣貌](media\\machine-learning-gallery-experiments\\preview-markdown-text.png)
+     ![按一下 [預覽] 來查看文字的樣貌](media/machine-learning-gallery-experiments/preview-markdown-text.png)
      
      <!-- -->
      > [!TIP]
@@ -112,10 +112,10 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
      > 
 7. 為您的資源庫項目上傳縮圖影像。 在瀏覽資源庫時，這會顯示在項目頁面頂端和項目圖格中。 您可以從您的電腦選擇影像，或從庫存影像選取一個。
     </br>
-    ![上傳或選取 Gallery 的映像](media\\machine-learning-gallery-experiments\\select-gallery-image.png)
+    ![上傳或選取 Gallery 的映像](media/machine-learning-gallery-experiments/select-gallery-image.png)
 8. 選擇是要公開發佈內容，還是只提供給有連結的人存取。
    
-    ![選擇要公開發佈還是以未列出狀態發佈](media\\machine-learning-gallery-experiments\\choose-public-or-unlisted.png)
+    ![選擇要公開發佈還是以未列出狀態發佈](media/machine-learning-gallery-experiments/choose-public-or-unlisted.png)
    
     <!-- -->
    
@@ -125,7 +125,7 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
    > 
 9. 按一下 [確定] 勾選記號將實驗發佈至 Gallery。
    
-    ![按一下 [確定] 勾選記號來發佈實驗](media\\machine-learning-gallery-experiments\\ok-checkmark.png)
+    ![按一下 [確定] 勾選記號來發佈實驗](media/machine-learning-gallery-experiments/ok-checkmark.png)
 
 如需如何發佈優質 Gallery 實驗的秘訣，請參閱下面的**關於發佈和優質文件的建議**一節。
 
@@ -135,7 +135,7 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
 
 若要查看您的發表清單，請在任何 Gallery 頁面的右上角按一下您的圖像，然後按一下您的名稱以開啟帳戶頁面。
 
-![按一下您的帳戶名稱](media\\machine-learning-gallery-experiments\\click-account-name.png)
+![按一下您的帳戶名稱](media/machine-learning-gallery-experiments/click-account-name.png)
 
 ### <a name="update-your-experiment"></a>更新您的實驗
 如果您需要在發佈至 Gallery 的實驗中變更工作流程 (模組、參數等)，請回到 Machine Learning Studio 中的實驗，加以進行變更，然後重新發佈。 已發佈的現有實驗便會以您的變更進行更新。
@@ -154,22 +154,22 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
 #### <a name="from-your-experiments-details-page"></a>從實驗的詳細資料頁面
 從實驗的詳細資料頁面上，按一下 [編輯] 來變更實驗的詳細資料。
 
-![按一下 [編輯] 來編輯實驗](media\\machine-learning-gallery-experiments\\edit-button.png)
+![按一下 [編輯] 來編輯實驗](media/machine-learning-gallery-experiments/edit-button.png)
 
 詳細資料頁面會進入編輯模式，您可以按一下實驗名稱、摘要、標籤等項目旁的 [編輯]，來對這些項目進行變更。 當您完成變更時，請按一下 [完成]。
 
-![按一下 [編輯] 以編輯詳細資料，完成時按一下 [完成]](media\\machine-learning-gallery-experiments\\edit-details-page.png)
+![按一下 [編輯] 以編輯詳細資料，完成時按一下 [完成]](media/machine-learning-gallery-experiments/edit-details-page.png)
 
 您也可以選取 [設定] 圖示來變更實驗的可見性 (公開或未列出)，或者可以從 Gallery 中刪除實驗。
 
-![按一下 [設定] 來變更可見性，或刪除實驗](media\\machine-learning-gallery-experiments\\settings-button.png)
+![按一下 [設定] 來變更可見性，或刪除實驗](media/machine-learning-gallery-experiments/settings-button.png)
 
 #### <a name="from-your-profile-page"></a>從設定檔頁面
 從設定檔頁面上，您可以按一下實驗的向下箭頭，然後選取 [編輯]。 這會帶您前往實驗的詳細資料頁面，並進入編輯模式。 當您完成變更時，請按一下 [完成]。
 
 您也可以按一下 [刪除]，從 Gallery 中刪除實驗。
 
-![按一下 [編輯] 或 [刪除]](media\\machine-learning-gallery-experiments\\edit-delete-buttons.png)
+![按一下 [編輯] 或 [刪除]](media/machine-learning-gallery-experiments/edit-delete-buttons.png)
 
 ### <a name="suggestions-for-publishing-and-for-quality-documentation"></a>關於發佈和優質文件的建議
 * 雖然您可以假設讀者先前已有資料科學方面的經驗，但簡化措辭並盡可能詳細說明其內容仍然有所助益。
@@ -202,6 +202,6 @@ Gallery 包含各種已在 [Azure Machine Learning Studio](https://studio.azurem
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

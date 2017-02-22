@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 01/24/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 0f0eaaa927ea73cec845dbb369dc2c4a7a8466ba
+ms.sourcegitcommit: d49d7e6b4a9485c2371eb02ac8068adfde9bad6b
+ms.openlocfilehash: c7f27fe2560c1800f05c205a73fe738cc609d642
 
 
 ---
@@ -52,158 +52,161 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **HDFS 連結服務** 此範例會使用 Windows 驗證。 請參閱 [HDFS 連結服務](#hdfs-linked-service-properties) 章節以了解您可以使用的各種不同類型的驗證。
 
+```JSON
+{
+    "name": "HDFSLinkedService",
+    "properties":
     {
-        "name": "HDFSLinkedService",
-        "properties":
+        "type": "Hdfs",
+        "typeProperties":
         {
-            "type": "Hdfs",
-            "typeProperties":
-            {
-                "authenticationType": "Windows",
-                "userName": "Administrator",
-                "password": "password",
-                "url" : "http://<machine>:50070/webhdfs/v1/",
-                "gatewayName": "mygateway"
-            }
+            "authenticationType": "Windows",
+            "userName": "Administrator",
+            "password": "password",
+            "url" : "http://<machine>:50070/webhdfs/v1/",
+            "gatewayName": "mygateway"
         }
     }
+}
+```
 
 **Azure 儲存體連結服務**
 
-    {
-      "name": "AzureStorageLinkedService",
-      "properties": {
-        "type": "AzureStorage",
-        "typeProperties": {
-          "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-        }
-      }
+```JSON
+{
+  "name": "AzureStorageLinkedService",
+  "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
     }
+  }
+}
+```
 
 **HDFS 輸入資料集** 此資料集是指 HDFS 資料夾 DataTransfer/UnitTest/。 管線會將此資料夾中的所有檔案複製到目的地。
 
 設定 “external”: ”true” 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 
-    {
-        "name": "InputDataset",
-        "properties": {
-            "type": "FileShare",
-            "linkedServiceName": "HDFSLinkedService",
-            "typeProperties": {
-                "folderPath": "DataTransfer/UnitTest/"
-            },
-            "external": true,
-            "availability": {
-                "frequency": "Hour",
-                "interval":  1
-            }
+```JSON
+{
+    "name": "InputDataset",
+    "properties": {
+        "type": "FileShare",
+        "linkedServiceName": "HDFSLinkedService",
+        "typeProperties": {
+            "folderPath": "DataTransfer/UnitTest/"
+        },
+        "external": true,
+        "availability": {
+            "frequency": "Hour",
+            "interval":  1
         }
     }
-
-
-
+}
+```
 
 **Azure Blob 輸出資料集**
 
 資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
 
-    {
-        "name": "OutputDataset",
-        "properties": {
-            "type": "AzureBlob",
-            "linkedServiceName": "AzureStorageLinkedService",
-            "typeProperties": {
-                "folderPath": "mycontainer/hdfs/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
-                "format": {
-                    "type": "TextFormat",
-                    "rowDelimiter": "\n",
-                    "columnDelimiter": "\t"
-                },
-                "partitionedBy": [
-                    {
-                        "name": "Year",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "yyyy"
-                        }
-                    },
-                    {
-                        "name": "Month",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "MM"
-                        }
-                    },
-                    {
-                        "name": "Day",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "dd"
-                        }
-                    },
-                    {
-                        "name": "Hour",
-                        "value": {
-                            "type": "DateTime",
-                            "date": "SliceStart",
-                            "format": "HH"
-                        }
-                    }
-                ]
+```JSON
+{
+    "name": "OutputDataset",
+    "properties": {
+        "type": "AzureBlob",
+        "linkedServiceName": "AzureStorageLinkedService",
+        "typeProperties": {
+            "folderPath": "mycontainer/hdfs/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
+            "format": {
+                "type": "TextFormat",
+                "rowDelimiter": "\n",
+                "columnDelimiter": "\t"
             },
-            "availability": {
-                "frequency": "Hour",
-                "interval": 1
-            }
+            "partitionedBy": [
+                {
+                    "name": "Year",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "yyyy"
+                    }
+                },
+                {
+                    "name": "Month",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "MM"
+                    }
+                },
+                {
+                    "name": "Day",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "dd"
+                    }
+                },
+                {
+                    "name": "Hour",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "HH"
+                    }
+                }
+            ]
+        },
+        "availability": {
+            "frequency": "Hour",
+            "interval": 1
         }
     }
-
-
+}
+```
 
 **具有複製活動的管線**
 
 此管線包含「複製活動」，該活動已設定為使用這些輸入和輸出資料集，並且排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **FileSystemSource**，而 **sink** 類型設為 **BlobSink**。 針對 **query** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 
+```JSON
+{
+    "name": "pipeline",
+    "properties":
     {
-        "name": "pipeline",
-        "properties":
-        {
-            "activities":
-            [
+        "activities":
+        [
+            {
+                "name": "HdfsToBlobCopy",
+                "inputs": [ {"name": "InputDataset"} ],
+                "outputs": [ {"name": "OutputDataset"} ],
+                "type": "Copy",
+                "typeProperties":
                 {
-                    "name": "HdfsToBlobCopy",
-                    "inputs": [ {"name": "InputDataset"} ],
-                    "outputs": [ {"name": "OutputDataset"} ],
-                    "type": "Copy",
-                    "typeProperties":
+                    "source":
                     {
-                        "source":
-                        {
-                            "type": "FileSystemSource"
-                        },
-                        "sink":
-                        {
-                            "type": "BlobSink"
-                        }
+                        "type": "FileSystemSource"
                     },
-                    "policy":
+                    "sink":
                     {
-                        "concurrency": 1,
-                        "executionPriorityOrder": "NewestFirst",
-                        "retry": 1,
-                        "timeout": "00:05:00"
+                        "type": "BlobSink"
                     }
+                },
+                "policy":
+                {
+                    "concurrency": 1,
+                    "executionPriorityOrder": "NewestFirst",
+                    "retry": 1,
+                    "timeout": "00:05:00"
                 }
-            ],
-            "start": "2014-06-01T18:00:00Z",
-            "end": "2014-06-01T19:00:00Z"
-        }
+            }
+        ],
+        "start": "2014-06-01T18:00:00Z",
+        "end": "2014-06-01T19:00:00Z"
     }
-
-
+}
+```
 
 ## <a name="hdfs-linked-service-properties"></a>HDFS 連結服務屬性
 下表提供 HDFS 連結服務專屬 JSON 元素的描述。
@@ -212,48 +215,192 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 | --- | --- | --- |
 | 類型 |類型屬性必須設為： **Hdfs** |是 |
 | Url |到 HDFS 的 URL |是 |
-| encryptedCredential |[New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) 輸出。 |否 |
+| authenticationType |匿名或 Windows。 <br><br> 若要對 HDFS 連接器使用 **Kerberos 驗證**，請參閱[此章節](#use-kerberos-authentication-for-hdfs-connector)來據以設定您的內部部署環境。 |是 |
 | userName |Windows 驗證的使用者名稱。 |是 (適用於 Windows 驗證) |
 | password |Windows 驗證的密碼。 |是 (適用於 Windows 驗證) |
-| authenticationType |Windows 或匿名。 |是 |
 | gatewayName |Data Factory 服務應該用來連接到 HDFS 的閘道器名稱。 |是 |
+| encryptedCredential |[New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) 輸出。 |否 |
 
 如需設定內部部署 HDFS 認證的詳細資訊，請參閱[利用資料管理閘道在內部部署來源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 ### <a name="using-anonymous-authentication"></a>使用匿名驗證
+
+```JSON
+{
+    "name": "hdfs",
+    "properties":
     {
-        "name": "hdfs",
-        "properties":
+        "type": "Hdfs",
+        "typeProperties":
         {
-            "type": "Hdfs",
-            "typeProperties":
-            {
-                "authenticationType": "Anonymous",
-                "userName": "hadoop",
-                "url" : "http://<machine>:50070/webhdfs/v1/",
-                "gatewayName": "mygateway"
-            }
+            "authenticationType": "Anonymous",
+            "userName": "hadoop",
+            "url" : "http://<machine>:50070/webhdfs/v1/",
+            "gatewayName": "mygateway"
         }
     }
-
+}
+```
 
 ### <a name="using-windows-authentication"></a>使用 Windows 驗證
+
+```JSON
+{
+    "name": "hdfs",
+    "properties":
     {
-        "name": "hdfs",
-        "properties":
+        "type": "Hdfs",
+        "typeProperties":
         {
-            "type": "Hdfs",
-            "typeProperties":
-            {
-                "authenticationType": "Windows",
-                "userName": "Administrator",
-                "password": "password",
-                "url" : "http://<machine>:50070/webhdfs/v1/",
-                "gatewayName": "mygateway"
-            }
+            "authenticationType": "Windows",
+            "userName": "Administrator",
+            "password": "password",
+            "url" : "http://<machine>:50070/webhdfs/v1/",
+            "gatewayName": "mygateway"
         }
     }
+}
+```
 
+## <a name="use-kerberos-authentication-for-hdfs-connector"></a>對 HDFS 連接器使用 Kerberos 驗證
+有兩種選項可以設定內部部署環境，以便在 HDFS 連接器中使用 Kerberos 驗證。 您可以選擇較適合您案例的選項。
+* 選項 1：[讓閘道電腦加入 Kerberos 領域](#kerberos-join-realm)
+* 選項 2：[啟用 Windows 網域和 Kerberos 領域之間的相互信任](#kerberos-mutual-trust)
+
+### <a name="a-namekerberos-join-realmaoption-1-make-gateway-machine-join-kerberos-realm"></a><a name="kerberos-join-realm"></a>選項 1：讓閘道電腦加入 Kerberos 領域
+
+#### <a name="requirement"></a>需求：
+
+* 閘道電腦必須加入 Kerberos 領域，且不得加入任何 Windows 網域。
+
+#### <a name="how-to-configure"></a>如何設定︰
+
+**在閘道電腦上︰**
+
+1.  執行 **Ksetup** 公用程式來設定 Kerberos KDC 伺服器和領域。
+
+    電腦必須設定為工作群組的成員，因為 Kerberos 領域與 Windows 網域不同。 若要進行此操作，您可以設定 Kerberos 領域並新增 KDC 伺服器，如下所示。 視需要以您自己的個別領域取代 *REALM.COM*。
+
+            C:> Ksetup /setdomain REALM.COM
+            C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
+
+    在執行這 2 個命令後**重新啟動**電腦。
+
+2.  使用 **Ksetup** 命令確認組態。 輸出應該類似如下︰
+
+            C:> Ksetup
+            default realm = REALM.COM (external)
+            REALM.com:
+                kdc = <your_kdc_server_address>
+
+**在 Azure Data Factory 中：**
+
+* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的 Kerberos 主體名稱和密碼，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#hdfs-linked-service-properties)區段。
+
+### <a name="a-namekerberos-mutual-trustaoption-2-enable-mutual-trust-between-windows-domain-and-kerberos-realm"></a><a name="kerberos-mutual-trust"></a>選項 2：啟用 Windows 網域和 Kerberos 領域之間的相互信任
+
+#### <a name="requirement"></a>需求：
+*   閘道電腦必須加入 Windows 網域。
+*   您需要可更新網域控制站設定的權限。
+
+#### <a name="how-to-configure"></a>如何設定︰
+
+> [!NOTE]
+> 視需要以您自己的個別領域和網域控制站取代以下教學課程中的 REALM.COM 和 AD.COM。
+
+**在 KDC 伺服器上︰**
+
+1.  在 **krb5.conf** 檔案中編輯 KDC 組態，讓 KDC 信任參照以下組態範本的 Windows 網域。 根據預設，此組態位於 **/etc/krb5.conf**。
+
+            [logging]
+             default = FILE:/var/log/krb5libs.log
+             kdc = FILE:/var/log/krb5kdc.log
+             admin_server = FILE:/var/log/kadmind.log
+
+            [libdefaults]
+             default_realm = REALM.COM
+             dns_lookup_realm = false
+             dns_lookup_kdc = false
+             ticket_lifetime = 24h
+             renew_lifetime = 7d
+             forwardable = true
+
+            [realms]
+             REALM.COM = {
+              kdc = node.REALM.COM
+              admin_server = node.REALM.COM
+             }
+            AD.COM = {
+             kdc = windc.ad.com
+             admin_server = windc.ad.com
+            }
+
+            [domain_realm]
+             .REALM.COM = REALM.COM
+             REALM.COM = REALM.COM
+             .ad.com = AD.COM
+             ad.com = AD.COM
+
+            [capaths]
+             AD.COM = {
+              REALM.COM = .
+             }
+
+        **Restart** the KDC service after configuration.
+
+2.  使用下列命令，在 KDC 伺服器中準備名為 **krbtgt/REALM.COM@AD.COM** 的主體︰
+
+            Kadmin> addprinc krbtgt/REALM.COM@AD.COM
+
+3.  在 **hadoop.security.auth_to_local** HDFS 服務組態檔中，新增 `RULE:[1:$1@$0](.*@AD.COM)s/@.*//`。
+
+**在網域控制站上：**
+
+1.  執行以下 **Ksetup** 命令來新增領域項目︰
+
+            C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
+            C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
+
+2.  建立 Windows 網域到 Kerberos 領域的信任關係。 [password] 是主體 **krbtgt/REALM.COM@AD.COM** 的密碼。
+
+            C:> netdom trust REALM.COM /Domain: AD.COM /add /realm /passwordt:[password]
+
+3.  選取 Kerberos 所使用的加密演算法。
+
+    1. 移至 [伺服器管理員] > [群組原則管理] > [網域] > [群組原則物件] > [預設或作用中的網域原則]，然後進行編輯。
+
+    2. 在 [群組原則管理編輯器] 快顯視窗中，移至 [電腦設定] > [原則] > [Windows 設定] > [安全性設定] > [本機原則] > [安全性選項]，並設定 [網路安全性: 設定 Kerberos 允許的加密類型]。
+
+    3. 選取您想要在連線至 KDC 時使用的加密演算法。 一般來說，您可以直接選取所有選項。
+
+        ![設定 Kerberos 的加密類型](media/data-factory-hdfs-connector/config-encryption-types-for-kerberos.png)
+
+    4. 使用 **Ksetup** 命令，指定要用於特定 REALM 的加密演算法。
+
+                C:> ksetup /SetEncTypeAttr REALM.COM DES-CBC-CRC DES-CBC-MD5 RC4-HMAC-MD5 AES128-CTS-HMAC-SHA1-96 AES256-CTS-HMAC-SHA1-96
+
+4.  建立網域帳戶與 Kerberos 主體之間的對應，以便在 Windows 網域中使用 Kerberos 主體。
+
+    1. 啟動 [系統管理工具] > [Active Directory 使用者和電腦]。
+
+    2. 按一下 [檢視] > [進階功能] 來設定進階功能。
+
+    3. 找到您要用以建立對應的帳戶，然後按一下滑鼠右鍵以檢視 [名稱對應] > 按一下 [Kerberos 名稱] 索引標籤。
+
+    4. 從領域中新增主體。
+
+        ![對應安全性身分識別](media/data-factory-hdfs-connector/map-security-identity.png)
+
+**在閘道電腦上︰**
+
+* 執行以下 **Ksetup** 命令來新增領域項目。
+
+            C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
+            C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
+
+**在 Azure Data Factory 中：**
+
+* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的網域帳戶或 Kerberos 主體，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#hdfs-linked-service-properties)區段。
 
 
 ## <a name="hdfs-dataset-type-properties"></a>HDFS 資料集類型屬性
@@ -266,9 +413,8 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 | folderPath |資料夾的路徑。 範例：`myfolder`<br/><br/>使用逸出字元 ‘ \ ’ 當做字串中的特殊字元。 例如︰若為 folder\subfolder，請指定 folder\\\\subfolder；若為 d:\samplefolder，請指定 d:\\\\samplefolder。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
 | fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
 | partitionedBy |partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。 範例：folderPath 可針對每小時的資料進行參數化。 |否 |
-| fileFilter |指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。 <br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1：`"fileFilter": "*.log"`<br/>範例 2：`"fileFilter": 2014-1-?.txt"`<br/><br/>**注意**：fileFilter 適用於輸入 FileShare 資料集 |否 |
-| format |支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat)、[指定 OrcFormat](#specifying-orcformat)、[指定 ParquetFormat](#specifying-parquetformat) 各節。 如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression |指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate** 和 **BZip2**，而支援的層級為：**最佳**和**最快**。 **AvroFormat** 或 **OrcFormat** 格式的資料目前不支援壓縮設定。 如需詳細資訊，請參閱 [壓縮支援](#compression-support) 一節。 |否 |
+| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](#specifying-textformat)、[Json 格式](#specifying-jsonformat)、[Avro 格式](#specifying-avroformat)、[Orc 格式](#specifying-orcformat)和 [Parquet 格式](#specifying-parquetformat)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
+| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 |
 
 > [!NOTE]
 > 無法同時使用檔名和 fileFilter。
@@ -281,25 +427,29 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 若要進一步了解時間序列資料集、排程和配量，請參閱[建立資料集](data-factory-create-datasets.md)、[排程和執行](data-factory-scheduling-and-execution.md)以及[建立管線](data-factory-create-pipelines.md)等文章。
 
 #### <a name="sample-1"></a>範例 1：
-    "folderPath": "wikidatagateway/wikisampledataout/{Slice}",
-    "partitionedBy":
-    [
-        { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
-    ],
 
+```JSON
+"folderPath": "wikidatagateway/wikisampledataout/{Slice}",
+"partitionedBy":
+[
+    { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
+],
+```
 在此範例中，{Slice} 會取代成 Data Factory 系統變數 SliceStart 的值 (使用指定的格式 (YYYYMMDDHH))。 SliceStart 是指配量的開始時間。 每個配量的 folderPath 都不同。 例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
 
 #### <a name="sample-2"></a>範例 2：
-    "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
-    "fileName": "{Hour}.csv",
-    "partitionedBy":
-     [
-        { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
-        { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } },
-        { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } },
-        { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
-    ],
 
+```JSON
+"folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
+"fileName": "{Hour}.csv",
+"partitionedBy":
+ [
+    { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
+    { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } },
+    { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } },
+    { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
+],
+```
 在此範例中，SliceStart 的年、月、日和時間會擷取到 folderPath 和 fileName 屬性所使用的個別變數。
 
 [!INCLUDE [data-factory-file-format](../../includes/data-factory-file-format.md)]
@@ -328,6 +478,6 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

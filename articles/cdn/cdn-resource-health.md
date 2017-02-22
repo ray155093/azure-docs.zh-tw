@@ -12,16 +12,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
-ms.date: 11/14/2016
-ms.author: mezha
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: a2fe0b6f6b3781801f74033fa8d61ae59447b9d4
-ms.openlocfilehash: d58029d5b48bbd16db2a53100f03b1b040a4bb1b
+ms.sourcegitcommit: dccb945e170bd3e3f23283359db25e574a2d4296
+ms.openlocfilehash: 37fe208f5087f318e665e76825127854b4a11c98
 
 
 ---
 
-# <a name="monitor-the-health-of-your-azure-cdn-resources"></a>監視 Azure CDN 資源的健康狀態
+# <a name="monitor-the-health-of-azure-cdn-resources"></a>監視 Azure CDN 資源的健康狀態
   
 Azure CDN 資源健康狀態是 [Azure 資源健康狀態](../resource-health/resource-health-overview.md)的子集。  您可以使用 Azure 資源健康狀態來監視 CDN 資源的健康狀態，以及接收可行的指引來進行問題的疑難排解。
 
@@ -67,6 +67,6 @@ Azure CDN 資源健康狀態是 [Azure 資源健康狀態](../resource-health/re
 - [針對 404 錯誤的問題進行疑難排解](./cdn-troubleshoot-endpoint.md)
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -12,17 +12,17 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: ba4c04880913996b9744cdf2a3d19e9bedf36c16
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 331d82a987aebe422ca2f560d856dad9f1b733f3
 
 
 ---
 # <a name="build-a-nodejs-web-application-using-express-on-an-azure-cloud-service"></a>在 Azure 雲端服務上使用 Express 建立 Node.js Web 應用程式
 Node.js 包含核心執行時期的一組最低功能。
-開發人員在開發 Node.js 應用程式時，通常會使用協力廠商模組來提供更多功能。 在本教學課程中，您將使用 [Express][Express] 模組來建立新的應用程式，此模組提供建立 Node.js Web 應用程式的 MVC 架構。
+開發人員在開發 Node.js 應用程式時，通常會使用協力廠商模組來提供更多功能。 在本教學課程中，您將使用 [Express][Express] 模組來建立新的應用程式，此模組提供用於建立 Node.js Web 應用程式的 MVC 架構。
 
 完成之應用程式的螢幕擷取畫面如下：
 
@@ -43,7 +43,7 @@ Node.js 包含核心執行時期的一組最低功能。
         PS C:\Node\expressapp> Set-AzureServiceProjectRole WebRole1 Node 0.10.21
    
     > [!NOTE]
-    > **Add-AzureNodeWebRole** 預設會使用較舊版的 Node.js。 上方的 **Set-AzureServiceProjectRole** 陳述式會指示 Azure 使用 0.10.21 版本的節點。  請注意這些參數會區分大小寫。  您可以檢查 **WebRole1\package.json** 中的 **engines** 屬性，確認已選取正確的 Node.js 版本。
+    > **Add-AzureNodeWebRole** 預設會使用較舊版的 Node.js。 上方的 **Set-AzureServiceProjectRole** 陳述式會指示 Azure 使用&0;.10.21 版本的節點。  請注意這些參數會區分大小寫。  您可以檢查 **WebRole1\package.json** 中的 **engines** 屬性，確認已選取正確的 Node.js 版本。
     > 
     > 
 
@@ -96,7 +96,7 @@ Node.js 包含核心執行時期的一組最低功能。
    
    ![The contents of the index.jade file.](./media/cloud-services-nodejs-develop-deploy-express-app/getting-started-19.png)
    
-   Jade 是 Express 應用程式使用的預設檢視引擎。 如需 Jade 檢視引擎的詳細資訊，請參閱 [http://jade-lang.com][http://jade-lang.com]。
+   Jade 是 Express 應用程式使用的預設檢視引擎。 如需有關 Jade 檢視引擎的詳細資訊，請參閱 [http://jade-lang.com][http://jade-lang.com]。
 2. 修改最後一行文字，加上 **in Azure**。
    
    ![index.jade 檔案，最後一行是：p Welcome to \#{title} in Azure](./media/cloud-services-nodejs-develop-deploy-express-app/node31.png)
@@ -119,7 +119,7 @@ Node.js 包含核心執行時期的一組最低功能。
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
 
-[Node.js Web 應用程式]: http://www.windowsazure.com/develop/nodejs/tutorials/getting-started/
+[Node.js Web Application]: http://www.windowsazure.com/develop/nodejs/tutorials/getting-started/
 [Express]: http://expressjs.com/
 [http://jade-lang.com]: http://jade-lang.com
 
@@ -127,6 +127,6 @@ Node.js 包含核心執行時期的一組最低功能。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

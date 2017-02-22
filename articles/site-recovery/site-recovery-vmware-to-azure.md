@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 入口網站使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure | Microsoft Docs"
+title: "將 VMware VM 與實體伺服器複寫到 Azure | Microsoft Docs"
 description: "描述如何使用 Azure 入口網站部署 Azure Site Recovery，以協調內部部署 VMware 虛擬機器或 Windows/Linux 實體伺服器至 Azure 的複寫、容錯移轉和復原。"
 services: site-recovery
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 1268d29b0d9c4368f62918758836a73c757c0c8d
-ms.openlocfilehash: 20ffa261ef17847a665e7c83defeb19e9029fb63
+ms.sourcegitcommit: 75653b84d6ccbefe7d5230449bea81f498e10a98
+ms.openlocfilehash: 82dbfe13577d135e3e0192f3f5fca6e085c389d3
 
 
 ---
@@ -57,7 +57,7 @@ Site Recovery 是一項有助於建立商務持續性和災害復原 (BCDR) 策�
 ## <a name="site-recovery-in-the-azure-portal"></a>Azure 入口網站中的 Site Recovery
 Azure 用來建立和處理資源的[部署模型](../azure-resource-manager/resource-manager-deployment-model.md)有二種 - Azure Resource Manager 和傳統。 Azure 也有兩個入口網站 – Azure 傳統入口網站和 Azure 入口網站。
 
-本文說明如何在 Azure 入口網站中進行部署，以提供新功能和流暢的部署體驗。 傳統入口網站可用於維護現有的保存庫。 您無法使用傳統入口網站建立新的保存庫。 
+本文說明如何在 Azure 入口網站中進行部署，以提供新功能和流暢的部署體驗。 傳統入口網站可用於維護現有的保存庫。 您無法使用傳統入口網站建立新的保存庫。
 
 
 ## <a name="site-recovery-in-your-business"></a>您企業中的 Site Recovery
@@ -86,7 +86,7 @@ Azure 用來建立和處理資源的[部署模型](../azure-resource-manager/res
 
 ![架構](./media/site-recovery-vmware-to-azure/v2a-architecture-henry.png)
 
-**圖 1：VMware/實體到 Azure**
+**VMware/實體到 Azure**
 
 ## <a name="azure-prerequisites"></a>Azure 必要條件
 以下是您在 Azure 中需要的內容。
@@ -453,6 +453,10 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 請確定您想要複寫的機器已準備好安裝行動服務，然後啟用複寫。
 
 ### <a name="install-the-mobility-service"></a>安裝行動服務
+
+  > [!TIP]
+  > Azure Site Recovery 現支援使用 System Center Configuration Manager 之類的軟體部署工具安裝行動服務。 閱讀如何[將行動服務部署自動化](site-recovery-install-mobility-service-using-sccm.md)的相關資訊。  
+
 啟用虛擬機器和實體伺服器保護的第一個步驟是安裝行動服務。 您可以使用下列幾種方式來執行這個動作：
 
 * **處理序伺服器推送**︰當您在機器上啟用複寫時，請從處理序伺服器推送並安裝行動服務元件。 請注意，如果機器已經執行最新版本的元件，便不會進行推送安裝。
@@ -501,7 +505,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 | 來源作業系統 | 行動服務安裝檔案 |
 | --- | --- |
-| Windows Server (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_Windows_* release.exe |
+| Windows Server (僅限&64; 位元) |Microsoft-ASR_UA_9.*.0.0_Windows_* release.exe |
 | CentOS 6.4、6.5、6.6 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_RHEL6-64_*release.tar.gz |
 | SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_SLES11-SP3-64_*release.tar.gz |
 | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_OL6-64_*release.tar.gz |
@@ -625,10 +629,10 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 建議您確認來源機器的屬性。 請記住，Azure VM 名稱應該符合 [Azure 虛擬機器需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
 
 1. 按一下 [設定] > [複寫的項目]，然後選取機器。 [程式集]  刀鋒視窗會顯示機器設定與狀態的相關資訊。
-2. 在 [屬性] 中，您可以檢視 VM 的複寫和容錯移轉資訊。
+1. 在 [屬性] 中，您可以檢視 VM 的複寫和容錯移轉資訊。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/test-failover2.png)
-3. 在 [計算和網路] > [計算屬性] 中，您可以指定 Azure VM 名稱和目標大小。 視需要修改名稱以符合 Azure 需求。
+1. 在 [計算和網路] > [計算屬性] 中，您可以指定 Azure VM 名稱和目標大小。 視需要修改名稱以符合 Azure 需求。
    您也可以檢視和加入目標網路、子網路的相關資訊，以及將指派給 Azure VM 的 IP 位址。 請注意：
 
    * 您可以設定目標 IP 位址。 如果您未提供地址，則容錯移轉的機器會使用 DHCP。 如果您設定的位址在容錯移轉時無法使用，則容錯移轉會失敗。 如果位址可用於測試容錯移轉網路，則相同的目標 IP 位址可用於測試容錯移轉。
@@ -641,54 +645,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
    * 如果虛擬機器具有多個網路介面卡，則清單中顯示的第一個會變成 Azure 虛擬機器中的*預設*網路介面卡。
 
      ![啟用複寫](./media/site-recovery-vmware-to-azure/test-failover4.png)
-4. 在 [磁碟] 中，您可以看見 VM 上將要複寫的作業系統和資料磁碟。
-
-## <a name="step-7-test-the-deployment"></a>步驟 7：測試部署
-為測試部署，您可以針對單一虛擬機器執行測試容錯移轉，或執行包含一或多部虛擬機器的復原計劃。
-
-### <a name="prepare-for-failover"></a>準備容錯移轉
-* 若要測試容錯移轉，建議您建立與您的 Azure 生產網路分隔的新 Azure 網路 (這是您在 Azure 中建立新網路時的預設行為)。 [深入了解](site-recovery-failover.md#run-a-test-failover) 如何執行測試容錯移轉。
-* 若要在容錯移轉至 Azure 時獲得最佳效能，請在受保護的機器上安裝 Azure 代理程式。 這可讓開機變快速，並協助進行疑難排解。 安裝 [Linux](https://github.com/Azure/WALinuxAgent) 或 [Windows](http://go.microsoft.com/fwlink/?LinkID=394789) 代理程式。
-* 若要完整測試您的部署，您需要有基礎結構，讓複寫的機器如預期般運作。 如果您想要測試 Active Directory 和 DNS，您可以透過 DNS 建立虛擬機器做為網域控制站，並使用 Azure Site Recovery 將此虛擬機器複寫至 Azure。 深入了解 [Active Directory 的測試容錯移轉考量](site-recovery-active-directory.md#test-failover-considerations)。
-* 請確定組態伺服器正在執行。 否則容錯移轉將會失敗。
-* 如果您已從複寫排除磁碟，您可能需要在容錯移轉之後以手動方式在 Azure 中建立磁碟，讓應用程式能如預期般執行。
-* 如果您想要執行非計劃性容錯移轉，而不是測試容錯移轉，請注意下列事項︰
-
-  * 如果可能的話，您應該在執行非計劃性容錯移轉之前關閉主要機器。 這可確保您不需要同時執行來源和複本機器。 如果您是複寫 VMware VM，則可以指定 Site Recovery 應該要盡全力關閉來源機器。 根據主要網站的狀態，可能可以運作。 如果您是複寫實體伺服器，則 Site Recovery 不提供此選項。
-  * 當您執行非計劃性容錯移轉時，會停止從主要機器的資料複寫，讓任何資料差異不會在開始非計劃性容錯移轉之後傳送。 此外，如果您在復原方案上執行非計劃性容錯移轉，它將會執行直到完成為止 (即使發生錯誤)。
-
-## <a name="failover"></a>容錯移轉
-您機器的初始複寫完成之後，您便可以視需要叫用容錯移轉。 Site Recovery 支援多種類型的容錯移轉︰測試容錯移轉、計劃性容錯移轉，以及非計劃性容錯移轉。
-[深入了解](site-recovery-failover.md)不同類型的容錯移轉，以及每一種容錯移轉的執行時機與方式的詳細描述。
-
-> [!NOTE]
-> 如果您打算將虛擬機器移轉至 Azure，強烈建議您使用[計劃性容錯移轉作業](site-recovery-failover.md#run-an-unplanned-failover)將虛擬機器移轉至 Azure。 使用測試容錯移轉在 Azure 中驗證所移轉的應用程式之後，請使用[完成移轉](#Complete-migration-of-your-virtual-machines-to-Azure)底下所提到的步驟來完成虛擬機器的移轉。 您不需要執行「認可」或「刪除」。 「完成移轉」會完成移轉、移除虛擬機器的保護，以及停止該機器的 Azure Site Recovery 計費。
->
->
-
-### <a name="run-an-unplanned-failover"></a>執行非計劃性容錯移轉
-此程序說明如何針對復原方案執行「非計劃性容錯移轉」。 或者，您也可以在 [虛擬機器] 索引標籤上，針對單一虛擬機器執行容錯移轉。 開始之前，請確定您想要容錯移轉的所有虛擬機器都已完成初始複寫。
-
-1. 選取 [復原方案] > recoveryplan_name。
-2. 在 [復原方案] 刀鋒視窗上，按一下 [非計劃性容錯移轉]。
-3. 在 [非計劃性容錯移轉] 頁面上，選擇來源和目標位置。
-4. 選取 [關閉虛擬機器並同步處理最新資料]  ，來指定 Site Recovery 應嘗試關閉受保護的虛擬機器並同步處理資料，以便為最新的資料版本進行容錯移轉。
-5. 容錯移轉之後，虛擬機器就會處於 認可擱置中狀態。  按一下 [認可]  以認可容錯移轉。
-
-[深入了解](site-recovery-failover.md#run-an-unplanned-failover)
-
-## <a name="complete-migration-of-your-virtual-machines-to-azure"></a>完成將虛擬機器移轉至 Azure 的移轉
-> [!NOTE]
-> 下列步驟僅適用於將虛擬機器移轉至 Azure 的情況
->
->
-
-1. 如[這裡](site-recovery-failover.md#run-an-unplanned-failover)所述，執行非計劃性容錯移轉
-2. 在 [設定] > [複寫的項目] 中的虛擬機器上按一下滑鼠右鍵，然後選取 [完成移轉]
-
-    ![完成移轉](./media/site-recovery-hyper-v-site-to-azure/migrate.png)
-3. 按一下 [確定]  來完成移轉。 您可以按一下 VM 來開啟其屬性，或使用 [設定] > [Site Recovery 作業] 中的 [完成移轉] 作業，來追蹤進度。
-
+1. 在 [磁碟] 中，您可以看見 VM 上將要複寫的作業系統和資料磁碟。
 
 ### <a name="prepare-to-connect-to-azure-vms-after-failover"></a>準備在容錯移轉後連接到 Azure VM
 如果您想要在容錯移轉後使用 RDP 連接到 Azure VM，請確定執行下列作業︰
@@ -698,7 +655,6 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 * 針對透過網際網路的存取啟用 RDP，確定已針對 [公用] 新增 TCP 和 UDP 規則，並確定在 [Windows 防火牆]  ->  [允許的應用程式和功能] 中已針對所有設定檔允許 RDP。
 * 針對透過站對站連線的存取在機器上啟用 RDP，並確定在 [Windows 防火牆] -> [允許的應用程式和功能] 中已針對 [網域] 和 [私人] 網路允許 RDP。
 * 在內部部署機器上安裝 [Azure VM 代理程式](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409) 。
-* 在機器上[手動安裝行動服務](#install-the-mobility-service-manually)，而不使用處理序伺服器來自動推送服務。 您必須這麼做，因為只有在機器已啟用複寫後，才會進行推送安裝。
 * 確定作業系統的 SAN 原則已設為 OnlineAll。 [深入了解](https://support.microsoft.com/kb/3031135)
 * 在執行容錯移轉前，關閉 IPSec 服務。
 
@@ -725,30 +681,56 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 如果您有與 VM 或 VM 子網路相關聯的網路安全性群組，請確定群組具有可允許 HTTP/HTTPS 的輸出規則。 此外，請確定 VM 要容錯移轉至的網路 DNS 設定正確。 否則，容錯移轉可能會逾時，並發生錯誤 -「PreFailoverWorkflow 工作 WaitForScriptExecutionTask 逾時」。 [深入了解](site-recovery-monitoring-and-troubleshooting.md#recovery)。
 
-## <a name="run-a-test-failover"></a>執行測試容錯移轉
+
+
+## <a name="step-7--run-a-test-failover"></a>步驟 7：執行測試容錯移轉
+若要測試部署，您可以針對單一虛擬機器執行測試容錯移轉，或執行包含一或多部虛擬機器的復原方案。
+
 1. 若要容錯移轉單一機器，請在 [設定]  >  [複寫的項目] 中，按一下 VM > [+測試容錯移轉] 圖示。
 
     ![測試容錯移轉](./media/site-recovery-vmware-to-azure/test-failover1.png)
-2. 若要容錯移轉復原方案，請在 [設定]  >  [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。 若要建立復原方案，請[遵循這些指示](site-recovery-create-recovery-plans.md)。
-3. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
-4. 按一下 [確定]  即可開始容錯移轉。 您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定]  >  [作業]  >  [Site Recovery 作業] 中的 [測試容錯移轉] 作業上按一下，來追蹤進度。
-5. 當容錯移轉到達 [完成測試]  狀態時，請執行下列作業：
+1. 若要容錯移轉復原方案，請在 [設定]  >  [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。 若要建立復原方案，請[遵循這些指示](site-recovery-create-recovery-plans.md)。
+1. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
+1. 按一下 [確定]  即可開始容錯移轉。 您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定]  >  [作業]  >  [Site Recovery 作業] 中的 [測試容錯移轉] 作業上按一下，來追蹤進度。
+1. 容錯移轉完成之後，您應該也會看到複本 Azure 機器出現在 Azure 入口網站 > [虛擬機器]中。 您應該確定 VM 為適當的大小、已連接到適當的網路，而且正在執行中。
+1. 如果您[已準備好容錯移轉後的連線](#prepare-to-connect-to-azure-vms-after-failover)，您應該能夠連接到 Azure VM。
+1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這將刪除在測試容錯移轉期間所建立的虛擬機器。 
 
-   1. 在 Azure 入口網站中檢視複本虛擬機器。 確認虛擬機器成功啟動。
-   2. 如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。
-   3. 按一下 [完成測試]  來完成它。
+如需詳細資訊，請參閱[測試容錯移轉至 Azure](site-recovery-test-failover-to-azure.md) 文件。
 
-       ![測試容錯移轉](./media/site-recovery-vmware-to-azure/test-failover6.png)
-   4. 按一下 [記事] 記錄並儲存關於測試容錯移轉的任何觀察。
-   5. 按一下 [測試容錯移轉已完成]，即可自動清除測試環境。 此動作完成之後，測試容錯移轉將會顯示 [完成]  狀態。
-   6. 在此階段，會刪除 Site Recovery 在測試容錯移轉期間自動建立的所有元素或 VM。 不會刪除任何您為測試容錯移轉建立的其他元素。
+## <a name="failover"></a>容錯移轉
+您機器的初始複寫完成之後，您便可以視需要叫用容錯移轉。 Site Recovery 支援多種類型的容錯移轉︰測試容錯移轉，以及非計劃性容錯移轉。
+[深入了解](site-recovery-failover.md)不同類型的容錯移轉，以及每一種容錯移轉的執行時機與方式的詳細描述。
 
-      > [!NOTE]
-      > 如果測試容錯移轉持續兩週以上，系統即會強制完成該測試容錯移轉。
-      >
-      >
-6. 容錯移轉完成之後，您應該也會看到複本 Azure 機器出現在 Azure 入口網站 > [虛擬機器]中。 您應該確定 VM 為適當的大小、已連接到適當的網路，而且正在執行中。
-7. 如果您[已準備好容錯移轉後的連線](#prepare-to-connect-to-azure-vms-after-failover)，您應該能夠連接到 Azure VM。
+
+> [!NOTE]
+> 如果您打算將虛擬機器移轉至 Azure，強烈建議您使用[非計劃性容錯移轉作業](site-recovery-failover.md#run-an-unplanned-failover)將虛擬機器移轉至 Azure。 使用測試容錯移轉在 Azure 中驗證所移轉的應用程式之後，請使用[完成移轉](#Complete-migration-of-your-virtual-machines-to-Azure)底下所提到的步驟來完成虛擬機器的移轉。 您不需要執行「認可」或「刪除」。 「完成移轉」會完成移轉、移除虛擬機器的保護，以及停止該機器的 Azure Site Recovery 計費。
+
+
+### <a name="run-an-unplanned-failover"></a>執行非計劃性容錯移轉
+此程序說明如何針對復原方案執行「非計劃性容錯移轉」。 或者，您也可以在 [虛擬機器] 索引標籤上，針對單一虛擬機器執行容錯移轉。 開始之前，請確定您想要容錯移轉的所有虛擬機器都已完成初始複寫。
+
+1. 選取 [復原方案] > recoveryplan_name。
+2. 在 [復原方案] 刀鋒視窗上，按一下 [非計劃性容錯移轉]。
+3. 在 [非計劃性容錯移轉] 頁面上，選擇來源和目標位置。
+4. 選取 [關閉虛擬機器並同步處理最新資料]  ，來指定 Site Recovery 應嘗試關閉受保護的虛擬機器並同步處理資料，以便為最新的資料版本進行容錯移轉。
+5. 容錯移轉之後，虛擬機器就會處於 認可擱置中狀態。  按一下 [認可]  以認可容錯移轉。
+
+[深入了解](site-recovery-failover.md#run-an-unplanned-failover)
+
+## <a name="complete-migration-of-your-virtual-machines-to-azure"></a>完成將虛擬機器移轉至 Azure 的移轉
+> [!NOTE]
+> 下列步驟僅適用於將虛擬機器移轉至 Azure 的情況
+>
+>
+
+1. 如[這裡](site-recovery-failover.md#run-an-unplanned-failover)所述，執行非計劃性容錯移轉
+2. 在 [設定] > [複寫的項目] 中的虛擬機器上按一下滑鼠右鍵，然後選取 [完成移轉]
+
+    ![完成移轉](./media/site-recovery-hyper-v-site-to-azure/migrate.png)
+3. 按一下 [確定]  來完成移轉。 您可以按一下 VM 來開啟其屬性，或使用 [設定] > [Site Recovery 作業] 中的 [完成移轉] 作業，來追蹤進度。
+
+
 
 ## <a name="monitor-your-deployment"></a>監視您的部署
 以下是監視 Site Recovery 部署的組態設定、狀態和健康狀態的方式︰
@@ -816,6 +798,6 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -15,8 +15,8 @@ ms.workload: mobile
 ms.date: 10/04/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e0bd65366ef1162a4b82c35a86fc42708226e6ed
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: a7ae0a83046f2d67b790f672dcd3ae261987357a
 
 
 ---
@@ -35,7 +35,7 @@ ms.openlocfilehash: e0bd65366ef1162a4b82c35a86fc42708226e6ed
   * 連接到 API 的指令碼必須至少每 10 分鐘傳送一次資料，否則連線會逾時 (這在接聽資料的監視 API 指令碼中特別常見)。 若要避免逾時，請讓您的指令碼每 10 分鐘傳送一個 XMPP ping，以保持伺服器工作階段運作。
 
 ### <a name="see-also"></a>另請參閱
-* [API 文件][連結 4]
+* [API 文件][Link 4]
 * [XMPP 通訊協定資訊](http://xmpp.org/extensions/xep-0199.html)
 
 ## <a name="unable-to-use-the-api-to-perform-the-same-action-available-in-the-azure-mobile-engagement-ui"></a>無法使用 API 執行 Azure Mobile Engagement UI 中可用的相同動作
@@ -46,7 +46,7 @@ ms.openlocfilehash: e0bd65366ef1162a4b82c35a86fc42708226e6ed
 * 確認您可以從 Azure Mobile Engagement UI 執行相同的動作之後，即表示您已正確地將 Azure Mobile Engagement 的這項功能與 SDK 整合。
 
 ### <a name="see-also"></a>另請參閱
-* [UI 文件][連結 1]
+* [UI 文件][Link 1]
 
 ## <a name="error-messages"></a>錯誤訊息
 ### <a name="issue"></a>問題
@@ -76,7 +76,7 @@ ms.openlocfilehash: e0bd65366ef1162a4b82c35a86fc42708226e6ed
         504        The server was not able to handle your request in a reasonable time (if you make multiple calls to an API very quickly, try to make one call at a time and spread the calls out over time).
 
 ### <a name="see-also"></a>另請參閱
-* [API 文件 - 適用於每個特定 API 的詳細錯誤][連結 4]
+* [API 文件 - 適用於每個特定 API 的詳細錯誤][Link 4]
 
 ## <a name="silent-failures"></a>無訊息失敗
 ### <a name="issue"></a>問題
@@ -87,42 +87,42 @@ ms.openlocfilehash: e0bd65366ef1162a4b82c35a86fc42708226e6ed
 * Azure Mobile Engagement 以及許多您嘗試使用的 Azure Mobile Engagement 進階功能，都需要使用 SDK 以獨立步驟方式個別整合到您的應用程式中，您才能使用它們。
 
 ### <a name="see-also"></a>另請參閱
-* [疑難排解指南 - SDK][連結 25]
+* [疑難排解指南 - SDK][Link 25]
 
 <!--Link references-->
-[連結 1]: mobile-engagement-user-interface-home.md
-[連結 2]: mobile-engagement-troubleshooting-guide.md
-[連結 3]: mobile-engagement-how-tos.md
-[連結 4]: http://go.microsoft.com/fwlink/?LinkID=525553
-[連結 5]: http://go.microsoft.com/fwlink/?LinkID=525554
-[連結 6]: http://go.microsoft.com/fwlink/?LinkId=525555
-[連結 7]: https://account.windowsazure.com/PreviewFeatures
-[連結 8]: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azuremobileengagement
-[連結 9]: http://azure.microsoft.com/en-us/services/mobile-engagement/
-[連結 10]: http://azure.microsoft.com/en-us/documentation/services/mobile-engagement/
-[連結 11]: http://azure.microsoft.com/en-us/pricing/details/mobile-engagement/
-[連結 12]: mobile-engagement-user-interface-navigation.md
-[連結 13]: mobile-engagement-user-interface-home.md
-[連結 14]: mobile-engagement-user-interface-my-account.md
-[連結 15]: mobile-engagement-user-interface-analytics.md
-[連結 16]: mobile-engagement-user-interface-monitor.md
-[連結 17]: mobile-engagement-user-interface-reach.md
-[連結 18]: mobile-engagement-user-interface-segments.md
-[連結 19]: mobile-engagement-user-interface-dashboard.md
-[連結 20]: mobile-engagement-user-interface-settings.md
-[連結 21]: mobile-engagement-troubleshooting-guide-analytics.md
-[連結 22]: mobile-engagement-troubleshooting-guide-apis.md
-[連結 23]: mobile-engagement-troubleshooting-guide-push-reach.md
-[連結 24]: mobile-engagement-troubleshooting-guide-service.md
-[連結 25]: mobile-engagement-troubleshooting-guide-sdk.md
-[連結 26]: mobile-engagement-troubleshooting-guide-sr-info.md
-[連結 27]: mobile-engagement-user-interface-reach-campaign.md
-[連結 28]: mobile-engagement-user-interface-reach-criterion.md
-[連結 29]: mobile-engagement-user-interface-reach-content.md
+[Link 1]: mobile-engagement-user-interface-home.md
+[Link 2]: mobile-engagement-troubleshooting-guide.md
+[Link 3]: mobile-engagement-how-tos.md
+[Link 4]: http://go.microsoft.com/fwlink/?LinkID=525553
+[Link 5]: http://go.microsoft.com/fwlink/?LinkID=525554
+[Link 6]: http://go.microsoft.com/fwlink/?LinkId=525555
+[Link 7]: https://account.windowsazure.com/PreviewFeatures
+[Link 8]: https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azuremobileengagement
+[Link 9]: http://azure.microsoft.com/en-us/services/mobile-engagement/
+[Link 10]: http://azure.microsoft.com/en-us/documentation/services/mobile-engagement/
+[Link 11]: http://azure.microsoft.com/en-us/pricing/details/mobile-engagement/
+[Link 12]: mobile-engagement-user-interface-navigation.md
+[Link 13]: mobile-engagement-user-interface-home.md
+[Link 14]: mobile-engagement-user-interface-my-account.md
+[Link 15]: mobile-engagement-user-interface-analytics.md
+[Link 16]: mobile-engagement-user-interface-monitor.md
+[Link 17]: mobile-engagement-user-interface-reach.md
+[Link 18]: mobile-engagement-user-interface-segments.md
+[Link 19]: mobile-engagement-user-interface-dashboard.md
+[Link 20]: mobile-engagement-user-interface-settings.md
+[Link 21]: mobile-engagement-troubleshooting-guide-analytics.md
+[Link 22]: mobile-engagement-troubleshooting-guide-apis.md
+[Link 23]: mobile-engagement-troubleshooting-guide-push-reach.md
+[Link 24]: mobile-engagement-troubleshooting-guide-service.md
+[Link 25]: mobile-engagement-troubleshooting-guide-sdk.md
+[Link 26]: mobile-engagement-troubleshooting-guide-sr-info.md
+[Link 27]: mobile-engagement-user-interface-reach-campaign.md
+[Link 28]: mobile-engagement-user-interface-reach-criterion.md
+[Link 29]: mobile-engagement-user-interface-reach-content.md
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

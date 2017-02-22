@@ -13,11 +13,11 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: hero-article
-ms.date: 08/25/2016
+ms.date: 11/16/2016
 ms.author: syamk
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b55d61071dac6d173f37bdde7f9b60e53ae2485f
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 8dc246755c90686f890d2ac9df05b3a8b2a9341f
 
 
 ---
@@ -46,7 +46,11 @@ ms.openlocfilehash: b55d61071dac6d173f37bdde7f9b60e53ae2485f
 ## <a name="database-tutorial-prerequisites"></a>資料庫教學課程必要條件
 在依照本文中的指示進行之前，您應確定已安裝下列項目：
 
-* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+ 
+    或 
+
+    本機安裝的 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)。
 * [Visual Studio 2013](http://www.visualstudio.com/) 或更高版本，或免費版本的 [Visual Studio Express]()。 本教學課程中的指示專為 Visual Studio 2015 所編寫。 
 * [GitHub](http://microsoft.github.io/PTVS/)的 Python Tools for Visual Studio。 本教學課程使用 Python Tools for VS 2015。 
 * [azure.com](https://azure.microsoft.com/downloads/)提供 Azure Python SDK for Visual Studio 2.4 版或更高版本。 我們使用 Microsoft Azure SDK for Python 2.7。
@@ -62,7 +66,7 @@ ms.openlocfilehash: b55d61071dac6d173f37bdde7f9b60e53ae2485f
 * 來自 [Microsoft 下載中心][3]的 Microsoft Visual C++ Compiler for Python 2.7。
 
 ## <a name="step-1-create-a-documentdb-database-account"></a>步驟 1：建立 DocumentDB 資料庫帳戶
-讓我們從建立 DocumentDB 帳戶開始。 如果您已經擁有帳戶，可以跳到 [步驟 2：建立新的 Python Flask Web 應用程式](#step-2:-create-a-new-python-flask-web-application)。
+現在就開始建立 DocumentDB 帳戶。 如果您已經擁有帳戶，或如果您正在使用 DocumentDB 模擬器來進行本教學課程，可以跳到[步驟 2：建立新的 Python Flask Web 應用程式](#step-2:-create-a-new-python-flask-web-application)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
@@ -405,10 +409,10 @@ def vote():
 [2]: https://www.python.org/downloads/windows/
 [3]: https://www.microsoft.com/download/details.aspx?id=44266
 [Microsoft Web Platform Installer]: http://www.microsoft.com/web/downloads/platform.aspx
-[Azure 入口網站]: http://portal.azure.com
+[Azure portal]: http://portal.azure.com
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/06/2016
+ms.date: 01/26/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: e37c48d6c92a8a2cd480458abdff0a3a1ca9338f
-ms.openlocfilehash: bcb91660500484210c342a84595386ebb5e0bbbd
+ms.sourcegitcommit: 74b077f6f09d53c9232e5b209a5dd811364ee3f5
+ms.openlocfilehash: c995e0de46c67c5c5d243739b2d36266267bdade
 
 
 ---
@@ -43,7 +43,7 @@ ms.openlocfilehash: bcb91660500484210c342a84595386ebb5e0bbbd
 以下是其運作方式：Azure AD B2C 會在取用者的瀏覽器中執行程式碼並使用稱為 [跨原始資源共用 (CORS)](http://www.w3.org/TR/cors/) 的新式方法，從您在原則中指定的 URL 載入內容。 您可以對不同的頁面指定不同的 URL。 程式碼會合併來自 Azure AD B2C 的 UI 元素與從您 URL 載入的內容，並為取用者顯示此頁面。 您只需要：
 
 1. 建立格式正確的 HTML5 內容，其中的 `<div id="api"></div>` 元素 (必須是空的元素) 位於 `<body>` 中的某處。 這個元素會標記插入 Azure AD B2C 內容的地方。
-2. 將您的內容裝載於 HTTPS 端點 (允許 CORS)。
+2. 將您的內容裝載於 HTTPS 端點 (允許 CORS)。 請注意，設定 CORS 時，您將必須同時啟用 GET 和 OPTIONS 要求方法。
 3. 為 Azure AD B2C 所插入到的 UI 項目設定樣式。
 
 ## <a name="test-out-the-ui-customization-feature"></a>測試 UI 自訂功能
@@ -72,7 +72,7 @@ ms.openlocfilehash: bcb91660500484210c342a84595386ebb5e0bbbd
 ```
 
 ## <a name="the-core-ui-elements-in-each-type-of-page"></a>每種頁面中的核心 UI 元素
-您將會在下列各節中找到 Azure AD B2C 合併至 `<div id="api"></div>` 元素 (位於您的內容中) 的 HTML5 片段範例。 **請勿將這些片段插入 HTML 5 內容中。**  Azure AD B2C 服務會在執行階段插入。 請使用這些範例來設計您自己的樣式表。
+您將會在下列各節中找到 Azure AD B2C 合併至 `<div id="api"></div>` 元素 (位於您的內容中) 的 HTML5 片段範例。 **請勿將這些片段插入 HTML 5 內容中。** Azure AD B2C 服務會在執行階段插入。 請使用這些範例來設計您自己的樣式表。
 
 ### <a name="azure-ad-b2c-content-inserted-into-the-identity-provider-selection-page"></a>插入至「身分識別提供者選取頁面」的 Azure AD B2C 內容
 此頁面包含使用者可以在註冊或登入期間選擇的身分識別提供者清單。 這些是社交身分識別提供者 (如 Facebook 和 Google+) 或本機帳戶 (以電子郵件地址或使用者名稱為基礎)。
@@ -340,20 +340,15 @@ ms.openlocfilehash: bcb91660500484210c342a84595386ebb5e0bbbd
 
 * 請勿複製 Azure AD B2C 的預設內容來嘗試修改。 最好是從頭建置您的 HTML5 內容，將預設範本當作參考即可。
 * 在登入、註冊和設定檔編輯原則所提供的所有頁面 (錯誤頁面除外) 中，您提供的樣式表必須覆寫我們在 <head> 片段中新增至這些頁面的預設樣式表。 在註冊或登入和密碼重設原則所提供的所有頁面以及所有原則上的錯誤頁面中，您必須自行提供所有樣式。
-* 基於安全性理由，我們不允許您在內容中包含任何 JavaScript。 您所需的大多數功能應可立即使用。 如果沒有，請使用 [User Voice (使用者心聲)](http://feedback.azure.com/forums/169401-azure-active-directory) 來要求新功能。
+* 基於安全性理由，我們不允許您在內容中包含任何 JavaScript。 您所需的大多數功能應可立即使用。 如果沒有，請使用 [User Voice (使用者心聲)](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c) 來要求新功能。
 * 支援的瀏覽器版本︰
-  * Internet Explorer 11
-  * Internet Explorer 10
-  * Internet Explorer 9 (有限)
-  * Internet Explorer 8 (有限)
-  * Google Chrome 43.0
-  * Google Chrome 42.0
-  * Mozilla Firefox 38.0
-  * Mozilla Firefox 37.0
+  * Internet Explorer 11、10、Edge
+  * 對 Internet Explorer 9、8 提供有限支援
+  * Google Chrome 42.0 和更新版本
+  * Mozilla Firefox 38.0 和更新版本
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

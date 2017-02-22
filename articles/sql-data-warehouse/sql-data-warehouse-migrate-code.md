@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 10/31/2016
+ms.date: 01/30/2017
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0ff5ad648d429da433170301205eafb850be5d81
+ms.sourcegitcommit: d9436796373af55a18c0b6fbfc036bd6616bbe4f
+ms.openlocfilehash: 0c9a7792331b4662a93a78fe5dd08ab037b466db
 
 
 ---
@@ -26,12 +26,11 @@ ms.openlocfilehash: 0ff5ad648d429da433170301205eafb850be5d81
 ## <a name="common-t-sql-limitations"></a>常見 T-SQL 限制
 下列清單摘要說明 Azure SQL 資料倉儲中不支援的最常見功能。 此連結會帶您前往不支援功能的因應措施：
 
-* [更新時的 ANSI 聯結][更新時的 ANSI 聯結]
-* [刪除時的 ANSI 聯結][刪除時的 ANSI 聯結]
-* [merge 陳述式][merge 陳述式]
+* [更新時的 ANSI 聯結][ANSI joins on updates]
+* [刪除時的 ANSI 聯結][ANSI joins on deletes]
+* [merge 陳述式][merge statement]
 * 跨資料庫聯結
-* [資料指標][資料指標]
-* [SELECT..INTO][SELECT..INTO]
+* [資料指標][cursors]
 * [INSERT..EXEC][INSERT..EXEC]
 * output 子句
 * 內嵌使用者定義函數
@@ -46,11 +45,11 @@ ms.openlocfilehash: 0ff5ad648d429da433170301205eafb850be5d81
 * 認可/回復工作
 * 儲存交易
 * 執行內容 (EXECUTE AS)
-* [group by 子句搭配 rollup / cube / grouping sets 選項][group by 子句搭配 rollup / cube / grouping sets 選項]
-* [巢狀層級超過 8][巢狀層級超過 8]
-* [透過檢視表更新][透過檢視表更新]
-* [使用 select 進行變數指派][使用 select 進行變數指派]
-* [動態 SQL 字串沒有 MAX 資料類型][動態 SQL 字串沒有 MAX 資料類型]
+* [group by 子句搭配 rollup / cube / grouping sets 選項][group by clause with rollup / cube / grouping sets options]
+* [巢狀層級超過 8][nesting levels beyond 8]
+* [透過檢視表更新][updating through views]
+* [使用 select 進行變數指派][use of select for variable assignment]
+* [動態 SQL 字串沒有 MAX 資料類型][no MAX data type for dynamic SQL strings]
 
 幸好這些限制大部分都可以克服。 上面提及的相關開發文章中已提供說明。
 
@@ -77,7 +76,7 @@ SQL 資料倉儲針對通用資料表運算式 (CTE) 提供部分支援。  目�
 * 在用於 sp_prepare 所準備的陳述式時，CTE 的行為會與 PDW 中的其他 SELECT 陳述式相同。 不過，如果 CTE 是做為 sp_prepare 所準備之 CETAS 中的一部分時，就會因為針對 sp_prepare 實作繫結的方式而導致其行為與 SQL Server 和其他 PDW 陳述式不同。 如果參考 CTE 的 SELECT 使用不存在於 CTE 的錯誤資料行，sp_prepare 將會通過而不會偵測到錯誤，但在 sp_execute 期間則會擲回錯誤。
 
 ## <a name="recursive-ctes"></a>遞迴 CTE
-SQL 資料倉儲並不支援遞迴 CTE。  針對遞迴 CTE 的移轉可以取得某種程度的完成度，而最佳做法便是細分成多個步驟。 一般來說，您可以使用迴圈，並在逐一執行遞迴中間的查詢時填入暫存資料表。 一旦暫存資料表填完之後，您可以將資料傳回做為單一結果集。 類似的方法已被用來解決在[group by 子句搭配 rollup / cube / grouping sets 選項][group by 子句搭配 rollup / cube / grouping sets 選項]文章中的 `GROUP BY WITH CUBE`。
+SQL 資料倉儲並不支援遞迴 CTE。  針對遞迴 CTE 的移轉可以取得某種程度的完成度，而最佳做法便是細分成多個步驟。 一般來說，您可以使用迴圈，並在逐一執行遞迴中間的查詢時填入暫存資料表。 一旦暫存資料表填完之後，您可以將資料傳回做為單一結果集。 [group by 子句搭配 rollup / cube / grouping sets 選項][group by clause with rollup / cube / grouping sets options]一文中使用類似的方法來解決 `GROUP BY WITH CUBE`。
 
 ## <a name="unsupported-system-functions"></a>不支援的系統函式
 另外還有一些不支援的系統函式。 您通常可能會發現資料倉儲中使用的主要函式包括：
@@ -115,24 +114,23 @@ SELECT TOP 1 row_count FROM LastRequestRowCounts ORDER BY step_index DESC
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需所有所支援 T-SQL 陳述式的完整清單，請參閱 [Transact-SQL 主題][Transact-SQL 主題]。
+如需所有所支援 T-SQL 陳述式的完整清單，請參閱 [Transact-SQL 主題][Transact-SQL topics]。
 
 <!--Image references-->
 
 <!--Article references-->
-[更新時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-update-statements
-[刪除時的 ANSI 聯結]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-delete-statements
-[merge 陳述式]: ./sql-data-warehouse-develop-ctas.md#replace-merge-statements
+[ANSI joins on updates]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-update-statements
+[ANSI joins on deletes]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-delete-statements
+[merge statement]: ./sql-data-warehouse-develop-ctas.md#replace-merge-statements
 [INSERT..EXEC]: ./sql-data-warehouse-tables-temporary.md#modularizing-code
-[Transact-SQL 主題]: ./sql-data-warehouse-reference-tsql-statements.md
+[Transact-SQL topics]: ./sql-data-warehouse-reference-tsql-statements.md
 
-[資料指標]: ./sql-data-warehouse-develop-loops.md
-[SELECT..INTO]: ./sql-data-warehouse-develop-ctas.md#selectinto
-[group by 子句搭配 rollup / cube / grouping sets 選項]: ./sql-data-warehouse-develop-group-by-options.md
-[巢狀層級超過 8]: ./sql-data-warehouse-develop-transactions.md
-[透過檢視表更新]: ./sql-data-warehouse-develop-views.md
-[使用 select 進行變數指派]: ./sql-data-warehouse-develop-variable-assignment.md
-[動態 SQL 字串沒有 MAX 資料類型]: ./sql-data-warehouse-develop-dynamic-sql.md
+[cursors]: ./sql-data-warehouse-develop-loops.md
+[group by clause with rollup / cube / grouping sets options]: ./sql-data-warehouse-develop-group-by-options.md
+[nesting levels beyond 8]: ./sql-data-warehouse-develop-transactions.md
+[updating through views]: ./sql-data-warehouse-develop-views.md
+[use of select for variable assignment]: ./sql-data-warehouse-develop-variable-assignment.md
+[no MAX data type for dynamic SQL strings]: ./sql-data-warehouse-develop-dynamic-sql.md
 
 <!--MSDN references-->
 
@@ -140,6 +138,6 @@ SELECT TOP 1 row_count FROM LastRequestRowCounts ORDER BY step_index DESC
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

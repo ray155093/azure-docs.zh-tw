@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/06/2016
+ms.date: 01/26/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 4b13c040a15bef2f04d2cd2126e2270d061898bd
-ms.openlocfilehash: 55ed7d44006f18fa3573a5bef5e8f24107ca20fa
+ms.sourcegitcommit: 33521eca953c0e14a7fdaa99edef2997397286eb
+ms.openlocfilehash: cd79a485feddc68924f9b7f5e7d8d614b4e28d28
 
 
 ---
@@ -162,12 +162,16 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
     > 
     > 
 
+## <a name="how-to-link-a-sign-up-or-sign-in-policy-with-a-password-reset-policy"></a>如何將註冊或登入原則與密碼重設原則連結在一起？
+當您建立註冊或登入原則 (搭配本機帳戶) 時，取用者會在該體驗的第一個頁面上看到「忘記密碼?」 連結。 按一下此連結並不會自動觸發密碼重設原則。 取而代之的是，會將特定的錯誤碼 `AADB2C90118` 傳回到您的應用程式。 您的應用程式必須處理此錯誤碼，然後叫用特定的密碼重設原則。 如需可示範這個相連結原則的範例，請參閱[這裡](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-DotNet-SUSI)。
+
 ## <a name="additional-resources"></a>其他資源
 * [權杖、工作階段及單一登入組態](active-directory-b2c-token-session-sso.md)。
+* [在取用者註冊期間停用電子郵件驗證](active-directory-b2c-reference-disable-ev.md)
 
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

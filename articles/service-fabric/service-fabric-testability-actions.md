@@ -1,5 +1,5 @@
 ---
-title: "Testability 動作 |Microsoft Docs"
+title: "模擬 Azure 微服務中的失敗 | Microsoft Docs"
 description: "本文說明關於在 Microsoft Azure Service Fabric 中找到的 Testability 動作。"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 01/19/2017
 ms.author: motanv;heeldin
 translationtype: Human Translation
-ms.sourcegitcommit: 1a9bec270650223cd40b3b60e5bc9fc7e212a207
-ms.openlocfilehash: 958be567a5e73eb52b6f99dee357ca97c7742677
+ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
+ms.openlocfilehash: 4de9967b41c37bbfacf63caf0f993f625bf3c779
 
 
 ---
@@ -235,6 +235,6 @@ ReplicaSelector secondaryReplicaSelector = ReplicaSelector.RandomSecondaryOf(par
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Jan17_HO4-->
 
 

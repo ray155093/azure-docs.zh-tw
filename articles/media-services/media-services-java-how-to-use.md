@@ -1,6 +1,6 @@
 ---
 title: "使用 Java 傳遞點播內容入門 | Microsoft Docs"
-description: "說明如何使用 Azure 媒體服務執行一般工作，包括資源的編碼、加密和串流。"
+description: "本教學課程會逐步引導您使用 Java 實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。"
 services: media-services
 documentationcenter: java
 author: juliako
@@ -12,25 +12,25 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: get-started-article
-ms.date: 01/05/2017
+ms.date: 01/10/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
-ms.openlocfilehash: b36dc7bc2d4d1a8565bc6eb823e830a62d36bf34
+ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
+ms.openlocfilehash: 55ecdb72c85276cbc8bb5c9ce67978e648ebddb1
 
 
 ---
 # <a name="get-started-with-delivering-content-on-demand-using-java"></a>使用 Java 傳遞點播內容入門
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-## <a name="setting-up-an-azure-account-for-media-services"></a>設定媒體服務的 Azure 帳戶
+本教學課程會逐步引導您使用 Java 實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。
 
-若要設定媒體服務帳戶，請使用 Azure 入口網站。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。 當您在 Azure 入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
- 
-本節包含使用 Media Services SDK for Java 進行媒體服務開發的一般必要條件。
+## <a name="prerequisites"></a>必要條件
 
-### <a name="prerequisites"></a>必要條件
-* 新的或現有 Azure 訂用帳戶中的媒體服務帳戶。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。
+需要有下列項目，才能完成教學課程：
+
+* 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
+* 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
 * Azure Libraries for Java，可從 [Azure Java 開發人員中心][Azure Java Developer Center]進行安裝。
 
 ## <a name="how-to-use-media-services-with-java"></a>如何：搭配使用媒體服務和 Java
@@ -274,6 +274,6 @@ ms.openlocfilehash: b36dc7bc2d4d1a8565bc6eb823e830a62d36bf34
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

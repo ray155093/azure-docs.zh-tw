@@ -13,21 +13,22 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 660524509b523ae2edb72cb8c80d75437730c119
+ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
+ms.openlocfilehash: 64324eb5258a060f31902cfb30c97425304b7e33
 
 
 ---
 # <a name="analyze-twitter-data-using-hive-in-hdinsight"></a>在 HDInsight 中使用 Hive 分析 Twitter 資料
-在本文件中，您將會使用 Twitter 串流 API 取得推文，然後在以 Linux 為基礎的 HDInsight 叢集上使用 Apache Hive 處理 JSON 格式化的資料。 結果會是傳送最多包含特定文字推文的 Twitter 使用者清單。
 
-> [!NOTE]
-> 本文章中的個別部分適用於以 Windows 為基礎的 HDInsight 叢集 (如 Python)，許多步驟則適用於以 Linux 為基礎的 HDInsight 叢集。 如需 Windows 為基礎的叢集的特定步驟，請參閱 [在 HDInsight 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data.md)。
-> 
-> 
+在本文件中，您將會使用 Twitter 串流 API 取得推文，然後在以 HDInsight 叢集上使用 Apache Hive 來處理 JSON 格式化資料。 結果會是傳送最多包含特定文字推文的 Twitter 使用者清單。
+
+> [!IMPORTANT]
+> 本文件中的步驟已在 Linux 型 HDInsight 叢集上進行過測試。
+>
+> Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ### <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：
@@ -61,8 +62,7 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
 
 > [!NOTE]
 > 在 Windows 上使用 curl 命令時，對選項值請使用雙引號，而不要使用單引號。
-> 
-> 
+
 
 ### <a name="download-tweets"></a>下載的推文
 下列 Python 程式碼會從 Twitter 下載 10,000 則推文，並儲存到名為 **tweets.txt**的檔案。
@@ -95,7 +95,7 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
    > [!NOTE]
    > 有關移除 python-openssl、安裝 python-dev、libffi-dev、libssl-dev、pyOpenSSL 和 requests[security] 的部分 ，是為了在透過 SSL 從 Python 連線到 Twitter 時避免 InsecurePlatform 警告。
    > 
-   > Tweepy 3.2.0 版是用來避免處理推文時可能發生的 [錯誤](https://github.com/tweepy/tweepy/issues/576) (英文)。
+   > Tweepy&3;.2.0 版是用來避免處理推文時可能發生的 [錯誤](https://github.com/tweepy/tweepy/issues/576) (英文)。
    > 
    > 
 4. 使用以下命令建立名為 **gettweets.py**的新檔案：
@@ -316,6 +316,6 @@ Twitter 可讓您透過 REST API 抓取 [每則推文資料](https://dev.twitter
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

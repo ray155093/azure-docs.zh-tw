@@ -1,9 +1,9 @@
 ---
-title: "整合雲端服務與 Azure CDN | Microsoft Docs"
-description: "指導如何部署雲端服務來提供整合式 Azure CDN 端點內容的教學課程"
+title: "整合 Azure 雲端服務與 Azure CDN | Microsoft Docs"
+description: "了解如何部署可提供整合式 Azure CDN 端點內容的雲端服務"
 services: cdn, cloud-services
 documentationcenter: .net
-author: camsoper
+author: zhangmanling
 manager: erikre
 editor: tysonn
 ms.assetid: b3c0108f-9ec5-43a8-8fd0-40eafbd32637
@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/28/2016
-ms.author: casoper
+ms.date: 01/23/2017
+ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3d5c371c8753b4ddaffcbf373d078b819fd2d687
+ms.sourcegitcommit: 06bd0112eab46f3347dfb039a99641a37c2b0197
+ms.openlocfilehash: 6355c98f5c50d03b54cb4977bff4e51b8dfa669f
 
 
 ---
@@ -50,8 +50,8 @@ ms.openlocfilehash: 3d5c371c8753b4ddaffcbf373d078b819fd2d687
 > [!NOTE]
 > 要完成此教學課程，您必須要有 Azure 帳戶：
 > 
-> * 您可以 [免費申請 Azure 帳戶](/pricing/free-trial/) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。
-> * 您可以 [啟用 MSDN 訂戶權益](/pricing/member-offers/msdn-benefits-details/) - 您的 MSDN 訂閱每月會提供您額度，您可以用在 Azure 付費服務。
+> * 您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。
+> * 您可以 [啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) - 您的 MSDN 訂閱每月會提供您額度，您可以用在 Azure 付費服務。
 > 
 > 
 
@@ -603,6 +603,6 @@ CDN 設定檔就是 CDN 端點的集合。  每個設定檔皆包含一或多個
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "如何將服務匯流排佇列搭配 Ruby 使用 | Microsoft Docs"
+title: "如何搭配 Ruby 使用 Azure 服務匯流排佇列 | Microsoft Docs"
 description: "了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 Ruby 撰寫。"
 services: service-bus-messaging
 documentationcenter: ruby
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: ruby
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/11/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: bde6cfe0daa95fc64e18be308798263544119b9f
+ms.sourcegitcommit: 0f9f732d6998a6ee50b0aea4edfc615ac61025ce
+ms.openlocfilehash: 343dc0d39f284488f03e1d1ba3df21ae616e97d9
 
 
 ---
@@ -25,48 +25,12 @@ ms.openlocfilehash: bde6cfe0daa95fc64e18be308798263544119b9f
 
 本指南將說明如何使用服務匯流排佇列。 這些範例均以 Ruby 撰寫，並使用 Azure gem。 本文說明的案例包括**建立佇列、傳送並接收訊息**，以及**刪除佇列**。 如需服務匯流排佇列的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
-## <a name="what-are-service-bus-queues"></a>什麼是服務匯流排佇列？
-服務匯流排佇列支援*代理傳訊*通訊模型。 使用佇列時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色的佇列來交換訊息。 訊息產生者 (傳送者) 會將訊息遞交給佇列，然後繼續其處理工作。
-訊息取用者 (接收者) 非同步地從佇列中提取訊息並處理。 產生者不必等待取用者的回覆，即可繼續處理及傳送其他訊息。 如果有一或多個競爭取用者，佇列會採取 **先進先出 (FIFO)** 訊息傳遞機制。 亦即，通常由接收者依訊息加入佇列的順序來接收和處理訊息，而且每則訊息只能由一個訊息取用者接收和處理。
+[!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
-![佇列概念](./media/service-bus-ruby-how-to-use-queues/sb-queues-08.png)
-
-服務匯流排佇列為適用於各種情況的通用技術：
-
-* [多層式 Azure 應用程式](service-bus-dotnet-multi-tier-app-using-service-bus-queues.md)中 Web 角色和背景工作角色之間的通訊。
-* [混合式解決方案](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md)中的內部部署應用程式和 Azure 代管應用程式之間的通訊。
-* 在不同組織或同一組織的不同部門中，在內部部署執行之分散式應用程式的各元件之間的通訊。
-
-使用佇列可讓應用程式進一步向外延展，提高架構的備援能力。
-
-## <a name="create-a-namespace"></a>建立命名空間
-若要開始在 Azure 中使用服務匯流排佇列，必須先建立命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。 由於 Azure 入口網站不會使用 ACS 連線建立命名空間，因此您必須透過命令列介面建立命名空間。
-
-若要建立命名空間：
-
-1. 開啟 Azure Powershell 主控台。
-2. 請輸入下列命令來建立服務匯流排命名空間。 提供您自己的命名空間值，並指定與您的應用程式相同的區域。
+[!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
    
-    ```
-    New-AzureSBNamespace -Name 'yourexamplenamespace' -Location 'West US' -NamespaceType 'Messaging' -CreateACSNamespace $true
-   
-    ![Create Namespace](./media/service-bus-ruby-how-to-use-queues/showcmdcreate.png)
-    ```
-
-## <a name="obtain-management-credentials-for-the-namespace"></a>取得命名空間的管理認證
-若要在新的命名空間上執行管理作業，例如建立佇列，您必須取得命名空間的管理認證。
-
-您執行以建立 Azure 服務匯流排命名空間的 PowerShell Cmdlet 會顯示您可以用來管理命名空間的金鑰。 複製 **DefaultKey** 值。 您將會在本教學課程稍後的程式碼中使用此值。
-
-![複製金鑰](./media/service-bus-ruby-how-to-use-queues/defaultkey.png)
-
-> [!NOTE]
-> 如果您登入 [Azure 入口網站](https://portal.azure.com/)並瀏覽至您服務匯流排命名空間的連線資訊，也可以找到此金鑰。
-> 
-> 
-
 ## <a name="create-a-ruby-application"></a>建立 Ruby 應用程式
-建立 Ruby 應用程式。 如需指示，請參閱[在 Azure 上建立 Ruby 應用程式](/develop/ruby/tutorials/web-app-with-linux-vm/)。
+建立 Ruby 應用程式。 如需指示，請參閱[在 Azure 上建立 Ruby 應用程式](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
 若要使用 Azure 服務匯流排，請下載並使用 Ruby Azure 套件，其中包含一組能與儲存體 REST 服務通訊的便利程式庫。
@@ -85,7 +49,7 @@ require "azure"
 ## <a name="set-up-an-azure-service-bus-connection"></a>設定 Azure 服務匯流排連接
 Azure 模組會讀取環境變數 **AZURE\_SERVICEBUS\_NAMESPACE** 和 **AZURE\_SERVICEBUS\_ACCESS_KEY**，以取得連接您的服務匯流排命名空間所需的資訊。 若未設定這些環境變數，您必須使用下列程式碼，在使用 **Azure::ServiceBusService** 之前指定命名空間資訊：
 
-```
+```ruby
 Azure.config.sb_namespace = "<your azure service bus namespace>"
 Azure.config.sb_access_key = "<your azure service bus access key>"
 ```
@@ -95,7 +59,7 @@ Azure.config.sb_access_key = "<your azure service bus access key>"
 ## <a name="how-to-create-a-queue"></a>如何建立佇列
 **Azure::ServiceBusService** 物件可讓您使用佇列。 若要建立佇列，請使用 **create_queue()** 方法。 下列範例會建立佇列，或列印出任何錯誤。
 
-```
+```ruby
 azure_service_bus_service = Azure::ServiceBusService.new
 begin
   queue = azure_service_bus_service.create_queue("test-queue")
@@ -106,7 +70,7 @@ end
 
 您也可以使用其他選項傳遞 **Azure::ServiceBus::Queue** 物件，這可讓您覆寫訊息存留時間或佇列大小上限等預設佇列設定。 下列範例說明如何將佇列大小上限設為 5GB，將存留時間設為 1 分鐘：
 
-```
+```ruby
 queue = Azure::ServiceBus::Queue.new("test-queue")
 queue.max_size_in_megabytes = 5120
 queue.default_message_time_to_live = "PT1M"
@@ -115,11 +79,11 @@ queue = azure_service_bus_service.create_queue(queue)
 ```
 
 ## <a name="how-to-send-messages-to-a-queue"></a>如何傳送訊息至佇列
-若要將訊息傳送至服務匯流排佇列，您的應用程式必須在 **Azure::ServiceBusService** 物件上呼叫 **send\_queue\_message()** 方法。 傳送至 (及接收自) 服務匯流排佇列的訊息是 **Azure::ServiceBus::BrokeredMessage** 物件，此類物件具有一組標準屬性 (例如 **label** and **time\_to\_live**)、一個用來保存自訂應用程式特定屬性的字典，以及一堆任意的應用程式資料。 應用程式可用訊息的形式傳遞字串值以設定訊息內文，任何必要的標準屬性都將以預設值填入。
+若要將訊息傳送至「服務匯流排」佇列，您的應用程式必須在 **Azure::ServiceBusService** 物件上呼叫 **send\_queue\_message()** 方法。 傳送至 (及接收自)「服務匯流排」佇列的訊息是 **Azure::ServiceBus::BrokeredMessage** 物件，而且具有一組標準屬性 (例如 **label** 和 **time\_to\_live**)、一個用來保存自訂應用程式特定屬性的字典，以及一堆任意的應用程式資料。 應用程式可用訊息的形式傳遞字串值以設定訊息內文，任何必要的標準屬性都將以預設值填入。
 
 下列範例示範如何使用 **send\_queue\_message()** 將測試訊息傳送至名稱為 "test-queue" 的佇列：
 
-```
+```ruby
 message = Azure::ServiceBus::BrokeredMessage.new("test queue message")
 message.correlation_id = "test-correlation-id"
 azure_service_bus_service.send_queue_message("test-queue", message)
@@ -136,7 +100,7 @@ azure_service_bus_service.send_queue_message("test-queue", message)
 
 下列範例示範如何使用 **receive\_queue\_message()** 來接收和處理訊息。 此範例會先使用設為 **false** 的 **:peek\_lock** 來接收及刪除訊息，然後再接收另一個訊息，接著使用 **delete\_queue\_message()** 刪除訊息：
 
-```
+```ruby
 message = azure_service_bus_service.receive_queue_message("test-queue",
   { :peek_lock => false })
 message = azure_service_bus_service.receive_queue_message("test-queue")
@@ -161,6 +125,6 @@ azure_service_bus_service.delete_queue_message(message)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

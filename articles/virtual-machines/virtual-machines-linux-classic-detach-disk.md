@@ -16,13 +16,14 @@ ms.topic: article
 ms.date: 11/14/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: f556fd0318accc19f0fa56fa7f2a8716ee6f1c02
-ms.openlocfilehash: 74925fe82d7f05799b7e850eb2807a7d4d7197a1
+ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
+ms.openlocfilehash: f3b622ae6fd5f29ba92686ffeb3a3806b67b7e3a
 
 
 ---
 # <a name="how-to-detach-a-disk-from-a-linux-virtual-machine"></a>如何從 Linux 虛擬機器卸離磁碟
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+> [!IMPORTANT] 
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 [!INCLUDE [howto-detach-disk-windows-linux](../../includes/howto-detach-disk-linux.md)]
 
@@ -30,11 +31,11 @@ ms.openlocfilehash: 74925fe82d7f05799b7e850eb2807a7d4d7197a1
 您可以閱讀下列文章來進一步了解如何使用 Linux VM：
 
 * [如何將資料磁碟連接至 Linux 虛擬機器](virtual-machines-linux-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [搭配傳統部署模型使用 Azuer CLI](../virtual-machines-command-line-tools.md)
+* [搭配傳統部署模型使用 Azuer CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

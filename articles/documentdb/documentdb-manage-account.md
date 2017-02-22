@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/14/2016
+ms.date: 02/03/2017
 ms.author: kirillg
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f38b5d6127897ba2b083e0f3bb41562650214ae9
+ms.sourcegitcommit: 3dbf57923e104715d34d1131d16acb6bc6c51637
+ms.openlocfilehash: ee1668dce71a1f5d7b91e839670b69c9527c4892
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: f38b5d6127897ba2b083e0f3bb41562650214ae9
 了解如何在 Azure 入口網站中設定全域一致性、使用金鑰，以及刪除 DocumentDB 帳戶。
 
 ## <a name="a-idconsistencyamanage-documentdb-consistency-settings"></a><a id="consistency"></a>管理 DocumentDB 一致性設定
-根據您應用程式的語意選取正確的一致性層級。 您應該閱讀[使用一致性層級來充分發揮 DocumentDB 中的可用性和效能][consistency]，來熟悉 DocumentDB 中可用的一致性層級。 DocumentDB 會在您資料庫帳戶可用的每個一致性層級提供一致性、可用性和效能保證。 使用強式一致性層級設定您的資料庫帳戶，需要將您的資料限制為單一 Azure 區域且無法全域使用。 另一方面，寬鬆的一致性層級 (限定過期、工作階段或最終) 讓您能夠將任意數目的 Azure 區域與您的資料庫帳戶產生關聯。 下列簡單步驟示範如何針對您的資料庫帳戶選取預設一致性層級。 
+根據您應用程式的語意選取正確的一致性層級。 您應該已藉由閱讀[使用一致性層級以最大化 DocumentDB 中的可用性和效能][consistency]，來熟悉 DocumentDB 中可用的一致性層級。 DocumentDB 會在您資料庫帳戶可用的每個一致性層級提供一致性、可用性和效能保證。 使用強式一致性層級設定您的資料庫帳戶，需要將您的資料限制為單一 Azure 區域且無法全域使用。 另一方面，寬鬆的一致性層級 (限定過期、工作階段或最終) 讓您能夠將任意數目的 Azure 區域與您的資料庫帳戶產生關聯。 下列簡單步驟示範如何針對您的資料庫帳戶選取預設一致性層級。 
 
 ### <a name="to-specify-the-default-consistency-for-a-documentdb-account"></a>指定 DocumentDB 帳戶的預設一致性
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。
@@ -87,12 +87,12 @@ ms.openlocfilehash: f38b5d6127897ba2b083e0f3bb41562650214ae9
 如果您要在 [DocumentDB 資料庫移轉工具](documentdb-import-data.md)中使用連接字串，請在連接字串結尾加上資料庫名稱。 `AccountEndpoint=< >;AccountKey=< >;Database=< >`。
 
 ## <a name="a-iddeletea-delete-a-documentdb-account"></a><a id="delete"></a> 刪除 DocumentDB 帳戶
-若要從「Azure 入口網站」中移除您已不再使用的 DocumentDB 帳戶，請使用 [DocumentDB 帳戶] 刀鋒視窗上的 [刪除帳戶] 命令。
+若要從 Azure 入口網站中移除您不再使用的 DocumentDB 帳戶，請以滑鼠右鍵按一下帳戶名稱，並按一下 [刪除帳戶]。
 
 ![如何在 Azure 入口網站中刪除 DocumentDB 帳戶](./media/documentdb-manage-account/deleteaccount.png)
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取要刪除的 DocumentDB 帳戶。
-2. 在 [DocumentDB 帳戶] 刀鋒視窗上，按一下 [更多]，然後按一下 [刪除帳戶]。 或者，以滑鼠右鍵按一下資料庫的名稱，然後按一下 [刪除帳戶] 。
+2. 在 [DocumentDB 帳戶] 刀鋒視窗上，以滑鼠右鍵按一下帳戶，然後按一下 [刪除帳戶]。 
 3. 在後續的確認刀鋒視窗中輸入 DocumentDB 帳戶名稱，以確認您想要刪除該帳戶。
 4. 按一下 [刪除]  按鈕。
 
@@ -100,8 +100,6 @@ ms.openlocfilehash: f38b5d6127897ba2b083e0f3bb41562650214ae9
 
 ## <a name="a-idnextanext-steps"></a><a id="next"></a>後續步驟
 了解如何 [開始使用 DocumentDB 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=402364)。
-
-若要深入了解 DocumentDB，請參閱 [azure.com](http://go.microsoft.com/fwlink/?LinkID=402319&clcid=0x409)上的 Azure DocumentDB 文件。
 
 <!--Image references-->
 [1]: ./media/documentdb-manage-account/documentdb_add_region-1.png
@@ -119,6 +117,6 @@ ms.openlocfilehash: f38b5d6127897ba2b083e0f3bb41562650214ae9
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

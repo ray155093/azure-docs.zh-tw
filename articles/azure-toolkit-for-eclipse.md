@@ -4,7 +4,7 @@ description: "了解 Azure Toolkit for Eclipse。"
 services: 
 documentationcenter: java
 author: rmcmurray
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: ef2f3839-2549-4471-9b53-0deb7f4c128b
 ms.service: multiple
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 09/20/2016
+ms.date: 12/22/2016
 ms.author: robmcm;asirveda
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e2376cd1f4fd5dd6c79b5eb7969c0e82c07f5473
+ms.sourcegitcommit: d58166140c5de03462df07ea6ea83eb78ffa54ba
+ms.openlocfilehash: 1c60d3730aa2bbca63abf259727ec41ffc164b47
 
 
 ---
@@ -57,7 +57,7 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 * [部署大型部署]
 * [在 Eclipse 中對 Azure 上的 Java Web 應用程式進行偵錯]
 * [在 Eclipse 中偵錯 Azure 應用程式]
-* [使用適用於 Eclipse 的 HDInsight 工具外掛程式建立適用於 HDInsight Spark Linux 叢集的 Spark 應用程式][Eclipse 的 HDInsight Tools 外掛程式]
+* [使用適用於 Eclipse 的 HDInsight 工具外掛程式建立 HDInsight Spark Linux 叢集的 Spark 應用程式][HDInsight Tools Plugin for Eclipse]
 
 ## <a name="see-also"></a>另請參閱
 如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
@@ -71,11 +71,11 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
   * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
   * [適用於 IntelliJ 的 Azure 工具組新增功能]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+如需有關使用 Azure 搭配 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]和[適用於 Visual Studio Team Services 的 Java 工具]。
 
 <!-- URL List -->
 
-[適用於 Eclipse 的 Azure 工具組]: ./azure-toolkit-for-eclipse.md
+[Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
 [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
@@ -85,6 +85,7 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 [適用於 IntelliJ 的 Azure 工具組新增功能]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
+[適用於 Visual Studio Team Services 的 Java 工具]: https://java.visualstudio.com/
 
 [Azure 專案屬性]: ./azure-toolkit-for-eclipse-azure-project-properties.md
 [Azure 角色屬性]: ./azure-toolkit-for-eclipse-azure-role-properties.md
@@ -97,8 +98,8 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 [在 Eclipse 中顯示 Azure Libraries for Java 封裝的 Javadoc 內容]: ./azure-toolkit-for-eclipse-displaying-javadoc-content-for-azure-libraries.md
 [在 Eclipse 中啟用 Azure 部署的遠端存取]: ./azure-toolkit-for-eclipse-enabling-remote-access-for-azure-deployments.md
 [啟用工作階段同質]: ./azure-toolkit-for-eclipse-enable-session-affinity.md
-[Eclipse 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
-[如何使用 Eclipse 搭配 Azure 存取控制服務來驗證 Web 使用者]: ./active-directory/active-directory-java-authenticate-users-access-control-eclipse.md
+[HDInsight Tools Plugin for Eclipse]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
+[How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: ./active-directory/active-directory-java-authenticate-users-access-control-eclipse.md
 
 <!-- [How to Maintain Session Data with Session Affinity]: http://go.microsoft.com/fwlink/?LinkID=699539 -->
 <!-- [How to Use Co-located Caching]: http://go.microsoft.com/fwlink/?LinkID=699542 -->
@@ -110,6 +111,6 @@ Azure Toolkit for Eclipse 提供範本和功能，可讓您輕鬆地使用 Eclip
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

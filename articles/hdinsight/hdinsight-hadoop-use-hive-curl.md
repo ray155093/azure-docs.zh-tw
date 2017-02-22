@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/07/2016
+ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 90e7998a7ab427b7b429a6330792c27ee851608e
+ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
+ms.openlocfilehash: 0842cbcceb7ac96d4283efdd6c178b08dd728254
 
 
 ---
@@ -30,13 +30,12 @@ ms.openlocfilehash: 90e7998a7ab427b7b429a6330792c27ee851608e
 
 > [!NOTE]
 > 如果您已熟悉使用以 Linux 為基礎的 Hadoop 伺服器，但剛接觸 HDInsight，請參閱 [在以 Linux 為基礎的 HDInsight 上安裝 Hadoop 的須知事項](hdinsight-hadoop-linux-information.md)。
-> 
-> 
+
 
 ## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
-若要完成本文中的步驟，您需要下列項目。
+若要完成本文中的步驟，您需要下列項目：
 
-* HDInsight 叢集上的 Hadoop (Linux 或 Windows 型)
+* 一個 Hadoop on HDInsight 叢集
 * [Curl](http://curl.haxx.se/)
 * [jq](http://stedolan.github.io/jq/)
 
@@ -94,7 +93,7 @@ ms.openlocfilehash: 90e7998a7ab427b7b429a6330792c27ee851608e
      > 
    * **ROW FORMAT** - 告訴 Hive 如何格式化資料。 在此情況下，每個記錄中的欄位會以空格隔開。
    * **STORED AS TEXTFILE LOCATION** - 將資料的儲存位置告訴 Hive (example/data 目錄)，且資料儲存為文字。
-   * **SELECT** - 選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。 這應該會傳回值 **3** ，因為有 3 個資料列包含此值。
+   * **SELECT** - 選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。 這應該會傳回值 **3** ，因為有&3; 個資料列包含此值。
      
      > [!NOTE]
      > 請注意，在搭配 Curl 使用時，會以 `+` 字元取代 HiveQL 陳述式之間的空格。 加上引號的值若包含空格，例如分隔符號，則不應以 `+`取代。
@@ -149,14 +148,17 @@ ms.openlocfilehash: 90e7998a7ab427b7b429a6330792c27ee851608e
    * **STORED AS ORC** - 以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。 這是高度最佳化且有效率的 Hive 資料儲存格式。
    * **INSERT OVERWRITE ...SELECT**- 從包含 **[ERROR]** 的 **log4jLogs** 資料表選取資料列，然後將資料插入 **errorLogs** 資料表。
    * **SELECT** - 從新的 **errorLogs** 資料表選取所有資料列。
-6. 使用傳回的工作識別碼檢查工作的狀態。 成功後，如先前所述使用適用於 Mac、Linux 和 Windows 的 Azure CLI 下載並檢視結果。 輸出應包含三行，其中都包含 **[ERROR]**。
+
+6. 使用傳回的工作識別碼檢查工作的狀態。 成功之後，如先前所述使用 Azure CLI 來下載並檢視結果。 輸出應包含三行，其中都包含 **[ERROR]**。
 
 ## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+
 如這份文件所示，您可以使用原始 HTTP 要求來執行、監視和檢視 HDInsight 叢集上的 Hive 工作結果。
 
 如需本文中使用的 REST 介面的詳細資訊，請參閱 <a href="https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference" target="_blank">WebHCat 參照</a>。
 
 ## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+
 Hive 與 HDInsight 搭配使用的一般資訊：
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
@@ -168,7 +170,6 @@ Hive 與 HDInsight 搭配使用的一般資訊：
 
 如果您搭配使用 Tez 和 Hive，請參閱下列文件所提供的偵錯資訊：
 
-* [在以 Windows 為基礎的 HDInsight 上使用 Tez UI](hdinsight-debug-tez-ui.md)
 * [在以 Linux 為基礎的 HDInsight 上使用 Ambari Tez 檢視](hdinsight-debug-ambari-tez-view.md)
 
 [hdinsight-sdk-documentation]: http://msdnstage.redmond.corp.microsoft.com/library/dn479185.aspx
@@ -200,6 +201,6 @@ Hive 與 HDInsight 搭配使用的一般資訊：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

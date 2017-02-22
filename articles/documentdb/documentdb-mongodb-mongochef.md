@@ -1,5 +1,5 @@
 ---
-title: "使用 MongoChef 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶 | Microsoft Docs"
+title: "搭配 Azure DocumentDB 使用 MongoDB 與 MongoChef | Microsoft Docs"
 description: "了解如何搭配使用 MongoChef 與 MongoDB 的通訊協定支援的 DocumentDB 帳戶，現在可供預覽。"
 keywords: MongoChef
 services: documentdb
@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/25/2016
+ms.date: 11/29/2016
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 90039d2626724ed789415967a345d2aadc3407af
+ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
+ms.openlocfilehash: 26035ac7827eba384268dde266db2ac13cc30f40
 
 
 ---
@@ -31,41 +31,41 @@ ms.openlocfilehash: 90039d2626724ed789415967a345d2aadc3407af
 若要將具有 MongoDB 通訊協定支援的 DocumentDB 帳戶新增至 MongoChef 連接管理員，請執行下列步驟。
 
 1. 使用 [這裡](documentdb-connect-mongodb-account.md)的資訊，擷取具有 MongoDB 連接資訊通訊協定支援的 DocumentDB。
-   
+
     ![[連接字串] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionStringBlade.png)
 2. 按一下 [連接] 以開啟 [連接管理員]，然後按一下 [新增連線]
-   
+
     ![[MongoChef 連接管理員] 的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManager.png)
 3. 在 [新增連線]視窗中，請在 [伺服器] 索引標籤上輸入具有 MongoDB 通訊協定支援的 DocumentDB 帳戶的主機 (FQDN) 和連接埠。
-   
+
     ![[MongoChef 連接管理員伺服器] 索引標籤的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManagerServerTab.png)
 4. 在 [新增連線] 視窗中，請在 [驗證] 索引標籤上選擇驗證模式 [標準 (MONGODB-CR 或 SCARM-SHA-1)]，並輸入使用者名稱和密碼。  接受預設的驗證資料庫 (管理員)，或提供您自己的值。
-   
+
     ![[MongoChef 連接管理員驗證] 索引標籤的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManagerAuthenticationTab.png)
-5. 在 [新增連線] 視窗中，請在 [SSL] 索引標籤上勾選 [使用 SSL 通訊協定連接] 核取方塊和 [接受自我簽署的 SSL 憑證] 選項按鈕。
-   
+5. 在 [新增連接] 視窗的 [SSL] 索引標籤上，勾選 [使用 SSL 通訊協定連接] 核取方塊和 [接受自我簽署的 SSL 憑證] 選項按鈕。
+
     ![[MongoChef 連接管理員 SSL] 索引標籤的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionManagerSSLTab.png)
 6. 按一下 [測試連接] 按鈕以驗證連接資訊，按一下 [確定] 以返回 [新增連線] 視窗，然後按一下 [儲存]。
-   
+
     ![[MongoChef 測試連接] 視窗的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/TestConnectionResults.png)
 
 ## <a name="use-mongochef-to-create-a-database-collection-and-documents"></a>使用 MongoChef 以建立資料庫、集合和文件
 若要使用 MongoChef 建立資料庫、集合和文件，請執行下列步驟。
 
 1. 在 [連接管理員] 中，反白顯示連接，然後按一下 [連接]。
-   
+
     ![[MongoChef 連接管理員] 的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectToAccount.png)
 2. 以滑鼠右鍵按一下主機，然後選擇 [新增資料庫] 。  提供資料庫名稱，然後按一下 [確定] 。
-   
+
     ![[MongoChef 新增資料庫] 選項的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/AddDatabase1.png)
 3. 以滑鼠右鍵按一下資料庫，然後選擇 [新增集合] 。  提供集合名稱，然後按一下 [建立] 。
-   
+
     ![[MongoChef 新增集合] 選項的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/AddCollection.png)
 4. 按一下 [集合] 功能表項目，然後按一下 [新增文件]。
-   
+
     ![[MongoChef 新增文件] 功能表項目的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/AddDocument1.png)
 5. 在 [新增文件] 對話方塊中，貼上下列項目，然後按一下 [新增文件] 。
-   
+
         {
         "_id": "AndersenFamily",
         "lastName": "Andersen",
@@ -83,7 +83,7 @@ ms.openlocfilehash: 90039d2626724ed789415967a345d2aadc3407af
         "isRegistered": true
         }
 6. 新增其他文件，這次使用下列內容。
-   
+
         {
         "_id": "WakefieldFamily",
         "parents": [
@@ -92,25 +92,25 @@ ms.openlocfilehash: 90039d2626724ed789415967a345d2aadc3407af
         ],
         "children": [
             {
-                "familyName": "Merriam", 
-                 "givenName": "Jesse", 
+                "familyName": "Merriam",
+                 "givenName": "Jesse",
                 "gender": "female", "grade": 1,
                 "pets": [
                     { "givenName": "Goofy" },
                     { "givenName": "Shadow" }
                 ]
             },
-            { 
-                "familyName": "Miller", 
-                 "givenName": "Lisa", 
-                 "gender": "female", 
+            {
+                "familyName": "Miller",
+                 "givenName": "Lisa",
+                 "gender": "female",
                  "grade": 8 }
         ],
         "address": { "state": "NY", "county": "Manhattan", "city": "NY" },
         "isRegistered": false
         }
 7. 執行範例查詢。 例如，搜尋姓氏 'Andersen' 的家族，並傳回父母和州欄位。
-   
+
     ![Mongo Chef 查詢結果的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/QueryDocument1.png)
 
 ## <a name="next-steps"></a>後續步驟
@@ -118,7 +118,6 @@ ms.openlocfilehash: 90039d2626724ed789415967a345d2aadc3407af
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶"
+title: "使用 Azure Active Directory 授權開發人員帳戶 - Azure API 管理 | Microsoft Docs"
 description: "了解如何在 API 管理中使用 Azure Active Directory 授權使用者"
 services: api-management
 documentationcenter: API Management
@@ -12,12 +12,11 @@ ms.workload: mobile
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
-ms.author: apipm
+ms.date: 01/23/2017
+ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: 44d51c80dd7db16d16fa3aa44d6179bc539bb50a
-
+ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
+ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
 
 ---
 # <a name="how-to-authorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶
@@ -107,7 +106,7 @@ ms.openlocfilehash: 44d51c80dd7db16d16fa3aa44d6179bc539bb50a
 
 ![用戶端密碼][api-management-client-secret]
 
-**允許的租用戶** ] 指定哪些目錄可存取 API 管理服務執行個體的 API。 指定您要授與存取的 Azure Active Directory 執行個體的網域。 您可以使用換行符號、空格或逗號來分隔多個網域。
+**允許的租用戶**  指定哪些目錄可存取 API 管理服務執行個體的 API。 指定您要授與存取的 Azure Active Directory 執行個體的網域。 您可以使用換行符號、空格或逗號來分隔多個網域。
 
 ![允許的租用戶][api-management-client-allowed-tenants]
 
@@ -239,6 +238,6 @@ ms.openlocfilehash: 44d51c80dd7db16d16fa3aa44d6179bc539bb50a
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

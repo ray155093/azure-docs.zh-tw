@@ -1,5 +1,5 @@
 ---
-title: "Resource Manager 中的傳統端點 | Microsoft Docs"
+title: "了解 Azure 中 Windows VM 的端點 | Microsoft Docs"
 description: "了解現在如何使用「網路安全性群組」和 ACL 規則在 Resource Manager 中部署來自「傳統」部署模型的端點"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,12 +15,12 @@ ms.workload: infrastructure-services
 ms.date: 10/27/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 1b6342ef22a00a4d760d8b13d1a2945ab3754463
+ms.sourcegitcommit: 652a8a0dcb3216e9b762b85de56673beda74edc4
+ms.openlocfilehash: eeae1b86b368d494352498905b6dd5aabe4cb042
 
 
 ---
-# <a name="classic-endpoints-in-resource-manager"></a>Resource Manager 中的傳統端點
+# <a name="classic-endpoints-for-windows-vms-with-azure-resource-manager"></a>搭配 Azure Resource Manager 使用 Windows VM 的傳統端點
 [!INCLUDE [virtual-machines-common-endpoints-in-resource-manager](../../includes/virtual-machines-common-endpoints-in-resource-manager.md)]
 
 ## <a name="next-steps"></a>後續步驟
@@ -35,6 +35,6 @@ ms.openlocfilehash: 1b6342ef22a00a4d760d8b13d1a2945ab3754463
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

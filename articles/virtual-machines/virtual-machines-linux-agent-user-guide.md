@@ -1,5 +1,5 @@
 ---
-title: "Linux 代理程式使用者指南 | Microsoft Docs"
+title: "Azure Linux VM 代理程式概觀 | Microsoft Docs"
 description: "了解如何安裝和設定 Linux 代理程式 (waagent)，來管理虛擬機器與 Azure 網狀架構控制器之間的互動。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/17/2016
 ms.author: szark
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 43d3ad9e2b50a84cb9fd70582eb03b9d7d45d788
+ms.sourcegitcommit: 02579f138f957e5d245290e2cb8fc448120a4701
+ms.openlocfilehash: e77fee96710e99dab664f61d4c64aea0b12944ad
 
 
 ---
@@ -49,7 +49,7 @@ Microsoft Azure Linux 代理程式 (waagent) 管理 Linux 與 FreeBSD 佈建，�
   * 確保網路介面名稱的穩定性
 * **核心**
   
-  * 設定虛擬 NUMA (核心 < 2.6.37 時停用)
+  * 設定虛擬 NUMA (核心 <&2;.6.37 時停用)
   * 取用 /dev/random 的 Hyper-V Entropy
   * 設定根裝置 (可能在遠端) 的 SCSI 逾時
 * **診斷**
@@ -309,6 +309,6 @@ Linux 代理程式需要一些系統封裝才能正確運作：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

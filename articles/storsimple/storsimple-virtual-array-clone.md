@@ -1,5 +1,5 @@
 ---
-title: "從 Microsoft Azure StorSimple Virtual Array 的備份複製 | Microsoft Docs"
+title: "複製 StorSimple Virtual Array 備份 | Microsoft Docs"
 description: "了解如何從 StorSimple Virtual Array 複製備份和復原檔案。"
 services: storsimple
 documentationcenter: NA
@@ -15,8 +15,8 @@ ms.workload: NA
 ms.date: 11/21/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: ae076d52b532f5181868b2ab24ee8f2ffa887af7
-ms.openlocfilehash: f1c050c499484b612d2f9dcae395f36524397008
+ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
+ms.openlocfilehash: 768c9a1c906999f4690c9c8f7d075743ab1678ff
 
 ---
 # <a name="clone-from-a-backup-of-your-storsimple-virtual-array"></a>從 StorSimple Virtual Array 的備份複製
@@ -140,6 +140,6 @@ ms.openlocfilehash: f1c050c499484b612d2f9dcae395f36524397008
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO4-->
 
 

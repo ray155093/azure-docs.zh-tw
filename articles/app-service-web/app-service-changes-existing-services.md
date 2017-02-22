@@ -13,10 +13,10 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/12/2016
-ms.author: yochayk
+ms.author: yochaykk
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 295ee5a3c067010059a0435a8867eb8f4137ccbb
+ms.sourcegitcommit: 75d42f41e6218d83cda00f2ef8926d6ca1f0aacd
+ms.openlocfilehash: 8f458884d0ea649dffa5f92fd459bbaaa9f5e4cf
 
 
 ---
@@ -76,7 +76,7 @@ App Service 將下列現有 Azure 服務 - [網站](https://azure.microsoft.com/
 <td align="left"></td>
 <td align="left">Logic Apps</td>
 <td align="left">
-<p><li>邏輯應用程式是 App Service 中的新應用程式類型，可讓您輕鬆地自動化商務程序。</p>
+<p><li>Logic Apps 是 App Service 中的新應用程式類型，可讓您輕鬆地自動化商務程序。</p>
 <p><li><a href="http://azure.microsoft.com/services/app-service/logic/">深入了解 Logic Apps</a>。</p></td>
 </tr>
 <tr class="odd">
@@ -84,8 +84,8 @@ App Service 將下列現有 Azure 服務 - [網站](https://azure.microsoft.com/
 <td align="left">BizTalk API 應用程式</td>
 <td align="left">
 <li><p>BizTalk 服務繼續可當作獨立服務，並仍提供完整支援。</p>
-<li><p>BizTalk 服務的所有功能都會整合到 App Service，因為 API 應用程式可讓使用者執行與 App Service 中任何應用程式類型的企業應用程式整合和 B2B 整合案例</p>
-<li><p>您現在可以使用邏輯應用程式，透過視覺化設計體驗自動化商務程序來建立工作流程</p></td>
+<li><p>BizTalk 服務的所有功能都整合到 App Service 中成為 API Apps，可讓使用者執行企業應用程式整合和 B2B 整合案例，與 App Service 中任何應用程式類型整合在一起。</p>
+<li><p>現在，透過 Logic Apps，您可以使用視覺化設計體驗，將商務程序自動化來建立工作流程。</p></td>
 </tr>
 </tbody>
 </table>
@@ -95,6 +95,6 @@ App Service 將下列現有 Azure 服務 - [網站](https://azure.microsoft.com/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

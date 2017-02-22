@@ -1,6 +1,6 @@
 ---
-title: "Azure 上的應用程式架構 | Microsoft Docs"
-description: " 本文將協助您了解 Azure 上的應用程式及服務架構，可以更輕易地將安全性整合至設計及實作。 "
+title: "將安全性整合至 Azure 架構設計 | Microsoft Docs"
+description: " 本文將協助您了解 Azure 上的應用程式及服務架構，可以更輕易地將安全性整合至設計及實作. "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/18/2016
+ms.date: 01/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5006e7dc237c53cd4b74ca08ea54ca6c999ebefe
+ms.sourcegitcommit: af191f7eed529c7d4541b28eb62979f25da89892
+ms.openlocfilehash: e7ccc71f222d4af9a52cbf55bb6bb446f211e819
 
 
 ---
@@ -58,6 +58,6 @@ Microsoft 發佈一組高階 [架構藍圖](http://aka.ms/azblueprints) ，示�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

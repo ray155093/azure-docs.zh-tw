@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB Node.js API 和 SDK | Microsoft Docs"
+title: "Node.js API 和 SDK 資源 - Azure DocumentDB | Microsoft Docs"
 description: "了解所有 Node.js API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Node.js SDK 每個版本之間的變更。"
 services: documentdb
 documentationcenter: nodejs
@@ -12,11 +12,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 10/03/2016
+ms.date: 12/22/2016
 ms.author: rnagpal
 translationtype: Human Translation
-ms.sourcegitcommit: 5e182811adc29ae00d40355bb4813c30eb0b904c
-ms.openlocfilehash: fbe124f1df522426d26f21333bf4a50d32103e33
+ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
+ms.openlocfilehash: 43d658a67eb55a2d2e35f79080d63c3effb6387e
 
 
 ---
@@ -54,6 +54,11 @@ ms.openlocfilehash: fbe124f1df522426d26f21333bf4a50d32103e33
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+
+### <a name="a-name11011101a"></a><a name="1.10.1"/>1.10.1</a>
+* 當使用 SDK 以模擬器 (hostname=localhost) 為目標時，停用 SSL 驗證。
+* 在預存程序執行期間，加入支援指令碼記錄功能。
+
 ### <a name="a-name11001100a"></a><a name="1.10.0"/>1.10.0</a>
 * 新增對跨資料分割平行查詢的支援。
 * 新增對已分割集合的 TOP/ORDER BY 查詢支援。
@@ -136,15 +141,11 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 使用已停用之 SDK 的任何 DocumentDB 要求都將被服務拒絕。
 
-> [!WARNING]
-> 適用於 Node.js 之所有 **1.0.0** 之前的 Azure DocumentDB SDK 版本都將於 **2016 年 2 月 29 日**停用。
-> 
-> 
-
 <br/>
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.10.1](#1.10.1) |2016 年 12 月 22 日 |--- |
 | [1.10.0](#1.10.0) |2016 年 10 月 3 日 |--- |
 | [1.9.0](#1.9.0) |2016 年 7 月 7 日 |--- |
 | [1.8.0](#1.8.0) |2016 年 6 月 14 日 |--- |
@@ -167,11 +168,6 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 | [1.0.2](#1.0.2) |2015 年 5 月 23 日 |--- |
 | [1.0.1](#1.0.1) |2015 年 5 月 15 日 |--- |
 | [1.0.0](#1.0.0) |2015 年 4 月 8 日 |--- |
-| 0.9.4-prerelease |2015 年 4 月 6 日 |2016 年 2 月 29 日 |
-| 0.9.3-prerelease |2015 年 1 月 14 日 |2016 年 2 月 29 日 |
-| 0.9.2-prerelease |2014 年 12 月 18 日 |2016 年 2 月 29 日 |
-| 0.9.1-prerelease |2014 年 8 月 22 日 |2016 年 2 月 29 日 |
-| 0.9.0-prerelease |2014 年 8 月 21 日 |2016 年 2 月 29 日 |
 
 ## <a name="faq"></a>常見問題集
 [!INCLUDE [documentdb-sdk-faq](../../includes/documentdb-sdk-faq.md)]
@@ -182,6 +178,6 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

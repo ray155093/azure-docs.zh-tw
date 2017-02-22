@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 5d3bcc3c1434b16279778573ccf3034f9ac28a4d
-ms.openlocfilehash: aeea0c65a3332197efcd823e29c8f0c4fe0426b3
+ms.sourcegitcommit: 0782000e87bed0d881be5238c1b91f89a970682c
+ms.openlocfilehash: 8424fb5d107935833e9652ef86e03933ea14c26e
 
 
 ---
@@ -28,8 +28,8 @@ ms.openlocfilehash: aeea0c65a3332197efcd823e29c8f0c4fe0426b3
 
 * 安裝 [Visual Studio](http://msdn.microsoft.com/library/dd831853.aspx)
 * 驗證 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855) 的安裝
-* 取得 [驗證權杖](../resource-group-authenticate-service-principal.md)
-* 使用 [Azure PowerShell](../resource-group-template-deploy.md)、[Azure CLI](../resource-group-template-deploy-cli.md) 或 [Azure 入口網站](../resource-group-template-deploy-portal.md)建立資源群組。
+* 取得 [驗證權杖](../azure-resource-manager/resource-group-authenticate-service-principal.md)
+* 使用 [Azure PowerShell](../azure-resource-manager/resource-group-template-deploy.md)、[Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md) 或 [Azure 入口網站](../azure-resource-manager/resource-group-template-deploy-portal.md)建立資源群組。
 
 執行這些步驟需要 30 分鐘左右。
 
@@ -225,17 +225,19 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
         using System.IO;
 2. 將下列方法新增至 Program 類別，以取得建立認證所需的權杖：
 
-     private static async Task<AuthenticationResult> GetAccessTokenAsync()   {
-
-       var cc = new ClientCredential("{client-id}", "{client-secret}");
-       var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
-       var token = await context.AcquireTokenAsync("https://management.azure.com/", cc);
-       if (token == null)
-       {
-         throw new InvalidOperationException("Could not get the token.");
-       }
-       return token;
+   ```
+   private static async Task<AuthenticationResult> GetAccessTokenAsync()
+   {
+     var cc = new ClientCredential("{client-id}", "{client-secret}");
+     var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
+     var token = await context.AcquireTokenAsync("https://management.azure.com/", cc);
+     if (token == null)
+     {
+       throw new InvalidOperationException("Could not get the token.");
      }
+     return token;
+   }
+   ```
 
    將 {client-id} 用 Azure Active Directory 應用程式的識別碼取代，將 {client-secret} 用 AD 應用程式的存取金鑰取代，並將 {tenant-id} 用您訂用帳戶的租用戶識別碼取代。 您可以透過執行 Get-AzureRmSubscription 來尋找租用戶識別碼。 您可以使用 Azure 入口網站尋找存取金鑰。
 3. 若要建立認證，請將此程式碼新增至 Program.cs 檔案中的 Main 方法：
@@ -294,26 +296,28 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
 
 1. 若要刪除資源群組，請將下列方法新增至 Program 類別：
 
-     public static async void DeleteResourceGroupAsync(
+   ```
+   public static async void DeleteResourceGroupAsync(
+     TokenCredentials credential,
+     string groupName,
+     string subscriptionId)
+   {
+     Console.WriteLine("Deleting resource group...");
+     var resourceManagementClient = new ResourceManagementClient(credential)
+       { SubscriptionId = subscriptionId };
+     await resourceManagementClient.ResourceGroups.DeleteAsync(groupName);
+   }
+   ```
 
-       TokenCredentials credential,
-       string groupName,
-       string subscriptionId)
-     {
-
-       Console.WriteLine("Deleting resource group...");
-       var resourceManagementClient = new ResourceManagementClient(credential)
-         { SubscriptionId = subscriptionId };
-       await resourceManagementClient.ResourceGroups.DeleteAsync(groupName);
-     }
 2. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Main 方法：
 
-     DeleteResourceGroupAsync(
-
-       credential,
-       groupName,
-       subscriptionId);
-     Console.ReadLine();
+   ```
+   DeleteResourceGroupAsync(
+     credential,
+     groupName,
+     subscriptionId);
+   Console.ReadLine();
+   ```
 
 ## <a name="step-6-run-the-console-application"></a>步驟 6：執行主控台應用程式
 1. 若要執行主控台應用程式，按一下 Visual Studio 中的 [啟動]  ，然後以您用於訂用帳戶的同一個認證，登入 Azure AD。
@@ -325,11 +329,11 @@ NuGet 封裝是安裝完成本教學課程所需程式庫最簡單的方式。 �
     ![在 Azure 入口網站中瀏覽稽核記錄檔](./media/virtual-machines-windows-csharp-template/crpportal.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 如果部署有問題，下一個步驟就是查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
+* 如果部署有問題，下一個步驟就是查看[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解 (英文)](../azure-resource-manager/resource-manager-common-deployment-errors.md)。
 * 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-csharp-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以了解如何管理您建立的虛擬機器。
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Jan17_HO2-->
 
 

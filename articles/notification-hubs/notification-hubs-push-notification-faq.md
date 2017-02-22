@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3f79e68adc5cac151de6bb60188ca72772d94c21
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 7f76f8786bf08e4aacc63758260202fe7e1a832f
 
 
 ---
@@ -207,7 +207,7 @@ Azure 通知中樞提供數個功能，可進行常見的疑難排解，特別�
 [NH - REST APIs]: https://msdn.microsoft.com/library/azure/dn530746.aspx
 [NH - 開始使用教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
 [Chrome 應用程式教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-chrome-get-started/
-[行動服務定價]: http://azure.microsoft.com/pricing/details/mobile-services/
+[Mobile Services Pricing]: http://azure.microsoft.com/pricing/details/mobile-services/
 [後端註冊指引]: https://msdn.microsoft.com/library/azure/dn743807.aspx
 [後端註冊指引 - 2]: https://msdn.microsoft.com/library/azure/dn530747.aspx
 [NH 資源安全模型]: https://msdn.microsoft.com/library/azure/dn495373.aspx
@@ -216,13 +216,13 @@ Azure 通知中樞提供數個功能，可進行常見的疑難排解，特別�
 [NH - 計量]: https://msdn.microsoft.com/library/dn458822.aspx
 [NH - 計量範例]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/FetchNHTelemetryInExcel
 [註冊匯出/匯入]: https://msdn.microsoft.com/library/dn790624.aspx
-[Azure 入口網站]: https://portal.azure.com
+[Azure Portal]: https://portal.azure.com
 [完整範例]: https://github.com/Azure/azure-notificationhubs-samples
 [Azure Mobile Apps]: https://azure.microsoft.com/en-us/services/app-service/mobile/
 [App Service 價格]: https://azure.microsoft.com/en-us/pricing/details/app-service/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

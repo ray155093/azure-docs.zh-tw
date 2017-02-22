@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: bda882273b6aeddcfa9ed7ba272bc08e620b666e
+ms.sourcegitcommit: 4bab9f44d1c91f05618ea510b83beb06540429f2
+ms.openlocfilehash: 2518f368c7251d5d1b8ea0b46b99ac356fee29ab
 
 
 ---
@@ -25,24 +25,24 @@ Azure Active Directory (Azure AD) 是一個身分識別與存取管理的綜合�
 
 > [!NOTE]
 > 若要使用 Azure Active Directory，您需要 Azure 帳戶。 如果您沒有帳戶，您可以 [註冊免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
-> 
-> 
+>
+>
 
 Azure AD 的其中一項主要功能是管理資源的存取權。 這些資源可以是目錄的一部分，例如透過目錄中的角色或目錄外部的資源 (例如 SaaS 應用程式、Azure 服務以及 SharePoint 網站或內部部署資源) 管理物件的權限。 有四種方式可以指派使用者存取資源的權限：
 
 1. 直接指派
-   
+
     資源的擁有者可以直接指派使用者存取資源。
 2. 群組成員資格
-   
+
     資源擁有者可以指派群組存取資源，透過這種方式，授與該群組成員存取資源。 群組的擁有者就可以管理群組的成員資格。 實際上，資源擁有者是委派權限給群組的擁有者，以指派使用者存取其資源。
 3. 以規則為基礎
-   
+
     資源擁有者可以使用規則來表示應指派哪些使用者存取資源。 規則的結果取決於該規則中使用的屬性，以及針對特定使用者的值，透過這種方式，資源擁有者實際上是根據規則中所使用的屬性，委派給授權的來源來管理其資源的存取權。 資源擁有者仍可管理規則本身，並決定哪些屬性與值提供其資源的存取權。
 4. 外部授權單位
-   
+
     資源的存取權從外部來源衍生而來，例如從授權來源 (例如內部部署目錄或如 WorkDay 的 SaaS 應用程式) 同步處理的群組。 資源擁有者指派群組以提供資源存取權，外部來源管理群組的成員。
-   
+
    ![存取管理圖表的概觀](./media/active-directory-access-management-groups/access-management-overview.png)
 
 ## <a name="watch-a-video-that-explains-access-management"></a>觀看說明存取管理的影片
@@ -51,8 +51,8 @@ Azure AD 的其中一項主要功能是管理資源的存取權。 這些資源�
 **Azure AD：群組的動態成員資格簡介**
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-AD--Introduction-to-Dynamic-Memberships-for-Groups/player]
-> 
-> 
+>
+>
 
 ## <a name="how-does-access-management-in-azure-active-directory-work"></a>存取管理在 Azure Active Directory 中如何運作？
 Azure AD 存取管理解決方案的重點是安全性群組。 使用安全性群組來管理資源的存取權是著名的範例，方法彈性而且容易理解，可以針對想要的使用者群組提供資源的存取權。 資源擁有者 (或目錄的系統管理員) 可以指派群組，對所擁有的資源提供特定的存取權限。 群組的成員會取得存取權，而資源擁有者可以委派管理群組成員清單的權限給其他人，例如部門經理或技術服務管理員。
@@ -70,7 +70,7 @@ Azure AD 存取管理解決方案的重點是安全性群組。 使用安全性�
 * [使用 Azure AD Connect 將內部部署群組同步處理至 Azure](active-directory-aadconnect.md)
 * [管理群組的擁有者](active-directory-accessmanagement-managing-group-owners.md)
 
-## <a name="next-steps-for-access-management"></a>存取管理的後續步驟
+## <a name="next-steps"></a>後續步驟
 如果您已經了解存取管理的基本概念，以下是一些 Azure Active Directory 中可用的其他進階功能，可以管理您的應用程式和資源的存取權。
 
 * [使用屬性來建立進階規則](active-directory-accessmanagement-groups-with-advanced-rules.md)
@@ -81,7 +81,6 @@ Azure AD 存取管理解決方案的重點是安全性群組。 使用安全性�
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

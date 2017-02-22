@@ -13,16 +13,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/18/2016
+ms.date: 11/18/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
+ms.sourcegitcommit: 938abf03191dec10da8d2fabf27c5db2415d6bc5
+ms.openlocfilehash: 6dd149808a89ccf7da2989751788e074d5340d5c
 
 
 ---
 # <a name="create-hbase-clusters-in-azure-virtual-network"></a>在 Azure 虛擬網路上建立 HBase 叢集
-了解如何在 [Azure 虛擬網路][1]上建立 Azure HDInsight HBase 叢集。
+了解如何在 [Azure 虛擬網路][1]中建立 Azure HDInsight HBase 叢集。
 
 由於 HBase 叢集已與虛擬網路整合，因此能夠部署到與您應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。 其優點包括：
 
@@ -37,33 +37,33 @@ ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
 * **具有 Azure PowerShell 的工作站**。 請參閱 [安裝及使用 Azure PowerShell](https://azure.microsoft.com/documentation/videos/install-and-use-azure-powershell/)。
 
 ## <a name="create-hbase-cluster-into-virtual-network"></a>在虛擬網路上建立 HBase 叢集
-在本節中，您將使用 [Azure Resource Manager 範本](../resource-group-template-deploy.md)，在 Azure 虛擬網路中建立以 Linux 為基礎的 HBase 叢集與相依的 Azure 儲存體帳戶。 如需其他叢集建立方法及了解各項設定，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 如需有關使用範本在 HDInsight 中建立 Hadoop 叢集的詳細資訊，請參閱 [使用 Azure Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-arm-templates.md)
+在本節中，您會使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)，在 Azure 虛擬網路中建立以 Linux 為基礎的 HBase 叢集與相依的 Azure 儲存體帳戶。 如需其他叢集建立方法及了解各項設定，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 如需有關使用範本在 HDInsight 中建立 Hadoop 叢集的詳細資訊，請參閱 [使用 Azure Resource Manager 範本在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-windows-clusters-arm-templates.md)
 
 > [!NOTE]
-> 某些屬性已硬式編碼至範本。 例如：
+> 某些屬性已以硬式編碼方式寫入範本。 例如：
 >
 > * **位置**：美國東部 2
 > * __叢集版本：3.4
 > * **叢集背景工作節點計數**：4
-> * **預設儲存體帳戶**︰&lt;叢集名稱>store
+> * **預設儲存體帳戶**：唯一的字串
 > * **虛擬網路名稱**：&lt;叢集名稱>-vnet
 > * **虛擬網路位址空間**10.0.0.0/16
-> * **子網路名稱**：default
+> * **子網路名稱**：subnet1
 > * **子網路位址範圍**：10.0.0.0/24
 >
-> &lt;使用範本時，叢集名稱> 會取代為您提供的叢集名稱。
+> 使用範本時，&lt;叢集名稱> 會取代為您提供的叢集名稱。
 >
 >
 
-1. 按一下以下影像，在 Azure 入口網站中開啟範本。 此範本位於公用 Blob 容器中。
+1. 按一下以下影像，在 Azure 入口網站中開啟範本。 範本位在 [Azure 快速入門範本 (英文)](https://azure.microsoft.com/resources/templates/101-hdinsight-hbase-linux-vnet/)。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-vnet.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux-vnet%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-provision-vnet/deploy-to-azure.png" alt="Deploy to Azure"></a>
 2. 從 [自訂部署] 刀鋒視窗，輸入下列項目：
 
    * **訂用帳戶**︰選取用來建立 HDInsight 叢集、相依儲存體帳戶和 Azure 虛擬網路的 Azure 訂用帳戶。
    * **資源群組**：選取 [新建] 並指定新的資源群組名稱。
    * **位置**：選取資源群組的位置。
-   * **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
+   * **ClusterName**：輸入要建立的 Hadoop 叢集的名稱。
    * **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
    * **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。  您可以將它重新命名。
    * **我同意上方所述的條款及條件**：(選取)
@@ -74,17 +74,18 @@ ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
 若要開始使用新的 HBase 叢集，您可以使用＜ [開始在 HDInsight 中搭配使用 HBase 與 Hadoop](hdinsight-hbase-tutorial-get-started.md)＞中提供的程序。
 
 ## <a name="connect-to-the-hbase-cluster-using-hbase-java-rpc-apis"></a>使用 HBase Java RPC API 連接到 HBase 叢集
-1. 相同的 Azure 虛擬網路和相同的子網路中建立基礎結構即服務 (IaaS) 虛擬機器。 如需建立新的 IaaS 虛擬機器的指示，請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 當依照這份文件中的步驟時，您必須針對網路組態使用下列項目︰
+1. 相同的 Azure 虛擬網路和相同的子網路中建立基礎結構即服務 (IaaS) 虛擬機器。 如需建立新的 IaaS 虛擬機器的指示，請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。 當依照這份文件中的步驟時，您必須針對網路組態使用下列項目︰
 
    * **虛擬網路**：&lt;叢集名稱>-vnet
-   * **子網路**︰default
+   * **子網路**：subnet1
 
    > [!IMPORTANT]
    > 將 &lt;叢集名稱> 取代為在上一個步驟中建立 HDInsight 叢集時使用的名稱。
    >
    >
 
-   使用這些值會設定虛擬機器，使用與 HDInsight 叢集相同的虛擬網路和子網路。 這可讓它們彼此直接通訊。
+   使用這些值會將虛擬機器放置在與 HDInsight 叢集相同的虛擬網路和子網路。 此組態可讓它們彼此直接通訊。 有一個使用空白邊緣節點建立 HDInsight 叢集的方法。 邊緣節點可用來管理叢集。  如需詳細資訊，請參閱 [Use empty edge nodes in HDInsight (在 HDInsight 中使用空白的邊緣節點)](hdinsight-apps-use-edge-node.md)。
+
 2. 使用 Java 應用程式從遠端連接到 HBase 時，您必須使用完整網域名稱 (FQDN)。 若要決定此名稱，您必須取得 HBase 叢集的連線特定 DNS 尾碼。 若要這麼做，您可以使用下列其中一種方法：
 
    * 使用網頁瀏覽器進行 Ambari 呼叫︰
@@ -98,7 +99,7 @@ ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
 
          curl -u <username>:<password> -k https://<clustername>.azurehdinsight.net/ambari/api/v1/clusters/<clustername>.azurehdinsight.net/services/hbase/components/hbrest
 
-     在傳回的 JavaScript 物件標記法 (JSON) 資料中，找出 "host_name" 項目。 這會包含叢集中節點的 FQDN。 例如：
+     在傳回的 JavaScript 物件標記法 (JSON) 資料中，找出 "host_name" 項目。 其中包含叢集中節點的 FQDN。 例如：
 
          ...
          "host_name": "wordkernode0.<clustername>.b1.cloudapp.net
@@ -206,7 +207,7 @@ ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
      這會傳回 DNS 尾碼。 例如， **yourclustername.b4.internal.cloudapp.net**。
    * 使用 RDP
 
-     您也可以使用遠端桌面連接到 HBase 叢集 (將連接到前端節點)，再從命令提示字元執行 **ipconfig** 以取得 DNS 尾碼。 如需啟用遠端桌面通訊協定 (RDP) 並使用 RDP 連接到叢集的指示，請參閱[使用 Azure 入口網站在 HDInsight 中管理 Hadoop 叢集][hdinsight-admin-portal]。
+     您也可以使用遠端桌面連接到 HBase 叢集 (將連接到前端節點)，再從命令提示字元執行 **ipconfig** 以取得 DNS 尾碼。 如需有關啟用「遠端桌面通訊協定」(RDP) 並使用 RDP 來連接到叢集的指示，請參閱[使用 Azure 入口網站在 HDInsight 中管理 Hadoop 叢集][hdinsight-admin-portal]。
 
      ![hdinsight.hbase.dns.surffix][img-dns-surffix]
 
@@ -243,7 +244,8 @@ ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
 在本教學課程中，您已了解如何建立 HBase 叢集。 若要深入了解，請參閱：
 
 * [開始使用 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
-* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-geo-replication.md)
+* [在 HDInsight 中使用空白邊緣節點](hdinsight-apps-use-edge-node.md)
+* [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-replication.md)
 * [在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)
 * [開始在 HDInsight 中搭配使用 HBase 與 Hadoop](hdinsight-hbase-tutorial-get-started.md)
 * [使用 HDInsight 中的 HBase 分析 Twitter 情緒](hdinsight-hbase-analyze-twitter-sentiment.md)
@@ -274,7 +276,7 @@ ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
 [twitter-statuses-filter]: https://dev.twitter.com/docs/api/1.1/post/statuses/filter
 
 
-[powershell-install]: powershell-install-configure.md
+[powershell-install]: /powershell/azureps-cmdlets-docs
 
 
 [hdinsight-customize-cluster]: hdinsight-hadoop-customize-cluster.md
@@ -297,6 +299,6 @@ ms.openlocfilehash: 41e6338b8f8fce150e77a277c163bf71d42fb0c7
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO4-->
 
 

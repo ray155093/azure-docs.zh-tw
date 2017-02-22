@@ -1,9 +1,9 @@
 ---
-title: "在 Azure 虛擬機器上設定從 Azure 搜尋服務索引子到 SQL Server 的連接 | Microsoft Docs"
+title: "SQL VM 到 Azure 搜尋服務的連線 | Microsoft Docs"
 description: "啟用加密的連線並設定防火牆，以允許在 Azure 虛擬機器 (VM) 上從 Azure 搜尋服務的索引子連接到 SQL Server。"
 services: search
 documentationcenter: 
-author: jack4it
+author: HeidiSteen
 manager: pablocas
 editor: 
 ms.assetid: 46e42e0e-c8de-4fec-b11a-ed132db7e7bc
@@ -12,11 +12,11 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 09/26/2016
-ms.author: jackma
+ms.date: 01/23/2017
+ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: 2150735fbf1e1438feeef70f0ea92ed041d0cd24
+ms.sourcegitcommit: 814292d76601452493c1d708c39d42da909036d9
+ms.openlocfilehash: 1e436978da0f2fc8c122a1a99bd891fe82929f50
 
 
 ---
@@ -91,6 +91,6 @@ IP 位址可能會造成一些挑戰，如果您知道問題和可能的因應�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

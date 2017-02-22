@@ -16,8 +16,8 @@ ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 40ad0b85072c3a54c7791500663c4dd88133c095
+ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
+ms.openlocfilehash: 0c37a035cfc782e05dd72da7323fe244eadc4ce9
 
 
 ---
@@ -26,7 +26,7 @@ ms.openlocfilehash: 40ad0b85072c3a54c7791500663c4dd88133c095
 
 SnelStart 為荷蘭的中小企業 (SMB) 撰寫常用的財務和商務管理軟體。 它的 55,000 個客戶是由其 110 個員工提供服務，其中包括 35 個 IT 人員。 藉由從桌面軟體移至 Azure 上的軟體即服務 (SaaS) 方案組建，SnelStart 不僅透過使用 C# 中的熟悉環境將管理自動化，還透過使用彈性集區避免過度佈建或佈建不足以將效能和延展性最佳化，來充分利用了內建服務。 使用 Azure 讓 SnelStart 能夠在內部部署環境與雲端之間靈活移動客戶。
 
-> [!影片 https://channel9.msdn.com/Blogs/Windows-Azure/Azure-SQL-Database-Case-Study-SnelStart/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-Case-Study-SnelStart/player]
 > 
 > 
 
@@ -111,6 +111,6 @@ SnelStart 當前的目標是繼續拓展其滿意的客戶群。 如 Been 所述
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

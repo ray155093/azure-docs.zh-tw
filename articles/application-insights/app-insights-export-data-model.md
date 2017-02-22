@@ -14,8 +14,8 @@ ms.topic: article
 ms.date: 03/21/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: e4576409641db73ad8920a1eec2eea1e3580109f
-ms.openlocfilehash: fc8a3efd079d84aea4cac63de401d46347f9e3d7
+ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
+ms.openlocfilehash: feaa76e81f64b224f62e583541bf2ef376793a38
 
 
 ---
@@ -155,7 +155,7 @@ ms.openlocfilehash: fc8a3efd079d84aea4cac63de401d46347f9e3d7
 | internal.data.id |字串 | |
 
 ## <a name="events"></a>事件
-[TrackEvent()](app-insights-api-custom-events-metrics.md#track-event)產生的自訂事件。
+[TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent)產生的自訂事件。
 
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
@@ -195,7 +195,7 @@ ms.openlocfilehash: fc8a3efd079d84aea4cac63de401d46347f9e3d7
 | basicException [0] typeName |字串 | |
 
 ## <a name="trace-messages"></a>追蹤訊息
-由 [TrackTrace](app-insights-api-custom-events-metrics.md#track-trace) 及[記錄配接器](app-insights-asp-net-trace-logs.md)傳送。
+由 [TrackTrace](app-insights-api-custom-events-metrics.md#tracktrace) 及[記錄配接器](app-insights-asp-net-trace-logs.md)傳送。
 
 | 路徑 | 類型 | 注意事項 |
 | --- | --- | --- |
@@ -226,7 +226,7 @@ ms.openlocfilehash: fc8a3efd079d84aea4cac63de401d46347f9e3d7
 | remoteDependency [0] urlData.host |字串 |最大長度 200 |
 
 ## <a name="requests"></a>要求
-由 [TrackRequest](app-insights-api-custom-events-metrics.md#track-request)傳送。 標準模組使用它回報在伺服器上測量的伺服器回應時間。
+由 [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequest)傳送。 標準模組使用它回報在伺服器上測量的伺服器回應時間。
 
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
@@ -354,6 +354,6 @@ ms.openlocfilehash: fc8a3efd079d84aea4cac63de401d46347f9e3d7
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

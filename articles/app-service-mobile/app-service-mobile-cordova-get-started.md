@@ -14,11 +14,11 @@ ms.workload: na
 ms.tgt_pltfrm: mobile-html
 ms.devlang: javascript
 ms.topic: hero-article
-ms.date: 10/01/2016
+ms.date: 10/30/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e8a51979c5444d1e1b454d8f434b421f9cc17c24
+ms.sourcegitcommit: bf5691dbf4aaae585373de454ad7a0672dd17b84
+ms.openlocfilehash: aab35cdbbc6dc73551ca436985b51e5fe7a50fb6
 
 
 ---
@@ -26,20 +26,20 @@ ms.openlocfilehash: e8a51979c5444d1e1b454d8f434b421f9cc17c24
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>概觀
-本教學課程示範如何使用 Azure 行動應用程式後端，將雲端式後端服務新增到 Apache Cordova 行動應用程式。  您將建立新的行動應用程式後端，以及可在 Azure 中儲存應用程式資料的簡易「待辦事項清單」 Apache Cordova 應用程式。
+本教學課程示範如何使用 Azure 行動應用程式後端，將雲端式後端服務新增到 Apache Cordova 行動應用程式。  您會建立新的行動應用程式後端，以及可在 Azure 中儲存應用程式資料的簡易「待辦事項清單」 Apache Cordova 應用程式。
 
 所有其他 Apache Cordova 教學課程只要是與使用 Azure App Service 中的 Mobile Apps 功能相關，都必須先完成本教學課程。
 
-## <a name="prerequisites"></a>先決條件
-若要完成此教學課程，您需要下列項目：
+## <a name="prerequisites"></a>必要條件
+若要完成本教學課程，您需要下列必要條件：
 
 * 具有 [Visual Studio Community 2015] 或更新版本的電腦。
 * [Visual Studio Tools for Apache Cordova]。
 * 有效的 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-您也可以略過 Visual Studio 而直接使用 Apache Cordova 命令列。  在 Mac 電腦上完成本教學課程時，這會相當有用。  本教學課程未涵蓋使用命令列來編譯 Apache Cordova 用戶端應用程式。
+您也可以略過 Visual Studio 而直接使用 Apache Cordova 命令列。  在 Mac 電腦上完成本教學課程時，使用命令列相當有用。  本教學課程未涵蓋使用命令列來編譯 Apache Cordova 用戶端應用程式。
 
-## <a name="create-a-new-azure-mobile-app-backend"></a>建立新的 Azure 行動應用程式後端
+## <a name="create-an-azure-mobile-app-backend"></a>建立 Azure 行動應用程式後端
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
 [觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-1-Create-an-Azure-Mobile-App)
@@ -53,11 +53,13 @@ ms.openlocfilehash: e8a51979c5444d1e1b454d8f434b421f9cc17c24
 ## <a name="next-steps"></a>後續步驟
 您現在已經完成本快速入門教學課程，請繼續進行下列其中一個教學課程：
 
-* [新增驗證] 至您的 Apache Cordova 應用程式。
-* [新增推播通知] 至您的 Apache Cordova 應用程式。
+* [新增離線應用程式](app-service-mobile-cordova-get-started-offline-data.md)至 Apache Cordova 應用程式。
+* [新增驗證](app-service-mobile-cordova-get-started-users.md) 至您的 Apache Cordova 應用程式。
+* [新增推播通知](app-service-mobile-cordova-get-started-push.md) 至您的 Apache Cordova 應用程式。
 
 深入了解使用 Azure App Service 的相關重要概念。
 
+* [離線資料]
 * [驗證]
 * [推播通知]
 
@@ -70,11 +72,10 @@ ms.openlocfilehash: e8a51979c5444d1e1b454d8f434b421f9cc17c24
 <!-- Images. -->
 
 <!-- URLs -->
-[Azure 入口網站]: https://portal.azure.com/
+[Azure portal]: https://portal.azure.com/
 [Visual Studio Community 2015]: http://www.visualstudio.com/
 [Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/en-us/features/cordova-vs.aspx
-[新增驗證]: app-service-mobile-cordova-get-started-users.md
-[新增推播通知]: app-service-mobile-cordova-get-started-push.md
+[離線資料]: app-service-mobile-offline-data-sync.md
 [驗證]: app-service-mobile-auth.md
 [推播通知]: ../notification-hubs/notification-hubs-push-notification-overview.md
 [Apache Cordova SDK]: app-service-mobile-cordova-how-to-use-client-library.md
@@ -83,6 +84,6 @@ ms.openlocfilehash: e8a51979c5444d1e1b454d8f434b421f9cc17c24
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

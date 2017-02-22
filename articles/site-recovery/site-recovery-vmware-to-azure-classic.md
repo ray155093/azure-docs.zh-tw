@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure | Microsoft Docs"
+title: "在傳統入口網站中，將 VMware VM 與實體伺服器複寫到 Azure | Microsoft Docs"
 description: "本文描述如何部署 Azure Site Recovery，以協調內部部署 VMware 虛擬機器或 Windows/Linux 實體伺服器至 Azure 的複寫、容錯移轉和復原。"
 services: site-recovery
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 27df1166a23e3ed89fdc86f861353c80a4a467ad
-ms.openlocfilehash: 70ccb773b70f1b58f039ea5f4aca488d91fa3dad
+ms.sourcegitcommit: 75653b84d6ccbefe7d5230449bea81f498e10a98
+ms.openlocfilehash: e794f44cbf0b5e76c8a67e6e63129efb12090df8
 
 
 ---
@@ -65,12 +65,12 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 * 設定復原方案，將跨多部電腦分層的應用程式工作負載群組在一起。 您可以容錯移轉這些方案，Site Recovery 會提供多 VM 一致性，以便執行相同工作負載的機器可以同時復原到一致的資料點。
 
 ## <a name="supported-operating-systems"></a>支援的作業系統
-### <a name="windows64-bit-only"></a>Windows (僅 64 位元)
+### <a name="windows64-bit-only"></a>Windows (僅&64; 位元)
 * Windows Server 2008 R2 SP1+
 * Windows Server 2012
 * Windows Server 2012 R2
 
-### <a name="linux-64-bit-only"></a>Linux (僅 64 位元)
+### <a name="linux-64-bit-only"></a>Linux (僅&64; 位元)
 * Red Hat Enterprise Linux 6.7、7.1、7.2
 * CentOS 6.5、6.6、6.7、7.0、7.1、7.2
 * Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3)
@@ -250,7 +250,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 >
 
 
->[!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Enhanced-VMware-to-Azure-Setup-Registration/player]
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Setup-Registration/player]
 
 
 1. 在 [快速入門]  頁面中，將已整合的安裝檔案下載至伺服器。
@@ -335,7 +335,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 * /ProxySettingsFilePath。 選用。 指定自訂 proxy 的設定 (伺服器上需要驗證的預設 proxy，或是自訂的 proxy)
 
 ## <a name="step-6-set-up-credentials-for-the-vcenter-server"></a>步驟 6：設定 vCenter 伺服器的認證
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Enhanced-VMware-to-Azure-Discovery/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Discovery/player]
 >
 >
 
@@ -377,7 +377,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
     ![vCenter](./media/site-recovery-vmware-to-azure-classic/add-vcenter3.png)
 
 ## <a name="step-8-create-a-protection-group"></a>步驟 8：建立保護群組
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Enhanced-VMware-to-Azure-Protection/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Protection/player]
 >
 >
 
@@ -452,7 +452,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 | 來源作業系統 | 行動服務安裝檔案 |
 | --- | --- |
-| Windows Server (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_Windows_* release.exe |
+| Windows Server (僅限&64; 位元) |Microsoft-ASR_UA_9.*.0.0_Windows_* release.exe |
 | CentOS 6.4、6.5、6.6 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_RHEL6-64_*release.tar.gz |
 | SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_SLES11-SP3-64_*release.tar.gz |
 | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_OL6-64_*release.tar.gz |
@@ -589,7 +589,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <Installa
      * 如果來源機器的網路介面卡設定為使用靜態 IP 位址，您可以為 Azure VM 指定靜態 IP 位址。 如果您未指定靜態 IP 位址，則將會配置任何可用的 IP 位址。 如果已指定目標 IP 位址，但是已由 Azure 中的另一個 VM 使用，則容錯移轉將會失敗。 如果來源機器的網路介面卡設定為使用 DHCP，則您將具有 DHCP 做為 Azure 的設定。
 
 ## <a name="step-12-create-a-recovery-plan-and-run-a-failover"></a>步驟 12：建立復原計畫並執行容錯移轉
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Enhanced-VMware-to-Azure-Failover/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Failover/player]
 >
 >
 
@@ -693,7 +693,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <Installa
 2. 在 [處理序伺服器] 清單中，按一下您要修改的伺服器旁的 [變更處理序伺服器]。
 
     ![更新處理序伺服器](./media/site-recovery-vmware-to-azure-classic/update-process-server2.png)
-3. 在 [ **變更處理序伺服器** >  中，選取新的管理伺服器，然後選取新處理序伺服器將處理的虛擬機器。 按一下資訊圖示以取得伺服器的相關資訊。 隨即顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間，協助您進行負載的判斷。 按一下核取記號以開始複寫到新處理序伺服器。
+3. 在  **變更處理序伺服器** >  中，選取新的管理伺服器，然後選取新處理序伺服器將處理的虛擬機器。 按一下資訊圖示以取得伺服器的相關資訊。 隨即顯示將每個選取的虛擬機器複寫到新的處理序伺服器所需的平均空間，協助您進行負載的判斷。 按一下核取記號以開始複寫到新處理序伺服器。
 
     ![更新處理序伺服器](./media/site-recovery-vmware-to-azure-classic/update-process-server3.png)
 
@@ -722,6 +722,6 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Jan17_HO5-->
 
 

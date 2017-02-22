@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: luisca
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 18accd5252e0ecf19fed23f3c2e4628e60fe370f
+ms.sourcegitcommit: 9ac2a1bf5987fc6fc30e20a1b4a10340eeed3825
+ms.openlocfilehash: 15cf891b9c31e1f2e2b108e631f32883ce2f36a7
 
 
 ---
@@ -107,17 +107,17 @@ Recommendations 是一項以訂用帳戶為基礎的服務。 收費是根據每
 
 **設定 Recommendations 的必要條件為何？**
 
-Recommendations 要求您有與您的目錄相關的使用者選擇記錄檔。 如果您沒有這類記錄檔，而且有面向客戶的網站，則 Recommendations 可為您收集使用者活動。 
+Recommendations 要求您有與您的目錄相關的使用者選擇記錄檔。 如果您沒有這類記錄檔，而您確實有面向客戶的網站，則 Recommendations 可以為您收集使用者活動。 
 
-Recommendations 也需要您的產品或服務目錄。 如果您沒有目錄，Recommendations 可以使用實際的客戶使用資料並摘錄成目錄。 「隱含」目錄不包含未「回報」成為使用者交易一部分的項目。
+Recommendations 也需要您的產品或服務目錄。 如果您沒有目錄，Recommendations 可以使用實際的客戶使用資料並摘錄成目錄。 隱含目錄不會包含未在使用者交易中回報的項目。
 
 **我如何在第一次設定 Recommendations？**
 
-[訂用](https://datamarket.azure.com/dataset/amla/recommendations) Recommendations 之後，您應該使用 [Azure Machine Learning Recommendations � 快速入門指南](machine-learning-recommendation-api-quick-start-guide.md)中的 API 文件來設定服務。
+[訂閱](https://datamarket.azure.com/dataset/amla/recommendations) Recommendations 之後，您應該使用 [Azure Machine Learning Recommendations - 快速入門指南](machine-learning-recommendation-api-quick-start-guide.md)中的 API 文件來設定服務。
 
 **哪裡可以找到 API 文件？** 
 
-API 文件是 [Azure Machine Learning Recommendations � 快速入門指南](machine-learning-recommendation-api-quick-start-guide.md)。
+API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](machine-learning-recommendation-api-quick-start-guide.md)。
 
 **有哪些選項可將目錄和使用資料上傳至 Recommendations？**
 
@@ -140,6 +140,6 @@ API 文件是 [Azure Machine Learning Recommendations � 快速入門指南](ma
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

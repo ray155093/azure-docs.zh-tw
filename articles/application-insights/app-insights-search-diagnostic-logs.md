@@ -1,5 +1,5 @@
 ---
-title: "Application Insights 中 ASP.NET 的記錄檔、例外狀況和自訂診斷"
+title: "Azure Application Insights 中 ASP.NET 的記錄檔和診斷 | Microsoft Docs"
 description: "搜尋由追蹤、NLog 或 Log4Net 產生的要求、例外狀況和記錄檔，藉此診斷 ASP.NET Web 應用程式中的問題。"
 services: application-insights
 documentationcenter: 
@@ -14,18 +14,18 @@ ms.topic: article
 ms.date: 04/08/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 68d4b62b4915950dd18b6aa69b43043b4a90d9ff
+ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
+ms.openlocfilehash: 874e9abb7ae7e06808645ae2ab7cd5b3c0d36e04
 
 
 ---
 # <a name="logs-exceptions-and-custom-diagnostics-for-aspnet-in-application-insights"></a>Application Insights 中 ASP.NET 的記錄檔、例外狀況和自訂診斷
-[Application Insights][start] 包含一個強大的[診斷搜尋][diagnostic]工具，可讓您探索和鑽研由您應用程式之 Application Insights SDK 傳送的遙測。 SDK 會自動傳送許多事件，例如使用者頁面檢視。
+[Application Insights][start] 內含一個功能強大的[診斷搜尋][diagnostic]工具，可讓您探索和鑽研由應用程式之 Application Insights SDK 傳送的遙測資料。 SDK 會自動傳送許多事件，例如使用者頁面檢視。
 
 您也可以撰寫程式碼來傳送自訂事件、例外狀況報告和追蹤。 如果您已經使用記錄架構 (例如 log4J、log4net、NLog 或 System.Diagnostics.Trace)，可以擷取這些記錄檔，並將它們包含在搜尋中。 這樣會較容易將使用者動作、例外狀況和其他事件與記錄追蹤相互關聯。
 
 ## <a name="a-namesendabefore-you-write-custom-telemetry"></a><a name="send"></a>在您撰寫自訂遙測資料之前
-如果您尚未[針對專案設定 Application Insights][start]，請立即進行。
+如果您尚未[針對專案安裝 Application Insights][start]，請立即安裝。
 
 執行應用程式時，會傳送一些遙測資料，而這些資料會出現在診斷搜尋中，其中包括由伺服器接收的要求、記錄在用戶端的頁面檢視，以及無法攔截的例外狀況。
 
@@ -41,7 +41,7 @@ ms.openlocfilehash: 68d4b62b4915950dd18b6aa69b43043b4a90d9ff
 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。 [深入了解取樣。](app-insights-sampling.md)
 
 ## <a name="a-nameeventsacustom-events"></a><a name="events"></a>自訂事件
-[診斷搜尋][diagnostic]和[計量瀏覽器][計量]中都會顯示自訂事件。 您可以從裝置、網頁和伺服器應用程式傳送這些事件。 這些事件既可用來進行診斷，也可用來[了解使用模式][track]。
+自訂事件會同時顯示在[診斷搜尋][diagnostic]和[計量瀏覽器][metrics]中。 您可以從裝置、網頁和伺服器應用程式傳送這些事件。 這些事件可同時用於診斷及[了解使用模式][track]。
 
 每個自訂事件都有自己的名稱，並帶有可透過數值測量單位篩選的屬性。
 
@@ -96,7 +96,7 @@ ms.openlocfilehash: 68d4b62b4915950dd18b6aa69b43043b4a90d9ff
 ![](./media/app-insights-search-diagnostic-logs/appinsights-23-customevents-4.png)
 
 ## <a name="a-namepagesa-page-views"></a><a name="pages"></a> 頁面檢視
-頁面檢視遙測是由[您在網頁中插入之 JavaScript 程式碼片段][usage]中的 trackPageView() 呼叫所傳送。 此資料主要用途是提供您在概觀頁面看到的頁面檢視計數。
+頁面檢視遙測資料是由[在網頁中插入之 JavaScript 程式碼片段][usage]中的 trackPageView() 呼叫所傳送。 此資料主要用途是提供您在概觀頁面看到的頁面檢視計數。
 
 通常它在每個 HTML 頁面中只會被呼叫一次，但是您可以插入多個呼叫 (例如，您有單頁應用程式，且想在使用者取得更多資料時記錄新頁面)。
 
@@ -149,7 +149,7 @@ NuGet 封裝會安裝必要的組件，並修改 web.config 或 app.config。
 ### <a name="a-nameexceptionsaexceptions"></a><a name="exceptions"></a>例外狀況
 Application Insights 中的「取得例外狀況報告」功能非常強大，尤其是您可以切換瀏覽失敗要求和例外狀況，以及讀取例外狀況堆疊。
 
-在某些情況下，您需要 [插入數行程式碼][exceptions] ，以確定您的例外狀況會自動被截取。
+在某些情況下，您需要[插入數行程式碼][exceptions]，以確定系統會自動截取您的例外狀況。
 
 您也可以撰寫明確的程式碼，以傳送例外狀況遙測資料：
 
@@ -217,9 +217,9 @@ VB
 您也可以直接開啟 [診斷搜尋]、篩選例外狀況，以及選擇您想查看的例外狀況類型。
 
 ### <a name="reporting-unhandled-exceptions"></a>報告未處理的例外狀況
-Application Insights 會從裝置、[網頁瀏覽器][usage]或 Web 伺服器儘可能回報未處理的例外狀況，不論[狀態監視器][redfield]或 [Application Insights SDK][greenbrown] 是否已檢測這些未處理例外狀況。 
+無論[狀態監視器][redfield]或 [Application Insights SDK][greenbrown] 是否已檢測這些未處理例外狀況，Application Insights 都可以從裝置、[網頁瀏覽器][usage]，或 Web 伺服器中報告這類例外狀況。 
 
-但是，Application Insights 在某些情況下無法執行此動作，因為 .NET Framework 會攔截這些例外狀況。  若要確定能看到所有例外狀況，您就必須撰寫一個小型的例外狀況處理常式。 最佳程序會因技術而異。 如需詳細資訊，請參閱 [ASP.NET 的例外狀況遙測][exceptions] 。 
+但是，Application Insights 在某些情況下無法執行此動作，因為 .NET Framework 會攔截這些例外狀況。  若要確定能看到所有例外狀況，您就必須撰寫一個小型的例外狀況處理常式。 最佳程序會因技術而異。 如需詳細資訊，請參閱 [ASP.NET 的例外狀況遙測][exceptions]。 
 
 ### <a name="correlating-with-a-build"></a>與組建相互關聯
 讀取診斷記錄檔時，因為即時程式碼已部署，所以原始程式碼可能會變更。
@@ -247,11 +247,11 @@ Application Insights 會從裝置、[網頁瀏覽器][usage]或 Web 伺服器儘
     }
 
 ### <a name="a-namerequestsa-server-web-requests"></a><a name="requests"></a> 伺服器 Web 要求
-當您[在 Web 伺服器上安裝狀態監視器][redfield]，或[將 Application Insights 新增至您的 Web 專案][greenbrown]時，系統就會自動傳送要求遙測。 要求遙測也會在 [計量瀏覽器] 和 [概觀] 頁面中，將摘要填入要求和回應時間圖表。
+當您[在 Web 伺服器上安裝狀態監視器][redfield]，或[將 Application Insights 加入您的 Web 專案][greenbrown]時，就會自動傳送要求遙測。 要求遙測也會在 [計量瀏覽器] 和 [概觀] 頁面中，將摘要填入要求和回應時間圖表。
 
 如果您想要傳送其他事件，可以使用 TrackRequest() API。
 
-## <a name="a-namequestionsaq-a"></a><a name="questions"></a>問與答
+## <a name="a-namequestionsaq--a"></a><a name="questions"></a>問與答
 ### <a name="a-nameemptykeyai-get-an-error-instrumentation-key-cannot-be-empty"></a><a name="emptykey"></a>我收到「檢測金鑰不能是空白」的錯誤
 您可能只安裝記錄配接器 Nuget 封裝，但未安裝 Application Insights。
 
@@ -273,7 +273,7 @@ Application Insights 會從裝置、[網頁瀏覽器][usage]或 Web 伺服器儘
 [diagnostic]: app-insights-diagnostic-search.md
 [exceptions]: app-insights-asp-net-exceptions.md
 [greenbrown]: app-insights-asp-net.md
-[計量]: app-insights-metrics-explorer.md
+[metrics]: app-insights-metrics-explorer.md
 [qna]: app-insights-troubleshoot-faq.md
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
@@ -284,6 +284,6 @@ Application Insights 會從裝置、[網頁瀏覽器][usage]或 Web 伺服器儘
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

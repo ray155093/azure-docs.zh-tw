@@ -1,10 +1,10 @@
 ---
-title: "準備環境以備份 Resource Manager 部署的虛擬機器 | Microsoft Docs"
-description: "確認在 Azure 中備份虛擬機器的環境已準備就緒"
+title: "Azure 備份：準備備份虛擬機器 | Microsoft Docs"
+description: "確認在 Azure 中備份虛擬機器的環境已準備就緒。"
 services: backup
 documentationcenter: 
 author: markgalioto
-manager: cfreeman
+manager: carmonm
 editor: 
 keywords: "備份；備份；"
 ms.assetid: e87e8db2-b4d9-40e1-a481-1aa560c03395
@@ -13,11 +13,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/21/2016
-ms.author: trinadhk; jimpark; markgal;
+ms.date: 1/30/2017
+ms.author: trinadhk;jimpark;markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: d883cdc007beaf17118c6b6ddbc8345c3bfb5ef2
-ms.openlocfilehash: ea9591600fb30fd65ca5d9ebd7bf5439017d35d4
+ms.sourcegitcommit: 39147f2db1e660a21d6ed622206787ea0c569056
+ms.openlocfilehash: e2ceb33cc8027759ccb4b5183513da849a7d60c6
 
 
 ---
@@ -25,17 +25,17 @@ ms.openlocfilehash: ea9591600fb30fd65ca5d9ebd7bf5439017d35d4
 > [!div class="op_single_selector"]
 > * [Resource Manager 模型](backup-azure-arm-vms-prepare.md)
 > * [傳統模型](backup-azure-vms-prepare.md)
-> 
-> 
+>
+>
 
 本文提供的步驟可讓環境做好備份 Resource Manager 部署之虛擬機器 (VM) 的準備。 程序中展示的步驟使用 Azure 入口網站。  
 
-Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。 備份保存庫能保護以傳統部署模型部署的 VM。 復原服務保存庫能保護 ** 傳統部署或 Resource Manager 部署的 VM** 。 您必須使用復原服務保存庫來保護Resource Manager 部署的 VM。
+Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務保存庫) 來保護您的 VM。 備份保存庫能保護以傳統部署模型部署的 VM。 **不論是傳統部署還是 Resource Manager 部署的 VM**，復原服務保存庫都可給予保護。 您必須使用復原服務保存庫來保護Resource Manager 部署的 VM。
 
 > [!NOTE]
 > Azure 有兩種用來建立和使用資源的部署模型： [Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 如需使用傳統部署模型 VM 的詳細資料，請參閱 [準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md) 。
-> 
-> 
+>
+>
 
 在保護或備份 Resource Manager 部署的虛擬機器 (VM) 之前，請確認以下必要條件是否存在：
 
@@ -46,19 +46,20 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 如果您知道環境滿足這些條件，請繼續依 [備份 VM 文章](backup-azure-vms.md)中的指示進行。 如果您需要設定或檢查前述任何必要條件，本文章會引導您逐步完成必要條件的準備步驟。
 
+##<a name="supported-operating-system-for-backup"></a>支援的備份作業系統
+ * **Linux**：Azure 備份支援 [Azure 所背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ，但核心作業系統 Linux 除外。 _只要虛擬機器上有 VM 代理程式並且可支援 Python，其他「攜帶您自己的 Linux」散發套件可能也可以運作。不過，我們並不為這些備份散發套件背書。_
+ * **Windows Server**：不支援比 Windows Server 2008 R2 更舊的版本。
+
 ## <a name="limitations-when-backing-up-and-restoring-a-vm"></a>備份和還原 VM 時的限制
 準備環境之前，請先了解限制。
 
 * 不支援備份具有 16 個以上資料磁碟的虛擬機器。
 * 不支援備份具有保留的 IP 且沒有已定義之端點的虛擬機器。
-* 不支援備份具有 Docker 擴充功能的 Linux 虛擬機器。 
-* 備份資料不包含連接至 VM 的網路掛接磁碟機。 
+* 不支援備份具有 Docker 擴充功能的 Linux 虛擬機器。
+* 備份資料不包含連接至 VM 的網路掛接磁碟機。
 * 不支援在還原期間取代現有的虛擬機器。 如果您嘗試在 VM 存在時還原 VM，還原作業將會失敗。
 * 不支援跨區域備份和還原。
 * 您可以在 Azure 的所有公開區域中備份虛擬機器 (請參閱支援之區域的 [檢查清單](https://azure.microsoft.com/regions/#services) )。 如果您尋找的區域目前不受支援，在建立保存庫期間，該區域就不會顯示在下拉式清單中。
-* 您只可以備份選定作業系統版本的虛擬機器︰
-  * **Linux**：Azure 備份支援 [Azure 所背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，但核心作業系統 Linux 除外。  只要虛擬機器上有 VM 代理程式並且可支援 Python，其他「攜帶您自己的 Linux」散發套件可能也可以運作。
-  * **Windows Server**：不支援比 Windows Server 2008 R2 更舊的版本。
 * 只有透過 PowerShell 才支援還原屬於多網域控制站 (DC) 組態的 DC VM。 進一步了解 [還原多 DC 網域控制站](backup-azure-restore-vms.md#restoring-domain-controller-vms)。
 * 僅支援透過 PowerShell 還原具有以下特殊網路組態的虛擬機器。 使用 UI 中還原工作流程所建立的 VM 在完成還原作業之後將不會具有這些網路組態。 若要深入了解，請參閱 [還原具有特殊網路組態的 VM](backup-azure-restore-vms.md#restoring-vms-with-special-network-configurations)。
   * 負載平衡器組態下的虛擬機器 (內部與外部)
@@ -72,30 +73,30 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 按一下 [復原服務保存庫] 。
-   
-    ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
-   
+
+    ![按一下 [瀏覽] 按鈕並輸入「復原服務」。 當您看到 [復原服務保存庫] 選項時，按一下該選項以開啟 [復原服務保存庫] 刀鋒視窗。](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
+
     隨即會顯示 [復原服務保存庫] 清單。
 3. 在 [復原服務保存庫] 功能表上，按一下 [新增]。
-   
+
     ![建立復原服務保存庫的步驟 2](./media/backup-azure-vms-first-look-arm/rs-vault-menu.png)
-   
+
     [復原服務保存庫] 刀鋒視窗隨即開啟，並提示您提供 [名稱]、[訂用帳戶]、[資源群組] 和 [位置]。
-   
+
     ![建立復原服務保存庫的步驟 5](./media/backup-azure-vms-first-look-arm/rs-vault-attributes.png)
 4. 在 [名稱] 中，輸入易記名稱來識別保存庫。 必須是 Azure 訂用帳戶中唯一的名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
 5. 按一下 [訂用帳戶]  以查看可用的訂用帳戶清單。 如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
 6. 按一下 [資源群組] 以查看可用的資源群組清單，或按一下 [新增] 以建立新的資源群組。 如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)
 7. 按一下 [位置]  以選取保存庫的地理區域。 保存庫**必須**與您想要保護的虛擬機器位於相同區域。
-   
+
    > [!IMPORTANT]
    > 如果您不確定 VM 的所在位置，請關閉保存庫建立對話方塊，並移至入口網站的虛擬機器清單。 如果您在多個區域中有虛擬機器，您必須在每個區域中建立復原服務保存庫。 請先在第一個位置建立保存庫，再進入下一個位置。 儲存備份資料時，不需要指定儲存體帳戶，復原服務保存庫和「Azure 備份」服務會自動處理此作業。
-   > 
-   > 
+   >
+   >
 8. 按一下 [建立] 。 要等復原服務保存庫建立好，可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。 保存庫一旦建立好，就會出現在 [復原服務保存庫] 的清單中。
-   
+
     ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/rs-list-of-vaults.png)
-   
+
     現在您已建立好保存庫，接下來要了解如何設定儲存體複寫。
 
 ## <a name="set-storage-replication"></a>設定儲存體複寫
@@ -105,56 +106,56 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 1. 選取保存庫以開啟保存庫儀表板和 [設定] 刀鋒視窗。 如果 [設定] 刀鋒視窗未開啟，請按一下保存庫儀表板中的 [所有設定]。
 2. 在 [設定] 刀鋒視窗上按一下 [備份基礎結構]  >  [備份設定]，開啟 [備份設定] 刀鋒視窗。 在 [備份設定]  刀鋒視窗上，選擇保存庫的儲存體複寫選項。
-   
+
     ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/choose-storage-configuration-rs-vault.png)
-   
+
     選擇好保存庫的儲存體選項後，就可以開始建立 VM 與保存庫的關聯。 若要開始關聯，請探索及註冊 Azure 虛擬機器。
 
 ## <a name="select-a-backup-goal-set-policy-and-define-items-to-protect"></a>選取備份目標、設定原則及定義要保護的項目
 在向保存庫註冊 VM 前，請先執行探索程序，以確保能夠識別任何新增至訂用帳戶的新虛擬機器。 此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。 在 Azure 入口網站中，案例是指您要放入復原服務保存庫中的項目。 原則是復原點擷取頻率和時間的排程。 原則也會包含復原點的保留範圍。
 
 1. 如果您已開啟復原服務保存庫，請繼續步驟 2。 如果您並未開啟復原服務保存庫，但位於 Azure 入口網站中，請在 [中樞] 功能表上按一下 [瀏覽] 。
-   
+
    * 在資源清單中輸入 **復原服務**。
    * 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 當您看到 [復原服務保存庫] 時，請按一下它。
-     
+
      ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
-     
+
      隨即會出現 [復原服務保存庫] 清單。
    * 在 [復原服務保存庫] 清單中選取保存庫。
-     
+
      選取的保存庫儀表板隨即開啟。
-     
+
      ![開啟 [保存庫] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/vault-settings.png)
 2. 在 [保存庫儀表板] 功能表中按一下 [備份]  以開啟 [備份] 刀鋒視窗。
-   
+
     ![開啟 [備份] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/backup-button.png)
-   
+
     刀鋒視窗開啟時，備份服務會搜尋訂用帳戶中的任何新 VM。
-   
+
     ![探索 VM](./media/backup-azure-vms-first-look-arm/discovering-new-vms.png)
 3. 在 [備份] 刀鋒視窗中，按一下 [備份目標]  以開啟 [備份目標] 刀鋒視窗。
-   
+
     ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-backup-goal-one.png)
 4. 在 [備份目標] 刀鋒視窗中，將 [工作負載的執行位置] 設定為 [Azure]，並將 [欲備份的項目] 設定為 [虛擬機器]，然後按一下 [確定]。
-   
+
     [備份目標] 刀鋒視窗隨即關閉，然後開啟 [備份原則] 刀鋒視窗。
-   
+
     ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-backup-goal-two.png)
 5. 在 [備份原則] 刀鋒視窗中選取您要套用至保存庫的備份原則，然後按一下 [確定] 。
-   
+
     ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new.png)
-   
+
     預設原則的詳細資料便會列在詳細資料中。 如果您想要建立新原則，請在下拉式功能表中選取 [建立新的]  。 下拉式功能表也提供選項，可讓您將快照的擷取時間切換為晚上 7 點。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 一旦您按下 [確定] ，備份原則便會與保存庫建立關聯。
-   
+
     接下來選擇要與保存庫建立關聯的 VM。
 6. 選擇要與指定原則建立關聯的虛擬機器，然後按一下 [選取] 。
-   
+
     ![選取工作負載](./media/backup-azure-vms-first-look-arm/select-vms-to-backup-new.png)
-   
+
     如果沒看到所需 VM，請確認它是否已存在於相同 Azure 位置中做為復原服務保存庫。
 7. 現在您已定義保存庫的所有設定，接下來在 [備份] 刀鋒視窗中按一下頁面底部的 [啟用備份]  。 這會將原則部署到保存庫和 VM。
-   
+
     ![啟用備份](./media/backup-azure-vms-first-look-arm/enable-backup-settings-new.png)
 
 下一個階段的準備作業是安裝 VM 代理程式，或確定 VM 代理程式已安裝。
@@ -200,8 +201,8 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 > [!NOTE]
 > 對於應該使用什麼 Proxy 軟體，並無任何建議。 請務必挑選與下面設定步驟相容的 Proxy。
-> 
-> 
+>
+>
 
 以下範例影像示範使用 HTTP Proxy 所需的三個組態步驟︰
 
@@ -219,7 +220,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 1. 下載 [PsExec](https://technet.microsoft.com/sysinternals/bb897553)
 2. 從提升權限的提示字元執行下列命令。
-   
+
      ```
      psexec -i -s "c:\Program Files\Internet Explorer\iexplore.exe"
      ```
@@ -243,8 +244,8 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 > [!NOTE]
 > 如果您在 Proxy 伺服器記錄檔中發現「(407) 需要 Proxy 驗證」，請檢查驗證設定是否正確。
-> 
-> 
+>
+>
 
 ###### <a name="for-linux-machines"></a>Linux 電腦
 在 ```/etc/environment``` 檔案中新增以下文字行：
@@ -262,21 +263,21 @@ HttpProxy.Port=<proxy port>
 
 #### <a name="step-2-allow-incoming-connections-on-the-proxy-server"></a>步驟 2. 在 Proxy 伺服器上允許連入連線：
 1. 在 Proxy 伺服器上，開啟 [Windows 防火牆]。 存取防火牆最簡單的方式搜尋「具有進階安全性的 Windows 防火牆」。
-   
+
     ![開啟防火牆](./media/backup-azure-vms-prepare/firewall-01.png)
 2. 在 [Windows 防火牆] 對話方塊中，以滑鼠右鍵按一下 [輸入規則] 並按一下 [新增規則...]。
-   
+
     ![建立新的規則](./media/backup-azure-vms-prepare/firewall-02.png)
 3. 在 [新增輸入規則精靈] 中，針對 [規則類型] 選擇 [自訂] 選項，然後按 [下一步]。
 4. 在選取 [程式] 的頁面上，選擇 [所有程式]，然後按 [下一步]。
 5. 在 [通訊協定和連接埠] 頁面上，輸入下列資訊，然後按 [下一步]：
-   
+
     ![建立新的規則](./media/backup-azure-vms-prepare/firewall-03.png)
-   
+
    * 針對 [通訊協定類型]，請選擇 [TCP]
    * 針對 [本機連接埠]，請選擇 [特定連接埠]，在下方欄位中指定已經設定的 ```<Proxy Port>```。
    * 針對 [遠端連接埠]，請選取 [所有連接埠]
-     
+
      在精靈的其餘部分，按一下直到結束為止並指定此規則的名稱。
 
 #### <a name="step-3-add-an-exception-rule-to-the-nsg"></a>步驟 3. 新增 NSG 例外規則：
@@ -306,7 +307,6 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 
 
 
-
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO5-->
 
 

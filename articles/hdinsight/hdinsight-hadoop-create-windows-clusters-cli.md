@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure CLI 在 HDInsight 中建立 Windows 型 Hadoop 叢集"
-description: "了解如何使用 Azure CLI 建立 Azure HDInsight 的叢集。"
+description: "了解如何使用 Azure CLI 建立 Azure HDInsight 的 Windows 型 Hadoop 叢集。"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -13,18 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/02/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 984ebf0e93b8c36d1f09876d59feb7f74053622e
+ms.sourcegitcommit: a2b32f23381ed1f9912edf6432f029e51bdf1be4
+ms.openlocfilehash: 393b7e44b21fe510e07b4048ddd3bdbcc31d90a9
 
 
 ---
 # <a name="create-windows-based-hadoop-clusters-in-hdinsight-using-azure-cli"></a>使用 Azure CLI 在 HDInsight 中建立 Windows 型 Hadoop 叢集
+
 [!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-了解如何使用 Azure CLI 建立 HDInsight 叢集。 如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱 [叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
+了解如何使用 Azure CLI 在 HDInsight 中建立 Windows 型 Hadoop 叢集。 
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 本文的資訊僅適用於 Windows 型 HDInsight 叢集。 如需建立 Linux 型叢集的詳細資訊，請參閱[使用 Azure CLI 在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-azure-cli.md)。
 
 ## <a name="prerequisites"></a>必要條件：
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -34,7 +38,7 @@ ms.openlocfilehash: 984ebf0e93b8c36d1f09876d59feb7f74053622e
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * **Azure CLI**。
   
-    [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)] 
+[!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)] 
 
 ### <a name="access-control-requirements"></a>存取控制需求
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
@@ -46,7 +50,7 @@ ms.openlocfilehash: 984ebf0e93b8c36d1f09876d59feb7f74053622e
 
 如需使用公司或學校帳戶驗證的詳細資訊，請參閱 [從 Azure CLI 連線至 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
-使用下列命令切換至 ARM 模式：
+使用下列命令，切換至 Azure Resource Manager 模式：
 
     azure config mode arm
 
@@ -55,9 +59,9 @@ ms.openlocfilehash: 984ebf0e93b8c36d1f09876d59feb7f74053622e
     azure hdinsight cluster create -h
 
 ## <a name="create-clusters"></a>建立叢集
-您必須擁有 Azure 資源管理 (ARM) 與 Azure Blob 儲存體帳戶才能建立 HDInsight 叢集。 若要建立 HDInsight 叢集，您必須指定下列項目:
+您必須擁有資源管理群組與 Azure Blob 儲存體帳戶才能建立 HDInsight 叢集。 若要建立 HDInsight 叢集，您必須指定下列項目:
 
-* **Azure 資源群組**：資料湖分析帳戶必須建立在 Azure 資源群組內。 Azure 資源管理員可讓您將應用程式中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除應用程式的所有資源。
+* **Azure 資源群組**：Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。 Azure 資源管理員可讓您將應用程式中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除應用程式的所有資源。
   
     若要列出訂用帳戶中的資源群組：
   
@@ -80,7 +84,7 @@ ms.openlocfilehash: 984ebf0e93b8c36d1f09876d59feb7f74053622e
   > 
   > 
   
-    如需使用 Azure 入口網站建立 Azure 儲存體帳戶的相關資訊，請參閱 [建立、管理或刪除儲存體帳戶] [azure-create-storageaccount]。
+    如需使用 Azure 入口網站建立 Azure 儲存體帳戶的相關資訊，請參閱 [建立、管理或刪除儲存體帳戶][azure-create-storageaccount]。
   
     如果您已經有儲存體帳戶，但不知道帳戶名稱和帳戶金鑰，則可使用下列命令來擷取資訊：
   
@@ -127,18 +131,18 @@ ms.openlocfilehash: 984ebf0e93b8c36d1f09876d59feb7f74053622e
 
 如需一般使用指令碼動作的資訊，請參閱 [使用指令碼動作來自訂 HDInsight 叢集 (Linux)](hdinsight-hadoop-customize-cluster.md)。
 
-## <a name="create-clusters-using-arm-templates"></a>使用 ARM 範本建立叢集
-您可以使用 CLI 呼叫 ARM 範本以建立叢集。 請參閱 [使用 Azure CLI 進行部署](hdinsight-hadoop-create-windows-clusters-arm-templates.md#deploy-with-azure-cli)。
+## <a name="create-clusters-using-resource-manager-templates"></a>使用 Resource Manager 範本建立叢集
+您可以使用 CLI 呼叫 Azure Resource Manager 範本以建立叢集。 請參閱 [使用 Azure CLI 進行部署](hdinsight-hadoop-create-windows-clusters-arm-templates.md#deploy-with-azure-cli)。
 
 ## <a name="see-also"></a>另請參閱
 * [開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md) - 了解如何開始使用 HDInsight 叢集
 * [以程式設計方式提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md) - 了解如何以程式設計方式提交工作至 HDInsight
 * [使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-command-line.md)
-* [使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 服務管理](../virtual-machines-command-line-tools.md)
+* [使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 服務管理](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

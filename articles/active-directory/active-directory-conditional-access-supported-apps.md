@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/26/2016
+ms.date: 01/24/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: fbc03ebf0c66950ae92ca75cf34da86dfb15a349
+ms.sourcegitcommit: b9605eb10f87f107dffd9f631d043bf550cf030b
+ms.openlocfilehash: 5e293d7d3fa6b0a763663a5428878944660fc03e
 
 
 ---
@@ -41,8 +41,8 @@ Azure Active Directory (Azure AD) 連線應用程式、預先整合的同盟軟�
 | Office 365 Exchange Online |Windows 8.1、Windows 7 |Outlook 2016、Outlook 2013 (已啟用新式驗證)、商務用 Skype (採用新式驗證) |
 | Office 365 Exchange Online |iOS、Android |Outlook 行動應用程式 |
 | Office 365 Exchange Online |Mac OS X |僅限 Multi-Factor Authentication/位置的 Outlook 2016；未來規劃的裝置型原則支援、未來規劃的商業用 Skype 支援 |
-| Office 365 SharePoint Online |Windows 10 |Office 2016 應用程式、Universal Office 應用程式、Office 2013 (已啟用新式驗證)、未來規劃的商務用 OneDrive 應用程式 (新一代同步處理用戶端或 NGSC) 支援、未來規劃的 Office Groups 支援、未來規劃的 SharePoint 應用程式支援 |
-| Office 365 SharePoint Online |Windows 8.1、Windows 7 |Office 2016 應用程式、Office 2013 (已啟用新式驗證)、商務用 OneDrive 應用程式 (Groove 同步處理用戶端) |
+| Office 365 SharePoint Online |Windows 10 |Office 2016 應用程式、通用 Office 應用程式、Office 2013 (具備新式驗證)、OneDrive 同步處理用戶端 (請參閱[附註](https://support.office.com/en-US/article/Azure-Active-Directory-conditional-access-with-the-OneDrive-sync-client-on-Windows-028d73d7-4b86-4ee0-8fb7-9a209434b04e))、預計未來提供的 Office Groups 支援、預計未來提供的 SharePoint 應用程式支援 |
+| Office 365 SharePoint Online |Windows 8.1、Windows 7 |Office 2016 應用程式、Office 2013 (具備新式驗證)、OneDrive 同步處理用戶端 (請參閱[附註](https://support.office.com/en-US/article/Azure-Active-Directory-conditional-access-with-the-OneDrive-sync-client-on-Windows-028d73d7-4b86-4ee0-8fb7-9a209434b04e)) |
 | Office 365 SharePoint Online |iOS、Android |Office 行動應用程式 |
 | Office 365 SharePoint Online |Mac OS X |僅限 Multi-Factor Authentication 和位置的 Office 2016 應用程式；未來規劃的裝置型原則支援 |
 | Office 365 Yammer |Windows 10、iOS 和 Android |Office Yammer 應用程式 |
@@ -111,6 +111,6 @@ Exchange 提供兩個主要的通訊協定類別。 檢閱下列選項，然後�
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO2-->
 
 

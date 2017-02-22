@@ -1,6 +1,6 @@
 ---
 title: "事件中樞常見問題集 (FAQ) | Microsoft Docs"
-description: "事件中樞常見問題集。"
+description: "事件中樞常見問題集"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/01/2016
+ms.date: 12/07/2016
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: eb8a1f5b46ed5bfbdc61789ffc48a79927d9c19d
+ms.sourcegitcommit: fceb8f6c8f28e84eb8926586257cf39dc0cd14d4
+ms.openlocfilehash: 4977daeecd9e206906c2e0b3b95b63d4d55cb859
 
 
 ---
@@ -53,7 +53,7 @@ ms.openlocfilehash: eb8a1f5b46ed5bfbdc61789ffc48a79927d9c19d
 每個命名空間的預設配額為 20 個輸送量單位。 您可以藉由提出支援票證來要求較大的輸送量單位配額。 除了 20 個輸送量單位的限制之外，還有 20 和 100 個輸送量單位的組合。 請注意，使用 20 個以上的輸送量單位會排除不需要提出支援票證即可變更輸送量單位數目的能力。
 
 ## <a name="is-there-a-charge-for-retaining-event-hubs-events-for-more-than-24-hours"></a>保留事件中樞事件超過 24 小時需要計費嗎？
-事件中樞標準層允許 24 小時以上的訊息保留期間，最多達 30 天。 如果儲存之事件總數的大小超過選定輸送量單位數目的儲存額度 (每個輸送量單位 84 GB)，超過額度的大小將以已發佈的 Azure Blob 儲存體費率計費。 即使您已將輸送量單位的最大輸入額度用盡，每個輸送量單位的儲存額度依然涵蓋 24 小時保留期間 (預設值) 的所有儲存費用。
+事件中樞標準層允許 24 小時以上的訊息保留期間，最多達 30 天。 如果儲存之事件總數的大小超過選定輸送量單位數目的儲存額度 (每個輸送量單位&84; GB)，超過額度的大小將以已發佈的 Azure Blob 儲存體費率計費。 即使您已將輸送量單位的最大輸入額度用盡，每個輸送量單位的儲存額度依然涵蓋 24 小時保留期間 (預設值) 的所有儲存費用。
 
 ## <a name="what-is-the-maximum-retention-period"></a>最大保留期間是什麼？
 事件中樞標準層目前支援的最大保留期間為 7 天。 請注意，事件中樞的立意並非做為永久的資料存放區。 大於 24 小時的保留期間乃專為方便地在同一系統上重新執行事件串流的案例而設計。例如，根據現有資料來訓練或驗證新機器學習模型。
@@ -62,7 +62,7 @@ ms.openlocfilehash: eb8a1f5b46ed5bfbdc61789ffc48a79927d9c19d
 儲存在所有事件中樞內之事件，包括事件標頭的所有內部負荷或磁碟儲存結構的所有內部負荷，是以全天為單位來測量。 我們會在一天結束時計算儲存空間大小峰值。 每日儲存額度的計算乃以當天選定之輸送量單位的最小數目為基準 (每個輸送量單位提供 84GB 的額度)。 如果總大小超過計算出來的每日儲存額度，我們會採用 Azure Blob 儲存體費率來計算超出的儲存空間 (依照 **本地備援儲存體** 費率)。
 
 ## <a name="can-i-use-a-single-amqp-connection-to-send-and-receive-from-event-hubs-and-service-bus-queuestopics"></a>我可以使用一個 AMQP 連線在事件中樞與服務匯流排佇列/主題之間傳送及接收嗎？
-可以。只要所有事件中樞、佇列和主題都位於相同的命名空間內即可。 因此，您可以在延遲時間少於 1 秒的情況下，使用符合成本效益且具有高可調整性的方式實作雙向代理連線來連接許多裝置。
+可以。只要所有事件中樞、佇列和主題都位於相同的命名空間內即可。 因此，您可以在延遲時間少於&1; 秒的情況下，使用符合成本效益且具有高可調整性的方式實作雙向代理連線來連接許多裝置。
 
 ## <a name="do-brokered-connection-charges-apply-to-event-hubs"></a>代理連線費用適用於事件中樞嗎？
 對傳送者來說，只有在使用 AMQP 通訊協定時才需要支付連線費用。 不論傳送系統或裝置的數目多寡，使用 HTTP 來傳送事件不需要支付連線費用。 如果您打算使用 AMQP (例如，為了實現更有效率的事件串流，或針對 IoT 命令和控制案例啟用雙向通訊)，請參閱 [服務匯流排定價資訊](https://azure.microsoft.com/pricing/details/service-bus/) 頁面，以取得構成代理連線之元素和其計量方式的資訊。
@@ -71,33 +71,30 @@ ms.openlocfilehash: eb8a1f5b46ed5bfbdc61789ffc48a79927d9c19d
 事件中樞標準層提供事件中樞基本層和一些競爭系統未提供的功能。 這些功能包括超過 24 小時的保留期間，以及在延遲時間少於一秒的情況下使用單一 AMQP 連線將命令傳送到大量裝置，外加從這些裝置將遙測傳送到事件中樞等能力。 如需功能清單，請參閱 [事件中樞定價詳細資訊](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
 ## <a name="geographic-availability"></a>各地區上市情況
-事件中樞可在以下區域取得：
 
-| 地理區域 | 區域 |
-| --- | --- |
-| 美國 |美國中部、美國東部、美國東部 2、美國中南部、美國西部 |
-| 歐洲 |北歐、西歐 |
-| 亞太地區 |東亞、東南亞 |
-| 日本 |日本東部、日本西部 |
-| 巴西 |巴西南部 |
-| 澳大利亞 |澳大利亞東部、澳大利亞東南部 |
+在所有支援的 Azure 區域皆可提供Azure 事件中樞。 如需清單，請瀏覽 [Azure 區域][]頁面。  
 
 ## <a name="support-and-sla"></a>支援與 SLA
 事件中樞的技術支援可透過 [社群論壇](https://social.msdn.microsoft.com/forums/azure/home)取得。 計費及訂用帳戶管理支援均為免費提供。
 
 若要深入了解 SLA，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/) 頁面。
 
+## <a name="diagnostic-logs"></a>診斷記錄檔
+
+事件中樞支援兩種類型的[診斷記錄](event-hubs-diagnostic-logs.md) - 封存錯誤記錄和作業記錄 - 兩種記錄都是以 JSON 格式代表，且可以透過 Azure 入口網站開啟。
+
 ## <a name="next-steps"></a>後續步驟
-若要深入了解事件中樞，請參閱下列文章：
+您可以造訪下列連結以深入了解事件中樞︰
 
-* [事件中樞概觀][事件中樞概觀]。
-* 完整的[使用事件中樞的完整範例應用程式][使用事件中樞的完整範例應用程式]。
+* [事件中樞概觀](event-hubs-what-is-event-hubs.md)
+* [建立事件中樞](event-hubs-create.md)
 
-[事件中樞概觀]: event-hubs-overview.md
-[使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[Event Hubs overview]: event-hubs-overview.md
+[sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[Azure 區域]: https://azure.microsoft.com/regions/
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 91490e33ab2d524da90ae75bd71abe8005e45c54
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 9ef430dfaa43f9bc4294593c8abbdaf457ef07c8
 
 
 ---
@@ -53,9 +53,9 @@ Azure 儲存體帳戶可讓下載位置用於您的 JDK、應用程式伺服器�
 建立儲存體帳戶可能需要幾分鐘的時間。 建立後，請按一下 [確定] 關閉 [新增儲存體帳戶] 對話方塊，新的儲存體帳戶會新增至可用的儲存體帳戶清單。
 
 ## <a name="to-add-an-existing-storage-account-to-the-list"></a>將現有的儲存體帳戶加入清單中
-1. 如果您還沒有 Azure 儲存體帳戶，請遵循上一節＜建立新的儲存體帳戶＞  中所列的步驟，建立一個帳戶。 (您也可以在 [Azure 管理入口網站][Azure 管理入口網站]中，建立新的儲存體帳戶)。
+1. 如果您還沒有 Azure 儲存體帳戶，請遵循上一節＜建立新的儲存體帳戶＞  中所列的步驟，建立一個帳戶。 (您也可以在 [Azure 管理入口網站][Azure Management Portal]中建立新的儲存體帳戶)。
 2. 在 [儲存體帳戶] 對話方塊中，按一下 [新增]。
-3. 在 [新增儲存體帳戶] 對話方塊中，輸入 [名稱] 和 [存取金鑰] 的值。 這必須是現有 Azure 儲存體帳戶的帳戶名稱和存取金鑰。 使用 [Azure 管理入口網站][Azure 管理入口網站]的 [儲存體] 區段可檢視您的儲存體帳戶名稱和金鑰。 您的 [加入儲存體帳戶]  對話方塊將會類似如下。
+3. 在 [新增儲存體帳戶] 對話方塊中，輸入 [名稱] 和 [存取金鑰] 的值。 這必須是現有 Azure 儲存體帳戶的帳戶名稱和存取金鑰。 請使用 [Azure 管理入口網站][Azure Management Portal]的 [儲存體] 區段，來檢視您的儲存體帳戶名稱和金鑰。 您的 [加入儲存體帳戶]  對話方塊將會類似如下。
    
     ![][ic719497]
 4. 按一下 [確定] 關閉 [新增儲存體帳戶] 對話方塊。
@@ -75,22 +75,22 @@ Azure 儲存體帳戶可讓下載位置用於您的 JDK、應用程式伺服器�
 > 
 
 ## <a name="see-also"></a>另請參閱
-[適用於 Eclipse 的 Azure 工具組][適用於 Eclipse 的 Azure 工具組]
+[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]
 
-[安裝 Azure Toolkit for Eclipse][安裝 Azure Toolkit for Eclipse] 
+[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse] 
 
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式][在 Eclipse 中為 Azure 建立 Hello World 應用程式]
+[在 Eclipse 中為 Azure 建立 Hello World 應用程式][Creating a Hello World Application for Azure in Eclipse]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java 開發人員中心]。
+如需有關如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java Developer Center]。
 
 <!-- URL List -->
 
-[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
-[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
-[Azure 管理入口網站]: http://go.microsoft.com/fwlink/?LinkID=512959
-[在 Eclipse 中為 Azure 建立 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
-[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
-[適用於 Eclipse 的 Azure 工具組的新功能]: http://go.microsoft.com/fwlink/?LinkID=699552
+[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
+[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
+[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
 
@@ -101,6 +101,6 @@ Azure 儲存體帳戶可讓下載位置用於您的 JDK、應用程式伺服器�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

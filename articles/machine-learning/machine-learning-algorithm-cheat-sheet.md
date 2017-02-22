@@ -4,7 +4,7 @@ description: "可列印的機器學習演算法小密技可協助您在 Azure Ma
 keywords: "演算法小祕技,小祕技,機器學習演算法"
 services: machine-learning
 documentationcenter: 
-author: brohrer
+author: garyericson
 manager: jhubbard
 editor: cgronlun
 ms.assetid: e1dc31ec-1acb-463f-ba77-de565d4ddf4d
@@ -14,10 +14,10 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2016
-ms.author: brohrer;garye
+ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 412c9ceb2e063a253f3e9d03dcf2735a7f373e15
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 4b7cbaec88b79cbc6f43fd32b85d104eada403da
 
 
 ---
@@ -42,7 +42,7 @@ ms.openlocfilehash: 412c9ceb2e063a253f3e9d03dcf2735a7f373e15
 
 ## <a name="more-help-with-algorithms"></a>更多演算法的詳細說明
 * 如需進一步探討不同類型的機器學習演算法、它們的使用方式，以及如何使用這個小祕技選擇正確的演算法，請參閱 [如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
-* 如需 Machine Learning Studio 中依類別排序的所有可用機器學習演算法的清單，請參閱＜Machine Learning Studio 演算法和模組說明＞中的[起始模型][initialize-model]。
+* 如需 Machine Learning Studio 中所有可用機器學習演算法的類別分組清單，請參閱＜Machine Learning Studio 演算法和模組＞說明中的[初始化模型][initialize-model]。
 * 如需 Machine Learning Studio 中演算法和模組的完整清單，請參閱＜Machine Learning Studio 演算法和模組說明＞中的 [Machine Learning Studio 模組的 A-Z 清單][a-z-list]。
 * 若要下載並列印提供 Machine Learning Studio 功能概觀的圖表，請參閱 [Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。
 
@@ -90,6 +90,6 @@ ms.openlocfilehash: 412c9ceb2e063a253f3e9d03dcf2735a7f373e15
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

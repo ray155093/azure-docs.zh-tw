@@ -12,19 +12,29 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/26/2016
+ms.date: 01/30/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f574a3cd837e4fc9cf292d672432a7960cae177b
+ms.sourcegitcommit: 2b5899ba43f651ae6f5fdf84d7aa5ee35d81b738
+ms.openlocfilehash: be27695cd1d998eedff0ca76f6ae9d4ff69bb97b
 
 
 ---
-# <a name="log-analytics-http-data-collector-api"></a>Log Analytics HTTP 資料收集器 API
-當您使用 Log Analytics HTTP 資料收集器 API 時，可以將 POST JavaScript 物件標記法 (JSON) 資料從任何可呼叫 REST API 的用戶端新增至 Log Analytics 存放庫。 使用此方法，您即可從協力廠商應用程式或從指令碼 (如同從 Azure 自動化中的 Runbook) 傳送資料。  
+# <a name="send-data-to-log-analytics-with-the-http-data-collector-api"></a>使用 HTTP 資料收集器 API 將資料傳送給 Log Analytics
+本文示範如何使用「HTTP 資料收集器 API」將資料從 REST API 用戶端傳送給 Log Analytics。  它說明如何將您指令碼或應用程式所收集的資料格式化、將其包含在要求中，以及讓 Log Analytics 授權該要求。  提供的範例適用於 PowerShell、C# 及 Python。
+
+## <a name="concepts"></a>概念
+您可以使用「HTTP 資料收集器 API」將資料從任何可以呼叫 REST API 的用戶端傳送給 Log Analytics。  這可能是「Azure 自動化」中從 Azure 或另一個雲端收集管理資料的 Runbook ，也可能是一個使用 Log Analytics 來合併和分析資料的替代管理系統。
+
+Log Analytics 儲存機制中的所有資料都會以具有特定記錄類型的記錄形式儲存。  您需把要傳送給「HTTP 資料收集器 API」的資料格式化成多個採用 JSON 格式的記錄。  當您提交資料時，系統會在儲存機制中針對要求承載中的每個記錄建立個別的記錄。
+
+
+![HTTP 資料收集器概觀](media/log-analytics-data-collector-api/overview.png)
+
+
 
 ## <a name="create-a-request"></a>建立要求
-接下來的兩個表格列出對於 Log Analytics HTTP 資料收集器 API 的每項要求所需的屬性。 本文稍後會更詳細說明每個屬性。
+若要使用「HTTP 資料收集器 API」，您需建立一個 POST 要求，此要求包含所要傳送且採用「JavaScript 物件標記法」(JSON) 格式的資料。  接下來的三個表格列出每個要求所需的屬性。 本文稍後會更詳細說明每個屬性。
 
 ### <a name="request-uri"></a>要求 URI
 | 屬性 | 屬性 |
@@ -156,13 +166,13 @@ Log Analytics 用於每個屬性的資料類型取決於新記錄的記錄類型
 * 指定類型欄位的建議數目上限為 50。 對於使用性和搜尋體驗觀點而言，這是一個實際的限制。  
 
 ## <a name="return-codes"></a>傳回碼
-HTTP 狀態碼 202 表示要求已經被接受且正在處理，但處理尚未完成。 這表示作業已順利完成。
+HTTP 狀態碼 200 表示已經接受要求且正在處理。 這表示作業已順利完成。
 
 下表列出服務可能傳回的一整組狀態碼︰
 
 | 代碼 | 狀態 | 錯誤碼 | 說明 |
 |:--- |:--- |:--- |:--- |
-| 202 |已接受 | |已順利接受要求。 |
+| 200 |OK | |已順利接受要求。 |
 | 400 |不正確的要求 |InactiveCustomer |已關閉工作區。 |
 | 400 |不正確的要求 |InvalidApiVersion |您所指定但服務無法辨識的 API 版本。 |
 | 400 |不正確的要求 |InvalidCustomerId |指定的工作區識別碼無效。 |
@@ -173,6 +183,8 @@ HTTP 狀態碼 202 表示要求已經被接受且正在處理，但處理尚未�
 | 400 |不正確的要求 |MissingLogType |未指定必要值的記錄檔類型。 |
 | 400 |不正確的要求 |UnsupportedContentType |內容類型未設定為 [應用程式/json]。 |
 | 403 |禁止 |InvalidAuthorization |服務無法驗證要求。 請確認工作區識別碼和連線金鑰都正確。 |
+| 404 |找不到 | | 提供的 URL 不正確，或是要求是太大。 |
+| 429 |太多要求 | | 服務遭遇大量資料來自您的帳戶。 請稍後再重試要求。 |
 | 500 |內部伺服器錯誤 |UnspecifiedError |服務發生內部錯誤。 請重試要求。 |
 | 503 |服務無法使用 |ServiceUnavailable |服務目前無法用來接收要求。 請重試您的要求。 |
 
@@ -278,39 +290,43 @@ Post-OMSData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.E
 ```
 using System;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OIAPIExample
 {
     class ApiExample
     {
-// An example JSON object, with key/value pairs
-        static string json = @"[{""DemoField1"":""DemoValue1"",""DemoField2"":""DemoValue2""},{""DemoField1"":""DemoValue3"",""DemoField2"":""DemoValue4""}]";
+        // An example JSON object, with key/value pairs
+        static string json = @"[{""DemoField1"":""DemoValue1"",""DemoField2"":""DemoValue2""},{""DemoField3"":""DemoValue3"",""DemoField4"":""DemoValue4""}]";
 
-// Update customerId to your Operations Management Suite workspace ID
+        // Update customerId to your Operations Management Suite workspace ID
         static string customerId = "xxxxxxxx-xxx-xxx-xxx-xxxxxxxxxxxx";
 
-// For sharedKey, use either the primary or the secondary Connected Sources client authentication key   
+        // For sharedKey, use either the primary or the secondary Connected Sources client authentication key   
         static string sharedKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
-// LogName is name of the event type that is being submitted to Log Analytics
+        // LogName is name of the event type that is being submitted to Log Analytics
         static string LogName = "DemoExample";
 
-// You can use an optional field to specify the timestamp from the data. If the time field is not specified, Log Analytics assumes the time is the message ingestion time
+        // You can use an optional field to specify the timestamp from the data. If the time field is not specified, Log Analytics assumes the time is the message ingestion time
         static string TimeStampField = "";
 
         static void Main()
         {
-// Create a hash for the API signature
+            // Create a hash for the API signature
             var datestring = DateTime.UtcNow.ToString("r");
             string stringToHash = "POST\n" + json.Length + "\napplication/json\n" + "x-ms-date:" + datestring + "\n/api/logs";
             string hashedString = BuildSignature(stringToHash, sharedKey);
             string signature = "SharedKey " + customerId + ":" + hashedString;
-
+    
             PostData(signature, datestring, json);
         }
 
-// Build the API signature
+        // Build the API signature
         public static string BuildSignature(string message, string secret)
         {
             var encoding = new System.Text.ASCIIEncoding();
@@ -323,22 +339,36 @@ namespace OIAPIExample
             }
         }
 
-// Send a request to the POST API endpoint
+        // Send a request to the POST API endpoint
         public static void PostData(string signature, string date, string json)
         {
-            string url = "https://"+ customerId +".ods.opinsights.azure.com/api/logs?api-version=2016-04-01";
-            using (var client = new WebClient())
+            try
+            { 
+                string url = "https://" + customerId + ".ods.opinsights.azure.com/api/logs?api-version=2016-04-01";
+    
+                System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("Log-Type", LogName);
+                client.DefaultRequestHeaders.Add("Authorization", signature);
+                client.DefaultRequestHeaders.Add("x-ms-date", date);
+                client.DefaultRequestHeaders.Add("time-generated-field", TimeStampField);
+    
+                System.Net.Http.HttpContent httpContent = new StringContent(json, Encoding.UTF8);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                Task<System.Net.Http.HttpResponseMessage> response = client.PostAsync(new Uri(url), httpContent);
+    
+                System.Net.Http.HttpContent responseContent = response.Result.Content;
+                string result = responseContent.ReadAsStringAsync().Result;
+                Console.WriteLine("Return Result: " + result);
+            }
+            catch (Exception excep)
             {
-                client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-                client.Headers.Add("Log-Type", LogName);
-                client.Headers.Add("Authorization", signature);
-                client.Headers.Add("x-ms-date", date);
-                client.Headers.Add("time-generated-field", TimeStampField);
-                client.UploadString(new Uri(url), "POST", json);
+                Console.WriteLine("API Post Exception: " + excep.Message);
             }
         }
     }
 }
+
 ```
 
 ### <a name="python-sample"></a>Python 範例
@@ -416,7 +446,7 @@ def post_data(customer_id, shared_key, body, log_type):
     }
 
     response = requests.post(uri,data=body, headers=headers)
-    if (response.status_code == 202):
+    if (response.status_code >= 200 and response.status_code <= 299):
         print 'Accepted'
     else:
         print "Response code: {}".format(response.status_code)
@@ -425,11 +455,10 @@ post_data(customer_id, shared_key, body, log_type)
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* 使用[檢視設計工具](log-analytics-view-designer.md)，對您所提交的資料建置自訂檢視。
+- 使用[記錄搜尋 API](log-analytics-log-search-api.md) 從 Log Analytics 儲存機制擷取資料。
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

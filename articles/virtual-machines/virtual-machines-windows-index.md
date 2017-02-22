@@ -3,7 +3,7 @@ title: "傳統 Windows VM 的技術文章 | Microsoft Azure"
 description: "傳統部署模型中 Windows 虛擬機器的 Microsoft Azure 說明文件文章完整清單"
 services: virtual-machines-windows
 documentationcenter: 
-author: dlepow
+author: cynthn
 manager: timlt
 tags: azure-service-management
 editor: 
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 08/05/2016
+ms.date: 02/13/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: bc303bb08366f5bcf86b2ae84db5751ea620d05c
+ms.sourcegitcommit: 26c58ae4c509cb768807875ecdf96e9a24d6a472
+ms.openlocfilehash: 263b3a1edc94a60e756850b2d917840be87e7a5a
 
 
 ---
@@ -103,7 +103,7 @@ ms.openlocfilehash: bc303bb08366f5bcf86b2ae84db5751ea620d05c
 [如何在傳統的 Azure 虛擬機器上設定端點](virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="storage"></a>儲存體
-[有關 Azure 虛擬機器的磁碟和 VHD](virtual-machines-windows-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[有關 Azure 虛擬機器的磁碟和 VHD](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [如何將資料磁碟連接至傳統 Windows 虛擬機器](virtual-machines-windows-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -145,7 +145,7 @@ ms.openlocfilehash: bc303bb08366f5bcf86b2ae84db5751ea620d05c
 [Tomcat](virtual-machines-windows-classic-java-run-tomcat-app-server.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="reference"></a>參考
-[服務管理模式中的 Azure CLI 命令](../virtual-machines-command-line-tools.md)
+[服務管理模式中的 Azure CLI 命令](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 
 [服務管理 REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx)
 
@@ -166,6 +166,6 @@ ms.openlocfilehash: bc303bb08366f5bcf86b2ae84db5751ea620d05c
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

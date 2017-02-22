@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/01/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: e41300ac8f6829ba93ebe7cba6063d82db1119f7
+ms.sourcegitcommit: 2d428e0e3aaf8fd4a2138648411da644ccd308f6
+ms.openlocfilehash: 4eee1b3f30c9e47983af5c1dfa60fe0deb8c2cc8
 
 
 ---
@@ -39,8 +39,8 @@ ms.openlocfilehash: e41300ac8f6829ba93ebe7cba6063d82db1119f7
 
 > [!NOTE]
 > 若要登入 Azure 傳統入口網站，msmith@hotmail.com 必須具有 Azure 訂用帳戶。 帳戶必須是服務管理員或訂用帳戶的共同管理員。
-> 
-> 
+>
+>
 
 ![][1]
 
@@ -104,8 +104,8 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 
 > [!NOTE]
 > 只有當使用者使用 Microsoft 帳戶登入時，才可以完成下列步驟。 如果使用者使用工作或學校帳戶登入，則 [ **使用現有的目錄** ] 選項無法使用，因為工作或學校帳戶只能透過其主目錄 (也就是儲存工作或學校帳戶，且由工作或學校所擁有的目錄) 進行驗證。
-> 
-> 
+>
+>
 
 1. 使用您的 Microsoft 帳戶登入 Azure 傳統入口網站。
 2. 按一下 [新增]  >  [應用程式服務]  >  [Active Directory]  >  [目錄]  >  [自訂建立]。
@@ -116,7 +116,7 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 7. 使用您的 Microsoft 帳戶再次登入 Azure 傳統入口網站。 這兩個目錄都會出現在 Active Directory 延伸模組中。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱 [如何新增或變更 Azure 系統管理員角色](../billing-add-change-azure-subscription-administrator.md)
+* 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱 [如何新增或變更 Azure 系統管理員角色](../billing/billing-add-change-azure-subscription-administrator.md)
 * 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱 [了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 * 如需有關如何在 Azure AD 中指派角色的詳細資訊，請參閱 [在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles.md)
 * [以組織方式註冊 Azure](sign-up-organization.md)
@@ -128,6 +128,6 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

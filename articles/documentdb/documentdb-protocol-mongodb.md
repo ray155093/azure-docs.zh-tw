@@ -1,37 +1,61 @@
 ---
-title: MongoDB 的 DocumentDB 通訊協定支援 | Microsoft Docs
-description: 了解現已可供公開預覽的 MongoDB 的 DocumentDB 通訊協定支援。
-keywords: mongodb
+title: "MongoDB 的 DocumentDB 通訊協定支援是什麼？ | Microsoft Docs"
+description: "MongoDB 的 DocumentDB 通訊協定支援是什麼？ 它可讓您使用 Azure DocumentDB 這個受管理的雲端服務，做為針對 MongoDB 撰寫之應用程式的資料存放區。"
+keywords: "MongoDB 是什麼"
 services: documentdb
 author: AndrewHoh
 manager: jhubbard
-editor: ''
-documentationcenter: ''
-
+editor: 
+documentationcenter: 
+ms.assetid: 4afaf40d-c560-42e0-83b4-a64d94671f0a
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/23/2016
+ms.date: 01/16/2017
 ms.author: anhoh
+translationtype: Human Translation
+ms.sourcegitcommit: 2de367287a4bee05694070dbeeb4d4a458d47f11
+ms.openlocfilehash: 38d811a7a08a6f8a6dd07a29e9a49bb34810ee91
+
 
 ---
-# <a name="documentdb-protocol-support-for-mongodb"></a>MongoDB 的 DocumentDB 通訊協定支援
-## <a name="what-is-azure-documentdb?"></a>什麼是 Azure DocumentDB？
-Azure DocumentDB 是完全受管理的 NoSQL 資料庫服務，其建置目的是為了獲得快速且可預測的效能、高可用性、自動調整以及方便開發。 其擁有彈性的資料模型、一致的低延遲和豐富的查詢功能，因此非常適合用於需要能夠順暢調整的 Web、行動、遊戲、IoT 和許多應用程式。 深入了解 [DocumentDB 簡介](documentdb-introduction.md)。
+# <a name="what-is-documentdb-protocol-support-for-mongodb"></a>MongoDB 的 DocumentDB 通訊協定支援是什麼？
 
-## <a name="what-is-documentdb-protocol-support-for-mongodb?"></a>MongoDB 的 DocumentDB 通訊協定支援是什麼？
-DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資料存放區。 使用 MongoDB 的現有 [驅動程式](https://docs.mongodb.org/ecosystem/drivers/) ，應用程式可以輕易且無障礙地與 DocumentDB 通訊，在許多情況下只要變更連接字串即可。  使用這項預覽功能，客戶可以輕鬆地在 Azure 雲端建置及執行應用程式 - 利用 DocumentDB 的完全受管理且可調整的 NoSQL 資料庫 - 同時繼續使用 MongoDB 的熟悉技能和工具。
+DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資料存放區。 這表示，使用 MongoDB 資料庫現有的[驅動程式](https://docs.mongodb.org/ecosystem/drivers/)，針對 MongoDB 所撰寫的應用程式現在可與 DocumentDB 通訊，並使用 DocumentDB 資料庫而非 MongoDB 資料庫。 在許多情況下，您只要變更連接字串，就可以從使用 MongoDB 切換到 DocumentDB。 使用這項功能，客戶可以輕鬆地在 Azure 雲端建置及執行 MongoDB 資料庫應用程式 - 利用 DocumentDB 完全受管理且可調整的 NoSQL 資料庫 - 同時繼續使用 MongoDB 的熟悉技能和工具。
 
-MongoDB 的 DocumentDB 通訊協定支援可以啟用核心 MongoDB API 函式以建立、讀取、更新和刪除 (CRUD) 資料，以及查詢資料庫。 目前實作的功能已根據常見的平台、架構、工具和針對其雲端平台評估 Azure 的大型 MongoDB 客戶的需求，設定優先順序。
+## <a name="what-is-the-benefit-of-using-documentdb-protocol-support-for-mongodb"></a>使用 MongoDB 的 DocumentDB 通訊協定支援有什麼好處？
+**不需要任何伺服器管理工作** - DocumentDB 是完全受管理的服務，這表示您不需要自己管理任何基礎結構或虛擬機器。 DocumentDB 可在 20 個以上的 [Azure 區域](https://azure.microsoft.com/regions/services/)中使用。
+
+**無限制的調整** - 您可以獨立和彈性地調整輸送量和儲存體。 您可以增加容量來輕鬆地處理每秒數百萬個要求數。
+
+**企業級** - DocumentDB 支援多個本機複本，在面對本機和區域故障時可提供 99.99% 的可用性和資料保護。 DocumentDB 有企業級的[法規認證](https://www.microsoft.com/trustcenter)和安全性功能。 
+
+**MongoDB 相容性** - MongoDB 的 DocumentDB 通訊協定支援是專門針對與 MongoDB 的相容性而設計。 您可以使用現有的程式碼、應用程式、驅動程式和工具來使用 DocumentDB。 
+
+在這段 Azure Friday 影片中，和 Scott Hanselman 與 DocumentDB 工程總經理 Kirill Gavrylyuk 一起深入了解。
+
+> [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/DocumentDB-Database-as-a-Service-for-MongoDB-Developers/player]
+> 
+
+
+## <a name="how-to-get-started"></a>如何開始？
+在 [Azure 入口網站](https://portal.azure.com)中建立具有 MongoDB 通訊協定支援的 DocumentDB 帳戶，然後將連接交換到您的新帳戶。 
+
+*這樣就大功告成了！*
+
+如需詳細指示，請遵循[建立帳戶](documentdb-create-mongodb-account.md)和[連接至您的帳戶](documentdb-connect-mongodb-account.md)。
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何 [建立](documentdb-create-mongodb-account.md) 具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶。
-* 了解如何 [連接](documentdb-connect-mongodb-account.md) 到具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶。
-* 了解如何 [使用 MongoChef](documentdb-mongodb-mongochef.md) 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。
+* 依照[建立具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶](documentdb-create-mongodb-account.md)教學課程來建立 DocumentDB 帳戶。
+* 依照[連接至具有 MongoDB 通訊協定支援的 DocumentDB 帳戶](documentdb-connect-mongodb-account.md)教學課程來了解如何取得您的帳戶連接字串資訊。
+* 依照[使用 MongoChef 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶](documentdb-mongodb-mongochef.md)教學課程來了解如何在 MongoChef 中建立 DocumentDB 資料庫和 MongoDB 應用程式之間的連線。
 * 探索具有 MongoDB 通訊協定支援的 DocumentDB 的 [範例](documentdb-mongodb-samples.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Jan17_HO3-->
 
 

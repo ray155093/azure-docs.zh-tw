@@ -1,6 +1,6 @@
 ---
-title: "使用 Data Lake Store Java SDK 來開發應用程式 | Microsoft Docs"
-description: "使用 Azure Data Lake Store Java SDK 來開發應用程式"
+title: "在 Azure Data Lake Store 中使用 Java SDK 開發應用程式 | Microsoft Docs"
+description: "使用 Azure Data Lake Store Java SDK 建立 Data Lake Store 帳戶，並在 Data Lake Store 中執行基本作業"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -15,8 +15,8 @@ ms.workload: big-data
 ms.date: 12/23/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: c157da7bf53e2d0762624e8e71e56e956db04a24
-ms.openlocfilehash: a80da95328a6f3c47edf6e9be9e786437a8c316e
+ms.sourcegitcommit: 091fadce064086d82b833f8e44edfbba125d3e6b
+ms.openlocfilehash: cb5babdd8fea3615d8aa27f05a07c3b489f3faa4
 
 
 ---
@@ -64,7 +64,7 @@ Azure Active Directory 還提供其他選項來擷取權杖。 您可以從數�
           <dependency>
             <groupId>com.microsoft.azure</groupId>
             <artifactId>azure-data-lake-store-sdk</artifactId>
-            <version>2.1.1</version>
+            <version>2.1.4</version>
           </dependency>
           <dependency>
             <groupId>org.slf4j</groupId>
@@ -73,7 +73,7 @@ Azure Active Directory 還提供其他選項來擷取權杖。 您可以從數�
           </dependency>
         </dependencies>
    
-    第一個相依性是使用來自 maven 儲存機制的 Data Lake Store SDK (`azure-datalake-store`)。 第二個相依性 (`slf4j-nop`) 是指定要用於此應用程式的紀錄架構。 Data Lake Store SDK 會使用 [slf4j](http://www.slf4j.org/) 記錄外觀，讓您從數個熱門的記錄架構中進行選擇，例如 log4j、Java 記錄、logback 等或不記錄。 此範例中，我們將停用記錄，因此會使用 **slf4j-nop** 繫結。 若要在應用程式中使用其他記錄選項，請參閱[這裡](http://www.slf4j.org/manual.html#projectDep)。
+    第一個相依性是使用來自 maven 儲存機制的 Data Lake Store SDK (`azure-data-lake-store-sdk`)。 第二個相依性 (`slf4j-nop`) 是指定要用於此應用程式的紀錄架構。 Data Lake Store SDK 會使用 [slf4j](http://www.slf4j.org/) 記錄外觀，讓您從數個熱門的記錄架構中進行選擇，例如 log4j、Java 記錄、logback 等或不記錄。 此範例中，我們將停用記錄，因此會使用 **slf4j-nop** 繫結。 若要在應用程式中使用其他記錄選項，請參閱[這裡](http://www.slf4j.org/manual.html#projectDep)。
 
 ### <a name="add-the-application-code"></a>新增應用程式程式碼
 程式碼有三個主要部分。
@@ -83,27 +83,39 @@ Azure Active Directory 還提供其他選項來擷取權杖。 您可以從數�
 3. 使用 Data Lake Store 用戶端來執行作業。
 
 #### <a name="step-1-obtain-an-azure-active-directory-token"></a>步驟 1︰取得 Azure Active Directory 權杖。
-Data Lake Store SDK 提供簡便的方法，讓您取得與 Data Lake Store 帳戶互動所需的安全性權杖。 不過，SDK 不會要求只能使用這些方法。 您也可以使用任何其他方法來取得權杖，像是使用 [Azure Active Directory SDK](https://github.com/AzureAD/azure-activedirectory-library-for-java)，或您自己的自訂程式碼。
+Data Lake Store SDK 提供簡便的方法，讓您管理與 Data Lake Store 帳戶互動所需的安全性權杖。 不過，SDK 不會要求只能使用這些方法。 您也可以使用任何其他方法來取得權杖，像是使用 [Azure Active Directory SDK](https://github.com/AzureAD/azure-activedirectory-library-for-java)，或您自己的自訂程式碼。
 
-若要使用 Data Lake Store SDK 來為您稍早建立的 Active Directory Web 應用程式取得權杖，請使用 `AzureADAuthenticator` 類別中的靜態方法。 以 Azure Active Directory Web 應用程式的實際值取代 **FILL-IN-HERE**。
+若要使用 Data Lake Store SDK 來為您稍早建立的 Active Directory Web 應用程式取得權杖，請使用 `AccessTokenProvider` 的其中一個子類別 (以下範例使用 `ClientCredsTokenProvider`)。 權杖提供者會快取認證，以便用來取得記憶體中的權杖，以及自動更新即將過期的權杖。 您可建立自己的 `AccessTokenProvider` 子類別，以便依照您的客戶代碼取得權杖，但我們現在只會使用 SDK 中提供的權杖。
+
+以 Azure Active Directory Web 應用程式的實際值取代 **FILL-IN-HERE**。
 
     private static String clientId = "FILL-IN-HERE";
     private static String authTokenEndpoint = "FILL-IN-HERE";
     private static String clientKey = "FILL-IN-HERE";
 
-    AzureADToken token = AzureADAuthenticator.getTokenUsingClientCreds(authTokenEndpoint, clientId, clientKey);
+    AccessTokenProvider provider = new ClientCredsTokenProvider(authTokenEndpoint, clientId, clientKey);
 
 #### <a name="step-2-create-an-azure-data-lake-store-client-adlstoreclient-object"></a>步驟 2︰建立 Azure Data Lake Store 用戶端 (ADLStoreClient) 物件
-建立 [ADLStoreClient](https://azure.github.io/azure-data-lake-store-java/javadoc/) 物件時，您需要指定 Data Lake Store 帳戶名稱以及您在上一個步驟中產生的 Azure Active Directory 權杖。 請注意，Data Lake Store 帳戶名稱必須是完整的網域名稱。 例如，以 **mydatalakestore.azuredatalakestore.net** 之類的資料取代 **FILL-IN-HERE**。
+建立 [ADLStoreClient](https://azure.github.io/azure-data-lake-store-java/javadoc/) 物件時，您需要指定 Data Lake Store 帳戶名稱以及您在上一個步驟中產生的權杖提供者。 請注意，Data Lake Store 帳戶名稱必須是完整的網域名稱。 例如，以 **mydatalakestore.azuredatalakestore.net** 之類的資料取代 **FILL-IN-HERE**。
 
     private static String accountFQDN = "FILL-IN-HERE";  // full account FQDN, not just the account name
-    ADLStoreClient client = ADLStoreClient.createClient(accountFQDN, token);
+    ADLStoreClient client = ADLStoreClient.createClient(accountFQDN, provider);
 
 ### <a name="step-3-use-the-adlstoreclient-to-perform-file-and-directory-operations"></a>步驟 3︰使用 ADLStoreClient 來執行檔案和目錄作業
 下面的程式碼包含一些常見作業的範例程式碼片段。 您可以查看 **ADLStoreClient** 物件的完整 [Data Lake Store Java SDK API 文件](https://azure.github.io/azure-data-lake-store-java/javadoc/)，以了解其他作業。
 
 請注意，檔案是使用標準 Java 串流進行讀取和寫入。 這表示將任何 Java 串流放在 Data Lake Store 串流的上方，即可受惠於標準 Java 功能 (例如，格式化輸出的列印串流，或上方其他功能的任何壓縮或加密串流等)。
 
+     // create file and write some content
+     String filename = "/a/b/c.txt";
+     OutputStream stream = client.createFile(filename, IfExists.OVERWRITE  );
+     PrintStream out = new PrintStream(stream);
+     for (int i = 1; i <= 10; i++) {
+         out.println("This is line #" + i);
+         out.format("This is the same line (%d), but using formatted output. %n", i);
+     }
+     out.close();
+    
     // set file permission
     client.setPermission(filename, "744");
 
@@ -142,6 +154,7 @@ Data Lake Store SDK 提供簡便的方法，讓您取得與 Data Lake Store 帳�
 2. 若要產生您可以從命令列執行的獨立 jar，請使用 [Maven 組件外掛程式](http://maven.apache.org/plugins/maven-assembly-plugin/usage.html)建置內含所有相依性的 jar。 [GitHub 上的範例原始程式碼](https://github.com/Azure-Samples/data-lake-store-java-upload-download-get-started/blob/master/pom.xml)中的 pom.xml 有這項操作的範例。
 
 ## <a name="next-steps"></a>後續步驟
+* [瀏覽 Java SDK 的 JavaDoc](https://azure.github.io/azure-data-lake-store-java/javadoc/)
 * [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 * [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 * [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
@@ -149,6 +162,6 @@ Data Lake Store SDK 提供簡便的方法，讓您取得與 Data Lake Store 帳�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Jan17_HO5-->
 
 

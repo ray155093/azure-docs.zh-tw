@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/28/2016
+ms.date: 01/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: f82e8fcb6228df25c8e3181059fe06fea5fbce78
+ms.sourcegitcommit: 0d5b68d26d708a28edee13ff3d9a57588ce83e12
+ms.openlocfilehash: 856d75c58cd911c641ec74b78f5c6133e605b2ec
 
 
 ---
@@ -27,8 +27,6 @@ ms.openlocfilehash: f82e8fcb6228df25c8e3181059fe06fea5fbce78
 
 > [!NOTE]
 > HDInsight 叢集使用 Ubuntu 長期支援 (LTS) 做為叢集中節點的作業系統。 如需 HDInsight 中可用 Ubuntu 版本的相關資訊以及其他元件版本設定資訊，請參閱 [HDInsight 元件版本](hdinsight-component-versioning.md)。
->
->
 
 ## <a name="migration-tasks"></a>移轉工作
 下列為移轉的一般工作流程。
@@ -56,10 +54,13 @@ ms.openlocfilehash: f82e8fcb6228df25c8e3181059fe06fea5fbce78
 
 1. 尋找現有叢集的儲存體帳戶和預設容器資訊。 您可以使用下列 Azure PowerShell 指令碼來執行此動作。
 
-        $clusterName="Your existing HDInsight cluster name"
-        $clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
-        write-host "Storage account name: $clusterInfo.DefaultStorageAccount.split('.')[0]"
-        write-host "Default container: $clusterInfo.DefaultStorageContainer"
+    ```powershell
+    $clusterName="Your existing HDInsight cluster name"
+    $clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
+    write-host "Storage account name: $clusterInfo.DefaultStorageAccount.split('.')[0]"
+    write-host "Default container: $clusterInfo.DefaultStorageContainer"
+    ```
+
 2. 依照＜在 HDInsight 中建立以 Linux 為基礎的叢集＞文件中的步驟建立新的測試環境。 於建立叢集之前停止遵循步驟，並改為選取 [選擇性組態] 。
 3. 從 [選擇性組態] 刀鋒視窗中，選取 [連結的儲存體帳戶] 。
 4. 選取 [新增儲存體金鑰] ，並在出現提示時，選取步驟 1 中由 PowerShell 指令碼傳回的儲存體帳戶。 在每個刀鋒視窗上按一下 [選取]  來關閉它們。 最後，建立叢集。
@@ -71,7 +72,8 @@ ms.openlocfilehash: f82e8fcb6228df25c8e3181059fe06fea5fbce78
 
         hdfs dfs -cp wasbs://CONTAINER@ACCOUNT.blob.core.windows.net/path/to/old/data /path/to/new/location
 
-    [AZURE.NOTE] 如果包含資料的目錄結構並不存在於測試環境上，您可以使用下列命令建立它。
+    > [!NOTE]
+    > 如果包含資料的目錄結構並不存在於測試環境上，您可以使用下列命令建立它。
 
         hdfs dfs -mkdir -p /new/path/to/create
 
@@ -81,7 +83,7 @@ ms.openlocfilehash: f82e8fcb6228df25c8e3181059fe06fea5fbce78
 此外，您也可能會想要使用 `Start-AzureStorageBlobCopy` Azure PowerShell Cmdlet 在 HDInsight 之外的儲存體帳戶之間複製 Blob。 如需詳細資訊，請參閱＜搭配使用 Azure PowerShell 與 Azure 儲存體＞一文中的＜如何管理 Azure Blob＞一節。
 
 ## <a name="client-side-technologies"></a>用戶端技術
-一般來說，用戶端技術 (例如 [Azure PowerShell Cmdlet](../powershell-install-configure.md)、[Azure CLI](../xplat-cli-install.md) 或是 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/)) 在以 Linux 為基礎的叢集上都會以相同的方式運作，因為在這兩個叢集作業系統類型中，它們所仰賴的 REST API 皆相同。
+一般來說，用戶端技術 (例如 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../xplat-cli-install.md) 或是 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/)) 在以 Linux 為基礎的叢集上都會以相同的方式運作，因為在這兩個叢集作業系統類型中，它們所仰賴的 REST API 皆相同。
 
 ## <a name="server-side-technologies"></a>伺服器端技術
 下列表格提供移轉 Windows 特定之伺服器端元件的指導方針。
@@ -90,7 +92,7 @@ ms.openlocfilehash: f82e8fcb6228df25c8e3181059fe06fea5fbce78
 | --- | --- |
 | **PowerShell** (伺服器端指令碼，包含於叢集建立期間使用的指令碼動作) |重寫為 Bash 指令碼。 針對指令碼動作，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)和[以 Linux 為基礎之 HDInsight 的指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。 |
 | **Azure CLI** (伺服器端指令碼) |雖然 Azure CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如果您需要搭配伺服器端指令碼來使用，請參閱 [安裝 Azure CLI](../xplat-cli-install.md) 了解在以 Linux 為基礎之平台上進行安裝的資訊。 |
-| **.NET 元件** |Linux 架構的 HDInsight 叢集上未完全支援 .NET。 在 2017/10/28 後建立的 Linux 架構 Storm on HDInsight 叢集支援使用 SCP.NET 架構的 C# Storm 拓撲。 .NET 的其他支援將在未來的更新中新增。 |
+| **.NET 元件** |.NET 並未在所有 Linux 型 HDInsight 叢集類型上都受到完全支援。 在 2016/10/28 之後建立的 Linux 型 Storm on HDInsight 叢集支援使用 SCP.NET 架構的 C# Storm 拓撲。 .NET 的其他支援將在未來的更新中新增。 |
 | **Win32 元件或其他僅限 Windows 的技術** |指導方針將視元件或技術而有所不同。您可能可以找到與 Linux 相容的版本，也可能會需要尋找替代的解決方案，或是重寫此元件。 |
 
 ## <a name="cluster-creation"></a>叢集建立
@@ -135,8 +137,6 @@ Ambari 擁有能通知您叢集潛在問題的警示系統。 警示將會以紅
 > Ambari 警示代表「可能有」問題，而不表示「已發生」問題。 例如，您可能會收到無法存取 HiveServer2 的警示，但實際上您仍然可以正常存取它。
 >
 > 許多警示都是針對某項服務實作為以間隔為基礎的查詢，並會預期在特定的時間範圍內收到回應。 因此警示本身並不代表服務已關閉，而只是單純表示該服務沒有在預期的時間範圍內傳回結果。
->
->
 
 通常來說，您應該先評估某個警示是否已長時間持續發生，或者是否與使用者先前針對叢集所回報的某個問題有關聯，再對它採取動作。
 
@@ -222,6 +222,6 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

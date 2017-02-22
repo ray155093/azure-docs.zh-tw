@@ -1,22 +1,26 @@
 ---
-title: 教學課程：Azure Active Directory 與 Lesson.ly 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Lesson.ly 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Lesson.ly 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Lesson.ly 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 8c9dc6e6-5d85-4553-8a35-c7137064b928
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 11/21/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 33f4c13930017bdcbaf899b16d32ba84bdfbf9ee
+ms.openlocfilehash: e51deb2cb890669c4800c232e2b781c5f27117f2
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-lesson.ly"></a>教學課程：Azure Active Directory 與 Lesson.ly 整合
+# <a name="tutorial-azure-active-directory-integration-with-lessonly"></a>教學課程：Azure Active Directory 與 Lesson.ly 整合
 本教學課程旨在說明如何整合 Lesson.ly 與 Azure Active Directory (Azure AD)。
 
 Lesson.ly 與 Azure AD 整合提供下列優點：
@@ -51,7 +55,7 @@ Lesson.ly 與 Azure AD 整合提供下列優點：
 1. 從資源庫加入 Lesson.ly
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-lesson.ly-from-the-gallery"></a>從資源庫加入 Lesson.ly
+## <a name="adding-lessonly-from-the-gallery"></a>從資源庫加入 Lesson.ly
 若要設定 Lesson.ly 與 Azure AD 的整合作業，您需要從資源庫將 Lesson.ly 加入到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫加入 Lesson.ly，請執行下列步驟：**
@@ -63,7 +67,7 @@ Lesson.ly 與 Azure AD 整合提供下列優點：
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![應用程式][2]
-4. 按一下頁面底部的 [新增]。
+4. 按一下頁面底部的 [新增]  。
    
     ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
@@ -127,7 +131,7 @@ Lesson.ly 應用程式需要特定格式的 SAML 判斷提示，需要您加入�
    
     ![設定單一登入](./media/active-directory-saas-lessonly-tutorial/tutorial_lessonly_04.png) 
 
-    a. 在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Lesson.ly 應用程式的 URL：**“https://companyname.Lesson.ly/signin”**。 參考一般名稱時，**companyname** 需要由實際名稱取代。
+    a. 在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Lessonly 應用程式的 URL：**“https://companyname.lesson.ly/signin”**。 參考一般名稱時，**companyname** 需要由實際名稱取代。
 
 
 1. 在 [設定在 Lesson.ly 單一登入]  頁面上，執行下列步驟：
@@ -137,7 +141,7 @@ Lesson.ly 應用程式需要特定格式的 SAML 判斷提示，需要您加入�
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
     b. 按 [下一步] 。
-2. 若要為您的應用程式設定 SSO，請透過 dev@lesson.ly. 將下載的憑證檔案附加至您的郵件，並與 Lesson.ly 小組分享中繼資料 URL (實體識別碼、SSO 登入 URL 和登出 URL)，以在其端設定 SSO。
+2. 若要為您的應用程式設定 SSO，請透過 dev@lessonly.com. 將下載的憑證檔案附加至您的郵件，並與 Lesson.ly 小組分享中繼資料 URL (實體識別碼、SSO 登入 URL 和登出 URL)，以在其端設定 SSO。
 3. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
    ![Azure AD 單一登入][10]
@@ -173,17 +177,18 @@ Lesson.ly 應用程式需要特定格式的 SAML 判斷提示，需要您加入�
     c. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-lessonly-tutorial/create_aaduser_06.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lessonly-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
+    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. 在 [角色] 清單中選取 [使用者]。
+    d. 在 [角色] 清單中選取 [使用者]。
    
-   e. 按 [下一步]。
+    e. 按 [下一步] 。
+
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-lessonly-tutorial/create_aaduser_07.png) 
@@ -195,7 +200,7 @@ Lesson.ly 應用程式需要特定格式的 SAML 判斷提示，需要您加入�
    
     b. 按一下 [完成]。   
 
-### <a name="creating-a-lesson.ly-test-user"></a>建立 Lesson.ly 測試使用者
+### <a name="creating-a-lessonly-test-user"></a>建立 Lesson.ly 測試使用者
 本節的目標是要在 Lesson.ly 中建立名為 Britta Simon 的使用者。 Lesson.ly 支援預設啟用的 Just-In-Time 佈建。
 
 在這一節沒有您需要進行的動作項目。 嘗試存取 Lesson.ly 時，如果使用者還不存在，就會建立新使用者。 [設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)。
@@ -255,6 +260,6 @@ Lesson.ly 應用程式需要特定格式的 SAML 判斷提示，需要您加入�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

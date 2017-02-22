@@ -1,8 +1,8 @@
 ---
-title: "針對 Azure 活動記錄警示設定 Webhook | Microsoft Docs"
-description: "了解如何使用活動記錄警示來呼叫 Webhook。 "
+title: "針對 Azure 活動記錄警示呼叫 Webhook | Microsoft Docs"
+description: "將活動記錄事件路由至其他服務以進行自訂動作。 例如傳送簡訊、記錄 Bug、或透過聊天/傳訊服務來通知團隊。"
 author: kamathashwin
-manager: carolz
+manager: carmonm
 editor: 
 services: monitoring-and-diagnostics
 documentationcenter: monitoring-and-diagnostics
@@ -12,29 +12,29 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 01/23/2017
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: 3c240e5f8eac50f4151a5a72bea690241597fc01
-ms.openlocfilehash: 0b912bc130ab5de3236a0e3f1f60087624b089a0
+ms.sourcegitcommit: 8c9c9dea1248205aa6303e11e1166d5d38786c1b
+ms.openlocfilehash: 4ee65a10616fff81044c181fce8708a596e9e6de
 
 
 ---
-# <a name="configure-a-webhook-on-an-azure-activity-log-alert"></a>針對 Azure 活動記錄警示設定 Webhook
-Webhook 可讓您將 Azure 警示通知路由到其他系統以進行後處理或自訂動作。 您可以針對警示使用 Webhook，以將警示路由到會傳送簡訊、記錄錯誤、透過聊天/傳訊服務通知小組，或進行任意數量之其他動作的服務。 本文說明如何針對 Azure 活動記錄警示設定 Webhook，並說明 HTTP POST 對 Webhook 之承載的樣貌。 如需有關 Azure 度量警示之設定和結構描述的資訊，[請改為參閱本頁](insights-webhooks-alerts.md)。 您也可以將活動記錄警示設定為在啟動時傳送電子郵件。
+# <a name="call-a-webhook-on-azure-activity-log-alerts"></a>針對 Azure 活動記錄警示呼叫 Webhook
+Webhook 可讓您將 Azure 警示通知路由到其他系統以進行後處理或自訂動作。 您可以針對警示使用 Webhook，以將警示路由到會傳送簡訊、記錄錯誤、透過聊天/傳訊服務通知小組，或進行任意數量之其他動作的服務。 本文說明如何設定 Webhook，以在引發 Azure 活動記錄警示時加以呼叫。 另外也會說明 HTTP POST 至 Webhook 的承載資料樣貌。 如需有關 Azure 度量警示之設定和結構描述的資訊，[請改為參閱本頁](insights-webhooks-alerts.md)。 您也可以將活動記錄警示設定為在啟動時傳送電子郵件。
 
 > [!NOTE]
 > 這項功能目前為預覽狀態，並將在未來某個時候移除。
-> 
-> 
+>
+>
 
-您可以使用 [Azure PowerShell Cmdlet](insights-powershell-samples.md#create-alert-rules)、[跨平台 CLI](insights-cli-samples.md#work-with-alerts) 或 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx) 設定活動記錄警示。
+您可以使用 [Azure PowerShell Cmdlet](insights-powershell-samples.md#create-alert-rules)、[跨平台 CLI](insights-cli-samples.md#work-with-alerts) 或 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx) 設定活動記錄警示。 目前，您無法使用 Azure 入口網站進行設定。
 
 ## <a name="authenticating-the-webhook"></a>驗證 Webhook
 Webhook 可使用下列其中一種方法來進行驗證︰
 
-1. **權杖型授權** - 所儲存的 Webhook URI 具有權杖識別碼，例如  `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
-2. **基本授權** - 所儲存的 Webhook URI 具有使用者名稱和密碼，例如  `https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar`
+1. **權杖型授權**：所儲存的 Webhook URI 具有權杖識別碼，例如 `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
+2. **基本授權**：所儲存的 Webhook URI 具有使用者名稱和密碼，例如 `https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar`
 
 ## <a name="payload-schema"></a>承載結構描述
 POST 作業對於所有以活動記錄為基礎的警示會包含下列 JSON 承載和結構描述。 此結構描述類似於度量型警示所使用的結構描述。
@@ -126,7 +126,6 @@ POST 作業對於所有以活動記錄為基礎的警示會包含下列 JSON 承
 
 
 
-
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO5-->
 
 

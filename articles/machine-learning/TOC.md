@@ -1,17 +1,24 @@
 # 概觀
+
 ## [Machine Learning 是什麼？](machine-learning-what-is-machine-learning.md)
-## Machine Learning Studio
-### [Studio 是什麼？](machine-learning-what-is-ml-studio.md)
-### [Studio 容量](machine-learning-studio-overview-diagram.md)
-### [資訊圖：ML 基本知識](machine-learning-basics-infographic-with-algorithm-examples.md)
+
 ## Team Data Science Process
 ### [概觀](http://aka.ms/datascienceprocess)
 ### [生命週期](data-science-process-overview.md)
 ### [逐步解說](data-science-process-walkthroughs.md)
+
+## Machine Learning Studio
+### [Studio 是什麼？](machine-learning-what-is-ml-studio.md)
+### [Studio 容量](machine-learning-studio-overview-diagram.md)
+### [資訊圖：ML 基本知識](machine-learning-basics-infographic-with-algorithm-examples.md)
+
 ## [常見問題集](machine-learning-faq.md)
 ## [有哪些新功能？](machine-learning-whats-new.md)
+
 # 開始使用
+
 ## [建立您的第一個實驗](machine-learning-create-experiment.md)
+
 ## 範例逐步解說
 ### [建立預測解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 ### [1：建立工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
@@ -20,6 +27,7 @@
 ### [4：訓練及評估 ](machine-learning-walkthrough-4-train-and-evaluate-models.md)
 ### [5：部署 Web 服務](machine-learning-walkthrough-5-publish-web-service.md)
 ### [6：存取 Web 服務](machine-learning-walkthrough-6-access-web-service.md)
+
 ## 適用於初學者的資料科學
 ### [1：五個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)
 ### [2：您的資料已經準備就緒了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md)
@@ -29,8 +37,8 @@
 
 ## [R 快速入門](machine-learning-r-quickstart.md)
 
-
 # 作法
+
 ## 設定工具和公用程式
 ### [設定環境](machine-learning-data-science-environment-setup.md)
 ### [設定虛擬機器](machine-learning-data-science-virtual-machines.md)
@@ -49,9 +57,11 @@
 #### [疑難排解](machine-learning-troubleshooting-creating-ml-workspace.md)
 #### [使用 ARM 部署](machine-learning-deploy-with-resource-manager-template.md)
 #### [在另一個區域中建立](machine-learning-multi-geo.md)
+
 ## 分析商務需求
 ### [技術需求](machine-learning-data-science-plan-your-environment.md)
 ### [識別您的案例](machine-learning-data-science-plan-sample-scenarios.md)
+
 ## 獲得並瞭解資料
 ### 將資料載入儲存體
 #### [概觀](machine-learning-data-science-ingest-data.md)
@@ -95,6 +105,7 @@
 ##### [分數模型](machine-learning-data-science-spark-model-consumption.md)
 ##### [進階資料探索](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
 ##### [使用 Scala 和 Spark](machine-learning-data-science-process-scala-walkthrough.md)
+
 ## 開發模型
 ### 設計製造並選取功能
 #### [概觀](machine-learning-data-science-create-features.md)
@@ -104,6 +115,7 @@
 #### [TDSP 特性選取](machine-learning-data-science-select-features.md)
 ### 建立模型並加以定型
 #### [轉換為評分](machine-learning-convert-training-experiment-to-scoring-experiment.md)
+#### [實驗生命週期管理](machine-learning-version-control.md)
 #### [管理反覆運算次數](machine-learning-manage-experiment-iterations.md)
 #### [使用 PowerShell 建立模型](machine-learning-create-models-and-endpoints-with-powershell.md)
 #### 選取演算法
@@ -120,11 +132,11 @@
 ##### [ R 指令碼](machine-learning-extend-your-experiment-with-r.md)
 ##### [撰寫自訂 R 模組](machine-learning-custom-r-modules.md)
 ##### [執行 Python 指令碼](machine-learning-execute-python-scripts.md)
+
 ## 部署和取用模型
 ### [概觀](machine-learning-deploy-consume-web-service-guide.md)
 ### 部署模型
 #### [運作方式](machine-learning-model-progression-experiment-to-web-service.md)
-#### [部署新的 Web 服務](machine-learning-webservice-deploy-a-web-service.md)
 #### [部署 Web 服務](machine-learning-publish-a-machine-learning-web-service.md)
 #### [使用外部資料](machine-learning-web-services-that-use-import-export-modules.md)
 #### [在多個區域中部署](machine-learning-how-to-deploy-to-multiple-regions.md)
@@ -147,6 +159,7 @@
 #### [使用 Excel](machine-learning-consuming-from-excel.md)
 #### [使用 Excel 增益集](machine-learning-excel-add-in-for-web-services.md)
 #### [使用 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)
+
 ## 範例
 ### [實驗範例](machine-learning-sample-experiments.md)
 ### [範例資料集](machine-learning-use-sample-datasets.md)
@@ -158,10 +171,12 @@
 #### [使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
 
 # 參考
+
 ## [PowerShell 模組 (新型)](/powershell/resourcemanager/azurerm.machinelearning/v0.11.1/azurerm.machinelearning)
 ## [PowerShell 模組 (傳統)](machine-learning-powershell-module.md)
 ## [演算法和模組參考](https://msdn.microsoft.com/library/azure/dn905974.aspx)
-## [REST](/rest/api/machinelearning)
+## [REST API 參考資料](/rest/api/machinelearning)
+## [Web 服務錯誤碼](machine-learning-web-service-error-codes.md)
 
 # 相關參考
 
@@ -176,6 +191,7 @@
 ### [教學課程](machine-learning-gallery-tutorials.md)
 ### [集合](machine-learning-gallery-collections.md)
 ### [自訂模組](machine-learning-gallery-custom-modules.md)
+
 ## Cortana Analytics
 ### API
 #### [異常偵測](machine-learning-apps-anomaly-detection-api.md)
@@ -197,7 +213,7 @@
 ##### [設定](cortana-analytics-playbook-vehicle-telemetry-powerbi.md)
 
 # 資源
-## [Machine Learning REST 錯誤碼](/machine-learning/machine-learning-web-service-error-codes)
+
 ## [Net# 神經網路語言](machine-learning-azure-ml-netsharp-reference-guide.md)
 ## [價格](https://azure.microsoft.com/pricing/details/machine-learning/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=machine-learning)
@@ -208,6 +224,6 @@
 ## [從即時聊天取得協助](machine-learning-live-chat.md)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

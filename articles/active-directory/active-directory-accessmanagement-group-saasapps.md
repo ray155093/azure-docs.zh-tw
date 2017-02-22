@@ -1,4 +1,3 @@
-
 ---
 title: "使用群組管理 SaaS 應用程式的存取權 | Microsoft Docs"
 description: "如何使用 Azure Active Directory Premium 或 Basic 中的群組指派與 Azure Active Directory 整合的 SaaS 應用程式存取權。"
@@ -13,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f8045c26225406420c1175df45643ba6238dd8d9
+ms.sourcegitcommit: 24a6ae1b259a1524ec3a8542dcbf55ff0450421e
+ms.openlocfilehash: 01b9108048b5d7f3aa960ec01f75a693e074beaf
 
 
 ---
@@ -37,10 +36,10 @@ ms.openlocfilehash: f8045c26225406420c1175df45643ba6238dd8d9
 
 > [!NOTE]
 > 只有在啟用 Azure AD Premium 或 Azure AD Basic 之後，您才可以看到 [使用者和群組] 索引標籤。
-> 
-> 
+>
+>
 
-## <a name="related-articles"></a>相關文章
+### <a name="next-steps"></a>後續步驟
 這些文章提供有關 Azure Active Directory 的其他資訊。
 
 * [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
@@ -51,7 +50,6 @@ ms.openlocfilehash: f8045c26225406420c1175df45643ba6238dd8d9
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

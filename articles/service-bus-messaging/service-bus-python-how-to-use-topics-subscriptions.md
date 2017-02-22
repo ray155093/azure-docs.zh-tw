@@ -1,5 +1,5 @@
 ---
-title: "如何搭配使用服務匯流排主題與 Python | Microsoft Docs"
+title: "如何搭配 Python 使用 Azure 服務匯流排主題 | Microsoft Docs"
 description: "了解如何從 Python 使用 Azure 服務匯流排主題和訂用帳戶。"
 services: service-bus-messaging
 documentationcenter: python
@@ -12,48 +12,49 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 01/12/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 86fa1e1cc5db31bdbec216e1c1f20c2b07cf68d9
+ms.sourcegitcommit: d0714870a0b01eca5e07c171c5ca8d0c0c1d6df1
+ms.openlocfilehash: 69f8807d509c31ae4aadeb16731fc481039a7e20
 
 
 ---
 # <a name="how-to-use-service-bus-topics-and-subscriptions"></a>如何使用服務匯流排主題和訂用帳戶
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-本文說明如何使用服務匯流排主題和訂用帳戶。 相關範例是以 Python 撰寫的，並使用 [Python Azure 封裝][Python Azure 封裝]。 涵蓋的案例包括**建立主題和訂用帳戶**、**建立訂用帳戶篩選器**、**傳送訊息至主題**、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。 如需主題和訂用帳戶的詳細資訊，請參閱[後續步驟](#next-steps)一節。
+本文說明如何使用服務匯流排主題和訂用帳戶。 相關範例是以 Python 撰寫，並且使用 [Python Azure 封裝][Python Azure package]。 涵蓋的案例包括**建立主題和訂用帳戶**、**建立訂用帳戶篩選器**、**傳送訊息至主題**、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。 如需主題和訂用帳戶的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
-**注意**：如果您需要安裝 Python 或 [Python Azure 封裝][Python Azure 封裝]，請參閱 [Python 安裝指南](../python-how-to-install.md)。
+> [!NOTE] 
+> 如果您需要安裝 Python 或 [Python Azure 封裝][Python Azure package]，請參閱 [Python 安裝指南](../python-how-to-install.md)。
 
 ## <a name="create-a-topic"></a>建立主題
 **ServiceBusService** 物件可讓您使用主題。 將下列內容新增至您想要在其中以程式設計方式存取服務匯流排之任何 Python 檔案內的頂端附近：
 
-```
+```python
 from azure.servicebus import ServiceBusService, Message, Topic, Rule, DEFAULT_RULE_NAME
 ```
 
 下列程式碼將建立 **ServiceBusService** 物件。 請使用真實的命名空間、共用存取簽章 (SAS) 金鑰名稱和金鑰值來取代 `mynamespace`、`sharedaccesskeyname` 和 `sharedaccesskey`。
 
-```
+```python
 bus_service = ServiceBusService(
     service_namespace='mynamespace',
     shared_access_key_name='sharedaccesskeyname',
     shared_access_key_value='sharedaccesskey')
 ```
 
-您可以從 [Azure 入口網站][Azure 入口網站]取得 SAS 金鑰名稱和值。
+您可以從 [Azure 入口網站][Azure portal]取得 SAS 金鑰名稱和值的值。
 
-```
+```python
 bus_service.create_topic('mytopic')
 ```
 
 **create\_topic** 也支援其他選項，而可讓您覆寫訊息存留時間或主題大小上限等預設主題設定。 下列範例會將主題大小上限設為 5 GB，並將存留時間 (TTL) 的值設為 1 分鐘：
 
-```
+```python
 topic_options = Topic()
 topic_options.max_size_in_megabytes = '5120'
 topic_options.default_message_time_to_live = 'PT1M'
@@ -72,14 +73,14 @@ bus_service.create_topic('mytopic', topic_options)
 ### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
 如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「AllMessages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
-```
+```python
 bus_service.create_subscription('mytopic', 'AllMessages')
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
 您也可以定義篩選器，讓您指定傳送至主題的哪些訊息應顯示在特定主題訂用帳戶中。
 
-在訂用帳戶支援的篩選器中，實作 SQL92 子集的 **SqlFilter** 是最具彈性的類型。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用之運算式的詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
+在訂用帳戶支援的篩選器中，實作 SQL92 子集的 **SqlFilter** 是最具彈性的類型。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用的運算式詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
 
 您可以使用 **ServiceBusService** 物件的 **create\_rule** 方法將篩選器新增至訂用帳戶。 此方法可讓您將篩選器新增至現有的訂用帳戶中。
 
@@ -90,7 +91,7 @@ bus_service.create_subscription('mytopic', 'AllMessages')
 
 以下範例將建立名為 `HighMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取自訂 **messagenumber** 屬性大於 3 的訊息：
 
-```
+```python
 bus_service.create_subscription('mytopic', 'HighMessages')
 
 rule = Rule()
@@ -103,7 +104,7 @@ bus_service.delete_rule('mytopic', 'HighMessages', DEFAULT_RULE_NAME)
 
 同樣地，下列範例將建立名為 `LowMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取 **messagenumber** 屬性小於或等於 3 的訊息：
 
-```
+```python
 bus_service.create_subscription('mytopic', 'LowMessages')
 
 rule = Rule()
@@ -121,18 +122,18 @@ bus_service.delete_rule('mytopic', 'LowMessages', DEFAULT_RULE_NAME)
 
 下列範例說明如何將五個測試訊息傳送至 `mytopic`。 請注意，迴圈反覆運算上每個訊息的 **messagenumber** 屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)：
 
-```
+```python
 for i in range(5):
     msg = Message('Msg {0}'.format(i).encode('utf-8'), custom_properties={'messagenumber':i})
     bus_service.send_topic_message('mytopic', msg)
 ```
 
-服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。 如需服務匯流排中配額的詳細資訊，請參閱[服務匯流排配額][服務匯流排配額]。
+服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。 如需有關配額的詳細資訊，請參閱[服務匯流排配額][Service Bus quotas]。
 
 ## <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
 您可以使用 **ServiceBusService** 物件的 **receive\_subscription\_message** 方法接收來自訂用帳戶的訊息：
 
-```
+```python
 msg = bus_service.receive_subscription_message('mytopic', 'LowMessages', peek_lock=False)
 print(msg.body)
 ```
@@ -143,7 +144,7 @@ print(msg.body)
 
 如果您將 **peek\_lock** 參數設為 **True**，接收會變成兩階段作業，因此可以支援無法容許遺漏訊息的應用程式。 當服務匯流排收到要求時，它會尋找要取用的下一個訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。 在應用程式完成訊息處理 (或可靠地儲存此訊息以供未來處理) 之後，它會在 **Message** 物件上呼叫 **delete** 方法，以完成接收程序的第二個階段。 **delete** 方法會將訊息標示為已取用，並將其從訂用帳戶中移除。
 
-```
+```python
 msg = bus_service.receive_subscription_message('mytopic', 'LowMessages', peek_lock=True)
 print(msg.body)
 
@@ -158,32 +159,32 @@ msg.delete()
 如果應用程式在處理訊息之後，尚未呼叫 **delete** 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為**至少處理一次**，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **MessageId** 屬性來達到此目的，該屬性將在各個傳遞嘗試中會保持不變。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
-主題和訂用帳戶是持續性的，您必須透過 [Azure 入口網站][Azure 入口網站]或程式設計明確地加以刪除。 下列範例示範如何刪除名為 `mytopic` 的主題：
+主題和訂用帳戶是持續性的，您必須透過 [Azure 入口網站][Azure portal]或以程式設計方式明確地刪除它們。 下列範例示範如何刪除名為 `mytopic` 的主題：
 
-```
+```python
 bus_service.delete_topic('mytopic')
 ```
 
 刪除主題也將會刪除對主題註冊的任何訂用帳戶。 您也可以個別刪除訂用帳戶。 下列程式碼示範如何從 `mytopic` 主題刪除名為 `HighMessages` 的訂用帳戶：
 
-```
+```python
 bus_service.delete_subscription('mytopic', 'HighMessages')
 ```
 
 ## <a name="next-steps"></a>後續步驟
 了解基本的服務匯流排主題之後，請參考下列連結以取得更多資訊。
 
-* 請參閱[佇列、主題和訂用帳戶][佇列、主題和訂用帳戶]。
+* 請參閱[佇列、主題和訂用帳戶][Queues, topics, and subscriptions]。
 * [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 的參考資料。
 
-[Azure 入口網站]: https://portal.azure.com
-[Python Azure 封裝]: https://pypi.python.org/pypi/azure  
-[佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
-[SqlFilter.SqlExpression]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
-[服務匯流排配額]: service-bus-quotas.md 
+[Azure portal]: https://portal.azure.com
+[Python Azure package]: https://pypi.python.org/pypi/azure  
+[Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
+[SqlFilter.SqlExpression]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sqlfilter#Microsoft_ServiceBus_Messaging_SqlFilter_SqlExpression
+[Service Bus quotas]: service-bus-quotas.md 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

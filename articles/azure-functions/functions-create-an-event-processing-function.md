@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 09/25/2016
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: ae5837b4fce52aad4c8b39434c27c450aafc1310
-ms.openlocfilehash: 466f2e03407a1633c40e96a366f782bf877c0c26
+ms.sourcegitcommit: 44e397c7521ba8f0ba11893c364f51177561bee4
+ms.openlocfilehash: df3d303ee10fcc982552ea9756eb59198c87b650
 
 
 ---
@@ -27,7 +27,7 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 本主題說明如何在 C# 中建立新的函式，而該函式以事件計時器為基礎執行，將訊息新增至儲存體佇列。 
 
 ## <a name="prerequisites"></a>必要條件
-您必須先具備有效的 Azure 帳戶，才可以建立函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。
+函式應用程式可在 Azure 中主控函式的執行。 如果您沒有 Azure 帳戶，請查看[試用 Functions](https://functions.azure.com/try) 體驗或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 
 
 ## <a name="create-a-timer-triggered-function-from-the-template"></a>從範本建立計時器觸發函式
 函式應用程式可在 Azure 中主控函式的執行。 您必須先具備有效的 Azure 帳戶，才可以建立函式。 如果您還沒有 Azure 帳戶， [可以使用免費帳戶](https://azure.microsoft.com/free/)。 
@@ -79,6 +79,6 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

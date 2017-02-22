@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 媒體服務時如何設定內部部署編碼器來建立多位元速率串流 | Microsoft Docs"
+title: "使用 Azure 媒體服務來建立多位元速率串流時，設定內部部署編碼器 | Microsoft Docs"
 description: "本主題列出的內部部署即時編碼器可用來擷取即時事件，並傳送單一位元速率即時串流到 AMS 通道 (啟用即時編碼) 以供進一步處理。 本主題列出示範如何設定列出之編碼器的教學課程連結。"
 services: media-services
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 01/23/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6ae703cd1edcfca58aea40376e3b961e3e77d5ee
+ms.sourcegitcommit: 555e0b6340d09517bfd87efe209f0304f3266788
+ms.openlocfilehash: 0ebed14fe5a24f2b161c0bab0a0e1d36dadb6b5b
 
 
 ---
@@ -47,6 +47,6 @@ ms.openlocfilehash: 6ae703cd1edcfca58aea40376e3b961e3e77d5ee
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

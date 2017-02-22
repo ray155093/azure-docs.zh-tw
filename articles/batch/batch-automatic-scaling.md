@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: multiple
-ms.date: 10/14/2016
+ms.date: 01/23/2017
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: dfcf1e1d54a0c04cacffb50eca4afd39c6f6a1b1
-ms.openlocfilehash: 75cb029e61006636de91e945404e38fd6d955697
+ms.sourcegitcommit: ffba988bd8cd3896816118afde979c7067fced79
+ms.openlocfilehash: 89ff5d5deeda72361cb619516681aca386c5a422
 
 
 ---
@@ -166,7 +166,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 | log(doubleVecList) |doubleVec |傳回 doubleVecList 的 componentwise 對數底數 10。 vec(double) 必須針對單一 double 參數明確傳遞。 否則，會假設為 double log (double) 版本。 |
 | max(doubleVecList) |double |傳回 doubleVecList 中的最大值。 |
 | min(doubleVecList) |double |傳回 doubleVecList 中的最小值。 |
-| norm(doubleVecList) |double |傳回 doubleVecList 建立的向量的 2-norm。 |
+| norm(doubleVecList) |double |傳回 doubleVecList 建立的向量的&2;-norm。 |
 | percentile(doubleVec v, double p) |double |傳回向量 v 的百分位數元素。 |
 | rand() |double |傳回介於 0.0 到 1.0 之間的隨機值。 |
 | range(doubleVecList) |double |傳回 doubleVecList 中最小和最大值之間的差異。 |
@@ -250,8 +250,8 @@ $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * Ti
     <th>說明</th>
   </tr>
   <tr>
-    <td><b>資源</b></td>
-    <td><p><b>資源度量</b>是以計算節點的 CPU、頻寬和記憶體使用量以及節點數目為基礎。</p>
+    <td><b>Resource</b></td>
+    <td><p><b>資源計量</b>是以計算節點的 CPU、頻寬和記憶體使用量以及節點數目為基礎。</p>
         <p> 這些服務定義的變數適合用於根據節點計數進行調整：</p>
     <p><ul>
       <li>$TargetDedicated</li>
@@ -272,7 +272,7 @@ $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * Ti
       <li>$NetworkOutBytes</li></ul></p>
   </tr>
   <tr>
-    <td><b>工作</b></td>
+    <td><b>Task</b></td>
     <td><p><b>工作計量</b>是根據狀態的工作，例如使用中、暫止和已完成。 下列服務定義的變數適合用於根據工作度量進行集區大小調整：</p>
     <p><ul>
       <li>$ActiveTasks</li>
@@ -607,7 +607,7 @@ $NodeDeallocationOption = taskcompletion;
 
 下列程式碼片段中的公式：
 
-* 將初始的集區大小設為 4 個節點。
+* 將初始的集區大小設為&4; 個節點。
 * 在集區生命週期的最初 10 分鐘內不調整集區大小。
 * 10 分鐘後，取得過去 60 分鐘內執行中和作用中工作數目的最大值。
   * 如果這兩個值都是 0 (表示過去 60 分鐘沒有執行或作用中的工作)，集區大小就設為 0。
@@ -646,6 +646,6 @@ string formula = string.Format(@"
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

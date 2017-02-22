@@ -1,6 +1,6 @@
 ---
 title: "使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Docs"
-description: "了解如何使用 .NET SDK 建立 Azure HDInsight 的 HDInsight 叢集。"
+description: "了解如何使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集。"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -13,18 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/02/2016
+ms.date: 01/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 21f2a14c1514c3f70787613c5f0962dc3eabd7b1
+ms.sourcegitcommit: ede2e4ec5f3414d1c8a17f4c120011eba0d9a6ca
+ms.openlocfilehash: 4f597fad719637e66d64143c302334b1c62e226e
 
 
 ---
 # <a name="create-windows-based-hadoop-clusters-in-hdinsight-using-net-sdk"></a>使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集
+
 [!INCLUDE [selector](../../includes/hdinsight-selector-create-clusters.md)]
 
-了解如何使用 .NET SDK 建立 HDInsight 叢集。 如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱 [叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
+了解如何使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集。 
+
+本文的資訊僅適用於以 Windows 為基礎的 HDInsight 叢集。 如需建立 Linux 型叢集的詳細資訊，請參閱[使用 .NET SDK 在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md)。
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 ## <a name="prerequisites"></a>必要條件：
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -174,7 +180,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 
 
 ## <a name="appx-a-create-dependent-components"></a>附錄 A：建立相依元件
-下列 PowerShell 指令碼可用來建立本教學課程中的 .NET 應用程式所需的相依元件。
+下列 Azure PowerShell 指令碼可用來建立本教學課程中的 .NET 應用程式所需的相依元件。
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
@@ -245,6 +251,6 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

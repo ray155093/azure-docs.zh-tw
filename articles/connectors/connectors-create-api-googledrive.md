@@ -17,8 +17,8 @@ ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: 5738c78d65ed0394028b90d634e5ebd4b1d5c5bc
+ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
+ms.openlocfilehash: 497f963870d24a335379a7f015a515c425737a73
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: 5738c78d65ed0394028b90d634e5ebd4b1d5c5bc
 * 根據您透過搜尋所取得的資料，來建置您的商務流程。 
 * 使用動作來搜尋圖像、搜尋新聞等等。 這些動作會收到回應，然後輸出能讓其他動作使用的資料。 舉例來說，您可以搜尋某支影片，然後利用 Twitter 把該影片張貼在某個 Twitter 摘要上。
 
-如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="triggers-and-actions"></a>觸發程序及動作
 Google 雲端硬碟包含下列動作， 但不包含觸發程序。 
@@ -321,7 +321,7 @@ Google 雲端硬碟包含下列動作， 但不包含觸發程序。
 | value |array |no |
 
 ## <a name="next-steps"></a>後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 返回 [API 清單](apis-list.md)。
 
@@ -337,6 +337,6 @@ Google 雲端硬碟包含下列動作， 但不包含觸發程序。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO3-->
 
 

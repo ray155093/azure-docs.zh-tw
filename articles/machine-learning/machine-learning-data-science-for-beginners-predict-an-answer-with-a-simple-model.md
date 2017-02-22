@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/20/2016
 ms.author: cgronlun;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 27a9ee1b170f090e626ce332eb518028877fd0d4
+ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
+ms.openlocfilehash: 9db45dd89d59a1d8e33f0523eefc336eec35a444
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: 27a9ee1b170f090e626ce332eb518028877fd0d4
 
 若要充分運用這系列影片，請觀賞所有影片。 [瀏覽影片清單](#other-videos-in-this-series)
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/data-science-for-beginners-series-predict-an-answer-with-a-simple-model/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/data-science-for-beginners-series-predict-an-answer-with-a-simple-model/player]
 > 
 > 
 
@@ -75,7 +75,7 @@ ms.openlocfilehash: 27a9ee1b170f090e626ce332eb518028877fd0d4
 
 我們現在將利用這個資料，並將它變成「散佈圖」 。 這是以視覺化方式檢視數值資料集的好方法。
 
-針對第一個資料點，我們在 1.01 克拉處仔細打量出一條垂直線。 然後，在 7,366 美元處仔細打量出一條水平線。 接著在它們的交會處畫上一點。 這代表我們的第一顆鑽石。
+針對第一個資料點，我們在 1.01 克拉處仔細打量出一條垂直線。 然後，在&7;,366 美元處仔細打量出一條水平線。 接著在它們的交會處畫上一點。 這代表我們的第一顆鑽石。
 
 現在逐一取得此清單上的每一顆鑽石，然後執行相同動作。 完成之後，這就是我們所得到的結果：一連串的點，每一個都代表一顆鑽石。
 
@@ -136,6 +136,6 @@ ms.openlocfilehash: 27a9ee1b170f090e626ce332eb518028877fd0d4
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/14/2016
+ms.date: 02/14/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b3dadee1ea8d1ff4a0164a90eb617f9d276b6670
+ms.sourcegitcommit: 4572913c2bc732c31f38021f9d3ccc34417de875
+ms.openlocfilehash: be4361af8f3f3024ab7f12114760f6f58e77deaf
 
 
 ---
@@ -25,17 +25,13 @@ ms.openlocfilehash: b3dadee1ea8d1ff4a0164a90eb617f9d276b6670
 
 > [!NOTE]
 > Azure Multi-Factor Auth Provider 可用來充分利用完整版 Azure MFA 所提供的功能。 它的適用對象是 **未透過 Azure MFA、Azure AD Premium 或 EMS 取得授權**的使用者。  Azure MFA、Azure AD Premium 和 EMS 預設會包含完整版 Azure MFA。  如果您有授權，則不需要 Azure Multi-Factor Auth Provider。
-> 
-> 
 
 下載 SDK 需要 Azure Multi-Factor Auth Provider。
 
 > [!IMPORTANT]
 > 若要下載 SDK，即使您有 Azure MFA、AAD Premium 或 EMS 授權，還是必須建立 Azure Multi-Factor Auth Provider。  如果您針對此用途建立 Azure Multi-Factor Auth Provider，且已有授權，請務必使用**每個啟用的使用者**模型建立提供者。 然後，將提供者連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。  這可確保您只會在使用 SDK 的唯一使用者超過您所擁有的授權數目時收到帳單。
-> 
-> 
 
-## <a name="to-create-a-multi-factor-auth-provider"></a>建立 Multi-Factor Auth Provider
+## <a name="create-a-multi-factor-auth-provider"></a>建立 Multi-Factor Auth Provider
 使用下列步驟，建立 Azure Multi-Factor Auth Provider。
 
 1. 以系統管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
@@ -64,6 +60,6 @@ ms.openlocfilehash: b3dadee1ea8d1ff4a0164a90eb617f9d276b6670
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

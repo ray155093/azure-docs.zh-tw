@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
-ms.author: sethm
+ms.date: 02/14/2017
+ms.author: sethm;clemensv
 translationtype: Human Translation
-ms.sourcegitcommit: 16071ba6c99e41af9fe7614fcc3254cd7e786e89
-ms.openlocfilehash: 497f54903bef564bab687103a763c7a7b58da074
+ms.sourcegitcommit: 579942cfe0dc7d6a5e3f205308642d36bf6be880
+ms.openlocfilehash: d3a191797e75c424af07910e4a6a87e1183f6676
 
 
 ---
@@ -118,7 +118,7 @@ wss://{namespace-address}/$hc/{path}?sb-hc-action=...[&sb-hc-id=...]&sb-hc-token
 * **connectHeaders** – 傳送者已提供給轉送端點的所有 HTTP 標頭，其中也包括 Sec-WebSocket-Protocol 和 Sec-WebSocket-Extensions 標頭。
 
 #### <a name="accept-message"></a>接受訊息
-``` JSON
+```json
 {                                                           
     "accept" : {
         "address" : "wss://168.61.148.205:443/$hc/{path}?..."    
@@ -201,7 +201,7 @@ URL 必須保持原樣以用來建立接受通訊端，但要包含下列參數�
 * **權杖** – 針對授予**接聽**權限的命名空間或混合式連線，有效且以 URL 編碼的服務匯流排共用存取權杖。
 
 #### <a name="renewtoken-message"></a>renewToken 訊息
-``` JSON
+```json
 {                                                                                                                                                                        
     "renewToken" : {                                                                                                                                                      
         "token" : "SharedAccessSignature sr=http%3a%2f%2fcontoso.servicebus.windows.net%2fhyco%2f&amp;sig=XXXXXXXXXX%3d&amp;se=1471633754&amp;skn=SasKeyName"  
@@ -231,7 +231,7 @@ wss://{namespace-address}/$hc/{path}?sb-hc-action=...&sb-hc-id=...&sbc-hc-token=
 
 | 參數 | 必要？ | 說明 |
 | --- | --- | --- |
-| sb-hc-action |yes |接聽程式角色的參數必須是 `action=connect`。 |
+| sb-hc-action |是 |傳送者角色的參數必須是 `action=connect`。 |
 | {path} |yes |(請參閱下列段落) |
 | sb-hc-token |是\* |針對授予**傳送**權限的命名空間或混合式連線，接聽程式必須提供有效且以 URL 編碼的服務匯流排共用存取權杖。 |
 | sb-hc-id |否 |選擇性的識別碼，允許進行端對端診斷追蹤，並可供接聽程式在接受交握期間使用。 |
@@ -271,6 +271,6 @@ wss://{namespace-address}/$hc/hyco/suffix?param=value&sb-hc-action=...[&sb-hc-id
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

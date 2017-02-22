@@ -1,13 +1,25 @@
 ---
+title: "Azure App Service 文件 - 教學課程和 API 參考 | Microsoft Docs"
+description: "了解如何透過教學課程、影片、API 參考和其他文件，使用 App Service 來建立適用於任何平台或裝置的 Web 和行動應用程式。"
+services: app-service
+author: carolz
+manager: carolz
 layout: LandingPage
+ms.assetid: 
+ms.service: app-service
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: a9afed4d89a2eb114af42ae409ff8ab72899b598
-ms.openlocfilehash: a7ae2c57b4f894165df0f2fd7560f8476ac1db0d
+ms.sourcegitcommit: ebcde75ba7d5ed155fb7ec822ba037de5141c31c
+ms.openlocfilehash: a9b7cb3492fa71b33c4aa6b2c0ecda9eaac9ea4b
 
 ---
 #<a name="app-service-documentation"></a>App Service 文件
 
-App Service 是 Microsoft Azure 的平台即服務 (PaaS) 產品。 建立適用任何平台或裝置的 Web 與行動應用程式。 整合您的應用程式與 SaaS 解決方案、與內部部署應用程式連接，並使您的商務程序自動化。
+了解如何透過教學課程、影片、API 參考和其他文件，使用 App Service 來開發和裝載適用於任何平台或裝置的 Web 和行動應用程式。 了解如何整合應用程式與 SaaS 解決方案、與內部部署應用程式連接，並使您的商務程序自動化。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -120,50 +132,10 @@ App Service 是 Microsoft Azure 的平台即服務 (PaaS) 產品。 建立適用
     </li>
 </ul>
 
----
-
-<h2>參考</h2>
-<ul class="panelContent cardsW">
-    <li>
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>資源</h3>
-                        <p><a href="/azure/app-service-web/app-service-web-app-azure-portal?toc=%2fazure%2fapp-service%2ftoc.json">Azure 入口網站</a></p>
-                        <p><a href="/azure/app-service-web/app-service-changes-existing-services?toc=%2fazure%2fapp-service%2ftoc.json">App Service 參考</a></p>
-                        <p><a href="/azure/app-service-web/app-service-best-practices?toc=%2fazure%2fapp-service%2ftoc.json">最佳作法</a></p>
-                        <p><a href="/azure/app-service-web/websites-webjobs-resources?toc=%2fazure%2fapp-service%2ftoc.json">Web 工作資源</a></p>
-                        <p><a href="/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started?toc=%2fazure%2fapp-service%2ftoc.json">WebJobs SDK</a></p>
-                      </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>REST</h3>
-                        <p><a href="/rest/api/appservice/">REST API 參考</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-</ul>
-
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 App Service 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO2-->
+
+<!--HONumber=Feb17_HO2-->
 
 

@@ -16,14 +16,14 @@ ms.workload: na
 ms.date: 10/24/2016
 ms.author: araguila
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 61985bf2e112fe7b0a46ece07fd56eb14ccc3d45
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: d06ec1c7a643c92fd11b532abc26fb1597d969f5
 
 
 ---
 # <a name="permissions-on-the-azureiotsuitecom-site"></a>azureiotsuite.com 網站的權限
 ## <a name="what-happens-when-you-sign-in"></a>當您登入時會發生什麼事？
-當您第一次在 [azureiotsuite.com][lnk-azureiotsuite] 登入時，此網站會根據目前選取的 Azure Active Directory (AAD) 租用戶和 Azure 訂用帳戶來決定您擁有的權限等級。
+當您第一次在 [azureiotsuite.com][lnk-azureiotsuite] 登入時，此網站會根據目前選取的 Azure Active Directory (AAD) 租用戶和 Azure 訂用帳戶，決定您擁有的權限等級。
 
 1. 此網站會先從 Azure 找出您所屬的 AAD 租用戶，以便填入您已登入的使用者名稱旁邊顯示的租用戶清單。 此時，網站一次只能取得一個租用戶的使用者權杖。 如此一來，當您使用右上角下拉式清單切換至不同的租用戶時，此網站會讓您重新登入該租用戶，以取得該租用戶的權杖。
 2. 接下來，網站會從 Azure 找出與所選租用戶有關聯的訂用帳戶。 當您建立預先設定的新方案時，您會看到可用的訂用帳戶。
@@ -34,11 +34,11 @@ ms.openlocfilehash: 61985bf2e112fe7b0a46ece07fd56eb14ccc3d45
 ## <a name="aad-roles"></a>AAD 角色
 AAD 角色控制在預先設定的方案中佈建預先設定的方案以及管理使用者的能力。
 
-您可以在[在 Azure Active Directory 中指派系統管理員角色][lnk-aad-admin]中找到有關 AAD 中管理員角色的詳細資訊，但本文主要著重於預先設定的方案所使用的「全域管理員」 和「網域使用者/成員」角色。
+[在 Azure AD 中指派系統管理員角色][lnk-aad-admin]提供 AAD 中之管理員角色的詳細資訊，但本文主要著重於預先設定的方案所使用的 [全域管理員] 和 [網域使用者/成員] 角色。
 
-**全域管理員：** 每一個 AAD 租用戶可以有許多全域管理員。 當您建立 AAD 租用戶時，您會預設為該租用戶的全域管理員。 全域管理員可以佈建預先設定的方案，並獲得其 AAD 租用戶的應用程式內部的 [管理員]  角色。 不過，如果相同的 AAD 租用戶中有其他使用者建立應用程式，則全域管理員的預設角色會是 [隱含唯讀] 。 全域管理員可以使用 [Azure 傳統入口網站][lnk-classic-portal]來為應用程式指派角色。
+**全域管理員：** 每一個 AAD 租用戶可以有許多全域管理員。 當您建立 AAD 租用戶時，您會預設為該租用戶的全域管理員。 全域管理員可以佈建預先設定的方案，並獲得其 AAD 租用戶的應用程式內部的 [管理員]  角色。 不過，如果相同的 AAD 租用戶中有其他使用者建立應用程式，則全域管理員的預設角色會是 [隱含唯讀] 。 全域管理員可以使用 [Azure 傳統入口網站][lnk-classic-portal]來指派應用程式的角色。
 
-**網域使用者/成員：** 每一個 AAD 租用戶可以有許多網域使用者/成員。 網域使用者可以透過 [azureiotsuite.com][lnk-azureiotsuite] 網站佈建預先設定的方案。 他們針對所佈建的應用程式獲得的預設角色為「管理員」。 他們可以使用 [azure-iot-remote-monitoring][lnk-rm-github-repo] 或 [azure-iot-predictive-maintenance][lnk-pm-github-repo] 儲存機制中的 build.cmd 指令碼來建立應用程式，但他們所獲得的預設角色為「隱含唯讀」，因為他們沒有指派角色的權限。 如果 AAD 租用戶中有其他使用者建立應用程式，他們預設會獲得該應用程式的 [隱含唯讀]  角色。 他們無法指派應用程式的角色；因此無法新增應用程式 (即使是由他們所佈建) 的使用者或使用者角色。
+**網域使用者/成員：** 每一個 AAD 租用戶可以有許多網域使用者/成員。 網域使用者可以透過 [azureiotsuite.com][lnk-azureiotsuite] 網站佈建預先設定的解決方案。 他們針對所佈建的應用程式獲得的預設角色為「管理員」。 他們可以使用 [azure-iot-remote-monitoring][lnk-rm-github-repo] 或 [azure-iot-predictive-maintenance][lnk-pm-github-repo] 儲存機制中的 build.cmd 指令碼建立應用程式，但他們所獲得的預設角色為 [隱含唯讀]，因為他們沒有權限來指派角色。 如果 AAD 租用戶中有其他使用者建立應用程式，他們預設會獲得該應用程式的 [隱含唯讀]  角色。 他們無法指派應用程式的角色；因此無法新增應用程式 (即使是由他們所佈建) 的使用者或使用者角色。
 
 **來賓使用者/來賓：** 每一個 AAD 租用戶可以有許多來賓使用者/來賓。 來賓使用者在 AAD 租用戶中有一組受限的權限。 因此，來賓使用者無法在 AAD 租用戶中佈建預先設定的方案。
 
@@ -50,7 +50,7 @@ AAD 角色控制在預先設定的方案中佈建預先設定的方案以及管�
 ## <a name="azure-subscription-administrator-roles"></a>Azure 訂用帳戶管理員角色
 Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能力。
 
-您可以在[如何新增或變更 Azure 共同管理員、服務管理員和帳戶管理員][lnk-admin-roles]一文中，深入了解 Azure「共同管理員」、「服務管理員」和「帳戶管理員」角色。
+在[如何新增或變更 Azure 共同管理員、服務管理員和帳戶管理員][lnk-admin-roles]一文中，您可以深入了解 Azure 共同管理員、服務管理員和帳戶管理員角色。
 
 ## <a name="application-roles"></a>應用程式角色
 應用程式角色可控制您預先設定的方案中的裝置存取權。
@@ -95,7 +95,7 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 4. 出現提示時，將 **tenantid** 設定為您新建立的租用戶，而不是您先前的租用戶。
 
 ### <a name="i-want-to-change-a-service-administrator-or-co-administrator-when-logged-in-with-an-organisational-account"></a>我想要在使用組織帳戶登入時變更服務管理員或共同管理員
-請參閱支援文章[在使用組織帳戶登入時變更服務管理員及共同管理員][lnk-service-admins]。
+請參閱支援文章[在使用組織帳戶登入時變更服務管理員和共同管理員][lnk-service-admins]。
 
 ### <a name="why-am-i-seeing-this-error-your-account-does-not-have-the-proper-permissions-to-create-a-solution-please-check-with-your-account-administrator-or-try-with-a-different-account"></a>為什麼出現以下錯誤？ 「您的帳戶沒有適當的權限可建立方案。 請洽詢您的帳戶管理員或嘗試使用不同的帳戶。」
 看看下圖：
@@ -112,7 +112,7 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 如果您確定有 Azure 訂用帳戶，請驗證您的訂用帳戶的租用戶對應，並確保已在下拉式清單中選取正確的租用戶。 如果您已驗證所需的租用戶是否正確，請遵循上圖並驗證您的訂用帳戶與此 AAD 租用戶的對應。
 
 ## <a name="next-steps"></a>後續步驟
-若要繼續了解「IoT 套件」，請參閱如何[自訂預先設定的方案][lnk-customize]。
+若要繼續了解 IoT 套件，請參閱如何[自訂預先設定的解決方案][lnk-customize]。
 
 [img-flowchart]: media/iot-suite-permissions/flowchart.png
 
@@ -131,6 +131,6 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

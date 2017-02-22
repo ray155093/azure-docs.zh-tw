@@ -1,5 +1,5 @@
 ---
-title: "安全的 HDInsight 概觀 | Microsoft Docs"
+title: "Hadoop 安全性 - 已加入網域的 HDInsight 叢集 - Azure | Microsoft Docs"
 description: "了解 ..."
 services: hdinsight
 documentationcenter: 
@@ -16,18 +16,19 @@ ms.workload: big-data
 ms.date: 10/31/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 40b0d0660f4693d5ebedf847734ffe037c4ec7ca
+ms.sourcegitcommit: cd57f3a43142b3af3546eafd9749123fadd333c2
+ms.openlocfilehash: 27cb0cda5d836e042e9eca3c053577db0bd8c148
 
 
 ---
-# <a name="an-introduction-to-domainjoined-hdinsight-clusters-preview"></a>已加入網域之 HDInsight 叢集的簡介 (預覽)
+# <a name="an-introduction-to-hadoop-security-with-domain-joined-hdinsight-clusters-preview"></a>已加入網域之 HDInsight 叢集的 Hadoop 安全性簡介 (預覽)
+
 到目前為止，Azure HDInsight 僅支援單一使用者本機系統管理員。 這很適合用於比較小型的應用程式團隊或部門。 Hadoop 型工作負載在企業間越來越受青睞，而 Active Directory 型驗證、多使用者支援和角色型存取控制等企業級功能的需求日益重要。 使用已加入網域的 HDInsight 叢集時，您可以建立已加入 Active Directory 網域的 HDInsight 叢集、設定企業中可以透過 Azure Active Directory 進行驗證來登入 HDInsight 叢集的員工清單。 企業外部的任何人都無法登入或存取此 HDInsight 叢集。 企業系統管理員可以使用 [Apache Ranger](http://hortonworks.com/apache/ranger/)，針對 Hive 安全性設定角色型存取控制，進而將資料存取限制為僅限有需要時。 最後，系統管理員可以依照員工稽核資料存取，以及對存取控制原則所做的任何變更，因而達到高度的公司資源控管。
 
 > [!NOTE]
-> 此預覽中所述的新功能僅適用於 Hive 工作負載之以 Linux 為基礎的 HDInsight 叢集。 其他工作負載 (例如 HBase、Spark、Storm 和 Kafka) 將在未來版本中啟用。 
-> 
-> 
+> 此預覽中所述的新功能僅適用於 Hive 工作負載之以 Linux 為基礎的 HDInsight 叢集。 其他工作負載 (例如 HBase、Spark、Storm 和 Kafka) 將在未來版本中啟用。
+>
+>
 
 ## <a name="benefits"></a>優點
 企業安全性包含四大要件 – 周邊安全性、驗證、授權和加密。
@@ -53,11 +54,10 @@ ms.openlocfilehash: 40b0d0660f4693d5ebedf847734ffe037c4ec7ca
 * 如需設定已加入網域的 HDInsight 叢集，請參閱[設定已加入網域的 HDInisight 叢集](hdinsight-domain-joined-configure.md)。
 * 如需管理已加入網域的 HDInsight 叢集，請參閱[管理已加入網域的 HDInisight 叢集](hdinsight-domain-joined-manage.md)。
 * 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInisight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
-* 如需使用 SSH 在已加入網域的 HDInsight 叢集上執行 Hive 查詢，請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-domain-joined-hdinsight-cluster)。
+* 如需使用 SSH 在已加入網域的 HDInsight 叢集上執行 Hive 查詢，請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

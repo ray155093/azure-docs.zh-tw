@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/29/2016
+ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: da1841d4ff9e5b4b53f5d766065acc1024d1eb3a
+ms.sourcegitcommit: 8f171456f74925eba16ebd6f56ced558a11f9d99
+ms.openlocfilehash: 7d2cc99925e01f8135f04f5863f798e13d7413e3
 
 
 ---
@@ -25,8 +25,8 @@ ms.openlocfilehash: da1841d4ff9e5b4b53f5d766065acc1024d1eb3a
 > * [Azure 入口網站](active-directory-groups-create-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-accessmanagement-manage-groups.md)
 > * [PowerShell](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
-> 
-> 
+>
+>
 
 Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠建立使用者群組。 您可以使用群組來執行管理工作，例如一次指派授權或權限給多名使用者。 您也可以使用群組來指派存取權限給
 
@@ -73,13 +73,13 @@ Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠�
 
 > [!NOTE]
 > 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。 目前對應用程式的群組式指派並不支援巢狀群組成員資格。
-> 
+>
 > 群組的動態成員資格需要將 Azure AD Premium 授權指派給：
-> 
+>
 > * 負責管理群組規則的系統管理員
 > * 群組的所有成員
-> 
-> 
+>
+>
 
 **啟用群組的動態成員資格**
 
@@ -103,7 +103,6 @@ Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠�
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 建立及管理彈性資料庫作業"
+title: "使用 PowerShell 建立和管理彈性作業 | Microsoft Docs"
 description: "用來管理 Azure SQL Database 集區的 PowerShell"
 services: sql-database
 documentationcenter: 
@@ -7,6 +7,7 @@ manager: jhubbard
 author: ddove
 ms.assetid: 737d8d13-5632-4e18-9cb0-4d3b8a19e495
 ms.service: sql-database
+ms.custom: multiple databases
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -14,12 +15,12 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 92a986e9a5ff736408d1221143d38b117eab437f
+ms.sourcegitcommit: 77b8b8960fb0e5e5340b65dae03f95b456832a07
+ms.openlocfilehash: 5dc7bd506060ec04691abae3054fa3514893e953
 
 
 ---
-# <a name="create-and-manage-a-sql-database-elastic-database-jobs-using-powershell-preview"></a>使用 PowerShell 建立和管理 SQL Database 彈性資料庫工作 (預覽)
+# <a name="create-and-manage-sql-database-elastic-jobs-using-powershell-preview"></a>使用 PowerShell 建立和管理 SQL Database 彈性作業 (預覽)
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-elastic-jobs-create-and-manage.md)
 > * [PowerShell](sql-database-elastic-jobs-powershell.md)
@@ -31,7 +32,7 @@ ms.openlocfilehash: 92a986e9a5ff736408d1221143d38b117eab437f
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 如需免費試用，請參閱 [免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 * 一組使用彈性資料庫工具所建立的資料庫。 請參閱 [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)。
-* Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 * **彈性資料庫工作** PowerShell 封裝：請參閱 [安裝彈性資料庫工作](sql-database-elastic-jobs-service-installation.md)
 
 ### <a name="select-your-azure-subscription"></a>選取您的 Azure 訂用帳戶
@@ -357,7 +358,7 @@ ms.openlocfilehash: 92a986e9a5ff736408d1221143d38b117eab437f
 擷取已提供工作執行 ID 的所有子工作執行，包括非使用中工作執行：
 
     $parentJobExecutionId = "{Job Execution Id}"
-    Get-AzureSqlJobExecution -AzureSqlJobExecution -JobExecutionId $parentJobExecutionId –IncludeInactive -IncludeChildren
+    Get-AzureSqlJobExecution -AzureSqlJobExecution -JobExecutionId $parentJobExecutionId -IncludeInactive -IncludeChildren
 
 擷取使用排程/工作組合建立的所有工作執行，包括非使用中工作：
 
@@ -371,13 +372,13 @@ ms.openlocfilehash: 92a986e9a5ff736408d1221143d38b117eab437f
     $shardMapDatabaseName = "{Shard Map Database Name}"
     $shardMapName = "{Shard Map Name}"
     $target = Get-AzureSqlJobTarget -ShardMapManagerDatabaseName $shardMapDatabaseName -ShardMapManagerServerName $shardMapServerName -ShardMapName $shardMapName
-    Get-AzureSqlJobExecution -TargetId $target.TargetId –IncludeInactive
+    Get-AzureSqlJobExecution -TargetId $target.TargetId -IncludeInactive
 
 擷取以指定的自訂集合為目標的所有工作，包括非使用中工作：
 
     $customCollectionName = "{Custom Collection Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
-    Get-AzureSqlJobExecution -TargetId $target.TargetId –IncludeInactive
+    Get-AzureSqlJobExecution -TargetId $target.TargetId -IncludeInactive
 
 擷取特定工作執行內的工作作業執行的清單：
 
@@ -483,7 +484,7 @@ ms.openlocfilehash: 92a986e9a5ff736408d1221143d38b117eab437f
     Remove-AzureSqlJob -JobName $jobName
 
 ## <a name="to-create-a-custom-database-target"></a>建立自訂資料庫目標
-您可以定義自訂資料庫目標以直接執行或包含在自訂資料庫群組內。 例如，因為 **彈性資料庫集區** 尚不直接支援使用 PowerShell API，您可以建立自訂資料庫目標和自訂資料庫集合目標 (包含集區中的所有資料庫)。
+您可以定義自訂資料庫目標以直接執行或包含在自訂資料庫群組內。 例如，由於使用 PowerShell API 還無法直接支援「彈性集區」，因此您可以建立自訂資料庫目標和自訂資料庫集合目標，以包含集區中的所有資料庫。
 
 設定下列變數以反映所需的資料庫資訊：
 
@@ -585,7 +586,7 @@ ms.openlocfilehash: 92a986e9a5ff736408d1221143d38b117eab437f
     $scheduleName = "{Schedule Name}"
     $jobTrigger = New-AzureSqlJobTrigger
     -ScheduleName $scheduleName
-    –JobName $jobName
+    -JobName $jobName
     Write-Output $jobTrigger
 
 ### <a name="to-remove-a-scheduled-association-to-stop-job-from-executing-on-schedule"></a>移除排程關聯以停止依排程執行工作
@@ -651,6 +652,6 @@ ms.openlocfilehash: 92a986e9a5ff736408d1221143d38b117eab437f
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO2-->
 
 

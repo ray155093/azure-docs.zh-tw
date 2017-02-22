@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 07/29/2016
 ms.author: magoedte;csand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d9b12c074417e51057dea68e8cff04df5081e111
+ms.sourcegitcommit: 4edd2696c9a5709ded6e2a3e352090775335f0d2
+ms.openlocfilehash: 4fcfa2e7ec2e8257407026ed4cca0e15fd0b5bb6
 
 
 ---
@@ -31,7 +31,7 @@ Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，�
 將您的雲端管理工作交由「Azure 自動化」自動執行，以減少營運負擔並釋出 IT 和開發維運人力，使其專注於能夠為企業創造價值的工作上。
 
 ## <a name="how-can-azure-automation-help-manage-azure-web-app"></a>Azure 自動化為何有助於管理 Azure Web 應用程式？
-Web 應用程式可透過 [Azure PowerShell 模組](../powershell-install-configure.md)中提供的 PowerShell Cmdlet，在 Azure 自動化中受到管理。 您可以 [在 Azure 自動化中安裝這些 Web 應用程式 PowerShell Cmdlet](https://azure.microsoft.com/blog/announcing-azure-resource-manager-support-azure-automation-runbooks/)，以便您能夠在服務內執行所有 Web 應用程式管理工作。 您也可以在 Azure 自動化中將這些 Cmdlet 與其他 Azure 服務的 Cmdlet 配對，將跨 Azure 服務和協力廠商系統的複雜工作自動化。
+Web 應用程式可透過 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs)中提供的 PowerShell Cmdlet，在 Azure 自動化中受到管理。 您可以 [在 Azure 自動化中安裝這些 Web 應用程式 PowerShell Cmdlet](https://azure.microsoft.com/blog/announcing-azure-resource-manager-support-azure-automation-runbooks/)，以便您能夠在服務內執行所有 Web 應用程式管理工作。 您也可以在 Azure 自動化中將這些 Cmdlet 與其他 Azure 服務的 Cmdlet 配對，將跨 Azure 服務和協力廠商系統的複雜工作自動化。
 
 以下是使用自動化來管理應用程式服務的一些範例 ︰
 
@@ -45,6 +45,6 @@ Web 應用程式可透過 [Azure PowerShell 模組](../powershell-install-config
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO1-->
 
 

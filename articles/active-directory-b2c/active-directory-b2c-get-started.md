@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.topic: article
 ms.devlang: na
-ms.date: 12/06/2016
+ms.date: 01/26/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 4b13c040a15bef2f04d2cd2126e2270d061898bd
-ms.openlocfilehash: 8838617f9b7281878ac3561a80bbba5e4506f410
+ms.sourcegitcommit: 351149296a6d7dfa801b295ec21fc04215c7b051
+ms.openlocfilehash: 77b8e707b5743ce2d0b3eb52f75828c9ab0337d9
 
 
 ---
@@ -67,6 +67,14 @@ ms.openlocfilehash: 8838617f9b7281878ac3561a80bbba5e4506f410
    > 
    > 
 
+## <a name="step-4-link-your-azure-ad-b2c-tenant-to-your-azure-subscription"></a>步驟 4：將您的 Azure AD B2C 租用戶連結到 Azure 訂用帳戶
+如果您打算將您的 B2C 租用戶用於生產環境應用程式，您將必須將 Azure AD B2C 租用戶連結到您的 Azure 訂用帳戶以支付使用費用。 若要了解做法，請參閱[這篇文章](active-directory-b2c-how-to-enable-billing.md)。
+
+   > [!IMPORTANT]
+   > 如果您未將 Azure AD B2C 租用戶連結到您的 Azure 訂用帳戶，您將會在 Azure 入口網站的 [B2C 功能] 刀鋒視窗上看到警告訊息 (「沒有訂用帳戶與此 B2C 租用戶連結，或訂用帳戶需要您的注意。」)。 請務必先進行此步驟，然後才將您的應用程式傳送到生產環境。
+   > 
+   > 
+
 ## <a name="easy-access-to-the-b2c-features-blade-on-the-azure-portal"></a>輕鬆存取 Azure 入口網站上的 B2C 功能刀鋒視窗
 為了改善探索能力，我們已在 Azure 入口網站新增 B2C 功能刀鋒視窗的捷徑。
 
@@ -82,6 +90,6 @@ ms.openlocfilehash: 8838617f9b7281878ac3561a80bbba5e4506f410
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "讀取保留在 Azure 表格儲存體中的訊息 | Microsoft Docs"
+title: "SensorTag 裝置與 Azure IoT 閘道 - 第 4 課：表格儲存體 | Microsoft Docs"
 description: "將訊息從 Intel NUC 儲存到您的 IoT 中樞，然後將訊息寫入 Azure 表格儲存體，並讀取雲端中的訊息。"
 services: iot-hub
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 10/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 65a25dd7a2f6a8d518217512f9e10fc9008ee728
-ms.openlocfilehash: a1007ac2db53c2c378cf4312b73765ef490e0ad6
+ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
+ms.openlocfilehash: 293343e5db58bebc8c2e27d54d6396212fe6d3a1
 
 
 ---
@@ -78,7 +78,7 @@ az storage account show-connection-string -g iot-gateway -n {storage name}
 
 2. 將 `[Azure storage connection string]` 取代為您取得的 Azure 儲存體連接字串。
 
-   `[IoT hub connection string]` 應該已經在第 3 課的[讀取來自 Azure IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)中被取代。
+   `[IoT hub connection string]` 應該已經在第&3; 課的[讀取來自 Azure IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)中被取代。
 
 ## <a name="read-messages-in-your-azure-table-storage"></a>讀取 Azure 表格儲存體中的訊息
 
@@ -101,6 +101,6 @@ gulp run --table-storage
 您已執行範例程式碼來讀取由您的 Azure 函數應用程式儲存在您的 Azure 表格儲存體中的訊息。
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

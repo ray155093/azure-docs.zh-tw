@@ -16,13 +16,13 @@ ms.topic: article
 ms.date: 05/27/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a57ad6211403712bc35f20710e0c8c1728d2639d
+ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
+ms.openlocfilehash: 91fe35cb57775c1ab9c30fdfe5cf82cd1afafd14
 
 
 ---
 # <a name="elastic-database-client-library-with-entity-framework"></a>搭配使用彈性資料庫用戶端程式庫與 Entity Framework
-這份文件說明 Entity Framework 應用程式為了要與 [彈性資料庫工具](sql-database-elastic-scale-introduction.md)整合所需做的變更。 重點將著重於使用 Entity Framework **Code First** 方法來編寫[分區對應管理](sql-database-elastic-scale-shard-map-management.md)和[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)。 整份文件中以 EF 的 [Code First – 新的資料庫](http://msdn.microsoft.com/data/jj193542.aspx) 教學課程作為執行範例。 本文所附的範例程式碼取自於 Visual Studio 程式碼範例中的彈性資料庫工具範例集。
+這份文件說明 Entity Framework 應用程式為了要與 [彈性資料庫工具](sql-database-elastic-scale-introduction.md)整合所需做的變更。 重點將著重於使用 Entity Framework **Code First** 方法來編寫[分區對應管理](sql-database-elastic-scale-shard-map-management.md)和[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)。 這整份文件是以 EF 的 [Code First - 新的資料庫](http://msdn.microsoft.com/data/jj193542.aspx)教學課程作為執行範例。 本文所附的範例程式碼取自於 Visual Studio 程式碼範例中的彈性資料庫工具範例集。
 
 ## <a name="downloading-and-running-the-sample-code"></a>下載並執行範例程式碼
 若要下載本文的程式碼：
@@ -34,7 +34,7 @@ ms.openlocfilehash: a57ad6211403712bc35f20710e0c8c1728d2639d
   
     ![Entity Framework 和彈性資料庫範例應用程式][1] 
   
-    選取範例 [ **Elastic DB Tools for Azure SQL – Entity Framework Integration**]。 接受授權之後，就會載入範例。 
+    選取名為 [Elastic DB Tools for Azure SQL - Entity Framework Integration] 的範例。 接受授權之後，就會載入範例。 
 
 若要執行範例，您在 Azure SQL Database 中需要建立三個空的資料庫：
 
@@ -199,7 +199,7 @@ Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊
 這會形成一種方法，使得透過 EF 移轉的結構描述部署，與新的資料庫在應用程式的分區對應中註冊為分區緊密相關。 這依賴下列必要條件： 
 
 * 已建立資料庫。 
-* 資料庫是空 - 不含任何使用者結構描述與任何使用者資料。
+* 資料庫是空的 - 不含任何使用者結構描述與任何使用者資料。
 * 還不能透過資料相依路由的彈性資料庫用戶端 API 存取資料庫。 
 
 符合這些必要條件後，我們就可以建立一般未開啟的 **SqlConnection** ，以開始進行結構描述部署的 EF 移轉。 下列程式碼範例說明此方法。 
@@ -256,7 +256,7 @@ Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊
 這份文件中所述的方法有幾個限制： 
 
 * 使用 **LocalDb** 的 EF 應用程式必須先移轉至一般 SQL Server 資料庫，才能使用彈性資料庫用戶端程式庫。 使用 **LocalDb**時，無法透過分區化與 Elastic Scale 來相應放大應用程式。 請注意，仍可使用 **LocalDb**來開發。 
-* 應用程式中涉及資料庫結構描述變更的任何變更，都必須在所有分區上經過 EF 移轉。 這份文件的範例程式碼不示範此作法。 請考慮使用 Update-Database 搭配 ConnectionString 參數，以逐一查看所有分區，或使用 Update-Database 搭配 –Script 選項，以擷取暫止移轉的 T-SQL 指令碼，並將 T-SQL 指令碼套用至您的分區。  
+* 應用程式中涉及資料庫結構描述變更的任何變更，都必須在所有分區上經過 EF 移轉。 這份文件的範例程式碼不示範此作法。 請考慮使用 Update-Database 搭配 ConnectionString 參數，以逐一查看所有分區；或使用 Update-Database 搭配 -Script 選項，以擷取擱置中移轉的 T-SQL 指令碼，然後將 T-SQL 指令碼套用至您的分區。  
 * 提出要求時，將會假定所有資料庫處理都包含在要求所提供的分區化索引鍵所識別的單一分區內。 不過，這項假設不一定永遠成立。 例如，有時無法提供分區化索引鍵。 為了解決這個問題，用戶端程式庫提供 **MultiShardQuery** 類別，此類別實作連接抽象來查詢數個分區。 學習搭配 EF 來使用 **MultiShardQuery** 已超出本文的範圍
 
 ## <a name="conclusion"></a>結論
@@ -269,6 +269,6 @@ Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

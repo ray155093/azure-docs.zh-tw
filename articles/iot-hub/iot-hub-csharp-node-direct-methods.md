@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure IoT 中樞直接的方法 (C#) | Microsoft Docs"
-description: "本教學課程說明如何使用直接方法"
+title: "使用 Azure IoT 中樞直接方法 (.NET/Node) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞直接方法。 您可以使用適用於 Node.js 的 Azure IoT 裝置 SDK，實作模擬裝置應用程式 (包含直接方法)，也可以使用適用於 .NET 的 Azure IoT 服務 SDK，實作服務應用程式 (叫用直接方法)。"
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -12,20 +12,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/05/2016
+ms.date: 01/11/2017
 ms.author: nberdy
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: f2af421140f4f6640578a372993c2553f8c590a4
+ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
+ms.openlocfilehash: bd2ae99b4e66085590230028ae649502327db50a
 
 
 ---
-# <a name="tutorial-use-direct-methods-c"></a>教學課程：使用直接方法 (C#)
+# <a name="use-direct-methods-netnode"></a>使用直接方法 (.NET/Node)
 [!INCLUDE [iot-hub-selector-c2d-methods](../../includes/iot-hub-selector-c2d-methods.md)]
 
-在本教學課程結束時，您將會有 .NET 和 Node.js 主控台應用程式：
+在本教學課程結尾處，您將會有一個 .NET 主控台應用程式和一個 Node.js 主控台應用程式：
 
-* **CallMethodOnDevice.js** (必須從後端執行的 .NET 應用程式) 會在模擬裝置應用程式中呼叫方法並顯示回應。
+* **CallMethodOnDevice.js**，這是 NET 後端應用程式，可在模擬裝置應用程式中呼叫方法，並顯示回應。
 * **TwinSimulatedDevice.js** 是可模擬裝置的 Node.js 應用程式，而此裝置會以稍早建立的裝置身分識別連接到您的 IoT 中樞，並回應雲端所呼叫的方法。
 
 > [!NOTE]
@@ -44,7 +44,7 @@ ms.openlocfilehash: f2af421140f4f6640578a372993c2553f8c590a4
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
-在本節中，您建立 Node.js 主控台應用程式，回應後端所呼叫的方法。
+在本節中，您建立 Node.js 主控台應用程式，回應解決方案後端所呼叫的方法。
 
 1. 建立稱為 **simulateddevice**的新的空資料夾。 在 **simulateddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
    
@@ -65,7 +65,7 @@ ms.openlocfilehash: f2af421140f4f6640578a372993c2553f8c590a4
     var Mqtt = require('azure-iot-device-mqtt').Mqtt;
     var DeviceClient = require('azure-iot-device').Client;
     ```
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。 將 **{裝置連接字串}** 取代為您在*建立裝置身分識別*章節中產生的連接字串：
+5. 新增 **connectionString** 變數，並用它來建立 **DeviceClient** 執行個體。 將 **{device connection string}** 取代為您在*建立裝置身分識別*一節中產生的連接字串：
    
     ```
     var connectionString = '{device connection string}';
@@ -112,15 +112,15 @@ ms.openlocfilehash: f2af421140f4f6640578a372993c2553f8c590a4
    
     ![新的 Visual C# Windows 傳統桌面專案][10]
 2. 在 [方案總管] 中，以滑鼠右鍵按一下 **CallMethodOnDevice** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Microsoft Azure IoT 服務 SDK][lnk-nuget-service-sdk] Nuget 套件與其相依項目，並加入對它的參考。
+3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
    
-    ![Nuget 套件管理員視窗][11]
+    ![NuGet 封裝管理員視窗][11]
 
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using System.Threading.Tasks;
         using Microsoft.Azure.Devices;
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串。
+5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
    
         static ServiceClient serviceClient;
         static string connectionString = "{iot hub connection string}";
@@ -183,7 +183,7 @@ ms.openlocfilehash: f2af421140f4f6640578a372993c2553f8c590a4
 <!-- Links -->
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/blob/master/doc/node-devbox-setup.md
 
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
@@ -201,6 +201,6 @@ ms.openlocfilehash: f2af421140f4f6640578a372993c2553f8c590a4
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

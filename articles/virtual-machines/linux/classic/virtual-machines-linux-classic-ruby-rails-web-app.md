@@ -13,11 +13,11 @@ ms.workload: web
 ms.tgt_pltfrm: vm-linux
 ms.devlang: ruby
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b8ab951046e031e5b1f8ae428ba7dc6ea936066e
+ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
+ms.openlocfilehash: 7b3c6da0e158c2824a5feb084a13eafe265762ce
 
 
 ---
@@ -27,7 +27,7 @@ ms.openlocfilehash: b8ab951046e031e5b1f8ae428ba7dc6ea936066e
 此教學課程使用 Ubuntu Server 14.04 LTS 通過驗證。 若使用不同的 Linux 發行版本，您可能需要修改這些步驟以安裝 Rails。
 
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../../../resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 > 
 > 
 
@@ -44,7 +44,7 @@ ms.openlocfilehash: b8ab951046e031e5b1f8ae428ba7dc6ea936066e
 佈建 VM 之後，按一下 VM 名稱，然後按一下 [儀表板] 。 尋找列在 [SSH 詳細資料] 下的 SSH 端點。
 
 ### <a name="azure-cli"></a>Azure CLI
-依照[建立執行 Linux 的虛擬機器][vm-instructions]中的步驟執行。
+請依照[建立執行 Linux 的虛擬機器][vm-instructions]中的步驟執行。
 
 佈建 VM 之後，您可以透過執行下列命令來取得 SSH 端點：
 
@@ -117,19 +117,19 @@ ms.openlocfilehash: b8ab951046e031e5b1f8ae428ba7dc6ea936066e
 ## <a name="next-steps"></a>後續步驟
 在此教學課程中，您必須手動執行大部分的步驟。 在生產環境中，您會在開發電腦上撰寫應用程式，並將它部署至 Azure VM。 另外，大部分生產環境均代管 Rails 應用程式以及 Apache 或 NginX 之類的其他伺服器程序，處理傳送至多個 Rails 應用程式及執行個體並提供靜態資源的要求。 如需詳細資訊，請參閱 http://rubyonrails.org/deploy/。
 
-若要深入了解 Rails 上的 Ruby，請瀏覽 [Rails 上的 Ruby 指南][rails-guides]。
+若要深入了解 Ruby on Rails，請瀏覽 [Ruby on Rails 指南 (英文)][rails-guides]。
 
 若要從您的 Ruby 應用程式 使用 Azure 服務，請參閱：
 
 * [使用 Blob 儲存非結構化資料][blobs]
-* [使用資料表儲存機碼值組][資料表]
+* [使用資料表儲存機碼/值組][tables]
 * [使用內容傳遞網路提供高頻寬內容][cdn-howto]
 
 <!-- WA.com links -->
 [blobs]: ../../../storage/storage-ruby-how-to-use-blob-storage.md
 [cdn-howto]: https://azure.microsoft.com/develop/ruby/app-services/
 [management-portal]: https://manage.windowsazure.com/
-[資料表]: ../../../storage/storage-ruby-how-to-use-table-storage.md
+[tables]: ../../../storage/storage-ruby-how-to-use-table-storage.md
 [vm-instructions]: ../../virtual-machines-linux-classic-createportal.md
 
 <!-- External Links -->
@@ -140,12 +140,12 @@ ms.openlocfilehash: b8ab951046e031e5b1f8ae428ba7dc6ea936066e
 
 [default-rails-cloud]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/basicrailscloud.png
 [vmlist]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/vmlist.png
-[Endpoints]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/endpoints.png
+[endpoints]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/endpoints.png
 [new-endpoint]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/newendpoint.png
 [new-endpoint1]: ./media/virtual-machines-linux-classic-ruby-rails-web-app/newendpoint1.png
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 

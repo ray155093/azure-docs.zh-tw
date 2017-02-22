@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database 查詢效能深入解析"
+title: "Azure SQL Database 的查詢效能深入解析 | Microsoft Docs"
 description: "查詢效能監視可識別 Azure SQL Database 的大部分 CPU 取用的查詢。"
 services: sql-database
 documentationcenter: 
@@ -8,6 +8,7 @@ manager: jhubbard
 editor: monicar
 ms.assetid: c2f580b2-3835-453f-89f5-140e02dd2ea7
 ms.service: sql-database
+ms.custom: monitor and tune
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,8 +16,8 @@ ms.workload: data-management
 ms.date: 08/09/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
+ms.sourcegitcommit: ddf93a0db278fffa2aa45fdc73a1c7f57a84fb39
+ms.openlocfilehash: 14140a6aa8c8cccf658f8e98305659e8ae76dcad
 
 
 ---
@@ -31,7 +32,6 @@ ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
 
 
 ## <a name="prerequisites"></a>必要條件
-* 「查詢效能深入解析」僅適用於 Azure SQL Database V12。
 * 「查詢效能深入解析」要求 [查詢存放區](https://msdn.microsoft.com/library/dn817826.aspx) 在您的資料庫上為作用中狀態。 如果查詢存放區不在執行中，則入口網站會提示您將它開啟。
 
 ## <a name="permissions"></a>權限
@@ -71,7 +71,7 @@ ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
    
     底部格線則代表可見查詢的彙總資訊。
    
-   * 查詢識別碼 – 資料庫內部查詢的唯一識別碼。
+   * 查詢識別碼 - 資料庫內部查詢的唯一識別碼。
    * 在可觀察時間間隔期間每個查詢的 CPU (取決於彙總函式)。
    * 每個查詢的持續時間 (取決於彙總函式)。
    * 特定查詢的總執行次數。
@@ -176,9 +176,9 @@ ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
 
 擷取原則可以設定為：
 
-* **All** ：擷取所有的查詢。
-* **Auto** ：會忽略執行不頻繁的查詢，以及編譯和執行持續時間微不足道的查詢。 執行次數、編譯及執行階段持續時間的臨界值是由內部決定的。 這是預設選項。
-* **None** ：查詢存放區會停止擷取新的查詢，不過仍然會收集已擷取查詢的執行階段統計資料。
+* **All**：擷取所有的查詢。
+* **Auto**：會忽略不常執行的查詢，以及編譯和執行持續時間微不足道的查詢。 執行次數、編譯及執行階段持續時間的臨界值是由內部決定的。 這是預設選項。
+* **None**：「查詢存放區」會停止擷取新的查詢，不過仍然會收集已擷取查詢的執行階段統計資料。
 
 我們建議您將所有原則設定為 [AUTO]，並將清除原則設定為 30 天：
 
@@ -228,6 +228,6 @@ ms.openlocfilehash: 174fedeb49b1ce8ca84ff2302314d683fe181fff
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO5-->
 
 

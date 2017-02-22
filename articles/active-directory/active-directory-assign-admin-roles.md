@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/31/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a7b22dba766628279b175d73eda3f01866aeba9d
+ms.sourcegitcommit: 2d428e0e3aaf8fd4a2138648411da644ccd308f6
+ms.openlocfilehash: 3c19c2035b8dc9717dced5164b0214ab8019afd1
 
 
 ---
@@ -25,16 +25,15 @@ ms.openlocfilehash: a7b22dba766628279b175d73eda3f01866aeba9d
 
 可用的系統管理員角色如下：
 
-* **計費管理員**：進行採購、管理訂用帳戶、管理支援票證，以及監控服務健全狀況。
-* **全域管理員/公司系統管理員**：可以存取所有系統管理功能。 註冊 Azure 帳戶的人員會變成全域管理員。 只有全域管理員才能指派其他系統管理員角色。 您的公司可以有多位全域管理員。
+* **[計費管理員](#billing-administrator)**：進行採購、管理訂用帳戶、管理支援票證，以及監控服務健全狀況。
+* **[全域管理員/公司系統管理員](#global-administrator)**：可以存取所有系統管理功能。 註冊 Azure 帳戶的人員會變成全域管理員。 只有全域管理員才能指派其他系統管理員角色。 您的公司可以有多位全域管理員。
 
   > [!NOTE]
   > 在 Microsoft Graph API、Azure AD Graph API 及 Azure AD PowerShell 中，是將此角色識別為「公司系統管理員」。 它是 [Azure 入口網站](https://portal.azure.com)中的「全域管理員」。
   >
   >
-* **規範管理員**：
+* **規範管理員**：此角色的使用者擁有 [Office 365 安全性與法規遵循中心](https://support.office.com/en-us/article/Permissions-in-the-Office-365-Security-Compliance-Center-d10608af-7934-490a-818e-e68f17d0e9c1?ui=en-US&rs=en-US&ad=US&fromAR=1)和 [Exchange 系統管理中心](https://technet.microsoft.com/en-us/library/jj657489(v=exchg.150).aspx)中的管理權限，以及在 Office 365 管理中心中讀取報告的存取權。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
 * **CRM 服務管理員**︰具備此角色的使用者在有 Microsoft CRM Online 服務時，於該服務內具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
-* **客戶加密箱存取核准者**︰已啟用「加密箱」服務時，具備此角色的使用者可以核准要求讓 Microsoft 工程師存取公司資訊。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
 * **裝置系統管理員**︰具備此角色的使用者會在所有已加入 Azure Active Directory 的 Windows 10 裝置上成為「系統管理員」。
 * **目錄讀取器**︰這是舊版角色，用來指派給不支援 [同意架構](active-directory-integrating-applications.md)的應用程式。 不應將它指派給任何使用者。
 * **目錄同步作業帳戶**：請勿使用。 此角色會自動指派給 Azure AD Connect 服務，不適用於也不支援任何其他用途。
@@ -43,22 +42,25 @@ ms.openlocfilehash: a7b22dba766628279b175d73eda3f01866aeba9d
 * **Intune 服務管理員**︰在有 Microsoft Intune Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
 * **商務用 Skype 服務管理員**︰在有 Microsoft 商務用 Skype 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。 這個角色先前稱為「Lync 服務管理員」  角色。
 * **來賓邀請者**：具備此角色的使用者可以管理來賓邀請。 這不包含任何其他權限。
-* **密碼管理員/技術支援中心管理員**：重設密碼、管理服務要求，以及監視服務健全狀況。 密碼管理員可以僅重設使用者和其他密碼管理員的密碼。
+* **信箱管理員**︰此角色僅用來當作 RIM Blackberry 裝置的 Exchange Online 電子郵件支援的一部分。 如果您的組織不使用 RIM Blackberry 裝置上的 Exchange Online 電子郵件，請勿使用此角色。
+* **合作夥伴第 1 層支援**︰請勿使用。 此角色已被取代，而且未來將從 Azure AD 中移除。 此角色僅供少數 Microsoft 轉售合作夥伴使用，不適用於一般用途。
+* **合作夥伴第 2 層支援**︰請勿使用。 此角色已被取代，而且未來將從 Azure AD 中移除。 此角色僅供少數 Microsoft 轉售合作夥伴使用，不適用於一般用途。
+* **[密碼管理員/技術支援中心管理員](#password-administrator)**：重設密碼、管理服務要求，以及監視服務健全狀況。 密碼管理員可以僅重設使用者和其他密碼管理員的密碼。
 
   > [!NOTE]
   > 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「技術支援中心管理員」。
   >
   >
 * **SharePoint 服務管理員**︰在有 Microsoft SharePoint Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
-* **服務管理員**：管理服務要求，以及監控服務健全狀況。
+* **[服務管理員](#service-administrator)**：管理服務要求，以及監控服務健全狀況。
 
   > [!NOTE]
   > 若要指派服務管理員角色給使用者，全域管理員必須先指派管理權限給服務中的該使用者，例如 Exchange Online，再指派服務管理員角色給 Azure 傳統入口網站中的使用者。
   >
   >
-* **使用者帳戶管理員**：重設密碼、監視服務健全狀況，以及管理使用者帳戶、使用者群組和服務要求。 部分限制適用於使用者管理管理員的權限。 例如，他們無法刪除全域管理員，或建立其他管理員。 此外，他們無法重設計費、全域和服務管理員的密碼。
-* **安全性讀取者**︰能夠以唯讀方式存取「Identity Protection 中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 安全性與規範中心」的一些安全性功能。
-* **安全性系統管理員**︰具備「安全性讀取者」角色的所有唯讀權限，再加上下列相同服務的一些額外系統管理權限︰「Identity Protection 中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 安全性與規範中心」。
+* **[使用者帳戶管理員](#user-administrator)**：重設密碼、監視服務健全狀況，以及管理使用者帳戶、使用者群組和服務要求。 部分限制適用於使用者管理管理員的權限。 例如，他們無法刪除全域管理員，或建立其他管理員。 此外，他們無法重設計費、全域和服務管理員的密碼。
+* **[安全性讀取者](#security-reader)**︰能夠以唯讀方式存取「Identity Protection 中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 安全與規範中心」的一些安全性功能。
+* **[安全性系統管理員](#security-administrator)**︰具備「安全性讀取者」角色的所有唯讀權限，再加上下列相同服務的一些額外系統管理權限︰「Identity Protection 中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 安全與規範中心」。
 
 ## <a name="administrator-permissions"></a>系統管理員權限
 ### <a name="billing-administrator"></a>計費管理員
@@ -113,7 +115,7 @@ ms.openlocfilehash: a7b22dba766628279b175d73eda3f01866aeba9d
 7. 完成時，請按一下 [ **儲存**]。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱 [如何新增或變更 Azure 系統管理員角色](../billing-add-change-azure-subscription-administrator.md)
+* 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱 [如何新增或變更 Azure 系統管理員角色](../billing/billing-add-change-azure-subscription-administrator.md)
 * 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱 [了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 * 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 * [管理使用者](active-directory-create-users.md)
@@ -122,6 +124,6 @@ ms.openlocfilehash: a7b22dba766628279b175d73eda3f01866aeba9d
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -11,14 +11,14 @@ ms.assetid: 89e3e9ce-2eeb-4949-b40f-6fc3bf520538
 ms.service: sql-database
 ms.custom: overview
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: NA
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 3d619f5d6959594ee9b139d611d7e45390a40c55
-ms.openlocfilehash: d9b0eaa48d71f3ecf0a23f3bddb3c777c98afea7
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: 8b22b5ac29e855f3074cab01042057f214e9e9b7
 
 
 ---
@@ -30,7 +30,7 @@ DTU 是資源的度量單位，而這些資源保證可用於[單一資料庫服
 
 ![SQL Database 簡介：不同層級和等級的單一資料庫 DTU](./media/sql-database-what-is-a-dtu/single_db_dtus.png)
 
-您可以在應用程式停機時間最短 (通常平均少於四秒) 的情況下，隨時 [變更服務層](sql-database-scale-up.md) 。 對於許多企業和應用程式而言，只要能夠建立資料庫，並依需求調高或調低的效能即可，尤其是當使用模式相當容易預測時更是如此。 但如果您有無法預測的使用模式，則管理成本和商務模式就會變得相當困難。 在此案例中，您可使用具有特定 eDTU 數目的彈性集區。
+您可以在應用程式停機時間最短 (通常平均少於四秒) 的情況下，隨時 [變更服務層](sql-database-service-tiers.md) 。 對於許多企業和應用程式而言，只要能夠建立資料庫，並依需求調高或調低的效能即可，尤其是當使用模式相當容易預測時更是如此。 但如果您有無法預測的使用模式，則管理成本和商務模式就會變得相當困難。 在此案例中，您可使用具有特定 eDTU 數目的彈性集區。
 
 ## <a name="what-are-elastic-database-transaction-units-edtus"></a>何謂彈性資料庫交易單位 (eDTU)
 eDTU 是可以在 Azure SQL 伺服器上一組資料庫 (稱為 [彈性集區](sql-database-elastic-pool.md)) 之間共用的資源集 (DTU) 的度量單位。 彈性集區提供符合成本效益的簡單解決方案，以管理多個不同且具備無法預測的使用模式資料庫的效能目標。 如需詳細資訊，請參閱 [彈性集區和服務層](sql-database-service-tiers.md#elastic-pool-service-tiers-and-performance-in-edtus) 。
@@ -58,6 +58,6 @@ eDTU 是可以在 Azure SQL 伺服器上一組資料庫 (稱為 [彈性集區](s
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

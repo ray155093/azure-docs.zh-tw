@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Machine Learning 函式調整串流分析作業 | Microsoft Docs"
+title: "使用 Azure 串流分析與 AzureML 函式調整作業 | Microsoft Docs"
 description: "了解如何在使用 Azure Machine Learning 函式時適當地調整串流分析作業 (資料分割、SU 數量等)。"
 keywords: 
 documentationcenter: 
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 09/26/2016
+ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ad7ac0056cead32332b63add61655dbc1d2cb37c
+ms.sourcegitcommit: b36fd0b4a52ae2e13a5b5dcde412994a0656e3d3
+ms.openlocfilehash: 27f2ac3d54226501e254d9a8fef6cc378eb9a860
 
 
 ---
@@ -36,17 +36,17 @@ ms.openlocfilehash: ad7ac0056cead32332b63add61655dbc1d2cb37c
 
 一般而言，每 6 個 SU 有 20 個對 Machine Learning Web 服務的同時連線，但是 1 SU 作業和 3 SU 作業也會取得 20 個同時連線。  例如，如果輸入資料速率是每秒 200,000 個事件，且批次大小保留為預設值 1000，則 1000 個事件迷你批次產生的 Web 服務延遲是 200 毫秒。 這表示每個連線可以在 1 秒內向 Machine Learning Web 服務提出 5 個要求。 透過 20 個連線，串流分析作業可以在 200 毫秒內處理 20,000 個事件，因此在 1 秒內可處理 100,000 個事件。 所以若要每秒處理 200,000 個事件，串流分析作業需要 40 個同時連線，結果出現 12 個 SU。 下圖說明串流分析作業向 Machine Learning Web 服務端點提出的要求︰每 6 個 SU 最多有 20 個對 Machine Learning Web 服務的同時連線。
 
-![使用 Machine Learning 函式 2 作業範例調整串流分析](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-00.png "Scale Stream Analytics with Machine Learning Functions 2 job example")
+![使用 Machine Learning 函式 2 作業範例調整串流分析](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-00.png "使用 Machine Learning 函式 2 作業範例調整串流分析")
 
 一般而言，***B*** 代表批次大小，***L*** 代表批次大小 B 的 Web 服務延遲 (以毫秒為單位)，而具有 ***N*** 個 SU 的串流分析作業的輸送量為：
 
-![使用 Machine Learning 函式公式調整串流分析](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-02.png "Scale Stream Analytics with Machine Learning Functions Formula")
+![使用 Machine Learning 函式公式調整串流分析](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-02.png "使用 Machine Learning 函式公式調整串流分析")
 
-另一項考量可能是 Machine Learning web 服務端上的「最大同時呼叫」，建議將此值設定為最大值 (目前為 200)。
+另一項考量可能是 Machine Learning web 服務端上的「最大同時呼叫」，建議將此值設定為最大值 (目前為&200;)。
 
 如需此設定的詳細資訊，請參閱 [Machine Learning Web 服務的調整文章](../machine-learning/machine-learning-scaling-webservice.md)。
 
-## <a name="example-sentiment-analysis"></a>範例 – 情感分析
+## <a name="example--sentiment-analysis"></a>範例 – 情感分析
 以下範例包含具有情感分析 Machine Learning 函式的串流分析作業，如 [串流分析 Machine Learning 整合教學課程](stream-analytics-machine-learning-integration-tutorial.md)所述。
 
 此查詢是一個簡單的完全分割查詢，其後接著 **sentiment** 函式，如下所示︰
@@ -95,7 +95,7 @@ ms.openlocfilehash: ad7ac0056cead32332b63add61655dbc1d2cb37c
 ## <a name="new-function-related-monitoring-metrics"></a>新的函式相關監視計量
 在串流分析作業的 [監視] 區域中，已加入三個額外的函式相關計量。 分別是 [函式要求]、[函式事件] 和 [失敗的函式要求]，如下圖所示。
 
-![使用 Machine Learning 函式計量調整串流分析](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-01.png "Scale Stream Analytics with Machine Learning Functions Metrics")
+![使用 Machine Learning 函式計量調整串流分析](./media/stream-analytics-scale-with-ml-functions/stream-analytics-scale-with-ml-functions-01.png "使用 Machine Learning 函式計量調整串流分析")
 
 其定義如下：
 
@@ -125,6 +125,6 @@ ms.openlocfilehash: ad7ac0056cead32332b63add61655dbc1d2cb37c
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷 | Microsoft Docs"
+title: "使用 Azure PowerShell 在 Windows VM 上啟用診斷 | Microsoft Docs"
 services: virtual-machines-windows
 documentationcenter: 
 description: "了解如何使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷"
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/15/2015
 ms.author: saurabh
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: 8c4bc48c6ddb9bc03198f0f6c630b05d987a4b43
+ms.sourcegitcommit: ee413eef16291f98f3d5b1bd54602f167ebe87f7
+ms.openlocfilehash: 795d70951452155ebc58100063c0720a055e1405
 
 
 ---
@@ -201,6 +201,6 @@ Cmdlet 所傳回的 *PublicSettings*包含 Base64 編碼格式的 XML 組態。 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

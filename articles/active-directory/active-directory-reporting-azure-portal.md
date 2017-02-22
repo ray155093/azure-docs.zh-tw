@@ -12,20 +12,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/31/2016
+ms.date: 01/19/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: e082470c8ad3ee02c528a4ca6e3326e5be4752a3
+ms.sourcegitcommit: be986fd7bb1745dcf43a1066dfabc1e1c699ab4c
+ms.openlocfilehash: b9cd11954a52600c1cd50155cb7ce9b7d2355cd3
 
 
 ---
 # <a name="azure-active-directory-reporting---preview"></a>Azure Active Directory 報告 - 預覽版
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](active-directory-reporting-azure-portal.md)
-> * [Azure 傳統入口網站](active-directory-reporting-guide.md)
-> 
-> 
+
 
 *這份文件是 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)的一部分。*
 
@@ -48,15 +44,15 @@ ms.openlocfilehash: e082470c8ad3ee02c528a4ca6e3326e5be4752a3
 
 此資料的進入點是 [使用者和群組] 之下 [概觀] 區段中的使用者登入圖。
 
- ![報告](./media/active-directory-reporting-azure-portal/05.png "Reporting")
+ ![報告](./media/active-directory-reporting-azure-portal/05.png "報告")
 
 使用者登入圖會顯示在指定的時間週期中所有使用者的每週登入彙總。 時間週期的預設值是 30 天。
 
-![報告](./media/active-directory-reporting-azure-portal/02.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/02.png "報告")
 
 當您按一下登入圖中的某一天時，您會取得登入活動的詳細清單。
 
-![報告](./media/active-directory-reporting-azure-portal/03.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/03.png "報告")
 
 登入活動清單中的每一列會提供有關所選登入的詳細資訊，例如︰
 
@@ -75,27 +71,27 @@ ms.openlocfilehash: e082470c8ad3ee02c528a4ca6e3326e5be4752a3
 
 此資料的進入點是在 [企業應用程式] 之下 [概觀] 區段中的最近 30 天報告內您的組織中排名前 3 個應用程式。
 
- ![報告](./media/active-directory-reporting-azure-portal/06.png "Reporting")
+ ![報告](./media/active-directory-reporting-azure-portal/06.png "報告")
 
 應用程式使用圖會顯示在指定的時間週期中排名前 3 個應用程式的每週登入彙總。 時間週期的預設值是 30 天。
 
-![報告](./media/active-directory-reporting-azure-portal/78.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/78.png "報告")
 
 如果您想要，您可以將焦點設在特定的應用程式。
 
-![報告](./media/active-directory-reporting-azure-portal/single_spp_usage_graph.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/single_spp_usage_graph.png "報告")
 
 當您按一下應用程式使用圖中的某一天時，您會取得登入活動的詳細清單。
 
-![報告](./media/active-directory-reporting-azure-portal/top_app_sign_ins.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/top_app_sign_ins.png "報告")
 
 [登入]  選項會提供您的應用程式的所有登入事件的完整概觀。
 
-![報告](./media/active-directory-reporting-azure-portal/85.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/85.png "報告")
 
 使用欄位選擇器，可以選取您想要顯示的資料欄位。
 
-![報告](./media/active-directory-reporting-azure-portal/column_chooser.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/column_chooser.png "報告")
 
 ### <a name="filtering-sign-ins"></a>篩選登入
 您可以篩選登入，以使用下列欄位限制顯示的資料量：
@@ -106,12 +102,12 @@ ms.openlocfilehash: e082470c8ad3ee02c528a4ca6e3326e5be4752a3
 * 用戶端名稱
 * 登入狀態
 
-![報告](./media/active-directory-reporting-azure-portal/293.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/293.png "報告")
 
 篩選登入活動項目的另一種方法是搜尋特定項目。
 此搜尋方法可讓您將登入的範圍設定為特定**使用者**、**群組**或**應用程式**。
 
-![報告](./media/active-directory-reporting-azure-portal/84.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/84.png "報告")
 
 ## <a name="audit-logs"></a>稽核記錄檔
 Azure Active Directory 中的稽核記錄檔會提供系統活動的記錄以符合法規。
@@ -126,15 +122,15 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 所有稽核資料的進入點是 [Azure Active Directory] 的 [活動] 區段中的 [稽核記錄檔]。
 
-![稽核](./media/active-directory-reporting-azure-portal/61.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/61.png "稽核")
 
 稽核記錄檔的清單檢視可顯示動作項目 (何者)、活動 (何事) 和目標。
 
-![稽核](./media/active-directory-reporting-azure-portal/345.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/345.png "稽核")
 
 按一下清單檢視中的項目，即可取得更多詳細資料。
 
-![稽核](./media/active-directory-reporting-azure-portal/873.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/873.png "稽核")
 
 ### <a name="users-and-groups-audit-logs"></a>使用者和群組稽核記錄檔
 透過以使用者和群組為基礎的稽核報告，可以取得下列問題的解答︰
@@ -150,7 +146,7 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 如果您只想檢閱使用者和群組相關的稽核資料，您可以在 [使用者和群組] 的 [活動] 區段中的 [稽核記錄檔] 之下找到篩選過的檢視。
 
-![稽核](./media/active-directory-reporting-azure-portal/93.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/93.png "稽核")
 
 ### <a name="application-audit-logs"></a>應用程式稽核記錄檔
 透過以應用程式為基礎的稽核報告，可以取得下列問題的解答︰
@@ -163,7 +159,7 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 如果您只想檢閱應用程式相關的稽核資料，您可以在 [企業應用程式] 的 [活動] 區段中的 [稽核記錄檔] 之下找到篩選過的檢視。
 
-![稽核](./media/active-directory-reporting-azure-portal/134.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/134.png "稽核")
 
 ### <a name="filtering-audit-logs"></a>篩選稽核記錄檔
 您可以篩選登入，以使用下列欄位限制顯示的資料量：
@@ -173,7 +169,7 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 * 活動類型
 * 活動
 
-![稽核](./media/active-directory-reporting-azure-portal/356.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/356.png "稽核")
 
 [活動類型] 清單的內容會繫結至此刀鋒視窗的進入點。  
 如果您的進入點是 Azure Active Directory，此清單包含所有可能的活動類型︰
@@ -186,16 +182,16 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 * 原則
 * 其他
 
-![稽核](./media/active-directory-reporting-azure-portal/825.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/825.png "稽核")
 
 列出的活動是依照活動類型區分範圍。
 例如，如果將 [群組] 選取為 [活動型別]，則 [活動] 清單只包含群組相關活動。   
 
-![稽核](./media/active-directory-reporting-azure-portal/654.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/654.png "稽核")
 
 篩選稽核記錄檔項目的另一種方法是搜尋特定項目。
 
-![稽核](./media/active-directory-reporting-azure-portal/237.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/237.png "稽核")
 
 ## <a name="next-steps"></a>後續步驟
 請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。
@@ -203,6 +199,6 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO3-->
 
 

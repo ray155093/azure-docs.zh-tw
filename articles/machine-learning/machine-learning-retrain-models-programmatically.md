@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: raymondl;garye;v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8544f04360c44d54b9c3e69448b6d5b29826f06c
+ms.sourcegitcommit: cd32cb7d2247676795f345448960d547eafba084
+ms.openlocfilehash: 9290258998f6756dce55a764e020fb3278c2f8a6
 
 
 ---
@@ -39,15 +39,16 @@ ms.openlocfilehash: 8544f04360c44d54b9c3e69448b6d5b29826f06c
 
 1. 登入 Microsoft Azure Machine Learning Studio。 
 2. 按一下儀表板右下角的 [新增] 。
-3. 從 Microsoft 範例中，選取 [範例 5。
+3. 從 Microsoft 範例中，選取 範例 5。
 4. 若要重新命名此實驗，在頂端的實驗畫布上，選取實驗名稱 [範例 5：定型、測試、評估二進位分類：成人資料集]。
 5. 輸入「普查模型」。
 6. 在實驗畫布底端，按一下 [執行] 。
 7. 按一下 [設定 Web 服務]，然後選取 [重新訓練 Web 服務]。 
+
+以下顯示初始實驗。
    
    ![初始實驗。][2]
 
-圖 2︰初始實驗。
 
 ## <a name="create-a-predictive-experiment-and-publish-as-a-web-service"></a>建立預測性實驗並發佈為 Web 服務
 接下來，您要建立預測性實驗。
@@ -79,7 +80,7 @@ ms.openlocfilehash: 8544f04360c44d54b9c3e69448b6d5b29826f06c
 
 ![執行後產生的工作流程。][4]
 
-圖 3︰執行後產生的工作流程。
+
 
 ## <a name="retrain-the-model-with-new-data-using-bes"></a>使用 BES 以新資料重新定型模型
 在此範例中，您使用 C# 建立重新訓練應用程式。 您也可以使用 Python 或 R 範例程式碼來完成這項工作。
@@ -185,6 +186,6 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如 C:\temp\CensusIpnput.c
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Jan17_HO2-->
 
 

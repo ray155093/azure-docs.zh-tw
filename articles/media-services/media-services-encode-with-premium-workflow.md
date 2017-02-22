@@ -15,26 +15,26 @@ ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 4e86a871222def32f7779f07eab5668d366ecec4
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 6dcc79a2adf81c82d245c99116f28eb4db983396
 
 
 ---
 # <a name="advanced-encoding-with-media-encoder-premium-workflow"></a>使用 Media Encoder Premium Workflow 進行進階編碼
 > [!NOTE]
 > 本主題中討論的媒體編碼器高階工作流程媒體處理器無法在中國使用。
-> 
-> 
+>
+>
 
 如有進階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
 
 ## <a name="overview"></a>Overview
-Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處理器。 此處理器為高階隨選工作流程提供先進的編碼功能。 
+Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處理器。 此處理器為高階隨選工作流程提供先進的編碼功能。
 
-以下主題說明 **Media Encoder Premium Workflow**的相關詳細資料： 
+以下主題說明 **Media Encoder Premium Workflow**的相關詳細資料：
 
 * [Media Encoder Premium Workflow 支援的格式](media-services-premium-workflow-encoder-formats.md) – 討論 **Media Encoder Premium Workflow**支援的檔案格式和轉碼器。
-* [比較編碼器](media-services-encode-asset.md#compare_encoders)一節比較**媒體編碼器高階工作流程**和**媒體編碼器標準**的編碼功能。
+* [Azure 隨選媒體編碼器的概觀和比較](media-services-encode-asset.md)比較 **Media Encoder Premium Workflow** 和**媒體編碼器標準**的編碼功能。
 
 本主題示範如何使用 .NET 以 **Media Encoder Premium Workflow** 進行編碼。
 
@@ -47,29 +47,29 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 
 工作流程檔案必須上傳至媒體服務帳戶做為資產，而且應將此資產傳遞給編碼工作。
 
-下列範例示範如何使用 **Media Encoder Premium Workflow**進行編碼。 
+下列範例示範如何使用 **Media Encoder Premium Workflow**進行編碼。
 
-會執行下列步驟： 
+會執行下列步驟：
 
-1. 建立資產並上傳工作流程檔案。 
+1. 建立資產並上傳工作流程檔案。
 2. 建立資產並上傳來源媒體檔案。
 3. 取得“Media Encoder Premium Workflow”媒體處理器。
-4. 建立工作 (Job) 和工作 (Task)。 
-   
+4. 建立工作 (Job) 和工作 (Task)。
+
     在大部分情況下，工作的組態字串是空的 (如下列範例)。 在一些進階的案例 (會要求您動態設定執行階段屬性) 情況下，您可以提供 XML 字串給編碼工作。 這類案例的範例包括：建立疊加、平行或循序的媒體編結、顯示字幕。
 5. 將兩個輸入資產加入工作 (Task)。
-   
+
     a. 第一個 – 工作流程資產。
-   
+
     b. 第二個 – 視訊資產。
-   
-    **注意**：加入媒體資產前，必須先加入工作流程資產至工作 (Task)。 
-   這項工作 (Task) 的組態字串應該是空的。 
+
+    **注意**：加入媒體資產前，必須先加入工作流程資產至工作 (Task)。
+   這項工作 (Task) 的組態字串應該是空的。
 6. 提交編碼工作 (Job)。
 
 以下是完整的範例。 如需如何使用媒體服務 .NET 開發進行設定的相關資訊，請參閱 [使用 .NET 進行媒體服務開發](media-services-dotnet-how-to-use.md)。
 
-     using System; 
+     using System;
     using System.Linq;
     using System.Configuration;
     using System.IO;
@@ -116,7 +116,7 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 
                 var workflowAsset = CreateAssetAndUploadSingleFile(_workflowFilePath);
                 var videoAsset = CreateAssetAndUploadSingleFile(_singleMP4InputFilePath);
-                IAsset outputAsset = CreateEncodingJob(workflowAsset, videoAsset); 
+                IAsset outputAsset = CreateEncodingJob(workflowAsset, videoAsset);
 
             }
 
@@ -151,7 +151,7 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
             {
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("Premium Workflow encoding job");
-                // Get a media processor reference, and pass to it the name of the 
+                // Get a media processor reference, and pass to it the name of the
                 // processor to use for the specific task.
                 IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Premium Workflow");
 
@@ -164,9 +164,9 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                 // Specify the input asset to be encoded.
                 task.InputAssets.Add(workflow);
                 task.InputAssets.Add(video); // we add one asset
-                // Add an output asset to contain the results of the job. 
-                // This output is specified as AssetCreationOptions.None, which 
-                // means the output asset is not encrypted. 
+                // Add an output asset to contain the results of the job.
+                // This output is specified as AssetCreationOptions.None, which
+                // means the output asset is not encrypted.
                 task.OutputAssets.AddNew("Output asset",
                     AssetCreationOptions.None);
 
@@ -177,12 +177,12 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                 // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job to finish. 
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
                 progressJobTask.Wait();
 
-                // If job state is Error the event handling 
-                // method for job progress should log errors.  Here we check 
+                // If job state is Error the event handling
+                // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)
                 {
@@ -279,7 +279,6 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Dec16_HO2-->
 
 

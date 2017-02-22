@@ -1,6 +1,6 @@
 ---
-title: "從 Azure 服務管理移轉到 Azure Resource Manager 的社群工具"
-description: "本文收錄由社群所提供，可協助將 IaaS 資源從 Azure 服務管理移轉至 Azure Resource Manager 堆疊的工具。"
+title: "社群工具 - 將傳統資源移到 Azure Resource Manager | Microsoft Docs"
+description: "本文收錄由社群所提供、可協助將 IaaS 資源從傳統模型移轉至 Azure Resource Manager 部署模型的工具。"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -13,16 +13,16 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 08/29/2016
-ms.author: singhkay
+ms.date: 1/23/2017
+ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 032a7068cce78036caec587bfc53abddf5a36659
+ms.sourcegitcommit: 2deaf44de51a989463826d6e4815f9ce9f0bbee5
+ms.openlocfilehash: 4b1fd3527140bc40299c008071753a91d264d567
 
 
 ---
-# <a name="community-tools-for-azure-service-management-to-azure-resource-manager-migration"></a>從 Azure 服務管理移轉到 Azure Resource Manager 的社群工具
-本文收錄由社群所提供，可協助將 IaaS 資源從 Azure 服務管理移轉至 Azure Resource Manager 堆疊的工具。
+# <a name="community-tools-to-migrate-iaas-resources-from-classic-to-azure-resource-manager"></a>可將 IaaS 資源從傳統模型移轉至 Azure Resource Manager 的社群工具
+本文收錄由社群所提供、可協助將 IaaS 資源從傳統模型移轉至 Azure Resource Manager 部署模型的工具。
 
 > [!NOTE]
 > 這些工具尚未獲得 Microsoft 支援服務的官方支援。 因此可在 Github 上取得其開放原始碼，我們很樂意收到修正或其他案例的 PR。 若要回報問題，請使用 Github 問題功能。
@@ -36,18 +36,18 @@ ms.openlocfilehash: 032a7068cce78036caec587bfc53abddf5a36659
 > 
 
 ## <a name="asm2arm"></a>ASM2ARM
-這是將您的 **單一** 虛擬機器 (VM) 從 Azure 服務管理堆疊移轉至 Azure Resource Manager 堆疊的 PowerShell 指令碼模組。 
+這是一個 PowerShell 指令碼模組，可將您的「單一」虛擬機器 (VM) 從傳統模型移轉至 Azure Resource Manager 部署模型。 
 
 [連結至工具文件](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/asm2arm)
 
 ## <a name="migaz"></a>migAz
-migAz 是將一組完整的 Azure 服務管理 IaaS 資源移轉至 Azure Resource Manager IaaS 資源的額外選項。 移轉可能會發生在相同的訂用帳戶內或不同的訂用帳戶與訂用帳戶類型之間 (例如 CSP 訂用帳戶)。
+migAz 是可將一整組傳統 IaaS 資源移轉至 Azure Resource Manager IaaS 資源的額外選項。 移轉可能會發生在相同的訂用帳戶內或不同的訂用帳戶與訂用帳戶類型之間 (例如 CSP 訂用帳戶)。
 
 [連結至工具文件](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/migaz)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

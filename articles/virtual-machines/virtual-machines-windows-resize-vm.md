@@ -1,5 +1,5 @@
 ---
-title: "移除 Windows VM | Microsoft Docs"
+title: "使用 PowerShell 來調整 Azure 中 Windows VM 的大小 | Microsoft Docs"
 description: "使用 Azure Powershell 可調整以 Resource Manager 部署模型建立的 Windows 虛擬機器大小。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: drewm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 49c1dd035d616e6495ff200388838482197c59c3
+ms.sourcegitcommit: 6b80fa78fea505cd22bae2925ce1affbc1e48ab9
+ms.openlocfilehash: 3112be84acd3f3e11252270c850955068d35029e
 
 
 ---
@@ -107,6 +107,6 @@ ms.openlocfilehash: 49c1dd035d616e6495ff200388838482197c59c3
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO4-->
 
 

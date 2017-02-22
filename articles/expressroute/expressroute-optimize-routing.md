@@ -12,18 +12,18 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 01/27/2017
 ms.author: charwen
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 26f0992e734f0aae96ac6e8b7040d661d5fb063c
+ms.sourcegitcommit: 1b26e82f862a3b2149024d863b907899e14e7d86
+ms.openlocfilehash: 404929cf0def75d92d8bb6de8b41be3aecced458
 
 
 ---
 # <a name="optimize-expressroute-routing"></a>最佳化 ExpressRoute 路由
 當您有多個 ExpressRoute 線路時，會有一個以上的路徑來連線到 Microsoft。 因此，可能會產生次佳的路由 - 也就是，您的流量可能會經由較長的路徑連到 Microsoft，而 Microsoft 也可能會經由較長的路徑連到您的網路。 網路路徑愈常，延遲愈久。 延遲對於應用程式效能和使用者體驗有直接的影響。 本文將說明這個問題，並說明如何使用標準路由技術來最佳化路由。
 
-## <a name="suboptimal-routing-case-1"></a>次佳路由案例 1
+## <a name="suboptimal-routing-from-customer-to-microsoft"></a>從客戶到 Microsoft 的次佳化路由
 讓我們依照範例仔細觀察路由問題。 假設您在美國有兩個辦公室，一個在洛杉磯，一個在紐約。 您的辦公室是在廣域網路 (WAN) 上連線，該網路可以是您自己的骨幹網路或服務提供者的 IP VPN。 您有兩個也是在 WAN 上連線的 ExpressRoute 線路，一個在美國西部，一個在美國東部。 很明顯地，您有兩個路徑可連線到 Microsoft 網路。 現在假設您在美國西部和美國東部均有 Azure 部署 (例如 Azure App Service)。 您的用意是要將洛杉磯的使用者連接到 Azure 美國西部以及將紐約的使用者連接到 Azure 美國東部，因為您的服務系統管理員告知每個辦公室的使用者存取附近的 Azure 服務以獲得最佳的體驗。 不幸的是，此計畫比較適合用於東岸的使用者，但不適用於西岸的使用者。 此問題的原因如下所示。 在每個 ExpressRoute 線路上，我們會告知您 Azure 美國東部的前置詞 (23.100.0.0/16)和 Azure 美國西部的前置詞 (13.100.0.0/16)。 如果您不知道哪個前置詞來自哪個區域，您就無法將它視為不同。 您的 WAN 網路可能會認為這兩個前置詞比較接近美國東部 (相較於美國西部)，因此將兩個辦公室的使用者路由至美國東部的 ExpressRoute 線路。 最後，洛杉磯辦公室會有許多使用者不太滿意。
 
 ![](./media/expressroute-optimize-routing/expressroute-case1-problem.png)
@@ -33,7 +33,7 @@ ms.openlocfilehash: 26f0992e734f0aae96ac6e8b7040d661d5fb063c
 
 ![](./media/expressroute-optimize-routing/expressroute-case1-solution.png)
 
-## <a name="suboptimal-routing-case-2"></a>次佳路由案例 2
+## <a name="suboptimal-routing-from-microsoft-to-customer"></a>從 Microsoft 到客戶的次佳化路由
 在下面的另一個範例中，來自 Microsoft 的連線經由較長的路徑連到您的網路。 在此情況下，您可在 [混合式環境](https://technet.microsoft.com/library/jj200581%28v=exchg.150%29.aspx)中使用內部部署 Exchange 伺服器和 Exchange Online。 您的辦公室已連線到 WAN。 您告知兩個辦公室中內部部署伺服器的前置詞，以透過兩個 ExpressRoute 線路連到 Microsoft。 在信箱移轉的情況下，Exchange Online 會起始對內部部署伺服器的連線。 不幸的是，在橫越整個大陸回到西岸之前，洛杉磯辦公室的連線會路由至美國東部的 ExpressRoute 線路。 此問題的原因類似第一個問題。 沒有任何提示，Microsoft 網路無法分辨哪個客戶前置詞接近美國東部，哪個接近美國西部。 有可能會對洛杉磯辦公室挑選錯誤的路徑。
 
 ![](./media/expressroute-optimize-routing/expressroute-case2-problem.png)
@@ -58,6 +58,6 @@ ms.openlocfilehash: 26f0992e734f0aae96ac6e8b7040d661d5fb063c
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Jan17_HO4-->
 
 

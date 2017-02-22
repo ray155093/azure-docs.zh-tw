@@ -1,6 +1,6 @@
 ---
 title: "待用資料的 Azure 儲存體服務加密 | Microsoft Docs"
-description: "使用 Azure 儲存體服務加密功能，在儲存資料時於服務端加密您的 Azure Blob 儲存體，在擷取資料時將其解密。"
+description: "使用 Azure 儲存體服務加密功能，在儲存資料時於服務端加密您的 Azure Blob 儲存體，在擷取資料時將它解密。"
 services: storage
 documentationcenter: .net
 author: robinsh
@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b582e7515ccc588b1381285bdf4bfae00554ac3f
+ms.sourcegitcommit: 130100a4f1710a7820c8e9793db73144d7d68808
+ms.openlocfilehash: 26b1f0708b3705297b9a35cce0692d3503b03246
 
 
 ---
@@ -26,38 +26,54 @@ ms.openlocfilehash: b582e7515ccc588b1381285bdf4bfae00554ac3f
 下列章節提供有關如何使用儲存體服務加密功能的詳細指引，以及支援的案例和使用者體驗。
 
 ## <a name="overview"></a>概觀
-Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用 [用戶端加密](storage-client-side-encryption.md)、HTTP 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 儲存體服務加密可提供待用加密，並以完全透明的方式處理加密、解密和金鑰管理。 所有資料都使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)(可用的最強區塊加密方式之一) 進行加密。
+Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTPs 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 儲存體服務加密可提供待用加密，並以完全透明的方式處理加密、解密和金鑰管理。 所有資料都使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)(可用的最強區塊加密方式之一) 進行加密。
 
-SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用於區塊 Blob、分頁 Blob 和附加 Blob。 它也適用於下列各項︰
+SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用於 Azure Blob 儲存體和檔案儲存體 (預覽)。 它也適用於下列各項︰
 
 * 一般用途儲存體帳戶和 Blob 儲存體帳戶
 * 標準儲存體和進階儲存體 
 * 所有備援層級 (LRS、ZRS、GRS、RA-GRS)
 * Azure Resource Manager 儲存體帳戶 (但不是傳統帳戶) 
-* 所有區域
+* Blob 儲存體的所有區域。 對於檔案儲存體，請檢查 [可用性] 區段。
+
+儲存體服務加密 – 檔案預覽 SSE 現在可用於將檔案儲存體中的資料加密。 這目前為預覽狀態。 下面是提供檔案儲存體 SSE 的區域清單。
+
+若要參與 SSE 檔案預覽，請連絡 ssdiscussions@microsoft.com。
+
+若要深入了解，請參閱常見問題集。
+檔案儲存體的檔案儲存體儲存體服務加密目前在東亞地區提供。
+
 
 若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com) 並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
 
-![入口網站螢幕擷取畫面顯示 [加密] 選項](./media/storage-service-encryption/image1.png)
+![顯示 [加密] 選項的入口網站螢幕擷取畫面](./media/storage-service-encryption/image1.png)
+<br/>*圖 1：為 Blob 服務啟用 SSE (步驟 1)*
+
+![顯示 [加密] 選項的入口網站螢幕擷取畫面](./media/storage-service-encryption/image3.png)
+<br/>*圖 2：為檔案服務啟用 SSE (步驟 1)*
 
 按一下 [加密] 設定之後，您可以啟用或停用「儲存體服務加密」。
 
-![入口網站螢幕擷取畫面顯示 [加密] 屬性](./media/storage-service-encryption/image2.png)
+![顯示 [加密] 屬性的入口網站螢幕擷取畫面](./media/storage-service-encryption/image2.png)
+<br/>*圖 1.1：為 Blob 服務啟用 SSE (步驟 2)*
 
+![顯示 [加密] 屬性的入口網站螢幕擷取畫面](./media/storage-service-encryption/image4.png)
+<br/>*圖 2.1：為檔案服務啟用 SSE (步驟 2)*
 ## <a name="encryption-scenarios"></a>加密案例
 可以在儲存體帳戶層級啟用儲存體服務加密。 它支援下列客戶案例：
 
-* 區塊 Blob、附加 Blob 和分頁 Blob 的加密。
-* 從內部部署移至 Azure 的封存 VHD 和範本的加密。
-* 使用您的 VHD 建立的 IaaS VM 基礎 OS 和資料磁碟的加密。
+* Blob 儲存體與檔案儲存體的加密。
+* 只有針對 Blob 服務才支援加密已移轉到 Resource Manager 儲存體帳戶的傳統儲存體帳戶，針對檔案服務則不支援。
+* 只有針對新建立的儲存體帳戶才支援加密檔案儲存體。
 
 SSE 有下列限制：
 
 * 不支援傳統儲存體帳戶的加密。
-* 不支援移轉至 Resource Manager 儲存體帳戶的傳統儲存體帳戶的加密。
+* 只有針對 Blob 服務才支援加密已移轉到 Resource Manager 儲存體帳戶的傳統儲存體帳戶，針對檔案服務則不支援。
+* 只有針對新建立的儲存體帳戶才支援加密檔案儲存體。
 * 現有資料 - SSE 只會加密啟用加密之後新建立的資料。 例如，如果您建立新的 Resource Manager 儲存體帳戶但是未開啟加密，然後您將 blob 或封存 VHD 上傳至該儲存體帳戶，然後開啟 SSE，那些 blob 將不會加密，除非它們重新寫入或複製。
 * Marketplace 支援 - 允許使用 [Azure 入口網站](https://portal.azure.com)、PowerShell 及 Azure CLI 來加密從 Marketplace 建立的 VM。 VHD 基底影像將保持未加密狀態；不過，在 VM 啟動之後完成的任何寫入將會加密。
-* 資料表、佇列和檔案資料將不會加密。
+* 系統不會將資料表和佇列資料加密。
 
 ## <a name="getting-started"></a>開始使用
 ### <a name="step-1-create-a-new-storage-accountstorage-create-storage-accountmd"></a>步驟 1： [建立新的儲存體帳戶](storage-create-storage-account.md)。
@@ -70,15 +86,19 @@ SSE 有下列限制：
 > 
 
 ### <a name="step-3-copy-data-to-storage-account"></a>步驟 3︰將資料複製到儲存體帳戶
-如果您在儲存體帳戶上啟用 SSE，然後將 Blob 寫入儲存體帳戶，Blob 將會加密。 已經位於該儲存體帳戶的任何 Blob 直到改寫後，才會加密。 您可以將資料從一個儲存體帳戶複製到已啟用 SSE 的儲存體帳戶，或甚至啟用 SSE 並在容器之間複製 Blob，以確保先前的資料已加密。 您也可以使用下列任何工具來完成此作業。
+若已針對 Blob 服務啟用 SSE，將會加密寫入到該儲存體帳戶的所有 Blob。 已經位於該儲存體帳戶的任何 Blob 直到改寫後，才會加密。 您可以將資料從一個儲存體帳戶複製到已啟用 SSE 的儲存體帳戶，或甚至啟用 SSE 並在容器之間複製 Blob，以確保先前的資料已加密。 您也可以使用下列任何工具來完成此作業。 對於檔案儲存體，行為也是如此。
 
 #### <a name="using-azcopy"></a>使用 AzCopy
-AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率地將資料複製到和複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。 您可以使用此公用程式將 Blob 從某個儲存體帳戶複製到另一個已啟用 SSE 的儲存體帳戶。 
+AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率地將資料複製到和複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。 您可以使用此公用程式將 Blob 或檔案從某個儲存體帳戶複製到另一個已啟用 SSE 的儲存體帳戶。 
 
 若要深入了解，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
 
+#### <a name="using-smb"></a>使用 SMB
+Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案共用。 您可以從內部部署或 Azure 中的用戶端掛接檔案共用。 一旦掛接，您就能使用如 Robocopy 的工具來將檔案複製到 Azure 檔案共用。 如需詳細資訊，請參閱[如何在 Windows 上掛接 Azure 檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-files#mount-the-file-share)與[如何在 Linux 上掛接 Azure 檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-how-to-use-files-linux#mount-the-file-share)。
+
+
 #### <a name="using-the-storage-client-libraries"></a>使用儲存體用戶端程式庫
-您可以使用我們豐富的儲存體用戶端程式庫集合 (包括 .NET、C++、Java、Android、Node.js、PHP、Python 和 Ruby)，從 Blob 儲存體來回複製 Blob 資料或在儲存體帳戶之間進行複製。
+您可以使用我們豐富的儲存體用戶端程式庫集合 (包括 .NET、C++、Java、Android、Node.js、PHP、Python 和 Ruby)，從 Blob 儲存體來回複製 Blob 或檔案資料或在儲存體帳戶之間進行複製。
 
 若要深入了解，請參閱 [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
 
@@ -88,7 +108,7 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 若要深入了解，請參閱 [Azure 儲存體總管](storage-explorers.md)。
 
 ### <a name="step-4-query-the-status-of-the-encrypted-data"></a>步驟 4︰查詢加密資料的狀態
-已部署儲存體用戶端程式庫的更新版本，可讓您查詢物件的狀態，以判斷它是否加密。 在不久的將來會在這份文件中加入範例。
+已部署儲存體用戶端程式庫的更新版本，可讓您查詢物件的狀態，以判斷它是否加密。 這目前只能供 Blob 儲存體使用。 針對檔案儲存體的支援已在我們的藍圖規劃中。 
 
 在此同時，您可以呼叫 [取得帳戶屬性](https://msdn.microsoft.com/library/azure/mt163553.aspx) 來確認儲存體帳戶是否已啟用加密，或在 Azure 入口網站中檢視儲存體帳戶屬性。
 
@@ -96,9 +116,9 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 以下是加密/解密工作流程的簡短描述：
 
 * 客戶會在儲存體帳戶上啟用加密。
-* 當客戶將新資料 (放置 Blob、放置區塊、放置頁面等等) 寫入至 Blob 儲存體，每個寫入是使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (可用的最強區塊加密方式之一) 進行加密。
+* 當客戶將新資料 (放置 Blob、放置區塊、放置頁面、放置檔案等等) 寫入至 Blob 或檔案儲存體時，每次寫入的內容都會使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)進行加密，這是可用的最強區塊加密方式之一。
 * 當客戶需要存取資料 (取得 Blob 等) 時，資料會在傳回給使用者之前自動解密。
-* 如果已停用加密，就不會再加密新的寫入，現有加密資料在使用者重新寫入之前會保持加密。 啟用加密時，寫入至 Blob 儲存體將會加密。 資料的狀態在使用者於啟用/停用儲存體帳戶的加密之間切換時不會變更。
+* 如果已停用加密，就不會再加密新的寫入，現有加密資料在使用者重新寫入之前會保持加密。 啟用加密時，系統將會加密寫入至 Blob 或檔案儲存體的內容。 資料的狀態在使用者於啟用/停用儲存體帳戶的加密之間切換時不會變更。
 * 所有加密金鑰會由 Microsoft 儲存、加密及管理。
 
 ## <a name="frequently-asked-questions-about-storage-service-encryption-for-data-at-rest"></a>待用資料的儲存體服務加密的常見問題集
@@ -110,19 +130,19 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 答︰您可以建立新的 Resource Manager 儲存體帳戶，並且使用 [AzCopy](storage-use-azcopy.md) ，從現有的傳統儲存體帳戶將資料複製到新建立的 Resource Manager 儲存體帳戶。 
 
-另一個選項是將傳統儲存體帳戶移轉到 Resource Manager 儲存體帳戶。 如需詳細資訊，請參閱 [Platform Supported Migration of IaaS Resources from Classic to Resource Manager (從傳統移轉至 Resource Manager 的平台支援 IaaS 資源移轉)](https://azure.microsoft.com/blog/iaas-migration-classic-resource-manager/)。
+若將您的傳統儲存體帳戶移轉到 Resource Manage 儲存體帳戶，在移轉期間將不會加密資料。 然而，若移轉儲存體帳戶並啟用加密，系統將會加密寫入到該儲存體帳戶的所有新資料。 如需詳細資訊，請參閱 [Platform Supported Migration of IaaS Resources from Classic to Resource Manager (從傳統移轉至 Resource Manager 的平台支援 IaaS 資源移轉)](https://azure.microsoft.com/blog/iaas-migration-classic-resource-manager/)。 請注意，只有針對 Blob 儲存體才支援此功能。 對於檔案儲存體預覽，使用者必須建立新的 Resource Manager 儲存體帳戶。
 
 **問：我有現有的 Resource Manager 儲存體帳戶。可以在其上啟用 SSE 嗎？**
 
-答︰是，但只會加密新寫入的 Blob。 並不會返回及加密已經存在的資料。 
+答︰是，但只會加密新寫入的 Blob。 並不會返回及加密已經存在的資料。 尚未針對檔案儲存體預覽支援此功能。
 
 **問︰我想要加密現有 Resource Manager 儲存體帳戶中目前的資料？**
 
-答︰您可以在 Resource Manager 儲存體帳戶中隨時啟用 SSE。 不過，不會加密已經存在的 Blob。 若要加密這些 Blob，您可以將它們複製到另一個名稱或另一個容器，然後移除未加密的版本。
+答︰您可以在 Resource Manager 儲存體帳戶中隨時啟用 SSE。 不過，不會加密已經存在的 Blob。 若要加密這些 Blob，您可以將它們複製到另一個名稱或另一個容器，然後移除未加密的版本。尚未針對檔案儲存體預覽支援此功能
 
 **問︰我使用進階儲存體，可以使用 SSE 嗎？**
 
-答︰是，SSE 支援標準儲存體和進階儲存體。
+答：是，標準儲存體與進階儲存體都支援 SSE。尚未針對檔案儲存體預覽支援此功能。
 
 **問︰如果我建立新的儲存體帳戶，並啟用 SSE，然後使用該儲存體帳戶建立新的 VM，是否表示我的 VM 會加密？**
 
@@ -170,7 +190,7 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 **問︰是否只有在特定區域中允許 SSE？**
 
-答︰所有區域均可使用 SSE。 
+答︰針對 Blob 儲存體，所有區域均可使用 SSE。 對於檔案儲存體，請檢查 [可用性] 區段。 
 
 **問︰如果我有任何問題或想要提供意見反應，要如何連絡相關人員？**
 
@@ -182,6 +202,6 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

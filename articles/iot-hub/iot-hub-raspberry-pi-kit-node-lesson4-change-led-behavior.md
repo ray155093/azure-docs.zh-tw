@@ -1,6 +1,6 @@
 ---
-title: "選讀 - 變更 LED 的開與關行為 | Microsoft Docs"
-description: "自訂訊息以變更 LED 的開與關行為。"
+title: "將 Raspberry Pi (節點) 連接到 Azure IoT - 第 4 課：修改應用程式 | Microsoft Docs"
+description: "自訂訊息以變更 LED 的開啟與關閉行為。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -16,8 +16,8 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: ffcb9214b8fa645a8a2378c5e7054b9f984addbb
-ms.openlocfilehash: dd74474d315c94ae3f2d3e69f8696f9be8508499
+ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
+ms.openlocfilehash: 53c9408bedc6c61cdb0e755b46b3090e8723e271
 
 
 ---
@@ -104,6 +104,6 @@ gulp deploy && gulp run
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Jan17_HO4-->
 
 

@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure Resource Manager 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 Resource Manager，以群組方式部署和管理解決方案資源，並建立可供一致和重複資源部署的範本。"
+services: azure-resource-manager
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: azure-resource-manager
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 0c80499b4b27b7c21473e0ed6468441fa26e965d
-ms.openlocfilehash: f687fd5682a912cf02efec097c6df4a0c1604938
+ms.sourcegitcommit: c4a7875e7a5cace68b592cc7c4ea673851e0b070
+ms.openlocfilehash: ecf5fcec2ec5c1d11c34a035f24d78f991d66b57
 
 ---
 #<a name="azure-resource-manager-documentation"></a>Azure Resource Manager 文件
@@ -113,7 +124,7 @@ ms.openlocfilehash: f687fd5682a912cf02efec097c6df4a0c1604938
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/powershell/resourcemanager/azurerm.resources/v3.2.0/azurerm.resources">PowerShell</a></p>
+                        <p><a href="/powershell/resourcemanager/azurerm.resources/v3.5.0/azurerm.resources">PowerShell</a></p>
                         <p><a href="/cli/azure/resource">Azure CLI</a></p>
                     </div>
                 </div>
@@ -149,17 +160,10 @@ ms.openlocfilehash: f687fd5682a912cf02efec097c6df4a0c1604938
     </li>
 </ul>
 
----
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/azure-resource-manager.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Azure Resource Manager 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+<!--HONumber=Feb17_HO3-->
 
 

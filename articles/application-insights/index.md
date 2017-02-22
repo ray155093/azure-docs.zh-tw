@@ -1,9 +1,20 @@
 ---
-layout: LandingPage
+title: "Azure Application Insights 文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 Application Insights (可延伸的應用程式效能管理服務) 來偵測、分類和診斷 Web 應用程式和服務的問題。"
+services: application-insights
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: application-insights
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: f0fdb938519737e67849831a0751542f69c269d9
-ms.openlocfilehash: e5425bc1f39c9ca71b6eaf2c928b0d8397319d85
+ms.sourcegitcommit: d22dec77ea0fde59a86799cf5f2d13c2c4d6dacd
+ms.openlocfilehash: 1f3fc2431bacd6852c6babc7ebbb07c6a3b74145
 
 ---
 # <a name="application-insights-documentation"></a>Application Insights 文件
@@ -152,16 +163,10 @@ ms.openlocfilehash: e5425bc1f39c9ca71b6eaf2c928b0d8397319d85
     </li>
 </ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/application-insights.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載 Application Insights 文件 </div>
-    </a>
-</div>
 
 
 
-<!--HONumber=Jan17_HO2-->
+
+<!--HONumber=Feb17_HO2-->
 
 

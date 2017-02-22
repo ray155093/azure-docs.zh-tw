@@ -1,10 +1,10 @@
 ---
-title: "部署 Microsoft Azure StorSimple Virtual Array 1 - 入口網站準備 | Microsoft Docs"
+title: "為 StorSimple Virtual Array 準備入口網站 | Microsoft Docs"
 description: "部署 StorSimple Virtual Array 的第一個教學課程，內容為如何準備 Azure 入口網站"
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 68a4cfd3-94c9-46cb-805c-46217290ce02
 ms.service: storsimple
@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/21/2016
+ms.date: 02/03/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 97e29de986ab43ee51a311dee8d2cbf66f7408e4
+ms.sourcegitcommit: 37f2816cb1fa9c7db43359f16669e6521b0fe46a
+ms.openlocfilehash: 8539540f96d1a6fbb34736eebb0a5897b4754c9f
 
 ---
 # <a name="deploy-storsimple-virtual-array---prepare-the-portal"></a>部署 StorSimple Virtual Array：準備入口網站
@@ -72,7 +72,7 @@ ms.openlocfilehash: 97e29de986ab43ee51a311dee8d2cbf66f7408e4
 * 主機系統能夠把下列資源專門用來佈建虛擬陣列：
   
   * 至少 4 顆核心。
-  * 至少 8 GB 的 RAM。
+  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個計畫檔案。
   * 一個網路介面。
   * 供系統資料使用的 500 GB 虛擬磁碟。
 
@@ -149,7 +149,7 @@ ms.openlocfilehash: 97e29de986ab43ee51a311dee8d2cbf66f7408e4
 
 1. 瀏覽至您的裝置管理員服務，選取它並按兩下。 這會開啟 [概觀] 刀鋒視窗。
 2. 在 [設定] 區段內選取 [儲存體帳戶認證]。
-3. 按一下 [新增] 。
+3. 按一下 [新增]。
 4. 在 [加入儲存體帳戶] 刀鋒視窗中，執行下列動作︰
    
     1. 在 [訂用帳戶] 中，選取 [目前]。
@@ -158,7 +158,7 @@ ms.openlocfilehash: 97e29de986ab43ee51a311dee8d2cbf66f7408e4
    
     3. 選取 [啟用]，為 StorSimple 裝置與雲端之間的網路通訊建立安全通道。 只有當您在私人雲端內操作時，才選取 [停用]。
    
-    4. 按一下 [新增] 。 成功建立儲存體帳戶之後會通知您。<br></br>
+    4. 按一下 [新增]。 成功建立儲存體帳戶之後會通知您。<br></br>
    
      ![新增現有儲存體帳戶認證](./media/storsimple-virtual-array-manage-storage-accounts/ova-add-storageacct.png)
 
@@ -172,6 +172,6 @@ ms.openlocfilehash: 97e29de986ab43ee51a311dee8d2cbf66f7408e4
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

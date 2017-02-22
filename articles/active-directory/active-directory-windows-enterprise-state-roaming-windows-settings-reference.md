@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
+ms.sourcegitcommit: 9b88b18e32e6a5ef6c0a0195e649fe2862583a0b
+ms.openlocfilehash: c2c50ff6e92cf42a7d309afafb01210c4edabbe0
 
 
 ---
@@ -67,13 +67,7 @@ ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
 | **應用程式資料**：個別應用程式可以同步處理資料 |同步處理備份 |同步處理備份 |內部 |
 | **應用程式清單**：已安裝應用程式的清單 |X |backup |其他 |
 | **藍牙**：所有藍牙設定 |X |X | |
-| **命令提示字元**：所有命令提示字元設定 |sync |X | |
-| **Cortana**：開啟或關閉 |X |X | |
-| **Cortana**：在鎖定畫面上啟用 Cortana |X |X | |
-| **Cortana**：使用者名稱 |sync |sync |內部 |
-| **Cortana**：大聲說出 SMS |X |sync |內部 |
-| **Cortana**：安全搜尋 |X |sync |內部 |
-| **Cortana**：尋找班機及其他資訊 |X |sync |內部 |
+| **命令提示字元**：命令提示字元「預設值」設定 |sync |X | |
 | **認證**：認證保險箱 |sync |sync |password |
 | **日期、時間和區域**：自動時間 (網際網路時間同步處理) |sync |sync |語言 |
 | **日期、時間和區域**：24 小時制時鐘 |sync |X |語言 |
@@ -95,8 +89,8 @@ ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
 | **Edge 瀏覽器**：閱讀清單 |sync |sync |內部 |
 | **Edge 瀏覽器**：我的最愛 |sync |sync |內部 |
 | **Edge 瀏覽器**：所有其他 Edge 設定 |X |X | |
-| **高對比**：開啟或關閉 |sync |sync |輕鬆存取 |
-| **高對比**：佈景主題設定 |sync |X | |
+| **高對比**：開啟或關閉 |sync |X |輕鬆存取 |
+| **高對比**：佈景主題設定 |sync |X |輕鬆存取 |
 | **Internet Explorer**：開啟索引標籤 (URL 和標題) |sync |sync |Internet Explorer |
 | **Internet Explorer**：閱讀清單 |sync |sync |Internet Explorer |
 | **Internet Explorer**：輸入的 URL |sync |sync |Internet Explorer |
@@ -113,8 +107,8 @@ ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
 | **語言**：CHS QWERTY - 啟用動態候選項目排名 |sync |X |語言 |
 | **語言**：CHS QWERTY - 字元集簡體中文 |sync |X |語言 |
 | **語言**：CHS QWERTY - 字元集繁體中文 |sync |X |語言 |
-| **語言**：CHS QWERTY - 模糊拼音 |sync |sync |語言 |
-| **語言**：CHS QWERTY - 模糊配對 |sync |sync |語言 |
+| **語言**：CHS QWERTY - 模糊拼音 |sync |backup |語言 |
+| **語言**：CHS QWERTY - 模糊配對 |sync |backup |語言 |
 | **語言**：CHS QWERTY - 完整拼音 |sync |X |語言 |
 | **語言**：CHS QWERTY - 雙拼音 |sync |X |語言 |
 | **語言**：CHS QWERTY - 閱讀自動更正 |sync |X |語言 |
@@ -123,7 +117,7 @@ ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
 | **語言**：CHS WUBI - 單一字元輸入模式 |sync |X |語言 |
 | **語言**：CHS WUBI - 顯示候選項目的剩餘編碼 |sync |X |語言 |
 | **語言**：CHS WUBI - 4-coding 無效時發出嗶聲 |sync |X |語言 |
-| **語言**：CHS 注音符號 - 包括 CJK Ext-A |sync |X |語言 |
+| **語言**：CHT 注音符號 - 包括 CJK Ext-A |sync |X |語言 |
 | **語言**：日文輸入法 - 預測輸入和自訂文字 |sync |sync |語言 |
 | **語言**：韓文 (KOR) 輸入法 |X |X |語言 |
 | **語言**：手寫辨識 |X |X |語言 |
@@ -147,11 +141,11 @@ ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
 | **朗讀程式**：在朗讀程式之後有插入游標 (預設為開啟) |sync |X |輕鬆存取 |
 | **朗讀程式**：啟用朗讀程式的游標視覺反白顯示 (預設為開啟) |sync |X |輕鬆存取 |
 | **朗讀程式**：播放音訊提示 (預設為開啟) |sync |X |輕鬆存取 |
-| **朗讀程式**：舉起手指時啟用觸控式鍵盤上的按鍵 (預設為關閉) |sync |sync |輕鬆存取 |
+| **朗讀程式**：舉起手指時啟用觸控式鍵盤上的按鍵 (預設為關閉) |sync |X |輕鬆存取 |
 | **輕鬆存取**：設定閃爍游標的寬度 |sync |X |輕鬆存取 |
 | **輕鬆存取**：移除背景影像 (預設為關閉) |sync |X |輕鬆存取 |
 | **電源與睡眠**：所有設定 |X |X | |
-| **開始畫面個人化**：系統色彩 |sync |sync |佈景主題 |
+| **開始畫面個人化**：輔色 (僅限手機) |X |sync |佈景主題 |
 | **輸入**：拼字檢查字典 |sync |backup |語言 |
 | **輸入**：自動校正拼錯文字 |sync |backup |語言 |
 | **輸入**：醒目提示拼錯的單字 |sync |backup |語言 |
@@ -169,10 +163,10 @@ ms.openlocfilehash: e38fd24edb0cb6cee0552a3cbdb282aae870d737
 * [在 Azure Active Directory 中啟用企業狀態漫遊](active-directory-windows-enterprise-state-roaming-enable.md)
 * [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 * [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
+* [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Jan17_HO1-->
 
 
