@@ -201,7 +201,7 @@ OData XML
       </entry>
     </feed>
 
-### <a name="53-get-all-models"></a>5.3.    取得所有模型
+### <a name="53----get-all-models"></a>5.3.    取得所有模型
 擷取目前使用者的所有模型。
 
 | HTTP 方法 | URI |
@@ -266,7 +266,7 @@ OData XML
         </entry>
     </feed>
 
-### <a name="54-update-model"></a>5.4.    更新模型
+### <a name="54----update-model"></a>5.4.    更新模型
 您可以更新模型描述或作用中組建識別碼。<br>
 <ins>作用中組建識別碼</ins> - 每個模型的每個組建都有組建識別碼。 作用中組建識別碼是每個新模型的第一個成功組建。 一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。 當您取用建議時，如果您未指定想要使用的組建識別碼，則會自動使用預設值。<br>
 此機制可讓您在生產環境中有建議模型時建置新模型，並先加以測試，再將其提升至生產環境。
@@ -286,7 +286,7 @@ OData XML
 
 HTTP 狀態碼：200
 
-### <a name="55-delete-model"></a>5.5.    刪除模型
+### <a name="55----delete-model"></a>5.5.    刪除模型
 根據識別碼刪除現有的模型。
 
 | HTTP 方法 | URI |
@@ -327,7 +327,7 @@ OData XML
     </feed>
 
 ## <a name="6-model-advanced"></a>6.模型進階操作
-### <a name="61-model-data-insight"></a>6.1.    模型資料深入了解
+### <a name="61----model-data-insight"></a>6.1.    模型資料深入了解
 傳回建置此模型時所用之使用狀況資料的相關統計資料。
 
 僅適用於建議組建。
@@ -563,7 +563,7 @@ OData XML
     </entry>
     </feed>
 
-### <a name="62-model-insight"></a>6.2.    模型深入了解
+### <a name="62----model-insight"></a>6.2.    模型深入了解
 傳回作用中組建或 (如果有) 特定組建上的模型深入了解。
 
 僅適用於建議組建。
@@ -644,7 +644,7 @@ OData XML
     </entry>
     </feed>
 
-### <a name="63-get-model-sample"></a>6.3.    取得模型範例
+### <a name="63----get-model-sample"></a>6.3.    取得模型範例
 取得建議模型的範例。
 
 | HTTP 方法 | URI |
@@ -689,7 +689,7 @@ Level 1 --------------- 655fc955-a5a3-4a26-9723-3090859cb27b, Prey: A Novel 655f
 * <strong>FeatureWhiteList</strong> - 功能允許清單可讓您只建議具有特定功能值的項目。
 * <strong>PerSeedBlockList</strong> - PerSeedBlockList 可讓您提供無法做為建議結果傳回的項目清單給每個項目。
 
-### <a name="71-get-model-rules"></a>7.1.    取得模型規則
+### <a name="71----get-model-rules"></a>7.1.    取得模型規則
 | HTTP 方法 | URI |
 |:--- |:--- |
 | GET |`<rootURI>/GetModelRules?modelId=%27<model_id>%27&apiVersion=%271.0%27`<br>範例：<br>`<rootURI>/GetModelRules?modelId=%271cac7b76-def4-41f1-bc81-29b806adb1de%27&apiVersion=%271.0%27` |
@@ -746,7 +746,7 @@ OData XML
     </entry>
     </feed>
 
-### <a name="72-add-rule"></a>7.2.    新增規則
+### <a name="72----add-rule"></a>7.2.    新增規則
 | HTTP 方法 | URI |
 |:--- |:--- |
 | POST |`<rootURI>/AddRule?apiVersion=%271.0%27` |
@@ -803,7 +803,7 @@ OData XML
     </entry>
     </feed>
 
-### <a name="73-delete-rule"></a>7.3.    刪除規則
+### <a name="73----delete-rule"></a>7.3.    刪除規則
 | HTTP 方法 | URI |
 |:--- |:--- |
 | 刪除 |`<rootURI>/DeleteRule?modelId=%27<model_id>%27&filterId=%27<filter_Id>%27&apiVersion=%271.0%27`<br><br>範例：<br>`DeleteRule?modelId=%2724024f7e-b45c-419e-bfa2-dfd947e0d253%27&filterId=%271000011%27&apiVersion=%271.0%27` |
@@ -820,7 +820,7 @@ OData XML
 
 HTTP 狀態碼：200
 
-### <a name="74-delete-all-rules"></a>7.4.    刪除所有規則
+### <a name="74----delete-all-rules"></a>7.4.    刪除所有規則
 | HTTP 方法 | URI |
 |:--- |:--- |
 | 刪除 |`<rootURI>/DeleteAllRules?modelId=%27<model_id>%27&apiVersion=%271.0%27`<br><br>範例：<br>`DeleteAllRules?modelId=%2724024f7e-b45c-419e-bfa2-dfd947e0d253%27&apiVersion=%271.0%27` |
@@ -837,7 +837,7 @@ HTTP 狀態碼：200
 HTTP 狀態碼：200
 
 ## <a name="8-catalog"></a>8.目錄
-### <a name="81-import-catalog-data"></a>8.1.    匯入目錄資料
+### <a name="81----import-catalog-data"></a>8.1.    匯入目錄資料
 如果您將數個目錄檔案上傳至具有多個呼叫的相同模型，我們只會插入新的目錄項目。 現有的項目會保留原始值。 您無法使用這個方法更新目錄資料。
 
 目錄資料應該遵循下列格式：
@@ -902,7 +902,7 @@ OData XML
     </entry>
     </feed>
 
-### <a name="82-get-catalog"></a>8.2.    取得目錄
+### <a name="82----get-catalog"></a>8.2.    取得目錄
 擷取所有目錄項目。
 目錄會一次擷取一個頁面。 如果想要取得特定索引處的項目，您可以使用 $skip odata 參數。 例如，如果想要取得在位置 100 開始的項目，請將參數 $skip=100 加入至要求。
 
@@ -1005,7 +1005,7 @@ OData XML
     </entry>
     </feed>
 
-### <a name="83-get-catalog-items-by-token"></a>8.3.    依語彙基元取得目錄項目
+### <a name="83----get-catalog-items-by-token"></a>8.3.    依語彙基元取得目錄項目
 | HTTP 方法 | URI |
 |:--- |:--- |
 | GET |`<rootURI>/GetCatalogItemsByToken?modelId=%27<modelId>%27&token=%27<token>%27&apiVersion=%271.0%27`<br><br>範例：<br>`GetCatalogItemsByToken?modelId=%270dbb55fa-7f11-418d-8537-8ff2d9d1d9c6%27&token=%27Cla%27&apiVersion=%271.0%27` |
@@ -1059,7 +1059,7 @@ OData XML
     </feed>
 
 ## <a name="9-usage-data"></a>9.使用狀況資料
-### <a name="91-import-usage-data"></a>9.1.    匯入使用資料
+### <a name="91----import-usage-data"></a>9.1.    匯入使用資料
 #### <a name="911-uploading-file"></a>9.1.1. 上傳檔案
 本節試範如何使用檔案上傳使用資料。 您可以利用使用資料呼叫此 API 數次。 將會針對所有呼叫儲存所有使用狀況資料。
 
@@ -1212,7 +1212,7 @@ OData XML
 
 **回應**：HTTP 狀態碼：200
 
-### <a name="92-list-model-usage-files"></a>9.2.    列出模型使用方式檔案
+### <a name="92----list-model-usage-files"></a>9.2.    列出模型使用方式檔案
 擷取所有模型使用方式檔案的中繼資料。
 使用方式檔案會一次擷取一個頁面。 每個頁面包含 100 個項目。 如果想要取得特定索引處的項目，您可以使用 $skip odata 參數。 例如，如果想要取得在位置 100 開始的項目，請將參數 $skip=100 加入至要求。
 
@@ -1277,7 +1277,7 @@ OData XML
     </entry>
 </feed>
 
-### <a name="93-get-usage-statistics"></a>9.3.    取得使用狀況統計資料
+### <a name="93----get-usage-statistics"></a>9.3.    取得使用狀況統計資料
 取得使用狀況統計資料。
 
 | HTTP 方法 | URI |
@@ -1362,7 +1362,7 @@ OData XML
     </entry>
     </feed>
 
-### <a name="94-get-usage-file-sample"></a>9.4.    取得使用方式檔案範例
+### <a name="94----get-usage-file-sample"></a>9.4.    取得使用方式檔案範例
 擷取前 2KB 的使用方式檔案內容。
 
 | HTTP 方法 | URI |
@@ -1388,7 +1388,7 @@ HTTP 狀態碼：200
 </pre>
 
 
-### <a name="95-get-model-usage-file"></a>9.5.    取得模型使用方式檔案
+### <a name="95----get-model-usage-file"></a>9.5.    取得模型使用方式檔案
 擷取使用方式檔案的完整內容。
 
 | HTTP 方法 | URI |
@@ -1414,7 +1414,7 @@ HTTP 狀態碼：200
 85526,2406E770-769C-4189-89DE-1C9283F93A96,2014/11/02T13:40:15,True,1 210926,2406E770-769C-4189-89DE-1C9283F93A96,2014/11/02T13:40:15,True,1 116866,2406E770-769C-4189-89DE-1C9283F93A96,2014/11/02T13:40:15,True,1 177458,2406E770-769C-4189-89DE-1C9283F93A96,2014/11/02T13:40:15,True,1 274004,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 123883,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 37712,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 152249,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 250948,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 235588,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 158254,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 271195,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 141157,21BF8088-B6C0-4509-870C-E1C7AC78304A,2014/11/02T13:40:15,True,1 171118,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 225087,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 244881,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 50547,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 213090,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 260655,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 72214,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 189334,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 36326,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 189336,3BB5CB44-D143-4BDD-A55C-443964BF4B23,2014/11/02T13:40:15,True,1 189334,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 260655,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 162100,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 54946,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 260965,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 102758,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 112602,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 163925,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 262998,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1 144717,552A1940-21E4-4399-82BB-594B46D7ED54,2014/11/02T13:40:15,True,1
 </pre>
 
-### <a name="96-delete-usage-file"></a>9.6.    刪除使用方式檔案
+### <a name="96----delete-usage-file"></a>9.6.    刪除使用方式檔案
 刪除指定的模型使用方式檔案。
 
 | HTTP 方法 | URI |
@@ -1433,7 +1433,7 @@ HTTP 狀態碼：200
 
 HTTP 狀態碼：200
 
-### <a name="97-delete-all-usage-files"></a>9.7.    刪除所有使用方式檔案
+### <a name="97----delete-all-usage-files"></a>9.7.    刪除所有使用方式檔案
 刪除所有模型使用方式檔案。
 
 | HTTP 方法 | URI |
@@ -2652,7 +2652,7 @@ HTTP 狀態碼：200
 
 請參閱 12.1 中的回應範例
 
-### <a name="127-get-user-recommendations-of-a-specific-build"></a>12.7. 取得使用者建議 (屬於特定組建)
+### <a name="127-get-user-recommendations--of-a-specific-build"></a>12.7. 取得使用者建議 (屬於特定組建)
 取得 "Recommendation" 類型之特定組建的使用者建議。
 
 這個 API 會根據使用者的使用歷程記錄 (用於特定組建)，傳回預測的項目清單。
