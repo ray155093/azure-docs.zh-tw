@@ -16,17 +16,12 @@ ms.workload: data-management
 ms.date: 09/30/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e16587c3eb7366c92297455e8a175ab118174526
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: f63bd47c15439e6fedc0f6edf579681697155592
 
 
 ---
 # <a name="sql-database-advisor-using-the-azure-portal"></a>使用 Azure 入口網站的 SQL Database 建議程式
-> [!div class="op_single_selector"]
-> * [SQL Database 建議程式概觀](sql-database-advisor.md)
-> * [入口網站](sql-database-advisor-portal.md)
-> 
-> 
 
 您可以在 Azure 入口網站中，使用 Azure SQL Database 建議程式來檢閱和實作適用於您現有 SQL Database 的建議，這些建議可以改善現有的查詢效能。
 
@@ -50,7 +45,7 @@ ms.openlocfilehash: e16587c3eb7366c92297455e8a175ab118174526
 
 ![修正結構描述問題](./media/sql-database-advisor-portal/sql-database-advisor-schema-issue.png)
 
-依照可能帶來的效能影響排序，建議分成下列 4 個類別：
+依照可能帶來的效能影響排序，建議分成下列&4; 個類別：
 
 | 影響 | 說明 |
 |:--- |:--- |
@@ -71,7 +66,7 @@ ms.openlocfilehash: e16587c3eb7366c92297455e8a175ab118174526
 3. (選擇性) 按一下 [復原捨棄]，將索引加回到**建議**的主要清單。
 
 ## <a name="applying-recommendations"></a>套用建議
-SQL Database 建議程式可讓您使用下列 3 個選項的其中任一選項來控制建議的啟用方式： 
+SQL Database 建議程式可讓您使用下列&3; 個選項的其中任一選項來控制建議的啟用方式： 
 
 * 一次套用一個個別的建議。
 * 讓建議程式自動套用建議 (目前僅適用索引建議)。
@@ -156,6 +151,6 @@ SQL Database 建議程式會提供可改善 SQL Database 效能的建議。 藉�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

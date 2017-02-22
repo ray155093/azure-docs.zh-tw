@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
-ms.openlocfilehash: e65a655bc9e85b4797d795c9be6ded9ef253ed86
+ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
+ms.openlocfilehash: 641fe31fc4b160fe5f0628df717006fb540394b9
 
 
 ---
@@ -60,7 +60,7 @@ Azure 負責保護您的應用程式執行所在的基礎結構和平台，而�
 啟用 [HTTPS](https://en.wikipedia.org/wiki/HTTPS) 有助於防範對於您的應用程式與使用者之間的通訊的 MITM 攻擊。
 
 ## <a name="secure-data-tier"></a>保護資料層
-App Service 與 SQL Database 高度整合，使所有連接字串會全面加密，並且只會在應用程式執行所在的 VM 上 *和* 應用程式執行時解密。 此外，Azure SQL Database 包含許多安全性功能，協助您保護您的應用程式資料免於網路威脅，包括[靜態加密](https://msdn.microsoft.com/library/dn948096.aspx)、[一律加密](https://msdn.microsoft.com/library/mt163865.aspx)、[動態資料遮罩](../sql-database/sql-database-dynamic-data-masking-get-started.md)與[威脅偵測](../sql-database/sql-database-threat-detection-get-started.md)。 如果您有機密資料或相容性需求，請參閱 [保護您的 SQL Database](../sql-database/sql-database-security.md) 以取得如何保護您的資料的詳細資訊。
+App Service 與 SQL Database 高度整合，使所有連接字串會全面加密，並且只會在應用程式執行所在的 VM 上 *和* 應用程式執行時解密。 此外，Azure SQL Database 包含許多安全性功能，協助您保護您的應用程式資料免於網路威脅，包括[靜態加密](https://msdn.microsoft.com/library/dn948096.aspx)、[一律加密](https://msdn.microsoft.com/library/mt163865.aspx)、[動態資料遮罩](../sql-database/sql-database-dynamic-data-masking-get-started.md)與[威脅偵測](../sql-database/sql-database-threat-detection.md)。 如果您有機密資料或相容性需求，請參閱 [保護您的 SQL Database](../sql-database/sql-database-security-overview.md) 以取得如何保護您的資料的詳細資訊。
 
 如果您使用協力廠商資料庫提供者，例如 ClearDB，您應直接參閱提供者的文件以取得安全性最佳作法。  
 
@@ -110,7 +110,7 @@ Azure App Service 針對您的應用程式的檔案系統，提供透過 **FTPS*
 如需記錄 App Service 應用程式資訊的詳細資訊 (此資訊可能對偵測攻擊很有幫助)，請參閱 [啟用診斷記錄](web-sites-enable-diagnostic-log.md)。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期的入門應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期的入門應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -120,6 +120,6 @@ Azure App Service 針對您的應用程式的檔案系統，提供透過 **FTPS*
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

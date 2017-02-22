@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f073ae70ad3b398a29f874fda35aa4e6299394d1
+ms.sourcegitcommit: b2eb87a88721a3fd1ecdfa573c6a6d49ed02d344
+ms.openlocfilehash: 6912357da797a72f8e9cb9ebf700f56d9cfcc696
 
 
 ---
@@ -122,7 +122,7 @@ Showpad 與 Azure AD 整合提供下列優點：
 
     b. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<company name>.showpad.biz`
 
-    c. 依序按一下 [ **下一步**
+    c. 依序按一下  **下一步**
 
 
 1. 在 [設定在 Showpad 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
@@ -131,7 +131,7 @@ Showpad 與 Azure AD 整合提供下列優點：
    
     a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b. 按 [下一步] 。
 
 2. 以系統管理員身分登入 Showpad 租用戶。
 
@@ -192,7 +192,7 @@ Showpad 與 Azure AD 整合提供下列優點：
    
     a. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    b.這是另一個 C# 主控台應用程式。 按一下頁面底部的 [新增] 。
+    b.這是另一個 C# 主控台應用程式。 按 [下一步] 。
 
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
@@ -277,6 +277,6 @@ Showpad 支援 Just-in-Time 佈建。 您已在 **[設定 Azure AD 單一登入]
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

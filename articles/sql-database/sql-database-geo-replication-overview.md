@@ -16,38 +16,23 @@ ms.workload: NA
 ms.date: 09/26/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: e580886bae72aee3bb3569299a831529ef18821c
+ms.sourcegitcommit: 2c13daf84727a500a2ea6a3dc1d4968c9824e223
+ms.openlocfilehash: 4ed2bfcad36059000b5a8e4bfa5f06bceb56843b
 
 
 ---
 # <a name="overview-sql-database-active-geo-replication"></a>概觀︰SQL Database 主動式異地複寫
-主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。 在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。 主動式異地複寫必須是在相同訂用帳戶內的資料庫之間進行。
+主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多&4; 個可讀取的次要資料庫。 在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。 主動式異地複寫必須是在相同訂用帳戶內的資料庫之間進行。
 
 > [!NOTE]
 > 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
-> 
-> 
+>  
 
  您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md)、[Transact-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API - 建立或更新資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)來設定主動式異地複寫。
-
-> [!div class="op_single_selector"]
-> * [設定：Azure 入口網站](sql-database-geo-replication-portal.md)
-> * [設定：PowerShell](sql-database-geo-replication-powershell.md)
-> * [設定︰T-SQL](sql-database-geo-replication-transact-sql.md)
-> 
-> 
 
 若您的主要資料庫因為任何原因而失敗，或只需要離線，您可以「容錯移轉」  至任何次要資料庫。 容錯移轉至其中一個次要資料庫啟動時，所有其他次要複本會自動連結至新的主要複本。
 
 您可以使用 [Azure 入口網站](sql-database-geo-replication-failover-portal.md)、[PowerShell](sql-database-geo-replication-failover-powershell.md)、[Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)、[REST API - 計劃的容錯移轉](https://msdn.microsoft.com/ibrary/azure/mt575007.aspx) 或 [REST API - 非計劃的容錯移轉](https://msdn.microsoft.com/library/azure/mt582027.aspx)，容錯移轉至次要資料庫。
-
-> [!div class="op_single_selector"]
-> * [容錯移轉︰Azure 入口網站](sql-database-geo-replication-failover-portal.md)
-> * [容錯移轉︰PowerShell](sql-database-geo-replication-failover-powershell.md)
-> * [容錯移轉︰T-SQL](sql-database-geo-replication-failover-transact-sql.md)
-> 
-> 
 
 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 
@@ -149,6 +134,6 @@ ms.openlocfilehash: e580886bae72aee3bb3569299a831529ef18821c
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

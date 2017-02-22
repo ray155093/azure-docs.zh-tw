@@ -15,8 +15,8 @@ ms.workload: storage-backup-recovery
 ms.date: 02/06/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: 79adce1f3fb9a33e60159af72e83118dd88e0946
-ms.openlocfilehash: ecddf255f4b4750bf67f2689b0274c04f8ec54b7
+ms.sourcegitcommit: bb078183b24cd5c5172b48f1135eced061220cf5
+ms.openlocfilehash: 3c0c00bf9e4380a682ff1e155fb6d9a3826f4b00
 
 
 ---
@@ -70,7 +70,7 @@ ms.openlocfilehash: ecddf255f4b4750bf67f2689b0274c04f8ec54b7
 3. 設定驗證：
 
    * 在 [驗證和連接埠] 中選取如何驗證主要伺服器及驗證連接埠。 如果您使用憑證，按一下 [選取憑證] 以選取其中一個。 如果主要和復原 Hyper-V 主機都位於相同網域或信任的網域，則使用 Kerberos。 針對不同的網域或工作群組部署使用憑證。
-   * 在 [授權與存放裝置] 區段中，允許**任何**驗證 (主要) 伺服器將複寫資料傳送到這個複本伺服器。 
+   * 在 [授權與存放裝置] 區段中，允許**任何**驗證 (主要) 伺服器將複寫資料傳送到這個複本伺服器。
 
      ![](./media/site-recovery-capacity-planning-for-hyper-v-replication/image1.png)
    * 執行 **netsh http show servicestate**，檢查接聽程式是否針對您指定的通訊協定/連接埠執行：  
@@ -133,11 +133,9 @@ ms.openlocfilehash: ecddf255f4b4750bf67f2689b0274c04f8ec54b7
 * [將 VMM 雲端中的 Hyper-V VM 複寫至 Azure](site-recovery-vmm-to-azure.md)
 * [將 Hyper-V VM (不使用 VMM) 複寫至 Azure](site-recovery-hyper-v-site-to-azure.md)
 * [在 VMM 站台間複寫 Hyper-V VM](site-recovery-vmm-to-vmm.md)
-* [使用 SAN 在 VMM 站台間複寫 Hyper-V VM](site-recovery-vmm-san.md)
-* [複寫單一 VMM 伺服器上的 Hyper-V VM](site-recovery-single-vmm.md)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -16,8 +16,8 @@ ms.workload: sql-database
 ms.date: 05/27/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 3b251edc753575f2235b9741a7c1eb5d1cf2f821
+ms.sourcegitcommit: 144774c9106bf5a0e389c99075c822d1c5282692
+ms.openlocfilehash: f9c53a981376cf534c50d80ae2f60fc01f193e4d
 
 
 ---
@@ -145,7 +145,7 @@ SQL DB 中的彈性資料庫交易目前有下列限制：
 * 僅支援 Azure SQL DB V12 上的資料庫。
 * 不支援跨 WCF 服務的交易。 例如，您有執行交易的 WCF 服務方法。 納入交易範圍內的呼叫將會失敗，因為 [System.ServiceModel.ProtocolException](https://msdn.microsoft.com/library/system.servicemodel.protocolexception)。
 
-## <a name="additional-resources"></a>其他資源
+## <a name="next-steps"></a>後續步驟
 您的 Azure 應用程式還未使用彈性資料庫功能嗎？ 請瀏覽我們的 [文件導引圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。 如有問題，請透過 [SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)與我們連絡，如需要求增加功能，請將這些功能新增至 [SQL Database 意見反應論壇](https://feedback.azure.com/forums/217321-sql-database/)。
 
 <!--Image references-->
@@ -156,6 +156,6 @@ SQL DB 中的彈性資料庫交易目前有下列限制：
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

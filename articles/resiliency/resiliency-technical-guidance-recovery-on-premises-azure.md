@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 08/18/2016
 ms.author: aglick
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: c3a6df9f91af5227526e06fe7e9ebb3006bd6948
+ms.sourcegitcommit: cc14f7747c4a24acea434f62b7615d10819bd619
+ms.openlocfilehash: 9af589d4a899702c7c2dd2e2bcf13d783d715380
 
 
 ---
@@ -32,7 +32,7 @@ Azure 提供一組完整的服務，可針對高可用性和災害復原用途�
 您可以使用 Azure 虛擬網路在 Azure 中建立邏輯隔離區段，並透過 IPsec 連線，安全地將其連接到內部部署資料中心或單一用戶端機器。 透過虛擬網路，您可以運用 Azure 的可調整的隨選基礎結構，同時提供連線至內部部署資料和應用程式的能力，包括 Windows Server、大型主機及 UNIX 上執行的系統。 如需詳細資訊，請參閱 [Azure 網路文件](../virtual-network/virtual-networks-overview.md) 。
 
 ## <a name="compute"></a>計算
-如果您在內部部署使用 Hyper-V，則可以將現有的虛擬機器「提升並移轉」至執行 Windows Server 2012 (或更新版本) 的 Azure 和服務提供者，而不用變更 VM 或轉換 VM 格式。 如需詳細資訊，請參閱[關於 Azure 虛擬機器的磁碟與 VHD](../virtual-machines/virtual-machines-linux-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如果您在內部部署使用 Hyper-V，則可以將現有的虛擬機器「提升並移轉」至執行 Windows Server 2012 (或更新版本) 的 Azure 和服務提供者，而不用變更 VM 或轉換 VM 格式。 如需詳細資訊，請參閱[關於 Azure 虛擬機器的磁碟與 VHD](../storage/storage-about-disks-and-vhds-linux.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ## <a name="azure-site-recovery"></a>Azure Site Recovery
 如果您想要災害復原即服務 (DRaaS)，Azure 提供 [Azure Site Recovery](https://azure.microsoft.com/services/site-recovery/)。 Azure Site Recovery 為 VMware、Hyper-V 與實體伺服器提供全面性的保護。 透過 Azure Site Recovery，您可以使用另一部內部部署伺服器或 Azure 做為復原網站。 如需 Azure Site Recovery 的詳細資訊，請參閱 [Azure Site Recovery 文件](https://azure.microsoft.com/documentation/services/site-recovery/)。
@@ -99,6 +99,6 @@ AlwaysOn 可用性群組可以在混合式 IT 環境中使用，在該環境中�
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

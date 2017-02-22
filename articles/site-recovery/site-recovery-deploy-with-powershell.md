@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: bsiva
 translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: d3bf50e9e686acdac33ffaf9d781f02193406298
+ms.sourcegitcommit: a084cecddc2af36ee087b2e0e63a2b18b20f07f0
+ms.openlocfilehash: d5fed9feb2292002a06c426cdd9e4e18f67bd3ec
 
 
 ---
@@ -49,7 +49,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 ### <a name="azure-prerequisites"></a>Azure 必要條件
 * 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。
 * 您需要 Azure 儲存體帳戶來儲存複寫的資料。 此帳戶必須啟用異地複寫。 它應該與 Azure Site Recovery 保存庫位於相同的區域，且和同一個訂用帳戶產生關聯。 [深入了解 Azure 儲存體](../storage/storage-introduction.md)。
-* 您必須確定您要保護的虛擬機器符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
+* 您必須確定您要保護的虛擬機器符合 [Azure 虛擬機器必要條件](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
 
 ### <a name="vmm-prerequisites"></a>VMM 必要條件
 * 您將需要在 System Center 2012 R2 上執行的 VMM 伺服器。
@@ -74,7 +74,6 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 
 * 您想要在來源 VMM 伺服器上保護的虛擬機器應該連線到 VM 網路。 該網路應該連結到與雲端相關聯的邏輯網路。
 * 複寫的虛擬機器可在容錯移轉之後連線的 Azure 網路。 您將在容錯移轉時選取此網路。 此網路應該和您的 Azure Site Recovery 訂用帳戶在相同的區域中。
-* [深入了解](site-recovery-network-mapping.md) 網路對應：
 
 ### <a name="powershell-prerequisites"></a>PowerShell 必要條件
 確定 Azure PowerShell 已經準備就緒。 如果您已經使用 PowerShell，您必須升級至 0.8.10 版或更新版本。 如需設定 PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 一旦已安裝並設定 PowerShell，您可以檢視 [這裡](https://msdn.microsoft.com/library/dn850420.aspx)之服務的所有可用的 Cmdlet。
@@ -302,7 +301,7 @@ marsagentinstaller.exe /q /nu
 ## <a name="step-9-enable-protection-for-virtual-machines"></a>步驟 9：對虛擬機器啟用保護
 正確設定伺服器、雲端和網路後，您就可以對雲端中的虛擬機器啟用保護。 請注意：
 
-虛擬機器必須符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
+虛擬機器必須符合 [Azure 虛擬機器必要條件](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
 
 若要啟用保護功能，您必須為虛擬機器設定作業系統和作業系統磁碟屬性。 當您使用虛擬機器範本在 VMM 中建立虛擬機器時，您可以設定屬性。 您也可以在虛擬機器屬性的 [一般] 及 [硬體設定] 索引標籤上，為現有的虛擬機器設定這些屬性。 若未在 VMM 中設定這些屬性，您將可在 Azure 站台復原入口網站中加以設定。
 
@@ -408,6 +407,6 @@ marsagentinstaller.exe /q /nu
 
 
 
-<!--HONumber=Jan17_HO5-->
+<!--HONumber=Feb17_HO4-->
 
 

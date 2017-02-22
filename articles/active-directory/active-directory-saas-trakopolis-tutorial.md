@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 36efc9c5ae94ddfd61d1046e153b4b9834632494
+ms.sourcegitcommit: b2eb87a88721a3fd1ecdfa573c6a6d49ed02d344
+ms.openlocfilehash: 6d324312f0e2d70a60b7028e77844d50a177191c
 
 
 ---
@@ -117,7 +117,7 @@ Trakopolis 與 Azure AD 整合提供下列優點：
 
     a. 在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 Trakopolis 應用程式的 URL：**“https://\<公司名稱\>.trakopolis.com”**。
 
-    b.這是另一個 C# 主控台應用程式。 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b.這是另一個 C# 主控台應用程式。 按 [下一步] 。
 
 1. 在 [設定在 Trakopolis 單一登入]  頁面上，執行下列步驟：
    
@@ -125,7 +125,7 @@ Trakopolis 與 Azure AD 整合提供下列優點：
    
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b. 按 [下一步] 。
 
 2. 如要為您的應用程式設定 SSO，請透過 [support@cantelematics.com](mailto:support@cantelematics.com) 與您的 Trakopolis 支援小組連絡，並在電子郵件中附加您下載的憑證，同時提供 [簽發者 URL]、[SAML SSO URL] 及 [登出 URL]。
 
@@ -251,6 +251,6 @@ Trakopolis 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

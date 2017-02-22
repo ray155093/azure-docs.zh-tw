@@ -16,18 +16,12 @@ ms.workload: data-management
 ms.date: 08/29/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 2f63098e2087e9bc96493f98bdb5900671e659a1
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: ac575284544819c6bed7ef84669b2793085a3dc6
 
 
 ---
 # <a name="initiate-a-planned-or-unplanned-failover-for-azure-sql-database-with-powershell"></a>使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](sql-database-geo-replication-failover-portal.md)
-> * [PowerShell](sql-database-geo-replication-failover-powershell.md)
-> * [T-SQL](sql-database-geo-replication-failover-transact-sql.md)
-> 
-> 
 
 本文將說明如何使用 PowerShell 為 SQL Database 起始計劃性或非計劃性容錯移轉。 若要設定「異地複寫」，請參閱 [為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)。
 
@@ -45,7 +39,7 @@ ms.openlocfilehash: 2f63098e2087e9bc96493f98bdb5900671e659a1
 
 下列命令會將資源群組 "rg2" 下伺服器 "srv2" 上名為 "mydb" 的資料庫角色切換為主要資料庫。 "db2" 所連線的原始主要資料庫，在兩個資料庫完全同步處理之後會切換為次要資料庫。
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" –ResourceGroupName "rg2” –ServerName "srv2”
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg2” -ServerName "srv2”
     $database | Set-AzureRmSqlDatabaseSecondary -Failover
 
 
@@ -55,7 +49,7 @@ ms.openlocfilehash: 2f63098e2087e9bc96493f98bdb5900671e659a1
 > 
 
 ## <a name="initiate-an-unplanned-failover-from-the-primary-database-to-the-secondary-database"></a>起始從主要資料庫到次要資料庫的未規劃的容錯移轉
-您可以使用 **Set-AzureRmSqlDatabaseSecondary** Cmdlet 搭配 **-Failover** 和 **-AllowDataLoss** 參數來升級次要資料庫，使它成為未規劃的方式中的新主要資料庫，每當主要資料庫無法使用時，強制將現有主要複本降級成為次要複本。
+您可以使用 **Set-AzureRmSqlDatabaseSecondary** Cmdlet 搭配 **-Failover** 和 **-AllowDataLoss** 參數來升級次要資料庫，使它成為非計劃性方式的新主要資料庫，強制讓現有主要資料庫在不再可供使用時降級成次要複本。
 
 這項功能是針對還原資料庫的可用性非常重要而且部分資料遺失是可接受時的災害復原所設計。 叫用強制容錯移轉時，指定的次要資料庫立即成為主要資料庫，並開始接受寫入交易。 在強制容錯移轉作業後，原始主要資料庫能夠與這個新的主要資料庫重新連線時，會在原始主要資料庫執行增量備份，而舊的主要資料庫會變成新主要資料庫的次要資料庫；之後就只是新的主要資料庫的複本。
 
@@ -70,8 +64,8 @@ ms.openlocfilehash: 2f63098e2087e9bc96493f98bdb5900671e659a1
 
 下列命令在主要複本無法使用時，將名為 "mydb" 的資料庫角色切換為主要複本。 "mydb" 所連線的原始主要複本，將在回到線上之後切換為次要複本。 在該時間點，同步處理可能會導致資料遺失。
 
-    $database = Get-AzureRmSqlDatabase –DatabaseName "mydb" –ResourceGroupName "rg2” –ServerName "srv2”
-    $database | Set-AzureRmSqlDatabaseSecondary –Failover -AllowDataLoss
+    $database = Get-AzureRmSqlDatabase -DatabaseName "mydb" -ResourceGroupName "rg2” -ServerName "srv2”
+    $database | Set-AzureRmSqlDatabaseSecondary -Failover -AllowDataLoss
 
 
 
@@ -87,6 +81,6 @@ ms.openlocfilehash: 2f63098e2087e9bc96493f98bdb5900671e659a1
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

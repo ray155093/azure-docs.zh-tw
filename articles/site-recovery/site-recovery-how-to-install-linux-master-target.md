@@ -15,8 +15,8 @@ ms.workload:
 ms.date: 12/20/2016
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: 4133e98289bf22bccb71b9522627a645e92c5223
-ms.openlocfilehash: 175972f0522db292180a56330307017a25f735b1
+ms.sourcegitcommit: d1a7ed7e182530f81a426a4383297a49505f65ea
+ms.openlocfilehash: d76ea0fb27ecece4e8dcd06a2dde9a0794071884
 
 
 ---
@@ -164,15 +164,15 @@ d. 選取左方的 [進階] &gt; [一般項目]，然後按一下右方顯示的
 
 e. 查看含有 **disk.EnableUUID** 的資料列是否已經存在？
 
-如果存在且已將值設為 False，即會使用 True 來覆寫值 (True 和 False 值是不區分大小寫的)。
+  如果存在且已將值設為 False，即會使用 True 來覆寫值 (True 和 False 值是不區分大小寫的)。
 
-如果存在且已設為 True，可按一下 [取消]，然後在其開機之後，於客體作業系統內部測試 SCSI 命令。
+  如果存在且已設為 True，可按一下 [取消]，然後在其開機之後，於客體作業系統內部測試 SCSI 命令。
 
 f. 如果不存在，可按一下 [加入資料列]。
 
-在 [名稱] 欄中新增 disk.EnableUUID。
+  在 [名稱] 欄中加入 disk.EnableUUID。
 
-將其值儲存為 TRUE
+  將其值儲存為 TRUE
 
 注意：請勿為上述值加上雙引號。
 
@@ -359,6 +359,7 @@ VMware 工具必須安裝在 MT 上，以便可以找出資料存放區。 如�
 ## <a name="common-issues"></a>常見問題
 
 
-<!--HONumber=Feb17_HO2-->
+
+<!--HONumber=Feb17_HO3-->
 
 

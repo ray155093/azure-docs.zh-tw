@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: e5b5751facb68ae4a62e3071fe4dfefc02434a9f
-ms.openlocfilehash: 4aac611e857c0b5b985f887f8536d212c28fd6e4
+ms.sourcegitcommit: e210fb7ead88a9c7f82a0d0202a1fb31043456e6
+ms.openlocfilehash: 045e4486920f147a66b2ea81552ce1b75aa119c2
 
 
 ---
@@ -147,7 +147,7 @@ ms.openlocfilehash: 4aac611e857c0b5b985f887f8536d212c28fd6e4
 </table>
 
 ## <a name="install-the-elastic-database-jobs-components-using-the-portal"></a>使用入口網站安裝彈性資料庫工作元件
-在[建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)之後，您可以安裝「彈性資料庫工作」元件，以便能夠對彈性集區中的每個資料庫執行系統管理工作。 不同於使用 **彈性資料庫工作** PowerShell API 時，入口網站介面目前限制為只針對現有的集區執行。
+在[建立彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)之後，您可以安裝「彈性資料庫工作」元件，以便能夠對彈性集區中的每個資料庫執行系統管理工作。 不同於使用 **彈性資料庫工作** PowerShell API 時，入口網站介面目前限制為只針對現有的集區執行。
 
 **預估完成時間：** 10 分鐘。
 
@@ -181,6 +181,6 @@ ms.openlocfilehash: 4aac611e857c0b5b985f887f8536d212c28fd6e4
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO3-->
 
 

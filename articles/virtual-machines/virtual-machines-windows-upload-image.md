@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: 5aa6b2149170ef04af0ebde957feda5630c5d5eb
+ms.sourcegitcommit: cc14f7747c4a24acea434f62b7615d10819bd619
+ms.openlocfilehash: a2df2169acda706a0fc3e1b7daf743ce29e5f030
 
 
 ---
 # <a name="upload-a-windows-vhd-from-an-on-premises-vm-to-azure"></a>從內部部署 VM 將 Windows VHD 上傳至 Azure
 本文說明如何建立及上傳要用於建立 Azure VM 的 Windows 虛擬硬碟 (VHD)。 您可以從一般化的 VM 或特製化的 VM 上傳 VHD。 
 
-如需 Azure 中磁碟和 VHD 的詳細資訊，請參閱 [關於虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需 Azure 中磁碟和 VHD 的詳細資訊，請參閱 [關於虛擬機器的磁碟和 VHD](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ## <a name="prepare-the-vm"></a>準備 VM
 您可以將一般化或特製化的 VHD 上傳至 Azure。 每個類型都需要您在開始之前準備 VM。
@@ -132,6 +132,6 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

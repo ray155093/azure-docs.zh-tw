@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 87b90a164daad8c376b0b8536ec8338a3be548e1
+ms.sourcegitcommit: 3b31bd036d9c3ff8036b314b93cbddd94874ff63
+ms.openlocfilehash: 3778964172946fa928e2a908943f50897957eb42
 
 
 ---
@@ -26,18 +26,18 @@ ms.openlocfilehash: 87b90a164daad8c376b0b8536ec8338a3be548e1
 ## <a name="assign-a-role-to-a-user"></a>將角色指派給使用者
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
-   
+
    ![開啟使用者管理](./media/active-directory-users-assign-role-azure-portal/create-users-user-management.png)
 3. 在 [使用者和群組] 刀鋒視窗上，選取 [所有使用者]。
-   
+
    ![開啟 [所有使用者] 刀鋒視窗](./media/active-directory-users-assign-role-azure-portal/create-users-open-users-blade.png)
 4. 在 [使用者和群組 - 所有使用者]  刀鋒視窗上，從清單中選取一個使用者。
 5. 在所選使用者的刀鋒視窗上，選取 [目錄角色]，然後將使用者指派給 [目錄角色] 清單中的角色。 如需有關使用者和系統管理員角色的詳細資訊，請參閱 [在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)。
-   
+
       ![將使用者指派給角色](./media/active-directory-users-assign-role-azure-portal/create-users-assign-role.png)
 6. 選取 [ **儲存**]。
 
-## <a name="whats-next"></a>後續步驟
+## <a name="next-steps"></a>後續步驟
 * [新增使用者](active-directory-users-create-azure-portal.md)
 * [在新 Azure 入口網站中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
 * [變更使用者的工作資訊](active-directory-users-work-info-azure-portal.md)
@@ -46,7 +46,6 @@ ms.openlocfilehash: 87b90a164daad8c376b0b8536ec8338a3be548e1
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

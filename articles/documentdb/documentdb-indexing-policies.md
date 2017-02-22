@@ -16,8 +16,8 @@ ms.workload: data-services
 ms.date: 12/22/2016
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 7f5e33b7f80e3c1e1e3e66b3cab879a5bc30e823
-ms.openlocfilehash: 6941a0a5e108617ebb16354edc9917392b7cb786
+ms.sourcegitcommit: bd77eaab1dbad95a70b6d08947f11d95220b8947
+ms.openlocfilehash: 818337dfb36ee4c84fa2543f7c54558287ead0e1
 
 
 ---
@@ -119,7 +119,7 @@ DocumentDB 會將 JSON 文件和索引塑造為樹狀結構，並可讓您調整
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | /                   | 集合的預設路徑。 遞迴並套用至整個文件樹狀結構。                                                                                                                                                                                                                                   |
 | /prop/?             | 為類似下列的查詢 (類型分別為雜湊或範圍) 提供服務而必要的索引路徑：<br><br>SELECT FROM collection c WHERE c.prop = "value"<br><br>SELECT FROM collection c WHERE c.prop > 5<br><br>SELECT FROM collection c ORDER BY c.prop                                                                       |
-| /prop/              | 指定之標籤底下所有路徑的索引路徑。 使用下列查詢<br><br>SELECT FROM collection c WHERE c.prop = "value"<br><br>SELECT FROM collection c WHERE c.prop.subprop > 5<br><br>SELECT FROM collection c WHERE c.prop.subprop.nextprop = "value"<br><br>SELECT FROM collection c ORDER BY c.prop         |
+| /"prop"/*             | 指定之標籤底下所有路徑的索引路徑。 使用下列查詢<br><br>SELECT FROM collection c WHERE c.prop = "value"<br><br>SELECT FROM collection c WHERE c.prop.subprop > 5<br><br>SELECT FROM collection c WHERE c.prop.subprop.nextprop = "value"<br><br>SELECT FROM collection c ORDER BY c.prop         |
 | /props/[]/?         | 為反覆項目及針對 ["a"、"b"、"c"] 等純量陣列進行之聯結查詢提供服務所需的索引路徑：<br><br>SELECT tag FROM tag IN collection.props WHERE tag = "value"<br><br>SELECT tag FROM collection c JOIN tag IN c.props WHERE tag > 5                                                                         |
 | /props/[]/subprop/? | 為反覆項目及針對 [{subprop: "a"}, {subprop: "b"}] 等物件陣列進行之聯結查詢提供服務所需的索引路徑：<br><br>SELECT tag FROM tag IN collection.props WHERE tag.subprop = "value"<br><br>SELECT tag FROM collection c JOIN tag IN c.props WHERE tag.subprop = "value"                                  |
 | /prop/subprop/?     | 為查詢 (類型分別為雜湊或範圍) 提供服務而必要的索引路徑：<br><br>SELECT FROM collection c WHERE c.prop.subprop = "value"<br><br>SELECT FROM collection c WHERE c.prop.subprop > 5                                                                                                                    |
@@ -413,6 +413,6 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO4-->
 
 

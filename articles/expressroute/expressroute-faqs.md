@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 02/01/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 899fbfb63633286a1065546b1f262cbc1d7d39c4
-ms.openlocfilehash: d11d57a352138e43f7a7e9d2ec91663361be6f95
+ms.sourcegitcommit: 239702c8b099dd422e6b67a267b1185a27a21807
+ms.openlocfilehash: 52d9194920019291696d5ace3ac24751fde674ab
 
 
 ---
@@ -245,11 +245,11 @@ ExpressRoute Premium 是下面所列功能的集合。
 是。 即使 ExpressRoute 已設定供我的組織使用，您仍可以透過網際網路存取 Office 365 服務端點。 如果所處位置已設定透過 ExpressRoute 連線到 Office 365 服務，您將會透過 ExpressRoute 進行連線。
 
 ### <a name="can-dynamics-365-for-operations-formerly-known-as-dynamics-ax-online-be-accessed-over-an-expressroute-connection"></a>是否可透過 ExpressRoute 連線存取 Dynamics 365 for Operations (先前稱為 Dynamics AX Online)？
-是。 [Dynamics 365 for Operations](https://www.microsoft.com/en-us/dynamics365/operations) 是裝載於 Azure 上。 您可以在您的 ExpressRoute 線路上啟用 Azure 公用對等來和它連線。 
+是。 [Dynamics 365 for Operations](https://www.microsoft.com/dynamics365/operations) 是裝載於 Azure 上。 您可以在您的 ExpressRoute 線路上啟用 Azure 公用對等來和它連線。 
 
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO4-->
 
 

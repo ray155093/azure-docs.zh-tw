@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 246ad13f92ea5146f28213a330a49cf2d639089a
+ms.sourcegitcommit: 3b31bd036d9c3ff8036b314b93cbddd94874ff63
+ms.openlocfilehash: ffb2f8d2eaaa0754063cd2f92791739b2dee3b16
 
 
 ---
@@ -26,20 +26,20 @@ ms.openlocfilehash: 246ad13f92ea5146f28213a330a49cf2d639089a
 ## <a name="how-do-i-find-and-change-the-settings"></a>如何尋找及變更設定？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
 2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
-   
+
    ![開啟使用者管理](./media/active-directory-groups-settings-azure-portal/search-user-management.png)
 3. 在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
-   
+
    ![開啟群組刀鋒視窗](./media/active-directory-groups-settings-azure-portal/view-groups-blade.png)
 4. 在 [使用者和群組 - 所有群組]  刀鋒視窗上，選取一個群組。
 5. 在 [群組- *groupname*] 刀鋒視窗上，選取 [屬性]。
-   
+
    ![開啟 [屬性] 刀鋒視窗](./media/active-directory-groups-settings-azure-portal/select-group-properties.png)
 6. 完成變更群組的屬性時，選取 [儲存] 。    
-   
+
    ![儲存屬性變更](./media/active-directory-groups-settings-azure-portal/save-group-properties.png)
 
-## <a name="additional-information"></a>其他資訊
+## <a name="next-steps"></a>後續步驟
 這些文章提供有關 Azure Active Directory 的其他資訊。
 
 * [查看現有的群組](active-directory-groups-view-azure-portal.md)
@@ -50,7 +50,6 @@ ms.openlocfilehash: 246ad13f92ea5146f28213a330a49cf2d639089a
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

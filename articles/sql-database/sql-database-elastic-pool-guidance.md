@@ -3,7 +3,7 @@ title: "何時使用彈性集區？"
 description: "彈性集區是一組彈性資料庫共用的可用資源集合。 本文件提供指引，幫助您評估對一組資料庫使用彈性集區的合適性。"
 services: sql-database
 documentationcenter: 
-author: CarlRabeler
+author: ddove
 manager: jhubbard
 editor: 
 ms.assetid: 3d3941d5-276c-4fd2-9cc1-9fe8b1e4c96c
@@ -11,13 +11,13 @@ ms.service: sql-database
 ms.custom: multiple databases
 ms.devlang: NA
 ms.date: 12/19/2016
-ms.author: sstein;carlrab
+ms.author: ddove
 ms.workload: data-management
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 6c8420a154d998aa95c0220049ee54b3039a872b
-ms.openlocfilehash: a79b78a4e8e683afe5b41a41911e7d5f020eff88
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: 9fa8c7d06675c3a7481e64c8f5390f1b5470a280
 
 
 ---
@@ -54,9 +54,9 @@ Azure SQL Database 中的彈性集區可讓 SaaS 開發人員將一組資料庫�
 
 以上一個範例為建置基礎，假設有其他資料庫具有與 DB1 類似的使用量模式。 在接下來的兩個圖形中，4 個資料庫和 20 個資料庫的使用量分層放在相同的圖形，來說明經過一段時間其使用量非重疊的本質：
 
-   ![使用量模式適合某個集區的 4 個資料庫](./media/sql-database-elastic-pool-guidance/four-databases.png)
+   ![使用量模式適合某個集區的&4; 個資料庫](./media/sql-database-elastic-pool-guidance/four-databases.png)
 
-  ![使用量模式適合某個集區的 20 個資料庫](./media/sql-database-elastic-pool-guidance/twenty-databases.png)
+  ![使用量模式適合某個集區的&20; 個資料庫](./media/sql-database-elastic-pool-guidance/twenty-databases.png)
 
 在上圖中，黑色線條說明跨所有 20 個資料庫的彙總 DTU 使用量。 這顯示彙總的 DTU 使用量永遠不會超過 100 個 DTU，並指出 20 個資料庫可以在這段期間共用 100 個 eDTU。 相較於將每個資料庫放在單一資料庫的 S3 效能層級，這會導致 DTU 減少 20 倍且價格降低 13 倍。
 
@@ -100,17 +100,6 @@ Azure SQL Database 中的彈性集區可讓 SaaS 開發人員將一組資料庫�
 
 SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的資源使用量，並在 Azure 入口網站中建議適當的集區組態。 除了這些建議之外，內建體驗也會預估伺服器上一組自訂資料庫的 eDTU 使用量。 這可讓您以互動方式將資料庫新增至集區並加以移除，藉此進行「假設」分析，以在認可變更前取得資源使用量分析和大小建議。 如需相關作法，請參閱 [監視、管理和估算彈性集區大小](sql-database-elastic-pool-manage-portal.md)。
 
-如需更有彈性的資源使用量評估 (允許 V12 之前的伺服器有隨選大小估計值)，以及不同伺服器中資料庫的大小估計值，請參閱 [用來識別彈性集區適用資料庫的 PowerShell 指令碼](sql-database-elastic-pool-database-assessment-powershell.md)。
-
-| 功能 | 入口網站體驗 | PowerShell 指令碼 |
-|:--- |:--- |:--- |
-| 細微度 |15 秒 |15 秒 |
-| 考慮單一資料庫的集區和效能層級之間的價格差異 |是 |否 |
-| 允許自訂所分析的資料庫清單 |是 |是 |
-| 允許自訂分析中使用的時間期間 |否 |是 |
-| 允許自訂不同伺服器內所分析的資料庫清單 |否 |是 |
-| 允許自訂 v11 伺服器上所分析的資料庫清單 |否 |是 |
-
 在無法使用工具的情況下，下列步驟可協助您預估集區是否比單一資料庫更符合成本效益：
 
 1. 估計集區所需的 eDTU，如下所示：
@@ -126,13 +115,12 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 並非所有單一資料庫都是集區的最佳候選項目。 使用模式的特徵是低平均使用量與相對不頻繁的使用量高峰的資料庫是絕佳的候選項目。 應用程式使用模式是動態的，因此，請使用這篇文章中所述的資訊及工具來進行初始評估，以查看集區是否是部分或所有資料庫的良好選擇。 這篇文章只是協助您決定彈性集區是否合適的起點。 請記住，您應該持續監視歷程記錄資源使用量，並不斷重新評估所有的資料庫的效能層級。 請記得，您可以輕鬆地將資料庫移入和移出彈性集區，而且如果您有大量的資料庫，則可以將資料庫分割，以具備不同大小的多個集區。
 
 ## <a name="next-steps"></a>後續步驟
-* [建立彈性集區](sql-database-elastic-pool-create-portal.md)
+* [建立彈性集區](sql-database-elastic-pool-manage-portal.md)
 * [監視、管理和估算彈性集區大小](sql-database-elastic-pool-manage-portal.md)
 * [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)
-* [識別適用於彈性集區的資料庫的 PowerShell 指令碼](sql-database-elastic-pool-database-assessment-powershell.md)
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

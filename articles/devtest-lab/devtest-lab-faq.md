@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 09/13/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 5d73d1203faf485d715354e68ce2ccde32562611
-ms.openlocfilehash: 2d1ff28d5c7d989d4c81758bd191e8d1e8100b2e
+ms.sourcegitcommit: f772060243ce6d741d26113710be32cb76135479
+ms.openlocfilehash: 41a28f43942d4e6bf395b7fd024bd22b96420d55
 
 
 ---
@@ -28,7 +28,7 @@ ms.openlocfilehash: 2d1ff28d5c7d989d4c81758bd191e8d1e8100b2e
 ## <a name="general"></a>一般
 * [如果這裡沒有解答我的問題該怎麼辦？](#what-if-my-question-isnt-answered-here)
 * [為何應使用 Azure DevTest Labs？](#why-should-i-use-azure-devtest-labs) 
-* [「零煩惱的自助方式」是什麼意思？](#what-does-quotworry-free-self-servicequot-mean)
+* [「零煩惱的自助方式」是什麼意思？](#what-does-worry-free-self-service-mean)
 * [如何使用 Azure DevTest Labs？](#how-can-i-use-azure-devtest-labs) 
 * [Azure DevTest Labs 如何收費？](#how-am-i-billed-for-azure-devtest-labs) 
 
@@ -246,6 +246,6 @@ Microsoft 帳戶是您使用 Microsoft 裝置和服務來執行幾乎所有作�
 
 
 
-<!--HONumber=Dec16_HO4-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
-ms.openlocfilehash: 8de57909d4abf753a58e389f401018601c3eef24
+ms.sourcegitcommit: 70b0aef629ceb0fe0021f633183d2a6f09145d85
+ms.openlocfilehash: b164865aaef16799ccdec24d163d4723acb88530
 
 
 ---
@@ -91,7 +91,7 @@ Azure 提供的 Node.js 版本會持續進行更新。 除非另有指定，否�
 ## <a name="next-steps"></a>後續步驟
 您已了解如何指定應用程式使用的 Node.js 版本，現在請了解如何[使用模組]、[建置並部署 Node.js 網站](app-service-web/web-sites-nodejs-develop-deploy-mac.md)和[如何使用適用於 Mac 和 Linux 的 Azure 命令列工具]。
 
-如需詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
+如需詳細資訊，請參閱 [Node.js 開發人員中心](https://azure.microsoft.com/develop/nodejs/)。
 
 [如何使用適用於 Mac 和 Linux 的 Azure 命令列工具]: xplat-cli-install.md
 [Azure 命令列工具]: xplat-cli-install.md
@@ -100,6 +100,6 @@ Azure 提供的 Node.js 版本會持續進行更新。 除非另有指定，否�
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

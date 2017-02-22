@@ -12,22 +12,16 @@ ms.custom: overview
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.date: 09/29/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: d9ff74a49742fa77f5989b8b05e0567e3ca81dc5
-ms.openlocfilehash: 89cb8827745b31b3a77b64d5cafd586957d60d30
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: c5f1ab504bcb639260b2500d462a56ea30cab9aa
 
 
 ---
 # <a name="managing-azure-sql-database-using-sql-server-management-studio"></a>使用 SQL Server Management Studio 管理 Azure SQL Database
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](sql-database-manage-portal.md)
-> * [SSMS](sql-database-manage-azure-ssms.md)
-> * [PowerShell](sql-database-manage-powershell.md)
-> 
-> 
 
 您可以使用 SQL Server Management Studio (SSMS) 來管理 Azure SQL Database 伺服器和資料庫。 本主題會引導您完成透過 SSMS 執行的常見工作。 在您開始之前，您應該已在 Azure SQL Database 中建立伺服器和資料庫。 如需詳細資訊，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started.md)和[使用 SSMS 進行連接和查詢](sql-database-connect-query-ssms.md)。
 
@@ -146,6 +140,6 @@ SQL Database 支援數種動態管理檢視，您可用他們來監視個別資�
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -4,7 +4,7 @@ description: "您可以使用 Log Analytics 中的 Azure 網路分析解決方�
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
-manager: jochan
+manager: ewinner
 editor: 
 ms.assetid: 66a3b8a1-6c55-4533-9538-cad60c18f28b
 ms.service: log-analytics
@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 1/31/2017
+ms.date: 02/09/2017
 ms.author: richrund
 translationtype: Human Translation
-ms.sourcegitcommit: a5d0587a9b7c6ea228caa8ab23307f5f46d122ef
-ms.openlocfilehash: 840239d3bc7fd8c2ce68d0cce15f844c1f2693e7
+ms.sourcegitcommit: 14df6b49d79aa1bf6f414070c60e7acac6578301
+ms.openlocfilehash: 7267b41d5d1a7903a084eea2c813bc40249fbf6a
 
 
 ---
@@ -30,11 +30,6 @@ ms.openlocfilehash: 840239d3bc7fd8c2ce68d0cce15f844c1f2693e7
 您可以在 Log Analytics 中使用 Azure 網路安全性群組分析解決方案來檢閱：
 
 * Azure 網路安全性群組記錄檔
-
-> [!NOTE]
-> Azure 應用程式閘道分析和 Azure 網路安全性群組分析為[預覽解決方案](log-analytics-add-solutions.md#preview-management-solutions-and-features)。
-> 
-> 
 
 若要使用此解決方案，請為 Azure 應用程式閘道記錄檔和 Azure 網路安全性群組啟用診斷，並將診斷導向至 Log Analytics 工作區。 不需要將記錄寫入 Azure Blob 儲存體。
 
@@ -131,7 +126,6 @@ Set-AzureRmDiagnosticSetting -ResourceId $gateway.ResourceId  -WorkspaceId $work
 
 * NetworkSecurityGroupEvent
 * NetworkSecurityGroupRuleCounter
-* NetworkSecurityGroupFlowEvent
 
 ### <a name="install-and-configure-the-solution"></a>安裝和設定解決方案
 使用下列指示來安裝和設定 Azure 網路分析解決方案︰
@@ -211,12 +205,15 @@ Set-AzureRmDiagnosticSetting -ResourceId $nsg.ResourceId  -WorkspaceId $workspac
 
 在變更之前所收集的資料不會顯示在新的解決方案中。 您可以繼續使用舊的類型和欄位名稱查詢此資料。
 
+## <a name="troubleshooting"></a>疑難排解
+[!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
+
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md)檢視詳細的 Azure 診斷資料。
 
 
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

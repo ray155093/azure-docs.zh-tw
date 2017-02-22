@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/20/2017
+ms.date: 02/14/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: d634db213f73341ed09be58c720d4e058986a38e
-ms.openlocfilehash: ef5f574712cf6fc6f10261d14e280a697163ec4c
+ms.sourcegitcommit: 09577d3160137b7879a5c128552d8dcbef89bb0d
+ms.openlocfilehash: c025629c7700c0ee7b6495a922b9bf6823769cfa
 
 
 ---
@@ -39,8 +39,8 @@ SAS 驗證支援包含在 Azure SDK 2.0 版或更新版本中。
 
 SAS 驗證會使用下列元素︰
 
-* [共用存取授權規則](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule)︰Base64 表示法中的 256 位元主要密碼編譯金鑰、選用的次要金鑰以及金鑰名稱和相關權限 (接聽、傳送或管理權限的集合)。
-* [共用存取簽章](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.sharedaccesssignaturetokenprovider) 權杖︰使用資源字串的 HMAC-SHA256 所產生，包含所存取資源的 URI 和有效期限以及密碼編譯金鑰。 下列各節所述的簽章和其他元素都會格式化為字串，以構成 SAS 權杖。
+* [共用存取授權規則](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule)︰Base64 表示法中的 256 位元主要密碼編譯金鑰、選用的次要金鑰以及金鑰名稱和相關權限 (接聽、傳送或管理權限的集合)。
+* [共用存取簽章](/dotnet/api/microsoft.servicebus.sharedaccesssignaturetokenprovider) 權杖︰使用資源字串的 HMAC-SHA256 所產生，包含所存取資源的 URI 和有效期限以及密碼編譯金鑰。 下列各節所述的簽章和其他元素都會格式化為字串，以構成 SAS 權杖。
 
 ## <a name="shared-access-policy"></a>共用存取原則
 
@@ -55,6 +55,26 @@ SAS 驗證會使用下列元素︰
 建立原則之後，它會獲指派「主索引鍵」和「次要索引鍵」。 這些是密碼編譯增強式金鑰。 請勿遺失或洩漏金鑰 - 它們永遠都可在 [Azure 入口網站][Azure portal]取得。 您可以使用其中一個產生的金鑰，以及您可以隨時重新產生它們。 不過，如果您重新產生或變更原則中的主索引鍵，從其建立的任何共用存取簽章將會失效。
 
 建立服務匯流排命名空間時，將會自動為整個命名空間建立稱為 **RootManageSharedAccessKey** 的原則，而且此原則會具備所有權限。 您未以 **root** 登入，所以除非有適合的理由，請勿使用此原則。 您可以在入口網站命名空間的 [設定] 索引標籤中建立額外的原則。 請務必注意服務匯流排中單一樹狀目錄的層級 (命名空間、佇列等) 最多只能附加 12 個原則。
+
+## <a name="configuration-for-shared-access-signature-authentication"></a>共用存取簽章驗證的設定
+您可以在服務匯流排命名空間、佇列或主題上設定 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 規則。 目前不支援在服務匯流排訂用帳戶上設定 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) ，但是您可以使用在命名空間或主題上設定的規則來保護訂用帳戶的存取安全。 如需可說明此程序的實用範例，請參閱 [搭配使用共用存取簽章 (SAS) 驗證與服務匯流排訂用帳戶](http://code.msdn.microsoft.com/Using-Shared-Access-e605b37c) 範例。
+
+在服務匯流排命名空間、佇列或主題上最多可以設定 12 條這類規則。 在服務匯流排命名空間上設定的規則可套用到該命名空間中的所有實體。
+
+![SAS](./media/service-bus-sas/service-bus-namespace.png)
+
+在此圖中，*manageRuleNS*、*sendRuleNS* 和 *listenRuleNS* 授權規則套用至佇列 Q1 和主題 T1，而 *listenRuleQ* 和 *sendRuleQ* 僅套用至佇列 Q1 以及 *sendRuleT* 僅套用至主題 T1。
+
+[SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 的主要參數如下所示︰
+
+| 參數 | 說明 |
+| --- | --- |
+| *KeyName* |用以描述授權規則的字串。 |
+| *PrimaryKey* |用來簽署和驗證 SAS 權杖的 Base64 編碼 256 位元主要金鑰。 |
+| *SecondaryKey* |用來簽署和驗證 SAS 權杖的 Base64 編碼 256 位元次要金鑰。 |
+| *AccessRights* |授權規則所授與的存取權限清單。 這些權限可以是任何接聽、傳送和管理權限的集合。 |
+
+佈建完服務匯流排命名空間後，預設會建立一個 [KeyName](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_KeyName) 設為 **RootManageSharedAccessKey** 的 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule)。
 
 ## <a name="generate-a-shared-access-signature-token"></a>產生共用存取簽章 (權杖)
 
@@ -85,13 +105,13 @@ SHA-256('https://<yournamespace>.servicebus.windows.net/'+'\n'+ 1438205742)
 
 SAS 權杖適用於 `signature-string` 中所用 `<resourceURI>` 底下的所有資源。
 
-SAS 權杖中的 [KeyName](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_KeyName) 是指用來產生權杖之共用存取授權規則的 **keyName** 。
+SAS 權杖中的 [KeyName](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_KeyName) 是指用來產生權杖之共用存取授權規則的 **keyName** 。
 
 *URL-encoded-resourceURI* 必須與簽章預算期間 string-to-sign 中所用的 URI 相同。 它應該是 [百分比編碼](https://msdn.microsoft.com/library/4fkewx0t.aspx)。
 
-建議您定期重新產生用於 [SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件的金鑰。 應用程式通常應該使用 [PrimaryKey](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_PrimaryKey) 來產生 SAS 權杖。 重新產生金鑰，您應該以舊的主要金鑰取代 [SecondaryKey](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_SecondaryKey) ，並產生新金鑰做為新的主要金鑰。 如此一來，您即可繼續使用以舊的主要金鑰簽發但尚未到期的權杖進行授權。
+建議您定期重新產生用於 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件的金鑰。 應用程式通常應該使用 [PrimaryKey](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_PrimaryKey) 來產生 SAS 權杖。 重新產生金鑰，您應該以舊的主要金鑰取代 [SecondaryKey](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_SecondaryKey) ，並產生新金鑰做為新的主要金鑰。 如此一來，您即可繼續使用以舊的主要金鑰簽發但尚未到期的權杖進行授權。
 
-如果金鑰受到危害而必須撤銷金鑰，您可以重新產生 [SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 的 [PrimaryKey](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_PrimaryKey) 和 [SecondaryKey](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_SecondaryKey)，並取代成新的金鑰。 此程序會讓所有以舊金鑰簽章的權杖失效。
+如果金鑰受到危害而必須撤銷金鑰，您可以重新產生 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 的 [PrimaryKey](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_PrimaryKey) 和 [SecondaryKey](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule#Microsoft_ServiceBus_Messaging_SharedAccessAuthorizationRule_SecondaryKey)，並取代成新的金鑰。 此程序會讓所有以舊金鑰簽章的權杖失效。
 
 ## <a name="how-to-use-shared-access-signature-authentication-with-service-bus"></a>如何搭配使用共用存取簽章驗證與服務匯流排
 
@@ -109,7 +129,7 @@ SAS 權杖中的 [KeyName](https://docs.microsoft.com/dotnet/api/microsoft.servi
 https://management.core.windows.net/{subscriptionId}/services/ServiceBus/namespaces/{namespace}/AuthorizationRules/
 ```
 
-若要在服務匯流排命名空間上建立 [SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件，請以序列化為 JSON 或 XML 的規則資訊在此端點上執行 POST 作業。 例如：
+若要在服務匯流排命名空間上建立 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件，請以序列化為 JSON 或 XML 的規則資訊在此端點上執行 POST 作業。 例如：
 
 ```csharp
 // Base address for accessing authorization rules on a namespace
@@ -144,13 +164,13 @@ var postResult = httpClient.PostAsJsonAsync("", sendRule).Result;
 
 若要更新或刪除特定授權規則，請使用以下端點：
 
-```
+```http
 https://management.core.windows.net/{subscriptionId}/services/ServiceBus/namespaces/{namespace}/AuthorizationRules/{KeyName}
 ```
 
 ## <a name="access-shared-access-authorization-rules-on-an-entity"></a>存取實體上的共用存取授權規則
 
-您可以透過對應的 [QueueDescription](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription) 或 [TopicDescription](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.topicdescription) 中的 [AuthorizationRules](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.authorizationrules) 集合，存取服務匯流排佇列或主題上設定的 [Microsoft.ServiceBus.Messaging.SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件。
+您可以透過對應的 [QueueDescription](/dotnet/api/microsoft.servicebus.messaging.queuedescription) 或 [TopicDescription](/dotnet/api/microsoft.servicebus.messaging.topicdescription) 中的 [AuthorizationRules](/dotnet/api/microsoft.servicebus.messaging.authorizationrules) 集合，存取服務匯流排佇列或主題上設定的 [Microsoft.ServiceBus.Messaging.SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件。
 
 下列程式碼示範如何新增佇列的授權規則。
 
@@ -185,7 +205,7 @@ nsm.CreateQueue(qd);
 
 ## <a name="use-shared-access-signature-authorization"></a>使用共用存取簽章授權
 
-搭配使用 Azure .NET SDK 與服務匯流排 .NET 程式庫的應用程式可以透過 [SharedAccessSignatureTokenProvider](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.sharedaccesssignaturetokenprovider) 類別來使用 SAS 授權。 下列程式碼說明如何使用權杖提供者將訊息傳送至服務匯流排佇列。
+搭配使用 Azure .NET SDK 與服務匯流排 .NET 程式庫的應用程式可以透過 [SharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.sharedaccesssignaturetokenprovider) 類別來使用 SAS 授權。 下列程式碼說明如何使用權杖提供者將訊息傳送至服務匯流排佇列。
 
 ```csharp
 Uri runtimeUri = ServiceBusEnvironment.CreateServiceUri("sb",
@@ -202,7 +222,7 @@ sendClient.Send(helloMessage);
 
 應用程式在接受連接字串的方法中使用 SAS 連接字串，也可以使用 SAS 進行驗證。
 
-請注意，若要搭配使用 SAS 授權與服務匯流排轉送，您可以使用在服務匯流排命名空間上設定的 SAS 金鑰。 如果您在命名空間 (具有 [RelayDescription](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.relaydescription) 的 [NamespaceManager](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.namespacemanager)) 物件上明確建立轉送，您可以設定該轉送的 SAS 規則。 若要搭配使用 SAS 授權與服務匯流排訂用帳戶，您可以使用在服務匯流排命名空間或主題上設定的 SAS 金鑰。
+請注意，若要搭配使用 SAS 授權與服務匯流排轉送，您可以使用在服務匯流排命名空間上設定的 SAS 金鑰。 如果您在命名空間 (具有 [RelayDescription](/dotnet/api/microsoft.servicebus.messaging.relaydescription) 的 [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager)) 物件上明確建立轉送，您可以設定該轉送的 SAS 規則。 若要搭配使用 SAS 授權與服務匯流排訂用帳戶，您可以使用在服務匯流排命名空間或主題上設定的 SAS 金鑰。
 
 ## <a name="use-the-shared-access-signature-at-http-level"></a>使用共用存取簽章 (於 HTTP 層級)
 
@@ -350,6 +370,6 @@ AMQP 訊息包含眾多屬性，以及比簡單訊息更多的資訊。 SAS 權�
 [Azure portal]: https://portal.azure.com
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

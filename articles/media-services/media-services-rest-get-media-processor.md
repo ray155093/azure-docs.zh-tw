@@ -12,11 +12,11 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 02/20/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 60458091f8c60eb1d726508724fc96eb0145e3bc
+ms.sourcegitcommit: d1d05b46591fe4b72c92c59d357681c8e1cdb336
+ms.openlocfilehash: c208660fc1439ca831ada6c9bb348dbc3eadc18c
 
 
 ---
@@ -38,10 +38,10 @@ ms.openlocfilehash: 60458091f8c60eb1d726508724fc96eb0145e3bc
 | Media Encoder Premium Workflow |可讓您使用 Media Encoder Premium Workflow 執行編碼工作。 |[Azure 隨選媒體編碼器的概觀和比較](media-services-encode-asset.md) |
 | Azure Media Indexer |可讓您的媒體檔案和內容可供搜尋，以及產生隱藏式輔助字幕和關鍵字。 |[Azure Media Indexer](media-services-index-content.md) |
 | Azure Media Hyperlapse (預覽) |可讓您使用影片穩定讓影片中的「巔簸」變得平滑。 也可讓您將內容加速至可使用的片段。 |[Azure Media Hyperlapse](media-services-hyperlapse-content.md) |
-| Azure Media Encoder |停用 | |
-| Storage Decryption |停用 | |
-| Azure Media Packager |停用 | |
-| Azure Media Encryptor |停用 | |
+| Azure Media Encoder |取代 | |
+| Storage Decryption |取代 | |
+| Azure Media Packager |取代 | |
+| Azure Media Encryptor |取代 | |
 
 ## <a name="get-mediaprocessor"></a>取得 MediaProcessor
 > [!NOTE]
@@ -98,6 +98,6 @@ ms.openlocfilehash: 60458091f8c60eb1d726508724fc96eb0145e3bc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

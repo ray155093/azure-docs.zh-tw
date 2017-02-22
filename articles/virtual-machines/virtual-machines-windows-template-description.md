@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 01/04/2017
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: c94d114c50d44a3ca2933ec3464e7a2396867d60
-ms.openlocfilehash: eb94a0e383be4a2c125b9f5a2e7c1e49beacd4df
+ms.sourcegitcommit: 26c58ae4c509cb768807875ecdf96e9a24d6a472
+ms.openlocfilehash: 5c43e6c646928ef17e1bf2e5b9bce90f9038d5d0
 
 
 ---
@@ -38,7 +38,7 @@ ms.openlocfilehash: eb94a0e383be4a2c125b9f5a2e7c1e49beacd4df
     "name": "[concat('myVM', copyindex())]", 
     "location": "[resourceGroup().location]",
     "copy": {
-      "name": "virtualMachineLoop", 
+      "name": "virtualMachineLoop",    
       "count": "[parameters('numberOfInstances')]"
     },
     "dependsOn": [
@@ -230,7 +230,7 @@ ms.openlocfilehash: eb94a0e383be4a2c125b9f5a2e7c1e49beacd4df
 
 ```
 "copy": {
-  "name": "virtualMachineLoop", 
+  "name": "virtualMachineLoop",    
   "count": "[parameters('numberOfInstances')]"
 },
 ```
@@ -307,7 +307,7 @@ Resource Manager 會以平行方式部署任何不依存於另一個要部署資
 
 ## <a name="disks-and-images"></a>磁碟和映像
    
-在 Azure 中，VHD 檔案可以代表[磁碟或映像](virtual-machines-windows-about-disks-vhds.md)。 當 VHD 檔案中的作業系統特製化為特定 VM 時，它就是磁碟。 當 VHD 檔案中的作業系統一般化為用來建立許多 VM 時，它就是映像。   
+在 Azure 中，VHD 檔案可以代表[磁碟或映像](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 當 VHD 檔案中的作業系統特製化為特定 VM 時，它就是磁碟。 當 VHD 檔案中的作業系統一般化為用來建立許多 VM 時，它就是映像。   
     
 ### <a name="create-new-virtual-machines-and-new-disks-from-a-platform-image"></a>從平台映像建立新的虛擬機器和新的磁碟
 
@@ -500,6 +500,6 @@ Start.ps1 指令碼可以完成許多組態工作。 例如，範例中新增至
 - 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，以了解如何管理您建立的 VM。
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

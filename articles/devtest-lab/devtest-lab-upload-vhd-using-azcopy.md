@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 38d70ed302eeab912ce4fe33272f85e96f1b1eda
-ms.openlocfilehash: 8ac76a3b15303bb3e3d36a1a9b878ec0fe25d4d4
+ms.sourcegitcommit: cc14f7747c4a24acea434f62b7615d10819bd619
+ms.openlocfilehash: f79e76d2efbd71cdd828dbdf43353076c063f23b
 
 
 ---
@@ -25,7 +25,7 @@ ms.openlocfilehash: 8ac76a3b15303bb3e3d36a1a9b878ec0fe25d4d4
 
 [!INCLUDE [devtest-lab-upload-vhd-selector](../../includes/devtest-lab-upload-vhd-selector.md)]
 
-在 Azure DevTest Labs 中，可以使用 VHD 檔案來建立自訂映像，這些映像可用來佈建虛擬機器。 下列步驟將逐步引導您使用 AzCopy 命令列公用程式，將 VHD 檔案上傳到實驗室的儲存體帳戶。 在您上傳 VHD 檔案之後，[後續步驟](#next-steps)一節會列出一些說明如何從所上傳的 VHD 檔案建立自訂映像的文章。 如需有關 Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../virtual-machines/virtual-machines-linux-about-disks-vhds.md)
+在 Azure DevTest Labs 中，可以使用 VHD 檔案來建立自訂映像，這些映像可用來佈建虛擬機器。 下列步驟將逐步引導您使用 AzCopy 命令列公用程式，將 VHD 檔案上傳到實驗室的儲存體帳戶。 在您上傳 VHD 檔案之後，[後續步驟](#next-steps)一節會列出一些說明如何從所上傳的 VHD 檔案建立自訂映像的文章。 如需有關 Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../storage/storage-about-disks-and-vhds-linux.md)
 
 > [!NOTE] 
 >  
@@ -47,7 +47,7 @@ ms.openlocfilehash: 8ac76a3b15303bb3e3d36a1a9b878ec0fe25d4d4
 
 1. 在實驗室的 [組態] 刀鋒視窗上，選取 [自訂映像 (VHD)]。
 
-1. 在 [自訂映像] 刀鋒視窗上，選取 [+加入]。 
+1. 在 [自訂映像] 刀鋒視窗上，選取 [+新增]。 
 
 1. 在 [自訂映像] 刀鋒視窗上，選取 [VHD]。
 
@@ -85,6 +85,6 @@ ms.openlocfilehash: 8ac76a3b15303bb3e3d36a1a9b878ec0fe25d4d4
 - [使用 PowerShell 在 Azure DevTest Labs 中從 VHD 檔案建立自訂映像](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: sutalasi
 translationtype: Human Translation
-ms.sourcegitcommit: f6ab5e3807684abb64a18e0a4bfc732afa091143
-ms.openlocfilehash: e8c155a42b33aafeca0c641bc4f6162f3278a89f
+ms.sourcegitcommit: 0400369eb7ae3a2ebd506605b50afe08fe563d22
+ms.openlocfilehash: 33b3e7322afafd623a10661e33abe7b959eeb512
 
 
 ---
@@ -54,7 +54,7 @@ ms.openlocfilehash: e8c155a42b33aafeca0c641bc4f6162f3278a89f
 
 | **必要條件** | **詳細資料** |
 | --- | --- |
-| **VMM** |建議您在主要站台與次要站台各部署一部 VMM 伺服器。<br/><br/> 您也可以[在單一 VMM 伺服器上的雲端之間進行複寫](site-recovery-single-vmm.md)。 若要這樣做，您至少需要在 VMM 伺服器上設定兩個雲端。<br/><br/> VMM 伺服器至少應執行含有最新更新的 System Center 2012 SP1。<br/><br/> 每部 VMM 伺服器都必須設定一或多個雲端，而所有雲端都必須設定 Hyper-V 容量設定檔。 <br/><br/>雲端必須包含一或多個 VMM 主機群組。<br/><br/>若要深入了解如何設定 VMM 雲端，請參閱[設定 VMM 雲端網狀架構](https://msdn.microsoft.com/library/azure/dn469075.aspx#BKMK_Fabric)和[Walkthrough: Creating private clouds with System Center 2012 SP1 VMM (逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端)](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx)。<br/><br/> VMM 伺服器必須能夠存取網際網路。 |
+| **VMM** |建議您在主要站台與次要站台各部署一部 VMM 伺服器。<br/><br/> 您也可以[在單一 VMM 伺服器上的雲端之間進行複寫](site-recovery-vmm-to-vmm.md#prepare-for-single-server-deployment)。 若要這樣做，您至少需要在 VMM 伺服器上設定兩個雲端。<br/><br/> VMM 伺服器至少應執行含有最新更新的 System Center 2012 SP1。<br/><br/> 每部 VMM 伺服器都必須設定一或多個雲端，而所有雲端都必須設定 Hyper-V 容量設定檔。 <br/><br/>雲端必須包含一或多個 VMM 主機群組。<br/><br/>若要深入了解如何設定 VMM 雲端，請參閱[設定 VMM 雲端網狀架構](https://msdn.microsoft.com/library/azure/dn469075.aspx#BKMK_Fabric)和[Walkthrough: Creating private clouds with System Center 2012 SP1 VMM (逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端)](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx)。<br/><br/> VMM 伺服器必須能夠存取網際網路。 |
 | **Hyper-V** |Hyper-V 伺服器必須至少執行具備 Hyper-V 角色並已安裝最新更新的 Windows Server 2012。<br/><br/> Hyper-V 伺服器應該包含一或多部 VM。<br/><br/>  Hyper-V 主機伺服器應該位於主要和次要 VMM 雲端的主機群組中。<br/><br/> 如果您是在 Windows Server 2012 R2 上的叢集中執行 Hyper-V，則應該安裝[更新 2961977](https://support.microsoft.com/kb/2961977)。<br/><br/> 如果您是在 Windows Server 2012 上的叢集中執行 Hyper-V，請注意，當您的叢集是靜態 IP 位址型叢集時，並不會自動建立叢集代理。 您必須手動設定叢集代理。 [閱讀更多資訊](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx)。 |
 | **提供者** |在 Site Recovery 部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery Provider。 Provider 會透過 HTTPS 443 與 Site Recovery 通訊來協調複寫。 資料複寫是透過 LAN 或 VPN 連線在主要和次要 Hyper-V 伺服器之間進行。<br/><br/> 在 VMM 伺服器上執行的提供者需要能夠存取下列 URL：*.hypervrecoverymanager.windowsazure.com、*.accesscontrol.windows.net、*.backup.windowsazure.com、*.blob.core.windows.net、*.store.core.windows.net。<br/><br/> 此外，還要允許從 VMM 伺服器到 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)的防火牆通訊，並允許 HTTPS (443) 通訊協定。 |
 
@@ -74,7 +74,7 @@ ms.openlocfilehash: e8c155a42b33aafeca0c641bc4f6162f3278a89f
 * [如何在 VMM 中設定邏輯網路](http://go.microsoft.com/fwlink/p/?LinkId=386307)
 * [如何在 VMM 中設定 VM 網路和閘道](http://go.microsoft.com/fwlink/p/?LinkId=386308)
 
-[深入了解](site-recovery-network-mapping.md) 網路對應的運作方式。
+[深入了解](site-recovery-vmm-to-vmm.md#prepare-for-network-mapping) 網路對應的運作方式。
 
 ### <a name="powershell-prerequisites"></a>PowerShell 必要條件
 確定 Azure PowerShell 已經準備就緒。 如果您已經使用 PowerShell，您必須升級至 0.8.10 版或更新版本。 如需設定 PowerShell 的資訊，請參閱 [安裝和設定 Azure PowerShell 指南](/powershell/azureps-cmdlets-docs)。 一旦已安裝並設定 PowerShell，您可以檢視 [這裡](https://msdn.microsoft.com/library/dn850420.aspx)之服務的所有可用的 Cmdlet。
@@ -322,6 +322,6 @@ ms.openlocfilehash: e8c155a42b33aafeca0c641bc4f6162f3278a89f
 
 
 
-<!--HONumber=Jan17_HO5-->
+<!--HONumber=Feb17_HO3-->
 
 
