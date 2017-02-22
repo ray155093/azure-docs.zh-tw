@@ -1,4 +1,4 @@
-下表列出 PolicyBased 和 RouteBased VPN 閘道的需求。此資料表適用於資源管理員與傳統部署模型。就傳統模型而言，PolicyBased VPN 閘道與「靜態」閘道相同，而 RouteBased 閘道則與「動態」閘道相同。
+下表列出 PolicyBased 和 RouteBased VPN 閘道的需求。 此資料表適用於資源管理員與傳統部署模型。 就傳統模型而言，PolicyBased VPN 閘道與「靜態」閘道相同，而 RouteBased 閘道則與「動態」閘道相同。
 
 |  | **PolicyBased 基本 VPN 閘道** | **RouteBased 基本 VPN 閘道** | **RouteBased 標準 VPN 閘道** | **RouteBased 高效能 VPN 閘道** |
 | --- | --- | --- | --- | --- |
@@ -9,4 +9,8 @@
 | **P2S 連接的數目上限** |不支援 |128 |128 |128 |
 | **作用中路由支援 (BGP)** |不支援 |不支援 |支援 |支援 |
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

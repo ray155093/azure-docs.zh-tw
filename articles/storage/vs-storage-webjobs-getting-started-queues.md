@@ -382,7 +382,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             host.RunAndBlock();
         }
 
-### <a name="configure-queuetrigger-settings"></a>設定 QueueTrigger 設定
+### <a name="configure-queuetrigger--settings"></a>設定 QueueTrigger 設定
 您可以配置會套用至佇列訊息處理的下列設定：
 
 * 挑選以同時平行執行的佇列訊息數目上限 (預設值為 16)。

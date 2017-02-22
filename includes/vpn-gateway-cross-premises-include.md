@@ -11,4 +11,8 @@
 | **技術文件** |[VPN 閘道文件](https://azure.microsoft.com/documentation/services/vpn-gateway/) |[VPN 閘道文件](https://azure.microsoft.com/documentation/services/vpn-gateway/) |[ExpressRoute 文件](https://azure.microsoft.com/documentation/services/expressroute/) |
 | **常見問題集** |[VPN 閘道常見問題集](../articles/vpn-gateway/vpn-gateway-vpn-faq.md) |[VPN 閘道常見問題集](../articles/vpn-gateway/vpn-gateway-vpn-faq.md) |[ExpressRoute 常見問題集](../articles/expressroute/expressroute-faqs.md) |
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

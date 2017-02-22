@@ -1,5 +1,5 @@
-### 透過編輯器安裝
-1. [安裝 Git][install-git]。請注意在 Windows 中，您也必須將 Git 可執行檔新增至 PATH 環境變數。 
+### <a name="install-via-composer"></a>透過編輯器安裝
+1. [安裝 Git][install-git]。 請注意在 Windows 中，您也必須將 Git 可執行檔新增至 PATH 環境變數。 
 2. 在專案的根目錄中建立名為 **composer.json** 的檔案，並新增下列程式碼：
    
     ```
@@ -21,4 +21,7 @@
 [download-SDK-PHP]: ../articles/php-download-sdk.md
 [composer-phar]: http://getcomposer.org/composer.phar
 
-<!---HONumber=AcomDC_0601_2016-->
+
+<!--HONumber=Nov16_HO3-->
+
+

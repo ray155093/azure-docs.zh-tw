@@ -14,8 +14,8 @@ ms.topic: get-started-article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: aac35e524759d5f4356e9a9e386f658e9003d2ca
+ms.sourcegitcommit: 7a9c40081f52b2ffe918f4612f790f7fd08acc5a
+ms.openlocfilehash: 926f77b6674a0dba92e160435e4cce7bb0de160d
 
 
 ---
@@ -82,6 +82,8 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
     `<InstrumentationKey>`您複製的檢測金鑰 `</InstrumentationKey>`
 * 確定 [方案總管] 中 ApplicationInsights.config 的屬性已設定為 [建置動作] = [內容]、[複製到輸出目錄] = [複製] 。
 
+如果您想要[針對不同建置組態切換金鑰](app-insights-separate-resources.md)，在程式碼中設定檢測金鑰便很實用。 如果您在程式碼中設定金鑰，您不必在 `.config` 檔案中設定它。
+
 ## <a name="a-nameruna-run-your-project"></a><a name="run"></a> 執行專案
 使用 **F5** 執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
 
@@ -132,6 +134,6 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 
