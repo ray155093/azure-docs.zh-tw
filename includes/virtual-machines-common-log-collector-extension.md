@@ -1,15 +1,15 @@
 
-要診斷 Microsoft Azure 雲端服務的問題，必須在問題發生時收集服務在虛擬機器上的記錄檔。您可以視需要使用 AzureLogCollector 延伸模組，從一或多個雲端服務 VM (從 Web 角色和背景工作角色) 執行一次性的記錄收集作業，並將收集到的檔案傳輸到 Azure 儲存體帳戶，完全不必遠端登入任何 VM。
+要診斷 Microsoft Azure 雲端服務的問題，必須在問題發生時收集服務在虛擬機器上的記錄檔。 您可以視需要使用 AzureLogCollector 延伸模組，從一或多個雲端服務 VM (從 Web 角色和背景工作角色) 執行一次性的記錄收集作業，並將收集到的檔案傳輸到 Azure 儲存體帳戶，完全不必遠端登入任何 VM。
 
 > [!NOTE]
-> 大部分已記錄的資訊都可在 http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.asp 找到相關說明。
+> 大部分的記錄資訊描述位於 http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.asp。
 > 
 > 
 
 根據要收集的檔案類型，會有兩種收集模式。
 
-* 僅限 Azure 客體代理程式記錄檔 (GA)。此收集模式包含所有與 Azure 客體代理程式和其他 Azure 元件相關的記錄。
-* 所有的記錄檔 (完整)。此收集模式將會收集 GA 模式中的所有檔案，外加：
+* 僅限 Azure 客體代理程式記錄檔 (GA)。 此收集模式包含所有與 Azure 客體代理程式和其他 Azure 元件相關的記錄。
+* 所有的記錄檔 (完整)。 此收集模式將會收集 GA 模式中的所有檔案，外加：
   
   * 系統和應用程式事件記錄檔
   * HTTP 錯誤記錄檔
@@ -21,23 +21,23 @@
 
 * **名稱**：集合的名稱，將做為要收集之 zip 檔案內的子資料夾名稱。
 * **位置**：將要收集檔案的資料夾在虛擬機器上的路徑。
-* **SearchPattern**：要收集之檔案的名稱模式。預設值為 "*"
+* **SearchPattern**：要收集之檔案的名稱模式。 預設值為 "*"
 * **遞迴**：如果要以遞迴方式收集資料夾下的檔案。
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 * 您必須有儲存體帳戶可進行擴充，以儲存產生的 zip 檔案。
-* 您必須確定使用的是 Azure PowerShell Cmdlet V0.8.0 或更新版本。如需詳細資訊，請參閱 [Azure 下載](https://azure.microsoft.com/downloads/)。
+* 您必須確定使用的是 Azure PowerShell Cmdlet V0.8.0 或更新版本。 如需詳細資訊，請參閱 [Azure 下載](https://azure.microsoft.com/downloads/)。
 
-## 新增延伸模組
+## <a name="add-the-extension"></a>新增延伸模組
 您可以使用 [Microsoft Azure PowerShell](https://msdn.microsoft.com/library/dn495240.aspx) Cmdlet 或[服務管理 REST API](https://msdn.microsoft.com/library/ee460799.aspx)，來新增 AzureLogCollector 延伸模組。
 
-對於雲端服務，可以使用現有的 Azure Powershell Cmdlet **Set-AzureServiceExtension** 來啟用雲端服務角色執行個體上的延伸模組。每次透過此 Cmdlet 啟用此延伸模組時，都會在所選角色的選定角色執行個體上觸發記錄檔收集。
+對於雲端服務，可以使用現有的 Azure Powershell Cmdlet **Set-AzureServiceExtension**來啟用雲端服務角色執行個體上的延伸模組。 每次透過此 Cmdlet 啟用此延伸模組時，都會在所選角色的選定角色執行個體上觸發記錄檔收集。
 
-對於虛擬機器，可以使用現有的 Azure Powershell Cmdlet **Set-AzureVMExtension** 來啟用虛擬機器上的延伸模組。每次透過這些 Cmdlet 啟用此延伸模組時，都會在每個執行個體上觸發記錄檔收集。
+對於虛擬機器，可以使用現有的 Azure Powershell Cmdlet **Set-AzureVMExtension**來啟用虛擬機器上的延伸模組。 每次透過這些 Cmdlet 啟用此延伸模組時，都會在每個執行個體上觸發記錄檔收集。
 
-就內部而言，此延伸模組會使用以 JSON 為基礎的 PublicConfiguration 和 PrivateConfiguration。以下是公用和私人組態的範例 JSON 配置。
+就內部而言，此延伸模組會使用以 JSON 為基礎的 PublicConfiguration 和 PrivateConfiguration。 以下是公用和私人組態的範例 JSON 配置。
 
-### PublicConfiguration
+### <a name="publicconfiguration"></a>PublicConfiguration
     {
         "Instances":  "*",
         "Mode":  "Full",
@@ -59,19 +59,19 @@
         ]
     }
 
-### PrivateConfiguration
+### <a name="privateconfiguration"></a>PrivateConfiguration
     {
 
     }
 
 > [!NOTE]
-> 此延伸模組不需要 **privateConfiguration**。您可以只提供 **–PrivateConfiguration** 引數的空結構。
+> 此延伸模組不需要 **privateConfiguration**。 您可以只提供 **–PrivateConfiguration** 引數的空結構。
 > 
 > 
 
 您可以依照下列兩個步驟之一，將 AzureLogCollector 新增至所選角色的一或多個雲端服務或虛擬機器執行個體，這會在每個 VM 上觸發收集的執行，並將收集到的檔案傳送至指定的 Azure 帳戶。
 
-## 新增為服務延伸模組
+## <a name="adding-as-a-service-extension"></a>新增為服務延伸模組
 1. 依照指示將 Azure PowerShell 連接到您的訂用帳戶。
 2. 指定要新增並啟用 AzureLogCollector 延伸模組的服務名稱、位置、角色和角色執行個體。
    
@@ -110,11 +110,11 @@
    
         $StorageAccountName = 'YourStorageAccountName'
         $StorageAccountKey  = ‘YouStorageAccountKey'
-5. 依照下列方式呼叫 SetAzureServiceLogCollector.ps1 (包含在本文結尾處)，以啟用雲端服務的 AzureLogCollector 延伸模組。執行完成後，您可以在 `https://YouareStorageAccountName.blob.core.windows.net/vmlogs` 找到上傳的檔案
+5. 依照下列方式呼叫 SetAzureServiceLogCollector.ps1 (包含在本文結尾處)，以啟用雲端服務的 AzureLogCollector 延伸模組。 執行完成後，您可以在 `https://YouareStorageAccountName.blob.core.windows.net/vmlogs` 找到上傳的檔案
    
         .\SetAzureServiceLogCollector.ps1 -ServiceName YourCloudServiceName  -Roles $roles  -Instances $instances –Mode $mode -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey -AdditionDataLocationList $AdditionalDataList
 
-以下是傳遞至指令碼之參數的定義。(也可以從下方加以複製。)
+以下是傳遞至指令碼之參數的定義。 (也可以從下方加以複製。)
 
     [CmdletBinding(SupportsShouldProcess = $true)]
 
@@ -147,15 +147,20 @@
 * *ServiceName*：您的雲端服務名稱。
 * *Roles*：一份角色清單，例如 “WebRole1” 或 ”WorkerRole1”。
 * *Instances*：一份以逗號分隔的角色執行個體名稱 -- 所有角色執行個體皆使用萬用字元字串 ("*")。
-* *Slot*：位置名稱。「生產」或「預備」。
-* *Mode*：收集模式。「完整」或「GA」。
+* *Slot*：位置名稱。 「生產」或「預備」。
+* *Mode*：收集模式。 「完整」或「GA」。
 * *StorageAccountName*：用來儲存收集之資料的 Azure 儲存體帳戶名稱。
 * *StorageAccountKey*：Azure 儲存體帳戶金鑰的名稱。
 * *AdditionalDataLocationList*：下列結構的清單：
   
-      {字串名稱、字串位置、字串 SearchPattern、布林遞迴}
+      {
+      String Name,
+      String Location,
+      String SearchPattern,
+      Bool   Recursive
+      }
 
-## 新增為 VM 延伸模組
+## <a name="adding-as-a-vm-extension"></a>新增為 VM 延伸模組
 依照指示將 Azure PowerShell 連接到您的訂用帳戶。
 
 1. 指定服務名稱、VM 和收集模式。
@@ -185,9 +190,9 @@
    
         $StorageAccountName = 'YourStorageAccountName'
         $StorageAccountKey  = ‘YouStorageAccountKey'
-3. 依照下列方式呼叫 SetAzureVMLogCollector.ps1 (包含在本文結尾處)，以啟用雲端服務的 AzureLogCollector 延伸模組。執行完成後，您可以在 https://YouareStorageAccountName.blob.core.windows.net/vmlogs 找到上傳的檔案
+3. 依照下列方式呼叫 SetAzureVMLogCollector.ps1 (包含在本文結尾處)，以啟用雲端服務的 AzureLogCollector 延伸模組。 一旦完成執行，您可以在 https://YouareStorageAccountName.blob.core.windows.net/vmlogs 底下找到上傳的檔案
 
-以下是傳遞至指令碼之參數的定義。(也可以從下方加以複製。)
+以下是傳遞至指令碼之參數的定義。 (也可以從下方加以複製。)
 
     [CmdletBinding(SupportsShouldProcess = $true)]
 
@@ -213,7 +218,7 @@
 
 * ServiceName：您的雲端服務名稱。
 * VMName：VM 的名稱。
-* Mode：收集模式。「完整」或「GA」。
+* Mode：收集模式。 「完整」或「GA」。
 * StorageAccountName：用來儲存收集之資料的 Azure 儲存體帳戶名稱。
 * StorageAccountKey：Azure 儲存體帳戶金鑰的名稱。
 * AdditionalDataLocationList：下列結構的清單：
@@ -227,7 +232,7 @@
       }
 ```
 
-## 延伸模組 PowerShell 指令碼檔案
+## <a name="extention-powershell-script-files"></a>延伸模組 PowerShell 指令碼檔案
 SetAzureServiceLogCollector.ps1
 
     [CmdletBinding(SupportsShouldProcess = $true)]
@@ -475,7 +480,11 @@ SetAzureVMLogCollector.ps1
       Write-Output "VM name is not specified, the extension cannot be enabled"
     }
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 現在，您可以從一個非常簡單的位置檢查或複製您的記錄檔。
 
-<!---HONumber=AcomDC_0629_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

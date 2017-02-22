@@ -1,9 +1,9 @@
 
-## Analytics
+## <a name="analytics"></a>Analytics
 * [概觀](../articles/application-insights/app-insights-analytics.md)
 * [分析的教學課程](../articles/application-insights/app-insights-analytics-tour.md)
-  * 從這裡開始。涵蓋主要功能的教學課程。
-* [查詢](../articles/application-insights/app-insights-analytics-reference.md#queries)
+  * 從這裡開始。 涵蓋主要功能的教學課程。
+* [查詢](../articles/application-insights/app-insights-analytics-reference.md#queries-and-operators)
   * 使用像 `where` 和 `count` 這樣的運算子來建立查詢。
 * [彙總](../articles/application-insights/app-insights-analytics-reference.md#aggregations)
   * 用於計算記錄群組的統計資料
@@ -15,4 +15,8 @@
   * 一頁的參考。
 * [疑難排解](../articles/application-insights/app-insights-analytics-troubleshooting.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+
