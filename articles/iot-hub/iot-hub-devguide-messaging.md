@@ -15,13 +15,13 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
-ms.openlocfilehash: 768e21205e341f4915f8be50129fd246285a2efc
+ms.sourcegitcommit: b6c79691c75cb01eb4eea4d0e66b01d1792cfb11
+ms.openlocfilehash: 0e3f0166517d3fd0ddd5f04a12afa393d0ac2a92
 
 
 ---
 # <a name="send-and-receive-messages-with-iot-hub"></a>使用 IoT 中樞傳送及接收訊息
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 IoT 中樞提供下列與裝置通訊的傳訊基礎︰
 
 * [裝置到雲端][lnk-d2c]︰從裝置到後端應用程式。
@@ -97,7 +97,7 @@ IoT 中樞也可讓您管理內建裝置對雲端接收端點上的取用者群�
 
 根據預設，所有未明確符合訊息路由規則的訊息，均會寫入至內建端點。 如果您停用此後援路由，則會捨棄未明確符合任何訊息路由規則的訊息。
 
-您可以透過 [IoT 中樞資源提供者 REST API][lnk-resource-provider-apis] 以程式設計方式來修改以上所有屬性，或者使用 [Azure 入口網站][lnk-management-portal]來修改。
+您可以透過 [IoT 中樞資源提供者 REST API][lnk-resource-provider-apis] 以程式設計方式來修改保留時間，或使用 [Azure 入口網站][lnk-management-portal]來修改。
 
 ### <a name="anti-spoofing-properties"></a>防詐騙屬性
 為了避免裝置到雲端的訊息中出現裝置詐騙，IoT 中樞使用下列屬性在所有訊息上加上戳記：
@@ -142,8 +142,8 @@ IoT 中樞也可讓您管理內建裝置對雲端接收端點上的取用者群�
 
 裝置也可以︰
 
-*  訊息，這會導致 IoT 中樞將其設定為 **寄不出** 狀態。 注意︰使用 MQTT 連接的裝置無法拒絕雲端到裝置訊息。
-*  訊息，這會導致 IoT 中樞將訊息放回佇列，並將狀態設定為 。
+* *拒絕*訊息，這會導致 IoT 中樞將它設定為 **寄不出**狀態。 注意︰使用 MQTT 連接的裝置無法拒絕雲端到裝置訊息。
+* *放棄*訊息，這會導致 IoT 中樞將訊息放回佇列，並將狀態設定為**已排入佇列**。
 
 執行緒可能無法處理訊息，且不會通知 IoT 中樞。 在此情況下，訊息會在過了 [可見性 (或鎖定) 逾時] 之後，自動從**不可見**狀態轉換回**已加入佇列**狀態。 此逾時的預設值是一分鐘。
 
@@ -437,6 +437,6 @@ IoT 中樞開發人員指南中的其他參考主題包括︰
 
 
 
-<!--HONumber=Jan17_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

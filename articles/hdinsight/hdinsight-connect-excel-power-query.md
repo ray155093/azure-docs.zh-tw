@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/19/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: bf45651360a9fe9b5023d46000aadc054ce0ef37
+ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
+ms.openlocfilehash: 26383db7a3fe6736fb739121dd545518784c098a
 
 
 ---
@@ -32,7 +32,7 @@ Microsoft 巨量資料方案的主要功能之一，是將 Microsoft 商業智�
 ### <a name="prerequisites"></a>必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
 
-* **HDInsight 叢集**。 若要設定叢集，請參閱[開始使用 Azure HDInsight][hdinsight-get-started]。
+* **HDInsight 叢集**。 若要設定此叢集，請參閱 [Azure HDInsight 使用者入門][hdinsight-get-started]。
 * **工作站** 。
 * **Office 2013 Professional Plus、Office 365 Pro Plus、Excel 2013 Standalone 或 Office 2010 Professional Plus**。
 
@@ -83,6 +83,6 @@ Power Query add-in for Excel 可協助您將 HDInsight 叢集中的資料匯入�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

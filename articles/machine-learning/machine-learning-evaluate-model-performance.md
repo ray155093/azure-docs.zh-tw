@@ -12,16 +12,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/19/2016
+ms.date: 12/12/2016
 ms.author: bradsev;garye
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 53c84ff1e99236343585ff31ef1bcb57e0250fdc
+ms.sourcegitcommit: 46c624608773fcd55e7ee3548aaa32fbbc630056
+ms.openlocfilehash: b6d0c877e0f0515dd82c0615850009910aa0b0be
 
 
 ---
 # <a name="how-to-evaluate-model-performance-in-azure-machine-learning"></a>如何在 Azure Machine Learning 中評估模型效能
-本主題示範如何在 Azure Machine Learning Studio 中評估模型的效能，並提供這項工作中可用度量的簡短說明。 提供三種常見的受監督的學習案例： 
+本文示範如何在 Azure Machine Learning Studio 中評估模型的效能，並提供這項工作中可用度量的簡短說明。 提供三種常見的受監督的學習案例： 
 
 * 迴歸
 * 二進位分類 
@@ -113,9 +113,11 @@ Azure Machine Learning 支援透過兩個主要的機器學習服務模組來評
 
 圖 6. 二進位分類混淆矩陣。
 
-回到收入分類問題，我們會想要提出幾個評估問題，幫助我們了解所使用的分類器的效能。 很自然的問題是：「在模型預測收入 5 萬元以上 (TP+FP) 的個人中，有多少人的分類正確 (TP)？ 」 透過查看模型的 **精確度** ，也就是正確分類的正數比例，可以回答這個問題：TP/(TP+FP)。 另一個常見問題是：「在收入高於 5 萬元 (TP+FN) 的高收入員工中，分類器正確分類的員工有多少 (TP)？ 」實際上，這是 **回收**，或真肯定比率：分類器的 TP/(TP+FN)。 您可能會注意到在精確度與回收之間有明顯的取捨。 例如，假設是相當對稱資料集，預測大部分是正案例的分類器會有高回收，但是因為許多負案例分類錯誤造成的精確度低會導致大量的誤肯定。 若要查看這兩個度量如何變化的繪圖，您可以按一下 [評估結果輸出] 頁面中的「精確度/回收」曲線 (圖 7 的左側部分)。
+回到收入分類問題，我們會想要提出幾個評估問題，幫助我們了解所使用的分類器的效能。 很自然的問題是：「在模型預測收入&5; 萬元以上 (TP+FP) 的個人中，有多少人的分類正確 (TP)？ 」 透過查看模型的 **精確度** ，也就是正確分類的正數比例，可以回答這個問題：TP/(TP+FP)。 另一個常見問題是：「在收入高於&5; 萬元 (TP+FN) 的高收入員工中，分類器正確分類的員工有多少 (TP)？ 」實際上，這是 **回收**，或真肯定比率：分類器的 TP/(TP+FN)。 您可能會注意到在精確度與回收之間有明顯的取捨。 例如，假設是相當對稱資料集，預測大部分是正案例的分類器會有高回收，但是因為許多負案例分類錯誤造成的精確度低會導致大量的誤肯定。 若要查看這兩個度量如何變化的繪圖，您可以按一下 [評估結果輸出] 頁面中的「精確度/回收」曲線 (圖 7 的左側部分)。
 
-![二元分類評估結果](media/machine-learning-evaluate-model-performance/7.png) 圖 7. 二進位分類評估結果。
+![二元分類評估結果](media/machine-learning-evaluate-model-performance/7.png)
+
+圖 7. 二進位分類評估結果。
 
 常用的另一個相關度量是 **F1 分數**，這會將精確度和回收同時列入考量。 這是這 2 個度量的調和平均數，其計算方式如下：F1 = 2 (精確度 x 回收) / (精確度 + 回收)。 F1 分數是總結單一數字評估很好的方式，但同時查看精確度與回收，以便更加了解分類器運作方式永遠是一個不錯的做法。
 
@@ -151,7 +153,7 @@ Azure Machine Learning 支援透過兩個主要的機器學習服務模組來評
 
 按一下[匯入資料][import-data]模組，然後將 [資料來源] 屬性設定為 [透過 HTTP 的 Web URL]，並將 [URL] 設定為 http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data。
 
-在[分割資料][split]模組中，設定要用於訓練的執行個體分數 (例如 0.7)。
+在[分割資料][split]模組中，設定要用於訓練的執行個體分數 (例如&0;.7)。
 
 ![評估多元分類器](media/machine-learning-evaluate-model-performance/10.png)
 
@@ -189,6 +191,6 @@ Azure Machine Learning 支援透過兩個主要的機器學習服務模組來評
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

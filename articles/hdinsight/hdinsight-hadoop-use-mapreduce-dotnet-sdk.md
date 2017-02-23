@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 02/03/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: dd507b6be4aa9853940adbf80baa3ec4997ce3c7
-ms.openlocfilehash: 05c5def02a5bee18f26bc8b96b9aa1c8f3fdff70
+ms.sourcegitcommit: fcc47e3e054d88fe40c13a0fd9949c315dbfce9b
+ms.openlocfilehash: 1617aebffeec5b385b47a7425f6c849267da68a6
 
 
 ---
@@ -34,7 +34,7 @@ ms.openlocfilehash: 05c5def02a5bee18f26bc8b96b9aa1c8f3fdff70
 ## <a name="prerequisites"></a>必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
 
-* **HDInsight 中的 Hadoop 叢集**。 請參閱[開始在 Hdinsight 中使用以 Linux 為基礎的 Hadoop](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
+* **HDInsight 中的 Hadoop 叢集**。 請參閱[開始在 Hdinsight 中使用 Linux 型 Hadoop](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
 * **Visual Studio 2012/2013/2015**。
 
 ## <a name="submit-mapreduce-jobs-using-hdinsight-net-sdk"></a>使用 HDInsight .NET SDK 提交 MapReduce 工作
@@ -67,7 +67,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
                 private const string ExistingClusterUsername = "<Cluster Username>";
                 private const string ExistingClusterPassword = "<Cluster User Password>";
    
-                private const string DefaultStorageAccountName = "<Default Storage Account Name>";
+                private const string DefaultStorageAccountName = "<Default Storage Account Name>"; //<StorageAccountName>.blob.core.windows.net
                 private const string DefaultStorageAccountKey = "<Default Storage Account Key>";
                 private const string DefaultStorageContainerName = "<Default Blob Container Name>";
    
@@ -96,7 +96,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
                     };
    
                     System.Console.WriteLine("Submitting the MR job to the cluster...");
-                    var jobResponse = _hdiJobManagementClient.JobManagement.SubmitHiveJob(parameters);
+                    var jobResponse = _hdiJobManagementClient.JobManagement.SubmitMapReduceJob(paras);
                     var jobId = jobResponse.JobSubmissionJsonResponse.Id;
                     System.Console.WriteLine("Response status code is " + jobResponse.StatusCode);
                     System.Console.WriteLine("JobId is " + jobId);
@@ -130,18 +130,22 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
         }
 4. 按 **F5** 鍵執行應用程式。
 
+若要再次執行作業，您必須變更範例中的作業輸出資料夾名稱，在此範例中，它是 "/example/data/davinciwordcount"。
+
+如果作業順利完成，輸出會是空白的。 若要查看 MapReduce 作業的結果，請使用 Azure 入口網站瀏覽 Blob 儲存體中的預設儲存體容器。  檔案名稱是 "part-r-00000"。
+
 ## <a name="next-steps"></a>後續步驟
 在本文中，您學到幾種建立 HDInsight 叢集的方法。 若要深入了解，請參閱下列文章：
 
-* 如需建立叢集及提交 Hive 作業，請參閱[開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)。
-* 如需建立 HDInsight 叢集，請參閱[在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
-* 如需管理 HDInsight 叢集，請參閱[在 HDInsight 中管理 Hadoop 叢集](hdinsight-administer-use-management-portal.md)。
+* 對於提交 Hive 作業，請參閱[使用 HDInsight.NET SDK 執行 Hive 查詢](hdinsight-hadoop-use-hive-dotnet-sdk.md)。
+* 如需建立 HDInsight 叢集，請參閱[在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+* 如需管理 HDInsight 叢集，請參閱[在 HDInsight 中管理 Hadoop 叢集](hdinsight-administer-use-portal-linux.md)。
 * 如需了解 HDInsight .NET SDK，請參閱 [HDInsight .NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx)。
 * 若要向 Azure 進行非互動式驗證，請參閱[建立非互動式驗證 .NET HDInsight 應用程式](hdinsight-create-non-interactive-authentication-dotnet-applications.md)。
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

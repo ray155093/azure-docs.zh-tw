@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/01/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 950b6de5b579cac1a2b10db299e6f7bcfd8c7b04
+ms.sourcegitcommit: 79f5bad314b230df27c73fb7e60e173778c96865
+ms.openlocfilehash: da31e1ceebfecf766828fa761b01f4e346cd13aa
 
 
 ---
@@ -69,8 +69,6 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
    4. 將 [狀態] 設為 [開啟]。
    5. 選取您想要收集的每個診斷記錄。
    6. 按一下 [確定] 。
-
-您可以使用 Azure PowerShell，更精確地指定寫入至 Azure 儲存體的事件。 請參閱[使用 Azure 診斷收集寫入表格儲存體的資料或寫入 blob 的 IIS 記錄](log-analytics-azure-storage-json.md)。
 
 ## <a name="enable-azure-diagnostics-in-a-web-role-for-iis-log-and-event-collection"></a>在 Web 角色中針對 IIS 記錄檔和事件集合啟用 Azure 診斷
 請參閱[如何在雲端服務中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)瞭解啟用 Azure 診斷的一般步驟。 下面的指示會使用此資訊並自訂它來與 Log Analytics 搭配使用。
@@ -192,12 +190,12 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
 
 
 ## <a name="next-steps"></a>後續步驟
-* [使用 Blob 儲存體中的 JSON 檔案](log-analytics-azure-storage-json.md)，從 Azure 服務讀取記錄，這些服務以 JSON 格式將 Azure 診斷記錄寫入 Blob 儲存體。
+* 針對支援的 Azure 服務[收集 Azure 服務的記錄檔與計量](log-analytics-azure-storage.md)。
 * [啟用解決方案](log-analytics-add-solutions.md) 以提供資料的深入見解。
 * [使用搜尋查詢](log-analytics-log-searches.md) 以分析資料。
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,10 +1,10 @@
 
 ---
 title: "使用憑證搭配企業整合套件 | Microsoft Docs"
-description: "了解如何使用憑證搭配企業整合套件與 Logic Apps"
+description: "了解如何使用憑證搭配企業整合套件 | Azure Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
-author: msftman
+author: padmavc
 manager: anneta
 editor: cgronlun
 ms.assetid: 4cbffd85-fe8d-4dde-aa5b-24108a7caa7d
@@ -13,11 +13,11 @@ ms.workload: integration
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/06/2016
-ms.author: deonhe
+ms.date: 02/03/2016
+ms.author: padmavc
 translationtype: Human Translation
-ms.sourcegitcommit: a1baafa9a2b4552ad711615e5e0abb0180a0d562
-ms.openlocfilehash: e6c8ed2fe6ff574fb40991d7060865ea08887df9
+ms.sourcegitcommit: c8cfe5fb933cf9056b971d3e524f3c9ebc910215
+ms.openlocfilehash: b494d5abfdd4045776b408cbb8ec99ee3905cf72
 
 
 ---
@@ -37,9 +37,9 @@ B2B 通訊有時必須確保機密。 企業整合透過下列兩種方式，使
 * 將訊息的內容加密
 * 以數位方式簽署訊息  
 
-## <a name="how-do-you-upload-certificates"></a>如何上傳憑證？
-### <a name="public-certificates"></a>公開憑證
-若要在具備 B2B 功能的 Logic Apps 中使用「公開憑證」  ，您必須先將憑證上傳到整合帳戶。 另一方面，若要使用*自我簽署憑證*，則必須先將它上傳到 [Azure 金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")。
+## <a name="upload-a-public-certificate"></a>上傳公開憑證
+
+若要在具備 B2B 功能的 Logic Apps 中使用「公開憑證」  ，您必須先將憑證上傳到整合帳戶。  
 
 上傳憑證之後，當您在自己建立的 [合約](logic-apps-enterprise-integration-agreements.md) 中定義 B2B 訊息的屬性時，就能使用它來保護這些訊息的安全。  
 
@@ -61,8 +61,9 @@ B2B 通訊有時必須確保機密。 企業整合透過下列兩種方式，使
 9. 選取 [憑證]  圖格。 您應該會看到新增的憑證。  
 ![查看新憑證](media/logic-apps-enterprise-integration-certificates/certificate-4.png)  
 
-### <a name="private-certificates"></a>私人憑證
-您可以採取下列步驟將私人憑證上傳到整合帳戶：  
+## <a name="upload-a-private-certificate"></a>上傳私人憑證
+
+若要在具有 B2B 功能的邏輯應用程式中使用「私人憑證」，您可以執行下列步驟以將私人憑證上傳到您的整合帳戶
 
 1. [將您的私人金鑰上傳到 Key Vault](../key-vault/key-vault-get-started.md "了解 Key Vault") 並提供**金鑰名稱** 
    
@@ -100,6 +101,6 @@ B2B 通訊有時必須確保機密。 企業整合透過下列兩種方式，使
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

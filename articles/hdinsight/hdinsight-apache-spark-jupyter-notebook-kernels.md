@@ -13,64 +13,64 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: bb47fa4e876322a0e3e36d4da657fba4be84d6f2
+ms.sourcegitcommit: 59f072c7a8272fc04e1d662c0ab17e7ee4500fa6
+ms.openlocfilehash: fc39933ac8d9f3c46023a5852df036b87e559647
 
 
 ---
-# <a name="kernels-available-for-jupyter-notebooks-with-apache-spark-clusters-on-hdinsight"></a>HDInsight 上的 Apache Spark 叢集可供 Jupyter Notebook 使用的核心
+# <a name="jupyter-notebooks-kernels-with-apache-spark-clusters-in-hdinsight"></a>HDInsight 中具備 Apache Spark 叢集的 Jupyter Notebook 核心 
 
-在 HDInsight (Linux) 上的 Apache Spark 叢集包含可用來測試應用程式的 Jupyter Notebook。 核心是一個可執行並解譯程式碼的程式。 HDInsight Spark 叢集提供兩種核心，可讓您用於 Jupyter Notebook。 它們是：
+HDInsight Spark 叢集提供兩種核心，可讓您用於 Jupyter Notebook 以測試 Spark 應用程式。 核心是一個可執行並解譯程式碼的程式。 兩種核心為：
 
-1. **PySpark** (適用於以 Python 撰寫的應用程式)
-2. **Spark** (適用於以 Scala 撰寫的應用程式)
+- **PySpark** (適用於以 Python 撰寫的應用程式)
+- **Spark** (適用於以 Scala 撰寫的應用程式)
 
-在本文中，您將了解使用這些核心的方法與好處。
+在本文中，您將了解使用這些核心的方式及優點。
 
 **必要條件：**
 
 您必須滿足以下條件：
 
-* Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+* HDInsight 中的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
-## <a name="how-do-i-use-the-kernels"></a>核心要如何使用？
-1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。 您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。   
-2. 從 Spark 叢集刀鋒視窗按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
+## <a name="create-a-jupyter-notebook"></a>建立 Jupyter Notebook
+1. 從 [Azure 入口網站](https://portal.azure.com/)，開啟您的叢集。  請參閱[列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)以取得指示。 叢集會在新的入口網站刀鋒視窗中開啟。
+2. 從 [快速連結] 區段，按一下 [叢集儀表板] 以開啟 [叢集儀表板] 刀鋒視窗。  如果您沒有看見 [快速連結]，請按一下刀鋒視窗上左側功能表中的 [概觀]。
 
+    ![叢集儀表板](./media/hdinsight-apache-spark-jupyter-notebook-kernels/hdinsight-azure-portal-cluster-dashboards.png "叢集儀表板") 
+3. 按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
+   
    > [!NOTE]
    > 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。 使用您叢集的名稱取代 **CLUSTERNAME** ：
    >
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
-   >
-   >
-3. 以新核心建立新的 Notebook。 按一下 [新增]，然後按一下 [Pyspark] 或 [Spark]。 Spark 核心適用於 Scala 應用程式，PySpark 核心則適用於 Python 應用程式。
+   > 
+   > 
+3. 按一下 [新增]，然後按一下 [Pyspark] 或 [Spark] 以建立新的 Notebook。 Spark 核心適用於 Scala 應用程式，PySpark 核心則適用於 Python 應用程式。
+   
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-kernels/jupyter-kernels.png "建立新的 Jupyter Notebook") 
 
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-kernels/jupyter-kernels.png "建立新的 Jupyter Notebook")
 4. 這應該會開啟使用您所選核心的新 Notebook。
 
-## <a name="why-should-i-use-the-pyspark-or-spark-kernels"></a>為何應使用 PySpark 或 Spark 核心？
+## <a name="choose-between-the-kernels"></a>在核心之間做出選擇
 以下是使用新核心的幾項好處。
 
-1. **預設內容**。 使用和 Jupyter Notebook 一起提供的 **PySpark** 或 **Spark** 核心時，您不需要先明確地設定 Spark 或 Hive 內容，即可開始使用您所開發的應用程式；這些都是預設可供您使用。 這些內容包括：
-
+- **預設內容**。 無論是 **PySpark** 或 **Spark** 核心，您都不需要先明確地設定 Spark 或 Hive 內容，即可開始處理您的應用程式；這些預設皆可供您使用。 這些內容包括：
+   
    * **sc** - 代表 Spark 內容
    * **sqlContext** - 代表 Hive 內容
 
     因此，您不需要執行如下的陳述式來設定這些內容：
 
-        ###################################################
-        # <a name="you-do-not-need-to-run-this-with-the-new-kernels"></a>您不需要使用新的核心執行這個陳述式
-        ###################################################
-        sc = SparkContext('yarn-client')    sqlContext = HiveContext(sc)
+      sc = SparkContext('yarn-client')  sqlContext = HiveContext(sc)
 
     您可以直接在您的應用程式中使用現有的內容。
 
-1. **Cell magic**。 PySpark 核心提供一些預先定義的 “magic”，這是您可以使用 `%%` 呼叫的特殊命令 (例如 `%%MAGIC` <args>)。 magic 命令必須是程式碼儲存格中的第一個字，而且允許多行的內容。 magic 這個字應該是儲存格中的第一個字。 在 magic 前面加入任何項目，甚至是註解，將會造成錯誤。     如需 magic 的詳細資訊，請參閱 [這裡](http://ipython.readthedocs.org/en/stable/interactive/magics.html)。
-
+- **Cell magic**。 PySpark 核心提供一些預先定義的 “magic”，這是您可以使用 `%%` 呼叫的特殊命令 (例如 `%%MAGIC` <args>)。 magic 命令必須是程式碼儲存格中的第一個字，而且允許多行的內容。 magic 這個字應該是儲存格中的第一個字。 在 magic 前面加入任何項目，甚至是註解，將會造成錯誤。     如需 magic 的詳細資訊，請參閱 [這裡](http://ipython.readthedocs.org/en/stable/interactive/magics.html)。
+   
     下表列出可透過核心提供的不同 magic。
 
    | Magic | 範例 | 說明 |
@@ -114,7 +114,7 @@ ms.openlocfilehash: bb47fa4e876322a0e3e36d4da657fba4be84d6f2
 * 最後，因為我們使用 `-o query2` ，所以它也會將輸出儲存成名為 **query2**的資料框架。
 
 ## <a name="considerations-while-using-the-new-kernels"></a>使用新核心的考量
-無論您使用何種核心 (PySpark 或 Spark)，讓 Notebook 持續執行，都將會耗用您的叢集資源。  使用這些核心，因為已預設內容，光是結束 Notebook 並不會終止內容，因此也將繼續使用叢集資源。 使用 PySpark 和 Spark 核心時，理想的做法是使用 Notebook 的 [檔案] 功能表中的 [關閉並停止] 選項。 這將會先刪除內容，再結束 Notebook。     
+無論您使用何種核心 (PySpark 或 Spark)，讓 Notebook 持續執行，都將會耗用您的叢集資源。  針對這些核心，由於已預設內容，光是結束 Notebook 並不會終止內容，因此也將繼續使用叢集資源。 使用 PySpark 和 Spark 核心時，理想的做法是使用 Notebook 的 [檔案] 功能表中的 [關閉並停止] 選項。 這將會先刪除內容，再結束 Notebook。     
 
 ## <a name="show-me-some-examples"></a>請舉例說明
 當您開啟 Jupyter Notebook 時，您會在根層級看到兩個可用資料夾。
@@ -157,7 +157,7 @@ Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Noteboo
 * [利用 Livy 在 Spark 叢集上遠端執行作業](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>工具和擴充功能
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
 * [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 * [搭配 Jupyter Notebook 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
@@ -169,6 +169,6 @@ Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Noteboo
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

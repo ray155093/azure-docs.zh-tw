@@ -13,11 +13,11 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/17/2016
+ms.date: 02/01/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9d4df15fb4514817d9233ab4e5bd0eb65e5a95dc
+ms.sourcegitcommit: 6c664a055e577881d4fcccd5b0ba4047d88aa9ef
+ms.openlocfilehash: 64b413451c6ce47cc3aa14322b2aa0342e1e3ffe
 
 
 ---
@@ -50,18 +50,23 @@ ms.openlocfilehash: 9d4df15fb4514817d9233ab4e5bd0eb65e5a95dc
 資料科學虛擬機器已安裝和設定許多常用的資料科學工具。 它也包含工具，可讓您輕鬆地使用各種 Azure 資料與分析產品。 您可以使用 Microsoft R Server 或 SQL Server 2016 在大型資料集上探索和建置預測模型。 來自開放原始碼社群及 Microsoft 的許多其他工具也會包含在內，以及範例程式碼和 Notebook。 下表列舉並比較 Windows 和 Linux 版本的資料科學虛擬機器所包含的主要元件。
 
 | **Windows 版本** | **Linux 版本** |
-| --- | --- |
-| Microsoft R Server Developer Edition |Microsoft R Server Developer Edition |
-| Anaconda Python 2.7, 3.5 |Anaconda Python 2.7, 3.5 |
-| Jupyter Notebook Server (R, Python) |JupyterHub：Multi-user Jupyter notebooks (R, Python, Julia) |
-| SQL Server 2016 Developer Edition：可調整資料庫中分析與 R 服務 |Postgres、SQuirreL SQL (資料庫工具)、SQL Server 驅動程式和命令列 (bcp, sqlcmd) |
-| Visual Studio Community 版本 2015 (IDE) </br> - Azure HDInsight (Hadoop)、Data Lake、SQL Server Data Tools </br> - Node.js、Python 和適用於 Visual Studio 的 R 工具 |IDE 和編輯器 </br> - Eclipse 與 Azure 工具組外掛程式 </br> - Emacs (含 ESS, auctex) gedit |
+| -- | --|
+| 已預先安裝熱門套件的 Microsoft R Open | 已預先安裝熱門套件的 Microsoft R Open |
+| 含 MicrosoftML 演算法及 Microsoft R 實作的 Microsoft R Server Developer Edition  |Microsoft R Server Developer Edition |
+| Anaconda Python 2.7, 3.5 |已預先安裝熱門套件的 Anaconda Python 2.7、3.5|
+| 已預先安裝熱門套件的 JuliaPro | 已預先安裝熱門套件的 JuliaPro |
+| Jupyter Notebook Server (R、Python、Julia) |JupyterHub：多使用者 Jupyter Notebook (R、Python、Julia、PySpark) |
+| SQL Server 2016 SP1 Developer Edition：可調整資料庫中分析與 R 服務 |PostgreSQL、SQuirreL SQL (資料庫工具)、SQL Server 驅動程式和命令列 (bcp、sqlcmd) |
+|-  Visual Studio Community 版本 2015 (IDE) </br> - Azure HDInsight (Hadoop)、Data Lake、SQL Server Data Tools </br> - Node.js、Python 和適用於 Visual Studio 的 R 工具 (RTVS 0.5) </br>-R Studio 桌面|IDE 和編輯器 </br> - Eclipse 與 Azure 工具組外掛程式 </br> - Emacs (含 ESS, auctex) gedit </br> - IntelliJ IDEA</br> - PyCharm</br> - Atom</br> - Visual Studio 程式碼|
 | Power BI 桌面 |-- |
-| 機器學習工具 </br> - 與 Azure Machine Learning 整合 </br> - CNTK (深入學習/AI) </br> - Xgboost (資料科學競賽中的熱門 ML 工具) </br> - Vowpal Wabbit (快速線上學習模組) </br> - Rattle (視覺效果快速入門資料和分析工具) </br> - Mxnet (深入學習/AI) |機器學習工具 </br> - 與 Azure Machine Learning 整合 </br> - CNTK (深入學習/AI) </br> - Xgboost (資料科學競賽中的熱門 ML 工具) </br> - Vowpal Wabbit (快速線上學習模組) </br> - Rattle (視覺效果快速入門資料和分析工具) |
+| 機器學習工具 </br> - 與 Azure Machine Learning 整合 </br> - Microsoft Cognitive Toolkit (CNTK 2.0) 深入學習/人工智慧 </br> - Xgboost (資料科學競賽中的熱門 ML 工具) </br> - Vowpal Wabbit (快速線上學習模組) </br> - Rattle (視覺效果快速入門資料和分析工具) </br> - Mxnet (深入學習/AI) </br> -Tensorflow  |機器學習工具 </br> - 與 Azure Machine Learning 整合 </br> - CNTK (深入學習/AI) </br> - Xgboost (資料科學競賽中的熱門 ML 工具) </br> - Vowpal Wabbit (快速線上學習模組) </br> - Rattle (視覺效果快速入門資料和分析工具) </br> -Mxnet (深入學習/AI)|
 | SDK，用以存取服務的 Azure 和 Cortana Intelligence Suite |SDK，用以存取服務的 Azure 和 Cortana Intelligence Suite |
 | Azure 和巨量資料資源的資料移動和管理工具：Azure 儲存體總管、CLI、PowerShell、AdlCopy (Azure Data Lake)、AzCopy、dtui (適用於 DocumentDB)、Microsoft 資料管理閘道器 |Azure 和巨量資料資源的資料移動和管理工具：Azure 儲存體總管、CLI |
 | Git、Visual Studio Team Services 外掛程式 |Git |
 | 最受歡迎 Linux/Unix 命令列公用程式的 Windows 連接埠可透過 GitBash/命令提示字元存取 |-- |
+| Weka | Weka |
+| 深入探詢 | 深入探詢 |
+| --| Spark 本機 |
 
 ## <a name="how-to-get-started-with-the-windows-data-science-vm"></a>如何開始使用 Windows 資料科學 VM
 * 在 Windows 上建立 VM 的執行個體，方法是瀏覽至[本頁面](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/)並選取綠色 [建立虛擬機器] 按鈕。
@@ -86,6 +91,6 @@ ms.openlocfilehash: 9d4df15fb4514817d9233ab4e5bd0eb65e5a95dc
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

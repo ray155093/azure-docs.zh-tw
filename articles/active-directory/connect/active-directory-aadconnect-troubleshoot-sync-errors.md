@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/18/2016
+ms.date: 1/31/2017
 ms.author: vakarand
 translationtype: Human Translation
-ms.sourcegitcommit: 7db56a4c0efb208591bb15aa03a4c0dbf833d22e
-ms.openlocfilehash: 24e675ebd63554be0bbc51e1013c4ade94b56abe
+ms.sourcegitcommit: 55ee9f685427168c02865d204fda34066c6779c5
+ms.openlocfilehash: a8533926bbb26770d8e665436e38172aeffbb035
 
 
 ---
@@ -56,8 +56,8 @@ Azure Active Directory 結構描述不允許兩個或多個物件的下列屬性
 > [!NOTE]
 > [Azure AD 屬性重複屬性恢復](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)功能也正當作 Azure Active Directory 的預設行為推出。  讓 Azure AD 能夠更彈性地處理內部部署 AD 環境中重複的 ProxyAddresses 和 UserPrincipalName 屬性，將會減少 Azure AD Connect (以及其他同步處理用戶端) 所看到的同步處理錯誤數目。 這項功能無法修復重複錯誤。 因此資料仍然需要修復。 但可讓您佈建由於 Azure AD 中的重複值而無法佈建的新物件。 這也會減少傳回至同步處理用戶端的同步處理錯誤數目。
 > 如果您的租用戶已啟用這項功能，則不會在新物件的佈建過程中看到 InvalidSoftMatch 同步處理錯誤。
-> 
-> 
+>
+>
 
 #### <a name="example-scenarios-for-invalidsoftmatch"></a>InvalidSoftMatch 的範例案例
 1. 內部部署 Active Directory 中存在兩個或多個具有相同 ProxyAddresses 屬性值的物件。 只有一個會在 Azure AD 中佈建。
@@ -86,7 +86,7 @@ Azure Active Directory 結構描述不允許兩個或多個物件的下列屬性
 9. 在同步處理期間，Azure AD Connect 會辨識內部部署 Active Directory 中的 Bob Taylor 新增，並要求 Azure AD 進行相同的變更。
 10. Azure AD 會先執行完全比對。 也就是說，它會搜尋是否有任何物件的 immutableId 等於 "abcdefghijkl0123456789=="。 完全比對會失敗，因為 Azure AD 中沒有其他物件具有該 immutableId。
 11. Azure AD 會接著嘗試大致比對 Bob Taylor。 也就是說，它會搜尋是否有任何物件的 proxyAddresses 等於上述三個值，包括 smtp:bob@contoso.com
-12. Azure AD 會找到 Bob Smith 的物件以比對大致相符準則。 但此物件 immutableId 的值等於 "abcdefghijklmnopqrstuv=="。 這表示此物件已從內部部署 Active Directory 中的另一個物件同步處理。 因此，Azure AD 無法大致比對這些物件，並將導致 **InvalidSoftMatch** 同步處理錯誤。
+12. Azure AD 會找到 Bob Smith 的物件以比對大致相符準則。 但此物件 immutableId 的值等於 "abcdefghijklmnopqrstuv=="。 這表示此物件已從內部部署 Active Directory 中的另一個物件同步處理。 因此，Azure AD 無法大致比對這些物件，並會導致 **InvalidSoftMatch** 同步處理錯誤。
 
 #### <a name="how-to-fix-invalidsoftmatch-error"></a>如何修正 InvalidSoftMatch 錯誤
 InvalidSoftMatch 錯誤的最常見原因是兩個具有不同 SourceAnchor \(immutableId\) 的物件具有相同的 ProxyAddresses 和/或 UserPrincipalName 屬性值，而這兩個物件使用於 Azure AD 上的大致比對程序。 若要修正無效的大致比對：
@@ -100,8 +100,8 @@ InvalidSoftMatch 錯誤的最常見原因是兩個具有不同 SourceAnchor \(im
 
 > [!NOTE]
 > 根據定義，不得在物件的存留期間變更 ImmutableId 。 如果設定 Azure AD Connect 時未牢記上述清單中的一些案例，您最後可能會遇到以下情況：Azure AD Connect 針對 AD 物件計算不同的 SourceAnchor 值，其代表具有您要繼續使用之現有 Azure AD 物件的相同實體 (相同的使用者/群組/連絡人等)。
-> 
-> 
+>
+>
 
 #### <a name="related-articles"></a>相關文章
 * [重複或無效的屬性會防止 Office 365 進行目錄同步作業](https://support.microsoft.com/en-us/kb/2647098)
@@ -134,7 +134,7 @@ Azure Active Directory 結構描述不允許兩個或多個物件的下列屬性
 * ProxyAddresses
 * UserPrincipalName
 
-如果 Azure AD Connect 嘗試新增物件，或以指派給 Azure Active Directory 中另一個物件的上述屬性值更新現有的物件，作業將會導致 "AttributeValueMustBeUnique" 同步處理錯誤。
+如果 Azure AD Connect 嘗試新增物件，或以指派給 Azure Active Directory 中另一個物件的上述屬性值更新現有的物件，作業會導致 "AttributeValueMustBeUnique" 同步處理錯誤。
 
 #### <a name="possible-scenarios"></a>可能的案例︰
 1. 重複的值指派給已同步處理的物件，但該物件與另一個已同步處理的物件發生衝突。
@@ -181,7 +181,7 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 
 ### <a name="datavalidationfailed"></a>DataValidationFailed
 #### <a name="description"></a>說明
-這是非常特殊的情況：當使用者的 UserPrincipalName 尾碼從一個同盟網域變更為另一個同盟網域時，會導致 **"DataValidationFailed"** 同步處理錯誤。
+這是特殊情況：當使用者的 UserPrincipalName 尾碼從一個同盟網域變更為另一個同盟網域時，會導致 **"DataValidationFailed"** 同步處理錯誤。
 
 #### <a name="scenarios"></a>案例
 對於已同步處理的使用者，UserPrincipalName 尾碼從一個同盟網域變更為另一個內部部署的同盟網域。 例如，UserPrincipalName = bob@contoso.com 已變更為 UserPrincipalName = bob@fabrikam.com。
@@ -193,10 +193,13 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 4. Bob 的 userPrincipalName 並不會更新並導致 "DataValidationFailed" 同步處理錯誤。
 
 #### <a name="how-to-fix"></a>修正方式
-如果使用者的 PrincipalName suffix 尾碼從 bob@**contoso.com** 更新為 bob@**fabrikam.com**，其中 **contoso.com** 與 **fabrikam.com** 都是**同盟網域**，則遵循下列步驟來修正同步處理錯誤
+如果使用者的 PrincipalName suffix 尾碼從 bob@**contoso.com** 更新為 bob@**fabrikam.com**，其中 **contoso.com** 與 **fabrikam.com** 都是**同盟網域**，則遵循這些步驟來修正同步處理錯誤
 
 1. 將 Azure AD 中使用者的 UserPrincipalName 從 bob@contoso.com 更新為 bob@contoso.onmicrosoft.com。 您可以使用以下 PowerShell 命令搭配 Azure AD PowerShell 模組：`Set-MsolUserPrincipalName -UserPrincipalName bob@contoso.com -NewUserPrincipalName bob@contoso.onmicrosoft.com`
 2. 允許下一個同步處理週期嘗試進行同步處理。 這次同步處理將會成功，而且 Bob 的 UserPrincipalName 會如預期般更新為 bob@fabrikam.com。
+
+#### <a name="related-articles"></a>相關文章
+* [在您將使用者帳戶的 UPN 變更為使用不同的同盟網域後，Azure Active Directory 同步作業工具未同步處理變更](https://support.microsoft.com/en-us/help/2669550/changes-aren-t-synced-by-the-azure-active-directory-sync-tool-after-you-change-the-upn-of-a-user-account-to-use-a-different-federated-domain)
 
 ## <a name="largeobject"></a>LargeObject
 ### <a name="description"></a>說明
@@ -207,8 +210,8 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 * proxyAddresses
 
 ### <a name="possible-scenarios"></a>可能的案例
-1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。
-2. Bob 在 Active Directory 中設定的 thmubnailPhoto 太大，以致無法在 Azure AD 中進行同步處理。
+1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制是 50 個憑證，但建議值是 25 個以下的憑證。
+2. Bob 在 Active Directory 中設定的 thumbnailPhoto 太大，以致於無法在 Azure AD 中進行同步處理。
 3. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過&500; 個 ProxyAddresses。
 
 ### <a name="how-to-fix"></a>修正方式
@@ -220,7 +223,6 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 
 
 
-
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

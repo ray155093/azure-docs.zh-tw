@@ -1,5 +1,5 @@
 ---
-title: "Azure AD 和應用程式：引導開發人員 | Microsoft Docs"
+title: "開發適用於 Azure AD 的 LOB 應用程式 | Microsoft Docs&quot;"
 description: "針對 IT 專業人員所撰寫，本文提供整合 Azure 應用程式與 Active Directory 的指導方針。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/03/2016
+ms.date: 02/06/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: e65393c9582056f84530a32804e0d82fd451b688
-ms.openlocfilehash: fe295cb9b79593f7fd4635d142ec86d1c6897192
+ms.sourcegitcommit: e66b606433f8924a509f2d04dae67ff00ded6dca
+ms.openlocfilehash: cd1c8d74afa51815b3f6c093e6a9054b97359843
 
 
 ---
@@ -36,18 +36,18 @@ ms.openlocfilehash: fe295cb9b79593f7fd4635d142ec86d1c6897192
 * 取得應用程式可用來向 AD 驗證其身分的一個或多個密碼/金鑰
 * 在 Azure 入口網站中以自訂名稱、標誌等指定應用程式的品牌形象
 * 將 Azure AD 授權功能套用至其應用程式，包括：
-  
+
   * 角色型存取控制 (RBAC)
   * 以 Azure Active Directory 做為 oAuth 授權伺服器 (保護應用程式公開的 API)
 * 宣告讓應用程式如預期般運作所需的必要權限，包括：
-  
+
       - 應用程式權限 (僅限全域系統管理員)。 例如：另一個 Azure AD 應用程式中的角色成員資格，或相對於「Azure 資源」、「資源群組」或「訂用帳戶」的角色成員資格
       - 委派的權限 (任何使用者)。 例如：Azure AD、登入及讀取設定檔
 
 > [!NOTE]
 > 根據預設，任何成員都可以註冊應用程式。 若要了解如何限制向特定成員註冊應用程式的權限，請參閱 [如何將應用程式新增到 Azure AD](develop/active-directory-how-applications-are-added.md#who-has-permission-to-add-applications-to-my-azure-ad-instance)。
-> 
-> 
+>
+>
 
 身為全域系統管理員，若要協助開發人員完成讓應用程式進入生產階段的準備工作，您必須執行下列動作：
 
@@ -80,7 +80,6 @@ ms.openlocfilehash: fe295cb9b79593f7fd4635d142ec86d1c6897192
 * [SaaS 應用程式的 Azure 條件式存取預覽](active-directory-conditional-access-azuread-connected-apps.md)
 * [使用 Azure AD 管理應用程式的存取](active-directory-managing-access-to-apps.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-
 
 
 

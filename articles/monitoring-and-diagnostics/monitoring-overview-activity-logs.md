@@ -12,22 +12,27 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 2/2/2017
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: 5a73ee6865a09af68a9ab55f17c85136608c4d84
-ms.openlocfilehash: cfe10bc9c86835d228b09550cc98a846ee1a78ad
+ms.sourcegitcommit: 97edd5eaa3cfa4a122556583dff28c4a9b6f5adc
+ms.openlocfilehash: 18035fe2a30707f701098cef4b1391b1d5ab2012
 
 
 ---
 # <a name="overview-of-the-azure-activity-log"></a>Azure 活動記錄檔概觀
-**Azure 活動記錄檔** (Activity Log) 能為您提供訂用帳戶中的資源所執行之作業的深入解析。 活動記錄檔之前叫做「稽核記錄」或「作業記錄」，因為它會報告訂用帳戶中控制層面的事件。 您可以使用活動記錄檔來判斷訂用帳戶中的資源上任何寫入作業 (PUT、POST、DELETE) 的「內容、對象和時間」。 您也可以了解作業的狀態和其他相關屬性。 活動記錄檔不包含讀取作業 (GET)。
+**Azure 活動記錄檔** (Activity Log) 能為您提供訂用帳戶中的資源所執行之作業的深入解析。 活動記錄檔之前叫做「稽核記錄」或「作業記錄」，因為它會報告訂用帳戶中控制層面的事件。 您可以使用活動記錄檔來判斷訂用帳戶中的資源上任何寫入作業 (PUT、POST、DELETE) 的「內容、對象和時間」。 您也可以了解作業的狀態和其他相關屬性。 活動記錄不包含讀取 (GET) 作業，或是使用傳統/"RDFE" 模型之資源的作業。
 
 活動記錄檔不同於 [診斷記錄](monitoring-overview-of-diagnostic-logs.md)，是由資源發出的所有記錄檔。 這些記錄檔提供有關該資源的作業資料，而不是該資源上的作業。
 
 您可以使用 Azure 入口網站、CLI、PowerShell Cmdlet、Azure 監視器 REST API 從活動記錄檔擷取事件。
 
 檢視此[活動記錄檔簡介影片](https://channel9.msdn.com/Blogs/Seth-Juarez/Logs-John-Kemnetz)。  
+
+> [!WARNING]
+> Azure 活動記錄主要是針對 Azure Resource Manager 中發生的活動，而不是使用傳統/RDFE 模型的活動。 請留意，某些傳統資源類型在 Azure Resource Manager 中有 Proxy 資源提供者 (例如， Microsoft.ClassicCompute)。 如果使用者透過使用這些 Proxy 資源提供者的 Azure Resource Manager 來與傳統資源類型互動，則作業將會顯示在活動記錄。 如果使用者在傳統入口網站或 Azure Resource Manager Proxy 之外與傳統資源類型互動，則使用者動作只會記錄在「作業記錄」，而只能在傳統入口網站取得該記錄。
+>
+>
 
 ## <a name="what-you-can-do-with-the-activity-log"></a>Azure 活動記錄檔的用途
 以下是您可以利用活動記錄檔進行的事：
@@ -45,7 +50,7 @@ ms.openlocfilehash: cfe10bc9c86835d228b09550cc98a846ee1a78ad
 **記錄檔設定檔** 控制活動記錄檔的匯出方式。 使用記錄檔設定檔，您可以設定︰
 
 * 活動記錄檔應該要傳送至何處 (儲存體帳戶或事件中樞)
-* 應該要傳送何種事件分類 (Write、Delete、Action)
+* 應該要傳送何種事件分類 (Write、Delete、Action)。 *請注意，記錄檔設定檔內容中的 "category" 與活動記錄檔事件中的 "category" 屬性具有不同的意義。記錄檔設定檔中的 "category" 代表作業類型 (Write、Delete、Action)，而活動記錄檔事件中的 "category" 屬性代表事件的來源或類型 (Administration、ServiceHealth、Alert 等等)。*
 * 應該要匯出哪一個區域 (Locations)
 * 活動記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。 否則，此值可以是 1 到 2147483647 之間的任意天數。 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄檔將被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
 
@@ -87,7 +92,7 @@ Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/r
 | StorageAccountId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
 | serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。 將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
 | 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為&0; 會無限期地 (永遠) 儲存記錄檔。 |
 | 類別 |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
 #### <a name="remove-a-log-profile"></a>移除記錄檔設定檔
@@ -116,7 +121,7 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 | storageId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
 | serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。 將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
 | 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為&0; 會無限期地 (永遠) 儲存記錄檔。 |
 | 類別 |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
 #### <a name="remove-a-log-profile"></a>移除記錄檔設定檔
@@ -233,12 +238,12 @@ azure insights logprofile delete --name my_log_profile
 | nextLink |結果被分成多個回應時，用於提取下一組結果的接續權杖。 通常超過 200 個記錄時就需要。 |
 
 ## <a name="next-steps"></a>後續步驟
-* [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
+* [深入了解活動記錄檔 (之前的稽核記錄檔)](../azure-resource-manager/resource-group-audit.md)
 * [將 Azure 活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

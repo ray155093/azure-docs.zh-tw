@@ -1,6 +1,6 @@
 ---
-title: "企業整合套件的概觀 | Microsoft Docs"
-description: "利用企業整合套件的功能，使用 Microsoft Azure App service 啟用商務程序和整合案例"
+title: "使用轉換來轉換 XML 資料 - Azure Logic Apps | Microsoft Docs"
+description: "在邏輯應用程式中使用企業整合 SDK 來建立轉換或對應，以轉換 XML 資料格式"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -13,10 +13,10 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
-ms.author: deonhe
+ms.author: estfan
 translationtype: Human Translation
-ms.sourcegitcommit: dc8c9eac941f133bcb3a9807334075bfba15de46
-ms.openlocfilehash: cca850073040cde0fb6f035f041419ac777bb0a2
+ms.sourcegitcommit: 9369b90471ee775664b942b21ceb450b8852eafd
+ms.openlocfilehash: a8684769e73dd3f7a76cba9c78046abceb842918
 
 
 ---
@@ -75,6 +75,6 @@ ms.openlocfilehash: cca850073040cde0fb6f035f041419ac777bb0a2
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

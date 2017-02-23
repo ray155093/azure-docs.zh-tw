@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/30/2016
+ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 783952ef1a19d18c3dd5d25c9ccf25cf3b29af45
+ms.sourcegitcommit: ab8c601d862868018fdffb4cd49e8b26acb878c9
+ms.openlocfilehash: 5eacb832ba2a20eae35c58704296c9d03e94ef0e
 
 
 ---
@@ -114,7 +114,7 @@ LDAP 伺服器必須提供下列 LDAP 控制項/功能，連接器才能正常�
 
 True/False 篩選器通常因為由 LDAP 目錄所支援而不回報，而且可能會出現在 [找不到強制功能] 之下的 [全域頁面] 上。 它用於在 LDAP 查詢中建立 **OR** 篩選器，例如，當匯入多個物件類型時。 如果您可以匯入一種以上的物件類型，則 LDAP 伺服器會支援此功能。
 
-如果您使用的目錄中有唯一識別碼是錨點，則也必須提供下列項目 (如需詳細資訊，請參閱本文後面的[設定錨點](#configure-anchors)一節)：  
+如果您使用的目錄中有唯一識別碼是錨點，則也必須提供下列項目 (如需詳細資訊，請參閱[設定錨點](#configure-anchors)一節)：  
 `1.3.6.1.4.1.4203.1.5.1` 所有操作屬性
 
 如果目錄中的物件數目超過在一次呼叫目錄時可容納的數目，則建議使用分頁。 您需使用下列其中一個選項，分頁才能運作：
@@ -162,7 +162,7 @@ True/False 篩選器通常因為由 LDAP 目錄所支援而不回報，而且可
 * 對於其他繫結，請在使用者名稱 / 密碼中輸入資訊或選取憑證。
 * 如果您使用 Kerberos 進行驗證，也要提供使用者的 [領域/網域]。
 
-[屬性別名]  文字方塊使用於以 RFC4522 語法在結構描述中定義的屬性。 在結構描述偵測期間無法偵測這些屬性，而連接器需要協助才能識別這些屬性。 例如，需要在 [屬性別名] 方塊中輸入下列項目，才能正確地將 userCertificate 屬性識別為二進位屬性：
+[屬性別名]  文字方塊使用於以 RFC4522 語法在結構描述中定義的屬性。 在結構描述偵測期間無法偵測這些屬性，而連接器需要協助才能識別這些屬性。 例如，必須在 [屬性別名] 方塊中輸入下列項目，才能正確地將 userCertificate 屬性識別為二進位屬性：
 
 `userCertificate;binary`
 
@@ -264,7 +264,6 @@ Open LDAP 中的差異浮水印是 UTC 日期/時間。 基於這個理由，FIM
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

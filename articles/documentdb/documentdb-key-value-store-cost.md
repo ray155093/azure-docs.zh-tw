@@ -17,9 +17,8 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: acomet
 translationtype: Human Translation
-ms.sourcegitcommit: 6fc5dfd3fbdd2e0690b60f4b232e624c34bf53b6
-ms.openlocfilehash: c1022a127266d28d3b59bfebd0543a840fe11e3a
-
+ms.sourcegitcommit: faf363eb5848752b27faacd971867391b6393337
+ms.openlocfilehash: 1a693477a51a05fb28e7c4772aeee77fd0c4e1dd
 
 ---
 
@@ -35,29 +34,23 @@ DocumentDB 效能是以磁碟分割已佈建的[要求單位](documentdb-program
 
 做為全域分散式的資料庫系統，DocumentDB 是除了高可用性以外，唯一就延遲、輸送量和一致性提供 SLA 的 Azure 服務。 您所佈建的輸送量會套用到與您的 DocumentDB 資料庫帳戶相關的每一個區域。 針對讀取，DocumentDB 提供多個定義完善的[一致性層級](documentdb-consistency-levels.md)，以供您選擇。 
 
-下表顯示根據部分文件大小，執行讀取和寫入交易所需要的 RU 數目。 
+下表顯示根據 1KB 和 100KB 的文件大小，執行讀取和寫入交易所需要的 RU 數目。
 
 |文件大小|1 次讀取|1 次寫入|
 |-------------|------|-------|
 |1 KB|1 RU|5 RU|
-|5 KB|5 RU|25 RU|
-|10 KB|10 RU|50 RU|
-|50 KB|50 RU|250 RU|
-|100 KB|100 RU|500 RU|
+|100 KB|10 RU|50 RU|
 
-## <a name="cost-of-running-documentdb-in-readwrite-mode-without-indexing"></a>以讀取/寫入模式執行 DocumentDB，而不需要編製索引的成本
+## <a name="cost-of-reads-and-writes"></a>讀取和寫入的成本
 
 如果您佈建 1,000 RU/每秒，數量會達 3.6 百萬 RU/每小時，且該小時將會花費 $0.08 (美國和歐洲)。 針對 1KB 大小的文件，這表示以您的佈建輸送量，您將會使用 3.6 百萬次讀取或 0.72 百萬次寫入 (3.6 百萬 RU / 5)。 標準化至百萬讀取和寫入，成本會是 $0.022/每百萬次讀取 ($0.08 / 3.6) 和 $0.111/每百萬次寫入 ($0.08 / 0.72)。 每百萬成本會變成最小值，如下表所示。
 
 |文件大小|1 百萬次讀取|1 百萬次寫入|
 |-------------|-------|--------|
 |1 KB|$0.022|$0.111|
-|5 KB|$0.111|$0.556|
-|10 KB|$0.222|$1.111|
-|50 KB|$1.111|$5.556|
-|100 KB|$2.222|$11.111|
+|100 KB|$0.222|$1.111|
 
-大部分基本的 Blob 或物件存放區 (例如 AWS S3 或 Azure Blob 儲存體服務) 的收費，為 $0.40 每百萬次讀取交易，以及 $5 每百萬次寫入交易。 如果以最佳方式使用，DocumentDB 可以比其他的解決方案節省多達 98% 的成本 (針對 1KB 交易)。
+大部分基本的 Blob 或物件存放區的服務收費，為每百萬次讀取交易 $0.40，以及每百萬次寫入交易 $5。 如果以最佳方式使用，DocumentDB 可以比其他的解決方案節省多達 98% 的成本 (針對 1KB 交易)。
 
 ## <a name="next-steps"></a>後續步驟
 

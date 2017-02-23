@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/30/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 314170f8d1ef228817543a80b99f4c2ff282866f
-ms.openlocfilehash: 8c783fc8e789ec31f0b8f4db90b5fa67334d95ab
+ms.sourcegitcommit: 013956232d1fdfdc1f35741c25294a37b7e9bd92
+ms.openlocfilehash: 61aa9e5c004decff18337efe3b1baacfcf9279dc
 
 
 ---
@@ -41,6 +41,32 @@ cordova plugin add cordova-plugin-ms-azure-mobile-apps
 ```
 
 如需有關建立 [第一個 Apache Cordova 應用程式]的詳細資訊，請參閱其文件。
+
+## <a name="a-nameionicasetting-up-an-ionic-v2-app"></a><a name="ionic"></a>設定 Ionic v2 應用程式
+
+若要適當地定 Ionic v2 專案，請先建立基本應用程式，並新增 Cordova 外掛程式：
+
+```
+ionic start projectName --v2
+cd projectName
+ionic plugin add cordova-plugin-ms-azure-mobile-apps
+```
+
+新增下列行到 `app.component.ts` 以建立用戶端專案：
+
+```
+declare var WindowsAzure: any;
+var client = new WindowsAzure.MobileServiceClient("https://yoursite.azurewebsites.net");
+```
+
+您現在可以在瀏覽器中建置並執行專案：
+
+```
+ionic platform add browser
+ionic run browser
+```
+
+Azure Mobile Apps Cordova 外掛程式同時支援 Ionic v1 與 v2 應用程式。  只有 Ionic v2 應用程式需要 `WindowsAzure` 物件的其他宣告。
 
 [!INCLUDE [app-service-mobile-html-js-library.md](../../includes/app-service-mobile-html-js-library.md)]
 
@@ -96,7 +122,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 大約需要 10-15 秒的時間，才能使新的設定生效。
 
-## <a name="a-nameregister-for-pushahow-to-register-for-push-notifications"></a><a name="register-for-push"></a>做法：註冊推播通知
+## <a name="a-nameregister-for-pushahow-to-register-for-push-notifications"></a><a name="register-for-push"></a>作法：註冊推播通知
 安裝 [phonegap-plugin-push] 來處理推播通知。  在命令列中使用 `cordova plugin add` 命令，或在 Visual Studio 內透過 Git 外掛程式安裝程式，即可輕鬆新增此外掛程式。  以下在 Apache Cordova 應用程式中的程式碼會為您的裝置註冊推播通知：
 
 ```
@@ -158,6 +184,6 @@ pushHandler.on('error', function (error) {
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 
