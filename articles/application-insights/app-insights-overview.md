@@ -1,85 +1,102 @@
 ---
-title: "Application Performance Management 與 Azure Application Insights | Microsoft Docs"
-description: "追蹤即時 Web 應用程式的效能和使用情况。  偵測、分級和診斷問題。"
+title: "什麼是 Azure Application Insights？ | Microsoft Docs"
+description: "即時 Web 應用程式的應用程式效能管理和使用量追蹤。  偵測、分級和診斷問題，了解人們如何使用您的應用程式。"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 379721d1-0f82-445a-b416-45b94cb969ec
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/07/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 3e9476f8edc4186af026495bc575b8203c35c619
-ms.openlocfilehash: b01de7724ec116e5e27369f7c0f852f82ab0348b
+ms.sourcegitcommit: 9755319296f960cf85eac13f98d139d086664de2
+ms.openlocfilehash: 6fea13d0c7e00032183b3b3ea4ea0f6e401d1e93
 
 
 ---
-# <a name="application-performance-management-with-application-insights"></a>Application Performance Management 與 Application Insights
-Application Insights 是適用於 Web 開發人員的可延伸應用程式效能管理 (APM) 服務。 您可以使用它來監視即時 Web 應用程式。 它將會自動偵測效能異常。 其中包括強大的分析工具可協助您診斷問題，並了解使用者實際如何運用您的應用程式。  它是設計來協助您持續改善效能和可用性。 它適用於各種不同平台上的應用程式，包括裝載在內部部署或雲端的 .NET、Node.js 和 J2EE。 它也整合您的 devOps 程序，並有與各種不同其他工具的連接點。
+# <a name="what-is-application-insights"></a>什麼是 Application Insights？
+Application Insights 是多個平台上的 Web 開發人員所適用的可延伸「應用程式效能管理」(APM) 服務。 您可以使用它來監視即時 Web 應用程式。 它將會自動偵測效能異常。 其中包括強大的分析工具可協助您診斷問題，並了解使用者實際如何運用您的應用程式。  它是設計來協助您持續改善效能和可用性。 它適用於各種不同平台上的應用程式，包括裝載在內部部署或雲端的 .NET、Node.js 和 J2EE。 它可與您的 devOps 程序整合，並有與各種開發工具的連接點。
 
 ![製作使用者活動統計資料的圖表，或深入特定事件。](./media/app-insights-overview/00-sample.png)
 
 [看一下簡介動畫](https://www.youtube.com/watch?v=fX2NtGrh-Y0)。
 
-## <a name="how-does-it-work"></a>運作方式
-您會在應用程式中安裝小型檢測套件，並且在 Microsoft Azure 入口網站中設定 Application Insights 資源。 此檢測套件會監視您的應用程式，並將遙測資料傳送至入口網站。 入口網站會顯示統計圖表，並提供強大的搜尋工具以協助您診斷任何問題。
+## <a name="how-does-application-insights-work"></a>Application Insights 的運作方式
+您會在應用程式中安裝小型檢測套件，並且在 Microsoft Azure 入口網站中設定 Application Insights 資源。 此檢測套件會監視您的應用程式，並將遙測資料傳送至入口網站。 (應用程式可以在任何地方執行 - 不一定要裝載於 Azure 中。)
 
-![您的應用程式中的 Application Insights 檢測功能會將遙測傳送到 Azure 入口網站中的 Application Insights 資源。](./media/app-insights-overview/01-scheme.png)
+您不僅可以檢測 Web 服務應用程式，也可以檢測任何背景元件以及網頁本身中的 JavaScript。 
 
-Application Insights 有數個 [標準檢測模組](app-insights-configuration-with-applicationinsights-config.md) ，可收集不同類型的遙測，例如要求回應時間、例外狀況和相依性呼叫。 您也可以 [撰寫程式碼以傳送自訂遙測](app-insights-api-custom-events-metrics.md) 至入口網站。
+![您應用程式中的 Application Insights 檢測功能會將遙測傳送到 Application Insights 資源。](./media/app-insights-overview/01-scheme.png)
+
+
+此外，您可以從主機環境 (例如效能計數器、Azure 診斷或 Docker 記錄) 提取遙測資料。 您也可以設定會定期將綜合要求傳送至 Web 服務的 Web 測試。
+
+上述所有遙測串流都會整合於 Azure 入口網站中，您可在其中將強大的分析和搜尋工具套用於未經處理的資料。
+
 
 ### <a name="whats-the-overhead"></a>負荷為何？
 對您的應用程式效能的影響很小。 追蹤呼叫非封鎖性，而且會在個別的執行緒中分批傳送。
 
-## <a name="what-does-it-do"></a>用途
-Application Insights 是以開發小組為目標，以協助您了解您的應用程式的執行和使用情況。 它提供：
+## <a name="what-does-application-insights-monitor"></a>Application Insights 可監視什麼？
 
-遙測類型︰
+Application Insights 是以開發小組為目標，以協助您了解您的應用程式的執行和使用情況。 它可監視︰
 
-* HTTP 要求率、回應時間、成功率。
-* 相依性 (HTTP & SQL) 呼叫率、要求率、成功率。
-* 從伺服器和用戶端的例外狀況追蹤。
-* 診斷記錄搜尋。
-* 頁面檢視計數、使用者和工作階段計數、瀏覽器載入時間、例外狀況。
-* AJAX 呼叫率、回應時間和成功率。
-* 伺服器效能計數器。
-* 自訂用戶端和伺服器遙測。
-* 依照用戶端位置、瀏覽器版本、作業系統版本、伺服器執行個體、自訂維度等區隔。
-* 可用性集合
+* **要求率、回應時間和失敗率** - 找出哪些頁面在每天哪些時段最受歡迎，以及使用者位於何處。 查看哪些頁面的表現最好。 如果您的回應時間和失敗率隨著要求增加而提高，您或許有資源配置問題。 
+* **相依比率、回應時間和失敗率** - 找出外部服務是否會使您降低效能。
+* **例外狀況** - 分析彙總統計資料，或挑選特定執行個體並深入了解堆疊追蹤和相關要求。 伺服器和瀏覽器例外狀況都會報告。
+* **頁面檢視和載入效能** - 由使用者的瀏覽器報告。
+* 來自網頁的 **AJAX 呼叫** - 比率、回應時間和失敗率。
+* **使用者和工作階段計數**。
+* Windows 或 Linux 伺服器電腦中的**效能計數器**，例如 CPU、記憶體和網路使用量。 
+* 來自 Docker 或 Azure 的**主機診斷**。 
+* 來自您應用程式的**診斷追蹤記錄檔** - 讓您使追蹤事件與要求相互關聯。
+* 您在用戶端或伺服器程式碼中自行撰寫的**自訂事件和計量**，可追蹤商業事件，例如售出的項目或獲勝的遊戲。
 
-診斷和分析工具︰
+## <a name="where-do-i-see-my-telemetry"></a>哪裡可以查看我的遙測？
 
-* 對於失敗率和其他度量以及可用性的智慧型和手動警示。
-* 一段時間的彙總度量圖表。
-* 對於要求、例外狀況、自訂事件、記錄追蹤、頁面檢視、相依性和 AJAX 呼叫之執行個體的診斷搜尋。
-* 分析 - 針對遙測的強大查詢語言。
-* 儀表板 - 製作您需要的圖表，以監視所有應用程式元件。
+有許多方式可以探索您的資料。 請參閱下列文章：
 
-## <a name="how-do-i-use-it"></a>如何使用它？
+|  |  |
+| --- | --- |
+| [**應用程式對應**](app-insights-app-map.md)<br/>應用程式的元件，包含重要計量和警示。 |![應用程式對應](./media/app-insights-overview/appmap-tn.png)  |
+| [**執行個體資料的診斷搜尋**](app-insights-diagnostic-search.md)<br/>搜尋和篩選事件，例如要求、例外狀況、相依性呼叫、記錄追蹤，以及頁面檢視。  |![搜尋遙測](./media/app-insights-overview/search-tn.png) |
+| [**彙總資料的計量瀏覽器**](app-insights-metrics-explorer.md)<br/>瀏覽、篩選和分割彙總的資料，例如，要求、錯誤和例外狀況的比率；回應時間、頁面載入時間。 |![度量](./media/app-insights-overview/metrics-tn.png) |
+| [**儀表板**](app-insights-dashboards.md#dashboards)<br/>來自多個資源的交互式資料並與其他人員共用。 非常適用於多元件的應用程式，以及小組聊天室中的連續顯示。 |![儀表板範例](./media/app-insights-overview/dashboard-tn.png) |
+| [**即時計量串流**](app-insights-live-stream.md)<br/>當您部署新的組建時，請觀看這些近乎即時的效能指標，以確定一切如預期運作。 |![即時計量範例](./media/app-insights-overview/live-metrics-tn.png) |
+| [**分析**](app-insights-analytics.md)<br/>使用這個功能強大的查詢語言，回答有關您應用程式效能和使用方式的艱難問題。 |![分析範例](./media/app-insights-overview/analytics-tn.png) |
+| [**自動和手動警示**](app-insights-alerts.md)<br/>如果在常見模式之外發生一些狀況，則自動警示會適應您應用程式的一般遙測和觸發程式模式。 您也可以在自訂或標準計量的特定層級上設定警示。 |![警示範例](./media/app-insights-overview/alerts-tn.png) |
+| [**Visual Studio**](app-insights-visual-studio.md)<br/>查看程式碼中的效能資料。 從堆疊追蹤移至程式碼。|![Visual Studio](./media/app-insights-overview/visual-studio-tn.png) |
+| [**Power BI**](app-insights-export-power-bi.md)<br/>整合使用量計量和其他商業智慧。| ![Power BI](./media/app-insights-overview/power-bi.png)|
+| [**REST API**](https://dev.applicationinsights.io/)<br/>撰寫程式碼，對您的計量和未經處理資料執行查詢。| ![REST API](./media/app-insights-overview/rest-tn.png) |
+| [**連續匯出**](app-insights-export-telemetry.md)<br/>立即將送達的未經處理資料大量匯出至儲存體。 |![匯出](./media/app-insights-overview/export-tn.png) |
+
+## <a name="how-do-i-use-application-insights"></a>如何使用 Application Insights？
+
 ### <a name="monitor"></a>監視
-在 Web 應用程式中安裝 Application Insights、設定可用性 Web 測試，以及︰
+在應用程式中安裝 Application Insights、設定[可用性 Web 測試](app-insights-monitor-web-app-availability.md)，以及︰
 
-* 設定小組聊天室的儀表板，以持續關注相依項目、頁面載入和 AJAX 呼叫的載入、回應性和效能。
+* 設定小組聊天室的[儀表板](app-insights-dashboards.md)，以持續關注相依項目、頁面載入和 AJAX 呼叫的載入、回應性和效能。
 * 探索哪些是最慢和最失敗的要求。
-* 在部署新版本時觀看即時串流，以立即知曉任何效能降低情形。
+* 在部署新版本時觀看[即時串流](app-insights-live-stream.md)，立即知曉任何效能降低情形。
 
-### <a name="diagnose"></a>診斷
+### <a name="detect-diagnose"></a>偵測、診斷
 當您收到警示或發現問題︰
 
+* 評估有多少使用者受到影響。
 * 將失敗與例外狀況、相依項目呼叫和追蹤相互關聯。
 * 檢查堆疊傾印和追蹤記錄檔。
 
-### <a name="assess"></a>評估
+### <a name="build-measure-learn"></a>建置、測量、學習
 測量所部署之各個新功能的效果。
 
 * 計劃測量客戶使用新 UX 或商務功能的情況。
-* 在程式碼中撰寫自訂遙測來記錄使用情況。
-* 讓每個開發週期以遙測的真憑實據做為根據。
+* 在程式碼中撰寫自訂遙測。
+* 讓下一個開發週期以遙測的真憑實據做為根據。
 
 ## <a name="get-started"></a>開始使用
 Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙測資料會送至該處進行分析及呈現。 所以在執行任何動作前，您需要 [Microsoft Azure](http://azure.com)訂用帳戶。 您可免費註冊，而且如果選擇 Application Insights 的基本[價格方案](https://azure.microsoft.com/pricing/details/application-insights/)，在您的應用程式成長到有大量使用量之前，不會有任何變更。 如果您的組織已經有訂用帳戶，他們可能會將您的 Microsoft 帳戶新增至其中。
@@ -98,222 +115,6 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
 * **[檢測您的網頁](app-insights-javascript.md)**的頁面檢視、AJAX 和其他用戶端遙測。
 * **[可用性集合](app-insights-monitor-web-app-availability.md)** - 定期從我們的伺服器 ping 您的網站。
 
-> [!NOTE]
-> 此時，您或許只想要快速了解和試驗。 但如果您想要查看 Application Insights 有何用途，請閱讀...
->
->
-
-## <a name="explore-metrics"></a>探索度量
-執行您的應用程式 (以開發電腦上的偵錯模式，或將它部署到伺服器)，並使用一段時間。 然後登入 [Azure 入口網站](https://portal.azure.com)。
-
-瀏覽至您的應用程式的 Application Insights 概觀刀鋒視窗︰
-
-![概觀刀鋒視窗](./media/app-insights-overview/01-find.png)
-
-概觀可讓您立即瞭解如何執行您的應用程式。 您可以比較負載 (就要求的速率而論) 與您的應用程式回應要求的時間。 如果在負載升提高時的回應時間增加不成比例，您可能要配置更多資源給您的應用程式。 如果在您部署新組建之後，概觀立即顯示更多失敗的回應，您可能會想要回復。
-
-#### <a name="get-more-detail"></a>取得詳細資料
-點選任何圖表以取得更詳細的圖表集。 例如，「伺服器回應時間」圖表會導向可顯示要求率、回應時間、相依項目 (也就是您的應用程式所呼叫的服務) 的回應時間的圖表。  
-
-![伺服器刀鋒視窗](./media/app-insights-overview/04.png)
-
-相依項目圖表很實用，因為它可協助您查看您的應用程式使用的資料庫和 REST API 是否回應良好，或者造成延遲。
-
-#### <a name="customize-a-chart"></a>自訂圖表
-試著編輯其中一個圖表。 例如，如果 Web 應用程式在一組伺服器執行個體上執行，您可以比較在不同伺服器執行個體上的回應時間︰
-
-![編輯圖表](./media/app-insights-overview/05.png)
-
-1. 將滑鼠暫留在圖表上並按一下 [編輯]。
-2. 選擇度量。 多個度量可以顯示在一個圖表上，但只在特定組合中︰您可能必須在選取您想要的度量之前，先取消選取一個度量。
-3. 使用 Group-By 依照屬性區隔度量。 在此範例中，我們會針對不同的回應時間顯示不同的行。
-
-    請注意，您必須選取度量的有效屬性，否則圖表不會顯示任何資料。
-4. 選取圖表類型。 區域圖和長條圖會顯示當彙總類型為「總和」時適用的堆疊顯示。
-
-[深入探索度量](app-insights-metrics-explorer.md)。
-
-## <a name="search-instance-data"></a>搜尋執行個體資料
-若要調查問題，最好能檢查特定的事件執行個體。
-
-點選度量圖表，以徹底搜尋具有相關篩選器和時間範圍的執行個體資料。 例如，逐一點選伺服器要求計數，以查看個別的要求報告。
-
-或者，您可以從 [概觀] 頁面上的搜尋直接到達執行個體資料︰
-
-![搜尋執行個體](./media/app-insights-overview/06.png)
-
-使用 [篩選器] 將焦點放在特定類型的事件和已選擇的屬性值︰
-
-![篩選屬性](./media/app-insights-overview/07.png)
-
-按一下 "..." 以查看完整的屬性清單，或開啟與相同要求相關聯的其他事件。 在此範例中，失敗的要求會有相關聯的例外狀況報告︰
-
-![相關項目和屬性詳細資料](./media/app-insights-overview/08.png)
-
-開啟事件 - 在此範例中為相關的例外狀況 - 而且您可以建立工作項目 (如果您使用 Visual Studio Team Services 來追蹤工作)。
-
-![建立工作項目](./media/app-insights-overview/09.png)
-
-## <a name="analytics"></a>分析
-[分析](app-insights-analytics.md) 是更強大的搜尋和分析功能，您可以在其中對您的遙測資料撰寫類似 SQL 的查詢，以便尋找特定問題或編譯統計資訊。
-
-![分析](./media/app-insights-overview/10.png)
-
-開啟教學課程視窗，請查看並執行對您的資料的查詢範例，或讀取較長的 [教學課程逐步解說](app-insights-analytics-tour.md)。 Intellisense 會提示您可以使用的查詢，而且有 [完整語言參考](app-insights-analytics-reference.md)。
-
-查詢通常會以遙測串流的名稱開頭，例如要求、例外狀況或相依性。 在左邊快速開啟結構描述列，以查看可用的遙測串流清單。 查詢是[查詢作業](app-insights-analytics-reference.md#queries-and-operators)的管線，例如 `where` (布林值篩選器) 或 `project` (會計算新的屬性)。 `summarize` 可彙總執行個體、依您定義的函式進行分組，然後將彙總函式套用於已分組的資料。
-
-結果會 [以表格或各種類型的圖表呈現](app-insights-analytics-tour.md#charting-the-results)。
-
-## <a name="custom-telemetry"></a>自訂遙測
-您藉由安裝 Application Insights 所取得的內建遙測，可讓您針對對您的應用程式和相依項目 (也就是，從您的應用程式對 SQL、REST API 進行的呼叫) 所提出的 Web 要求分析計數、成功率和回應時間。 您也可以取得例外狀況追蹤和 (利用您的伺服器上的狀態監視器) 系統效能計數器。 如果您將用戶端程式碼片段加入至您的網頁，您會取得頁面檢視計數和載入時間、用戶端例外狀況，以及 AJAX 呼叫成功和回應率。
-
-完整分析此遙測可讓您深入了解您的應用程式的效能和使用情況。 但有時候並不足夠。 您可能想要監視佇列的長度，以便微調效能；或計算銷售並依照位置加以區隔；或者，在用戶端上，找出使用者按一下特定按鈕的頻率，以便調整使用者經驗。
-
-[Application Insights API`TrackMetric(name, value)` 提供 ](app-insights-api-custom-events-metrics.md) 和 `TrackEvent(name)` 呼叫，以便您傳送自己的自訂事件和度量。 沒有同等的呼叫可供用戶端使用。
-
-比方說，如果您的網頁是單頁遊戲應用程式，您可能會在適當的位置插入一行，以記錄使用者何時贏得或輸掉遊戲︰
-
-    appInsights.trackEvent("WinGame");
-    ...
-    appInsights.trackEvent("LoseGame");
-
-然後我們可以將自訂事件計數繪製成圖表，並依照事件名稱加以區隔︰
-
-![分析](./media/app-insights-overview/11.png)
-
-### <a name="log-traces"></a>記錄追蹤
-為了方便診斷，您可將自訂事件 `TrackTrace(message)` 用於執行追蹤。 在搜尋和分析功能中，您可以搜尋訊息的內容，該內容的長度可能會超過事件名稱。
-
-如果您已經使用 Log4Net、NLog、Log4J 或 System.Diagnostic.Trace 等紀錄架構，則 Application Insights 可以擷取這些追蹤呼叫並顯示在其他遙測旁邊。 Visual Studio 工具會自動加入適當的 SDK 模組。
-
-## <a name="profiling-your-live-site"></a>剖析您的即時網站
-
-不清楚時間花在哪裡嗎？ Application Insights 分析工具會追蹤對您即時站台發出的 HTTP 呼叫，並顯示您程式碼中哪些函式花費的時間最長。 此分析工具目前是受限的預覽版 - 您可以[註冊來試用它](https://aka.ms/AIProfilerPreview)。
-
-## <a name="dashboards"></a>儀表板
-許多應用程式都包含數個元件，例如 Web 服務以及一或多個後端處理器。 每個元件會受到個別的 Application Insights 資源監視。 如果您的系統在 Azure 上執行，您可能會使用及監視事件中樞和機器學習等服務。
-
-若要監視整個系統，您就可以從不同的應用程式中選取最有趣的圖表並將它們釘選到 Azure [儀表板](app-insights-dashboards.md)，讓您持續監控整個系統。
-
-![儀表板](./media/app-insights-overview/12.png)
-
-事實上，您可以建立多個儀表板 -例如可供監視一般系統健康狀態的小組聊天室儀表板；著重於不同功能的使用方式的設計儀表板；適用於測試中元件的個別儀表板等等。  
-
-如同資源一樣，小組成員間可以共用儀表板。
-
-## <a name="development-in-visual-studio"></a>在 Visual Studio 中開發
-如果您使用 Visual Studio 來開發您的應用程式，您可以找到數個內建的 Application Insights 工具。
-
-### <a name="diagnostic-search"></a>診斷搜尋
-[搜尋] 視窗會顯示已記錄的事件。 (如果您在設定 Application Insights 時登入至 Azure，就能夠在入口網站搜尋相同的事件。)
-
-![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[搜尋]](./media/app-insights-overview/34.png)
-
-任意文字搜尋適用於事件中的任何欄位。 例如，搜尋頁面的 URL 的一部分；或者如用戶端城市的屬性值；或者追蹤記錄檔中的特定單字。
-
-按一下任何事件以查看其詳細屬性。
-
-您也可以開啟 [相關項目] 索引標籤，以協助診斷失敗的要求或例外狀況。
-
-![](./media/app-insights-overview/41.png)
-
-### <a name="diagnostics-hub"></a>診斷中樞
-診斷中樞 (在 Visual Studio 2015 或更新版本) 會顯示其產生的 Application Insights 伺服器遙測。 即使您選擇只安裝 SDK，而不連接至 Azure 入口網站中的資源，也會運作。
-
-![開啟 [診斷工具] 視窗，並檢查 Application Insights 事件。](./media/app-insights-overview/31.png)
-
-### <a name="exceptions"></a>例外狀況
-如果您已 [設定例外狀況監視](app-insights-asp-net-exceptions.md)，例外狀況報告會顯示在 [搜尋] 視窗中。
-
-按一下例外狀況以取得堆疊追蹤。 如果應用程式的程式碼在 Visual Studio 中開啟，您可以從堆疊追蹤點選至程式碼的相關程式碼行。
-
-![例外狀況堆疊追蹤](./media/app-insights-overview/17.png)
-
-此外，在每個方法上的程式碼功能濾鏡一行中，您會看到在過去 24 小時由 Application Insights 記錄的例外狀況計數。
-
-![例外狀況堆疊追蹤](./media/app-insights-overview/21.png)
-
-### <a name="local-monitoring"></a>本機監視
-(從 Visual Studio 2015 Update 2 開始) 如果您尚未設定 SDK 以將遙測傳送至 Application Insights 入口網站 (以便讓 ApplicationInsights.config 中沒有任何檢測金鑰)，則 [診斷] 視窗會顯示來自最新偵錯工作階段的遙測。
-
-如果您已發佈過應用程式先前的版本，這是比較好的做法。 您不會想讓來自偵錯工作階段的遙測與 Application Insights 入口網站中來自已發佈之應用程式的遙測混在一起。
-
-如果您在將遙測傳送至入口網站之前有一些 [自訂遙測](app-insights-api-custom-events-metrics.md) 想要偵錯，它也很有用。
-
-* 首先，我完全設定 Application Insights 將遙測傳送至入口網站。但是現在我只想要查看在 Visual Studio 中的遙測。
-
-  * 在 [搜尋] 視窗的 [設定] 中，即使您的應用程式將遙測傳送至入口網站，也有選項可搜尋本機診斷。
-  * 若要停止將遙測傳送至入口網站，請將 ApplicationInsights.config 中的 `<instrumentationkey>...` 程式行註解化。 當您準備再次將遙測傳送至入口網站時，請取消註解。
-
-### <a name="trends"></a>趨勢
-趨勢是 Visual Studio 中用來將應用程式一段時間內行為方式進行視覺化的工具。
-
-從 Application Insights 工具列按鈕或 [Application Insights 搜尋] 視窗選擇 [探索遙測趨勢]  。 選擇五種常見查詢的其中一個，以便開始使用。 您可以根據遙測類型、時間範圍和其他屬性，分析不同的資料集。
-
-若要尋找資料中的異常狀況，請選擇 [檢視類型] 下拉式清單底下的其中一個異常選項。 視窗底部的篩選選項可讓您輕鬆地全神貫注於特定的遙測子集。
-
-![趨勢](./media/app-insights-overview/51.png)
-
-## <a name="releasing-a-new-build"></a>發行新組建
-### <a name="live-metrics-stream"></a>即時計量串流
-即時計量串流說明您的應用程式計量正處於這個非常時刻，接近即時的延遲為 1 秒。 當您發行了新的組建且想要確定一切都如預期般運作，或者要即時調查某個事件時，這是非常有用的。
-
-![在 [概觀] 刀鋒視窗中，按一下 [即時資料流]](./media/app-insights-overview/live-stream.png)
-
-不同於計量瀏覽器，即時計量串流會顯示一組固定的計量。 只要資料仍在圖表上就會保存，之後便會捨棄該資料。
-
-### <a name="annotations"></a>註解
-[版本註解](app-insights-annotations.md) 會顯示您在哪邊部署了新組建。 註解可讓您輕鬆查看變更是否對應用程式的效能有任何影響。 [Visual Studio Team Services 建置系統](https://www.visualstudio.com/en-us/get-started/build/build-your-app-vs)以及 Visual Studio 中的 Web 部署可自動建立註解。 您也可以[從 PowerShell 建立](#create-annotations-from-powershell)。
-
-![註解範例，其會顯示與伺服器回應時間的相互關聯](./media/app-insights-overview/00.png)
-
-發行註解是 Visual Studio Team Services 的雲端型組建和發行服務的功能。
-
-
-
-## <a name="alerts"></a>Alerts
-如果您的應用程式發生問題，您會想要立即得知問題。
-
-Application Insights 會提供三種類型的警示 (透過電子郵件傳送)。
-
-### <a name="proactive-diagnostics"></a>主動診斷
-[主動式診斷](app-insights-proactive-failure-diagnostics.md) 會自動設定，您不需要進行設定。 假設您的網站有足夠的流量，如果一天當中某個時間的失敗要求或要求率不尋常增加，您就會收到一封電子郵件。 警示包含診斷資訊。
-
-以下是警示範例。
-
-![顯示失敗之相關叢集分析的智慧警示範例](./media/app-insights-overview/proactive-alert.png)
-
-第二種主動式偵測可發現失敗與因素 (例如位置、用戶端作業系統或瀏覽器類型) 之間的相互關聯。
-
-### <a name="metric-alerts"></a>度量警示
-您可以設定 [度量警示](app-insights-alerts.md) ，以在任何度量超出某些期間的臨界值 (例如失敗計數、記憶體或頁面檢視) 的時候通知您。
-
-![在 [計量瀏覽器] 中，選擇 [警示規則]，然後選擇 [加入警示]](./media/app-insights-overview/appinsights-413setMetricAlert.png)
-
-### <a name="availability"></a>Availability
-[可用性 Web 測試](app-insights-monitor-web-app-availability.md) 會從我們位於世界各地的伺服器將要求傳送至您的網站。 這類測試會在您的網站無法在網際網路上使用或回應速度很慢時通知您。
-
-![Web 測試範例](./media/app-insights-overview/appinsights-10webtestresult.png)
-
-## <a name="export-and-api"></a>匯出和 API
-有數種方式可讓您從 Application Insights 入口網站存取遙測資料︰
-
-* [資料存取 REST API](https://dev.applicationinsights.io/) 可用來搜尋及擷取資料，包括執行 Analytics 查詢。 
-* 匯出 [Analytics 查詢至 Power BI](app-insights-export-power-bi.md) 儀表板，並在 Power BI 視覺效果中檢視結果 (可自動重新整理)。
-* [連續匯出](app-insights-export-telemetry.md) 。
-* [度量](app-insights-metrics-explorer.md#export-to-excel)資料表、搜尋結果和 [Analytics](app-insights-analytics.md) 結果都可以匯出至 Excel 試算表。
-
-![在 Power BI 中檢視資料](./media/app-insights-overview/210.png)
-
-## <a name="data-management"></a>資料管理
-Application Insights 的使用方式有所限制，在某個程度上這取決於您選擇的價格機制。 主要限制如下：
-
-* 每分鐘遙測速率
-* 每個月的資料點計數
-* 資料的保留期
-
-[取樣](app-insights-sampling.md) 是一種降低成本和避免節流的機制。 它會捨棄某個比例的遙測，以保留具代表性的樣本。 相關聯的項目 (例如例外狀況和導致其發生的要求) 會保留下來或一起捨棄。 在 ASP.NET 應用程式中，取樣會自動執行並套用於應用程式；不然，您可以將它設為要套用於對入口網站的擷取。
 
 ## <a name="next-steps"></a>後續步驟
 在執行階段開始使用︰
@@ -347,8 +148,6 @@ Application Insights 的使用方式有所限制，在某個程度上這取決�
 >
 > [!VIDEO https://channel9.msdn.com/Series/ConnectOn-Demand/222/player]
 >
-> [簡介動畫](https://www.youtube.com/watch?v=fX2NtGrh-Y0)
->
 >
 
 <!--Link references-->
@@ -369,6 +168,6 @@ Application Insights 的使用方式有所限制，在某個程度上這取決�
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 
