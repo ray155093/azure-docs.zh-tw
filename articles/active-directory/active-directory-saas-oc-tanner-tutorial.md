@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/21/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: a2129813f7214b2b32b2d7d6c9d666e96b60a926
-ms.openlocfilehash: 10cf00155767b0cc8a318993e3ce95e55079312f
+ms.sourcegitcommit: 1b5527090a41c274b590ed9d1ac7b561b6f4ed14
+ms.openlocfilehash: 10faa27e0c82e59c35e00258a2d90bea977dc28f
 
 
 ---
@@ -183,7 +183,7 @@ ms.openlocfilehash: 10cf00155767b0cc8a318993e3ce95e55079312f
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-a-oc-tanner---appreciatehub-test-user"></a>建立 O.C. Tanner - AppreciateHub 測試使用者
 本節目標是在 O.C. Tanner - AppreciateHub 中建立名為 Britta Simon 的使用者。
@@ -202,7 +202,7 @@ ms.openlocfilehash: 10cf00155767b0cc8a318993e3ce95e55079312f
 1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
     ![指派使用者][201]
-2. 在應用程式清單中，選取 [O.C.Tanner - AppreciateHub**。
+2. 在應用程式清單中，選取 **O.C.Tanner - AppreciateHub**。
    
     ![指派使用者][202]
 3. 在頂端的功能表中，按一下 [使用者] 。
@@ -215,7 +215,7 @@ ms.openlocfilehash: 10cf00155767b0cc8a318993e3ce95e55079312f
 
 ### <a name="testing-single-sign-on"></a>測試單一登入
 本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。  
-當您在 [存取面板] 按一下 [O.C. Tanner - AppreciateHub] 磚時，應該會自動登入您的 O.C. Tanner - AppreciateHub 應用程式。
+當您在 存取面板 按一下 O.C. Tanner - AppreciateHub 磚時，應該會自動登入您的 O.C. Tanner - AppreciateHub 應用程式。
 
 ## <a name="additional-resources"></a>其他資源
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
@@ -254,6 +254,6 @@ ms.openlocfilehash: 10cf00155767b0cc8a318993e3ce95e55079312f
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO3-->
 
 

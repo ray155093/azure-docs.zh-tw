@@ -17,8 +17,8 @@ ms.topic: article
 ms.date: 07/12/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 865ddf4e8849c8c94ac8e20a22874e2edaead646
+ms.sourcegitcommit: 407d8cef2508e4b2344953db86bc9829081cda7c
+ms.openlocfilehash: 72faf68d8a9779b612723f9ee6589cc332bf5ed5
 
 
 ---
@@ -100,8 +100,8 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 
 | 錯誤碼 | 嚴重性 | 說明 |
 | ---:| ---:|:--- |
-| 10928 |20 |資源識別碼：%d。 資料庫的 %s 限制是 %d，且已達到。 如需詳細資訊，請參閱 http://go。microsoft。com/fwlink/?LinkId=267637。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>請注意：如需有關此錯誤以及如何解決它的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-resource-limits.md)。 |
-| 10929 |20 |資源識別碼：%d。 %s 最小保證是 %d，最大限制是 %d，而資料庫的目前使用量是 %d。 但伺服器目前太忙碌，無法針對此資料庫支援大於 %d 的要求。 如需詳細資訊，請參閱 http://go。microsoft。com/fwlink/?LinkId=267637。 或者，請稍後再試一次。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>請注意：如需有關此錯誤以及如何解決它的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-resource-limits.md)。 |
+| 10928 |20 |資源識別碼：%d。 資料庫的 %s 限制是 %d，且已達到。 如需詳細資訊，請參閱 [http://go。microsoft。com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637)。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>請注意：如需有關此錯誤以及如何解決它的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-resource-limits.md)。 |
+| 10929 |20 |資源識別碼：%d。 %s 最小保證是 %d，最大限制是 %d，而資料庫的目前使用量是 %d。 但伺服器目前太忙碌，無法針對此資料庫支援大於 %d 的要求。 如需詳細資訊，請參閱 [http://go。microsoft。com/fwlink/?LinkId=267637](http://go.microsoft.com/fwlink/?LinkId=267637)。 或者，請稍後再試一次。<br/><br/>資源識別碼可指出已達到限制的資源。 對於背景工作執行緒，資源識別碼 = 1。 對於工作階段，資源識別碼 = 2。<br/><br/>請注意：如需有關此錯誤以及如何解決它的詳細資訊，請參閱：<br/>• [Azure SQL Database 資源限制](sql-database-resource-limits.md)。 |
 | 40544 |20 |資料庫已達到大小配額。 資料分割或刪除資料、卸除索引，或參閱可能解決方式的文件。 |
 | 40549 |16 |工作階段已終止，因為您有長時間執行的交易。 請嘗試縮短您的交易時間。 |
 | 40550 |16 |工作階段已終止，因為它取得太多鎖定。 嘗試在單一交易中讀取或修改較少的資料列。 |
@@ -137,9 +137,9 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 
 相關主題：
 
-* [建立彈性集區 (C#)](sql-database-elastic-pool-create-csharp.md) 
+* [建立彈性集區 (C#)](sql-database-elastic-pool-manage-csharp.md) 
 * [管理彈性集區 (C#)](sql-database-elastic-pool-manage-csharp.md)。 
-* [建立彈性集區 (PowerShell)](sql-database-elastic-pool-create-powershell.md) 
+* [建立彈性集區 (PowerShell)](sql-database-elastic-pool-manage-powershell.md) 
 * [監視和管理彈性集區 (PowerShell)](sql-database-elastic-pool-manage-powershell.md)。
 
 ## <a name="general-errors"></a>一般錯誤
@@ -219,6 +219,6 @@ Azure 基礎結構能夠在 SQL Database 服務出現繁重的工作負載時動
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 
