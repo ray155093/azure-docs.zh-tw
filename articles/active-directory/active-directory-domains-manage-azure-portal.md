@@ -3,7 +3,7 @@ title: "在 Azure Active Directory 預覽版中管理自訂網域名稱 | Micros
 description: "Azure Active Directory 中管理網域的管理概念和做法"
 services: active-directory
 documentationcenter: 
-author: jeffsta
+author: curtand
 manager: femila
 editor: 
 ms.assetid: 5063cd0a-dba2-4ba9-aa65-b8117490d73a

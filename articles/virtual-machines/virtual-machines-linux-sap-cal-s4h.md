@@ -26,7 +26,7 @@ ms.openlocfilehash: f653e69590ee15d272543dc58840b1ee6983e953
 本文說明如何透過 SAP Cloud Appliance Library 3.0 在 Microsoft Azure 上部署 S/4 HANA。
 螢幕擷取畫面會逐步顯示此程序。 從程序觀點來看，部署其他以 SAP HANA 為基礎的解決方案 (如 BW/4 HANA) 的方式相同。 使用者只需選取不同的解決方案。
 
-若要開始使用 SAP Cloud Appliance Library (SAP CAL)，請前往 [這裡](https://cal.sap.com/)。 SAP 提供了有關全新 [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience)的部落格。 
+若要開始使用 SAP Cloud Appliance Library (SAP CAL)，請前往 [這裡](https://cal.sap.com/)。 SAP 提供了有關全新 [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience)的部落格。
 
 下列螢幕擷取畫面逐步顯示如何在 Microsoft Azure 上部署 S/4 HANA。 對於 BW/4 HANA 等其他解決方案，此程序的運作方式相同。
 
@@ -46,8 +46,6 @@ ms.openlocfilehash: f653e69590ee15d272543dc58840b1ee6983e953
 ![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic6b.jpg)
 
 在新的 Azure 入口網站中，使用者可在左側找到 [訂用帳戶] 項目。 按一下可顯示您的使用者的所有作用中訂用帳戶。
-
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic7b.jpg)
 
 選取其中一個訂用帳戶，然後選擇 [管理憑證]，表示有對新的 Azure Resource Manager 模型使用「服務主體」的新概念。
 SAP CAL 尚未針對這個新的模型進行調整，仍需要「傳統」模型和舊版 Azure 入口網站才能使用管理憑證。
@@ -92,7 +90,6 @@ SAP CAL 尚未針對這個新的模型進行調整，仍需要「傳統」模型
 ![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic15.jpg)
 
 另一個選項是登入用戶端 Windows VM，並啟動預先設定的 SAP GUI (舉例來說)。
-
 
 
 

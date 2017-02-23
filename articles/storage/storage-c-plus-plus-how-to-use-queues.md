@@ -55,8 +55,8 @@ Install-Package wastorage
 在您要使用 Azure 儲存體 API 來存取佇列的 C++ 檔案頂端，加入下列 include 陳述式：  
 
 ```cpp
-#include "was/storage_account.h"
-#include "was/queue.h"
+#include <was/storage_account.h>
+#include <was/queue.h>
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>設定 Azure 儲存體連接字串
