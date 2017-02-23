@@ -55,6 +55,7 @@
 ### [移除資源群組](automation-scenario-remove-resourcegroup.md)
 ### [於下班時間開始/停止 VM](automation-solution-vm-management.md)
 ### [搭配 GitHub Enterprise 的原始檔控制整合](automation-scenario-source-control-integration-with-github-ent.md)
+### [搭配 VSTS 的原始檔控制整合](automation-scenario-source-control-integration-with-VSTS.md)
 ## 監視
 ### [將 Azure 自動化作業資料轉送到 Log Analytics](automation-manage-send-joblogs-log-analytics.md)
 ### [從 Log Analytics 取消 Azure 自動化帳戶連結](automation-unlink-from-log-analytics.md)
@@ -82,6 +83,6 @@
 ## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)
 
 
-<!--HONumber=Feb17_HO3-->
+<!--HONumber=Feb17_HO4-->
 
 

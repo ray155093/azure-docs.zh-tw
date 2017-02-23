@@ -8,6 +8,7 @@
 ### [.NET](search-create-index-dotnet.md)
 ### [REST](search-create-index-rest-api.md)
 ## [增資料](search-what-is-data-import.md)
+### [Azure 入口網站](search-import-data-portal.md)
 ### [.NET](search-import-data-dotnet.md)
 ### [REST](search-import-data-rest-api.md)
 ## [搜尋索引](search-query-overview.md)
@@ -25,7 +26,6 @@
 ### [服務限制](search-limits-quotas-capacity.md)
 ### [服務延展性](search-capacity-planning.md)
 ### [多組織用戶的樣式](search-modeling-multitenant-saas-applications.md)
-
 
 ## 開發
 ### [升級 SDK](search-dotnet-sdk-migration.md)
@@ -49,15 +49,16 @@
 ### [索引 JSON blob](search-howto-index-json-blobs.md)
 ### [在 Azure VM 上設定連接至 SQL Server 的索引子](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
 ### [索引器中的欄位對應](search-indexer-field-mappings.md)
-##  設計搜尋體驗
+##  搜尋體驗
+### [簡單查詢語法](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search)
+### [Lucene 查詢語法](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 ### [Lucene 語法查詢範例](search-query-lucene-examples.md)
-### [評分設定檔](search-get-started-scoring-profiles.md)
-### [建議工具](https://azure.microsoft.com/blog/2015/01/20/azure-search-how-to-add-suggestions-auto-complete-to-your-search-applications/)
-### [標籤增強](https://azure.microsoft.com/blog/2015/02/05/personalizing-search-results-announcing-tag-boosting-in-azure-search/)
+### [篩選運算式語法](https://docs.microsoft.com/rest/api/searchservice/odata-expression-syntax-for-azure-search)
+### [評分](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)
+### [建議](https://docs.microsoft.com/rest/api/searchservice/suggesters)
 ### [多面向導覽](search-faceted-navigation.md)
-### [語言分析器](https://msdn.microsoft.com/library/azure/dn879793)
-### [自訂分析器](https://msdn.microsoft.com/library/azure/mt605304)
-### [多語言搜尋](search-language-support.md)
+### [語言分析器](https://docs.microsoft.com/rest/api/searchservice/language-support)
+### [自訂分析器](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)
 
 # 參考
 ## [.NET](/dotnet/api/microsoft.azure.search)
@@ -86,6 +87,6 @@
 ### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

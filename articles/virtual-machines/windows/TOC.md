@@ -1,7 +1,7 @@
 # 概觀
 ## [關於 VM](../virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-## [儲存體](../virtual-machines-windows-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-## [虛擬網路](../../virtual-network/virtual-networks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+## [儲存體](../../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+## [虛擬網路](../virtual-machines-windows-network-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [連接埠、端點與安全性](../virtual-machines-windows-endpoints-in-resource-manager.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [負載平衡器](../virtual-machines-windows-load-balance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ## [VM 大小](../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -23,7 +23,7 @@
 ## [建立 VM 的不同方式](../virtual-machines-windows-creation-choices.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ## [安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 ## [使用 PowerShell 建立 VM](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-## [範本逐步解說](../../azure-resource-manager/resource-manager-template-walkthrough.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+## [範本逐步解說](../virtual-machines-windows-template-description.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ## [建立及部署複雜的 VM 範本](../virtual-machines-windows-dotnet-core-1-landing.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [應用程式架構](../virtual-machines-windows-dotnet-core-2-architecture.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [存取和安全性](../virtual-machines-windows-dotnet-core-3-access-security.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -32,8 +32,16 @@
 
 # 作法
 ## 使用儲存體
-### [連接資料磁碟](../virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [Azure VM 磁碟的常見問題](../../storage/storage-faq-for-disks.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [Azure 受控磁碟概觀](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [建立受控磁碟](../virtual-machines-windows-create-managed-disk-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### 連接資料磁碟
+#### [Azure 入口網站](../virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### [Azure PowerShell](../virtual-machines-windows-attach-disk-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [卸離資料磁碟](../virtual-machines-windows-detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [受控磁碟快照集](../virtual-machines-windows-snapshot-copy-managed-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [將 VM 轉換成受控磁碟概觀](../virtual-machines-windows-migrate-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### [使用 Azure PowerShell](../virtual-machines-windows-convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [延伸 OS 磁碟](../virtual-machines-windows-expand-os-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [使用 D: 作為資料磁碟](../virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [磁碟加密](../../security/azure-security-disk-encryption.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -43,7 +51,7 @@
 ### [允許使用 PowerShell 存取 VM](../virtual-machines-windows-nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [使用入口網站建立 FQDN](../virtual-machines-windows-portal-create-fqdn.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [建立具有多個 NIC 的 VM](../virtual-machines-windows-multiple-nics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-### [使用入口網站建立 VNET](../../virtual-network/virtual-networks-create-vnet-arm-pportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [使用入口網站建立 VNet](../../virtual-network/virtual-networks-create-vnet-arm-pportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [使用入口網站建立 NSG](../../virtual-network/virtual-networks-create-nsg-arm-pportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [建立負載平衡器](../../load-balancer/load-balancer-get-started-internet-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [建立靜態公用 IP](../../virtual-network/virtual-network-deploy-static-pip-arm-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -63,14 +71,22 @@
 ### [使用 C# 進行部署](../virtual-machines-windows-csharp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [使用 C# 與範本進行部署](../virtual-machines-windows-csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [用範本部署應用程式架構](../virtual-machines-windows-app-frameworks.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [將 AWS 和內部部署 VM 移轉至受控磁碟](../virtual-machines-windows-on-prem-to-azure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### [從 Amazon Web Services (AWS) 移轉至 Azure 受控磁碟](../virtual-machines-windows-aws-to-azure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### [上傳通用 VHD 並使用受控磁碟](../virtual-machines-windows-upload-generalized-managed.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### [上傳特製化 VHD 並建立 VM](../virtual-machines-windows-upload-specialized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### 映像
 #### [準備 VHD 進行上傳](../virtual-machines-windows-prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 #### [使用 Sysprep 將 VM 一般化](../virtual-machines-windows-generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-#### [上傳 VM 映像](../virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### [上傳 VHD](../virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 #### [Azure Windows 代理程式](../virtual-machines-windows-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-#### [擷取通用 Azure VM](../virtual-machines-windows-capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### 在 Azure 中建立 VM 映像
+##### [將非受控 VM 擷取至 Blob 儲存體](../virtual-machines-windows-capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+##### [建立受控磁碟映像](../virtual-machines-windows-capture-image-resource.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 #### [複製特製化 Azure VM](../virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-#### [從一般 VHD 建立 VM](../virtual-machines-windows-create-vm-generalized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+#### 從通用映像建立 VM
+##### [從通用 VHD 建立非受控 VM](../virtual-machines-windows-create-vm-generalized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+##### [從通用受控磁碟映像建立 VM](../virtual-machines-windows-create-vm-generalized-managed.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 #### [從特製化 VHD 建立 VM](../virtual-machines-windows-create-vm-specialized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## 設定
@@ -117,7 +133,8 @@
 ## 移轉
 ### [移轉概觀](../virtual-machines-windows-migration-classic-resource-manager.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [為移轉做規劃](../virtual-machines-windows-migration-classic-resource-manager-deep-dive.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-### [使用 Powershell 進行移轉](../virtual-machines-windows-ps-migration-classic-resource-manager.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [使用 PowerShell 移轉 VNet 中的所有 VM](../virtual-machines-windows-ps-migration-classic-resource-manager.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [使用 PowerShell 移轉單一 VM](../virtual-machines-windows-migrate-single-classic-to-resource-manager.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [常見的移轉錯誤](../virtual-machines-migration-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [適用於移轉的社群工具](../virtual-machines-windows-migration-scripts.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
@@ -133,6 +150,7 @@
 ### [基礎結構範例](../virtual-machines-windows-infrastructure-example.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [Azure 預定進行的維修](../virtual-machines-windows-planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 #### [排程](../virtual-machines-windows-planned-maintenance-schedule.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [排程的事件](../virtual-machines-scheduled-events.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## 管理工作負載
 ### [高效能運算 (HPC)](../virtual-machines-windows-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -155,7 +173,7 @@
 ### [針對遠端桌面連線進行疑難排解](../virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [重設遠端桌面通訊協定 (RDP) 密碼](../virtual-machines-windows-reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [針對特定 RDP 錯誤訊息進行疑難排解](../virtual-machines-windows-troubleshoot-specific-rdp-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-### [針對建立新 VM 的問題進行疑難排解](../virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [針對建立 VM 的問題進行疑難排解](../virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [針對 VM 重新啟動或調整大小的問題進行疑難排解](../virtual-machines-windows-restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [針對應用程式存取進行疑難排解](../virtual-machines-windows-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [為配置失敗進行疑難排解](../virtual-machines-windows-allocation-failure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -172,6 +190,7 @@
 ## [Node.js](https://azure.microsoft.com/en-us/develop/nodejs/#azure-sdk)
 ## [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.compute.html)
 ## [計算 REST](/rest/api/compute)
+## [受控磁碟 REST](/rest/api/manageddisks)
 
 # 資源
 ## [製作 Resource Manager 範本](../../azure-resource-manager/resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -182,6 +201,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=virtual-machines)
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

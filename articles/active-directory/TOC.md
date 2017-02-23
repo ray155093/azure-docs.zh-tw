@@ -2,7 +2,7 @@
 ## [什麼是 Azure Active Directory？](active-directory-whatis.md)
 ## [選擇版本](active-directory-editions.md)
 ## [關於 Azure 身分識別管理](fundamentals-identity.md)
-## [預覽 Azure 入口網站體驗](active-directory-preview-explainer.md)
+## [預覽 Azure AD 入口網站體驗](active-directory-preview-explainer.md)
 
 
 # 開始使用
@@ -34,7 +34,7 @@
 ### 管理群組
 #### [Azure 入口網站](active-directory-groups-create-azure-portal.md)
 #### [傳統入口網站](active-directory-accessmanagement-manage-groups.md)
-#### [Powershell](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
+#### [PowerShell](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
 ### [管理群組成員](active-directory-groups-members-azure-portal.md)
 ### [管理群組擁有者](active-directory-accessmanagement-managing-group-owners.md)
 ### [管理群組成員資格](active-directory-groups-membership-azure-portal.md)
@@ -50,8 +50,11 @@
 ### [設定自助式群組](active-directory-accessmanagement-self-service-group-management.md)
 ### [疑難排解](active-directory-accessmanagement-troubleshooting.md)
 
-## [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
+## [檢視活動和安全報告](active-directory-view-access-usage-reports.md)
 ### [Azure AD 報告](active-directory-reporting-getting-started.md)
+### [常見問題集](active-directory-reporting-faq.md)
+### [報告移轉](active-directory-reporting-migration.md)
+
 ### [已知的網路](active-directory-known-networks.md)
 
 ### [報告指南](active-directory-reporting-guide.md)
@@ -106,6 +109,7 @@
 #### [部署](active-directory-azureadjoin-devices-group-policy.md)
 #### [無需密碼驗證](active-directory-azureadjoin-passport.md)
 #### [啟用 Windows Hello 企業版](active-directory-azureadjoin-passport-deployment.md)
+
 #### [了解 Windows 10 整合](active-directory-azureadjoin-windows10-devices-overview.md)
 #### [使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md)
 #### [常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md)
@@ -123,25 +127,31 @@
 
 ### [提供應用程式的遠端存取權](active-directory-application-proxy-get-started.md)
 #### [啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
+#### [了解連接器](application-proxy-understand-connectors.md)
+
 #### 發佈應用程式
 ##### [Azure 入口網站](application-proxy-publish-azure-portal.md)
 ##### [傳統入口網站](active-directory-application-proxy-publish.md)
+#### [安全性](application-proxy-security-considerations.md)
+#### [網路](application-proxy-network-topology-considerations.md)
+#### [遠端桌面](application-proxy-publish-remote-desktop.md)
+#### [SharePoint](application-proxy-enable-remote-access-sharepoint.md)
+
 #### 在不同網路上發佈
 ##### [Azure 入口網站](active-directory-application-proxy-connectors-azure-portal.md)
 ##### [傳統入口網站](active-directory-application-proxy-connectors.md)
+#### [Proxy 伺服器](application-proxy-working-with-proxy-servers.md)
 #### [自訂網域](active-directory-application-proxy-custom-domains.md)
-#### [單一登入](active-directory-application-proxy-sso-using-kcd.md)
+#### [存取應用程式](active-directory-appssoaccess-whatis.md)
 ##### [Azure 入口網站](application-proxy-sso-azure-portal.md)
+#### [單一登入](active-directory-application-proxy-sso-using-kcd.md)
 #### [宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
 #### [原生用戶端應用程式](active-directory-application-proxy-native-client.md)
+#### [自訂首頁](application-proxy-office365-app-launcher.md)
 #### [條件式存取](active-directory-application-proxy-conditional-access.md)
 #### [無訊息安裝](active-directory-application-proxy-silent-installation.md)
+#### [Microsoft Forefront](application-proxy-transition-from-uag-tmg.md)
 #### [疑難排解](active-directory-application-proxy-troubleshoot.md)
-### [了解應用程式的 SSO](active-directory-appssoaccess-whatis.md)
-
-### 整合 SaaS 應用程式
-#### [Azure 入口網站](active-directory-enterprise-apps-manage-sso.md)
-#### [傳統入口網站](active-directory-sso-integrate-saas-apps.md)
 
 ### 管理企業應用程式
 #### [指派使用者](active-directory-coreapps-assign-user-azure-portal.md)
@@ -164,7 +174,6 @@
 
 ### [使用 SCIM 佈建使用者](active-directory-scim-provisioning.md)
 ### [文件庫](active-directory-apps-index.md)
-
 
 ## 管理您的目錄
 ### 自訂網域名稱
@@ -191,25 +200,29 @@
 #### [Windows 10 設定](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 #### [常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 #### [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
+
 ### [將合作夥伴與 Azure AD B2B 整合](active-directory-b2b-what-is-azure-ad-b2b.md)
 #### [管理員新增 B2B 使用者](active-directory-b2b-admin-add-users.md)
 #### [資訊背景工作新增 B2B 使用者](active-directory-b2b-iw-add-users.md)
 #### [邀請電子郵件](active-directory-b2b-invitation-email.md)
 #### [兌換邀請](active-directory-b2b-redemption-experience.md)
-#### [授權](active-directory-b2b-licensing.md)
-#### [疑難排解 B2B](active-directory-b2b-troubleshooting.md)
-#### [常見問題集](active-directory-b2b-faq.md)
-#### [API 與自訂](active-directory-b2b-api.md)
-#### [Multi-factor authentication for B2B](active-directory-b2b-mfa-instructions.md)
+#### [B2B 使用者屬性](active-directory-b2b-user-properties.md)
 #### [將來賓使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
+#### [API 與自訂](active-directory-b2b-api.md)
 #### [委派邀請](active-directory-b2b-delegate-invitations.md)
 #### [動態群組與 B2B](active-directory-b2b-dynamic-groups.md)
-#### [程式碼與 PowerShell 範例](active-directory-b2b-code-samples.md)
-#### [設定適用於 B2B 的 SaaS 應用程式](active-directory-b2b-configure-saas-apps.md)
+#### [Multi-factor authentication for B2B](active-directory-b2b-mfa-instructions.md)
 #### [B2B 使用者權杖](active-directory-b2b-user-token.md)
 #### [B2B 使用者宣告對應](active-directory-b2b-claims-mapping.md)
 #### [Office 365 外部共用](active-directory-b2b-o365-external-user.md)
+#### [設定適用於 B2B 的 SaaS 應用程式](active-directory-b2b-configure-saas-apps.md)
+#### [程式碼與 PowerShell 範例](active-directory-b2b-code-samples.md)
 #### [目前限制](active-directory-b2b-current-limitations.md)
+#### [授權](active-directory-b2b-licensing.md)
+#### [疑難排解 B2B](active-directory-b2b-troubleshooting.md)
+#### [比較 B2B 共同作業與 B2C](active-directory-b2b-compare-b2c.md)
+#### [取得 B2B 支援](active-directory-b2b-support.md)
+#### [常見問題集](active-directory-b2b-faq.md)
 ### [使用 Azure AD Connect 整合內部部署身分識別](./connect/active-directory-aadconnect.md)
 
 
@@ -219,9 +232,9 @@
 ### [管理單位](active-directory-administrative-units-management.md)
 ### [Azure 中的資源存取](active-directory-understanding-resource-access.md)
 ### [角色型存取控制](role-based-access-control-what-is.md)
-#### 管理存取權
-##### [Azure 入口網站](role-based-access-control-manage-assignments.md)
-##### [傳統入口網站](role-based-access-control-configure.md)
+#### 管理存取權指派
+##### [依使用者](role-based-access-control-manage-assignments.md)
+##### [依資源](role-based-access-control-configure.md)
 #### [內建角色](role-based-access-built-in-roles.md)
 #### [自訂角色](role-based-access-control-custom-roles.md)
 #### [報告](role-based-access-control-access-change-history-report.md)
@@ -312,6 +325,6 @@
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO4-->
 
 

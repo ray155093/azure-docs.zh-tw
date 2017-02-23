@@ -20,6 +20,7 @@
 ## 規劃和設計
 ### [專用的事事件中樞](event-hubs-dedicated-overview.md)
 ### [驗證和安全性模型概觀](event-hubs-authentication-and-security-model-overview.md)
+### [可用性和一致性](event-hubs-availability-and-consistency.md)
 ## 開發
 ### [可用的 API](event-hubs-api-overview.md)
 #### [.NET Standard](event-hubs-dotnet-standard-api-overview.md)
@@ -59,6 +60,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=event-hubs)
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO3-->
 
 

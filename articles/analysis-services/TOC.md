@@ -16,7 +16,8 @@
 
 # 資源
 ##[資料來源連線](analysis-services-datasource.md)
-##[資料提供者](analysis-services-data-providers.md) 
+##[資料提供者](analysis-services-data-providers.md)
+##[建立 .odc 檔案](analysis-services-odc.md)
 
 
 <!--HONumber=Feb17_HO3-->

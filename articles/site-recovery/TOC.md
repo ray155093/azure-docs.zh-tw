@@ -2,7 +2,7 @@
 ## [什麼是 Site Recovery？](site-recovery-overview.md)
 ## [Site Recovery 如何運作？](site-recovery-components.md)
 ## [哪些工作負載可以受到保護？](site-recovery-workload.md)
-## [Site Recovery 支援矩陣](site-recovery-support-matrix.md)
+## [Site Recovery 支援矩陣](site-recovery-support-matrix-to-azure.md)
 ## [常見問題集](site-recovery-faq.md)
 ## [觀看簡介](https://www.youtube.com/watch?v=eOOwMQPBKfM)
 
@@ -26,7 +26,14 @@
 ### [部署 VMware 複寫的行動服務](site-recovery-vmware-to-azure-install-mob-svc.md)
 #### [使用 System Center Configuration Manager 部署行動服務](site-recovery-install-mobility-service-using-sccm.md)
 #### [使用 Azure 自動化 DSC 部署行動服務](site-recovery-automate-mobility-service-install.md)
-### [移除伺服器並停用保護](site-recovery-manage-registration-and-protection.md)
+## 容錯移轉和容錯回復
+### [在 Site Recovery 中進行容錯移轉](site-recovery-failover.md)
+### [設定復原方案](site-recovery-create-recovery-plans.md)
+#### [將 Runbook 新增至復原方案](site-recovery-runbook-automation.md)
+### [執行測試容錯移轉至 Azure](site-recovery-test-failover-to-azure.md)
+### [在兩個 VMM 站台間執行測試容錯移轉](site-recovery-test-failover-vmm-to-vmm.md)
+### [容錯回復 VMware VM 和實體伺服器](site-recovery-failback-azure-to-vmware.md)
+
 ## 移轉
 ### [移轉至 Azure](site-recovery-migrate-to-azure.md)
 ### [在不同的 Azure 地區之間移轉](site-recovery-migrate-azure-to-azure.md)
@@ -44,13 +51,9 @@
 ### [自動將 Hyper-V 複寫至 Azure (不使用 VMM)](site-recovery-deploy-with-powershell-resource-manager.md)
 ### [自動將 Hyper-V 複寫至 Azure (透過 VMM)](site-recovery-vmm-to-azure-powershell-resource-manager.md)
 ### [自動將 Hyper-V 複寫至 Azure (透過 VMM)](site-recovery-vmm-to-vmm-powershell-resource-manager.md)
-## 容錯移轉和容錯回復
-### [在 Site Recovery 中進行容錯移轉](site-recovery-failover.md)
-### [設定復原方案](site-recovery-create-recovery-plans.md)
-#### [將 Runbook 新增至復原方案](site-recovery-runbook-automation.md)
-### [執行從 VMware 到 Azure 的測試容錯移轉](site-recovery-test-failover-to-azure.md)
-### [在兩個 VMM 站台間執行測試容錯移轉](site-recovery-test-failover-vmm-to-vmm.md)
-### [容錯回復 VMware VM 和實體伺服器](site-recovery-failback-azure-to-vmware.md)
+## 管理
+### [移除伺服器並停用保護](site-recovery-manage-registration-and-protection.md)
+### [編輯複寫設定](site-recovery-setup-replication-settings-vmware.md#edit-replication-policy)
 ## [監視及疑難排解](site-recovery-monitoring-and-troubleshooting.md)
 
 # 參考
@@ -69,6 +72,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=site-recovery)
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO4-->
 
 
