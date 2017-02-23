@@ -15,8 +15,8 @@ ms.workload: storage-backup-recovery
 ms.date: 12/04/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 1a2ea0753d12915075c055f9983773618bf6777d
-ms.openlocfilehash: 85c6a2296a4487ae549321d3ff07129bcbab5adf
+ms.sourcegitcommit: 1e88eba53b8ec3388ede1ae69cb290423919fda6
+ms.openlocfilehash: d683e25ef96bbd87a6d5b5ea143754b8f67f288e
 
 
 ---
@@ -241,7 +241,7 @@ RDM | 是 | NA
 **客體作業系統架構** | 64 位元 | 如果不支援，則先決條件檢查會失敗
 **作業系統磁碟大小** | 最多 1023 GB | 如果不支援，則先決條件檢查會失敗
 **作業系統磁碟計數** | 1 | 如果不支援，則先決條件檢查會失敗。
-**資料磁碟計數** | 16 或更少 (最大值是所建立之虛擬機器大小的函數。 16 = XL) | 如果不支援，則先決條件檢查會失敗
+**資料磁碟計數** | 如果您要複寫 **VMware VM 至 Azure**，則為 64 或低於 64；如果您要複寫 **Hyper-V VM 至 Azure**，則為 16 或低於 16 | 如果不支援，則先決條件檢查會失敗
 **資料磁碟 VHD 大小** | 最多 1023 GB | 如果不支援，則先決條件檢查會失敗
 **網路介面卡** | 支援多個介面卡 |
 **靜態 IP 位址** | 支援 | 如果主要虛擬機器使用靜態 IP 位址，您可以為將在 Azure 中建立的虛擬機器指定靜態 IP 位址。<br/><br/> 不支援**在 Hyper-V 上執行的 Linux VM** 之靜態 IP 位址。
@@ -265,6 +265,6 @@ RDM | 是 | NA
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

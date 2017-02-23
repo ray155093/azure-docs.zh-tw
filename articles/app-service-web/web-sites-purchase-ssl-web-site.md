@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 09/19/2016
 ms.author: apurvajo
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: a86b3e7c653d0767e91ebfaaeaa650b0328c291c
+ms.sourcegitcommit: a1b492b7884deb2d0d4f255af0737e1633606384
+ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
 
 
 ---
@@ -107,18 +107,8 @@ ms.openlocfilehash: a86b3e7c653d0767e91ebfaaeaa650b0328c291c
 ## <a name="a-namebkmkverifyownershipastep-2-verify-the-domain-ownership"></a><a name="bkmk_VerifyOwnership"></a>步驟 2︰確認網域擁有權
 在此步驟中，您將學習如何對您剛剛訂購的 SSL 憑證執行網域擁有權驗證。 
 
-1. 從 [憑證設定] 刀鋒視窗按一下 [步驟 2：驗證] 步驟。 App Service 憑證支援 4 種類型的網域驗證。
+1. 從 [憑證設定] 刀鋒視窗按一下 [步驟 2：驗證] 步驟。 App Service 憑證支援 3 種類型的網域驗證。
    
-   * **App Service 驗證** 
-     
-     * 如果您已經有**指派給 App Service 應用程式的自訂網域**，則這是最方便的程序。 這個方法將會列出符合此準則的所有 App Service 應用程式。 
-        例如，在此案例中，**contosocertdemo.com** 是一個自訂網域，且已將其指派給名為 **“ContosoCertDemo”** 的 App Service 應用程式，所以它是這裡唯一列出的 App Service 應用程式。 如果有多重區域部署，則它會列出跨區域的所有項目。
-       
-        驗證方法僅適用於標準 (基本) 憑證購買。 對於萬用字元憑證，請略過並移至以下的選項 B、C 或 D。
-     * 按一下 [驗證]  按鈕來完成這個步驟。
-     * 按一下 [重新整理]  ，在完成驗證之後更新憑證狀態。 驗證可能需要數分鐘才能完成。
-     
-     ![插入 App Service 驗證的影像](./media/app-service-web-purchase-ssl-web-site/AppVerify.jpg)     
    * **網域驗證** 
      
      * **只有**在您已經**[從 Azure App Service 購買自訂網域時，這才是最方便的程序。](custom-dns-web-site-buydomains-web-app.md)**
@@ -131,15 +121,7 @@ ms.openlocfilehash: a86b3e7c653d0767e91ebfaaeaa650b0328c291c
      * 如果您需要重新傳送驗證電子郵件，請按一下 [重新傳送電子郵件]  按鈕。
    * **手動驗證**    
      
-     1. **HTML 網頁驗證**
-        
-        * 建立名為 **{網域驗證權杖}**.html 的 HTML 檔案 (您可以從 [網域驗證狀態] 刀鋒視窗複製權杖)
-        * 此檔案的名稱應該與 [網域驗證權杖] 的名稱完全相同。
-        * 在主控您的網域的 Web 伺服器的根目錄上傳此檔案。
-        * 按一下 [重新整理]  ，在完成驗證之後更新憑證狀態。 驗證可能需要數分鐘才能完成。
-          
-          例如，如果您為具有網域驗證權杖 **‘cAGgQrKc’** 的 contosocertdemo.com 購買標準憑證，則對 **‘http://contosocertdemo.com/cAGgQrKc.html’** 所做的 Web 要求應該會傳回 **cAGgQrKc.**。
-     2. **DNS TXT 記錄驗證**
+      **DNS TXT 記錄驗證**
         
         * 使用 DNS 管理員，在具有與 [網域驗證權杖]** 相同值的 [DZC] 子網域上建立 TXT 記錄。**
         * 按一下 [重新整理]  ，在完成驗證之後更新憑證狀態。 驗證可能需要數分鐘才能完成。
@@ -207,6 +189,6 @@ ms.openlocfilehash: a86b3e7c653d0767e91ebfaaeaa650b0328c291c
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

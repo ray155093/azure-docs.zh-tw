@@ -13,32 +13,19 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: powershell
 ms.workload: data-management
-ms.date: 08/31/2016
+ms.date: 02/07/2017
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 75bf523679c8d8ad6fbe4a8aa8a561d03008e59b
-ms.openlocfilehash: 211f416d05b0ca998cd71a78d091b8efa39f6a7b
+ms.sourcegitcommit: e6f0d661465c813ec310b8c69ab1ee06e4f95401
+ms.openlocfilehash: 45ec817e62e7967549602adfd2c9d2d3f2484987
 
 
 ---
 # <a name="import-a-bacpac-file-to-create-an-azure-sql-database-by-using-powershell"></a>使用 PowerShell 匯入 BACPAC 檔案以建立 Azure SQL Database
 
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](sql-database-import.md)
-> * [PowerShell](sql-database-import-powershell.md)
-> * [SSMS](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
-> * [SqlPackage](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
-> 
-> 
-
 本文提供使用 PowerShell 匯入 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案以建立 Azure SQL Database 的說明。
 
-資料庫是透過從 Azure 儲存體 Blob 容器匯入的 BACPAC 檔案 (.bacpac) 來建立。 如果您的 Azure 儲存體沒有 BACPAC 檔案，請參閱 [使用 PowerShell 將 Azure SQL Database 封存到 BACPAC 檔案](sql-database-export-powershell.md)。 如果您已經有 BACPAC 檔案但不在 Azure 儲存體中，請參閱 [使用 AzCopy 輕鬆地將它上傳至 Azure 儲存體帳戶](../storage/storage-use-azcopy.md#blob-upload)。
-
-> [!NOTE]
-> Azure SQL Database 會自動為每個使用者資料庫建立並維護可供還原的備份。 如需詳細資訊，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)。
-> 
-> 
+## <a name="prequisites"></a>必要條件
 
 若要匯入 SQL Database，您需要下列項目：
 
@@ -106,11 +93,14 @@ Blob 名稱是您想要用來建立資料庫之現有的 BACPAC 檔案名稱。 
 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要了解如何連接並查詢匯入的 SQL Database，請參閱 [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
+* 若要了解如何連接並查詢匯入的 SQL Database，請參閱[使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。
+* 如需 SQL Server 客戶諮詢小組部落格中有關使用 BACPAC 檔案進行移轉的主題，請參閱[使用 BACPAC 檔案從 SQL Server 移轉至 Azure SQL Database](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/)。
+* 如需有關整個 SQL Server 資料庫移轉程序的討論，包括效能建議，請參閱[將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
 
 
 
 
-<!--HONumber=Dec16_HO3-->
+
+<!--HONumber=Feb17_HO2-->
 
 

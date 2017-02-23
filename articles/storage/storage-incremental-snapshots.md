@@ -1,5 +1,5 @@
 ---
-title: "使用增量快照備份和復原 Azure VM | Microsoft Docs"
+title: "使用增量快照集備份和復原非受控 Azure VM 磁碟 | Microsoft Docs"
 description: "使用增量快照，建立備份和復原 Azure 虛擬機器磁碟的自訂解決方案。"
 services: storage
 documentationcenter: na
@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: aungoo
 translationtype: Human Translation
-ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
-ms.openlocfilehash: 848c3fb655688dd55176cff00c728a151fd8f548
+ms.sourcegitcommit: bfb29928783283336b6116f198d70b0b7117750d
+ms.openlocfilehash: 880b1c2ca069e3e4a5ce9cb2af881b95e84687f4
 
 
 ---
-# <a name="back-up-azure-virtual-machine-disks-with-incremental-snapshots"></a>使用增量快照集備份 Azure 虛擬機器磁碟
-## <a name="overview"></a>Overview
+# <a name="back-up-azure-unmanaged-vm-disks-with-incremental-snapshots"></a>以遞增快照集備份 Azure 非受控 VM 磁碟
+## <a name="overview"></a>概觀
 Azure 儲存體提供拍攝 Blob 快照的功能。 快照會擷取該時間點的 Blob 狀態。 在本文中，我們將說明如何使用快照維護虛擬機器磁碟備份的案例。 當您選擇不使用 Azure 的備份和復原服務，但是想要為虛擬機器磁碟建立自訂的備份策略時，您可以使用這個方法。
 
 Azure 虛擬機器磁碟在 Azure 儲存體中會儲存為分頁 Blob。 本文中我們所討論的是虛擬機器磁碟的備份策略，因此，我們指的是分頁 Blob 內容中的快照。 若要深入了解快照，請參閱 [建立 Blob 的快照](https://msdn.microsoft.com/library/azure/hh488361.aspx)。
@@ -123,6 +123,6 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。 一旦建立快�
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

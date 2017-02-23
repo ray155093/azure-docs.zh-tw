@@ -13,18 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 02/13/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: bf262073b46daa8b7dcf50fabf5f455d7d5850e7
-ms.openlocfilehash: 7a4efebcfc1ed38e9efdac293845f4be632e5b08
+ms.sourcegitcommit: b902d2e79633959a6f76ddd45b1193177b0e8465
+ms.openlocfilehash: 1ac5a78c8d9419e4c641bf66f8dac7aa8cbcd179
 
 
 ---
-# <a name="about-vpn-gateway-settings"></a>關於 VPN 閘道設定
-VPN 閘道是一種虛擬網路閘道，可透過公用連線在您的虛擬網路和內部部署位置之間傳送加密流量。 您也可以使用 VPN 閘道在虛擬網路之間傳送流量。
+# <a name="about-vpn-gateway-configuration-settings"></a>關於 VPN 閘道組態設定
+VPN 閘道是一種虛擬網路閘道，可透過公用連線在您的虛擬網路和內部部署位置之間傳送加密流量。 您也可以使用 VPN 閘道，透過 Azure 骨幹，在虛擬網路之間傳送流量。
 
-VPN 閘道連線依賴多個資源的設定，每一個都包含可設定的設定值。 本文中的各節會討論在 **Resource Manager** 部署模型中所建立之虛擬網路 VPN 閘道相關的資源和設定。 您可以在[關於 VPN 閘道](vpn-gateway-about-vpngateways.md) 一文中找到每個連線解決方案的描述和拓撲圖。  
+VPN 閘道連線依賴多個資源的設定，每一個都包含可設定的設定值。 本文各節討論在 Resource Manager 部署模型中所建立之虛擬網路 VPN 閘道相關的資源和設定。 您可以在[關於 VPN 閘道](vpn-gateway-about-vpngateways.md) 一文中找到每個連線解決方案的描述和拓撲圖。  
 
 ## <a name="a-namegwtypeagateway-types"></a><a name="gwtype"></a>閘道類型
 每個虛擬網路只能有一個各類型的虛擬網路閘道。 建立虛擬網路閘道時，您必須確定組態的閘道類型是正確的。
@@ -47,13 +47,13 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
 [!INCLUDE [vpn-gateway-gwsku-include](../../includes/vpn-gateway-gwsku-include.md)]
 
 ### <a name="configuring-the-gateway-sku"></a>設定閘道 SKU
-**在 Azure 入口網站中指定閘道 SKU**
+####<a name="specifying-the-gateway-sku-in-the-azure-portal"></a>在 Azure 入口網站中指定閘道 SKU
 
 如果您使用 Azure 入口網站來建立 Resource Manager 虛擬網路閘道，可以使用下拉式清單選取閘道 SKU。 您看到的選項對應於您選取的閘道類型和 VPN 類型。
 
 例如，如果您選取閘道類型「VPN」與 VPN 類型「原則型」時，會看到「基本」SKU，因為這是對於 PolicyBased VPN 提供的唯一 SKU。 如果您選取「路由式」，可以選取基本、標準和 HighPerformance SKU。 
 
-**使用 PowerShell 來指定閘道 SKU**
+####<a name="specifying-the-gateway-sku-using-powershell"></a>使用 PowerShell 來指定閘道 SKU
 
 下列 PowerShell 範例將 `-GatewaySku` 指定為 *Standard*。
 
@@ -61,7 +61,7 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
     -Location 'West US' -IpConfigurations $gwipconfig -GatewaySku Standard `
     -GatewayType Vpn -VpnType RouteBased
 
-**變更閘道 SKU**
+####<a name="changing-a-gateway-sku"></a>變更閘道 SKU
 
 如果要將閘道 SKU 升級為更強大的 SKU (從基本/標準升級為 HighPerformance)，可以使用 `Resize-AzureRmVirtualNetworkGateway` PowerShell Cmdlet。 您也可以使用此 Cmdlet 將閘道 SKU 大小降級。
 
@@ -107,11 +107,9 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
 [!INCLUDE [vpn-gateway-table-requirements](../../includes/vpn-gateway-table-requirements-include.md)]
 
 ## <a name="a-namegwsubagateway-subnet"></a><a name="gwsub"></a>閘道子網路
-若要設定虛擬網路閘道，您必須先為 VNet 建立閘道子網路。 此閘道子網路必須命名為 *GatewaySubnet* 才能正常運作。 此名稱可讓 Azure 知道這個子網路應用於閘道。
+若要為 VNet 設定虛擬網路閘道，您必須建立閘道子網路。 閘道子網路包含虛擬網路閘道服務使用的 IP 位址。 此閘道子網路必須命名為 *GatewaySubnet* 才能正常運作。 此名稱可讓 Azure 知道這個子網路應用於閘道。
 
-閘道子網路的大小下限完全取決於您想要建立的組態。 雖然可以建立像 /29 這麼小的閘道子網路，但建議您建立 /28 或更大 (/28、/27、/26 等) 的閘道子網路。 
-
-建立較大的閘道可防止違反閘道大小限制。 例如，您可能已建立一個虛擬網路閘道，其中用於 S2S 連線的閘道子網路大小為 /29。 您現在想要設定一個 S2S/ExpressRoute 並存組態。 該組態要求閘道子網路大小至少為 /28。 若要建立您的組態，您將必須修改閘道子網路以配合該連線的最低需求，亦即 /28。
+當您建立閘道子網路時，您可指定子網路包含的 IP 位址數目。 閘道子網路中的 IP 位址會配置給閘道服務。 某些組態要求將較多 IP 位址配置給閘道服務 (相較於其他服務)。 您想要確定您的閘道子網路包含足夠的 IP 位址，以因應未來成長及可能的其他新連線組態。 所以﹐您可以建立像 /29 這麼小的閘道子網路，但建議您建立 /28 或更大 (/28、/27、/26 等) 的閘道子網路。 查看您想要建立的組態需求﹐並確認您擁有的閘道子網路將符合這些需求。
 
 下列 Resource Manager PowerShell 範例顯示名為 GatewaySubnet 的閘道子網路。 您可以看到 CIDR 標記法指定 /27，這可提供足以供大多數現有組態使用的 IP 位址。
 
@@ -145,6 +143,6 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 
