@@ -223,7 +223,7 @@ ms.openlocfilehash: ed2921750f93f344a4c3dbef31d9f523dedc0aae
 ## <a name="4-how-to-change-the-data-disk-count-for-a-listed-sku"></a>4.如何變更已列出 SKU 的資料磁碟計數
 您不能增加/減少已列出的 SKU 的資料磁碟計數。 在此案例中，您需要建立新的 SKU。 請參閱 [3.如何在上線供應項目下新增 SKU](#3-how-to-add-a-new-sku-under-a-live-offer) 一節，以取得詳細指引。
 
-## <a name="5-how-to-delete-a-listed-offer-from-the-azure-marketplace"></a>5.  如何從 Azure Marketplace 刪除已列出的供應項目
+## <a name="5----how-to-delete-a-listed-offer-from-the-azure-marketplace"></a>5.  如何從 Azure Marketplace 刪除已列出的供應項目
 要求移除上線優惠時，有幾方面需要注意。 請遵循下列步驟來取得支援小組的指引，以從 Azure Marketplace 移除已列出的供應項目︰
 
 1. 使用這個[連結](https://support.microsoft.com/en-us/getsupport?wf=0&tenant=ClassicCommercial&oaspworkflow=start_1.0.0.0&locale=en-us&supportregion=en-us&pesid=15635&ccsid=635993707583706681)提出支援票證
@@ -279,7 +279,7 @@ ms.openlocfilehash: ed2921750f93f344a4c3dbef31d9f523dedc0aae
    > 
    
     ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-06.png)
-7. 自動定價精靈隨即開啟。 第 1 頁會顯示基本市場的選項。 選擇您的區域，然後按一下 [->] 按鈕移至下一頁。
+7. 自動定價精靈隨即開啟。 第&1; 頁會顯示基本市場的選項。 選擇您的區域，然後按一下 [->] 按鈕移至下一頁。
    
     ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-07.png)
 8. 選取核心和方案的選項將顯示在第 2 頁。 選取所需的方案和核心，然後按一下 [->] 按鈕。
@@ -290,7 +290,7 @@ ms.openlocfilehash: ed2921750f93f344a4c3dbef31d9f523dedc0aae
     ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-09.png)
 10. 第 4 頁會顯示匯率。 按一下 [完成] 按鈕以完成步驟。 精靈會根據您的選擇重設價格。
 11. 現在，瀏覽至 [價格] 索引標籤，然後按一下 [檢視摘要和變更] 按鈕。
-    在 [檢視版本] 區段中選取 [草稿]，在 [比較對象] 區段中選取 [生產環境] (請參閱以下螢幕擷取畫面)。 如果看不出價格差異，即表示價格已順利還原成生產環境值。
+    在 [檢視版本] 區段中選取 [草稿]，在 [比較對象] 區段中選取 [生產環境]\(請參閱以下螢幕擷取畫面)。 如果看不出價格差異，即表示價格已順利還原成生產環境值。
     
     ![繪圖](media/marketplace-publishing-vm-image-post-publishing/img08-11.png)
 12. 完成變更之後，瀏覽至 [發佈] 索引標籤，然後按一下 [推送至預備環境] 按鈕。 如需在預備環境中測試供應項目的詳細指引，請參閱此 [連結](marketplace-publishing-vm-image-test-in-staging.md)
