@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2016
+ms.date: 02/04/2016
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: da1a8c45a1753d617e0cb62f99bc47d22838a8e8
-ms.openlocfilehash: ac58f3f5498edbd6f7b19db647a9513a485d6dbf
+ms.sourcegitcommit: 617599c7df6284e6319a1b3331d1e894e5d4b2d1
+ms.openlocfilehash: 2ced7d0d4e2e653013c605932066c412c4202082
 
 
 ---
@@ -353,11 +353,15 @@ azureADId:72f988bf-86f1-41af-91ab-2d7cd011db47
 安裝程式會在系統上建立排定的工作，此工作是在使用者的內容中執行。 此工作會在使用者登入 Windows 時觸發。 此工作會在透過 IWA 驗證之後，利用使用者認證以無訊息方式向 Azure AD 註冊裝置。 若要查看排定的工作，請移至 [Microsoft]  >  [工作場所聯結]，然後移至工作排程器程式庫。
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
+
+- 若自動裝置註冊期間發生問題，請參閱下列疑難排解主題以取得說明：
+    - [針對 Windows 10 與 Windows Server 2016 進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
+    - [針對 Windows 下層用戶端進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
+- 如需常見問題解答，請參閱[自動裝置註冊常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md)。
 
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO2-->
 
 

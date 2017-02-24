@@ -1,6 +1,6 @@
 ---
-title: "使用企業整合套件建立 B2B 解決方案 | Microsoft Docs"
-description: "了解如何使用企業整合套件的 B2B 功能接收資料"
+title: "建立 B2B 解決方案 - Azure Logic Apps | Microsoft Docs"
+description: "使用企業整合套件中的 B2B 功能在邏輯應用程式中接收資料"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -13,79 +13,107 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
-ms.author: deonhe
+ms.author: estfan
 translationtype: Human Translation
-ms.sourcegitcommit: dc8c9eac941f133bcb3a9807334075bfba15de46
-ms.openlocfilehash: cb8cac0c63930139760617d721faffeef70cfbec
+ms.sourcegitcommit: 03cd3f4edd7bb7895efa02475411d813ef44b8b3
+ms.openlocfilehash: 6006df4b4ecd6dede94c1013881ddf699e741e51
 
 
 ---
-# <a name="learn-about-receiving-data-using-the-b2b-features-of-the-enterprise-integration-pack"></a>了解如何使用企業整合套件的 B2B 功能接收資料
-## <a name="overview"></a>Overview
-這份文件是 Logic Apps 企業整合套件的一部分。 查看概觀以深入了解[企業整合套件的功能](logic-apps-enterprise-integration-overview.md)。
+# <a name="receive-data-in-logic-apps-with-the-b2b-features-in-the-enterprise-integration-pack"></a>使用企業整合套件中的 B2B 功能在邏輯應用程式中接收資料
+
+建立具有合作夥伴與合約的整合帳戶之後，您就可以使用[企業整合套件](logic-apps-enterprise-integration-overview.md)為您的邏輯應用程式建立企業對企業 (B2B) 工作流程。
 
 ## <a name="prerequisites"></a>必要條件
-若要使用 AS2 和 X12 動作，您需要企業整合帳戶
 
-[如何建立企業整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)
+若要使用 AS2 和 X12 動作，您必須有企業整合帳戶。 了解[如何建立企業整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)。
 
-## <a name="how-to-use-the-logic-apps-b2b-connectors"></a>如何使用 Logic Apps B2B 連接器
-一旦建立整合帳戶並在其中新增夥伴和合約之後，您就可以建立邏輯應用程式來實作企業對企業 (B2B) 工作流程。
+## <a name="create-a-logic-app-with-b2b-connectors"></a>使用 B2B 連接器建立邏輯應用程式
 
-在此逐步解說中，您將看到如何使用 AS2 和 X12 動作，來建立企業對企業邏輯應用程式，以接收來自交易夥伴的資料。
+依照這些步驟建立使用 AS2 與 X12 動作從交易合作夥伴接收資料的 B2B 邏輯應用程式：
 
-1. 建立新的邏輯應用程式，並[將它連結到您的整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)。  
-2. 將 [要求 - 收到 HTTP 要求時] 觸發程序新增到您的邏輯應用程式  
-   ![](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)  
-3. 先選取 [新增動作] 來新增 [將 AS2 解碼] 動作  
-   ![](./media/logic-apps-enterprise-integration-b2b/transform-2.png)  
-4. 在搜尋方塊中輸入 **as2**，篩選所有動作以取得您想要使用的動作  
-   ![](./media/logic-apps-enterprise-integration-b2b/b2b-5.png)  
-5. 選取 [AS2 - 將 AS2 訊息解碼] 動作  
-   ![](./media/logic-apps-enterprise-integration-b2b/b2b-6.png)  
-6. 如上述，新增您將取得來做為輸入的 **本文** 。 在此範例中，選取觸發邏輯應用程式的 HTTP 要求本文。 或者，您可以輸入運算式，以便在 [標頭] 欄位中輸入標頭：
-   
+1. 建立邏輯應用程式，然後[將應用程式連結到您的整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)。
+
+2. 將 [要求 - 收到 HTTP 要求時]  觸發程序新增到您的邏輯應用程式。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)
+
+3. 若要新增 [將 AS2 解碼] 動作，請選取 [新增動作]。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/transform-2.png)
+
+4. 若要篩選所有動作以尋找您要的動作，請在搜尋方塊中輸入 **as2**。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-5.png)
+
+5. 選取 [AS2 - 將 AS2 訊息解碼] 動作。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-6.png)
+
+6. 新增要做為輸入使用的 [主體]。 在此範例中，選取觸發邏輯應用程式的 HTTP 要求主體。 或者，輸入會在 [標頭] 欄位輸入標頭的運算式：
+
     @triggerOutputs()['headers']
-7. 新增 AS2 所需的 **標頭** 。 這些項目將位於 HTTP 要求標頭中。 在此範例中，選取觸發邏輯應用程式的 HTTP 要求標頭。
-8. 現在，再次選取 [新增動作] 來新增 [將 X12 訊息解碼] 動作  
-   ![](./media/logic-apps-enterprise-integration-b2b/b2b-9.png)   
-9. 在搜尋方塊中輸入 **x12**，篩選所有動作以取得您想要使用的動作  
-   ![](./media/logic-apps-enterprise-integration-b2b/b2b-10.png)  
-10. 選取 [X12 - 將 X12 解碼訊息] 動作，以將它新增到邏輯應用程式  
-    ![](./media/logic-apps-enterprise-integration-b2b/b2b-as2message.png)  
-11. 現在，您需要指定此動作的輸入將會是上述 AS2 動作的輸出。 實際訊息內容是在 JSON 物件中，並以 base64 編碼。 您因而需要指定運算式做為輸入，因此，請在 [要解碼的 X12 一般檔案訊息]  輸入欄位中輸入下列運算式  
+
+7. 針對 AS2 新增要求的 [標頭]，您可以在 HTTP 要求標頭中找到標頭。 在此範例中，選取觸發邏輯應用程式的 HTTP 要求標頭。
+
+8. 現在，新增「將 X12 訊息解碼」動作。 選取 [新增動作]。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-9.png)
+
+9. 若要篩選所有動作以尋找您要的動作，請在搜尋方塊中輸入 **x12**。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-10.png)
+
+10. 選取 [X12 - 將 X12 訊息解碼] 動作。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-as2message.png)
+
+11. 現在您必須指定此動作的輸入。 此輸入是上一個 AS2 動作的輸出。
+
+    實際訊息內容是 JSON 物件格式且使用 base64 編碼，因此您必須將運算式指定為輸入。 
+    在 [要解碼的 X12 一般檔案訊息] 輸入欄位中輸入下列運算式：
     
-    @base64ToString(body('Decode_AS2_message')?['AS2Message']?['Content'])  
-12. 此步驟會將交易夥伴所傳送的 X12 資料解碼，並將輸出 JSON 物件中的一些項目。 為了讓夥伴得知資料回條，您可以回送一個回應，在 HTTP 回應動作中包含 AS2 訊息處置通知 (MDN)  
-13. 選取 [新增動作] 來新增 [回應] 動作   
-    ![](./media/logic-apps-enterprise-integration-b2b/b2b-14.png)  
-14. 在搜尋方塊中輸入**回應**，篩選所有動作以取得您想要使用的動作  
-    ![](./media/logic-apps-enterprise-integration-b2b/b2b-15.png)  
-15. 選取 [回應] 動作來新增它  
-    ![](./media/logic-apps-enterprise-integration-b2b/b2b-16.png)  
-16. 使用下列運算式從 [將 X12 訊息解碼] 動作的輸出中存取 MDN，以設定回應 [本文] 欄位  
-    
-    @base64ToString(body('Decode_AS2_message')?['OutgoingMdn']?['Content'])  
+    @base64ToString(body('Decode_AS2_message')?['AS2Message']?['Content'])
 
-![](./media/logic-apps-enterprise-integration-b2b/b2b-17.png)  
+    現在，請新增步驟以將接收自交易夥伴的 X12 資料解碼，並輸出 JSON 物件中的一些項目。 
+    若要通知合作夥伴已收到資料，您可以在 HTTP 回應動作中送回包含 AS2 郵件處置通知 (MDN) 的回應。
 
-1. 儲存您的工作   
-   ![](./media/logic-apps-enterprise-integration-b2b/transform-5.png)  
+12. 若要新增 [回應] 動作，請選擇 [新增動作]。
 
-此時，您已完成設定 B2B 邏輯應用程式。 在真實世界應用程式中，您可能想要在 LOB 應用程式或資料存放區中儲存已解碼的 X12 資料。 您可以輕鬆地新增進一步動作來執行此操作，或撰寫自訂 API 以連接到您自己的 LOB 應用程式，並在您的邏輯應用程式中使用這些 API。
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-14.png)
+
+13. 若要篩選所有動作以尋找您要的動作，請在搜尋方塊中輸入**回應**。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-15.png)
+
+14. 選取 [回應] 動作。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-16.png)
+
+15. 若要從 [將 X12 訊息解碼] 動作的輸出存取 MDN，請使用此運算式設定回應**主體**：
+
+    @base64ToString(body('Decode_AS2_message')?['OutgoingMdn']?['Content'])
+
+    ![](./media/logic-apps-enterprise-integration-b2b/b2b-17.png)  
+
+16. 儲存您的工作。
+
+    ![](./media/logic-apps-enterprise-integration-b2b/transform-5.png)  
+
+您現在已完成 B2B 邏輯應用程式設定。 在真實世界應用程式中，您可能想要在企業營運 (LOB) 應用程式或資料存放區中儲存已解碼的 X12 資料。 若要連線到您自己的 LOB 應用程式並在您的邏輯應用程式中使用這些 API，您可以新增進一步的動作或撰寫自訂 API。
 
 ## <a name="features-and-use-cases"></a>功能和使用案例
-* AS2 和 X12 解碼和編碼動作可讓您利用 Logic Apps，使用業界標準通訊協定接收來自交易夥伴的資料或將資料傳送給他們  
-* 您可以使用 AS2 和 X12，視需要與交易夥伴交換資料
-* B2B 動作可輕易地在整合帳戶中建立夥伴和合約，並在邏輯應用程式中使用他們  
-* 您可以利用其他動作來擴充您的邏輯應用程式，以便將資料傳送給其他應用程式和服務 (例如 SalesForce)，或從中接收資料  
+
+* AS2 與 X12 解碼與編碼動作可讓您在邏輯應用程式中使用業界標準通訊協定在交易合作夥伴之間交換資料。
+* 若要與交易合作夥伴交換資料，您可以使用 AS2 或 X12 其中一種或將兩種搭配使用。
+* B2B 動作可協助您在整合帳戶中輕鬆地建立合作夥伴與合約，並在邏輯應用程式中取用。
+* 當您使用其他動作延伸您邏輯應用程式的功能時，您可以在其他應用程式與服務 (例如 SalesForce) 之間傳送及接收資料。
 
 ## <a name="learn-more"></a>詳細資訊
-[深入了解企業整合套件](logic-apps-enterprise-integration-overview.md)  
+[深入了解企業整合套件](logic-apps-enterprise-integration-overview.md)
 
 
 
-
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

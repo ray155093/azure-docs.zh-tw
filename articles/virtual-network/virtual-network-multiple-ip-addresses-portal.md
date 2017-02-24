@@ -1,5 +1,5 @@
 ---
-title: "虛擬機器的多個 IP 位址 - 入口網站 | Microsoft Docs"
+title: "Azure 虛擬機器的多個 IP 位址 - 入口網站 | Microsoft Docs"
 description: "了解如何使用 Azure 入口網站 / Resource Manager 對虛擬機器指派多個 IP 位址。"
 services: virtual-network
 documentationcenter: na
@@ -16,41 +16,20 @@ ms.workload: infrastructure-services
 ms.date: 11/30/2016
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 7ce83952f0f16e01a4837ce2155571d223d7b551
-ms.openlocfilehash: b1a2549e0f04dbc00a47a57ecc888ca36339c646
+ms.sourcegitcommit: 394315f81cf694cc2bb3a28b45694361b11e0670
+ms.openlocfilehash: 6e7eac6ae505c627ffa1d63aace76b9006d92c74
 
 
 ---
 # <a name="assign-multiple-ip-addresses-to-virtual-machines-using-the-azure-portal"></a>使用 Azure 入口網站將多個 IP 位址指派給虛擬機器
 
-> [!div class="op_single_selector"]
-> * [入口網站](virtual-network-multiple-ip-addresses-portal.md)
-> * [PowerShell](virtual-network-multiple-ip-addresses-powershell.md)
-> * [CLI](virtual-network-multiple-ip-addresses-cli.md)
+>[!INCLUDE [virtual-network-multiple-ip-addresses-intro.md](../../includes/virtual-network-multiple-ip-addresses-intro.md)]
 >
-
-Azure 虛擬機器 (VM) 可附加一或多個網路介面 (NIC)。 任何 NIC 都可以獲派一或多個靜態或動態公用及私人 IP 位址。 將多個 IP 位址指派給 VM 可啟用下列功能：
-
-* 在單一伺服器上，以不同 IP 位址和 SSL 憑證裝載多個網站或服務。
-* 做為網路虛擬設備，例如防火牆或負載平衡器。
-* 能夠將任何 NIC 的任何私人 IP 位址新增到 Azure Load Balancer 後端集區。 在過去，只能將主要 NIC 的主要 IP 位址新增到後端集區。 若要深入了解如何負載平衡多個 IP 設定，請參閱[負載平衡多個 IP 組態](../load-balancer/load-balancer-multiple-ip.md)文章。
-
-連接到 VM 的每個 NIC 皆有一或多個 IP 組態與其相關聯。 每個組態會獲派一個靜態或動態私人 IP 位址。 每個組態可能也有一個相關聯的公用 IP 位址資源。 公用 IP 位址資源會獲派動態或靜態 IP 位址。 若要深入了解 Azure 中的 IP 位址，請閱讀 [Azure 中的 IP 位址](virtual-network-ip-addresses-overview-arm.md)文章。
-
-本文說明如何使用 Azure 入口網站，將多個 IP 位址指派給透過 Azure Resource Manager 部署模型建立的 VM。 無法將多個 IP 位址指派給透過傳統部署模型建立的資源。 若要深入了解 Azure 部署模型，請參閱[了解部署模型](../resource-manager-deployment-model.md)文章。
+本文說明如何使用 Azure 入口網站透過 Azure Resource Manager 部署模型建立虛擬機器 (VM)。 無法將多個 IP 位址指派給透過傳統部署模型建立的資源。 若要深入了解 Azure 部署模型，請參閱[了解部署模型](../resource-manager-deployment-model.md)文章。
 
 [!INCLUDE [virtual-network-preview](../../includes/virtual-network-preview.md)]
 
-## <a name="scenario"></a>案例
-建立具有單一 NIC 的 VM，並連接至虛擬網路。 VM 需要三個不同的「私人」IP 位址和兩個「公用」IP 位址。 IP 位址會指派給下列 IP 組態︰
-
-* **IPConfig-1：**指派「動態」私人 IP 位址 (預設) 和「靜態」公用 IP 位址。
-* **IPConfig-2：**指派「靜態」私人 IP 位址和「靜態」公用 IP 位址。
-* **IPConfig-3：**指派「動態」私人 IP 位址，沒有公用 IP 位址。
-  
-    ![多個 IP 位址](./media/virtual-network-multiple-ip-addresses-powershell/OneNIC-3IP.png)
-
-建立 NIC 時，IP 組態會與 NIC 產生關聯，而建立 VM 時，NIC 會連結至 VM。 此案例使用的 IP 位址類型只是舉例說明。 您可以指派需要的任何 IP 位址和指派類型。
+[!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
 ## <a name="a-name--createacreate-a-vm-with-multiple-ip-addresses"></a><a name = "create"></a>建立有多個 IP 位址的 VM
 
@@ -60,14 +39,28 @@ Azure 虛擬機器 (VM) 可附加一或多個網路介面 (NIC)。 任何 NIC �
 
 您可以完成後續步驟，將私人和公用 IP 位址新增至 NIC。 下列各節中的範例假設您已經有一個 VM，其具有本文中的[案例](#Scenario)所述的三項 IP 組態，您不需要進行設定。
 
-> [!NOTE]
-> 雖然本文會將所有 IP 組態指派給單一 NIC，您也可以指派多個 IP 組態給 VM 中的任何 NIC。 閱讀[建立具有多個 NIC 的 VM](virtual-network-deploy-multinic-arm-ps.md) 文章以了解如何建立具有多個 NIC 的 VM。
-
 ### <a name="a-namecoreaddacore-steps"></a><a name="coreadd"></a>核心步驟
 
-1. 若要註冊以進行預覽，請將電子郵件傳送至[多個 IP](mailto:MultipleIPsPreview@microsoft.com?subject=Request%20to%20enable%20subscription%20%3csubscription%20id%3e)，並註明您的訂用帳戶 ID 與用途。 請勿嘗試完成剩餘步驟︰
-    - 除非收到電子郵件，通知已接受您進行預覽
-    - 除非遵循您收到之電子郵件中的指示
+1. 登入並選取適當的訂用帳戶後，在 PowerShell 中執行下列命令來註冊預覽︰
+    ```
+    Register-AzureRmProviderFeature -FeatureName AllowMultipleIpConfigurationsPerNic -ProviderNamespace Microsoft.Network
+
+    Register-AzureRmProviderFeature -FeatureName AllowLoadBalancingonSecondaryIpconfigs -ProviderNamespace Microsoft.Network
+    
+    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
+    ```
+    執行 ```Get-AzureRmProviderFeature``` 命令時，請在看到下列輸出之後再嘗試完成剩餘步驟︰
+        
+    ```powershell
+    FeatureName                            ProviderName      RegistrationState
+    -----------                            ------------      -----------------      
+    AllowLoadBalancingOnSecondaryIpConfigs Microsoft.Network Registered       
+    AllowMultipleIpConfigurationsPerNic    Microsoft.Network Registered       
+    ```
+        
+    >[!NOTE] 
+    >這可能需要幾分鐘的時間。
+    
 2. 瀏覽至 Azure 入口網站 (https://portal.azure.com) 並視需要進行登入。
 3. 在 Azure 入口網站中，按一下 [更多服務]，接著在篩選方塊中輸入「虛擬機器」，然後按一下 [虛擬機器]。
 4. 在 [虛擬機器] 刀鋒視窗中，按一下您想要新增 IP 位址的 VM。 在顯示的 [虛擬機器] 刀鋒視窗中，按一下 [網路介面]，然後選取您想要新增 IP 位址的網路介面。 在下圖顯示的範例中，已選取名為 myVM 的 VM 中名為 myNIC 的 NIC︰
@@ -85,7 +78,7 @@ Azure 虛擬機器 (VM) 可附加一或多個網路介面 (NIC)。 任何 NIC �
 完成下列步驟，以新增私人 IP 位址：
 
 1. 完成本文的[核心步驟](#coreadd)一節中的步驟。
-2. 按一下 [新增] 。 在所顯示的 [新增 IP 組態] 刀鋒視窗中，建立名為 IPConfig-4 並以 10.0.0.7 做為「靜態」私人 IP 位址的 IP 組態，然後按一下 [確定]，如下圖所示︰
+2. 按一下 [新增] 。 在所顯示的 [新增 IP 組態] 刀鋒視窗中，建立名為 IPConfig-4 並以&10;.0.0.7 做為「靜態」私人 IP 位址的 IP 組態，然後按一下 [確定]，如下圖所示︰
 
     ![新增私人 IP](./media/virtual-network-multiple-ip-addresses-portal/figure3.png)
 
@@ -144,7 +137,7 @@ Azure 虛擬機器 (VM) 可附加一或多個網路介面 (NIC)。 任何 NIC �
 #### <a name="associate-the-public-ip-address-resource-to-an-existing-ip-configuration"></a>將公用 IP 位址資源與現有的 IP 組態產生關聯
 
 1. 完成本文的[核心步驟](#coreadd)一節中的步驟。
-2. 選取您要新增公用 IP 位址資源的 IP 組態，啟用公用 IP 位址，然後選取現有的可用公用 IP 位址資源。 在下圖所示的範例中，myPublicIp3 公用 IP 位址資源與 IPConfig 3 相關聯。
+2. 選取您要新增公用 IP 位址資源的 IP 組態，啟用公用 IP 位址，然後選取現有的可用公用 IP 位址資源。 在下圖所示的範例中，myPublicIp3 公用 IP 位址資源與 IPConfig&3; 相關聯。
 
     ![現有 IP 組態](./media/virtual-network-multiple-ip-addresses-portal/figure8.png)
 
@@ -161,6 +154,6 @@ Azure 虛擬機器 (VM) 可附加一或多個網路介面 (NIC)。 任何 NIC �
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

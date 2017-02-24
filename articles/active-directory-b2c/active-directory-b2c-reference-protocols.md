@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 03c511f53704f306aa3fce2dd394188e5b3a0fa2
+ms.sourcegitcommit: 24e86b2a0c47576eba67f74c88bf9b9a42394653
+ms.openlocfilehash: 556da1513345b3cadf4fda622bb351835c114845
 
 
 ---
@@ -65,10 +65,11 @@ OAuth 2.0 和 OpenID Connect 的 Azure AD B2C 實作廣泛運用持有人權杖�
 
 * [使用 OAuth 2.0 建置行動與原生應用程式](active-directory-b2c-reference-oauth-code.md)
 * [使用 OpenID Connect 建置 Web 應用程式](active-directory-b2c-reference-oidc.md)
+* [使用 OAuth 2.0 隱含流程建置單一頁面應用程式](active-directory-b2c-reference-spa.md)
 
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

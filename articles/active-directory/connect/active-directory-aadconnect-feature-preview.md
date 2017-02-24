@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/27/2016
+ms.date: 02/07/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: 6892ec9d27dd2e7add68a2739c1f29b6d8f008a4
+ms.sourcegitcommit: b110b2e3041cf7839d1bf1c4d384b28b243efbd8
+ms.openlocfilehash: c1653c769a6b42d18ffb0da71220ce06c6556587
 
 
 ---
@@ -24,29 +24,29 @@ ms.openlocfilehash: 6892ec9d27dd2e7add68a2739c1f29b6d8f008a4
 本主題描述如何使用預覽中目前的功能。
 
 ## <a name="group-writeback"></a>群組回寫
-選用功能中的群組回寫選項可讓您將「Office 365 群組」  回寫至已安裝 Exchange 的樹系。 這是永遠在雲端中受控制的群組。 如果您有 Exchange 內部部署，則可以將這些群組寫回內部部署，讓具有內部部署 Exchange 信箱的使用者可以從這些群組傳送和接收電子郵件。
+選用功能中的群組回寫選項可讓您將「Office 365 群組」回寫至已安裝 Exchange 的樹系。 這是一律在雲端中控制的群組。 如果您有 Exchange 內部部署，則可以將這些群組回寫到內部部署，讓具有內部部署 Exchange 信箱的使用者可以從這些群組傳送和接收電子郵件。
 
 如需有關 Office 365 群組及其使用方式的詳細資訊，可在 [這裡](http://aka.ms/O365g)找到。
 
-此群組將會在內部部署 AD DS 中顯示為通訊群組。 您的內部部署 Exchange 伺服器必須是 Exchange 2013 累積更新 8 (2015 年 3 月發行) 或 Exchange 2016，才能辨識這個新的群組類型。
+Office 365 群組將會在內部部署 AD DS 中顯示為通訊群組。 您的內部部署 Exchange 伺服器必須是 Exchange 2013 累積更新 8 (2015 年 3 月發行) 或 Exchange 2016，才能辨識這個新的群組類型。
 
 **預覽期間的注意事項**
 
-* 目前在預覽中不會填入通訊錄屬性。 沒有這個屬性，群組就不會顯示在 GAL 中。 若要填入此屬性，最簡單的方法是使用 Exchange PowerShell Cmdlet `update-recipient`。
+* 目前在預覽中不會填入通訊錄屬性。 若沒有此屬性，群組就不會顯示在 GAL 中。 若要填入此屬性，最簡單的方法是使用 Exchange PowerShell Cmdlet `update-recipient`。
 * 只有使用 Exchange 結構描述的樹系才是群組的有效目標。 如果沒有偵測到 Exchange，則會無法啟用群組回寫功能。
 * 目前只支援單一樹系 Exchange 組織部署。 如果您的內部部署環境中有多個 Exchange 組織，則需要擁有內部部署 GALSync 解決方案才能讓這些群組出現在其他樹系中。
-* 群組回寫功能目前無法處理安全性群組或通訊群組。
+* 群組回寫功能無法處理安全性群組或通訊群組。
 
 > [!NOTE]
 > 需要 Azure AD Premium 的訂用帳戶才能使用群組回寫功能。
 > 
-> 
+>
 
 ## <a name="user-writeback"></a>使用者回寫
 > [!IMPORTANT]
 > 在 Azure AD Connect 的 2015 年 8 月更新中，已移除使用者的回寫預覽功能。 如果已啟用它，則您應該停用這個功能。
-> 
-> 
+>
+>
 
 ## <a name="next-steps"></a>後續步驟
 繼續[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)。
@@ -55,7 +55,6 @@ ms.openlocfilehash: 6892ec9d27dd2e7add68a2739c1f29b6d8f008a4
 
 
 
-
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

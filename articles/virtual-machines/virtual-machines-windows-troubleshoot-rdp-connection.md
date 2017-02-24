@@ -1,5 +1,5 @@
 ---
-title: "無法使用 RDP 連接至 Azure VM | Microsoft Docs"
+title: "無法透過 RDP 連接到 Azure 中的 Windows VM | Microsoft Docs"
 description: "針對無法在 Azure 中使用遠端桌面連接到 Windows 虛擬機器時的問題進行疑難排解"
 keywords: "遠端桌面錯誤、遠端桌面連線錯誤、無法連接到 VM、遠端桌面疑難排解"
 services: virtual-machines-windows
@@ -14,11 +14,11 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 10/26/2016
+ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: 592d6b0168b9ebb47ed841f7e2b55d55a07500aa
+ms.sourcegitcommit: ccdfd0c64b5a784664edaef9c19e272c8e8323e6
+ms.openlocfilehash: b6b9540f4120ef87d819605579df4ab0c9657e45
 
 
 ---
@@ -40,7 +40,7 @@ ms.openlocfilehash: 592d6b0168b9ebb47ed841f7e2b55d55a07500aa
 6. 重新啟動您的 VM。
 7. 重新部署您的 VM。
 
-如果您需要更詳細的步驟與說明，請繼續閱讀。
+如果您需要更詳細的步驟與說明，請繼續閱讀。 請確認區域網路設備 (例如路由器和防火牆) 沒有封鎖輸出 TCP 連接埠 3389，如[詳細的 RDP 疑難排解案例](virtual-machines-windows-detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中所述。
 
 > [!TIP]
 > 如果 VM 的 [連接] 按鈕呈現灰色，而且您未透過 [Express Route](../expressroute/expressroute-introduction.md) 或 [網站間 VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 連線來連接 Azure，您就必須先建立 VM 並為其指派公用 IP 位址，才能使用 RDP。 您可以深入了解 [Azure 中的公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md)。
@@ -256,6 +256,6 @@ ms.openlocfilehash: 592d6b0168b9ebb47ed841f7e2b55d55a07500aa
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

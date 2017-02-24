@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 39741a7a9efccd0d1f63727e4d13b424804398bc
+ms.sourcegitcommit: 29cd1d3583dfcba5c1057ae1e81376930f52f887
+ms.openlocfilehash: 1152fcf551aa02264d626f87e97bc3f69b4f6778
 
 
 ---
@@ -130,6 +130,6 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

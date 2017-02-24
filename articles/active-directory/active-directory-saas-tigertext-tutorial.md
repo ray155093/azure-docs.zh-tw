@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/21/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: a2129813f7214b2b32b2d7d6c9d666e96b60a926
-ms.openlocfilehash: 05fe44861c33933b394162b3b27ccee9a99754eb
+ms.sourcegitcommit: 1b5527090a41c274b590ed9d1ac7b561b6f4ed14
+ms.openlocfilehash: c9f2b62ddc0deda4eadd47c0d63db51bd2b36286
 
 
 ---
@@ -175,7 +175,7 @@ ms.openlocfilehash: 05fe44861c33933b394162b3b27ccee9a99754eb
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-an-tigertext-test-user"></a>建立 TigerText 測試使用者
 在本節中，您要在 TigerText 中建立名為 Britta Simon 的使用者。 請利用 [prosupport@tigertext.com](mailTo:prosupport@tigertext.com) 與 TigerText 支援小組聯繫，以在 TigerText 平台中新增使用者。
@@ -230,6 +230,6 @@ ms.openlocfilehash: 05fe44861c33933b394162b3b27ccee9a99754eb
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO3-->
 
 

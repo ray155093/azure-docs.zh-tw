@@ -14,11 +14,11 @@ ms.topic: article
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
-ms.date: 09/06/2016
-ms.author: rclaus
+ms.date: 02/02/2017
+ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 17ddda372f3a232be62e565b700bb1be967fb8e3
-ms.openlocfilehash: 5e9fb48fdf0da9a1c75f4d08ab7d97976859340c
+ms.sourcegitcommit: 50a71382982256e98ec821fd63c95fbe5a767963
+ms.openlocfilehash: 91f4ada749c3f37903a8757843b10060b73d95a2
 
 
 ---
@@ -28,12 +28,72 @@ ms.openlocfilehash: 5e9fb48fdf0da9a1c75f4d08ab7d97976859340c
 ## <a name="quick-commands"></a>快速命令
 下列範例會將 `50`GB 磁碟附加至名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
 
+若要使用受控磁碟：
+
+```azurecli
+az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk –-new
+```
+
+若要使用非受控磁碟：
+
 ```azurecli
 azure vm disk attach-new myResourceGroup myVM 50
 ```
 
-## <a name="attach-a-disk"></a>連接磁碟
-連接新磁碟很快。 輸入 `azure vm disk attach-new myResourceGroup myVM sizeInGB` ，就能為 VM 建立並連接新的 GB 磁碟。 如果您未明確識別儲存體帳戶，則您所建立的任何磁碟都會放在作業系統磁碟所在的相同儲存體帳戶中。 下列範例會將 `50`GB 磁碟附加至名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
+## <a name="attach-a-managed-disk"></a>附加受控磁碟
+
+使用受控磁碟，可讓您專注於您的 VM 及其磁碟，而不需擔心 Azure 儲存體帳戶。 您可以使用相同的 Azure 資源群組，快速建立受控磁碟並將它附加至 VM，也可以建立任意數目的磁碟，然後予以附加。
+
+
+### <a name="attach-a-new-disk-to-a-vm"></a>將新磁碟附加至 VM
+
+如果您的 VM 上只需要新磁碟，您可以使用 `az vm disk attach` 命令。
+
+```azurecli
+az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk –-new
+```
+
+### <a name="attach-an-existing-disk"></a>連接現有磁碟 
+
+在許多情況下，您可以附加已建立的磁碟。 您會先尋找磁碟識別碼，接著將該識別碼傳遞至 `az vm disk attach-disk` 命令。 下列程式碼會使用以 `az disk create -g myResourceGroup -n myDataDisk --size-gb 50` 建立的磁碟。
+
+```azurecli
+# find the disk id
+diskId=$(az disk show -g myResourceGroup -n myDataDisk --query 'id' -o tsv)
+az vm disk attach-disk -g myResourceGroup --vm-name myVM --disk $diskId
+```
+
+輸出如下所示 (您可將 `-o table` 選項使用於任何命令，以格式化輸出)：
+
+```json
+{
+  "accountType": "Standard_LRS",
+  "creationData": {
+    "createOption": "Empty",
+    "imageReference": null,
+    "sourceResourceId": null,
+    "sourceUri": null,
+    "storageAccountId": null
+  },
+  "diskSizeGb": 50,
+  "encryptionSettings": null,
+  "id": "/subscriptions/<guid>/resourceGroups/rasquill-script/providers/Microsoft.Compute/disks/myDataDisk",
+  "location": "westus",
+  "name": "myDataDisk",
+  "osType": null,
+  "ownerId": null,
+  "provisioningState": "Succeeded",
+  "resourceGroup": "myResourceGroup",
+  "tags": null,
+  "timeCreated": "2017-02-02T23:35:47.708082+00:00",
+  "type": "Microsoft.Compute/disks"
+}
+```
+
+
+## <a name="attach-an-unmanaged-disk"></a>附加非受控磁碟
+
+如果您不介意在與您的 VM 相同的儲存體帳戶中建立磁碟，附加新磁碟便很快速。 輸入 `azure vm disk attach-new` ，就能為 VM 建立並連接新的 GB 磁碟。 如果您未明確識別儲存體帳戶，則您所建立的任何磁碟都會放在作業系統磁碟所在的相同儲存體帳戶中。 下列範例會將 `50`GB 磁碟附加至名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
 
 ```azurecli
 azure vm disk attach-new myResourceGroup myVM 50
@@ -292,6 +352,6 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail 
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

@@ -36,7 +36,7 @@ ms.openlocfilehash: 3540a1d74de52e5e8cff5648dd02a92e0cfb4eb5
 
 執行作業時，您通常需要設法追蹤作業進度。 
 
-若要監視編碼作業的進度，請按一下 [設定] (位於頁面頂端)，然後選取 [作業]。
+若要監視編碼作業的進度，請按一下 [設定]\(位於頁面頂端)，然後選取 [作業]。
 
 ![作業](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 

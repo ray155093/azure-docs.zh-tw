@@ -95,7 +95,7 @@ ms.openlocfilehash: 2051bd0d749ccad0fc1280ce03b88fd9e2af7c08
 ### <a name="docker-container-events"></a>Docker 容器事件
 ![範例](./media/app-insights-docker/13.png)
 
-若要調查個別事件，請按一下 [搜尋] [](app-insights-diagnostic-search.md)。 搜尋和篩選以尋找您想要的事件。 按一下任何事件以查看詳細資料。
+若要調查個別事件，請按一下 [搜尋](app-insights-diagnostic-search.md)。 搜尋和篩選以尋找您想要的事件。 按一下任何事件以查看詳細資料。
 
 ### <a name="exceptions-by-container-name"></a>依據容器名稱的例外狀況
 ![範例](./media/app-insights-docker/14.png)
@@ -109,7 +109,7 @@ ms.openlocfilehash: 2051bd0d749ccad0fc1280ce03b88fd9e2af7c08
 
 ![範例](./media/app-insights-docker/15.png)
 
-## <a name="q-a"></a>問答集
+## <a name="q--a"></a>問答集
 *Application Insights 可以給我哪些無法從 Docker 取得的功能？*
 
 * 依據容器和映像的效能計數器的詳細分解圖。

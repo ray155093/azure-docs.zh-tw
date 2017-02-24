@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/01/2016
+ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 449cfa39e17a3b753cf3e267aed2d6a439fc5f36
+ms.sourcegitcommit: 2048c2786cbe7e237f7a72f5a73a4b135ed60088
+ms.openlocfilehash: cf4ee6d18d5ab3b0f53ec5e8ab80d6e91864a103
 
 
 ---
@@ -25,6 +25,7 @@ ms.openlocfilehash: 449cfa39e17a3b753cf3e267aed2d6a439fc5f36
 
 安裝 Azure AD Connect 時，依預設會啟用防止意外刪除的功能，並設定為不允許超過 500 個刪除項目的匯出。 這項功能是專門用來保護您免於意外的組態變更及內部部署目錄的變更，因為這會影響許多使用者和其他物件。
 
+## <a name="what-is-prevent-accidental-deletes"></a>防止意外刪除是什麼
 會看到多項刪除的常見案例包括：
 
 * 變更未選取整個 [OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) 或[網域](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)的[篩選](active-directory-aadconnectsync-configure-filtering.md)。
@@ -38,7 +39,7 @@ ms.openlocfilehash: 449cfa39e17a3b753cf3e267aed2d6a439fc5f36
 ![防止意外刪除電子郵件](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/email.png)
 
 > *Hello (技術連絡人)。有時身分識別同步處理服務偵測到的刪除數目會超過 (組織名稱) 所設定的刪除閾值。本次執行身分識別同步處理時，共傳送 (數目) 個物件進行刪除。這已到達或超過設定的 (數目) 個物件的刪除閾值。您需先確認要刪除這些項目，才可繼續進行。若要深入了解此電子郵件中列出的錯誤，請參見防止意外刪除。*
-> 
+>
 > 
 
 當您查看匯出設定檔的 **Synchronization Service Manager** UI，您也會看到狀態 `stopped-deletion-threshold-exceeded`。
@@ -69,7 +70,6 @@ ms.openlocfilehash: 449cfa39e17a3b753cf3e267aed2d6a439fc5f36
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "使用傳統部署模型和 PowerShell 將虛擬網路連結到 ExpressRoute 線路 | Microsoft Docs"
+title: "將虛擬網路連結到 ExpressRoute 線路：PowerShell：傳統：Azure | Microsoft Docs"
 description: "本文提供以下內容的概觀：如何使用傳統部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 線路。"
 services: expressroute
 documentationcenter: na
@@ -13,19 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 12/13/2016
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
-ms.openlocfilehash: 7b0eef9e6ec4bc8da9e68eabbc515f78001bc9d6
+ms.sourcegitcommit: 1276a64d375ff452f3d29a8f7910475256499ac8
+ms.openlocfilehash: 0c16907f306228c4361e55d21dcb0c834ce7de25
 
 
 ---
-# <a name="link-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連結到 ExpressRoute 電路
+# <a name="connect-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連線到 ExpressRoute 電路
 > [!div class="op_single_selector"]
-> * [Azure 入口網站 - Resource Manager](expressroute-howto-linkvnet-portal-resource-manager.md)
-> * [PowerShell - 資源管理員](expressroute-howto-linkvnet-arm.md)
-> * [PowerShell - 傳統](expressroute-howto-linkvnet-classic.md)
+> * [Resource Manager - Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
+> * [Resource Manager - PowerShell](expressroute-howto-linkvnet-arm.md)
+> * [傳統 - PowerShell](expressroute-howto-linkvnet-classic.md)
+> * [視訊 - Azure 入口網站](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit)
 > 
 > 
 
@@ -73,7 +74,7 @@ ms.openlocfilehash: 7b0eef9e6ec4bc8da9e68eabbc515f78001bc9d6
 
 **建立授權**
 
-電路擁有者可授權其他訂用帳戶管理員使用指定的電路。 在下列範例中，線路管理員 (Contoso IT) 讓另一個訂用帳戶的管理員 (Dev-Test) 可將最多 2 個虛擬網路連結到線路。 Contoso IT 的系統管理員的做法是指定 Dev-Test Microsoft 識別碼。 此 Cmdlet 不會傳送電子郵件給指定的 Microsoft ID。 電路擁有者必須明確通知其他訂用帳戶擁有者，告知授權已完成。
+電路擁有者可授權其他訂用帳戶管理員使用指定的電路。 在下列範例中，線路管理員 (Contoso IT) 讓另一個訂用帳戶的管理員 (Dev-Test) 可將最多&2; 個虛擬網路連結到線路。 Contoso IT 的系統管理員的做法是指定 Dev-Test Microsoft 識別碼。 此 Cmdlet 不會傳送電子郵件給指定的 Microsoft ID。 電路擁有者必須明確通知其他訂用帳戶擁有者，告知授權已完成。
 
     New-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -Description "Dev-Test Links" -Limit 2 -MicrosoftIds 'devtest@contoso.com'
 
@@ -162,6 +163,6 @@ ms.openlocfilehash: 7b0eef9e6ec4bc8da9e68eabbc515f78001bc9d6
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

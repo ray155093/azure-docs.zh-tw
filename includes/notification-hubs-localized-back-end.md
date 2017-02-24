@@ -15,8 +15,8 @@
 
 後端可廣播至任何支援的裝置，因此隨附的程式碼會廣播至 Windows 市集和 iOS 裝置。
 
-### 使用 C# 主控台應用程式傳送通知
-在先前建立的主控台應用程式中以下列程式碼修改 `SendTemplateNotificationAsync` 方法。請注意，此案例不需要針對不同地區設定和平台傳送多次通知。
+### <a name="to-send-notifications-using-a-c-console-app"></a>使用 C# 主控台應用程式傳送通知
+在先前建立的主控台應用程式中以下列程式碼修改 `SendTemplateNotificationAsync` 方法。 請注意，此案例不需要針對不同地區設定和平台傳送多次通知。
 
         private static async void SendTemplateNotificationAsync()
         {
@@ -52,9 +52,9 @@
         }
 
 
-請注意，此簡單呼叫會將已當地語系化的新聞片段傳送到您的**所有**裝置 (不論平台為何)，因為您的通知中樞會建立並傳遞正確的原生裝載給訂用特定標籤的所有裝置。
+請注意，此簡單呼叫會將已當地語系化的新聞片段傳送到您的 **所有** 裝置 (不論平台為何)，因為您的通知中樞會建立並傳遞正確的原生裝載給訂用特定標籤的所有裝置。
 
-### 使用行動服務傳送通知
+### <a name="sending-the-notification-with-mobile-services"></a>使用行動服務傳送通知
 在您的行動服務排程器中，您可以使用下列指令碼：
 
     var azure = require('azure');
@@ -71,4 +71,8 @@
     });
 
 
-<!---HONumber=AcomDC_1217_2015-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

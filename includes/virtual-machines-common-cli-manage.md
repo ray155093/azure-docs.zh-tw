@@ -1,18 +1,18 @@
-您必須具有 Azure 的帳戶，才能搭配使用 Azure CLI 與 Resource Manager 命令和範本，使用資源群組來部署 Azure 資源和工作負載。如果您沒有帳戶，可以取得[此處免費試用的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+您必須具有 Azure 的帳戶，才能搭配使用 Azure CLI 與 Resource Manager 命令和範本，使用資源群組來部署 Azure 資源和工作負載。 如果您沒有帳戶，可以取得 [此處免費試用的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-如果您尚未安裝 Azure CLI 及連線至訂用帳戶，請參閱[安裝 Azure CLI](../articles/xplat-cli-install.md) 以利用 `azure config mode arm` 將模式設定為 `arm`，再使用 `azure login` 命令連線至 Azure 訂用帳戶。
+如果您尚未安裝 Azure CLI 並且連接至您的訂用帳戶，請參閱[安裝 Azure CLI](../articles/xplat-cli-install.md)，將模式設定為 `arm` 與 `azure config mode arm`，並連接至 Azure 與 `azure login` 命令。
 
-## Azure CLI 中的基本 Azure Resource Manager 命令
-本文章涵蓋搭配 Azure CLI 來管理 Azure 訂用帳戶中之 ARM 資源 (主要是 VM) 並與其互動的基本命令。如需特定命令列參數和選項的詳細說明，您可以輸入 `azure <command> <subcommand> --help` 或 `azure help <command> <subcommand>` 來使用線上命令說明和選項。
+## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Azure CLI 中的基本 Azure Resource Manager 命令
+本文章涵蓋搭配 Azure CLI 來管理 Azure 訂用帳戶中之 ARM 資源 (主要是 VM) 並與其互動的基本命令。  如需特定命令列參數和選項的詳細說明，您可以輸入 `azure <command> <subcommand> --help` 或 `azure help <command> <subcommand>` 來使用線上命令說明和選項。
 
 > [!NOTE]
-> 這些範例不包含以範本為基礎的作業，這些作業一般建議在資源管理員中針對 VM 部署使用。如需資訊，請參閱[搭配 Azure 資源管理員使用 Azure CLI](../articles/xplat-cli-azure-resource-manager.md) 和[使用 Azure 資源管理員範本和 Azure CLI 部署與管理虛擬機器](../articles/virtual-machines/virtual-machines-linux-cli-deploy-templates.md)。
+> 這些範例不包含以範本為基礎的作業，這些作業一般建議在資源管理員中針對 VM 部署使用。 如需資訊，請參閱[搭配 Azure Resource Manager 使用 Azure CLI](../articles/xplat-cli-azure-resource-manager.md) 和[使用 Azure Resource Manager 範本和 Azure CLI 部署與管理虛擬機器](../articles/virtual-machines/virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 > 
 > 
 
-| 工作 | 資源管理員 |
+| Task | 資源管理員 |
 | --- | --- | --- |
-| 建立最基本的 VM |`azure vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>`<br/><br/>(從 `azure vm image list` 命令取得 `image-urn`。)如需範例，請參閱[這篇文章](../articles/virtual-machines/virtual-machines-linux-cli-ps-findimage.md)。) |
+| 建立最基本的 VM |`azure vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>`<br/><br/>(從 `azure vm image list` 命令取得 `image-urn`。 如需範例，請參閱[這篇文章](../articles/virtual-machines/virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。) |
 | 建立 Linux VM |`azure  vm create [options] <resource-group> <name> <location> -y "Linux"` |
 | 建立 Windows VM |`azure  vm create [options] <resource-group> <name> <location> -y "Windows"` |
 | 列出 VM |`azure  vm list [options]` |
@@ -34,7 +34,11 @@
 | 取得 VM 資源的使用量 |`azure vm list-usage [options] <location>` |
 | 取得所有可用的 VM 大小 |`azure vm sizes [options]` |
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * 如需超越基本 VM 管理的其他 CLI 命令範例，請參閱 [Azure CLI 與 Azure Resource Manager 搭配使用](../articles/virtual-machines/azure-cli-arm-commands.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

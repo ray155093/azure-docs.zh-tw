@@ -1,6 +1,6 @@
 ---
 title: "Azure Linux VM 與 Azure 儲存體 | Microsoft Docs"
-description: "描述 Azure 標準和進階儲存體與 Linux 虛擬機器。"
+description: "描述 Azure 標準和進階儲存體以及 Linux 虛擬機器的受控和非受控磁碟。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: vlivech
@@ -12,28 +12,84 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 10/04/2016
-ms.author: v-livech
+ms.date: 2/7/2017
+ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: a3dc017811cb891bc82b072e13e58b3af047a490
-ms.openlocfilehash: e74ede9b3132ff4b4c3e67e614b9996f56856ebc
+ms.sourcegitcommit: 8651566079a0875e1a3a549d4bf1dbbc6ac7ce21
+ms.openlocfilehash: 410159ad7b5abc5eb3cb1a212895eda7ac225323
 
 
 ---
 # <a name="azure-and-linux-vm-storage"></a>Azure 和 Linux VM 儲存體
 Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。  除了可讓開發人員打造支援全新案例的大規模應用程式之外，Azure 儲存體還針對 Microsoft 虛擬機器提供儲存基礎。
 
-## <a name="azure-storage-standard-and-premium"></a>Azure 儲存體：標準和進階
-Azure VM 可以建置在標準儲存體磁碟或進階儲存體磁碟。  使用入口網站選擇您的 VM 時，您必須切換 [基本] 畫面上的下拉式清單以檢視標準和進階磁碟。  以下的螢幕擷取畫面會反白顯示該切換功能表。  切換為 SSD 時，只會顯示已啟用 VM 的進階儲存體，均受到 SSD 磁碟機支援。  切換至 HDD 時，會顯示已啟用 VM 備份的標準儲存體迴轉磁碟機，以及受到 SSD 支援的進階儲存體。
+## <a name="managed-disks"></a>受控磁碟
 
-  ![screen1](../virtual-machines/media/virtual-machines-linux-azure-vm-storage-overview/screen1.png)
+現在可利用 [Azure 受控磁碟](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)取得 Azure VM，該功能可讓您建立 VM，而不需自行建立或管理任何 [Azure 儲存體帳戶](../storage/storage-introduction.md)。 您可指定是否想要進階或標準儲存體、磁碟應該多大，而 Azure 會為您建立 VM 磁碟。 具有受控磁碟的 VM 都有許多重要的功能，包括︰
+
+- 自動延展性支援。 Azure 會建立磁碟及管理基礎儲存體，可支援每個訂用帳戶多達 10,000 個磁碟。
+- 提高可用性設定組的可靠性。 Azure 可確保可用性設定組內的 VM 磁碟會自動彼此隔離。
+- 提高存取控制權。 受控磁碟會公開由 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 所控制的各種作業。 
+
+受控磁碟與非受控磁碟的價格不同。 如需該資訊，請參閱[受控磁碟的價格和計費](../storage/storage-managed-disks-overview.md#pricing-and-billing)。 
+
+您可以透過 [az vm convert](/cli/azure/vm#convert)，將使用非受控磁碟的現有 VM 轉換成使用受控磁碟。 如需詳細資訊，請參閱[如何將 Linux VM 從非受控磁碟轉換為 Azure 受控磁碟](virtual-machines-linux-convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 如果非受控磁碟位於使用 (或曾經使用) [Azure 儲存體服務加密 (SSE)](../storage/storage-service-encryption.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 加密的儲存體帳戶，您就無法將非受控磁碟轉換為受控磁碟。 下列步驟將詳細說明如何轉換位於 (曾經位於) 已加密儲存體帳戶中的非受控磁碟︰
+
+- 使用 [az storage blob copy start](/cli/azure/storage/blob/copy#start) 將[虛擬硬碟 (VHD) 複製](virtual-machines-linux-copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unmanaged-disks) 到從未針對 Azure 儲存體服務加密啟用的儲存體帳戶。
+- 建立使用受控磁碟的 VM，並在透過 [az vm create](/cli/azure/vm#create) 建立期間指定該 VHD 檔案，或
+- 使用 [az vm disk attach](/cli/azure/vm/disk#attach)，將複製的 VHD 附加至具有受控磁碟的執行中 VM。
+
+
+## <a name="azure-storage-standard-and-premium"></a>Azure 儲存體：標準和進階
+Azure VM (不論是使用受控或非受控磁碟) 可以標準儲存體磁碟或進階儲存體磁碟做為建置基礎。 使用入口網站選擇您的 VM 時，您必須切換 [基本] 畫面上的下拉式清單以檢視標準和進階磁碟。 切換為 SSD 時，只會顯示已啟用 VM 的進階儲存體，均受到 SSD 磁碟機支援。  切換至 HDD 時，會顯示轉動型磁碟機所支援之已啟用標準儲存體的 VM，以及由 SSD 支援的進階儲存體。
 
 從 `azure-cli` 建立 VM，透過 `-z` 或 `--vm-size` cli 旗標選擇 VM 大小時，您可以在標準和進階之間選擇。
 
-### <a name="create-a-vm-with-standard-storage-vm-on-the-cli"></a>在 cli 上建立具有標準儲存體 VM 的 VM
-cli 旗標 `-z` 選擇 Standard_A1，A1 是標準儲存體型 Linux VM。
+## <a name="creating-a-vm-with-a-managed-disk"></a>建立具有受控磁碟的 VM
 
-```bash
+下列範例需要 Azure CLI 2.0 (預覽)，您可以 [在此安裝]。
+
+首先，建立資源群組來管理資源：
+
+```azurecli
+az group create --location westus --name myResourceGroup
+```
+
+然後使用 `az vm create` 命令建立 VM，如下列範例所示；請記得要指定唯一的 `--public-ip-address-dns-name` 引數，因為很可能採用 `manageddisks`。
+
+```azurecli
+az vm create \
+--image credativ:Debian:8:latest \
+--admin-username azureuser \
+--ssh-key-value ~/.ssh/id_rsa.pub 
+--public-ip-address-dns-name manageddisks \
+--resource-group myResourceGroup \
+--location westus \
+--name myVM
+```
+
+前一個範例在標準儲存體帳戶中建立具有受控磁碟的 VM。 若要使用進階儲存體帳戶，請新增 `--storage-sku Premium_LRS` 引數，如下列範例所示︰
+
+```azurecli
+az vm create \
+--storage-sku Premium_LRS
+--image credativ:Debian:8:latest \
+--admin-username azureuser \
+--ssh-key-value ~/.ssh/id_rsa.pub 
+--public-ip-address-dns-name manageddisks \
+--resource-group myResourceGroup \
+--location westus \
+--name myVM
+```
+
+
+### <a name="create-a-vm-with-an-unmanaged-standard-disk-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立具有非受控標準磁碟的 VM
+
+您當然也可以使用 Azure CLI 1.0 來建立標準和進階磁碟 VM；這一次，您無法使用 Azure CLI 1.0 來建立受控磁碟所支援的 VM。
+
+`-z` 選項會選擇 Standard_A1，這是以標準儲存體為基礎的 Linux VM。
+
+```azurecli
 azure vm quick-create -g rbg \
 exampleVMname \
 -l westus \
@@ -44,10 +100,10 @@ exampleVMname \
 -z Standard_A1
 ```
 
-### <a name="create-a-vm-with-premium-storage-on-the-cli"></a>在 cli 上建立具有進階儲存體的 VM
-cli 旗標 `-z` 選擇 Standard_DS1，DS1 是進階儲存體型 Linux VM。
+### <a name="create-a-vm-with-premium-storage-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立具有進階儲存體的 VM
+`-z` 選項會選擇 Standard_DS1，這是以進階儲存體為基礎的 Linux VM。
 
-```bash
+```azurecli
 azure vm quick-create -g rbg \
 exampleVMname \
 -l westus \
@@ -186,6 +242,6 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

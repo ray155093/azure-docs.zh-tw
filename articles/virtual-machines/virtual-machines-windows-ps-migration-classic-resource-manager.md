@@ -16,8 +16,8 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: b75ed253a47b5f4ad0d95ef29c30f3d5ba3cb5fb
+ms.sourcegitcommit: e90036d97451b271451d0ba5845c788ac05d7abf
+ms.openlocfilehash: 4253d60a8a12877a3c5dac073bd06d70d020ccdc
 
 
 ---
@@ -37,7 +37,7 @@ ms.openlocfilehash: b75ed253a47b5f4ad0d95ef29c30f3d5ba3cb5fb
 * 如果您是使用自動化指令碼來部署現今的基礎結構和應用程式，請使用這些指令碼來嘗試建立相似的測試設定以進行移轉。 或者，您也可以使用 Azure 入口網站來設定範例環境。
 
 > [!IMPORTANT]
-> 目前不支援 ExpressRoute 閘道器及應用程式閘道從傳統環境移轉至 Resource Manager。 若要使用 ExpressRoute 或應用程式閘道來移轉傳統虛擬網路，請移除閘道，再執行「認可」作業來移動網路 (您可以執行「準備」步驟而不刪除 ExpressRoute 或應用程式閘道)。 在完成移轉之後，於 Azure Resource Manager 中重新連接閘道。
+> 目前不支援將應用程式閘道從傳統環境移轉至 Resource Manager。 若要移轉具有應用程式閘道的傳統虛擬網路，請移除閘道器，再執行「認可」作業來移動網路 (您可以執行「準備」步驟而不刪除應用程式閘道)。 在完成移轉之後，於 Azure Resource Manager 中重新連接閘道。 如果您想要移轉 ExpressRoute 閘道，但閘道器與 ExpressRoute 線路位於相同的訂用帳戶中，您必須連絡支援人員。 如果 ExpressRoute 閘道連接至另一個訂用帳戶中的 ExpressRoute 線路，則無法移轉。 在這種情況下，請移除 ExpressRoute 閘道，移轉虛擬網路，然後重新建立閘道。
 > 
 > 
 
@@ -82,7 +82,7 @@ Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https:/
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
 ```
 
-請等候 5 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態：
+請等候&5; 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態：
 
 ```powershell
     Get-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
@@ -274,6 +274,6 @@ Get-AzureRmVMUsage -Location "West US"
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

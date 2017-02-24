@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: b7c13d4b4e205fda1e5ba44fbf5eb50a96601d2e
-ms.openlocfilehash: 113dd20f1a5ac42eb7155d693f66053adea57078
+ms.sourcegitcommit: 81fd8dfa480fc6365b6373a4eefef1149248d800
+ms.openlocfilehash: 5e4fba6ff82cbe8af0116e35d71c8f9f04474f0f
 
 
 ---
@@ -298,7 +298,7 @@ Type:Alert AND NOT(Severity:1 OR ObjectId:"8066bbc0-9ec8-ca83-1edc-6f30d4779bcb8
 | system "Windows Server" OR Severity:1 |system AND ("Windows Server" OR Severity:1) |
 
 ### <a name="wildcarding"></a>萬用字元
-查詢語言支援使用 (*\*) 字元來代表查詢中值的一個或多個字元。
+查詢語言支援使用 ( \* ) 字元來代表查詢中值的一個或多個字元。
 
 範例：
 
@@ -367,7 +367,7 @@ Type=Event Computer=*SQL*
 
     Type:Alert errors detected | select Name, Severity
 
-將傳回的結果欄位限制為 Name and Severity小節中閱讀搜尋中傳回的欄位，以及協助您深入鑽研相似資料類別的 Facet。
+將傳回的結果欄位限制為 *Name* and *Severity*小節中閱讀搜尋中傳回的欄位，以及協助您深入鑽研相似資料類別的 Facet。
 
 ### <a name="measure"></a>Measure
 *measure* 命令可用來將統計函數套用至未經處理的搜尋結果。 需要取得資料的 *群組依據* 檢視時，這非常有用。 當您使用 *measure* 命令時，Log Analytics 搜尋會顯示含有彙總結果的資料表。
@@ -813,6 +813,6 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | Ex
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

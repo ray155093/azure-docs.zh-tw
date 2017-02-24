@@ -56,7 +56,7 @@ ms.openlocfilehash: 85fcb08be0f1443232919ddfe5e69ff0ef1a47a2
 3. 選取 [MVC] 範本，然後將驗證變更為 [不需要驗證]。 確定已選取 [雲端中的主機]，然後按一下 [確定]。
    
     ![](./media/web-sites-dotnet-lob-application-azure-ad/1-create-mvc-no-authentication.png)
-4. 在 [建立 App Service] 對話方塊中，按一下 [新增帳戶] (然後是下拉式清單中的 [新增帳戶]) 來登入 Azure 帳戶。
+4. 在 [建立 App Service] 對話方塊中，按一下 [新增帳戶]\(然後是下拉式清單中的 [新增帳戶]) 來登入 Azure 帳戶。
 5. 登入後，請設定 Web 應用程式。 建立資源群組和新的 App Service 方案，方法是按一下各自的 [新增]  按鈕。 按一下 [瀏覽其他 Azure 服務]  以繼續。
    
     ![](./media/web-sites-dotnet-lob-application-azure-ad/2-create-app-service.png)
@@ -65,7 +65,7 @@ ms.openlocfilehash: 85fcb08be0f1443232919ddfe5e69ff0ef1a47a2
     ![](./media/web-sites-dotnet-lob-application-azure-ad/3-add-sql-database.png)
 7. 在 [設定 SQL Database] 中，按一下 [新增] 以建立 SQL Server 執行個體。
 8. 在 [設定 SQL Server] 中，設定 SQL Server 執行個體。 然後依序按一下 [確定]、[確定] 和 [建立]，開始在 Azure 中建立應用程式。
-9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下 [立即將應用程式名稱>** 發佈**&lt;至此 Web 應用程式]，然後按一下 [發佈]**。 
+9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下** [立即將&lt;*應用程式名稱*> 發佈至此 Web 應用程式]**，然後按一下** [發佈]**。 
    
     當 Visual Studio 完成後，它會在瀏覽器中開啟發佈應用程式。 
    
@@ -131,7 +131,7 @@ ms.openlocfilehash: 85fcb08be0f1443232919ddfe5e69ff0ef1a47a2
     `~/.auth/me` URL 路徑由 App Service 驗證/授權進行管理，以提供您與驗證的工作階段相關的所有資訊。 如需詳細資訊，請參閱 [Azure App Service 中的驗證與授權](../app-service/app-service-authentication-overview.md)。
     
     > [!NOTE]
-    >  `access_token` 具有到期期間。 不過，App Service 驗證/授權會以 `~/.auth/refresh`提供權杖重新整理功能。 如需其使用方式的詳細資訊，請參閱 [App Service 權杖存放區](https://cgillum.tech/2016/03/07/app-service-token-store/)。
+    > `access_token` 具有到期期間。 不過，App Service 驗證/授權會以 `~/.auth/refresh`提供權杖重新整理功能。 如需其使用方式的詳細資訊，請參閱 [App Service 權杖存放區](https://cgillum.tech/2016/03/07/app-service-token-store/)。
     > 
     > 
 

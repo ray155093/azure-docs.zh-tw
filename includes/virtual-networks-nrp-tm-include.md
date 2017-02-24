@@ -1,5 +1,5 @@
-## 流量管理員設定檔
-流量管理員和它的子端點資源讓 DNS 路由可路由至 Azure 內部和 Azure 外部端點。這類流量分配是由路由原則方法所管理。流量管理員也可監視端點健全狀況，並根據端點健全狀況適當地轉向流量。
+## <a name="traffic-manager-profile"></a>流量管理員設定檔
+流量管理員和它的子端點資源讓 DNS 路由可路由至 Azure 內部和 Azure 外部端點。 這類流量分配是由路由原則方法所管理。 流量管理員也可監視端點健全狀況，並根據端點健全狀況適當地轉向流量。 
 
 | 屬性 | 說明 |
 | --- | --- |
@@ -10,17 +10,17 @@
 | **路徑** |監視路徑 |
 | **Endpoints** |端點資源的容器 |
 
-### 端點
-端點是流量管理員設定檔的子資源。它代表服務或 Web 端點，並根據流量管理員設定檔資源中所設定的原則，將使用者流量散發到此服務或 Web 端點。
+### <a name="endpoint"></a>端點
+端點是流量管理員設定檔的子資源。 它代表服務或 Web 端點，並根據流量管理員設定檔資源中所設定的原則，將使用者流量散發到此服務或 Web 端點。 
 
 | 屬性 | 說明 |
 | --- | --- |
-| **類型** |端點的類型，可能的值為 *Azure End point*、*External Endpoint* 和 *Nested Endpoint* |
-| **targetResourceId** |服務或 Web 端點的公用 IP 位址。這可以是 Azure 或外部端點。 |
+| **類型** |端點的類型，可能的值為「Azure 端點」、「外部端點」和「巢狀端點」 |
+| **targetResourceId** |服務或 Web 端點的公用 IP 位址。 這可以是 Azure 或外部端點。 |
 | **重量** |用於流量管理的端點加權。 |
 | **優先順序** |端點的優先順序，用來定義容錯移轉動作。 |
 
-JSON 格式的流量管理員範例：
+JSON 格式的流量管理員範例： 
 
         {
             "apiVersion": "[variables('tmApiVersion')]",
@@ -77,7 +77,11 @@ JSON 格式的流量管理員範例：
         }
 
 
-## 其他資源
-如需詳細資訊，請閱讀[流量管理員的 REST API 文件](https://msdn.microsoft.com/library/azure/mt163664.aspx)。
+## <a name="additional-resources"></a>其他資源
+如需詳細資訊，請閱讀 [流量管理員的 REST API 文件](https://msdn.microsoft.com/library/azure/mt163664.aspx) 。
 
-<!---HONumber=AcomDC_1223_2015-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

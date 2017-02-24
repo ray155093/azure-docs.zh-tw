@@ -1,6 +1,6 @@
 ---
 title: "設定 Azure AD 使用者帳戶 | Microsoft Docs"
-description: "本文說明如何在 Azure 自動化中為 Runbook 設定 Azure AD 使用者帳戶認證以針對 ARM 和 ASM 進行驗證。"
+description: "本文說明如何在 Azure 自動化中為 Runbook 設定 Azure AD 使用者帳戶認證以進行驗證。"
 services: automation
 documentationcenter: 
 author: MGoedtel
@@ -13,16 +13,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/12/2016
+ms.date: 11/14/2016
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 00b217a4cddac0a893564db27ffb4f460973c246
-ms.openlocfilehash: db4eb96b3354d83864a7869c1fd08e9bb2884a1f
+ms.sourcegitcommit: 0078d544d5c30e31874d75fece62ca560d2aa2d6
+ms.openlocfilehash: 0544d4df8f50db2182375aec8ec2a0a9d47ed644
 
 
 ---
 # <a name="authenticate-runbooks-with-azure-service-management-and-resource-manager"></a>使用 Azure 服務管理和 Resource Manager 驗證 Runbook
-本文說明要為針對 Azure 服務管理 (ASM) 或 Azure Resource Manager (ARM) 資源執行的 Azure 自動化 Runbook 設定 Azure AD 使用者帳戶，所必須執行的步驟。  雖然這仍是您 ARM 型 Runbook 支援的驗證身分識別，但建議的方法是使用新的 Azure 執行身分帳戶。       
+本文說明要為針對 Azure 服務管理或 Azure Resource Manager 資源執行的 Azure 自動化 Runbook 設定 Azure AD 使用者帳戶，所必須執行的步驟。  雖然這仍是您 Azure Resource Manager 型 Runbook 支援的驗證身分識別，但建議的方法是使用新的 Azure 執行身分帳戶。       
 
 ## <a name="create-a-new-azure-active-directory-user"></a>建立新的 Azure Active Directory 使用者
 1. 以您想要管理的 Azure 訂用帳戶的服務系統管理員身分登入 Azure 傳統入口網站。
@@ -39,12 +39,12 @@ ms.openlocfilehash: db4eb96b3354d83864a7869c1fd08e9bb2884a1f
 12. 登出 Azure，然後使用您剛才建立的帳戶登入。 將提示您變更使用者的密碼。
 
 ## <a name="create-an-automation-account-in-azure-classic-portal"></a>在 Azure 傳統入口網站中建立自動化帳戶
-在本節中，您將執行下列步驟以在 Azure 入口網站中建立將與您用來在 ASM 和 ARM 模式中管理資源的 Runbook 搭配使用的新 Azure 自動化帳戶。  
+在本節中，您將執行下列步驟以在 Azure 入口網站中建立將與您用來在 Azure 服務管理員和 Azure Resource Manager 模式中管理資源的 Runbook 搭配使用的新 Azure 自動化帳戶。  
 
 > [!NOTE]
 > 使用 Azure 傳統入口網站建立的自動化帳戶可以透過 Azure 傳統入口網站和 Azure 入口網站以及任一組 Cmdlet 來管理。 帳戶一旦建立，您在帳戶中建立和管理資源的方式就沒有差別。 如果您打算繼續使用 Azure 傳統入口網站，您應該使用它代替 Azure 入口網站來建立任何的自動化帳戶。
->
->
+> 
+> 
 
 1. 以您想要管理的 Azure 訂用帳戶的服務系統管理員身分登入 Azure 傳統入口網站。
 2. 選取 [自動化] 。
@@ -60,7 +60,7 @@ ms.openlocfilehash: db4eb96b3354d83864a7869c1fd08e9bb2884a1f
 12. 在下列 [定義認證] 頁面中，於 [使用者名稱] 欄位中輸入稍早建立之 AD 使用者帳戶的使用者名稱，並於 [密碼] 和 [確認密碼] 欄位中輸入密碼。 按一下 [確定]  儲存變更。
 
 ## <a name="create-an-automation-account-in-the-azure-portal"></a>在 Azure 入口網站中建立自動化帳戶
-在本節中，您將執行下列步驟以在 Azure 入口網站中建立將與您用來在 ARM 模式中管理資源的 Runbook 搭配使用的新 Azure 自動化帳戶。  
+在本節中，您將執行下列步驟以在 Azure 入口網站中建立將與您用來在 Azure Resource Manager 模式中管理資源的 Runbook 搭配使用的新 Azure 自動化帳戶。  
 
 1. 以您想要管理的 Azure 訂用帳戶的服務系統管理員身分登入 Azure 入口網站。
 2. 選取 [自動化帳戶] 。
@@ -68,12 +68,12 @@ ms.openlocfilehash: db4eb96b3354d83864a7869c1fd08e9bb2884a1f
 4. 在 [新增自動化帳戶] 刀鋒視窗的 [名稱] 方塊中，輸入新的自動化帳戶的名稱。
 5. 如果您有多個訂用帳戶，請為新的自動化帳戶指定其中一個訂用帳戶，並指定新的或現有的 [資源群組] 和 Azure 資料中心的 [位置]。
 6. 在 [建立 Azure 執行身分帳戶] 選項中選取 [否] 這個值，然後按一下 [建立] 按鈕。  
-
+   
    > [!NOTE]
-   > 如果您選取選項 [否] 以選擇不要建立執行身分帳戶，則會在 [新增自動化帳戶] 刀鋒視窗中看到一則警告訊息。  雖然會建立帳戶並將其指派給訂用帳戶中的 [參與者]  角色，但帳戶在訂用帳戶的目錄服務內不會有對應的驗證身分識別，因此在訂用帳戶中沒有存取資源。  這將導致參考此帳戶的任何 Runbook 無法進行驗證並針對 ARM 資源執行工作。
-   >
-   >
-
+   > 如果您選取選項 [否] 以選擇不要建立執行身分帳戶，則會在 [新增自動化帳戶] 刀鋒視窗中看到一則警告訊息。  雖然會建立帳戶並將其指派給訂用帳戶中的 [參與者]  角色，但帳戶在訂用帳戶的目錄服務內不會有對應的驗證身分識別，因此在訂用帳戶中沒有存取資源。  這將導致參考此帳戶的任何 Runbook 無法進行驗證並針對 Azure Resource Manager 資源執行工作。
+   > 
+   > 
+   
     ![加入自動化帳戶警告](media/automation-sec-configure-azure-runas-account/add-automation-acct-properties-error.png)
 7. 在 Azure 建立自動化帳戶時，您可以在功能表的 [通知]  底下追蹤進度。
 
@@ -93,6 +93,7 @@ ms.openlocfilehash: db4eb96b3354d83864a7869c1fd08e9bb2884a1f
 
 
 
-<!--HONumber=Nov16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

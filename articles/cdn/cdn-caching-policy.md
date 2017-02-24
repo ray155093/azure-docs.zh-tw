@@ -12,11 +12,11 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 02/04/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 06bd0112eab46f3347dfb039a99641a37c2b0197
-ms.openlocfilehash: 4a225332995bdf7ed03817faf5da89a98eaf1967
+ms.sourcegitcommit: fba5384acae53ac416d91ae30840c6cfa04e7c68
+ms.openlocfilehash: 0c479a58f4158bb1a72dc43432507160f65d2791
 
 
 ---
@@ -30,9 +30,9 @@ Azure 媒體服務提供 HTTP 式「彈性資料流」和漸進式下載功能�
 Azure 媒體服務為資料流端點提供 [整合式 CDN](https://azure.microsoft.com/updates/azure-media-services-now-fully-integrated-with-azure-cdn/) 。 Cache-control 標頭的套用方式與將資料流端點套用支援 CDN 的資料流端點的方式相同。 Azure CDN 使用資料流端點設定的快取值，定義內部快取物件的存留期，也用此值設定傳遞快取標頭。 使用支援 CDN 的資料流端點時，不建議將快取值設得太小。 將值設得太小會降低效能，並減少 CDN 帶來的好處。 支援 CDN 的資料流端點的快取標頭值不得設為 600 秒以下。
 
 > [!IMPORTANT]
-> Azure 媒體服務與 Azure CDN 的整合會在 **來自 Verizon 的 Azure CDN**上實作。  如果您想要將 **來自 Akamai 的 Azure CDN** 用於 Azure 媒體服務，您必須 [手動設定端點](cdn-create-new-endpoint.md)。  如需 Azure CDN 功能的詳細資訊，請參閱 [CDN 概觀](cdn-overview.md)。
+>Azure 媒體服務可與 Azure CDN 完整整合。 只要按一下滑鼠，就能將所有可用的 Azure CDN 整合到您的串流端點，包括 CDN 標準和進階產品。 如需詳細資訊，請參閱[此公告](https://azure.microsoft.com/blog/standardstreamingendpoint/) 。
 > 
-> 
+> 只有當 CDN 是透過串流端點 API 或是 Azure 管理入口網站的串流端點區段啟用時，才會停用串流端點對 CDN的資料傳輸費用。 手動整合或使用 CDN API (或入口網站區段) 直接建立 CDN 端點不會停用資料傳輸費用。
 
 ## <a name="configuring-cache-headers-with-azure-media-services"></a>使用 Azure 媒體服務設定快取標頭
 您可以使用 Azure 管理入口網站或 Azure 媒體服務 API，設定快取標頭的值。
@@ -49,6 +49,6 @@ Azure 媒體服務為資料流端點提供 [整合式 CDN](https://azure.microso
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

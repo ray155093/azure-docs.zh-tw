@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 02/17/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 9cc6d0b42f5e3ace2acff2f68666a22accc4f8b3
-ms.openlocfilehash: bec9f0cd3a6801dbcefeaed9d2b2839245f7014f
+ms.sourcegitcommit: b2eb87a88721a3fd1ecdfa573c6a6d49ed02d344
+ms.openlocfilehash: 84b707668dc45e92e6151f422f1c919f638533b1
 
 
 ---
@@ -186,7 +186,7 @@ SciQuest Spend Director 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-a-sciquest-spend-director-test-user"></a>建立 SciQuest Spend Director 測試使用者
 本節目標是在 SciQuest Spend Director 中建立名為 Britta Simon 的使用者。
@@ -263,6 +263,6 @@ SciQuest Spend Director 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO3-->
 
 

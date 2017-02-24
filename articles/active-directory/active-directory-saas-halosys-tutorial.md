@@ -11,7 +11,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/02/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: 37dc0772ccf74b19656b60f11e66e065815dc2a6
@@ -124,7 +124,7 @@ Halosys 與 Azure AD 整合提供下列優點：
 
     a. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Halosys 應用程式時所使用的 URL：`https://<company-name>.Halosys.com/client-api/api`。
 
-    在 [識別碼 URL] 文字方塊中，以下列模式輸入 URL：`https://<company-name>.Halosys.com`。   
+    在 [識別碼 URL] 文字方塊中，以下列模式輸入 URL：`https://<company-name>.Halosys.com`。    
          
 4. 在 [設定在 Halosys 單一登入] 頁面上，按一下 [下載中繼資料]，然後將檔案儲存在您的電腦中。
 

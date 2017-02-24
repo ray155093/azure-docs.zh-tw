@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 06/01/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 96f4fa714aa5a76f3e7e17c2741b17b626cfe010
+ms.sourcegitcommit: 555342e88c912a3f43c578a40dc34933996ade4c
+ms.openlocfilehash: ef75623a0b8c2a4d38f527a26cbc2cf070765302
 
 
 ---
@@ -40,7 +40,7 @@ ms.openlocfilehash: 96f4fa714aa5a76f3e7e17c2741b17b626cfe010
 ## <a name="setup-mobile-engagement-for-your-web-app"></a>為 Web 應用程式設定 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="a-idconnectingappaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a name="a-idconnecting-appaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 本教學課程將說明「基本整合」，這是收集資料時必要的最低設定。
 
 我們將使用 Visual Studio 來建立基本 Web 應用程式，以便示範整合，但您也可以使用在 Visual Studio 之外建立的任何 Web 應用程式來進行這些步驟。 
@@ -65,7 +65,7 @@ ms.openlocfilehash: 96f4fa714aa5a76f3e7e17c2741b17b626cfe010
    
     ![Visual Studio 和 js 檔案][1]
 
-## <a name="enable-realtime-monitoring"></a>啟用即時監視
+## <a name="enable-real-time-monitoring"></a>啟用即時監視
 若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個活動到 Mobile Engagement 後端。 在 Web 應用程式的內容中，活動就是網頁。 
 
 1. 在方案中建立名為 **home.html** 的新頁面，並將其設為 Web 應用程式的開始頁面。 
@@ -88,7 +88,7 @@ ms.openlocfilehash: 96f4fa714aa5a76f3e7e17c2741b17b626cfe010
         </body>
         </html>
 
-## <a name="connect-app-with-realtime-monitoring"></a>將應用程式與即時監視連接
+## <a name="connect-app-with-real-time-monitoring"></a>將應用程式與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
   ![][2]

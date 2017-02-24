@@ -20,7 +20,7 @@ ms.openlocfilehash: 6d3f4908fd8e245960ba1b1b1244aafeb06922eb
 
 
 ---
-# <a name="storsimple-8000-series-update-01-release-notes-october-2014"></a>StorSimple 8000 系列 Update 0.1 版本資訊 – 2014 年 10 月
+# <a name="storsimple-8000-series-update-01-release-notes--october-2014"></a>StorSimple 8000 系列 Update 0.1 版本資訊 – 2014 年 10 月
 ## <a name="overview"></a>Overview
 下方於 2014 年 10 月發行的版本資訊確定 StorSimple 8000 系列Update 0.1 存有重大的未解決問題。 當中也包含此版本中隨附之 StorSimple 軟體與韌體更新的清單。 這是 StorSimple 8000 系列發行版本於 2014 年 7 月公開上市之後的第一個正式版本，並對應軟體版本 6.3.9600.17312。  
 

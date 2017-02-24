@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 53aa0a84a7f22c8cda5144eb6e1b82f38b72acb8
+ms.sourcegitcommit: b2eb87a88721a3fd1ecdfa573c6a6d49ed02d344
+ms.openlocfilehash: 7166f4d3046f573d2f60d747edf2eefbbd0439c2
 
 
 ---
@@ -233,7 +233,7 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-a-sd-elements-test-user"></a>建立 SD Elements 測試使用者
 本節目標是在 SD Elements 中建立名為 Britta Simon 的使用者。 在 SD Elements 的案例中，以手動工作建立 SD Elements 使用者。
@@ -316,6 +316,6 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

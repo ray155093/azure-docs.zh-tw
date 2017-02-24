@@ -15,8 +15,8 @@ ms.workload: multiple
 ms.date: 06/08/2016
 ms.author: mlearned
 translationtype: Human Translation
-ms.sourcegitcommit: 84b998adfbd43a8e70478e3840e1086ef66cdd99
-ms.openlocfilehash: 3b89cc9469886633be49e953f4ad11166ffa7dad
+ms.sourcegitcommit: 649cc1a78f3a9f343533cb18fb7d763e4f9ea196
+ms.openlocfilehash: 89fa04a1107b6abb49aefd68066443717ac9b731
 
 
 ---
@@ -53,8 +53,8 @@ ERROR: for webapplication1  Cannot create container for service webapplication1:
 #### <a name="prerequisites"></a>必要條件
 
 1. 必須先安裝具有 .NET Core 和 Docker 預覽工作負載的 Visual Studio 2017 RC (或更新版本)。
-2. 必須安裝 Windows 10 週年紀念日更新與最新 Windows Update 修補檔案。
-3. 必須安裝[適用於 Windows (Beta) 的 Docker](https://docs.docker.com/docker-for-windows/) (組建 1.12.2-beta28 7813 或更新版本)。
+2. Windows 10 年度更新版加上最新的 Windows Update 修補檔案。 特別是必須安裝 [KB3194798](https://support.microsoft.com/en-us/help/3194798/cumulative-update-for-windows-10-version-1607-and-windows-server-2016-october-11,-2016)。 
+3. 必須安裝[適用於 Windows 的 Docker](https://docs.docker.com/docker-for-windows/) (組建 1.13.0 或更新版本)。
 4. 必須選取**切換至 Windows 容器**。 在通知區域中，按一下的 [適用於 Windows 的 Docker]，然後選取 [切換至 Windows 容器]。 在機器重新啟動之後，請確定此設定會保留下來。
 
 #### <a name="console-output-does-not-appear-in-visual-studios-output-window-while-debugging-a-console-application"></a>主控台應用程式進行偵錯時，主控台輸出不會出現在 Visual Studio 的輸出視窗
@@ -68,11 +68,6 @@ ERROR: for webapplication1  Cannot create container for service webapplication1:
 ```
 <compilation xdt:Transform="RemoveAttributes(debug)" />
 ```
-
-#### <a name="when-switching-to-windows-containers-you-see-an-error-stating-error-response-from-daemon-io-timeout"></a>切換至 Windows 容器時，您會看到錯誤指出，「回應來自精靈時發生錯誤︰i/o 逾時」
-
-可在 https://github.com/docker/for-win/issues/178 追蹤適用於 Windows 的 Docker 中的這個問題。
-
 
 ## <a name="visual-studio-2015"></a>Visual Studio 2015
 
@@ -137,58 +132,6 @@ docker info
 
 如果此命令傳回錯誤，則請嘗試啟動 **Docker For Windows** 桌面應用程式。 如果桌面應用程式正在執行，則應該可以在通知區域中看到 [白鯨]。 以滑鼠右鍵按一下 [白鯨] 並開啟 [設定]。 按一下 [重設]，然後重新啟動 Docker。
 
-## <a name="manually-upgrading-from-version-031-to-040"></a>從 0.31 版手動升級至 0.40 版
-若要手動升級適用於 Windows 的 Docker:
-
-1. 備份專案。
-1. 刪除專案中的下列檔案︰
-
-    ```
-      Dockerfile
-      Dockerfile.debug
-      DockerTask.ps1
-      docker-compose-yml
-      docker-compose.debug.yml
-      .dockerignore
-      Properties\Docker.props
-      Properties\Docker.targets
-    ```
-
-1. 關閉方案，並從 .xproj 檔案中移除下列幾行︰
-
-    ```
-      <DockerToolsMinVersion>0.xx</DockerToolsMinVersion>
-      <Import Project="Properties\Docker.props" />
-      <Import Project="Properties\Docker.targets" />
-    ```
-
-1. 重新開啟方案。
-1. 從 Properties\launchSettings.json 檔案移除下列幾行︰
-
-    ```
-      "Docker": {
-        "executablePath": "%WINDIR%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-        "commandLineArgs": "-ExecutionPolicy RemoteSigned .\\DockerTask.ps1 -Run -Environment $(Configuration) -Machine '$(DockerMachineName)'"
-      }
-    ```
-
-1. 在 publishOptions 中從 project.json 移除下列與 Docker 相關的檔案︰
-
-    ```
-    "publishOptions": {
-      "include": [
-        ...
-        "docker-compose.yml",
-        "docker-compose.debug.yml",
-        "Dockerfile.debug",
-        "Dockerfile",
-        ".dockerignore"
-      ]
-    },
-    ```
-
-1. 解除安裝舊版本，並安裝 Docker Tools 0.40。 然後從 ASP.NET 核心 web 或主控台應用程式的內容功能表移至 [新增] > [Docker 支援]。 此動作會將新的必要 Docker 構件新增回您的專案。
-
 ## <a name="an-error-dialog-occurs-when-attempting-to-add-docker-support-or-debug-f5-an-aspnet-core-application-in-a-container"></a>嘗試選取 [新增] -> [Docker 支援] 或偵錯 (F5) 容器中的 ASP.NET 核心應用程式時出現錯誤對話方塊
 
 先解除安裝再重新安裝擴充功能之後，Visual Studio 中的 Managed Extensibility Framework (MEF) 快取會損毀。 若發生這種情況，就會導致在新增 Docker 支援和 (或) 嘗試執行或偵錯 (F5) ASP.NET 核心應用程式時出現各種錯誤訊息。 暫時的解決方法是使用下列步驟來刪除和重新產生 MEF 快取。
@@ -206,6 +149,6 @@ docker info
 
 
 
-<!--HONumber=Jan17_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

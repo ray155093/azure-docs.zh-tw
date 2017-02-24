@@ -1,31 +1,31 @@
 ---
-title: "Application Insights 中的遙測取樣 | Microsoft Docs"
+title: "Azure Application Insights 中的遙測取樣 | Microsoft Docs"
 description: "如何讓遙測量保持在控制下。"
 services: application-insights
 documentationcenter: windows
 author: vgorbenko
-manager: douge
+manager: carmonm
 ms.assetid: 015ab744-d514-42c0-8553-8410eef00368
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 08/30/2016
+ms.date: 02/03/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7bd26ffdec185a1ebd71fb88383c2ae4cd6d504f
-ms.openlocfilehash: b04e8a33e5253a5fcda78ad3d2f0626d69c4d9b4
+ms.sourcegitcommit: 611f4222b5ab1530658f612de39dd2712f98c250
+ms.openlocfilehash: cbc622a959c402fe25ce9ab026c1ae05f194d884
 
 
 ---
 # <a name="sampling-in-application-insights"></a>Application Insights 中的取樣
 
 
-取樣是 [Azure Application Insights](app-insights-overview.md) 中的一項功能，若要既能減少遙測流量和儲存空間，又能保有應用程式資料在統計上的正確分析，便建議使用此方法。 篩選器會選取相關的項目，以便您在進行診斷調查時瀏覽各個項目。
+取樣是 [Azure Application Insights](app-insights-overview.md) 中的一個功能。 若要既能減少遙測流量和儲存空間，又能保有應用程式資料在統計上的正確分析，便建議使用此方法。 篩選器會選取相關的項目，以便您在進行診斷調查時瀏覽各個項目。
 在入口網站中呈現度量計數時，就會重新正規化以考慮取樣，以將對統計資料帶來的任何影響降至最低。
 
-取樣可減少流量，協助您保持在每月資料配額內，並協助您避免節流。
+取樣可減少流量與資料成本，而且可以協助您避免節流。
 
 ## <a name="in-brief"></a>簡單地說︰
 * 取樣會保留「n」  筆記錄的其中 1 筆，並捨棄其餘部分。 比方說，它可能會保留 5 個事件的其中 1 個，取樣率為 20%。 
@@ -103,6 +103,17 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 * `<InitialSamplingPercentage>100</InitialSamplingPercentage>`
   
     當應用程式剛開始時指派的值。 不要在偵錯時減少此值。 
+
+* `<ExcludedTypes>Trace;Exception</ExcludedTypes>`
+  
+    不要進行取樣的分號分隔類型清單。 可辨識的類型為：相依性、事件、例外狀況、頁面檢視、要求、追蹤。 會傳送所指定類型的所有執行個體；會針對未指定的類型進行取樣。
+
+* `<IncludedTypes>Request;Dependency</IncludedTypes>`
+  
+    要進行取樣的分號分隔類型清單。 可辨識的類型為：相依性、事件、例外狀況、頁面檢視、要求、追蹤。 會針對指定的類型進行取樣；將一律會傳輸其他類型的所有執行個體。
+
+
+**若要關閉**調適型取樣，請將 AdaptiveSamplingTelemetryProcessor 節點從 applicationinsights-config 移除。
 
 ### <a name="alternative-configure-adaptive-sampling-in-code"></a>替代方法：在程式碼中設定調適性取樣
 除了在 .config 檔中調整取樣之外，您還可以使用程式碼。 這可讓您指定在每次取樣率重新評估時叫用的回呼函式。 例如，您可以使用這個方法來找出使用中的取樣率。
@@ -344,6 +355,6 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

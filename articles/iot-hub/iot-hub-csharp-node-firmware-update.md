@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/17/2016
+ms.date: 02/06/2017
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: 5b8aaa7e7b04224fd51c264822d619866e0161af
+ms.sourcegitcommit: 4ba60cee8848079935111ed3de480081a4aa58f6
+ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 5b8aaa7e7b04224fd51c264822d619866e0161af
 本教學課程說明如何：
 
 * 建立 .NET 主控台應用程式，以透過您的 IoT 中樞在模擬裝置應用程式中呼叫 firmwareUpdate 直接方法。
-* 建立模擬裝置應用程式以實作 firmwareUpdate 直接方法，該方法會經過多重階段的處理，等待下載韌體映像、下載韌體映像，最後套用韌體映像。  在執行每個階段時，裝置會使用報告屬性來更新進度。
+* 建立會實作 **firmwareUpdate** 直接方法的模擬裝置應用程式。 此方法會起始多階段程序，此程序會等候下載韌映像、下載韌體映像，最後再套用韌體映像。 在更新的每個階段，裝置都會使用回報的屬性來回報進度。
 
 在本教學課程結束時，您會有 Node.js 主控台裝置應用程式和 .NET (C#) 主控台後端應用程式：
 
@@ -50,7 +50,7 @@ ms.openlocfilehash: 5b8aaa7e7b04224fd51c264822d619866e0161af
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="trigger-a-remote-firmware-update-on-the-device-using-a-direct-method"></a>使用直接方法在裝置上觸發遠端韌體更新
-在本節中，您會建立 .NET 主控台應用程式 (使用 C#)，使用直接方法在裝置上起始遠端韌體更新，並使用裝置對應項查詢來定期取得該裝置上作用中韌體更新的狀態。
+在此節中，您會建立 .NET 主控台應用程式 (使用 C#)，此應用程式會在裝置上起始遠端韌體更新。 此應用程式使用直接方法來起始更新，並使用裝置對應項查詢來定期取得作用中韌體更新的狀態。
 
 1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **TriggerFWUpdate**。
 
@@ -63,8 +63,9 @@ ms.openlocfilehash: 5b8aaa7e7b04224fd51c264822d619866e0161af
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
+        using Microsoft.Azure.Devices.Shared;
         
-5. 將下列欄位新增到 **Program** 類別。 將多個預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
+5. 將下列欄位新增到 **Program** 類別。 將多個預留位置值取代為您在上一節中為中樞所建立的 IoT 中樞連接字串與您的裝置識別碼。
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
@@ -107,218 +108,7 @@ ms.openlocfilehash: 5b8aaa7e7b04224fd51c264822d619866e0161af
         
 8. 建置方案。
 
-## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
-在本節中，您將：
-
-* 建立 Node.js 主控台應用程式，以回應雲端所呼叫的直接方法
-* 觸發模擬韌體更新
-* 使用報告屬性來啟用裝置對應項查詢，以識別裝置及其上次完成韌體更新的時間
-
-1. 建立稱為 **manageddevice**的新的空資料夾。  在 **manageddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。  接受所有預設值：
-   
-    ```
-    npm init
-    ```
-2. 在命令提示字元中，於 **manageddevice** 資料夾中執行下列命令來安裝 **azure-iot-device** 裝置 SDK 套件和 **azure-iot-device-mqtt** 套件：
-   
-    ```
-    npm install azure-iot-device azure-iot-device-mqtt --save
-    ```
-3. 使用文字編輯器，在 **manageddevice** 資料夾中建立新的 **dmpatterns_fwupdate_device.js** 檔案。
-4. 在 **dmpatterns_fwupdate_device.js** 檔案開頭新增下列 'require' 陳述式：
-   
-    ```
-    'use strict';
-   
-    var Client = require('azure-iot-device').Client;
-    var Protocol = require('azure-iot-device-mqtt').Mqtt;
-    ```
-5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。  
-   
-    ```
-    var connectionString = 'HostName={youriothostname};DeviceId=myDeviceId;SharedAccessKey={yourdevicekey}';
-    var client = Client.fromConnectionString(connectionString, Protocol);
-    ```
-6. 新增下列函式，用來更新報告屬性
-   
-    ```
-    var reportFWUpdateThroughTwin = function(twin, firmwareUpdateValue) {
-      var patch = {
-          iothubDM : {
-            firmwareUpdate : firmwareUpdateValue
-          }
-      };
-   
-      twin.properties.reported.update(patch, function(err) {
-        if (err) throw err;
-        console.log('twin state reported')
-      });
-    };
-    ```
-7. 新增下列函式，模擬韌體映像的下載和套用。
-   
-    ```
-    var simulateDownloadImage = function(imageUrl, callback) {
-      var error = null;
-      var image = "[fake image data]";
-   
-      console.log("Downloading image from " + imageUrl);
-   
-      callback(error, image);
-    }
-   
-    var simulateApplyImage = function(imageData, callback) {
-      var error = null;
-   
-      if (!imageData) {
-        error = {message: 'Apply image failed because of missing image data.'};
-      }
-   
-      callback(error);
-    }
-    ```
-8. 新增下列函式，透過報告屬性來等待下載，以更新韌體更新狀態。  一般而言，會通知裝置可用的更新，系統管理員會定義原則讓裝置開始下載並套用更新。  這是讓該原則執行的邏輯所在位置。  為了簡單起見，我們延遲 4 秒，然後繼續下載韌體映像。 
-   
-    ```
-    var waitToDownload = function(twin, fwPackageUriVal, callback) {
-      var now = new Date();
-   
-      reportFWUpdateThroughTwin(twin, {
-        fwPackageUri: fwPackageUriVal,
-        status: 'waiting',
-        error : null,
-        startedWaitingTime : now.toISOString()
-      });
-      setTimeout(callback, 4000);
-    };
-    ```
-9. 新增下列函式，透過報告屬性來下載韌體映像，以更新韌體更新狀態。  然後它會藉由模擬韌體下載，最後更新韌體更新狀態，以通知下載成功或失敗。
-   
-    ```
-    var downloadImage = function(twin, fwPackageUriVal, callback) {
-      var now = new Date();   
-   
-      reportFWUpdateThroughTwin(twin, {
-        status: 'downloading',
-      });
-   
-      setTimeout(function() {
-        // Simulate download
-        simulateDownloadImage(fwPackageUriVal, function(err, image) {
-   
-          if (err)
-          {
-            reportFWUpdateThroughTwin(twin, {
-              status: 'downloadfailed',
-              error: {
-                code: error_code,
-                message: error_message,
-              }
-            });
-          }
-          else {        
-            reportFWUpdateThroughTwin(twin, {
-              status: 'downloadComplete',
-              downloadCompleteTime: now.toISOString(),
-            });
-   
-            setTimeout(function() { callback(image); }, 4000);   
-          }
-        });
-   
-      }, 4000);
-    }
-    ```
-10. 新增下列函式，透過報告屬性來套用韌體映像，以更新韌體更新狀態。  然後它會藉由模擬套用韌體映像，最後更新韌體更新狀態，以通知套用成功或失敗。
-    
-    ```
-    var applyImage = function(twin, imageData, callback) {
-      var now = new Date();   
-    
-      reportFWUpdateThroughTwin(twin, {
-        status: 'applying',
-        startedApplyingImage : now.toISOString()
-      });
-    
-      setTimeout(function() {
-    
-        // Simulate apply firmware image
-        simulateApplyImage(imageData, function(err) {
-          if (err) {
-            reportFWUpdateThroughTwin(twin, {
-              status: 'applyFailed',
-              error: {
-                code: err.error_code,
-                message: err.error_message,
-              }
-            });
-          } else { 
-            reportFWUpdateThroughTwin(twin, {
-              status: 'applyComplete',
-              lastFirmwareUpdate: now.toISOString()
-            });    
-    
-          }
-        });
-    
-        setTimeout(callback, 4000);
-    
-      }, 4000);
-    }
-    ```
-11. 新增下列函式，處理 **firmwareUpdate** 方法並起始多階段韌體更新程序。
-    
-    ```
-    var onFirmwareUpdate = function(request, response) {
-    
-      // Respond the cloud app for the direct method
-      response.send(200, 'FirmwareUpdate started', function(err) {
-        if (!err) {
-          console.error('An error occured when sending a method response:\n' + err.toString());
-        } else {
-          console.log('Response to method \'' + request.methodName + '\' sent successfully.');
-        }
-      });
-    
-      // Get the parameter from the body of the method request
-      var fwPackageUri = JSON.parse(request.payload).fwPackageUri;
-    
-      // Obtain the device twin
-      client.getTwin(function(err, twin) {
-        if (err) {
-          console.error('Could not get device twin.');
-        } else {
-          console.log('Device twin acquired.');
-    
-          // Start the multi-stage firmware update
-          waitToDownload(twin, fwPackageUri, function() {
-            downloadImage(twin, fwPackageUri, function(imageData) {
-              applyImage(twin, imageData, function() {});    
-            });  
-          });
-    
-        }
-      });
-    }
-    ```
-12. 最後，新增下列程式碼，以裝置形式連接到 IoT 中樞。 
-    
-    ```
-    client.open(function(err) {
-      if (err) {
-        console.error('Could not connect to IotHub client');
-      }  else {
-        console.log('Client connected to IoT Hub.  Waiting for firmwareUpdate direct method.');
-      }
-    
-      client.onDeviceMethod('firmwareUpdate', onFirmwareUpdate(request, response));
-    });
-    ```
-
-> [!NOTE]
-> 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
-> 
-> 
+[!INCLUDE [iot-hub-device-firmware-update](../../includes/iot-hub-device-firmware-update.md)]
 
 ## <a name="run-the-apps"></a>執行應用程式
 您現在可以開始執行應用程式。
@@ -328,12 +118,12 @@ ms.openlocfilehash: 5b8aaa7e7b04224fd51c264822d619866e0161af
     ```
     node dmpatterns_fwupdate_device.js
     ```
-2. 執行 C# 主控台應用程式 **TriggerFWUpdate** - 以滑鼠右鍵按一下 **TriggerFWUpdate** 專案，選取 [偵錯] 和 [啟動新的執行個體]。
+2. 在 Visual Studio 中，以滑鼠右鍵按一下 [TriggerFWUpdate] 專案。執行到 C# 主控台應用程式，選取 [偵錯] 與 [開始新執行個體]。
 
 3. 您會在主控台中看到直接方法的裝置回應。
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您使用直接方法來觸發裝置上的遠端韌體更新，並且定期使用報告屬性，以了解韌體更新處理的進度。  
+在此教學課程中，您使用直接方法來觸發裝置上的遠端韌體更新，並且使用回報的屬性追蹤韌體更新的進度。
 
 若要了解如何擴充您的 IoT 解決方案以及在多個裝置上排程方法呼叫，請參閱[排程及廣播作業][lnk-tutorial-jobs]教學課程。
 
@@ -353,6 +143,6 @@ ms.openlocfilehash: 5b8aaa7e7b04224fd51c264822d619866e0161af
 [lnk-nuget-service-sdk]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

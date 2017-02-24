@@ -1,0 +1,195 @@
+---
+title: "Azure 事件中樞 .NET Standard API 概觀 | Microsoft Docs"
+description: ".NET Standard API 概觀"
+services: event-hubs
+documentationcenter: na
+author: jtaubensee
+manager: timlt
+editor: 
+ms.assetid: a173f8e4-556c-42b8-b856-838189f7e636
+ms.service: event-hubs
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 02/02/2017
+ms.author: jotaub
+translationtype: Human Translation
+ms.sourcegitcommit: f77755bed5463c0c87f698ded5c80d824efbd8b0
+ms.openlocfilehash: 101727b54aa198411efaa5bfa7c0859bcfeb5417
+
+---
+
+# <a name="event-hubs-net-standard-api-overview"></a>事件中樞 .NET Standard API 概觀
+本文將摘要列出一些主要事件中樞 .NET Standard 用戶端 API。 目前有兩個 .NET Standard 用戶端程式庫︰
+* [Microsoft.Azure.EventHubs](/dotnet/api/microsoft.azure.eventhubs)
+  *  此程式庫提供所有基本的執行階段作業。
+* [Microsoft.Azure.EventHubs.Processor](/dotnet/api/microsoft.azure.eventhubs.processor)
+  * 此程式庫新增額外的功能，允許追蹤處理過的事件，且是從事件中心讀取的最簡單方式。
+
+## <a name="event-hub-client"></a>事件中樞用戶端
+[**EventHubClient**](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) 是您用來傳送事件、建立接收者，以及取得執行階段資訊的主要物件。 此用戶端會連結到特定的事件中樞，並建立新的事件中樞端點連線。
+
+### <a name="create-an-event-hub-client"></a>建立事件中樞用戶端
+[**EventHubClient**](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) 物件是從連接字串建立。 具現化新用戶端的最簡單方式，如下列範例所示︰
+
+```csharp
+var eventHubClient = EventHubClient.CreateFromConnectionString("{Event Hub connection string}");
+```
+
+若要以程式設計方式編輯連接字串，您可以使用 [**EventHubsConnectionStringBuilder**](/dotnet/api/microsoft.azure.eventhubs.eventhubsconnectionstringbuilder) 類別，並將連接字串做為參數傳遞到 [**EventHubClient.CreateFromConnectionString**](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_CreateFromConnectionString_System_String_)。
+
+```csharp
+var connectionStringBuilder = new EventHubsConnectionStringBuilder("{Event Hub connection string}")
+{
+    EntityPath = EhEntityPath
+};
+
+var eventHubClient = EventHubClient.CreateFromConnectionString(connectionStringBuilder.ToString());
+```
+
+### <a name="send-events"></a>傳送事件
+若要傳送事件到事件中樞，請使用 [**EventData**](/dotnet/api/microsoft.azure.eventhubs.eventdata) 類別。 主體必須是 `byte` 陣列，或者 `byte` 陣列區段。
+
+```csharp
+// Create a new EventData object by encoding a string as a byte array
+var data = new EventData(Encoding.UTF8.GetBytes("This is my message..."));
+// Set user properties if needed
+data.Properties.Add("Type", "Informational");
+// Send single message async
+await eventHubClient.SendAsync(data);
+```
+
+### <a name="receive-events"></a>接收事件
+從事件中樞接收事件的建議方式是使用 [**EventProcessorHost**](##Event-Processor-Host-APIs)，它提供了自動追蹤位移的功能，以及資料分割資訊。 不過，在某些情況中，您可能會想要使用核心事件中樞程式庫的彈性來接收事件。
+
+#### <a name="create-a-receiver"></a>建立接收者
+接收者會繫結至特定的資料分割，因此為了要在事件中樞中接收所有事件，您必須建立多個執行個體。 一般而言，最好以程式設計的方式取得資料分割資訊，而不是以硬式編碼資料分割識別碼的方式。 若要這樣做，您可以使用 [**GetRuntimeInformationAsync**](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_GetRuntimeInformationAsync) 方法。
+
+```csharp
+
+// Create a list to keep track of the receivers
+var receivers = new List<PartitionReceiver>();
+// Use the eventHubClient created above to get the runtime information
+var runTimeInformation = await eventHubClient.GetRuntimeInformationAsync();
+// Loop over the resulting partition ids
+foreach (var partitionId in runTimeInformation.PartitionIds)
+{
+    // Create the receiver
+    var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, PartitionReceiver.EndOfStream);
+    // Add the receiver to the list
+    receivers.Add(receiver);
+}
+```
+
+因為事件永遠不會從事件中樞移除 (且只有過期)，您必須指定適當的起始點。 下列範例顯示可能的組合。
+
+```csharp
+// partitionId is assumed to come from GetRuntimeInformationAsync()
+
+// Using the constant 'PartitionReceiver.EndOfStream' will only receive all messages from this point forward.
+var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, PartitionReceiver.EndOfStream);
+
+// All messages available
+var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, "-1");
+
+// From one day ago
+var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, DateTime.Now.AddDays(-1));
+```
+
+#### <a name="consume-an-event"></a>使用事件
+```csharp
+// Receive a maximum of 100 messages in this call to ReceiveAsync
+var ehEvents = await receiver.ReceiveAsync(100);
+// ReceiveAsync can return null if there are no messages
+if (ehEvents != null)
+{
+    // Since ReceiveAsync can return more than a single event you will need a loop to process
+    foreach (var ehEvent in ehEvents)
+    {
+        // Decode the byte array segment
+        var message = UnicodeEncoding.UTF8.GetString(ehEvent.Body.Array);
+        // Load the custom property that we set in the send example
+        var customType = ehEvent.Properties["Type"];
+        // Implement processing logic here
+    }
+}       
+```
+
+## <a name="event-processor-host-apis"></a>Event Processor Host API
+這些 API 會透過在可用的背景工作之間散佈資料分割，提供恢復功能給可能會變成無法使用的背景工作角色處理序。
+
+```csharp
+// Checkpointing is done within the SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
+
+// Read these connection strings from a secure location
+var ehConnectionString = "{Event Hubs connection string}";
+var ehEntityPath = "{Event Hub path/name}";
+var storageConnectionString = "{Storage connection string}";
+var storageContainerName = "{Storage account container name}";
+
+var eventProcessorHost = new EventProcessorHost(
+    ehEntityPath,
+    PartitionReceiver.DefaultConsumerGroupName,
+    ehConnectionString,
+    storageConnectionString,
+    storageContainerName);
+
+// Start/register an EventProcessorHost
+await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
+
+// Disposes of the Event Processor Host
+await eventProcessorHost.UnregisterEventProcessorAsync();
+```
+
+以下是 [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor) 的範例實作。
+
+```csharp
+public class SimpleEventProcessor : IEventProcessor
+{
+    public Task CloseAsync(PartitionContext context, CloseReason reason)
+    {
+        Console.WriteLine($"Processor Shutting Down. Partition '{context.PartitionId}', Reason: '{reason}'.");
+        return Task.CompletedTask;
+    }
+
+    public Task OpenAsync(PartitionContext context)
+    {
+        Console.WriteLine($"SimpleEventProcessor initialized. Partition: '{context.PartitionId}'");
+        return Task.CompletedTask;
+    }
+
+    public Task ProcessErrorAsync(PartitionContext context, Exception error)
+    {
+        Console.WriteLine($"Error on Partition: {context.PartitionId}, Error: {error.Message}");
+        return Task.CompletedTask;
+    }
+
+    public Task ProcessEventsAsync(PartitionContext context, IEnumerable<EventData> messages)
+    {
+        foreach (var eventData in messages)
+        {
+            var data = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
+            Console.WriteLine($"Message received. Partition: '{context.PartitionId}', Data: '{data}'");
+        }
+
+        return context.CheckpointAsync();
+    }
+}
+```
+
+## <a name="next-steps"></a>後續步驟
+若要深入了解事件中樞案例，請造訪下列連結：
+
+* [Azure 事件中樞是什麼？](event-hubs-what-is-event-hubs.md)
+* [可用的事件中樞 API](event-hubs-api-overview.md)
+
+.NET API 參考如下：
+
+* [Microsoft.Azure.EventHubs](/dotnet/api/microsoft.azure.eventhubs)
+* [Microsoft.Azure.EventHubs.Processor](/dotnet/api/microsoft.azure.eventhubs.processor)
+
+
+<!--HONumber=Feb17_HO1-->
+
+

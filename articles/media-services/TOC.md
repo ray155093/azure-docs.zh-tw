@@ -4,6 +4,12 @@
 # 開始使用
 ## [建立和管理帳戶](media-services-portal-create-account.md)
 ## [設定開發環境](media-services-set-up-computer.md)
+###[.NET](media-services-dotnet-how-to-use.md)
+###[REST](media-services-rest-how-to-use.md)  
+## 以程式設計方式連線
+### [.NET](media-services-dotnet-connect-programmatically.md)
+### [REST](media-services-rest-connect-programmatically.md)
+
 ## 傳遞隨選影片
 ### [入口網站](media-services-portal-vod-get-started.md)
 ### [.NET SDK](media-services-dotnet-get-started.md)
@@ -15,19 +21,18 @@
 
 # 作法
 ## 管理
-### 管理帳戶
+### 帳戶
 #### [PowerShell](media-services-manage-with-powershell.md)
 #### [REST](/rest/api/media/mediaservice)
-### 管理實體
+### 實體
 #### [.NET](media-services-dotnet-manage-entities.md)
 #### [REST](media-services-rest-manage-entities.md)
-### 以程式設計方式連線
-#### [.NET](media-services-dotnet-connect-programmatically.md)
-#### [REST](media-services-rest-connect-programmatically.md)
-### [管理串流端點](media-services-streaming-endpoints-overview.md)
+### [串流端點](media-services-streaming-endpoints-overview.md)
 #### [入口網站](media-services-portal-manage-streaming-endpoints.md)
 #### [.NET](media-services-dotnet-manage-streaming-endpoints.md)
-### [如何：更換儲存體存取金鑰之後更新媒體服務](media-services-roll-storage-access-keys.md)
+### 儲存體
+#### [更換儲存體存取金鑰之後更新媒體服務](media-services-roll-storage-access-keys.md)
+#### [管理跨多個儲存體帳戶的資產](meda-services-managing-multiple-storage-accounts.md)
 ### [配額和限制](media-services-quotas-and-limitations.md)
 
 ## 上傳內容
@@ -35,6 +40,7 @@
 #### [入口網站](media-services-portal-upload-files.md)
 #### [.NET](media-services-dotnet-upload-files.md)
 #### [REST](media-services-rest-upload-files.md)
+### [透過 Aspera 上傳大型檔案](media-services-upload-files-with-aspera.md)
 ### [複製現有的 Blob](media-services-copying-existing-blob.md)
 
 ## [編碼內容](media-services-encode-asset.md)
@@ -98,7 +104,6 @@
 #### [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
 #### [REST](https://docs.microsoft.com/rest/api/media/operations/channel)
 ### [使用雲端編碼器即時串流](media-services-manage-live-encoder-enabled-channels.md)
-### 雲端編碼器教學課程
 #### [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
 #### [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 ### [設定內部部署編碼器與雲端編碼器搭配運作](media-services-live-encoders-overview.md)
@@ -114,11 +119,14 @@
 ### [為串流設定 AES-128 清除金鑰](media-services-protect-with-aes128.md)
 ### [使用 AMS REST API 以儲存體加密來加密您的內容](media-services-rest-storage-encryption.md)
 ### [媒體服務 PlayReady 授權範本概觀](media-services-playready-license-template-overview.md)
+### [Widevine 授權範本概觀](media-services-widevine-license-template-overview.md)
 ### [DRM 授權傳遞](media-services-deliver-keys-and-licenses.md)
 ### [使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務](media-services-licenses-partner-integration.md)
 ### [使用 PlayReady 和/或 Widevine 動態一般加密](media-services-protect-with-drm.md)
 ### [使用 Azure 媒體服務串流以 Apple FairPlay 保護的 HLS 內容](media-services-protect-hls-with-fairplay.md)
 ### [具有多重 DRM 及存取控制的 CENC：Azure 與 Azure 媒體服務的參考設計和實作](media-services-cenc-with-multidrm-access-control.md)
+### [使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務](media-services-axinom-integration.md)
+### [使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務](media-services-castlabs-integration.md)
 
 ### 資產傳遞
 #### 設定資產傳遞原則
@@ -152,16 +160,16 @@
 ### [媒體處理](media-services-scale-media-processing-overview.md)
 #### [入口網站](media-services-portal-scale-media-processing.md)
 #### [.NET](media-services-dotnet-encoding-units.md)
-#### [REST](https://msdn.microsoft.com/library/azure/dn859236.aspx)
+#### [REST](https://docs.microsoft.com/rest/api/media/operations/encodingreservedunittype)
 ### 串流端點
 #### [入口網站](media-services-portal-scale-streaming-endpoints.md)
 
 ## [傳遞內容](media-services-deliver-content-overview.md)
 ### [動態封裝](media-services-dynamic-packaging-overview.md)
 ### [篩選器和動態資訊清單概觀](media-services-dynamic-manifest-overview.md)
-### 建立篩選器
-#### [.NET](media-services-dotnet-dynamic-manifest.md)
-#### [REST](media-services-rest-dynamic-manifest.md)
+#### [使用 .NET 建立篩選器](media-services-dotnet-dynamic-manifest.md)
+#### [使用 REST 建立篩選器](media-services-rest-dynamic-manifest.md)
+### [媒體服務延伸模組中的 CDN 快取原則](../cdn/cdn-caching-policy.md?toc=%2fazure%2fmedia-services%2ftoc.json)
 ### 發佈內容
 #### [入口網站](media-services-portal-publish.md)
 #### [.NET](media-services-deliver-streaming-content.md)
@@ -177,21 +185,18 @@
 #### [具有 DASH.js 的 HTML5 應用程式](media-services-embed-mpeg-dash-in-html5.md)
 #### [Adobe 開放原始碼媒體架構播放器](media-services-use-osmf-smooth-streaming-client-plugin.md)
 ### [在用戶端插入廣告](media-services-inserting-ads-on-client-side.md)
+### [授權 Microsoft Smooth Streaming 用戶端移轉套件](media-services-sspk.md)
 
 ## 整合
-### [媒體服務延伸模組中的 CDN 快取原則](../cdn/cdn-caching-policy.md?toc=%2fazure%2fmedia-services%2ftoc.json)
-### [授權 Microsoft†" Smooth Streaming Client Porting Kit](media-services-sspk.md)
-### [管理跨多個儲存體帳戶的資產](meda-services-managing-multiple-storage-accounts.md)
-### [使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務](media-services-axinom-integration.md)
-### [使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務](media-services-castlabs-integration.md)
-### [Widevine 授權範本概觀](media-services-widevine-license-template-overview.md)
+### [Azure Functions](https://github.com/azure-samples/media-services-dotnet-functions-integration)
 
 ## 監視
 ### 檢查作業進度
 #### [REST](media-services-rest-check-job-progress.md)
 #### [入口網站](media-services-portal-check-job-progress.md)
 #### [.NET](media-services-check-job-progress.md)
-### [佇列儲存體以監視作業通知](media-services-dotnet-check-job-progress-with-queues.md)
+### [監視搭配佇列儲存體的作業通知](media-services-dotnet-check-job-progress-with-queues.md)
+### [監視搭配 webhook 的作業通知](media-services-dotnet-check-job-progress-with-webhooks.md)
 
 ## 疑難排解
 ### [常見問題集](media-services-frequently-asked-questions.md)
@@ -212,6 +217,6 @@
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=media-services)
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

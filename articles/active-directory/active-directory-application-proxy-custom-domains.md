@@ -1,34 +1,34 @@
 ---
-title: "使用 Azure AD 應用程式 Proxy 中的自訂網域 | Microsoft Docs"
-description: "說明如何使用 Azure AD 應用程式 Proxy 中的自訂網域。"
+title: "Azure AD 應用程式 Proxy 中的自訂網域 | Microsoft Docs"
+description: "管理 Azure AD 應用程式 Proxy 中的自訂網域，讓不論使用者從何處存取都能看到相同的應用程式 URL。"
 services: active-directory
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: 
+editor: harshja
 ms.assetid: 2fe9f895-f641-4362-8b27-7a5d08f8600f
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 06/22/2016
+ms.date: 02/03/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: fedd64ad885bacedf01afd91adf0c4d05265c476
+ms.sourcegitcommit: 081e45e0256134d692a2da7333ddbaafc7366eaa
+ms.openlocfilehash: b8edebd4e7dfdbf85a9beb6d126acaf7ec66dd01
 
 
 ---
 # <a name="working-with-custom-domains-in-azure-ad-application-proxy"></a>使用 Azure AD 應用程式 Proxy 中的自訂網域
-使用預設網域，可讓您將相同的 URL 設為可供存取應用程式的內部或外部 URL，而您的使用者在存取應用程式時只需記住一個 URL (不論他們是從哪裡進行存取)。 這也讓您可以在應用程式的 [存取面板] 中建立單一捷徑。 如果您使用 Azure AD 應用程式 Proxy 所提供的預設網域，則無需進行其他設定來啟用您的網域。 在使用自訂網域的情況下，您需要執行一些動作，以確保應用程式 Proxy 能辨識您的網域並驗證其憑證。
+使用預設網域，可讓您將相同的 URL 設為可供存取應用程式的內部或外部 URL，而您的使用者在存取應用程式時只需記住一個 URL (不論他們是從哪裡進行存取)。 這也讓您可以在應用程式的 [存取面板] 中建立單一捷徑。 如果您使用 Azure AD 應用程式 Proxy 所提供的預設網域，則無需進行其他設定來啟用您的網域。 若使用自訂網域，您需要執行一些動作，以確保應用程式 Proxy 能辨識您的網域並驗證其憑證。
 
 ## <a name="selecting-your-custom-domain"></a>選取自訂網域
 1. 根據 [使用應用程式 Proxy 發佈應用程式](active-directory-application-proxy-publish.md)中的指示，發佈您的應用程式。
 2. 在應用程式出現在應用程式清單後，加以選取並按一下 [設定] 。
 3. 在 [外部 URL] 之下，輸入您的自訂網域。
 4. 如果您的外部 URL 是 https，系統將提示您上傳憑證，以便 Azure 驗證應用程式的 URL。 您也可以上傳符合應用程式外部 URL 的萬用字元憑證。 這個網域必須在您的 [Azure 已驗證網域](https://msdn.microsoft.com/library/azure/jj151788.aspx)清單內。 Azure 必須有應用程式之網域 URL 的憑證或符合應用程式之 [外部 URL] 的萬用字元憑證。
-5. 請務必新增可將內部 URL 路由傳送至應用程式的 DNS 記錄，讓您有相同的 URL 以供內部和外部存取，以及在使用者的應用程式清單中有應用程式的單一捷徑。
+5. 新增 DNS 記錄，以將內部 URL 路由傳送到應用程式。 此記錄可讓您為內部與外部應用程式存取提供相同的 URL，並在使用者的應用程式清單中提供單一捷徑。
 
 ## <a name="frequently-asked-questions-about-working-with-custom-domains"></a>有關使用自訂網域的常見問題
 問：是否可以選取已上傳的憑證，而不再重新上載？  
@@ -70,17 +70,15 @@ ms.openlocfilehash: fedd64ad885bacedf01afd91adf0c4d05265c476
 問：是否有地方可以查看我的租用戶的所有憑證？  
 答︰目前的版本不支援此功能。  
 
-## <a name="see-also"></a>另請參閱
-* [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
-* [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
-* [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
+## <a name="next-steps"></a>後續步驟
+* [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)以登入您使用 Azure AD 驗證發佈的應用程式。
+* [啟用條件式存取](active-directory-application-proxy-conditional-access.md)以存取您發佈的應用程式。
 * [將自訂網域名稱新增至 Azure AD](active-directory-add-domain.md)
 
-如需最新消息，請查閱 [應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
 
 
 
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

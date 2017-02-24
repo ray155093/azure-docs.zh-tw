@@ -13,11 +13,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/21/2016
+ms.date: 02/08/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 822bace005a6244a47c9484487dab85b1aec9d9a
-ms.openlocfilehash: e20b1ca582c56da7b4fb1e2df3be90bd1c29a8b6
+ms.sourcegitcommit: d3d59e19ff654a953be43706dce926c4450c6179
+ms.openlocfilehash: 6493230295dbfc939df3daf8504a7d8662083f51
 
 
 ---
@@ -36,29 +36,21 @@ ms.openlocfilehash: e20b1ca582c56da7b4fb1e2df3be90bd1c29a8b6
 下列章節列出您在嘗試刪除 Azure 儲存體帳戶、容器或 VHD 時可能收到的常見錯誤。
 
 ### <a name="scenario-1-unable-to-delete-a-storage-account"></a>案例 1：無法刪除儲存體帳戶
-當您瀏覽至 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](https://manage.windowsazure.com/)中的儲存體帳戶，並選取 [刪除] 時，您可能會看到下列錯誤訊息︰
+當您在 [Azure 入口網站](https://portal.azure.com/)中瀏覽至傳統儲存體帳戶，並選取 [刪除] 時，可能會出現妨礙刪除儲存體帳戶的物件清單︰
 
-儲存體帳戶 StorageAccountName 包含 VM 映像。確認這些 VM 映像已移除之後再刪除此儲存體帳戶。
+  ![刪除儲存體帳戶時發生錯誤的映像](./media/storage-cannot-delete-storage-account-container-vhd/newerror.png)
 
-您也可能會看到此錯誤︰
+當您在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中瀏覽至儲存體帳戶，並選取 [刪除]時，您可能會看到下列其中一個錯誤︰
 
-**在 Azure 入口網站上**：
+- 儲存體帳戶 StorageAccountName 包含 VM 映像。確認這些 VM 映像已移除之後再刪除此儲存體帳戶。
 
-*無法刪除儲存體帳戶 <vm-storage-account-name>。無法刪除儲存體帳戶 <vm-storage-account-name>：儲存體帳戶 <vm-storage-account-name> 有些作用中的映像及/或磁碟。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。」*
+- *無法刪除儲存體帳戶 <vm-storage-account-name>。無法刪除儲存體帳戶 <vm-storage-account-name>：儲存體帳戶 <vm-storage-account-name> 有些作用中的映像及/或磁碟。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。」*
 
-**在 Azure 傳統入口網站上**：
+- *儲存體帳戶 <vm-storage-account-name> 有某些作用中的映像及/或磁碟，例如 xxxxxxxxx- xxxxxxxxx-O-209490240936090599。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。*
 
-*儲存體帳戶 <vm-storage-account-name> 有某些作用中的映像及/或磁碟，例如 xxxxxxxxx- xxxxxxxxx-O-209490240936090599。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。*
+- *儲存體帳戶 <vm-storage-account-name> 已有 1 個具備作用中映像及/或磁碟成品的容器。請確定這些成品已從映像儲存機制移除之後再刪除此儲存體帳戶。*
 
-或
-
-**在 Azure 入口網站上**：
-
-*儲存體帳戶 <vm-storage-account-name> 已有 1 個具備作用中映像及/或磁碟成品的容器。請確定這些成品已從映像儲存機制移除之後再刪除此儲存體帳戶。*
-
-**在 Azure 傳統入口網站上**：
-
-*提交失敗的儲存體帳戶 <vm-storage-account-name> 已有 1 個具備作用中映像及/或磁碟成品的容器。請確定這些成品已從映像儲存機制移除之後再刪除此儲存體帳戶。當您嘗試刪除儲存體帳戶，而且具有與其相關聯的磁碟仍在作用中時，您會看到一則訊息，告訴您有需要刪除的作用中磁碟*。
+- *提交失敗的儲存體帳戶 <vm-storage-account-name> 已有 1 個具備作用中映像及/或磁碟成品的容器。請確定這些成品已從映像儲存機制移除之後再刪除此儲存體帳戶。當您嘗試刪除儲存體帳戶，而且具有與其相關聯的磁碟仍在作用中時，您會看到一則訊息，告訴您有需要刪除的作用中磁碟*。
 
 ### <a name="scenario-2-unable-to-delete-a-container"></a>案例 2：無法刪除容器
 當您嘗試刪除儲存體容器時，您可能會看到下列錯誤︰
@@ -125,7 +117,7 @@ ms.openlocfilehash: e20b1ca582c56da7b4fb1e2df3be90bd1c29a8b6
     接下來，嘗試再次刪除儲存體帳戶、容器或 VHD。
 
 > [!WARNING]
-> 請務必先備份您想要儲存的任何資料，再刪除帳戶。 您無法還原已刪除的儲存體帳戶，也無法擷取刪除之前所包含的任何內容。 這也適用於帳戶中的任何資源：一旦刪除 VHD、Blob、資料表、佇列或檔案，就是永久刪除。 確定資源不在使用中。
+> 請務必先備份您想要儲存的任何資料，再刪除帳戶。 刪除 VHD、blob、資料表、佇列或檔案就是永久刪除。 確定資源不在使用中。
 >
 >
 
@@ -148,6 +140,6 @@ ms.openlocfilehash: e20b1ca582c56da7b4fb1e2df3be90bd1c29a8b6
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

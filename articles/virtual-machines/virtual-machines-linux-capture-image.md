@@ -1,6 +1,6 @@
 ---
-title: "擷取 Linux VM 作為範本使用 | Microsoft Docs"
-description: "了解如何擷取以 Azure Resource Manager 部署模型建立的以 Linux 為基礎之 Azure 虛擬機器 (VM) 的映像，並將它一般化。"
+title: "使用 Azure CLI 2.0 (預覽) 擷取 Linux VM | Microsoft Docs"
+description: "如何使用以 Azure CLI 2.0 (預覽) 建立的受控磁碟，擷取以 Linux 為基礎之 Azure 虛擬機器 (VM) 的映像並將它一般化"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -13,32 +13,74 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 10/25/2016
+ms.date: 02/02/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 93119596f5a9fb3b6cf405f6de5d2ecccd45f298
+ms.sourcegitcommit: 4620ace217e8e3d733129f69a793d3e2f9e989b2
+ms.openlocfilehash: 64b829de4389ba6aa46dc51afd0cff3f40265d68
 
 
 ---
-# <a name="capture-a-linux-virtual-machine-running-on-azure"></a>擷取在 Azure 上執行的 Linux 虛擬機器
-請遵循本文中的步驟，在 Resource Manager 部署模型中一般化和擷取 Azure Linux 虛擬機器 (VM)。 當您一般化 VM 時，需移除個人帳戶資訊，並準備要做為映像的 VM。 您接著擷取作業系統的一般化虛擬硬碟 (VHD) 映像、連接資料磁碟的 VHD 以及新 VM 部署的 [Resource Manager 範本](../azure-resource-manager/resource-group-overview.md)。 
-
-若要使用映像建立 VM、針對每個新的 VM 設定網路資源，並使用範本 (JavaScript 物件標記法 (亦稱為 JSON) 檔案) 從擷取的 VHD 映像部署它。 如此一來，您可以使用 VM 目前軟體的組態來複寫 VM，與您在 Azure Marketplace 中使用映像的方式類似。
+# <a name="how-to-generalize-and-capture-a-linux-virtual-machine-using-the-azure-cli-20-preview"></a>如何使用 Azure CLI 2.0 (預覽) 來一般化和擷取 Linux 虛擬機器
+若要重複使用在 Azure 中部署和設定的虛擬機器 (VM)，您可擷取 VM 的映像。 此程序也牽涉到將 VM 一般化，以便在從映像部署新 VM 之前，移除個人帳戶資訊。 本文詳細說明如何針對使用 Azure 受控磁碟的 VM，利用 Azure CLI 2.0 (預覽) 擷取 VM 映像。 這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
 
 > [!TIP]
 > 如果您想要建立一份您現有 Linux VM 的複本，當中包含其特殊的備份或偵錯狀態，請參閱[建立在 Azure 上執行的 Linux 虛擬機器複本](virtual-machines-linux-copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 如果您想要從內部部署 VM 上傳 Linux VHD，請參閱[上傳自訂磁碟映像並從這個映像建立 Linux VM](virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。  
 
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
+
+- [Azure CLI 1.0](virtual-machines-linux-capture-image-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
+- [Azure CLI 2.0 (預覽) - Azure 受控磁碟](#quick-commands) - 適用於資源管理部署模型的新一代 CLI (本文章)
+
 ## <a name="before-you-begin"></a>開始之前
 請確保符合下列必要條件︰
 
-* **在 Resource Manager 部署模型中建立的 Azure VM** - 如果您尚未建立 Linux VM，可以使用[入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、[Azure CLI](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Resource Manager 範本](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
-  
-    視需要設定 VM。 例如，[新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、套用更新，並安裝應用程式。 
-* **Azure CLI** - 在本機電腦上安裝 [Azure CLI](../xplat-cli-install.md)。
+* **在 Resource Manager 部署模型中建立的 Azure VM** - 如果您尚未建立 Linux VM，可以使用[入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、[Azure CLI](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Resource Manager 範本](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 視需要設定 VM。 例如，[新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、套用更新，並安裝應用程式。 
+
+您也需要安裝最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+
+## <a name="quick-commands"></a>快速命令
+如果您需要快速完成工作，下列章節詳細說明在 Azure 中擷取 Linux VM 映像的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，從[這裡](#detailed-steps)開始。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myVM` 和 `myImage`。
+
+1. 取消佈建來源 VM：
+
+    ```bash
+    ssh ops@myvm.westus.cloudapp.azure.com
+    sudo waagent -deprovision+user -force
+    exit
+    ```
+
+2. 使用 [az vm deallocate](/cli/azure/vm#deallocate) 解除配置 VM：
+
+    ```azurecli
+    az vm deallocate --resource-group myResourceGroup --name myVM
+    ```
+
+3. 使用 [az vm generalize](/cli/azure/vm#generalize) 將 VM 一般化：
+   
+    ```azurecli
+    az vm generalize --resource-group myResourceGroup --name myVM
+    ```
+
+4. 使用 [az image create](/cli/azure/image#create) 從 VM 資源建立映像：
+   
+    ```azurecli
+    az image create --resource-group myResourceGroup --name myImage --source myVM
+    ```
+
+5. 使用 [az vm create](/cli/azure/vm#create) 從映像資源建立 VM：
+
+    ```azurecli
+    az vm create --resource-group myResourceGroup --name myVMDeployed --image myImage
+        --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub
+    ```
+
+## <a name="detailed-steps"></a>詳細步驟
+在下列步驟中，您將取消佈建現有的 VM、解除配置及一般化 VM 資源，然後建立映像。 您可以使用此映像，在您訂用帳戶的任何資源群組中建立 VM。 此程序讓 [Azure 受控磁碟](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)的優勢超越非受控磁碟。 使用非受控磁碟，您可建立基礎虛擬硬碟 (VHD) 的 blob 複本，而後受限於在與所複製 VHD blob 相同的儲存體帳戶中建立 VM。 使用受控磁碟，您可建立可跨整個訂用帳戶部署的映像資源。
 
 ## <a name="step-1-remove-the-azure-linux-agent"></a>步驟 1：移除 Azure Linux 代理程式
-首先，在 Linux VM 上執行 **waagent** 命令並搭配 **deprovision**參數。 此命令會刪除檔案與資料，使 VM 準備好進行一般化。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+若要讓 VM 可供一般化，請使用 Azure VM 代理程式來取消佈建 VM，以刪除相關檔案和資料。 在目標 Linux VM 上使用 **waagent** 命令搭配 **deprovision** 參數。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 1. 使用 SSH 用戶端連線到 Linux VM。
 2. 在 SSH 視窗中，輸入下列命令：
@@ -53,156 +95,72 @@ ms.openlocfilehash: 93119596f5a9fb3b6cf405f6de5d2ecccd45f298
 4. 在命令完成之後，請輸入 **exit**。 此步驟會關閉 SSH 用戶端。
 
 ## <a name="step-2-capture-the-vm"></a>步驟 2：擷取 VM
-使用 Azure CLI 來一般化和擷取 VM。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 **myResourceGroup**、**myVnet** 和 **myVM**。
+使用 Azure CLI 2.0 (預覽) 來一般化和擷取 VM。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 **myResourceGroup**、**myVnet** 和 **myVM**。
 
-1. 從本機電腦，開啟 Azure CLI 並[登入您的 Azure 訂用帳戶](../xplat-cli-connect.md)。 
-2. 確定您處於 Resource Manager 模式。
+1. 使用 [az vm deallocate](/cli//azure/vm#deallocate) 解除配置已取消佈建的 VM。 下列範例會解除配置 `myResourceGroup` 資源群組中名為 `myVM` 的 VM：
    
     ```azurecli
-    azure config mode arm
+    az vm deallocate --resource-group myResourceGroup --name myVM
     ```
-3. 使用下列命令，關閉您已經解除佈建的 VM：
-   
-    ```azurecli
-    azure vm deallocate -g myResourceGroup -n myVM
-    ```
-4. 使用下列命令將 VM 一般化：
-   
-    ```azurecli
-    azure vm generalize -g myResourceGroup -n myVM
-    ```
-5. 現在執行 **azure vm capture** 命令，它會擷取 VM。 在下列範例中，會使用開頭為 **MyVHDNamePrefix** 的名稱來擷取映像 VHD，而 **-t** 選項會指定範本 **MyTemplate.json** 的路徑。 
-   
-    ```azurecli
-    azure vm capture -g myResourceGroup -n myVM -p myVHDNamePrefix -t myTemplate.json
-    ```
-   
-   > [!IMPORTANT]
-   > 在原始 VM 使用的相同儲存體帳戶中預設會建立映像 VHD 檔案。 使用相同儲存體帳戶來儲存從映像建立之所有新 VM 的 VHD。 
 
-6. 若要尋找擷取之映像的位置，請在文字編輯器中開啟 JSON 範本。 在 **storageProfile** 中，尋找位於 **system** 容器的**映像**的 **uri**。 例如，OS 磁碟映像的 URI 類似於 `https://xxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/MyVHDNamePrefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`
+2. 使用 [az vm generalize](/cli//azure/vm#generalize) 將 VM 一般化。 下列範例會將 `myResourceGroup` 資源群組中名為 `myVM` 的 VM 一般化：
+   
+    ```azurecli
+    az vm generalize --resource-group myResourceGroup --name myVM
+    ```
+
+3. 使用 [az image create](/cli//azure/image#create) 建立 VM 資源的映像。 下列範例會使用名為 `myVM` 的 VM 資源，在 `myResourceGroup` 資源群組中建立名為 `myImage` 的映像：
+   
+    ```azurecli
+    az image create --resource-group myResourceGroup --name myImage --source myVM
+    ```
+   
+   > [!NOTE]
+   > 此映像與來源 VM 建立於相同的資源群組中。 您可以從此映像，在您訂用帳戶的任何資源群組中建立 VM。 從管理觀點來看，您可能想為您的 VM 資源和映像建立特定的資源群組。
 
 ## <a name="step-3-create-a-vm-from-the-captured-image"></a>步驟 3：從擷取的映像建立 VM
-現在使用具有範本的映像來建立 Linux VM。 下列步驟示範如何使用您擷取的 Azure CLI 和 JSON 檔案範本，在新的虛擬網路中建立 VM。
-
-### <a name="create-network-resources"></a>建立網路資源
-若要使用範本，您必須先為新的 VM 設定虛擬網路和 NIC。 建議您在儲存 VM 映像的位置中，為這些資源建立一個資源群組。 執行類似下列的命令，替換您的資源名稱和適當的 Azure 位置 (在這些命令列中為 "centralus")：
+使用您以 [az vm create](/cli/azure/vm#create) 建立的映像來建立 VM。 下列範例會從名為 `myImage` 的映像建立名為 `myVMDeployed` 的 VM：
 
 ```azurecli
-azure group create myResourceGroup1 -l "centralus"
-
-azure network vnet create myResourceGroup1 myVnet -l "centralus"
-
-azure network vnet subnet create myResourceGroup1 myVnet mySubnet
-
-azure network public-ip create myResourceGroup1 myPublicIP -l "centralus"
-
-azure network nic create myResourceGroup1 myNIC -k mySubnet -m myVnet -p myPublicIP -l "centralus"
+az vm create --resource-group myResourceGroup --name myVMDeployed --image myImage
+    --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub
 ```
 
-### <a name="get-the-id-of-the-nic"></a>取得 NIC 的識別碼
-若要使用您在擷取期間所儲存的 JSON，從映像部署 VM，您需要 NIC 的識別碼。 執行下列命令來取得識別碼：
+使用受控磁碟，您可以從某個映像，在您訂用帳戶的任何資源群組中建立 VM。 這點與使用非受控磁碟有所不同，您只能在與來源 VHD 相同的儲存體帳戶中建立 VM。 若要在與映像不同的資源群組中建立 VM，請指定您映像的完整資源識別碼。 使用 [az image list](/cli/azure/image#list) 來檢視映像清單。 輸出類似於下列範例：
+
+```json
+"id": "/subscriptions/guid/resourceGroups/MYRESOURCEGROUP/providers/Microsoft.Compute/images/myImage",
+   "location": "westus",
+   "name": "myImage",
+```
+
+下列範例藉由指定映像資源識別碼，進而使用 **az vm create** 在與來源映像不同的資源群組中建立 VM︰
 
 ```azurecli
-azure network nic show myResourceGroup1 myNIC
+az vm create --resource-group myOtherResourceGroup --name myOtherVMDeployed 
+    --image "/subscriptions/guid/resourceGroups/MYRESOURCEGROUP/providers/Microsoft.Compute/images/myImage"
+    --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub
 ```
 
-輸出中的**識別碼**類似於 `/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup1/providers/Microsoft.Network/networkInterfaces/myNic`
-
-### <a name="create-a-vm"></a>建立 VM
-現在執行下列命令，從擷取的 VM 映像建立 VM。 使用 **-f** 參數來指定您所儲存之範本 JSON 檔案的路徑。
-
-```azurecli
-azure group deployment create myResourceGroup1 MyDeployment -f MyTemplate.json
-```
-
-在命令輸出中，系統會提示您提供新的 VM 名稱、系統管理員使用者名稱和密碼，以及您先前建立的 NIC 識別碼。
-
-```bash
-info:    Executing command group deployment create
-info:    Supply values for the following parameters
-vmName: myNewVM
-adminUserName: myAdminuser
-adminPassword: ********
-networkInterfaceId: /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resource Groups/myResourceGroup1/providers/Microsoft.Network/networkInterfaces/myNic
-```
-
-下列範例會顯示您成功部署後所看到的內容︰
-
-```bash
-+ Initializing template configurations and parameters
-+ Creating a deployment
-info:    Created template deployment xxxxxxx
-+ Waiting for deployment to complete
-data:    DeploymentName     : MyDeployment
-data:    ResourceGroupName  : MyResourceGroup1
-data:    ProvisioningState  : Succeeded
-data:    Timestamp          : xxxxxxx
-data:    Mode               : Incremental
-data:    Name                Type          Value
-
-data:    ------------------  ------------  -------------------------------------
-
-data:    vmName              String        myNewVM
-
-data:    vmSize              String        Standard_D1
-
-data:    adminUserName       String        myAdminuser
-
-data:    adminPassword       SecureString  undefined
-
-data:    networkInterfaceId  String        /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup1/providers/Microsoft.Network/networkInterfaces/myNic
-info:    group deployment create command OK
-```
 
 ### <a name="verify-the-deployment"></a>驗證部署
-現在使用您建立的虛擬機器的 SSH 來驗證部署並開始使用新的 VM。 若要透過 SSH 連接，請尋找您藉由執行下列命令所建立的 VM 的 IP 位址：
+現在使用您建立的虛擬機器的 SSH 來驗證部署並開始使用新的 VM。 若要透過 SSH 連接，請利用 [az vm show](/cli/azure/vm#show) 尋找您 VM 的 IP 位址或 FQDN：
 
 ```azurecli
-azure network public-ip show myResourceGroup1 myPublicIP
+az vm show --resource-group myResourceGroup --name myVM --show-details
 ```
-
-公用 IP 位址會列在命令輸出中。 根據預設，您會經由連接埠 22 上的 SSH 連接到 Linux VM。
-
-## <a name="create-additional-vms"></a>建立額外的 VM
-依照前一節中的步驟，使用擷取的映像和範本來部署其他 VM。 從映像建立 VM 的其他選項包括使用快速入門範本，或執行 **azure vm create** 命令。
-
-### <a name="use-the-captured-template"></a>使用擷取的範本
-若要使用擷取的映像和範本，請遵循下列步驟 (上一節中詳細說明)︰
-
-* 確保您的 VM 映像位於裝載 VM 之 VHD 的相同儲存體帳戶中。
-* 複製範本 JSON 檔案，並指定新 VM 的 VHD (或 VHDs) 作業系統磁碟的唯一名稱。 例如，在 **storageProfile** 的 **vhd** 下，於 **uri** 中，指定 **osDisk** VHD 的唯一名稱，類似於 `https://xxxxxxxxxxxxxx.blob.core.windows.net/vhds/MyNewVHDNamePrefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`
-* 在相同或不同的虛擬網路中建立 NIC。
-* 使用修改過的範本 JSON 檔案，在您設定虛擬網路的資源群組中建立部署。
-
-### <a name="use-a-quickstart-template"></a>使用快速入門範本
-如果您要在從映像建立 VM 時自動設定網路，可以在範本中指定這些資源。 例如，請從 GitHub 參閱 [101-vm-from-user-image template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image)。 此範本會從自訂映像和必要的虛擬網路、公用 IP 位址和 NIC 資源建立 VM。 如需在 Azure 入口網站中使用範本的逐步解說，請參閱 [如何從使用 Resource Manager 範本的自訂映像建立虛擬機器](http://codeisahighway.com/how-to-create-a-virtual-machine-from-a-custom-image-using-an-arm-template/)。
-
-### <a name="use-the-azure-vm-create-command"></a>使用 azure vm create 命令
-通常最簡單的方式是使用 Resource Manager 範本從映像建立 VM。 不過，您可以使用 **azure vm create** 命令搭配 **-Q** (**--image-urn**) 參數，以*「命令方式」*建立 VM。 如果您使用此方法，您也要傳遞 **-d** (**--os-disk-vhd**) 參數來指定新 VM 的 OS .vhd 檔案位置。 此檔案必須位於儲存映像 VHD 檔案之儲存體帳戶的 vhds 容器中。 此命令會自動將新 VM 的 VHD 複製到 **vhds** 容器。
-
-對映像執行 **azure vm create** 之前，請完成下列步驟：
-
-1. 建立資源群組，或識別現有的資源群組以供部署。
-2. 為新的 VM 建立公用 IP 位址資源和 NIC 資源。 如需使用 CLI 建立虛擬網路、公用 IP 位址及 NIC 的步驟，請參閱在本文中先前的說明。 (**azure vm create** 也可以建立 NIC，但您需要傳遞其他參數以取得虛擬網路和子網路。)
-
-然後，執行將 URI 傳遞給新 OS VHD 檔案和現有映像的命令。 在此範例中，會在美國東部地區建立 Standard_A1 VM 大小。
-
-```azurecli
-azure vm create -g myResourceGroup1 -n myNewVM -l eastus -y Linux \
--z Standard_A1 -u myAdminname -p myPassword -f myNIC \
--d "https://xxxxxxxxxxxxxx.blob.core.windows.net/vhds/MyNewVHDNamePrefix.vhd" \
--Q "https://xxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/MyVHDNamePrefix-osDisk.vhd"
-```
-
-如需其他命令選項，請執行 `azure help vm create`。
 
 ## <a name="next-steps"></a>後續步驟
-若要使用 CIL 管理 VM，請參閱 [使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中的工作。
+您可以從來源 VM 映像建立多個 VM。 如果您需要變更您的映像︰ 
+
+- 啟動來源 VM 資源。
+- 進行任何更新或組態變更。
+- 再次遵循相關步驟，以取消佈建、解除配置、一般化及擷取 VM。 
+
+如需有關使用 CLI 管理 VM 的詳細資訊，請參閱[Azure CLI 2.0 (預覽)](/cli/azure/overview)。
 
 
 
-
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

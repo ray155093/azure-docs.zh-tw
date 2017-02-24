@@ -13,17 +13,17 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
-ms.date: 10/21/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: cc59d7785975e3f9acd574b516d20cd782c22dac
-ms.openlocfilehash: 1f40d6119d5fefc48c1e12d510423f996239fe14
+ms.sourcegitcommit: a2b32f23381ed1f9912edf6432f029e51bdf1be4
+ms.openlocfilehash: dd28e295df7acead773f9076d790e0e96b66adb9
 
 
 ---
-# <a name="availability-and-reliability-of-windows-based-hadoop-clusters-in-hdinsight"></a>HDInsight 上以 Windows 為基礎的 Hadoop 叢集的可用性和可靠性
-> [!NOTE]
-> 此文件中使用的步驟是針對以 Windows 為基礎的 HDInsight 叢集。 如果您使用以 Linux 為基礎的叢集，如需 Linux 特定的資訊，請參閱 [HDInsight 上以 Linux 為基礎的 Hadoop 叢集的可用性和可靠性](hdinsight-high-availability-linux.md) 。
+# <a name="availability-and-reliability-of-windows-based-hadoop-clusters-in-hdinsight"></a>HDInsight 上 Windows 型 Hadoop 叢集的可用性和可靠性
+> [!IMPORTANT]
+> 此文件中使用的步驟是針對 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如果您使用 Linux 型叢集，如需 Linux 特定的資訊，請參閱 [HDInsight 上 Linux 型 Hadoop 叢集的可用性和可靠性](hdinsight-high-availability-linux.md) 。
 >
 >
 
@@ -58,7 +58,7 @@ Hadoop 叢集的標準實作通常包含單一前端節點。 HDInsight 會透�
 在螢幕擷取畫面上，使用中的前端節點為 *headnode0*。
 
 ## <a name="access-log-files-on-the-secondary-head-node"></a>存取次要前端節點上的記錄檔
-如果要存取事件中次要前端節點 (已成為作用中前端節點) 上的工作記錄，仍然可以使用瀏覽 JobTracker UI (如其為主要作用中節點般)。 若要存取 JobTracker，您必須使用 RDP 連接到 Hadoop 叢集 (如上一節所述)。 一旦遠端進入叢集後，按兩下位於桌面上的 **Hadoop 名稱節點狀態**圖示，然後按一下 [名稱節點記錄] 以前往次要前端節點上的記錄目錄。
+如果要存取事件中次要前端節點 (已成為作用中前端節點) 上的工作記錄，仍然可以使用瀏覽 JobTracker UI (如其為主要作用中節點般)。 若要存取 JobTracker，您必須使用 RDP 連接到 Hadoop 叢集 (如上一節所述)。 一旦透過 RDP 連接到叢集後，按兩下位於桌面上的 [Hadoop 名稱節點狀態]圖示，然後按一下 [名稱節點記錄] 以前往次要前端節點上的記錄目錄。
 
 ![](./media/hdinsight-high-availability/Hadoop.Head.Node.Log.Files.png)
 
@@ -106,6 +106,6 @@ SDK 的情況十分類似。 使用 SDK 建立與佈建叢集的說明已記錄�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 10/30/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: d6e68497cf0a4c48e6f611834089224b50b9bd5e
-ms.openlocfilehash: 79743cab91f8c22d06796803eb7e31681a581233
+ms.sourcegitcommit: 013956232d1fdfdc1f35741c25294a37b7e9bd92
+ms.openlocfilehash: 3914d5bdc8feff7d7de5c6f7255396acade341b9
 
 
 ---
@@ -68,7 +68,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 * 在本機執行服務
 * 搭配 Ionic 架構使用即時重新載入
-* 重新導向至 App Service 以進行驗證。 
+* 重新導向至 App Service 以進行驗證。
 
 在本機執行會造成問題，因為根據預設，App Service 驗證只設定為允許從您的行動裝置應用程式後端來存取。 請使用下列步驟來變更 App Service 設定，以便在本機執行伺服器時啟用驗證：
 
@@ -79,12 +79,12 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 5. 展開應用程式的 [config]  >  [authsettings] 節點。
 6. 按一下 [編輯]  按鈕來啟用資源的編輯。
 7. 尋找 **allowedExternalRedirectUrls** 元素，此元素應該是 null。 在陣列中新增 URL：
-   
+
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
-   
+
     使用您服務的 URL 取代陣列中的 URL，在此範例中為本機 Node.js 範例服務的 `http://localhost:3000` 。 根據您應用程式的設定方式而定，您也可以使用 Ripple 服務的 `http://localhost:4400` 或一些其他的 URL。
 8. 在頁面頂端，按一下 [讀取/寫入]，然後按一下 [PUT] 以儲存您的更新。
 
@@ -110,6 +110,6 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

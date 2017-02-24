@@ -20,7 +20,7 @@ ms.openlocfilehash: dbb749b056c36f16e921933fb8345211e3eaa697
 
 
 ---
-# <a name="virtual-network-business-continuity"></a>虛擬網路 – 商務持續性
+# <a name="virtual-network--business-continuity"></a>虛擬網路 – 商務持續性
 ## <a name="overview"></a>概觀
 「虛擬網路」(VNet) 是您網路在雲端的邏輯呈現方式。 它可讓您定義自己的私人 IP 位址空間，並將網路分割成子網路。 VNet 可做為信任界限來裝載您的運算資源，例如「Azure 虛擬機器」和「雲端服務」(Web/背景工作角色)。 VNet 可允許其裝載的資源之間進行直接私人 IP 通訊。 「虛擬網路」也可以透過其中一個混合式選項 (例如「VPN 閘道」或 ExpressRoute) 連結到內部部署網路。
 
