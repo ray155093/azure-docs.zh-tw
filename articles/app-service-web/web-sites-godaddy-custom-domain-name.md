@@ -60,7 +60,7 @@ ms.openlocfilehash: fe8b4b097f7ff157d624c09b8dbf26f94401395c
    
     ![選取記錄類型](./media/web-sites-godaddy-custom-domain-name/godaddy-selectrecordtype.png)
    
-    接下來，您必須提供 [主機] (自訂網域或子網域) 及其 [指向] 位置。
+    接下來，您必須提供 [主機] \(自訂網域或子網域) 及其 [指向] 位置。
    
     ![新增區域記錄](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
    
