@@ -75,7 +75,7 @@ ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
 
 * 按一下 [拒絕] 來擱置對機器學習服務工作區的存取。 使用者將不再能在 Machine Learning Studio 中開啟工作區。 若要還原存取，請按一下 [允許]。
 
-若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studio] (請參閱上述有關**登入 ML Studio** 的附註)。 這會在 Machine Learning Studio 中開啟工作區。 從這裡按一下 [設定] 索引標籤，然後按一下 [使用者]。 您可以按一下 [邀請使用者]，讓使用者存取工作區，或選取使用者，並按一下 [移除]。
+若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studio]\(請參閱上述有關**登入 ML Studio** 的附註)。 這會在 Machine Learning Studio 中開啟工作區。 從這裡按一下 [設定] 索引標籤，然後按一下 [使用者]。 您可以按一下 [邀請使用者]，讓使用者存取工作區，或選取使用者，並按一下 [移除]。
 
 ## <a name="to-manage-web-services-in-this-workspace"></a>管理此工作區中的 Web 服務
 按一下 [ **Web 服務** ] 索引標籤。
