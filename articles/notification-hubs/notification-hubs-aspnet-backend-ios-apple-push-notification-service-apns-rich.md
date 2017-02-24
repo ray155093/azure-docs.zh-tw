@@ -135,7 +135,7 @@ ms.openlocfilehash: 394efdc2dfaff0666bc23d8a448b0a00d414da99
 2. 按一下 [功能]，並開啟 [背景模式]，然後核取 [遠端通知] 核取方塊。
    
     ![][IOS3]
-3. 移至 **Main.storyboard**，並確定您有 [通知使用者](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) 教學課程中的 [檢視控制器] (在本教學課程中稱為 [首頁檢視控制器])。
+3. 移至 **Main.storyboard**，並確定您有 [通知使用者](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) 教學課程中的 [檢視控制器]\(在本教學課程中稱為 [首頁檢視控制器])。
 4. 將 [導覽控制器] 新增至您的腳本，並按住 Control 再拖曳到 [首頁檢視控制器]，使其成為導覽的**根目錄檢視**。 請確定只針對 [導覽控制器] 選取 [屬性檢查程式] 中的 [是初始檢視控制器]  。
 5. 將 [檢視控制器] 新增至腳本，並新增 [影像檢視]。 這是使用者選擇要深入了解，在按一下通知之後會看到的頁面。 您的腳本應如下所示：
    
