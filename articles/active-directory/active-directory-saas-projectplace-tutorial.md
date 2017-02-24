@@ -72,7 +72,7 @@ ms.openlocfilehash: aee8458ef8d6e564685cbf4d56f91af7766d1e2a
 2. 在 [要如何讓使用者登入 Projectplace] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
    ![設定單一登入](./media/active-directory-saas-projectplace-tutorial/IC790221.png "設定單一登入")
-3. 在 [設定應用程式 URL] 頁面的 [Projectplace 登入 URL] 文字方塊中，輸入您的 Projectplace 租用戶 URL (例如："http://company.projectplace.com")，然後按 [下一步]。
+3. 在 [設定應用程式 URL] 頁面的 [Projectplace 登入 URL] 文字方塊中，輸入您的 Projectplace 租用戶 URL (例如：" http://company.projectplace.com ")，然後按 [下一步]。
    
    ![設定應用程式 URL](./media/active-directory-saas-projectplace-tutorial/IC790222.png "設定應用程式 URL")
 4. 在 [設定在 Projectplace 單一登入] 頁面上，按一下 [下載中繼資料]，然後將中繼資料檔儲存在您的電腦中。
