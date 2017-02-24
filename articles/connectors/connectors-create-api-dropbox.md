@@ -41,7 +41,7 @@ ms.openlocfilehash: a8ecad3552f35c02c07fe33aa8531fb462b27002
 
 1. 在 Logic Apps 設計工具的搜尋方塊中輸入 *dropbox*，然後選取 [Dropbox - 建立檔案時] 觸發程序。      
    ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)  
-2. 選取您想要追蹤檔案建立所在的資料夾。 選取 [...] (以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。  
+2. 選取您想要追蹤檔案建立所在的資料夾。 選取 [...]\(以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。  
    ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)  
 
 ## <a name="use-a-dropbox-action"></a>使用 Dropbox 動作
@@ -56,7 +56,7 @@ ms.openlocfilehash: a8ecad3552f35c02c07fe33aa8531fb462b27002
 3. 輸入 *dropbox* 以搜尋與 Dropbox 相關的動作。  
 4. 選取 [Dropbox - 使用路徑來取得檔案內容]，做為在選取的 Dropbox 資料夾中建立新檔案時所要採取的動作。 動作控制區塊便會開啟。 如果您未曾授權邏輯應用程式存取您的 Dropbox 帳戶，系統會提示您這麼做。  
    ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-3.PNG)  
-5. 選取 [...] (位於 [檔案路徑] 控制項的右側)，並瀏覽至您想要使用的檔案路徑。 或者，使用**檔案路徑**權杖來加速建立邏輯應用程式。  
+5. 選取 [...]\(位於 [檔案路徑] 控制項的右側)，並瀏覽至您想要使用的檔案路徑。 或者，使用**檔案路徑**權杖來加速建立邏輯應用程式。  
    ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-4.PNG)  
 6. 儲存您的工作並在 Dropbox 中建立新檔案，以啟動您的工作流程。  
 
