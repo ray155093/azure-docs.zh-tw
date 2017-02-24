@@ -3,7 +3,7 @@
 ## [常見問題集](container-service-faq.md)
 # 開始使用
 ## [部署 ACS 叢集](container-service-deployment.md)
-## [使用 Azure CLI 2.0 (預覽) 部署至 ACS](container-service-create-acs-cluster-cli.md)
+## [使用 Azure CLI 2.0 部署至 ACS](container-service-create-acs-cluster-cli.md)
 ## [與 ACS 叢集連接](container-service-connect.md)
 ## [調整 ACS 叢集的規模](container-service-scale.md)
 # 作法
@@ -23,6 +23,7 @@
 #### [透過 Dynatrace 進行監視](container-service-monitoring-dynatrace.md)
 ## 使用 Kubernetes 管理
 ### [開始使用 Kubernetes](container-service-kubernetes-walkthrough.md)
+### [開始使用 Kubernetes 和 Windows](container-service-kubernetes-windows-walkthrough.md)
 ### [定服務主體](container-service-kubernetes-service-principal.md)
 ### [容器管理 - Kubernetes UI](container-service-kubernetes-ui.md)
 ### [負載平衡 Kubernetes 容器](container-service-kubernetes-load-balancing.md)
@@ -34,7 +35,7 @@
 ### [Docker 與 Docker Compose](container-service-docker-swarm.md)
 ### [Docker Swarm 持續整合](container-service-docker-swarm-setup-ci-cd.md)
 # 參考
-## [Azure CLI 2.0 (Preview)](/cli/azure/acs)
+## [Azure CLI 2.0](/cli/azure/acs)
 ## [PowerShell](/powershell/resourcemanager/azurerm.compute/v2.3.0/azurerm.compute)
 ## [.NET](/dotnet/api/microsoft.azure.management.compute.models)
 ## [REST](/rest/api/compute/containerservices)
@@ -44,6 +45,6 @@
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-service&updatetype=&platform=)
 
 
-<!--HONumber=Feb17_HO3-->
+<!--HONumber=Feb17_HO4-->
 
 

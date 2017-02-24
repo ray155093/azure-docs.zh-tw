@@ -5,12 +5,12 @@
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. 在 **qsappdelegate.m** 的 `didFinishLaunchingWithOptions` 中，於 `return YES;` 之前插入下列幾行：
+2. 在 **QSAppDelegate.m** 的 `didFinishLaunchingWithOptions` 中，於 `return YES;` 之前插入下列幾行：
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. 在 **QSAppDelegate.m** 中，新增下列處理常式方法。您的應用程式現在已更新為支援推播通知。
+3. 在 **QSAppDelegate.m**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -79,7 +79,7 @@
 
 **Swift**：
 
-1. 新增含有以下內容的檔案 **ClientManager.swift**。使用 Azure 行動應用程式後端的 URL 取代 *%AppUrl%*。
+1. 新增含有以下內容的檔案 **ClientManager.swift** 。 使用 Azure 行動應用程式後端的 URL 取代 *%AppUrl%*。
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. 在 **AppDelegate.swift** 中，新增下列處理常式方法。您的應用程式現在已更新為支援推播通知。
+4. 在 **AppDelegate.swift**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -139,4 +139,8 @@
    
         }
 
-<!---HONumber=AcomDC_0204_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

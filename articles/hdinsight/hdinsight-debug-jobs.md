@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/02/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: bc5c3eb66f1f87dec9b0236be85a4fc96c598db3
+ms.sourcegitcommit: a2b32f23381ed1f9912edf6432f029e51bdf1be4
+ms.openlocfilehash: bcf2791f0e1788d7d18a4efc123066aaf633d549
 
 
 ---
@@ -36,7 +36,7 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 * ambariserverlog
 * ambariagentlog
 
-針對以 Windows 為基礎的叢集建立 3 個資料表：
+針對 Windows 型叢集建立&3; 個資料表：
 
 * setuplog：佈建/設定 HDInsight 叢集時發生的事件/例外狀況的記錄檔。
 * hadoopinstalllog：在叢集上安裝 Hadoop 時發生的事件/例外狀況的記錄檔。 針對以自訂參數建立的叢集，此資料表適用於相關問題的偵錯。
@@ -110,7 +110,7 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 ## <a name="logs-written-to-azure-blob-storage"></a>寫入 Azure Blob 儲存體的記錄檔
 [寫入 Azure 資料表的記錄檔](#log-written-to-azure-tables) 可讓人更深入了解 HDInsight 叢集發生的情形。 不過，這些資料表並不會提供工作層級記錄檔，這些記錄檔有助於發生問題時進一步深入探索。 為了提供這一層更深入的詳細資料，針對透過 Templeton 提交的任何作業，HDInsight 叢集設定成將工作記錄檔寫入 Blob 儲存體帳戶。 實際上，這代表使用 Microsoft Azure PowerShell Cmdlet 或 .NET Job Submission API 提交的作業，而不是透過叢集的 RDP/命令列存取所提交的作業。 
 
-若要檢視記錄檔，請參閱 [在以 Linux 為基礎的 HDInsight 上存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs-linux.md)。
+若要檢視記錄檔，請參閱[在 Linux 型 HDInsight 上存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs-linux.md)。
 
 如需應用程式記錄檔的詳細資訊，請參閱 [簡化 YARN 的使用者記錄檔管理和存取](http://hortonworks.com/blog/simplifying-user-logs-management-and-access-in-yarn/)。
 
@@ -325,12 +325,12 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 
 ## <a name="next-steps"></a>後續步驟
 * [在 HDInsight 上使用 Ambari 檢視來為 Tez 作業偵錯](hdinsight-debug-ambari-tez-view.md)
-* [在以 Linux 為基礎的 HDInsight 上啟用 Hadoop 服務的堆積傾印](hdinsight-hadoop-collect-debug-heap-dump-linux.md)
+* [在 Linux 型 HDInsight 上啟用 Hadoop 服務的堆積傾印](hdinsight-hadoop-collect-debug-heap-dump-linux.md)
 * [使用 Ambari Web UI 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)
 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

@@ -14,13 +14,13 @@ ms.topic: get-started-article
 ms.date: 06/21/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 8886107f96f31f668ce55ebb4c76e58ad1f21268
+ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
+ms.openlocfilehash: 2334a85402049eb8654039e98cf2c3131a43de62
 
 
 ---
 # <a name="working-with-application-insights-in-visual-studio"></a>在 Visual Studio 中使用 Application Insights
-在 Visual Studio (2015 和更新版本) 中，您可以使用來自 [Visual Studio Application Insights](app-insights-overview.md)的遙測，在偵錯時和在生產環境中分析效能並診斷問題。
+在 Visual Studio (2015 和更新版本) 中，您可以使用 [Azure Application Insights](app-insights-overview.md) 的遙測，在偵錯時和在生產環境中分析效能並診斷問題。
 
 如果您尚未 [在應用程式中安裝 Application Insights](app-insights-asp-net.md)，請立即安裝。
 
@@ -94,6 +94,6 @@ ms.openlocfilehash: 8886107f96f31f668ce55ebb4c76e58ad1f21268
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

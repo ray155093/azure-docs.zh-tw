@@ -23,7 +23,7 @@ ms.openlocfilehash: 1911fd24f0873a40a186af217b6f8af317abbbc8
 ## <a name="some-of-my-telemetry-is-missing"></a>我遺失了部分遙測
 *在 Application Insights 中，我只會看到我的應用程式所產生的一小部分事件。*
 
-* 如果您持續看到同一個部分，可能是因為調適性 [取樣](app-insights-sampling.md)所導致。 若要確認這一點，開啟 [搜尋] (從 [概觀] 刀鋒視窗)，並查看要求或其他事件的執行個體。 按一下 [屬性] 區段底部的 [...]，以取得完整的屬性詳細資料。 如果要求計數 > 1，則表示取樣正在運作中。 
+* 如果您持續看到同一個部分，可能是因為調適性 [取樣](app-insights-sampling.md)所導致。 若要確認這一點，開啟 [搜尋] \(從 [概觀] 刀鋒視窗)，並查看要求或其他事件的執行個體。 按一下 [屬性] 區段底部的 [...]，以取得完整的屬性詳細資料。 如果要求計數 > 1，則表示取樣正在運作中。 
 * 否則，有可能是您已達到定價方案的 [資料速率限制](app-insights-pricing.md#limits-summary) 。 每分鐘都會套用這些限制。
 
 ## <a name="no-data-from-my-server"></a>沒有來自我的伺服器的資料

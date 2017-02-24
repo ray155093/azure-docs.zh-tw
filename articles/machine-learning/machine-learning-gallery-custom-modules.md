@@ -75,7 +75,7 @@ Cortana Intelligence Gallery 中提供許多可擴充 Azure Machine Learning Stu
 
 1. 在 Machine Learning Studio 中，按一下 [+新增]
 2. 選取 [模組] - 隨即會顯示 Gallery 模組清單供您從中選擇，或者您也可以使用搜尋方塊尋找特定模組
-3. 將滑鼠游標指向某模組，然後選取 [匯入模組] (若要查看模組的相關資訊，請選取 [在 Gallery 中檢視]，然後您便會移至 Gallery 中模組的詳細資料頁面)
+3. 將滑鼠游標指向某模組，然後選取 [匯入模組]\(若要查看模組的相關資訊，請選取 [在 Gallery 中檢視]，然後您便會移至 Gallery 中模組的詳細資料頁面)
    
     ![將自訂模組匯入 Machine Learning Studio](media/machine-learning-gallery-custom-modules/add-custom-module-in-studio.png)
 

@@ -15,8 +15,8 @@ ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d16326340f668285e185a6e8adb1a8316d8bd0eb
+ms.sourcegitcommit: 371c76ed36cd9d21026a5a49c6ef86a0cd3cc816
+ms.openlocfilehash: 8fd8b4b9611adb15df7e436a00f8ec35ea1e9614
 
 
 ---
@@ -45,7 +45,7 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 
 ![](./media/expressroute-nat/expressroute-nat-microsoft.png) 
 
-#### <a name="traffic-originating-from-your-network-destined-to-microsoft"></a>從您的網路出發到 Microsoft 的流量
+### <a name="traffic-originating-from-your-network-destined-to-microsoft"></a>從您的網路出發到 Microsoft 的流量
 * 您必須確定流量進入的 Microsoft 對等路徑具備有效的公用 IPv4 位址。 Microsoft 必須能夠向區域路由網際網路登錄 (RIR) 和網際網路路由登錄 (IRR) 驗證 IPv4 NAT 位址集區的擁有者。 將會根據所比對的 AS 編號和用於 NAT 的 IP 位址執行檢查。 如需路由登錄的詳細資訊，請參閱 [ExpressRoute 路由需求](expressroute-routing.md) 頁面。
 * 用於 Azure 公用對等設定和其他 ExpressRoute 線路的 IP 位址，不得透過 BGP 工作階段向 Microsoft 公告。 透過此對等公告的 NAT IP 首碼長度沒有限制。
   
@@ -54,7 +54,7 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
   > 
   > 
 
-#### <a name="traffic-originating-from-microsoft-destined-to-your-network"></a>從 Microsoft 出發到您的網路的流量
+### <a name="traffic-originating-from-microsoft-destined-to-your-network"></a>從 Microsoft 出發到您的網路的流量
 * 在某些情況下，需要由 Microsoft 對您網路中裝載的服務端點起始連線。 常見的例子就是從 Office 365 連接到您網路中裝載的 ADFS 伺服器。 在這種情況下，必須將您網路中適當的首碼透露給 Microsoft 對等。 
 * 您必須以 SNAT 轉譯從 Microsoft 到您網路內的 IP 位址的流量。 
 
@@ -70,6 +70,6 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: jarrettr
 translationtype: Human Translation
-ms.sourcegitcommit: 3203358dce9cba95d325ec786e7ba12dd45f5ca1
-ms.openlocfilehash: 8b21bcbea774f7a5107da54081f75db331459b5f
+ms.sourcegitcommit: 245fb30a64c8a19f6ea0073d533419e9c3628cb5
+ms.openlocfilehash: 538a43e549f47709616dd93e7eab9c8cb7d99dc6
 
 
 ---
@@ -74,10 +74,12 @@ Azure CLI 提供您一組開放原始碼的跨平台命令，供您使用 Azure 
 當您擁有內部部署工作負載和應用程式，您需要可讓您在發生災害事件時繼續執行業務的解決方案。 Azure Site Recovery 可處理虛擬機器和實體伺服器的複寫、容錯移轉及復原作業。 複寫的資料會儲存在 Azure 儲存體，讓您不需要次要本地資料中心。
 
 若要深入了解，請參閱 [Azure Site Recovery](../site-recovery/site-recovery-overview.md) 。
+### <a name="moving-data-faq"></a>移動資料常見問題集︰
+## <a name="can-i-migrate-vhds-from-one-region-to-another-without-copying"></a>我可以在兩個區域之間移轉 VHD 而不要複製嗎？
+區域之間複製 VHD 的唯一方法是在每個區域的儲存體帳戶之間複製資料。 您可以使用 AZCopy 這樣做。 若要深入了解，請參閱「使用 AzCopy 命令列公用程式傳輸資料」。 針對極大的資料量，您也可以使用 Azure 匯入/匯出。 若要深入了解，請參閱 [Azure 匯入/匯出](https://docs.microsoft.com/en-us/azure/storage/storage-import-export-service) 。
 
 
 
-
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

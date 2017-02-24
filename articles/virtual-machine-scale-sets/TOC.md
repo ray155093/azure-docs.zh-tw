@@ -3,6 +3,7 @@
 
 # 開始使用
 ## [在入口網站中建立擴展集](virtual-machine-scale-sets-portal-create.md)
+## [使用 Azure CLI 建立擴展集](virtual-machine-scale-sets-linux-create-cli.md)
 
 # 作法
 ## 規劃和設計
@@ -10,12 +11,18 @@
 
 ## 部署
 ### [使用入口網站的擴展集](virtual-machine-scale-sets-portal-create.md)
+### [搭配受控磁碟的擴展集](virtual-machine-scale-sets-managed-disks.md)
 ### [使用 Visual Studio 的擴展集](virtual-machine-scale-sets-vs-create.md)
 ### [使用 PowerShell 的擴展集](virtual-machine-scale-sets-windows-create.md)
 ### [使用 Azure CLI 的擴展集](virtual-machine-scale-sets-linux-create-cli.md)
 ### [具有自動調整的 Linux 擴展集](virtual-machine-scale-sets-linux-autoscale.md)
 ### [具有自動調整的 Windows 擴展集](virtual-machine-scale-sets-windows-autoscale.md)
 ### [應用程式擴展集](virtual-machine-scale-sets-deploy-app.md)
+### [使用資料磁碟搭配擴展集](virtual-machine-scale-sets-attached-disks.md)
+### [使用大型擴展集](virtual-machine-scale-sets-placement-groups.md)
+### [將擴展集範本轉換為使用受控磁碟](virtual-machine-scale-sets-convert-template-to-md.md)
+
+
 
 ## 管理
 ### [使用 PowerShell 的 Windows 擴展集](virtual-machine-scale-sets-windows-manage.md)
@@ -24,6 +31,7 @@
 ### [擴展集的升級](virtual-machine-scale-sets-upgrade-scale-set.md)
 ### [進階自動調整](../monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets.md)
 ### [DSC 與擴展集](virtual-machine-scale-sets-dsc.md)
+### [將範本轉換為受控磁碟](virtual-machine-scale-sets-convert-template-to-md.md)
 
 ## 疑難排解
 ### [Autoscale](virtual-machine-scale-sets-troubleshoot.md)
@@ -31,7 +39,7 @@
 # 參考
 ## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [Azure CLI](../virtual-machines/azure-cli-arm-commands.md)
-## [REST](/rest/api/compute/)
+## [REST](/rest/api/virtualmachinescalesets/)
 
 # 資源
 ## 價格 
@@ -40,6 +48,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-vm-scale-set)
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

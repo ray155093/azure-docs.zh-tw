@@ -1,5 +1,5 @@
 ---
-title: "HBase 教學課程：開始在 Hadoop 中使用 HBase | Microsoft Docs"
+title: "HBase 教學課程：開始在 Hadoop 中使用 Windows 型 HBase 叢集 | Microsoft Docs"
 description: "遵循本 HBase 教學課程，開始在 HDInsight 中搭配 Hadoop 使用 Apache HBase。 使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
 keywords: "apache hbase,hbase,hbase shell,hbase 教學課程"
 services: hdinsight
@@ -13,25 +13,20 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/21/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 501c44ff8db2b825b58d98b9b89219ec9fff8b7c
-ms.openlocfilehash: 6384d7b0f4851ce4d1612857203e7c3c1381d6fc
+ms.sourcegitcommit: 541c06240f0c437ad92ea955caee67456851a6e1
+ms.openlocfilehash: 59aee407be91279276ec6eaafed608e354030676
 
 
 ---
-# <a name="hbase-tutorial-get-started-using-apache-hbase-with-windows-based-hadoop-in-hdinsight"></a>HBase 教學課程：開始在 HDInsight 中搭配以 Windows 為基礎的 Hadoop 使用 Apache HBase
-[!INCLUDE [hbase-selector](../../includes/hdinsight-hbase-selector.md)]
+# <a name="hbase-tutorial-get-started-using-apache-hbase-with-windows-based-hadoop-in-hdinsight"></a>HBase 教學課程：開始在 HDInsight 中搭配 Windows 型 Hadoop 使用 Apache HBase
 
 了解如何使用 Apache Hive 在 HDInsight 中建立 HBase 叢集、建立 HBase 資料表，以及查詢資料表。 如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
 
-本文件的資訊是 以 Windows 為基礎之 HDInsight 叢集的特定資訊。 如需 windows 叢集相關資訊，請使用頁面頂端的索引標籤選取器進行切換。
-
-> [!NOTE]
-> 以 Windows 為基礎的 HDInsight 上的 HBase (0.98.0 版) 只能與 HDInsight 3.1 叢集一起使用 (以 Apache Hadoop 和 YARN 2.4.0 為基礎)。 如需版本資訊，請參閱 [HDInsight 在 Hadoop 叢集版本中提供的新功能？][hdinsight-versions]
-> 
-> 
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 本文件的資訊是 以 Windows 為基礎之 HDInsight 叢集的特定資訊。 如需 Linux 型叢集的相關資訊，請參閱[HBase 教學課程：開始在 HDInsight 中使用 Apache HBase](hdinsight-hbase-tutorial-get-started-linux.md)。
 
 ## <a name="before-you-begin"></a>開始之前
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -55,11 +50,11 @@ ms.openlocfilehash: 6384d7b0f4851ce4d1612857203e7c3c1381d6fc
    
    * **叢集名稱** ：請輸入可識別此叢集的名稱。
    * **叢集類型**：請選取 [HBase]。
-   * **叢集作業系統**：請選取 [Windows]。  如需建立以 Linux 為基礎的叢集，請參閱 [HBase 教學課程：開始在 HDInsight (Linux) 中搭配 Hadoop 使用 Apache HBase](hdinsight-hbase-tutorial-get-started-linux.md)。
+   * **叢集作業系統**：請選取 [Windows]。  如需建立 Linux 型 HBase 叢集，請參閱 [HBase 教學課程：開始在 HDInsight (Linux) 中搭配 Hadoop 使用 Apache HBase](hdinsight-hbase-tutorial-get-started-linux.md)。
    * **版本** ：請選取 HBase 的版本。
    * **訂用帳戶** ：選取用來建立此叢集的 Azure 訂用帳戶。
    * **資源群組**：請建立新的 Azure 資源群組，或選取現有的資源群組。 如需詳細資訊，請參閱 [Azure Resource Manager概觀](../azure-resource-manager/resource-group-overview.md)
-   * **認證** ：對於以 Windows 為基礎的叢集，您可以建立叢集使用者 (也就是 HTTP 使用者、HTTP Web 服務使用者) 和遠端桌面使用者。 請按一下 [啟用遠端桌面]  來新增遠端桌面使用者認證。 我們在下一節將需要使用 RDP。
+   * **認證** ：對於 Windows 型叢集，您可以建立叢集使用者 (也就是 HTTP 使用者、HTTP Web 服務使用者) 和遠端桌面使用者。 請按一下 [啟用遠端桌面]  來新增遠端桌面使用者認證。 我們在下一節將需要使用 RDP。
    * **資料來源** ：請建立新的 Azure 儲存體帳戶，或選取現有的 Azure 儲存體帳戶，來做為叢集的預設檔案系統。 預設儲存體帳戶的位置，會決定叢集的位置。 預設儲存體帳戶和叢集必須位於同一個資料中心。
    * **節點定價層** - 選取 HBase 叢集的區域伺服器數目
      
@@ -82,11 +77,11 @@ ms.openlocfilehash: 6384d7b0f4851ce4d1612857203e7c3c1381d6fc
 
 對大多數人而言，資料會以表格形式出現：
 
-![hdinsight hbase 表格式資料][img-hbase-sample-data-tabular]
+![HDInsight hbase tabular data][img-hbase-sample-data-tabular]
 
 在實作 BigTable 的 HBase 中，相同的資料看起來像：
 
-![hdinsight hbase bigtable 資料][img-hbase-sample-data-bigtable]
+![HDInsight HBase BigTable 資料][img-hbase-sample-data-bigtable]
 
 在您完成下一個程序後，就會更有意義。  
 
@@ -110,7 +105,7 @@ ms.openlocfilehash: 6384d7b0f4851ce4d1612857203e7c3c1381d6fc
         put 'Contacts', '1000', 'Office:Address', '1111 San Gabriel Dr.'
         scan 'Contacts'
    
-    ![hdinsight hadoop hbase shell][img-hbase-shell]
+    ![HDInsight Hadoop HBase 殼層][img-hbase-shell]
 6. 取得單一資料列
    
         get 'Contacts', '1000'
@@ -126,7 +121,7 @@ ms.openlocfilehash: 6384d7b0f4851ce4d1612857203e7c3c1381d6fc
 
 HBase 包含數個將資料載入資料表的方法。 如需詳細資訊，請參閱 [大量載入](http://hbase.apache.org/book.html#arch.bulk.load)。
 
-範例資料檔案已上傳到公用 Blob 容器： wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt. 資料檔案的內容：
+範例資料檔案已上傳到公用 Blob 容器：wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt。 資料檔案的內容：
 
     8396    Calvin Raji        230-555-0191    230-555-0191    5415 San Gabriel Dr.
     16600    Karen Wu        646-555-0113    230-555-0192    9265 La Paz
@@ -329,6 +324,6 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，
 
 
 
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

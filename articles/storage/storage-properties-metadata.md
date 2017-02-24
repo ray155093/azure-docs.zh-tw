@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 02/13/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6e89921509bb273d6d97f829d4867eded20c82bc
+ms.sourcegitcommit: 3868d36948342739eb78b013bb4b466df4381b4f
+ms.openlocfilehash: 7c1ca950c3ab1b8ffb754a74597d45b82777838c
 
 
 ---
@@ -24,7 +24,7 @@ ms.openlocfilehash: 6e89921509bb273d6d97f829d4867eded20c82bc
 ## <a name="overview"></a>Overview
 除了所包含之資料外，在 Azure 儲存體支援系統屬性和使用者定義中繼資料中的物件：
 
-* **系統屬性。**  系統屬性存在於每個儲存體資源上。 其中有些系統屬性可以讀取或設定，有些則是唯讀的。 實際上，有些系統屬性會對應至特定的標準 HTTP 標頭。 Azure 儲存體用戶端程式庫會為您維護這些 HTTP 標頭。
+* **系統屬性。** 系統屬性存在於每個儲存體資源上。 其中有些系統屬性可以讀取或設定，有些則是唯讀的。 實際上，有些系統屬性會對應至特定的標準 HTTP 標頭。 Azure 儲存體用戶端程式庫會為您維護這些 HTTP 標頭。
 * **使用者定義的中繼資料。** 使用者定義的中繼資料是您針對給定的資源，以名稱/值組的形式指定的中繼資料。 您可以使用中繼資料將額外的值與儲存體資源一同儲存。這些值僅供自己的用途使用，不會影響資源的運作方式。
 
 擷取儲存體資源的屬性和中繼資料值是一個兩步驟程序。 您必須先呼叫 **FetchAttributes** 方法明確地擷取這些值，才能開始讀取這些值。
@@ -32,6 +32,7 @@ ms.openlocfilehash: 6e89921509bb273d6d97f829d4867eded20c82bc
 > [!IMPORTANT]
 > 除非您呼叫其中一個 **FetchAttributes** 方法，否則無法填入儲存體資源的屬性和中繼資料值。
 >
+> 如果任何名稱/值組包含非 ASCII 字元，您會收到 `400 Bad Request`。 中繼資料名稱/值組是有效的 HTTP 標頭，所以必須遵守控管 HTTP 標頭的所有限制。 因此，如果名稱和值包含非 ASCII 字元，建議您使用 URL 編碼或 Base64 編碼。
 >
 
 ## <a name="setting-and-retrieving-properties"></a>設定與擷取屬性
@@ -110,6 +111,6 @@ public static void ListContainerMetadata(CloudBlobContainer container)
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/01/2016
+ms.date: 2/06/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: cd256c403cc8094a135157cdc69dbdd3971978ca
-ms.openlocfilehash: 9f8a898f265bc27fc47ea2e3d00d123f3f47dad6
+ms.sourcegitcommit: b57655c8041fa366d0aeb13e744e30e834ec85fa
+ms.openlocfilehash: 7432e45ef33bd4d51fca8e8db8ec880e8beaf3ab
 
 
 ---
@@ -96,6 +96,94 @@ DefaultValue 屬性指定當指定的環境缺少更特定的參數時所要使�
 > 
 > 
 
+### <a name="setting-and-using-environment-variables"></a>設定及使用環境變數 
+您可以在 ServiceManifest.xml 檔案中指定和設定環境變數，然後依據個別執行個體，在 ApplicationManifest.xml 檔案中覆寫這些變數。
+以下範例顯示兩個環境變數，其中一個已設定值，另一個將被覆寫。 您可以使用應用程式參數來設定環境變數值，其方式與將這些用於組態覆寫時一樣。
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<ServiceManifest Name="MyServiceManifest" Version="SvcManifestVersion1" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Description>An example service manifest</Description>
+  <ServiceTypes>
+    <StatelessServiceType ServiceTypeName="MyServiceType" />
+  </ServiceTypes>
+  <CodePackage Name="MyCode" Version="CodeVersion1">
+    <SetupEntryPoint>
+      <ExeHost>
+        <Program>MySetup.bat</Program>
+      </ExeHost>
+    </SetupEntryPoint>
+    <EntryPoint>
+      <ExeHost>
+        <Program>MyServiceHost.exe</Program>
+      </ExeHost>
+    </EntryPoint>
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="MyEnvVariable" Value=""/>
+      <EnvironmentVariable Name="HttpGatewayPort" Value="19080"/>
+    </EnvironmentVariables>
+  </CodePackage>
+  <ConfigPackage Name="MyConfig" Version="ConfigVersion1" />
+  <DataPackage Name="MyData" Version="DataVersion1" />
+</ServiceManifest>
+```
+若要覆寫 ApplicationManifest.xml 中的環境變數，請使用 `EnvironmentOverrides` 元素來參考 ServiceManifest 中的程式碼封裝。
+
+```xml
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="FrontEndServicePkg" ServiceManifestVersion="1.0.0" />
+    <EnvironmentOverrides CodePackageRef="MyCode">
+      <EnvironmentVariable Name="MyEnvVariable" Value="mydata"/>
+    </EnvironmentOverrides>
+  </ServiceManifestImport>
+ ``` 
+ 在具名服務執行個體建立之後，您便可以從程式碼存取環境變數。 例如，在 C# 中，您可以執行：
+
+```csharp
+    string EnvVariable = Environment.GetEnvironmentVariable("MyEnvVariable");
+```
+
+### <a name="service-fabric-environment-variables"></a>Service Fabric 環境變數
+Service Fabric 具有已針對每個服務執行個體設定的內建環境變數。 完整的環境變數清單如下，其中以粗體顯示的項目是您將在您的服務中使用的項目，而其他項目則是由 Service Fabric 執行階段使用。 
+
+* Fabric_ApplicationHostId
+* Fabric_ApplicationHostType
+* Fabric_ApplicationId
+* **Fabric_ApplicationName**
+* Fabric_CodePackageInstanceId
+* **Fabric_CodePackageName**
+* **Fabric_Endpoint_[YourServiceName]TypeEndpoint**
+* **Fabric_Folder_App_Log**
+* **Fabric_Folder_App_Temp**
+* **Fabric_Folder_App_Work**
+* **Fabric_Folder_Application**
+* Fabric_NodeId
+* **Fabric_NodeIPOrFQDN**
+* **Fabric_NodeName**
+* Fabric_RuntimeConnectionAddress
+* Fabric_ServicePackageInstanceId
+* Fabric_ServicePackageName
+* Fabric_ServicePackageVersionInstance
+* FabricPackageFileName
+
+下面的程式碼顯示如何列出 Service Fabric 環境變數
+ ```csharp
+    foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+    {
+        if (de.Key.ToString().StartsWith("Fabric"))
+        {
+            Console.WriteLine(" Environment variable {0} = {1}", de.Key, de.Value);
+        }
+    }
+```
+下面是具有服務類型 `FrontEndService` 之應用程式類型 `GuestExe.Application` 的範例環境變數 (當在您的本機開發電腦上執行時)。
+
+* **Fabric_ApplicationName = fabric:/GuestExe.Application**
+* **Fabric_CodePackageName = Code**
+* **Fabric_Endpoint_FrontEndServiceTypeEndpoint = 80**
+* **Fabric_NodeIPOrFQDN = localhost**
+* **Fabric_NodeName = _Node_2**
+
 ### <a name="application-parameter-files"></a>應用程式參數檔案
 Service Fabric 應用程式專案可以包含一或多個應用程式參數檔案。 每個檔案會為應用程式資訊清單中定義的參數定義特定值：
 
@@ -141,6 +229,6 @@ Service Fabric 應用程式專案可以包含一或多個應用程式參數檔�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

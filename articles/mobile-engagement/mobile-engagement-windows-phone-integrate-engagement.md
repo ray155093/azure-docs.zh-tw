@@ -101,7 +101,7 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 > 
 
 ## <a name="basic-reporting"></a>基本報告
-### <a name="recommended-method-overload-your-phoneapplicationpage-classes"></a>建議使用的方法：多載您的 `PhoneApplicationPage` 類別
+### <a name="recommended-method--overload-your-phoneapplicationpage-classes"></a>建議使用的方法：多載您的 `PhoneApplicationPage` 類別
 為了啟用 Engagement 計算使用者、工作階段、活動、當機和技術的統計資料所需的所有記錄檔報告，您可讓所有的 `PhoneApplicationPage` 子類別繼承自 `EngagementPage` 類別。
 
 以下是如何在您應用程式其中一個頁面使用此方法的範例。 您可以將相同的方法用於您應用程式的所有頁面。

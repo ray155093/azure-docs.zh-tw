@@ -85,7 +85,7 @@ ms.openlocfilehash: c4a20fe310d9a70bb3a954bd936daf6f3d432db9
 * [TrackException()](#exceptions) 會傳送堆疊追蹤。 [深入了解例外狀況](#exceptions)。
 * 如果您已經使用 Log4Net 或 NLog 等記錄架構，您可以[擷取這些記錄](app-insights-asp-net-trace-logs.md)，然後在診斷搜尋中將它們連同要求和例外狀況資料一起檢視。
 
-若要查看這些事件，請開啟 [搜尋][](app-insights-diagnostic-search.md)、開啟 [篩選]，然後選擇 [自訂事件]、[追蹤] 或 [例外狀況]。
+若要查看這些事件，請開啟[搜尋](app-insights-diagnostic-search.md)、開啟 [篩選]，然後選擇 [自訂事件]、[追蹤] 或 [例外狀況]。
 
 ![鑽研](./media/app-insights-asp-net-exceptions/viewCustomEvents.png)
 

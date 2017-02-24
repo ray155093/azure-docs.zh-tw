@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 01/25/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9ba47b6b4783dee84daa8dae6d4838a3d84022e0
+ms.sourcegitcommit: e1c9957f64e9a0a17823a881b060543a9346f457
+ms.openlocfilehash: 8e69d4efe14e29d9f009a4b65416207bb39faa8b
 
 
 ---
@@ -35,7 +35,7 @@ Weekdone 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 Weekdone 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 啟用 Weekdone 單一登入的訂用帳戶
+* 已啟用 Weekdone 單一登入 (SSO) 功能的訂用帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -110,30 +110,30 @@ Weekdone 與 Azure AD 整合提供下列優點：
    
     ![設定單一登入](./media/active-directory-saas-weekdone-tutorial/tutorial_weekdone_04.png) 
 
-    a. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：**"https://weekdone.com/a/azure"**。
+   1. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：**"https://weekdone.com/a/azure"**。
 
-    b. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：**"https://weekdone.com/a/azure/metadata"**。
+   2. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：**"https://weekdone.com/a/azure/metadata"**。
 
-    c. 按 [下一步] 。
+   3. 按 [下一步] 。
 
 1. 如果您想要在 [設定應用程式設定] 對話方塊頁面上以 **SP 起始模式**設定應用程式，請選取 [顯示進階設定 (選擇性)]，然後輸入**登入 URL** 和 [識別碼]，再按一下 [下一步]。
    
     ![設定單一登入](./media/active-directory-saas-weekdone-tutorial/tutorial_weekdone_06.png) 
    
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 Weekdone 應用程式的 URL：**“https://weekdone.com/a/azure”**。
+   1. 在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 Weekdone 應用程式的 URL：**“https://weekdone.com/a/azure”**。
    
-    b.這是另一個 C# 主控台應用程式。 在 [識別碼] 文字方塊中，以下列模式輸入 URL：**"https://weekdone.com/a/azure/metadata"**。
+   2. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：**"https://weekdone.com/a/azure/metadata"**。
    
-    c. 按 [下一步] 。
+   3. 按 [下一步] 。
 2. 在 [設定在 Weekdone 單一登入] 頁面上，執行下列步驟，然後按一下 [下一步]：
    
     ![設定單一登入](./media/active-directory-saas-weekdone-tutorial/tutorial_weekdone_05.png) 
    
-    a. 按一下 [下載憑證] ，然後將憑證檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
-3. 若要為您的應用程式設定 SSO，請透過 hello@weekdone.com. 將下載的憑證檔案附加至您的郵件，並與 Weekdone 小組分享中繼資料 URL (簽發者 URL、SAML SSO URL 和單一登出服務 URL)，以在其端設定 SSO。
-4. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步] 。
+   1. 按一下 [下載憑證] ，然後將憑證檔案儲存在您的電腦上。
+   2. 按 [下一步] 。
+    
+3. 若要為您的應用程式設定 SSO，請透過 hello@weekdone.com 連絡您的 Weekdone 支援小組。 將下載的憑證檔案附加至您的郵件，並與 Weekdone 小組分享中繼資料 URL (簽發者 URL、SAML SSO URL 和單一登出服務 URL)，以在其端設定 SSO。
+4. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
 5. 在 [單一登入確認] 頁面上，按一下 [完成]。  
@@ -149,39 +149,45 @@ Weekdone 與 Azure AD 整合提供下列優點：
 
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_09.png) 
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_09.png) 
+    
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
-   
+4.    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_03.png) 
+    
 4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_04.png) 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_05.png) 
+    
+5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_05.png) 
    
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+    1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+    2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    3. 按 [下一步] 。
+    
+6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
+
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_06.png) 
    
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
-6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+   1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+   2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+   3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
+  
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
+
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_07.png) 
-8. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_08.png) 
+    
+8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-weekdone-tutorial/create_aaduser_08.png) 
    
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+   1. 記下 [新密碼] 的值。 
+   2. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-weekdone-test-user"></a>建立 Weekdone 測試使用者
 本節目標是在 Weekdone 中建立名為 Britta Simon 的使用者。 Weekdone 支援預設啟用的 Just-In-Time 佈建。
@@ -243,6 +249,6 @@ Weekdone 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

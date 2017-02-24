@@ -3,7 +3,7 @@ title: "管理 Azure Active Directory 中的自訂網域名稱 | Microsoft Docs"
 description: "管理概念和管理 Azure Active Directory 自訂網域的做法"
 services: active-directory
 documentationcenter: 
-author: jeffsta
+author: curtand
 manager: femila
 editor: 
 ms.assetid: cf3523bd-9ee0-439e-963d-ccea038867b9

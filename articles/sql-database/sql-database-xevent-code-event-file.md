@@ -14,15 +14,16 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/23/2016
+ms.date: 02/06/2017
 ms.author: genemi
 translationtype: Human Translation
-ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
-ms.openlocfilehash: c046c6bd16d6ede165ccaeb5983393dd5e33bfae
+ms.sourcegitcommit: fdbe5ff497b7acc9d8521b8ba1a016ae11bc69d2
+ms.openlocfilehash: 3bb6cc477b413a8636433038429e4defec1d2676
 
 
 ---
 # <a name="event-file-target-code-for-extended-events-in-sql-database"></a>SQL Database 中擴充事件的事件檔案目標程式碼
+
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
 您想要完整的程式碼範例以穩健方式擷取和報告擴充事件的資訊。
@@ -38,6 +39,7 @@ ms.openlocfilehash: c046c6bd16d6ede165ccaeb5983393dd5e33bfae
   * 建立和啟動事件工作階段等等。
 
 ## <a name="prerequisites"></a>必要條件
+
 * Azure 帳戶和訂用帳戶。 您可以註冊 [免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 您可以在當中建立資料表的任何資料庫。
   
@@ -52,6 +54,7 @@ ms.openlocfilehash: c046c6bd16d6ede165ccaeb5983393dd5e33bfae
   * 模組提供 **New-AzureStorageAccount**這類的命令。
 
 ## <a name="phase-1-powershell-code-for-azure-storage-container"></a>第 1 階段：Azure 儲存體容器的 PowerShell 程式碼
+
 這個 PowerShell 是兩階段程式碼範例的第 1 階段。
 
 此指令碼是以可清除先前可能之執行結果的命令為開頭，並且可重複執行。
@@ -66,9 +69,10 @@ ms.openlocfilehash: c046c6bd16d6ede165ccaeb5983393dd5e33bfae
 
 ![準備好 PowerShell ISE 和安裝的 Azure 模組，以便執行指令碼。][30_powershell_ise]
 
-&nbsp;
 
-```
+### <a name="powershell-code"></a>PowerShell 程式碼
+
+```powershell
 ## TODO: Before running, find all 'TODO' and make each edit!!
 
 #--------------- 1 -----------------------
@@ -239,11 +243,10 @@ Now shift to the Transact-SQL portion of the two-part code sample!'
 ```
 
 
-&nbsp;
-
 記下 PowerShell 指令碼結束時列印出的幾個具名值。 您必須將這些值寫入第 2 階段的 Transact-SQL 指令碼。
 
 ## <a name="phase-2-transact-sql-code-that-uses-azure-storage-container"></a>第 2 階段：使用 Azure 儲存體容器的 Transact-SQL 程式碼
+
 * 在此程式碼範例的第 1 階段中，您執行了 PowerShell 指令碼來建立「Azure 儲存體」容器。
 * 接下來在第 2 階段中，下列 Transact-SQL 指令碼必須使用該容器。
 
@@ -258,16 +261,14 @@ PowerShell 指令碼在結束時列印出幾個具名的值。 您必須編輯 T
 5. 在指令碼中尋找每個 **TODO** 並進行適當的編輯。
 6. 儲存並執行指令碼。
 
-&nbsp;
 
 > [!WARNING]
 > 上述 PowerShell 指令碼所產生的 SAS 金鑰值可能會以 '?' (問號) 開頭。 當您在下列 T-SQL 指令碼中使用 SAS 金鑰時，您必須「移除前置 '?'」 。 否則您的動作可能會遭到安全性封鎖。
-> 
-> 
 
-&nbsp;
 
-```
+### <a name="transact-sql-code"></a>Transact-SQL 程式碼
+
+```tsql
 ---- TODO: First, run the PowerShell portion of this two-part code sample.
 ---- TODO: Second, find every 'TODO' in this Transact-SQL file, and edit each.
 
@@ -461,11 +462,9 @@ GO
 ```
 
 
-&nbsp;
-
 如果目標在執行時無法附加，您就必須停止事件工作階段並重新啟動：
 
-```
+```tsql
 ALTER EVENT SESSION ... STATE = STOP;
 GO
 ALTER EVENT SESSION ... STATE = START;
@@ -473,16 +472,14 @@ GO
 ```
 
 
-&nbsp;
-
 ## <a name="output"></a>輸出
+
 Transact-SQL 指令碼完成時，按一下 **event_data_XML** 資料欄標題下的儲存格。 此時會顯示一個 **<event>** 元素，此元素會顯示一個 UPDATE 陳述式。
 
 以下是測試期間所產生的一個 **<event>** 元素：
 
-&nbsp;
 
-```
+```xml
 <event name="sql_statement_starting" package="sqlserver" timestamp="2015-09-22T19:18:45.420Z">
   <data name="state">
     <value>0</value>
@@ -521,7 +518,6 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 </event>
 ```
 
-&nbsp;
 
 上述 TRANSACT-SQL 指令碼使用下列系統函數讀取 event_file：
 
@@ -531,9 +527,9 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 
 * [進一步檢視擴充事件的目標資料](http://msdn.microsoft.com/library/mt752502.aspx)
 
-&nbsp;
 
 ## <a name="converting-the-code-sample-to-run-on-sql-server"></a>轉換程式碼範例在 SQL Server 上執行
+
 假設您想要在 Microsoft SQL Server 上執行上述的 Transact-SQL 範例。
 
 * 為了簡單起見，您可以用簡單的檔案 (例如 **C:\myeventdata.xel**) 來取代「Azure 儲存體」容器的使用。 檔案會寫入裝載 SQL Server 之電腦的本機硬碟。
@@ -543,6 +539,7 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
   * 不需要牽涉到任何 Azure 儲存體帳戶。
 
 ## <a name="more-information"></a>詳細資訊
+
 如需 Azure 儲存體服務中帳戶和容器的詳細資訊，請參閱：
 
 * [如何使用 .NET 的 Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)
@@ -560,6 +557,6 @@ Image references.
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

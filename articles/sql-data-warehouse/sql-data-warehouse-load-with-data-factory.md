@@ -13,11 +13,11 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/12/2017
+ms.date: 02/08/2017
 ms.author: jingwang;kevin;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: e0a65275f2908845dbbf985982c322c292819202
-ms.openlocfilehash: f184e12de6dbe3e8299cef55ed6a0629492754b7
+ms.sourcegitcommit: 6474104846eefa1aa7e137e7914b7a7f1ee8a83a
+ms.openlocfilehash: aad76a633b127d23d59dae995d7a503023c5eac7
 
 
 ---
@@ -30,13 +30,11 @@ ms.openlocfilehash: f184e12de6dbe3e8299cef55ed6a0629492754b7
 
 ## <a name="prerequisites"></a>必要條件
 
-- 您需要 SQL Server 資料庫，其中的資料表含有要複製到 SQL 資料倉儲的資料。  
+- 您需要 **SQL Server 資料庫**，其中的資料表含有要複製到 SQL 資料倉儲的資料。  
 
-- 您需要線上 SQL 資料倉儲。 如果您還沒有資料倉儲，請了解如何[建立 Azure SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)。
+- 您需要線上 **SQL 資料倉儲**。 如果您還沒有資料倉儲，請了解如何[建立 Azure SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)。
 
-- 藉由建立一或多個資料表結構描述，來準備您的資料倉儲以接收內送資料。 您可以使用 [SQL 資料倉儲移轉公用程式](sql-data-warehouse-migrate-migration-utility.md)產生和建立結構描述。
-
-- 您需要 Azure 儲存體帳戶。 如果您還沒有儲存體帳戶，請了解如何[建立儲存體帳戶](../storage/storage-create-storage-account.md)。 為了達到最佳效能，在相同的 Azure 區域中找出儲存體帳戶和資料倉儲。
+- 您需要 **Azure 儲存體帳戶**。 如果您還沒有儲存體帳戶，請了解如何[建立儲存體帳戶](../storage/storage-create-storage-account.md)。 為了達到最佳效能，在相同的 Azure 區域中找出儲存體帳戶和資料倉儲。
 
 ## <a name="configure-a-data-factory"></a>設定 Data Factory
 1. 登入 [Azure 入口網站][]。
@@ -48,6 +46,8 @@ ms.openlocfilehash: f184e12de6dbe3e8299cef55ed6a0629492754b7
 4. 如果您在 Azure 訂用帳戶中沒有 Data Factory，您會在瀏覽器的個別索引標籤中看到 [新增 Data Factory]對話方塊。 填入必要的資訊，然後按一下 [建立]。 建立 Data Factory 之後，[新增 Data Factory] 對話方塊隨即關閉，而且您會看到 [選取 Data Factory] 對話方塊。
 
     如果您在 Azure 訂用帳戶中已有一或多個 Data Factory，您會看到[選取 Data Factory] 對話方塊。 在這個對話方塊中，您可以選取現有的 Data Factory，或按一下[建立新的 Data Factory] 來建立新的。
+
+    ![設定 Data Factory](media/sql-data-warehouse-load-with-data-factory/configure-data-factory.png)
 
 5. 在 [選取 Data Factory] 對話方塊中，預設會選取 [載入資料] 選項。 按 [下一步] 以開始建立資料載入工作。
 
@@ -66,10 +66,10 @@ ms.openlocfilehash: f184e12de6dbe3e8299cef55ed6a0629492754b7
 
     ![選擇 SQL Server 來源](media/sql-data-warehouse-load-with-data-factory/choose-sql-server-source.png)
 
-2. 隨即出現 [指定內部部署 SQL Server 資料庫] 對話方塊。 第一個 [連接名稱] 欄位會自動填入。 第二個欄位會詢問 [閘道器] 的名稱。 如果來源資料存放區是在內部部署或在 Azure IaaS 虛擬機器中，閘道是必要的。 如果您使用的現有 Data Factory 已有一個閘道，您可以藉由從下拉式清單中選取它來重複使用閘道。 按一下 [建立閘道] 連結以建立資料管理閘道。  
+2. 隨即出現 [指定內部部署 SQL Server 資料庫] 對話方塊。 第一個 [連接名稱] 欄位會自動填入。 第二個欄位會詢問 [閘道器] 的名稱。 如果您使用的現有 Data Factory 已有一個閘道，您可以藉由從下拉式清單中選取它來重複使用閘道。 按一下 [建立閘道] 連結以建立資料管理閘道。  
 
     > [!NOTE]
-    > 閘道與 Data Factory 有 1 對 1 關聯性。 它不能從另一個 Data Factory 使用，但可供相同 Data Factory 中的多個資料載入工作使用。 閘道可以用來在執行資料載入工作時連接至多個資料存放區。
+    > 如果來源資料存放區是在內部部署或在 Azure IaaS 虛擬機器中，資料管理閘道是必要的。 閘道與 Data Factory 有 1 對 1 關聯性。 它不能從另一個 Data Factory 使用，但可供相同 Data Factory 中的多個資料載入工作使用。 閘道可以用來在執行資料載入工作時連接至多個資料存放區。
     >
     > 如需閘道的詳細資訊，請參閱[資料管理閘道](../data-factory/data-factory-data-management-gateway.md)文章。
 
@@ -84,9 +84,11 @@ ms.openlocfilehash: f184e12de6dbe3e8299cef55ed6a0629492754b7
 5. 等候閘道安裝程式完成。 一旦閘道成功註冊且上線後，快顯視窗會關閉，且新的閘道會出現在 [閘道] 欄位中。 接著，填寫其餘必要欄位，如下所示，然後按 [下一步]。
     - **伺服器名稱**︰內部部署 SQL Server 的名稱。
     - **資料庫名稱**：SQL Server 資料庫。
-    - **認證加密**︰無。
+    - **認證加密**：使用預設的「透過網頁瀏覽器」。
     - **驗證類型**︰選擇您所使用的驗證類型。
     - **使用者名稱**和**密碼**︰輸入擁有複製資料權限之使用者的使用者名稱和密碼。
+
+    ![啟動快速安裝](media/sql-data-warehouse-load-with-data-factory/configure-sql-server.png)
 
 6. 下一步是選擇要從中複製資料的資料表。 您可以使用關鍵字篩選資料表。 然後您可以預覽底部面板中的資料和資料表結構描述。 在完成您的選擇之後，按 [下一步]。
 
@@ -100,11 +102,11 @@ ms.openlocfilehash: f184e12de6dbe3e8299cef55ed6a0629492754b7
 
     ![設定目的地](media/sql-data-warehouse-load-with-data-factory/configure-destination.png)
 
-2. 出現智慧型資料表對應，它會根據資料表名稱將來源對應至目的地資料表。 調整任何資料表的對應，其餘資料表會從範例學習來自動對應。 檢閱並按 [下一步]。
+2. 出現智慧型資料表對應，它會根據資料表名稱將來源對應至目的地資料表。 如果資料表不存在於目的地，依預設，ADF 會建立一個同名的資料表 (這適用於以 SQL Server 或 Azure SQL 資料庫作為來源的情形)。 您也可以選擇對應至現有的資料表。 檢閱並按 [下一步]。
 
     ![對應資料表](media/sql-data-warehouse-load-with-data-factory/table-mapping.png)
 
-3. 檢閱結構描述對應，並尋找的錯誤訊息。 智慧型對應是根據資料行名稱。 如果在來源和目的地資料行之間有不支援的資料類型轉換，您會看到一則錯誤訊息與對應的資料表。
+3. 檢閱結構描述對應，並尋找錯誤或警告訊息。 智慧型對應是根據資料行名稱。 如果在來源和目的地資料行之間有不支援的資料類型轉換，您會看到一則錯誤訊息與對應的資料表。 如果您選擇讓 Data Factory 自動建立資料表，則必要時會進行適當的資料類型轉換，以修正來源和目的地存放區之間的不相容性。
 
     ![對應結構描述](media/sql-data-warehouse-load-with-data-factory/schema-mapping.png)
 
@@ -165,6 +167,6 @@ ms.openlocfilehash: f184e12de6dbe3e8299cef55ed6a0629492754b7
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

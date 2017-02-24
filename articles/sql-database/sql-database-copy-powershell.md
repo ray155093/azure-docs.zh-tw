@@ -16,21 +16,18 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: a877c17a503e58c49ae781aed61ed120d069c737
-ms.openlocfilehash: 0f2a77892b6ed6c2b1f78e5c6ccefafdca3b5ed5
+ms.sourcegitcommit: edfbc0d94d9d5b33a25788772a98173187e394b8
+ms.openlocfilehash: 031a17d179cee8d6cceb9ed3aefd993add1958b8
 
 
 ---
 # <a name="copy-an-azure-sql-database-using-powershell"></a>使用 PowerShell 複製 Azure SQL Database
-> [!div class="op_single_selector"]
-> * [概觀](sql-database-copy.md)
-> * [Azure 入口網站](sql-database-copy-portal.md)
-> * [PowerShell](sql-database-copy-powershell.md)
-> * [T-SQL](sql-database-copy-transact-sql.md)
-> 
-> 
 
-本文說明如何使用 PowerShell，將 SQL Database 複製到相同的伺服器或不同的伺服器，或是將資料庫複製到 [彈性資料庫集區](sql-database-elastic-pool.md)。 資料庫複製作業會使用 [New-AzureRmSqlDatabaseCopy](https://msdn.microsoft.com/library/mt603644\(v=azure.300\).aspx) Cmdlet。 
+本文說明如何使用 PowerShell，將 SQL 資料庫複製到相同的伺服器或不同的伺服器，或是將資料庫複製到 [彈性集區](sql-database-elastic-pool.md)。 資料庫複製作業會使用 [New-AzureRmSqlDatabaseCopy](https://msdn.microsoft.com/library/mt603644\(v=azure.300\).aspx) Cmdlet。 
+
+> [!NOTE]
+> 您也可以使用 [Azure 入口網站](sql-database-copy-portal.md)或 [Transact-SQL](sql-database-copy-transact-sql.md) 複製 SQL 資料庫。
+>
 
 若要完成本文，您需要下列項目：
 
@@ -55,7 +52,7 @@ SQL Database 的許多新功能只有在您使用 [Azure Resource Manager 部署
     New-AzureRmSqlDatabaseCopy -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -CopyServerName "server2" -CopyDatabaseName "database1_copy"
 
 
-## <a name="copy-a-sql-database-into-an-elastic-database-pool"></a>將 SQL Database 複製到彈性資料庫集區
+## <a name="copy-a-sql-database-into-an-elastic-pool"></a>將 SQL 資料庫複製到彈性集區
 若要在集區中建立 SQL Database 的複本，請將 `-ElasticPoolName` 參數設定為現有的集區。
 
     New-AzureRmSqlDatabaseCopy -ResourceGroupName "resourcegoup1" -ServerName "server1" -DatabaseName "database1" -CopyResourceGroupName "poolResourceGroup" -CopyServerName "poolServer1" -CopyDatabaseName "database1_copy" -ElasticPoolName "poolName"
@@ -94,7 +91,7 @@ SQL Database 的許多新功能只有在您使用 [Azure Resource Manager 部署
     # -------------------------------------
     New-AzureRmSqlDatabaseCopy -ResourceGroupName $sourceDbResourceGroupName -ServerName $sourceDbServerName -DatabaseName $sourceDbName -CopyResourceGroupName $copyDbResourceGroupName -CopyServerName $copyDbServerName -CopyDatabaseName $copyDbName
 
-    # Copy a database into an elastic database pool
+    # Copy a database into an elastic pool
     # ---------------------------------------------
     $poolName = "pool1"
 
@@ -105,10 +102,10 @@ SQL Database 的許多新功能只有在您使用 [Azure Resource Manager 部署
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需複製 Azure SQL Database 的概觀，請參閱 [複製 Azure SQL Database](sql-database-copy.md) 。
-* 若要使用 Azure 入口網站來複製資料庫，請參閱 [使用 Azure 入口網站複製 Azure SQL Database](sql-database-copy-portal.md) 。
-* 若要使用 Transact-SQL 複製資料庫，請參閱 [使用 T-SQL 複製 Azure SQL Database](sql-database-copy-transact-sql.md) 。
-* 請參閱 [如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md) ，以了解如何在將資料庫複製到不同的邏輯伺服器時管理使用者與登入。
+* 若要了解將資料庫複製到不同的邏輯伺服器時如何管理使用者與登入，請參閱[如何管理災害復原後的 Azure SQL 資料庫安全性](sql-database-geo-replication-security-config.md)。
+* 若要使用 PowerShell 將資料庫匯出至 BACPAC 檔案，請參閱[使用 PowerShell 將資料庫匯出至 BACPAC](sql-database-export-powershell.md)。
+* [業務續航力概觀](sql-database-business-continuity.md)
+* [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
 ## <a name="additional-resources"></a>其他資源
 * [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/mt603644\(v=azure.300\).aspx)
@@ -123,6 +120,6 @@ SQL Database 的許多新功能只有在您使用 [Azure Resource Manager 部署
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

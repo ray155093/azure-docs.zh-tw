@@ -41,7 +41,7 @@
    
         C:\> mongod --dbpath F:\MongoData\ --logpath F:\MongoLogs\mongolog.log --logappend  --install
    
-    隨即安裝一個名為 MongoDB 的服務，其說明為 "Mongo DB"。 `--logpath` 選項必須用來指定記錄檔，因為執行中的服務沒有命令視窗可以顯示輸出。  `--logappend` 選項指出重新啟動服務會導致輸出附加在現有的記錄檔案中。  `--dbpath` 選項指出資料目錄的位置。 如需更多服務相關的命令列選項，請參閱[服務相關的命令列選項] [ MongoWindowsSvcOptions]。
+    隨即安裝一個名為 MongoDB 的服務，其說明為 "Mongo DB"。 `--logpath` 選項必須用來指定記錄檔，因為執行中的服務沒有命令視窗可以顯示輸出。  `--logappend` 選項指出重新啟動服務會導致輸出附加在現有的記錄檔案中。  `--dbpath` 選項指出資料目錄的位置。 如需更多服務相關的命令列選項，請參閱[服務相關的命令列選項][ MongoWindowsSvcOptions]。
    
     若要啟動服務，請執行此命令：
    
@@ -101,6 +101,6 @@
 [Image9]: ./media/install-and-run-mongo-on-win2k8-vm/WinVmAddEndpoint3.png
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -14,13 +14,13 @@ ms.topic: get-started-article
 ms.date: 11/14/2016
 ms.author: daviste
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a42d55df223c25a26111bbcc05628ff7f4ff7204
+ms.sourcegitcommit: ebfed89674dc132bd5d93f34a8b5ed5ab12bd73e
+ms.openlocfilehash: 3e7cb9dfbc3a0985794294c94d331f12829c2bdc
 
 
 ---
 # <a name="application-insights-telemetry-in-visual-studio-codelens"></a>Visual Studio CodeLens 中的 Application Insights 遙測
-Web 應用程式的程式碼方法可透過遙測資料來標註出執行階段及要求回應時間。 如果您在應用程式中安裝 [Visual Studio Application Insights](app-insights-overview.md)，遙測會出現在 Visual Studio [CodeLens](https://msdn.microsoft.com/library/dn269218.aspx) - 各函式頂端的註解，也就是您慣於查看有否實用資訊之處，例如參考函式的位置數或上次編輯函式的人員。
+Web 應用程式的程式碼方法可透過遙測資料來標註出執行階段及要求回應時間。 如果您在應用程式中安裝 [Azure Application Insights](app-insights-overview.md)，遙測會出現在 Visual Studio [CodeLens](https://msdn.microsoft.com/library/dn269218.aspx) - 各函式頂端的註解，也就是您慣於查看有否實用資訊之處，例如參考函式的位置數或上次編輯函式的人員。
 
 ![CodeLens](./media/app-insights-visual-studio-codelens/codelens-overview.png)
 
@@ -82,6 +82,6 @@ Web 應用程式的程式碼方法可透過遙測資料來標註出執行階段�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,6 +1,6 @@
 ---
 title: "運用 Azure 命令列介面開始使用 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何透過 Azure 命令列介面建立資料湖存放區帳戶、使用 U-SQL 建立資料湖分析工作，以及提交工作。 "
+description: "了解如何透過 Azure 命令列介面建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 "
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/16/2016
+ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 8b38c62ae1a60728d08643990238e2cc69cb6447
+ms.sourcegitcommit: c9440e26a563ed9315225b34709b009d01e065d7
+ms.openlocfilehash: ff9b0d9e098fd8c6cde7c63c005c8f1906c6e0f2
 
 
 ---
-# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-commandline-interface-cli"></a>教學課程：運用 Azure 命令列介面 (CLI) 開始使用 Azure 資料湖分析
+# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-command-line-interface-cli"></a>教學課程：運用 Azure 命令列介面 (CLI) 開始使用 Azure 資料湖分析
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
 了解如何透過 Azure CLI 建立 Azure 資料湖分析帳戶、在 [U-SQL](data-lake-analytics-u-sql-get-started.md)中定義資料湖分析工作，以及將工作提交至資料湖分析帳戶。 如需有關資料湖分析的詳細資訊，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
@@ -165,6 +165,6 @@ azure datalake analytics job show "<Data Lake Analytics Account Name>" "<Job Id>
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

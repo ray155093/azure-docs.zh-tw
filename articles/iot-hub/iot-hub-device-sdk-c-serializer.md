@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/06/2016
 ms.author: obloch
 translationtype: Human Translation
-ms.sourcegitcommit: 5d7eed340d2021c58f68c69100be5a9e13655146
-ms.openlocfilehash: 7d4b322cd6528fa4798362d2ee620dae4291b956
+ms.sourcegitcommit: ef066a50b71389cb1cdd3bb0f8d342a34a4cc722
+ms.openlocfilehash: 587412f02c6bb6bd2c5b1896a890607fa1c058f8
 
 
 ---
@@ -29,7 +29,7 @@ ms.openlocfilehash: 7d4b322cd6528fa4798362d2ee620dae4291b956
 
 本文中描述的所有內容都是根據「序列化程式」SDK 範例。 如果您想要依照這些內容，請參閱包含在「適用於 C 的 Azure IoT 裝置 SDK」中的 **simplesample\_amqp** 和 **simplesample\_http** 應用程式。
 
-您可以尋找[**適用於 C 的 Azure IoT 裝置 SDK**](https://github.com/Azure/azure-iot-sdk-c) GitHub 儲存機制，然後在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
+您可以尋找[**適用於 C 的 Azure IoT 裝置 SDK**](https://github.com/Azure/azure-iot-sdk-c) GitHub 儲存機制，然後在 [C API 參考資料](https://azure.github.io/azure-iot-sdk-c/index.html)中檢視 API 的詳細資料。
 
 ## <a name="the-modeling-language"></a>模型化語言
 本系列中的[簡介文章](iot-hub-device-sdk-c-intro.md)透過 **simplesample\_amqp** 應用程式中提供的範例介紹了「適用於 C 的 Azure IoT 裝置 SDK」模型化語言：
@@ -57,7 +57,7 @@ END_NAMESPACE(WeatherStation);
 此範例中並未示範 SDK 支援的其他資料類型。 我們將在稍後討論。
 
 > [!NOTE]
-> 「IoT 中樞」會將裝置傳送給它的資料視為「事件」，而模型化語言則是會將其視為「資料」(使用 **WITH_DATA** 來定義)。 同樣地，「IoT 中樞」會將您傳送給裝置的資料視為「訊息」，而模型化語言則是會將其視為「動作」(使用 **WITH_ACTION** 來定義)。 請注意，在本文中可能會交替使用這些詞彙。
+> 「IoT 中樞」會將裝置傳送給它的資料視為「事件」，而模型化語言則是會將它視為「資料」(使用 **WITH_DATA** 來定義)。 同樣地，「IoT 中樞」會將您傳送給裝置的資料視為「訊息」，而模型化語言則是會將它視為「動作」(使用 **WITH_ACTION** 來定義)。 請注意，在本文中可能會交替使用這些詞彙。
 > 
 > 
 
@@ -526,6 +526,13 @@ EXECUTE_COMMAND_RESULT SetAirResistance(ContosoAnemometer* device, int Position)
 
 動作名稱必須完全符合您的模型中所定義的動作。 參數名稱也必須相符。 也請注意區分大小寫。 **Name** 和 **Parameters** 一律是大寫。 請務必符合您模型中動作名稱和參數的大小寫。 在此範例中，動作名稱是 "SetAirResistance"，而不是 "setairresistance"。
 
+您可以透過將下列訊息傳送到裝置，以叫用兩個其他動作 **TurnFanOn** 與 **TurnFanOff**：
+
+```
+{"Name" : "TurnFanOn", "Parameters" : {}}
+{"Name" : "TurnFanOff", "Parameters" : {}}
+```
+
 本節說明使用 **序列化程式** 程式庫來傳送事件及接收訊息時的一切資訊。 在繼續討論之前，讓我們先討論一些您可以設定以控制模型大小的參數。
 
 ## <a name="macro-configuration"></a>巨集組態
@@ -672,6 +679,6 @@ serializer_deinit();
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

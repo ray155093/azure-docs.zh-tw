@@ -40,7 +40,7 @@ ms.openlocfilehash: 2420d31c73fcb43e680edf2a95995e4ed4969236
 #### <a name="i-have-questions-about-using-elastic-database-tools-how-do-i-get-them-answered"></a>我有關於使用彈性資料庫工具的疑問，要如何尋求解答？
 請在 [Azure SQL Database 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)上與我們聯繫。
 
-#### <a name="when-i-get-a-database-connection-using-a-sharding-key-i-can-still-query-data-for-other-sharding-keys-on-the-same-shard-is-this-by-design"></a>當我使用分區化索引鍵連接資料庫時，我仍然可以在相同的分區上查詢其他分區化索引鍵的資料。  這是原先的設計嗎？
+#### <a name="when-i-get-a-database-connection-using-a-sharding-key-i-can-still-query-data-for-other-sharding-keys-on-the-same-shard--is-this-by-design"></a>當我使用分區化索引鍵連接資料庫時，我仍然可以在相同的分區上查詢其他分區化索引鍵的資料。  這是原先的設計嗎？
 彈性延展 API 可讓您針對分區化索引鍵連接至正確的資料庫，但是不提供分區化索引鍵篩選。  如有必要，請新增 **WHERE** 子句到您的查詢，以將範圍限制在提供的分區化索引鍵。
 
 #### <a name="can-i-use-a-different-azure-database-edition-for-each-shard-in-my-shard-set"></a>我可以在分區集中針對個別的分區使用不同的 Azure Database 版本嗎？

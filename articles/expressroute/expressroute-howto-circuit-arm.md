@@ -1,10 +1,10 @@
 ---
-title: "使用 Resource Manager 及 PowerShell 建立和修改 ExpressRoute 線路 | Microsoft Docs"
+title: "建立和修改 ExpressRoute 線路：PowerShell：Azure Resource Manager | Microsoft Docs"
 description: "本文說明如何建立、佈建、驗證、更新、刪除和取消佈建 ExpressRoute 線路。"
 documentationcenter: na
 services: expressroute
 author: ganesr
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: f997182e-9b25-4a7a-b079-b004221dadcc
@@ -14,20 +14,21 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
-ms.author: ganesr
+ms.author: ganesr;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
-ms.openlocfilehash: 3e11bc1e196b263f758394d1abd4c21d9e12aeef
+ms.sourcegitcommit: 9a8a72f5255184a1ac571532355c7f7a23d7f7bd
+ms.openlocfilehash: 0aacbdafdb5ded81dbc8495a30837e2f4941075f
 
 
 ---
 # <a name="create-and-modify-an-expressroute-circuit"></a>建立和修改 ExpressRoute 線路
 > [!div class="op_single_selector"]
-> * [Azure 入口網站 - Resource Manager](expressroute-howto-circuit-portal-resource-manager.md)
-> * [PowerShell - 資源管理員](expressroute-howto-circuit-arm.md)
-> * [PowerShell - 傳統](expressroute-howto-circuit-classic.md)
+> * [Resource Manager - Azure 入口網站](expressroute-howto-circuit-portal-resource-manager.md)
+> * [Resource Manager - PowerShell](expressroute-howto-circuit-arm.md)
+> * [傳統 - PowerShell](expressroute-howto-circuit-classic.md)
+> * [視訊 - Azure 入口網站](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-an-expressroute-circuit)
 > 
-> 
+>
 
 本文說明如何使用 Windows PowerShell Cmdlet 和 Azure Resource Manager 部署模型建立 Azure ExpressRoute 線路。 本文也會示範如何檢查循環的狀態、加以更新，或是加以刪除及取消佈建。
 
@@ -38,6 +39,7 @@ ms.openlocfilehash: 3e11bc1e196b263f758394d1abd4c21d9e12aeef
 ## <a name="before-you-begin"></a>開始之前
 * 取得最新版的 Azure PowerShell 模組 (至少版本 1.0)。 請遵循 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)中的指示，來取得如何設定您的電腦以使用 PowerShell 模組的逐步指引。
 * 開始設定之前，請檢閱[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。
+
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>建立和佈建 ExpressRoute 線路
 ### <a name="1-sign-in-to-your-azure-account-and-select-your-subscription"></a>1.登入您的 Azure 帳戶並且選取您的訂用帳戶
@@ -376,6 +378,7 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 
 ## <a name="next-steps"></a>後續步驟
+
 建立好線路後，請務必執行下列作業：
 
 * [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-arm.md)
@@ -384,6 +387,6 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO1-->
 
 

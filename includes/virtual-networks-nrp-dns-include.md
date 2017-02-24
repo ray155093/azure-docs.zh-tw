@@ -1,12 +1,12 @@
-## Azure DNS
+## <a name="azure-dns"></a>Azure DNS
 Azure DNS 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。
 
 | 屬性 | 說明 | 範例值 |
 | --- | --- | --- |
 | **DNSzones** |託管特定網域 DNS 記錄的網域區域資訊 |/subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com" |
 
-### DNS 記錄集
-DNS 區域擁有名為「記錄集」的子物件。記錄集是 DNS 區域依類型分類之主機記錄的集合。記錄類型有 A、AAAA、CNAME、MX、NS、SOA、SRV 和 TXT。
+### <a name="dns-record-sets"></a>DNS 記錄集
+DNS 區域擁有名為「記錄集」的子物件。 記錄集是 DNS 區域依類型分類之主機記錄的集合。 記錄類型有 A、AAAA、CNAME、MX、NS、SOA、SRV 和 TXT。
 
 | 屬性 | 說明 | 範例值 |
 | --- | --- | --- |
@@ -20,7 +20,7 @@ DNS 區域擁有名為「記錄集」的子物件。記錄集是 DNS 區域依�
 
 <sup>1</sup> 每個記錄集僅允許一個值。
 
-<sup>2</sup> 每個 DNS 區域僅允許一種記錄類型 SOA。
+<sup>2</sup> 每個 DNS 區域僅允許一種記錄類型 SOA。 
 
 Json 格式的 DNS 區域範例：
 
@@ -77,9 +77,13 @@ Json 格式的 DNS 區域範例：
           ]
     }
 
-## 其他資源
-如需詳細資訊，請參閱[適用於 DNS 區域的 REST API 文件](https://msdn.microsoft.com/library/azure/mt130626.aspx)。
+## <a name="additional-resources"></a>其他資源
+如需詳細資訊，請參閱 [適用於 DNS 區域的 REST API 文件 ](https://msdn.microsoft.com/library/azure/mt130626.aspx) 。
 
-如需詳細資訊，請參閱[適用於 DNS 記錄集的 REST API 文件](https://msdn.microsoft.com/library/azure/mt130627.aspx)。
+如需詳細資訊，請參閱 [適用於 DNS 記錄集的 REST API 文件](https://msdn.microsoft.com/library/azure/mt130627.aspx) 。
 
-<!---HONumber=AcomDC_0128_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

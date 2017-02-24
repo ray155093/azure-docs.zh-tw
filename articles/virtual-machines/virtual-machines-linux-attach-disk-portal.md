@@ -16,19 +16,19 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 7c481cfae5f97b71c0ab184419ceaa46ab3f5a5b
-ms.openlocfilehash: 394d82e444bdbc8b07243d92743ceb660f142509
+ms.sourcegitcommit: cc14f7747c4a24acea434f62b7615d10819bd619
+ms.openlocfilehash: 31d7f4620420839ade1ca58391fad78e94d4e929
 
 
 ---
 # <a name="how-to-attach-a-data-disk-to-a-linux-vm-in-the-azure-portal"></a>如何在 Azure 入口網站中將資料磁碟連結到 Linux VM
-本文示範如何透過 Azure 入口網站將新的及現有的磁碟連結到 Linux 虛擬機器。 您也可以[在 Azure 入口網站中將資料磁碟連結到 Windows VM](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 這麼做之前，請先檢閱下列提示：
+本文示範如何透過 Azure 入口網站將新的及現有的磁碟連結到 Linux 虛擬機器。 您也可以[在 Azure 入口網站中將資料磁碟連結到 Windows VM](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 您可以選擇使用 Azure 受控磁碟或非受控磁碟。 受控磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 非受控磁碟需要儲存體帳戶且[套用一些配額和限制](../azure-subscription-service-limits.md#storage-limits)。 如需 Azure 受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md)。
+
+將磁碟附加至 VM 之前，請檢閱下列提示︰
 
 * 虛擬機器的大小會控制您可以連接的資料磁碟數目。 如需詳細資訊，請參閱 [虛擬機器的大小](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-* 若要使用進階儲存體，您需要 DS 系列或 GS 系列的虛擬機器。 您可以使用進階或標準儲存體帳戶的磁碟搭配這些虛擬機器。 僅特定地區可用進階儲存體。 如需詳細資訊，請參閱 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-* 連接至虛擬機器的磁碟實際上是 Azure 儲存體帳戶中的 .vhd 檔案。 如需詳細資訊，請參閱 [有關虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-* 對於新的磁碟，當您連接的時候 Azure 會建立該磁碟，所以您不需要建立它。
-* 對於現有的磁碟，該 .vhd 檔案必須可在 Azure 儲存體帳戶中取得。 您可以使用現有的 .vhd 檔案 (若尚未連接至其他虛擬機器)，或上傳您自己的 .vhd 檔案至儲存體帳戶。
+* 若要使用進階儲存體，您需要 DS 系列或 GS 系列的虛擬機器。 您可以使用進階或標準磁碟搭配這些虛擬機器。 僅特定地區可用進階儲存體。 如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+* 附加至虛擬機器的磁碟實際上是 Azure 中儲存的 .vhd 檔案。 如需詳細資訊，請參閱 [有關虛擬機器的磁碟和 VHD](../storage/storage-about-disks-and-vhds-linux.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 
 ## <a name="find-the-virtual-machine"></a>尋找虛擬機器
@@ -39,17 +39,53 @@ ms.openlocfilehash: 394d82e444bdbc8b07243d92743ceb660f142509
    
     ![開啟磁碟設定](./media/virtual-machines-linux-attach-disk-portal/find-disk-settings.png)
 
-接著，依照指示來連接[新的磁碟](#option-1-attach-a-new-disk)或[現有的磁碟](#option-2-attach-an-existing-disk)。
+接著，依照指示來附加[受控磁碟](#use-azure-managed-disks)或[非受控磁碟](#use-unmanaged-disks)。
 
-## <a name="option-1-attach-a-new-disk"></a>選項 1：連接新的磁碟
-1. 在 [磁碟] 刀鋒視窗上，按一下 [連接新項目]。
+## <a name="use-azure-managed-disks"></a>使用 Azure 受控磁碟
+
+### <a name="attach-a-new-disk"></a>附加新的磁碟
+
+1. 在 [磁碟] 刀鋒視窗上，按一下 [+ 新增資料磁碟]。
+2. 按一下 [名稱] 的下拉式選單，然後選取 [建立磁碟]：
+
+    ![建立 Azure 受控磁碟](./media/virtual-machines-linux-attach-disk-portal/create-new-md.png)
+
+3. 輸入受控磁碟的名稱。 檢閱預設設定，視需要進行更新，然後按一下 [建立]。
+   
+   ![檢閱磁碟設定](./media/virtual-machines-linux-attach-disk-portal/create-new-md-settings.png)
+
+4. 按一下 [儲存] 以建立受控磁碟並更新 VM 組態︰
+
+   ![儲存新的 Azure 受控磁碟](./media/virtual-machines-linux-attach-disk-portal/confirm-create-new-md.png)
+
+5. 在 Azure 建立磁碟並將其連接至虛擬機器之後，該新磁碟就會列在虛擬機器之磁碟設定中的 [資料磁碟] 底下。 當受控磁碟是最上層資源時，磁碟會出現在資源群組的根目錄︰
+
+   ![資源群組中的 Azure 受控磁碟](./media/virtual-machines-linux-attach-disk-portal/view-md-resource-group.png)
+
+### <a name="attach-an-existing-disk"></a>連接現有磁碟
+1. 在 [磁碟] 刀鋒視窗上，按一下 [+ 新增資料磁碟]。
+2. 按一下 [名稱] 的下拉式選單，以檢視您的 Azure 訂用帳戶可存取的現有受控磁碟清單。 選取要附加的受控磁碟︰
+
+   ![附加現有的 Azure 受控磁碟](./media/virtual-machines-linux-attach-disk-portal/select-existing-md.png)
+
+3. 按一下 [儲存] 以附加現有的受控磁碟並更新 VM 組態︰
+   
+   ![儲存 Azure 受控磁碟更新](./media/virtual-machines-linux-attach-disk-portal/confirm-attach-existing-md.png)
+
+4. Azure 將磁碟連接至虛擬機器之後，該磁碟會列在虛擬機器磁碟設定中的 [資料磁碟] 下面。
+
+## <a name="use-unmanaged-disks"></a>使用非受控磁碟
+
+### <a name="attach-a-new-disk"></a>附加新的磁碟
+
+1. 在 [磁碟] 刀鋒視窗上，按一下 [+ 新增資料磁碟]。
 2. 檢閱預設設定，視需要進行更新，然後按一下 [確定] 。
    
    ![檢閱磁碟設定](./media/virtual-machines-linux-attach-disk-portal/attach-new.png)
 3. 在 Azure 建立磁碟並將其連接至虛擬機器之後，該新磁碟就會列在虛擬機器之磁碟設定中的 [資料磁碟] 底下。
 
-## <a name="option-2-attach-an-existing-disk"></a>選項 2：連接現有磁碟
-1. 在 [磁碟] 刀鋒視窗上，按一下 [連接現有項目]。
+### <a name="attach-an-existing-disk"></a>連接現有磁碟
+1. 在 [磁碟] 刀鋒視窗上，按一下 [+ 新增資料磁碟]。
 2. 在 [連結現有磁碟] 底下，按一下 [VHD 檔案]。
    
    ![連接現有磁碟](./media/virtual-machines-linux-attach-disk-portal/attach-existing.png)
@@ -61,12 +97,11 @@ ms.openlocfilehash: 394d82e444bdbc8b07243d92743ceb660f142509
 6. Azure 將磁碟連接至虛擬機器之後，該磁碟會列在虛擬機器磁碟設定中的 [資料磁碟] 下面。
 
 
-
 ## <a name="next-steps"></a>後續步驟
 加入磁碟後，您需要準備它以便使用。 如需詳細資訊，請參閱這篇[做法：在 Linux 中初始化新的資料磁碟](virtual-machines-linux-classic-attach-disk.md#initialize-a-new-data-disk-in-linux)。
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Feb17_HO3-->
 
 

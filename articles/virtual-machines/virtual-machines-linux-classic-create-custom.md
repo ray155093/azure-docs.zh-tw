@@ -1,6 +1,6 @@
 ---
-title: "使用 CLI 建立傳統 Linux VM | Microsoft Docs"
-description: "了解如何使用傳統部署模型搭配 Azure CLI 建立 Linux 虛擬機器"
+title: "使用 Azure CLI 1.0 建立傳統 Linux VM | Microsoft Docs"
+description: "了解如何使用傳統部署模型搭配 Azure CLI 1.0 建立 Linux 虛擬機器"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -13,19 +13,19 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 11/14/2016
+ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: d3817e5e0f2c237375cb36993661968358c28b55
+ms.sourcegitcommit: 35f75c6feba187b15857c8e01df02bf918662fae
+ms.openlocfilehash: 0c667a20ba813ac37e49805c339cccb52832fdf0
 
 
 ---
-# <a name="how-to-create-a-linux-vm-with-the-azure-cli"></a>如何使用 Azure CLI 建立 Linux VM
+# <a name="how-to-create-a-classic-linux-vm-with-the-azure-cli-10"></a>如何使用 Azure CLI 1.0 建立傳統 Linux VM
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 版本，請參閱[這裡](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 版本，請參閱[這裡](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-本主題說明如何使用傳統部署模型，以 Azure CLI 建立 Linux 虛擬機器 (VM)。 我們將使用 Azure 上可用「映像」  中的 Linux 映像。 Azure CLI 命令提供下列組態選項：
+本主題說明如何使用傳統部署模型，以 Azure CLI 1.0 建立 Linux 虛擬機器 (VM)。 我們將使用 Azure 上可用「映像」  中的 Linux 映像。 Azure CLI 1.0 命令提供下列組態選項：
 
 * 將 VM 連線到虛擬網路
 * 將 VM 加入現有的雲端服務
@@ -43,6 +43,6 @@ ms.openlocfilehash: d3817e5e0f2c237375cb36993661968358c28b55
 
 
 
-<!--HONumber=Dec16_HO1-->
+<!--HONumber=Feb17_HO2-->
 
 

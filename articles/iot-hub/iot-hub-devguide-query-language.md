@@ -15,8 +15,8 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: e6d559a78fbd73be1dd5e745496515ce71404cad
-ms.openlocfilehash: ea7000d3e56c5132dba3f144c7bad671d0e3054a
+ms.sourcegitcommit: 64f44c176633db4179f954d2f70cdf26d08b60b4
+ms.openlocfilehash: 28ea238484d86b044899aa9f95861bbdbbf3a06c
 
 
 ---
@@ -246,15 +246,31 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 路由[條件][lnk-query-expressions]會使用相同的 IoT 中樞查詢語言做為對應項和作業查詢中的條件。 路由條件會依據採用下列 JSON 表示法的訊息屬性進行評估︰
 
         {
+            "$messageId": "",
+            "$enqueuedTime": "",
+            "$to": "",
+            "$expiryTimeUtc": "",
+            "$correlationId": "",
+            "$userId": "",
+            "$ack": "",
+            "$connectionDeviceId": "",
+            "$connectionDeviceGenerationId": "",
+            "$connectionAuthMethod": "",
+            "$content-type": "",
+            "$content-encoding": ""
+
             "userProperty1": "",
             "userProperty2": ""
         }
+
+訊息系統屬性前面會加上 `'$'` 符號。
+使用者屬性則一律透過其名稱來存取。 若使用者屬性名稱剛好與系統屬性 (例如 `$to`) 相同，將使用 `$to` 運算式擷取使用者屬性。
+您一律可以使用括弧 `{}` 來存取系統屬性：例如，您可以使用運算式 `{$to}` 來存取系統屬性 `to`。 以括弧括住的屬性名稱一律會擷取對應的系統屬性。
 
 請記住，屬性名稱不區分大小寫。
 
 > [!NOTE]
 > 所有屬性皆為字串。 系統屬性 (如[開發人員指南][lnk-devguide-messaging-format]所述) 目前無法使用於查詢中。
->
 >
 
 例如，如果您使用 `messageType` 屬性，您可能想要將所有遙測都路由傳送至一個端點，以及將所有警示路由傳送至另一個端點。 您可以撰寫下列運算式來路由傳送遙測資料︰
@@ -458,6 +474,6 @@ GROUP BY 的正式語法如下︰
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

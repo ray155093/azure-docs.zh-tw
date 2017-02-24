@@ -13,15 +13,15 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 09/14/2016
-ms.author: v-livech
+ms.author: squillace
 translationtype: Human Translation
-ms.sourcegitcommit: d860d30620dac88f1db7965503b2ac2aebf4ab21
-ms.openlocfilehash: 351f03e29e91b906da084e5c30c87fc3c963b823
+ms.sourcegitcommit: 4d2bd4bbcaf889ee25cc4567772384b167166c10
+ms.openlocfilehash: 736f30768da968f8e1d39ff94fe9de66cc219321
 
 
 ---
 # <a name="azure-and-linux"></a>Azure 和 Linux
-Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加，包括分析、虛擬機器、資料庫、行動、網路、儲存體和 Web，因此很適合用來裝載您的方案。  Microsoft Azure 提供可調整的運算平台，可讓您在需要時用多少就付多少，而不需投資內部部署的硬體。  Azure 可供您將您的方案相應增加和放大至任何您需要的規模，以滿足您所服務之客戶的需求。
+Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加，包括分析、虛擬機器、資料庫、行動、網路、儲存體和 Web&mdash;因此很適合用來裝載您的方案。  Microsoft Azure 提供可調整的運算平台，可讓您在需要時用多少就付多少，而不需投資內部部署的硬體。  Azure 可供您將您的方案相應增加和放大至任何您需要的規模，以滿足您所服務之客戶的需求。
 
 如果您熟悉 Amazon AWS 的各項功能，您可以查看 Azure 與 AWS 的對照 [定義對應文件](https://azure.microsoft.com/campaigns/azure-vs-aws/mapping/)。
 
@@ -31,8 +31,14 @@ Microsoft Azure 資源分散在世界各地的多個地理區域。  「區域�
 * [Azure 區域](https://azure.microsoft.com/regions/)
 
 ## <a name="availability"></a>Availability
-為了讓您的部署符合 99.95 的 VM 服務等級協定資格，您必須部署兩個或更多在可用性設定組內執行工作負載的 VM。 這可確保您的 VM 會分散在我們資料中心內的多個容錯網域，以及部署至具有不同維護期間的主機。 完整 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) 說明保證的 Azure 整體可用性。
+為了讓您的部署符合 99.95 的 VM 服務等級協定資格，您必須部署兩個或更多在可用性設定組內執行工作負載的 VM。 這可確保您的 VM 會分散在我們資料中心內的多個容錯網域，以及部署至具有不同維護期間的主機。 完整 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) 說明保證的 Azure 整體可用性。 
 
+## <a name="managed-disks"></a>受控磁碟
+
+受控磁碟可在背景中為您處理 Azure 儲存體帳戶的建立和管理作業，確保您不需要擔心儲存體帳戶的延展性限制。 您只需指定磁碟大小和效能層級 (標準或進階)，Azure 就會為您建立和管理磁碟。 即便是新增磁碟或相應增加和減少 VM，您都不必擔心所使用的儲存體。 如果您要建立新的 VM，請[使用 Azure CLI 2.0 (預覽)](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 Azure 入口網站來建立具有受控 OS 和資料磁碟的 VM。 如果您有具備非受控磁碟的 VM，您可以[將 VM 轉換成由受控磁碟提供支援](virtual-machines-linux-convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+ 
+您也可以在每個 Azure 區域中使用單一儲存體帳戶管理自訂映像，並使用映像在相同訂用帳戶中建立數百個 VM。 如需受控磁碟的詳細資訊，請參閱[受控磁碟概觀](../storage/storage-managed-disks-overview.md)。
+ 
 ## <a name="azure-virtual-machines--instances"></a>Azure 虛擬機器和執行個體
 Microsoft Azure 支援執行由多家合作夥伴提供和維護的眾多熱門 Linux 散發套件。  您可以在 Azure Marketplace 中找到 Red Hat Enterprise、CentOS、Debian、Ubuntu、CoreOS、RancherOS 及 FreeBSD 等散發套件。 我們與各個 Linux 社群積極合作，以便為[經 Azure 背書的 Linux 散發套件](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)清單新增更多版本選項。
 
@@ -98,29 +104,27 @@ Jenkins - [Azure Marketplace - CloudBees Jenkins Platform](https://azure.microso
 ## <a name="getting-setup-on-azure"></a>在 Azure 上進行設定
 若要開始使用 Azure，您需要一個 Azure 帳戶、安裝 Azure CLI，以及一組 SSH 公開和私密金鑰。
 
-## <a name="sign-up-for-an-account"></a>註冊帳戶
+### <a name="sign-up-for-an-account"></a>註冊帳戶
 使用「Azure 雲端」的第一個步驟就是註冊 Azure 帳戶。  請前往 [Azure 帳戶註冊](https://azure.microsoft.com/pricing/free-trial/) 頁面來開始註冊。
 
-## <a name="install-the-cli"></a>安裝 CLI
-有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。  若要透過命令列管理「Azure 雲端」，您需安裝 `azure-cli`。  請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI ](../xplat-cli-install.md)。
+### <a name="install-the-cli"></a>安裝 CLI
+有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。  若要透過命令列管理「Azure 雲端」，您需安裝 `azure-cli`。  請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install)。
 
-## <a name="create-an-ssh-key-pair"></a>建立 SSH 金鑰組
+### <a name="create-an-ssh-key-pair"></a>建立 SSH 金鑰組
 現在您已擁有 Azure 帳戶、Azure Web 入口網站及 Azure CLI。  下一個步驟是建立 SSH 金鑰組，使用此金鑰組即可透過 SSH 連線到 Linux，而不需使用密碼。  [在 Linux 和 Mac 上建立 SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，以便啟用無密碼登入功能並提升安全性。
 
-## <a name="getting-started-with-linux-on-microsoft-azure"></a>在 Microsoft Azure 上開始使用 Linux
-設定好您的 Azure 帳戶、安裝妥 Azure CLI 及建立完 SSH 金鑰之後，現在您已經準備就緒，可以在 Azure 雲端中開始建置基礎結構。  第一個工作是建立一些 VM。
 
-## <a name="create-a-vm-using-the-cli"></a>使用 CLI 來建立 VM
+### <a name="create-a-vm-using-the-cli"></a>使用 CLI 來建立 VM
 使用 CLI 來建立 Linux VM 是一個讓您不需離開正在工作的終端機即可快速部署 VM 的方法。  所有您可以在 Web 入口網站上指定的項目，透過命令列旗標或參數也都可以指定。  
 
 * [使用 CLI 建立 Linux VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-## <a name="create-a-vm-in-the-portal"></a>在入口網站中建立 VM
+### <a name="create-a-vm-in-the-portal"></a>在入口網站中建立 VM
 在 Azure Web 入口網站中建立 Linux VM 可讓您輕鬆點選各種選項來進行部署。  您將不使用命令列旗標或參數，而是會看到含有各種選項和設定的美觀 Web 版面配置。  所有您可以透過命令列介面使用的項目，在入口網站中也都可以使用。
 
 * [使用入口網站建立 Linux VM](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-## <a name="login-using-ssh-without-a-password"></a>使用 SSH 登入而不提供密碼
+### <a name="login-using-ssh-without-a-password"></a>使用 SSH 登入而不提供密碼
 VM 現在已在 Azure 上執行，而您已經可以登入。  使用密碼透過 SSH 登入既不安全又費時。  使用 SSH 金鑰是最安全的登入方式，也是最省時的登入方式。  當您透過入口網站或 CLI 建立 Linux VM 時，有兩種驗證選擇。  如果您為 SSH 選擇了密碼，Azure 就會將 VM 設定成允許透過密碼登入。  如果您選擇使用 SSH 公開金鑰，Azure 就會將 VM 設定成只允許透過 SSH 金鑰登入，並停用密碼登入。 若要藉由只允許使用 SSH 金鑰登入的方式來保護 Linux VM，請在透過入口網站或 CLI 建立 VM 時，使用 SSH 公用金鑰選項。
 
 * [藉由設定 SSHD 停用 Linux VM 上的 SSH 密碼](virtual-machines-linux-mac-disable-ssh-password-usage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -150,6 +154,6 @@ VM 現在已在 Azure 上執行，而您已經可以登入。  使用密碼透�
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

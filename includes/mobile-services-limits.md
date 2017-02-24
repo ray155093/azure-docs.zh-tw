@@ -8,10 +8,14 @@
 | 即時傳訊/<br/>Web 通訊端 |限制 |350 / 行動服務 |無限 |
 | 離線同步處理 |限制 |已包括 |已包括 |
 | Scheduled jobs |限制 |已包括 |已包括 |
-| SQL Database (必要) <br/>額外容量適用標準費率 |包含 20 MB |包含 20 MB |包含 20 MB |
+| SQL Database (必要)  <br/>額外容量適用標準費率 |包含 20 MB |包含 20 MB |包含 20 MB |
 | CPU 容量 |60 分鐘 / 天 |無限 |無限 |
 | 輸出資料傳輸 |每日 165 MB (每日變換) |已包括 |已包括 |
 
-如需這些限制的其他詳細資料和價格的相關資訊，請參閱[行動服務價格](https://azure.microsoft.com/pricing/details/mobile-services/)。
+如需這些限制的其他詳細資料和價格的相關資訊，請參閱 [行動服務價格](https://azure.microsoft.com/pricing/details/mobile-services/)。 
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

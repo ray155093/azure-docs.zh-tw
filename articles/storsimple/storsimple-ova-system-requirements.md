@@ -4,7 +4,7 @@ description: "了解 StorSimple Virtual Array 的軟體和網路功能需求"
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: ea1d3bca-e71b-453d-aa82-440d2638f5e3
 ms.service: storsimple
@@ -12,11 +12,11 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/21/2016
+ms.date: 02/03/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 6a01ed44d08c06e35c66a842a27b46775ec97a3a
-ms.openlocfilehash: ae27c2a514bdaad731b73e6c9790b9ced2c35102
+ms.sourcegitcommit: e5f9952d136a2a7914100d8a7f5ffa5ba05a9d75
+ms.openlocfilehash: 9eb839834ed4ee2291eb311f64a8dfa7f07a1ac3
 
 ---
 # <a name="storsimple-virtual-array-system-requirements"></a>StorSimple Virtual Array 系統需求
@@ -46,7 +46,7 @@ ms.openlocfilehash: ae27c2a514bdaad731b73e6c9790b9ced2c35102
 | **元件** | **需求** |
 | --- | --- |
 | 虛擬處理器 (核心) 的最小數目 |4 |
-| 最小記憶體 (RAM) |8 GB |
+| 最小記憶體 (RAM) |8 GB <br> 對於檔案伺服器，8 GB 適用於 2 百萬個以下的檔案，而 16 GB 則適用於 2 - 4 百萬個檔案|
 | 磁碟空間<sup>1</sup> |OS 磁碟 - 80 GB  <br></br>資料磁碟 - 500 GB 到 8 TB |
 | 最小網路介面數目 |1 |
 | 最小網際網路頻寬<sup>2</sup> |5 Mbps |
@@ -126,11 +126,11 @@ ms.openlocfilehash: ae27c2a514bdaad731b73e6c9790b9ced2c35102
 | `http://*.data.microsoft.com ` |Windows 中的遙測服務，請參閱[客戶經驗和診斷遙測的更新](https://support.microsoft.com/en-us/kb/3068708) |
 
 ## <a name="next-step"></a>後續步驟
-* [Prepare the portal to deploy your StorSimple Virtual Array (準備入口網站以部署 StorSimple Virtual Array)](storsimple-virtual-array-deploy1-portal-prep.md)
+* [準備入口網站以部署 StorSimple Virtual Array](storsimple-virtual-array-deploy1-portal-prep.md)
 
 
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

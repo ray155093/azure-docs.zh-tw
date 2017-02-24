@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 媒體分析進行臉部修訂 | Microsoft Docs"
+title: "使用 Azure 媒體分析修訂臉部 | Microsoft Docs"
 description: "本主題示範如何使用 Azure 媒體分析修訂臉部。"
 services: media-services
 documentationcenter: 
@@ -12,21 +12,21 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/12/2016
+ms.date: 02/01/2017
 ms.author: juliako;
 translationtype: Human Translation
-ms.sourcegitcommit: fb8920dde7549ae5beea6711f1332357e2a4ec00
-ms.openlocfilehash: e205ed29b551726ae451b08a7704f2f53c09919a
+ms.sourcegitcommit: 5b8d989d950c17d867f30a6fa8a464a8750e2303
+ms.openlocfilehash: 98922addf7aa8bfc77033be29bf137b362378661
 
 
 ---
-# <a name="face-redaction-with-azure-media-analytics"></a>使用 Azure 媒體分析進行臉部修訂
-## <a name="overview"></a>Overview
+# <a name="redact-faces-with-azure-media-analytics"></a>使用 Azure 媒體分析修訂臉部
+## <a name="overview"></a>概觀
 **Azure 媒體修訂器** 是 [Azure 媒體分析](media-services-analytics-overview.md) 媒體處理器 (MP)，可在雲端提供可調整的臉部修訂。 臉部修訂可讓您修改視訊，以模糊所選人物的臉部。 在公共安全和新聞媒體案例中，您可能會想要使用臉部修訂服務。 若要手動修訂包含多個臉部的幾分鐘影片，可能要花上數小時的時間，若使用此服務，則只需要幾個簡單的步驟就能完成臉部修訂程序。 如需詳細資訊，請參閱[此](https://azure.microsoft.com/blog/azure-media-redactor/)部落格。
 
 本主題提供有關 **Azure 媒體修訂** 的詳細資料，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
 
-**Azure 媒體修訂器** MP 目前為預覽功能。 在所有公開的 Azure 區域及美國政府和中國的數據中心皆有提供。 此預覽版本目前以免費方式提供。 在目前的版本中，處理的視訊長度限制為 10 分鐘。
+**Azure 媒體修訂器** MP 目前為預覽功能。 在所有公開的 Azure 區域及美國政府和中國的數據中心皆有提供。 此預覽版本目前以免費方式提供。 
 
 ## <a name="face-redaction-modes"></a>臉部修訂模式
 臉部修訂的運作方式是，偵測視訊中每個畫面內出現的臉部，並及時向前及向後追蹤臉部物體，讓同一個人在其他角度也可以變得模糊。 自動化修訂程序非常複雜，而且不一定會 100% 產生所需的輸出，因此，媒體分析提供您幾種方式來修改最終輸出。
@@ -308,6 +308,6 @@ ms.openlocfilehash: e205ed29b551726ae451b08a7704f2f53c09919a
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Feb17_HO1-->
 
 

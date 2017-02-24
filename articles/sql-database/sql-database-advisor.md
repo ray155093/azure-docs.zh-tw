@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database 的效能建議 |Microsoft Docs"
+title: "查詢效能微調建議 - Azure SQL Database | Microsoft Docs"
 description: "Azure SQL Database 建議程式會提供可改善現有 SQL Database 查詢效能的建議。"
 services: sql-database
 documentationcenter: 
@@ -16,21 +16,16 @@ ms.workload: data-management
 ms.date: 09/30/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 5df30f24a8e7370ac33c72641f05138776e24bb0
-ms.openlocfilehash: 55502f346eaf5ccf76d6f1c03487e95f0b93e3f5
+ms.sourcegitcommit: cf627b92399856af2b9a58ab155fac6730128f85
+ms.openlocfilehash: a8d0b08abc7e3c688f9ab79499b3459b33f06848
 
 
 ---
 # <a name="sql-database-advisor"></a>SQL Database 建議程式
-> [!div class="op_single_selector"]
-> * [SQL Database 建議程式概觀](sql-database-advisor.md)
-> * [入口網站](sql-database-advisor-portal.md)
-> 
-> 
 
 Azure SQL Database 會學習和配合您的應用程式，並提供自訂的建議讓您將 SQL Database 的效能最大化。 SQL Database 建議程式提供建立和卸除索引、參數化查詢，以及修正結構描述問題的建議。 建議程式會藉由分析 SQL 資料庫的使用狀況歷程記錄，來評估效能。 建議採用最適合用於執行您的資料庫之一般工作負載的建議事項。 
 
-下列建議可供 V12 伺服器使用 (建議無法供 V11 伺服器使用)。 您目前可以設定要自動套用建立和卸除索引建議，如需詳細資訊，請參閱 [自動索引管理](sql-database-advisor-portal.md#enable-automatic-index-management) 。
+下列建議適用於 Azure SQL Database 伺服器。 您目前可以設定要自動套用建立和卸除索引建議，如需詳細資訊，請參閱 [自動索引管理](sql-database-advisor-portal.md#enable-automatic-index-management) 。
 
 ## <a name="create-index-recommendations"></a>建立索引建議
 **建立索引** 建議。
@@ -79,6 +74,6 @@ Azure SQL Database 會學習和配合您的應用程式，並提供自訂的建�
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

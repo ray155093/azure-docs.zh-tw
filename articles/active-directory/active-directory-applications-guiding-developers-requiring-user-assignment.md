@@ -1,5 +1,5 @@
 ---
-title: "Azure AD 和應用程式：要求使用者指派 | Microsoft Docs"
+title: "要求使用者指派 - Azure AD | Microsoft Docs&quot;"
 description: "如何要求 Azure 應用程式的使用者指派。"
 services: active-directory
 documentationcenter: 
@@ -12,15 +12,15 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/09/2015
+ms.date: 02/06/2017
 ms.author: inhenk
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: de23d1d775cefa818b6f8a104194eecaa5d740e3
+ms.sourcegitcommit: e66b606433f8924a509f2d04dae67ff00ded6dca
+ms.openlocfilehash: f5804d258c609f2bf289dcf4d173dc67137e7691
 
 
 ---
-# <a name="azure-ad-and-applications-requiring-user-assignment"></a>Azure AD 和應用程式：要求使用者指派
+# <a name="azure-ad-and-applications-require-user-assignment"></a>Azure AD 和應用程式：要求使用者指派
 ## <a name="requiring-user-assignment"></a>要求使用者指派
 1. 使用系統管理員帳戶登入 Azure 入口網站。
 2. 在主功能表中按一下 [ **所有項目** ] 項目。
@@ -38,7 +38,6 @@ ms.openlocfilehash: de23d1d775cefa818b6f8a104194eecaa5d740e3
 
 
 
-
-<!--HONumber=Dec16_HO5-->
+<!--HONumber=Feb17_HO1-->
 
 

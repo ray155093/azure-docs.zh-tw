@@ -16,13 +16,17 @@ ms.topic: get-started-article
 ms.date: 07/06/2016
 ms.author: magoedte;bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
+ms.sourcegitcommit: 0ab72bd4ad531d1162726c6f5548fa253a4f5265
+ms.openlocfilehash: 6e5ccae8837491e042b85ba4b7d42227e194cb94
 
 
 ---
 # <a name="my-first-graphical-runbook"></a>我的第一個圖形化 Runbook
-> [AZURE.SELECTOR] - [Graphical](automation-first-runbook-graphical.md) - [PowerShell](automation-first-runbook-textual-powershell.md) - [PowerShell 工作流程](automation-first-runbook-textual.md)
+
+> [!div class="op_single_selector"]
+> * [圖形化](automation-first-runbook-graphical.md)
+> * [PowerShell](automation-first-runbook-textual-powershell.md)
+> * [PowerShell 工作流程](automation-first-runbook-textual.md)
 > 
 > 
 
@@ -35,7 +39,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 * [Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md) ，用來保存 Runbook 以及向 Azure 資源驗證。  此帳戶必須擁有啟動和停止虛擬機器的權限。
 * Azure 虛擬機器。  我們將會停止並啟動這台電腦，因此它不應該是生產環境。
 
-## <a name="step-1-create-new-runbook"></a>步驟 1 - 建立新的 Runbook
+## <a name="step-1---create-new-runbook"></a>步驟 1 - 建立新的 Runbook
 我們將藉由建立一個輸出文字「Hello World」 的簡單 Runbook 開始。
 
 1. 在 Azure 入口網站中，開啟您的自動化帳戶。  
@@ -46,7 +50,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 5. 在此情況下，我們要建立[圖形化 Runbook](automation-graphical-authoring-intro.md)，因此請選取 [圖形] 作為 [Runbook 類型]。<br> ![新的 Runbook](media/automation-first-runbook-graphical/create-new-runbook.png)<br>
 6. 按一下 [建立]  來建立 Runbook 並開啟圖形化編輯器。
 
-## <a name="step-2-add-activities-to-the-runbook"></a>步驟 2 - 將活動加入至 Runbook
+## <a name="step-2---add-activities-to-the-runbook"></a>步驟 2 - 將活動加入至 Runbook
 編輯器左邊的 [程式庫] 控制項可讓您選取要加入到 Runbook 的活動。  我們將會加入 **Write-Output** Cmdlet 以從 Runbook 輸出文字。
 
 1. 在 [程式庫] 控制項中，按一下搜尋文字方塊並輸入 **Write-Output**。  搜尋結果將會顯示在下面。 <br> ![Microsoft.PowerShell.Utility](media/automation-first-runbook-graphical/search-powershell-cmdlet-writeoutput.png)
@@ -61,7 +65,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 8. 在 [運算式] 方塊中，輸入 "Hello World"，然後按一下 [確定] 兩次以返回畫布。<br> ![PowerShell Expression](media/automation-first-runbook-graphical/expression-hello-world.png)
 9. 按一下 [儲存] 來儲存 Runbook。<br> ![儲存 Runbook](media/automation-first-runbook-graphical/runbook-toolbar-save-revised20165.png)
 
-## <a name="step-3-test-the-runbook"></a>步驟 3 - 測試 Runbook
+## <a name="step-3---test-the-runbook"></a>步驟 3 - 測試 Runbook
 在我們發佈 Runbook 之前，為了使其可用於生產環境，我們想要測試以確定它可以正常運作。  測試 Runbook 時，您會執行其 **草稿** 版本，並以互動方式檢視其輸出。
 
 1. 按一下 [測試窗格] 來開啟 [測試] 刀鋒視窗。<br> ![測試窗格](media/automation-first-runbook-graphical/runbook-toolbar-test-revised20165.png)
@@ -71,7 +75,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 4. Runbook 工作完成時，會顯示其輸出。 在我們的情況中，我們應該會看到 Hello World。<br> ![](media/automation-first-runbook-graphical/runbook-test-results.png)
 5. 關閉 [測試] 刀鋒視窗返回畫布。
 
-## <a name="step-4-publish-and-start-the-runbook"></a>步驟 4 - 發佈和啟動 Runbook
+## <a name="step-4---publish-and-start-the-runbook"></a>步驟 4 - 發佈和啟動 Runbook
 我們剛剛建立的 Runbook 仍處於草稿模式。 我們需要將它發佈，才能在生產環境中執行它。  當您發佈 Runbook 時，您會使用草稿版本覆寫現有的已發佈版本。  在我們的情況中，因為我們剛剛建立 Runbook，因此還沒有已發佈版本。
 
 1. 按一下 [發佈] 來發佈 Runbook，然後出現提示時按一下 [是]。<br> ![](media/automation-first-runbook-graphical/runbook-toolbar-publish-revised20166.png)
@@ -88,7 +92,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 11. 按一下 [作業] 以開啟此 Runbook 的 [作業] 刀鋒視窗。  這樣會列出此 Runbook 所建立的所有工作。 由於我們只執行一次作業，因此應該只會看到列出一項作業。<br> ![作業](media/automation-first-runbook-graphical/runbook-control-jobs.png)
 12. 您可以按一下此工作以開啟我們啟動 Runbook 時所檢視的相同 [工作] 窗格。  這可讓您回到過去的時間並檢視針對特定 Runbook 所建立的任何工作的詳細資料。
 
-## <a name="step-5-create-variable-assets"></a>步驟 5 - 建立變數資產
+## <a name="step-5---create-variable-assets"></a>步驟 5 - 建立變數資產
 我們已經測試並發行我們 Runbook，但是到目前為止，它似乎並不實用。 我們想要讓它管理 Azure 資源。  在設定要驗證的 Runbook 之前，我們會建立變數來保存訂用帳戶識別碼，並在設定要在下面的步驟 6 進行驗證的活動後參考此變數。  包括訂用帳戶內容的參考，可讓您輕鬆地處理多個訂用帳戶。  在繼續之前，請從 [導覽] 窗格上的 [訂用帳戶] 選項複製您的訂用帳戶識別碼。  
 
 1. 在 [自動化帳戶] 刀鋒視窗中按一下 [資產] 圖格，隨即會開啟 [資產] 刀鋒視窗。
@@ -97,7 +101,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 4. 在 [新增變數] 刀鋒視窗中，於 [名稱] 方塊中輸入 **AzureSubscriptionId**，並於 [值] 方塊中輸入您的訂用帳戶識別碼。  讓 [類型] 保持是 [字串]，並讓 [加密] 保持預設值。  
 5. 按一下 [建立]  來建立變數。  
 
-## <a name="step-6-add-authentication-to-manage-azure-resources"></a>步驟 6 - 加入驗證來管理 Azure 資源
+## <a name="step-6---add-authentication-to-manage-azure-resources"></a>步驟 6 - 加入驗證來管理 Azure 資源
 現在我們已經擁有用來保存訂用帳戶識別碼的變數，接下來我們可以設定 Runbook，以使用 [必要條件](#prerequisites)中提到的「執行身分」認證來進行驗證。  我們的做法是將 [Azure 執行身分] 連線 **Asset** 和 **Add-AzureRMAccount** Cmdlet 新增至畫布。  
 
 1. 按一下 [MyFirstRunbook] 刀鋒視窗上的 [編輯] 來開啟圖形化編輯器。<br> ![編輯 Runbook](media/automation-first-runbook-graphical/runbook-controls-edit-revised20165.png)
@@ -126,7 +130,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 
 此時您的 Runbook 看起來應該像下面這樣︰ <br>![Runbook 驗證組態](media/automation-first-runbook-graphical/runbook-auth-config.png)
 
-## <a name="step-7-add-activity-to-start-a-virtual-machine"></a>步驟 7 - 加入活動以啟動虛擬機器
+## <a name="step-7---add-activity-to-start-a-virtual-machine"></a>步驟 7 - 加入活動以啟動虛擬機器
 現在我們要加入 **Start-AzureRmVM** 活動，以啟動虛擬機器。  您可以在 Azure 訂用帳戶中挑選任何虛擬機器，而現在我們會將該名稱硬式編碼成 Cmdlet。
 
 1. 在 [程式庫] 控制項中，於搜尋文字方塊中輸入 **Start-AzureRm** 。
@@ -140,7 +144,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 
 此時您的 Runbook 看起來應該像下面這樣︰ <br>![Runbook 驗證組態](media/automation-first-runbook-graphical/runbook-startvm.png)
 
-## <a name="step-8-add-additional-input-parameters-to-the-runbook"></a>步驟 8 - 將其他輸入參數加入至 Runbook
+## <a name="step-8---add-additional-input-parameters-to-the-runbook"></a>步驟 8 - 將其他輸入參數加入至 Runbook
 我們的 Runbook 目前會啟動在 **Start-AzureRmVM** Cmdlet 中指定之資源群組內的虛擬機器，但如果可以在啟動 Runbook 時指定這兩項，我們的 Runbook 會更有用。  我們現在會將輸入參數加入 Runbook，以提供該功能。
 
 1. 按一下 [MyFirstRunbook] 窗格上的 [編輯] 來開啟圖形化編輯器。
@@ -157,7 +161,7 @@ ms.openlocfilehash: fc65ebe89e1242e7fda00cede9211e267f2061f5
 12. 按一下 [開始]  以啟動 Runbook。  輸入您要啟動之虛擬機器的 [VMName] 和 [ResourceGroupName]。<br> ![Start Runbook](media/automation-first-runbook-graphical/runbook-start-inputparams.png)
 13. Runbook 完成時，請檢查虛擬機器已啟動。
 
-## <a name="step-9-create-a-conditional-link"></a>步驟 9 - 建立條件式連結
+## <a name="step-9---create-a-conditional-link"></a>步驟 9 - 建立條件式連結
 我們現在將修改 Runbook，讓它只會在未啟動時嘗試啟動虛擬機器。  我們透過將 **Get-AzureRmVM** Cmdlet 加入到將取得虛擬機器之執行個體層級狀態的 Runbook，來執行此動作。 然後，我們將加入名為 **取得狀態** 的 PowerShell 工作流程程式碼模組與 PowerShell 程式碼片段來判斷虛擬機器的狀態是正在執行還是已停止。  只有當目前的執行狀態為已停止時，**取得狀態**模組中的條件式連結才會執行 **Start-AzureRmVM**。  最後我們會輸出訊息，以通知您 VM 已成功啟動或未使用 PowerShell Write-Output Cmdlet。
 
 1. 在圖形化編輯器中開啟 **MyFirstRunbook** 。

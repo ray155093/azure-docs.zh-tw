@@ -59,7 +59,7 @@ Azure 儲存體佇列觸發程序可讓您監視儲存體佇列的新訊息，�
 
 ## <a name="trigger-usage"></a>觸發程序使用方式
 在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至輸入的訊息。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [觸發程序繫結][](#trigger) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
+其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [觸發程序繫結](#trigger) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
 
 佇列訊息可以還原序列化為下列任何一種類型︰
 

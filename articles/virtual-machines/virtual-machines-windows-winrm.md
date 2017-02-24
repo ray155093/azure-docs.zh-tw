@@ -1,6 +1,6 @@
 ---
-title: "為 Azure Resource Manager 中的虛擬機器設定 WinRM 存取 | Microsoft Docs"
-description: "如何設定 WinRM 存取來搭配使用 Azure Resource Manager 虛擬機器"
+title: "設定 Azure VM 的 WinRM 存取 | Microsoft Docs"
+description: "設定 WinRM 存取給 Resource Manager 部署模型中建立的 Azure 虛擬機器使用。"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -14,10 +14,10 @@ ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2016
-ms.author: singhkay
+ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 66b1bcdf0f79ff4743f466c3737696f53ef6a44c
-ms.openlocfilehash: 84a5272844b36951bb0132b21be9913ca50ee817
+ms.sourcegitcommit: ebc2195bbb3526171359cc126ea6b59d0089f4a0
+ms.openlocfilehash: 6559b8605a311bb774f6c8b38a9298875d3a5362
 
 
 ---
@@ -167,6 +167,6 @@ Microsoft.Compute 資源提供者在佈建 VM 時，需要金鑰保存庫內密�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO2-->
 
 

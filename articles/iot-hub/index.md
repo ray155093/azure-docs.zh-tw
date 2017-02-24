@@ -1,11 +1,23 @@
 ---
-layout: LandingPage
+title: "Azure IoT 中樞文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用 IoT 中樞來連接、監視及控制數百萬個物聯網資產。 教學課程、API 參考、影片和其他文件。"
+services: iot-hub
+author: carolz
+manager: carolz
+layout: LandingPage
+ms.assetid: 
+ms.service: iot-hub
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: landing-page
+ms.date: 01/23/2017
+ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: b4080529e9ff4500cef20e1dd735765051f6ce1f
-ms.openlocfilehash: da0387255c538afd5490f313c10509a1b40e6dd9
+ms.sourcegitcommit: eb364084e5f5155399c8a052b036ec0316616366
+ms.openlocfilehash: 36b9070260b334f1713cf575eb94007ce1b556f5
 
 ---
+
 #<a name="iot-hub-documentation"></a>IoT 中樞文件
 
 了解如何使用 IoT 中樞來連接、監視及控制數百萬個物聯網資產。 教學課程、API 參考、影片和其他文件可協助您在 IoT 裝置與解決方案後端之間部署可靠的雙向通訊。 
@@ -127,8 +139,10 @@ ms.openlocfilehash: da0387255c538afd5490f313c10509a1b40e6dd9
                         <h3>語言</h3>
                         <p><a href="/dotnet/api/microsoft.azure.devices">.NET (服務)</a></p>
                         <p><a href="/dotnet/api/microsoft.azure.devices.client">.NET (裝置)</a></p>
-                        <p><a href="/java/api/com.microsoft.azure.iot.service.auth">Java (服務)</a></p>
-                        <p><a href="/java/api/com.microsoft.azure.iothub">Java (裝置)</a></p>
+                        <p><a href="/java/api/com.microsoft.azure.sdk.iot.service.auth">Java (服務)</a></p>
+                        <p><a href="/java/api/com.microsoft.azure.sdk.iot.device">Java (裝置)</a></p>
+                        <p><a href="http://azure.github.io/azure-iot-sdks/node/api_reference/azure-iothub/1.0.17/index.html">節點 (服務)</a></p>
+                        <p><a href="http://azure.github.io/azure-iot-sdks/node/api_reference/azure-iot-device/1.0.15/index.html">節點 (裝置)</a></p>
                         <p><a href="http://azure.github.io/azure-iot-sdks/">Azure IoT SDK</a></p>
                         <p><a href="http://azure.github.io/azure-iot-gateway-sdk">閘道器 SDK</a></p>
                     </div>
@@ -157,6 +171,6 @@ ms.openlocfilehash: da0387255c538afd5490f313c10509a1b40e6dd9
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

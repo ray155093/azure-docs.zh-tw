@@ -5,6 +5,8 @@
 | **高效能 SKU** |2000 Mbps |是 |
 | **超高效能 SKU** |10000 Mbps |是 |
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

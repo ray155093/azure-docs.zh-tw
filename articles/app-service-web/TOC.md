@@ -3,6 +3,7 @@
 ## [何謂 App Service](../app-service/app-service-value-prop-what-is.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 ## [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
 ## [Linux 上的 App Service](app-service-linux-intro.md)
+## [Linux 常見問題上的 App Service](app-service-linux-faq.md)
 
 # 開始使用
 
@@ -13,7 +14,7 @@
 ### [Python](app-service-web-get-started-python.md)
 ### [Java](app-service-web-get-started-java.md)
 ### [Marketplace 應用程式](web-sites-php-web-site-gallery.md)
-### [PHP](app-service-web-get-started-php.md)   
+### [PHP](app-service-web-get-started-php.md)    
 
 ## API Apps
 ### [.NET](../app-service-api/app-service-api-dotnet-get-started.md)
@@ -60,10 +61,13 @@
 ### [Azure 入口網站](app-service-web-app-azure-portal.md)
 ### [WebJob SDK](websites-dotnet-webjobs-sdk-get-started.md)
 
+
 ### ASP.NET 應用程式
 #### [使用 Visual Studio 在 Azure 中建立 ASP.NET 應用程式](web-sites-dotnet-get-started.md)
 #### [使用 ASP.NET Web API 建立 REST 服務](web-sites-dotnet-rest-service-aspnet-api-sql-database.md)
 #### [在 Visual Studio Code 中建立 ASP.NET 5 Web 應用程式](web-sites-create-web-app-using-vscode.md)
+#### [在 Linux 上的 Web Apps 中使用 .NET Core](app-service-linux-using-dotnetcore.md)
+
 
 ### Node.js 應用程式
 #### [為 App Service 開發 Node.js](app-service-web-nodejs-get-started.md)
@@ -74,7 +78,7 @@
 #### [使用 WebMatrix 建置和部署](web-sites-nodejs-use-webmatrix.md)
 
 ### PHP 應用程式
-#### [為 App Service 開發 PHP 應用程式](app-service-web-php-get-started.md) 
+#### [為 App Service 開發 PHP 應用程式](app-service-web-php-get-started.md)    
 #### [使用 Git 建立 PHP-SQL Web 應用程式和部署](web-sites-php-sql-database-deploy-use-git.md)
 #### [在 Azure App Service 中建立 WordPress Web 應用程式](web-sites-php-web-site-gallery.md)
 #### [在 Azure 中建立 MySQL 資料庫並連接到此資料庫](../store-php-create-mysql-database.md?toc=%2fazure%2fapp-service-web%2ftoc.json)
@@ -98,6 +102,9 @@
 #### [使用 Python Tools 2.2 for Visual Studio 的 Flask 和表格儲存體](web-sites-python-ptvs-flask-table-storage.md)
 #### [Azure 上使用 Python Tools 2.2 for Visual Studio 的 Django 和 MySQL](web-sites-python-ptvs-django-mysql.md)
 #### [Azure 上使用 Python Tools 2.2 for Visual Studio 的 Django 和 SQL Database](web-sites-python-ptvs-django-sql.md)
+
+### Ruby 應用程式
+#### [在 Linux 上的 Web Apps 中使用 Ruby](app-service-linux-using-ruby.md)
 
 ### [在&5; 分鐘內，將您的第一個基本 Web 應用程式部署到 Azure](app-service-web-get-started-html.md)
 ### [開始使用 Web Apps 的生產測試](app-service-web-test-in-production-get-start.md)
@@ -144,9 +151,11 @@
 #### [設定 Python](web-sites-python-configure.md)
 #### [在 Linux 上設定 Node.js 啟動](app-service-linux-using-nodejs-pm2.md)
 
+
 ### 自訂網域
 #### [購買並設定自訂網域](custom-dns-web-site-buydomains-web-app.md)
 #### [對應您自己的自訂網域](web-sites-custom-domain-name.md)
+#### [移轉作用中的自訂網域](app-service-custom-domain-name-migrate.md)
 #### [設定 GoDaddy 網域](web-sites-godaddy-custom-domain-name.md)
 #### [使用流量管理員自訂網域](web-sites-traffic-manager-custom-domain-name.md)
 
@@ -267,6 +276,6 @@
 
 
 
-<!--HONumber=Jan17_HO3-->
+<!--HONumber=Feb17_HO3-->
 
 

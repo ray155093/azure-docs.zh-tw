@@ -10,7 +10,7 @@ articles/sql-data-warehouse/sql-data-warehouse-manage-scale-out-tasks-powershell
 articles/sql-data-warehouse/sql-data-warehouse-manage-scale-out-tasks-rest-api.md
 
 -->
-為了節省成本，您可以隨選暫停和繼續計算資源。例如，如果您在夜間和週末不會使用資料庫，可以在這段時間暫停，並且在白天時繼續。資料庫暫停時，不會向您收取 DWU 的費用。
+為了節省成本，您可以隨選暫停和繼續計算資源。 例如，如果您在夜間和週末不會使用資料庫，可以在這段時間暫停，並且在白天時繼續。 資料庫暫停時，不會向您收取 DWU 的費用。
 
 當您暫停資料庫時︰
 
@@ -19,4 +19,8 @@ articles/sql-data-warehouse/sql-data-warehouse-manage-scale-out-tasks-rest-api.m
 * 不會影響資料儲存體，您的資料保持不變。 
 * SQL 資料倉儲會取消所有執行中或已排入佇列的作業。
 
-<!---HONumber=AcomDC_0427_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

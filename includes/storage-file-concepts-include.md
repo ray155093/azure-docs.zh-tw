@@ -15,7 +15,7 @@
 ## <a name="file-storage-concepts"></a>檔案儲存體概念
 檔案儲存體包含下列元件：
 
-![files-concepts][files-concepts]
+![files-concepts](./media/storage-file-concepts-include/files-concepts.png)
 
 * **儲存體帳戶：** 一律透過儲存體帳戶來存取 Azure 儲存體。 如需關於儲存體帳戶容量的詳細資訊，請參閱＜ [Azure 儲存體延展性和效能目標](../articles/storage/storage-scalability-targets.md) ＞(英文)。
 * **共用：** 檔案儲存體共用是 Azure 中的 SMB 檔案共用。 
@@ -31,8 +31,7 @@
 
 如需有關如何為共用、目錄和檔案命名的詳細資料，請參閱 [命名和參考共用、目錄、檔案及中繼資料](http://msdn.microsoft.com/library/azure/dn167011.aspx)。
 
-[files-concepts]: ./media/storage-file-concepts-include/files-concepts.png
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -16,8 +16,8 @@ ms.workload: iaas-sql-server
 ms.date: 02/07/2017
 ms.author: v-shysun
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: a7d1878931ccf45e8e3192d5d03a4292c5291366
+ms.sourcegitcommit: 42b3e222f24e9b5c1bb26f7e1e36b1e11c2f48b8
+ms.openlocfilehash: 7a8d1451fc1b5ace2996faec22090b1f872bf547
 
 
 ---
@@ -49,6 +49,10 @@ ms.openlocfilehash: a7d1878931ccf45e8e3192d5d03a4292c5291366
 
     不用。 您不能從以分鐘計費授權切換為使用您自己的授權。 因此，請使用其中一個 [BYOL 映像](virtual-machines-windows-sql-server-iaas-overview.md#BYOL)來建立新的 Azure 虛擬機器，然後使用標準 [資料移轉技術](virtual-machines-windows-migrate-sql.md)，將資料庫移轉到新的伺服器。
 
+7. **Azure VM 上是否支援 SQL Server 容錯移轉叢集執行個體 (FCI)？**
+
+   是。 您可以[在 Windows Server 2016 上建立 Windows Server 容錯移轉叢集\(WSFC\)](virtual-machines-windows-portal-sql-create-failover-cluster.md)，並使用儲存空間直接存取 (S2D) 來連結叢集儲存體。 或者，您可以使用 [Azure 虛擬機器中的 SQL Server 的高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md#azure-only-high-availability-solutions)中所述的協力廠商叢集或儲存體解決方案。
+
 7. **如果只是用於待命/容錯移轉，需要對 Azure VM 上的 SQL Server 授權付費嗎？**
    
     如果您有軟體保證並且使用[虛擬機器授權常見問題集](http://azure.microsoft.com/pricing/licensing-faq/)中所述的授權機動性，則您不需要對參加為 HA 部署中被動次要複本的一個 SQL Server 授權付費。
@@ -77,6 +81,6 @@ ms.openlocfilehash: a7d1878931ccf45e8e3192d5d03a4292c5291366
 
 
 
-<!--HONumber=Jan17_HO2-->
+<!--HONumber=Feb17_HO2-->
 
 

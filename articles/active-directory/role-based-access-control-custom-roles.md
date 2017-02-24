@@ -12,11 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/23/2017
+ms.date: 01/31/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: d00ba4e6d1abd62e5a0d5a9d5bb229d3fa64b473
-ms.openlocfilehash: 2ac01c010979fca0bb3df5d003dd639cd7819651
+ms.sourcegitcommit: a474aa115425293660ba59ed1c6f7fd2ba4db5ce
+ms.openlocfilehash: 277c97289ba6dd66028394000d17deed80ba6cc6
 
 
 ---
@@ -54,9 +54,10 @@ ms.openlocfilehash: 2ac01c010979fca0bb3df5d003dd639cd7819651
 }
 ```
 ## <a name="actions"></a>動作
-自訂角色的 **Actions** 屬性會指定角色授與存取權的 Azure 作業。 它是識別 Azure 資源提供者的安全性實體作業的作業字串集合。 包含萬用字元 (\*) 的作業字串會授與符合作業字串的所有作業的存取權。 例如：
+自訂角色的 **Actions** 屬性會指定角色授與存取權的 Azure 作業。 它是識別 Azure 資源提供者的安全性實體作業的作業字串集合。 作業字串遵循 `Microsoft.<ProviderName>/<ChildResourceType>/<action>` 的格式。 包含萬用字元 (\*) 的作業字串會授與符合作業字串的所有作業的存取權。 例如：
 
 * `*/read` 授與所有 Azure 資源提供者的所有資源類型的讀取作業的存取權。
+* `Microsoft.Compute/*` 可授與對 Microsoft.Compute 資源提供者中所有資源類型之所有作業的存取權。
 * `Microsoft.Network/*/read` 授與 Azure 的 Microsoft.Network 資源提供者的所有資源類型的讀取作業的存取權。
 * `Microsoft.Compute/virtualMachines/*` 授與虛擬機器和其子系資源類型的所有作業的存取權。
 * `Microsoft.Web/sites/restart/Action` 授與重新啟動網站的存取權。
@@ -69,7 +70,7 @@ Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Ope
 Get-AzureRMProviderOperation Microsoft.Network/*
 ```
 
-![PowerShell 螢幕擷取畫面 - Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT 作業, OperationName](./media/role-based-access-control-configure/1-get-azurermprovideroperation-1.png)
+![PowerShell 螢幕擷取畫面 - Get-AzureRMProviderOperation](./media/role-based-access-control-configure/1-get-azurermprovideroperation-1.png)
 
 ```
 azure provider operations show "Microsoft.Compute/virtualMachines/*/action" --js on | jq '.[] | .operation'
@@ -122,6 +123,6 @@ azure provider operations show "Microsoft.Network/*"
 
 
 
-<!--HONumber=Jan17_HO4-->
+<!--HONumber=Feb17_HO1-->
 
 

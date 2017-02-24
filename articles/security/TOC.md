@@ -52,8 +52,19 @@
 ## [網路安全性諮詢](azure-security-cyber-services.md)
 ## [Virtual Academy 的安全性課程](security-microsoft-virtual-academy.md)
 ## [Channel 9 上的安全性影片](security-channel-nine.md)
+## [威脅模型化工具](azure-security-threat-modeling-tool.md)
+###[稽核和記錄](azure-security-threat-modeling-tool-auditing-and-logging.md)
+###[驗證](azure-security-threat-modeling-tool-authentication.md)
+###[授權](azure-security-threat-modeling-tool-authorization.md)
+###[通訊安全性](azure-security-threat-modeling-tool-communication-security.md)
+###[設定管理](azure-security-threat-modeling-tool-configuration-management.md)
+###[碼編譯](azure-security-threat-modeling-tool-cryptography.md)
+###[例外狀況管理](azure-security-threat-modeling-tool-exception-management.md)
+###[輸入驗證](azure-security-threat-modeling-tool-input-validation.md)
+###[敏感資料](azure-security-threat-modeling-tool-sensitive-data.md)
+###[工作階段管理](azure-security-threat-modeling-tool-session-management.md)
 
 
-<!--HONumber=Feb17_HO1-->
+<!--HONumber=Feb17_HO4-->
 
 

@@ -12,8 +12,12 @@
 * [使用點對站 VPN 保護應用程式與私人網路中資源的連線](../articles/app-service-web/web-sites-integrate-with-vnet.md)
 * [使用混合式連接保護應用程式與私人網路中資源的連線](../articles/app-service-web/web-sites-hybrid-connection-get-started.md)
 * [使用 App Service 環境達成應用程式的安全性隔離](../articles/app-service-web/app-service-app-service-environment-intro.md)
-  * [在 ASE 前設定 Web 應用程式防火牆 (WAF)](../articles/app-service-web/app-service-app-service-environment-web-application-firewall.md)
+  * [在 ASE 前設定 Web 應用程式防火牆 (WAF) ](../articles/app-service-web/app-service-app-service-environment-web-application-firewall.md)
   * [為 ASE 設定傳入網路流量的存取控制](../articles/app-service-web/app-service-app-service-environment-control-inbound-traffic.md)
   * [安全地從 ASE 連線到後端資源](../articles/app-service-web/app-service-app-service-environment-securely-connecting-to-backend-resources.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

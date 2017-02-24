@@ -12,11 +12,11 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/20/2016
+ms.date: 02/09/2017
 ms.author: johnkem; magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 142aa206431d05505c7990c5e5b07b3766fb0a37
-ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
+ms.sourcegitcommit: fbc96a248de20b67a72e6a0150fe4b9b754ec4fe
+ms.openlocfilehash: d61ec29026ae5bbbdf33d7810e2e35c4d6bee1e7
 
 
 ---
@@ -30,7 +30,7 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 * 將診斷記錄檔儲存到[**儲存體帳戶**](monitoring-archive-diagnostic-logs.md)以利稽核或手動檢查。 您可以使用 **診斷設定**指定保留時間 (以天為單位)。
 * [將診斷記錄檔串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)，以供第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
-* 以 [OMS Log Analytics](../log-analytics/log-analytics-azure-storage-json.md) 分析記錄檔
+* 以 [OMS Log Analytics](../log-analytics/log-analytics-azure-storage.md) 分析記錄檔
 
 儲存體帳戶或事件中樞命名空間不一定要和資源發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
 
@@ -45,16 +45,16 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 > [!WARNING]
 > 計算資源 (例如，VM 或 Service Fabric) 的診斷記錄檔和度量使用 [不同機制](../azure-diagnostics.md)來進行設定與選取輸出。
-> 
-> 
+>
+>
 
 ## <a name="how-to-enable-collection-of-diagnostic-logs"></a>如何啟用診斷記錄檔的收集
 您可以在建立資源的過程中啟用收集診斷記錄檔，或是在資源建立之後透過入口網站中資源的刀鋒視窗啟用收集。 您也可以在任何時間點使用 Azure PowerShell 或 CLI 命令，或使用 Azure 監視器 REST API 啟用診斷記錄檔。
 
 > [!TIP]
 > 這些指示可能無法直接套用於每個資源。 請透過此頁面底部的結構描述連結，來了解適用於特定資源類型的特殊步驟。
-> 
-> 
+>
+>
 
 [本文將說明如何使用資源範本在建立資源時啟用診斷設定](monitoring-enable-diagnostic-logs-using-template.md)
 
@@ -63,7 +63,7 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 1. 移至 [ **新增** ] 並選擇您感興趣的資源。
 2. 設定基本設定並選取大小之後，在 [監視] 底下的 [設定] 刀鋒視窗中，選取 [啟用]，然後選擇您想要儲存診斷記錄檔的儲存體帳戶。 將診斷傳送至儲存體帳戶時，您將需要支付儲存和交易的一般數據傳輸費用。
-   
+
    ![在資源建立期間啟用診斷記錄檔](./media/monitoring-overview-of-diagnostic-logs/enable-portal-new.png)
 3. 按一下 [ **確定** ]，並建立資源。
 
@@ -71,7 +71,7 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 1. 移至資源的刀鋒視窗，開啟 [診斷]  刀鋒視窗。
 2. 按一下 [開啟]  並選取儲存體帳戶和/或事件中樞。
-   
+
    ![在資源建立之後啟用診斷記錄檔](./media/monitoring-overview-of-diagnostic-logs/enable-portal-existing.png)
 3. 在 [記錄] 下，選取您要收集或資料流哪些 [記錄檔分類]。
 4. 按一下 [儲存] 。
@@ -81,19 +81,25 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 若要啟用儲存體帳戶中的診斷記錄檔的儲存體，使用下列命令︰
 
+```powershell
     Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -StorageAccountId [your storage account id] -Enabled $true
+```
 
 儲存體帳戶識別碼是您要將記錄檔傳送至此的儲存體帳戶的資源識別碼。
 
 若要啟用將診斷記錄檔串流至事件中樞，使用下列命令︰
 
+```powershell
     Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -ServiceBusRuleId [your service bus rule id] -Enabled $true
+```
 
 服務匯流排規則識別碼是此格式的字串︰ `{service bus resource ID}/authorizationrules/{key name}`。
 
 若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
 
+```powershell
     Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of the log analytics workspace] -Enabled $true
+```
 
 您可以使用下列命令取得 Log Analytics 工作區的資源識別碼︰
 
@@ -108,19 +114,25 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 若要啟用儲存體帳戶中的診斷記錄檔的儲存體，使用下列命令︰
 
+```azurecli
     azure insights diagnostic set --resourceId <resourceId> --storageId <storageAccountId> --enabled true
+```
 
 儲存體帳戶識別碼是您要將記錄檔傳送至此的儲存體帳戶的資源識別碼。
 
 若要啟用將診斷記錄檔串流至事件中樞，使用下列命令︰
 
+```azurecli
     azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serviceBusRuleId> --enabled true
+```
 
 服務匯流排規則識別碼是此格式的字串︰ `{service bus resource ID}/authorizationrules/{key name}`。
 
 若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
 
+```azurecli
     azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of the log analytics workspace> --enabled true
+```
 
 您可以結合這些參數讓多個輸出選項。
 
@@ -144,8 +156,8 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 > [!NOTE]
 > 僅在您已設定診斷設定，將它們儲存到儲存體帳戶，診斷記錄檔才會出現在此檢視中並可供下載。
-> 
-> 
+>
+>
 
 按一下連結的**診斷設定**會顯示 [診斷設定] 刀鋒視窗，您可以在其中啟用、停用、修改所選取資源的診斷設定。
 
@@ -161,12 +173,13 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 | Azure 搜尋服務 |[啟用和使用搜尋流量分析](../search/search-traffic-analytics.md) |
 | 資料湖存放區 |[存取 Azure Data Lake Store 的診斷記錄](../data-lake-store/data-lake-store-diagnostic-logs.md) |
 | 資料湖分析 |[存取 Azure Data Lake Analytics 的診斷記錄](../data-lake-analytics/data-lake-analytics-diagnostic-logs.md) |
-| 邏輯應用程式 |沒有可用的結構描述。 |
+| Logic Apps |[Logic Apps B2B 自訂追蹤結構描述](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md) |
 | Azure Batch |[Azure Batch 診斷記錄](../batch/batch-diagnostics.md) |
 | Azure 自動化 |[Azure 自動化的記錄檔分析](../automation/automation-manage-send-joblogs-log-analytics.md) |
-| 事件中樞 |沒有可用的結構描述。 |
+| 事件中樞 |[Azure 事件中樞診斷記錄](../event-hubs/event-hubs-diagnostic-logs.md) |
+| 串流分析 |[作業診斷記錄](../stream-analytics/stream-analytics-job-diagnostic-logs.md) |
 | 服務匯流排 |沒有可用的結構描述。 |
-| 串流分析 |沒有可用的結構描述。 |
+
 
 ## <a name="supported-log-categories-per-resource-type"></a>每個資源類型支援的記錄檔類別
 |資源類型|類別|類別顯示名稱|
@@ -185,7 +198,6 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 |Microsoft.Logic/integrationAccounts|IntegrationAccountTrackingEvents|整合帳戶追蹤事件|
 |Microsoft.Network/networksecuritygroups|NetworkSecurityGroupEvent|網路安全性群組事件|
 |Microsoft.Network/networksecuritygroups|NetworkSecurityGroupRuleCounter|網路安全性群組規則計數器|
-|Microsoft.Network/networksecuritygroups|NetworkSecurityGroupFlowEvent|網路安全性群組規則流程事件|
 |Microsoft.Network/loadBalancers|LoadBalancerAlertEvent|負載平衡器警示事件|
 |Microsoft.Network/loadBalancers|LoadBalancerProbeHealthStatus|負載平衡器探查健全狀況狀態|
 |Microsoft.Network/applicationGateways|ApplicationGatewayAccessLog|應用程式閘道存取記錄檔|
@@ -204,7 +216,6 @@ ms.openlocfilehash: 0b5458c64226007b058bcd185b3880f72cf9613c
 
 
 
-
-<!--HONumber=Dec16_HO3-->
+<!--HONumber=Feb17_HO2-->
 
 

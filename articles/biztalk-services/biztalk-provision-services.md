@@ -15,13 +15,12 @@ ms.topic: hero-article
 ms.date: 11/07/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: a2e289de2719be64a9468cb9b24ff4101b2e93db
+ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
+ms.openlocfilehash: 12606d312ba95d9ef73e988fa4677a8314f9a579
 
 
 ---
 # <a name="create-biztalk-services-using-the-azure-portal"></a>使用 Azure 入口網站建立 BizTalk 服務
-在 Azure 入口網站中建立 Azure BizTalk 服務。
 
 > [!TIP]
 > 若要登入 Azure 入口網站，您需要 Azure 帳戶和 Azure 訂用帳戶。 如果沒有帳戶，您可在幾分鐘內建立免費試用帳戶。 查看 [Azure 免費試用](http://go.microsoft.com/fwlink/p/?LinkID=239738)。
@@ -116,7 +115,7 @@ ms.openlocfilehash: a2e289de2719be64a9468cb9b24ff4101b2e93db
 
 有一些無法完成的作業，視 BizTalk 服務的狀態而定。 如需這些作業的清單，請參閱 [BizTalk 服務狀態圖](biztalk-service-state-chart.md)。
 
-## <a name="postprovisioning-steps"></a>佈建後續步驟
+## <a name="post-provisioning-steps"></a>佈建後續步驟
 * [在本機電腦上安裝憑證](#InstallCert)
 * [新增實際執行備妥憑證](#AddCert)
 * [取得存取控制命名空間](#ACS)
@@ -131,7 +130,7 @@ ms.openlocfilehash: a2e289de2719be64a9468cb9b24ff4101b2e93db
    ![修改 SSL 憑證][QuickGlance]
 5. 按兩下此憑證，然後完成執行精靈，即可安裝憑證。 確定您已在 **受信任的根授權單位** 存放區之中安裝憑證。
 
-#### <a name="a-nameaddcertaadd-a-productionready-certificate"></a><a name="AddCert"></a>新增實際執行備妥憑證
+#### <a name="a-nameaddcertaadd-a-production-ready-certificate"></a><a name="AddCert"></a>新增實際執行備妥憑證
 在建立 BizTalk 服務時自動建立的自我簽署憑證僅限用於開發環境。 若為生產案例，使用實際執行備妥憑證取代它。
 
 1. 在 [儀表板] 索引標籤上，選取 [更新 SSL 憑證]。
@@ -276,6 +275,6 @@ Azure 帳戶可擁有多個訂用帳戶，只要使用者取得允許皆可管�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -12,11 +12,11 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/21/2016
+ms.date: 02/14/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 4f7a99e82c73d446c928a821f80fc640a1994d67
-ms.openlocfilehash: 837e96e69e4855daf36e0c85e48cf68daaee8925
+ms.sourcegitcommit: a14be44b66c5e61350785ddfaf5b96125a196103
+ms.openlocfilehash: 6baceea55e9085556c5b1386de842b3e4393c721
 
 
 ---
@@ -114,10 +114,10 @@ Fieldglass 與 Azure AD 整合提供下列優點：
    
     b. 在 [回覆 URL] 文字方塊中，使用下列模式輸入 URL： 
    
-    - `https://<company name>.fgvms.com/<company name>`
+       - `https://<company name>.fgvms.com/<company name>`
     - `https://www.fieldglass.net/<company name>`
      
-    c. 依序按一下 [ **下一步**
+    c. 依序按一下  **下一步**
      
     > [!NOTE]
     > 請注意這些不是真正的值。 您必須使用實際的識別碼和回覆 URL 更新這些值。 若要取得這些值，請連絡 [FieldGlass](http://www.fieldglass.com/solutions/support)。
@@ -194,7 +194,7 @@ Fieldglass 與 Azure AD 整合提供下列優點：
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-a-fieldglass-test-user"></a>建立 Fieldglass 測試使用者
 本節目標是在 Fieldglass 中建立名為 Britta Simon 的使用者。請與 Fieldglass 支援小組合作，在 Fieldglass 帳戶中新增使用者。
@@ -249,6 +249,6 @@ Fieldglass 與 Azure AD 整合提供下列優點：
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Feb17_HO3-->
 
 

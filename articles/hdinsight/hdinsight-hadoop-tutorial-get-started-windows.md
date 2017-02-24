@@ -17,24 +17,25 @@ ms.workload: big-data
 ms.date: 03/07/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
-ms.openlocfilehash: 176c06bd1d8117fda70001762f86f1a98829f78b
+ms.sourcegitcommit: e2d78b7e71cd17c88ce4e283cc0b0ddc9bf7b479
+ms.openlocfilehash: 0b12dcfbf69c0f66df7587f6a755f74089090960
 
 
 ---
 # <a name="hadoop-tutorial-get-started-using-hadoop-in-hdinsight-on-windows"></a>Hadoop 教學課程：開始在 Windows 上的 HDInsight 中使用 Hadoop
+
 > [!div class="op_single_selector"]
 > * [以 Linux 為基礎](hdinsight-hadoop-linux-tutorial-get-started.md)
 > * [以 Windows 為基礎](hdinsight-hadoop-tutorial-get-started-windows.md)
 > 
 > 
 
+
+
 為了協助您了解在 Windows 上的 Hadoop 並開始使用 HDInsight，本教學課程為您示範如何在 Hadoop 叢集上執行 Hive 查詢非結構化資料，並且接著在 Microsoft Excel 中分析結果。
 
-> [!NOTE]
-> 本文件的資訊是 以 Windows 為基礎之 HDInsight 叢集的特定資訊。 如需以 Linux 為基礎之叢集的相關資訊，請參閱 [Hadoop 教學課程：開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
-> 
-> 
+> [!IMPORTANT]
+> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如需建立 Linux 型叢集的相關資訊，請參閱 [Hadoop 教學課程：開始在 HDInsight 中使用 Linux 型 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
 假設您有一個大型的非結構化資料集，而且您想要在此資料集上執行查詢，以擷取一些有用資訊。 這正是您要在這個教學課程中做的事。 以下是要達成此目標的作法：
 
@@ -80,9 +81,9 @@ ms.openlocfilehash: 176c06bd1d8117fda70001762f86f1a98829f78b
    | HDInsight 版本 |請為本教學課程選取最新的版本。 |
    | 訂用帳戶 |選取將用於此叢集的 Azure 訂用帳戶。 |
    | 資源群組 |請選取現有的 Azure 資源群組，或建立新的資源群組。 基本的 HDInsight 叢集包含一個叢集，以及它的預設儲存體帳戶。  您可以把兩個叢集組成一個資源群組來方便管理。 |
-   | 認證 |請輸入叢集登入使用者名稱和密碼。 以 Windows 為基礎的叢集可以有 2 個使用者帳戶。  系統會利用叢集使用者 (或 HTTP 使用者) 來管理叢集及提交工作。  (選用) 您可以建立遠端桌面 (RDP) 使用者帳戶，以便遠端連線到叢集。 如果您選擇啟用遠端桌面，您將建立 RDP 使用者帳戶。 |
+   | 認證 |請輸入叢集登入使用者名稱和密碼。 Windows 型叢集可以有 2 個使用者帳戶。  系統會利用叢集使用者 (或 HTTP 使用者) 來管理叢集及提交工作。  (選用) 您可以建立遠端桌面 (RDP) 使用者帳戶，以便遠端連線到叢集。 如果您選擇啟用遠端桌面，您將建立 RDP 使用者帳戶。 |
    | 資料來源 |請按一下 [建立新項目] 來建立新的預設 Azure 儲存體帳戶。 請把叢集名稱當做預設的容器名稱。 每個 HDinsight 叢集在 Azure 儲存體帳戶中都有一個預設的 Blob 容器。  而預設 Azure 儲存體帳戶的位置，會決定 HDInsight 叢集的位置。 |
-   | 節點定價層 |請為本教學課程搭配預設背景工作角色節點和前端節點訂價層來使用 1 或 2 個背景工作節點。 |
+   | 節點定價層 |請為本教學課程搭配預設背景工作角色節點和前端節點定價層來使用 1 或 2 個背景工作節點。 |
    | 選用組態 |請略過這部分。 |
 4. 在 [新的 HDInsight 叢集] 刀鋒視窗中，確認已選取 [釘選到「開始面板」]，然後按一下 [建立]。 這將會建立叢集，並將該叢集磚加入到您 Azure 入口網站的「開始面板」。 該圖示會顯示叢集正在建立中，並會在叢集建立完成時變更為 HDInsight 圖示。
    
@@ -165,11 +166,11 @@ ms.openlocfilehash: 176c06bd1d8117fda70001762f86f1a98829f78b
 7. 按一下左上角的 [關閉及載入] 以將 Hive 工作輸出匯入 Excel。
 
 ## <a name="run-samples"></a>執行範例
-HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，可讓您直接從入口網站執行範例。 您可以利用範例來逐步完成一些基本案例，以了解如何使用 HDInsight。 這些範例隨附所有必要的元件，例如要分析的資料及在資料上執行的查詢。 若要深入了解 [開始使用] 資源庫中的範例，請參閱〈 [使用 HDInsight 開始使用資源庫了解 HDInsight 中的 Hadoop](hdinsight-learn-hadoop-use-sample-gallery.md)〉。
+HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，可讓您直接從入口網站執行範例。 您可以利用範例來逐步完成一些基本案例，以了解如何使用 HDInsight。 這些範例隨附所有必要的元件，例如要分析的資料及在資料上執行的查詢。
 
 **執行範例**
 
-1. 在 Azure 入口網站的「開始面板」按一下您剛才所建立叢集的磚。
+1. 從 Azure 入口網站的「開始面板」，按一下您剛才建立之叢集的圖格。
 2. 在新的叢集刀鋒視窗中，按一下 [儀表板] 。 出現提示時，輸入該叢集的管理員使用者名稱和密碼。
    
     ![啟動叢集儀表板](./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.Cluster.Dashboard.png "啟動叢集儀表板")
@@ -255,6 +256,6 @@ HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，�
 
 
 
-<!--HONumber=Dec16_HO2-->
+<!--HONumber=Feb17_HO1-->
 
 

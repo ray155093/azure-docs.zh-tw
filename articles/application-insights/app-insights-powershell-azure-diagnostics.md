@@ -14,13 +14,13 @@ ms.topic: get-started-article
 ms.date: 11/17/2015
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b324d38f1f06f9cfcb15665da3d0e3964555ee54
+ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
+ms.openlocfilehash: df5fe5808a0fb6c2d580f35ed8430b52f34a4110
 
 
 ---
 # <a name="using-powershell-to-set-up-application-insights-for-an-azure-web-app"></a>使用 PowerShell 為 Azure Web 應用程式設定 Application Insights
-[Microsoft Azure](https://azure.com) 可以[設定為傳送 Azure 診斷](app-insights-azure-diagnostics.md)至 [Visual Studio Application Insights](app-insights-overview.md)。 診斷與 Azure 雲端服務和 Azure VM 相關。 可輔助您從應用程式使用 Application Insights SDK 傳送的遙測資料。 在 Azure 中自動建立新資源的程序中，您可以使用 PowerShell 設定診斷。
+[Microsoft Azure](https://azure.com) 可以[設定為傳送 Azure 診斷](app-insights-azure-diagnostics.md)至 [Azure Application Insights](app-insights-overview.md)。 診斷與 Azure 雲端服務和 Azure VM 相關。 可輔助您從應用程式使用 Application Insights SDK 傳送的遙測資料。 在 Azure 中自動建立新資源的程序中，您可以使用 PowerShell 設定診斷。
 
 ## <a name="azure-template"></a>Azure 範本
 如果 Web 應用程式位於 Azure 內，而且您使用 Azure Resource Manager 範本建立資源，您可以透過將以下內容新增到資源節點來設定 Application Insights：
@@ -141,6 +141,6 @@ ms.openlocfilehash: b324d38f1f06f9cfcb15665da3d0e3964555ee54
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

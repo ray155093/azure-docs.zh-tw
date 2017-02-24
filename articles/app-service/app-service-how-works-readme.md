@@ -23,7 +23,7 @@ ms.openlocfilehash: d1ab1ab2132d12bf06dbe2504b7d7111ef2ae851
 ---
 # <a name="how-app-service-works"></a>App Service 的運作方式
 Azure App Service 是一項雲端服務，設計用來解決現今工程師所面臨的實務問題。
-App Service 著重於提供絕佳的開發人員生產力，而不需妥協於以雲端規模提供應用程式的需求。
+App Service 著重於提供絕佳的開發人員生產力，而不需妥協於以雲端規模提供應用程式的需求。 
 
 App Service 也提供必要的功能和架構以供建立企業特定業務應用程式，同時以最受歡迎的開發語言 (例如 Microsoft .NET、Java、PHP、Node.js 及 Python) 支援開發人員。
 使用 App Service，開發人員可以：
