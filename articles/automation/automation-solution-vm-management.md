@@ -4,7 +4,7 @@ description: "VM 管理方案會依照排程啟動和停止 Azure Resource Manag
 services: automation
 documentationCenter: 
 authors: mgoedtel
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 06c27f72-ac4c-4923-90a6-21f46db21883
 ms.service: automation
@@ -12,17 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 02/14/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 83b9f84ed017b4777b70777c653cc24ca19ab648
-ms.openlocfilehash: aadd8ec3d4d6d70c8ba7c28cd00fa21379b48929
+ms.sourcegitcommit: 5ae60cb8ba3d391d3babd1ab575b4f32e139a185
+ms.openlocfilehash: f2c9a5ef2a8f517b9b2072be57f4d8c51b7694c6
 
 ---
 
 # <a name="startstop-vms-during-off-hours-preview-solution-in-automation"></a>自動化中的在離峰期間啟動/停止 VM [預覽] 方案
 
-在離峰期間啟動/停止 VM [預覽] 方案會依照使用者定義的排程啟動和停止 Azure Resource Manager 和傳統虛擬機器，並透過 OMS Log Analytics 提供成功啟動和停止虛擬機器的自動化作業深入解析。  
+在離峰期間啟動/停止 VM [預覽] 方案會依照使用者定義的排程啟動和停止 Azure Resource Manager 虛擬機器，並透過 OMS Log Analytics 提供成功啟動和停止虛擬機器的自動化作業深入解析。  
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -79,8 +79,8 @@ StopByResourceGroup-TargetSubscriptionID-MS-Mgmt-VM | 指定包含此方案所�
 
 排程 | 說明|
 ---------|------------|
-StartByResourceGroup-Schedule-MS-Mgmt | 排程可執行此方案所管理之 VM 啟動的 StartByResourceGroup Runbook。|
-StopByResourceGroup-Schedule-MS-Mgmt | 排程可執行此方案所管理之 VM 關閉的 StopByResourceGroup Runbook。|
+StartByResourceGroup-Schedule-MS-Mgmt | 排程可執行此方案所管理之 VM 啟動的 StartByResourceGroup Runbook。 建立時會預設為 UTC 時區。|
+StopByResourceGroup-Schedule-MS-Mgmt | 排程可執行此方案所管理之 VM 關閉的 StopByResourceGroup Runbook。 建立時會預設為 UTC 時區。|
 
 ### <a name="credentials"></a>認證
 
@@ -116,7 +116,7 @@ O365Credential | 指定有效的 Office 365 使用者帳戶以傳送電子郵件
 
 8. 最後在 [新增方案] 刀鋒視窗上選取 [組態]，[參數] 刀鋒視窗隨即出現。  在 [參數] 刀鋒視窗上，系統會提示您︰  
    - 指定 [目標資源群組名稱]，這個資源群組名稱內含將由此方案管理的 VM。  您可以輸入多個名稱，然後使用分號加以分隔 (這些值需區分大小寫)。  如果您想要以訂用帳戶的所有資源群組中的 VM 為目標，則可使用萬用字元。
-   - 選取 [排程]，這是一個週期性日期和時間，可用於啟動及停止目標資源群組中的 VM。  
+   - 選取 [排程]，這是一個週期性日期和時間，可用於啟動及停止目標資源群組中的 VM。  排程會預設設定為 UTC 時區，無法選取不同的區域。  在設定方案後，如果您想要將排程設定為特定時區，請參閱下方的[修改啟動和關閉排程](#modifying-the-startup-and-shutdown-schedule)。    
 
 10. 設定好方案所需的初始設定後，選取 [建立]。  系統會驗證所有的設定，然後嘗試在您的訂用帳戶中部署此方案。  此程序需要幾秒鐘才能完成，您可以在功能表的 [通知] 底下追蹤其進度。 
 
@@ -154,7 +154,7 @@ O365Credential | 指定有效的 Office 365 使用者帳戶以傳送電子郵件
 
 1. 從您的自動化帳戶，按一下視窗頂端的 [所有設定]。 
 2. 在 [設定] 刀鋒視窗的 [自動化資源] 區段之下，選取 [資產]。 
-3. 在 [資產] 刀鋒視窗上選取 [變數] 圖格，接著從 [變數] 刀鋒視窗中選取上面所列的變數，然後遵循先前在[](##variables)一節中為其指定的描述來修改其值。  
+3. 在 [資產] 刀鋒視窗上選取 [變數] 圖格，接著從 [變數] 刀鋒視窗中選取上面所列的變數，然後遵循先前在[變數](##variables)一節中為其指定的描述來修改其值。  
 4. 按一下 [儲存] 以儲存對變數所做的變更。   
 
 ### <a name="modifying-the-startup-and-shutdown-schedule"></a>修改啟動和關閉排程
@@ -247,6 +247,6 @@ StreamType | 作業串流的類型。 可能的值包括：<br>-Progress (進度
 
 
 
-<!--HONumber=Feb17_HO2-->
+<!--HONumber=Feb17_HO3-->
 
 

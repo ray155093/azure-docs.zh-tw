@@ -111,7 +111,7 @@ API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。 也
 有一些重點值得注意：
 
 * 目前 **authenticationType** 應一律設為 **PublicOrSas**。
-* 您必須取得共用存取簽章 (SAS) 權杖，以允許 Recommendations API 讀取和寫入自/至您的 Blob 儲存體帳戶。 如需如何產生 SAS 權杖的詳細資訊，[請參閱](../storage/storage-dotnet-shared-access-signature-part-1.md)。
+* 您必須取得共用存取簽章 (SAS) 權杖，以允許 Recommendations API 讀取和寫入自/至您的 Blob 儲存體帳戶。 如需如何產生 SAS 權杖的詳細資訊，請參閱[建議的 API 頁面](../storage/storage-dotnet-shared-access-signature-part-1.md)。
 * 目前唯一支援的 **apiName** 是用於項目對項目建議的 **ItemRecommend**。 批次處理目前不支援使用者對項目的建議。
 
 ## <a name="wait-for-the-asynchronous-operation-to-finish"></a>等候非同步作業完成。

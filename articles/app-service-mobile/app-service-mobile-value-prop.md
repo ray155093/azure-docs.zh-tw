@@ -80,7 +80,7 @@ Azure App Service 是完全受管理的 [平台即服務](https://azure.microsof
 
 <!-- URLs. -->
 [Migrate your Mobile Service to App Service]: app-service-mobile-migrating-from-mobile-services.md
-[]: ../app-service/app-service-value-prop-what-is.md
+[Azure App Service]: ../app-service/app-service-value-prop-what-is.md
 [快速入門]: app-service-mobile-ios-get-started.md
 [Azure 資料表儲存體]: ../storage/storage-getting-started-guide.md
 [DocumentDB]: ../documentdb/documentdb-get-started.md
