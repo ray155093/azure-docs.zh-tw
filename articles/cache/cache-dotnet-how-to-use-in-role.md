@@ -142,9 +142,9 @@ VM 大小的記憶體總計如下：
 
 ![RoleCache4][RoleCache4]
 
-選取 [In-Role Cache]、按一下 [安裝]，然後按一下 [我接受]。
+選取 **In-Role Cache**、按一下 [安裝]，然後按一下 [我接受]。
 
-> 如果 [In-Role Cache] 未出現在清單中，請在 [線上搜尋] 文字方塊中鍵入 **WindowsAzure.Caching**，然後從結果中進行選取。
+> 如果 **In-Role Cache** 未出現在清單中，請在 [線上搜尋] 文字方塊中鍵入 **WindowsAzure.Caching**，然後從結果中進行選取。
 > 
 > 
 
