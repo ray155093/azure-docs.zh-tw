@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 01/20/2017
+ms.date: 02/27/2017
 ms.author: owend
 translationtype: Human Translation
 ms.sourcegitcommit: a287ebd634a9305229424d0efea266146f88a952
 ms.openlocfilehash: 234032630cb3911deb7c7d32cfc4963ad6aee43f
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -76,10 +77,5 @@ Azure Analysis Services 中的資料模型連線至某些資料來源時，可�
 
 ## <a name="next-steps"></a>後續步驟
 如果您有內部部署資料來源，請務必安裝 [內部部署閘道](analysis-services-gateway.md)。 若要深入了解在 SSDT 或 SSMS 中管理您伺服器的相關資訊，請參閱[管理您的伺服器](analysis-services-manage.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

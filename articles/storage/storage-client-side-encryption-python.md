@@ -3,7 +3,7 @@ title: "Microsoft Azure 儲存體的用戶端 Python 加密 | Microsoft Docs"
 description: "適用於 Python 的 Azure 儲存體用戶端程式庫支援適用於您 Azure 儲存體應用程式的最高安全性用戶端加密。"
 services: storage
 documentationcenter: python
-author: dineshmurthy
+author: seguler
 manager: jahogg
 editor: tysonn
 ms.assetid: f9bf7981-9948-4f83-8931-b15679a09b8a
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
-ms.date: 10/18/2016
-ms.author: dineshm
+ms.date: 02/28/2017
+ms.author: seguler
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 4eff4ebb948f88a93b403d6375c1342918120ac5
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -241,8 +242,3 @@ encrypted_property_1 = EntityProperty(EdmType.STRING, value, encrypt=True)
 ## <a name="next-steps"></a>後續步驟
 * 下載 [適用於 Java PyPi 封裝的 Azure 儲存體用戶端程式庫](https://pypi.python.org/pypi/azure-storage)
 * 從 GitHub 下載 [適用於 Python 的 Azure 儲存體用戶端程式庫來源程式碼](https://github.com/Azure/azure-storage-python)
-
-
-<!--HONumber=Nov16_HO3-->
-
-
