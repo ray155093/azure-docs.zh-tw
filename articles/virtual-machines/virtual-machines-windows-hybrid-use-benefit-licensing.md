@@ -3,7 +3,7 @@ title: "適用於 Windows Server 的 Azure Hybrid Use Benefit | Microsoft Docs"
 description: "了解如何發揮「Windows Server 軟體保證」的最大效益來將內部部署授權帶到 Azure"
 services: virtual-machines-windows
 documentationcenter: 
-author: iainfoulds
+author: george-moore
 manager: timlt
 editor: 
 ms.assetid: 332583b6-15a3-4efb-80c3-9082587828b0
@@ -17,6 +17,7 @@ ms.author: georgem
 translationtype: Human Translation
 ms.sourcegitcommit: 7167048a287bee7c26cfc08775dcb84f9e7c2eed
 ms.openlocfilehash: df86e73814ceb0c5137c654bce84c8d42ae41820
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -187,9 +188,4 @@ New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm 
 深入了解 [Azure Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/)授權。
 
 深入了解如何[使用 Resource Manager 範本](../azure-resource-manager/resource-group-overview.md)。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

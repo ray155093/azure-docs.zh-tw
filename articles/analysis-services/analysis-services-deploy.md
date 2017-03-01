@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 01/20/2017
+ms.date: 02/27/2017
 ms.author: owend
 translationtype: Human Translation
 ms.sourcegitcommit: 193c939065979dc48243d31e7f97cd87d96bf9a8
 ms.openlocfilehash: 18d64f1ad4ef0dd41ae9302d08e02e94d1c608f5
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -66,10 +67,5 @@ ms.openlocfilehash: 18d64f1ad4ef0dd41ae9302d08e02e94d1c608f5
 
 ## <a name="next-steps"></a>後續步驟
 現在您的伺服器上已部署了表格式模型，您即可連線至該伺服器。 您可以[使用 SSMS 連線至該伺服器](analysis-services-manage.md)以進行管理。 此外，您可以[使用用戶端工具連線至該伺服器 ](analysis-services-connect.md) (如 Power BI、Power BI Desktop 或 Excel 等工具)，並開始建立報告。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -4,7 +4,7 @@ description: "了解如何使用 PowerShell 來備份和還原 Azure App Service
 services: app-service
 documentationcenter: 
 author: NKing92
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 7ea8661e-aefb-4823-9626-6bff980cdebf
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: nicking
 translationtype: Human Translation
 ms.sourcegitcommit: 4edd2696c9a5709ded6e2a3e352090775335f0d2
 ms.openlocfilehash: 172b55a68662dd98c4af946d51f3ece51f7835e1
+ms.lasthandoff: 12/07/2016
 
 
 ---
@@ -151,9 +152,4 @@ Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣�
 
         $backup = Get-AzureRmWebAppBackup -Name $appName -ResourceGroupName $resourceGroupName -BackupId 10102
         $backup | Remove-AzureRmWebAppBackup -Overwrite
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

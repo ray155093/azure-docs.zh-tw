@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: e210fb7ead88a9c7f82a0d0202a1fb31043456e6
-ms.openlocfilehash: 045e4486920f147a66b2ea81552ce1b75aa119c2
+ms.sourcegitcommit: 6489f013f72a8d283ad5c0723d0a46ea4e66a2d9
+ms.openlocfilehash: f4fa7b12afe0002d5b7e5267c8f670cae8d253da
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -41,17 +42,21 @@ ms.openlocfilehash: 045e4486920f147a66b2ea81552ce1b75aa119c2
 3. 例如，輸入  cd tools，瀏覽至 Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x 資料夾下的 tools 子目錄：
    
         PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
+
 4. 執行 .\InstallElasticDatabaseJobsCmdlets.ps1 script to copy the ElasticDatabaseJobs directory into $home\Documents\WindowsPowerShell\Modules。 這也會自動匯入模組，以供使用，例如：
    
-     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobsCmdlets.ps1   PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobsCmdlets.ps1
+        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobsCmdlets.ps1
+        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobsCmdlets.ps1
 
 ## <a name="install-the-elastic-database-jobs-components-using-powershell"></a>使用 PowerShell 安裝彈性資料庫工作元件
 1. 啟動 Microsoft Azure PowerShell 命令視窗，並且瀏覽至 Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x 資料夾底下的 \tools 子目錄：輸入 cd \tools
    
-     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
+        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
+
 2. 執行.\InstallElasticDatabaseJobs.ps1 PowerShell 指令碼，並提供其所要求之變數的值。 此指令碼將依 [彈性資料庫工作元件和定價](sql-database-elastic-jobs-overview.md#components-and-pricing) 所述建立元件，以及將 Azure 雲端服務設定為適當地使用相依元件。
-   
-     PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1   PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobs.ps1
+
+        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
+        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobs.ps1
 
 當您執行此命令時，會開啟一個向您詢問「使用者名稱」和「密碼」的視窗。 這不是您的 Azure 認證，請輸入要用於新伺服器之系統管理員認證的使用者名稱和密碼。
 
@@ -178,9 +183,4 @@ ms.openlocfilehash: 045e4486920f147a66b2ea81552ce1b75aa119c2
 [2]: ./media/sql-database-elastic-jobs-service-installation/credentials.png
 [3]: ./media/sql-database-elastic-jobs-service-installation/start-board.png
 [4]: ./media/sql-database-elastic-jobs-service-installation/not-done.png
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

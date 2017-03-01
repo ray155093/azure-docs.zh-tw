@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/22/2016
-ms.author: mfussell;mikhegn
+ms.date: 02/17/2017
+ms.author: msfussell;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: 72fcad2957d6fc5466719c1d275ae0f86f7fa302
-ms.openlocfilehash: bf2e34a27806ca79f88db9a9f8d052cd7bfcc94d
+ms.sourcegitcommit: d1939e316efb00fb4980c57cbec28920a7475a47
+ms.openlocfilehash: 8ff5933239521f8ed986da5a12aced3110085376
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -26,6 +27,10 @@ ms.openlocfilehash: bf2e34a27806ca79f88db9a9f8d052cd7bfcc94d
 雖然本逐步解說示範的是如何部署使用 MongoDB 做為資料存放區並具有 Node.js 前端的應用程式，但是您可以將這些步驟套用到任何與另一個應用程式具有相依性的應用程式。   
 
 您可以使用 Visual Studio 來產生包含多個來賓可執行檔的應用程式套件。 請參閱[使用 Visual Studio 封裝現有應用程式](service-fabric-deploy-existing-app.md#use-visual-studio-to-package-an-existing-executable)。 新增第一個來賓可執行檔之後，在應用程式專案上按一下滑鼠右鍵，然後選取 [新增] -> [新的 Service Fabric 服務] 將第二個來賓可執行檔專案新增至方案。 請注意：如果您選擇在 Visual Studio 專案中連結來源，則建置 Visual Studio 方案將可確保應用程式封裝是最新的，並且含有來源中的變更。 
+
+## <a name="samples"></a>範例
+* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)
+* [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 ## <a name="manually-package-the-multiple-guest-executable-application"></a>手動封裝多個來賓可執行檔應用程式
 或者，您可以手動封裝來賓可執行檔。 對於手動封裝，本文使用 Service Fabric 封裝工具，您可在 [http://aka.ms/servicefabricpacktool](http://aka.ms/servicefabricpacktool) 取得。
@@ -210,13 +215,8 @@ New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationType
 1. 將目錄變更為現有應用程式的根目錄。  例如，如果 `MyApplication` 是 Yeoman 所建立的應用程式，則為 `cd ~/YeomanSamples/MyApplication`。
 2. 執行 `yo azuresfguest:AddService` 並提供必要的詳細資料。
 
-
-
 ## <a name="next-steps"></a>後續步驟
 * 了解如何使用 [Service Fabric 部署容器和容器概觀](service-fabric-containers-overview.md)
-
-
-
-<!--HONumber=Dec16_HO1-->
-
+* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)
+* [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 

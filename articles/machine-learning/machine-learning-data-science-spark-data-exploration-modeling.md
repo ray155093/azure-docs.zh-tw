@@ -1,6 +1,6 @@
 ---
 title: "使用 Spark 資料探索和模型化 | Microsoft Docs"
-description: "展示了 Spark MLlib 工具組的資料探索和模型化功能。"
+description: "展示了 Azure 上 Spark MLlib 工具組的資料探索和模型化功能。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/07/2016
+ms.date: 02/15/2017
 ms.author: deguhath;bradsev;gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: b3d594fe60204c3e6e595d0f20a47510b1785847
+ms.sourcegitcommit: 5be82735c0221d14908af9d02500cc42279e325b
+ms.openlocfilehash: 76fb321dbe909730f72eba71042264caba407aed
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -43,7 +44,33 @@ ms.openlocfilehash: b3d594fe60204c3e6e595d0f20a47510b1785847
 > 
 
 ## <a name="prerequisites"></a>必要條件
-您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。 請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求。 此主題也包括這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。 您可以在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上取得 **pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例。 
+您需要 Azure 帳戶和 Spark 1.6 或 Spark 2.0 HDInsight 叢集，才能完成此逐步解說。 請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求。 此主題也包括這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。 
+
+## <a name="spark-clusters-and-notebooks"></a>Spark 叢集和 Notebook
+此逐步解說所提供的設定步驟和程式碼適用於使用 HDInsight Spark 1.6。 不過 Jupyter Notebook 可供 HDInsight Spark 1.6 版和 Spark 2.0 叢集兩者使用。 Notebook 的描述及它們的連結已在包含它們的 GitHub 儲存機制的 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) 中提供。 此外，此處及連結的 Notebook 內的程式碼皆屬泛型程式碼，而且應該能在任何 Spark 叢集上運作。 若您不是使用 HDInsight Spark，叢集設定和管理步驟可能與這裡顯示的稍有不同。 為了方便起見，以下是可讓 Spark 1.6 版和 2.0 版在 Jupyter Notebook 伺服器的 pyspark 核心中執行的 Jupyter Notebook 連結：
+
+### <a name="spark-16-notebooks"></a>Spark 1.6 Notebook
+
+[pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb)：提供如何利用數個不同的演算法來執行資料瀏覽、模型化和評分的相關資訊。
+
+### <a name="spark-20-notebooks"></a>Spark 2.0 Notebook
+使用 Spark 2.0 叢集實作的迴歸和分類工作，會使用不同的資料集並位於個別的 Notebook 上：
+
+- [Spark2.0 pySpark3_NYC_Taxi_Tip_Regression.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0_pySpark3_NYC_Taxi_Tip_Regression.ipynb)：這個檔案會顯示如何使用[這裡](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview)所述的 NYC 計程車車程和費用資料集，執行資料爭議 (Spark SQL 和資料框架作業)、瀏覽、模型化和評分。
+- [Spark2.0 pySpark3_Airline_Departure_Delay_Classification.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0_pySpark3_Airline_Departure_Delay_Classification.ipynb)：這個檔案會顯示如何使用已知的 2011 年和 2012 年航班準時出發資料集，執行資料爭議 (Spark SQL 和資料框架作業)、瀏覽、模型化和評分。 我們在模型化之前將航班資料集與機場天氣資料 (例如風速、溫度、高度等等) 整合，因此可以在模型中包含這些天氣功能。
+
+<!-- -->
+
+> [!NOTE]
+> Spark 2.0 Notebook 中新增了航班資料集，以更清楚地說明使用的分類演算法。 請參閱下列連結，以取得航班準時出發資料集和天氣資料集的相關資訊：
+
+>- 航班準時出發資料：[http://www.transtats.bts.gov/ONTIME/](http://www.transtats.bts.gov/ONTIME/)
+
+>- 機場天氣資料：[https://www.ncdc.noaa.gov/](https://www.ncdc.noaa.gov/) 
+> 
+> 
+
+<!-- -->
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -104,7 +131,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 * 在輸入資料集中讀取 (儲存為 .tsv 檔案)
 * 格式化和清除資料
 * 建立並快取記憶體中的物件 (RDD 或資料框架)
-* 將其註冊為 SQL 內容中的暫存資料表。
+* 將它註冊為 SQL 內容中的暫存資料表。
 
 以下是資料擷取的程式碼。
 
@@ -170,7 +197,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 執行上述儲存格所花費的時間︰51.72 秒
 
-## <a name="data-exploration-visualization"></a>資料探索和虛擬化
+## <a name="data-exploration--visualization"></a>資料探索和虛擬化
 一旦將資料引進 Spark，資料科學程序的下一個步驟是透過探索和虛擬化以更深入瞭解資料。 在本節中，我們會使用 SQL 查詢檢查計程車資料，並繪製目標變數和潛在功能以進行視覺檢查。 具體來說，我們會繪製計程車車程中的乘客計數頻率、小費金額的頻率，及小費如何隨付款金額和類型而異。
 
 ### <a name="plot-a-histogram-of-passenger-count-frequencies-in-the-sample-of-taxi-trips"></a>在計程車車程範例中繪製乘客計數頻率的長條圖
@@ -291,7 +318,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 * 將小時納入流量時間值區以建立新特徵
 * 索引並編碼分類功能
 * 建立輸入到 ML 函式的標示點物件
-* 建立資料的隨機子取樣，並將其分割成訓練和測試集
+* 建立資料的隨機子取樣，並將它分割成訓練和測試集
 * 調整功能
 * 快取記憶體中的物件
 
@@ -324,7 +351,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 ### <a name="index-and-encode-categorical-features-for-input-into-modeling-functions"></a>索引並編碼分類功能以輸入模型化函式中
 本節說明如何索引並編碼分類功能，以輸入模型化函式中。 MLlib 的模型化和預測函式需要先執行功能來分類要索引或編碼的分類輸入資料，才能使用這些資料。 根據模型，您需要以不同方式索引或編碼它們︰  
 
-* **樹狀結構型模型化** 需要將類別編碼為數值 (例如，含 3 個類別的特徵可能會使用 0、1、2 編碼)。 這是由 MLlib 的 [StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) 函式所提供。 此函式會將標籤的字串資料行，編碼為標籤頻率所排序的標籤索引的資料行。 雖然使用輸入和資料處理的數值編製索引，仍可指定樹狀結構型演算法，將其視為類別適當地處理。 
+* **樹狀結構型模型化** 需要將類別編碼為數值 (例如，含 3 個類別的特徵可能會使用 0、1、2 編碼)。 這是由 MLlib 的 [StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) 函式所提供。 此函式會將標籤的字串資料行，編碼為標籤頻率所排序的標籤索引的資料行。 雖然使用輸入和資料處理的數值編製索引，仍可指定樹狀結構型演算法，將它們視為類別適當地處理。 
 * **羅吉斯和線性迴歸模型**需要一個有效編碼方式，例如，含 3 個類別的一個功能可擴充至 3 個功能資料行，根據觀察的類別，每個資料行包含 0 或 1。 MLlib 提供 [OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 函式以執行 one-hot 編碼。 此編碼器會將標籤索引資料行對應到二進位向量資料行 (最多有一個單一值)。 這種編碼方式允許將預期數值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
 
 以下是要索引及編碼分類功能的程式碼︰
@@ -428,8 +455,8 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
         return  labPt
 
 
-### <a name="create-a-random-sub-sampling-of-the-data-and-split-it-into-training-and-testing-sets"></a>建立資料的隨機子取樣，並將其分割成訓練和測試集
-此程式碼會建立隨機取樣資料 (這裡使用 25%)。 雖然您不需要這個範例 (因為資料集的大小)，我們將在這裡示範如何取樣，讓您了解如何在需要時使用它來自行解決問題。 在大型範例中，如此可在訓練模型時節省大量時間。 接下來我們將範例分割成訓練部分 (這裡為 75%) 和測試部分 (這裡為 25%)，以便在分類和迴歸模型化中使用。
+### <a name="create-a-random-sub-sampling-of-the-data-and-split-it-into-training-and-testing-sets"></a>建立資料的隨機子取樣，並將它分割成訓練和測試集
+此程式碼會建立隨機取樣資料 (這裡使用&25;%)。 雖然您不需要這個範例 (因為資料集的大小)，我們將在這裡示範如何取樣，讓您了解如何在需要時使用它來自行解決問題。 在大型範例中，如此可在訓練模型時節省大量時間。 接下來我們將範例分割成訓練部分 (這裡為&75;%) 和測試部分 (這裡為&25;%)，以便在分類和迴歸模型化中使用。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -1064,10 +1091,5 @@ BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-0
 **模型耗用量︰** 若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱 [評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
 
 **交叉驗證和超參數掃掠**：如需如何使用交叉驗證和超參數掃掠訓練模型的相關資訊，請參閱 [使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

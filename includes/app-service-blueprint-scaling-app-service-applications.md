@@ -2,7 +2,7 @@
   
   * 了解備援性與可靠性
   * 比較「具狀態」與「無狀態」應用程式
-    * [設定無狀態應用程式](/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/)
+    * [設定無狀態應用程式](https://azure.microsoft.com/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/)
 * 在 App Service 中進行應用程式的負載測試   
 * 調整 App Service 的最佳做法
   
@@ -13,9 +13,4 @@
 * 地理分散
   
   * [運用流量管理員達到全球規模](../articles/traffic-manager/traffic-manager-overview.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

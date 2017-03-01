@@ -3,7 +3,7 @@
 ## [何謂 Azure IoT 中樞？](iot-hub-what-is-iot-hub.md)
 ## [裝置管理概觀](iot-hub-device-management-overview.md)
 
-# 開始使用
+# [快速入門](iot-hub-get-started.md)
 ## 使用模擬裝置
 ### [.NET](iot-hub-csharp-csharp-getstarted.md)
 ### [Java](iot-hub-java-java-getstarted.md)
@@ -23,7 +23,7 @@
 ##### [取得 Azure 工具 (MacOS 10.10)](iot-hub-raspberry-pi-kit-node-lesson2-get-azure-tools-mac.md)
 ##### [建立 IoT 中樞並登錄您的 Raspberry Pi](iot-hub-raspberry-pi-kit-node-lesson2-prepare-azure-iot-hub.md)
 #### 第 3 課：傳送裝置到雲端訊息
-##### [建立 Azure 函式應用程式和儲存體帳戶]#(iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md)
+##### [建立 Azure 函式應用程式與儲存體帳戶](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md)
 ##### [執行範例應用程式以傳送訊息](iot-hub-raspberry-pi-kit-node-lesson3-run-azure-blink.md)
 ##### [讀取保留在儲存體中的訊息](iot-hub-raspberry-pi-kit-node-lesson3-read-table-storage.md)
 #### 第 4 課：傳送雲端到裝置訊息
@@ -66,7 +66,7 @@
 ##### [取得 Azure 工具 (MacOS 10.10)](iot-hub-intel-edison-kit-node-lesson2-get-azure-tools-mac.md)
 ##### [建立 IoT 中樞並登錄您的 Raspberry Pi](iot-hub-intel-edison-kit-node-lesson2-prepare-azure-iot-hub.md)
 #### 第 3 課：傳送裝置到雲端訊息
-##### [建立 Azure 函式應用程式和儲存體帳戶]#(iot-hub-intel-edison-kit-node-lesson3-deploy-resource-manager-template.md)
+##### [建立 Azure 函式應用程式與儲存體帳戶](iot-hub-intel-edison-kit-node-lesson3-deploy-resource-manager-template.md)
 ##### [執行範例應用程式以傳送訊息](iot-hub-intel-edison-kit-node-lesson3-run-azure-blink.md)
 ##### [讀取保留在儲存體中的訊息](iot-hub-intel-edison-kit-node-lesson3-read-table-storage.md)
 #### 第 4 課：傳送雲端到裝置訊息
@@ -107,13 +107,13 @@
 ##### [取得 Azure 工具 (Windows 7+)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-get-azure-tools-win32.md)
 ##### [取得 Azure 工具 (Ubuntu 16.04)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-get-azure-tools-ubuntu.md)
 ##### [取得 Azure 工具 (MacOS 10.10)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-get-azure-tools-mac.md)
-##### [建立您的 IoT 中樞並註冊您的 Raspberry Pi]#(iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-prepare-azure-iot-hub.md)
+##### [建立 IoT 中樞並登錄您的 Raspberry Pi](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson2-prepare-azure-iot-hub.md)
 #### 第 3 課：傳送裝置到雲端訊息
-##### [建立 Azure 函式應用程式和儲存體帳戶]#(iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-deploy-resource-manager-template.md)
+##### [建立 Azure 函式應用程式與儲存體帳戶](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-deploy-resource-manager-template.md)
 ##### [執行範例應用程式以傳送訊息](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-run-azure-blink.md)
 ##### [讀取保留在儲存體中的訊息](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-read-table-storage.md)
 #### 第 4 課：傳送雲端到裝置訊息
-##### [執行範應用程式以接收訊息]#(iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-send-cloud-to-device-messages.md)
+##### [執行範例應用程式以接收訊息](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-send-cloud-to-device-messages.md)
 ##### [選擇性︰變更 LED 行為](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-change-led-behavior.md)
 #### [疑難排解](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md)
 
@@ -172,7 +172,7 @@
 ### [調整您的解決方案規模](iot-hub-scaling.md)
 ### [高可用性和災害復原](iot-hub-ha-dr.md)
 ### [支援其他通訊協定](iot-hub-protocol-gateway.md)
-## 開發
+## [開發](iot-hub-how-to.md)
 ### [開發人員指南](iot-hub-devguide.md)
 #### [傳送及接收訊息](iot-hub-devguide-messaging.md)
 #### [裝置對雲端的功能指南](iot-hub-devguide-d2c-guidance.md)
@@ -269,8 +269,3 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-hub/)
 ## [Azure IoT 開發人員中心](https://azure.microsoft.com/develop/iot/)
 ## [Azure IoT 認證裝置目錄](https://catalog.azureiotsuite.com/)
-
-
-<!--HONumber=Feb17_HO4-->
-
-

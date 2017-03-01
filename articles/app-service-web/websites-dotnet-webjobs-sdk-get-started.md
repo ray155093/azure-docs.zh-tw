@@ -4,7 +4,7 @@ description: "使用 ASP.NET MVC 和 Azure 建立多層式應用程式。 前端
 services: app-service
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: mollybos
 ms.assetid: 99cb9917-483a-45f8-a98d-07d19c68c753
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: tdykstra
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: b4a64bbccabf0e7b0e7aec659d066883139c8207
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -724,9 +725,4 @@ https://{webappname}.scm.azurewebsites.net/azurejobs/#/functions
 
 ### <a name="more-webjobs-documentation"></a>其他 WebJobs 文件
 如需詳細資訊，請參閱 [Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?LinkId=390226)。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

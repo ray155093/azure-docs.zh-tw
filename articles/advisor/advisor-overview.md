@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 11/16/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: f67ca5996fdde0f0939ac46c2f6280f9d89af3d0
-ms.openlocfilehash: a39a5555ce3af59b509a0522725addbb382ff7af
+ms.sourcegitcommit: e7fc6cb4ee4752bb7ed90a8f64edcc7c82ec3a88
+ms.openlocfilehash: 3c4f6d13dd43ae557b177883e14044e637bd803b
+ms.lasthandoff: 02/21/2017
 
 ---
 
@@ -28,9 +29,9 @@ ms.openlocfilehash: a39a5555ce3af59b509a0522725addbb382ff7af
 Azure 建議程式是個人化的雲端顧問，可協助您依最佳做法來最佳化您的 Azure 部署。 它可分析您的資源組態和使用量遙測，並建議可協助您改善 Azure 資源的成本效益、效能、高可用性和安全性的解決方案。
 
 使用 Azure 建議程式，您可以：
--   取得主動式、可採取動作且個人化的最佳作法建議 
--   改善資源的效能、安全性及高可用性，同時尋找降低整體 Azure 費用的機會
--   透過內嵌動作取得建議
+-    取得主動式、可採取動作且個人化的最佳作法建議 
+-    改善資源的效能、安全性及高可用性，同時尋找降低整體 Azure 費用的機會
+-    透過內嵌動作取得建議
 
 您可以透過 [Azure 入口網站](https://aka.ms/azureadvisordashboard)存取建議程式。 登入[入口網站](https://portal.azure.com)，選取 [瀏覽]，然後捲動至 [Azure 建議程式]。 [建議程式] 儀表板會顯示所選訂用帳戶的個人化建議。 建議分為四個類別。 
 
@@ -45,7 +46,7 @@ Azure 建議程式是個人化的雲端顧問，可協助您依最佳做法來�
   ![建議程式建議類型](./media/advisor-overview/advisor-all-tab-examples.png)
 
 > [!NOTE]
-> Azure 建議程式會針對您已獲得「擁有者」、「參與者」或「讀取者」角色的訂用帳戶，產生相關建議。
+> 若要存取 Advisor 的建議，您必須先向 Advisor「註冊」您的訂用帳戶。 當「訂用帳戶擁有者」啟動 Advisor 儀表板，然後按一下 [取得建議] 按鈕時，便會註冊訂用帳戶。 此作業「只需要執行一次」。 註冊訂用帳戶之後，訂用帳戶、資源群組或特定的資源的 [擁有者]、[參與者] 或 [讀取者]，都可以存取 Advisor 建議。
 
 您可以按一下建議，以了解其額外資訊。 您也可以了解您可以執行的動作，以便利用機會或解決問題。 建議程式可透過內嵌動作或文件連結提供建議。 按一下內嵌動作，可帶領您完成「引導式使用者旅程圖」以進行實作。 按一下文件連結，可將您指向說明如何以手動方式實作動作的文件。 
 
@@ -58,7 +59,7 @@ Azure 建議程式是個人化的雲端顧問，可協助您依最佳做法來�
 
 ### <a name="what-permissions-do-i-need-to-access-advisor"></a>我需要哪些權限才能存取建議程式？
 
-若要檢視建議程式建議，您必須至少有一個訂用帳戶的存取權。 您的角色必須是訂用帳戶的 [擁有者]、[參與者] 或 [讀取者]。 訂用帳戶擁有者和參與者可以計算/產生建議。 不過，使用 [讀取者] 角色，您只可以檢視建議程式建議。 
+若要存取 Advisor 的建議，您必須先向 Advisor「註冊」您的訂用帳戶。 當訂用帳戶擁有者啟動 Advisor 儀表板，然後按一下 [取得建議] 按鈕時，便會註冊訂用帳戶。 此作業「只需要執行一次」。 註冊訂用帳戶之後，訂用帳戶、資源群組或特定的資源的 [擁有者]、[參與者] 或 [讀取者]，都可以存取 Advisor 建議。
 
 ### <a name="how-often-are-advisor-recommendations-updated"></a>建議程式建議的頻率為何？
 
@@ -66,7 +67,7 @@ Azure 建議程式是個人化的雲端顧問，可協助您依最佳做法來�
 
 ### <a name="what-resources-does-advisor-provide-recommendations-for"></a>建議程式可提供哪些資源的建議？
 
-建議程式可提供虛擬機器、可用性設定組、應用程式服務、SQL Server、SQL Database 和 Redis 快取的建議。
+Advisor 可提供虛擬機器、可用性設定組、應用程式閘道、應用程式服務、SQL Server、SQL Database 和 Redis 快取的建議。
 
 ### <a name="can-i-snooze-or-dismiss-a-recommendation"></a>是否可以延遲或解除建議？
 
@@ -81,9 +82,4 @@ Azure 建議程式是個人化的雲端顧問，可協助您依最佳做法來�
 -  [建議程式安全性建議](advisor-security-recommendations.md)
 -  [建議程式效能建議](advisor-performance-recommendations.md)
 -  [建議程式成本建議](advisor-cost-recommendations.md)
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

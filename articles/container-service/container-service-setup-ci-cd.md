@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: johnsta
 translationtype: Human Translation
-ms.sourcegitcommit: 831f585a9591338c2f404f7ec031d40937731eab
-ms.openlocfilehash: dcf4c0b67bc7a6596070cdf44644a6c451e3afc1
+ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
+ms.openlocfilehash: c226d1eecbda09f4538f37d830ce68064e8ce77b
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: dcf4c0b67bc7a6596070cdf44644a6c451e3afc1
 ## <a name="get-started"></a>開始使用
 您可以在 OS X、Windows 或 Linux 上執行此逐步解說。
 - 您需要 Azure 訂用帳戶。 如果您沒有帳戶，您可以註冊[免費帳戶](https://azure.microsoft.com/)。
-- 安裝 [Azure 命令列工具](https://github.com/Azure/azure-cli#microsoft-azure-cli-20---preview)。
+- 安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)。
 
 ## <a name="what-well-create"></a>我們所要建立的項目
 我們將討論應用程式的一些重要層面，以及我們所要設定的部署流程︰
@@ -319,7 +320,7 @@ VSTS 發行管線預設會設定三種環境︰[開發]、[測試] 和 [生產]�
 ## <a name="clean-up"></a>清除
 若要限制與本教學課程相關的計算費用，請執行下列命令，並記下與 ACS 叢集相關的部署管線資源︰
 
-```azurecli 
+```azurecli    
 az container release list --resource-name myacs --resource-group myacs-rg
 ```
 
@@ -345,9 +346,4 @@ az container release list --resource-name myacs --resource-group myacs-rg
 2. 在左手邊的發行定義清單中，按一下您想要刪除之發行定義旁邊的下拉式清單，然後選取 [刪除]。
 
 `![刪除 VSTS 發行定義](media/container-service-setup-ci-cd/vsts-delete-release-def.png)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

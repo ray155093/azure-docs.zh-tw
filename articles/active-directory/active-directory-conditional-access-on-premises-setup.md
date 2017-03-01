@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 02d8de2e37af9ccbf79bb77180b0eda0d187eb5c
+ms.sourcegitcommit: f42e31c99bf43e8f034c8d6f4f98d777661c3d81
+ms.openlocfilehash: 204ec83dc1000bb1e10df6fecc303b6ac7795739
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -176,9 +177,6 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 ### <a name="join-a-windows-7-device-using-azure-active-directory-device-registration"></a>使用 Azure Active Directory 裝置註冊加入 Windows 7 裝置
 若要註冊加入網域的 Windows 7 裝置，您需要部署裝置註冊軟體套件。 此軟體套件稱為 Workplace Join for Windows 7，可以從 [Microsoft Connect 網站](https://connect.microsoft.com/site1164)下載。 [為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)中有提供如何使用此套件的指示。
 
-### <a name="join-an-android-device-using-azure-active-directory-device-registration"></a>使用 Azure Active Directory 裝置註冊加入 Android 裝置
-[Android 的 Azure Authenticator 主題](active-directory-conditional-access-azure-authenticator-app.md) 包含如何在 Android 裝置上安裝 Azure Authenticator 應用程式並新增工作帳戶的指示。 在 Android 裝置上成功建立工作帳戶時，該裝置是加入至組織的工作場所。
-
 ## <a name="verify-registered-devices-are-written-back-to-active-directory"></a>確認已註冊的裝置已寫回至 Active Directory
 您可以使用 LDP.exe 或 ADSI 編輯器檢視並確認裝置物件已寫回至 Active Directory。 兩者都可透過 Active Directory 系統管理工具以供使用。
 
@@ -234,10 +232,5 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

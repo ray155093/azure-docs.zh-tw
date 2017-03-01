@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 11/17/2016
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 394315f81cf694cc2bb3a28b45694361b11e0670
-ms.openlocfilehash: 8c2441211f08e8bb22153ff16cbd98c85cb9cf3d
+ms.sourcegitcommit: 7e99731f6826e563109da734a80fcccfff85676a
+ms.openlocfilehash: 3deb0e1668aae15a7d9abe00791f4524ed49d77b
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -128,9 +129,7 @@ ms.openlocfilehash: 8c2441211f08e8bb22153ff16cbd98c85cb9cf3d
 
 1. 開啟 Azure CLI，並在單一的 CLI 工作階段內完成本章節的其餘步驟。 如果您尚未安裝和設定 Azure CLI，請完成[安裝和設定 Azure CLI](../xplat-cli-install.md) 文章中的步驟，並登入 Azure 帳戶。
 
-2. 若要註冊以進行預覽，請將電子郵件傳送至[多個 IP](mailto:MultipleIPsPreview@microsoft.com?subject=Request%20to%20enable%20subscription%20%3csubscription%20id%3e)，並註明您的訂用帳戶 ID 與用途。 請勿嘗試完成剩餘步驟︰
-    - 除非收到電子郵件，通知已接受您進行預覽
-    - 除非遵循您收到之電子郵件中的指示
+2. 遵循＜**建立具有多個 IP 位址的 VM**＞中步驟 2 的做法註冊公用預覽。
 
 3. 根據您的需求，完成下列其中一個章節中的步驟︰
 
@@ -208,9 +207,4 @@ ms.openlocfilehash: 8c2441211f08e8bb22153ff16cbd98c85cb9cf3d
 9. 依照本文的[將 IP 位址新增至 VM 作業系統](#os-config)一節中的指示，將您新增至 NIC 的私人 IP 位址新增至 VM 作業系統。 請勿將公用 IP 位址新增至作業系統。
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-os-config.md](../../includes/virtual-network-multiple-ip-addresses-os-config.md)]
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

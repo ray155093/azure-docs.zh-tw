@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 12/20/2016
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: cbd7e36c5ef5c78b38a2cc7791b442cac1711b95
-ms.openlocfilehash: 92e8e25abc047811fc0ff45f424bd1b97a045e1f
+ms.sourcegitcommit: f517a649a6c6aa65b350767bc66cf4d60c7988b5
+ms.openlocfilehash: 9a114e954d59dcecaf3310e024428770bc4a2349
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -84,7 +85,7 @@ ms.openlocfilehash: 92e8e25abc047811fc0ff45f424bd1b97a045e1f
 6. 按一下 [建立保存庫] 。 要等備份保存庫建立好，可能需要一些時間。 監視位於入口網站底部的狀態通知。
 
     ![建立保存庫快顯通知](./media/backup-azure-vms-prepare/creating-vault.png)
-7. 將有則訊息確認已成功建立保存庫。 該保存庫將會在 [復原服務] 頁面中以 [使用中] 狀態列出。 建立保存庫之後，請務必立即選擇適當的儲存體備援選項。 進一步了解[在備份保存庫中設定儲存體備援選項](backup-configure-vault.md#step-1-create-a-recovery-services-vault)。
+7. 將有則訊息確認已成功建立保存庫。 該保存庫將會在 [復原服務] 頁面中以 [使用中] 狀態列出。 建立保存庫之後，請務必立即選擇適當的儲存體備援選項。 進一步了解[在備份保存庫中設定儲存體備援選項](backup-configure-vault.md#create-a-recovery-services-vault)。
 
     ![備份保存庫的清單](./media/backup-azure-vms-prepare/backup_vaultslist.png)
 8. 按一下備份保存庫以前往 [快速入門]  頁面，此頁面會顯示備份 Azure 虛擬機器的相關指示。
@@ -231,9 +232,4 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 * [備份虛擬機器](backup-azure-vms.md)
 * [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
 * [管理虛擬機器備份](backup-azure-manage-vms.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

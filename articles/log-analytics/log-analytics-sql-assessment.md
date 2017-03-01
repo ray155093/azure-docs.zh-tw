@@ -1,6 +1,6 @@
 ---
 title: "在 Log Analytics 中使用 SQL 評估方案進行環境最佳化 | Microsoft Docs"
-description: "您可以使用 SQL 評估方案定期評估伺服器環境的風險和健全狀況。"
+description: "透過 Azure Log Analytics，您可以使用 SQL 評估方案，定期評估伺服器環境的風險和健全狀況。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/17/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
-ms.openlocfilehash: 0b0c739f1d89b83c43314d8ace794d26abf10054
+ms.sourcegitcommit: 9ee8f4aafcc35e43c4fcba5a3a72b043dd9fc32c
+ms.openlocfilehash: fc8b2d74737bc334d5c4f27782d4e0d46adbcb18
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -41,7 +42,8 @@ SQL 評估適用於 Standard、Developer 和 Enterprise 版本之 SQL Server 目
 請使用下列資訊來安裝和設定方案。
 
 * 代理程式必須安裝於已安裝 SQL Server 的伺服器上。
-* SQL 評估方案需要具有 OMS 代理程式的電腦上都安裝 .NET Framework 4。
+* SQL 評估方案需要在具有 OMS 代理程式的每部電腦上安裝 .NET Framework 4 的支援版本。
+* 若要安裝方案，使用者在使用 Azure 入口網站時必須是系統管理員或是 Azure 訂用帳戶的參與者。 此外，使用者必須是 OMS 入口網站中 OMS 工作區參與者或系統管理員角色的成員。
 * 搭配使用 Operations Manager 代理程式和 SQL 評估時，您必須使用 Operations Manager 執行身分帳戶。 如需詳細資訊，請參閱底下的 [OMS 的 Operations Manager 執行身分帳戶](#operations-manager-run-as-accounts-for-oms) 。
 
   > [!NOTE]
@@ -52,8 +54,6 @@ SQL 評估適用於 Standard、Developer 和 Enterprise 版本之 SQL Server 目
 
 > [!NOTE]
 > 您加入方案之後，AdvisorAssessment.exe 檔案會以代理程式加入伺服器中。 組態資料會先讀取後再傳送至雲端中的 OMS 服務，以便進行處理。 會將邏輯套用至接收的資料，且雲端服務會記錄資料。
->
->
 
 ## <a name="sql-assessment-data-collection-details"></a>SQL 評估資料收集詳細資料
 SQL 評估會使用您已啟用的代理程式，來收集 WMI 資料、登錄資料、效能資料和 SQL Server 動態管理檢視結果。
@@ -243,9 +243,4 @@ OMS 中的 Log Analytics 會使用 Operations Manager 代理程式及管理群�
 
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄檔](log-analytics-log-searches.md) 以檢視詳細的 SQL 評估資料和建議。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -4,7 +4,7 @@ description: "幾分鐘之內就在您的第一個 Web 應用程式中新增絕�
 services: app-service\web
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 542671c2-22f0-4f20-8b4b-fa477264c492
 ms.service: app-service-web
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 9916000ddf38fdda1dcbdcf8818c5833a445efc8
 ms.openlocfilehash: 3f099db9f75466b5571aa732bb60343af7bd86da
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -153,10 +154,5 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
   使用 [Tinfoil Security](https://www.tinfoilsecurity.com/) 所提供的服務，掃描 Web 應用程式中是否有新型威脅。
 * [執行背景工作](../azure-functions/functions-overview.md) - 執行資料處理、報告等工作。
 * [了解 App Service 的運作方式](../app-service/app-service-how-works-readme.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

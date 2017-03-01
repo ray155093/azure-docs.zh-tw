@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 02/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 6b7d2da8ababba65146503ecfbe6fd6e142a359c
-ms.openlocfilehash: 3d35c26ab0e1013ae10508cfbcf7ed644ab6d1f0
+ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
+ms.openlocfilehash: d36bb775d0b0fd732562b18787b65600c8fb5fa1
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -42,12 +43,12 @@ ms.openlocfilehash: 3d35c26ab0e1013ae10508cfbcf7ed644ab6d1f0
 3. 在 [稽核與威脅偵測] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。
 
    ![開啟稽核與脅偵測][3]
-4. 遵循 [開始使用 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md) ，開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
+4. 遵循 [Azure 入口網站中的 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-portal.md)的步驟，來開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
 
 ## <a name="see-also"></a>另請參閱
 本文說明了如何實作資訊安全中心建議的「在 SQL Database 上啟用稽核」。 若要深入了解如何保護您的 SQL Database，請參閱下列主題：
 
-* [保護您的 SQL Database](../sql-database/sql-database-security.md)
+* [保護您的 SQL Database](../sql-database/sql-database-security-overview.md)
 
 如要深入了解資訊安全中心，請參閱下列主題：
 
@@ -63,9 +64,4 @@ ms.openlocfilehash: 3d35c26ab0e1013ae10508cfbcf7ed644ab6d1f0
 [1]: ./media/security-center-enable-auditing-on-sql-databases/enable-auditing-on-sql-databases.png
 [2]:./media/security-center-enable-auditing-on-sql-databases/auditing-threat-detection.png
 [3]: ./media/security-center-enable-auditing-on-sql-databases/auditing-threat-detection-blade.png
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

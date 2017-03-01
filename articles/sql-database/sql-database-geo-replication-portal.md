@@ -3,7 +3,7 @@ title: "使用 Azure 入口網站為 Azure SQL Database 設定異地複寫 | Mic
 description: "使用 Azure 入口網站為 Azure SQL Database 設定異地複寫"
 services: sql-database
 documentationcenter: 
-author: anosov1960
+author: CarlRabeler
 manager: jhubbard
 editor: 
 ms.assetid: d0b29822-714f-4633-a5ab-fb1a09d43ced
@@ -14,21 +14,15 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/22/2016
-ms.author: sashan;carlrab
+ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 9faff06ee1856ca6490add759acd3c5f36719853
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: fe2d2ef731fb94c7e4e8da0e518bcef8c1ada650
+ms.lasthandoff: 02/16/2017
 
 
 ---
-# <a name="configure-geo-replication-for-azure-sql-database-with-the-azure-portal"></a>使用 Azure 入口網站為 Azure SQL Database 設定異地複寫
-> [!div class="op_single_selector"]
-> * [概觀](sql-database-geo-replication-overview.md)
-> * [Azure 入口網站](sql-database-geo-replication-portal.md)
-> * [PowerShell](sql-database-geo-replication-powershell.md)
-> * [T-SQL](sql-database-geo-replication-transact-sql.md)
-> 
-> 
+# <a name="configure-active-geo-replication-for-azure-sql-database-with-the-azure-portal"></a>使用 Azure 入口網站為 Azure SQL Database 設定作用中異地複寫
 
 本文說明如何使用 [Azure 入口網站](http://portal.azure.com)為 SQL Database 設定「主動式異地複寫」。
 
@@ -39,7 +33,7 @@ ms.openlocfilehash: 9faff06ee1856ca6490add759acd3c5f36719853
 > 
 > 
 
-若要使用 Azure 入口網站來設定「異地複寫」，您需要下列資源：
+若要使用 Azure 入口網站來設定作用中異地複寫，您需要下列資源：
 
 * Azure SQL Database：您想要複寫到不同地理區域的主要資料庫。
 
@@ -51,7 +45,7 @@ ms.openlocfilehash: 9faff06ee1856ca6490add759acd3c5f36719853
 
 若要新增次要資料庫，您必須是訂用帳戶擁有者或共同擁有者。
 
-次要資料庫的名稱會與主要資料庫相同，並且預設會具有相同的服務層級。 次要資料庫可以是獨立資料庫或彈性集區中的資料庫。 如需詳細資訊，請參閱 [服務層](sql-database-service-tiers.md)。
+次要資料庫的名稱會與主要資料庫相同，並且預設會具有相同的服務層級。 次要資料庫可以是單一資料庫或彈性集區中的資料庫。 如需詳細資訊，請參閱 [服務層](sql-database-service-tiers.md)。
 建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。
 
 > [!NOTE]
@@ -88,12 +82,7 @@ ms.openlocfilehash: 9faff06ee1856ca6490add759acd3c5f36719853
 5. 隨即開啟確認視窗。 按一下 [是] 以從異地複寫合作關係中移除資料庫。 (將它設定為讀寫資料庫不屬於任何複寫的一部分。)
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解主動式異地複寫，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)。
+* 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)。
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

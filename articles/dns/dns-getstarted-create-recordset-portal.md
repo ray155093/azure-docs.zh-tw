@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: bfbffe7843bc178cdf289c999925c690ab82e922
-ms.openlocfilehash: b3951106fe2e8607e65bd0ae47fa2ea3346b8ca5
+ms.sourcegitcommit: 36fa9cd757b27347c08f80657bab8a06789a3c2f
+ms.openlocfilehash: 2752579b6277a27ca1e932fbd2c402ac3135e80c
+ms.lasthandoff: 02/27/2017
 
 ---
 
@@ -26,7 +27,8 @@ ms.openlocfilehash: b3951106fe2e8607e65bd0ae47fa2ea3346b8ca5
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](dns-getstarted-create-recordset-portal.md)
 > * [PowerShell](dns-getstarted-create-recordset.md)
-> * [Azure CLI](dns-getstarted-create-recordset-cli.md)
+> * [Azure CLI 1.0](dns-getstarted-create-recordset-cli-nodejs.md)
+> * [Azure CLI 2.0](dns-getstarted-create-recordset-cli.md)
 
 本文將逐步引導您完成使用 Azure 入口網站建立記錄和記錄集的程序。 若要這樣做，您必須先了解 DNS 記錄和記錄集。
 
@@ -77,9 +79,4 @@ ms.openlocfilehash: b3951106fe2e8607e65bd0ae47fa2ea3346b8ca5
 了解如何[將網域名稱委派給 Azure DNS 名稱伺服器](dns-domain-delegation.md)
 
 若要管理您的記錄集和記錄，請參閱 [使用 Azure 入口網站管理 DNS 記錄和記錄集](dns-operations-recordsets-portal.md)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

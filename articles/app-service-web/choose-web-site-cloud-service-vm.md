@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service、虛擬機器、Service Fabric 
 services: app-service\web, virtual-machines, cloud-services
 documentationcenter: 
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 7d346a23-532a-42a9-98a8-23b7286d32a8
 ms.service: app-service-web
@@ -17,6 +17,7 @@ ms.author: tdykstra
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 2f5e6d100effee99b1a1576c0e21f1a311f8131b
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -189,9 +190,4 @@ HTTP 型 Web 服務可讓您支援各種用戶端，包括行動用戶端。 ASP
 <!-- IMG List -->
 
 [ChoicesDiagram]: ./media/choose-web-site-cloud-service-vm/Websites_CloudServices_VMs_3.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

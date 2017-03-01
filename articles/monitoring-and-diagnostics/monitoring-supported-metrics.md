@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/12/2016
+ms.date: 2/17/2017
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: e64b544d8785b7453f4d77333fd0eb6673d32504
-ms.openlocfilehash: f5a6ee866891fdfb27ed00a22cbd784484ae5e5f
+ms.sourcegitcommit: 354bf45625c209c22118804d3835ca71e3128580
+ms.openlocfilehash: deda64fb779e176bb00c3256fa3028e7e3567eb4
+ms.lasthandoff: 02/18/2017
 
 
 ---
@@ -34,6 +35,23 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |---|---|---|---|---|
 |qpu_metric|QPU|Count|平均值|QPU。 範圍 0-100 (S1)、0-200 (S2) 和 0-400 (S4)|
 |memory_metric|記憶體|位元組|平均值|記憶體。 範圍 0-25 GB (S1)、0-50 GB (S2) 和 0-100 GB (S4)|
+|TotalConnectionRequests|連線要求的總計|Count|平均值|連線要求的總計。 這些是達到的。|
+|SuccessfullConnectionsPerSec|每秒連線成功的次數|每秒計數|平均值|成功完成連線的速率。|
+|TotalConnectionFailures|連線失敗的總計|Count|平均值|連線嘗試失敗的總計。|
+|CurrentUserSessions|目前的使用者工作階段|Count|平均值|目前建立的使用者工作階段數目。|
+|QueryPoolBusyThreads|查詢集區忙碌執行緒|Count|平均值|查詢執行緒集區中的忙碌執行緒數目。|
+|CommandPoolJobQueueLength|命令集區作業佇列長度|Count|平均值|命令執行緒集區佇列中的作業數目。|
+|ProcessingPoolJobQueueLength|處理集區作業佇列長度|Count|平均值|處理執行緒集區佇列中的非 I/O 作業數目。|
+
+## <a name="microsoftapimanagementservice"></a>Microsoft.ApiManagement/service
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|TotalRequests|閘道要求總數|Count|總計|閘道器要求數目|
+|SuccessfulRequests|成功的閘道要求|Count|總計|成功閘道器要求數目|
+|UnauthorizedRequests|未經授權閘道器要求|Count|總計|未經授權閘道器要求數目|
+|FailedRequests|失敗的閘道要求|Count|總計|閘道要求中的失敗數目|
+|OtherRequests|其他閘道器要求|Count|總計|其他閘道器要求數目|
 
 ## <a name="microsoftbatchbatchaccounts"></a>Microsoft.Batch/batchAccounts
 
@@ -282,29 +300,66 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |磁碟寫入作業數/秒|磁碟寫入作業數/秒|每秒計數|平均值|磁碟寫入 IOPS|
 
 ## <a name="microsoftdevicesiothubs"></a>Microsoft.Devices/IotHubs
-| 度量 | 度量顯示名稱 | 單位 | 彙總類型 | 說明 |
-| --- | --- | --- | --- | --- |
-| d2c.telemetry.ingress.allProtocol |遙測訊息傳送嘗試 |Count |總計 |要嘗試傳送至您 IoT 中樞的裝置到雲端遙測訊息數目 |
-| d2c.telemetry.ingress.success |已傳送的遙測訊息 |Count |總計 |成功傳送至您 IoT 中樞的裝置到雲端遙測訊息數目 |
-| d2c.telemetry.egress.success | 已傳遞的遙測訊息 | Count | 總計 | 端點的所有成功寫入計數 |
-| d2c.telemetry.egress.invalid | 無效的遙測訊息傳遞嘗試 | Count | 總計 | 因為與端點不相容而未傳遞的訊息計數 |
-| d2c.telemetry.egress.dropped | 已捨棄的遙測訊息 | Count | 總計 | 因為端點狀況不良而捨棄的訊息計數 |
-| d2c.telemetry.egress.fallback | 符合後援條件的遙測訊息 | Count | 總計 | 符合後援路由的訊息計數 |
-| d2c.telemetry.egress.orphaned | 被遺棄的遙測訊息 | Count | 總計 | 不符合任何路由 (包括後援路由) 的訊息計數 |
-| d2c.endpoints.latency.eventHubs | 事件中樞端點的訊息延遲 | 毫秒 | 平均值 | 訊息輸入到 IoT 中樞與訊息輸入到事件中樞端點之間的平均、最小和最大延遲，以毫秒為單位 |
-| d2c.endpoints.latency.serviceBusQueues | 服務匯流排佇列端點的訊息延遲 | 毫秒 | 平均值 | 訊息輸入到 IoT 中樞與訊息輸入到服務匯流排佇列端點之間的平均、最小和最大延遲，以毫秒為單位 |
-| d2c.endpoints.latency.serviceBusTopics | 服務匯流排主題端點的訊息延遲 | 毫秒 | 平均值 | 訊息輸入到 IoT 中樞與訊息輸入到服務匯流排主題端點之間的平均、最小和最大延遲，以毫秒為單位 |
-| c2d.commands.egress.complete.success |已完成的命令 |Count |總計 |裝置已順利完成的雲端到裝置命令數目 |
-| c2d.commands.egress.abandon.success |放棄的命令 |Count |總計 |裝置所放棄的雲端到裝置命令數目 |
-| c2d.commands.egress.reject.success |拒絕的命令 |Count |總計 |裝置所拒絕的雲端到裝置命令數目 |
-| devices.totalDevices |裝置總計 |Count |總計 |向 IoT 中樞註冊的裝置數目 |
-| devices.connectedDevices.allProtocol |連接的裝置 |Count |總計 |連接至 IoT 中樞的裝置數目 |
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|d2c.telemetry.ingress.allProtocol|遙測訊息傳送嘗試|Count|總計|要嘗試傳送至您 IoT 中樞的裝置到雲端遙測訊息數目|
+|d2c.telemetry.ingress.success|已傳送的遙測訊息|Count|總計|成功傳送至您 IoT 中樞的裝置到雲端遙測訊息數目|
+|c2d.commands.egress.complete.success|完成的命令|Count|總計|裝置成功完成的雲端到裝置命令數目|
+|c2d.commands.egress.abandon.success|放棄的命令|Count|總計|裝置放棄的雲端到裝置命令數目|
+|c2d.commands.egress.reject.success|拒絕的命令|Count|總計|裝置拒絕的雲端到裝置命令數目|
+|devices.totalDevices|裝置總計|Count|總計|向 IoT 中樞註冊的裝置數目|
+|devices.connectedDevices.allProtocol|連接的裝置|Count|總計|連接至 IoT 中樞的裝置數目|
+|d2c.telemetry.egress.success|已傳遞的遙測訊息|Count|總計|訊息成功寫入端點的次數 (總計)|
+|d2c.telemetry.egress.dropped|捨棄的訊息|Count|總計|因為不符合任何路由且後援路由已停用，而捨棄的訊息數目|
+|d2c.telemetry.egress.orphaned|被遺棄的訊息|Count|總計|不符合任何路由 (包括後援路由) 的訊息計數|
+|d2c.telemetry.egress.invalid|無效的訊息|Count|總計|因為與端點不相容而未傳遞的訊息計數|
+|d2c.telemetry.egress.fallback|符合後援條件的訊息|Count|總計|寫入後援端點的訊息數目|
+|d2c.endpoints.egress.eventHubs|傳遞至事件中樞端點的訊息|Count|總計|訊息成功寫入事件中樞端點的次數|
+|d2c.endpoints.latency.eventHubs|事件中樞端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到事件中樞端點之間的平均延遲，以毫秒為單位|
+|d2c.endpoints.egress.serviceBusQueues|傳遞至服務匯流排佇列端點的訊息|Count|總計|訊息成功寫入服務匯流排佇列端點的次數|
+|d2c.endpoints.latency.serviceBusQueues|服務匯流排佇列端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到服務匯流排佇列端點之間的平均延遲，以毫秒為單位|
+|d2c.endpoints.egress.serviceBusTopics|傳遞至服務匯流排主題端點的訊息|Count|總計|訊息成功寫入服務匯流排主題端點的次數|
+|d2c.endpoints.latency.serviceBusTopics|服務匯流排主題端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到服務匯流排主題端點之間的平均延遲，以毫秒為單位|
+|d2c.endpoints.egress.builtIn.events|傳遞至內建端點 (訊息/事件) 的訊息|Count|總計|訊息成功寫入內建端點 (訊息/事件) 的次數|
+|d2c.endpoints.latency.builtIn.events|內建端點 (訊息/事件) 的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到內建端點 (訊息/事件) 之間的平均延遲，以毫秒為單位 |
+|d2c.twin.read.success|裝置的成功對應項讀取|Count|總計|裝置起始的所有成功對應項讀取的計數。|
+|d2c.twin.read.failure|裝置的失敗對應項讀取|Count|總計|裝置起始的所有失敗對應項讀取的計數。|
+|d2c.twin.read.size|裝置的對應項讀取回應大小|位元組|平均值|裝置起始的所有成功對應項讀取的平均值、最小值和最大值。|
+|d2c.twin.update.success|裝置的成功對應項更新|Count|總計|裝置起始的所有成功對應項更新的計數。|
+|d2c.twin.update.failure|裝置的失敗對應項更新|Count|總計|裝置起始的所有失敗對應項更新的計數。|
+|d2c.twin.update.size|裝置的對應項更新大小|位元組|平均值|裝置起始的所有成功對應項更新的大小平均值、最小值和最大值。|
+|c2d.methods.success|成功直接方法叫用|Count|總計|所有成功直接方法呼叫的計數。|
+|c2d.methods.failure|失敗直接方法叫用|Count|總計|所有失敗直接方法呼叫的計數。|
+|c2d.methods.requestSize|直接方法叫用的要求大小|位元組|平均值|所有成功直接方法要求的平均值、最小值和最大值。|
+|c2d.methods.responseSize|直接方法叫用的回應大小|位元組|平均值|所有成功直接方法回應的平均值、最小值和最大值。|
+|c2d.twin.read.success|後端的成功對應項讀取|Count|總計|後端起始的所有成功對應項讀取的計數。|
+|c2d.twin.read.failure|後端的失敗對應項讀取|Count|總計|後端起始的所有失敗對應項讀取的計數。|
+|c2d.twin.read.size|後端的對應項讀取回應大小|位元組|平均值|後端起始的所有成功對應項讀取的平均值、最小值和最大值。|
+|c2d.twin.update.success|後端的成功對應項更新|Count|總計|後端起始的所有成功對應項更新的計數。|
+|c2d.twin.update.failure|後端的失敗對應項更新|Count|總計|後端起始的所有失敗對應項更新的計數。|
+|c2d.twin.update.size|後端的對應項更新大小|位元組|平均值|後端起始的所有成功對應項更新的大小平均值、最小值和最大值。|
+|twinQueries.success|成功對應項查詢|Count|總計|所有成功對應項查詢的計數。|
+|twinQueries.failure|失敗對應項查詢|Count|總計|所有失敗對應項查詢的計數。|
+|twinQueries.resultSize|對應項查詢結果大小|位元組|平均值|所有成功對應項查詢的結果大小平均值、最小值和最大值。|
+|jobs.createTwinUpdateJob.success|成功建立的對應項更新作業|Count|總計|所有成功建立的對應項更新作業計數。|
+|jobs.createTwinUpdateJob.failure|建立失敗的對應項更新作業|Count|總計|所有建立失敗的對應項更新作業計數。|
+|jobs.createDirectMethodJob.success|成功建立的方法叫用作業|Count|總計|所有成功建立的直接方法叫用作業計數。|
+|jobs.createDirectMethodJob.failure|建立失敗的方法叫用作業|Count|總計|所有建立失敗的直接方法叫用作業計數。|
+|jobs.listJobs.success|成功呼叫列出作業|Count|總計|所有成功呼叫列出作業的計數。|
+|jobs.listJobs.failure|呼叫列出作業失敗|Count|總計|所有呼叫列出作業失敗的計數。|
+|jobs.cancelJob.success|成功取消作業|Count|總計|所有成功呼叫取消作業的計數。|
+|jobs.cancelJob.failure|取消作業失敗|Count|總計|所有呼叫取消作業失敗的計數。|
+|jobs.queryJobs.success|成功作業查詢|Count|總計|所有成功呼叫查詢作業的計數。|
+|jobs.queryJobs.failure|失敗作業查詢|Count|總計|所有呼叫查詢作業失敗的計數。|
+|jobs.completed|已完成的工作|Count|總計|所有已完成的作業計數。|
+|jobs.failed|失敗作業|Count|總計|所有失敗作業計數。|
 
 ## <a name="microsofteventhubnamespaces"></a>Microsoft.EventHub/namespaces
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|INREQS|傳入的要求|Count|總計|命名空間的事件中樞內送訊息輸送量|
+|INREQS|傳入的要求|Count|總計|命名空間的傳入要求總計|
 |SUCCREQ|成功的要求|Count|總計|命名空間的成功要求總數|
 |FAILREQ|失敗的要求|Count|總計|命名空間的失敗要求總數|
 |SVRBSY|伺服器忙線錯誤|Count|總計|命名空間的伺服器忙線錯誤總數|
@@ -312,8 +367,8 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |MISCERR|其他錯誤|Count|總計|命名空間的失敗要求總數|
 |INMSGS|傳入訊息|Count|總計|命名空間的內送訊息總數|
 |OUTMSGS|外送訊息|Count|總計|命名空間的外送訊息總數|
-|EHINMBS|每秒傳入位元組|每秒位元組|總計|命名空間的事件中樞內送訊息輸送量|
-|EHOUTMBS|每秒傳出位元組|每秒位元組|總計|命名空間的外送訊息總數|
+|EHINMBS|傳入位元組|每秒位元組|總計|命名空間的事件中樞內送訊息輸送量|
+|EHOUTMBS|傳出位元組|每秒位元組|總計|命名空間的外送訊息總數|
 |EHABL|封存待處理項目訊息|Count|總計|命名空間的事件中樞封存於待處理項目中訊息|
 |EHAMSGS|封存訊息|Count|總計|命名空間中的事件中樞已封存訊息|
 |EHAMBS|封存訊息輸送量|每秒位元組|總計|命名空間中的事件中樞已封存訊息輸送量|
@@ -359,6 +414,70 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |---|---|---|---|---|
 |輸送量|輸送量|每秒位元組|平均值||
 
+## <a name="microsoftnotificationhubsnamespacesnotificationhubs"></a>Microsoft.NotificationHubs/Namespaces/NotificationHubs
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|registration.all|註冊作業|Count|總計|所有成功註冊作業 (建立、更新、查詢和刪除) 的計數。 |
+|registration.create|註冊建立作業|Count|總計|所有成功註冊建立的計數。|
+|registration.update|註冊更新作業|Count|總計|所有成功註冊更新的計數。|
+|registration.get|註冊讀取作業|Count|總計|所有成功註冊查詢的計數。|
+|registration.delete|註冊刪除作業|Count|總計|所有成功註冊刪除的計數。|
+|傳入|傳入訊息|Count|總計|所有成功傳送 API 呼叫的計數。 |
+|incoming.scheduled|傳送已排程的推播通知|Count|總計|取消已排程的推播通知|
+|incoming.scheduled.cancel|取消已排程的推播通知|Count|總計|取消已排程的推播通知|
+|scheduled.pending|暫止已排程的通知|Count|總計|暫止已排程的通知|
+|installation.all|安裝管理作業|Count|總計|安裝管理作業|
+|installation.get|取得安裝作業|Count|總計|取得安裝作業|
+|installation.upsert|建立或更新安裝作業|Count|總計|建立或更新安裝作業|
+|installation.patch|修補安裝作業|Count|總計|修補安裝作業|
+|installation.delete|刪除安裝作業|Count|總計|刪除安裝作業|
+|outgoing.allpns.success|成功通知|Count|總計|所有成功通知的計數。|
+|outgoing.allpns.invalidpayload|承載錯誤|Count|總計|因為 PNS 傳回錯誤承載錯誤而失敗的推播計數。|
+|outgoing.allpns.pnserror|外部通知系統錯誤|Count|總計|因為與 PNS 通訊發生問題 (不包括驗證問題) 而失敗的推播計數。|
+|outgoing.allpns.channelerror|通道錯誤|Count|總計|因為通道無效、未與正確的應用程式相關聯、已節流處理或過期，導致失敗的推播計數。|
+|outgoing.allpns.badorexpiredchannel|錯誤或過期的通道錯誤|Count|總計|因為註冊中的通道/權杖/registrationId 過期或無效，導致失敗的推播計數。|
+|outgoing.wns.success|WNS 成功通知|Count|總計|所有成功通知的計數。|
+|outgoing.wns.invalidcredentials|WNS 授權錯誤 (無效認證)|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。 (Windows Live 無法識別認證)。|
+|outgoing.wns.badchannel|WNS 不正確的通道錯誤|Count|總計|因為無法識別註冊中的 ChannelURI (WNS 狀態︰404 找不到)，導致失敗的推播計數。|
+|outgoing.wns.expiredchannel|WNS 過期通道錯誤|Count|總計|因為 ChannelURIi 過期 (WNS 狀態︰ 410 不存在) 而失敗的推播計數。|
+|outgoing.wns.throttled|WNS 節流通知|Count|總計|因為 WNS 正在節流此應用程式，導致失敗的推播計數 (WNS 狀態︰406 無法接受)。|
+|outgoing.wns.tokenproviderunreachable|WNS 授權錯誤 (無法連線)|Count|總計|無法連線到 Windows Live。|
+|outgoing.wns.invalidtoken|WNS 授權錯誤 (無效權杖)|Count|總計|提供給 WNS 的權杖無效 (WNS 狀態︰ 401 未經授權)。|
+|outgoing.wns.wrongtoken|WNS 授權錯誤 (錯誤權杖)|Count|總計|提供給 WNS 的權杖有效，但卻是給另一個應用程式 (WNS 狀態︰403 禁止)。 如果註冊中的 ChannelURI 與另一個應用程式相關聯，可能會發生這種情形。 請檢查用戶端應用程式相關聯的應用程式，就是認證位於通知中樞的同一個應用程式。|
+|outgoing.wns.invalidnotificationformat|WNS 無效通知格式|Count|總計|通知的格式無效 (WNS 狀態︰400)。 請注意，WNS 不會拒絕所有無效承載。|
+|outgoing.wns.invalidnotificationsize|WNS 無效通知大小錯誤|Count|總計|通知承載太大 (WNS 狀態︰413)。|
+|outgoing.wns.channelthrottled|WNS 通道已節流處理|Count|總計|因為註冊中的 ChannelURI 已節流處理而捨棄通知 (WNS 回應標頭︰X-WNS-NotificationStatus:channelThrottled)。|
+|outgoing.wns.channeldisconnected|WNS 通道已中斷連線|Count|總計|因為註冊中的 ChannelURI 已節流處理而捨棄通知 (WNS 回應標頭︰X-WNS-DeviceConnectionStatus: disconnected)。|
+|outgoing.wns.dropped|WNS 已捨棄通知|Count|總計|因為註冊中的 ChannelURI 已節流處理而捨棄通知 (X-WNS-NotificationStatus: dropped 但不是 X-WNS-DeviceConnectionStatus: disconnected)。|
+|outgoing.wns.pnserror|WNS 錯誤|Count|總計|因為與 WNS 通訊錯誤而未傳遞通知。|
+|outgoing.wns.authenticationerror|WNS 驗證錯誤|Count|總計|因為與 Windows Live 通訊錯誤、無效認證或不正確的權杖，導致未傳遞通知。|
+|outgoing.apns.success|APNS 成功通知|Count|總計|所有成功通知的計數。|
+|outgoing.apns.invalidcredentials|APNS 授權錯誤|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
+|outgoing.apns.badchannel|APNS 不正確的通道錯誤|Count|總計|因為權杖無效而失敗的推播計數 (APNS 狀態碼︰8)。|
+|outgoing.apns.expiredchannel|APNS 過期通道錯誤|Count|總計|由 APNS 意見反應通道宣告失效的權杖計數。|
+|outgoing.apns.invalidnotificationsize|APNS 無效通知大小錯誤|Count|總計|因為承載太大而失敗的推播計數 (APNS 狀態碼︰7)。|
+|outgoing.apns.pnserror|APNS 錯誤|Count|總計|因為與 APNS 通訊錯誤而失敗的推播計數。|
+|outgoing.gcm.success|GCM 成功通知|Count|總計|所有成功通知的計數。|
+|outgoing.gcm.invalidcredentials|GCM 授權錯誤 (無效認證)|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
+|outgoing.gcm.badchannel|GCM 不正確的通道錯誤|Count|總計|因為無法識別註冊中的 registrationId 而失敗的推播計數 (GCM 結果：無效註冊)。|
+|outgoing.gcm.expiredchannel|GCM 過期通道錯誤|Count|總計|因為註冊中的 registrationId 過期而失敗的推播計數 (GCM 結果：NotRegistered)。|
+|outgoing.gcm.throttled|GCM 已將通知節流處理|Count|總計|因為 GCM 已將此應用程式節流處理而失敗的推播計數 (GCM 狀態碼︰501-599 或結果：Unavailable)。|
+|outgoing.gcm.invalidnotificationformat|GCM 無效通知格式|Count|總計|因為承載未正確格式化而失敗的推播計數 (GCM 結果︰InvalidDataKey 或 InvalidTtl)。|
+|outgoing.gcm.invalidnotificationsize|GCM 無效通知大小錯誤|Count|總計|因為承載太大而失敗的推播計數 (GCM 結果︰MessageTooBig)。|
+|outgoing.gcm.wrongchannel|GCM 不正確的通道錯誤|Count|總計|因為註冊中的 registrationId 未與目前的應用程式相關聯，導致失敗的推播計數 (GCM 結果：InvalidPackageName)。|
+|outgoing.gcm.pnserror|GCM 錯誤|Count|總計|因為與 GCM 通訊錯誤而失敗的推播計數。|
+|outgoing.gcm.authenticationerror|GCM 驗證錯誤|Count|總計|因為 PNS 不接受提供的認證、已封鎖認證，或應用程式中未正確設定 SenderId，導致失敗的推播計數 (GCM 結果︰MismatchedSenderId)。|
+|outgoing.mpns.success|MPNS 成功通知|Count|總計|所有成功通知的計數。|
+|outgoing.mpns.invalidcredentials|MPNS 無效認證|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
+|outgoing.mpns.badchannel|MPNS 不正確的通道錯誤|Count|總計|因為無法識別註冊中的 ChannelURI 而失敗的推播計數 (MPNS 狀態︰404 找不到)。|
+|outgoing.mpns.throttled|MPNS 已將通知節流處理|Count|總計|因為 MPNS 正在節流此應用程式，導致失敗的推播計數 (MPNS 狀態︰406 無法接受)。|
+|outgoing.mpns.invalidnotificationformat|MPNS 無效通知格式|Count|總計|因為通知的承載太大而失敗的推播計數。|
+|outgoing.mpns.channeldisconnected|MPNS 通道已中斷連線|Count|總計|因為註冊中的 ChannelURI 中斷連線而失敗的推播計數 (MPNS 狀態︰412 找不到)。|
+|outgoing.mpns.dropped|MPNS 已捨棄通知|Count|總計|MPNS 已捨棄的推播計數 (MPNS 回應標頭︰X-NotificationStatus: QueueFull 或 Suppressed)。|
+|outgoing.mpns.pnserror|MPNS 錯誤|Count|總計|因為與 MPNS 通訊錯誤而失敗的推播計數。|
+|outgoing.mpns.authenticationerror|MPNS 驗證錯誤|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
+
 ## <a name="microsoftsearchsearchservices"></a>Microsoft.Search/searchServices
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
@@ -388,13 +507,13 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |blocked_by_firewall|遭到防火牆封鎖|Count|總計|遭到防火牆封鎖|
 |死結|死結|Count|總計|死結|
 |storage_percent|資料庫大小百分比|百分比|最大值|資料庫大小百分比|
-|xtp_storage_percent|記憶體中 OLTP 儲存體百分比 (預覽)|百分比|平均值|記憶體中 OLTP 儲存體百分比 (預覽)|
+|xtp_storage_percent|記憶體內部 OLTP 儲存體百分比|百分比|平均值|記憶體內部 OLTP 儲存體百分比|
 |workers_percent|背景工作角色百分比|百分比|平均值|背景工作角色百分比|
 |sessions_percent|工作階段百分比|百分比|平均值|工作階段百分比|
 |dtu_limit|DTU 限制|Count|平均值|DTU 限制|
 |dtu_used|已使用 DTU|Count|平均值|已使用 DTU|
 |service_level_objective|資料庫的服務等級目標|Count|總計|資料庫的服務等級目標|
-|dwu_limit|dwu 限制|Count|最大值|dwu 限制|
+|dwu_limit|DWU 限制|Count|最大值|DWU 限制|
 |dwu_consumption_percent|DWU 百分比|百分比|平均值|DWU 百分比|
 |dwu_used|已使用 DWU|Count|平均值|已使用 DWU|
 
@@ -413,6 +532,7 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |storage_limit|儲存體限制|位元組|平均值|儲存體限制|
 |eDTU_used|已使用 eDTU|Count|平均值|已使用 eDTU|
 |storage_used|已使用儲存體|位元組|平均值|已使用儲存體|
+|xtp_storage_percent|記憶體內部 OLTP 儲存體百分比|百分比|平均值|記憶體內部 OLTP 儲存體百分比|
 
 ## <a name="microsoftstreamanalyticsstreamingjobs"></a>Microsoft.StreamAnalytics/streamingjobs
 
@@ -441,7 +561,7 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |BytesReceived|資料輸入|位元組|總計|資料輸入|
 |BytesSent|資料輸出|位元組|總計|資料輸出|
 
-## <a name="microsoftwebsites-including-azure-functions"></a>Microsoft.Web/sites (包括 Azure Functions)
+## <a name="microsoftwebsites-including-functions"></a>Microsoft.Web/sites (包括 Functions)
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
@@ -458,8 +578,8 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |Http406|Http 406|Count|總計|Http 406|
 |Http4xx|Http 4xx|Count|總計|Http 4xx|
 |Http5xx|Http 伺服器錯誤|Count|總計|Http 伺服器錯誤|
-|MemoryWorkingSet|記憶體工作集|位元組|總計|記憶體工作集|
-|AverageMemoryWorkingSet|平均記憶體工作集|位元組|總計|平均記憶體工作集|
+|MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
+|AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
 |AverageResponseTime|平均回應時間|秒|平均值|平均回應時間|
 |FunctionExecutionUnits|函式執行單位|Count|平均值|函式執行單位|
 |FunctionExecutionCount|函式執行計數|Count|平均值|函式執行計數|
@@ -481,8 +601,8 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |Http406|Http 406|Count|總計|Http 406|
 |Http4xx|Http 4xx|Count|總計|Http 4xx|
 |Http5xx|Http 伺服器錯誤|Count|總計|Http 伺服器錯誤|
-|MemoryWorkingSet|記憶體工作集|位元組|總計|記憶體工作集|
-|AverageMemoryWorkingSet|平均記憶體工作集|位元組|總計|平均記憶體工作集|
+|MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
+|AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
 |AverageResponseTime|平均回應時間|秒|平均值|平均回應時間|
 |FunctionExecutionUnits|函式執行單位|Count|平均值|函式執行單位|
 |FunctionExecutionCount|函式執行計數|Count|平均值|函式執行計數|
@@ -491,10 +611,5 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 * [了解 Azure 監視器中的度量](monitoring-overview.md#monitoring-sources)
 * [建立度量警示](insights-receive-alert-notifications.md)
 * [將度量匯出至儲存體、事件中樞或 Log Analytics](monitoring-overview-of-diagnostic-logs.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

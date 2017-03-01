@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 01/05/2017
-ms.author: subramar
+ms.date: 02/02/2017
+ms.author: subramar;chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: f1e035b50b415f68ce567fe1db3a3fe93c2a1394
-ms.openlocfilehash: 63d7ca0224c1989618c474181b02fa79eb69c966
+ms.sourcegitcommit: c83c4db0ada77998354b3fca4e2297335899a9bd
+ms.openlocfilehash: 20a3277370583ccf93b36191a70149ed7d814238
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: 63d7ca0224c1989618c474181b02fa79eb69c966
 
 Azure Service Fabric 會提供多個升級模式以支援開發和生產叢集。 選擇的部署選項可能會因不同的環境而不同。
 
-監視輪流應用程式升級是生產環境中所使用最典型的升級。 指定升級原則時，Service Fabric 會確保應用程式健康狀態良好，再繼續執行升級。
+受監視輪流應用程式升級是生產環境中最常使用的升級。 指定升級原則時，Service Fabric 會確保應用程式健康狀態良好，再繼續執行升級。
 
  應用程式系統管理員可以使用手動輪流應用程式升級模式，對於透過各種升級網域的升級程序擁有完整控制權。 當需要自訂或複雜健康狀態評估原則時，或需要非傳統的升級 (例如，應用程式已經有資料遺失) 時，此模式非常有用。
 
@@ -99,9 +100,4 @@ app1/
 了解如何使用 [資料序列化](service-fabric-application-upgrade-data-serialization.md)，以讓您的應用程式升級相容。
 
 參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

@@ -4,7 +4,7 @@ description: "了解如何搭配使用來自 GoDaddy 的網域名稱與 Azure We
 services: app-service
 documentationcenter: 
 author: erikre
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 33233e30-5846-488f-83f3-b32e5c114564
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: fe8b4b097f7ff157d624c09b8dbf26f94401395c
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -87,10 +88,5 @@ ms.openlocfilehash: fe8b4b097f7ff157d624c09b8dbf26f94401395c
 
 ## <a name="whats-changed"></a>變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

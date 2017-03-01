@@ -1,5 +1,5 @@
 ---
-title: "計算連結服務 | Microsoft Docs"
+title: "Azure Data Factory 支援的計算環境 | Microsoft Docs"
 description: "了解您可以在 Azure Data Factory 管線中用來轉換/處理資料的計算環境。"
 services: data-factory
 documentationcenter: 
@@ -12,15 +12,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/22/2016
+ms.date: 01/23/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: e651c6f081c14044602c1dc8f8e6d34ffddbf4ea
-ms.openlocfilehash: 7ce4151189eb6aaba3509878fb2e18d04f0c3e59
+ms.sourcegitcommit: 080376a50e4cde3d3f9f801408e4a02b75bc72da
+ms.openlocfilehash: 40da274d0dcbf1efb22afc474a1c365f7770fdcb
+ms.lasthandoff: 02/15/2017
 
 
 ---
-# <a name="compute-linked-services"></a>計算連結服務
+# <a name="compute-environments-supported-by-azure-data-factory"></a>Azure Data Factory 支援的計算環境
 本文說明您可用來處理或轉換資料的各種計算環境。 其中還提供在設定將這些計算環境連結至 Azure Data Factory 的連結服務時，Data Factory 所支援的不同組態 (隨選與自備) 的詳細資料。
 
 下表列出 Data Factory 支援的計算環境以及可在環境上執行的活動。 
@@ -89,7 +90,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | clusterSize |叢集中的背景工作/資料節點數。 HDInsight 叢集會利用您為此屬性指定的 2 個前端節點以及背景工作節點數目來建立。 節點大小為具有 4 個核心的 Standard_D3，因此 4 個背景工作節點的叢集需要 24 個核心 (4*4 用於背景工作節點 + 2*4 用於前端節點)。 如需 Standard_D3 層的詳細資料，請參閱[在 HDInsight 中建立 Linux 型 Hadoop 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。 |是 |
 | timetolive |隨選 HDInsight 叢集允許的閒置時間。 指定在活動執行完成後，如果叢集中沒有其他作用中的作業，隨選 HDInsight 叢集要保持運作多久。<br/><br/>例如，如果活動執行花費 6 分鐘，而 timetolive 設為 5 分鐘，叢集會在處理活動執行的 6 分鐘期間之後保持運作 5 分鐘。 如果 6 分鐘期間內執行了另一個活動執行，它便會由相同叢集來處理。<br/><br/>建立隨選 HDInsight 叢集是昂貴的作業 (可能需要一段時間)，因此請視需要使用這項設定，重複使用隨選 HDInsight 叢集以改善 Data Factory 的效能。<br/><br/>如果您將 timetolive 值設為 0，叢集會在處理活動執行後立即刪除。 另一方面，如果您設定較高的值，叢集可能會有不必要的閒置而導致高成本。 因此，請務必根據您的需求設定適當的值。<br/><br/>如果適當地設定 timetolive 屬性值，則多個管線可以共用相同的隨選 HDInsight 叢集執行個體 |是 |
 | 版本 |HDInsight 叢集的版本。 針對 Windows 叢集的預設值為 3.1，針對 Linux 叢集的預設值為 3.2。 |否 |
-| 預設容器 |隨選叢集用於儲存及處理資料的 Azure 儲存體連結服務。 |是 |
+| 預設容器 |隨選叢集用於儲存及處理資料的 Azure 儲存體連結服務。 <p>目前，您無法建立使用 Azure Data Lake Store 做為儲存體的隨選 HDInsight 叢集。 如果您想要在 Azure Data Lake Store 中儲存 HDInsight 處理的結果資料，可使用複製活動將 Azure Blob 儲存體的資料複製到 Azure Data Lake Store。</p>  | 是 |
 | additionalLinkedServiceNames |指定 HDInsight 連結服務的其他儲存體帳戶，讓 Data Factory 服務代表您註冊它們。 |否 |
 | osType |作業系統的類型。 允許的值為：Windows (預設值) 和 linux |否 |
 | hcatalogLinkedServiceName |指向 HCatalog 資料庫的 Azure SQL 連結服務名稱。 會使用 Azure SQL 資料庫作為中繼存放區，建立隨選 HDInsight 叢集。 |否 |
@@ -173,7 +174,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 "dataNodeSize": "Standard_D4",
 ```
 
-如果您為這些屬性指定錯誤的值，可能會顯示下列 **錯誤：**無法建立叢集。 例外狀況：無法完成叢集建立作業。 作業失敗，錯誤碼為 '400'。 叢集剩餘狀態：「錯誤」。 訊息：「PreClusterCreationValidationFailure」。 若顯示此錯誤，請確認您使用來自前述文章中資料表的 **CMDLET 與 APIS** 名稱。  
+若您為這些屬性指定錯誤的值，可能會顯示下列 **錯誤：** 無法建立叢集。 例外狀況：無法完成叢集建立作業。 作業失敗，錯誤碼為 '400'。 叢集剩餘狀態：「錯誤」。 訊息：「PreClusterCreationValidationFailure」。 若顯示此錯誤，請確認您使用來自前述文章中資料表的 **CMDLET 與 APIS** 名稱。  
 
 ## <a name="bring-your-own-compute-environment"></a>自備計算環境
 在這種組態中，使用者可以將現有的運算環境註冊為 Data Factory 中的連結服務。 此運算環境是由使用者管理並由 Data Factory 服務用來執行活動。
@@ -211,7 +212,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | clusterUri |HDInsight 叢集的 URI。 |是 |
 | username |指定要用來連接到現有 HDInsight 叢集的使用者名稱。 |是 |
 | password |指定使用者帳戶的密碼。 |是 |
-| 預設容器 |此 HDInsight 叢集所使用之 Blob 儲存體的連結服務名稱。 |是 |
+| linkedServiceName | 參照 HDInsight 叢集所使用 Azure Blob 儲存體的 Azure 儲存體連結服務名稱。 <p>目前，您無法針對此屬性指定 Azure Data Lake Store 連結服務。 如果 HDInsight 叢集可存取 Data Lake Store，您可以透過 Hive/Pig 指令碼存取 Azure Data Lake Store 中的資料。 </p>  |是 |
 
 ## <a name="azure-batch-linked-service"></a>Azure Batch 連結服務
 您可以建立 Azure Batch 連結服務，以向 Data Factory 註冊虛擬機器 (VM) 的 Batch 集區。 您可以使用 Azure Batch 或 Azure HDInsight 執行 .NET 自訂活動。
@@ -325,7 +326,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
 | 不受 Azure Active Directory 管理的使用者帳戶 ((@hotmail.com,、@live.com, 等) |12 小時 |
-| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
+| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果要避免/解決此錯誤，您必須在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 sessionId 和 authorization 屬性的值。 
 
@@ -368,10 +369,5 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 ## <a name="sql-server-linked-service"></a>SQL Server 連結服務
 您可以建立 SQL Server 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#sql-server-linked-service-properties) 一文。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

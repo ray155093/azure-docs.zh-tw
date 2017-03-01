@@ -44,8 +44,9 @@
 ### [備份與還原](documentdb-online-backup-and-restore.md)
 ### [淘汰 S1、 S2、 S3](documentdb-performance-levels.md)
 ### [要求單位](documentdb-request-units.md)
-### Azure CLI
-#### [建立帳戶](documentdb-automation-resource-manager-cli.md)
+### [Azure CLI 2.0](documentdb-automation-resource-manager-cli.md)
+### Azure CLI 1.0
+#### [建立帳戶](documentdb-automation-resource-manager-cli-nodejs.md)
 #### [新增或移除區域](documentdb-automation-region-management.md)
 ### [Azure PowerShell](documentdb-manage-account-with-powershell.md)
 ### [防火牆支援](documentdb-firewall-support.md)
@@ -124,8 +125,3 @@
 ## [透過棒球說明資料一致性](http://research.microsoft.com/apps/pubs/default.aspx?id=206913)
 ## [書籍：在 Node.js 應用程式中使用 Microsoft Azure DocumentDB](https://go.microsoft.com/fwlink/?LinkId=828428&clcid=0x409)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
-
-
-<!--HONumber=Feb17_HO2-->
-
-

@@ -12,15 +12,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 1/4/2017
+ms.date: 2/17/2017
 ms.author: sumukhs
 translationtype: Human Translation
-ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
-ms.openlocfilehash: 438ecec47e35619442ed2fdad4e835a674e1a2dc
+ms.sourcegitcommit: e90efe810084939280b392c470e14e76d35aff01
+ms.openlocfilehash: 101b4e6a7bd5ded44334a4c3c9efee69669d9bcf
+ms.lasthandoff: 02/21/2017
 
 
 ---
-# <a name="configure-stateful-reliable-services"></a>設定具狀態的 Reliable Services
+# <a name="configure-stateful-reliable-services"></a>設定具狀態可靠服務
 有兩組組態設定可供 Reliable Services 使用。 一組是適用於叢集中的所有 Reliable Services，而另一組專屬於特定的 Reliable Services。
 
 ## <a name="global-configuration"></a>全域組態
@@ -35,14 +36,26 @@ ms.openlocfilehash: 438ecec47e35619442ed2fdad4e835a674e1a2dc
 | SharedLogPath |完整路徑名稱 |"" |指定完整路徑，其中共用記錄檔用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogPath)。 不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。 |
 | SharedLogSizeInMB |MB |8192 |指定以靜態方式配置給共用記錄檔的磁碟空間 MB 數。 此值必須是 2048 或更大。 |
 
-### <a name="sample-cluster-manifest-section"></a>範例叢集資訊清單一節
+在 Azure ARM 或內部部署 JSON 範本中，下列範例示範如何變更所建立的共用交易記錄，以備份具狀態服務的任何可靠集合。
+
+    "fabricSettings": [{
+        "name": "KtlLogger",
+        "parameters": [{
+            "name": "SharedLogSizeInMB",
+            "value": "4096"
+        }]
+    }]
+
+### <a name="sample-local-developer-cluster-manifest-section"></a>範例本機開發人員叢集資訊清單區段
+如果您想要在本機開發環境上變更此區段，您必須編輯本機 clustermanifest.xml 檔案。
+
 ```xml
    <Section Name="KtlLogger">
+     <Parameter Name="SharedLogSizeInMB" Value="4096"/>
      <Parameter Name="WriteBufferMemoryPoolMinimumInKB" Value="8192" />
      <Parameter Name="WriteBufferMemoryPoolMaximumInKB" Value="8192" />
      <Parameter Name="SharedLogId" Value="{7668BB54-FE9C-48ed-81AC-FF89E60ED2EF}"/>
      <Parameter Name="SharedLogPath" Value="f:\SharedLog.Log"/>
-     <Parameter Name="SharedLogSizeInMB" Value="16383"/>
    </Section>
 ```
 
@@ -174,10 +187,5 @@ SharedLogId 和 SharedLogPath 設定永遠會一起使用，以便讓服務使�
 ## <a name="next-steps"></a>後續步驟
 * [在 Visual Studio 中偵錯 Service Fabric 應用程式](service-fabric-debugging-your-application.md)
 * [可靠的服務的開發人員參考資料](https://msdn.microsoft.com/library/azure/dn706529.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

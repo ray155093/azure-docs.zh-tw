@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/12/2016
+ms.date: 2/17/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 4fb6ef56d694aff967840ab26b75b66a2e799cc1
-ms.openlocfilehash: 977de9160be63a91b5926daa45528e5ee205e448
+ms.sourcegitcommit: 4cde82601758c9f92ab36c692265a8b6c192cbdc
+ms.openlocfilehash: eef19d304ec63d752b6b84c78833af44ca5344d2
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -156,7 +157,7 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
 * applicationPorts 是 Service Fabric 應用程式將使用的連接埠。 這些連接埠應為 *ephemeralPorts* 的子集，並足以涵蓋應用程式的端點需求。 Service Fabric 會在每當需要新連接埠時使用這些連接埠，以及負責開啟這些連接埠的防火牆。 
 * reverseProxyEndpointPort 是選擇性的反向 Proxy 端點。 如需詳細資訊，請參閱 [Service Fabric 反向 Proxy](service-fabric-reverseproxy.md)。 
 
-### <a name="other-settings"></a>其他設定
+### <a name="log-settings"></a>記錄設定
 **fabricSettings** 區段可讓您設定 Service Fabric 資料和記錄檔的根目錄。 您只能在初始叢集建立期間自訂這些項目。 如需這個區段的範例程式碼片段，請參閱下列內容。
 
     "fabricSettings": [{
@@ -171,12 +172,19 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
 
 建議您使用非作業系統磁碟機做為 FabricDataRoot 和 FabricLogRoot，因為這類磁碟機比較不會讓作業系統當機。 請注意，如果您只自訂資料根目錄，則記錄根目錄將會以資料根目錄的下一個層級來取代。
 
+### <a name="stateful-reliable-service-settings"></a>具狀態可靠服務設定
+**KtlLogger** 區段可讓您設定 Reliable Services 的全域組態設定。 如需這些設定的詳細資訊，請參閱[設定具狀態可靠服務](service-fabric-reliable-services-configuration.md)。
+下列範例示範如何變更所建立的共用交易記錄，以備份具狀態服務的任何可靠集合。
+
+    "fabricSettings": [{
+        "name": "KtlLogger",
+        "parameters": [{
+            "name": "SharedLogSizeInMB",
+            "value": "4096"
+        }]
+    }]
+
 ## <a name="next-steps"></a>後續步驟
 當您根據獨立叢集安裝程式設定完整的 ClusterConfig.JSON 檔案之後，就可以遵循[建立獨立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)一文來部署叢集，然後繼續[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

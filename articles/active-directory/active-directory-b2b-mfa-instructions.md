@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 02/16/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
-ms.openlocfilehash: 894f94fdefe081679b1e35183bd4127be35cd33c
+ms.sourcegitcommit: 0c07c842ba8c6214d6746b0361af7b416069a6f5
+ms.openlocfilehash: 32d0b45080d57712209e0c5a3e5adf981fb4b66e
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -36,10 +37,14 @@ ms.openlocfilehash: 894f94fdefe081679b1e35183bd4127be35cd33c
 7. 總而言之，發出邀請的租用戶*一律*必須負責來自合作夥伴組織之 B2B 共同作業使用者的 MFA，而不是由合作夥伴組織本身負責 (即使合作夥伴組織具有 MFA 能力)。 在未來的版本中，我們會讓發出邀請的組織信任特定合作夥伴組織的 MFA，而非使用發出邀請之組織的 MFA。
 
 ## <a name="setting-up-mfa-for-b2b-collaboration-users"></a>為 B2B 共同作業使用者設定 MFA
-若要探索如何輕鬆地為 B2B 共同作業使用者設定 MFA，請參閱[此影片](https://channel9.msdn.com/Blogs/Azure/b2b-conditional-access-setup)以了解作法。
+若要了解為 B2B 共同作業使用者設定 MFA 有多簡單，請觀看下列影片：
 
-## <a name="b2b-collaboration-users-mfa-experience-for-offer-redemption"></a>方案兌換的 B2B 共同作業使用者 MFA 體驗
-查看下面的動畫以了解兌換體驗，如[此影片](https://channel9.msdn.com/Blogs/Azure/MFA-redemption)中所示。
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/b2b-conditional-access-setup/Player]
+
+## <a name="b2b-users-mfa-experience-for-offer-redemption"></a>方案兌換的 B2B 使用者 MFA 體驗
+觀看下面的動畫以了解兌換體驗，如下列影片所示：
+
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/MFA-redemption/Player]
 
 ## <a name="mfa-reset-for-b2b-collaboration-users"></a>B2B 共同作業使用者的 MFA 重設
 目前，系統管理員只能使用 PowerShell Cmdlet 要求 B2B 共同作業使用者重新證明。 因此，若要重設 B2B 共同作業使用者的證明方法，應該使用下列 PowerShell Cmdlet。
@@ -85,9 +90,4 @@ ms.openlocfilehash: 894f94fdefe081679b1e35183bd4127be35cd33c
 * [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

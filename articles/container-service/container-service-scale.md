@@ -14,22 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/10/2017
+ms.date: 02/21/2017
 ms.author: saudas
 translationtype: Human Translation
-ms.sourcegitcommit: cb3fd28659eb09dfb74496d2aa526736d223631a
-ms.openlocfilehash: d1571aa6191111c46c43b3a424cea415091adfc9
+ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
+ms.openlocfilehash: 773eba80715cb990b23ecec548a18c112ba73a42
+ms.lasthandoff: 02/22/2017
 
 
 ---
 # <a name="scale-an-azure-container-service-cluster"></a>調整 Azure Container Service 叢集
 在[部署 Azure Container Service 叢集](container-service-deployment.md)之後，您可能需要變更代理程式節點的數目。 例如，您可能需要更多代理程式，以便可以執行更多的容器應用程式或執行個體。 
 
-您可以使用 Azure 入口網站或 Azure CLI 2.0 (預覽) 來變更叢集中的代理程式節點數目。 Azure CLI 2.0 (預覽) 是適用於 Resource Manager 部署模型的[新一代 CLI](/cli/azure/old-and-new-clis)。
-
-> [!NOTE]
-> 目前並不支援在容器服務 Kubernetes 叢集中調整代理程式節點。
-
+您可以使用 Azure 入口網站或 Azure CLI 2.0 來變更 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點數目。 Azure CLI 2.0 是適用於 Resource Manager 部署模型的[新一代 CLI](/cli/azure/old-and-new-clis)。
 
 ## <a name="scale-with-the-azure-portal"></a>使用 Azure 入口網站進行調整
 
@@ -43,9 +40,9 @@ ms.openlocfilehash: d1571aa6191111c46c43b3a424cea415091adfc9
 
 
 
-## <a name="scale-with-the-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽) 進行調整
+## <a name="scale-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 進行調整
 
-請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 (預覽) 並登入 Azure 帳戶 (`az login`)。
+請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 並登入 Azure 帳戶 (`az login`)。
 
 
 ### <a name="see-the-current-agent-count"></a>查看目前的代理程式計數
@@ -67,7 +64,7 @@ az acs show -g myResourceGroup -n containerservice-myACSName
 azure acs scale -g myResourceGroup -n containerservice-myACSName --new-agent-count 10
 ```
 
-Azure CLI 2.0 (預覽) 會傳回 JSON 字串，這個字串代表容器服務的新組態，其中包括新的代理程式計數。
+Azure CLI 2.0 會傳回 JSON 字串，這個字串代表容器服務的新組態，其中包括新的代理程式計數。
 
 如需更多的命令選項，請執行 `az acs scale --help`。
 
@@ -90,12 +87,7 @@ Azure CLI 2.0 (預覽) 會傳回 JSON 字串，這個字串代表容器服務的
 
 
 ## <a name="next-steps"></a>後續步驟
-* 請參閱[更多範例](container-service-create-acs-cluster-cli.md)，以了解如何搭配使用 Azure CLI 2.0 (預覽) 命令與 Azure Container Service。
+* 請參閱[更多範例](container-service-create-acs-cluster-cli.md)，以了解如何搭配使用 Azure CLI 2.0 命令與 Azure Container Service。
 * 深入了解 Azure Container Service 中的 [DC/OS 代理程式集區](container-service-dcos-agents.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

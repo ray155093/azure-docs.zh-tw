@@ -232,7 +232,7 @@ ms.openlocfilehash: 339301772b1ee3bf22e543d4d4183adda5b54c2e
 2. 在開啟的對話方塊中，按一下 [工作開始時間]，然後按一下對話方塊最下方的 [核取] 按鈕。 工作狀態會變更為 [啟動中] 而且短時間內就會變成 [執行中]。
 
 ## <a name="view-output-for-sentiment-analysis"></a>檢視情感分析輸出
-當您的工作在執行及處理即時 Twitter 串流之後，請選擇情感分析輸出的檢視方式。 使用 [Azure 儲存體總管][](https://azurestorageexplorer.codeplex.com/) 或 [Azure 總管][](http://www.cerebrata.com/products/azure-explorer/introduction) 此類的工具，即時檢視您的工作輸出。 從這裡，您可以使用 [Power BI][](https://powerbi.com/) 來擴充應用程式以包含在下列螢幕擷取畫面中類似的自訂儀表板。
+當您的工作在執行及處理即時 Twitter 串流之後，請選擇情感分析輸出的檢視方式。 使用 [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/) 或 [Azure 總管](http://www.cerebrata.com/products/azure-explorer/introduction) 此類的工具，即時檢視您的工作輸出。 從這裡，您可以使用 [Power BI](https://powerbi.com/) 來擴充應用程式以包含在下列螢幕擷取畫面中類似的自訂儀表板。
 
 ![社交媒體分析：Power BI 儀表板中的串流分析情感分析 (意見挖掘) 輸出。](./media/stream-analytics-twitter-sentiment-analysis-trends/stream-analytics-output-power-bi.png)
 

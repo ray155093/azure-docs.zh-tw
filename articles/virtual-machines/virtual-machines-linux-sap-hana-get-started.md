@@ -1,5 +1,5 @@
 ---
-title: "Azure 中 Linux VM 上的 SAP HANA | Microsoft Docs"
+title: "快速入門指南：在 Azure VM 上手動安裝單一執行個體 SAP HANA | Microsoft Docs"
 description: "在 Azure VM 上手動安裝單一執行個體 SAP HANA 的快速入門指南"
 services: virtual-machines-linux
 documentationcenter: 
@@ -17,8 +17,9 @@ ms.workload: infrastructure-services
 ms.date: 09/15/2016
 ms.author: hermannd
 translationtype: Human Translation
-ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
-ms.openlocfilehash: 0c7f550e9fe9c27315f8381a8b2a91ff75ba1535
+ms.sourcegitcommit: bd70596bcc34684a6f751076e71cb3d0aa3877dd
+ms.openlocfilehash: 4c40fd95f42f4e89e86d829c8a32583a0398c74e
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -60,7 +61,7 @@ ms.openlocfilehash: 0c7f550e9fe9c27315f8381a8b2a91ff75ba1535
 本節會基於示範或原型用途，列出當您使用 SAP SWPM 執行分散式 SAP NetWeaver 7.5 安裝時，適用於手動、單一執行個體 SAP HANA 安裝的主要步驟。 整份指南會以螢幕擷取畫面形式更詳細說明個別項目。
 
 * 建立包含這兩個測試 VM 的 Azure 虛擬網路。
-* 根據 Azure Resource Manager 模型部署採用 OS SLES 12 SP1 的兩個 Azure VM。
+* 根據 Azure Resource Manager 模型，部署兩個具有 OS SLES/SLES-for-SAP Applications 12 SP1 的 Azure VM。
 * 將兩個標準儲存體磁碟連接至應用程式伺服器 VM (例如 75-GB 或 500-GB 的磁碟)。
 * 將四個磁碟連接至 HANA DB 伺服器 VM：兩個標準儲存體磁碟 (例如，適用於應用程式伺服器 VM 的磁碟) 加上兩個進階儲存體磁碟 (例如，兩個 512-GB 磁碟)。
 * 根據大小或輸送量需求連接多個磁碟，並在 VM內部的 OS 層級，使用邏輯磁碟區管理 (LVM) 或多個裝置的系統管理公用程式 (mdadm) 來建立等量磁碟區。
@@ -82,7 +83,7 @@ ms.openlocfilehash: 0c7f550e9fe9c27315f8381a8b2a91ff75ba1535
 本節會基於示範或原型用途，列出當您使用 SAP hdblcm 執行分散式 SAP NetWeaver 7.5 安裝時，適用於手動、單一執行個體 SAP HANA 安裝的主要步驟。 整份指南會以螢幕擷取畫面形式更詳細說明個別項目。
 
 * 建立包含這兩個測試 VM 的 Azure 虛擬網路。
-* 根據 Azure Resource Manager 模型部署採用 OS SLES 12 SP1 的兩個 Azure VM。
+* 根據 Azure Resource Manager 模型，部署兩個具有 OS SLES/SLES-for-SAP Applications 12 SP1 的 Azure VM。
 * 將兩個標準儲存體磁碟連接至應用程式伺服器 VM (例如 75-GB 或 500-GB 的磁碟)。
 * 將四個磁碟連接至 HANA DB 伺服器 VM：兩個標準儲存體磁碟 (例如，適用於應用程式伺服器 VM 的磁碟) 加上兩個進階儲存體磁碟 (例如，兩個 512-GB 磁碟)。
 * 根據大小或輸送量需求連接多個磁碟，並在 VM內部的 OS 層級，使用邏輯磁碟區管理 (LVM) 或多個裝置的系統管理公用程式 (mdadm) 來建立等量磁碟區。
@@ -103,13 +104,40 @@ ms.openlocfilehash: 0c7f550e9fe9c27315f8381a8b2a91ff75ba1535
 * 啟動 SAP MC，並透過 SAP GUI/HANA Studio 連接。
 
 ## <a name="prepare-azure-vms-for-a-manual-installation-of-sap-hana"></a>準備 Azure VM 以便手動安裝 SAP HANA
-本節包含下列五個主題：
+本節包含下列主題：
 
+* OS 更新
 * 磁碟設定
 * 核心參數
 * 檔案系統
 * /etc/hosts
 * /etc/fstab
+
+### <a name="os-updates"></a>OS 更新
+由於 SUSE 會為 OS 提供更新和修正程式來協助維護安全性及確保作業順暢，因此在安裝額外的軟體之前，最好先檢查是否有可用的更新。
+在很多時候，只要系統處於實際的修正層級，即可避免請求支援。
+
+Azure 隨選映像會自動連接到提供額外軟體及更新的 SUSE 更新基礎結構。
+BYOS 映像必須向「SUSE 客戶中心」(https://scc.suse.com) 註冊
+
+請直接以下列方式檢查可用的修補程式：
+
+ `sudo zypper list-patches`
+
+視缺失的種類而定，修補程式會依分類和嚴重性歸類。
+
+常用的分類值為：security (安全性)、recommended (建議)、optional (選用)、feature (功能)、document (文件) 或 yast。
+
+常用的嚴重性值為：critical (嚴重)、important (重要)、moderate (中)、low (低) 或 unspecified (未指定)。
+
+zypper 只會尋找您的已安裝套件所需的更新。
+
+因此，範例命令可能像這樣：
+
+`sudo zypper patch  --category=security,recommended --severity=critical,important`
+
+如果您新增 *--dry-run* 參數，則可以測試更新，但不會實際更新系統。
+
 
 ### <a name="disk-setup"></a>磁碟設定
 Azure 上 Linux VM 中的根目錄檔案系統大小受限。 因此，必須將額外的磁碟空間連接至 VM 才能執行 SAP。 如果是在純原型/示範環境中使用 SAP 應用程式伺服器 VM，則可使用 Azure 標準儲存體磁碟。 如果是 SAP HANA DB 資料和記錄檔，即使是在非生產環境中，還是要使用 Azure 進階儲存體磁碟。
@@ -121,7 +149,7 @@ Azure 上 Linux VM 中的根目錄檔案系統大小受限。 因此，必須將
 如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。
 
 若要尋找用於建立 VM 的範例 JSON 範本，請移至 [Azure 快速入門範本 (英文)](https://github.com/Azure/azure-quickstart-templates)。
-"101-vm-simple-linux" 範本顯示一個基本範本，其中包含具有額外 100-GB 資料磁碟的儲存體區段。
+"vm-simple-sles" 範本顯示一個基本範本，其中包含具有額外 100-GB 資料磁碟的儲存體區段。
 
 如需如何使用 PowerShell 或 CLI 來尋找 SUSE 映像的相關資訊，以及了解使用 UUID 連接磁碟的重要性，請參閱[在 Microsoft Azure SUSE Linux VM 上執行 SAP NetWeaver](virtual-machines-linux-sap-on-suse-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
@@ -146,20 +174,18 @@ Azure 上 Linux VM 中的根目錄檔案系統大小受限。 因此，必須將
 ### <a name="kernel-parameters"></a>核心參數
 SAP HANA 需要不屬於標準 Azure 資源庫映像且必須手動設定的特定 Linux 核心設定。 有個 SAP HANA Note 可說明適用於 SLES 12/SLES for SAP Applications 12 的建議 OS 設定：[SAP Note 2205917 (英文)](https://launchpad.support.sap.com/#/notes/2205917)。
 
-如需其他在 SLES 上執行 SAP HANA 的相關分頁快取主題，請參閱 [SUSE Linux Enterprise Server for SAP Applications 12 SP1 指南 (英文)](https://www.suse.com/documentation/sles_for_sap/singlehtml/sles_for_sap_guide/sles_for_sap_guide.html#sec.s4s.configure.page-cache) 的＜6.1 核心：分頁快取限制＞。
 
-另一個 SAP Note 可說明分頁快取限制：[SAP Note 1557506 (英文)](https://launchpad.support.sap.com/#/notes/1557506)。
+SLES-for-SAP Applications 12 GA 和 SP1 具有一個可取代舊 sapconf 公用程式的新工具。 這個新工具稱為 tuned-adm，而且有特別的 SAP HANA 設定檔可供其使用。 若要調整 SAP HANA 的系統，請直接以 root 使用者身分輸入：'tuned-adm profile sap-hana'
 
-SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工具稱為 tuned-adm，而且有特別的 SAP HANA 設定檔可供其使用。 如需 tuned-adm 的詳細資訊，請參閱下列文章：
+如需有關 tuned-adm 的詳細資訊，請參閱位於下列位置的 SUSE 文章：
 
-* [關於 tuned-adm 設定檔 sap-hana 的 SLES 文件 (英文)。](https://www.suse.com/documentation/sles-for-sap-12/book_s4s/data/sec_s4s_configure_sapconf.html)
-* [關於 tuned-adm 設定檔 sap-hana 的 SLES 文件：＜6.2 使用 tuned-adm 針對 SAP 工作負載微調系統＞(英文)。](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/book_s4s/book_s4s.pdf)
+* [tuned-adm profile sap-hana 的相關 SLES-for-SAP Applications 12 SP1 文件 (英文)](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip)。
 
 在下列螢幕擷取畫面中，您可以看到 tuned-adm 如何根據必要的 SAP HANA 設定來變更 transparent_hugepage 和 numa_balancing 值。
 
 ![tuned-adm 工具會根據必要的 SAP HANA 設定來變更值](./media/virtual-machines-linux-sap-hana-get-started/image005.jpg)
 
-若要永久保留 SAP HANA 核心設定，請在 SLES 12 上使用 grub2。 如需 grub2 的詳細資訊，請移至 [SUSE 文件的＜組態檔結構＞一節 (英文)](https://www.suse.com/documentation/sled-12/book_sle_admin/data/sec_grub2_file_structure.html)。
+若要永久保留 SAP HANA 核心設定，請在 SLES 12 上使用 grub2。 如需 grub2 的詳細資訊，請移至 [SUSE 文件的＜組態檔結構＞一節 (英文)](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip)。
 
 下列螢幕擷取畫面顯示如何在組態檔中變更核心設定，然後使用 grub2-mkconfig 進行編譯。
 
@@ -181,7 +207,7 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 如需 SAP HANA 的標準檔案系統配置說明，請參閱 [SAP HANA 伺服器安裝與更新指南 (英文)](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24d332a37b4a3caad3e634f9900a45/frameset.htm)。
 ![在 SAP 應用程式伺服器 VM 上建立其他檔案系統](./media/virtual-machines-linux-sap-hana-get-started/image009.jpg)
 
-當您在標準 SLES 12 Azure 資源庫映像上安裝 SAP NetWeaver 時，會出現一則訊息，表示沒有交換空間。 若要關閉此訊息，您可以使用 dd、mkswap 和 swapon 手動新增分頁檔。 若要了解做法，請在 [SUSE 文件的＜使用 YaST Partitioner＞一節 (英文)](https://www.suse.com/documentation/sled-12/book_sle_deployment/data/sec_yast2_i_y2_part_expert.html) 中搜尋 "Adding a Swap File Manually" (手動新增分頁檔)。
+當您在標準 SLES/SLES-for-SAP Applications 12 Azure 資源庫映像上安裝 SAP NetWeaver 時，會顯示一則指出沒有交換空間的訊息。 若要關閉此訊息，您可以使用 dd、mkswap 和 swapon 手動新增分頁檔。 若要了解做法，請在 [SUSE 文件的＜使用 YaST Partitioner＞一節 (英文)](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/sles-for-sap-12-sp1.zip) 中搜尋 "Adding a Swap File Manually" (手動新增分頁檔)。
 
 另一個選項是使用 Linux VM 代理程式設定交換空間。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
@@ -199,16 +225,16 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 
 ![將 nofail 參數加入至 fstab](./media/virtual-machines-linux-sap-hana-get-started/image000c.jpg)
 
-## <a name="install-graphical-gnome-desktop-on-sles-12"></a>在 SLES 12 上安裝圖形化 Gnome 桌面
+## <a name="install-graphical-gnome-desktop-on-sles-12sles-for-sap-applications-12"></a>在 SLES 12/SLES-for-SAP Applications 12 上安裝圖形化 Gnome 桌面
 本節包含下列主題：
 
-* 在 SLES 12 上安裝 Gnome 桌面和 xrdp
-* 在 SLES 12 上使用 Firefox 執行 Java 型 SAP MC
+* 在 SLES 12/SLES-for-SAP Applications 12 上安裝 Gnome 桌面和 xrdp
+* 在 SLES 12/SLES-for-SAP Applications 12 上使用 Firefox 來執行 Java 型 SAP MC
 
 您也可以使用 Xterminal 或 VNC 之類的替代方案，但截止 2016 年 9 月為止，本指南只會說明 xrdp。
 
-### <a name="installing-gnome-desktop-and-xrdp-on-sles-12"></a>在 SLES 12 上安裝 Gnome 桌面和 xrdp
-如果您具備 Microsoft Windows 背景，就可以輕鬆地在 SAP Linux VM 內直接使用圖形化桌面，來執行 Firefox、Sapinst、SAP GUI、SAP MC 或 HANA Studio，並從 Windows 電腦透過 RDP 連接到 VM。 儘管此程序可能不適合用於生產環境資料庫伺服器，但卻適用於純原型/示範環境。 以下是在 Azure SLES 12 VM 上安裝 Gnome 桌面的方法：
+### <a name="installing-gnome-desktop-and-xrdp-on-sles-12sles-for-sap-applications-12"></a>在 SLES 12/SLES-for-SAP Applications 12 上安裝 Gnome 桌面和 xrdp
+如果您具備 Microsoft Windows 背景，就可以輕鬆地在 SAP Linux VM 內直接使用圖形化桌面，來執行 Firefox、Sapinst、SAP GUI、SAP MC 或 HANA Studio，並從 Windows 電腦透過 RDP 連接到 VM。 儘管此程序可能不適合用於生產環境資料庫伺服器，但卻適用於純原型/示範環境。 以下說明如何在 Azure SLES 12/SLES-for-SAP Applications 12 VM 上安裝 Gnome 桌面：
 
 輸入下列命令 (例如在 putty 視窗中) 來安裝 Gnome 桌面：
 
@@ -237,7 +263,7 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 請予以移除，然後再試一次重新啟動。
 
 ### <a name="sap-mc"></a>SAP MC
-安裝 Gnome 桌面之後，從 Azure SLES 12 VM 中執行的 Firefox 啟動圖形化 Java 型 SAP MC，可能會因為遺失 Java 瀏覽器外掛程式而顯示錯誤。
+在安裝 Gnome 桌面之後，如果從在 Azure SLES 12/SLES-for-SAP Applications 12 VM 中執行的 Firefox 啟動圖形化 Java 型 SAP MC，可能會因為遺失 Java 瀏覽器外掛程式而顯示錯誤。
 
 啟動 SAP MC 的 URL 為 <server>:5<instance_number>13。
 
@@ -255,7 +281,9 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 
 ![要求啟用外掛程式的對話方塊](./media/virtual-machines-linux-sap-hana-get-started/image015.jpg)
 
-一個可能發生的其他問題是關於遺失檔案 (javafx.properties) 的錯誤訊息。 此錯誤很可能與安裝 SAP GUI 7.4 所需之 Java 1.8 有關。 YaST 中所看到的 IBM Java 版本並未包含此檔案。 解決方法是從 Oracle 下載 Java。 如需有關此問題的詳細資訊，請參閱 [openSUSE 42.1 Leap 的 SAPGui 7.4 Java (英文)](https://scn.sap.com/thread/3908306)。
+一個可能發生的其他問題是關於遺失檔案 (javafx.properties) 的錯誤訊息。 這與「適用於 SAP GUI 7.4 的 Oracle Java 1.8」的需求有關。 [請參閱 SAP 附註 2059429](https://launchpad.support.sap.com/#/notes/2059424)。IBM Java 版本及 SLES/SLES-for-SAP Applications 12 隨附的 openjdk 套件皆未包含所需的 javafx。 解決方案是從 Oracle 下載 Java SE8。
+
+您可以在[適用於 openSUSE 42.1 Leap 的 SAPGui 7.4 Java (英文)](https://scn.sap.com/thread/3908306)，找到探討有關 openSUSE 與 openjdk 搭配之類似問題的文章。
 
 ## <a name="install-sap-hana-manually-by-using-swpm-as-part-of-a-netweaver-75-installation"></a>在 NetWeaver 7.5 安裝過程中使用 SWPM 手動手動安裝 SAP HANA
 本節中一系列的螢幕擷取畫面顯示當您使用 SWPM (SAPinst) 時，安裝 SAP NetWeaver 7.5 和 SAP HANA SP12 的主要步驟。 在 NetWeaver 7.5 安裝過程中，SWPM 也可將 HANA 資料庫安裝為單一執行個體。
@@ -397,9 +425,4 @@ SLES 12 有一個新工具可取代舊的 sapconf 公用程式。 這個新工�
 * 下載 HANA SP12 平台版本：
 
  ![用於下載 HANA SP12 平台版本的 SAP 服務安裝和升級視窗](./media/virtual-machines-linux-sap-hana-get-started/image002.jpg)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

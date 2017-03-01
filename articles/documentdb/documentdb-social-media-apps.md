@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 12/09/2016
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: c98251147bca323d31213a102f607e995b37e0ec
-ms.openlocfilehash: 19e8c9de137e10abb563fcd60cf89502dbf94cfd
+ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
+ms.openlocfilehash: 238c74c020625006384a1b31aef320e1346d9ac4
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -102,7 +103,7 @@ Azure DocumentDB 可利用自己的自動索引編製作業，確保所有屬性
         {"relevance":7, "post":"w34r-qeg6-ref6-8565"}
     ]
 
-例如，我們可以設定依建立日期的「最新」貼文串流、過去 24 小時內獲得較多讚的「最熱門」貼文串流，甚至可以依據邏輯 (例如關注者與興趣) 為每位使用者實作自訂串流，而這仍屬於文章清單。 關鍵在於如何建立這些清單，而且讀取效能不會受到影響。 在取得其中一份清單之後，我們可以使用 [IN 運算子](documentdb-sql-query.md#where-clause) 向 DocumentDB 發出單一查詢，一次取得貼文的頁面。
+例如，我們可以設定依建立日期的「最新」貼文串流、過去 24 小時內獲得較多讚的「最熱門」貼文串流，甚至可以依據邏輯 (例如關注者與興趣) 為每位使用者實作自訂串流，而這仍屬於文章清單。 關鍵在於如何建立這些清單，而且讀取效能不會受到影響。 在取得其中一份清單之後，我們可以使用 [IN 運算子](documentdb-sql-query.md#WhereClause) 向 DocumentDB 發出單一查詢，一次取得貼文的頁面。
 
 您可以使用 [Azure App Service](https://azure.microsoft.com/services/app-service/) 的背景處理序 [Webjobs](../app-service-web/web-sites-create-web-jobs.md) 來建置摘要串流。 建立貼文之後就會觸發背景處理，方法是使用 [Azure 儲存體](https://azure.microsoft.com/services/storage/)[佇列](../storage/storage-dotnet-how-to-use-queues.md)，以及使用 [Azure Webjobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md) 觸發的 Webjobs，根據我們的自訂邏輯，在串流內進行貼文的傳播。 
 
@@ -230,10 +231,5 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 請閱讀 [在 DocumentDB 中模型化資料](documentdb-modeling-data.md) ，以深入了解資料模型化。 如果您想了解 DocumentDB 的其他使用案例，請參閱 [常見的 DocumentDB 使用案例](documentdb-use-cases.md)。
 
 或者，您可以遵循 [DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)以深入了解 DocumentDB。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

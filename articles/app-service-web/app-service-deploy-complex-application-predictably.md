@@ -4,7 +4,7 @@ description: "學習如何在 Azure App Service 中將包含微服務的應用�
 services: app-service
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: bb51e565-e462-4c60-929a-2ff90121f41d
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 0782000e87bed0d881be5238c1b91f89a970682c
 ms.openlocfilehash: 37a10d284afa6b9ee2aa65e7ec015c3c364f551d
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -271,10 +272,5 @@ Web 應用程式與兩個不同的資源相依。 這表示只有在建立 App S
 * [使用 Azure 資源管理員範本部署應用程式](../azure-resource-manager/resource-group-template-deploy.md)
 * [搭配使用 Azure PowerShell 與 Azure 資源管理員](../azure-resource-manager/powershell-azure-resource-manager.md)
 * [Azure 中的資源群組部署疑難排解](../azure-resource-manager/resource-manager-common-deployment-errors.md)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

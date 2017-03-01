@@ -4,7 +4,7 @@ description: "針對 Azure App Service 所裝載之 Web 應用程式的「502 �
 services: app-service\web
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 tags: top-support-issue
 keywords: "502 不正確的閘道、503 服務無法使用、錯誤 503、錯誤 502"
@@ -19,6 +19,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: f6ef85e0c05911bb3ad13a8ffb029bf9fadd8bfd
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -129,10 +130,5 @@ AutoHeal 會根據您選擇的設定 (例如組態變更、要求、以記憶體
  ![重新啟動應用程式，以解決 502 不正確的閘道和 503 服務無法使用的 HTTP 錯誤](./media/app-service-web-troubleshoot-HTTP-502-503/2-restart.png)
 
 您也可以使用 Azure Powershell 管理 Web 應用程式。 如需詳細資訊，請參閱 [將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

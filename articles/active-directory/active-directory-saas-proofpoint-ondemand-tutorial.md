@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 02/14/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 7aa746b8c6f4b747a7dca0e9bf75e61b2707b7e1
+ms.sourcegitcommit: 7cc133d6289bffbc3b7fc591104bc51ebfc67ddd
+ms.openlocfilehash: 2ea87726b06a0e8ab20515031424bf4e93f45a80
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -35,7 +36,7 @@ Proofpoint on Demand 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 Proofpoint on Demand 的整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* Proofpoint on Demand 單一登入的訂用帳戶
+* Proofpoint on Demand 單一登入 (SSO) 的訂用帳戶
 
 若要測試本教學課程中的步驟，請遵循下列建議：
 
@@ -47,8 +48,8 @@ Proofpoint on Demand 與 Azure AD 整合提供下列優點：
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫新增 Proofpoint on Demand。
-2. 設定和測試 Azure AD 單一登入。
+* 從資源庫新增 Proofpoint on Demand。
+* 設定和測試 Azure AD 單一登入。
 
 ## <a name="add-proofpoint-on-demand-from-the-gallery"></a>從資源庫新增 Proofpoint on Demand
 若要設定將 Proofpoint on Demand 整合到 Azure AD 中，您需要從資源庫將 Proofpoint on Demand 新增到受管理的 SaaS 應用程式清單。
@@ -98,28 +99,19 @@ Proofpoint on Demand 與 Azure AD 整合提供下列優點：
 3. 在 [設定應用程式設定]  頁面上，執行下列步驟：
    
     ![方塊已填入資料的 [設定應用程式設定] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/tutorial_proofpointondemand_04.png)
-   
-    a. 在 [登入 URL] 文字方塊中，輸入使用者用來登入 Proofpoint on Demand 應用程式的 URL。 使用下列模式︰**https://\<hostname\>.pphosted.com/ppssamlsp_hostname**
-   
-    b. 在 [識別碼] 方塊中，使用下列模式輸入 URL：**https://\<hostname/>.pphosted.com/ppssamlsp**
-   
-    c. 在 [回覆 URL] 方塊中，使用下列模式輸入 URL：**https://\<hostname/>.pphosted.com:portnumber/v1/samlauth/samlconsumer**
-   
-    d. 按 [下一步] 。
+   1. 在 [登入 URL] 文字方塊中，輸入使用者用來登入 Proofpoint on Demand 應用程式的 URL。 使用下列模式︰**https://\<hostname\>.pphosted.com/ppssamlsp_hostname**
+   2. 在 [識別碼] 方塊中，使用下列模式輸入 URL：**https://\<hostname/>.pphosted.com/ppssamlsp**
+   3. 在 [回覆 URL] 方塊中，使用下列模式輸入 URL：**https://\<hostname/>.pphosted.com:portnumber/v1/samlauth/samlconsumer**  
+   4. 按 [下一步] 。
 4. 在 [設定在 Proofpoint on Demand 單一登入] 頁面上，執行下列步驟：
    
     ![包含 [下載憑證] 按鈕的 [設定在 Proofpoint on Demand 單一登入] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/tutorial_proofpointondemand_05.png)
-   
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
+   1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。   
+   2. 按 [下一步] 。
 5. 若要為您的應用程式設定 SSO，請聯絡 Proofpoint on Demand 支援小組並提供下列資訊：
-   
-    • 下載的憑證
-   
-    • 實體識別碼
-   
-    • SAML SSO URL
+   * 下載的憑證
+   * 實體識別碼
+   * SAML SSO URL
 6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![用來確認您已設定單一登入的核取方塊][10]
@@ -142,34 +134,28 @@ Proofpoint on Demand 與 Azure AD 整合提供下列優點：
 4. 若要開啟 [新增使用者] 對話方塊，請按一下 [新增使用者]。
    
     ![[新增使用者] 按鈕](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_04.png)
-5. 在 [告訴我們這位使用者] 頁面上，執行下列步驟： ![方塊已填入資料的 [告訴我們這位使用者] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_05.png)
-   
-    a. 在 [使用者類型] 方塊中，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
-6. 在 [使用者設定檔] 頁面上，執行下列步驟：![方塊已填入資料的 [使用者設定檔] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_06.png)
-   
-   a. 在 [名字] 方塊中輸入 **Britta**。  
-   
-   b. 在 [姓氏] 方塊中輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 方塊中輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+5. 在 [告訴我們這位使用者]  頁面上，執行下列步驟：
+
+    ![方塊已填入資料的 [告訴我們這位使用者] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_05.png)   
+   1. 在 [使用者類型] 方塊中，選取 [您組織中的新使用者]。
+   2. 在 [使用者名稱] 方塊中，輸入 **BrittaSimon**。
+   3. 按 [下一步] 。
+6. 在 [使用者設定檔]  頁面上，執行下列步驟：
+
+  ![方塊已填入資料的 [使用者設定檔] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_06.png)   
+   1. 在 [名字] 方塊中輸入 **Britta**。  
+   2. 在 [姓氏] 方塊中輸入 **Simon**。
+   3. 在 [顯示名稱] 方塊中輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 頁面上，按一下 [建立]。
    
-    ![用來建立暫時密碼的按鈕](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_07.png)
+   ![用來建立暫時密碼的按鈕](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_07.png)
 8. 在 [取得暫時密碼]  頁面上，執行下列步驟：
    
-    ![包含密碼資訊的 [取得暫時密碼] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_08.png)
-   
-    a. 記下 [新密碼] 方塊中的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+   ![包含密碼資訊的 [取得暫時密碼] 頁面](./media/active-directory-saas-proofpoint-ondemand-tutorial/create_aaduser_08.png)  
+   1. 記下 [新密碼] 方塊中的值。
+   2. 按一下頁面底部的 [新增] 。   
 
 ### <a name="create-a-proofpoint-on-demand-test-user"></a>建立 Proofpoint on Demand 測試使用者
 在本節中，您會在 Proofpoint on Demand 中建立名為 Britta Simon 的使用者。 請與 Proofpoint on Demand 支援小組合作，在 Proofpoint on Demand 平台中新增使用者。
@@ -219,9 +205,4 @@ Proofpoint on Demand 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-proofpoint-ondemand-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-proofpoint-ondemand-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-proofpoint-ondemand-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

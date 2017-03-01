@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/10/2016
+ms.date: 02/02/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
+ms.sourcegitcommit: 3d7e28c1cd221d704cf9cfec66da535e079fb472
+ms.openlocfilehash: 30044abc0d7d42b11ddd210dfb9ea3eadb94dda6
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -124,7 +125,7 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 ```
 
 #### <a name="cluster-upgrade-workflow"></a>叢集升級工作流程。
-1. 從[針對 Windows Server 建立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)文件下載最新版本的套件 
+1. 從[針對 Windows Server 建立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)文件下載最新版本的套件
 2. 從具有系統管理員存取權的任何電腦，將叢集連接至列為叢集中節點的所有電腦。 執行此指令碼所在的電腦不一定是叢集的一部分 
    
     ```powershell
@@ -152,7 +153,7 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 
     ```
 
-1. 註冊所複製的套件 
+4. 註冊所複製的套件 
    
     ```powershell
    
@@ -163,7 +164,7 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
     Register-ServiceFabricClusterPackage -Code -CodePackagePath MicrosoftAzureServiceFabric.5.3.301.9590.cab
    
      ```
-2. 開始將叢集升級至其中一個可用版本。 
+5. 開始將叢集升級至其中一個可用版本。 
    
     ```Powershell
    
@@ -184,6 +185,17 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 
 在解決導致復原的問題後，您需要依照之前的相同步驟再次起始升級。
 
+
+## <a name="cluster-configuration-upgrade"></a>叢集組態升級
+若要執行叢集組態升級，請執行 Start-ServiceFabricClusterConfigurationUpgrade。 組態升級是按升級網域逐一處理。
+
+```powershell
+
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File> 
+
+```
+
+
 ## <a name="next-steps"></a>後續步驟
 * 了解如何自訂一些 [Service Fabric 叢集網狀架構設定](service-fabric-cluster-fabric-settings.md)
 * 了解如何 [相應放大和相應縮小叢集](service-fabric-cluster-scale-up-down.md)
@@ -191,9 +203,4 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 
 <!--Image references-->
 [getfabversions]: ./media/service-fabric-cluster-upgrade-windows-server/getfabversions.PNG
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

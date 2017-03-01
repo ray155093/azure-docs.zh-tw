@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 0d5b68d26d708a28edee13ff3d9a57588ce83e12
-ms.openlocfilehash: be8146ae3dd34f4c8d5e02b06fd1b1f8d5d63dc1
+ms.sourcegitcommit: 110f3aa9ce4848c9350ea2e560205aa762decf7a
+ms.openlocfilehash: 163bf5b8d2884f678f7fea2207055eeb78b4e8ba
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -42,9 +43,9 @@ Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。 Mahout 包含�
 
 ## <a name="a-namerecommendationsaunderstanding-recommendations"></a><a name="recommendations"></a>了解推薦
 
-Mahout 提供的其中一項功能是推薦引擎。 這個引擎接受 `userID``itemId` 和 `prefValue` (使用者偏好的項目) 格式的資料。 Mahout 接著可以執行共生分析判斷出： *偏好某項目的使用者同時也偏好其他這些項目*。 接著 Mahout 會以偏好的類似項目判斷使用者，並以此做出推薦。
+Mahout 提供的其中一項功能是推薦引擎。 這個引擎接受 `userID`、`itemId` 和 `prefValue` (項目的喜好設定) 格式的資料。 Mahout 接著可以執行共生分析判斷出： *偏好某項目的使用者同時也偏好其他這些項目*。 接著 Mahout 會以偏好的類似項目判斷使用者，並以此做出推薦。
 
-以下工作流程使用電影資料做一個很簡單的範例：
+以下工作流程是一個使用電影資料的簡化範例：
 
 * **共生**：Joe、Alice 和 Bob 都喜歡*《星際大戰》*、*《帝國大反擊》*和*《絕地大反攻》*。 Mahout 將判斷喜歡上述任何一部電影的使用者，也會喜歡另外兩部電影。
 
@@ -56,7 +57,7 @@ Mahout 提供的其中一項功能是推薦引擎。 這個引擎接受 `userID`
 
 [GroupLens 研究][movielens]提供 Mahout 相容格式的電影評價資料，相當方便。 您可在位於 `/HdiSamples/HdiSamples/MahoutMovieData`的叢集預設儲存體取得這份資料。
 
-有兩份檔案：`moviedb.txt` (影片相關資訊) 和 `user-ratings.txt`。 分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。
+有兩個檔案 `moviedb.txt` 和 `user-ratings.txt`。 分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。
 
 user-ratings.txt 內包含的資料具有 `userID`、`movieID`、`userRating` 和 `timestamp` 結構，可告訴我們每位使用者對於影片的評價為何。 以下是資料範例：
 
@@ -94,92 +95,92 @@ mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/M
    
     第一欄是 `userID`。 '[' 和 ']' 中包含的值是 `movieId`:`recommendationScore`。
 
-2. 您可以使用輸出和 moviedb.txt，顯示更多使用者易懂的詳細資訊。 首先，我們需要使用下列命令將檔案複製到本機上︰
-    
-    ```bash
-    hdfs dfs -get /example/data/mahoutout/part-r-00000 recommendations.txt
-    hdfs dfs -get /HdiSamples/HdiSamples/MahoutMovieData/* .
-    ```
+2. 您可以使用輸出和 moviedb.txt，來顯示更多建議的相關資訊。 首先，我們需要使用下列命令將檔案複製到本機上︰
 
-    這會將輸出資料和影片資料檔一起複製到目前目錄中名為 **recommendations.txt** 的檔案上。
+   ```bash
+   hdfs dfs -get /example/data/mahoutout/part-r-00000 recommendations.txt
+   hdfs dfs -get /HdiSamples/HdiSamples/MahoutMovieData/* .
+   ```
 
-3. 使用下列命令來建立新的 Python 指令碼，該指令碼會在建議輸出資料中查閱電影名稱：
-   
-    ```bash
-    nano show_recommendations.py
-    ```
+    這個命令會將輸出資料和影片資料檔一起複製到目前目錄中名為 **recommendations.txt** 的檔案中。
+
+3. 使用下列命令來建立 Python 指令碼，該指令碼會在建議輸出資料中查閱影片名稱：
+
+   ```bash
+   nano show_recommendations.py
+   ```
 
     開啟編輯器時，請使用下列文字做為檔案的內容：
-    
-    ```python
-    #!/usr/bin/env python
 
-    import sys
+   ```python
+   #!/usr/bin/env python
 
-    if len(sys.argv) != 5:
-            print "Arguments: userId userDataFilename movieFilename recommendationFilename"
-            sys.exit(1)
+   import sys
 
-    userId, userDataFilename, movieFilename, recommendationFilename = sys.argv[1:]
+   if len(sys.argv) != 5:
+        print "Arguments: userId userDataFilename movieFilename recommendationFilename"
+        sys.exit(1)
 
-    print "Reading Movies Descriptions"
-    movieFile = open(movieFilename)
-    movieById = {}
-    for line in movieFile:
-            tokens = line.split("|")
-            movieById[tokens[0]] = tokens[1:]
-    movieFile.close()
+   userId, userDataFilename, movieFilename, recommendationFilename = sys.argv[1:]
 
-    print "Reading Rated Movies"
-    userDataFile = open(userDataFilename)
-    ratedMovieIds = []
-    for line in userDataFile:
-            tokens = line.split("\t")
-            if tokens[0] == userId:
-                    ratedMovieIds.append((tokens[1],tokens[2]))
-    userDataFile.close()
+   print "Reading Movies Descriptions"
+   movieFile = open(movieFilename)
+   movieById = {}
+   for line in movieFile:
+       tokens = line.split("|")
+       movieById[tokens[0]] = tokens[1:]
+   movieFile.close()
 
-    print "Reading Recommendations"
-    recommendationFile = open(recommendationFilename)
-    recommendations = []
-    for line in recommendationFile:
-            tokens = line.split("\t")
-            if tokens[0] == userId:
-                    movieIdAndScores = tokens[1].strip("[]\n").split(",")
-                    recommendations = [ movieIdAndScore.split(":") for movieIdAndScore in movieIdAndScores ]
-                    break
-    recommendationFile.close()
+   print "Reading Rated Movies"
+   userDataFile = open(userDataFilename)
+   ratedMovieIds = []
+   for line in userDataFile:
+       tokens = line.split("\t")
+       if tokens[0] == userId:
+           ratedMovieIds.append((tokens[1],tokens[2]))
+   userDataFile.close()
 
-    print "Rated Movies"
-    print "------------------------"
-    for movieId, rating in ratedMovieIds:
-            print "%s, rating=%s" % (movieById[movieId][0], rating)
-    print "------------------------"
+   print "Reading Recommendations"
+   recommendationFile = open(recommendationFilename)
+   recommendations = []
+   for line in recommendationFile:
+       tokens = line.split("\t")
+       if tokens[0] == userId:
+           movieIdAndScores = tokens[1].strip("[]\n").split(",")
+           recommendations = [ movieIdAndScore.split(":") for movieIdAndScore in movieIdAndScores ]
+           break
+   recommendationFile.close()
 
-    print "Recommended Movies"
-    print "------------------------"
-    for movieId, score in recommendations:
-            print "%s, score=%s" % (movieById[movieId][0], score)
-    print "------------------------"
-    ```
+   print "Rated Movies"
+   print "------------------------"
+   for movieId, rating in ratedMovieIds:
+       print "%s, rating=%s" % (movieById[movieId][0], rating)
+   print "------------------------"
+
+   print "Recommended Movies"
+   print "------------------------"
+   for movieId, score in recommendations:
+       print "%s, score=%s" % (movieById[movieId][0], score)
+   print "------------------------"
+   ```
    
     按下 **CTRL-X**、**Y**，最後再按 **Enter** 鍵儲存資料。
-    
+
 4. 使用下列命令，讓檔案可以執行：
    
-    ```bash
-    chmod +x show_recommendations.py
-    ```
+   ```bash
+   chmod +x show_recommendations.py
+   ```
 
 5. 執行 Python 指令碼。 以下命令假設您已在所有檔案的下載目錄中︰
    
-    ```bash
-    ./show_recommendations.py 4 user-ratings.txt moviedb.txt recommendations.txt
-    ```
+   ```bash
+   ./show_recommendations.py 4 user-ratings.txt moviedb.txt recommendations.txt
+   ```
     
     此命令會查看為使用者 ID 4 所產生的建議。
    
-   * **user-ratings.txt** 檔案用來擷取使用者已評分的影片。
+   * **user-ratings.txt** 檔案可用來擷取已評分的影片。
 
    * **moviedb.txt** 檔案用來擷取影片名稱。
 
@@ -266,10 +267,5 @@ hdfs dfs -rm -f -r /temp/mahouttemp
 [connect]: ./media/hdinsight-mahout/connect.png
 [hadoopcli]: ./media/hdinsight-mahout/hadoopcli.png
 [tools]: https://github.com/Blackmist/hdinsight-tools
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

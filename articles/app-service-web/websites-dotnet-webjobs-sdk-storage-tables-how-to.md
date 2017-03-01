@@ -4,7 +4,7 @@ description: "了解如何透過 WebJobs SDK 使用 Azure 資料表儲存體。 
 services: app-service\web, storage
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 451432cc-c780-4310-85d3-84f44fe48afe
 ms.service: app-service-web
@@ -17,6 +17,7 @@ ms.author: tdykstra
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 47db68afb8ea938a9861765f9e60c78436569110
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -156,10 +157,5 @@ ms.openlocfilehash: 47db68afb8ea938a9861765f9e60c78436569110
 
 ## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
 本指南提供的程式碼範例示範如何處理使用 Azure 資料表的常見案例。 如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱 [Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

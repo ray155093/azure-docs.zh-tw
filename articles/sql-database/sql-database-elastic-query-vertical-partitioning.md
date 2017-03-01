@@ -15,8 +15,10 @@ ms.topic: article
 ms.date: 05/27/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: 77b8b8960fb0e5e5340b65dae03f95b456832a07
-ms.openlocfilehash: cb649d3f6ead507582f587d112e43a89e659c757
+ms.sourcegitcommit: 430fed27780076738e319dabca4cc9abaed70691
+ms.openlocfilehash: 078784bcdf7a3a6d4423389d2f5ca4ffdb67c89f
+ms.lasthandoff: 02/22/2017
+
 
 
 ---
@@ -180,18 +182,17 @@ sp\_execute\_remote 會使用叫用參數中提供的外部資料來源，在遠
 * 彈性查詢最適合可在遠端資料庫上完成大部分運算的查詢。 使用可在遠端資料庫上評估的選擇性篩選述詞，或可在遠端資料庫上完全執行的聯結，通常可以獲得最佳查詢效能。 其他查詢模式可能需要從遠端資料庫載入大量的資料，而且執行效能可能會很差。 
 
 ## <a name="next-steps"></a>後續步驟
-若要查詢水平分割的資料庫 (也稱為分區化資料庫)，請參閱 [跨分區化的雲端資料庫執行查詢 (水平分割)](sql-database-elastic-query-horizontal-partitioning.md)。
 
-[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+* 如需彈性查詢的概觀，請參閱[彈性查詢概觀](sql-database-elastic-query-overview.md)。
+* 若要開始撰寫程式碼，請參閱 [開始使用跨資料庫查詢 (垂直資料分割)](sql-database-elastic-query-getting-started-vertical.md)。
+* 如需水平資料分割 (分區化) 教學課程，請參閱[開始使用彈性查詢進行水平資料分割 (分區化)](sql-database-elastic-query-getting-started.md)。
+* 如需水平資料分割之資料的語法和範例查詢，請參閱[查詢水平資料分割的資料](sql-database-elastic-query-horizontal-partitioning.md)
+* 如需會在單一遠端 Azure SQL Database 或一組在水平資料分割配置中作為分區之資料庫上執行 Transact-SQL 陳述式的預存程序，請參閱 [sp\_execute \_remote](https://msdn.microsoft.com/library/mt703714)。
+
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-query-vertical-partitioning/verticalpartitioning.png
 
 
 <!--anchors-->
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

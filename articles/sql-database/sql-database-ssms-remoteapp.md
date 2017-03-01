@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/01/2016
 ms.author: adhurwit
 translationtype: Human Translation
-ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
-ms.openlocfilehash: d0edcf7f7e927f817caae1cb7f4519596a09f140
+ms.sourcegitcommit: 2c13daf84727a500a2ea6a3dc1d4968c9824e223
+ms.openlocfilehash: a8540a541d05d1d8a0afeb2aeb42c77951ebf8c2
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -41,7 +42,7 @@ Azure RemoteApp 是在 Azure 中的一項 RDS 服務，可提供應用程式。 
 ## <a name="benefits"></a>優點
 在 Azure RemoteApp 中使用 SSMS 有許多好處，包括：
 
-* Azure SQL Server 上的連接埠 1433 不需要對外 (Azure 之外) 公開 。
+* Azure SQL Server 上的連接埠 1433 不需要對外 (Azure 之外) 公開。
 * 不需要在 Azure SQL Server 防火牆中不斷新增和移除 IP 位址。
 * 所有 Azure RemoteApp 連線都會使用加密的遠端桌面通訊協定，透過 HTTPS 在連接埠 443 上進行
 * 這是多使用者功能，且可以調整。
@@ -114,7 +115,7 @@ Sysprep 完成時，它會關閉 VM。
 當您移至 Azure Active Directory 中的使用者時，您接著可以移至 [活動] 索引標籤來查看 Azure RemoteApp 的登入資訊。
 
 ## <a name="next-steps"></a>後續步驟
-完成上述的所有步驟之後，您將可以執行 Azure RemoteApp 用戶端，並使用已指派的使用者登入。 您將會看到 SSMS 是您其中的一個應用程式，並且執行時就如同它是安裝在您的電腦上存取 Azure SQL Server 一樣。
+完成上述的所有步驟之後，您將可以執行 Azure RemoteApp 用戶端，並使用已指派的使用者登入。 您將會看到 SSMS 顯示為您的其中一個應用程式，而您可以將它當作就像是安裝在您電腦上而能夠存取 Azure SQL Server 一樣來執行它。
 
 如需有關如何連接到 SQL Database 的詳細資訊，請參閱 [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。
 
@@ -127,8 +128,3 @@ Sysprep 完成時，它會關閉 VM。
 [4]: ./media/sql-database-ssms-remoteapp/allowazure.png
 [5]: ./media/sql-database-ssms-remoteapp/publish.png
 [6]: ./media/sql-database-ssms-remoteapp/user.png
-
-
-<!--HONumber=Dec16_HO1-->
-
-

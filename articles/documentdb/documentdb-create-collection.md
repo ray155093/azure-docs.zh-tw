@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/13/2017
+ms.date: 02/08/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: ab863266e1462f970b7906f68be2bcf5edb0dfc3
-ms.openlocfilehash: ac64bb0de03053702a4663c9356b3f9ce332c7de
+ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
+ms.openlocfilehash: 8ee846e659d0a47a5fb39d6baa3235f59e19d653
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -40,7 +41,7 @@ ms.openlocfilehash: ac64bb0de03053702a4663c9356b3f9ce332c7de
 
     如果您想要一個輸送量層級從 400-10,000 個要求單位/秒 (RU/s) 的[單一分割區集合](documentdb-partition-data.md#single-partition-and-partitioned-collections)，請將儲存體容量設定為 [10 GB]。 一個 RU 會對應至讀取 1 KB 文件的輸送量。 如需要求單位的詳細資訊，請參閱 [要求單位](documentdb-request-units.md)。
 
-    如果您想要一個可調整的[已分割集合](documentdb-partition-data.md#single-partition-and-partitioned-collections)以處理多個資料分割上不限數量的儲存體，且其輸送量層級可以從 10,100 RU/s 起跳，請將儲存體容量設定為 [250 GB]。
+    如果您想要一個可調整的[已分割集合](documentdb-partition-data.md#single-partition-and-partitioned-collections)以處理多個資料分割上不限數量的儲存體，且其輸送量層級可以從 2,500 RU/s 起跳，請將儲存體容量設定為 [250 GB]。
 
     如果您想要佈建的數量不是 10 GB 或 250 GB，請將儲存體容量設定為 [自訂]。 DocumentDB 的規模幾乎沒有限制，因此請在支援要求中包含您要求的儲存體大小和輸送量。
 
@@ -79,10 +80,5 @@ ms.openlocfilehash: ac64bb0de03053702a4663c9356b3f9ce332c7de
 * 您可以使用 DocumentDB 資料移轉工具來 [匯入文件和資料](documentdb-import-data.md) ，此工具可讓您匯入 JSON 和 CSV 檔案，以及來自 SQL Server、MongoDB、Azure 資料表儲存體及其他 DocumentDB 集合的資料。
 * 或者，您可以利用其中一個 [DocumentDB SDK](documentdb-sdk-dotnet.md)來新增文件。 DocumentDB 有.NET、Java、Python、Node.js 和 JavaScript API SDK。 如需示範如何使用 DocumentDB .NET SDK 處理文件的 C# 程式碼範例，請參閱 [C# 文件範例](documentdb-dotnet-samples.md#document-examples)。 如需示範如何使用 DocumentDB Node.js SDK 處理文件的 Node.js 程式碼範例，請參閱 [Node.js 文件範例](documentdb-nodejs-samples.md#document-examples)。
 
-在集合中有了文件之後，您便可以藉由使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其中一個 [SDK](documentdb-sdk-dotnet.md)，針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-sql-queries)。 
-
-
-
-<!--HONumber=Jan17_HO3-->
-
+在集合中有了文件之後，您便可以藉由使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其中一個 [SDK](documentdb-sdk-dotnet.md)，針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#ExecutingSqlQueries)。 
 

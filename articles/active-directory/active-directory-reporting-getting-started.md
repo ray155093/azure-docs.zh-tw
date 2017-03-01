@@ -13,10 +13,11 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 03/07/2016
-ms.author: dhanyahk
+ms.author: dhanyahk;markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6ce0e0ce9004e1b331328fca5830f01b6ce6af6c
+ms.sourcegitcommit: eec9b73cbaccfa50eec6f237e4d1d810c6efa1d9
+ms.openlocfilehash: e5b8ac91914203156bd395d7f462385e9f6dbcb4
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -113,7 +114,7 @@ Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽�
 ### <a name="integrate-with-the-azure-ad-reporting-api"></a>與 Azure AD 報告 API 整合
 請參閱 [開始使用報告 API](active-directory-reporting-api-getting-started.md)。
 
-### <a name="engage-multifactor-authentication-on-users"></a>對使用者採取 Multi-Factor Authentication
+### <a name="engage-multi-factor-authentication-on-users"></a>對使用者採取 Multi-Factor Authentication
 在報告中選取使用者。
 
 按一下畫面底部的 [啟用 MFA] 按鈕。
@@ -139,10 +140,5 @@ Azure Active Directory (Azure AD) 包括您的目錄的安全性、活動和稽�
 > 如需有關 Azure AD 報告的更多文件，請參閱 [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)。
 > 
 > 
-
-
-
-
-<!--HONumber=Nov16_HO2-->
 
 

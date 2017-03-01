@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 02/01/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 01e2bcf3fa32546a7952ddc919f99b46a74755a2
-ms.openlocfilehash: e0933b1a7e19fc70f9c5e81225b296412837385e
+ms.sourcegitcommit: b8f354b34e1a3a581dd2e41df4b80cbdbcd9a705
+ms.openlocfilehash: 3033df7c69a1c4211c906c6f3bdcd7868dedde13
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -27,7 +28,7 @@ OfficeSpace Software 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 OfficeSpace Software 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 OfficeSpace Software (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
+- 您可以在 Azure 管理入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
@@ -46,7 +47,7 @@ OfficeSpace Software 與 Azure AD 整合提供下列優點：
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 
 ## <a name="scenario-description"></a>案例描述
@@ -61,29 +62,23 @@ OfficeSpace Software 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 OfficeSpace Software，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **[Azure 管理入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
     ![Active Directory][1]
 
-2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
-
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
+2. 瀏覽至 [企業應用程式]。 然後移至 [所有應用程式]。
 
     ![應用程式][2]
-
-4. 按一下頁面底部的 [新增]  。
+    
+3. 按一下對話方塊頂端的 [新增] 按鈕。
 
     ![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
-
-    ![應用程式][4]
-
-6. 在搜尋方塊中輸入 **OfficeSpace Software**。
+4. 在搜尋方塊中輸入 **OfficeSpace Software**。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_001.png)
 
-7. 在結果窗格中，選取 [OfficeSpace Software]，然後按一下 [完成] 以新增應用程式。
+5. 在結果窗格中，選取 [OfficeSpace Software]，然後按一下 [新增] 按鈕以新增應用程式。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_0001.png)
 
@@ -105,155 +100,136 @@ OfficeSpace Software 與 Azure AD 整合提供下列優點：
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-本節目標是在 Azure 傳統入口網站啟用 Azure AD 單一登入，並在您的 OfficeSpace Software 應用程式中設定單一登入。
-
-OfficeSpace Software 應用程式會預期要有特定格式的 SAML 判斷提示。 請設定此應用程式的下列宣告。 您可以從應用程式的 [屬性]索引標籤來管理這些屬性的值。 以下螢幕擷取畫面顯示上述的範例。 
-
-![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_01.png)
+在本節中，您會在 Azure 管理入口網站中啟用 Azure AD 單一登入，並在您的 OfficeSpace Software 應用程式中設定單一登入。
 
 **若要使用 OfficeSpace Software 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站中的 [OfficeSpace Software] 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
+1. 在 Azure 管理入口網站的 [OfficeSpace Software] 應用程式整合頁面上，按一下 [單一登入]。
+
+    ![設定單一登入][4]
+
+2. 在 [單一登入] 對話方塊上，選取 [SAML 型登入] 做為 [模式]，以啟用單一登入。
+ 
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_01.png)
+
+3. 在 [OfficeSpace Software 網域及 URL] 區段上，執行下列步驟：
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_02.png)
 
-2. 在 [SAML Token 屬性]  對話方塊上，針對下表中顯示的每一列執行下列步驟：
+    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.officespacesoftware.com/users/sign_in/saml`
+
+    b. 在 [識別碼] 文字方塊中，以下列模式輸入值：`<company name>.officespacesoftware.com`
+
+    > [!NOTE] 
+    > 請注意這些不是真正的值。 您必須使用實際的「登入 URL」及「識別碼」來更新這些值。 請連絡 [OfficeSpace Software 支援小組](mailto:support@officespacesoftware.com)來取得這些值。 
+
+4. OfficeSpace Software 應用程式會預期要有特定格式的 SAML 判斷提示。 請設定此應用程式的下列宣告。 您可以在應用程式整合頁面的 [使用者屬性] 區段中管理這些屬性的值。 以下螢幕擷取畫面顯示上述的範例。
+    
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_03.png)
+
+5. 在 [單一登入] 對話方塊內的 [使用者屬性] 區段中，選取 [user.mail] 當作 [使用者識別碼]，並在下表顯示的每個列上執行下列步驟：
     
     | 屬性名稱 | 屬性值 |
     | --- | --- |    
-    | http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier | user.mail |
     | 電子郵件 | user.mail |
     | 名稱 | user.displayname |
     | first_name | user.givenname |
     | last_name | user.surname |
 
-    a. 按一下 [新增使用者屬性] 來開啟 [新增使用者屬性] 對話方塊。
+    a. 按一下 [新增屬性] 來開啟 [新增屬性] 對話方塊。
 
-    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_03.png)
-    
-    b. 在 [屬性名稱]  文字方塊中，輸入該資料列所顯示的屬性名稱。
-    
-    c. 在 [屬性值] 清單中，輸入該資料列所顯示的屬性名稱。
-    
-    d. 按一下 [完成]
-
-3. 在頂端的功能表中，按一下 [快速啟動] 。
-
-    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_04.png) 
-
-4. 在傳統入口網站的 [OfficeSpace Software] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_04.png)
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_05.png)
+    
+    b. 在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
+    
+    c. 在 [值] 清單中，選取該列所顯示的值。
+    
+    d. 按一下 [確定]。
 
-5. 在 [要如何讓使用者登入 OfficeSpace Software] 頁面上，選取 [Azure AD 單一登入]，然後按一下 [下一步]。
- 
-    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_06.png)
+6. 在 [SAML 簽署憑證] 區段中，按一下 [建立新憑證]。
 
-6. 在 [設定 App 設定]  對話方塊頁面執行下列步驟：
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_06.png)     
+
+7. 在 [建立新憑證] 對話方塊中，按一下行事曆圖示並選取 [到期日]。 然後按一下 [儲存] 按鈕。
+
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_general_300.png)
+
+8. 在 [SAML 簽署憑證] 區段中，選取 [啟用新憑證] 並按一下 [儲存] 按鈕。
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_07.png)
 
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.officespace.com/users/sign_in/saml`
+9. 在 [變換憑證] 快顯視窗上，按一下 [確定]。
 
-    b.這是另一個 C# 主控台應用程式。 按 [下一步] 。
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_general_400.png)
 
-    > [!NOTE] 
-    > 請注意，這不是真正的值。 您必須使用實際的「登入 URL」來更新此值。 請連絡 [OfficeSpace Software 支援小組](emaiLto:support@officespacesoftware.com)來取得這個值。
-
-7. 於 **Configure single sign-on at OfficeSpace Software** (在 OfficeSpace Software 設定單一登入) 頁面上，按一下 [下載憑證]，然後將該檔案儲存在您的電腦上：
+10. 在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_08.png) 
 
-8. 在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 OfficeSpace Software 租用戶。
+11. 在 [OfficeSpace Software 組態] 區段上，按一下 [設定 OfficeSpace Software] 以開啟 [設定登入] 視窗。
 
-9. 移至 **ADMIN**，然後按一下 [連接器]。
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_09.png) 
+
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_10.png)
+
+12. 在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 OfficeSpace Software 租用戶。
+
+13. 移至 [設定]，然後按一下 [連接器]。
 
     ![在應用程式端設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_002.png)
 
-10. 按一下 [SAML 授權] 。
+14. 按一下 [SAML 授權] 。
 
     ![在應用程式端設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_003.png)
 
-11. 在 [SAML 授權]  區段中，執行下列步驟：
+15. 在 [SAML 授權]  區段中，執行下列步驟：
 
     ![在應用程式端設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_004.png)
 
-    a. 在 [登出提供者 URL] 文字方塊中，放入得自 Azure AD 應用程式組態精靈的 [遠端登入 URL] 值。
+    a. 在 [登出提供者 URL] 文字方塊中，放入來自 Azure AD 應用程式組態視窗的 [登出 URL] 值。
 
-    b.這是另一個 C# 主控台應用程式。 在 [用戶端 IdP 目標 URL] 文字方塊中，放入得自 Azure AD 應用程式組態精靈的 [遠端登出 URL] 值。
+    b. 在 [用戶端 IdP 目標 URL] 文字方塊中，放入來自 Azure AD 應用程式組態視窗的 [SAML 單一登入服務 URL] 值。
 
     c. 從下載的憑證複製**指紋**值，然後將它貼至 [用戶端 IDP 憑證指紋] 文字方塊中。 
 
     d. 按一下 [儲存設定] 。
 
     > [!NOTE]
-    > 如需詳細資訊，請參閱 [如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)
-
-12. 在傳統入口網站中，選取單一登入組態確認，然後按 [下一步] 。
-
-    ![Azure AD 單一登入][10]
-
-13. 在 [單一登入確認] 頁面上，按一下 [完成]。  
+    > 如需詳細資訊，請參閱 [如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI) 
   
-    ![Azure AD 單一登入][11]
-
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
+本節目標是在 Azure 管理入口網站中建立名為 Britta Simon 的測試使用者。
 
-![建立 Azure AD 使用者][20]
+![建立 Azure AD 使用者][100]
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+1. 在 **Azure 管理入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
 
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_09.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_01.png) 
 
-2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+2. 移至 [使用者和群組]，然後按一下 [所有使用者] 以顯示使用者清單。
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_02.png) 
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
-
+3. 在對話方塊的頂端，按一下 [新增] 以開啟 [使用者] 對話方塊。
+ 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_03.png) 
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 在 [使用者]  對話頁面上，執行下列步驟：
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_04.png) 
 
-5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
- 
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_05.png) 
+    a. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
 
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+    b.這是另一個 C# 主控台應用程式。 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
 
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    c. 選取 [顯示密碼] 並記下 [密碼] 的值。
 
-    c. 按 [下一步] 。
-
-6.  在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
-
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_06.png) 
-
-    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-
-    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-
-    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-
-    d. 在 [角色] 清單中選取 [使用者]。
-
-    e. 按 [下一步] 。
-
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
-
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_07.png) 
-
-8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
-
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-officespace-tutorial/create_aaduser_08.png) 
-
-    a. 記下 [新密碼] 的值。
-
-    b. 按一下頁面底部的 [新增] 。   
+    d. 按一下 [建立] 。 
 
 
 
@@ -264,7 +240,7 @@ OfficeSpace Software 應用程式會預期要有特定格式的 SAML 判斷提�
 在這一節沒有您需要進行的動作項目。 嘗試存取 OfficeSpace Software 時，如果使用者還不存在，就會建立新使用者。
 
 > [!NOTE]
-> 如果您需要手動建立使用者，您需要連絡 [OfficeSpace Software 支援小組](emaiLto:support@officespacesoftware.com)。
+> 如果您需要手動建立使用者，您需要連絡 [OfficeSpace Software 支援小組](mailto:support@officespacesoftware.com)。
 
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
@@ -275,7 +251,7 @@ OfficeSpace Software 應用程式會預期要有特定格式的 SAML 判斷提�
 
 **若要指派 Britta Simon 到 OfficeSpace Software，請執行以下步驟：**
 
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
+1. 在 Azure 管理入口網站中，開啟應用程式檢視，然後瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
 
     ![指派使用者][201] 
 
@@ -283,16 +259,20 @@ OfficeSpace Software 應用程式會預期要有特定格式的 SAML 判斷提�
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_50.png) 
 
-3. 在頂端的功能表中，按一下 [使用者] 。
+3. 在左側功能表中，按一下 [使用者和群組]。
 
-    ![指派使用者][203] 
+    ![指派使用者][202] 
 
-4. 在 [使用者] 清單中，選取 [Britta Simon] 。
+4. 按一下 [新增] 按鈕。 然後選取 [新增指派] 對話方塊上的 [使用者和群組]。
 
-5. 在底部的工具列中，按一下 [指派] 。
+    ![指派使用者][203]
+
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
+
+6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
+
+7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
-    ![指派使用者][205]
-
 
 
 ### <a name="testing-single-sign-on"></a>測試單一登入
@@ -316,19 +296,9 @@ OfficeSpace Software 應用程式會預期要有特定格式的 SAML 判斷提�
 [3]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_03.png
 [4]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_04.png
 
-[6]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_05.png
-[10]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_06.png
-[11]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_07.png
-[20]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_100.png
+[100]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_100.png
 
 [200]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_200.png
 [201]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_201.png
+[202]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_202.png
 [203]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_203.png
-[204]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_204.png
-[205]: ./media/active-directory-saas-officespace-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
-

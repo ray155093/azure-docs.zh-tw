@@ -8,28 +8,26 @@ manager: jhubbard
 editor: 
 ms.assetid: 3a56e9de-c21a-40ba-9a35-958172cb4e5b
 ms.service: sql-database
-ms.custom: how to
+ms.custom: overview
 ms.devlang: NA
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.date: 09/19/2016
+ms.date: 01/10/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 09c2332589b1170b411c6f45f4109fb8048887e2
-ms.openlocfilehash: dde22adda13b88a6cd0f1d033c2730ddc3288050
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: 130f2341eca570a982ab5c22ba429f6b48006f90
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="manage-azure-sql-databases-using-the-azure-portal"></a>使用 Azure 入口網站管理 Azure SQL Database
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](sql-database-manage-portal.md)
-> * [SSMS](sql-database-manage-azure-ssms.md)
-> * [PowerShell](sql-database-manage-powershell.md)
-> 
-> 
 
 [Azure 入口網站](https://portal.azure.com/) 可讓您建立、監視和管理 Azure SQL Database 與伺服器。 本文提供較常見工作的快速說明和詳細資料連結。
+
+> [!TIP]
+> 如需示範如何建立伺服器、建立伺服器型防火牆、檢視伺服器屬性、使用 SQL Server Management Studio 進行連接、查詢 Master 資料庫、建立範例資料庫和空白資料庫、查詢資料庫屬性、使用 SQL Server Management Studio 進行連接，以及查詢範例資料庫的教學課程，請參閱[開始使用教學課程](sql-database-get-started.md)。
 
 ## <a name="view-your-azure-sql-databases-servers-and-pools"></a>檢視您的 Azure SQL Database、伺服器和集區
 若要檢視可用的 SQL Database 服務，請按一下 [更多服務]，然後在搜尋方塊中輸入 **SQL**︰
@@ -37,17 +35,17 @@ ms.openlocfilehash: dde22adda13b88a6cd0f1d033c2730ddc3288050
 ![SQL Database](./media/sql-database-manage-portal/sql-services.png)
 
 ## <a name="how-do-i-create-or-view-azure-sql-databases"></a>如何建立或檢視 Azure SQL Database？
-若要開啟 [SQL Database] 刀鋒視窗，請按一下 [SQL Database]，然後按一下您想要使用的資料庫，或按一下 [+新增] 以建立 SQL Database。 如需詳細資訊，請參閱 [使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
+若要開啟 [SQL Database] 刀鋒視窗，請按一下 [SQL Database]，然後按一下您想要使用的資料庫，或按一下 [+新增] 以建立 SQL Database。 如需詳細資料，請參閱[您的第一個 Azure SQL Database (使用 Azure 入口網站)](sql-database-get-started.md)。
 
 ![SQL DATABASE](./media/sql-database-manage-portal/sql-databases.png)
 
 ## <a name="how-do-i-create-or-view-azure-sql-servers"></a>如何建立或檢視 Azure SQL Server？
-若要開啟 [SQL Server] 刀鋒視窗，請按一下 [SQL Server]，然後按一下您想要使用的伺服器，或按一下 [+新增] 以建立 SQL Server。 如需詳細資訊，請參閱 [使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
+若要開啟 [SQL Server] 刀鋒視窗，請按一下 [SQL Server]，然後按一下您想要使用的伺服器，或按一下 [+新增] 以建立 SQL Server。 如需詳細資料，請參閱[您的第一個 Azure SQL Database (使用 Azure 入口網站)](sql-database-get-started.md)。
 
 ![SQL Server](./media/sql-database-manage-portal/sql-servers.png)
 
 ## <a name="how-do-i-create-or-view-sql-elastic-pools"></a>如何建立或檢視 Azure 彈性集區？
-若要開啟 [SQL 彈性集區] 刀鋒視窗，請按一下 [SQL 彈性集區]，然後按一下您想要使用的集區，或按一下 [+新增] 以建立集區。 如需詳細資訊，請參閱 [使用 Azure 入口網站來建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)。
+若要開啟 [SQL 彈性集區] 刀鋒視窗，請按一下 [SQL 彈性集區]，然後按一下您想要使用的集區，或按一下 [+新增] 以建立集區。 如需詳細資訊，請參閱[使用 Azure 入口網站建立彈性集區](sql-database-elastic-pool-manage-portal.md)。
 
 ![SQL 彈性集區](./media/sql-database-manage-portal/elastic-pools.png)
 
@@ -67,12 +65,12 @@ ms.openlocfilehash: dde22adda13b88a6cd0f1d033c2730ddc3288050
 ![防火牆規則](./media/sql-database-manage-portal/sql-database-firewall.png)
 
 ## <a name="how-do-i-change-my-sql-database-service-tier-or-performance-level"></a>如何變更 SQL Database 服務層或效能等級？
-若要更新 SQL Database 的服務層或效能等級，請按一下 [SQL Database] 刀鋒視窗上的 [定價層 (級別 DTU)]。 如需詳細資訊，請參閱 [變更 SQL Database 的服務層和效能等級 (定價層)](sql-database-scale-up.md)。
+若要更新 SQL Database 的服務層或效能等級，請按一下 [SQL Database] 刀鋒視窗上的 [定價層 (級別 DTU)]。 如需詳細資訊，請參閱 [變更 SQL Database 的服務層和效能等級 (定價層)](sql-database-service-tiers.md)。
 
 ![定價層](./media/sql-database-manage-portal/pricing-tier.png)
 
 ## <a name="how-do-i-configure-auditing-and-threat-detection-for-a-sql-database"></a>如何為 SQL Database 設定稽核和威脅偵測？
-若要為 SQL Database 設定稽核和威脅偵測，請按一下 [SQL Database] 刀鋒視窗上的 [稽核與威脅偵測]。 如需詳細資訊，請參閱[開始使用 SQL Database 稽核](sql-database-auditing-get-started.md)和[開始使用 SQL Database 威脅偵測](sql-database-threat-detection-get-started.md)。
+若要為 SQL Database 設定稽核和威脅偵測，請按一下 [SQL Database] 刀鋒視窗上的 [稽核與威脅偵測]。 如需詳細資料，請參閱[資料庫稽核 (英文)](sql-database-auditing.md) 和[開始使用 SQL Database 威脅偵測](sql-database-threat-detection.md)。
 
 ## <a name="how-do-i-configure-dynamic-data-masking-for-a-sql-database"></a>如何為 SQL Database 設定動態資料遮罩？
 若要為 SQL Database 設定動態資料遮罩，請按一下 [SQL Database] 刀鋒視窗上的 [動態資料遮罩]。 如需詳細資訊，請參閱 [開始使用 SQL Database 動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)。
@@ -81,7 +79,7 @@ ms.openlocfilehash: dde22adda13b88a6cd0f1d033c2730ddc3288050
 若要為 SQL Database 設定透明資料加密，請按一下 [SQL Database] 刀鋒視窗上的 [透明資料加密]。 如需詳細資訊，請參閱 [使用入口網站在資料庫上啟用 TDE](https://msdn.microsoft.com/library/dn948096#Anchor_1)。
 
 ## <a name="how-do-i-view-or-change-the-max-size-of-a-sql-database"></a>如何檢視或變更SQL Database 的大小上限？
-若要檢視或變更SQL Database 的大小，請按一下 [SQL Database] 刀鋒視窗上的 [資料庫大小]。 藉由變更服務層或效能等級來更新資料庫的大小上限。 如需詳細資訊，請參閱 [變更 SQL Database 的服務層和效能等級 (定價層)](sql-database-scale-up.md)。
+若要檢視或變更SQL Database 的大小，請按一下 [SQL Database] 刀鋒視窗上的 [資料庫大小]。 藉由變更服務層或效能等級來更新資料庫的大小上限。 如需詳細資訊，請參閱 [變更 SQL Database 的服務層和效能等級 (定價層)](sql-database-service-tiers.md)。
 
 ## <a name="how-do-i-monitor-and-improve-the-performance-of-a-sql-database"></a>如何監視和改善 SQL Database 的效能？
 若要監視和改善 SQL Database 的效能特性，請按一下 [SQL Database] 刀鋒視窗上的 [效能概觀]。 如需詳細資訊，請參閱 [SQL Database 效能深入解析](sql-database-performance.md)。
@@ -108,7 +106,7 @@ ms.openlocfilehash: dde22adda13b88a6cd0f1d033c2730ddc3288050
 ![SQL database settings](./media/sql-database-manage-portal/sql-database-restore.png)
 
 ## <a name="how-do-i-create-an-azure-sql-database-from-a-bacpac-file"></a>如何從 BACPAC 檔案建立 Azure SQL Database？
-若要從 BACPAC 檔案建立 Azure SQL Database，請按一下 [SQL Server] 刀鋒視窗上的 [匯入資料庫]。 如需詳細資訊，請參閱 [匯入 BACPAC 檔案以建立 Azure SQL Database](sql-database-import.md)。
+若要從 BACPAC 檔案建立 Azure SQL Database，請按一下 [SQL Server] 刀鋒視窗上的 [匯入資料庫]。 如需詳細資訊，請參閱 [匯入 BACPAC 檔案以建立 Azure SQL Database](sql-database-import-portal.md)。
 
 ![SQL Server](./media/sql-database-manage-portal/server-commands.png)
 
@@ -122,11 +120,6 @@ ms.openlocfilehash: dde22adda13b88a6cd0f1d033c2730ddc3288050
 
 ## <a name="additional-resources"></a>其他資源
 * [SQL Database](sql-database-technical-overview.md)
-* [使用 Azure 入口網站監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
+* [使用 Azure 入口網站監視和管理彈性集區](sql-database-elastic-pool-manage-portal.md)
 
 

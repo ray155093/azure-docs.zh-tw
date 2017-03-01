@@ -7,6 +7,7 @@ author: stepro
 manager: dmitryr
 editor: 
 ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: /azure
 ms.assetid: 857a812d-c73e-4af7-a985-2d0baf8b6f71
 ms.service: multiple
 ms.devlang: nodejs
@@ -18,6 +19,7 @@ ms.author: stephpr
 translationtype: Human Translation
 ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
 ms.openlocfilehash: 0de0314902805a2bdb37ce3c6f79ec221f3aed31
+ms.lasthandoff: 12/06/2016
 
 
 ---
@@ -258,10 +260,5 @@ Git 公開一些會在特定時間呼叫的勾點，可對儲存機制上採取�
 這篇文章說明如何將 Node.js 應用程式部署到 Azure 中執行的 Linux 虛擬機器。 若要深入了解 Azure 中的 Linux 虛擬機器，請參閱 [Azure 上的 Linux 簡介](/documentation/articles/virtual-machines-linux-introduction/)。
 
 如需如何在 Azure 上開發 Node.js 應用程式的詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

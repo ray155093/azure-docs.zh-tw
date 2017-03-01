@@ -11,36 +11,39 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/29/2016
+ms.date: 02/13/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 64a7ff2552d2ccc97b1ec90cf524aed6b62ecb82
+ms.sourcegitcommit: ddbe54eb6f9565e0c42d138231dbde22592e75b5
+ms.openlocfilehash: d6191e01450859a5e91b815df84d9a024bbee2c3
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-abintegro"></a>教學課程：Azure Active Directory 與 Abintegro 整合
 本教學課程的目的是要示範 Azure 與 Abintegro 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂閱
-* 啟用 Abintegro 單一登入的訂用帳戶
+* 已啟用 Abintegro 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 Abintegro 的 Azure AD 使用者就能夠單一登入您 Abintegro 公司網站 (服務提供者起始登入) 的應用程式，或是使用 [存取面板簡介](active-directory-saas-access-panel-introduction.md)進行單一登入。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
-1. 啟用 Abintegro 的應用程式整合
-2. 設定單一登入
-3. 設定使用者佈建
-4. 指派使用者
+* 啟用 Abintegro 的應用程式整合
+* 設定單一登入 (SSO)
+* 設定使用者佈建
+* 指派使用者
 
 ![案例](./media/active-directory-saas-abintegro-tutorial/IC790076.png "案例")
 
-## <a name="enabling-the-application-integration-for-abintegro"></a>啟用 Abintegro 的應用程式整合
+## <a name="enable-the-application-integration-for-abintegro"></a>啟用 Abintegro 的應用程式整合
 本節的目的是概述如何啟用 Abintegro 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-abintegro-perform-the-following-steps"></a>若要啟用 Abintegro 的應用程式整合，請執行下列步驟：
+**若要啟用 Abintegro 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-abintegro-tutorial/IC700993.png "Active Directory")
@@ -61,11 +64,12 @@ ms.openlocfilehash: 64a7ff2552d2ccc97b1ec90cf524aed6b62ecb82
    
    ![Abintegro](./media/active-directory-saas-abintegro-tutorial/IC790078.png "Abintegro")
    
-   ## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Abintegro 中進行驗證。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 [Abintegro] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-abintegro-tutorial/IC790079.png "設定單一登入")
@@ -80,24 +84,25 @@ ms.openlocfilehash: 64a7ff2552d2ccc97b1ec90cf524aed6b62ecb82
    ![設定單一登入](./media/active-directory-saas-abintegro-tutorial/IC790082.png "設定單一登入")
 5. 將中繼資料檔傳送給 Abintegro 支援小組。
    
-   > [!NOTE]
-   > 單一登入組態必須由 Abintegro 支援小組執行。 設定完成後，您將會收到通知。
-   > 
-   > 
+   >[!NOTE]
+   >單一登入組態必須由 Abintegro 支援小組執行。 設定完成後，您將會收到通知。
+   >  
 6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
-   ![設定單一登入](./media/active-directory-saas-abintegro-tutorial/IC790083.png "設定單一登入")
+  ![設定單一登入](./media/active-directory-saas-abintegro-tutorial/IC790083.png "設定單一登入")
    
-   ## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 沒有動作項目可讓您設定 Abintegro 使用者佈建。  
 當指派的使用者透過存取面板嘗試登入 Abintegro 時，Abintegro 會檢查使用者是否存在。  
+
 如果尚無可用的使用者帳戶，Abintegro 會自動予以建立。
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-abintegro-perform-the-following-steps"></a>若要將使用者指派到 Abintegro，請執行下列步驟：
+**若要指派使用者給 Abintegro，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Abintegro] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -107,10 +112,5 @@ ms.openlocfilehash: 64a7ff2552d2ccc97b1ec90cf524aed6b62ecb82
    ![是](./media/active-directory-saas-abintegro-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

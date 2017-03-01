@@ -14,11 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 02/16/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
-ms.openlocfilehash: 78fb1aba448ebfbba9e38deec35daf7b64b4027c
+ms.sourcegitcommit: 0c07c842ba8c6214d6746b0361af7b416069a6f5
+ms.openlocfilehash: 6a854486060c77d743cbdd42b7a341860ab77361
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -31,24 +32,21 @@ ms.openlocfilehash: 78fb1aba448ebfbba9e38deec35daf7b64b4027c
 ## <a name="admins-adding-guest-users-to-the-directory"></a>系統管理員將來賓使用者新增到目錄
 以 Azure AD 系統管理員身分將 B2B 共同作業使用者新增到目錄，如下列影片中所示：
 
-  >[!VIDEO https://channel9.msdn.com/Blogs/Azure/Admin-adding-guests-for-B2B-collaboration-to-Azure-AD-tenant]
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/Admin-adding-guests-for-B2B-collaboration-to-Azure-AD-tenant/Player]
 
-  如果沒有內嵌顯示這段影片，您可以在[這裡](https://channel9.msdn.com/Blogs/Azure/Admin-adding-guests-for-B2B-collaboration-to-Azure-AD-tenant)取得。
 
 ## <a name="admins-adding-guest-users-to-a-group"></a>系統管理員將來賓使用者新增到群組
 以 Azure AD 系統管理員身分將 B2B 共同作業使用者新增到群組，如下列影片中所示：
 
-  >[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group]
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group/Player]
 
-  如果沒有內嵌顯示這段影片，您可以在[這裡](https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group)取得。
 
 ## <a name="admins-adding-guest-users-to-an-application"></a>系統管理員將來賓使用者新增到應用程式
 
 以 Azure AD 系統管理員身分將 B2B 共同作業使用者新增到應用程式，如下列影片中所示：
 
-  >[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-assign-b2b-to-apps]
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-assign-b2b-to-apps/Player]
 
-  如果沒有內嵌顯示這段影片，您可以在[這裡](https://channel9.msdn.com/Blogs/Azure/admin-assign-b2b-to-apps)取得。
 
 ## <a name="related-articles"></a>相關文章
 
@@ -65,9 +63,4 @@ ms.openlocfilehash: 78fb1aba448ebfbba9e38deec35daf7b64b4027c
 * [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

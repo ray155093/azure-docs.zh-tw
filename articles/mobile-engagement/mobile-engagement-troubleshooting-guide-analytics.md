@@ -4,7 +4,7 @@ description: "Azure Mobile Engagement 中分析、監視、分割，以及儀表
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 04a7020a-ad74-4491-be69-0bd574890029
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: c407e8f0beb110844ba2ae4ca1a065a122d0fdbd
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -59,10 +60,5 @@ ms.openlocfilehash: c407e8f0beb110844ba2ae4ca1a065a122d0fdbd
 ### <a name="causes"></a>原因
 * 如果要疑難排解分析、監視或儀表板中發生的應用程式當機，請務必查看版本資訊，了解舊版 SDK 的已知問題。
 * 若要進一步疑難排解應用程式當機，請在已安裝您應用程式的測試裝置上執行事件，並在 Azure Mobile Engagement UI 的 [監視 – 事件] 區段中查詢您的裝置識別碼。 然後執行造成應用程式當機的事件，並查詢 Azure Mobile Engagement UI 的 [監視 – 當機] 區段中的其他資訊。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

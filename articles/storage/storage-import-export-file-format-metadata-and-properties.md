@@ -1,5 +1,5 @@
 ---
-title: "匯入匯出服務中繼資料和屬性檔案格式 | Microsoft Docs"
+title: "Azure 匯入/匯出中繼資料和屬性檔案格式 | Microsoft Docs"
 description: "了解如何針對匯入或匯出作業中的一或多個 blob 指定中繼資料和屬性"
 author: muralikk
 manager: syadav
@@ -12,15 +12,16 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 78abb839badf99c6251673ee9914955df8c950bc
-ms.openlocfilehash: 8c8800682a0ce2c52962a41c1c09fbc59595dee2
+ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
+ms.openlocfilehash: 0cac5419d4b481a5b783b4b9fbd4ad2d4d637042
+ms.lasthandoff: 02/16/2017
 
 
 ---
-# <a name="import-export-service-metadata-and-properties-file-format"></a>匯入匯出服務中繼資料和屬性檔案格式
+# <a name="azure-importexport-service-metadata-and-properties-file-format"></a>Azure 匯入/匯出服務中繼資料和屬性檔案格式
 您可以針對匯入或匯出作業中的一或多個 blob 指定中繼資料和屬性。 若要針對建立為匯入作業一部分的 blob 設定中繼資料或屬性，您可在包含要匯入資料的硬碟上提供中繼資料或屬性檔案。 若為匯出作業，中繼資料和屬性會寫入至中繼資料或屬性檔案 (包含在傳回給您的硬碟上)。  
   
 ## <a name="metadata-file-format"></a>中繼資料檔案格式  
@@ -70,9 +71,4 @@ ms.openlocfilehash: 8c8800682a0ce2c52962a41c1c09fbc59595dee2
 |`Cache-Control`|String|選用。 Blob 的快取控制字串。|  
   
  如需有關設定 blob 中繼資料和屬性的詳細規則，請參閱[設定 Blob 屬性](/rest/api/storageservices/fileservices/set-blob-properties)、[設定 Blob 中繼資料](/rest/api/storageservices/fileservices/set-blob-metadata)和[設定及擷取 Blob 資源的屬性和中繼資料](/rest/api/storageservices/fileservices/setting-and-retrieving-properties-and-metadata-for-blob-resources)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

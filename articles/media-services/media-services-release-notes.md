@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: media
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 02/21/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 17973d439023a1c32ea64a05e1442618da6de511
+ms.sourcegitcommit: 83881cda043fc9f1ef48281e8160a882c1f9bced
+ms.openlocfilehash: 5aa7353e681a16d2032fecaf8a2de50e241ac4ad
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -44,9 +45,13 @@ ms.openlocfilehash: 17973d439023a1c32ea64a05e1442618da6de511
 ## <a name="a-idrestversionhistoryarest-api-version-history"></a><a id="rest_version_history"></a>REST API 版本歷程記錄
 如需媒體服務 REST API 版本歷程記錄的相關資訊，請參閱 [Azure 媒體服務 REST API 參考]。
 
+## <a name="febuary-2017-release"></a>2017 年 2 月版本
+
+從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 如果您需要封存作業/工作資訊，您可以使用[這裡](media-services-dotnet-manage-entities.md)所述的程式碼。
+
 ## <a name="january-2017-release"></a>2017 年 1 月版本
 
-在「Microsoft Azure 媒體服務」(AMS) 中，「串流端點」代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給「內容傳遞網路」(CDN) 以進行進一步散發的串流服務。 媒體服務也提供順暢的 Azure CDN 整合。 來自 StreamingEndpoint 服務的輸出資料流可以是即時資料流、隨選視訊，也可以是「媒體服務帳戶」中漸進式的資產下載。 每個「Azure 媒體服務」帳戶皆包含一個預設的 StreamingEndpoint。 您可以在該帳戶下建立額外的 StreamingEndpoint。 StreamingEndpoint 有 1.0 和 2.0 兩個版本。 從 2017 年 1 月 10 日開始，所有新建立的 AMS 帳戶都會包含 2.0 版「預設」StreamingEndpoint。 您新增到此帳戶的額外串流端點也將會是 2.0 版。 這項變更不會影響現有的帳戶，現有的 StreamingEndpoint 會是 1.0 版並可升級到 2.0 版。 隨著這項變更，將會有行為、計費及功能變更 (如需詳細資訊，請參閱[這個](media-services-streaming-endpoints-overview.md)主題)。
+在「Microsoft Azure 媒體服務」(AMS) 中，「串流端點」代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給「內容傳遞網路」(CDN) 以進行進一步散發的串流服務。 媒體服務也提供順暢的 Azure CDN 整合。 來自 StreamingEndpoint 服務的輸出資料流可以是即時資料流、隨選視訊，也可以是媒體服務帳戶中漸進式的資產下載。 每個「Azure 媒體服務」帳戶皆包含一個預設的 StreamingEndpoint。 您可以在該帳戶下建立額外的 StreamingEndpoint。 StreamingEndpoint 有 1.0 和 2.0 兩個版本。 從 2017 年 1 月 10 日開始，所有新建立的 AMS 帳戶都會包含 2.0 版**預設** StreamingEndpoint。 您新增到此帳戶的額外串流端點也將會是 2.0 版。 這項變更不會影響現有的帳戶，現有的 StreamingEndpoint 會是 1.0 版並可升級到 2.0 版。 隨著這項變更，將會有行為、計費及功能變更 (如需詳細資訊，請參閱[這個](media-services-streaming-endpoints-overview.md)主題)。
 
 此外，從 2.15 版開始，「Azure 媒體服務」還在「串流端點」實體新增了下列屬性：**CdnProvider**、**CdnProfile**、**FreeTrialEndTime**、**StreamingEndpointVersion**。 如需這些屬性的詳細概觀，請參閱[這裡](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。 
 
@@ -99,6 +104,12 @@ Azure Media Services SDK for .NET (3.5.3) 的最新版本包含 Widevine 相關�
 基本、標準和高階編碼保留單元已分別重新命名為 S1、S2 和 S3 保留單元。  目前使用基本編碼保留單元的客戶在 Azure 入口網站 (和帳單中) 將會看到 S1 的標籤，標準和高階的客戶將分別看到 S2 和 S3 的標籤。 
 
 ## <a name="a-iddecchanges15adecember-2015-release"></a><a id="dec_changes_15"></a>2015 年 12 月版本
+
+### <a name="azure-media-encoder-deprecation-announcement"></a>Azure 媒體編碼器淘汰通知
+
+Azure 媒體編碼器將在 12 個月後淘汰。 請開始使用[媒體編碼器標準](media-services-media-encoder-standard-formats.md)編碼器。
+
+### <a name="azure-sdk-for-php"></a>Azure SDK for PHP
 Azure SDK 小組已發佈新版的 [Azure SDK for PHP](http://github.com/Azure/azure-sdk-for-php) 套件，其中包含 Microsoft Azure 媒體服務的更新與新功能。 特別是 Azure Media Services SDK for PHP 現在支援最新的 [內容保護](media-services-content-protection-overview.md) 功能：在有和沒有權杖限制的情況下使用 AES 和 DRM (PlayReady 與 Widevine) 動態加密。 它也支援調整 [編碼單位](media-services-dotnet-encoding-units.md)大小。
 
 如需詳細資訊，請參閱：
@@ -531,10 +542,5 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 [Github]: https://github.com/Azure/azure-sdk-for-media-services
 [管理多個儲存體帳戶間的媒體服務資產]: http://msdn.microsoft.com/library/azure/dn271889.aspx
 [處理媒體服務工作通知]: http://msdn.microsoft.com/library/azure/dn261241.aspx
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

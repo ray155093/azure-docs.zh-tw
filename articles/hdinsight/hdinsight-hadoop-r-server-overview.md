@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/09/2017
+ms.date: 02/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
 ms.sourcegitcommit: cd57f3a43142b3af3546eafd9749123fadd333c2
 ms.openlocfilehash: 2f5cf1155f116b22fa28cf86bb8c87667df981b7
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -104,9 +105,4 @@ HDInsight 叢集的 Linux 邊緣節點，是 R 型分析的登陸區域。  HDIn
 * [將 RStudio Server 新增至 HDInsight (若未在建立叢集期間安裝)](hdinsight-hadoop-r-server-install-r-studio.md)
 * [適用於 HDInsight 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
 * [適用於 HDInsight R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

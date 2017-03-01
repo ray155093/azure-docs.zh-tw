@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/01/2016
 ms.author: rajram
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 0fd71a72040ecf4e51fc118ce881b6c8ceb51b61
+ms.sourcegitcommit: 5b1b65e3d1066bea6958fa6461a157ee39fbe7dc
+ms.openlocfilehash: 35bd4561f6e8f4482cb084eb293b506eb9269cf7
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -59,7 +60,7 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。  作法是�
 建立 API 應用程式之後，您現在可以使用檔案連接器做為邏輯應用程式的動作。 若要這樣做，您需要：
 
 1. 建立新的邏輯應用程式，並選擇具有檔案連接器的相同資源群組。 依照指示 [建立新的邏輯應用程式]。
-2. 在建立的 Logic Apps 中開啟 [觸發程序和動作] 以開啟 Logic Apps 設計工具，並設定您的流程。
+2. 在建立的邏輯應用程式中開啟 [觸發程序和動作]，以開啟邏輯應用程式設計工具，並設定您的流程。
 3. 檔案連接器就會出現在右側資源庫中的 [此資源群組中的 API Apps] 區段。
 4. 您可以在 [檔案連接器] 上按一下來將檔案連接器 API 應用程式置入編輯器。 檔案連接器公開一個觸發程序和 4 個動作：  
    ![][5]
@@ -79,16 +80,16 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。  作法是�
 如需 API 的詳細資訊，請參閱 [檔案連接器 API 定義]。
 
 ## <a name="do-more-with-your-connector"></a>進一步運用您的連接器
-現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。 請參閱 [什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
+現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。 請參閱 [什麼是 Logic Apps？](../logic-apps/logic-apps-what-are-logic-apps.md)。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至 [試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至 [試用 Logic App](https://azure.microsoft.com/try/app-service/logic/)，即可在 App Service 中立即建立短期入門 Logic Apps。 不需要信用卡；沒有承諾。
 >
 >
 
 檢視位於 [連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
-您也可以檢閱連接器的效能統計資料及控制安全性。 請參閱[監視 Logic Apps](app-service-logic-monitor-your-logic-apps.md)。
+您也可以檢閱連接器的效能統計資料及控制安全性。 請參閱[監視 Logic Apps](../logic-apps/logic-apps-monitor-your-logic-apps.md)。
 
 <!-- Image reference -->
 [1]: ./media/app-service-logic-connector-file/img1.PNG
@@ -100,9 +101,4 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。  作法是�
 [建立新的邏輯應用程式]: app-service-logic-create-a-logic-app.md
 [File connector API definition]: https://msdn.microsoft.com/library/dn936296.aspx
 [使用混合式連線管理員]: ../app-service-web/web-sites-hybrid-connection-get-started.md
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

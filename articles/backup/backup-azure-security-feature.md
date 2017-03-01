@@ -12,11 +12,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/24/2016
+ms.date: 02/17/2017
 ms.author: pajosh
 translationtype: Human Translation
-ms.sourcegitcommit: 4a846e86fa8cefbee04e1e30078a0d2aabdd834d
-ms.openlocfilehash: 1b7df71f103e8284bdcc7bc3a27fe44815b12305
+ms.sourcegitcommit: 5c49de40401235d38142efd60d22b0591752fe75
+ms.openlocfilehash: f17802bf455b82f0b5239356c35024ecde7f1f35
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -29,13 +30,14 @@ ms.openlocfilehash: 1b7df71f103e8284bdcc7bc3a27fe44815b12305
 
 > [!NOTE]
 > 只有當您使用下列項目，才應該啟用安全性功能︰ <br/>
-> * **MAB 代理程式** - 至少為代理程式 2.0.9052 版。 一旦啟用這些功能，您就應該升級為此代理程式版本，以執行重要作業，例如變更複雜密碼、停止備份並刪除資料 <br/>
-> * **Azure 備份伺服器** - 至少為 MAB 代理程式 2.0.9052 版與 Azure 備份伺服器 Update 1 <br/>
-> * **DPM** - 不要對 DPM 啟用這些功能。 這些功能即將在未來的 UR 中提供，所以啟用它們不會對現有功能造成任何影響。 <br/>
+> * **MAB 代理程式** - 至少為代理程式 2.0.9052 版。 一旦啟用這些功能，您就應該升級為此版本的代理程式，以執行重要作業，例如變更複雜密碼、停止備份並刪除資料。 <br/>
+> * **Azure 備份伺服器** - 至少為 MAB 代理程式 2.0.9052 版與 Azure 備份伺服器 Update 1。 <br/>
+> * **DPM** - 至少為 MAB 代理程式 2.0.9052 版，並具有 DPM 2012 R2 UR12 或 DPM 2016 UR2。 <br/>
 > * **IaaS VM 備份** - 不要對 IaaS VM 備份啟用這些功能。 這些功能尚無法用於 IaaS VM 備份，所以啟用它們不會對 IaaS VM 備份造成任何影響。
-> * 一旦啟用，您即可取得所有向保存庫註冊之 Azure 復原服務代理程式 (MARS) 電腦和 Azure 備份伺服器的安全性功能。 <br/>
+> * 這些功能僅適用於復原服務保存庫。
+> * 所有新建立的復原服務保存庫預設都已經啟用這些功能。 對於現有的復原服務保存庫，使用者則需要使用下節中提及的步驟來啟用這些功能。
+> * 一旦啟用，您即可取得所有向保存庫註冊之 Azure 復原服務代理程式 (MARS) 電腦、Azure 備份伺服器和 DPM 伺服器的安全性功能。 <br/>
 > * 啟用此設定是一次性動作，啟用之後便無法停用這些功能。 <br/>
-> * 這項功能僅適用於復原服務保存庫。
 >
 >
 
@@ -70,13 +72,18 @@ ms.openlocfilehash: 1b7df71f103e8284bdcc7bc3a27fe44815b12305
 
 若為 **Microsoft 復原服務代理程式 (MARS)** 使用者：
 
-1. 如果發生備份的電腦仍可使用，請使用 MARS 中的[將資料復原到相同電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-the-same-machine)，以便從舊的復原點復原資料。
+1. 如果發生備份的電腦仍可使用，請使用 MARS 中的[將資料復原到相同電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-recover-data-to-the-same-machine)，以便從舊的復原點復原資料。
 2. 如果無法使用上述的電腦，請使用[復原到其他電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-an-alternate-machine)，以使用另一部 MARS 電腦來取得此資料。
 
 若為 **Azure 備份伺服器**使用者：
 
 1. 如果發生備份的伺服器仍可使用，請重新保護已刪除的資料來源，並使用復原資料功能來從舊的復原點復原資料。
 2. 如果無法使用上述的電腦，請使用[從其他 Azure 備份伺服器復原資料](backup-azure-alternate-dpm-server.md#recover-data-from-another-azure-backup-server)，以使用另一部 Azure 備份伺服器來取得此資料。
+
+對於 **Data Protection Manager (DPM)** 使用者：
+
+1. 如果發生備份的伺服器仍可使用，請重新保護已刪除的資料來源，並使用復原資料功能來從舊的復原點復原資料。
+2. 如果無法使用上述的電腦，請使用[新增外部 DPM](backup-azure-alternate-dpm-server.md#recover-data-from-another-azure-backup-server)，以使用另一部 DPM 伺服器來取得此資料。
 
 ## <a name="preventing-attacks"></a>預防攻擊
 這項功能已新增各種檢查，確保只有有效的使用者可以執行各種作業。
@@ -108,9 +115,5 @@ ms.openlocfilehash: 1b7df71f103e8284bdcc7bc3a27fe44815b12305
 * [開始使用 Azure 復原服務保存庫](backup-azure-vms-first-look-arm.md)以啟用這些功能
 * [下載最新的 Azure 復原服務代理程式](http://aka.ms/azurebackup_agent)以保護 Windows 電腦及防護備份資料以免遭受攻擊
 * [下載最新的 Azure 備份伺服器](https://aka.ms/latest_azurebackupserver)以保護工作負載及防護備份資料以免遭受攻擊
-
-
-
-<!--HONumber=Feb17_HO1-->
-
+* [下載適用於 System Center 2012 R2 Data Protection Manager 的 UR12](https://support.microsoft.com/help/3209592/update-rollup-12-for-system-center-2012-r2-data-protection-manager) 或[下載適用於 System Center 2016 Data Protection Manager 的 UR2](https://support.microsoft.com/help/3209593/update-rollup-2-for-system-center-2016-data-protection-manager) 以保護工作負載，及保護您的備份免於攻擊
 

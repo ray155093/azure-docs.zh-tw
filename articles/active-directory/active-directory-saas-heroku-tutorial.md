@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 02/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: f4ea5c300699a01fb098e2949f1197fdfebc3701
+ms.sourcegitcommit: 325d92e493f6e011367d2c85b52c92838327101e
+ms.openlocfilehash: 3e09a2069c3342cce78b0d8bcaca310b3de2af08
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: f4ea5c300699a01fb098e2949f1197fdfebc3701
 Heroku 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 Heroku 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Heroku (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Heroku 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -35,11 +36,10 @@ Heroku 與 Azure AD 整合提供下列優點：
 若要設定與 Heroku 的 Azure AD 整合，您需要下列項目：
 
 * Azure 訂用帳戶
-* 啟用 Heroku 單一登入的訂用帳戶
+* 已啟用 Heroku 單一登入 (SSO) 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
@@ -51,10 +51,10 @@ Heroku 與 Azure AD 整合提供下列優點：
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。  
 本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫加入 Heroku
-2. 設定並測試 Azure AD 單一登入
+* 從資源庫加入 Heroku
+* 設定並測試 Azure AD 單一登入
 
-## <a name="adding-heroku-from-the-gallery"></a>從資源庫加入 Heroku
+## <a name="add-heroku-from-the-gallery"></a>從資源庫加入 Heroku
 若要設定 Heroku 與 Azure AD 整合，您需要從資源庫將 Heroku 加入受管理的 SaaS 應用程式清單中。
 
 **若要從資源庫加入 Heroku，請執行下列步驟：**
@@ -79,7 +79,7 @@ Heroku 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Heroku 設定及測試 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 Heroku 與 Azure AD 中互相對應的使用者。 換句話說，必須在某位 Azure AD 使用者與 Heroku 中的相關使用者之間，建立連結關聯性。  
@@ -93,7 +93,7 @@ Heroku 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 Heroku 中設定單一登入。
 
 **若要使用 Heroku 設定 Azure AD 單一登入，請執行下列步驟：**
@@ -108,42 +108,30 @@ Heroku 與 Azure AD 整合提供下列優點：
    
     ![設定單一登入](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_04.png) 
    
-   > [!NOTE]
-   > 如果您不知道登入 URL 和識別碼 URL 的正確值，請參閱[若要在 Heroku 中啟用 SSO，執行下列步驟](#x123)，以取得如何取得這些步驟的指示。   
-   > 
-   > 
+   >[!NOTE]
+   >如果您不知道登入 URL 和識別碼 URL 的正確值，請參閱[若要在 Heroku 中啟用 SSO，執行下列步驟](#x123)，以取得如何取得這些步驟的指示。   
+   >
 
-    a. 在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Heroku 應用程式的 URL：**“https://sso.heroku.com/saml/\<company name\>/init”**。 
-
-    b. 在 [識別碼] 文字方塊中，使用下列模式輸入 URL："**https://sso.heroku.com/saml/\<company name\>**"。  
-
-    c. 按 [下一步] 。
-
+    1. 在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Heroku 應用程式的 URL：**“https://sso.heroku.com/saml/\<company name\>/init”**。 
+    2. 在 [識別碼] 文字方塊中，使用下列模式輸入 URL："**https://sso.heroku.com/saml/\<company name\>**"。  
+    3. 按 [下一步] 。
 
 1. 在 [設定在 Heroku 單一登入]  頁面上，執行下列步驟︰
    
     ![設定單一登入](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_05.png) 
-   
-    a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
+    1. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
+    2. 按 [下一步] 。
 2. 若要在 Heroku 中啟用 SSO，請執行下列步驟：
    
-    a. 以系統管理員身分登入 Heroku 帳戶。
-   
-    b. 按一下 [設定]  索引標籤。
-   
-    c. 按一下 [單一登入] 頁面的 [上傳中繼資料]。
-   
-    d. 上傳您從 Azure 傳統入口網站下載的中繼資料檔案。
-   
-    e. 安裝成功後，系統管理員會看到確認對話方塊，以及供使用者使用的 SSO 登入 URL。
-   
-    f. <a name="x123"></a>複製您的 [Heroku 登入 URL] 和 [Heroku 實體識別碼]，然後在 Azure AD 傳統入口網站回到 [設定應用程式設定] 頁面，再將這兩個值貼入相關的文字方塊中。
+    1. 以系統管理員身分登入 Heroku 帳戶。
+    2. 按一下 [設定]  索引標籤。
+    3. 按一下 [單一登入] 頁面的 [上傳中繼資料]。
+    4. 上傳您從 Azure 傳統入口網站下載的中繼資料檔案。
+    5. 安裝成功後，系統管理員會看到確認對話方塊，以及供使用者使用的 SSO 登入 URL。
+    6. <a name="x123"></a>複製您的 [Heroku 登入 URL] 和 [Heroku 實體識別碼]，然後在 Azure AD 傳統入口網站回到 [設定應用程式設定] 頁面，再將這兩個值貼入相關的文字方塊中。
 
     ![設定單一登入](./media/active-directory-saas-heroku-tutorial/tutorial_heroku_52.png) 
-
-    g. 按 [下一步] 。
+    7. 按 [下一步] 。
 
 1. 選取單一登入設定確認，然後按一下 [下一步] 。
    
@@ -152,7 +140,7 @@ Heroku 與 Azure AD 整合提供下列優點：
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。  
 
 ![建立 Azure AD 使用者][20]
@@ -172,47 +160,36 @@ Heroku 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-heroku-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+    1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+    2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-heroku-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+   1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+   2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+   3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-heroku-tutorial/create_aaduser_07.png) 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-heroku-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+    1. 記下 [新密碼] 的值。
+    2. 按一下頁面底部的 [新增]。   
 
-### <a name="creating-an-heroku-test-user"></a>建立 Heroku 測試使用者
+### <a name="create-an-heroku-test-user"></a>建立 Heroku 測試使用者
 在本節中，您要在 Heroku 中建立名為 Britta Simon 的使用者。 Heroku 支援預設啟用的 Just-In-Time 佈建。
 
 在這一節沒有您需要進行的動作項目。 存取 Heroku 時，如果使用者還不存在，就會建立新使用者。 帳戶佈建之後，使用者會收到驗證電子郵件，而且必須按一下通知連結。
 
-> [!NOTE]
-> 如果您需要手動建立使用者，您需要連絡 Heroku 支援小組。
-> 
-> 
+>[!NOTE]
+>如果您需要手動建立使用者，您需要連絡 Heroku 支援小組。
+>  
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 在本節中，您會把 Heroku 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
@@ -233,8 +210,9 @@ Heroku 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
+### <a name="test-single-sign-on"></a>測試單一登入
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。  
+
 當您在存取面板中按一下 [Heroku] 圖格時，應該會自動登入您的 Heroku 應用程式。
 
 ## <a name="additional-resources"></a>其他資源
@@ -258,9 +236,4 @@ Heroku 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-heroku-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-heroku-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-heroku-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

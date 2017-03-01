@@ -4,7 +4,7 @@ description: "了解 Azure App Service Web Apps 中的生產測試 (TiP) 功能�
 services: app-service\web
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 4623468d-886e-4203-8012-8f86deb2790b
 ms.service: app-service-web
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: f9d423e87938e55daeb07268b11c930fb62755b6
 ms.openlocfilehash: 8fa7ca18fd2ea3a3f672854a0b2e0397cfdbb2bc
+ms.lasthandoff: 12/14/2016
 
 
 ---
@@ -84,10 +85,5 @@ ms.openlocfilehash: 8fa7ca18fd2ea3a3f672854a0b2e0397cfdbb2bc
 * [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)
 * [敏捷式軟體開發 (Agile Software Development) 與 Azure App Service](app-service-agile-software-development.md)
 * [為 Web 應用程式有效地使用 DevOps 環境](app-service-web-staged-publishing-realworld-scenarios.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

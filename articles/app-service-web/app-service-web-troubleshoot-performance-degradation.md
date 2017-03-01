@@ -4,7 +4,7 @@ description: "本文可協助您針對 Azure App Service 中 Web 應用程式效
 services: app-service\web
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 tags: top-support-issue
 keywords: "Web 應用程式效能、變慢的應用程式、應用程式變慢"
@@ -19,6 +19,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 5ea043ce3bcd0f500fd765f13764ea3ee83e1ba9
 ms.openlocfilehash: 83c3592014c73c0cf36d371d2752bc76b7c8a4e8
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -171,9 +172,4 @@ AutoHeal 會根據您選擇的設定 (例如組態變更、要求、以記憶體
  ![重新啟動 Web 應用程式以解決效能問題](./media/app-service-web-troubleshoot-performance-degradation/2-restart.png)
 
 您也可以使用 Azure Powershell 管理 Web 應用程式。 如需詳細資訊，請參閱 [將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

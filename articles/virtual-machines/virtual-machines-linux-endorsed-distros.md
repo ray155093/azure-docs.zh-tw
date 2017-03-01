@@ -13,11 +13,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 10/17/2016
+ms.date: 02/02/2017
 ms.author: szark
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: eaca6a05cdbc1dc5b9a62d8f60da689d06f315cc
+ms.sourcegitcommit: 6ac9ccd5510c7cdc8748767281965345a5fa0637
+ms.openlocfilehash: 04294bf682ec2e6cf294ebdb686e1fd58e6c58e4
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -45,8 +46,8 @@ Azure Linux 代理程式已預先安裝於 Azure 組件庫映像上，而且通�
 | Debian |Debian 7.9+、8.2+ |在核心中 |套件：在「waagent」下的儲存機制中  <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
 | Oracle Linux |6.4+、7.0+ |在核心中 |套件：在「WALinuxAgent」下的儲存機制中  <br/>原始程式碼： [GitHub](http://go.microsoft.com/fwlink/p/?LinkID=250998) |
 | Red Hat Enterprise Linux |RHEL 6.7+、7.1+ |在核心中 |套件：在「WALinuxAgent」下的儲存機制中  <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
-| SUSE Linux Enterprise |SLES 11 SP4、SLES 12 SP1+ 和 <p> SLES for SAP 11 SP3+ |在核心中 |封裝：在 "python-azure-agent" 下的[雲端：工具](https://build.opensuse.org/project/show/Cloud:Tools)儲存機制中 <br/>原始程式碼： [GitHub](http://go.microsoft.com/fwlink/p/?LinkID=250998) |
-| openSUSE |openSUSE 13.2+ |在核心中 |封裝：在 "python-azure-agent" 下的[雲端：工具](https://build.opensuse.org/project/show/Cloud:Tools)儲存機制中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
+| SUSE Linux Enterprise |SLES/SLES for SAP<br>11 SP4<br>12 SP1+|在核心中 |套件：<p> 適用於 11：在 [Cloud:Tools](https://build.opensuse.org/project/show/Cloud:Tools) 儲存機制中<br>適用於 12：包含在 "Public Cloud" 模組中的 "python-azure-agent" 底下<br/>原始程式碼： [GitHub](http://go.microsoft.com/fwlink/p/?LinkID=250998) |
+| openSUSE |openSUSE Leap 42.1+ |在核心中 |封裝：在 "python-azure-agent" 下的[雲端：工具](https://build.opensuse.org/project/show/Cloud:Tools)儲存機制中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
 | Ubuntu |Ubuntu 12.04、14.04、16.04、16.10 |在核心中 |套件：在「WALinuxAgent」下的儲存機制中  <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
 
 ## <a name="partners"></a>合作夥伴
@@ -88,10 +89,5 @@ Azure 上的 SUSE Linux Enterprise Server 是一個經證實可為雲端運算�
 Canonical 對工程與開放社群的治理推動了 Ubuntu 在用戶端、伺服器和雲端運算 (包括消費者的個人雲端服務) 方面的成功。 Canonical 對 Ubuntu 的願景是，透過對手機、平板電腦、電視和桌上型電腦而言皆風格一致的一系列介面，成為從手機到雲端皆適用的統一免費平台，讓 Ubuntu 成為從公用雲端供應商到消費性電子產品製造商等各種機構眼中的首選，並成為個人技術人員的愛用平台。
 
 Canonical 在全球各地皆有開發人員和工程中心，此獨特的地位使其能和硬體製造商、內容供應商和軟體開發商合作，將 Ubuntu 解決方案帶到從電腦、伺服器到掌上型裝置等等的市場。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

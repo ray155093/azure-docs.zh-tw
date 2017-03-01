@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 10/31/2016
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 7ff4286d6006eb362b6fba705e2afca1fd872f72
-ms.openlocfilehash: afefa826577999897a537add7a6c6301144fa38c
+ms.sourcegitcommit: 6aed248b91d25572c4eae691f4e5392e37c01400
+ms.openlocfilehash: e2d81d140c194a33ea6f1462effb09a9e283d3af
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -71,7 +72,7 @@ ms.openlocfilehash: afefa826577999897a537add7a6c6301144fa38c
 * 針對 `accessRights`，可用值為 `manage` 和 `listen`。 預設值是 `manage`，這表示 `connection` 已具備**管理**權限。 如果您使用沒有**管理**權限的連接字串，請將 `accessRights` 設定為 `listen`。 否則，Functions 執行階段可能會嘗試，但卻無法執行需要管理權限的作業。
 
 ## <a name="trigger-behavior"></a>觸發程序行為
-* **單一執行緒** - Functions 執行階段預設會並行處理多個訊息。 若要指示執行階段一次只處理一個佇列或主題訊息，請在 *host.json* 檔案中將 `serviceBus.maxConcurrrentCalls` 設定為 1。 
+* **單一執行緒** - Functions 執行階段預設會並行處理多個訊息。 若要指示執行階段一次只處理一個佇列或主題訊息，請在 *host.json* 檔案中將 `serviceBus.maxConcurrentCalls` 設定為 1。 
   如需 *host.json* 的相關資訊，請參閱[資料夾結構](functions-reference.md#folder-structure)和 [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
 * **有害訊息處理** - 服務匯流排會自行處理無法在 Azure Functions 組態或程式碼中控制或設定的有害訊息。 
 * **PeekLock behavior** - Functions 執行階段會在 [`PeekLock` 模式](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode)下接收訊息，並在函式順利完成時，於訊息上呼叫 `Complete`，或是在函式失敗時呼叫 `Abandon`。 
@@ -299,10 +300,5 @@ module.exports = function (context, myTimer) {
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

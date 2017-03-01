@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 01/20/2017
+ms.date: 02/27/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 17df0dfc32078fc08d2e744d4e83f1a1d77a9da1
-ms.openlocfilehash: d6fbb7febc05548e1e89e12394bbb7064e5da1c9
+ms.sourcegitcommit: 3992e327bbe887338234fc2d516b053f0750a151
+ms.openlocfilehash: fdc4e495fb3fb99022b0f7c487001b2fba42cccc
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -30,8 +31,8 @@ ms.openlocfilehash: d6fbb7febc05548e1e89e12394bbb7064e5da1c9
 ![在 Azure 中取得伺服器名稱](./media/analysis-services-manage/aas-manage-portal.png)
 
 ## <a name="sql-server-management-studio"></a>SQL Server Management Studio
-在 Azure 中連線到您的伺服器，就如同連線到您自己組織中的伺服器執行個體。 您可從 SSMS 執行許多相同的工作，例如處理資料或建立處理指令碼、管理角色，以及使用 PowerShell。
-
+在 Azure 中連線到您的伺服器，就如同連線到您自己組織中的伺服器執行個體。 您可從 SSMS 執行許多相同的工作，例如處理資料或建立處理指令碼、管理角色，以及使用 PowerShell。 [下載並安裝 SSMS](#download-and-install-ssms)。
+  
 ![SQL Server Management Studio](./media/analysis-services-manage/aas-manage-ssms.png)
 
  其中一個更大的差異就是您用於連線至您伺服器的驗證。 若要連線到 Azure Analysis Services 伺服器，您必須選取 [Active Directory 密碼驗證]。
@@ -49,7 +50,7 @@ ms.openlocfilehash: d6fbb7febc05548e1e89e12394bbb7064e5da1c9
    
     [Active Directory 密碼驗證]：使用組織帳戶。 例如，當從未加入網域的電腦連線時。
    
-    注意：如果您沒看到 Active Directory 驗證，則必須在 SSMS 中[啟用 Azure Active Directory 驗證](#enable-azure-active-directory-authentication)。
+    注意：如果您沒看到 Active Directory 驗證，可能需要更新為 [SSMS 最新版本](#download-and-install-ssms)。
    
     ![在 SSMS 中連線](./media/analysis-services-manage/aas-manage-connect-ssms.png)
 
@@ -58,7 +59,16 @@ ms.openlocfilehash: d6fbb7febc05548e1e89e12394bbb7064e5da1c9
 ## <a name="server-administrators-and-database-users"></a>伺服器管理員和資料庫使用者
 在 Azure Analysis Services 中，有兩種類型的使用者：伺服器管理員和資料庫使用者。 這兩種類型的使用者都必須位於 Azure Active Directory 中，而且必須由組織的電子郵件地址或 UPN 指定。 這與內部部署表格式模型資料庫不同，這些資料庫藉由 Windows 網域使用者名稱來支援伺服器管理員和資料庫使用者。 若要深入了解，請參閱[管理 Azure Analysis Services 中的使用者](analysis-services-manage-users.md)。
 
+## <a name="download-and-install-ssms"></a>下載並安裝 SSMS
+[下載 SQL Server Management Studio](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)。
+
+在下載頁面上，您有兩個選項︰
+ 
+* 發行候選版本 - 若僅連線到 Azure Analysis Services 預覽，建議使用。 此版本會取得最新的更新，最適合搭配 Azure Analysis Services 預覽。
+* 最新實際執行版本 - 若同時連線到實際執行伺服器和 Azure Analysis Services 預覽，建議使用。 使用此版本時，可能需要編輯登錄以啟用 Azure Active Directory 驗證。
+
 ## <a name="enable-azure-active-directory-authentication"></a>啟用 Azure Active Directory 驗證
+
 若要在登錄中啟用 SSMS 的 Azure Active Directory 驗證功能，請先建立一個名為 EnableAAD.reg 的文字檔，然後複製並貼上以下內容︰
 
 ```
@@ -81,10 +91,5 @@ Windows Registry Editor Version 5.00
 如果您尚未將表格式模型部署到新伺服器，現在正是時候。 若要深入了解，請參閱 [Deploy to Azure Analysis Services](analysis-services-deploy.md) (部署至 Azure Analysis Services)。
 
 如果您已將模型部署至您的伺服器，您便可以透過用戶端或瀏覽器與伺服器連線。 若要深入了解，請參閱 [Get data from Azure Analysis Services server](analysis-services-connect.md) (從 Azure Analysis Services 伺服器取得資料)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

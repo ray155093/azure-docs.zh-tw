@@ -12,16 +12,17 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 22e37e26fec913a7638c71b2547c38f5efacd10b
-ms.openlocfilehash: 060e8cbbd812ed2495d1c589f29760d2453af51b
+ms.sourcegitcommit: 9aca8aad3f268bf21f3bad9fa22821f5d825f99d
+ms.openlocfilehash: 88c42ff541aac2e43724fe62f99e3ddea56afc3c
+ms.lasthandoff: 02/16/2017
 
 
 ---
 
-# <a name="diagnostics-and-error-recovery-for-import-export-jobs"></a>匯入匯出作業的診斷和錯誤復原
+# <a name="diagnostics-and-error-recovery-for-azure-importexport-jobs"></a>Azure 匯入/匯出作業的診斷和錯誤復原
 針對每個已處理的磁碟機，Azure 匯入/匯出服務會在相關聯的儲存體帳戶中建立錯誤記錄檔。 您也可以在呼叫 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 或 [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) 作業時，將 `LogLevel` 屬性設定為 `Verbose` 來啟用詳細資訊記錄。
 
  根據預設，記錄會寫入名為 `waimportexport` 的容器。 您可以在呼叫 `Put Job` 或 `Update Job Properties` 作業時，設定 `DiagnosticsPath` 屬性以指定不同的名稱。 記錄會使用下列的命名慣例儲存為區塊 blob︰`waies/jobname_driveid_timestamp_logtype.xml`。
@@ -58,9 +59,4 @@ ms.openlocfilehash: 060e8cbbd812ed2495d1c589f29760d2453af51b
 
 ## <a name="see-also"></a>另請參閱
 [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

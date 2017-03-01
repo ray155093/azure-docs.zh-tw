@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 02/10/2017
 ms.author: makohli
 translationtype: Human Translation
-ms.sourcegitcommit: 14e9e494d6e824964b9164ff36d9938341e244be
-ms.openlocfilehash: 7adaa1a457e19c66bdc31a01f4e04b7911e58062
+ms.sourcegitcommit: e7fc6cb4ee4752bb7ed90a8f64edcc7c82ec3a88
+ms.openlocfilehash: 8ed18f6f62b6d2895e2470df1c3bdd448ea98210
+ms.lasthandoff: 02/21/2017
 
 ---
 
@@ -35,7 +36,7 @@ ms.openlocfilehash: 7adaa1a457e19c66bdc31a01f4e04b7911e58062
 4. 若要取得特定類別的建議，請按下列其中一個索引標籤 - [高可用性]、[安全性]、[效能] 或 [成本]。
  
 > [!NOTE]
-> Azure 建議程式會針對您已獲得「擁有者」、「參與者」或「讀取者」角色的訂用帳戶，產生相關建議。
+> 若要存取 Advisor 的建議，您必須先向 Advisor「註冊」您的訂用帳戶。 當「訂用帳戶擁有者」啟動 Advisor 儀表板，然後按一下 [取得建議] 按鈕時，便會註冊訂用帳戶。 此作業「只需要執行一次」。 註冊訂用帳戶之後，訂用帳戶、資源群組或特定的資源的 [擁有者]、[參與者] 或 [讀取者]，都可以存取 Advisor 建議。
 
   ![Azure 建議程式儀表板](./media/advisor-overview/advisor-all-tab.png)
 
@@ -78,9 +79,4 @@ ms.openlocfilehash: 7adaa1a457e19c66bdc31a01f4e04b7911e58062
 -  [建議程式安全性建議](advisor-security-recommendations.md)
 -  [建議程式效能建議](advisor-performance-recommendations.md)
 -  [建議程式成本建議](advisor-performance-recommendations.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

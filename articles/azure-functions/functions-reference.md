@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 01/23/2017
 ms.author: chrande
 translationtype: Human Translation
-ms.sourcegitcommit: 0d75654e00e033eab7de97779157c43ee4493a9f
-ms.openlocfilehash: 2032426e473cb859ad60b48684bcf620e314ed6c
+ms.sourcegitcommit: bc96edb44dc8bbbbe4687806117990c9d3470fdc
+ms.openlocfilehash: adb70fc58321c11c0b57efc9810a44d0ab2c8a20
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -103,7 +104,7 @@ Azure 入口網站內建的函式編輯器可讓您更新「function.json」  �
 請依照 [Azure Functions 的持續部署](functions-continuous-deployment.md)主題中的指示進行。
 
 ## <a name="parallel-execution"></a>平行執行
-發生速度比單一執行緒函數執行階段快的多個觸發事件可以處理它們時，執行階段可能會平行多次叫用函數。  如果函式應用程式使用[取用主控方案](functions-scale.md#consumption-service-plan)，則函式應用程式可以自動相應放大。  不論應用程式是在取用主控方案還是一般 [App Service 主控方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)上執行，函式應用程式的每個執行個體可能都會使用多個執行緒平行處理並行函式引動。  每個函式應用程式執行個體中的並行函式叫用次數上限，根據使用的觸發程序類型及函式應用程式內其他函式所使用的資源而有所不同。
+發生速度比單一執行緒函數執行階段快的多個觸發事件可以處理它們時，執行階段可能會平行多次叫用函數。  如果函式應用程式使用[取用主控方案](functions-scale.md#how-the-consumption-plan-works)，則函式應用程式可以自動相應放大。  不論應用程式是在取用主控方案還是一般 [App Service 主控方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)上執行，函式應用程式的每個執行個體可能都會使用多個執行緒平行處理並行函式引動。  每個函式應用程式執行個體中的並行函式叫用次數上限，根據使用的觸發程序類型及函式應用程式內其他函式所使用的資源而有所不同。
 
 ## <a name="azure-functions-pulse"></a>Azure Functions 脈衝
 脈衝是顯示您函式執行頻率以及成功和失敗的即時事件資料流。 您也可以監視平均執行時間。 我們將持續加入更多功能和自訂。 您可以從 [監視] 索引標籤存取 [脈衝] 頁面。
@@ -134,10 +135,5 @@ Azure Functions 的程式碼是開放原始碼，儲存於 GitHub 儲存機制�
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 * [Azure Functions︰Azure App Service 團隊部落格上的旅程](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/) 。 Azure Functions 的開發歷史。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

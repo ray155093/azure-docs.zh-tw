@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 11/16/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: a560aa9cc6c70fd3827f649627466c9071b8ab8b
-ms.openlocfilehash: 39a882a8338ce820c6b9b98f58d1a9db7448c7be
+ms.sourcegitcommit: e7fc6cb4ee4752bb7ed90a8f64edcc7c82ec3a88
+ms.openlocfilehash: 7999398f69ed0ce5129dd38f8e9e1994db25f9a5
+ms.lasthandoff: 02/21/2017
 
 ---
 
@@ -47,7 +48,7 @@ ms.openlocfilehash: 39a882a8338ce820c6b9b98f58d1a9db7448c7be
 3. 在 [建議程式] 儀表板上，按一下 [成本] 索引標籤，選取您想要接收建議的訂用帳戶，然後按一下 [取得建議]
 
 > [!NOTE]
-> Azure 建議程式會針對您已獲得「擁有者」、「參與者」或「讀取者」角色的訂用帳戶，產生相關建議。
+> 若要存取 Advisor 的建議，您必須先向 Advisor「註冊」您的訂用帳戶。 當「訂用帳戶擁有者」啟動 Advisor 儀表板，然後按一下 [取得建議] 按鈕時，便會註冊訂用帳戶。 此作業「只需要執行一次」。 註冊訂用帳戶之後，訂用帳戶、資源群組或特定的資源的 [擁有者]、[參與者] 或 [讀取者]，都可以存取 Advisor 建議。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -57,9 +58,4 @@ ms.openlocfilehash: 39a882a8338ce820c6b9b98f58d1a9db7448c7be
 -  [建議程式高可用性建議](advisor-cost-recommendations.md)
 -  [建議程式安全性建議](advisor-cost-recommendations.md)
 -  [建議程式效能建議](advisor-cost-recommendations.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

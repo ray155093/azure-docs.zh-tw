@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service 中將自訂網域名稱 (虛名
 services: app-service
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: jimbe
 tags: top-support-issue
 ms.assetid: 48644a39-107c-45fb-9cd3-c741974ff590
@@ -13,11 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/27/2016
+ms.date: 01/30/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: e25348cc1aa0ae284f0fcda7f11bdbe42ba1fa0a
+ms.sourcegitcommit: 59565c22ecd42985e8a6b81c4983fc2e87637e36
+ms.openlocfilehash: 589701270770494e4ec4d127a252712249da9f3a
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -26,22 +27,12 @@ ms.openlocfilehash: e25348cc1aa0ae284f0fcda7f11bdbe42ba1fa0a
 
 這篇文章說明如何在 [Azure App Service](../app-service/app-service-value-prop-what-is.md)中將自訂網域名稱對應至您的 Web 應用程式、行動裝置應用程式後端或 API 應用程式。 
 
-您的應用程式已隨附唯一的 azurewebsites.net 子網域。 例如，如果您的應用程式名稱為 **contoso**，則其網域名稱為 **contoso.azurewebsites.net**。 不過，您可以將自訂網域名稱對應至應用程式，以便其 URL (例如 `www.contoso.com`) 反映出您的品牌。
+> [!NOTE] 
+> 您可以一律只[直接向 Azure 購買自訂網域名稱](custom-dns-web-site-buydomains-web-app.md)。
+>
+>
 
-> [!NOTE]
-> 在 [Azure 論壇](https://azure.microsoft.com/support/forums/)上取得 Azure 專家的協助。 如需更高層級的支援，請前往 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
-> 
-> 
-
-[!INCLUDE [introfooter](../../includes/custom-dns-web-site-intro-notes.md)]
-
-## <a name="buy-a-new-custom-domain-in-azure-portal"></a>在 Azure 入口網站中購買新的自訂網域
-如果您尚未購買自訂網域名稱，您可以直接在 [Azure 入口網站](https://portal.azure.com)中您的應用程式的設定中進行購買和管理。 不論您的應用程式是否使用 [Azure 流量管理員](web-sites-traffic-manager-custom-domain-name.md) ，此選項都可讓您輕鬆地將自訂網域對應至您的應用程式。 
-
-如需相關指示，請參閱 [購買 App Service 的自訂網域名稱](custom-dns-web-site-buydomains-web-app.md)。
-
-## <a name="map-a-custom-domain-you-purchased-externally"></a>對應您在外部購買的自訂網域
-如果您已從 [Azure DNS](https://azure.microsoft.com/services/dns/) 或從協力廠商提供者購買自訂網域，有三個主要步驟可將自訂網域對應至您的應用程式︰
+將自訂網域對應至您的應用程式有三個主要步驟：
 
 1. [(僅限 A 記錄) 取得應用程式的 IP 位址](#vip)。
 2. [建立 DNS 記錄，將您的網域對應至您的應用程式](#createdns)。 
@@ -52,7 +43,7 @@ ms.openlocfilehash: e25348cc1aa0ae284f0fcda7f11bdbe42ba1fa0a
    * **為何**︰讓您的應用程式知道回應對自訂網域名稱所做的要求。
 4. [確認 DNS 傳播](#verify)。
 
-### <a name="types-of-domains-you-can-map"></a>您可以對應的網域類型
+## <a name="types-of-domains-you-can-map"></a>您可以對應的網域類型
 Azure App Service 可讓您將下列類別的自訂網域對應至您的應用程式。
 
 * **根網域** - 您透過網域註冊機構保留的網域名稱 (通常以 `@` 主機記錄表示)。 
@@ -60,7 +51,7 @@ Azure App Service 可讓您將下列類別的自訂網域對應至您的應用�
 * **子網域** - 根網域下的任何網域。 例如，**www.contoso.com** (以 `www` 主機記錄表示)。  您可以將相同根網域的不同子網域對應至 Azure 中不同的應用程式。
 * **萬用字元網域** - [最左邊 DNS 標籤為 `*`](https://en.wikipedia.org/wiki/Wildcard_DNS_record) 的任何子網域 (例如主機記錄 `*` 和 `*.blogs`)。 例如 **\*.contoso.com**。
 
-### <a name="types-of-dns-records-you-can-use"></a>您可以使用的 DNS 記錄類型
+## <a name="types-of-dns-records-you-can-use"></a>您可以使用的 DNS 記錄類型
 根據您的需求，您可以使用兩種不同的標準 DNS 記錄來對應您的自訂網域︰ 
 
 * [A](https://en.wikipedia.org/wiki/List_of_DNS_record_types#A) - 直接將自訂網域名稱對應至 Azure 應用程式的虛擬 IP 位址。 
@@ -116,17 +107,17 @@ A 記錄應該設定如下 ((@ 通常代表根網域)︰
   <tr>
     <td>contoso.com (根網域)</td>
     <td>@</td>
-    <td>來自<a href="#vip">步驟 1 的 IP 位址</a></td>
+    <td>來自<a href="#vip">步驟 1</a> 的 IP 位址</td>
   </tr>
   <tr>
     <td>www.contoso.com (子網域)</td>
     <td>www</td>
-    <td>來自<a href="#vip">步驟 1 的 IP 位址</a></td>
+    <td>來自<a href="#vip">步驟 1</a> 的 IP 位址</td>
   </tr>
   <tr>
     <td>\*.contoso.com (萬用字元)</td>
     <td>\*</td>
-    <td>來自<a href="#vip">步驟 1 的 IP 位址</a></td>
+    <td>來自<a href="#vip">步驟 1</a> 的 IP 位址</td>
   </tr>
 </table>
 
@@ -207,44 +198,9 @@ CNAME 記錄應該設定如下 ((@ 通常代表根網域)︰
 7. 成功驗證後，[新增主機名稱]  按鈕將會變成作用中，使您可以指派主機名稱。 
 8. Azure 完成設定新的自訂網域名稱後，請在瀏覽器中瀏覽至您的自訂網域名稱。 瀏覽器應會開啟 Azure 應用程式，這表示您的自訂網域名稱已正確設定。
 
-## <a name="migrate-an-active-domain-with-no-downtime"></a>移轉作用中網域 (不停機) 
+## <a name="migrate-an-active-domain-name"></a>移轉作用中網域名稱
 
-當您將即時網站及其網域名稱移轉至 App Service 時，該網域名稱已對即時流量提供服務，而您不想要在移轉期間的 DNS 解析時發生停機。 在此情況下，您必須先將網域名稱繫結至 Azure 應用程式以進行網域驗證。 若要這樣做，請遵循下面修改後的步驟：
-
-1. 首先，依照下列步驟，使用 DNS 登錄建立驗證 TXT 記錄：[步驟 2.建立 DNS 記錄](#createdns)。
-額外的 TXT 記錄會採用從 &lt;*subdomain*>.&lt;*rootdomain*> 對應至 &lt;*appname*>.azurewebsites.net 的慣例。
-請參閱下表中的範例：  
- 
-    <table cellspacing="0" border="1">
-    <tr>
-    <th>FQDN 範例</th>
-    <th>TXT 主機</th>
-    <th>TXT 值</th>
-    </tr>
-    <tr>
-    <td>contoso.com (根網域)</td>
-    <td>awverify.contoso.com</td>
-    <td>&lt;<i>appname</i>>.azurewebsites.net</td>
-    </tr>
-    <tr>
-    <td>www.contoso.com (子網域)</td>
-    <td>awverify.www.contoso.com</td>
-    <td>&lt;<i>appname</i>>.azurewebsites.net</td>
-    </tr>
-    <tr>
-    <td>\*.contoso.com (萬用字元)</td>
-    <td>awverify.\*.contoso.com</td>
-    <td>&lt;<i>appname</i>>.azurewebsites.net</td>
-    </tr>
-    </table>
-
-2. 然後，依照下列步驟，將自訂網域名稱新增至 Azure 應用程式：[步驟 3.為您的應用程式啟用自訂網域名稱](#enable)。
-
-    您的自訂網域現已在您的 Azure 應用程式中啟用。 您只需向網域註冊機構更新 DNS 記錄即可。
-
-3. 最後，更新網域的 DNS 記錄以指向您的 Azure 應用程式，如下所示：[步驟 2.建立 DNS 記錄](#createdns)。 
-
-    在 DNS 傳播發生之後，使用者流量應重新導向至 Azure 應用程式。
+如果您想要對應的網域名稱已經被現有的網站使用，而您想要避免發生停機，請參閱[將作用中自訂網域移轉至 App Service (英文)](app-service-custom-domain-name-migrate.md)。
 
 <a name="verify"></a>
 
@@ -262,7 +218,7 @@ CNAME 記錄應該設定如下 ((@ 通常代表根網域)︰
 了解如何[在 Azure 中購買 SSL 憑證](web-sites-purchase-ssl-web-site.md)或[使用來自其他位置的 SSL 憑證](web-sites-configure-ssl-certificate.md)來使用 HTTPS 保護自訂網域名稱。
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
 
@@ -272,9 +228,4 @@ CNAME 記錄應該設定如下 ((@ 通常代表根網域)︰
 
 <!-- Images -->
 [subdomain]: media/web-sites-custom-domain-name/azurewebsites-subdomain.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

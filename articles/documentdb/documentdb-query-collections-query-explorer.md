@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB 查詢總管：SQL 查詢編輯器 | Microsoft Docs"
+title: "Azure DocumentDB 入口網站工具︰查詢總管 | Microsoft Docs"
 description: "深入了解 DocumentDB 查詢總管，它是 Azure 入口網站中的 SQL 查詢編輯器，可針對 NoSQL DocumentDB 集合撰寫和執行 SQL 查詢。"
 keywords: "撰寫 sql 查詢, sql 查詢編輯器"
 services: documentdb
@@ -13,18 +13,21 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/30/2016
+ms.date: 02/10/2017
 ms.author: kirillg
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4a4e66ff9022b153fe09fba004ff50aed053b392
+ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
+ms.openlocfilehash: c4c2cd8ddcb541b2619f7e1b140222899f15f87c
+ms.lasthandoff: 02/23/2017
 
 
 ---
-# <a name="write-edit-and-run-sql-queries-for-documentdb-using-query-explorer"></a>使用查詢總管針對 DocumentDB 撰寫、編輯和執行 SQL 查詢
+# <a name="write-edit-and-run-sql-queries-for-documentdb-using-query-explorer-in-the-azure-portal"></a>在 Azure 入口網站中使用查詢總管針對 DocumentDB 撰寫、編輯和執行 SQL 查詢
 本篇文章提供了 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 查詢總管的概述，它是一項 Azure 入口網站工具，可讓您針對 [DocumentDB 集合](documentdb-create-collection.md)撰寫、編輯和執行 SQL 查詢。
 
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)] 。 如果看不到 [DocumentDB (NoSQL)]，請按一下 [更多服務]，然後按一下 [DocumentDB (NoSQL)]。
+1. 在 [Azure 入口網站](https://portal.azure.com)的左側導覽中，按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。 
+
+    如果看不到 [NoSQL (DocumentDB)]，按一下底部的 [更多服務]，然後按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。
 2. 在資源功能表中，按一下 [查詢總管] 。 
    
     ![已反白顯示 [查詢總管] 的 Azure 入口網站的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryexplorercommand.png)
@@ -66,15 +69,10 @@ ms.openlocfilehash: 4a4e66ff9022b153fe09fba004ff50aed053b392
 ![[查詢總管] 查詢錯誤的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryerror.png)
 
 ## <a name="run-documentdb-sql-queries-outside-the-portal"></a>在入口網站外部執行 DocumentDB SQL 查詢
-Azure 入口網站中的 Document Explorer 只是一種對 DocumentDB 執行 SQL 查詢的方法。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 執行 SQL 查詢。 如需使用上述其他方法的詳細資訊，請參閱 [執行 SQL 查詢](documentdb-sql-query.md#executing-sql-queries)
+Azure 入口網站中的 Document Explorer 只是一種對 DocumentDB 執行 SQL 查詢的方法。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 執行 SQL 查詢。 如需使用上述其他方法的詳細資訊，請參閱 [執行 SQL 查詢](documentdb-sql-query.md#ExecutingSqlQueries)
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 [查詢總管] 中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
 您也可以享受 [Query Playground](https://www.documentdb.com/sql/demo) 體驗，在其中使用範例資料集在線上測試查詢。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

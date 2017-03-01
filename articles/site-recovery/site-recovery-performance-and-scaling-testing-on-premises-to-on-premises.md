@@ -15,8 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: ba82512e830032172c8a0d78029605935d1417f9
+ms.sourcegitcommit: 1b95723ec9886835c5967c9efe95b4922390a847
+ms.openlocfilehash: 92b5200016b943c06ef7732344d4136bd3c491b7
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -71,7 +72,7 @@ Hyper-V 複本會使用復原伺服器上的少量記憶體來最佳化儲存作
 ![次要結果](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744918.png)
 
 ### <a name="effect-of-replication-on-network-utilization"></a>複寫對網路使用率的影響
-針對每秒 5 GB 的現有頻寬，在主要和復原節點 (已啟用壓縮) 之間使用平均每秒 275 MB 的網路頻寬。
+針對每秒 5 Gb 的現有頻寬，會在主要和復原節點 (已啟用壓縮) 之間使用平均每秒 275 Mb 的網路頻寬。
 
 ![結果網路使用率](./media/site-recovery-performance-and-scaling-testing-on-premises-to-on-premises/IC744919.png)
 
@@ -170,9 +171,4 @@ Hyper-V 複本會使用復原伺服器上的少量記憶體來最佳化儲存作
 
 ## <a name="next-steps"></a>後續步驟
 * [設定兩個內部部署 VMM 網站之間的保護](site-recovery-vmm-to-vmm.md)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

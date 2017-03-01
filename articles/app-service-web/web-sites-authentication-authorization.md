@@ -4,7 +4,7 @@ description: "了解 Azure App Service 中可使用內部部署 Active Directory
 services: app-service
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: dde6b7e6-bf6a-4fa5-8390-3a18155d21bd
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: f989ea86c76706af9413b2bb945956b1c6432e1d
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -41,10 +42,5 @@ Azure Active Directory 租用戶的目錄可與內部部署 AD 進行同步處�
 * 想要存取內部部署 AD 資料就必須有可以穿越公司防火牆的個別解決方案。
 
 若要了解如何撰寫使用內部部署 STS 進行驗證的企業營運 Azure 應用程式，請參閱 [使用 AD FS 驗證建立企業營運 Azure 應用程式](web-sites-dotnet-lob-application-adfs.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 10/22/2016
-ms.author: mfussell;mikhegn
+ms.date: 02/17/2016
+ms.author: msfussell;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: f31c8ab3d2b4fd871c92ac0e7d04bc8d5ab86830
-ms.openlocfilehash: 70d13fd05aeedc9aa6e9f87a9a0223a2e20ef88b
+ms.sourcegitcommit: d1939e316efb00fb4980c57cbec28920a7475a47
+ms.openlocfilehash: bc9a62eb41a4ccb1ffb17b89e3bee9d40f2e7b54
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -33,6 +34,10 @@ Service Fabric 將來賓可執行檔視為無狀態服務。 因此會根據可�
 * 健康狀況監視。 Service Fabric 健全狀況監控會偵測應用程式是否正在執行，如果發生失敗情況，則會提供診斷資訊。   
 * 應用程式生命週期管理。 除了提供無需停機的升級，如果升級期間回報健全狀況不良事件，Service Fabric 也支援回復到舊版。    
 * 密度。 您可以在叢集中執行多個應用程式，每個應用程式不必在自己的硬體上執行。
+
+## <a name="samples"></a>範例
+* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)
+* [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 ## <a name="overview-of-application-and-service-manifest-files"></a>應用程式和服務資訊清單檔案的概觀
 在部署來賓執行檔的過程中，最好先了解 Service Fabric 封裝和部署模型，如[應用程式模型](service-fabric-application-model.md)中所述。 Service Fabric 封裝模型依賴兩個 XML 檔案：應用程式和服務資訊清單。 ApplicationManifest.xml 和 ServiceManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 一起安裝在 C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd。
@@ -333,13 +338,9 @@ Yeoman 會建立應用程式套件，其中包含適當的應用程式和資訊�
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已經學會如何封裝來賓可執行檔並部署至 Service Fabric。 請參閱下列文章以了解相關資訊和工作。
 
-* [GitHub 上封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)，包括封裝工具預先發行版本的連結
+* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)，包括封裝工具預先發行版本的連結
+* [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 * [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 * [使用 Visual Studio 建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

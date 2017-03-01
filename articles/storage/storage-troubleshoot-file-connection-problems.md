@@ -13,11 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 02/15/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 09f0aa4ea770d23d1b581c54b636c10e59ce1d3c
-ms.openlocfilehash: d5768c44022fc251aa0741d91b575ff604032e18
+ms.sourcegitcommit: 1753096f376d09a1b5f2a6b4731775ef5bf6f5ac
+ms.openlocfilehash: 4f66de2fe4b123e208413ade436bb66b9a03961b
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -28,11 +29,13 @@ ms.openlocfilehash: d5768c44022fc251aa0741d91b575ff604032e18
 
 * [嘗試開啟檔案時，發生配額錯誤](#quotaerror)
 * [當您從 Windows 或 Linux 存取 Azure 檔案儲存體時效能緩慢](#slowboth)
+* [如何追蹤 Azure 檔案儲存體中的讀取和寫入作業](#traceop)
 
 **Windows 用戶端的問題**
 
 * [當您從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時效能緩慢](#windowsslow)
 * [錯誤 53 嘗試掛接 Azure 檔案共用](#error53)
+* [錯誤 87 嘗試掛接為 Azure 檔案共用時，參數不正確](#error87)
 * [net use 成功，但在 Windows 檔案總管中看不到掛接的 Azure 檔案共用](#netuse)
 * [我的儲存體帳戶包含 "/"，net use 命令失敗](#slashfails)
 * [我的應用程式/服務無法存取掛接的 Azure 檔案磁碟機](#accessfiledrive)
@@ -41,12 +44,13 @@ ms.openlocfilehash: d5768c44022fc251aa0741d91b575ff604032e18
 **Linux 用戶端的問題**
 
 * [將檔案上傳/複製至 Azure 檔案時，發生「您正將檔案複製到不支援加密的目的地」錯誤](#encryption)
-* [在現有檔案共用上發生「主機當機」錯誤，或在掛接點上進行清單命令時殼層停止回應](#errorhold)
+* [間歇性 IO 錯誤 - 在現有檔案共用上發生「主機當機」錯誤，或在掛接點上進行清單命令時殼層停止回應](#errorhold)
 * [嘗試在 Linux VM 上掛接 Azure 檔案時，發生掛接錯誤 115](#error15)
 * [使用類似 "ls" 的命令時 Linux VM 遇到隨機延遲](#delayproblem)
 * [錯誤 112 - 逾時錯誤](#error112)
 
 **從其他應用程式存取**
+
 * [我可以透過 Web 工作參考我的應用程式的 Azure 檔案共用嗎？](#webjobs)
 
 <a id="quotaerror"></a>
@@ -54,19 +58,15 @@ ms.openlocfilehash: d5768c44022fc251aa0741d91b575ff604032e18
 ## <a name="quota-error-when-trying-to-open-a-file"></a>嘗試開啟檔案時，發生配額錯誤
 在 Windows 中，您會收到類似以下的錯誤訊息︰
 
-**1816 ERROR_NOT_ENOUGH_QUOTA <--> 0xc0000044**
-
-**STATUS_QUOTA_EXCEEDED**
-
-**Not enough quota is available to process this command**
-
-**Invalid handle value GetLastError: 53**
+`1816 ERROR_NOT_ENOUGH_QUOTA <--> 0xc0000044`
+`STATUS_QUOTA_EXCEEDED`
+`Not enough quota is available to process this command`
+`Invalid handle value GetLastError: 53`
 
 在 Linux 上，您會收到類似以下的錯誤訊息︰
 
-**<filename> [permission denied]**
-
-**Disk quota exceeded**
+`<filename> [permission denied]`
+`Disk quota exceeded`
 
 ### <a name="cause"></a>原因
 因為您已達到檔案所允許的同時開啟控點上限，就會發生此問題。
@@ -93,14 +93,21 @@ ms.openlocfilehash: d5768c44022fc251aa0741d91b575ff604032e18
 
 如果已安裝 hotfix，則會顯示下列輸出︰
 
-**HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\Policies**
-
-**{96c345ef-3cac-477b-8fcd-bea1a564241c}    REG_DWORD    0x1**
+`HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\Policies`
+`{96c345ef-3cac-477b-8fcd-bea1a564241c}    REG_DWORD    0x1`
 
 > [!NOTE]
 > 自 2015 年 12 月起，Azure Marketplace 中的 Windows Server 2012 R2 映像預設已安裝 hotfix KB3114025。
 >
 >
+
+<a id="traceop"></a>
+
+### <a name="how-to-trace-the-read-and-write-operations-in-azure-file-storage"></a>如何追蹤 Azure 檔案儲存體中的讀取和寫入作業
+
+[Microsoft Message Analyzer](https://www.microsoft.com/en-us/download/details.aspx?id=44226) 能夠以純文字顯示用戶端的要求，而連線要求與交易之間有相當良好的關係 (假設此處為 SMB，不是 REST)。  缺點是您必須在每個用戶端上執行此工具，如果您有許多 IaaS VM 工作人員，這就會相當費時。
+
+如果您使用 Message Analyzer 搭配 ProcMon，便可清楚了解哪個應用程式程式碼負責那些交易。
 
 <a id="additional"></a>
 
@@ -134,8 +141,9 @@ Comcast 和某些 IT 組織會封鎖此連接埠。 若要了解這是否是「�
 ### <a name="solution-for-cause-2"></a>原因 2 的解決辦法
 聯絡您的 IT 組織，要求開啟連接埠 445 輸出到 [Azure IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)。
 
+<a id="error87"></a>
 ### <a name="cause-3"></a>原因 3
-如果用戶端上啟用 NTLMv1 通訊，也會收到「系統錯誤 53」。 啟用 NTLMv1 會使用戶端變得較不安全。 因此，Azure 檔案會封鎖通訊。 若要確認這是否為錯誤的原因，請確認下列登錄子機碼是設為 3︰
+如果用戶端上已啟用 NTLMv1 通訊，則也會收到「系統錯誤 53 或系統錯誤 87」。 啟用 NTLMv1 會使用戶端變得較不安全。 因此，Azure 檔案會封鎖通訊。 若要確認這是否為錯誤的原因，請確認下列登錄子機碼是設為 3︰
 
 HKLM\SYSTEM\CurrentControlSet\Control\Lsa > LmCompatibilityLevel。
 
@@ -238,7 +246,11 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 ### <a name="solution"></a>方案
 檢查 "/etc/fstab" 項目中的 **serverino**：
 
-//azureuser.file.core.windows.net/wms/comer on /home/sampledir type cifs (rw,nodev,relatime,vers=2.1,sec=ntlmssp,cache=strict,username=xxx,domain=X, file_mode=0755,dir_mode=0755,serverino,rsize=65536,wsize=65536,actimeo=1)
+`//azureuser.file.core.windows.net/cifs        /cifs   cifs vers=3.0,cache=none,serverino,username=xxx,password=xxx,dir_mode=0777,file_mode=0777`
+
+您也可以檢查目前是否使用該選項，只要執行 **sudo mount | grep cifs** 命令並查看其輸出即可：
+
+`//mabiccacifs.file.core.windows.net/cifs on /cifs type cifs (rw,relatime,vers=3.0,sec=ntlmssp,cache=none,username=xxx,domain=X,uid=0,noforceuid,gid=0,noforcegid,addr=192.168.10.1,file_mode=0777,dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,actimeo=1)`
 
 如果沒有 **serverino** 選項，請選取 **serverino** 選項以取消掛接並掛接 Azure 檔案。+
 
@@ -253,7 +265,7 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 
 ### <a name="workaround"></a>因應措施
 
-該 Linux 問題已經修復，不過尚未移植到 Linux 發行版本。 如果問題是因為 Linux 中的重新連線而造成的，那麼只要避免進入閒置狀態即可解決。 若要達到此目的，請在 Azure 檔案共用中保留一個檔案供您每隔 30 秒寫入一次。 這必須是寫入作業，例如重寫檔案的建立/修改日期。 否則，您可能會收到快取的結果，而且您的作業可能不會觸發連線。
+該 Linux 問題已經修復，不過尚未移植到 Linux 發行版本。 如果問題是因為 Linux 中的重新連線而造成的，那麼只要避免進入閒置狀態即可解決。 若要達到此目的，請在 Azure 檔案共用中保留一個檔案供您每隔 30 秒 (或更少) 寫入一次。 這必須是寫入作業，例如重寫檔案的建立/修改日期。 否則，您可能會收到快取的結果，而且您的作業可能不會觸發連線。
 
 <a id="webjobs"></a>
 
@@ -263,9 +275,4 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 ## <a name="learn-more"></a>詳細資訊
 * [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 * [在 Linux 上開始使用 Azure 檔案儲存體](storage-how-to-use-files-linux.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

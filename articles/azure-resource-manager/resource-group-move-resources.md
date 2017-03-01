@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2d428e0e3aaf8fd4a2138648411da644ccd308f6
-ms.openlocfilehash: 81ac6de576614050d972d6fae384f91cc8bf6841
+ms.sourcegitcommit: c8e130f8adbad040fd06fde89156ca6201d18ea6
+ms.openlocfilehash: 5d85602de4eb4cd4ddadc31a83dac34d3487f54d
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -43,7 +44,7 @@ ms.openlocfilehash: 81ac6de576614050d972d6fae384f91cc8bf6841
   (Get-AzureRmSubscription -SubscriptionName "Example Subscription").TenantId
   ```
 
-  如果是 Azure CLI 2.0 (預覽)，請使用：
+  如果是 Azure CLI 2.0，請使用：
 
   ```azurecli
   az account show --subscription "Example Subscription" --query tenantId
@@ -80,7 +81,6 @@ ms.openlocfilehash: 81ac6de576614050d972d6fae384f91cc8bf6841
 * CDN
 * 雲端服務 - 請參閱 [傳統部署限制](#classic-deployment-limitations)
 * 辨識服務
-* 容器服務
 * 內容仲裁
 * 資料目錄
 * Data Factory
@@ -127,6 +127,7 @@ ms.openlocfilehash: 81ac6de576614050d972d6fae384f91cc8bf6841
 * 應用程式閘道
 * Application Insights
 * BizTalk 服務
+* 容器服務
 * ExpressRoute
 * DevTest Labs - 已啟用移動至相同訂用帳戶中新資源群組的功能，但未啟用跨訂用帳戶之間的移動。
 * Dynamics LCS
@@ -319,7 +320,7 @@ Are you sure you want to move these resources to the resource group
 [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): y
 ```
 
-## <a name="use-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽)
+## <a name="use-azure-cli-20"></a>使用 Azure CLI 2.0
 若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `az resource move` 命令。 提供要移動之資源的資源識別碼。 您可以使用下列命令取得資源識別碼︰
 
 ```azurecli
@@ -382,10 +383,5 @@ POST https://management.azure.com/subscriptions/{source-subscription-id}/resourc
 * 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱 [搭配使用 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
 * 若要了解用於管理訂用帳戶的入口網站功能，請參閱 [使用 Azure 入口網站來管理資源](resource-group-portal.md)。
 * 若要了解如何將邏輯組織套用到您的資源，請參閱 [使用標記來組織您的資源](resource-group-using-tags.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

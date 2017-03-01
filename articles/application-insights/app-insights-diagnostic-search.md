@@ -11,11 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 12/02/2016
+ms.date: 02/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: e8daf6f37cbbdf1c33d8b66a2b8719458e8bd9f9
-ms.openlocfilehash: 7886f7e7fcf22d38c45e369761730c076ad96d75
+ms.sourcegitcommit: c800f6e7b6bd1e17165146f981e32a8cbb251e3c
+ms.openlocfilehash: 1ef09170f9d5dd28005f70913df2c945f8e4ac12
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -86,7 +87,7 @@ ms.openlocfilehash: 7886f7e7fcf22d38c45e369761730c076ad96d75
 ### <a name="narrow-your-search"></a>縮小搜尋
 篩選器值右側的計數顯示目前篩選的集合中有多少個出現次數。 
 
-在此範例中，很明顯是 'Rpt/Employees' 要求造成大多數的 500 錯誤：
+在此範例中，很明顯是 'Rpt/Employees' 要求造成大多數的&500; 錯誤：
 
 ![展開屬性並選擇值](./media/app-insights-diagnostic-search/04-failingReq.png)
 
@@ -137,7 +138,7 @@ ms.openlocfilehash: 7886f7e7fcf22d38c45e369761730c076ad96d75
 
 
 ## <a name="create-work-item"></a>建立工作項目
-您可以利用來自任何遙測項目的詳細資料，在 Visual Studio Team Services 中建立 Bug。 
+您可以利用來自任何遙測項目的詳細資料，在 GitHub 或 Visual Studio Team Services 中建立 Bug。 
 
 ![按一下 [新增工作項目]、編輯欄位，然後按一下 [確定]。](./media/app-insights-diagnostic-search/42.png)
 
@@ -145,7 +146,7 @@ ms.openlocfilehash: 7886f7e7fcf22d38c45e369761730c076ad96d75
 
 ![填入 Team Services 伺服器的 URL 和專案名稱，然後按一下 [授權]](./media/app-insights-diagnostic-search/41.png)
 
-(您也可以從 [設定] > [工作項目] 取得組態刀鋒視窗。)
+(您也可以在 [工作項目] 刀鋒視窗上設定連結)。
 
 ## <a name="save-your-search"></a>儲存搜尋
 設定需要的所有篩選器之後，您可以將搜尋儲存為我的最愛。 如果您使用組織帳戶，可以選擇是否要將它與他小組成員分享。
@@ -168,7 +169,8 @@ ms.openlocfilehash: 7886f7e7fcf22d38c45e369761730c076ad96d75
 
 ## <a name="a-namequestionsaq--a"></a><a name="questions"></a>問與答
 ### <a name="a-namelimitsahow-much-data-is-retained"></a><a name="limits"></a>保留多少資料？
-每個應用程式每秒最多 500 個事件。 事件會保留七天。
+
+請參閱[限制摘要](app-insights-pricing.md#limits-summary)。
 
 ### <a name="how-can-i-see-post-data-in-my-server-requests"></a>我如何查看我的伺服器要求中的 POST 資料？
 我們不會自動記錄 POST 資料，但您可以使用 [TrackTrace 或記錄呼叫](app-insights-search-diagnostic-logs.md)。 將 POST 資料放在訊息參數中。 您無法像篩選屬性一樣來篩選訊息，但大小限制比較長。
@@ -178,9 +180,4 @@ ms.openlocfilehash: 7886f7e7fcf22d38c45e369761730c076ad96d75
 * [將記錄和自訂遙測傳送至 Application Insights](app-insights-search-diagnostic-logs.md)
 * [設定可用性和回應性測試](app-insights-monitor-web-app-availability.md)
 * [疑難排解](app-insights-troubleshoot-faq.md)
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

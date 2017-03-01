@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中 Linux VM 上安裝 MongoDB | Microsoft Docs"
-description: "了解如何使用 Resource Manager 部署模型在 Azure 中的 Linux 虛擬機器上安裝及設定 MongoDB。"
+title: "使用 Azure CLI 2.0 (預覽) 在 Linux VM 上安裝 MongoDB | Microsoft Docs"
+description: "了解如何使用 Azure CLI 2.0 (預覽) 在 Linux 虛擬機器上安裝及設定 MongoDB"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -12,39 +12,61 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 12/20/2016
+ms.date: 02/14/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 370bcf5189c855185f11277518e0cbd5377993ab
-ms.openlocfilehash: fd323a828ee879d6093e2473accbea883f861420
+ms.sourcegitcommit: 16e6a02e9b40643aaa1393f5736d5a28049a086f
+ms.openlocfilehash: 9e4b5b8aa877b8a2197d402957028c2bb7b5cf49
+ms.lasthandoff: 02/15/2017
 
 
 ---
-# <a name="install-and-configure-mongodb-on-a-linux-vm-in-azure"></a>在 Azure 中的 Linux VM 上安裝及設定 MongoDB
+# <a name="how-to-install-and-configure-mongodb-on-a-linux-vm-using-the-azure-cli-20-preview"></a>如何使用 Azure CLI 2.0 (預覽) 在 Linux VM 上安裝及設定 MongoDB
 [MongoDB](http://www.mongodb.org) 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文說明如何使用 Resource Manager 部署模型在 Azure 中的 Linux VM 上安裝及設定 MongoDB。 範例會詳細說明如何︰
 
 * [手動安裝及設定基本 MongoDB 執行個體](#manually-install-and-configure-mongodb-on-a-vm)
 * [使用 Resource Manager 範本建立基本 MongoDB 執行個體](#create-basic-mongodb-instance-on-centos-using-a-template)
 * [使用 Resource Manager 範本建立複雜的 MongoDB 分區化叢集與複本集](#create-a-complex-mongodb-sharded-cluster-on-centos-using-a-template)
 
-## <a name="prerequisites"></a>必要條件
-本文需要下列各項：
 
-* 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
-* 使用 `azure login` 登入的 [Azure CLI](../xplat-cli-install.md)
-* Azure CLI *必須處於* Azure Resource Manager 模式，使用 `azure config mode arm`
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
+
+- [Azure CLI 1.0](virtual-machines-linux-install-mongodb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
+- Azure CLI 2.0 (預覽) - 適用於資源管理部署模型的新一代 CLI (本文章)
+
 
 ## <a name="manually-install-and-configure-mongodb-on-a-vm"></a>在 VM 上手動安裝及設定 MongoDB
-MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 下列範例使用 `~/.ssh/id_rsa.pub` 中儲存的 SSH 金鑰來建立 `CentOS` VM。 回答儲存體帳戶名稱、DNS 名稱和系統管理員認證的提示︰
+MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 下列範例使用 `~/.ssh/id_rsa.pub` 中儲存的 SSH 金鑰來建立 `CentOS` VM。 若要建立此環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
+
+使用 [az group create](/cli/azure/group#create) 來建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
-azure vm quick-create --ssh-publickey-file ~/.ssh/id_rsa.pub --image-urn CentOS
+ az group create --name myResourceGroup --location westus
 ```
 
-使用前一個 VM 建立步驟結尾所顯示的公用 IP 位址登入 VM︰
+使用 [az vm create](/cli/azure/vm#create) 來建立 VM。 下列範例會建立名為 `myVM` 的 VM，其中具有使用 SSH 公開金鑰驗證、名為 `azureuser` 的使用者，以及 `mypublicdns` 的公用 DNS 項目：
+
+```azurecli
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --image CentOS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --public-ip-address-dns-name mypublicdns
+```
+
+使用您 VM 的公用 DNS 位址來登入 VM。 您可以使用 [az vm show](/cli/azure/vm#show) 來檢視公用 DNS 位址：
+
+```azurecli
+az vm show -g myResourceGroup -n myVM -d --query [fqdns] -o tsv
+```
+
+使用您自己的使用者名稱和公用 DNS 位址來透過 SSH 連線到 VM：
 
 ```bash
-ssh ops@40.78.23.145
+ssh azureuser@mypublicdns.westus.cloudapp.azure.com
 ```
 
 若要新增 MongoDB 的安裝來源，請建立 `yum` 儲存機制檔案，如下所示︰
@@ -112,28 +134,38 @@ sudo chkconfig mongod on
 
 * [CentOS 上的基本 MongoDB 執行個體](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-on-centos) - https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-centos/azuredeploy.json
 
-下列範例會在 `WestUS` 區域建立名為 `myResourceGroup` 的資源群組。 輸入您自己的值，如下所示︰
+若要建立此環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
-azure group create --name myResourceGroup --location WestUS \
-    --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-centos/azuredeploy.json
+az group create --name myResourceGroup --location westus
 ```
 
-> [!NOTE]
-> Azure CLI 會在建立部署後幾秒鐘內讓您回到提示，但是安裝和設定需要幾分鐘才能完成。 使用 `azure group deployment show myResourceGroup` 檢查部署狀態，據以輸入資源群組的名稱。 等到 `ProvisioningState` 顯示「成功」後，再嘗試將 SSH 連線到 VM。
-> 
-> 
-
-一旦部署完成時，SSH 連線到 VM。 使用 `azure vm show` 命令取得 VM 的 IP 位址，如下列範例所示：
+接著，使用 [az group deployment create](/cli/azure/group/deployment#create) 來佈建 MongoDB 範本。 視需要定義您自己的資源名稱和大小，例如針對 `newStorageAccountName`、`virtualNetworkName` 及 `vmSize`：
 
 ```azurecli
-azure vm show --resource-group myResourceGroup --name myLinuxVM
+az group deployment create --resource-group myResourceGroup \
+  --parameters '{"newStorageAccountName": {"value": "mystorageaccount"},
+    "adminUsername": {"value": "azureuser"},
+    "adminPassword": {"value": "P@ssw0rd!"},
+    "dnsNameForPublicIP": {"value": "mypublicdns"},
+    "virtualNetworkName": {"value": "myVnet"},
+    "vmSize": {"value": "Standard_DS1_v2"},
+    "vmName": {"value": "myVM"},
+    "publicIPAddressName": {"value": "myPublicIP"},
+    "nicName": {"value": "myNic"}}' \
+  --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-centos/azuredeploy.json
 ```
 
-在輸出的結尾附近，會顯示 `Public IP address`。 SSH 連線到您的 VM，包含您 VM 的 IP 位址︰
+使用您 VM 的公用 DNS 位址來登入 VM。 您可以使用 [az vm show](/cli/azure/vm#show) 來檢視公用 DNS 位址：
+
+```azurecli
+az vm show -g myResourceGroup -n myVM -d --query [fqdns] -o tsv
+```
+
+使用您自己的使用者名稱和公用 DNS 位址來透過 SSH 連線到 VM：
 
 ```bash
-ssh ops@138.91.149.74
+ssh azureuser@mypublicdns.westus.cloudapp.azure.com
 ```
 
 藉由使用本機 `mongo` 用戶端連線來確認 MongoDB 安裝，如下所示︰
@@ -161,20 +193,40 @@ test
 
 > [!WARNING]
 > 部署這個複雜的 MongoDB 分區化叢集需要超過 20 個核心，通常是每個訂用帳戶區域的預設核心計數。 開啟 Azure 支援要求，以增加核心計數。
-> 
-> 
 
-下列範例會在 `WestUS` 區域建立名為 `myResourceGroup` 的資源群組。 輸入您自己的值，如下所示︰
+若要建立此環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
-azure group create --name myResourceGroup --location WestUS \
-    --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-sharding-centos/azuredeploy.json
+az group create --name myResourceGroup --location westus
 ```
 
-> [!NOTE]
-> Azure CLI 會在建立部署後幾秒鐘內讓您回到提示，但是安裝和設定需要一個小時以上才能完成。 使用 `azure group deployment show myResourceGroup` 檢查部署狀態，據以調整資源群組的名稱。 等到 `ProvisioningState` 顯示「成功」後，再嘗試連線到 VM。
-> 
-> 
+接著，使用 [az group deployment create](/cli/azure/group/deployment#create) 來佈建 MongoDB 範本。 視需要定義您自己的資源名稱和大小，例如針對 `mongoAdminUsername`、`sizeOfDataDiskInGB` 及 `configNodeVmSize`：
+
+```azurecli
+az group deployment create --resource-group myResourceGroup \
+  --parameters '{"adminUsername": {"value": "azureuser"},
+    "adminPassword": {"value": "P@ssw0rd!"},
+    "mongoAdminUsername": {"value": "mongoadmin"},
+    "mongoAdminPassword": {"value": "P@ssw0rd!"},
+    "dnsNamePrefix": {"value": "mypublicdns"},
+    "environment": {"value": "AzureCloud"},
+    "numDataDisks": {"value": "4"},
+    "sizeOfDataDiskInGB": {"value": 20},
+    "centOsVersion": {"value": "7.0"},
+    "routerNodeVmSize": {"value": "Standard_DS3_v2"},
+    "configNodeVmSize": {"value": "Standard_DS3_v2"},
+    "replicaNodeVmSize": {"value": "Standard_DS3_v2"},
+    "zabbixServerIPAddress": {"value": "Null"}}' \
+  --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-sharding-centos/azuredeploy.json \
+  --name myMongoDBCluster --no-wait
+```
+
+這項部署可能需要超過一小時的時間來部署及設定所有 VM 執行個體。 `--no-wait` 旗標是用在上述命令的結尾，可在 Azure 平台接受範本部署之後，將控制權交回給命令提示字元。 您可以接著使用 [az group deployment show](/cli/azure/group/deployment#show) 來檢視部署狀態。 下列範例會檢視 `myResourceGroup` 資源群組中 `myMongoDBCluster` 部署的狀態：
+
+```azurecli
+az group deployment show --resource-group myResourceGroup --name myMongoDBCluster \
+    --query [properties.provisioningState] --output tsv
+```
 
 ## <a name="next-steps"></a>後續步驟
 在這些範例中，您會從 VM 本機連線到 MongoDB 執行個體。 如果您想要從另一個 VM 或網路連線到 MongoDB 執行個體，請確定建立適當的[網路安全性群組規則](virtual-machines-linux-nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
@@ -182,10 +234,5 @@ azure group create --name myResourceGroup --location WestUS \
 如需關於建立範本的詳細資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 
 Azure Resource Manager 範本會使用自訂指令碼延伸模組，在您的 VM 上下載並執行指令碼。 如需詳細資訊，請參閱[搭配 Linux 虛擬機器使用 Azure 自訂指令碼擴充功能](virtual-machines-linux-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

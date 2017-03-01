@@ -14,11 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 02/16/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
-ms.openlocfilehash: 5622ab215fd7fea4c24ad00ea7132d12ecabbcd5
+ms.sourcegitcommit: 0c07c842ba8c6214d6746b0361af7b416069a6f5
+ms.openlocfilehash: 02a1b163c77f3f7f6853762f442bffa617bd9f52
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -30,9 +31,7 @@ ms.openlocfilehash: 5622ab215fd7fea4c24ad00ea7132d12ecabbcd5
 ## <a name="information-workers-adding-b2b-collaboration-users-to-an-application"></a>資訊工作者將 B2B 共同作業使用者新增到應用程式
 以合作夥伴組織中的資訊工作者身分指派 B2B 共同作業使用者到應用程式，如下列影片中所示：
 
-  >[!VIDEO https://channel9.msdn.com/Blogs/Azure/information-worker-assign-to-apps]
-
-  如果沒有內嵌顯示這段影片，您可以在[這裡](https://channel9.msdn.com/Blogs/Azure/information-worker-assign-to-apps)取得。
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/information-worker-assign-to-apps/Player]
 
 ## <a name="information-workers-adding-b2b-collaboration-users-to-a-group"></a>資訊工作者將 B2B 共同作業使用者新增到群組
 
@@ -56,9 +55,4 @@ ms.openlocfilehash: 5622ab215fd7fea4c24ad00ea7132d12ecabbcd5
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

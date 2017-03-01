@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 12/01/2016
+ms.date: 2/17/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
-ms.openlocfilehash: 94d085ac026a309a457891944931901e9dc2564f
+ms.sourcegitcommit: e90efe810084939280b392c470e14e76d35aff01
+ms.openlocfilehash: e628143db9ceba5e159022d2eefe3e6dd9f4bf22
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -76,6 +77,8 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 **映像儲存區服務**︰每個 Service Fabric 叢集都有一個映像儲存區服務，其中保存已部署且版本化的應用程式封裝。 將應用程式封裝複製到映像存放區，然後註冊該應用程式封裝內包含的應用程式類型。 佈建應用程式類型後，您可以從中建立具名應用程式。 在刪除應用程式類型的所有具名應用程式之後，可以從映像存放區服務取消註冊該應用程式類型。
 
+如需映像存放區服務的詳細資訊，請參閱[了解 ImageStoreConnectionString 設定](service-fabric-image-store-connection-string.md)。
+
 如需有關將應用程式部署至映像存放區服務的詳細資訊，請閱讀 [部署應用程式](service-fabric-deploy-remove-applications.md) 一文。
 
 ## <a name="built-in-programming-models"></a>內建的程式設計模型
@@ -94,10 +97,5 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 * [Service Fabric 概觀](service-fabric-overview.md)
 * [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
 * [應用程式案例](service-fabric-application-scenarios.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

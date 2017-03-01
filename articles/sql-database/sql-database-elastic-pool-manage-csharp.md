@@ -16,14 +16,15 @@ ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: e80f41533d82fbb2086d4d766c3ba4a4e34a5032
-ms.openlocfilehash: be569200e4c4a125a275687d82c3204dcfb5b39a
+ms.sourcegitcommit: dbf337a27c43fc6c91f1b061a1938c5471dd36a4
+ms.openlocfilehash: c511a73794a4b1333e149d286ae43c6929d58f75
+ms.lasthandoff: 02/16/2017
 
 
 ---
 # <a name="create-and-manage-an-elastic-pool-with-cx23"></a>使用 C&#x23; 建立及管理彈性集區
 
-本主題說明如何使用 [C#](sql-database-elastic-pool-manage-csharp.md) 來建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。 您也可以使用 [Azure 入口網站](https://portal.azure.com/)、[PowerShell](sql-database-elastic-pool-manage-powershell.md)、REST API 來建立及管理彈性集區。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
+本主題說明如何使用 C# 來建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。 您也可以使用 [Azure 入口網站](https://portal.azure.com/)、[PowerShell](sql-database-elastic-pool-manage-powershell.md)、REST API 來建立及管理彈性集區。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
 
 > [!NOTE]
 > SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../azure-resource-manager/resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
@@ -303,7 +304,7 @@ namespace SqlElasticPoolConsoleApp
 
 若要完成這篇文章中的步驟，您需要下列項目︰
 
-* 彈性集區。 若要建立彈性集區，請參閱[使用 C# 建立彈性集區](sql-database-elastic-pool-create-csharp.md)。
+* 彈性集區。 若要建立彈性集區，請參閱[使用 C# 建立彈性集區](sql-database-elastic-pool-manage-csharp.md)。
 * Visual Studio。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
 
 ## <a name="move-a-database-into-an-elastic-pool"></a>將資料庫移入彈性集區
@@ -370,10 +371,5 @@ namespace SqlElasticPoolConsoleApp
 *  如需 SQL Database 用戶端應用程式的 SQL 錯誤碼、資料庫連線錯誤和其他問題，請參閱 [錯誤訊息](sql-database-develop-error-messages.md)。
 * [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 * 如需彈性集區指導方針，請參閱 [何時應該使用彈性集區？](sql-database-elastic-pool-guidance.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

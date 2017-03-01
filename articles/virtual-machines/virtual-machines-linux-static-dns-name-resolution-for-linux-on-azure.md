@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 上針對 VM 名稱解析使用內部 DNS | Microsoft Docs"
-description: "在 Azure 上針對 VM 名稱解析使用內部 DNS。"
+title: "搭配 Azure CLI 2.0 (預覽) 使用內部 DNS 進行 VM 名稱解析 | Microsoft Docs"
+description: "如何搭配 Azure CLI 2.0 在 Azure 上建立虛擬網路介面卡並使用內部 DNS 進行 VM 名稱解析"
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -13,174 +13,167 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 12/05/2016
+ms.date: 02/16/2017
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 08499c4242fdc59ef932d6b8f2e8442e5cdc55b2
-ms.openlocfilehash: 41276b7f025ded0b70cc9ab906f447f4cd77094d
+ms.sourcegitcommit: 8584606666fe93630f6486c16350a619787c8d14
+ms.openlocfilehash: 389416818df272cf09c1a35bd23ea882ecf3b0fc
+ms.lasthandoff: 02/17/2017
 
 
 ---
 
-# <a name="using-internal-dns-for-vm-name-resolution-on-azure"></a>在 Azure 上針對 VM 名稱解析使用內部 DNS
-
-這篇文章說明如何使用虛擬 NIC 卡 (VNic) 和 DNS 標籤名稱設定 Linux VM 的靜態內部 DNS 名稱。 靜態 DNS 名稱是用於永久基礎結構服務，例如 Jenkins 組建伺服器，它用於這份文件或 Git 伺服器。
+# <a name="create-virtual-network-interface-cards-and-use-internal-dns-for-vm-name-resolution-on-azure"></a>在 Azure 上建立虛擬網路介面卡並使用內部 DNS 進行 VM 名稱解析
+本文說明如何使用虛擬網路介面卡 (VNic) 和 DNS 標籤名稱來設定 Linux VM 的靜態內部 DNS 名稱。 靜態 DNS 名稱是用於永久基礎結構服務，例如 Jenkins 組建伺服器，它用於這份文件或 Git 伺服器。
 
 這些需求包括：
 
 * [一個 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
 * [SSH 公開金鑰和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
+
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
+
+- [Azure CLI 1.0](virtual-machines-linux-static-dns-name-resolution-for-linux-on-azure-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
+- [Azure CLI 2.0 (預覽)](#quick-commands) - 適用於資源管理部署模型的新一代 CLI (本文章)
+
+
 ## <a name="quick-commands"></a>快速命令
+如果您需要快速完成工作，接下來這一節將詳細說明所需的命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，從[這裡](#detailed-walkthrough)開始。 若要執行這些步驟，您需要安裝最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
 
-如果您需要快速完成工作，下列章節詳細說明需要的命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](virtual-machines-linux-static-dns-name-resolution-for-linux-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#detailed-walkthrough)。  
+先決條件︰資源群組、虛擬網路與子網路、具有 SSH 輸入的網路安全性群組。
 
-必要條件︰資源群組、VNet、具有 SSH 輸入的 NSG、子網路。
-
-### <a name="create-a-vnic-with-a-static-internal-dns-name"></a>使用靜態內部 DNS 名稱建立 VNic
-
-`-r` CLI 旗標是用於設定 DNS 標籤，它提供 VNic 的靜態 DNS 名稱。
+### <a name="create-a-virtual-network-interface-card-with-a-static-internal-dns-name"></a>使用靜態內部 DNS 名稱來建立虛擬網路介面卡
+使用 [az network nic create](/cli/azure/network/nic#create) 來建立 vNic。 `--internal-dns-name` CLI 旗標是用來設定 DNS 標籤，可為虛擬網路介面卡 (vNic) 提供靜態 DNS 名稱。 下列範例會建立名為 `myNic` 的 vNic、將它連接到 `myVnet` 虛擬網路，以及建立名為 `jenkins` 的內部 DNS 名稱記錄：
 
 ```azurecli
-azure network nic create jenkinsVNic \
--g myResourceGroup \
--l westus \
--m myVNet \
--k mySubNet \
--r jenkins
+az network nic create \
+    --resource-group myResourceGroup \
+    --name myNic \
+    --vnet-name myVnet \
+    --subnet mySubnet \
+    --internal-dns-name jenkins
 ```
 
-### <a name="deploy-the-vm-into-the-vnet-nsg-and-connect-the-vnic"></a>將 VM 部署至 VNet、NSG 並連接 VNic
-
-在部署至 Azure 期間，`-N` 將 VNic 連接到新的 VM。
+### <a name="deploy-a-vm-and-connect-the-vnic"></a>部署 VM 並連接 vNic
+使用 [az vm create](/cli/azure/vm#create) 來建立 VM。 在部署至 Azure 的期間，`--nics` 旗標會將 vNic 連接到 VM。 下列範例會使用「Azure 受控磁碟」建立名為 `myVM` 的 VM，然後連結上一步驟中名為 `myNic` 的 vNic：
 
 ```azurecli
-azure vm create jenkins \
--g myResourceGroup \
--l westus \
--y linux \
--Q Debian \
--o myStorageAcct \
--u myAdminUser \
--M ~/.ssh/id_rsa.pub \
--F myVNet \
--j mySubnet \
--N jenkinsVNic
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --nics myNic \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub
 ```
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 
-Azure 上完整的連續整合和連續部署 (CiCd) 基礎結構需要特定的伺服器是靜態或長時間執行的伺服器。  像虛擬網路 (VNet) 和網路安全性群組 (NSG) 之類的 Azure 資產，最好是當做很少部署的靜態且長久的資源。  VNet 部署之後可供新的部署重複使用，完全不會對基礎結構造成負面影響。  新增至此靜態網路，Git 存放庫伺服器和 Jenkins 自動化伺服器會將 CiCd 傳遞至您的開發或測試環境。  
+Azure 上完整的連續整合和連續部署 (CiCd) 基礎結構需要特定的伺服器是靜態或長時間執行的伺服器。 虛擬網路和「網路安全性群組」之類的 Azure 資產，最好是當作很少部署的靜態且長久資源。 虛擬網路部署之後可供新的部署重複使用，完全不會對基礎結構造成負面影響。 您可以稍後為您的開發或測試環境，將 Git 儲存機制伺服器或是會傳遞 CiCd 的 Jenkins 自動化伺服器新增到此虛擬網路中。  
 
-僅可在 Azure 虛擬網路內解析內部 DNS 名稱。  因為 DNS 名稱是內部的，它們不會解析至外部網際網路，為基礎結構提供額外安全性。
+僅可在 Azure 虛擬網路內解析內部 DNS 名稱。 因為 DNS 名稱是內部的，它們不會解析至外部網際網路，為基礎結構提供額外安全性。
 
-_將任何範例換成您自己的名稱。_
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myNic` 和 `myVM`。
 
 ## <a name="create-the-resource-group"></a>建立資源群組
-
-需要資源群組以組織我們在本逐步解說中建立的所有項目。  如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-```azurecli
-azure group create myResourceGroup \
---location westus
-```
-
-## <a name="create-the-vnet"></a>建立 VNet
-
-第一個步驟是建立可放入 VM 的 VNet。  在本逐步解說中，VNet 包含的一個子網路。  如需 Azure VNet 的詳細資訊，請參閱[使用 Azure CLI 建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+首先，使用 [az group create](/cli/azure/group#create)建立資源群組。 下列範例會在 `westus` 位置建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
-azure network vnet create myVNet \
---resource-group myResourceGroup \
---address-prefixes 10.10.0.0/24 \
---location westus
+az group create --name myResourceGroup --location westus
 ```
 
-## <a name="create-the-nsg"></a>建立 NSG
+## <a name="create-the-virtual-network"></a>建立虛擬網路
 
-子網路是建置在現有網路安全性群組的背後，所以我們在子網路之前建置 NSG。  Azure NSG 相當於網路層的防火牆。  如需 Azure NSG 的詳細資訊，請參閱[如何在 Azure CLI 中建立 NSG](../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+下一步是建置要在其中啟動 VM 的虛擬網路。 在本逐步解說中，此虛擬網路包含一個子網路。 如需有關 Azure 虛擬網路的詳細資訊，請參閱[使用 Azure CLI 建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
+
+使用 [az network vnet create](/cli/azure/network/vnet#create) 建立虛擬網路。 下列範例會建立名為 `myVnet` 的虛擬網路和名為 `mySubnet` 的子網路：
 
 ```azurecli
-azure network nsg create myNSG \
---resource-group myResourceGroup \
---location westus
+az network vnet create \
+    --resource-group myResourceGroup \
+    --name myVnet \
+    --address-prefix 192.168.0.0/16 \
+    --subnet-name mySubnet \
+    --subnet-prefix 192.168.1.0/24
 ```
 
-## <a name="add-an-inbound-ssh-allow-rule"></a>新增輸入 SSH 允許規則
+## <a name="create-the-network-security-group"></a>建立網路安全性群組
+「Azure 網路安全性群組」相當於網路層的防火牆。 如需有關「網路安全性群組」的詳細資訊，請參閱[如何在 Azure CLI 中建立 NSG](../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
 
-由於需要從網際網路存取 Linux VM，因此需要有規則來允許輸入連接埠 22 流量通過網路流向 Linux VM 的連接埠 22。
+使用 [az network nsg create](/cli/azure/network/nsg#create) 建立網路安全性群組。 下列範例會建立名為 `myNetworkSecurityGroup` 的網路安全性群組：
 
 ```azurecli
-azure network nsg rule create inboundSSH \
---resource-group myResourceGroup \
---nsg-name myNSG \
---access Allow \
---protocol Tcp \
---direction Inbound \
---priority 100 \
---source-address-prefix * \
---source-port-range * \
---destination-address-prefix 10.10.0.0/24 \
---destination-port-range 22
+az network nsg create \
+    --resource-group myResourceGroup \
+    --name myNetworkSecurityGroup
 ```
 
-## <a name="add-a-subnet-to-the-vnet"></a>將子網路新增至 VNet
-
-VNet 內的 VM 必須位於子網路。  每一個 VNet 可以有多個子網路。  建立子網路，並將子網路和 NSG 產生關聯，以便將防火牆新增至子網路。
+## <a name="add-an-inbound-rule-to-allow-ssh"></a>新增輸入規則以允許 SSH
+使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 新增網路安全性群組的連入規則。 下列範例會建立名為 `myRuleAllowSSH` 的規則：
 
 ```azurecli
-azure network vnet subnet create mySubNet \
---resource-group myResourceGroup \
---vnet-name myVNet \
---address-prefix 10.10.0.0/26 \
---network-security-group-name myNSG
+az network nsg rule create \
+    --resource-group myResourceGroup \
+    --nsg-name myNetworkSecurityGroup \
+    --name myRuleAllowSSH \
+    --protocol tcp \
+    --direction inbound \
+    --priority 1000 \
+    --source-address-prefix '*' \
+    --source-port-range '*' \
+    --destination-address-prefix '*' \
+    --destination-port-range 22 \
+    --access allow
 ```
 
-子網路現在已新增至 VNet 內，而且與 NSG 及與 NSG 規則相關聯。
-
-## <a name="creating-static-dns-names"></a>建立靜態 DNS 名稱
-
-Azure 非常有彈性，但是若要針對 VM 名稱解析使用 DNS 名稱，您需要使用 DNS 標籤將它們建立為虛擬網路卡 (VNics)。  VNic 很重要，因為您可以將它們連接至不同的 VM 以重複使用，這樣可讓 VNic 保持為靜態資源，而 VM 可以是暫時的。  使用 VNic 上的 DNS 標籤，我們就可以從 VNet 中的其他 VM 啟用簡單名稱解析。  使用可解析的名稱，會讓其他 VM 依據 DNS 名稱 `Jenkins` 存取自動化伺服器，或以 `gitrepo` 存取 Git 伺服器。  建立 VNic，並將它與先前步驟中建立的子網路產生關聯。
+## <a name="associate-the-subnet-with-the-network-security-group"></a>將子網路與網路安全性群組建立關聯
+若要將將子網路與「網路安全性群組」建立關聯，請使用 [az network vnet subnet update](/cli/azure/network/vnet/subnet#update)。 下列範例會將子網路名稱 `mySubnet` 與名為 `myNetworkSecurityGroup` 的「網路安全性群組」建立關聯：
 
 ```azurecli
-azure network nic create jenkinsVNic \
--g myResourceGroup \
--l westus \
--m myVNet \
--k mySubNet \
--r jenkins
+az network vnet subnet update \
+    --resource-group myResourceGroup \
+    --vnet-name myVnet \
+    --name mySubnet \
+    --network-security-group myNetworkSecurityGroup
 ```
 
-## <a name="deploy-the-vm-into-the-vnet-and-nsg"></a>將 VM 部署至 VNet 和 NSG
 
-我們現在有 VNet、該 VNet 內的子網路，還有 NSG 做為防火牆來封鎖所有輸入流量 (除了用於 SSH 的連接埠 22)，以保護我們的子網路。  現在可以將 VM 部署在這個現有的網路基礎結構內。
+## <a name="create-the-virtual-network-interface-card-and-static-dns-names"></a>建立虛擬網路介面卡與靜態 DNS 名稱
+Azure 非常有彈性，但是若要使用 DNS 名稱來進行 VM 名稱解析，您必須建立包含 DNS 標籤的虛擬網路介面卡 (VNic)。 VNic 很重要，因為您可以在整個基礎結構週期中，藉由將它們連接到不同的 VM 來重複使用它們。 此方法既可讓 VM 為暫時性，又可將 vNic 保持為靜態資源。 藉由使用 vNic 上的 DNS 標籤，我們便能夠從 VNet 中的其他 VM 啟用簡單名稱解析。 使用可解析的名稱，會讓其他 VM 依據 DNS 名稱 `Jenkins` 存取自動化伺服器，或以 `gitrepo` 存取 Git 伺服器。  
 
-您可以使用 Azure CLI 和 `azure vm create` 命令，將 Linux VM 部署至現有的 Azure 資源群組、VNet、子網路和 VNic。  如需使用 CLI 來部署完整 VM 的詳細資訊，請參閱[使用 Azure CLI 建立完整的 Linux 環境](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+使用 [az network nic create](/cli/azure/network/nic#create) 來建立 vNic。 下列範例會建立名為 `myNic` 的 vNic、將它連接到名為 `myVnet` 的 `myVnet` 虛擬網路，以及建立名為 `jenkins` 的內部 DNS 名稱記錄：
 
 ```azurecli
-azure vm create jenkins \
---resource-group myResourceGroup myVM \
---location westus \
---os-type linux \
---image-urn Debian \
---storage-account-name mystorageaccount \
---admin-username myAdminUser \
---ssh-publickey-file ~/.ssh/id_rsa.pub \
---vnet-name myVNet \
---vnet-subnet-name mySubnet \
---nic-name jenkinsVNic
+az network nic create \
+    --resource-group myResourceGroup \
+    --name myNic \
+    --vnet-name myVnet \
+    --subnet mySubnet \
+    --internal-dns-name jenkins
 ```
 
-我們使用 CLI 旗標來呼叫現有的資源，以指示 Azure 將 VM 部署在現有的網路內。  重申一次，VNet 和子網路部署之後，就可以在 Azure 區域內保持為靜態或永久性資源。  
+## <a name="deploy-the-vm-into-the-virtual-network-infrastructure"></a>將 VM 部署至虛擬網路基礎結構
+我們現在有一個虛擬網路和子網路、一個作為防火牆而會封鎖所有輸入流量 (用於 SSH 的連接埠 22 除外) 來保護子網路的「網路安全性群組」，以及一個 vNic。 您現在可以在這個現有的網路基礎結構內部署 VM。
+
+使用 [az vm create](/cli/azure/vm#create) 來建立 VM。 下列範例會使用「Azure 受控磁碟」建立名為 `myVM` 的 VM，然後連結上一步驟中名為 `myNic` 的 vNic：
+
+```azurecli
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --nics myNic \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub
+```
+
+我們使用 CLI 旗標來呼叫現有的資源，以指示 Azure 將 VM 部署在現有的網路內。 重申一次，VNet 和子網路部署之後，就可以在 Azure 區域內保持為靜態或永久性資源。  
 
 ## <a name="next-steps"></a>後續步驟
 
 * [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [直接使用 Azure CLI 命令，建立自訂的 Linux VM 環境](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [使用範本在 Azure 上建立 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

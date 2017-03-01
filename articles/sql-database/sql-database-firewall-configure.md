@@ -12,26 +12,19 @@ ms.assetid: ac57f84c-35c3-4975-9903-241c8059011e
 ms.service: sql-database
 ms.custom: authentication and authorization
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 02/09/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 5b94c884c585824ab580f307f3a04e27c8536947
-ms.openlocfilehash: 05c6580bd0cd7af55325361e85cce9654e0169d6
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: 09bc875449ecdf48c2570f1029df68d28ae5e798
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="overview-of-azure-sql-database-firewall-rules"></a>Azure SQL Database 防火牆規則概觀 
-> [!div class="op_single_selector"]
-> * [概觀](sql-database-firewall-configure.md)
-> * [Azure 入口網站](sql-database-configure-firewall-settings.md)
-> * [TSQL](sql-database-configure-firewall-settings-tsql.md)
-> * [PowerShell](sql-database-configure-firewall-settings-powershell.md)
-> * [REST API](sql-database-configure-firewall-settings-rest.md)
-> 
-> 
 
 Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提供關聯式資料庫服務。 為了協助保護您的資料，防火牆會防止對您的資料庫伺服器的所有存取，直到您指定哪些電腦擁有權限。 此防火牆會根據每一個要求的來源 IP 位址來授與資料庫存取權。
 
@@ -41,7 +34,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 * **資料庫層級防火牆規則：** 這些規則可讓用戶端存取 Azure SQL Database 伺服器內的個別資料庫。 您可以針對每個資料庫建立這些規則，它們會儲存在個別的資料庫中。 (您可以為**主要**資料庫建立資料庫層級防火牆規則。)這些規則能協助您限制相同邏輯伺服器內的某些 (安全) 資料庫存取。 僅可使用 Transact-SQL 陳述式來設定資料庫層級防火牆規則。
 
    > [!NOTE]
-   > 如需示範如何使用資料庫層級防火牆的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
+   > 如需示範資料庫層級防火牆使用方式的教學課程，請參閱 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)。
    >
 
 **建議：** Microsoft 建議在可行時使用資料庫層級防火牆規則來增強安全性，並且讓您的資料庫更具有可攜性。 當您有多個資料庫具有相同存取需求，且不想花時間個別設定每個資料庫時，請對系統管理員使用伺服器層級的防火牆規則。
@@ -135,14 +128,14 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
   * 改為針對您的用戶端電腦取得靜態 IP 位址，然後將 IP 位址新增為防火牆規則。
 
 ## <a name="next-steps"></a>後續步驟
-如需建立伺服器層級和資料庫層級防火牆規則的做法文章，請參閱：
+如需有關建立伺服器層級和資料庫層級防火牆規則的文章，請參閱：
 
 * [使用 Azure 入口網站設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings.md)
 * [使用 T-SQL 設定 Azure SQL Database 伺服器層級和資料庫層級防火牆規則](sql-database-configure-firewall-settings-tsql.md)
 * [使用 PowerShell 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-powershell.md)
 * [使用 REST API 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-rest.md)
 
-如需建立資料庫的教學課程，請參閱 [使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
+如需有關建立資料庫的教學課程，請參閱[您的第一個 Azure SQL Database](sql-database-get-started.md)。
 如需從開放原始碼或協力廠商應用程式連接到 Azure SQL Database 的說明，請參閱 [SQL Database 的用戶端快速入門程式碼範例](https://msdn.microsoft.com/library/azure/ee336282.aspx)。
 若要了解如何瀏覽至資料庫，請參閱 [管理資料庫存取與登入安全性](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
 
@@ -152,9 +145,4 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 <!--Image references-->
 [1]: ./media/sql-database-firewall-configure/sqldb-firewall-1.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

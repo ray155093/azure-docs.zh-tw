@@ -1,5 +1,5 @@
 ---
-title: "用以檢視 JSON 的 DocumentDB Document Explorer | Microsoft Docs"
+title: "Azure DocumentDB 入口網站工具︰文件總管 | Microsoft Docs"
 description: "深入了解 DocumentDB Document Explorer，它是一種 Azure 入口網站的工具，可用來檢視、編輯、建立和上傳使用 DocumentDB 的 JSON 文件、NoSQL 文件資料庫。"
 keywords: "檢視 json"
 services: documentdb
@@ -13,21 +13,27 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/30/2016
+ms.date: 02/10/2017
 ms.author: kirillg
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 281a24005f076379fefe859386fdf84065c5cfe7
+ms.sourcegitcommit: 81c569c5130869e6d8c9dc79feca592aecc44e61
+ms.openlocfilehash: edccbbb72649c5a443fefd7f1d97a8c01a4daff2
+ms.lasthandoff: 02/15/2017
 
 
 ---
 # <a name="view-edit-create-and-upload-json-documents-using-documentdb-document-explorer"></a>使用 DocumentDB Document Explorer 檢視、編輯、建立和上傳 JSON 文件
 本篇文章提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) Document Explorer 的概觀，它是一種 Azure 入口網站的工具，可讓您檢視、編輯、建立、上傳和篩選使用 DocumentDB 的 JSON 文件。 
 
-請注意，具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶不會啟用 Document Explorer。 啟用此功能時，此頁面會加以更新。
+> [!NOTE]
+> 具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶不會啟用文件總管。 啟用此功能時，此頁面會加以更新。
 
-## <a name="launch-document-explorer"></a>啟動 Document Explorer
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)] 。 如果看不到 [DocumentDB (NoSQL)]，請按一下 [更多服務]，然後按一下 [DocumentDB (NoSQL)]。
+<a id="launch-document-explorer"></a>
+
+## <a name="launch-document-explorer-in-the-azure-portal"></a>在 Azure 入口網站中啟動文件總管
+1. 在 [Azure 入口網站](https://portal.azure.com)的左側導覽中，按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。 
+
+    如果看不到 [NoSQL (DocumentDB)]，按一下底部的 [更多服務]，然後按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。
 2. 選取帳戶名稱。 
 3. 在資源功能表中，按一下 [文件總管] 。 
    
@@ -35,7 +41,7 @@ ms.openlocfilehash: 281a24005f076379fefe859386fdf84065c5cfe7
    
     在 [文件總管] 刀鋒視窗中，系統會根據您啟動 [文件總管] 時的所在內容，預先填入 [資料庫] 和 [集合] 下拉式清單。 
 
-## <a name="create-a-document"></a>建立文件
+## <a name="create-a-json-document"></a>建立 JSON 文件
 1. [啟動文件總管](#launch-document-explorer)。
 2. 在 [文件總管] 刀鋒視窗中，按一下 [建立文件]。 
    
@@ -53,7 +59,7 @@ ms.openlocfilehash: 281a24005f076379fefe859386fdf84065c5cfe7
    
     如果您已經有來自 JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 資料表儲存體、Amazon DynamoDB、HBase，或其他 DocumentDB 集合的資料，即可使用 DocumentDB 的 [資料移轉工具](documentdb-import-data.md) 快速匯入資料。
 
-## <a name="edit-a-document"></a>編輯文件
+## <a name="edit-a-json-document"></a>編輯 JSON 文件
 1. [啟動文件總管](#launch-document-explorer)。
 2. 若要編輯現有文件，請在 [文件總管] 刀鋒視窗中選取該文件、在 [文件] 刀鋒視窗中進行編輯，然後按一下 [儲存]。
    
@@ -63,7 +69,7 @@ ms.openlocfilehash: 281a24005f076379fefe859386fdf84065c5cfe7
    
     ![[Document Explorer] 捨棄命令的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/discardedit.png)
 
-## <a name="delete-a-document"></a>刪除文件
+## <a name="delete-a-document-from-documentdb"></a>從 DocumentDB 刪除文件
 1. [啟動文件總管](#launch-document-explorer)。
 2. 在 [文件總管] 中選取文件、按一下 [刪除]，然後確認刪除。 確認後，系統會立即將文件從 Document Explorer 清單中移除。
    
@@ -156,12 +162,5 @@ Azure 入口網站中的 Document Explorer 只是一種處理 DocumentDB 中文�
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解「文件總管」中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
-
-[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/) 也是很實用的資源，可引導您深入了解 DocumentDB。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

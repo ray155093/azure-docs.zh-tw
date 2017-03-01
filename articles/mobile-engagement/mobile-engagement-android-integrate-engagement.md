@@ -4,7 +4,7 @@ description: "Android SDK for Azure Mobile Engagement 的最新更新和程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: a5487793-1a12-4f6c-a1cf-587c5a671e6b
 ms.service: mobile-engagement
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 09c5c2333748eeca3d6e93b62810d62c8a3e53a1
+ms.sourcegitcommit: 06e16033435ed0a37d5688055743875827d3aec2
+ms.openlocfilehash: 35bd92e52b7a02f58620a03156902f9f91be57ae
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -72,7 +73,7 @@ ms.openlocfilehash: 09c5c2333748eeca3d6e93b62810d62c8a3e53a1
 * 將 `<Your application name>` 改為您應用程式的名稱。
 
 > [!TIP]
->  `android:label` 屬性可讓您選擇 Engagement 服務的名稱，此名稱會出現在使用者電話的「執行中服務」畫面中。 建議將此屬性設定為 `"<Your application name>Service"` (例如 `"AcmeFunGameService"`)。
+> `android:label` 屬性可讓您選擇 Engagement 服務的名稱，此名稱會出現在使用者電話的「執行中服務」畫面中。 建議將此屬性設定為 `"<Your application name>Service"` (例如 `"AcmeFunGameService"`)。
 > 
 > 
 
@@ -383,10 +384,5 @@ Engagement 在喜好設定檔案內會一律使用 `engagement:key` 布林值機
               android:summaryOff="Engagement is disabled." />
 
 <!-- URLs. -->
-[裝置 API]: http://go.microsoft.com/?linkid=9876094
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Device API]: http://go.microsoft.com/?linkid=9876094
 

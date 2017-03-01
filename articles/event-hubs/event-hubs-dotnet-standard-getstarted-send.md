@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/30/2017
+ms.date: 02/31/2017
 ms.author: jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
-ms.openlocfilehash: c549676b2126448d52ed43af509671d0b593a064
+ms.sourcegitcommit: 57175ddc53d5856cd3492d4c631a92d4bf9247c4
+ms.openlocfilehash: a6c5ff034450c9c6a01feb4ae6d84cebd75a5682
+ms.lasthandoff: 02/21/2017
 
 ---
 
@@ -51,9 +52,7 @@ ms.openlocfilehash: c549676b2126448d52ed43af509671d0b593a064
 
 ### <a name="add-the-event-hubs-nuget-package"></a>新增事件中樞 NuGet 封裝
 
-1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
-
-2. 按一下 [瀏覽] 索引標籤，然後搜尋「Microsoft Azure 事件中樞」並選取 [Microsoft Azure 事件中樞] 項目。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
+* 將 [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) NuGet 封裝新增至您的專案。
 
 ### <a name="write-some-code-to-send-messages-to-the-event-hub"></a>撰寫一些程式碼來傳送訊息至事件中樞
 
@@ -204,8 +203,3 @@ ms.openlocfilehash: c549676b2126448d52ed43af509671d0b593a064
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)
 * [事件中樞常見問題集](event-hubs-faq.md)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

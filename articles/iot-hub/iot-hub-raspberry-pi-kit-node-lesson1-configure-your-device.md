@@ -16,8 +16,9 @@ ms.workload: na
 ms.date: 11/28/2016
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
-ms.openlocfilehash: cc61bd7ab1f81ccdc5e9c73c1861d29dafa59c12
+ms.sourcegitcommit: 5b80d471c78973f8c2f6b1ad4e1240c66f0505ef
+ms.openlocfilehash: 5afe1110944641daaeace5ef02b2c9fa8d2a8e05
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -80,6 +81,9 @@ ms.openlocfilehash: cc61bd7ab1f81ccdc5e9c73c1861d29dafa59c12
 > [!NOTE]
 > 請務必使用套件中具有至少 2A 電流強度的電源供應器，來確保 Raspberry 具有足夠的電力以正常運作。
 
+## <a name="enable-ssh"></a>啟用 SSH
+截至 2016 年 11 月版本，Raspbian 預設已停用 SSH 伺服器。 您必須手動進行啟用。 您可以參考[官方指示 (英文)](https://www.raspberrypi.org/documentation/remote-access/ssh/)，或者連接監視器並移至 [喜好設定] -> [Raspberry Pi 組態] 來啟用 SSH。
+
 ## <a name="connect-raspberry-pi-3-to-the-network"></a>將 Raspberry Pi 3 連接到網路
 您可以將 Pi 連接到有線網路或無線網路。 請確定 Pi 是連接到與您電腦相同的網路。 例如，您可以將 Pi 連接到已和電腦連線的交換器。
 
@@ -113,10 +117,5 @@ ms.openlocfilehash: cc61bd7ab1f81ccdc5e9c73c1861d29dafa59c12
 
 ## <a name="next-steps"></a>後續步驟
 [取得工具](iot-hub-raspberry-pi-kit-node-lesson1-get-the-tools-win32.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

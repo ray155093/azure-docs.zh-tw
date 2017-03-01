@@ -4,7 +4,7 @@ description: "如何將 Azure Mobile Engagement 與 Windows Phone Silverlight �
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 447fea8d-f4e3-4ad4-8ec0-8e3cf1ad3ab0
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 67f69a5a92c922bc7357c1e4bcc88f55e16d1255
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -246,10 +247,5 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 > 高載閾值無法設定為小於一秒的時間間隔。 如果您嘗試這樣做，SDK 會顯示含錯誤訊息的追蹤，並且會自動重設為預設值 (0 秒)。 這樣會觸發 SDK 以即時的方式報告記錄檔。
 > 
 > 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

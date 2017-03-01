@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 1/18/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 9f1222e797446a5835726a10e5c9e8b535a8cf4d
-ms.openlocfilehash: c1c13f21fff7ba201eb00f6c9f594131a75c44fc
+ms.sourcegitcommit: e6167db5f9b6c8b2520b1f3c2d443c7497d44552
+ms.openlocfilehash: b3e625852648e15ccde427ec8c5bb8fe0393cb74
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -30,9 +31,9 @@ ms.openlocfilehash: c1c13f21fff7ba201eb00f6c9f594131a75c44fc
 Spark 2.0.1 現已可在 Spark 叢集上取得 (HDInsight 3.5 版)。
 
 ## <a name="notes-for-11162016-release-of-r-server-90-on-hdinsight-35-spark-20"></a>HDInsight 3.5 (Spark 2.0) 的 R 伺服器 9.0 2016/11/16 版本的相關資訊
-*   R 伺服器叢集現在包括適用於下列兩個版本的選項︰HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 和 HDI 3.4 (Spark 1.6) 上的 R 伺服器 8.0。
-*   HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 是以 R 3.3.2 為基礎，且包含新的 ScaleR 資料來源函式，其名稱為 RxHiveData 和 RxParquetData，可用來將資料從 Hive 和 Parquet 直接載入到 Spark 資料框架供 ScaleR 進行分析。 如需詳細資訊，請透過使用 ?RxHivedata 和 ?RxParquetData 命令參閱 R 中這些函式的內嵌說明。
-*   RStudio 伺服器 Community 版本現在預設 (具有選擇退出選項) 會在佈建流程中安裝在 [叢集組態] 刀鋒視窗上。
+*    R 伺服器叢集現在包括適用於下列兩個版本的選項︰HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 和 HDI 3.4 (Spark 1.6) 上的 R 伺服器 8.0。
+*    HDI 3.5 (Spark 2.0) 上的 R 伺服器 9.0 是以 R 3.3.2 為基礎，且包含新的 ScaleR 資料來源函式，其名稱為 RxHiveData 和 RxParquetData，可用來將資料從 Hive 和 Parquet 直接載入到 Spark 資料框架供 ScaleR 進行分析。 如需詳細資訊，請透過使用 ?RxHivedata 和 ?RxParquetData 命令參閱 R 中這些函式的內嵌說明。
+*    RStudio 伺服器 Community 版本現在預設 (具有選擇退出選項) 會在佈建流程中安裝在 [叢集組態] 刀鋒視窗上。
 
 ## <a name="notes-for-11092016-release-of-spark-20-on-hdinsight"></a>HDInsight 上 Spark 2.0 之 2016/11/09 版本的相關資訊
 * HDInsight 3.5 上的 Spark 2.0 叢集現在支援 Livy 和 Jupyter 服務。
@@ -1280,7 +1281,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 關於 Azure PowerShell 和 HDInsight SDK 的錯誤訊息：「叢集未設定 HTTP 服務存取」：
 
 * 此錯誤是已知的[相容性問題](https://social.msdn.microsoft.com/Forums/azure/a7de016d-8de1-4385-b89e-d2e7a1a9d927/hdinsight-powershellsdk-error-cluster-is-not-configured-for-http-services-access?forum=hdinsight)，起因可能是 HDInsight 或 Azure PowerShell 版本和叢集版本的差異。 在 8/15 或之後建立的叢集支援佈建到虛擬網路的這項新功能。 但舊版的 HDInsight SDK 或 Azure PowerShell 無法正確解譯此功能。 結果造成某些工作提交作業失敗。 如果您使用 HDInsight SDK API 或 Azure PowerShell Cmdlet (**Use-AzureRmHDInsightCluster** 或 **Invoke-AzureRmHDInsightHiveJob**) 來提交工作，這些作業可能會失敗並傳回錯誤訊息「叢集 <clustername> 未設定 HTTP 服務存取」。 或者 (根據作業而定) 傳回其他錯誤訊息，例如「無法連接到叢集」。
-* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 取得 Azure PowerShell 工具。
+* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [Nuget (英文)](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 取得 Azure PowerShell 工具。
 
 ## <a name="notes-for-9122014-release-of-hdinsight-31"></a>HDInsight 3.1 2014/9/12 版本的相關資訊
 * 此版本根據 Hortonworks Data Platform (HDP) 2.1.5。 如需此版本中修正的 Bug 清單，請參閱 Hortonworks 網站上的 [已在此版本修正](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.5/bk_releasenotes_hdp_2.1/content/ch_relnotes-hdp-2.1.5-fixed.html) 頁面。
@@ -1526,9 +1527,4 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 
 [hdinsight-install-spark]: ../hdinsight-hadoop-spark-install/
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -1,5 +1,5 @@
 ---
-title: "擷取 Azure 匯入/匯出服務作業的狀態資訊 | MicrosoftDocs"
+title: "擷取 Azure 匯入/匯出作業的狀態資訊 | Microsoft Docs"
 description: "了解如何取得 Microsoft Azure 匯入/匯出服務作業的狀態資訊"
 author: muralikk
 manager: syadav
@@ -15,13 +15,14 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 22e37e26fec913a7638c71b2547c38f5efacd10b
-ms.openlocfilehash: c1626024262959d33e18dbceba74b89997972c98
+ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
+ms.openlocfilehash: d8156439cc81a88172d5af97c31147b6ceb23ff6
+ms.lasthandoff: 02/16/2017
 
 
 ---
 
-# <a name="retrieving-state-information-for-a-job"></a>擷取作業的狀態資訊
+# <a name="retrieving-state-information-for-an-importexport-job"></a>擷取匯入/匯出作業的狀態資訊
 您可以呼叫 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 作業來擷取關於匯入和匯出作業的資訊。 傳回的資訊包括︰
 
 -   作業的目前狀態。
@@ -43,7 +44,7 @@ ms.openlocfilehash: c1626024262959d33e18dbceba74b89997972c98
 
 |作業狀態|說明|
 |---------------|-----------------|
-|`Creating`|呼叫 Put Job 作業之後，會建立一個作業，且其狀態會設為 `Creating`。 工作處於 `Creating` 狀態時，匯入/匯出服務會假設磁碟機尚未運送到資料中心。 工作最多可保持 `Creating` 狀態兩週，超過後會由服務自動刪除。<br /><br /> 如果您在作業處於時 `Creating` 狀態時呼叫 Update Job 屬性作業，作業會維持在 `Creating` 狀態，且逾時間隔會重設為 2 週。|
+|`Creating`|呼叫 Put Job 作業之後，會建立一個作業，且其狀態會設為 `Creating`。 工作處於 `Creating` 狀態時，匯入/匯出服務會假設磁碟機尚未運送到資料中心。 工作最多可保持 `Creating` 狀態兩週，超過後會由服務自動刪除。<br /><br /> 如果您在作業處於時 `Creating` 狀態時呼叫 Update Job 屬性作業，作業會維持在 `Creating` 狀態，且逾時間隔會重設為&2; 週。|
 |`Shipping`|寄送包裹之後，您應該呼叫 Update Job 屬性作業將作業狀態更新為 `Shipping`。 只有當作業的 `DeliveryPackage` (貨運公司和追蹤號碼) 和 `ReturnAddress` 屬性都已設定時，才可以設定寄送狀態。<br /><br /> 作業最多將保持「運送中」狀態兩週。 如果已超過兩週，但未收到磁碟機，將會通知匯入/匯出服務操作員。|
 |`Received`|資料中心收到所有磁碟機之後，作業狀態會設為「已收到」狀態。|
 |`Transferring`|資料中心收到磁碟機，且至少已開始處理一個磁碟機之後，作業狀態將會設定為 `Transferring` 狀態。 如需詳細資訊，請參閱以下的 `Drive States` 一節。|
@@ -92,9 +93,4 @@ ms.openlocfilehash: c1626024262959d33e18dbceba74b89997972c98
 
 ## <a name="see-also"></a>另請參閱
 [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

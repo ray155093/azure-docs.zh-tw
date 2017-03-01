@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 02/16/2017
 ms.author: milanga;juliako;
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0c6f4a020430f464a97b0716dea2a40719c0b064
+ms.sourcegitcommit: 343658944394e7b620bc70aa0d92affada07e91d
+ms.openlocfilehash: 7510c8ab4adadbd7d738ba0b8e2bbdddba8d1048
+ms.lasthandoff: 02/18/2017
 
 
 ---
@@ -26,7 +27,11 @@ ms.openlocfilehash: 0c6f4a020430f464a97b0716dea2a40719c0b064
 
 **Azure 媒體視訊縮圖** MP 目前為預覽功能。
 
-本主題提供有關 **Azure 媒體視訊縮圖**的詳細資訊，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它
+本主題提供有關 **Azure 媒體視訊縮圖**的詳細資訊，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
+
+## <a name="limitations"></a>限制
+
+在某些情況下，如果您的視訊並未包含不同場景，則輸出將只是單一擷取畫面。
 
 ## <a name="video-summary-example"></a>視訊摘要範例
 以下是 Azure 媒體視訊縮圖媒體處理器可以執行的一些範例：
@@ -262,10 +267,5 @@ ms.openlocfilehash: 0c6f4a020430f464a97b0716dea2a40719c0b064
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

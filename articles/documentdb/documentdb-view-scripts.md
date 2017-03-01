@@ -1,6 +1,6 @@
 ---
-title: "DocumentDB 指令碼總管，JavaScript 編輯器 | Microsoft Docs"
-description: "了解 DocumentDB 指令碼總管，它是 Azure 入口網站工具，可讓您管理 DocumentDB 伺服器端程式設計成品 (包括預存程序、觸發程序和使用者定義的函式)。"
+title: "Azure DocumentDB 入口網站工具︰指令碼總管 | Microsoft Docs"
+description: "了解 DocumentDB 指令碼總管，它是 Azure 入口網站工具，可讓您管理 DocumentDB 伺服器端程式設計成品 (包括 JavaScript 預存程序、觸發程序和使用者定義的函式)。"
 keywords: "javascript 編輯器"
 services: documentdb
 author: kirillg
@@ -13,11 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/30/2016
+ms.date: 02/14/2017
 ms.author: kirillg
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 70d08de5e7ba775578ea1765ea1c0dda9b04e427
+ms.sourcegitcommit: 429687c6e5a196a3b489dc4dd79ae886b7ad9c38
+ms.openlocfilehash: ccff673996d53d2b3b2c177bfb6fff01613b7097
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -25,7 +26,9 @@ ms.openlocfilehash: 70d08de5e7ba775578ea1765ea1c0dda9b04e427
 本文提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 指令碼總管的概述，它是 Azure 入口網站中的 JavaScript 編輯器，可讓您檢視並執行 DocumentDB 伺服器端程式設計成品 (包括預存程序、觸發程序和使用者定義的函式)。 請閱讀 [預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中更多有關 DocumentDB 伺服器端程式設計的資訊。
 
 ## <a name="launch-script-explorer"></a>啟動指令碼總管
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)] 。 如果看不到 **DocumentDB 帳戶**，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
+1. 在 [Azure 入口網站](https://portal.azure.com)的左側導覽中，按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。 
+
+    如果看不到 [NoSQL (DocumentDB)]，按一下底部的 [更多服務]，然後按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。
 2. 在資源功能表中，按一下 [指令碼總管] 。
    
     ![[指令碼總管] 命令的螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorercommand.png)
@@ -36,7 +39,8 @@ ms.openlocfilehash: 70d08de5e7ba775578ea1765ea1c0dda9b04e427
    
     ![[指令碼總管] 的螢幕擷取畫面和篩選結果](./media/documentdb-view-scripts/scriptexplorerfilterresults.png)
 
-    > [AZURE.IMPORTANT] [指令碼總管] 篩選功能只會從***目前***載入的指令碼集篩選，不會自動重新整理目前選取的集合。
+    > [!IMPORTANT] 
+    > [指令碼總管] 篩選功能只會從***目前***載入的指令碼集篩選，不會自動重新整理目前選取的集合。
 
 1. 若要重新整理 [指令碼總管] 所載入的指令碼清單，您只需要按一下刀鋒視窗頂端的 **[重新整理]** 命令即可。
    
@@ -106,10 +110,5 @@ Azure 入口網站中的 [指令碼總管] 只是在 DocumentDB 中使用預存�
 深入了解 [預存程序、資料庫觸發程序和 UDF](documentdb-programming.md) 一文中有關 DocumentDB 伺服器端程式設計的資訊。
 
 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/) 也是很實用的資源，可引導您深入了解 DocumentDB。  
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

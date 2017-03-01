@@ -11,30 +11,31 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/31/2017
+ms.date: 02/15/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: fe9fad2de3fbb63e51fa14215c6f240977c56c7b
-ms.openlocfilehash: c72cebd04216b4e2bba26dd306354a7cd4e6c49a
+ms.sourcegitcommit: d3688b6a71dcd9964839da3cda35413d00f362d1
+ms.openlocfilehash: 836d43b17515beb565748f28603069c7c6a52fbf
+ms.lasthandoff: 02/15/2017
 
 
 ---
-# <a name="troubleshooting-the-auto-registration-of-azure-ad-domain-joined-computers-for-windows-10-and-windows-server-2016"></a>針對已加入 Azure AD 網域之 Windows 10 和 Windows Server 2016 電腦的自動註冊進行疑難排解
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad--windows-10-and-windows-server-2016"></a>針對已加入 Azure AD 網域之電腦的自動註冊進行疑難排解 – Windows 10 和 Windows Server 2016
 
 本主題適用於下列用戶端：
 
--   Windows 10
--   Windows Server 2016
+-    Windows 10
+-    Windows Server 2016
 
 針對其他 Windows 用戶端，請參閱[針對已加入 Azure AD 網域之 Windows 下層用戶端電腦的自動註冊進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)。
 
 本主題假設您已經依照[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-get-started.md)所述，設定讓已加入網域的裝置自動註冊，以支援下列案例：
 
-1.  [裝置型條件式存取](active-directory-conditional-access-automatic-device-registration-setup.md)
+1.    [裝置型條件式存取](active-directory-conditional-access-automatic-device-registration-setup.md)
 
-2.  [設定的企業漫遊](active-directory-windows-enterprise-state-roaming-overview.md)
+2.    [設定的企業漫遊](active-directory-windows-enterprise-state-roaming-overview.md)
 
-3.  [Windows Hello 企業版](active-directory-azureadjoin-passport-deployment.md)
+3.    [Windows Hello 企業版](active-directory-azureadjoin-passport-deployment.md)
 
 
 本文件提供有關如何解決潛在問題的疑難排解指引。 
@@ -80,23 +81,23 @@ Windows 10 的 2015 年 11 月更新和更新版本皆支援註冊。
 
 **可能的原因：**
 
-1.  驗證要註冊的電腦失敗。
+1.    驗證要註冊的電腦失敗。
 
-2.  組織中有電腦探索不到的 HTTP Proxy。
+2.    組織中有電腦探索不到的 HTTP Proxy。
 
-3.  電腦無法連線到 Azure AD 來進行驗證，或無法連線到 Azure DRS 來進行註冊
+3.    電腦無法連線到 Azure AD 來進行驗證，或無法連線到 Azure DRS 來進行註冊
 
-4.  電腦可能不在組織的內部網路上，或不在可直接看到內部部署 AD 網域控制站的 VPN 上。
+4.    電腦可能不在組織的內部網路上，或不在可直接看到內部部署 AD 網域控制站的 VPN 上。
 
-5.  如果電腦有 TPM，它可能是處於不正常狀態。
+5.    如果電腦有 TPM，它可能是處於不正常狀態。
 
-6.  在本文件稍早提到的服務中可能有設定錯誤的情況，您將必須重新確認。 常見範例包括：
+6.    在本文件稍早提到的服務中可能有設定錯誤的情況，您將必須重新確認。 常見範例包括：
 
-    1.  您的同盟伺服器未啟用 WS-Trust 端點
+    1.    您的同盟伺服器未啟用 WS-Trust 端點
 
-    2.  您的同盟伺服器可能不允許來自您網路中使用「整合式 Windows 驗證」之電腦的輸入驗證。
+    2.    您的同盟伺服器可能不允許來自您網路中使用「整合式 Windows 驗證」之電腦的輸入驗證。
 
-    3.  沒有「服務連接點」物件指向電腦所屬 AD 樹系之 Azure AD 中已驗證的網域名稱
+    3.    沒有「服務連接點」物件指向電腦所屬 AD 樹系之 Azure AD 中已驗證的網域名稱
 
 ---
 
@@ -116,17 +117,12 @@ Windows 10 的 2015 年 11 月更新和更新版本皆支援註冊。
   
 這些欄位顯示使用者在登入裝置時，已順利向 Azure AD 進行驗證。 如果顯示為 ‘NO’，則可能的原因如下：
 
-1.  註冊時，與裝置關聯之 TPM 中的儲存體金鑰 (STK) 無效 (請在提高權限執行的情況下，檢查 KeySignTest)。
+1.    註冊時，與裝置關聯之 TPM 中的儲存體金鑰 (STK) 無效 (請在提高權限執行的情況下，檢查 KeySignTest)。
 
-2.  替代登入識別碼
+2.    替代登入識別碼
 
-3.  找不到 HTTP Proxy
+3.    找不到 HTTP Proxy
 
 ## <a name="next-steps"></a>後續步驟
 
 如需詳細資訊，請參閱[自動裝置註冊常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md) 
-
-
-<!--HONumber=Feb17_HO1-->
-
-

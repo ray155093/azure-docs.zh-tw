@@ -4,7 +4,7 @@ description: "此版本的常見問題集支援公開預覽版本的 Azure 備�
 services: backup
 documentationcenter: 
 author: markgalioto
-manager: jwhit
+manager: carmonm
 editor: 
 keywords: "備份解決方案；備份服務"
 ms.assetid: 5f55b500-1ee9-4f64-9306-02d6f7a8eded
@@ -14,14 +14,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/21/2016
-ms.author: trinadhk; markgal; jimpark;
+ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fdc596def57968381ea48dfc5df2269a682c9de7
+ms.sourcegitcommit: e12d533ac5befe020c0aad4aa64ca9ed50349c3d
+ms.openlocfilehash: 271f447a36f42330ed7b8dea78b32c06eebdeda6
+ms.lasthandoff: 02/17/2017
 
 
 ---
-# <a name="recovery-services-vault-faq"></a>復原服務保存庫 - 常見問題集
+# <a name="recovery-services-vault---faq"></a>復原服務保存庫 - 常見問題集
 本文提供復原服務保存庫特有資訊，並補充說明 [Azure 備份常見問題集](backup-azure-backup-faq.md)。 Azure 備份常見問題集提供一組關於 Azure 備份服務的完整問答。  
 
 您可以在本文件或相關文件的 Disqus 一節中詢問有關 Azure 備份的問題。 您也可以在 [論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)中張貼有關 Azure 備份服務的問題。
@@ -35,16 +36,10 @@ ms.openlocfilehash: fdc596def57968381ea48dfc5df2269a682c9de7
 ## <a name="do-recovery-services-vaults-support-classic-vms-or-resource-manager-based-vms-br"></a>復原服務保存庫是否支援傳統 VM 或以 Resource Manager 為基礎的 VM？ <br/>
 復原服務保存庫支援兩種模式。  您可以將傳統入口網站中建立的 VM (傳統模式 VM) 或 Azure 入口網站中建立的 VM (以 Resource Manager 為基礎) 備份至復原服務保存庫。
 
-## <a name="i-have-backed-up-my-classic-vms-in-backup-vault-now-i-want-to-migrate-my-vms-from-classic-mode-to-resource-manager-mode-how-can-i-backup-them-in-recovery-services-vault"></a>我已在備份保存庫中備份傳統 VM。 我現在想要將 VM 從傳統模式移轉至 Resource Manager 模式。  如何才能在復原服務保存庫中備份它們？
+## <a name="i-have-backed-up-my-classic-vms-in-backup-vault-now-i-want-to-migrate-my-vms-from-classic-mode-to-resource-manager-mode--how-can-i-backup-them-in-recovery-services-vault"></a>我已在備份保存庫中備份傳統 VM。 我現在想要將 VM 從傳統模式移轉至 Resource Manager 模式。  如何才能在復原服務保存庫中備份它們？
 當您將 VM 從傳統移轉至 Resource Manager 模式，備份保存庫中傳統 VM 的備份將不會自動移轉至復原服務保存庫。 請遵循下列步驟進行 VM 備份的移轉︰
 
 1. 在備份保存庫中，請移至 [受保護的項目]  索引標籤並選取 VM。 按一下 [停止保護](backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines)。 讓 [刪除相關聯的備份資料] 選項保持 [未核取] 狀態。
 2. 將虛擬機器從傳統模式移轉至 Resource Manager 模式。 確定虛擬機器對應的儲存體和網路也會移轉至 Resource Manager 模式。
 3. 建立復原服務保存庫，並利用保存庫儀表板上的 [備份]  動作，在移轉的虛擬機器上設定備份。 深入了解如何 [在復原服務保存庫中啟用備份](backup-azure-vms-first-look-arm.md)
-
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

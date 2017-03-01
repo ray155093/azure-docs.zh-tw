@@ -3,7 +3,7 @@ title: "使用 Azure 儲存體搭配 Jenkins 連續整合解決方案 | Microsof
 description: "本教學課程說明如何使用 Azure Blob 服務作為 Jenkins 連續整合解決方案所建立之組建成品的存放庫。"
 services: storage
 documentationcenter: java
-author: dineshmurthy
+author: seguler
 manager: jahogg
 editor: tysonn
 ms.assetid: f4e5ca75-f6cb-4f74-981b-2aa06bb8de45
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/18/2016
-ms.author: dineshm
+ms.date: 02/28/2017
+ms.author: seguler
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 317b8d537465daf77c6feeb8fed927c72bdd7190
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -155,8 +156,3 @@ Jenkins 透過讓開發人員輕鬆整合自己的程式碼變更，並會以自
 * [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
 
 如需詳細資訊，另請參閱 [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
-
-
-<!--HONumber=Nov16_HO3-->
-
-

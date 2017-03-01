@@ -17,22 +17,23 @@ ms.workload: data-management
 ms.date: 02/08/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 60bcd02d24e2084b9020ce56ef6a9f8268c6b1b5
-ms.openlocfilehash: 23d4c00f9e4c719e2124ad3c8733269712a796f0
+ms.sourcegitcommit: 9b09383350284c8f1cd3e384c802c25c962b1226
+ms.openlocfilehash: 1fe15e7ad3667d42995cd487c793fae496216fca
+ms.lasthandoff: 02/16/2017
 
         
 ---
  
 # <a name="explore-azure-sql-database-tutorials"></a>探索 Azure SQL Database 教學課程
-下表中的連結會帶您前往每個所列功能區域的概觀，以及每個區域的簡單逐步教學課程。 如需以解決方案為範圍、根據真實世界案例示範在完整解決方案中如何使用 SQL Database 的快速入門，請參閱 [Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)。
+下表中的連結會帶您前往每個所列功能區域的概觀，以及每個區域的簡單逐步教學課程。 
 
 ## <a name="create-servers-databases-and-server-level-firewall-rules"></a>建立伺服器、資料庫和伺服器層級防火牆規則
 在下列教學課程中，您將會建立伺服器、資料庫和伺服器層級防火牆規則，並了解如何連接及查詢伺服器和資料庫。
 
 | 教學課程 | 說明 |
 | --- | --- | 
-| [快速入門教學課程：您的第一個 Azure SQL 資料庫](sql-database-get-started.md) | 完成本快速入門教學課程之後，您將會有在 Azure 資源群組中執行並已附加至邏輯伺服器的範例資料庫和空白資料庫。 您也會有兩個伺服器層級防火牆規則，其設定為可啟用伺服器層級主體以從兩個指定的 IP 位址登入伺服器。 最後，您會了解如何在 Azure 入口網站查詢資料庫，以及如何使用 SQL Server Management Studio 來連接和查詢。 |
-| [教學課程：使用 PowerShell 佈建及存取 Azure SQL 資料庫](sql-database-get-started-powershell.md) | 當完成本教學課程時，您將會有在 Azure 資源群組中執行並已附加至邏輯伺服器的範例資料庫和空白資料庫。 您也會有伺服器層級防火牆規則，設定為可啟用伺服器層級主體以從指定的 IP 位址 (或 IP 位址範圍) 登入伺服器。 |
+| [您的第一個 Azure SQL Database](sql-database-get-started.md) | 完成本快速入門教學課程之後，您將會有在 Azure 資源群組中執行並已附加至邏輯伺服器的範例資料庫和空白資料庫。 您也會有兩個伺服器層級防火牆規則，其設定為可啟用伺服器層級主體以從兩個指定的 IP 位址登入伺服器。 最後，您會了解如何在 Azure 入口網站查詢資料庫，以及如何使用 SQL Server Management Studio 來連接和查詢。 |
+| [使用 PowerShell 佈建及存取 Azure SQL Database](sql-database-get-started-powershell.md) | 當完成本教學課程時，您將會有在 Azure 資源群組中執行並已附加至邏輯伺服器的範例資料庫和空白資料庫。 您也會有伺服器層級防火牆規則，設定為可啟用伺服器層級主體以從指定的 IP 位址 (或 IP 位址範圍) 登入伺服器。 |
 | [以 SQL Database Library for .NET 使用 C# 建立 SQL 資料庫](sql-database-get-started-csharp.md)| 在本教學課程中，您會使用 C# 來建立 SQL Database 伺服器、防火牆規則和 SQL 資料庫。 您也可以建立 Active Directory (AD) 應用程式，以及驗證 C# 應用程式所需的服務主體。 |
 |  | |
 
@@ -41,7 +42,7 @@ ms.openlocfilehash: 23d4c00f9e4c719e2124ad3c8733269712a796f0
 
 | 教學課程 | 說明 |
 | --- | --- | 
-| [使用 Azure 入口網站進行備份與還原](sql-database-get-started-backup-recovery.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站來檢視備份、還原至某個時間點、設定長期備份保存，以及從 Azure 復原服務保存庫中的備份還原。
+| [使用 Azure 入口網站進行備份與還原](sql-database-get-started-backup-recovery-portal.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站來檢視備份、還原至某個時間點、設定長期備份保存，以及從 Azure 復原服務保存庫中的備份還原。
 | [使用 PowerShell 進行備份與還原](sql-database-get-started-backup-recovery-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 來檢視備份、還原至某個時間點、設定長期備份保存，以及從 Azure 復原服務保存庫中的備份還原。
 |  | |
 
@@ -97,8 +98,12 @@ ms.openlocfilehash: 23d4c00f9e4c719e2124ad3c8733269712a796f0
 | --- | --- | 
 | [使用 Excel 建立報告](sql-database-connect-excel.md) |在本教學課程中，您將了解如何將 Excel 連接至雲端的 SQL 資料庫，以便匯入資料並根據資料庫中的值來建立資料表和圖表。 |
 | [使用 SQL Server 建置應用程式](https://www.microsoft.com/sql-server/developer-get-started/) |在本教學課程中，您將了解如何使用 SQL Server 建置應用程式 |
+| [暫存資料表](sql-database-temporal-tables.md) | 在本教學課程中，您將了解暫存資料表。
 | [使用 Entity Framework 搭配彈性工具](sql-database-elastic-scale-use-entity-framework-applications-visual-studio.md) |在本教學課程中，您將了解 Entity Framework 應用程式為了要與彈性資料庫工具整合所需做的變更。 |
 | [採用記憶體內部 OLTP](sql-database-in-memory-oltp-migration.md) | 在本教學課程中，您將了解如何使用[記憶體中 OLTP](sql-database-in-memory.md) 來改善交易處理的效能。 |
+| [新資料庫的 Code First](https://msdn.microsoft.com/data/jj193542.aspx) | 在本教學課程中，您將了解 Code First 部署。
+| [Tailspin Surveys 範例應用程式](https://github.com/Azure-Samples/guidance-identity-management-for-multitenant-apps/blob/master/docs/running-the-app.md) | 在本教學課程中，您會使用 Tailspon Surveys 範例應用程式。 |
+| [Contoso 診所示範應用程式](https://github.com/Microsoft/azure-sql-security-sample) | 在本教學課程中，您會使用 Contoso 診所示範應用程式。 |
 |  | |
 
 ## <a name="data-sync"></a>資料同步
@@ -109,11 +114,15 @@ ms.openlocfilehash: 23d4c00f9e4c719e2124ad3c8733269712a796f0
 | [開始使用 Azure SQL 資料同步 (預覽)](sql-database-get-started-sql-data-sync.md) |在本教學課程中，您將了解使用 Azure 傳統入口網站的 Azure SQL 資料同步基本概念。 |
 |  | |
 
-## <a name="next-steps"></a>後續步驟
-[探索 Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)
+## <a name="monitor-and-tune"></a>監視與微調
+在下列教學課程中，您將了解監視和微調。
+| 教學課程 | 說明 |
+| --- | --- | 
+| [使用 PowerShell 進行彈性集區遙測](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)| 在本教學課程中，您將了解如何使用 PowerShell 收集彈性集區遙測。 |
+| [SaaS 的彈性集區自訂儀表板](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools-custom-dashboard) | 在本教學課程中，您將了解如何建立用於監視彈性集區的自訂儀表板。 |
+| [將擴充的活動擷取至活動檔案目標](sql-database-xevent-code-event-file.md)| 在本教學課程中，您將了解如何將擴充的活動擷取至活動目標檔案。|
+| [將擴充的活動擷取至信號緩衝區目標](sql-database-xevent-code-ring-buffer.md)| 在本教學課程中，您將了解如何將擴充的活動擷取至代碼信號緩衝區。|
+|  | |
 
-
-
-<!--HONumber=Feb17_HO2-->
 
 

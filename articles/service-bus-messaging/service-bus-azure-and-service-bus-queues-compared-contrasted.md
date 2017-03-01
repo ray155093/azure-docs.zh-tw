@@ -15,8 +15,9 @@ ms.workload: tbd
 ms.date: 01/19/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 7bd12e72ead38aa73b9abf960624755a05720b00
-ms.openlocfilehash: ea973dab1ec68324b24d067e7e07868983a5b151
+ms.sourcegitcommit: f236f6f2155e1bf7471eba8aedea5b77bb5995d0
+ms.openlocfilehash: fd86979339b0ff661dcc6447585ca594b680911d
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -82,7 +83,6 @@ Microsoft Azure 支援兩種佇列機制：**儲存體佇列**和**服務匯流�
 
 ### <a name="additional-information"></a>其他資訊
 * 儲存體佇列中的訊息通常是先進先出，但有時也不按順序；舉例來說，訊息的可視性逾時期限到期時 (例如，由於處理期間用戶端應用程式損毀所致)。 當可視性逾時到期時，訊息會再次出現在佇列上，以便其他工作者清除佇列中的訊息。 此時，佇列中可能放入新出現的訊息 (等待再次從佇列中清除)，而且是最初在它之後才加入佇列的訊息後面。
-* 如果您已使用 Azure 儲存體、Blob 或資料表，而且開始使用佇列，則保證您可獲得 99.9% 的可用性。 如果您將 Blob 或資料表搭配服務匯流排佇列使用，則您將獲得較低的可用性。
 * 服務匯流排佇列中的保證 FIFO 模式需要使用訊息工作階段。 如果應用程式在處理以「查看與鎖定」模式所接收的訊息時損毀，下一次佇列接收者接受訊息工作階段時，將會在存留時間 (TTL) 期限到期之後，從失敗的訊息開始處理。
 * 儲存體佇列是設計來支援標準佇列案例，例如使應用程式元件脫鉤以增加延展性及容錯能力、進行負載調節，以及建置處理工作流程。
 * 服務匯流排佇列支援「至少一次」的傳遞保證。 此外，也可支援「最多一次」語意，方法是使用工作階段狀態來儲存應用程式狀態，並且使用交易以不可分割方式接收訊息並更新工作階段狀態。
@@ -200,10 +200,5 @@ Microsoft Azure 支援兩種佇列機制：**儲存體佇列**和**服務匯流�
 * [了解 Azure 儲存體計費 - 頻寬、交易和容量](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx)
 
 [Azure portal]: https://portal.azure.com
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

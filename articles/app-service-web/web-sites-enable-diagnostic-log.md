@@ -4,7 +4,7 @@ description: "了解如何啟用診斷記錄，並在您的應用程式中加入
 services: app-service
 documentationcenter: .net
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: c9da27b2-47d4-4c33-a3cb-1819955ee43b
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: 27bf5b15ebeed13733df2ddd9dbda5d5cfe4e49d
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -286,9 +287,4 @@ Web 伺服器記錄使用 [W3C 擴充記錄檔案格式](http://msdn.microsoft.c
 ## <a name="whats-changed"></a>變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 * 如需從舊的入口網站變更為新入口網站的指南，請參閱： [瀏覽 Azure 入口網站的參考](http://go.microsoft.com/fwlink/?LinkId=529715)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 
