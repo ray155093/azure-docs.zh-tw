@@ -1,5 +1,5 @@
 
-如需有關磁碟的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../articles/virtual-machines/virtual-machines-linux-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需有關磁碟的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../articles/storage/storage-about-disks-and-vhds-linux.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 <a id="attachempty"></a>
 
@@ -114,9 +114,4 @@
 > 新增資料磁碟之後，您必須登入虛擬機器並初始化磁碟，這樣虛擬機器才能使用該磁碟來進行儲存 (如需如何初始化磁碟的詳細資訊，請參閱下列步驟)。
 > 
 > 
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/18/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 51a736c051bef8550662060fdde89fc50e32928a
+ms.sourcegitcommit: 400793331aa2d56358a83a51ce64c67f59bbf3b7
+ms.openlocfilehash: 2a204ffbb915370328e574dc3cba6a617e97c87a
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -66,19 +67,19 @@ MCM 與 Azure AD 整合提供下列優點：
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-mcm-tutorial/tutorial_general_02.png "Applications")
+    ![應用程式](./media/active-directory-saas-mcm-tutorial/tutorial_general_02.png "應用程式")
 
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-mcm-tutorial/tutorial_general_03.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-mcm-tutorial/tutorial_general_03.png "新增應用程式")
 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-mcm-tutorial/tutorial_general_04.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-mcm-tutorial/tutorial_general_04.png "從資源庫新增應用程式")
 
 6. 在**搜尋方塊**中，輸入 **MCM**。
    
-    ![應用程式庫](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_01.png "Application gallery")
+    ![應用程式資源庫](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_01.png "應用程式資源庫")
 
 7. 在結果窗格中，選取 [MCM]，然後按一下 [完成] 新增應用程式。
    
@@ -106,15 +107,15 @@ MCM 與 Azure AD 整合提供下列優點：
 
 1. 在 Azure 傳統入口網站的 [MCM] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_general_05.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_general_05.png "設定單一登入")
 
 2. 在 [要如何讓使用者登入 MCM] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-    ![Microsoft Azure AD 單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_03.png "Microsoft Azure AD Single Sign-On")
+    ![Microsoft Azure AD 單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_03.png "Microsoft Azure AD 單一登入")
 
 3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
    
-    ![設定應用程式 URL](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_04.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_04.png "設定應用程式 URL")
    
     a. 在 [登入 URL] 文字方塊中，輸入 `https://myaba.co.uk/client-access/<company name>/saml.php`。
    
@@ -122,17 +123,17 @@ MCM 與 Azure AD 整合提供下列優點：
 
 4. 在 [設定在 MCM 單一登入] 頁面上，按一下 [下載中繼資料]，然後將憑證檔案儲存在您的電腦中。
    
-    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_05.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_05.png "設定單一登入")
 
 5. 若要為您的應用程式設定 SSO，請連絡 MCM 支援小組。 附加下載的中繼資料檔案，並與 Bynder 小組共用，以便在 MCM 端設定 SSO。
 
 6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
-    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_06.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_06.png "設定單一登入")
 
 7. 在 [單一登入確認] 頁面上，按一下 [完成]。
    
-    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_07.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-mcm-tutorial/tutorial_mcm_07.png "設定單一登入")
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
@@ -202,13 +203,13 @@ MCM 與 Azure AD 整合提供下列優點：
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 本節的目標是授與 Britta Simon 對 MCM 的存取權，讓她能夠使用 Azure 單一登入。
 
-![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_00.png "Assign users")
+![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_00.png "指派使用者")
 
 **若要將 Britta Simon 指派給 MCM，請執行下列步驟：**
 
 1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_01.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_01.png "指派使用者")
 
 2. 在應用程式清單中，選取 [MCM] 。
    
@@ -216,13 +217,13 @@ MCM 與 Azure AD 整合提供下列優點：
 
 3. 在頂端的功能表中，按一下 [使用者] 。
    
-    ![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_02.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_02.png "指派使用者")
 
 4. 在 [使用者] 清單中，選取 [Britta Simon] 。
 
 5. 在底部的工具列中，按一下 [指派] 。
    
-    ![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_03.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-mcm-tutorial/assign_aaduser_03.png "指派使用者")
 
 ### <a name="testing-single-sign-on"></a>測試單一登入
 本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。
@@ -232,10 +233,5 @@ MCM 與 Azure AD 整合提供下列優點：
 ## <a name="additional-resources"></a>其他資源
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

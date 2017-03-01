@@ -1,7 +1,6 @@
 > [!div class="op_single_selector"]
-> * [Azure Portal](../articles/storage/storage-enable-and-view-metrics.md)
-> * [Azure Classic Portal](../articles/storage/storage-enable-and-view-metrics-classic-portal.md)
+> * [Azure 入口網站](../articles/storage/storage-enable-and-view-metrics.md)
+> * [Azure 傳統入口網站](../articles/storage/storage-enable-and-view-metrics-classic-portal.md)
 > 
 > 
 
-<!---HONumber=AcomDC_1203_2015-->

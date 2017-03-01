@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 1/6/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 409f22dcc352aae1af9100bb7a30120ea861009b
-ms.openlocfilehash: c38e324c68d382f74a6140952b7900afd509d319
+ms.sourcegitcommit: 1cb57e5156dab976599ddfa9a58f26ca8ef1ee0e
+ms.openlocfilehash: 304acc7d2bfdefffde700ecd469b6335b08b85e6
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: c38e324c68d382f74a6140952b7900afd509d319
 * 使用中的 Office 365 訂用帳戶 (如果使用的是 Office 365 服務)。 如需詳細資訊，請參閱本文的 [Office 365 特定需求](#office-365-specific-requirements)一節。
 
 ## <a name="connectivity-provider"></a>連線提供者
-* 您可以與 [ExpressRoute 連線合作夥伴](expressroute-locations.md#partners) 合作來連線到 Microsoft Cloud。 您可以透過 [三種方法](expressroute-introduction.md#howtoconnect)在內部部署網路與 Microsoft 之間設定連線。 
+* 您可以與 [ExpressRoute 連線合作夥伴](expressroute-locations.md#partners) 合作來連線到 Microsoft Cloud。 您可以透過 [三種方法](expressroute-introduction.md)在內部部署網路與 Microsoft 之間設定連線。 
 * 如果您的提供者不是 ExpressRoute 連線合作夥伴，您仍可透過 [雲端交換服務提供者](expressroute-locations.md#nonpartners)連線到 Microsoft Cloud。
 
 ## <a name="network-requirements"></a>網路需求
@@ -64,10 +65,5 @@ ms.openlocfilehash: c38e324c68d382f74a6140952b7900afd509d319
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)
   * [設定路由](expressroute-howto-routing-classic.md)
   * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

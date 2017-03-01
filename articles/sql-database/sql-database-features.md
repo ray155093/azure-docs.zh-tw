@@ -16,8 +16,9 @@ ms.workload: data-management
 ms.date: 02/01/2017
 ms.author: carlrab; jognanay
 translationtype: Human Translation
-ms.sourcegitcommit: 21be71a1b4c79ecec8af02d08f65c41128c5ef73
-ms.openlocfilehash: 50a465f314909c10bc3c3f95be2d9dc377d433a7
+ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
+ms.openlocfilehash: 5d8fa8328bb2257b77a27fc2fa33565e20000e10
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -57,12 +58,12 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | AlwaysOn 可用性群組 | [支援](https://msdn.microsoft.com/library/hh510230.aspx) | 不支援 - 請參閱[主動式異地複寫](sql-database-geo-replication-overview.md) |
 | 連接資料庫 | [支援](https://msdn.microsoft.com/library/ms190209.aspx) | 不支援 |
 | 應用程式角色 | [支援](https://msdn.microsoft.com/library/ms190998.aspx) | [支援](https://msdn.microsoft.com/library/ms190998.aspx) |
-| 自動調整 | 不支援 | [支援](sql-database-scale-up.md) |
+| 自動調整 | 不支援 | [支援](sql-database-service-tiers.md) |
 | Azure Active Directory | 不支援 | [支援](sql-database-aad-authentication.md) |
 | Azure Data Factory | 不支援 - 請參閱 [SQL Server Integration Services (SSIS)](https://msdn.microsoft.com/library/ms141026.aspx) | [支援](https://azure.microsoft.com/services/data-factory/) |
-| 稽核 | [支援](https://msdn.microsoft.com/library/cc280386.aspx) | [支援](sql-database-auditing-get-started.md) |
+| 稽核 | [支援](https://msdn.microsoft.com/library/cc280386.aspx) | [支援](sql-database-auditing.md) |
 | BACPAC 檔案 (匯出) | [支援](https://msdn.microsoft.com/library/hh213241.aspx) | [支援](sql-database-export.md) |
-| BACPAC 檔案 (匯入) | [支援](https://msdn.microsoft.com/library/hh710052.aspx) | [支援](sql-database-import.md) |
+| BACPAC 檔案 (匯入) | [支援](https://msdn.microsoft.com/library/hh710052.aspx) | [支援](sql-database-import-portal.md) |
 | 備份和還原陳述式 | [支援](https://msdn.microsoft.com/library/ff848768.aspx) | 不支援 |
 | 內建函數 | [支援](https://msdn.microsoft.com/library/ms174318.aspx) | [大部分](https://msdn.microsoft.com/library/ms174318.aspx) |
 | 變更資料擷取 | [支援](https://msdn.microsoft.com/library/cc645937.aspx) | 不支援 |
@@ -132,7 +133,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | SQL Server Integration Services (SSIS) | [支援](https://msdn.microsoft.com/library/ms141026.aspx) | 不支援 - 請參閱 [Azure Data Factory](https://azure.microsoft.com/services/data-factory/) |
 | SQL Server PowerShell | [支援](https://msdn.microsoft.com/library/hh245198.aspx) | [支援](https://msdn.microsoft.com/library/hh245198.aspx) |
 | SQL Server Profiler | [支援](https://msdn.microsoft.com/library/ms181091.aspx) | 不支援 - 請參閱[擴充事件](https://msdn.microsoft.com/library/ms181091.aspx) |
-| SQL Server 複寫 | [支援](https://msdn.microsoft.com/library/ms151198.aspx) | [僅限交易和快照複寫訂閱者](sql-database-cloud-migrate-compatible-using-transactional-replication.md) |
+| SQL Server 複寫 | [支援](https://msdn.microsoft.com/library/ms151198.aspx) | [僅限交易和快照複寫訂閱者](sql-database-cloud-migrate.md) |
 | SQL Server Reporting Services (SSRS) | [支援](https://msdn.microsoft.com/library/ms159106.aspx) | 不支援 |
 | 預存程序 | [支援](https://msdn.microsoft.com/library/ms190782.aspx) | [支援](https://msdn.microsoft.com/library/ms190782.aspx) |
 | 系統預存函式 | [支援](https://msdn.microsoft.com/library/ff848780.aspx) | [部分](https://msdn.microsoft.com/library/ff848780.aspx) |
@@ -158,9 +159,4 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 - 如需根據您**服務層**的特定資源配額和限制。 如需服務層級的概觀，請參閱 [SQL Database 服務層級](sql-database-service-tiers.md)。
 - 如需安全性概觀，請參閱 [Azure SQL Database 安全性概觀](sql-database-security-overview.md)。
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜ [SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

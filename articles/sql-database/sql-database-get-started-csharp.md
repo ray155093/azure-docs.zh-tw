@@ -17,14 +17,15 @@ ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
-ms.openlocfilehash: d55c08dbd1d2372e5396f40e74b4f63f3e2f0022
+ms.sourcegitcommit: dbf337a27c43fc6c91f1b061a1938c5471dd36a4
+ms.openlocfilehash: bc1a78a2891c73df23bc2a57cec67e6b73414165
+ms.lasthandoff: 02/16/2017
 
 
 ---
 # <a name="use-c-to-create-a-sql-database-with-the-sql-database-library-for-net"></a>以 SQL Database Library for .NET 使用 C# 建立 SQL 資料庫
 
-了解如何使用 C# 透過 [Microsoft Azure SQL Management Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql) 建立 Azure SQL Database。 本文說明如何使用 SQL 和 C# 建立單一資料庫。 若要建立彈性集區，請參閱 [建立彈性集區](sql-database-elastic-pool-create-csharp.md)。
+了解如何使用 C# 透過 [Microsoft Azure SQL Management Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql) 建立 Azure SQL Database。 本文說明如何使用 SQL 和 C# 建立單一資料庫。 若要建立彈性集區，請參閱 [建立彈性集區](sql-database-elastic-pool-manage-csharp.md)。
 
 Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 式 API，它會包裝 [Resource Manager 式 SQL Database REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx)。
 
@@ -36,7 +37,7 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 若要完成這篇文章中的步驟，您需要下列項目︰
 
 * Azure 訂用帳戶。 如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]  ，然後再回來完成這篇文章。
-* 。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
+* Visual Studio。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
 
 > [!NOTE]
 > 本文會建立一個新的空白 SQL Database。 在下列範例中修改 *CreateOrUpdateDatabase(...)* 方法，以複製資料庫、調整資料庫大小、在集區中建立資料庫等等。如需詳細資訊，請參閱 [DatabaseCreateMode](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.databasecreatemode.aspx) 和 [DatabaseProperties](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.databaseproperties.aspx) 類別。
@@ -284,9 +285,4 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 [7]: ./media/sql-database-get-started-csharp/add-application.png
 [8]: ./media/sql-database-get-started-csharp/add-application2.png
 [9]: ./media/sql-database-get-started-csharp/clientid.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

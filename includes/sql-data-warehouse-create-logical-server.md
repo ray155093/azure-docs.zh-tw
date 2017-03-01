@@ -38,15 +38,10 @@
     ![伺服器位置](./media/sql-data-warehouse-create-logical-server/server-location.png)
     
     > [!TIP]
-    > [允許 Azure 服務存取伺服器] 核取方塊無法在此刀鋒視窗中變更。 您可以在伺服器防火牆刀鋒視窗上變更此設定。 如需詳細資訊，請參閱[安全性入門](../articles/sql-database/sql-database-get-started-security.md)。
+    > [允許 Azure 服務存取伺服器] 核取方塊無法在此刀鋒視窗中變更。 您可以在伺服器防火牆刀鋒視窗上變更此設定。 如需詳細資訊，請參閱[安全性入門](../articles/sql-database/sql-database-manage-servers-portal.md)。
     >
     
 9. 按一下 [建立] 。
 
     ![建立按鈕](./media/sql-data-warehouse-create-logical-server/create.png)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 
