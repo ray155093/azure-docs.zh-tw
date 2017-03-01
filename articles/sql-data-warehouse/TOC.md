@@ -83,7 +83,6 @@
 ### [Azure 資料湖存放區](sql-data-warehouse-load-from-azure-data-lake-store.md)
 ### [AZCopy](sql-data-warehouse-load-from-sql-server-with-azcopy.md)
 ### [BCP](sql-data-warehouse-load-with-bcp.md)
-### [從 SQL Server 載入 BCP](sql-data-warehouse-load-from-sql-server-with-bcp.md)
 ### [Data Factory](sql-data-warehouse-load-with-data-factory.md)
 ### [PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
 ### [PolyBase 指導](sql-data-warehouse-load-polybase-guide.md)
@@ -146,8 +145,3 @@
 ### [商業智慧](sql-data-warehouse-partner-business-intelligence.md)
 ### [資料整合](sql-data-warehouse-partner-data-integration.md)
 ### [資料管理](sql-data-warehouse-partner-data-management.md)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

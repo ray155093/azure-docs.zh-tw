@@ -39,6 +39,7 @@
 ### [分割的佇列和主題](service-bus-partitioning.md)
 ### [無效信件佇列](service-bus-dead-letter-queues.md)
 ### [交易處理](service-bus-transactions.md)
+### [診斷記錄](service-bus-diagnostic-logs.md)
 ### AMQP
 #### [.NET](service-bus-amqp-dotnet.md)
 #### [Java](service-bus-amqp-java.md)
@@ -71,10 +72,5 @@
 ## [服務匯流排總管](https://github.com/paolosalvatori/ServiceBusExplorer)
 ## [服務更新](https://azure.microsoft.com/updates/?product=service-bus)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-bus)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 
