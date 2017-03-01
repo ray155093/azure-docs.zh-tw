@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 01/20/2017
+ms.date: 02/27/2017
 ms.author: owend
 translationtype: Human Translation
 ms.sourcegitcommit: 653c9a04016c0157b2107710e170ba63b3a499f7
 ms.openlocfilehash: 38f68d6df19d24492a234933e10d5d5cf34d1b23
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -119,10 +120,5 @@ Azure Analysis Services 中的資料模型連接到資料來源需要的資料�
 
 ## <a name="next-steps"></a>後續步驟
 在深入了解後，您現在可以開始使用 Azure Analysis Services。 了解如何在 Azure 中[建立伺服器](analysis-services-create-server.md)，並在其中[部署表格式模型](analysis-services-deploy.md)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

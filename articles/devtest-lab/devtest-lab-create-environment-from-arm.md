@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 9bc03ee35436180e7c8639233ca80fb7e7e200f6
-ms.openlocfilehash: e4ce74244ceb7a493d33a1ed2aad8f7a36b96ad9
+ms.sourcegitcommit: bd280fabf22d569f3c4dae9f00f44b08700c8fc4
+ms.openlocfilehash: f034f028b0b1e0011e152b88d304dd54cfbc8320
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -68,7 +69,7 @@ ms.openlocfilehash: e4ce74244ceb7a493d33a1ed2aad8f7a36b96ad9
 1. 選取 [新增 +] 以新增您的 Azure Resource Manager 範本儲存機制。
 1. 當第二個 [儲存機制] 刀鋒視窗開啟時，輸入必要資訊，如下所示︰
     - **名稱** - 輸入在實驗室中使用的儲存機制名稱。
-    - **Git 複製 URI** - 輸入來自 GitHub 或 Visual Studio Team Services 的 Git HTTPS 複製 URL。  
+    - **Git 複製 URL** - 輸入來自 GitHub 或 Visual Studio Team Services 的 Git HTTPS 複製 URL。  
     - **分支** - 輸入分支的名稱，以存取您的 Azure Resource Manager 範本定義。 
     - **個人的存取權杖** - 個人的存取權杖用來安全地存取您的儲存機制。 若要從 Visual Studio Team Services 取得您的權杖，請選取 [YourName > > 我的設定檔 > 安全性 > 公用存取權杖]**&lt;**。 若要從 GitHub 取得權杖，請選取 avatar 然後選取 [設定 > 公用存取權杖]。 
     - **資料夾路徑** - 使用兩個輸入欄位其中之一、輸入資料夾路徑，其開頭為正斜線 - / - 且與 Git 複製 URI 相關，至構件定義 (第一個輸入欄位) 或您的 Azure Resource Manager 範本定義。   
@@ -115,8 +116,4 @@ ms.openlocfilehash: e4ce74244ceb7a493d33a1ed2aad8f7a36b96ad9
 ## <a name="next-steps"></a>後續步驟
 * 一旦建立 VM 之後，您可以選取 VM 刀鋒視窗上的 [連接] 來連接至 VM。
 * 瀏覽 [ Azure 快速入門範本庫中的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates)
-
-
-<!--HONumber=Feb17_HO1-->
-
 

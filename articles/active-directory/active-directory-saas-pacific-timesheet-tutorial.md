@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/06/2016
+ms.date: 02/13/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 3e6982023a40d0794ab1285302f48047e68c499d
+ms.sourcegitcommit: 7cc133d6289bffbc3b7fc591104bc51ebfc67ddd
+ms.openlocfilehash: 603505ed07f7ab38470b669295acf08a35d9f38e
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -35,25 +36,26 @@ Pacific Timesheet 與 Azure AD 整合提供下列優點：
 若要設定與 Pacific Timesheet 的 Azure AD 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 啟用 **Pacific Timesheet** 單一登入的訂用帳戶
+* 啟用 Pacific Timesheet 單一登入 (SSO) 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。
+>  
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 
 
-1. 從資源庫加入 Pacific Timesheet
-2. 設定並測試 Azure AD 單一登入
+本教學課程中說明的案例由二個主要建置組塊組成：
 
-## <a name="adding-pacific-timesheet-from-the-gallery"></a>從資源庫加入 Pacific Timesheet
+* 從資源庫加入 Pacific Timesheet
+* 設定並測試 Azure AD 單一登入
+
+## <a name="add-pacific-timesheet-from-the-gallery"></a>從資源庫加入 Pacific Timesheet
 若要設定 Pacific Timesheet 與 Azure AD 整合，您需要從資源庫將 Pacific Timesheet 新增到受管理的 SaaS app 清單。
 
 **若要從資源庫加入 Pacific Timesheet，請執行下列步驟：**
@@ -78,20 +80,21 @@ Pacific Timesheet 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-pacific-timesheet-tutorial/tutorial_pacific_timesheet_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Pacific Timesheet 設定及測試 Azure AD 單一登入。
 
-若要讓單一登入運作，Azure AD 必須知道 Pacific Timesheet 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 Pacific Timesheet 中相關使用者之間的連結關聯性。
+若要讓 SSO 能夠運作，Azure AD 必須知道 Pacific Timesheet 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 Pacific Timesheet 中相關使用者之間的連結關聯性。
+
 建立此連結關聯性的方法，就是將 Azure AD 中**使用者名稱**的值指派為 Pacific Timesheet 中 **Username** 的值。 若要使用 Pacific Timesheet 設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 Pacific Timesheet 測試使用者](#creating-a-pacific-timesheet-test-user)** - 在 Pacific Timesheet 中建立一個與 Azure AD 中代表 Britta Simon 的項目連結的 Britta Simon 對應項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Pacific Timesheet 應用程式中設定單一登入。
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD SSO，並在您的 Pacific Timesheet 應用程式中設定 SSO。
 
 **若要使用 Pacific Timesheet 設定 Azure AD 單一登入，請執行下列步驟：**
 
@@ -107,25 +110,23 @@ Pacific Timesheet 與 Azure AD 整合提供下列優點：
 4. 在 [設定應用程式設定] 對話方塊頁面上，以 **IDP 起始模式**設定應用程式，請執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-pacific-timesheet-tutorial/tutorial_pacific_timesheet_07.png)
+  1. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<InstanceID>.pacifictimesheet.com/timesheet/home.do`
+  2. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<InstanceID>.pacifictimesheet.com/timesheet/home.do`。
+  3. 按 [下一步] 。
 
-    a. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<InstanceID>.pacifictimesheet.com/timesheet/home.do`。
-
-    b. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<InstanceID>.pacifictimesheet.com/timesheet/home.do`。
-
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
-
-1. 在 [設定在 Pacific Timesheet 單一登入] 頁面。 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+5. 在 [設定在 Pacific Timesheet 單一登入] 頁面。 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
     ![設定單一登入](./media/active-directory-saas-pacific-timesheet-tutorial/tutorial_pacific_timesheet_09.png)
-2. 若要為您的應用程式設定 SSO，請連絡 Pacific Timesheet 支援小組。 請注意，您需要以電子郵件傳送簽發者 URL、[設定在 Pacific Timesheet 單一登入] 中的 SAML SSO URL 值，並附加下載的憑證。
-3. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
+6. 若要為您的應用程式設定 SSO，請連絡 Pacific Timesheet 支援小組。 請注意，您需要以電子郵件傳送簽發者 URL、[設定在 Pacific Timesheet 單一登入] 中的 SAML SSO URL 值，並附加下載的憑證。
+
+7. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
 4. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -145,40 +146,30 @@ Pacific Timesheet 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-pacific-timesheet-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+  3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-pacific-timesheet-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+  1. 在 [名字] 文字方塊中，輸入 **Britta**。   
+  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+  4. 在 [角色] 清單中選取 [使用者]。
+  5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-pacific-timesheet-tutorial/create_aaduser_07.png) 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-pacific-timesheet-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+  1. 記下 [新密碼] 的值。
+  2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-a-pacific-timesheet-test-user"></a>建立 Pacific Timesheet 測試使用者
+### <a name="create-a-pacific-timesheet-test-user"></a>建立 Pacific Timesheet 測試使用者
 在本節中，您要在 Pacific Timesheet 中建立名為 Britta Simon 的使用者。 請連絡 Pacific Timesheet 支援小組，以在應用程式中建立使用者。
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 在本節中，您會把 Pacific Timesheet 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
@@ -199,7 +190,7 @@ Pacific Timesheet 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
+### <a name="test-single-sign-on"></a>測試單一登入
 本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
 
 當您在存取面板中按一下 Pacific Timesheet 圖格時，應該會自動登入您的 Pacific Timesheet 應用程式。
@@ -228,9 +219,4 @@ Pacific Timesheet 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-pacific-timesheet-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-pacific-timesheet-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-pacific-timesheet-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

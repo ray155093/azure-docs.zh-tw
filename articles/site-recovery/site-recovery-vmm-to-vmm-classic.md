@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: 0c14d1fd457df16483c0f4fefc4f1f82e3df4dd0
+ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
+ms.openlocfilehash: 89a54a83e6708da8e7fd91923c3ef71d8371f8f3
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -48,10 +49,10 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 | **必要條件** | **詳細資料** |
 | --- | --- |
 | **Azure** |您需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。 [深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 定價。 |
-| **VMM** |您至少需要一個 VMM 伺服器。<br/><br/>VMM 伺服器應至少執行附帶最新累計更新的 System Center 2012 SP1。<br/><br/>如果您想要利用單一 VMM 伺服器設定保護，您必須在伺服器上設定至少兩個雲端。<br/><br/>如果您想要利用兩部 VMM 伺服器部署保護，每部伺服器都必須至少有一個雲端設定在您想要保護的主要 VMM 伺服器上，一個雲端要設定在您想要用於保護和復原的次要 VMM 伺服器上<br/><br/>所有的 VMM 雲端都必須設定 Hyper-V 功能設定檔。<br/><br/>您想要保護的來源雲端必須包含一或多個 VMM 主機群組。<br/><br/>若要深入了解如何設定 VMM 雲端，請參閱 Keith Mayer 部落格上的[逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx)。 |
+| **VMM** |您至少需要一個 VMM 伺服器。<br/><br/>VMM 伺服器應至少執行附帶最新累計更新的 System Center 2012 SP1。<br/><br/>如果您想要利用單一 VMM 伺服器設定保護，您必須在伺服器上設定至少兩個雲端。<br/><br/>如果您想要利用兩部 VMM 伺服器部署保護，每部伺服器都必須至少有一個雲端設定在您想要保護的主要 VMM 伺服器上，一個雲端要設定在您想要用於保護和復原的次要 VMM 伺服器上<br/><br/>所有的 VMM 雲端都必須設定 Hyper-V 功能設定檔。<br/><br/>您想要保護的來源雲端必須包含一或多個 VMM 主機群組。 |
 | **Hyper-V** |您在主要和次要 VMM 主機群組中需要一或多個 Hyper-V 主機伺服器，在每個 Hyper-V 主機叢集上需要一或多個虛擬機器。<br/><br/>主機和目標 Hyper-V 伺服器必須至少執行 Hyper-V 角色的 Windows Server 2012，並且安裝最新更新。<br/><br/>任何包含您想要保護之 VM 的 Hyper-V 伺服器必須位於 VMM 雲端。<br/><br/>如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。 您必須手動設定叢集代理人。 在 Aidan Finn 的部落格項目中[深入了解](https://www.petri.com/use-hyper-v-replica-broker-prepare-host-clusters)。 |
-| **網路對應** |您可以設定網路對應，以確保在容錯移轉後，會以最佳方式將已複寫的虛擬機器置於次要 Hyper-V 主機伺服器上，而且這些虛擬機器可以連線到適當的 VM 網路。 如果您沒有設定網路對應，複本 VM 將不會在容錯移轉之後連接到任何網路。<br/><br/>若要在部署期間設定網路對應，請確定來源 Hyper-V 主機伺服器上的虛擬機器連接到 VMM VM 網路。 該網路應該連結到與雲端相關聯的邏輯網路。<br/<br/>在您用於復原的次要 VMM 伺服器上的目標雲端應該設定相對應的 VM 網路，而該網路應該連結到與目標雲端相關聯的相對應邏輯網路。<br/><br/>[深入了解](site-recovery-network-mapping.md)網路對應。 |
-| **儲存體對應** |根據預設，當您將來源 Hyper-V 主機伺服器上的虛擬機器複寫至目標 Hyper-V 主機伺服器時，複寫的資料會儲存在為 Hyper-V 管理員中之目標 Hyper-V 主機所指定的預設位置。 如果要進一步控制複寫資料的儲存位置，您可以設定儲存體對應<br/><br/> 若要設定儲存體對應，必須在來源和目標 VMM 伺服器上設定儲存體分類，才能開始部署。 [深入了解](site-recovery-storage-mapping.md)。 |
+| **網路對應** |您可以設定網路對應，以確保在容錯移轉後，會以最佳方式將已複寫的虛擬機器置於次要 Hyper-V 主機伺服器上，而且這些虛擬機器可以連線到適當的 VM 網路。 如果您沒有設定網路對應，複本 VM 將不會在容錯移轉之後連接到任何網路。<br/><br/>若要在部署期間設定網路對應，請確定來源 Hyper-V 主機伺服器上的虛擬機器連接到 VMM VM 網路。 該網路應該連結到與雲端相關聯的邏輯網路。<br/<br/>在您用於復原的次要 VMM 伺服器上的目標雲端應該設定相對應的 VM 網路，而該網路應該連結到與目標雲端相關聯的相對應邏輯網路。 |
+| **儲存體對應** |根據預設，當您將來源 Hyper-V 主機伺服器上的虛擬機器複寫至目標 Hyper-V 主機伺服器時，複寫的資料會儲存在為 Hyper-V 管理員中之目標 Hyper-V 主機所指定的預設位置。 如果要進一步控制複寫資料的儲存位置，您可以設定儲存體對應<br/><br/> 若要設定儲存體對應，必須在來源和目標 VMM 伺服器上設定儲存體分類，才能開始部署。 |
 
 ## <a name="step-1-create-a-site-recovery-vault"></a>步驟 1：建立 Site Recovery 保存庫
 1. 從您想要註冊的 VMM 伺服器登入 [管理入口網站](https://portal.azure.com) 。
@@ -140,7 +141,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 * **/Credentials**：必要參數，用來指定註冊金鑰檔案所在的位置  
 * **/FriendlyName**：對於 Hyper-V 主機伺服器名稱的必要參數，該伺服器會出現在 Azure Site Recovery 入口網站中。
-* **/EncryptionEnabled**：如果您需要在 Azure 中以靜止的方式為虛擬機器加密，則必須只能在 VMM 到 Azure 案例中使用這個選用參數。 請確定您提供的檔案名稱具有 **.pfx** 副檔名。
+* **/EncryptionEnabled**：如果您需要在 Azure 中以靜止的方式為虛擬機器加密，則必須只在 VMM 至 Azure 案例中使用這個選擇性參數。 請確定您提供的檔案名稱具有 **.pfx** 副檔名。
 * **/proxyAddress**：指定 Proxy 伺服器位址的選用參數。
 * **/proxyport**：指定 Proxy 伺服器連接埠的選用參數。
 * **/proxyUsername**：指定 Proxy 使用者名稱 (如果 Proxy 需要驗證) 的選用參數。
@@ -160,7 +161,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
    * 建議您，選取的目標雲端要符合所要保護之虛擬機器的復原需求。
    * 雲端只能當成單一雲端組中的主要雲端或目標雲端。
 6. 在 [複製頻率] 中，指定資料應該在來源與目標位置之間同步處理的頻率。 請注意，這個設定只有在 Hyper-V 主機執行 Windows Server 2012 R2 時才有重要性。 對於其他伺服器，使用預設設定的&5; 分鐘即可。
-7. 在 [其他復原點] 中，指定是否要建立其他復原點。預設值&0; 指定複本主機伺服器上只會儲存主要虛擬機器的最新復原點。 請注意，啟用多個復原點需要額外的儲存體給儲存在每個復原點的快照集。 根據預設，每個小時都會建立復原點，所以每個復原點都包含一小時有價值的資料。 您在 VMM 主控台中指派給虛擬機器的復原點值不得低於您在 Azure Site Recovery 主控台中所指派的值。
+7. 在 [其他復原點] 中，指定是否要建立其他復原點。 預設值零表示只會在複本主機伺服器上儲存主要虛擬機器的最新復原點。 請注意，啟用多個復原點需要額外的儲存體給儲存在每個復原點的快照集。 根據預設，每個小時都會建立復原點，所以每個復原點都包含一小時有價值的資料。 您在 VMM 主控台中指派給虛擬機器的復原點值不得低於您在 Azure Site Recovery 主控台中所指派的值。
 8. 在 [應用程式一致快照的頻率] 中，指定建立應用程式一致快照的頻率。 Hyper-V 使用兩種類型的快照，一個是標準快照，提供整個虛擬機器的增量快照，另一個是應用程式一致快照，會建立虛擬機器內應用程式資料的時間點快照。 應用程式一致快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。 請注意，如果您啟用應用程式一致快照，它會影響在來源虛擬機器上執行的應用程式效能。 確認您設定的值低於您設定的其他復原點數目。
 
     ![進行保護設定](./media/site-recovery-vmm-to-vmm-classic/cloud-settings.png)
@@ -253,7 +254,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 ### <a name="run-a-test-failover"></a>執行測試容錯移轉
 1. 在 [復原計畫] 索引標籤上，選取計畫，然後按一下 [測試容錯移轉]。
-2. 在 [確認測試容錯移轉] 頁面上，選取 [無]。 請注意，啟用此選項時，容錯移轉複本虛擬機器將不會連線到任何網路。 這將會測試虛擬機器是否依照預期執行容錯移轉，但是不會測試您的複寫網路環境。 請參閱 [執行測試容錯移轉](site-recovery-failover.md#run-a-test-failover) 中有關如何使用不同網路選項的詳細資訊。
+2. 在 [確認測試容錯移轉] 頁面上，選取 [無]。 請注意，啟用此選項時，容錯移轉複本虛擬機器將不會連線到任何網路。 這將會測試虛擬機器是否依照預期執行容錯移轉，但是不會測試您的複寫網路環境。 請參閱 [執行測試容錯移轉](site-recovery-failover.md) 中有關如何使用不同網路選項的詳細資訊。
 3. 測試虛擬機器將建立在複本虛擬機器所在的相同主機上。 它會新增至複本虛擬機器所在的相同雲端。
 
 ### <a name="run-a-recovery-plan"></a>執行復原計畫
@@ -332,9 +333,4 @@ VMM 伺服器上的提供者會收到來自服務的事件通知，並在 Hyper-
 
 ## <a name="next-steps"></a>後續步驟
 在您執行測試容錯移轉以檢查您的環境是否如預期般運作之後，請 [深入了解](site-recovery-failover.md) 不同類型的容錯移轉。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

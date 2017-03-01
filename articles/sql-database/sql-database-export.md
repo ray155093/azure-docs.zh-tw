@@ -16,8 +16,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 3f0af43c103e34535fd114e33c40da010ea69d69
-ms.openlocfilehash: b8a2a33909f77dd1bbe0a7b454e15df7432164a8
+ms.sourcegitcommit: 2461f706f8fc1150e69312098640c0676206a531
+ms.openlocfilehash: 4edd728fe4798450106a4991b353b9dac9de0d88
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: b8a2a33909f77dd1bbe0a7b454e15df7432164a8
 當您需要匯出資料庫以封存或移至另一個平台時，您可以將資料庫結構描述和資料匯出到 BACPAC 檔案。 BACPAC 檔案就是副檔名為 BACPAC 的 ZIP 檔案。 BACPAC 檔案可以稍後儲存在 Azure Blob 儲存體，或在內部部署位置的本機儲存體中，之後再匯入至 Azure SQL Database 或 SQL Server 內部部署安裝。 
 
 * 您可以使用 [Azure 入口網站](sql-database-export-portal.md)、[PowerShell](sql-database-export-powershell.md)、[SQLPackage](sql-database-export-sqlpackage.md) 或 [SQL Server Management Studio](sql-database-export-ssms.md)，匯出 Azure SQL 資料庫。
-* 您可以使用 [PowerShell](sql-database-export-powershell.md)、[SQLPackage](sql-database-export-sqlpackage.md) 或 [SQL Server Management Studio](sql-database-export-ssms.md)，匯出 SQL Server 資料庫。
+* 您可以使用 [PowerShell](sql-database-export-powershell.md)、[SQLPackage](sql-database-export-sqlpackage.md) 或 [SQL Server Management Studio](sql-database-export-ssms.md) 匯出 SQL Server 資料庫。
 
 > [!IMPORTANT]
 > 如果您要從 SQL Server 匯出以準備移轉至 Azure SQL Database，請參閱[將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
@@ -60,9 +61,4 @@ ms.openlocfilehash: b8a2a33909f77dd1bbe0a7b454e15df7432164a8
 * 如需有關整個 SQL Server 資料庫移轉程序的討論，請參閱[將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
 * 如需在 Azure 內複製資料庫的概觀，請參閱[複製 Azure SQL 資料庫](sql-database-copy.md)。
 * 您可以使用 [Azure 入口網站](sql-database-copy-portal.md)、[PowerShell](sql-database-copy-powershell.md)或 [Transact-SQL](sql-database-copy-transact-sql.md)，在 Azure 內複製 Azure SQL 資料庫。 
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

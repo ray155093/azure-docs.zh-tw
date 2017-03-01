@@ -12,11 +12,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/06/2016
+ms.date: 02/24/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 2abfeebeac222f4371b0945e1aeb6fcf8e51595d
-ms.openlocfilehash: b884fe128b8414ae1692df92e89a41f7ba1c0447
+ms.sourcegitcommit: dc9f9c39a8eb644229887f76b5c441d4211af059
+ms.openlocfilehash: 6f9c36239f8485313066a594eea74bfcd168536e
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -135,7 +136,7 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 * 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
 * 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
 
-若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
+若要深入了解如何開發 IoT 中樞，請參閱以下文章︰
 
 * [C SDK 簡介][lnk-c-sdk]
 * [Azure IoT SDK][lnk-sdks]
@@ -157,9 +158,4 @@ New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 [lnk-sdks]: iot-hub-devguide-sdks.md
 
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

@@ -16,8 +16,9 @@ ms.workload: na
 ms.date: 07/13/2016
 ms.author: masashin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: ea75a14232c010ebea31273856f21cb0e02067a7
+ms.sourcegitcommit: 066bc9911050c44fe5d8ce2d63bdb0f843e08176
+ms.openlocfilehash: 31dd351ae216e131c092447493ac9f3ae65ba10d
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.openlocfilehash: ea75a14232c010ebea31273856f21cb0e02067a7
 本指引中的某些主題正在討論中，未來可能有所變更。 歡迎您提供的意見反應！
 
 ## <a name="overview"></a>Overview
-仔細設計的 RESTful Web API 可定義資源、關係以及用戶端應用程式可存取的導覽配置。 當您實作和部署 Web API 時，您應該考慮裝載 Web API 之環境的實際需求，以及 Web API 的建構方式 (而非資料的邏輯結構)。 本指引著重於實作 Web API 和加以發佈以供用戶端應用程式使用的最佳作法。 安全性考量會在＜API 安全性指引＞文件中個別說明。 您可以在＜API 設計指引＞文件中找到有關 Web API 設計的詳細資訊。
+仔細設計的 RESTful Web API 可定義資源、關係以及用戶端應用程式可存取的導覽配置。 當您實作和部署 Web API 時，您應該考慮裝載 Web API 之環境的實際需求，以及 Web API 的建構方式 (而非資料的邏輯結構)。 本指引著重於實作 Web API 和加以發佈以供用戶端應用程式使用的最佳做法。 安全性考量會在＜API 安全性指引＞文件中個別說明。 您可以在＜API 設計指引＞文件中找到有關 Web API 設計的詳細資訊。
 
 ## <a name="considerations-for-implementing-a-restful-web-api"></a>實作 RESTful Web API 的考量
 下列各節說明使用 ASP.NET Web API 範本建置 RESTful Web API 的最佳作法。 如需使用 Web API 範本的詳細資訊，請瀏覽 Microsoft 網站上的 [了解 ASP.NET Web API](http://www.asp.net/web-api) 頁面。
@@ -1147,9 +1148,4 @@ Microsoft 網站上的 [Application Insights - 開始使用 ASP.NET](application
 * Microsoft 網站上的 [Application Insights - 開始使用 ASP.NET](application-insights/app-insights-asp-net.md) 頁面提供有關在 ASP.NET Web API 專案中安裝和設定 Application Insights 的詳細資訊。
 * Microsoft 網站上的 [驗證使用單位測試的程式碼](https://msdn.microsoft.com/library/dd264975.aspx) 頁面提供有關使用 Visual Studio 建立和管理單位測試的詳細資訊。
 * Microsoft 網站上的 [在發行前執行應用程式的效能測試](https://msdn.microsoft.com/library/dn250793.aspx) 頁面說明如何使用 Visual Studio Ultimate 建立 Web 效能和負載測試專案。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

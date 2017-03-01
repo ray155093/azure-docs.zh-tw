@@ -4,7 +4,7 @@ description: "藉由部署範例 App，了解在 App Service 中執行 Web 應�
 services: app-service\web
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 8bacfe3e-7f0b-4394-959a-a88618cb31e1
 ms.service: app-service-web
@@ -15,22 +15,14 @@ ms.topic: hero-article
 ms.date: 01/04/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: af27369b0ae8de0ece6da38a78b434e595fbfc4e
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 82accfbfa92dfe77d17da05425c2e05af33e5a31
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="deploy-your-first-java-web-app-to-azure-in-five-minutes-cli-20-preview"></a>在 5 分鐘內將您的第一個 Java Web 應用程式部署到 Azure (CLI 2.0 預覽)
-
-> [!div class="op_single_selector"]
-> * [第一個 HTML 網站](app-service-web-get-started-html-cli-nodejs.md)
-> * [第一個 .NET 應用程式](app-service-web-get-started-dotnet-cli-nodejs.md)
-> * [第一個 PHP 應用程式](app-service-web-get-started-php-cli-nodejs.md)
-> * [第一個 Node.js 應用程式](app-service-web-get-started-nodejs-cli-nodejs.md)
-> * [第一個 Python 應用程式](app-service-web-get-started-python-cli-nodejs.md)
-> * [第一個 Java 應用程式](app-service-web-get-started-java.md)
-> 
-> 
+[!INCLUDE [app-service-web-selector-get-started](../../includes/app-service-web-selector-get-started.md)]
 
 本教學課程將協助您部署一個簡單的 Java Web 應用程式至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
 您可以使用 App Service 來建立 Web 應用程式、[行動應用程式後端](/documentation/learning-paths/appservice-mobileapps/)和 [Web 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
@@ -127,10 +119,5 @@ ms.openlocfilehash: af27369b0ae8de0ece6da38a78b434e595fbfc4e
 
 * 嘗試 [將程式碼部署至 Azure 的其他方法](web-sites-deploy.md)。 
 * 加強您 Azure App 的功能。 驗證您的使用者。 根據需求加以調整。 設定一些效能警示。 都只要點幾下滑鼠就能完成。 請參閱 [在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md)。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/17/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 92d61ff08b70e89b5e5310cf4b0f7fb88abf3ef9
+ms.sourcegitcommit: 0837cb33bf438fb7fd9665d21d411f0170cdd393
+ms.openlocfilehash: 59939dd678452fc29b1861b70073e6f79c230196
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -109,7 +110,7 @@ HPE SaaS 與 Azure AD 整合提供下列優點：
 
     a. 在 [登入 URL] 文字方塊中，輸入使用者登入您的 HPE SaaS 應用程式時所使用的 URL：**“https://login.saas.hpe.com/msg”**。 客戶也可以將它變更為應用程式特定的 URL。
 
-    b.這是另一個 C# 主控台應用程式。 按一下頁面底部的 [新增] 來單一登入應用程式。
+    b.這是另一個 C# 主控台應用程式。 按 [下一步] 。
 
 
 1. 在 [設定在 HPE SaaS 單一登入]  頁面上，執行下列步驟：
@@ -232,9 +233,4 @@ HPE SaaS 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-hpesaas-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-hpesaas-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-hpesaas-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

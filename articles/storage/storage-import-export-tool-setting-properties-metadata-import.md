@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 匯入/匯出匯入程序期間設定屬性和中繼資料 | Microsoft Docs"
+title: "使用 Azure 匯入/匯出來設定屬性和中繼資料 | Microsoft Docs"
 description: "了解當執行 Azure 匯入/匯出工具準備磁碟機時，如何指定要在目的地 blob 上設定的屬性和中繼資料。"
 author: muralikk
 manager: syadav
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 41bc5585f3d9dea2a08dc8a6bc1e4fdf9f0c8fc4
-ms.openlocfilehash: 2f597da2c056a2b4ea2af751e955fafdd7016744
+ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
+ms.openlocfilehash: 26fb4d030341001238e7206c3856597c95d84719
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -75,9 +76,4 @@ K:\Temp\FavoriteVideo.ISO,https://mystorageaccount.blob.core.windows.net/favorit
 ## <a name="next-steps"></a>後續步驟
 
 [匯入匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

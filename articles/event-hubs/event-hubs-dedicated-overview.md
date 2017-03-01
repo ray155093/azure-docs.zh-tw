@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/01/2017
+ms.date: 02/21/2017
 ms.author: sethm;babanisa
 translationtype: Human Translation
-ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
-ms.openlocfilehash: 7547ff2f6db375644dccb9db4283d83a9837e826
+ms.sourcegitcommit: 9c1756d2c2c4dd73c60a71b24bfb4606cab289ed
+ms.openlocfilehash: 8e718e74443e3d51dc54edaf667e34875bc67c5d
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -35,11 +36,11 @@ ms.openlocfilehash: 7547ff2f6db375644dccb9db4283d83a9837e826
 | 發行者原則 | N/A | 是 | 是 |     
 | 用戶群組 | 1 - 預設值 | 20 | 20 |
 | 訊息重播 | 是 | 是 | 是 |
-| 最大輸送量單位 | 20 | 20 (可通融至 100)  | 1 CU≈200 |
+| 最大輸送量單位 | 20 | 20 (可通融至 100)    | 1 CU≈200 |
 | 代理連線 | 包含&100; 個 | 包含&1;,000 個 | 包含&10; 萬個 |
 | 其他代理連線 | N/A | 是 | 是 |
 | 訊息保留期 | 含&1; 天 | 含&1; 天 | 最多含 7 天 |
-| 封存  (預覽版) | N/A   | 按小時付費 | 已包括 |
+| 封存  (預覽版) | N/A    | 按小時付費 | 已包括 |
 
 ## <a name="benefits-of-event-hubs-dedicated-capacity"></a>事件中樞專用容量的優點
 
@@ -60,7 +61,7 @@ ms.openlocfilehash: 7547ff2f6db375644dccb9db4283d83a9837e826
 
 ## <a name="how-to-onboard"></a>如何加入
 
-事件中樞專用平台是透過企業合約，以不同的 CU 大小對外提供。 每個 CU 可提供大約相當於 200 個輸送量單位並以每小時 $31 計費。 您可以根據需求新增或移除 CU 於當月上下調整容量。 專用方案的獨特之處在於您可從事件中樞產品小組獲得更多實際操作經驗，以最適合您的方式彈性部署。 
+事件中樞專用平台是透過企業合約，以不同的 CU 大小對外提供。 每個 CU 可提供大約相當於 200 個輸送量單位。 您可以根據需求新增或移除 CU 於當月上下調整容量。 專用方案的獨特之處在於您可從事件中樞產品小組獲得更多實際操作經驗，以最適合您的方式彈性部署。 
 
 ## <a name="next-steps"></a>後續步驟
 請連絡 Microsoft 銷售代表或 Microsoft 支援服務，以取得事件中樞專用容量的其他詳細資料。 您也可以造訪下列連結以深入了解事件中樞︰
@@ -69,9 +70,4 @@ ms.openlocfilehash: 7547ff2f6db375644dccb9db4283d83a9837e826
 
 - [事件中樞專用價格](https://azure.microsoft.com/pricing/details/event-hubs/)。 您也可以連絡 Microsoft 銷售代表或 Microsoft 支援服務，以取得事件中樞專用容量的其他詳細資料。
 - [事件中樞常見問題集](event-hubs-faq.md)包含價格資訊，並提供一些常見問題的解答。 
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

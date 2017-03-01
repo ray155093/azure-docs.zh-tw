@@ -12,25 +12,29 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/30/2017
+ms.date: 02/16/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: f65661013ce7cb5987ba83fb824befe7b4d1f70b
-ms.openlocfilehash: 4c230046bb5314f5fbd3e6d65e1317cb056fa647
+ms.sourcegitcommit: 9e480c13f48e93da32ff5a3c8d3064e98fed0265
+ms.openlocfilehash: 0ec19832d395547e8ebd3eee0d44dcf466a2ace7
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="create-an-hdinsight-cluster-with-data-lake-store-using-azure-portal"></a>使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區
 > [!div class="op_single_selector"]
 > * [使用入口網站](data-lake-store-hdinsight-hadoop-use-portal.md)
-> * [使用 PowerShell](data-lake-store-hdinsight-hadoop-use-powershell.md)
+> * [使用 PowerShell (針對預設儲存體)](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md)
+> * [使用 PowerShell (針對額外儲存體)](data-lake-store-hdinsight-hadoop-use-powershell.md)
 > * [使用 Resource Manager](data-lake-store-hdinsight-hadoop-use-resource-manager-template.md)
 >
 >
 
 了解如何使用 Azure 入口網站建立可存取 Azure Data Lake Store 的 HDInsight 叢集。 Data Lake Store 對於支援的叢集類型，是做為預設儲存體或額外儲存體帳戶。 當 Data Lake Store 做為額外儲存體時，叢集的預設儲存體帳戶仍然是 Azure 儲存體 Blob (WASB)，叢集相關的檔案 (例如記錄檔等) 仍然會寫入預設儲存體，而您想要處理的資料會儲存於 Data Lake Store 帳戶中。 使用 Data Lake Store 做為其他儲存體帳戶，不會影響效能或從叢集讀取/寫入至儲存體的能力。
 
-一些重要考量︰
+## <a name="using-data-lake-store-for-hdinsight-cluster-storage"></a>針對 HDInsight 叢集儲存體使用 Data Lake Store
+
+以下是使用 HDInsight 搭配 Data Lake Store 的一些重要考量：
 
 * HDInsight 3.5 版提供建立可存取 Data Lake Store 做為預設儲存體之 HDInsight 叢集的選項。
 
@@ -52,12 +56,6 @@ ms.openlocfilehash: 4c230046bb5314f5fbd3e6d65e1317cb056fa647
 
     **如果您不是 Azure AD 系統管理員**，您將無法執行建立服務主體所需的步驟。 在這樣的情況下，您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 此外，必須使用憑證來建立服務主體，如[使用憑證來建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
 
-## <a name="do-you-learn-faster-with-videos"></a>使用影片學得更快？
-觀看下列影片來了解如何透過存取 Data Lake Store 來佈建 HDInsight 叢集。
-
-* [建立可存取 Data Lake Store 的 HDInsight 叢集](https://mix.office.com/watch/l93xri2yhtp2)
-* 一旦設定叢集之後，請 [使用 Hive 和 Pig 指令碼存取 Data Lake Store 中的資料](https://mix.office.com/watch/1n9g5w0fiqv1q)
-
 ## <a name="create-an-hdinsight-cluster-with-access-to-azure-data-lake-store"></a>建立可存取 Azure 資料湖存放區的 HDInsight 叢集
 在本節中，您會建立 HDInsight Hadoop 叢集，它使用資料湖存放區做為額外的儲存體。 在此版本中，對於 Hadoop 叢集，資料湖存放區只能做為叢集的額外儲存體。 預設儲存體仍是 Azure 儲存體 Blob (WASB)。 所以，我們要先建立叢集所需的儲存體帳戶和儲存體容器。
 
@@ -65,14 +63,16 @@ ms.openlocfilehash: 4c230046bb5314f5fbd3e6d65e1317cb056fa647
 
 2. 請依照 [在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-provision-clusters.md) 中的步驟，開始佈建 HDInsight 叢集。
 
-3. 在 [資料來源] 刀鋒視窗中，指定您要 Azure 儲存體 (WASB) 或 Data Lake Store 做為您的預設儲存體。 如果您要使用 Azure Data Lake Store 做為預設儲存體，請跳至下一個步驟。
+3. 在 [儲存體] 刀鋒視窗中，指定您要 Azure 儲存體 (WASB) 或 Data Lake Store 做為您的預設儲存體。 如果您要使用 Azure Data Lake Store 做為預設儲存體，請跳至下一個步驟。
 
-    如果您想要 Azure 儲存體 Blob 做為預設儲存體，對於 [主要儲存體類型]，請按一下 [Azure 儲存體]。 指定儲存體帳戶和儲存體容器的詳細資料、將 [位置] 指定為 [美國東部 2]，然後按一下 [Data Lake Store 存取權]。
+    如果您想要 Azure 儲存體 Blob 做為預設儲存體，對於 [主要儲存體類型]，請按一下 [Azure 儲存體]。 接下來，針對 [選取方法]，如果您想要指定屬於您 Azure 訂用帳戶一部分的儲存體帳戶，您可以選擇 [我的訂閱]，然後選取該儲存體帳戶。 否則，按一下 [存取金鑰] 並提供您希望從您的 Azure 訂用帳戶以外選擇之儲存體帳戶的資訊。 針對 [預設容器]，您可以選擇使用入口網站建議的預設容器名稱，或者自行指定名稱。 
+
+    當您使用 Azure 儲存體 Blob 做為預設儲存體時，您仍然可以使用 Azure Data Lake Store 做為叢集的額外儲存體。 若要這樣做，請按一下 [Data Lake Store 存取權]，然後跳至步驟 5。
 
     ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.png "將服務主體新增至 HDInsight 叢集")
 
 
-4. 如果您想要 Azure Data Lake Store 做為預設儲存體，對於 [主要儲存體類型]，請按一下 [Data Lake Store]。 選取已經存在的 Data Lake Store 帳戶，提供將儲存叢集特定檔案的根資料夾路徑 (參閱下列附註)，將 [位置] 指定為 [美國東部 2]，然後按一下 [Data Lake Store 存取權]。 此選項只適用於 HDInsight 3.5 叢集 (Standard Edition)。 在 HDInsight 3.5 叢集中，此選項不適用於 HBase 叢集類型。
+4. 如果您想要 Azure Data Lake Store 做為預設儲存體，對於 [主要儲存體類型]，請按一下 [Data Lake Store]。 選取已經存在的 Data Lake Store 帳戶，提供將儲存叢集特定檔案的根資料夾路徑，將 [位置] 指定為 [美國東部 2]，然後按一下 [Data Lake Store 存取權]。 此選項只適用於 HDInsight 3.5 叢集 (Standard Edition)。 在 HDInsight 3.5 叢集中，此選項不適用於 HBase 叢集類型。
 
     在下列螢幕擷取畫面中，根資料夾路徑是 /clusters/myhdiadlcluster，其中 **myhdiadlcluster** 是要建立的叢集名稱。 在此情況下，請確定 Data Lake Store 帳戶中已經有 **/cluster** 資料夾。 建立叢集時，會建立 **myhdiadlcluster** 資料夾。 同樣地，如果根路徑設為 /hdinsight/clusters/data/myhdiadlcluter，必須確定 Data Lake Store 帳戶中已經有 **/hdinsight/clusters/data/**。
 
@@ -158,9 +158,4 @@ ms.openlocfilehash: 4c230046bb5314f5fbd3e6d65e1317cb056fa647
 
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

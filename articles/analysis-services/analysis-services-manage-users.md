@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 01/18/2016
+ms.date: 02/27/2016
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 8725687a5700df72026f9154659758b9280872f4
-ms.openlocfilehash: 35247a68588ab8593c40ed0d62f37062350f9aec
+ms.sourcegitcommit: 194910a3e4cb655b39a64d2540994d90d34a68e4
+ms.openlocfilehash: 039ed6f4be9f3e0f6b92e5a9f11e12392912df9d
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -79,14 +80,17 @@ Azure Analysis Services 模型資料庫使用者*必須在您的 Azure Active Di
 }
 ```
 
+## <a name="role-based-access-control-rbac"></a>角色型存取控制 (RBAC)
+
+訂用帳戶管理員可以在控制刀鋒視窗中，使用 [存取控制] 來設定角色。 這與上述在伺服器或資料庫層級設定的伺服器管理員或資料庫使用者不同。 
+
+![Azure 入口網站中的存取控制](./media/analysis-services-manage-users/aas-manage-users-rbac.png)
+
+角色會套用到使用者或帳戶，讓他們可在入口網站或使用 Azure Resource Manager 範本完成需要執行的工作。 若要深入了解，請參閱[角色型存取控制](../active-directory/role-based-access-control-what-is.md)。
+
 ## <a name="next-steps"></a>後續步驟
 如果您尚未將表格式模型部署到伺服器，現在正是時候。 若要深入了解，請參閱 [Deploy to Azure Analysis Services](analysis-services-deploy.md) (部署至 Azure Analysis Services)。
 
 如果您已將模型部署至您的伺服器，您便可以透過用戶端或瀏覽器與伺服器連線。 若要深入了解，請參閱 [Get data from Azure Analysis Services server](analysis-services-connect.md) (從 Azure Analysis Services 伺服器取得資料)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

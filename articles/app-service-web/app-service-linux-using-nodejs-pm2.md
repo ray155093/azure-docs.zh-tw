@@ -5,7 +5,7 @@ keywords: "azure app service, web 應用程式, nodejs, pm2, linux, oss"
 services: app-service
 documentationcenter: 
 author: naziml
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: fb420f32-6d74-49c7-992f-0ed5616e66e7
 ms.service: app-service
@@ -13,20 +13,21 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
-ms.author: naziml
+ms.date: 02/16/2017
+ms.author: naziml;wesmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: a46f52198e956406c2384c45ed4323aff27259a0
+ms.sourcegitcommit: bb4c7ea7adfe1326ae8259782b5de2762c8c2bf5
+ms.openlocfilehash: c4af07e79ae066f916c15aa239cb5dfdd3fef2a8
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="use-pm2-configuration-for-nodejs-in-web-apps-on-linux"></a>在 Linux 上的 Web Apps 中使用適用於 Node.js 的 PM2 組態
-針對 Linux 上的 Web Apps ，如果您將應用程式堆疊設定為 Node.js，則可以選擇設定 Node.js 啟動檔案，如下圖所示。
+針對 Linux 上的 Web Apps ，如果您將應用程式堆疊設定為 Node.js，則可以選擇設定 Node.js 啟動檔案，如下圖所示：
 
 ![設定 Node.js 啟動檔案][1]
 
-您可以使用此項目來執行下列工作︰
+您可以使用此選項來執行下列工作︰
 
 * 指定 Node.js 應用程式的啟動指令碼 (例如︰/bin/server.js)。
 * 指定要用於 Node.js 應用程式的 PM2 組態檔 (例如︰/foo/process.json)。
@@ -61,12 +62,8 @@ ms.openlocfilehash: a46f52198e956406c2384c45ed4323aff27259a0
 
 ## <a name="next-steps"></a>後續步驟
 * [何謂 Linux 上的 App Service？](app-service-linux-intro.md)
+* [Linux 上的 Azure App Service Web Apps 常見問題集](app-service-linux-faq.md)
 
 <!--Image references-->
 [1]: ./media/app-service-linux-using-nodejs-pm2/nodejs-startup-file.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

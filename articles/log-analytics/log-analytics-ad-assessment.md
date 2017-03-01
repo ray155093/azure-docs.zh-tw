@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 58eee787b54122380b48f1c7a96dbe2e79e4bcef
+ms.sourcegitcommit: e0971ca8064a6e4de272a8d890a6fdc88c0f8cc2
+ms.openlocfilehash: 24e3da0ed3aa04e000a4c88fb7b0745d5b880d0d
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.openlocfilehash: 58eee787b54122380b48f1c7a96dbe2e79e4bcef
 請使用下列資訊來安裝和設定方案。
 
 * 代理程式必須安裝在隸屬於要評估之網域成員的網域控制站上。
-* Active Directory 評估方案需要具有 OMS 代理程式的每部電腦上都安裝 .NET Framework 4。
+* Active Directory 評估方案需要在具有 OMS 代理程式的每部電腦上都安裝 .NET Framework 4 (4.5.2 或以上) 的支援版本。
 * 使用 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)中的程序，將 Active Directory 評估方案加入您的 OMS 工作區中。  不需要進一步的組態。
 
   > [!NOTE]
@@ -170,9 +171,4 @@ Active Directory 評估會使用您已啟用的代理程式，來收集 WMI 資�
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md) ，可檢視詳細的 AD 評估資料和建議。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

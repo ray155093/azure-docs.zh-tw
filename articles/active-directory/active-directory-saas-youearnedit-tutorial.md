@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/07/2016
+ms.date: 02/12/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 370f81a618da4605581b70443fd0cf3641185ca0
+ms.sourcegitcommit: 7cc133d6289bffbc3b7fc591104bc51ebfc67ddd
+ms.openlocfilehash: a1e6f6738a3e6426a5ec5e0dab6f479a0a74b0ad
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 370f81a618da4605581b70443fd0cf3641185ca0
 YouEarnedIt 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制誰有 YouEarnedIt 的存取權
-* 您可以讓使用者透過其 Azure AD 帳戶自動登入 YouEarnedIt (單一登入)
+* 您可以讓使用者透過其 Azure AD 帳戶自動登入 YouEarnedIt 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -37,9 +38,8 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
 * Azure AD 訂用帳戶
 * 啟用 YouEarnedIt 單一登入的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
@@ -55,7 +55,7 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
 1. 從資源庫新增 YouEarnedIt
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-youearnedit-from-the-gallery"></a>從資源庫新增 YouEarnedIt
+## <a name="add-youearnedit-from-the-gallery"></a>從資源庫新增 YouEarnedIt
 若要設定 YouEarnedIt 與 Azure AD 整合，您需要從資源庫將 YouEarnedIt 加入到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫加入 YouEarnedIt，請執行下列步驟：**
@@ -80,7 +80,7 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/tutorial_youearnedit_06.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 YouEarnedIt 設定及測試 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 YouEarnedIt 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 YouEarnedIt 中相關使用者之間的連結關聯性。
@@ -95,7 +95,7 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 YouEarnedIt 應用程式中設定單一登入。
 
 **若要設定與 YouEarnedIt 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
@@ -109,24 +109,17 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
 3. 在 [設定 App 設定]  對話方塊頁面執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-youearnedit-tutorial/tutorial_youearnedit_04.png) 
-   
-    a. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 YouEarnedIt 應用程式時所使用的 URL： 
-   
-   * 沙箱環境︰ `https://<company name>.sandbox.youearnedit.com/users/sign_in`
-   * 生產環境︰ `https://<company name>.youearnedit.com/users/sign_in`
-     
-     b. 按 [下一步] 
+  1. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 YouEarnedIt 應用程式時所使用的 URL：  
+    * 沙箱環境︰ `https://<company name>.sandbox.youearnedit.com/users/sign_in`
+    * 生產環境︰ `https://<company name>.youearnedit.com/users/sign_in`  
+   2. 按 [下一步] 
 4. 在 [設定在 YouEarnedIt 單一登入]  頁面上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-youearnedit-tutorial/tutorial_youearnedit_05.png)
-   
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
-5. 若要為您的應用程式設定 SSO，請連絡 YouEarnedIt 支援小組，並提供下列資訊：
-   
-    • 下載的 **憑證**
-   
+  1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。  
+  2. 按 [下一步] 。
+5. 若要為您的應用程式設定 SSO，請連絡 YouEarnedIt 支援小組，並提供下列資訊：  
+    • 下載的**憑證**
     • **SAML SSO URL**
 6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
@@ -135,7 +128,7 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -152,44 +145,37 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
 4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/create_aaduser_04.png) 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
-6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/create_aaduser_05.png)  
+  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。  
+  3. 按 [下一步] 。
+6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
+
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/create_aaduser_06.png)    
+  1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+  4. 在 [角色] 清單中選取 [使用者]。
+  5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/create_aaduser_07.png) 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-youearnedit-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下 [完成]。   
+  1. 記下 [新密碼] 的值。
+  2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-an-youearnedit-test-user"></a>建立 YouEarnedIt 測試使用者
+### <a name="create-an-youearnedit-test-user"></a>建立 YouEarnedIt 測試使用者
 在本節中，您要在 YouEarnedIt 中建立名為 Britta Simon 的使用者。 請與 YouEarnedIt 支援小組合作，在 YouEarnedIt 平台中加入使用者。
 
-> [!NOTE]
-> YouEarnedIt 預期識別提供者會在 NameID 屬性中提供 EmailAddress 或 UserName。 如果在資料庫中找不到對應的 UserName 或 EmailAddress 或者不完全相符，則驗證會失敗。 這會要求在 SSO 整合之前，將帳戶匯入 YouEarnedIt 系統 (通常透過 API 或 CSV 匯入)。
-> 
-> 
+>[!NOTE]
+>YouEarnedIt 預期識別提供者會在 NameID 屬性中提供 EmailAddress 或 UserName。 如果在資料庫中找不到對應的 UserName 或 EmailAddress 或者不完全相符，則驗證會失敗。 這會要求在 SSO 整合之前，將帳戶匯入 YouEarnedIt 系統 (通常透過 API 或 CSV 匯入)。
+>  
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 在本節中，您會把 YouEarnedIt 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
@@ -210,7 +196,7 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
+### <a name="test-single-sign-on"></a>測試單一登入
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
 當您在存取面板中按一下 YouEarnedIt 圖格時，應該會自動登入您的 YouEarnedIt 應用程式。
@@ -236,9 +222,4 @@ YouEarnedIt 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-youearnedit-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-youearnedit-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-youearnedit-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

@@ -4,7 +4,7 @@ description: "如何將 Azure Mobile Engagement Reach 與 Windows 通用 app 整
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: a31ca1d6-856f-4aec-898a-07969ae5f7ec
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 8fc1faac88cab0e3d3755fdf16fe3d7188169961
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -337,10 +338,5 @@ NotfificationHTML 是 `ms-appx-web:///Resources/EngagementNotification.html`。 
                 }
               }
               #endregion
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

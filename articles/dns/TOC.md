@@ -6,11 +6,11 @@
 
 ## [建立 DNS 區域](dns-getstarted-create-dnszone-portal.md)
 ### [PowerShell](dns-getstarted-create-dnszone.md)
-### [CLI](dns-getstarted-create-dnszone-cli.md)
+### [Azure CLI](dns-getstarted-create-dnszone-cli.md)
 
 ## [建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)
 ### [PowerShell](dns-getstarted-create-recordset.md)
-### [CLI](dns-getstarted-create-recordset-cli.md)
+### [Azure CLI](dns-getstarted-create-recordset-cli.md)
 
 ## [將您的網域委派給 Azure DNS](dns-domain-delegation.md)
 ## [建立 Web 應用程式的自訂 DNS 記錄](dns-web-sites-custom-domain.md)
@@ -19,14 +19,15 @@
 
 ## 管理 DNS 區域
 ### [PowerShell](dns-operations-dnszones.md)
-### [CLI](dns-operations-dnszones-cli.md)
+### [Azure CLI](dns-operations-dnszones-cli.md)
+
 
 ## [管理 DNS 記錄](dns-operations-recordsets-portal.md)
 ### [PowerShell](dns-operations-recordsets.md)
-### [CLI](dns-operations-recordsets-cli.md)
+### [Azure CLI](dns-operations-recordsets-cli.md)
 
 ## [管理反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)
-### [CLI](dns-reverse-dns-record-operations-cli.md)
+### [Azure CLI](dns-reverse-dns-record-operations-cli.md)
 ### [PowerShell](dns-reverse-dns-record-operations-classic-ps.md)
 
 ## [匯入和匯出 DNS 區域檔案](dns-import-export.md)
@@ -39,7 +40,7 @@
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.dns/v2.3.0/azurerm.dns)
-## [Azure CLI 2.0 (Preview)](/cli/azure/network/dns)
+## [Azure CLI](/cli/azure/network/dns)
 ## [.NET](/dotnet/api/microsoft.azure.management.dns.models)
 ## [Java](/java/api/com.microsoft.azure.management.dns)
 ## [Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-dns/latest/)
@@ -60,8 +61,3 @@
 ## [價格](https://azure.microsoft.com/pricing/details/dns/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
 ## [網路部落格](http://azure.microsoft.com/blog/topics/networking)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

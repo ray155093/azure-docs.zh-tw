@@ -3,7 +3,7 @@ title: "如何使用資料表儲存體 (C++) | Microsoft Docs"
 description: "使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
 services: storage
 documentationcenter: .net
-author: dineshmurthy
+author: seguler
 manager: jahogg
 editor: tysonn
 ms.assetid: f191f308-e4b2-4de9-85cb-551b82b1ea7c
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
-ms.author: dineshm
+ms.date: 02/28/2017
+ms.author: seguler
 translationtype: Human Translation
 ms.sourcegitcommit: 3047ba6bb363e087bfdf767a32c92a503000f11e
 ms.openlocfilehash: c97343008b5af378ed9d441e242018849e2ab69a
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -51,8 +52,8 @@ ms.openlocfilehash: c97343008b5af378ed9d441e242018849e2ab69a
 在您要使用 Azure 儲存體 API 來存取資料表的 C++ 檔案頂端，加入下列 include 陳述式：  
 
 ```cpp
-#include "was/storage_account.h"
-#include "was/table.h"
+#include <was/storage_account.h>
+#include <was/table.h>
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>設定 Azure 儲存體連接字串
@@ -456,10 +457,5 @@ azure::storage::table_result delete_result = table.execute(delete_operation);
 * [以 C++ 列出 Azure 儲存體資源](storage-c-plus-plus-enumeration.md)
 * [Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

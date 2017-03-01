@@ -16,8 +16,9 @@ ms.topic: hero-article
 ms.date: 12/16/2016
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
-ms.openlocfilehash: 4ddd790efde26b6c2d2215c72e42bd9e2839e50e
+ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
+ms.openlocfilehash: 1622566c34c1ff9c8e83f0356e04743f8a890e96
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -487,7 +488,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富 [查詢](do
 
 ![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之查詢的範圍和意義的圖表](./media/documentdb-get-started/nosql-tutorial-collection-documents.png)
 
-因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#from-clause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
+因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#FromClause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
 
 ## <a name="a-idreplacedocumentastep-8-replace-json-document"></a><a id="ReplaceDocument"></a>步驟 8︰取代 JSON 文件
 DocumentDB 支援取代 JSON 文件。  
@@ -628,9 +629,4 @@ DocumentDB 支援刪除 JSON 文件。
 
 [documentdb-create-account]: documentdb-create-account.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

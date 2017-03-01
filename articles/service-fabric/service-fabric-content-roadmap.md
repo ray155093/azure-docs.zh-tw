@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 01/09/2017
+ms.date: 02/17/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
-ms.openlocfilehash: 8e7c14d9eeeab43d596eec99cb380f06cf9c39b3
+ms.sourcegitcommit: 47b3fffb2d5c24b7473884e490be19ff17b61b61
+ms.openlocfilehash: 9742523c0a1743ff5982e746aa3c99aed8934499
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -42,7 +43,7 @@ Service Fabric 提供可靠且彈性的平台，可讓您撰寫及執行許多�
 </a></center>
 
 ## <a name="get-started-and-create-your-first-app"></a>開始建立您的第一個應用程式 
-藉由使用 Service Fabric SDK 和工具，您不僅可以在 Windows、Linux 或 MacOS 環境中開發應用程式，還可以將這些應用程式部署到在 Windows 或 Linux 上執行的叢集。  下列指南將可讓您在幾分鐘內就部署完應用程式。  在執行您的第一個應用程式之後，請下載並執行我們的一些[範例應用程式](http://aka.ms/servicefabricsamples)。
+藉由使用 Service Fabric SDK 和工具，您不僅可以在 Windows、Linux 或 MacOS 環境中開發應用程式，還可以將這些應用程式部署到在 Windows 或 Linux 上執行的叢集。  下列指南將可讓您在幾分鐘內就部署完應用程式。  在執行您的第一個應用程式之後，請下載並執行我們的一些[範例應用程式](http://aka.ms/servicefabricsamples)。 特別是從[開始使用範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)著手
 
 ### <a name="on-windows"></a>在 Windows 上
 Service Fabric SDK 包含的 Visual Studio 增益集提供用來建立、部署和偵錯 Service Fabric 應用程式的範本和工具。 這些主題將逐步引導您完成在 Visual Studio 中建立第一個應用程式並在開發電腦上執行它的程序。
@@ -50,7 +51,9 @@ Service Fabric SDK 包含的 Visual Studio 增益集提供用來建立、部署�
 [設定開發環境](service-fabric-get-started.md)
 [建立第一個應用程式 (C#)](service-fabric-create-your-first-application-in-visual-studio.md)
 
-請嘗試這個廣泛的[實習實驗室](https://msdnshared.blob.core.windows.net/media/2016/07/SF-Lab-Part-I.docx)，以孰悉 Service Fabric 的端對端開發流程。  了解如何建立無狀態服務、設定監視和健康情況報告，以及執行應用程式升級。 
+#### <a name="practical-hands-on-labs"></a>實用的線上實習實驗室
+請嘗試這個廣泛的[實習實驗室第 1 部分](https://msdnshared.blob.core.windows.net/media/2016/07/SF-Lab-Part-I.docx)，以熟悉 Service Fabric 的端對端開發流程。  了解如何建立無狀態服務、設定監視和健康情況報告，以及執行應用程式升級。 在這之後，執行[實習實驗室第 2 部分](http://aka.ms/sflab2)，這個部分會引領您完成具狀態服務。
+
 
 下列 Channel9 影片將逐步引導您完成在 Visual Studio 中建立 C# 應用程式的程序：  
 <center><a target="_blank" href="https://channel9.msdn.com/Blogs/Azure/Creating-your-first-Service-Fabric-application-in-Visual-Studio">  
@@ -138,8 +141,4 @@ Service Fabric 提供多種撰寫和管理服務的方式。 服務可以選擇�
 
 [cluster-application-instances]: media/service-fabric-content-roadmap/cluster-application-instances.png
 [cluster-imagestore-apptypes]: ./media/service-fabric-content-roadmap/cluster-imagestore-apptypes.png
-
-
-<!--HONumber=Jan17_HO4-->
-
 

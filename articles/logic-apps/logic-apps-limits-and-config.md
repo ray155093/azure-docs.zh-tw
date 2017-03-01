@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: dc8c9eac941f133bcb3a9807334075bfba15de46
-ms.openlocfilehash: b2845e1835c5571909a911b1eb0bfd61ac00da86
+ms.sourcegitcommit: 084919e9dbe3647c45cf67e6836a8c9de6a5cd70
+ms.openlocfilehash: 307a70b5efb22642e54212d8d3517bf5d9070505
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -81,7 +82,8 @@ ms.openlocfilehash: b2845e1835c5571909a911b1eb0bfd61ac00da86
 
 |Name|限制|注意事項|
 |----|----|----|
-|每秒的觸發程序數目|100|可以視需要將工作流程分散在多個應用程式|
+|每秒的動作執行 (高載)|1,000|可以視需要將工作負載分散在多個應用程式|
+|每小時的動作執行 (持續)|1,000,000|可以視需要將工作負載分散在多個應用程式|
 
 ### <a name="definition-limits"></a>定義限制
 
@@ -180,8 +182,4 @@ ms.openlocfilehash: b2845e1835c5571909a911b1eb0bfd61ac00da86
 - [檢視常見的範例和案例](../logic-apps/logic-apps-examples-and-scenarios.md)
 - [您可以使用 Logic Apps 自動化商務程序](http://channel9.msdn.com/Events/Build/2016/T694) 
 - [了解如何整合您的系統與 Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
-
-
-<!--HONumber=Jan17_HO3-->
-
 

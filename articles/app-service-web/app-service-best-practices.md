@@ -4,7 +4,7 @@ description: "了解 Azure App service 的最佳作法和疑難排解。"
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
-manager: wpickett
+manager: erikre
 editor: mollybos
 ms.assetid: f3359464-fa44-4f4a-9ea6-7821060e8d0d
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: dariagrigoriu
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 1068ac3c3ffd832df5e61bc24887780ced6444d0
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -49,10 +50,5 @@ ms.openlocfilehash: 1068ac3c3ffd832df5e61bc24887780ced6444d0
 
 ## <a name="a-namenodejsawhen-new-nodejs-apps-are-deployed-to-azure-app-service"></a><a name="nodejs"></a>當新的 Node.js 應用程式部署至 Azure App Service 時
 適用於 Node.js app 的 Azure App Service 預設組態是為了符合大部分應用程式的需求。 如果您 Node.js 應用程式的組態可受益於透過個人化調整來改善效能或將 CPU/記憶體/網路資源的資源使用量最佳化，您可以檢閱我們的最佳作法和疑難排解步驟。 本文章說明您可能需針對您的 Node.js 應用程式設定的 iisnode 設定、說明您的應用程式可能會面臨的各種案例或問題，以及示範如何解決這些問題： [Azure App Service 上 Node 應用程式的最佳作法和疑難排解指南](app-service-web-nodejs-best-practices-and-troubleshoot-guide.md)。   
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -15,17 +15,13 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 77b8b8960fb0e5e5340b65dae03f95b456832a07
-ms.openlocfilehash: 5dc7bd506060ec04691abae3054fa3514893e953
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: 225896e724717a00057be4c708ce485c8b785d45
+ms.lasthandoff: 02/16/2017
 
 
 ---
 # <a name="create-and-manage-sql-database-elastic-jobs-using-powershell-preview"></a>使用 PowerShell 建立和管理 SQL Database 彈性作業 (預覽)
-> [!div class="op_single_selector"]
-> * [Azure 入口網站](sql-database-elastic-jobs-create-and-manage.md)
-> * [PowerShell](sql-database-elastic-jobs-powershell.md)
-> 
-> 
 
 適用於 **彈性資料庫工作** (預覽版) 的 PowerShell API 可讓您定義一組資料庫，然後針對這組資料庫執行指令碼。 本文將說明如何使用 Powershell Cmdlet 建立和管理 **彈性資料庫工作** 。 請參閱 [彈性工作概觀](sql-database-elastic-jobs-overview.md)。 
 
@@ -72,7 +68,7 @@ ms.openlocfilehash: 5dc7bd506060ec04691abae3054fa3514893e953
 
   <tr>
     <td>DACPAC</td>
-    <td><a href="https://msdn.microsoft.com/library/ee210546.aspx">跨資料庫套用的資料層應用程式 </a> 套件。
+    <td>要跨資料庫套用的<a href="https://msdn.microsoft.com/library/ee210546.aspx">資料層應用程式</a>套件。
 
     </td>
     <td>
@@ -649,9 +645,4 @@ ms.openlocfilehash: 5dc7bd506060ec04691abae3054fa3514893e953
 [1]: ./media/sql-database-elastic-jobs-powershell/cmd-prompt.png
 [2]: ./media/sql-database-elastic-jobs-powershell/portal.png
 <!--anchors-->
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

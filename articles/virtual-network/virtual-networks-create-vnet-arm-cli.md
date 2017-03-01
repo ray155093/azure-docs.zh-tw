@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 建立虛擬網路 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 建立虛擬網路 | Resource Manager"
+title: "使用 Azure CLI 2.0 來建立虛擬網路 | Microsoft Docs"
+description: "了解如何使用 Azure CLI 2.0 來建立虛擬網路 | Resource Manager。"
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: ba7a67b8ae57da165f45bd3552a3dfac5f4ef64b
-ms.openlocfilehash: 406fd637485799557edbd29fd6223ae535900818
+ms.sourcegitcommit: 617ac4672b24d339c5d4c0b671de7fb19cd9af91
+ms.openlocfilehash: 3cbb679048a0cc1121b221bda8fc1e3df0e307c3
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -26,8 +27,14 @@ ms.openlocfilehash: 406fd637485799557edbd29fd6223ae535900818
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
 Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議透過 Resource Manager 部署模型建立資源。 若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。
+
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
+
+- [Azure CLI 1.0](virtual-networks-create-vnet-arm-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
+- [Azure CLI 2.0 (預覽)](#create-a-virtual-network) - 適用於資源管理部署模型的新一代 CLI (本文章)
  
-本文章說明如何使用 Azure 命令列介面 (CLI) 透過 Resource Manager 部署模型建立 VNet。 您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰
+    您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰
 
 > [!div class="op_single_selector"]
 - [入口網站](virtual-networks-create-vnet-arm-pportal.md)
@@ -40,81 +47,149 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 
+
 ## <a name="create-a-virtual-network"></a>建立虛擬網路
 
-若要使用 Azure CLI 建立虛擬網路，請完成下列步驟︰
+若要使用 Azure CLI 2.0 來建立虛擬網路，請完成下列步驟︰
 
-1. 依照[安裝及設定 Azure CLI](../xplat-cli-install.md) 文章中的下列步驟來安裝和 Azure CLI。
+1. 安裝及設定最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
 
-2. 執行以下命令以建立 VNet 和子網路：
+2. 使用 [az group create](/cli/azure/group#create) 命令搭配 `--name` 和 `--location` 引數來為您的 VNet 建立資源群組：
 
     ```azurecli
-    azure network vnet create --vnet TestVNet -e 192.168.0.0 -i 16 -n FrontEnd -p 192.168.1.0 -r 24 -l "Central US"
+    az group create --name myVNet --location centralus
+    ```
+
+3. 建立 VNet 和子網路：
+
+    ```azurecli
+    az network vnet create \
+        --name TestVNet \
+        --resource-group myVNet \
+        --location centralus \
+        --address-prefix 192.168.0.0/16 \
+        --subnet-name FrontEnd \
+        --subnet-prefix 192.168.1.0/24
     ```
 
     預期的輸出：
    
-            info:    Executing command network vnet create
-            + Looking up network configuration
-            + Looking up locations
-            + Setting network configuration
-            info:    network vnet create command OK
+    ```json
+    {
+        "newVNet": {
+            "addressSpace": {
+            "addressPrefixes": [
+                "192.168.0.0/16"
+            ]
+            },
+            "dhcpOptions": {
+            "dnsServers": []
+            },
+            "provisioningState": "Succeeded",
+            "resourceGuid": "<guid>",
+            "subnets": [
+            {
+                "etag": "W/\"<guid>\"",
+                "id": "/subscriptions/<guid>/resourceGroups/myVNet/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd",
+                "name": "FrontEnd",
+                "properties": {
+                "addressPrefix": "192.168.1.0/24",
+                "provisioningState": "Succeeded"
+                },
+                "resourceGroup": "myVNet"
+            }
+            ]
+        }
+    }
+    ```
 
     使用的參數：
 
-   * **--vnet**。 即將建立的 VNet 名稱。 在本文案例中為 *TestVNet*
-   * **-e (或 --address-space)**。 VNet 位址空間。 在本文案例中為 *192.168.0.0*
-   * **-i (或 -cidr)**。 CIDR 格式的網路遮罩。 在本文案例中為 *16*。
-   * **-n (或 --subnet-name**)。 第一個子網路的名稱。 在本文案例中為 *FrontEnd*。
-   * **-p (或 --subnet-start-ip)**。 子網路的起始 IP 位址或子網路位址空間。 在本文案例中為 *192.168.1.0*。
-   * **-r (或 --subnet-cidr)**。 CIDR 格式的子網路網路遮罩。 在本文案例中為 *24*。
-   * **-l (或 --location)**。 將要建立 VNet 的 Azure 區域。 在本文案例中為「美國中部」 。
-3. 執行下列命令建立子網路：
+    - `--name TestVNet`：要建立的 VNet 名稱。
+    - `--resource-group myVNet`：控制資源的資源群組名稱。 
+    - `--location centralus`：要在其中進行部署的位置。
+    - `--address-prefix 192.168.0.0/16`：位址首碼和區塊。  
+    - `--subnet-name FrontEnd`：子網路的名稱。
+    - `--subnet-prefix 192.168.1.0/24`：位址首碼和區塊。
+
+    若要列出要在下一個命令中使用的基本資訊，您可以使用[查詢篩選](/cli/azure/query-az-cli2)來查詢 VNet：
 
     ```azurecli
-    azure network vnet subnet create -t TestVNet -n BackEnd -a 192.168.2.0/24
+    az network vnet list --query '[?name==`TestVNet`].{Where:location,Name:name,Group:resourceGroup}' -o table
+    ```
+
+    這會產生下列輸出：
+
+        Where      Name      Group
+        ---------  --------  -------
+        centralus  TestVNet  myVNet
+
+4. 建立子網路：
+
+    ```azurecli
+    az network vnet subnet create \
+        --address-prefix 192.168.2.0/24 \
+        --name BackEnd \
+        --resource-group myVNet \
+        --vnet-name TestVNet
     ```
    
     預期的輸出：
 
-            info:    Executing command network vnet subnet create
-            + Looking up network configuration
-            + Creating subnet "BackEnd"
-            + Setting network configuration
-            + Looking up the subnet "BackEnd"
-            + Looking up network configuration
-            data:    Name                            : BackEnd
-            data:    Address prefix                  : 192.168.2.0/24
-            info:    network vnet subnet create command OK
+    ```json
+    {
+    "addressPrefix": "192.168.2.0/24",
+    "etag": "W/\"<guid> \"",
+    "id": "/subscriptions/<guid>/resourceGroups/myVNet/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/BackEnd",
+    "ipConfigurations": null,
+    "name": "BackEnd",
+    "networkSecurityGroup": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "myVNet",
+    "resourceNavigationLinks": null,
+    "routeTable": null
+    }
+    ```
 
     使用的參數：
 
-   * **-t (或 --vnet-name)**。 將會建立子網路的 VNet 名稱。 在本文案例中為 *TestVNet*。
-   * **-n (或 --name)**。 新子網路的名稱。 在本文案例中為 *BackEnd*。
-   * **-a (或 --address-prefix)**。 子網路 CIDR 區塊。 在本文案例中為 *192.168.2.0/24*。
-4. 執行下列命令以檢視新 VNet 的屬性：
+    - `--address-prefix 192.168.2.0/24`：子網路 CIDR 區塊。
+    - `--name BackEnd`：新子網路的名稱。
+    - `--resource-group myVNet`：資源群組。
+    - `--vnet-name TestVNet`：上層 VNet 的名稱。
+
+5. 查詢新 VNet 的屬性：
 
     ```azurecli
-    azure network vnet show
+    az network vnet show \
+    -g myVNET \
+    -n TestVNet \
+    --query '{Name:name,Where:location,Group:resourceGroup,Status:provisioningState,SubnetCount:subnets | length(@)}' \
+    -o table
     ```
    
     預期的輸出：
    
-            info:    Executing command network vnet show
-            Virtual network name: TestVNet
-            + Looking up the virtual network sites
-            data:    Name                            : TestVNet
-            data:    Location                        : Central US
-            data:    State                           : Created
-            data:    Address space                   : 192.168.0.0/16
-            data:    Subnets:
-            data:      Name                          : FrontEnd
-            data:      Address prefix                : 192.168.1.0/24
-            data:
-            data:      Name                          : BackEnd
-            data:      Address prefix                : 192.168.2.0/24
-            data:
-            info:    network vnet show command OK
+        Name      Where      Group    Status       SubnetCount
+        --------  ---------  -------  ---------  -------------
+        TestVNet  centralus  myVNet   Succeeded              2
+
+6. 查詢子網路的屬性：
+
+    ```azurecli
+    az network vnet subnet list \
+    -g myvnet \
+    --vnet-name testvnet \
+    --query '[].{Name:name,CIDR:addressPrefix,Status:provisioningState}' \
+    -o table
+    ```
+
+    預期的輸出：
+
+        Name      CIDR            Status
+        --------  --------------  ---------
+        FrontEnd  192.168.1.0/24  Succeeded
+        BackEnd   192.168.2.0/24  Succeeded
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -122,9 +197,4 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 - 虛擬機器 (VM) 至虛擬網路；請閱讀[建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)。 但不是如文章中的步驟建立 VNet 和子網路，而是選取現有的 VNet 和子網路來連接 VM。
 - 虛擬網路至其他虛擬網路；請閱讀[連接 VNet](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)。
-- 虛擬網路至內部部署網路；使用網站對網站虛擬私人網路 (VPN) 或 ExpressRoute 線路。 如需了解做法，請閱讀[使用網站對網站 VPN 將 VNet 連接到內部部署網路](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)以及[將 VNet 連結至 ExpressRoute 線路](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)。
-
-
-<!--HONumber=Jan17_HO1-->
-
-
+- 虛擬網路至內部部署網路；使用網站對網站虛擬私人網路 (VPN) 或 ExpressRoute 線路。 如需了解做法，請閱讀[使用站台對站台 VPN 將 VNet 連接到內部部署網路](../vpn-gateway/vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)和[將 VNet 連結至 ExpressRoute 線路](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md)。

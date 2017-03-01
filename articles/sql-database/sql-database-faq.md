@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL Database 常見問題集"
+title: "Azure SQL Database 常見問題集 | Microsoft Docs"
 description: "客戶詢問有關雲端資料庫與 Azure SQL Database、Microsoft 的關聯式資料庫管理系統 (RDBMS) 以及資料庫作為雲端中服務的一般問題的解答。"
 services: sql-database
 documentationcenter: 
@@ -13,15 +13,32 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-management
-ms.date: 12/19/2016
+ms.date: 02/06/2017
 ms.author: sashan;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: ad6fb631f05b1e88e8cbaaca83f9863cfb643269
-ms.openlocfilehash: aba60bf5108a4e5ad95e3c634b9fcbca7393c700
+ms.sourcegitcommit: 20183f482b7c7ec10c2b1f2d759b160434c9174c
+ms.openlocfilehash: 208a38aea6b4673f93c4c1fe4252c788e1f3425b
+ms.lasthandoff: 02/16/2017
 
 
 ---
 # <a name="sql-database-faq"></a>SQL Database 常見問題集
+
+## <a name="what-is-the-current-version-of-sql-database"></a>最新的 SQL Database 版本為何？
+最新的 SQL Database 版本是 V12。 版本 V11 已被淘汰。
+
+## <a name="what-is-the-sla-for-sql-database"></a>SQL Database 的 SLA 是什麼？
+我們保證客戶在基本層、標準層或進階層中之單一或彈性 Microsoft Azure SQL Database 可與我們網際網路閘道正常連線的時間，至少須達 99.99%。 如需詳細資訊，請參閱 [SLA](http://azure.microsoft.com/support/legal/sla/)。
+
+## <a name="how-do-i-reset-the-password-for-the-server-admin"></a>如何重設伺服器系統管理員的密碼？
+在 [Azure 入口網站](https://portal.azure.com)中，按一下 [SQL Server]、從清單中選取伺服器，然後按一下 [重設密碼]。
+
+## <a name="how-do-i-manage-databases-and-logins"></a>如何管理資料庫與登入？
+請參閱[管理資料庫與登入](sql-database-manage-logins.md)。
+
+## <a name="how-do-i-make-sure-only-authorized-ip-addresses-are-allowed-to-access-a-server"></a>如何確保只有授權的 IP 位址可以存取伺服器？
+請參閱 [如何：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)。
+
 ## <a name="how-does-the-usage-of-sql-database-show-up-on-my-bill"></a>我的帳單上會用什麼方式顯示 SQL Database 的使用量？
 SQL Database 是以可預測的每小時費率收費，同時根據服務層 + 單一資料庫的效能等級或每一彈性集區的 eDTU。 實際使用量會每小時依比例分配的方式計算，因此有可能會出現不滿一小時的帳單。 例如，如果資料庫在一個月內的存在時間是 12 個小時，則您的帳單會顯示 0.5 天的使用量。 此外，服務層 + 效能等級和每一集區 eDTU 會在帳單中劃分，以讓您方便看到在單一月份中每個所使用的資料庫天數。
 
@@ -35,7 +52,7 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 * 如果您在上午 11:00 將資料庫從「進階」降級為「基本」， 且該作業在下午 2:15 完成，則會針對資料庫以「進階」費率收費到下午 3:00，之後便以「基本」費率收費。
 
 ## <a name="how-does-elastic-pool-usage-show-up-on-my-bill-and-what-happens-when-i-change-edtus-per-pool"></a>彈性集區使用量如何在我的帳單上顯示，以及變更每個集區的 eDTU 時會發生什麼？
-在您的帳單上，彈性集區收費顯示為彈性 DTU (eDTU)，並在 [價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)上以每一集區 eDTU 遞增顯示。 彈性集區沒有每一資料庫的費用。 對集區存在的每個小時，您均需要支付最高的 eDTU，不論使用方式或集區是否作用中少於一小時。 
+在您的帳單上，彈性集區收費顯示為彈性 DTU (eDTU)，並在[價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)上以每一集區 eDTU 遞增顯示。 彈性集區沒有每一資料庫的費用。 對集區存在的每個小時，您均需要支付最高的 eDTU，不論使用方式或集區是否作用中少於一小時。 
 
 範例
 
@@ -48,13 +65,14 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 
 * 彈性集區在建立時就會開始計費，即使集區中沒有資料庫也一樣。
 * 彈性集區會以每小時計費。 這和單一資料庫效能等級的計量頻率相同。
-* 如果彈性集區調整為新的 eDTU 量，則在調整作業完成之前，不會根據新的 eDTU 量來計算集區費用。 這會遵循與變更單一資料庫的效能等級相同的模式。
+* 如果彈性集區調整為新的 eDTU 數目，則在調整作業完成之前，不會根據新的 eDTU 量來計算集區費用。 這會遵循與變更單一資料庫的效能等級相同的模式。
 * 彈性集區的價格是以集區的 eDTU 數為計算基礎。 彈性集區的價格與其中之彈性資料庫的數目和使用量無關。
 * 價格的計算方式為 (集區的 eDTU 數) x (每 eDTU 的單價)。
 
 在同一個服務層中，彈性集區的 eDTU 單價大於單一資料庫的 DTU 單價。 如需詳細資訊，請參閱 [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)。 
 
 若要了解 eDTU 及服務層，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)。
+
 ## <a name="how-does-the-use-of-active-geo-replication-in-an-elastic-pool-show-up-on-my-bill"></a>在彈性集區中使用「作用中異地複寫」會在我的帳單上如何顯示？
 與單一資料庫不同，搭配彈性資料庫使用 [作用中異地複寫](sql-database-geo-replication-overview.md) 對計費並沒有直接的影響。  您只需支付對每個集區佈建的 eDTU (主要集區和次要集區)
 
@@ -75,12 +93,10 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 視您所需，不限次數。
 
 ## <a name="how-long-does-it-take-to-change-the-service-tier-or-performance-level-of-a-single-database-or-move-a-database-in-and-out-of-an-elastic-pool"></a>變更單一資料庫的服務層次或效能等級，或將資料庫移入和移出彈性集區需要多久的時間？
-變更資料庫的服務層和移入和移出集區需要在平台上複製資料庫做為背景作業。 視資料庫的大小而定，變更服務層可能需要數分鐘到數小時的時間不等。 在這兩種情況下，在移動期間，資料庫將維持完全連線且可供使用的狀態。 如需變更單一資料庫的詳細資訊，請參閱 [變更資料庫的服務層](sql-database-scale-up.md)。 
+變更資料庫的服務層和移入和移出集區需要在平台上複製資料庫做為背景作業。 視資料庫的大小而定，變更服務層可能需要數分鐘到數小時的時間不等。 在這兩種情況下，在移動期間，資料庫將維持完全連線且可供使用的狀態。 如需變更單一資料庫的詳細資訊，請參閱 [變更資料庫的服務層](sql-database-service-tiers.md)。 
 
 ## <a name="when-should-i-use-a-single-database-vs-elastic-databases"></a>何時應該使用單一資料庫與彈性資料庫？
-一般而言，彈性集區是專為一般 [軟體即服務 (SaaS) 應用程式模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)而設計，其中每一客戶或租用戶會有一個資料庫。 購買個別資料庫並為了符合每個資料庫的變動尖峰需求而進行超規空間管理，通常不具成本效益。 利用集區，您可管理集區的集體效能，而資料庫會自動相應增加和相應減少。 
-
-Azure 的智慧型引擎如果發現必要的使用模式，就會對資料庫建議集區。 如需詳細資訊，請參閱 [SQL Database 定價層建議](sql-database-service-tier-advisor.md)。 如需選擇在單一與彈性資料庫之間進行選擇的詳細指引，請參閱 [彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
+一般而言，彈性集區是專為一般 [軟體即服務 (SaaS) 應用程式模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)而設計，其中每一客戶或租用戶會有一個資料庫。 購買個別資料庫並為了符合每個資料庫的變動尖峰需求而進行超規空間管理，通常不具成本效益。 利用集區，您可管理集區的集體效能，而資料庫會自動相應增加和相應減少。 Azure 的智慧型引擎如果發現必要的使用模式，就會對資料庫建議集區。 如需詳細資訊，請參閱[彈性集區指引](sql-database-elastic-pool-guidance.md)。
 
 ## <a name="what-does-it-mean-to-have-up-to-200-of-your-maximum-provisioned-database-storage-for-backup-storage"></a>備份儲存體可高達 200% 的最大可佈建資料庫儲存體，這是什麼意思？
 備份儲存體是與自動資料庫備份相關聯的儲存體，可用於[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)和[異地還原](sql-database-recovery-using-backups.md#geo-restore)。 Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可佈建資料庫儲存體，且不須支付額外費用。 例如，如果您擁有可佈建 DB 大小為 250 GB 的標準 DB 執行個體，您就能免費獲得 500 GB 的備份儲存體。 若您的資料庫超過所提供的備份儲存體，您可以連絡 Azure 支援部門，選擇縮短保留期限，或是以標準讀取存取地理備援儲存體 (RA-GRS) 費率，另購額外的備份儲存體。 如需 RA-GRS 計費的詳細資訊，請參閱儲存體價格詳細資料。
@@ -102,10 +118,5 @@ Azure SQL Web 和 Business 資料庫現已淘汰。 基本、標準、高階和�
 
 ## <a name="what-tools-are-available-to-monitor-the-replication-lag-between-the-primary-database-and-geo-secondary"></a>若要監視主要資料庫和地區資料庫之間的複寫延遲，有哪些工具可以使用？
 我們會透過 DMV 將主要資料庫和地區次要資料庫之間的即時複寫延遲公開。 如需詳細資訊，請參閱 [sys.dm_geo_replication_link_status](https://msdn.microsoft.com/library/mt575504.aspx)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

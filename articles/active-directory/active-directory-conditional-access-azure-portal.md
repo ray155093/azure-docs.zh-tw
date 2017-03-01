@@ -16,8 +16,9 @@ ms.workload: identity
 ms.date: 01/19/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 89d32955506afdfb9c45c5b0ce3d38d40f012e72
-ms.openlocfilehash: 570a0f0a0c0932a00bbe92b1e137951ceffcd660
+ms.sourcegitcommit: 4dad4bd824f199562cb972c98cfcb452f2823828
+ms.openlocfilehash: b85b10b9504c5efa7ec05b92b544ad777e3abacc
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -167,6 +168,26 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 目前，會提示使用者使用與裝置無關的多重要素驗證。
 
 
+## <a name="what-you-should-avoid-doing"></a>您應該避免做的事
+
+條件式存取架構可為您提供絕佳的組態彈性。 不過，絕佳的彈性也意謂著您應該先仔細地檢閱每個組態原則，然後才發行它，以避免產生不想要的結果。 在此情況下，您應該特別注意影響整個集合的指派，例如 **all users / groups / cloud apps**。
+
+在您的環境中，應該避免使用下列組態：
+
+
+**針對所有使用者、所有雲端應用程式：**
+
+- **封鎖存取** - 此組態會封鎖您整個組織，這絕對不是一個好方法。
+
+- **需要符合規範的裝置** - 針對尚未註冊其裝置的使用者，此原則會封鎖所有存取，包括對 Intune 入口網站的存取。 如果您是沒有已註冊裝置的系統管理員，此原則會阻擋您回到 Azure 入口網站來變更此原則。
+
+- **需要加入網域** - 如果您還沒有已加入網域的裝置，此原則也可能封鎖您組織中所有使用者的存取。
+ 
+
+**針對所有使用者、所有雲端應用程式、所有裝置平台：** 
+
+- **封鎖存取** - 此組態會封鎖您整個組織，這絕對不是一個好方法。
+
 
 ## <a name="common-scenarios"></a>常見案例
 
@@ -193,9 +214,4 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 ## <a name="next-steps"></a>後續步驟
 
 如果您想要知道如何設定條件式存取原則，請參閱[開始使用 Azure Active Directory 中的條件式存取](active-directory-conditional-access-azure-portal-get-started.md)。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

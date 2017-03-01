@@ -11,11 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 01/13/2017
+ms.date: 02/17/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: df0ab8e6828033b783449e9478a5884355a7f1fe
-ms.openlocfilehash: 453aa0e98e639872184b697ad8ed91d9545e152f
+ms.sourcegitcommit: 4ccd8cbfd0f3742c14a7effd7484d65be21abb63
+ms.openlocfilehash: d4db3d7a0c860c23a3a3ddecab6f79cb6b297a02
+ms.lasthandoff: 02/18/2017
 
 
 ---
@@ -98,7 +99,7 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 ## <a name="data-rate"></a>資料速率
 有三種方式可限制您傳送的資料量︰
 
-* **每日上限。** 根據預設，這會設為一天 500 GB。 當您的應用程式達到上限時，我們會傳送電子郵件並捨棄資料，直到當天結束為止。 若要變更，請使用 [資料量管理] 刀鋒視窗。
+* **每日上限。** 最高上限是 500 GB/天。 從 Visual Studio 建立 Application Insights 資源時的預設值很小 (只有 32.3 MB/天)。 從 Azure 入口網站建立 Application Insights 資源時，會將此設為最大值。 因為達到上限會導致當天剩餘的時間內的資料遺失，所以變更此設定時，請務必小心。 若要變更，請從 [資料量管理] 刀鋒視窗連結來使用 [每日用量上限] 刀鋒視窗。
 * **[取樣](app-insights-sampling.md)。** 這個機制可減少您的伺服器和用戶端應用程式所傳送的遙測量，計量的扭曲程度最小。
 * **節流**會將資料速率限制在每秒 32,000 個事件，平均超過 1 分鐘。 
 
@@ -117,12 +118,14 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 ## <a name="to-reduce-your-data-rate"></a>降低資料速率
 以下是您可進行以減少資料量的一些事項︰
 
-* 減少每日數量上限。 預設值為一天 500 GB。
 * 使用 [取樣](app-insights-sampling.md)。 這項技術可減少資料率而不會曲解您的計量，且不會中斷在 [搜尋] 中於相關項目之間瀏覽的能力。 在伺服器應用程式，它會自動運作。
 * [限制可回報的 Ajax 呼叫次數](app-insights-javascript.md#detailed-configuration) (在每個頁面檢視中) 或關閉 Ajax 報告功能。
 * 藉由 [編輯 ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)來關閉您不需要的集合模組。 例如，您可能會決定效能計數器或相依性資料是不必要的。
 * 分割您的遙測，以區隔檢測金鑰。 
-* 預先彙總度量。 如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。 您也可以使用 [預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。 
+* 預先彙總度量。 如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。 您也可以使用 [預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。
+* 最後，您可以降低每日用量上限，限制收集的資料，但這會造成當天剩餘的時間內的資料遺失。 若要變更它，請開啟 [功能與定價]、[資料管理]。
+
+    ![調整每日遙測資料量上限](./media/app-insights-pricing/daily-cap.png) 
 
 ## <a name="sampling"></a>取樣
 [取樣](app-insights-sampling.md) 可以降低將遙測傳送到您 App 的速率，同時仍保留在診斷搜尋時尋找相關事件的功能，並保有正確的事件計數。 
@@ -172,10 +175,5 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 [apiproperties]: app-insights-api-custom-events-metrics.md#properties
 [start]: app-insights-overview.md
 [pricing]: http://azure.microsoft.com/pricing/details/application-insights/
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

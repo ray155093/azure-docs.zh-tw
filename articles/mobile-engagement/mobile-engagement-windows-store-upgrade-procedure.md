@@ -4,7 +4,7 @@ description: "適用於 Azure Mobile Engagement 的 Windows 通用 app SDK 升�
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 4c898175-2cd6-43db-b350-bb408332f24d
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: c7b3441892484cf54e2055e9153858171d738e85
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -308,10 +309,5 @@ Engagement 使用連接字串。 您不需要為 Mobile Engagement 指定應用�
 * GetCapptainPageName 現在名為 GetEngagementPageName
 
 請注意，重新命名也會影響覆寫方法。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

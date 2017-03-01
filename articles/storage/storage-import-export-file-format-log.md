@@ -1,6 +1,6 @@
 ---
 
-title: "匯入匯出服務記錄檔格式 | Microsoft Docs"
+title: "Azure 匯入/匯出記錄檔格式 | Microsoft Docs"
 description: "深入了解執行匯入匯出服務工作的步驟時所建立的記錄檔格式"
 author: muralikk
 manager: syadav
@@ -13,15 +13,16 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 5329e92222c48143cdb459f775105ffaa9508843
-ms.openlocfilehash: 9da066964be5c38191ea860e1fac6f0e0e31d5df
+ms.sourcegitcommit: 74182c8c357085f186aaa43adfaef80a083d16bb
+ms.openlocfilehash: 0b402db8c7e6bd4abb5aaf6ded7f539cfec7172e
+ms.lasthandoff: 02/16/2017
 
 
 ---
-# <a name="import-export-service-log-file-format"></a>匯入匯出服務記錄檔格式
+# <a name="azure-importexport-service-log-file-format"></a>Azure 匯入/匯出服務記錄檔格式
 當 Microsoft Azure 匯入/匯出服務於匯入工作或匯出工作期間在磁碟機上執行動作時，記錄檔會寫入至與該工作相關聯的儲存體帳戶中的區塊 Blob。  
   
 匯入/匯出服務可覆寫兩個記錄檔︰  
@@ -359,9 +360,4 @@ properties-status ::=
   
 ## <a name="see-also"></a>另請參閱  
 [儲存體匯入/匯出 REST](/rest/api/storageimportexport/)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

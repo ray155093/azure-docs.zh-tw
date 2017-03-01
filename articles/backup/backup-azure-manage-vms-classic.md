@@ -13,10 +13,11 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 08/31/2016
-ms.author: trinadhk; jimpark; markgal;
+ms.author: trinadhk;markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 7a855e4f4af81f9316cb53be3807c6b290941bf4
+ms.sourcegitcommit: e12d533ac5befe020c0aad4aa64ca9ed50349c3d
+ms.openlocfilehash: bea1012fcd63b15ebfb5137dcfbd7e868c4e060f
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -24,32 +25,32 @@ ms.openlocfilehash: 7a855e4f4af81f9316cb53be3807c6b290941bf4
 > [!div class="op_single_selector"]
 > * [管理 Azure VM 備份](backup-azure-manage-vms.md)
 > * [管理傳統 VM 備份](backup-azure-manage-vms-classic.md)
-> 
-> 
+>
+>
 
 本文針對 Azure 中受保護的傳統模型虛擬機器，提供一般管理和監視工作的相關資訊。  
 
 > [!NOTE]
 > Azure 有兩種用來建立和使用資源的部署模型： [Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 如需使用傳統部署模型 VM 的詳細資料，請參閱 [準備環境以備份 Azure 虛擬機器](backup-azure-vms-prepare.md) 。
-> 
-> 
+>
+>
 
 ## <a name="manage-protected-virtual-machines"></a>管理受保護的虛擬機器
 管理受保護的虛擬機器：
 
 1. 若要檢視和管理虛擬機器的備份設定，按一下 [ **受保護項目** ] 索引標籤。
 2. 按一下受保護項目的名稱以查看 [ **備份詳細資料** ] 索引標籤，上面會顯示上次備份的相關資訊。
-   
+
     ![虛擬機器備份](./media/backup-azure-manage-vms/backup-vmdetails.png)
 3. 若要檢視和管理虛擬機器的備份原則設定，按一下 [ **原則** ] 索引標籤。
-   
+
     ![虛擬機器原則](./media/backup-azure-manage-vms/manage-policy-settings.png)
-   
+
     [ **備份原則** ] 索引標籤將顯示現有的原則。 您可以視需要修改。 如果您需要建立新的原則，按一下 [原則] 頁面中的 [建立]。 請注意，如果您想要移除一個原則，該原則就不能與任何虛擬機器相關聯。
-   
+
     ![虛擬機器原則](./media/backup-azure-manage-vms/backup-vmpolicy.png)
 4. 您可以在 [ **工作** ] 頁面取得更多虛擬機器動作或狀態的相關資訊。 按一下清單中的工作以取得詳細資訊，或為特定虛擬機器篩選工作。
-   
+
     ![工作](./media/backup-azure-manage-vms/backup-job.png)
 
 ## <a name="on-demand-backup-of-a-virtual-machine"></a>虛擬機器的隨選備份
@@ -57,28 +58,28 @@ ms.openlocfilehash: 7a855e4f4af81f9316cb53be3807c6b290941bf4
 
 > [!NOTE]
 > 隨選備份的保留範圍，已設定為在與 VM 對應之備份原則中針對每日保留指定的保留值。  
-> 
-> 
+>
+>
 
 若要進行虛擬機器的隨選備份：
 
 1. 瀏覽至 [受保護的項目] 頁面，並選取 [Azure 虛擬機器] 做為 [類型] \(若尚未選取)，然後按一下 [選取] 按鈕。
-   
+
     ![VM 類型](./media/backup-azure-manage-vms/vm-type.png)
 2. 選取您要進行隨選備份的虛擬機器，然後按一下頁面底部的 [ **立即備份** ] 按鈕。
-   
+
     ![立即備份](./media/backup-azure-manage-vms/backup-now.png)
-   
+
     這會在所選的虛擬機器上建立備份作業。 透過這項作業建立的復原點保留範圍，將會與在虛擬機器相關原則中指定的保留範圍相同。
-   
+
     ![建立備份作業](./media/backup-azure-manage-vms/creating-job.png)
-   
+
    > [!NOTE]
    > 若要檢視與虛擬機器相關聯的原則，請向下切入到 [ **受保護項目** ] 頁面中的虛擬機器，並移至 [備份原則] 索引標籤。
-   > 
-   > 
+   >
+   >
 3. 建立作業之後，您可以按一下快顯通知列中的 [ **檢視作業** ]，以在 [作業] 頁面中查看對應的作業。
-   
+
     ![建立的備份作業](./media/backup-azure-manage-vms/created-job.png)
 4. 順利完成作業之後，將會建立可供您還原虛擬機器的復原點。 這也會使 [ **受保護項目** ] 頁面中 的復原點資料行值遞增 1。
 
@@ -93,28 +94,28 @@ ms.openlocfilehash: 7a855e4f4af81f9316cb53be3807c6b290941bf4
 若要停止虛擬機器的保護：
 
 1. 瀏瀏覽至 [受保護的項目] 頁面，並選取 [Azure 虛擬機器] 作為篩選類型 (若尚未選取)，然後按一下 [選取] 按鈕。
-   
+
     ![VM 類型](./media/backup-azure-manage-vms/vm-type.png)
 2. 選取虛擬機器，然後按一下頁面底部的 [ **停止保護** ]。
-   
+
     ![停止保護](./media/backup-azure-manage-vms/stop-protection.png)
 3. 根據預設，Azure 備份不會刪除與虛擬機器相關聯的備份資料。
-   
+
     ![確認停止保護](./media/backup-azure-manage-vms/confirm-stop-protection.png)
-   
+
     如果您要刪除備份資料，請選取此核取方塊。
-   
+
     ![核取方塊](./media/backup-azure-manage-vms/checkbox.png)
-   
+
     請選取停止備份的原因。 雖然這是選擇性動作，但提供原因可幫助 Azure 備份處理意見反應，並設定客戶案例的優先順序。
 4. 按一下 [提交] 按鈕以提交 [停止保護] 作業。 按一下 [檢視作業] 以在 [作業] 頁面中查看對應作業。
-   
+
     ![停止保護](./media/backup-azure-manage-vms/stop-protect-success.png)
-   
+
     如果您未在 [停止保護] 精靈中選取 [刪除相關聯的備份資料] 選項，然後在作業完成後，保護狀態會變更為 [已停止保護]。 資料將會使用 Azure 備份保留，直到被明確刪除為止。 您隨時都可藉由在 [受保護的項目] 頁面中選取虛擬機器，然後按一下 [刪除] 來刪除資料。
-   
+
     ![已停止保護](./media/backup-azure-manage-vms/protection-stopped-status.png)
-   
+
     若您已選取 [刪除相關聯的備份資料] 選項，則虛擬機器將不會出現在 [受保護的項目] 頁面中。
 
 ## <a name="re-protect-virtual-machine"></a>重新保護虛擬機器
@@ -126,18 +127,18 @@ ms.openlocfilehash: 7a855e4f4af81f9316cb53be3807c6b290941bf4
 
 > [!NOTE]
 > 重新保護虛擬機器時，您可以選擇與最初用於保護虛擬機器不同的原則。
-> 
-> 
+>
+>
 
 ## <a name="unregister-virtual-machines"></a>取消註冊虛擬機器
 如果您想要從備份保存庫移除虛擬機器：
 
 1. 按一下頁面底部的 [ **取消註冊** ] 按鈕。
-   
+
     ![停用保護](./media/backup-azure-manage-vms/unregister-button.png)
-   
+
     快顯通知會出現在畫面底部要求確認。 按一下 [ **是** ] 以繼續。
-   
+
     ![停用保護](./media/backup-azure-manage-vms/confirm-unregister.png)
 
 ## <a name="delete-backup-data"></a>刪除備份資料
@@ -149,21 +150,21 @@ ms.openlocfilehash: 7a855e4f4af81f9316cb53be3807c6b290941bf4
 針對在順利完成 [停止備份] 作業後處於 [已停止保護] 狀態的虛擬機器，若要刪除其中的備份資料：
 
 1. 瀏覽至 [受保護的項目] 頁面，並選取 [Azure 虛擬機器] 做為*類型*，然後按一下 [選取] 按鈕。
-   
+
     ![VM 類型](./media/backup-azure-manage-vms/vm-type.png)
 2. 選取虛擬機器。 虛擬機器會處於 [ **已停止保護** ] 狀態。
-   
+
     ![已停止保護](./media/backup-azure-manage-vms/protection-stopped-b.png)
 3. 按一下頁面底部的 [刪除]  按鈕。
-   
+
     ![刪除備份](./media/backup-azure-manage-vms/delete-backup.png)
 4. 在 [刪除備份資料] 精靈中，選取刪除備份資料的原因 (強烈建議)，然後按一下 [提交]。
-   
+
     ![刪除備份資料](./media/backup-azure-manage-vms/delete-backup-data.png)
 5. 這會建立一項作業以刪除所選虛擬機器的備份資料。 按一下 [檢視作業]  以在 [作業] 頁面中查看對應作業。
-   
+
     ![成功刪除資料](./media/backup-azure-manage-vms/delete-data-success.png)
-   
+
     完成此作業後，將從 [受保護項目]  頁面中移除虛擬機器的對應項目。
 
 ## <a name="dashboard"></a>儀表板
@@ -173,8 +174,8 @@ ms.openlocfilehash: 7a855e4f4af81f9316cb53be3807c6b290941bf4
 
 > [!NOTE]
 > 儀表板中的值會每隔 24 小時重新整理一次。
-> 
-> 
+>
+>
 
 ## <a name="auditing-operations"></a>稽核作業
 Azure 備份提供由客戶觸發之備份作業的「作業記錄檔」檢閱，可輕鬆查看備份保存庫上執行了哪些管理作業。 作業記錄檔會啟用備份作業的絕佳事後剖析和稽核支援。
@@ -196,17 +197,17 @@ Azure 備份提供由客戶觸發之備份作業的「作業記錄檔」檢閱�
 檢視對應到備份保存庫的作業記錄檔：
 
 1. 瀏覽至 Azure 入口網站中的 [管理服務]，然後按一下 [作業記錄檔] 索引標籤。
-   
+
     ![作業記錄](./media/backup-azure-manage-vms/ops-logs.png)
 2. 在篩選器中，選取 [備份] 做為*類型*，指定*服務名稱*中的備份保存庫名稱，然後按一下 [提交]。
-   
+
     ![作業記錄檔篩選器](./media/backup-azure-manage-vms/ops-logs-filter.png)
 3. 在作業記錄檔中選取任一作業，然後按一下 [詳細資料] 以查看對應至作業的詳細資料。
-   
+
     ![作業記錄檔擷取詳細資料](./media/backup-azure-manage-vms/ops-logs-details.png)
-   
+
     **詳細資料精靈** 包含觸發的作業、工作識別碼、觸發作業所在的資源，以及作業的開始時間等相關資訊。
-   
+
     ![Operation Details](./media/backup-azure-manage-vms/ops-logs-details-window.png)
 
 ## <a name="alert-notifications"></a>警示通知
@@ -238,14 +239,8 @@ PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -Res
 
 1. 在備份保存庫中的所有虛擬機器上觸發警示。 您無法自訂它以取得備份保存庫中特定一組虛擬機器的警示。
 2. 這項功能處於預覽狀態。 [深入了解](../monitoring-and-diagnostics/insights-powershell-samples.md#create-alert-rules)
-3. 您會收到來自 "alerts-noreply@mail.windowsazure.com". 的警示。目前您無法修改電子郵件寄件者。
+3. 您將會收到來自 "alerts-noreply@mail.windowsazure.com" 的通知。 目前您無法修改電子郵件寄件者。
 
 ## <a name="next-steps"></a>後續步驟
 * [還原 Azure VM](backup-azure-restore-vms.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

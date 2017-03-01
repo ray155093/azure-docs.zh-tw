@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/07/2017
+ms.date: 02/21/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 0821ec479f21ddcc6dc370070d9a40221054877f
-ms.openlocfilehash: fe1f39df8cafeea4d518a5ee1400652bb499cde1
+ms.sourcegitcommit: e3d01fadc5597efa7beb5ee690470f428ee12b62
+ms.openlocfilehash: 216146ffaa0f2732b2f2369107e80de0bbc4e466
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -31,6 +32,7 @@ ms.openlocfilehash: fe1f39df8cafeea4d518a5ee1400652bb499cde1
 * [Microsoft Azure IaaS 上軟體更新的最佳作法](azure-security-best-practices-software-updates-iaas.md)
 * [Azure 界限安全性最佳作法](../best-practices-network-security.md)
 * [在 Azure 中實作安全的混合式網路架構](../guidance/guidance-iaas-ra-secure-vnet-hybrid.md)
+* [Azure PaaS 最佳作法] (https://docs.microsoft.com/en-us/azure/security/security-paas-deployments)
 
 Azure 提供安全的平台，您可以在其中建立您的解決方案。 我們也提供服務和技術，可讓您的解決方案在 Azure 上更安全。 由於有許多選項可供使用，因此對 Microsoft 針對改善安全性所建議作為最佳做法與模式的內容，許多人都表示感興趣。
 
@@ -47,9 +49,4 @@ Azure 提供安全的平台，您可以在其中建立您的解決方案。 我�
 * 如何學習啟用最佳作法
 
 我們希望在 Azure 安全性架構和最佳作法中納入更多文章。 如果您有希望我們納入的主題，請在本頁面底部的討論區中讓我們知道。
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

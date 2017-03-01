@@ -4,7 +4,7 @@ description: "Azure Mobile Engagement 疑難排解"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 8b4275da-c0b4-4690-824a-48e9d7a1fc6e
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 01862d158f4771989ae6eb3b20fe8e080123a231
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -88,10 +89,5 @@ ms.openlocfilehash: 01862d158f4771989ae6eb3b20fe8e080123a231
   * 使用逗號 "," 做為分隔字元 (您可以開啟服務要求，來要求將 .csv 分隔字元從逗號變更為另一個字元，例如分號 ";")。
   * 使用全部小寫的布林值 "true" 和 "false"。
   * 使用小於 35MB 檔案大小上限的檔案。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

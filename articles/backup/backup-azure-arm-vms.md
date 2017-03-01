@@ -1,5 +1,5 @@
 ---
-title: "將 Azure VM 備份到復原服務保存庫 | Microsoft Docs"
+title: "備份 Azure VM | Microsoft Docs"
 description: "探索、註冊及備份 Azure 虛擬機器到復原服務保存庫。"
 services: backup
 documentationcenter: 
@@ -13,11 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 1/30/2017
+ms.date: 2/15/2017
 ms.author: trinadhk;jimpark;markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: 39147f2db1e660a21d6ed622206787ea0c569056
-ms.openlocfilehash: 28a5014f7ee73b30f879d249811e7fc303b13ac6
+ms.sourcegitcommit: dca042ce1684b35e6a874075e0de28b9d8766331
+ms.openlocfilehash: 981c8652629e96f482d9a62b70b0f0992517019f
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -44,32 +45,57 @@ ms.openlocfilehash: 28a5014f7ee73b30f879d249811e7fc303b13ac6
 
 若要執行初始備份作業：
 
-1. 在保存庫儀表板的 [備份] 圖格上，按一下 [Azure 虛擬機器]。 <br/>
-    ![設定圖示](./media/backup-azure-vms-first-look-arm/rs-vault-in-dashboard-backup-vms.png)
+1. 在保存庫儀表板中，按一下 [備份項目] 下的數字，或按一下 [備份項目] 圖格。 <br/>
+  ![設定圖示](./media/backup-azure-vms-first-look-arm/rs-vault-config-vm-back-up-now-1.png)
 
-    [備份項目]  刀鋒視窗隨即開啟。
-2. 在 [備份項目] 刀鋒視窗中，以滑鼠右鍵按一下您要備份的保存庫，然後按一下 [立即備份]。
+  [備份項目]  刀鋒視窗隨即開啟。
 
-    ![設定圖示](./media/backup-azure-vms-first-look-arm/back-up-now.png)
+  ![備份項目](./media/backup-azure-vms-first-look-arm/back-up-items-list.png)
 
-    備份作業便會觸發。 <br/>
+2. 在 [備份項目] 刀鋒視窗中，選取該項目。
 
-    ![備份作業已觸發](./media/backup-azure-vms-first-look-arm/backup-triggered.png)
-3. 若要檢視初始備份是否已完成，請在保存庫儀表板的 [備份作業] 圖格上按一下 [Azure 虛擬機器]。
+  ![設定圖示](./media/backup-azure-vms-first-look-arm/back-up-items-list-selected.png)
 
-    ![備份工作圖格](./media/backup-azure-vms-first-look-arm/open-backup-jobs.png)
+  [備份項目] 清單隨即開啟。 <br/>
 
-    [備份工作] 刀鋒視窗隨即開啟。
-4. 在 [備份作業]  刀鋒視窗中，您可以看到所有作業的狀態。
+  ![備份作業已觸發](./media/backup-azure-vms-first-look-arm/backup-items-not-run.png)
 
-    ![備份工作圖格](./media/backup-azure-vms-first-look-arm/backup-jobs-in-jobs-view.png)
+3. 在 [備份項目] 清單上，按一下省略符號 **...** 以開啟操作功能表。
 
-   > [!NOTE]
-   > 備份作業期間，每部虛擬機器中的備份擴充功能會排清所有寫入並採用一致的快照集。
-   >
-   >
+  ![內容功能表](./media/backup-azure-vms-first-look-arm/context-menu.png)
 
-    當備份作業完成時，狀態會是「完成」 。
+  操作功能表隨即出現。
+
+  ![內容功能表](./media/backup-azure-vms-first-look-arm/context-menu-small.png)
+
+4. 在操作功能表上，按一下 [立即備份]。
+
+  ![內容功能表](./media/backup-azure-vms-first-look-arm/context-menu-small-backup-now.png)
+
+  [立即備份] 刀鋒視窗隨即開啟。
+
+  ![顯示 [立即備份] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
+
+5. 在 [立即備份] 刀鋒視窗上，按一下日曆圖示，使用日曆控制項選取此復原點保留的最後一天，然後按一下 [備份]。
+
+  ![設定 [立即備份] 復原點保留的最後一天](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
+
+  部署通知可讓您知道已觸發備份工作，而且您可以在 [備份工作] 頁面上監視作業的進度。 根據您的 VM 大小，建立初始備份可能需要花一點時間。
+
+6. 若要在保存庫儀表板上檢視或追蹤初始備份的狀態，請在 [備份工作] 圖格上，按一下 [進行中]。
+
+  ![備份工作圖格](./media/backup-azure-vms-first-look-arm/open-backup-jobs-1.png)
+
+  [備份工作] 刀鋒視窗隨即開啟。
+
+  ![備份工作圖格](./media/backup-azure-vms-first-look-arm/backup-jobs-in-jobs-view-1.png)
+
+  在 [備份作業]  刀鋒視窗中，您可以看到所有作業的狀態。 檢查您 VM 的備份作業是否仍在進行中或已經完成。 當備份工作完成時，狀態會是「完成」 。
+
+  > [!NOTE]
+  > 在備份工作進行時，Azure 備份服務會對每個 VM 中的備份擴充功能發出命令，以排清所有寫入並取得一致的快照。
+  >
+  >
 
 ## <a name="troubleshooting-errors"></a>錯誤疑難排解
 如果您在備份虛擬機器時遇到問題，請參閱 [VM 疑難排解文章](backup-azure-vms-troubleshoot.md)以取得說明。
@@ -79,9 +105,4 @@ ms.openlocfilehash: 28a5014f7ee73b30f879d249811e7fc303b13ac6
 
 * [管理和監視虛擬機器](backup-azure-manage-vms.md)
 * [還原虛擬機器](backup-azure-arm-restore-vms.md)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

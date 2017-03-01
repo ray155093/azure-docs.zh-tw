@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 09/14/2016
 ms.author: narayan; annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 5240bfc66ce15f845a511b7f09a5cd6209c8d539
-ms.openlocfilehash: 34cc0fbddadb3860320ae730c2bc9951c735c7f9
+ms.sourcegitcommit: 3fcd6583b415cea6b2151651297c55c93e59c796
+ms.openlocfilehash: b0375a99f5ea3d6af2d3ead382f9a43f1fd285f0
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -155,7 +156,7 @@ ms.openlocfilehash: 34cc0fbddadb3860320ae730c2bc9951c735c7f9
         RemoteGateways        : null
         RemoteVirtualNetworkAddressSpace : null
 
-    對等互連建立之後，VM 應該能夠跨兩個 VNet 與彼此進行通訊。 根據預設，`AllowVirtualNetworkAccess` 為 *True*，且 VNet 對等互連會佈建適當的 ACL 以允許 VNet 之間的通訊。 您仍然可以套用網路安全性群組 (NSG) 規則來封鎖特定子網路或虛擬機器之間的連線，以便以更精細的幅度控制兩個 VNet 之間的存取。 請閱讀[網路安全性群組](virtual-networks-create-nsg-arm-ps.md)文章以進一步了解 NSG。
+    對等互連建立之後，VM 應該能夠跨兩個 VNet 與彼此進行通訊。 根據預設，`AllowVirtualNetworkAccess` 為 *True*，且 VNet 對等互連會佈建適當的 ACL 以允許 VNet 之間的通訊。 您仍然可以套用網路安全性群組 (NSG) 規則來封鎖特定子網路或虛擬機器之間的連線，以便以更精細的幅度控制兩個 VNet 之間的存取。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-create-nsg-arm-ps.md)文章。
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-crosssub-include](../../includes/virtual-networks-create-vnetpeering-scenario-crosssub-include.md)]
 
@@ -225,7 +226,7 @@ ms.openlocfilehash: 34cc0fbddadb3860320ae730c2bc9951c735c7f9
 [!INCLUDE [virtual-networks-create-vnet-scenario-asmtoarm-include](../../includes/virtual-networks-create-vnetpeering-scenario-asmtoarm-include.md)]
 
 1. 如果您要在「相同」訂用帳戶中透過不同部署模型部署的 VNet 之間建立對等互連，請跳至步驟 2。 為「不同」訂用帳戶中透過不同部署模型部署的 VNet 之間建立 VNet 對等互連的功能屬於「預覽」版本。 預覽版本的功能沒有與一般版本功能同樣的可靠性與服務等級協定。 如果您要在不同訂用帳戶中透過不同部署模型部署的 VNet 之間建立對等互連，則必須先完成下列工作：
-    - 在 Azure 訂用帳戶訂閱中註冊預覽功能，方法是從 PowerShell 輸入下列命令︰`Register-AzureRmProviderFeature -FeatureName AllowClassicCrossSubscriptionPeering -ProviderNamespace Microsoft.Network`
+    - 在 Azure 訂用帳戶訂閱中註冊預覽版功能，方法是從 PowerShell 中輸入下列命令︰`Register-AzureRmProviderFeature -FeatureName AllowClassicCrossSubscriptionPeering -ProviderNamespace Microsoft.Network` 和 `Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network`
     - 完成此文章中[跨訂用帳戶的對等互連](#x-sub)一節中的步驟 1 到 2。
 2. 讀取 **VNET1** 的虛擬網路物件，Azure Resource Manager 虛擬網路，方法是輸入下列命令：
 
@@ -235,7 +236,7 @@ ms.openlocfilehash: 34cc0fbddadb3860320ae730c2bc9951c735c7f9
 
 3. 若要在此案例中建立 VNet 對等互連，只需要一個連結，特別是從 **VNET1** 至 **VNET2** 的連結。 此步驟需要知道您的傳統 VNet 的資源識別碼。 資源群組識別碼的格式如下列範例所示︰
 
-        subscriptions/{SubscriptionID}/resourceGroups/{ResourceGroupName}/providers/Microsoft.ClassicNetwork/virtualNetworks/{VirtualNetworkName}
+           subscriptions/{SubscriptionID}/resourceGroups/{ResourceGroupName}/providers/Microsoft.ClassicNetwork/virtualNetworks/{VirtualNetworkName}
 
     務必以適當的名稱取代 SubscriptionID、ResourceGroupName 和 VirtualNetworkName。
 
@@ -279,10 +280,5 @@ ms.openlocfilehash: 34cc0fbddadb3860320ae730c2bc9951c735c7f9
     ```
 
 2. 一旦在 VNET 對等互連中移除一個連結，對等連結狀態將會變成「已中斷連線」。 在此狀態下，您無法重新建立連結，直到對等連結狀態變更為「初始化」為止。 建議您兩個連結都移除後，再重新建立 VNET 對等互連。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

@@ -4,7 +4,7 @@ description: "Azure Mobile Engagement 的 Windows Phone Silverlight SDK 升級�
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 87130026-9759-4659-9184-788a3627a165
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 06b2a8b5e12d33c3ade469491b2694dd4a342cf1
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -142,10 +143,5 @@ Engagement 使用連接字串。 您不需要為 Mobile Engagement 指定應用�
 * GetCapptainPageName 現在名為 GetEngagementPageName
 
 請注意，重新命名也會影響覆寫方法。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

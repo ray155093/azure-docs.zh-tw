@@ -3,7 +3,7 @@ title: "最佳做法：Azure AD 密碼管理 | Microsoft Docs"
 description: "Azure Active Directory 中密碼管理的部署和使用方式最佳做法、範例使用者文件和訓練指南。"
 services: active-directory
 documentationcenter: 
-author: asteen
+author: MicrosoftGuyJFlo
 manager: femila
 editor: curtand
 ms.assetid: f8cd7e68-2c8e-4f30-b326-b22b16de9787
@@ -12,19 +12,20 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2016
-ms.author: asteen
+ms.date: 02/28/2017
+ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 59f4cd3de4524a5ed51b7ef434b7b21c151dd2e0
+ms.sourcegitcommit: 0035aa17e661a52db371b533b547c88dcb0f0148
+ms.openlocfilehash: f7dd06f1fc789a74ec7ce2182824ff759dcf7a9f
+ms.lasthandoff: 02/24/2017
 
 
 ---
 # <a name="deploying-password-management-and-training-users-to-use-it"></a>部署密碼管理並訓練使用者使用它
 > [!IMPORTANT]
 > **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
-> 
-> 
+>
+>
 
 啟用密碼重設之後，您必須採取的下一個步驟就是讓使用者使用組織的服務。 若要這麼做，您必須確定已正確將使用者設定為使用此服務，同時您也必須訓練使用者，讓他們可以順利管理自己的密碼。 本文章將向您說明下列概念：
 
@@ -122,11 +123,11 @@ ms.openlocfilehash: 59f4cd3de4524a5ed51b7ef434b7b21c151dd2e0
 2. 按一下 [使用者]  索引標籤。
 3. 從清單中選取您需要的使用者。
 4. 您會在第一個索引標籤上發現 **備用電子郵件**項目，此項目可做為啟用密碼重設的屬性。
-   
+
    ![][005]
 5. 按一下 [工作資訊]  索引標籤。
 6. 在此頁面上，您會發現有 [辦公室電話]、[行動電話]、[驗證電話] 及 [驗證電子郵件]。  您也可以設定這些屬性，以允許使用者重設密碼。
-   
+
    ![][006]
 
 請參閱 [密碼重設使用哪些資料](active-directory-passwords-learn-more.md#what-data-is-used-by-password-reset) ，了解這些屬性的使用方式。
@@ -140,7 +141,7 @@ ms.openlocfilehash: 59f4cd3de4524a5ed51b7ef434b7b21c151dd2e0
 <br/>
 <br/>
 
-## <a name="links-to-password-reset-documentation"></a>密碼重設文件的連結
+## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
 * **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
@@ -159,9 +160,4 @@ ms.openlocfilehash: 59f4cd3de4524a5ed51b7ef434b7b21c151dd2e0
 [005]: ./media/active-directory-passwords-best-practices/005.jpg "Image_005.jpg"
 [006]: ./media/active-directory-passwords-best-practices/006.jpg "Image_006.jpg"
 [007]: ./media/active-directory-passwords-best-practices/007.jpg "Image_007.jpg"
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

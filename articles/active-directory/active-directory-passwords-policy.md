@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 02/22/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: e4896c1a3adf76477899336f1ff1ee215cc7c9aa
-ms.openlocfilehash: 5cb86ac4694d8b763fa693954a8bb1383739497c
+ms.sourcegitcommit: fc73b667112fe35473872c33bc98423a424c5c65
+ms.openlocfilehash: d6bee5afea6afcd756b53f41baef5dd984423c0a
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -48,8 +49,8 @@ ms.openlocfilehash: 5cb86ac4694d8b763fa693954a8bb1383739497c
 | 密碼到期時間 |<ul><li>預設值：**90** 天 </li><li>值可透過適用於 Windows PowerShell 的 Azure Active Directory 模組使用 Set-MsolPasswordPolicy Cmdlet 設定。</li></ul> |
 | 密碼到期通知 |<ul><li>預設值：**14** 天 (密碼到期之前)</li><li>您可使用 Set-MsolPasswordPolicy Cmdlet 設定此值。</li></ul> |
 | 密碼到期 |<ul><li>預設值︰**false** 天 (表示已啟用密碼到期) </li><li>可以針對個別使用者帳戶使用 Set-msoluser Cmdlet 設定值。 </li></ul> |
-| 密碼歷程記錄 |無法再次使用上次密碼。 |
-| 密碼歷程記錄期間 |不限次數 |
+| 密碼**變更**歷程記錄 |**變更**密碼時，**無法**再次使用上次的密碼。 |
+| 密碼**重設**歷程記錄 | **重設**遺忘的密碼時，**可以**再次使用上次的密碼。 |
 | 帳戶鎖定 |10 次嘗試登入失敗 (錯誤密碼) 之後，使用者會被封鎖一分鐘。 後續嘗試登入的錯誤會增加使用者被封鎖的時間。 |
 
 ## <a name="next-steps"></a>後續步驟
@@ -63,9 +64,4 @@ ms.openlocfilehash: 5cb86ac4694d8b763fa693954a8bb1383739497c
 * [密碼管理常見問題集](active-directory-passwords-faq.md)
 * [疑難排解密碼管理](active-directory-passwords-troubleshoot.md)
 * [深入了解](active-directory-passwords-learn-more.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 11/22/2016
 ms.author: daseidma;bwren;dairwin
 translationtype: Human Translation
-ms.sourcegitcommit: cf3e083f17bf8b2245373bced5823afd21fe1af9
-ms.openlocfilehash: d2e55846667cccec824e31f648beac1c84fbcf50
+ms.sourcegitcommit: 638410921c6dad72e1bbe0c035243cea70a3deb1
+ms.openlocfilehash: 4bab1ba9c30cee50baeddc06931a3997aac0f33f
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -91,14 +92,17 @@ ms.openlocfilehash: d2e55846667cccec824e31f648beac1c84fbcf50
 ### <a name="showhide-self-links"></a>顯示/隱藏自我連結
 [顯示自我連結] 將會重繪包括任何自我連結的伺服器節點，即處理序在該伺服器上開始和結束的 TCP 連線。  如果沒有顯示自我連結，功能表會變為 [隱藏自我連結]，讓使用者可以開關自我連結的繪圖。
 
+## <a name="computer-summary"></a>電腦摘要
+[機器摘要] 面板包含伺服器作業系統概觀、相依性計數及其他 OMS 解決方案中的各種資料，包括效能標準、變更追蹤、安全性及更新等。
 
+![機器摘要](media/oms-service-map/machine-summary.png)
 
 ## <a name="computer-and-process-properties"></a>電腦和處理序屬性
 在瀏覽「服務對應」對應時，您可以選取機器和處理程序來取得其他有關其屬性的內容。  機器會提供有關 DNS 名稱、IPv4 位址、CPU 和記憶體容量、VM 類型、作業系統版本、上次重新開機時間，以及其 OMS 和服務對應代理程式識別碼的資訊。
 
 ![機器屬性](media/oms-service-map/machine-properties.png)
 
-處理程序的詳細資料是收集自作業系統中繼資料，其內容與執行中的處理程序有關，包括處理程序名稱、處理程序描述、使用者名稱和網域 (在 Windows 上)、公司名稱、產品名稱、產品版本、工作目錄、命令列，以及處理程序開始時間。
+處理序的詳細資料是收集自作業系統中繼資料，其內容與執行中的處理序有關，包括處理序名稱、處理序描述、使用者名稱和網域 (在 Windows 上)、公司名稱、產品名稱、產品版本、工作目錄、命令列，以及處理序開始時間。
 
 ![處理程序屬性](media/oms-service-map/process-properties.png)
 
@@ -106,10 +110,22 @@ ms.openlocfilehash: d2e55846667cccec824e31f648beac1c84fbcf50
 
 ![處理程序摘要](media/oms-service-map/process-summary.png)
 
-## <a name="computer-summary"></a>電腦摘要
-[機器摘要] 面板包含伺服器作業系統概觀、相依性計數及其他 OMS 解決方案中的各種資料，包括效能標準、變更追蹤、安全性及更新等。
+## <a name="oms-alerts-integration"></a>OMS 警示整合
+服務對應會與 OMS 警示整合，以顯示所選時間範圍內針對所選伺服器觸發的警示。  如果有最新警示，伺服器會顯示一個圖示，且 [機器警示] 面板會列出警示
 
-![機器摘要](media/oms-service-map/machine-summary.png)
+![機器警示面板](media/oms-service-map/machine-alerts.png)
+
+請注意，要使服務對應顯示相關警示，必須建立警示規則，才能針對特定的電腦觸發。  若要建立適當的警示︰
+- 包含依電腦群組的子句："by Computer interval 1minute" (依 1 分鐘的電腦間隔)
+- 選擇依據標準度量警示
+
+![警示組態](media/oms-service-map/alert-configuration.png)
+
+
+## <a name="oms-log-events-integration"></a>OMS 記錄事件整合
+服務對應會與記錄搜尋整合，以顯示所選時間範圍期間，適用於所選伺服器的所有可用記錄事件計數。  您可以按一下事件計數清單中的任一列，以移至記錄搜尋並查看個別的記錄事件。
+
+![記錄事件](media/oms-service-map/log-events.png)
 
 ## <a name="oms-change-tracking-integration"></a>OMS 變更追蹤整合
 當「服務對應」和「變更追蹤」這兩個解決方案皆已在 OMS 工作區中啟用並設定，便會自動進行整合。
@@ -138,19 +154,6 @@ ms.openlocfilehash: d2e55846667cccec824e31f648beac1c84fbcf50
 
 [機器更新] 面板會顯示 OMS 更新管理解決方案中針對所選伺服器的資料。  此面板會列出所選時間範圍內伺服器所缺少之任何更新的摘要。
 ![機器變更追蹤面板](media/oms-service-map/machine-updates.png)
-
-
-## <a name="oms-alerts-integration"></a>OMS 警示整合
-服務對應整合 OMS 警示，可顯示所選時間範圍內針對所選伺服器觸發的警示。  如果有最新警示，伺服器會顯示一個圖示，且 [機器警示] 面板會列出警示
-
-![機器警示面板](media/oms-service-map/machine-alerts.png)
-
-請注意，要使服務對應顯示相關警示，必須建立警示規則，才能針對特定的電腦觸發。  若要建立適當的警示︰
-- 包含依電腦群組的子句："by Computer interval 1minute" (依 1 分鐘的電腦間隔)
-- 選擇依據標準度量警示
-
-![警示組態](media/oms-service-map/alert-configuration.png)
-
 
 ## <a name="log-analytics-records"></a>Log Analytics 記錄
 服務對應的電腦和處理程序清查資料可供在 Log Analytics 中進行[搜尋](../log-analytics/log-analytics-log-searches.md)。  這適用於包括移轉規劃、容量分析、探索和臨機操作效能疑難排解在內的案例。
@@ -251,10 +254,14 @@ Type=ServiceMapProcess_CL ExecutableName_s=curl | Distinct ProductVersion_s
 Type=ServiceMapComputer_CL OperatingSystemFullName_s = \*CentOS\* | Distinct ComputerName_s
 
 
+## <a name="rest-api"></a>REST API
+服務對應中所有的伺服器、處理序及相依性資料，都可透過[服務對應 REST API](https://docs.microsoft.com/en-us/rest/api/servicemap/) 取得。
+
+
 ## <a name="diagnostic-and-usage-data"></a>診斷和使用量資料
 當您使用服務對應服務時，Microsoft 會自動收集使用量和效能資料。 Microsoft 使用這項資料來提供和改進服務對應服務的品質、安全性和完整性。 資料中除了包含軟體 (如作業系統) 組態和版本的相關資訊，還包含 IP 位址、DNS 名稱和工作站名稱，以便提供精確且有效率的疑難排解功能。 我們不會收集姓名、地址或其他連絡資訊。
 
-如需有關資料收集與使用方式的詳細資訊，請參閱 [Microsoft 線上服務隱私權聲明](hhttps://go.microsoft.com/fwlink/?LinkId=512132)。
+如需有關資料收集與使用方式的詳細資訊，請參閱 [Microsoft 線上服務隱私權聲明](https://go.microsoft.com/fwlink/?LinkId=512132)。
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -263,9 +270,4 @@ Type=ServiceMapComputer_CL OperatingSystemFullName_s = \*CentOS\* | Distinct Com
 
 ## <a name="feedback"></a>意見反應
 您對「服務對應」或這份文件有任何意見反應要提供給我們嗎？  請瀏覽我們的 [User Voice 頁面](https://feedback.azure.com/forums/267889-log-analytics/category/184492-service-map)，您可以在此頁面提出功能建議或對現有的建議進行投票。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

@@ -16,8 +16,9 @@ ms.topic: hero-article
 ms.date: 12/25/2016
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 16bff1b5708652a75ea603f596c864901b12a88d
-ms.openlocfilehash: 08f4cd48ea41d66203e296415181d5da14327854
+ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
+ms.openlocfilehash: 49b765010be87bacdb486391c28bf58aad1a9d24
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -406,7 +407,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行 [豐富查詢](do
 
 ![node.js 教學課程 - 說明查詢範圍和意義的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
 
-因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#from-clause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
+因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#FromClause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
 
 將以下的程式碼複製並貼到對 **getFamilyDocument** 的呼叫之下，以執行 **queryCollection** 函式。
 
@@ -627,9 +628,4 @@ DocumentDB 支援刪除 JSON 文件。
 
 [documentdb-create-account]: documentdb-create-account.md
 [keys]: media/documentdb-nodejs-get-started/node-js-tutorial-keys.png
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

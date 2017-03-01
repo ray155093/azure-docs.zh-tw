@@ -17,17 +17,13 @@ ms.topic: article
 ms.date: 07/18/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: cffa8955cf044398e526b1ad6158eefebbf91b3b
-ms.openlocfilehash: 9cd3d1b2da7f941673003b566cd92b0eb9acf6f4
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: 02ea369d76c1fe7266e9dc0cad2c75e4b5eada6a
+ms.lasthandoff: 02/16/2017
 
 
 ---
 # <a name="always-encrypted-protect-sensitive-data-in-sql-database-and-store-your-encryption-keys-in-the-windows-certificate-store"></a>一律加密：保護 SQL Database 中的機密資料，並將加密金鑰儲存在 Windows 憑證存放區中
-> [!div class="op_single_selector"]
-> * [Azure 金鑰保存庫](sql-database-always-encrypted-azure-key-vault.md)
-> * [Windows 憑證存放區](sql-database-always-encrypted.md)
-> 
-> 
 
 本文說明如何使用 [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/hh213248.aspx) 中的[一律加密精靈](https://msdn.microsoft.com/library/mt459280.aspx)，藉由資料庫加密來保護 SQL Database 中的機密資料。 它也會說明如何將您的加密金鑰儲存在 Windows 憑證存放區中。
 
@@ -54,7 +50,7 @@ ms.openlocfilehash: 9cd3d1b2da7f941673003b566cd92b0eb9acf6f4
 ## <a name="create-a-blank-sql-database"></a>建立空白 SQL Database
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下 [新增]  >  [資料 + 儲存體]  >  [SQL Database]。
-3. 在新的或現有伺服器上建立名稱為 **Clinic** (診所) 的**空白**資料庫。 如需有關如何在 Azure 入口網站中建立資料庫的詳細指示，請參閱 [在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
+3. 在新的或現有伺服器上建立名稱為 **Clinic** (診所) 的**空白**資料庫。 如需有關如何在 Azure 入口網站中建立資料庫的詳細指示，請參閱[您的第一個 Azure SQL Database](sql-database-get-started.md)。
    
     ![建立空白資料庫](./media/sql-database-always-encrypted/create-database.png)
 
@@ -522,10 +518,5 @@ SSMS 提供一個精靈，可為您設定 CMK、CEK 及加密的資料行，來�
 * [SQL Server 加密](https://msdn.microsoft.com/library/bb510663.aspx)
 * [Always Encrypted Wizard (一律加密精靈)](https://msdn.microsoft.com/library/mt459280.aspx)
 * [Always Encrypted Blog (一律加密部落格)](http://blogs.msdn.com/b/sqlsecurity/archive/tags/always-encrypted/)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

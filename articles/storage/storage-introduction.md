@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/02/2017
+ms.date: 02/24/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 8e11b36ee927724d4736f8a235aa97848ee2d271
-ms.openlocfilehash: d0647706ad18b3106de44496e43ea822896215ba
+ms.sourcegitcommit: f4b26aa9a4dd110eafb8f9f8d658cc0f530136ec
+ms.openlocfilehash: 4548d83525dba6024d1892950e3acbc6b857977a
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -179,21 +180,21 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [儲存體服務 REST API](http://msdn.microsoft.com/library/azure/dd179355.aspx)
 * [適用於 .NET、Windows Phone 和 Windows 執行階段的儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
 * [Storage Client Library for C++](https://github.com/Azure/azure-storage-cpp)
-* [適用於 Java/Android 的儲存體用戶端程式庫](/develop/java/)
+* [適用於 Java/Android 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/java/)
 * [適用於 Node.js 的儲存體用戶端程式庫](http://dl.windowsazure.com/nodestoragedocs/index.html)
-* [適用於 PHP 的儲存體用戶端程式庫](/develop/php/)
-* [適用於 Ruby 的儲存體用戶端程式庫](/develop/ruby/)
-* [適用於 Python 的儲存體用戶端程式庫](/develop/python/)
+* [適用於 PHP 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/php/)
+* [適用於 Ruby 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/ruby/)
+* [適用於 Python 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/python/)
 * [PowerShell 1.0 的儲存體 Cmdlet](https://msdn.microsoft.com/library/azure/mt269418.aspx)
 
 ### <a name="azure-storage-management-services"></a>Azure 儲存體管理服務
-* [儲存體資源提供者 REST API 參考](https://msdn.microsoft.com/library/azure/mt163683.aspx)
-* [適用於 .NET 的儲存體資源提供者用戶端程式庫](https://msdn.microsoft.com/library/azure/mt131037.aspx)
-* [適用於 PowerShell 1.0 的儲存體資源提供者 Cmdlet](https://msdn.microsoft.com/library/azure/mt607151.aspx)
+* [儲存體資源提供者 REST API 參考](/rest/api/storagerp/)
+* [適用於 .NET 的儲存體資源提供者用戶端程式庫](/dotnet/api/microsoft.azure.management.storage)
+* [適用於 PowerShell 1.0 的儲存體資源提供者 Cmdlet](/powershell/storage/)
 * [儲存體服務管理 REST API (傳統)](https://msdn.microsoft.com/library/azure/ee460790.aspx)
 
 ### <a name="azure-storage-data-movement-services"></a>Azure 儲存體資料移動服務
-* [儲存體匯入/匯出服務 REST API](https://msdn.microsoft.com/library/azure/dn529096.aspx)
+* [儲存體匯入/匯出服務 REST API](storage-import-export-service.md)
 * [適用於 .NET 的儲存體資料移動 用戶端程式庫](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
 
 ### <a name="tools-and-utilities"></a>工具和公用程式
@@ -248,9 +249,4 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [如何使用 Python 的資料表儲存體](storage-python-how-to-use-table-storage.md)
 * [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 * [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

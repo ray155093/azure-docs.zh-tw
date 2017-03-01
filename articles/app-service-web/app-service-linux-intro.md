@@ -5,7 +5,7 @@ keywords: azure app service, linux, oss
 services: app-service
 documentationcenter: 
 author: naziml
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: bc85eff6-bbdf-410a-93dc-0f1222796676
 ms.service: app-service
@@ -13,11 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
-ms.author: naziml
+ms.date: 02/16/2017
+ms.author: naziml;wesmc
 translationtype: Human Translation
-ms.sourcegitcommit: a3df293a056f4b06281bf8b80717529286d528b8
-ms.openlocfilehash: 48f26113d129ebfa613f1b8f2a372d0e7286aea1
+ms.sourcegitcommit: 78fbef5aa26c52f5dd264581fd1525ada763d4c6
+ms.openlocfilehash: fa5d210c5e73074803d5cfb874ad7891563aefd0
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -33,17 +34,18 @@ Linux 上的 App Service 目前支援下列應用程式堆疊︰
 * Node.js
 * PHP
 * .Net Core
+* Ruby
 
 客戶可以使用下列工具來部署應用程式︰
 
 * FTP
 * 本機 Git
-* GitHub 或 Bitbucket
+* GitHub
 
 調整應用程式大小︰
 
 * 客戶可以在 App Service 方案中變更階層，即可相應增加和減少 Web 應用程式的規模。
-* 客戶可以將應用程式相應放大，在其 SKU 的範圍內跨多個執行個體來執行應用程式。
+* 客戶可以將應用程式相應放大，在其 SKU 的範圍內執行多個應用程式執行個體。
 
 針對 Kudu，有一些基本功能可用於下列幾項︰
 
@@ -52,9 +54,9 @@ Linux 上的 App Service 目前支援下列應用程式堆疊︰
 * 基本主控台
 
 ## <a name="limitations"></a>限制
-Azure 入口網站只會顯示 Linux 上的 App Service 目前可用的功能，並隱藏其餘部分。 隨著我們啟用更多功能，它們將會反映在入口網站上。
+Azure 入口網站只會顯示 Linux 上的 App Service 目前可用的功能，並隱藏其餘部分。 隨著我們啟用更多功能，您會在入口網站中看到它們。
 
-某些功能目前沒有作用，例如虛擬網路整合、Azure Active Directory/協力廠商驗證或 Kudu 網站擴充。 但隨著我們啟用這些功能，我們將會在文件和部落格中提供變更消息。
+某些功能尚未完備，例如虛擬網路整合、Azure Active Directory/協力廠商驗證或 Kudu 網站擴充。 一旦我們啟用這些功能，我們將會在文件和部落格中提供變更消息。
 
 目前只在下列區域提供此公開預覽版本：
 
@@ -66,6 +68,8 @@ Linux 上的 Web Apps 只在「專用」App Service 方案中才支援，而且�
 
 只有同一區域沒有非 Linux Web Apps 的資源群組中，才能建立 Linux 上的 Web Apps。
 
+Linux 上的 Web Apps 尚未支援從未編譯來源部署 .NET Core 應用程式。 您必須先在本機發佈/編譯 .NET Core 應用程式，再將已發佈的網站位元推送至應用程式。
+
 ## <a name="next-steps"></a>後續步驟
 請參閱下列連結以開始使用 Linux 上的 App Service。 您可以在[我們的論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview)張貼問題和疑難。
 
@@ -73,9 +77,7 @@ Linux 上的 Web Apps 只在「專用」App Service 方案中才支援，而且�
 * [如何針對 Linux 上的 App Service 使用自訂 Docker 映像](app-service-linux-using-custom-docker-image.md)
 * [在 Linux 上的 Web Apps 中使用適用於 Node.js 的 PM2 組態](app-service-linux-using-nodejs-pm2.md)
 * [在 Linux 上的 Azure App Service Web Apps 中使用 .NET Core](app-service-linux-using-dotnetcore.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
+* [在 Linux 上的 Azure App Service Web Apps 中使用 Ruby](app-service-linux-using-ruby.md)
+* [Linux 上的 Azure App Service Web Apps 常見問題集](app-service-linux-faq.md)
 
 

@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 12/01/2016
+ms.date: 02/13/2017
 ms.author: borisb
 translationtype: Human Translation
-ms.sourcegitcommit: 7ad71094cafb3d401797e8a8b3dd48a9aeeded9e
-ms.openlocfilehash: 34c4198c0b1b975caf2c198634bb18e0c4f2ab5b
+ms.sourcegitcommit: 6b54633b6beed738a93070aa4235ee4e24333b5e
+ms.openlocfilehash: e1867aa3c5339373b494744ba26c750bcc11b5b5
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -26,21 +27,44 @@ ms.openlocfilehash: 34c4198c0b1b975caf2c198634bb18e0c4f2ab5b
 RHUI 所管理的 yum 儲存機至清單，會於佈建期間設定在您的 RHEL 執行個體中。 您不需要進行任何額外設定，只需在 RHEL 執行個體準備好接收最新更新之後執行 `yum update` 即可。
 
 > [!NOTE]
-> Azure RHUI 基礎結構最近已更新 (2016 年 9 月)，您現有的 RHEL 執行個體組態必須變更，才能繼續存取 Azure RHUI。 如需詳細資料，請參閱＜RHUI Azure 基礎結構更新＞一節。
-> 
+> 在 2016 年 9 月，我們部署了已更新的 Azure RHUI，而在 2017 年 1 月，我們開始分階段關閉舊版 Azure RHUI。 如果您從 2016 年 9 月或之後才使用 RHEL 映像 (或其快照)，可能就不需要採取任何動作。 不過，如果您擁有舊版快照/VM，則其組態必須更新，才能繼續存取 Azure RHUI。
 > 
 
 ## <a name="rhui-azure-infrastructure-update"></a>RHUI Azure 基礎結構更新
-自 2016 年 9 月起，Azure 會有一組新的 Red Hat Update Infrastructure (RHUI) 伺服器。 這些伺服器的部署將會透過 [Azure 流量管理員](https://azure.microsoft.com/services/traffic-manager/)執行，讓任何 VM (不論是哪個區域) 都可以使用單一端點 (rhui-1.micrsoft.com)。 它們也會使用鏈結至已知「憑證授權單位」(Baltimore root) 的 SSL 憑證。 對於一些具有 RHUI 更新伺服器的 ACL 或自訂路由表的客戶來說，讓這項更新自動執行相當危險，因此這項更新可由客戶「選擇加入」。 本頁面提供上架到這些新伺服器的手動步驟，以及以自動化方式 (在驗證個別步驟時) 上架的完整指令碼。 Azure Marketplace 中的新 RHEL PAYG 映像 (日期為 2016 年 9 月的版本或更新版本) 會自動指向新的 Azure RHUI 伺服器，因此不需採取任何其他動作。
+自 2016 年 9 月起，Azure 會有一組新的 Red Hat Update Infrastructure (RHUI) 伺服器。 這些伺服器的部署將會透過 [Azure 流量管理員](https://azure.microsoft.com/services/traffic-manager/)執行，讓任何 VM (不論是哪個區域) 都可以使用單一端點 (rhui-1.micrsoft.com)。 Azure Marketplace 中的新 RHEL 隨用隨付 (PAYG) 映像 (日期為 2016 年 9 月的版本或更新版本) 會自動指向新的 Azure RHUI 伺服器，因此不需採取任何其他動作。
 
-### <a name="the-new-azure-rhui-infrastructure-onboarding-timeline"></a>新 Azure RHUI 基礎結構上架時間表
-| 日期 | 附註 |
-| --- | --- |
-| 2016 年 9 月 22 日 |提供 RHUI 伺服器和安裝指示。 使用新 RHEL PAYG Marketplace 映像 (日期為 2016 年 9 月) 部署的 VM 會自動使用新的 RHUI 伺服器，但現有的 VM 則是在「選擇加入」之後才會使用新伺服器 |
-| 2016 年 11 月 1 日 |舊版 RHEL PAYG VM 映像 (使用舊的 Azure RHUI 伺服器) 將會自 Azure Marketplace 資源庫中移除 |
-| 2017 年 1 月 16 日 |舊的 Azure RHUI 伺服器將被解除委任。 此時請更新所有受影響的 PAYG RHEL VM，以便繼續存取 Azure RHUI |
+### <a name="determine-if-action-is-required"></a>判斷是否需要採取動作
+如果您從 Azure RHEL PAYG VM 連接到 RHUI 時發生問題，請依照下列步驟操作：
+1. 檢查 Azure RHUI 端點的 VM 組態
+
+    檢查 `/etc/yum.repos.d/rh-cloud.repo` 檔案之 `[rhui-microsoft-azure-rhel*]` 區段的 baseurl 中是否包含對 `rhui-[1-3].microsoft.com` 的參考。 如果是，您使用的便是新 Azure RHUI。
+
+    如果它指向具有 `mirrorlist.*cds[1-4].cloudapp.net` 模式的位置，則需要進行組態更新。
+
+    如果您使用的是新組態，但仍無法連接到 Azure RHUI，請向 Microsoft 或 Red Hat 提出支援案例。
+
+    > [!NOTE]
+    > 只有 [Microsoft Azure Datacenter IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中的 VM 能夠存取 Azure 代管的 RHUI。
+    > 
+
+2. 如果在您執行這項檢查時舊 Azure RHUI 仍然可用，而您想要自動更新組態，請執行下列命令：
+
+    `sudo yum update RHEL6` 或 `sudo yum update RHEL7`，視 RHEL 系列版本而定。
+
+3. 如果您已無法連接到舊 Azure RHUI，請依照下一節中所述的手動步驟操作。
+
+4. 確定更新受影響 VM 的來源佈建映像/快照集上的組態。
+
+### <a name="phased-shutdown-of-the-old-azure-rhui"></a>分段關閉舊的 Azure RHUI
+在關閉舊 Azure RHUI 的期間，我們會依下列方式限制對該 RHUI 的存取：
+
+1. 進一步將它限制成僅供一組已經與它連線的 IP 位址存取 (ACL)。 可能的副作用：如果您繼續使用舊 Azure RHUI，您的新 VM 可能無法與它連線。 具有動態 IP 的 RHEL VM 在經過關閉/解除配置/啟動程序之後，可能會取得新的 IP，因此也可能開始無法連接到舊的 Azure RHUI
+
+2. 關閉鏡像內容傳遞伺服器。 可能的副作用：隨著我們關閉的 CDS 越多，您可能會發現 `yum update` 服務時間變得越長、逾時次數變得越多，直到您無法再連接到舊 Azure RHUI 為止。
 
 ### <a name="the-ips-for-the-new-rhui-content-delivery-servers-are"></a>新的 RHUI 內容傳遞伺服器的 IP 為
+如果您使用網路組態來進一步限制來自 RHEL PAYG VM 的存取，請確定已允許下列 IP，如此 `yum update` 才能依據您所在的環境運作。 
+
 ```
 # Azure Global
 13.91.47.76
@@ -138,7 +162,7 @@ sudo rpm -U azureclient.rpm
 
 完成時，請確認您可以從 VM 存取 Azure RHUI
 
-### <a name="all-in-one-script-for-automating-the-above-task"></a>可自動執行上述工作的全方位指令碼
+### <a name="all-in-one-script-for-automating-the-preceding-task"></a>可自動執行上述工作的全方位指令碼
 請視需要使用下列指令碼，以自動執行將受影響的 VM 更新到新 Azure RHUI 伺服器的工作。
 
 ```sh
@@ -190,9 +214,9 @@ sudo rpm -U azureclient.rpm
 > 
 
 ## <a name="get-updates-from-another-update-repository"></a>從其他更新儲存機制取得更新
-如果您需要從不同的更新儲存機制 (而不是 Azure 代管的 RHUI) 取得更新，您必須在 RHUI 上取消註冊您的執行個體，並以想要的更新基礎結構 (如 Red Hat Satellite 或 Red Hat 客戶入口網站 CDN) 重新註冊它們。 您將需要這些服務的適當 Red Hat 訂用帳戶，而且必須註冊 [Azure 中的 Red Hat 雲端存取](https://access.redhat.com/ecosystem/partners/ccsp/microsoft-azure)。
+如果您需要從不同的更新儲存機制 (而不是 Azure 代管的 RHUI) 取得更新，您必須先從 RHUI 將您的執行個體取消註冊。 接著，您必須向所需的更新基礎結構 (例如 Red Hat Satellite 或 Red Hat 客戶入口網站 CDN) 重新註冊它們。 您將需要這些服務的適當 Red Hat 訂用帳戶，而且必須註冊 [Azure 中的 Red Hat 雲端存取](https://access.redhat.com/ecosystem/partners/ccsp/microsoft-azure)。
 
-若要將 RHUI 取消註冊再向您的更新基礎結構重新註冊，請依照下列步驟。
+若要將 RHUI 取消註冊再向您的更新基礎結構重新註冊，請依照下列步驟操作：
 
 1. 編輯 /etc/yum.repos.d/rh-cloud.repo，將所有 `enabled=1` 變更為 `enabled=0`。 例如：
    
@@ -204,18 +228,12 @@ sudo rpm -U azureclient.rpm
 3. 然後，註冊所需的基礎結構，例如 Red Hat 客戶入口網站。 請依照 Red Hat 解決方案指南中的 [如何向 Red Hat 客戶入口網站註冊及訂閱系統](https://access.redhat.com/solutions/253273)操作。
 
 > [!NOTE]
-> 對 Azure 代管之 RHUI 的存取，包含在 RHEL 隨用隨付 (PAYG) 映像的價格中。 從 Azure 代管的 RHUI 取消註冊 PAYG RHEL VM 並不會將虛擬機器轉換成自備授權 (BYOL) 類型的虛擬機器，因此，如果以另一個更新來源註冊相同的 VM，可能會產生雙重費用。 
+> 對 Azure 代管之 RHUI 的存取，包含在 RHEL 隨用隨付 (PAYG) 映像的價格中。 從 Azure 代管的 RHUI 將 PAYG RHEL VM 取消註冊並不會將虛擬機器轉換成自備授權 (BYOL) 類型的虛擬機器。 如果您以另一個更新來源註冊相同的 VM，可能會產生雙重費用：第一次是針對 Azure RHEL 軟體費用，而第二次是針對 Red Hat 訂用帳戶。 
 > 
 > 如果您持續需要使用非 Azure 代管 RHUI 的更新基礎結構，請考慮建立及部署您自己的 (BYOL 類型) 映像，如 [建立及上傳適用於 Azure 的 Red Hat 型虛擬機器](virtual-machines-linux-redhat-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 一文所述。
-> 
 > 
 
 ## <a name="next-steps"></a>後續步驟
 若要從 Azure Marketplace 隨用隨付映像建立 Red Hat Enterprise Linux VM 並利用 Azure 代管的 RHUI，請移至 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/redhat/)。 您將能夠在您的 RHEL 執行個體中使用 `yum update` ，而不需要任何額外的安裝。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

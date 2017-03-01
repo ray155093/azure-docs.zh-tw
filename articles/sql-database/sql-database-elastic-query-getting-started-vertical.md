@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 05/23/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: a877c17a503e58c49ae781aed61ed120d069c737
-ms.openlocfilehash: 41c26ebb4737eaf0d198e920892b19da7c389a66
+ms.sourcegitcommit: 430fed27780076738e319dabca4cc9abaed70691
+ms.openlocfilehash: 594760d5c52ac3724a0b8dd882e76ca3302ee8ba
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -26,6 +27,10 @@ Azure SQL Database 彈性資料庫查詢 (預覽) 可讓您執行使用單一連
 完成時，您將：了解如何設定和使用 Azure SQL Database 以執行跨越多個相關資料庫的查詢。 
 
 如需有關彈性資料庫查詢功能的詳細資訊，請參閱 [Azure SQL Database 彈性資料庫查詢概觀](sql-database-elastic-query-overview.md)。 
+
+## <a name="prerequisites"></a>必要條件
+
+您必須具備 ALTER ANY EXTERNAL DATA SOURCE 權限。 這個權限包含在 ALTER DATABASE 權限中。 需有 ALTER ANY EXTERNAL DATA SOURCE 權限，才能參考基礎資料來源。
 
 ## <a name="create-the-sample-databases"></a>建立範例資料庫
 開始使用前，我們需要在相同或不同的邏輯伺服器中建立兩個資料庫 **Customers** 和 **Orders**。   
@@ -100,14 +105,10 @@ Azure SQL Database 彈性資料庫查詢 (預覽) 可讓您執行使用單一連
 
 如需價格資訊，請參閱 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database)。 
 
-[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+## <a name="next-steps"></a>後續步驟
 
-<!--Image references-->
-
-<!--anchors-->
-
-
-
-<!--HONumber=Dec16_HO2-->
-
-
+* 如需彈性查詢的概觀，請參閱[彈性查詢概觀](sql-database-elastic-query-overview.md)。
+* 如需垂直資料分割之資料的語法和範例查詢，請參閱[查詢垂直資料分割的資料](sql-database-elastic-query-vertical-partitioning.md)
+* 如需水平資料分割 (分區化) 教學課程，請參閱[開始使用彈性查詢進行水平資料分割 (分區化)](sql-database-elastic-query-getting-started.md)。
+* 如需水平資料分割之資料的語法和範例查詢，請參閱[查詢水平資料分割的資料](sql-database-elastic-query-horizontal-partitioning.md)
+* 如需會在單一遠端 Azure SQL Database 或一組在水平資料分割配置中作為分區之資料庫上執行 Transact-SQL 陳述式的預存程序，請參閱 [sp\_execute \_remote](https://msdn.microsoft.com/library/mt703714)。

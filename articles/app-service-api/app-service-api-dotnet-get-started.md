@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service 使用 Visual Studio 2015 建立
 services: app-service\api
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: ddc028b2-cde0-4567-a6ee-32cb264a830a
 ms.service: app-service-api
@@ -17,6 +17,7 @@ ms.author: rachelap
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: c7b4e39e01ae335c3e6a5cf9cb1efe8a64490e35
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -438,10 +439,5 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，�
 ![Visual Studio 中的 API 應用程式範本](./media/app-service-api-dotnet-get-started/apiapptemplate.png)
 
 [Azure API 應用程式] 專案範本等同於選擇 [空白] ASP.NET 4.5.2 範本、按一下核取方塊以加入 Web API 支援，然後安裝 Swashbuckle NuGet 封裝。 此外，範本會加入為了避免建立重複的 Swagger 作業識別碼而設計的某些 Swashbuckle 組態程式碼。 在建立 API 應用程式專案之後，您可以使用在本教學課程中看到的相同方式，將它部署到 API 應用程式。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

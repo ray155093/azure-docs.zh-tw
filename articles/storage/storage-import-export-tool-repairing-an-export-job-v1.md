@@ -1,5 +1,5 @@
 ---
-title: "修復匯出作業 | Microsoft Docs"
+title: "修復 Azure 匯出作業 | Microsoft Docs"
 description: "了解如何修復使用 Azure 匯入匯出服務建立和執行的匯出作業。"
 author: muralikk
 manager: syadav
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 486eb0db0c3a9a1a8ab5e70526fe23aa5f51229d
-ms.openlocfilehash: f3a38bf7e306f2677b79de7f7a3a360b29fe4d0c
+ms.sourcegitcommit: 74182c8c357085f186aaa43adfaef80a083d16bb
+ms.openlocfilehash: 7ae819a662230a7ca7da6f7bc5bbb3b3f940074e
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -155,9 +156,4 @@ G:\pictures\wild\canyon.jpg.properties
 [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
 [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
 [針對 Azure 匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

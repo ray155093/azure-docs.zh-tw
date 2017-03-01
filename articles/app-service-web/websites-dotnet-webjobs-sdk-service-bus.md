@@ -4,7 +4,7 @@ description: "瞭解如何搭配使用 Azure 服務匯流排佇列和有關 WebJ
 services: app-service\web, service-bus
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 2114a934-135b-42b8-871c-6cc040214e76
 ms.service: app-service-web
@@ -17,6 +17,7 @@ ms.author: tdykstra
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 4d5205b1c693b8c1f199235784263f3f7b6189ff
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -172,10 +173,5 @@ SDK 會針對 POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_
 
 ## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
 本指南提供了程式碼範例，示範如何處理使用 Azure Service Bus 的常見案例。 如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱 [Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

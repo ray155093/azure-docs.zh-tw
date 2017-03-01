@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/09/2017
+ms.date: 02/15/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: c65c4021f5d0beda8005abdd375ac51729acf0a8
-ms.openlocfilehash: 8ff246ab7d70bd00ce989d3049e016d692722d18
+ms.sourcegitcommit: abdf0af8a85db19c68a0d74c0477d798c0fd03fc
+ms.openlocfilehash: 8ff2fc6106438e35b93112a6dc97814ba79b06fc
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -78,11 +79,13 @@ offer = new OfferV2(offer, 12000);
 await client.ReplaceOfferAsync(offer);
 ```
 
+## <a name="throughput-faq"></a>輸送量常見問題集
+
+**我可以將輸送量設定為小於 400 RU/s 嗎？**
+
+400 RU/s 是 DocumentDB 單一分割區集合上可用的最小輸送量 (2500 RU/s 是分割區集合的最小值)。 要求單位是設定為 100 RU/s 時間間隔，但不能將輸送量設定為 100 RU/s 或任何小於 400 RU/s 的值。 如果您正在尋找符合成本效益的方法來開發和測試 DocumentDB，您可以使用免費的 [DocumentDB 模擬器](documentdb-nosql-local-emulator.md)，於本機免費部署此模擬器。 
+
 ## <a name="next-steps"></a>後續步驟
 
 若要深入了解 DocumentDB 的佈建和全球規模化，請參閱 [DocumentDB 的資料分割和調整規模](documentdb-partition-data.md)。
-
-
-<!--HONumber=Feb17_HO2-->
-
 

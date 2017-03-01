@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: klam
 translationtype: Human Translation
-ms.sourcegitcommit: 11aa3f74d112244cd96278c2b2e3d701e031aee8
-ms.openlocfilehash: 55756029ebba3f3467828db5567a6616f7eeba2b
+ms.sourcegitcommit: 5b1b65e3d1066bea6958fa6461a157ee39fbe7dc
+ms.openlocfilehash: e14d55ad96187dc8ec6e6aac04463b58280783aa
+ms.lasthandoff: 02/15/2017
 
 ---
 # <a name="logic-apps-pricing-model"></a>Logic Apps 的定價模式
@@ -27,18 +28,20 @@ Azure Logic Apps 可讓您在雲端中執行整合工作流程和調整其規模
 ### <a name="what-are-action-executions"></a>什麼是動作執行？
 在邏輯應用程式定義中的每個步驟都是動作，包括觸發程序、控制流程步驟 (如條件、範圍、for each 迴圈、do until 迴圈、呼叫連接器和呼叫原生動作)。
 觸發程序是設計用來在特定事件發生時，具現化新的邏輯應用程式執行個體的特殊動作。  觸發程序擁有許多會影響邏輯應用程式計量方式的不同行為。
-* **輪詢觸發程序** – 此觸發程序會持續輪詢端點，直到它收到的訊息符合用來建立邏輯應用程式執行個體的準則。  在 Logic Apps 設計工具中，可於觸發程序內設定輪詢間隔。  即使是未建立邏輯應用程式執行個體的輪詢要求也會計算為一個動作執行。
+* **輪詢觸發程序** – 此觸發程序會持續輪詢端點，直到它收到的訊息符合用來建立邏輯應用程式執行個體的準則。  在 Logic App Designer 中，可於觸發程序內設定輪詢間隔。  即使是未建立邏輯應用程式執行個體的輪詢要求也會計算為一個動作執行。
 * **Webhook 觸發程序** – 此觸發程序會等候用戶端送來針對特定端點的要求。  每個傳送至 Webhook 端點的要求都會計算為一個動作執行。 要求觸發程序和 HTTP Webhook 觸發程序皆為 Webhook 觸發程序。
 * **循環觸發程序** – 此觸發程序會根據觸發程序中所設定的循環間隔建立邏輯應用程式執行個體。  例如，您可以將循環觸發程序設定為每三天執行一次，或甚至是每分鐘執行一次。
+
 在 [Logic Apps 資源] 刀鋒視窗的 [觸發程序記錄] 部分可以看到觸發程序執行。
+
 所有已執行的動作不論成功或失敗，都為計量為動作執行。  因為條件不符而略過的動作，或因為邏輯應用程式在完成之前就終止而未執行的動作，均不會計算為一個動作執行。
 
 在迴圈內執行的動作每反覆運算一次就會計算一次。  例如，for each 迴圈內會針對 10 個項目所組成的清單逐一執行一遍的單一動作，將會計算為清單項目數 (10) 乘以迴圈中的動作數目 (1) 再加上起始迴圈時的一次執行，因此得出此範例共有 (10 * 1) + 1 = 11 個動作執行。
-已停用的 Logic Apps 不能具現化新的執行個體，因此在其停用時不會收費。  請注意，在停用邏輯應用程式之後，執行個體可能要先花點時間停止，然後才能完全停用。
+已停用的 Logic Apps 不能具現化新的執行個體，因此在停用時不會收費。  請注意，在停用邏輯應用程式之後，執行個體可能要先花點時間停止，然後才能完全停用。
 ### <a name="integration-account-usage"></a>整合帳戶用量
 包含於根據耗用量的使用量中為[整合帳戶](logic-apps-enterprise-integration-create-integration-account.md)以供探勘、開發和測試用途，讓您無須額外成本即可使用 Logic Apps 的 [B2B/EDI](logic-apps-enterprise-integration-b2b.md) 和 [XML 處理](logic-apps-enterprise-integration-xml.md)功能。 您每個區域最多可以建立一個帳戶並存放最多 10 個合約和 25 個對應。 結構描述、憑證和協力廠商沒有限制，您可以視需要上載。
 
-除了包含耗用量的整合帳戶，您也可以建立標準整合帳戶，沒有這些限制而具有標準 Logic Apps SLA。 如需詳細資訊，請參閱 [Azure 定價](https://azure.microsoft.com/pricing/details/logic-apps)。
+除了包含耗用量的整合帳戶，您也可以建立標準整合帳戶，沒有這些限制而具有標準 Logic Apps SLA。 如需詳細資訊，請參閱 [Azure 價格](https://azure.microsoft.com/pricing/details/logic-apps)。
 
 ## <a name="app-service-plans"></a>App Service 方案
 先前建立參考 App Service 方案的 Logic Apps 會繼續如之前一樣運作。 根據選擇的計劃，超過規定的每日執行之後便會節流，但會使用動作執行計量表收取費用。
@@ -56,10 +59,5 @@ App Service 方案和其每日允許的動作執行次數︰
 ## <a name="next-steps"></a>後續步驟
 * [Logic Apps 概觀][whatis]
 * [Create your first logic app][create] [pricing]: https://azure.microsoft.com/pricing/details/logic-apps/ [whatis]: logic-apps-what-are-logic-apps.md [create]: logic-apps-create-a-logic-app.md
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

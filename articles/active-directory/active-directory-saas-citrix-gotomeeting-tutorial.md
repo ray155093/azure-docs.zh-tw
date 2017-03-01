@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/18/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 5b775b3cb53086daea6258cccc15cd77fd0e68d9
-ms.openlocfilehash: c4f33f3f856c5017c5b156e2b27b3b82a275afa6
+ms.sourcegitcommit: 400793331aa2d56358a83a51ce64c67f59bbf3b7
+ms.openlocfilehash: d81de30a46f7b849e70b99e7f7423cbc90f25326
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -33,7 +34,7 @@ ms.openlocfilehash: c4f33f3f856c5017c5b156e2b27b3b82a275afa6
 3. 設定使用者佈建
 4. 指派使用者
 
-![組態](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768996.png "Configuration")
+![組態](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768996.png "組態")
 
 ## <a name="enabling-the-application-integration-for-citrix-gotomeeting"></a>啟用 Citrix GoToMeeting 的應用程式整合
 本節的目的是要說明如何啟用 Citrix GoToMeeting 的應用程式整合。
@@ -46,15 +47,15 @@ ms.openlocfilehash: c4f33f3f856c5017c5b156e2b27b3b82a275afa6
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC700994.png "應用程式")
 
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749321.png "新增應用程式")
 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749322.png "Add an application from gallery")
+    ![從資源庫新增應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6. 在**搜尋方塊**中，輸入 **Citrix GoToMeeting**。
    
@@ -73,25 +74,25 @@ ms.openlocfilehash: c4f33f3f856c5017c5b156e2b27b3b82a275afa6
 ### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 [Citrix GoToMeeting] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
-    ![啟用單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768997.png "Enable single sign-on")
+    ![啟用單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768997.png "啟用單一登入")
 
 2. 在 [要如何讓使用者登入 Citrix GoToMeeting] 頁面上，選取 [Microsoft Azure AD 單一登入]。
    
-    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768998.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768998.png "設定單一登入")
 
 3. 在 [設定應用程式設定] 頁面上，按 [下一步]。 
    
-    ![啟用單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689981.png "Enable single sign-on")
+    ![啟用單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689981.png "啟用單一登入")
 
 4. 於 [在 Citrix GoToMeeting 設定單一登入] 頁面上，按一下 [下載憑證]，然後將憑證檔案儲存在您的電腦中。
    
-    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768999.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768999.png "設定單一登入")
 
 5. 在不同的瀏覽器視窗中，登入您的 [Citrix 組織中心](https://account.citrixonline.com/organization/administration/)。
 
 6. 按一下 [識別提供者]  索引標籤，然後執行下列步驟：  
    
-    ![SAML 設定](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC6892321.png "SAML setup")
+    ![SAML 設定](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC6892321.png "SAML 設定")
    
     a. 選取 [手動]
 
@@ -108,11 +109,11 @@ ms.openlocfilehash: c4f33f3f856c5017c5b156e2b27b3b82a275afa6
 
 1. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
-    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769000.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769000.png "設定單一登入")
 
 2. 在 [單一登入確認] 頁面上，按一下 [完成]。
    
-    ![SAML 設定](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689982.png "SAML setup")
+    ![SAML 設定](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689982.png "SAML 設定")
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 本節的目的是要說明如何對 Citrix GoToMeeting 啟用 Active Directory 使用者帳戶的佈建。
@@ -120,11 +121,11 @@ ms.openlocfilehash: c4f33f3f856c5017c5b156e2b27b3b82a275afa6
 ### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>若要設定使用者佈建，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 **Citrix GoToMeeting** 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。
    
-    ![設定使用者佈建](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769001.png "Configure user provisioning")
+    ![設定使用者佈建](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769001.png "設定使用者佈建")
 
 2. 在 [設定及管理員認證]  頁面上，執行以下步驟：
    
-    ![設定使用者佈建](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769002.png "Configure user provisioning")
+    ![設定使用者佈建](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769002.png "設定使用者佈建")
    
     a. 在 [Citrix GoToMeeting 管理員使用者名稱] 文字方塊中，輸入管理員的使用者名稱。
 
@@ -142,29 +143,24 @@ ms.openlocfilehash: c4f33f3f856c5017c5b156e2b27b3b82a275afa6
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Citrix GoToMeeting] 應用程式整合頁面上，按一下 [指派使用者]。
    
-    ![指派使用者](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769003.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769003.png "指派使用者")
 
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-    ![是](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC767830.png "是")
 
 請等候 10 分鐘並確認帳戶已同步至企業適用的 Dropbox。
 
 在第一個驗證步驟中，您可以在 Azure 傳統入口網站的 **Citrix GoToMeeting** 應用程式整合頁面上，按一下 D 的儀表板來檢查佈建狀態。
 
-![儀表板](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769004.png "Dashboard")
+![儀表板](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769004.png "儀表板")
 
 成功完成的使用者佈建週期會以相關狀態表示：
 
-![整合狀態](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769005.png "Integration status")
+![整合狀態](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769005.png "整合狀態")
 
 如果要測試您的單一登入設定，請開啟存取面板。
 
 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](https://msdn.microsoft.com/library/dn308586)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

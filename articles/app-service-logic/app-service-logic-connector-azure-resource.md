@@ -15,8 +15,9 @@ ms.workload: integration
 ms.date: 09/01/2016
 ms.author: stepsic
 translationtype: Human Translation
-ms.sourcegitcommit: 7ff7874538f23c8dd8c4aaa789018c77dfe2ab9a
-ms.openlocfilehash: 7923735d9ed382ee8c554e7e0c6b1fb4a22208bb
+ms.sourcegitcommit: 5b1b65e3d1066bea6958fa6461a157ee39fbe7dc
+ms.openlocfilehash: d230450535613e85c607ef120929ea61bc2085bc
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: 7923735d9ed382ee8c554e7e0c6b1fb4a22208bb
 
 David Ebbo 寫了 [一篇很棒的部落格文章](http://blog.davidebbo.com/2014/12/azure-service-principal.html) ，說明如何設定此項目。 請依照該處的所有指示，取得您的**租用戶識別碼**、**用戶端識別碼**和**密碼**。 有這三個欄位，加上 **訂用帳戶 ID**，就可以設定連接器。
 
-## <a name="using-the-azure-resource-connector-in-logic-apps-designer"></a>在 Logic Apps 設計工具中使用 Azure 資源連接器
+## <a name="using-the-azure-resource-connector-in-logic-app-designer"></a>在邏輯應用程式設計工具中使用 Azure 資源連接器
 ### <a name="trigger"></a>觸發程序
 連接器中支援兩種觸發程序：
 
@@ -106,9 +107,4 @@ David Ebbo 寫了 [一篇很棒的部落格文章](http://blog.davidebbo.com/201
 
 <!--Links -->
 [Creating a Logic app]: app-service-logic-create-a-logic-app.md
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

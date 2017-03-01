@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/06/2017
 ms.author: roopalik;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 262ee4f092efa11150de61168e6b03c0477f0543
-ms.openlocfilehash: 0e7f5b3ed4e9a23b2d2fe1acdf35450f36ef1ad4
+ms.sourcegitcommit: 6c76311b8ba36ea5dba1c2cd63ee05e1048ca9de
+ms.openlocfilehash: 6ceb50b05075ea9d056a873cf70b13ff85dc6094
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -25,6 +26,8 @@ ms.openlocfilehash: 0e7f5b3ed4e9a23b2d2fe1acdf35450f36ef1ad4
 
 ## <a name="cortana-intelligence-competitions"></a>Cortana Intelligence Competitions
 **[競賽](https://gallery.cortanaintelligence.com/competitions)**提供了絕佳機會讓您與資料科學家社群較量，看誰能用 Cortana Intelligence Suite 解決複雜的問題。
+
+如需關於競賽之常見問題集的解答，請參閱 [Microsoft Cortana Intelligence 競賽常見問題集](machine-learning-competition-faq.md)。
 
 ## <a name="discover"></a>探索
   若要瀏覽 Gallery 中的競賽，請開啟 [Gallery](http://gallery.cortanaintelligence.com)，將滑鼠指向 Gallery 頁面頂端的 **More** (更多)，然後選取 **Competitions** (競賽)。
@@ -54,10 +57,5 @@ ms.openlocfilehash: 0e7f5b3ed4e9a23b2d2fe1acdf35450f36ef1ad4
 **[前往 GALLERY >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

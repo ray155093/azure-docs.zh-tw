@@ -4,7 +4,7 @@ description: "Azure Mobile Engagement 中使用者互動與通知問題的疑難
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 3f1886b7-1fdd-47f4-b6b0-d79f158d5ef3
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: d59fcba3467e1739c1782a896fc9b5542422e884
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -99,10 +100,5 @@ ms.openlocfilehash: d59fcba3467e1739c1782a896fc9b5542422e884
 * 同時啟動多個活動可能需要較長時間來掃描您的使用者基礎 (請嘗試一次只啟動一個活動 (上限為四個)，目標也只限定於您在作用中的使用者，如此就不需要掃描舊的使用者)。
 * 如果您在觸達活動的 [活動] 區段中使用 [略過對象，推送將透過 API 傳送給使用者] 選項，活動將不會自動傳送，您必須以手動方式透過「觸達 API」傳送活動。
 * 如果您在 Reach 中使用自訂類別來顯示應用程式內通知，您必須遵循通知的正確生命週期，否則當使用者關閉通知時可能不會清除通知。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

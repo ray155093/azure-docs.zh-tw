@@ -1,6 +1,6 @@
 ---
 title: "Log Analytics 常見問題集 | Microsoft Docs"
-description: "Log Analytics 服務的相關常見問題的解答。"
+description: "Azure Log Analytics 服務的相關常見問題的解答。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/17/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e24e6f9cc383be77dc631a0dd67db099906dccc0
+ms.sourcegitcommit: 9ee8f4aafcc35e43c4fcba5a3a72b043dd9fc32c
+ms.openlocfilehash: 4695669dc20b4b4b90ccdaf4db06df2cfcba2167
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -63,7 +64,7 @@ A. [ExpressRoute 文件](../expressroute/expressroute-faqs.md#supported-services
 
 通往 Log Analytics 的流量都會使用公用互連 ExpressRoute 電路。
 
-**問：有簡單且輕鬆的方法，可將現有的 Log Analytics 工作區移至另一個 Log Analytics 工作區/Azure 訂用帳戶嗎？**   我們在我們的 Azure 訂用帳戶中有測試和追蹤中的數個客戶的 OMS 工作區，而它們要移入到實際執行環境，所以我們想要將它們移至其自己的 Azure/OMS 訂用帳戶。  
+**問：有簡單且輕鬆的方法，可將現有的 Log Analytics 工作區移至另一個 Log Analytics 工作區/Azure 訂用帳戶嗎？**  我們在我們的 Azure 訂用帳戶中有測試和追蹤中的數個客戶的 OMS 工作區，而它們要移入到實際執行環境，所以我們想要將它們移至其自己的 Azure/OMS 訂用帳戶。  
 
 A. `Move-AzureRmResource` 指令程式可讓您將 Log Analytics 工作區及自動化帳戶從一個 Azure 訂用帳戶移動到另一個 Azure 訂用帳戶。 如需詳細資訊，請參閱 [Move-AzureRmResource](http://msdn.microsoft.com/library/mt652516.aspx)。
 
@@ -89,6 +90,13 @@ A. `Move-AzureRmResource` 指令程式可讓您將 Log Analytics 工作區及自
 
 答：在 SCOM 中，從 OMS 受管理的清單中移除該電腦。 如此一來，將會阻止透過該代理程式的 SCOM 的所有通訊。 針對直接連線到 OMS 的代理程式，您可以阻止它們與 OMS 通訊，透過：[控制台] > [安全性和設定] > [Microsoft Monitoring Agent]。
 在 **Azure Log Analytics (OMS)** 下，移除所有列出的工作區。
+
+**問︰當我試著將工作區從某個 Azure 訂用帳戶移到另一個時，為什麼會發生錯誤？**
+
+答︰當您新增方案時，Azure 會在工作區所在的 Azure 訂用帳戶中建立資源。
+
+新增訂用帳戶的人員通常是「Azure 訂用帳戶」的系統管理員或參與者。 如果使用者在 Azure 入口網站中並未同時擁有與 Azure 訂用帳戶相同的權限，則 OMS 入口網站中的系統管理員或參與者權限是不夠的。
+
 
 ## <a name="agent-data"></a>代理程式資料
 **問：我可以透過代理程式傳送多少資料到 Log Analytics？是否有每位客戶最大的資料量？**  
@@ -121,9 +129,4 @@ Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent
 
 ## <a name="next-steps"></a>後續步驟
 * [開始使用 Log Analytics](log-analytics-get-started.md) 以深入了解 Log Analytics，並幾分鐘內就啟動並執行。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

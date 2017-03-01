@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/29/2016
+ms.date: 02/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 3a373d1b8ae73f5b978414718dc93906ac5b16b7
+ms.sourcegitcommit: 325d92e493f6e011367d2c85b52c92838327101e
+ms.openlocfilehash: 9867af8c5f18e2412e73c2ae5fa95825e367e275
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -23,23 +24,24 @@ ms.openlocfilehash: 3a373d1b8ae73f5b978414718dc93906ac5b16b7
 本教學課程的目的是要示範 Azure 與 ArcGIS 的整合。 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂閱
-* 啟用 ArcGIS 單一登入的訂用帳戶
+* 已啟用 ArcGIS 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 ArcGIS 的 Azure AD 使用者就能夠單一登入您 ArcGIS 公司網站 (服務提供者起始登入) 的應用程式，或是使用 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
-1. 啟用 ArcGIS 的應用程式整合
-2. 設定單一登入
-3. 設定使用者佈建
-4. 指派使用者
+* 啟用 ArcGIS 的應用程式整合
+* 設定單一登入 (SSO)
+* 設定使用者佈建
+* 指派使用者
 
 ![案例](./media/active-directory-saas-arcgis-tutorial/IC784735.png "案例")
 
-## <a name="enabling-the-application-integration-for-arcgis"></a>啟用 ArcGIS 的應用程式整合
+## <a name="enable-the-application-integration-for-arcgis"></a>啟用 ArcGIS 的應用程式整合
 本節的目的是要說明如何啟用 ArcGIS 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-arcgis-perform-the-following-steps"></a>若要啟用 ArcGIS 的應用程式整合，請執行下列步驟：
+**若要啟用 ArcGIS 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-arcgis-tutorial/IC700993.png "Active Directory")
@@ -60,11 +62,12 @@ ms.openlocfilehash: 3a373d1b8ae73f5b978414718dc93906ac5b16b7
    
    ![ArcGIS](./media/active-directory-saas-arcgis-tutorial/IC784737.png "ArcGIS")
    
-   ## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 ArcGIS。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 [ArcGIS] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784738.png "設定單一登入")
@@ -99,12 +102,14 @@ ms.openlocfilehash: 3a373d1b8ae73f5b978414718dc93906ac5b16b7
     
     ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784746.png "設定單一登入")
     
-    ## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
-若要讓 Azure AD 使用者可以登入 ArcGIS，必須將他們佈建到 ArcGIS。  
-ArcGIS 需以手動方式佈建。
+若要讓 Azure AD 使用者可以登入 ArcGIS，必須將他們佈建到 ArcGIS。
 
-### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>若要設定使用者佈建，請執行下列步驟：
+* ArcGIS 需以手動方式佈建。
+
+**若要設定使用者佈建，請執行下列步驟：**
+
 1. 登入您的 **ArcGIS** 租用戶。
 2. 按一下 [邀請成員] 。
    
@@ -115,35 +120,28 @@ ArcGIS 需以手動方式佈建。
 4. 在 [成員]  對話頁面上，執行下列步驟：
    
    ![新增並檢閱](./media/active-directory-saas-arcgis-tutorial/IC784749.png "新增並檢閱")
-   
    1. 輸入您想要佈建之有效 AAD 帳戶的 [名字]、[姓氏] 和 [電子郵件]。
    2. 按一下 [加入並檢閱] 。
 5. 檢閱您輸入的資料，然後按一下 [新增成員] 。
    
    ![新增成員](./media/active-directory-saas-arcgis-tutorial/IC784750.png "新增成員")
 
-> [!NOTE]
-> 您可以使用任何其他的 ArcGIS 使用者帳戶建立工具或 ArcGIS 提供的 API 來佈建AAD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 ArcGIS 使用者帳戶建立工具或 ArcGIS 提供的 API 來佈建AAD 使用者帳戶。 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-arcgis-perform-the-following-steps"></a>若要將使用者指派給 ArcGIS，請執行下列步驟：
+**若要指派使用者給 ArcGIS，請執行下列步驟：**
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [ArcGIS] 應用程式整合頁面上，按一下 [指派使用者]。
    
-   ![指派使用者](./media/active-directory-saas-arcgis-tutorial/IC784751.png "指派使用者")
+  ![指派使用者](./media/active-directory-saas-arcgis-tutorial/IC784751.png "指派使用者")
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-   ![是](./media/active-directory-saas-arcgis-tutorial/IC767830.png "是")
+  ![是](./media/active-directory-saas-arcgis-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

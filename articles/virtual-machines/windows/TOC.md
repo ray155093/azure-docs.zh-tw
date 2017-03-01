@@ -150,7 +150,6 @@
 ### [基礎結構範例](../virtual-machines-windows-infrastructure-example.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [Azure 預定進行的維修](../virtual-machines-windows-planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 #### [排程](../virtual-machines-windows-planned-maintenance-schedule.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-### [排程的事件](../virtual-machines-scheduled-events.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## 管理工作負載
 ### [高效能運算 (HPC)](../virtual-machines-windows-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -184,7 +183,7 @@
 
 # 參考
 ## [PowerShell](/powershell/azureps-cmdlets-docs)
-## [Azure CLI 2.0 (Preview)](/cli/azure/vm)
+## [Azure CLI 2.0](/cli/azure/vm)
 ## [.NET](/dotnet/api/microsoft.azure.management.compute)
 ## [Java](/java/api)
 ## [Node.js](https://azure.microsoft.com/en-us/develop/nodejs/#azure-sdk)
@@ -199,8 +198,3 @@
 ## [區域可用性](https://azure.microsoft.com/regions/services/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-machine)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=virtual-machines)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

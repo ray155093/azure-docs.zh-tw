@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/03/2016
-ms.author: clemensv,sethm
+ms.date: 02/14/2017
+ms.author: clemensv;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dfab83bdd505a1a173abc1142da609d31ecbd72a
+ms.sourcegitcommit: 6d08aacf43126011ed8ad3ce708485a188b67c3b
+ms.openlocfilehash: 4576340ef268a10014124d0d76c70eca941a90c8
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -27,12 +28,12 @@ ms.openlocfilehash: dfab83bdd505a1a173abc1142da609d31ecbd72a
 
 從 API 和通訊協定的觀點而言，DLQ 非常類似任何其他佇列，不同之處在於訊息只會透過父實體的寄不出的信件動作提交。 此外，存留時間並未遵守，而且您無法從 DLQ 讓訊息寄不出去。 寄不出的信件佇列完全支援鎖定傳遞和交易式作業。
 
-請注意，DLQ 沒有自動清除。 訊息會保留在 DLQ 中，直到您明確地從 DLQ 擷取訊息並在寄不出的信件訊息上呼叫 [Complete()](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.completeasync.aspx)。
+請注意，DLQ 沒有自動清除。 訊息會保留在 DLQ 中，直到您明確地從 DLQ 擷取訊息並在寄不出的信件訊息上呼叫 [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_CompleteAsync)。
 
 ## <a name="moving-messages-to-the-dlq"></a>將訊息移至 DLQ
 服務匯流排中有幾個活動會導致訊息從傳訊引擎本身內部推送至 DLQ。 應用程式也可以明確地將訊息推送到 DLQ。 
 
-由於訊息代理程式會移動訊息，當訊息代理程式在下列訊息上呼叫其內部版本的 [DeadLetter](https://msdn.microsoft.com/library/azure/hh291941.aspx) 方法時，會新增兩個屬性至訊息︰`DeadLetterReason` 和 `DeadLetterErrorDescription`。
+由於訊息代理程式會移動訊息，當訊息代理程式在下列訊息上呼叫其內部版本的 [DeadLetter](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeadLetter_System_String_System_String_) 方法時，會新增兩個屬性至訊息︰`DeadLetterReason` 和 `DeadLetterErrorDescription`。
 
 應用程式可以將自己的程式碼定義為 `DeadLetterReason` 屬性，但是系統會設定下列值。
 
@@ -46,25 +47,34 @@ ms.openlocfilehash: dfab83bdd505a1a173abc1142da609d31ecbd72a
 | 應用程式明確停止傳送 |應用程式所指定 |應用程式所指定 |
 
 ## <a name="exceeding-maxdeliverycount"></a>超過 MaxDeliveryCount
-佇列和訂用帳戶分別具有 [QueueDescription.MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 和 [SubscriptionDescription.MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptiondescription.maxdeliverycount.aspx) 屬性；預設值為 10。 每當在鎖定下傳遞訊息 ([ReceiveMode.PeekLock](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx))，但已明確放棄或鎖定已過期，訊息的 [BrokeredMessage.DeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.deliverycount.aspx) 會遞增。 當 [DeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.deliverycount.aspx) 超過 [MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 時，訊息會移到 DLQ，指定 `MaxDeliveryCountExceeded` 原因代碼。
+佇列和訂用帳戶分別具有 [QueueDescription.MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount) 和 [SubscriptionDescription.MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_MaxDeliveryCount) 屬性；預設值為 10。 每當在鎖定下傳遞訊息 ([ReceiveMode.PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode))，但已明確放棄或鎖定已過期，訊息的 [BrokeredMessage.DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) 會遞增。 當 [DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) 超過 [MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount) 時，訊息會移到 DLQ，指定 `MaxDeliveryCountExceeded` 原因代碼。
 
-無法停用此行為，但是您可以將 [MaxDeliveryCount](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.maxdeliverycount.aspx) 設定為非常大的數字。
+無法停用此行為，但是您可以將 [MaxDeliveryCount](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_MaxDeliveryCount) 設定為非常大的數字。
 
 ## <a name="exceeding-timetolive"></a>超過 TimeToLive
-當 [QueueDescription.EnableDeadLetteringOnMessageExpiration](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.enabledeadletteringonmessageexpiration.aspx) 或 [SubscriptionDescription.EnableDeadLetteringOnMessageExpiration](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptiondescription.enabledeadletteringonmessageexpiration.aspx) 屬性設為 **true** (預設值是 **false**)，所有過期的訊息會移到 DLQ，指定 `TTLExpiredException` 原因代碼。
+當 [QueueDescription.EnableDeadLetteringOnMessageExpiration](/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableDeadLetteringOnMessageExpiration) 或 [SubscriptionDescription.EnableDeadLetteringOnMessageExpiration](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_EnableDeadLetteringOnMessageExpiration) 屬性設為 **true** (預設值是 **false**)，所有過期的訊息會移到 DLQ，指定 `TTLExpiredException` 原因代碼。
 
 請注意，至少要有一個作用中接收者提取主要佇列或訂用帳戶時，過期的訊息才會清除，並因此移至 DLQ；這是刻意設計的行為。
 
 ## <a name="errors-while-processing-subscription-rules"></a>在處理訂用帳戶規則時發生錯誤
-為訂用帳戶啟用 [SubscriptionDescription.EnableDeadLetteringOnFilterEvaluationExceptions](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptiondescription.enabledeadletteringonfilterevaluationexceptions.aspx) 屬性時，可以在 DLQ 中擷取到執行訂用帳戶的 SQL 篩選器規則時發生的任何錯誤，還有騷擾訊息。
+為訂用帳戶啟用 [SubscriptionDescription.EnableDeadLetteringOnFilterEvaluationExceptions](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_EnableDeadLetteringOnFilterEvaluationExceptions) 屬性時，可以在 DLQ 中擷取到執行訂用帳戶的 SQL 篩選器規則時發生的任何錯誤，還有騷擾訊息。
 
 ## <a name="application-level-dead-lettering"></a>應用程式層級無效信件處理
 除了系統提供的無效信件處理功能之外，應用程式可以使用 DLQ 明確拒絕無法接受的訊息。 這可能包括由於任何類型的系統問題而無法正確處理的訊息、保存格式不正確裝載的訊息，或在使用某些訊息層級安全性配置時無法進行驗證的訊息。
 
-## <a name="example"></a>範例
-下列程式碼片段會建立訊息接收者。 在主要佇列的接收迴圈中，程式碼會利用 [Receive(TimeSpan.Zero)](https://msdn.microsoft.com/library/azure/dn130350.aspx) 擷取訊息，它會要求訊息代理程式立即傳回已可供使用的任何訊息，或者不傳回任何結果。 如果程式碼接收到訊息，它會立即放棄它，這樣會增加 `DeliveryCount`。 在系統將訊息移至 DLQ 之後，當 [ReceiveAsync](https://msdn.microsoft.com/library/azure/dn130350.aspx) 傳回 **null**，主要佇列會是空的，而且迴圈會結束。
+## <a name="dead-lettering-in-forwardto-or-sendvia-scenarios"></a>ForwardTo 或 SendVia 案例中寄不出的信件處理
 
-```
+系統會在下列情況下，將訊息傳送到轉送寄不出的信件佇列：
+
+- 訊息會通過 3 個以上[鏈結在一起](service-bus-auto-forwarding.md)的佇列或主題。
+- 目的地佇列或主題已停用或刪除。
+
+若要擷取這些寄不出的信件訊息，您可以使用 [FormatTransferDeadletterPath](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_FormatTransferDeadLetterPath_System_String_) 公用程式方法來建立接收者。
+
+## <a name="example"></a>範例
+下列程式碼片段會建立訊息接收者。 在主要佇列的接收迴圈中，程式碼會利用 [Receive(TimeSpan.Zero)](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_Receive_System_TimeSpan_) 擷取訊息，它會要求訊息代理程式立即傳回已可供使用的任何訊息，或者不傳回任何結果。 如果程式碼接收到訊息，它會立即放棄它，這樣會增加 `DeliveryCount`。 在系統將訊息移至 DLQ 之後，當 [ReceiveAsync](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_ReceiveAsync_System_TimeSpan_) 傳回 **null**，主要佇列會是空的，而且迴圈會結束。
+
+```csharp
 var receiver = await receiverFactory.CreateMessageReceiverAsync(queueName, ReceiveMode.PeekLock);
 while(true)
 {
@@ -86,10 +96,5 @@ while(true)
 
 * [開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 * [比較 Azure 佇列和服務匯流排佇列](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

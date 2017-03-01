@@ -5,7 +5,7 @@ services: app-service\web
 documentationcenter: 
 author: cephalin
 writer: cephalin
-manager: wpickett
+manager: erikre
 editor: mollybos
 ms.assetid: dabda633-e72f-4dd4-bf1c-6e945da456fd
 ms.service: app-service-web
@@ -18,6 +18,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: e5711e9c9d3ff70b38a4d19aa6be7b037cdb38aa
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -54,10 +55,5 @@ Azure 流量管理員使用三種不同的負載平衡方法。 下列清單說�
 如需 Azure 流量管理員的概念和技術概觀，請參閱 [Traffic Manager 概觀](../traffic-manager/traffic-manager-overview.md)。
 
 如需將流量管理員與 Web Apps 搭配使用的詳細資訊，請參閱[將 Azure 流量管理員與 Azure 網站搭配使用](http://blogs.msdn.com/b/waws/archive/2014/03/18/using-windows-azure-traffic-manager-with-waws.aspx)和 [Azure 流量管理員現在可以與 Azure 網站整合部落格文章](https://azure.microsoft.com/blog/2014/03/27/azure-traffic-manager-can-now-integrate-with-azure-web-sites/)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

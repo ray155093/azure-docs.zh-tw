@@ -11,15 +11,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/31/2017
+ms.date: 02/15/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 535badb5444fd4c29211f83556c0a750ee8adf70
-ms.openlocfilehash: 0e031760b84aa59fefda2469606475b36dbc1ff7
+ms.sourcegitcommit: d0d213e2cc52f43c11efd49c51270aa42f8fad36
+ms.openlocfilehash: 6c373adaee553e9eca94a978afc62d453f7db0f8
+ms.lasthandoff: 02/15/2017
 
 
 ---
-# <a name="troubleshooting-the-auto-registration-of-azure-ad-domain-joined-computers-for-windows-down-level-clients"></a>針對已加入 Azure AD 網域之 Windows 下層用戶端電腦的自動註冊進行疑難排解 
+# <a name="troubleshooting-auto-registration-of-domain-joined-computers-to-azure-ad-for-windows-down-level-clients"></a>針對已加入網域之 Windows 下層用戶端電腦的自動註冊 Azure AD 進行疑難排解 
 
 本主題僅適用於下列用戶端： 
 
@@ -30,7 +31,7 @@ ms.openlocfilehash: 0e031760b84aa59fefda2469606475b36dbc1ff7
 - Windows Server 2012 R2 
  
 
-針對 Windows 10 或 Windows Server 2016，請參閱[針對已加入 Azure AD 網域之 Windows 10 和 Windows Server 2016 電腦的自動註冊進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)。
+針對 Windows 10 或 Windows Server 2016，請參閱[針對已加入網域之電腦的自動註冊 Azure AD 進行疑難排解 – Windows 10 和 Windows Server 2016](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)。
 
 本主題假設您已經依照[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-get-started.md)所述，設定讓已加入網域的裝置自動註冊。
  
@@ -98,8 +99,4 @@ ms.openlocfilehash: 0e031760b84aa59fefda2469606475b36dbc1ff7
 ## <a name="next-steps"></a>後續步驟
 
 如需詳細資訊，請參閱[自動裝置註冊常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md) 
-
-
-<!--HONumber=Feb17_HO1-->
-
 

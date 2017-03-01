@@ -1,6 +1,5 @@
 ---
-title: "使用 PowerShell 建立搭配 Azure Data Lake Store 的 HDInsight 叢集 | Microsoft Docs"
-description: "使用 Azure PowerShell 建立和使用 HDInsight 叢集與 Azure Data Lake"
+title: "PowerShell：Azure HDInsight 叢集搭配 Data Lake Store 做為附加儲存體 | Microsoft Docs"
 services: data-lake-store,hdinsight
 documentationcenter: 
 author: nitinme
@@ -12,34 +11,36 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/18/2016
+ms.date: 02/14/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
-ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
+ms.sourcegitcommit: d8100903d78a9ca8d88d2649ad5245ce3f456518
+ms.openlocfilehash: c21f244408ed6f6ca3168ee193bcba4d3b26cd40
+ms.lasthandoff: 02/16/2017
 
 
 ---
-# <a name="create-an-hdinsight-cluster-with-data-lake-store-using-azure-powershell"></a>使用 Azure PowerShell 建立 HDInsight 叢集與資料湖存放區
+# <a name="use-azure-powershell-to-create-an-hdinsight-cluster-with-data-lake-store-as-additional-storage"></a>使用 Azure PowerShell 建立 HDInsight 叢集搭配 Data Lake Store (做為附加儲存體)
 > [!div class="op_single_selector"]
 > * [使用入口網站](data-lake-store-hdinsight-hadoop-use-portal.md)
-> * [使用 PowerShell](data-lake-store-hdinsight-hadoop-use-powershell.md)
+> * [使用 PowerShell (針對預設儲存體)](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md)
+> * [使用 PowerShell (針對額外儲存體)](data-lake-store-hdinsight-hadoop-use-powershell.md)
 > * [使用 Resource Manager](data-lake-store-hdinsight-hadoop-use-resource-manager-template.md)
 >
 >
 
-了解如何使用 Azure PowerShell 設定可存取 Azure Data Lake Store 的 HDInsight 叢集。 Data Lake Store 對於支援的叢集類型，是做為預設儲存體或額外儲存體帳戶。 當 Data Lake Store 做為額外儲存體時，叢集的預設儲存體帳戶仍然是 Azure 儲存體 Blob (WASB)，叢集相關的檔案 (例如記錄檔等) 仍然會寫入預設儲存體，而您想要處理的資料會儲存於 Data Lake Store 帳戶中。 使用 Data Lake Store 做為其他儲存體帳戶，不會影響效能或從叢集讀取/寫入至儲存體的能力。
+了解如何使用 Azure PowerShell 將搭配 Azure Data Lake Store 的 HDInsight 叢集設定為**額外儲存體**。 如需有關如何建立具 Azure Data Lake Store 的 HDInsight 叢集做為預設儲存體的指示，請參閱[建立具有 Data Lake Store 的 HDInsight 叢集做為預設儲存體](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md)。
 
-一些重要考量︰
+Data Lake Store 對於支援的叢集類型，是做為預設儲存體或額外儲存體帳戶。 當 Data Lake Store 做為額外儲存體時，叢集的預設儲存體帳戶仍然是 Azure 儲存體 Blob (WASB)，叢集相關的檔案 (例如記錄檔等) 仍然會寫入預設儲存體，而您想要處理的資料會儲存於 Data Lake Store 帳戶中。 使用 Data Lake Store 做為其他儲存體帳戶，不會影響效能或從叢集讀取/寫入至儲存體的能力。
 
-* HDInsight 3.5 版提供建立可存取 Data Lake Store 做為預設儲存體之 HDInsight 叢集的選項。
+## <a name="using-data-lake-store-for-hdinsight-cluster-storage"></a>針對 HDInsight 叢集儲存體使用 Data Lake Store
+
+以下是使用 HDInsight 搭配 Data Lake Store 的一些重要考量：
 
 * HDInsight 3.2、3.4 和 3.5 版提供建立可存取 Data Lake Store 做為額外儲存體之 HDInsight 叢集的選項。
 
 * 對於 HBase 叢集 (Windows 和 Linux)，**不支援**使用 Data Lake Store 做為儲存體選項，無論是預設儲存體或額外儲存體。
 
-
-在本文中，我們佈建 Hadoop 叢集與資料湖存放區做為額外的儲存體。 如需有關如何建立以 Data Lake Store 做為預設儲存體之 Hadoop 叢集的指示，請參閱[使用 Azure 入口網站建立搭配 Data Lake Store 的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。
 
 使用 PowerShell 以設定 HDInsight 來搭配資料湖存放區使用，包含下列步驟：
 
@@ -117,10 +118,8 @@ ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
 
         $certificateFileDir = "<my certificate directory>"
         cd $certificateFileDir
-        $startDate = (Get-Date).ToString('MM/dd/yyyy')
-        $endDate = (Get-Date).AddDays(365).ToString('MM/dd/yyyy')
-
-        makecert -sv mykey.pvk -n "cn=HDI-ADL-SP" CertFile.cer -b $startDate -e $endDate -r -len 2048
+        
+        makecert -sv mykey.pvk -n "cn=HDI-ADL-SP" CertFile.cer -r -len 2048
 
     系統會提示您輸入私密金鑰密碼。 命令成功執行之後，您應該會在您指定的憑證目錄中看到 **CertFile.cer** 和 **mykey.pvk**。
 2. 使用 [Pvk2Pfx][pvk2pfx] 公用程式將 MakeCert 建立的 .pvk 和 .cer 檔案轉換成 .pfx 檔案。 執行下列命令。
@@ -145,14 +144,12 @@ ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
         $credential = [System.Convert]::ToBase64String($rawCertificateData)
 
         $application = New-AzureRmADApplication `
-                    -DisplayName "HDIADL" `
-                    -HomePage "https://contoso.com" `
-                    -IdentifierUris "https://mycontoso.com" `
-                    -KeyValue $credential  `
-                    -KeyType "AsymmetricX509Cert"  `
-                    -KeyUsage "Verify"  `
-                    -StartDate $startDate  `
-                    -EndDate $endDate
+            -DisplayName "HDIADL" `
+            -HomePage "https://contoso.com" `
+            -IdentifierUris "https://mycontoso.com" `
+            -CertValue $credential  `
+            -StartDate $certificatePFX.NotBefore  `
+            -EndDate $certificatePFX.NotAfter
 
         $applicationId = $application.ApplicationId
 2. 使用應用程式識別碼建立服務主體。
@@ -160,14 +157,14 @@ ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
         $servicePrincipal = New-AzureRmADServicePrincipal -ApplicationId $applicationId
 
         $objectId = $servicePrincipal.Id
-3. 將您要從 HDInsight 叢集存取之 Data Lake Store 檔案/資料夾的存取權授與服務主體。 以下程式碼片段會提供 Data Lake Store 帳戶根目錄的存取權。
+3. 將您要從 HDInsight 叢集存取之 Data Lake Store 資料夾和檔案的存取權授與服務主體。 下列程式碼片段可讓您存取 Data Lake Store 帳戶的根目錄 (您從中複製範例資料檔的位置) 和檔案本身。
 
         Set-AzureRmDataLakeStoreItemAclEntry -AccountName $dataLakeStoreName -Path / -AceType User -Id $objectId -Permissions All
+        Set-AzureRmDataLakeStoreItemAclEntry -AccountName $dataLakeStoreName -Path /vehicle1_09142014.csv -AceType User -Id $objectId -Permissions All
 
-    系統提示時，輸入 **Y** 以確認。
+## <a name="create-an-hdinsight-linux-cluster-with-data-lake-store-as-additional-storage"></a>建立 HDInsight Linux 叢集搭配 Data Lake Store 做為額外儲存體
 
-## <a name="create-an-hdinsight-cluster-with-authentication-to-data-lake-store"></a>建立具有資料湖存放區驗證的 HDInsight 叢集
-在本節中，我們會建立 HDInsight Hadoop 叢集。 對於此版本，HDInsight 叢集和資料湖存放區必須位於相同位置 (美國東部 2)。
+在本節中，我們會建立一個 HDInsight Hadoop Linux 叢集搭配 Data Lake Store 做為額外儲存體。 對於此版本，HDInsight 叢集和 Data Lake Store 必須位於相同位置。
 
 1. 開始擷取訂用帳戶租用戶識別碼。 稍後您將會需要此資訊。
 
@@ -182,7 +179,7 @@ ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
 
         # Create an Azure Blob Storage container
         $containerName = "<ContainerName>"              # Provide a container name
-        $storageAccountKey = Get-AzureRmStorageAccountKey -Name $storageAccountName -ResourceGroupName $resourceGroupName | %{ $_.Key1 }
+        $storageAccountKey = (Get-AzureRmStorageAccountKey -Name $storageAccountName -ResourceGroupName $resourceGroupName)[0].Value
         $destContext = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
         New-AzureStorageContainer -Name $containerName -Context $destContext
 3. 建立 HDInsight 叢集。 使用下列 Cmdlet。
@@ -191,35 +188,20 @@ ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
         $clusterName = $containerName                   # As a best practice, have the same name for the cluster and container
         $clusterNodes = <ClusterSizeInNodes>            # The number of nodes in the HDInsight cluster
         $httpCredentials = Get-Credential
-        $rdpCredentials = Get-Credential
+        $sshCredentials = Get-Credential
 
-        New-AzureRmHDInsightCluster -ClusterName $clusterName -ResourceGroupName $resourceGroupName -HttpCredential $httpCredentials -Location $location -DefaultStorageAccountName "$storageAccountName.blob.core.windows.net" -DefaultStorageAccountKey $storageAccountKey -DefaultStorageContainer $containerName  -ClusterSizeInNodes $clusterNodes -ClusterType Hadoop -Version "3.2" -RdpCredential $rdpCredentials -RdpAccessExpiry (Get-Date).AddDays(14) -ObjectID $objectId -AadTenantId $tenantID -CertificateFilePath $certificateFilePath -CertificatePassword $password
+        New-AzureRmHDInsightCluster -ClusterName $clusterName -ResourceGroupName $resourceGroupName -HttpCredential $httpCredentials -Location $location -DefaultStorageAccountName "$storageAccountName.blob.core.windows.net" -DefaultStorageAccountKey $storageAccountKey -DefaultStorageContainer $containerName  -ClusterSizeInNodes $clusterNodes -ClusterType Hadoop -Version "3.4" -OSType Linux -SshCredential $sshCredentials -ObjectID $objectId -AadTenantId $tenantID -CertificateFilePath $certificateFilePath -CertificatePassword $password
 
-    Cmdlet 成功完成後，您應該會看到如下的輸出：
+    Cmdlet 成功完成後，您應該會看到列出叢集詳細資料的輸出。
 
-        Name                      : hdiadlcluster
-        Id                        : /subscriptions/65a1016d-0f67-45d2-b838-b8f373d6d52e/resourceGroups/hdiadlgroup/providers/Mi
-                                    crosoft.HDInsight/clusters/hdiadlcluster
-        Location                  : East US 2
-        ClusterVersion            : 3.2.7.707
-        OperatingSystemType       : Windows
-        ClusterState              : Running
-        ClusterType               : Hadoop
-        CoresUsed                 : 16
-        HttpEndpoint              : hdiadlcluster.azurehdinsight.net
-        Error                     :
-        DefaultStorageAccount     :
-        DefaultStorageContainer   :
-        ResourceGroup             : hdiadlgroup
-        AdditionalStorageAccounts :
-
+        
 ## <a name="run-test-jobs-on-the-hdinsight-cluster-to-use-the-data-lake-store"></a>在 HDInsight 叢集上執行測試工作以使用資料湖存放區
 設定 HDInsight 叢集之後，您可以在叢集上執行測試工作，以測試 HDInsight 叢集是否可以存取資料湖存放區。 為了完成這個操作，我們將會執行範例 Hive 工作，該工作會使用您稍早上傳至資料湖存放區的範例資料建立資料表。
 
-### <a name="for-a-linux-cluster"></a>對於 Linux 叢集
-在這一節中，您將 SSH 進入叢集並執行範例 Hive 查詢。 Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從下列位置下載： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
+在這一節中，您將透過 SSH 連線到您所建立的 HDInsight Linux 叢集並執行範例 Hive 查詢。
 
-如需使用 PuTTY 的詳細資訊，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop ](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)。
+* 如果您使用 Windows 用戶端來透過 SSH 連線到叢集，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)。
+* 如果您使用 Linux 用戶端來透過 SSH 連線到叢集，請參閱[從 Linux 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)
 
 1. 連線之後，使用下列命令來啟動 Hive CLI：
 
@@ -243,55 +225,13 @@ ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
         1,9,2014-09-14 00:00:27,46.81006,-92.08174,4,NE,1
         1,10,2014-09-14 00:00:30,46.81006,-92.08174,31,N,1
 
-### <a name="for-a-windows-cluster"></a>對於 Windows 叢集
-使用下列 Cmdlet 以執行 Hive 查詢。 在這個查詢中，我們將會從資料湖存放區中的資料建立資料表，然後在建立的資料表上執行 select 查詢。
-
-    $queryString = "DROP TABLE vehicles;" + "CREATE EXTERNAL TABLE vehicles (str string) LOCATION 'adl://$dataLakeStoreName.azuredatalakestore.net:443/';" + "SELECT * FROM vehicles LIMIT 10;"
-
-    $hiveJobDefinition = New-AzureRmHDInsightHiveJobDefinition -Query $queryString
-
-    $hiveJob = Start-AzureRmHDInsightJob -ResourceGroupName $resourceGroupName -ClusterName $clusterName -JobDefinition $hiveJobDefinition -ClusterCredential $httpCredentials
-
-    Wait-AzureRmHDInsightJob -ResourceGroupName $resourceGroupName -ClusterName $clusterName -JobId $hiveJob.JobId -ClusterCredential $httpCredentials
-
-輸出如下。 **ExitValue** 為 0 表示工作成功完成。
-
-    Cluster         : hdiadlcluster.
-    HttpEndpoint    : hdiadlcluster.azurehdinsight.net
-    State           : SUCCEEDED
-    JobId           : job_1445386885331_0012
-    ParentId        :
-    PercentComplete :
-    ExitValue       : 0
-    User            : admin
-    Callback        :
-    Completed       : done
-
-使用下列 Cmdlet 從工作擷取輸出：
-
-    Get-AzureRmHDInsightJobOutput -ClusterName $clusterName -JobId $hiveJob.JobId -DefaultContainer $containerName -DefaultStorageAccountName $storageAccountName -DefaultStorageAccountKey $storageAccountKey -ClusterCredential $httpCredentials
-
-工作輸出類似下面：
-
-    1,1,2014-09-14 00:00:03,46.81006,-92.08174,51,S,1
-    1,2,2014-09-14 00:00:06,46.81006,-92.08174,13,NE,1
-    1,3,2014-09-14 00:00:09,46.81006,-92.08174,48,NE,1
-    1,4,2014-09-14 00:00:12,46.81006,-92.08174,30,W,1
-    1,5,2014-09-14 00:00:15,46.81006,-92.08174,47,S,1
-    1,6,2014-09-14 00:00:18,46.81006,-92.08174,9,S,1
-    1,7,2014-09-14 00:00:21,46.81006,-92.08174,53,N,1
-    1,8,2014-09-14 00:00:24,46.81006,-92.08174,63,SW,1
-    1,9,2014-09-14 00:00:27,46.81006,-92.08174,4,NE,1
-    1,10,2014-09-14 00:00:30,46.81006,-92.08174,31,N,1
-
-
 ## <a name="access-data-lake-store-using-hdfs-commands"></a>使用 HDFS 命令存取資料湖存放區
 一旦您已設定 HDInsight 叢集使用資料湖存放區，您可以使用 HDFS 殼層命令來存取存放區。
 
-### <a name="for-a-linux-cluster"></a>對於 Linux 叢集
-在這一節中，您將 SSH 進入叢集並執行 HDFS 命令。 Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從下列位置下載： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
+在這一節中，您將透過 SSH 連線到您所建立的 HDInsight Linux 叢集並執行 HDFS 命令。 
 
-如需使用 PuTTY 的詳細資訊，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop ](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)。
+* 如果您使用 Windows 用戶端來透過 SSH 連線到叢集，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)。
+* 如果您使用 Linux 用戶端來透過 SSH 連線到叢集，請參閱[從 Linux 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)
 
 連接之後，使用下列 HDFS 檔案系統命令列出資料湖存放區中的檔案。
 
@@ -305,34 +245,9 @@ ms.openlocfilehash: 0b635129a7f3b96b062a7005225a634de98e9ac9
 
 您也可以使用 `hdfs dfs -put` 命令來將一些檔案上傳至資料湖存放區，然後使用 `hdfs dfs -ls` 以確認是否成功上傳檔案。
 
-### <a name="for-a-windows-cluster"></a>對於 Windows 叢集
-1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下 [瀏覽]、按一下 [HDInsight 叢集]，然後按一下您建立的 HDInsight 叢集。
-3. 在 [叢集] 刀鋒視窗中，按一下 [遠端桌面]，然後在 [遠端桌面] 刀鋒視窗中，按一下 [連接]。
-
-    ![Remote into HDI cluster](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.HDI.PS.Remote.Desktop.png "建立 Azure 資源群組")
-
-    出現提示時，請輸入為遠端桌面使用者提供的認證。
-4. 在遠端工作階段中，啟動 Windows PowerShell，並使用 HDFS 檔案系統命令來列出 Azure 資料湖存放區中的檔案。
-
-         hdfs dfs -ls adl://<Data Lake Store account name>.azuredatalakestore.net:443/
-
-    這樣應該會列出您稍早上傳至資料湖存放區的檔案。
-
-        15/09/17 21:41:15 INFO web.CaboWebHdfsFileSystem: Replacing original urlConnectionFactory with org.apache.hadoop.hdfs.web.URLConnectionFactory@21a728d6
-        Found 1 items
-        -rwxrwxrwx   0 NotSupportYet NotSupportYet     671388 2015-09-16 22:16 adl://mydatalakestore.azuredatalakestore.net:443/vehicle1_09142014.csv
-
-    您也可以使用 `hdfs dfs -put` 命令來將一些檔案上傳至資料湖存放區，然後使用 `hdfs dfs -ls` 以確認是否成功上傳檔案。
-
 ## <a name="see-also"></a>另請參閱
 * [入口網站：建立 HDInsight 叢集以使用資料湖存放區](data-lake-store-hdinsight-hadoop-use-portal.md)
 
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

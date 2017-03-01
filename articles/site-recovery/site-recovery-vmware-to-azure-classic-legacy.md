@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: aeaf8d06749d63d19e02573b5bf66ceac644cb3e
+ms.sourcegitcommit: 858ed6ca4355c36c728ae88bf9488f362d487646
+ms.openlocfilehash: 7ffef4a8dcd10fa6608d200b4ca34fb3517c0cc6
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -147,7 +148,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 | **資料變更率** | **CPU** | **記憶體** | **快取磁碟大小** | **快取磁碟輸送量** | **輸入/輸出頻寬** |
 | --- | --- | --- | --- | --- | --- |
-| < 300 GB |4 個 vCPU (2 個通訊端 * 二核心 @ 2.5GHz) |4 GB |600 GB |每秒 7 至 10 MB |30 Mbps/21 Mbps |
+| < 300 GB |4 個 vCPU (2 個通訊端 * 雙核心 @ 2.5GHz) |4 GB |600 GB |每秒 7 至 10 MB |30 Mbps/21 Mbps |
 | 300 至 600 GB |8 個 vCPU (2 個通訊端 * 四核心 @ 2.5GHz) |6 GB |600 GB |每秒 11 至 15 MB |60 Mbps/42 Mbps |
 | 600 GB 至 1 TB |12 個 vCPU (2 個通訊端 * 六核心 @ 2.5GHz) |8 GB |600 GB |每秒 16 至 20 MB |100 Mbps/70 Mbps |
 | > 1 TB |部署另一個處理序伺服器 | | | | |
@@ -201,7 +202,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 | **Azure 儲存體** |您需要 Azure 儲存體帳戶來儲存複寫的資料<br/><br/> 帳戶應該是[標準異地備援儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)或[進階儲存體帳戶](../storage/storage-premium-storage.md)。<br/><br/> 此帳戶應與 Azure 站台復原服務位於相同的區域，且與相同的訂閱相關聯。 我們不支援使用 [新的 Azure 入口網站](../storage/storage-create-storage-account.md) 來跨資源群組移動所建立的儲存體帳戶。<br/><br/> 若要深入了解，請參閱 [Microsoft Azure 儲存體簡介](../storage/storage-introduction.md) | |
 | **Azure 虛擬網路** |您需要一部 Azure 虛擬網路來部署組態伺服器與主要目標伺服器。 它應該與 Azure Site Recovery 保存庫位於相同的訂用帳戶和區域中。 如果您想要透過 ExpressRoute 或 VPN 連接來複寫資料，Azure 虛擬網路必須透過 ExpressRoute 連線或站對站 VPN 連接到內部部署網路。 | |
 | **Azure 資源** |請確認您有足夠的 Azure 資源以部署所有元件。 如需深入了解，請參閱 [Azure 訂用帳戶限制](../azure-subscription-service-limits.md)。 | |
-| **Azure 虛擬機器** |您想要保護的虛擬機器應該要符合 [Azure 必要條件](site-recovery-best-practices.md)。<br/><br/> **磁碟計數**—一個受保護的伺服器最多可支援 31 個磁碟<br/><br/> **磁碟大小**—個別磁碟容量不可超過 1023 GB<br/><br/> **叢集**—不支援叢集伺服器<br/><br/> **開機**—不支援整合可延伸韌體介面 (UEFI)/可延伸韌體介面 (EFI) 開機<br/><br/> **磁碟區**—不支援 Bitlocker 加密的磁碟區<br/><br/> **伺服器名稱**—名稱應包含介於 1 到 63 個字元 (字母、數字和連字號)。 名稱必須以字母或數字開頭，並以字母或數字結尾。 機器受到保護之後，您可以修改 Azure 的名稱。 | |
+| **Azure 虛擬機器** |您想要保護的虛擬機器應該要符合 [Azure 必要條件](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。<br/><br/> **磁碟計數**—一個受保護的伺服器最多可支援 31 個磁碟<br/><br/> **磁碟大小**—個別磁碟容量不可超過 1023 GB<br/><br/> **叢集**—不支援叢集伺服器<br/><br/> **開機**—不支援整合可延伸韌體介面 (UEFI)/可延伸韌體介面 (EFI) 開機<br/><br/> **磁碟區**—不支援 Bitlocker 加密的磁碟區<br/><br/> **伺服器名稱**—名稱應包含介於 1 到 63 個字元 (字母、數字和連字號)。 名稱必須以字母或數字開頭，並以字母或數字結尾。 機器受到保護之後，您可以修改 Azure 的名稱。 | |
 | **組態伺服器** |將在您的訂用帳戶中，為組態伺服器建立以 Azure Site Recovery Windows Server 2012 R2 資源庫映像為基礎的標準 A3 虛擬機器。 它會建立為新的雲端服務中的第一個執行個體。 如果您選取 [公用網際網路] 作為組態伺服器的連線類型，系統將會使用保留的公用 IP 位址來建立雲端服務。<br/><br/> 安裝路徑僅限使用英文字元。 | |
 | **主要目標伺服器** |Azure 虛擬機器，標準 A4、D14 或 DS4。<br/><br/> 安裝路徑僅限使用英文字元。 例如，執行 Linux 的主要目標伺服器的路徑應該為 **/usr/local/ASR**。 | |
 | **處理序伺服器** |您可以在執行最新版更新之 Windows Server 2012 R2 的實體或虛擬機器上部署處理序伺服器。 在 C:/ 上安裝。<br/><br/> 建議您將此伺服器放在與您要保護的機器相同的網路與子網路上。<br/><br/> 在處理序伺服器上安裝 VMware vSphere CLI 5.5.0。 處理伺服器上必須要有 VMware vSphere CLI 元件，才能探索由 vCenter 伺服器管理的虛擬機器或在 ESXi 主機上執行的虛擬機器。<br/><br/> 安裝路徑僅限使用英文字元。<br/><br/> 不支援 ReFS 檔案系統。 | |
@@ -739,9 +740,4 @@ The information in Section A is regarding Third Party Code components from the p
 The information in Section B is regarding Third Party Code components that are being made available to you by Microsoft under the original licensing terms.
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428). Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

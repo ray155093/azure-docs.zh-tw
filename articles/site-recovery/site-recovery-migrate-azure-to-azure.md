@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/19/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 892c42cf28ef1861f9422c8bcabcbc229c6033b0
-ms.openlocfilehash: 794cfa21f46981c031217687f591c35a4706ae8b
+ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
+ms.openlocfilehash: 501e5e8501c6106ba2e51b3523332fd224a5a142
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -46,13 +47,8 @@ ms.openlocfilehash: 794cfa21f46981c031217687f591c35a4706ae8b
 4. [設定複寫設定](site-recovery-vmware-to-azure.md#set-up-replication-settings)。 建立複寫原則並將它指派到組態伺服器。
 5. [安裝行動服務](site-recovery-vmware-to-azure.md#prepare-vms-for-replication)。 所有要保護的 VM 都需要安裝行動服務。 這項服務會將資料傳送至處理序伺服器。 行動服務可以手動方式安裝，或在為 VM 啟用保護時由處理序伺服器自動推入安裝。 您所要移轉 VM 上的防火牆規則應該設定為允許推入安裝這項服務。
 6. [啟用複寫](site-recovery-vmware-to-azure.md#enable-replication)。 針對您想要移轉的 VM 啟用複寫。 您可以使用虛擬機器的私人 IP 位址，探索要移轉至 Azure 的 IaaS 虛擬機器。 這個位址可在 Azure 的虛擬機器儀表板上找到。 當您啟用複寫時，您會將 VM 的機器類型設定為實體機器。
-7. [ 執行非計劃性容錯移轉](site-recovery-failover.md#run-an-unplanned-failover)。 初始複寫完成之後，您可以執行從一個 Azure 區域到另一個區域的非計劃性容錯移轉。 (選擇性) 您可以建立復原計劃並執行非計劃性容錯移轉，在區域與區域之間移轉多部虛擬機器。 [深入了解](site-recovery-create-recovery-plans.md) 復原計劃。
+7. [ 執行非計劃性容錯移轉](site-recovery-failover.md)。 初始複寫完成之後，您可以執行從一個 Azure 區域到另一個區域的非計劃性容錯移轉。 (選擇性) 您可以建立復原計劃並執行非計劃性容錯移轉，在區域與區域之間移轉多部虛擬機器。 [深入了解](site-recovery-create-recovery-plans.md) 復原計劃。
 
 ## <a name="next-steps"></a>後續步驟
 在 [什麼是 Azure Site Recovery？](site-recovery-overview.md)
-
-
-
-<!--HONumber=Feb17_HO4-->
-
 

@@ -1,5 +1,5 @@
 ---
-title: "針對 Azure 匯入/匯出匯入作業準備硬碟的範例工作流程 |Microsoft Docs"
+title: "針對 Azure 匯入作業準備硬碟的範例工作流程 | Microsoft Docs"
 description: "請參閱在 Azure 匯入/匯出服務中為匯入作業準備硬碟之完整程序的逐步解說"
 author: muralikk
 manager: syadav
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 41bc5585f3d9dea2a08dc8a6bc1e4fdf9f0c8fc4
-ms.openlocfilehash: 763ad16242da2d895686934422e345555d5b0e05
+ms.sourcegitcommit: 50fbd0d214c825137c3ac6873be27b9d2d53cee1
+ms.openlocfilehash: ebed1f1d4cb6cca96e02322d2f76abd6e9810ecc
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -135,9 +136,4 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset
 
 * [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import.md)
 * [常用命令快速參考](storage-import-export-tool-quick-reference.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/17/2017
+ms.date: 02/06/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 9ab2950715850d0c2ee0f398cd44399a5974c1a9
-ms.openlocfilehash: 6a9f414334f4dc078a3c47dac0c71bbf9f2c4158
+ms.sourcegitcommit: ad9c78483af88a85a1b790269231683155760d76
+ms.openlocfilehash: aef560c2b05a80c59743c4cc6d68d6d2c14bdc3f
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -93,7 +94,7 @@ ms.openlocfilehash: 6a9f414334f4dc078a3c47dac0c71bbf9f2c4158
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-3. **[建立 Infor Retail – Information Management 測試使用者](#creating-an-infor-retail---information-management-user)** - 在 Infor Retail – Information Management 中建立 Britta Simon 的對應項目，且該項目必須與 Azure AD 中代表 Britta Simon 的項目連結。
+3. **[建立 Infor Retail – Information Management 測試使用者](#creating-an-infor-retail---information-management-test-user)** - 在 Infor Retail – Information Management 中建立 Britta Simon 的對應項目，且該項目必須與 Azure AD 中代表 Britta Simon 的項目連結。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
@@ -115,9 +116,9 @@ ms.openlocfilehash: 6a9f414334f4dc078a3c47dac0c71bbf9f2c4158
 
     ![設定單一登入](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_02.png)
 
-    a. 在 [識別碼] 文字方塊中，以下列模式輸入 URL：`http://<company name>.mingle.infor.com`
+    a. 在 [識別碼] 文字方塊中，使用下列模式輸入 URL：`https://<company name>.mingle.infor.com`
     
-    b. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`http://<company name>.mingle.infor.com:443/sp/ACS.saml2`
+    b. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.mingle.infor.com/sp/ACS.saml2`
     
 4. 如果您想要以 **SP 起始模式**設定應用程式，請在 [Infor Retail – Information Management 網域和 URL] 區段上執行下列步驟：
     
@@ -125,14 +126,14 @@ ms.openlocfilehash: 6a9f414334f4dc078a3c47dac0c71bbf9f2c4158
 
     a. 按一下 [顯示進階 URL 設定] 選項
 
-    b.這是另一個 C# 主控台應用程式。 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.mingle.infor.com/<company code>`
+    b. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.mingle.infor.com/<company code>`
 
     > [!NOTE] 
-    > 請注意這些不是真正的值。 您必須使用實際的「登入 URL」、「識別碼」及「回覆 URL」來更新這些值。請連絡 [Infor Retail – Information Management 支援小組](http://www.infor.com/contact/) 來取得這些值。
+    > 請注意這些不是真正的值。 您必須使用實際的「單一登入 URL」、「識別碼」及「回覆 URL」來更新這些值。 請連絡 [Infor Retail – Information Management 支援小組](mailto:innovate@infor.com)來取得這些值。
 
 5. 在 [SAML 簽署憑證] 區段中，按一下 [建立新憑證]。
 
-    ![設定單一登入](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_04.png)   
+    ![設定單一登入](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_04.png)     
 
 6. 在 [建立新憑證] 對話方塊中，按一下行事曆圖示並選取 [到期日]。 然後按一下 [儲存] 按鈕。
 
@@ -146,11 +147,11 @@ ms.openlocfilehash: 6a9f414334f4dc078a3c47dac0c71bbf9f2c4158
 
     ![設定單一登入](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_general_400.png)
 
-9. 在 [SAML 簽章憑證] 區段中，按一下 [下載]，然後將中繼資料檔案儲存在您的電腦上。
+9. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將中繼資料檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_06.png) 
 
-10. 若要為您的應用程式設定 SSO，請連絡 [Infor Retail – Information Management 支援小組](http://www.infor.com/contact/)，並提供已下載的**中繼資料**。
+10. 若要為您的應用程式設定 SSO，請連絡 [Infor Retail – Information Management 支援小組](mailto:innovate@infor.com)，並提供已下載的**中繼資料**。
   
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
@@ -188,7 +189,7 @@ ms.openlocfilehash: 6a9f414334f4dc078a3c47dac0c71bbf9f2c4158
 
 ### <a name="creating-an-infor-retail--information-management-test-user"></a>建立 Infor Retail – Information Management 測試使用者
 
-在本節中，您要在 Infor Retail – Information Management 中建立名為 Britta Simon 的使用者。 請與 [Infor Retail – Information Management 支援小組](http://www.infor.com/contact/)合作，將該使用者新增到 Infor Retail – Information Management 平台。
+在本節中，您要在 Infor Retail – Information Management 中建立名為 Britta Simon 的使用者。 請與 [Infor Retail – Information Management 支援小組](mailto:innovate@infor.com)合作，將該使用者新增到 Infor Retail – Information Management 平台。
 
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
@@ -250,8 +251,3 @@ ms.openlocfilehash: 6a9f414334f4dc078a3c47dac0c71bbf9f2c4158
 [201]: ./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_general_201.png
 [202]: ./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_general_202.png
 [203]: ./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_general_203.png
-
-
-<!--HONumber=Jan17_HO3-->
-
-

@@ -1,10 +1,10 @@
 ---
-title: "使用 Resource Manager 部署模型將 Windows Server 或用戶端備份到 Azure | Microsoft Docs"
+title: "將 Windows Server 備份至 Azure (Resource Manager) | Microsoft Docs"
 description: "藉由建立備份保存庫、下載認證、安裝備份代理程式，並完成檔案和資料夾的初始備份，來將 Windows Server 或用戶端備份到 Azure。"
 services: backup
 documentationcenter: 
 author: markgalioto
-manager: cfreeman
+manager: carmonm
 editor: 
 keywords: "備份保存庫；備份 Windows Server；備份Windows；"
 ms.assetid: 7f5b1943-b3c1-4ddb-8fb7-3560533c68d5
@@ -13,11 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
-ms.author: jimpark; trinadhk; markgal
+ms.date: 2/16/2017
+ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: 738b8e29fbc139753ea59f1a20416386383f942d
-ms.openlocfilehash: c6b662883919d81a4895c85deed8f50f9e578444
+ms.sourcegitcommit: 1a87af9efeb6c00f3c67f2c2d8d8f2e0491d248d
+ms.openlocfilehash: 018a1bde8163eda660fd50a41839b6c1ec622d79
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -222,9 +223,4 @@ ms.openlocfilehash: c6b662883919d81a4895c85deed8f50f9e578444
 
 * 現在您已備份好檔案和資料夾，接下來您可以 [管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
 * 如果您需要還原備份，請使用本文來 [還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

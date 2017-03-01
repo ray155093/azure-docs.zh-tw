@@ -4,7 +4,7 @@ description: "了解管理入口網站與 Azure 入口網站間之應用程式�
 services: app-service
 documentationcenter: 
 author: jaime-espinosa
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 0cc6a3cc-bd89-4a96-9177-d25f6fb737bb
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: jaime-espinosa
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: 00617f4d508c843000d69c02464a1bef36320a8e
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -84,10 +85,5 @@ Azure 入口網站可讓您使用多個服務的元件，輕鬆地以端對端�
 
 ## <a name="whats-changed"></a>變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

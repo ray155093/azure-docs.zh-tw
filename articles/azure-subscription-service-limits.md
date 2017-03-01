@@ -13,11 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 02/17/2017
 ms.author: byvinyal
 translationtype: Human Translation
-ms.sourcegitcommit: bf6c6017f623766f5e7a6472feed02108b5adf5f
-ms.openlocfilehash: d770a05ee247103fe9693754d7fb7eada12ef1bc
+ms.sourcegitcommit: 4e37d976ab7616674ff4b41111bfe7000444ca54
+ms.openlocfilehash: 2ff41f4a93b0cc7f104fe4703f5b031cfb3252e1
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -60,6 +61,7 @@ ms.openlocfilehash: d770a05ee247103fe9693754d7fb7eada12ef1bc
 * [雲端服務](#cloud-services-limits)
 * [Data Factory](#data-factory-limits)
 * [資料湖分析](#data-lake-analytics-limits)
+* [Data Lake Store](#data-lake-store-limits)
 * [DNS](#dns-limits)
 * [DocumentDB](#documentdb-limits)
 * [事件中樞](#event-hubs-limits)
@@ -130,20 +132,23 @@ ms.openlocfilehash: d770a05ee247103fe9693754d7fb7eada12ef1bc
 
 ### <a name="storage-limits"></a>儲存體限制
 如需儲存體帳戶限制的其他詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage/storage-scalability-targets.md)。
-
+<!--like # storage accts --> 
 #### <a name="storage-service-limits"></a>儲存體服務限制
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
 
+<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
 #### <a name="virtual-machine-disk-limits"></a>虛擬機器磁碟限制 
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
 如需其他詳細資訊，請參閱 [虛擬機器大小](virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
 
-**標準儲存體帳戶**
+#### <a name="managed-virtual-machine-disks"></a>受管理的虛擬機器磁碟
+
+[!INCLUDE [azure-storage-limits-vm-disks-managed](../includes/azure-storage-limits-vm-disks-managed.md)]
+
+#### <a name="unmanaged-virtual-machine-disks"></a>未受管理的虛擬機器磁碟
 
 [!INCLUDE [azure-storage-limits-vm-disks-standard](../includes/azure-storage-limits-vm-disks-standard.md)]
-
-**進階儲存體帳戶**
 
 [!INCLUDE [azure-storage-limits-vm-disks-premium](../includes/azure-storage-limits-vm-disks-premium.md)]
 
@@ -219,8 +224,11 @@ DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應
 ### <a name="data-factory-limits"></a>Data Factory 限制
 [!INCLUDE [azure-data-factory-limits](../includes/azure-data-factory-limits.md)]
 
-### <a name="data-lake-analytics-limits"></a>資料湖分析限制
+### <a name="data-lake-analytics-limits"></a>Data Lake Analytics 限制
 [!INCLUDE [azure-data-lake-analytics-limits](../includes/azure-data-lake-analytics-limits.md)]
+
+### <a name="data-lake-store-limits"></a>Data Lake Store 限制
+[!INCLUDE [azure-data-lake-store-limits](../includes/azure-data-lake-store-limits.md)]
 
 ### <a name="stream-analytics-limits"></a>串流分析限制
 [!INCLUDE [stream-analytics-limits-table](../includes/stream-analytics-limits-table.md)]
@@ -270,10 +278,5 @@ DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應
 [Azure 的虛擬機器和雲端服務大小](virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

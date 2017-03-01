@@ -16,8 +16,9 @@ ms.workload: powerbi
 ms.date: 02/06/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: fd0ddf8275ab58eb3c411123b776654fb46cae5d
-ms.openlocfilehash: 5770bbfcf700b1cefea6d22e0d5f025c1660e744
+ms.sourcegitcommit: bd7925f3fa9a717cbe0649bf899cdd00511d5ca6
+ms.openlocfilehash: b9dff45d1bb60d50c882c6daf363fca86a7f8f4c
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -77,7 +78,7 @@ ms.openlocfilehash: 5770bbfcf700b1cefea6d22e0d5f025c1660e744
 您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。 使用 **Power BI Desktop** 可以建立資料集和報告。 您可以下載 [免費的 Power BI Desktop](https://go.microsoft.com/fwlink/?LinkId=521662)。 或者，若要快速開始，您可以下載 [零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
 
 > [!NOTE]
-> 若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
+> 若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
 
 透過 **Power BI Desktop**，將資料複本匯入 **Power BI Desktop** 或使用 **DirectQuery** 直接連接到資料來源，即可連接到資料來源。
 
@@ -109,10 +110,5 @@ ms.openlocfilehash: 5770bbfcf700b1cefea6d22e0d5f025c1660e744
 * [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 
 有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

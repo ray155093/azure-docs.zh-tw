@@ -15,13 +15,14 @@ ms.tgt_pltfrm: na
 ms.date: 01/18/2017
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: 19a652f81beacefd4a51f594f045c1f3f7063b59
-ms.openlocfilehash: 60c8296e1287419dedf5b5f01f2ddb7ab86b5d11
+ms.sourcegitcommit: 05fc8ff05f8e2f20215f6683a125c1a506b4ccdc
+ms.openlocfilehash: 23ed2e066cc6751ebabb57c8077f95b0cb074850
+ms.lasthandoff: 02/18/2017
 
 ---
 
 # <a name="indexing-documents-in-azure-blob-storage-with-azure-search"></a>使用 Azure 搜尋服務在 Azure Blob 儲存體中對文件編制索引
-本文說明如何使用 Azure 搜尋服務對儲存在 Azure Blob 儲存體的文件編製索引 (例如 PDF、Microsoft Office 文件和數種其他通用格式)。 首先，它會說明安裝和設定 blob 索引子的基本概念。 然後，它會提供可能會發生之行為和案例的更深入探索。 
+本文說明如何使用 Azure 搜尋服務對儲存在 Azure Blob 儲存體的文件編製索引 (例如 PDF、Microsoft Office 文件和數種其他通用格式)。 首先，它會說明安裝和設定 blob 索引子的基本概念。 然後，它會提供可能會發生之行為和案例的更深入探索。
 
 ## <a name="supported-document-formats"></a>支援的文件格式
 blob 索引子可以從下列文件格式擷取文字：
@@ -53,7 +54,7 @@ blob 索引子可以從下列文件格式擷取文字：
 >
 >
 
-我們會在此示範使用 REST API 的流程。 
+我們會在此示範使用 REST API 的流程。
 
 ### <a name="step-1-create-a-data-source"></a>步驟 1：建立資料來源
 資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些原則能有效識別資料變更 (新增、修改或刪除的資料列)。 資料來源可供同一個搜尋服務中的多個索引子使用。
@@ -83,7 +84,7 @@ blob 索引子可以從下列文件格式擷取文字：
 <a name="Credentials"></a>
 #### <a name="how-to-specify-credentials"></a>如何指定認證 ####
 
-您可以採取下列其中一種方式提供 blob 容器的認證︰ 
+您可以採取下列其中一種方式提供 blob 容器的認證︰
 
 - **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定] > [金鑰] (傳統儲存體帳戶)，或 [設定] > [存取金鑰] (Azure Resource Manager 儲存體帳戶)。
 - **儲存體帳戶共用存取簽章** (SAS) 連接字串︰`BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl`。 SAS 對於容器和物件 (在此案例中為 blob) 應該擁有列出和讀取權限。
@@ -114,7 +115,7 @@ blob 索引子可以從下列文件格式擷取文字：
 如需建立索引的詳細資訊，請參閱[建立索引](https://docs.microsoft.com/rest/api/searchservice/create-index)
 
 ### <a name="step-3-create-an-indexer"></a>步驟 3：建立索引子
-索引子會以目標搜尋索引連接資料來源，並提供排程來自動重新整理資料。 
+索引子會以目標搜尋索引連接資料來源，並提供排程來自動重新整理資料。
 
 建立索引和資料來源之後，您就可以開始建立索引子︰
 
@@ -135,11 +136,11 @@ blob 索引子可以從下列文件格式擷取文字：
 
 ## <a name="how-azure-search-indexes-blobs"></a>Azure 搜尋服務如何編製 blob 的索引
 
-取決於[組態](#PartsOfBlobToIndex)，blob 索引子只可以編製儲存體中繼資料的索引 (僅當您關注中繼資料且無須編製 blob 內容的索引時很有用)，儲存體和內容中繼資料，或中繼資料和文字內容。 根據預設，索引子會擷取中繼資料和內容。 
+取決於[組態](#PartsOfBlobToIndex)，blob 索引子只可以編製儲存體中繼資料的索引 (僅當您關注中繼資料且無須編製 blob 內容的索引時很有用)，儲存體和內容中繼資料，或中繼資料和文字內容。 根據預設，索引子會擷取中繼資料和內容。
 
 > [!NOTE]
 > 根據預設，使用結構化內容 (例如 JSON、CSV 或 XML) 的 blob 會做為文字的單一區塊編製索引。 如果您要以結構化方式編製 JSON 和 CSV blob 的索引，請參閱[編製 JSON blob 的索引](search-howto-index-json-blobs.md)和[編製 CSV blob 的索引](search-howto-index-csv-blobs.md)預覽功能。 我們目前不支援剖析的 XML 內容；如有此需要，請在我們的 [UserVoice](https://feedback.azure.com/forums/263029-azure-search) 上新增建議。
-> 
+>
 > 複合或內嵌文件 (例如 ZIP 封存或具有內嵌 Outlook 電子郵件 (內含附件) 的 Word 文件) 也會編制索引為單一文件。
 
 * 文件的全部文字內容會擷取至名為 `content` 的字串欄位。
@@ -236,7 +237,7 @@ blob 索引子可以從下列文件格式擷取文字：
 
 ### <a name="dealing-with-unsupported-content-types"></a>處理不受支援的內容類型
 
-根據預設，一旦遇到不受支援內容類型 (例如影像) 的 blob 時，blob 索引子就會停止。 您當然可以使用 `excludedFileNameExtensions` 參數來略過特定內容類型。 不過，您可能需要編製 blob 的索引，而不需要事先知道所有可能的內容類型。 若要在遇到不受支援的內容類型時繼續編製索引，請將 `failOnUnsupportedContentType` 組態參數設定為 `false`： 
+根據預設，一旦遇到不受支援內容類型 (例如影像) 的 blob 時，blob 索引子就會停止。 您當然可以使用 `excludedFileNameExtensions` 參數來略過特定內容類型。 不過，您可能需要編製 blob 的索引，而不需要事先知道所有可能的內容類型。 若要在遇到不受支援的內容類型時繼續編製索引，請將 `failOnUnsupportedContentType` 組態參數設定為 `false`：
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -245,27 +246,27 @@ blob 索引子可以從下列文件格式擷取文字：
     {
       ... other parts of indexer definition
       "parameters" : { "configuration" : { "failOnUnsupportedContentType" : false } }
-    } 
+    }
 
 ### <a name="ignoring-parsing-errors"></a>忽略剖析錯誤
 
-Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支援內容類型 (例如 .DOCX 或 .PDF) 的文件。 如果您不想中斷這類案例中的索引，請將 `maxFailedItems` 和 `maxFailedItemsPerBatch` 組態參數設定為一些合理的值。 例如： 
+Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支援內容類型 (例如 .DOCX 或 .PDF) 的文件。 如果您不想中斷這類案例中的索引，請將 `maxFailedItems` 和 `maxFailedItemsPerBatch` 組態參數設定為一些合理的值。 例如：
 
     {
       ... other parts of indexer definition
       "parameters" : { "maxFailedItems" : 10, "maxFailedItemsPerBatch" : 10 }
-    } 
+    }
 
 <a name="PartsOfBlobToIndex"></a>
 ## <a name="controlling-which-parts-of-the-blob-are-indexed"></a>控制要編製 blob 哪些部分的索引
 
-您可以使用 `dataToExtract` 組態參數來控制要編製 blob 哪些部分的索引。 它可以採用下列值： 
+您可以使用 `dataToExtract` 組態參數來控制要編製 blob 哪些部分的索引。 它可以採用下列值：
 
 * `storageMetadata` - 指定只有[標準 blob 屬性和使用者指定的中繼資料](../storage/storage-properties-metadata.md)會編製索引。
 * `allMetadata` - 指定儲存體中繼資料和從 blob 內容擷取的[內容型別特定中繼資料](#ContentSpecificMetadata)會編製索引。
 * `contentAndMetadata` - 指定所有中繼資料和從 blob 擷取的文字內容會編製索引。 這是預設值。
 
-例如，若只要編製儲存中繼資料的索引，請使用︰ 
+例如，若只要編製儲存中繼資料的索引，請使用︰
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -317,10 +318,10 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 ## <a name="indexing-large-datasets"></a>編製索引大型資料集
 
-編製 blob 的索引可能會是耗時的程序。 在您要編製數以百萬計的 blob 索引情況下，您可以分割資料並使用多個索引子以平行方式處理資料來加速編製索引。 下列是您可以如此設定的方式： 
+編製 blob 的索引可能會是耗時的程序。 在您要編製數以百萬計的 blob 索引情況下，您可以分割資料並使用多個索引子以平行方式處理資料來加速編製索引。 下列是您可以如此設定的方式：
 
-- 將資料分割成多個 blob 容器或虛擬資料夾 
-- 設定數個 Azure 搜尋服務資料來源，每個容器或資料夾一個。 若要指向 blob 資料夾，則使用 `query` 參數︰ 
+- 將資料分割成多個 blob 容器或虛擬資料夾
+- 設定數個 Azure 搜尋服務資料來源，每個容器或資料夾一個。 若要指向 blob 資料夾，則使用 `query` 參數︰
 
     ```
     {
@@ -332,6 +333,14 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
     ```
 
 - 針對每個資料來源建立對應的索引子。 所有索引子可以指向相同的目標搜尋索引。  
+
+## <a name="indexing-documents-along-with-related-data"></a>為文件及相關資料編製索引
+
+您的文件可能具有相關聯的中繼資料 (例如建立文件的部門)，這類資料會在下列其中一個位置儲存為結構化資料。
+-   在個別的資料存放區中，例如 SQL Database 或 DocumentDB。
+-   直接附加至 Azure Blob 儲存體中的每份文件以做為自訂中繼資料 (如需詳細資訊，請參閱[設定和擷取 Blob 資源的屬性及中繼資料](https://docs.microsoft.com/rest/api/storageservices/fileservices/setting-and-retrieving-properties-and-metadata-for-blob-resources))。
+
+您也可以藉由為每份文件和它的中繼資料指派相同的唯一值，以及為每個索引子指派 `mergeOrUpload` 動作，來為文件及其中繼資料編製索引。 如需此解決方案的詳細說明，請參閱這篇外部文章：[在 Azure 搜尋服務中將文件與其他資料組合在一起 (英文)](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html)。
 
 <a name="ContentSpecificMetadata"></a>
 ## <a name="content-type-specific-metadata-properties"></a>內容類型特定的中繼資料屬性
@@ -356,9 +365,4 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 ## <a name="help-us-make-azure-search-better"></a>協助我們改進 Azure 搜尋服務
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

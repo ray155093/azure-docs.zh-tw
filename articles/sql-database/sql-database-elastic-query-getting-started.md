@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 05/23/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: e39f2bb273bee9719f8f87cd27a1e1c92b6c4b53
+ms.sourcegitcommit: cbd1c7e7d915e8a10d69c7a2f1679835dcee23b7
+ms.openlocfilehash: b64129b77385685b41aac55c52a34e9d0495124e
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.openlocfilehash: e39f2bb273bee9719f8f87cd27a1e1c92b6c4b53
 
     ![命令提示字元][1]
 2. 在命令視窗中，輸入 "1"，然後按 **Enter**。 這會建立分區對應管理員，並加入兩個分區到伺服器。 然後輸入 "3"，然後按 **Enter**；重複此動作四次。 這會在您的分區中插入範例資料列。
-3. [Azure 入口網站](https://portal.azure.com) 應該會在您的 v12 伺服器中顯示三個新的資料庫：
+3. [Azure 入口網站](https://portal.azure.com)應該會在您的 v12 伺服器中顯示三個新的資料庫：
 
    ![Visual Studio 確認][2]
 
@@ -46,12 +47,14 @@ ms.openlocfilehash: e39f2bb273bee9719f8f87cd27a1e1c92b6c4b53
    在下一節中，我們會建立支援更豐富的跨分區資料查詢的範例資料庫端點。
 
 ## <a name="create-an-elastic-query-database"></a>建立彈性的查詢資料庫
-1. 開啟 [Azure 入口網站](https://portal.azure.com) 並登入。
+1. 開啟 [Azure 入口網站](https://portal.azure.com)並登入。
 2. 在與分區安裝程式相同的伺服器中建立新的 Azure SQL Database。 將資料庫命名為 "ElasticDBQuery"。
 
     ![Azure 入口網站和定價層][3]
 
-    附註：您可以使用現有的資料庫。 如果您可以這樣做，它不得是您想要對其執行查詢的其中一個分區。 此資料庫將用於為彈性資料庫查詢建立中繼資料物件。
+    > [!NOTE]
+    > 您可以使用現有的資料庫。 如果您可以這樣做，它不得是您想要對其執行查詢的其中一個分區。 此資料庫將用於為彈性資料庫查詢建立中繼資料物件。
+    >
 
 ## <a name="create-database-objects"></a>建立資料庫物件
 ### <a name="database-scoped-master-key-and-credentials"></a>資料庫範圍的主要金鑰和認證
@@ -127,7 +130,16 @@ ms.openlocfilehash: e39f2bb273bee9719f8f87cd27a1e1c92b6c4b53
 
 如需價格資訊，請參閱 [SQL Database 價格詳細資料](https://azure.microsoft.com/pricing/details/sql-database/)。
 
-[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+## <a name="next-steps"></a>後續步驟
+
+## <a name="next-steps"></a>後續步驟
+
+* 如需彈性查詢的概觀，請參閱[彈性查詢概觀](sql-database-elastic-query-overview.md)。
+* 若要開始撰寫程式碼，請參閱 [開始使用跨資料庫查詢 (垂直資料分割)](sql-database-elastic-query-getting-started-vertical.md)。
+* 如需垂直資料分割之資料的語法和範例查詢，請參閱[查詢垂直資料分割的資料](sql-database-elastic-query-vertical-partitioning.md)
+* 如需水平資料分割之資料的語法和範例查詢，請參閱[查詢水平資料分割的資料](sql-database-elastic-query-horizontal-partitioning.md)
+* 如需會在單一遠端 Azure SQL Database 或一組在水平資料分割配置中作為分區之資料庫上執行 Transact-SQL 陳述式的預存程序，請參閱 [sp\_execute \_remote](https://msdn.microsoft.com/library/mt703714)。
+
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-query-getting-started/cmd-prompt.png
@@ -136,9 +148,4 @@ ms.openlocfilehash: e39f2bb273bee9719f8f87cd27a1e1c92b6c4b53
 [4]: ./media/sql-database-elastic-query-getting-started/details.png
 [5]: ./media/sql-database-elastic-query-getting-started/exel-sources.png
 <!--anchors-->
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

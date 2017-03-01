@@ -54,7 +54,7 @@ ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建�
 若要了解我們所做的事情，就讓我們部署新的應用程式並看看 ASP.NET Core Web API 範本所提供的預設行為。
 
 1. 在 Visual Studio 按 F5 以進行應用程式偵錯。
-2. 部署完成時，Visual Studio 會啟動瀏覽器並瀏覽至 ASP.NET Web API 服務的根目錄，類似 http://localhost:33003。 連接埠號碼會隨機進行指派，因此可能與您電腦上的連接埠號碼不同。 ASP.NET Core Web API 範本不根提供根目錄的預設行為，因此您將在瀏覽器中收到錯誤。
+2. 部署完成時，Visual Studio 會啟動瀏覽器並瀏覽至 ASP.NET Web API 服務的根目錄，類似 http://localhost:33003 。 連接埠號碼會隨機進行指派，因此可能與您電腦上的連接埠號碼不同。 ASP.NET Core Web API 範本不根提供根目錄的預設行為，因此您將在瀏覽器中收到錯誤。
 3. 將 `/api/values` 新增至瀏覽器中的位置。 這將會叫用 Web API 範本中 ValuesController 上的 `Get` 方法。 它會傳回範本所提供的預設回應，也就是包含兩個字串的 JSON 陣列：
    
     ![從 ASP.NET Core Web API 範本傳回的預設值][browser-aspnet-template-values]

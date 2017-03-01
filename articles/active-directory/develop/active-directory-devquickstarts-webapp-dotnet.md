@@ -1,6 +1,6 @@
 ---
 title: "Azure AD .NET Web 應用程式入門 | Microsoft Docs"
-description: "如何建立可整合 Azure AD 以進行登入的 .NET MVC Web App。"
+description: "建置與 Azure AD 整合來進行登入的 .NET MVC Web 應用程式。"
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,176 +15,173 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 9cd676554542e4effef54790bf9095c5b7a8f75b
-ms.openlocfilehash: 60e11448dc83cba1f9bed8dbe49509232c064325
+ms.sourcegitcommit: 4094759caba015b9d609b616d5099a6e109bf1d4
+ms.openlocfilehash: 6ac0c3b2893b96f93bf2aeadd61b263654957477
+ms.lasthandoff: 02/17/2017
 
 
 ---
-# <a name="aspnet-web-app-sign-in--sign-out-with-azure-ad"></a>使用 Azure AD 進行 ASP.NET Web 應用程式登入與登出
+# <a name="aspnet-web-app-sign-in-and-sign-out-with-azure-ad"></a>使用 Azure AD 來進行 ASP.NET Web 應用程式登入和登出
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直接，只需幾行的程式碼便可提供單一登入和登出。  在 Asp.NET Web 應用程式中，您可以使用 Microsoft 的社群導向 OWIN 中介軟體 (隨附於 .NET Framework 4.5) 實作來完成這個作業。  我們將在此處使用 OWIN 來執行下列動作：
+Azure Active Directory (Azure AD) 透過以幾行程式碼提供單一登入和登出功能，讓您能夠輕鬆將 Web 應用程式身分識別管理外包。 您可以藉由使用 Microsoft 的 Open Web Interface for .NET (OWIN) 中介軟體實作，將使用者登入和登出 ASP.NET Web 應用程式。 社群導向 OWIN 中介軟體包含在 .NET Framework 4.5 中。 本文說明如何使用 OWIN 來執行下列操作：
 
-* 使用 Azure AD 做為身分識別提供者，將使用者登入應用程式。
-* 顯示使用者的一些相關資訊。
-* 讓使用者登出 App。
+* 藉由使用 Azure AD 作為身分識別提供者，將使用者登入 Web 應用程式。
+* 顯示部分使用者資訊。
+* 將使用者登出應用程式。
 
-為執行此作業，您必須執行下列動作：
+## <a name="before-you-get-started"></a>開始之前
+* 下載[應用程式基本架構](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/skeleton.zip)或下載[完整的範例](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip)。
+* 您還需要一個可供註冊應用程式的 Azure AD 租用戶。 如果您還沒有 Azure AD 租用戶，請[了解如何取得租用戶](active-directory-howto-tenant.md)。
 
-1. 向 Azure AD 註冊應用程式
-2. 設定您的應用程式使用 OWIN 驗證管線。
-3. 使用 OWIN 向 Azure AD 發出登入和登出要求。
-4. 列印出使用者的相關資料。
+當您準備就緒時，請依照接下來四個小節的程序操作。
 
-若要開始使用，請[下載應用程式基本架構](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip)。  您還需要一個可以註冊應用程式的 Azure AD 租用戶。  如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
-
-## <a name="1-register-an-application-with-azure-ad"></a>1.向 Azure AD 註冊應用程式
-若要啟用應用程式來驗證使用者，您必須先要在您的租用戶中註冊這個新的應用程式。
+## <a name="step-1-register-the-new-app-with-azure-ad"></a>步驟 1︰向 Azure AD 註冊新的應用程式
+若要設定應用程式以驗證使用者，請先藉由執行下列操作，在您的租用戶中註冊該應用程式︰
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在頂端列上按一下您的帳戶，然後在 [目錄] 清單底下，選擇您要註冊應用程式的 Active Directory 租用戶。
-3. 按一下左側瀏覽區中的 [更多服務]，然後選擇 [Azure Active Directory]。
-4. 按一下 [應用程式註冊]，然後選擇 [新增]。
-5. 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
-  * 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式
-  * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是 `https://localhost:44320/`。
-  * [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。  慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`
-6. 完成註冊後，AAD 會為您的應用程式指派唯一的應用程式識別碼。  您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
+2. 在頂端列中，按一下您的帳戶名稱。 在 [目錄] 清單下，選取您要註冊應用程式的 Active Directory 租用戶。
+3. 按一下左側窗格中的 [更多服務]，然後選取 [Azure Active Directory]。
+4. 按一下 [應用程式註冊]，然後選取 [新增]。
+5. 依照提示來建立新的「Web 應用程式和/或 Web API」。
+  * [名稱] 可向使用者描述該應用程式。
+  * [登入 URL] 是應用程式的基底 URL。 基本架構的預設 URL 是 https://localhost:44320/。
+  * [應用程式識別碼 URI] 是應用程式的唯一識別碼。 命名慣例是 `https://<tenant-domain>/<app-name>` (例如 `https://contoso.onmicrosoft.com/my-first-aad-app`)。
+6. 完成註冊之後，Azure AD 會為應用程式指派一個唯一的應用程式識別碼。 請從應用程式頁面複製該值，以在接下來的小節中使用。
 
-## <a name="2-set-up-your-app-to-use-the-owin-authentication-pipeline"></a>2.將您的應用程式設定為使用 OWIN 驗證管道
-在這裡，我們將設定 OWIN 中介軟體使用 OpenID Connect 驗證通訊協定。  OWIN 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
+## <a name="step-2-set-up-the-app-to-use-the-owin-authentication-pipeline"></a>步驟 2：設定應用程式以使用 OWIN 驗證管線
+在此步驟中，您將設定 OWIN 中介軟體以使用 OpenID Connect 驗證通訊協定。 您將使用 OWIN 來發出登入和登出要求、管理使用者工作階段、取得使用者資訊等等。
 
-* 若要開始，請將 OWIN 中介軟體 NuGet 封裝加入使用封裝管理員主控台的專案。
+1. 若要開始進行，請使用「套件管理器主控台」將 OWIN 中介軟體 NuGet 套件新增到專案中。
 
-```
-PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
-PM> Install-Package Microsoft.Owin.Security.Cookies
-PM> Install-Package Microsoft.Owin.Host.SystemWeb
-```
+     ```
+     PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
+     PM> Install-Package Microsoft.Owin.Security.Cookies
+     PM> Install-Package Microsoft.Owin.Host.SystemWeb
+     ```
 
-* 將 OWIN 啟動類別新增名為 `Startup.cs` 的專案。以滑鼠右鍵按一下專案 --> [新增]  -->  [新增項目] --> 搜尋 "OWIN"。  OWIN 中介軟體將會在應用程式啟動時叫用 `Configuration(...)` 方法。
-* 將類別宣告變更為 `public partial class Startup` ，我們已為您在另一個檔案中實作了此類別的一部分。  在 `Configuration(...)` 方法中，請呼叫 ConfgureAuth(...) 以設定您的 Web 應用程式驗證。  
+2. 若要將 OWIN 啟動類別新增到名為 `Startup.cs` 的專案中，請在專案上按一下滑鼠右鍵，依序選取 [新增]、[新增項目]，然後搜尋 **OWIN**。 OWIN 中介軟體會在應用程式啟動時叫用 **Configuration(...)** 方法。
+3. 將類別宣告變更為 `public partial class Startup`。 我們已在另一個檔案中為您實作此類別的一部分。 請在 **Configuration(...)** 方法中，呼叫 **ConfgureAuth(...)** 來為應用程式設定驗證。  
 
-```C#
-public partial class Startup
-{
-    public void Configuration(IAppBuilder app)
+     ```C#
+     public partial class Startup
+     {
+         public void Configuration(IAppBuilder app)
+         {
+             ConfigureAuth(app);
+         }
+     }
+     ```
+
+4. 開啟 App_Start\Startup.Auth.cs 檔案，然後實作 **ConfigureAuth(...)** 方法。 您在 *OpenIDConnectAuthenticationOptions* 中提供的參數會作為供應用程式與 Azure AD 進行通訊的座標。 您還必須設定 Cookie 驗證，因為 OpenID Connect 中介軟體會在背景中使用 Cookie。
+
+     ```C#
+     public void ConfigureAuth(IAppBuilder app)
+     {
+         app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
+
+         app.UseCookieAuthentication(new CookieAuthenticationOptions());
+
+         app.UseOpenIdConnectAuthentication(
+             new OpenIdConnectAuthenticationOptions
+             {
+                 ClientId = clientId,
+                 Authority = authority,
+                 PostLogoutRedirectUri = postLogoutRedirectUri,
+             });
+     }
+     ```
+
+5. 開啟專案根目錄中的 web.config 檔案，然後在 `<appSettings>` 區段中輸入組態值。
+  * `ida:ClientId`：您在「步驟 1：向 Azure AD 註冊新的應用程式」中從 Azure 入口網站複製的 GUID。
+  * `ida:Tenant`：您 Azure AD 租用戶的名稱 (例如 contoso.onmicrosoft.com)。
+  * `ida:PostLogoutRedirectUri`：告訴 Azure AD 在順利完成登出要求後應將使用者重新導向到何處的指標。
+
+## <a name="step-3-use-owin-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>步驟 3：使用 OWIN 向 Azure AD 發出登入和登出要求
+應用程式現已設定妥當，可使用 OpenID Connect 驗證通訊協定來與 Azure AD 進行通訊。 OWIN 已處理有關製作驗證訊息、驗證來自 Azure AD 的權杖及維護使用者工作階段的一切細節。 剩餘的工作就是提供使用者一個登入和登出的方式。
+
+1. 您可以在控制器中使用授權標籤，以要求使用者在存取特定頁面時先登入。 若要這麼做，請開啟 Controllers\HomeController.cs，然後將 `[Authorize]` 標籤新增到 About 控制器中。
+
+     ```C#
+     [Authorize]
+     public ActionResult About()
+     {
+       ...
+     ```
+
+2. 您也可以使用 OWIN 從程式碼中直接發出驗證要求。 若要這麼做，請開啟 Controllers\AccountController.cs。 然後在 SignIn() 和 SignOut() 動作中，發出 OpenID Connect 挑戰和登出要求。
+
+     ```C#
+     public void SignIn()
+     {
+         // Send an OpenID Connect sign-in request.
+         if (!Request.IsAuthenticated)
+         {
+             HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectAuthenticationDefaults.AuthenticationType);
+         }
+     }
+     public void SignOut()
+     {
+         // Send an OpenID Connect sign-out request.
+         HttpContext.GetOwinContext().Authentication.SignOut(
+              OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType);
+     }
+     ```
+
+3. 開啟 Views\Shared\_LoginPartial.cshtml 以向使用者顯示應用程式登入和登出連結，並在檢視中列印出使用者的名稱。
+
+    ```HTML
+    @if (Request.IsAuthenticated)
     {
-        ConfigureAuth(app);
+     <text>
+         <ul class="nav navbar-nav navbar-right">
+             <li class="navbar-text">
+                 Hello, @User.Identity.Name!
+             </li>
+             <li>
+                 @Html.ActionLink("Sign out", "SignOut", "Account")
+             </li>
+         </ul>
+     </text>
     }
-}
-```
-
-* 開啟檔案 `App_Start\Startup.Auth.cs` 並實作 `ConfigureAuth(...)` 方法。  您在 `OpenIDConnectAuthenticationOptions` 中所提供的參數將會做為您的應用程式與 Azure AD 進行通訊的座標使用。  您還必須設定 Cookie 驗證，OpenID Connect 中介軟體會在表面下使用 Cookie。
-
-```C#
-public void ConfigureAuth(IAppBuilder app)
-{
-    app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
-
-    app.UseCookieAuthentication(new CookieAuthenticationOptions());
-
-    app.UseOpenIdConnectAuthentication(
-        new OpenIdConnectAuthenticationOptions
-        {
-            ClientId = clientId,
-            Authority = authority,
-            PostLogoutRedirectUri = postLogoutRedirectUri,
-        });
-}
-```
-
-* 最後，請開啟專案根目錄中的 `web.config` 檔案，並在 [`<appSettings>`] 區段中輸入您的設定值。
-  * 應用程式的 `ida:ClientId` 是指您在步驟 1 中從 Azure 入口網站複製的 GUID。
-  * `ida:Tenant` 是指您的 Azure AD 租用戶名稱，例如 "contoso.onmicrosoft.com"。
-  * 您的 `ida:PostLogoutRedirectUri` 指出在登出要求成功完成之後，使用者應該要被重新導向至 Azure AD。
-
-## <a name="3-use-owin-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>3.使用 OWIN 向 Azure AD 發出登入和登出要求
-您的應用程式現在已正確設定，將使用 OpenID Connect 驗證通訊協定與 Azure AD 進行通訊。  OWIN 已經處理所有製作驗證訊息、驗證 Azure AD 的權杖和維護使用者工作階段的瑣碎詳細資料。  剩餘的工作就是提供使用者一個登入和登出的方式。
-
-* 您可以在控制器中使用授權標籤，要求使用者在存取特定頁面時登入。  開啟 `Controllers\HomeController.cs`，並在 [關於] 控制器中加入 `[Authorize]` 標籤。
-
-```C#
-[Authorize]
-public ActionResult About()
-{
-  ...
-```
-
-* 您也可以使用 OWIN 從程式碼中直接發出驗證要求。  開啟 `Controllers\AccountController.cs`。  在 SignIn() 和 SignOut() 動作中，將分別發出 OpenID Connect 挑戰和登出要求。
-
-```C#
-public void SignIn()
-{
-    // Send an OpenID Connect sign-in request.
-    if (!Request.IsAuthenticated)
+    else
     {
-        HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectAuthenticationDefaults.AuthenticationType);
+     <ul class="nav navbar-nav navbar-right">
+         <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+     </ul>
     }
-}
-public void SignOut()
-{
-    // Send an OpenID Connect sign-out request.
-    HttpContext.GetOwinContext().Authentication.SignOut(
-        OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType);
-}
-```
+    ```
 
-* 現在，請開啟 `Views\Shared\_LoginPartial.cshtml`。  這裡是您向使用者顯示應用程式的登入和登出連結，以及在檢視中列印出使用者名稱的位置。
+## <a name="step-4-display-user-information"></a>步驟 4：顯示使用者資訊
+當 Azure AD 向 OpenID Connect 驗證使用者時，會將包含「宣告」或使用者相關判斷提示的 id_token 傳回給應用程式。 您可以藉由執行下列操作，使用這些宣告將應用程式個人化：
 
-```HTML
-@if (Request.IsAuthenticated)
-{
-    <text>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="navbar-text">
-                Hello, @User.Identity.Name!
-            </li>
-            <li>
-                @Html.ActionLink("Sign out", "SignOut", "Account")
-            </li>
-        </ul>
-    </text>
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
-```
+1. 開啟 Controllers\HomeController.cs 檔案。 您可以透過 `ClaimsPrincipal.Current` 安全性主體物件來存取控制器中的使用者宣告。
 
-## <a name="4-display-user-information"></a>4.顯示使用者資訊
-使用 OpenID Connect 驗證使用者時，Azure AD 會將包含「宣告」或有關使用者判斷提示的 id_token 傳回給應用程式。  您可以使用這些宣告來個人化應用程式：
+ ```C#
+ public ActionResult About()
+ {
+     ViewBag.Name = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name).Value;
+     ViewBag.ObjectId = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+     ViewBag.GivenName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.GivenName).Value;
+     ViewBag.Surname = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Surname).Value;
+     ViewBag.UPN = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Upn).Value;
 
-* 開啟 `Controllers\HomeController.cs` 檔案。  您可以透過 `ClaimsPrincipal.Current` 安全性主體物件來存取控制器中的使用者宣告。
+     return View();
+ }
+ ```
 
-```C#
-public ActionResult About()
-{
-    ViewBag.Name = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Name).Value;
-    ViewBag.ObjectId = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
-    ViewBag.GivenName = ClaimsPrincipal.Current.FindFirst(ClaimTypes.GivenName).Value;
-    ViewBag.Surname = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Surname).Value;
-    ViewBag.UPN = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Upn).Value;
+2. 建置並執行應用程式。 如果您尚未在網域為 onmicrosoft.com 的租用戶中建立新使用者，現在便可以這麼做。 方式如下：
 
-    return View();
-}
-```
+  a. 以該使用者身分登入，並注意頂端列上所反映的使用者身分識別。
 
-最後，建置並執行您的應用程式！  如果您還沒有這麼做，現在正是使用 *.onmicrosoft.com 網域在租用戶中建立新使用者的好時機。  使用該名使用者登入，並注意上方導覽列如何反映使用者的身分識別。  登出，再以租用戶中的另一個使用者身分重新登入。  如果覺得還不夠，您可以註冊並執行此應用程式的另一個執行個體 (有自己的 clientId)，和監看作用中的單一登入。
+  b. 登出，然後在您的租用戶中以另一個使用者身分登入。
 
-[這裡提供](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip)完整的範例供您參考 (不含您的設定值)。  
+  c. 如果想再多進行一些操作，您還可以註冊並執行此應用程式的另一個執行個體 (使用其自己的 clientId)，然後監看單一登入的運作情況。
 
-您現在可以進入更進階的主題。  您可以嘗試：
+## <a name="next-steps"></a>後續步驟
+如需參考資料，請參閱[完整的範例](https://github.com/AzureADQuickStarts/WebApp-OpenIdConnect-DotNet/archive/complete.zip) (不含您的組態值)。
 
-[使用 Azure AD 保護 Web API >>](active-directory-devquickstarts-webapi-dotnet.md)
+您現在可以繼續前進到更進階的主題。 例如，嘗試[使用 Azure AD 來保護 Web API](active-directory-devquickstarts-webapi-dotnet.md)。
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]
-
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

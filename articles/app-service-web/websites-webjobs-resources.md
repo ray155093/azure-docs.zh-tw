@@ -4,7 +4,7 @@ description: "了解如何使用 Azure WebJobs 和 Azure WebJobs SDK 的建議�
 services: app-service
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: ed005e56-4334-4641-a5e5-15435c2be36b
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: tdykstra
 translationtype: Human Translation
 ms.sourcegitcommit: 80627139ee253bb6a01241e460781519dac69e71
 ms.openlocfilehash: a8541d5bd5e5becb25e8460b6ca774ec6637563a
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -132,10 +133,5 @@ Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能
 * [Azure Web Apps 使用者心聲網站](https://feedback.azure.com/forums/169385-websites/)
 * [Twitter](http://twitter.com/)。 使用雜湊標記 #AzureWebJobs。
 * [報告 WebJobs 錯誤或問題](https://github.com/projectkudu/kudu/wiki/Reporting-WebJobs-issues)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 
