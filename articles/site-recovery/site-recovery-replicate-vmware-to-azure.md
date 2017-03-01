@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 2/17/2017
 ms.author: asgang
 translationtype: Human Translation
-ms.sourcegitcommit: 8f9df48eb93a003f67ad79cc937f41db1531e94d
-ms.openlocfilehash: be280f8de4d2b1316ff6e9e69a4eb93870e8e187
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 54cf67bf630a9de30d4ccafdb09a3f8986c04145
+ms.openlocfilehash: 4415af41cfaf7230f398016e37b8a8cde453fa54
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -29,10 +29,10 @@ ms.lasthandoff: 02/17/2017
 本文說明如何將在 VMware 上執行的虛擬機器設定複寫至 Azure。
 ## <a name="prerequisites"></a>必要條件
 
-本文假設您已經 
+本文假設您已經
 
 1.  [設定內部部署來源環境](site-recovery-set-up-vmware-to-azure.md)
-2.  [在 Azure 中設定目標環境](site-recovery-prepare-target-vmware-to-azure.md) 
+2.  [在 Azure 中設定目標環境](site-recovery-prepare-target-vmware-to-azure.md)
 
 
 ## <a name="enable-replication"></a>啟用複寫
@@ -63,7 +63,7 @@ ms.lasthandoff: 02/17/2017
 
    * 您可以選取進階或標準儲存體帳戶。 如果選取進階帳戶，您需要針對進行中的複寫記錄檔，額外指定一個標準儲存體帳戶。 帳戶必須位於與復原服務保存庫相同的區域中。
    * 如果您想要使用和您所擁有之儲存體帳戶不同的儲存體帳戶，您可以使用資源管理員建立一個建立儲存體帳戶的預留位置連結，這將在＜開始使用＞中涵蓋。 若要使用 Resource Manager 建立儲存體帳戶，請按一下 [新建]。 如果您想要使用傳統模型建立儲存體帳戶，請 [在 Azure 入口網站中](../storage/storage-create-storage-account-classic-portal.md)執行該作業。
- 
+
 
 8. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。 此網路必須位於與復原服務保存庫相同的區域中。 選取 [立即設定選取的機器]，將網路設定套用至您選取要進行保護的所有機器。 選取 [稍後設定] 以選取每部機器的 Azure 網路。 如果您沒有網路，則必須[建立一個](#set-up-an-azure-network)。 若要使用 Resource Manager 建立網路，請按一下 [新建]。 如果您想要使用傳統模型建立網路，請[在 Azure 入口網站中](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)執行該作業。 選取適用的子網路。 然後按一下 [確定] 。
 
@@ -89,7 +89,7 @@ ms.lasthandoff: 02/17/2017
 >
 
 ## <a name="view-and-manage-vm-properties"></a>檢視及管理 VM 屬性
-建議您確認來源機器的屬性。 請記住，Azure VM 名稱應該符合 [Azure 虛擬機器需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
+建議您確認來源機器的屬性。 請記住，Azure VM 名稱應該符合 [Azure 虛擬機器需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
 
 1. 按一下 [設定] > [複寫的項目]，然後選取機器。 [程式集]  刀鋒視窗會顯示機器設定與狀態的相關資訊。
 2. 在 [屬性] 中，您可以檢視 VM 的複寫和容錯移轉資訊。
@@ -115,5 +115,6 @@ ms.lasthandoff: 02/17/2017
 * 針對第 2 代/已啟用 UEFI 的虛擬機器，作業系統系列應為 Windows，而且開機磁碟應小於 300 GB
 
 ## <a name="next-steps"></a>後續步驟
- 
-保護完成之後，您可以嘗試測試容錯移轉，以檢查應用程式是否會出現在 Azure 中。    
+
+保護完成之後，您可以嘗試測試容錯移轉，以檢查應用程式是否會出現在 Azure 中。
+

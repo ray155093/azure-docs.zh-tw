@@ -13,18 +13,20 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/20/2016
+ms.date: 02/27/2017
 ms.author: dimakwan
 translationtype: Human Translation
-ms.sourcegitcommit: 7e10f4d051a484965c7d58de6351dd357aa64c0f
-ms.openlocfilehash: 0c0e682c79a6a25ac29760f649a832f22f39e8b5
+ms.sourcegitcommit: 8078f9822b392af09e00e9bf1e448e0a51994e11
+ms.openlocfilehash: 15707a71500424e4776adc80491af95b57bea222
+ms.lasthandoff: 02/27/2017
 
 
 ---
 # <a name="automate-azure-documentdb-account-management-using-azure-powershell"></a>使用 Azure Powershell 自動化 Azure DocumentDB 帳戶管理
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](documentdb-create-account.md)
-> * [Azure CLI 和 ARM](documentdb-automation-resource-manager-cli.md)
+> * [Azure CLI 1.0](documentdb-automation-resource-manager-cli-nodejs.md)
+> * [Azure CLI 2.0](documentdb-automation-resource-manager-cli.md)
 > * [Azure PowerShell](documentdb-manage-account-with-powershell.md)
 
 下列指南說明使用 Azure Powershell 自動化管理 DocumentDB 資料庫帳戶的命令。 它也包含在[多重區域資料庫帳戶][scaling-globally]中管理帳戶金鑰和容錯移轉優先順序的命令。 更新資料庫帳戶可讓您修改一致性原則和新增/移除區域。 如需跨平台管理 DocumentDB 資料庫帳戶，您可以使用 [Azure CLI](documentdb-automation-resource-manager-cli.md)、[資源提供者 REST API][rp-rest-api] 或 [Azure 入口網站](documentdb-create-account.md)。
@@ -190,8 +192,3 @@ ms.openlocfilehash: 0c0e682c79a6a25ac29760f649a832f22f39e8b5
 [azure-resource-groups]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups
 [azure-resource-tags]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-using-tags
 [rp-rest-api]: https://docs.microsoft.com/en-us/rest/api/documentdbresourceprovider/
-
-
-<!--HONumber=Dec16_HO3-->
-
-

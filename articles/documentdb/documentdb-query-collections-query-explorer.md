@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/10/2017
 ms.author: kirillg
 translationtype: Human Translation
-ms.sourcegitcommit: 3dbf57923e104715d34d1131d16acb6bc6c51637
-ms.openlocfilehash: dcf61a8875793bb9e5ed4eda51f9da14366a4fba
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
+ms.openlocfilehash: c4c2cd8ddcb541b2619f7e1b140222899f15f87c
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -69,7 +69,7 @@ ms.lasthandoff: 02/15/2017
 ![[查詢總管] 查詢錯誤的螢幕擷取畫面](./media/documentdb-query-collections-query-explorer/queryerror.png)
 
 ## <a name="run-documentdb-sql-queries-outside-the-portal"></a>在入口網站外部執行 DocumentDB SQL 查詢
-Azure 入口網站中的 Document Explorer 只是一種對 DocumentDB 執行 SQL 查詢的方法。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 執行 SQL 查詢。 如需使用上述其他方法的詳細資訊，請參閱 [執行 SQL 查詢](documentdb-sql-query.md#executing-sql-queries)
+Azure 入口網站中的 Document Explorer 只是一種對 DocumentDB 執行 SQL 查詢的方法。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 執行 SQL 查詢。 如需使用上述其他方法的詳細資訊，請參閱 [執行 SQL 查詢](documentdb-sql-query.md#ExecutingSqlQueries)
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 [查詢總管] 中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。

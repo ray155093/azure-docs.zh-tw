@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 01/17/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: e9d7e1b5976719c07de78b01408b2546b4fec297
-ms.openlocfilehash: 03aabfd3c86ba80a5af42ffa06cfbd2007f4927c
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 2e4063eabf5a014d3abc14a514fb023d21440b5c
+ms.openlocfilehash: dc135e9400507720d2fd03d33ede9ece1e287778
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -29,56 +29,8 @@ ms.lasthandoff: 02/16/2017
 > 
 > 
 
-## <a name="configure-windows-security-using-gmsa"></a>使用 gMSA 設定 Windows 安全性
-隨著 [Microsoft.Azure.ServiceFabric.WindowsServer.<version>.zip](http://go.microsoft.com/fwlink/?LinkId=730690) 獨立叢集封裝下載的範例 *ClusterConfig.gMSA.Windows.MultiMachine.JSON* 組態檔，包含可供使用[群組受管理服務帳戶 (gMSA)](https://technet.microsoft.com/library/hh831782.aspx) 來設定 Windows 安全性的範本：
-
-```
-"security": {
-            "ServerCredentialType": "Windows",
-            "WindowsIdentities": {
-                "ClustergMSAIdentity": "accountname@fqdn"
-                "ClusterSPN": "fqdn"
-                "ClientIdentities": [
-                    {
-                        "Identity": "domain\\username",
-                        "IsAdmin": true
-                    }
-                ]
-            }
-        }
-```
-
-| **組態設定** | **說明** |
-| --- | --- |
-| WindowsIdentities |包含叢集和用戶端身分識別。 |
-| ClustergMSAIdentity |設定節點對節點安全性。 群組受管理服務帳戶。 |
-| ClusterSPN |gMSA 帳戶的完整網域名稱 SPN|
-| ClientIdentities |設定用戶端對節點安全性。 用戶端使用者帳戶的陣列。 |
-| 身分識別 |用戶端身分識別，即網域使用者。 |
-| IsAdmin |True 表示網域使用者具有系統管理員用戶端存取，False 表示具有使用者用戶端存取。 |
-
-需要在 gMSA 下執行 Service Fabric 時，可透過 **ClustergMSAIdentity** 來設定[節點對節點安全性](service-fabric-cluster-security.md#node-to-node-security)。 為了建置節點之間的信任關係，它們必須注意彼此。 有兩種不同的方式可達成此目的︰指定群組受管理服務帳戶 (其中包含叢集中的所有節點)，或指定包含叢集中所有節點的網域電腦群組。 強烈建議使用 [群組受管理服務帳戶 (gMSA)](https://technet.microsoft.com/library/hh831782.aspx) 方法，特別適合於較大型的叢集 (超過 10 個節點) 或可能會擴大或縮小的叢集。
-此方法不需要建立叢集系統管理員已獲得存取權限的網域群組，即可加入和移除成員。 進行自動密碼管理時，這些帳戶也很有用。 如需詳細資訊，請參閱 [開始使用群組受管理的服務帳戶](http://technet.microsoft.com/library/jj128431.aspx)。
-
-[ClientIdentities](service-fabric-cluster-security.md#client-to-node-security) 可設定 **ClientIdentities**的設定安全性步驟。 若要建立用戶端與叢集之間的信任，您必須設定叢集才能知道用戶端可以信任的身分識別。 有兩種不同的方式可達成此目的︰指定可以連線的網域群組使用者，或指定可以連線的網域節點使用者。 Service Fabric 針對連線到 Service Fabric 叢集的用戶端，支援兩種不同的存取控制類型：系統管理員和使用者。 存取控制可讓叢集系統管理員針對不同的使用者群組限制特定類型的叢集作業的存取權，讓叢集更加安全。  系統管理員可以完整存取管理功能 (包括讀取/寫入功能)。 使用者預設只具有管理功能的讀取存取權 (例如查詢功能)，以及解析應用程式和服務的能力。 如需存取控制的詳細資訊，請參閱[角色型存取控制 (適用於 Service Fabric 用戶端)](service-fabric-cluster-security-roles.md)。
-
-下列範例 **security** 區段可使用 gMSA 設定 Windows 安全性，並指定 *ServiceFabric.clusterA.contoso.com* gMSA 中的電腦隸屬於叢集，而 *CONTOSO\usera* 具有系統管理員用戶端存取權︰
-
-```
-"security": {
-    "WindowsIdentities": {
-        "ClustergMSAIdentity" : "ServiceFabric.clusterA.contoso.com",
-        "ClusterSPN" : "clusterA.contoso.com",
-        "ClientIdentities": [{
-            "Identity": "CONTOSO\\usera",
-            "IsAdmin": true
-        }]
-    }
-}
-```
-
-## <a name="configure-windows-security-using-a-machine-group"></a>使用電腦群組設定 Windows 安全性
-隨著 [Microsoft.Azure.ServiceFabric.WindowsServer.<version>.zip](http://go.microsoft.com/fwlink/?LinkId=730690) 獨立叢集封裝下載的範例 *ClusterConfig.Windows.MultiMachine.JSON* 組態檔包含可供設定 Windows 安全性的範本。  Windows 安全性於 **Properties** 區段中設定︰
+## <a name="configure-windows-security"></a>設定 Windows 安全性  
+隨著 [Microsoft.Azure.ServiceFabric.WindowsServer.<version>.zip](http://go.microsoft.com/fwlink/?LinkId=730690) 獨立叢集封裝下載的範例 *ClusterConfig.Windows.JSON* 組態檔包含可供設定 Windows 安全性的範本。  Windows 安全性於 **Properties** 區段中設定︰ 
 
 ```
 "security": {
@@ -96,11 +48,17 @@ ms.lasthandoff: 02/16/2017
 
 | **組態設定** | **說明** |
 | --- | --- |
-| ClusterCredentialType |如果 ClusterIdentity 指定 Active Directory 電腦群組名稱，則 **ClusterCredentialType** 會設定為 *Windows*。 |
-| ServerCredentialType |將 **ServerCredentialType** 參數設定為 *Windows*可針對用戶端啟用 Windows 安全性。 這表示叢集的用戶端和叢集本身都在 Active Directory 網域內執行。 |
-| ClusterIdentity |設定節點對節點安全性。 電腦群組名稱。 |
-
-如果您想要使用 Active Directory 網域內的電腦群組，可使用 **ClusterIdentity** 來設定[節點對節點安全性](service-fabric-cluster-security.md#node-to-node-security)。 如需詳細資訊，請參閱[在 Active Directory 中建立電腦群組 (Create a Machine Group in Active Directory)](https://msdn.microsoft.com/en-us/library/aa545347(v=cs.70).aspx)。
+| ClusterCredentialType |將 **ClusterCredentialType** 參數設定為 *Windows*可啟用 Windows 安全性。 | 
+| ServerCredentialType |將 **ServerCredentialType** 參數設定為 *Windows*可針對用戶端啟用 Windows 安全性。 這表示叢集的用戶端和叢集本身都在 Active Directory 網域內執行。 |  
+| WindowsIdentities |包含叢集和用戶端身分識別。 |  
+| ClusterIdentity |設定節點對節點安全性。 電腦群組名稱。 |  
+| ClientIdentities |設定用戶端對節點安全性。 用戶端使用者帳戶的陣列。 |  
+| 身分識別 |用戶端身分識別，即網域使用者。 |  
+| IsAdmin |True 表示網域使用者具有系統管理員用戶端存取，False 表示具有使用者用戶端存取。 |  
+  
+[ClusterIdentity](service-fabric-cluster-security.md#node-to-node-security) 可設定 **ClusterIdentity**的設定安全性步驟。 為了建置節點之間的信任關係，它們必須注意彼此。 可以藉由建立其中包含叢集中所有節點的網域群組來達到此目的。 此群組名稱應指定於 **ClusterIdentity**。 如需詳細資訊，請參閱[在 Active Directory 中建立群組](https://msdn.microsoft.com/library/aa545347(v=cs.70).aspx)。  
+    
+[ClientIdentities](service-fabric-cluster-security.md#client-to-node-security) 可設定 **ClientIdentities**的設定安全性步驟。 若要建立用戶端與叢集之間的信任，您必須設定叢集才能知道用戶端可以信任的身分識別。 有兩種不同的方式可達成此目的︰指定可以連線的網域群組使用者，或指定可以連線的網域節點使用者。 Service Fabric 針對連線到 Service Fabric 叢集的用戶端，支援兩種不同的存取控制類型：系統管理員和使用者。 存取控制可讓叢集系統管理員針對不同的使用者群組限制特定類型的叢集作業的存取權，讓叢集更加安全。  系統管理員可以完整存取管理功能 (包括讀取/寫入功能)。 使用者預設只具有管理功能的讀取存取權 (例如查詢功能)，以及解析應用程式和服務的能力。  
 
 下列範例 **security** 區段可設定 Windows 安全性，並指定 *ServiceFabric/clusterA.contoso.com* 中的電腦隸屬於叢集，而 *CONTOSO\usera* 具有系統管理員用戶端存取權︰
 

@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/19/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 080dce21c2c803fc05c945cdadb1edd55bd7fe1c
-ms.openlocfilehash: 266b9d0e36aa5e3bef9b689e7602449fbe86b3cd
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
+ms.openlocfilehash: c4129d5b5ebd0295035e81760b2a39f3caf16499
+ms.lasthandoff: 02/23/2017
 
 ---
 
@@ -385,7 +385,7 @@ Site Recovery 會提供 Capacity Planner 以協助您為來源環境、Site Reco
 [深入了解](site-recovery-failover.md)不同類型的容錯移轉，以及每一種容錯移轉的執行時機與方式的詳細描述。
 
 > [!NOTE]
-> 如果您打算將虛擬機器移轉至 Azure，強烈建議您使用[計劃性容錯移轉作業](site-recovery-failover.md#run-a-planned-failover-primary-to-secondary)將虛擬機器移轉至 Azure。 使用測試容錯移轉在 Azure 中驗證所移轉的應用程式之後，請使用[完成移轉](#Complete-migration-of-your-virtual-machines-to-Azure)底下所提到的步驟來完成虛擬機器的移轉。 您不需要執行「認可」或「刪除」。 「完成移轉」會完成移轉、移除虛擬機器的保護，以及停止該機器的 Azure Site Recovery 計費。
+> 如果您打算將虛擬機器移轉至 Azure，強烈建議您使用[計劃性容錯移轉作業](site-recovery-failover.md)將虛擬機器移轉至 Azure。 使用測試容錯移轉在 Azure 中驗證所移轉的應用程式之後，請使用[完成移轉](#Complete-migration-of-your-virtual-machines-to-Azure)底下所提到的步驟來完成虛擬機器的移轉。 您不需要執行「認可」或「刪除」。 「完成移轉」會完成移轉、移除虛擬機器的保護，以及停止該機器的 Azure Site Recovery 計費。
 
 
 ### <a name="run-a-planned-failover"></a>執行計劃性容錯移轉
@@ -408,7 +408,7 @@ Site Recovery 會提供 Capacity Planner 以協助您為來源環境、Site Reco
 4. 選取 [關閉虛擬機器並同步處理最新資料]  ，來指定 Site Recovery 應嘗試關閉受保護的虛擬機器並同步處理資料，以便為最新的資料版本進行容錯移轉。
 5. 容錯移轉之後，虛擬機器就會處於 認可擱置中狀態。  按一下 [認可]  以認可容錯移轉。
 
-[深入了解](site-recovery-failover.md#run-an-unplanned-failover)
+[深入了解](site-recovery-failover.md)
 
 ## <a name="complete-migration-of-your-virtual-machines-to-azure"></a>完成將虛擬機器移轉至 Azure 的移轉
 > [!NOTE]

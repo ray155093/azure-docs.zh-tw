@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 04/13/2016
 ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 652a8a0dcb3216e9b762b85de56673beda74edc4
-ms.openlocfilehash: 83470aaf607a666a63bae5b9897d0b273e327377
+ms.sourcegitcommit: 1cb57e5156dab976599ddfa9a58f26ca8ef1ee0e
+ms.openlocfilehash: 54afb2f55ef9ff48448c63bc8ee8e745765f61e6
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -96,15 +97,10 @@ ms.openlocfilehash: 83470aaf607a666a63bae5b9897d0b273e327377
 ## <a name="create-the-policy"></a>建立原則
 直接使用 REST API 或 PowerShell Cmdlet 可以輕鬆地建立原則。 如需建立原則的詳細資訊，請參閱下文︰
 
-* [建立原則](../azure-resource-manager/resource-manager-policy.md#create-and-assign-a-policy)
+* [建立原則](../azure-resource-manager/resource-manager-policy.md)
 
 ## <a name="apply-the-policy"></a>套用原則
 建立原則之後，您需要為定義的範圍加以套用。 範圍可以是訂用帳戶、資源群組，甚至是資源。 如需套用原則的詳細資訊，請參閱下文︰
 
-* [建立原則](../azure-resource-manager/resource-manager-policy.md#create-and-assign-a-policy)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
+* [建立原則](../azure-resource-manager/resource-manager-policy.md)
 

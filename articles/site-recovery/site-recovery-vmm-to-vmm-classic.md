@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: e1e30e34e696b499c17656535d71fc6eb0a987ba
-ms.openlocfilehash: ebde5715ff595b8b76d2500e445f4e51a21cce0e
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
+ms.openlocfilehash: 89a54a83e6708da8e7fd91923c3ef71d8371f8f3
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -254,7 +254,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 ### <a name="run-a-test-failover"></a>執行測試容錯移轉
 1. 在 [復原計畫] 索引標籤上，選取計畫，然後按一下 [測試容錯移轉]。
-2. 在 [確認測試容錯移轉] 頁面上，選取 [無]。 請注意，啟用此選項時，容錯移轉複本虛擬機器將不會連線到任何網路。 這將會測試虛擬機器是否依照預期執行容錯移轉，但是不會測試您的複寫網路環境。 請參閱 [執行測試容錯移轉](site-recovery-failover.md#run-a-test-failover) 中有關如何使用不同網路選項的詳細資訊。
+2. 在 [確認測試容錯移轉] 頁面上，選取 [無]。 請注意，啟用此選項時，容錯移轉複本虛擬機器將不會連線到任何網路。 這將會測試虛擬機器是否依照預期執行容錯移轉，但是不會測試您的複寫網路環境。 請參閱 [執行測試容錯移轉](site-recovery-failover.md) 中有關如何使用不同網路選項的詳細資訊。
 3. 測試虛擬機器將建立在複本虛擬機器所在的相同主機上。 它會新增至複本虛擬機器所在的相同雲端。
 
 ### <a name="run-a-recovery-plan"></a>執行復原計畫

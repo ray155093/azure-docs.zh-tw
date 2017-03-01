@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/21/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: a084cecddc2af36ee087b2e0e63a2b18b20f07f0
-ms.openlocfilehash: 0c2ca459a691b353a528edc48f4d13c231a440c4
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
+ms.openlocfilehash: 2bd4b44bea641bcfcb576f0ba5d53564277dfe34
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -242,7 +242,7 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 
 如果您想要執行測試容錯轉移，卻不想指定 Azure 網路，您不需要作任何準備。
 
-若要以目標 Azure 網路執行測試容錯移轉，您必須建立與您的 Azure 正式作業網路 (當您在 Azure 中建立新網路時的預設行為) 分隔的新的 Azure 網路。 如需詳細資訊，請參閱 [執行測試容錯移轉](site-recovery-failover.md#run-a-test-failover) 。
+若要以目標 Azure 網路執行測試容錯移轉，您必須建立與您的 Azure 正式作業網路 (當您在 Azure 中建立新網路時的預設行為) 分隔的新的 Azure 網路。 如需詳細資訊，請參閱 [執行測試容錯移轉](site-recovery-failover.md) 。
 
 若要完整測試您的複寫和網路部署，您必須針對複寫虛擬機器設定基礎結構，以如預期般運作。 其中一個方式是將虛擬機器設定為具有 DNS 的網域控制站，並且使用 Site Recovery 將其複寫至 Azure，以藉由執行測試容錯移轉在測試網路中建立它。  [深入了解](site-recovery-active-directory.md#test-failover-considerations) Active Directory 的測試容錯移轉考量。
 

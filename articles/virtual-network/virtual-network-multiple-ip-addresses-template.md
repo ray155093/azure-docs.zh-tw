@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 12/08/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 3eda8b459b5f095a40c6ea1ed355472daf23a6e3
-ms.openlocfilehash: ae5c430e702b561ddf156aa29016cfec6a0a8153
+ms.sourcegitcommit: 1cb57e5156dab976599ddfa9a58f26ca8ef1ee0e
+ms.openlocfilehash: 080404a7b4fde0e2fd8b8be407090190d07c6f2a
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -122,7 +123,7 @@ ms.openlocfilehash: ae5c430e702b561ddf156aa29016cfec6a0a8153
 
     不論您選擇用來部署範本的選項為何，您必須提供這篇文章的[參數](#parameters)一節中所列的參數值。 如果您選擇使用參數檔案提供參數，將[參數檔案](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json)的內容從 GitHub 複製到您的電腦上的新檔案。 修改檔案中的值。 使用您建立的檔案做為 `-TemplateParameterFile` 參數的值。
     
-    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md#powershell)文章中的步驟。
+    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md)文章中的步驟。
 
     >[!TIP]
     >如果您不確定 dnslabelprefix 是否可供使用，請輸入 `Test-AzureRmDnsAvailability -DomainNameLabel <name-you-want-to-use> -Location <location>` 命令以了解。 如果可以使用，命令會傳回 `True`。
@@ -157,14 +158,9 @@ ms.openlocfilehash: ae5c430e702b561ddf156aa29016cfec6a0a8153
 
     不論您選擇用來部署範本的選項為何，您必須提供這篇文章的[參數](#parameters)一節中所列的參數值。 如果您選擇使用參數檔案提供參數，將[參數檔案](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json)的內容從 GitHub 複製到您的電腦上的新檔案。 修改檔案中的值。 使用您建立的檔案做為 `--parameters-file` (-e) 參數的值。
     
-    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md#azure-cli-10)文章中的步驟。
+    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md)文章中的步驟。
 
 3. 部署 VM 之後，連接至 VM 並且將私人 IP 位址新增至您部署的作業系統，方法是完成本文的[將 IP 位址新增至 VM 作業系統](#os-config)一節中的步驟。 請勿將公用 IP 位址新增至作業系統。
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-os-config.md](../../includes/virtual-network-multiple-ip-addresses-os-config.md)]
-
-
-
-<!--HONumber=Feb17_HO4-->
-
 

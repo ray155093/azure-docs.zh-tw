@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/18/2017
+ms.date: 02/22/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 4dfd9690f2e3e017ca308649f79a84466d49d844
-ms.openlocfilehash: 91ee5da0885fc0b044150e524757eac659a003a4
+ms.sourcegitcommit: e37f1716b459ea8eb0f2d0a5a12e7a3a8ab2c083
+ms.openlocfilehash: e2ec0cefb6e009f22c3406ccd1570748dc467ed0
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -135,7 +136,7 @@ Microsoft 安全性研究人員發現外洩的認證公開張貼於黑暗網路 
 | 從匿名 IP 位址登入 |從不明來源登入 |
 | 從具有可疑活動的 IP 位址登入 |從具有可疑活動的 IP 位址登入 |
 | 從不熟悉的位置登入 |- |
-| 鎖定事件 |- |
+
 
 下列 Azure AD 異常活動報告不會納入為 Azure AD Identity Protection 中的風險事件，因此不會透過 Identity Protection 提供。 這些報告仍可在 Azure 傳統入口網站中取得。 不過，這些報告將在未來某個時候淘汰，因為它們正由 Identity Protection 中的風險事件所取代。
 
@@ -149,10 +150,5 @@ Microsoft 安全性研究人員發現外洩的認證公開張貼於黑暗網路 
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 
