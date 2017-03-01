@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/28/2017
+ms.date: 02/15/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 80a706aad4ce05777cd2df59ab2504e696b02781
-ms.openlocfilehash: a8b702e2523658b59faf3ee7dace6c711210a6f7
+ms.sourcegitcommit: e208b2bf861d698901b287458a3969e833540e44
+ms.openlocfilehash: f8f67af3cb6adb333924714bd758609b950845af
+ms.lasthandoff: 02/17/2017
 
 ---
 
@@ -61,13 +62,24 @@ SSO 是一個透過 Azure AD Connect 啟用的功能，且會和密碼同步處�
 
 首先，使用者嘗試存取資源，而此資源信任由 Azure AD (例如 SharePoint Online) 簽發的權杖。 接著 SharePoint Online 會將使用者重新導向去向 Azure AD 驗證。 然後，使用者提供他們的使用者名稱，好讓 Azure AD 可以確認他們的組織是否已啟用單一登入。 假設組織已啟用單一登入，會發生下列傳輸。
 
-1.  Azure AD 資源會透過 401 未授權回應挑戰用戶端，以提供 Kerberos 票證。
-2.  用戶端向 Active Directory 要求 Azure AD 的票證。
-3.  Active Directory 會找出 Azure AD Connect 建立的電腦帳戶，將 Kerberos 票證傳回給用戶端 (使用電腦帳戶的密碼加密)。 票證包括目前已登入電腦之使用者的身分識別。
-4.  用戶端將它向 Active Directory 取得的 Kerberos 票證傳遞至 Azure AD。
-5.  Azure AD 會使用之前共用的金鑰將 Kerberos 票證解密。 然後它會將權杖傳回給使用者，或依照資源的要求來要求使用者提供其他證明，例如多重要素驗證。
+1.    Azure AD 資源會透過 401 未授權回應挑戰用戶端，以提供 Kerberos 票證。
+2.    用戶端向 Active Directory 要求 Azure AD 的票證。
+3.    Active Directory 會找出 Azure AD Connect 建立的電腦帳戶，將 Kerberos 票證傳回給用戶端 (使用電腦帳戶的密碼加密)。 票證包括目前已登入電腦之使用者的身分識別。
+4.    用戶端將它向 Active Directory 取得的 Kerberos 票證傳遞至 Azure AD。
+5.    Azure AD 會使用之前共用的金鑰將 Kerberos 票證解密。 然後它會將權杖傳回給使用者，或依照資源的要求來要求使用者提供其他證明，例如多重要素驗證。
 
 單一登入是一個隨機功能，這表示如果它因為某些原因而失敗，使用者只需要像平常一樣在登入頁面上輸入他們的密碼即可。
+
+## <a name="single-sign-on-sso-prerequisites"></a>單一登入 (SSO) 先決條件
+如果您要啟用「單一登入」搭配「傳遞驗證」，則只需要符合「傳遞驗證」的先決條件。
+
+如果您要啟用「單一登入」搭配「密碼同步化」，而且如果 Azure AD Connect 和 Azure AD 之間有防火牆，請確定︰
+- Azure AD Connect 伺服器可以與 *.msappproxy.net 通訊。
+- Azure AD Connect 可以在下列連接埠向 Azure AD發出 HTTPS 要求：
+
+|通訊協定|連接埠號碼|說明
+| --- | --- | ---
+|HTTPS|9090|    啟用 SSO 註冊 (只有在 SSO 註冊程序才需要)。
 
 ## <a name="enabling-sso-with-pass-through-authentication-or-password-sync"></a>搭配傳遞驗證或密碼同步處理來啟用 SSO
 Azure AD Connect 提供簡單的程序來搭配傳遞驗證或密碼同步處理啟用單一驗證。 請確保您擁有每個樹系內要同步處理的其中一個網域的網域系統管理員權限，才能允許在電腦帳戶上使用 Kerberos 服務主體名稱 (SPN) 的組態。 使用者名稱和密碼不會儲存在 Azure AD Connect 或 Azure AD 中，並且僅用於這項作業。
@@ -90,20 +102,20 @@ Azure AD Connect 提供簡單的程序來搭配傳遞驗證或密碼同步處理
 
 由於用於 Azure AD 中單一登入的 URL 包含句號，您必須明確地將它們新增到電腦的內部網路區域。 此設定會使瀏覽器將目前登入之使用者的認證，以 Kerberos 票證的形式傳送到 Azure AD。 將所需 URL 加入到內部網路區域的最簡單方式，是在 Active Directory 中建立群組原則。
 
-1.  開啟 [群組原則管理工具]。
-2.  編輯要套用到所有使用者的群組原則 (例如**預設網域原則**)。
-3.  瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security 頁面**，並選取 [指派網站到區域清單]。
+1.    開啟 [群組原則管理工具]。
+2.    編輯要套用到所有使用者的群組原則 (例如**預設網域原則**)。
+3.    瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security 頁面**，並選取 [指派網站到區域清單]。
 ![單一登入](./media/active-directory-aadconnect-sso/sso6.png)  
-4.  啟用原則，並在對話方塊中輸入下列值/資料。  
+4.    啟用原則，並在對話方塊中輸入下列值/資料。  
 
-        Value: https://autologon.microsoftazuread-sso.com  
-        Data: 1  
-        Value: https://aadg.windows.net.nsatc.net  
-        Data: 1  
-5.  看起來應該會像下面這樣：  
+        值︰https://autologon.microsoftazuread-sso.com  
+        資料︰1  
+        值︰https://aadg.windows.net.nsatc.net  
+        資料︰1  
+5.    看起來應該會像下面這樣：  
 ![單一登入](./media/active-directory-aadconnect-sso/sso7.png)
 
-6.  按一下 [確定]，然後再按一下 [確定]。
+6.    按一下 [確定]，然後再按一下 [確定]。
 
 您的使用者現在已經可以開始進行單一登入。
 
@@ -113,12 +125,12 @@ Azure AD Connect 提供簡單的程序來搭配傳遞驗證或密碼同步處理
 ## <a name="troubleshooting-single-sign-on-issues"></a>針對單一登入問題進行疑難排解
 請務必確定已針對單一登入正確設定用戶端，包括下列項目：
 
-1.  已在內部網路區域內定義 https://autologon.microsoftazuread-sso.com 和 https://aadg.windows.net.nsatc.net。
-2.  確定工作站已經加入網域。
-3.  確定使用者已經使用網域帳戶登入。
-4.  確定電腦已經連線到公司網路。
-5.  確定電腦的時間已經與 Active Directory 同步，且網域控制站時間是在正確時間的 5 分鐘內。
-6.  清除用戶端現有的 Kerberos 票證，例如從命令提示字元執行 **klist purge** 命令。
+1.    已在內部網路區域內定義 https://autologon.microsoftazuread-sso.com 和 https://aadg.windows.net.nsatc.net。
+2.    確定工作站已經加入網域。
+3.    確定使用者已經使用網域帳戶登入。
+4.    確定電腦已經連線到公司網路。
+5.    確定電腦的時間已經與 Active Directory 同步，且網域控制站時間是在正確時間的 5 分鐘內。
+6.    清除用戶端現有的 Kerberos 票證，例如從命令提示字元執行 **klist purge** 命令。
 
 如果您已經能夠確認上述需求，您就可以檢閱瀏覽器的主控台記錄檔，以了解其他資訊。 主控台記錄檔可以在開發人員工具底下找到。 這些記錄檔可協助您判斷潛在問題。
 
@@ -132,9 +144,4 @@ Azure AD Connect 提供簡單的程序來搭配傳遞驗證或密碼同步處理
       </Query>
     </QueryList>
 ```
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

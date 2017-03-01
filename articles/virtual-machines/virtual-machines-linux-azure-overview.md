@@ -15,8 +15,9 @@ ms.workload: infrastructure
 ms.date: 09/14/2016
 ms.author: squillace
 translationtype: Human Translation
-ms.sourcegitcommit: 4d2bd4bbcaf889ee25cc4567772384b167166c10
-ms.openlocfilehash: 736f30768da968f8e1d39ff94fe9de66cc219321
+ms.sourcegitcommit: 50f3c56daaa28b1f28e201ec0502a91804313e5f
+ms.openlocfilehash: 111a80548982a1dab529d9dd6fb46eb759b7f908
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -80,6 +81,8 @@ Azure 將針對支援 [cloud-init](http://cloud-init.io/) 的大多數 Linux 散
 Microsoft 與我們的合作夥伴密切合作，以確保更新可用的映像並針對 Azure 執行階段進行最佳化。  如需有關我們合作夥伴的詳細資訊，請查看下方他們的市集頁面。
 
 [Azure 背書散發套件上的 Linux](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+
+SUSE - [Azure Marketplace - SUSE Linux Enterprise Server](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=%27SUSE%27)
 
 Redhat - [Azure Marketplace - RedHat Enterprise Linux 7.2](https://azure.microsoft.com/marketplace/partners/redhat/redhatenterpriselinux72/)
 
@@ -151,9 +154,4 @@ VM 現在已在 Azure 上執行，而您已經可以登入。  使用密碼透�
 
 * [使用入口網站在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [使用 CLI 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

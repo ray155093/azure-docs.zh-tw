@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 11/30/2016
 ms.author: jdial;annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 394315f81cf694cc2bb3a28b45694361b11e0670
-ms.openlocfilehash: 2a384c1a9af076205d4d0ae12e0a5f9e63b076d1
+ms.sourcegitcommit: f179a19dd3a126d23c33520a428a8c3a644f4171
+ms.openlocfilehash: 08a1399e702dbf9222b8412950ee62509b53ef76
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -89,7 +90,7 @@ ms.openlocfilehash: 2a384c1a9af076205d4d0ae12e0a5f9e63b076d1
     
     ```powershell
     $IpConfigName2 = "IPConfig-2"
-    $IPAddress     = 10.0.0.5
+    $IPAddress     = "10.0.0.5"
     $myPublicIp2   = New-AzureRmPublicIpAddress -Name "myPublicIp2" -ResourceGroupName $myResourceGroup `
     -Location $location -AllocationMethod Static
     $IpConfig2     = New-AzureRmNetworkInterfaceIpConfig -Name $IpConfigName2 `
@@ -132,9 +133,7 @@ ms.openlocfilehash: 2a384c1a9af076205d4d0ae12e0a5f9e63b076d1
 您可以完成後續步驟，將私人和公用 IP 位址新增至 NIC。 下列各節中的範例假設您已經有一個 VM，其具有本文中的[案例](#Scenario)所述的三項 IP 組態，您不需要進行設定。
 
 1. 開啟 PowerShell 命令提示字元，在單一 PowerShell 工作階段內完成本節中其餘的步驟。 如果您尚未安裝和設定 PowerShell，請先完成 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 文章中的步驟。
-2. 若要註冊以進行預覽，請將電子郵件傳送至[多個 IP](mailto:MultipleIPsPreview@microsoft.com?subject=Request%20to%20enable%20subscription%20%3csubscription%20id%3e)，並註明您的訂用帳戶 ID 與用途。 請勿嘗試完成剩餘步驟︰
-    - 除非收到電子郵件，通知已接受您進行預覽
-    - 除非遵循您收到之電子郵件中的指示
+2. 遵循＜**建立具有多個 IP 位址的 VM**＞中步驟 2 的做法註冊公用預覽。
 3. 將下列 $Variables 的「值」變更為您想要對其新增 IP 位址的 NIC 名稱，以及 NIC 所在的資源群組和位置︰
 
     ```powershell
@@ -252,8 +251,4 @@ ms.openlocfilehash: 2a384c1a9af076205d4d0ae12e0a5f9e63b076d1
 9. 完成本文的[將 IP 位址新增至 VM 作業系統](#os-config)一節中適用於您的作業系統的步驟，將私人 IP 位址新增至 VM 作業系統。 請勿將公用 IP 位址新增至作業系統。
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-os-config.md](../../includes/virtual-network-multiple-ip-addresses-os-config.md)]
-
-
-<!--HONumber=Feb17_HO2-->
-
 

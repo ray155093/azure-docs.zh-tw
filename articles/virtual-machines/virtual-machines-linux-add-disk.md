@@ -1,6 +1,6 @@
 ---
-title: "在 Linux VM 中新增磁碟 | Microsoft Docs"
-description: "了解如何在 Linux VM 中新增永續性磁碟"
+title: "使用 Azure CLI 在 Linux VM 中新增磁碟 | Microsoft Docs"
+description: "了解如何使用 Azure CLI 1.0 和 2.0 在 Linux VM 中新增永續性磁碟。"
 keywords: "linux 虛擬機器,新增資源磁碟"
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,14 +16,15 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.date: 02/02/2017
 ms.author: rasquill
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 50a71382982256e98ec821fd63c95fbe5a767963
-ms.openlocfilehash: 91f4ada749c3f37903a8757843b10060b73d95a2
-
+ms.sourcegitcommit: f520ed9cc1a3a7063d5b3ddacf7f0c8174e75a36
+ms.openlocfilehash: 77cbdaaea0eec5265ef005f66dd5efdd8e237022
+ms.lasthandoff: 02/21/2017
 
 ---
 # <a name="add-a-disk-to-a-linux-vm"></a>在 Linux VM 中新增磁碟
-本文說明如何將持續性磁碟連接到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。 若要新增磁碟，您需要在 Resource Manager 模式中設定的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。  
+本文說明如何將持續性磁碟連接到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。 
 
 ## <a name="quick-commands"></a>快速命令
 下列範例會將 `50`GB 磁碟附加至名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
@@ -31,13 +32,15 @@ ms.openlocfilehash: 91f4ada749c3f37903a8757843b10060b73d95a2
 若要使用受控磁碟：
 
 ```azurecli
-az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk –-new
+az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk \
+  –-new --size-gb 50
 ```
 
 若要使用非受控磁碟：
 
 ```azurecli
-azure vm disk attach-new myResourceGroup myVM 50
+az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM \
+  --new --size-gb 50
 ```
 
 ## <a name="attach-a-managed-disk"></a>附加受控磁碟
@@ -50,17 +53,18 @@ azure vm disk attach-new myResourceGroup myVM 50
 如果您的 VM 上只需要新磁碟，您可以使用 `az vm disk attach` 命令。
 
 ```azurecli
-az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk –-new
+az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk \
+  –-new --size-gb 50
 ```
 
 ### <a name="attach-an-existing-disk"></a>連接現有磁碟 
 
-在許多情況下，您可以附加已建立的磁碟。 您會先尋找磁碟識別碼，接著將該識別碼傳遞至 `az vm disk attach-disk` 命令。 下列程式碼會使用以 `az disk create -g myResourceGroup -n myDataDisk --size-gb 50` 建立的磁碟。
+在許多情況下，您可以附加已建立的磁碟。 您要先找出磁碟識別碼，接著將該識別碼傳遞至 `az vm disk attach` 命令。 下列範例會使用以 `az disk create -g myResourceGroup -n myDataDisk --size-gb 50` 建立的磁碟。
 
 ```azurecli
 # find the disk id
 diskId=$(az disk show -g myResourceGroup -n myDataDisk --query 'id' -o tsv)
-az vm disk attach-disk -g myResourceGroup --vm-name myVM --disk $diskId
+az vm disk attach -g myResourceGroup --vm-name myVM --disk $diskId
 ```
 
 輸出如下所示 (您可將 `-o table` 選項使用於任何命令，以格式化輸出)：
@@ -96,22 +100,13 @@ az vm disk attach-disk -g myResourceGroup --vm-name myVM --disk $diskId
 如果您不介意在與您的 VM 相同的儲存體帳戶中建立磁碟，附加新磁碟便很快速。 輸入 `azure vm disk attach-new` ，就能為 VM 建立並連接新的 GB 磁碟。 如果您未明確識別儲存體帳戶，則您所建立的任何磁碟都會放在作業系統磁碟所在的相同儲存體帳戶中。 下列範例會將 `50`GB 磁碟附加至名為 `myResourceGroup` 的資源群組中名為 `myVM` 的 VM：
 
 ```azurecli
-azure vm disk attach-new myResourceGroup myVM 50
-```
-
-輸出
-
-```azurecli
-info:    Executing command vm disk attach-new
-+ Looking up the VM "myVM"
-info:    New data disk location: https://mystorageaccount.blob.core.windows.net/vhds/myVM-20150526-043.vhd
-+ Updating VM "myVM"
-info:    vm disk attach-new command OK
+az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM \
+  --new --size-gb 50
 ```
 
 ## <a name="connect-to-the-linux-vm-to-mount-the-new-disk"></a>連接到 Linux VM 以掛接新磁碟
 > [!NOTE]
-> 本主題會利用使用者名稱和密碼連線到 VM。 若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱 [如何搭配使用 SSH 與 Azure 上的 Linux](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 您可以修改利用 `azure vm quick-create` 命令建立之 VM 的**SSH** 連線能力，方法為使用 `azure vm reset-access` 命令來完全地重設 **SSH** 存取、新增或移除使用者，或新增公開金鑰檔案來保護存取安全。
+> 本主題會利用使用者名稱和密碼連線到 VM。 若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱 [如何搭配使用 SSH 與 Azure 上的 Linux](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
 > 
 > 
 
@@ -348,10 +343,5 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail 
 * 請記住，如果將新磁碟重新開機，除非您將該資訊寫入 [/etc/fstab](http://en.wikipedia.org/wiki/Fstab) 檔案，否則該磁碟無法供 VM 使用。
 * 若要確保您的 Linux VM 已正確設定，請檢閱 [最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 建議。
 * 新增其他磁碟以擴充儲存體容量，並 [設定 RAID](virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 以提升效能。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 
