@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/16/2017
 ms.author: cjiang
 translationtype: Human Translation
-ms.sourcegitcommit: a8e6423020fc0b669aad2bc48198c1df84db4dd2
-ms.openlocfilehash: 18de4326edef50953c972e17cc9e75ea85a1fb82
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 1cb57e5156dab976599ddfa9a58f26ca8ef1ee0e
+ms.openlocfilehash: 42db903244e5642dbf273e71994d402f8aeda1e9
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/17/2017
 如果您要讓 Azure Active Directory 執行個體中的使用者擁有 Office 365 訂用帳戶，或您有 Office 365 帳戶但沒有 Azure 帳戶，請參閱[使用 Office 365 帳戶註冊 Azure](billing-use-existing-office-365-account-azure-subscription.md)。 
 
 ## <a name="before-you-begin"></a>開始之前
-* 您必須有 Azure 訂用帳戶服務的系統管理員認證。 共同管理員無法執行本文中某些步驟。 若要變更服務管理員，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md#how-to-change-service-administrator-for-a-subscription)。
+* 您必須有 Azure 訂用帳戶服務的系統管理員認證。 共同管理員無法執行本文中某些步驟。 若要變更服務管理員，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md#change-service-administrator-for-a-subscription)。
 * 您必須有 Office 365 租用戶的全域系統管理員認證。
 * 服務管理員的電子郵件地址不得位於 Office 365 租用戶中。
 * 服務管理員的電子郵件地址不得符合 Office 365 租用戶的任何全域系統管理員。

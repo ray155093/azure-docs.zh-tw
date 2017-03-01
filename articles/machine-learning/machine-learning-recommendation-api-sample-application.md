@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: luisca
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 26c492ebdb40bef23247487c2f3015ecd9314cb6
+ms.sourcegitcommit: 29c718d0c34d1e2f9d17b285a7270541a9ff15cf
+ms.openlocfilehash: 9afbae9b7c24c72cbb2ef64e693f7a317dc81a46
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -61,7 +62,7 @@ ms.openlocfilehash: 26c492ebdb40bef23247487c2f3015ecd9314cb6
 您通常會在特定期間叫用「取得建議」。 在該段時間，您可以將使用量資料重新導向至機器學習服務建議系統，它會將此資料加入至指定的模型容器。 當您有足夠的使用量資料時，您可以建立新的建議模型，其中包含額外的使用量資料。 
 
 ## <a name="prerequisites"></a>必要條件
-* Visual Studio 2013
+* Visual Studio 2013 或更新版本
 * 網際網路存取 
 * Recommendations API 的訂用帳戶 (https://datamarket.azure.com/dataset/amla/recommendations)。
 
@@ -90,10 +91,5 @@ ms.openlocfilehash: 26c492ebdb40bef23247487c2f3015ecd9314cb6
 
 ## <a name="disclaimer"></a>免責聲明
 範例應用程式並非預期在實際執行環境中執行。 目錄中提供的資料太小，而且它將不會提供有意義的建議模型。 提供資料基於示範目的。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2615e5c063a54b8cebc208c155f99460fcfa7e05
+ms.sourcegitcommit: 51901a28878f25292ba3d09848bc45a04f867345
+ms.openlocfilehash: 75fb695ea2ce9d859119445ae42eb170a9493876
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -75,7 +76,7 @@ ms.openlocfilehash: 2615e5c063a54b8cebc208c155f99460fcfa7e05
 | 元素名稱 | 必要？ | 說明 |
 | --- | --- | --- |
 | 類型 |是 |參數值類型。 請參閱下列允許的類型清單： |
-| displayName    是 |為實驗室中的使用者顯示的參數名稱。 | |
+| displayName |是 |為實驗室中的使用者顯示的參數名稱。 | |
 | 說明 |是 |在實驗室中顯示的參數說明。 |
 
 允許的類型為：
@@ -129,10 +130,5 @@ ms.openlocfilehash: 2615e5c063a54b8cebc208c155f99460fcfa7e05
 
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [將 Git 構件儲存機制加入實驗室](devtest-lab-add-artifact-repo.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
