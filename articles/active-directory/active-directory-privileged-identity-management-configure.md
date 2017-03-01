@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/14/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 71eb6a2fecbd76c9715b9a556a7ffd31b5b4950e
-ms.openlocfilehash: 6b788b3120565895e908bdfc4c9267e715bc5bec
+ms.sourcegitcommit: b52a475008c9d15912c0b363d76118df74112107
+ms.openlocfilehash: b289b9befc67d01689fa87db955b1a10c210a724
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -35,7 +36,7 @@ Azure AD Privileged Identity Management 可協助您：
 * 取得有關系統管理員存取記錄與系統管理員指派變更的報告
 * 取得有關特殊權限角色存取的警示
 
-Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角色，包括：  
+Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角色，包括 (但不限於)：  
 
 * 全域管理員
 * 計費管理員
@@ -50,7 +51,7 @@ Azure AD Privileged Identity Management 可以管理內建的 Azure AD 組織角
 您可以在 [Azure 入口網站](https://portal.azure.com/)中開始使用 Azure AD Privileged Identity Management。
 
 > [!NOTE]
-> 您必須是具有組織帳戶 (例如 @yourdomain.com),) 而非 Microsoft 帳戶 (例如 @outlook.com),) 的全域管理員，才能啟用目錄的 Azure AD Privileged Identity Management。
+> 您必須是具有組織帳戶 (例如 @yourdomain.com) 而非 Microsoft 帳戶 (例如 @outlook.com) 的全域管理員，才能啟用目錄的 Azure AD Privileged Identity Management。
 
 1. 以目錄的全域系統管理員身分登入 [Azure 入口網站](https://portal.azure.com/) 。
 2. 如果貴組織有多個目錄，請選取 Azure 入口網站右上角的使用者名稱。 選取您將在其中使用 Azure AD Privileged Identity Management 的目錄。
@@ -77,7 +78,7 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 ![PIM 新增/移除系統管理員 - 螢幕擷取畫面][3]
 
 ## <a name="configure-the-role-activation-settings"></a>設定角色啟用設定
-您可以使用 [角色設定] [](active-directory-privileged-identity-management-how-to-change-default-settings.md) 來設定合格角色啟用屬性，包括：
+您可以使用 [角色設定](active-directory-privileged-identity-management-how-to-change-default-settings.md) 來設定合格角色啟用屬性，包括：
 
 * 角色啟用期間的持續時間
 * 角色啟用通知
@@ -117,9 +118,4 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 [4]: ./media/active-directory-privileged-identity-management-configure/PIM_RoleActivationSettings.png
 [5]: ./media/active-directory-privileged-identity-management-configure/PIM_RequestActivation.png
 [6]: ./media/active-directory-privileged-identity-management-configure/PIM_ActivationHistory.png
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

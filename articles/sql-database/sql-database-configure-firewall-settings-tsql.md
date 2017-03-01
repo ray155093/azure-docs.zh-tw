@@ -12,24 +12,17 @@ ms.custom: authentication and authorization
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
-ms.topic: get-started-article
+ms.topic: article
 ms.date: 02/07/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: b80b3240cdc4917c0b7be8868e75feaf1efc24cc
-ms.openlocfilehash: c6ddae85ef44bd91ca33d99e8194bc87a0081df3
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: 84efba61fbb0248edef3036de702e3a1aa8ae903
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="configure-azure-sql-database-server-level-and-database-level-firewall-rules-using-t-sql"></a>使用 T-SQL 設定 Azure SQL Database 伺服器層級和資料庫層級防火牆規則
-> [!div class="op_single_selector"]
-> * [概觀](sql-database-firewall-configure.md)
-> * [Azure 入口網站](sql-database-configure-firewall-settings.md)
-> * [TSQL](sql-database-configure-firewall-settings-tsql.md)
-> * [PowerShell](sql-database-configure-firewall-settings-powershell.md)
-> * [REST API](sql-database-configure-firewall-settings-rest.md)
-> 
-> 
 
 Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服器和資料庫。 您可以在 Azure SQL Database 伺服器中，針對主要或使用者資料庫定義伺服器層級和資料庫層級的防火牆設定，以選擇性地允許存取資料庫。
 
@@ -77,7 +70,7 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 如需這些預存程序的詳細資訊，請參閱 [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) 和 [sp_delete_database_firewall_rule](https://msdn.microsoft.com/library/dn270030.aspx)。
 
 > [!NOTE]
-> 如需示範如何使用資料庫層級防火牆的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
+> 如需示範資料庫層級防火牆使用方式的教學課程，請參閱 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)。
 >
 
 
@@ -88,17 +81,12 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 * [使用 PowerShell 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-powershell.md)
 * [使用 REST API 設定 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings-rest.md)
 
-如需建立資料庫的教學課程，請參閱 [使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
+如需有關建立資料庫的教學課程，請參閱[您的第一個 Azure SQL Database](sql-database-get-started.md)。
 如需從開放原始碼或協力廠商應用程式連接到 Azure SQL Database 的說明，請參閱 [SQL Database 的用戶端快速入門程式碼範例](https://msdn.microsoft.com/library/azure/ee336282.aspx)。
 若要了解如何瀏覽至資料庫，請參閱 [管理資料庫存取與登入安全性](https://msdn.microsoft.com/library/azure/ee336235.aspx)。
 
 ## <a name="additional-resources"></a>其他資源
 * [保護您的資料庫](sql-database-security-overview.md)
 * [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

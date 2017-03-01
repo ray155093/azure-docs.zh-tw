@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage
-ms.date: 12/08/2016
+ms.date: 02/14/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 70f73577fdaf6efa74fe1516a8486c45ef76db31
+ms.sourcegitcommit: 2ab1a58aab138cc81b25731a9454b083d54ded81
+ms.openlocfilehash: eff408bc70288ada1039df7432f43b02420f2c37
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -39,15 +40,19 @@ ms.openlocfilehash: 70f73577fdaf6efa74fe1516a8486c45ef76db31
 ## <a name="scalability-targets-for-blobs-queues-tables-and-files"></a>Blob、佇列、資料表和檔案的延展性目標
 [!INCLUDE [azure-storage-limits](../../includes/azure-storage-limits.md)]
 
+<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
 ## <a name="scalability-targets-for-virtual-machine-disks"></a>虛擬機器磁碟的延展性目標
 [!INCLUDE [azure-storage-limits-vm-disks](../../includes/azure-storage-limits-vm-disks.md)]
 
 如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-### <a name="standard-storage-accounts"></a>標準儲存體帳戶
+## <a name="managed-virtual-machine-disks"></a>受管理的虛擬機器磁碟
+
+[!INCLUDE [azure-storage-limits-vm-disks-managed](../../includes/azure-storage-limits-vm-disks-managed.md)]
+
+## <a name="unmanaged-virtual-machine-disks"></a>未受管理的虛擬機器磁碟
 [!INCLUDE [azure-storage-limits-vm-disks-standard](../../includes/azure-storage-limits-vm-disks-standard.md)]
 
-### <a name="premium-storage-accounts"></a>進階儲存體帳戶
 [!INCLUDE [azure-storage-limits-vm-disks-premium](../../includes/azure-storage-limits-vm-disks-premium.md)]
 
 ## <a name="scalability-targets-for-azure-resource-manager"></a>Azure Resource Manager 的延展性目標
@@ -78,10 +83,5 @@ ms.openlocfilehash: 70f73577fdaf6efa74fe1516a8486c45ef76db31
 * [Azure 儲存體複寫](storage-redundancy.md)
 * [Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)
 * [Microsoft Azure 儲存體：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure AD Connect：連接埠 |Microsoft Docs"
+title: "混合式身分識別所需的連接埠和通訊協定 - Azure | Microsoft Docs"
 description: "本頁面為針對 Azure AD Connect 必須開啟之連接埠的技術參考頁面"
 services: active-directory
 documentationcenter: 
@@ -12,18 +12,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/06/2016
+ms.date: 02/15/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: 954c3d138b0fde54c1866135a20f0fc5ff05b85d
+ms.sourcegitcommit: 935246ad590af0dcdb6d52257a94169f94dd66e5
+ms.openlocfilehash: 3ff7256578cffd30ae9b75ead2dd7f08babca171
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="hybrid-identity-required-ports-and-protocols"></a>混合式身分識別所需的連接埠和通訊協定
 下列文件是關於實作混合式身分識別解決方案之連接埠和通訊協定的技術參考。 請使用下圖並參閱對應的資料表。
 
-![何謂 Azure AD Connect](./media/active-directory-aadconnect-ports/required2.png)
+![何謂 Azure AD Connect](./media/active-directory-aadconnect-ports/required3.png)
 
 ## <a name="table-1---azure-ad-connect-and-on-premises-ad"></a>表 1 - Azure AD Connect 和內部部署 AD
 此表說明 Azure AD Connect 伺服器與內部部署 AD 之間通訊所需的連接埠和通訊協定。
@@ -71,19 +72,26 @@ ms.openlocfilehash: 954c3d138b0fde54c1866135a20f0fc5ff05b85d
 | HTTPS |443(TCP/UDP) |用於裝置驗證。 |
 | TCP |49443 (TCP) |用於憑證驗證。 |
 
-## <a name="table-6---pass-through-authentication"></a>表 6 - 傳遞驗證
-此表說明連接器與 Azure AD 之間通訊所需的連接埠和通訊協定。
+## <a name="table-6a--6b---pass-through-authentication-with-single-sign-on-sso-and-password-hash-sync-with-single-sign-on-sso"></a>表 6a 和 6b - 傳遞驗證搭配單一登入 (SSO) 與密碼雜湊同步處理搭配單一登入 (SSO)
+下列表格說明 Azure AD Connect 與 Azure AD 之間通訊所需的連接埠和通訊協定。
 
+### <a name="table-6a---pass-through-authentication-with-sso"></a>表 6a - 傳遞驗證搭配 SSO
 |通訊協定|連接埠號碼|說明
 | --- | --- | ---
 |HTTP|80|為安全性驗證 (例如 SSL) 啟用輸出 HTTP 流量。
-|HTTPS|443| 針對 Azure AD 啟用使用者驗證
-|HTTPS|10100–10120| 啟用從連接器傳回 Azure AD 的回應 
-|Azure 服務匯流排|9352、5671|  為連入要求啟用連接器到 Azure 服務之間的通訊。
+|HTTPS|443|    針對 Azure AD 啟用使用者驗證
+|HTTPS|10100–10120|    啟用從連接器傳回 Azure AD 的回應 
+|Azure 服務匯流排|9352、5671|    為連入要求啟用連接器到 Azure 服務之間的通訊。
 |HTTPS|9350|    針對連入要求選擇性地啟用較佳的效能
 |HTTPS|8080/443|    啟用連接器開機順序以及連接器自動更新
 |HTTPS|9090|    啟用連接器註冊 (只有在連接器註冊程序才需要)
 |HTTPS|9091|    啟用連接器信任憑證自動更新
+
+### <a name="table-6b---password-hash-sync-with-sso"></a>表 6b - 密碼雜湊同步處理搭配 SSO
+
+|通訊協定|連接埠號碼|說明
+| --- | --- | ---
+|HTTPS|9090|    啟用 SSO 註冊 (只有在 SSO 註冊程序才需要)。
 
 ## <a name="table-7a--7b---azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad"></a>表 7a 和 7b - 適用於 (AD FS/Sync) 和 Azure AD 的 Azure AD Connect Health 代理程式
 下表說明在 Azure AD Connect Health 代理程式與 Azure AD 之間通訊所需的端點、連接埠和通訊協定
@@ -98,10 +106,5 @@ ms.openlocfilehash: 954c3d138b0fde54c1866135a20f0fc5ff05b85d
 
 ### <a name="7b---endpoints-for-azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad"></a>7b - 適用於 (AD FS/Sync) 和 Azure AD 之 Azure AD Connect Health 代理程式的端點
 如需端點的清單，請參閱 [Azure AD Connect Health 代理程式的＜需求＞一節](../connect-health/active-directory-aadconnect-health-agent-install.md#requirements)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

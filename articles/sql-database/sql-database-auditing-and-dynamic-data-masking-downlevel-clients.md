@@ -16,13 +16,14 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: ronitr
 translationtype: Human Translation
-ms.sourcegitcommit: 86bc7d89bb5725add8ba05b6f0978467147fd3ca
-ms.openlocfilehash: d225a6156ea3672ed214f8308d7e944e6ff08576
+ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
+ms.openlocfilehash: bcc02abb62b21aadb10e62320b02b33c3c244c17
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-auditing"></a>SQL Database - 下層用戶端支援與針對「稽核」的 IP 端點變更
-[SQL Database 資料表稽核](sql-database-auditing-get-started.md)可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。 請注意，使用「Blob 稽核」方法時，不適用重新導向。
+[資料庫稽核](sql-database-auditing.md)可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。 請注意，使用「Blob 稽核」方法時，不適用重新導向。
 
 ## <a name="a-idsubheading-1adownlevel-clients-support"></a><a id="subheading-1"></a>舊版用戶端支援
 實作 TDS 7.4 的任何用戶端應該也支援重新導向。 例外包括其中未完全支援重新導向功能的 JDBC 4.0，和其中未實作重新導向的 Tedious for Node.JS。
@@ -77,9 +78,4 @@ ms.openlocfilehash: d225a6156ea3672ed214f8308d7e944e6ff08576
 | 加拿大東部 |40.86.227.82, 40.86.225.194 |
 | 英國北部 |13.87.101.18, 13.87.100.232 |
 | 英國南部 2 |13.87.32.202, 13.87.32.226 |
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

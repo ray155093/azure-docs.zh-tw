@@ -14,11 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 02/16/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
-ms.openlocfilehash: 44cfe1c86abaea19ce48255902b2b9611560d695
+ms.sourcegitcommit: 0c07c842ba8c6214d6746b0361af7b416069a6f5
+ms.openlocfilehash: 92bf625a9e62a24287b752bc1cbe061f1ef83a03
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -32,9 +33,7 @@ ms.openlocfilehash: 44cfe1c86abaea19ce48255902b2b9611560d695
 ## <a name="social-id-user-first-time-redemption"></a>社交識別碼使用者首次兌換
 Azure AD B2B 共同作業可讓使用者使用任何電子郵件地址輕鬆兌換。 看看針對 B2B 共同作業使用非 Microsoft 電子郵件地址的兌換體驗。 這是牽涉範圍更廣的兌換流程，因為您可能必須在兌換時建立帳戶。 在下列影片中查看作法：
 
-  >[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group]
-
-如果沒有內嵌顯示這段影片，您可以在[這裡](https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group)取得。
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group/Player]
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -51,9 +50,4 @@ Azure AD B2B 共同作業可讓使用者使用任何電子郵件地址輕鬆兌�
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

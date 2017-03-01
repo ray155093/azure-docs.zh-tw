@@ -11,36 +11,39 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/29/2016
+ms.date: 02/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 00f00d91e54d35fb9009a3e927dfc8833cd7571e
+ms.sourcegitcommit: e8df27b17ac0e839efdd302ffa40fafe688a22b4
+ms.openlocfilehash: aaa1c06da8b53a45a1e675f175dd3adcee20e910
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="tutorial-azure-ad-integration-with-bluejeans"></a>教學課程：Azure AD 與 BlueJeans 整合
 本教學課程的目的是要示範 Azure 與 BlueJeans 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂閱
-* 啟用 BlueJeans 單一登入的訂用帳戶
+* 已啟用 BlueJeans 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 BlueJeans 的 Azure AD 使用者就能夠單一登入您 BlueJeans 公司網站 (服務提供者起始登入) 的應用程式，或是使用 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
-1. 啟用 BlueJeans 的應用程式整合
-2. 設定單一登入
-3. 設定使用者佈建
-4. 指派使用者
+* 啟用 BlueJeans 的應用程式整合
+* 設定單一登入 (SSO)
+* 設定使用者佈建
+* 指派使用者
 
 ![案例](./media/active-directory-saas-bluejeans-tutorial/IC785860.png "案例")
 
-## <a name="enabling-the-application-integration-for-bluejeans"></a>啟用 BlueJeans 的應用程式整合
+## <a name="enable-the-application-integration-for-bluejeans"></a>啟用 BlueJeans 的應用程式整合
 本節的目的是要說明如何啟用 BlueJeans 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-bluejeans-perform-the-following-steps"></a>若要啟用 BlueJeans 的應用程式整合，請執行下列步驟：
+**若要啟用 BlueJeans 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-bluejeans-tutorial/IC700993.png "Active Directory")
@@ -61,11 +64,12 @@ ms.openlocfilehash: 00f00d91e54d35fb9009a3e927dfc8833cd7571e
    
    ![BlueJeans](./media/active-directory-saas-bluejeans-tutorial/IC785862.png "BlueJeans")
    
-   ## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 BlueJeans。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 [BlueJeans] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/IC785863.png "設定單一登入")
@@ -84,8 +88,7 @@ ms.openlocfilehash: 00f00d91e54d35fb9009a3e927dfc8833cd7571e
    ![管理](./media/active-directory-saas-bluejeans-tutorial/IC785868.png "管理")
 7. 在 [安全性]  區段中，執行下列步驟：
    
-   ![SAML 單一登入](./media/active-directory-saas-bluejeans-tutorial/IC785869.png "SAML 單一登入")
-   
+   ![SAML 單一登入](./media/active-directory-saas-bluejeans-tutorial/IC785869.png "SAML 單一登入")   
    1. 選取 [SAML 單一登入] 。
    2. 選取 [啟用自動佈建] 。
 8. 繼續執行下列步驟：
@@ -99,45 +102,45 @@ ms.openlocfilehash: 00f00d91e54d35fb9009a3e927dfc8833cd7571e
 9. 繼續執行下列步驟：
    
    ![儲存變更](./media/active-directory-saas-bluejeans-tutorial/IC785874.png "儲存變更")
-   
    1. 在 [使用者 ID] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name**。
    2. 在 [電子郵件] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name**。
    3. 按一下 [儲存變更] 。
 10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
     
-    ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/IC785876.png "設定單一登入")
+   ![設定單一登入](./media/active-directory-saas-bluejeans-tutorial/IC785876.png "設定單一登入")
     
-    ## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 若要讓 Azure AD 使用者可以登入 BlueJeans，必須將他們佈建到 BlueJeans。  
-BlueJeans 需以手動方式佈建。
 
-### <a name="to-provision-a-user-accounts-perform-the-following-steps"></a>若要佈建使用者帳戶，請執行下列步驟：
+* BlueJeans 需以手動方式佈建。
+
+**若要佈建使用者帳戶，請執行下列步驟：**
+
 1. 以系統管理員身分登入您的 **BlueJeans** 公司網站。
 2. 移至 [管理] \> [管理使用者] \> [加入使用者]。
    
    ![管理](./media/active-directory-saas-bluejeans-tutorial/IC785877.png "管理")
    
-   > [!IMPORTANT]
-   > 只有在未核取 [安全性] 索引標籤中的 [啟用自動佈建] 時，才能使用 [加入使用者] 索引標籤。
-   > 
+   >[!IMPORTANT]
+   >只有在未核取 [安全性] 索引標籤中的 [啟用自動佈建] 時，才能使用 [加入使用者] 索引標籤。 
    > 
 3. 在 [加入使用者]  區段中，執行下列步驟：
    
-   ![新增使用者](./media/active-directory-saas-bluejeans-tutorial/IC785886.png "新增使用者")
+  ![新增使用者](./media/active-directory-saas-bluejeans-tutorial/IC785886.png "新增使用者")
    
-   1. 在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [BlueJeans 使用者名稱]、[電子郵件地址]、[BlueJeans 會議識別碼]、[仲裁者密碼]、[全名]、[公司]。
-   2. 按一下 [加入使用者] 。
+  1. 在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [BlueJeans 使用者名稱]、[電子郵件地址]、[BlueJeans 會議識別碼]、[仲裁者密碼]、[全名]、[公司]。
+  2. 按一下 [加入使用者] 。
 
-> [!NOTE]
-> 您可以使用任何其他的 BlueJeans 使用者帳戶建立工具或 BlueJeans 提供的 API 來佈建 AAD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 BlueJeans 使用者帳戶建立工具或 BlueJeans 提供的 API 來佈建 AAD 使用者帳戶。 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-bluejeans-perform-the-following-steps"></a>若要指派使用者給 BlueJeans，請執行下列步驟：
+**若要指派使用者給 BlueJeans，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [BlueJeans] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -147,10 +150,5 @@ BlueJeans 需以手動方式佈建。
    ![是](./media/active-directory-saas-bluejeans-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

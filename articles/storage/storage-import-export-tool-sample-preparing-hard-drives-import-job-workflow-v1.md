@@ -1,5 +1,5 @@
 ---
-title: "針對匯入作業準備硬碟的範例工作流程 | Microsoft Docs"
+title: "針對 Azure 匯入作業準備硬碟的範例工作流程 | Microsoft Docs"
 description: "請參閱在 Azure 匯入匯出服務中為匯入作業準備硬碟之完整程序的逐步解說"
 author: muralikk
 manager: syadav
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/09/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: fbcc295284d060b9a8bc5cf1cb9f8b2fca566db4
-ms.openlocfilehash: 775deb2717e5062e8eb4be7f10dd5bf3c2682f1b
+ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
+ms.openlocfilehash: ee7a8c9ae4cda5b67184100dd37ee4e0384aff26
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -164,9 +165,4 @@ WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp
 ## <a name="see-also"></a>另請參閱  
 [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
 [常用命令快速參考](storage-import-export-tool-quick-reference-v1.md) 
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/07/2016
+ms.date: 02/15/2017
 ms.author: deguhath;bradsev;gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 4aa61eb5fb6c441bdfebd8bcc46ad62fbaf78548
+ms.sourcegitcommit: 5be82735c0221d14908af9d02500cc42279e325b
+ms.openlocfilehash: b30b3ed88ab271b5fa3db61ef276cba9b7fcdfdb
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -26,8 +27,13 @@ ms.openlocfilehash: 4aa61eb5fb6c441bdfebd8bcc46ad62fbaf78548
 本主題說明如何載入已使用 Spark MLlib 建立並儲存於 Azure Blob 儲存體 (WASB) 的機器學習服務 (ML) 模型，以及如何使用已儲存在 WASB 的資料集加以評分。 它會顯示如何前置處理輸入資料、使用 MLlib 工具組中的索引和編碼函式來轉換功能，以及如何建立可做為輸入的標示點資料物件，以便使用 ML 模型加以評分。 用於評分的模型包含線性迴歸、羅吉斯迴歸、隨機樹系模型和漸層停駐提升樹狀結構模型。
 
 ## <a name="prerequisites"></a>必要條件
-1. 您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。 請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求。 此主題也包括這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。 您可以在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上取得 **pySpark-machine-learning-data-science-spark-model-consumption.ipynb** Notebook，其中包含本主題中的程式碼範例。
-2. 您也必須透過 [使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md) 主題運作，在這裡建立要評分的機器學習服務模型。   
+
+1. 您需要 Azure 帳戶和 Spark 1.6 或 Spark 2.0 HDInsight 叢集，才能完成此逐步解說。 請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求。 此主題也包括這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。 
+2. 您也必須針對 Spark 1.6 叢集或 Spark 2.0 Notebook，透過[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題運作，在這裡建立要評分的機器學習服務模型。 請注意，Spark 2.0 Notebook 會針對分類工作使用額外的資料集，即 2011 年和 2012 年知名航空公司準時起飛的資料集。 Notebook 的描述及它們的連結已在包含它們的 GitHub 儲存機制的 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) 中提供。 此外，此處及連結的 Notebook 內的程式碼皆屬泛型程式碼，而且應該能在任何 Spark 叢集上運作。 若您不是使用 HDInsight Spark，叢集設定和管理步驟可能與這裡顯示的稍有不同。 
+
+
+## <a name="setup-spark-clusters-and-notebooks"></a>設定：Spark 叢集和 Notebook
+此逐步解說所提供的設定步驟和程式碼適用於使用 HDInsight Spark 1.6。 [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/pySpark-machine-learning-data-science-spark-model-consumption.ipynb) Notebook 示範如何在 HDInsight 叢集上，使用 Python 讓儲存的模型能夠運作。 若要修改此 Jupyter Notebook 來與 HDInsight Spark 2.0 叢集搭配使用，請使用[這個檔案](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py)來取代 Python 程式碼檔案。
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -176,7 +182,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 執行上述儲存格所花費的時間︰46.37 秒
 
 ## <a name="prepare-data-for-scoring-in-spark"></a>準備資料在 Spark 中評分
-本節說明如何索引、編碼及調整分類功能，準備將其用於分類和迴歸的 MLlib 監督式學習演算法中。
+本節說明如何索引、編碼及調整分類功能，準備將它們用於分類和迴歸的 MLlib 監督式學習演算法中。
 
 ### <a name="feature-transformation-index-and-encode-categorical-features-for-input-into-models-for-scoring"></a>功能轉換：索引並編碼分類功能以輸入至模型進行評分。
 本節說明如何使用 `StringIndexer` 來為分類資料編製索引，並利用 `OneHotEncoder` 輸入將特徵編碼至模組中。
@@ -322,7 +328,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 執行上述儲存格所花費的時間︰11.72 秒
 
 ## <a name="score-with-the-logistic-regression-model-and-save-output-to-blob"></a>使用羅吉斯迴歸模型進行評分，並將輸出儲存至 blob
-本節的程式碼示範如何載入 Azure blob 儲存體中已儲存的羅吉斯迴歸模型，並使用它來預測是否支付計程車車程的小費、使用標準分類度量評分，然後儲存結果並將其繪製至 blob 儲存體。 評分的結果會儲存在 RDD 物件。 
+本節的程式碼示範如何載入 Azure Blob 儲存體中已儲存的羅吉斯迴歸模型，並使用它來預測是否支付計程車車程的小費、使用標準分類度量評分，然後儲存結果並將其繪製至 Blob 儲存體。 評分的結果會儲存在 RDD 物件。 
 
     # SCORE AND EVALUATE LOGISTIC REGRESSION MODEL
 
@@ -579,10 +585,5 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
 
 ## <a name="whats-next"></a>後續步驟
 **交叉驗證和超參數掃掠**：如需如何使用交叉驗證和超參數掃掠訓練模型的相關資訊，請參閱 [使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

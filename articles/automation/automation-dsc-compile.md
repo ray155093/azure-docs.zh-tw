@@ -1,6 +1,6 @@
 ---
 title: "編譯 Azure 自動化 DSC 中的組態 | Microsoft Docs"
-description: "「期望的狀態設定 (DSC)」組態兩種編譯方式的概觀：在 Azure 入口網站中，以及使用 Windows PowerShell。 "
+description: "此文章說明如何針對 Azure 自動化編譯期望狀態設定 (DSC) 組態。"
 services: automation
 documentationcenter: na
 author: eslesar
@@ -11,18 +11,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: powershell
 ms.workload: na
-ms.date: 12/13/2016
-ms.author: eslesar
+ms.date: 02/07/2017
+ms.author: magoedte; eslesar
 translationtype: Human Translation
-ms.sourcegitcommit: 18c6a55f2975305203bf20a040ac29bc9527a124
-ms.openlocfilehash: 30c93d801c68e24b45f5fbc119724e0a18076a13
+ms.sourcegitcommit: 146fe63ba2c9efd8b734eb8cc8cb5dee82a94f2a
+ms.openlocfilehash: 97757f2cc78dc02f4efdcb3c09cee7741504448b
+ms.lasthandoff: 02/21/2017
 
 ---
+
 # <a name="compiling-configurations-in-azure-automation-dsc"></a>編譯 Azure 自動化 DSC 中的組態
 
-使用 Azure 自動化時有兩種方式可以編譯「期望的狀態設定 (DSC)」組態：在 Azure 入口網站中，以及使用 Windows PowerShell。 下表將協助您根據方法的特性判斷何時應使用哪種方法：
+使用 Azure 自動化時有兩種方式可以編譯「期望狀態設定 (DSC)」組態：在 Azure 入口網站中，以及使用 Windows PowerShell。 下表將協助您根據方法的特性判斷何時應使用哪種方法：
 
-### <a name="azure-preview-portal"></a>Azure Preview 入口網站
+### <a name="azure-portal"></a>Azure 入口網站
 
 * 互動式使用者介面的最簡單方法
 * 提供簡單參數值的表單
@@ -43,7 +45,7 @@ ms.openlocfilehash: 30c93d801c68e24b45f5fbc119724e0a18076a13
 
 ## <a name="compiling-a-dsc-configuration-with-the-azure-portal"></a>使用 Azure 入口網站編譯 DSC 組態
 
-1. 從您的自動化帳戶中，按一下 [組態] 。
+1. 從您的自動化帳戶中，按一下 [DSC 組態]。
 2. 按一下組態以開啟其刀鋒視窗。
 3. 按一下 [編譯] 。
 4. 如果組態沒有參數，系統會提示您確認是否要加以編譯。 如果組態有參數，即會開啟 [編譯組態] 刀鋒視窗，讓您可以提供參數值。 如需參數的進一步詳細資訊，請參閱以下的[**基本參數**](#basic-parameters)一節。
@@ -204,7 +206,7 @@ Azure 自動化 DSC 組態和 Runbook 中的資產參考是相同的。 如需�
 ```powershell
 Configuration CredentialSample
 {
-    $Cred = Get-AzureRmAutomationCredential -Name "SomeCredentialAsset"
+    $Cred = Get-AzureRmAutomationCredential -ResourceGroupName "ResourceGroup01" -AutomationAccountName "AutomationAcct" -Name "SomeCredentialAsset"
 
     Node $AllNodes.NodeName
     {
@@ -239,8 +241,39 @@ $ConfigData = @{
 Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "CredentialSample" -ConfigurationData $ConfigData
 ```
 
+## <a name="importing-node-configurations"></a>匯入節點組態
+
+您也可以匯入在 Azure 外部完成編譯的節點組態 (MOF)。 這樣做的優點之一就是可以簽署節點組態。
+DSC 代理程式會在受管理的節點上本機驗證簽署的節點組態，確保套用到節點的組態來自經授權之來源。
+
+> [!NOTE]
+> 您可以將簽署的組態匯入到您的 Azure 自動化帳戶，但 Azure 自動化目前不支援編譯簽署的組態。
+
+> [!NOTE]
+> 節點組態檔不得大於 1 MB，才能匯入到 Azure 自動化。
+
+如需了解如何簽署節點組態，請參閱 https://msdn.microsoft.com/en-us/powershell/wmf/5.1/dsc-improvements#how-to-sign-configuration-and-module。
+
+### <a name="importing-a-node-configuration-in-the-azure-portal"></a>在 Azure 入口網站中匯入節點組態
+
+1. 從您的自動化帳戶中，按一下 [DSC 節點組態]。
+
+    ![DSC 節點組態](./media/automation-dsc-compile/node-config.png)
+2. 在 [DSC 節點組態] 刀鋒視窗上，按一下 [新增節點組態]。
+3. 在 [匯入] 刀鋒視窗中，按一下資料夾圖示旁的 [節點組態檔] 文字方塊，以瀏覽本機電腦上的節點組態檔 (MOF)。
+
+    ![瀏覽本機檔案](./media/automation-dsc-compile/import-browse.png)
+4. 在 [組態名稱]文字方塊中輸入名稱。 此名稱必須符合已編譯節點組態的組態名稱。
+5. 按一下 [確定] 。
+
+### <a name="importing-a-node-configuration-with-powershell"></a>使用 PowerShell 匯入節點組態
+
+您可以使用 [Import-AzureRmAutomationDscNodeConfiguration](https://docs.microsoft.com/en-us/powershell/resourcemanager/azurerm.automation/v1.0.12/import-azurermautomationdscnodeconfiguration) Cmdlet，將節點組態匯入到您的自動化帳戶。
+
+```powershell
+Import-AzureRmAutomationDscNodeConfiguration -AutomationAccountName "MyAutomationAccount" -ResourceGroupName "MyResourceGroup" -ConfigurationName "MyNodeConfiguration" -Path "C:\MyConfigurations\TestVM1.mof"
+```
 
 
-<!--HONumber=Dec16_HO2-->
 
 

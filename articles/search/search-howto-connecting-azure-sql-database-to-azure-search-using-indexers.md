@@ -12,11 +12,12 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 10/27/2016
+ms.date: 02/15/2017
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: 096fcd2a7415da03714f05bb1f29ceac6f186eda
-ms.openlocfilehash: dba7cd466d94cb68896ee9270bc765fe822ca00e
+ms.sourcegitcommit: 0841744b806f3dba38dddee21fb7fe881e07134f
+ms.openlocfilehash: 51c9d9afb6c2ed460abd4c47a6afbc404b97a85e
+ms.lasthandoff: 02/16/2017
 
 ---
 
@@ -203,11 +204,13 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
 
 * 所有插入都有指定資料行的值。
 * 所有項目更新變更資料行的值。
-* 每次變更都會增加此資料行的值。
+* 每次插入或更新都會增加此資料行的值。
 * 具有下列 WHERE 和 ORDER BY 子句的查詢可以有效率地執行︰`WHERE [High Water Mark Column] > [Current High Water Mark Value] ORDER BY [High Water Mark Column]`。
 
-例如，已編製索引的 **rowversion** 資料行就適合使用上限標準資料行。
-若要使用此原則，請以下列方式建立或更新您的資料來源：
+> [!IMPORTANT] 
+> 我們強烈建議使用 **rowversion** 資料行來變更追蹤。 如果使用其他任何資料類型，就無法保證變更追蹤會擷取與索引子查詢同時執行之交易中發生的所有變更。
+
+若要使用高標原則，請以下列方式建立或更新您的資料來源：
 
     {
         "name" : "myazuresqldatasource",
@@ -216,7 +219,7 @@ Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體�
         "container" : { "name" : "table or view name" },
         "dataChangeDetectionPolicy" : {
            "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-           "highWaterMarkColumnName" : "[a row version or last_updated column name]"
+           "highWaterMarkColumnName" : "[a rowversion or last_updated column name]"
       }
     }
 
@@ -312,9 +315,4 @@ SQL 索引子公開數個組態設定︰
 **問：** 執行一個索引子會影響我的查詢工作負載嗎？
 
 答： 會。 索引子會在您搜尋服務中的其中一個節點執行，且節點上的資源會在索引及服務查詢流量和其他 API 要求之間共用。 如果您密集執行索引及查詢工作負載，且經常遇到 503 錯誤或回應次數增加，請考慮調整您的搜尋服務。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

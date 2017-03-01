@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 11/16/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: a560aa9cc6c70fd3827f649627466c9071b8ab8b
-ms.openlocfilehash: c350134e8cea5771900e2e88b02b572c20e9d5bd
+ms.sourcegitcommit: e7fc6cb4ee4752bb7ed90a8f64edcc7c82ec3a88
+ms.openlocfilehash: d04c209894ab8ee35b92381f9679f68addd64f00
+ms.lasthandoff: 02/21/2017
 
 ---
 
@@ -58,7 +59,7 @@ Azure 建議程式整合了最佳作法建議，以供提升應用程式服務�
 3. 在 [建議程式] 儀表板中，按一下 [效能] 索引標籤，然後選取您想要接收建議的訂用帳戶。
 
 > [!NOTE]
-> 建議程式會針對您已獲得「擁有者」、「參與者」或「讀取者」角色的訂用帳戶，產生相關建議。
+> 若要存取 Advisor 的建議，您必須先向 Advisor「註冊」您的訂用帳戶。 當「訂用帳戶擁有者」啟動 Advisor 儀表板，然後按一下 [取得建議] 按鈕時，便會註冊訂用帳戶。 此作業「只需要執行一次」。 註冊訂用帳戶之後，訂用帳戶、資源群組或特定的資源的 [擁有者]、[參與者] 或 [讀取者]，都可以存取 Advisor 建議。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -69,9 +70,4 @@ Azure 建議程式整合了最佳作法建議，以供提升應用程式服務�
 -  [建議程式高可用性建議](advisor-high-availability-recommendations.md)
 -  [建議程式安全性建議](advisor-security-recommendations.md)
 -  [建議程式成本建議](advisor-performance-recommendations.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

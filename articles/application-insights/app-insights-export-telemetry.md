@@ -11,18 +11,19 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 02/21/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7bd26ffdec185a1ebd71fb88383c2ae4cd6d504f
-ms.openlocfilehash: 3b1654355ee84610d25da8b6ad4a66036285faba
+ms.sourcegitcommit: 4df32e7e03f17ec46e46a3f2718d24783424ab9e
+ms.openlocfilehash: fc1f3c7160a4956ed7372a2797c03c2892fbfb65
+ms.lasthandoff: 02/21/2017
 
 
 ---
 # <a name="export-telemetry-from-application-insights"></a>從 Application Insights 匯出遙測
 想要讓遙測保留比標準保留期限還久的時間？ 或以某些特殊方式處理它？ 連續匯出很適合此用途。 在 Application Insights 入口網站中看見的事件，可以使用 JSON 格式匯出到 Microsoft Azure 中的儲存體。 從那裡，您可以下載資料並編寫處理所需的任何程式碼。  
 
-「連續匯出」是[企業定價模型](http://azure.microsoft.com/pricing/details/application-insights/)中的可用功能。
+使用連續匯出，可能會產生額外的費用。 請檢查您的[定價模式](http://azure.microsoft.com/pricing/details/application-insights/)。
 
 在設定連續匯出之前，您可能要考慮某些替代作法︰
 
@@ -84,7 +85,7 @@ ms.openlocfilehash: 3b1654355ee84610d25da8b6ad4a66036285faba
 該資料也包含您曾設定之 [可用性 Web 測試](app-insights-monitor-web-app-availability.md) 的任何結果。 
 
 > [!NOTE]
-> **取樣**  如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。 [深入了解取樣。](app-insights-sampling.md)
+> **取樣** 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。 [深入了解取樣。](app-insights-sampling.md)
 > 
 > 
 
@@ -164,7 +165,7 @@ Where
 
 就更大型規模而言，請考慮 [HDInsight](https://azure.microsoft.com/services/hdinsight/) - 雲端中的 Hadoop 叢集。 HDInsight 提供各種管理和分析巨量資料的技術，您可以使用它來處理已從 Application Insights 匯出的資料。
 
-## <a name="q-a"></a>問答集
+## <a name="q--a"></a>問答集
 * *但我想要的只是一次性下載圖表。*  
   
     是的，您可以這麼做。 在刀鋒視窗頂端，按一下 [ [匯出資料](app-insights-metrics-explorer.md#export-to-excel)]。
@@ -203,10 +204,5 @@ Where
 [exportasa]: app-insights-code-sample-export-sql-stream-analytics.md
 [roles]: app-insights-resources-roles-access-control.md
 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

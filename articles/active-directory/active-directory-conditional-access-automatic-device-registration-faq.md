@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/30/2017
+ms.date: 02/15/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 918c2b096b9b6d935c8d5bc2588a978cdf8878cf
-ms.openlocfilehash: 0c4f1489893f464eee1f76e94f2b35650f06e44e
+ms.sourcegitcommit: 90327223d19ffc6697237d697b93fe88e1654e2c
+ms.openlocfilehash: fc668e1b4af662506da6652bbf21bab6cf91b114
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -53,21 +54,21 @@ ms.openlocfilehash: 0c4f1489893f464eee1f76e94f2b35650f06e44e
 
 **問：為什麼我已在 Azure 入口網站中或使用 Windows PowerShell 刪除的裝置仍列為已註冊？**
 
-**答：**原先的設計就是如此。 該裝置將無法存取雲端中的資源。 如果您想要重新註冊該裝置，就必須對該裝置採取手動動作。 
+**答：**原先的設計就是如此。 該裝置將無法存取雲端中的資源。 如果您想要移除裝置並重新註冊它，就必須對該裝置採取手動動作。 
 
 針對已加入內部部署 AD 網域的 Windows 10 與 Windows Server 2016：
 
-1.  以系統管理員身分開啟命令提示字元。
+1.    以系統管理員身分開啟命令提示字元。
 
-2.  輸入 **dsregcmd.exe /leave**。
+2.    輸入 **dsregcmd.exe /debug /leave**
 
-3.  輸入 **dsregcmd.exe**。
+3.    **登入並登出以觸發可重新註冊裝置的排定工作。** 
 
 針對其他已加入內部部署 AD 網域的 Windows 平台：
 
-1.  以系統管理員身分開啟命令提示字元。
-2.  輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /l"`。
-3.  輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /j"`。
+1.    以系統管理員身分開啟命令提示字元。
+2.    輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /l"`。
+3.    輸入 `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /j"`。
 
 ---
 
@@ -75,13 +76,13 @@ ms.openlocfilehash: 0c4f1489893f464eee1f76e94f2b35650f06e44e
 
 **答：**
 
--   就 Windows 10 和 Windows Server 2016 而言，如果重複地嘗試將同一個裝置取消加入再重新加入，就可能出現重複的項目。 
+-    就 Windows 10 和 Windows Server 2016 而言，如果重複地嘗試將同一個裝置取消加入再重新加入，就可能出現重複的項目。 
 
--   如果您使用了 [新增工作或學校帳戶]，則每個使用 [新增工作或學校帳戶] 的 Windows 使用者都會以相同的裝置名稱建立一個新的裝置記錄。
+-    如果您使用了 [新增工作或學校帳戶]，則每個使用 [新增工作或學校帳戶] 的 Windows 使用者都會以相同的裝置名稱建立一個新的裝置記錄。
 
--   其他使用自動註冊來加入內部部署 AD 網域的 Windows 平台，將會針對登入裝置的每個網域使用者，以相同的裝置名稱建立一個新的裝置記錄。 
+-    其他使用自動註冊來加入內部部署 AD 網域的 Windows 平台，將會針對登入裝置的每個網域使用者，以相同的裝置名稱建立一個新的裝置記錄。 
 
--   已清除、重新安裝再以相同名稱重新加入的 AADJ 機器將會顯示成具有相同裝置名稱的另一筆記錄。
+-    已清除、重新安裝再以相同名稱重新加入的 AADJ 機器將會顯示成具有相同裝置名稱的另一筆記錄。
 
 ---
 
@@ -112,13 +113,13 @@ ms.openlocfilehash: 0c4f1489893f464eee1f76e94f2b35650f06e44e
 
 **答：**此情況的常見原因如下：
 
-1.  您的使用者認證已經無效。
+1.    您的使用者認證已經無效。
 
-2.  您的電腦無法與 Azure Active Directory 通訊。 請檢查是否有任何網路連線問題。
+2.    您的電腦無法與 Azure Active Directory 通訊。 請檢查是否有任何網路連線問題。
 
-3.  不符合 Azure AD Join 必要條件。 請確定您已依照[透過 Azure Active Directory Join 將雲端功能延伸到 Windows 10 裝置](active-directory-azureadjoin-overview.md)的步驟操作。  
+3.    不符合 Azure AD Join 必要條件。 請確定您已依照[透過 Azure Active Directory Join 將雲端功能延伸到 Windows 10 裝置](active-directory-azureadjoin-overview.md)的步驟操作。  
 
-4.  同盟登入會要求您的同盟伺服器必須支援 WS-Trust 作用中端點。 
+4.    同盟登入會要求您的同盟伺服器必須支援 WS-Trust 作用中端點。 
 
 ---
 
@@ -134,19 +135,20 @@ ms.openlocfilehash: 0c4f1489893f464eee1f76e94f2b35650f06e44e
 
 ---
 
+**問︰哪裡可以找到設定自動裝置註冊的指示？**
+
+**答：**如需詳細指示，請參閱[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)
+
+---
+
 **問：哪裡可以找到有關自動裝置註冊的疑難排解資訊？**
 
 **答：**如需疑難排解資訊，請參閱：
 
-1. [針對已加入 Azure AD 網域之 Windows 10 和 Windows Server 2016 電腦的自動註冊進行疑難排解 (英文)](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
+1. [針對已加入 Azure AD 網域之電腦的自動註冊進行疑難排解 – Windows 10 和 Windows Server 2016](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
 
-2. [針對已加入 Azure AD 網域之 Windows 下層用戶端電腦的自動註冊進行疑難排解 (英文)](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
+2. [針對已加入 Azure AD 網域之 Windows 下層用戶端電腦的自動註冊進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
  
 ---
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

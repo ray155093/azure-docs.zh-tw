@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 01/20/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
-ms.openlocfilehash: 71cf6cd6e7a33b3aeb3e0e20b9b047377412786d
+ms.sourcegitcommit: 802086b95b949cf4aa14af044f69e500b31def44
+ms.openlocfilehash: 5241a36fbc7008baad5369452d3332d84335a661
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -27,13 +28,13 @@ ms.openlocfilehash: 71cf6cd6e7a33b3aeb3e0e20b9b047377412786d
 * 當您輸入時，Analytics 中有許多參考資料可用。 只要開始輸入查詢，系統就會提示您可能的完成。
 * [教學課程頁面](app-insights-analytics-tour.md)提供語言功能的逐步介紹。
 * [SQL 使用者的功能提要](https://aka.ms/sql-analytics)會翻譯成最常見的習慣用語。
-* 如果您的應用程式還未將資料傳送至 Application Insights，則[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)。
+* 如果您自己的應用程式還未將資料傳送至 Application Insights，則會[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)。
  
 
 ## <a name="index"></a>索引
 **Let** [let](#let-clause)
 
-**查詢和運算子** [count](#count-operator) | [evaluate](#evaluate-operator) | [extend](#extend-operator) | [find](#find-operator) | [join](#join-operator) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render directive](#render-directive) | [restrict clause](#restrict-clause) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator) | [where-in](#where-in-operator)
+**查詢和運算子** [count](#count-operator) | [datatable](#datatable-operator) | [distinct](#distinct-operator) | [evaluate](#evaluate-operator) | [extend](#extend-operator) | [find](#find-operator) | [join](#join-operator) | [limit](#limit-operator) | [mvexpand](#mvexpand-operator) | [parse](#parse-operator) | [project](#project-operator) | [project-away](#project-away-operator) | [range](#range-operator) | [reduce](#reduce-operator) | [render directive](#render-directive) | [restrict clause](#restrict-clause) | [sample](#sample-operator) | [sample-distinct](#sample-distinct-operator) | [sort](#sort-operator) | [summarize](#summarize-operator) | [take](#take-operator) | [top](#top-operator) | [top-nested](#top-nested-operator) | [union](#union-operator) | [where](#where-operator) 
 
 **彙總** [any](#any) | [argmax](#argmax) | [argmin](#argmin) | [avg](#avg) | [buildschema](#buildschema) | [count](#count) | [countif](#countif) | [dcount](#dcount) | [dcountif](#dcountif) | [makelist](#makelist) | [makeset](#makeset) | [max](#max) | [min](#min) | [percentile](#percentile) | [percentiles](#percentiles) | [percentilesw](#percentilesw) | [percentilew](#percentilew) | [stdev](#stdev) | [sum](#sum) | [variance](#variance)
 
@@ -43,9 +44,9 @@ ms.openlocfilehash: 71cf6cd6e7a33b3aeb3e0e20b9b047377412786d
 
 **日期和時間** [日期和時間運算式](#date-and-time-expressions) | [日期和時間常值](#date-and-time-literals) | [ago](#ago) | [datepart](#datepart) | [dayofmonth](#dayofmonth) | [dayofweek](#dayofweek) | [dayofyear](#dayofyear) | [endofday](#endofday) | [endofmonth](#endofmonth) | [endofweek](#endofweek) | [endofyear](#endofyear) | [getmonth](#getmonth) | [getyear](#getyear) | [now](#now) | [startofday](#startofday) | [startofmonth](#startofmonth) | [startofweek](#startofweek) | [startofyear](#startofyear) | [todatetime](#todatetime) | [totimespan](#totimespan) | [weekofyear](#weekofyear)
 
-**字串** [GUID](#guids) | [模糊的字串常值](#obfuscated-string-literals) | [字串常值](#string-literals) | [字串比較](#string-comparisons) | [countof](#countof) | [extract](#extract) | [isempty](#isempty) | [isnotempty](#isnotempty) | [notempty](#notempty)| [parseurl](#parseurl) | [replace](#replace) | [split](#split) | [strcat](#strcat) | [strlen](#strlen) | [substring](#substring) | [tolower](#tolower) | [toupper](#toupper)
+**字串** [GUID](#guids) | [模糊的字串常值](#obfuscated-string-literals) | [字串常值](#string-literals) | [字串比較](#string-comparisons) | [countof](#countof) | [extract](#extract) | [in, !in](#in) | [isempty](#isempty) | [isnotempty](#isnotempty) | [notempty](#notempty)| [parseurl](#parseurl) | [replace](#replace) | [split](#split) | [strcat](#strcat) | [strlen](#strlen) | [substring](#substring) | [tolower](#tolower) | [toupper](#toupper)
 
-**陣列、物件及動態** [陣列和物件常值](#array-and-object-literals) | [動態物件函式](#dynamic-object-functions) | [let 子句中的動態物件](#dynamic-objects-in-let-clauses) | [JSON 路徑運算式](#json-path-expressions) | [Names](#names) | [arraylength](#arraylength) | [extractjson](#extractjson) | [parsejson](#parsejson) | [range](#range) | [todynamic](#todynamic) | [treepath](#treepath)
+**陣列、物件及動態** [陣列和物件常值](#array-and-object-literals) | [動態物件函式](#dynamic-object-functions) | [let 子句中的動態物件](#dynamic-objects-in-let-clauses) | [JSON 路徑運算式](#json-path-expressions) | [名稱](#names) | [arraylength](#arraylength) | [extractjson](#extractjson) | [in, !in](#in) | [parsejson](#parsejson) | [range](#range) | [todynamic](#todynamic) | [treepath](#treepath)
 
 ## <a name="let"></a>Let
 ### <a name="let-clause"></a>let 子句
@@ -94,6 +95,18 @@ let 子句會將 [name](#names)繫結至表格式結果、純量值或函式。 
     let rows = (n:long) { range steps from 1 to n step 1 };
     rows(10) | ...
 
+將表格結果轉換為純量並在查詢中使用：
+
+```
+let topCities =  toscalar ( // convert single column to value
+   requests
+   | summarize count() by client_City 
+   | top 4 by count_ 
+   | summarize makeset(client_City)) ;
+requests
+| where client_City in (topCities) 
+| summarize count() by client_City;
+```
 
 自我聯結︰
 
@@ -157,6 +170,63 @@ requests // The request table starts this pipeline.
 ```AIQL
 requests | count
 ```
+
+### <a name="datatable-operator"></a>datatable 運算子
+
+指定內嵌表格。 結構描述與值是在查詢本身中定義。
+
+請注意，此運算子沒有管線輸入。
+
+**語法**
+
+    datatable ( ColumnName1 : ColumnType1 , ...) [ScalarValue1, ...]
+
+* *ColumnName* 資料行的名稱。
+* *ColumnType* [資料類型](#scalars)。 
+* *ScalarValue* 具有適當類型的值。 值計數必須是資料行數的倍數。 
+
+**傳回**
+
+包含指定值的資料表。
+
+**範例**
+
+```AIQL
+datatable (Date:datetime, Event:string)
+    [datetime(1910-06-11), "Born",
+     datetime(1930-01-01), "Enters Ecole Navale",
+     datetime(1953-01-01), "Published first book",
+     datetime(1997-06-25), "Died"]
+| where strlen(Event) > 4
+```
+
+### <a name="distinct-operator"></a>distinct 運算子
+
+傳回包含具有相異值組合之資料列的資料表。 (選擇性) 在操作之前針對資料欄子集進行縱向選取。
+
+**語法**
+
+    T | distinct *              // All columns
+    T | distinct Column1, ...   // Columns to project
+
+**範例**
+
+```AIQL
+datatable (Supplier: string, Fruit: string, Price:int) 
+["Contoso", "Grapes", 22,
+"Fabrikam", "Apples", 14,
+"Contoso", "Apples", 15,
+"Fabrikam", "Grapes", 22]
+| distinct Fruit, Price 
+```
+
+
+|水果|價格|
+|---|---|
+|葡萄|22|
+|蘋果|14|
+|蘋果|15|
+
 
 ### <a name="evaluate-operator"></a>evaluate 運算子
 `evaluate` 是擴充機制，可讓專門的演算法附加至查詢。
@@ -370,7 +440,10 @@ traces
 
 ### <a name="find-operator"></a>尋找運算子
 
-    find in (Table1, Table2, Table3) where id=='42'
+    find in (Table1, Table2, Table3) where id=="a string"
+    find in (Table1, Table2, Table3) where id=="a string" project column1, column2
+    find in (Table1, Table2, Table3) where * has "a string"
+    find in (Table1, Table2, Table3) where appName in ("string 1", "string 2", "string 3")
 
 尋找整組資料表中符合述詞的資料列。
 
@@ -384,6 +457,7 @@ traces
 
 * *Table1* 資料表名稱或查詢。 它可能是 let 定義的資料表，但不是函式。 資料表名稱執行優於查詢。
 * *述詞* 針對指定資料表中每個資料列的評估布林值運算式。
+ * 您可以使用 "*" 取代字串比較中的資料行名稱
 * *Column1* `project`選項可讓您指定哪些資料欄必須一律出現在輸出中。 
 
 **結果**
@@ -571,32 +645,32 @@ traces
 有兩種屬性包展開模式可受到支援︰
 
 * `bagexpansion=bag`︰屬性包會展開為單一項目屬性包。 這是預設展開模式。
-* `bagexpansion=array`︰屬性包會展開為有兩個項目 `[`key`,`value`]` 的陣列結構，以便能夠統一存取金鑰和值 (以及舉例來說，對屬性名稱執行相異計數彙總)。 
+* `bagexpansion=array`︰屬性包會展開為有兩個項目 `[`key`,`value`]` 的陣列結構，以便能夠統一存取金鑰和值 (以及舉例來說，對屬性名稱執行相異計數彙總)。
 
 **範例**
 
-    exceptions | take 1 
+    exceptions | take 1
     | mvexpand details[0]
 
 將例外狀況記錄分割成多個資料列，以容納詳細資料欄位中的每個項目。
 
 ### <a name="parse-operator"></a>parse 運算子
-    T | parse "I got 2 socks for my birthday when I was 63 years old" 
+    T | parse "I got 2 socks for my birthday when I was 63 years old"
     with * "got" counter:long " " present "for" * "was" year:long *
 
 
     T | parse kind=relaxed
-          "I got no socks for my birthday when I was 63 years old" 
-    with * "got" counter:long " " present "for" * "was" year:long * 
+          "I got no socks for my birthday when I was 63 years old"
+    with * "got" counter:long " " present "for" * "was" year:long *
 
-    T |  parse kind=regex "I got socks for my 63rd birthday" 
-    with "(I|She) got " present " for .*?" year:long * 
+    T |  parse kind=regex "I got socks for my 63rd birthday"
+    with "(I|She) got " present " for .*?" year:long *
 
 從字串中擷取值。 可使用簡單比對或規則運算式比對。
 
 **語法**
 
-    T | parse [kind=regex|relaxed] SourceText 
+    T | parse [kind=regex|relaxed] SourceText
         with [Match | Column [: Type [*]] ]  ...
 
 **引數**
@@ -844,6 +918,50 @@ Render 會指示展示層顯示資料表的方式。 它應該是管道的最後
     restrict access to (e1, e2);
     union * |  take 10 
 
+### <a name="sample-operator"></a>sample 運算子
+
+從輸入資料表傳回均勻態分佈隨機資料列。
+
+
+**語法**
+
+    T | sample NumerOfRows
+
+* *NumberOfRows* 要在樣本中傳回的資料列數目。
+
+**秘訣**
+
+當您不需要均勻分佈樣本時，請使用 `Take`。
+
+
+### <a name="sample-distinct-operator"></a>sample-distinct 運算子
+
+傳回單一資料行，其中包含所要求資料行的相異值數目上限。 目前不會傳回公平分佈樣本。
+
+**語法**
+
+    T | sample-distinct NumberOfValues of ColumnName
+
+* *NumberOfValues* 您要的資料表長度。
+* *ColumnName* 您要的資料行。
+
+**秘訣**
+
+可用於透過在 let 陳述式中放置 sample-distinct 並稍後使用 in 運算子 (請查看範例) 來篩選，以針對母體取樣。
+ 
+若要取得前幾項的值而非只取得樣本，您可以使用 top-hitters 運算子。
+
+若要針對資料列 (而非特定資料行的值) 進行取樣，請參閱 [sample 運算子](#sample-operator)。
+
+**範例**
+
+為母體取樣並在知道摘要不會超過查詢限制的情況下執行進一步的運算。
+
+```AIQL
+let sampleops = toscalar(requests | sample-distinct 10 of OperationName);
+requests | where OperationName in (sampleops) | summarize total=count() by OperationName
+```
+
 ### <a name="sort-operator"></a>sort 運算子
     T | sort by country asc, price desc
 
@@ -853,7 +971,7 @@ Render 會指示展示層顯示資料表的方式。 它應該是管道的最後
 
 **語法**
 
-    T  | sort by Column [ asc | desc ] [ `,` ... ]
+    T  | sort by Column [ asc | desc ] [ , ... ]
 
 **引數**
 
@@ -886,9 +1004,9 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
 **語法**
 
     T | summarize
-         [  [ Column = ] Aggregation [ `,` ... ] ]
+         [  [ Column = ] Aggregation [ , ... ] ]
          [ by
-            [ Column = ] GroupExpression [ `,` ... ] ]
+            [ Column = ] GroupExpression [ , ... ] ]
 
 **引數**
 
@@ -919,7 +1037,7 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
 
 **語法**
 
-    T | top NumberOfRows by Sort_expression [ `asc` | `desc` ] [`nulls first`|`nulls last`] [, ... ]
+    T | top NumberOfRows by Sort_expression [ asc | desc ] [nulls first|nulls last] [, ... ]
 
 **引數**
 
@@ -933,11 +1051,11 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
 `top 5 by name` 表面上相當於 `sort by name | take 5`。 不過，前者的執行速度較快且一定會傳回排序後的結果，而 `take` 則不一定如此。
 
 ### <a name="top-nested-operator"></a>top-nested 運算子
-    requests 
-    | top-nested 5 of name by count()  
-    , top-nested 3 of performanceBucket by count() 
+    requests
+    | top-nested 5 of name by count()
+    , top-nested 3 of performanceBucket by count()
     , top-nested 3 of client_CountryOrRegion by count()
-    | render barchart 
+    | render barchart
 
 產生階層式結果，其中每個層級都是從上一層向下切入。 這很適合用來回答如下的問題：「前 5 個要求是什麼；對這其中每一個來說，前 3 個效能值區是什麼；以及對這其中每一個來說，要求的前 3 個來源國家或地區為何？」
 
@@ -1027,7 +1145,7 @@ Traces 資料表中具有特定 `ActivityId`的所有資料列，按其時間戳
 請考慮 [join 運算子](#join-operator) 做為替代。
 
 ### <a name="where-operator"></a>where 運算子
-     requests | where resultCode==200
+     requests | where resultCode=="200"
 
 篩選資料表以建立滿足述詞的資料列子集。
 
@@ -1070,24 +1188,7 @@ traces
 
 請注意，我們將兩個資料行之間的比較放在最後，因為它不能利用索引和強制執行掃描。
 
-### <a name="where-in-operator"></a>where-in 運算子
-    requests | where resultCode !in (200, 201)
 
-    requests | where resultCode in (403, 404)
-
-**語法**
-
-    T | where col in (expr1, expr2, ...)
-    T | where col !in (expr1, expr2, ...)
-
-**引數**
-
-* `col`：資料表中的資料行。
-* `expr1`...：純量運算式清單。
-
-使用 `in` 來包含在資料列中 `col` 等於其中一個運算式 `expr1...` 的資料列。
-
-使用 `!in` 來包含在資料列中 `col` 不等於任何運算式 `expr1...` 的資料列。  
 
 ## <a name="aggregations"></a>彙總
 彙總是用來將 [彙總作業](#summarize-operator)中建立的群組中的值結合的函式。 例如，在此查詢中，dcount() 是彙總函數︰
@@ -1160,10 +1261,10 @@ traces
 
 結果︰
 
-    { "`indexer`":
+    { "indexer":
      {"id":"string",
        "parsedStack":
-       { "`indexer`": 
+       { "indexer": 
          {  "level":"int",
             "assembly":"string",
             "fileName":"string",
@@ -1195,11 +1296,11 @@ traces
 
 所產生的結構描述將是︰
 
-    { 
-      "x":["int", "string"], 
-      "y":["double", {"w": "string"}], 
-      "z":{"`indexer`": ["int", "string"]}, 
-      "t":{"`indexer`": "string"} 
+    {
+      "x":["int", "string"],
+      "y":["double", {"w": "string"}],
+      "z":{"indexer": ["int", "string"]},
+      "t":{"indexer": "string"}
     }
 
 結構描述指出：
@@ -1216,19 +1317,19 @@ traces
 所傳回結構描述的語法如下︰
 
     Container ::= '{' Named-type* '}';
-    Named-type ::= (name | '"`indexer`"') ':' Type;
+    Named-type ::= (name | '"indexer"') ':' Type;
     Type ::= Primitive-type | Union-type | Container;
     Union-type ::= '[' Type* ']';
     Primitive-type ::= "int" | "string" | ...;
 
 它們等同於 TypeScript 類型註釋的子集，並編碼為動態值。 在 Typescript 中，範例結構描述會是︰
 
-    var someobject: 
-    { 
-      x?: (number | string), 
-      y?: (number | { w?: string}), 
+    var someobject:
+    {
+      x?: (number | string),
+      y?: (number | { w?: string}),
       z?: { [n:number] : (int | string)},
-      t?: { [n:number]: string } 
+      t?: { [n:number]: string }
     }
 
 
@@ -1634,6 +1735,12 @@ true 或 false，取決於值是 null 或不是 null。
     and 
     or 
 
+### <a name="convert-to-boolean"></a>轉換成布林值
+
+若您有包含 "true" 或 "false" 的字串 `aStringBoolean`，您可以將它轉換為布林值，如下所示：
+
+    booleanResult = aStringBoolean =~ "true"
+
 
 
 ## <a name="numbers"></a>數字
@@ -1785,13 +1892,6 @@ true 或 false，取決於值是 null 或不是 null。
     toint(a[0])       // cast from dynamic
     toint(b.c)        // cast from dynamic
 
-### <a name="tolong"></a>tolong
-    tolong(20.7) == 20 // conversion from double
-    tolong(20.4) == 20 // conversion from double
-    tolong("  123  ")  // parse string
-    tolong(a[0])       // cast from dynamic
-    tolong(b.c)        // cast from dynamic
-
 
 ### <a name="todouble"></a>todouble
     todouble(20) == 20.0 // conversion from long or int
@@ -1799,6 +1899,13 @@ true 或 false，取決於值是 null 或不是 null。
     todouble(a[0])       // cast from dynamic
     todouble(b.c)        // cast from dynamic
 
+
+### <a name="tolong"></a>tolong
+    tolong(20.7) == 20 // conversion from double
+    tolong(20.4) == 20 // conversion from double
+    tolong("  123  ")  // parse string
+    tolong(a[0])       // cast from dynamic
+    tolong(b.c)        // cast from dynamic
 
 
 ## <a name="date-and-time"></a>日期和時間
@@ -2066,7 +2173,7 @@ h"hello"
 | --- | --- | --- | --- |
 | `==` |Equals |是 |`"aBc" == "aBc"` |
 | `<>` `!=` |不等於 |是 |`"abc" <> "ABC"` |
-| `=~` |Equals |否 |`"abc" =~ "ABC"` |
+| `=~` |Equals |否 |`"abc" =~ "ABC"` <br/>`boolAsString =~ "true"` |
 | `!~` |不等於 |否 |`"aBc" !~ "xyz"` |
 | `has` |右側 (RHS) 是左側 (LHS) 中的完整詞彙 |否 |`"North America" has "america"` |
 | `!has` |RHS 不是 LHS 中的完整詞彙 |否 |`"North America" !has "amer"` |
@@ -2083,8 +2190,8 @@ h"hello"
 | `endswith` |RHS 是 LHS 的終結子字串。 |否 |`"Fabrikam" endswith "kam"` |
 | `!endswith` |RHS 不是 LHS 的終結子字串。 |否 |`"Fabrikam" !endswith "ka"` |
 | `matches regex` |LHS 包含 RHS 的相符項目 |是 |`"Fabrikam" matches regex "b.*k"` |
-| `in` |等於任何元素 |是 |`"abc" in ("123", "345", "abc")` |
-| `!in` |不等於任何元素 |是 |`"bc" !in ("123", "345", "abc")` |
+| [`in`](#in) |等於任何元素 |是 |`"abc" in ("123", "345", "abc")` |
+| [`!in`](#in) |不等於任何元素 |是 |`"bc" !in ("123", "345", "abc")` |
 
 如果您要測試是否有完整的語彙詞彙存在，也就是以非英數字元或欄位的開頭或結尾為界限的符號或英數字元，請使用 `has` 或 `in`。 `has` 的執行速度比 `contains`、`startswith` 或 `endswith` 還快。 在下面兩個查詢中，第一個的執行速度較快︰
 
@@ -2167,6 +2274,8 @@ extract("^.{2,2}(.{4,4})", 1, Text)
 <a name="notempty"></a>
 <a name="isnotempty"></a>
 <a name="isempty"></a>
+
+
 
 ### <a name="isempty-isnotempty-notempty"></a>isempty、isnotempty、notempty
     isempty("") == true
@@ -2271,7 +2380,7 @@ range x from 1 to 5 step 1
 ### <a name="split"></a>split
     split("aaa_bbb_ccc", "_") == ["aaa","bbb","ccc"]
 
-根據指定的分隔符號分割指定字串，並傳回具有所包含子字串的字串陣列。 (選擇性) 可在特定子字串存在時將其傳回。
+根據指定的分隔符號分割指定字串，並傳回具有所包含子字串的字串陣列。 (選擇性) 可在特定子字串存在時將它傳回。
 
 **語法**
 
@@ -2375,8 +2484,8 @@ substring("ABCD", 0, 2)       // AB
     | summarize count() 
       by toint(details[0].parsedStack[0].line)
 
-    exceptions 
-    | summarize count() 
+    exceptions
+    | summarize count()
       by tostring(details[0].parsedStack[0].assembly)
 
 **常值：** 若要建立明確的陣列或屬性包物件，請將它撰寫為 JSON 字串並進行轉換：
@@ -2386,7 +2495,7 @@ substring("ABCD", 0, 2)       // AB
 
 **mvexpand：** 若要分開物件的屬性以使這些屬性各自佔有一個資料列，請使用 mvexpand：
 
-    exceptions | take 1 
+    exceptions | take 1
     | mvexpand details[0].parsedStack[0]
 
 
@@ -2394,8 +2503,8 @@ substring("ABCD", 0, 2)       // AB
 
 **treepath：** 若要尋找複雜物件中的所有路徑：
 
-    exceptions | take 1 | project timestamp, details 
-    | extend path = treepath(details) 
+    exceptions | take 1 | project timestamp, details
+    | extend path = treepath(details)
     | mvexpand path
 
 
@@ -2407,10 +2516,10 @@ substring("ABCD", 0, 2)       // AB
 
 結果︰
 
-    { "`indexer`":
+    { "indexer":
      {"id":"string",
        "parsedStack":
-       { "`indexer`": 
+       { "indexer":
          {  "level":"int",
             "assembly":"string",
             "fileName":"string",
@@ -2436,7 +2545,7 @@ substring("ABCD", 0, 2)       // AB
 若要建立動態常值，請搭配使用 `parsejson` (別名 `todynamic`) 與 JSON 字串引數：
 
 * `parsejson('[43, 21, 65]')` - 數字陣列
-* `parsejson('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')` 
+* `parsejson('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')`
 * `parsejson('21')` - 包含數字的動態類型單一值
 * `parsejson('"21"')` - 包含字串的動態類型單一值
 
@@ -2455,8 +2564,8 @@ T
 ### <a name="dynamic-object-functions"></a>動態物件函式
 |  |  |
 | --- | --- |
-|  `in`  |如果有 array 項目 == value，則為 true<br/>`where City in ('London', 'Paris', 'Rome')` |
-|  `!in`  |如果沒有 array 項目 == value，則為 true |
+| [*value* `in` *array*](#in) |*array* 包含 *value* |
+| [*value* `!in` *array*](#in) |*array* 不包含 *value* |
 | [`arraylength(`array`)`](#arraylength) |如果不是陣列則為 null |
 | [`extractjson(`path,object`)`](#extractjson) |使用路徑來瀏覽至物件。 |
 | [`parsejson(``)`](#parsejson) |將 JSON 字串變成動態物件。 |
@@ -2475,7 +2584,57 @@ T
     T | project parsejson(list1).a, parsejson(list2).a
 
 
+### <a name="in"></a>了嗎
+    value in (listExpression)
+    value !in (listExpression)
 
+判定清單中是否有 (不) 等於該值的項目。 值為字串時，區分大小寫。
+
+**引數**
+
+* `value`：純量運算式。
+* `listExpression`...: 純量運算式清單，或評估結果為清單的運算式。 
+
+巢狀陣列會扁平化為單一清單 - 例如，`where x in (dynamic([1,[2,3]]))` 會成為 `where x in (1,2,3)`。  
+
+**範例**
+
+```AIQL
+    requests | where client_City in ("London", "Paris", "Rome")
+```
+
+```AIQL
+let cities = dynamic(['Dublin','Redmond','Amsterdam']);
+requests | where client_City in (cities) 
+|  summarize count() by client_City
+```
+
+運算的清單：
+
+```AIQL
+let topCities =  toscalar ( // convert single column to value
+   requests
+   | summarize count() by client_City 
+   | top 4 by count_ 
+   | summarize makeset(client_City)) ;
+requests
+| where client_City in (topCities) 
+| summarize count() by client_City;
+```
+
+使用函式呼叫做為清單運算式：
+
+```AIQL
+let topCities =  (n:int) {toscalar (
+   requests
+   | summarize count() by client_City 
+   | top n by count_ 
+   | summarize makeset(client_City)) };
+requests
+| where client_City in (topCities(3)) 
+| summarize count() by client_City;
+```
+ 
 
 ### <a name="arraylength"></a>arraylength
 動態陣列中的項目數目。
@@ -2677,10 +2836,5 @@ range(1, 8, 3)
 | [其中] |使用語言關鍵字做為名稱 |
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

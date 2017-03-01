@@ -1,5 +1,5 @@
 ---
-title: "驗證用戶端對叢集的存取 | Microsoft Docs"
+title: "以安全的方式連線到 Azure Service Fabric 叢集 | Microsoft Docs"
 description: "說明如何驗證用戶端對 Service Fabric 叢集的存取，以及如何保護用戶端與叢集之間的通訊。"
 services: service-fabric
 documentationcenter: .net
@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/11/2016
+ms.date: 02/03/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 65775053918e12ef8881f417dacc0a63f080d093
-ms.openlocfilehash: 6de98012e768abc7f8450e97648444a74474b5e9
+ms.sourcegitcommit: 52f9a3146852ef83c31bd93e1c538e12f0d953eb
+ms.openlocfilehash: e44ecf5860becffb39d199e36d36d96f50bf7cf3
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -60,7 +61,7 @@ azure servicefabric cluster connect --connection-endpoint https://ip:19080 --cli
 
 <a id="connectsecurecluster"></a>
 
-## <a name="connect-to-a-secure-cluster-using-powershell"></a>使用 PowerShell 來連線到安全的叢集
+## <a name="connect-to-a-cluster-using-powershell"></a>使用 PowerShell 來連線到叢集
 在您透過 PowerShell 執行叢集上的作業之前，先建立叢集的連接。 叢集連接適用於指定 PowerShell 工作階段中的所有後續命令。
 
 ### <a name="connect-to-an-unsecure-cluster"></a>連線到不安全的叢集
@@ -103,11 +104,18 @@ Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azu
           -StoreLocation CurrentUser -StoreName My
 ```
 
+### <a name="connect-to-a-secure-cluster-using-windows-active-directory"></a>使用 Windows Active Directory 連線到安全的叢集
+如果您的獨立叢集是使用 AD 安全性部署，可加上 "WindowsCredential" 參數來連接到叢集。
+
+```powershell
+Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
+          -WindowsCredential
+```
 
 <a id="connectsecureclusterfabricclient"></a>
 
-## <a name="connect-to-a-secure-cluster-using-the-fabricclient-apis"></a>使用 FabricClient API 來連線到安全的叢集
-Service Fabric SDK 會提供叢集管理的 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 類別。 
+## <a name="connect-to-a-cluster-using-the-fabricclient-apis"></a>使用 FabricClient API 來連線到叢集
+Service Fabric SDK 會提供叢集管理的 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) 類別。 若要使用 FabricClient API，請取得 Microsoft.ServiceFabric NuGet 封裝。
 
 ### <a name="connect-to-an-unsecure-cluster"></a>連線到不安全的叢集
 
@@ -125,77 +133,63 @@ FabricClient fabricClient = new FabricClient();
 
 ### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a>使用用戶端憑證連線到安全的叢集
 
-叢集中的節點必須具備有效的憑證，這些憑證在 SAN 中的通用名稱或 DNS 名稱會出現在於 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 上設定的 [RemoteCommonNames](https://msdn.microsoft.com/library/azure/system.fabric.x509credentials.remotecommonnames.aspx) 屬性中。 遵循此程序，就可讓用戶端與叢集節點之間進行相互驗證。
+叢集中的節點必須具備有效的憑證，這些憑證在 SAN 中的通用名稱或 DNS 名稱會出現在於 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) 上設定的 [RemoteCommonNames](https://docs.microsoft.com/dotnet/api/system.fabric.x509credentials#System_Fabric_X509Credentials_RemoteCommonNames) 屬性中。 遵循此程序，就可讓用戶端與叢集節點之間進行相互驗證。
 
 ```csharp
+using System.Fabric;
+using System.Security.Cryptography.X509Certificates;
+
 string clientCertThumb = "71DE04467C9ED0544D021098BCD44C71E183414E";
 string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
 string CommonName = "www.clustername.westus.azure.com";
 string connection = "clustername.westus.cloudapp.azure.com:19000";
 
-X509Credentials xc = GetCredentials(clientCertThumb, serverCertThumb, CommonName);
-FabricClient fc = new FabricClient(xc, connection);
-Task<bool> t = fc.PropertyManager.NameExistsAsync(new Uri("fabric:/any"));
-try
-{
-    bool result = t.Result;
-    Console.WriteLine("Cluster is connected");
-}
-catch (AggregateException ae)
-{
-    Console.WriteLine("Connect failed: {0}", ae.InnerException.Message);
-}
-catch (Exception e)
-{
-    Console.WriteLine("Connect failed: {0}", e.Message);
-}
-
-...
-
-static X509Credentials GetCredentials(string clientCertThumb, string serverCertThumb, string name)
-{
-    X509Credentials xc = new X509Credentials();
-
-    // Client certificate
-    xc.StoreLocation = StoreLocation.CurrentUser;
-    xc.StoreName = "MY";
-    xc.FindType = X509FindType.FindByThumbprint;
-    xc.FindValue = thumb;
-
-    // Server certificate
-    xc.RemoteCertThumbprints.Add(thumb);
-    xc.RemoteCommonNames.Add(name);
-
-    xc.ProtectionLevel = ProtectionLevel.EncryptAndSign;
-    return xc;
-}
-```
-
-### <a name="connect-to-a-secure-cluster-using-azure-active-directory"></a>使用 Azure Active Directory 連線到安全的叢集
-
-遵循此程序，針對用戶端身分識別啟用 Azure Active Directory，以及針對伺服器身分識別啟用伺服器憑證。
-
-若要使用會顯示 AAD 互動式登入對話方塊的互動模式︰
-
-```csharp
-string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
-string connection = "clustername.westus.cloudapp.azure.com:19000";
-
-ClaimsCredentials claimsCredentials = new ClaimsCredentials();
-claimsCredentials.ServerThumbprints.Add(serverCertThumb);
-
-FabricClient fc = new FabricClient(
-    claimsCredentials,
-    connection);
+var xc = GetCredentials(clientCertThumb, serverCertThumb, CommonName);
+var fc = new FabricClient(xc, connection);
 
 try
 {
     var ret = fc.ClusterManager.GetClusterManifestAsync().Result;
     Console.WriteLine(ret.ToString());
 }
-catch (AggregateException ae)
+catch (Exception e)
 {
-    Console.WriteLine("Connect failed: {0}", ae.InnerException.Message);
+    Console.WriteLine("Connect failed: {0}", e.Message);
+}
+
+static X509Credentials GetCredentials(string clientCertThumb, string serverCertThumb, string name)
+{
+    X509Credentials xc = new X509Credentials();
+    xc.StoreLocation = StoreLocation.CurrentUser;
+    xc.StoreName = "My";
+    xc.FindType = X509FindType.FindByThumbprint;
+    xc.FindValue = clientCertThumb;
+    xc.RemoteCommonNames.Add(name);
+    xc.RemoteCertThumbprints.Add(serverCertThumb);
+    xc.ProtectionLevel = ProtectionLevel.EncryptAndSign;
+    return xc;
+}
+```
+
+### <a name="connect-to-a-secure-cluster-interactively-using-azure-active-directory"></a>使用 Azure Active Directory 以互動方式連線到安全的叢集
+
+以下範例針對用戶端身分識別使用 Azure Active Directory，以及針對伺服器身分識別啟用伺服器憑證。
+
+連線到叢集時，就會自動彈出對話方塊視窗，以供互動式登入。
+
+```csharp
+string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
+string connection = "clustername.westus.cloudapp.azure.com:19000";
+
+var claimsCredentials = new ClaimsCredentials();
+claimsCredentials.ServerThumbprints.Add(serverCertThumb);
+
+var fc = new FabricClient(claimsCredentials, connection);
+
+try
+{
+    var ret = fc.ClusterManager.GetClusterManifestAsync().Result;
+    Console.WriteLine(ret.ToString());
 }
 catch (Exception e)
 {
@@ -203,42 +197,36 @@ catch (Exception e)
 }
 ```
 
-若要使用無訊息模式，而不需任何人為互動︰
+### <a name="connect-to-a-secure-cluster-non-interactively-using-azure-active-directory"></a>使用 Azure Active Directory 以非互動方式連線到安全的叢集
 
-(此範例依存於 Microsoft.IdentityModel.Clients.ActiveDirectory，版本：2.19.208020213
+以下範例依存於 Microsoft.IdentityModel.Clients.ActiveDirectory，版本：2.19.208020213。
 
-請參閱 [Microsoft.IdentityModel.Clients.ActiveDirectory Namespace](https://msdn.microsoft.com/library/microsoft.identitymodel.clients.activedirectory.aspx) 了解如何取得權杖和詳細資訊)
+如需 AAD 權杖取得的詳細資訊，請參閱 [Microsoft.IdentityModel.Clients.ActiveDirectory](https://msdn.microsoft.com/library/microsoft.identitymodel.clients.activedirectory.aspx)。
 
 ```csharp
-string tenantId = "c15cfcea-02c1-40dc-8466-fbd0ee0b05d2";
-string clientApplicationId = "118473c2-7619-46e3-a8e4-6da8d5f56e12";
+string tenantId = "C15CFCEA-02C1-40DC-8466-FBD0EE0B05D2";
+string clientApplicationId = "118473C2-7619-46E3-A8E4-6DA8D5F56E12";
 string webApplicationId = "53E6948C-0897-4DA6-B26A-EE2A38A690B4";
 
 string token = GetAccessToken(
     tenantId,
     webApplicationId,
     clientApplicationId,
-    "urn:ietf:wg:oauth:2.0:oob"
-    );
+    "urn:ietf:wg:oauth:2.0:oob");
 
 string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
 string connection = "clustername.westus.cloudapp.azure.com:19000";
-ClaimsCredentials claimsCredentials = new ClaimsCredentials();
+
+var claimsCredentials = new ClaimsCredentials();
 claimsCredentials.ServerThumbprints.Add(serverCertThumb);
 claimsCredentials.LocalClaims = token;
 
-FabricClient fc = new FabricClient(
-   claimsCredentials,
-   connection);
+var fc = new FabricClient(claimsCredentials, connection);
 
 try
 {
     var ret = fc.ClusterManager.GetClusterManifestAsync().Result;
     Console.WriteLine(ret.ToString());
-}
-catch (AggregateException ae)
-{
-    Console.WriteLine("Connect failed: {0}", ae.InnerException.Message);
 }
 catch (Exception e)
 {
@@ -255,23 +243,56 @@ static string GetAccessToken(
 {
     string authorityFormat = @"https://login.microsoftonline.com/{0}";
     string authority = string.Format(CultureInfo.InvariantCulture, authorityFormat, tenantId);
-    AuthenticationContext authContext = new AuthenticationContext(authority);
+    var authContext = new AuthenticationContext(authority);
 
-    string token = "";
-    try
-    {
-        var authResult = authContext.AcquireToken(
-            resource,
-            clientId,
-            new UserCredential("TestAdmin@clustenametenant.onmicrosoft.com", "TestPassword"));
-        token = authResult.AccessToken;
-    }
-    catch (AdalException ex)
-    {
-        Console.WriteLine("Get AccessToken failed: {0}", ex.Message);
-    }
+    var authResult = authContext.AcquireToken(
+        resource,
+        clientId,
+        new UserCredential("TestAdmin@clustenametenant.onmicrosoft.com", "TestPassword"));
+    return authResult.AccessToken;
+}
 
-    return token;
+```
+
+### <a name="connect-to-a-secure-cluster-without-prior-metadata-knowledge-using-azure-active-directory"></a>使用 Azure Active Directory 連線到安全的叢集而不需事先知道中繼資料
+
+以下範例使用非互動權杖取得，但可以使用同樣的方法來建立自訂的互動式權杖取得經驗。 權杖取得所需的 Azure Active Directory 中繼資料是從叢集設定來讀取。
+
+```csharp
+string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
+string connection = "clustername.westus.cloudapp.azure.com:19000";
+
+var claimsCredentials = new ClaimsCredentials();
+claimsCredentials.ServerThumbprints.Add(serverCertThumb);
+
+var fc = new FabricClient(claimsCredentials, connection);
+
+fc.ClaimsRetrieval += (o, e) =>
+{
+    return GetAccessToken(e.AzureActiveDirectoryMetadata);
+};
+
+try
+{
+    var ret = fc.ClusterManager.GetClusterManifestAsync().Result;
+    Console.WriteLine(ret.ToString());
+}
+catch (Exception e)
+{
+    Console.WriteLine("Connect failed: {0}", e.Message);
+}
+
+...
+
+static string GetAccessToken(AzureActiveDirectoryMetadata aad)
+{
+    var authContext = new AuthenticationContext(aad.Authority);
+
+    var authResult = authContext.AcquireToken(
+        aad.ClusterApplication,
+        aad.ClientApplication,
+        new UserCredential("TestAdmin@clustenametenant.onmicrosoft.com", "TestPassword"));
+    return authResult.AccessToken;
 }
 
 ```
@@ -326,10 +347,5 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPe
 * [在 Visual Studio 中管理 Service Fabric 應用程式](service-fabric-manage-application-in-visual-studio.md)。
 * [Service Fabric 健康情況模型簡介](service-fabric-health-introduction.md)
 * [應用程式安全性及 RunAs](service-fabric-application-runas-security.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "在匯入程序期間設定屬性和中繼資料 | Microsoft Docs"
+title: "使用 Azure 匯入/匯出來設定屬性和中繼資料 | Microsoft Docs"
 description: "了解當執行匯入匯出工具準備磁碟機時，如何指定要在目的地 blob 上設定的屬性和中繼資料。"
 author: muralikk
 manager: syadav
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 5d75bdb5ff39934e02d9af721b51e0aca24026bb
-ms.openlocfilehash: f49604cf6738da3576ed2a65ca96d083d5e8219b
+ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
+ms.openlocfilehash: 8e1152a03eee01244dd469586848c396a7f689cc
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -70,9 +71,4 @@ WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp
   
 ## <a name="see-also"></a>另請參閱  
 [匯入匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

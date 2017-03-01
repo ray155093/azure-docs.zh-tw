@@ -1,6 +1,6 @@
 ---
-title: "一律加密：透過資料庫加密保護 Azure SQL Database 中的機密資料 | Microsoft Docs"
-description: "在數分鐘內開始保護您 SQL 資料庫中的機密資料。"
+title: "永遠加密：SQL Database - Azure Key Vault | Microsoft Docs"
+description: "本文說明如何使用 SQL Server Management Studio 中的 [永遠加密精靈]，藉由資料加密來保護 SQL Database 中的機密資料。 它也包含示範如何將每個加密金鑰儲存在「Azure 金鑰保存庫」中的指示。"
 keywords: "資料加密, 加密金鑰, 雲端加密"
 services: sql-database
 documentationcenter: 
@@ -17,17 +17,13 @@ ms.topic: article
 ms.date: 07/18/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 6b4cf5a1c6b764280488b07cf2dc98ecf78fda21
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: a2a738ef1df470e17b805e843a159e0abc23efdf
+ms.lasthandoff: 02/16/2017
 
 
 ---
 # <a name="always-encrypted-protect-sensitive-data-in-sql-database-and-store-your-encryption-keys-in-azure-key-vault"></a>一律加密：保護 SQL Database 中的機密資料，並將加密金鑰儲存在「Azure 金鑰保存庫」中
-> [!div class="op_single_selector"]
-> * [Azure 金鑰保存庫](sql-database-always-encrypted-azure-key-vault.md)
-> * [Windows 憑證存放區](sql-database-always-encrypted.md)
-> 
-> 
 
 本文說明如何使用 [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/hh213248.aspx) 中的[一律加密精靈](https://msdn.microsoft.com/library/mt459280.aspx)，藉由資料加密來保護 SQL Database 中的機密資料。 它也包含示範如何將每個加密金鑰儲存在「Azure 金鑰保存庫」中的指示。
 
@@ -62,7 +58,7 @@ ms.openlocfilehash: 6b4cf5a1c6b764280488b07cf2dc98ecf78fda21
 5. 針對 [登入 URL] 和 [應用程式識別碼 URI]，您可以輸入一個有效的 URL (例如：http://myClientApp)，然後繼續。
 6. 按一下 [設定] 。
 7. 複製您的 [用戶端識別碼] 。 (您之後在程式碼中將需要此值)。
-8. 在 [金鑰] 區段中，從 [選取持續時間] 下拉式清單中選取 [1 年]。 (您將在儲存金鑰後，於步驟 14 複製金鑰)。
+8. 在 [金鑰] 區段中，從 [選取持續時間] 下拉式清單中選取 [1 年]。 (您將在儲存金鑰後，於步驟 13 複製金鑰)。
 9. 向下捲動並按一下 [新增應用程式] 。
 10. 將 [顯示] 保留設定為 [Microsoft 應用程式]，然後選取 [Microsoft Azure 服務管理]。 按一下核取記號以繼續。
 11. 從 [委派權限] 下拉式清單中選取 [存取 Azure 服務管理]。
@@ -86,7 +82,7 @@ ms.openlocfilehash: 6b4cf5a1c6b764280488b07cf2dc98ecf78fda21
     $subscriptionId = (Get-AzureRmSubscription -SubscriptionName $subscriptionName).SubscriptionId
     Set-AzureRmContext -SubscriptionId $subscriptionId
 
-    New-AzureRmResourceGroup –Name $resourceGroupName –Location $location
+    New-AzureRmResourceGroup -Name $resourceGroupName -Location $location
     New-AzureRmKeyVault -VaultName $vaultName -ResourceGroupName $resourceGroupName -Location $location
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName $vaultName -ResourceGroupName $resourceGroupName -PermissionsToKeys create,get,wrapKey,unwrapKey,sign,verify,list -UserPrincipalName $userPrincipalName
@@ -98,7 +94,7 @@ ms.openlocfilehash: 6b4cf5a1c6b764280488b07cf2dc98ecf78fda21
 ## <a name="create-a-blank-sql-database"></a>建立空白 SQL Database
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 移至 [新增]  >  [資料 + 儲存體]  >  [SQL Database]。
-3. 在新的或現有伺服器上建立名稱為 **Clinic** (診所) 的**空白**資料庫。 如需有關如何在 Azure 入口網站中建立資料庫的詳細指示，請參閱 [在幾分鐘內建立 SQL Database](sql-database-get-started.md)。
+3. 在新的或現有伺服器上建立名稱為 **Clinic** (診所) 的**空白**資料庫。 如需有關如何在 Azure 入口網站中建立資料庫的詳細指示，請參閱[您的第一個 SQL Database](sql-database-get-started.md)。
    
     ![建立空白資料庫](./media/sql-database-always-encrypted-azure-key-vault/create-database.png)
 
@@ -646,10 +642,5 @@ SSMS 提供一個精靈，可為您設定資料行主要金鑰、資料行加密
 * [SQL Server 加密](https://msdn.microsoft.com/library/bb510663.aspx)
 * [一律加密精靈](https://msdn.microsoft.com/library/mt459280.aspx)
 * [一律加密部落格](http://blogs.msdn.com/b/sqlsecurity/archive/tags/always-encrypted/)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

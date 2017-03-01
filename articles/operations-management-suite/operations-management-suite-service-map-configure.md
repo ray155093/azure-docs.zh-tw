@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 11/18/2016
 ms.author: daseidma;bwren;dairwin
 translationtype: Human Translation
-ms.sourcegitcommit: 496e00c2b9a0b374450f9a6f9dff5d41c805261c
-ms.openlocfilehash: 591f3440977b1c952b1b360f6d3f221cdbc5a7a7
+ms.sourcegitcommit: 1ce47043f85e30f616c8b22e1107b192d4962d8a
+ms.openlocfilehash: 73c35da427f1e2080ab6fdd086d3168dad495415
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -27,14 +28,14 @@ ms.openlocfilehash: 591f3440977b1c952b1b360f6d3f221cdbc5a7a7
 
 
 ## <a name="connected-sources"></a>連接的來源
-下表描述服務對應解決方案支援的連接來源。
+服務對應會從 Microsoft 相依性代理程式取得它的資料。  相依性代理程式相依於連接至 OMS 的 OMS 代理程式。  這表示，伺服器必須先安裝並設定 OMS 代理程式，然後才能安裝相依性代理程式。  下表描述服務對應解決方案支援的連接來源。
 
 | 連接的來源 | 支援 | 說明 |
 |:--|:--|:--|
-| [Windows 代理程式](../log-analytics/log-analytics-windows-agents.md) | 是 | 服務對應會分析並收集來自 Windows 代理程式電腦的資料。  <br><br>除了 OMS 代理程式外，Windows 代理程式還需要 Microsoft 相依性代理程式。  如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
-| [Linux 代理程式](../log-analytics/log-analytics-linux-agents.md) | 是 | 服務對應會分析並收集來自 Linux 代理程式電腦的資料。  <br><br>除了 OMS 代理程式外，Linux 代理程式還需要 Microsoft 相依性代理程式。  如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
-| [SCOM 管理群組](../log-analytics/log-analytics-om-agents.md) | 是 | 服務對應會分析並收集來自已連接之 System Center Operations Manager (SCOM) 管理群組中 Windows 和 Linux 代理程式的資料。 <br><br>SCOM 代理程式電腦必須能夠直接連接到 OMS。 資料會直接從管理群組傳送至 OMS 存放庫。|
-| [Azure 儲存體帳戶](../log-analytics/log-analytics-azure-storage.md) | 否 | 服務對應會收集來自代理程式電腦的資料，因此沒有要從 Azure 儲存體收集的資料。 |
+| Windows 代理程式 | 是 | 服務對應會分析並收集來自 Windows 代理程式電腦的資料。  <br><br>除了 [OMS 代理程式](../log-analytics/log-analytics-windows-agents.md)外，Windows 代理程式還需要 Microsoft 相依性代理程式。  如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
+| Linux 代理程式 | 是 | 服務對應會分析並收集來自 Linux 代理程式電腦的資料。  <br><br>除了 [OMS 代理程式](../log-analytics/log-analytics-linux-agents.md)外，Linux 代理程式還需要 Microsoft 相依性代理程式。  如需作業系統版本的完整清單，請參閱[支援的作業系統](#supported-operating-systems)。 |
+| SCOM 管理群組 | 是 | 服務對應會分析並收集來自已連接之 [System Center Operations Manager (SCOM) 管理群組](../log-analytics/log-analytics-om-agents.md)中 Windows 和 Linux 代理程式的資料。 <br><br>SCOM 代理程式電腦必須能夠直接連接到 OMS。 資料會直接從管理群組傳送至 OMS 存放庫。|
+| Azure 儲存體帳戶 | 否 | 服務對應會收集來自代理程式電腦的資料，因此沒有要從 Azure 儲存體收集的資料。 |
 
 服務對應僅支援 64 位元平台。
 
@@ -97,10 +98,10 @@ MP 名為 Microsoft.IntelligencePacks.ApplicationDependencyMonitor*。它會寫�
 
 請使用下列步驟在每一部 Windows 電腦上安裝相依性代理程式：
 
-1.  使用「將電腦直接連接到 OMS」上的指示確定已安裝 OMS 代理程式。
-2.  下載 Windows 代理程式，並以下列命令來執行： <br>*InstallDependencyAgent-Windows.exe*
-3.  遵循精靈來安裝代理程式。
-4.  如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Windows 代理程式上，記錄檔的目錄是 *C:\Program Files\Microsoft Dependency Agent\logs*。 
+1.    使用「將電腦直接連接到 OMS」上的指示確定已安裝 OMS 代理程式。
+2.    下載 Windows 代理程式，並以下列命令來執行： <br>*InstallDependencyAgent-Windows.exe*
+3.    遵循精靈來安裝代理程式。
+4.    如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Windows 代理程式上，記錄檔的目錄是 *C:\Program Files\Microsoft Dependency Agent\logs*。 
 
 系統管理員可透過控制台解除安裝 Windows 的相依性代理程式。
 
@@ -112,9 +113,9 @@ MP 名為 Microsoft.IntelligencePacks.ApplicationDependencyMonitor*。它會寫�
  
 請使用下列步驟在每一部 Linux 電腦上安裝相依性代理程式：
 
-1.  使用下列位置所提供的指示確定已安裝 OMS 代理程式：[收集並管理來自 Linux 電腦的資料。必須先安裝 OMS 代理程式再安裝 Linux 相依性代理程式](https://technet.microsoft.com/library/mt622052.aspx)。
-2.  使用下列命令以 root 身分安裝 Linux 相依性代理程式：<br>*sh InstallDependencyAgent-Linux64.bin*。
-3.  如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Linux 代理程式上，記錄檔的目錄是 /var/opt/microsoft/dependency-agent/log。
+1.    使用下列位置所提供的指示確定已安裝 OMS 代理程式：[收集並管理來自 Linux 電腦的資料。必須先安裝 OMS 代理程式再安裝 Linux 相依性代理程式](https://technet.microsoft.com/library/mt622052.aspx)。
+2.    使用下列命令以 root 身分安裝 Linux 相依性代理程式：<br>*sh InstallDependencyAgent-Linux64.bin*。
+3.    如果相依性代理程式無法啟動，請檢查記錄檔以取得詳細的錯誤資訊。 在 Linux 代理程式上，記錄檔的目錄是 /var/opt/microsoft/dependency-agent/log。
 
 ### <a name="uninstalling-the-dependency-agent-on-linux"></a>在 Linux 上解除安裝相依性代理程式
 若要將「相依性代理程式」從 Linux 中完全解除安裝，您必須將代理程式本身及隨代理程式自動安裝的「連接器」移除。  您可以使用下列單一命令同時解除安裝這兩項：
@@ -177,8 +178,8 @@ Windows 相依性代理程式的檔案預設位於 *C:\Program Files\Microsoft D
   
 請執行下列步驟來確認已下載管理組件：
 
-1.  在 C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs 中尋找稱為 Microsoft.IntelligencePacks.ApplicationDependencyMonitor.mp 的檔案。  
-2.  如果檔案不存在，且代理程式已連接到 SCOM 管理群組，則檢查 Operations 主控台的 [系統管理] 工作區中是否有管理組件，來確認該檔案已匯入 SCOM。
+1.    在 C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs 中尋找稱為 Microsoft.IntelligencePacks.ApplicationDependencyMonitor.mp 的檔案。  
+2.    如果檔案不存在，且代理程式已連接到 SCOM 管理群組，則檢查 Operations 主控台的 [系統管理] 工作區中是否有管理組件，來確認該檔案已匯入 SCOM。
 
 服務對應 MP 會將事件寫入 Operations Manager 的 Windows 事件記錄檔。  透過系統記錄檔解決方案即可[在 OMS 中搜尋](../log-analytics/log-analytics-log-searches.md)記錄檔，該解決方案可供您設定要上傳的記錄檔。  如果已啟用偵錯事件，則會將其寫入應用程式事件記錄檔，事件來源為 *ADMConnector*。
 
@@ -198,7 +199,7 @@ Windows 相依性代理程式的檔案預設位於 *C:\Program Files\Microsoft D
 #### <a name="microsoft-dependency-agent"></a>Microsoft 相依性代理程式
 若要從相依性代理程式產生疑難排解資料，請以具有 sudo 或 root 權限的帳戶進行登入，然後執行下列命令。  您可以新增 --help 旗標，以顯示其他選項。
 
-    /opt/microsoft/dependency-agent/scripts/collect-dependency-agent-data.sh
+    /opt/microsoft/dependency-agent/lib/scripts/collect-dependency-agent-data.sh
 
 「支援資料套件」會儲存到代理程式安裝目錄下的 /var/opt/microsoft/dependency-agent/log (如果為 root)，或儲存到執行指令碼之使用者的主目錄 (如果非 root)。  您可以使用 --file <filename> 選項將它儲存到不同位置。
 
@@ -322,9 +323,4 @@ omsconfig (代理程式組態) 的記錄檔位於 */var/opt/microsoft/omsconfig/
 
 ## <a name="next-steps"></a>後續步驟
 - 部署和設定後，了解如何[使用服務對應](operations-management-suite-service-map.md)。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

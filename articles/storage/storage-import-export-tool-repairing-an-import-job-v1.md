@@ -1,5 +1,5 @@
 ---
-title: "修復匯入作業 | Microsoft Docs"
+title: "修復 Azure 匯入作業 | Microsoft Docs"
 description: "了解如何修復使用匯入匯出服務建立和執行的匯入作業。"
 author: muralikk
 manager: syadav
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 5d75bdb5ff39934e02d9af721b51e0aca24026bb
-ms.openlocfilehash: 9278256edd5c117de9b0e6b5b12f0ca37c612661
+ms.sourcegitcommit: 74182c8c357085f186aaa43adfaef80a083d16bb
+ms.openlocfilehash: a47b0da43a84bb77fb8de16c37811a4b87fe3fbf
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -107,9 +108,4 @@ WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bo
 [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
 [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)   
 [針對 Azure 匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

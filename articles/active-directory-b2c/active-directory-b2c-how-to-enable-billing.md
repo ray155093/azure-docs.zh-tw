@@ -13,8 +13,9 @@ ms.workload: identity
 ms.date: 12/05/2016
 ms.author: joroja
 translationtype: Human Translation
-ms.sourcegitcommit: 10bcd51746315d80cef20592b869dca95eaacb56
-ms.openlocfilehash: a460ef42dafac04088ecdce12f64ee5e19ba77ff
+ms.sourcegitcommit: 43224628d5726ac2fb0e8c27c649421af7ceeee4
+ms.openlocfilehash: 6cf375fbfe265a53591b9987ebd32db6df73fcb4
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -73,8 +74,8 @@ https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 
 ## <a name="next-steps"></a>後續步驟
 針對每個 B2C 租用戶完成這些步驟後，您的 Azure 訂用帳戶就會根據 Azure 直接或企業合約詳細資料計費。
-- 檢閱您選取的 Azure 訂用帳戶的使用量和計費
-- 使用使用量報告 API 檢閱詳細的每天使用量報告 (TBD)
+- 檢閱您選取的 Azure 訂用帳戶內的使用量和計費
+- 使用[使用量報告 API](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-reference-usage-reporting-api) 來檢閱詳細的每天使用量報告
 
 
 
@@ -82,9 +83,4 @@ https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 [gog]: http://google.com/        
 [yah]: http://search.yahoo.com/  
 [msn]: http://search.msn.com/    
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

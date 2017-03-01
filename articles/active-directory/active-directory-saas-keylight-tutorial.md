@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 02/03/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2e8346695d4f9e0b2d7016455d20e2f843047eed
+ms.sourcegitcommit: ed2fc2b34ff10acc806daec84986f8db58e713c3
+ms.openlocfilehash: f58c0967890ee99c574957f0cdfe1bb412f7f9e8
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 2e8346695d4f9e0b2d7016455d20e2f843047eed
 Keylight 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中管控可存取 Keylight 的人員
-* 您可以讓使用者透過其 Azure AD 帳戶自動登入 Keylight (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Keylight 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -37,9 +38,8 @@ Keylight 與 Azure AD 整合提供下列優點：
 * Azure 訂用帳戶
 * 啟用 Keylight 單一登入的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
@@ -55,7 +55,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 1. 從資源庫新增 Keylight
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-keylight-from-the-gallery"></a>從資源庫新增 Keylight
+## <a name="add-keylight-from-the-gallery"></a>從資源庫新增 Keylight
 若要設定 Keylight 與 Azure AD 整合，您需要從資源庫將 Keylight 加入到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫加入 Keylight，請執行下列步驟：**
@@ -80,7 +80,7 @@ Keylight 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-keylight-tutorial/tutorial_keylight_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+## <a name="configure-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Keylight 設定及測試 Azure AD 單一登入。
 
 若要使用 Keylight 設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
@@ -91,7 +91,7 @@ Keylight 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 在本節中，您會在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Keylight 應用程式中設定單一登入。
 
 **若要使用 Keylight 設定 Azure AD 單一登入，請執行下列步驟：**
@@ -106,78 +106,58 @@ Keylight 與 Azure AD 整合提供下列優點：
    
     ![設定單一登入](./media/active-directory-saas-keylight-tutorial/tutorial_keylight_04.png) 
 
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 Keylight 應用程式的 URL：**“https://\<公司名稱\>.keylightgrc.com/Login.aspx?saml=1”**。
+    * 在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 Keylight 應用程式的 URL：**“https://\<公司名稱\>.keylightgrc.com/Login.aspx?saml=1”**。
 
-
-1. 在 [設定在 Keylight 單一登入]  頁面上，執行下列步驟：
+4. 在 [設定在 Keylight 單一登入]  頁面上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-keylight-tutorial/tutorial_keylight_05.png) 
    
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+    1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+    2. 按 [下一步] 。
+5. 若要在 Keylight 中啟用 SSO，請執行下列步驟：
    
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
-2. 若要在 Keylight 中啟用 SSO，請執行下列步驟：
-   
-    a. 以系統管理員身分登入 Keylight 帳戶。
-   
-    b. 在頂端功能表中，按一下 [人員]，然後選取 [Keylight 安裝]。
+    1. 以系統管理員身分登入 Keylight 帳戶。
+    2. 在頂端功能表中，按一下 [人員]，然後選取 [Keylight 安裝]。
    
     ![設定單一登入](./media/active-directory-saas-keylight-tutorial/401.png) 
-   
-    c. 在左側樹狀檢視中，按一下 [SAML]。
+    3. 在左側樹狀檢視中，按一下 [SAML]。
    
     ![設定單一登入](./media/active-directory-saas-keylight-tutorial/402.png) 
-   
-    d. 在 [SAML 設定] 對話方塊中，按一下 [編輯]。
+    4. 在 [SAML 設定] 對話方塊中，按一下 [編輯]。
    
     ![設定單一登入](./media/active-directory-saas-keylight-tutorial/404.png) 
-3. 在 [編輯 SAML 設定]  對話方塊頁面上，執行下列步驟：
+6. 在 [編輯 SAML 設定]  對話方塊頁面上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-keylight-tutorial/405.png) 
    
-    a. 將 [SAML 驗證] 設為**作用中**。
+    1. 將 [SAML 驗證] 設為**作用中**。
+    2. 在 Azure AD 傳統入口網站中，複製 **SAML SSO URL** 值，然後將其貼到 [識別提供者登入 URL] 文字方塊中。
+    3. 在 Azure AD 傳統入口網站中，複製**單一登出服務 URL** 值，然後將其貼到 [識別提供者登出 URL] 文字方塊中。
+    4. 按一下 [選擇檔案] 來選取下載的 Keylight 憑證，然後按一下 [開啟] 以上傳憑證。
+    5. 將 [SAML 使用者識別碼位置] 設定為 [Subject 陳述式的 NameIdentifier 元素]。
+    6. 使用下列模式提供 [Keylight 服務提供者]︰ https://&lt;Company Name&gt;.keylightgrc.com**。
+    7. 進行下列設定：
+     * 將 [自動佈建使用者] 設定為 [作用中]。
+     * 將 [自動佈建帳戶類型] 設定為 [完整使用者]。
+     * 以**自動佈建安全性角色**身分，選取 [具備 SAML 的標準使用者]。
+     * 以**自動佈建安全性設定**身分，選取 [標準使用者組態]。
+    8. 輸入以下資訊：    
+     * 在 [電子郵件] 屬性文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。
+     * 在 [名字屬性] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
+     * 在 [姓氏屬性] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
+    9. 按一下 [儲存] 。
 
-    b.這是另一個 C# 主控台應用程式。 在 Azure AD 傳統入口網站中，複製 **SAML SSO URL** 值，然後將其貼到 [識別提供者登入 URL] 文字方塊中。
-
-    c. 在 Azure AD 傳統入口網站中，複製**單一登出服務 URL** 值，然後將其貼到 [識別提供者登出 URL] 文字方塊中。
-
-    d. 按一下 [選擇檔案] 來選取下載的 Keylight 憑證，然後按一下 [開啟] 以上傳憑證。
-
-
-    e. 將 [SAML 使用者識別碼位置] 設定為 [Subject 陳述式的 NameIdentifier 元素]。
-
-    f. 使用下列模式提供 [Keylight 服務提供者]︰ https://&lt;Company Name&gt;.keylightgrc.com**。
-
-    g. 將 [自動佈建使用者] 設定為 [作用中]。
-
-    h. 將 [自動佈建帳戶類型] 設定為 [完整使用者]。
-
-    i. 以**自動佈建安全性角色**身分選取 [具備 SAML 的標準使用者]。
-
-    j. 以**自動佈建安全性設定**身分選取 [標準使用者組態]。
-
-    k. 在 [電子郵件] 屬性文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。
-
-    l. 在 [名字屬性] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
-
-    m. 在 [姓氏屬性] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
-
-    n. 按一下 [儲存] 。
-
-
-
-
-1. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
+7. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
-2. 在 [單一登入確認] 頁面上，按一下 [完成]。  
+8. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在 Azure 傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
-在 [使用者] 清單中，選取 [Britta Simon] 。
+* 在 [使用者] 清單中，選取 [Britta Simon] 。
 
 ![建立 Azure AD 使用者][20]
 
@@ -197,24 +177,18 @@ Keylight 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-keylight-tutorial/create_aaduser_05.png) 
    
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+   1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+   2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+   3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-keylight-tutorial/create_aaduser_06.png) 
    
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+   1. 在 [名字] 文字方塊中，輸入 **Britta**。    
+   2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+   3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-keylight-tutorial/create_aaduser_07.png) 
@@ -222,21 +196,19 @@ Keylight 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-keylight-tutorial/create_aaduser_08.png) 
    
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+    1. 記下 [新密碼] 的值。
+    2. 按一下 [完成]。   
 
-### <a name="creating-a-keylight-test-user"></a>建立 Keylight 測試使用者
+### <a name="create-a-keylight-test-user"></a>建立 Keylight 測試使用者
 在本節中，您要在 Keylight 中建立名為 Britta Simon 的使用者。 Keylight 支援預設啟用的 Just-In-Time 佈建。
 
 在這一節沒有您需要進行的動作項目。 存取 Keylight 時，如果使用者還不存在，就會建立新使用者。 
 
-> [!NOTE]
-> 如果您需要手動建立使用者，您需要連絡 Keylight 支援小組。
-> 
+>[!NOTE]
+>如果您需要手動建立使用者，您需要連絡 Keylight 支援小組。 
 > 
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 在本節中，您會把 Keylight 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
@@ -257,7 +229,7 @@ Keylight 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
+### <a name="test-single-sign-on"></a>測試單一登入
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
 當您在存取面板中按一下 Keylight 圖格時，應該會自動登入您的 Keylight 應用程式。
@@ -283,9 +255,4 @@ Keylight 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-keylight-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-keylight-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-keylight-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

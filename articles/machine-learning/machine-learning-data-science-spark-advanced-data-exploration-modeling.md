@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/07/2016
+ms.date: 02/15/2017
 ms.author: deguhath;bradsev;gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c844eeb0e01422dac468484a8458f243a2afb87d
+ms.sourcegitcommit: 5be82735c0221d14908af9d02500cc42279e325b
+ms.openlocfilehash: e6bf6bd3c905f077841ef166540337a251b91ad1
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: c844eeb0e01422dac468484a8458f243a2afb87d
 
 模型化步驟也包含程式碼來示範如何定型、評估和儲存每類模型。 這個主題涵蓋一些與[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題相同的內容， 但更「進階」；這是指它也會使用交叉驗證搭配超參數掃掠，以最佳方式定型精確的分類和迴歸模型。 
 
-**交叉驗證 (CV)** 是一種技術，評估以一組已知資料定型的模型如何一般化，以預測在其上尚未定型的資料集的功能。 這套方法背後的基本概念是模型已在已知資料的資料集上定型，然後針對獨立的資料集測試其預測的精確度。 此處所使用的通用實作是將資料集分割成 K 摺疊，然後以循環配置資源方式定型所有摺疊，只留下其中一個摺疊。 
+**交叉驗證 (CV)** 是一種技術，評估以一組已知資料定型的模型如何一般化，以預測在其上尚未定型的資料集的功能。  此處所使用的通用實作是將資料集分割成 K 摺疊，然後以循環配置資源方式定型所有摺疊，只留下其中一個摺疊。 評估測試未定型的此摺疊中獨立資料集時精確預測模型的能力。
 
 **超參數最佳化** 是選擇用於學習演算法的超參數集的問題所在，通常具有最佳化獨立資料集上演算法效能的測量的目標。 **超參數** 是值，必須在模型定型程序之外指定。 這些值的假設可能會影響模型的彈性和精確度。 決策樹有超參數，例如，想要的深度和樹狀目錄中的分葉數目等。 支援向量機器 (SVM) 需要設定分類誤判損失詞彙。 
 
@@ -50,8 +51,16 @@ ms.openlocfilehash: c844eeb0e01422dac468484a8458f243a2afb87d
 > 
 > 
 
-## <a name="prerequisites"></a>必要條件
-您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。 請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求。 此主題也包括這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。 您可以在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上取得 **pySpark-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例。
+## <a name="setup-spark-clusters-and-notebooks"></a>設定：Spark 叢集和 Notebook
+此逐步解說所提供的設定步驟和程式碼適用於使用 HDInsight Spark 1.6。 不過 Jupyter Notebook 可供 HDInsight Spark 1.6 版和 Spark 2.0 叢集兩者使用。 Notebook 的描述及它們的連結已在包含它們的 GitHub 儲存機制的 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) 中提供。 此外，此處及連結的 Notebook 內的程式碼皆屬泛型程式碼，而且應該能在任何 Spark 叢集上運作。 若您不是使用 HDInsight Spark，叢集設定和管理步驟可能與這裡顯示的稍有不同。 為了方便起見，以下是可讓 Spark 1.6 版和 2.0 版在 Jupyter Notebook 伺服器的 pyspark 核心中執行的 Jupyter Notebook 連結：
+
+### <a name="spark-16-notebooks"></a>Spark 1.6 Notebook
+
+[pySpark-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/pySpark-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)：包含Notebook #1 中的主題，以及使用超參數微調和交叉驗證的模型開發。
+
+### <a name="spark-20-notebooks"></a>Spark 2.0 Notebook
+
+[Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)：此檔案提供如何在 Spark 2.0 叢集中執行資料瀏覽、模型化和評分的相關資訊。
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -120,7 +129,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 * 在輸入資料集中讀取 (儲存為 .tsv 檔案)
 * 格式化和清除資料
 * 建立並快取記憶體中的物件 (RDD 或資料框架)
-* 將其註冊為 SQL 內容中的暫存資料表。
+* 將它註冊為 SQL 內容中的暫存資料表。
 
 以下是資料擷取的程式碼。
 
@@ -191,9 +200,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 此程式碼與後續程式碼片段使用了 SQL magic 來查詢範例及本機 magic 以繪製資料。
 
 * **SQL magic (`%%sql`)** HDInsight PySpark 核心支援針對 sqlContext 進行簡單的內嵌 HiveQL 查詢。 「-o VARIABLE_NAME」引數會將 SQL 查詢的輸出，保存為 Jupyter 伺服器上的 Pandas 資料框架。 這代表會在本機模式中使用此引數。
-* **`%%local` magic** 是用來在 Jupyter 伺服器本機 (HDInsight 叢集的前端節點) 上執行程式碼。 通常您會使用 `%%local` magic 來搭配含有 -o 參數的 `%%sql` magic。 -o 參數會保存本機 SQL 查詢的輸出，然後 %%local magic 會針對已保存在本機上的 SQL 查詢輸出，觸發下一組要在本機上執行的程式碼片段。
-
-執行完程式碼後，輸出將會自動以視覺化方式呈現。
+* **`%%local` magic** 是用來在 Jupyter 伺服器本機 (HDInsight 叢集的前端節點) 上執行程式碼。 一般來說，您使用 `%%sql -o` magic 之後使用 `%%local` magic 來執行查詢。 -o 參數會將 SQL 查詢的輸出保存在本機。 接著 `%%local` magic 會針對保存在本機之 SQL 查詢的輸出，觸發下一組程式碼片段在本機執行。 執行完程式碼後，輸出將會自動以視覺化方式呈現。
 
 此查詢會擷取按乘客計數排列的車程。 
 
@@ -298,15 +305,15 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 ## <a name="feature-engineering-transformation-and-data-preparation-for-modeling"></a>模型化的功能工程、轉換和資料準備
 本節描述並提供程序的程式碼，可用來準備資料以供 ML 模型化使用。 它示範如何執行下列工作：
 
-* 將小時納入流量時間值區以建立新功能
+* 將小時分割到流量時間分類區以建立新功能
 * 索引和 on-hot 編碼分類功能
 * 建立輸入到 ML 函式的標示點物件
-* 建立資料的隨機子取樣，並將其分割成訓練和測試集
+* 建立資料的隨機子取樣，並將它分割成訓練和測試集
 * 調整功能
 * 快取記憶體中的物件
 
-### <a name="create-a-new-feature-by-binning-hours-into-traffic-time-buckets"></a>將小時納入流量時間值區以建立新特徵
-此程式碼示範如何將小時納入流量時間值區以建立新功能，以及如何從記憶體快取產生的資料框架。 在重複使用彈性分散式資料集 (RDD) 和資料框架的位置，快取可改善執行時間。 因此，我們會在逐步解說中的幾個階段快取 RDD 和資料框架。
+### <a name="create-a-new-feature-by-partitioning-traffic-times-into-bins"></a>將流量時間分割到分類區以建立新功能
+此程式碼示範如何將流量時間分割到分類區以建立新功能，以及如何從記憶體快取產生的資料框架。 在重複使用彈性分散式資料集 (RDD) 和資料框架的位置，快取可改善執行時間。 因此，我們會在逐步解說中的幾個階段快取 RDD 和資料框架。
 
     # CREATE FOUR BUCKETS FOR TRAFFIC TIMES
     sqlStatement = """
@@ -383,7 +390,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 執行上述儲存格所花費的時間︰3.14 秒
 
 ### <a name="create-labeled-point-objects-for-input-into-ml-functions"></a>建立輸入到 ML 函式的標示點物件
-本節包含程式碼，示範如何將分類的文字資料索引為標示點資料類型並加以編碼，以用來訓練及測試 MLlib 羅吉斯迴歸和其他分類模型。 標示點物件是彈性分散式資料集 (RDD)，其格式化成適合 MLlib 中大部分的 ML 演算法的輸入資料。 [標示點](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point) 是本機向量 (密集或疏鬆)，與標籤/回應相關聯。
+本節包含的程式碼示範如何將分類的文字資料索引做為標示點資料類型以及如何編碼。 這可準備它用來訓練及測試 MLlib 羅吉斯迴歸和其他分類模型。 標示點物件是彈性分散式資料集 (RDD)，其格式化成適合 MLlib 中大部分的 ML 演算法的輸入資料。 [標示點](https://spark.apache.org/docs/latest/mllib-data-types.html#labeled-point) 是本機向量 (密集或疏鬆)，與標籤/回應相關聯。
 
 以下是要為二進位分類進行索引及編碼文字功能的程式碼。
 
@@ -431,8 +438,8 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
         return  labPt
 
 
-### <a name="create-a-random-sub-sampling-of-the-data-and-split-it-into-training-and-testing-sets"></a>建立資料的隨機子取樣，並將其分割成訓練和測試集
-此程式碼會建立隨機取樣資料 (這裡使用 25%)。 雖然您不需要這個範例 (因為資料集的大小)，我們將在這裡示範如何取樣，讓您了解如何在需要時使用它來自行解決問題。 在大型範例中，如此可在訓練模型時節省大量時間。 接下來我們將範例分割成訓練部分 (這裡為 75%) 和測試部分 (這裡為 25%)，以便在分類和迴歸模型化中使用。
+### <a name="create-a-random-sub-sampling-of-the-data-and-split-it-into-training-and-testing-sets"></a>建立資料的隨機子取樣，並將它分割成訓練和測試集
+此程式碼會建立隨機取樣資料 (這裡使用&25;%)。 雖然您不需要這個範例 (因為資料集的大小)，我們將在這裡示範如何取樣， 這樣您就了解如何在需要時使用它來自行解決問題。 當樣本非常大時，這樣可在訓練模型時節省大量時間。 接下來我們將範例分割成訓練部分 (這裡為&75;%) 和測試部分 (這裡為&25;%)，以便在分類和迴歸模型化中使用。
 
     # RECORD START TIME
     timestart = datetime.datetime.now()
@@ -476,7 +483,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 執行上述儲存格所花費的時間︰0.31 秒
 
 ### <a name="feature-scaling"></a>調整功能
-調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。 用於調整功能的程式碼會使用 [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) ，將功能調整至單位變異數。 這是由 MLlib 提供，用於使用隨機梯度下降 (SGD) 的線性迴歸，為訓練廣泛的其他機器學習模型的常用演算法，例如正則化迴歸或支援向量機器 (SVM)。   
+調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。 用於調整功能的程式碼會使用 [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) ，將功能調整至單位變異數。 這是由 MLlib 提供，用於使用隨機梯度下降 (SGD) 的線性迴歸。 SGD 為訓練廣泛的其他機器學習模型的常用演算法，例如正則化迴歸或支援向量機器 (SVM)。   
 
 > [!TIP]
 > 我們找到了適用於調整功能的 LinearRegressionWithSGD 演算法。   
@@ -563,7 +570,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 我們會示範如何以兩種方式使用參數掃掠執行交叉驗證 (CV)︰
 
 1. 使用 **泛型** 自訂程式碼，可以套用至 MLlib 中的任何演算法，以及套用至演算法中的任何參數集。 
-2. 使用 **pySpark CrossValidator 管線函式**。 請注意，雖然很方便，根據我們的經驗，CrossValidator 對於 Spark 1.5.0 有幾項限制︰ 
+2. 使用 **pySpark CrossValidator 管線函式**。 請注意，CrossValidator 對 Spark 1.5.0 有幾項限制︰ 
    
    * 管線模型無法儲存/保存供未來取用。
    * 無法用於模型中的每個參數。
@@ -983,7 +990,7 @@ ROC 下的領域 = 0.985336538462
 執行上述儲存格所花費的時間︰28.13 秒
 
 ## <a name="predict-tip-amount-with-regression-models-not-using-cv"></a>使用迴歸模型預測小費金額 (非使用 CV)
-本節說明如何使用三種迴歸工作模型，根據其他小費功能預測支付的計程車車程的小費金額。 顯示模型如下︰
+本節說明如何使用三種迴歸工作模型：根據其他小費功能預測支付的計程車車程的小費金額。 顯示模型如下︰
 
 * 正規化線性迴歸
 * 隨機樹系
@@ -1436,10 +1443,5 @@ BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-0
 現在已使用 Spark MlLib 建立迴歸和分類模型，您已瞭解如何評分及評估這些模型。
 
 **模型耗用量︰** 若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱 [評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

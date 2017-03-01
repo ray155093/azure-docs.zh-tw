@@ -1,5 +1,5 @@
 ---
-title: "將由 Azure Automation DSC 管理的實體和虛擬機器上架 | Microsoft Docs"
+title: "將由 Azure 自動化 DSC 管理的機器上架 | Microsoft Docs"
 description: "如何設定機器以使用 Azure 自動化 DSC 管理"
 services: automation
 documentationcenter: dev-center-name
@@ -14,8 +14,9 @@ ms.workload: TBD
 ms.date: 12/13/2016
 ms.author: eslesar
 translationtype: Human Translation
-ms.sourcegitcommit: 18c6a55f2975305203bf20a040ac29bc9527a124
-ms.openlocfilehash: 0832b5866b49800cc0aecda8f4e473f89b12139b
+ms.sourcegitcommit: e2257730f0c62dbc0313ce7953fc5f953dae8ac3
+ms.openlocfilehash: f81536322ad1bb16e4af326e0b053da47690619c
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -196,7 +197,7 @@ Azure 自動化 DSC 可讓您輕鬆上架 Azure 虛擬機器以進行組態管�
 
 ## <a name="generating-dsc-metaconfigurations"></a>產生 DSC 中繼設定
 
-若要以一般方式將任何電腦上架至 Azure 自動化 DSC，可產生套用時會告知電腦上的 DSC 代理程式從 Azure 自動化 DSC 提取且/或報告的 DSC 中繼設定。 Azure 自動化 DSC 的 DSC 中繼設定可以使用 PowerShell DSC 設定或 Azure 自動化 PowerShell Cmdlet 產生。
+若要以一般方式將任何電腦上架至 Azure Automation DSC，可產生套用時會告知電腦上的 DSC 代理程式從 Azure Automation DSC 提取且/或報告的 [DSC 中繼設定](https://msdn.microsoft.com/en-us/powershell/dsc/metaconfig)。 Azure 自動化 DSC 的 DSC 中繼設定可以使用 PowerShell DSC 設定或 Azure 自動化 PowerShell Cmdlet 產生。
 
 > [!NOTE]
 > DSC 中繼設定包含將電腦上架至進行管理之自動化帳戶的機密資料。 請務必適當地保護您所建立的任何 DSC 中繼設定，或在使用後將它們刪除。
@@ -319,7 +320,11 @@ Azure 自動化 DSC 可讓您輕鬆上架 Azure 虛擬機器以進行組態管�
 
 3. 填寫您自動化帳戶的註冊金鑰和 URL，以及要上架的電腦名稱。 所有其他參數都是選擇性的。 若要尋找您的自動化帳戶的註冊金鑰和註冊 URL，請參閱以下的 [**安全註冊**](#secure-registration) 一節會提供追蹤其進度或疑難排解的步驟。
 4. 如果您希望電腦向 Azure 自動化 DSC 報告 DSC 狀態資訊，但不提取設定或 PowerShell 模組，請將 **ReportOnly** 參數設定為 true。
-5. 執行指令碼。 您現在工作目錄中應該有一個名為 **DscMetaConfigs** 的資料夾，其中包含要上架之電腦的 PowerShell DSC 中繼設定。
+5. 執行指令碼。 您現在工作目錄中應該有一個名為 **DscMetaConfigs** 的資料夾，其中包含要上架之電腦的 PowerShell DSC 中繼設定 (以系統管理員身分)：
+
+    ```powershell
+    Set-DscLocalConfigurationManager -Path ./DscMetaConfigs
+    ```
 
 ### <a name="using-the-azure-automation-cmdlets"></a>使用 Azure 自動化 Cmdlet
 
@@ -338,13 +343,16 @@ Azure 自動化 DSC 可讓您輕鬆上架 Azure 虛擬機器以進行組態管�
         ComputerName = @('web01', 'web02', 'sql01'); # The names of the computers that the meta configuration will be generated for
         OutputFolder = "$env:UserProfile\Desktop\";
     }
-
     # Use PowerShell splatting to pass parameters to the Azure Automation cmdlet being invoked
     # For more info about splatting, run: Get-Help -Name about_Splatting
     Get-AzureRmAutomationDscOnboardingMetaconfig @Params
-     ```
-
-    您現在工作目錄中應該有一個名為 ***DscMetaConfigs***的資料夾，其中包含要上架之電腦的 PowerShell DSC 中繼設定。
+    ```
+    
+4. 您現在應該有一個名為 ***DscMetaConfigs*** 的資料夾，其中包含要上架之電腦的 PowerShell DSC 中繼設定 (以系統管理員身分)：
+    
+    ```powershell
+    Set-DscLocalConfigurationManager -Path $env:UserProfile\Desktop\DscMetaConfigs
+    ```
 
 ## <a name="secure-registration"></a>安全註冊
 
@@ -384,9 +392,4 @@ Azure Automation DSC 可讓您輕鬆地將 Azure Windows VM 上架以進行組�
 * [Azure 自動化 DSC 概觀](automation-dsc-overview.md)
 * [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
 * [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

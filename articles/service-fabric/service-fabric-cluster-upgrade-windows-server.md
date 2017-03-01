@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/10/2016
+ms.date: 02/02/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
+ms.sourcegitcommit: e9d7e1b5976719c07de78b01408b2546b4fec297
+ms.openlocfilehash: 217715ad1657582eb35008b765de6d19bd2a8b0b
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -124,8 +125,14 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 ```
 
 #### <a name="cluster-upgrade-workflow"></a>叢集升級工作流程。
-1. 從[針對 Windows Server 建立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)文件下載最新版本的套件 
-2. 從具有系統管理員存取權的任何電腦，將叢集連接至列為叢集中節點的所有電腦。 執行此指令碼所在的電腦不一定是叢集的一部分 
+1. 從叢集中的其中一個節點執行 Get-ServiceFabricClusterUpgrade，並記下 TargetCodeVersion。
+2. 從與網際網路連線的電腦執行下列程式碼，以根據目前版本列出所有升級相容版本 ，並從相關聯的下載連結下載對應封裝。
+   ```powershell
+   
+    ###### Get list of all upgrade compatible packages
+    Get-ServiceFabricRuntimeUpgradeVersion -BaseVersion <TargetCodeVersion as noted in Step 1>
+    ```
+3. 從具有系統管理員存取權的任何電腦，將叢集連接至列為叢集中節點的所有電腦。 執行此指令碼所在的電腦不一定是叢集的一部分 
    
     ```powershell
    
@@ -140,7 +147,7 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
         -StoreLocation CurrentUser `
         -StoreName My
     ```
-3. 將下載的套件複製到叢集映像存放區。
+4. 將下載的套件複製到叢集映像存放區。
    
     ```powershell
    
@@ -152,7 +159,7 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 
     ```
 
-1. 註冊所複製的套件 
+5. 註冊所複製的套件 
    
     ```powershell
    
@@ -163,7 +170,7 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
     Register-ServiceFabricClusterPackage -Code -CodePackagePath MicrosoftAzureServiceFabric.5.3.301.9590.cab
    
      ```
-2. 開始將叢集升級至其中一個可用版本。 
+6. 開始將叢集升級至其中一個可用版本。 
    
     ```Powershell
    
@@ -184,6 +191,24 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 
 在解決導致復原的問題後，您需要依照之前的相同步驟再次起始升級。
 
+
+## <a name="cluster-configuration-upgrade"></a>叢集組態升級
+若要執行叢集組態升級，請執行 Start-ServiceFabricClusterConfigurationUpgrade。 組態升級是按升級網域逐一處理。
+
+```powershell
+
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File> 
+
+```
+
+### <a name="cluster-certificate-config-upgrade-pls-hold-on-till-v55-is-released-because-cluster-cert-upgrade-doesnt-work-till-v55"></a>叢集憑證組態升級 (請等到 v5.5 發行，因為叢集憑證升級要到 v5.5 才能運作)
+叢集憑證是用來在叢集節點之間進行驗證，所以執行憑證變換應更加謹慎，因為失敗將會封鎖叢集節點之間的通訊。
+從技術角度來看，支援兩個選項：
+
+1. 單一憑證升級：升級路徑為「憑證 A (主要) -> 憑證 B (主要) -> 憑證 C (主要) -> ...」。 
+2. 雙重憑證升級：升級路徑為「憑證 A (主要) -> 憑證 A (主要) 和 B (次要) -> 憑證 B (主要) -> 憑證 B (主要) 和 C (次要) -> 憑證 C (主要) -> ...」
+
+
 ## <a name="next-steps"></a>後續步驟
 * 了解如何自訂一些 [Service Fabric 叢集網狀架構設定](service-fabric-cluster-fabric-settings.md)
 * 了解如何 [相應放大和相應縮小叢集](service-fabric-cluster-scale-up-down.md)
@@ -191,9 +216,4 @@ ms.openlocfilehash: 386102ad864d580ce280e3530bce428c532a751c
 
 <!--Image references-->
 [getfabversions]: ./media/service-fabric-cluster-upgrade-windows-server/getfabversions.PNG
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

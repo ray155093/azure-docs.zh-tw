@@ -1,5 +1,5 @@
 ---
-title: "建立存取權變更歷程記錄報告 | Microsoft Docs"
+title: "存取報告 - Azure RBAC | Microsoft Docs"
 description: "產生一份報告，其中列出您的 Azure 訂用帳戶 (採用角色型存取控制) 在過去 90 天內的所有存取權變更。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 08/03/2016
+ms.date: 02/17/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 44295ff647cbfd2d63ffe08d101da66b83a924f6
+ms.sourcegitcommit: bb894c38de63d0eac4066eeabaed7ba791021cc4
+ms.openlocfilehash: bb15538a37fd610207c77fe2cf89fbfa16bbba11
+ms.lasthandoff: 02/18/2017
 
 
 ---
@@ -43,7 +44,7 @@ ms.openlocfilehash: 44295ff647cbfd2d63ffe08d101da66b83a924f6
 | **SubscriptionId** |Azure 訂用帳戶的 GUID |
 | **SubscriptionName** |Azure 訂用帳戶的名稱 |
 
-此範例命令會列出過去 7 天訂用帳戶中的所有存取權變更：
+此範例命令會列出過去&7; 天訂用帳戶中的所有存取權變更：
 
 ```
 Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::FromDays(7)) | FT Caller,Action,RoleName,PrincipalType,PrincipalName,ScopeType,ScopeName
@@ -59,13 +60,8 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 
 ![以試算表形式來檢視的變更記錄 - 螢幕擷取畫面](./media/role-based-access-control-configure/change-history-spreadsheet.png)
 
-## <a name="see-also"></a>另請參閱
-* 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)
+## <a name="next-steps"></a>後續步驟
 * 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+* 了解如何[使用 PowerShell 管理 Azure RBAC](role-based-access-control-manage-access-powershell.md)
 
 

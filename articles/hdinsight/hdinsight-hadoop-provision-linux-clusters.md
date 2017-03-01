@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 12/07/2016
+ms.date: 02/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
-ms.openlocfilehash: e731c2334ca2d63017b54f0362657aaace585ae0
+ms.sourcegitcommit: aaff4a7aa717f42dedb96eceeb4315b31a6e7b17
+ms.openlocfilehash: 1ea77289ead60af067a0d07bac6c2e40a1684a04
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -100,7 +101,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 如需在 Azure 虛擬網路內使用兩個叢集類型的範例，請參閱[使用 Storm 和 HBase 分析感應器資料](hdinsight-storm-sensor-data-analysis.md)。
 
 ## <a name="cluster-tiers"></a>叢集層
-Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：標準和 [進階](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。 HDInsight Premium 包括 R 和其他額外的元件。 只有 HDInsight 3.4 版支援 HDInsight Premium。
+Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：標準和 [進階](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。 HDInsight Premium 包括 R 和其他額外的元件。 只有 HDInsight 3.5 版支援 HDInsight Premium。
 
 下表列出 HDInsight 叢集類型和 HDInsight Premium 支援矩陣。
 
@@ -337,9 +338,4 @@ Windows 型叢集需要傳統部署模型中所建立的虛擬網路。 Linux �
 | [cURL](hdinsight-hadoop-create-linux-clusters-curl-rest.md) |&nbsp; |✔ |✔ |&nbsp; |✔ |✔ |
 | [.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md) |&nbsp; |&nbsp; |&nbsp; |✔ |✔ |✔ |
 | [Azure 資源管理員範本](hdinsight-hadoop-create-linux-clusters-arm-templates.md) |&nbsp; |✔ |&nbsp; |&nbsp; |✔ |✔ |
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

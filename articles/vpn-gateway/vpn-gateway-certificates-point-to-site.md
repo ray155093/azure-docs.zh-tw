@@ -1,5 +1,5 @@
 ---
-title: "使用 makecert 建立點對站虛擬網路交叉部署連線的自我簽署憑證 |Microsoft Docs"
+title: "建立點對站連線的自我簽署憑證：Azure | Microsoft Docs"
 description: "本文包含使用 makecert 在 Windows 10 上建立自我簽署憑證的步驟。"
 services: vpn-gateway
 documentationcenter: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/19/2017
+ms.date: 02/15/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 64c6e8fa5288ce9a25bcb434217511425aebfe21
-ms.openlocfilehash: beb873c99d956eafebecc69f9afc480c558efabb
+ms.sourcegitcommit: 4c8fc5b20416d59eccdf34aaea95ed158d9c04fa
+ms.openlocfilehash: a3965a149fa62e5630d2b9940d4940308991aed1
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -31,21 +32,22 @@ ms.openlocfilehash: beb873c99d956eafebecc69f9afc480c558efabb
 
 ### <a name="to-create-a-self-signed-certificate"></a>建立自我簽署憑證
 1. 從執行 Windows 10 的電腦上下載並安裝[適用於 Windows 10 的 Windows 軟體開發套件 (SDK)](https://dev.windows.com/en-us/downloads/windows-10-sdk)。
-2. 安裝之後，您可以在下列路徑中找到 makecert.exe 公用程式：C:\Program Files (x86)\Windows Kits\10\bin\<arch>。 
-   
-    範例： `C:\Program Files (x86)\Windows Kits\10\bin\x64`
-3. 接下來，在您電腦上的個人憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 以系統管理員身分執行下列命令。 將 *ARMP2SRootCert* 和 *ARMP2SRootCert.cer* 取代為您想使用的憑證名稱。<br><br>憑證會位於您的憑證 - 目前使用者\個人\憑證。
+2. 安裝之後，您可以在下列路徑中找到 makecert.exe 公用程式：'C:\Program Files (x86)\Windows Kits\10\bin\<arch>'。 以系統管理員身分開啟命令提示字元，然後瀏覽至 makecert 公用程式的位置。 您可以使用下列範例：
+
+        cd C:\Program Files (x86)\Windows Kits\10\bin\x64
+
+3. 在您電腦上的 [個人] 憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 將 'ARMP2SRootCert' 和 'ARMP2SRootCert.cer' 取代為您想使用的憑證名稱。<br><br>憑證會位於您的 '[憑證 - 目前的使用者]\[個人]\[憑證]' 中。
    
         makecert -sky exchange -r -n "CN=ARMP2SRootCert" -pe -a sha1 -len 2048 -ss My "ARMP2SRootCert.cer"
 
 ### <a name="a-namerootpublickeyato-obtain-the-public-key"></a><a name="rootpublickey"></a>取得公開金鑰
-做為點對站連線的 VPN 閘道組態的一部分，根憑證的公開金鑰會上傳至 Azure。
+做為點對站連線的 VPN 閘道組態的一部分，根憑證的公開金鑰會上傳至 Azure。 
 
-1. 若要取得憑證的 .cer 檔案，請開啟 [certmgr.msc] 。 在自我簽署的根憑證上按一下滑鼠右鍵，按一下 [所有工作]，然後按一下 [匯出]。 這會開啟 [憑證匯出精靈] 。
-2. 在精靈中，按 [下一步]，接著選取 [否，不要匯出私密金鑰]，然後按 [下一步]。
-3. 在 [匯出檔案格式] 頁面上，選取 [Base-64 編碼 X.509 (.CER)]。 然後按 [下一步] 。 
+1. 若要取得憑證的 .cer 檔案，請開啟 [certmgr.msc] 。 找出自我簽署的根憑證，通常位於 '[憑證 - 目前的使用者]\[個人]\[憑證]' 中，然後按一下滑鼠右鍵。 按一下 [所有工作]，然後按一下 [匯出]。 這會開啟 [憑證匯出精靈] 。
+2. 在精靈中，按 [下一步]。 選取 [否，不要匯出私密金鑰]，然後按 [下一步]。
+3. 在 [匯出檔案格式] 頁面上，選取 [Base-64 編碼 X.509 (.CER)]，然後按 [下一步]。 
 4. 在 [要匯出的檔案] 中，[瀏覽] 到您要匯出憑證的位置。 針對 [檔案名稱] ，請為憑證檔案命名。 然後按 [下一步] 。
-5. 按一下 [完成]  以匯出憑證。
+5. 按一下 [完成]  以匯出憑證。 您將會看到 [匯出成功]。 按一下 [確定] 以關閉精靈。
 
 ### <a name="export-the-self-signed-certificate-optional"></a>匯出自我簽署的憑證 (選擇性)
 您可能想要匯出自我簽署的憑證，並將它安全地儲存。 如有需要，您可以稍後在另一部電腦上安裝這個自我簽署憑證，然後產生更多用戶端憑證，或匯出另一個 .cer 檔案。 已安裝用戶端憑證並設定適當的 VPN 用戶端設定的任何電腦，都可以透過 P2S 連線到您的虛擬網路。 基於這個原因，您必須確定用戶端憑證只有在需要時才會產生並安裝，而且此自我簽署憑證已安全地儲存。
@@ -59,18 +61,15 @@ ms.openlocfilehash: beb873c99d956eafebecc69f9afc480c558efabb
 下列步驟將逐步引導您完成從自我簽署憑證產生用戶端憑證的其中一種方法。 您也可以從相同憑證產生多個用戶端憑證。 然後每個用戶端憑證可以匯出及安裝在用戶端電腦上。 
 
 1. 在用來建立自我簽署憑證的相同電腦上，以系統管理員身分開啟命令提示字元。
-2. 在此範例中，"ARMP2SRootCert" 是指您產生的自我簽署憑證。 
-   
-   * 將 *"ARMP2SRootCert"* 變更為您產生用戶端憑證所用的自我簽署根憑證。 
-   * 將 *ClientCertificateName* 變更為產生用戶端憑證所用的名稱。 
+2. 修改並執行範例以產生用戶端憑證。
+    * 將 *"ARMP2SRootCert"* 變更為您產生用戶端憑證所用的自我簽署根憑證。 確定您使用的是根憑證名稱，亦即您建立自我簽署根憑證時所指定的 'CN=' 值。
+    * 將 *ClientCertificateName* 變更為產生用戶端憑證所用的名稱。<br><br>如果您未經修改就執行以下範例，您的個人憑證存放區中就會有一個從根憑證 ARMP2SRootCert 產生的用戶端憑證，名為 ClientCertificateName。
 
-    修改並執行範例以產生用戶端憑證。 如果您未經修改就執行以下範例，您的個人憑證存放區中就會有一個從根憑證 ARMP2SRootCert 產生的用戶端憑證，名為 ClientCertificateName。
+            makecert.exe -n "CN=ClientCertificateName" -pe -sky exchange -m 96 -ss My -in "ARMP2SRootCert" -is my -a sha1
 
-        makecert.exe -n "CN=ClientCertificateName" -pe -sky exchange -m 96 -ss My -in "ARMP2SRootCert" -is my -a sha1
 
-1. 所有憑證都會儲存在電腦上的憑證 - 目前使用者\個人\憑證存放區中。 您可以視需要根據這個程序來產生許多用戶端憑證。
+### <a name="a-nameclientkeyapart-2---export-a-client-certificate"></a><a name="clientkey"></a>第 2 部分 - 匯出用戶端憑證                                                                                                                        
 
-### <a name="a-nameclientkeyapart-2---export-a-client-certificate"></a><a name="clientkey"></a>第 2 部分 - 匯出用戶端憑證
 1. 若要匯出用戶端憑證，請開啟 **certmgr.msc**。 以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。 這會開啟 [憑證匯出精靈] 。
 2. 在精靈中，按一下 [下一步]，接著選取 [是，匯出私密金鑰]，然後按 [下一步]。
 3. 在 [匯出檔案格式]  頁面上，您可以保留選取預設值。 然後按 [下一步] 。 
@@ -92,10 +91,5 @@ ms.openlocfilehash: beb873c99d956eafebecc69f9afc480c558efabb
 
 * 針對 **Resource Manager** 部署模型步驟，請參閱 [使用 PowerShell 設定 VNet 的點對站連線](vpn-gateway-howto-point-to-site-rm-ps.md)。 
 * 針對「傳統」  部署模型步驟，請參閱 [使用傳統入口網站設定 VNet 的點對站 VPN 連線](vpn-gateway-point-to-site-create.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

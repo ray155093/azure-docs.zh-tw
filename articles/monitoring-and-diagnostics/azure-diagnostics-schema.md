@@ -1,22 +1,23 @@
 ---
 title: "Azure 診斷組態結構描述版本清單 | Microsoft Docs"
 description: "用來設定 Azure 虛擬機器、VM 擴展集、Service Fabric 和雲端服務中效能計數器的集合。"
-services: multiple
+services: monitoring-and-diagnostics
 documentationcenter: .net
 author: rboucher
 manager: carmonm
 editor: 
 ms.assetid: 
-ms.service: multiple
+ms.service: monitoring-and-diagnostics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 02/09/2017
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 8c9c9dea1248205aa6303e11e1166d5d38786c1b
-ms.openlocfilehash: 2e1bc45b55cd79af8579a5ddaf43cf0db019c92f
+ms.sourcegitcommit: ac1ae46a165baad675c6b2445f91e05694eae6f9
+ms.openlocfilehash: 5d0894430dc915fc46d753a0b672de3b51ce3888
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -39,6 +40,10 @@ Azure 診斷要與 Azure 監視器、Application Insights 和 Log Analytics 等�
 |2.6               |1.3                         |"|  
 |2.7               |1.4                         |"|  
 |2.8               |1.5                         |"|  
+|2.9               |1.6                         |"|
+|2.96              |1.7                         |"|
+
+
 
  Azure 診斷 1.0 版最早是隨附於外掛程式模型中，這表示當您安裝 Azure SDK 時，即會取得隨附於其中的 Azure 診斷版本。  
 
@@ -51,10 +56,5 @@ Azure 診斷要與 Azure 監視器、Application Insights 和 Log Analytics 等�
 
 [Azure 診斷 1.2 組態結構描述](azure-diagnostics-schema-1dot2.md)  
 
-[Azure 診斷 1.3 到 1.5 組態結構描述](azure-diagnostics-schema-1dot3-to-1dot5.md)  
-
-
-
-<!--HONumber=Jan17_HO5-->
-
+[診斷 1.3 和更新版本的組態結構描述](azure-diagnostics-schema-1dot3-and-later.md)  
 

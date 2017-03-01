@@ -14,11 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/22/2016
-ms.author: carlrab; sashan
+ms.date: 12/22/2016
+ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 8b13faf1f6cdac355cc4d22b825cc2362a50e8f9
+ms.sourcegitcommit: 2c13daf84727a500a2ea6a3dc1d4968c9824e223
+ms.openlocfilehash: 6abc5c10f6116886ac5d6cbc11f251f083ee2b29
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -32,15 +33,19 @@ ms.openlocfilehash: 8b13faf1f6cdac355cc4d22b825cc2362a50e8f9
 > 
 > 
 
-## <a name="how-does-sql-database-long-term-retention-work"></a>SQL Database 長期保留如何運作？
+## <a name="how-does-sql-database-long-term-backup-retention-work"></a>SQL Database 長期備份保留如何運作？
 
-備份的長期保留可讓您將 Azure SQL Database 伺服器與 Azure 復原服務保存庫相關聯。 
+備份的長期備份保留可讓您將 Azure SQL Database 伺服器與「Azure 復原服務」保存庫建立關聯。 
 
 * 必須在與建立 SQL Server 相同的 Azure 訂用帳戶中以及相同的地理區域和資源群組中建立保存庫。 
 * 接著，您可以針對任何資料庫設定保留原則。 原則會使每週的完整資料庫備份複製到復原服務保存庫，並保留指定的保留週期 (最多 10 年)。 
 * 接著您可以從任何備份還原至訂用帳戶中任何伺服器的新資料庫。 複本會由 Azure 儲存體從現有的備份執行，且在現有的資料庫上沒有效能影響。
 
-## <a name="how-do-i-enable-long-term-retention"></a>如何啟用長期保留？
+
+> [!TIP]
+> 如需相關教學課程，請參閱[透過 Azure 入口網站開始使用備份與還原以保護和修復資料](sql-database-get-started-backup-recovery-portal.md)，或[透過 PowerShell 開始使用備份與還原以保護和修復資料](sql-database-get-started-backup-recovery-powershell.md)
+
+## <a name="how-do-i-enable-long-term-backup-retention"></a>如何啟用長期備份保留？
 
 若要設定資料庫的長期備份保留︰
 
@@ -49,9 +54,11 @@ ms.openlocfilehash: 8b13faf1f6cdac355cc4d22b825cc2362a50e8f9
 3. 建立 Azure 復原服務保護原則
 4. 將保護原則套用到需要長期備份保留的資料庫
 
-## <a name="how-do-i-restore-a-database-stored-with-the-long-term-retention-feature"></a>如何使用長期保存功能儲存的還原資料庫？
+若要使用 Azure 入口網站在「Azure 復原服務」保存庫中設定、管理自動備份的長期備份保留及從該保留還原，請參閱[使用 Azure 入口網站來管理長期備份保留 (英文)](sql-database-manage-long-term-backup-retention-portal.md)。 若要使用 PowerShell 在「Azure 復原服務」保存庫中設定、管理自動備份的長期備份保留及從該保留還原，請參閱[使用 PowerShell 來管理長期備份保留 (英文)](sql-database-manage-long-term-backup-retention-powershell.md)。
 
-若要從長期保留備份復原︰
+## <a name="how-do-i-restore-a-database-stored-with-the-long-term-backup-retention-feature"></a>如何還原以長期備份保留功能儲存的資料庫？
+
+從長期備份保留備份復原︰
 
 1. 列出儲存備份的保存庫
 2. 列出對應至您邏輯伺服器的容器
@@ -59,102 +66,17 @@ ms.openlocfilehash: 8b13faf1f6cdac355cc4d22b825cc2362a50e8f9
 4. 列出可用來還原的復原點
 5. 從復原點還原到您訂用帳戶內的目標伺服器
 
-## <a name="how-much-does-long-term-retention-cost"></a>長期保留費用是多少？
+若要使用 Azure 入口網站在「Azure 復原服務」保存庫中設定、管理自動備份的長期備份保留及從該保留還原，請參閱[使用 Azure 入口網站來管理長期備份保留 (英文)](sql-database-manage-long-term-backup-retention-portal.md)。 若要使用 PowerShell 在「Azure 復原服務」保存庫中設定、管理自動備份的長期備份保留及從該保留還原，請參閱[使用 PowerShell 來管理長期備份保留 (英文)](sql-database-manage-long-term-backup-retention-powershell.md)。
 
-Azure SQL Database 的長期保留會根據 [Azure 備份服務價格費率](https://azure.microsoft.com/pricing/details/backup/)收費。
+## <a name="how-much-does-long-term-backup-retention-cost"></a>長期備份保留費用是多少？
+
+Azure SQL Database 的長期備份保留是根據 [Azure 備份服務定價費率](https://azure.microsoft.com/pricing/details/backup/)收費。
 
 Azure SQL Database 伺服器註冊至保存庫之後，您需支付儲存在保存庫中之每週備份所使用的總儲存體。
 
-## <a name="configuring-long-term-retention-in-the-azure-portal"></a>在 Azure 入口網站中設定長期保留
+## <a name="view-available-backups-stored-in-long-term-backup-retention"></a>檢視以長期備份保留期儲存的可用備份
 
-在 Azure SQL Database 伺服器刀鋒視窗中，您可以設定長期保留，以及視需要建立 Azure 復原服務保存庫。
-
-- 若要在 Azure 復原服務保存庫中設定自動備份的長期保留，請參閱[設定長期備份保留](sql-database-configure-long-term-retention.md)
-- 若要從長期保留的備份復原資料庫，請參閱[從長期保留的備份復原](sql-database-restore-from-long-term-retention.md)
-- 若要檢視 Azure 復原服務保存庫中的備份，請參閱[檢視長期保留中的備份](sql-database-view-backups-in-vault.md)
-
-> [!TIP]
-> 如需教學課程，請參閱[開始使用備份與還原以保護和復原資料](sql-database-get-started-backup-recovery.md)
->
-
-## <a name="configuring-long-term-retention-using-powershell"></a>使用 PowerShell 設定長期保留
-
-您可以使用 PowerShell，使用下列步驟來設定長期保留。
-1. 建立復原服務保存庫
-   
-   ```
-   New-AzureRmResourceGroup -Name $ResourceGroupName –Location 'WestUS' 
-   $vault = New-AzureRmRecoveryServicesVault -Name <string> -ResourceGroupName $ResourceGroupName -Location 'WestUS' 
-   Set-AzureRmRecoveryServicesBackupProperties   -BackupStorageRedundancy LocallyRedundant  -Vault $vault
-   ```
-2. 將 Azure SQL Database 伺服器註冊至保存庫，讓伺服器內的資料庫可以長期儲存備份。
-   
-   ```
-   Set-AzureRmSqlServerBackupLongTermRetentionVault -ResourceGroupName 'RG1' -ServerName 'Server1' –ResourceId $vault.Id
-   ```
-3. 建立儲存備份的保留原則。
-   
-   ```
-   #retrieve the default in-memory policy object for AzureSQLServer workload and set the retention period
-   $RP1 = Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType AzureSQLDatabase
-   #Sets the retention value to two years
-   $RP1.RetentionDurationType='Years'
-   $RP1.RetentionCount=2
-   #register the policy for use with any SQL database
-   Set-AzureRMRecoveryServicesVaultContext -Vault $vault
-   $policy = New-AzureRmRecoveryServicesBackupProtectionPolicy -name 'SQLBackup1' –WorkloadType AzureSQLDatabase -retentionPolicy $RP1
-   ```
-4. 針對您要在保存庫中儲存備份的 SQL Database 啟用長期保存。
-   
-   ```
-   #for your database you can select any policy created in the vault with which your server is registered
-   Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy –ResourceGroupName 'RG1' –ServerName 'Server1' -DatabaseName 'DB1' -State 'enabled' -ResourceId $policy.Id
-   ```
-5. 列出與保存庫相關聯的伺服器。 每一部伺服器都與保存庫中的特定容器相關聯。 您可以執行下列命令來列出已註冊的伺服器：
-   
-   ```
-   #each server has an associated container in the vault
-   Set-AzureRMRecoveryServicesVaultContext -Vault $vault
-   $container=Get-AzureRmRecoveryServicesBackupContainer –ContainerType AzureSQL   
-   #each database has an associated backup item in the respective container
-   Get-AzureRmRecoveryServicesBackupItem –container $container
-   ```
-6. 列出容器中具有保留原則的資料庫。 每個資料庫在個別容器中都有相關聯的備份項目。 備份項目名稱衍生自資料庫名稱。
-   
-    ```
-    #list the backup items in the container
-    Get-AzureRmRecoveryServicesBackupItem –container $container
-    ```
-
-## <a name="restore-from-a-long-term-retention-backup"></a>從長期保留備份還原
-
-若要從 Azure 復原服務保存庫中的備份還原資料庫，請使用下列步驟︰
-
-1. 尋找與 SQL Server 相關聯的復原服務容器。
-   
-   ```
-   #the following commands find the container associated with the server 'myserver' under resource group 'myresourcegroup'
-   Set-AzureRMRecoveryServicesVaultContext -Vault $vault
-   $container=Get-AzureRmRecoveryServicesBackupContainer –ContainerType AzureSQL -Name 'Sql;myresourcegroup;myserver'
-   ```
-2. 尋找與資料庫相關聯的備份項目。
-   
-    ``` 
-    #the following command finds the backup item associated with the database 'mydb'
-    $item = Get-AzureRmRecoveryServicesBackupItem -Container $container -WorkloadType AzureSQLDatabase -Name 'mydb' 
-    ```
-3. 尋找您想要還原的來源備份。
-   
-   ```
-   #The following command lists the backups (also known as the “recovery points”) created in the specific time period.
-   $RP=Get-AzureRmRecoveryServicesBackupRecoveryPoint -Item $item –StartDate '2016-02-01' -EndDate '2016-02-20'
-   ```
-4. 從復原點還原至新的 Azure SQL Database。
-   
-   ```
-   #This command restores from a selected backup. If there are multiple recovery points in the specified range $RP[0] refers to the first one.
-   Restore-AzureRMSqlDatabase –FromLongTermRetentionBackup –ResourceId $RP[0].ID TargetResourceGroupName 'RG2' -TargetServerName 'Server2' -TargetDatabaseName 'DB2' [-Edition <String>] [-ServiceObjectiveName <String>] [-ElasticPoolName <String>] [<CommonParameters>]
-   ```
+若要使用 Azure 入口網站在「Azure 復原服務」保存庫中設定、管理自動備份的長期備份保留及從該保留還原，請參閱[使用 Azure 入口網站來管理長期備份保留 (英文)](sql-database-manage-long-term-backup-retention-portal.md)。 若要使用 PowerShell 在「Azure 復原服務」保存庫中設定、管理自動備份的長期備份保留及從該保留還原，請參閱[使用 PowerShell 來管理長期備份保留 (英文)](sql-database-manage-long-term-backup-retention-powershell.md)。
 
 ## <a name="disabling-long-term-retention"></a>停用長期保留
 
@@ -163,72 +85,67 @@ Azure SQL Database 伺服器註冊至保存庫之後，您需支付儲存在保�
 * 若要停止將特定資料庫的備份傳送到保存庫，請移除該資料庫的保留原則。
   
     ```
-    Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy –ResourceGroupName 'RG1' –ServerName 'Server1' -DatabaseName 'DB1' -State 'Disabled' -ResourceId $policy.Id
+    Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy -ResourceGroupName 'RG1' -ServerName 'Server1' -DatabaseName 'DB1' -State 'Disabled' -ResourceId $policy.Id
     ```
 
 > [!NOTE]
 > 保存庫中現有的備份不會受到影響。 當保留期限到期時，復原服務會將它們自動刪除。
-> 
-> 
 
-## <a name="removing-backups-from-the-azure-recovery-services-vault"></a>從 Azure 復原服務保存庫移除備份
 
-若要手動從保存庫中移除備份。
+## <a name="removing-long-term-backup-retention-backups-from-the-azure-recovery-services-vault"></a>從 Azure 復原服務保存庫移除長期備份保留備份
 
-1. 識別 'myserver' 保存庫中的容器
-   
-    ```
-    Set-AzureRMRecoveryServicesVaultContext -Vault $vault 
-    $container=Get-AzureRmRecoveryServicesBackupContainer –ContainerType AzureSQL -FriendlyName 'myserver'
-    ```
-2. 識別要刪除的備份項目。
-   
-    ``` 
-    $item=Get-AzureRmRecoveryServicesBackupItem –container $container -Name 'mydb'
-    ```
-3. 刪除備份項目 (所有資料庫 'mydb' 的備份)
-   
-    ```
-    $job = Disable-AzureRmRecoveryServicesBackupProtection –item $item -Removerecoverypoints 
-    Wait-AzureRmRecoveryServicesBackupJob $job
-    ```
-4. 刪除與 'myserver' 相關聯的容器
-   
-    ```
-    Unregister-AzureRmRecoveryServicesBackupContainer –Container $container $container
-    ```
+若要從保存庫移除長期備份保留備份，請參閱[刪除長期保留備份 (英文)](sql-database-manage-long-term-backup-retention-powershell.md)
 
-## <a name="long-term-retention-faq"></a>長期保留常見問題集︰
+## <a name="long-term-backup-retention-faq"></a>長期備份保留常見問題集：
 
 1. 問︰可以手動刪除保存庫中的特定備份嗎？
-   答︰目前不可以，當保留期間已過期時，保存庫會自動清除備份。
+
+    答︰目前不可以，當保留期間已過期時，保存庫會自動清除備份。
 2. 問︰是否可以註冊我的伺服器來將備份儲存至多個保存庫？
-   答︰否，目前您只可以一次儲存備份到一個保存庫。
+
+    答︰否，目前您只可以一次儲存備份到一個保存庫。
 3. 問︰我可以在不同的訂用帳戶中有保存庫與伺服器嗎？
-   答︰否，目前保存庫與伺服器必須位於相同的訂用帳戶和資源群組。
+
+    答︰否，目前保存庫與伺服器必須位於相同的訂用帳戶和資源群組。
 4. 問︰是否可以使用我在我的伺服器區域以外的不同區域中所建立的保存庫？
-   答︰否，保存庫與伺服器必須位於相同的區域，以將複製時間降至最低，並避免產生流量費用。
+
+    答︰否，保存庫與伺服器必須位於相同的區域，以將複製時間降至最低，並避免產生流量費用。
 5. 問︰我可以在一個保存庫中儲存幾個資料庫？
-   答︰目前我們僅支援每個保存庫最多 1000 個資料庫。 
-6. 問： 每個訂用帳戶可以建立幾個保存庫？答︰每個訂用帳戶您可以建立最多 25 個保存庫。
-7. 問： 每個保存庫每天可以設定幾個資料庫？答︰您每天每個保存庫只可以設定 200 個資料庫。
-8. 問︰長期保存是否可與彈性集區搭配使用？
-   答： 會。 集區中的任何資料庫可以使用保留原則設定。
+
+    答︰目前我們僅支援每個保存庫最多 1000 個資料庫。 
+6. 問： 每個訂用帳戶可以建立幾個保存庫？
+
+    A. 每個訂用帳戶最多可以建立 25 個保存庫。
+7. 問： 每個保存庫每天可以設定幾個資料庫？
+
+    A. 每個保存庫每天只能設定 200 個資料庫。
+8. 問︰長期備份保留是否可與彈性集區搭配運作？
+
+    答： 會。 集區中的任何資料庫可以使用保留原則設定。
 9. 問︰是否可以選擇建立備份的時間？
-   答︰否，SQL Database 會控制備份排程，以便將資料庫上的效能影響降到最低。
-10. 問︰我針對資料庫啟用了 TDE。 可以搭配使用 TDE 與保存庫嗎？答︰是，可支援 TDE。 即使原始資料庫不存在，您也可以從保存庫還原資料庫。
-11. 問： 如果我的訂用帳戶已暫止，則保存庫中的備份會發生什麼事？答︰如果您的訂用帳戶已暫停，我們會保留現有的資料庫和備份，但新的備份不會複製到保存庫。 在您重新啟動訂用帳戶之後，服務會繼續將備份複製到保存庫。 您的保存庫會在訂用帳戶暫止之前使用已在那裡複製的備份，使保存庫成為可供還原作業存取。 
+
+    答︰否，SQL Database 會控制備份排程，以便將資料庫上的效能影響降到最低。
+10. 問︰我針對資料庫啟用了 TDE。 可以搭配使用 TDE 與保存庫嗎？ 
+
+    A. 是，可支援 TDE。 即使原始資料庫不存在，您也可以從保存庫還原資料庫。
+11. 問： 如果我的訂用帳戶已暫止，則保存庫中的備份會發生什麼事？ 
+
+    A. 如果您的訂用帳戶已暫停，我們會保留現有的資料庫和備份，但不會將新的備份複製到保存庫。 在您重新啟動訂用帳戶之後，服務會繼續將備份複製到保存庫。 您的保存庫會在訂用帳戶暫止之前使用已在那裡複製的備份，使保存庫成為可供還原作業存取。 
 12. 問︰是否可存取 SQL Database 備份檔案，以便可下載 / 還原至 SQL Server？
-   答：否，目前不可以。
+
+    答：否，目前不可以。
 13. 問︰SQL 保留原則內是否可以有多個排程 (每日、每週、每月、每年)。
-   答︰否，目前這只適用於虛擬機器備份。
+
+    答︰否，目前這只適用於虛擬機器備份。
+14. 問： 如果我們在作為作用中異地複寫次要複本的資料庫上設定長期備份保留，會發生什麼情況？
+
+    答：目前我們並不在複本上進行備份，因此沒有在次要複本上進行長期備份保留的選項。 不過，對客戶來說，在作用中異地複寫次要複本設定長期備份保留相當重要，原因如下：
+    - 當容錯移轉發生而資料庫變成主要複本時，我們將會進行完整備份並將此完整備份上傳到保存庫。
+    - 客戶在次要複本上設定長期備份保留並不需要額外付費。
+
+
 
 ## <a name="next-steps"></a>後續步驟
 資料庫備份可保護資料免於意外損毀或刪除，是商務持續性和災害復原策略中不可或缺的一部分。 若要深入了解其他 Azure SQL Database 業務持續性解決方案，請參閱[業務持續性概觀](sql-database-business-continuity.md)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

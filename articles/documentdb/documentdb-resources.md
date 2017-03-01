@@ -13,11 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 02/15/2017
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 51c5694379d3f35ed2595f0cafeb00c6cc527854
-ms.openlocfilehash: 94549905816707fa3dcce3c3e443122162a2c4e8
+ms.sourcegitcommit: 4125a8d930ead541420c83ef5d8aa3ae1ea2a263
+ms.openlocfilehash: 520dc84bfd882d33d32719d5225af91eb124f015
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -43,7 +44,7 @@ DocumentDB 管理的資料庫實體稱為 **資源**。 每個資源可透過邏
 ![DocumentDB 階層式資源模型][1]  
 **階層式資源模型**   
 
-若要開始使用資源，您必須使用 Azure 訂用帳戶 [建立 DocumentDB 資料庫帳戶](documentdb-create-account.md) 。 資料庫帳戶包含一組「資料庫」，而每個資料庫都包含多個「集合」，且各集合因此包含「預存程序」、「觸發程序」、UDF、「文件」和相關「附件」。 資料庫也有相關聯的**使用者**，其中每位使用者都有一組可存取集合、預存程序、觸發程序、UDF、文件或附件的**權限**。 雖然資料庫、使用者、權限和集合都是具有已知結構描述的系統定義資源，但是文件和附件包含任意使用者定義 JSON 內容。  
+若要開始使用資源，您必須使用 Azure 訂用帳戶[建立資料庫帳戶](documentdb-create-account.md)。 資料庫帳戶包含一組「資料庫」，而每個資料庫都包含多個「集合」，且各集合因此包含「預存程序」、「觸發程序」、UDF、「文件」和相關「附件」。 資料庫也有相關聯的**使用者**，其中每位使用者都有一組可存取集合、預存程序、觸發程序、UDF、文件或附件的**權限**。 雖然資料庫、使用者、權限和集合都是具有已知結構描述的系統定義資源，但是文件和附件包含任意使用者定義 JSON 內容。  
 
 | 資源 | 說明 |
 | --- | --- |
@@ -71,7 +72,7 @@ DocumentDB 管理的資料庫實體稱為 **資源**。 每個資源可透過邏
         <tr>
             <td valign="top"><p><strong>屬性</strong></p></td>
             <td valign="top"><p><strong>可由使用者設定或由系統產生？</strong></p></td>
-            <td valign="top"><p><strong>目的</strong></p></td>
+            <td valign="top"><p><strong>用途</strong></p></td>
         </tr>
         <tr>
             <td valign="top"><p>_rid</p></td>
@@ -406,14 +407,14 @@ UDF 可以指定為部分 SQL 查詢，也可做為一種擴充 [Document DB 的
 雖然上面的程式碼片段顯示的是透過 [DocumentDB JavaScript SDK](https://github.com/Azure/azure-documentdb-js) 執行的註冊 (POST)、取消註冊 (PUT)、讀取/列出 (GET) 及執行 (POST)，但是您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其他[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)。 
 
 ## <a name="documents"></a>文件
-您可以在集合中插入、取代、刪除、讀取、列舉和查詢任意 JSON 文件。 DocumentDB 不會託管任何結構描述，而且不需要次要索引，就支援逐一查詢集合中的文件。   
+您可以在集合中插入、取代、刪除、讀取、列舉和查詢任意 JSON 文件。 DocumentDB 不會託管任何結構描述，而且不需要次要索引，就支援逐一查詢集合中的文件。 根據預設，文件的大小上限為 2 MB。   
 
 DocumentDB 是真正開放的資料庫服務，不會發明 JSON 文件的任何特殊資料類型 (例如日期時間) 或特定編碼。 請注意，DocumentDB 無須遵循任何特殊 JSON 慣例，即可編寫各種文件之間的關聯性。DocumentDB 的 SQL 語法提供有效率的階層式和關係查詢運算子，讓您可以用於查詢及保護文件，不僅無須任何特殊註釋，也無須使用不同的屬性來編寫文件之間的關聯性。  
 
 與所有其他資源相同，使用 REST API 或任何 [用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)，即可輕鬆地建立、取代、刪除、讀取、列舉或查詢文件。 刪除文件時會立即清出對應至所有巢狀附件的配額。 文件的讀取一致性層級會遵循資料庫帳戶的一致性原則。 根據您應用程式的資料一致性需求，可以覆寫每個要求的這個原則。 查詢文件時，讀取一致性會遵循集合上所設定的索引模式。 為求「一致」，這會遵循帳戶的一致性原則。 
 
 ## <a name="attachments-and-media"></a>附件和媒體
-DocumentDB 可讓您將二進位 Blob/媒體儲存至 DocumentDB 或您自己的遠端媒體存放區。 它也可讓您透過特殊文件 (稱為附件) 來呈現媒體的中繼資料。 DocumentDB 中的附件是一種特殊 (JSON) 文件，可參考儲存在其他位置的媒體/Blob。 附件只是特殊文件，可擷取遠端媒體存放裝置中所儲存媒體的中繼資料 (例如位置、作者等)。 
+DocumentDB 可讓您將二進位 Blob/媒體儲存至 DocumentDB (每個帳戶最多 2 GB) 或您自己的遠端媒體存放區。 它也可讓您透過特殊文件 (稱為附件) 來呈現媒體的中繼資料。 DocumentDB 中的附件是一種特殊 (JSON) 文件，可參考儲存在其他位置的媒體/Blob。 附件只是特殊文件，可擷取遠端媒體存放裝置中所儲存媒體的中繼資料 (例如位置、作者等)。 
 
 請考慮使用社交閱讀應用程式，其使用 DocumentDB 儲存手寫註釋，以及與給定使用者電子書相關聯的中繼資料 (包括註解、醒目提示、書籤、評比、喜歡/不喜歡等)。   
 
@@ -460,10 +461,5 @@ DocumentDB 使用者代表用於分組權限的邏輯命名空間。 DocumentDB 
 [1]: media/documentdb-resources/resources1.png
 [2]: media/documentdb-resources/resources2.png
 [3]: media/documentdb-resources/resources3.png
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 2d428e0e3aaf8fd4a2138648411da644ccd308f6
-ms.openlocfilehash: 3c19c2035b8dc9717dced5164b0214ab8019afd1
+ms.sourcegitcommit: 7bd403bb8569950a5bf4da3bd84905604753cda7
+ms.openlocfilehash: f29128dd156576276014e159afa9050364169c46
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -51,6 +52,8 @@ ms.openlocfilehash: 3c19c2035b8dc9717dced5164b0214ab8019afd1
   > 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「技術支援中心管理員」。
   >
   >
+* **Power BI 服務管理員**︰在有 Microsoft Power BI 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱[讓管理 Power BI 變得更簡單 (英文)](https://powerbi.microsoft.com/en-us/blog/making-it-easier-to-administer-power-bi/)。
+* **特殊權限角色管理員**：具備此角色的使用者可以管理 Azure AD [Privileged Identity Management](active-directory-privileged-identity-management-configure.md)，以及更新其他使用者的角色指派。
 * **SharePoint 服務管理員**︰在有 Microsoft SharePoint Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
 * **[服務管理員](#service-administrator)**：管理服務要求，以及監控服務健全狀況。
 
@@ -114,6 +117,17 @@ ms.openlocfilehash: 3c19c2035b8dc9717dced5164b0214ab8019afd1
 6. 從 [ **使用位置** ] 下拉式清單中，指定位置。
 7. 完成時，請按一下 [ **儲存**]。
 
+## <a name="deprecated-roles"></a>已被取代的角色
+
+以下是不應使用的角色。 它們已被取代，而且未來將從 Azure AD 中移除。
+
+* AdHoc 授權管理員
+* 傳送電子郵件給經過驗證的使用者建立者
+* 加入裝置
+* 裝置管理員
+* 裝置使用者
+* 加入工作場所裝置
+
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱 [如何新增或變更 Azure 系統管理員角色](../billing/billing-add-change-azure-subscription-administrator.md)
 * 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱 [了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
@@ -121,9 +135,4 @@ ms.openlocfilehash: 3c19c2035b8dc9717dced5164b0214ab8019afd1
 * [管理使用者](active-directory-create-users.md)
 * [管理密碼](active-directory-manage-passwords.md)
 * [管理群組](active-directory-manage-groups.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

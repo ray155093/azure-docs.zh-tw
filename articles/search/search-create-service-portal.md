@@ -1,9 +1,9 @@
 ---
-title: "使用 Azure 入口網站建立 Azure 搜尋服務 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站佈建 Azure 搜尋服務。"
+title: "在入口網站中建立 Azure 搜尋服務 | Microsoft Docs"
+description: "在入口網站中佈建 Azure 搜尋服務。"
 services: search
 manager: jhubbard
-author: ashmaka
+author: HeidiSteen
 documentationcenter: 
 ms.assetid: c8c88922-69aa-4099-b817-60f7b54e62df
 ms.service: search
@@ -11,74 +11,89 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 11/29/2016
-ms.author: ashmaka
+ms.date: 02/16/2017
+ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 702ea254c19d1f9782f83d8445b7f440f11963b9
-ms.openlocfilehash: 5046b3fc1444e37388505f2662a28486342c8822
+ms.sourcegitcommit: 4d7c0afe5e43e0c119f534cdedaaa03a16ed5303
+ms.openlocfilehash: 0d5198c74fa81358dcdfec514e1fe422d17f368f
+ms.lasthandoff: 02/17/2017
 
 
 ---
-# <a name="create-an-azure-search-service-using-the-azure-portal"></a>使用 Azure 入口網站建立 Azure 搜尋服務
-本文將逐步引導您完成使用 [Azure 入口網站](https://portal.azure.com/)來建立 (或佈建)「Azure 搜尋服務」的程序。
+# <a name="create-an-azure-search-service-in-the-portal"></a>在入口網站中建立 Azure 搜尋服務
 
-本文假設您已經有「Azure 訂用帳戶」，而能夠登入「Azure 入口網站」。
+本文說明如何在入口網站中建立或佈建 Azure 搜尋服務。 如需 PowerShell 的指示，請參閱[使用 PowerShell 管理 Azure 搜尋服務](search-manage-powershell.md)。
 
-## <a name="find-azure-search-in-the-azure-portal"></a>在 Azure 入口網站中尋找 Azure 搜尋服務
-1. 前往 [Azure 入口網站](https://portal.azure.com/) 並登入。
+## <a name="subscribe-free-or-paid"></a>訂閱 (免費或付費)
+
+[開啟免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，並使用免費信用額度來試用付費的 Azure 服務。 當您用完信用額度之後，請保留帳戶，並繼續使用免費的 Azure 服務，例如網站。 除非您明確變更您的設定且同意付費，否則我們絕對不會從您的信用卡收取任何費用。
+
+或者，請[啟用 MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 MSDN 訂用帳戶每月會提供您信用額度，讓您可以用於 Azure 付費服務。 
+
+## <a name="find-azure-search"></a>尋找 Azure 搜尋服務
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下左上角的加號 ("+")。
-3. 選取 [ **Web + Mobile**]。
-4. 選取 [Azure 搜尋服務] 。
+3. 選取 [Web + 行動] > [Azure 搜尋服務]。
 
-![](./media/search-create-service-portal/find-search.png)
+![](./media/search-create-service-portal/find-search2.png)
 
-## <a name="pick-a-service-name-and-url-endpoint-for-your-service"></a>選取服務名稱和您服務的 URL 端點
-1. 您的服務名稱會是 Azure 搜尋服務端點 URL 的一部分，您將依據它進行 API 呼叫，以便管理和使用搜尋服務。
-2. 在 [URL]  欄位中輸入您的服務名稱。 服務名稱：
-   * 只能包含小寫字母、數字或連字號 ("-")
+## <a name="name-the-service-and-url-endpoint"></a>為服務和 URL 端點命名
+
+服務名稱是 URL 端點的一部分，API 呼叫是根據此端點所發出。 在 [URL]  欄位中輸入您的服務名稱。 
+
+服務名稱需求：
+   * 長度為 2 到 60 個字元
+   * 小寫字母、數字或連字號 ("-")
    * 不能使用連字號 ("-") 作為前 2 個字元或最後一個字元
-   * 不能包含連續的連字號 ("--")
-   * 長度限制在 2 到 60 個字元之間
+   * 不能是連續的破折號 ("-")
 
-## <a name="select-a-subscription-where-you-will-keep-your-service"></a>選取您將保留服務的訂用帳戶
-如果您有多個訂用帳戶，您可以選取哪一個訂用帳戶將包含此 Azure 搜尋服務。
+## <a name="select-a-subscription"></a>選取一個訂用帳戶
+如果您有一個以上的訂用帳戶，請選擇一個同樣具有資料或檔案儲存體服務的訂用帳戶。 Azure 搜尋服務可以透過「索引子」自動偵測 Azure 資料表和 Blob 儲存體、SQL Database 和 DocumentDB 以進行索引編製，但只會針對相同訂用帳戶中的服務。
 
-## <a name="select-a-resource-group-for-your-service"></a>選取服務的資源群組
-建立新的資源群組或選取現有的資源群組。 資源群組是 Azure 服務和一起使用之資源的集合。 例如，如果您使用 Azure 搜尋服務來編製 SQL 資料庫的索引，那麼這兩個服務都應該是相同資源群組的一部分。
+## <a name="select-a-resource-group"></a>選取資源群組
+資源群組是一起使用之 Azure 服務和資源的集合。 例如，如果您使用 Azure 搜尋服務來編製 SQL 資料庫的索引，則這兩個服務應該屬於同一個資源群組。
 
-## <a name="select-the-location-where-your-service-will-be-hosted"></a>選取將裝載您服務的位置
-作為 Azure 服務，Azure 搜尋服務可以裝載在世界各地的資料中心。 請注意，各地理位置的 [價格可能不同](https://azure.microsoft.com/pricing/details/search/) 。
+> [!TIP]
+> 刪除資源群組也會刪除其中的服務。 針對使用多個服務的原型專案，將它們全部放入同一個資源群組，在專案結束之後就能更容易清除。 
 
-## <a name="select-your-pricing-tier"></a>選擇定價層
+## <a name="select-a-hosting-location"></a>選取裝載位置 
+做為 Azure 服務，Azure 搜尋服務可以裝載於世界各地的資料中心。 請注意，各地理位置的[價格可能不同](https://azure.microsoft.com/pricing/details/search/) 。
+
+## <a name="select-a-pricing-tier-sku"></a>選取定價層 (SKU)
 [Azure 搜尋服務目前提供多個定價層](https://azure.microsoft.com/pricing/details/search/)︰免費、基本或標準。 每一層都有自己的 [容量和限制](search-limits-quotas-capacity.md)。 請參閱 [選擇定價層或 SKU](search-sku-tier.md) 以取得指引。
 
-在此情況下，我們已為服務選擇標準層。
+在此逐步解說中，我們已為服務選擇標準層。
 
-## <a name="select-the-create-button-to-provision-your-service"></a>選取 [建立] 按鈕，以佈建您的服務
-![](./media/search-create-service-portal/create-service.png)
+## <a name="create-your-service"></a>建立您的服務
+
+請記得將您的服務釘選到儀表板，以方便在登入時存取。
+
+![](./media/search-create-service-portal/new-service2.png)
 
 ## <a name="scale-your-service"></a>調整您的服務
-佈建完您的服務之後，您可以調整它以符合您的需求。 由於您為「Azure 搜尋服務」選擇了「標準」層，因此您可以在兩個維度調整服務︰複本和資料分割。 如果您選擇的是「基本」層，則只能新增複本。 如果您佈建的是免費服務，則無法進行調整。
+可能需要幾分鐘的時間來建立服務 (視層級而定，15 分鐘或更多)。 佈建完您的服務之後，您可以調整它以符合您的需求。 由於您為「Azure 搜尋服務」選擇了「標準」層，因此您可以在兩個維度調整服務︰複本和資料分割。 如果您選擇的是「基本」層，則只能新增複本。 如果您佈建的是免費服務，則無法進行調整。
 
 「資料分割」允許您的服務儲存及搜尋更多文件。
 
-***複本***允許服務處理更高的搜尋查詢負載 - [服務需要 2 個複本才能達到唯讀 SLA，需要 3 個複本才能達到讀寫 SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
+「複本」允許服務來處理更高的搜尋查詢負載。
 
-1. 在 Azure 入口網站中，前往「Azure 搜尋服務」的管理刀鋒視窗。
-2. 在 [設定] 刀鋒視窗中，選取 [調整]。
-3. 您可以藉由加入複本或資料分割來調整您的服務。
-   * 關於單一服務中允許的搜尋單位總數 (複本 * 資料分割 = 搜尋單位總數)，每一個服務層各有不同的[限制](search-limits-quotas-capacity.md)。
+> [!Important]
+> 服務必須具有 [2 個唯讀 SLA 的複本和 3 個讀/寫 SLA 的複本](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
 
-![](./media/search-create-service-portal/scale-service.png)
+1. 在 Azure 入口網站中移至您的搜尋服務刀鋒視窗。
+2. 在左導覽窗格中，選取 [設定] > [調整]。
+3. 使用滑桿來新增複本或分割區。
+
+![](./media/search-create-service-portal/settings-scale.png)
+
+> [!Note] 
+> 關於單一服務中允許的搜尋單位總數 (複本 * 分割區 = 搜尋單位總數)，每一層各有不同的[限制](search-limits-quotas-capacity.md)。
 
 ## <a name="next-steps"></a>後續步驟
-佈建 Azure 搜尋服務之後，您就可以 [定義 Azure 搜尋服務索引](search-what-is-an-index.md) ，以便上傳和搜尋您的資料。
+佈建 Azure 搜尋服務之後，您就可以[定義索引](search-what-is-an-index.md)，以便上傳和搜尋您的資料。
 
-如需快速教學課程，請參閱 [開始在入口網站中使用 Azure 搜尋服務](search-get-started-portal.md) 。
+若要從程式碼或指令碼存取服務，請提供 URL (*service-name*.search.windows.net) 和金鑰。 系統管理金鑰授與完整存取權；查詢金鑰則授與唯讀存取權。 請參閱[如何在 .NET 中使用 Azure 搜尋服務](search-howto-dotnet-sdk.md)以便開始使用。
 
-
-
-
-<!--HONumber=Jan17_HO2-->
+請參閱[建置及查詢您的第一個索引](search-get-started-portal.md)，來取得以入口網站為基礎的快速教學課程。
 
 

@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/21/2016
+ms.date: 02/14/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 33f4c13930017bdcbaf899b16d32ba84bdfbf9ee
-ms.openlocfilehash: e51deb2cb890669c4800c232e2b781c5f27117f2
+ms.sourcegitcommit: a14be44b66c5e61350785ddfaf5b96125a196103
+ms.openlocfilehash: 242cc7d58acb4af66d7ea5da4502db4ce2b414c6
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -141,8 +142,8 @@ Lesson.ly 應用程式需要特定格式的 SAML 判斷提示，需要您加入�
     a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
     b. 按 [下一步] 。
-2. 若要為您的應用程式設定 SSO，請透過 dev@lessonly.com. 將下載的憑證檔案附加至您的郵件，並與 Lesson.ly 小組分享中繼資料 URL (實體識別碼、SSO 登入 URL 和登出 URL)，以在其端設定 SSO。
-3. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
+2. 若要為您的應用程式設定 SSO，請透過 dev@lessonly.com 連絡您的 Lesson.ly 支援小組。 將下載的憑證檔案附加至您的郵件，並與 Lesson.ly 小組分享中繼資料 URL (實體識別碼、SSO 登入 URL 和登出 URL)，以在其端設定 SSO。
+3. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
    ![Azure AD 單一登入][10]
 4. 在 [單一登入確認] 頁面上，按一下 [完成]。  
@@ -257,9 +258,4 @@ Lesson.ly 應用程式需要特定格式的 SAML 判斷提示，需要您加入�
 [203]: ./media/active-directory-saas-lessonly-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-lessonly-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-lessonly-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

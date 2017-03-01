@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 09/14/2016
 ms.author: narayan;annahar
 translationtype: Human Translation
-ms.sourcegitcommit: ddfa2998d7e9305891c5a976dff5c2365d5eb1d4
-ms.openlocfilehash: 351b77482c07160fa62155e90dcb8eb280e9087c
+ms.sourcegitcommit: d68c2f496cfdfa52c33243542ee141c44639e5c0
+ms.openlocfilehash: 7b4fda3ffb269c6a9de407bbd9af32d90768504f
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -336,7 +337,7 @@ ms.openlocfilehash: 351b77482c07160fa62155e90dcb8eb280e9087c
 若要建立不同部署模型中的虛擬網路之間的對等互連，請完成下列步驟︰
 
 1. 如果您要在「相同」訂用帳戶中透過不同部署模型部署的 VNet 之間建立對等互連，請跳至步驟 2。 為「不同」訂用帳戶中透過不同部署模型部署的 VNet 之間建立 VNet 對等互連的功能屬於「預覽」版本。 預覽版本的功能沒有與一般版本功能同樣的可靠性與服務等級協定。 如果您要在不同訂用帳戶中透過不同部署模型部署的 VNet 之間建立對等互連，則必須先完成下列工作：
-    - 在 Azure 訂用帳戶訂閱中註冊預覽功能，方法是從 PowerShell 輸入下列命令︰`Register-AzureRmProviderFeature -FeatureName AllowClassicCrossSubscriptionPeering -ProviderNamespace Microsoft.Network`
+    - 在 Azure 訂用帳戶訂閱中註冊預覽版功能，方法是從 PowerShell 中輸入下列命令︰`Register-AzureRmProviderFeature -FeatureName AllowClassicCrossSubscriptionPeering -ProviderNamespace Microsoft.Network` 和 `Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network`
     - 完成此文章中[跨訂用帳戶的對等互連](#x-sub)一節中的步驟 1 到 2。
 2. 以下內容顯示此案例中 VNET1 至 VNET2 的 VNet 對等互連連結之定義。 只需要一個連結，即可從傳統虛擬網路對等互連至 Azure Resource Manager 虛擬網路。
 
@@ -417,10 +418,5 @@ ms.openlocfilehash: 351b77482c07160fa62155e90dcb8eb280e9087c
         RemoteVirtualNetworkAddressSpace : null
 
     建立傳統 Vnet 與 Resource Manager Vnet 之間的對等互連後，您應能夠起始從 VNET1 中任何虛擬機器至 VNET2 中任何虛擬機器的連線，反之亦然。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

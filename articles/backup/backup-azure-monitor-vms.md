@@ -4,7 +4,7 @@ description: "監視 Resource Manager 部署的虛擬機器備份中的事件和
 services: backup
 documentationcenter: dev-center-name
 author: markgalioto
-manager: cfreeman
+manager: carmonm
 editor: 
 ms.assetid: fed32015-2db2-44f8-b204-d89f6fd1bea2
 ms.service: backup
@@ -13,10 +13,11 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
-ms.author: trinadhk; giridham;
+ms.author: markgal;trinadhk;giridham;
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b1f1f485fbb906afd28e43a5f5ea3e30b9088779
+ms.sourcegitcommit: e12d533ac5befe020c0aad4aa64ca9ed50349c3d
+ms.openlocfilehash: aefc65d42e3c23e35793be8af1751bb48dfaa84f
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: b1f1f485fbb906afd28e43a5f5ea3e30b9088779
 若要從 [備份警示] 圖格開啟 [備份警示] 刀鋒視窗︰
 
 * 在保存庫儀表板的 [備份警示] 圖格上，按一下 [嚴重] 或 [警告] 以檢視該嚴重性層級的作業事件。
-  
+
     ![備份警示圖格](./media/backup-azure-monitor-vms/backup-alerts-tile.png)
 
 若要從 [警示和事件] 刀鋒視窗開啟 [備份警示] 刀鋒視窗︰
@@ -37,14 +38,14 @@ ms.openlocfilehash: b1f1f485fbb906afd28e43a5f5ea3e30b9088779
 1. 在保存庫儀表板中，按一下 [所有設定] 。 ![所有設定按鈕](./media/backup-azure-monitor-vms/all-settings-button.png)
 2. 在 [設定] 刀鋒視窗上，按一下 [警示和事件]。 ![警示和事件按鈕](./media/backup-azure-monitor-vms/alerts-and-events-button.png)
 3. 在 [警示與事件] 刀鋒視窗上，按一下 [備份警示]。 ![備份警示按鈕](./media/backup-azure-monitor-vms/backup-alerts.png)
-   
+
     [備份警示]  刀鋒視窗會開啟並顯示篩選後的警示。
-   
+
     ![備份警示圖格](./media/backup-azure-monitor-vms/backup-alerts-critical.png)
 4. 若要檢視特定警示的詳細資訊，請從事件清單中按一下警示，以開啟其 [詳細資料]  刀鋒視窗。
-   
+
     ![事件詳細資料](./media/backup-azure-monitor-vms/audit-logs-event-detail.png)
-   
+
     若要自訂清單中顯示的屬性，請參閱 [檢視其他事件屬性](backup-azure-monitor-vms.md#view-additional-event-attributes)
 
 ## <a name="configure-notifications"></a>設定通知
@@ -53,20 +54,20 @@ ms.openlocfilehash: b1f1f485fbb906afd28e43a5f5ea3e30b9088779
 設定警示的電子郵件通知
 
 1. 在 [備份警示] 功能表上，按一下 [設定通知] 
-   
+
     ![備份警示功能表](./media/backup-azure-monitor-vms/backup-alerts-menu.png)
-   
+
     [設定通知] 刀鋒視窗隨即開啟。
-   
+
     ![設定通知刀鋒視窗](./media/backup-azure-monitor-vms/configure-notifications.png)
 2. 在 [設定通知] 刀鋒視窗上，針對 [電子郵件通知]，按一下 [開啟] 。
-   
+
     [收件者] 和 [嚴重性] 對話方塊旁邊有星號，因為該資訊是必要的。 提供至少一個電子郵件地址，然後選取至少一個嚴重性。
-3. 在 [收件者 (電子郵件)]  對話方塊中，輸入接收通知者的電子郵件地址。 使用格式︰ username@domainname.com. 用分號分 (;) 分隔多個電子郵件位址。
+3. 在 [收件者 (電子郵件)]  對話方塊中，輸入接收通知者的電子郵件地址。 使用格式︰username@domainname.com。 用分號分 (;) 分隔多個電子郵件位址。
 4. 在 [通知] 區域中，選擇 [每個警示] 以在指定的警示發生時傳送通知，或選擇 [每小時摘要] 以傳送過去一小時的摘要。
 5. 在 [嚴重性]  對話方塊中，選擇您要觸發電子郵件通知的一或多個層級。
 6. 按一下 [儲存] 。
-   
+
    ### <a name="what-alert-types-are-available-for-azure-iaas-vm-backup"></a>有哪些警示類型可供 Azure IaaS VM 備份使用？
    | 警示層級 | 傳送的警示 |
    | --- | --- |
@@ -86,54 +87,54 @@ ms.openlocfilehash: b1f1f485fbb906afd28e43a5f5ea3e30b9088779
 [稽核記錄檔]  設定隨附一組預先定義的篩選器和資料行，以顯示作業事件資訊。 您可以自訂檢視，因此當 [事件]  刀鋒視窗開啟時，它會顯示您所需的資訊。
 
 1. 在[保存庫儀表板](backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard)中，瀏覽並按一下 [稽核記錄檔]，以開啟 [事件] 刀鋒視窗。
-   
+
     ![稽核記錄檔](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
-   
+
     開啟的 [事件]  刀鋒視窗會顯示針對目前保存庫而篩選的作業事件。
-   
+
     ![稽核記錄檔篩選器](./media/backup-azure-monitor-vms/audit-logs-filter.png)
-   
+
     此刀鋒視窗會顯示過去一週發生的嚴重、錯誤、警告和資訊事件清單。 時間範圍是在 [篩選] 中設定的預設值。 [事件]  刀鋒視窗也會顯示橫條圖來追蹤事件發生的時間。 如果您不想看到橫條圖，請在 [事件] 功能表中按一下 [隱藏圖表] 以關閉圖表。 [事件] 的預設檢視會顯示 [作業]、[層級]、[狀態]、[資源] 和 [時間] 資訊。 如需公開其他事件屬性的相關資訊，請參閱 [展開事件資訊](backup-azure-monitor-vms.md#view-additional-event-attributes)一節。
 2. 如需作業事件的其他資訊，請在 [作業]  資料行中，按一下作業事件以開啟其刀鋒視窗。 此刀鋒視窗包含事件的詳細資訊。 事件會依其相互關聯識別碼以及在時間範圍內發生的事件清單分組。
-   
+
     ![Operation Details](./media/backup-azure-monitor-vms/audit-logs-details-window.png)
 3. 若要檢視特定事件的詳細資訊，請從事件清單中按一下事件，以開啟其 [詳細資料]  刀鋒視窗。
-   
+
     ![事件詳細資料](./media/backup-azure-monitor-vms/audit-logs-details-window-deep.png)
-   
+
     事件層級資訊隨著資訊越多而越詳細。 如果您想查看有關每個事件的這麼多資訊，而且想要將這麼多詳細資料加入至 [事件]  刀鋒視窗，請參閱 [展開事件資訊](backup-azure-monitor-vms.md#view-additional-event-attributes)一節。
 
 ## <a name="customize-the-event-filter"></a>自訂事件篩選器
 使用 [篩選]  進行調整，或選擇特定刀鋒視窗中顯示的資訊。 若要篩選事件資訊︰
 
 1. 在[保存庫儀表板](backup-azure-manage-vms.md#open-a-recovery-services-vault-in-the-dashboard)中，瀏覽並按一下 [稽核記錄檔]，以開啟 [事件] 刀鋒視窗。
-   
+
     ![稽核記錄檔](./media/backup-azure-monitor-vms/audit-logs-1606-1.png)
-   
+
     開啟的 [事件]  刀鋒視窗會顯示針對目前保存庫而篩選的作業事件。
-   
+
     ![稽核記錄檔篩選器](./media/backup-azure-monitor-vms/audit-logs-filter.png)
 2. 在 [事件] 功能表上，按一下 [篩選] 以開啟該刀鋒視窗。
-   
+
     ![開放篩選刀鋒視窗](./media/backup-azure-monitor-vms/audit-logs-filter-button.png)
 3. 在 [篩選] 刀鋒視窗上，調整 [層級]、[時間範圍] 和 [呼叫者] 篩選器。 其他篩選器已設定為提供復原服務保存庫的目前資訊，所以無法使用。
-   
+
     ![稽核記錄檔查詢詳細資料](./media/backup-azure-monitor-vms/filter-blade.png)
-   
+
     您可以指定事件的 **層級** ︰嚴重、錯誤、警告或資訊。 您可以選擇任何事件層級組合，但必須選取至少一個層級。 開啟或關閉層級。 [時間範圍]  篩選器可讓您指定時間長度來擷取事件。 如果您使用自訂的時間範圍，您可以設定開始和結束時間。
 4. 當您準備好使用篩選器來查詢作業記錄時，請按一下 [更新] 。 結果會顯示在 [事件]  刀鋒視窗中。
-   
+
     ![Operation Details](./media/backup-azure-monitor-vms/edited-list-of-events.png)
 
 ### <a name="view-additional-event-attributes"></a>檢視其他事件屬性
 使用 [資料行] 按鈕，您可以讓其他事件屬性出現在 [事件] 刀鋒視窗上的清單中。 事件的預設清單會顯示 [作業]、[層級]、[狀態]、[資源] 和 [時間] 資訊。 若要啟用其他屬性︰
 
 1. 在 [事件] 刀鋒視窗上，按一下 [資料行]。
-   
+
     ![開啟資料行](./media/backup-azure-monitor-vms/audi-logs-column-button.png)
-   
+
     [選擇資料行]  刀鋒視窗隨即開啟。
-   
+
     ![資料行刀鋒視窗](./media/backup-azure-monitor-vms/columns-blade.png)
 2. 若要選取屬性，請按一下核取方塊。 屬性核取方塊可進行開啟和關閉切換。
 3. 按一下 [重設] 以在 [事件] 刀鋒視窗中重設屬性清單。 從清單中新增或移除屬性之後，使用 [重設]  來檢視新的事件屬性清單。
@@ -194,7 +195,7 @@ PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -Res
 
 1. 在復原服務保存庫中的所有虛擬機器上觸發警示。 您無法針對復原服務保存庫中的部份虛擬機器自訂警示。
 2. 這項功能處於預覽狀態。 [深入了解](../monitoring-and-diagnostics/insights-powershell-samples.md#create-alert-rules)
-3. "alerts-noreply@mail.windowsazure.com". 會傳送警示。目前您無法修改電子郵件寄件者。
+3. "alerts-noreply@mail.windowsazure.com" 會傳送警示。 目前您無法修改電子郵件寄件者。
 
 ## <a name="next-steps"></a>後續步驟
 事件記錄檔會啟用備份作業的絕佳事後剖析和稽核支援。 系統會記錄下列作業：
@@ -214,10 +215,4 @@ PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -Res
 如需各項 Azure 服務的事件、作業和稽核記錄檔的廣泛說明，請參閱[檢視事件和稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md)一文。
 
 如需從復原點重新建立虛擬機器的詳細資訊，請參閱 [還原 Azure VM](backup-azure-restore-vms.md)。 如需保護虛擬機器的詳細資訊，請參閱 [搶先目睹︰將 VM 備份至復原服務保存庫](backup-azure-vms-first-look-arm.md)。 深入了解 [管理 Azure 虛擬機器備份](backup-azure-manage-vms.md)一文中 VM 備份的管理工作。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

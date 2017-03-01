@@ -15,8 +15,9 @@ ms.workload: integration
 ms.date: 10/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 9c74b25a2ac5e2088a841d97920035376b7f3f11
-ms.openlocfilehash: f8ce1215861da2db49f5148400195c4fefb9a01d
+ms.sourcegitcommit: d7144208fc3e6eb1f8d3c43d8b4a5e2bcb225e58
+ms.openlocfilehash: ac0c200abd110262badd04212c82be45cb0f8bfc
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -53,6 +54,31 @@ https://prod-03.eastus.logic.azure.com:443/workflows/080cb66c52ea4e9cabe0abf4e19
 ``` text
 POST https://management.azure.com/{resourceID of your logic app}/triggers/myendpointtrigger/listCallbackURL?api-version=2015-08-01-preview
 ```
+
+### <a name="changing-http-method-of-the-trigger"></a>變更觸發程序的 HTTP 方法
+根據預設，Logic Apps 的要求觸發程序需要有 HTTP POST 要求。 但您可以在 `Show advanced options` 下方設定 HTTP 方法。
+
+ > [!NOTE]
+ > 只允許一種方法。
+
+### <a name="relative-trigger-url"></a>相對的觸發程序 URL
+您也可以自訂要求 URL 的相對路徑來接受參數。
+
+1. 展開 **Request** 觸發程序的 `Show advanced options`。
+ - 在 `Relative path` 下方，輸入 `customer/{customerId}`。
+
+  ![相對的 URL 觸發程序](./media/logic-apps-http-endpoint/relativeurl.png)
+
+2. 更新 **Respond** 動作，為使用者產生參數。
+ - 您應該會看到 `customerId` 顯示於權杖選擇器中。
+ - 更新回應主體以傳回 `Hello {customerId}`。
+
+  ![相對的 URL 回應](./media/logic-apps-http-endpoint/relativeurlresponse.png)
+
+3. 儲存邏輯應用程式，您應該會注意到要求 URL 更新以包含相對路徑。
+
+4. 複製新的要求 URL，並將它貼到新的瀏覽器視窗中。 使用 `123` `{customerId}`，然後按 Enter。
+ - 您應該會看到傳回的 `Your customer Id is 123`。
 
 ### <a name="security-for-the-trigger-url"></a>觸發程序 URL 的安全性
 邏輯應用程式回呼 URL 是使用共用存取簽章安全地產生。  簽章是以查詢參數的形式傳遞，且必須在引發邏輯應用程式之前先驗證。  它是透過每個邏輯應用程式、觸發程序名稱，以及要執行之作業的秘密金鑰的唯一組合產生。  除非某人具有邏輯應用程式秘密金鑰的存取權，否則他們無法能產生有效的簽章。
@@ -154,9 +180,4 @@ POST https://management.azure.com/{resourceID of your logic app}/triggers/myendp
 [1]: ./media/logic-apps-http-endpoint/manualtriggerurl.png
 [2]: ./media/logic-apps-http-endpoint/manualtrigger.png
 [3]: ./media/logic-apps-http-endpoint/response.png
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

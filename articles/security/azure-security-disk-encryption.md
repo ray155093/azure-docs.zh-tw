@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/30/2017
 ms.author: kakhan
 translationtype: Human Translation
-ms.sourcegitcommit: d86c39ca96633fc84311a4843deee997df9305a6
-ms.openlocfilehash: 692ee9272224369b8d5f892160bc92d5a30c346c
+ms.sourcegitcommit: 1dd5be3ba3a0fbbb4657a2c0b2ca6757a94cc76a
+ms.openlocfilehash: 1c6b4b45b9e0b018a7cb3f28f7868c89ad0fda61
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -47,13 +48,13 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 * 與 Azure 金鑰保存庫整合
 * 標準層 VM：[A、D、DS、G、GS 等系列 IaaS VM](https://azure.microsoft.com/pricing/details/virtual-machines/)
 * 在 Windows 和 Linux IaaS VM 上啟用加密
-* 在 Windows IaaS VM 的 OS 和資料磁碟機上停用加密
-* 在 Linux IaaS VM 的資料磁碟機上停用加密
+* 為 Windows IaaS VM 的 OS 和資料磁碟機停用加密
+* 為 Linux IaaS VM 的資料磁碟機停用加密
 * 在執行 Windows 用戶端 OS 的 IaaS VM 上啟用加密
 * 在具有掛接路徑的磁碟區上啟用加密
-* 在使用 mdadm 設定了磁碟串接 (RAID) 的 Linux VM 上啟用加密
-* 使用資料磁碟適用的 LVM 在 Linux VM 上啟用加密
-* 在使用儲存空間進行設定的 Windows VM 上啟用加密
+* 在使用 mdadm 設定了等量磁碟 (RAID) 的 Linux VM 上啟用加密
+* 在使用資料磁碟適用之 LVM 的 Linux VM 上啟用加密
+* 在使用儲存空間設定的 Windows VM 上啟用加密
 * 所有 Azure 公用區域皆受到支援
 
 解決方案不支援此版本中的下列案例、功能和技術：
@@ -348,7 +349,7 @@ Azure 磁碟加密會協助您保護金鑰保存庫中的磁碟加密金鑰和�
 #### <a name="create-a-key-vault"></a>建立金鑰保存庫
 若要建立金鑰保存庫，請使用下列選項之一︰
 
-* ["101-Create-KeyVault" Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-create-key-vault/azuredeploy.json)
+* ["101-Key-Vault-Create" Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-key-vault-create)
 * [Azure PowerShell 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/dn868052.aspx)
 * Azure Resource Manager
 
@@ -1227,9 +1228,4 @@ to
 ## <a name="for-more-information"></a>取得詳細資訊
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 1 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/16/explore-azure-disk-encryption-with-azure-powershell.aspx?wa=wsignin1.0)  
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

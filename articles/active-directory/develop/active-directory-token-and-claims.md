@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/07/2017
+ms.date: 02/08/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: ba958d029e5bf1bc914a2dff4b6c09282d578c67
-ms.openlocfilehash: 4612c1f516dca51aea925343f79649761448c05d
+ms.sourcegitcommit: 83bb2090d3a2fbd4fabdcd660c72590557cfcafc
+ms.openlocfilehash: 46702abb229ba0a6512f336cb0aa4e4a75b51771
+ms.lasthandoff: 02/18/2017
 
 
 ---
@@ -74,18 +75,20 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 | `ver` |版本 |儲存權杖的版本號碼。 <br><br> **範例 JWT 值**： <br> `"ver": "1.0"` |
 
 ## <a name="access-tokens"></a>存取權杖
+一旦驗證成功，Azure AD 會傳回存取權杖，用來存取受保護的資源。 存取權杖是以 base 64 編碼的 JSON Web 權杖 (JWT)，而且可以透過解碼器執行它來檢查其內容。
 
 如果您的應用程式僅「使用」存取權杖來存取 API，您可以 (應該) 將存取權杖視為完全不透明 - 這些都是您的應用程式可以在 HTTP 要求中傳遞給資源的字串。
 
 當您要求存取權杖時，Azure AD 也會傳回一些有關存取權杖的中繼資料，以供您的應用程式取用。  此資訊包括存取權杖的到期時間以及其有效範圍。  這可讓您的應用程式執行存取權杖的智慧型快取，而不需剖析存取權杖本身。
 
-如果您的應用程式是使用 Azure AD 保護的 API 且在 HTTP 要求中需要存取權杖，則您應該執行所收到權杖的驗證和檢查。 如需有關如何使用 .NET 執行此作業的詳細資訊，請參閱[使用 Azure AD 的持有者權杖來保護 Web API](active-directory-devquickstarts-webapi-dotnet.md)。
+如果您的應用程式是使用 Azure AD 保護的 API 且在 HTTP 要求中需要存取權杖，則您應該執行所收到權杖的驗證和檢查。 您的應用程式應該先驗證存取權杖，然後再用它來存取資源。 如需有關驗證的詳細資訊，請參閱[驗證權杖](#validating-tokens)。  
+如需有關如何使用 .NET 執行此作業的詳細資訊，請參閱[使用 Azure AD 的持有者權杖來保護 Web API](active-directory-devquickstarts-webapi-dotnet.md)。
 
 ## <a name="refresh-tokens"></a>重新整理權杖
 
 重新整理權杖是安全性權杖，可供您的應用程式用來在 OAuth 2.0 流程中取得新存取權杖。  它可讓您的應用程式代表使用者長期存取資源，而不需使用者互動。
 
-重新整理權杖是多重資源，表示在一個資源的權杖要求期間收到的重新整理權杖，可以兌換完全不同資源的存取權杖。 若要指定多個資源，請在目標資源的要求中設定 `resource` 參數。
+重新整理權杖屬於多資源權杖。  也就是說，在一個資源的權杖要求期間收到的重新整理權杖可以兌換完全不同資源的存取權杖。 若要這樣做，請在目標資源的要求中設定 `resource` 參數。
 
 重新整理權杖對您的應用程式完全不透明。 它們屬於長效權杖，但不得將您的應用程式撰寫成預期重新整理權杖將持續任何一段時間。  重新整理權杖可能會因為各種原因而隨時失效。  讓您的應用程式知道重新整理權杖是否有效的唯一方式，就是對 Azure AD 權杖端點提出權杖要求以嘗試兌換。
 
@@ -93,9 +96,9 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 
 ## <a name="validating-tokens"></a>驗證權杖
 
-若要驗證 id_token 或 access_token，您的應用程式應該驗證權杖的簽章和宣告。
+若要驗證 id_token 或 access_token，您的應用程式應該驗證權杖的簽章和宣告。 為了驗證存取權杖，您的應用程式也應該驗證簽發者、受眾及簽署權杖。 這些都需要對 OpenID 探索文件中的值進行驗證。 例如，租用戶獨立版的文件，位於[https://login.windows.net/common/.well-known/openid-configuration](https://login.windows.net/common/.well-known/openid-configuration)。 Azure AD 中介軟體已內建驗證存取權杖的功能，您可以瀏覽我們的[範例](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-code-samples)，以找到您所選擇語言的範例。 如需如何明確地驗證 JWT 權杖的詳細資訊，請參閱[手動 JWT 驗證範例 (manual JWT validation sample)](https://github.com/Azure-Samples/active-directory-dotnet-webapi-manual-jwt-validation)。  
 
-如果您想要了解基礎程序，我們提供的程式庫和程式碼範例會示範如何輕鬆地處理權杖驗證。  另外還有多個協力廠商開放原始碼程式庫可用於 JWT 驗證 - 幾乎每個平台和語言都有至少一個選項。 如需有關 Azure AD 驗證程式庫和程式碼範例的詳細資訊，請參閱 [Azure AD 驗證程式庫](active-directory-authentication-libraries.md)。
+我們提供的程式庫和程式碼範例會示範如何輕鬆地處理權杖驗證 - 想要了解基礎程序的使用者可以參閱以下資訊。  另外還有多個協力廠商開放原始碼程式庫可用於 JWT 驗證 - 幾乎每個平台和語言都有至少一個選項。 如需有關 Azure AD 驗證程式庫和程式碼範例的詳細資訊，請參閱 [Azure AD 驗證程式庫](active-directory-authentication-libraries.md)。
 
 #### <a name="validating-the-signature"></a>驗證簽章
 
@@ -300,10 +303,4 @@ https://login.microsoftonline.com/common/.well-known/openid-configuration
 ## <a name="related-content"></a>相關內容
 * 若要深入了解透過 Azure AD Graph API 管理權杖存留期原則，請參閱 Azure AD Graph [原則作業](https://msdn.microsoft.com/library/azure/ad/graph/api/policy-operations)和[原則實體](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#policy-entity)。
 * 如需透過 PowerShell Cmdlet 管理原則的詳細資訊和範例，包括範例，請參閱[在 Azure AD 中設定權杖存留期](../active-directory-configurable-token-lifetimes.md)。 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

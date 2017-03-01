@@ -11,21 +11,22 @@ ms.assetid: 8e71b04c-bc38-4153-8f83-f2b14faa31d9
 ms.service: sql-database
 ms.custom: overview
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 02/06/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 89974b49aa5ae18ed6722f852b5796d07e6fa229
-ms.openlocfilehash: c0b407f80c4b4dd62a7a00fa6836e4f726457f62
+ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
+ms.openlocfilehash: 8b9b9b70cc7b6a9b89a52523f713b43b74713042
+ms.lasthandoff: 02/17/2017
 
 ---
 # <a name="azure-sql-database-access-control"></a>Azure SQL Database 存取控制
 為了提供安全性，SQL Database 會透過以下機制來控制存取：依 IP 位址限制連線的防火牆規則、要求使用者證明其身分識別的驗證機制，以及將使用者限制在特定動作和資料的授權機制。 
 
 > [!IMPORTANT]
-> 如需 SQL Database 安全性功能的概觀，請參閱 [SQL 安全性概觀](sql-database-security-overview.md)。 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [SQL Database 教學課程︰AAD 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-aad-authentication-get-started.md)。
+> 如需 SQL Database 安全性功能的概觀，請參閱 [SQL 安全性概觀](sql-database-security-overview.md)。 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)。 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [Azure AD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)。
 
 ## <a name="firewall-and-firewall-rules"></a>防火牆與防火牆規則
 Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提供關聯式資料庫服務。 為了協助保護您的資料，防火牆會防止對您的資料庫伺服器的所有存取，直到您指定哪些電腦擁有權限。 此防火牆會根據每一個要求的來源 IP 位址來授與資料庫存取權。 如需詳細資訊，請參閱 [Azure SQL Database 防火牆規則概觀](sql-database-firewall-configure.md)
@@ -62,15 +63,9 @@ SQL Database 支援兩種驗證類型：
 ## <a name="next-steps"></a>後續步驟
 
 - 如需 SQL Database 安全性功能的概觀，請參閱 [SQL 安全性概觀](sql-database-security-overview.md)。
-- 若要深入了解防火牆規則，請參閱 [Azure SQL Database 防火牆](sql-database-firewall-configure.md)。
+- 若要深入了解防火牆規則，請參閱[防火牆規則](sql-database-firewall-configure.md)。
 - 若要了解使用者和登入，請參閱[管理登入](sql-database-manage-logins.md)。 
-- 如需在 SQL Database 中使用資料保護功能的討論，請參閱[資料保護和安全性](sql-database-protect-data.md)。
-- 關於主動式監視的討論，請參閱[開始使用 SQL Database 稽核](sql-database-auditing-get-started.md)和[開始使用 SQL Database 威脅偵測](sql-database-threat-detection-get-started.md)。
-- 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
-- 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [SQL Database 教學課程︰Azure AD 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-aad-authentication-get-started.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
+- 關於主動式監視的討論，請參閱[資料庫稽核](sql-database-auditing.md)和 [SQL Database 威脅偵測](sql-database-threat-detection.md)。
+- 如需使用 SQL Server 驗證的教學課程，請參閱 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)。
+- 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [Azure AD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)。
 

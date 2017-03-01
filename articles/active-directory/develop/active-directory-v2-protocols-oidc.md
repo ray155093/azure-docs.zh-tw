@@ -1,4 +1,3 @@
-
 ---
 title: "Azure Active Directory&2;.0 版和 OpenID Connect 通訊協定 | Microsoft Docs"
 description: "使用 Azure AD v2.0 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。"
@@ -13,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 02/08/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: 1d81be4ba596f7bc0ed7d16cb8bb9b375bd1e223
+ms.sourcegitcommit: d24fd29cfe453a12d72998176177018f322e64d8
+ms.openlocfilehash: 4e43304c108fceb7df70fc37898ffcf989beb922
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -199,6 +199,16 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 
 -->
 
+## <a name="single-sign-out"></a>單一登出
+v2.0 端點會使用 cookie 來識別使用者的工作階段。 當使用者第一次登入應用程式時，v2.0 端點會在使用者的瀏覽器的中設置 cookie。 當使用者隨後登入另一個應用程式時，Azure AD 會先檢查 cookie 來判斷使用者是否具有該 Azure AD v2.0 端點的有效登入工作階段，而不是重新驗證使用者。
+
+同樣地，當使用者第一次登出應用程式，v2.0 端點會清除瀏覽器中的 cookie。 不過，使用者可能仍然登入其他使用 Azure AD v2.0 端點進行驗證的應用程式。 為了確保使用者登出所有的應用程式，v2.0 端點會傳送至 HTTP GET 要求給使用者目前登入的所有應用程式的 `LogoutUrl`。 應用程式必須回應此要求，清除用於識別使用者工作階段的所有 cookie。 您可以從 Azure 入口網站中設定 `LogoutUrl`。
+
+1. 瀏覽至 [Azure 入口網站](https://portal.azure.com)。
+2. 在頁面右上角按一下您的帳戶，以選擇您的 Active Directory。
+3. 在左側導覽窗格中，依序選擇 [Azure Active Directory]、[應用程式註冊]，然後選取您的應用程式。
+4. 按一下 [屬性]，找到 [登出 URL] 文字方塊。 
+
 ## <a name="protocol-diagram-token-acquisition"></a>通訊協定圖表：權杖取得
 許多 Web 應用程式不僅需要將使用者登入，也需要使用 OAuth 來代表使用者存取 Web 服務。 這個案例結合了 OpenID Connect 來進行使用者驗證，同時又取得您使用 OAuth 授權碼流程時，可用來取得存取權杖的授權碼。
 
@@ -268,10 +278,4 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 如需可能的錯誤碼說明及建議的用戶端回應，請參閱[授權端點錯誤的錯誤碼](#error-codes-for-authorization-endpoint-errors)。
 
 在您取得授權碼和識別碼權杖之後，您可以將使用者登入並代表他們取得存取權杖。 若要將使用者登入，您必須[完全依照所述的方式](#validate-the-id-token)驗證識別碼權杖。 若要取得存取權杖，請依照我們 [OAuth 通訊協定文件](active-directory-v2-protocols-oauth-code.md#request-an-access-token)中所述的步驟操作。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

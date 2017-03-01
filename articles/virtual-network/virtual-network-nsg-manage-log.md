@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 01/31/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 8d370f98a4ef2501afc692af8a19a0625f54b678
-ms.openlocfilehash: a087b74470a8aa0f70b56d74cd97fe0935d35bcd
+ms.sourcegitcommit: e657e901900b4879d649ac82d8de026957a409c2
+ms.openlocfilehash: 36a872e3e5bd3230dcfe2abdab9b4dbf25212cdb
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -31,7 +32,14 @@ ms.openlocfilehash: a087b74470a8aa0f70b56d74cd97fe0935d35bcd
 > [!NOTE]
 > 診斷記錄檔僅適用於透過 Azure Resource Manager 部署模型中部署的 NSG。 您無法啟用透過傳統部署模型部署的 NSG 診斷記錄。 若要深入了解這兩個模型，請參閱[了解 Azure 部署模型](../resource-manager-deployment-model.md)一文。
 
-預設會啟用透過任何一個 Azure 部署模型所建立之 NSG 的活動記錄 (先前稱為稽核或操作的記錄檔)。 若要判斷活動記錄中哪些作業在 NSG 上完成，請尋找包含下列資源類型的項目：Microsoft.ClassicNetwork/networkSecurityGroups、Microsoft.ClassicNetwork/networkSecurityGroups/securityRules、Microsoft.Network/networkSecurityGroups 和 Microsoft.Network/networkSecurityGroups/securityRules。 閱讀 [Azure 活動記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)文章以深入了解活動記錄。 
+預設會啟用透過任何一個 Azure 部署模型所建立之 NSG 的活動記錄 (先前稱為稽核或操作的記錄檔)。 若要判斷在 NSG 上已完成哪些作業，請在活動記錄中尋找包含下列資源類型的項目： 
+
+- Microsoft.ClassicNetwork/networkSecurityGroups 
+- Microsoft.ClassicNetwork/networkSecurityGroups/securityRules
+- Microsoft.Network/networkSecurityGroups
+- Microsoft.Network/networkSecurityGroups/securityRules 
+
+閱讀 [Azure 活動記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)文章以深入了解活動記錄。 
 
 ## <a name="enable-diagnostic-logging"></a>啟用診斷記錄
 
@@ -116,9 +124,4 @@ ms.openlocfilehash: a087b74470a8aa0f70b56d74cd97fe0935d35bcd
 ## <a name="view-and-analyze-logs"></a>檢視及分析記錄檔
 
 若要了解如何檢視活動記錄資料，閱讀 [Azure 活動記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 若要了解如何檢視診斷記錄資料，閱讀 [Azure 診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)文章。 如果您將診斷資料傳送至 Log Analytics，您可以使用 [Azure 網路安全性群組分析](../log-analytics/log-analytics-azure-networking-analytics.md) (預覽) 管理解決方案取得深入解析。 
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

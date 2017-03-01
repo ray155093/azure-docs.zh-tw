@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: c10a35e4828e8da427f324ef3c3892e7e24cc72d
-ms.openlocfilehash: ba8fd7ea8979c8c2afbace60a5675b411438d6b4
+ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
+ms.openlocfilehash: 46dd298a5664d914e55d45c5b7599d5983287476
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -31,7 +32,7 @@ ms.openlocfilehash: ba8fd7ea8979c8c2afbace60a5675b411438d6b4
 * 定義 SQL Database 加密和稽核原則。
 * 監視所有訂用帳戶的 SQL Database 資源安全性。
 * 快速找出並修復安全性問題。
-* 整合 [Azure SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md)所提供的警示。
+* 整合 [Azure SQL Database 威脅偵測](../sql-database/sql-database-threat-detection.md)所提供的警示。
 
 除了協助您保護 SQL Database 資源，資訊安全中心也提供 Azure 虛擬機器、雲端服務、應用程式服務、虛擬網路等的安全性監視和管理功能。 [在此](security-center-intro.md)深入了解資訊安全中心。
 
@@ -79,7 +80,7 @@ ms.openlocfilehash: ba8fd7ea8979c8c2afbace60a5675b411438d6b4
 如下所示，資訊安全中心會顯示未啟用稽核與威脅偵測的 SQL Server。 開啟稽核之後，您即可設定威脅偵測設定和電子郵件設定來接收安全性警示。 威脅偵測會在偵測到異常資料庫活動時警示您，指出資料庫有潛在的安全性威脅。 警示會顯示在 [資訊安全中心] 儀表板中。
 ![稽核與威脅偵測][5]
 
-遵循[開始使用 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md)中的步驟，開啟並設定威脅偵測，以及設定將在偵測到異常活動時收到安全性警示的電子郵件清單。
+遵循 [Azure 入口網站中的 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-portal.md)的步驟，來開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
 
 若要深入了解相關建議，請參閱[管理安全性建議](security-center-recommendations.md)。
 
@@ -90,7 +91,7 @@ ms.openlocfilehash: ba8fd7ea8979c8c2afbace60a5675b411438d6b4
 若要深入了解，請參閱[安全性健康狀態監視](security-center-monitoring.md)。
 
 ## <a name="manage-and-respond-to-security-alerts"></a>管理和回應安全性警示
-資訊安全中心會自動收集、分析及整合來自 [Azure SQL 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md)和其他 Azure 資源的記錄檔資料，以偵測真正的威脅並降低誤判。 「資訊安全中心」會顯示優先安全性警示清單，以及需要您快速調查問題的資訊，和如何修復攻擊行為的建議。
+資訊安全中心會自動收集、分析及整合來自 [Azure SQL 威脅偵測](../sql-database/sql-database-threat-detection.md)和其他 Azure 資源的記錄檔資料，以偵測真正的威脅並降低誤判。 「資訊安全中心」會顯示優先安全性警示清單，以及需要您快速調查問題的資訊，和如何修復攻擊行為的建議。
 
 若要設定警示，請選取 [資訊安全中心] 刀鋒視窗上的 [安全性警示] 圖格。 在 [安全性警示] 刀鋒視窗上，選取一個警示以深入了解觸發警示的事件；如果發現項目，您需要進行一些步驟來阻止攻擊。 在此範例中，我們選取 [潛在的 SQL 插入式攻擊] 。
 ![安全性警示][7]
@@ -115,9 +116,4 @@ ms.openlocfilehash: ba8fd7ea8979c8c2afbace60a5675b411438d6b4
 [6]: ./media/security-center-sql-database/monitor-health.png
 [7]: ./media/security-center-sql-database/alert.png
 [8]: ./media/security-center-sql-database/sql-injection.png
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

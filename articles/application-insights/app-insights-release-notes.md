@@ -1,21 +1,22 @@
 ---
-title: "Application Insights 的版本資訊"
-description: "最新的更新。"
+title: "Azure Application Insights 的版本資訊 | Microsoft Docs"
+description: "Application Insights SDK 的最新更新。"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 9cd2ecdb-c2b9-4e4a-b6aa-beb0c2ca4ffc
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 01/28/2016
+ms.date: 02/15/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 5072baf94919e82aff4407715936e8270821fb1f
-ms.openlocfilehash: 39a102c0fa1aa22056e2dfcfcf2c386ce02d30ae
+ms.sourcegitcommit: d3706fcb5c632cb283374e241dd899f894380804
+ms.openlocfilehash: 6422c00c36a38d9266955be86f484df5781aeda0
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -30,16 +31,9 @@ ms.openlocfilehash: 39a102c0fa1aa22056e2dfcfcf2c386ce02d30ae
 * [iOS](https://github.com/Microsoft/ApplicationInsights-iOS)
 * [Java](https://github.com/Microsoft/ApplicationInsights-Java)
 * [JavaScript](https://github.com/Microsoft/ApplicationInsights-JS/commits/master)
-* [Windows Phone 和市集 C#|VB](app-insights-release-notes-windows.md)
-* [Windows Phone 和市集 C++](https://github.com/Microsoft/ApplicationInsights-CPP/releases)
 * [Visual Studio 工具](app-insights-release-notes-vsix.md)
 * [其他平台](https://github.com/Microsoft/ApplicationInsights-Home)
 
 另請閱讀 [服務更新](https://azure.microsoft.com/updates/?service=application-insights) ，其總結了 Application Insights 服務整體的主要改進。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

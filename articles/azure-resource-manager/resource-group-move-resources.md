@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2d428e0e3aaf8fd4a2138648411da644ccd308f6
-ms.openlocfilehash: 81ac6de576614050d972d6fae384f91cc8bf6841
+ms.sourcegitcommit: 0e1ee94504ebff235c1da9128e0ac68c2b28bc59
+ms.openlocfilehash: a7771c2cee3f2820db014a4e5e8620442eea3dd1
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -43,7 +44,7 @@ ms.openlocfilehash: 81ac6de576614050d972d6fae384f91cc8bf6841
   (Get-AzureRmSubscription -SubscriptionName "Example Subscription").TenantId
   ```
 
-  如果是 Azure CLI 2.0 (預覽)，請使用：
+  如果是 Azure CLI 2.0，請使用：
 
   ```azurecli
   az account show --subscription "Example Subscription" --query tenantId
@@ -319,7 +320,7 @@ Are you sure you want to move these resources to the resource group
 [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): y
 ```
 
-## <a name="use-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽)
+## <a name="use-azure-cli-20"></a>使用 Azure CLI 2.0
 若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `az resource move` 命令。 提供要移動之資源的資源識別碼。 您可以使用下列命令取得資源識別碼︰
 
 ```azurecli
@@ -382,10 +383,5 @@ POST https://management.azure.com/subscriptions/{source-subscription-id}/resourc
 * 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱 [搭配使用 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
 * 若要了解用於管理訂用帳戶的入口網站功能，請參閱 [使用 Azure 入口網站來管理資源](resource-group-portal.md)。
 * 若要了解如何將邏輯組織套用到您的資源，請參閱 [使用標記來組織您的資源](resource-group-using-tags.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

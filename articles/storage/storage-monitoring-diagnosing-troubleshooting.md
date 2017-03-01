@@ -1,6 +1,6 @@
 ---
-title: "監視、診斷與疑難排解儲存體 | Microsoft Docs"
-description: "使用儲存體分析、用戶端記錄和其他協力廠商工具等功能，為 Azure 儲存體的相關問題進行識別、診斷與疑難排解。"
+title: "針對 Azure 儲存體進行監視、診斷及疑難排解 | Microsoft Docs"
+description: "使用儲存體分析、用戶端記錄及其他協力廠商工具之類的功能，針對 Azure 儲存體的相關問題進行識別、診斷及疑難排解。"
 services: storage
 documentationcenter: 
 author: jasonnewyork
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/22/2016
+ms.date: 02/16/2017
 ms.author: jahogg
 translationtype: Human Translation
-ms.sourcegitcommit: b0abc4df06849ef2a887a190a8ea306849d40b3d
-ms.openlocfilehash: e7613084c6a7f20913b49b1f3c33bb681897c118
+ms.sourcegitcommit: d755a94bc8c5165480291d891c5feb0cf3b26e75
+ms.openlocfilehash: e6915bf94b56b9c9ff3deb131d18d1d5457f0e85
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -84,8 +85,6 @@ ms.openlocfilehash: e7613084c6a7f20913b49b1f3c33bb681897c118
 
 ![][1]
 
-*圖 1 監視、診斷與疑難排解*
-
 本指南主要提供給使用 Azure 儲存體服務的開發人員，以及負責管理此類線上服務之 IT 專業人士閱讀。 本指南宗旨如下：
 
 * 協助您維持 Azure 儲存體帳戶的健康情況與效能。
@@ -106,11 +105,11 @@ ms.openlocfilehash: e7613084c6a7f20913b49b1f3c33bb681897c118
 ## <a name="a-namemonitoring-your-storage-serviceamonitoring-your-storage-service"></a><a name="monitoring-your-storage-service"></a>監視您的儲存體服務
 如果您熟悉 Windows 效能監視，可以將儲存體度量當成相當於 Windows 效能監視器計數的 Azure 儲存體。 儲存體度量中包含完整的度量集合 (Windows 效能監視器詞彙裡的計數)，例如服務可用性、服務要求總數，或是服務要求成功的百分比。 如需可用度量的完整清單，請參閱 [儲存體分析度量資料表結構描述](http://msdn.microsoft.com/library/azure/hh343264.aspx)。 您可以指定讓儲存體服務每小時或每分鐘收集並彙總度量一次。 如需如何啟用度量並監視您的儲存體帳戶的詳細資訊，請參閱 [啟用儲存體度量和檢視度量資料](http://go.microsoft.com/fwlink/?LinkId=510865)。
 
-您可以選擇 [Azure 入口網站](https://portal.azure.com) 上要顯示那一種小時度量，並設定各項規則以便當小時度量超出特定閥值時以電子郵件通知管理員。 如需詳細資訊，請參閱[接收警示通知](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)。 
+您可以選擇要在 [Azure 入口網站](https://portal.azure.com)中顯示哪些每小時計量，並設定規則以在每次每小時計量超出特定臨界值時，便以電子郵件通知系統管理員。 如需詳細資訊，請參閱[接收警示通知](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)。 
 
 儲存體服務會盡其所能收集各項度量，但是不一定會記錄每一次的儲存體操作。
 
-在 Azure 入口網站中，您可以檢視可用性、總要求數，與儲存體帳戶平均延遲數等度量。 同時設定了一個通知規則，會在可用性降至特定水準以下時，通知管理員。 藉由檢視這項資料，我們發現低於 100% 的資料表服務成功百分比是可以調查的方向之一 (如需詳細資訊，請參閱「[度量顯示低 PercentSuccess，或是分析記錄項目內含具有 ClientOtherErrors 交易狀態的作業項目]」一節說明)。
+在 Azure 入口網站中，您可以檢視儲存體帳戶的計量，例如可用性、總要求總及平均延遲數。 同時設定了一個通知規則，會在可用性降至特定水準以下時，通知管理員。 藉由檢視這項資料，我們發現低於 100% 的資料表服務成功百分比是可以調查的方向之一 (如需詳細資訊，請參閱「[度量顯示低 PercentSuccess，或是分析記錄項目內含具有 ClientOtherErrors 交易狀態的作業項目]」一節說明)。
 
 您應該藉由以下方式，持續監視您的 Azure 應用程式，確保這些程式如預期地健全並正常運作：
 
@@ -119,25 +118,25 @@ ms.openlocfilehash: e7613084c6a7f20913b49b1f3c33bb681897c118
 * 記錄每小時度量並使用這些度量監視一些平均值，例如平均錯誤計數與要求率。
 * 使用稍後的「[診斷儲存體問題]」一節所述之診斷工具調查潛在的問題。
 
-下圖 3 裡的圖表顯示每小時度量平均值會隱藏活動裡的暴增情況。 每小時度量所顯示的要求率極為穩定，而每分鐘度量顯示的才是真正發生的變動起伏情況。
+下圖中的圖表說明每小時計量的平均值計算如何隱藏活動中的異常高值。 每小時度量所顯示的要求率極為穩定，而每分鐘度量顯示的才是真正發生的變動起伏情況。
 
 ![][3]
 
 本小節剩下部分說明您應該監視的度量項目及這麼做的原因。
 
 ### <a name="a-namemonitoring-service-healthamonitoring-service-health"></a><a name="monitoring-service-health"></a>監視服務健康情況
-您可以使用 [Azure 入口網站](https://portal.azure.com) 來檢視全球所有 Azure 區域中儲存體服務 (及其他 Azure 服務) 的健康情況。 藉此可以立即瞭解，不受您控制的問題所影響的區域，是否也涵蓋了您為應用程式使用儲存體服務區域。
+您可以使用 [Azure 入口網站](https://portal.azure.com)來檢視全球所有 Azure 區域中儲存體服務 (及其他 Azure 服務) 的健康情況。 藉此可以立即瞭解，不受您控制的問題所影響的區域，是否也涵蓋了您為應用程式使用儲存體服務區域。
 
-[Azure 入口網站](https://portal.azure.com) 同時可提供會影響各種 Azure 服務的事件通知。
+[Azure 入口網站](https://portal.azure.com)也可以針對會影響各種 Azure 服務的事件提供通知。
 注意：此項資訊之前會隨著歷程資料一起顯示在 [Azure 服務儀表板](http://status.azure.com)上。
 
-雖然 [Azure 入口網站](https://portal.azure.com) 會收集 Azure 資料中心內的健康情況資訊 (從裡到外的監視)，您仍舊應該考慮採用從外到內的監視方式來產生互補的資訊，以便定期存取來自多個位置的 Azure 託管 Web 應用程式。 [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) 與 Application Insights for Visual Studio Team Services 所提供的各項服務，都是此由外到內的監視方式範例之一。 如需 Application Insights for Visual Studio Team Services 的詳細資訊，請參閱[附錄 5：使用 Application Insights for Visual Studio Team Services 監視](#appendix-5)。
+雖然 [Azure 入口網站](https://portal.azure.com)會從 Azure 資料中心內收集健康情況資訊 (從內到外的監視)，但是您也可以考慮採用從外到內的監視方式，從多個位置定期存取 Azure 裝載的 Web 應用程式，來產生綜合性的處理。 [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) 與 Application Insights for Visual Studio Team Services 所提供的各項服務，都是此由外到內的監視方式範例之一。 如需 Application Insights for Visual Studio Team Services 的詳細資訊，請參閱[附錄 5：使用 Application Insights for Visual Studio Team Services 監視](#appendix-5)。
 
 ### <a name="a-namemonitoring-capacityamonitoring-capacity"></a><a name="monitoring-capacity"></a>監視容量
 儲存體度量只會儲存 Blob 服務的容量度量，這是因為 Blob 通常佔已儲存的資料最大宗 (寫入期間無法使用儲存體度量來監視資料表與佇列的容量)。 如果您為 Blob 服務啟用監視功能的話，可以在 **$MetricsCapacityBlob** 資料表中找到這項資料。 儲存體度量每天會記錄這項資料一次，而您可以使用 **RowKey** 的值來判斷資料列是否包含與使用者資料 (值 **data**) 或分析資料 (值 **analytics**) 相關聯的實體。 每一個儲存的實體都含有使用的儲存體容量相關資訊 (以位元組數測量的 **Capacity**)，以及儲存體帳戶中使用的目前容器編號 (**ContainerCount**) 及 Blob (**ObjectCount**)。 如需 **$MetricsCapacityBlob** 資料表中儲存的容量度量詳細資訊，請參閱 [儲存體分析度量資料表結構描述](http://msdn.microsoft.com/library/azure/hh343264.aspx)。
 
 > [!NOTE]
-> 建議您監視這些數值，以便在儲存體帳戶接近容量限制時提早收到警告。 在 Azure 入口網站中，您可以新增警示規則，以便在彙總儲存體使用量超出或低於指定的閥值時通知您。
+> 建議您監視這些數值，以便在儲存體帳戶接近容量限制時提早收到警告。 在 Azure 入口網站中，您可以新增警示規則，讓系統在彙總儲存體使用量超出或低於指定的臨界值時通知您。
 > 
 > 
 
@@ -148,7 +147,7 @@ ms.openlocfilehash: e7613084c6a7f20913b49b1f3c33bb681897c118
 
 任何小於 100% 的值，皆表示某些儲存體要求已經失敗。 您可以檢視度量資料裡的其他資料欄，查看裡面帶有各種錯誤類型 (例如 **ServerTimeoutError**) 的要求數量，以了解這些要求失敗的原因。 當暫時性伺服器逾時狀態出現，以致於服務移動資料分割以便提供更佳的負載平衡要求時，您應該會看到 [可用性]  百分比暫時低於 100%；用戶端應用程式裡的重試邏輯應該會處理此類間歇性狀況。 [儲存體分析記錄作業和狀態訊息](http://msdn.microsoft.com/library/azure/hh343260.aspx)一文列出儲存體度量納入其 [可用性] 計算中的交易類型。
 
-在 [Azure 入口網站](https://portal.azure.com)中，您可以新增警示規則，以便在某項服務的 [可用性] 低於您指定的閥值時通知您。
+在 [Azure 入口網站](https://portal.azure.com)中，您可以新增警示規則，讓系統在某項服務的 [可用性] 低於指定的臨界值時通知您。
 
 本指南「[疑難排解指引]」一節將針對常見儲存體服務，說明一些可用性的相關問題。
 
@@ -161,7 +160,7 @@ ms.openlocfilehash: e7613084c6a7f20913b49b1f3c33bb681897c118
 
 一般來說，您需要監視這些值是否出現非預期的改變，以便察覺是否有需要進一步調查原因的問題。
 
-在 [Azure 入口網站](https://portal.azure.com)中，您可以新增警示規則，以便在此項服務的任何一個效能度量低於或超過您指定的閥值時通知您。
+在 [Azure 入口網站](https://portal.azure.com)中，您可以新增警示規則，讓系統在這項服務的任何效能計量低於或超出指定的臨界時通知您。
 
 本指南「[疑難排解指引]」一節描述一些與效能相關聯的常見儲存體服務問題。
 
@@ -183,7 +182,7 @@ ms.openlocfilehash: e7613084c6a7f20913b49b1f3c33bb681897c118
 以下章節概述當您對這四個類別分別進行問題診斷與疑難排解時，應該遵循的步驟。 本指南稍後的「[疑難排解指引]」一節深入說明您可能會碰到的一些常見問題。
 
 ### <a name="a-nameservice-health-issuesaservice-health-issues"></a><a name="service-health-issues"></a>服務健康情況問題
-服務健康情況問題通常是您無法掌控的部分。 [Azure 入口網站](https://portal.azure.com) 提供您 Azure 服務 (包括儲存體服務) 各種持續出現的問題相關資訊。 若您在建立儲存體帳戶時選擇使用「讀取存取地理區域備援儲存體」，則當主要位置無法提供您的資料時，您的應用程式會暫時切換到次要位置的唯讀副本。 若要這麼做，您的應用程式必須要能切換使用主要與次要儲存位置，並能在降低功能模式下使用唯讀資料。 Azure 儲存體用戶端程式庫可讓您定義重試原則，當無法從主要儲存體讀取資料時，才能嘗試從次要儲存體讀取資料。 您的應用程式還需要了解次要位置的資料最終會與主要位置的資料維持一致。 如需詳細資訊，請參閱部落格文章 [Azure 儲存體備援選項與讀取存取異地備援儲存體](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/)。
+服務健康情況問題通常是您無法掌控的部分。 [Azure 入口網站](https://portal.azure.com)會提供有關 Azure 服務 (包括儲存體服務) 之任何持續出現的問題相關資訊。 若您在建立儲存體帳戶時選擇使用「讀取存取地理區域備援儲存體」，則當主要位置無法提供您的資料時，您的應用程式會暫時切換到次要位置的唯讀副本。 若要這麼做，您的應用程式必須要能切換使用主要與次要儲存位置，並能在降低功能模式下使用唯讀資料。 Azure 儲存體用戶端程式庫可讓您定義重試原則，當無法從主要儲存體讀取資料時，才能嘗試從次要儲存體讀取資料。 您的應用程式還需要了解次要位置的資料最終會與主要位置的資料維持一致。 如需詳細資訊，請參閱部落格文章 [Azure 儲存體備援選項與讀取存取異地備援儲存體](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/)。
 
 ### <a name="a-nameperformance-issuesaperformance-issues"></a><a name="performance-issues"></a>效能問題
 應用程式效能是很主觀的問題，尤其是從使用者觀點來看。 因此，我們需要一套基準度量來協助您識別出現效能問題的位置。 從用戶端應用程式觀點來看，許多因素都會影響 Azure 儲存體服務的效能。 這些因素可能會影響儲存體服務、用戶端或是網路基礎結構，因此我們有必要制訂策略來找出效能問題的源頭。
@@ -349,7 +348,7 @@ catch (StorageException storageException)
 
 - - -
 ### <a name="a-namemetrics-show-high-averagee2elatency-and-low-averageserverlatencyametrics-show-high-averagee2elatency-and-low-averageserverlatency"></a><a name="metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency"></a>度量顯示高 AverageE2ELatency 與低 AverageServerLatency
-下方的 [Azure 入口網站](https://portal.azure.com)監視工具圖表為 **AverageE2ELatency** 遠遠高出 **AverageServerLatency** 的範例。
+下圖來自 [Azure 入口網站](https://portal.azure.com)監視工具，顯示一個 **AverageE2ELatency** 遠遠高出 **AverageServerLatency** 的範例。
 
 ![][4]
 
@@ -443,7 +442,7 @@ queueServicePoint.UseNagleAlgorithm = false;
 
 如果您將所有交易分散到多個資料分割，您必須同時注意儲存體帳戶所設定的延展性限制。 舉例來說，當您使用 10 個佇列，而每個佇列每秒鐘最多可處理 2,000 個 1KB 大小的訊息時，儲存體帳戶的總體限制將為每秒鐘 20,000 則訊息。 當您每秒鐘需要處理超過 20,000 個實體時，請考慮使用多個儲存體帳戶。 請同時注意，您的要求與實體大小會對儲存體服務何時節流您的用戶端產生影響：如果您有較大型的要求與實體，則會較優先進行節流。
 
-當查詢設計不敷使用時，也會導致資料表分割到達延展性限制。 舉例來說，當查詢中的篩選器只會選取資料分割中實體的 1%，但卻會掃描資料分割中所有實體時，需要存取每個實體。 每個實體讀取動作都會記入該資料分割的總交易數，因此，您可以輕鬆地達到延展性目標。
+當查詢設計不敷使用時，也會導致資料表分割到達延展性限制。 舉例來說，當查詢中的篩選器只會選取資料分割中實體的&1;%，但卻會掃描資料分割中所有實體時，需要存取每個實體。 每個實體讀取動作都會記入該資料分割的總交易數，因此，您可以輕鬆地達到延展性目標。
 
 > [!NOTE]
 > 您的效能測試作業應該會顯示應用程式中任何不敷使用的查詢設計。
@@ -571,11 +570,11 @@ queueServicePoint.UseNagleAlgorithm = false;
 | 要求開始時間 | 2014-05-30T06:17:48.4473697Z |
 | 作業類型     | GetBlobProperties            |
 | 要求狀態     | SASAuthorizationError        |
-| HTTP 狀態碼   | 404                          |
+| HTTP 狀態碼   | 404                            |
 | 驗證類型| Sas                          |
 | 服務類型       | Blob                         |
-| 要求 URL        | https://domemaildist.blob.core.windows.net/azureimblobcontainer/blobCreatedViaSAS.txt |
-| nbsp;              |   ?sv=2014-02-14&sr=c&si=mypolicy&sig=XXXXX&;api-version=2014-02-14 |
+| 要求 URL         | https://domemaildist.blob.core.windows.net/azureimblobcontainer/blobCreatedViaSAS.txt |
+| nbsp;                 |   ?sv=2014-02-14&sr=c&si=mypolicy&sig=XXXXX&;api-version=2014-02-14 |
 | 要求 ID 標頭  | a1f348d5-8032-4912-93ef-b393e5252a3b |
 | 用戶端要求 ID  | 2d064953-8436-4ee0-aa0c-65cb874f7929 |
 
@@ -770,7 +769,7 @@ WireShark 會反白顯示任何存在 **packetlist** 視窗的錯誤。 您也�
 您可以使用 Microsoft Message Analyzer，仿照 Fiddler 的方式擷取 HTTP 與 HTTPS 流量，並仿照 Wireshark 的方式擷取網路流量。
 
 #### <a name="configure-a-web-tracing-session-using-microsoft-message-analyzer"></a>使用 Microsoft Message Analyzer 設定 Web 追蹤工作階段
-若要使用 Microsoft Message Analyzer 設定 HTTP 與 HTTPS 流量的 Web 追蹤工作階段，請執行 Microsoft Message Analyzer 應用程式，並在 [檔案] 功能表上按一下 [Capture/Trace]。 在可用的追蹤案例清單中，選取 [Web Proxy]。 接著在 [追蹤案例組態] 面板的 [HostnameFilter] 文字方塊中，新增您的儲存體端點名稱 (您可以在 [Azure 入口網站](https://portal.azure.com)中查詢這些名稱)。 舉例來說，如果您的 Azure 儲存體帳戶名稱為 **contosodata**，您應該將下列名稱加入 [HostnameFilter] 文字方塊：
+若要使用 Microsoft Message Analyzer 設定 HTTP 與 HTTPS 流量的 Web 追蹤工作階段，請執行 Microsoft Message Analyzer 應用程式，並在 [檔案] 功能表上按一下 [Capture/Trace]。 在可用的追蹤案例清單中，選取 [Web Proxy]。 接著，在 [追蹤案例組態] 面板的 [HostnameFilter] 文字方塊中，新增您儲存體端點的名稱 (您可以在 [Azure 入口網站](https://portal.azure.com)中查詢這些名稱)。 舉例來說，如果您的 Azure 儲存體帳戶名稱為 **contosodata**，您應該將下列名稱加入 [HostnameFilter] 文字方塊：
 
 ```
 contosodata.blob.core.windows.net contosodata.table.core.windows.net contosodata.queue.core.windows.net
@@ -890,9 +889,4 @@ Microsoft Message Analyzer 內建的 **Web Proxy** 追蹤功能是依據 Fiddler
 [8]: ./media/storage-monitoring-diagnosing-troubleshooting/wireshark-screenshot-3.png
 [9]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-1.png
 [10]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-2.png
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 
