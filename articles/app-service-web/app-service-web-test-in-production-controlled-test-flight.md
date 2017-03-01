@@ -4,7 +4,7 @@ description: "了解如何在此端對端教學課程中試驗應用程式中的
 services: app-service\web
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 17953c51-38f8-442d-bb0b-f69c1542f0e9
 ms.service: app-service-web
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: 84b5f28fcd0640fd85b5f8c9d655105790c70d62
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -356,9 +357,4 @@ Azure App Service 可讓中小型企業輕鬆地在生產環境中測試其客�
 * [Git 分支 - 基本分支和合併](http://www.git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 * [Azure PowerShell](/powershell/azureps-cmdlets-docs)
 * [專案 Kudu Wiki](https://github.com/projectkudu/kudu/wiki)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service 中使用 CORS 支援。"
 services: app-service\api
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 4f980a97-b9f5-4d1d-87ab-82b60bb96e1c
 ms.service: app-service-api
@@ -17,6 +17,7 @@ ms.author: rachelap
 translationtype: Human Translation
 ms.sourcegitcommit: a0580f8d303c7ce33a65f0ce6faecf2492f851b0
 ms.openlocfilehash: b0b701b7ea7a608f114d3a82f0403c2ae506854f
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -248,10 +249,5 @@ Web API CORS 支援比 App Service CORS 支援更有彈性。 例如，在程式
 
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已看到如何啟用 App Service CORS 支援，以便用戶端 JavaScript 程式碼可以呼叫不同網域中的 API。 若要深入了解 API 應用程式，請閱讀 [App Service 中的驗證簡介](../app-service/app-service-authentication-overview.md)，然後前往 [API 應用程式的使用者驗證](app-service-api-dotnet-user-principal-auth.md)教學課程。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

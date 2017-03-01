@@ -4,7 +4,7 @@ description: "了解如何使用 Azure App Service 部署認證。"
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
-manager: wpickett
+manager: erikre
 editor: mollybos
 ms.service: app-service
 ms.workload: na
@@ -16,6 +16,7 @@ ms.author: dariagrigoriu
 translationtype: Human Translation
 ms.sourcegitcommit: 0ab2e30165fe3dca0e00109e9b4e22a9a1433de5
 ms.openlocfilehash: 43cf4dad58ee0e12a233125049ab4e62411459fe
+ms.lasthandoff: 01/06/2017
 
 
 ---
@@ -88,8 +89,3 @@ App Service 中每個應用程式的認證會儲存在 XML 發佈設定檔中。
 ## <a name="next-steps"></a>後續步驟
 
 了解如何使用這些認證從[本機 Git](app-service-deploy-local-git.md)或使用[FTP/S](app-service-deploy-ftp.md) 部署應用程式。
-
-
-<!--HONumber=Jan17_HO1-->
-
-

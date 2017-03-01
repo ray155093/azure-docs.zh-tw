@@ -4,7 +4,7 @@ description: "了解如何使用 Visual Studio，將 Azure WebJob 部署至 Azur
 services: app-service
 documentationcenter: 
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: a3a9d320-1201-4ac8-9398-b4c9535ba755
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: tdykstra
 translationtype: Human Translation
 ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
 ms.openlocfilehash: 9f792f6ea082461f3304516fc9b4c3273e2f50b8
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -175,10 +176,5 @@ ms.openlocfilehash: 9f792f6ea082461f3304516fc9b4c3273e2f50b8
 
 ## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>後續步驟
 本文說明如何使用 Visual Studio 部署 WebJobs。 如需如何部署 Azure WebJobs 的詳細資訊，請參閱 [Azure WebJobs - 建議的資源 - 部署](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/azure-webjobs-recommended-resources#deploying)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

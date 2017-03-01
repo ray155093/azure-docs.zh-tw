@@ -4,7 +4,7 @@ description: "了解如何使用 Azure Mobile Engagement 建立和管理使用�
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 6a4f2205-4a3c-406e-a04f-5e6f2a36653f
 ms.service: mobile-engagement
@@ -17,6 +17,7 @@ ms.author: piyushjo
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: b4f1df6f46b7b8349fcea649ebcdf34fc363491d
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -205,10 +206,5 @@ UI 的 [使用者分佈] 區段可讓您根據不同的行為和分析，對您�
 [Link 31]: ../mobile-engagement-how-tos-schedule-campaign.md
 [Link 32]: ../mobile-engagement-how-tos-text-view.md
 [Link 33]: ../mobile-engagement-how-tos-web-view.md
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

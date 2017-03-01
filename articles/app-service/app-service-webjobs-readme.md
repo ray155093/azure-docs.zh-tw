@@ -4,7 +4,7 @@ description: "了解如何建置 WebJobs 以執行背景測試、與儲存體和
 services: app-service
 documentationcenter: 
 author: christopheranderson
-manager: wpickett
+manager: erikre
 editor: mollybos
 ms.assetid: 85975432-04c9-4b83-b937-b30c082d52a1
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: chrande
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 45016e09e981bab6e4413048838c66f1108dc663
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -30,10 +31,5 @@ WebJobs SDK 可讓您更輕鬆地使用 Azure 儲存體。 WebJobs SDK 具有繫
 Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能夠完全掌控 WebJob 的執行，包括叫用 WebJob 內個別函數的功能。 儀表板也會顯示函數執行階段和記錄輸出。
 
 [!INCLUDE [app-service-blueprint-webjobs](../../includes/app-service-blueprint-webjobs.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

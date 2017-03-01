@@ -4,7 +4,7 @@ description: "描述您可以將 Web Apps 與 App Service 從一個資源群組�
 services: app-service
 documentationcenter: 
 author: ZainRizvi
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 22f97607-072e-4d1f-a46f-8d500420c33c
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: zarizvi
 translationtype: Human Translation
 ms.sourcegitcommit: 078833a21cd309087b842e21e3fc730695c254dd
 ms.openlocfilehash: 89fdeca4ffc1a36e8aff829b00483f208fa03e0f
+ms.lasthandoff: 12/21/2016
 
 
 ---
@@ -31,10 +32,5 @@ Azure Web Apps 目前支援下列移動案例：
 
 * 將個別 Web 應用程式移到不同的資源群組，但同時仍將它們裝載在其目前的 App Service 方案中 (App Service 方案會保留在舊的資源群組中)。
 
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

@@ -4,7 +4,7 @@ description: "了解 Azure App Service 針對 API Apps 所提供的驗證和授�
 services: app-service\api
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: d620b53a-5a6f-41c9-84c7-f7ef5ff02ae7
 ms.service: app-service-api
@@ -17,6 +17,7 @@ ms.author: rachelap
 translationtype: Human Translation
 ms.sourcegitcommit: b75f7aa757679a29a42cdfc04799873ee30bab2e
 ms.openlocfilehash: cd66296718d8ae3cd2bcd69c66f54684f57d7ece
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -108,10 +109,5 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 
 ## <a name="next-steps"></a>後續步驟
 本文說明了可用於 API 應用程式之 App Service 的驗證和授權功能。 在下一個快速入門系列教學課程中，會說明如何實作 [App Service API Apps 中的使用者驗證](app-service-api-dotnet-user-principal-auth.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

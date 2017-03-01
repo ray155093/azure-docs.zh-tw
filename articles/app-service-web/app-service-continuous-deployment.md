@@ -4,7 +4,7 @@ description: "了解如何啟用持續部署至 Azure App Service。"
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
-manager: wpickett
+manager: erikre
 editor: mollybos
 ms.assetid: 6adb5c84-6cf3-424e-a336-c554f23b4000
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: dariagrigoriu
 translationtype: Human Translation
 ms.sourcegitcommit: 071e8056382128f7c5070b46591b2a66ba5b7e41
 ms.openlocfilehash: 57c38c3d19810fd8c2789a27983c521517f2303b
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -96,9 +97,4 @@ ms.openlocfilehash: 57c38c3d19810fd8c2789a27983c521517f2303b
 [建立儲存機制 (BitBucket)]: https://confluence.atlassian.com/display/BITBUCKET/Create+an+Account+and+a+Git+Repo
 [開始使用 VSTS]: https://www.visualstudio.com/docs/vsts-tfs-overview
 [Continuous delivery to Azure using Visual Studio Team Services]: ../articles/cloud-services/cloud-services-continuous-delivery-use-vso.md
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

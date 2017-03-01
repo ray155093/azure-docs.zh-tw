@@ -2,7 +2,7 @@
 title: "Azure App Service 上的高密度裝載 | Microsoft Docs"
 description: "Azure App Service 上的高密度託管"
 author: btardif
-manager: wpickett
+manager: erikre
 editor: 
 services: app-service\web
 documentationcenter: 
@@ -17,6 +17,7 @@ ms.author: byvinyal
 translationtype: Human Translation
 ms.sourcegitcommit: 0c2677b388f7a88ff88715a05212633565393cc2
 ms.openlocfilehash: 2d5d1d5123ca718b2e7dcdf426b77f91969dc9dc
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -152,10 +153,5 @@ App Service 方案會將 **PerSiteScaling** 屬性設為 true (```"perSiteScalin
 3. 在 App Service 方案上將 PerSiteScaling 旗標設定為 true。
 4. 新應用程式會建立並指派給該 App Service 方案，其中 **numberOfWorkers** 屬性會設定為 **1**。 使用此設定會產生此背景工作角色集區上所能允許的最高密度。
 5. 背景工作角色數目可依每個應用程式單獨設定，以視需要授與額外資源。 例如，高使用率應用程式可以將 **numberOfWorkers** 設定為 **3**，讓該應用程式擁有更多處理容量，而低使用率應用程式則可將 **numberOfWorkers** 設定為 **1**。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

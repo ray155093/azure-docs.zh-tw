@@ -12,11 +12,12 @@ ms.devlang: R
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/09/2017
+ms.date: 02/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
 ms.sourcegitcommit: 841e70fa3a80bbeb7e2281246bac2f99c0de899f
 ms.openlocfilehash: 169743012b1f50d67d5eafdb279e706719752eb8
+ms.lasthandoff: 11/22/2016
 
 
 ---
@@ -74,10 +75,5 @@ Azure HDInsight 上的 Microsoft R 伺服器可提供最新的 R 型分析功能
 * [開始使用適用於 Hadoop 的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)
 * [將 RStudio Server 新增至 HDInsight (若未在建立叢集期間新增)](hdinsight-hadoop-r-server-install-r-studio.md)
 * [適用於 HDInsight R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

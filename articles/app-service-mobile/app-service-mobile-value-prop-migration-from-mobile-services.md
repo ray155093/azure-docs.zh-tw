@@ -4,7 +4,7 @@ description: "了解 App Service 為您現有的行動服務專案帶來哪些�
 services: app-service\mobile
 documentationcenter: ios
 author: adrianhall
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 26b68a11-8352-4f78-acd2-e4e0ec177781
 ms.service: app-service-mobile
@@ -17,6 +17,7 @@ ms.author: adrianha
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: f3b75c10ed0012d682562eb943cb67fc8176ddbb
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -63,10 +64,5 @@ ms.openlocfilehash: f3b75c10ed0012d682562eb943cb67fc8176ddbb
 利用 *Azure App Service* ，您現在可以為行動應用程式建立多個私人測試和預備環境。 您可以在部署之前，使用這些環境來執行測試。 不需停機即可切換至生產環境。 Web 應用程式已預先載入，可確保最佳的客戶體驗。
 
 您可以藉由遵循此 *教學課程* ，開始將 [App Service](app-service-mobile-migrating-from-mobile-services.md)運用於您現有的行動服務。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

@@ -4,7 +4,7 @@ description: "了解如何從雲端資料夾透過內容同步處理，將您的
 services: app-service
 documentationcenter: 
 author: dariagrigoriu
-manager: wpickett
+manager: erikre
 editor: mollybos
 ms.assetid: 88d3a670-303a-4fa2-9de9-715cc904acec
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: dariagrigoriu
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: ddda0e60dc9d5414142791175b77a5a65e3f40e3
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -47,10 +48,5 @@ ms.openlocfilehash: ddda0e60dc9d5414142791175b77a5a65e3f40e3
     ![部署歷程記錄](./media/app-service-deploy-content-sync/onedrive_sync.png)
 
 [從 Dropbox 部署](http://blogs.msdn.com/b/windowsazure/archive/2013/03/19/new-deploy-to-windows-azure-web-sites-from-dropbox.aspx)下有 Dropbox 部署的詳細資訊。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

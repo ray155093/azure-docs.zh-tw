@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service 中建立使用內部部署 STS 
 services: app-service\web
 documentationcenter: .net
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 0fa9f7a1-37bd-4d11-845f-aeff6fc9e4ca
 ms.service: app-service-web
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 29b7146837f8a88baebd67fc448954f01388d67b
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -338,10 +339,5 @@ Azure App Service Web Apps 可透過兩種方式支援存取在內部部署資�
 * [將 VS2013 Web 專案從 WIF 移轉到 Katana](http://www.cloudidentity.com/blog/2014/09/15/MIGRATE-A-VS2013-WEB-PROJECT-FROM-WIF-TO-KATANA/)
 * [Active Directory Federation Services 概觀](http://technet.microsoft.com/library/hh831502.aspx)
 * [WS-同盟 1.1 規格](http://download.boulder.ibm.com/ibmdl/pub/software/dw/specs/ws-fed/WS-Federation-V1-1B.pdf?S_TACT=105AGX04&S_CMP=LP)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

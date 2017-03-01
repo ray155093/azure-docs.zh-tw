@@ -4,7 +4,7 @@ description: "如何在 Azure App Service 的 API 應用程式中實作觸發程
 services: logic-apps
 documentationcenter: .net
 author: guangyang
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 493c3703-786d-4434-9dca-8f77744b2f5d
 ms.service: logic-apps
@@ -17,6 +17,7 @@ ms.author: rachelap
 translationtype: Human Translation
 ms.sourcegitcommit: 015ca80c952110d3289888ed82d7a543be29950c
 ms.openlocfilehash: cf020b0f5f14d73635cf44e0157b53b35eb00d60
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -340,9 +341,4 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
             }
         }
     }
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

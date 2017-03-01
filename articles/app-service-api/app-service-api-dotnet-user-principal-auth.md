@@ -4,7 +4,7 @@ description: "了解如何藉由僅允許經過驗證的使用者存取，保護
 services: app-service\api
 documentationcenter: .net
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 3896760d-46ff-4b67-b98a-edd233f24758
 ms.service: app-service-api
@@ -17,6 +17,7 @@ ms.author: rachelap
 translationtype: Human Translation
 ms.sourcegitcommit: 16a2c6f8e704528c38054bba394e3d11098077e0
 ms.openlocfilehash: c39e7bca6f339a1797a9344778e6a01ffa8adecc
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -280,10 +281,5 @@ ToDoListAPI 專案目前會將 "*" 作為 `owner` 值傳送到 ToDoListDataAPI�
 
 ## <a name="next-steps"></a>後續步驟
 在本教學課程中，您已了解如何使用 API 應用程式的 App Service 驗證，以及如何利用 ADAL JS 程式庫呼叫 API 應用程式。 在下一個教學課程中，您將學習如何 [對於服務對服務的案例保護您的 API 應用程式存取](app-service-api-dotnet-service-principal-auth.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

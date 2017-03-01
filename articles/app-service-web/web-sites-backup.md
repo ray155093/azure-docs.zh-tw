@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service 中建立應用程式的備份�
 services: app-service
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 6223b6bd-84ec-48df-943f-461d84605694
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: b00c320eeb1e8b30a0fad9634844ceeca60d1c29
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -187,10 +188,5 @@ App Service 可以備份下列資訊：
 [ImagesFolder]: ./media/web-sites-backup/11Images.png
 [LogsFolder]: ./media/web-sites-backup/12Logs.png
 [GhostUpgradeWarning]: ./media/web-sites-backup/13GhostUpgradeWarning.png
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

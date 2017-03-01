@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service 中保護您的行動應用程�
 services: app-service
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 5ce560b4-42d7-4b20-935c-0445fd539e39
 ms.service: app-service
@@ -17,6 +17,7 @@ ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
 ms.openlocfilehash: 641fe31fc4b160fe5f0628df717006fb540394b9
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -116,10 +117,5 @@ Azure App Service 針對您的應用程式的檔案系統，提供透過 **FTPS*
 
 ## <a name="whats-changed"></a>變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 
