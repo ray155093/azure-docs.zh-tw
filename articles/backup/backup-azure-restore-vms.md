@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: trinadhk; jimpark;
 translationtype: Human Translation
-ms.sourcegitcommit: 5e22f3b395a2c8d62caa6ae0abf5f81833b00780
-ms.openlocfilehash: 2018f37b3b3426ba6a066310ddfd65fc31b7eb25
+ms.sourcegitcommit: 7de8d98f24ea01012b8fa3a326e1d4ad3f04099a
+ms.openlocfilehash: 186929c1193f63ecda6fd4851bb66c8430ab99ab
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -100,7 +101,7 @@ ms.openlocfilehash: 2018f37b3b3426ba6a066310ddfd65fc31b7eb25
 如果您已將 VM 還原至相同的雲端服務，並使用與原始備份 VM 相同的名稱，備份將會在還原後繼續進行。 如果您已將 VM 還原至不同的雲端服務，或為還原 VM 指定不同名稱，系統會將該 VM 視為新 VM，因此您需要為還原 VM 設定備份。
 
 ## <a name="restoring-a-vm-during-azure-datacenter-disaster"></a>在 Azure 資料中心發生災害時還原 VM
-如果 VM 執行的主要資料中心發生災害，而您已將備份保存庫設定為異地備援，Azure 備份可讓您將備份 VM 還原至配對的資料中心。 在這種情況下，您需要選取配對之資料中心內的儲存體帳戶，其餘的還原程序則保持不變。 Azure 備份會使用配對之地理區域的計算服務來建立還原虛擬機器。 
+如果 VM 執行的主要資料中心發生災害，而您已將備份保存庫設定為異地備援，Azure 備份可讓您將備份 VM 還原至配對的資料中心。 在這種情況下，您需要選取配對之資料中心內的儲存體帳戶，其餘的還原程序則保持不變。 Azure 備份會使用配對之地理區域的計算服務來建立還原虛擬機器。 深入了解 [Azure 資料中心復原](../resiliency/resiliency-technical-guidance-recovery-loss-azure-region.md)
 
 ## <a name="restoring-domain-controller-vms"></a>還原網域控制站 VM
 備份網域控制站 (DC) 虛擬機器是 Azure 備份支援的案例。 不過在還原程序期間必須小心。 對於單一 DC 組態中的網域控制站 VM 與在多 DC 組態中的 VM 而言，還原體驗會大為不同。
@@ -153,10 +154,5 @@ PowerShell 能夠只從備份還原 VM 磁碟，而不建立虛擬機器。 在�
 ## <a name="next-steps"></a>後續步驟
 * [錯誤疑難排解](backup-azure-vms-troubleshoot.md#restore)
 * [管理虛擬機器](backup-azure-manage-vms.md)
-
-
-
-
-<!--HONumber=Dec16_HO4-->
 
 

@@ -1,6 +1,6 @@
 ---
 title: "在傳統入口網站中將 Hyper-V VM 複寫至 Azure | Microsoft Docs"
-description: "本文說明如何使用 Azure Site Recovery，將不在 VMM 雲端中管理的 Hyper-V 虛擬機器複寫至 Azure。"
+description: "本文說明如何將不在 VMM 雲端中管理的 Hyper-V 虛擬機器複寫至 Azure。"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 11/23/2016
+ms.date: 02/21/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: b991b27304a4f65485b30431c5eb29461f60984d
+ms.sourcegitcommit: a084cecddc2af36ee087b2e0e63a2b18b20f07f0
+ms.openlocfilehash: 0c2ca459a691b353a528edc48f4d13c231a440c4
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -28,16 +29,9 @@ ms.openlocfilehash: b991b27304a4f65485b30431c5eb29461f60984d
 >
 >
 
-歡迎使用 Azure Site Recovery 服務！
-
-Site Recovery 是一項有助於建立商務持續性和災害復原 (BCDR) 策略的 Azure 服務。 Site Recovery 會協調將內部部署實體伺服器與虛擬機器複寫至雲端 (Azure) 或次要資料中心的作業。 當您的主要位置發生故障時，您容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當它恢復正常作業時，容錯回復至您的主要位置。 深入了解 [什麼是 Azure Site Recovery？](site-recovery-overview.md)
-
-本文說明如何在 Azure 入口網站中使用 Azure Site Recovery，將內部部署 Hyper-V 虛擬機器複寫至 Azure。 在此案例中，不是在 VMM 雲端中管理 Hyper-V 伺服器。
+本文說明如何在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md) 服務，將內部部署 Hyper-V 虛擬機器複寫至 Azure。 在此案例中，不是在 VMM 雲端中管理 Hyper-V 伺服器。
 
 閱讀本文之後，在本文下方張貼意見，或在 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 提出技術問題。
-
-
-
 
 
 ## <a name="site-recovery-in-the-azure-portal"></a>Azure 入口網站中的 Site Recovery
@@ -67,7 +61,7 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 * 執行 KB [2961977](https://support.microsoft.com/en-us/kb/2961977 "KB2961977") 中所述的修正。
 
 ## <a name="virtual-machine-prerequisites"></a>虛擬機器先決條件
-您想要保護的虛擬機器必須符合 [Azure 虛擬機器需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
+您想要保護的虛擬機器必須符合 [Azure 虛擬機器需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
 
 ## <a name="provider-and-agent-prerequisites"></a>提供者和代理程式的必要條件
 在 Azure Site Recovery 部署期間，您將在每部 Hyper-V 伺服器上，安裝 Azure Site Recovery Provider 和 Azure 復原服務代理程式。 請注意：
@@ -283,9 +277,4 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 
 ## <a name="next-steps"></a>後續步驟
 在您的部署設定完成並開始執行之後， [深入了解](site-recovery-failover.md) 容錯移轉。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

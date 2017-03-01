@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: stevelas
 translationtype: Human Translation
-ms.sourcegitcommit: 1a5af0b498cfdf1946f5c405d9557b0c2d2c8e63
-ms.openlocfilehash: 1e9e54ee935b4c27eb93f72eb99c3ce52cc6c7e2
+ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
+ms.openlocfilehash: 848a4011fd180721cf269390b8dd7426b2287dd2
+ms.lasthandoff: 02/22/2017
 
 ---
 # <a name="authenticate-with-a-container-registry"></a>向容器登錄庫驗證
@@ -59,7 +60,7 @@ docker login myregistry-contoso.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
 
 
 ## <a name="admin-account"></a>管理帳戶
-您建立的每個登錄，都會自動建立一個管理帳戶。 此帳戶預設為停用，但您可以啟用它以管理認證，例如透過[入口網站](container-registry-get-started-portal.md#manage-registry-settings)或使用 [Azure CLI 2.0 Preview 命令](container-registry-get-started-azure-cli.md#manage-admin-credentials)。 如果已啟用此帳戶，您可以傳送使用者名稱和密碼到 `docker login` 命令，向登錄庫進行基本驗證。 例如：
+您建立的每個登錄，都會自動建立一個管理帳戶。 此帳戶預設為停用，但您可以啟用它以管理認證，例如透過[入口網站](container-registry-get-started-portal.md#manage-registry-settings)或使用 [Azure CLI 2.0 命令](container-registry-get-started-azure-cli.md#manage-admin-credentials)。 如果已啟用此帳戶，您可以傳送使用者名稱和密碼到 `docker login` 命令，向登錄庫進行基本驗證。 例如：
 
 ```
 docker login myregistry-contoso.azurecr.io -u myAdminName -p myPassword
@@ -74,10 +75,5 @@ docker login myregistry-contoso.azurecr.io -u myAdminName -p myPassword
 * [使用 Docker CLI 推送您的第一個映像](container-registry-get-started-docker-cli.md)。
 * 如需容器登錄庫預覽中的驗證詳細資訊，請參閱[部落格文章](https://blogs.msdn.microsoft.com/stevelasker/2016/11/17/azure-container-registry-user-accounts/)。 
 
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "將資料從 Blob 儲存體複製到 SQL Database | Microsoft Docs"
+title: "將資料從 Blob 儲存體複製到 SQL Database - Azure | Microsoft Docs"
 description: "本教學課程向您說明如何使用 Azure Data Factory 管線中的複製活動，將資料從 Blob 儲存體複製到 SQL Database。"
 keywords: "blob sql, blob 儲存體, 資料複製"
 services: data-factory
@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 4b29fd1c188c76a7c65c4dcff02dc9efdf3ebaee
-ms.openlocfilehash: 70c38f155874c5d9254260c684fea23e22dd59fd
+ms.sourcegitcommit: 2dcba235353f2b1bd2b42d93066a91071f0ea1a1
+ms.openlocfilehash: 8b9afcd62ad318e181e2d210af58dcb412eefaaf
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -127,8 +128,3 @@ ms.openlocfilehash: 70c38f155874c5d9254260c684fea23e22dd59fd
 > 本教學課程中的資料管線會將資料從來源資料存放區，複製到目的地資料存放區。 它不會轉換輸入資料來產生輸出資料。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置第一個管線來轉換資料](data-factory-build-your-first-pipeline.md)。
 > 
 > 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[在 Data Factory 中排程和執行](data-factory-scheduling-and-execution.md)。 
-
-
-<!--HONumber=Feb17_HO1-->
-
-
