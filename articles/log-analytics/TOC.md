@@ -16,7 +16,7 @@
 #### [Windows 代理程式](log-analytics-windows-agents.md)
 #### [Linux 代理程式](log-analytics-linux-agents.md)
 #### [Azure 虛擬機器](log-analytics-azure-vm-extension.md)
-#### [Azure 資源](log-analytics-azure-storage.md)
+#### [Azure 儲存體](log-analytics-azure-storage.md)
 #### [Operations Manager](log-analytics-om-agents.md)
 #### [組態管理員](log-analytics-sccm.md)
 #### [OMS 閘道](log-analytics-oms-gateway.md)
@@ -31,8 +31,8 @@
 ## 查詢資料
 ### [記錄檔搜尋概觀](log-analytics-log-searches.md)
 ### [搜尋參考](log-analytics-search-reference.md)
+#### [規則運算式](log-analytics-log-searches-regex.md)
 ### [電腦群組](log-analytics-computer-groups.md)
-### [警示](log-analytics-alerts.md)
 ## 分析資料
 ### [儀表板](log-analytics-dashboards.md)
 ### [檢視設計工具](log-analytics-view-designer.md)
@@ -42,6 +42,7 @@
 #### [AD 評估](log-analytics-ad-assessment.md)
 #### [AD 複寫狀態](log-analytics-ad-replication-status.md)
 #### [警示管理](log-analytics-solution-alert-management.md)
+#### [Azure SQL 分析](log-analytics-azure-sql.md)
 #### [產能管理](log-analytics-capacity.md)
 #### [變更追蹤](log-analytics-change-tracking.md)
 #### [容器](log-analytics-containers.md)
@@ -60,6 +61,15 @@
 #### [VMware](log-analytics-vmware.md)
 #### [連線資料](log-analytics-wire-data.md)
 #### [SCOM 評估](log-analytics-scom-assessment.md)
+## 建立警示
+### [了解警示](log-analytics-alerts.md)
+### [警示動作](log-analytics-alerts-actions.md)
+### 建立警示規則
+#### [OMS 入口網站](log-analytics-alerts-creating.md)
+#### [REST API](log-analytics-api-alerts.md)
+#### [Resource Manager 範本](../operations-management-suite/operations-management-suite-solutions-resources-searches-alerts.md)
+### [Webhook 動作範例](log-analytics-alerts-webhooks.md)
+### [警示管理解決方案](log-analytics-solution-alert-management.md)
 ## 開發
 ### [資料收集器 API](log-analytics-data-collector-api.md)
 ### [PowerShell Cmdlet](log-analytics-powershell-workspace-configuration.md)
@@ -75,8 +85,3 @@
 ## [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics)
 ## [價格](https://azure.microsoft.com/pricing/details/log-analytics/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=log-analytics)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

@@ -9,12 +9,31 @@
 ## [取得 Azure AD 租用戶](active-directory-howto-tenant.md)
 ## [註冊 Azure AD Premium](active-directory-get-started-premium.md)
 ## [關聯 Azure 訂用帳戶](active-directory-how-subscriptions-associated-directory.md)
-## [管理 AD 授權](active-directory-licensing-what-is.md)
+## 管理 Azure AD 授權
+### [Azure 入口網站](active-directory-licensing-get-started-azure-portal.md)
+### [傳統入口網站](active-directory-licensing-what-is.md)
 ## [為您組織中的使用者取得 Azure](sign-up-organization.md)
 ## [常見問題集](active-directory-faq.md)
 ## [SaaS 應用程式教學課程](active-directory-saas-tutorial-list.md)
 
 # 作法
+## 規劃和設計
+### [部署混合式身分識別解決方案](active-directory-hybrid-identity-design-considerations-overview.md)
+#### 判斷需求
+##### [身分識別](active-directory-hybrid-identity-design-considerations-business-needs.md)
+##### [目錄同步](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)
+##### [多因素驗證](active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements.md)
+##### [身分識別生命週期策略](active-directory-hybrid-identity-design-considerations-lifecycle-adoption-strategy.md)
+#### [資料安全性的規劃](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md)
+##### [資料保護](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md)
+##### [內容管理](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)
+##### [存取控制](active-directory-hybrid-identity-design-considerations-accesscontrol-requirements.md)
+##### [事件回應](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md)
+#### 規劃身分識別生命週期
+##### [工作](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md)
+##### [採用策略](active-directory-hybrid-identity-design-considerations-identity-adoption-strategy.md)
+#### [後續步驟](active-directory-hybrid-identity-design-considerations-nextsteps.md)
+#### [工具比較](active-directory-hybrid-identity-design-considerations-tools-comparison.md)
 ## 管理使用者
 ### 新增使用者
 #### [Azure 入口網站](active-directory-users-create-azure-portal.md)
@@ -47,17 +66,26 @@
 ### 建立進階規則
 #### [Azure 入口網站](active-directory-groups-dynamic-membership-azure-portal.md)
 #### [傳統入口網站](active-directory-accessmanagement-groups-with-advanced-rules.md)
+### [群組型授權](active-directory-licensing-whatis-azure-portal.md)
+#### [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
+#### [識別及解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
+#### [如何將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
+#### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
 ### [設定自助式群組](active-directory-accessmanagement-self-service-group-management.md)
 ### [疑難排解](active-directory-accessmanagement-troubleshooting.md)
 
-## [檢視活動和安全報告](active-directory-view-access-usage-reports.md)
-### [Azure AD 報告](active-directory-reporting-getting-started.md)
+## [檢視活動報告](active-directory-view-access-usage-reports.md)
+### [登入](active-directory-reporting-activity-sign-ins.md)
+### [稽核記錄檔](active-directory-reporting-activity-audit-logs.md)
+### [有風險的使用者](active-directory-reporting-security-user-at-risk.md)
+### [有風險的登入](active-directory-reporting-security-risky-sign-ins.md)
 ### [常見問題集](active-directory-reporting-faq.md)
 ### [報告移轉](active-directory-reporting-migration.md)
-
 ### [已知的網路](active-directory-known-networks.md)
 
-### [報告指南](active-directory-reporting-guide.md)
+### 傳統入口網站
+#### [Azure AD 報告](active-directory-reporting-getting-started.md)
+#### [報告指南](active-directory-reporting-guide.md)
 #### [預覽](active-directory-reporting-azure-portal.md)
 #### [API](active-directory-reporting-api-getting-started.md)
 ##### [稽核參考](active-directory-reporting-api-audit-reference.md)
@@ -65,20 +93,18 @@
 ##### [必要條件](active-directory-reporting-api-prerequisites.md)
 ##### [登入參考](active-directory-reporting-api-sign-in-activity-reference.md)
 ##### [登入範例](active-directory-reporting-api-sign-in-activity-samples.md)
-
-
 #### [稽核事件](active-directory-reporting-audit-events.md)
 #### [保留](active-directory-reporting-retention.md)
 #### [延遲](active-directory-reporting-latencies.md)
 #### [Notifications](active-directory-reporting-notifications.md)
-### 了解報告
-#### [異常登入](active-directory-reporting-irregular-sign-in-activity.md)
-#### [多次失敗](active-directory-reporting-sign-ins-after-multiple-failures.md)
-#### [可疑 IP 位址](active-directory-reporting-sign-ins-from-ip-addresses-with-suspicious-activity.md)
-#### [多個地理位置](active-directory-reporting-sign-ins-from-multiple-geographies.md)
-#### [可能受感染的裝置](active-directory-reporting-sign-ins-from-possibly-infected-devices.md)
-#### [不明來源](active-directory-reporting-sign-ins-from-unknown-sources.md)
-#### [異常登入](active-directory-reporting-users-with-anomalous-sign-in-activity.md)
+#### 了解報告
+##### [異常登入](active-directory-reporting-irregular-sign-in-activity.md)
+##### [多次失敗](active-directory-reporting-sign-ins-after-multiple-failures.md)
+##### [可疑 IP 位址](active-directory-reporting-sign-ins-from-ip-addresses-with-suspicious-activity.md)
+##### [多個地理位置](active-directory-reporting-sign-ins-from-multiple-geographies.md)
+##### [可能受感染的裝置](active-directory-reporting-sign-ins-from-possibly-infected-devices.md)
+##### [不明來源](active-directory-reporting-sign-ins-from-unknown-sources.md)
+##### [異常登入](active-directory-reporting-users-with-anomalous-sign-in-activity.md)
 
 ## [管理密碼](active-directory-manage-passwords.md)
 ### [更新自己的密碼](active-directory-passwords-update-your-own-password.md)
@@ -99,9 +125,11 @@
 #### [疑難排解](active-directory-passwords-troubleshoot.md)
 
 ## 管理裝置
+### [註冊裝置](active-directory-conditional-access-device-registration-overview.md)
+#### [管理自動註冊](active-directory-conditional-access-automatic-device-registration.md)
+#### [設定](active-directory-conditional-access-automatic-device-registration-setup.md)
 ### [登記裝置](active-directory-azureadjoin-personal-device.md)
 ### [註冊 Windows 10 裝置](active-directory-azureadjoin-user-upgrade.md)
-
 ### [Azure AD Join](active-directory-azureadjoin-overview.md)
 #### [規劃](active-directory-azureadjoin-deployment-aadjoindirect.md)
 #### [設定裝置註冊](active-directory-azureadjoin-setup.md)
@@ -176,6 +204,7 @@
 ### [文件庫](active-directory-apps-index.md)
 
 ## 管理您的目錄
+### [Azure AD Connect](./connect/active-directory-aadconnect.md)
 ### 自訂網域名稱
 #### [概觀](active-directory-add-domain-concepts.md)
 #### 新增您的網域名稱
@@ -249,10 +278,6 @@
 ### [條件式存取](active-directory-conditional-access.md)
 #### [開始使用](active-directory-conditional-access-azuread-connected-apps.md)
 #### [支援的應用程式](active-directory-conditional-access-supported-apps.md)
-#### [註冊裝置](active-directory-conditional-access-device-registration-overview.md)
-#### [管理自動註冊](active-directory-conditional-access-automatic-device-registration.md)
-##### [設定](active-directory-conditional-access-automatic-device-registration-setup.md)
-#### [管理 Authenticator 應用程式](active-directory-conditional-access-azure-authenticator-app.md)
 #### [了解裝置原則](active-directory-conditional-access-device-policies.md)
 #### [設定已連接應用程式的存取權](active-directory-conditional-access-policy-connected-applications.md)
 #### [部署內部部署](active-directory-conditional-access-on-premises-setup.md)
@@ -274,27 +299,12 @@
 #### [Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 ### [Privileged Identity Management](./privileged-identity-management/active-directory-securing-privileged-access.md)
 
-## [在 Azure VM 上部署](virtual-networks-windows-server-active-directory-virtual-machines.md)
+## [在 Azure VM 上部署 AD DS](virtual-networks-windows-server-active-directory-virtual-machines.md)
 ### [Azure VM 上的 Windows Server Active Directory](active-directory-deploying-ws-ad-guidelines.md)
 ### [Azure 虛擬網路中的複本網域控制站](active-directory-install-replica-active-directory-domain-controller.md)
 ### [在 Azure 虛擬網路上的新樹系](active-directory-new-forest-virtual-machine.md)
 
-## [部署混合式身分識別解決方案](active-directory-hybrid-identity-design-considerations-overview.md)
-### 判斷需求
-#### [身分識別](active-directory-hybrid-identity-design-considerations-business-needs.md)
-#### [目錄同步](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)
-#### [多因素驗證](active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements.md)
-#### [身分識別生命週期策略](active-directory-hybrid-identity-design-considerations-lifecycle-adoption-strategy.md)
-### [資料安全性的規劃](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md)
-#### [資料保護](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md)
-#### [內容管理](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)
-#### [存取控制](active-directory-hybrid-identity-design-considerations-accesscontrol-requirements.md)
-#### [事件回應](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md)
-### 規劃身分識別生命週期
-#### [工作](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md)
-#### [採用策略](active-directory-hybrid-identity-design-considerations-identity-adoption-strategy.md)
-### [後續步驟](active-directory-hybrid-identity-design-considerations-nextsteps.md)
-### [工具比較](active-directory-hybrid-identity-design-considerations-tools-comparison.md)
+
 
 ## [在 Azure 中部署 AD FS](active-directory-aadconnect-azure-adfs.md)
 ### [高可用性](active-directory-adfs-in-azure-with-azure-traffic-manager.md)
@@ -323,8 +333,3 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=active-directory)
 ## [服務更新](https://azure.microsoft.com/updates/?product=active-directory)
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
-
-
-<!--HONumber=Feb17_HO4-->
-
-

@@ -1,41 +1,29 @@
 ---
-title: "Azure Logic Apps 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何開發邏輯應用程式，以便自動執行及簡化橫跨內部部署和雲端的商務工作流程。 教學課程、範本和 API 參考。"
-services: logic-apps
-author: carolz
-manager: carolz
 layout: LandingPage
-ms.assetid: 
-ms.service: logic-apps
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: landing-page
-ms.date: 01/23/2017
-ms.author: carolz
+description: "瞭解如何使用網路監看員來監視與診斷網路層級的條件。"
 translationtype: Human Translation
-ms.sourcegitcommit: a0bb42ad612c47111c946afe280e5ed0b3acc2a7
-ms.openlocfilehash: 02ea87d181ede4a0a2d5934b7875f335a25d6ce3
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 7b51e3df9aa449bb3fdabd28ce80ac9d4fd7a951
+ms.openlocfilehash: 3c390494f5e86eb82a3011b962217798feff5ca2
+ms.lasthandoff: 02/22/2017
 
 ---
+# <a name="azure-network-watcher-documentation"></a>Azure 網路監看員文件
 
-# <a name="logic-apps-documentation"></a>Logic Apps 文件
-
-了解如何開發 Logic Apps，以簡化和整合雲端中可調整的工作流程。 教學課程、範本和 API 參考會協助您設計及部署橫跨內部部署和雲端的自動化商務工作流程。
+了解如何使用網路監看員，這是一項可讓您監視與診斷網路案例層級條件的服務。 教學課程、API 參考和其他文件會示範如何使用類似封包擷取、拓撲等工具，取得您 Azure 網路的深入見解。
 
 <ul class="panelContent cardsFTitle">
     <li>
-        <a href="/azure/logic-apps/logic-apps-what-are-logic-apps">
+        <a href="/azure/network-watcher/network-watcher-monitoring-overview">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/logic-apps.svg" alt="" />
+                            <img src="media/index/network-watcher.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>了解 Logic Apps</h3>
+                        <h3>了解網路監看員</h3>
                     </div>
                 </div>
             </div>
@@ -43,7 +31,7 @@ ms.lasthandoff: 02/24/2017
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/documentation/videos/index/?services=app-service">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=network-watcher">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -53,7 +41,7 @@ ms.lasthandoff: 02/24/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>App Service 影片庫</h3>
+                        <h3>網路監看員影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -61,7 +49,7 @@ ms.lasthandoff: 02/24/2017
         </a>
     </li>
     <li>
-        <a href="/azure/logic-apps/logic-apps-create-a-logic-app">
+        <a href="/azure/network-watcher/network-watcher-packet-capture-overview">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -71,15 +59,15 @@ ms.lasthandoff: 02/24/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始建立連接 SaaS 服務的新邏輯應用程式</h3>
+                        <h3>開始使用封包擷取</h3>
                     </div>
                 </div>
             </div>
         </div>
         </a>
-    </li>
-    <li>
-        <a href="/azure/logic-apps/logic-apps-arm-provision">
+    </li> 
+     <li>
+        <a href="/azure/network-watcher/network-watcher-security-group-view-overview">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -89,7 +77,7 @@ ms.lasthandoff: 02/24/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用範本開始建立邏輯應用程式</h3>
+                        <h3>開始使用安全性群組檢視</h3>
                     </div>
                 </div>
             </div>
@@ -97,7 +85,7 @@ ms.lasthandoff: 02/24/2017
         </a>
     </li>
     <li>
-        <a href="/azure/logic-apps/logic-apps-create-api-app">
+        <a href="/azure/network-watcher/network-watcher-ip-flow-verify-overview">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -107,13 +95,51 @@ ms.lasthandoff: 02/24/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始建立自訂 API 來與 Logic Apps 搭配使用</h3>
+                        <h3>開始使用 IP 流量確認</h3>
                     </div>
                 </div>
             </div>
         </div>
         </a>
     </li>
+    <li>
+        <a href="/azure/network-watcher/network-watcher-next-hop-overview">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="media/index/get-started.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>開始使用下一個躍點</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+   
+     <li>
+        <a href="/azure/network-watcher/network-watcher-topology-overview">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="media/index/get-started.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>開始使用拓撲</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+   
 </ul>
 
 ---
@@ -126,7 +152,7 @@ ms.lasthandoff: 02/24/2017
                 <div class="card">
                     <div class="cardText">
                         <h3>命令列</h3>
-                        <p><a href="/powershell/resourcemanager/azurerm.logicapp/v2.3.0/azurerm.logicapp">PowerShell</a></p>
+                        <p><a href="/powershell/azureps-cmdlets-docs/">PowerShell</a></p>
                     </div>
                 </div>
             </div>
@@ -137,10 +163,9 @@ ms.lasthandoff: 02/24/2017
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>結構描述歷程記錄</h3>
-                        <p><a href="/azure/logic-apps/logic-apps-schema-2016-04-01">GA</a></p>
-                        <p><a href="/azure/logic-apps/logic-apps-schema-2015-08-01">預覽</a></p>
-                   </div>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api">.NET</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -151,9 +176,7 @@ ms.lasthandoff: 02/24/2017
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p><a href="/rest/api/logic/definition-language">工作流程定義語言</a></p>
-                        <p><a href="/rest/api/logic/actions-and-triggers">工作流程動作與觸發程序</a></p>
-                        <p><a href="/rest/api/logic/">REST API 參考</a></p>
+                        <p><a href="/rest/api/networkwatcher">REST API 參考</a></p>
                     </div>
                 </div>
             </div>

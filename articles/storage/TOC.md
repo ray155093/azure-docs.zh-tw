@@ -45,7 +45,7 @@
 
 ## 磁碟儲存體 
 ### [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
-### [使用 Azure CLI 2.0 建立 Linux VM (預覽)](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+### [使用 Azure CLI 2.0 建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
 ### [使用 PowerShell 將受控磁碟連結至 Windows VM](../virtual-machines/virtual-machines-windows-attach-disk-ps.md)
 ### [在 Linux VM 中新增受控磁碟](../virtual-machines/virtual-machines-linux-add-disk.md)
 ### [在 Windows 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/virtual-machines-windows-snapshot-copy-managed-disk.md)
@@ -100,7 +100,7 @@
 ### [設定並擷取屬性和中繼資料](storage-properties-metadata.md)
 ## 管理
 ### [PowerShell](storage-powershell-guide-full.md)
-### [Azure CLI 2.0 (Preview)](storage-azure-cli.md)
+### [Azure CLI 2.0](storage-azure-cli.md)
 ### [Azure CLI 1.0](storage-azure-cli-nodejs.md)
 ### [Azure 自動化](automation-manage-storage.md)
 ## 安全
@@ -219,8 +219,3 @@
 ### [Ruby](https://github.com/Azure/azure-storage-ruby)
 ### [Python](https://github.com/Azure/azure-storage-python)
 ### [iOS](https://github.com/Azure/azure-storage-ios)
-
-
-<!--HONumber=Feb17_HO2-->
-
-

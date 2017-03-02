@@ -21,6 +21,7 @@
 ### [使用 DistCp](data-lake-store-copy-data-wasb-distcp.md)
 ### [使用 Sqoop](data-lake-store-data-transfer-sql-sqoop.md)
 ### [從離線來源上傳資料](data-lake-store-offline-bulk-data-upload.md)
+### [跨區移轉 Azure Data Lake Store](data-lake-store-migration-cross-region.md)
 
 ## 保護資料
 ### [安全性概觀](data-lake-store-security-overview.md)
@@ -70,8 +71,3 @@
 ## [在 UserVoice 上提供意見反應](https://feedback.azure.com/forums/327234-data-lake)
 ## [Data Lake Store Blog](https://blogs.msdn.microsoft.com/azuredatalake/)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=data-lake-store)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

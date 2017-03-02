@@ -105,6 +105,7 @@
 #### 在 Azure 上建立叢集
 ##### [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)
 ##### [Azure Resource Manager](service-fabric-cluster-creation-via-arm.md)
+##### [Visual Stuido 與 Azure Resource Manager](service-fabric-cluster-creation-via-visual-studio.md)
 #### [節點類型與 VM 擴展集](service-fabric-cluster-nodetypes.md)
 #### [調整叢集](service-fabric-cluster-scale-up-down.md)
 #### [升級叢集](service-fabric-cluster-upgrade.md)
@@ -116,6 +117,8 @@
 #### [免費試用 Party Cluster](http://aka.ms/tryservicefabric)
 
 ### 獨立叢集
+#### [規劃並準備部署](service-fabric-cluster-standalone-deployment-preparation.md)
+#### [Service Fabric 獨立封裝](service-fabric-cluster-standalone-package-contents.md)
 #### [建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)
 #### [在 Azure 虛擬機器建立獨立叢集](service-fabric-cluster-creation-with-windows-azure-vms.md)
 #### [調整叢集](service-fabric-cluster-windows-server-add-remove-nodes.md)
@@ -211,8 +214,3 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=service-fabric)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureServiceFabric)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-fabric)
-
-
-<!--HONumber=Feb17_HO2-->
-
-
