@@ -18,6 +18,7 @@ ms.author: ddove
 translationtype: Human Translation
 ms.sourcegitcommit: 7a702354de137e1bca033146626dad1ca53fd3ed
 ms.openlocfilehash: b644ef0a8da726b2b23a4bfc81516c112be2de2e
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -66,7 +67,7 @@ ms.openlocfilehash: b644ef0a8da726b2b23a4bfc81516c112be2de2e
 為了執行簡單的測試部署以完成本教學課程，將會執行一組最基本的設定步驟，讓服務啟動並執行。 這些步驟只會啟用一個電腦/帳戶來與服務通訊。
 
 ### <a name="create-a-self-signed-certificate"></a>建立自我簽署憑證
-使用 [Visual Studio 開發人員命令提示字元] [](http://msdn.microsoft.com/library/ms229859.aspx) 視窗建立新的目錄，並從這個目錄中執行下列命令：
+使用 [Visual Studio 開發人員命令提示字元](http://msdn.microsoft.com/library/ms229859.aspx) 視窗建立新的目錄，並從這個目錄中執行下列命令：
 
    ```
     makecert ^
@@ -342,10 +343,5 @@ Web 角色：
 [3]: ./media/sql-database-elastic-scale-configure-deploy-split-and-merge/staging.png
 [4]: ./media/sql-database-elastic-scale-configure-deploy-split-and-merge/upload.png
 [5]: ./media/sql-database-elastic-scale-configure-deploy-split-and-merge/storage.png
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 
