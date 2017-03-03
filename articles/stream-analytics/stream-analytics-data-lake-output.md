@@ -18,6 +18,7 @@ ms.author: jeffstok
 translationtype: Human Translation
 ms.sourcegitcommit: 2b4a10c77ae02ac0e9eeecf6d7d6ade6e4c33115
 ms.openlocfilehash: 5d0a86742e4b238b94855464b2528db32b80526b
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -87,10 +88,5 @@ ms.openlocfilehash: 5d0a86742e4b238b94855464b2528db32b80526b
 若要解決這個問題，請停止執行中的工作，並移至 Data Lake Store 輸出。 按一下 [更新授權] 連結，很快就會出現一個頁面，指出 「正在重新導向至授權...」。 此頁面將會自動關閉，而且如果成功，就會指出「已成功更新授權」。 接著，您必須按一下頁面底部的 [儲存]，然後可以從上次停止的時間重新開始您的工作繼續，以避免資料遺失。
 
 ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-renew-authorization.png)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

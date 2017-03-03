@@ -17,6 +17,7 @@ ms.author: mcoskun
 translationtype: Human Translation
 ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
 ms.openlocfilehash: 287707d528d2327637ad3d17633ef830657c04f8
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -167,10 +168,5 @@ ms.openlocfilehash: 287707d528d2327637ad3d17633ef830657c04f8
 * [開始使用 Service Fabric Web API 服務](service-fabric-reliable-services-communication-webapi.md)
 * [Reliable Services 程式設計模型進階用法](service-fabric-reliable-services-advanced-usage.md)
 * [可靠的集合的開發人員參考資料](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

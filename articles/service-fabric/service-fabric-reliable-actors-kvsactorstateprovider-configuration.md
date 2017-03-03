@@ -17,6 +17,7 @@ ms.author: sumukhs
 translationtype: Human Translation
 ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
 ms.openlocfilehash: 9610c37111bf8fd36c1eaea4f48e46953661aacf
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -92,10 +93,5 @@ Azure Service Fabric 執行階段會在建立基礎執行階段元件時，在 s
 ## <a name="remarks"></a>備註
 BatchAcknowledgementInterval 參數會控制複寫延遲性。 值為 '0' 時延遲可能性最低，但代價是降低輸送量 (隨著必須傳送與處理的通知訊息增加，每個訊息包含的通知會變少)。
 BatchAcknowledgementInterval 的值越大，整體複寫輸送量越高，代價是作業延遲變高。 這會直接轉換成交易認可的延遲。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

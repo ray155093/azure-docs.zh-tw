@@ -17,6 +17,7 @@ ms.author: anvang
 translationtype: Human Translation
 ms.sourcegitcommit: bcb0a66425439522e0c9a353798ac70505b91e39
 ms.openlocfilehash: fe6a6bfb02dc5d83bd67fdfe59ed87660c364835
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -74,9 +75,4 @@ FROM
 <!--Image references-->
 
 <!--Link references-->
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

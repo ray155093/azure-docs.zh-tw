@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
 ms.openlocfilehash: a1e6216647b7401183ab2f47f72aaee1f80ccee0
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -207,9 +208,4 @@ Azure Data Lake 工具也可讓您輕鬆地檢視已在 Hadoop 上執行的作�
 
 * [了解 Hortonworks 沙箱的訣竅](http://hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)
 * [Hadoop 教學課程 - 開始使用 HDP](http://hortonworks.com/hadoop-tutorial/hello-world-an-introduction-to-hadoop-hcatalog-hive-and-pig/)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

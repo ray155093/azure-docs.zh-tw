@@ -18,6 +18,7 @@ ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: ede2e4ec5f3414d1c8a17f4c120011eba0d9a6ca
 ms.openlocfilehash: 4f597fad719637e66d64143c302334b1c62e226e
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -248,9 +249,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
     Write-host "Default Storage Account Name: $defaultStorageAccountName"
     Write-host "Default Storage Account Key: $defaultStorageAccountKey"
     Write-host "Default Blob Container Name: $defaultBlobContainerName"
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

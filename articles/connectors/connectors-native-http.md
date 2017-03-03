@@ -18,6 +18,7 @@ ms.author: jehollan
 translationtype: Human Translation
 ms.sourcegitcommit: 9c74b25a2ac5e2088a841d97920035376b7f3f11
 ms.openlocfilehash: d3514dad84bea024ad6215711877a9784a8d8ffd
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -210,10 +211,5 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 
 ## <a name="next-steps"></a>後續步驟
 立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索 Logic Apps 中其他可用的連接器。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

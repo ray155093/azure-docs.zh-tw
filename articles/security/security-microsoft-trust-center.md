@@ -17,6 +17,7 @@ ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: af191f7eed529c7d4541b28eb62979f25da89892
 ms.openlocfilehash: a8835da0947ce2a365b57356960541cb997e73b3
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -39,9 +40,4 @@ Azure.com 上的 Azure 安全性資訊網站可提供所需資訊，以供您規
 * [資源](https://aka.ms/tcresources) – 調查 Microsoft 信任雲端上的白皮書、影片和案例研究
 
 [Microsoft 信任中心](https://www.microsoft.com/trustcenter) 具有了解我們對保護 Microsoft Cloud 所做的處理所需的資訊。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

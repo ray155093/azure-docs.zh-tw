@@ -19,6 +19,7 @@ ms.author: kumud
 translationtype: Human Translation
 ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
 ms.openlocfilehash: 752793ed481b0b69203fa13b214add32e9129dfd
+ms.lasthandoff: 01/24/2017
 
 ---
 
@@ -132,9 +133,4 @@ Azure Resource Manager 範本可包含多個變數和參數，讓您自訂自己
 | lbName |指定負載平衡器的名稱。 這個名稱會顯示在入口網站，或在以 CLI 或 PowerShell 命令參考它時用到。 |
 
 範本中的其餘變數是 Azure 建立資源時指派的衍生值。 請勿變更這些變數。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

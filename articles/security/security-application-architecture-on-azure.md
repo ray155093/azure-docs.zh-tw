@@ -17,6 +17,7 @@ ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: af191f7eed529c7d4541b28eb62979f25da89892
 ms.openlocfilehash: e7ccc71f222d4af9a52cbf55bb6bb446f211e819
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -55,9 +56,4 @@ Microsoft 發佈一組高階 [架構藍圖](http://aka.ms/azblueprints) ，示�
 * [檢視訓練影片](http://aka.ms/3dBlueprintTemplateVideo) ，讓您知道它的功能
 * 下載 [Microsoft 3D 藍圖 Visio 範本](http://aka.ms/3DBlueprintTemplate)
 * 下載 [雲端和企業符號](../architecture-overview.md#drawing-symbol-and-icon-sets) 以搭配 3D 範本使用
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

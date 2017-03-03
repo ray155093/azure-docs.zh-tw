@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: f3be777497d842f019c1904ec1990bd1f1213ba2
 ms.openlocfilehash: 166ff7f3586932494984e87fc0df7d3d3d914c82
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -357,10 +358,5 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
 * [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

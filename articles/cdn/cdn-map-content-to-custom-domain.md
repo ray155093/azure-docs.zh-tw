@@ -17,6 +17,7 @@ ms.author: mazha
 translationtype: Human Translation
 ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
 ms.openlocfilehash: 36099a7c52508cd5115a527f5ef6e40fbfd6c323
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -80,10 +81,5 @@ ms.openlocfilehash: 36099a7c52508cd5115a527f5ef6e40fbfd6c323
 
 ## <a name="see-also"></a>另請參閱
 [如何啟用 Azure 內容傳遞網路 (CDN)](cdn-create-new-endpoint.md)  
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

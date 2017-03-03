@@ -17,6 +17,7 @@ ms.author: barbkess
 translationtype: Human Translation
 ms.sourcegitcommit: f9814fc0011153a25489d60d696bb567edfcebc4
 ms.openlocfilehash: a86b041424ce1757fd45c7a39350f4c4e66ee265
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -106,9 +107,4 @@ ms.openlocfilehash: a86b041424ce1757fd45c7a39350f4c4e66ee265
 <!--Other Web references-->
 
 [Azure portal]: http://portal.azure.com/
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

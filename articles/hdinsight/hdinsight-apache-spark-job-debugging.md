@@ -18,6 +18,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
 ms.openlocfilehash: d6d7c0d112778172633fa068a119ba075c0fd900
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -129,10 +130,5 @@ ms.openlocfilehash: d6d7c0d112778172633fa068a119ba075c0fd900
 
 ### <a name="manage-resources"></a>管理資源
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

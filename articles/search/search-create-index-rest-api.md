@@ -18,6 +18,7 @@ ms.author: ashmaka
 translationtype: Human Translation
 ms.sourcegitcommit: 702ea254c19d1f9782f83d8445b7f440f11963b9
 ms.openlocfilehash: 7f4bccda8a7cebff0d80627320d34062d4d55add
+ms.lasthandoff: 02/16/2017
 
 ---
 # <a name="create-an-azure-search-index-using-the-rest-api"></a>使用 REST API 建立 Azure 搜尋服務索引
@@ -107,9 +108,4 @@ ms.openlocfilehash: 7f4bccda8a7cebff0d80627320d34062d4d55add
 
 ## <a name="next-steps"></a>後續步驟
 建立 Azure 搜尋服務索引後，您就可以 [將內容上傳到索引](search-what-is-data-import.md) ，以便開始搜尋資料。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

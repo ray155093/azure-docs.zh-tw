@@ -17,6 +17,7 @@ ms.author: v-sharos
 translationtype: Human Translation
 ms.sourcegitcommit: 9c0a113e50fdb78307b8030f9b0d95b696f3f234
 ms.openlocfilehash: 8490110942741b049b6d44ac93697303cef40e8a
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -118,10 +119,5 @@ StorSimple 更新功能可讓您輕鬆地將 StorSimple 裝置保持為最新狀
 ## <a name="next-steps"></a>後續步驟
 * 深入了解如何 [使用 Windows PowerShell for StorSimple 管理 StorSimple 裝置](storsimple-windows-powershell-administration.md)。
 * 深入了解 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

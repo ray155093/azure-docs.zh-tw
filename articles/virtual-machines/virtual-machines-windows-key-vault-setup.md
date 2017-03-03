@@ -18,6 +18,7 @@ ms.author: kasing
 translationtype: Human Translation
 ms.sourcegitcommit: bcb347e8a2ebef14100e990ef71eac5362de5a48
 ms.openlocfilehash: 74124056ea77dc1007fb87853ceb10622c9ceaea
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -67,10 +68,5 @@ ms.openlocfilehash: 74124056ea77dc1007fb87853ceb10622c9ceaea
     }
 
 如需使用範本來建立金鑰保存庫時可以設定的其他選項，請參閱 [Create a Key Vault (建立金鑰保存庫)](https://azure.microsoft.com/documentation/templates/101-key-vault-create/)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -18,6 +18,7 @@ ms.author: andrl
 translationtype: Human Translation
 ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
 ms.openlocfilehash: 94376ba0cb7e68045e5bc44e356a91ac2ca787b2
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -810,10 +811,5 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
 * [安全和可攜式資料庫擴充性](http://dl.acm.org/citation.cfm?id=276339) 
 * [服務導向資料庫架構](http://dl.acm.org/citation.cfm?id=1066267&coll=Portal&dl=GUIDE) 
 * [在 Microsoft SQL Server 中託管 .NET 執行階段](http://dl.acm.org/citation.cfm?id=1007669)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

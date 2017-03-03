@@ -19,6 +19,7 @@ ms.author: sashan
 translationtype: Human Translation
 ms.sourcegitcommit: 7e607debe47efb6a22ca6fa47a40554d13d29359
 ms.openlocfilehash: dd56a8d1ee428b1845ed80f0b899cc73c2c4b7f6
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -184,9 +185,4 @@ ms.openlocfilehash: dd56a8d1ee428b1845ed80f0b899cc73c2c4b7f6
 * 若要了解更快速的復原選項，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)  
 * 若要了解如何使用自動備份進行封存，請參閱 [資料庫複製](sql-database-copy.md)
 * 如需主動式異地複寫與彈性集區的相關資訊，請參閱 [彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

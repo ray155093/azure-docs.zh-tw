@@ -18,6 +18,7 @@ ms.author: jhubbard
 translationtype: Human Translation
 ms.sourcegitcommit: c8e285fc6fb82ab5c929236ac9cb5dc858924e57
 ms.openlocfilehash: 6535260a1650a2d3cc665eeb9d3ea33ae2de2650
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -179,9 +180,4 @@ Azure SQL 資料同步可讓您選取要同步的資料表和資料欄。 如果
 * [下載完整的 SQL 資料同步技術文件](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf)
 * [SQL Database 概觀](sql-database-technical-overview.md)
 * [資料庫生命週期管理](https://msdn.microsoft.com/library/jj907294.aspx)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

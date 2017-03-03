@@ -17,6 +17,7 @@ ms.author: bwren
 translationtype: Human Translation
 ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
 ms.openlocfilehash: a9c70810c4f731b2d8b395873fa6b94db78306aa
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -173,10 +174,5 @@ Log Analytics 會從每個自訂記錄檔收集新的項目，間隔大約為每
 ## <a name="next-steps"></a>後續步驟
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將自訂記錄檔中的項目剖析至個別欄位。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

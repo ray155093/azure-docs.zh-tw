@@ -18,6 +18,7 @@ ms.author: gwallace
 translationtype: Human Translation
 ms.sourcegitcommit: efa52b5f30cab16bfde4202dbfe2c95f4464e2c4
 ms.openlocfilehash: b09b66c44ba94df12934211d5d09430adb667003
+ms.lasthandoff: 01/24/2017
 
 ---
 
@@ -120,9 +121,4 @@ ms.openlocfilehash: b09b66c44ba94df12934211d5d09430adb667003
 * 如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
 * 如需自動化 DNS 的相關資訊，請參閱 [使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
 * 如需反向 DNS 記錄的詳細資訊，請參閱 [如何使用 PowerShell 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

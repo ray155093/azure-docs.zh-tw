@@ -18,15 +18,11 @@ ms.author: rclaus
 translationtype: Human Translation
 ms.sourcegitcommit: ed43a0ae9d1b184bfe059103cd2bee00c975537d
 ms.openlocfilehash: 114787bb15e94381f95a717b27aab57209e2d9f1
+ms.lasthandoff: 01/24/2017
 
 
 ---
 # <a name="list-of-oracle-virtual-machine-images"></a>Oracle 虛擬機器映像清單
 [!INCLUDE [virtual-machines-common-classic-oracle-images](../../includes/virtual-machines-common-classic-oracle-images.md)]
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -17,6 +17,7 @@ ms.author: douglasl
 translationtype: Human Translation
 ms.sourcegitcommit: bcb0a66425439522e0c9a353798ac70505b91e39
 ms.openlocfilehash: fc27cd6e25de8e5c3e6b50a0d887755f70d634fd
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -546,9 +547,4 @@ ALTER TABLE stretch_table_name SET ( REMOTE_DATA_ARCHIVE = ON (
 
 ## <a name="see-also"></a>另請參閱
 [ALTER TABLE (TRANSACT-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

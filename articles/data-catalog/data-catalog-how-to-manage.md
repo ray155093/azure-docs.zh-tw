@@ -18,6 +18,7 @@ ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: cd3184059a0970bb7c9b59803cf37125abbbd879
 ms.openlocfilehash: 45a7b2df88a2edf2bccdfc9d2aaea932f2096f24
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -73,9 +74,4 @@ ms.openlocfilehash: 45a7b2df88a2edf2bccdfc9d2aaea932f2096f24
 
 ## <a name="summary"></a>摘要
 資料目錄用於中繼資料和資料資產探索的群眾外包模型可讓所有目錄使用者參與和探索。 標準版的資料目錄有提供擁有權和管理方面的功能，可限制特定資料資產的可見性和使用。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

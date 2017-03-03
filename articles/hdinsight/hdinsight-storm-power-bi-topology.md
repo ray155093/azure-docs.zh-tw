@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
 ms.openlocfilehash: 0d03c745557d22238d79ca294f472cd7bcc37b80
+ms.lasthandoff: 01/19/2017
 
 
 ---
@@ -172,10 +173,5 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 針對 Storm 
 在本文件中，您已學會如何將資料從 Storm 拓撲傳送到 SQL Database，然後使用 Power BI 視覺化資料。 如需如何使用 Storm on HDInsight 以使用其他 Azure 技術的資訊，請參閱下列項目：
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: shlo
 translationtype: Human Translation
 ms.sourcegitcommit: dd8a68029449ad013c4df9a46c558efaefd20e96
 ms.openlocfilehash: 12edabc12d499bc07315d1cf103e5cc2fa149cdb
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -43,10 +44,5 @@ Data Factory 是雲端架構資訊管理服務，會自動移動和轉換資料�
 
 ## <a name="pier-1-imports"></a>Pier 1 Imports
 [透過雲端機器學習服務尋求更緊密的客戶關係](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=11257)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

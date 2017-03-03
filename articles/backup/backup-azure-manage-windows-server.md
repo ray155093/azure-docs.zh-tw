@@ -17,6 +17,7 @@ ms.author: markgal
 translationtype: Human Translation
 ms.sourcegitcommit: 767e3b2e8330b4c52576c90e8ef090e1abc69b42
 ms.openlocfilehash: 20e486be706c6fc02ced8343c050379ceff99d82
+ms.lasthandoff: 01/23/2017
 
 
 ---
@@ -320,9 +321,4 @@ A3. 以下是不傳送通知以便減少警示雜訊的案例︰
 * [從 Azure 還原 Windows Server 或 Windows 用戶端](backup-azure-restore-windows-server.md)
 * 若要深入了解 Azure 備份，請參閱 [Azure 備份概觀](backup-introduction-to-azure-backup.md)
 * 瀏覽 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

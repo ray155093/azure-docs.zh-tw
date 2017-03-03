@@ -18,6 +18,7 @@ ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: 293343e5db58bebc8c2e27d54d6396212fe6d3a1
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -99,8 +100,3 @@ gulp run --table-storage
 ## <a name="summary"></a>摘要
 
 您已執行範例程式碼來讀取由您的 Azure 函數應用程式儲存在您的 Azure 表格儲存體中的訊息。
-
-
-<!--HONumber=Jan17_HO4-->
-
-

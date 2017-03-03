@@ -19,6 +19,7 @@ ms.author: danlep
 translationtype: Human Translation
 ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
 ms.openlocfilehash: de250fbc3982cdc493f74976914290d8ac89bb08
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -110,9 +111,4 @@ DC/OS 叢集會使用一組私人和公用代理程式來進行部署。 若要�
 
     > [!VIDEO https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON203/player]
     > 
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

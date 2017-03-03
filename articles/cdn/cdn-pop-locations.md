@@ -17,6 +17,7 @@ ms.author: mazha
 translationtype: Human Translation
 ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
 ms.openlocfilehash: 6d4c9dda6ccf6011d2b2ff5951b9fe42c158e216
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -45,10 +46,5 @@ ms.openlocfilehash: 6d4c9dda6ccf6011d2b2ff5951b9fe42c158e216
 
 ## <a name="see-also"></a>另請參閱
 * [Azure CDN 邊緣節點 API 取得允許清單的最新 IP 位址 (英文)](https://docs.microsoft.com/en-us/rest/api/cdn/edgenodes)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

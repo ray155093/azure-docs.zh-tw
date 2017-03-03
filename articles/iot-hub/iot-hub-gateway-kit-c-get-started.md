@@ -18,6 +18,7 @@ ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: dd14d137c23fbccb3616b60db8a63e668ae7ea80
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -107,8 +108,3 @@ ms.openlocfilehash: dd14d137c23fbccb3616b60db8a63e668ae7ea80
 
 ## <a name="explore-more"></a>探索更多
 若要深入了解，請瀏覽 [Intel IoT 閘道器套件開發人員區域](http://software.intel.com/iot/microsoft-azure)。
-
-
-<!--HONumber=Jan17_HO4-->
-
-

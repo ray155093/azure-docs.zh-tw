@@ -18,6 +18,7 @@ ms.author: ashmaka
 translationtype: Human Translation
 ms.sourcegitcommit: 1f06a7197cc1a6dcf7a39c91183a4317bef126bb
 ms.openlocfilehash: 7c1c14055507d77dfcefe87694167ca5a2fcfb97
+ms.lasthandoff: 02/16/2017
 
 ---
 
@@ -179,9 +180,4 @@ ms.openlocfilehash: 7c1c14055507d77dfcefe87694167ca5a2fcfb97
 
 ## <a name="next-steps"></a>後續步驟
 在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。 如需詳細資料，請參閱 [查詢 Azure 搜尋服務索引](search-query-overview.md) 。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

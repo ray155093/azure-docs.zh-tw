@@ -17,6 +17,7 @@ ms.author: ilanr9;yijichen;garye
 translationtype: Human Translation
 ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
 ms.openlocfilehash: 0c07495a932c8bfdabb97e8eebe8d99de19fbd15
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -400,10 +401,5 @@ MAPE (Mean Absolute Percentage Error) 代表「平均絕對百分比誤差」。
 ![端對端部署架構](media/cortana-analytics-playbook-demand-forecasting-energy/architecture.png)
 
 如需每個元件和整個架構的詳細資訊，請參閱「能源解決方案範本」。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

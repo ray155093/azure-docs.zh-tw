@@ -17,6 +17,7 @@ ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: dd8a68029449ad013c4df9a46c558efaefd20e96
 ms.openlocfilehash: b4b60c9134fd491184b02593c32659d2dcdfed8a
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -283,9 +284,4 @@ Sybase 支援 T-SQL 和 T-SQL 類型。 如需從 sql 類型到.NET 類型的對
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

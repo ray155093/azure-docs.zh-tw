@@ -17,6 +17,7 @@ ms.author: vturecek
 translationtype: Human Translation
 ms.sourcegitcommit: eddca02c4fba88aee667216568beecc76ea65d7c
 ms.openlocfilehash: def92885587b11ce8275292680a524d0c8e31751
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -260,9 +261,4 @@ Service Fabric 中的啟動進入點是在 ServiceManifest.xml 中針對每個�
 <!--Image references-->
 [3]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/service-fabric-cloud-service-projects.png
 [4]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/worker-role-to-stateless-service.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

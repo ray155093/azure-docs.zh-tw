@@ -17,6 +17,7 @@ ms.author: hawong
 translationtype: Human Translation
 ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
 ms.openlocfilehash: 7bef38eaea90d950c195dee0d741750cf65870df
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -144,10 +145,5 @@ ms.openlocfilehash: 7bef38eaea90d950c195dee0d741750cf65870df
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -18,6 +18,7 @@ ms.author: cynthn
 translationtype: Human Translation
 ms.sourcegitcommit: c70793c707252582d4ba77ac8b04c39521b245f8
 ms.openlocfilehash: a9b2cf638f52a6b7c371e443d9b5a104a57f910c
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -43,10 +44,5 @@ ms.openlocfilehash: a9b2cf638f52a6b7c371e443d9b5a104a57f910c
 ## <a name="next-steps"></a>後續步驟
 * 如果是內部部署 VM，您現在可以[將 VHD 上傳至 Azure](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * 如果 VM 已在 Azure 中，您現在可以[從一般化 VM 建立映像](virtual-machines-windows-capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
