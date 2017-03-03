@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/08/2016
+ms.date: 02/09/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
-ms.openlocfilehash: 476af10550075cde145a9cf2153330f063ad17b3
+ms.sourcegitcommit: 2ecc141c9afa46f23d31de4356068ef4f98a92aa
+ms.openlocfilehash: d4d9ed8380a0e8726fe2e2835e4b10fd262e1562
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 476af10550075cde145a9cf2153330f063ad17b3
 
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-在本文件中，您將學習如何使用 Curl 在 Azure HDInsight 叢集上執行 Pig Latin 工作。 Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要輸出的轉換。
+在本文件中，您會學習如何使用 Curl 在 Azure HDInsight 叢集上執行 Pig Latin 作業。 Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要輸出的轉換。
 
 本文件使用 Curl 示範如何使用未經處理的 HTTP 要求來與 HDInsight 互動，以便執行、監視和擷取 Pig 工作的結果。 要想執行這些作業，就要使用 HDInsight 叢集所提供的 WebHCat REST API (先前稱為 Templeton)。
 
@@ -34,7 +35,7 @@ ms.openlocfilehash: 476af10550075cde145a9cf2153330f063ad17b3
 
 ## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 
-若要完成本文中的步驟，您需要下列項目。
+若要完成這篇文章中的步驟，您需要下列項目︰
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Linux 型或 Windows 型)
 
@@ -70,7 +71,7 @@ ms.openlocfilehash: 476af10550075cde145a9cf2153330f063ad17b3
 
 2. 使用下列程式碼，以將 Pig Latin 工作提交至叢集：
    
-        curl -u USERNAME:PASSWORD -d user.name=USERNAME -d execute="LOGS=LOAD+'wasbs:///example/data/sample.log';LEVELS=foreach+LOGS+generate+REGEX_EXTRACT($0,'(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)',1)+as+LOGLEVEL;FILTEREDLEVELS=FILTER+LEVELS+by+LOGLEVEL+is+not+null;GROUPEDLEVELS=GROUP+FILTEREDLEVELS+by+LOGLEVEL;FREQUENCIES=foreach+GROUPEDLEVELS+generate+group+as+LOGLEVEL,COUNT(FILTEREDLEVELS.LOGLEVEL)+as+count;RESULT=order+FREQUENCIES+by+COUNT+desc;DUMP+RESULT;" -d statusdir="wasbs:///example/pigcurl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/pig
+        curl -u USERNAME:PASSWORD -d user.name=USERNAME -d execute="LOGS=LOAD+'/example/data/sample.log';LEVELS=foreach+LOGS+generate+REGEX_EXTRACT($0,'(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)',1)+as+LOGLEVEL;FILTEREDLEVELS=FILTER+LEVELS+by+LOGLEVEL+is+not+null;GROUPEDLEVELS=GROUP+FILTEREDLEVELS+by+LOGLEVEL;FREQUENCIES=foreach+GROUPEDLEVELS+generate+group+as+LOGLEVEL,COUNT(FILTEREDLEVELS.LOGLEVEL)+as+count;RESULT=order+FREQUENCIES+by+COUNT+desc;DUMP+RESULT;" -d statusdir="/example/pigcurl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/pig
    
     此命令中使用的參數如下：
    
@@ -98,18 +99,9 @@ ms.openlocfilehash: 476af10550075cde145a9cf2153330f063ad17b3
 
 ## <a name="a-idresultsaview-results"></a><a id="results"></a>檢視結果
 
-工作狀態變更為 [成功] 之後，即可從 Azure Blob 儲存體擷取工作結果。 與查詢一起傳遞的 `statusdir` 參數包含輸出檔的位置；在此案例中為 **wasb:///example/pigcurl**。 此位址會將工作輸出儲存至 HDInsight 叢集所用預設儲存體容器的 **example/pigcurl** 目錄中。
+當作業狀態變更為 [成功] 時，您就可以從叢集使用的預設儲存體擷取作業結果。 與查詢一起傳遞的 `statusdir` 參數包含輸出檔的位置；在此案例中為 **/example/pigcurl**。 
 
-您可以使用 [Azure CLI](../xplat-cli-install.md) 列出並下載這些檔案。 例如，若要列出 **example/pigcurl** 中的檔案，請使用下列命令：
-
-    azure storage blob list <container-name> example/pigcurl
-
-若要下載檔案，請使用下列命令：
-
-    azure storage blob download <container-name> <blob-name> <destination-file>
-
-> [!NOTE]
-> 您必須使用 `-a` 和 `-k` 參數指定包含 Blob 的儲存體帳戶名稱，或是設定 **AZURE\_STORAGE\_ACCOUNT** 和 **AZURE\_STORAGE\_ACCESS\_KEY** 環境變數。
+HDInsight 的備份存放區可以是 Azure 儲存體或 Azure Data Lake Store，而且根據您使用的項目而定，會有各種不同的方式來取得資料。 如需如何使用 Azure 儲存體和 Azure Data Lake Store 的詳細資訊，請參閱《Linux 上的 HDInsight》文件上的 [HDFS、Blob 儲存體和 Data Lake Store](hdinsight-hadoop-linux-information.md##hdfs-blob-storage-and-data-lake-store) 一節。
 
 ## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
 
@@ -127,10 +119,5 @@ ms.openlocfilehash: 476af10550075cde145a9cf2153330f063ad17b3
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

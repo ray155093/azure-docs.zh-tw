@@ -16,6 +16,7 @@ ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 13c524cdc5ef0d9e70820cc3dac8d747e5bb5845
 ms.openlocfilehash: 12e832b8e0d0509f5b59d588b43f062fb07ddcde
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -695,9 +696,4 @@ requests
 * [SQL 使用者的功能提要](https://aka.ms/sql-analytics)會翻譯成最常見的習慣用語。
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

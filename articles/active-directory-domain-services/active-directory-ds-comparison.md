@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/01/2016
+ms.date: 02/07/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 67575bbbb7d99ffeef3cb5dab74f4a68065bacc1
+ms.sourcegitcommit: 1c4045bd9b705ab3e909a06035f27b85635fdf36
+ms.openlocfilehash: 3d83a919d8e7bc59bd51e226c56ff2bb42c87955
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -40,6 +41,7 @@ Azure AD 網域服務可讓您在 Azure 基礎結構服務中部署工作負載�
 | [**Domain or Enterprise administrator privileges**](active-directory-ds-comparison.md#domain-or-enterprise-administrator-privileges) |**&#x2715;** |**&#x2713;** |
 | [**加入網域**](active-directory-ds-comparison.md#domain-join) |**&#x2713;** |**&#x2713;** |
 | [**使用 NTLM 和 Kerberos 的網域驗證**](active-directory-ds-comparison.md#domain-authentication-using-ntlm-and-kerberos) |**&#x2713;** |**&#x2713;** |
+| [**Kerberos 限制委派**](active-directory-ds-comparison.md#kerberos-constrained-delegation)|資源型|資源型與帳戶型|
 | [**自訂 OU 結構**](active-directory-ds-comparison.md#custom-ou-structure) |**&#x2713;** |**&#x2713;** |
 | [**結構描述延伸模組**](active-directory-ds-comparison.md#schema-extensions) |**&#x2715;** |**&#x2713;** |
 | [**AD 網域/樹系信任**](active-directory-ds-comparison.md#ad-domain-or-forest-trusts) |**&#x2715;** |**&#x2713;** |
@@ -57,6 +59,7 @@ Azure AD 網域服務網域是由 Microsoft 管理。 您不必擔憂修補、�
 
 #### <a name="dns-server"></a>DNS 伺服器
 Azure AD 網域服務管理的網域包含受管理的 DNS 服務。 「AAD DC 系統管理員」群組的成員可以在受管理的網域上管理 DNS。 此群組的成員可獲得受管理網域的完整 DNS 管理權限。 使用遠端伺服器管理工具 (RSAT) 套件中包含 [DNS 管理主控台] 可以執行 DNS 管理。
+[詳細資訊](active-directory-ds-admin-guide-administer-dns.md)
 
 #### <a name="domain-or-enterprise-administrator-privileges"></a>網域或企業系統管理員權限
 AAD DS 受管理網域上不提供這些提高的權限。 無法對受管理的網域執行需要安裝/執行這些提高權限的應用程式。 委派系統管理群組 (名為「AAD DC 系統管理員」) 的成員可以使用較小的系統管理權限子集。 這些權限包括設定 DNS、設定群組原則、取得已加入網域的電腦系統管理員權限。
@@ -67,8 +70,13 @@ AAD DS 受管理網域上不提供這些提高的權限。 無法對受管理的
 #### <a name="domain-authentication-using-ntlm-and-kerberos"></a>使用 NTLM 和 Kerberos 的網域驗證
 透過 Azure AD 網域服務，您可以使用公司認證來向受管理的網域進行驗證。 憑證會與您的 Azure AD 租用戶保持同步。 對於已同步處理的租用戶，Azure AD Connect 會確保在內部部署進行的認證變更會同步處理至 Azure AD。 在 DIY 網域設定中，您可能需要為使用者設定與內部部署帳戶樹系的網域信任關係，以便使用其公司認證進行驗證。 或者，您可能需要設定 AD 複寫，以確保使用者密碼會同步處理至 Azure 網域控制站虛擬機器。
 
+#### <a name="kerberos-constrained-delegation"></a>Kerberos 限制委派
+在 Active Directory Domain Services 的受管理網域上，您沒有「網域系統管理員」權限。 因此，您無法設定帳戶型 (傳統) Kerberos 限制委派。 不過，您可以設定更安全的資源型限制委派。
+[詳細資訊](active-directory-ds-enable-kcd.md)
+
 #### <a name="custom-ou-structure"></a>自訂 OU 結構
-「AAD DC 系統管理員」群組的成員可以在受管理的網域內建立自定 OU。
+「AAD DC 系統管理員」群組的成員可以在受管理的網域內建立自定 OU。 建立自訂 OU 的使用者會獲得整個 OU 的完整管理權限。 
+[詳細資訊](active-directory-ds-admin-guide-create-ou.md)
 
 #### <a name="schema-extensions"></a>結構描述延伸模組
 您無法擴充 Azure AD 網域服務受管理網域的基底結構描述。 因此，依賴 AD 結構描述擴充功能 (例如，使用者物件之下的新屬性) 的應用程式無法轉移至 AAD DS 網域。
@@ -81,12 +89,14 @@ AAD DS 受管理網域上不提供這些提高的權限。 無法對受管理的
 
 #### <a name="secure-ldap"></a>安全的 LDAP
 您可以設定 Azure AD 網域服務，以提供受管理網域的安全 LDAP 存取，包括透過網際網路。
+[詳細資訊](active-directory-ds-admin-guide-configure-secure-ldap.md)
 
 #### <a name="ldap-write"></a>LDAP 寫入
 受管理網域對使用者物件而言是唯讀的。 因此，對使用者物件的屬性執行 LDAP 寫入作業的應用程式不適用於受管理的網域。 此外，不能在受管理的網域中變更使用者密碼。 另一個範例是不允許在受管理的網域中修改群組成員資格或群組屬性。 不過，在 Azure AD (透過 PowerShell/Azure 入口網站) 或內部部署 AD 中所做的使用者屬性或密碼變更會同步處理至 AAD-DS 受管理的網域。
 
 #### <a name="group-policy"></a>群組原則
-AAD-DS 受管理的網域不支援複雜的群組原則建構。 例如，您無法為網域中的每個自訂 OU 建立和部署不同的 GPO，或將 WMI 篩選使用於 GP 目標。 「AADDC 電腦」和「AADDC 使用者」容器各有內建 GPO，您可加以自訂來設定群組原則。
+「AADDC 電腦」和「AADDC 使用者」容器各有內建 GPO，您可加以自訂來設定群組原則。 「AAD DC 系統管理員」群組成員也可以建立自訂 GPO (群組原則物件)，並將它們連結至現有的 OU (包括自訂 OU)。
+[詳細資訊](active-directory-ds-admin-guide-administer-group-policy.md)
 
 #### <a name="geo-dispersed-deployments"></a>分散各地的部署
 Azure AD 網域服務受管理網域可以在Azure 的單一虛擬網路中使用。 在世界各地多個 Azure 區域中都需要可用網域控制站的案例中，在 Azure IaaS VM 中設定網域控制站可能是更好的替代方法。
@@ -109,10 +119,5 @@ Azure AD 網域服務受管理網域可以在Azure 的單一虛擬網路中使�
 * [功能 - Azure AD 網域服務](active-directory-ds-features.md)
 * [部署案例 - Azure AD 網域服務](active-directory-ds-scenarios.md)
 * [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

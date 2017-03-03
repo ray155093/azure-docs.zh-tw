@@ -28,6 +28,20 @@
 ### [Marketplace 應用程式](../app-service-web/web-sites-php-web-site-gallery.md)
 ### [PHP](../app-service-web/app-service-web-php-get-started.md)    
 
+# 常見範例
+## CLI 範例
+### [建立 Web 應用程式並從 從 GitHub 部署程式碼](./scripts/app-service-cli-deploy-github.md)
+### [使用來自 GitHub 的連續部署建立 Web 應用程式](./scripts/app-service-cli-continuous-deployment-github.md)
+### [建立 Web 應用程式並從 從本機 Git 存放庫部署程式碼](./scripts/app-service-cli-deploy-local-git.md)
+### [建立 Web 應用程式並將程式碼部署至預備環境](./scripts/app-service-cli-deploy-staging-environment.md)
+### [在 Docker 容器中建立 ASP.NET 核心 Web 應用程式](./scripts/app-service-cli-linux-docker-aspnetcore.md)
+### [將自訂網域對應至 Web 應用程式](./scripts/app-service-cli-configure-custom-domain.md)
+### [手動調整 Web 應用程式](./scripts/app-service-cli-scale-manual.md)
+### [透過高可用性架構調整 Web 應用程式](./scripts/app-service-cli-scale-high-availability.md)
+### [將 Web 應用程式連線至 SQL 資料庫](./scripts/app-service-cli-app-service-sql.md)
+### [將 Web 應用程式連線至儲存體帳戶](./scripts/app-service-cli-app-service-storage.md)
+### [透過 Web 伺服器記錄監控 Web 應用程式](./scripts/app-service-cli-monitor.md)
+
 # 作法
 
 ## 計劃與設計
@@ -156,8 +170,3 @@
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=windowsazurewebsitespreview)  
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=app-service) 
 ## [服務更新](https://azure.microsoft.com/updates/?product=app-service) 
-
-
-<!--HONumber=Jan17_HO3-->
-
-

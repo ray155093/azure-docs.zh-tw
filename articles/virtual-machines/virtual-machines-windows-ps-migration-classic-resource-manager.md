@@ -18,6 +18,7 @@ ms.author: cynthn
 translationtype: Human Translation
 ms.sourcegitcommit: e90036d97451b271451d0ba5845c788ac05d7abf
 ms.openlocfilehash: 4253d60a8a12877a3c5dac073bd06d70d020ccdc
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -270,10 +271,5 @@ Get-AzureRmVMUsage -Location "West US"
 * 如需有關移轉的詳細資訊，請參閱 [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)。
 * 若要使用 Azure PowerShell 將其他網路資源移轉至 Resource Manager，請使用與 [Move-AzureNetworkSecurityGroup](https://msdn.microsoft.com/library/mt786729.aspx)、[Move-AzureReservedIP](https://msdn.microsoft.com/library/mt786752.aspx) 及 [Move-AzureRouteTable](https://msdn.microsoft.com/library/mt786718.aspx) 類似的步驟。
 * 如需您可用來將 Azure 資源從傳統環境移轉至 Resource Manager 的開放原始碼指令碼，請參閱 [可移轉至 Azure Resource Manager 的社群工具](virtual-machines-windows-migration-scripts.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

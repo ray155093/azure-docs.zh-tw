@@ -17,6 +17,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: ae60cd810b4beb26f714e2ea2566e5354c482fa8
 ms.openlocfilehash: 3022f5e27ddaf125161bbf7132b41a27024f40b6
+ms.lasthandoff: 01/19/2017
 
 
 ---
@@ -160,10 +161,5 @@ ms.openlocfilehash: 3022f5e27ddaf125161bbf7132b41a27024f40b6
 ## <a name="next-steps"></a>後續步驟
 
 如果您想要深入了解條件式存取，請參閱 [Azure Active Directory 條件式存取](active-directory-conditional-access-azure-portal.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

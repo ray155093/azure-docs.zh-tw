@@ -18,6 +18,7 @@ ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
 ms.openlocfilehash: 12bcff92f7d2f877fa90b35fddf88266488c5f78
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -176,9 +177,4 @@ ms.openlocfilehash: 12bcff92f7d2f877fa90b35fddf88266488c5f78
 * [將資料上傳至 HDInsight](hdinsight-upload-data.md)：尋找可將資料上傳至 HDInsight/Azure Blob 儲存體的其他方法。
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

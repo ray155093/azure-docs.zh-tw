@@ -18,6 +18,7 @@ ms.author: asaxton
 translationtype: Human Translation
 ms.sourcegitcommit: 2f0f36e7ffeec52bacc35ac5039cd183976dc3aa
 ms.openlocfilehash: fd2649f9936da9f86d4fe24b4fa87ca1733d1f3c
+ms.lasthandoff: 01/07/2017
 
 
 ---
@@ -50,10 +51,5 @@ ms.openlocfilehash: fd2649f9936da9f86d4fe24b4fa87ca1733d1f3c
 * Azure SDK、PowerShell 和 CLI 的 Power BI Embedded 支援。
 * 使用者可以將視覺效果資料匯出到 **.csv**。
 * Power BI Embedded 現在受到與 Microsoft Azure 相同的所有語言/地區設定的支援。 若要深入了解，請參閱 [Azure - 語言](http://social.technet.microsoft.com/wiki/contents/articles/4234.windows-azure-extent-of-localization.aspx)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

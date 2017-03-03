@@ -11,11 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2016
+ms.date: 02/03/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 6c644b124ad8c994170152006ff61c11e363e7ab
-ms.openlocfilehash: 951aac469ab7bca90014a8af115448833152bb6a
+ms.sourcegitcommit: f3a8ef4a166a061e1f4e7ce056255e02b810c196
+ms.openlocfilehash: 1f8083e095ee3c207d3d6d9178017e2dc1670fde
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: 951aac469ab7bca90014a8af115448833152bb6a
 
 ![開啟 Azure 入口網站中應用程式的 [概觀] 刀鋒視窗](./media/app-insights-metrics-explorer/03-range.png)
 
-如果您預期的部分資料尚未出現，請按一下 [重新整理]。 圖表本身會定期重新整理，但是時間範圍越大，間隔時間會越長。 在發行模式中，資料從分析管線往圖表上顯示可能需要一些時間。
+如果您預期的部分資料尚未出現，請按一下 [重新整理]。 圖表本身會定期重新整理，但是時間範圍越大，間隔時間會越長。 資料從分析管線往圖表上顯示可能需要一些時間。
 
 若要放大圖表的局部，請拖曳過該部分︰
 
@@ -115,6 +116,11 @@ ms.openlocfilehash: 951aac469ab7bca90014a8af115448833152bb6a
 
 ![取消選取所有度量以查看預設值](./media/app-insights-metrics-explorer/06-total.png)
 
+## <a name="pin-y-axis"></a>釘選 Y 軸 
+根據預設，圖表會顯示資料範圍中從零到最大值的 Y 軸值，以提供值配量的視覺表示法。 但是在某些超過配量的情況下，以視覺化方式檢查值的些微變化可能有興趣。 對於類似這種的自訂，請使用 Y 軸範圍編輯功能，將 Y 軸的最小值或最大值釘選在所要的位置。
+按一下 [進階設定] 核取方塊以顯示 [Y 軸範圍] 設定
+
+![按一下 [進階設定]、選取 [自訂範圍]，然後指定最小值與最大值](./media/app-insights-metrics-explorer/y-axis-range.png)
 
 ## <a name="filter-your-data"></a>篩選資料
 若只要查看選取的一組屬性值的度量：
@@ -158,23 +164,9 @@ ms.openlocfilehash: 951aac469ab7bca90014a8af115448833152bb6a
 
 ![在 [計量瀏覽器] 上方的按鈕中](./media/app-insights-metrics-explorer/17-reset.png)
 
-<a name="live-metrics-stream"></a>
+## <a name="live-metrics-stream"></a>即時計量串流
 
-## <a name="live-metrics-stream-instant-metrics-for-close-monitoring"></a>即時計量串流：適用於關閉監視的即時計量
-即時計量串流說明您的應用程式計量正處於這個非常時刻，接近即時的延遲為 1 秒。 當您發行了新的組建且想要確定一切都如預期般運作，或者要即時調查某個事件時，這是非常有用的。
-
-![在 [概觀] 刀鋒視窗中，按一下 [即時資料流]](./media/app-insights-metrics-explorer/live-stream.png)
-
-不同於計量瀏覽器，即時計量串流會顯示一組固定的計量。 只要資料仍在圖表上就會保存，之後便會捨棄該資料。
-
-### <a name="live-failures"></a>即時失敗
-
-如果有記錄任何失敗或例外狀況，「即時資料流」就會對其進行取樣。 按一下 [暫停] 以保存特定樣本，然後選取事件來顯示其詳細資料。
-
-![取樣的即時失敗](./media/app-insights-metrics-explorer/live-stream-failures.png)
-
-
-[Application Insights SDK for Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) 的最新版本有提供「即時計量資料流」。
+如需更加立即的遙測檢視，請開啟[即時串流](app-insights-live-stream.md)。 因為彙總程序，大部分的計量需要數分鐘才會出現。 相較之下，即時計量已針對低延遲進行最佳化。 
 
 ## <a name="set-alerts"></a>設定警示
 若要在任何度量有不尋常的值時收到電子郵件通知，請加入警示。 您可以選擇將電子郵件傳送給帳戶管理員，或傳送給特定的電子郵件地址。
@@ -201,7 +193,7 @@ ms.openlocfilehash: 951aac469ab7bca90014a8af115448833152bb6a
 如果您希望更完整地檢視您的資料，您可以 [匯出至 Power BI](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx)。
 
 ## <a name="analytics"></a>Analytics
-[分析](app-insights-analytics.md) 是使用強大的查詢語言來分析遙測的更靈活方式。 如果您想要合併或計算計量的結果，或執行您的應用程式近期效能的深入探索，請使用它。 另一方面，如果您想要自動重新整理儀表板上的圖表以及警示，請使用計量瀏覽器。
+[分析](app-insights-analytics.md) 是使用強大的查詢語言來分析遙測的更靈活方式。 如果您想要合併或計算計量的結果，或執行您應用程式近期效能的深入探索，請使用它。 另一方面，如果您想要自動重新整理儀表板上的圖表以及警示，請使用計量瀏覽器。
 
 ## <a name="troubleshooting"></a>疑難排解
 *我看不到我的圖表上的任何資料。*
@@ -221,9 +213,4 @@ ms.openlocfilehash: 951aac469ab7bca90014a8af115448833152bb6a
 [alerts]: app-insights-alerts.md
 [start]: app-insights-overview.md
 [track]: app-insights-api-custom-events-metrics.md
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

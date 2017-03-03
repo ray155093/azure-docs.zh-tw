@@ -1,41 +1,37 @@
-
 ---
-title: 使用媒體服務 .NET SDK 管理資產和相關的實體
-description: 深入了解使用 Media Services SDK for .NET 管理資產和相關的實體
+title: "使用媒體服務 .NET SDK 管理資產和相關的實體"
+description: "深入了解使用 Media Services SDK for .NET 管理資產和相關的實體"
 author: juliako
-manager: dwrede
-editor: ''
+manager: erikre
+editor: 
 services: media-services
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 1bd8fd42-7306-463d-bfe5-f642802f1906
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 02/12/2017
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 3a8f878502f6a7237212b467b2259fcbb48000ff
+ms.openlocfilehash: d0775971c76c5745f90cb6c5268fda5a2c905093
+ms.lasthandoff: 02/13/2017
+
 
 ---
-# <a name="managing-assets-and-related-entities-with-media-services-.net-sdk"></a>使用媒體服務 .NET SDK 管理資產和相關的實體
+# <a name="managing-assets-and-related-entities-with-media-services-net-sdk"></a>使用媒體服務 .NET SDK 管理資產和相關的實體
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-manage-entities.md)
 > * [REST](media-services-rest-manage-entities.md)
 > 
 > 
 
-本主題示範如何完成下列的媒體服務管理工作：
+本主題說明如何使用 .NET 管理 Azure 媒體服務實體。 
 
-* 取得資產參考 
-* 取得工作參考 
-* 列出所有資產 
-* 列出工作和資產 
-* 列出所有存取原則 
-* 列出所有定位器
-* 透過實體的大型集合列舉
-* 刪除資產 
-* 刪除工作 
-* 刪除存取原則 
+>[!NOTE]
+> 從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 例如，在 2017 年 4 月 1 日，您帳戶中任何在 2016 年 12 月 31 日以前的作業記錄將會自動刪除。 如果您需要封存作業/工作資訊，您可以使用本主題中所述的程式碼。
 
 ## <a name="prerequisites"></a>必要條件
 請參閱 [設定環境](media-services-set-up-computer.md)
@@ -55,24 +51,6 @@ ms.author: juliako
         IAsset asset = assetInstance.FirstOrDefault();
 
         return asset;
-    }
-
-## <a name="get-a-job-reference"></a>取得工作參考
-當您使用媒體服務程式碼中的處理工作時，您通常需要根據識別碼取得現有工作的參考。 下列程式碼範例顯示如何從「工作」集合取得 IJob 物件的參考。
-警告：您可能需要在開始長時間執行編碼工作時，取得工作參考，並且需要檢查執行緒上的工作狀態。 在這種情況下，當此方法從執行緒傳回時，您需要擷取作業的重新整理的參考。
-
-    static IJob GetJob(string jobId)
-    {
-        // Use a Linq select query to get an updated 
-        // reference by Id. 
-        var jobInstance =
-            from j in _context.Jobs
-            where j.Id == jobId
-            select j;
-        // Return the job reference as an Ijob. 
-        IJob job = jobInstance.FirstOrDefault();
-
-        return job;
     }
 
 ## <a name="list-all-assets"></a>列出所有資產
@@ -112,6 +90,26 @@ ms.author: juliako
 
         // Display output in console.
         Console.Write(builder.ToString());
+    }
+
+## <a name="get-a-job-reference"></a>取得工作參考
+
+當您使用媒體服務程式碼中的處理工作時，您通常需要根據識別碼取得現有工作的參考。 下列程式碼範例顯示如何從「工作」集合取得 IJob 物件的參考。
+
+您可能需要在開始長時間執行編碼作業時，取得作業參考，並且需要檢查執行緒上的作業狀態。 在這種情況下，當此方法從執行緒傳回時，您需要擷取作業的重新整理的參考。
+
+    static IJob GetJob(string jobId)
+    {
+        // Use a Linq select query to get an updated 
+        // reference by Id. 
+        var jobInstance =
+            from j in _context.Jobs
+            where j.Id == jobId
+            select j;
+        // Return the job reference as an Ijob. 
+        IJob job = jobInstance.FirstOrDefault();
+
+        return job;
     }
 
 ## <a name="list-jobs-and-assets"></a>列出工作和資產
@@ -211,6 +209,45 @@ ms.author: juliako
 
         }
     }
+    
+## <a name="limit-access-policies"></a>限制存取原則 
+
+>[!NOTE]
+> 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 
+
+例如，您可以使用只會在您應用程式中執行一次的下列程式碼來建立一組標準的原則。 您可以記錄識別碼至記錄檔以供稍後使用︰
+
+    double year = 365.25;
+    double week = 7;
+    IAccessPolicy policyYear = _context.AccessPolicies.Create("One Year", TimeSpan.FromDays(year), AccessPermissions.Read);
+    IAccessPolicy policy100Year = _context.AccessPolicies.Create("Hundred Years", TimeSpan.FromDays(year * 100), AccessPermissions.Read);
+    IAccessPolicy policyWeek = _context.AccessPolicies.Create("One Week", TimeSpan.FromDays(week), AccessPermissions.Read);
+
+    Console.WriteLine("One year policy ID is: " + policyYear.Id);
+    Console.WriteLine("100 year policy ID is: " + policy100Year.Id);
+    Console.WriteLine("One week policy ID is: " + policyWeek.Id);
+
+然後，您可以使用您程式碼中的現有識別碼，就像這樣︰
+
+    const string policy1YearId = "nb:pid:UUID:2a4f0104-51a9-4078-ae26-c730f88d35cf";
+
+
+    // Get the standard policy for 1 year read only
+    var tempPolicyId = from b in _context.AccessPolicies
+                       where b.Id == policy1YearId
+                       select b;
+    IAccessPolicy policy1Year = tempPolicyId.FirstOrDefault();
+
+    // Get the existing asset
+    var tempAsset = from a in _context.Assets
+                where a.Id == assetID
+                select a;
+    IAsset asset = tempAsset.SingleOrDefault();
+
+    ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
+        policy1Year,
+        DateTime.UtcNow.AddMinutes(-5));
+    Console.WriteLine("The locator base path is " + originLocator.BaseUri.ToString());
 
 ## <a name="list-all-locators"></a>列出所有定位器
 定位器是 URL，提供存取資產的直接路徑，以及由定位器相關聯的存取原則所定義之對於資產的權限。 每個資產在其定位器屬性上可以有與其相關聯的 ILocator 物件的集合。 伺服器內容也有定位器集合，其中包含所有定位器。
@@ -294,6 +331,7 @@ ms.author: juliako
 
 ## <a name="delete-a-job"></a>刪除工作
 若要刪除工作，您必須檢查工作的狀態，如 State 屬性所示。 可以刪除已完成或已取消的工作，而其他某些狀態，例如已佇列、已排程或處理中的工作，必須先取消，然後才能刪除。
+
 下列程式碼範例示範刪除工作的方法，方法是檢查工作狀態，然後於狀態為已完成或已取消時刪除工作。 此程式碼相依於本主題中的前一節，以取得工作的參考：取得工作參考。
 
     static void DeleteJob(string jobId)
@@ -366,7 +404,5 @@ ms.author: juliako
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-<!--HONumber=Oct16_HO2-->
 
 

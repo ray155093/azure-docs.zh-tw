@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: f3be777497d842f019c1904ec1990bd1f1213ba2
 ms.openlocfilehash: c2bed4f1fddf99183faa0730f052ee79cf77f9f8
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -185,10 +186,5 @@ Get-AzureRmHDInsightJobOutput `
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

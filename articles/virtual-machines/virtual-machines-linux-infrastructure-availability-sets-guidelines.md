@@ -18,6 +18,7 @@ ms.author: iainfou
 translationtype: Human Translation
 ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
 ms.openlocfilehash: 0c31fb1d02e26491de8d1076d074a2021906999f
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -52,10 +53,5 @@ Azure 中的基礎結構被分為「更新網域」和「容錯網域」。 這�
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

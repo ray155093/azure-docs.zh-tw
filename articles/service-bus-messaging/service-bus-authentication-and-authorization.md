@@ -17,6 +17,7 @@ ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 2c1a1f3b73466526b13bcfeb4580335390506c23
 ms.openlocfilehash: 14dfe58f6296a4ec516845bace456ffd59fa608a
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -69,9 +70,4 @@ New-AzureSBNamespace <namespaceName> "<Region>” -CreateACSNamespace $false
 如需 SAS 的詳細資料，請繼續閱讀 [使用服務匯流排的共用存取簽章驗證](service-bus-shared-access-signature-authentication.md) 。
 
 如需服務匯流排中的 SAS 整體概觀，請參閱 [共用存取簽章](service-bus-sas-overview.md)。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

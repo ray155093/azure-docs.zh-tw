@@ -17,6 +17,7 @@ ms.author: dobett
 translationtype: Human Translation
 ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
 ms.openlocfilehash: ebfafd5ee9049b5049070ad111c95746b89e755f
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -87,9 +88,4 @@ IoT 中樞會對其不同功能強制實施其他限制。
 [lnk-devguide-endpoints]: iot-hub-devguide-endpoints.md
 [lnk-devguide-query]: iot-hub-devguide-query-language.md
 [lnk-devguide-mqtt]: iot-hub-mqtt-support.md
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

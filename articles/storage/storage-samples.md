@@ -17,6 +17,7 @@ ms.author: marsma
 translationtype: Human Translation
 ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
 ms.openlocfilehash: dc466ed5dbd7ad14dd1c84760d9205b940acf504
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -76,10 +77,5 @@ ms.openlocfilehash: dc466ed5dbd7ad14dd1c84760d9205b940acf504
 ### <a name="c-resources"></a>C++ 資源
 * [C++ 儲存體用戶端程式庫的原始程式碼](https://github.com/Azure/azure-storage-cpp)
 * [C++ 用戶端程式庫參考](http://azure.github.io/azure-storage-cpp/)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

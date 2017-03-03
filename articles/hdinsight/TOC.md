@@ -54,6 +54,7 @@
 ### [安裝 RStudio](hdinsight-hadoop-r-server-install-r-studio.md)
 ### [計算內容](hdinsight-hadoop-r-server-compute-contexts.md)
 ## 使用 Spark 進行記憶體中的處理
+### [使用 Caffe 進行深入學習](hdinsight-apache-spark-use-with-data-lake-store.md)
 ### [搭配 Data Lake Store](hdinsight-apache-spark-use-with-data-lake-store.md)
 ### [並用 BI 工具](hdinsight-apache-spark-use-bi-tools.md)
 ### [獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
@@ -223,8 +224,3 @@
 # 資源
 ## [在論壇上取得協助](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=hdinsight)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
-
-
-<!--HONumber=Feb17_HO2-->
-
-

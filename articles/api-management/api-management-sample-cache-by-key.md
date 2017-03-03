@@ -17,6 +17,7 @@ ms.author: apimpm
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 24cbe51ef5a453d06e9f70e1e2146479935c5bf5
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -69,7 +70,7 @@ variable-name="userprofile" />
 ```xml
 <choose>
     <when condition="@(!context.Variables.ContainsKey("userprofile"))">
-        <!— If the userprofile context variable doesn’t exist, make an HTTP request to retrieve it.  -->
+        <!-- If the userprofile context variable doesn’t exist, make an HTTP request to retrieve it.  -->
     </when>
 </choose>
 ```
@@ -114,7 +115,7 @@ variable-name="userprofile" />
 此程序的最後一個步驟是以我們的使用者設定檔資訊更新傳回的回應。
 
 ```xml
-<!—Update response body with user profile-->
+<!-- Update response body with user profile-->
 <find-and-replace
     from='"$userprofile$"'
     to="@((string)context.Variables["userprofile"])" />
@@ -140,7 +141,7 @@ variable-name="userprofile" />
         <!-- If we don’t find it in the cache, make a request for it and store it -->
         <choose>
             <when condition="@(!context.Variables.ContainsKey("userprofile"))">
-                <!—Make HTTP request to get user profile -->
+                <!-- Make HTTP request to get user profile -->
                 <send-request
                   mode="new"
                   response-variable-name="userprofileresponse"
@@ -152,12 +153,12 @@ variable-name="userprofile" />
                     <set-method>GET</set-method>
                 </send-request>
 
-                <!—Store response body in context variable -->
+                <!-- Store response body in context variable -->
                 <set-variable
                   name="userprofile"
                   value="@(((IResponse)context.Variables["userprofileresponse"]).Body.As<string>())" />
 
-                <!—Store result in cache -->
+                <!-- Store result in cache -->
                 <cache-store-value
                   key="@("userprofile-" + context.Variables["enduserid"])"
                   value="@((string)context.Variables["userprofile"])"
@@ -167,7 +168,7 @@ variable-name="userprofile" />
         <base />
     </inbound>
     <outbound>
-        <!—Update response body with user profile-->
+        <!-- Update response body with user profile-->
         <find-and-replace
               from='"$userprofile$"'
               to="@((string)context.Variables["userprofile"])" />
@@ -280,10 +281,5 @@ variable-name="clientversion" />
 
 ## <a name="next-steps"></a>後續步驟
 如果這些原則為您達成其他案例，或是有案例您想要達成但認為目前無法執行，敬請不吝賜教在 Disqus 的本主題系列中提供意見。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

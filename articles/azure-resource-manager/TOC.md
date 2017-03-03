@@ -17,6 +17,7 @@
 ### [撰寫範本](resource-group-authoring-templates.md)
 ### [範本函式](resource-group-template-functions.md)
 ### [定義資源間的相依性](resource-group-define-dependencies.md)
+### [設定子資源名稱與類型](resource-manager-template-child-resource.md)
 ### [建立資源類型的多個執行個體](resource-group-create-multiple.md)
 ### [在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)
 ### [連結至其他範本](resource-group-linked-templates.md)
@@ -71,8 +72,3 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-resource-manager)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=azure-resource-manager)
 ## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

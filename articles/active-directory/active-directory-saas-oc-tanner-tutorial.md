@@ -17,6 +17,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: 1b5527090a41c274b590ed9d1ac7b561b6f4ed14
 ms.openlocfilehash: 10faa27e0c82e59c35e00258a2d90bea977dc28f
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -250,10 +251,5 @@ ms.openlocfilehash: 10faa27e0c82e59c35e00258a2d90bea977dc28f
 
 
 
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

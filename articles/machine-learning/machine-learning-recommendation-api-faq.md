@@ -17,6 +17,7 @@ ms.author: luisca
 translationtype: Human Translation
 ms.sourcegitcommit: 9ac2a1bf5987fc6fc30e20a1b4a10340eeed3825
 ms.openlocfilehash: 15cf891b9c31e1f2e2b108e631f32883ce2f36a7
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -136,10 +137,5 @@ API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](mach
 **哪裡可以找到使用條款？**
 
 [Microsoft Azure Machine Learning Recommendations API 服務條款](https://datamarket.azure.com/dataset/amla/recommendations#terms)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

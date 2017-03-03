@@ -17,6 +17,7 @@ ms.author: bwren
 translationtype: Human Translation
 ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
 ms.openlocfilehash: 6e92a79c0b7ea35f110c779922255d6ddc93ed7c
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -178,10 +179,5 @@ Syslog 記錄具有 **Syslog** 類型，以及下表中的屬性。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。 
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將來自 syslog 記錄的資料剖析至個別欄位。
 * [設定 Linux 代理程式](log-analytics-linux-agents.md) ，以收集其他類型的資料。 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

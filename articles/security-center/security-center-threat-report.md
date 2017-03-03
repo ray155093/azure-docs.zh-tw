@@ -17,6 +17,7 @@ ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
 ms.openlocfilehash: 99c5ea06a0970c360eb711a8b10894d416146693
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -75,9 +76,4 @@ ms.openlocfilehash: 99c5ea06a0970c360eb711a8b10894d416146693
 * [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)。 了解如何管理和回應安全性警示。
 * [在 Azure 資訊安全中心處理安全性事件](security-center-incident.md)
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)。 尋找有關 Azure 安全性與相容性的部落格文章。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

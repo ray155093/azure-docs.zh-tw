@@ -17,6 +17,7 @@ ms.author: fboylu
 translationtype: Human Translation
 ms.sourcegitcommit: c78604783bb21f9162939637e04e60aa8131ce11
 ms.openlocfilehash: 1fc824c65e68c70ace589e788a0c470c475e66b4
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -368,10 +369,5 @@ ms.openlocfilehash: 1fc824c65e68c70ace589e788a0c470c475e66b4
 圖 8. 預測性維護的範例解決方案架構
 
 如需此架構的每個元件的詳細資訊，請參閱 [Azure](https://azure.microsoft.com/) 文件。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -17,6 +17,7 @@ ms.author: roopalik;garye
 translationtype: Human Translation
 ms.sourcegitcommit: 262ee4f092efa11150de61168e6b03c0477f0543
 ms.openlocfilehash: 55f5eb09e13dd645369486affba338759ec6c1d5
+ms.lasthandoff: 01/10/2017
 
 
 ---
@@ -100,10 +101,5 @@ Microsoft 發表的初始集合包含用來解決現實世界問題的多步驟�
 **[前往 GALLERY >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

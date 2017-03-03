@@ -17,6 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
 ms.openlocfilehash: 6a0fcc28a3eadaba6bb28d23ab1f4632bea60652
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -73,7 +74,7 @@ ms.openlocfilehash: 6a0fcc28a3eadaba6bb28d23ab1f4632bea60652
     x-ms-client-request-id: 00000000-0000-0000-0000-000000000000
     Host: media.windows.net
 
-    {"Name" : "NewTestJob", "InputMediaAssets" : [{"__metadata" : {"uri" : "https://media.windows.net/api/Assets('nb%3Acid%3AUUID%3Aaab7f15b-3136-4ddf-9962-e9ecb28fb9d2')"}}],  "Tasks" : [{"Configuration" : "H264 Multiple Bitrate 720p", "MediaProcessorId" : "nb:mpid:UUID:ff4df607-d419-42f0-bc17-a481b1331e56",  "TaskBody" : "<?xml version=\"1.0\" encoding=\"utf-8\"?><taskBody><inputAsset>JobInputAsset(0)</inputAsset><outputAsset>JobOutputAsset(0)</outputAsset></taskBody>"}]}
+    {"Name" : "NewTestJob", "InputMediaAssets" : [{"__metadata" : {"uri" : "https://media.windows.net/api/Assets('nb%3Acid%3AUUID%3Aaab7f15b-3136-4ddf-9962-e9ecb28fb9d2')"}}],  "Tasks" : [{"Configuration" : "Adaptive Streaming", "MediaProcessorId" : "nb:mpid:UUID:ff4df607-d419-42f0-bc17-a481b1331e56",  "TaskBody" : "<?xml version=\"1.0\" encoding=\"utf-8\"?><taskBody><inputAsset>JobInputAsset(0)</inputAsset><outputAsset>JobOutputAsset(0)</outputAsset></taskBody>"}]}
 
 回應：
 
@@ -93,7 +94,7 @@ ms.openlocfilehash: 6a0fcc28a3eadaba6bb28d23ab1f4632bea60652
 * 您可以指定 JobInputAsset 或 JobOutputAsset 做為工作的輸入資產。
 * 工作不能形成循環。
 * 您傳遞至 JobInputAsset 或 JobOutputAsset 的 value 參數代表資產的索引值。 實際資產定義在作業實體定義上的 InputMediaAsset 與 OutputMediaAsset 導覽屬性。 
-* 由於媒體服務建置在 OData v3 之上，因此 InputMediaAsset 與 OutputMediaAsset 導覽屬性集合中的個別資產會透過 "__metadata : uri" 名稱 / 值組參考。.
+* 由於媒體服務建置在 OData v3 之上，因此 InputMediaAsset 與 OutputMediaAsset 導覽屬性集合中的個別資產會透過 "__metadata : uri" 名稱 / 值組參考。
 * InputMediaAsset 對應至您在媒體服務中建立的一個或多個資產。 OutputMediaAsset 由系統建立。 它們不會參考現有的資產。
 * OutputMediaAsset 可以使用 assetName 屬性命名。 如果這個屬性不存在，則 OutputMediaAsset 的名稱將是 <outputAsset> 元素的任何內部文字值，並且尾碼為工作名稱值或工作識別碼值 (在未定義 Name 屬性的情況下)。 例如，如果您將 assetName 的值設為 "Sample"，則 OutputMediaAsset Name 屬性會設為 "Sample"。 不過，如果您未設定 assetName 的值，但已將工作名稱設為 "NewJob"，則 OutputMediaAsset Name 會是 "JobOutputAsset(value)_NewJob"。 
 
@@ -269,10 +270,5 @@ ms.openlocfilehash: 6a0fcc28a3eadaba6bb28d23ab1f4632bea60652
 
 ## <a name="see-also"></a>另請參閱
 [取得媒體處理器](media-services-rest-get-media-processor.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

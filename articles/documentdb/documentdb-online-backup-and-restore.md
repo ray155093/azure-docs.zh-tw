@@ -18,6 +18,7 @@ ms.author: raprasa
 translationtype: Human Translation
 ms.sourcegitcommit: b5419efbaf51476cfc662c8aa814001e2757b4b7
 ms.openlocfilehash: db7b24c049153b6622f50fd9934611d48c98a1e8
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -58,10 +59,5 @@ DocumentDB 設計為 [分散在全區域](documentdb-distribute-data-globally.md
 若要在多個資料中心複寫您的 NoSQL 資料庫，請參閱 [使用 DocumentDB 全域分散您的資料](documentdb-distribute-data-globally.md)。 
 
 若要提出還原要求，請連絡 Azure 支援， [從 Azure 入口網站提出票證](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

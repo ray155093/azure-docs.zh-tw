@@ -17,6 +17,7 @@ ms.author: xibingao;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
 ms.openlocfilehash: 777dc11be139b20363e2060776ac0227883591ff
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -194,7 +195,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若�
 5. 在 [密碼]  方塊中，輸入新使用者的密碼。 在 [確認密碼]  方塊中再次輸入密碼。
 6. 若要強制執行複雜性和強制性密碼原則選項，請選取 [強制執行密碼原則] \(建議)。 此為選取 SQL Server 驗證時的預設選項。
 7. 若要強制執行逾期密碼原則選項，請選取 [強制執行密碼逾期] \(建議)。 您必須選取強制執行密碼原則才能啟用此核取方塊。 此為選取 SQL Server 驗證時的預設選項。
-8. 若要強制使用者在首次登入後建立新密碼，請選取 [使用者必須在下次登入時變更密碼]  (如果此登入是供其他使用者使用，建議您選取此選項。 如果此登入是供您自己使用，請勿選取此選項。)您必須選取強制執行密碼逾期才能啟用此核取方塊。 此為選取 SQL Server 驗證時的預設選項。
+8. 若要強制使用者在首次登入後建立新密碼，請選取 [使用者必須在下次登入時變更密碼]  \(如果此登入是供其他使用者使用，建議您選取此選項。 如果此登入是供您自己使用，請勿選取此選項。)您必須選取強制執行密碼逾期才能啟用此核取方塊。 此為選取 SQL Server 驗證時的預設選項。
 9. 在 [預設資料庫] 清單中選取登入的預設資料庫。 [master] 是此選項的預設值。 如果您尚未建立使用者資料庫，請保留 [master] 的設定。
 10. 在 [預設語言] 清單中，保留 [default] 值。
     
@@ -273,10 +274,5 @@ Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付�
 [12]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/25sysadmin.png
 [13]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/amlreader.png
 [15]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/vmshutdown.png
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

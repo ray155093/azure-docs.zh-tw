@@ -18,6 +18,7 @@ ms.author: rasquill
 translationtype: Human Translation
 ms.sourcegitcommit: 1d35114800ba024d0c201840722df2c6a74d1d61
 ms.openlocfilehash: 0eaa83fc19316708685eed0ca994112bc09153e5
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -29,10 +30,5 @@ ms.openlocfilehash: 0eaa83fc19316708685eed0ca994112bc09153e5
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 [!INCLUDE [virtual-machines-common-create-aad-work-id](../../includes/virtual-machines-common-create-aad-work-id.md)]
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

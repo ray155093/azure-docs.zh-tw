@@ -13,18 +13,19 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 02/14/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: fc79b8017f2184091f2473a0ff9cdfbd0a4cbdf8
-ms.openlocfilehash: d195f4936e8adfa22972a2a518188987398928e8
+ms.sourcegitcommit: d83bfd81768722592565fe924c4d00610b149999
+ms.openlocfilehash: 16801860b78b40cc883393ca4db3ffa208b889fd
+ms.lasthandoff: 02/15/2017
 
 
 ---
 # <a name="run-hadoop-mapreduce-samples-in-windows-based-hdinsight"></a>在以 Windows 為基礎的 HDInsight 中執行 Hadoop MapReduce 範例
 [!INCLUDE [samples-selector](../../includes/hdinsight-run-samples-selector.md)]
 
-我們提供了一組範例，協助您使用 Azure HDInsight 並開始在 Hadoop 叢集上執行 MapReduce 工作。 這些範例可套用在您所建立的每個 HDInsight 受管理叢集上。 執行這些範例可協助您熟悉使用 Azure PowerShell Cmdlet 在 Hadoop 叢集上執行工作。
+我們提供了一組範例，協助您使用 Azure HDInsight 並開始在 Hadoop 叢集上執行 MapReduce 工作。 這些範例可套用在您所建立的每個 HDInsight 受管理叢集上。 執行這些範例可協助您熟悉使用 Azure PowerShell Cmdlet 在 Hadoop 叢集上執行作業。
 
 * [字數統計][hdinsight-sample-wordcount]：計算文字檔中的文字出現次數。
 * [C# 串流字數統計][hdinsight-sample-csharp-streaming]：使用 Hadoop 串流介面計算文字檔中的文字出現次數。
@@ -40,7 +41,7 @@ ms.openlocfilehash: d195f4936e8adfa22972a2a518188987398928e8
 * [在 HDInsight 上提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)
 * [Azure HDInsight 簡介][hdinsight-introduction]
 
-時至今日，很多人會選擇 Hive 和 Pig 而非 MapReduce。  如需詳細資訊，請參閱：
+時至今日，很多人選擇 Hive 和 Pig 而非 MapReduce。  如需詳細資訊，請參閱：
 
 * [在 HDInsight 中使用 Hive](hdinsight-use-hive.md)
 * [在 HDInsight 中使用 Pig](hdinsight-use-pig.md)
@@ -54,10 +55,10 @@ ms.openlocfilehash: d195f4936e8adfa22972a2a518188987398928e8
     > [!IMPORTANT]
     > 使用 Azure Service Manager 管理 HDInsight 資源的 Azure PowerShell 支援已**被取代**，將會在 2017 年 1 月 1 日前移除。 本文件中的步驟會使用可與 Azure Resource Manager 搭配使用的新 HDInsight Cmdlet。
     >
-    > 請遵循 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱 [移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md) ，以取得詳細資訊。
+    > 請遵循[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱[移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md)。
 
 ## <a name="a-namehdinsight-sample-wordcountaword-count---java"></a><a name="hdinsight-sample-wordcount"></a>字數統計 - Java
-如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。 在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasbs:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。  字數統計 MapReduce 程式會採用兩個引數：原始程式檔會用來統計字數，與輸出的位置。
+如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。 在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasbs:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。  字數統計 MapReduce 程式會採用兩個引數：用來統計字數的原始程式檔與輸出的位置。
 
 原始程式碼可以在 [附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java)中找到。
 
@@ -119,8 +120,8 @@ ms.openlocfilehash: d195f4936e8adfa22972a2a518188987398928e8
     cat ./example/data/WordCountOutput/part-r-00000 | findstr "there"
     ```
 
-    MapReduce 工作會產生一個名為 *part-r-00000*的檔案，內有文字和字數。 指令碼使用 **findstr** 命令列出包含 *"there"*的所有文字。
-3. 設定前 3 個變數，並執行指令碼。
+    MapReduce 工作會產生一個名為 *part-r-00000*的檔案，內有文字和字數。 指令碼使用 **findstr** 命令列出包含 "there" 的所有文字。
+3. 設定前三個變數，然後執行指令碼。
 
 ## <a name="a-namehdinsight-sample-csharp-streamingaword-count---c-streaming"></a><a name="hdinsight-sample-csharp-streaming"></a>字數統計 - C# 串流
 Hadoop 提供 MapReduce 一個串流 API，可讓您以 Java 以外的語言撰寫 map 和 reduce 函數。
@@ -138,11 +139,9 @@ Hadoop 提供 MapReduce 一個串流 API，可讓您以 Java 以外的語言撰�
 
 同時，reducer 會收集來自處理程序 [stdout][stdin-stdout-stderr] 的行導向輸出。 它會將每一行轉換成索引鍵/值組，其會做為 reducer 的輸出來收集。 根據預設，從一行的前置詞一直到第一個定位字元即是索引鍵，行的其餘部分 (不包含定位字元) 則為值。
 
-如需有關 Hadoop 串流介面的詳細資訊，請參閱 [Hadoop 串流][hadoop-streaming]。
-
 **提交 C# 串流字數統計工作**
 
-* 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下列項目取代工作定義：
+* 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下行內容取代作業定義：
 
     ```powershell
     $mrJobDefinition = New-AzureRmHDInsightStreamingMapReduceJobDefinition `
@@ -164,7 +163,7 @@ Pi 估算器會使用統計 (擬蒙特卡羅法) 方法來估計 pi 的值。 �
 
 **提交 Pi 估算器工作**
 
-* 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下列項目取代工作定義：
+* 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下行內容取代作業定義：
 
     ```powershell
     $mrJobJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
@@ -615,7 +614,7 @@ FileOutputFormat.setOutputPath(jobConf, outDir);
 final FileSystem fs = FileSystem.get(jobConf);
 if (fs.exists(TMP_DIR)) {
 throw new IOException("Tmp directory " + fs.makeQualified(TMP_DIR)
-+ " already exists. Please remove it first.");
++ " already exists. Remove it first.");
 }
 if (!fs.mkdirs(inDir)) {
 throw new IOException("Cannot create input directory " + inDir);
@@ -986,9 +985,4 @@ public class TeraSort extends Configured implements Tool {
 [streamreader]: http://msdn.microsoft.com/library/system.io.streamreader.aspx
 [console-writeline]: http://msdn.microsoft.com/library/system.console.writeline
 [stdin-stdout-stderr]: https://msdn.microsoft.com/library/3x292kth.aspx
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

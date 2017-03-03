@@ -18,6 +18,7 @@ ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: a895f18b4cefc01f12613e701c71bd471bb369c3
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -106,8 +107,3 @@ az iot device create --device-id mydevice --hub-name {my hub name} --resource-gr
 
 ## <a name="next-steps"></a>後續步驟
 [設定和執行 BLE 範例應用程式](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md)
-
-
-<!--HONumber=Jan17_HO4-->
-
-

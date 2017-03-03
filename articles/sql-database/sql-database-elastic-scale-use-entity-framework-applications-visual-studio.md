@@ -18,6 +18,7 @@ ms.author: torsteng
 translationtype: Human Translation
 ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
 ms.openlocfilehash: 91fe35cb57775c1ab9c30fdfe5cf82cd1afafd14
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -266,9 +267,4 @@ Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-scale-use-entity-framework-applications-visual-studio/sample.png
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

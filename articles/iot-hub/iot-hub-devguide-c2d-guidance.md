@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/09/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
-ms.openlocfilehash: 17b338ab15ae7cf46f6732e7e7a1005eec98990b
+ms.sourcegitcommit: dea438c8b1bd3d6331f84de01def989f66b6f387
+ms.openlocfilehash: 88ae905708a421052666316eb81c1dd97d6c9635
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -35,9 +36,9 @@ IoT 中樞提供三個選項以便裝置應用程式對後端應用程式公開�
 | 資料流 | 雙向。 裝置應用程式可以立即回應方法。 解決方案後端會接收到根據要求上下文的結果。 | 單向。 裝置應用程式會收到屬性變更的通知。 | 單向。 裝置應用程式接收訊息
 | 耐久性 | 無法聯繫已中斷連接的裝置。 後端會收到裝置未連線的通知。 | 屬性值會保留在裝置對應項中。 裝置會在下一次重新連線時讀取它。 使用 [IoT 中樞查詢語言][lnk-query]可擷取屬性值。 | IoT 中樞可以保留訊息長達 48 小時。 |
 | 目標 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 依照 **deviceId** 的單一裝置。 |
-| 大小 | 最多 8KB 要求和 8KB 回應。 | 所需屬性大小上限為 8KB。 | 最多 256KB 的訊息。 |
+| 大小 | 最多 8KB 要求和 8KB 回應。 | 所需屬性大小上限為 8KB。 | 最多 64KB 的訊息。 |
 | 頻率 | 高。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 | 中。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 | 低。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 |
-| 通訊協定 | 適用於 MQTT 和 AMQP。 | 目前僅適用於使用 MQTT 時。 | 適用於所有通訊協定。 裝置必須在使用 HTTP 時進行輪詢。 |
+| 通訊協定 | 目前僅適用於使用 MQTT 時。 | 目前僅適用於使用 MQTT 時。 | 適用於所有通訊協定。 裝置必須在使用 HTTP 時進行輪詢。 |
 
 在下列教學課程中，了解如何使用直接方法、所需屬性和雲端到裝置訊息︰
 
@@ -54,8 +55,4 @@ IoT 中樞提供三個選項以便裝置應用程式對後端應用程式公開�
 [lnk-methods-tutorial]: iot-hub-node-node-direct-methods.md
 [lnk-twin-properties]: iot-hub-node-node-twin-how-to-configure.md
 [lnk-c2d-tutorial]: iot-hub-node-node-c2d.md
-
-
-<!--HONumber=Dec16_HO1-->
-
 

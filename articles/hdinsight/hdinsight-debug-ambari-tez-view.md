@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
 ms.openlocfilehash: 0c288989a2b1662bcbec6fd2c74dffaefedc82b8
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -127,10 +128,5 @@ Tez 檢視只包含正在或曾經使用 Tez 引擎來執行之作業的資料�
 如需 Tez 的詳細技術資訊，請參閱 [Hortonworks 的 Tez 頁面](http://hortonworks.com/hadoop/tez/)。
 
 如需如何搭配 HDInsight 來使用 Ambari 的詳細資訊，請參閱 [使用 Ambari Web UI 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

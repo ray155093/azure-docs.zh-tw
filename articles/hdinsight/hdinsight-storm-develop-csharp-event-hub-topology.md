@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: c9a5091973395dd888939432292fbd06dcbf0680
 ms.openlocfilehash: c0349b5890a75c6ffaa6b7eca93baa3101912cf6
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -288,10 +289,5 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 * [使用 Visual Studio 開發 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 * [SCP 程式設計指南](hdinsight-storm-scp-programming-guide.md)
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

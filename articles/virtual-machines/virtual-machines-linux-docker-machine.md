@@ -15,13 +15,14 @@ ms.workload: infrastructure-services
 ms.date: 07/22/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 1a1d5a3e7f39477e06540a980ccbbdc789cefaf1
-ms.openlocfilehash: dd66b244b3fcb7fe22937dbbc6e284bdd93625f2
+ms.sourcegitcommit: b64bafe1a8572369aa7a7e6f0d8b924fc182cd53
+ms.openlocfilehash: 9440474db7eb7e3ae082505f8c95cbcf8c285cdf
+ms.lasthandoff: 02/15/2017
 
 
 ---
 # <a name="use-docker-machine-with-the-azure-driver"></a>使用 Docker 電腦搭配 Azure 驅動程式
-[Docker](https://www.docker.com/) 是最常用的虛擬化方式之一，它不使用虛擬機器，而是使用 Linux 容器，作為在共用資源上隔離應用程式資料和執行計算的方法。 本主題說明何時及如何使用 [Docker Machine](https://docs.docker.com/machine/) (`docker-machine` 命令) 在 Azure 中建立啟用做為 Linux 容器之 Docker 主機的新 Linux VM。
+[Docker](https://www.docker.com/) 使用 Linux 容器 (而非 VM) 來提供虛擬化，以隔離共用資源上的應用程式資料與計算。 本主題說明如何及何時使用 [Docker 電腦](https://docs.docker.com/machine/)。 `docker-machine` 命令可在 Azure 中建立新的 Linux VM，而該 VM 會當作 Linux 容器的 Docker 主機啟用。
 
 ## <a name="create-vms-with-docker-machine"></a>使用 Docker 電腦建立 VM
 使用驅動程式選項 (`-d`) 的 `azure` 驅動程式引數和任何其他引數，以 `docker-machine create` 命令在 Azure 中建立 Docker 主機 VM。 
@@ -128,10 +129,5 @@ d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago  
 如果有興趣，您可以試用 Azure [Docker VM 擴充功能](virtual-machines-linux-dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，用 Azure CLI 或 Azure Resource Manager 範本執行相同的作業。 
 
 如需更多使用 Docker 的範例，請參閱 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 連線[示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的[使用 Docker](https://github.com/Microsoft/HealthClinic.biz/wiki/Working-with-Docker)。 如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure 開發人員工具快速入門](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -17,6 +17,7 @@ ms.author: shlo
 translationtype: Human Translation
 ms.sourcegitcommit: dd8a68029449ad013c4df9a46c558efaefd20e96
 ms.openlocfilehash: 5fe5a990423cd24de0ada90a3a7f76899c4ffadc
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -242,10 +243,5 @@ FROM HiveSampleIn Group by ProfileID
 * [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
 * [叫用 Spark 程式](data-factory-spark.md)
 * [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

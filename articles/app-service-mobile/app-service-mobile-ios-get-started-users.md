@@ -17,6 +17,7 @@ ms.author: yuaxu
 translationtype: Human Translation
 ms.sourcegitcommit: 604c1f84365954ddd3ba2de21fffa90ba5cc274b
 ms.openlocfilehash: 8ea09b30081c60bbf44f8d929750e9a74f9f97b0
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -221,10 +222,5 @@ App Service 驗證會使用 Apples Inter-App Communication。  如需有關這�
 [Azure 入口網站]: https://portal.azure.com
 
 [iOS 快速入門]: app-service-mobile-ios-get-started.md
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

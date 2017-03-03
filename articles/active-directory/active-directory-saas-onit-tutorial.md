@@ -16,6 +16,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: b1c18ac614e17cbd25691dc92dbd14a781e4d8ab
 ms.openlocfilehash: ee656180676450834940b996bccf93c26190f9d6
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -182,10 +183,5 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
    ![是](./media/active-directory-saas-onit-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

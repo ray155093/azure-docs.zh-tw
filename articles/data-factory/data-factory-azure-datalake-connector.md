@@ -17,6 +17,7 @@ ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: b2d1a740782a20a7c6b7b8cec8335a41f16231f5
 ms.openlocfilehash: 5a6a14e5fc8f6915b34f9667c4294a46c8591633
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -593,9 +594,4 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 根據初始資料移動是否已規劃大量的歷史資料或漸進的生產資料負載，Azure Data Factory 有選項可改善這些工作的效能。 並行參數是**複製活動**的一部分，定義要平行處理多少個不同的活動時段。 **ParallelCopies** 參數定義單一活動執行的平行處理原則。 使用 Azure Data Factory 來設計資料移動管線時，務必考慮使用這些參數，以達到最佳輸送量。
 
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

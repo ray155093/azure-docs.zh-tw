@@ -18,6 +18,7 @@ ms.author: srinia
 translationtype: Human Translation
 ms.sourcegitcommit: 637171b775d01e16cec1a7e9ef6fad73875eac69
 ms.openlocfilehash: e04a802b662954ff22cf44e144982dbf0964da8e
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -275,9 +276,4 @@ Stop- Cmdlet 表示取消，不是暫停。 升級一旦停止就沒有任何方
 ## <a name="next-steps"></a>後續步驟
 * [建立彈性工作](sql-database-elastic-jobs-overview.md) ：彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 * 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性工具相應放大、移動資料、查詢或建立交易。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

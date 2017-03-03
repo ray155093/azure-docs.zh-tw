@@ -1,23 +1,27 @@
-
 ---
-title: 使用 REST API 管理媒體服務實體 | Microsoft Docs
-description: 深入了解如何使用 REST API 管理媒體服務實體。
+title: "使用 REST 管理媒體服務實體 | Microsoft Docs"
+description: "深入了解如何使用 REST API 管理媒體服務實體。"
 author: juliako
-manager: dwrede
-editor: ''
+manager: erikre
+editor: 
 services: media-services
-documentationcenter: ''
-
+documentationcenter: 
+ms.assetid: 95262a32-0f2a-4286-b9e2-1a1ca6399b5b
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 02/09/2017
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 946ec4d9c2638cf65f725341dfad1d08751473c6
+ms.openlocfilehash: 534c6e42ace9f42b25fe287de14b02732ed496a4
+ms.lasthandoff: 02/10/2017
+
 
 ---
-# <a name="managing-media-services-entities-with-rest-api"></a>使用 REST API 管理媒體服務實體
+# <a name="managing-media-services-entities-with-rest"></a>使用 REST 管理媒體服務實體 
 > [!div class="op_single_selector"]
 > * [REST](media-services-rest-manage-entities.md)
 > * [.NET](media-services-dotnet-manage-entities.md)
@@ -26,15 +30,17 @@ ms.author: juliako
 
 Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 上。 因此，您可以使用與任何其他 OData 服務上的相同方式，新增、查詢、更新和刪除實體。 在適用時會呼叫例外狀況。 如需 OData 的詳細資訊，請參閱 [開放式資料通訊協定文件](http://www.odata.org/documentation/)。
 
-* 加入實體 
-* 查詢實體 
-* 透過實體的大型集合列舉
-* 更新實體 
-* 刪除實體 
+本主題說明如何使用 REST 管理 Azure 媒體服務實體。
+
+
+>[!NOTE]
+> 從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 例如，在 2017 年 4 月 1 日，您帳戶中任何在 2016 年 12 月 31 日以前的作業記錄將會自動刪除。 如果您需要封存作業/工作資訊，您可以使用本主題中所述的程式碼。
+
+## <a name="considerations-when-working-with-ams-rest"></a>使用 AMS REST 時的考量
+
+使用媒體服務 REST API 時，適用下列考量事項：
 
 > [!NOTE]
-> 使用媒體服務 REST API 時，適用下列考量事項：
-> 
 > 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 > 
 > 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 您必須依照 [使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。 
@@ -174,7 +180,5 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-<!--HONumber=Oct16_HO2-->
 
 

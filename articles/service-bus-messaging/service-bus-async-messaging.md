@@ -17,6 +17,7 @@ ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 798b4310eb5ea7a4877d7842371b5dd7cf88d632
 ms.openlocfilehash: 8a5c1a381cc5cf30f211da948951dc577a124951
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -152,9 +153,4 @@ if (sendAvailabilityOptions.BacklogQueueCount < 1)
 [UnauthorizedAccessException]: https://msdn.microsoft.com/library/system.unauthorizedaccessexception.aspx
 [BacklogQueueCount]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sendavailabilitypairednamespaceoptions?redirectedfrom=MSDN#Microsoft_ServiceBus_Messaging_SendAvailabilityPairedNamespaceOptions_BacklogQueueCount
 [paired namespaces]: service-bus-paired-namespaces.md
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

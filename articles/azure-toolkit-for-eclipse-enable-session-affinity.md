@@ -17,6 +17,7 @@ ms.author: robmcm
 translationtype: Human Translation
 ms.sourcegitcommit: 3fb7a0361717d4616ec21e55c0a202ed8bf8991d
 ms.openlocfilehash: a537a71a43b49d510a12d1293d8ee898d66efe63
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -65,9 +66,4 @@ Eclipse Toolkit 藉由將稱為應用程式要求路由 (ARR) 的特殊 IIS 模�
 [ic719492]: ./media/azure-toolkit-for-eclipse-enable-session-affinity/ic719492.png
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690950.aspx -->
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

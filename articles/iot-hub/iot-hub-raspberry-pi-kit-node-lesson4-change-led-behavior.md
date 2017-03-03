@@ -18,6 +18,7 @@ ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
 ms.openlocfilehash: 53c9408bedc6c61cdb0e755b46b3090e8723e271
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -100,10 +101,5 @@ gulp deploy && gulp run
 
 ### <a name="summary"></a>摘要
 此選讀小節示範如何自訂訊息，讓範例應用程式可以使用不同的方式控制 LED 的開與關行為。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

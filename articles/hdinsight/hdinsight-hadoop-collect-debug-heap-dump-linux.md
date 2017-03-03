@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 93990e342f6bd8fcfe9781bcb021aabfd33e8572
 ms.openlocfilehash: 9c5f3c36cc317a4e3700610799872d35c05d386f
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -130,10 +131,5 @@ map 和 reduce 處理序會稍有不同，因為它們是 MapReduce 服務的子
    > 
    > 
 8. 重新啟動服務後，請使用 [服務動作] 按鈕**關閉維護模式**。 這麼做可讓 Ambari 繼續監視服務是否有警示。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: magoedte
 translationtype: Human Translation
 ms.sourcegitcommit: 5ae60cb8ba3d391d3babd1ab575b4f32e139a185
 ms.openlocfilehash: f2c9a5ef2a8f517b9b2072be57f4d8c51b7694c6
+ms.lasthandoff: 02/15/2017
 
 ---
 
@@ -243,10 +244,5 @@ StreamType | 作業串流的類型。 可能的值包括：<br>-Progress (進度
 
 
    
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

@@ -18,6 +18,7 @@ ms.author: nepeters
 translationtype: Human Translation
 ms.sourcegitcommit: b326ad93120715e4965524e7d6618c1a7fecafb6
 ms.openlocfilehash: bd44fd21c6150eac882d03dc946f573e34f6ad7b
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -126,8 +127,3 @@ C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.*\Downloads
 ### <a name="support"></a>支援
 
 如果您在本文中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/en-us/support/forums/)上的 Azure 專家。 或者，您可以提出 Azure 支援事件。 請移至 [Azure 支援網站](https://azure.microsoft.com/en-us/support/options/)，然後選取 [取得支援]。 如需使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](https://azure.microsoft.com/en-us/support/faq/)。
-
-
-<!--HONumber=Jan17_HO3-->
-
-

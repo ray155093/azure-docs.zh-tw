@@ -17,6 +17,7 @@ ms.author: mlearned
 translationtype: Human Translation
 ms.sourcegitcommit: c327fc0f8175f3fe62f9a0975b7fbad1437bbbe0
 ms.openlocfilehash: 4309d2dffacb9baf2563c8a4fcd1984beabdeef0
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -120,10 +121,5 @@ PS C:\> docker-machine ip MyDockerHost
 如需實際執行裝載容器，請參閱 [Azure Container Service](http://aka.ms/AzureContainerService)
 
 若要使用 Visual Studio 開發 .NET Core 應用程式，請參閱 [Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

@@ -17,6 +17,7 @@ ms.author: msfussell
 translationtype: Human Translation
 ms.sourcegitcommit: 47b3fffb2d5c24b7473884e490be19ff17b61b61
 ms.openlocfilehash: 97b0cb7a5f04f2c5c547cb4b70d87273aa8f2383
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -302,9 +303,4 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
 
 * [Service Fabric 和容器的概觀](service-fabric-containers-overview.md)
 * 如需範例應用程式，請[查看 GitHub 上的 Service Fabric 容器程式碼範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

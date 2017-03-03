@@ -18,6 +18,7 @@ ms.author: nepeters
 translationtype: Human Translation
 ms.sourcegitcommit: 64ad540536dcf3f4d4a73f49d99fb6142b33ea9c
 ms.openlocfilehash: d761bd2cb01d121a3abdd91b59737bece567aba5
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -69,10 +70,5 @@ Azure Resource Manager 範本需要下列參數值。
 [步驟 3 - Azure Resource Manager 範本中的可用性和規模](virtual-machines-linux-dotnet-core-4-availability-scale.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [步驟 4 - 使用 Azure Resource Manager 範本進行應用程式部署](virtual-machines-linux-dotnet-core-5-app-deployment.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

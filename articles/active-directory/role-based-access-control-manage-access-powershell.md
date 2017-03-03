@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 07/22/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: d6dbbee1f977245cc16710ace3b25d6e167cbc7e
-ms.openlocfilehash: cdd7aab27943df568abfda27265ed970e6dd789c
+ms.sourcegitcommit: 45f1716d7520981845fbfb96cfaf24cde9dd5c5d
+ms.openlocfilehash: 8b906c402dde8d2bbaa2354a370a775058c146a7
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -127,7 +128,14 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 ![RBAC PowerShell - Remove-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-remove-azure-rm-role-assignment.png)
 
 ## <a name="create-a-custom-role"></a>建立自訂角色
-若要建立自訂角色，請使用 `New-AzureRmRoleDefinition` 命令。 建構角色有兩種方法：使用 PSRoleDefinitionObject 或 JSON 範本。 
+若要建立自訂角色，請使用 ```New-AzureRmRoleDefinition``` 命令。 建構角色有兩種方法：使用 PSRoleDefinitionObject 或 JSON 範本。 
+
+## <a name="get-actions-from-particular-resource-provider"></a>從特定的資源提供者取得動作
+當您從頭建立自訂角色時，務必知道來自資源提供者所有可能的作業。
+這可以利用 ```Get-AzureRMProviderOperation``` 命令來達成。 例如，如果您想要檢查虛擬機器的所有可用作業，則命令會如下所述︰
+
+```Get-AzureRMProviderOperation "Microsoft.Compute/virtualMachines/*" | FT OperationName, Operation , Description -AutoSize```
+
 
 ### <a name="create-role-with-psroledefinitionobject"></a>使用 PSRoleDefinitionObject 建立角色
 使用 PowerShell 建立自訂角色時，您可以從頭開始，或使用其中一個[內建角色](role-based-access-built-in-roles.md)當作起點，此範例採用後者。 請編輯屬性來新增您想要的 *Actions*、*notActions* 或 *scopes*，然後將變更儲存為新角色。
@@ -272,10 +280,5 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 ## <a name="see-also"></a>另請參閱
 * [搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)
   [!INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

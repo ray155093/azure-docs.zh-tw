@@ -17,6 +17,7 @@ ms.author: tarcher
 translationtype: Human Translation
 ms.sourcegitcommit: f7656382500682898cd3ed6372630afa3c3f6350
 ms.openlocfilehash: 5c595bd2175f1cbc650bd1a757eeacc80cf39e23
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -95,10 +96,5 @@ ms.openlocfilehash: 5c595bd2175f1cbc650bd1a757eeacc80cf39e23
 ## <a name="related-blog-posts"></a>相關部落格文章
 * [如何在 AzureDevTestLabs 疑難排解失敗的構件](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)
 * [在 Azure 研發測試實驗室使用 ARM 範本將 VM 加入至現有 AD 網域](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

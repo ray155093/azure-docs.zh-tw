@@ -18,6 +18,7 @@ ms.author: ashmaka
 translationtype: Human Translation
 ms.sourcegitcommit: 292c9150822363aba3336b1efce579dc5362cb14
 ms.openlocfilehash: e522d608e8ff51e00b3c1a461bf9ba909b0105af
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -57,8 +58,3 @@ Azure 搜尋服務認得的資料格式為 JSON，而資料集中的所有文件
 
 > [!TIP]
 > 許多 [Azure 搜尋服務程式碼範例](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)包含內嵌或隨手可得的資料集，並提供簡單的開始使用方式。 入口網站也會提供範例索引子和資料來源 (由稱為 "realestate-us-sample" 的小型不動產資料集所組成)。 當您在範例資料來源上執行預先設定的索引子時，系統會建立索引並隨著文件載入，而後即可在 [搜尋總管] 中或由您撰寫的程式碼查詢索引。
-
-
-<!--HONumber=Jan17_HO2-->
-
-

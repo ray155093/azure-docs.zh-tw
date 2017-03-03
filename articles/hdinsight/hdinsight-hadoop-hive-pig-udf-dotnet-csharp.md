@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 1ddfbd3b8d9ca695b08739c7f0716a8e8de82725
 ms.openlocfilehash: cb94febf8f58eda3c56755d60fd49e3dd265d3c3
+ms.lasthandoff: 01/19/2017
 
 
 ---
@@ -252,9 +253,4 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 * [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

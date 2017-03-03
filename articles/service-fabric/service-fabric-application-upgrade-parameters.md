@@ -17,6 +17,7 @@ ms.author: subramar
 translationtype: Human Translation
 ms.sourcegitcommit: 5a0362caf0082112b7d9c648c9ecfb893d8ac954
 ms.openlocfilehash: 3f8fb1da14a65454d3c7997de80f399110b3b441
+ms.lasthandoff: 01/07/2017
 
 
 ---
@@ -69,9 +70,4 @@ ms.openlocfilehash: 3f8fb1da14a65454d3c7997de80f399110b3b441
 參考 [進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
 
 參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

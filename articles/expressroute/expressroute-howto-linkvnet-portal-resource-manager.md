@@ -18,6 +18,7 @@ ms.author: cherylmc
 translationtype: Human Translation
 ms.sourcegitcommit: b3c0cca9a6d5171b1248b0f463cbbb26641fc5f2
 ms.openlocfilehash: a1a689dbfc35107b52f9b84f74ac8bfac0727a0e
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -148,9 +149,4 @@ ms.openlocfilehash: a1a689dbfc35107b52f9b84f74ac8bfac0727a0e
 
 ## <a name="next-steps"></a>後續步驟
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

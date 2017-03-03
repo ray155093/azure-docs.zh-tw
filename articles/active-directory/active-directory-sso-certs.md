@@ -17,6 +17,7 @@ ms.author: asmalser
 translationtype: Human Translation
 ms.sourcegitcommit: fb33a0b01b7d9806c92dfc66303b0dd2ca1044d9
 ms.openlocfilehash: 04276fc2da32b27dc9e0a4601ab45b9f1e95959a
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -74,10 +75,5 @@ ms.openlocfilehash: 04276fc2da32b27dc9e0a4601ab45b9f1e95959a
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 * [搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)
 * [SAML 型單一登入疑難排解](active-directory-saml-debugging.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

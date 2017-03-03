@@ -17,6 +17,7 @@ ms.author: fashah;garye;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 0813611f581a68efb8f09a1e041cfbe429bf0c5c
 ms.openlocfilehash: 16fabb29bdc8ec770efd843e18e9016e338a8f4e
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -146,10 +147,5 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/) 提供一組豐富�
 
 <!-- Module References -->
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

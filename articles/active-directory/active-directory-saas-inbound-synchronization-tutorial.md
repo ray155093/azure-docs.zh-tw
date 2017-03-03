@@ -16,6 +16,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: 50f75a05cd7e22316be5434c0b37f0f0a2ee8509
 ms.openlocfilehash: 75c7565806c9737a464d9fa3fc34e4d15eb6a16b
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -163,10 +164,5 @@ ms.openlocfilehash: 75c7565806c9737a464d9fa3fc34e4d15eb6a16b
    ![開始佈建](./media/active-directory-saas-inbound-synchronization-tutorial/IC750998.png "開始佈建")  
 
 您現在可以移至 [使用者]  區段，並檢查是否已匯入您的 Workday 使用者。    
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

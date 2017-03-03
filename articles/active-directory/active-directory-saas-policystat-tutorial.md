@@ -16,6 +16,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
 ms.openlocfilehash: 8290d90f22a80d5c585192b17cfa0aeba00aa891
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -152,10 +153,5 @@ PolicyStat 支援即時使用者佈建。 這表示您不需要手動將使用�
    ![是](./media/active-directory-saas-policystat-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

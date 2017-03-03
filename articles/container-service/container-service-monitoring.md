@@ -19,6 +19,7 @@ ms.author: saudas
 translationtype: Human Translation
 ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
 ms.openlocfilehash: 8dfd53346b6198bf5ecab4b4b73bfed93fa46b18
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -49,10 +50,5 @@ Datadog 是一項監視服務，會從 Azure 容器服務叢集內的容器收�
 ![DC/OS Universe 中的 Datadog 設定](./media/container-service-monitoring/datadog3.png) 
 
 在上面的設定中，執行個體會設為 10000000，因此每當有新節點新增至叢集時，Datadog 就會自動將代理程式部署到該新節點。 這是過渡解決方案。 一旦您安裝了封裝，請瀏覽回到 Datadog 網站並尋找「[儀表板](https://app.datadoghq.com/dash/list)」。 從該處，您會看到自訂和整合儀表板。 [Docker 儀表板](https://app.datadoghq.com/screen/integration/docker)會擁有為了監視叢集所需的所有容器計量。 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -19,6 +19,7 @@ ms.author: rachelap@microsoft.com
 translationtype: Human Translation
 ms.sourcegitcommit: a8f6d111a010666bf4aaaf05e061381cc8fffed0
 ms.openlocfilehash: 634781189459f26e2ffa42b25a2ffb229d3371d4
+ms.lasthandoff: 02/06/2017
 
 
 ---
@@ -190,10 +191,5 @@ ms.openlocfilehash: 634781189459f26e2ffa42b25a2ffb229d3371d4
   討論 Azure Functions 可用的服務方案，包括使用情況主控方案，以及如何選擇正確的方案。 
 
 [!INCLUDE [Getting help note](../../includes/functions-get-help.md)]
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

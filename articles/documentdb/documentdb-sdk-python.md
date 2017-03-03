@@ -17,6 +17,7 @@ ms.author: rnagpal
 translationtype: Human Translation
 ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
 ms.openlocfilehash: 377b1c5a5f1a3425f255d227c6d2800b9ec61a33
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -138,10 +139,5 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 ## <a name="see-also"></a>另請參閱
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

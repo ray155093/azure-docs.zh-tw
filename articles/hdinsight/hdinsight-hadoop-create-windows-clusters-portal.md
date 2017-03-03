@@ -18,6 +18,7 @@ ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: ede2e4ec5f3414d1c8a17f4c120011eba0d9a6ca
 ms.openlocfilehash: a9d7a4372693ad021a898fae9818f2d037d42547
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -89,10 +90,5 @@ ms.openlocfilehash: a9d7a4372693ad021a898fae9818f2d037d42547
 * [開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md) - 了解如何開始使用 HDInsight 叢集
 * [以程式設計方式提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md) - 了解如何以程式設計方式提交工作至 HDInsight
 * [使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-management-portal.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

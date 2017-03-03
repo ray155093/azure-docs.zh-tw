@@ -18,6 +18,7 @@ ms.author: cynthn
 translationtype: Human Translation
 ms.sourcegitcommit: cc14f7747c4a24acea434f62b7615d10819bd619
 ms.openlocfilehash: a2df2169acda706a0fc3e1b7daf743ce29e5f030
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -128,10 +129,5 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
 ## <a name="next-steps"></a>後續步驟
 * [在 Azure 中從一般化 VHD 建立 VM](virtual-machines-windows-create-vm-generalized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [在 Azure 中從特製化的 VHD 建立 VM](virtual-machines-windows-create-vm-specialized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，方法為當您建立新的 VM 時將其附加做為作業系統磁碟。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

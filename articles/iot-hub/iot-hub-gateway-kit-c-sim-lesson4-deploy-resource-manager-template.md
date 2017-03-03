@@ -18,6 +18,7 @@ ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: 2116e2c2ef5808145b56e63c1e2b91f20e639a3d
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -86,9 +87,4 @@ az group deployment create --template-file arm-template.json --parameters @arm-t
 
 ## <a name="next-steps"></a>後續步驟
 [讀取保存在 Azure 儲存體中的訊息](iot-hub-gateway-kit-c-sim-lesson4-read-table-storage.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

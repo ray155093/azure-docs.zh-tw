@@ -15,6 +15,7 @@ ms.author: carolz
 translationtype: Human Translation
 ms.sourcegitcommit: b490d47b03cd3c7c57c3630fafb95777fffaa3aa
 ms.openlocfilehash: b2f2e067fd6c6c2c34bee167356756721c8fd0cd
+ms.lasthandoff: 02/09/2017
 
 ---
 #<a name="azure-functions-documentation"></a>Azure Functions 文件
@@ -114,10 +115,5 @@ ms.openlocfilehash: b2f2e067fd6c6c2c34bee167356756721c8fd0cd
         </a>
     </li>
 </ul>
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

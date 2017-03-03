@@ -17,6 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
 ms.openlocfilehash: 3f9134fdff56e0ee5146cb7ccf08d168ebf84281
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -58,10 +59,5 @@ ms.openlocfilehash: 3f9134fdff56e0ee5146cb7ccf08d168ebf84281
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

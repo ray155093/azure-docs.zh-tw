@@ -17,6 +17,7 @@ ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 994a379129bffd7457912bc349f240a970aed253
 ms.openlocfilehash: 799ef33c924a0067bb5e8da9d1b4e50091dbabf6
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -142,10 +143,5 @@ namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard", dashboar
 
 ## <a name="next-steps"></a>後續步驟
 請參閱[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)，了解如何在 POS 零售案例中使用佇列的相關資訊。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

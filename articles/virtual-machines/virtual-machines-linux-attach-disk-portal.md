@@ -18,6 +18,7 @@ ms.author: cynthn
 translationtype: Human Translation
 ms.sourcegitcommit: cc14f7747c4a24acea434f62b7615d10819bd619
 ms.openlocfilehash: 31d7f4620420839ade1ca58391fad78e94d4e929
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -99,9 +100,4 @@ ms.openlocfilehash: 31d7f4620420839ade1ca58391fad78e94d4e929
 
 ## <a name="next-steps"></a>後續步驟
 加入磁碟後，您需要準備它以便使用。 如需詳細資訊，請參閱這篇[做法：在 Linux 中初始化新的資料磁碟](virtual-machines-linux-classic-attach-disk.md#initialize-a-new-data-disk-in-linux)。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

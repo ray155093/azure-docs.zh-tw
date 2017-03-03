@@ -18,6 +18,7 @@ ms.author: sstein
 translationtype: Human Translation
 ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
 ms.openlocfilehash: 85efdb2a5b9571d76338aeb0871b729693b63dcb
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -130,10 +131,5 @@ ms.openlocfilehash: 85efdb2a5b9571d76338aeb0871b729693b63dcb
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

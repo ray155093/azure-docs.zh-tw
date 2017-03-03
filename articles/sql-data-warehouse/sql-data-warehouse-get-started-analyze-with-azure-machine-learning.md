@@ -17,6 +17,7 @@ ms.author: kevin;barbkess
 translationtype: Human Translation
 ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
 ms.openlocfilehash: db402a9d8bdccf0db9783450fa4cb60a2c047ece
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -146,9 +147,4 @@ FROM [dbo].[vTargetMail]
 [Introduction to Machine Learning on Azure]:https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [load sample data manually]: sql-data-warehouse-load-sample-databases.md
 [Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
 ms.openlocfilehash: 58881fd4608deddd8390cf4905b31a57f526e492
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -57,10 +58,5 @@ ms.openlocfilehash: 58881fd4608deddd8390cf4905b31a57f526e492
    
     ![開始使用資源庫映像](./media/hdinsight-hive-analyze-sensor-data/getting-started-gallery.png)
 3. 依照網頁上提供的指示完成範例。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

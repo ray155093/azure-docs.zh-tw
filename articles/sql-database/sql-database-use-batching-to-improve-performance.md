@@ -18,6 +18,7 @@ ms.author: sstein
 translationtype: Human Translation
 ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
 ms.openlocfilehash: 28c847137bda93886a2ae80151e3834f149a4858
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -623,10 +624,5 @@ PurchaseOrderDetail 資料表中的 OrderID 資料行必須參考 PurchaseOrder 
 
 ## <a name="next-steps"></a>後續步驟
 這篇文章著重於與批次處理相關的資料庫設計和程式碼撰寫技術，如何改善應用程式的效能和延展性。 但這只是整體策略中的一個因素。 關於其他可改善效能和延展性的方式，請參閱[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)和[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

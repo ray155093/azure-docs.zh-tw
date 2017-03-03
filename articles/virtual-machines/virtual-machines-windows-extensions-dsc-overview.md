@@ -19,6 +19,7 @@ ms.author: zachal
 translationtype: Human Translation
 ms.sourcegitcommit: c2ce603e80243584fdc302c545e520b4503f5555
 ms.openlocfilehash: ca2d8d4b277f48ec46156293f73b18b6c2967c51
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -156,10 +157,5 @@ C:\WindowsAzure\Logs\Plugins\Microsoft.Powershell.DSC\[版本號碼]
 若要尋找您可以使用 PowerShell DSC 來管理的其他功能，請 [瀏覽 PowerShell 資源庫](https://www.powershellgallery.com/packages?q=DscResource&x=0&y=0) 以取得更多 DSC 資源。
 
 如需有關將敏感性參數傳遞到組態中的詳細資訊，請參閱 [使用 DSC 擴充功能處理常式安全地管理認證](virtual-machines-windows-extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

@@ -17,6 +17,7 @@ ms.author: robmcm
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: 45a5c8f16dd70f65967907c18752f4f98ffa75ea
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -109,7 +110,7 @@ DNS 變更需要一些時間才會完全生效，如果無法立即執行下列�
 ## <a name="install-and-setup-the-plugin"></a>安裝和設定外掛程式
 WordPress 多網站目前沒有內建的方法可對應自訂網域。 不過，有一個稱為 [WordPress MU Domain Mapping][wordpress-plugin-wordpress-mu-domain-mapping] 的外掛程式可為您增加此功能。 請登入網站的 [Network Admin] 部分，並安裝 **WordPress MU Domain Mapping** 外掛程式。
 
-安裝並啟動此外掛程式之後，請移至 []  >  來設定外掛程式。 在第一個文字方塊 [Server IP Address] 中，輸入您用來設定網域 A 記錄的 IP 位址。 設定您要的任何 [Domain Options] \(預設值通常就很適合)，然後按一下 [Save]。
+安裝並啟動此外掛程式之後，請移至 [Settings] \(設定)  > [Domain Mapping] \(網域對應)  來設定外掛程式。 在第一個文字方塊 [Server IP Address] 中，輸入您用來設定網域 A 記錄的 IP 位址。 設定您要的任何 [Domain Options] \(預設值通常就很適合)，然後按一下 [Save]。
 
 ## <a name="map-the-domain"></a>對應網域
 移至要讓網域對應到的網站的 [Dashboard]  。 按一下 [Tools] > [Domain Mapping]，在文字方塊中輸入新的網域，然後按一下 [Add]。
@@ -139,10 +140,5 @@ Azure Web Apps 可讓您將不限數量的網域加入至 Web 應用程式。 �
 
 [wordpress-manage-domains]: ./media/web-sites-php-convert-wordpress-multisite/wordpress-manage-domains.png
 
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

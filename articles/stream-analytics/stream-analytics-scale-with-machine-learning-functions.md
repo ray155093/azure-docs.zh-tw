@@ -18,6 +18,7 @@ ms.author: jeffstok
 translationtype: Human Translation
 ms.sourcegitcommit: b36fd0b4a52ae2e13a5b5dcde412994a0656e3d3
 ms.openlocfilehash: 27f2ac3d54226501e254d9a8fef6cc378eb9a860
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -121,10 +122,5 @@ ms.openlocfilehash: 27f2ac3d54226501e254d9a8fef6cc378eb9a860
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

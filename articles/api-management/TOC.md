@@ -15,6 +15,7 @@
 ### [使用 AAD 保護 Web API 後端](api-management-howto-protect-backend-with-aad.md)
 ### [連接到虛擬網路](api-management-using-with-vnet.md)
 ### [連接到內部虛擬網路](api-management-using-with-internal-vnet.md)
+### [在內部 VNET 中整合應用程式閘道](api-management-howto-integrate-internal-vnet-appgateway.md)
 ### [相互憑證驗證](api-management-howto-mutual-certificates.md)
 ## 設定原則
 ### [自訂快取](api-management-sample-cache-by-key.md)
@@ -24,13 +25,16 @@
 ### [原則參考索引](api-management-policy-reference.md)
 ### [原則概觀](api-management-howto-policies.md)
 ### [使用屬性管理密碼](api-management-howto-properties.md)
+### [使用用戶端憑證驗證保護 API](api-management-howto-mutual-certificates-for-clients.md)
 ## 自訂開發人員經驗
-### [自訂開發人員入口網站](api-management-customize-portal.md)
+### [修改頁面內容和版面配置](api-management-modify-content-layout.md)
+### [自訂頁面元素的樣式](api-management-customize-styles.md)
+### [使用範本自訂系統頁面](api-management-developer-portal-templates.md)
 ### [使用 AAD 驗證](api-management-howto-aad.md)
+### [使用 AAD B2C 進行驗證](api-management-howto-aad-b2c.md)
 ### [委派的驗證](api-management-howto-setup-delegation.md)
 ### [電子郵件通知及範本](api-management-howto-configure-notifications.md)
 ### [啟用主控台 OAuth 支援](api-management-howto-oauth2.md)
-### [使用範本進行自訂](api-management-developer-portal-templates.md)
 ## 生產管理
 ### [管理群組](api-management-howto-create-groups.md)
 ### [部署至多個 Azure 區域](api-management-howto-deploy-multi-region.md)
@@ -80,9 +84,4 @@
 ## [使用 REST API 提供類似 RBAC 的存取權](http://blogs.msdn.com/b/katriend/archive/2015/12/21/using-the-azure-api-management-rest-api-as-workaround-to-rbac-functionality.aspx)
 ## [設定 PostMan 呼叫 API 管理 API](http://www.bizbert.com/bizbert/2015/07/08/Setting+Up+PostMan+To+Call+The+Azure+Management+APIs.aspx)
 ## [SmartBear Ready! API 的 API 管理外掛程式](http://smartbear.com/plugins/microsoft-azure-api-management-plugin/)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

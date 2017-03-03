@@ -17,6 +17,7 @@ ms.author: jotaub
 translationtype: Human Translation
 ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
 ms.openlocfilehash: 5a360462288e5df6e0ede5f11adabba158a9dd57
+ms.lasthandoff: 02/02/2017
 
 ---
 
@@ -59,8 +60,3 @@ Node.js 程式庫目前為預覽版，並且由 Microsoft 員工和外部參與�
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)
 * [事件中樞常見問題集](event-hubs-faq.md)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

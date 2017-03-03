@@ -19,6 +19,7 @@ ms.author: saudas
 translationtype: Human Translation
 ms.sourcegitcommit: 5da28eecf2df764f71906897450ebe67b3048b3f
 ms.openlocfilehash: d57212a8c858c4fb53cc619a578b59da92176bb2
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -55,9 +56,4 @@ Sysdig 是一項監視服務，可讓您在叢集內監視您的容器。 Sysdig
 安裝套件之後回到 Sysdig UI，您就可以瀏覽叢集內不同的容器使用情況計量。 
 
 您也可以透過[新的儀表板精靈](https://app.sysdigcloud.com/#/dashboards/new)來安裝 Mesos 和 Marathon 專用儀表板。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

@@ -16,6 +16,7 @@ ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
 ms.openlocfilehash: 8a000ecda94edbeab8c0438c63d6b66dc7f0902b
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -142,10 +143,5 @@ ms.openlocfilehash: 8a000ecda94edbeab8c0438c63d6b66dc7f0902b
 * [什麼是 Application Insights？](app-insights-overview.md)
 * [適用於網頁的 Application Insights](app-insights-javascript.md)
 * [更多範例和逐步解說](app-insights-code-samples.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

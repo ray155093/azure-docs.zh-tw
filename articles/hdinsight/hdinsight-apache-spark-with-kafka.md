@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 50a9c3929a4d3194c3786a3d4f6cdd1b73fb5867
 ms.openlocfilehash: 0cb9d65e33bf6f6b67e2a74b7e4634aba3f2359b
+ms.lasthandoff: 02/14/2017
 
 ---
 # <a name="use-apache-spark-with-kafka-preview-on-hdinsight"></a>使用 Apache Spark 搭配 Kafka (預覽) on HDInsight
@@ -183,10 +184,5 @@ Notebook 中的程式碼會執行下列工作：
 * [開始使用 Apache Kafka on HDInsight](hdinsight-apache-kafka-get-started.md)
 * [使用 MirrorMaker 建立 Apache Kafka on HDInsight 複本](hdinsight-apache-kafka-mirroring.md)
 * [使用 Apache Storm 搭配 Kafka on HDInsight](hdinsight-apache-storm-with-kafka.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

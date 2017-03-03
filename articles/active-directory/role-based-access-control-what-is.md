@@ -17,6 +17,7 @@ ms.author: kgremban
 translationtype: Human Translation
 ms.sourcegitcommit: d00ba4e6d1abd62e5a0d5a9d5bb229d3fa64b473
 ms.openlocfilehash: fb12fb78d4257fc8264bd476de70671eb8264323
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -67,9 +68,4 @@ Azure RBAC 僅支援在 Azure 入口網站和 Azure Resource Manager API 中的 
 * 在 Azure 入口網站中開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 * 參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
 * 定義您自己的 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

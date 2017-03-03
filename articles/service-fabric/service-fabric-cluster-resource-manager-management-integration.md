@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 01/05/2017
 ms.author: masnider
 translationtype: Human Translation
-ms.sourcegitcommit: dafaf29b6827a6f1c043af3d6bfe62d480d31ad5
-ms.openlocfilehash: 53b97327e41c68fbbbe20b5bc5cf99bdae15e1f9
+ms.sourcegitcommit: b2428f93680c12c76000fa8eb1a7138f72a8efe7
+ms.openlocfilehash: 9d67f089f4aba03e846a8fe020a91b6b1ac6ea48
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -184,9 +185,4 @@ PreferredLocation 條件約束有點不同，因此它是唯一設為「最佳�
 
 ## <a name="next-steps"></a>後續步驟
 * 從頭開始，並 [取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

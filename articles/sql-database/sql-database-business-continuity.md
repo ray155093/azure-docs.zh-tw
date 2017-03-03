@@ -19,6 +19,7 @@ ms.author: sashan
 translationtype: Human Translation
 ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
 ms.openlocfilehash: 8fefa688ee52395d7dee2f53da12ebc50e84fb8e
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -154,10 +155,5 @@ SQL Database 會每週自動執行完整資料庫備份、每小時自動執行�
 
 ## <a name="next-steps"></a>後續步驟
 如需獨立資料庫和彈性集區的應用程式設計考量探討，請參閱[設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)和[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

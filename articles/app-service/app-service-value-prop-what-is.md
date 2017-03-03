@@ -18,6 +18,7 @@ ms.author: byvinyal
 translationtype: Human Translation
 ms.sourcegitcommit: 40dd75832302d7d88e852e2ea93821750675607e
 ms.openlocfilehash: 4deb60c25bf13d1f31b58f002a7edea0672eca25
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -90,10 +91,5 @@ App Service 方案的 **SKU** 和**級別**可決定成本，而不是其中裝�
 * [教學課程︰建立行動應用程式](../app-service-mobile/app-service-mobile-android-get-started.md)
 * [教學課程︰建立 API 應用程式](../app-service-api/app-service-api-dotnet-get-started.md)
 * [教學課程︰建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

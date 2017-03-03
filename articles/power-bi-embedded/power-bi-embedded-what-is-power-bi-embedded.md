@@ -18,6 +18,7 @@ ms.author: asaxton
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 81215430b5731a53d4f4700499c1d9af963e712c
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -37,7 +38,7 @@ Power BI Embedded 是一個 **Azure 服務** ，可讓 ISV 和應用程式開發
 就像 Azure 中的任何其他服務一樣，Power BI Embedded 的資源也是透過 [Azure Resource Manager API](https://msdn.microsoft.com/library/mt712306.aspx) 佈建。 在此情況下，您佈建的資源是 **Power BI 工作區集合**。
 
 ## <a name="workspace-collection"></a>工作區集合
-**工作區集合**是包含 0 個或更多**工作區**之資源的最上層 Azure 容器。  **工作區** **集合** has all of the standard zure properties, as well as the following:
+**工作區集合**是包含 0 個或更多**工作區**之資源的最上層 Azure 容器。  **工作區****集合**擁有所有標準 Azure 屬性，以及下列項目：
 
 * **存取金鑰** – 安全呼叫 Power BI API 時使用的金鑰 (會在稍後的小節中說明)。
 * **使用者** – 具有管理權現，可透過 Azure 入口網站或 Azure Resource Manager API 管理 Power BI 工作區集合的 Azure Active Directory (AAD) 使用者。
@@ -68,9 +69,4 @@ Power BI Embedded 是一個 **Azure 服務** ，可讓 ISV 和應用程式開發
 ## <a name="see-also"></a>另請參閱
 * [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 * [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

@@ -13,11 +13,12 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/08/2016
+ms.date: 02/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
-ms.openlocfilehash: 1fbf8cd4347c5a49fe7769fd8d02c2dbfddfc74e
+ms.sourcegitcommit: 50a9c3929a4d3194c3786a3d4f6cdd1b73fb5867
+ms.openlocfilehash: 41c3e20dc059ecc344cba6ca09ec04892e202d63
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -81,7 +82,7 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
             將 **USERNAME** 取代為叢集的 SSH 使用者帳戶名稱。 將 **CLUSTERNAME** 取代為 HDInsight 叢集名稱。
         
         > [!NOTE]
-        > 在 Windows 環境中，您需要使用 PSCP 公用程式，而不是 scp。 您可以從 [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)下載。
+        > 在 Windows 環境中，您可能沒有 `scp` 命令。 若是如此，請改為使用 PSCP 公用程式。 您可以從 [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)下載。
 
     * 對於**以 Windows 為基礎的 HDInsight**，請使用下列步驟來下載 jar 檔案。
      
@@ -195,10 +196,5 @@ at java.util.concurrent.FutureTask.get(FutureTask.java:206)
 * [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

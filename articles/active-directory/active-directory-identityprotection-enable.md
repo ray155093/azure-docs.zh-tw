@@ -17,6 +17,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: f231252c222c5520d0a66f9b40749bd203545f16
 ms.openlocfilehash: 44ee1e58b65b23eeb3fa3710fcb29a1646d5f3ad
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -44,10 +45,5 @@ Azure Active Directory Identity Protection 是一項新功能，可針對可疑�
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

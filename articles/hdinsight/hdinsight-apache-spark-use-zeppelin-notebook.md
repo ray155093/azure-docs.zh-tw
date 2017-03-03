@@ -17,6 +17,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
 ms.openlocfilehash: eadf0611ca46a975c364a1b073828c6c3faf5f77
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -250,9 +251,4 @@ ms.openlocfilehash: eadf0611ca46a975c364a1b073828c6c3faf5f77
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

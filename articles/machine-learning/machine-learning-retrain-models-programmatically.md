@@ -17,6 +17,7 @@ ms.author: raymondl;garye;v-donglo
 translationtype: Human Translation
 ms.sourcegitcommit: cd32cb7d2247676795f345448960d547eafba084
 ms.openlocfilehash: 9290258998f6756dce55a764e020fb3278c2f8a6
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -183,9 +184,4 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如 C:\temp\CensusIpnput.c
 
 <!-- Module References -->
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

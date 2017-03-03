@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 0d5b68d26d708a28edee13ff3d9a57588ce83e12
 ms.openlocfilehash: 856d75c58cd911c641ec74b78f5c6133e605b2ec
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -219,9 +220,4 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 * [從 Windows 用戶端使用 SSH 連線至以 Linux 為基礎的叢集](hdinsight-hadoop-linux-use-ssh-windows.md)
 * [從 Linux、Unix，或 Mac 用戶端使用 SSH 連線至以 Linux 為基礎的叢集](hdinsight-hadoop-linux-use-ssh-unix.md)
 * [使用 Ambari 管理以 Linux 為基礎的叢集](hdinsight-hadoop-manage-ambari.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

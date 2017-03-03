@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 02/09/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 2a590795178d819d9df1b010dc68809492d6bdbc
+ms.sourcegitcommit: af15b530dd512873e4534fb61d276c8c8c3a196a
+ms.openlocfilehash: 2de70faa090fb3da25fec8f8946e52fcae2677d3
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -33,7 +34,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 MongoD
 資料處理站目前只支援將資料從 MongoDB 移動到其他資料存放區，而不支援將資料從其他資料存放區移動到 MongoDB。
 
 ## <a name="supported-versions"></a>支援的版本
-這個 MongoDB 連接器支援 MongoDB 版本 2.4 和以上版本。
+這個 MongoDB 連接器支援 MongoDB 版本 2.4、2.6、3.0 和 3.2。
 
 ## <a name="prerequisites"></a>必要條件
 如果是能夠連接到您內部部署 MongoDB 資料庫的 Azure Data Factory 服務，您就必須安裝下列元件：
@@ -355,9 +356,4 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 MongoDB 資�
 
 ## <a name="next-steps"></a>後續步驟
 請參閱 [在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文，以取得如何建立資料管線以將資料從內部部署資料存放區移動至 Azure 資料存放區的逐步指示。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

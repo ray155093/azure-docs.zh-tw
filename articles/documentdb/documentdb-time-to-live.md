@@ -18,6 +18,7 @@ ms.author: arramac
 translationtype: Human Translation
 ms.sourcegitcommit: 1ad5307054dbd860f9c65db4b82ea5f560a554c8
 ms.openlocfilehash: 14a06dd20547f2910b2321372b27d9f777e54cc7
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -173,10 +174,5 @@ TTL 會套用到整份文件。 如果您只想要讓文件的一部分過期，
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 Azure DocumentDB，請參閱服務的[*文件*](https://azure.microsoft.com/documentation/services/documentdb/)頁面。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

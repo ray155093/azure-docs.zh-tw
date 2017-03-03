@@ -17,6 +17,7 @@ ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: 4b29fd1c188c76a7c65c4dcff02dc9efdf3ebaee
 ms.openlocfilehash: 299a55865c1c91e664d67095de76708f444d30b9
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -412,9 +413,4 @@ ms.openlocfilehash: 299a55865c1c91e664d67095de76708f444d30b9
 | [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動。 |
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

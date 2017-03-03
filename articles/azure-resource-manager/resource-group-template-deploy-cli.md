@@ -17,6 +17,7 @@ ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: e4851e872349fa6483e1f1a340d0968e845a3518
 ms.openlocfilehash: ccbb918a3377094395a27a9b7a63f213c5085027
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -200,10 +201,5 @@ azure group deployment create -f "c:\MyTemplates\example.json" -e "c:\MyTemplate
 * 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱 [在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 * 如需關於自動化部署的四部分系列，請參閱[自動化應用程式部署至 Azure 虛擬機器](../virtual-machines/virtual-machines-windows-dotnet-core-1-landing.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 這個系列涵蓋應用程式架構、存取與安全性、可用性與級別，以及應用程式部署。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 
