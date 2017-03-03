@@ -17,6 +17,7 @@ ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
 ms.openlocfilehash: 10e58a76644b5e4d50f05a2db03f4af193cc5152
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -119,9 +120,4 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。 
 * [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 
