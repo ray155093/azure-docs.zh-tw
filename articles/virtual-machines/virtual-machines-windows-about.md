@@ -18,6 +18,7 @@ ms.author: cynthn
 translationtype: Human Translation
 ms.sourcegitcommit: 232e1d1640352be38720e19f713959e84243af72
 ms.openlocfilehash: 1cd2b9d819acd7d422698d3c14a9009a846973f7
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -38,10 +39,5 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 藉由快速建立簡單的虛擬機器來試用虛擬機器。 如需指示，請參閱 [在 Azure 入口網站中建立執行 Windows 的虛擬機器](virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 由於這些教學課程可協助您快速建立虛擬機器，因此它只會顯示一種這麼做的方式，而不會說明您可用來建立虛擬機器的各種工具。 如需這些工具的摘要以及指示的連結，請參閱 [建立 Windows 虛擬機器的不同方式](virtual-machines-windows-creation-choices.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 
