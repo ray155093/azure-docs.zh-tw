@@ -17,6 +17,7 @@ ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 9852981e530cd147c2d34ac2ede251b58a167a0a
 ms.openlocfilehash: 5c030f463b21284c15752cf95aa1f9a75f17ffb0
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -67,9 +68,4 @@ Azure 資訊安全中心會收集損毀傾印檔案的暫時複本並加以分�
 * [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) — 了解如何監視合作夥伴解決方案的健全狀況。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

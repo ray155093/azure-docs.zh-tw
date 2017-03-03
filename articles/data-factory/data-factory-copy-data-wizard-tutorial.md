@@ -17,6 +17,7 @@ ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: fbf77e9848ce371fd8d02b83275eb553d950b0ff
 ms.openlocfilehash: 5a50f583831b398ae22416e7ade23c33846de55c
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -159,10 +160,5 @@ Azure Data Factory 的 [複製精靈] 可讓您輕鬆快速地建立管線，以
 | [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

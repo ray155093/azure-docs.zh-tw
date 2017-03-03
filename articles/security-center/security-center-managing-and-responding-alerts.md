@@ -17,6 +17,7 @@ ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 9852981e530cd147c2d34ac2ede251b58a167a0a
 ms.openlocfilehash: 0093beda6af6d3b2400185fcd63bc73b2c8c9ba9
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -91,9 +92,4 @@ ms.openlocfilehash: 0093beda6af6d3b2400185fcd63bc73b2c8c9ba9
 * [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

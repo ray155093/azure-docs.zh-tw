@@ -17,6 +17,7 @@ ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: e358f6d1937a45f375777cea1153b975a745a719
 ms.openlocfilehash: 08ba157ba783d00069750cdc1c80d13111b6a670
+ms.lasthandoff: 02/08/2017
 
 ---
 
@@ -216,9 +217,4 @@ Azure AD Connect 現在是作用中的伺服器，您不可切換回使用現有
 深入了解這些常見主題︰[排程器和如何觸發同步處理](active-directory-aadconnectsync-feature-scheduler.md)。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
