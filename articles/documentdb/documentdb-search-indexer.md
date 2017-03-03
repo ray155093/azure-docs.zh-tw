@@ -19,6 +19,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
 ms.sourcegitcommit: 9a5416b1c26d1e8eaecec0ada79d357f32ca5ab1
 ms.openlocfilehash: c318d7133e26ec3a39d6fc97b0693b44d742d456
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -290,10 +291,5 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 * 若要深入了解 Azure DocumentDB，請參閱 [DocumentDB 服務頁面](https://azure.microsoft.com/services/documentdb/)。
 * 若要深入了解 Azure 搜尋服務，請參閱 [搜尋服務頁面](https://azure.microsoft.com/services/search/)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

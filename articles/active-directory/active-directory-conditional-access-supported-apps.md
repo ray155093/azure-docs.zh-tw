@@ -17,6 +17,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: b9605eb10f87f107dffd9f631d043bf550cf030b
 ms.openlocfilehash: 5e293d7d3fa6b0a763663a5428878944660fc03e
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -108,9 +109,4 @@ Exchange 提供兩個主要的通訊協定類別。 檢閱下列選項，然後�
     c1:[Type == "http://schemas.microsoft.com/ws/2012/01/insidecorporatenetwork", Value == "false"] &&
     c2:[Type == "http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-endpoint-absolute-path", Value =~ "(/adfs/ls)|(/adfs/oauth2)"]
     => issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

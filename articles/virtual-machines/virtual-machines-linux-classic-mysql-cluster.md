@@ -18,6 +18,7 @@ ms.author: jparrel
 translationtype: Human Translation
 ms.sourcegitcommit: 8dc7a8c3f109861df70c7501b709a34196e9acbc
 ms.openlocfilehash: 5541dfa41f55a2841108fc8492338f0f291fe377
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -338,9 +339,4 @@ Pacemaker 會使用叢集來監視資源，定義在主要 VM 故障時將這些
 * 負載平衡器至少需要&5; 秒的時間進行回應，因此應用程式應為叢集感知且應可容許逾時。 其他架構也可提供協助，例如應用程式內部佇列、查詢中繼軟體等。
 * 若要確保寫入作業會以可管理的步調結束，且會儘可能頻繁地將快取清除到磁碟以減少記憶體損失，MySQL 調整是有必要的。
 * VM 互連中的寫入效能將會取決於虛擬開關，因為虛擬開關是 DRBD 用來複寫裝置的機制。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

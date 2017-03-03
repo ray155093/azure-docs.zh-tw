@@ -17,6 +17,7 @@ ms.author: adegeo
 translationtype: Human Translation
 ms.sourcegitcommit: 0b404af5b638ec2d543ce98b562b7df538652f70
 ms.openlocfilehash: 71863e52dca951b1fc3847e1bba47977a6e49c7c
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -127,10 +128,5 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 * 設定 [自訂網域名稱](cloud-services-custom-domain-name.md)。
 * [管理您的雲端服務](cloud-services-how-to-manage.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

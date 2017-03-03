@@ -17,6 +17,7 @@ ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 0f9f732d6998a6ee50b0aea4edfc615ac61025ce
 ms.openlocfilehash: 343dc0d39f284488f03e1d1ba3df21ae616e97d9
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -121,10 +122,5 @@ azure_service_bus_service.delete_queue_message(message)
 * 請造訪 GitHub 上的 [Azure SDK for Ruby](https://github.com/Azure/azure-sdk-for-ruby) 儲存機制。
 
 若要比較本文所討論的 Azure 服務匯流排佇列與[如何使用 Ruby 的佇列儲存體](../storage/storage-ruby-how-to-use-queue-storage.md)一文中討論的 Azure 佇列，請參閱 [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對照](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

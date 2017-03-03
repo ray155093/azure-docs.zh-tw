@@ -17,6 +17,7 @@ ms.author: robb
 translationtype: Human Translation
 ms.sourcegitcommit: f28c528b51fdf08129f78fce74dba298be7326dd
 ms.openlocfilehash: 20f820a4883643e8941be3ec59667242d727b0c1
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -116,10 +117,5 @@ VM 擴展集使用來自 Azure 診斷代理程式的遙測資料，而 Web 應�
 * [使用自動調整動作傳送電子郵件和 Webhook 警示通知](insights-autoscale-to-webhook-email.md)
 * [自動調整 REST API](https://msdn.microsoft.com/library/dn931953.aspx)
 * [排解虛擬機器擴展集自動調整的問題](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

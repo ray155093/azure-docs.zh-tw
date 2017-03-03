@@ -18,10 +18,12 @@ ms.author: sashan
 translationtype: Human Translation
 ms.sourcegitcommit: 2b55b6b4475abdbc1985d8ac370b3b612b77eb0e
 ms.openlocfilehash: ae06e6855a11f91ce18e3b12698b3d01e23a6a2c
+ms.lasthandoff: 01/07/2017
 
 
 ---
 # <a name="configure-and-manage-azure-sql-database-security-for-geo-restore-or-failover"></a>建立和管理 Azure SQL Database 安全性以供異地還原或容錯移轉使用 
+
 > [!NOTE]
 > [作用中異地複寫](sql-database-geo-replication-overview.md)現在可供所有服務層中的所有資料庫使用。
 >  
@@ -101,10 +103,5 @@ ms.openlocfilehash: ae06e6855a11f91ce18e3b12698b3d01e23a6a2c
 * 如需自主資料庫使用者的詳細資訊，請參閱 [自主資料庫使用者 - 使資料庫可攜](https://msdn.microsoft.com/library/ff929188.aspx)。
 * 如需使用和設定主動式異地複寫的相關資訊，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)
 * 如需使用異地還原的相關資訊，請參閱 [異地還原](sql-database-recovery-using-backups.md#geo-restore)
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

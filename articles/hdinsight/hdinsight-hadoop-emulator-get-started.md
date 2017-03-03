@@ -19,6 +19,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: 1618ed7971ffef0eae55b73b4bdd04f3f14195ba
 ms.openlocfilehash: a070df78bf95173aa48da60d24d14d08d9be8d9a
+ms.lasthandoff: 01/07/2017
 
 
 ---
@@ -83,10 +84,5 @@ ms.openlocfilehash: a070df78bf95173aa48da60d24d14d08d9be8d9a
 * [了解如何搭配使用 Visual Studio 與 Hortonworks 沙箱](hdinsight-hadoop-emulator-visual-studio.md)
 * [了解 Hortonworks 沙箱的訣竅](http://hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)
 * [Hadoop 教學課程 - 開始使用 HDP](http://hortonworks.com/hadoop-tutorial/hello-world-an-introduction-to-hadoop-hcatalog-hive-and-pig/)
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
 ms.openlocfilehash: 3cf91abf83359f2157d0f8cd53e0b450bfd58d80
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -128,9 +129,4 @@ ms.openlocfilehash: 3cf91abf83359f2157d0f8cd53e0b450bfd58d80
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

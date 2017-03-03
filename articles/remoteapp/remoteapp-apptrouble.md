@@ -16,6 +16,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: 4e6c6571be85cd5fe374c7df644741ae017ccd19
 ms.openlocfilehash: 6db4cf048147cb9559ca1a2e6921c679fe6ec9e5
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -51,10 +52,5 @@ Azure RemoteApp 中裝載的應用程式可能因幾個不同原因而無法啟�
 這是一般錯誤訊息 - 請連絡 Azure 支援服務，以便我們進行調查。 
 
 ![一般 Azure RemoteApp 訊息](./media/remoteapp-apptrouble/ra-apptrouble4.png) 
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

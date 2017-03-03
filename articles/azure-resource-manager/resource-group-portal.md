@@ -17,6 +17,7 @@ ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: e4851e872349fa6483e1f1a340d0968e845a3518
 ms.openlocfilehash: c286b748822d6667f5682c13b7d4c870a3caab65
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -138,10 +139,5 @@ ms.openlocfilehash: c286b748822d6667f5682c13b7d4c870a3caab65
 * 若要透過入口網站部署資源，請參閱 [使用 Resource Manager 範本與 Azure 入口網站來部署資源](resource-group-template-deploy-portal.md)。
 * 若要管理資源的存取權，請參閱 [使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

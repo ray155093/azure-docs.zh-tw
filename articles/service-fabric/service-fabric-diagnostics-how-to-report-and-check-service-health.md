@@ -17,6 +17,7 @@ ms.author: toddabel
 translationtype: Human Translation
 ms.sourcegitcommit: bb93d4dac1853a317bbd6ac70946753f35be264e
 ms.openlocfilehash: bc1dd1d2c378e628094fe717d9c89298aca1f7b4
+ms.lasthandoff: 01/06/2017
 
 
 ---
@@ -151,10 +152,5 @@ activationContext.ReportApplicationHealth(healthInformation);
 * [深入了解 Service Fabric 健康情況](service-fabric-health-introduction.md)
 * [回報服務健全狀況的 REST API](https://docs.microsoft.com/rest/api/servicefabric/report-the-health-of-a-service)
 * [回報應用程式健全狀況的 REST API](https://docs.microsoft.com/rest/api/servicefabric/report-the-health-of-an-application)
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

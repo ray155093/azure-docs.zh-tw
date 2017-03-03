@@ -16,6 +16,7 @@ ms.author: kumud
 translationtype: Human Translation
 ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
 ms.openlocfilehash: 68aad6253f185d53fdd7f11c8660c7287ef12655
+ms.lasthandoff: 01/11/2017
 
 ---
 
@@ -65,9 +66,4 @@ SQL Server AlwaysOn 可用性群組現在可以與 ILB 搭配執行。 可用性
 [設定負載平衡器分配模式](load-balancer-distribution-mode.md)
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

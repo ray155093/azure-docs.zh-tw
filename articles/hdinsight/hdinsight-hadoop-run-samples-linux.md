@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
 ms.openlocfilehash: b3c56871ec23c7595d18006943be19c38d2fb5c9
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -226,9 +227,4 @@ GraySort 是一種效能評定排序，其度量為排序極大資料量時 (通
 
 [hdinsight-use-hive]: hdinsight-use-hive.md
 [hdinsight-use-pig]: hdinsight-use-pig.md
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

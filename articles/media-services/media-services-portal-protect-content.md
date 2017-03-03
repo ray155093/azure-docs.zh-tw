@@ -17,6 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
 ms.openlocfilehash: 4256201f2fd505ed86734e900496eb7364c9a575
+ms.lasthandoff: 01/11/2017
 
 
 ---
@@ -131,10 +132,5 @@ AES 清除金鑰加密將會在所有串流通訊協定上啟用︰Smooth Stream
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

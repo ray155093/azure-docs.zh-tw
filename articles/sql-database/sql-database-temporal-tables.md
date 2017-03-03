@@ -18,6 +18,7 @@ ms.author: bonova
 translationtype: Human Translation
 ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
 ms.openlocfilehash: e00345ddd9e52e2613789ba78c48e8f993d2415c
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -197,10 +198,5 @@ ALTER TABLE dbo.WebsiteUserInfo
 ## <a name="next-steps"></a>後續步驟
 如需有關時態表的詳細資訊，請參閱 [MSDN 文件](https://msdn.microsoft.com/library/dn935015.aspx)。
 瀏覽 Channel 9，聽聽[真實客戶的時態表實作成功案例](https://channel9.msdn.com/Blogs/jsturtevant/Azure-SQL-Temporal-Tables-with-RockStep-Solutions)，並觀看[時態表的即時示範](https://channel9.msdn.com/Shows/Data-Exposed/Temporal-in-SQL-Server-2016)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

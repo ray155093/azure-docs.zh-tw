@@ -17,6 +17,7 @@ ms.author: hascipio
 translationtype: Human Translation
 ms.sourcegitcommit: b76185c0a4a0e17b663affee9a02b65f222fedeb
 ms.openlocfilehash: d679096476406831c1fda4f695adff84e63d6ae8
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -92,9 +93,4 @@ ms.openlocfilehash: d679096476406831c1fda4f695adff84e63d6ae8
 
 ## <a name="additional-resources"></a>其他資源
 * [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

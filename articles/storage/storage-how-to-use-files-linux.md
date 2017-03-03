@@ -17,6 +17,7 @@ ms.author: renash
 translationtype: Human Translation
 ms.sourcegitcommit: e296e468309b53338231e283ac62e4d917e0834b
 ms.openlocfilehash: 8cb98eb721d5769125926a6c75f776a9d510376e
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -159,9 +160,4 @@ Linux 使用者群組的 Azure 檔案儲存體提供論壇，讓您在 Linux 上
 * [Azure 檔案儲存體內部](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 * [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 * [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

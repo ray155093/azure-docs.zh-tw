@@ -16,6 +16,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: 9a653ac435198e89a527070a0174a1adaf830dc3
 ms.openlocfilehash: 4f0519865bf41d045791905ff4eb7bbf92981dcc
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -170,10 +171,5 @@ ms.openlocfilehash: 4f0519865bf41d045791905ff4eb7bbf92981dcc
     ![是](./media/active-directory-saas-replicon-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

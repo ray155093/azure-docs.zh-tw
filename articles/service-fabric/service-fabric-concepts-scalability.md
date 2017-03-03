@@ -17,6 +17,7 @@ ms.author: masnider
 translationtype: Human Translation
 ms.sourcegitcommit: dafaf29b6827a6f1c043af3d6bfe62d480d31ad5
 ms.openlocfilehash: 52dcf341a34478bf4e800d8f1b9d44867b5feaf6
+ms.lasthandoff: 01/07/2017
 
 
 ---
@@ -79,9 +80,4 @@ Service Fabric 支援資料分割。 資料分割可將個別服務分割成多�
 * [Service Fabric 服務的可用性](service-fabric-availability-services.md)
 * [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
 * [定義和管理狀態](service-fabric-concepts-state.md)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

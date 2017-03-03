@@ -17,6 +17,7 @@ ms.author: tarcher
 translationtype: Human Translation
 ms.sourcegitcommit: f7656382500682898cd3ed6372630afa3c3f6350
 ms.openlocfilehash: 2b16840e5e9fc6e0268d83f9177a6fc6ad02841c
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -112,10 +113,5 @@ Azure DevTest Labs 可讓您指定可協助您控制成本並減少實驗室浪�
 * [建立自訂映像](devtest-lab-create-template.md) - 當您建立 VM 時，您要指定一個基本映像，它可以是自訂映像或 Marketplace 映像。 本文會示範如何從 VHD 檔案建立自訂的映像。
 * [設定 Marketplace 映像](devtest-lab-configure-marketplace-images.md) - Azure DevTest Labs 支援根據 Azure Marketplace 映像建立 VM。 本文會示範在實驗室中建立 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
 * [在實驗室中建立 VM](devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立 VM，以及如何使用 VM 中的構件。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

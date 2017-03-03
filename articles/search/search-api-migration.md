@@ -17,6 +17,7 @@ ms.author: brjohnst
 translationtype: Human Translation
 ms.sourcegitcommit: 7d45759915f38ba4337b745eb2b28dcbc72dbbe0
 ms.openlocfilehash: f6a189c2e314b91c490583a86d8bacca8ec78a0f
+ms.lasthandoff: 01/14/2017
 
 ---
 # <a name="upgrading-to-the-azure-search-service-rest-api-version-2016-09-01"></a>升級至 Azure 搜尋服務 REST API 版本 2016-09-01
@@ -66,10 +67,5 @@ REST API 的版本 2016-09-01 包含一些較舊版本的變更。 這些是大�
 歡迎您提供 Azure 搜尋服務的意見反應。 如果您遇到問題，歡迎在 [Azure 搜尋服務 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=azuresearch) 或 [StackOverflow](http://stackoverflow.com/)上尋求協助。 如果您要在 StackOverflow 上詢問 Azure 搜尋服務問題，請一定要將它標上 `azure-search`。
 
 感謝您使用 Azure 搜尋服務！
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

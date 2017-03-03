@@ -16,6 +16,7 @@ ms.author: markgal;
 translationtype: Human Translation
 ms.sourcegitcommit: fa00142a9e89c5ad2630f688ea9771a1a542c052
 ms.openlocfilehash: e5f89f845302ecb890caa50dd8f86503b29f1154
+ms.lasthandoff: 01/06/2017
 
 
 ---
@@ -93,9 +94,4 @@ ms.openlocfilehash: e5f89f845302ecb890caa50dd8f86503b29f1154
 如果您不確定要從哪裡著手，請從[使用傳統部署模型將 Windows Server 或用戶端備份至 Azure](../backup/backup-configure-vault-classic.md)一文開始。 此教學課程會引導您完成在 Windows Server 或電腦上設定備份專案的步驟。
 
 如果您已經知道您可以使用 Azure 備份，但是想要知道其費用，請參閱[備份定價頁面](http://azure.microsoft.com/pricing/details/backup/)。 其內含常見問題清單，或許能提供有用的資訊。 也請注意，[區域] 下拉式功能表中有兩個 Azure Government 區域。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 
