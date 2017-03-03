@@ -17,6 +17,7 @@ ms.author: kgremban
 translationtype: Human Translation
 ms.sourcegitcommit: 1c6386dda94a3e0ca6eb340f542d04cb336159c3
 ms.openlocfilehash: 0de97050e385e3efb9e63bbf934712157ab0d0af
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -74,10 +75,5 @@ ms.openlocfilehash: 0de97050e385e3efb9e63bbf934712157ab0d0af
 * 將您的應用裝置、伺服器或應用程式設定為透過 LDAP 向 Azure Multi-Factor Authentication Server 驗證，就好像您的 LDAP 目錄一樣。 使用您平常直接連接到您的 LDAP 目錄時所用的相同設定，唯一的差別是使用 Azure Multi-Factor Authentication Server 的伺服器名稱或 IP 位址。
 * 將 LDAP 逾時設定為 30 至 60 秒，以保留足夠的時間向 LDAP 目錄驗證使用者的認證、執行第二步驗證、接收回應，然後回應 LDAP 存取要求。
 * 如果使用 LDAPS，則提出 LDAP 查詢的應用裝置或伺服器必須信任安裝在 Azure Multi-Factor Authentication Server 上的 SSL 憑證。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 
