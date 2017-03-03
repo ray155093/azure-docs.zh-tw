@@ -17,6 +17,7 @@ ms.author: aglick
 translationtype: Human Translation
 ms.sourcegitcommit: cc14f7747c4a24acea434f62b7615d10819bd619
 ms.openlocfilehash: 9af589d4a899702c7c2dd2e2bcf13d783d715380
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -95,10 +96,5 @@ AlwaysOn 可用性群組可以在混合式 IT 環境中使用，在該環境中�
 
 ## <a name="next-steps"></a>後續步驟
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](resiliency-technical-guidance.md)。 這一系列文章的下一篇是[從資料損毀或意外刪除復原](resiliency-technical-guidance-recovery-data-corruption.md)。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

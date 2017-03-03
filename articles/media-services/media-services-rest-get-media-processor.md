@@ -17,6 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: d1d05b46591fe4b72c92c59d357681c8e1cdb336
 ms.openlocfilehash: c208660fc1439ca831ada6c9bb348dbc3eadc18c
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -94,10 +95,5 @@ ms.openlocfilehash: c208660fc1439ca831ada6c9bb348dbc3eadc18c
 
 ## <a name="next-steps"></a>後續步驟
 既然您已了解如何取得媒體處理器執行個體，請移至 [如何為資產編碼](media-services-rest-get-started.md) 主題，以了解如何使用媒體編碼器標準將資產編碼。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

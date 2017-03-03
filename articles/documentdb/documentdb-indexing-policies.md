@@ -18,6 +18,7 @@ ms.author: arramac
 translationtype: Human Translation
 ms.sourcegitcommit: bd77eaab1dbad95a70b6d08947f11d95220b8947
 ms.openlocfilehash: 818337dfb36ee4c84fa2543f7c54558287ead0e1
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -409,10 +410,5 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
 1. [DocumentDB .NET 索引管理程式碼範例](https://github.com/Azure/azure-documentdb-net/blob/master/samples/code-samples/IndexManagement/Program.cs)
 2. [DocumentDB REST API 集合作業](https://msdn.microsoft.com/library/azure/dn782195.aspx)
 3. [使用 DocumentDB SQL 進行查詢](documentdb-sql-query.md)
-
-
-
-
-<!--HONumber=Feb17_HO4-->
 
 
