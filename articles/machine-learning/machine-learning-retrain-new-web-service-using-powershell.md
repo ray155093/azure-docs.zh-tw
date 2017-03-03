@@ -17,6 +17,7 @@ ms.author: v-donglo
 translationtype: Human Translation
 ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
 ms.openlocfilehash: d57d3802e1678c6754b0d770acc4fe6c092329a3
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -108,10 +109,5 @@ ms.openlocfilehash: d57d3802e1678c6754b0d770acc4fe6c092329a3
 
 * 定期以新的資料重新定型模型。
 * 散發模型給客戶，目的是要讓他們使用自己的資料重新定型模型。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

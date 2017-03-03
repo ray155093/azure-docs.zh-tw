@@ -18,6 +18,7 @@ ms.author: garye;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: fa3de6226b59c4f80e71c55a0aad20c19693642d
 ms.openlocfilehash: ffb12a5a999372951827d31e7e24c6b38473cb35
+ms.lasthandoff: 01/28/2017
 
 
 ---
@@ -41,9 +42,4 @@ ms.openlocfilehash: ffb12a5a999372951827d31e7e24c6b38473cb35
 資料上傳之後，會儲存在資料集模組中，並且可供工作區中的任何實驗使用。
 
 當您在編輯實驗時，您可以在模組調色盤的 [儲存的資料集] 清單底下的 [我的資料集] 清單內，找到您所建立的資料集。 當您想將資料集用於進一步的分析和機器學習時，可以在實驗畫布上拖放資料集。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

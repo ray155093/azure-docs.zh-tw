@@ -19,6 +19,7 @@ ms.author: sedusch
 translationtype: Human Translation
 ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
 ms.openlocfilehash: db6d4de6f88672f2258fdeac8416c795bc0c4613
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -1390,10 +1391,5 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 所有其他一般主題 (例如「Azure 可用性設定組」或 SAP 監視) 也適用於使用 IBM DB2 for LUW 來部署 VM 的情況，如本文件的前三章中所述。
 
 另請參閱 [適用於 Azure 上 SAP 的一般 SQL Server 摘要][dbms-guide-5.8]。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

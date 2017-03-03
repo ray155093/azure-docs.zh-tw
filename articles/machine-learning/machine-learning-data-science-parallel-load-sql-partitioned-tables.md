@@ -17,6 +17,7 @@ ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: e899487e9445955cea3a9387c73ea7c5dca37ddc
 ms.openlocfilehash: aae4e4f59e76bf48b00a2ee92aedd7d5643ba91a
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -179,10 +180,5 @@ ms.openlocfilehash: aae4e4f59e76bf48b00a2ee92aedd7d5643ba91a
 
 ## <a name="advanced-analytics-process-and-technology-in-action-example"></a>進階分析程序和技術實務範例
 如需使用公用資料集進行 Cortana 分析程序的端對端逐步解說範例，請參閱 [Cortana 分析程序實務範例：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

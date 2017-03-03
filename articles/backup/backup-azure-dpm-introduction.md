@@ -18,6 +18,7 @@ ms.author: adigan;giridham;jimpark;markgal;trinadhk
 translationtype: Human Translation
 ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
 ms.openlocfilehash: 973730bfdd4d13714ce7d0256a32af9eb8183e7a
+ms.lasthandoff: 01/27/2017
 
 
 ---
@@ -197,9 +198,4 @@ System Center DPM 會備份檔案和應用程式資料。 備份到 DPM 的資�
 > 從 System Center 2012 DPM SP1 開始，您可以使用 Microsoft Azure 備份將受到 DPM 保護的工作負載備份至 Azure。
 >
 >
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

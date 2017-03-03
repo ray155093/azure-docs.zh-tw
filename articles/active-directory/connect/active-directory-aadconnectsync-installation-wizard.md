@@ -18,6 +18,7 @@ ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: bb500d4705c3b67de6b9b31fa5311967beffffc2
 ms.openlocfilehash: df5c0475245c6ad1f632b08e5fdbf64374893d67
+ms.lasthandoff: 01/27/2017
 
 
 ---
@@ -90,10 +91,5 @@ ms.openlocfilehash: df5c0475245c6ad1f632b08e5fdbf64374893d67
 
 * [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
