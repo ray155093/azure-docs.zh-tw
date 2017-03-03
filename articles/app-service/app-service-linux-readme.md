@@ -5,7 +5,7 @@ keywords: azure app service, linux, oss
 services: app-service
 documentationcenter: 
 author: naziml
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: b6a85bc6-5fe2-45d7-aae6-3bf93c314548
 ms.service: app-service
@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: naziml
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ea9e29aa4fc4d88a4c2109e898b1d90f6efb5757
+ms.sourcegitcommit: f978be8872961695731ba1daffc0f4d4a54a670a
+ms.openlocfilehash: bd5ebd7ee969acc0a785e179ebff0cd498b9b5ec
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -34,10 +35,6 @@ Linux 上的 App Service 目前處於公開預覽狀態，可讓客戶在 Linux 
 
 * [何謂 Linux 上的 App Service？](../app-service-web/app-service-linux-intro.md)
 * [在 Linux 上的 App Service 中建立應用程式](../app-service-web/app-service-linux-how-to-create-a-web-app.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+* [Linux 上的 Azure App Service Web Apps 常見問題集](../app-service-web/app-service-linux-faq.md) 
 
 

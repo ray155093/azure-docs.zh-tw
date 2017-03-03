@@ -1,5 +1,5 @@
 ---
-title: "服務匯流排轉送範例概觀 | Microsoft Docs"
+title: "Azure 服務匯流排轉送範例概觀 | Microsoft Docs"
 description: "分類及描述服務匯流排轉送範例與每個範例的連結。"
 services: service-bus-relay
 documentationcenter: na
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/07/2016
+ms.date: 02/13/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0b2206fae964c55e961505b9d0e2ad71fd0b2102
+ms.sourcegitcommit: 6027c973f0104fff9705a70f7812f62562165c1e
+ms.openlocfilehash: d830770c49caeacf762382ce1c6113d9196a5994
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -24,23 +25,23 @@ ms.openlocfilehash: 0b2206fae964c55e961505b9d0e2ad71fd0b2102
 服務匯流排轉送範例在[服務匯流排轉送](https://azure.microsoft.com/services/service-bus/)中示範主要功能。 本主題分類及描述可用的範例與每個範例的連結。
 
 > [!NOTE]
-> 服務匯流排範例不會與 SDK 一起安裝。 若要取得範例，請造訪 [Azure SDK 範例頁面](https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=5)。
+> 服務匯流排範例不會與 Azure SDK 一起安裝。 若要取得範例，請造訪 [Azure SDK 範例頁面](https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=5)。
 > 
-> 此外，[這裡](https://github.com/Azure-Samples/azure-servicebus-relay-samples)提供一組更新過的服務匯流排轉送範例 (在進行這項撰寫時，本文未說明過它們)。  
+> 另外，[這裡](https://github.com/Azure-Samples/azure-servicebus-relay-samples)有服務匯流排轉送範例的更新集。  
 > 
 > 
 
-如需訊息範例，請參閱[服務匯流排訊息範例](../service-bus-messaging/service-bus-samples.md)。
+如需服務匯流排傳訊範例，請參閱[服務匯流排訊息範例](../service-bus-messaging/service-bus-samples.md)。
 
-## <a name="service-bus-relay"></a>服務匯流排轉送
-下列範例會說明如何撰寫使用服務匯流排轉送服務的應用程式。
+## <a name="azure-service-bus-relay"></a>Azure 服務匯流排轉送
+下列範例會說明如何撰寫使用 Azure 轉送服務的應用程式。
 
-請注意，轉送範例需要連接字串以存取服務匯流排命名空間。
+請注意，轉送範例需要連接字串以存取轉送命名空間。
 
-### <a name="to-obtain-a-connection-string-for-azure-service-bus"></a>取得 Azure 服務匯流排的連接字串。
+### <a name="to-obtain-a-connection-string-for-azure-relay"></a>取得 Azure 轉送的連接字串
 1. 登入 [Azure 入口網站](http://portal.azure.com)。
-2. 在左側欄中，按一下 [服務匯流排] 。
-3. 按一下清單中的命名空間名稱。
+2. 按一下以在**所有資源**窗格中展開您命名空間的清單。
+3. 按一下清單中的轉送命名空間名稱。
 4. 在命名空間刀鋒視窗中，按一下 [共用存取原則]。
 5. 在 [共用存取原則] 刀鋒視窗中，按一下 **RootManageSharedAccessKey**。
 6. 將連接字串複製到剪貼簿。
@@ -48,13 +49,13 @@ ms.openlocfilehash: 0b2206fae964c55e961505b9d0e2ad71fd0b2102
 ### <a name="to-obtain-a-connection-string-for-service-bus-for-windows-server"></a>取得 Service Bus for Windows Server 的連接字串
 1. 執行下列 PowerShell cmdlet：
    
-    ```
+    ```powershell
     get-sbClientConfiguration
     ```
 2. 將連接字串貼到範例的 App.config 檔案。
 
-## <a name="service-bus-relay"></a>服務匯流排轉送
-示範服務匯流排轉送的範例。
+## <a name="azure-relay"></a>Azure 轉送
+此範例會示範 Azure 轉送。
 
 ### <a name="getting-started"></a>開始使用
 | 範例名稱 | 說明 | 最低需求 SDK 版本 | Availability |
@@ -84,13 +85,8 @@ ms.openlocfilehash: 0b2206fae964c55e961505b9d0e2ad71fd0b2102
 ## <a name="next-steps"></a>後續步驟
 請參閱下列主題以取得服務匯流排的概念性概觀。
 
-* [服務匯流排轉送概觀](service-bus-relay-overview.md)
+* [Azure 轉送概觀](relay-what-is-it.md)
 * [服務匯流排架構](../service-bus-messaging/service-bus-architecture.md)
 * [服務匯流排基本概念](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -4,7 +4,7 @@ description: "如何將 Logic Apps 連結至 Azure IoT 套件以執行商務程�
 services: 
 suite: iot-suite
 documentationcenter: 
-author: aguilaaj
+author: dominicbetts
 manager: timlt
 editor: 
 ms.assetid: 4629a7af-56ca-4b21-a769-5fa18bc3ab07
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/31/2016
-ms.author: araguila
+ms.date: 02/08/2017
+ms.author: corywink
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a010e0dff76390020b74ada6d6144e411e304268
+ms.sourcegitcommit: 14e2fcea9a6afbac640d665d5e44a700f855db4b
+ms.openlocfilehash: 609de3ff0fb14aa98b28572dce1eaeb8a4412d93
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -48,7 +49,7 @@ ms.openlocfilehash: a010e0dff76390020b74ada6d6144e411e304268
    
     ![](media/iot-suite-logic-apps-tutorial/logicappsdesigner.png)
 6. 選取 [要求]。 這個動作會指定以內送 HTTP 要求加上特定 JSON 格式化承載做為觸發程序。
-7. 將下列內容貼到 [要求本文 JSON 結構描述] 中：
+7. 將下列程式碼貼到 [要求本文 JSON 結構描述] 中：
    
     ```
     {
@@ -169,9 +170,4 @@ ms.openlocfilehash: a010e0dff76390020b74ada6d6144e411e304268
 [lnk-devsetup]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/dev-setup.md
 [lnk-localdeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/local-deployment.md
 [lnk-clouddeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/cloud-deployment.md
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

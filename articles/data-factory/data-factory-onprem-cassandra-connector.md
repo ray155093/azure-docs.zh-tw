@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 02/09/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 21ec253e35b31af770cacb9747210deb4b9f5fa0
+ms.sourcegitcommit: af15b530dd512873e4534fb61d276c8c8c3a196a
+ms.openlocfilehash: 7b7d3b87e1285993d744e74d01f5192732b70e77
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -24,6 +25,9 @@ ms.openlocfilehash: 21ec253e35b31af770cacb9747210deb4b9f5fa0
 本文概述如何在 Azure Data Factory 使用複製活動，將資料從內部部署的 Cassandra 資料庫，複製到 [支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 一節的 [接收] 欄底下列出的任何資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
 Data Dactory 目前只支援將資料從 Cassandra 資料庫移動到 [支援的接收資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)，但不支援將資料從其他資料存放區移動到 Cassandra 資料庫。
+
+## <a name="supported-versions"></a>支援的版本
+這個 Cassandra 連接器支援 Cassandra 版本 2.X。
 
 ## <a name="prerequisites"></a>必要條件
 如果是能夠連接到您內部部署 Cassandra 資料庫的 Azure Data Factory 服務，您就必須安裝下列項目：
@@ -322,9 +326,4 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 Cassandra �
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

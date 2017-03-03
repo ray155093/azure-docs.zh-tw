@@ -1,6 +1,6 @@
 ---
-title: "使用資源提供者 REST API 建立 IoT 中樞 | Microsoft Docs"
-description: "請遵循此教學課程，以開始使用資源提供者 REST API 建立「IoT 中樞」。"
+title: "使用資源提供者 REST API 建立 Azure IoT 中樞 | Microsoft Docs"
+description: "如何使用資源提供者 REST API 建立 IoT 中樞。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -12,15 +12,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 02/08/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
-ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
+ms.sourcegitcommit: c4330dd4b32119c1950f402c5c589d403960c80f
+ms.openlocfilehash: 0e5f420833276d23565ae0aa83f79bbbe47faf67
+ms.lasthandoff: 02/09/2017
 
 
 ---
-# <a name="tutorial-create-an-iot-hub-using-a-c-program-and-the-resource-provider-rest-api"></a>教學課程：使用 C# 程式和資源提供者 REST API 建立 IoT 中樞
+# <a name="create-an-iot-hub-using-the-resource-provider-rest-api-net"></a>使用資源提供者 REST API 建立 IoT 中樞 (.NET)
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>簡介
@@ -35,7 +36,7 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
 
 * Microsoft Visual Studio 2015。
 * 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
-* [Microsoft Azure PowerShell 1.0][lnk-powershell-install] 或更新版本。
+* [Azure PowerShell 1.0][lnk-powershell-install] 或更新版本。
 
 [!INCLUDE [iot-hub-prepare-resource-manager](../../includes/iot-hub-prepare-resource-manager.md)]
 
@@ -44,7 +45,7 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
 2. 在方案總管中，於專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 封裝] 。
 3. 在「NuGet 套件管理員」中，勾選 [包含發行前版本]，然後搜尋 **Microsoft.Azure.Management.ResourceManager**。 按一下 [安裝]，在 [檢閱變更] 中按一下 [確定]，然後按一下 [我接受] 來接受授權。
 4. 在 NuGet 套件管理員中，搜尋 **Microsoft.IdentityModel.Clients.ActiveDirectory**。  按一下 [安裝]，在 [檢閱變更] 中按一下 [確定]，然後按一下 [我接受] 來接受授權。
-5. 在 Program.cs 中，以下列項目取代現有的 **using** 陳述式：
+5. 在 Program.cs 中，以下列程式碼取代現有的 **using** 陳述式：
    
     ```
     using System;
@@ -84,13 +85,13 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
    
     }
     ```
-2. 將下列程式碼新增至 **CreateIoTHub** 方法中，以建立標頭中含有驗證權杖的 **HttpClient** 物件：
+2. 將下列程式碼加入 **CreateIoTHub** 方法。 此程式碼會建立標頭中含有驗證權杖的 **HttpClient** 物件：
    
     ```
     HttpClient client = new HttpClient();
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     ```
-3. 新增下列程式碼至 **CreateIoTHub** 方法，以描述 IoT 中樞來建立並產生 JSON 表示法。 如需目前支援「IoT 中樞」的位置清單，請參閱 [Azure 狀態][lnk-status]：
+3. 將下列程式碼加入 **CreateIoTHub** 方法。 此程式碼說明 IoT 中樞建立並產生 JSON 表示法。 如需目前支援「IoT 中樞」的位置清單，請參閱 [Azure 狀態][lnk-status]：
    
     ```
     var description = new
@@ -107,7 +108,7 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
    
     var json = JsonConvert.SerializeObject(description, Formatting.Indented);
     ```
-4. 將下列程式碼新增至 **CreateIoTHub** 方法，以提交 REST 要求至 Azure、檢查回應，並擷取可用來監視部署工作狀態的 URL：
+4. 將下列程式碼加入 **CreateIoTHub** 方法。 此程式碼會提交 REST 要求至 Azure、檢查回應，並擷取可用來監視部署工作狀態的 URL：
    
     ```
     var content = new StringContent(JsonConvert.SerializeObject(description), Encoding.UTF8, "application/json");
@@ -122,7 +123,7 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
    
     var asyncStatusUri = result.Headers.GetValues("Azure-AsyncOperation").First();
     ```
-5. 將下列程式碼新增至 **CreateIoTHub** 方法結尾，以使用上一個步驟中擷取的 **asyncStatusUri** 位址來等待部署完成：
+5. 將下列程式碼加入 **CreateIoTHub** 方法的結尾。 此程式碼會使用上一個步驟中擷取的 **asyncStatusUri** 位址來等待部署完成：
    
     ```
     string body;
@@ -133,10 +134,10 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
       body = deploymentstatus.Content.ReadAsStringAsync().Result;
     } while (body == "{\"status\":\"Running\"}");
     ```
-6. 將下列程式碼新增至 **CreateIoTHub** 方法結尾，以擷取您建立的 IoT 中樞的金鑰，並列印到主控台：
+6. 將下列程式碼加入 **CreateIoTHub** 方法的結尾。 此程式碼會擷取您建立的 IoT 中樞索引鍵，並列印到主控台︰
    
     ```
-    var listKeysUri = string.Format("https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Devices/IotHubs/{2}/IoTHubKeys/listkeys?api-version=2015-08-15-preview", subscriptionId, rgName, iotHubName);
+    var listKeysUri = string.Format("https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Devices/IotHubs/{2}/IoTHubKeys/listkeys?api-version=2016-02-03", subscriptionId, rgName, iotHubName);
     var keysresults = client.PostAsync(listKeysUri, null).Result;
    
     Console.WriteLine("Keys: {0}", keysresults.Content.ReadAsStringAsync().Result);
@@ -166,7 +167,7 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
 * 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
 * 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
 
-若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
+若要深入了解如何開發 IoT 中樞，請參閱以下文章︰
 
 * [C SDK 簡介][lnk-c-sdk]
 * [Azure IoT SDK][lnk-sdks]
@@ -179,7 +180,7 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
 [lnk-azure-portal]: https://portal.azure.com/
 [lnk-status]: https://azure.microsoft.com/status/
-[lnk-powershell-install]: ../powershell-install-configure.md
+[lnk-powershell-install]: /powershell/azureps-cmdlets-docs
 [lnk-rest-api]: https://msdn.microsoft.com/library/mt589014.aspx
 [lnk-azure-rm-overview]: ../azure-resource-manager/resource-group-overview.md
 
@@ -187,9 +188,4 @@ ms.openlocfilehash: 44d73863ebe968a025654f501a820bdf0f9b3c49
 [lnk-sdks]: iot-hub-devguide-sdks.md
 
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
-
-
-
-<!--HONumber=Nov16_HO5-->
-
 

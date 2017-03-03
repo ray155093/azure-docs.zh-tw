@@ -1,6 +1,6 @@
 ---
 title: "了解 Azure 中 Linux VM 的端點 | Microsoft Docs"
-description: "了解現在如何使用「網路安全性群組」和 ACL 規則在 Resource Manager 中部署來自「傳統」部署模型的端點"
+description: "了解現在如何使用「網路安全性群組」和 ACL 規則在 Resource Manager 中部署來自傳統部署模型的端點"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 10/27/2016
+ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 652a8a0dcb3216e9b762b85de56673beda74edc4
-ms.openlocfilehash: 3079b9103f450b511d60ce3a2bf5021332149525
+ms.sourcegitcommit: ccdfd0c64b5a784664edaef9c19e272c8e8323e6
+ms.openlocfilehash: 890c1ea7f7039886b1d2de72ea8f4a453a7b8ce2
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -30,10 +31,5 @@ ms.openlocfilehash: 3079b9103f450b511d60ce3a2bf5021332149525
 * [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)  
 * [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)  
 * [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md) 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

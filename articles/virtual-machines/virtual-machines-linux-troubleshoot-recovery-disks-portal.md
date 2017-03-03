@@ -1,6 +1,6 @@
 ---
 
-title: "在入口網站中使用 Linux 疑難排解 VM | Microsoft Docs"
+title: "在 Azure 入口網站中使用 Linux 疑難排解 VM | Microsoft Docs"
 description: "了解如何使用 Azure 入口網站將 OS 磁碟連接至復原 VM，以針對 Linux 虛擬機器問題進行疑難排解"
 services: virtual-machines-linux
 documentationCenter: 
@@ -15,8 +15,9 @@ ms.workload: infrastructure
 ms.date: 11/14/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 08499c4242fdc59ef932d6b8f2e8442e5cdc55b2
-ms.openlocfilehash: 4edfcbfb011c2296ad499d4ff62a07f0c388432a
+ms.sourcegitcommit: 341dcec8c45b380286e2bb96c57afc7740605d16
+ms.openlocfilehash: c4ae1c80b854e84fe94a52e2872bec2c24b4580f
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -177,8 +178,3 @@ ms.openlocfilehash: 4edfcbfb011c2296ad499d4ff62a07f0c388432a
 如果連接至 VM 時發生問題，請參閱[針對 Azure VM 的 SSH 連接進行疑難排解](virtual-machines-linux-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 如果存取 VM 上執行的應用程式時發生問題，請參閱[針對 Linux VM 上的應用程式連線問題進行疑難排解](virtual-machines-linux-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 如需使用 Resource Manager 的詳細資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-<!--HONumber=Dec16_HO2-->
-
-

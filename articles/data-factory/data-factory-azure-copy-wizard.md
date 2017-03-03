@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/17/2017
+ms.date: 02/08/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 619fec5dc02b026ae2cbb5eba18609fd020a551b
-ms.openlocfilehash: d51d9416ef56e119bc765e536a09206fb36c55fe
+ms.sourcegitcommit: 445dd0dcd05aa25cc531e2d10cc32ad8f32a6e8c
+ms.openlocfilehash: def038842dc3c1037d5dd11ffef6a9e2de3cf09f
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -44,6 +45,10 @@ Azure Data Factory 複製精靈簡化內嵌資料的程序，這通常是端對�
 
 ## <a name="schema-capture-and-mapping"></a>結構描述擷取和對應
 在某些情況下，輸入資料的結構描述可能不符合輸出資料的結構描述。 在此案例中，您需要將來源結構描述的資料行對應到目的地結構描述的資料行。
+
+> [!TIP]
+> 從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，Data Factory 支援使用來源的結構描述來自動建立資料表。 深入了解[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料](./data-factory-azure-sql-data-warehouse-connector.md)。
+>
 
 請使用下拉式清單選取來源結構描述的資料行來對應至目的地結構描述中的資料行。 複製精靈會嘗試了解資料行對應的模式， 並且對其餘的資料行套用相同的模式，所以您不需要個別選取每個資料行就能完成結構描述對應。 如果想要，還是可以使用下拉式清單逐一對應資料行來覆寫這些對應。 您對應越多資料行，模式就會變得越精確。 複製精靈會持續更新模式，直到達到您想要達成的資料行對應的正確模式。     
 
@@ -84,9 +89,4 @@ Azure Data Factory 複製精靈簡化內嵌資料的程序，這通常是端對�
 
 ## <a name="next-steps"></a>後續步驟
 如需使用 Data Factory 複製精靈建立含複製活動之管線的快速逐步解說，請參閱 [教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線](data-factory-copy-data-wizard-tutorial.md)。
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

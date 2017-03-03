@@ -13,11 +13,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 10/17/2016
+ms.date: 02/08/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
-ms.openlocfilehash: bd1c31c669bacf9e44b13d5a676dffc8a9176046
+ms.sourcegitcommit: e80bf82df28fbce8a1019c6eb07cfcae4cbba930
+ms.openlocfilehash: e32d21ca410d4107f68f8b72353ca400a26c4523
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -26,10 +27,11 @@ ms.openlocfilehash: bd1c31c669bacf9e44b13d5a676dffc8a9176046
 
 本文件提供使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 叢集上的 Hadoop 的範例。
 
-HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。 Pig 可讓您透過建立一系列資料轉換的模型，來建立 MapReduce 作業。 您將學習如何使用基本 C# 應用程式將 Pig 工作提交至 HDInsight 叢集。
+HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。 Pig 可讓您透過建立一系列資料轉換的模型，來建立 MapReduce 作業。 在本文件中，您會學習如何使用基本 C# 應用程式將 Pig 作業提交至 HDInsight 叢集。
 
 ## <a name="prerequisites"></a>必要條件
-若要完成本文中的步驟，您需要下列項目。
+
+若要完成這篇文章中的步驟，您需要下列項目。
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)。
 
@@ -39,11 +41,12 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 * Visual Studio 2012、2013 或 2015。
 
 ## <a name="create-the-application"></a>建立應用程式
+
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。 
 
-1. 開啟 Visual Studio 2012 或 2013
-2. 從 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。
-3. 對於新的專案，輸入或選取下列值。
+1. 從 Visual Studio 的 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。
+
+2. 對於新的專案，輸入或選取下列值。
    
     <table>
     <tr>
@@ -63,70 +66,80 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
     <th>SubmitPigJob</th>
     </tr>
     </table>
-4. 按一下 [確定]  以建立專案。
-5. 從 [工具] 功能表中，選取 [程式庫封裝管理員] 或 [Nuget 封裝管理員]，然後選取 [封裝管理員主控台]。
-6. 在主控台中執行下列命令，以安裝 .NET SDK 封裝。
+
+3. 按一下 [確定]  以建立專案。
+
+4. 從 [工具] 功能表中，選取 [程式庫封裝管理員] 或 [Nuget 封裝管理員]，然後選取 [封裝管理員主控台]。
+
+5. 在主控台中執行下列命令，以安裝 .NET SDK 封裝。
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
-7. 在 [方案總管] 中，按兩下 **Program.cs** 加以開啟。 將現有程式碼取代為下者。
+
+6. 在 [方案總管] 中，按兩下 **Program.cs** 加以開啟。 將現有程式碼取代為下者。
    
-        using Microsoft.Azure.Management.HDInsight.Job;
-        using Microsoft.Azure.Management.HDInsight.Job.Models;
-        using Hyak.Common;
-   
-        namespace SubmitHDInsightJobDotNet
+    ```csharp
+    using Microsoft.Azure.Management.HDInsight.Job;
+    using Microsoft.Azure.Management.HDInsight.Job.Models;
+    using Hyak.Common;
+
+    namespace SubmitHDInsightJobDotNet
+    {
+        class Program
         {
-            class Program
+            private static HDInsightJobManagementClient _hdiJobManagementClient;
+
+            private const string ExistingClusterName = "<Your HDInsight Cluster Name>";
+            private const string ExistingClusterUri = ExistingClusterName + ".azurehdinsight.net";
+            private const string ExistingClusterUsername = "<Cluster Username>";
+            private const string ExistingClusterPassword = "<Cluster User Password>";
+
+            static void Main(string[] args)
             {
-                private static HDInsightJobManagementClient _hdiJobManagementClient;
-   
-                private const string ExistingClusterName = "<Your HDInsight Cluster Name>";
-                private const string ExistingClusterUri = ExistingClusterName + ".azurehdinsight.net";
-                private const string ExistingClusterUsername = "<Cluster Username>";
-                private const string ExistingClusterPassword = "<Cluster User Password>";
-   
-                static void Main(string[] args)
+                System.Console.WriteLine("The application is running ...");
+
+                var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
+                _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
+
+                SubmitPigJob();
+
+                System.Console.WriteLine("Press ENTER to continue ...");
+                System.Console.ReadLine();
+            }
+
+            private static void SubmitPigJob()
+            {
+                var parameters = new PigJobSubmissionParameters
                 {
-                    System.Console.WriteLine("The application is running ...");
-   
-                    var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
-                    _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
-   
-                    SubmitPigJob();
-   
-                    System.Console.WriteLine("Press ENTER to continue ...");
-                    System.Console.ReadLine();
-                }
-   
-                private static void SubmitPigJob()
-                {
-                    var parameters = new PigJobSubmissionParameters
-                    {
-                        Query = @"LOGS = LOAD 'wasbs:///example/data/sample.log';
-                                    LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
-                                    FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
-                                    GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
-                                    FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
-                                    RESULT = order FREQUENCIES by COUNT desc;
-                                    DUMP RESULT;"
-                    };
-   
-                    System.Console.WriteLine("Submitting the Pig job to the cluster...");
-                    var response = _hdiJobManagementClient.JobManagement.SubmitPigJob(parameters);
-                    System.Console.WriteLine("Validating that the response is as expected...");
-                    System.Console.WriteLine("Response status code is " + response.StatusCode);
-                    System.Console.WriteLine("Validating the response object...");
-                    System.Console.WriteLine("JobId is " + response.JobSubmissionJsonResponse.Id);
-                }
+                    Query = @"LOGS = LOAD '/example/data/sample.log';
+                                LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
+                                FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
+                                GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
+                                FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
+                                RESULT = order FREQUENCIES by COUNT desc;
+                                DUMP RESULT;"
+                };
+
+                System.Console.WriteLine("Submitting the Pig job to the cluster...");
+                var response = _hdiJobManagementClient.JobManagement.SubmitPigJob(parameters);
+                System.Console.WriteLine("Validating that the response is as expected...");
+                System.Console.WriteLine("Response status code is " + response.StatusCode);
+                System.Console.WriteLine("Validating the response object...");
+                System.Console.WriteLine("JobId is " + response.JobSubmissionJsonResponse.Id);
             }
         }
-8. 按 **F5** 啟動應用程式。
-9. 按 **ENTER** 結束應用程式。
+    }
+    ```
+    
+7. 按 **F5** 啟動應用程式。
+
+8. 按 **ENTER** 結束應用程式。
 
 ## <a name="summary"></a>摘要
+
 如您所見，.NET SDK for Hadoop 可讓您建立 .NET 應用程式，以將 Pig 作業提交至 HDInsight 叢集，以及監視作業狀態。
 
 ## <a name="next-steps"></a>後續步驟
+
 如需 HDInsight 中 Pig 的一般資訊。
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
@@ -137,9 +150,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
 [preview-portal]: https://portal.azure.com/
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

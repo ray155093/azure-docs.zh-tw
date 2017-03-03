@@ -1,5 +1,5 @@
 ---
-title: "從 Linux VM 卸離磁碟 | Microsoft Docs"
+title: "從 Azure 中的 Linux VM 卸離磁碟 | Microsoft Docs"
 description: "了解如何從使用傳統部署模型建立的 Azure 虛擬機器卸離資料磁碟。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -13,11 +13,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 11/14/2016
+ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
-ms.openlocfilehash: f3b622ae6fd5f29ba92686ffeb3a3806b67b7e3a
+ms.sourcegitcommit: 9bb7878836c0444d3ccc058fd89b8bbd9f6e255a
+ms.openlocfilehash: 3ba234eca45e643a235abf120efc6d8f82af461f
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -32,10 +33,5 @@ ms.openlocfilehash: f3b622ae6fd5f29ba92686ffeb3a3806b67b7e3a
 
 * [如何將資料磁碟連接至 Linux 虛擬機器](virtual-machines-linux-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [搭配傳統部署模型使用 Azuer CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

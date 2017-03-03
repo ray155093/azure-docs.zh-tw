@@ -17,6 +17,7 @@ ms.author: kgremban
 translationtype: Human Translation
 ms.sourcegitcommit: 2e7815702f2d2f4ce935826c4769838727a83696
 ms.openlocfilehash: 7d1be1dea6ed4ecda196743f592456a5b977e9b0
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -93,10 +94,5 @@ Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應
 * [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
 
 如需最新消息，請查閱 [應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

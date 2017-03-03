@@ -17,6 +17,7 @@ ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: 6e44aedb4b2e184fa47ad965802b1172c5a8c8ad
 ms.openlocfilehash: 67cff664f3723b2194ecd1519729cca17069d07f
+ms.lasthandoff: 02/04/2017
 
 
 ---
@@ -65,9 +66,4 @@ ms.openlocfilehash: 67cff664f3723b2194ecd1519729cca17069d07f
 
 <!--Image references-->
 [1]: ./media/security-center-apply-disk-encryption/apply-disk-encryption.png
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

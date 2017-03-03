@@ -18,6 +18,7 @@ ms.author: szark
 translationtype: Human Translation
 ms.sourcegitcommit: 1d4d27812b1c7cadbc70c3ede8fb10dfdc86b0ea
 ms.openlocfilehash: c8a5bfcb253300488e6bbd1cb89b23cabb181ca9
+ms.lasthandoff: 02/04/2017
 
 
 ---
@@ -332,10 +333,5 @@ ms.openlocfilehash: c8a5bfcb253300488e6bbd1cb89b23cabb181ca9
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以開始使用您的 CentOS Linux 虛擬硬碟在 Azure 建立新的虛擬機器。 若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱 [建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)中的步驟 2 和步驟 3。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

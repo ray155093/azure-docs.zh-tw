@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/06/2016
+ms.date: 02/16/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
-ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
+ms.sourcegitcommit: 182e28e37eb56c547e28524f2a3e13f042238cb4
+ms.openlocfilehash: bd042908fec2dcf499dd1cb5230f62ec4be9fdea
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -24,7 +25,7 @@ ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
 服務匯流排提供基本、標準和[進階](service-bus-premium-messaging.md)層。 您可以針對建立的每個服務匯流排服務命名空間選擇一個服務層，此選取層會套用至該命名空間內建立的所有實體。
 
 > [!NOTE]
-> 如需目前服務匯流排的價格詳細資訊，請參閱 [Azure 服務匯流排價格頁面](https://azure.microsoft.com/pricing/details/service-bus/)和[服務匯流排常見問題集](service-bus-faq.md#service-bus-pricing)。
+> 如需目前服務匯流排的價格詳細資訊，請參閱 [Azure 服務匯流排價格頁面](https://azure.microsoft.com/pricing/details/service-bus/)和[服務匯流排常見問題集](service-bus-faq.md#pricing)。
 >
 >
 
@@ -39,7 +40,7 @@ ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
 
 請注意，標準層的基本費用只會針對每個 Azure 訂用帳戶每個月收費一次。 這表示當您建立單一標準層或高階層的服務匯流排命名空間後，將能在同一 Azure 訂用帳戶下，盡情建立許多額外標準層或高階層命名空間，而且不會產生額外的基本費用。
 
-所有在 2014 年 11 月 1 日之前建立的現有服務匯流排命名空間，都會自動放入標準層。 這可確保您能繼續存取服務匯流排目前提供的所有功能。 接著，您可以使用 [Azure 傳統入口網站][Azure 傳統入口網站]，視需要降級至基本層。
+所有在 2014 年 11 月 1 日之前建立的現有服務匯流排命名空間，都會自動放入標準層。 這可確保您能繼續存取服務匯流排目前提供的所有功能。 接著，您可以使用 [Azure 傳統入口網站][Azure classic portal]，視需要降級至基本層。
 
 下表摘要說明基本層和標準層/高階層之間的功能差異。
 
@@ -55,7 +56,7 @@ ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
 | 大型訊息 |否 |是 |
 | ForwardTo |否 |是 |
 | SendVia |否 |是 |
-| 代理連線 (已隨附) |每個服務匯流排命名空間 100 個 |每個 Azure 訂用帳戶 1,000 個 |
+| 代理連線 (已隨附) |每個服務匯流排命名空間&100; 個 |每個 Azure 訂用帳戶&1;,000 個 |
 | 代理連線 (允許超額部分) |否 |是 (可計費) |
 
 ## <a name="messaging-operations"></a>傳訊作業
@@ -77,8 +78,8 @@ ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
 | --- | --- |
 | 基本費用 |$10 美元/月 |
 | 前 1,250 萬個作業/月 |已包括 |
-| 1,250 萬到 1 億個作業/月 |每百萬個作業 $0.80 美元 |
-| 1 億到 25 億個作業/月 |每百萬個作業 $0.50 美元 |
+| 1,250 萬到&1; 億個作業/月 |每百萬個作業 $0.80 美元 |
+| 1 億到&25; 億個作業/月 |每百萬個作業 $0.50 美元 |
 | 超過 25 億個作業/月 |每百萬個作業 $0.20 美元 |
 
 | 進階 | 成本 |
@@ -100,7 +101,7 @@ ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
 | 超過 500,000 個/月 |每個連線 $0.015 美元/月 |
 
 > [!NOTE]
-> 標準傳訊層隨附 1,000 個代理連線 (包含在基本費用內)，而且可以在相關聯的 Azure 訂用帳戶內，讓所有佇列、主題和訂用帳戶共用。
+> 標準傳訊層隨附&1;,000 個代理連線 (包含在基本費用內)，而且可以在相關聯的 Azure 訂用帳戶內，讓所有佇列、主題和訂用帳戶共用。
 >
 >
 
@@ -135,7 +136,7 @@ ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
 1. 從用戶端到服務匯流排佇列或主題/訂用帳戶的 AMQP 連線。
 2. 從服務匯流排主題或佇列接收訊息的 HTTP 呼叫，且接收的逾時值大於零。
 
-服務匯流排的並行代理連線尖峰數量，如果超過隨附數量 (標準層中為 1,000 個)，就會收取費用。 尖峰的測量方式會以每小時為基礎，除以每個月的 744 小時來依比例計算，並依據每個月的計費期間來加總。 隨附的數量 (每個月 1,000 個代理連線) 會根據依比例計算的每小時尖峰的總和，在計費期間快結束時加以套用。
+服務匯流排的並行代理連線尖峰數量，如果超過隨附數量 (標準層中為&1;,000 個)，就會收取費用。 尖峰的測量方式會以每小時為基礎，除以每個月的 744 小時來依比例計算，並依據每個月的計費期間來加總。 隨附的數量 (每個月&1;,000 個代理連線) 會根據依比例計算的每小時尖峰的總和，在計費期間快結束時加以套用。
 
 例如：
 
@@ -147,12 +148,7 @@ ms.openlocfilehash: 58d1b84c1a9fe19937846842f30f5e7b48cda1c7
 
 ## <a name="next-steps"></a>後續步驟
 * 如需更多有關服務匯流排定價的詳細資訊，請參閱 [Azure 服務匯流排定價頁面](https://azure.microsoft.com/pricing/details/service-bus/)。
-* 請參閱[服務匯流排常見問題集](service-bus-faq.md#service-bus-pricing)，以了解關於服務匯流排價格與計費的常見問題集。
+* 請參閱[服務匯流排常見問題集](service-bus-faq.md#pricing)，以了解關於服務匯流排價格與計費的常見問題集。
 
-[Azure 傳統入口網站]: http://manage.windowsazure.com
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Azure classic portal]: http://manage.windowsazure.com
 

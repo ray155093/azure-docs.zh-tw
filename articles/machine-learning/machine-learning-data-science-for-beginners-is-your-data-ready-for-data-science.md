@@ -1,5 +1,5 @@
 ---
-title: "已備妥資料來進行資料科學嗎？ 資料評估 | Microsoft Docs"
+title: "已備妥資料來進行資料科學嗎？ 資料評估 - Azure | Microsoft Docs"
 description: "了解已備妥資料來進行資料科學的 4 個準則。 適用於初學者的資料科學影片 2 提供具體範例，可協助進行基本的資料評估。"
 keywords: "相關的資料, 評估資料, 準備資料, 資料準則, 備妥資料"
 services: machine-learning
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/11/2016
+ms.date: 02/09/2017
 ms.author: cgronlun;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 35579eda8b92a481525ad987e99e7d9c9ed6b942
-ms.openlocfilehash: 902d83db4630bad443208e0aad039d3ad199d2a1
+ms.sourcegitcommit: b167b88d227bf239fd5d3676e48e04436f140c34
+ms.openlocfilehash: 3d2b259c29a52394ac42afba0c5572364cfeea39
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -80,7 +81,7 @@ ms.openlocfilehash: 902d83db4630bad443208e0aad039d3ad199d2a1
 不過，右邊是完整且完全的表格 - 連貫的資料範例。
 
 ## <a name="is-your-data-accurate"></a>是您的資料精確嗎？
-下一個我們所需的要素是精確度。 以下是我們想要用箭射中的 4 個目標。
+下一個我們所需的要素是精確度。 以下是我們想要用箭射中的&4; 個目標。
 
 ![準確的資料與不準確的資料 - 資料準則](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-inaccurate-vs-accurate-data.png)
 
@@ -105,14 +106,9 @@ ms.openlocfilehash: 902d83db4630bad443208e0aad039d3ad199d2a1
 
 利用相關、連結、準確及足夠的資料，我們擁有需要的所有要素，來進行一些高品質資料科學。
 
-請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他 4 部影片。
+請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他&4; 部影片。
 
 ## <a name="next-steps"></a>後續步驟
 * [嘗試使用 Machine Learning Studio 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
 * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -17,6 +17,7 @@ ms.author: jarrettr
 translationtype: Human Translation
 ms.sourcegitcommit: 245fb30a64c8a19f6ea0073d533419e9c3628cb5
 ms.openlocfilehash: 538a43e549f47709616dd93e7eab9c8cb7d99dc6
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -77,9 +78,4 @@ Azure CLI 提供您一組開放原始碼的跨平台命令，供您使用 Azure 
 ### <a name="moving-data-faq"></a>移動資料常見問題集︰
 ## <a name="can-i-migrate-vhds-from-one-region-to-another-without-copying"></a>我可以在兩個區域之間移轉 VHD 而不要複製嗎？
 區域之間複製 VHD 的唯一方法是在每個區域的儲存體帳戶之間複製資料。 您可以使用 AZCopy 這樣做。 若要深入了解，請參閱「使用 AzCopy 命令列公用程式傳輸資料」。 針對極大的資料量，您也可以使用 Azure 匯入/匯出。 若要深入了解，請參閱 [Azure 匯入/匯出](https://docs.microsoft.com/en-us/azure/storage/storage-import-export-service) 。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

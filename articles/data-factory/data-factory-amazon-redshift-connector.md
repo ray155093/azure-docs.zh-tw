@@ -12,16 +12,17 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/12/2016
+ms.date: 02/08/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: c2350ae447ccebf1a6b85a563e7fa1d7c12b16d7
-ms.openlocfilehash: 4ca6e9a70eeba688912dd1f2c840fe0289a365c9
+ms.sourcegitcommit: 6fad9ecee49eae24daf924bc292daaf42000c901
+ms.openlocfilehash: 546d7f721689d5d52adfc6149b715a0f9e1aa71e
+ms.lasthandoff: 02/10/2017
 
 
 ---
 # <a name="move-data-from-amazon-redshift-using-azure-data-factory"></a>使用 Azure Data Factory 從 Amazon Redshift 移動資料
-本文將概述如何使用 Azure 資料處理站中的複製活動將資料從 Amazon Redshift 移動到另一個資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及來源/接收資料存放區清單。  
+本文將概述如何使用 Azure Data Factory 中的複製活動將資料從 Amazon Redshift 移動到另一個資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及來源/接收資料存放區清單。  
 
 Data Factory 目前只支援將資料從 Amazon Redshift 移到其他資料存放區，而不支援將資料從其他資料存放區移到 Amazon Redshift。
 
@@ -281,9 +282,4 @@ Data Factory 目前只支援將資料從 Amazon Redshift 移到其他資料存�
 請參閱下列文章：
 
 * [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得使用「複製活動」來建立管線的逐步指示。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

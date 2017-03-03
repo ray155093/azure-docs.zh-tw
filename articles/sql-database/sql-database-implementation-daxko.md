@@ -18,6 +18,7 @@ ms.author: carlrab
 translationtype: Human Translation
 ms.sourcegitcommit: b759e9936a45f989088de5e89a59371c5ea64e1c
 ms.openlocfilehash: 079a05d16ccebb705f410e25f0ed5762db20ae22
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -94,10 +95,5 @@ Azure SQL Database 不僅為 SpectrumNG 客戶帶來好處，讓他們享有快�
 * 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
 * 若要深入了解「Azure 服務匯流排」，請參閱 [Azure 服務匯流排](https://azure.microsoft.com/services/service-bus/)。
 * 若要深入了解自動調整，請參閱 [調整雲端服務](../cloud-services/cloud-services-how-to-scale.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

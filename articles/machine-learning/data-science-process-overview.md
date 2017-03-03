@@ -1,6 +1,6 @@
 ---
 title: "Team Data Science Process 生命週期 | Microsoft Docs"
-description: "Team Data Science Team 生命週期重要元件的概述。"
+description: "用來建構資料科學專案的生命週期步驟和元件。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/08/2017
 ms.author: bradsev;hangzh;gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 725f6d4a209ada154eb9aa90a8226dcaa0859990
+ms.sourcegitcommit: 1796f7a7cd174d7ed6582878d72c59995aac41cb
+ms.openlocfilehash: 995ba0dc3ffd2bc78625db7d1176ca0d5e1611a0
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -196,10 +197,5 @@ TDSP 提供了自動化公用程式 [IDEAR](https://github.com/Azure/Azure-TDSP-
 
 ## <a name="next-steps"></a>後續步驟
 此外也會提供完整的端對端逐步解說，說明 **特定案例** 之程序中的所有步驟。 [Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)主題中會列出這些逐步解說以及連結的縮圖描述。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

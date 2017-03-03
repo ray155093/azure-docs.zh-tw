@@ -17,6 +17,7 @@ ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: a4b067e732bccb01faa96f23dbfd2ed65b7711a0
 ms.openlocfilehash: 62326da2e801a7c6e01d29e2298bd3552f331647
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -566,9 +567,4 @@ User Id=<username>;Password=<password>;",
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

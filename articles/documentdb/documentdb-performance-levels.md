@@ -17,6 +17,7 @@ ms.author: mimig
 translationtype: Human Translation
 ms.sourcegitcommit: b9902de45477bb7970da6c8f2234775bdb6edba8
 ms.openlocfilehash: 65f19191bbb736d3b7fbdd94d73f2308ee6dea83
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -178,8 +179,3 @@ EA 客戶將會受保護的價格，直到其目前合約結束。
 2.  [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)。 深入了解佈建輸送量和使用儲存體的成本。
 3.  [要求單位](documentdb-request-units.md)。 了解不同作業類型，例如讀取、寫入、查詢的輸送量耗用量。
 4.  [在 DocumentDB 中模型化資料](documentdb-modeling-data.md)。 了解如何建立您 DocumentDB 資料的模型。
-
-
-<!--HONumber=Feb17_HO2-->
-
-
