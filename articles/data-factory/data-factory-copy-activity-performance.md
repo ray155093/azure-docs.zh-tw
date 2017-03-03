@@ -17,6 +17,7 @@ ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: c3d96d11894f0009db004b1089c05559cafd2d43
 ms.openlocfilehash: ee79612cc30f1dfefcf7dcd8af7aed7836dd528c
+ms.lasthandoff: 01/06/2017
 
 
 ---
@@ -408,9 +409,4 @@ Azure 提供一組企業級資料儲存與資料倉儲解決方案，而「複�
 * Azure DocumentDB： [DocumentDB 中的效能層級](../documentdb/documentdb-performance-levels.md)
 * 內部部署 SQL Server： [效能的監視與微調](https://msdn.microsoft.com/library/ms189081.aspx)
 * 內部部署檔案伺服器： [檔案伺服器的效能微調](https://msdn.microsoft.com/library/dn567661.aspx)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

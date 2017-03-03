@@ -18,6 +18,7 @@ ms.author: carlrab
 translationtype: Human Translation
 ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
 ms.openlocfilehash: 774d5ac6f3d5d9d97120ab895157677e4a92bb05
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -129,10 +130,5 @@ Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Data
 * 若要深入了解備份與復原，請參閱 [商務持續性](sql-database-business-continuity.md)。    
 * 若要深入了解監視集區，請參閱 [監視集區](sql-database-elastic-pool-manage-portal.md)。    
 * 若要深入了解 Umbraco，請參閱 [Umbraco](https://umbraco.com/cloud)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

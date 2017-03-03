@@ -17,6 +17,7 @@ ms.author: ryansoc
 translationtype: Human Translation
 ms.sourcegitcommit: ec62cc79aeffa21e5d9d772dcd2da6f973c18d81
 ms.openlocfilehash: 3d9f2308d20e723da324be7e3aec3106ff5ff846
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -120,9 +121,4 @@ Azure Government 中的 Log Analytics URL 不同：
 
 ## <a name="next-steps"></a>後續步驟
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。 </a>
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

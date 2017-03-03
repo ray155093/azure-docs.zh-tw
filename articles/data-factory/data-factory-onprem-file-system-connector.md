@@ -17,6 +17,7 @@ ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: 0b2c783712419de1ab1897a0404429fc4ed4c688
 ms.openlocfilehash: 244c3320d673b884057b4200bed0c7858b1a2fea
+ms.lasthandoff: 01/13/2017
 
 
 ---
@@ -607,9 +608,4 @@ Data Factory 支援透過資料管理閘道連接至內部部署檔案系統。 
 
 ## <a name="performance-and-tuning"></a>效能和微調
  若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 
